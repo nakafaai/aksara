@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "negation",
+    topic: "logical-equivalence",
   },
   versions: {
     id: {
@@ -13,27 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua kendaraan yang melintas di jalan itu tidak membayar tol dan tidak memiliki kartu elektronik.",
-        },
-        {
-          correct: false,
-          label:
-            "Ada kendaraan yang melintas di jalan itu yang tidak membayar tol dan tidak memiliki kartu elektronik.",
-        },
-        {
-          correct: false,
-          label:
-            "Semua kendaraan yang tidak melintas di jalan itu membayar tol dan memiliki kartu elektronik.",
+            "Jika Rendi tidak membayar denda dan kartu anggotanya tidak dibekukan, maka Rendi tidak terlambat mengembalikan buku dan buku itu bukan koleksi referensi.",
         },
         {
           correct: true,
           label:
-            "Ada kendaraan yang melintas di jalan itu yang tidak membayar tol atau tidak memiliki kartu elektronik.",
+            "Jika Rendi terlambat mengembalikan buku dan tidak membayar denda, maka buku itu bukan koleksi referensi atau kartu anggotanya dibekukan.",
         },
         {
           correct: false,
           label:
-            "Tidak ada kendaraan yang melintas di jalan itu yang membayar tol atau memiliki kartu elektronik.",
+            "Jika Rendi terlambat mengembalikan buku, buku itu koleksi referensi, dan Rendi membayar denda, maka kartu anggotanya dibekukan.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika Rendi terlambat mengembalikan buku dan tidak membayar denda, maka buku itu koleksi referensi atau kartu anggotanya dibekukan.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika Rendi tidak terlambat mengembalikan buku atau buku itu bukan koleksi referensi, maka Rendi tidak membayar denda dan kartu anggotanya tidak dibekukan.",
         },
       ],
     },

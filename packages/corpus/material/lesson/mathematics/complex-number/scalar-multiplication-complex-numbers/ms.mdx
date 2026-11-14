@@ -1,0 +1,192 @@
+export const metadata = {
+  title: "Pendaraban Skalar Nombor Kompleks",
+  description: "Kaitkan pendaraban skalar nyata dengan perubahan panjang dan arah vektor kompleks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-09-12",
+  subject: "Nombor Kompleks",
+};
+
+## Mendarab Vektor Kompleks dengan Nombor Nyata
+
+Pendaraban skalar ialah pendaraban nombor kompleks dengan nombor nyata, yang dipanggil **skalar**.
+
+<MathVisual
+  title={<>Gambaran Pendaraban Skalar</>}
+  description={
+    <>
+      Perhatikan bagaimana vektor <InlineMath math="z = 1+2i" /> berubah apabila
+      didarab dengan skalar <InlineMath math="c=2" /> dan{" "}
+      <InlineMath math="c=-0.5" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="2z" />,
+    "l3": <InlineMath math="-0.5z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -0.5, y: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -0.5, y: -1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Untuk vektor bukan sifar, kes-kes berikut berlaku:
+
+- Mendarab <InlineMath math="z" /> dengan skalar <InlineMath math="c > 1" /> (seperti <InlineMath math="2" />) akan **meregangkan** vektor <InlineMath math="z" /> dalam arah yang sama.
+- Mendarab <InlineMath math="z" /> dengan skalar <InlineMath math="0 < c < 1" /> akan **mengecutkan** vektor <InlineMath math="z" /> dalam arah yang sama.
+- Mendarab <InlineMath math="z" /> dengan <InlineMath math="c = 0" /> membawa vektor itu ke asalan, jadi <InlineMath math="0z = 0" />.
+- Untuk <InlineMath math="z\neq0" />, mendarab dengan skalar <InlineMath math="c < 0" /> (seperti <InlineMath math="-0.5" />) **membalikkan arah** vektor itu sebanyak <InlineMath math="180^\circ" /> dan mendarab panjangnya dengan <InlineMath math="|c|" />.
+
+Skalar satu tidak mengubah vektor. Skalar sifar atau nombor kompleks sifar menghasilkan **vektor sifar yang tiada arah**.
+
+## Mendarab Nombor Kompleks dengan Skalar
+
+Kalau <InlineMath math="z = x + iy" /> ialah nombor kompleks dan <InlineMath math="c" /> ialah skalar (nombor nyata), maka pendaraban skalarnya ialah:
+
+<BlockMath math="cz = c(x + iy) = (cx) + i(cy)" />
+
+Rumus ini mengenakan **faktor yang sama pada kedua-dua komponen**, iaitu dengan mendarab skalar <InlineMath math="c" /> dengan bahagian nyata <InlineMath math="x" /> dan bahagian khayalan <InlineMath math="y" /> secara berasingan.
+
+Panjangnya didarab dengan **nilai mutlak skalar**, bukan nilai skalar bersama tandanya. Ini dapat dilihat daripada rumus modulus:
+
+<BlockMath math="\begin{aligned}|cz|&amp;=\sqrt{(cx)^2+(cy)^2}\\&amp;=\sqrt{c^2(x^2+y^2)}\\&amp;=|c|\sqrt{x^2+y^2}=|c||z|\end{aligned}" />
+
+### Menskalakan Nombor Kompleks dengan Skalar Nyata
+
+Perhatikan **tanda setiap komponen**. Dalam contoh kedua, skalar negatif mendarab komponen khayalan yang negatif, jadi komponen khayalan hasil darabnya positif.
+
+Kalau <InlineMath math="z = -3 + 4i" /> dan <InlineMath math="c = 3" />, maka:
+
+<BlockMath math="\begin{aligned} cz &amp;= 3(-3 + 4i) \\ &amp;= 3(-3) + i(3 \times 4) \\ &amp;= -9 + 12i \end{aligned}" />
+
+Kalau <InlineMath math="z = 5 - i" /> dan <InlineMath math="c = -2" />, maka:
+
+<BlockMath math="\begin{aligned} cz &amp;= -2(5 - i) \\ &amp;= -2(5) + i(-2 \times -1) \\ &amp;= -10 + 2i \end{aligned}" />
+
+## Meregang dan Mengecut serta Membalikkan Arah pada Satah Kompleks
+
+Skalar nyata mengubah panjang anak panah dan boleh juga memusingkannya ke arah bertentangan. Kes-kes di sini memisahkan <Highlight>kesan meregang, mengecut dan membalikkan arah</Highlight>, supaya peranan saiz skalar dan peranan tandanya sama-sama jelas.
+
+### Skalar Lebih daripada Satu
+
+Skalar positif mengekalkan arah, manakala nilai yang lebih daripada satu **meregangkan vektor**. Untuk contoh dalam gambar rajah, darab kedua-dua komponen dengan faktor yang sama:
+
+<BlockMath math="\frac32(-2+i)=\frac32(-2)+\frac32i=-3+\frac32i" />
+
+<MathVisual
+  title={
+    <>
+      Pendaraban dengan Skalar <InlineMath math="c = 1.5" />
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="z = -2 + i" /> diregangkan dalam arah yang sama
+      apabila didarab dengan <InlineMath math="c = 1.5" />, lalu menjadi{" "}
+      <InlineMath math="1.5z = -3 + 1.5i" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="1.5z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 0.5 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -2, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 1.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -3, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+### Skalar antara Sifar dan Satu
+
+Skalar antara sifar dan satu **mengecutkan vektor** tanpa membalikkan arahnya. Apabila didarab dengan tiga per empat, setiap komponen menjadi tiga per empat daripada nilai asalnya:
+
+<BlockMath math="\frac34(3-2i)=\frac94-\frac64i=\frac94-\frac32i" />
+
+<MathVisual
+  title={
+    <>
+      Pendaraban dengan Skalar <InlineMath math="c = 0.75" />
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="z = 3 - 2i" /> dikecutkan dalam arah yang sama
+      apabila didarab dengan <InlineMath math="c = 0.75" />, lalu menjadi{" "}
+      <InlineMath math="0.75z = 2.25 - 1.5i" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="0.75z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -2.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2.25, y: -1.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: -2 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2.25, y: -1.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Skalar Negatif
+
+Pendaraban dengan <InlineMath math="-1" /> menghasilkan **songsangan penambahan (negatif)** bagi nombor kompleks itu.
+
+<MathVisual
+  title={
+    <>
+      Pendaraban dengan Skalar <InlineMath math="c = -1" /> (Songsangan Penambahan)
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="z = -1 - 3i" /> berbalik arah (<InlineMath math="180^\circ" />) apabila
+      didarab dengan <InlineMath math="c = -1" />, lalu menjadi{" "}
+      <InlineMath math="-z = 1 + 3i" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="-z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -1, y: -3 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: -3 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>

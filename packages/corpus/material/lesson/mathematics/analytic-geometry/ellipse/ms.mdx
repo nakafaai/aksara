@@ -1,0 +1,447 @@
+export const metadata = {
+  title: "Elips",
+  description: "Kenal pasti fokus elips dan terbitkan persamaan piawainya daripada gambar rajah dan contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Melukis Elips dengan Dua Fokus Tetap
+
+**Elips** ialah set titik yang hasil tambah jaraknya ke dua titik tetap, iaitu fokus, sentiasa <InlineMath math="2a" />, dengan <InlineMath math="2a" /> lebih besar daripada jarak antara kedua-dua fokus. Elips yang berpusat di <InlineMath math="O" /> dengan paksi major mengufuk mempunyai persamaan <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a \ge b > 0" />, fokus di <InlineMath math="(\pm c, 0)" />, dan <InlineMath math="c^2 = a^2 - b^2" />. Apabila <InlineMath math="a = b" />, lengkung itu menjadi [bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-bulatan) berjejari <InlineMath math="a" />.
+
+Elips ialah set semua titik yang <Highlight>hasil tambah jaraknya ke dua titik tetap</Highlight> sentiasa sama. Dua titik tetap itu ialah **fokus**. Definisi ini boleh dimodelkan dengan dua batang paku, segelung tali tertutup, dan sebatang pensel. Sangkutkan tali itu pada kedua-dua paku, tarik sampai tegang dengan pensel, dan lakar satu lengkung penuh. Hasilnya ialah elips.
+
+<MathVisual
+  title={<>Konsep Asas Elips</>}
+  description={<>Elips dengan dua fokus dan beberapa titik yang menunjukkan hasil tambah jarak yang tetap.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="P" />,
+    "l5": <InlineMath math="r_1" />,
+    "l6": <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 3.12, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2, y: 2.17 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 3.12, y: 0 }, { x: 2, y: 2.17 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.12, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.12, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2, y: 2.17 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 2.17 }, placement: "above-left" },
+      { key: "l6", objectId: "s6", at: { x: 3.12, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah ini, <InlineMath math="P" /> terletak pada elips. Jaraknya ke <InlineMath math="F_1" />, yang dilabel <InlineMath math="r_1" />, ditambah jaraknya ke <InlineMath math="F_2" />, yang dilabel <InlineMath math="r_2" />, memberikan nilai yang sama bagi setiap titik pada lengkung itu. Inilah **sifat yang mentakrifkan elips**.
+
+## Komponen Elips
+
+Sebelum menggunakan rumus, kenal pasti bahagian yang menentukan kedudukan dan bentuk elips.
+
+<MathVisual
+  title={<>Komponen Elips</>}
+  description={<>Pusat, fokus, verteks, serta paksi major dan paksi minor bagi elips dengan paksi major mengufuk.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+    "l6": <InlineMath math="B_1" />,
+    "l7": <InlineMath math="B_2" />,
+    "l8": <>Paksi Major</>,
+    "l9": <>Paksi Minor</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(2.8 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.86, y: 0 }, { x: 2.86, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -2.8 }, { x: 0, y: 2.8 }], appearance: "reference" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: -2.8 }, appearance: "reference" },
+      { id: "s5-p1", kind: "point", at: { x: 0, y: 2.8 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -2.8 }, { x: 0, y: 2.8 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -2.86, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.86, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: -4, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: -2.8 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: 2.8 }, placement: "above-left" },
+      { key: "l8", objectId: "s6", at: { x: 4, y: 0 }, placement: "below-left" },
+      { key: "l9", objectId: "s7", at: { x: 0, y: 2.8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Komponen utamanya ialah:
+
+1. **Pusat elips** ialah titik tengah elips, biasanya ditulis dengan huruf <InlineMath math="O" />. Semua ukuran dalam elips merujuk kepada titik ini.
+
+2. **Fokus** (<InlineMath math="F_1" /> dan <InlineMath math="F_2" />) ialah dua titik tetap yang mentakrifkan elips. Jarak antara kedua-duanya ialah <InlineMath math="2c" />.
+
+3. **Paksi major** ialah diameter paling panjang, iaitu tembereng yang melalui pusat dan kedua-dua fokus dengan hujungnya pada elips. Hujungnya ialah titik <InlineMath math="A_1" /> dan <InlineMath math="A_2" />.
+
+4. **Paksi minor** ialah diameter paling pendek, iaitu tembereng yang melalui pusat dan berserenjang dengan paksi major, dengan hujungnya pada elips. Hujungnya ialah titik <InlineMath math="B_1" /> dan <InlineMath math="B_2" />.
+
+5. **Separuh paksi major** (<InlineMath math="a" />) ialah separuh panjang paksi major, iaitu jarak dari pusat ke hujung paksi major.
+
+6. **Separuh paksi minor** (<InlineMath math="b" />) ialah separuh panjang paksi minor, iaitu jarak dari pusat ke hujung paksi minor.
+
+> Elips yang bukan bulatan memenuhi <InlineMath math="a > b > 0" />. Dalam kes had <InlineMath math="a = b" />, kedua-dua separuh paksi sama panjang dan lengkung itu ialah bulatan.
+
+## Persamaan Elips
+
+Bentuk persamaannya bergantung pada pusat dan sama ada paksi major mengufuk atau mencancang. Baca pusat daripada nombor yang ditolak dalam setiap kuasa dua, dan baca arah paksi daripada sebutan kuasa dua yang mempunyai **penyebut lebih besar**.
+
+### Daripada Jarak kepada Persamaan
+
+Letakkan fokus di <InlineMath math="(-c,0)" /> dan <InlineMath math="(c,0)" /> dengan <InlineMath math="a > c > 0" />. Untuk titik <InlineMath math="P(x,y)" />, namakan jaraknya ke fokus kiri dan fokus kanan sebagai <InlineMath math="d_1" /> dan <InlineMath math="d_2" />. Tulis **hasil tambah tetap** kedua-dua jarak itu sebagai <InlineMath math="2a" />.
+
+<MathContainer>
+  <BlockMath math="d_1=\sqrt{(x+c)^2+y^2},\qquad d_2=\sqrt{(x-c)^2+y^2}" />
+  <BlockMath math="d_1+d_2=2a" />
+</MathContainer>
+
+Kuasa duakan <InlineMath math="d_1=2a-d_2" />. Apabila kuasa dua kedua-dua jarak itu ditolak, yang tinggal ialah sebutan <InlineMath math="4cx" />.
+
+<BlockMath math="\begin{aligned}d_1^2-d_2^2 &amp;=4a^2-4ad_2\\4cx &amp;=4a^2-4ad_2\\ad_2 &amp;=a^2-cx\end{aligned}" />
+
+Gantikan rumus jarak bagi <InlineMath math="d_2" />, kuasa duakan, dan kumpulkan sebutan serupa.
+
+<BlockMath math="\begin{aligned}a^2[(x-c)^2+y^2]&amp;=(a^2-cx)^2\\a^2x^2-2a^2cx+a^2c^2+a^2y^2&amp;=a^4-2a^2cx+c^2x^2\\(a^2-c^2)x^2+a^2y^2&amp;=a^2(a^2-c^2)\end{aligned}" />
+
+Oleh sebab <InlineMath math="a^2-c^2 > 0" />, tulis <InlineMath math="b^2=a^2-c^2" /> dan bahagikan kedua-dua belah dengan <InlineMath math="a^2b^2" />. Hasilnya ialah **persamaan piawai elips**.
+
+<BlockMath math="b^2x^2+a^2y^2=a^2b^2\quad\Longrightarrow\quad\frac{x^2}{a^2}+\frac{y^2}{b^2}=1" />
+
+### Pusat di Asalan
+
+Kalau pusat elips berada di <InlineMath math="O(0,0)" />, ada dua orientasi yang mungkin:
+
+<MathVisual
+  title={<>Paksi Major Mengufuk</>}
+  description={<>Elips <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="a" />,
+    "l5": <InlineMath math="b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4.5 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.35, y: 0 }, { x: 3.35, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4.5, y: 0 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.35, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.35, y: 0 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 4.5, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Apabila **paksi major selari** dengan paksi <InlineMath math="x" /> (mengufuk), persamaan elipsnya ialah:
+
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+Persamaan ini digunakan apabila <InlineMath math="a > b > 0" />.
+
+<MathVisual
+  title={<>Paksi Major Mencancang</>}
+  description={<>Elips <InlineMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" /> dengan <InlineMath math="a > b > 0" />.</>}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="b" />,
+    "l5": <InlineMath math="a" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(4.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -3.35 }, { x: 0, y: 3.35 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4.5 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -6 }, { x: 0, y: 6 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: -3.35 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 3.35 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 4.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Apabila paksi major selari dengan paksi <InlineMath math="y" /> (mencancang), persamaan elipsnya ialah:
+
+<BlockMath math="\frac{x^2}{b^2} + \frac{y^2}{a^2} = 1" />
+
+Persamaan ini digunakan apabila <InlineMath math="a > b > 0" />.
+
+### Pusat yang Dianjakkan
+
+Bagi **elips yang berpusat di** <InlineMath math="(h, k)" />, persamaannya menjadi:
+
+Untuk paksi major mengufuk:
+
+<BlockMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" />
+  Untuk paksi major mencancang:
+
+<BlockMath math="\frac{(x-h)^2}{b^2} + \frac{(y-k)^2}{a^2} = 1" />
+
+Gambar rajah:
+
+<MathVisual
+  title={<>Elips dengan Pusat yang Dianjakkan</>}
+  description={<>Elips berpusat di <InlineMath math="(2, -1)" /> dengan paksi major mengufuk.</>}
+  labels={{
+    "l1": <InlineMath math="(2,-1)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="a" />,
+    "l5": <InlineMath math="b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -6, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 + (3.5 * cos(((t * pi) / 180))))", y: "((-1) + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.45, y: -1 }, { x: 4.45, y: -1 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 5.5, y: -1 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: 2, y: 1.5 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 7, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 3 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: -1 }, placement: "above-left" },
+      { key: "l2", objectId: "s3", at: { x: -0.45, y: -1 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4.45, y: -1 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 5.5, y: -1 }, placement: "below" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Hubungan antara Panjang dalam Elips
+
+Ketiga-tiga panjang ciri elips memenuhi:
+
+<BlockMath math="c^2 = a^2 - b^2" />
+
+Dalam persamaan ini, <InlineMath math="c" /> ialah jarak dari pusat ke mana-mana satu fokus.
+
+**Kesipian** elips ditakrifkan sebagai:
+
+<BlockMath math="e = \frac{c}{a}" />
+
+Bagi elips yang bukan bulatan, <InlineMath math="0 < e < 1" />. Apabila <InlineMath math="e" /> menghampiri <InlineMath math="0" />, elips menjadi lebih bulat. Apabila <InlineMath math="e" /> menghampiri <InlineMath math="1" />, elips menjadi lebih memanjang. Bulatan, iaitu kes hadnya, mempunyai <InlineMath math="e = 0" />.
+
+## Contoh Mencari Bahagian Elips daripada Persamaannya
+
+Cari pusat, verteks, fokus, dan kesipian elips <InlineMath math="9x^2 + 25y^2 = 225" />.
+
+**Bahagikan kedua-dua belah dengan <InlineMath math="225" />** supaya sebelah kanan menjadi <InlineMath math="1" />:
+
+<BlockMath math="\frac{x^2}{25} + \frac{y^2}{9} = 1" />
+
+Penyebut yang lebih besar berada di bawah <InlineMath math="x^2" />, jadi paksi major mengufuk dengan <InlineMath math="a = 5" /> dan <InlineMath math="b = 3" />. Maka <InlineMath math="c = \sqrt{25 - 9} = 4" />, fokusnya ialah <InlineMath math="(\pm 4, 0)" />, verteks major, iaitu hujung paksi major, ialah <InlineMath math="(\pm 5, 0)" />, verteks minor ialah <InlineMath math="(0, \pm 3)" />, dan <InlineMath math="e = \frac{4}{5}" />.
+
+Semak dengan definisi. Titik <InlineMath math="(5, 0)" /> berjarak <InlineMath math="9" /> dan <InlineMath math="1" /> dari kedua-dua fokus, dan hasil tambahnya ialah <InlineMath math="10 = 2a" />. Titik <InlineMath math="(0, 3)" /> berjarak <InlineMath math="\sqrt{16 + 9} = 5" /> dari setiap fokus, jadi hasil tambahnya juga <InlineMath math="10" />.
+
+## Contoh Elips dalam Bentuk Am
+
+Cari pusat dan fokus elips <InlineMath math="4x^2 + 9y^2 - 16x + 18y - 11 = 0" />.
+
+Kumpulkan sebutan <InlineMath math="x" /> dan sebutan <InlineMath math="y" />, kemudian **sempurnakan kuasa dua** dalam setiap kumpulan:
+
+<MathContainer>
+  <BlockMath math="4(x^2 - 4x) + 9(y^2 + 2y) = 11" />
+  <BlockMath math="4(x - 2)^2 - 16 + 9(y + 1)^2 - 9 = 11" />
+  <BlockMath math="4(x - 2)^2 + 9(y + 1)^2 = 36" />
+  <BlockMath math="\frac{(x - 2)^2}{9} + \frac{(y + 1)^2}{4} = 1" />
+</MathContainer>
+
+Pusatnya ialah <InlineMath math="(2, -1)" />, dengan <InlineMath math="a = 3" />, <InlineMath math="b = 2" />, dan paksi major mengufuk. Oleh sebab <InlineMath math="c = \sqrt{9 - 4} = \sqrt{5}" />, fokusnya ialah <InlineMath math="(2 \pm \sqrt{5}, -1)" />. Semak definisi pada verteks major <InlineMath math="(5, -1)" />, iaitu satu hujung paksi major: jaraknya ke kedua-dua fokus ialah <InlineMath math="3 - \sqrt{5}" /> dan <InlineMath math="3 + \sqrt{5}" />, dan hasil tambahnya ialah <InlineMath math="6 = 2a" />. Titik itu juga memenuhi bentuk am, kerana <InlineMath math="100 + 9 - 80 - 18 - 11 = 0" />.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan panjang penuh paksi sebagai <InlineMath math="a" /> | Paksi major sepanjang <InlineMath math="12" /> bermaksud <InlineMath math="a = 6" /> | <InlineMath math="a" /> ialah jarak dari pusat ke satu verteks |
+| Menulis <InlineMath math="c^2 = a^2 + b^2" /> | Rumus itu untuk [hiperbola](/ms/subjek/matematik/geometri-analitik/hiperbola) | Definisi memerlukan <InlineMath math="2a > 2c" />, jadi <InlineMath math="c < a" /> dan <InlineMath math="b^2 = a^2 - c^2 > 0" /> |
+| Membaca arah paksi daripada susunan sebutan | Arahnya ditentukan oleh penyebut yang lebih besar | Bandingkan penyebutnya selepas sebelah kanan menjadi <InlineMath math="1" /> |
+| Membaca pusat bagi <InlineMath math="(x - 2)^2" /> sebagai <InlineMath math="h = -2" /> | Bentuk <InlineMath math="(x - h)^2" /> memberikan <InlineMath math="h = 2" /> | Pusat menjadikan setiap kuasa dua sifar |
+| Terlupa membahagi supaya sebelah kanan menjadi <InlineMath math="1" /> | <InlineMath math="9x^2 + 25y^2 = 225" /> belum dalam bentuk piawai | Bahagikan kedua-dua belah dengan pemalar di sebelah kanan |
+
+Cara semakan paling mudah ialah **definisi elips**: bagi setiap verteks, hasil tambah jarak ke kedua-dua fokus mesti sama dengan <InlineMath math="2a" />.
+
+## Latihan
+
+Soalan-soalan ini memberikan maklumat permulaan yang berbeza. Bezakan **panjang penuh paksi dengan separuh paksi**, kemudian gunakan fokus atau titik pada lengkung untuk mencari parameter yang selebihnya.
+
+1. Cari persamaan elips yang berpusat di <InlineMath math="(0,0)" />, dengan panjang paksi major <InlineMath math="12" /> dan panjang paksi minor <InlineMath math="8" />, serta paksi major mengufuk.
+
+2. Diberi elips <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />. Cari koordinat fokus dan kesipian elips itu.
+
+3. Sebuah elips berpusat di <InlineMath math="(3, -1)" />, dengan fokus di <InlineMath math="(3, 2)" /> dan <InlineMath math="(3, -4)" />, serta panjang paksi minor <InlineMath math="6" />. Cari persamaan elips itu.
+
+4. Cari persamaan elips yang melalui titik <InlineMath math="(4, 3)" /> dan <InlineMath math="(6, 2)" />, berpusat di <InlineMath math="(0, 0)" />, dan mempunyai paksi major mengufuk.
+
+### Penyelesaian
+
+**Penyelesaian 1**:
+
+Diberi:
+- Pusat di <InlineMath math="(0,0)" />
+- Panjang paksi major ialah <InlineMath math="12" />, jadi <InlineMath math="2a = 12" />, maka <InlineMath math="a = 6" />
+- Panjang paksi minor ialah <InlineMath math="8" />, jadi <InlineMath math="2b = 8" />, maka <InlineMath math="b = 4" />
+- **Paksi major mengufuk**
+
+Persamaan elips dengan **paksi major mengufuk**:
+
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+Gantikan nilai <InlineMath math="a = 6" /> dan <InlineMath math="b = 4" />:
+
+<BlockMath math="\frac{x^2}{36} + \frac{y^2}{16} = 1" />
+
+**Penyelesaian 2**:
+
+Daripada persamaan <InlineMath math="\frac{x^2}{25} + \frac{y^2}{16} = 1" />:
+- <InlineMath math="a^2 = 25" />, jadi <InlineMath math="a = 5" />
+- <InlineMath math="b^2 = 16" />, jadi <InlineMath math="b = 4" />
+
+Oleh sebab <InlineMath math="a^2 > b^2" />, **paksi major mengufuk**.
+
+Kira <InlineMath math="c" />:
+
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2 = 25 - 16 = 9" />
+  <BlockMath math="c = 3" />
+</MathContainer>
+
+Koordinat fokus: <InlineMath math="(\pm 3, 0)" />, iaitu <InlineMath math="(-3, 0)" /> dan <InlineMath math="(3, 0)" />
+
+Kesipian:
+
+<BlockMath math="e = \frac{c}{a} = \frac{3}{5} = 0.6" />
+
+**Penyelesaian 3**:
+
+Diberi:
+- Pusat: <InlineMath math="(3, -1)" />
+- Fokus: <InlineMath math="(3, 2)" /> dan <InlineMath math="(3, -4)" />
+- Panjang paksi minor ialah <InlineMath math="6" />, jadi <InlineMath math="2b = 6" />, maka <InlineMath math="b = 3" />
+
+Oleh sebab kedua-dua fokus mempunyai koordinat <InlineMath math="x" /> yang sama (<InlineMath math="x = 3" />), **paksi major mencancang**.
+
+<BlockMath math="\begin{aligned} &amp;\text{Jarak antara fokus} \\ &amp;= |2 - (-4)| \\ &amp;= 6 \end{aligned}" />
+
+**Jarak antara kedua-dua fokus** ialah <InlineMath math="2c = 6" />, jadi <InlineMath math="c = 3" />.
+
+Gunakan <InlineMath math="c^2 = a^2-b^2" /> untuk mengira <InlineMath math="a" />:
+
+<MathContainer>
+  <BlockMath math="c^2 = a^2 - b^2" />
+  <BlockMath math="9 = a^2 - 9" />
+  <BlockMath math="a^2 = 18" />
+  <BlockMath math="a = 3\sqrt{2}" />
+</MathContainer>
+
+Persamaan elips dengan pusat <InlineMath math="(h,k) = (3,-1)" /> dan paksi major mencancang:
+
+<BlockMath math="\frac{(x-3)^2}{9} + \frac{(y+1)^2}{18} = 1" />
+
+**Penyelesaian 4**:
+
+Elips yang berpusat di <InlineMath math="(0,0)" /> dengan **paksi major mengufuk** mempunyai persamaan:
+
+<BlockMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" />
+
+Gantikan titik <InlineMath math="(4,3)" />:
+
+<BlockMath math="\frac{16}{a^2} + \frac{9}{b^2} = 1 \quad \text{...(1)}" />
+
+Gantikan titik <InlineMath math="(6,2)" />:
+
+<BlockMath math="\frac{36}{a^2} + \frac{4}{b^2} = 1 \quad \text{...(2)}" />
+
+Katakan <InlineMath math="u = \frac{1}{a^2}" /> dan <InlineMath math="v = \frac{1}{b^2}" />, maka:
+
+<MathContainer>
+  <BlockMath math="16u + 9v = 1 \quad \text{...(1)}" />
+  <BlockMath math="36u + 4v = 1 \quad \text{...(2)}" />
+</MathContainer>
+
+Daripada persamaan (1): <InlineMath math="v = \frac{1-16u}{9}" />
+
+Gantikan ke dalam persamaan (2):
+
+<MathContainer>
+  <BlockMath math="36u + 4 \cdot \frac{1-16u}{9} = 1" />
+  <BlockMath math="36u + \frac{4-64u}{9} = 1" />
+  <BlockMath math="324u + 4 - 64u = 9" />
+  <BlockMath math="260u = 5" />
+  <BlockMath math="u = \frac{1}{52}" />
+</MathContainer>
+
+Jadi <InlineMath math="a^2 = 52" />
+
+Gantikan semula:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} v &amp;= \frac{1-16 \cdot \frac{1}{52}}{9} \\ &amp;= \frac{1-\frac{16}{52}}{9} \\ &amp;= \frac{\frac{36}{52}}{9} \\ &amp;= \frac{4}{52} \\ &amp;= \frac{1}{13} \end{aligned}" />
+</MathContainer>
+
+Jadi <InlineMath math="b^2 = 13" />
+
+Persamaan elips: <InlineMath math="\frac{x^2}{52} + \frac{y^2}{13} = 1" />

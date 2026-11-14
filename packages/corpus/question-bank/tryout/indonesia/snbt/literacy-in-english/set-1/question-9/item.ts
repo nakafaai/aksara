@@ -4,34 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-structure",
+    topic: "assumption",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "a deliberate strategy by car makers to raise their sales.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "a temporary inconvenience that ends once construction is finished.",
+            "Older pupils would lose no more from dropping homework than the pupils in the pilot did.",
         },
         {
-          correct: false,
-          label: "a benefit for cyclists that planners had not expected.",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "an unintended effect that worsens the problem the rule was meant to manage.",
+            "Children whose worksheets are finished by a parent learn less than children who work alone.",
         },
         {
-          correct: false,
-          label: "a contradiction in the reasoning of the critics of reform.",
+          column: 1,
+          label:
+            "One term without homework is long enough to show any cost to attainment.",
+        },
+        {
+          column: 2,
+          label:
+            "Most older pupils already spend more than $$40$$ minutes a night on homework.",
+        },
+        {
+          column: 1,
+          label:
+            "Last year's pupils in the same year groups make a fair comparison for the pilot pupils.",
         },
       ],
     },

@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "recount",
-    topic: "sequence",
+    cognitiveLevel: "textual",
+    contentDomain: "procedure",
+    topic: "outline",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The mistake showed that every repair should use new parts, so the writer later replaced the noisy brake immediately.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The mistake convinced the writer that service notes slow repairs, so the writer stopped recording observations.",
+          label: "II only",
         },
         {
           correct: true,
-          label:
-            "The mistake showed that similar-looking parts still require records and measurements, a method the writer later applied before advising another volunteer.",
+          label: "II and III only",
         },
         {
           correct: false,
-          label:
-            "The mistake mattered only because it took an hour, whereas the final-day decision was based on speed alone.",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "The mistake taught the writer to let Sari make uncertain decisions, which is why the writer avoided guiding the new volunteer.",
+          label: "I, II, and III only",
         },
       ],
     },

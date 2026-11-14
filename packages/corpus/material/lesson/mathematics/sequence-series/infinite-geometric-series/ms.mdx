@@ -1,0 +1,188 @@
+export const metadata = {
+  title: "Siri Geometri Tak Terhingga",
+  description: "Kaitkan siri geometri tak terhingga dengan bola yang melantun, kemudian terbitkan syarat penumpuan dan rumus hasil tambah hingga ketakterhinggaan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Bola yang Melantun
+
+Katakan sebiji bola tenis dijatuhkan dari ketinggian <InlineMath math="1 \text{ meter}" />. Dalam model yang diidealkan, setiap lantunan mencapai <InlineMath math="\frac{1}{4}" /> daripada tinggi sebelumnya.
+
+Tinggi semasa bola dilepaskan, diikuti oleh tinggi setiap lantunan, membentuk **janjang geometri**:
+
+<MathContainer>
+  <BlockMath math="1, \quad 1 \times \frac{1}{4}, \quad (1 \times \frac{1}{4}) \times \frac{1}{4}, \quad \dots" />
+  <BlockMath math="1, \quad \frac{1}{4}, \quad \frac{1}{16}, \quad \frac{1}{64}, \quad \dots" />
+</MathContainer>
+
+Sebutan pertama (<InlineMath math="a" />) ialah <InlineMath math="1" />, dan nisbahnya (<InlineMath math="r" />) ialah <InlineMath math="\frac{1}{4}" />.
+
+Berapakah _jumlah jarak_ yang dilalui bola itu dari saat ia dilepaskan sehingga ia berhenti?
+
+Dalam model yang diidealkan, bola itu bergerak ke bawah, kemudian ke atas, ke bawah semula, dan seterusnya tanpa lantunan terakhir. Jumlah jarak dibina daripada semua laluan ke bawah dan ke atas. Oleh sebab panjang laluan-laluan itu membentuk corak geometri yang tak terhingga, pengiraannya menggunakan **siri geometri tak terhingga**.
+
+Setiap lantunan mencapai satu perempat daripada tinggi sebelumnya: <InlineMath math="1\text{ m}" />, kemudian <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. Palang-palangnya mengecil begitu cepat sehingga selepas beberapa lantunan, palang itu hampir tidak kelihatan.
+
+<BarChart
+  title={<>Tinggi lima lantunan pertama</>}
+  description={<>Palang <InlineMath math="\left(\tfrac14\right)^{n-1}" /> meter untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Tinggi (m)"
+  data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
+  chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Syarat Nisbah untuk Penumpuan
+
+Siri matematik ini tidak ada lantunan terakhir. Sebaliknya, hasil tambah separanya mungkin menghampiri satu had yang terhingga. Bagi siri geometri, hal ini berlaku apabila nilai mutlak nisbah <InlineMath math="r" /> kurang daripada <InlineMath math="1" />.
+
+<BlockMath math="|r| < 1 \quad \text{atau} \quad -1 < r < 1" />
+
+Siri seperti ini dipanggil siri yang **menumpu**, iaitu hasil tambah separanya menghampiri **satu nilai yang terhingga**. Dalam contoh bola, <InlineMath math="r = \frac{1}{4}" />, dan oleh sebab <InlineMath math="-1 < \frac{1}{4} < 1" />, siri itu menumpu.
+
+Kalau <InlineMath math="|r| \ge 1" /> dan <InlineMath math="a\ne0" />, sebutan-sebutannya tidak menghampiri sifar, jadi siri itu **mencapah**. Hasil tambah separanya mungkin bertambah tanpa batas, berkurang tanpa batas, atau berayun. Pencapahan bermaksud tiada had terhingga yang wujud. Pencapahan tidak semestinya bermaksud <InlineMath math="+\infty" /> atau <InlineMath math="-\infty" />.
+
+## Mengira Hasil Tambah Siri Tak Terhingga
+
+Bagaimanakah kita mengira **hasil tambah siri tak terhingga yang menumpu**? Kita mulakan dengan rumus hasil tambah <InlineMath math="n" /> sebutan pertama siri geometri:
+
+<BlockMath math="S_n = \frac{a(1 - r^n)}{1 - r}" />
+
+Bagi siri tak terhingga, kita kaji <InlineMath math="S_n" /> apabila <InlineMath math="n" /> bertambah tanpa batas. Kalau siri itu menumpu (<InlineMath math="-1 < r < 1" />), maka <InlineMath math="r^n" /> menghampiri sifar apabila <InlineMath math="n" /> menghampiri ketakterhinggaan. Contohnya, <InlineMath math="(\frac{1}{4})^2 = \frac{1}{16}" />, <InlineMath math="(\frac{1}{4})^3 = \frac{1}{64}" />, dan <InlineMath math="(\frac{1}{4})^{10} \approx 0.00000095" />. Semakin besar <InlineMath math="n" />, semakin hampir <InlineMath math="(\frac{1}{4})^n" /> kepada <InlineMath math="0" />.
+
+Jadi, untuk <InlineMath math="n \to \infty" /> dan <InlineMath math="-1 < r < 1" />, kita dapat <InlineMath math="r^n \to 0" />. Rumusnya menjadi:
+
+<BlockMath math="\begin{aligned} S_\infty &amp;= \lim_{n \to \infty} S_n \\ &amp;= \lim_{n \to \infty} \frac{a(1 - r^n)}{1 - r} \\ &amp;= \frac{a(1 - 0)}{1 - r} \end{aligned}" />
+
+Rumus hasil tambah siri geometri tak terhingga yang menumpu ialah:
+
+<BlockMath math="S_\infty = \frac{a}{1 - r}" />
+
+Dalam tatatanda ini:
+
+- <InlineMath math="S_\infty" /> = hasil tambah hingga ketakterhinggaan
+- <InlineMath math="a" /> = sebutan pertama
+- <InlineMath math="r" /> = nisbah, dengan <InlineMath math="-1<r<1" />
+
+## Semakan dengan Jarak yang Menjadi Separuh
+
+Lihat siri ini:
+
+<BlockMath math="1+\frac12+\frac14+\frac18+\cdots" />
+
+Di sini, <InlineMath math="a=1" /> dan <InlineMath math="r=\frac12" />, jadi:
+
+<BlockMath math="S_\infty=\frac{1}{1-1/2}=2" />
+
+Tiada hasil tambah separa terhingga yang sama dengan <InlineMath math="2" />, tetapi hasil tambah separa boleh menjadi sehampir mana yang kita mahu dengan <InlineMath math="2" />. Hasil tambah hingga ketakterhinggaan ialah had bagi hasil tambah separa terhingga itu.
+
+
+<MathVisual
+  title={<>Hasil tambah separa menghampiri <InlineMath math="2" /></>}
+  description={<>Hasil tambah <InlineMath math="S_n = 2 - 2^{1-n}" /> selepas <InlineMath math="1" /> hingga <InlineMath math="6" /> sebutan naik ke arah garis <InlineMath math="y = 2" /> tanpa mencapainya.</>}
+  labels={{
+    limit: <InlineMath math="2" />,
+    s: <InlineMath math="S_n" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: -0.3, max: 2.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 2 }, { x: 7, y: 2 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 3 / 2 }, { x: 3, y: 7 / 4 }, { x: 4, y: 15 / 8 }, { x: 5, y: 31 / 16 }, { x: 6, y: 63 / 32 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 7 / 4 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 8 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 31 / 16 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 2 }, placement: "above" },
+      { key: "s", objectId: "s4", at: { x: 4, y: 15 / 8 }, placement: "below" },
+    ],
+  }}
+/>
+
+Kita juga boleh mengira jurang ke had. Selepas enam sebutan, hasil tambahnya ialah <InlineMath math="1.96875" /> dan jurangnya <InlineMath math="0.03125" />. Setiap sebutan tambahan membahagi dua **baki jurang ke had**.
+
+<BlockMath math="S_n=2-2^{1-n},\qquad 2-S_n=2^{1-n}" />
+
+## Mengira Jumlah Jarak
+
+Kita boleh mengira jumlah jarak yang dilalui bola itu menggunakan rumus <InlineMath math="S_\infty" />. Laluan bola itu ada dua bahagian:
+
+**Kira jatuhan awal sekali sahaja**. Setiap tinggi lantunan kemudiannya dilalui dua kali, sekali ke atas dan sekali ke bawah. Asingkan kedua-dua arah supaya tiada bahagian laluan yang tertinggal.
+
+| Arah | Tinggi yang dilalui | Sebutan pertama | Hasil tambah jarak |
+| --- | --- | --- | --- |
+| Ke bawah | <InlineMath math="a,ar,ar^2,\ldots" /> | <InlineMath math="a" /> | <InlineMath math="S_{\downarrow}=\frac{a}{1-r}" /> |
+| Ke atas | <InlineMath math="ar,ar^2,ar^3,\ldots" /> | <InlineMath math="ar" /> | <InlineMath math="S_{\uparrow}=\frac{ar}{1-r}" /> |
+
+Jumlah jarak ialah hasil tambah semua jarak ke bawah dan semua jarak ke atas.
+
+<MathContainer>
+    <BlockMath math="\begin{aligned} \text{Jumlah} &amp;= S_{\downarrow} + S_{\uparrow} \\ &amp;= \frac{a}{1 - r} + \frac{ar}{1 - r} \end{aligned}" />
+  <BlockMath math="\text{Jumlah} = \frac{a(1 + r)}{1 - r}" />
+</MathContainer>
+
+Untuk contoh bola tenis dengan <InlineMath math="a = 1 \text{ meter}" /> dan <InlineMath math="r = \frac{1}{4}" />:
+
+<BlockMath math="\begin{aligned}\text{Jumlah} &= \frac{1(1 + \frac{1}{4})}{1 - \frac{1}{4}} \\ &= \frac{1(\frac{5}{4})}{\frac{3}{4}} \\ &= \frac{5/4}{3/4} \\ &= \frac{5}{4} \times \frac{4}{3} \\ &= \frac{5}{3}\end{aligned}" />
+
+Jadi, model ini memberikan jumlah jarak perjalanan sebanyak <InlineMath math="\frac{5}{3} \text{ meter}" />.
+
+Ini ialah model matematik yang diidealkan. Bola sebenar tidak membuat lantunan yang boleh diukur sebanyak tak terhingga kali, dan nisbah lantunannya juga tidak benar-benar tetap.
+
+**Pengiraan Kedua**:
+Jumlah jarak juga boleh dikira sebagai laluan ke bawah yang pertama ditambah <InlineMath math="2 \text{ kali}" /> hasil tambah semua laluan ke atas.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \text{Jumlah} &amp;= a + 2 \times S_{\uparrow} \\ &amp;= a + 2 \times \left( \frac{ar}{1 - r} \right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} \text{Jumlah} &amp;= 1 + 2 \times \left( \frac{1 \times \frac{1}{4}}{1 - \frac{1}{4}} \right) \\ &amp;= 1 + 2 \times \left( \frac{1/4}{3/4} \right) \\ &amp;= 1 + 2 \times \left( \frac{1}{3} \right) \\ &amp;= 1 + \frac{2}{3} \\ &amp;= \frac{5}{3} \end{aligned}" />
+</MathContainer>
+
+Kedua-dua kaedah memberikan hasil yang sama.
+
+## Latihan dengan Siri yang Tandanya Bersilih Ganti
+
+Cari hasil tambah bagi:
+
+<BlockMath math="12-6+3-\frac32+\cdots" />
+
+Di sini, <InlineMath math="a=12" /> dan <InlineMath math="r=-\frac12" />. Oleh sebab <InlineMath math="|r|<1" />, **siri ini menumpu**:
+
+<BlockMath math="\begin{aligned}S_\infty&amp;=\frac{12}{1-(-1/2)}\\&amp;=\frac{12}{3/2}\\&amp;=12\cdot\frac23=8\end{aligned}" />
+
+Nisbah negatif menyebabkan tanda sebutan-sebutannya berselang-seli, tetapi magnitudnya mengecil cukup cepat sehingga hasil tambah separanya menghampiri <InlineMath math="8" />.
+
+Hasil tambah separa bagi <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> ialah <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="7.5" />, <InlineMath math="8.25" /> dan <InlineMath math="7.875" />. Nilai-nilai ini jatuh di atas dan di bawah <InlineMath math="8" /> secara berselang-seli, dan semakin rapat kepada <InlineMath math="8" /> dari kedua-dua belah.
+
+<MathVisual
+  title={<>Hasil tambah separa di kedua-dua belah <InlineMath math="8" /></>}
+  description={<>Hasil tambah separa <InlineMath math="S_1" /> hingga <InlineMath math="S_6" /> bagi siri dengan <InlineMath math="a = 12" /> dan <InlineMath math="r = -\tfrac12" />, di sekitar garis <InlineMath math="y = 8" />.</>}
+  labels={{
+    limit: <InlineMath math="8" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 7.2 }, y: { min: 4.6, max: 12.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "limit", kind: "line", through: [{ x: 0, y: 8 }, { x: 7, y: 8 }], appearance: "secondary" },
+      { id: "order", kind: "polyline", vertices: [{ x: 1, y: 12 }, { x: 2, y: 6 }, { x: 3, y: 9 }, { x: 4, y: 15 / 2 }, { x: 5, y: 33 / 4 }, { x: 6, y: 63 / 8 }], appearance: "construction" },
+      { id: "s1", kind: "point", at: { x: 1, y: 12 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 15 / 2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 33 / 4 }, appearance: "primary" },
+      { id: "s6", kind: "point", at: { x: 6, y: 63 / 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 7, y: 8 }, placement: "above" },
+    ],
+  }}
+/>

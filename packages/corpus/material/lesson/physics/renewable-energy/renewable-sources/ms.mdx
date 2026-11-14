@@ -1,0 +1,173 @@
+export const metadata = {
+  title: "Sumber Tenaga Boleh Baharu",
+  description:
+    "Bandingkan sumber tenaga boleh baharu mengikut aliran semula jadi, keadaan tapak, laluan penukaran dan had praktikal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Proses Semula Jadi Memperbaharui Sumber Boleh Baharu
+
+Cahaya matahari, angin, air yang mengalir, haba geoterma dan tenaga lautan dibekalkan oleh proses semula jadi yang berterusan. Biojisim boleh tumbuh semula jika ia diurus dengan baik. Bahan api fosil pula mengambil masa berjuta-juta tahun untuk terbentuk.
+
+Sumber boleh baharu [**diperbaharui secara semula jadi**](https://www.eia.gov/energyexplained/renewable-sources/), tetapi tenaga yang tersedia masih bergantung pada keadaan sumber di tempat itu.
+
+Bagi biojisim, bandingkan **kadar penuaian dengan kadar tumbuh semula**. Hutan yang dituai lebih cepat daripada pertumbuhan pokoknya akan kehilangan stok kayu walaupun biojisim ialah sumber boleh baharu.
+
+Istilah boleh baharu menerangkan cara sesuatu sumber <Highlight>tersedia semula melalui proses semula jadi</Highlight>. Kuasa yang tersedia masih bergantung pada tempat, masa dan keadaan sumber itu.
+
+Beginilah rupa "bergantung pada masa" bagi panel suria. Dalam model ringkas, sistem panel dengan kadar puncak <InlineMath math="3\text{ kW}" /> mengikut separuh gelombang sinus dari matahari terbit pada 06:00 hingga matahari terbenam pada 18:00, dan tidak memberikan apa-apa pada waktu malam. Tenaga sehari ialah luas di bawah lengkung, <InlineMath math="E=P_{\text{puncak}}\cdot\frac{24}{\pi}\text{ j}" />, jadi hari yang cerah memberikan lebih kurang <InlineMath math="22.9\text{ kWj}" />. Pada hari mendung dengan separuh nilai puncak, lengkung ungu hanya memuatkan separuh daripada tenaga itu. Sumber ini memperbaharui dirinya setiap pagi, tetapi kuasanya tidak sentiasa ada apabila kamu mahukannya.
+
+<MathVisual
+  title={<>Kuasa Suria dalam Satu Hari</>}
+  description={<>Model ringkas sistem panel 3 kW pada hari cerah dan pada hari mendung dengan separuh nilai puncak. Paksi mengufuk: waktu dalam unit 2 j. Paksi menegak: kuasa dalam kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "night-1", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "night-2", kind: "segment", appearance: "reference", from: { x: 9, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "big", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 0 }, { x: 25 / 8, y: 3 * Math.cos((Math.PI * -2.875) / 6) }, { x: 27 / 8, y: 3 * Math.cos((Math.PI * -2.625) / 6) }, { x: 29 / 8, y: 3 * Math.cos((Math.PI * -2.375) / 6) }, { x: 31 / 8, y: 3 * Math.cos((Math.PI * -2.125) / 6) }, { x: 33 / 8, y: 3 * Math.cos((Math.PI * -1.875) / 6) }, { x: 35 / 8, y: 3 * Math.cos((Math.PI * -1.625) / 6) }, { x: 37 / 8, y: 3 * Math.cos((Math.PI * -1.375) / 6) }, { x: 39 / 8, y: 3 * Math.cos((Math.PI * -1.125) / 6) }, { x: 41 / 8, y: 3 * Math.cos((Math.PI * -0.875) / 6) }, { x: 43 / 8, y: 3 * Math.cos((Math.PI * -0.625) / 6) }, { x: 45 / 8, y: 3 * Math.cos((Math.PI * -0.375) / 6) }, { x: 47 / 8, y: 3 * Math.cos((Math.PI * -0.125) / 6) }, { x: 49 / 8, y: 3 * Math.cos((Math.PI * 0.125) / 6) }, { x: 51 / 8, y: 3 * Math.cos((Math.PI * 0.375) / 6) }, { x: 53 / 8, y: 3 * Math.cos((Math.PI * 0.625) / 6) }, { x: 55 / 8, y: 3 * Math.cos((Math.PI * 0.875) / 6) }, { x: 57 / 8, y: 3 * Math.cos((Math.PI * 1.125) / 6) }, { x: 59 / 8, y: 3 * Math.cos((Math.PI * 1.375) / 6) }, { x: 61 / 8, y: 3 * Math.cos((Math.PI * 1.625) / 6) }, { x: 63 / 8, y: 3 * Math.cos((Math.PI * 1.875) / 6) }, { x: 65 / 8, y: 3 * Math.cos((Math.PI * 2.125) / 6) }, { x: 67 / 8, y: 3 * Math.cos((Math.PI * 2.375) / 6) }, { x: 69 / 8, y: 3 * Math.cos((Math.PI * 2.625) / 6) }, { x: 71 / 8, y: 3 * Math.cos((Math.PI * 2.875) / 6) }, { x: 9, y: 0 }] },
+      { id: "small", kind: "polyline", appearance: "secondary", vertices: [{ x: 3, y: 0 }, { x: 26 / 8, y: 1.5 * Math.cos((Math.PI * -2.75) / 6) }, { x: 28 / 8, y: 1.5 * Math.cos((Math.PI * -2.5) / 6) }, { x: 30 / 8, y: 1.5 * Math.cos((Math.PI * -2.25) / 6) }, { x: 32 / 8, y: 1.5 * Math.cos((Math.PI * -2) / 6) }, { x: 34 / 8, y: 1.5 * Math.cos((Math.PI * -1.75) / 6) }, { x: 36 / 8, y: 1.5 * Math.cos((Math.PI * -1.5) / 6) }, { x: 38 / 8, y: 1.5 * Math.cos((Math.PI * -1.25) / 6) }, { x: 40 / 8, y: 1.5 * Math.cos((Math.PI * -1) / 6) }, { x: 42 / 8, y: 1.5 * Math.cos((Math.PI * -0.75) / 6) }, { x: 44 / 8, y: 1.5 * Math.cos((Math.PI * -0.5) / 6) }, { x: 46 / 8, y: 1.5 * Math.cos((Math.PI * -0.25) / 6) }, { x: 48 / 8, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, { x: 50 / 8, y: 1.5 * Math.cos((Math.PI * 0.25) / 6) }, { x: 52 / 8, y: 1.5 * Math.cos((Math.PI * 0.5) / 6) }, { x: 54 / 8, y: 1.5 * Math.cos((Math.PI * 0.75) / 6) }, { x: 56 / 8, y: 1.5 * Math.cos((Math.PI * 1) / 6) }, { x: 58 / 8, y: 1.5 * Math.cos((Math.PI * 1.25) / 6) }, { x: 60 / 8, y: 1.5 * Math.cos((Math.PI * 1.5) / 6) }, { x: 62 / 8, y: 1.5 * Math.cos((Math.PI * 1.75) / 6) }, { x: 64 / 8, y: 1.5 * Math.cos((Math.PI * 2) / 6) }, { x: 66 / 8, y: 1.5 * Math.cos((Math.PI * 2.25) / 6) }, { x: 68 / 8, y: 1.5 * Math.cos((Math.PI * 2.5) / 6) }, { x: 70 / 8, y: 1.5 * Math.cos((Math.PI * 2.75) / 6) }, { x: 9, y: 0 }] },
+      { id: "big-top", kind: "point", appearance: "primary", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) } },
+      { id: "small-top", kind: "point", appearance: "secondary", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) } },
+    ],
+    labels: [
+      { key: "big", objectId: "big-top", at: { x: 6, y: 3 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+      { key: "small", objectId: "small-top", at: { x: 6, y: 1.5 * Math.cos((Math.PI * 0) / 6) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    big: <InlineMath math="P_{\text{puncak}}=3\text{ kW},\ E\approx22.9\text{ kWj}" />,
+    small: <InlineMath math="P_{\text{puncak}}=1.5\text{ kW},\ E\approx11.5\text{ kWj}" />,
+  }}
+/>
+
+Selepas bertanya sama ada sesuatu sumber boleh baharu, tanya pula sama ada sumber itu cukup banyak di lokasi dan pada masa tenaga diperlukan. Bagi sumber yang diurus seperti biojisim dan air, semak juga had ekosistem dan kepantasan sumber tempatan itu pulih.
+
+Cuba dengan nombor rekaan: sebuah hutan menyimpan <InlineMath math="100" /> unit kayu dan tumbuh semula <InlineMath math="2" /> unit setahun. Tiga garis di bawah menuai <InlineMath math="h=1" />, <InlineMath math="2" /> dan <InlineMath math="3" /> unit setahun. Hanya garis merah jambu, yang menuai lebih cepat daripada kadar hutan tumbuh semula, kehilangan kayu walaupun sumbernya boleh baharu.
+
+<MathVisual
+  title={<>Kadar Penuaian Berbanding Pertumbuhan Semula</>}
+  description={<>Stok contoh sebanyak 100 unit yang tumbuh semula 2 unit setahun dengan tiga kadar penuaian h. Paksi mengufuk: tahun dalam unit 5. Paksi menegak: stok dalam unit 25.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: 2.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 1) * 20) / 25 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 2) * 20) / 25 } },
+      { id: "h3", kind: "segment", appearance: "warning", from: { x: 0, y: 4 }, to: { x: 4, y: (100 + (2 - 3) * 20) / 25 } },
+    ],
+    labels: [
+      { key: "h1", objectId: "h1", at: { x: 4, y: (100 + (2 - 1) * 20) / 25 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 4, y: (100 + (2 - 2) * 20) / 25 }, placement: "right" },
+      { key: "h3", objectId: "h3", at: { x: 4, y: (100 + (2 - 3) * 20) / 25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    h1: <InlineMath math="h=1" />,
+    h2: <InlineMath math="h=2" />,
+    h3: <InlineMath math="h=3" />,
+  }}
+/>
+
+## Padankan Setiap Sumber dengan Tapaknya
+
+Pilih sumber boleh baharu dengan menyemak **keadaan fizikal di tapak itu**. Setiap sumber memerlukan jumlah cahaya matahari, angin, aliran air, haba atau bahan boleh guna yang berbeza.
+
+| Sumber boleh baharu | Keadaan yang perlu disemak |
+| :--------------- | :------------- |
+| Cahaya matahari | Semak sinaran suria yang tersedia dan sama ada panel menerima cahaya yang cukup tanpa teduhan yang berpanjangan. |
+| Angin | Mulakan dengan tenaga kinetik udara, kemudian semak sama ada laju angin cukup stabil untuk turbin. |
+| Air | Mulakan dengan tenaga keupayaan graviti dan tenaga kinetik air, kemudian semak sama ada beza ketinggian mencukupi dan alirannya kekal cukup sepanjang musim. |
+| Haba geoterma | Mulakan dengan tenaga terma di dalam Bumi, kemudian semak sama ada takungan geoterma boleh dicapai dan digunakan dengan selamat. |
+| Biojisim | Mulakan dengan tenaga kimia dalam bahan organik, kemudian semak sama ada penggunaan bahan mentah itu bersaing dengan bekalan makanan atau merosakkan ekosistem. |
+| Biogas | Mulakan dengan tenaga kimia dalam metana, kemudian semak sama ada sisa organik dibekalkan secara tetap dan peralatan biogas diselenggara. |
+| Lautan | Mulakan dengan tenaga mekanik dalam ombak, pasang surut dan arus, atau tenaga terma dalam beza suhu antara air permukaan yang panas dengan air dalam yang sejuk. Kemudian semak sama ada ombak, arus, pasang surut atau beza suhu di tempat itu mencukupi untuk teknologi yang dipilih. |
+
+Gunakan keadaan ini untuk membandingkan sesuatu sumber dengan tapaknya. Bagi panel suria, semak cahaya matahari, ruang yang ada, cuaca, penyelenggaraan dan keperluan elektrik.
+
+## Setiap Sumber Mempunyai Laluan Penukaran
+
+Setiap sumber boleh baharu sepatutnya boleh diterangkan sebagai satu laluan penukaran tenaga. Jika laluannya tidak jelas, dakwaan itu sukar disemak.
+
+Namakan sumber itu dan bentuk tenaga asalnya, kemudian kenal pasti **alat yang menukarkan tenaga ini** kepada bentuk yang berguna.
+
+[Sel fotovolta](https://www.eia.gov/energyexplained/solar/photovoltaics-and-electricity.php) menukarkan cahaya matahari terus kepada elektrik. Fotovolta bermaksud bahan dalam sel suria menghasilkan beza keupayaan elektrik apabila ia menyerap cahaya.
+
+Dalam [turbin angin](https://www.energy.gov/cmei/systems/how-do-wind-turbines-work), angin memutarkan bilah turbin, rotor memacu penjana, dan penjana itu menghasilkan elektrik.
+
+Dalam [kuasa hidro](https://www.energy.gov/cmei/water/how-hydropower-works), tenaga yang tersedia bergantung pada aliran air dan beza ketinggian. Air mengalir melalui paip penstok untuk memutarkan turbin, yang kemudian memacu penjana. Penjana itu menghasilkan elektrik.
+
+Setiap laluan berakhir pada penjana, tetapi setiap satu bermula dengan bahagian tenaga masuk yang berbeza. Putar bar untuk melihat nilai lazim: sel suria menukarkan lebih kurang satu perlima cahaya matahari kepada elektrik, turbin angin tidak boleh melepasi had Betz, dan turbin hidro memindahkan hampir semua tenaga air.
+
+<MathVisual
+  title={<>Tiga Laluan Penukaran</>}
+  description={<>Kecekapan penukaran lazim bagi sel suria, turbin angin dan turbin hidro, dengan had Betz bagi angin (merah jambu). Satu petak grid ke atas ialah 10 peratus.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 10.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 4, z: 0 } },
+    objects: [
+      { id: "pv", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1, z: 0 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "wind", kind: "cuboid", appearance: "secondary", center: { x: 2.5, y: 2.25, z: 0 }, size: { length: 1.2, height: 4.5, width: 1.2 } },
+      { id: "hydro", kind: "cuboid", appearance: "construction", center: { x: 5, y: 4.5, z: 0 }, size: { length: 1.2, height: 9, width: 1.2 } },
+      { id: "betz", kind: "segment", appearance: "warning", from: { x: 1.7, y: 160 / 27, z: 0 }, to: { x: 3.3, y: 160 / 27, z: 0 } },
+    ],
+    labels: [
+      { key: "pv", objectId: "pv", at: { x: 0, y: 2, z: 0 }, placement: "above" },
+      { key: "wind", objectId: "wind", at: { x: 2.5, y: 4.5, z: 0.7 }, placement: "right" },
+      { key: "hydro", objectId: "hydro", at: { x: 5, y: 9, z: 0 }, placement: "above" },
+      { key: "betz", objectId: "betz", at: { x: 3.3, y: 160 / 27, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    pv: <InlineMath math="\text{sel suria}\approx20\%" />,
+    wind: <InlineMath math="\text{turbin angin}\approx45\%" />,
+    hydro: <InlineMath math="\text{turbin hidro}\approx90\%" />,
+    betz: <InlineMath math="\text{had Betz}\ \tfrac{16}{27}\approx59.3\%" />,
+  }}
+/>
+
+## Sesetengah Sumber Memerlukan Keadaan yang Lebih Khusus
+
+Haba geoterma, biogas dan tenaga lautan masing-masing memerlukan keadaan tempatan yang khusus.
+
+[**Tenaga geoterma**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) ialah tenaga terma dari dalam Bumi. Sumber geoterma boleh berupa takungan air panas semula jadi atau buatan manusia di bawah permukaan Bumi.
+
+**Biogas** terhasil apabila mikroorganisma menguraikan bahan organik tanpa oksigen. Proses ini dipanggil [*pencernaan anaerobik*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion). Biogas terdiri terutamanya daripada metana, <InlineMath math="\text{CH}_4" />, dan karbon dioksida, <InlineMath math="\text{CO}_2" />.
+
+[**Tenaga lautan**](https://www.energy.gov/cmei/water/marine-energy-basics) boleh datang daripada ombak, pasang surut, arus dan beza suhu dalam air laut. Sesetengah sistem menggunakan tenaga kinetik ombak, arus dan pasang surut. Penukaran tenaga terma lautan pula menggunakan beza suhu antara air permukaan yang panas dengan air dalam yang lebih sejuk.
+
+| Sumber | Had praktikal |
+| :----- | :-------------- |
+| Haba geoterma | Sumber haba boleh stabil siang dan malam, tetapi penggerudian dan keadaan geologi mesti sesuai. |
+| Biogas | Sistem ini memerlukan bekalan sisa organik yang tetap dan penyelenggaraan yang berkala. |
+| Lautan | Ombak, arus dan pasang surut boleh memacu peralatan penukaran, tetapi akses ke tapak, kakisan dan keselamatan marin mesti diambil kira. |
+
+## Potensi Tenaga Boleh Baharu di Indonesia
+
+Kementerian Tenaga dan Sumber Mineral Indonesia menggunakan istilah **Tenaga Baharu dan Boleh Baharu**, atau EBT dalam bahasa dasar Indonesia, bagi sumber seperti suria, angin, kuasa hidro, biotenaga, geoterma dan tenaga lautan. Satu [kenyataan media](https://www.esdm.go.id/en/media-center/news-archives/miliki-potensi-ebt-3686-gw-sekjen-rida-modal-utama-jalankan-transisi-energi-indonesia) bertarikh <InlineMath math="4" /> Februari <InlineMath math="2023" /> menganggarkan potensi EBT Indonesia pada lebih kurang <InlineMath math="3\,686 \text{ GW}" />.
+
+Potensi ini menganggarkan kapasiti kuasa peralatan yang mungkin dipasang. Penjanaan elektrik sebenar juga bergantung pada teknologi, kos, akses grid, permit, penyelenggaraan, masa operasi dan perlindungan alam sekitar.
+
+> Sumber boleh baharu yang berfungsi dengan baik di satu kawasan mungkin tidak berfungsi dengan baik di kawasan lain.
+
+Kawasan yang mempunyai bumbung luas dan langit yang kerap cerah mungkin sesuai untuk panel suria. Kampung yang berhampiran sungai yang alirannya stabil mungkin sesuai untuk kuasa hidro kecil jika aliran, beza ketinggian, perubahan musim dan kesan terhadap ekosistem boleh diterima.
+
+## Menyemak Dakwaan tentang Tenaga Boleh Baharu
+
+Apabila kamu mendengar dakwaan tentang tenaga boleh baharu, gunakan soalan ringkas ini.
+
+| Dakwaan yang kedengaran meyakinkan | Semakan fizik |
+| :--------------------------- | :------------ |
+| Sumber ini tidak akan pernah habis. | Semak **bila dan di mana aliran semula jadi itu tersedia**. Bagi biojisim dan sumber air yang diurus, semak juga pemulihan dan had ekosistem. |
+| Sumber ini berfungsi di mana-mana. | Semak cuaca, geologi, air, angin, bahan mentah atau keadaan lautan di tempat itu. |
+| Sumber ini sentiasa mesra alam. | Semak kesan terhadap tanah, sisa, bahan mentah, ekosistem dan pembinaan. |
+| Sumber ini sentiasa murah. | Semak kos peralatan, penyelenggaraan, penyimpanan, sambungan grid dan jangka hayat peralatan. |
+
+Penilaian yang lengkap merekodkan sumber semula jadi, laluan penukaran, tenaga berguna, had tapak dan kesan yang boleh diukur.

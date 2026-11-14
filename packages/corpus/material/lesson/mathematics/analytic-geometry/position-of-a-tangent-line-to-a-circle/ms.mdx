@@ -1,0 +1,344 @@
+export const metadata = {
+  title: "Tangen Bulatan dan Persamaannya",
+  description: "Bina tangen kepada bulatan daripada titik sentuhan, kecerunan yang diberi, atau titik di luar bulatan, dengan model visual dan penyelesaian lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-23",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Mengikut Tangen apabila Meninggalkan Laluan Bulat
+
+Bayangkan kamu bergerak mengelilingi trek berbentuk bulatan. Pada setiap kedudukan, **arah gerakan seketika** kamu mengikut tangen di titik itu. Banyak garis melalui satu titik, tetapi hanya satu yang menjadi tangen kepada bulatan di situ.
+
+Dari segi matematik, garis tangen bertemu bulatan pada tepat satu titik, yang dipanggil **titik sentuhan**. Tangen sentiasa **berserenjang** <Highlight>dengan jejari yang dilukis ke titik itu</Highlight>.
+
+Hubungan serenjang ini digunakan dalam ketiga-tiga kes: membina tangen di titik yang diketahui, mencari tangen dengan kecerunan yang diberi, dan melukis kedua-dua tangen melalui titik di luar bulatan.
+
+## Garis Tangen melalui Titik pada Bulatan
+
+Mulakan dengan menyemak bahawa titik sentuhan yang dicadangkan memang terletak pada bulatan. Vektor jejarinya kemudian menjadi vektor normal bagi tangen itu.
+
+<MathVisual
+  title={<>Garis Tangen melalui Titik pada Bulatan</>}
+  description={<>Jejari ke titik sentuhan yang diketahui ialah normal kepada tangen.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="T" />,
+    "l3": <>Garis Tangen</>,
+    "l4": <>Jejari</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 7 }, y: { min: -5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.28, y: 5.52 }, { x: 0.12, y: 4.12 }, { x: 4.12, y: 0.12 }, { x: 5.52, y: -1.28 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((t * 3) * cos((pi / 4)))", y: "((t * 3) * sin((pi / 4)))", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 4.12, y: 0.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Bagi bulatan <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> yang berpusat <InlineMath math="C(a,b)" /> dengan titik sentuhan <InlineMath math="T(x_1,y_1)" />, ikut langkah-langkah ini.
+
+**Langkah 1**: Sahkan bahawa <InlineMath math="T" /> terletak pada bulatan.
+
+<BlockMath math="(x_1-a)^2+(y_1-b)^2=r^2" />
+
+**Langkah 2**: Vektor jejari ialah normal kepada tangen.
+
+<BlockMath math="\overrightarrow{CT}=(x_1-a,\,y_1-b)" />
+
+**Langkah 3**: Gunakan vektor normal itu dalam persamaan garis yang melalui <InlineMath math="T" />.
+
+<BlockMath math="\begin{aligned} &amp;(x_1-a)(x-x_1) +(y_1-b)(y-y_1) \\ &amp;=0 \end{aligned}" />
+
+Dengan syarat titik pada bulatan daripada Langkah 1, persamaan ini menjadi **bentuk titik-tangen**:
+
+<BlockMath math="\begin{aligned} &amp;(x - a)(x_1 - a) + (y - b)(y_1 - b) \\ &amp;= r^2 \end{aligned}" />
+
+> Cara menerbitkan rumus ini menggunakan vektor normal, jadi langkah yang sama boleh digunakan untuk tangen mencancang dan tangen mengufuk.
+
+## Garis Tangen dengan Kecerunan yang Diberi
+
+Kalau titik sentuhan tidak diketahui tetapi kecerunan diberi, pintasan mesti meletakkan garis itu tepat sejauh satu jejari dari pusat. Situasi ini selalu muncul apabila tangen mesti selari dengan garis lain.
+
+<MathVisual
+  title={<>Garis Tangen dengan Kecerunan yang Diberi</>}
+  description={<>Satu kecerunan yang diberi menentukan dua tangen selari, satu pada setiap sisi pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Tangen 1</>,
+    "l3": <>Tangen 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -10.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2.5 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5.1, y: -1.56 }, { x: -3, y: 0.54 }, { x: 3, y: 6.54 }, { x: 5.1, y: 8.64 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -5.1, y: -8.64 }, { x: -3, y: -6.54 }, { x: 3, y: -0.54 }, { x: 5.1, y: 1.56 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3, y: 0.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 3, y: -0.54 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Bagi bulatan <InlineMath math="x^2 + y^2 = r^2" /> dengan kecerunan <InlineMath math="m" /> yang diketahui, kita gantikan persamaan garis <InlineMath math="y = mx + c" /> ke dalam persamaan bulatan:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx + c)^2 = r^2" />
+  <BlockMath math="x^2 + m^2x^2 + 2mcx + c^2 = r^2" />
+  <BlockMath math="(1 + m^2)x^2 + 2mcx + (c^2 - r^2) = 0" />
+</MathContainer>
+
+Oleh sebab garis itu tangen kepada bulatan, pembezalayan persamaan kuadratik ini mesti sifar:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \Delta &amp;= (2mc)^2 - 4(1 + m^2)(c^2 - r^2) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="4m^2c^2 - 4(1 + m^2)(c^2 - r^2) = 0" />
+  <BlockMath math="\begin{aligned} &amp;m^2c^2 - (1 + m^2)c^2 + (1 + m^2)r^2 \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="-c^2 + (1 + m^2)r^2 = 0" />
+  <BlockMath math="c^2 = (1 + m^2)r^2" />
+</MathContainer>
+
+Apabila diselesaikan untuk pintasan, kita dapat:
+
+<BlockMath math="c = \pm r\sqrt{1 + m^2}" />
+
+Bagi setiap kecerunan terhingga <InlineMath math="m" />, bulatan yang berpusat di asalan ada **dua garis tangen yang selari**:
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+## Tangen melalui Titik di Luar Bulatan
+
+Titik di luar bulatan menentukan tepat **dua garis tangen**. Dua titik sentuhannya terletak pada satu garis bantu yang berguna, iaitu garis polar bagi titik luar itu.
+
+<MathVisual
+  title={<>Tangen melalui Titik di Luar Bulatan</>}
+  description={<>Satu titik di luar bulatan menentukan dua titik sentuhan dan dua garis tangen.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+    "l5": <>Tangen 1</>,
+    "l6": <>Tangen 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 * cos(((t * pi) / 180)))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.6, y: -1.2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4.84, y: 3.12 }, { x: 4, y: 2 }, { x: 1.6, y: -1.2 }, { x: 0.76, y: -2.32 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 5.4, y: 2 }, { x: 4, y: 2 }, { x: 0, y: 2 }, { x: -1.4, y: 2 }], appearance: "warning" },
+      { id: "s8", kind: "parametric", x: "((-3) + (t * (5 - (-3))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s9", kind: "parametric", x: "0", y: "((-2) + (t * (4 - (-2))))", parameter: { min: 0, max: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.6, y: -1.2 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 4, y: 2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Katakan <InlineMath math="P(x_0,y_0)" /> terletak di luar bulatan <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. **Garis polar** bagi titik itu ialah:
+
+<BlockMath math="\begin{aligned} &amp;(x-a)(x_0-a) + (y-b)(y_0-b) \\ &amp;= r^2 \end{aligned}" />
+
+Bagi titik di luar bulatan, garis polar ini ialah **perentas sentuhan**, iaitu garis yang melalui kedua-dua titik sentuhan. Jadi langkah pembinaannya ialah:
+
+1. Tulis garis polar.
+2. Cari persilangan garis itu dengan bulatan untuk mendapat kedua-dua titik sentuhan.
+3. Gunakan setiap titik sentuhan untuk membina satu tangen yang melalui <InlineMath math="P" />.
+
+> Garis polar bukan salah satu daripada dua tangen itu. Garis polar ialah garis yang menyambungkan titik-titik sentuhan kedua-dua tangen.
+
+## Mencari Dua Tangen dengan Garis Polar
+
+Cari kedua-dua tangen dari <InlineMath math="B(2,6)" /> ke bulatan <InlineMath math="L \equiv (x+1)^2+(y-2)^2=9" />.
+
+**Langkah 1**: Tentukan garis polar bagi <InlineMath math="B(2,6)" /> terhadap bulatan itu.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-(-1))(2-(-1)) \\ &amp;\quad{}+ (y-2)(6-2) = 9 \end{aligned}" />
+  <BlockMath math="(x+1)(3) + (y-2)(4) = 9" />
+  <BlockMath math="3x + 3 + 4y - 8 = 9" />
+  <BlockMath math="3x + 4y = 14" />
+</MathContainer>
+
+**Langkah 2**: Cari **titik-titik persilangan garis polar** <InlineMath math="3x + 4y = 14" /> dengan bulatan. Daripada persamaan garis, kita dapat <InlineMath math="x = \frac{14-4y}{3}" />. Gantikan ke dalam persamaan bulatan:
+
+<MathContainer>
+  <BlockMath math="(\frac{14-4y}{3} + 1)^2 + (y-2)^2 = 9" />
+  <BlockMath math="(\frac{17-4y}{3})^2 + (y-2)^2 = 9" />
+</MathContainer>
+
+**Langkah 3**: Selesaikan persamaan kuadratik itu untuk mendapat dua koordinat-<InlineMath math="y" /> yang mungkin.
+
+<MathContainer>
+  <BlockMath math="(17-4y)^2+9(y-2)^2=81" />
+  <BlockMath math="25y^2-172y+244=0" />
+  <BlockMath math="\begin{aligned} y &amp;=\frac{172\pm\sqrt{172^2-4(25)(244)}}{50} \\ &amp;=\frac{172\pm72}{50} \end{aligned}" />
+  <BlockMath math="y_1=\frac{122}{25}\quad\text{dan}\quad y_2=2" />
+</MathContainer>
+
+**Langkah 4**: Gantikan setiap nilai ke dalam garis polar untuk mendapat titik-titik sentuhan.
+
+<MathContainer>
+  <BlockMath math="x_1=\frac{14-4\left(\frac{122}{25}\right)}{3}=-\frac{46}{25}" />
+  <BlockMath math="x_2=\frac{14-4(2)}{3}=2" />
+  <BlockMath math="T_1\left(-\frac{46}{25},\frac{122}{25}\right),\qquad T_2(2,2)" />
+</MathContainer>
+
+**Langkah 5**: Gunakan setiap titik dalam **bentuk titik-tangen** bagi bulatan.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;-\frac{21}{25}(x+1)+\frac{72}{25}(y-2)=9 \\ &amp;\Longrightarrow \\ &amp;-7x+24y=130 \end{aligned}" />
+  <BlockMath math="3(x+1)=9\quad\Longrightarrow\quad x=2" />
+</MathContainer>
+
+Kedua-dua garis melalui <InlineMath math="B(2,6)" /> dan menyentuh bulatan sekali, jadi inilah tangen-tangen yang dikehendaki.
+
+## Latihan
+
+Kenal pasti **maklumat yang menentukan tangen** dalam setiap soalan. Titik pada bulatan menentukan satu tangen. Kecerunan menentukan dua tangen yang selari, manakala titik di luar bulatan menentukan dua garis yang melalui titik itu. Gunakan hubungan selari atau berserenjang untuk mencari kecerunan apabila perlu.
+
+1. Tentukan persamaan garis tangen kepada bulatan <InlineMath math="x^2 + y^2 = 25" /> di titik <InlineMath math="(3, 4)" />.
+
+2. Cari persamaan garis tangen kepada bulatan <InlineMath math="x^2 + y^2 = 16" /> yang selari dengan garis <InlineMath math="y = 2x + 5" />.
+
+3. Tentukan persamaan garis tangen kepada bulatan <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> yang melalui titik <InlineMath math="(4, 2)" />.
+
+4. Satu bulatan mempunyai persamaan <InlineMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />. Tentukan persamaan garis tangen yang berserenjang dengan garis <InlineMath math="x + 2y = 7" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**:
+
+Bagi bulatan <InlineMath math="x^2 + y^2 = 25" /> yang berpusat <InlineMath math="O(0,0)" /> dan berjejari <InlineMath math="r = 5" />, titik sentuhannya ialah <InlineMath math="T(3,4)" />.
+
+Dengan rumus garis tangen: <InlineMath math="(x-a)(x_1-a) + (y-b)(y_1-b) = r^2" />
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-0)(3-0) + (y-0)(4-0) \\ &amp;= 25 \end{aligned}" />
+  <BlockMath math="3x + 4y = 25" />
+</MathContainer>
+
+Jadi, persamaan garis tangen ialah <InlineMath math="3x + 4y = 25" />.
+
+**Penyelesaian 2**:
+
+Garis yang selari dengan <InlineMath math="y = 2x + 5" /> ada kecerunan <InlineMath math="m = 2" />.
+
+Bagi bulatan <InlineMath math="x^2 + y^2 = 16" /> dengan <InlineMath math="r = 4" />, gunakan rumus:
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+<MathContainer>
+  <BlockMath math="y = 2x \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y = 2x \pm 4\sqrt{5}" />
+</MathContainer>
+
+Jadi, ada dua garis tangen: <InlineMath math="y = 2x + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 4\sqrt{5}" />.
+
+**Penyelesaian 3**:
+
+Bulatan <InlineMath math="(x-1)^2 + (y+2)^2 = 8" /> berpusat <InlineMath math="(1,-2)" /> dan <InlineMath math="r^2 = 8" />.
+
+Persamaan garis polar bagi titik <InlineMath math="(4,2)" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(x-1)(4-1) \\ &amp;\quad{}+ (y-(-2))(2-(-2)) = 8 \end{aligned}" />
+  <BlockMath math="3(x-1) + 4(y+2) = 8" />
+  <BlockMath math="3x - 3 + 4y + 8 = 8" />
+  <BlockMath math="3x + 4y = 3" />
+</MathContainer>
+
+Anjakkan pusat ke asalan dengan <InlineMath math="u=x-1" /> dan <InlineMath math="v=y+2" />. Bulatan dan garis polar menjadi:
+
+<MathContainer>
+  <BlockMath math="u^2+v^2=8,\qquad 3u+4v=8" />
+  <BlockMath math="u=\frac{8-4v}{3}" />
+  <BlockMath math="\left(\frac{8-4v}{3}\right)^2+v^2=8" />
+<BlockMath math="64-64v+16v^2+9v^2=72" />
+<BlockMath math="25v^2-64v-8=0" />
+  <BlockMath math="v=\frac{64\pm\sqrt{(-64)^2-4(25)(-8)}}{50}=\frac{64\pm12\sqrt{34}}{50}" />
+<BlockMath math="v=\frac{32\pm6\sqrt{34}}{25}" />
+</MathContainer>
+
+Apabila digantikan semula, kita dapat dua titik sentuhan:
+
+<MathContainer>
+  <BlockMath math="T_1\left(\frac{49-8\sqrt{34}}{25},\frac{-18+6\sqrt{34}}{25}\right)" />
+  <BlockMath math="T_2\left(\frac{49+8\sqrt{34}}{25},\frac{-18-6\sqrt{34}}{25}\right)" />
+</MathContainer>
+
+Kecerunan dari <InlineMath math="(4,2)" /> ke titik-titik itu ialah <InlineMath math="12-2\sqrt{34}" /> dan <InlineMath math="12+2\sqrt{34}" />. Jadi, garis tangen yang dikehendaki ialah:
+
+Bagi setiap titik sentuhan, gunakan **beza mencancang dibahagi dengan beza mengufuk** dari titik luar <InlineMath math="(4,2)" />:
+
+<MathContainer>
+  <BlockMath math="m_1=\frac{y_{T_1}-2}{x_{T_1}-4}=\frac{-68+6\sqrt{34}}{-51-8\sqrt{34}}=12-2\sqrt{34}" />
+  <BlockMath math="m_2=\frac{y_{T_2}-2}{x_{T_2}-4}=\frac{-68-6\sqrt{34}}{-51+8\sqrt{34}}=12+2\sqrt{34}" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="y-2=(12-2\sqrt{34})(x-4)" />
+  <BlockMath math="y-2=(12+2\sqrt{34})(x-4)" />
+</MathContainer>
+
+**Penyelesaian 4**:
+
+Tukarkan persamaan bulatan kepada bentuk piawai dengan penyempurnaan kuasa dua:
+
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 4x + 6y - 3 = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 4x + 4) + (y^2 + 6y + 9) \\ &amp;= 3 + 4 + 9 \end{aligned}" />
+  <BlockMath math="(x-2)^2 + (y+3)^2 = 16" />
+</MathContainer>
+
+Pusat <InlineMath math="(2,-3)" />, jejari <InlineMath math="r = 4" />.
+
+Garis <InlineMath math="x + 2y = 7" /> boleh ditulis sebagai <InlineMath math="y = -\frac{1}{2}x + \frac{7}{2}" />, jadi kecerunannya ialah <InlineMath math="m_1 = -\frac{1}{2}" />.
+
+Garis yang berserenjang dengannya ada kecerunan <InlineMath math="m = 2" />.
+
+Bagi bulatan yang berpusat <InlineMath math="(2,-3)" />, persamaan garis tangen dengan kecerunan <InlineMath math="2" />:
+
+<MathContainer>
+  <BlockMath math="y - (-3) = 2(x - 2) \pm 4\sqrt{1 + 4}" />
+  <BlockMath math="y + 3 = 2x - 4 \pm 4\sqrt{5}" />
+  <BlockMath math="y = 2x - 7 \pm 4\sqrt{5}" />
+</MathContainer>
+
+Dua garis tangen itu ialah <InlineMath math="y = 2x - 7 + 4\sqrt{5}" /> dan <InlineMath math="y = 2x - 7 - 4\sqrt{5}" />.

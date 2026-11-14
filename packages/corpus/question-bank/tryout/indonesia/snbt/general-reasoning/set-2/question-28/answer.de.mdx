@@ -1,22 +1,30 @@
-Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Berechne zuerst **den Preis pro Kilogramm** und den Mitgliederpreis der Packung mit <InlineMath math="25\text{ kg}" />, denn alle vier Aussagen nutzen diese Zahlen.
+Maschine X ist schneller, solange sie arbeitet, legt aber regelmäßig Pausen ein. Maschine Y ist langsamer, hält aber nie an. Wer vorne liegt, **hängt also vom Zeitpunkt ab**, und jede Aussage musst du zu ihrem eigenen Zeitpunkt prüfen.
+
+Sieh dir das Muster von X in einem Zyklus von <InlineMath math="10" /> Minuten an: <InlineMath math="8" /> Minuten Arbeit ergeben <InlineMath math="8\times60=480" /> Blatt, dann ruht X <InlineMath math="2" /> Minuten. In denselben <InlineMath math="10" /> Minuten schafft Y <InlineMath math="500" /> Blatt. Solange X arbeitet, holt X <InlineMath math="60-50=10" /> Blatt pro Minute auf. Solange X ruht, zieht Y um <InlineMath math="50" /> Blatt pro Minute davon. Die Tabelle zeigt beide Summen am Ende jeder Arbeitsphase und jeder Pause.
+
+| Minute | Summe X | Summe Y | X minus Y |
+| --- | --- | --- | --- |
+| <InlineMath math="8" /> | <InlineMath math="480" /> | <InlineMath math="400" /> | <InlineMath math="+80" /> |
+| <InlineMath math="10" /> | <InlineMath math="480" /> | <InlineMath math="500" /> | <InlineMath math="-20" /> |
+| <InlineMath math="18" /> | <InlineMath math="960" /> | <InlineMath math="900" /> | <InlineMath math="+60" /> |
+| <InlineMath math="20" /> | <InlineMath math="960" /> | <InlineMath math="1{.}000" /> | <InlineMath math="-40" /> |
+| <InlineMath math="28" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}400" /> | <InlineMath math="+40" /> |
+| <InlineMath math="30" /> | <InlineMath math="1{.}440" /> | <InlineMath math="1{.}500" /> | <InlineMath math="-60" /> |
+
+Aussage 1 ist Salah (falsch). Y holt X zum ersten Mal in der ersten Pause von X ein: X bleibt bei <InlineMath math="480" />, und Y erreicht <InlineMath math="480" /> in Minute <InlineMath math="480\div50=9{,}6" />. Sobald X wieder arbeitet, liegt X aber wieder vorne. In Minute <InlineMath math="13" /> hat X zum Beispiel <InlineMath math="480+3\times60=660" /> Blatt gedruckt, Y erst <InlineMath math="13\times50=650" />. Die Durchschnittsrate von X beträgt zwar <InlineMath math="480\div10=48" /> Blatt pro Minute, weniger als <InlineMath math="50" />, aber das heißt nicht, dass X in jedem Moment hinten liegt.
+
+Aussage 2 ist Benar (richtig). Minute <InlineMath math="30" /> ist das Ende des dritten Zyklus, X hat also <InlineMath math="3\times8=24" /> Minuten gearbeitet und <InlineMath math="24\times60=1{.}440" /> Blatt gedruckt. Y hat <InlineMath math="30\times50=1{.}500" /> Blatt gedruckt. Der Unterschied beträgt <InlineMath math="1{.}500-1{.}440=60" /> Blatt zugunsten von Y. Die schnelle Rechnung <InlineMath math="30\times60=1{.}800" /> ist falsch, weil sie so tut, als würde X nie anhalten.
+
+Aussage 3 ist Benar (richtig). Mit <InlineMath math="1" /> Minute Pause dauert ein Zyklus <InlineMath math="9" /> Minuten. In den <InlineMath math="8" /> Arbeitsminuten wächst der Vorsprung von X um <InlineMath math="8\times10=80" /> Blatt. In der <InlineMath math="1" /> Minute Pause schrumpft er um <InlineMath math="50" /> Blatt. Der tiefste Punkt jedes Zyklus liegt am Ende der Pause, also prüfst du genau diese Punkte.
 
 <BlockMath math="\begin{aligned}
-\text{Packung 5 kg} &: \frac{68{.}000}{5}=13{.}600 \text{ pro kg} \\
-\text{Packung 25 kg, Nichtmitglied} &: \frac{320{.}000}{25}=12{.}800 \text{ pro kg} \\
-\text{Packung 25 kg, Mitglied} &: 0{,}9\times320{.}000=288{.}000
+\text{Ende von Pause 1} &: 0+80-50 = 30 \\
+\text{Ende von Pause 2} &: 30+80-50 = 60 \\
+\text{Ende von Pause 3} &: 60+80-50 = 90
 \end{aligned}" />
 
-**Aussage 1** ist richtig, denn <InlineMath math="12{.}800<13{.}600" />.
+Der Vorsprung von X an den tiefsten Punkten steigt pro Zyklus um <InlineMath math="30" /> Blatt und wird nie negativ. Ganz am Anfang stehen beide bei <InlineMath math="0" />. Die Summe von X ist also nie kleiner als die von Y.
 
-**Aussage 2** ist richtig. Fünf Packungen mit <InlineMath math="5\text{ kg}" /> kosten <InlineMath math="5\times68{.}000=340{.}000" />, und <InlineMath math="340{.}000-288{.}000=52{.}000" />.
+Aussage 4 ist Salah (falsch). Für <InlineMath math="1{.}200" /> Blatt braucht X <InlineMath math="1{.}200\div60=20" /> Minuten Arbeit, also <InlineMath math="8+8+4" /> Minuten. Dazwischen liegen zwei Pausen von je <InlineMath math="2" /> Minuten, X ist also in Minute <InlineMath math="8+2+8+2+4=24" /> fertig. Y braucht <InlineMath math="1{.}200\div50=24" /> Minuten. Beide sind **gleichzeitig** fertig, X ist also nicht schneller. Die Antwort "X ist nach <InlineMath math="20" /> Minuten fertig" vergisst die Pausen.
 
-**Aussage 3** ist falsch. Eine Packung mit <InlineMath math="25\text{ kg}" /> und eine mit <InlineMath math="5\text{ kg}" /> sind günstiger:
-
-<BlockMath math="\begin{aligned}
-6\times68{.}000 &= 408{.}000 \\
-320{.}000+68{.}000 &= 388{.}000
-\end{aligned}" />
-
-**Aussage 4** ist falsch. Der Mitgliederpreis pro Kilogramm beträgt <InlineMath math="\frac{288{.}000}{25}=11{.}520" />, also mehr als <InlineMath math="11{.}000" />.
-
-Die Aussagen 1 und 2 sind also richtig, die Aussagen 3 und 4 falsch.
+Die Aussagen 2 und 3 sind also richtig, die Aussagen 1 und 4 falsch.

@@ -1,0 +1,229 @@
+export const metadata = {
+  title: "Teorem Pensifar Nisbah",
+  description: "Gunakan Teorem Pensifar Nisbah untuk menyenaraikan punca yang mungkin dan memfaktorkan polinomial berdarjah tinggi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Membina Senarai Terhingga bagi Punca Nisbah yang Mungkin
+
+Mengikut [Teorem Faktor](/ms/subjek/matematik/polinomial/teorem-faktor), <InlineMath math="(x-c)" /> ialah faktor bagi <InlineMath math="P(x)" /> jika dan hanya jika <InlineMath math="c" /> ialah pensifar polinomial itu. Untuk polinomial berdarjah tinggi, tugas pertama kita ialah menghasilkan senarai terhingga nilai yang berbaloi untuk diuji.
+
+Menguji nombor yang dipilih sesuka hati tidak memberi kita pelan carian yang terhingga. **Teorem Pensifar Nisbah** (atau Teorem Punca Nisbah) menggunakan pekali pelopor dan sebutan pemalar untuk menghasilkan <Highlight>senarai terhingga punca nisbah yang mungkin</Highlight>.
+
+## Teorem Pensifar Nisbah
+
+Katakan <InlineMath math="P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0" /> ialah polinomial yang semua pekalinya (<InlineMath math="a_n, a_{n-1}, \dots, a_1, a_0" />) ialah **integer**, dengan <InlineMath math="a_n \neq 0" /> dan <InlineMath math="a_0 \neq 0" />.
+
+Jika polinomial <InlineMath math="P(x)" /> mempunyai pensifar (punca) nisbah dalam bentuk <InlineMath math="\frac{p}{q}" /> (dengan <InlineMath math="p" /> dan <InlineMath math="q" /> ialah integer, <InlineMath math="q \neq 0" />, dan <InlineMath math="\frac{p}{q}" /> ialah pecahan dalam bentuk termudah), maka:
+
+- <InlineMath math="p" /> mestilah faktor bagi sebutan pemalar <InlineMath math="a_0" />.
+- <InlineMath math="q" /> mestilah faktor bagi pekali pelopor <InlineMath math="a_n" />.
+
+Teorem ini hanya memberi senarai punca nisbah yang **mungkin**. Tidak semua nilai <InlineMath math="\frac{p}{q}" /> dalam senarai itu semestinya punca sebenar polinomial tersebut. Kita masih perlu mengujinya.
+
+## Langkah Menggunakan Teorem Pensifar Nisbah
+
+**Calon belum disahkan sebagai punca**. Gunakan pembahagi positif dan negatif bagi pemalar sebagai pengangka, dan pembahagi positif bagi pekali pelopor sebagai penyebut. Permudahkan pecahan itu supaya nilai yang sama tidak diuji berulang kali. Semak setiap calon dengan penggantian atau [kaedah Horner](/ms/subjek/matematik/polinomial/kaedah-horner).
+
+Jika pemalarnya sifar, faktorkan <InlineMath math="x" /> dahulu. Contohnya, <InlineMath math="x^3-2x^2=x^2(x-2)" /> mempunyai punca sifar, dan faktor yang tinggal memberi punca dua.
+
+Jika tiada calon yang menjadi punca, kesimpulannya hanyalah **tiada punca nisbah**. Calon bagi <InlineMath math="x^2-2" /> ialah <InlineMath math="\pm1,\pm2" />, tetapi tiada satu pun yang menjadikan polinomial itu sifar. Polinomial ini tetap mempunyai punca nyata <InlineMath math="\pm\sqrt2" />.
+
+### Menggunakan Teorem Faktor dan Teorem Pensifar Nisbah
+
+Faktorkan polinomial <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> selengkapnya.
+
+**Langkah 1**. Kenal Pasti Pekali
+
+Semua pekalinya ialah **integer**. <InlineMath math="a_0 = -18" /> dan <InlineMath math="a_n = 1" />.
+
+**Langkah 2**. Faktor bagi <InlineMath math="p" /> (daripada <InlineMath math="a_0 = -18" />)
+
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+
+**Langkah 3**. Faktor bagi <InlineMath math="q" /> (daripada <InlineMath math="a_n = 1" />)
+
+<BlockMath math="\pm 1" />
+
+**Langkah 4**. Punca yang Mungkin <InlineMath math="\frac{p}{q}" />
+
+Apabila semua <InlineMath math="p" /> dibahagi dengan <InlineMath math="q = \pm 1" />, kita dapat:
+
+<BlockMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />
+
+**Langkah 5**
+
+| Calon | Hasil penggantian | Keputusan |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1+2-9-18=-24" /> | Bukan punca |
+| <InlineMath math="-1" /> | <InlineMath math="-1+2+9-18=-8" /> | Bukan punca |
+| <InlineMath math="2" /> | <InlineMath math="8+8-18-18=-20" /> | Bukan punca |
+| <InlineMath math="-2" /> | <InlineMath math="-8+8+18-18=0" /> | Punca |
+| <InlineMath math="3" /> | <InlineMath math="27+18-27-18=0" /> | Punca |
+
+Gunakan punca <InlineMath math="3" /> untuk pembahagian. Punca <InlineMath math="-2" /> juga sah, dan punca ini akan muncul semula apabila kamu **memfaktorkan hasil bahagi**.
+
+**Langkah 6**. Faktorkan Lagi (menggunakan punca <InlineMath math="x = 3" />)
+
+Bahagikan <InlineMath math="P(x)" /> dengan <InlineMath math="(x-3)" /> menggunakan kaedah Horner (<InlineMath math="c = 3" />).
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+3 & 1 & 2 & -9 & -18 \\
+  &   & 3 & 15 & 18 \\
+\hline
+  & 1 & 5 & 6 & \boxed{0} \\
+\end{array}
+"
+/>
+
+Hasil bahaginya ialah <InlineMath math="H(x) = x^2 + 5x + 6" />.
+
+Jadi, <InlineMath math="P(x) = (x-3)(x^2 + 5x + 6)" />.
+
+**Langkah 7**. **Faktorkan Hasil Bahagi**
+
+Faktorkan <InlineMath math="x^2 + 5x + 6" />.
+
+<BlockMath math="x^2 + 5x + 6 = (x+2)(x+3)" />
+
+**Langkah 8**. Pemfaktoran Lengkap
+
+<BlockMath math="P(x) = (x-3)(x+2)(x+3)" />
+
+Teorem ini menukar carian yang tiada penghujung kepada senarai yang pendek. Bagi <InlineMath math="x^3 + 2x^2 - 9x - 18" />, setiap punca nisbah mestilah salah satu daripada dua belas calon <InlineMath math="\pm 1, \pm 2, \pm 3, \pm 6, \pm 9, \pm 18" />. Selepas semua calon diuji, tinggal tepat tiga punca, iaitu <InlineMath math="-3" />, <InlineMath math="-2" /> dan <InlineMath math="3" />, yang ditonjolkan pada garis nombor itu.
+
+<MathVisual
+  title={<>Dua belas calon, tiga punca</>}
+  description={<>Dua belas calon nisbah pada garis nombor, dengan tiga punca sebenar <InlineMath math="-3" />, <InlineMath math="-2" /> dan <InlineMath math="3" /> ditonjolkan.</>}
+  labels={{
+    m3: <InlineMath math="-3" />,
+    m2: <InlineMath math="-2" />,
+    p3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -19, max: 19 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -19, y: 0 }, to: { x: 19, y: 0 }, appearance: "reference" },
+      { id: "m18", kind: "point", at: { x: -18, y: 0 }, appearance: "reference" },
+      { id: "m9", kind: "point", at: { x: -9, y: 0 }, appearance: "reference" },
+      { id: "m6", kind: "point", at: { x: -6, y: 0 }, appearance: "reference" },
+      { id: "m3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "m2", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "m1", kind: "point", at: { x: -1, y: 0 }, appearance: "reference" },
+      { id: "p1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "p2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "p3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "p6", kind: "point", at: { x: 6, y: 0 }, appearance: "reference" },
+      { id: "p9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "p18", kind: "point", at: { x: 18, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "m3", objectId: "m3", at: { x: -3, y: 0 }, placement: "above" },
+      { key: "m2", objectId: "m2", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "p3", objectId: "p3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Nilaikan <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> pada calon dari <InlineMath math="-3" /> hingga <InlineMath math="3" />: palang jatuh ke sifar tepat pada <InlineMath math="-3" />, <InlineMath math="-2" /> dan <InlineMath math="3" />, iaitu tiga punca itu, manakala setiap calon lain memberi nilai bukan sifar, sama seperti yang ditunjukkan dalam jadual.
+
+<BarChart
+  title={<><InlineMath math="P(x)" /> pada enam calon</>}
+  description={<>Palang bagi <InlineMath math="P(x) = x^3 + 2x^2 - 9x - 18" /> pada <InlineMath math="x = -3, -2, -1, 1, 2, 3" />, bernilai sifar pada punca <InlineMath math="-3" />, <InlineMath math="-2" /> dan <InlineMath math="3" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 9 * x - 18 }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Hasil bahagi <InlineMath math="H(x) = x^2 + 5x + 6" /> daripada Langkah 6 ialah parabola. Parabola ini memotong paksi-x tepat pada <InlineMath math="-3" /> dan <InlineMath math="-2" />, iaitu dua punca yang tinggal selepas <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="x - 3" />, jadi faktornya ialah <InlineMath math="(x + 3)" /> dan <InlineMath math="(x + 2)" />.
+
+<MathVisual
+  title={<>Hasil bahagi memotong paksi pada dua punca yang lain</>}
+  description={<>Parabola <InlineMath math="H(x) = x^2 + 5x + 6" /> untuk <InlineMath math="-4.5 \le x \le -0.5" />, yang memotong paksi-x pada <InlineMath math="-3" /> dan <InlineMath math="-2" />.</>}
+  labels={{
+    quotient: <InlineMath math="H(x) = x^2 + 5x + 6" />,
+    left: <InlineMath math="-3" />,
+    right: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.9, max: 0.6 }, y: { min: -0.7, max: 4.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "quotient", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 5, c: 6 }, domain: { min: -4.5, max: -0.5 }, appearance: "primary" },
+      { id: "left", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "right", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "quotient", objectId: "quotient", at: { x: -0.5, y: 3.75 }, placement: "above" },
+      { key: "left", objectId: "left", at: { x: -3, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Faktorkan <InlineMath math="P(x) = 2x^3 - 3x^2 - 12x + 20" /> selengkapnya menggunakan **Teorem Pensifar Nisbah** dan Teorem Faktor. Senaraikan punca yang mungkin daripada faktor sebutan pemalar dan pekali pelopor, kemudian uji calon-calon itu mengikut urutan dan bahagikan polinomial dengan faktor bagi setiap punca yang kamu sahkan.
+
+### Kunci Jawapan
+
+**Langkah 1**. Kenal Pasti Pekali <InlineMath math="a_0 = 20" />, <InlineMath math="a_n = 2" />.
+
+**Langkah 2**. Faktor bagi <InlineMath math="p" /> (daripada <InlineMath math="20" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />.
+
+**Langkah 3**. Faktor bagi <InlineMath math="q" /> (daripada <InlineMath math="2" />) <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />.
+
+**Langkah 4**. **Punca yang Mungkin** <InlineMath math="\frac{p}{q}" /> <InlineMath math="\pm 1" />, <InlineMath math="\pm 2" />, <InlineMath math="\pm 4" />, <InlineMath math="\pm 5" />, <InlineMath math="\pm 10" />, <InlineMath math="\pm 20" />, <InlineMath math="\pm 1/2" />, <InlineMath math="\pm 5/2" />.
+
+**Langkah 5**. Uji Punca
+
+Cuba <InlineMath math="x = 2" />.
+
+<MathContainer>
+  <BlockMath math="P(2) = 2(2)^3 - 3(2)^2 - 12(2) + 20" />
+  <BlockMath math="P(2) = 2(8) - 3(4) - 24 + 20" />
+  <BlockMath math="P(2) = 16 - 12 - 24 + 20" />
+  <BlockMath math="P(2) = 4 - 4 = 0" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="P(2)=0" />, <InlineMath math="x=2" /> ialah punca dan <InlineMath math="(x-2)" /> ialah faktor.
+
+**Langkah 6**. Bahagi menggunakan kaedah Horner (<InlineMath math="c = 2" />)
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & -12 & 20 \\
+  &   & 4 & 2 & -20 \\
+\hline
+  & 2 & 1 & -10 & \boxed{0} \\
+\end{array}
+"
+/>
+
+Hasil bahaginya ialah <InlineMath math="H(x) = 2x^2 + x - 10" />.
+
+<InlineMath math="P(x) = (x-2)(2x^2 + x - 10)" />.
+
+**Langkah 7**. Faktorkan Hasil Bahagi
+
+Faktorkan <InlineMath math="2x^2 + x - 10" />.
+
+<BlockMath math="\begin{aligned}2x^2+x-10&amp;=2x^2-4x+5x-10 \\ &amp;=2x(x-2)+5(x-2) \\ &amp;=(2x+5)(x-2)\end{aligned}" />
+
+**Langkah 8**. Pemfaktoran Lengkap
+
+<MathContainer>
+  <BlockMath math="P(x) = (x-2)(2x+5)(x-2)" />
+  <BlockMath math="P(x) = (x-2)^2 (2x+5)" />
+</MathContainer>
+
+Punca <InlineMath math="2" /> **muncul dua kali** kerana faktor <InlineMath math="x-2" /> berkuasa dua. Punca yang satu lagi ialah <InlineMath math="-5/2" />, yang diperoleh daripada <InlineMath math="2x+5=0" />.

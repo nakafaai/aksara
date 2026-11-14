@@ -1,0 +1,173 @@
+export const metadata = {
+  title: "Memahami Nombor Kompleks",
+  description: "Terangkan mengapa nombor kompleks meluaskan nombor nyata, gunakan unit khayalan, dan kenal pasti bahagian nyata serta bahagian khayalan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Mengapa Nombor Kompleks Diperlukan
+
+Lihat persamaan kuadratik <InlineMath math="x^2 - 1 = 0" />. Apabila difaktorkan, kita dapat <InlineMath math="(x-1)(x+1) = 0" />, jadi dua penyelesaiannya, <InlineMath math="x=1" /> dan <InlineMath math="x=-1" />, ialah nombor nyata.
+
+Persamaan <InlineMath math="x^2 + 1 = 0" /> pula berbeza. Persamaan ini memerlukan <InlineMath math="x^2 = -1" />, tetapi kuasa dua bagi setiap nombor nyata tidak pernah negatif. Jadi persamaan ini tiada penyelesaian nyata.
+
+Nombor kompleks <Highlight>meluaskan sistem nombor nyata</Highlight> supaya persamaan seperti ini boleh diselesaikan.
+
+## Nombor Khayalan
+
+**Unit khayalan**, yang ditandakan dengan <InlineMath math="i" />, ditakrifkan oleh persamaan
+
+<BlockMath math="i^2 = -1" />
+
+Dengan konvensyen punca kuasa dua utama, persamaan ini juga ditulis sebagai
+
+<BlockMath math="\sqrt{-1}=i" />
+
+Untuk nombor nyata <InlineMath math="a" /> yang tidak negatif, punca kuasa dua utama bagi <InlineMath math="-a" /> ialah <InlineMath math="i\sqrt{a}" />. Contohnya:
+
+<MathContainer>
+  <BlockMath math="\sqrt{-4} = i\sqrt{4} = 2i" />
+  <BlockMath math="\sqrt{-9} = i\sqrt{9} = 3i" />
+</MathContainer>
+
+Nombor seperti <InlineMath math="2i" /> dan <InlineMath math="3i" /> dipanggil **nombor khayalan tulen**.
+
+**Punca kuasa dua utama** hanya satu nilai, tetapi persamaan kuadratik mungkin ada dua penyelesaian. Kedua-dua nilai di bawah memenuhi persamaan asal:
+
+<BlockMath math="i^2+1=-1+1=0,\qquad(-i)^2+1=i^2+1=0" />
+
+Pendaraban dengan <InlineMath math="i" /> memutarkan sesuatu nombor sebanyak suku pusingan mengelilingi asalan. Mula di <InlineMath math="1" />: suku pusingan pertama memberikan <InlineMath math="i" />, yang kedua memberikan <InlineMath math="i^2 = -1" />, yang ketiga memberikan <InlineMath math="-i" />, dan yang keempat membawa kamu kembali ke <InlineMath math="1" />. Sebab itulah <InlineMath math="i^2 = -1" /> tidak bercanggah: dua suku pusingan menghala ke arah yang bertentangan.
+
+<MathVisual
+  title={<>Kuasa <InlineMath math="i" /> sebagai suku pusingan</>}
+  description={<>Nombor <InlineMath math="1" />, <InlineMath math="i" />, <InlineMath math="-1" /> dan <InlineMath math="-i" /> pada bulatan unit, setiap satu terpisah sejauh suku pusingan.</>}
+  labels={{
+    one: <InlineMath math="1" />,
+    i: <InlineMath math="i" />,
+    minus: <InlineMath math="-1" />,
+    minusi: <InlineMath math="-i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "i", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "minusi", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "i", objectId: "i", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: 0 }, placement: "left" },
+      { key: "minusi", objectId: "minusi", at: { x: 0, y: -1 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Bentuk Am
+
+Nombor kompleks biasanya ditulis dalam bentuk <InlineMath math="z = a + bi" />, dengan keadaan:
+
+- <InlineMath math="a=\operatorname{Re}(z)" /> ialah **bahagian nyata**.
+- <InlineMath math="b=\operatorname{Im}(z)" /> ialah **bahagian khayalan**.
+- <InlineMath math="i" /> ialah unit khayalan (<InlineMath math="\sqrt{-1}" />
+  ).
+
+Kedua-dua <InlineMath math="a" /> dan <InlineMath math="b" /> ialah nombor nyata. Ungkapan <InlineMath math="bi" /> ialah sebutan khayalan, manakala pekalinya, <InlineMath math="b" />, ialah bahagian khayalan.
+
+Setiap nombor kompleks <InlineMath math="a + bi" /> ialah satu titik pada satah: bahagian nyata <InlineMath math="a" /> pada arah mengufuk dan bahagian khayalan <InlineMath math="b" /> pada arah mencancang. Nombor nyata seperti <InlineMath math="4" /> terletak pada paksi mengufuk, dan nombor khayalan tulen seperti <InlineMath math="2i" /> terletak pada paksi mencancang.
+
+<MathVisual
+  title={<>Nombor kompleks sebagai titik</>}
+  description={<>Lima nombor kompleks yang diletakkan mengikut bahagian nyata secara mengufuk dan bahagian khayalan secara mencancang, termasuk satu nombor nyata dan satu nombor khayalan tulen.</>}
+  labels={{
+    z1: <InlineMath math="3 + 2i" />,
+    z2: <InlineMath math="-1 + i" />,
+    z3: <InlineMath math="-2 - 3i" />,
+    z4: <InlineMath math="4" />,
+    z5: <InlineMath math="2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -4, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z2", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "z3", kind: "point", at: { x: -2, y: -3 }, appearance: "primary" },
+      { id: "z4", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "z5", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "z2", objectId: "z2", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "z3", objectId: "z3", at: { x: -2, y: -3 }, placement: "below-left" },
+      { key: "z4", objectId: "z4", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "z5", objectId: "z5", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Mengenal Pasti Bahagian Nyata dan Bahagian Khayalan
+
+Baca **pekali unit khayalan**, bukan seluruh sebutan khayalan. Jadi bahagian khayalan bagi lima tolak empat kali unit khayalan ialah negatif empat, bukan negatif empat kali unit khayalan.
+
+| Nombor | Bentuk nyata tambah khayalan | Bahagian nyata | Bahagian khayalan |
+| --- | --- | --- | --- |
+| <InlineMath math="2+3i" /> | <InlineMath math="2+3i" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="5-4i" /> | <InlineMath math="5+(-4)i" /> | <InlineMath math="5" /> | <InlineMath math="-4" /> |
+| <InlineMath math="\sqrt2" /> | <InlineMath math="\sqrt2+0i" /> | <InlineMath math="\sqrt2" /> | <InlineMath math="0" /> |
+| <InlineMath math="-7i" /> | <InlineMath math="0+(-7)i" /> | <InlineMath math="0" /> | <InlineMath math="-7" /> |
+
+Baca kedua-dua bahagian <InlineMath math="z = 3 + 2i" /> sebagai dua langkah: <InlineMath math="3" /> di sepanjang paksi nyata, kemudian <InlineMath math="2" /> ke atas. <InlineMath math="\operatorname{Re}(z) = 3" /> ialah langkah mengufuk, <InlineMath math="\operatorname{Im}(z) = 2" /> ialah langkah mencancang. Bahagian khayalan ialah nombor <InlineMath math="2" />, bukan <InlineMath math="2i" />.
+
+<MathVisual
+  title={<>Bahagian nyata dan bahagian khayalan bagi <InlineMath math="3 + 2i" /></>}
+  description={<>Titik <InlineMath math="3 + 2i" /> dicapai melalui langkah mengufuk <InlineMath math="3" /> dan langkah mencancang <InlineMath math="2" />.</>}
+  labels={{
+    re: <InlineMath math="\operatorname{Re}(z) = 3" />,
+    im: <InlineMath math="\operatorname{Im}(z) = 2" />,
+    z: <InlineMath math="z = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "re", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "im", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "zline", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "z", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "re", objectId: "re", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "im", objectId: "im", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "z", objectId: "z", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Tentukan **bahagian nyata dan bahagian khayalan** bagi setiap nombor kompleks di bawah. Tiga daripada ungkapan ini menyembunyikan nilainya di dalam punca kuasa dua atau kuasa <InlineMath math="i" />, jadi permudahkan setiap satu dahulu, barulah namakan kedua-dua bahagiannya.
+
+1. <InlineMath math="2 + \sqrt{(-2)^2}" />
+2. <InlineMath math="2 + i^2" />
+3. <InlineMath math="1 + \sqrt{-9}" />
+4. <InlineMath math="1 + 2i" />
+
+### Jalan Kerja
+
+**Permudahkan dahulu**, kemudian baca kedua-dua bahagian daripada bentuk piawai. Punca kuasa dua utama bagi nombor positif ialah nilai yang tidak negatif. Jadi punca kuasa dua bagi kuasa dua negatif dua ialah dua, bukan negatif dua.
+
+| Soalan | Ungkapan yang dipermudahkan | Bahagian nyata | Bahagian khayalan |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="2+\sqrt{(-2)^2}=2+\sqrt4=2+2=4" /> | <InlineMath math="4" /> | <InlineMath math="0" /> |
+| <InlineMath math="2" /> | <InlineMath math="2+i^2=2-1=1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="3" /> | <InlineMath math="1+\sqrt{-9}=1+3i" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
+| <InlineMath math="4" /> | <InlineMath math="1+2i" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |

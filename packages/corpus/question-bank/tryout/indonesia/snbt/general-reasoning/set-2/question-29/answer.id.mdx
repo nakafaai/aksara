@@ -1,11 +1,39 @@
-Pisahkan dentang menjadi dua jenis: **dentang jam tepat** dan **dentang tengah jam**. Lalu daftar semua waktu di antara pukul <InlineMath math="09.15" /> dan <InlineMath math="13.15" />.
+Soal ini punya dua larangan: tim tidak boleh berisi satu jenis kelamin saja, dan Dimas tidak boleh setim dengan Rafi. Cara yang rapi adalah menghitung semua tim, lalu membuang tim yang melanggar. Hati-hati, ada tim yang **melanggar kedua larangan sekaligus**, dan tim seperti itu hanya boleh dibuang satu kali.
 
-Jam tepat yang dilalui adalah pukul <InlineMath math="10.00" />, <InlineMath math="11.00" />, <InlineMath math="12.00" />, dan <InlineMath math="13.00" />. Pada jam 12 jam, pukul <InlineMath math="13.00" /> ditunjukkan sebagai angka <InlineMath math="1" />, jadi jam berdentang satu kali, bukan <InlineMath math="13" /> kali.
+Urutan anggota tidak diperhatikan, jadi banyak cara memilih <InlineMath math="r" /> orang dari <InlineMath math="n" /> orang adalah kombinasi <InlineMath math="C(n,r)" />. Mulai dari semua tim tanpa larangan, yaitu memilih <InlineMath math="4" /> dari <InlineMath math="6+5=11" /> siswa.
 
-<BlockMath math="10+11+12+1=34" />
+<BlockMath math="C(11,4) = \frac{11\times10\times9\times8}{4\times3\times2\times1} = 330" />
 
-Tengah jam yang dilalui adalah pukul <InlineMath math="09.30" />, <InlineMath math="10.30" />, <InlineMath math="11.30" />, dan <InlineMath math="12.30" />, masing-masing satu dentang. Pukul <InlineMath math="13.30" /> sudah di luar rentang.
+Buang tim yang semua anggotanya putra atau semua anggotanya putri. Tidak ada tim yang sekaligus semuanya putra dan semuanya putri, jadi keduanya tinggal dikurangkan.
 
-<BlockMath math="34+4=38" />
+<BlockMath math="\begin{aligned}
+\text{semua putra} &= C(6,4) = 15 \\
+\text{semua putri} &= C(5,4) = 5 \\
+\text{tim campuran} &= 330-15-5 = 310
+\end{aligned}" />
 
-Kesalahan yang sering terjadi adalah menghitung <InlineMath math="13" /> dentang pada pukul <InlineMath math="13.00" />, yang memberi <InlineMath math="50" />. Jadi, jam itu berdentang <InlineMath math="38" /> kali.
+Sekarang buang tim campuran yang memuat Dimas dan Rafi. Kalau Dimas dan Rafi sudah masuk, dua kursi sisanya diisi dari <InlineMath math="9" /> siswa lain, jadi ada <InlineMath math="C(9,2)=36" /> tim. Namun, sebagian dari <InlineMath math="36" /> tim itu berisi putra semua, yaitu Dimas, Rafi, dan dua dari <InlineMath math="4" /> putra lain. Tim seperti itu sudah dibuang pada langkah sebelumnya.
+
+<BlockMath math="\begin{aligned}
+\text{Dimas dan Rafi, semua putra} &= C(4,2) = 6 \\
+\text{Dimas dan Rafi, tim campuran} &= 36-6 = 30 \\
+\text{tim yang memenuhi} &= 310-30 = 280
+\end{aligned}" />
+
+Cek dengan cara lain, yaitu menghitung menurut banyak putra di dalam tim. Dengan satu putra, Dimas dan Rafi pasti tidak bersama. Dengan dua putra, pasangan Dimas dan Rafi dikurangi <InlineMath math="1" />. Dengan tiga putra, ada <InlineMath math="C(4,1)=4" /> trio yang memuat Dimas dan Rafi.
+
+<BlockMath math="\begin{aligned}
+1 \text{ putra} &: C(6,1)\times C(5,3) = 6\times10 = 60 \\
+2 \text{ putra} &: \big(C(6,2)-1\big)\times C(5,2) = 14\times10 = 140 \\
+3 \text{ putra} &: \big(C(6,3)-4\big)\times C(5,1) = 16\times5 = 80
+\end{aligned}" />
+
+Jumlahnya <InlineMath math="60+140+80=280" />, sama dengan hasil pertama.
+
+Beberapa hasil yang menggoda tetapi salah:
+
+- <InlineMath math="274" /> muncul kalau kamu mengurangkan seluruh <InlineMath math="36" /> tim Dimas dan Rafi dari <InlineMath math="310" />. Enam tim putra semua jadi terbuang dua kali.
+- <InlineMath math="294" /> muncul kalau kamu hanya memakai larangan Dimas dan Rafi, yaitu <InlineMath math="330-36" />, dan lupa syarat putra dan putri.
+- <InlineMath math="310" /> muncul kalau kamu lupa larangan Dimas dan Rafi.
+
+Jadi, banyak tim berbeda yang dapat dibentuk adalah <InlineMath math="280" /> tim.

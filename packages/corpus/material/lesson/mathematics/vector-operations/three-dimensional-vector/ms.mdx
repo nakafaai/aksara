@@ -1,0 +1,282 @@
+
+
+export const metadata = {
+  title: "Vektor dalam Tiga Dimensi",
+    description: "Wakilkan vektor tiga dimensi, hitung magnitudnya, dan gunakan penambahan, hasil darab titik serta hasil darab silang.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-09-12",
+  subject: "Vektor dan Operasinya",
+};
+
+## Vektor dalam Ruang dengan Tiga Paksi Koordinat
+
+Vektor tiga dimensi diterangkan oleh <Highlight>tiga komponen koordinat</Highlight>. Komponen ini mengukur sesaran di sepanjang paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />. Vektor bukan sifar mempunyai magnitud dan arah, manakala vektor sifar tidak mempunyai arah geometri.
+
+<MathVisual
+  title={<>Vektor dalam Ruang Tiga Dimensi</>}
+  description={
+    <>
+      Visualisasi vektor dalam ruang tiga dimensi dengan komponen{" "}
+      <InlineMath math="x" />, <InlineMath math="y" /> dan{" "}
+      <InlineMath math="z" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -5 }, target: { x: 1.5, y: 2, z: 1 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 4, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4, z: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Perwakilan Vektor Tiga Dimensi
+
+Paksi-<InlineMath math="z" /> berserenjang dengan satah <InlineMath math="xy" />. Dalam sistem Cartesan ini, **tertib komponen** sentiasa mengikut paksi-<InlineMath math="x" />, kemudian paksi-<InlineMath math="y" />, kemudian paksi-<InlineMath math="z" />.
+
+Contohnya, komponen ketiga bagi <InlineMath math="(3,4,2)" /> ialah <InlineMath math="2" />. Komponen itu tidak semestinya kelihatan sebagai ketinggian mencancang pada skrin.
+
+### Tatatanda Vektor Tiga Dimensi
+
+Vektor tiga dimensi boleh ditulis dalam beberapa tatatanda:
+
+1. Tatatanda huruf dengan anak panah di atasnya: <InlineMath math="\vec{a}" /> atau <InlineMath math="\overrightarrow{PQ}" />
+2. Tatatanda komponen: <InlineMath math="(a_x, a_y, a_z)" /> atau <InlineMath math="(a_1, a_2, a_3)" />
+3. Tatatanda asas: <InlineMath math="a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
+
+Untuk vektor dalam gambar rajah pertama, ketiga-tiga tatatanda komponen ini menerangkan **sesaran yang sama**:
+
+<BlockMath math="\vec v=(3,4,2)=\begin{pmatrix}3\\4\\2\end{pmatrix}=3\vec i+4\vec j+2\vec k" />
+
+### Komponen Vektor Tiga Dimensi
+
+Vektor dalam ruang tiga dimensi mempunyai **tiga komponen koordinat skalar**. Apabila setiap skalar didarab dengan vektor unit bagi paksinya, kita dapat unjuran vektor yang sepadan:
+
+<BlockMath math="\vec{a} = (a_x, a_y, a_z) = a_x\vec{i} + a_y\vec{j} + a_z\vec{k}" />
+
+Komponen dalam bentuk ini ialah:
+
+- <InlineMath math="a_x" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="x" />, manakala <InlineMath math="a_x\vec{i}" /> ialah unjuran vektornya
+- <InlineMath math="a_y" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="y" />, manakala <InlineMath math="a_y\vec{j}" /> ialah unjuran vektornya
+- <InlineMath math="a_z" /> ialah komponen skalar di sepanjang paksi-<InlineMath math="z" />, manakala <InlineMath math="a_z\vec{k}" /> ialah unjuran vektornya
+- <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> ialah vektor unit pada paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />
+
+<ContentBlock>
+  <MathVisual
+    title={<>Komponen Vektor Tiga Dimensi</>}
+    description={
+        <>
+          Vektor tiga dimensi dengan komponen pada paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a_x" />,
+      "l2": <InlineMath math="a_y" />,
+      "l3": <InlineMath math="a_z" />,
+      "l4": <InlineMath math="a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+      view: { kind: "camera", position: { x: 7, y: 5, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 2 }, appearance: "answer" },
+        { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 2 }, placement: "above-right" },
+        { key: "l4", objectId: "s4", at: { x: 4, y: 3, z: 2 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Magnitud Vektor Tiga Dimensi
+
+Magnitud atau panjang vektor tiga dimensi <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> ditentukan oleh rumus:
+
+<BlockMath math="|\vec{a}| = \sqrt{a_x^2 + a_y^2 + a_z^2}" />
+
+**Contoh**:
+
+Jika <InlineMath math="\vec{a} = (3, 4, 5)" />, maka magnitud vektor <InlineMath math="\vec{a}" /> ialah:
+
+<BlockMath math="\begin{aligned} |\vec{a}| &amp;= \sqrt{3^2 + 4^2 + 5^2} \\ &amp;= \sqrt{9 + 16 + 25} \\ &amp;= \sqrt{50} \\ &amp;= 5\sqrt{2} \end{aligned}" />
+
+## Operasi pada Vektor Tiga Dimensi
+
+Untuk penambahan dan penolakan, pasangkan **komponen pada paksi yang sama**. Pendaraban skalar mendarab setiap komponen dengan nombor yang sama. Bezakan juga jenis hasilnya: hasil darab titik memberikan skalar, manakala hasil darab silang memberikan vektor.
+
+### Penambahan dan Penolakan Vektor
+
+Penambahan dan penolakan vektor tiga dimensi dilakukan dengan menambah atau menolak **komponen yang sepadan**.
+
+Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{b} = (b_x, b_y, b_z)" />, maka:
+
+<MathContainer>
+  <BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y, a_z + b_z)" />
+  <BlockMath math="\vec{a} - \vec{b} = (a_x - b_x, a_y - b_y, a_z - b_z)" />
+</MathContainer>
+
+<ContentBlock>
+  <MathVisual
+    title={<>Penambahan Vektor dalam Tiga Dimensi</>}
+    description={
+        <>
+          Visualisasi penambahan vektor <InlineMath math="a" /> dan{" "}
+          <InlineMath math="b" /> untuk menghasilkan vektor{" "}
+          <InlineMath math="c = a + b" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="c=a + b" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 3.5 } },
+      view: { kind: "camera", position: { x: 9, y: 6, z: -7 }, target: { x: 2.5, y: 2, z: 1.5 } },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 1, y: 1.5, z: 0.5 }, to: { x: 2, y: 3, z: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3.5, y: 3.5, z: 2 }, to: { x: 5, y: 4, z: 3 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 4, z: 3 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 1.5, z: 0.5 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 3.5, y: 3.5, z: 2 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 5, y: 4, z: 3 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+### Pendaraban Vektor dengan Skalar
+
+Mendarab skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}" /> menskalakan magnitudnya dengan faktor <InlineMath math="|k|" />. Jika <InlineMath math="\vec{a}" /> bukan sifar, arahnya kekal sama apabila <InlineMath math="k > 0" /> dan **menjadi terbalik** apabila <InlineMath math="k < 0" />.
+
+<BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
+
+<ContentBlock>
+  <MathVisual
+    title={<>Pendaraban Vektor dengan Skalar</>}
+    description={
+        <>
+          Visualisasi pendaraban skalar dengan <InlineMath math="k" /> bagi
+          vektor <InlineMath math="a" />, dengan nilai <InlineMath math="k = 2" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="2a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 8, y: 4, z: -5 }, target: { x: 2, y: 1, z: 2 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 2, z: 4 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 1, z: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 4, y: 2, z: 4 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+### Hasil Darab Titik
+
+Hasil darab titik antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> **memberikan skalar** yang ditakrifkan sebagai:
+
+<BlockMath math="\begin{aligned} \vec{a} \cdot \vec{b} &amp;= a_x b_x + a_y b_y + a_z b_z \\ &amp;= |\vec{a}||\vec{b}|\cos\theta \end{aligned}" />
+
+Untuk rumus sudut ini, kedua-dua vektor mesti bukan sifar. Simbol <InlineMath math="\theta" /> mewakili sudut antara arah kedua-dua vektor itu.
+
+Hasil darab titik mempunyai sifat-sifat berikut:
+
+1. <InlineMath math="\vec{a} \cdot \vec{b} = \vec{b} \cdot \vec{a}" /> (kalis tukar tertib)
+2. <InlineMath math="\vec{a} \cdot \vec{b} = 0" /> jika dan hanya jika <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> ortogon. Jika kedua-duanya bukan sifar, arah geometri kedua-duanya berserenjang
+3. <InlineMath math="\vec{a} \cdot \vec{a} = |\vec{a}|^2" />
+
+### Hasil Darab Silang
+
+Hasil darab silang antara dua vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> memberikan vektor yang hasil darab titiknya dengan setiap faktor ialah sifar:
+
+<MathContainer>
+  <BlockMath math="(\vec{a}\times\vec{b})\cdot\vec{a}=(\vec{a}\times\vec{b})\cdot\vec{b}=0" />
+
+  <BlockMath math="\vec a\times\vec b=\begin{pmatrix}a_yb_z-a_zb_y\\a_zb_x-a_xb_z\\a_xb_y-a_yb_x\end{pmatrix}" />
+</MathContainer>
+
+Magnitud hasil darab silang ialah:
+
+<BlockMath math="|\vec{a} \times \vec{b}| = |\vec{a}||\vec{b}|\sin\theta" />
+
+Untuk rumus sudut ini, kedua-dua vektor mesti bukan sifar. Simbol <InlineMath math="\theta" /> mewakili sudut antara arah kedua-dua vektor itu.
+
+Apabila <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya berserenjang dengan kedua-dua faktor dan mengikut petua tangan kanan dari <InlineMath math="\vec{a}" /> ke arah <InlineMath math="\vec{b}" />. Jika salah satu faktor ialah sifar atau kedua-dua faktor selari, hasil darab silang ialah <InlineMath math="\vec{0}" />, jadi ia tidak mempunyai arah geometri.
+
+<MathVisual
+  title={<>Hasil Darab Silang Vektor</>}
+  description={<>Arah <InlineMath math="\vec{a}\times\vec{b}" /> mengikut petua tangan kanan, yang berserenjang dengan kedua-dua vektor yang tidak selari.</>}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="a \times b" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 4.6, y: 3.6, z: -4.2 }, target: { x: 0.8, y: 0.8, z: 1.7 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+
+Dalam gambar rajah, ambil <InlineMath math="\vec a=(2,0,0)" /> dan <InlineMath math="\vec b=(0,2,0)" />. Kedua-dua vektor ini **berserenjang**, jadi hasil darab titiknya ialah sifar:
+
+<BlockMath math="\vec a\cdot\vec b=2\cdot0+0\cdot2+0\cdot0=0" />
+
+Hasil darab silang memberikan jenis hasil yang berbeza. Gantikan komponen kedua-dua vektor ke dalam rumus:
+
+<BlockMath math="\begin{aligned}\vec a\times\vec b&amp;=(0\cdot0-0\cdot2,\;0\cdot0-2\cdot0,\;2\cdot2-0\cdot0)\\&amp;=(0,0,4)\end{aligned}" />
+
+Hasilnya menghala di sepanjang paksi-<InlineMath math="z" /> positif, sepadan dengan anak panah hijau. Magnitudnya, <InlineMath math="4" />, sama dengan luas segi empat tepat yang panjang sisinya <InlineMath math="2" /> dan <InlineMath math="2" />.
+
+
+## Aplikasi Vektor Tiga Dimensi
+
+Dalam robotik, vektor sesaran memberitahu lengan robot **sejauh mana ia perlu bergerak di sepanjang setiap paksi**. Katakan hujung lengan itu bermula di <InlineMath math="P(1,2,0)" /> dan mesti sampai ke <InlineMath math="Q(3,4,2)" />:
+
+<BlockMath math="\overrightarrow{PQ}=Q-P=(3-1,4-2,2-0)=(2,2,2)" />
+
+Sesaran di sepanjang setiap paksi ialah <InlineMath math="2" /> unit. Magnitud sesaran garis lurus berbeza daripada hasil tambah komponennya:
+
+<BlockMath math="|\overrightarrow{PQ}|=\sqrt{2^2+2^2+2^2}=\sqrt{12}=2\sqrt3" />
+
+Grafik komputer dan navigasi menggunakan pengiraan kedudukan dan sesaran yang sama. Dalam fizik, komponen boleh mewakili daya, halaju, pecutan atau momentum. Dalam kejuruteraan mekanikal, vektor membantu menganalisis daya pada struktur dan aliran bendalir. Makna dan unit komponen mengikut kuantiti yang dimodelkan.

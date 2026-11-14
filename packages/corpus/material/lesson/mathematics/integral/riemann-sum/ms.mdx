@@ -1,0 +1,258 @@
+export const metadata = {
+    title: "Hasil Tambah Riemann",
+    description: "Anggarkan kamiran dengan menambah segi empat tepat f(x)Δx, bandingkan hasil tambah kiri, kanan dan titik tengah, dan ambil had yang menukar hasil tambah itu kepada luas tepat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Menambah Segi Empat Tepat untuk Menganggar Kamiran
+
+**Hasil tambah Riemann** menganggar kamiran <InlineMath math="f" /> pada <InlineMath math="[a,b]" /> dengan memotong selang itu kepada <InlineMath math="n" /> jalur yang sama lebar, memilih satu titik sampel <InlineMath math="x_i^*" /> dalam setiap jalur, dan <Highlight>menambah sebutan segi empat tepat</Highlight> <InlineMath math="f(x_i^*)\,\Delta x" />:
+
+<BlockMath math="R_n = \sum_{i=1}^{n} f(x_i^*)\,\Delta x, \qquad \Delta x = \frac{b-a}{n}" />
+
+Apabila jalur semakin nipis, hasil tambah itu semakin hampir kepada [kamiran tentu](/ms/subjek/matematik/pengamiran/kamiran-tentu). Untuk <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,7]" />, tujuh segi empat tepat yang tingginya diambil dari tepi kiri memberikan jumlah <InlineMath math="21" />, manakala segi tiga di bawah garis itu berluas <InlineMath math="\frac{1}{2}\cdot7\cdot7=24.5" />. Lebih banyak jalur akan mengecilkan jurang itu.
+
+Bayangkan sebidang tanah yang salah satu tepinya melengkung. Tiada satu rumus pun yang terus memberikan luasnya, tetapi kamu boleh memotongnya kepada jalur yang sama lebar, menganggap setiap jalur sebagai segi empat tepat, dan menambah semua segi empat tepat itu. Hasil tambah Riemann melakukan perkara yang sama, dengan nilai fungsi sebagai tinggi setiap jalur.
+
+## Lebar dan Titik Sampel
+
+Empat kuantiti menentukan **hasil tambah Riemann dengan lebar yang sama**:
+
+| Simbol | Maksud |
+| :----- | :------ |
+| <InlineMath math="[a,b]" /> | Selang yang dibahagikan kepada subselang |
+| <InlineMath math="n" /> | Bilangan subselang |
+| <InlineMath math="\Delta x=\frac{b-a}{n}" /> | Lebar setiap subselang |
+| <InlineMath math="x_i^*" /> | Titik sampel dalam subselang <InlineMath math="i" />, yang memberikan tinggi segi empat tepat <InlineMath math="f(x_i^*)" /> |
+
+Tiga titik sampel yang biasa digunakan, untuk <InlineMath math="i = 1, 2, \ldots, n" />, ialah titik hujung kiri, titik hujung kanan dan titik tengah setiap jalur:
+
+<MathContainer>
+  <BlockMath math="\text{kiri: } x_i^* = a + (i-1)\Delta x" />
+  <BlockMath math="\text{kanan: } x_i^* = a + i\,\Delta x" />
+  <BlockMath math="\text{titik tengah: } x_i^* = a + \left(i-\tfrac{1}{2}\right)\Delta x" />
+</MathContainer>
+
+**Pilihan titik sampel mengubah anggaran**, tetapi tidak mengubah hadnya. Apabila fungsi menokok merentas selang, setiap titik hujung kiri berada di bahagian rendah jalurnya, jadi hasil tambah kiri kurang daripada nilai sebenar dan hasil tambah kanan melebihi nilai sebenar. Apabila fungsi menyusut, peranan kedua-duanya bertukar.
+
+## Hasil Tambah Titik Hujung Kiri untuk Fungsi Linear
+
+**Soalan**: Tentukan hasil tambah Riemann bagi <InlineMath math="f(x) = x" /> pada <InlineMath math="[0, 7]" /> dengan <InlineMath math="7" /> subselang yang sama lebar, menggunakan **titik hujung kiri** setiap subselang sebagai titik sampel.
+
+<MathVisual
+  title={<>Gambaran Hasil Tambah Riemann</>}
+  description={<>Graf fungsi <InlineMath math="f(x)=x" /> dengan <InlineMath math="7" /> petak segi empat tepat yang menggunakan titik hujung kiri.</>}
+  labels={{
+    "l1": <InlineMath math="f(x)=x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "line", kind: "function", formula: "x", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 4 }, { x: 4, y: 4 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 5 }, { x: 5, y: 5 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }, { x: 6, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "line", at: { x: 4, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+**Langkah 1**: Cari lebar dan titik sampel.
+
+<BlockMath math="\Delta x=\frac{7-0}{7}=1" />
+
+Titik hujung kiri ialah <InlineMath math="0,1,2,3,4,5,6" />. Oleh sebab <InlineMath math="f(x)=x" />, tinggi setiap segi empat tepat sama dengan nilai titik sampelnya.
+
+**Langkah 2**: Tambah ketujuh-tujuh sebutan itu.
+
+<BlockMath math="\begin{aligned}R_7&=\sum_{i=1}^7f(x_i^*)\Delta x\\&=(0+1+2+3+4+5+6)\cdot1\\&=21\end{aligned}" />
+
+Segi empat tepat pertama menyumbang sifar kerana tingginya pada <InlineMath math="x=0" /> ialah sifar. Semak hasil ini dengan luas tepat. Titik hujung kanan <InlineMath math="1" /> hingga <InlineMath math="7" /> memberikan <InlineMath math="28" />, dan luas sebenar <InlineMath math="24.5" /> terletak di antara <InlineMath math="21" /> dan <InlineMath math="28" />, seperti yang sepatutnya bagi fungsi yang menokok. Purata <InlineMath math="\frac{21+28}{2}=24.5" /> malah tepat sama dengan luas itu di sini, kerana grafnya ialah garis lurus.
+
+## Membandingkan Hasil Tambah Kiri Kanan dan Titik Tengah
+
+**Soalan**: Anggarkan luas di bawah <InlineMath math="f(x)=\frac{x^2}{4}" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />, menggunakan hasil tambah kiri, kanan dan titik tengah.
+
+Lebarnya ialah <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, jadi setiap hasil tambah hanyalah **hasil tambah empat tinggi itu**:
+
+| Jalur | Tinggi kiri | Tinggi kanan | Tinggi titik tengah |
+| --- | --- | --- | --- |
+| <InlineMath math="[0,1]" /> | <InlineMath math="f(0)=0" /> | <InlineMath math="f(1)=0.25" /> | <InlineMath math="f(0.5)=0.0625" /> |
+| <InlineMath math="[1,2]" /> | <InlineMath math="f(1)=0.25" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(1.5)=0.5625" /> |
+| <InlineMath math="[2,3]" /> | <InlineMath math="f(2)=1" /> | <InlineMath math="f(3)=2.25" /> | <InlineMath math="f(2.5)=1.5625" /> |
+| <InlineMath math="[3,4]" /> | <InlineMath math="f(3)=2.25" /> | <InlineMath math="f(4)=4" /> | <InlineMath math="f(3.5)=3.0625" /> |
+
+<MathContainer>
+  <BlockMath math="L_4 = 0+0.25+1+2.25 = 3.5" />
+  <BlockMath math="R_4 = 0.25+1+2.25+4 = 7.5" />
+  <BlockMath math="M_4 = 0.0625+0.5625+1.5625+3.0625 = 5.25" />
+</MathContainer>
+
+Luas tepat diperoleh daripada [teorem asas kalkulus](/ms/subjek/matematik/pengamiran/teorem-asas-kalkulus): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5.333" />. Ralat hasil tambah kiri lebih kurang <InlineMath math="1.83" /> dan ralat hasil tambah kanan lebih kurang <InlineMath math="2.17" />, tetapi ralat hasil tambah titik tengah hanya <InlineMath math="0.083" />. Dalam setiap jalur, segi empat tepat titik tengah terkeluar melepasi lengkung pada satu sisi titik tengah dan meninggalkan ruang kosong pada sisi yang lain, dan kedua-duanya hampir membatalkan satu sama lain.
+
+<MathVisual
+  title={<>Segi empat tepat titik tengah di bawah parabola</>}
+  description={<>Lengkung <InlineMath math="f(x)=\frac{x^2}{4}" /> pada <InlineMath math="[0,4]" /> dengan empat segi empat tepat yang tingginya diambil daripada titik tengah <InlineMath math="0.5, 1.5, 2.5, 3.5" />. Jumlahnya ialah <InlineMath math="5.25" />, hampir dengan luas tepat <InlineMath math="\frac{16}{3}" />.</>}
+  labels={{
+    "l1": <InlineMath math="f(x)=\frac{x^2}{4}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((4 * t) / 400)", y: "((((4 * t) / 400))^(2) / 4)", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.06 }, { x: 0, y: 0.06 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 0.06 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 0.56 }, { x: 1, y: 0.56 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 0.56 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1.56 }, { x: 2, y: 1.56 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 1.56 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.06 }, { x: 3, y: 3.06 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 3.06 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.4, y: 2.89 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Semak kedua-dua hasil tambah titik hujung itu antara satu sama lain. Kedua-duanya berkongsi tiga tinggi yang sama dan hanya berbeza di hujung, jadi <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, dan memang <InlineMath math="7.5 - 3.5 = 4" />.
+
+## Daripada Hasil Tambah kepada Kamiran Tentu
+
+Untuk fungsi yang boleh dikamirkan, hasil tambah Riemann menghampiri satu nombor apabila jalur semakin nipis, tidak kira titik sampel mana yang kamu pilih. **Had itulah kamiran tentu**:
+
+<BlockMath math="\int_a^b f(x)\,dx = \lim_{n\to\infty} \sum_{i=1}^{n} f(x_i^*)\,\Delta x" />
+
+**Soalan**: Cari hasil tambah kanan bagi <InlineMath math="f(x)=x" /> pada <InlineMath math="[0,7]" /> untuk sebarang <InlineMath math="n" />, kemudian biarkan <InlineMath math="n" /> semakin besar.
+
+Dengan <InlineMath math="\Delta x = \frac{7}{n}" /> dan titik hujung kanan <InlineMath math="x_i = \frac{7i}{n}" />, hasil tambah <InlineMath math="1+2+\cdots+n=\frac{n(n+1)}{2}" /> memberikan bentuk tertutup bagi ungkapan itu:
+
+<BlockMath math="\begin{aligned}R_n &= \sum_{i=1}^{n} \frac{7i}{n}\cdot\frac{7}{n} = \frac{49}{n^2}\cdot\frac{n(n+1)}{2} \\ &= \frac{49}{2}\cdot\frac{n+1}{n}\end{aligned}" />
+
+Untuk <InlineMath math="n=7" />, ini memberikan <InlineMath math="\frac{49}{2}\cdot\frac{8}{7}=28" />, iaitu hasil tambah kanan daripada contoh pertama. Untuk <InlineMath math="n=70" />, hasilnya lebih kurang <InlineMath math="24.85" />, dan untuk <InlineMath math="n=700" /> lebih kurang <InlineMath math="24.535" />. Apabila <InlineMath math="n\to\infty" />, faktor <InlineMath math="\frac{n+1}{n}" /> menghampiri <InlineMath math="1" />, jadi hasil tambah itu menghampiri <InlineMath math="\frac{49}{2}=24.5" />, iaitu luas segi tiga tersebut.
+
+Menambah satu lagi segi empat tepat tidak semestinya membawa hasil tambah lebih dekat kepada kamiran, tetapi untuk fungsi yang boleh dikamirkan, had itu tetap akan dicapai. Semua [sifat kamiran tentu](/ms/subjek/matematik/pengamiran/sifat-kamiran-tentu) terhasil daripada had hasil tambah ini.
+
+## Nilai Negatif dalam Hasil Tambah Riemann
+
+Hasil tambah Riemann menambah **sebutan bertanda**. Apabila <InlineMath math="f(x_i^*)" /> negatif, sebutan <InlineMath math="f(x_i^*)\Delta x" /> juga negatif, walaupun segi empat tepat yang dilukis di bawah paksi-x masih mempunyai luas geometri yang positif.
+
+**Soalan**: Cari hasil tambah titik tengah bagi <InlineMath math="f(x)=x-2" /> pada <InlineMath math="[0,4]" /> dengan <InlineMath math="n=4" />, kemudian bandingkan hasil itu dengan luas di antara graf dan paksi-x.
+
+Titik tengahnya ialah <InlineMath math="0.5, 1.5, 2.5, 3.5" /> dan <InlineMath math="\Delta x = 1" />:
+
+<BlockMath math="M_4 = (-1.5) + (-0.5) + 0.5 + 1.5 = 0" />
+
+<MathVisual
+  title="Segi empat tepat bertanda dalam hasil tambah Riemann"
+  description={<>Segi empat tepat titik tengah bagi <InlineMath math="f(x)=x-2" /> pada <InlineMath math="[0,4]" />. Dua sebutan di bawah paksi-x bernilai negatif dan membatalkan dua sebutan di atasnya, jadi hasil tambahnya ialah <InlineMath math="0" />, sedangkan segi empat tepat itu meliputi luas <InlineMath math="4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.8 }, y: { min: -2.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "graph", kind: "segment", from: { x: 0, y: 0 - 2 }, to: { x: 4, y: 4 - 2 }, appearance: "primary" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 - 2 }, { x: 0, y: 0.5 - 2 }], appearance: "warning" },
+      { id: "second", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1.5 - 2 }, { x: 1, y: 1.5 - 2 }], appearance: "warning" },
+      { id: "third", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2.5 - 2 }, { x: 2, y: 2.5 - 2 }], appearance: "secondary" },
+      { id: "fourth", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.5 - 2 }, { x: 3, y: 3.5 - 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "graph", objectId: "graph", at: { x: 4, y: 4 - 2 }, placement: "right" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0.5 - 2 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 1.5, y: 1.5 - 2 }, placement: "below" },
+      { key: "third", objectId: "third", at: { x: 2.5, y: 2.5 - 2 }, placement: "above" },
+      { key: "fourth", objectId: "fourth", at: { x: 3.5, y: 3.5 - 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    graph: <InlineMath math="f(x)=x-2" />,
+    first: <InlineMath math="-1.5" />,
+    second: <InlineMath math="-0.5" />,
+    third: <InlineMath math="0.5" />,
+    fourth: <InlineMath math="1.5" />,
+  }}
+/>
+
+Kamiran tepat juga memberikan hasil yang sama: <InlineMath math="\int_0^4 (x-2)\,dx = \left[\frac{x^2}{2}-2x\right]_0^4 = 8-8 = 0" />. Namun, rantau di antara graf dan paksi terdiri daripada dua segi tiga yang setiap satunya berluas <InlineMath math="\frac{1}{2}\cdot2\cdot2=2" />, jadi luasnya ialah <InlineMath math="4" />. Untuk mendapatkan luas, pecahkan selang pada pensifar <InlineMath math="x=2" /> dan tambah nilai mutlaknya, seperti yang kamu lakukan untuk [luas di antara lengkung dan paksi](/ms/subjek/matematik/pengamiran/luas-di-antara-lengkung-dan-paksi).
+
+## Kesilapan Lazim
+
+Kebanyakan kesilapan dalam hasil tambah Riemann berlaku pada **lebar atau titik sampel**. Pengiraan aritmetiknya sendiri jarang menjadi punca masalah.
+
+| Kesilapan | Mengapa salah | Pembetulan |
+| --- | --- | --- |
+| Menambah tinggi tanpa mendarab dengan <InlineMath math="\Delta x" /> | Setiap sebutan ialah segi empat tepat, iaitu tinggi darab lebar | Darabkan hasil tambah tinggi dengan <InlineMath math="\Delta x" />, langkah yang hanya nampak seperti dilangkau apabila <InlineMath math="\Delta x = 1" /> |
+| Menggunakan <InlineMath math="n+1" /> titik sampel | Kedua-dua hujung <InlineMath math="[a,b]" /> dikira, jadi ada satu segi empat tepat yang berlebihan | Gunakan <InlineMath math="n" /> titik: <InlineMath math="a" /> hingga <InlineMath math="b-\Delta x" /> untuk hasil tambah kiri, <InlineMath math="a+\Delta x" /> hingga <InlineMath math="b" /> untuk hasil tambah kanan |
+| Mencampurkan titik hujung kiri dan kanan | Rumus kedua-duanya berbeza sebanyak satu jalur | Tulis <InlineMath math="x_i^*" /> daripada rumusnya sebelum kamu menggantikan nilai |
+| Membaca hasil tambah negatif atau sifar sebagai luas | Sebutan di bawah paksi-x dikira negatif | Pecahkan selang pada pensifar dan tambah nilai mutlak untuk mendapat luas |
+| Menjangkakan setiap segi empat tepat tambahan akan memperbaik anggaran | Hanya had yang dijamin | Bandingkan dengan kamiran tepat, atau biarkan <InlineMath math="n\to\infty" /> |
+
+## Latihan
+
+Setiap soalan melibatkan segi empat tepat di bawah lengkung, jadi tetapkan bilangan subselang dan titik sampel dalam setiap subselang sebelum kamu menambah sebutan-sebutannya.
+
+1. Hitung hasil tambah Riemann bagi <InlineMath math="f(x) = x^2 + 1" /> pada <InlineMath math="[0, 4]" /> dengan <InlineMath math="4" /> subselang yang sama lebar dan **titik hujung kanan** sebagai titik sampel.
+2. Hitung hasil tambah Riemann kiri bagi <InlineMath math="f(x) = 2x + 1" /> pada <InlineMath math="[1, 3]" /> dengan <InlineMath math="n = 4" />, kemudian bandingkan hasilnya dengan kamiran tepat.
+3. Tulis <InlineMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3" /> sebagai kamiran tentu dan cari nilainya.
+
+### Jalan Kerja
+
+1. Lebarnya ialah <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, dan **titik hujung kanan** ialah <InlineMath math="1, 2, 3, 4" />.
+
+<MathVisual
+  title={<>Gambaran Latihan Hasil Tambah Riemann</>}
+  description={<>Graf fungsi <InlineMath math="f(x)=x^2+1" /> dengan <InlineMath math="4" /> petak segi empat tepat yang menggunakan titik hujung kanan.</>}
+  labels={{
+    "l1": <InlineMath math="f(x)=x^2+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2, max: 19 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * 0.1)", y: "(((t * 0.1) * (t * 0.1)) + 1)", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 5 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 5 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 10 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 17 }, { x: 3, y: 17 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 17 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Tingginya ialah <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" /> dan <InlineMath math="f(4)=17" />, jadi
+
+<BlockMath math="R_4 = (2 + 5 + 10 + 17)\cdot 1 = 34" />
+
+Semak: kamiran tepatnya ialah <InlineMath math="\int_0^4 (x^2+1)\,dx = \frac{64}{3} + 4 = \frac{76}{3} \approx 25.33" />. Hasil tambah kanan lebih besar, seperti yang sepatutnya bagi fungsi yang menokok pada <InlineMath math="[0,4]" />.
+
+2. Lebarnya ialah <InlineMath math="\Delta x = \frac{3-1}{4} = 0.5" />, dan titik hujung kiri ialah <InlineMath math="1, 1.5, 2, 2.5" /> dengan tinggi <InlineMath math="3, 4, 5, 6" />:
+
+<BlockMath math="L_4 = (3+4+5+6)\cdot 0.5 = 9" />
+
+Semak: <InlineMath math="\int_1^3 (2x+1)\,dx = \left[x^2+x\right]_1^3 = 12-2 = 10" />. Hasil tambah kiri lebih kecil, seperti yang dijangka bagi fungsi yang menokok.
+
+3. Faktor <InlineMath math="\frac{2}{n}" /> ialah <InlineMath math="\Delta x" /> bagi selang yang panjangnya <InlineMath math="2" />, dan <InlineMath math="\frac{2i}{n}" /> melalui titik-titik hujung kanan bagi selang yang bermula dari <InlineMath math="0" />, jadi selangnya ialah <InlineMath math="[0,2]" /> dan <InlineMath math="f(x)=x^3" />:
+
+<BlockMath math="\lim_{n\to\infty} \sum_{i=1}^{n} \frac{2}{n}\left(\frac{2i}{n}\right)^3 = \int_0^2 x^3\,dx = \frac{2^4}{4} = 4" />
+
+Semak dengan hasil tambah itu sendiri: <InlineMath math="1^3+2^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}" /> memberikan <InlineMath math="R_n = \frac{16}{n^4}\cdot\frac{n^2(n+1)^2}{4} = 4\left(\frac{n+1}{n}\right)^2" />, yang menghampiri <InlineMath math="4" />.

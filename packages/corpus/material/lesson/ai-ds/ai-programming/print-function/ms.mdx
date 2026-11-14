@@ -1,0 +1,340 @@
+export const metadata = {
+    title: "Fungsi Print",
+    description: "Output fungsi print Python, parameter sep dan end, serta teknik pemformatan untuk mengawal output dengan tepat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-17",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Menulis Nilai ke Strim Output
+
+Fungsi terbina dalam `print()` <Highlight>menulis perwakilan teks bagi nilai ke satu strim</Highlight>. Secara lalai, strim itu ialah `sys.stdout`, dan terminal biasanya memaparkannya pada skrin. Namun, output juga boleh dihalakan ke fail atau destinasi lain.
+
+Fungsi print tergolong dalam kategori fungsi terbina dalam, sama seperti `len()`, `abs()` dan `round()`. Maksudnya, kamu tidak perlu mengimport modul tambahan untuk menggunakannya.
+
+## Sintaks Asas Fungsi Print
+
+Sintaks lengkap fungsi print mempunyai beberapa **parameter output** untuk mengawal cara output dipaparkan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "print_syntax.py",
+      code: `# Sintaks lengkap fungsi print
+# print(*objects, sep=' ', end='\\n', file=None, flush=False)
+
+# Contoh penggunaan asas
+print("Hello, World!")
+
+# Cetak beberapa objek sekali gus
+print("Nama:", "Ahmad", "Umur:", 25)
+
+# Memaparkan hasil pengiraan
+x = 10
+y = 5
+print("Hasil tambah", x, "+", y, "=", x + y)`
+    }
+  ]}
+/>
+
+Tatatanda `*objects` bermaksud `print()` menerima sifar atau lebih objek sebagai argumen kedudukan. Fungsi ini menulis pemisah yang ditetapkan oleh `sep` di antara objek yang bersebelahan.
+
+## Parameter Sep
+
+Parameter `sep` menentukan aksara atau rentetan yang memisahkan beberapa objek dalam satu panggilan print. Nilai lalai `sep` ialah **satu ruang kosong**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "separator_param.py",
+      code: `# Contoh penggunaan parameter sep
+x = 8
+
+# Pemisah lalai (ruang)
+print("Selesaikan", 2, "x =", x, "untuk x")
+
+# Pemisah tersuai dengan rentetan kosong
+print("Selesaikan", 2, "x =", x, "untuk x", sep="")
+
+# Pemisah tersuai dengan sengkang
+print("Selesaikan", 2, "x =", x, "untuk x", sep="-")
+
+# Pemisah tersuai dengan koma dan ruang
+print("Ahmad", "Budi", "Citra", sep=", ")
+
+# Pemisah dengan beberapa aksara
+print("Python", "Java", "JavaScript", sep=" | ")
+
+# Pemisah dengan aksara khas
+print("Data", "Science", "Machine", "Learning", sep="\\t")  # tab
+print("Baris", "Pertama", "Baris", "Kedua", sep="\\n")     # baris baharu`
+    }
+  ]}
+/>
+
+Nilai `sep` menentukan aksara tepat yang ditulis di antara objek yang bersebelahan, contohnya ruang, koma, tab atau pemisah baris.
+
+`print(1, 2, 3, sep=s)` menulis tiga aksara digit dan menyelitkan `s` sebanyak dua kali di antaranya. Panjang baris output, tanpa baris baharu di hujungnya, ialah <InlineMath math="3+2k" />, dengan keadaan <InlineMath math="k" /> ialah `len(s)`.
+
+<BarChart
+  title={<>Panjang output <code>print(1, 2, 3, sep=s)</code></>}
+  description={<>Setiap palang ialah bilangan aksara yang ditulis untuk nilai <code>sep</code> di bawahnya: <InlineMath math="5" /> untuk satu ruang, <InlineMath math="3" /> untuk rentetan kosong, <InlineMath math="7" /> untuk koma dan ruang, dan <InlineMath math="9" /> untuk <code>' | '</code>.</>}
+  yAxisLabel="Aksara"
+  data={[
+    { name: "' '", value: 3 + 2 * 1 },
+    { name: "''", value: 3 + 2 * 0 },
+    { name: "', '", value: 3 + 2 * 2 },
+    { name: "' | '", value: 3 + 2 * 3 },
+  ]}
+  chartConfig={{ value: { label: "Aksara", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
+## Parameter End
+
+Parameter `end` menetapkan aksara atau rentetan yang ditulis selepas objek yang dicetak. <Highlight>Nilai lalainya ialah pemisah baris</Highlight> (`\n`), jadi panggilan `print` yang seterusnya bermula pada baris baharu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "end_parameter.py",
+      code: `# Contoh penggunaan parameter end
+
+# end lalai (baris baharu)
+print("Baris pertama")
+print("Baris kedua")
+
+print()  # Cetak baris kosong sebagai pemisah
+
+# end tersuai dengan rentetan kosong
+print("Perkataan pertama", end="")
+print("Perkataan kedua")
+
+print()  # Cetak baris kosong sebagai pemisah
+
+# end tersuai dengan ruang
+print("Nombor:", end=" ")
+print(42)
+
+print()  # Cetak baris kosong sebagai pemisah
+
+# end tersuai dengan aksara khas
+print("Memuatkan", end="")
+for i in range(5):
+    print(".", end="")
+print(" Selesai!")
+
+print()  # Cetak baris kosong sebagai pemisah
+
+# Gabungan sep dan end
+print("A", "B", "C", sep="-", end=" | ")
+print("D", "E", "F", sep="-", end="\\n")`
+    }
+  ]}
+/>
+
+Apabila kamu mengubah `end`, beberapa panggilan boleh bersambung pada satu baris. Berikan `flush=True` apabila output mesti muncul serta-merta, kerana ini terus menulis sebarang teks yang masih berada dalam penimbal.
+
+Rajah ini menjalankan `print("A", "B", "C", sep="-")`, kemudian `print("x", end=" ")`, kemudian `print("y")`, dan meletakkan setiap aksara di tempat ia muncul. `sep` hanya diselitkan di antara argumen, jadi sengkang hijau kebiruan muncul dua kali untuk tiga argumen. `end` pula ditambah sekali pada hujung setiap panggilan: baris baharu ↵ menggerakkan kursor ke baris seterusnya, manakala `end=" "` mengekalkan `y` pada baris yang sama dengan `x`.
+
+<MathVisual
+  title={<>Tiga panggilan <code>print</code> dalam strim output</>}
+  description={<>Aksara ungu datang daripada argumen, aksara hijau kebiruan daripada <code>sep</code>, dan aksara oren daripada <code>end</code>. Simbol ↵ ialah baris baharu dan ␣ ialah ruang.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "first-b", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "first-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "first-d", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "first-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "first-f", kind: "point", at: { x: 5, y: 0 }, appearance: "primary" },
+      { id: "second-a", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "second-b", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-c", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "second-d", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-a", objectId: "first-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "first-b", objectId: "first-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "first-c", objectId: "first-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "first-d", objectId: "first-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "first-e", objectId: "first-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "first-f", objectId: "first-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "second-a", objectId: "second-a", at: { x: 0, y: -1 }, placement: "above" },
+      { key: "second-b", objectId: "second-b", at: { x: 1, y: -1 }, placement: "above" },
+      { key: "second-c", objectId: "second-c", at: { x: 2, y: -1 }, placement: "above" },
+      { key: "second-d", objectId: "second-d", at: { x: 3, y: -1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "first-a": "A",
+    "first-b": "-",
+    "first-c": "B",
+    "first-d": "-",
+    "first-e": "C",
+    "first-f": "↵",
+    "second-a": "x",
+    "second-b": "␣",
+    "second-c": "y",
+    "second-d": "↵",
+  }}
+/>
+
+## Memaparkan Pelbagai Jenis Data
+
+`print()` menerima objek pelbagai jenis dan mendapatkan **perwakilan rentetan yang mudah dibaca oleh manusia** bagi setiap objek sebelum menulisnya. Kelas tersuai boleh mengawal perwakilan itu dengan `__str__()`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_types_print.py",
+      code: `# Cetak pelbagai jenis data
+integer_num = 42
+decimal_num = 3.14159
+string_text = "Python Programming"
+boolean_value = True
+list_data = [1, 2, 3, 4, 5]
+dict_data = {"name": "Ahmad", "age": 25}
+
+print("Integer:", integer_num)
+print("Float:", decimal_num)
+print("Rentetan:", string_text)
+print("Boolean:", boolean_value)
+print("Senarai:", list_data)
+print("Kamus:", dict_data)
+
+# Cetak dengan format yang lebih kemas
+print("\\nFormat yang lebih kemas:")
+print(f"Nama: {dict_data['name']}")
+print(f"Umur: {dict_data['age']} tahun")
+print(f"Pi: {decimal_num:.2f}")
+
+# Cetak beberapa jenis data dalam satu baris
+print("Hasil:", integer_num, "+", decimal_num, "=", integer_num + decimal_num)`
+    }
+  ]}
+/>
+
+Satu panggilan `print()` boleh menerima nilai pelbagai jenis, menukar setiap nilai kepada teks dan menulisnya mengikut urutan. Cara ini sudah cukup untuk pemeriksaan pantas semasa atur cara berjalan.
+
+`print` menukar setiap argumen dengan `str()` sebelum menulisnya, jadi jenis data menentukan apa yang muncul. Nombor titik apungan `3.0` mengekalkan titik perpuluhannya, `None` muncul sebagai satu perkataan, dan senarai menulis kurungan, koma dan ruangnya sekali.
+
+<BarChart
+  title={<>Aksara yang ditulis oleh <code>print</code> untuk enam nilai</>}
+  description={<>Setiap palang ialah <code>len(str(x))</code> untuk nilai <code>x</code> yang tertulis di bawahnya, iaitu bilangan aksara yang muncul pada skrin.</>}
+  yAxisLabel="Aksara"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.0", value: 3 },
+    { name: "3.14", value: 4 },
+    { name: "True", value: 4 },
+    { name: "None", value: 4 },
+    { name: "[1, 2]", value: 6 },
+  ]}
+  chartConfig={{ value: { label: "Aksara", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
+## Teknik Pemformatan Output
+
+Panggilan `print()` biasa sudah cukup untuk melihat sepintas lalu, tetapi output berformat memerlukan satu alat lagi. F-string membina **satu nilai teks** daripada ungkapan yang diletakkan terus di sebelah perkataan di sekelilingnya, dan argumen `end` mengawal apa yang ditulis oleh `print()` selepas nilai itu. Kedua-duanya memastikan output mudah dibaca tanpa langkah penyambungan yang berasingan.
+
+### Mencetak dengan F String
+
+F-string menilai **ungkapan di dalam kurungan kerinting** dan menggunakan spesifikasi format pilihan. Dengan cara ini, nilai dan teks di sekelilingnya kekal dalam satu ungkapan yang mudah dibaca.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fstring_formatting.py",
+      code: `# Contoh pemformatan dengan f-string
+name = "Sari"
+age = 23
+score = 87.5
+
+# Pemformatan asas f-string
+print(f"Nama: {name}")
+print(f"Umur: {age} tahun")
+print(f"Markah: {score}")
+
+# F-string dengan operasi matematik
+x = 10
+y = 3
+print(f"{x} + {y} = {x + y}")
+print(f"{x} / {y} = {x / y:.2f}")
+
+# F-string dengan panggilan kaedah
+text = "python programming"
+print(f"Asal: {text}")
+print(f"Huruf awal besar: {text.title()}")
+print(f"Panjang: {len(text)} aksara")
+
+# F-string dengan syarat
+score = 85
+status = "Lulus" if score >= 70 else "Gagal"
+print(f"Markah: {score}, Status: {status}")
+
+# F-string dengan pemformatan nombor
+pi = 3.14159265359
+print(f"Pi dengan 2 tempat perpuluhan: {pi:.2f}")
+print(f"Pi dengan 4 tempat perpuluhan: {pi:.4f}")
+completion = 0.875
+print(f"Kadar siap: {completion:.1%}")  # 87.5%`
+    }
+  ]}
+/>
+
+F-string menggabungkan teks dengan pemboleh ubah atau hasil pengiraan dalam satu ungkapan.
+
+### Mencetak Tanpa Baris Baharu
+
+Apabila kamu mahu memaparkan output pada satu baris sedikit demi sedikit, ubah parameter `end` untuk **mengelakkan baris baharu automatik**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "print_no_newline.py",
+      code: `# Contoh print tanpa baris baharu
+import time
+
+# Simulasi proses memuatkan dengan titik
+print("Memproses", end="")
+for i in range(5):
+    time.sleep(0.5)  # Tunggu setengah saat
+    print(".", end="", flush=True)
+print(" Selesai!")
+
+# Membina bar kemajuan yang ringkas
+print("\\nKemajuan: [", end="")
+for i in range(10):
+    time.sleep(0.2)
+    print("#", end="", flush=True)
+print("] 100%")
+
+# Cetak kiraan dalam satu baris
+print("\\nKira detik: ", end="")
+for i in range(5, 0, -1):
+    print(i, end=" ", flush=True)
+    time.sleep(1)
+print("Mula!")
+
+# Memaparkan data dalam format jadual
+print("\\nJadual Data:")
+print("Nama", "Umur", "Bandar", sep="\\t")
+print("-" * 30)
+print("Ahmad", 25, "Jakarta", sep="\\t")
+print("Budi", 30, "Bandung", sep="\\t")
+print("Citra", 28, "Surabaya", sep="\\t")`
+    }
+  ]}
+/>
+
+Argumen `end` mengekalkan setiap kemas kini pada baris semasa, manakala `flush=True` meminta Python menulis output dalam penimbal dengan segera. Untuk paparan kemajuan yang sebenar, ambil kira juga keupayaan terminal, dan jangan anggap tab atau lebar aksara dipaparkan sama di semua tempat.

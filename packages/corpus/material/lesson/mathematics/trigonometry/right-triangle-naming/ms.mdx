@@ -1,0 +1,145 @@
+
+export const metadata = {
+  title: "Nama Sisi Segi Tiga Bersudut Tegak",
+  description: "Kenal pasti sisi bertentangan, sisi bersebelahan, dan hipotenus berdasarkan sudut tirus yang dipilih dalam segi tiga bersudut tegak.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-13",
+  dateModified: "2026-11-08",
+  subject: "Trigonometri",
+};
+
+## Nama Sisi Menentukan Nisbah Trigonometri
+
+Dalam trigonometri segi tiga bersudut tegak, nama sisi memberitahu kita kedudukan sisi itu <Highlight>berbanding sudut tirus yang dipilih</Highlight>. Apabila sisi-sisi dikenal pasti dengan betul, nisbahnya boleh digunakan untuk mengira jarak dan tinggi yang susah diukur secara terus.
+
+Contohnya, tinggi sebuah menara boleh diwakili oleh satu sisi segi tiga bersudut tegak. Jarak mengufuk dan sudut dongak yang diukur kemudian menentukan nisbah trigonometri mana yang perlu digunakan.
+
+Ini menara seperti itu dalam bentuk segi tiga bersudut tegak. Apabila dilihat dari jarak <InlineMath math="40\text{ m}" />, garis penglihatan ke puncak menara setinggi <InlineMath math="30\text{ m}" /> ialah hipotenus, sepanjang <InlineMath math="\sqrt{30^2 + 40^2} = 50\text{ m}" />. Berbanding sudut dongak <InlineMath math="\theta" /> pada mata kamu, menara itu ialah sisi bertentangan dan jarak di tanah ialah sisi bersebelahan.
+
+<MathVisual
+  title={<>Menara sebagai segi tiga bersudut tegak</>}
+  description={<>Menara setinggi <InlineMath math="30\text{ m}" /> dilihat dari jarak <InlineMath math="40\text{ m}" />, dengan garis penglihatan sepanjang <InlineMath math="50\text{ m}" /> dan sudut dongak <InlineMath math="\theta" /> pada pemerhati.</>}
+  labels={{
+    tower: <>Menara</>,
+    ground: <>Jarak di tanah</>,
+    sight: <>Garis penglihatan</>,
+    theta: <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 46 }, y: { min: -3, max: 34 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sight", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 30 }, appearance: "primary" },
+      { id: "tower", kind: "segment", from: { x: 40, y: 0 }, to: { x: 40, y: 30 }, appearance: "secondary" },
+      { id: "ground", kind: "segment", from: { x: 0, y: 0 }, to: { x: 40, y: 0 }, appearance: "construction" },
+      { id: "right", kind: "polygon", vertices: [{ x: 40, y: 0 }, { x: 75 / 2, y: 0 }, { x: 75 / 2, y: 5 / 2 }, { x: 40, y: 5 / 2 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: Math.atan2(30, 40) * 180 / Math.PI, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sight", objectId: "sight", at: { x: 20, y: 15 }, placement: "above-left" },
+      { key: "tower", objectId: "tower", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "ground", objectId: "ground", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "theta", objectId: "theta", at: { x: 6 * Math.cos(Math.atan2(30, 40) / 2), y: 6 * Math.sin(Math.atan2(30, 40) / 2) }, placement: "right" },
+    ],
+  }}
+/>
+
+## Tiga Nama Sisi dalam Segi Tiga Bersudut Tegak
+
+Pilih salah satu daripada dua sudut tirus sebagai sudut rujukan. Kalau sudut itu ialah <InlineMath math="\theta" />, sisi-sisinya dinamakan seperti berikut:
+
+1. **Sisi bertentangan**: sisi yang bertentangan dengan <InlineMath math="\theta" />. Sisi ini tidak menyentuh sudut rujukan.
+
+2. **Sisi bersebelahan**: kaki segi tiga yang menyentuh <InlineMath math="\theta" />. Hipotenus juga menyentuh satu sudut tirus, jadi frasa "sisi bersebelahan" bermaksud sisi yang menyentuh sudut itu dan bukan hipotenus.
+
+3. **Hipotenus**: sisi yang bertentangan dengan sudut tegak, <InlineMath math="90^\circ" />. Hipotenus sentiasa sisi yang paling panjang dalam segi tiga bersudut tegak.
+
+<ContentBlock>
+  <MathVisual
+    title={<>Nama sisi berbanding <InlineMath math="\theta" /></>}
+    description={<>Segi tiga bersudut tegak dengan sudut rujukan <InlineMath math="\theta = 30^\circ" /> pada <InlineMath math="A" />: hipotenus <InlineMath math="AB" />, sisi bertentangan <InlineMath math="BC" /> dan sisi bersebelahan <InlineMath math="AC" />.</>}
+    labels={{
+      opp: <>Sisi Bertentangan</>,
+      adj: <>Sisi Bersebelahan</>,
+      hyp: <>Hipotenus</>,
+      theta: <InlineMath math="\theta" />,
+      a: <InlineMath math="A" />,
+      b: <InlineMath math="B" />,
+      c: <InlineMath math="C" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+        { id: "opp", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "secondary" },
+        { id: "adj", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "construction" },
+        { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+        { id: "theta", kind: "arc", center: { x: 0, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 30, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+        { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+        { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+        { key: "theta", objectId: "theta", at: { x: Math.cos(Math.PI / 12), y: Math.sin(Math.PI / 12) }, placement: "right" },
+        { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+        { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+        { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Apa yang Berubah Apabila Sudut Rujukan Berubah
+
+<Highlight>Hipotenus ditentukan oleh sudut tegak</Highlight>, jadi namanya tidak pernah berubah. Dua nama yang lain bersifat relatif. Kalau sudut rujukan beralih dari satu sudut tirus ke sudut tirus yang satu lagi, sisi yang tadinya bertentangan menjadi bersebelahan dan sisi yang tadinya bersebelahan menjadi bertentangan.
+
+Semakan ini mengelakkan satu kesilapan biasa: kenal pasti sudut rujukan <InlineMath math="\theta" /> dahulu, kemudian label sisi-sisinya, dan barulah pilih sinus, kosinus, atau tangen.
+
+Biar segi tiga <InlineMath math="ABC" /> ada sudut tegak pada <InlineMath math="C" />. Kedua-dua pilihan sudut rujukan menggunakan segi tiga yang sama, jadi setiap sisi mengekalkan panjangnya.
+
+| Sudut rujukan | Sisi bertentangan | Sisi bersebelahan | Hipotenus |
+| --- | --- | --- | --- |
+| <InlineMath math="A" /> | <InlineMath math="BC" /> | <InlineMath math="AC" /> | <InlineMath math="AB" /> |
+| <InlineMath math="B" /> | <InlineMath math="AC" /> | <InlineMath math="BC" /> | <InlineMath math="AB" /> |
+
+Jadual ini menunjukkan **nama dua kaki segi tiga itu bertukar**. Apabila kamu beralih dari sudut <InlineMath math="A" /> ke sudut <InlineMath math="B" />, panjang <InlineMath math="BC" /> tetap sama, tetapi peranannya berubah daripada sisi bertentangan kepada sisi bersebelahan.
+
+Alihkan sudut rujukan ke <InlineMath math="B" /> dan lihat sekali lagi. <InlineMath math="AB" /> masih hipotenus kerana ia bertentangan dengan sudut tegak pada <InlineMath math="C" />, tetapi <InlineMath math="AC" /> kini sisi bertentangan dan <InlineMath math="BC" /> ialah sisi bersebelahan.
+
+<MathVisual
+  title={<>Segi tiga yang sama dilihat dari sudut <InlineMath math="B" /></>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dengan sudut tegak pada <InlineMath math="C" /> dan sudut rujukan pada <InlineMath math="B" />: <InlineMath math="AC" /> ialah sisi bertentangan, <InlineMath math="BC" /> ialah sisi bersebelahan, <InlineMath math="AB" /> ialah hipotenus.</>}
+  labels={{
+    opp: <>Sisi Bertentangan</>,
+    adj: <>Sisi Bersebelahan</>,
+    hyp: <>Hipotenus</>,
+    theta: <InlineMath math="\theta" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 6.4 }, y: { min: -0.7, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "hyp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "primary" },
+      { id: "adj", kind: "segment", from: { x: 3 * Math.sqrt(3), y: 0 }, to: { x: 3 * Math.sqrt(3), y: 3 }, appearance: "construction" },
+      { id: "opp", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3), y: 0 }, appearance: "secondary" },
+      { id: "right", kind: "polygon", vertices: [{ x: 3 * Math.sqrt(3), y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 0 }, { x: 3 * Math.sqrt(3) - 0.35, y: 7 / 20 }, { x: 3 * Math.sqrt(3), y: 7 / 20 }], appearance: "reference" },
+      { id: "theta", kind: "arc", center: { x: 3 * Math.sqrt(3), y: 3 }, radius: 4 / 5, startDegrees: 210, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "hyp", objectId: "hyp", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "opp", objectId: "opp", at: { x: 3 * Math.sqrt(3) / 2, y: 0 }, placement: "below" },
+      { key: "adj", objectId: "adj", at: { x: 3 * Math.sqrt(3), y: 3 / 2 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 3 * Math.sqrt(3) - 0.5, y: 3 - 0.8 }, placement: "below-left" },
+      { key: "a", objectId: "hyp", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "hyp", at: { x: 3 * Math.sqrt(3), y: 3 }, placement: "above-right" },
+      { key: "c", objectId: "right", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>

@@ -1,0 +1,371 @@
+
+export const metadata = {
+  title: "Tangen kepada Bulatan",
+  description: "Bina persamaan tangen daripada jejari yang berserenjang dengannya, kemudian selesaikan masalah titik di luar bulatan dan tangen sepunya langkah demi langkah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Bulatan",
+};
+
+## Satu Titik Sentuhan dan Jejari yang Berserenjang
+
+Tangen bertemu bulatan pada <Highlight>tepat satu titik</Highlight>. Titik pertemuan ini ialah **titik sentuhan**.
+
+<MathVisual
+  title={<>Garis Tangen kepada Bulatan</>}
+  description={<>Garis tangen bertemu bulatan pada tepat satu titik.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <>Garis tangen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3, y: -3.6 }, { x: 3, y: -3 }, { x: 3, y: 3 }, { x: 3, y: 3.6 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 3 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Tangen <Highlight>berserenjang dengan jejari</Highlight> di titik sentuhan.
+
+## Persamaan Tangen kepada Bulatan
+
+Apabila jejari dan tangen kedua-duanya ada kecerunan yang tertakrif, hasil darab kecerunannya ialah <InlineMath math="-1" />. Untuk garis mencancang, gunakan **bentuk titik** tanpa membahagi koordinat. Semua rumus di bawah menggunakan jejari <InlineMath math="r>0" />.
+
+### Tangen yang Melalui Titik pada Bulatan
+
+Kalau titik <InlineMath math="(x_1, y_1)" /> **terletak pada bulatan** <InlineMath math="x^2 + y^2 = r^2" />, persamaan tangen di titik itu ialah:
+
+<BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+
+Dengan pusat di asalan, vektor jejari <InlineMath math="(x_1,y_1)" /> berserenjang dengan arah garis <InlineMath math="(x-x_1,y-y_1)" />. Hasil darab skalar kedua-duanya ialah sifar. Gunakan juga <InlineMath math="x_1^2+y_1^2=r^2" />.
+
+<BlockMath math="\begin{aligned}x_1(x-x_1)+y_1(y-y_1)&amp;=0\\x_1x+y_1y&amp;=x_1^2+y_1^2=r^2\end{aligned}" />
+
+Bulatan dalam rumus ini ditulis dalam bentuk piawai bagi bulatan yang berpusat di asalan.
+
+Untuk bulatan yang berpusat di <InlineMath math="(a, b)" />:
+
+<BlockMath math="\begin{aligned} &amp;(x_1 - a)(x - a) + (y_1 - b)(y - b) \\ &amp;= r^2 \end{aligned}" />
+
+### Tangen dengan Kecerunan yang Diberi
+
+Persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = r^2" /> dengan kecerunan <InlineMath math="m" /> ialah:
+
+Tulis garis itu sebagai <InlineMath math="mx-y+c=0" />. Garis itu menjadi tangen apabila **jarak dari pusat ke garis** sama dengan jejari.
+
+<MathContainer>
+<BlockMath math="\frac{|c|}{\sqrt{m^2+1}}=r\quad\Longrightarrow\quad c=\pm r\sqrt{m^2+1}" />
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+</MathContainer>
+
+Untuk bulatan yang berpusat di <InlineMath math="(a, b)" />:
+
+<BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+
+## Tangen dari Titik di Luar Bulatan
+
+Dari satu titik di luar bulatan, **dua tangen** boleh dilukis kepada bulatan itu.
+
+<MathVisual
+  title={<>Dua Tangen dari Titik di Luar Bulatan</>}
+  description={
+    <>
+      Dari titik <InlineMath math="P" /> di luar bulatan, dua tangen boleh
+      dilukis.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2.5 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: 1.25, y: 2.17 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: 1.25, y: -2.17 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1.25, y: 1.25 * Math.sqrt(3) }, { x: 0, y: 0 }, { x: 1.25, y: -1.25 * Math.sqrt(3) }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s4", at: { x: 1.25, y: 2.17 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 1.25, y: -2.17 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Panjang Tangen
+
+Kalau <InlineMath math="P(x_1, y_1)" /> ialah titik di luar bulatan yang berpusat di <InlineMath math="O(a, b)" /> dengan jejari <InlineMath math="r" />, panjang tembereng tangen dari <InlineMath math="P" /> ke titik sentuhan ialah:
+
+Dalam segi tiga bersudut tegak <InlineMath math="OPT" />, tembereng garis <InlineMath math="OP" /> ialah **hipotenus** dan <InlineMath math="OT=r" />. Jadi teorem Pythagoras memberikan:
+
+<MathContainer>
+<BlockMath math="PT^2+OT^2=OP^2\quad\Longrightarrow\quad PT=\sqrt{OP^2-r^2}" />
+
+<BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
+</MathContainer>
+
+## Tangen Sepunya bagi Dua Bulatan
+
+Dua bulatan boleh berkongsi tangen yang melintas di antara kedua-duanya atau yang lalu di sebelah luar. Sama ada tangen sepunya wujud atau tidak bergantung pada **berapa jauh** kedua-dua bulatan itu terpisah.
+
+### Tangen Sepunya Luar
+
+Tangen sepunya luar menyentuh kedua-dua bulatan **tanpa melintasi tembereng garis** di antara kedua-dua pusatnya.
+
+<MathVisual
+  title={<>Tangen Sepunya Luar</>}
+  description={<>Garis yang menyentuh kedua-dua bulatan dari sisi yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+    "l3": <InlineMath math="\mathrm{TSL}" />,
+    "l4": <InlineMath math="\mathrm{TSL}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 8.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -7.31, y: 1.14 }, { x: -6.11, y: 1.24 }, { x: 5.82, y: 2.24 }, { x: 7.02, y: 2.34 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -7.31, y: -1.14 }, { x: -6.11, y: -1.24 }, { x: 5.82, y: -2.24 }, { x: 7.02, y: -2.34 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 5.82, y: 2.24 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 5.82, y: -2.24 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Panjang tangen sepunya luar:
+
+<BlockMath math="l = \sqrt{d^2 - (r_1 - r_2)^2}" />
+
+Dalam rumus ini, <InlineMath math="d" /> ialah jarak antara pusat kedua-dua bulatan.
+
+Tembereng tangen luar yang panjangnya positif ini hanya wujud apabila <InlineMath math="d>|r_1-r_2|" />. Kalau <InlineMath math="d=|r_1-r_2|>0" />, kedua-dua bulatan bersentuhan di dalam dan tembereng di antara titik sentuhan panjangnya sifar. Kes <InlineMath math="d=0" /> dengan jejari yang sama pula menggambarkan dua bulatan yang bertindih sepenuhnya.
+
+### Tangen Sepunya Dalam
+
+Tangen sepunya dalam ialah garis yang menyentuh kedua-dua bulatan dan melintasi **tembereng garis yang menyambungkan kedua-dua pusat**.
+
+<MathVisual
+  title={<>Tangen Sepunya Dalam</>}
+  description={<>Garis yang menyentuh kedua-dua bulatan dari sisi yang bertentangan.</>}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+    "l3": <InlineMath math="\mathrm{TSD}" />,
+    "l4": <InlineMath math="\mathrm{TSD}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4.78, y: 2.76 }, { x: -3.98, y: 2.3 }, { x: 3.98, y: -2.3 }, { x: 4.78, y: -2.76 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4.78, y: -2.76 }, { x: -3.98, y: -2.3 }, { x: 3.98, y: 2.3 }, { x: 4.78, y: 2.76 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.98, y: 2.3 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3.98, y: -2.3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Panjang tangen sepunya dalam:
+
+<BlockMath math="l = \sqrt{d^2 - (r_1 + r_2)^2}" />
+
+Tembereng tangen dalam yang panjangnya positif ini hanya wujud apabila <InlineMath math="d>r_1+r_2" />. Kalau kedua-dua nilai itu sama, kedua-dua bulatan bersentuhan di luar dan tembereng di antara titik sentuhan panjangnya sifar.
+
+## Menentukan Persamaan Tangen
+
+Contoh di bawah membina persamaan tangen daripada maklumat awal yang berbeza. Ikuti langkah penggantian dalam setiap kes. Di hujung setiap contoh, semak bahawa titik sentuhan itu memang terletak pada **kedua-dua garis dan bulatan**.
+
+### Menentukan Tangen yang Melalui Titik pada Bulatan
+
+Cari persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = 25" /> di titik <InlineMath math="(3, 4)" />.
+
+**Penyelesaian**:
+
+Oleh sebab titik <InlineMath math="(3, 4)" /> terletak pada bulatan (boleh disemak: <InlineMath math="3^2 + 4^2 = 9 + 16 = 25" />), persamaan tangennya ialah:
+
+<MathContainer>
+  <BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+  <BlockMath math="3x + 4y = 25" />
+</MathContainer>
+
+### Menentukan Tangen dengan Kecerunan yang Diberi
+
+Cari persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = 16" /> yang selari dengan garis <InlineMath math="3x - 4y + 5 = 0" />.
+
+**Penyelesaian**:
+
+Kecerunan garis <InlineMath math="3x - 4y + 5 = 0" /> ialah <InlineMath math="m = \frac{3}{4}" />.
+
+Persamaan tangen dengan kecerunan <InlineMath math="m = \frac{3}{4}" />:
+
+<MathContainer>
+  <BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{1 + \left(\frac{3}{4}\right)^2}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{1 + \frac{9}{16}}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4\sqrt{\frac{25}{16}}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 4 \cdot \frac{5}{4}" />
+  <BlockMath math="y = \frac{3}{4}x \pm 5" />
+</MathContainer>
+
+Persamaan kedua-dua tangen itu ialah:
+
+- <InlineMath math="y = \frac{3}{4}x + 5" /> atau <InlineMath math="3x - 4y + 20 = 0" />
+- <InlineMath math="y = \frac{3}{4}x - 5" /> atau <InlineMath math="3x - 4y - 20 = 0" />
+
+### Mengira Panjang Tangen dari Titik di Luar Bulatan
+
+Cari panjang tangen dari titik <InlineMath math="P(7, 1)" /> ke bulatan <InlineMath math="x^2 + y^2 = 25" />.
+
+**Penyelesaian**:
+
+Pusat bulatan ialah <InlineMath math="O(0, 0)" /> dan jejarinya <InlineMath math="r = 5" />.
+
+<MathContainer>
+  <BlockMath math="PT = \sqrt{(x_1 - a)^2 + (y_1 - b)^2 - r^2}" />
+  <BlockMath math="PT = \sqrt{(7 - 0)^2 + (1 - 0)^2 - 25}" />
+  <BlockMath math="PT = \sqrt{49 + 1 - 25}" />
+  <BlockMath math="PT = \sqrt{25}" />
+  <BlockMath math="PT = 5" />
+</MathContainer>
+
+## Soalan Latihan
+
+Bezakan soalan yang meminta persamaan dengan soalan yang meminta panjang tembereng. Untuk persamaan, gunakan **titik atau kecerunan yang diberi**. Untuk panjang, kenal pasti segi tiga bersudut tegak dan jarak dari pusat yang berkaitan.
+
+1. Cari persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = 36" /> di titik <InlineMath math="(-3, 3\sqrt{3})" />.
+
+2. Cari persamaan kedua-dua tangen kepada bulatan <InlineMath math="(x - 2)^2 + (y + 3)^2 = 25" /> yang berserenjang dengan garis <InlineMath math="2x + y - 5 = 0" />.
+
+3. Dari titik <InlineMath math="A(10, 0)" />, tangen dilukis kepada bulatan <InlineMath math="x^2 + y^2 = 36" />. Cari panjang setiap tembereng tangen dari <InlineMath math="A" /> dan koordinat kedua-dua titik sentuhan.
+
+4. Dua bulatan masing-masing berpusat di <InlineMath math="O_1(-4, 0)" /> dengan jejari <InlineMath math="2" /> dan di <InlineMath math="O_2(4, 0)" /> dengan jejari <InlineMath math="3" />. Cari panjang tembereng tangen sepunya luar.
+
+5. Cari persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 - 6x + 4y - 12 = 0" /> yang melalui titik <InlineMath math="(8, -2)" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**: Persamaan tangen di **titik pada bulatan**
+
+Semak bahawa titik itu terletak pada bulatan:
+
+<BlockMath math="(-3)^2 + (3\sqrt{3})^2 = 9 + 27 = 36 \space \checkmark" />
+
+Persamaan tangen:
+
+<MathContainer>
+<BlockMath math="x_1 \cdot x + y_1 \cdot y = r^2" />
+<BlockMath math="-3x + 3\sqrt{3}y = 36" />
+<BlockMath math="-x + \sqrt{3}y = 12" />
+<BlockMath math="x - \sqrt{3}y + 12 = 0" />
+</MathContainer>
+
+**Penyelesaian 2**: Tangen yang **berserenjang** dengan garis yang diberi
+
+Kecerunan garis <InlineMath math="2x + y - 5 = 0" /> ialah <InlineMath math="m_1 = -2" />.
+
+Oleh sebab kedua-duanya **berserenjang**, <InlineMath math="m_2 = \frac{1}{2}" />.
+
+Persamaan tangen:
+
+<MathContainer>
+<BlockMath math="y - b = m(x - a) \pm r\sqrt{1 + m^2}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5\sqrt{1 + \frac{1}{4}}" />
+<BlockMath math="y + 3 = \frac{1}{2}(x - 2) \pm 5 \cdot \frac{\sqrt{5}}{2}" />
+<BlockMath math="y + 3 = \frac{1}{2}x - 1 \pm \frac{5\sqrt{5}}{2}" />
+</MathContainer>
+
+Jadi: <InlineMath math="x - 2y - 8 \pm 5\sqrt{5} = 0" />
+
+**Penyelesaian 3**: Tangen dari titik di luar bulatan
+
+Panjang tangen:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} AT &amp;= \sqrt{10^2 + 0^2 - 36} \\ &amp;= \sqrt{100 - 36} \\ &amp;= \sqrt{64} \\ &amp;= 8 \end{aligned}" />
+</MathContainer>
+
+Untuk mencari titik sentuhan, katakan <InlineMath math="T(x,y)" /> ialah salah satu daripadanya. Oleh sebab jejari <InlineMath math="OT" /> **berserenjang** dengan tangen <InlineMath math="AT" />, vektor arah kedua-duanya ada **hasil darab skalar sifar**:
+
+<MathContainer>
+  <BlockMath math="(A-T)\cdot T=0" />
+  <BlockMath math="(10-x)x-y^2=0" />
+  <BlockMath math="10x-(x^2+y^2)=0" />
+  <BlockMath math="10x-36=0 \quad\Longrightarrow\quad x=\frac{18}{5}" />
+  <BlockMath math="y=\pm\sqrt{36-\left(\frac{18}{5}\right)^2}=\pm\frac{24}{5}" />
+</MathContainer>
+
+Jadi, titik sentuhannya ialah <InlineMath math="T_1\left(\frac{18}{5},\frac{24}{5}\right)" /> dan <InlineMath math="T_2\left(\frac{18}{5},-\frac{24}{5}\right)" />.
+
+**Penyelesaian 4**: **Tangen sepunya luar**
+
+<MathContainer>
+<BlockMath math="d = \sqrt{(4-(-4))^2 + (0-0)^2} = 8" />
+<BlockMath math="\begin{aligned} l &amp;= \sqrt{d^2 - (r_2 - r_1)^2} \\ &amp;= \sqrt{64 - 1} \\ &amp;= \sqrt{63} \\ &amp;= 3\sqrt{7} \end{aligned}" />
+</MathContainer>
+
+**Penyelesaian 5**: Tangen yang melalui **titik pada bulatan**
+
+**Lengkapkan kuasa dua** untuk membaca pusat dan jejari:
+
+<BlockMath math="\begin{aligned}x^2-6x+y^2+4y&amp;=12\\(x-3)^2-9+(y+2)^2-4&amp;=12\\(x-3)^2+(y+2)^2&amp;=25\end{aligned}" />
+
+Pusat <InlineMath math="(3, -2)" />, jejari <InlineMath math="r = 5" />
+
+Semak bahawa titik <InlineMath math="(8, -2)" /> terletak pada bulatan:
+
+<BlockMath math="\begin{aligned} (8-3)^2 + (-2+2)^2 &amp;= 25 + 0 \\ &amp;= 25 \end{aligned}" />
+
+Sebelah kiri sama dengan <InlineMath math="r^2=25" />, jadi titik itu terletak pada bulatan. Oleh itu persamaan tangennya ialah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;(8-3)(x-3) \\ &amp;\quad{}+ (-2+2)(y+2) = 25 \end{aligned}" />
+<BlockMath math="5(x-3) + 0 = 25" />
+<BlockMath math="x - 3 = 5" />
+<BlockMath math="x = 8" />
+</MathContainer>

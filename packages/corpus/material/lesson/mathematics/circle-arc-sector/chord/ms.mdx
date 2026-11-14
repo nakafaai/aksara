@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Perentas",
+  description: "Kira panjang perentas dan jaraknya dari pusat, kemudian gunakan hubungan perentas bersilang dalam masalah geometri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+## Tembereng Garis dengan Dua Hujung pada Bulatan
+
+Perentas ialah tembereng garis yang **kedua-dua hujungnya terletak pada bulatan**. Seutas tali yang ditegangkan antara dua titik pada lilitan menjadi model sebuah perentas. Perentas yang bukan diameter membahagikan kawasan bulatan kepada [tembereng minor dan tembereng major](/ms/subjek/matematik/lengkok-dan-sektor-bulatan/tembereng). Diameter pula menghasilkan dua semibulatan yang sama besar.
+
+<MathVisual
+  title={<>Gambaran Perentas dalam Bulatan</>}
+  description={<>Beberapa perentas dengan panjang dan kedudukan yang berbeza.</>}
+  labels={{
+    "l1": <>Bulatan</>,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+    "l8": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 3.46 }, to: { x: -2, y: -3.46 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "l5", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l6", objectId: "s4", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l7", objectId: "s4", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l8", objectId: "s5", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Konfigurasi Perentas yang Berguna
+
+Konfigurasi berikut membantu kamu mengatur masalah perentas:
+
+1. **Perentas bukan diameter**: Perentas yang tidak melalui pusat. Panjangnya kurang daripada diameter bulatan yang sama.
+
+2. **Diameter**: Perentas yang melalui pusat. Diameter ialah perentas paling panjang dalam bulatan, dan ia membahagikan kawasan bulatan kepada dua semibulatan.
+
+3. **Perentas selari**: Hubungan antara dua atau lebih perentas yang terletak pada garis-garis yang selari. Panjang perentas itu sama jika dan hanya jika jarak serenjangnya dari pusat juga sama.
+
+## Hubungan antara Perentas dan Jarak ke Pusat
+
+Jarak yang penting di sini ialah jarak serenjang dari pusat ke perentas. <Highlight>Garis serenjang dari pusat membahagi dua sama perentas itu</Highlight>, lalu membentuk segi tiga bersudut tegak yang dua sisinya pada sudut tegak ialah <InlineMath math="d" /> dan <InlineMath math="l/2" />, manakala hipotenusnya ialah <InlineMath math="r" />.
+
+Kalau <InlineMath math="d" /> ialah jarak serenjang itu, <InlineMath math="r" /> ialah jejari dan <InlineMath math="l" /> ialah panjang perentas, teorem Pythagoras memberikan:
+
+<BlockMath math="d^2+(l/2)^2=r^2\quad\Longrightarrow\quad l=2\sqrt{r^2-d^2}" />
+
+Rumus ini menunjukkan bahawa apabila <InlineMath math="d = 0" /> (perentas melalui pusat), kita dapat <InlineMath math="l = 2r" />, iaitu diameter.
+
+<MathVisual
+  title={<>Hubungan antara Panjang Perentas dan Jarak ke Pusat</>}
+  description={<>Perentas dengan jarak yang berbeza dari pusat bulatan.</>}
+  labels={{
+    "l1": <>Diameter: <InlineMath math="d=0" /></>,
+    "l2": <InlineMath math="d=1" />,
+    "l3": <InlineMath math="d=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 1), y: 1 }, { x: Math.sqrt(9 - 1), y: 1 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -2.83, y: 1 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 4), y: 2 }, { x: Math.sqrt(9 - 4), y: 2 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -2.24, y: 2 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 2.24, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s5", at: { x: 0, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s6", at: { x: 0, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Sifat Perentas yang Sama Panjang
+
+Perentas yang **sama panjang dalam bulatan yang sama** mempunyai jarak serenjang yang sama dari pusat. Sebaliknya, jarak serenjang yang sama menghasilkan perentas yang sama panjang.
+
+Dalam gambar rajah pertama, kedua-dua diameter mempunyai panjang <InlineMath math="CD=EF=8" />. Perentas <InlineMath math="AB" /> berada <InlineMath math="2" /> unit dari pusat, jadi:
+
+<BlockMath math="AB=2\sqrt{4^2-2^2}=2\sqrt{12}=4\sqrt3<8" />
+
+## Teorem Perentas Bersilang
+
+Apabila dua perentas bersilang di dalam bulatan, ada hubungan istimewa antara tembereng garis yang terbentuk. Jika perentas <InlineMath math="AB" /> dan <InlineMath math="CD" /> bersilang di titik <InlineMath math="P" />, maka:
+
+<BlockMath math="AP \times PB = CP \times PD" />
+
+Hubungan ini dipanggil teorem perentas bersilang. Dengan teorem ini, kamu boleh mencari panjang satu tembereng yang belum diketahui apabila tiga daripada empat panjang tembereng itu sudah diketahui.
+
+
+Tambahkan tembereng garis <InlineMath math="AC" /> dan <InlineMath math="DB" />. Sudut <InlineMath math="APC" /> dan <InlineMath math="DPB" /> ialah sudut bertentang bucu. Sudut <InlineMath math="PAC" /> dan <InlineMath math="PDB" /> pula dicangkum oleh lengkok yang sama, iaitu <InlineMath math="BC" />. Jadi kedua-dua segi tiga itu **serupa**, dan kita dapat:
+
+<BlockMath math="\frac{AP}{PD}=\frac{CP}{PB}\quad\Longrightarrow\quad AP\cdot PB=CP\cdot PD" />
+
+<MathVisual
+  title={<>Perentas Bersilang dan Segi Tiga Serupa</>}
+  description={<>Dua perentas dan dua tembereng garis bantu menunjukkan segi tiga yang serupa.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -14, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1 + (sqrt(65) * cos(((t * pi) / 90))))", y: "((-4) + (sqrt(65) * sin(((t * pi) / 90))))", parameter: { min: 0, max: 180 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 8, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -6, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 0, y: -12 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -12 }, { x: 8, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -6, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 8, y: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: -12 }, placement: "below-right" },
+      { key: "l5", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<BlockMath math="AP\cdot PB=6\times8=48=4\times12=CP\cdot PD" />
+
+## Soalan Latihan
+
+Bezakan panjang perentas dengan **jarak serenjang ke pusat**. Soalan keempat menggunakan hasil darab tembereng perentas yang bersilang, manakala soalan lain menggunakan segi tiga bersudut tegak.
+
+1. Sebuah bulatan mempunyai jejari <InlineMath math="13 \text{ cm}" />. Jika jarak sebuah perentas ke pusat bulatan ialah <InlineMath math="5 \text{ cm}" />, tentukan panjang perentas itu.
+
+2. Dalam sebuah bulatan berjejari <InlineMath math="10 \text{ cm}" />, terdapat sebuah perentas yang panjangnya <InlineMath math="16 \text{ cm}" />. Tentukan jarak perentas itu ke pusat bulatan.
+
+3. Dua perentas <InlineMath math="AB" /> dan <InlineMath math="CD" /> dalam bulatan yang sama masing-masing mempunyai panjang <InlineMath math="24 \text{ cm}" /> dan <InlineMath math="18 \text{ cm}" />. Jika jejari bulatan ialah <InlineMath math="15 \text{ cm}" />, tentukan beza jarak kedua-dua perentas itu ke pusat bulatan.
+
+4. Perentas <InlineMath math="PQ" /> dan <InlineMath math="RS" /> bersilang di titik <InlineMath math="T" /> dalam sebuah bulatan. Jika <InlineMath math="PT = 6 \text{ cm}" />, <InlineMath math="TQ = 8 \text{ cm}" /> dan <InlineMath math="RT = 4 \text{ cm}" />, tentukan panjang <InlineMath math="TS" />.
+
+5. Sebuah bulatan mempunyai diameter <InlineMath math="26 \text{ cm}" />. Tentukan panjang perentas yang berjarak <InlineMath math="12 \text{ cm}" /> dari pusat bulatan.
+
+### Jalan Kerja
+
+Gunakan **separuh panjang perentas** sebagai salah satu sisi yang mengapit sudut tegak dalam segi tiga bersudut tegak itu. Kemudian darab hasilnya dengan dua untuk mendapat panjang penuh perentas.
+
+**Penyelesaian 1**: <InlineMath math="24 \text{ cm}" />
+
+Diberi: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 5 \text{ cm}" />
+
+Gunakan rumus panjang perentas:
+
+<MathContainer>
+<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+<BlockMath math="l = 2\sqrt{13^2 - 5^2}" />
+<BlockMath math="l = 2\sqrt{169 - 25}" />
+<BlockMath math="l = 2\sqrt{144} = 2 \times 12 = 24 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 2**: <InlineMath math="6 \text{ cm}" />
+
+Diberi: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="l = 16 \text{ cm}" />
+
+Gunakan rumus panjang perentas:
+
+<MathContainer>
+<BlockMath math="16 = 2\sqrt{10^2 - d^2}" />
+<BlockMath math="8 = \sqrt{100 - d^2}" />
+<BlockMath math="64 = 100 - d^2" />
+<BlockMath math="d^2 = 100 - 64 = 36" />
+<BlockMath math="d = 6 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 3**: <InlineMath math="3 \text{ cm}" />
+
+Diberi: <InlineMath math="r = 15 \text{ cm}" />, <InlineMath math="l_1 = 24 \text{ cm}" />, <InlineMath math="l_2 = 18 \text{ cm}" />
+
+Cari jarak perentas pertama:
+
+<MathContainer>
+<BlockMath math="24 = 2\sqrt{15^2 - d_1^2}" />
+<BlockMath math="12 = \sqrt{225 - d_1^2}" />
+<BlockMath math="144 = 225 - d_1^2" />
+<BlockMath math="d_1^2 = 81, \text{ jadi } d_1 = 9 \text{ cm}" />
+</MathContainer>
+
+Cari jarak perentas kedua:
+
+<MathContainer>
+<BlockMath math="18 = 2\sqrt{15^2 - d_2^2}" />
+<BlockMath math="9 = \sqrt{225 - d_2^2}" />
+<BlockMath math="81 = 225 - d_2^2" />
+<BlockMath math="d_2^2 = 144, \text{ jadi } d_2 = 12 \text{ cm}" />
+</MathContainer>
+
+Beza jarak: <InlineMath math="d_2 - d_1 = 12 - 9 = 3 \text{ cm}" />
+
+**Penyelesaian 4**: <InlineMath math="12 \text{ cm}" />
+
+Diberi: <InlineMath math="PT" /> = <InlineMath math="6 \text{ cm}" />, <InlineMath math="TQ" /> = <InlineMath math="8 \text{ cm}" />, <InlineMath math="RT" /> = <InlineMath math="4 \text{ cm}" />
+
+Gunakan teorem perentas bersilang:
+
+<MathContainer>
+<BlockMath math="PT \times TQ = RT \times TS" />
+<BlockMath math="6 \times 8 = 4 \times TS" />
+<BlockMath math="48 = 4 \times TS" />
+<BlockMath math="TS = 12 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 5**: <InlineMath math="10 \text{ cm}" />
+
+Diberi: diameter = <InlineMath math="26 \text{ cm}" />, jadi <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="d = 12 \text{ cm}" />
+
+Gunakan rumus panjang perentas:
+
+<MathContainer>
+<BlockMath math="l = 2\sqrt{r^2 - d^2}" />
+<BlockMath math="l = 2\sqrt{13^2 - 12^2}" />
+<BlockMath math="l = 2\sqrt{169 - 144}" />
+<BlockMath math="l = 2\sqrt{25} = 2 \times 5 = 10 \text{ cm}" />
+</MathContainer>

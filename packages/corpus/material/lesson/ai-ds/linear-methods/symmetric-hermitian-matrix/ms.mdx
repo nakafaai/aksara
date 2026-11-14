@@ -1,0 +1,205 @@
+export const metadata = {
+    title: "Matriks Simetri dan Matriks Hermitian",
+    description: "Kaitkan matriks simetri dan Hermitian dengan nilai eigen nyata, vektor eigen ortogon, bentuk kuadratik dan pempenjuruan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-13",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Definisi dan Maksudnya bagi Setiap Unsur
+
+Matriks segi empat sama nyata <InlineMath math="A\in\mathbb{R}^{n\times n}" /> dikatakan **simetri** apabila
+
+<BlockMath math="A^T=A" />
+
+Jika dilihat unsur demi unsur, syarat yang sama ialah <InlineMath math="a_{ji}=a_{ij}" />. Sebagai contoh,
+
+<BlockMath math="A=\begin{pmatrix}1&2&3\\2&4&5\\3&5&6\end{pmatrix}" />
+
+Matriks <InlineMath math="A" /> simetri kerana unsur-unsurnya sepadan merentasi pepenjuru utama.
+
+Matriks segi empat sama kompleks <InlineMath math="H\in\mathbb{C}^{n\times n}" /> dikatakan **Hermitian** apabila
+
+<BlockMath math="H^H=H" />
+
+Unsur demi unsur, syarat Hermitian bermaksud <InlineMath math="h_{ji}=\overline{h_{ij}}" />. Satu contoh dengan unsur kompleks ialah
+
+<BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
+
+> Setiap matriks simetri nyata ialah matriks Hermitian apabila dilihat atas <InlineMath math="\mathbb{C}" />. Akasnya tidak benar kerana matriks Hermitian boleh mempunyai unsur luar pepenjuru yang kompleks.
+
+Pada pepenjuru, syarat Hermitian memberikan <InlineMath math="h_{ii}=\overline{h_{ii}}" />, jadi setiap unsur pepenjuru ialah nombor nyata.
+
+## Hasil Darab Dalam Nyata dan Kompleks
+
+Transpos dan transpos konjugat tidak boleh dicampuradukkan. Bagi <InlineMath math="x\in\mathbb{R}^n" />,
+
+<BlockMath math="x^Tx=\sum_{k=1}^n x_k^2\geq0" />
+
+Bagi <InlineMath math="x\in\mathbb{C}^n" />, **gunakan transpos konjugat**:
+
+<BlockMath math="x^Hx=\sum_{k=1}^n\overline{x_k}x_k=\sum_{k=1}^n|x_k|^2\geq0" />
+
+Dalam kedua-dua medan, ungkapan yang berkaitan sama dengan sifar tepat apabila <InlineMath math="x=0" />. Bagi vektor kompleks, <InlineMath math="x^Tx" /> belum tentu nyata pun. Sebab itulah geometri kompleks menggunakan <InlineMath math="x^Hx" />.
+
+## Bentuk Kuadratik dan Bentuk Hermitian
+
+Matriks simetri nyata mentakrifkan bentuk kuadratik
+
+<MathContainer>
+<BlockMath math="q:\mathbb{R}^n\to\mathbb{R}" />
+<BlockMath math="q(x)=x^TAx" />
+</MathContainer>
+
+Matriks Hermitian mentakrifkan bentuk Hermitian yang bernilai nyata
+
+<MathContainer>
+<BlockMath math="q:\mathbb{C}^n\to\mathbb{R}" />
+<BlockMath math="q(x)=x^HHx" />
+</MathContainer>
+
+Untuk membuktikan bahawa <InlineMath math="x^HHx" /> nyata, ambil konjugat kompleksnya.
+
+<MathContainer>
+<BlockMath math="\overline{x^HHx}=(x^HHx)^H" />
+<BlockMath math="=x^HH^Hx=x^HHx" />
+</MathContainer>
+
+Suatu skalar sama dengan konjugat kompleksnya tepat apabila skalar itu nyata. Dalam kes nyata, bahagian simetri pencong bagi mana-mana matriks tidak menyumbang apa-apa kepada bentuk kuadratik:
+
+<BlockMath math="x^TBx=x^T\left(\frac{B+B^T}{2}\right)x" />
+
+Bahagian simetri pencong tidak menyumbang apa-apa kerana <InlineMath math="x^T(B-B^T)x=0" />. Jadi, <Highlight>bentuk kuadratik hanya bergantung pada bahagian simetrinya</Highlight>.
+
+## Sebab Nilai Eigen Matriks Hermitian Nyata
+
+Katakan <InlineMath math="Hv=\lambda v" /> dengan <InlineMath math="v\neq0" />. **Simetri Hermitian** memberikan
+
+<MathContainer>
+<BlockMath math="\lambda v^Hv=v^HHv" />
+<BlockMath math="=v^HH^Hv=(Hv)^Hv=\overline{\lambda}v^Hv" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="v^Hv>0" />, kita dapat <InlineMath math="\lambda=\overline{\lambda}" />, dan oleh itu <InlineMath math="\lambda\in\mathbb{R}" />. Matriks simetri nyata mewarisi kesimpulan yang sama.
+
+## Sebab Ruang Eigen yang Berbeza Saling Ortogon
+
+Katakan <InlineMath math="Hv=\lambda v" /> dan <InlineMath math="Hw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />. Oleh sebab **kedua-dua nilai eigen itu nyata**,
+
+<MathContainer>
+<BlockMath math="\lambda w^Hv=w^HHv" />
+<BlockMath math="=w^HH^Hv=(Hw)^Hv=\mu w^Hv" />
+</MathContainer>
+
+Maka <InlineMath math="(\lambda-\mu)w^Hv=0" />, jadi <InlineMath math="w^Hv=0" />. Jika ada nilai eigen yang berulang, vektor eigen sebarang dalam ruang eigen yang sama mungkin tidak ortogon. Proses Gram-Schmidt boleh menghasilkan asas ortonormal dalam ruang eigen tersebut.
+
+Bagi matriks simetri <InlineMath math="A=\begin{pmatrix}1&2\\2&1\end{pmatrix}" />, nilai eigen <InlineMath math="3" /> dan <InlineMath math="-1" /> mempunyai vektor eigen <InlineMath math="v_1=(1,1)" /> dan <InlineMath math="v_2=(1,-1)" />. Hasil darab dalamnya ialah <InlineMath math="1-1=0" />, tepat seperti yang dijamin oleh <InlineMath math="\lambda_1\langle v_1,v_2\rangle=\langle Av_1,v_2\rangle=\langle v_1,Av_2\rangle=\lambda_2\langle v_1,v_2\rangle" /> dengan <InlineMath math="\lambda_1\neq\lambda_2" />.
+
+<MathVisual
+  title={<>Vektor eigen bagi <InlineMath math="3" /> dan <InlineMath math="-1" /> saling berserenjang</>}
+  description={<>Tembereng hijau kebiruan <InlineMath math="v_1" /> diregangkan menjadi tembereng ungu <InlineMath math="3v_1" />. Tembereng oren <InlineMath math="v_2" /> diterbalikkan menjadi tembereng magenta <InlineMath math="-v_2" />. Kedua-dua garis itu tetap bertemu pada sudut tegak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "second-image": <InlineMath math="Av_2=-v_2" />,
+  }}
+/>
+
+## Penguraian Spektrum dan Geometri Kuadratik
+
+Teorem spektrum menghimpunkan fakta-fakta ini menjadi satu penguraian yang lengkap:
+
+<MathContainer>
+  <BlockMath math="A=A^T\in\mathbb{R}^{n\times n}:\qquad A=Q\Lambda Q^T" />
+  <BlockMath math="H=H^H\in\mathbb C^{n\times n}" />
+
+  <BlockMath math="H=U\Lambda U^H" />
+</MathContainer>
+
+Lajur-lajur <InlineMath math="Q" /> atau <InlineMath math="U" /> membentuk **asas eigen ortonormal**, dan setiap unsur pepenjuru <InlineMath math="\Lambda" /> ialah nombor nyata. Jika <InlineMath math="u_1,\ldots,u_n" /> ialah lajur-lajur <InlineMath math="U" />, maka
+
+<BlockMath math="x^HHx=\sum_{j=1}^n\lambda_j|u_j^Hx|^2" />
+
+Rumus ini terus menunjukkan bahawa <InlineMath math="H" /> tentu positif tepat apabila setiap nilai eigennya positif.
+
+Ambil matriks simetri nyata <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, kemudian potong bentuk kuadratik <InlineMath math="q(x)=x^TAx" /> di sepanjang setiap vektor eigen unit. Di sepanjang <InlineMath math="v_1=(1,1)^T/\sqrt2" />, keratannya ialah parabola magenta <InlineMath math="3s^2" />. Di sepanjang <InlineMath math="v_2=(1,-1)^T/\sqrt2" />, keratannya ialah parabola hijau kebiruan <InlineMath math="s^2" />. Jadi, kelengkungan di sepanjang setiap paksi utama sama dengan nilai eigennya, dan kerana <InlineMath math="A" /> simetri, kedua-dua paksi itu berserenjang.
+
+<MathVisual
+  title={<>Keratan bentuk kuadratik <InlineMath math="q(x)=x^TAx" /> di sepanjang vektor eigen</>}
+  description={<>Bagi <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />: parabola magenta ialah <InlineMath math="q(sv_1)" /> dan parabola hijau kebiruan ialah <InlineMath math="q(sv_2)" />, dengan <InlineMath math="s" /> sebagai jarak di sepanjang vektor eigen unit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -0.3, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "steep", kind: "quadratic", coefficients: { a: 3, b: 0, c: 0 }, domain: { min: -1, max: 1 }, inputAxis: "x", appearance: "answer" },
+      { id: "flat", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -7 / 4, max: 7 / 4 }, inputAxis: "x", appearance: "construction" },
+    ],
+    labels: [
+      { key: "steep", objectId: "steep", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "flat", objectId: "flat", at: { x: 7 / 4, y: 49 / 16 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "steep": <InlineMath math="q(sv_1)=3s^2" />,
+    "flat": <InlineMath math="q(sv_2)=s^2" />,
+  }}
+/>
+
+## Contoh Lengkap Pempenjuruan Hermitian
+
+Ambil semula matriks tadi
+
+<BlockMath math="H=\begin{pmatrix}2&1+i\\1-i&3\end{pmatrix}" />
+
+Bagi matriks <InlineMath math="H" />, polinomial cirinya ialah
+
+<BlockMath math="\begin{aligned} \det(H-\lambda I) &amp;=(2-\lambda)(3-\lambda)-2 \\ &amp;=(\lambda-1)(\lambda-4) \end{aligned}" />
+
+**Vektor eigen ternormal** bagi <InlineMath math="\lambda_1=1" /> dan <InlineMath math="\lambda_2=4" /> ialah
+
+<MathContainer>
+<BlockMath math="u_1=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}" />
+<BlockMath math="u_2=\frac1{\sqrt6}\begin{pmatrix}1+i\\2\end{pmatrix}" />
+</MathContainer>
+
+Kedua-duanya memenuhi <InlineMath math="u_1^Hu_2=0" />. Dengan <InlineMath math="U=(u_1\quad u_2)" />,
+
+<BlockMath math="U^HHU=\operatorname{diag}(1,4)" />
+
+Semak keortogonan dan vektor eigen pertama secara langsung. Faktor penormalan kekal di luar setiap hasil darab.
+
+<MathContainer>
+<BlockMath math="u_1^Hu_2=\frac{-(1-i)(1+i)+2}{\sqrt{18}}=\frac{-2+2}{\sqrt{18}}=0" />
+<BlockMath math="Hu_1=\frac1{\sqrt3}\begin{pmatrix}-2(1+i)+(1+i)\\-(1-i)(1+i)+3\end{pmatrix}=\frac1{\sqrt3}\begin{pmatrix}-(1+i)\\1\end{pmatrix}=u_1" />
+</MathContainer>
+
+Semak <InlineMath math="u_1^Hu_2" /> sebutan demi sebutan. Unsur pertama memberikan <InlineMath math="\overline{-(1+i)}\,(1+i)/\sqrt{18}=-(1-i)(1+i)/\sqrt{18}=-2/\sqrt{18}" />, dan unsur kedua memberikan <InlineMath math="1\cdot2/\sqrt{18}=2/\sqrt{18}" />. Kedua-dua sebutan itu saling membatalkan, jadi <InlineMath math="u_1^Hu_2=0" />.
+
+<BarChart
+  title={<>Dua sebutan <InlineMath math="u_1^Hu_2" /> saling membatalkan</>}
+  description={<>Bar pertama ialah <InlineMath math="\bar u_{11}u_{21}=-2/\sqrt{18}" />, dan bar kedua ialah <InlineMath math="\bar u_{12}u_{22}=2/\sqrt{18}" />. Tingginya sama tetapi tandanya bertentangan, jadi hasil tambahnya <InlineMath math="0" />.</>}
+  yAxisLabel="Sebutan hasil darab dalam"
+  data={[
+    { name: "unsur pertama", value: -2 / Math.sqrt(18) },
+    { name: "unsur kedua", value: 2 / Math.sqrt(18) },
+  ]}
+  chartConfig={{ value: { label: "Sebutan hasil darab dalam", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>

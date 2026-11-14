@@ -1,0 +1,223 @@
+export const metadata = {
+  title: "Merasionalkan Ungkapan Surd",
+  description:
+    "Buang surd daripada penyebut dengan mendarab dengan satu, menggunakan sama ada faktor surd yang sepadan atau konjugat, berserta jalan kerja yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-04",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Apa yang Berubah Apabila Kita Merasionalkan
+
+Merasionalkan penyebut bermaksud menulis semula pecahan dalam bentuk setara <Highlight>yang penyebutnya tidak mengandungi surd</Highlight>. Nilainya tidak berubah kerana pengangka dan penyebut didarab dengan ungkapan bukan sifar yang sama.
+
+Untuk penyebut yang ada dua sebutan, identiti utamanya ialah:
+
+<BlockMath math="(u+v)(u-v)=u^2-v^2" />
+
+Ungkapan <InlineMath math="u+v" /> dan <InlineMath math="u-v" /> ialah **konjugat** antara satu sama lain. Hasil darabnya membatalkan sebutan tengah.
+
+### Satu Surd dalam Penyebut
+
+Untuk <InlineMath math="b>0" />, darab dengan faktor <InlineMath math="\frac{\sqrt b}{\sqrt b}=1" />:
+
+<MathContainer>
+  <BlockMath math="\frac a{\sqrt b}\cdot\frac{\sqrt b}{\sqrt b}=\frac{a\sqrt b}{b}" />
+  <BlockMath math="\frac5{\sqrt3}\cdot\frac{\sqrt3}{\sqrt3}=\frac{5\sqrt3}{3}" />
+</MathContainer>
+
+Faktor surd yang sepadan itu ialah **satu bentuk bagi nombor satu**. Faktor ini tidak dipanggil konjugat kerana ia hanya ada satu sebutan.
+
+Merasionalkan <InlineMath math="\tfrac{1}{\sqrt 2} = \tfrac{\sqrt 2}{2}" /> mengubah bentuknya, tetapi tidak pernah mengubah panjangnya. Tembereng garis dari satu bucu segi empat sama unit ke pusatnya ialah separuh pepenjuru, iaitu <InlineMath math="\tfrac{\sqrt 2}{2}" />, dan tembereng yang sama itu juga berukuran <InlineMath math="\tfrac{1}{\sqrt 2}" />.
+
+<MathVisual
+  title={<>Satu per punca <InlineMath math="2" /> sama dengan punca <InlineMath math="2" /> per <InlineMath math="2" /></>}
+  description={<>Segi empat sama unit dengan tembereng garis dari satu bucu ke pusat, sepanjang <InlineMath math="\tfrac{\sqrt 2}{2} = \tfrac{1}{\sqrt 2}" />.</>}
+  labels={{
+    half: <InlineMath math="\tfrac{\sqrt 2}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 1.3 }, y: { min: -0.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "rest", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0.5, y: 0.5 }, appearance: "primary" },
+      { id: "center", kind: "point", at: { x: 0.5, y: 0.5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 0.25, y: 0.25 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Hasil Tambah atau Beza Dua Surd
+
+Anggap <InlineMath math="a,b\geq0" /> dan <InlineMath math="a\neq b" />. Darab dengan **konjugat penyebut**:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \frac c{\sqrt a+\sqrt b}\cdot\frac{\sqrt a-\sqrt b}{\sqrt a-\sqrt b} &=\frac{c(\sqrt a-\sqrt b)}{a-b} \end{aligned}" />
+  <BlockMath math="\begin{aligned} \frac c{\sqrt a-\sqrt b}\cdot\frac{\sqrt a+\sqrt b}{\sqrt a+\sqrt b} &=\frac{c(\sqrt a+\sqrt b)}{a-b} \end{aligned}" />
+</MathContainer>
+
+Contohnya:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \frac4{\sqrt7+\sqrt3} &amp;=\frac{4(\sqrt7-\sqrt3)}{7-3} \\ &amp;=\sqrt7-\sqrt3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \frac2{\sqrt5-\sqrt2} &amp;=\frac{2(\sqrt5+\sqrt2)}{5-2} \\ &amp;=\frac{2(\sqrt5+\sqrt2)}3 \end{aligned}" />
+</MathContainer>
+
+Sebab konjugat berkesan boleh dilihat melalui luas. Segi empat tepat dengan sisi <InlineMath math="\sqrt 3 + \sqrt 2" /> dan <InlineMath math="\sqrt 3 - \sqrt 2" /> ada luas <InlineMath math="(\sqrt 3)^2 - (\sqrt 2)^2 = 3 - 2 = 1" />, tepat sama dengan segi empat sama unit yang dilukis di sebelahnya. Pendaraban dengan konjugat menukar hasil tambah surd kepada nombor bulat.
+
+<MathVisual
+  title={<>Segi empat tepat yang panjang dan nipis dengan luas <InlineMath math="1" /></>}
+  description={<>Segi empat tepat dengan sisi <InlineMath math="\sqrt 3 + \sqrt 2" /> dan <InlineMath math="\sqrt 3 - \sqrt 2" /> ada luas <InlineMath math="1" />, sama seperti segi empat sama unit.</>}
+  labels={{
+    long: <InlineMath math="\sqrt 3 + \sqrt 2" />,
+    short: <InlineMath math="\sqrt 3 - \sqrt 2" />,
+    unit: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.5 }, y: { min: -1.6, max: 0.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rect", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, { x: 0, y: Math.sqrt(3) - Math.sqrt(2) }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: -1.4 }, { x: 1, y: -1.4 }, { x: 1, y: -0.4 }, { x: 0, y: -0.4 }], appearance: "secondary" },
+      { id: "long", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, appearance: "primary" },
+      { id: "short", kind: "segment", from: { x: Math.sqrt(3) + Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(3) + Math.sqrt(2), y: Math.sqrt(3) - Math.sqrt(2) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "long", objectId: "long", at: { x: (Math.sqrt(3) + Math.sqrt(2)) / 2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "short", at: { x: Math.sqrt(3) + Math.sqrt(2), y: (Math.sqrt(3) - Math.sqrt(2)) / 2 }, placement: "right" },
+      { key: "unit", objectId: "unit", at: { x: 0.5, y: -0.9 }, placement: "center" },
+    ],
+  }}
+/>
+
+### Satu Sebutan Nisbah dan Satu Sebutan Surd
+
+Anggap <InlineMath math="b\geq0" /> dan <InlineMath math="a^2\neq b" />. Sekali lagi, konjugat menghasilkan **beza kuasa dua**:
+
+<MathContainer>
+  <BlockMath math="\frac c{a+\sqrt b}\cdot\frac{a-\sqrt b}{a-\sqrt b}=\frac{c(a-\sqrt b)}{a^2-b}" />
+  <BlockMath math="\frac c{a-\sqrt b}\cdot\frac{a+\sqrt b}{a+\sqrt b}=\frac{c(a+\sqrt b)}{a^2-b}" />
+</MathContainer>
+
+Contohnya:
+
+<MathContainer>
+  <BlockMath math="\frac6{4+\sqrt3}=\frac{6(4-\sqrt3)}{16-3}=\frac{6(4-\sqrt3)}{13}" />
+  <BlockMath math="\begin{aligned} \frac3{2-\sqrt5} &amp;=\frac{3(2+\sqrt5)}{4-5} \\ &amp;=-3(2+\sqrt5) \end{aligned}" />
+</MathContainer>
+
+Konjugat menukar <InlineMath math="(4 + \sqrt3)(4 - \sqrt3)" /> kepada <InlineMath math="4^2 - (\sqrt3)^2" />. Dalam bentuk luas, ini ialah segi empat sama <InlineMath math="4" /> kali <InlineMath math="4" /> yang dipotong segi empat sama <InlineMath math="\sqrt3" /> kali <InlineMath math="\sqrt3" /> pada satu bucunya: tinggal <InlineMath math="16 - 3 = 13" /> unit persegi, iaitu penyebut bagi <InlineMath math="\frac{6(4-\sqrt3)}{13}" />.
+
+<MathVisual
+  title={<>Segi empat sama bersisi <InlineMath math="4" /> tolak segi empat sama bersisi <InlineMath math="\sqrt3" /></>}
+  description={<>Rantau berbentuk L yang tinggal apabila segi empat sama dengan luas <InlineMath math="3" /> dipotong daripada segi empat sama dengan luas <InlineMath math="16" />, dan luasnya <InlineMath math="13" />.</>}
+  labels={{
+    rest: <InlineMath math="16 - 3 = 13" />,
+    cut: <InlineMath math="3" />,
+    side: <InlineMath math="4" />,
+    "cut-side": <InlineMath math="\sqrt3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.7, max: 4.7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rest", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4 - Math.sqrt(3), y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "cut", kind: "polygon", vertices: [{ x: 4 - Math.sqrt(3), y: 4 - Math.sqrt(3) }, { x: 4, y: 4 - Math.sqrt(3) }, { x: 4, y: 4 }, { x: 4 - Math.sqrt(3), y: 4 }], appearance: "warning" },
+      { id: "side", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "primary" },
+      { id: "cut-side", kind: "segment", from: { x: 4 - Math.sqrt(3), y: 4 }, to: { x: 4, y: 4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "rest", objectId: "rest", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "cut", objectId: "cut", at: { x: 4 - Math.sqrt(3) / 2, y: 4 - Math.sqrt(3) / 2 }, placement: "center" },
+      { key: "side", objectId: "side", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "cut-side", objectId: "cut-side", at: { x: 4 - Math.sqrt(3) / 2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Mempermudahkan Ungkapan Surd dan Indeks
+
+Anggap semua pemboleh ubah dalam latihan berikut **positif**. Andaian ini mengelakkan kes nilai mutlak yang boleh muncul apabila kita menggunakan indeks pecahan.
+
+1. Permudahkan:
+
+   <BlockMath math="\left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}" />
+
+2. Permudahkan:
+
+   <BlockMath math="\left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)" />
+
+3. Permudahkan:
+
+   <BlockMath math="\left(\frac{p^5q^{-10}}{p^5q^{-4}}\right)^{1/2}\left(\frac{p^{1/4}q^{-1/2}}{p^{-1/2}q^{-1/2}}\right)^{1/2}" />
+
+### Penyelesaian untuk Mempermudahkan Surd
+
+Setiap penyelesaian di bawah menulis semula radikan sebagai hasil darab kuasa sebelum puncanya diambil. Gabungkan pekali berangka dahulu, kemudian uruskan indeks setiap pemboleh ubah secara berasingan, dan pindahkan sebarang indeks negatif ke penyebut.
+
+1. **Gabungkan pekali dan indeks** sebelum mengambil punca kuasa dua:
+
+   <BlockMath math="\begin{aligned} \left(\frac{8x^5y^{-4}}{16y^{-1/4}}\right)^{1/2}&=\left(\frac12x^5y^{-15/4}\right)^{1/2} \\ &=2^{-1/2}x^{5/2}y^{-15/8} \\ &=\frac{x^{5/2}}{\sqrt2\,y^{15/8}} \end{aligned}" />
+
+2. Tukar kedua-dua surd kepada indeks pecahan:
+
+   <BlockMath math="\begin{aligned} \left(5\sqrt{x^5}\right)\left(3\sqrt[3]x\right)&=15x^{5/2}x^{1/3} \\ &=15x^{15/6+2/6}=15x^{17/6} \\ &=15x^2\sqrt[6]{x^5} \end{aligned}" />
+
+3. Permudahkan **setiap pecahan secara berasingan** sebelum mengambil punca dan mendarab:
+
+   <MathContainer>
+     <BlockMath math="\frac{p^5q^{-10}}{p^5q^{-4}}=p^{5-5}q^{-10-(-4)}=q^{-6}" />
+     <BlockMath math="\frac{p^{1/4}q^{-1/2}}{p^{-1/2}q^{-1/2}}=p^{1/4+1/2}q^{-1/2+1/2}=p^{3/4}" />
+   </MathContainer>
+
+   Ambil punca kuasa dua bagi setiap hasil, kemudian darabkan:
+
+   <BlockMath math="\begin{aligned} \left(q^{-6}\right)^{1/2}\left(p^{3/4}\right)^{1/2}&=q^{-3}p^{3/8} \\ &=\frac{p^{3/8}}{q^3} \\ &=\frac{\sqrt[8]{p^3}}{q^3} \end{aligned}" />
+
+## Latihan Merasionalkan
+
+Latihan di bawah meminta kamu membuang surd daripada penyebut. Darab pengangka dan penyebut dengan ungkapan yang sama supaya **nilai pecahan tidak berubah**, dan pilih ungkapan itu supaya penyebut yang terhasil menjadi nombor nisbah.
+
+1. Untuk <InlineMath math="b>0" />, rasionalkan:
+
+   <BlockMath math="\frac2{\sqrt{b^3}}" />
+
+2. Rasionalkan:
+
+   <BlockMath math="\frac2{\sqrt3+\sqrt5}" />
+
+3. Untuk <InlineMath math="m\geq0" /> dan <InlineMath math="m\neq n^2" />, rasionalkan:
+
+   <BlockMath math="\frac m{\sqrt m+n}" />
+
+### Penyelesaian untuk Merasionalkan Penyebut
+
+Setiap penyelesaian di bawah mendarab dengan **pecahan yang sama dengan satu**. Pengangka dan penyebutnya ialah surd yang sama atau ungkapan konjugat yang sama. Perhatikan bagaimana faktor yang dipilih membuang punca tanpa mengubah nilai pecahan.
+
+1. Oleh sebab <InlineMath math="\sqrt{b^3}\sqrt b=\sqrt{b^4}=b^2" /> untuk <InlineMath math="b>0" />:
+
+   <BlockMath math="\begin{aligned} \frac2{\sqrt{b^3}}\cdot\frac{\sqrt b}{\sqrt b}&=\frac{2\sqrt b}{\sqrt{b^4}} \\ &=\frac{2\sqrt b}{b^2} \end{aligned}" />
+
+2. Darab dengan konjugatnya:
+
+   <BlockMath math="\begin{aligned} \frac2{\sqrt3+\sqrt5}\cdot\frac{\sqrt3-\sqrt5}{\sqrt3-\sqrt5} &=\frac{2(\sqrt3-\sqrt5)}{3-5} \\ &=\sqrt5-\sqrt3 \end{aligned}" />
+
+3. Konjugat bagi penyebut ialah <InlineMath math="\sqrt m-n" />:
+
+   <BlockMath math="\begin{aligned} \frac m{\sqrt m+n}\cdot\frac{\sqrt m-n}{\sqrt m-n}&=\frac{m(\sqrt m-n)}{m-n^2} \\ &=\frac{m\sqrt m-mn}{m-n^2} \end{aligned}" />
+
+## Cara Menyemak Bentuk Akhir
+
+- Penyebut tidak sepatutnya mengandungi surd.
+- Setiap **faktor pendarab mesti sama dengan satu** dan mesti tertakrif di bawah syarat yang dinyatakan.
+- Matlamatnya ialah bentuk tepat yang setara. Merasionalkan tidak secara automatik menjadikan nilai anggaran perpuluhan lebih tepat.
+
+Semakan ini menunjukkan sebab setiap langkah sah dan bila prosedur ini boleh digunakan.

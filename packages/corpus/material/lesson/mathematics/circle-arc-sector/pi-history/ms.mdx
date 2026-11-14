@@ -1,0 +1,147 @@
+export const metadata = {
+  title: "Sejarah Pi",
+  description: "Ikuti cara ahli matematik dari Babylon purba hingga Zu Chongzhi membatasi dan menganggar nilai pi, serta bagaimana simbol modennya menjadi piawai.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+
+## Takrif Pi
+
+Untuk setiap bulatan, <Highlight>nisbah lilitan kepada diameternya</Highlight> sentiasa sama. Kita namakan pemalar itu <InlineMath math="\pi" /> (pi), dan nilainya bermula dengan <InlineMath math="3.14159" />.
+
+Secara matematik, <InlineMath math="\pi" /> boleh ditakrifkan sebagai:
+
+<BlockMath math="\pi = \frac{\text{lilitan bulatan}}{\text{diameter bulatan}}" />
+
+Nisbah ini tidak bergantung pada saiz bulatan. Kalau setiap panjang digandakan, lilitan dan diameter turut berganda bersama-sama, jadi nisbahnya kekal sama.
+
+Golekkan sebuah bulatan berdiameter <InlineMath math="1" /> di sepanjang satu garis untuk satu pusingan penuh. Titik yang mula-mula berada di bawah akan menyentuh garis itu semula selepas bergerak sejauh lilitannya, iaitu <InlineMath math="\pi \approx 3.14159" />.
+
+<MathVisual
+  title={<>Satu pusingan bulatan berdiameter <InlineMath math="1" /></>}
+  description={<>Bulatan berdiameter <InlineMath math="1" /> pada kedudukan mula dan selepas satu pusingan penuh di sepanjang garis, dengan jarak <InlineMath math="\pi" /> di antara kedua-duanya.</>}
+  labels={{
+    dist: <InlineMath math="\pi" />,
+    start: <InlineMath math="0" />,
+    end: <InlineMath math="\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.5, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "before", kind: "circle", center: { x: 0, y: 1 / 2 }, radius: 1 / 2, appearance: "reference" },
+      { id: "after", kind: "circle", center: { x: Math.PI, y: 1 / 2 }, radius: 1 / 2, appearance: "secondary" },
+      { id: "dist", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.PI, y: 0 }, appearance: "primary" },
+      { id: "start", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "end", kind: "point", at: { x: Math.PI, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dist", objectId: "dist", at: { x: Math.PI / 2, y: 0 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "end", objectId: "end", at: { x: Math.PI, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Penghampiran Awal
+
+Sumber purba yang masih ada hari ini mencatatkan beberapa **penghampiran**. Satu penghampiran dari Mesopotamia ialah <InlineMath math="\pi \approx \frac{25}{8}=3.125" />.
+
+Papirus Matematik Rhind dari Mesir, yang bertarikh kira-kira <InlineMath math="1650 \text{ SM}" />, memberikan satu petua yang setara dengan <InlineMath math="\pi \approx \frac{256}{81}" />. Nilai ini lebih kurang <InlineMath math="3.16049" />. Kedua-dua pecahan itu tidak sama tepat dengan <InlineMath math="\pi" />, dan nilai Mesopotamia <InlineMath math="3.125" /> sebenarnya yang lebih hampir antara dua penghampiran ini.
+
+Dalam petua luas Mesir, bulatan berdiameter <InlineMath math="9" /> diberi nilai anggaran luas <InlineMath math="8^2=64" />. Bandingkan nilai ini dengan <InlineMath math="\pi r^2" />, dan kamu akan nampak dari mana pecahan itu datang:
+
+<BlockMath math="\pi\approx\frac{64}{(9/2)^2}=\frac{64}{81/4}=\frac{256}{81}" />
+
+
+## Kaedah Archimedes dan Poligon
+
+Archimedes dari Syracuse, ahli matematik Yunani yang hidup sekitar <InlineMath math="287\text{-}212 \text{ SM}" />, membina satu kaedah sistematik untuk membatasi <InlineMath math="\pi" /> dengan lebih jitu. Beliau membandingkan poligon sekata yang terterap di dalam bulatan dengan poligon sekata yang melingkungi bulatan.
+
+Perimeter poligon sekata yang terterap di dalam bulatan kurang daripada lilitan bulatan, manakala perimeter poligon sekata yang melingkungi bulatan lebih besar. Apabila bilangan sisi ditambah, batas bawah dan batas atas itu menjadi semakin rapat.
+
+<MathVisual
+  title={<>Heksagon di dalam dan di luar bulatan berjejari <InlineMath math="3" /></>}
+  description={<>Heksagon terterap mempunyai perimeter <InlineMath math="18" /> dan heksagon yang melingkungi bulatan mempunyai perimeter <InlineMath math="12\sqrt3" />, jadi <InlineMath math="3 < \pi < 2\sqrt3" />.</>}
+  labels={{
+    circle: <>Bulatan</>,
+    inner: <>Heksagon dalam</>,
+    outer: <>Heksagon luar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "outer", kind: "polygon", vertices: [{ x: 2 * Math.sqrt(3), y: 0 }, { x: Math.sqrt(3), y: 3 }, { x: -Math.sqrt(3), y: 3 }, { x: -2 * Math.sqrt(3), y: 0 }, { x: -Math.sqrt(3), y: -3 }, { x: Math.sqrt(3), y: -3 }], appearance: "secondary" },
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "inner", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 / 2, y: 3 * Math.sqrt(3) / 2 }, { x: -3 / 2, y: 3 * Math.sqrt(3) / 2 }, { x: -3, y: 0 }, { x: -3 / 2, y: -3 * Math.sqrt(3) / 2 }, { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "circle", objectId: "circle", at: { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4) }, placement: "above-right" },
+      { key: "inner", objectId: "inner", at: { x: 3 / 2, y: -3 * Math.sqrt(3) / 2 }, placement: "below" },
+      { key: "outer", objectId: "outer", at: { x: -Math.sqrt(3), y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Untuk heksagon yang ditunjukkan, jejarinya ialah <InlineMath math="3" /> dan diameternya ialah <InlineMath math="6" />. Setiap sisi heksagon dalam sama panjang dengan jejari. Sisi heksagon luar pula diperoleh daripada segi tiga bersudut tegak dengan sudut <InlineMath math="30^\circ" />:
+
+<BlockMath math="P_{\mathrm{dalam}}=6(3)=18,\qquad P_{\mathrm{luar}}=6\left(2(3)\tan30^\circ\right)=12\sqrt3" />
+
+Bahagikan kedua-dua perimeter poligon dengan diameter yang sama, dan kita dapat **batas bawah dan batas atas**:
+
+<BlockMath math="\frac{18}{6}<\pi<\frac{12\sqrt3}{6}\quad\Longrightarrow\quad3<\pi<2\sqrt3" />
+
+
+Dengan poligon bersisi <InlineMath math="96" />, Archimedes membuktikan bahawa <InlineMath math="\pi" /> terletak antara <InlineMath math="\frac{223}{71}" /> dengan <InlineMath math="\frac{22}{7}" />. Khususnya, <InlineMath math="\frac{22}{7}" /> ialah hujung atas batas ini. Nilainya sedikit lebih besar daripada <InlineMath math="\pi" />:
+
+<MathContainer>
+<BlockMath math="3.1408 < \pi < 3.1429" />
+</MathContainer>
+
+## Sumbangan Ahli Matematik China
+
+Pada abad ke-<InlineMath math="5" /> Masihi, ahli matematik dan ahli astronomi China, Zu Chongzhi, menetapkan batas yang direkodkan, iaitu <InlineMath math="3.1415926 < \pi < 3.1415927" />. Lebar selang ini hanya <InlineMath math="10^{-7}" />.
+
+Zu Chongzhi juga memberikan **penghampiran pecahan** <InlineMath math="\pi \approx \frac{355}{113}" />, yang kembangan perpuluhannya bermula dengan <InlineMath math="3.1415929" />. Pecahan ini sepadan dengan <InlineMath math="\pi" /> hingga enam digit pertama selepas titik perpuluhan. Batas tujuh tempat perpuluhannya tidak diatasi sehingga kerja al-Kashi pada abad ke-<InlineMath math="15" />, hampir satu alaf kemudian.
+
+<MathContainer>
+<BlockMath math="\frac{355}{113} = 3.1415929\ldots" />
+</MathContainer>
+
+Bandingkan sejauh mana setiap penghampiran tersasar daripada <InlineMath math="\pi" />. Penghampiran Mesopotamia <InlineMath math="\tfrac{25}{8}" /> dan penghampiran Mesir <InlineMath math="\tfrac{256}{81}" /> tersasar kira-kira <InlineMath math="0.02" />, batas <InlineMath math="\tfrac{223}{71}" /> dan <InlineMath math="\tfrac{22}{7}" /> tersasar kira-kira <InlineMath math="0.001" />, dan <InlineMath math="\tfrac{355}{113}" /> tersasar kurang daripada <InlineMath math="0.0000003" />.
+
+<BarChart
+  title={<>Jarak lima penghampiran daripada <InlineMath math="\pi" /></>}
+  description={<>Palang menunjukkan <InlineMath math="|\text{penghampiran} - \pi|" /> untuk <InlineMath math="\tfrac{25}{8}" />, <InlineMath math="\tfrac{256}{81}" />, <InlineMath math="\tfrac{223}{71}" />, <InlineMath math="\tfrac{22}{7}" /> dan <InlineMath math="\tfrac{355}{113}" />.</>}
+  yAxisLabel="Jarak daripada pi"
+  data={[["25/8", 25 / 8], ["256/81", 256 / 81], ["223/71", 223 / 71], ["22/7", 22 / 7], ["355/113", 355 / 113]].map(([name, value]) => ({ name, value: Math.abs(value - Math.PI) }))}
+  chartConfig={{ value: { label: "Jarak daripada pi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Era Moden dan Simbol Pi
+
+Ahli matematik Wales, William Jones, menggunakan <InlineMath math="\pi" /> dengan **maksud yang kita pakai sekarang** dalam karyanya pada tahun <InlineMath math="1706" />, "Synopsis Palmariorum Matheseos". Tatatanda ini tidak terus digunakan oleh semua orang.
+
+Leonhard Euler kemudian menggunakan simbol ini dalam karyanya yang berpengaruh, dan ini membantu <InlineMath math="\pi" /> menjadi tatatanda piawai yang masih digunakan hari ini.
+
+## Sifat Istimewa Pi
+
+Nombor <InlineMath math="\pi" /> ialah nombor **tak nisbah**, jadi ia tidak boleh ditulis sebagai nisbah dua integer. Johann Heinrich Lambert memberikan bukti rapi yang pertama tentang ketaknisbahannya pada abad ke-<InlineMath math="18" />. Ferdinand von Lindemann membuktikan pada tahun <InlineMath math="1882" /> bahawa <InlineMath math="\pi" /> juga **transendental**, iaitu ia bukan punca bagi mana-mana polinomial bukan sifar yang pekalinya nombor nisbah.
+
+Untuk bulatan berdiameter <InlineMath math="10\text{ cm}" />, nilai <InlineMath math="3.14" /> memberikan lilitan <InlineMath math="31.4\text{ cm}" />. Nilai pi yang lebih jitu memberikan lebih kurang <InlineMath math="31.41593\text{ cm}" />. Bezanya kira-kira <InlineMath math="0.01593\text{ cm}" />, jadi penghampiran yang kamu guna perlu sepadan dengan kejituan yang diperlukan.
+
+Rumus lilitan dan rumus luas menggunakan pemalar yang sama:
+
+<MathContainer>
+<BlockMath math="C = \pi \cdot d" />
+<BlockMath math="A = \pi \cdot r^2" />
+</MathContainer>
+
+Dalam persamaan ini, <InlineMath math="C" /> ialah lilitan, <InlineMath math="d" /> ialah diameter, <InlineMath math="A" /> ialah luas dan <InlineMath math="r" /> ialah jejari bulatan.

@@ -1,0 +1,143 @@
+export const metadata = {
+  title: "Konsep Polinomial",
+  description: "Gabungkan monomial untuk membentuk polinomial dan kenal pasti ungkapan algebra yang sah sebagai polinomial.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Struktur Monomial
+
+**Monomial** ialah satu sebutan yang mengandungi pekali dan pemboleh ubah dengan indeks integer bukan negatif: <InlineMath math="0,1,2,3,\ldots" />. Pekali boleh negatif atau pecahan, tetapi indeks pemboleh ubah mesti memenuhi syarat itu.
+
+Dalam <InlineMath math="2x^2y" />, **pekali** ialah <InlineMath math="2" />. Indeks bagi <InlineMath math="x" /> ialah <InlineMath math="2" />, manakala indeks bagi <InlineMath math="y" /> yang tidak ditulis ialah <InlineMath math="1" />. Pemalar juga satu monomial kerana nilainya tidak bergantung pada pemboleh ubah.
+
+| Ungkapan | Indeks pemboleh ubah | Pengelasan |
+| --- | --- | --- |
+| <InlineMath math="2x^2y" /> | <InlineMath math="2,1" /> | Monomial |
+| <InlineMath math="-8" /> | Tiada pemboleh ubah | Monomial |
+| <InlineMath math="1.24k^4" /> | <InlineMath math="4" /> | Monomial |
+| <InlineMath math="\sqrt[3]{p}=p^{1/3}" /> | <InlineMath math="1/3" /> | Bukan monomial |
+| <InlineMath math="\frac2m=2m^{-1}" /> | <InlineMath math="-1" /> | Bukan monomial |
+| <InlineMath math="5a^{-6}" /> | <InlineMath math="-6" /> | Bukan monomial |
+
+## Takrif Polinomial
+
+**Polinomial** ialah hasil tambah bagi sebilangan terhingga monomial. Satu monomial sahaja juga ialah polinomial. Semak setiap sebutan untuk melihat sama ada setiap indeks pemboleh ubah memenuhi syarat itu.
+
+| Ungkapan | Semakan sebutan | Pengelasan |
+| --- | --- | --- |
+| <InlineMath math="4x^3y-3x^2" /> | Kedua-dua sebutan ada indeks integer bukan negatif. | Polinomial |
+| <InlineMath math="x+2\sqrt{x}" /> | Sebutan berbentuk punca ada indeks <InlineMath math="1/2" />. | Bukan polinomial |
+| <InlineMath math="2x^3-5x^{-2}+1" /> | Indeks negatif muncul dalam <InlineMath math="-5x^{-2}" />. | Bukan polinomial |
+
+Polinomial dibina dengan menambah monomial, dan kamu boleh melihat sendiri bagaimana hasil tambah itu terbentuk. Lengkung jingga ialah <InlineMath math="\tfrac12 x^2" />, garis ungu ialah <InlineMath math="-x" />, dan lengkung hijau kebiruan ialah hasil tambah kedua-duanya, <InlineMath math="P(x) = \tfrac12 x^2 - x" />. Pada <InlineMath math="x = 2" />, kedua-dua sebutan itu bernilai <InlineMath math="2" /> dan <InlineMath math="-2" />, jadi kedua-duanya saling membatalkan dan hasil tambahnya memotong paksi-x.
+
+<MathVisual
+  title={<>Polinomial sebagai hasil tambah monomial</>}
+  description={<>Monomial <InlineMath math="\tfrac12 x^2" /> dan <InlineMath math="-x" /> serta hasil tambahnya <InlineMath math="P(x)" />, yang memotong paksi-x pada <InlineMath math="0" />, apabila kedua-dua sebutan bernilai sifar, dan pada <InlineMath math="2" />, apabila kedua-duanya saling membatalkan.</>}
+  labels={{
+    half: <InlineMath math="\tfrac12 x^2" />,
+    minus: <InlineMath math="-x" />,
+    sum: <InlineMath math="P(x)" />,
+    root: <InlineMath math="P(2) = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.9, max: 3.8 }, y: { min: -3.4, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "half", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: 0, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "primary" },
+      { id: "minus", kind: "segment", from: { x: -1.5, y: 1.5 }, to: { x: 3, y: -3 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1 / 2, b: -1, c: 0 }, domain: { min: -1.5, max: 3 }, appearance: "construction" },
+      { id: "plus-term", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "minus-term", kind: "point", at: { x: 2, y: -2 }, appearance: "secondary" },
+      { id: "root", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "half", objectId: "half", at: { x: 3, y: 4.5 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: 3, y: -3 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 1.5 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Penolakan sebagai Penambahan
+
+Tanda tolak tidak menghalang sesuatu ungkapan daripada menjadi polinomial. Penolakan bermaksud <Highlight>menambah sebutan yang ada pekali negatif</Highlight>. Pemboleh ubah dan indeksnya tidak berubah:
+
+<BlockMath math="4x^3y-3x^2=4x^3y+(-3x^2)" />
+
+Cuba dengan <InlineMath math="x=1" /> dan <InlineMath math="y=2" />. Kedua-dua bentuk memberikan <InlineMath math="8-3=8+(-3)=5" />. Yang berubah hanyalah tatatanda bagi operasi itu, bukan nilainya dan bukan indeks pemboleh ubahnya.
+
+Setiap bahagian polinomial kelihatan pada grafnya. Untuk <InlineMath math="P(x) = x^2 - 2x - 3" />, sebutan pemalar <InlineMath math="-3" /> ialah tempat lengkung itu memotong paksi-y, dan pekali pelopor yang positif, <InlineMath math="1" />, membuatkan lengkung itu terbuka ke atas.
+
+<MathVisual
+  title={<>Membaca polinomial daripada grafnya</>}
+  description={<>Parabola <InlineMath math="x^2 - 2x - 3" /> dengan pintasan-y pada sebutan pemalar <InlineMath math="-3" />.</>}
+  labels={{
+    p: <InlineMath math="P(x) = x^2 - 2x - 3" />,
+    c: <InlineMath math="P(0) = -3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -4.5, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: -2, c: -3 }, domain: { min: -2, max: 4 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3.5, y: 2.25 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: -3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Pada garis nombor, kedua-dua bentuk itu ialah perjalanan yang sama. Dengan <InlineMath math="x = 1" /> dan <InlineMath math="y = 2" />, sebutan <InlineMath math="4x^3y" /> ialah langkah sejauh <InlineMath math="8" /> ke kanan, dan menambah sebutan <InlineMath math="-3x^2" /> ialah langkah sejauh <InlineMath math="3" /> kembali ke kiri. Dengan mana-mana bentuk, perjalanan itu berakhir di <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Menambah sebutan negatif ialah satu langkah ke belakang</>}
+  description={<>Langkah sejauh <InlineMath math="8" /> bagi <InlineMath math="4x^3y" /> dan langkah ke belakang sejauh <InlineMath math="3" /> bagi <InlineMath math="-3x^2" /> pada <InlineMath math="x = 1" />, <InlineMath math="y = 2" />, yang berakhir di <InlineMath math="5" />.</>}
+  labels={{
+    first: <InlineMath math="4x^3y = 8" />,
+    second: <InlineMath math="-3x^2 = -3" />,
+    end: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 9, y: 0 }, appearance: "reference" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 8, y: 0.3 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 8, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 4, y: 0.3 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 6.5, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Tentukan sama ada setiap ungkapan ialah polinomial dalam pemboleh ubah yang dinyatakan. Terangkan peraturan indeks yang menentukan jawapan kamu. Sebelum membuat keputusan, semak **indeks setiap pemboleh ubah** dalam setiap sebutan, termasuk sebutan yang ditulis sebagai pecahan atau punca.
+
+1. <InlineMath math="7x^4-2x+9" /> dalam <InlineMath math="x" />
+2. <InlineMath math="\sqrt{x}+1" /> dalam <InlineMath math="x" />
+3. <InlineMath math="\frac{3}{x^2}-5" /> dalam <InlineMath math="x" />
+4. <InlineMath math="5y^2z^3-2yz+4" /> dalam <InlineMath math="y" /> dan <InlineMath math="z" />
+
+### Jalan Kerja
+
+Setiap langkah di bawah menyebut syarat yang menentukan, jadi peraturan indeks yang memutuskan jawapan muncul di sebelah setiap ungkapan.
+
+1. **Polinomial**. Indeks bagi <InlineMath math="x" /> ialah <InlineMath math="4" />, <InlineMath math="1" />, dan <InlineMath math="0" />.
+2. **Bukan polinomial**. Oleh sebab <InlineMath math="\sqrt{x}=x^{1/2}" />, indeks <InlineMath math="1/2" /> tidak memenuhi syarat integer bukan negatif.
+3. **Bukan polinomial**. Oleh sebab <InlineMath math="\frac{3}{x^2}=3x^{-2}" />, indeks <InlineMath math="-2" /> ialah nombor negatif.
+4. **Polinomial**. Setiap indeks bagi <InlineMath math="y" /> dan <InlineMath math="z" /> ialah integer bukan negatif. Satu pemboleh ubah boleh tidak ditulis dalam sesuatu sebutan, kerana indeks pemboleh ubah itu dalam sebutan tersebut ialah <InlineMath math="0" />.

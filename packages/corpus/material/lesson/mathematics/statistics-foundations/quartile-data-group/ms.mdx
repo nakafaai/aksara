@@ -1,0 +1,192 @@
+export const metadata = {
+  title: "Kuartil bagi Data Terkumpul",
+  description: "Kira kuartil data terkumpul dengan mencari kekerapan longgokannya dan membuat interpolasi dalam sempadan kelas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Menganggarkan Kedudukan Kuartil dalam Selang Kelas
+
+Untuk [data tak terkumpul](/ms/subjek/matematik/statistik-asas/kuartil-data-tak-terkumpul), kita boleh menyusun setiap cerapan dan mengenal pasti kedudukannya secara terus. Jadual kekerapan terkumpul hanya memberikan selang, seperti <InlineMath math="70\text{-}79" /> dan <InlineMath math="80\text{-}89" />, dan bilangan cerapan dalam setiap selang. Jadual itu tidak mengandungi nilai individu.
+
+Seperti [median bagi data terkumpul](/ms/subjek/matematik/statistik-asas/median-dan-mod-data-terkumpul), kita menganggarkan <InlineMath math="Q_1" />, <InlineMath math="Q_2" />, dan <InlineMath math="Q_3" /> secara **interpolasi**. Pengiraan ini meletakkan setiap kuartil dalam selang kelas yang mengandungi kedudukan sasarannya.
+
+Kita tentukan kedudukan kuartil dengan rumus ini:
+
+- Kedudukan <InlineMath math="Q_1" /> ialah data ke-<InlineMath math="\frac{1}{4}n" />
+- Kedudukan <InlineMath math="Q_2" /> ialah data ke-<InlineMath math="\frac{2}{4}n" /> (atau ke-<InlineMath math="\frac{1}{2}n" />)
+- Kedudukan <InlineMath math="Q_3" /> ialah data ke-<InlineMath math="\frac{3}{4}n" />
+
+Dengan <InlineMath math="n" /> ialah jumlah bilangan data.
+
+Tambah kekerapan kelas demi kelas untuk mendapat kekerapan longgokan <InlineMath math="2, 13, 23, 28, 30" />. Bar terakhir sentiasa jumlahnya, <InlineMath math="30" />, dan kelas tempat bar mula-mula melepasi kedudukan sasaran ialah kelas yang perlu diinterpolasi.
+
+<BarChart
+  title={<>Kekerapan longgokan bagi setiap kelas</>}
+  description={<>Bar bagi setiap kelas yang menunjukkan berapa banyak nilai yang berada pada atau di bawah sempadan atasnya, sehingga <InlineMath math="30" />.</>}
+  yAxisLabel="Kekerapan longgokan"
+  data={[["37-39", 2], ["40-42", 2 + 11], ["43-45", 2 + 11 + 10], ["46-48", 2 + 11 + 10 + 5], ["49-51", 2 + 11 + 10 + 5 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kekerapan longgokan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Langkah Mencari Nilai Kuartil bagi Data Terkumpul
+
+Pertimbangkan data jualan kasut terkumpul daripada Kedai A. Jadual kekerapan di bawah memberikan setiap selang kelas dan berapa pasang kasut yang berada di dalamnya, dan kuartil dianggarkan dengan **interpolasi** di dalam kelas yang mengandungi kedudukan yang kamu mahu. Ikut langkah-langkahnya sambil melihat jadual, kerana setiap nilai yang kamu gantikan datang daripadanya.
+### Bina Jadual Kekerapan Longgokan
+
+Mula-mula, kita perlukan jadual kekerapan dengan lajur kekerapan longgokan (<InlineMath math="F_k" />). Kekerapan longgokan ialah hasil tambah kekerapan daripada kelas pertama hingga kelas itu. Lajur ini penting untuk mengetahui kelas mana yang mengandungi kuartil.
+
+Contohnya, ini jadual jualan kasut:
+
+| Saiz Kasut | Kekerapan (<InlineMath math="f" />) | Kekerapan Longgokan (<InlineMath math="F_k" />) | Sempadan Bawah (<InlineMath math="T_b" />) | Sempadan Atas (<InlineMath math="T_a" />) | Saiz Selang Kelas (<InlineMath math="p" />) |
+| :-------: | :---------------------------------: | :----------------------------------------------: | :----------------------------------------: | :----------------------------------------: | :-----------------------------------: |
+| <InlineMath math="37\text{-}39" /> | <InlineMath math="2" />  | <InlineMath math="2" />  | <InlineMath math="36.5" /> | <InlineMath math="39.5" /> | <InlineMath math="3" /> |
+| <InlineMath math="40\text{-}42" /> | <InlineMath math="11" /> | <InlineMath math="13" /> | <InlineMath math="39.5" /> | <InlineMath math="42.5" /> | <InlineMath math="3" /> |
+| <InlineMath math="43\text{-}45" /> | <InlineMath math="10" /> | <InlineMath math="23" /> | <InlineMath math="42.5" /> | <InlineMath math="45.5" /> | <InlineMath math="3" /> |
+| <InlineMath math="46\text{-}48" /> | <InlineMath math="5" />  | <InlineMath math="28" /> | <InlineMath math="45.5" /> | <InlineMath math="48.5" /> | <InlineMath math="3" /> |
+| <InlineMath math="49\text{-}51" /> | <InlineMath math="2" />  | <InlineMath math="30" /> | <InlineMath math="48.5" /> | <InlineMath math="51.5" /> | <InlineMath math="3" /> |
+| **Jumlah** | <InlineMath math="30" /> |                                                  |                                            |                                            |                                       |
+
+Sempadan bawah ialah had bawah kelas tolak <InlineMath math="0.5" />.
+
+Sempadan atas ialah had atas kelas tambah <InlineMath math="0.5" />.
+
+Saiz selang kelas ialah sempadan atas tolak sempadan bawah.
+
+Ini jadual jualan kasut dalam bentuk histogram. Kebanyakan daripada <InlineMath math="30" /> pasang kasut yang dijual datang daripada kelas <InlineMath math="40\text{-}42" /> dan <InlineMath math="43\text{-}45" />, iaitu tempat kuartil akan jatuh.
+
+<HistogramChart
+  title={<>Jualan kasut mengikut kelas saiz</>}
+  description={<>Bilangan pasang kasut yang dijual dalam setiap kelas saiz kasut.</>}
+  yAxisLabel="Pasang dijual"
+  data={[{ name: "37-39", value: 2 }, { name: "40-42", value: 11 }, { name: "43-45", value: 10 }, { name: "46-48", value: 5 }, { name: "49-51", value: 2 }]}
+  chartConfig={{ value: { label: "Pasang dijual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Tentukan Kedudukan Kelas Kuartil
+
+Mula-mula, cari setiap kedudukan kuartil.
+
+Jumlah data (<InlineMath math="n" />) ialah <InlineMath math="30" />.
+
+- **Kedudukan <InlineMath math="Q_1" />**: data ke-<InlineMath math="\frac{1}{4} \times 30 = 7.5" />.
+
+  Dalam lajur <InlineMath math="F_k" />, kelas pertama berakhir pada kedudukan <InlineMath math="2" /> dan kelas kedua berakhir pada kedudukan <InlineMath math="13" />. Kedudukan <InlineMath math="3" /> hingga <InlineMath math="13" /> tergolong dalam kelas kedua, jadi kedudukan <InlineMath math="7.5" /> terletak dalam <InlineMath math="40\text{-}42" />.
+
+- **Kedudukan <InlineMath math="Q_2" /> (Median)**: data ke-<InlineMath math="\frac{1}{2} \times 30 = 15" />.
+
+  Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="15" /> berada dalam kelas <InlineMath math="43\text{-}45" /> (kerana <InlineMath math="F_k" /> sebelumnya ialah <InlineMath math="13" />, dan <InlineMath math="F_k" /> kelas ini ialah <InlineMath math="23" />).
+
+- **Kedudukan <InlineMath math="Q_3" />**: data ke-<InlineMath math="\frac{3}{4} \times 30 = 22.5" />.
+
+  Lihat <InlineMath math="F_k" />. Data ke-<InlineMath math="22.5" /> juga berada dalam kelas <InlineMath math="43\text{-}45" /> (kerana <InlineMath math="F_k" /> sebelumnya ialah <InlineMath math="13" />, dan <InlineMath math="F_k" /> kelas ini ialah <InlineMath math="23" />).
+
+### Anggarkan Nilai Kuartil secara Interpolasi
+
+Apabila kelas kuartil sudah diketahui, anggarkan nilainya dalam selang itu dengan:
+
+<BlockMath math="Q_i = T_b + \left( \frac{\frac{i}{4}n - F_{\text{cum}}}{f_i} \right) p" />
+
+Kuantiti dalam rumus ini ialah:
+
+- <InlineMath math="Q_i" /> = Nilai kuartil ke-i (yang kita cari)
+- <InlineMath math="T_b" /> = Sempadan bawah kelas kuartil ke-i
+- <InlineMath math="n" /> = Jumlah kekerapan
+- <InlineMath math="F_{\text{cum}}" /> = kekerapan longgokan **sebelum** kuartil ke-<InlineMath math="i" />
+  ke-<InlineMath math="i" />
+- <InlineMath math="f_i" /> = Kekerapan kelas kuartil ke-i
+- <InlineMath math="p" /> = Saiz selang kelas
+
+Interpolasi ini menganggap bahawa cerapan <Highlight>tersebar sekata dalam kelas yang dipilih</Highlight>. Ia anggaran berasaskan model dan tidak dapat memulihkan nilai asal yang hilang apabila data dikumpulkan.
+
+## Mencari Kuartil Jualan Kasut
+
+Kira <InlineMath math="Q_1" /> daripada jadual di atas.
+
+**Kedudukan <InlineMath math="Q_1" />**: data ke-<InlineMath math="7.5" />.
+**Kelas <InlineMath math="Q_1" />**: <InlineMath math="40\text{-}42" />.
+**Nilai yang perlu digantikan**
+
+| Kuantiti | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="39.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="2" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="11" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Masukkan ke dalam rumus:
+
+<MathContainer>
+  <BlockMath math="Q_1 = T_b + \left( \frac{\frac{1}{4}n - F_{\text{cum}}}{f_1} \right) p" />
+  <BlockMath math="Q_1 = 39.5 + \left( \frac{7.5 - 2}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39.5 + \left( \frac{5.5}{11} \right) 3" />
+  <BlockMath math="Q_1 = 39.5 + (0.5) \times 3" />
+  <BlockMath math="Q_1 = 39.5 + 1.5" />
+  <BlockMath math="Q_1 = 41" />
+</MathContainer>
+
+Jadi, nilai <InlineMath math="Q_1" /> ialah <InlineMath math="41" />. Maksudnya, kira-kira <InlineMath math="25\%" /> daripada kasut yang dijual bersaiz <InlineMath math="41" /> atau lebih kecil.
+
+Kamu boleh semak rumus interpolasi itu pada garis kekerapan longgokan. Pada aras <InlineMath math="n/4 = 7.5" />, garis itu berada di dalam kelas <InlineMath math="40\text{-}42" />, di atas <InlineMath math="Q_1 = 41" />. Pada <InlineMath math="3n/4 = 22.5" />, garis itu berada di dalam <InlineMath math="43\text{-}45" />, di atas <InlineMath math="Q_3 = 45.35" />. Antara sempadan kelas, garis itu lurus, tepat seperti yang dianggap oleh rumus.
+
+<MathVisual
+  title={<>Kuartil pada garis kekerapan longgokan</>}
+  description={<>Garis kekerapan longgokan bagi jualan kasut, dibaca pada <InlineMath math="7.5" /> untuk <InlineMath math="Q_1 = 41" /> dan pada <InlineMath math="22.5" /> untuk <InlineMath math="Q_3 = 45.35" />.</>}
+  labels={{
+    q1: <InlineMath math="Q_1" />,
+    q3: <InlineMath math="Q_3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 36, max: 52 }, y: { min: -2, max: 31 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ogive", kind: "polyline", vertices: [{ x: 36.5, y: 0 }, { x: 39.5, y: 2 }, { x: 42.5, y: 13 }, { x: 45.5, y: 23 }, { x: 48.5, y: 28 }, { x: 51.5, y: 30 }], appearance: "secondary" },
+      { id: "q1", kind: "polyline", vertices: [{ x: 36.5, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 30 / 4 }, { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }], appearance: "primary" },
+      { id: "q3", kind: "polyline", vertices: [{ x: 36.5, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: (3 * 30) / 4 }, { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "q1", objectId: "q1", at: { x: 39.5 + ((30 / 4 - 2) / 11) * 3, y: 0 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 42.5 + (((3 * 30) / 4 - 13) / 10) * 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Kira <InlineMath math="Q_3" /> daripada **data jualan kasut** dalam jadual di atas.
+
+Kemudian bandingkan interpolasi data terkumpul dengan pengiraan kuartil daripada data tak terkumpul. Mengapa jadual data terkumpul hanya memberikan anggaran?
+### Skema Jawapan
+
+**Kedudukan <InlineMath math="Q_3" />**: data ke-<InlineMath math="22.5" />.
+**Kelas <InlineMath math="Q_3" />**: <InlineMath math="43\text{-}45" />.
+**Nilai yang perlu digantikan**
+
+| Kuantiti | Nilai |
+| --- | --- |
+| <InlineMath math="T_b" /> | <InlineMath math="42.5" /> |
+| <InlineMath math="n" /> | <InlineMath math="30" /> |
+| <InlineMath math="F_{\mathrm{cum}}" /> | <InlineMath math="13" /> |
+| <InlineMath math="f_i" /> | <InlineMath math="10" /> |
+| <InlineMath math="p" /> | <InlineMath math="3" /> |
+Masukkan ke dalam rumus:
+
+<MathContainer>
+  <BlockMath math="Q_3 = T_b + \left( \frac{\frac{3}{4}n - F_{\text{cum}}}{f_3} \right) p" />
+  <BlockMath math="Q_3 = 42.5 + \left( \frac{22.5 - 13}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42.5 + \left( \frac{9.5}{10} \right) 3" />
+  <BlockMath math="Q_3 = 42.5 + (0.95) \times 3" />
+  <BlockMath math="Q_3 = 42.5 + 2.85" />
+  <BlockMath math="Q_3 = 45.35" />
+</MathContainer>
+
+Nilai anggaran <InlineMath math="Q_3" /> ialah <InlineMath math="45.35" />. Dalam model data terkumpul ini, kira-kira <InlineMath math="75\%" /> daripada kasut yang dijual bersaiz <InlineMath math="45.35" /> atau ke bawah. Baki <InlineMath math="25\%" /> lagi bersaiz lebih daripada <InlineMath math="45.35" />.
+
+**Perbandingan dengan Data Tak Terkumpul**:
+
+Mencari kuartil bagi data terkumpul menggunakan **interpolasi** kerana jadual itu memberikan selang dan kekerapan tanpa cerapan individu. Hasilnya ialah nilai kuartil anggaran.
+
+Untuk data tak terkumpul, cerapan yang tersusun diketahui, jadi konvensyen kuartil yang dinyatakan boleh memilih satu nilai atau membuat interpolasi terus antara dua nilai yang diketahui. Interpolasi data terkumpul kurang jitu kerana cerapan di dalam setiap kelas tidak lagi tersedia.

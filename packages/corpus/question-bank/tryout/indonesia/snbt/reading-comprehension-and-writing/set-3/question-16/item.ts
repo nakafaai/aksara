@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "reading",
-    topic: "data-interpretation",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "effective-sentence",
   },
-  stimulus: "night-watch",
+  stimulus: "angkutan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$20$$ orang",
+          label:
+            "Melalui program itu, pemerintah kabupaten berharap pengeluaran keluarga untuk ongkos ojek dapat berkurang dan siswa tidak lagi tiba di sekolah dalam keadaan sangat lelah sekali.",
         },
         {
           correct: false,
-          label: "$$24$$ orang",
+          label:
+            "Melalui program itu, pemerintah kabupaten berharap pengeluaran keluarga untuk ongkos ojek dapat berkurang dan supaya siswa tidak lagi tiba di sekolah dalam keadaan lelah sekali.",
         },
         {
           correct: true,
-          label: "$$25$$ orang",
+          label:
+            "Melalui program itu, pemerintah kabupaten berharap pengeluaran keluarga untuk ongkos ojek dapat berkurang dan siswa tidak lagi tiba di sekolah dalam keadaan sangat lelah.",
         },
         {
           correct: false,
-          label: "$$30$$ orang",
+          label:
+            "Melalui program itu, pemerintah kabupaten berharap pengeluaran keluarga untuk ongkos ojek dapat berkurang sehingga siswa tidak lagi tiba di sekolah dalam keadaan sangat lelah.",
         },
         {
           correct: false,
-          label: "$$32$$ orang",
+          label:
+            "Melalui program itu, pemerintah kabupaten berharap pengurangan pengeluaran keluarga untuk ongkos ojek dan siswa tidak lagi tiba di sekolah dalam keadaan sangat lelah.",
         },
       ],
     },

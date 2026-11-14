@@ -1,0 +1,299 @@
+export const metadata = {
+  title: "Lengkok Bulatan",
+  description: "Kaitkan lengkok dengan perentas, kira sagita dan tulis persamaan parametrik untuk pengiraan reka bentuk.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-12",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+
+## Hubungan Lengkok dan Perentas
+
+Setiap lengkok bulatan berkait rapat dengan perentas yang menyambungkan dua hujungnya. Perentas ialah tembereng garis yang menyambungkan dua hujung lengkok, manakala lengkok ialah laluan melengkung di sepanjang lilitan bulatan. Bayangkan sebuah panah dan anak panahnya. Tali panah ialah garis lurus, manakala kayu panah ialah bahagian yang melengkung.
+
+Untuk lengkok minor dalam bulatan yang sama, sudut pusat yang lebih besar menghasilkan lengkok yang lebih panjang dan juga perentas yang lebih panjang, tetapi <Highlight>panjang perentas tidak berkadar terus dengan panjang lengkok</Highlight>. Selepas <InlineMath math="180^\circ" />, lengkok major terus bertambah panjang manakala perentasnya menjadi lebih pendek, kerana perentas itu dikongsi dengan lengkok minor pasangannya.
+
+<MathVisual
+  title={<>Hubungan Lengkok dan Perentas</>}
+  description={<>Perbandingan lengkok dengan perentas pada beberapa sudut pusat.</>}
+  labels={{
+    "l1": <>Lengkok <InlineMath math="60^\circ" /></>,
+    "l2": <>Perentas <InlineMath math="60^\circ" /></>,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+    "l5": <>Lengkok <InlineMath math="120^\circ" /></>,
+    "l6": <>Perentas <InlineMath math="120^\circ" /></>,
+    "l7": <InlineMath math="C" />,
+    "l8": <InlineMath math="D" />,
+    "l9": <><InlineMath math="O" /> (Pusat)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos((((t / 5) * (pi / 3)) / 20)))", y: "(5 * sin((((t / 5) * (pi / 3)) / 20)))", parameter: { min: 0, max: 100 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2 }, { x: 2.5, y: 5 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.5, y: 4.33 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(5 * cos((pi + ((t * ((2 * pi) / 3)) / 30))))", y: "(5 * sin((pi + ((t * ((2 * pi) / 3)) / 30))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: -1.25, y: (5 * Math.sin(5 * Math.PI / 3)) / 2 }, { x: 2.5, y: 5 * Math.sin(5 * Math.PI / 3) }], appearance: "reference" },
+      { id: "s7", kind: "point", at: { x: -5, y: 0 }, appearance: "answer" },
+      { id: "s8", kind: "point", at: { x: 2.5, y: -4.33 }, appearance: "answer" },
+      { id: "s9", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+      { id: "s10", kind: "parametric", x: "(5 * cos((t * ((2 * pi) / 100))))", y: "(5 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4.33, y: 2.5 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.75, y: 2.17 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: 4.33 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -2.5, y: -4.33 }, placement: "below-left" },
+      { key: "l6", objectId: "s6", at: { x: -1.25, y: -2.17 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l8", objectId: "s8", at: { x: 2.5, y: -4.33 }, placement: "above-left" },
+      { key: "l9", objectId: "s9", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Rumus Panjang Perentas
+
+Lukis garis dari pusat ke **titik tengah perentas**. Garis ini membahagikan segi tiga sama kaki kepada dua segi tiga bersudut tegak. Dalam mana-mana satu segi tiga itu, sisi yang bertentangan dengan separuh sudut pusat ialah separuh perentas:
+
+<BlockMath math="\sin\left(\frac{\theta}{2}\right)=\frac{c/2}{r}\quad\Longrightarrow\quad c=2r\sin\left(\frac{\theta}{2}\right)" />
+
+
+
+Pemboleh ubah dalam rumus ini ialah:
+- <InlineMath math="c" /> = panjang perentas
+- <InlineMath math="r" /> = jejari bulatan
+- <InlineMath math="\theta" /> = sudut pusat. Guna mod darjah untuk darjah dan mod radian untuk radian
+
+Rumus ini memberikan perentas daripada jejari dan sudut pusat sesuatu lengkok bulatan. Kamu boleh menggunakannya untuk menentukan geometri tingkap, gerbang atau garis luar melengkung lain yang berbentuk bulatan ideal. Struktur sebenar masih memerlukan analisis berasingan tentang beban, bahan dan penyokongnya.
+
+## Tinggi Lengkok dan Sagita
+
+Tinggi lengkok, atau sagita, ialah jarak dari titik tengah perentas ke lengkok minor yang sepadan, diukur **berserenjang dengan perentas**. Bersama perentas, sagita menentukan bentuk sesuatu lengkok bulatan yang ideal.
+
+Gambar rajah ini menggunakan lengkok minor dengan <InlineMath math="0&lt;\theta\leq180^\circ" />. Jarak dari pusat ke titik tengah perentas ialah <InlineMath math="r\cos(\theta/2)" />. Tolak jarak ini daripada jejari untuk mendapat sagita.
+
+<BlockMath math="\begin{aligned} h &amp;= r - r\cos\left(\frac{\theta}{2}\right) \\ &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \end{aligned}" />
+
+Pemboleh ubah dalam rumus ini ialah:
+- <InlineMath math="h" /> = tinggi lengkok (sagita)
+- <InlineMath math="r" /> = jejari bulatan
+- <InlineMath math="\theta" /> = sudut pusat. Nilaikan kosinus dalam unit sudut yang sama dengan unit bagi <InlineMath math="\theta" />
+
+Gambar rajah di bawah menandakan perentas, titik tengahnya dan tembereng garis serenjang yang panjangnya ialah sagita.
+
+<MathVisual
+  title={<>Sagita bagi Lengkok <InlineMath math="60" /> Darjah</>}
+  description={<>Titik tengah <InlineMath math="M" /> membahagi dua sama perentas <InlineMath math="PQ" />. Jejari tolak jarak <InlineMath math="OM" /> sama dengan sagita.</>}
+  labels={{
+    "l1": <>Lengkok <InlineMath math="60^\circ" /></>,
+    "l2": <>Perentas</>,
+    "l3": <><InlineMath math="M" /> (Titik Tengah)</>,
+    "l4": <>Tinggi Lengkok <InlineMath math="(h)" /></>,
+    "l5": <>Jejari</>,
+    "l6": <>Jejari</>,
+    "l7": <InlineMath math="O" />,
+    "l8": <InlineMath math="P" />,
+    "l9": <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos((((-pi) / 6) + ((t * (pi / 3)) / 30))))", y: "(4 * sin((((-pi) / 6) + ((t * (pi / 3)) / 30))))", parameter: { min: 0, max: 30 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4 * Math.cos(-Math.PI / 6), y: -2 }, { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2 }, { x: 4 * Math.cos(Math.PI / 6), y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 3.46, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2 }, { x: 4 * Math.cos(0), y: 4 * Math.sin(0) }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(-Math.PI / 6), y: -2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 6), y: 2 }], appearance: "reference" },
+      { id: "s7", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s8", kind: "point", at: { x: 3.46, y: -2 }, appearance: "answer" },
+      { id: "s9", kind: "point", at: { x: 3.46, y: 2 }, appearance: "answer" },
+      { id: "s10", kind: "parametric", x: "(4 * cos((t * ((2 * pi) / 100))))", y: "(4 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.46, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "l6", objectId: "s6", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l8", objectId: "s8", at: { x: 3.46, y: -2 }, placement: "right" },
+      { key: "l9", objectId: "s9", at: { x: 3.46, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Lengkok dalam Sistem Koordinat
+
+Untuk bulatan yang **berpusat di asalan**, titik-titik pada lengkok mengikut persamaan parametrik ini. Parameter <InlineMath math="t" /> mengukur sudut mengikut arah lawan jam dari paksi mengufuk positif.
+
+<MathContainer>
+<BlockMath math="x = r\cos(t)" />
+<BlockMath math="y = r\sin(t)" />
+</MathContainer>
+
+Parameter <InlineMath math="t" /> bergerak dari sudut awal ke sudut akhir. Untuk bulatan berjejari <InlineMath math="3" /> dalam gambar rajah, nilai-nilai ini menentukan kedudukan titik di sepanjang lengkok:
+
+| Parameter | Titik pada lengkok |
+| --- | --- |
+| <InlineMath math="\pi/4" /> | <InlineMath math="(3\sqrt2/2,3\sqrt2/2)" /> |
+| <InlineMath math="\pi/2" /> | <InlineMath math="(0,3)" /> |
+| <InlineMath math="3\pi/4" /> | <InlineMath math="(-3\sqrt2/2,3\sqrt2/2)" /> |
+
+<MathVisual
+  title={<>Lengkok dalam Koordinat Cartesan</>}
+  description={<>Perwakilan lengkok menggunakan persamaan parametrik.</>}
+  labels={{
+    "l1": <>Lengkok Parametrik</>,
+    "l2": <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />,
+    "l3": <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />,
+    "l4": <InlineMath math="r=3" />,
+    "l5": <InlineMath math="r=3" />,
+    "l6": <>Asalan <InlineMath math="(0,0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((pi / 4) + ((t * (pi / 2)) / 40))))", y: "(3 * sin(((pi / 4) + ((t * (pi / 2)) / 40))))", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.cos(Math.PI / 4) }, { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.cos(Math.PI / 4) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -(1.5 * Math.cos(Math.PI / 4)), y: 1.5 * Math.sin(3 * Math.PI / 4) }, { x: -(3 * Math.cos(Math.PI / 4)), y: 3 * Math.sin(3 * Math.PI / 4) }], appearance: "answer" },
+      { id: "s6", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(3 * cos((t * ((2 * pi) / 100))))", y: "(3 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.12, y: 2.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 1.06, y: 1.06 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -1.06, y: 1.06 }, placement: "below-left" },
+      { key: "l6", objectId: "s6", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Contoh Gerbang Bulatan Ideal
+
+Sebuah gerbang bulatan ideal mempunyai jejari <InlineMath math="25 \text{ meter}" /> dan sudut pusat <InlineMath math="120^\circ" />. **Perentas memberikan lebar rentang** gerbang itu, dan sagita memberikan tingginya.
+
+**Mengira panjang perentas**:
+
+<MathContainer>
+<BlockMath math="c = 2r \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="c = 2 \times 25 \times \sin\left(\frac{120^\circ}{2}\right)" />
+<BlockMath math="c = 50 \times \sin(60^\circ)" />
+<BlockMath math="c = 50 \times \frac{\sqrt{3}}{2} = 25\sqrt{3} \text{ meter}" />
+</MathContainer>
+
+**Mengira tinggi lengkok**:
+
+<MathContainer>
+<BlockMath math="h = r\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+<BlockMath math="h = 25\left(1 - \cos(60^\circ)\right)" />
+<BlockMath math="h = 25\left(1 - \frac{1}{2}\right) = 12.5 \text{ meter}" />
+</MathContainer>
+
+## Latihan
+
+Tandakan **kuantiti yang diberi** sebelum memilih rumus. Tiga soalan pertama menggunakan panjang perentas atau sagita, manakala soalan terakhir meminta koordinat di sepanjang lengkok.
+
+1. Sebuah gerbang bulatan ideal mempunyai jejari <InlineMath math="30 \text{ m}" /> dan sudut pusat <InlineMath math="90^\circ" />. Hitung panjang perentas dan tinggi lengkoknya.
+
+2. Dalam keratan rentas sebuah kubah yang berbentuk bulatan ideal, tinggi lengkok ialah <InlineMath math="8 \text{ m}" /> dan jejari bulatan ialah <InlineMath math="15 \text{ m}" />. Tentukan sudut pusat lengkok itu.
+
+3. Sebuah lengkok bulatan minor mempunyai panjang perentas <InlineMath math="24 \text{ m}" /> dan jejari <InlineMath math="15 \text{ m}" />. Hitung sudut pusat minor dan tinggi lengkoknya.
+
+4. Dalam satu sistem koordinat, sebuah lengkok bermula di titik <InlineMath math="(4, 0)" /> dan berakhir di titik <InlineMath math="(0, 4)" /> pada bulatan yang berpusat di asalan. Tentukan persamaan parametrik piawai dalam radian bagi lengkok minor itu.
+
+### Jalan Kerja
+
+Gunakan **separuh sudut pusat** dalam sinus dan kosinus. Dalam soalan ketiga, segi tiga bersudut tegak memberikan tinggi yang tepat tanpa perlu membundarkan sudut dahulu.
+
+**Penyelesaian 1**
+
+Diberi: <InlineMath math="r = 30 \text{ m}" /> dan <InlineMath math="\theta = 90^\circ" />
+
+**Panjang perentas**:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} c &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 30 \times \sin(45^\circ) \end{aligned}" />
+<BlockMath math="c = 60 \times \frac{\sqrt{2}}{2} = 30\sqrt{2} \text{ m} \approx 42.43 \text{ m}" />
+</MathContainer>
+
+**Tinggi lengkok**:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} h &amp;= r\left(1 - \cos\left(\frac{\theta}{2}\right)\right) \\ &amp;= 30\left(1 - \cos(45^\circ)\right) \end{aligned}" />
+<BlockMath math="h = 30\left(1 - \frac{\sqrt{2}}{2}\right) \approx 8.79 \text{ m}" />
+</MathContainer>
+
+**Penyelesaian 2**
+
+Diberi: <InlineMath math="h = 8 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
+
+**Langkah 1**: Gunakan rumus tinggi lengkok
+
+<BlockMath math="8 = 15\left(1 - \cos\left(\frac{\theta}{2}\right)\right)" />
+
+**Langkah 2**: Asingkan <InlineMath math="\cos" />
+
+<MathContainer>
+<BlockMath math="\frac{8}{15} = 1 - \cos\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\cos\left(\frac{\theta}{2}\right) = 1 - \frac{8}{15} = \frac{7}{15}" />
+</MathContainer>
+
+**Langkah 3**: Hitung sudut
+
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arccos\left(\frac{7}{15}\right) \approx 62.18^\circ" />
+<BlockMath math="\theta \approx 124.36^\circ" />
+</MathContainer>
+
+**Penyelesaian 3**
+
+Diberi: <InlineMath math="c = 24 \text{ m}" /> dan <InlineMath math="r = 15 \text{ m}" />
+
+**Langkah 1**: Gunakan rumus perentas
+
+<MathContainer>
+<BlockMath math="24 = 2 \times 15 \times \sin\left(\frac{\theta}{2}\right)" />
+<BlockMath math="\sin\left(\frac{\theta}{2}\right) = \frac{24}{30} = 0.8" />
+</MathContainer>
+
+**Langkah 2**: Hitung sudut pusat minor
+
+<MathContainer>
+<BlockMath math="\frac{\theta}{2} = \arcsin(0.8) \approx 53.13^\circ" />
+<BlockMath math="\theta \approx 106.26^\circ" />
+</MathContainer>
+
+**Langkah 3**: Hitung tinggi lengkok
+
+<BlockMath math="OM=\sqrt{15^2-12^2}=\sqrt{81}=9\text{ m},\qquad h=15-9=6\text{ m}" />
+
+**Penyelesaian 4**
+
+- Titik mula: <InlineMath math="(4, 0)" /> → <InlineMath math="t_1 = 0" />
+- Titik akhir: <InlineMath math="(0, 4)" /> → <InlineMath math="t_2 = \frac{\pi}{2}" />
+- Jejari: <InlineMath math="r = 4" />
+
+**Persamaan parametrik**:
+
+<MathContainer>
+<BlockMath math="x = 4\cos(t)" />
+<BlockMath math="y = 4\sin(t)" />
+<BlockMath math="0 \leq t \leq \frac{\pi}{2}" />
+</MathContainer>

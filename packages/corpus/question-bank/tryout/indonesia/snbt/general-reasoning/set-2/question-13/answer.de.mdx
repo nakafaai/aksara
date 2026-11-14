@@ -1,19 +1,38 @@
-Eine Verneinung muss **genau dann wahr sein, wenn die ursprüngliche Aussage falsch ist**. Die ursprüngliche Aussage ist schon falsch, wenn ein einziges vorbeifahrendes Fahrzeug nicht beide Bedingungen zugleich erfüllt.
+Gesucht ist der Satz, der in jeder Situation denselben Wahrheitswert hat wie die ursprüngliche Aussage. Gib ihren vier Teilen je ein Symbol.
 
-Gehe in zwei Schritten vor:
+- <InlineMath math="p" />: Rendi gibt das Buch zu spät zurück.
+- <InlineMath math="q" />: Das Buch gehört zum Präsenzbestand.
+- <InlineMath math="r" />: Rendi zahlt eine Gebühr.
+- <InlineMath math="s" />: Rendis Bibliotheksausweis wird gesperrt.
 
-1. Die Verneinung von "jedes vorbeifahrende Fahrzeug erfüllt die Bedingung" ist "**es gibt** ein vorbeifahrendes Fahrzeug, das die Bedingung nicht erfüllt".
-2. Die Bedingung lautet "zahlt Maut **und** hat eine elektronische Karte". Die Verneinung einer Konjunktion ist die Disjunktion der Verneinungen: "zahlt keine Maut **oder** hat keine Karte".
+Die ursprüngliche Aussage ist <InlineMath math="(p \wedge q) \Rightarrow (r \vee s)" />. Am sichersten vergleichst du zusammengesetzte Implikationen, wenn du **alles in die "oder"-Form umschreibst**, mit der Regel <InlineMath math="(A \Rightarrow B) \equiv (\neg A \vee B)" />. Die Verneinung von "<InlineMath math="p" /> und <InlineMath math="q" />" ist "nicht <InlineMath math="p" /> oder nicht <InlineMath math="q" />" (Gesetz von De Morgan).
 
-<BlockMath math="\neg(p \wedge q) \equiv \neg p \vee \neg q" />
+<BlockMath math="\begin{aligned}
+(p \wedge q) \Rightarrow (r \vee s) &\equiv \neg(p \wedge q) \vee r \vee s \\
+&\equiv \neg p \vee \neg q \vee r \vee s
+\end{aligned}" />
 
-Ergebnis: Es gibt ein Fahrzeug auf dieser Straße, das keine Maut zahlt oder keine elektronische Karte hat.
+Diese Form besteht aus vier Teilen, die mit "oder" verbunden sind. Eine Implikation ist zur ursprünglichen äquivalent, wenn ihre "oder"-Form genau diese vier Teile enthält. Daraus folgt eine praktische Regel: Jeder Teil, der über den Pfeil wandert, **muss verneint werden**.
 
-Die anderen Optionen sind falsch:
+Schreib jede Antwort auf dieselbe Weise um.
 
-- Die Option "Alle Fahrzeuge ... zahlen keine Maut und haben keine Karte" behält "alle", statt zu "es gibt" zu wechseln, und verneint "und" falsch.
-- Die Option "Es gibt ein Fahrzeug ..., das keine Maut zahlt und keine Karte hat" ist zu eng. Ein Fahrzeug, das zahlt, aber keine Karte hat, macht die ursprüngliche Aussage schon falsch.
-- Fahrzeuge, die nicht auf der Straße fahren, betrifft die ursprüngliche Aussage nicht.
-- "Kein Fahrzeug zahlt Maut oder hat eine Karte" ist viel stärker als eine Verneinung.
+| Antwort | "Oder"-Form | Äquivalent? |
+| --- | --- | --- |
+| Zahlt nicht und nicht gesperrt, also nicht zu spät und kein Präsenzbestand | <InlineMath math="r \vee s \vee (\neg p \wedge \neg q)" /> | Nein |
+| Zu spät und zahlt nicht, also kein Präsenzbestand oder gesperrt | <InlineMath math="\neg p \vee r \vee \neg q \vee s" /> | Ja |
+| Zu spät, Präsenzbestand und zahlt, also gesperrt | <InlineMath math="\neg p \vee \neg q \vee \neg r \vee s" /> | Nein |
+| Zu spät und zahlt nicht, also Präsenzbestand oder gesperrt | <InlineMath math="\neg p \vee r \vee q \vee s" /> | Nein |
+| Nicht zu spät oder kein Präsenzbestand, also zahlt nicht und nicht gesperrt | <InlineMath math="(p \wedge q) \vee (\neg r \wedge \neg s)" /> | Nein |
 
-Die Verneinung lautet also "Es gibt ein Fahrzeug auf dieser Straße, das keine Maut zahlt oder keine elektronische Karte hat".
+Die äquivalente Antwort schiebt <InlineMath math="q" /> als <InlineMath math="\neg q" /> nach rechts und <InlineMath math="r" /> als <InlineMath math="\neg r" /> nach links. Alle vier Teile sind wieder vollständig da.
+
+Prüf es mit einer Situation. Angenommen, Rendi ist zu spät, das Buch gehört zum Präsenzbestand, er zahlt keine Gebühr, und sein Ausweis wird nicht gesperrt. Die ursprüngliche Aussage ist falsch, weil ihre Bedingung erfüllt ist, die Folge aber ausbleibt. Die äquivalente Antwort ist ebenfalls falsch, weil "zu spät und zahlt nicht" erfüllt ist, "kein Präsenzbestand oder gesperrt" aber nicht eintritt. Beide stimmen überein.
+
+Jede andere Antwort scheitert an einer Situation.
+
+- "Zahlt nicht und nicht gesperrt, also nicht zu spät und kein Präsenzbestand" wendet De Morgan falsch an. Die richtige Kontraposition endet mit "nicht zu spät oder kein Präsenzbestand". Ist Rendi mit einem normalen Buch zu spät, zahlt nichts und wird nicht gesperrt, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
+- "Zu spät, Präsenzbestand und zahlt, also gesperrt" schiebt <InlineMath math="r" /> ohne Verneinung nach links. Ist Rendi mit einem Präsenzbuch zu spät, zahlt die Gebühr und wird nicht gesperrt, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
+- "Zu spät und zahlt nicht, also Präsenzbestand oder gesperrt" schiebt <InlineMath math="q" /> ohne Verneinung nach rechts. Von der äquivalenten Antwort unterscheidet sie sich nur durch das Wort "kein" (*bukan*). Ist Rendi mit einem normalen Buch zu spät, zahlt nicht und wird nicht gesperrt, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
+- "Nicht zu spät oder kein Präsenzbestand, also zahlt nicht und nicht gesperrt" ist die Inversion: Beide Seiten werden verneint, aber nicht getauscht. Ist Rendi nicht zu spät, zahlt aber aus einem anderen Grund eine Gebühr, ist die ursprüngliche Aussage wahr, diese Antwort aber falsch.
+
+Äquivalent ist also "Wenn Rendi das Buch zu spät zurückgibt und keine Gebühr zahlt, dann gehört das Buch nicht zum Präsenzbestand oder sein Ausweis wird gesperrt."

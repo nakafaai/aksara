@@ -9,10 +9,11 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
     de: "kreisboegen-und-kreissektoren",
     en: "circle-arc-sector",
     id: "busur-dan-juring-lingkaran",
+    ms: "lengkok-dan-sektor-bulatan",
   },
   sections: [
     {
-      routeSlugs: { de: "bogen", en: "arc", id: "busur" },
+      routeSlugs: { de: "bogen", en: "arc", id: "busur", ms: "lengkok" },
       slug: "arc",
     },
     {
@@ -20,6 +21,7 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         de: "mittelpunktswinkel-ueber-einem-bogen",
         en: "central-angle-on-arc",
         id: "sudut-pusat-pada-busur",
+        ms: "sudut-pusat-pada-lengkok",
       },
       slug: "central-angle-on-arc",
     },
@@ -28,15 +30,26 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         de: "mittelpunktswinkel-im-kreissektor",
         en: "central-angle-on-sector",
         id: "sudut-pusat-pada-juring",
+        ms: "sudut-pusat-pada-sektor",
       },
       slug: "central-angle-on-sector",
     },
     {
-      routeSlugs: { de: "sehne", en: "chord", id: "tali-busur" },
+      routeSlugs: {
+        de: "sehne",
+        en: "chord",
+        id: "tali-busur",
+        ms: "perentas",
+      },
       slug: "chord",
     },
     {
-      routeSlugs: { de: "kreisbogen", en: "circle-arc", id: "busur-lingkaran" },
+      routeSlugs: {
+        de: "kreisbogen",
+        en: "circle-arc",
+        id: "busur-lingkaran",
+        ms: "lengkok-bulatan",
+      },
       slug: "circle-arc",
     },
     {
@@ -44,6 +57,7 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         de: "kreissektor",
         en: "circle-sector",
         id: "juring-lingkaran",
+        ms: "luas-sektor-bulatan",
       },
       slug: "circle-sector",
     },
@@ -62,6 +76,7 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         de: "geschichte-der-kreiszahl-pi",
         en: "pi-history",
         id: "sejarah-nilai-pi",
+        ms: "sejarah-nilai-pi",
       },
       slug: "pi-history",
     },
@@ -74,15 +89,21 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
         de: "bogenlaenge-und-sektorflaeche",
         en: "relationship-between-arc-length-and-sector-area",
         id: "hubungan-panjang-busur-dan-luas-juring",
+        ms: "hubungan-panjang-lengkok-dan-luas-sektor",
       },
       slug: "relationship-between-arc-length-and-sector-area",
     },
     {
-      routeSlugs: { de: "sektor", en: "sector", id: "juring" },
+      routeSlugs: { de: "sektor", en: "sector", id: "juring", ms: "sektor" },
       slug: "sector",
     },
     {
-      routeSlugs: { de: "kreissegment", en: "segment", id: "tembereng" },
+      routeSlugs: {
+        de: "kreissegment",
+        en: "segment",
+        id: "tembereng",
+        ms: "tembereng",
+      },
       slug: "segment",
     },
   ],
@@ -99,6 +120,10 @@ export const lessonMathematicsCircleArcSectorMaterial = defineLessonMaterial({
     id: {
       description: "Hubungkan busur, sudut pusat, dan luas juring.",
       title: "Busur dan Juring Lingkaran",
+    },
+    ms: {
+      description: "Kaitkan panjang lengkok, sudut pusat dan luas sektor.",
+      title: "Lengkok dan Sektor Bulatan",
     },
   },
 });

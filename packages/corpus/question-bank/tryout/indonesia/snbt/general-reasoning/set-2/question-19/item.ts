@@ -4,33 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "necessary-condition",
+    topic: "quantifiers",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Tidak ada anggota klub pencinta alam yang boleh mengikuti arung jeram.",
+        },
+        {
+          correct: false,
+          label:
+            "Semua siswa yang sudah lulus uji renang boleh mengikuti arung jeram.",
+        },
+        {
           correct: true,
-          label: "Hari ini tidak ada kunjungan dinas.",
+          label:
+            "Sebagian siswa yang tidak boleh mengikuti arung jeram adalah anggota klub pencinta alam.",
         },
         {
           correct: false,
           label:
-            "Setiap kali ketua panitia hadir, rapat koordinasi pasti dimulai.",
+            "Sebagian anggota klub pencinta alam boleh mengikuti arung jeram.",
         },
         {
           correct: false,
           label:
-            "Hari ini ada kunjungan dinas, tetapi ketua panitia tetap hadir.",
-        },
-        {
-          correct: false,
-          label: "Kemarin juga tidak ada kunjungan dinas.",
-        },
-        {
-          correct: false,
-          label: "Ketua panitia tidak hadir pada hari ini.",
+            "Semua anggota klub pencinta alam yang bukan siswa kelas X boleh mengikuti arung jeram.",
         },
       ],
     },

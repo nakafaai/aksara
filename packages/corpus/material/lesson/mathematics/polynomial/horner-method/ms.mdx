@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "Kaedah Horner",
+  description: "Bahagikan polinomial dengan kaedah Horner: darab, tambah, kemudian baca hasil bahagi dan baki. Semak baki dengan P(c) dan graf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Membahagikan Polinomial Menggunakan Pekalinya
+
+Kaedah Horner <Highlight>membahagikan polinomial dengan pembahagi linear</Highlight> seperti <InlineMath math="(x-c)" /> dengan hanya menggunakan pekalinya yang disusun mengikut tertib. Setiap langkah mendarabkan hasil terkini dengan <InlineMath math="c" /> dan menambahkan pekali seterusnya, jadi pengiraan ini tidak perlu mengulang pemboleh ubah dan kuasa seperti dalam pembahagian panjang. Nombor terakhir dalam skema ialah **baki**, yang sama dengan <InlineMath math="P(c)" />, dan nombor-nombor sebelumnya ialah pekali hasil bahagi.
+
+### Perbandingan dengan Pembahagian Panjang
+
+Untuk melihat bagaimana kaedah Horner memudahkan proses ini, bandingkan pembahagian <InlineMath math="P(x) = x^3 - 7x + 8" /> (atau <InlineMath math="x^3 + 0x^2 - 7x + 8" />) dengan <InlineMath math="x-2" /> menggunakan kedua-dua kaedah:
+
+**Pembahagian Panjang**:
+
+<BlockMath
+  math="
+\begin{array}{l}
+\qquad\quad\space\space x^2 + 2x - 3 \\
+x-2\overline{\big)x^3 + 0x^2 - 7x + 8} \\
+\quad\space\space \underline{-(x^3 - 2x^2)} \\
+\qquad\qquad 2x^2 - 7x \\
+\qquad\quad \underline{-(2x^2 - 4x)} \\
+\qquad\qquad\qquad -3x + 8 \\
+\qquad\qquad\quad \underline{-(-3x + 6)} \\
+\qquad\qquad\qquad\qquad\quad 2 \\
+\end{array}
+"
+/>
+
+**Kaedah Horner**:
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 1 & 0 & -7 & 8 \\
+  &   & 2 & 4 & -6 \\
+\hline
+  & 1 & 2 & -3 & \boxed{2} \\
+\end{array}
+"
+/>
+
+Perhatikan bahawa kaedah Horner hanya memberi tumpuan kepada pekali <InlineMath math="(1, 0, -7, 8)" /> dan nilai <InlineMath math="c=2" />. Baris bawah dalam kaedah Horner, <InlineMath math="(1, 2, -3)" />, terus memberikan pekali hasil bahagi <InlineMath math="1x^2 + 2x - 3" />, dan nombor terakhir <InlineMath math="\boxed{2}" /> ialah baki.
+
+Kaedah ini hanya boleh digunakan secara terus jika pembahagi ialah polinomial linear berdarjah satu, iaitu dalam bentuk <InlineMath math="(x-c)" /> atau <InlineMath math="(ax-b)" /> (yang boleh diubah bentuknya).
+
+Ini baris bawah skema bagi <InlineMath math="(x^3 - 7x + 8) \div (x - 2)" /> dalam bentuk palang: setiap entri ialah pekali seterusnya ditambah <InlineMath math="2" /> kali palang sebelumnya. Tiga yang pertama memberikan hasil bahagi <InlineMath math="x^2 + 2x - 3" />, dan yang terakhir ialah baki <InlineMath math="2" />.
+
+<BarChart
+  title={<>Baris Horner untuk <InlineMath math="c = 2" /></>}
+  description={<>Palang bagi baris bawah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="-3" /> dan baki <InlineMath math="2" />.</>}
+  yAxisLabel="Nilai"
+  data={[["darjah 2", 1], ["darjah 1", 0 + 2 * 1], ["darjah 0", -7 + 2 * 2], ["baki", 8 + 2 * -3]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Persediaan untuk Menggunakan Kaedah Horner
+
+**Susunan pekali** mesti merangkumi setiap kuasa, daripada yang tertinggi hingga pemalar. Sebutan yang tiada tetap memerlukan kedudukan, dan kedudukan itu diisi dengan sifar. Untuk <InlineMath math="2x^3+5x^2+6" />, gunakan:
+
+| Kuasa | Pekali |
+| --- | --- |
+| <InlineMath math="x^3" /> | <InlineMath math="2" /> |
+| <InlineMath math="x^2" /> | <InlineMath math="5" /> |
+| <InlineMath math="x" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="6" /> |
+
+Letakkan **punca pembahagi** di sebelah kiri skema. Pembahagi <InlineMath math="x+3=x-(-3)" /> memberikan <InlineMath math="c=-3" />, bukan tiga. Tulis pekali polinomial di sepanjang baris atas.
+
+## Pembahagian dengan Kaedah Horner
+
+Dalam setiap lajur, **darabkan hasil sebelumnya dan tambahkan pekali seterusnya**. Petua ini datang daripada cara kita menulis polinomial sebagai hasil darab bersarang:
+
+<BlockMath math="2x^3+5x^2+6=((2x+5)x+0)x+6" />
+
+Mulakan dengan pekali pertama, iaitu dua. Selepas setiap pekali diproses, hasil terakhir ialah nilai polinomial pada punca pembahagi. Menurut Teorem Baki, nilai itulah bakinya. Hasil-hasil sebelumnya memberikan pekali hasil bahagi.
+
+<Mermaid
+  title={<>Aliran kaedah Horner</>}
+  description={<>Setiap lajur mengulang langkah darab, kemudian tambah, sehingga pekali habis.</>}
+  chart={`flowchart TD
+  A["Tulis setiap pekali, dengan sifar untuk sebutan yang tiada"] --> B["Turunkan pekali pertama"]
+  B --> C["Darabkan hasil terkini dengan c"]
+  C --> D["Tambahkan hasil itu kepada pekali seterusnya"]
+  D --> E{"Masih ada pekali yang tinggal?"}
+  E -->|"ya"| C
+  E -->|"tidak"| F["Nombor terakhir ialah baki, yang lain ialah hasil bahagi"]`}
+/>
+
+## Menggunakan Kaedah Horner
+
+Bahagikan <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> dengan <InlineMath math="x+3" /> menggunakan kedua-dua kaedah.
+
+**Pembahagian Panjang**:
+
+<BlockMath
+  math="
+\begin{array}{l}
+\qquad\quad\space 2x^2 - x + 3 \\
+x+3\overline{\big)2x^3 + 5x^2 + 0x + 6} \\
+\quad\space \underline{-(2x^3 + 6x^2)} \\
+\qquad\qquad -x^2 + 0x \\
+\qquad\quad \underline{-(-x^2 - 3x)} \\
+\qquad\qquad\qquad 3x + 6 \\
+\qquad\qquad\quad \underline{-(3x + 9)} \\
+\qquad\qquad\qquad\qquad -3 \\
+\end{array}
+"
+/>
+
+**Kaedah Horner**:
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+-3 & 2 & 5 & 0 & 6 \\
+  &   & -6 & 3 & -9 \\
+\hline
+  & 2 & -1 & 3 & \boxed{-3} \\
+\end{array}
+"
+/>
+
+| Pekali seterusnya | Pendaraban | Penambahan |
+| --- | --- | --- |
+| <InlineMath math="5" /> | <InlineMath math="2(-3)=-6" /> | <InlineMath math="5-6=-1" /> |
+| <InlineMath math="0" /> | <InlineMath math="(-1)(-3)=3" /> | <InlineMath math="0+3=3" /> |
+| <InlineMath math="6" /> | <InlineMath math="3(-3)=-9" /> | <InlineMath math="6-9=-3" /> |
+
+Nombor terakhir ialah **baki**, iaitu <InlineMath math="-3" />. Nombor-nombor sebelumnya, <InlineMath math="2,-1,3" />, memberikan hasil bahagi <InlineMath math="H(x)=2x^2-x+3" />. Oleh itu:
+
+<BlockMath math="2x^3+5x^2+6=(x+3)(2x^2-x+3)-3" />
+
+Semak baki dengan menilai polinomial secara terus: <InlineMath math="P(-3) = 2(-27) + 5(9) + 6 = -54 + 45 + 6 = -3" />. Nilai ini sama dengan baki, seperti yang dinyatakan oleh [teorem baki](/ms/subjek/matematik/polinomial/teorem-baki). Graf <InlineMath math="y = P(x)" /> menunjukkan kaitan yang sama: titik pada graf di <InlineMath math="x = -3" /> berada tepat pada ketinggian <InlineMath math="-3" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="y = 2x^3 + 5x^2 + 6" /></>}
+  description={<>Palang bagi <InlineMath math="P(x) = 2x^3 + 5x^2 + 6" /> untuk <InlineMath math="x = -3" /> hingga <InlineMath math="1" />. Palang di <InlineMath math="x = -3" /> sama dengan baki pembahagian dengan <InlineMath math="x + 3" />, iaitu <InlineMath math="-3" />.</>}
+  yAxisLabel="P(x)"
+  data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
+  chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Pembahagi dengan Pekali Pelopor Selain Satu
+
+Untuk pembahagi <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0" />, gunakan <InlineMath math="c=b/a" /> dalam skema. Tetapi, **bahagikan hasil bahagi yang diperoleh dengan pekali pelopor pembahagi**. Bakinya tidak berubah.
+
+Contohnya, gunakan skema yang sama untuk <InlineMath math="2x+6=2(x+3)" />. Supaya hasil darabnya kekal sama, bahagikan hasil bahagi tadi dengan dua:
+
+<BlockMath math="2x^3+5x^2+6=(2x+6)\left(x^2-\frac12x+\frac32\right)-3" />
+
+<Mermaid
+  title={<>Nilai c daripada bentuk pembahagi</>}
+  description={<>Bentuk pembahagi menentukan nombor di sebelah kiri skema dan sama ada hasil bahagi perlu dibahagi sekali lagi.</>}
+  chart={`flowchart TD
+  A{"Apakah bentuk pembahagi?"} -->|"x - c"| B["Gunakan c"]
+  A -->|"x + c"| C["Gunakan -c"]
+  A -->|"ax - b"| D["Gunakan b dibahagi dengan a"]
+  D --> E["Bahagikan pekali hasil bahagi dengan a, baki kekal"]`}
+/>
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan <InlineMath math="c = 3" /> untuk pembahagi <InlineMath math="x + 3" /> | <InlineMath math="x + 3 = x - (-3)" />, jadi <InlineMath math="c = -3" /> | Gantikan <InlineMath math="x = -3" /> ke dalam <InlineMath math="x + 3" />, hasilnya mesti <InlineMath math="0" /> |
+| Melangkau sebutan yang tiada | <InlineMath math="2x^3 + 5x^2 + 6" /> memerlukan pekali sifar untuk <InlineMath math="x" /> | <InlineMath math="2x^3 + 5x^2 + 6" /> mesti ada empat pekali: <InlineMath math="2, 5, 0, 6" /> |
+| Menambah sebelum mendarab | Setiap lajur menggunakan hasil sebelumnya didarab dengan <InlineMath math="c" /> | Buat semula satu lajur: darab dahulu, kemudian tambah |
+| Terlupa membahagikan hasil bahagi untuk pembahagi <InlineMath math="ax - b" /> | Skema itu menggunakan <InlineMath math="x - \frac{b}{a}" />, bukan <InlineMath math="ax - b" /> | Darabkan pembahagi dengan hasil bahagi, kemudian tambahkan baki |
+
+Satu semakan mudah ialah **menilai <InlineMath math="P(c)" /> secara terus**. Hasilnya mesti sama dengan nombor terakhir dalam skema.
+
+## Latihan
+
+Cari **hasil bahagi dan baki** daripada pembahagian <InlineMath math="x^4 + 4" /> dengan <InlineMath math="x - 1" /> menggunakan kaedah Horner dan pembahagian panjang.
+
+Nyatakan jawapan dalam bentuk <InlineMath math="P(x) = Q(x) \cdot H(x) + S(x)" />. Kedua-dua kaedah mesti memberikan nilai yang sama, dan semakan darjah memberitahu kamu berapa banyak sebutan yang boleh ada dalam hasil bahagi.
+
+Cuba juga soalan berikut dengan kaedah Horner, kemudian **semak setiap baki dengan <InlineMath math="P(c)" />**.
+
+2. Bahagikan <InlineMath math="x^3 - 6x^2 + 11x - 6" /> dengan <InlineMath math="x - 2" />.
+
+3. Bahagikan <InlineMath math="2x^3 - 3x^2 + 4x - 5" /> dengan <InlineMath math="x + 1" />.
+
+4. Bahagikan <InlineMath math="x^3 + 2x^2 - 5" /> dengan <InlineMath math="2x - 1" />.
+
+### Kunci Jawapan
+
+- Yang dibahagi: <InlineMath math="P(x) = x^4 + 4 = x^4 + 0x^3 + 0x^2 + 0x + 4" />.
+- Pembahagi: <InlineMath math="Q(x) = x - 1" />, jadi <InlineMath math="c = 1" />.
+
+**Pembahagian Panjang**:
+
+<BlockMath
+  math="
+\begin{array}{l}
+\qquad\quad\space\space x^3 + x^2 + x + 1 \\
+x-1\overline{\big)x^4 + 0x^3 + 0x^2 + 0x + 4} \\
+\quad\space\space \underline{-(x^4 - x^3)} \\
+\qquad\qquad x^3 + 0x^2 \\
+\qquad\quad \underline{-(x^3 - x^2)} \\
+\qquad\qquad\qquad x^2 + 0x \\
+\qquad\qquad\quad \underline{-(x^2 - x)} \\
+\qquad\qquad\qquad\qquad x + 4 \\
+\qquad\qquad\qquad\quad \underline{-(x - 1)} \\
+\qquad\qquad\qquad\qquad\qquad 5 \\
+\end{array}
+"
+/>
+
+**Kaedah Horner**:
+
+<BlockMath
+  math="
+\begin{array}{c|ccccc}
+1 & 1 & 0 & 0 & 0 & 4 \\
+  &   & 1 & 1 & 1 & 1 \\
+\hline
+  & 1 & 1 & 1 & 1 & \boxed{5} \\
+\end{array}
+"
+/>
+
+**Jawapan**:
+
+- Hasil bahagi: <InlineMath math="H(x) = x^3 + x^2 + x + 1" />.
+- Baki: <InlineMath math="S = \boxed{5}" />.
+
+**Ditulis dalam Bentuk Algoritma Pembahagian**:
+
+<BlockMath math="\begin{aligned} &amp;x^4 + 4 \\ &amp;= (x-1)(x^3 + x^2 + x + 1) + 5 \end{aligned}" />
+
+**Soalan 2**. Skema Horner dengan <InlineMath math="c = 2" />:
+
+<BlockMath math="\begin{array}{c|cccc} 2 & 1 & -6 & 11 & -6 \\ & & 2 & -8 & 6 \\ \hline & 1 & -4 & 3 & \boxed{0} \end{array}" />
+
+Baris bawahnya ialah <InlineMath math="1, -4, 3, 0" />. Hasil bahaginya ialah <InlineMath math="x^2 - 4x + 3" /> dan bakinya ialah <InlineMath math="0" />. Semak: <InlineMath math="P(2) = 8 - 24 + 22 - 6 = 0" />. Baki sifar bermaksud <InlineMath math="x - 2" /> ialah faktor, seperti yang dinyatakan oleh [teorem faktor](/ms/subjek/matematik/polinomial/teorem-faktor).
+
+**Soalan 3**. Pembahagi <InlineMath math="x + 1" /> memberikan <InlineMath math="c = -1" />:
+
+<BlockMath math="\begin{array}{c|cccc} -1 & 2 & -3 & 4 & -5 \\ & & -2 & 5 & -9 \\ \hline & 2 & -5 & 9 & \boxed{-14} \end{array}" />
+
+Baris bawahnya ialah <InlineMath math="2, -5, 9, -14" />. Hasil bahaginya ialah <InlineMath math="2x^2 - 5x + 9" /> dan bakinya ialah <InlineMath math="-14" />. Semak: <InlineMath math="P(-1) = -2 - 3 - 4 - 5 = -14" />.
+
+**Soalan 4**. Gunakan <InlineMath math="c = \frac12" /> dengan pekali <InlineMath math="1, 2, 0, -5" />.
+
+<BlockMath math="\begin{array}{c|cccc} \frac12 & 1 & 2 & 0 & -5 \\ & & \frac12 & \frac54 & \frac58 \\ \hline & 1 & \frac52 & \frac54 & \boxed{-\frac{35}{8}} \end{array}" />
+
+Baris bawahnya ialah <InlineMath math="1, \frac52, \frac54, -\frac{35}{8}" />. Oleh sebab pembahaginya ialah <InlineMath math="2x - 1 = 2\left(x - \frac12\right)" />, bahagikan pekali hasil bahagi dengan <InlineMath math="2" />:
+
+<BlockMath math="x^3 + 2x^2 - 5 = (2x - 1)\left(\frac12x^2 + \frac54x + \frac58\right) - \frac{35}{8}" />
+
+Semak: <InlineMath math="P\left(\frac12\right) = \frac18 + \frac12 - 5 = -\frac{35}{8}" />.
+
+Soalan 1 dalam bentuk palang: apabila <InlineMath math="x^4 + 4" /> dibahagi dengan <InlineMath math="x - 1" />, setiap <InlineMath math="1" /> dibawa terus ke bawah kerana setiap sebutan yang tiada menyumbang <InlineMath math="0" />. Hasil bahaginya ialah <InlineMath math="x^3 + x^2 + x + 1" />, dan bakinya <InlineMath math="5 = P(1)" />.
+
+<BarChart
+  title={<>Baris Horner untuk <InlineMath math="x^4 + 4" /> dan <InlineMath math="c = 1" /></>}
+  description={<>Palang bagi baris bawah <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="1" />, <InlineMath math="1" /> dan baki <InlineMath math="5" />.</>}
+  yAxisLabel="Nilai"
+  data={[["darjah 3", 1], ["darjah 2", 0 + 1 * 1], ["darjah 1", 0 + 1 * 1], ["darjah 0", 0 + 1 * 1], ["baki", 4 + 1 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -1,0 +1,201 @@
+export const metadata = {
+   title: "Pempenjuruan Matriks",
+   description: "Guna nilai eigen dan vektor eigen untuk menentukan sama ada matriks boleh dipepenjurukan, dan bandingkan kegandaan algebra dengan kegandaan geometri.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-07-16",
+   dateModified: "2026-09-19",
+   subject: "Kaedah Linear AI",
+};
+
+## Asas yang Memisahkan Arah Koordinat
+
+Pempenjuruan menulis semula transformasi linear dalam <Highlight>asas vektor eigen</Highlight>. Dalam asas itu, setiap koordinat didarab dengan nilai eigennya sendiri, jadi koordinat tidak lagi bercampur antara satu sama lain.
+
+Matlamat utamanya ialah mencari asas yang membolehkan transformasi linear <InlineMath math="y = A \cdot x" /> diwakili oleh matriks pepenjuru <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />. Jika asas eigen boleh dipilih secara ortonormal, maka <InlineMath math="S^{-1} = S^T" /> bagi kes nyata dan <InlineMath math="S^{-1} = S^H" /> bagi kes kompleks.
+
+## Definisi Pempenjuruan
+
+Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dikatakan **boleh dipepenjurukan** jika matriks itu serupa dengan suatu matriks pepenjuru <InlineMath math="\Lambda \in \mathbb{K}^{n \times n}" />, iaitu jika wujud matriks <InlineMath math="S \in \mathbb{K}^{n \times n}" /> yang boleh disongsangkan dengan keadaan:
+
+<BlockMath math="\Lambda = S^{-1} \cdot A \cdot S" />
+
+Ini setara dengan <InlineMath math="A = S\Lambda S^{-1}" />. Jadi, penggunaan berulang mempunyai bentuk:
+
+Untuk setiap integer bukan negatif <InlineMath math="m" />:
+
+<BlockMath math="A^m = S\Lambda^m S^{-1}" />
+
+Oleh sebab <InlineMath math="\Lambda^m" /> diperoleh dengan menaikkan setiap unsur pepenjuru kepada kuasa <InlineMath math="m" />, pempenjuruan menukar masalah kuasa matriks kepada aritmetik skalar.
+
+Untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />, vektor eigen <InlineMath math="v_1=(1,1)" /> dan <InlineMath math="v_2=(-1,1)" /> menjadi lajur bagi <InlineMath math="S=\begin{pmatrix}1&-1\\1&1\end{pmatrix}" />, dan nilai eigen mengisi <InlineMath math="D=\operatorname{diag}(3,1)" />. Dalam asas <InlineMath math="v_1,v_2" />, matriks itu hanya meregangkan arah <InlineMath math="v_1" /> sebanyak tiga kali, dan inilah tepatnya <InlineMath math="A=SDS^{-1}" />.
+
+<MathVisual
+  title={<><InlineMath math="A=SDS^{-1}" /> meregangkan sel asas eigen</>}
+  description={<>Segi empat selari kelabu ialah sel bagi <InlineMath math="v_1" /> hijau kebiruan dan <InlineMath math="v_2" /> jingga. <InlineMath math="A" /> membawanya ke segi empat selari ungu: <InlineMath math="v_1" /> menjadi <InlineMath math="Av_1=3v_1" /> magenta, manakala <InlineMath math="v_2" /> kekal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 2 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 3 }, { x: 2, y: 4 }, { x: -1, y: 1 }], appearance: "secondary" },
+      { id: "stretched", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "answer" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "stretched", objectId: "stretched", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 1 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "stretched": <InlineMath math="Av_1=3v_1" />,
+    "second": <InlineMath math="v_2=Av_2" />,
+  }}
+/>
+
+## Syarat Asas Pempenjuruan
+
+Bilakah matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> boleh dipepenjurukan? Jawapannya, apabila kita boleh mencari asas bagi <InlineMath math="\mathbb{K}^n" /> yang terdiri sepenuhnya daripada vektor eigen <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> bagi <InlineMath math="A" /> dengan nilai eigen sepadan <InlineMath math="\lambda_1, \ldots, \lambda_n \in \mathbb{K}" />.
+
+Matriks pepenjuru <InlineMath math="\Lambda" /> ialah:
+
+<BlockMath math="\begin{aligned} \Lambda &amp;= \begin{pmatrix} \lambda_1 &amp; &amp; \\ &amp; \ddots &amp; \\ &amp; &amp; \lambda_n \end{pmatrix} \\ &amp;= \text{diag}(\lambda_1, \ldots, \lambda_n) \end{aligned}" />
+
+Matriks <InlineMath math="S" /> mempunyai vektor eigen sebagai lajurnya:
+
+<BlockMath math="S = (v_1 \quad \ldots \quad v_n)" />
+
+Jika <InlineMath math="A" /> boleh dipepenjurukan, maka lajur <InlineMath math="v_1, \ldots, v_n" /> bagi <InlineMath math="S" /> membentuk **asas vektor eigen**. Daripada <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" /> kita peroleh <InlineMath math="A \cdot S = S \cdot \Lambda" /> dan seterusnya <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> untuk <InlineMath math="i = 1, \ldots, n" />.
+
+Sebaliknya, jika <InlineMath math="v_1, \ldots, v_n" /> ialah asas vektor eigen, maka <InlineMath math="S" /> boleh disongsangkan, dan daripada <InlineMath math="A \cdot v_i = \lambda_i \cdot v_i" /> untuk <InlineMath math="i = 1, \ldots, n" /> kita peroleh <InlineMath math="A \cdot S = S \cdot \Lambda" /> dan seterusnya <InlineMath math="\Lambda = S^{-1} \cdot A \cdot S" />.
+
+## Matriks yang Tidak Boleh Dipepenjurukan
+
+Pertimbangkan matriks:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+Matriks ini mempunyai nilai eigen <InlineMath math="\lambda = 1" /> dengan kegandaan algebra <InlineMath math="\mu_A(1) = 2" />. Ruang eigennya ialah ruang nol bagi <InlineMath math="A - I" />:
+
+<MathContainer>
+<BlockMath math="E_A(1) = \ker(A - I)" />
+<BlockMath math="= \ker\begin{pmatrix} 0 & 2 \\ 0 & 0 \end{pmatrix}" />
+<BlockMath math="= \operatorname{span}\left\{\begin{pmatrix} 1 \\ 0 \end{pmatrix}\right\}" />
+</MathContainer>
+
+Rentang di atas mengandungi semua gandaan skalar bagi vektor yang dipaparkan dan berdimensi <InlineMath math="1" />. Jadi, ruang eigen itu memberikan **hanya satu vektor eigen tak bersandar**, sedangkan asas bagi <InlineMath math="\mathbb{K}^2" /> memerlukan dua. Oleh itu, <InlineMath math="A" /> tidak boleh dipepenjurukan.
+
+| Matriks | Kegandaan algebra bagi <InlineMath math="1" /> | Dimensi ruang eigen | Boleh dipepenjurukan? |
+| --- | --- | --- | --- |
+| Identiti <InlineMath math="I_2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | Ya |
+| Matriks <InlineMath math="A" /> di atas | <InlineMath math="2" /> | <InlineMath math="1" /> | Tidak |
+
+Cuba cari arah kedua yang kekal di tempatnya dalam paparan ini. Segi empat sama unit kelabu ditolak ke sisi menjadi segi empat selari magenta: tepi bawahnya, sepanjang <InlineMath math="e_1" />, kekal di tempatnya, tetapi setiap vektor lain condong ke arah paksi-<InlineMath math="x" />, seperti <InlineMath math="e_2" /> yang menjadi <InlineMath math="Ae_2=(2,1)^T" />. Satu-satunya arah eigen ialah <InlineMath math="E_A(1)=\operatorname{span}\{e_1\}" />, dan itu tidak cukup untuk membentuk asas bagi satah.
+
+<MathVisual
+  title={<>Ricihan <InlineMath math="A=\begin{pmatrix}1&2\\0&1\end{pmatrix}" /> hanya meninggalkan satu arah eigen</>}
+  description={<>Segi empat sama unit kelabu dipetakan kepada segi empat selari magenta. Vektor <InlineMath math="e_1" /> kekal di tempatnya, manakala <InlineMath math="e_2" /> condong menjadi <InlineMath math="Ae_2=(2,1)^T" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "answer" },
+      { id: "e2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "ae2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "image", objectId: "image", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "ae2", objectId: "ae2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "image": <InlineMath math="A\cdot\text{segi empat sama}" />,
+    "e2": <InlineMath math="e_2" />,
+    "ae2": <InlineMath math="Ae_2" />,
+    "e1": <InlineMath math="e_1=Ae_1" />,
+  }}
+/>
+
+## Keperluan untuk Pempenjuruan Matriks
+
+Jika matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> boleh dipepenjurukan, maka polinomial ciri <InlineMath math="\chi_A(t)" /> bagi <InlineMath math="A" /> atas <InlineMath math="\mathbb{K}" /> boleh difaktorkan kepada faktor linear:
+
+<BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
+
+Matriks <InlineMath math="A" /> mempunyai <InlineMath math="n" /> nilai eigen <InlineMath math="\lambda_i \in \mathbb{K}" />, dikira bersama kegandaannya, dan nilai-nilai ini tidak semestinya berbeza.
+
+**Medan yang dipilih itu penting**. Matriks nyata mungkin tidak boleh dipepenjurukan atas <InlineMath math="\mathbb{R}" />, tetapi menjadi boleh dipepenjurukan atas <InlineMath math="\mathbb{C}" /> setelah polinomial cirinya terfaktor sepenuhnya di sana.
+
+Nilai eigen yang berbeza menghapuskan keperluan untuk membandingkan kegandaan algebra dan geometri. Andaikan polinomial ciri <InlineMath math="\chi_A(t)" /> bagi <InlineMath math="A \in \mathbb{K}^{n \times n}" /> terfaktor atas <InlineMath math="\mathbb{K}" /> seperti berikut.
+
+<BlockMath math="\chi_A(t) = (\lambda_1 - t) \cdots (\lambda_n - t)" />
+
+Jika nilai eigen itu berbeza secara berpasangan, iaitu <InlineMath math="\lambda_i \neq \lambda_j" /> untuk <InlineMath math="i \neq j" /> dengan <InlineMath math="i, j \in \{1, \ldots, n\}" />, maka <InlineMath math="A" /> boleh dipepenjurukan.
+
+Vektor eigen bagi nilai eigen <InlineMath math="A" /> yang berbeza secara berpasangan itu tak bersandar linear. Dengan <InlineMath math="n" /> nilai eigen sebegitu, vektor-vektor ini membentuk asas bagi <InlineMath math="\mathbb{K}^n" />.
+
+Nilai eigen yang berulang memerlukan semakan tambahan. Setiap nilai eigen mempunyai kegandaan algebra <InlineMath math="\mu_A(\lambda_i)" /> dan kegandaan geometri <InlineMath math="\dim E_A(\lambda_i)" />, dengan hubungan:
+
+<BlockMath math="\dim E_A(\lambda_i) \leq \mu_A(\lambda_i)" />
+
+## Teorem Pencirian Pempenjuruan
+
+Bagi matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" />, pernyataan-pernyataan berikut setara:
+
+1. <InlineMath math="A" /> boleh dipepenjurukan.
+
+2. Kedua-dua syarat berikut dipenuhi. Pertama, polinomial ciri bagi <InlineMath math="A" /> mesti terfaktor kepada faktor linear:
+
+   <BlockMath math="\begin{aligned} &amp;\chi_A(t) \\ &amp;=(\lambda_1-t)^{\mu_A(\lambda_1)}\cdots(\lambda_k-t)^{\mu_A(\lambda_k)} \end{aligned}" />
+
+   dengan nilai eigen <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> bagi <InlineMath math="A" /> yang berbeza secara berpasangan. Kedua, bagi semua nilai eigen <InlineMath math="A" />, <Highlight>kegandaan algebra mesti sama dengan kegandaan geometri</Highlight>:
+
+   <BlockMath math="\begin{aligned} &amp;\mu_A(\lambda_i) = \dim E_A(\lambda_i) \\ &amp;(i = 1, \ldots, k) \end{aligned}" />
+
+3. Hasil tambah langsung semua ruang eigen ialah keseluruhan ruang vektor:
+
+   <BlockMath math="E_A(\lambda_1) \oplus \cdots \oplus E_A(\lambda_k) = \mathbb{K}^n" />
+
+   Ini bermakna wujud asas bagi <InlineMath math="\mathbb{K}^n" /> yang terdiri daripada vektor eigen <InlineMath math="A" />.
+
+Bagi setiap <InlineMath math="i = 1, \ldots, k" />, katakan <InlineMath math="v_1^{(i)}, \ldots, v_{d_i}^{(i)}" /> ialah asas bagi ruang eigen <InlineMath math="E_A(\lambda_i)" />. Maka:
+
+<BlockMath math="\begin{aligned} &amp;v_1^{(1)},\ldots,v_{d_1}^{(1)}, \\ &amp;v_1^{(2)},\ldots,v_{d_2}^{(2)},\ldots, \\ &amp;v_1^{(k)},\ldots,v_{d_k}^{(k)} \end{aligned}" />
+
+Vektor-vektor ini membentuk asas bagi <InlineMath math="\mathbb{K}^n" /> yang terdiri daripada vektor eigen <InlineMath math="A" />. Oleh itu, <InlineMath math="A" /> boleh dipepenjurukan.
+
+Ambil <InlineMath math="A=\begin{pmatrix}2&0&-1\\0&2&-1\\0&0&1\end{pmatrix}" /> dengan <InlineMath math="\chi_A(t)=(2-t)^2(1-t)" />. Ruang eigen <InlineMath math="E_A(2)" /> ialah satah <InlineMath math="z=0" /> yang berdimensi <InlineMath math="2" />, sama dengan kegandaan algebranya, dan <InlineMath math="E_A(1)" /> ialah garis yang melalui <InlineMath math="(1,1,1)" />. Dimensi <InlineMath math="2+1=3" /> memenuhi seluruh ruang, jadi <InlineMath math="A" /> boleh dipepenjurukan.
+
+<MathVisual
+  title={<>Ruang eigen yang memenuhi <InlineMath math="\mathbb R^3" /></>}
+  description={<>Satah ungu ialah <InlineMath math="E_A(2)" /> dan tembereng garis hijau kebiruan merentang <InlineMath math="E_A(1)" />. Vektor magenta <InlineMath math="w=(2,1,1)=(1,0,0)+(1,1,1)" /> dibawa kepada vektor jingga <InlineMath math="Aw=2\,(1,0,0)+(1,1,1)=(3,1,1)" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 2 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.2, y: 0.8, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }, { x: 3, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "line", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 1 }, appearance: "construction" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 1 }, appearance: "answer" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 1, y: 1, z: 1 }, placement: "above" },
+      { key: "vector", objectId: "vector", at: { x: 2, y: 1, z: 1 }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: 3, y: 1, z: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "line": <InlineMath math="(1,1,1)" />,
+    "vector": <InlineMath math="w" />,
+    "image": <InlineMath math="Aw" />,
+  }}
+/>

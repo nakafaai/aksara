@@ -1,0 +1,374 @@
+export const metadata = {
+    title: "Objek Rentetan",
+    description: "Wakilkan teks dengan rentetan Python, tulis literal rentetan yang panjang merentas beberapa baris kod sumber, dan gabungkan literal atau pemboleh ubah.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-16",
+    dateModified: "2026-09-24",
+    subject: "Pengaturcaraan AI",
+};
+
+## Aksara Unicode dalam Jujukan Tersusun
+
+Dalam Python, rentetan (string) ialah <Highlight>jujukan aksara Unicode yang tidak boleh diubah (immutable)</Highlight>. Susunannya penting: setiap aksara ada kedudukan, dan operasi seperti pengindeksan dan penghirisan menggunakan susunan itu.
+
+Rentetan ada tiga ciri utama yang perlu kamu fahami:
+
+1. **Jujukan tersusun**: Setiap aksara ada kedudukan yang tetap.
+2. **Ditulis sebagai literal**: Tanda petikan tunggal atau berganda membatasi teks dalam kod sumber.
+3. **Jenis `str`**: Python menyimpan nilai yang terhasil sebagai rentetan.
+
+Python mengira kedudukan berdasarkan **titik kod Unicode** (code point), dan satu titik kod tidak semestinya sepadan dengan satu simbol yang kelihatan. Contohnya, `len("é")` ialah `1`, tetapi `len("e\u0301")` ialah `2`: bentuk kedua mengandungi `e` dan satu tanda aksen gabungan yang berasingan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_definition.py",
+      code: `# Contoh rentetan dengan petikan tunggal
+>>> 'hello'
+'hello'
+
+# Contoh rentetan dengan petikan berganda
+>>> "hello"
+'hello'
+
+# Memaparkan rentetan dengan print
+>>> print("hello")
+hello
+
+# Menyimpan rentetan dalam pemboleh ubah
+>>> text = 'hello'
+>>> text
+'hello'`
+    }
+  ]}
+/>
+
+Gesaan interaktif menunjukkan perwakilan rentetan itu, jadi Python mungkin memilih petikan tunggal atau berganda supaya perwakilan itu mudah dibaca. `print()` pula menulis nilai rentetan itu sendiri, tanpa tanda pembatas literal.
+
+Rentetan ialah jujukan tersusun aksara Unicode, dan setiap aksara ada kod integer yang dibaca oleh `ord()`. Huruf besar `P` ada kod <InlineMath math="80" />, manakala huruf kecil terletak antara <InlineMath math="97" /> dan <InlineMath math="122" />.
+
+<BarChart
+  title={<><code>ord()</code> bagi setiap aksara dalam <code>'Python'</code></>}
+  description={<>Setiap bar ialah kod Unicode bagi aksara yang ditulis di bawahnya, mengikut susunan aksara dalam rentetan itu.</>}
+  yAxisLabel="Kod Unicode"
+  data={[
+    { name: "P", value: 80 },
+    { name: "y", value: 121 },
+    { name: "t", value: 116 },
+    { name: "h", value: 104 },
+    { name: "o", value: 111 },
+    { name: "n", value: 110 },
+  ]}
+  chartConfig={{ value: { label: "Kod Unicode", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
+## Rentetan Kosong dan Fungsi Str
+
+Python menyokong rentetan kosong dan **penukaran daripada jenis data lain** kepada rentetan. Rentetan kosong tidak mengandungi sebarang aksara dan **panjangnya sifar**, manakala `str()` membina perwakilan teks bagi apa-apa nilai.
+
+### Rentetan Kosong
+
+Rentetan kosong tidak mengandungi sebarang aksara dan **panjangnya sifar**. Kamu boleh menulisnya dengan sepasang tanda petikan yang tidak berisi apa-apa.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "empty_string.py",
+      code: `# Membina rentetan kosong
+>>> empty_text = ""
+>>> empty_text
+''`
+    }
+  ]}
+/>
+
+### Fungsi Str
+
+Fungsi `str()` memulangkan **perwakilan rentetan yang mudah dibaca** bagi sesuatu nilai. Gunakan fungsi ini apabila teks perlu mengandungi nombor atau nilai lain yang bukan rentetan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "str_function.py",
+      code: `# Menukar nombor kepada rentetan
+>>> str(5)
+'5'
+
+# Menukar float kepada rentetan
+>>> xstr = str(3.4)
+>>> print(xstr)
+3.4`
+    }
+  ]}
+/>
+
+`str()` menukar apa-apa nilai kepada teksnya, dan `len()` mengira aksara dalam teks itu. Tanda tolak dan titik perpuluhan juga dikira, dan rentetan kosong `''` ialah satu-satunya rentetan yang panjangnya <InlineMath math="0" />.
+
+<BarChart
+  title={<><code>len(str(x))</code> bagi lima nilai</>}
+  description={<>Setiap bar ialah panjang teks yang dibina oleh <code>str()</code> daripada nilai di bawahnya. Rentetan kosong tiada bar.</>}
+  yAxisLabel="Panjang teks"
+  data={[
+    { name: "42", value: 2 },
+    { name: "3.5", value: 3 },
+    { name: "-7", value: 2 },
+    { name: "True", value: 4 },
+    { name: "''", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Panjang teks", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
+## Rentetan Berbilang Baris
+
+Python membezakan antara memecahkan kod sumber kepada beberapa baris dengan menyimpan **aksara baris baharu yang sebenar** di dalam rentetan. Satu baris boleh bersambung ke baris seterusnya dalam kod sumber tanpa menambah baris baharu pada nilainya, manakala rentetan berpetikan tiga menyimpan setiap pemisah baris.
+
+### Aksara Sambungan Baris
+
+Garis condong ke belakang (backslash) di hujung baris fizikal kod sumber **menyambung pernyataan secara eksplisit**. Dalam contoh ini, pernyataan yang bersambung itu mengandungi dua literal bersebelahan, dan Python mencantumkannya tanpa menambah baris baharu pada nilainya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "line_continuation.py",
+      code: `# Sambung pernyataan sumber dengan garis condong ke belakang
+>>> text = 'xxx' \\
+...     'yyy'
+
+>>> text
+'xxxyyy'
+
+>>> print(text)
+xxxyyy`
+    }
+  ]}
+/>
+
+### Sambungan Baris dengan Kurungan
+
+Di dalam kurungan, Python menyambung pernyataan merentas pemisah baris **tanpa garis condong ke belakang**. Komen atau ruang di hujung baris tidak memutuskan sambungan ini, dan jika kamu memindahkan satu baris, kamu tidak perlu memindahkan aksara sambungan bersamanya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "parentheses_continuation.py",
+      code: `# Sambung pernyataan di dalam kurungan
+>>> text = (
+...     'xxx'
+...     'yyy'
+... )
+
+>>> text
+'xxxyyy'
+
+>>> print(text)
+xxxyyy`
+    }
+  ]}
+/>
+
+### Tanda Petikan Tiga
+
+Literal berpetikan tiga boleh menyimpan **pemisah baris yang sebenar**. Pemisah baris itu menjadi aksara `\n` dalam nilai rentetan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "triple_quotes.py",
+      code: `# Rentetan berpetikan tiga dengan pemisah baris sebenar
+>>> text = '''xxx
+... yyy
+... zzz'''
+
+>>> text
+'xxx\\nyyy\\nzzz'
+
+>>> print(text)
+xxx
+yyy
+zzz`
+    }
+  ]}
+/>
+
+Petikan berganda tiga juga berkelakuan sama. Pilih pembatas yang menjadikan teks paling mudah dibaca dan paling sedikit memerlukan jujukan lepas.
+
+## Penggabungan Literal Rentetan
+
+Python boleh menggabungkan literal rentetan semasa membaca kod sumber, atau menggabungkan nilai rentetan semasa atur cara berjalan. **Literal bersebelahan bercantum** **tanpa operator** di antaranya, manakala nilai yang disimpan dalam pemboleh ubah perlukan operator.
+
+### Penggabungan Literal Bersebelahan
+
+Python **mencantumkan literal rentetan yang bersebelahan** semasa ia membaca kod sumber. Jalan pintas ini hanya berfungsi untuk teks yang ditulis terus sebagai literal.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "literal_concatenation.py",
+      code: `# Literal rentetan yang bersebelahan digabungkan secara automatik
+>>> 'hello ' 'world'
+'hello world'
+
+# Menggabungkan beberapa rentetan sekali gus
+>>> "hel" 'lo' " world" '!'
+'hello world!'`
+    }
+  ]}
+/>
+
+### Operator Tambah
+
+Operator `+` menggabungkan **dua nilai rentetan** semasa atur cara berjalan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "plus_operator.py",
+      code: `# Menggunakan operator + untuk penggabungan
+>>> 'hello ' + 'world'
+'hello world'`
+    }
+  ]}
+/>
+
+### Operator Darab
+
+Operator `*` **mengulang rentetan** sebanyak bilangan kali yang diberi oleh satu integer.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "multiplication_operator.py",
+      code: `# Mengulang rentetan dengan operator *
+>>> 3 * '+o+'
+'+o++o++o+'`
+    }
+  ]}
+/>
+
+## Penggabungan Pemboleh Ubah Rentetan
+
+Pemboleh ubah menyimpan nilai. Gunakan operator seperti `+` apabila kamu **menggabungkan nilai-nilai itu**. Literal bersebelahan dicantumkan semasa kod sumber dibaca, sebab itulah `"a" "b"` berfungsi tetapi `name other` tidak.
+
+### Menggunakan Operator
+
+Gunakan `+` untuk menggabungkan nilai rentetan dan `*` bersama integer untuk mengulang satu rentetan. Meletakkan nama pemboleh ubah bersebelahan begitu sahaja ialah **sintaks yang tidak sah**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_concatenation.py",
+      code: `# Mentakrifkan pemboleh ubah rentetan
+>>> text1 = 'hello'
+>>> text2 = 'world!'
+>>> text3 = '+o+'
+>>> a = 3
+
+# Menggabungkan dengan operator +
+>>> text1 + ' world!'
+'hello world!'
+
+>>> 'hello ' + text2
+'hello world!'
+
+>>> text1 + ' ' + text2
+'hello world!'
+
+# Mengulang dengan operator *
+>>> a * text3
+'+o++o++o+'
+
+>>> text3 * a
+'+o++o++o+'`
+    }
+  ]}
+/>
+
+### Kesilapan Lazim
+
+Bentuk berikut gagal semasa Python menghurai kod kerana **tiada operator antara pemboleh ubah** dengan ungkapan seterusnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "concatenation_errors.py",
+      code: `# RALAT: Tidak boleh menggabungkan pemboleh ubah tanpa operator
+>>> text1 'world'
+SyntaxError ...
+
+>>> 'hello ' text2
+SyntaxError ...
+
+>>> text1 text2
+SyntaxError ...`
+    }
+  ]}
+/>
+
+Perhatikan cara tiga rentetan bercantum menjadi satu dalam gambar ini. Setiap cebisan mengekalkan susunan aksaranya dan disambung betul-betul selepas cebisan sebelumnya, jadi `W` bermula pada indeks <InlineMath math="6" />, iaitu sejurus selepas <InlineMath math="5" /> aksara `Hello` dan satu ruang. Panjang hasilnya ialah jumlah panjang semua cebisan, <InlineMath math="5+1+5=11" />. Tiga rentetan asal itu kekal sama, kerana operator `+` membina rentetan baharu.
+
+<MathVisual
+  title={<>Menggabungkan <code>'Hello' + ' ' + 'World'</code></>}
+  description={<>Setiap cebisan ada warnanya sendiri, dan tembereng di bawahnya menandakan panjangnya. Simbol ␣ ialah ruang.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -1, max: 0.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "hello-a", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "hello-b", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "hello-c", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "hello-d", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "hello-e", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "space-a", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+      { id: "world-a", kind: "point", at: { x: 6, y: 0 }, appearance: "answer" },
+      { id: "world-b", kind: "point", at: { x: 7, y: 0 }, appearance: "answer" },
+      { id: "world-c", kind: "point", at: { x: 8, y: 0 }, appearance: "answer" },
+      { id: "world-d", kind: "point", at: { x: 9, y: 0 }, appearance: "answer" },
+      { id: "world-e", kind: "point", at: { x: 10, y: 0 }, appearance: "answer" },
+      { id: "hello-length", kind: "segment", from: { x: 0, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "secondary" },
+      { id: "space-length", kind: "point", at: { x: 5, y: -0.4 }, appearance: "construction" },
+      { id: "world-length", kind: "segment", from: { x: 6, y: -0.4 }, to: { x: 10, y: -0.4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "hello-a", objectId: "hello-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "hello-b", objectId: "hello-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "hello-c", objectId: "hello-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "hello-d", objectId: "hello-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "hello-e", objectId: "hello-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "space-a", objectId: "space-a", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "world-a", objectId: "world-a", at: { x: 6, y: 0 }, placement: "above" },
+      { key: "world-b", objectId: "world-b", at: { x: 7, y: 0 }, placement: "above" },
+      { key: "world-c", objectId: "world-c", at: { x: 8, y: 0 }, placement: "above" },
+      { key: "world-d", objectId: "world-d", at: { x: 9, y: 0 }, placement: "above" },
+      { key: "world-e", objectId: "world-e", at: { x: 10, y: 0 }, placement: "above" },
+      { key: "hello-length", objectId: "hello-length", at: { x: 2, y: -0.4 }, placement: "below" },
+      { key: "world-length", objectId: "world-length", at: { x: 8, y: -0.4 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "hello-a": "H",
+    "hello-b": "e",
+    "hello-c": "l",
+    "hello-d": "l",
+    "hello-e": "o",
+    "space-a": "␣",
+    "world-a": "W",
+    "world-b": "o",
+    "world-c": "r",
+    "world-d": "l",
+    "world-e": "d",
+    "hello-length": "len('Hello') = 5",
+    "world-length": "len('World') = 5",
+  }}
+/>

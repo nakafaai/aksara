@@ -2,36 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "sentence-meaning",
     topic: "referent",
   },
-  stimulus: "leuit",
+  stimulus: "mikoriza",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "tanaman, dan gula yang terus mengalir ke jamur yang masih ada",
+        },
+        {
+          correct: false,
+          label: "jamur, dan tanaman yang membatasi jumlah jamur di akarnya",
+        },
+        {
           correct: true,
           label:
-            "Larangan memperjualbelikan padi dari leuit dan kebiasaan mengambilnya sesuai kebutuhan keluarga.",
-        },
-        {
-          correct: false,
-          label: "Kebiasaan menyimpan padi dalam bentuk ikatan bertangkai.",
-        },
-        {
-          correct: false,
-          label: "Cara membangun leuit di atas kolong yang dialiri udara.",
-        },
-        {
-          correct: false,
-          label: "Kewajiban menggiling padi segera setelah panen.",
+            "jamur, dan gula yang terus mengalir ke jamur padahal fosfor kiriman jamur tidak lagi berarti",
         },
         {
           correct: false,
           label:
-            "Pembagian padi dari leuit secara merata kepada seluruh warga kampung ketika musim paceklik datang.",
+            "jamur, dan fosfor kiriman jamur yang tidak lagi berarti bagi tanaman",
+        },
+        {
+          correct: false,
+          label:
+            "tanaman, dan gula kiriman tanaman yang tidak lagi berarti bagi jamur",
         },
       ],
     },

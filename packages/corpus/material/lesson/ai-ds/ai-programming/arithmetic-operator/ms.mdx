@@ -1,0 +1,364 @@
+export const metadata = {
+  title: "Operator Aritmetik",
+    description: "Operator aritmetik Python, peraturan keutamaan, kesekutuan dan penggunaan praktikal +, -, *, /, //, % dan ** dalam kod.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-26",
+  dateModified: "2026-09-07",
+  subject: "Pengaturcaraan AI",
+};
+
+## Menggunakan Operator untuk Aritmetik
+
+Operator aritmetik memberitahu Python pengiraan mana yang perlu dilakukan. Contohnya, `+` menambah nilai, `*` mendarab nilai, dan `**` menaikkan satu nilai kepada suatu kuasa.
+
+Python menyediakan tujuh operator aritmetik utama. Keutamaannya menentukan <Highlight>cara sesuatu ungkapan dikumpulkan</Highlight> apabila tanda kurung tidak menentukan kumpulan itu.
+
+Zum graf ini dan ikut kedua-dua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu langkah setiap kali <InlineMath math="x" /> melepasi gandaan <InlineMath math="3" />, dan bagi nombor negatif ia tetap membundar ke bawah, jadi `-5 // 3` memberi `-2`. Garis hijau kebiruan `x % 3` mendaki dari <InlineMath math="0" /> dan jatuh semula pada setiap gandaan <InlineMath math="3" />, jadi baki sentiasa sekurang-kurangnya <InlineMath math="0" /> dan kurang daripada <InlineMath math="3" />. Pada setiap titik, `x == 3 * (x // 3) + x % 3` sentiasa benar.
+
+<MathVisual
+  title={<>Pembahagian lantai <code>//</code> dan baki <code>%</code></>}
+  description={<>Garis ungu ialah <code>x // 3</code>, dan garis hijau kebiruan ialah <code>x % 3</code>, dari negatif enam hingga enam. Setiap cebisan termasuk hujung kirinya dan berhenti sejurus sebelum gandaan <InlineMath math="3" /> yang seterusnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor-a", kind: "segment", from: { x: -6, y: -2 }, to: { x: -3, y: -2 }, appearance: "secondary" },
+      { id: "floor-b", kind: "segment", from: { x: -3, y: -1 }, to: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "floor-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "floor-d", kind: "segment", from: { x: 3, y: 1 }, to: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "rest-a", kind: "segment", from: { x: -6, y: 0 }, to: { x: -3, y: 3 }, appearance: "construction" },
+      { id: "rest-b", kind: "segment", from: { x: -3, y: 0 }, to: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "rest-c", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 3 }, appearance: "construction" },
+      { id: "rest-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor-d", at: { x: 6, y: 1 }, placement: "below-left" },
+      { key: "rest", objectId: "rest-d", at: { x: 6, y: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "floor": "x // 3",
+    "rest": "x % 3",
+  }}
+/>
+
+## Susunan Keutamaan Operator
+
+Apabila satu ungkapan mencampurkan beberapa operator aritmetik, Python memerlukan susunan yang tetap untuk memutuskan pengiraan mana yang berlaku dahulu. Tujuh operator binari ini terbahagi kepada **tiga aras keutamaan**. Keutamaan menentukan cara operasi dikumpulkan. Tanda kurung boleh mengubah kumpulan itu.
+
+### Keutamaan Tertinggi
+
+**Operator Eksponen**
+
+Operator `**` digunakan untuk eksponen (kuasa) dan mempunyai keutamaan tertinggi antara tujuh operator aritmetik binari yang dibincangkan di sini. Tidak seperti yang lain, ia mengikut **kesekutuan kanan** (right-associative).
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "exponentiation.py",
+      code: `>>> 2**3
+8
+
+>>> 2**-1
+0.5
+
+>>> 2**0.5
+1.4142135623730951`
+    }
+  ]}
+/>
+
+Gunakan `**` untuk mengira kuasa dua, kuasa tiga, punca dan kuasa negatif. Contohnya, punca kuasa dua boleh ditulis dengan eksponen `0.5`.
+
+### Keutamaan Pertengahan
+
+Kumpulan operator dengan keutamaan pertengahan terdiri daripada empat operator yang kerap kamu gunakan dalam pengiraan harian.
+
+**Operator Darab**
+
+Operator `*` digunakan untuk mendarab dua nombor.
+
+**Operator Bahagi**
+
+Operator `/` melakukan pembahagian dan menghasilkan **hasil float** bagi operan `int` atau `float`, walaupun kedua-duanya integer.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "division_examples.py",
+      code: `>>> 7.0 / 2.0
+3.5
+
+>>> 7.0 / 2
+3.5
+
+>>> 7 / 2.0
+3.5
+
+>>> 7 / 2
+3.5
+
+>>> 4 / 2
+2.0`
+    }
+  ]}
+/>
+
+Walaupun `4 / 2` ialah nombor bulat dari segi matematik, Python memulangkan <InlineMath math="2.0" /> sebagai float.
+
+**Operator Pembahagian Lantai**
+
+Operator `//` melakukan pembahagian lantai (floor division). Ia membundarkan hasil bahagi ke bawah kepada integer terbesar yang kurang daripada atau sama dengan hasil yang tepat.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "integer_division.py",
+      code: `>>> 4 // 2
+2
+
+>>> 7 // 2
+3
+
+>>> -7 // 2
+-4
+
+>>> 7.0 // 2
+3.0`
+    }
+  ]}
+/>
+
+Pembahagian lantai membundar ke arah negatif infiniti. Bagi `-7 // 2`, Python mendapat `-3.5` dan membundarkannya ke bawah menjadi `-4`. Jika salah satu operan ialah float, Python tetap menggunakan operasi lantai tetapi memulangkan float.
+
+**Operator Modulo `%`**
+
+Operator `%` memulangkan baki pembahagian. Bagi operan integer dan pembahagi yang bukan sifar, ia mematuhi identiti tepat <InlineMath math="a \% b = a - (a // b) \times b" />.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "modulo_examples.py",
+      code: `>>> 5 % 4
+1
+
+>>> -5 % 4
+3
+
+>>> 5 % -4
+-3
+
+>>> -5 % -4
+-1`
+    }
+  ]}
+/>
+
+Bagi integer negatif, Python tetap memenuhi identiti di atas. Sebab itulah `5 % 4` menghasilkan `1`, manakala `-5 % 4` menghasilkan `3`. Modulo berguna untuk menyemak kebolehbahagian dan, bagi integer bukan negatif, untuk mencari digit terakhir.
+
+### Keutamaan Terendah
+
+**Tambah dan tolak** mempunyai keutamaan yang lebih rendah daripada lima operator yang lain. Tanda kurung masih boleh mengubah kumpulan operasi. Dalam `2 + 3 * 4`, Python mendarab dahulu dan menambah kemudian, jadi hasilnya `14`. Jika kamu mahu operasi tambah berlaku lebih awal, balut operasi itu dengan tanda kurung dan tulis `(2 + 3) * 4`.
+
+Keutamaan menentukan bentuk pepohon ungkapan bagi `2 + 3 * 4 ** 2`. Operator dengan keutamaan lebih tinggi duduk lebih dalam, jadi Python bekerja dari bawah ke atas: <InlineMath math="4^2=16" />, kemudian <InlineMath math="3\cdot16=48" />, kemudian <InlineMath math="2+48=50" />.
+
+<MathVisual
+  title={<>Pepohon penilaian bagi <code>2 + 3 * 4 ** 2</code></>}
+  description={<>Titik ungu ialah operator <code>+</code>, <code>*</code> dan <code>**</code>, manakala titik hijau kebiruan ialah nombor. Label pada setiap operator menunjukkan hasil yang dikira di situ, dari <code>**</code> di bawah hingga <code>+</code> di atas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 4.5 }, y: { min: -0.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-plus-two", kind: "segment", from: { x: 0, y: 3 }, to: { x: -1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-plus-times", kind: "segment", from: { x: 0, y: 3 }, to: { x: 1.5, y: 2 }, appearance: "reference" },
+      { id: "edge-times-three", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 0.5, y: 1 }, appearance: "reference" },
+      { id: "edge-times-power", kind: "segment", from: { x: 1.5, y: 2 }, to: { x: 2.5, y: 1 }, appearance: "reference" },
+      { id: "edge-power-four", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 1.8, y: 0 }, appearance: "reference" },
+      { id: "edge-power-exponent", kind: "segment", from: { x: 2.5, y: 1 }, to: { x: 3.2, y: 0 }, appearance: "reference" },
+      { id: "plus", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "two", kind: "point", at: { x: -1.5, y: 2 }, appearance: "construction" },
+      { id: "times", kind: "point", at: { x: 1.5, y: 2 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 0.5, y: 1 }, appearance: "construction" },
+      { id: "power", kind: "point", at: { x: 2.5, y: 1 }, appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: 1.8, y: 0 }, appearance: "construction" },
+      { id: "exponent", kind: "point", at: { x: 3.2, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "times", objectId: "times", at: { x: 1.5, y: 2 }, placement: "right" },
+      { key: "power", objectId: "power", at: { x: 2.5, y: 1 }, placement: "right" },
+      { key: "two", objectId: "two", at: { x: -1.5, y: 2 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: 0.5, y: 1 }, placement: "below" },
+      { key: "four", objectId: "four", at: { x: 1.8, y: 0 }, placement: "below" },
+      { key: "exponent", objectId: "exponent", at: { x: 3.2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "plus": <InlineMath math="2+48=50" />,
+    "times": <InlineMath math="3\cdot16=48" />,
+    "power": <InlineMath math="4^{2}=16" />,
+    "two": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "four": <InlineMath math="4" />,
+    "exponent": <InlineMath math="2" />,
+  }}
+/>
+
+## Peraturan Keutamaan dan Kesekutuan
+
+**Keutamaan dan kesekutuan** menentukan cara operasi dikumpulkan, manakala Python menilai operan dari kiri ke kanan. Keutamaan mengumpulkan operator daripada aras yang berbeza, dan kesekutuan mengumpulkan operator yang berada pada aras yang sama. Kedua-dua peraturan ini bertindak pada operator yang benar-benar kamu tulis, jadi `2 ** 3 ** 2` dan `8 - 3 - 2` masing-masing hanya ada satu bacaan.
+
+### Susunan Penilaian Ungkapan
+
+Tiga peraturan menentukan **cara operasi dikumpulkan** dalam sesuatu ungkapan.
+
+1. **Susunan keutamaan** menentukan operator mana yang terikat lebih kuat
+2. **Kesekutuan kiri** digunakan untuk operator yang sama keutamaannya, kecuali eksponen
+3. **Tanda kurung** boleh mengubah susunan penilaian
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "precedence_examples.py",
+      code: `>>> 2 + 4 * 3
+14
+
+>>> (2 + 4) * 3
+18
+
+>>> 2 * 2**3
+16
+
+>>> 6 / 2 * 4
+12.0
+
+>>> 6 / (2 * 4)
+0.75`
+    }
+  ]}
+/>
+
+### Peraturan Kesekutuan
+
+Kesekutuan menentukan **pengumpulan pada keutamaan yang sama** dalam sesuatu ungkapan.
+
+**Kesekutuan Kiri**
+
+Kebanyakan operator aritmetik binari pada aras keutamaan yang sama dikumpulkan dari kiri ke kanan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "left_associative.py",
+      code: `>>> 6 / 2 * 4
+12.0
+
+>>> 10 - 3 - 2
+5`
+    }
+  ]}
+/>
+
+Darab dan bahagi mempunyai keutamaan yang sama, jadi Python membaca ungkapan ini dari kiri ke kanan: `6 / 2 * 4 = (6 / 2) * 4 = 12`.
+
+**Kesekutuan Kanan**
+
+Antara tujuh operator ini, eksponen `**` dikumpulkan dari kanan ke kiri.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "right_associative.py",
+      code: `>>> 2 ** 3 ** 2
+512
+
+>>> 3 ** 2 ** 2
+81`
+    }
+  ]}
+/>
+
+Python mengumpulkan eksponen berulang dari kanan ke kiri: `2 ** 3 ** 2 = 2 ** (3 ** 2) = 2 ** 9 = 512`.
+
+Kesekutuan menentukan arah condong pepohon apabila operatornya sama. `2 ** 3 ** 2` condong ke kanan, jadi <InlineMath math="3^2=9" /> dikira dahulu dan hasilnya <InlineMath math="2^9=512" />. `100 / 10 / 5` condong ke kiri, jadi <InlineMath math="100/10=10.0" /> dikira dahulu dan hasilnya `2.0`.
+
+<MathVisual
+  title={<>Pepohon yang condong ke kanan dan ke kiri</>}
+  description={<>Pepohon kiri ialah <code>2 ** 3 ** 2</code>, dengan <code>**</code> kedua pada cabang kanan. Pepohon kanan ialah <code>100 / 10 / 5</code>, dengan <code>/</code> pertama pada cabang kiri. Titik ungu ialah operator dan label menunjukkan hasilnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 4.8 }, y: { min: -0.6, max: 2.7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-outer-power-base", kind: "segment", from: { x: -2, y: 2 }, to: { x: -3, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-power-inner-power", kind: "segment", from: { x: -2, y: 2 }, to: { x: -1, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-power-three", kind: "segment", from: { x: -1, y: 1 }, to: { x: -1.6, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-power-two", kind: "segment", from: { x: -1, y: 1 }, to: { x: -0.4, y: 0 }, appearance: "reference" },
+      { id: "edge-outer-divide-inner-divide", kind: "segment", from: { x: 3, y: 2 }, to: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "edge-outer-divide-five", kind: "segment", from: { x: 3, y: 2 }, to: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "edge-inner-divide-hundred", kind: "segment", from: { x: 2, y: 1 }, to: { x: 1.4, y: 0 }, appearance: "reference" },
+      { id: "edge-inner-divide-ten", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2.6, y: 0 }, appearance: "reference" },
+      { id: "outer-power", kind: "point", at: { x: -2, y: 2 }, appearance: "secondary" },
+      { id: "base", kind: "point", at: { x: -3, y: 1 }, appearance: "construction" },
+      { id: "inner-power", kind: "point", at: { x: -1, y: 1 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: -1.6, y: 0 }, appearance: "construction" },
+      { id: "two", kind: "point", at: { x: -0.4, y: 0 }, appearance: "construction" },
+      { id: "outer-divide", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "inner-divide", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "hundred", kind: "point", at: { x: 1.4, y: 0 }, appearance: "construction" },
+      { id: "ten", kind: "point", at: { x: 2.6, y: 0 }, appearance: "construction" },
+      { id: "five", kind: "point", at: { x: 4, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "outer-power", objectId: "outer-power", at: { x: -2, y: 2 }, placement: "above" },
+      { key: "inner-power", objectId: "inner-power", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: -3, y: 1 }, placement: "below" },
+      { key: "three", objectId: "three", at: { x: -1.6, y: 0 }, placement: "below" },
+      { key: "two", objectId: "two", at: { x: -0.4, y: 0 }, placement: "below" },
+      { key: "outer-divide", objectId: "outer-divide", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "inner-divide", objectId: "inner-divide", at: { x: 2, y: 1 }, placement: "left" },
+      { key: "hundred", objectId: "hundred", at: { x: 1.4, y: 0 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 2.6, y: 0 }, placement: "below" },
+      { key: "five", objectId: "five", at: { x: 4, y: 1 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "outer-power": <InlineMath math="2^{9}=512" />,
+    "inner-power": <InlineMath math="3^{2}=9" />,
+    "base": <InlineMath math="2" />,
+    "three": <InlineMath math="3" />,
+    "two": <InlineMath math="2" />,
+    "outer-divide": <InlineMath math="10/5=2.0" />,
+    "inner-divide": <InlineMath math="100/10=10.0" />,
+    "hundred": <InlineMath math="100" />,
+    "ten": <InlineMath math="10" />,
+    "five": <InlineMath math="5" />,
+  }}
+/>
+
+## Shell Python sebagai Kalkulator
+
+Bagi operan `int` atau `float`, operator `/` menghasilkan **float**, walaupun hasilnya nombor bulat. Operator `//` menghasilkan integer apabila kedua-dua operan ialah integer, dan float apabila salah satu operan ialah float. Hasil modulo yang bukan sifar mempunyai tanda yang sama dengan pembahagi. Identiti di atas tepat bagi integer, manakala operasi titik apungan boleh membawa ralat pembundaran.
+
+## Jadual Ringkasan Operator Aritmetik
+
+| Keutamaan | Operator | Fungsi | Kesekutuan |
+|------------|----------|----------|---------------|
+| **Tertinggi** | `**` | Eksponen | Kanan |
+| **Pertengahan** | `*` | Darab | Kiri |
+| **Pertengahan** | `/` | Bahagi | Kiri |
+| **Pertengahan** | `//` | Pembahagian lantai | Kiri |
+| **Pertengahan** | `%` | Modulo | Kiri |
+| **Terendah** | `+` | Tambah | Kiri |
+| **Terendah** | `-` | Tolak | Kiri |
+
+**Keutamaan operator** menentukan cara Python mengumpulkan ungkapan aritmetik. Gunakan tanda kurung untuk mengatasi kumpulan yang biasa apabila susunan yang kamu mahukan berbeza.

@@ -1,14 +1,31 @@
-Es gibt vier mögliche Esser. Prüfe jede Möglichkeit und **zähle, wie viele Aussagen wahr sind**. Die richtige Möglichkeit liefert genau eine wahre Aussage.
+Eine Aussage, die sicher wahr ist, muss in jeder Ankunftsreihenfolge gelten, die zu allen vier Angaben passt. Du musst also zuerst wissen, welche Reihenfolgen möglich sind.
 
-| Esser | Rafi | Sela | Tomi | Umar | Anzahl wahr |
-| --- | --- | --- | --- | --- | --- |
-| Rafi | Falsch | Falsch | Wahr | Wahr | <InlineMath math="2" /> |
-| Sela | Wahr | Falsch | Wahr | Wahr | <InlineMath math="3" /> |
-| Tomi | Falsch | Falsch | Falsch | Wahr | <InlineMath math="1" /> |
-| Umar | Falsch | Wahr | Wahr | Falsch | <InlineMath math="2" /> |
+Die Angaben 1 und 2 lassen sich zu einer Kette verbinden, von der frühesten zur spätesten Ankunft.
 
-So füllst du Umars Spalte: Umars Aussage ist genau dann wahr, wenn Selas Aussage falsch ist. Selas Aussage ist nur wahr, wenn Umar der Esser ist, also ist Umars Aussage in jedem Fall wahr, außer wenn Umar den Kuchen gegessen hat.
+<BlockMath math="\text{Oki} \rightarrow \text{Rani} \rightarrow \text{Taufik} \rightarrow \text{Sinta}" />
 
-Nur der Fall **Tomi hat den Kuchen gegessen** ergibt genau eine wahre Aussage, nämlich die von Umar. Da dieser Fall eindeutig ist, lässt sich der Esser bestimmen, und "nicht bestimmbar" ist ebenfalls falsch.
+Angabe 4 ist der Schlüssel, und du musst sie zusammen mit Angabe 3 lesen. Umar kommt vor Vina an. Angenommen, Vina ist diejenige, die vor Sinta ankommt. Umar kommt noch früher, also ist auch Umar vor Sinta, und dann wären zwei Personen aus diesem Paar vor Sinta da. Das verletzt "genau eine". Also **kommt Umar vor Sinta an**, und **Vina kommt nach Sinta**.
 
-Den Kuchen hat also Tomi gegessen.
+Zähl jetzt, wer vor Sinta ankommt. Oki, Rani und Taufik sind wegen der Kette vor ihr da, und Umar ebenfalls. Nur Vina kommt nach Sinta.
+
+<BlockMath math="\underbrace{4}_{\text{vor Sinta}} + \underbrace{1}_{\text{Sinta}} + \underbrace{1}_{\text{nach Sinta}} = 6" />
+
+Sinta kommt also immer als Fünfte an und Vina immer als Sechste. Frei ist nur noch Umars Platz zwischen Oki, Rani und Taufik, und das ergibt vier mögliche Reihenfolgen.
+
+| Möglichkeit | 1. | 2. | 3. | 4. | 5. | 6. |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Umar | Oki | Rani | Taufik | Sinta | Vina |
+| 2 | Oki | Umar | Rani | Taufik | Sinta | Vina |
+| 3 | Oki | Rani | Umar | Taufik | Sinta | Vina |
+| 4 | Oki | Rani | Taufik | Umar | Sinta | Vina |
+
+Prüf Angabe 4 in jeder Zeile: Von Umar und Vina kommt nur Umar vor Sinta an. Alle vier Zeilen passen.
+
+Die anderen Antworten gelten nur in manchen Zeilen oder nie.
+
+- "Oki kommt als Erster an" scheitert an Möglichkeit 1. Oki steht am Anfang der Kette, aber Umar hängt nicht an dieser Kette und kann zuerst da sein.
+- "Umar kommt vor Taufik an" scheitert an Möglichkeit 4. Die Angaben garantieren nur, dass Umar vor Sinta ankommt, nicht vor Taufik.
+- "Vina kommt vor Sinta an" passiert nie. Diese Antwort entsteht, wenn du Angabe 4 ohne Angabe 3 liest und Vina als die Person wählst, die vor Sinta da ist.
+- "Taufik kommt als Vierter an" scheitert an Möglichkeit 4, wo sich Umar zwischen Taufik und Sinta schiebt und Taufik Dritter wird.
+
+Sicher wahr ist also, dass Sinta als Fünfte ankommt.

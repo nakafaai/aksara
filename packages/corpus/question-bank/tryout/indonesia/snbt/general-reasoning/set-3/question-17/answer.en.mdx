@@ -1,19 +1,43 @@
-Use the full list of four arrangements and **keep those with M and P on the same shelf**.
+This question asks how many arrangements satisfy **all seven rules at once**. The chairs are numbered, so two arrangements that differ only because everyone moved one chair along still count as two.
 
-| Arrangement | Top shelf | Middle shelf | Bottom shelf | M and P together? |
-| --- | --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q | Yes, middle |
-| II | K, L | N, O, P | M, Q | No |
-| III | M, P | K, L, O | N, Q | Yes, top |
-| IV | M, P | N, O, Q | K, L | Yes, top |
+The safest method is to lock down the most constrained people first, then place everyone else one by one. Whenever there's more than one choice, record it as a new branch.
 
-Three arrangements meet the extra condition: I, III, and IV.
+Start with rule 1. There are only two possibilities: Asri in chair 1 and Bonar in chair 5, or Bonar in chair 1 and Asri in chair 5. In both cases, chairs 3 and 7 are two chairs away from Asri.
 
-The other options come from these mistakes:
+Now find Dimas's chair. The empty chairs fall into three kinds: Asri's two neighbours, the two chairs two away from Asri (chairs 3 and 7), and Bonar's two neighbours.
 
-- <InlineMath math="4" /> is the total number of arrangements without the extra condition.
-- <InlineMath math="2" /> comes from counting only arrangements with M and P on top, which misses arrangement I.
-- <InlineMath math="1" /> comes from checking only one case.
-- <InlineMath math="6" /> comes from treating the order of books within a shelf as different arrangements, although the question only asks which shelf each book is on.
+- Asri's neighbours are ruled out straight away by rule 3.
+- Try Dimas in chair 3. By rule 4, Elok sits in chair 7. By rule 5, Fajar has to be in chair 5 or chair 1, but those belong to Asri and Bonar. Fajar gets no chair. The same happens with Dimas in chair 7, because then Elok is in chair 3. This choice fails.
 
-So <InlineMath math="3" /> arrangements are possible.
+So Dimas always sits next to Bonar. From here everyone else falls into place.
+
+- Cahya sits next to Dimas (rule 2). Bonar already takes one of Dimas's neighbouring chairs, so Cahya takes the other one, which is chair 3 or chair 7.
+- Elok faces Dimas (rule 4), which puts Elok next to Asri, on the side away from Cahya.
+- Fajar is two chairs from Elok (rule 5). Two empty chairs fit: the one between Asri and Cahya, or the empty one next to Bonar.
+- Galuh and Hamid get the last two chairs. Rule 6 puts Galuh on the smaller number, so there's only one way.
+- Rule 7 then removes any arrangement that puts Hamid next to Cahya.
+
+The table records every branch. The numbers in it are chair numbers. Bonar always faces Asri, so Bonar is in chair 5 when Asri is in chair 1, and in chair 1 when Asri is in chair 5.
+
+| Asri | Cahya | Dimas | Elok | Fajar | Galuh | Hamid | Rule 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 3 | 4 | 8 | 2 | 6 | 7 | holds |
+| 1 | 3 | 4 | 8 | 6 | 2 | 7 | holds |
+| 1 | 7 | 6 | 2 | 4 | 3 | 8 | broken |
+| 1 | 7 | 6 | 2 | 8 | 3 | 4 | holds |
+| 5 | 3 | 2 | 6 | 4 | 7 | 8 | holds |
+| 5 | 3 | 2 | 6 | 8 | 4 | 7 | holds |
+| 5 | 7 | 8 | 4 | 2 | 3 | 6 | broken |
+| 5 | 7 | 8 | 4 | 6 | 2 | 3 | holds |
+
+The two rows that break rule 7 put Hamid right next to Cahya: chair 8 next to chair 7, and chair 6 next to chair 7. The count goes like this.
+
+<BlockMath math="\begin{aligned} \text{candidates} &= 2 \times 2 \times 2 = 8 \\ \text{valid arrangements} &= 8 - 2 = 6 \end{aligned}" />
+
+The first factor comes from the two choices for Asri's chair, the second from the two choices for Cahya's chair, and the third from the two choices for Fajar's chair. Galuh and Hamid add no branches, because rule 6 already fixes their order.
+
+To check, take the last row: Bonar 1, Galuh 2, Hamid 3, Elok 4, Asri 5, Fajar 6, Cahya 7, Dimas 8. Asri faces Bonar, Dimas sits next to Cahya but not next to Asri, Elok in chair 4 faces Dimas in chair 8, Fajar in chair 6 is two chairs from Elok, Galuh's number is smaller than Hamid's, and Hamid in chair 3 isn't next to Cahya in chair 7. Every rule holds.
+
+Other common answers come from a skipped step. You get <InlineMath math="8" /> if you forget rule 7. You get <InlineMath math="3" /> if you only count the case with Asri in chair 1. You get <InlineMath math="12" /> if you ignore rule 6, because then Galuh and Hamid can swap places.
+
+So the number of seating arrangements that satisfy every rule is <InlineMath math="6" />.

@@ -1,0 +1,160 @@
+export const metadata = {
+  title: "Pembahagian Polinomial",
+  description: "Bahagikan polinomial, kenal pasti hasil bahagi dan baki, kemudian sahkan jawapannya dengan pendaraban.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Hasil Bahagi dan Baki dalam Pembahagian Integer
+
+Pembahagian polinomial hampir sama dengan pembahagian integer yang sudah biasa kita buat. Apabila kita membahagikan satu nombor dengan nombor lain, kita dapat hasil bahagi dan baki.
+
+Contohnya, apabila membahagikan <InlineMath math="7" /> dengan <InlineMath math="4" />:
+
+- Sebagai nombor bercampur, <InlineMath math="\frac{7}{4}" /> = <InlineMath math="1 \frac{3}{4}" />. Hasil bahagi integernya ialah <InlineMath math="1" />, dan bakinya ialah <InlineMath math="3" />.
+- Untuk algoritma pembahagian, kita tulis pernyataan yang setara, iaitu <InlineMath math="7 = 4 \cdot 1 + 3" />.
+
+Di sini:
+
+- <InlineMath math="7" /> ialah **yang dibahagi**
+- <InlineMath math="4" /> ialah **pembahagi**
+- <InlineMath math="1" /> ialah **hasil bahagi**
+- <InlineMath math="3" /> ialah **baki**
+
+Konsep yang sama juga digunakan untuk polinomial.
+
+Lukis <InlineMath math="7" /> itu sebagai segi empat sama unit. Satu kumpulan penuh yang berisi <InlineMath math="4" /> memberikan hasil bahagi <InlineMath math="1" />, dan <InlineMath math="3" /> segi empat sama masih tertinggal. Oleh sebab <InlineMath math="3 < 4" />, kumpulan kedua tidak muat. Inilah tepatnya syarat bahawa baki lebih kecil daripada pembahagi.
+
+<MathVisual
+  title={<>Tujuh segi empat sama dalam kumpulan empat</>}
+  description={<>Tujuh segi empat sama unit: satu kumpulan 4 untuk hasil bahagi <InlineMath math="1" /> dan <InlineMath math="3" /> yang tertinggal sebagai baki, jadi <InlineMath math="7 = 4 \cdot 1 + 3" />.</>}
+  labels={{
+    group: <InlineMath math="4 \cdot 1" />,
+    rest: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 7.8 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "q0", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0 + 0.8, y: 0 }, { x: 0 + 0.8, y: 0.8 }, { x: 0, y: 0.8 }], appearance: "primary" },
+      { id: "q1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 1 + 0.8, y: 0 }, { x: 1 + 0.8, y: 0.8 }, { x: 1, y: 0.8 }], appearance: "primary" },
+      { id: "q2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2 + 0.8, y: 0 }, { x: 2 + 0.8, y: 0.8 }, { x: 2, y: 0.8 }], appearance: "primary" },
+      { id: "q3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 3 + 0.8, y: 0 }, { x: 3 + 0.8, y: 0.8 }, { x: 3, y: 0.8 }], appearance: "primary" },
+      { id: "r0", kind: "polygon", vertices: [{ x: 4.6, y: 0 }, { x: 4.6 + 0.8, y: 0 }, { x: 4.6 + 0.8, y: 0.8 }, { x: 4.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 5.6, y: 0 }, { x: 5.6 + 0.8, y: 0 }, { x: 5.6 + 0.8, y: 0.8 }, { x: 5.6, y: 0.8 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 6.6, y: 0 }, { x: 6.6 + 0.8, y: 0 }, { x: 6.6 + 0.8, y: 0.8 }, { x: 6.6, y: 0.8 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "group", objectId: "q1", at: { x: 1.8, y: 0.8 }, placement: "above" },
+      { key: "rest", objectId: "r1", at: { x: 6, y: 0.8 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Algoritma Pembahagian Polinomial
+
+Algoritma pembahagian menyatakan hubungan antara polinomial yang dibahagi, pembahagi, hasil bahagi dan baki.
+
+Jika <InlineMath math="P(x)" /> (yang dibahagi) dan <InlineMath math="Q(x)" /> (pembahagi) ialah dua polinomial, dengan <InlineMath math="Q(x) \neq 0" />, maka wujud polinomial <InlineMath math="H(x)" /> (hasil bahagi) dan <InlineMath math="S(x)" /> (baki) yang unik supaya:
+
+<BlockMath math="P(x) = Q(x) \cdot H(x) + S(x)" />
+
+Bentuk pecahan yang setara ialah:
+
+<BlockMath math="\frac{P(x)}{Q(x)} = H(x) + \frac{S(x)}{Q(x)}" />
+
+Identiti polinomial <InlineMath math="P=QH+S" /> benar untuk setiap <InlineMath math="x" />. Bentuk pecahan pula hanya tertakrif pada nilai yang memberikan <InlineMath math="Q(x)\neq0" />. Dalam kedua-dua bentuk, darjah <InlineMath math="S(x)" /> lebih kecil daripada darjah <InlineMath math="Q(x)" />, atau <InlineMath math="S(x)=0" /> apabila tiada baki.
+
+Pembahagi mesti **polinomial bukan sifar**. Walaupun begitu, nilainya masih boleh menjadi sifar pada input tertentu, seperti <InlineMath math="x+3" /> pada <InlineMath math="x=-3" />. Larangan membahagi dengan sifar terpakai pada bentuk pecahan, bukan pada identiti polinomial.
+
+**Istilah**:
+
+- <InlineMath math="P(x)" />: Polinomial yang Dibahagi
+- <InlineMath math="Q(x)" />: Polinomial Pembahagi
+- <InlineMath math="H(x)" />: Polinomial Hasil Bahagi
+- <InlineMath math="S(x)" />: Polinomial Baki
+
+**Contoh Ilustrasi**:
+
+Pembahagian <InlineMath math="x^3 + 4x^2 + 5x + 8" /> dengan <InlineMath math="x + 3" /> memberikan:
+
+- Hasil bahagi <InlineMath math="H(x) = x^2 + x + 2" />
+- Baki <InlineMath math="S(x) = 2" />
+
+Untuk mendapatkan hasil bahagi, **bahagikan sebutan pelopor**, darabkan hasilnya dengan pembahagi, kemudian tolak seluruh hasil darab itu. Ulang langkah ini sehingga darjah baki lebih rendah daripada darjah pembahagi.
+
+| Sebutan hasil bahagi | Polinomial yang ditolak | Baki semasa |
+| --- | --- | --- |
+| <InlineMath math="x^3/x=x^2" /> | <InlineMath math="x^3+3x^2" /> | <InlineMath math="x^2+5x+8" /> |
+| <InlineMath math="x^2/x=x" /> | <InlineMath math="x^2+3x" /> | <InlineMath math="2x+8" /> |
+| <InlineMath math="2x/x=2" /> | <InlineMath math="2x+6" /> | <InlineMath math="2" /> |
+
+Hasil pembahagian boleh ditulis dalam dua bentuk mengikut algoritma itu:
+
+1.  Bentuk pecahan:
+
+    <BlockMath math="\begin{aligned} &amp;\frac{x^3 + 4x^2 + 5x + 8}{x + 3} \\ &amp;= x^2 + x + 2 + \frac{2}{x + 3} \end{aligned}" />
+
+2.  Bentuk pendaraban:
+
+    <BlockMath math="\begin{aligned} &amp;x^3 + 4x^2 + 5x + 8 \\ &amp;= (x + 3)(x^2 + x + 2) + 2 \end{aligned}" />
+
+Baki <InlineMath math="S(x)=2" /> ada darjah <InlineMath math="0" />, dan darjah ini <Highlight>lebih kecil daripada darjah pembahagi</Highlight> <InlineMath math="x+3" />, iaitu <InlineMath math="1" />. Syarat inilah yang menjadikan pembahagian itu lengkap.
+
+### Mengesahkan Algoritma Pembahagian
+
+Semak jawapan dengan **sifat kalis agihan**. Darabkan setiap sebutan hasil bahagi dengan setiap sebutan pembahagi, kemudian kumpulkan sebutan serupa dan tambahkan baki:
+
+<BlockMath math="\begin{aligned}(x+3)(x^2+x+2)+2&amp;=x(x^2+x+2)+3(x^2+x+2)+2 \\ &amp;=x^3+x^2+2x+3x^2+3x+6+2 \\ &amp;=x^3+(1+3)x^2+(2+3)x+8 \\ &amp;=x^3+4x^2+5x+8\end{aligned}" />
+
+Pekali sebutan kuasa dua menjadi <InlineMath math="1+3=4" />, pekali sebutan linear menjadi <InlineMath math="2+3=5" />, dan pemalarnya menjadi <InlineMath math="6+2=8" />. Kini setiap sebutan sepadan dengan polinomial asal.
+
+Sekarang lihat semakan ini dalam bentuk nombor. Tolak <InlineMath math="(x + 3)(x^2 + x + 2)" /> daripada <InlineMath math="P(x) = x^3 + 4x^2 + 5x + 8" /> pada enam input. Setiap beza ialah tepat <InlineMath math="2" />, kerana identiti <InlineMath math="P(x) = (x + 3)(x^2 + x + 2) + 2" /> benar untuk setiap <InlineMath math="x" />, malah pada <InlineMath math="x = -3" /> ketika pembahagi bernilai sifar.
+
+<BarChart
+  title={<>Beza antara <InlineMath math="P(x)" /> dan <InlineMath math="(x + 3)(x^2 + x + 2)" /></>}
+  description={<>Palang bagi <InlineMath math="P(x) - (x + 3)(x^2 + x + 2)" /> untuk <InlineMath math="x = -3, -2, -1, 0, 1, 2" />, semuanya sama dengan baki <InlineMath math="2" />.</>}
+  yAxisLabel="Beza"
+  data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 4 * x ** 2 + 5 * x + 8 - (x + 3) * (x ** 2 + x + 2) }))}
+  chartConfig={{ value: { label: "Beza", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Kumpulkan pekali <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> mengikut darjah, satu demi satu. Palang <InlineMath math="1" />, <InlineMath math="1 + 3 = 4" />, <InlineMath math="2 + 3 = 5" /> dan <InlineMath math="6 + 2 = 8" /> ialah tepat pekali <InlineMath math="x^3 + 4x^2 + 5x + 8" />, jadi pembahagian itu betul.
+
+<BarChart
+  title={<>Pekali polinomial yang dibahagi selepas dibina semula</>}
+  description={<>Palang bagi pekali <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> pada darjah 3, 2, 1 dan 0: <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="5" /> dan <InlineMath math="8" />.</>}
+  yAxisLabel="Pekali"
+  data={[["darjah 3", 1], ["darjah 2", 1 + 3], ["darjah 1", 2 + 3], ["darjah 0", 6 + 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Pekali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Bahagikan <InlineMath math="P(x)=2x^3-3x^2+4x-5" /> dengan <InlineMath math="Q(x)=x-2" />. Nyatakan **hasil bahagi dan baki**, kemudian sahkan jawapannya dengan algoritma pembahagian. Bina semula polinomial yang dibahagi sebagai <InlineMath math="(x-2) \cdot H(x) + S(x)" /> dan pastikan setiap sebutan sepadan.
+
+### Jalan Kerja
+
+Oleh sebab pembahaginya ialah <InlineMath math="x-2" />, gunakan <InlineMath math="c=2" /> dalam **skema Horner**:
+
+<BlockMath
+  math="
+\begin{array}{c|cccc}
+2 & 2 & -3 & 4 & -5 \\
+  &   & 4 & 2 & 12 \\
+\hline
+  & 2 & 1 & 6 & \boxed{7}
+\end{array}
+"
+/>
+
+Hasil bahaginya ialah <InlineMath math="H(x)=2x^2+x+6" /> dan bakinya ialah <InlineMath math="S(x)=7" />. Sahkan dengan membina semula polinomial yang dibahagi:
+
+<BlockMath math="\begin{aligned}(x-2)(2x^2+x+6)+7&amp;=2x^3+x^2+6x-4x^2-2x-12+7 \\ &amp;=2x^3-3x^2+4x-5\end{aligned}" />
+
+Pengiraan itu memberikan:
+
+<BlockMath math="P(x)=(x-2)(2x^2+x+6)+7" />

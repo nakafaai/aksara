@@ -3,33 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "data-interpretation",
+    contentDomain: "writing",
+    topic: "word-choice",
   },
-  stimulus: "sleep-survey",
+  stimulus: "bantaran",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Survei itu diikuti oleh seluruh siswa SMA Bakti.",
+          correct: false,
+          label: "merintis",
         },
         {
-          column: 1,
-          label:
-            "Siswa yang tidur lebih dari delapan jam setiap malam paling sedikit jumlahnya.",
+          correct: false,
+          label: "menjiplak",
         },
         {
-          column: 2,
-          label:
-            "Sebagian besar siswa yang disurvei sudah tidur sesuai anjuran para ahli kesehatan.",
+          correct: true,
+          label: "mengadopsi",
         },
         {
-          column: 1,
-          label:
-            "Lebih dari separuh siswa yang disurvei tidur kurang dari tujuh jam setiap malam.",
+          correct: false,
+          label: "mewarisi",
+        },
+        {
+          correct: false,
+          label: "menularkan",
         },
       ],
     },

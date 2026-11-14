@@ -1,0 +1,540 @@
+export const metadata = {
+  title: "Atribut dan Jenis Data dengan NumPy",
+  description: "Baca shape, dtype, size dan ndim bagi tatasusunan NumPy melalui contoh kod yang konkrit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-09-20",
+  dateModified: "2026-09-12",
+  subject: "Pengaturcaraan AI",
+};
+
+## Sistem Jenis Data NumPy
+
+Jenis data menentukan **perwakilan sesuatu nilai dalam memori** dan operasi yang boleh NumPy lakukan padanya. Boolean NumPy mengambil satu bait, manakala nombor kompleks menyimpan bahagian nyata dan bahagian khayalan secara berasingan.
+
+Setiap unsur dalam tatasusunan NumPy biasa menggunakan [jenis data yang sama](https://numpy.org/doc/stable/user/basics.types.html). Susunan ini membolehkan gelung yang NumPy laksanakan dalam C memproses unsur tanpa memeriksa jenis setiap nilai satu demi satu.
+
+### Jenis Data Asas
+
+NumPy menerima jenis skalar terbina dalam Python, dan juga menyediakan **jenis skalar lebar tetap** apabila perwakilan yang tepat itu penting:
+
+1. **Boolean** (`bool` atau `np.bool_`) untuk `True` dan `False`, disimpan sebagai satu bait bagi setiap unsur
+2. **Integer** (`np.int8` hingga `np.int64`) untuk nombor bulat bertanda dengan lebar yang dinyatakan dengan jelas
+3. **Titik apungan** (`np.float16`, `np.float32` atau `np.float64`) untuk nilai titik apungan pada kepersisan yang berbeza
+4. **Kompleks** (`np.complex64` atau `np.complex128`) untuk nilai yang ada bahagian nyata dan bahagian khayalan
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_data_types.py",
+      code: `import numpy as np
+
+# Contoh jenis data asas
+bool_array = np.array([True, False, True], dtype=np.bool_)
+print("Tatasusunan Boolean:", bool_array)  # Output: Tatasusunan Boolean: [ True False  True]
+print("Dtype:", bool_array.dtype)  # Output: Dtype: bool
+
+int_array = np.array([1, 2, 3], dtype=np.int64)
+print("Tatasusunan integer:", int_array)  # Output: Tatasusunan integer: [1 2 3]
+print("Dtype:", int_array.dtype)  # Output: Dtype: int64
+
+float_array = np.array([1.0, 2.5, 3.7], dtype=np.float64)
+print("Tatasusunan float:", float_array)  # Output: Tatasusunan float: [1.  2.5 3.7]
+print("Dtype:", float_array.dtype)  # Output: Dtype: float64`
+    }
+  ]}
+/>
+
+### Jenis Data Berangka Khusus
+
+NumPy memberi kawalan kepersisan yang terperinci melalui **jenis data berangka dalam pelbagai saiz**:
+
+| Kategori | Jenis Data | Penerangan | Julat Nilai |
+|----------|-----------|-------------|-------------|
+| **Integer Bertanda** | `int8` | Integer bertanda <InlineMath math="8" />-bit | <InlineMath math="-128 \text{ hingga } 127" /> |
+| | `int16` | Integer bertanda <InlineMath math="16" />-bit | <InlineMath math="-32768 \text{ hingga } 32767" /> |
+| | `int32` | Integer bertanda <InlineMath math="32" />-bit | <InlineMath math="-2147483648 \text{ hingga } 2147483647" /> |
+| | `int64` | Integer bertanda <InlineMath math="64" />-bit | <InlineMath math="-2^{63} \text{ hingga } 2^{63}-1" /> |
+| **Integer Tak Bertanda** | `uint8` | Integer tak bertanda <InlineMath math="8" />-bit | <InlineMath math="0 \text{ hingga } 255" /> |
+| | `uint16` | Integer tak bertanda <InlineMath math="16" />-bit | <InlineMath math="0 \text{ hingga } 65535" /> |
+| | `uint32` | Integer tak bertanda <InlineMath math="32" />-bit | <InlineMath math="0 \text{ hingga } 4294967295" /> |
+| | `uint64` | Integer tak bertanda <InlineMath math="64" />-bit | <InlineMath math="0 \text{ hingga } 2^{64}-1" /> |
+| **Titik Apungan** | `float16` | Float kepersisan separuh | <InlineMath math="5 \text{ bit eksponen}" />, <InlineMath math="10 \text{ bit pecahan}" /> |
+| | `float32` | Float kepersisan tunggal | <InlineMath math="8 \text{ bit eksponen}" />, <InlineMath math="23 \text{ bit pecahan}" /> |
+| | `float64` | Float kepersisan ganda dua | <InlineMath math="11 \text{ bit eksponen}" />, <InlineMath math="52 \text{ bit pecahan}" /> |
+| **Kompleks** | `complex64` | Nombor kompleks | Dua float <InlineMath math="32" />-bit |
+| | `complex128` | Nombor kompleks | Dua float <InlineMath math="64" />-bit |
+
+### Menentukan Jenis Data
+
+Kamu boleh menentukan jenis data **semasa mencipta tatasusunan**, atau menukar nilainya menjadi tatasusunan baharu dengan dtype lain:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "specify_data_types.py",
+      code: `import numpy as np
+
+# Tentukan jenis data semasa mencipta tatasusunan
+a = np.array([0, 1, 2], dtype=float)
+print("Tatasusunan dengan dtype float:", a)  # Output: Tatasusunan dengan dtype float: [0. 1. 2.]
+print("Dtype:", a.dtype)  # Output: Dtype: float64
+
+# Fungsi ones menggunakan float secara lalai
+a = np.ones((3, 3))
+print("Dtype lalai ones:", a.dtype)  # Output: Dtype lalai ones: float64
+
+# Tukar kepada integer
+a = np.ones((3, 3), dtype=np.int64)
+print("Ones dengan dtype int:", a.dtype)  # Output: Ones dengan dtype int: int64
+print("Tatasusunan:")
+print(a)
+# Output:
+# [[1 1 1]
+#  [1 1 1]
+#  [1 1 1]]`
+    }
+  ]}
+/>
+
+### Pengesanan Jenis Data secara Automatik
+
+NumPy mengesan jenis data secara automatik berdasarkan **unsur yang diberikan**:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "automatic_dtype_detection.py",
+      code: `import numpy as np
+
+# Semuanya integer
+a = np.array([0, 1, 2])
+print("Semua int - dtype:", a.dtype)  # Output biasa pada sistem 64-bit: Semua int - dtype: int64
+
+# Semuanya float
+a = np.array([0., 1., 2.])
+print("Semua float - dtype:", a.dtype)  # Output: Semua float - dtype: float64
+
+# Campuran int dan float
+a = np.array([0, 1, 2.])
+print("Campuran - dtype:", a.dtype)  # Output: Campuran - dtype: float64
+print("Hasil tatasusunan:", a)  # Output: Hasil tatasusunan: [0. 1. 2.]`
+    }
+  ]}
+/>
+
+Nombor dalam nama `dtype` ialah bilangan bit bagi setiap unsur, dan `itemsize` membahagikan nombor itu dengan <InlineMath math="8" />. `complex128` menyimpan dua nilai `float64`, iaitu bahagian nyata dan bahagian khayalan, jadi setiap unsur memerlukan <InlineMath math="16" /> bait.
+
+<BarChart
+  title={<><code>itemsize</code> bagi enam nilai <code>dtype</code> dalam bait</>}
+  description={<>Setiap bar ialah <code>itemsize</code> bagi <code>dtype</code> yang tertulis di bawahnya, iaitu bilangan bit dalam namanya dibahagi dengan <InlineMath math="8" />.</>}
+  yAxisLabel="Bait bagi setiap unsur"
+  data={[
+    { name: "int8", value: 8 / 8 },
+    { name: "int32", value: 32 / 8 },
+    { name: "int64", value: 64 / 8 },
+    { name: "float32", value: 32 / 8 },
+    { name: "float64", value: 64 / 8 },
+    { name: "complex128", value: 128 / 8 },
+  ]}
+  chartConfig={{ value: { label: "Bait bagi setiap unsur", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Atribut Tatasusunan NumPy
+
+Atribut menerangkan **struktur tatasusunan** tanpa perlu membaca setiap nilai: bentuknya, bilangan unsur, dtype, dan bait yang diduduki oleh unsur. `nbytes` mengukur storan unsur sahaja, bukan seluruh memori proses Python dan bukan juga metadata objek tatasusunan itu.
+
+### Atribut Dimensi dan Bentuk
+
+Contoh berikut membaca **atribut struktur yang utama** daripada satu tatasusunan dua dimensi.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "array_attributes.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 2D sebagai contoh
+a = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.int64)
+print("Tatasusunan:")
+print(a)
+# Output:
+# [[0 1 2]
+#  [3 4 5]]
+
+print("Shape (bentuk):", a.shape)  # Output: Shape (bentuk): (2, 3)
+print("Ndim (dimensi):", a.ndim)  # Output: Ndim (dimensi): 2
+print("Size (jumlah unsur):", a.size)  # Output: Size (jumlah unsur): 6
+print("Dtype (jenis data):", a.dtype)  # Output: Dtype (jenis data): int64
+print("Bait yang digunakan unsur:", a.nbytes)  # Output: Bait yang digunakan unsur: 48`
+    }
+  ]}
+/>
+
+### Atribut Tatasusunan
+
+Tatasusunan melaporkan strukturnya sendiri melalui atribut. Jadual ini menyenaraikan atribut yang paling kerap kamu baca dan **nilai yang dipulangkan oleh setiap satunya** bagi tatasusunan <InlineMath math="2 \times 3" />.
+
+| Atribut | Fungsi | Contoh Hasil |
+|-----------|----------|----------------|
+| `ndarray.shape` | Bilangan unsur pada setiap paksi | `(2, 3)` bagi tatasusunan <InlineMath math="2 \times 3" /> |
+| `ndarray.ndim` | Bilangan paksi atau dimensi | `2` bagi tatasusunan dua dimensi |
+| `ndarray.size` | Jumlah semua unsur | `6` bagi tatasusunan <InlineMath math="2 \times 3" /> |
+| `ndarray.dtype` | Jenis data unsur | `int64`, `float64`, dan lain-lain |
+| `ndarray.nbytes` | Bait yang digunakan oleh unsur tatasusunan | `48` bagi enam nilai `int64` |
+
+### Ketekalan Jenis Data
+
+Semua unsur dalam tatasusunan NumPy biasa berkongsi satu jenis data. Objek `numpy.dtype` menerangkan cara nilai itu disimpan dan ditafsirkan dalam memori. Apabila input mempunyai jenis yang berbeza, <Highlight>NumPy menggunakan peraturan promosinya</Highlight> untuk mencari dtype sepunya yang serasi. Hasilnya ditentukan oleh kepersisan dan kategori jenis. Berapa kali setiap jenis input muncul tidak mempengaruhi peraturan ini.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_consistency.py",
+      code: `import numpy as np
+
+# Semuanya integer
+a = np.array([0, 1, 2])
+print("Semua int - dtype:", a.dtype)  # Output biasa pada sistem 64-bit: Semua int - dtype: int64
+
+# Semuanya float
+a = np.array([0., 1., 2.])
+print("Semua float - dtype:", a.dtype)  # Output: Semua float - dtype: float64
+
+# Campuran integer dan float (automatik menjadi float)
+a = np.array([0, 1, 2.])
+print("Campuran - dtype:", a.dtype)  # Output: Campuran - dtype: float64
+print("Hasil campuran:", a)  # Output: Hasil campuran: [0. 1. 2.]`
+    }
+  ]}
+/>
+
+Putar grid titik ini, yang mewakili `np.zeros((2, 3, 4))`. Ia ada dua lapisan sepanjang `axis 0`, tiga baris sepanjang `axis 1`, dan empat lajur sepanjang `axis 2`, jadi `arr.shape` ialah `(2, 3, 4)` dan `arr.ndim` ialah `3`. Kira titiknya: `2 * 3 * 4 = 24`, dan itulah `arr.size`. Setiap nombor dalam `shape` ialah bilangan titik di sepanjang satu paksi.
+
+<MathVisual
+  title={<>Tatasusunan berbentuk <code>(2, 3, 4)</code> dalam tiga dimensi</>}
+  description={<>Setiap titik ialah satu unsur. Lapisan ungu dan hijau kebiruan ialah <code>axis 0</code>, baris ialah <code>axis 1</code>, dan lajur ialah <code>axis 2</code>.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1, max: 3.2 }, z: { min: -0.5, max: 2 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 1, z: 0.5 } },
+    objects: [
+      { id: "row-0-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 0 }, { x: 1, y: 2, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 3, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "row-0-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }], appearance: "secondary" },
+      { id: "row-0-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], appearance: "secondary" },
+      { id: "row-1-0", kind: "polyline", vertices: [{ x: 0, y: 2, z: 1 }, { x: 1, y: 2, z: 1 }, { x: 2, y: 2, z: 1 }, { x: 3, y: 2, z: 1 }], appearance: "construction" },
+      { id: "row-1-1", kind: "polyline", vertices: [{ x: 0, y: 1, z: 1 }, { x: 1, y: 1, z: 1 }, { x: 2, y: 1, z: 1 }, { x: 3, y: 1, z: 1 }], appearance: "construction" },
+      { id: "row-1-2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 1 }, { x: 1, y: 0, z: 1 }, { x: 2, y: 0, z: 1 }, { x: 3, y: 0, z: 1 }], appearance: "construction" },
+      { id: "axis-zero", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: 2, z: 1.6 }, appearance: "answer" },
+      { id: "axis-one", kind: "segment", from: { x: -0.8, y: 2, z: 0 }, to: { x: -0.8, y: -0.6, z: 0 }, appearance: "highlight" },
+      { id: "axis-two", kind: "segment", from: { x: -0.8, y: 2.6, z: 0 }, to: { x: 3.6, y: 2.6, z: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "axis-zero", objectId: "axis-zero", at: { x: -0.8, y: 2, z: 1.6 }, placement: "above" },
+      { key: "axis-one", objectId: "axis-one", at: { x: -0.8, y: -0.6, z: 0 }, placement: "left" },
+      { key: "axis-two", objectId: "axis-two", at: { x: 3.6, y: 2.6, z: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "axis-zero": "paksi 0",
+    "axis-one": "paksi 1",
+    "axis-two": "paksi 2",
+  }}
+/>
+
+## Penukaran dan Manipulasi Jenis Data
+
+Tukar jenis data apabila **jenis yang diperlukan berbeza** daripada dtype semasa, contohnya untuk memenuhi kontrak input sesuatu fungsi atau untuk menjimatkan memori. Penukaran boleh menghilangkan kepersisan atau nilai pecahan. Menyimpan integer juga tidak menjamin setiap operasi selepas itu akan memulangkan integer.
+
+### Kaedah Penukaran Jenis Data
+
+Penukaran jenis data mengubah perwakilan yang digunakan dalam analisis seterusnya. Kaedah `astype()` memulangkan tatasusunan yang sudah ditukar. Ia tidak mengubah tatasusunan asal di tempatnya. Apabila menukar nilai titik apungan kepada integer, NumPy **memangkas bahagian pecahan ke arah sifar**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_conversion.py",
+      code: `import numpy as np
+
+# Tatasusunan float asal
+original = np.array([1.1, 2.7, 3.9])
+print("Tatasusunan asal:", original)  # Output: Tatasusunan asal: [1.1 2.7 3.9]
+print("Dtype asal:", original.dtype)  # Output: Dtype asal: float64
+
+# Tukar kepada integer menggunakan astype
+converted = original.astype(np.int64)
+print("Ditukar kepada int:", converted)  # Output: Ditukar kepada int: [1 2 3]
+print("Dtype selepas ditukar:", converted.dtype)  # Output: Dtype selepas ditukar: int64
+
+# Tukar kepada jenis data tertentu
+float32_array = original.astype(np.float32)
+print("Dtype float32:", float32_array.dtype)  # Output: Dtype float32: float32
+
+# Tukar rentetan kepada integer
+string_array = np.array(['1', '2', '3'])
+int_from_string = string_array.astype(np.int64)
+print("Daripada rentetan:", int_from_string)  # Output: Daripada rentetan: [1 2 3]
+print("Dtype rentetan ke int:", int_from_string.dtype)  # Output: Dtype rentetan ke int: int64`
+    }
+  ]}
+/>
+
+### Pengoptimuman Memori dengan Jenis Data
+
+Memilih jenis data paling sempit yang masih meliputi **nilai dan kepersisan yang diperlukan** boleh menjimatkan banyak memori. Sebelum menyempitkan dtype, semak julatnya supaya nilai tidak melimpah atau kehilangan kepersisan yang diperlukan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "memory_optimization.py",
+      code: `import numpy as np
+
+# Tatasusunan dengan jenis data integer 64-bit yang dinyatakan dengan jelas
+large_array_int64 = np.arange(1000000, dtype=np.int64)
+print("Itemsize int64:", large_array_int64.itemsize, "bait")  # Output: Itemsize int64: 8 bait
+print("Memori unsur int64:", large_array_int64.nbytes, "bait")  # Output: Memori unsur int64: 8000000 bait
+
+# Tatasusunan dengan jenis data yang lebih kecil (int32)
+large_array_int32 = np.arange(1000000, dtype=np.int32)
+print("Itemsize int32:", large_array_int32.itemsize, "bait")  # Output: Itemsize int32: 4 bait
+print("Memori unsur int32:", large_array_int32.nbytes, "bait")  # Output: Memori unsur int32: 4000000 bait
+
+# Penjimatan memori
+memory_saved = large_array_int64.nbytes - large_array_int32.nbytes
+print("Memori dijimatkan:", memory_saved, "bait")  # Output: Memori dijimatkan: 4000000 bait
+print("Peratus memori dijimatkan:", (memory_saved / large_array_int64.nbytes) * 100, "%")  # Output: Peratus memori dijimatkan: 50.0 %`
+    }
+  ]}
+/>
+
+### Maklumat Terperinci Jenis Data
+
+Atribut `itemsize` melaporkan **bilangan bait yang digunakan oleh setiap unsur**, jadi kita boleh membandingkan kepersisan dan kos memori bagi jenis data yang berbeza.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dtype_info.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan dengan pelbagai jenis data
+arrays = {
+    'int8': np.array([1, 2, 3], dtype=np.int8),
+    'int32': np.array([1, 2, 3], dtype=np.int32),
+    'int64': np.array([1, 2, 3], dtype=np.int64),
+    'float32': np.array([1.0, 2.0, 3.0], dtype=np.float32),
+    'float64': np.array([1.0, 2.0, 3.0], dtype=np.float64)
+}
+
+print("Maklumat Jenis Data:")
+print("=" * 50)
+for name, arr in arrays.items():
+    print(f"{name:8} - itemsize: {arr.itemsize:2} bait, dtype: {arr.dtype}")
+
+# Output:
+# Maklumat Jenis Data:
+# ==================================================
+# int8     - itemsize:  1 bait, dtype: int8
+# int32    - itemsize:  4 bait, dtype: int32
+# int64    - itemsize:  8 bait, dtype: int64
+# float32  - itemsize:  4 bait, dtype: float32
+# float64  - itemsize:  8 bait, dtype: float64`
+    }
+  ]}
+/>
+
+`np.array([-2.7, -0.5, 0.5, 2.7]).astype(int)` memberi `[-2, 0, 0, 2]`. Penukaran kepada integer membuang bahagian pecahan, jadi setiap nilai bergerak ke arah sifar, termasuk nombor negatif, yang tidak dibundarkan ke bawah.
+
+<MathVisual
+  title={<><code>astype(int)</code> memangkas ke arah sifar</>}
+  description={<>Titik ungu di atas ialah empat nilai <code>float64</code>, dan titik magenta di bawah ialah hasil <code>astype(int)</code>. Setiap garis kelabu bergerak ke arah sifar, dan <code>-0.5</code> serta <code>0.5</code> kedua-duanya berakhir pada <code>0</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3, y: 0 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "move-0", kind: "segment", from: { x: -2.7, y: 1 }, to: { x: -2, y: 0 }, appearance: "reference" },
+      { id: "move-1", kind: "segment", from: { x: -0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-2", kind: "segment", from: { x: 0.5, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-3", kind: "segment", from: { x: 2.7, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "float-0", kind: "point", at: { x: -2.7, y: 1 }, appearance: "secondary" },
+      { id: "float-1", kind: "point", at: { x: -0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-2", kind: "point", at: { x: 0.5, y: 1 }, appearance: "secondary" },
+      { id: "float-3", kind: "point", at: { x: 2.7, y: 1 }, appearance: "secondary" },
+      { id: "int-0", kind: "point", at: { x: -2, y: 0 }, appearance: "answer" },
+      { id: "int-1", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "int-2", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-0", objectId: "float-0", at: { x: -2.7, y: 1 }, placement: "above" },
+      { key: "float-1", objectId: "float-1", at: { x: -0.5, y: 1 }, placement: "above" },
+      { key: "float-2", objectId: "float-2", at: { x: 0.5, y: 1 }, placement: "above" },
+      { key: "float-3", objectId: "float-3", at: { x: 2.7, y: 1 }, placement: "above" },
+      { key: "int-0", objectId: "int-0", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "int-1", objectId: "int-1", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "int-2", objectId: "int-2", at: { x: 2, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "float-0": <code>-2.7</code>,
+    "float-1": <code>-0.5</code>,
+    "float-2": <code>0.5</code>,
+    "float-3": <code>2.7</code>,
+    "int-0": <code>-2</code>,
+    "int-1": <code>0</code>,
+    "int-2": <code>2</code>,
+  }}
+/>
+
+## Penggunaan Praktikal Atribut Tatasusunan
+
+Atribut tatasusunan melaporkan **struktur dan susun atur memori** tatasusunan itu. Periksa atribut ini apabila andaian tentang bentuk, jenis atau memori menyebabkan hasil yang salah atau prestasi yang lemah.
+
+### Analisis Struktur Data
+
+Fungsi berikut melaporkan **bentuk, dimensi, dtype dan memori unsur** sekali gus. Tiga tatasusunan itu berbeza dari segi dimensi dan bilangan unsur, tetapi setiap satunya menggunakan `int64`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_structure_analysis.py",
+      code: `import numpy as np
+
+def analyze_array(arr, name="Array"):
+    """Fungsi untuk menganalisis struktur tatasusunan"""
+    print(f"\\n=== Analisis {name} ===")
+    print(f"Bentuk: {arr.shape}")
+    print(f"Dimensi: {arr.ndim}")
+    print(f"Saiz: {arr.size}")
+    print(f"Jenis data: {arr.dtype}")
+    print(f"Saiz item: {arr.itemsize} bait")
+    print(f"Memori unsur: {arr.nbytes} bait")
+
+    if arr.ndim <= 2:
+        print(f"Kandungan tatasusunan:\\n{arr}")
+
+# Contoh analisis pelbagai tatasusunan
+array_1d = np.array([1, 2, 3, 4, 5], dtype=np.int64)
+array_2d = np.array([[1, 2, 3], [4, 5, 6]], dtype=np.int64)
+array_3d = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]], dtype=np.int64)
+
+analyze_array(array_1d, "1D")
+analyze_array(array_2d, "2D")
+analyze_array(array_3d, "3D")
+
+# Output:
+# === Analisis 1D ===
+# Bentuk: (5,)
+# Dimensi: 1
+# Saiz: 5
+# Jenis data: int64
+# Saiz item: 8 bait
+# Memori unsur: 40 bait
+# Kandungan tatasusunan:
+# [1 2 3 4 5]
+#
+# === Analisis 2D ===
+# Bentuk: (2, 3)
+# Dimensi: 2
+# Saiz: 6
+# Jenis data: int64
+# Saiz item: 8 bait
+# Memori unsur: 48 bait
+# Kandungan tatasusunan:
+# [[1 2 3]
+#  [4 5 6]]
+#
+# === Analisis 3D ===
+# Bentuk: (2, 2, 2)
+# Dimensi: 3
+# Saiz: 8
+# Jenis data: int64
+# Saiz item: 8 bait
+# Memori unsur: 64 bait`
+    }
+  ]}
+/>
+
+### Pengesahan Data dan Nyahpepijat
+
+Sebelum menghantar tatasusunan kepada model, semak **bentuk, dtype, nilai yang hilang**, dan saiz memori yang benar-benar dijangka oleh model itu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_validation.py",
+      code: `import numpy as np
+
+def validate_feature_matrix(arr):
+    """Periksa matriks ciri berangka sebelum pemodelan."""
+    print("=== Pengesahan Tatasusunan ML ===")
+
+    # Semak dimensi
+    if arr.ndim != 2:
+        print(f"AMARAN: Tatasusunan bukan 2D (semasa: {arr.ndim}D)")
+    else:
+        print(f"✓ Tatasusunan 2D dengan bentuk: {arr.shape}")
+
+    # Semak sama ada matriks itu mengandungi nilai berangka
+    if not np.issubdtype(arr.dtype, np.number):
+        print(f"AMARAN: Jenis data mungkin perlu ditukar: {arr.dtype}")
+        return
+
+    print(f"✓ Jenis data berangka: {arr.dtype}")
+
+    # Semak nilai yang hilang (NaN)
+    if np.isnan(arr).any():
+        nan_count = np.isnan(arr).sum()
+        print(f"AMARAN: Terdapat {nan_count} nilai NaN")
+    else:
+        print("✓ Tiada nilai NaN")
+
+    # Maklumat memori
+    memory_mib = arr.nbytes / (1024 * 1024)
+    print(f"Penggunaan memori: {memory_mib:.2f} MiB")
+
+# Uji dengan pelbagai tatasusunan
+test_arrays = [
+    np.array([[1, 2, 3], [4, 5, 6]], dtype=np.float64),
+    np.array([1, 2, 3, 4, 5], dtype=np.int64),
+    np.array([[1, 2, np.nan], [4, 5, 6]], dtype=np.float64)
+]
+
+for i, arr in enumerate(test_arrays):
+    print(f"\\n--- Tatasusunan Ujian {i+1} ---")
+    validate_feature_matrix(arr)
+
+# Output:
+# --- Tatasusunan Ujian 1 ---
+# === Pengesahan Tatasusunan ML ===
+# ✓ Tatasusunan 2D dengan bentuk: (2, 3)
+# ✓ Jenis data berangka: float64
+# ✓ Tiada nilai NaN
+# Penggunaan memori: 0.00 MiB
+#
+# --- Tatasusunan Ujian 2 ---
+# === Pengesahan Tatasusunan ML ===
+# AMARAN: Tatasusunan bukan 2D (semasa: 1D)
+# ✓ Jenis data berangka: int64
+# ✓ Tiada nilai NaN
+# Penggunaan memori: 0.00 MiB
+#
+# --- Tatasusunan Ujian 3 ---
+# === Pengesahan Tatasusunan ML ===
+# ✓ Tatasusunan 2D dengan bentuk: (2, 3)
+# ✓ Jenis data berangka: float64
+# AMARAN: Terdapat 1 nilai NaN
+# Penggunaan memori: 0.00 MiB`
+    }
+  ]}
+/>

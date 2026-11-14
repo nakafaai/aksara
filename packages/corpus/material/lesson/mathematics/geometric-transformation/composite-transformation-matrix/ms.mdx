@@ -1,0 +1,359 @@
+export const metadata = {
+  title: "Matriks Transformasi Gubahan",
+  description: "Gabungkan pantulan, putaran, dan pembesaran melalui pendaraban matriks sambil memastikan tertib transformasi jelas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Dua Cara Menggunakan Jujukan Transformasi Matriks
+
+Menggunakan transformasi secara berturutan menghasilkan **gubahan transformasi**. Output transformasi pertama menjadi input transformasi seterusnya. Di sini kita menggunakan matriks <InlineMath math="2 \times 2" /> yang mengekalkan asalan. Translasi bukan sifar memerlukan penambahan vektor atau koordinat homogen.
+
+Jadual ini mengumpulkan operasi yang akan kita gunakan. Putaran dan pembesaran di dalamnya berpusat di <InlineMath math="O(0,0)" />.
+
+| Transformasi | Matriks |
+| --- | --- |
+| Pantulan pada paksi mengufuk | <InlineMath math="\begin{pmatrix}1&0\\0&-1\end{pmatrix}" /> |
+| Pantulan pada paksi mencancang | <InlineMath math="\begin{pmatrix}-1&0\\0&1\end{pmatrix}" /> |
+| Pantulan pada pepenjuru positif | <InlineMath math="\begin{pmatrix}0&1\\1&0\end{pmatrix}" /> |
+| Pantulan pada pepenjuru negatif | <InlineMath math="\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> |
+| Pantulan pada asalan atau setengah pusingan | <InlineMath math="\begin{pmatrix}-1&0\\0&-1\end{pmatrix}" /> |
+| Putaran melalui <InlineMath math="\theta" /> | <InlineMath math="\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" /> |
+| Pembesaran dengan <InlineMath math="k\ne0" /> | <InlineMath math="\begin{pmatrix}k&0\\0&k\end{pmatrix}" /> |
+
+### Menggunakan Transformasi Gubahan dengan Matriks
+
+Dalam <InlineMath math="T_2\circ T_1" />, **transformasi paling kanan bertindak dahulu**. Bagi vektor lajur <InlineMath math="P" />, kira imej pertama, kemudian gunakan imej itu sebagai input transformasi kedua:
+
+<BlockMath math="P'=M_1P,\qquad P''=M_2P'=M_2(M_1P)=(M_2M_1)P" />
+
+Sifat kalis sekutuan mengubah cara hasil darab dikumpulkan tetapi mengekalkan tertib faktornya. Bagi banyak titik, kira <InlineMath math="M_2M_1" /> sekali sahaja. Untuk menjejaki satu titik, bentuk berturutan menunjukkan imej perantaraannya.
+
+**Contoh Ilustrasi**:
+
+Katakan <InlineMath math="T_1" /> ialah pantulan pada paksi-<InlineMath math="y" />, dan <InlineMath math="T_2" /> ialah putaran pada asalan <InlineMath math="O" /> sebanyak <InlineMath math="\frac{1}{2}\pi" /> radian (<InlineMath math="90^\circ" />). Kita mahu mencari imej bagi titik <InlineMath math="P(x,y)" /> di bawah <InlineMath math="T_2 \circ T_1" />.
+
+Matriks bagi <InlineMath math="T_1" /> (pantulan pada paksi-<InlineMath math="y" />) ialah:
+
+<BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+Matriks bagi <InlineMath math="T_2" /> (putaran <InlineMath math="90^\circ" />) ialah:
+
+<BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
+
+**Kaedah 1: Transformasi Berturutan pada Titik**
+
+Imej bagi <InlineMath math="P(x,y)" /> di bawah <InlineMath math="T_1" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M_1 \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} -x \\ y \end{pmatrix} \end{aligned}" />
+
+Jadi <InlineMath math="P'(-x,y)" />.
+
+Imej bagi <InlineMath math="P'(-x,y)" /> di bawah <InlineMath math="T_2" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M_2 \begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(-x)+(-1)(y) \\ (1)(-x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+
+Imej akhirnya ialah <InlineMath math="P''(-y,-x)" />.
+
+**Kaedah 2: Matriks Gubahan Dahulu**
+
+Matriks gubahan <InlineMath math="M = M_2 M_1" />:
+
+Tulis <InlineMath math="M=(m_{ij})" />. Subskrip menamakan baris dan lajur setiap unsur. Untuk mencari <InlineMath math="m_{12}" />, contohnya, darab baris pertama matriks kiri dengan lajur kedua matriks kanan dan tambahkan hasil darabnya.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} m_{11}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{12}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{21}&amp;=(1)(-1)+(0)(0)=-1 \\ m_{22}&amp;=(1)(0)+(0)(1)=0 \end{aligned}" />
+  <BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi <InlineMath math="P(x,y)" /> di bawah <InlineMath math="M" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x'' \\ y'' \end{pmatrix} &amp;= M \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x)+(-1)(y) \\ (-1)(x)+(0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ -x \end{pmatrix} \end{aligned}" />
+
+Imej akhirnya ialah <InlineMath math="P''(-y,-x)" />.
+
+Kedua-dua kaedah memberikan hasil yang sama. Kalau banyak titik menggunakan gubahan yang sama, kira <InlineMath math="M_2 M_1" /> sekali sahaja dan gunakan matriks gubahan itu pada setiap titik.
+
+## Petua Matriks Gubahan
+
+Kalau <InlineMath math="M_1" /> bertindak dahulu dan <InlineMath math="M_2" /> menyusul, pasangkan **baris matriks kedua dengan lajur matriks pertama**. Setiap unsur output ialah hasil tambah dua hasil darab:
+
+<BlockMath math="M_2M_1=\begin{pmatrix}t&u\\v&w\end{pmatrix}\begin{pmatrix}p&q\\r&s\end{pmatrix}=\begin{pmatrix}tp+ur&tq+us\\vp+wr&vq+ws\end{pmatrix}" />
+
+### Menterbalikkan Pantulan dan Putaran
+
+Bandingkan pantulan pada paksi mencancang <InlineMath math="F" /> dengan suku pusingan positif <InlineMath math="R" /> pada <InlineMath math="P(2,1)" />. **Menterbalikkan tertib memberikan titik akhir yang berbeza**:
+
+<BlockMath math="RF=\begin{pmatrix}0&-1\\-1&0\end{pmatrix},\qquad FR=\begin{pmatrix}0&1\\1&0\end{pmatrix}" />
+
+| Tertib | Mula | Imej pertama | Imej akhir |
+| --- | --- | --- | --- |
+| Pantulan kemudian putaran | <InlineMath math="(2,1)" /> | <InlineMath math="(-2,1)" /> | <InlineMath math="(-1,-2)" /> |
+| Putaran kemudian pantulan | <InlineMath math="(2,1)" /> | <InlineMath math="(-1,2)" /> | <InlineMath math="(1,2)" /> |
+
+<MathVisual
+  title={<>Pantulan dan putaran dalam kedua-dua tertib</>}
+  description={<>Laluan hijau kebiruan: pantulkan <InlineMath math="P(2, 1)" /> pada paksi-<InlineMath math="y" />, kemudian putarkan <InlineMath math="90^\circ" /> ke <InlineMath math="RF(P) = (-1, -2)" />. Laluan kuning: putarkan dahulu, kemudian pantulkan, ke <InlineMath math="FR(P) = (1, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="P(2, 1)" />,
+    f: <InlineMath math="(-2, 1)" />,
+    rf: <InlineMath math="RF(P) = (-1, -2)" />,
+    r: <InlineMath math="(-1, 2)" />,
+    fr: <InlineMath math="FR(P) = (1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "reflect-first", kind: "segment", from: { x: 2, y: 1 }, to: { x: -2, y: 1 }, appearance: "construction" },
+      { id: "rotate-after", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(1, -2) * 180 / Math.PI, sweepDegrees: 90, appearance: "construction" },
+      { id: "rotate-first", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(5), startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 90, appearance: "highlight" },
+      { id: "reflect-after", kind: "segment", from: { x: -1, y: 2 }, to: { x: 1, y: 2 }, appearance: "highlight" },
+      { id: "p", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "f", kind: "point", at: { x: -2, y: 1 }, appearance: "construction" },
+      { id: "rf", kind: "point", at: { x: -1, y: -2 }, appearance: "secondary" },
+      { id: "r", kind: "point", at: { x: -1, y: 2 }, appearance: "highlight" },
+      { id: "fr", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "rf", objectId: "rf", at: { x: -1, y: -2 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "fr", objectId: "fr", at: { x: 1, y: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Menggabungkan Pantulan dan Putaran dengan Matriks
+
+Menggabungkan dua transformasi bermaksud mendarab matriksnya, dan <Highlight>tertib hasil darab itu menentukan hasilnya</Highlight>. Membaca hasil darab dari kanan ke kiri menggunakan transformasi paling kanan pada titik dahulu, jadi menukar tempat dua matriks itu biasanya menghasilkan imej yang berbeza.
+
+### Gubahan Dua Pantulan
+
+Tentukan imej bagi titik <InlineMath math="(2,5)" /> yang dipantulkan pada paksi-<InlineMath math="x" /> dan **kemudian dipantulkan** pada paksi-<InlineMath math="y" />.
+
+**Penyelesaian**:
+
+Biar <InlineMath math="T_1" /> ialah pantulan pada paksi-<InlineMath math="x" />, dan <InlineMath math="T_2" /> ialah pantulan pada paksi-<InlineMath math="y" />.
+
+Matriks bagi <InlineMath math="T_1" /> (<InlineMath math="M_1" />) ialah:
+
+<BlockMath math="\begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Matriks bagi <InlineMath math="T_2" /> (<InlineMath math="M_2" />) ialah:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+Gubahan transformasi <InlineMath math="T_2 \circ T_1" /> mempunyai matriks <InlineMath math="M = M_2 M_1" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{12}&amp;=(-1)(0)+(0)(-1)=0 \\ m_{21}&amp;=(0)(1)+(1)(0)=0 \\ m_{22}&amp;=(0)(0)+(1)(-1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="(2,5)" /> ialah:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (-1)(2)+(0)(5) \\ (0)(2)+(-1)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ -5 \end{pmatrix} \end{aligned}" />
+
+Jadi, imej titik itu ialah <InlineMath math="(-2,-5)" />.
+
+Ikuti <InlineMath math="(2, 5)" /> melalui kedua-dua cermin. Paksi-<InlineMath math="x" /> menghantarnya ke <InlineMath math="(2, -5)" />, dan paksi-<InlineMath math="y" /> kemudian menghantar titik itu ke <InlineMath math="(-2, -5)" />. Tembereng dari <InlineMath math="(2, 5)" /> ke <InlineMath math="(-2, -5)" /> melalui asalan, jadi dua pantulan itu bertindak seperti satu setengah pusingan, sepadan dengan <InlineMath math="M = -I" />.
+
+<MathVisual
+  title={<>Dua pantulan membentuk setengah pusingan</>}
+  description={<>Titik <InlineMath math="(2, 5)" />, pantulannya <InlineMath math="(2, -5)" /> pada paksi-<InlineMath math="x" />, dan imej akhir <InlineMath math="(-2, -5)" /> pada paksi-<InlineMath math="y" />.</>}
+  labels={{
+    p: <InlineMath math="(2, 5)" />,
+    mid: <InlineMath math="(2, -5)" />,
+    image: <InlineMath math="(-2, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 2, y: 5 }, to: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 2, y: -5 }, to: { x: -2, y: -5 }, appearance: "construction" },
+      { id: "half", kind: "segment", from: { x: 2, y: 5 }, to: { x: -2, y: -5 }, appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "mid", kind: "point", at: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: -2, y: -5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 5 }, placement: "right" },
+      { key: "mid", objectId: "mid", at: { x: 2, y: -5 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -2, y: -5 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Gubahan Pantulan dan Putaran
+
+Tentukan imej bagi titik <InlineMath math="(-2,3)" /> yang ditransformasikan oleh gubahan pantulan pada paksi-<InlineMath math="y" /> **diikuti oleh** putaran <InlineMath math="180^\circ" /> pada asalan.
+
+**Penyelesaian**:
+
+Biar <InlineMath math="T_1" /> ialah pantulan pada paksi-<InlineMath math="y" />, dan <InlineMath math="T_2" /> ialah putaran <InlineMath math="180^\circ" /> pada asalan.
+
+Matriks bagi <InlineMath math="T_1" /> (<InlineMath math="M_1" />) ialah:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+Matriks bagi <InlineMath math="T_2" /> (<InlineMath math="M_2" />) ialah:
+
+<BlockMath math="\begin{aligned} &\begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
+
+Gubahan transformasi <InlineMath math="T_2 \circ T_1" /> mempunyai matriks <InlineMath math="M = M_2 M_1" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ m_{12}&amp;=(-1)(0)+(0)(1)=0 \\ m_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ m_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="(-2,3)" /> ialah:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} -2 \\ 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -2 \\ 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} (1)(-2)+(0)(3) \\ (0)(-2)+(-1)(3) \end{pmatrix} \\ &amp;= \begin{pmatrix} -2 \\ -3 \end{pmatrix} \end{aligned}" />
+
+Jadi, imej titik itu ialah <InlineMath math="(-2,-3)" />.
+
+### Gubahan Tiga Transformasi
+
+Gunakan **tiga transformasi** pada titik <InlineMath math="P(2,5)" />. Mula-mula pantulkan titik itu pada paksi-<InlineMath math="x" />, kemudian putarkan <InlineMath math="90^\circ" /> pada asalan, dan akhir sekali putarkan <InlineMath math="180^\circ" /> pada asalan. Tentukan imejnya.
+
+**Penyelesaian**:
+
+Biar:
+
+<InlineMath math="T_1" />: Pantulan pada paksi-<InlineMath math="x" />.
+
+Matriksnya ialah:
+
+<BlockMath math="M_1 = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+<InlineMath math="T_2" />: Putaran <InlineMath math="90^\circ" /> pada
+asalan.
+
+Matriksnya ialah:
+
+<BlockMath math="\begin{aligned} M_2 &= \begin{pmatrix} \cos 90^\circ & -\sin 90^\circ \\ \sin 90^\circ & \cos 90^\circ \end{pmatrix} \\ & = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \end{aligned}" />
+
+<InlineMath math="T_3" />: Setengah pusingan (putaran <InlineMath math="180^\circ" />
+pada asalan).
+
+Matriksnya ialah:
+
+<BlockMath math="\begin{aligned} M_3 &= \begin{pmatrix} \cos 180^\circ & -\sin 180^\circ \\ \sin 180^\circ & \cos 180^\circ \end{pmatrix} \\ & = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \end{aligned}" />
+
+Gubahan transformasinya ialah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Matriksnya ialah <InlineMath math="M = M_3 M_2 M_1" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(0)(1)+(-1)(0)=0 \\ n_{12}&amp;=(0)(0)+(-1)(-1)=1 \\ n_{21}&amp;=(1)(1)+(0)(0)=1 \\ n_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=M_3(M_2 M_1) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(-1)(0)+(0)(1)=0 \\ m_{12}&amp;=(-1)(1)+(0)(0)=-1 \\ m_{21}&amp;=(0)(0)+(-1)(1)=-1 \\ m_{22}&amp;=(0)(1)+(-1)(0)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi <InlineMath math="P(2,5)" /> ialah:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(2)+(-1)(5) \\ (-1)(2)+(0)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ -2 \end{pmatrix} \end{aligned}" />
+
+Jadi, imej titik itu ialah <InlineMath math="(-5,-2)" />.
+
+Jejaki <InlineMath math="(2, 5)" /> langkah demi langkah. Pantulan pada paksi-<InlineMath math="x" /> memberikan <InlineMath math="(2, -5)" />, putaran <InlineMath math="90^\circ" /> memberikan <InlineMath math="(5, 2)" />, dan setengah pusingan memberikan <InlineMath math="(-5, -2)" />, iaitu titik yang sama yang dihasilkan oleh <InlineMath math="M = M_3M_2M_1" /> dalam satu pendaraban.
+
+<MathVisual
+  title={<>Tiga transformasi berturut-turut</>}
+  description={<>Titik <InlineMath math="(2, 5)" /> dipantulkan ke <InlineMath math="(2, -5)" />, diputarkan <InlineMath math="90^\circ" /> ke <InlineMath math="(5, 2)" />, kemudian dipusingkan setengah pusingan ke <InlineMath math="(-5, -2)" />.</>}
+  labels={{
+    p: <InlineMath math="(2, 5)" />,
+    s1: <InlineMath math="(2, -5)" />,
+    s2: <InlineMath math="(5, 2)" />,
+    image: <InlineMath math="(-5, -2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "reflect", kind: "segment", from: { x: 2, y: 5 }, to: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "rotate", kind: "arc", center: { x: 0, y: 0 }, radius: Math.sqrt(29), startDegrees: Math.atan2(-5, 2) * 180 / Math.PI + 360, sweepDegrees: 90, appearance: "highlight" },
+      { id: "half", kind: "segment", from: { x: 5, y: 2 }, to: { x: -5, y: -2 }, appearance: "construction" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "p", kind: "point", at: { x: 2, y: 5 }, appearance: "primary" },
+      { id: "s1", kind: "point", at: { x: 2, y: -5 }, appearance: "construction" },
+      { id: "s2", kind: "point", at: { x: 5, y: 2 }, appearance: "highlight" },
+      { id: "image", kind: "point", at: { x: -5, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "s1", objectId: "s1", at: { x: 2, y: -5 }, placement: "below" },
+      { key: "s2", objectId: "s2", at: { x: 5, y: 2 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -5, y: -2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Gunakan tiga transformasi pada titik <InlineMath math="P(2,5)" />. Mula-mula pantulkan titik itu pada paksi-<InlineMath math="y" />, kemudian putarkan <InlineMath math="180^\circ" /> pada asalan, dan akhir sekali pantulkan pada garis <InlineMath math="y=x" />. Tentukan imejnya dengan mengekalkan **tertib transformasi** seperti yang diberi.
+
+### Penyelesaian
+
+Biar:
+
+<InlineMath math="T_1" />: Pantulan pada paksi-<InlineMath math="y" />.
+
+Matriksnya ialah:
+
+<BlockMath math="M_1 = \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
+
+<InlineMath math="T_2" />: Putaran <InlineMath math="180^\circ" /> pada
+asalan.
+
+Matriksnya ialah:
+
+<BlockMath math="M_2 = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+<InlineMath math="T_3" />: Pantulan pada garis <InlineMath math="y=x" />.
+
+Matriksnya ialah:
+
+<BlockMath math="M_3 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}" />
+
+Gubahan transformasinya ialah <InlineMath math="T_3 \circ T_2 \circ T_1" />. Matriksnya ialah <InlineMath math="M = M_3 M_2 M_1" />.
+
+**Langkah 1**: Kira <InlineMath math="M_2 M_1" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;M_2 M_1=(n_{ij}) \\ &amp;=\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; 1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} n_{11}&amp;=(-1)(-1)+(0)(0)=1 \\ n_{12}&amp;=(-1)(0)+(0)(1)=0 \\ n_{21}&amp;=(0)(-1)+(-1)(0)=0 \\ n_{22}&amp;=(0)(0)+(-1)(1)=-1 \end{aligned}" />
+<BlockMath math="M_2 M_1=\begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix}" />
+</MathContainer>
+
+**Langkah 2**: Kira <InlineMath math="M = M_3 (M_2 M_1)" />.
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;M=(m_{ij}) \\ &amp;=\begin{pmatrix} 0 &amp; 1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} m_{11}&amp;=(0)(1)+(1)(0)=0 \\ m_{12}&amp;=(0)(0)+(1)(-1)=-1 \\ m_{21}&amp;=(1)(1)+(0)(0)=1 \\ m_{22}&amp;=(1)(0)+(0)(-1)=0 \end{aligned}" />
+<BlockMath math="M=\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi <InlineMath math="P(2,5)" /> ialah:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= M \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} 2 \\ 5 \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(2)+(-1)(5) \\ (1)(2)+(0)(5) \end{pmatrix} \\ &amp;= \begin{pmatrix} -5 \\ 2 \end{pmatrix} \end{aligned}" />
+
+Jadi, imej titik itu ialah <InlineMath math="(-5,2)" />.
+
+Semak hasil darab matriks itu menggunakan **koordinat perantaraan**. Selepas setiap operasi, titik itu menjadi:
+
+<BlockMath math="(2,5)\xrightarrow{T_1}(-2,5)\xrightarrow{T_2}(2,-5)\xrightarrow{T_3}(-5,2)" />

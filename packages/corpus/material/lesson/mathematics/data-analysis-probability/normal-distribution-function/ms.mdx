@@ -1,0 +1,211 @@
+export const metadata = {
+  title: "Taburan Normal dan Skor Z",
+  description: "Taburan normal ialah lengkung loceng yang berpusat pada min, dengan lebar yang ditentukan oleh sisihan piawai. Tukarkan nilai kepada skor-z dan cari kebarangkalian.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Analisis Data dan Kebarangkalian",
+};
+
+## Lengkung Loceng dengan Pusat dan Serakan
+
+Taburan normal ialah model kebarangkalian bagi pemboleh ubah selanjar yang nilainya **berkumpul di sekitar satu nilai pusat dan semakin jarang secara simetri** di kedua-dua belah. Kalau <InlineMath math="X" /> bertaburan normal dengan min <InlineMath math="\mu" /> dan sisihan piawai <InlineMath math="\sigma > 0" />, ditulis <InlineMath math="X \sim N(\mu, \sigma^2)" />, lengkungnya berbentuk loceng dan simetri terhadap garis <InlineMath math="x = \mu" />. Kebarangkalian <InlineMath math="X" /> jatuh dalam satu selang sama dengan luas di bawah lengkung pada selang itu, dan jumlah luasnya ialah <InlineMath math="1" />.
+
+Pada graf interaktif, lengkung normal piawai dengan <InlineMath math="\mu = 0" /> dan <InlineMath math="\sigma = 1" /> memuncak di tengah. Dua tembereng mencancang menandakan titik lengkok balas pada <InlineMath math="\mu - \sigma" /> dan <InlineMath math="\mu + \sigma" />, iaitu tempat lengkung itu bertukar arah lengkungannya: cekung ke bawah di antara dua titik itu dan cekung ke atas di luarnya.
+
+<MathVisual
+  title={<>Lengkung Taburan Normal Piawai</>}
+  description={<>Ketumpatan normal piawai berpusat pada <InlineMath math="\mu = 0" />. Tembereng mencancang menandakan titik lengkok balasnya pada <InlineMath math="\mu \pm \sigma" />.</>}
+  labels={{
+    "l1": <InlineMath math="\mu = 0" />,
+    "l2": <InlineMath math="\mu - \sigma" />,
+    "l3": <InlineMath math="\mu + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 350) / 100)", y: "(exp((((-0.5) * ((t - 350) / 100)) * ((t - 350) / 100))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Min, median dan mod bertemu pada <InlineMath math="\mu" />, kerana lengkung itu simetri dan hanya ada satu puncak. Lengkung itu tidak pernah menyentuh paksi-<InlineMath math="x" />: ketumpatannya positif bagi setiap <InlineMath math="x" /> dan menghampiri sifar apabila jauh dari pusat. Abraham de Moivre memperoleh lengkung ini pada tahun <InlineMath math="1733" /> sebagai penghampiran kepada [taburan binomial](/ms/subjek/matematik/analisis-data-dan-kebarangkalian/fungsi-taburan-binomial) dengan <InlineMath math="p = \frac{1}{2}" /> bagi bilangan percubaan yang besar, dan Pierre-Simon Laplace kemudiannya meluaskannya kepada kebarangkalian kejayaan yang lain.
+
+## Rumus Ketumpatan Normal
+
+Tinggi lengkung pada setiap titik <InlineMath math="x" /> diberikan oleh fungsi ketumpatan:
+
+<BlockMath math="f(x) = \frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2}, \qquad -\infty < x < \infty" />
+
+Di sini <InlineMath math="\pi \approx 3.1416" /> dan <InlineMath math="e \approx 2.7183" /> ialah pemalar, manakala <InlineMath math="\mu" /> dan <InlineMath math="\sigma > 0" /> ialah parameter taburan itu. Pecahan <InlineMath math="\frac{x - \mu}{\sigma}" /> mengukur **jarak dari pusat dalam unit sisihan piawai**. Jarak itu dikuasaduakan, jadi dua nilai <InlineMath math="x" /> yang sama jauh di sebelah kiri dan kanan <InlineMath math="\mu" /> mendapat ketumpatan yang sama. Faktor <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" /> menjadikan jumlah luas di bawah lengkung tepat <InlineMath math="1" />.
+
+Ketumpatan bukan kebarangkalian. Pada puncak lengkung normal piawai, <InlineMath math="f(0) = \frac{1}{\sqrt{2\pi}} \approx 0.399" />. Untuk <InlineMath math="\sigma = 0.25" />, tinggi puncaknya ialah <InlineMath math="\frac{1}{0.25\sqrt{2\pi}} \approx 1.596" />, lebih daripada <InlineMath math="1" />, sedangkan kebarangkalian tidak pernah melebihi <InlineMath math="1" />. Kebarangkalian bagi satu nilai tepat juga sifar, <InlineMath math="P(X = a) = 0" />, kerana luas di atas satu titik ialah sifar. Kebarangkalian sentiasa diberikan kepada selang dan datang daripada [kamiran tentu](/ms/subjek/matematik/pengamiran/kamiran-tentu) bagi ketumpatan itu.
+
+## Pusat dan Lebar Lengkung Normal
+
+Parameter <InlineMath math="\mu" /> **mengalihkan lengkung tanpa mengubah bentuknya**, manakala <InlineMath math="\sigma" /> menentukan lebarnya. Luas di bawah lengkung sentiasa <InlineMath math="1" />, jadi lengkung yang lebih lebar juga lebih rendah, dengan tinggi puncak <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. Graf interaktif ini melukis tiga lengkung daripada rumus yang sama.
+
+<MathVisual
+  title={<>Lengkung <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" /> dan <InlineMath math="N(0, 4)" /></>}
+  description={<>Menukar <InlineMath math="\mu" /> daripada <InlineMath math="0" /> kepada <InlineMath math="2" /> mengalihkan lengkung ke kanan. Menukar <InlineMath math="\sigma" /> daripada <InlineMath math="1" /> kepada <InlineMath math="2" /> melebarkan lengkung dan menjadikan tinggi puncaknya separuh.</>}
+  labels={{
+    "l1": <InlineMath math="N(0, 1)" />,
+    "l2": <InlineMath math="N(2, 1)" />,
+    "l3": <InlineMath math="N(0, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 100))", y: "(exp((((-0.5) * ((-4) + (t / 100))) * ((-4) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 100))", y: "(exp(((-0.5) * ((((-2) + (t / 100)) - 2))^(2))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-6) + (t / 100))", y: "(exp(((-0.5) * ((((-6) + (t / 100)) / 2))^(2))) / (2 * sqrt((2 * pi))))", parameter: { min: 0, max: 1200 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0.06 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Lengkung <InlineMath math="N(0, 1)" /> dan <InlineMath math="N(2, 1)" /> ada bentuk yang sama, dengan pusat dialihkan <InlineMath math="2" /> unit ke kanan. Lengkung <InlineMath math="N(0, 4)" /> ada pusat yang sama dengan <InlineMath math="N(0, 1)" />, tetapi dua kali lebih lebar, dan puncaknya turun daripada <InlineMath math="0.399" /> kepada <InlineMath math="0.199" />. Parameter kedua dalam <InlineMath math="N(\mu, \sigma^2)" /> ialah varians, jadi <InlineMath math="N(0, 4)" /> bermaksud <InlineMath math="\sigma = 2" />.
+
+Sisihan piawai <InlineMath math="\sigma" /> memainkan peranan yang sama seperti [sisihan piawai bagi satu set data](/ms/subjek/matematik/statistik-asas/varians-dan-sisihan-piawai-data-tak-terkumpul): semakin besar nilainya, semakin jauh nilai-nilai tersebar dari min. Pusat lengkung sentiasa di <InlineMath math="\mu" />, jadi [nilai jangkaan taburan normal](/ms/subjek/matematik/analisis-data-dan-kebarangkalian/nilai-jangkaan-taburan-normal) juga <InlineMath math="\mu" />.
+
+## Luas di Sekitar Pusat Lengkung
+
+Setiap taburan normal membahagikan luasnya dengan cara yang sama apabila jarak diukur dalam unit sisihan piawai. Peratus ini dikenali sebagai **petua <InlineMath math="68" />, <InlineMath math="95" /> dan <InlineMath math="99.7" /> peratus**:
+
+| Selang | Luas di bawah lengkung |
+| --- | --- |
+| <InlineMath math="\mu - \sigma" /> hingga <InlineMath math="\mu + \sigma" /> | <InlineMath math="68.27\%" /> |
+| <InlineMath math="\mu - 2\sigma" /> hingga <InlineMath math="\mu + 2\sigma" /> | <InlineMath math="95.45\%" /> |
+| <InlineMath math="\mu - 3\sigma" /> hingga <InlineMath math="\mu + 3\sigma" /> | <InlineMath math="99.73\%" /> |
+
+Katakan tinggi sekumpulan remaja mengikut <InlineMath math="N(165, 6^2)" /> dalam sentimeter. Lebih kurang <InlineMath math="68\%" /> daripada ketinggian itu terletak antara <InlineMath math="159" /> dan <InlineMath math="171" /> cm, dan lebih kurang <InlineMath math="95\%" /> terletak antara <InlineMath math="153" /> dan <InlineMath math="177" /> cm. Hanya lebih kurang <InlineMath math="0.27\%" /> yang terletak lebih daripada <InlineMath math="18" /> cm dari min.
+
+## Skor Z Memiawaikan Setiap Taburan Normal
+
+Skor-z menukar nilai <InlineMath math="x" /> kepada jaraknya dari min dalam unit sisihan piawai:
+
+<BlockMath math="z = \frac{x - \mu}{\sigma}" />
+
+Kalau <InlineMath math="X \sim N(\mu, \sigma^2)" />, maka <InlineMath math="Z = \frac{X - \mu}{\sigma}" /> mengikut **taburan normal piawai <InlineMath math="N(0, 1)" />**. Hasilnya, satu jadual kebarangkalian longgokan <InlineMath math="\Phi(z) = P(Z < z)" /> boleh digunakan untuk setiap taburan normal. Jadual biasanya hanya menyenaraikan <InlineMath math="z" /> positif, dan simetri lengkung memberikan selebihnya: <InlineMath math="\Phi(-z) = 1 - \Phi(z)" />.
+
+Skor-z juga boleh membandingkan nilai daripada kumpulan yang berbeza. Markah matematik <InlineMath math="80" /> datang daripada taburan dengan min <InlineMath math="70" /> dan sisihan piawai <InlineMath math="5" />, manakala markah fizik <InlineMath math="90" /> datang daripada taburan dengan min <InlineMath math="80" /> dan sisihan piawai <InlineMath math="10" />.
+
+| Subjek | Skor-z |
+| --- | --- |
+| Matematik | <InlineMath math="z = \frac{80 - 70}{5} = 2" /> |
+| Fizik | <InlineMath math="z = \frac{90 - 80}{10} = 1" /> |
+
+Markah matematik itu **lebih tinggi berbanding kumpulannya sendiri**, walaupun markah mentahnya, <InlineMath math="80" />, kurang daripada <InlineMath math="90" />. Perbandingan ini mengukur kedudukan dalam setiap taburan, bukan tahap kesukaran kedua-dua peperiksaan itu.
+
+## Mencari Kebarangkalian dengan Jadual z
+
+Kebarangkalian normal dikira dalam tiga langkah: piawaikan batas-batasnya, baca <InlineMath math="\Phi" /> daripada jadual, kemudian **tolak luas longgokan pada batas bawah daripada luas longgokan pada batas atas**.
+
+**Contoh 1**. Katakan <InlineMath math="X" /> bertaburan normal dengan <InlineMath math="\mu = 50" /> dan <InlineMath math="\sigma = 10" />. Kebarangkalian <InlineMath math="45 < X < 62" /> datang daripada skor-z bagi kedua-dua batas:
+
+<MathContainer>
+  <BlockMath math="z_1 = \frac{45 - 50}{10} = -0.5, \qquad z_2 = \frac{62 - 50}{10} = 1.2" />
+  <BlockMath math="P(45 < X < 62) = \Phi(1.2) - \Phi(-0.5) \approx 0.8849 - 0.3085 = 0.5764" />
+</MathContainer>
+
+Kebarangkaliannya lebih kurang <InlineMath math="0.5764" />, atau <InlineMath math="57.64\%" />. Graf interaktif menunjukkan luas ini pada lengkung normal piawai, antara <InlineMath math="z = -0.5" /> dan <InlineMath math="z = 1.2" />.
+
+<MathVisual
+  title={<>Luas antara <InlineMath math="z = -0.5" /> dan <InlineMath math="z = 1.2" /></>}
+  description={<>Lengkok tebal ialah bahagian lengkung normal piawai di atas selang yang telah dipiawaikan. Luas di bawah lengkok itu sama dengan <InlineMath math="P(45 < X < 62) \approx 0.5764" />.</>}
+  labels={{
+    "l1": <InlineMath math="-0.5" />,
+    "l2": <InlineMath math="1.2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3.5) + (t / 100))", y: "(exp((((-0.5) * ((-3.5) + (t / 100))) * ((-3.5) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-0.5) + (t / 200))", y: "(exp((((-0.5) * ((-0.5) + (t / 200))) * ((-0.5) + (t / 200)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 340 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.5, y: 0 }, { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1.2, y: 0 }, { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -0.5, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s4", at: { x: 1.2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Semak dengan memecahkan selang itu di pusat. Bahagian kiri ialah <InlineMath math="P(-0.5 < Z < 0) = 0.5 - 0.3085 = 0.1915" />, dan bahagian kanan ialah <InlineMath math="P(0 < Z < 1.2) = 0.8849 - 0.5 = 0.3849" />. Hasil tambahnya ialah <InlineMath math="0.1915 + 0.3849 = 0.5764" />, sama dengan keputusan pertama.
+
+**Contoh 2**. Dengan tinggi yang mengikut <InlineMath math="N(165, 6^2)" />, kebarangkalian seorang remaja lebih tinggi daripada <InlineMath math="177" /> cm ialah luas ekor kanan:
+
+<MathContainer>
+  <BlockMath math="z = \frac{177 - 165}{6} = 2" />
+  <BlockMath math="P(X > 177) = 1 - \Phi(2) \approx 1 - 0.9772 = 0.0228" />
+</MathContainer>
+
+Semak dengan petua <InlineMath math="95\%" />: luas <InlineMath math="95.45\%" /> terletak dalam lingkungan dua sisihan piawai, jadi baki <InlineMath math="4.55\%" /> terbahagi sama rata antara dua ekor. Satu ekor mengandungi lebih kurang <InlineMath math="2.28\%" />, yang sepadan dengan <InlineMath math="0.0228" />.
+
+## Kesilapan Lazim
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Membaca <InlineMath math="f(x)" /> sebagai kebarangkalian | <InlineMath math="f(x)" /> ialah tinggi ketumpatan dan boleh melebihi <InlineMath math="1" /> | Kebarangkalian ialah luas dan sentiasa terletak antara <InlineMath math="0" /> dan <InlineMath math="1" /> |
+| Memiawaikan dengan varians | Skor-z menggunakan sisihan piawai <InlineMath math="\sigma" />, bukan <InlineMath math="\sigma^2" /> | Untuk <InlineMath math="N(50, 100)" />, sisihan piawainya ialah <InlineMath math="10" /> |
+| Membaca <InlineMath math="P(X > a)" /> terus daripada jadual | Jadual z memberikan luas di sebelah kiri, <InlineMath math="P(Z < z)" /> | Ekor kanan ialah <InlineMath math="1 - \Phi(z)" /> |
+| Menolak dalam susunan yang salah | <InlineMath math="P(a < Z < b) = \Phi(b) - \Phi(a)" /> untuk <InlineMath math="a < b" /> | Kebarangkalian yang diperoleh mesti positif |
+| Menggunakan model normal untuk data yang sangat pencong | Model normal menganggap serakan yang simetri | Bandingkan min dan median data itu dahulu |
+
+Sebelum kamu mengira, **lakar lengkung itu dan lorek luas yang diminta oleh soalan**. Lakaran itu terus menunjukkan sama ada jawapan kamu mesti kurang daripada <InlineMath math="0.5" />, lebih daripada <InlineMath math="0.5" />, atau hampir dengan salah satu angka <InlineMath math="68" />, <InlineMath math="95" /> dan <InlineMath math="99.7" /> peratus.
+
+## Latihan
+
+Soalan pertama melatih skor-z, soalan kedua dan ketiga mencari luas, dan soalan keempat membalikkan arah, daripada kebarangkalian kepada nilai batas. Gunakan jadual z dengan empat tempat perpuluhan, kemudian **semak jawapan kamu dengan lakaran lengkung** sebelum membaca penyelesaiannya.
+
+1. Markah peperiksaan mengikut <InlineMath math="N(70, 8^2)" />. Cari skor-z bagi markah <InlineMath math="82" /> dan terangkan maksudnya.
+
+2. Dengan taburan markah yang sama, cari kebarangkalian seorang murid mendapat markah kurang daripada <InlineMath math="58" />.
+
+3. Jisim sebungkus gula bertaburan normal dengan min <InlineMath math="250" /> g dan sisihan piawai <InlineMath math="5" /> g. Cari kebarangkalian sebungkus gula mempunyai jisim antara <InlineMath math="240" /> g dan <InlineMath math="260" /> g.
+
+4. Masa untuk menyiapkan satu ujian bertaburan normal dengan min <InlineMath math="60" /> minit dan sisihan piawai <InlineMath math="12" /> minit. Cari had masa yang hanya dilepasi oleh <InlineMath math="10\%" /> calon yang paling lambat.
+
+### Jalan Kerja
+
+**Soalan 1**. Skor-z membandingkan jarak dari min dengan sisihan piawai:
+
+<BlockMath math="z = \frac{82 - 70}{8} = \frac{12}{8} = 1.5" />
+
+Markah <InlineMath math="82" /> terletak **satu setengah sisihan piawai di atas min**. Jadual memberikan <InlineMath math="\Phi(1.5) \approx 0.9332" />, jadi markah itu lebih tinggi daripada lebih kurang <InlineMath math="93\%" /> markah peperiksaan.
+
+**Soalan 2**. Skor-z bagi <InlineMath math="58" /> ialah <InlineMath math="\frac{58 - 70}{8} = -1.5" />. Jadual hanya menyenaraikan z positif, jadi gunakan simetri:
+
+<BlockMath math="P(X < 58) = \Phi(-1.5) = 1 - \Phi(1.5) \approx 1 - 0.9332 = 0.0668" />
+
+Semak: <InlineMath math="58" /> dan <InlineMath math="82" /> terletak sama jauh dari <InlineMath math="70" />, jadi **kedua-dua ekor sama luas**, dan <InlineMath math="P(X > 82) = 1 - 0.9332" /> juga bernilai <InlineMath math="0.0668" />.
+
+**Soalan 3**. Kedua-dua batas terletak <InlineMath math="10" /> g dari min, jadi <InlineMath math="z = \pm 2" />:
+
+<BlockMath math="P(240 < X < 260) = \Phi(2) - \Phi(-2) \approx 0.9772 - 0.0228 = 0.9544" />
+
+Semak dengan petua <InlineMath math="95\%" />: selang itu menjangkau tepat **dua sisihan piawai pada setiap sisi min**, dan nilai tepatnya ialah <InlineMath math="0.9545" />. Beza <InlineMath math="0.0001" /> datang daripada pembundaran dalam jadual.
+
+**Soalan 4**. Had <InlineMath math="c" /> memenuhi <InlineMath math="P(X > c) = 0.10" />, jadi luas di sebelah kirinya ialah <InlineMath math="0.90" />. Jadual memberikan <InlineMath math="\Phi(1.28) \approx 0.8997" />, iaitu nilai yang paling hampir dengan <InlineMath math="0.90" />, jadi <InlineMath math="z \approx 1.28" />. Tukar semula kepada minit:
+
+<BlockMath math="c = \mu + z\sigma \approx 60 + 1.28 \cdot 12 = 75.36" />
+
+Had masanya lebih kurang <InlineMath math="75.4" /> minit. Semak: <InlineMath math="\frac{75.36 - 60}{12} = 1.28" />, dan luas di sebelah kanan skor itu ialah <InlineMath math="1 - 0.8997 \approx 0.10" />, jadi **hanya satu persepuluh calon melepasi had itu**.

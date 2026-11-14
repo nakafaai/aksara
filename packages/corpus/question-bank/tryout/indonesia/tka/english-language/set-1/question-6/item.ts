@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "recount",
-    topic: "outline",
+    cognitiveLevel: "inferential",
+    contentDomain: "procedure",
+    topic: "prediction",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "Listening to an owner's description before touching the bicycle",
-        },
-        {
           correct: false,
-          label: "Replacing the child's chain without testing it",
-        },
-        {
-          correct: true,
-          label: "Sorting mixed bolts by using notes and measurements",
+          label:
+            "They would be twice as far apart, because the bottle would now be wider than before.",
         },
         {
           correct: false,
           label:
-            "Giving a new volunteer the repair answer before asking what the rider noticed",
+            "They would stay exactly where they are, because the funnel would still catch the same rain.",
+        },
+        {
+          correct: true,
+          label:
+            "Each millimetre of rain would raise the water by one millimetre, so the marks would be half as far apart as before.",
+        },
+        {
+          correct: false,
+          label:
+            "The zero line would no longer be needed, because a wider bottle would have no domed base.",
+        },
+        {
+          correct: false,
+          label:
+            "Each $$8$$ mL poured in would now stand for $$2$$ mm of rain instead of $$1$$ mm.",
         },
       ],
     },

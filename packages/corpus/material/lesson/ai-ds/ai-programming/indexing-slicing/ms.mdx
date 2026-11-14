@@ -1,0 +1,443 @@
+export const metadata = {
+    title: "Pengindeksan dan Penghirisan",
+    description: "Gunakan indeks positif, indeks negatif dan langkah hirisan untuk memilih item daripada rentetan dan senarai Python.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-17",
+    dateModified: "2026-09-01",
+    subject: "Pengaturcaraan AI",
+};
+
+## Mencapai Satu Unsur
+
+Pengindeksan memilih **satu unsur mengikut kedudukannya** daripada rentetan atau senarai. Contohnya, jika `letters = ["a", "b", "c"]`, maka `letters[1]` memulangkan `"b"`.
+
+Python memulakan nombor indeksnya pada <InlineMath math="0" />. Unsur pertama ada indeks <InlineMath math="0" />, unsur kedua ada indeks <InlineMath math="1" />, dan begitulah seterusnya. Python juga menyokong indeks negatif yang mengira ke belakang dari hujung.
+
+### Indeks Positif dan Negatif
+
+Dalam rentetan atau senarai, setiap aksara atau unsur ada dua jenis indeks. Indeks positif bermula dari <InlineMath math="0" /> di awal, manakala indeks negatif bermula dari <InlineMath math="-1" /> di hujung.
+
+Jadual ini meletakkan **dua indeks pada unsur yang sama**. Kedua-dua `1` dan `-4` memilih `e`. Kod di bawah menggunakan `repr()` supaya tanda petikan dan rentetan kosong tetap kelihatan dalam output.
+
+| Aksara | `H` | `e` | `l` | `l` | `o` |
+| --- | --- | --- | --- | --- | --- |
+| Indeks dari awal | `0` | `1` | `2` | `3` | `4` |
+| Indeks dari hujung | `-5` | `-4` | `-3` | `-2` | `-1` |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_indexing.py",
+      code: `# Contoh pengindeksan pada rentetan
+s = "Hello"
+
+# Mencapai aksara dengan indeks positif
+print(repr(s[0]))    # Output: 'H'
+print(repr(s[4]))    # Output: 'o'
+
+# Mencapai aksara dengan indeks negatif
+print(repr(s[-1]))   # Output: 'o'
+print(repr(s[-5]))   # Output: 'H'
+
+# Cuba mencapai indeks yang tidak wujud
+try:
+    print(repr(s[5]))
+except IndexError:
+    print("IndexError: indeks di luar julat")`
+    }
+  ]}
+/>
+
+Indeks di luar julat yang sah akan menimbulkan `IndexError`. Semakan had ini menghalang jujukan Python daripada memulangkan nilai yang tiada kaitan.
+
+## Memilih Beberapa Unsur
+
+Hirisan (slice) memilih beberapa unsur daripada rentetan atau senarai. Kamu tetapkan indeks mula, indeks henti, dan, jika perlu, **jarak antara unsur yang dipilih**. Hasilnya ialah rentetan atau senarai baharu.
+
+### Hirisan dengan Dua Had
+
+Sintaks `[i:j]` menggunakan `i` sebagai indeks mula dan `j` sebagai indeks henti. Hasilnya termasuk unsur pada `i` tetapi **tidak termasuk unsur pada `j`**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_slicing.py",
+      code: `# Contoh penghirisan pada rentetan
+s = "Hello"
+
+# Hirisan dari indeks 1 hingga 3 (3 tidak termasuk)
+print(repr(s[1:3]))    # Output: 'el'
+
+# Hirisan dari indeks 3 hingga hujung
+print(repr(s[3:]))     # Output: 'lo'
+
+# Hirisan dari awal hingga indeks 3
+print(repr(s[:3]))     # Output: 'Hel'
+
+# Hirisan dengan indeks negatif
+print(repr(s[-4:-2]))  # Output: 'el'
+print(repr(s[-2:-4]))  # Output: ''`
+    }
+  ]}
+/>
+
+Apabila indeks mula lebih besar daripada indeks henti dan langkahnya positif, hasilnya ialah rentetan atau senarai kosong. Langkah negatif pula memilih item dalam arah yang bertentangan.
+
+### Menetapkan Jarak antara Item
+
+Parameter ketiga dalam `[start:stop:step]` menetapkan jarak antara unsur yang dipilih. Contohnya, langkah `2` **memilih satu item dan melangkau item seterusnya**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "stride_slicing.py",
+      code: `# Contoh penghirisan dengan langkah (stride)
+s = "Hello World!"
+
+# Mengambil setiap aksara kedua
+print(repr(s[::2]))      # Output: 'HloWrd'
+
+# Mengambil setiap aksara kedua bermula dari indeks 1
+print(repr(s[1::2]))     # Output: 'el ol!'
+
+# Membalikkan rentetan dengan langkah negatif
+print(repr(s[::-1]))     # Output: '!dlroW olleH'
+
+# Hirisan dengan langkah negatif dari indeks tertentu
+print(repr(s[-1:4:-1]))  # Output: '!dlroW '`
+    }
+  ]}
+/>
+
+Langkah negatif membalikkan arah pemilihan. Bentuk `s[::-1]` meninggalkan kedua-dua had dan memilih setiap unsur dari hujung ke awal. Langkah tidak boleh sifar kerana ia tidak akan pernah bergerak ke indeks lain.
+
+## Peraturan Hirisan
+
+Hirisan ditulis sebagai `start:stop:step`. Indeks mula termasuk, **indeks henti tidak termasuk**, dan langkah negatif melalui jujukan dari kanan ke kiri. Bila kamu ragu, semak tiga peraturan ini satu per satu sebelum menjalankan kod.
+
+### Mengira Unsur yang Dipilih
+
+Katakan <InlineMath math="n" /> ialah panjang `s`. Untuk kes mudah <InlineMath math="0 \le i \le j \le n" /> dengan langkah positif lalai, panjang `s[i:j]` ialah <InlineMath math="j-i" />. Hirisan umum mungkin ada had yang ditinggalkan, negatif, atau di luar julat, serta langkah yang berbeza. Python terlebih dahulu **menormalkan had itu berdasarkan panjang jujukan**. Bilangan tepatnya ialah `len(range(*slice(i, j, step).indices(len(s))))`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_properties.py",
+      code: `# Mengira panjang hasil penghirisan
+s = "Hello"
+
+# Hirisan s[1:4]
+result = s[1:4]
+print(f"Hasil: '{result}', Panjang: {len(result)}")  # Output: Hasil: 'ell', Panjang: 3
+
+# Membuktikan bahawa s[:i] + s[i:] == s
+i = 2
+left_part = s[:i]
+right_part = s[i:]
+print(f"'{left_part}' + '{right_part}' = '{left_part + right_part}'")
+
+# Hirisan di luar had tidak menyebabkan ralat
+print(repr(s[3:10]))   # Output: 'lo'
+print(repr(s[10:]))    # Output: ''`
+    }
+  ]}
+/>
+
+Python memangkas had hirisan supaya berada dalam julat sah rentetan atau senarai. Oleh itu, `s[3:10]` tetap sah walaupun indeks henti lebih besar daripada panjang `s`.
+
+Setiap aksara dalam `s = "Python"` ada dua alamat: indeks positif dari kiri dan indeks negatif dari kanan, jadi `s[0]` dan `s[-6]` kedua-duanya ialah `P`. Segmen kuning ambar menunjukkan peraturan separuh terbuka: `s[1:4]` bermula pada indeks <InlineMath math="1" />, yang termasuk, dan berhenti sebelum indeks <InlineMath math="4" />. Hasilnya ialah tiga aksara magenta `"yth"`, dan panjangnya sentiasa <InlineMath math="4-1=3" />.
+
+<MathVisual
+  title={<>Indeks positif, indeks negatif, dan <code>s[1:4]</code></>}
+  description={<>Untuk <code>s = 'Python'</code>: nombor ungu ialah indeks positif, nombor hijau kebiruan ialah indeks negatif, dan aksara magenta ialah hasil <code>s[1:4]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "pos-a", kind: "point", at: { x: 0, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-b", kind: "point", at: { x: 1, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-c", kind: "point", at: { x: 2, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-d", kind: "point", at: { x: 3, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-e", kind: "point", at: { x: 4, y: -0.7 }, appearance: "secondary" },
+      { id: "pos-f", kind: "point", at: { x: 5, y: -0.7 }, appearance: "secondary" },
+      { id: "neg-a", kind: "point", at: { x: 0, y: -1.4 }, appearance: "construction" },
+      { id: "neg-b", kind: "point", at: { x: 1, y: -1.4 }, appearance: "construction" },
+      { id: "neg-c", kind: "point", at: { x: 2, y: -1.4 }, appearance: "construction" },
+      { id: "neg-d", kind: "point", at: { x: 3, y: -1.4 }, appearance: "construction" },
+      { id: "neg-e", kind: "point", at: { x: 4, y: -1.4 }, appearance: "construction" },
+      { id: "neg-f", kind: "point", at: { x: 5, y: -1.4 }, appearance: "construction" },
+      { id: "slice", kind: "segment", from: { x: 1, y: 0.9 }, to: { x: 4, y: 0.9 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "pos-a", objectId: "pos-a", at: { x: 0, y: -0.7 }, placement: "right" },
+      { key: "pos-b", objectId: "pos-b", at: { x: 1, y: -0.7 }, placement: "right" },
+      { key: "pos-c", objectId: "pos-c", at: { x: 2, y: -0.7 }, placement: "right" },
+      { key: "pos-d", objectId: "pos-d", at: { x: 3, y: -0.7 }, placement: "right" },
+      { key: "pos-e", objectId: "pos-e", at: { x: 4, y: -0.7 }, placement: "right" },
+      { key: "pos-f", objectId: "pos-f", at: { x: 5, y: -0.7 }, placement: "right" },
+      { key: "neg-a", objectId: "neg-a", at: { x: 0, y: -1.4 }, placement: "right" },
+      { key: "neg-b", objectId: "neg-b", at: { x: 1, y: -1.4 }, placement: "right" },
+      { key: "neg-c", objectId: "neg-c", at: { x: 2, y: -1.4 }, placement: "right" },
+      { key: "neg-d", objectId: "neg-d", at: { x: 3, y: -1.4 }, placement: "right" },
+      { key: "neg-e", objectId: "neg-e", at: { x: 4, y: -1.4 }, placement: "right" },
+      { key: "neg-f", objectId: "neg-f", at: { x: 5, y: -1.4 }, placement: "right" },
+      { key: "slice", objectId: "slice", at: { x: 4, y: 0.9 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-a": "P",
+    "char-b": "y",
+    "char-c": "t",
+    "char-d": "h",
+    "char-e": "o",
+    "char-f": "n",
+    "pos-a": "0",
+    "pos-b": "1",
+    "pos-c": "2",
+    "pos-d": "3",
+    "pos-e": "4",
+    "pos-f": "5",
+    "neg-a": "-6",
+    "neg-b": "-5",
+    "neg-c": "-4",
+    "neg-d": "-3",
+    "neg-e": "-2",
+    "neg-f": "-1",
+    "slice": "s[1:4]",
+  }}
+/>
+
+## Indeks yang Dipilih oleh Hirisan
+
+Gelung di bawah membina semula hirisan dengan `range(start, stop, step)`, **satu indeks pada satu masa**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_as_loop.py",
+      code: `# Memahami penghirisan sebagai gelung
+s = "Hello World!"
+
+# s[1:8:2] setara dengan gelung berikut:
+result_manual = ""
+for index in range(1, 8, 2):
+    result_manual += s[index]
+
+result_slicing = s[1:8:2]
+
+print(f"Gelung manual: '{result_manual}'")    # Output: 'el o'
+print(f"Penghirisan: '{result_slicing}'")       # Output: 'el o'
+print(f"Sama? {result_manual == result_slicing}")  # Output: True
+
+# Contoh dengan langkah negatif
+print("\\nLangkah negatif:")
+print(f"s[::-2] = '{s[::-2]}'")            # Output: '!lo le'
+
+# Gelung manual yang setara untuk langkah negatif
+result_negative = ""
+for index in range(len(s)-1, -1, -2):
+    result_negative += s[index]
+print(f"Manual: '{result_negative}'")`
+    }
+  ]}
+/>
+
+Apabila kamu bandingkan hirisan dengan model `range()` miliknya, kamu nampak cara nilai mula, nilai henti, dan langkah bekerjasama, terutamanya apabila langkahnya negatif.
+
+Hirisan memilih indeks daripada `range(start, stop, step)`. Untuk `s = 'Python'`, `s[0:6:2]` mengambil indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />, lalu memberi `'Pto'`. `s[5:0:-2]` bergerak ke belakang dari indeks <InlineMath math="5" /> dan berhenti sebelum <InlineMath math="0" />, jadi ia memberi `'nhy'`.
+
+<MathVisual
+  title={<>Indeks yang dipilih oleh <code>s[0:6:2]</code> dan <code>s[5:0:-2]</code></>}
+  description={<>Baris tengah yang kelabu ialah aksara <code>'Python'</code>. Garisan magenta di atas melompat ke hadapan dua langkah ke indeks <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="4" />. Garisan hijau kebiruan di bawah melompat ke belakang ke indeks <InlineMath math="5" />, <InlineMath math="3" />, dan <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "forward", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 2, y: 1 }, { x: 4, y: 1 }], appearance: "answer" },
+      { id: "pick-0", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+      { id: "pick-2", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "pick-4", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "backward", kind: "polyline", vertices: [{ x: 5, y: -1 }, { x: 3, y: -1 }, { x: 1, y: -1 }], appearance: "construction" },
+      { id: "back-5", kind: "point", at: { x: 5, y: -1 }, appearance: "construction" },
+      { id: "back-3", kind: "point", at: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "back-1", kind: "point", at: { x: 1, y: -1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "right" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
+
+## Bentuk Ringkas Hirisan
+
+Had yang ditinggalkan mengikut **arah langkah**. Langkah positif secara lalai bermula di awal dan berhenti selepas unsur terakhir. Langkah negatif secara lalai bermula pada unsur terakhir dan berhenti selepas melepasi unsur pertama.
+
+### Dari Awal atau hingga Hujung
+
+Dengan **langkah positif lalai**, `s[:3]` memilih bahagian awal dan `s[3:]` memilih bahagian hujung. Dalam `s[::-1]`, kedua-dua had yang ditinggalkan mengikut arah negatif, jadi jujukan itu terbalik.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "slicing_variations.py",
+      code: `# Variasi penghirisan yang berguna
+s = "Hello"
+
+# Mengambil 3 aksara pertama
+print(repr(s[:3]))     # Output: 'Hel'
+
+# Mengambil aksara dari indeks 3 hingga hujung
+print(repr(s[3:]))     # Output: 'lo'
+
+# Mengambil semua aksara
+print(repr(s[:]))      # Output: 'Hello'
+
+# Contoh praktikal dengan senarai
+numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Mengambil 5 unsur pertama
+first_five = numbers[:5]
+print(f"Lima pertama: {first_five}")
+
+# Mengambil 5 unsur terakhir
+last_five = numbers[-5:]
+print(f"Lima terakhir: {last_five}")
+
+# Mengambil unsur tengah (langkau 2 yang pertama dan 2 yang terakhir)
+middle = numbers[2:-2]
+print(f"Bahagian tengah: {middle}")`
+    }
+  ]}
+/>
+
+Bentuk ini memilih kawasan tertentu atau item yang berjarak sekata daripada set data yang lebih besar tanpa gelung berasingan.
+
+Indeks pemisah yang sama memotong rentetan tanpa jurang dan tanpa pertindihan. Untuk `s = 'Python'`, `s[:3]` memberi `'Pyt'` dan `s[3:]` memberi `'hon'`, jadi `s[:3] + s[3:] == s` sentiasa benar.
+
+<MathVisual
+  title={<><code>s[:3]</code> dan <code>s[3:]</code> membahagi <code>'Python'</code></>}
+  description={<>Aksara ungu ialah <code>s[:3]</code> dan aksara hijau kebiruan ialah <code>s[3:]</code>. Segmen kelabu berdiri di antara indeks <InlineMath math="2" /> dan <InlineMath math="3" />, iaitu tempat kedua-dua hirisan bertemu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "split", kind: "segment", from: { x: 2.5, y: -0.7 }, to: { x: 2.5, y: 0.7 }, appearance: "reference" },
+      { id: "char-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "char-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "char-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "char-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "char-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "char-5", kind: "point", at: { x: 5, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "char-0", objectId: "char-0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-1", objectId: "char-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-2", objectId: "char-2", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-3", objectId: "char-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-4", objectId: "char-4", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-5", objectId: "char-5", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "char-0": <code>P</code>,
+    "char-1": <code>y</code>,
+    "char-2": <code>t</code>,
+    "char-3": <code>h</code>,
+    "char-4": <code>o</code>,
+    "char-5": <code>n</code>,
+  }}
+/>
+
+## Bekerja dengan Bahagian Rentetan dan Senarai
+
+Contoh di bawah menggunakan pengindeksan dan penghirisan untuk membalikkan rentetan, memformat nombor telefon, membina huruf awal nama, dan menyemak palindrom. Contoh sambungan fail menggunakan `Path.suffix` kerana panjang sambungan fail tidak tetap.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_applications.py",
+      code: `# Contoh praktikal pengindeksan dan penghirisan
+
+# 1. Membalikkan susunan nama
+first_name = "Ahmad"
+last_name = "Wijaya"
+reversed_name = (first_name + " " + last_name)[::-1]
+print(f"Nama terbalik: {reversed_name}")
+
+# 2. Mendapatkan sambungan fail dengan selamat
+from pathlib import Path
+
+filename = "important_document.pdf"
+extension = Path(filename).suffix
+print(f"Sambungan: {extension}")
+
+# 3. Memformat nombor telefon
+number = "081234567890"
+formatted = f"{number[:4]}-{number[4:8]}-{number[8:]}"
+print(f"Nombor berformat: {formatted}")
+
+# 4. Mendapatkan huruf awal nama
+full_name = "Siti Nurhaliza Binti Ahmad"
+words = full_name.split()
+initials = ""
+for word in words:
+    initials += word[0]
+print(f"Huruf awal: {initials}")
+
+# 5. Penyemak palindrom
+def is_palindrome(text):
+    cleaned = "".join(character for character in text.casefold() if character.isalnum())
+    return cleaned == cleaned[::-1]
+
+print(f"'katak' palindrom? {is_palindrome('katak')}")
+print(f"'kasur rusak' palindrom? {is_palindrome('kasur rusak')}")`
+    }
+  ]}
+/>
+
+Gunakan indeks untuk memilih satu item pada kedudukan yang diketahui. Gunakan hirisan untuk memilih beberapa item yang bersebelahan atau berjarak sekata. Bentuk `[::-1]` membalikkan susunannya. Untuk sambungan fail, elakkan bilangan aksara yang tetap kerana panjang sambungan berbeza-beza. `Path.suffix` membaca sambungan daripada struktur laluan fail.
+
+<Highlight>Had hirisan dipangkas mengikut panjang jujukan</Highlight>, jadi `s[10:]` pada rentetan yang lebih pendek memulangkan `""`. Pengindeksan terus seperti `s[10]` tetap menimbulkan `IndexError`. Gunakan hirisan hanya apabila hasil kosong boleh diterima.
+
+Indeks negatif mengira dari hujung. Gunakan `s[-1]` untuk unsur terakhir atau `s[-3:]` untuk tiga unsur terakhir. Bentuk ini memilih kedudukan berhampiran hujung semasa memproses fail, menghurai teks, atau mengendalikan set data.

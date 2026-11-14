@@ -1,11 +1,41 @@
-Bilangan habis dibagi <InlineMath math="6" /> tepat ketika **habis dibagi <InlineMath math="2" /> dan habis dibagi <InlineMath math="3" />**, karena <InlineMath math="6=2\times3" /> dan <InlineMath math="2" /> serta <InlineMath math="3" /> tidak memiliki faktor persekutuan selain <InlineMath math="1" />.
+Soal ini meminta banyak paket A. Sebuah pernyataan disebut cukup kalau hanya ada satu nilai paket A yang mungkin. Misalkan Wulan membeli <InlineMath math="a" /> paket A dan <InlineMath math="b" /> paket B, dengan <InlineMath math="a" /> dan <InlineMath math="b" /> bilangan bulat yang paling sedikit <InlineMath math="1" />. Uji setiap pernyataan sendiri-sendiri dulu, baru gabungkan.
 
-**Pernyataan (1) saja**. <InlineMath math="n" /> habis dibagi <InlineMath math="3" />, tetapi belum tentu genap. Contohnya <InlineMath math="n=6" /> habis dibagi <InlineMath math="6" />, sedangkan <InlineMath math="n=9" /> tidak. Tidak cukup.
+Pernyataan (1) memberi persamaan dalam ribuan rupiah:
 
-**Pernyataan (2) saja**. Jika <InlineMath math="n" /> ganjil, <InlineMath math="n^2" /> juga ganjil sehingga tidak habis dibagi <InlineMath math="4" />. Jadi, <InlineMath math="n^2" /> habis dibagi <InlineMath math="4" /> berarti <InlineMath math="n" /> genap. Namun, <InlineMath math="n" /> belum tentu habis dibagi <InlineMath math="3" />. Contohnya <InlineMath math="n=2" /> tidak habis dibagi <InlineMath math="6" />, sedangkan <InlineMath math="n=12" /> habis dibagi <InlineMath math="6" />. Tidak cukup.
+<BlockMath math="7a + 4b = 61" />
 
-**Kedua pernyataan bersama-sama**. Pernyataan (2) memberi <InlineMath math="n" /> genap, dan pernyataan (1) memberi <InlineMath math="n" /> habis dibagi <InlineMath math="3" />. Jadi, <InlineMath math="n" /> pasti habis dibagi <InlineMath math="6" />. Cukup.
+Karena <InlineMath math="4b" /> harus kelipatan <InlineMath math="4" />, sisa <InlineMath math="61 - 7a" /> juga harus habis dibagi <InlineMath math="4" />. Nilai <InlineMath math="a" /> paling besar <InlineMath math="8" />, sebab <InlineMath math="7 \times 9 = 63" /> sudah melebihi <InlineMath math="61" />. Coba semua nilai itu.
 
-Kesalahan yang sering terjadi adalah mengira pernyataan (2) hanya memberi informasi tentang <InlineMath math="n^2" />, sehingga dianggap tidak berguna. Padahal pernyataan itu memastikan <InlineMath math="n" /> genap.
+| <InlineMath math="a" /> | <InlineMath math="61 - 7a" /> | Habis dibagi <InlineMath math="4" />? | <InlineMath math="b" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="54" /> | tidak | tidak bulat |
+| <InlineMath math="2" /> | <InlineMath math="47" /> | tidak | tidak bulat |
+| <InlineMath math="3" /> | <InlineMath math="40" /> | ya | <InlineMath math="10" /> |
+| <InlineMath math="4" /> | <InlineMath math="33" /> | tidak | tidak bulat |
+| <InlineMath math="5" /> | <InlineMath math="26" /> | tidak | tidak bulat |
+| <InlineMath math="6" /> | <InlineMath math="19" /> | tidak | tidak bulat |
+| <InlineMath math="7" /> | <InlineMath math="12" /> | ya | <InlineMath math="3" /> |
+| <InlineMath math="8" /> | <InlineMath math="5" /> | tidak | tidak bulat |
 
-Jadi, dua pernyataan bersama-sama cukup, tetapi satu pernyataan saja tidak cukup.
+Ada **dua pasangan yang mungkin**, yaitu <InlineMath math="(a, b) = (3, 10)" /> dan <InlineMath math="(7, 3)" />. Banyak paket A bisa <InlineMath math="3" /> atau <InlineMath math="7" />, jadi pernyataan (1) saja tidak cukup.
+
+Pernyataan (2) mengatakan bahwa harga setelah ditukar lebih mahal. Tulis dalam bentuk pertidaksamaan, lalu sederhanakan.
+
+<BlockMath math="\begin{aligned}
+7b + 4a &> 7a + 4b \\
+3b &> 3a \\
+b &> a
+\end{aligned}" />
+
+Pernyataan (2) hanya memberi tahu bahwa paket B lebih banyak daripada paket A. Banyak pasangan memenuhi syarat ini, misalnya <InlineMath math="(1, 2)" /> atau <InlineMath math="(5, 9)" />, jadi pernyataan (2) saja tidak cukup.
+
+Sekarang gabungkan. Dari dua pasangan pada pernyataan (1), hanya <InlineMath math="(3, 10)" /> yang memenuhi <InlineMath math="b > a" />. Pasangan <InlineMath math="(7, 3)" /> gugur karena <InlineMath math="3 < 7" />. Cek: <InlineMath math="7 \times 3 + 4 \times 10 = 61" />, dan setelah ditukar harganya <InlineMath math="7 \times 10 + 4 \times 3 = 82" />, memang lebih mahal. Banyak paket A pasti <InlineMath math="3" />.
+
+Kenapa pilihan lain keliru:
+
+- Pernyataan (1) saja tampak cukup kalau kamu berhenti di pasangan pertama yang kamu temukan, <InlineMath math="(3, 10)" />, dan tidak memeriksa <InlineMath math="(7, 3)" />.
+- Pernyataan (2) saja hanya memberi urutan <InlineMath math="b > a" />, bukan nilai tertentu.
+- Masing-masing cukup berarti kedua kekeliruan di atas terjadi sekaligus.
+- Tidak cukup sama sekali adalah kesimpulan kalau kamu tidak mengubah pernyataan (2) menjadi <InlineMath math="b > a" />, sehingga tidak melihat bahwa pernyataan itu membuang pasangan <InlineMath math="(7, 3)" />.
+
+Jadi, dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.

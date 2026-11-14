@@ -1,0 +1,499 @@
+export const metadata = {
+    title: "Fungsi",
+  description: "Takrifkan fungsi Python dengan parameter, **nilai pulangan**, skop pemboleh ubah, closure, dan pengendalian ralat yang eksplisit.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Kod Boleh Guna Semula dengan Input dan Hasil
+
+Fungsi <Highlight>memberi nama kepada satu operasi yang boleh digunakan semula</Highlight>. Parameternya menerangkan **input yang diterimanya**, badannya melakukan kerja, dan pernyataan `return` boleh memberi hasil kepada pemanggil.
+
+## Struktur dan Sintaks Fungsi
+
+Setiap fungsi Python mengikut **struktur asas** yang sama:
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_structure.py",
+      code: `def function_name(parameter_list):
+    """Docstring pilihan untuk menerangkan fungsi"""
+    # Blok kod yang akan dilaksanakan
+    statement_1
+    statement_2
+    return return_value  # Pilihan`
+    }
+  ]}
+/>
+
+Komponen fungsi terdiri daripada:
+
+1. Kata kunci `def` untuk memulakan definisi fungsi
+2. Nama fungsi yang mengikut peraturan penamaan pemboleh ubah Python
+3. Kurungan yang mengandungi senarai parameter (boleh kosong)
+4. Titik bertindih untuk menamatkan baris definisi
+5. Blok kod yang diinden
+6. Pernyataan `return` pilihan untuk memulangkan nilai
+
+## Apa yang Berlaku Semasa Fungsi Dipanggil
+
+Apabila kamu memanggil fungsi, Python menilai ungkapan yang boleh dipanggil itu, **mengikat argumen yang diberi kepada parameter**, lalu melaksanakan badan fungsi dalam bingkai setempat yang baharu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_example.py",
+      code: `# Definisi fungsi
+def greet(name):
+    message = f"Hello, {name}!"
+    return message
+
+# Panggilan fungsi
+result = greet("Alice")
+print(result)  # Output: Hello, Alice!
+
+# Panggilan terus di dalam print
+print(greet("Bob"))  # Output: Hello, Bob!`
+    }
+  ]}
+/>
+
+Proses yang berlaku semasa fungsi dipanggil:
+
+1. Python menilai nama atau ungkapan itu dan menyemak sama ada hasilnya boleh dipanggil
+2. Pengikatan argumen memadankan nilai yang diberi dengan tandatangan fungsi
+3. Python melaksanakan badan fungsi dalam skop setempat yang baharu
+4. `return` menamatkan panggilan dengan satu nilai. Jika fungsi sampai ke penghujungnya, ia memulangkan `None`
+
+## Parameter dan Argumen
+
+Parameter ialah pemboleh ubah yang ditulis dalam definisi fungsi, manakala argumen ialah **nilai sebenar yang kamu hantar** semasa memanggil fungsi itu. Python menawarkan beberapa jenis parameter, dan jenis yang digunakan oleh sesuatu definisi memberitahu kamu sama ada pemanggil mesti memberi nilai itu mengikut kedudukan, mengikut nama, atau tidak perlu memberinya langsung.
+
+### Parameter Kedudukan dan Kata Kunci
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "function_parameters.py",
+      code: `def introduction(name, age, city="Jakarta"):
+    return f"Nama saya {name}, berumur {age} tahun, tinggal di {city}"
+
+# Menggunakan parameter kedudukan
+print(introduction("Sari", 25))
+# Output: Nama saya Sari, berumur 25 tahun, tinggal di Jakarta
+
+# Menggunakan parameter kata kunci
+print(introduction(age=30, name="Budi", city="Bandung"))
+# Output: Nama saya Budi, berumur 30 tahun, tinggal di Bandung
+
+# Campuran parameter kedudukan dan kata kunci
+print(introduction("Andi", age=28, city="Surabaya"))
+# Output: Nama saya Andi, berumur 28 tahun, tinggal di Surabaya`
+    }
+  ]}
+/>
+
+Peraturan parameter:
+
+1. **Argumen kedudukan mengikut susunan parameter**
+2. Argumen kata kunci boleh diberi dalam apa-apa susunan
+3. Argumen kedudukan biasa diletakkan sebelum argumen kata kunci
+4. Parameter yang ada nilai lalai tidak wajib diberi
+
+### Bilangan Parameter yang Tidak Tetap
+
+Python boleh **mengumpul argumen tambahan** melalui `*args` dan `**kwargs`. Fungsi itu masih perlu menyemak bilangan, jenis, dan nilai argumen tersebut berdasarkan keperluan atur cara.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "variable_parameters.py",
+      code: `def calculate_total(*numbers):
+    """Kira jumlah bagi sebilangan nombor"""
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
+# Memanggil dengan bilangan argumen yang berbeza-beza
+print(calculate_total(1, 2, 3))        # Output: 6
+print(calculate_total(5, 10, 15, 20))  # Output: 50
+
+def student_info(name, **details):
+    """Paparkan maklumat pelajar bersama butiran tambahan"""
+    print(f"Nama: {name}")
+    for key, value in details.items():
+        print(f"{key.capitalize()}: {value}")
+
+# Memanggil dengan argumen kata kunci
+student_info("Maya", age=20, major="Informatics", gpa=3.8)
+# Output:
+# Nama: Maya
+# Age: 20
+# Major: Informatics
+# Gpa: 3.8`
+    }
+  ]}
+/>
+
+Parameter `*args` mengumpul argumen kedudukan tambahan ke dalam tuple, manakala `**kwargs` mengumpul argumen kata kunci tambahan ke dalam kamus (dictionary).
+
+Katakan `def power(x, n=2): return x ** n`. Jika kamu memanggil `power(x)` tanpa argumen kedua, Python menggunakan nilai lalai `n=2`, dan hasilnya ialah lengkung ungu. Argumen kedua akan mengatasi nilai lalai itu: `power(x, 1)` memberi garis kelabu. Kedua-duanya bertemu pada `x = 0` dan `x = 1`, kerana `0 ** n` ialah `0` dan `1 ** n` ialah `1` bagi setiap `n` positif.
+
+<MathVisual
+  title={<>Parameter lalai <code>n</code> bagi <code>power</code></>}
+  description={<>Setiap lengkung ialah hasil <code>power</code> bagi satu nilai <code>n</code>. Lengkung ungu menggunakan nilai lalai <InlineMath math="n=2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "linear", kind: "segment", from: { x: -1.5, y: -1.5 }, to: { x: 1.5, y: 1.5 }, appearance: "reference" },
+      { id: "square", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -1.5, max: 1.5 }, inputAxis: "x", appearance: "secondary" },
+    ],
+    labels: [
+      { key: "linear", objectId: "linear", at: { x: 1.5, y: 1.5 }, placement: "right" },
+      { key: "square", objectId: "square", at: { x: 1.5, y: 2.25 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "linear": "power(x, 1)",
+    "square": "power(x)",
+  }}
+/>
+
+## Nilai Pulangan Fungsi
+
+Fungsi boleh **memulangkan nilai** menggunakan pernyataan `return`. Jika tiada `return`, atau ada `return` tanpa nilai, fungsi itu akan memulangkan `None`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "return_values.py",
+      code: `def circle_area(radius):
+    """Kira luas bulatan"""
+    import math
+    return math.pi * radius ** 2
+
+def find_min_max(number_list):
+    """Pulangkan nilai minimum dan maksimum"""
+    if not number_list:
+        return None, None
+    return min(number_list), max(number_list)
+
+def print_message(message):
+    """Fungsi tanpa return eksplisit"""
+    print(f"Mesej: {message}")
+    # Tiada return, jadi None dipulangkan secara automatik
+
+# Contoh penggunaan
+area = circle_area(5)
+print(f"Luas bulatan: {area:.2f}")  # Output: Luas bulatan: 78.54
+
+min_val, max_val = find_min_max([3, 1, 4, 1, 5, 9])
+print(f"Min: {min_val}, Max: {max_val}")  # Output: Min: 1, Max: 9
+
+result = print_message("Hello World")  # Output: Mesej: Hello World
+print(f"Hasil fungsi print_message: {result}")  # Output: Hasil fungsi print_message: None`
+    }
+  ]}
+/>
+
+Fungsi boleh memulangkan beberapa nilai serentak dalam bentuk tuple. Dengan `def min_max(data): return min(data), max(data)`, pernyataan `low, high = min_max([4, 1, 7, 3])` memberi `low = 1` dan `high = 7` daripada satu panggilan sahaja.
+
+<MathVisual
+  title={<><code>min_max([4, 1, 7, 3])</code> memulangkan <code>(1, 7)</code></>}
+  description={<>Setiap titik ialah satu unsur data pada kedudukannya. Titik magenta ialah nilai <code>min</code> dan titik jingga ialah nilai <code>max</code>, iaitu dua nilai yang dipulangkan bersama dalam satu tuple.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "values", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 1, y: 1 }, { x: 2, y: 7 }, { x: 3, y: 3 }], appearance: "reference" },
+      { id: "other-a", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "other-b", kind: "point", at: { x: 3, y: 3 }, appearance: "secondary" },
+      { id: "smallest", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "largest", kind: "point", at: { x: 2, y: 7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "smallest", objectId: "smallest", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "largest", objectId: "largest", at: { x: 2, y: 7 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "smallest": <code>min</code>,
+    "largest": <code>max</code>,
+  }}
+/>
+
+## Skop Pemboleh Ubah dalam Fungsi
+
+Pemboleh ubah dalam Python ada skop yang menentukan **di mana pemboleh ubah itu boleh dicapai**. Kamu perlu faham skop pemboleh ubah supaya dapat mengelakkan ralat dalam atur cara.
+
+<Mermaid
+  title="Tempat Pemboleh Ubah Fungsi Boleh Dibaca"
+  description="Ikut carian nama dari skop setempat ke arah luar supaya peraturan skop fungsi lebih mudah dijejak."
+  chart={`
+    flowchart TD
+        L[Skop Local] --> E[Skop Enclosing]
+        E --> G[Skop Global]
+        G --> B[Skop Built-in]
+  `}
+/>
+
+### Pemboleh Ubah Setempat dan Sejagat
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "scope_variables.py",
+      code: `# Pemboleh ubah sejagat
+counter = 0
+
+def add_counter():
+    # Pemboleh ubah setempat dengan nama yang sama
+    counter = 10
+    print(f"Pembilang setempat: {counter}")
+
+def add_global_counter():
+    global counter
+    counter += 1
+    print(f"Pembilang sejagat: {counter}")
+
+# Demonstrasi penggunaan
+print(f"Pembilang awal: {counter}")       # Output: Pembilang awal: 0
+add_counter()                        # Output: Pembilang setempat: 10
+print(f"Pembilang selepas fungsi: {counter}")  # Output: Pembilang selepas fungsi: 0
+add_global_counter()                 # Output: Pembilang sejagat: 1
+print(f"Pembilang akhir: {counter}")      # Output: Pembilang akhir: 1`
+    }
+  ]}
+/>
+
+Carian nama mengikut **susunan LEGB**:
+
+1. **Local** - di dalam fungsi semasa
+2. **Enclosing** - di dalam fungsi yang melingkunginya (untuk fungsi bersarang)
+3. **Global** - pada peringkat modul
+4. **Built-in** - nama terbina dalam Python
+
+## Fungsi sebagai Objek Kelas Pertama
+
+Dalam Python, fungsi ialah **objek kelas pertama** (first-class object), maksudnya kamu boleh melayannya seperti data lain. Kamu boleh menyimpannya dalam pemboleh ubah, menghantarnya sebagai argumen, atau memulangkannya daripada fungsi lain.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "first_class_functions.py",
+      code: `def multiply_two(x):
+    return x * 2
+
+def multiply_three(x):
+    return x * 3
+
+def apply_operation(function, value):
+    """Gunakan fungsi pada nilai"""
+    return function(value)
+
+# Simpan fungsi dalam pemboleh ubah
+operation = multiply_two
+print(operation(5))  # Output: 10
+
+# Simpan fungsi dalam senarai
+operation_list = [multiply_two, multiply_three]
+for op in operation_list:
+    print(op(4))
+# Output:
+# 8
+# 12
+
+# Hantar fungsi sebagai argumen
+result1 = apply_operation(multiply_two, 7)
+result2 = apply_operation(multiply_three, 7)
+print(f"Hasil: {result1}, {result2}")  # Output: Hasil: 14, 21`
+    }
+  ]}
+/>
+
+## Dokumentasi Fungsi dengan Docstring
+
+Docstring ialah literal rentetan yang diletakkan sebagai **pernyataan pertama** dalam definisi fungsi. Ia menerangkan apa yang dilakukan oleh fungsi itu dan cara menggunakannya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "docstring_example.py",
+      code: `def calculate_factorial(n):
+    """
+    Kira faktorial bagi integer bukan negatif.
+
+    Parameters:
+        n (int): Integer bukan negatif
+
+    Returns:
+        int: Nilai faktorial bagi n
+
+    Raises:
+        ValueError: Jika n negatif
+        TypeError: Jika n bukan integer
+
+    Example:
+        >>> calculate_factorial(5)
+        120
+        >>> calculate_factorial(0)
+        1
+    """
+    if not isinstance(n, int):
+        raise TypeError("Input mesti integer")
+    if n < 0:
+        raise ValueError("Input mesti positif atau sifar")
+
+    if n <= 1:
+        return 1
+    return n * calculate_factorial(n - 1)
+
+# Capai docstring
+print(calculate_factorial.__doc__)
+
+# Gunakan fungsi
+print(calculate_factorial(5))  # Output: 120
+print(calculate_factorial(0))  # Output: 1`
+    }
+  ]}
+/>
+
+Amalan yang baik semasa menulis docstring:
+
+1. Baris pertama mengandungi ringkasan pendek tentang fungsi
+2. Jika penerangan terperinci diperlukan, pisahkan dengan baris kosong
+3. Terangkan parameter, nilai pulangan, dan pengecualian yang mungkin berlaku
+4. Beri contoh penggunaan jika membantu
+
+## Fungsi Bersarang dan Closure
+
+Python membenarkan definisi fungsi di dalam fungsi lain. Apabila fungsi dalaman yang dipulangkan masih menyimpan **pemboleh ubah bebas daripada skop yang melingkunginya**, fungsi itu bersama persekitaran yang disimpannya membentuk closure.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "nested_functions.py",
+      code: `def create_multiplier(factor):
+    """Bina fungsi pendarab dengan faktor tertentu"""
+
+    def multiplier(value):
+        """Fungsi dalaman yang mendarab nilai dengan faktor"""
+        return value * factor
+
+    return multiplier
+
+# Bina fungsi pendarab tertentu
+multiply_two = create_multiplier(2)
+multiply_five = create_multiplier(5)
+
+print(multiply_two(10))   # Output: 20
+print(multiply_five(4))   # Output: 20
+
+def simple_calculator():
+    """Kalkulator dengan fungsi bersarang"""
+
+    def add(a, b):
+        return a + b
+
+    def subtract(a, b):
+        return a - b
+
+    def multiply(a, b):
+        return a * b
+
+    # Pulangkan kamus yang mengandungi fungsi
+    return {
+        'add': add,
+        'subtract': subtract,
+        'multiply': multiply
+    }
+
+# Gunakan kalkulator
+calc = simple_calculator()
+print(calc['add'](5, 3))  # Output: 8
+print(calc['subtract'](10, 4)) # Output: 6
+print(calc['multiply'](6, 7))    # Output: 42`
+    }
+  ]}
+/>
+
+Setiap panggilan `create_multiplier(factor)` membina closure yang mengingati `factor` miliknya sendiri. `multiply_two` melukis garis <InlineMath math="y=2x" />, dan `multiply_five` melukis garis <InlineMath math="y=5x" />. Sebab itulah `multiply_two(10)` dan `multiply_five(4)` kedua-duanya memberi `20`.
+
+<MathVisual
+  title={<>Dua closure daripada <code>create_multiplier</code></>}
+  description={<>Garis ungu ialah <code>multiply_two</code> dan garis hijau kebiruan ialah <code>multiply_five</code>. Titik magenta dan kuning ambar ialah dua panggilan daripada contoh tadi, kedua-duanya pada ketinggian <InlineMath math="20" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 25 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "five", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 5 }], appearance: "construction" },
+      { id: "two-call", kind: "point", at: { x: 10, y: 20 }, appearance: "answer" },
+      { id: "five-call", kind: "point", at: { x: 4, y: 20 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two-call", objectId: "two-call", at: { x: 10, y: 20 }, placement: "left" },
+      { key: "five-call", objectId: "five-call", at: { x: 4, y: 20 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "two-call": <code>multiply_two(10)</code>,
+    "five-call": <code>multiply_five(4)</code>,
+  }}
+/>
+
+## Pengendalian Ralat dalam Fungsi
+
+Fungsi patut menyatakan **input yang diterimanya** dan gagal secara eksplisit apabila kontrak itu dilanggar. Tangkap pengecualian hanya di tempat kod boleh pulih, boleh menambah konteks yang berguna, atau boleh memaparkan kegagalan itu kepada pengguna.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "error_handling.py",
+      code: `def divide(numerator, denominator):
+    """Bahagi dua nombor nyata dengan kontrak input yang eksplisit."""
+    if not isinstance(numerator, (int, float)):
+        raise TypeError("Pengangka mesti nombor nyata")
+    if not isinstance(denominator, (int, float)):
+        raise TypeError("Penyebut mesti nombor nyata")
+    if denominator == 0:
+        raise ValueError("Penyebut tidak boleh sifar")
+    return numerator / denominator
+
+def convert_to_int(value):
+    """Tukar nilai yang disokong, atau biarkan ralat penukaran Python berlaku."""
+    return int(value)
+
+# Panggilan yang berjaya ditulis terus tanpa try
+print(f"Hasil bahagi: {divide(10, 2)}")
+# Output: Hasil bahagi: 5.0
+print(convert_to_int("123"))
+# Output: 123
+
+# Tangkap di sempadan paparan, iaitu tempat pemulihan boleh dilakukan
+for value in ("abc", [1, 2]):
+    try:
+        print(convert_to_int(value))
+    except (TypeError, ValueError) as error:
+        print(f"Tidak dapat menukar {value!r}: {error}")`
+    }
+  ]}
+/>
