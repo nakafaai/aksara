@@ -9,11 +9,13 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Pada hari Selasa, mesin P beroperasi lebih sedikit jam daripada pada hari Senin.",
+          label:
+            "Pada hari Selasa, mesin P beroperasi lebih sedikit jam daripada pada hari Senin.",
         },
         {
           column: 2,
-          label: "Perawatan mesin P dimulai pada jam-jam yang sama setiap hari.",
+          label:
+            "Perawatan mesin P dimulai pada jam-jam yang sama setiap hari.",
         },
         {
           column: 1,

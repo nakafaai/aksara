@@ -14,7 +14,8 @@ const item: ItemSource = {
         },
         {
           column: 1,
-          label: "Median tidur efektif pekan itu lebih besar daripada rata-ratanya.",
+          label:
+            "Median tidur efektif pekan itu lebih besar daripada rata-ratanya.",
         },
         {
           column: 1,
