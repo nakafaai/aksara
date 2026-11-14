@@ -1,17 +1,30 @@
-Zähle die Spiele **Runde für Runde**: die Gruppenphase und dann die beiden Entscheidungsspiele.
+Gesucht ist die Zahl der Mittwochstassen, die dieser Kunde bezahlt hat. Der Plan: Liste zuerst alle Arten auf, genau <InlineMath math="\text{Rp}240{.}000" /> zu bezahlen, und streiche dann die Arten, die **nicht zur Karte passen**.
 
-# Gruppenphase
+# Arten, genau zweihundertvierzigtausend Rupiah zu bezahlen
 
-Jede Gruppe hat 3 Mannschaften, und je zwei spielen einmal, also **spielt jede Gruppe drei Spiele**, <InlineMath math="\binom32=3" />. Zwei Gruppen spielen <InlineMath math="2\cdot3=6" /> Spiele.
+Angenommen, der Kunde bezahlt <InlineMath math="w" /> Tassen an Mittwochen und <InlineMath math="n" /> Tassen an anderen Tagen. In Tausend Rupiah gilt <InlineMath math="15w+20n=240" />, also <InlineMath math="3w+4n=48" />. Weil <InlineMath math="4n" /> und <InlineMath math="48" /> durch <InlineMath math="4" /> teilbar sind, **muss <InlineMath math="w" /> ein Vielfaches von <InlineMath math="4" /> sein**. Die Zahl der Gratistassen ist <InlineMath math="17-w-n" />, und gesammelt werden <InlineMath math="2w+n" /> Stempel.
 
-# Entscheidungsspiele
+| <InlineMath math="w" /> | <InlineMath math="n" /> | Gratistassen | Gesammelte Stempel | Stempel, die übrig bleiben |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="12" /> | <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="12-50=-38" /> |
+| <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="4" /> | <InlineMath math="17" /> | <InlineMath math="17-40=-23" /> |
+| <InlineMath math="8" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="22" /> | <InlineMath math="22-30=-8" /> |
+| <InlineMath math="12" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="27" /> | <InlineMath math="27-20=7" /> |
+| <InlineMath math="16" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="32-10=22" /> |
 
-Nach der Gruppenphase gibt es **ein Finale und ein Spiel um Platz drei**.
+# Die Bedingung der Karte
 
-<BlockMath math="6+1+1=8" />
+Jede Gratistasse löscht <InlineMath math="10" /> Stempel, also können nicht weniger als null Stempel übrig bleiben. Die ersten drei Zeilen fallen weg. Die Karte kann auch keine Stempel horten, denn **sobald sie <InlineMath math="10" /> Stempel hat, ist die nächste Bestellung sofort gratis**. Vor einer Gratisbestellung hat die Karte höchstens <InlineMath math="9+2=11" /> Stempel, also können nicht <InlineMath math="22" /> übrig bleiben. Auch die letzte Zeile fällt weg.
 
-Dieses Format braucht 8 Spiele, weniger als die 15 Spiele, wenn jede Mannschaft gegen jede spielt.
+Nur die Zeile <InlineMath math="w=12" /> passt. Eine solche Reihenfolge gibt es wirklich: <InlineMath math="5" /> Mittwochstassen, <InlineMath math="1" /> Gratistasse, <InlineMath math="5" /> Mittwochstassen, <InlineMath math="1" /> Gratistasse, <InlineMath math="2" /> Mittwochstassen und dann <InlineMath math="3" /> Tassen an anderen Tagen.
 
-Der Wert 6 zählt nur die Gruppenphase, und 7 vergisst das Spiel um Platz drei.
+<BlockMath math="12\cdot15{.}000+3\cdot20{.}000=180{.}000+60{.}000=240{.}000" />
 
-Dieses Format umfasst also **8 Spiele**.
+# Die verlockenden falschen Optionen
+
+Jede andere Option erfüllt die Geldgleichung, **scheitert aber an der Karte**.
+
+- <InlineMath math="0" />, <InlineMath math="4" /> und <InlineMath math="8" /> brauchen mehr Gratistassen, als ihre Stempel bezahlen können.
+- <InlineMath math="16" /> entsteht, wenn du nur prüfst, dass <InlineMath math="32" /> Stempel für <InlineMath math="1" /> Gratistasse reichen. Mit <InlineMath math="16" /> Mittwochstassen ist die Karte nach der fünften Tasse voll, also enthalten <InlineMath math="17" /> Tassen sicher mehr als <InlineMath math="1" /> Gratistasse.
+
+Der Kunde hat also <InlineMath math="12" /> Tassen an Mittwochen bezahlt.

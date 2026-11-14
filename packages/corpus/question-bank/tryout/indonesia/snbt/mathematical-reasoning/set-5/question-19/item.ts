@@ -1,31 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "bank-pin",
+  stimulus: "menu-nutrition",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Banyak PIN yang setiap digitnya lebih besar daripada digit di sebelah kirinya, misalnya 1358, adalah 252.",
-        },
-        {
           column: 1,
           label:
-            "Banyak PIN yang sama jika dibaca dari kanan ke kiri, misalnya 3773, adalah 100.",
+            "Setiap paket sehat memuat paling sedikit satu porsi ayam panggang.",
         },
         {
           column: 2,
           label:
-            "Banyak PIN yang memuat digit 7 paling sedikit satu kali adalah 4.000.",
+            "Paket sehat yang paling mahal pasti merupakan paket sehat dengan protein terbanyak.",
         },
         {
           column: 1,
           label:
-            "Hanya ada satu PIN yang jumlah keempat digitnya sama dengan 36.",
+            "Jika batas kalori dinaikkan menjadi $$650\\text{ kkal}$$ dan ketentuan lain tetap, ada paket tanpa ayam panggang yang memenuhi semua ketentuan.",
+        },
+        {
+          column: 1,
+          label:
+            "Ada paket sehat yang tidak lagi menjadi paket sehat setelah ditambah satu porsi tumis sayur.",
         },
       ],
     },

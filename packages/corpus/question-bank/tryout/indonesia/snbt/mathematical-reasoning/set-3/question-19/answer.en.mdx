@@ -1,20 +1,31 @@
-Because the group price applies to every sheet, the total cost **drops suddenly when an order crosses a group boundary**. Compute the cost near those boundaries.
+Each statement has to be tested by following the stock day by day. The reference is how the stock runs under the given rules, above all **when it first drops to <InlineMath math="60" /> sacks or fewer** after each delivery.
 
-# Costs near the group boundaries
+# How the stock runs under the given rules
 
-<BlockMath math="\begin{aligned}
-100\text{ sheets}&:\quad 100\cdot500=50{,}000\\
-101\text{ sheets}&:\quad 101\cdot400=40{,}400\\
-400\text{ sheets}&:\quad 400\cdot400=160{,}000\\
-501\text{ sheets}&:\quad 501\cdot300=150{,}300
-\end{aligned}" />
+| Day | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Stock at the end of the day | <InlineMath math="100" /> | <InlineMath math="75" /> | <InlineMath math="45" /> | <InlineMath math="25" /> | <InlineMath math="0" /> | <InlineMath math="110" /> | <InlineMath math="80" /> | <InlineMath math="55" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="120" /> | <InlineMath math="100" /> |
 
-An order of 101 sheets is cheaper than 100 sheets, and 501 sheets is cheaper than 400 sheets. The second and fourth statements are true. The example of 100 and 101 sheets also shows that **the total cost does not always rise**, so the third statement is false.
+The first order is placed at the end of day <InlineMath math="3" /> and arrives on day <InlineMath math="6" />. The lost sales are <InlineMath math="10" /> sacks on day <InlineMath math="5" /> and <InlineMath math="40" /> sacks on day <InlineMath math="10" />, so **the total is <InlineMath math="50" /> sacks**.
 
-# An order of 300 sheets
+# The first statement about the second order
 
-<BlockMath math="300\cdot400=120{,}000<150{,}300" />
+After the delivery on day <InlineMath math="6" />, the stock at the end of the day is <InlineMath math="110" />, <InlineMath math="80" />, then <InlineMath math="55" />. **It only drops below <InlineMath math="60" /> at the end of day <InlineMath math="8" />**, so the second order is placed then and arrives on day <InlineMath math="8+3=11" />. The first statement is true.
 
-For 300 sheets, ordering exactly 300 is **cheaper**, so the first statement is false.
+# The second statement about the order size
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+With orders of <InlineMath math="100" /> sacks, the stock after the delivery on day <InlineMath math="6" /> is only <InlineMath math="60" /> sacks, so **the next order is placed right away at the end of day <InlineMath math="6" />** and arrives on day <InlineMath math="9" />. The stock is enough on days <InlineMath math="9" /> and <InlineMath math="10" />, and the lost sales are only <InlineMath math="10" /> sacks on day <InlineMath math="5" /> and <InlineMath math="20" /> sacks on day <InlineMath math="11" />.
+
+<BlockMath math="10+20=30<50" />
+
+The total lost sales are actually smaller, so the second statement is false.
+
+# The third statement about the waiting time
+
+With a wait of two days, the order from the end of day <InlineMath math="3" /> arrives on day <InlineMath math="5" />, while <InlineMath math="25" /> sacks are still in stock. The second order is placed at the end of day <InlineMath math="8" /> with <InlineMath math="45" /> sacks in stock, which is **exactly enough for the request on day <InlineMath math="9" />**, and arrives on day <InlineMath math="10" />. No sales are lost, so the third statement is false.
+
+# The fourth statement about the request on day nine
+
+The second order is still placed at the end of day <InlineMath math="8" /> and arrives on day <InlineMath math="11" />. The stock at the end of day <InlineMath math="9" /> becomes <InlineMath math="55-35=20" /> sacks, while day <InlineMath math="10" /> asks for <InlineMath math="50" /> sacks. **That still loses <InlineMath math="30" /> sacks**, so the fourth statement is false.
+
+So the first statement is true, the second is false, the third is false and the fourth is false.

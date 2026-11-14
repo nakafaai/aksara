@@ -1,15 +1,30 @@
-Harga per lembar bergantung pada kelompok pesanan, jadi periksa **setiap kelompok** untuk melihat berapa lembar yang terjangkau.
+Kamu mencari stok awal yang membuat semua permintaan terlayani. Rencananya: untuk setiap pilihan, cari **hari pesanan pertama dibuat**, karena hari itu menentukan kapan barang tiba, lalu ikuti stoknya sampai hari ke-<InlineMath math="12" />.
 
-# Memeriksa setiap kelompok
+# Stok awal menentukan hari pesanan
 
-- Kelompok 1 sampai 100: paling banyak 100 lembar seharga 50.000.
-- Kelompok 101 sampai 500: <InlineMath math="\tfrac{150{.}000}{400}=375" /> lembar, dan 375 memang berada di kelompok ini.
-- Kelompok lebih dari 500: pesanan terkecil, 501 lembar, berharga <InlineMath math="501\cdot300=150{.}300" />, **sedikit melebihi uang yang ada**.
+Toko baru memesan ketika stok akhir hari paling banyak <InlineMath math="60" /> karung, dan pesanannya tiba tiga hari kemudian. Jadi **stok awal yang lebih besar justru menunda pesanan pertama**. Stok setelah penjualan hari ke-<InlineMath math="1" />, ke-<InlineMath math="2" />, dan ke-<InlineMath math="3" /> adalah stok awal dikurangi <InlineMath math="20" />, <InlineMath math="45" />, dan <InlineMath math="75" />.
 
-# Menentukan jumlah terbanyak
+| Stok awal | Pesanan pertama | Tiba | Penjualan hilang sebelum tiba |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="120" /> | akhir hari ke-<InlineMath math="3" />, stok <InlineMath math="45" /> | hari ke-<InlineMath math="6" /> | <InlineMath math="10" /> pada hari ke-<InlineMath math="5" /> |
+| <InlineMath math="110" /> | akhir hari ke-<InlineMath math="3" />, stok <InlineMath math="35" /> | hari ke-<InlineMath math="6" /> | <InlineMath math="20" /> pada hari ke-<InlineMath math="5" /> |
+| <InlineMath math="100" /> | akhir hari ke-<InlineMath math="2" />, stok <InlineMath math="55" /> | hari ke-<InlineMath math="5" /> | <InlineMath math="0" /> |
+| <InlineMath math="85" /> | akhir hari ke-<InlineMath math="2" />, stok <InlineMath math="40" /> | hari ke-<InlineMath math="5" /> | <InlineMath math="10" /> pada hari ke-<InlineMath math="4" /> |
+| <InlineMath math="80" /> | akhir hari ke-<InlineMath math="1" />, stok <InlineMath math="60" /> | hari ke-<InlineMath math="4" /> | <InlineMath math="0" /> |
 
-Jumlah terbanyak yang terjangkau adalah 375 lembar dengan biaya tepat 150.000.
+# Sampai hari kedua belas
 
-Nilai 501 hampir terjangkau tetapi kurang 300 rupiah. Nilai 300 membagi uang dengan harga Rp500,00, padahal harga itu hanya berlaku sampai 100 lembar.
+Dua pilihan masih bertahan, jadi lanjutkan keduanya. Dengan stok awal <InlineMath math="100" />, stok pada hari ke-<InlineMath math="5" /> sampai ke-<InlineMath math="8" /> adalah <InlineMath math="120" />, <InlineMath math="80" />, <InlineMath math="50" />, dan <InlineMath math="25" />. Pesanan kedua dibuat pada akhir hari ke-<InlineMath math="7" /> dan baru tiba pada hari ke-<InlineMath math="10" />, sedangkan permintaan hari ke-<InlineMath math="9" /> adalah <InlineMath math="45" /> karung. **Sebanyak <InlineMath math="45-25=20" /> karung hilang**.
 
-Jadi, paling banyak dapat dicetak **375 lembar**.
+Dengan stok awal <InlineMath math="80" />, stok pada hari ke-<InlineMath math="4" /> sampai ke-<InlineMath math="8" /> adalah <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" />, dan <InlineMath math="5" />. Pesanan kedua dibuat pada akhir hari ke-<InlineMath math="6" /> dan tiba pada hari ke-<InlineMath math="9" />, tepat sebelum permintaan <InlineMath math="45" /> dan <InlineMath math="50" /> karung. Stok hari ke-<InlineMath math="9" /> sampai ke-<InlineMath math="12" /> adalah <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" />, dan <InlineMath math="10" />, jadi **tidak ada permintaan yang gagal dilayani**.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain gagal pada **satu hari ketika pesanan belum tiba**.
+
+- <InlineMath math="120" /> karung kehilangan <InlineMath math="10" /> karung pada hari ke-<InlineMath math="5" /> dan <InlineMath math="40" /> karung pada hari ke-<InlineMath math="10" />.
+- <InlineMath math="110" /> karung kehilangan <InlineMath math="20" /> karung pada hari ke-<InlineMath math="5" /> dan <InlineMath math="40" /> karung pada hari ke-<InlineMath math="10" />.
+- <InlineMath math="100" /> karung lolos pada putaran pertama, tetapi kehilangan <InlineMath math="20" /> karung pada hari ke-<InlineMath math="9" />.
+- <InlineMath math="85" /> karung kehilangan <InlineMath math="10" /> karung pada hari ke-<InlineMath math="4" /> dan <InlineMath math="25" /> karung pada hari ke-<InlineMath math="9" />.
+
+Jadi, stok awal yang membuat tidak ada penjualan hilang adalah <InlineMath math="80" /> karung.

@@ -1,20 +1,35 @@
-Die Amortisationszeit ist **Installationskosten geteilt durch Ersparnis pro Zeiteinheit**. Berechne beides für 10 Module.
+Gesucht sind die geringsten Booster-Kosten, mit denen <InlineMath math="62\text{ GB}" /> in <InlineMath math="12" /> Stunden heruntergeladen sind. Der Plan: Rechne die Geschwindigkeiten in Zeit pro GB um und bestimme dann die Downloadzeit für jede Zahl von Boostern, **angefangen ohne Booster**.
 
-# Kosten und Ersparnis
+# Die Downloadzeit pro GB
 
-Ein Modul liefert 0,9 kWh pro Tag, also **braucht man 10 Module**.
+Eine Geschwindigkeit von <InlineMath math="40\text{ Mbps}" /> entspricht <InlineMath math="5\text{ MB}" /> pro Sekunde, und <InlineMath math="8\text{ Mbps}" /> entsprechen <InlineMath math="1\text{ MB}" /> pro Sekunde. Ein GB enthält <InlineMath math="1{.}000\text{ MB}" />.
 
 <BlockMath math="\begin{aligned}
-\text{Kosten}&=10\cdot2\,430\,000=24\,300\,000\\
-\text{Ersparnis pro Monat}&=9\cdot1\,500\cdot30=405\,000
+\text{volle Geschwindigkeit}&:1{.}000:5=200\text{ Sekunden pro GB}\\
+\text{gedrosselt}&:1{.}000:1=1{.}000\text{ Sekunden pro GB}
 \end{aligned}" />
 
-# Amortisationszeit
+Zur Verfügung stehen <InlineMath math="12" /> Stunden, also <InlineMath math="43{.}200" /> Sekunden. Der Download läuft von 07.00 Uhr bis 19.00 Uhr, also **helfen die Nachtstunden nicht**.
 
-<BlockMath math="\frac{24\,300\,000}{405\,000}=60\text{ Monate}=5\text{ Jahre}" />
+# Ohne Booster und mit einem Booster
 
-Jeden Monat deckt die Ersparnis **ein Sechzigstel der Installationskosten**, also braucht man 60 Monate.
+Ohne Booster laufen nur <InlineMath math="6\text{ GB}" /> mit voller Geschwindigkeit, die übrigen <InlineMath math="56\text{ GB}" /> laufen gedrosselt.
 
-Der Wert 6 Jahre entsteht, wenn 12 Module ohne höheren Verbrauch installiert werden. Der Wert 10 Jahre entsteht, wenn nur die Hälfte der Ersparnis gezählt wird, und 4 Jahre, wenn die monatliche Ersparnis auf über 500 000 Rupiah aufgebläht wird.
+<BlockMath math="6\cdot200+56\cdot1{.}000=57{.}200\text{ Sekunden}" />
 
-Die Installationskosten sind also nach **5 Jahren** gedeckt.
+Das sind mehr als <InlineMath math="43{.}200" /> Sekunden, es reicht also nicht. Mit einem Booster wächst das Volumen mit voller Geschwindigkeit auf <InlineMath math="20+6=26\text{ GB}" />, denn **das restliche Hauptvolumen wird weiter verbraucht, sobald der Booster leer ist**.
+
+<BlockMath math="26\cdot200+36\cdot1{.}000=41{.}200\text{ Sekunden}" />
+
+Eine Zeit von <InlineMath math="41{.}200" /> Sekunden sind <InlineMath math="11" /> Stunden <InlineMath math="26" /> Minuten <InlineMath math="40" /> Sekunden, also noch innerhalb von <InlineMath math="12" /> Stunden. Ein Booster reicht.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht aus **einem übersehenen Teil der Regeln**.
+
+- <InlineMath math="\text{Rp}0" /> entsteht, wenn du die Drosselung vergisst, sodass <InlineMath math="62\cdot200=12{.}400" /> Sekunden auszureichen scheinen.
+- <InlineMath math="\text{Rp}30{.}000" /> entsteht, wenn du die <InlineMath math="6\text{ GB}" /> restliches Hauptvolumen vergisst. Ein Booster scheint dann <InlineMath math="20\cdot200+42\cdot1{.}000=46{.}000" /> Sekunden zu brauchen, mehr als <InlineMath math="12" /> Stunden.
+- <InlineMath math="\text{Rp}45{.}000" /> entsteht, wenn alle <InlineMath math="56\text{ GB}" /> jenseits des Hauptvolumens mit voller Geschwindigkeit laufen sollen, also <InlineMath math="3" /> Booster.
+- <InlineMath math="\text{Rp}60{.}000" /> entsteht, wenn alle <InlineMath math="62\text{ GB}" /> durch Booster gedeckt sein sollen, also <InlineMath math="4" /> Booster.
+
+Die geringsten Booster-Kosten betragen also <InlineMath math="\text{Rp}15{.}000" />.

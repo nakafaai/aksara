@@ -1,19 +1,33 @@
-Each statement needs a different way of counting. Choose a way that **counts every PIN exactly once**.
+Each statement has to be tested by working out the calories and the protein of a package. Keep in mind that the rice and the one portion of vegetables that have to be there already hold **<InlineMath math="240\text{ kcal}" /> and <InlineMath math="6\text{ g}" /> of protein**.
 
-# Increasing PINs and palindromic PINs
+# The first statement about grilled chicken
 
-For a PIN with increasing digits, choose 4 different digits from 0 to 9. Each choice can be arranged in increasing order in only one way, so there are <InlineMath math="\binom{10}{4}=210" />, **not 252**. The first statement is false.
+Without chicken, protein can only be added with tempeh and vegetables. Four portions of tempeh bring the calories to <InlineMath math="640\text{ kcal}" />, so there are at most <InlineMath math="3" /> portions of tempeh, which is <InlineMath math="540\text{ kcal}" /> and <InlineMath math="36\text{ g}" /> of protein. The <InlineMath math="60\text{ kcal}" /> left are only enough for one more portion of vegetables, so **the protein is at most <InlineMath math="38\text{ g}" />**. A package without chicken is never a healthy package, so the first statement is true.
 
-A PIN that reads the same backwards has the form <InlineMath math="abba" />. The first two digits are free, and the last two are fixed by them, so there are <InlineMath math="10\cdot10=100" />. The second statement is true.
+# The second statement about the most expensive package
 
-# The digit 7 and the sum 36
+Compare these two healthy packages.
 
-Count the opposite: a PIN with no 7 has 9 choices at each position.
+| Package | Calories | Protein | Price |
+| :---: | :---: | :---: | :---: |
+| Rice, <InlineMath math="2" /> chicken, <InlineMath math="2" /> vegetables | <InlineMath math="580\text{ kcal}" /> | <InlineMath math="56\text{ g}" /> | <InlineMath math="\text{Rp}35{,}000" /> |
+| Rice, <InlineMath math="1" /> chicken, <InlineMath math="6" /> vegetables | <InlineMath math="590\text{ kcal}" /> | <InlineMath math="40\text{ g}" /> | <InlineMath math="\text{Rp}35{,}000" /> |
 
-<BlockMath math="10{,}000-9^4=10{,}000-6{,}561=3{,}439" />
+Both are the most expensive packages, yet **the second one has the least protein of all**. A high price doesn't guarantee high protein, so the second statement is false.
 
-There are 3,439, **not 4,000**. The third statement is false.
+# The third statement about a limit of six hundred fifty kilocalories
 
-The largest digit is 9, so the largest sum of four digits is <InlineMath math="4\cdot9=36" />. A sum of 36 happens only when every digit is 9, the PIN 9999. The fourth statement is true.
+With a limit of <InlineMath math="650\text{ kcal}" />, four portions of tempeh fit.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+\text{calories}&=200+4\cdot100+40=640\text{ kcal}\\
+\text{protein}&=4+4\cdot10+2=46\text{ g}
+\end{aligned}" />
+
+That package **meets every rule without chicken**, so the third statement is true.
+
+# The fourth statement about extra vegetables
+
+Take the package of rice, <InlineMath math="1" /> chicken, <InlineMath math="2" /> tempeh and <InlineMath math="1" /> vegetables. It holds <InlineMath math="590\text{ kcal}" /> and <InlineMath math="50\text{ g}" /> of protein, so it is a healthy package. One more portion of vegetables brings the calories to <InlineMath math="630\text{ kcal}" />, **past the limit of <InlineMath math="600\text{ kcal}" />**. One example is enough, so the fourth statement is true.
+
+So the first statement is true, the second is false, the third is true and the fourth is true.

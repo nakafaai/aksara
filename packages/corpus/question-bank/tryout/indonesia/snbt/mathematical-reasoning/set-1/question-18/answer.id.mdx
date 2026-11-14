@@ -1,15 +1,31 @@
-Poin dibagikan pertandingan demi pertandingan. Setiap pertandingan **memberikan tepat 3 poin**, yaitu 3 poin untuk pemenang dan 0 untuk yang kalah, berapa pun hasilnya.
+Setiap pernyataan perlu diuji dengan menghitung isi kartu pesanan demi pesanan. Pegangannya satu: **cangkir gratis muncul pada pesanan pertama setelah kartu berisi <InlineMath math="10" /> cap**, bukan pada pesanan yang membuat kartu mencapai <InlineMath math="10" /> cap.
 
-# Banyak pertandingan
+# Pernyataan pertama tentang sepuluh pesanan berturut-turut
 
-**Setiap dua tim bertanding sekali**, jadi banyak pertandingan <InlineMath math="\binom62=15" />.
+Ambil pelanggan baru yang memesan <InlineMath math="10" /> kali pada hari Senin. Setiap pesanan memberi <InlineMath math="1" /> cap, jadi kartu baru berisi <InlineMath math="10" /> cap setelah pesanan kesepuluh. **Kesepuluh cangkir itu semuanya dibayar**, dan cangkir gratisnya baru muncul pada pesanan kesebelas. Satu contoh ini cukup, jadi pernyataan pertama salah.
 
-# Jumlah poin
+# Pernyataan kedua tentang hari Rabu dan hari Senin
 
-Karena setiap pertandingan menyumbang 3 poin, jumlah poinnya **tidak bergantung pada siapa yang menang**.
+Sepuluh pesanan hari Senin semuanya dibayar, seperti pada pernyataan pertama. Pada hari Rabu, lima pesanan pertama memberi <InlineMath math="5\cdot2=10" /> cap, jadi **pesanan keenam gratis** dan empat pesanan berikutnya dibayar lagi.
 
-<BlockMath math="15\cdot3=45" />
+<BlockMath math="\begin{aligned}
+\text{Senin}&:10\cdot20{.}000=200{.}000\\
+\text{Rabu}&:9\cdot15{.}000=135{.}000\\
+\text{selisih}&:200{.}000-135{.}000=65{.}000
+\end{aligned}" />
 
-Nilai 15 adalah banyak pertandingan, bukan poin. Nilai 30 menganggap setiap pertandingan hanya memberi 2 poin. Nilai 36 dan 40 tidak sesuai dengan aturan 3 poin per pertandingan.
+Selisihnya tepat <InlineMath math="\text{Rp}65{.}000" />, jadi pernyataan kedua benar.
 
-Jadi, jumlah poin seluruh tim adalah **45**.
+# Pernyataan ketiga tentang cangkir keenam
+
+Contoh hari Rabu tadi sudah menjawabnya. Lima pesanan hari Rabu mengisi kartu dengan <InlineMath math="10" /> cap, sehingga **cangkir keenam gratis**. Pernyataan ketiga salah.
+
+# Pernyataan keempat tentang pesanan mulai hari Kamis
+
+Hitung cap sampai kartu berisi <InlineMath math="10" />. Kamis sampai Selasa memberi <InlineMath math="6" /> cap, hari Rabu memberi <InlineMath math="2" /> cap, lalu Kamis dan Jumat memberi <InlineMath math="2" /> cap.
+
+<BlockMath math="6+2+2=10" />
+
+Kartu berisi <InlineMath math="10" /> cap setelah pesanan hari Jumat, jadi **cangkir gratis pertama jatuh pada hari Sabtu**, bukan hari Rabu. Pernyataan keempat salah.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat salah.

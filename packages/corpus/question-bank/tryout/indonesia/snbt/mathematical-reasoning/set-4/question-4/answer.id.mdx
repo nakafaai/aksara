@@ -1,15 +1,42 @@
-Seluruh perjalanan mencakup **dua penerbangan dan waktu tunggu di Makassar**. Cara paling langsung adalah mengubah waktu berangkat P1 ke WIT, zona tempat P2 tiba.
+Kita mencari jarak total terbesar yang masih muat dalam anggaran <InlineMath math="\text{Rp}1{.}900{.}000" />. Rencananya: periksa setiap lama sewa mulai <InlineMath math="4" /> hari, hitung jarak terjauh untuk setiap paket, lalu ambil yang paling besar. **Sewa yang lebih lama bisa justru menambah jarak**, jadi jangan berhenti di <InlineMath math="4" /> hari.
 
-# Menyamakan zona waktu
+# Mengapa sewa lebih lama bisa membantu
 
-WIT lebih cepat 2 jam daripada WIB, jadi pukul 06.40 WIB sama dengan **pukul 08.40 WIT**.
+Menambah hari memang menambah tarif harian. Namun, mulai <InlineMath math="5" /> hari **tarif harian didiskon** <InlineMath math="20\%" />, dan setiap hari sewa Paket B **menambah jatah** <InlineMath math="150\text{ km}" />. Dua hal ini bisa lebih besar daripada tambahan biayanya, jadi setiap lama sewa perlu dihitung.
 
-# Lama seluruh perjalanan
+# Jarak terjauh untuk setiap lama sewa
 
-Dari pukul 08.40 sampai 16.15 WIT berlalu **7 jam 35 menit**.
+Untuk Paket A, sisa anggaran setelah tarif harian dibagi <InlineMath math="1{.}500" />. Untuk Paket B, sisa anggaran dibagi <InlineMath math="3{.}000" /> lalu ditambah jatahnya. Contoh perhitungan untuk sewa <InlineMath math="6" /> hari dengan Paket B:
 
-Pemeriksaan: lama terbang P1 dan P2 adalah 6 jam 10 menit, dan waktu tunggu di Makassar 1 jam 25 menit. Jumlahnya <InlineMath math="6\text{ jam }10\text{ menit}+1\text{ jam }25\text{ menit}=7\text{ jam }35\text{ menit}" />.
+<BlockMath math="\begin{aligned}
+\text{tarif harian} &= 0{,}8\times6\times350{.}000=1{.}680{.}000\\
+\text{sisa anggaran} &= 1{.}900{.}000-1{.}680{.}000=220{.}000\\
+\text{kelebihan terjauh} &= 220{.}000\div3{.}000=73{,}3\ldots\text{ km}\\
+\text{jarak terjauh} &= 6\times150+73=973\text{ km}
+\end{aligned}" />
 
-Lama 6 jam 10 menit hanya menghitung waktu di udara. Lama 9 jam 35 menit mengurangkan 06.40 dari 16.15 tanpa memperhatikan zona waktu.
+Karena jarak dihitung dalam kilometer bulat, **kelebihan dibulatkan ke bawah** menjadi <InlineMath math="73\text{ km}" />. Dengan cara yang sama, tabel ini merangkum semua kemungkinan yang masih masuk anggaran:
 
-Jadi, lama seluruh perjalanan adalah **7 jam 35 menit**.
+| Lama sewa | Paket A | Paket B | Paket C |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="4" /> hari | <InlineMath math="733\text{ km}" /> | <InlineMath math="766\text{ km}" /> | biaya <InlineMath math="2{.}000{.}000" />, melebihi anggaran |
+| <InlineMath math="5" /> hari | <InlineMath math="733\text{ km}" /> | <InlineMath math="916\text{ km}" /> | biaya <InlineMath math="2{.}000{.}000" />, melebihi anggaran |
+| <InlineMath math="6" /> hari | <InlineMath math="626\text{ km}" /> | <InlineMath math="973\text{ km}" /> | biaya <InlineMath math="2{.}400{.}000" />, melebihi anggaran |
+| <InlineMath math="7" /> hari | <InlineMath math="520\text{ km}" /> | tarif harian <InlineMath math="1{.}960{.}000" />, melebihi anggaran | melebihi anggaran |
+
+Mulai <InlineMath math="7" /> hari, tarif harian Paket B sudah <InlineMath math="0{,}8\times7\times350{.}000=1{.}960{.}000" />, lebih dari anggaran. Paket A juga makin buruk karena tarif hariannya terus naik. Jadi, **jarak terbesar diperoleh dengan Paket B** selama <InlineMath math="6" /> hari, yaitu <InlineMath math="973\text{ km}" />.
+
+# Memeriksa batas anggaran
+
+Cek biaya Paket B selama <InlineMath math="6" /> hari untuk jawaban itu dan untuk satu kilometer sesudahnya:
+
+<BlockMath math="\begin{aligned}
+B(973) &= 1{.}680{.}000+3{.}000\times73=1{.}899{.}000\le1{.}900{.}000\\
+B(974) &= 1{.}680{.}000+3{.}000\times74=1{.}902{.}000>1{.}900{.}000
+\end{aligned}" />
+
+Jadi, <InlineMath math="973\text{ km}" /> masih masuk anggaran, sedangkan **satu kilometer lagi sudah melewatinya**.
+
+Kesalahan yang sering muncul: berhenti di sewa <InlineMath math="4" /> hari memberi <InlineMath math="766\text{ km}" />, berhenti di <InlineMath math="5" /> hari memberi <InlineMath math="916\text{ km}" />, dan membulatkan <InlineMath math="73{,}3" /> ke atas memberi <InlineMath math="974\text{ km}" /> yang melebihi anggaran.
+
+Jadi, jarak total terjauh yang dapat ditempuh rombongan itu adalah <InlineMath math="973\text{ km}" />.

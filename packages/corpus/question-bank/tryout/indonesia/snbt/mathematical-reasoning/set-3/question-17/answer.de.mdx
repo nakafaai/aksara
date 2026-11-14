@@ -1,11 +1,49 @@
-Ein Auftrag über 450 Blatt fällt in die Gruppe 101 bis 500, und der Preis dieser Gruppe **gilt für jedes Blatt**, nicht nur für die Blätter nach dem hundertsten.
+Du musst den Bestand Tag für Tag verfolgen. Drei Dinge zählen gleichzeitig: **Bestellt wird nur, wenn der Bestand am Tagesende höchstens <InlineMath math="60" /> beträgt und keine Bestellung mehr unterwegs ist**, eine Bestellung kommt drei Tage später an, und Nachfrage, die nicht bedient werden kann, geht einfach verloren.
 
-# Kosten des Auftrags
+# Der erste Zyklus
 
-<BlockMath math="450\cdot400=180\,000" />
+Der Bestand am Tagesende ist der Morgenbestand minus der Verkäufe des Tages.
 
-In Tausend Rupiah sind das 180.
+<BlockMath math="\begin{aligned}
+\text{Tag }1 &: \ 120-20=100 \\
+\text{Tag }2 &: \ 100-25=75 \\
+\text{Tag }3 &: \ 75-30=45
+\end{aligned}" />
 
-Berechnet man die ersten 100 Blatt mit 500 und den Rest mit 400 Rupiah, erhält man 190 000. Das ist falsch, weil die Regel dieser Druckerei **kein Stufentarif nach Teilen ist**.
+Am Ende von Tag <InlineMath math="3" /> ist der Bestand <InlineMath math="45\le60" />, also bestellt der Laden. Diese Bestellung **kommt erst am Morgen von Tag <InlineMath math="6" /> an**, die Tage <InlineMath math="4" /> und <InlineMath math="5" /> müssen also mit nur <InlineMath math="45" /> Säcken auskommen.
 
-Der Druck von 450 Blatt kostet also **180 Tausend Rupiah**.
+<BlockMath math="\begin{aligned}
+\text{Tag }4 &: \ 45-20=25 \\
+\text{Tag }5 &: \ \text{Nachfrage }35,\ \text{verkauft }25,\ \text{verloren }10
+\end{aligned}" />
+
+# Der zweite Zyklus
+
+Am Morgen von Tag <InlineMath math="6" /> wird der Bestand <InlineMath math="0+150=150" />.
+
+<BlockMath math="\begin{aligned}
+\text{Tag }6 &: \ 150-40=110 \\
+\text{Tag }7 &: \ 110-30=80 \\
+\text{Tag }8 &: \ 80-25=55
+\end{aligned}" />
+
+Am Ende von Tag <InlineMath math="8" /> ist der Bestand <InlineMath math="55\le60" />, und keine Bestellung ist unterwegs, also bestellt der Laden wieder. Diese Bestellung **kommt am Morgen von Tag <InlineMath math="11" /> an**.
+
+<BlockMath math="\begin{aligned}
+\text{Tag }9 &: \ 55-45=10 \\
+\text{Tag }10 &: \ \text{Nachfrage }50,\ \text{verkauft }10,\ \text{verloren }40
+\end{aligned}" />
+
+Am Ende von Tag <InlineMath math="9" /> liegt der Bestand von <InlineMath math="10" /> zwar unter <InlineMath math="60" />, aber der Laden bestellt nicht noch einmal, weil eine Bestellung unterwegs ist.
+
+# Die letzten Tage und die Summe
+
+Am Morgen von Tag <InlineMath math="11" /> wird der Bestand <InlineMath math="150" />. Nach Tag <InlineMath math="11" /> bleiben <InlineMath math="120" />, nach Tag <InlineMath math="12" /> bleiben <InlineMath math="100" />, also **geht kein Verkauf mehr verloren**.
+
+<BlockMath math="\text{verlorene Verkäufe}=10+40=50\text{ Säcke}" />
+
+Prüf das auf einem zweiten Weg. Die gesamte Nachfrage beträgt <InlineMath math="370" /> Säcke, verfügbar waren <InlineMath math="120+150+150=420" /> Säcke, und am Ende bleiben <InlineMath math="100" /> Säcke übrig. Verkauft wurden also <InlineMath math="420-100=320" /> Säcke, und <InlineMath math="370-320=50" /> Säcke gingen verloren, genau wie oben.
+
+Lässt du Fehlmengen später nachliefern, kommst du auf <InlineMath math="60" /> Säcke, und zählst du die ganze Nachfrage eines knappen Tages als verloren, auf <InlineMath math="85" /> Säcke. Beides passt nicht zur Verkaufsregel.
+
+Die verlorenen Verkäufe in den <InlineMath math="12" /> Tagen betragen also insgesamt <InlineMath math="50" /> Säcke.

@@ -1,17 +1,24 @@
-Ohne Verstoß müssen die 12 km **mindestens 7,2 Minuten** dauern. Die Durchschnittsgeschwindigkeit lässt sich nicht durch Mitteln der beiden Geschwindigkeiten bestimmen, weil beide Teile unterschiedlich lange dauern.
+Gesucht ist die kleinste Zahl an Mischungen für die gesamte Trockenmischung. Der Plan: Bestimme die Trockenmischung einschließlich Reserve und finde dann **den größten Inhalt einer Mischung**, wobei der Zement aus ganzen Säcken bestehen muss.
 
-# Bereits verbrauchte Zeit
+# Die Trockenmischung und der Inhalt einer Mischung
 
-<BlockMath math="\frac{6}{150}\text{ h}=0{,}04\text{ h}=2{,}4\text{ min}" />
+Der Garagenboden braucht <InlineMath math="5\cdot4\cdot0{,}1=2\text{ m}^3" /> Beton, die Trockenmischung beträgt <InlineMath math="2\cdot1{,}5=3\text{ m}^3" />, und mit Reserve werden es <InlineMath math="3{,}3\text{ m}^3" />.
 
-# Zeit und Geschwindigkeit für den Rest
+Ein Sack Zement bringt <InlineMath math="6" /> Teile Trockenmischung mit, also <InlineMath math="6\cdot0{,}025=0{,}15\text{ m}^3" />. Zwei Säcke bringen <InlineMath math="0{,}3\text{ m}^3" /> mit, mehr als das Fassungsvermögen des Mischers von <InlineMath math="0{,}2\text{ m}^3" />. Also **nimmt jede Mischung nur einen Sack** und enthält <InlineMath math="0{,}15\text{ m}^3" />, obwohl der Mischer nicht voll ist.
 
-Für die übrigen 6 km bleiben mindestens <InlineMath math="7{,}2-2{,}4=4{,}8" /> Minuten, also 0,08 Stunden.
+# Die Zahl der Mischungen
 
-<BlockMath math="v\le\frac{6}{0{,}08}=75\text{ km/h}" />
+<BlockMath math="3{,}3:0{,}15=22" />
 
-Kontrolle: Mit 75 km/h dauert die ganze Strecke <InlineMath math="2{,}4+4{,}8=7{,}2" /> Minuten, genau an der Grenze ohne Verstoß.
+Das passt zur Zahl der Zementsäcke, denn der Zement beträgt <InlineMath math="\tfrac16\cdot3{,}3=0{,}55\text{ m}^3" />, also <InlineMath math="22" /> Sack, und **jeder Sack wird zu einer Mischung**.
 
-Der Wert 50 km/h entsteht aus der Annahme <InlineMath math="\tfrac{150+v}{2}=100" />, also aus dem Mitteln der Geschwindigkeiten, obwohl das Auto auf dem schnellen Teil kürzer unterwegs ist.
+# Die verlockenden falschen Optionen
 
-Die größte konstante Geschwindigkeit für den Rest ist also **75 km/h**.
+Jede andere Option vergisst **eine der gegebenen Regeln**.
+
+- <InlineMath math="17" /> entsteht, wenn der Mischer immer als voll gilt, also <InlineMath math="3{,}3:0{,}2=16{,}5" />, aufgerundet.
+- <InlineMath math="20" /> entsteht, wenn du die Reserve vergisst, also <InlineMath math="3:0{,}15" />.
+- <InlineMath math="15" /> entsteht, wenn du den Schwund vergisst, also <InlineMath math="2{,}2:0{,}15" />, aufgerundet.
+- <InlineMath math="11" /> entsteht, wenn du den Schwund vergisst und den Mischer als voll ansiehst, also <InlineMath math="2{,}2:0{,}2" />.
+
+Pak Jaya braucht also mindestens <InlineMath math="22" /> Mischungen.

@@ -1,17 +1,40 @@
-Der Fahrpreis gilt pro Fahrgast und Abschnitt. Die Einnahmen sind also **die Summe der Fahrgäste über alle Abschnitte**, mal 1 000 Rupiah, denn jeder, der auf einem Abschnitt im Bus sitzt, zahlt für diesen Abschnitt.
+Gesucht sind alle Werte von <InlineMath math="x" />, bei denen Fajar vor Eka liegt. Der Plan: Schreibe die Differenz der Endnoten von Fajar und Eka als Formel in <InlineMath math="x" />, bestimme, wann sie positiv ist, und **prüfe dann den Gleichstand mit der** <InlineMath math="T" /> **Regel**.
 
-# Fahrgäste über alle Abschnitte summiert
+# Die Interviewnoten von Eka und Fajar
 
-**Auf den fünf Abschnitten** sind es 25, 29, 25, 27 und 35 Fahrgäste.
+<InlineMath math="W" /> nutzt die zwei höchsten Bewertungen. Bei Eka fällt die <InlineMath math="60" /> weg, also <InlineMath math="W=\tfrac{84+80}{2}=82" />. Bei Fajar gilt <InlineMath math="W=\tfrac{82+82}{2}=82" />. **Die Interviewnoten der beiden sind gleich**, der Interviewteil beeinflusst die Differenz also nicht.
 
-<BlockMath math="25+29+25+27+35=141" />
+# Die Differenz als Formel
 
-# Einnahmen
+Ziehe Ekas Endnote von Fajars Endnote ab, Komponente für Komponente. Das Gewicht von <InlineMath math="T" /> ist <InlineMath math="\tfrac{x}{100}" />, das Gewicht von <InlineMath math="R" /> ist <InlineMath math="\tfrac{60-x}{100}" />:
 
-<BlockMath math="141\cdot1\,000=141\,000" />
+<BlockMath math="\begin{aligned}
+N_{\text{Fajar}}-N_{\text{Eka}} &= \frac{x}{100}(84-86)+\frac{60-x}{100}(85-82)+0{,}25(82-82)+0{,}15(76-78)\\
+&= -0{,}02x+0{,}03(60-x)+0-0{,}3\\
+&= 1{,}8-0{,}05x-0{,}3\\
+&= 1{,}5-0{,}05x
+\end{aligned}" />
 
-Das entspricht der Zählung, wie viele Abschnitte jeder Fahrgast fährt, denn **jedes Paar aus Fahrgast und Abschnitt wird genau einmal gezählt**.
+Fajar liegt vorn, **wenn diese Differenz positiv ist**:
 
-Der Wert 330 000 Rupiah nimmt an, dass jeder Fahrgast alle fünf Abschnitte fährt. Der Wert 175 000 Rupiah verwendet die Höchstlast 35 für jeden Abschnitt. Der Wert 264 000 Rupiah ist ein Pauschalpreis von 4 000 Rupiah für 66 Fahrgäste.
+<BlockMath math="\begin{aligned}
+1{,}5-0{,}05x &> 0\\
+x &< 30
+\end{aligned}" />
 
-Die Einnahmen einer Fahrt betragen also **141 000 Rupiah**.
+# Der Gleichstand an der Grenze
+
+Bei <InlineMath math="x=30" /> ist die Differenz null, beide Endnoten betragen also <InlineMath math="82{,}6" />. Die Regel bei Gleichstand bevorzugt das höhere <InlineMath math="T" />. Eka hat <InlineMath math="T=86" /> und Fajar <InlineMath math="T=84" />, also **bleibt Eka bei Gleichstand vorn**. Deshalb gehört <InlineMath math="x=30" /> nicht dazu, und die Antwort lautet <InlineMath math="20\le x\le29" />.
+
+Prüfe zwei Stellen. Bei <InlineMath math="x=29" /> bekommt Fajar <InlineMath math="82{,}61" /> und Eka <InlineMath math="82{,}56" />, Fajar liegt also vorn. Bei <InlineMath math="x=40" />, den jetzigen Gewichten, liefert die Formel <InlineMath math="1{,}5-2=-0{,}5" />, passend zur Tabelle: Eka <InlineMath math="83" /> und Fajar <InlineMath math="82{,}5" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort entsteht aus **einem vergessenen Teil der Differenz** oder einer falschen Grenze.
+
+- <InlineMath math="20\le x\le30" /> entsteht, wenn du den Gleichstand bei <InlineMath math="x=30" /> für Fajar zählst, obwohl die <InlineMath math="T" /> Regel ihn Eka zuspricht.
+- <InlineMath math="20\le x\le35" /> entsteht, wenn du die Differenz bei den Leistungen, <InlineMath math="0{,}15(76-78)=-0{,}3" />, vergisst. Dann lautet die Bedingung <InlineMath math="1{,}8-0{,}05x>0" />, also <InlineMath math="x<36" />.
+- Alle Werte von <InlineMath math="x" /> entstehen, wenn du Ekas <InlineMath math="W" /> als Mittelwert aller drei Bewertungen berechnest, <InlineMath math="W\approx74{,}67" />. Dieser Abstand im Interview ist so groß, dass Fajar immer vorn zu liegen scheint.
+- <InlineMath math="31\le x\le40" /> entsteht, wenn du die Ungleichung umdrehst, als würde ein größeres Testgewicht Fajar helfen, obwohl Fajars <InlineMath math="T" /> der niedrigere ist.
+
+Fajar liegt also genau für <InlineMath math="20\le x\le29" /> vor Eka.

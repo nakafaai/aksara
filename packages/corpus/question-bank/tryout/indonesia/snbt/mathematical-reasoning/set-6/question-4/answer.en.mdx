@@ -1,19 +1,44 @@
-The average number of goals per match is **the total number of goals divided by the number of matches**. Both numbers must be counted carefully so that nothing is counted twice.
+You're looking for the earliest start time for pump Q so that no water is lost. Water is lost only if **the level, counted without the overflow pipe, goes above <InlineMath math="6{,}000\text{ liters}" />**. So find when the level reaches its peak, then set pump Q's schedule so that this peak stays within the capacity.
 
-# Total number of goals
+# When the level peaks
 
-Each goal is recorded as a goal scored by one team. The goals scored column adds up to
+The net flow is the inflow minus the outflow. Once tap K is open, there are four possible net flows.
 
-<BlockMath math="8+6+5+3+2=24" />
+<BlockMath math="\begin{aligned} \text{P and K: } 60-50 &= 10 \\ \text{Q and K: } 80-50 &= 30 \\ \text{P, Q, and K: } 60+80-50 &= 90 \\ \text{K only: } 0-50 &= -50 \end{aligned}" />
 
-The goals conceded column also adds up to 24, because it **records the same goals from the opponent's side**, so the two columns must not be added together.
+As long as at least one pump is running, the net flow is positive and the level keeps rising. The level only falls after both pumps stop. So **the level peaks when the last pump stops**.
 
-# Number of matches and the average
+# Pump Q finishing before pump P stops
 
-Every two teams play once, so there are <InlineMath math="\binom52=10" /> matches.
+Suppose pump Q starts at 06:00 or earlier, so it finishes at 07:00 or earlier. The last pump to stop is pump P at 07:00. By then all the water from both pumps is in, and tap K has been open for <InlineMath math="100\text{ minutes}" /> since 05:20.
 
-<BlockMath math="\frac{24}{10}=2.4" />
+<BlockMath math="1{,}000+60\cdot 120+80\cdot 60-50\cdot 100=8{,}000" />
 
-The value 4.8 adds goals scored and goals conceded, so every goal is counted twice. The value 6 divides 24 by 4, the number of matches per team, not the total number of matches.
+The peak is <InlineMath math="8{,}000\text{ liters}" />, more than the capacity, no matter how far you shift pump Q. So **shifting pump Q inside pump P's working hours doesn't reduce the lost water**. Pump Q has to finish after 07:00.
 
-So the average number of goals per match is **2.4**.
+# Pump Q finishing after pump P stops
+
+Now the last pump to stop is pump Q. By then both pumps have delivered <InlineMath math="60\cdot 120+80\cdot 60=12{,}000\text{ liters}" />. Let <InlineMath math="m" /> be how many minutes tap K has been open, from 05:20 until pump Q stops. The peak level **can't go above the capacity**.
+
+<BlockMath math="\begin{aligned} 1{,}000+12{,}000-50m &\le 6{,}000 \\ 50m &\ge 7{,}000 \\ m &\ge 140 \end{aligned}" />
+
+Pump Q must stop no earlier than <InlineMath math="140\text{ minutes}" /> after 05:20, which is 07:40. Since pump Q runs for <InlineMath math="60\text{ minutes}" />, the earliest it can start is 06:40.
+
+# Checking the new schedule
+
+Run the new schedule, with pump Q from 06:40 to 07:40. At 06:40, pump P has worked for <InlineMath math="100\text{ minutes}" /> and tap K for <InlineMath math="80\text{ minutes}" />.
+
+<BlockMath math="\begin{aligned} \text{at 06:40: } 1{,}000+60\cdot 100-50\cdot 80 &= 3{,}000 \\ \text{at 07:00: } 3{,}000+90\cdot 20 &= 4{,}800 \\ \text{at 07:40: } 4{,}800+30\cdot 40 &= 6{,}000 \end{aligned}" />
+
+The level **reaches the capacity exactly without going over it**, so no water is lost. If pump Q started <InlineMath math="5\text{ minutes}" /> earlier, tap K would only be open for <InlineMath math="135\text{ minutes}" /> by the time pump Q stops, and the peak would be <InlineMath math="13{,}000-50\cdot 135=6{,}250\text{ liters}" />. That's above the capacity.
+
+# Why the other options fail
+
+The two options that are too early still lose water, and **the two later options are safe but not the earliest**.
+
+- 06:20 comes from treating tap K as open from 05:00. Tap K actually opens at 05:20, so the peak is <InlineMath math="13{,}000-50\cdot 120=7{,}000\text{ liters}" /> and <InlineMath math="1{,}000\text{ liters}" /> is lost.
+- 06:25 comes from checking the level only at 07:00. The tank is exactly full at 07:00, but pump Q keeps running until 07:25 with a net flow of <InlineMath math="30\text{ liters/min}" />, so <InlineMath math="30\cdot 25=750\text{ liters}" /> is lost.
+- 07:00 starts pump Q only after pump P stops. No water is lost, but 06:40 is earlier and also safe.
+- 07:40 comes from leaving room in the tank for all <InlineMath math="4{,}800\text{ liters}" /> from pump Q before it starts, even though tap K keeps letting water out while pump Q runs.
+
+So the earliest start time for pump Q is 06:40.

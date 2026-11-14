@@ -1,13 +1,37 @@
-The average distance per litre is **total distance divided by total fuel**. It is not the mean of 10 km and 15 km, because the two kinds of road use different amounts of fuel.
+You're looking for the largest number of visits that <InlineMath math="\text{Rp}1{,}000{,}000" /> can pay for within <InlineMath math="70" /> days. The plan: rank the ways to pay by the **lowest price per visit**, use the cheapest one as far as the money allows, then spend what's left on extra visits. Every price is written in thousands of rupiah, so <InlineMath math="1{,}000" /> means <InlineMath math="\text{Rp}1{,}000{,}000" />.
 
-# Total distance and total fuel
+# Price per visit
 
-The total distance is <InlineMath math="60+150=210" /> km. The city part uses <InlineMath math="\tfrac{60}{10}=6" /> litres and the toll part <InlineMath math="\tfrac{150}{15}=10" /> litres, so **the total fuel is 16 litres**.
+A day ticket costs <InlineMath math="40" /> per visit and a card <InlineMath math="250 \div 10 = 25" /> per visit. A membership used every day gives <InlineMath math="30" /> visits for <InlineMath math="350" />, and since <InlineMath math="12 \cdot 30=360" /> is more than <InlineMath math="350" />, it costs **less than <InlineMath math="12" /> per visit**. So a membership used every day is the cheapest, then the card, then the day ticket.
 
-# Average per litre
+# Number of membership periods
 
-<BlockMath math="\frac{210}{16}=13.125\text{ km per litre}" />
+Rina has never been a member, so her first membership period **also pays the registration fee**. Work out the cost of <InlineMath math="2" /> and of <InlineMath math="3" /> periods:
 
-The value 12.5 km is the plain mean of 10 km and 15 km. It is smaller because the more efficient toll part uses more fuel than the city part and **carries more weight**. The value 14 km divides 210 by 15.
+<BlockMath math="\begin{aligned}
+\text{two periods} &= 100+2 \cdot 350 = 800 \\
+\text{three periods} &= 100+3 \cdot 350 = 1{,}150
+\end{aligned}" />
 
-So the average distance per litre is **13.125 km**.
+The cost of <InlineMath math="3" /> periods goes past <InlineMath math="1{,}000" />, so Rina takes <InlineMath math="2" />. Those periods cover <InlineMath math="60" /> days, and she goes every day, which is <InlineMath math="60" /> visits.
+
+# Money and days left
+
+She has <InlineMath math="1{,}000-800=200" /> left and <InlineMath math="70-60=10" /> days left. A card costs <InlineMath math="250" />, so **the money left isn't enough for a card**. What she can buy is day tickets:
+
+<BlockMath math="200 \div 40 = 5 \text{ day tickets}" />
+
+She uses those tickets on <InlineMath math="5" /> of the <InlineMath math="10" /> remaining days, so they all fit. That's <InlineMath math="60+5=65" /> visits for exactly <InlineMath math="800+200=1{,}000" />.
+
+# Checking the other ways
+
+To be sure, compare with the **ways that use fewer memberships**:
+
+- With <InlineMath math="1" /> membership period for <InlineMath math="450" />, the other <InlineMath math="550" /> buys <InlineMath math="2" /> cards and <InlineMath math="1" /> day ticket (<InlineMath math="540" />). That's <InlineMath math="30+20+1=51" /> visits.
+- Without a membership, <InlineMath math="1{,}000" /> buys exactly <InlineMath math="4" /> cards, which is <InlineMath math="40" /> visits.
+
+Both fall short of <InlineMath math="65" /> visits.
+
+The answer <InlineMath math="70" /> comes from forgetting the registration fee: <InlineMath math="2" /> periods then seem to cost <InlineMath math="700" />, the remaining <InlineMath math="300" /> buys <InlineMath math="1" /> card, and the total is <InlineMath math="60+10=70" />. The answer <InlineMath math="60" /> comes from not using the remaining <InlineMath math="200" /> at all.
+
+So Rina can visit at most <InlineMath math="65" /> times in those <InlineMath math="70" /> days.

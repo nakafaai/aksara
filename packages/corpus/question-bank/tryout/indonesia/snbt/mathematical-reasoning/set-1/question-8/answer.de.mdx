@@ -1,21 +1,41 @@
-Die Bedingung lautet: **Das einlaufende Volumen ist mindestens so groß wie das Fassungsvermögen**. Die Dachfläche sei <InlineMath math="A" /> Quadratmeter.
+Diesmal sind die Kosten bekannt und das tatsächliche Gewicht ist gesucht, also **wendest du die Regeln des Kurierdienstes rückwärts an**: von den Kosten zum berechneten Gewicht, vom berechneten Gewicht zum Ausgangsgewicht und dann vom Ausgangsgewicht zum tatsächlichen Gewicht, wobei du das Volumengewicht im Blick behältst.
 
-# Das zu erreichende Fassungsvermögen
+# Das berechnete Gewicht aus den Kosten
 
-**Das Fassungsvermögen des Tanks** ist <InlineMath math="\tfrac{22}{7}\cdot0{,}7^2\cdot2=3{,}08" /> Kubikmeter.
-
-# Die Ungleichung aufstellen
-
-Ein Niederschlag von 20 mm sind 0,02 m, und nur 80 % des Wassers kommen an.
+Für die Zone außerhalb Javas kostet ein Paket mit dem berechneten Gewicht <InlineMath math="w" /> genau <InlineMath math="5{.}000+30{.}000+20{.}000(w-1)=20{.}000w+15{.}000" /> Rupiah. **Die Bearbeitungsgebühr muss mit abgezogen werden**, bevor du durch den Tarif teilst.
 
 <BlockMath math="\begin{aligned}
-A\cdot0{,}02\cdot0{,}8&\ge3{,}08\\
-0{,}016A&\ge3{,}08\\
-A&\ge192{,}5
+20{.}000w+15{.}000 &= 235{.}000\\
+20{.}000w &= 220{.}000\\
+w &= 11
 \end{aligned}" />
 
-Die kleinste Dachfläche ist 192,5 Quadratmeter, **etwas mehr als das Zweieinhalbfache des jetzigen Dachs**.
+# Die Ausgangsgewichte für dieses berechnete Gewicht
 
-Die Fläche 154 Quadratmeter vergisst den Wirkungsgrad von 80 %. Die Fläche 123,2 Quadratmeter multipliziert mit 0,8, statt zu teilen. Die Fläche 19,25 Quadratmeter nimmt 20 mm als 0,2 m.
+Ein berechnetes Gewicht von <InlineMath math="11\text{ kg}" /> entsteht auf zwei Wegen. Ein Ausgangsgewicht über <InlineMath math="10{,}3\text{ kg}" /> bis <InlineMath math="11\text{ kg}" /> wird auf <InlineMath math="11\text{ kg}" /> aufgerundet. Bei einem Ausgangsgewicht über <InlineMath math="11\text{ kg}" /> bis <InlineMath math="11{,}3\text{ kg}" /> fällt der Überschuss weg, und es bleibt bei <InlineMath math="11\text{ kg}" />. Also **muss das Ausgangsgewicht größer als** <InlineMath math="10{,}3\text{ kg}" /> **und höchstens** <InlineMath math="11{,}3\text{ kg}" /> sein.
 
-Die nötige Dachfläche beträgt also mindestens **<InlineMath math="192{,}5\text{ m}^2" />**.
+# Die Rolle des Volumengewichts
+
+Das Volumengewicht des Kartons ist
+
+<BlockMath math="\frac{56\cdot40\cdot30}{6{.}000}=\frac{67{.}200}{6{.}000}=11{,}2\text{ kg}" />
+
+Das Ausgangsgewicht ist das größere von tatsächlichem Gewicht und <InlineMath math="11{,}2\text{ kg}" />, also ist es **nie kleiner als** <InlineMath math="11{,}2\text{ kg}" />. Teile jetzt in zwei Fälle auf.
+
+- Wiegt das Paket höchstens <InlineMath math="11{,}2\text{ kg}" />, ist das Ausgangsgewicht <InlineMath math="11{,}2\text{ kg}" />. Dieser Wert liegt zwischen <InlineMath math="10{,}3" /> und <InlineMath math="11{,}3\text{ kg}" />, also ist das berechnete Gewicht <InlineMath math="11\text{ kg}" />, egal wie viel das Paket wiegt.
+- Wiegt das Paket mehr als <InlineMath math="11{,}2\text{ kg}" />, ist das Ausgangsgewicht das tatsächliche Gewicht, und das darf höchstens <InlineMath math="11{,}3\text{ kg}" /> betragen.
+
+Beide Fälle zusammen: Das tatsächliche Gewicht kann beliebig sein, solange es höchstens <InlineMath math="11{,}3\text{ kg}" /> beträgt.
+
+# Kontrolle
+
+Ein Paket mit dem tatsächlichen Gewicht <InlineMath math="2\text{ kg}" /> hat das Ausgangsgewicht <InlineMath math="11{,}2\text{ kg}" />, das berechnete Gewicht <InlineMath math="11\text{ kg}" /> und kostet <InlineMath math="\text{Rp}235{.}000" />. Ein Paket mit <InlineMath math="11{,}3\text{ kg}" /> wird ebenfalls mit <InlineMath math="11\text{ kg}" /> berechnet. Ein Paket mit <InlineMath math="11{,}4\text{ kg}" /> wird schon mit <InlineMath math="12\text{ kg}" /> berechnet und **kostet mehr**, nämlich <InlineMath math="\text{Rp}255{.}000" />.
+
+# Die falschen Antworten
+
+- Mehr als <InlineMath math="10\text{ kg}" /> und höchstens <InlineMath math="11\text{ kg}" /> rundet einfach auf und vergisst das Volumengewicht.
+- Mehr als <InlineMath math="10{,}3\text{ kg}" /> und höchstens <InlineMath math="11{,}3\text{ kg}" /> wendet die Rundungsregel richtig an, **vergisst aber das Volumengewicht**, durch das auch ein leichtes Paket mit <InlineMath math="11\text{ kg}" /> berechnet wird.
+- Höchstens <InlineMath math="11{,}2\text{ kg}" /> übersieht, dass ein tatsächliches Gewicht knapp über dem Volumengewicht, bis <InlineMath math="11{,}3\text{ kg}" />, noch auf <InlineMath math="11\text{ kg}" /> gerundet wird.
+- Mehr als <InlineMath math="11{,}2\text{ kg}" /> und höchstens <InlineMath math="11{,}3\text{ kg}" /> nimmt an, dass das tatsächliche Gewicht berechnet werden muss, obwohl auch das Volumengewicht berechnet werden kann.
+
+Das tatsächliche Gewicht des Pakets kann also beliebig sein, solange es höchstens <InlineMath math="11{,}3\text{ kg}" /> beträgt.

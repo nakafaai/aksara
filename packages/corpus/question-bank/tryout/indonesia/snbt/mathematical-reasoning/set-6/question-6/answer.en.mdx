@@ -1,15 +1,44 @@
-First match the units: 1 metre is 1,000 mm. Then find **the smallest whole number <InlineMath math="n" />** with <InlineMath math="0.1\cdot2^n>1{,}000" />.
+The first three statements use Dita's trip log, and the last one is about any rider. So first work out the paid minutes of each of Dita's trips and the minute charges as they add up, then judge each statement with its own evidence. Remember that **the <InlineMath math="\text{Rp}30{,}000" /> cap applies to the month's total minute charges**, not to each trip.
 
-# Simplifying the condition
+# Minute charges as they add up
 
-<BlockMath math="0.1\cdot2^n>1{,}000\;\Longleftrightarrow\;2^n>10{,}000" />
+The paid minutes of a trip are its length minus <InlineMath math="20" />, or zero if the trip is <InlineMath math="20\text{ minutes}" /> or shorter. Each paid minute costs <InlineMath math="\text{Rp}500" />. This table adds up **the minute charges in order**, before the cap is applied.
 
-# Finding a large enough power of two
+| Trip | Length | Paid minutes | Charges so far |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="25" /> | <InlineMath math="5" /> | <InlineMath math="2{,}500" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="2{,}500" /> |
+| <InlineMath math="3" /> | <InlineMath math="38" /> | <InlineMath math="18" /> | <InlineMath math="11{,}500" /> |
+| <InlineMath math="4" /> | <InlineMath math="44" /> | <InlineMath math="24" /> | <InlineMath math="23{,}500" /> |
+| <InlineMath math="5" /> | <InlineMath math="15" /> | <InlineMath math="0" /> | <InlineMath math="23{,}500" /> |
+| <InlineMath math="6" /> | <InlineMath math="31" /> | <InlineMath math="11" /> | <InlineMath math="29{,}000" /> |
+| <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="0" /> | <InlineMath math="29{,}000" /> |
+| <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="7" /> | <InlineMath math="32{,}500" /> |
 
-<BlockMath math="2^{13}=8{,}192,\qquad 2^{14}=16{,}384" />
+Because the cap is <InlineMath math="\text{Rp}30{,}000" />, Dita only pays <InlineMath math="\text{Rp}30{,}000" /> in minute charges for her <InlineMath math="65" /> paid minutes.
 
-The power 13 **does not yet pass 10,000**, while the power 14 does. After 13 folds the stack is only 819.2 mm thick, and after 14 folds it is 1,638.4 mm.
+# The statement about reversing the order
 
-The value 13 stops one step too early. The value 100 treats each fold as adding 10 mm, and 10 uses <InlineMath math="2^{10}" />, which gives only 102.4 mm.
+The monthly minute charge is <InlineMath math="500" /> times the total paid minutes, cut down to <InlineMath math="30{,}000" /> if it's more. **The total paid minutes don't depend on the order of the trips**, because you can add numbers in any order. So the charge stays <InlineMath math="\text{Rp}30{,}000" />. The order only changes when the cap is reached. With the trips reversed, the charges build up as <InlineMath math="3{,}500" />, <InlineMath math="3{,}500" />, <InlineMath math="9{,}000" />, <InlineMath math="9{,}000" />, <InlineMath math="21{,}000" />, and then <InlineMath math="30{,}000" /> on trip <InlineMath math="6" />. The amount paid is the same. This statement is **true**.
 
-So at least **14 folds** are needed.
+# The statement about the last trip
+
+Before the last trip, the charges so far are only <InlineMath math="\text{Rp}29{,}000" />, still under the cap. The last trip adds <InlineMath math="7\cdot 500=\text{Rp}3{,}500" />, so **the cap is reached partway through the last trip**. This statement is **true**.
+
+# The statement about splitting a trip
+
+Trips of <InlineMath math="13\text{ minutes}" /> and <InlineMath math="12\text{ minutes}" /> are each <InlineMath math="20\text{ minutes}" /> or shorter, so neither has paid minutes. The month's paid minutes drop from <InlineMath math="65" /> to <InlineMath math="60" />.
+
+<BlockMath math="60\cdot 500=30{,}000" />
+
+The minute charge is exactly <InlineMath math="\text{Rp}30{,}000" />, the same as she paid before because of the cap. So **the total stays at <InlineMath math="\text{Rp}60{,}000" />** and doesn't get smaller. This statement is **false**. If you ignore the cap, you'd compare <InlineMath math="\text{Rp}32{,}500" /> with <InlineMath math="\text{Rp}30{,}000" /> and wrongly call it true.
+
+# The statement about riders with few trips
+
+The subscription always costs at least <InlineMath math="\text{Rp}30{,}000" />, the fee itself. On the regular tariff, **the highest cost comes from four trips of <InlineMath math="20\text{ minutes}" /> each**, because the cost grows with every extra minute and every extra trip.
+
+<BlockMath math="4\cdot(2{,}000+250\cdot 20)=4\cdot 7{,}000=28{,}000" />
+
+The regular cost is at most <InlineMath math="\text{Rp}28{,}000" />, always less than <InlineMath math="\text{Rp}30{,}000" />. This statement is **true** for every such rider. The number <InlineMath math="4" /> really matters: with <InlineMath math="5" /> trips of <InlineMath math="20\text{ minutes}" />, the regular cost is <InlineMath math="\text{Rp}35{,}000" />, more than the subscription.
+
+So the statement about reversing the order is true, the statement about the last trip is true, the statement about splitting a trip is false, and the statement about riders with at most <InlineMath math="4" /> short trips is true.

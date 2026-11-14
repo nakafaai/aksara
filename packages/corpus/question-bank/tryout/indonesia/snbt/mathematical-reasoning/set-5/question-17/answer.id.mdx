@@ -1,11 +1,38 @@
-Pilih digit dari kiri ke kanan. Setiap digit yang sudah dipakai **tidak boleh dipakai lagi**, jadi banyak pilihannya berkurang satu di setiap posisi.
+Kamu mencari banyak paket sehat. Rencananya: kelompokkan paket menurut banyak porsi ayam panggang, lalu untuk setiap kelompok **periksa batas kalori dan batas protein bersama-sama**.
 
-# Pilihan pada setiap posisi
+# Paket tanpa ayam panggang
 
-Digit pertama boleh 0, karena PIN boleh diawali 0. Jadi ada 10 pilihan untuk digit pertama, 9 untuk digit kedua, 8 untuk digit ketiga, dan 7 untuk digit keempat.
+Nasi dan satu porsi sayur sudah berisi <InlineMath math="240\text{ kkal}" /> dan <InlineMath math="6\text{ g}" /> protein. Empat porsi tempe membuat kalorinya <InlineMath math="640\text{ kkal}" />, jadi tempe paling banyak <InlineMath math="3" /> porsi. Tiga porsi tempe memberi <InlineMath math="540\text{ kkal}" /> dan <InlineMath math="36\text{ g}" /> protein, dan hanya satu porsi sayur lagi yang masih muat.
 
-<BlockMath math="10\cdot9\cdot8\cdot7=5{.}040" />
+<BlockMath math="36+2=38<40" />
 
-Hasil ini adalah **permutasi 4 dari 10**, karena urutan digit dalam PIN penting.
+Proteinnya tidak pernah mencapai <InlineMath math="40\text{ g}" />, jadi **tidak ada paket sehat tanpa ayam panggang**.
 
-Jadi, ada **5.040 PIN** dengan empat digit berbeda.
+# Paket dengan satu porsi ayam panggang
+
+Nasi, satu porsi ayam, dan satu porsi sayur berisi <InlineMath math="390\text{ kkal}" /> dan <InlineMath math="30\text{ g}" /> protein. Sisa kalorinya <InlineMath math="210\text{ kkal}" />, dan proteinnya masih kurang <InlineMath math="10\text{ g}" />.
+
+| Tambahan tempe | Tambahan sayur yang mungkin | Banyak paket |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> porsi | tepat <InlineMath math="5" /> porsi | <InlineMath math="1" /> |
+| <InlineMath math="1" /> porsi | <InlineMath math="0" />, <InlineMath math="1" />, atau <InlineMath math="2" /> porsi | <InlineMath math="3" /> |
+| <InlineMath math="2" /> porsi | <InlineMath math="0" /> porsi | <InlineMath math="1" /> |
+
+Tanpa tempe, protein <InlineMath math="10\text{ g}" /> harus datang dari <InlineMath math="5" /> porsi sayur tambahan, dan <InlineMath math="5\cdot40=200\text{ kkal}" /> masih muat. **Paket berisi enam porsi sayur ini mudah terlewat**. Kelompok ini berisi <InlineMath math="5" /> paket.
+
+# Paket dengan dua porsi ayam panggang
+
+Nasi, dua porsi ayam, dan satu porsi sayur berisi <InlineMath math="540\text{ kkal}" /> dan <InlineMath math="54\text{ g}" /> protein. Sisa <InlineMath math="60\text{ kkal}" /> hanya cukup untuk **satu porsi sayur tambahan**, jadi ada <InlineMath math="2" /> paket. Tiga porsi ayam sudah <InlineMath math="690\text{ kkal}" /> bersama nasi dan sayur, jadi tidak mungkin.
+
+<BlockMath math="0+5+2=7" />
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **kehilangan paket karena satu kekeliruan**.
+
+- <InlineMath math="6" /> muncul kalau paket satu porsi ayam dengan enam porsi sayur terlewat.
+- <InlineMath math="5" /> muncul kalau sayur dianggap paling banyak dua porsi, sehingga dua paket terlewat.
+- <InlineMath math="4" /> muncul kalau protein nasi sebesar <InlineMath math="4\text{ g}" /> terlupa.
+- <InlineMath math="3" /> muncul kalau protein sayur terlupa.
+
+Jadi, ada <InlineMath math="7" /> paket sehat yang berbeda.

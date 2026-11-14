@@ -1,15 +1,37 @@
-Dua fakta menjadi dasar semua pernyataan: setiap tim **bertanding melawan 5 tim lain**, dan setiap kemenangan bernilai tepat 3 poin, sehingga poin sebuah tim selalu kelipatan 3.
+Kamu mencari banyak cangkir terbanyak yang dapat dinikmati dengan uang <InlineMath math="\text{Rp}300{.}000" /> dalam <InlineMath math="28" /> hari. Rencananya: cari dulu batas atasnya dari uang dan cap, lalu tunjukkan **jadwal yang benar-benar mencapai batas itu**.
 
-# Banyak pertandingan dan arti poin
+# Batas dari uang dan cap
 
-Setiap tim **bertemu dengan setiap tim lain tepat sekali**, jadi setiap tim bertanding 5 kali. Pernyataan kedua benar.
+Misalkan Bu Ratna membayar <InlineMath math="w" /> cangkir pada hari Rabu dan <InlineMath math="n" /> cangkir pada hari lain. Dalam <InlineMath math="28" /> hari hanya ada <InlineMath math="4" /> hari Rabu, jadi <InlineMath math="w\le4" />. Uangnya membatasi <InlineMath math="15w+20n\le300" /> dalam ribuan rupiah. Cangkir yang dibayar memberi <InlineMath math="2w+n" /> cap, dan **setiap cangkir gratis memakai <InlineMath math="10" /> cap**.
 
-Poin 12 berarti <InlineMath math="12:3=4" /> kemenangan, karena kekalahan tidak memberi poin. Pernyataan keempat benar.
+| <InlineMath math="w" /> | <InlineMath math="n" /> terbesar | Cap | Cangkir gratis paling banyak | Jumlah cangkir |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="4" /> | <InlineMath math="12" /> | <InlineMath math="20" /> | <InlineMath math="2" /> | <InlineMath math="18" /> |
+| <InlineMath math="3" /> | <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="1" /> | <InlineMath math="16" /> |
+| <InlineMath math="2" /> | <InlineMath math="13" /> | <InlineMath math="17" /> | <InlineMath math="1" /> | <InlineMath math="16" /> |
+| <InlineMath math="1" /> | <InlineMath math="14" /> | <InlineMath math="16" /> | <InlineMath math="1" /> | <InlineMath math="16" /> |
+| <InlineMath math="0" /> | <InlineMath math="15" /> | <InlineMath math="15" /> | <InlineMath math="1" /> | <InlineMath math="16" /> |
 
-# Kemungkinan yang tidak dapat terjadi
+Hanya baris pertama yang mencapai <InlineMath math="18" /> cangkir. Baris itu memakai keempat hari Rabu dan seluruh uangnya.
 
-Jumlah poin semua tim adalah <InlineMath math="15\cdot3=45" />. Jika keenam tim sama poinnya, setiap tim mendapat <InlineMath math="\tfrac{45}{6}=7{,}5" /> poin, padahal **poin selalu kelipatan 3**. Pernyataan pertama salah.
+<BlockMath math="4\cdot15{.}000+12\cdot20{.}000=300{.}000" />
 
-Poin 15 berarti menang 5 kali, yaitu menang di semua pertandingan. Dua tim tidak mungkin sama-sama menang di semua pertandingan, karena **keduanya pernah saling berhadapan** dan salah satunya kalah. Pernyataan ketiga salah.
+# Jadwal yang mencapai delapan belas cangkir
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Batas tadi baru tercapai kalau **keempat hari Rabu dibayar**, jadi cangkir gratis tidak boleh jatuh pada hari Rabu. Bu Ratna dapat memesan pada Rabu hari ke-<InlineMath math="3" /> dan ke-<InlineMath math="10" />, lalu setiap hari mulai hari ke-<InlineMath math="13" />.
+
+| Hari | Pesanan | Isi kartu sesudahnya |
+| :---: | :---: | :---: |
+| ke-<InlineMath math="3" /> dan ke-<InlineMath math="10" /> | <InlineMath math="2" /> cangkir hari Rabu | <InlineMath math="4" /> |
+| ke-<InlineMath math="13" /> sampai ke-<InlineMath math="17" /> | <InlineMath math="4" /> cangkir biasa dan <InlineMath math="1" /> cangkir hari Rabu | <InlineMath math="10" /> |
+| ke-<InlineMath math="18" /> | gratis | <InlineMath math="0" /> |
+| ke-<InlineMath math="19" /> sampai ke-<InlineMath math="27" /> | <InlineMath math="8" /> cangkir biasa dan <InlineMath math="1" /> cangkir hari Rabu | <InlineMath math="10" /> |
+| ke-<InlineMath math="28" /> | gratis | <InlineMath math="0" /> |
+
+Jadwal itu berisi <InlineMath math="4" /> cangkir hari Rabu, <InlineMath math="12" /> cangkir biasa, dan <InlineMath math="2" /> cangkir gratis.
+
+# Jawaban yang keliru
+
+Jawaban <InlineMath math="16" /> muncul kalau semua uang dipakai dengan harga biasa, yaitu <InlineMath math="15" /> cangkir dan <InlineMath math="1" /> cangkir gratis. Jawaban <InlineMath math="20" /> muncul kalau semua cangkir dihitung dengan harga hari Rabu, padahal **hari Rabu hanya ada empat**. Memesan setiap hari sejak hari ke-<InlineMath math="1" /> juga merugikan, karena cangkir gratis pertama jatuh pada Rabu hari ke-<InlineMath math="10" />.
+
+Jadi, Bu Ratna dapat menikmati paling banyak <InlineMath math="18" /> cangkir.

@@ -1,13 +1,40 @@
-Die nötige Dachfläche ist **Anzahl der Module mal Fläche eines Moduls**. Bestimme also zuerst die Anzahl der Module.
+Du suchst das erste Datum, an dem die Familie ohne Hauptvolumen herunterlädt. Der Plan: Addiere Tag für Tag nur die Downloads, die **Hauptvolumen verbrauchen**, bis die Summe <InlineMath math="100\text{ GB}" /> erreicht, und prüfe dann, was genau an dieser Grenze passiert.
 
-# Anzahl der Module
+# Downloads, die Volumen verbrauchen
 
-Ein Modul liefert <InlineMath math="0{,}2\cdot4{,}5=0{,}9" /> kWh pro Tag, also **braucht man 10 Module**, denn <InlineMath math="\tfrac{9}{0{,}9}=10" />.
+Downloads in den Nachtstunden verbrauchen kein Hauptvolumen, also **zählen die <InlineMath math="3\text{ GB}" /> pro Nacht nicht mit**. Es zählen nur <InlineMath math="4\text{ GB}" /> an Werktagen und <InlineMath math="12\text{ GB}" /> am Wochenende. Weil der <InlineMath math="1" />. ein Dienstag ist, läuft die erste Woche von Dienstag bis Montag:
 
-# Dachfläche
+| Datum | Tag | Download tagsüber | Bisher verbrauchtes Volumen |
+| --- | --- | --- | --- |
+| <InlineMath math="1" />. bis <InlineMath math="4" />. | Dienstag bis Freitag | <InlineMath math="4\text{ GB}" /> pro Tag | <InlineMath math="16\text{ GB}" /> |
+| <InlineMath math="5" />. | Samstag | <InlineMath math="12\text{ GB}" /> | <InlineMath math="28\text{ GB}" /> |
+| <InlineMath math="6" />. | Sonntag | <InlineMath math="12\text{ GB}" /> | <InlineMath math="40\text{ GB}" /> |
+| <InlineMath math="7" />. | Montag | <InlineMath math="4\text{ GB}" /> | <InlineMath math="44\text{ GB}" /> |
 
-<BlockMath math="10\cdot1{,}6=16\text{ m}^2" />
+Alle <InlineMath math="7" /> Tage wächst der Verbrauch um <InlineMath math="44\text{ GB}" />, am Ende des <InlineMath math="14" />. sind es also <InlineMath math="88\text{ GB}" />.
 
-Das ist die reine Modulfläche, unter der Annahme, dass die Module **dicht ohne Lücken** montiert werden.
+# Das Datum, an dem das Volumen endet
 
-Die kleinste Dachfläche beträgt also **16 Quadratmeter**.
+Mach ab dem <InlineMath math="15" />. weiter, einem Dienstag:
+
+<BlockMath math="\begin{aligned}
+15. &: 88 + 4 = 92 \\
+16. &: 92 + 4 = 96 \\
+17. &: 96 + 4 = 100
+\end{aligned}" />
+
+Das Hauptvolumen ist **genau dann aufgebraucht, wenn der Download tagsüber am <InlineMath math="17" />. fertig ist**. Alle Downloads am <InlineMath math="17" />. laufen also noch mit <InlineMath math="40\text{ Mbps}" />.
+
+# Der erste langsame Download
+
+Der <InlineMath math="18" />. ist ein Freitag. Sein Nachtdownload (00.00 bis 06.00) läuft weiter mit <InlineMath math="40\text{ Mbps}" />. Sein Download tagsüber beginnt ohne Hauptvolumen, also ist **das der erste Download mit <InlineMath math="8\text{ Mbps}" />**.
+
+# Häufige falsche Antworten
+
+Einige andere Antworten entstehen durch **falsches Aufaddieren**:
+
+- Der <InlineMath math="17" />. entsteht, wenn du den Tag, an dem das Volumen endet, schon als langsam zählst, obwohl das Volumen erst genau am Ende des Downloads an diesem Tag aufgebraucht ist.
+- Der <InlineMath math="12" />. entsteht, wenn die Nachtdownloads mitgezählt werden: <InlineMath math="7\text{ GB}" /> pro Werktag und <InlineMath math="15\text{ GB}" /> pro Wochenendtag.
+- Der <InlineMath math="16" />. entsteht mit dem Durchschnitt von <InlineMath math="\tfrac{44}{7}\text{ GB}" /> pro Tag: <InlineMath math="100 : \tfrac{44}{7} \approx 15{,}9" />, aufgerundet. Der Durchschnitt übersieht die Reihenfolge von Werktagen und Wochenende.
+
+Die Familie von Pak Dedi lädt also am <InlineMath math="18" />. zum ersten Mal mit <InlineMath math="8\text{ Mbps}" /> herunter.

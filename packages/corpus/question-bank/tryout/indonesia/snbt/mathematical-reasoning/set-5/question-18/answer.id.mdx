@@ -1,15 +1,28 @@
-Ruang sampelnya **10.000 PIN yang sama mungkin**. Peluangnya adalah banyak PIN dengan digit berbeda dibagi 10.000.
+Kamu mencari protein terbanyak dari paket seharga paling banyak <InlineMath math="\text{Rp}30{.}000" /> dan berkalori paling banyak <InlineMath math="600\text{ kkal}" />. Rencananya: sisihkan dulu nasi dan satu porsi sayur yang wajib ada, lalu **bandingkan paket menurut banyak porsi ayam panggang**.
 
-# Banyak PIN dengan digit berbeda
+# Sisa uang dan sisa kalori
 
-**Digit pertama boleh 0**, jadi banyaknya <InlineMath math="10\cdot9\cdot8\cdot7=5{.}040" />.
+**Nasi dan satu porsi sayur** berharga <InlineMath math="\text{Rp}8{.}000" />, berisi <InlineMath math="240\text{ kkal}" />, dan memberi <InlineMath math="6\text{ g}" /> protein. Yang tersisa adalah <InlineMath math="\text{Rp}22{.}000" /> dan <InlineMath math="360\text{ kkal}" />.
 
-# Peluang
+# Paket menurut banyak porsi ayam
 
-<BlockMath math="\frac{5{.}040}{10{.}000}=0{,}504" />
+Dua porsi ayam berharga <InlineMath math="\text{Rp}24{.}000" />, lebih dari sisa uang, jadi **ayam paling banyak satu porsi**.
 
-Peluang ini sedikit lebih dari setengah, jadi **hampir separuh PIN memiliki digit yang berulang**.
+| Tambahan | Harga tambahan | Kalori tambahan | Protein paket |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> ayam dan <InlineMath math="2" /> tempe | <InlineMath math="\text{Rp}20{.}000" /> | <InlineMath math="350\text{ kkal}" /> | <InlineMath math="6+24+20=50\text{ g}" /> |
+| <InlineMath math="1" /> ayam, <InlineMath math="1" /> tempe, dan <InlineMath math="2" /> sayur | <InlineMath math="\text{Rp}22{.}000" /> | <InlineMath math="330\text{ kkal}" /> | <InlineMath math="6+24+10+4=44\text{ g}" /> |
+| <InlineMath math="3" /> tempe dan <InlineMath math="1" /> sayur | <InlineMath math="\text{Rp}15{.}000" /> | <InlineMath math="340\text{ kkal}" /> | <InlineMath math="6+30+2=38\text{ g}" /> |
 
-Nilai 0,496 adalah peluang kejadian sebaliknya, yaitu ada digit berulang. Nilai 0,4536 melarang digit pertama 0, padahal PIN boleh diawali 0. Nilai 0,3024 memakai <InlineMath math="9\cdot8\cdot7\cdot6" />, dan 0,0504 salah meletakkan koma.
+Dengan satu porsi ayam, tempe ketiga membuat kalori tambahan <InlineMath math="450\text{ kkal}" />, jadi tidak muat. Setelah satu ayam dan dua tempe, sisa kalorinya hanya <InlineMath math="10\text{ kkal}" />, sehingga **tidak ada makanan lain yang dapat ditambahkan**. Tanpa ayam, tempe paling banyak tiga porsi dan proteinnya paling banyak <InlineMath math="38\text{ g}" />.
 
-Jadi, peluangnya adalah **0,504**.
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **paket yang kurang baik atau hitungan yang kurang lengkap**.
+
+- <InlineMath math="48\text{ g}" /> muncul kalau protein satu porsi sayur pada paket terbaik terlupa.
+- <InlineMath math="46\text{ g}" /> muncul dari empat porsi tempe tanpa ayam, padahal paket itu berisi <InlineMath math="640\text{ kkal}" />.
+- <InlineMath math="44\text{ g}" /> muncul kalau kamu menghabiskan tepat <InlineMath math="\text{Rp}30{.}000" /> dengan satu ayam, satu tempe, dan tiga porsi sayur.
+- <InlineMath math="38\text{ g}" /> muncul kalau ayam dianggap terlalu mahal, sehingga hanya tempe dan sayur yang dibeli.
+
+Jadi, protein terbanyak yang dapat diperoleh Raka adalah <InlineMath math="50\text{ g}" />.

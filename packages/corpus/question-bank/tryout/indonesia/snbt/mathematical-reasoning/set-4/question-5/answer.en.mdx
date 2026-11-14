@@ -1,13 +1,50 @@
-Flour is used **in proportion to the number of pieces**, so find the scale factor from 12 pieces to 30 pieces.
+You're comparing two revenues: selling all the fish as one batch, and selling two batches separately. The plan: find the revenue without sorting, work out the count and weight of each batch, find **the price class of the small batch from its mean weight**, and then subtract the two revenues.
 
-# The scale factor
+# Revenue without sorting
 
-<BlockMath math="\frac{30}{12}=2.5" />
+At the end of the fifth month, <InlineMath math="72\%" /> of the seeds are alive, with a mean weight of <InlineMath math="250\text{ g}=0.25\text{ kg}" />:
 
-# Flour needed
+<BlockMath math="\begin{aligned}
+\text{fish alive} &= 72\%\times5{,}000=3{,}600\text{ fish}\\
+\text{biomass} &= 3{,}600\times0.25=900\text{ kg}
+\end{aligned}" />
 
-<BlockMath math="250\cdot2.5=625\text{ g}" />
+A mean weight of <InlineMath math="250\text{ g}" /> falls in **the top price class**, <InlineMath math="250\text{ g}" /> or more, so the price is <InlineMath math="\text{Rp}28{,}000" /> per kilogram and the revenue is <InlineMath math="900\times28{,}000=\text{Rp}25{,}200{,}000" />.
 
-Unlike the eggs, **the flour does not need rounding**, because it can be measured exactly.
+# Count and weight of each batch
 
-So the flour needed is **625 grams**.
+The <InlineMath math="40\%" /> is taken **from the harvested fish**, not from the seeds. The large and small batches are:
+
+<BlockMath math="\begin{aligned}
+\text{large batch} &= 40\%\times3{,}600=1{,}440\text{ fish},\quad 1{,}440\times0.3=432\text{ kg}\\
+\text{small batch} &= 3{,}600-1{,}440=2{,}160\text{ fish},\quad 900-432=468\text{ kg}
+\end{aligned}" />
+
+The mean weight of the small batch is its weight divided by its number of fish:
+
+<BlockMath math="\frac{468{,}000\text{ g}}{2{,}160}\approx216.7\text{ g}" />
+
+That's between <InlineMath math="200\text{ g}" /> and <InlineMath math="250\text{ g}" />, so **the small batch drops to the price class** of <InlineMath math="\text{Rp}24{,}000" /> per kilogram.
+
+# Revenue after sorting and the difference
+
+The large batch has a mean weight of <InlineMath math="300\text{ g}" />, so it stays at <InlineMath math="\text{Rp}28{,}000" /> per kilogram:
+
+<BlockMath math="\begin{aligned}
+\text{sorted revenue} &= 432\times28{,}000+468\times24{,}000\\
+&= 12{,}096{,}000+11{,}232{,}000=23{,}328{,}000\\
+\text{difference} &= 25{,}200{,}000-23{,}328{,}000=1{,}872{,}000
+\end{aligned}" />
+
+Check it: the two batches weigh <InlineMath math="432+468=900\text{ kg}" />, the same as the whole biomass. Their combined mean is still <InlineMath math="250\text{ g}" />, because <InlineMath math="900{,}000\div3{,}600=250" />. So **sorting doesn't change the weight**. It only moves <InlineMath math="468\text{ kg}" /> to a lower price: <InlineMath math="468\times4{,}000=1{,}872{,}000" />.
+
+# Why the other options are wrong
+
+Each wrong option comes from **a swapped base for the percentage** or a wrong price class.
+
+- <InlineMath math="\text{Rp}2{,}160{,}000" /> comes from taking <InlineMath math="40\%" /> of the biomass, <InlineMath math="360\text{ kg}" /> and <InlineMath math="540\text{ kg}" />, when the <InlineMath math="40\%" /> is a share of the fish count.
+- <InlineMath math="\text{Rp}2{,}400{,}000" /> comes from taking <InlineMath math="40\%" /> of the <InlineMath math="5{,}000" /> seeds. The large batch becomes <InlineMath math="600\text{ kg}" />, and the small batch averages <InlineMath math="187.5\text{ g}" /> at <InlineMath math="\text{Rp}20{,}000" />.
+- <InlineMath math="\text{Rp}2{,}736{,}000" /> comes from finding the small batch's mean without weighting by the fish counts, <InlineMath math="2\times250-300=200\text{ g}" />, so its weight is taken as <InlineMath math="432\text{ kg}" />.
+- <InlineMath math="\text{Rp}3{,}744{,}000" /> comes from putting the small batch in the cheapest class at <InlineMath math="\text{Rp}20{,}000" />, even though its mean is above <InlineMath math="200\text{ g}" />.
+
+So after sorting, the sales revenue drops by <InlineMath math="\text{Rp}1{,}872{,}000" />.

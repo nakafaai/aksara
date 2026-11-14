@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "print-prices",
+  stimulus: "warehouse-stock",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$300$$" },
-        { correct: false, label: "$$350$$" },
-        { correct: false, label: "$$360$$" },
-        { correct: true, label: "$$375$$" },
-        { correct: false, label: "$$501$$" },
+        { correct: false, label: "$$120$$ karung" },
+        { correct: false, label: "$$110$$ karung" },
+        { correct: false, label: "$$100$$ karung" },
+        { correct: false, label: "$$85$$ karung" },
+        { correct: true, label: "$$80$$ karung" },
       ],
     },
   },

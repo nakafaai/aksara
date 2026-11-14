@@ -1,18 +1,50 @@
-Kerjakan dari tagihan ke pemakaian. Kurangi dulu biaya beban, lalu **habiskan sisa uang blok demi blok** sampai tidak ada sisa.
+Setiap pernyataan mengubah satu bagian data, jadi **telusuri ulang isi baterai jam demi jam untuk setiap perubahan**. Mulailah dari hari asli, lalu ulangi penelusuran itu dengan perubahan pada pernyataan masing-masing.
 
-# Biaya pemakaian dan blok yang terlewati
+# Hari dengan data asli
 
-<BlockMath math="550{.}000-20{.}000=530{.}000" />
-
-Blok 1 penuh berbiaya <InlineMath math="100\cdot1{.}000=100{.}000" />, dan blok 2 penuh, yaitu 200 kWh, berbiaya <InlineMath math="200\cdot1{.}500=300{.}000" />. Keduanya berjumlah 400.000 untuk 300 kWh. Karena 530.000 lebih dari 400.000, **pemakaiannya masuk ke blok 3**.
-
-# Pemakaian di blok 3
+Selisih energi panel dikurangi pemakaian pada pukul 07.00 sampai 17.00 adalah <InlineMath math="-1,+1,+2,+3,+3,+2,+3,+1,-1,-1" /> dalam kWh. Isi baterai pukul 07.00 sudah sama dengan cadangan, jadi **kekurangan jam pertama dibeli dari PLN**, yaitu <InlineMath math="1\text{ kWh}" />. Setelah itu isi baterai menjadi <InlineMath math="2" />, <InlineMath math="4" />, lalu penuh <InlineMath math="6\text{ kWh}" /> pada pukul 10.00-11.00.
 
 <BlockMath math="\begin{aligned}
-530{.}000-400{.}000&=130{.}000\\
-\frac{130{.}000}{2{.}000}&=65\text{ kWh}
+\text{energi terbuang} &= 1+3+2+3+1=10\text{ kWh}\\
+\text{isi baterai saat sore berakhir} &= 6-1-1=4\text{ kWh}\\
+\text{dibeli malam hari} &= 11-(4-1)=8\text{ kWh}
 \end{aligned}" />
 
-Total pemakaiannya <InlineMath math="300+65=365" /> kWh. Pemeriksaan: <InlineMath math="20{.}000+100{.}000+300{.}000+65\cdot2{.}000=550{.}000" />.
+Jadi pada hari asli energi yang dibeli adalah <InlineMath math="1+8=9\text{ kWh}" />, dan biayanya <InlineMath math="1\cdot\text{Rp}1{.}000+8\cdot\text{Rp}2{.}500=\text{Rp}21{.}000" />.
 
-Jadi, keluarga Sari memakai **365 kWh** listrik.
+# Pernyataan pertama tentang energi terbuang
+
+Energi terbuang <InlineMath math="10\text{ kWh}" />, sedangkan energi yang dibeli <InlineMath math="9\text{ kWh}" />. Karena <InlineMath math="10>9" />, **pernyataan pertama benar**. Ini juga menunjukkan bahwa masalahnya ada pada kapasitas baterai, bukan pada jumlah energi panel.
+
+# Pernyataan kedua tentang baterai yang lebih besar
+
+Dengan kapasitas <InlineMath math="10\text{ kWh}" />, isi baterai menjadi <InlineMath math="1,2,4,7,10" /> sampai pukul 12.00. Sesudah itu baterai penuh, jadi kelebihan <InlineMath math="2+3+1=6\text{ kWh}" /> terbuang. Pukul 15.00-17.00 baterai turun menjadi <InlineMath math="8\text{ kWh}" />.
+
+<BlockMath math="\begin{aligned}
+\text{dibeli malam hari} &= 11-(8-1)=4\text{ kWh}\\
+\tfrac{1}{2}\cdot\text{pembelian malam semula} &= \tfrac{1}{2}\cdot8=4\text{ kWh}
+\end{aligned}" />
+
+Pembelian malam turun **tepat menjadi setengahnya, bukan kurang dari setengah**, jadi pernyataan kedua salah.
+
+# Pernyataan ketiga tentang aturan cadangan
+
+Tanpa cadangan, kekurangan pada pukul 07.00-08.00 bisa diambil dari isi baterai <InlineMath math="1\text{ kWh}" />, sehingga **pembelian pagi hilang**. Baterai menjadi <InlineMath math="0,1,3,6" /> lalu penuh, dan pukul 17.00 isinya tetap <InlineMath math="4\text{ kWh}" />. Kali ini seluruh isi itu boleh dipakai.
+
+<BlockMath math="\begin{aligned}
+\text{dibeli malam hari} &= 11-4=7\text{ kWh}\\
+\text{biaya baru} &= 7\cdot\text{Rp}2{.}500=\text{Rp}17{.}500\\
+\text{pengurangan biaya} &= \text{Rp}21{.}000-\text{Rp}17{.}500=\text{Rp}3{.}500
+\end{aligned}" />
+
+Biaya berkurang tepat <InlineMath math="\text{Rp}3{.}500{,}00" />, jadi pernyataan ketiga benar. Pengurangan itu datang dari dua tempat: <InlineMath math="\text{Rp}1{.}000" /> pada pagi hari dan <InlineMath math="\text{Rp}2{.}500" /> pada malam hari.
+
+# Pernyataan keempat tentang panel yang lebih kuat
+
+Panel tambahan memberi <InlineMath math="10\cdot1=10\text{ kWh}" />, lebih banyak daripada <InlineMath math="9\text{ kWh}" /> yang dibeli. Kelihatannya cukup, tetapi **baterai tetap hanya memuat** <InlineMath math="6\text{ kWh}" />. Selisih per jam sekarang <InlineMath math="0,+2,+3,+4,+4,+3,+4,+2,0,0" />. Pembelian pagi memang hilang, dan baterai penuh sejak pukul 09.00-10.00 sampai pukul 17.00.
+
+<BlockMath math="\text{dibeli malam hari}=11-(6-1)=6\text{ kWh}" />
+
+Keluarga itu masih membeli <InlineMath math="6\text{ kWh}" /> pada malam hari, jadi pernyataan keempat salah.
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat salah.

@@ -1,19 +1,48 @@
-Ruang kosong yang harus disisakan adalah **10% dari kapasitas penuh 128 GB**, bukan dari memori yang tersedia. Kurangi sisa ruang itu dari memori pengguna, lalu bagi dengan ukuran foto.
+Kamu mencari lama minum terkecil yang membuat keduanya tidak pernah berada di titik yang sama sampai detik ke-<InlineMath math="1{.}500" />. Pakai **selisih jarak tempuh** <InlineMath math="g" />, yaitu jarak Andi dikurangi jarak Bima. Keduanya bertemu kalau <InlineMath math="g" /> mencapai <InlineMath math="400" />, atau kalau <InlineMath math="g" /> turun sampai <InlineMath math="0" />. Rencananya: tulis puncak <InlineMath math="g" /> di setiap siklus, lalu periksa siklus mana yang masih terjadi sebelum waktu habis.
 
-# Memori yang boleh dipakai
+# Selisih dalam setiap siklus
+
+Setiap siklus Andi terdiri atas <InlineMath math="320" /> detik lari dan <InlineMath math="r" /> detik minum. Saat lari, <InlineMath math="g" /> naik <InlineMath math="320" />. Saat minum, <InlineMath math="g" /> turun <InlineMath math="4r" /> karena hanya Bima yang bergerak. Jadi, **setiap siklus menambah selisih sebesar <InlineMath math="320-4r" />**.
 
 <BlockMath math="\begin{aligned}
-10\%\cdot128&=12{,}8\text{ GB}\\
-110-12{,}8&=97{,}2\text{ GB}\\
-97{,}2\cdot1{.}024&=99{.}532{,}8\text{ MB}
+\text{awal siklus ke-}k &: t=(k-1)(320+r) \\
+\text{puncak siklus ke-}k &: P_k=(k-1)(320-4r)+320
 \end{aligned}" />
 
-# Banyak foto
+Puncak itu dicapai di akhir lari, tepat sebelum Andi minum. Selama <InlineMath math="P_k" /> kurang dari <InlineMath math="400" />, siklus itu tidak menghasilkan pertemuan.
 
-<BlockMath math="\frac{99{.}532{,}8}{4}=24{.}883{,}2" />
+# Syarat untuk setiap siklus
 
-Foto ke-24.884 akan membuat ruang kosong kurang dari 10%, jadi **hasilnya dibulatkan ke bawah** menjadi 24.883.
+Coba periksa siklus satu per satu:
 
-Nilai 25.344 mengambil 10% dari 110 GB, bukan dari 128 GB. Nilai 24.300 memakai 1 GB sama dengan 1.000 MB. Nilai 28.160 tidak menyisakan ruang kosong, dan 29.491 mengabaikan bagian sistem.
+<BlockMath math="\begin{aligned}
+P_2 = 640-4r < 400 &\iff r > 60 \\
+P_3 = 960-8r < 400 &\iff r > 70 \\
+P_4 = 1{.}280-12r < 400 &\iff r > 73\tfrac{1}{3}
+\end{aligned}" />
 
-Jadi, banyak foto paling banyak adalah **24.883 foto**.
+Siklus keempat dimulai pada detik ke-<InlineMath math="3(320+r)" />. Untuk <InlineMath math="r" /> sekitar <InlineMath math="74" />, nilai ini sekitar <InlineMath math="1{.}180" />, **masih sebelum detik ke-<InlineMath math="1{.}500" />**, jadi siklus keempat ikut diperiksa.
+
+Untuk <InlineMath math="r=73" />, siklus keempat dimulai pada detik ke-<InlineMath math="3 \cdot 393=1{.}179" /> dengan <InlineMath math="g=3(320-292)=84" />. Selisih itu mencapai <InlineMath math="400" /> setelah <InlineMath math="316" /> detik lagi, yaitu pada detik ke-<InlineMath math="1{.}495" />, jadi mereka masih bertemu.
+
+# Memeriksa nilai yang terkecil
+
+Untuk <InlineMath math="r=74" />:
+
+<BlockMath math="\begin{aligned}
+P_4 &= 1{.}280 - 12 \cdot 74 = 392 < 400 \\
+\text{awal siklus ke-}5 &= 4 \cdot 394 = 1{.}576 > 1{.}500
+\end{aligned}" />
+
+Siklus kelima baru dimulai setelah waktu habis, jadi tidak perlu diperiksa. Selisih juga tidak pernah turun ke <InlineMath math="0" />, karena setiap siklus tetap menambah <InlineMath math="320-4 \cdot 74=24" />. Jadi, dengan <InlineMath math="r=74" /> keduanya **tidak pernah bertemu**, sedangkan <InlineMath math="r=73" /> masih menghasilkan pertemuan.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **berhenti memeriksa di siklus yang salah**:
+
+- <InlineMath math="61" /> detik hanya mencegah pertemuan di siklus kedua.
+- <InlineMath math="71" /> detik juga mencegah siklus ketiga, tetapi siklus keempat masih dimulai sebelum waktu habis.
+- <InlineMath math="76" /> detik ikut memeriksa siklus kelima, padahal siklus itu dimulai setelah detik ke-<InlineMath math="1{.}500" />.
+- <InlineMath math="80" /> detik membuat tambahan setiap siklus nol. Selain tidak perlu sebesar itu, nilai ini justru membuat <InlineMath math="g" /> kembali ke <InlineMath math="0" /> pada detik ke-<InlineMath math="400" />, sehingga Bima menyusul Andi tepat di <InlineMath math="S" />.
+
+Jadi, lama minum terkecil yang membuat Andi dan Bima tidak pernah bertemu selama <InlineMath math="25" /> menit adalah <InlineMath math="74" /> detik.

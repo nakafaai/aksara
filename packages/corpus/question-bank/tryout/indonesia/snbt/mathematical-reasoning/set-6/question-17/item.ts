@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "speed-cameras",
+  stimulus: "concrete-mix",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "km/jam",
-      value: "90",
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$10\\text{ m}^2$$" },
+        { correct: false, label: "$$11\\text{ m}^2$$" },
+        { correct: false, label: "$$15\\text{ m}^2$$" },
+        { correct: false, label: "$$16{,}5\\text{ m}^2$$" },
+        { correct: false, label: "$$22{,}5\\text{ m}^2$$" },
+      ],
     },
   },
 };

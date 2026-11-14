@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "calendar-2027",
+  stimulus: "market-survey",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "10 Maret 2027" },
-        { correct: false, label: "11 Maret 2027" },
-        { correct: true, label: "12 Maret 2027" },
-        { correct: false, label: "13 Maret 2027" },
-        { correct: false, label: "19 Maret 2027" },
+        { correct: false, label: "$$32\\%$$" },
+        { correct: false, label: "$$40\\%$$" },
+        { correct: false, label: "$$42\\%$$" },
+        { correct: false, label: "$$46\\%$$" },
+        { correct: true, label: "$$50\\%$$" },
       ],
     },
   },

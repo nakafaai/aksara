@@ -1,22 +1,50 @@
-Berechne die Kosten jeder Zutat für ein Rezept, addiere sie und **teile durch 12 Stück**. Die Preiseinheiten müssen zu den Mengen passen, etwa Gramm zu Kilogramm.
+Alle vier Aussagen nutzen dieselben Daten, aber jede braucht ihre eigene Rechnung. Der Plan: Rechne zuerst die Überlebensanteile in Anzahlen von Fischen um und multipliziere sie dann mit dem Durchschnittsgewicht, um die Biomasse zu bekommen. **Die Biomasse hängt von zwei Dingen zugleich ab**, von der Anzahl der Fische und vom Gewicht pro Fisch, also beurteile sie nicht nur nach dem Gewicht pro Fisch.
 
-# Kosten jeder Zutat
+# Anzahl der Fische und Biomasse in jedem Monat
 
-Gramm und Milliliter werden **in Kilogramm und Liter umgerechnet**, passend zu den Preiseinheiten.
+Die Anzahl lebender Fische ist der Prozentsatz mal <InlineMath math="5{.}000" />. Die Biomasse ist **die Anzahl mal das Durchschnittsgewicht** in Kilogramm. Die Biomasse am Ende des ersten Monats, <InlineMath math="4{.}500\times0{,}04=180\text{ kg}" />, brauchst du für den Zuwachs im zweiten Monat:
 
-| Zutat | Menge | Kosten |
-| :---: | :---: | :---: |
-| Mehl | 0,25 kg | <InlineMath math="0{,}25\cdot12\,000=3\,000" /> |
-| Eier | 3 Stück | <InlineMath math="3\cdot2\,000=6\,000" /> |
-| Zucker | 0,15 kg | <InlineMath math="0{,}15\cdot20\,000=3\,000" /> |
-| Milch | 0,2 L | <InlineMath math="0{,}2\cdot15\,000=3\,000" /> |
+| Ende von Monat | Lebende Fische | Biomasse | Zuwachs Biomasse | Zuwachs pro Fisch |
+| :---: | :---: | :---: | :---: | :---: |
+| 2 | <InlineMath math="4{.}250" /> | <InlineMath math="4{.}250\times0{,}1=425\text{ kg}" /> | <InlineMath math="245\text{ kg}" /> | <InlineMath math="60\text{ g}" /> |
+| 3 | <InlineMath math="4{.}000" /> | <InlineMath math="4{.}000\times0{,}15=600\text{ kg}" /> | <InlineMath math="175\text{ kg}" /> | <InlineMath math="50\text{ g}" /> |
+| 4 | <InlineMath math="3{.}800" /> | <InlineMath math="3{.}800\times0{,}22=836\text{ kg}" /> | <InlineMath math="236\text{ kg}" /> | <InlineMath math="70\text{ g}" /> |
+| 5 | <InlineMath math="3{.}600" /> | <InlineMath math="3{.}600\times0{,}25=900\text{ kg}" /> | <InlineMath math="64\text{ kg}" /> | <InlineMath math="30\text{ g}" /> |
+| 6 | <InlineMath math="3{.}500" /> | <InlineMath math="3{.}500\times0{,}27=945\text{ kg}" /> | <InlineMath math="45\text{ kg}" /> | <InlineMath math="20\text{ g}" /> |
 
-# Kosten pro Stück
+# Die erste Aussage
 
-Ein Rezept kostet insgesamt 15 000, und **ein Rezept ergibt 12 Stück**.
+Der größte Zuwachs pro Fisch liegt im vierten Monat, <InlineMath math="70\text{ g}" />. Der größte Zuwachs an Biomasse liegt im zweiten Monat, <InlineMath math="245\text{ kg}" />, knapp über den <InlineMath math="236\text{ kg}" /> des vierten Monats. Der Zuwachs an Biomasse hängt auch davon ab, **wie viele Fische noch leben**, nicht nur vom Zuwachs pro Fisch, und im zweiten Monat leben noch die meisten. Die beiden Monate sind verschieden, also ist die erste Aussage **falsch**.
 
-<BlockMath math="\frac{15\,000}{12}=1\,250" />
+# Die zweite Aussage
 
-Der Wert 15 000 Rupiah sind die Kosten des ganzen Rezepts, nicht pro Stück. Der Wert 1 000 Rupiah lässt eine Zutat weg, etwa wenn nur Mehl, Zucker und Eier addiert werden.
+Die Fische, die in einem Monat sterben, sind die Differenz der lebenden Fische am Anfang und am Ende dieses Monats:
 
-Die Zutatenkosten pro Stück betragen also **1 250 Rupiah**.
+<BlockMath math="\begin{aligned}
+\text{gestorben im fünften Monat} &= 3{.}800-3{.}600=200\text{ Fische}\\
+\text{gestorben im sechsten Monat} &= 3{.}600-3{.}500=100\text{ Fische}
+\end{aligned}" />
+
+Die <InlineMath math="100" /> sind genau die Hälfte von <InlineMath math="200" />, nicht weniger als die Hälfte. Weil die Aussage **„weniger als“** verlangt, macht die Gleichheit sie **falsch**.
+
+# Die dritte Aussage
+
+Am Ende des dritten Monats liegt das Durchschnittsgewicht bei <InlineMath math="150\text{ g}" />, also beträgt der Preis <InlineMath math="\text{Rp}20{.}000" />. Am Ende des vierten Monats sind es <InlineMath math="220\text{ g}" />, also steigt der Preis auf <InlineMath math="\text{Rp}24{.}000" />:
+
+<BlockMath math="\begin{aligned}
+\text{Einnahme im dritten Monat} &= 600\times20{.}000=12{.}000{.}000\\
+\text{Einnahme im vierten Monat} &= 836\times24{.}000=20{.}064{.}000\\
+1{,}5\times12{.}000{.}000 &= 18{.}000{.}000<20{.}064{.}000
+\end{aligned}" />
+
+Die Biomasse allein wächst nur von <InlineMath math="600" /> auf <InlineMath math="836" />, also weniger als auf das <InlineMath math="1{,}5" />-Fache. Den Sprung der Einnahme bewirkt **der Wechsel in eine höhere Preisklasse**. Die dritte Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Das Gewicht pro Fisch steigt von <InlineMath math="100\text{ g}" /> auf <InlineMath math="270\text{ g}" />, also auf das <InlineMath math="2{,}7" />-Fache, und das verleitet zu einem schnellen „wahr“. Aber **die Anzahl der Fische sinkt** von <InlineMath math="4{.}250" /> auf <InlineMath math="3{.}500" />:
+
+<BlockMath math="2{,}5\times425=1{.}062{,}5\text{ kg}>945\text{ kg}" />
+
+Die Biomasse im sechsten Monat ist kleiner als das <InlineMath math="2{,}5" />-Fache der Biomasse im zweiten Monat, also ist die vierte Aussage **falsch**.
+
+Die erste Aussage ist also falsch, die zweite falsch, die dritte wahr und die vierte falsch.

@@ -1,20 +1,31 @@
-Da der Gruppenpreis für jedes Blatt gilt, **fallen die Gesamtkosten plötzlich, wenn ein Auftrag eine Gruppengrenze überschreitet**. Berechne die Kosten nahe diesen Grenzen.
+Jede Aussage musst du prüfen, indem du den Bestand Tag für Tag verfolgst. Der Maßstab ist der Verlauf nach den gegebenen Regeln, vor allem **wann der Bestand nach jeder Lieferung zum ersten Mal auf <InlineMath math="60" /> Säcke oder weniger fällt**.
 
-# Kosten nahe den Gruppengrenzen
+# Der Verlauf nach den gegebenen Regeln
 
-<BlockMath math="\begin{aligned}
-100\text{ Blatt}&:\quad 100\cdot500=50\,000\\
-101\text{ Blatt}&:\quad 101\cdot400=40\,400\\
-400\text{ Blatt}&:\quad 400\cdot400=160\,000\\
-501\text{ Blatt}&:\quad 501\cdot300=150\,300
-\end{aligned}" />
+| Tag | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Bestand am Tagesende | <InlineMath math="100" /> | <InlineMath math="75" /> | <InlineMath math="45" /> | <InlineMath math="25" /> | <InlineMath math="0" /> | <InlineMath math="110" /> | <InlineMath math="80" /> | <InlineMath math="55" /> | <InlineMath math="10" /> | <InlineMath math="0" /> | <InlineMath math="120" /> | <InlineMath math="100" /> |
 
-Ein Auftrag über 101 Blatt ist günstiger als über 100 Blatt, und 501 Blatt sind günstiger als 400 Blatt. Die zweite und die vierte Aussage sind wahr. Das Beispiel mit 100 und 101 Blatt zeigt auch, dass **die Gesamtkosten nicht immer steigen**, also ist die dritte Aussage falsch.
+Die erste Bestellung geht am Ende von Tag <InlineMath math="3" /> raus und kommt an Tag <InlineMath math="6" /> an. Der entgangene Verkauf beträgt <InlineMath math="10" /> Säcke an Tag <InlineMath math="5" /> und <InlineMath math="40" /> Säcke an Tag <InlineMath math="10" />, also **insgesamt <InlineMath math="50" /> Säcke**.
 
-# Ein Auftrag über 300 Blatt
+# Die erste Aussage zur zweiten Bestellung
 
-<BlockMath math="300\cdot400=120\,000<150\,300" />
+Nach der Lieferung an Tag <InlineMath math="6" /> beträgt der Bestand am Tagesende <InlineMath math="110" />, <InlineMath math="80" /> und dann <InlineMath math="55" />. **Er fällt erst am Ende von Tag <InlineMath math="8" /> unter <InlineMath math="60" />**, also geht die zweite Bestellung dann raus und kommt an Tag <InlineMath math="8+3=11" /> an. Die erste Aussage ist wahr.
 
-Für 300 Blatt ist ein Auftrag über genau 300 Blatt **günstiger**, also ist die erste Aussage falsch.
+# Die zweite Aussage zur Bestellmenge
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+Mit Bestellungen von <InlineMath math="100" /> Säcken beträgt der Bestand nach der Lieferung an Tag <InlineMath math="6" /> nur <InlineMath math="60" /> Säcke, also **geht die nächste Bestellung sofort am Ende von Tag <InlineMath math="6" /> raus** und kommt an Tag <InlineMath math="9" /> an. Der Bestand reicht an den Tagen <InlineMath math="9" /> und <InlineMath math="10" />, und der entgangene Verkauf beträgt nur <InlineMath math="10" /> Säcke an Tag <InlineMath math="5" /> und <InlineMath math="20" /> Säcke an Tag <InlineMath math="11" />.
+
+<BlockMath math="10+20=30<50" />
+
+Der gesamte entgangene Verkauf ist sogar kleiner, die zweite Aussage ist also falsch.
+
+# Die dritte Aussage zur Wartezeit
+
+Mit zwei Tagen Wartezeit kommt die Bestellung vom Ende von Tag <InlineMath math="3" /> an Tag <InlineMath math="5" /> an, solange noch <InlineMath math="25" /> Säcke da sind. Die zweite Bestellung geht am Ende von Tag <InlineMath math="8" /> mit <InlineMath math="45" /> Säcken im Bestand raus, was **genau für die Nachfrage an Tag <InlineMath math="9" /> reicht**, und kommt an Tag <InlineMath math="10" /> an. Es entgeht kein Verkauf, die dritte Aussage ist also falsch.
+
+# Die vierte Aussage zur Nachfrage an Tag neun
+
+Die zweite Bestellung geht weiterhin am Ende von Tag <InlineMath math="8" /> raus und kommt an Tag <InlineMath math="11" /> an. Der Bestand am Ende von Tag <InlineMath math="9" /> wird <InlineMath math="55-35=20" /> Säcke, während Tag <InlineMath math="10" /> nach <InlineMath math="50" /> Säcken verlangt. **Es entgehen immer noch <InlineMath math="30" /> Säcke**, die vierte Aussage ist also falsch.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte falsch und die vierte falsch.

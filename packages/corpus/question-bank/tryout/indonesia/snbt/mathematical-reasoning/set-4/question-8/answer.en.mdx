@@ -1,22 +1,46 @@
-Each ingredient is multiplied by **the factor <InlineMath math="\tfrac{30}{12}=2.5" />**, except the eggs, which must be rounded up to whole eggs.
+You're looking for the smallest number of bags that leaves enough fish at the end of the sixth month. The plan: work backwards. First find how many fish must remain after the sale, then how many must be alive at the end of the fourth month, then how many seeds, and finally **round up to whole bags**.
 
-# Amount and cost of each ingredient
+# The share of fish that survives from the fourth to the sixth month
 
-The cost comes from **the amounts actually bought**, including the rounded number of eggs.
+The table's percentages are taken from the seeds. From the end of the fourth month to the end of the sixth month, the fish alive fall from <InlineMath math="76\%" /> to <InlineMath math="70\%" /> of the seeds. That means out of every <InlineMath math="76" /> fish alive at the end of the fourth month, <InlineMath math="70" /> are still alive at the end of the sixth month:
 
-| Ingredient | Amount for 30 pieces | Cost |
-| :---: | :---: | :---: |
-| Flour | 625 g | <InlineMath math="0.625\cdot12{,}000=7{,}500" /> |
-| Eggs | 7.5, rounded up to 8 | <InlineMath math="8\cdot2{,}000=16{,}000" /> |
-| Sugar | 375 g | <InlineMath math="0.375\cdot20{,}000=7{,}500" /> |
-| Milk | 500 ml | <InlineMath math="0.5\cdot15{,}000=7{,}500" /> |
+<BlockMath math="\text{surviving share}=\frac{70}{76}=\frac{35}{38}" />
 
-# Total cost
+The sale doesn't change the other fish's chances, so **this share applies to the fish left** after the sale. It isn't <InlineMath math="70\%" /> of the remaining fish, because the <InlineMath math="70\%" /> is measured against the original seeds.
 
-<BlockMath math="7{,}500+16{,}000+7{,}500+7{,}500=38{,}500" />
+# Fish needed at the end of the fourth month
 
-This is **more than <InlineMath math="2.5\cdot15{,}000=37{,}500" />**, because half an egg cannot be bought.
+Let <InlineMath math="S" /> be the number of fish left after the sale. It has to be enough to give <InlineMath math="2{,}800" /> fish:
 
-The value Rp37,500 multiplies the cost of one recipe by 2.5 without rounding the eggs. The value Rp36,500 rounds the eggs down to 7. The value Rp45,000 makes three full recipes, although ingredients other than eggs can be measured as needed.
+<BlockMath math="\begin{aligned}
+\frac{35}{38}S &\ge 2{,}800\\
+S &\ge 2{,}800\times\frac{38}{35}=3{,}040
+\end{aligned}" />
 
-So the ingredient cost for 30 pieces is **Rp38,500**.
+Before the sale, **the fish sold must be added back**, so at least <InlineMath math="3{,}040+1{,}520=4{,}560" /> fish must be alive.
+
+# Seeds and bags
+
+The fish alive at the end of the fourth month are <InlineMath math="76\%" /> of the <InlineMath math="N" /> seeds:
+
+<BlockMath math="\begin{aligned}
+0.76N &\ge 4{,}560\\
+N &\ge 6{,}000
+\end{aligned}" />
+
+One bag holds <InlineMath math="500" /> seeds, so you need at least <InlineMath math="6{,}000\div500=12" /> bags. The division happens to come out whole here, but **bags only come whole**, so a fraction would still be rounded up.
+
+# Checking the two nearest options
+
+Check <InlineMath math="12" /> bags and <InlineMath math="11" /> bags:
+
+<BlockMath math="\begin{aligned}
+12\text{ bags}:\quad (0.76\times6{,}000-1{,}520)\times\frac{35}{38} &= 3{,}040\times\frac{35}{38}=2{,}800\\
+11\text{ bags}:\quad (0.76\times5{,}500-1{,}520)\times\frac{35}{38} &= 2{,}660\times\frac{35}{38}=2{,}450
+\end{aligned}" />
+
+With <InlineMath math="12" /> bags exactly <InlineMath math="2{,}800" /> fish remain, so the condition **"at least" is met**. With <InlineMath math="11" /> bags only <InlineMath math="2{,}450" /> remain.
+
+Common slips: using <InlineMath math="70\%" /> of the remaining fish gives <InlineMath math="15" /> bags, treating the deaths as a fixed <InlineMath math="6\%" /> of the seeds gives <InlineMath math="13" /> bags, and forgetting the sale gives <InlineMath math="8" /> bags.
+
+So the farmer has to stock at least <InlineMath math="12" /> bags of seeds.

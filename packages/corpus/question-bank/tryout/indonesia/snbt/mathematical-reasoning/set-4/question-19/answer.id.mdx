@@ -1,18 +1,23 @@
-Ruang sampel terdiri atas **190 pasangan tiket yang sama mungkin**. Hitung banyak pasangan yang memenuhi setiap kejadian.
+Kamu mencari banyak gulung bermotif paling sedikit untuk kamar Rina. Rencananya: hitung banyak lembar utuh dan lembar pendek, tentukan **panjang potongan bermotif** untuk masing-masing, lalu susun potongan itu ke dalam gulungan.
 
-# Dua hadiah dan tepat satu hadiah
+# Lembar yang diperlukan
 
-<BlockMath math="\begin{aligned}
-P(\text{dua hadiah})&=\frac{\binom42}{190}=\frac{6}{190}=\frac{3}{95}\\
-P(\text{tepat satu})&=\frac{4\cdot16}{190}=\frac{64}{190}=\frac{32}{95}
-\end{aligned}" />
+Setiap dinding dihitung sendiri, jadi dinding selebar <InlineMath math="410\text{ cm}" /> memerlukan <InlineMath math="9" /> lembar dan dinding selebar <InlineMath math="310\text{ cm}" /> memerlukan <InlineMath math="7" /> lembar. Jumlahnya <InlineMath math="9+7+9+7=32" /> lembar. Dua di antaranya berada di atas pintu, sehingga **ada <InlineMath math="30" /> lembar utuh dan <InlineMath math="2" /> lembar pendek**.
 
-Pernyataan pertama benar. Tepat satu hadiah berpeluang <InlineMath math="\tfrac{32}{95}" />, **bukan <InlineMath math="\tfrac{16}{95}" />**. Nilai <InlineMath math="\tfrac{16}{95}" /> muncul jika 64 pasangan dibagi 2 lagi, padahal setiap pasangan satu tiket Rafi dan satu tiket lain hanya terhitung sekali. Pernyataan ketiga salah.
+# Panjang potongan bermotif
 
-# Hadiah berbeda dan paling sedikit satu hadiah
+Lembar utuh memerlukan <InlineMath math="240+10=250\text{ cm}" />, yang dibulatkan ke kelipatan <InlineMath math="64" /> menjadi <InlineMath math="256\text{ cm}" />. Lembar pendek menutup <InlineMath math="240-200=40\text{ cm}" />, memerlukan <InlineMath math="40+10=50\text{ cm}" />, dan dibulatkan menjadi <InlineMath math="64\text{ cm}" />.
 
-Jika hadiahnya berbeda, urutan menjadi penting: ada 20 pilihan untuk hadiah pertama dan 19 untuk hadiah kedua, yaitu <InlineMath math="20\cdot19=380" /> hasil. Pernyataan kedua benar.
+<BlockMath math="3\cdot256=768\le 1{.}000<4\cdot256=1{.}024" />
 
-Paling sedikit satu hadiah berpeluang <InlineMath math="\tfrac{3}{95}+\tfrac{32}{95}=\tfrac{35}{95}=\tfrac{7}{19}" />, yang **kurang dari <InlineMath math="\tfrac12" />**. Pernyataan keempat salah.
+Jadi **satu gulung hanya menghasilkan <InlineMath math="3" /> lembar utuh**, dengan sisa <InlineMath math="1{.}000-768=232\text{ cm}" />.
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+# Menyusun potongan ke dalam gulungan
+
+Tiga puluh lembar utuh memerlukan <InlineMath math="30:3=10" /> gulung. Dua lembar pendek memerlukan <InlineMath math="2\cdot64=128\text{ cm}" />, dan itu **muat di sisa <InlineMath math="232\text{ cm}" /> salah satu gulung**. Jadi tidak perlu gulung tambahan.
+
+# Jawaban yang keliru
+
+Jawaban <InlineMath math="8" /> muncul kalau pembulatan motif terlupa, sehingga satu gulung dianggap menghasilkan <InlineMath math="4" /> lembar. Jawaban <InlineMath math="11" /> muncul kalau pintu diabaikan dan ke-<InlineMath math="32" /> lembar dihitung utuh. Jawaban <InlineMath math="9" /> muncul kalau lembar dihitung dari keliling kamar, yaitu <InlineMath math="29" /> lembar, padahal **lembar tidak boleh melewati sudut**. Jawaban <InlineMath math="7" /> muncul kalau luas dinding dibagi luas satu gulung.
+
+Jadi, Rina harus membeli paling sedikit <InlineMath math="10" /> gulung wallpaper bermotif.

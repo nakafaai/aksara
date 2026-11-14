@@ -1,21 +1,26 @@
-The school may print more than 480 sheets, so compare **the cost of every way that gives at least 480 sheets**, including ways that cross a group boundary.
+You're looking for the smallest reorder point that lets every request be served. The plan: first find **the day by which the first order has to be placed** so that day <InlineMath math="5" /> is safe, then check whether that reorder point also saves the days after it.
 
-# Cost of each way
+# The first order has to come earlier
 
-Each way gives **at least 480 sheets**.
+Under the given rules, the stock at the end of days <InlineMath math="1" /> to <InlineMath math="4" /> is <InlineMath math="100" />, <InlineMath math="75" />, <InlineMath math="45" /> and <InlineMath math="25" />. Day <InlineMath math="5" /> asks for <InlineMath math="35" /> sacks, so the goods have to arrive on the morning of day <InlineMath math="5" />. That means **the order has to be placed by the end of day <InlineMath math="2" />**, when the stock is <InlineMath math="75" /> sacks. An order is only placed when the stock is at most the reorder point, so the reorder point is at least <InlineMath math="75" />.
 
-| Way | Cost |
-| :---: | :---: |
-| 480 sheets at once | <InlineMath math="480\cdot400=192{,}000" /> |
-| 500 sheets at once | <InlineMath math="500\cdot400=200{,}000" /> |
-| two orders of 240 | <InlineMath math="2\cdot240\cdot400=192{,}000" /> |
-| five orders of 96 | <InlineMath math="5\cdot96\cdot500=240{,}000" /> |
-| 501 sheets at once | <InlineMath math="501\cdot300=150{,}300" /> |
+# Checking the days after it
 
-# Choosing the cheapest
+With a reorder point of <InlineMath math="75" />, the first order arrives on day <InlineMath math="5" />.
 
-Ordering 501 sheets brings the price down to Rp300 per sheet, so **the cost is the smallest** even with 21 sheets to spare. The saving is <InlineMath math="192{,}000-150{,}300=41{,}700" /> rupiah compared with ordering exactly 480.
+| Day | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="10" /> | <InlineMath math="11" /> | <InlineMath math="12" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Stock at the end of the day | <InlineMath math="140" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="45" /> | <InlineMath math="0" /> | <InlineMath math="100" /> | <InlineMath math="70" /> | <InlineMath math="50" /> |
 
-Splitting the order does not help, because each small order stays in the same price group or a more expensive one.
+The second order is placed at the end of day <InlineMath math="7" /> and arrives on day <InlineMath math="10" />. The <InlineMath math="45" /> sacks in stock on the morning of day <InlineMath math="9" /> are **exactly the request of that day**, so no sales are lost up to day <InlineMath math="12" />.
 
-So the cheapest way is **ordering 501 sheets in one order for Rp150,300**.
+# The tempting wrong options
+
+Every other option also serves every request, but **it isn't the smallest**, because it comes from a wrong way of estimating.
+
+- <InlineMath math="85" /> sacks is the demand of the three days after the first order under the given rules, <InlineMath math="30+20+35" />.
+- <InlineMath math="95" /> sacks is the largest demand of two days in a row, <InlineMath math="45+50" />.
+- <InlineMath math="120" /> sacks is the demand of days <InlineMath math="8" /> to <InlineMath math="10" />, <InlineMath math="25+45+50" />.
+- <InlineMath math="125" /> sacks is the largest demand of three days in a row, <InlineMath math="45+50+30" />.
+
+So the smallest reorder point with no lost sales is <InlineMath math="75" /> sacks.

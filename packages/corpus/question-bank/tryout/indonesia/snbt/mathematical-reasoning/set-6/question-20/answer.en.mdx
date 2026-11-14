@@ -1,17 +1,24 @@
-To avoid a violation, the 12 km must take **at least 7.2 minutes**. The average speed cannot be found by averaging the two speeds, because the two parts take different times.
+You're looking for the smallest number of batches for all of the dry mix. The plan: find the dry mix including the reserve, then find **the largest content of one batch**, keeping in mind that its cement has to be whole bags.
 
-# Time already used
+# The dry mix and the content of one batch
 
-<BlockMath math="\frac{6}{150}\text{ h}=0.04\text{ h}=2.4\text{ min}" />
+The garage floor takes <InlineMath math="5\cdot4\cdot0.1=2\text{ m}^3" /> of concrete, its dry mix is <InlineMath math="2\cdot1.5=3\text{ m}^3" />, and with the reserve that becomes <InlineMath math="3.3\text{ m}^3" />.
 
-# Time and speed for the rest
+One bag of cement carries <InlineMath math="6" /> parts of dry mix, which is <InlineMath math="6\cdot0.025=0.15\text{ m}^3" />. Two bags carry <InlineMath math="0.3\text{ m}^3" />, more than the mixer's capacity of <InlineMath math="0.2\text{ m}^3" />. So **every batch uses just one bag** and holds <InlineMath math="0.15\text{ m}^3" />, even though the mixer isn't full.
 
-The remaining time must be at least <InlineMath math="7.2-2.4=4.8" /> minutes, or 0.08 hours, for 6 km.
+# The number of batches
 
-<BlockMath math="v\le\frac{6}{0.08}=75\text{ km/h}" />
+<BlockMath math="3.3:0.15=22" />
 
-Check: at 75 km/h the total time is <InlineMath math="2.4+4.8=7.2" /> minutes, exactly the limit without a violation.
+That matches the number of bags of cement, because the cement is <InlineMath math="\tfrac16\cdot3.3=0.55\text{ m}^3" />, which is <InlineMath math="22" /> bags, and **every bag becomes one batch**.
 
-The value 50 km/h comes from assuming <InlineMath math="\tfrac{150+v}{2}=100" />, averaging the speeds, although the car spends less time on the fast part.
+# The tempting wrong options
 
-So the largest constant speed for the rest is **75 km/h**.
+Every other option forgets **one of the given rules**.
+
+- <InlineMath math="17" /> comes from treating the mixer as always full, <InlineMath math="3.3:0.2=16.5" /> rounded up.
+- <InlineMath math="20" /> comes from forgetting the reserve, <InlineMath math="3:0.15" />.
+- <InlineMath math="15" /> comes from forgetting the shrinkage, <InlineMath math="2.2:0.15" /> rounded up.
+- <InlineMath math="11" /> comes from forgetting the shrinkage and treating the mixer as full, <InlineMath math="2.2:0.2" />.
+
+So Pak Jaya needs at least <InlineMath math="22" /> batches.

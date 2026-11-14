@@ -1,19 +1,48 @@
-Der frei zu haltende Platz ist **10 % der vollen Kapazität von 128 GB**, nicht des verfügbaren Speichers. Ziehe diese Reserve vom Nutzerspeicher ab und teile durch die Fotogröße.
+Du suchst die kürzeste Trinkpause, bei der die beiden bis Sekunde <InlineMath math="1{.}500" /> nie am selben Punkt sind. Nimm den **Streckenunterschied** <InlineMath math="g" />, also Andis Strecke minus Bimas Strecke. Die beiden treffen sich, wenn <InlineMath math="g" /> den Wert <InlineMath math="400" /> erreicht oder wenn <InlineMath math="g" /> bis auf <InlineMath math="0" /> fällt. Der Plan: Schreib den Höchstwert von <InlineMath math="g" /> in jedem Zyklus auf und prüfe dann, welche Zyklen noch vor Ablauf der Zeit stattfinden.
 
-# Nutzbarer Speicher
+# Der Unterschied in jedem Zyklus
+
+Jeder Zyklus von Andi besteht aus <InlineMath math="320" /> Sekunden Laufen und <InlineMath math="r" /> Sekunden Trinken. Beim Laufen steigt <InlineMath math="g" /> um <InlineMath math="320" />. Beim Trinken sinkt <InlineMath math="g" /> um <InlineMath math="4r" />, weil sich nur Bima bewegt. Also **legt jeder Zyklus <InlineMath math="320-4r" /> auf den Unterschied drauf**.
 
 <BlockMath math="\begin{aligned}
-10\%\cdot128&=12{,}8\text{ GB}\\
-110-12{,}8&=97{,}2\text{ GB}\\
-97{,}2\cdot1\,024&=99\,532{,}8\text{ MB}
+\text{Beginn von Zyklus } k &: t=(k-1)(320+r) \\
+\text{Höchstwert von Zyklus } k &: P_k=(k-1)(320-4r)+320
 \end{aligned}" />
 
-# Anzahl der Fotos
+Der Höchstwert kommt am Ende der Laufphase, direkt bevor Andi trinkt. Solange <InlineMath math="P_k" /> kleiner als <InlineMath math="400" /> ist, bringt dieser Zyklus kein Treffen.
 
-<BlockMath math="\frac{99\,532{,}8}{4}=24\,883{,}2" />
+# Die Bedingung für jeden Zyklus
 
-Das Foto Nummer 24 884 ließe weniger als 10 % frei, also **wird auf 24 883 abgerundet**.
+Prüfe die Zyklen einzeln:
 
-Der Wert 25 344 nimmt 10 % von 110 GB statt von 128 GB. Der Wert 24 300 setzt 1 GB gleich 1 000 MB. Der Wert 28 160 lässt keinen freien Platz, und 29 491 übersieht den Systemanteil.
+<BlockMath math="\begin{aligned}
+P_2 = 640-4r < 400 &\iff r > 60 \\
+P_3 = 960-8r < 400 &\iff r > 70 \\
+P_4 = 1{.}280-12r < 400 &\iff r > 73\tfrac{1}{3}
+\end{aligned}" />
 
-Es lassen sich also höchstens **24 883 Fotos** speichern.
+Zyklus vier beginnt bei Sekunde <InlineMath math="3(320+r)" />. Für <InlineMath math="r" /> um <InlineMath math="74" /> sind das etwa <InlineMath math="1{.}180" />, **also noch vor Sekunde <InlineMath math="1{.}500" />**, deshalb muss Zyklus vier geprüft werden.
+
+Für <InlineMath math="r=73" /> beginnt Zyklus vier bei Sekunde <InlineMath math="3 \cdot 393=1{.}179" /> mit <InlineMath math="g=3(320-292)=84" />. Der Unterschied erreicht <InlineMath math="400" /> nach weiteren <InlineMath math="316" /> Sekunden, also bei Sekunde <InlineMath math="1{.}495" />, und die beiden treffen sich noch.
+
+# Den kleinsten Wert prüfen
+
+Für <InlineMath math="r=74" />:
+
+<BlockMath math="\begin{aligned}
+P_4 &= 1{.}280 - 12 \cdot 74 = 392 < 400 \\
+\text{Beginn von Zyklus } 5 &= 4 \cdot 394 = 1{.}576 > 1{.}500
+\end{aligned}" />
+
+Zyklus fünf beginnt erst nach Ablauf der Zeit, du musst ihn also nicht prüfen. Der Unterschied fällt auch nie auf <InlineMath math="0" />, weil jeder Zyklus weiterhin <InlineMath math="320-4 \cdot 74=24" /> dazulegt. Mit <InlineMath math="r=74" /> **treffen sich die beiden also nie**, mit <InlineMath math="r=73" /> dagegen schon.
+
+# Die falschen Antworten
+
+Jede andere Antwort **hört beim falschen Zyklus mit dem Prüfen auf**:
+
+- <InlineMath math="61" /> Sekunden verhindern nur ein Treffen in Zyklus zwei.
+- <InlineMath math="71" /> Sekunden verhindern auch Zyklus drei, aber Zyklus vier beginnt noch vor Ablauf der Zeit.
+- <InlineMath math="76" /> Sekunden prüfen auch Zyklus fünf, obwohl dieser erst nach Sekunde <InlineMath math="1{.}500" /> beginnt.
+- <InlineMath math="80" /> Sekunden machen den Zuwachs pro Zyklus null. Das ist nicht nur mehr als nötig, es bringt <InlineMath math="g" /> bei Sekunde <InlineMath math="400" /> sogar auf <InlineMath math="0" /> zurück, sodass Bima Andi genau bei <InlineMath math="S" /> einholt.
+
+Die kürzeste Trinkpause, bei der sich Andi und Bima in diesen <InlineMath math="25" /> Minuten nie treffen, beträgt also <InlineMath math="74" /> Sekunden.

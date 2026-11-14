@@ -1,23 +1,43 @@
-Compute the two-month total for **each plan as a whole**, then compare the totals.
+Every row that moves from category B to category A raises the price of all its seats. So **the revenue grows as** <InlineMath math="k" /> **grows**, and your job is to find the largest <InlineMath math="k" /> that still meets the seat condition, then work out the revenue.
 
-# Total cost of the Hemat plan
+# The limit on category A seats
 
-<BlockMath math="\begin{aligned}
-\text{January}&:\quad 50{,}000+8\cdot9{,}000=122{,}000\\
-\text{February}&:\quad 50{,}000+16\cdot9{,}000=194{,}000\\
-\text{total}&=316{,}000
-\end{aligned}" />
+Row <InlineMath math="n" /> has <InlineMath math="17+2n" /> seats. The whole stand has <InlineMath math="\tfrac{30(19+77)}{2}=1{,}440" /> seats, so a quarter is <InlineMath math="360" />. Category A must have **fewer than** <InlineMath math="360" /> seats.
 
-# Total cost of the Bebas plan and the difference
+# Seats for each possible boundary
 
-In January, 18 GB **is still within the 20 GB quota**, so the cost is 95,000.
+A category A with <InlineMath math="k" /> rows covers rows <InlineMath math="1" /> to <InlineMath math="k" />, from <InlineMath math="19" /> seats up to <InlineMath math="17+2k" /> seats.
 
 <BlockMath math="\begin{aligned}
-\text{February}&:\quad 95{,}000+6\cdot5{,}000=125{,}000\\
-\text{total}&=95{,}000+125{,}000=220{,}000\\
-\text{difference}&=316{,}000-220{,}000=96{,}000
+\text{A seats} &= \frac{k(19+17+2k)}{2}=k^2+18k\\
+k=11 &: 121+198=319<360\\
+k=12 &: 144+216=360
 \end{aligned}" />
 
-The value Rp69,000 is only the February difference. The value Rp122,000 is the Hemat cost for January, and Rp316,000 is the Hemat total.
+At <InlineMath math="k=12" /> category A has exactly <InlineMath math="360" /> seats. That's **not fewer than a quarter**, so <InlineMath math="k=12" /> isn't allowed. The largest value is <InlineMath math="k=11" />.
 
-So the difference in total cost is **Rp96,000**.
+# The largest revenue
+
+With the original split, the full revenue is <InlineMath math="144\cdot250{,}000+400\cdot150{,}000+896\cdot100{,}000=185{,}600{,}000" /> rupiah. Rows <InlineMath math="7" /> to <InlineMath math="11" /> move from B to A, so **each of their seats goes up by** <InlineMath math="\text{Rp}100{,}000" />, not by <InlineMath math="\text{Rp}250{,}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{seats that move} &= 31+33+35+37+39=175\\
+\text{revenue} &= 185{,}600{,}000+175\cdot100{,}000=203{,}100{,}000
+\end{aligned}" />
+
+# A direct check
+
+Work it out again without the original revenue. Category A has <InlineMath math="319" /> seats, category B keeps rows <InlineMath math="12" /> to <InlineMath math="16" /> with <InlineMath math="41+43+45+47+49=225" /> seats, and category C still has <InlineMath math="896" /> seats.
+
+<BlockMath math="319\cdot250{,}000+225\cdot150{,}000+896\cdot100{,}000=79{,}750{,}000+33{,}750{,}000+89{,}600{,}000=203{,}100{,}000" />
+
+Both routes **give the same result**.
+
+# The wrong options
+
+- <InlineMath math="\text{Rp}188{,}700{,}000.00" /> uses a quarter of the rows, <InlineMath math="\tfrac{30}{4}=7.5" />, so it stops at <InlineMath math="k=7" />.
+- <InlineMath math="\text{Rp}199{,}200{,}000.00" /> moves only four rows, rows <InlineMath math="7" /> to <InlineMath math="10" />, from miscounting the rows from <InlineMath math="7" /> to <InlineMath math="11" />.
+- <InlineMath math="\text{Rp}207{,}200{,}000.00" /> uses <InlineMath math="k=12" />, which gives category A exactly a quarter, but the condition says **fewer than** a quarter.
+- <InlineMath math="\text{Rp}229{,}350{,}000.00" /> adds the full <InlineMath math="\text{Rp}250{,}000" /> for every seat that moves, but those seats were already earning <InlineMath math="\text{Rp}150{,}000" />.
+
+So the largest possible revenue when every seat is sold is <InlineMath math="\text{Rp}203{,}100{,}000.00" />.

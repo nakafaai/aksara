@@ -1,18 +1,23 @@
-The sample space consists of **190 equally likely pairs of tickets**. Count the pairs in each event.
+You're looking for the smallest number of patterned rolls for Rina's room. The plan: count the full strips and the short ones, find **the patterned cut length** of each, then pack those cuts into rolls.
 
-# Two prizes and exactly one prize
+# The strips needed
 
-<BlockMath math="\begin{aligned}
-P(\text{two prizes})&=\frac{\binom42}{190}=\frac{6}{190}=\frac{3}{95}\\
-P(\text{exactly one})&=\frac{4\cdot16}{190}=\frac{64}{190}=\frac{32}{95}
-\end{aligned}" />
+Each wall is counted on its own, so a wall <InlineMath math="410\text{ cm}" /> wide needs <InlineMath math="9" /> strips and a wall <InlineMath math="310\text{ cm}" /> wide needs <InlineMath math="7" /> strips. That makes <InlineMath math="9+7+9+7=32" /> strips. Two of them sit above the door, so **there are <InlineMath math="30" /> full strips and <InlineMath math="2" /> short ones**.
 
-The first statement is true. Exactly one prize has probability <InlineMath math="\tfrac{32}{95}" />, **not <InlineMath math="\tfrac{16}{95}" />**. The value <InlineMath math="\tfrac{16}{95}" /> comes from halving the 64 pairs again, although each pair of one of Rafi's tickets and one other ticket is counted only once. The third statement is false.
+# The patterned cut lengths
 
-# Different prizes and at least one prize
+A full strip needs <InlineMath math="240+10=250\text{ cm}" />, which rounds up to a multiple of <InlineMath math="64" /> as <InlineMath math="256\text{ cm}" />. A short strip covers <InlineMath math="240-200=40\text{ cm}" />, needs <InlineMath math="40+10=50\text{ cm}" />, and rounds up to <InlineMath math="64\text{ cm}" />.
 
-If the prizes differ, order matters: there are 20 choices for the first prize and 19 for the second, <InlineMath math="20\cdot19=380" /> outcomes. The second statement is true.
+<BlockMath math="3\cdot256=768\le 1{,}000<4\cdot256=1{,}024" />
 
-At least one prize has probability <InlineMath math="\tfrac{3}{95}+\tfrac{32}{95}=\tfrac{35}{95}=\tfrac{7}{19}" />, which is **less than <InlineMath math="\tfrac12" />**. The fourth statement is false.
+So **one roll only gives <InlineMath math="3" /> full strips**, with <InlineMath math="1{,}000-768=232\text{ cm}" /> left over.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+# Packing the cuts into rolls
+
+Thirty full strips need <InlineMath math="30:3=10" /> rolls. The two short strips need <InlineMath math="2\cdot64=128\text{ cm}" />, and that **fits in the <InlineMath math="232\text{ cm}" /> left on one of the rolls**. So no extra roll is needed.
+
+# The tempting wrong answers
+
+The answer <InlineMath math="8" /> comes from forgetting the pattern rounding, so that a roll seems to give <InlineMath math="4" /> strips. The answer <InlineMath math="11" /> comes from ignoring the door and counting all <InlineMath math="32" /> strips as full ones. The answer <InlineMath math="9" /> comes from counting strips from the perimeter of the room, which gives <InlineMath math="29" />, although **strips may not go around a corner**. The answer <InlineMath math="7" /> comes from dividing the wall area by the area of one roll.
+
+So Rina has to buy at least <InlineMath math="10" /> patterned rolls.

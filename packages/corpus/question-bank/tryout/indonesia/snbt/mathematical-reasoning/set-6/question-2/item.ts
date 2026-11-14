@@ -1,16 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "football-league",
+  stimulus: "water-tower",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$2$$" },
-        { correct: true, label: "$$3$$" },
-        { correct: false, label: "$$5$$" },
-        { correct: false, label: "$$6$$" },
-        { correct: false, label: "$$10$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        {
+          column: 2,
+          label: "Selama pompa Q menyala, isi tandon terus bertambah.",
+        },
+        {
+          column: 1,
+          label:
+            "Air yang terbuang melalui pipa luapan pada hari itu sebanyak $$2{.}000\\text{ liter}$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika keran K dibuka sejak pukul 05.00 dan jadwal lainnya tetap, tidak ada air yang terbuang melalui pipa luapan.",
+        },
+        {
+          column: 1,
+          label:
+            "Pada pukul 08.00, isi tandon tidak lebih dari setengah kapasitasnya.",
+        },
       ],
     },
   },

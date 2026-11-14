@@ -1,15 +1,30 @@
-Der Preis pro Blatt hängt von der Auftragsgruppe ab, prüfe also **jede Gruppe**, um zu sehen, wie viele Blätter bezahlbar sind.
+Gesucht ist der Anfangsbestand, bei dem jede Nachfrage bedient wird. Der Plan: Bestimme für jede Option **den Tag der ersten Bestellung**, denn er entscheidet, wann die Ware ankommt, und verfolge dann den Bestand bis Tag <InlineMath math="12" />.
 
-# Jede Gruppe prüfen
+# Der Anfangsbestand bestimmt den Bestelltag
 
-- Gruppe 1 bis 100: höchstens 100 Blatt für 50 000.
-- Gruppe 101 bis 500: <InlineMath math="\tfrac{150\,000}{400}=375" /> Blatt, und 375 liegt tatsächlich in dieser Gruppe.
-- Gruppe über 500: Der kleinste Auftrag, 501 Blatt, kostet <InlineMath math="501\cdot300=150\,300" />, **etwas mehr als das vorhandene Geld**.
+Der Laden bestellt erst, wenn der Bestand am Tagesende höchstens <InlineMath math="60" /> Säcke beträgt, und die Bestellung kommt drei Tage später an. Also **verzögert ein größerer Anfangsbestand die erste Bestellung sogar**. Der Bestand nach dem Verkauf der Tage <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="3" /> ist der Anfangsbestand minus <InlineMath math="20" />, <InlineMath math="45" /> und <InlineMath math="75" />.
 
-# Die größte Anzahl bestimmen
+| Anfangsbestand | Erste Bestellung | Ankunft | Entgangener Verkauf davor |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="120" /> | Ende von Tag <InlineMath math="3" />, Bestand <InlineMath math="45" /> | Tag <InlineMath math="6" /> | <InlineMath math="10" /> an Tag <InlineMath math="5" /> |
+| <InlineMath math="110" /> | Ende von Tag <InlineMath math="3" />, Bestand <InlineMath math="35" /> | Tag <InlineMath math="6" /> | <InlineMath math="20" /> an Tag <InlineMath math="5" /> |
+| <InlineMath math="100" /> | Ende von Tag <InlineMath math="2" />, Bestand <InlineMath math="55" /> | Tag <InlineMath math="5" /> | <InlineMath math="0" /> |
+| <InlineMath math="85" /> | Ende von Tag <InlineMath math="2" />, Bestand <InlineMath math="40" /> | Tag <InlineMath math="5" /> | <InlineMath math="10" /> an Tag <InlineMath math="4" /> |
+| <InlineMath math="80" /> | Ende von Tag <InlineMath math="1" />, Bestand <InlineMath math="60" /> | Tag <InlineMath math="4" /> | <InlineMath math="0" /> |
 
-Die größte bezahlbare Anzahl sind 375 Blatt für genau 150 000.
+# Bis zum zwölften Tag
 
-Der Wert 501 ist fast bezahlbar, es fehlen aber 300 Rupiah. Der Wert 300 teilt das Geld durch den Preis von 500 Rupiah, der nur bis 100 Blatt gilt.
+Zwei Optionen sind noch im Rennen, also verfolgst du beide weiter. Mit dem Anfangsbestand <InlineMath math="100" /> beträgt der Bestand an den Tagen <InlineMath math="5" /> bis <InlineMath math="8" /> der Reihe nach <InlineMath math="120" />, <InlineMath math="80" />, <InlineMath math="50" /> und <InlineMath math="25" />. Die zweite Bestellung geht am Ende von Tag <InlineMath math="7" /> raus und kommt erst an Tag <InlineMath math="10" /> an, während Tag <InlineMath math="9" /> nach <InlineMath math="45" /> Säcken verlangt. **Dabei gehen <InlineMath math="45-25=20" /> Säcke verloren**.
 
-Es lassen sich also höchstens **375 Blatt** drucken.
+Mit dem Anfangsbestand <InlineMath math="80" /> beträgt der Bestand an den Tagen <InlineMath math="4" /> bis <InlineMath math="8" /> der Reihe nach <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" /> und <InlineMath math="5" />. Die zweite Bestellung geht am Ende von Tag <InlineMath math="6" /> raus und kommt an Tag <InlineMath math="9" /> an, genau vor der Nachfrage nach <InlineMath math="45" /> und <InlineMath math="50" /> Säcken. Der Bestand an den Tagen <InlineMath math="9" /> bis <InlineMath math="12" /> ist <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" /> und <InlineMath math="10" />, also **bleibt keine Nachfrage unbedient**.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option scheitert an **einem Tag, an dem die Bestellung noch nicht da ist**.
+
+- <InlineMath math="120" /> Säcke verlieren <InlineMath math="10" /> Säcke an Tag <InlineMath math="5" /> und <InlineMath math="40" /> Säcke an Tag <InlineMath math="10" />.
+- <InlineMath math="110" /> Säcke verlieren <InlineMath math="20" /> Säcke an Tag <InlineMath math="5" /> und <InlineMath math="40" /> Säcke an Tag <InlineMath math="10" />.
+- <InlineMath math="100" /> Säcke überstehen die erste Runde, verlieren aber <InlineMath math="20" /> Säcke an Tag <InlineMath math="9" />.
+- <InlineMath math="85" /> Säcke verlieren <InlineMath math="10" /> Säcke an Tag <InlineMath math="4" /> und <InlineMath math="25" /> Säcke an Tag <InlineMath math="9" />.
+
+Der Anfangsbestand ohne entgangenen Verkauf ist also <InlineMath math="80" /> Säcke.

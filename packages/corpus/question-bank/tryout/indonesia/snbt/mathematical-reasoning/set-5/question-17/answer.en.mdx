@@ -1,11 +1,38 @@
-Choose the digits from left to right. A digit already used **may not be used again**, so the number of choices drops by one at each position.
+You're looking for the number of healthy packages. The plan: group the packages by their portions of grilled chicken, then for each group **check the calorie limit and the protein limit together**.
 
-# Choices at each position
+# Packages with no grilled chicken
 
-The first digit may be 0, because a PIN may start with 0. So there are 10 choices for the first digit, 9 for the second, 8 for the third and 7 for the fourth.
+Rice and one portion of vegetables already hold <InlineMath math="240\text{ kcal}" /> and <InlineMath math="6\text{ g}" /> of protein. Four portions of tempeh bring the calories to <InlineMath math="640\text{ kcal}" />, so there are at most <InlineMath math="3" /> portions of tempeh. Three portions of tempeh give <InlineMath math="540\text{ kcal}" /> and <InlineMath math="36\text{ g}" /> of protein, and only one more portion of vegetables still fits.
 
-<BlockMath math="10\cdot9\cdot8\cdot7=5{,}040" />
+<BlockMath math="36+2=38<40" />
 
-This is **a permutation of 4 from 10**, because the order of digits in a PIN matters.
+The protein never reaches <InlineMath math="40\text{ g}" />, so **there is no healthy package without grilled chicken**.
 
-So there are **5,040 PINs** with four different digits.
+# Packages with one portion of grilled chicken
+
+Rice, one portion of chicken and one portion of vegetables hold <InlineMath math="390\text{ kcal}" /> and <InlineMath math="30\text{ g}" /> of protein. That leaves <InlineMath math="210\text{ kcal}" />, and the protein is still <InlineMath math="10\text{ g}" /> short.
+
+| Extra tempeh | Extra vegetables that work | Packages |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> portions | exactly <InlineMath math="5" /> portions | <InlineMath math="1" /> |
+| <InlineMath math="1" /> portion | <InlineMath math="0" />, <InlineMath math="1" /> or <InlineMath math="2" /> portions | <InlineMath math="3" /> |
+| <InlineMath math="2" /> portions | <InlineMath math="0" /> portions | <InlineMath math="1" /> |
+
+With no tempeh, the <InlineMath math="10\text{ g}" /> of protein have to come from <InlineMath math="5" /> extra portions of vegetables, and <InlineMath math="5\cdot40=200\text{ kcal}" /> still fit. **This package with six portions of vegetables is easy to miss**. The group holds <InlineMath math="5" /> packages.
+
+# Packages with two portions of grilled chicken
+
+Rice, two portions of chicken and one portion of vegetables hold <InlineMath math="540\text{ kcal}" /> and <InlineMath math="54\text{ g}" /> of protein. The <InlineMath math="60\text{ kcal}" /> left are only enough for **one extra portion of vegetables**, so there are <InlineMath math="2" /> packages. Three portions of chicken already make <InlineMath math="690\text{ kcal}" /> with the rice and the vegetables, so that can't work.
+
+<BlockMath math="0+5+2=7" />
+
+# The tempting wrong options
+
+Every other option **loses packages through one mistake**.
+
+- <InlineMath math="6" /> comes from missing the package with one portion of chicken and six portions of vegetables.
+- <InlineMath math="5" /> comes from allowing at most two portions of vegetables, which misses two packages.
+- <InlineMath math="4" /> comes from forgetting the <InlineMath math="4\text{ g}" /> of protein in the rice.
+- <InlineMath math="3" /> comes from forgetting the protein in the vegetables.
+
+So there are <InlineMath math="7" /> different healthy packages.

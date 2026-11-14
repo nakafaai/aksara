@@ -1,9 +1,31 @@
-Zwei Lose werden zugleich gezogen und die Preise sind gleich, also **spielt die Reihenfolge keine Rolle**. Das ist eine Kombination von 2 aus 20.
+Gesucht sind alle Wandhöhen, bei denen eine Rolle Mustertapete genau <InlineMath math="3" /> Bahnen ergibt. Der Plan: Bestimme zuerst die Zuschnittlängen, die <InlineMath math="3" /> Bahnen ergeben, und denk dann daran, dass **ein Zuschnitt mit Muster nur ein Vielfaches von <InlineMath math="64\text{ cm}" /> sein kann**.
 
-# Kombinationen zählen
+# Zuschnittlängen für drei Bahnen
 
-<BlockMath math="\binom{20}{2}=\frac{20\cdot19}{2}=190" />
+Angenommen, ein Zuschnitt ist <InlineMath math="c\text{ cm}" /> lang. Eine Rolle von <InlineMath math="1{.}000\text{ cm}" /> ergibt genau <InlineMath math="3" /> Bahnen, wenn <InlineMath math="3" /> Zuschnitte passen, aber <InlineMath math="4" /> nicht.
 
-Das Teilen durch 2 ist nötig, weil das Paar aus den Losen 3 und 7 dasselbe ist wie das Paar 7 und 3. Ohne diese Division erhält man 380, also **jedes Paar doppelt gezählt**.
+<BlockMath math="3c\le 1{.}000<4c\quad\text{also}\quad 250<c\le 333\tfrac13" />
 
-Es gibt also **190 mögliche Paare** von Losen.
+Die Vielfachen von <InlineMath math="64" /> rund um diesen Bereich sind <InlineMath math="192" />, <InlineMath math="256" />, <InlineMath math="320" /> und <InlineMath math="384" />. **Nur <InlineMath math="256" /> und <InlineMath math="320" /> liegen darin**. Ein Zuschnitt von <InlineMath math="192\text{ cm}" /> ergibt <InlineMath math="5" /> Bahnen, und ein Zuschnitt von <InlineMath math="384\text{ cm}" /> nur <InlineMath math="2" />.
+
+# Die Wandhöhen zu jedem Zuschnitt
+
+Ein Zuschnitt mit Muster ist <InlineMath math="h+10" />, aufgerundet auf ein Vielfaches von <InlineMath math="64" />. Das Ergebnis ist <InlineMath math="256" />, wenn <InlineMath math="192<h+10\le256" /> gilt, und <InlineMath math="320" />, wenn <InlineMath math="256<h+10\le320" /> gilt.
+
+<BlockMath math="\begin{aligned}
+192<h+10\le256&\quad\text{liefert}\quad 183\le h\le246\\
+256<h+10\le320&\quad\text{liefert}\quad 247\le h\le310
+\end{aligned}" />
+
+Die beiden Bereiche schließen aneinander an, also **ergeben sie zusammen <InlineMath math="183\le h\le310" />**. Zur Probe: <InlineMath math="h=182" /> liefert einen Zuschnitt von <InlineMath math="192\text{ cm}" />, und <InlineMath math="h=311" /> liefert einen Zuschnitt von <InlineMath math="384\text{ cm}" />.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option vergisst **eine Zuschnittregel**.
+
+- <InlineMath math="247\le h\le310" /> zählt nur den Zuschnitt von <InlineMath math="320\text{ cm}" /> und vergisst den von <InlineMath math="256\text{ cm}" />.
+- <InlineMath math="241\le h\le323" /> nimmt die Regel für einfarbige Tapete, also <InlineMath math="250<h+10\le333" />.
+- <InlineMath math="193\le h\le320" /> vergisst die zusätzlichen <InlineMath math="10\text{ cm}" /> für den Beschnitt.
+- <InlineMath math="251\le h\le333" /> vergisst die zusätzlichen <InlineMath math="10\text{ cm}" /> und das Aufrunden für das Muster.
+
+Die möglichen Werte sind also <InlineMath math="183\le h\le310" />.

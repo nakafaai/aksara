@@ -1,17 +1,30 @@
-Count the matches **stage by stage**: the group stage, then the two deciding matches.
+You're looking for the number of Wednesday cups this customer paid for. The plan: first list every way of paying exactly <InlineMath math="\text{Rp}240{,}000" />, then drop the ways that **don't fit the card**.
 
-# Group stage
+# Ways of paying exactly two hundred forty thousand rupiah
 
-Each group has 3 teams and every two teams play once, so **each group plays three matches**, <InlineMath math="\binom32=3" />. Two groups play <InlineMath math="2\cdot3=6" /> matches.
+Say the customer pays for <InlineMath math="w" /> cups on Wednesdays and <InlineMath math="n" /> cups on other days. In thousands of rupiah, <InlineMath math="15w+20n=240" />, so <InlineMath math="3w+4n=48" />. Since <InlineMath math="4n" /> and <InlineMath math="48" /> are divisible by <InlineMath math="4" />, **<InlineMath math="w" /> has to be a multiple of <InlineMath math="4" />**. The free cups number <InlineMath math="17-w-n" />, and the stamps earned are <InlineMath math="2w+n" />.
 
-# Deciding matches
+| <InlineMath math="w" /> | <InlineMath math="n" /> | Free cups | Stamps earned | Stamps left on the card |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="12" /> | <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="12-50=-38" /> |
+| <InlineMath math="4" /> | <InlineMath math="9" /> | <InlineMath math="4" /> | <InlineMath math="17" /> | <InlineMath math="17-40=-23" /> |
+| <InlineMath math="8" /> | <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="22" /> | <InlineMath math="22-30=-8" /> |
+| <InlineMath math="12" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="27" /> | <InlineMath math="27-20=7" /> |
+| <InlineMath math="16" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="32" /> | <InlineMath math="32-10=22" /> |
 
-After the group stage there are **one final and one third-place match**.
+# The condition from the card
 
-<BlockMath math="6+1+1=8" />
+Every free cup removes <InlineMath math="10" /> stamps, so the stamps left can't be negative. The first three rows are out. The card can't pile up stamps either, because **once it holds <InlineMath math="10" /> stamps, the next order is free straight away**. Before a free order the card holds at most <InlineMath math="9+2=11" /> stamps, so <InlineMath math="22" /> stamps can't be left. The last row is out too.
 
-This format needs 8 matches, fewer than the 15 matches when every team plays every other team.
+Only the row <InlineMath math="w=12" /> fits. Such an order really exists: <InlineMath math="5" /> Wednesday cups, <InlineMath math="1" /> free cup, <InlineMath math="5" /> Wednesday cups, <InlineMath math="1" /> free cup, <InlineMath math="2" /> Wednesday cups, then <InlineMath math="3" /> cups on other days.
 
-The value 6 counts only the group stage, and 7 forgets the third-place match.
+<BlockMath math="12\cdot15{,}000+3\cdot20{,}000=180{,}000+60{,}000=240{,}000" />
 
-So the number of matches in this format is **8**.
+# The tempting wrong options
+
+Every other option satisfies the money equation but **fails the card condition**.
+
+- <InlineMath math="0" />, <InlineMath math="4" /> and <InlineMath math="8" /> need more free cups than their stamps can pay for.
+- <InlineMath math="16" /> comes from only checking that <InlineMath math="32" /> stamps are enough for <InlineMath math="1" /> free cup. With <InlineMath math="16" /> Wednesday cups the card is full after the fifth cup, so <InlineMath math="17" /> cups are bound to include more than <InlineMath math="1" /> free cup.
+
+So the customer paid for <InlineMath math="12" /> cups on Wednesdays.

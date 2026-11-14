@@ -1,21 +1,42 @@
-For a rear gear with <InlineMath math="g" /> teeth, one pedal turn turns the wheel <InlineMath math="\tfrac{48}{g}" /> times, so **the distance per pedal turn is <InlineMath math="\tfrac{48}{g}\cdot2.2" /> metres**.
+This car stays in the building from Saturday evening to Monday morning, so it passes 00.00 <InlineMath math="2" /> times. The plan: **cut the stay at every 00.00**, work out each part's fee with its cap, then add the overnight fees.
 
-# Effect of the rear gear size
+# Three parking parts
 
-| Rear gear | Wheel turns per pedal | Distance per pedal |
-| :---: | :---: | :---: |
-| 12 teeth | 4 | 8.8 m |
-| 16 teeth | 3 | 6.6 m |
-| 24 teeth | 2 | 4.4 m |
+The midnight rule cuts the stay at 00.00 on Sunday and at 00.00 on Monday. That gives **<InlineMath math="3" /> parts charged separately**, each one like a new stay.
 
-The first statement is true. The table shows that **a larger rear gear actually shortens the distance** per pedal turn, so the third statement is false.
+| Part | Time | Length | Counted as |
+| :---: | :---: | :---: | :---: |
+| Saturday | 19.25 to 24.00 | <InlineMath math="4\text{ h }35\text{ min}" /> | <InlineMath math="5\text{ h}" /> |
+| Sunday | 00.00 to 24.00 | <InlineMath math="24\text{ h}" /> | <InlineMath math="24\text{ h}" /> |
+| Monday | 00.00 to 08.10 | <InlineMath math="8\text{ h }10\text{ min}" /> | <InlineMath math="9\text{ h}" /> |
 
-# Speed and number of pedal turns
+Any extra minutes start a new hour, because the started-hour rule charges per started hour.
 
-With the 24-tooth gear and 60 turns per minute, the bicycle covers <InlineMath math="60\cdot4.4=264" /> m per minute.
+# The fee of each part
 
-<BlockMath math="264\cdot60=15{,}840\text{ m/h}=15.84\text{ km/h}" />
+A part that counts as <InlineMath math="k" /> hours costs <InlineMath math="6{,}000+4{,}000(k-1)" /> rupiah, but **at most <InlineMath math="\text{Rp}30{,}000" /> per part**.
 
-The speed is 15.84 km/h, not 16 km/h, so the second statement is false. With the 16-tooth gear, <InlineMath math="\tfrac{3{,}300}{6.6}=500" /> pedal turns, so the fourth statement is true.
+<BlockMath math="\begin{aligned}
+\text{Saturday} &= 6{,}000+4{,}000\cdot4 = 22{,}000 \\
+\text{Sunday} &= \min\bigl(6{,}000+4{,}000\cdot23,\,30{,}000\bigr) = 30{,}000 \\
+\text{Monday} &= \min\bigl(6{,}000+4{,}000\cdot8,\,30{,}000\bigr) = 30{,}000
+\end{aligned}" />
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The Saturday part stays under the cap, while the Sunday part (<InlineMath math="98{,}000" /> without the cap) and the Monday part (<InlineMath math="38{,}000" /> without the cap) are both cut down to <InlineMath math="\text{Rp}30{,}000" />.
+
+# Overnight fees and the total
+
+The car is in the building at 00.00 <InlineMath math="2" /> times, so the overnight fees are <InlineMath math="2\cdot\text{Rp}10{,}000" />. The overnight rule says **the overnight fee isn't capped**, so it's added in full.
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 22{,}000+30{,}000+30{,}000+2\cdot10{,}000 \\
+&= 102{,}000\text{ rupiah}
+\end{aligned}" />
+
+# Check the result
+
+Try **checking against an upper bound**. The three parts cost at most <InlineMath math="3\cdot30{,}000=90{,}000" />, plus <InlineMath math="20{,}000" /> for the nights, so the total is at most <InlineMath math="110{,}000" />. The result <InlineMath math="102{,}000" /> is below that bound, and the gap of <InlineMath math="8{,}000" /> comes exactly from the Saturday part, which is <InlineMath math="8{,}000" /> under its cap.
+
+A few common slips: forgetting the cap on the Monday part gives <InlineMath math="110" /> thousand, forgetting the overnight fees gives <InlineMath math="82" /> thousand, and forgetting every cap gives <InlineMath math="178" /> thousand.
+
+So the total fee to pay is <InlineMath math="102" /> thousand rupiah.

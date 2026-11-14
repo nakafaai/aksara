@@ -1,20 +1,24 @@
-Jika Rafi memiliki <InlineMath math="k" /> tiket, peluang paling sedikit satu hadiah tidak kurang dari <InlineMath math="\tfrac12" /> berarti **peluang tidak mendapat hadiah paling besar <InlineMath math="\tfrac12" />**.
+Kamu mencari lebar terbesar dua dinding yang masih tertutup oleh <InlineMath math="4" /> gulung bermotif. Rencananya: hitung banyak lembar yang dihasilkan <InlineMath math="4" /> gulung, bagi untuk dua dinding, lalu ubah menjadi lebar. Kuncinya, **sisa satu gulung tidak dapat disambung dengan sisa gulung lain**.
 
-# Menyusun syarat
+# Lembar dari empat gulung
 
-Tidak mendapat hadiah berarti **kedua tiket pemenang bukan milik Rafi**, yaitu berasal dari <InlineMath math="20-k" /> tiket lain.
+Potongan untuk dinding setinggi <InlineMath math="240\text{ cm}" /> adalah <InlineMath math="240+10=250\text{ cm}" />, yang dibulatkan ke kelipatan <InlineMath math="64" /> menjadi <InlineMath math="256\text{ cm}" />. Satu gulung menghasilkan <InlineMath math="3" /> lembar, karena <InlineMath math="3\cdot256=768" /> muat sedangkan <InlineMath math="4\cdot256=1{.}024" /> tidak.
 
-<BlockMath math="\frac{\binom{20-k}{2}}{190}\le\frac12\;\Longleftrightarrow\;(20-k)(19-k)\le190" />
+<BlockMath math="4\cdot3=12" />
 
-# Memeriksa nilai k
+Sisa setiap gulung <InlineMath math="232\text{ cm}" />, lebih pendek daripada satu potongan, jadi **keempat sisa itu tidak menghasilkan lembar ketiga belas**.
 
-| <InlineMath math="k" /> | <InlineMath math="(20-k)(19-k)" /> | Memenuhi? |
-| :---: | :---: | :---: |
-| 5 | <InlineMath math="15\cdot14=210" /> | tidak |
-| 6 | <InlineMath math="14\cdot13=182" /> | ya |
+# Lebar setiap dinding
 
-Dengan 6 tiket, peluang paling sedikit satu hadiah adalah <InlineMath math="1-\tfrac{91}{190}=\tfrac{99}{190}" />, **sedikit di atas setengah**. Dengan 5 tiket, peluangnya <InlineMath math="1-\tfrac{105}{190}=\tfrac{85}{190}" />, masih di bawah setengah.
+Dua dinding yang sama lebar masing-masing mendapat <InlineMath math="12:2=6" /> lembar. Setiap dinding dihitung sendiri, jadi dinding selebar <InlineMath math="w\text{ cm}" /> memerlukan <InlineMath math="w:50" /> lembar yang dibulatkan ke atas. Enam lembar menutup paling lebar <InlineMath math="6\cdot50=300\text{ cm}" />, dan **dinding selebar <InlineMath math="301\text{ cm}" /> sudah memerlukan lembar ketujuh**.
 
-Nilai 10 menganggap Rafi perlu separuh dari semua tiket. Nilai 4 dan 5 belum cukup.
+# Pilihan yang keliru
 
-Jadi, Rafi perlu paling sedikit **6 tiket**.
+Setiap pilihan lain menganggap wallpaper dapat dipakai **lebih bebas daripada aturannya**.
+
+- <InlineMath math="350\text{ cm}" /> muncul kalau panjang keempat gulung digabung, sehingga <InlineMath math="4{.}000:256" /> memberi <InlineMath math="15" /> lembar dan setiap dinding mendapat <InlineMath math="7" /> lembar.
+- <InlineMath math="375\text{ cm}" /> muncul kalau <InlineMath math="15" /> lembar tadi dibagi rata tanpa membulatkan lembar per dinding.
+- <InlineMath math="400\text{ cm}" /> muncul kalau pembulatan motif terlupa, sehingga satu gulung dianggap menghasilkan <InlineMath math="4" /> lembar.
+- <InlineMath math="416\text{ cm}" /> muncul kalau luas empat gulung dibagi luas kedua dinding.
+
+Jadi, lebar terbesar setiap dinding adalah <InlineMath math="300\text{ cm}" />.
