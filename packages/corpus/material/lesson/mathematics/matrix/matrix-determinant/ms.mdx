@@ -1,0 +1,278 @@
+export const metadata = {
+  title: "Penentu Matriks",
+  description: "Kira penentu matriks peringkat dua dan selesaikan persamaan linear dengan Petua Cramer melalui contoh lengkap dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Apa yang Diberitahu oleh Penentu
+
+Penentu <Highlight>memberikan satu nilai skalar kepada setiap matriks segi empat sama</Highlight>. Antara lain, nilai itu memberitahu kita sama ada matriks itu [boleh disongsangkan](/ms/subjek/matematik/matriks/matriks-songsang) dan sama ada sistem linear mempunyai penyelesaian unik.
+
+## Mengira Penentu Matriks Peringkat Dua
+
+Matriks berperingkat <InlineMath math="2 \times 2" /> ialah matriks yang mempunyai dua baris dan dua lajur. Katakan kita ada matriks <InlineMath math="A" /> seperti berikut:
+
+<BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
+
+Penentu matriks <InlineMath math="A" />, biasanya ditulis <InlineMath math="\det(A)" /> atau <InlineMath math="|A|" />, ialah **hasil darab sepanjang pepenjuru utama** tolak hasil darab sepanjang pepenjuru yang satu lagi.
+
+Rumusnya ialah:
+
+<BlockMath math="\det(A) = |A| = \begin{vmatrix} a & b \\ c & d \end{vmatrix} = ad - bc" />
+
+Garis tegak dalam rumus itu menandakan penentu <InlineMath math="\det(A)" />. Kurungan siku dalam takrif <InlineMath math="A" /> pula mengurung unsur matriks.
+### Contoh Penentu Matriks Peringkat Dua
+
+Katakan kita ada matriks <InlineMath math="B" />:
+
+<BlockMath math="B = \begin{bmatrix} -1 & 3 \\ -7 & -5 \end{bmatrix}" />
+
+Untuk mengira **penentunya**, kita kenal pasti <InlineMath math="a = -1" />, <InlineMath math="b = 3" />, <InlineMath math="c = -7" />, dan <InlineMath math="d = -5" />.
+
+Kemudian, penentu matriks <InlineMath math="B" /> ialah:
+
+<MathContainer>
+  <BlockMath math="\det(B) = (-1 \times -5) - (3 \times -7)" />
+  <BlockMath math="\det(B) = 5 - (-21)" />
+  <BlockMath math="\det(B) = 5 + 21" />
+  <BlockMath math="\det(B) = 26" />
+</MathContainer>
+
+Jadi, nilai penentu matriks <InlineMath math="B" /> ialah <InlineMath math="26" />.
+
+Dari sudut geometri, penentu mengukur luas. Lajur <InlineMath math="B" />, iaitu <InlineMath math="(-1, -7)" /> dan <InlineMath math="(3, -5)" />, membentuk sebuah segi empat selari, dan luasnya ialah <InlineMath math="|\det(B)| = 26" />.
+
+<MathVisual
+  title={<>Segi empat selari daripada lajur <InlineMath math="B" /></>}
+  description={<>Segi empat selari yang dibentuk oleh <InlineMath math="(-1, -7)" /> dan <InlineMath math="(3, -5)" />, dengan luas <InlineMath math="|(-1)(-5) - (3)(-7)| = 26" />.</>}
+  labels={{
+    area: <InlineMath math="26" />,
+    c1: <InlineMath math="(-1, -7)" />,
+    c2: <InlineMath math="(3, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -13, max: 1 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: -7 }, { x: 2, y: -12 }, { x: 3, y: -5 }], appearance: "answer" },
+      { id: "c1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: -7 }, appearance: "primary" },
+      { id: "c1-head", kind: "polygon", vertices: [{ x: -1, y: -7 }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (-4 / 25 / Math.sqrt(50)) }, { x: (-1) + (2 / 5 / Math.sqrt(50)) + (-28 / 25 / Math.sqrt(50)), y: (-7) + (14 / 5 / Math.sqrt(50)) + (4 / 25 / Math.sqrt(50)) }], appearance: "primary" },
+      { id: "c2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -5 }, appearance: "secondary" },
+      { id: "c2-head", kind: "polygon", vertices: [{ x: 3, y: -5 }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (12 / 25 / Math.sqrt(34)) }, { x: (3) + (-6 / 5 / Math.sqrt(34)) + (-4 / 5 / Math.sqrt(34)), y: (-5) + (2 / Math.sqrt(34)) + (-12 / 25 / Math.sqrt(34)) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 1, y: -6 }, placement: "center" },
+      { key: "c1", objectId: "c1", at: { x: -1, y: -7 }, placement: "left" },
+      { key: "c2", objectId: "c2", at: { x: 3, y: -5 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Menyelesaikan Sistem Dua Persamaan Linear dengan Penentu
+
+Penentu boleh digunakan untuk menyelesaikan sistem persamaan linear melalui Petua Cramer.
+
+Lihat sistem dua persamaan linear berikut:
+
+<MathContainer>
+  <BlockMath math="a_{11}x + a_{12}y = b_1" />
+  <BlockMath math="a_{21}x + a_{22}y = b_2" />
+</MathContainer>
+
+Dalam sistem ini, <InlineMath math="x" /> dan <InlineMath math="y" /> ialah pemboleh ubah yang nilainya ingin kita cari. Pekali <InlineMath math="a_{11}, a_{12}, a_{21}, a_{22}" /> dan pemalar <InlineMath math="b_1, b_2" /> ialah nombor yang diketahui.
+
+Sistem persamaan ini boleh ditukar kepada bentuk pendaraban matriks:
+
+<BlockMath math="\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} = \begin{bmatrix} b_1 \\ b_2 \end{bmatrix}" />
+
+Langkah pertama ialah mengira penentu matriks pekali, yang kita namakan <InlineMath math="D" />:
+
+<BlockMath math="D = \begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix} = a_{11}a_{22} - a_{12}a_{21}" />
+
+Sistem persamaan linear mempunyai penyelesaian unik jika dan hanya jika <InlineMath math="D \neq 0" />.
+
+Seterusnya, kita kira dua penentu yang lain:
+
+1.  <InlineMath math="D_x" />, iaitu penentu matriks pekali
+    yang lajur pertamanya (pekali <InlineMath math="x" />) digantikan
+    dengan lajur pemalar (<InlineMath math="b_1, b_2" />
+    ):
+
+    <BlockMath math="D_x = \begin{vmatrix} b_1 & a_{12} \\ b_2 & a_{22} \end{vmatrix} = b_1a_{22} - a_{12}b_2" />
+
+2.  <InlineMath math="D_y" />, iaitu penentu matriks pekali
+    yang lajur keduanya (pekali <InlineMath math="y" />) digantikan
+    dengan lajur pemalar (<InlineMath math="b_1, b_2" />
+    ):
+
+    <BlockMath math="D_y = \begin{vmatrix} a_{11} & b_1 \\ a_{21} & b_2 \end{vmatrix} = a_{11}b_2 - b_1a_{21}" />
+
+Selepas mendapat nilai <InlineMath math="D" />, <InlineMath math="D_x" />, dan <InlineMath math="D_y" />, kita boleh mencari nilai <InlineMath math="x" /> dan <InlineMath math="y" /> dengan rumus:
+
+<MathContainer>
+  <BlockMath math="x = \frac{D_x}{D}" />
+  <BlockMath math="y = \frac{D_y}{D}" />
+</MathContainer>
+
+**Rumus ini hanya sah kalau** <InlineMath math="D \neq 0" />.
+
+Kalau <InlineMath math="D=0" />, pecahan dalam Petua Cramer tidak tertakrif. Keadaan itu sahaja belum dapat membezakan antara tiada penyelesaian dengan penyelesaian yang tak terhingga banyaknya, jadi gunakan kaedah penghapusan atau penurunan baris untuk mengelaskan sistem itu.
+
+### Menyelesaikan Sistem Linear dengan Penentu
+
+Tentukan penyelesaian sistem persamaan linear berikut:
+
+<MathContainer>
+  <BlockMath math="2x - y = 7" />
+  <BlockMath math="x - 4y = 14" />
+</MathContainer>
+
+Daripada sistem di atas, kita dapat:
+
+<InlineMath math="a_{11} = 2" />, <InlineMath math="a_{12} = -1" />, <InlineMath math="b_1 = 7" />
+
+<InlineMath math="a_{21} = 1" />, <InlineMath math="a_{22} = -4" />, <InlineMath math="b_2 = 14" />
+
+**Langkah 1**: Kira penentu <InlineMath math="D" />.
+
+<BlockMath math="\begin{aligned} D &amp;= \begin{vmatrix} 2 &amp; -1 \\ 1 &amp; -4 \end{vmatrix} \\ &amp;= (2 \times -4) - (-1 \times 1) \\ &amp;= -8 - (-1) \\ &amp;= -8 + 1 \\ &amp;= -7 \end{aligned}" />
+
+Oleh sebab <InlineMath math="D = -7 \neq 0" />, sistem ini mempunyai **penyelesaian unik**.
+
+**Langkah 2**: Kira penentu <InlineMath math="D_x" />.
+
+<BlockMath math="\begin{aligned} D_x &amp;= \begin{vmatrix} 7 &amp; -1 \\ 14 &amp; -4 \end{vmatrix} \\ &amp;= (7 \times -4) - (-1 \times 14) \\ &amp;= -28 - (-14) \\ &amp;= -28 + 14 \\ &amp;= -14 \end{aligned}" />
+
+**Langkah 3**: Kira penentu <InlineMath math="D_y" />.
+
+<BlockMath math="\begin{aligned} D_y &amp;= \begin{vmatrix} 2 &amp; 7 \\ 1 &amp; 14 \end{vmatrix} \\ &amp;= (2 \times 14) - (7 \times 1) \\ &amp;= 28 - 7 \\ &amp;= 21 \end{aligned}" />
+
+**Langkah 4**: Kira nilai <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+<MathContainer>
+  <BlockMath math="x = \frac{D_x}{D} = \frac{-14}{-7} = 2" />
+  <BlockMath math="y = \frac{D_y}{D} = \frac{21}{-7} = -3" />
+</MathContainer>
+
+Jadi, penyelesaian sistem persamaan linear itu ialah <InlineMath math="x=2" /> dan <InlineMath math="y=-3" />, atau boleh ditulis sebagai pasangan tertib <InlineMath math="(2, -3)" />.
+
+### Dua Garis dengan Satu Titik Persilangan
+
+Kamu juga boleh membaca penyelesaian Cramer sebagai **titik persilangan dua garis**. Tulis semula persamaan itu sebagai <InlineMath math="y=2x-7" /> dan <InlineMath math="y=\frac14x-\frac72" />. Kecerunannya berbeza, jadi garis itu bersilang tepat sekali.
+
+<MathVisual
+  title={<>Dua garis dengan satu titik persilangan</>}
+  description={<>Garis <InlineMath math="2x - y = 7" /> dan <InlineMath math="x - 4y = 14" /> mempunyai kecerunan yang berbeza dan bertemu tepat sekali, iaitu di <InlineMath math="(2, -3)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 7" />,
+    l2: <InlineMath math="x - 4y = 14" />,
+    p: <InlineMath math="(2, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 7 }, y: { min: -9.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: -1, y: -9 }, { x: 6, y: 5 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -2, y: -4 }, { x: 6, y: -2 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 5 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 6, y: -2 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Gantikan koordinat titik persilangan itu ke dalam setiap persamaan untuk menyemaknya.
+
+<BlockMath math="\begin{aligned}2(2)-(-3)&=4+3=7\\2-4(-3)&=2+12=14\end{aligned}" />
+
+## Latihan
+
+Setiap soalan di bawah menggunakan penentu untuk tujuan yang berbeza. Soalan pertama meminta **unsur yang tidak diketahui** dalam matriks yang penentunya diberi, manakala soalan kedua meminta penyelesaian sistem persamaan linear.
+
+1.  Matriks berikut memenuhi <InlineMath math="\det(M) = 9" />. Tentukan <InlineMath math="x" />.
+
+    <BlockMath math="M = \begin{bmatrix} 9 & x \\ 8 & -7 \end{bmatrix}" />
+
+2.  Tentukan penyelesaian sistem persamaan linear berikut:
+
+    <BlockMath math="\begin{cases} 2x - y = 8 \\ x + 3y = -10 \end{cases}" />
+### Penyelesaian
+
+1.  Matriks dalam latihan pertama ialah:
+
+    <BlockMath math="M = \begin{bmatrix} 9 & x \\ 8 & -7 \end{bmatrix}" />
+
+    **Penentunya** ialah:
+
+    <BlockMath math="\begin{aligned} \det(M) &amp;= (9 \times -7) - (x \times 8) \\ &amp;= -63 - 8x \end{aligned}" />
+
+    Diberi <InlineMath math="\det(M) = 9" />, maka:
+
+    <MathContainer>
+      <BlockMath math="-63 - 8x = 9" />
+      <BlockMath math="-8x = 9 + 63" />
+      <BlockMath math="-8x = 72" />
+      <BlockMath math="x = \frac{72}{-8}" />
+      <BlockMath math="x = -9" />
+    </MathContainer>
+
+    Jadi, nilai <InlineMath math="x" /> ialah <InlineMath math="-9" />.
+
+2.  Sistem persamaan linear:
+
+    <MathContainer>
+      <BlockMath math="2x - y = 8" />
+      <BlockMath math="x + 3y = -10" />
+    </MathContainer>
+
+    Kita tentukan <InlineMath math="D, D_x," /> dan <InlineMath math="D_y" />.
+
+    <MathContainer>
+      <BlockMath math="\begin{aligned} D &amp;= \begin{vmatrix} 2 &amp; -1 \\ 1 &amp; 3 \end{vmatrix} \\ &amp;= (2 \times 3) - (-1 \times 1) \\ &amp;= 6 - (-1) \\ &amp;= 6 + 1 \\ &amp;= 7 \end{aligned}" />
+      <BlockMath math="\begin{aligned} D_x &amp;= \begin{vmatrix} 8 &amp; -1 \\ -10 &amp; 3 \end{vmatrix} \\ &amp;= (8 \times 3) - (-1 \times -10) \\ &amp;= 24 - 10 \\ &amp;= 14 \end{aligned}" />
+      <BlockMath math="\begin{aligned} D_y &amp;= \begin{vmatrix} 2 &amp; 8 \\ 1 &amp; -10 \end{vmatrix} \\ &amp;= (2 \times -10) - (8 \times 1) \\ &amp;= -20 - 8 \\ &amp;= -28 \end{aligned}" />
+    </MathContainer>
+
+    Kemudian, nilai <InlineMath math="x" /> dan <InlineMath math="y" /> ialah:
+
+    <MathContainer>
+      <BlockMath math="x = \frac{D_x}{D} = \frac{14}{7} = 2" />
+      <BlockMath math="y = \frac{D_y}{D} = \frac{-28}{7} = -4" />
+    </MathContainer>
+
+    Jadi, penyelesaian sistem persamaan linear itu ialah <InlineMath math="x=2" /> dan <InlineMath math="y=-4" />, atau pasangan tertib <InlineMath math="(2, -4)" />.
+
+Dalam Penyelesaian 2, Petua Cramer memberikan <InlineMath math="(2, -4)" />. Lukis <InlineMath math="y = 2x - 8" /> dan <InlineMath math="y = -\frac{x + 10}{3}" />: garis itu bersilang tepat di <InlineMath math="(2, -4)" />, dan penggantian menyemak setiap persamaan, <InlineMath math="2(2) - (-4) = 8" /> dan <InlineMath math="2 + 3(-4) = -10" />.
+
+<MathVisual
+  title={<>Penyelesaian <InlineMath math="(2, -4)" /> sebagai titik persilangan</>}
+  description={<>Garis <InlineMath math="2x - y = 8" /> dan <InlineMath math="x + 3y = -10" />, yang bertemu di <InlineMath math="(2, -4)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x - y = 8" />,
+    l2: <InlineMath math="x + 3y = -10" />,
+    p: <InlineMath math="(2, -4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -9, max: 2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l1", kind: "line", through: [{ x: 0, y: -8 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "l2", kind: "line", through: [{ x: -10, y: 0 }, { x: 2, y: -4 }], appearance: "primary" },
+      { id: "p", kind: "point", at: { x: 2, y: -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: -2, y: -8 / 3 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 2, y: -4 }, placement: "below-right" },
+    ],
+  }}
+/>

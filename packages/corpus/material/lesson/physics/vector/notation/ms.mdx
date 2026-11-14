@@ -1,0 +1,167 @@
+export const metadata = {
+  title: "Simbol dan Tatatanda Vektor",
+  description:
+    "Baca simbol vektor, tatatanda dua titik, magnitud vektor, vektor sifar dan vektor unit dalam fizik.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Vektor",
+};
+
+## Apa yang Ditunjukkan oleh Anak Panah Vektor
+
+Vektor biasanya dilukis sebagai <Highlight>anak panah</Highlight>. Pangkalnya menunjukkan titik mula, hujungnya menunjukkan arah, dan panjangnya mewakili magnitud vektor.
+
+Jika anak panah daya lebih panjang, daya itu lebih besar pada skala lukisan yang sama. Jika anak panah menghala ke atas dan ke kanan, daya itu bertindak ke atas dan ke kanan.
+
+> Tatatanda vektor yang lengkap menunjukkan magnitud dan arah.
+
+## Tatatanda Dua Titik
+
+Vektor boleh ditulis dari titik mula ke titik akhir. Contohnya, <InlineMath math="\overrightarrow{AB}" /> bermaksud vektor dari titik <InlineMath math="A" /> ke titik <InlineMath math="B" />.
+
+Susunan huruf itu penting. <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="\overrightarrow{BA}" /> menggunakan dua titik yang sama, tetapi arahnya bertentangan.
+
+| Tatatanda | Cara membacanya | Maksud arah |
+| :------- | :------------- | :---------------- |
+| <InlineMath math="\overrightarrow{AB}" /> | vektor dari <InlineMath math="A" /> ke <InlineMath math="B" /> | pangkal di <InlineMath math="A" />, hujung di <InlineMath math="B" /> |
+| <InlineMath math="\overrightarrow{BA}" /> | vektor dari <InlineMath math="B" /> ke <InlineMath math="A" /> | pangkal di <InlineMath math="B" />, hujung di <InlineMath math="A" /> |
+| <InlineMath math="\lvert\overrightarrow{AB}\rvert" /> | magnitud <InlineMath math="\overrightarrow{AB}" /> | Memberikan panjang vektor itu. Arah tidak mempengaruhi nilai ini |
+
+<Highlight>Anak panah di atas huruf</Highlight> memberitahu kita bahawa kuantiti itu ialah vektor. Tanda nilai mutlak pula memberitahu kita bahawa hanya magnitudnya yang sedang dibincangkan.
+
+Kedua-dua anak panah di bawah mempunyai panjang yang sama, tetapi susunan huruf membalikkan arahnya: <InlineMath math="\overrightarrow{AB}" /> bermula di <InlineMath math="A" /> dan <InlineMath math="\overrightarrow{BA}" /> bermula di <InlineMath math="B" />. Jadi, <InlineMath math="\overrightarrow{BA}=-\overrightarrow{AB}" />.
+
+<MathVisual
+  title={<>Susunan Titik Menentukan Arah</>}
+  description={<>Vektor AB dan BA antara titik A(1, 1) dan B(4, 3), dengan vektor kedua dianjakkan ke bawah supaya terletak di sebelah vektor pertama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: -1, max: 3.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab-line", kind: "segment", appearance: "reference", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "b", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 1 }, to: { x: 4, y: 3 } },
+      { id: "ab-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 3 }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 4 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 3 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "ba", kind: "segment", appearance: "secondary", from: { x: 4, y: 1.5 }, to: { x: 1, y: -0.5 } },
+      { id: "ba-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: -0.5 }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) + ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) + ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }, { x: 1 - (0.25 * -3) / Math.hypot(-3, -2.0) - ((0.25 / 2) * 2.0) / Math.hypot(-3, -2.0), y: -0.5 - (0.25 * -2.0) / Math.hypot(-3, -2.0) - ((0.25 / 2) * -3) / Math.hypot(-3, -2.0) }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 2.5, y: 2 }, placement: "above-left" },
+      { key: "ba", objectId: "ba", at: { x: 2.5, y: 0.5 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    ab: <InlineMath math="\overrightarrow{AB}" />,
+    ba: <InlineMath math="\overrightarrow{BA}" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+/>
+
+## Tatatanda Satu Huruf
+
+Dalam pengiraan, vektor sering dinamakan dengan **satu huruf yang membawa anak panah** seperti <InlineMath math="\vec{a}" />, <InlineMath math="\vec{v}" /> atau <InlineMath math="\vec{F}" />. Huruf itu membantu kamu mengenal pasti kuantiti fizik yang diwakilinya.
+
+Contohnya, <InlineMath math="\vec{F}" /> sering digunakan untuk daya, <InlineMath math="\vec{v}" /> untuk halaju dan <InlineMath math="\vec{s}" /> untuk sesaran. Magnitudnya ditulis tanpa anak panah, seperti <InlineMath math="F" /> atau <InlineMath math="\lvert\vec{F}\rvert" />.
+
+<MathContainer>
+  <BlockMath math="\vec{F}=20\text{ N ke kanan}" />
+  <BlockMath math="\lvert\vec{F}\rvert=20\text{ N}" />
+</MathContainer>
+
+Baris pertama masih menyatakan arah. Baris kedua hanya menyatakan magnitud daya.
+
+## Vektor Sifar dan Vektor Unit
+
+Semasa mengira komponen, kamu perlu membezakan vektor yang tiada panjang daripada vektor yang digunakan untuk menentukan arah. **Vektor sifar** dan **vektor unit** mengisi dua peranan yang berbeza ini.
+
+### Vektor dengan Magnitud Sifar
+
+**Vektor sifar** mempunyai magnitud <InlineMath math="0" />. Pangkal dan hujungnya bertindih, jadi arahnya tidak tertakrif. Dalam fizik, vektor sifar boleh muncul apabila dua daya yang sama besar tetapi bertentangan arah saling membatalkan.
+
+Contohnya, ambil arah kanan sebagai arah positif. Daya <InlineMath math="20\text{ N}" /> ke kanan dan daya yang sama ke kiri dijumlahkan menjadi:
+
+<BlockMath math="\begin{aligned}\vec{F}_1+\vec{F}_2 &= 20\hat{i}\text{ N}-20\hat{i}\text{ N} \\ &= (20-20)\hat{i}\text{ N} \\ &= \vec{0}\text{ N}\end{aligned}" />
+
+### Vektor yang Menentukan Arah
+
+**Vektor unit** mempunyai magnitud <InlineMath math="1" /> dan hanya menunjukkan arah. Vektor unit tidak memberitahu kita sekuat mana sesuatu daya atau sejauh mana sesuatu sesaran. Dalam asas Cartes tiga dimensi yang piawai, setiap vektor unit mempunyai satu komponen yang bernilai <InlineMath math="1" />:
+
+<ContentStack>
+  <MathContainer>
+    <BlockMath math="\hat{i}=(1,0,0)" />
+    <BlockMath math="\hat{j}=(0,1,0)" />
+    <BlockMath math="\hat{k}=(0,0,1)" />
+  </MathContainer>
+
+  <MathVisual
+    title={<>Arah Tiga Vektor Unit</>}
+    description={<>Putar model ini untuk memisahkan arah ketiga-tiga paksi. Setiap anak panah mempunyai panjang satu, walaupun perspektif boleh membuatkan panjang yang dipaparkan kelihatan berbeza.</>}
+    labels={{
+      "l1": <InlineMath math="\hat{i}" />,
+      "l2": <InlineMath math="\hat{j}" />,
+      "l3": <InlineMath math="\hat{k}" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+      view: { kind: "camera", position: { x: 2, y: 1.5, z: 2.2 }, target: { x: 0.3, y: 0.35, z: 0.3 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 0, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0, y: 1, z: 0 }, placement: "above" },
+        { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 1 }, placement: "right" },
+      ],
+    }}
+  />
+</ContentStack>
+
+Ketiga-tiga anak panah mempunyai **panjang sebenar yang sama**. Memutar paparan mengubah unjurannya pada skrin, tetapi tidak mengubah magnitud vektor unit.
+
+Selepas ini, apabila vektor ditulis sebagai <InlineMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />, <InlineMath math="\hat{i}" /> dan <InlineMath math="\hat{j}" /> memberikan arah paksi positif, manakala skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberikan komponen di sepanjang paksi itu.
+
+Letakkan kedua-dua daya secara hujung ke pangkal. Anak panah kedua berakhir tepat di tempat anak panah pertama bermula, jadi hasil tambahnya ialah vektor sifar: tiada panjang dan tiada arah.
+
+<MathVisual
+  title={<>Dua Daya yang Saling Membatalkan</>}
+  description={<><InlineMath math="\vec F_1=20\hat i\text{ N}" /> dan <InlineMath math="\vec F_2=-20\hat i\text{ N}" /> diletakkan hujung ke pangkal. Satu petak grid ialah 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "f1", kind: "segment", appearance: "primary", from: { x: 0, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "f1-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.75, y: 0.725 }, { x: 3.75, y: 0.475 }] },
+      { id: "f2", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "f2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 0.25, y: 0.125 }, { x: 0.25, y: -0.125 }] },
+      { id: "sum", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f1", objectId: "f1", at: { x: 2, y: 0.6 }, placement: "above" },
+      { key: "f2", objectId: "f2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    f1: <InlineMath math="\vec F_1=20\hat i\text{ N}" />,
+    f2: <InlineMath math="\vec F_2=-20\hat i\text{ N}" />,
+    sum: <InlineMath math="\vec F_1+\vec F_2=\vec 0" />,
+  }}
+/>
+
+## Kesilapan Lazim Semasa Membaca Vektor
+
+Kesilapan pertama ialah **mengabaikan susunan titik** dan menganggap <InlineMath math="\overrightarrow{AB}" /> sebagai vektor yang sama dengan <InlineMath math="\overrightarrow{BA}" /> hanya kerana kedua-duanya menggunakan dua titik yang sama. Arah kedua-duanya bertentangan.
+
+Kesilapan kedua ialah menulis **magnitud vektor yang negatif**. Magnitud sentiasa <InlineMath math="0" /> atau positif. Tanda negatif pada vektor biasanya menjadikan vektor itu menghala bertentangan dengan arah rujukan yang dipilih. Tanda itu tidak menjadikan panjangnya negatif.
+
+Contohnya, <InlineMath math="-\vec{a}" /> tidak bermaksud vektor itu mempunyai magnitud negatif. Maksudnya, vektor itu mempunyai magnitud yang sama dengan <InlineMath math="\vec{a}" /> tetapi menghala ke arah yang bertentangan.
