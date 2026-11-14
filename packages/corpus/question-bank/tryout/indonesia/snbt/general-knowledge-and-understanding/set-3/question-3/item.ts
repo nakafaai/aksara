@@ -18,7 +18,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "hasil bahwa garam batu ternyata menahan inframerah sebanyak kaca",
+          label:
+            "hasil bahwa garam batu ternyata menahan inframerah sebanyak kaca",
         },
         {
           correct: true,
