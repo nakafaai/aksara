@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "spelling",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "referent",
   },
-  stimulus: "village-radio",
+  stimulus: "lumbung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kalimat (1)",
+          label:
+            "turunnya jumlah rumah tangga anggota yang berutang kepada tengkulak selama dua tahun lumbung berjalan",
+        },
+        {
+          correct: false,
+          label:
+            "turunnya jumlah rumah tangga di seluruh desa yang berutang kepada tengkulak justru ketika harga beras sedang naik",
+        },
+        {
+          correct: false,
+          label:
+            "berkurangnya besar utang setiap rumah tangga anggota kepada tengkulak justru ketika harga beras sedang naik",
         },
         {
           correct: true,
-          label: "kalimat (2)",
+          label:
+            "turunnya jumlah rumah tangga anggota yang berutang kepada tengkulak justru ketika harga beras sedang naik",
         },
         {
           correct: false,
-          label: "kalimat (4)",
-        },
-        {
-          correct: false,
-          label: "kalimat (7)",
-        },
-        {
-          correct: false,
-          label: "kalimat (8)",
+          label:
+            "pinjaman gabah dari lumbung yang membuat warga tidak lagi bergantung pada tengkulak",
         },
       ],
     },

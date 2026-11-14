@@ -1,28 +1,33 @@
-Das Vorzeichen von <InlineMath math="x+1" /> ist unbekannt, deshalb **darfst du nicht sofort mit <InlineMath math="x+1" /> multiplizieren**. Bringe alle Terme auf eine Seite und untersuche das Vorzeichen des entstehenden Bruchs.
+<InlineMath math="P" /> und <InlineMath math="Q" /> werden beide kleiner, wenn <InlineMath math="n" /> wächst, und für <InlineMath math="n=1" /> liegen sie sehr nah beieinander. Ein paar Testwerte reichen also nicht: Du brauchst **einen Vergleich, der für jedes <InlineMath math="n" /> gilt**. Der Plan: <InlineMath math="P" /> als Bruch mit Zähler <InlineMath math="1" /> schreiben und dann die Nenner vergleichen.
 
-# Einen einzigen Bruch bilden
+# Die erste Größe rational machen
+
+Erweitere <InlineMath math="P" /> mit dem konjugierten Ausdruck <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> in Zähler und Nenner.
 
 <BlockMath math="\begin{aligned}
-\frac{x-3}{x+1}-2&\ge0\\
-\frac{x-3-2(x+1)}{x+1}&\ge0\\
-\frac{-x-5}{x+1}&\ge0\\
-\frac{x+5}{x+1}&\le0
+P&=\frac{\left(\sqrt{n+1}-\sqrt{n}\right)\left(\sqrt{n+1}+\sqrt{n}\right)}{\sqrt{n+1}+\sqrt{n}}\\
+&=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt{n}}=\frac{1}{\sqrt{n+1}+\sqrt{n}}
 \end{aligned}" />
 
-In der letzten Zeile wird mit <InlineMath math="-1" /> multipliziert, deshalb **dreht sich das Ungleichheitszeichen um**.
+Jetzt haben <InlineMath math="P" /> und <InlineMath math="Q" /> beide den Zähler <InlineMath math="1" /> und einen positiven Nenner. Bei solchen Brüchen gilt: **Der kleinere Nenner liefert den größeren Wert**. Du musst also nur <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> mit <InlineMath math="\sqrt{4n+2}" /> vergleichen.
 
-# Vorzeichen prüfen
+# Die beiden Nenner vergleichen
 
-Der Zähler ist bei <InlineMath math="x=-5" /> null, der Nenner bei <InlineMath math="x=-1" />.
+Beide Nenner sind positiv, sie haben also dieselbe Reihenfolge wie ihre Quadrate. Das Quadrat des Nenners von <InlineMath math="P" /> enthält <InlineMath math="2\sqrt{n^2+n}" />, und dieser Term ist **immer kleiner als <InlineMath math="2n+1" />**, weil sein Quadrat kleiner ist.
 
-| Intervall | Vorzeichen von <InlineMath math="x+5" /> | Vorzeichen von <InlineMath math="x+1" /> | Vorzeichen des Bruchs |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-5" /> | negativ | negativ | positiv |
-| <InlineMath math="-5<x<-1" /> | positiv | negativ | negativ |
-| <InlineMath math="x>-1" /> | positiv | positiv | positiv |
+<BlockMath math="\begin{aligned}
+\left(2\sqrt{n^2+n}\right)^2=4n^2+4n&<4n^2+4n+1=(2n+1)^2\\
+\left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
+\end{aligned}" />
 
-Der Bruch ist auf <InlineMath math="-5<x<-1" /> negativ und bei <InlineMath math="x=-5" /> null. Die Stelle <InlineMath math="x=-1" /> **gehört nicht dazu**, weil dort der Nenner null ist. Probe mit <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
+Also gilt <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. Der Nenner von <InlineMath math="P" /> ist kleiner, daher ist <InlineMath math="P>Q" /> für jede positive ganze Zahl <InlineMath math="n" />.
 
-Die Menge <InlineMath math="x\le-5" /> entsteht, wenn beide Seiten mit <InlineMath math="x+1" /> multipliziert werden, als wäre es positiv. Die Menge mit <InlineMath math="-5<x" /> lässt <InlineMath math="x=-5" /> weg, obwohl die linke Seite dort genau 2 ist. Die Menge mit <InlineMath math="x\le-1" /> nimmt die Stelle mit Nenner null auf. Die Menge <InlineMath math="x\le-5" /> oder <InlineMath math="x>-1" /> ist der Bereich mit dem umgekehrten Vorzeichen.
+# Probe an einem Beispiel
 
-Die Lösungsmenge ist also <InlineMath math="\{x\mid -5\le x<-1\}" />.
+Für <InlineMath math="n=1" /> ist <InlineMath math="P=\sqrt{2}-1\approx 0{,}414" /> und <InlineMath math="Q=\tfrac{1}{\sqrt{6}}\approx 0{,}408" />. Tatsächlich gilt <InlineMath math="P>Q" />, aber der Abstand beträgt nur etwa <InlineMath math="0{,}006" />. **Eine grobe Schätzung kann dich leicht täuschen**, deshalb entscheidet die Rechnung oben.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="Q>P" /> entsteht, wenn du **<InlineMath math="Q" /> mit der bekannten oberen Schranke verwechselst**, also mit <InlineMath math="\tfrac{1}{2\sqrt{n}}" /> für <InlineMath math="\sqrt{n+1}-\sqrt{n}" />. Dabei ist <InlineMath math="Q=\tfrac{1}{2\sqrt{n+\frac{1}{2}}}" /> kleiner als diese Schranke. Die Antwort <InlineMath math="P=Q" /> entsteht, wenn du <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> mit <InlineMath math="2\sqrt{n+\tfrac{1}{2}}" /> gleichsetzt, als wäre die Wurzel eines Mittelwerts der Mittelwert der Wurzeln. Die Antwort, die Angaben reichten nicht aus, entsteht aus der Vermutung, die Reihenfolge könne sich für große <InlineMath math="n" /> umdrehen, doch die Ungleichung oben gilt für jedes <InlineMath math="n" />.
+
+Für jede positive ganze Zahl <InlineMath math="n" /> ist <InlineMath math="P" /> also größer als <InlineMath math="Q" />.

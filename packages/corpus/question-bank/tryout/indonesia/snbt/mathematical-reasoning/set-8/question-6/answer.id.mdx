@@ -1,19 +1,44 @@
-Karung tidak dapat dipotong, jadi yang menentukan adalah **banyak karung utuh dalam satu kali naik**, bukan berat total semua karung.
+Setiap pernyataan perlu dihitung sendiri. Dua pernyataan pertama menyangkut rata-rata, dan untuk itu **setiap harga harus diberi bobot banyak tiketnya**. Dua pernyataan terakhir menyangkut satu transaksi, jadi urutannya selalu: harga menurut nomor tiket, potongan jika tepat empat tiket, lalu biaya layanan.
 
-# Banyak karung dalam satu kali naik
+# Rata-rata seluruh tiket
 
-Pak Wahyu selalu ikut, jadi sisa beban untuk karung adalah <InlineMath math="700-70=630" /> kg.
+Jumlah harga seluruh tiket adalah:
 
-<BlockMath math="\frac{630}{60}=10{,}5" />
+<BlockMath math="\begin{aligned}
+150\cdot120{.}000+300\cdot150{.}000+550\cdot200{.}000&=18{.}000{.}000+45{.}000{.}000+110{.}000{.}000\\
+&=173{.}000{.}000
+\end{aligned}" />
 
-Satu kali naik memuat **paling banyak 10 karung**, karena 11 karung beratnya 660 kg.
+Rata-ratanya <InlineMath math="\tfrac{173{.}000{.}000}{1{.}000}=173{.}000" /> rupiah, lebih dari <InlineMath math="\text{Rp}170{.}000" />. Pernyataan pertama benar. Hati-hati dengan rata-rata biasa dari tiga harga, <InlineMath math="\tfrac{120{.}000+150{.}000+200{.}000}{3}\approx156{.}667" />. Nilai itu salah karena **tahap normal berisi paling banyak tiket**, jadi harganya harus lebih berpengaruh.
 
-# Banyak kali naik
+# Rata-rata tiket awal
 
-Empat kali naik memuat 40 karung, dan 2 karung sisanya memerlukan satu kali naik lagi.
+Untuk <InlineMath math="450" /> tiket pertama, jumlah harganya <InlineMath math="18{.}000{.}000+45{.}000{.}000=63{.}000{.}000" /> rupiah, sehingga:
 
-<BlockMath math="10+10+10+10+2=42" />
+<BlockMath math="\frac{63{.}000{.}000}{450}=140{.}000" />
 
-Nilai 4 kali membagi berat total <InlineMath math="42\cdot60=2{.}520" /> kg dengan 630 kg, seolah karung dapat dipotong, atau lupa menghitung berat Pak Wahyu. Nilai 3 kali membagi berat total dengan 700 kg lalu membulatkan ke bawah. Nilai 6 dan 7 kali memang cukup, tetapi bukan yang paling sedikit.
+Rata-ratanya **tepat sama dengan** <InlineMath math="\text{Rp}140{.}000" />, bukan kurang dari itu. Pernyataan kedua salah.
 
-Jadi, lift paling sedikit naik **5 kali**.
+# Transaksi empat tiket yang termurah
+
+Transaksi empat tiket termurah berisi empat tiket early bird, misalnya nomor <InlineMath math="1" /> sampai <InlineMath math="4" />. Karena isinya tepat empat tiket, **potongan sepuluh persen berlaku**:
+
+<BlockMath math="\begin{aligned}
+4\cdot120{.}000&=480{.}000\\
+90\%\cdot480{.}000+5{.}000&=432{.}000+5{.}000=437{.}000
+\end{aligned}" />
+
+Nilai <InlineMath math="\text{Rp}437{.}000" /> kurang dari <InlineMath math="\text{Rp}450{.}000" />, jadi transaksi seperti itu memang ada. Pernyataan ketiga benar.
+
+# Transaksi yang melewati batas tahap
+
+Tiket nomor <InlineMath math="449" /> dan <InlineMath math="450" /> masih presale, sedangkan nomor <InlineMath math="451" /> dan <InlineMath math="452" /> sudah normal. **Setiap tiket dihargai menurut nomornya sendiri**, lalu potongan berlaku karena transaksinya berisi tepat empat tiket:
+
+<BlockMath math="\begin{aligned}
+2\cdot150{.}000+2\cdot200{.}000&=700{.}000\\
+90\%\cdot700{.}000+5{.}000&=630{.}000+5{.}000=635{.}000
+\end{aligned}" />
+
+Nilai <InlineMath math="\text{Rp}635{.}000" /> lebih dari <InlineMath math="\text{Rp}630{.}000" />, jadi pernyataan keempat benar. Kalau biaya layanan terlupa, hasilnya tepat <InlineMath math="\text{Rp}630{.}000" /> dan pernyataan ini tampak salah.
+
+Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat benar.

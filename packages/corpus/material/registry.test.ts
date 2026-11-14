@@ -5,6 +5,7 @@ import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, FileSystem, HashSet, Order, Path } from "effect";
 
@@ -52,7 +53,7 @@ layer(NodeServices.layer)("material registry", (it) => {
         );
         const authoredPaths = Arr.sort(
           Arr.filter(lessonPaths, (sourcePath) =>
-            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
+            Arr.some(APP_LOCALE_CODES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
           ),
@@ -63,7 +64,6 @@ layer(NodeServices.layer)("material registry", (it) => {
           Order.String
         );
 
-        expect(entries).toHaveLength(1149);
         expect(
           HashSet.size(
             HashSet.fromIterable(
@@ -76,7 +76,6 @@ layer(NodeServices.layer)("material registry", (it) => {
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
           ).toHaveLength(383);
         }
-        expect(HashSet.size(HashSet.fromIterable(projectedPaths))).toBe(1149);
         expect(projectedPaths).toEqual(authoredPaths);
 
         const representativeKeys = HashSet.fromIterable<string>([
@@ -97,18 +96,23 @@ layer(NodeServices.layer)("material registry", (it) => {
           "faecher/ki-und-data-science/ki-programmierung/rechenoperatoren",
           "subjects/ai-ds/ai-programming/arithmetic-operator",
           "materi/ai-ds/pemrograman-ai/operator-aritmatika",
+          "subjek/ai-ds/pengaturcaraan-ai/operator-aritmetik",
           "faecher/biologie/vielfalt-der-lebewesen/bakterien",
           "subjects/biology/biodiversity/bacteria",
           "materi/biologi/keanekaragaman-makhluk-hidup/bakteri",
+          "subjek/biologi/biodiversiti/bakteria",
           "faecher/chemie/atombau/elektronenhuelle",
           "subjects/chemistry/structure-matter/atom-shell",
           "materi/kimia/struktur-atom/kulit-atom",
+          "subjek/kimia/struktur-atom/petala-atom",
           "faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktionsbegriff",
           "subjects/mathematics/function-composition-inverse-function/function-concept",
           "materi/matematika/fungsi-komposisi-dan-fungsi-invers/konsep-fungsi",
+          "subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/konsep-fungsi",
           "faecher/physik/kinematik/beschleunigung",
           "subjects/physics/kinematics/acceleration",
           "materi/fisika/kinematika/percepatan",
+          "subjek/fizik/kinematik/pecutan",
         ]);
       })
   );

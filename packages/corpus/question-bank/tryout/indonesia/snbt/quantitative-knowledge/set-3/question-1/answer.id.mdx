@@ -1,19 +1,37 @@
-Bilangan satu angka, dua angka, dan tiga angka menyumbang jumlah angka yang berbeda. Jadi **kelompokkan bilangan menurut banyak angkanya**, lalu hitung banyak bilangan di setiap kelompok dengan teliti.
+Angka satuan sebuah jumlah **hanya ditentukan oleh angka satuan setiap sukunya**. Jadi kamu cukup mencari angka satuan dari setiap <InlineMath math="d^{2024}" />, menjumlahkannya per kelompok <InlineMath math="10" /> bilangan berurutan, lalu menambahkan kelompok terakhir yang tidak penuh.
 
-# Menghitung per kelompok
+# Angka satuan pangkat kelipatan empat
 
-Banyak bilangan bulat dari <InlineMath math="m" /> sampai <InlineMath math="n" /> adalah <InlineMath math="n-m+1" />, **bukan <InlineMath math="n-m" />**.
+Pangkatnya <InlineMath math="2024=4\cdot 506" />, jadi <InlineMath math="d^{2024}=\left(d^4\right)^{506}" />. Angka satuan dari <InlineMath math="d^4" /> selalu <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, atau <InlineMath math="6" />, dan bilangan yang angka satuannya salah satu dari empat angka itu tetap berangka satuan sama berapa pun pangkatnya. Karena itu, **angka satuan <InlineMath math="d^{2024}" /> sama dengan angka satuan <InlineMath math="d^4" />**.
 
-| Kelompok | Banyak bilangan | Angka per bilangan | Banyak angka |
-| :---: | :---: | :---: | :---: |
-| 1 sampai 9 | <InlineMath math="9-1+1=9" /> | 1 | 9 |
-| 10 sampai 99 | <InlineMath math="99-10+1=90" /> | 2 | 180 |
-| 100 sampai 250 | <InlineMath math="250-100+1=151" /> | 3 | 453 |
+| Angka satuan <InlineMath math="d" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="0" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Angka satuan <InlineMath math="d^{2024}" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
 
-<BlockMath math="9+180+453=642" />
+Satu kelompok <InlineMath math="10" /> bilangan berurutan memuat setiap angka satuan tepat sekali, jadi sumbangan satu kelompok adalah
+
+<BlockMath math="1+6+1+6+5+6+1+6+1+0=33." />
+
+Perhatikan bahwa **pangkat kelipatan empat tidak mempertahankan angka satuan**, jadi jumlah satu kelompok bukan <InlineMath math="45" />.
+
+# Kelompok penuh dan sisa suku
+
+Bilangan <InlineMath math="1" /> sampai <InlineMath math="2040" /> membentuk <InlineMath math="204" /> kelompok penuh. Sisanya adalah **enam suku terakhir** <InlineMath math="2041" /> sampai <InlineMath math="2046" />, yang angka satuannya <InlineMath math="1" /> sampai <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+\text{kelompok penuh}&: 204\cdot 33=6{.}732\\
+\text{sisa suku}&: 1+6+1+6+5+6=25\\
+\text{jumlah}&: 6{.}732+25=6{.}757
+\end{aligned}" />
+
+Angka satuan dari <InlineMath math="6{.}757" /> adalah <InlineMath math="7" />, jadi angka satuan <InlineMath math="S" /> adalah <InlineMath math="7" />.
+
+# Memeriksa dengan sisa pembagian
+
+Coba periksa lewat dua sisa pembagian. Suku <InlineMath math="d^{2024}" /> ganjil tepat ketika <InlineMath math="d" /> ganjil, dan ada <InlineMath math="1{.}023" /> bilangan ganjil dari <InlineMath math="1" /> sampai <InlineMath math="2046" />, jadi <InlineMath math="S" /> ganjil. Dari tabel, setiap <InlineMath math="d" /> yang tidak habis dibagi <InlineMath math="5" /> memberi angka satuan <InlineMath math="1" /> atau <InlineMath math="6" />, yaitu **bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="5" />**. Ada <InlineMath math="2046-409=1{.}637" /> suku seperti itu, dan <InlineMath math="1{.}637" /> bersisa <InlineMath math="2" /> jika dibagi <InlineMath math="5" />. Angka satuan yang ganjil dan bersisa <InlineMath math="2" /> jika dibagi <InlineMath math="5" /> hanya <InlineMath math="7" />, cocok dengan hasil tadi.
 
 # Memeriksa pilihan lain
 
-Nilai 639 menghitung 150 bilangan tiga angka, dan nilai 640 menghitung 89 bilangan dua angka. Keduanya memakai <InlineMath math="n-m" />, sedangkan nilai 637 melakukan kedua kesalahan itu sekaligus. Nilai 750 menganggap semua bilangan **memiliki tiga angka**.
+Pilihan <InlineMath math="2" /> muncul kalau **enam suku terakhir lupa ditambahkan**, sehingga hanya <InlineMath math="204\cdot 33=6{.}732" /> yang dihitung. Pilihan <InlineMath math="5" /> muncul dari jalan pintas "satu kelompok berjumlah <InlineMath math="45" />", padahal jalan pintas itu hanya berlaku untuk pangkat yang bukan kelipatan empat. Pilihan <InlineMath math="6" /> muncul kalau <InlineMath math="d^{2024}" /> dianggap selalu berangka satuan <InlineMath math="1" /> seperti <InlineMath math="d^0" />, sehingga jumlahnya <InlineMath math="2046" />. Pilihan <InlineMath math="1" /> muncul kalau <InlineMath math="d^{2024}" /> dianggap berangka satuan sama dengan <InlineMath math="d" />, sehingga yang dihitung adalah <InlineMath math="1+2+\cdots+2046=2{.}094{.}081" />.
 
-Jadi, banyak angka yang ditulis adalah **642**.
+Jadi, angka satuan dari <InlineMath math="S" /> adalah <InlineMath math="7" />.

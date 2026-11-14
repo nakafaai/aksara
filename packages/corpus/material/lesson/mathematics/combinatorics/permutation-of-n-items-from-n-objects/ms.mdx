@@ -1,0 +1,236 @@
+export const metadata = {
+   title: "Pilih Atur Semua Objek",
+   description: "Kira susunan yang menggunakan setiap objek dengan rumus faktorial, kemudian gunakan rumus itu dalam contoh berserta jalan kerja dan latihan.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Kombinatorik",
+};
+
+## Memberi Setiap Objek Satu Tempat dalam Susunan
+
+**Pilih atur semua objek** menyusun kesemua <InlineMath math="n" /> objek berbeza yang ada, <Highlight>menggunakan setiap objek tepat sekali</Highlight>, dan menganggap tertib yang berbeza sebagai susunan yang berbeza.
+
+Lima orang murid sedang beratur untuk bergambar. Setiap seorang daripada mereka mendapat satu kedudukan, dan setiap tertib yang berbeza dikira sebagai susunan yang berbeza.
+
+## Rumus Pilih Atur Lengkap
+
+Ambil <InlineMath math="r=n" /> dalam rumus am pilih atur:
+
+<MathContainer>
+<BlockMath math="nP_n = \frac{n!}{(n-n)!} = \frac{n!}{0!}" />
+</MathContainer>
+
+Oleh sebab semua objek digunakan:
+- <InlineMath math="(n-n) = 0" />, jadi penyebutnya menjadi <InlineMath math="0!" />
+- Mengikut takrif matematik, <InlineMath math="0! = 1" />
+- Oleh itu: <InlineMath math="\frac{n!}{0!} = \frac{n!}{1} = n!" />
+
+Oleh sebab <InlineMath math="0!=1" />, rumus pilih atur lengkap ialah:
+
+<MathContainer>
+<BlockMath math="nP_n = n!" />
+</MathContainer>
+
+Untuk tiga objek berbeza A, B dan C, selepas kedudukan pertama ditetapkan, objek yang selebihnya boleh disusun dalam dua tertib. Jadual ini menyenaraikan **setiap tertib tepat sekali**.
+
+| Objek pertama | Susunan lengkap |
+| --- | --- |
+| A | ABC, ACB |
+| B | BAC, BCA |
+| C | CAB, CBA |
+
+<BlockMath math="3!=3\times2\times1=6" />
+
+## Takrif Faktorial
+
+Faktorial <InlineMath math="n!" /> ialah hasil darab integer positif daripada <InlineMath math="n" /> turun hingga <InlineMath math="1" />:
+
+<MathContainer>
+<BlockMath math="n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1" />
+</MathContainer>
+
+**Mengikut takrif**:
+- <InlineMath math="0! = 1" /> (mengikut takrif matematik)
+- <InlineMath math="1! = 1" />
+
+Nilai faktorial naik dengan sangat cepat. Palang-palang ini menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="7" />: <InlineMath math="1, 2, 6, 24, 120, 720, 5040" />. Setiap palang ialah palang sebelumnya didarab dengan nombor bulat yang seterusnya, kerana satu objek tambahan memberi satu lagi pilihan untuk tempat pertama.
+
+<BarChart
+  title={<>Betapa cepat faktorial bertambah</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="n!" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="7" />.</>}
+  yAxisLabel="Bilangan tertib"
+  data={Array.from({ length: 7 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: Array.from({ length: n }, (_, k) => k + 1).reduce((product, k) => product * k, 1) };
+  })}
+  chartConfig={{ value: { label: "Bilangan tertib", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Meletakkan Semua Objek pada Kedudukan yang Berbeza
+
+Setiap susunan di bawah memberi setiap objek **kedudukannya sendiri**, jadi tiada objek yang tertinggal dan tiada yang berulang. Kiraan bermula dengan bilangan objek, kemudian setiap langkah mendarab dengan bilangan pilihan yang kurang satu.
+### Organisasi Sekolah
+
+Katakan ada <InlineMath math="4 \text{ murid}" /> yang akan mengisi <InlineMath math="4" /> jawatan dalam jawatankuasa murid: presiden, naib presiden, setiausaha dan bendahari. Setiap murid hanya boleh memegang **satu jawatan**.
+
+Bilangan cara untuk menyusun barisan kepimpinan itu ialah:
+
+<MathContainer>
+<BlockMath math="4P_4 = 4! = 4 \times 3 \times 2 \times 1 = 24 \text{ cara}" />
+</MathContainer>
+### Susunan Tempat Duduk
+
+Sebuah keluarga yang terdiri daripada <InlineMath math="6" /> orang ahli akan **duduk sebaris** di atas sofa untuk gambar keluarga. Bilangan cara mereka boleh disusun ialah:
+
+<MathContainer>
+<BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ cara}" />
+</MathContainer>
+
+Berikut ialah semua tertib bagi tiga objek <InlineMath math="A" />, <InlineMath math="B" /> dan <InlineMath math="C" />, satu tertib bagi setiap baris. Tempat pertama ada <InlineMath math="3" /> pilihan, tempat kedua ada <InlineMath math="2" /> dan tempat terakhir ada <InlineMath math="1" />, jadi ada tepat <InlineMath math="3! = 6" /> baris dan tiada tertib yang muncul dua kali.
+
+<MathVisual
+  title={<>Kesemua enam tertib bagi A, B dan C</>}
+  description={<>Enam baris, setiap satu ialah tertib A, B dan C yang berbeza: <InlineMath math="3! = 3 \cdot 2 \cdot 1 = 6" />.</>}
+  labels={{
+    o00: <InlineMath math="A" />,
+    o01: <InlineMath math="B" />,
+    o02: <InlineMath math="C" />,
+    o10: <InlineMath math="A" />,
+    o11: <InlineMath math="C" />,
+    o12: <InlineMath math="B" />,
+    o20: <InlineMath math="B" />,
+    o21: <InlineMath math="A" />,
+    o22: <InlineMath math="C" />,
+    o30: <InlineMath math="B" />,
+    o31: <InlineMath math="C" />,
+    o32: <InlineMath math="A" />,
+    o40: <InlineMath math="C" />,
+    o41: <InlineMath math="A" />,
+    o42: <InlineMath math="B" />,
+    o50: <InlineMath math="C" />,
+    o51: <InlineMath math="B" />,
+    o52: <InlineMath math="A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 3.8 }, y: { min: 0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "o00", kind: "point", at: { x: 1, y: 6 }, appearance: "primary" },
+      { id: "o01", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "o02", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+      { id: "o10", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "o11", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o12", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "o20", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "o21", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "o22", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o30", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "o31", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "o32", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "o40", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "o41", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "o42", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "o50", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "o51", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "o52", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "o00", objectId: "o00", at: { x: 1, y: 6 }, placement: "right" },
+      { key: "o01", objectId: "o01", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "o02", objectId: "o02", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "o10", objectId: "o10", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "o11", objectId: "o11", at: { x: 2, y: 5 }, placement: "right" },
+      { key: "o12", objectId: "o12", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "o20", objectId: "o20", at: { x: 1, y: 4 }, placement: "right" },
+      { key: "o21", objectId: "o21", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "o22", objectId: "o22", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "o30", objectId: "o30", at: { x: 1, y: 3 }, placement: "right" },
+      { key: "o31", objectId: "o31", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "o32", objectId: "o32", at: { x: 3, y: 3 }, placement: "right" },
+      { key: "o40", objectId: "o40", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "o41", objectId: "o41", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "o42", objectId: "o42", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "o50", objectId: "o50", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "o51", objectId: "o51", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "o52", objectId: "o52", at: { x: 3, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Mengira Pilih Atur Lengkap
+
+Untuk pilih atur lengkap bagi <InlineMath math="n" /> objek:
+
+1. **Kira objek**: Pastikan setiap objek digunakan
+2. **Tulis rumus**: Gunakan <InlineMath math="n!" />
+3. **Kembangkan faktorial**: Darab daripada <InlineMath math="n" /> turun hingga <InlineMath math="1" />
+4. **Semak pengiraan**: Kira semula hasil darabnya
+
+### Mengembangkan Lima Faktorial
+
+Kembangkan <InlineMath math="5!" /> **faktor demi faktor**:
+
+<BlockMath math="\begin{aligned}5! &amp;=5\times4\times3\times2\times1\\ &amp;=20\times3\times2\times1\\ &amp;=60\times2\times1\\ &amp;=120\times1=120\end{aligned}" />
+## Pilih Atur Lengkap dan Separa
+
+**Pilih atur lengkap (<InlineMath math="n" /> daripada <InlineMath math="n" /> objek)**: Menggunakan semua objek yang ada.
+**Pilih atur separa (<InlineMath math="r" /> daripada <InlineMath math="n" /> objek)**: Hanya menggunakan sebahagian objek.
+
+**Untuk lima buah buku**:
+- Pilih atur lengkap: Menyusun <InlineMath math="5 \text{ buku}" /> pada <InlineMath math="5 \text{ kedudukan}" /> di atas rak boleh dibuat dalam <InlineMath math="5! = 120 \text{ cara}" />
+- Pilih atur separa: Memilih dan menyusun <InlineMath math="3 \text{ buku}" /> daripada <InlineMath math="5 \text{ buku yang ada}" /> boleh dibuat dalam <InlineMath math="5P_3 = 60 \text{ cara}" />
+
+**Pengiraan terperinci bagi pilih atur separa**:
+
+<BlockMath math="\begin{aligned}5P_3 &amp;=\frac{5!}{(5-3)!}=\frac{5!}{2!}\\ &amp;=\frac{5\times4\times3\times2\times1}{2\times1}\\ &amp;=\frac{120}{2}=60\text{ cara}\end{aligned}" />
+
+Dalam pilih atur <InlineMath math="n" /> objek daripada <InlineMath math="n" /> objek, **tiada objek yang berbaki** dan **semua kedudukan mesti diisi**.
+
+Jika kamu menyusun hanya <InlineMath math="r" /> daripada <InlineMath math="5" /> objek, hasil darabnya berhenti lebih awal: <InlineMath math="5, 20, 60, 120, 120" /> untuk <InlineMath math="r = 1" /> hingga <InlineMath math="5" />. Dua palang terakhir sama tinggi kerana tempat terakhir hanya ada satu objek yang tinggal, jadi <InlineMath math="{}_5P_4 = {}_5P_5 = 5!" />.
+
+<BarChart
+  title={<>Pilih atur separa dan lengkap bagi lima objek</>}
+  description={<>Palang <InlineMath math="r" /> menunjukkan bilangan susunan bertertib bagi <InlineMath math="r" /> daripada <InlineMath math="5" /> objek.</>}
+  yAxisLabel="Bilangan susunan"
+  data={[["1", 5], ["2", 5 * 4], ["3", 5 * 4 * 3], ["4", 5 * 4 * 3 * 2], ["5", 5 * 4 * 3 * 2 * 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Bilangan susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Keempat-empat soalan ini menyusun **setiap objek** dalam satu barisan dan bertanya bilangan tertib, jadi setiap soalan menggunakan kiraan faktorial yang sama.
+
+1. Satu pasukan jurugambar mahu menyusun <InlineMath math="7 \text{ model}" /> dalam satu barisan untuk sesi fotografi. Berapakah bilangan cara yang berbeza untuk mereka menyusun ketujuh-tujuh model itu?
+
+2. Dalam satu pertandingan larian, ada <InlineMath math="5 \text{ peserta}" /> yang semuanya tamat tanpa kedudukan seri. Berapakah bilangan kemungkinan tertib tamat yang berbeza?
+
+3. Seorang cef mahu menyusun <InlineMath math="6" /> jenis makanan yang berbeza di atas meja dalam satu garis lurus. Berapakah bilangan cara yang berbeza untuk dia menyusun makanan itu?
+
+4. Sebuah perpustakaan ada <InlineMath math="8 \text{ buku berbeza}" /> yang akan disusun pada satu rak. Jika semua buku mesti diletakkan pada rak itu, berapakah bilangan susunan yang mungkin?
+### Kunci Jawapan
+
+1. Diberi: <InlineMath math="7 \text{ model}" /> akan disusun dalam satu barisan (**semua model digunakan**)
+
+   <MathContainer>
+   <BlockMath math="7P_7 = 7! = 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 5040 \text{ cara}" />
+   </MathContainer>
+
+2. Diberi: <InlineMath math="5 \text{ peserta larian}" /> dengan tertib tamat yang berbeza (semua peserta tamat)
+
+   <MathContainer>
+   <BlockMath math="5P_5 = 5! = 5 \times 4 \times 3 \times 2 \times 1 = 120 \text{ tertib yang mungkin}" />
+   </MathContainer>
+
+3. Diberi: <InlineMath math="6 \text{ jenis makanan}" /> akan disusun dalam satu garis lurus (semua makanan disusun)
+
+   <MathContainer>
+   <BlockMath math="6P_6 = 6! = 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 720 \text{ cara}" />
+   </MathContainer>
+
+4. Diberi: <InlineMath math="8 \text{ buku berbeza}" /> akan disusun pada satu rak (semua buku disusun)
+
+   <MathContainer>
+   <BlockMath math="8P_8 = 8! = 8 \times 7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1 = 40320 \text{ cara}" />
+   </MathContainer>

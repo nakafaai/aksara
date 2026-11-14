@@ -1,21 +1,34 @@
-Hubungan linear antara angka yang ditunjukkan <InlineMath math="R" /> dan suhu sebenarnya <InlineMath math="C" /> ditentukan oleh **dua pasangan data yang diketahui**, seperti rumus Fahrenheit ditentukan oleh titik beku dan titik didih.
+Kamu mencari saat tinggi muka air turun melewati <InlineMath math="300\text{ cm}" /> setelah sempat berada di atasnya. Rencananya: ikuti tinggi muka air jam demi jam dengan hujan yang tiba <InlineMath math="2" /> jam kemudian, perhatikan **pintu air yang masih terbuka saat air turun**, lalu hitung menit tepatnya.
 
-# Menentukan rumus termometer
+# Sampai puncak
 
-Dari 0 °C ke 100 °C, angka termometer naik dari <InlineMath math="-4" /> ke 86, yaitu naik 90. Jadi **setiap 1 °C menaikkan angka 0,9**.
+Air mencapai <InlineMath math="250\text{ cm}" /> pukul 08.40, sehingga **pintu air terbuka** dan setiap perubahan berkurang <InlineMath math="30\text{ cm}" /> per jam. Tinggi muka air pukul 09.00 adalah <InlineMath math="260\text{ cm}" />, lalu naik <InlineMath math="90-30=60\text{ cm}" /> menjadi <InlineMath math="320\text{ cm}" /> pukul 10.00, dan naik <InlineMath math="50-30=20\text{ cm}" /> menjadi <InlineMath math="340\text{ cm}" /> pukul 11.00.
 
-<BlockMath math="R=0{,}9C-4" />
+# Turun walaupun hujan masih tiba
 
-# Mencari suhu sebenarnya
+**Pintu air tetap terbuka selama air <InlineMath math="250\text{ cm}" /> atau lebih**, termasuk saat air sedang turun. Jadi, pengurangan <InlineMath math="30\text{ cm}" /> tetap berlaku.
 
-<BlockMath math="\begin{aligned}
-0{,}9C-4&=32\\
-0{,}9C&=36\\
-C&=40
-\end{aligned}" />
+| Jam di papan duga | Hujan yang tiba | Perubahan | Tinggi di akhir jam |
+| --- | --- | --- | --- |
+| 11.00-12.00 | <InlineMath math="20\text{ mm}" /> | <InlineMath math="20-30=-10" /> | <InlineMath math="330\text{ cm}" /> |
+| 12.00-13.00 | <InlineMath math="15\text{ mm}" /> | <InlineMath math="10-30=-20" /> | <InlineMath math="310\text{ cm}" /> |
+| 13.00-14.00 | <InlineMath math="5\text{ mm}" /> | <InlineMath math="-10-30=-40" /> | <InlineMath math="270\text{ cm}" /> |
 
-Pemeriksaan: <InlineMath math="0{,}9\cdot40-4=32" />. Termometer itu **menunjukkan angka lebih rendah** daripada suhu sebenarnya pada suhu ini.
+Pukul 13.00 air masih <InlineMath math="310\text{ cm}" />, jadi status masih Awas. **Status berubah di tengah jam 13.00 sampai 14.00**.
 
-Nilai 32 °C menganggap angka termometer benar. Nilai 36 °C hanya memperbaiki selisih 4 tanpa memperbaiki faktor 0,9.
+# Menit tepatnya
 
-Jadi, suhu sebenarnya adalah **40 °C**.
+Dari <InlineMath math="310\text{ cm}" />, air turun <InlineMath math="40\text{ cm}" /> per jam.
+
+<BlockMath math="\frac{310-300}{40}\text{ jam}=\frac14\text{ jam}=15\text{ menit}" />
+
+Air menyentuh <InlineMath math="300\text{ cm}" /> pukul 13.15 dan sesudahnya berada di bawah <InlineMath math="300\text{ cm}" />. Pukul 14.00 airnya <InlineMath math="270\text{ cm}" />, masih di atas <InlineMath math="250\text{ cm}" />, jadi **statusnya memang Siaga**, bukan Waspada.
+
+# Pilihan yang keliru
+
+- Pukul 11.20 muncul kalau hujan dianggap tiba <InlineMath math="1" /> jam kemudian, sehingga setiap jam papan duga memakai hujan yang salah.
+- Pukul 13.25 muncul kalau <InlineMath math="\frac14" /> jam, yaitu <InlineMath math="0{,}25" /> jam, dibaca sebagai <InlineMath math="25" /> menit.
+- Pukul 14.00 muncul kalau **pintu air lupa diperhitungkan** pada pukul 13.00 sampai 14.00, sehingga air hanya turun <InlineMath math="10\text{ cm}" /> menjadi <InlineMath math="300\text{ cm}" />.
+- Sesudah pukul 14.00 muncul kalau pintu air dianggap menutup begitu air berhenti naik. Tanpa pengurangan sesudah pukul 11.00, air menjadi <InlineMath math="360\text{ cm}" /> pukul 14.00.
+
+Jadi, status sungai berubah dari Awas menjadi Siaga pukul 13.15.

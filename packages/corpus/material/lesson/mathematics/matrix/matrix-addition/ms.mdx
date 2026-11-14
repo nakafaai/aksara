@@ -1,0 +1,323 @@
+export const metadata = {
+  title: "Penambahan Matriks",
+  description: "Tambah matriks yang sama peringkat dan sahkan sifat kalis tukar tertib dan kalis sekutuan melalui soalan yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Menambah Unsur pada Kedudukan yang Sepadan
+
+Penambahan matriks <Highlight>menggabungkan unsur pada kedudukan yang sama</Highlight>. Penambahan ini hanya tertakrif untuk matriks yang bilangan baris dan lajurnya sama.
+
+Hasil penambahan ialah matriks baharu yang sama peringkat, dengan setiap unsurnya ialah hasil tambah unsur-unsur sepadan (unsur pada kedudukan yang sama) daripada matriks asal.
+
+## Takrif Formal Penambahan Matriks
+
+Dua matriks, katakan matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, boleh ditambah jika dan hanya jika kedua-dua matriks itu ada **peringkat yang sama**.
+
+Katakan matriks <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" /> dengan unsur <InlineMath math="a_{ij}" /> (unsur pada baris ke-<InlineMath math="i" /> dan lajur ke-<InlineMath math="j" />), dan matriks <InlineMath math="B" /> juga berperingkat <InlineMath math="m \times n" /> dengan unsur <InlineMath math="b_{ij}" />.
+
+Namakan matriks hasil tambahnya <InlineMath math="C" /> dan tulis <InlineMath math="C = A + B" />. Matriks <InlineMath math="C" /> juga berperingkat <InlineMath math="m \times n" />, dengan unsur <InlineMath math="c_{ij}" /> yang ditakrifkan oleh:
+
+<BlockMath math="c_{ij} = a_{ij} + b_{ij}" />
+
+Bagi setiap kedudukan, rumus ini menambah unsur daripada <InlineMath math="A" /> kepada unsur sepadan daripada <InlineMath math="B" />.
+
+Dalam simbol, <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{m\times n}" /> memberikan <InlineMath math="A+B\in\mathbb{R}^{m\times n}" />. Jadi setiap unsur output <InlineMath math="c_{ij}" /> ada satu unsur input yang sepadan dalam setiap matriks.
+## Cara Melakukan Penambahan Matriks
+
+Untuk menambah dua matriks, ikut langkah berikut:
+
+1.  **Pastikan Peringkat Sama**: Semak sama ada kedua-dua matriks ada bilangan baris dan lajur yang sama. Kalau tidak, penambahan tidak boleh dilakukan.
+2.  **Tambah Unsur Sepadan**: Tambah unsur-unsur yang berada pada kedudukan baris dan lajur yang sama dalam kedua-dua matriks.
+3.  **Bentuk Matriks Hasil**: Susun hasil tambah unsur-unsur itu menjadi matriks baharu yang sama peringkat.
+
+### Contoh Penambahan Matriks
+
+Katakan kita ada dua matriks, <InlineMath math="P" /> dan <InlineMath math="Q" />, seperti berikut:
+
+<MathContainer>
+  <BlockMath math="P = \begin{bmatrix} 1 & 5 \\ -2 & 0 \\ 4 & 7 \end{bmatrix}" />
+  <BlockMath math="Q = \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
+</MathContainer>
+
+Kedua-dua matriks berperingkat <InlineMath math="3 \times 2" /> (<InlineMath math="3" /> baris dan <InlineMath math="2" /> lajur), jadi kedua-duanya **boleh ditambah**.
+
+Kemudian, <InlineMath math="P+Q" /> ialah:
+
+<MathContainer>
+  <BlockMath math="P+Q = \begin{bmatrix} 1 & 5 \\ -2 & 0 \\ 4 & 7 \end{bmatrix} + \begin{bmatrix} 6 & -3 \\ 8 & 1 \\ -2 & 9 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1+6 & 5+(-3) \\ -2+8 & 0+1 \\ 4+(-2) & 7+9 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 7 & 2 \\ 6 & 1 \\ 2 & 16 \end{bmatrix}" />
+</MathContainer>
+
+Matriks di atas ialah hasil tambah <InlineMath math="P+Q" />.
+
+Kamu boleh lihat penambahan ini berlaku. Baca setiap baris <InlineMath math="P" /> sebagai satu titik <InlineMath math="(x, y)" />, jadi <InlineMath math="P" /> ialah sebuah segi tiga. Menambah <InlineMath math="Q" /> menggerakkan setiap bucu mengikut baris <InlineMath math="Q" /> yang sepadan: bucu <InlineMath math="(1, 5)" /> bergerak sebanyak <InlineMath math="(6, -3)" /> dan tiba di <InlineMath math="(7, 2)" />, iaitu baris pertama <InlineMath math="P+Q" />. Setiap bucu bergerak mengikut barisnya sendiri, dan itulah maksud menambah unsur pada kedudukan yang sepadan.
+
+<MathVisual
+  title={<>Menambah <InlineMath math="Q" /> menggerakkan setiap baris <InlineMath math="P" /></>}
+  description={<>Setiap baris <InlineMath math="P" /> ialah bucu sebuah segi tiga. Baris <InlineMath math="Q" /> yang sepadan menggerakkan bucu itu ke baris <InlineMath math="P+Q" /> yang sepadan.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    sum: <InlineMath math="P + Q" />,
+    q1: <InlineMath math="+(6, -3)" />,
+    q2: <InlineMath math="+(8, 1)" />,
+    q3: <InlineMath math="+(-2, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 8 }, y: { min: -1, max: 17 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "p", kind: "polygon", vertices: [{ x: 1, y: 5 }, { x: -2, y: 0 }, { x: 4, y: 7 }], appearance: "primary" },
+      { id: "sum", kind: "polygon", vertices: [{ x: 7, y: 2 }, { x: 6, y: 1 }, { x: 2, y: 16 }], appearance: "secondary" },
+      { id: "q1", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "q2", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "q3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 16 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -2, y: 0 }, placement: "left" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 16 }, placement: "left" },
+      { key: "q1", objectId: "q1", at: { x: 4, y: 3.5 }, placement: "below-left" },
+      { key: "q2", objectId: "q2", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "q3", objectId: "q3", at: { x: 3, y: 11.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+Tertib dua matriks itu tidak penting. Mulakan di asalan dan langkah mengikut baris <InlineMath math="1" /> bagi <InlineMath math="P" />, <InlineMath math="(1, 5)" />, kemudian mengikut baris <InlineMath math="1" /> bagi <InlineMath math="Q" />, <InlineMath math="(6, -3)" />. Atau ambil dua langkah itu dalam tertib yang terbalik. Kedua-dua laluan berakhir di <InlineMath math="(7, 2)" />, dan segi empat selari itulah sebabnya <InlineMath math="P+Q=Q+P" />.
+
+<MathVisual
+  title={<>Dua laluan ke baris <InlineMath math="1" /> bagi <InlineMath math="P+Q" /></>}
+  description={<>Melangkah sebanyak <InlineMath math="(1, 5)" /> kemudian <InlineMath math="(6, -3)" />, atau dalam tertib yang terbalik, berakhir di titik yang sama, <InlineMath math="(7, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    q: <InlineMath math="(6, -3)" />,
+    sum: <InlineMath math="(7, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "q", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: -3 }, appearance: "secondary" },
+      { id: "pq", kind: "segment", from: { x: 1, y: 5 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "qp", kind: "segment", from: { x: 6, y: -3 }, to: { x: 7, y: 2 }, appearance: "construction" },
+      { id: "sum", kind: "point", at: { x: 7, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "q", objectId: "q", at: { x: 6, y: -3 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Dua matriks khas melengkapkan gambaran ini. Menambah matriks sifar <InlineMath math="O" /> tidak menggerakkan mana-mana titik, jadi <InlineMath math="P + O = P" />. Menambah <InlineMath math="-P" /> menghantar setiap baris ke asalan: baris <InlineMath math="1" />, <InlineMath math="(1, 5)" />, ditambah <InlineMath math="(-1, -5)" /> ialah <InlineMath math="(0, 0)" />, jadi <InlineMath math="P + (-P) = O" />.
+
+<MathVisual
+  title={<>Matriks sifar dan matriks bertentangan</>}
+  description={<>Baris <InlineMath math="1" /> bagi <InlineMath math="P" /> pada <InlineMath math="(1, 5)" />, lawannya pada <InlineMath math="(-1, -5)" />, dan hasil tambahnya pada asalan.</>}
+  labels={{
+    p: <InlineMath math="(1, 5)" />,
+    n: <InlineMath math="(-1, -5)" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "link", kind: "segment", from: { x: 1, y: 5 }, to: { x: -1, y: -5 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 5 }, appearance: "primary" },
+      { id: "n", kind: "point", at: { x: -1, y: -5 }, appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "n", objectId: "n", at: { x: -1, y: -5 }, placement: "left" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Matriks yang Tidak Boleh Ditambah
+
+Dua matriks ini ada **peringkat yang berbeza**:
+
+<MathContainer>
+  <BlockMath math="X = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}" />
+  <BlockMath math="Y = \begin{bmatrix} 5 & 6 & 7 \\ 8 & 9 & 10 \end{bmatrix}" />
+</MathContainer>
+
+Matriks <InlineMath math="X" /> berperingkat <InlineMath math="2 \times 2" />, manakala matriks <InlineMath math="Y" /> berperingkat <InlineMath math="2 \times 3" />. Bilangan lajurnya berbeza, jadi <InlineMath math="X+Y" /> tidak tertakrif.
+## Sifat-sifat Penambahan Matriks
+
+Penambahan matriks mengikut hukum asas yang sama seperti penambahan nombor nyata. Biar <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> sama peringkat, dan biar <InlineMath math="O" /> ialah matriks sifar dengan peringkat itu.
+
+Setiap peraturan boleh disemak melalui **unsur sepadan**, kerana penambahan matriks berlaku secara berasingan pada setiap kedudukan.
+
+### Sifat Kalis Tukar Tertib
+
+**Tertib penambahan matriks** tidak mempengaruhi hasilnya.
+
+<BlockMath math="A + B = B + A" />
+
+Menambah matriks <InlineMath math="A" /> kepada <InlineMath math="B" /> menghasilkan matriks yang sama seperti menambah matriks <InlineMath math="B" /> kepada <InlineMath math="A" />.
+### Sifat Kalis Sekutuan
+
+**Kumpulan** dalam penambahan tiga atau lebih matriks tidak mempengaruhi hasilnya.
+
+<BlockMath math="(A + B) + C = A + (B + C)" />
+
+Kamu boleh tambah <InlineMath math="A" /> dan <InlineMath math="B" /> dahulu,
+kemudian tambah hasilnya kepada <InlineMath math="C" />, atau
+tambah <InlineMath math="B" /> dan <InlineMath math="C" /> dahulu,
+kemudian tambah <InlineMath math="A" /> kepada hasilnya. Hasil
+akhirnya tetap sama.
+### Kewujudan Unsur Identiti
+
+**Matriks sifar** <InlineMath math="O" /> ialah unsur identiti bagi penambahan.
+
+<BlockMath math="A + O = O + A = A" />
+
+Menambah matriks sifar tidak mengubah <InlineMath math="A" />.
+
+Matriks sifar ini memainkan peranan yang serupa dengan nombor <InlineMath math="0" /> dalam penambahan nombor.
+### Kewujudan Songsangan Tambah
+
+Setiap matriks <InlineMath math="A" /> ada **songsangan tambah**, ditanda <InlineMath math="-A" />, yang apabila ditambah kepada <InlineMath math="A" /> menghasilkan matriks sifar <InlineMath math="O" />.
+
+<BlockMath math="A + (-A) = O" />
+
+Matriks <InlineMath math="-A" /> ialah matriks yang setiap unsurnya ialah
+lawan (negatif) bagi unsur sepadan dalam matriks <InlineMath math="A" />.
+
+Contohnya, kalau <InlineMath math="a_{ij}" /> ialah unsur <InlineMath math="A" />, maka <InlineMath math="-a_{ij}" /> ialah unsur <InlineMath math="-A" />.
+## Latihan
+
+**Soalan 1**
+
+Diberi matriks-matriks berikut:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Hitung <InlineMath math="A+B" /> dan <InlineMath math="B+A" />. Kemudian, tentukan sama ada <InlineMath math="A+C" /> boleh dihitung dan berikan penjelasan kamu.
+
+**Soalan 2**
+
+Tentukan nilai <InlineMath math="x, y," /> dan <InlineMath math="z" /> daripada penambahan matriks berikut:
+
+<BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+
+**Soalan 3**
+
+Bagi matriks di bawah, tentukan <InlineMath math="-P" /> (**songsangan tambah** bagi <InlineMath math="P" />) dan buktikan bahawa <InlineMath math="P + (-P) = O" />. Di sini, <InlineMath math="O" /> ialah **matriks sifar dengan peringkat yang sama**.
+
+<BlockMath math="P = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix}" />
+
+### Penyelesaian
+
+**Soalan 1**
+
+Diberi matriks:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} 3 & -1 & 7 \\ 0 & 5 & 2 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} -2 & 9 & -4 \\ 6 & -3 & 1 \end{bmatrix}" />
+  <BlockMath math="C = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Penambahan matriks <InlineMath math="A" /> dan <InlineMath math="B" /> (<InlineMath math="A+B" />):
+
+<BlockMath math="\begin{aligned} A +B &amp;= \begin{bmatrix} 3 &amp; -1 &amp; 7 \\ 0 &amp; 5 &amp; 2 \end{bmatrix} \\ &amp;\quad{}+ \begin{bmatrix} -2 &amp; 9 &amp; -4 \\ 6 &amp; -3 &amp; 1 \end{bmatrix} \end{aligned}" />
+Menambah unsur negatif bermaksud menolak lawannya, jadi hasil tambah sepadannya menjadi:
+
+<MathContainer>
+  <BlockMath math="=\begin{bmatrix}3-2&amp;-1+9&amp;7-4\\0+6&amp;5-3&amp;2+1\end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Penambahan matriks <InlineMath math="B" /> dan <InlineMath math="A" /> (<InlineMath math="B+A" />):
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} B +A &amp;= \begin{bmatrix} -2 &amp; 9 &amp; -4 \\ 6 &amp; -3 &amp; 1 \end{bmatrix} \\ &amp;\quad{}+ \begin{bmatrix} 3 &amp; -1 &amp; 7 \\ 0 &amp; 5 &amp; 2 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{bmatrix} -2+3 & 9+(-1) & -4+7 \\ 6+0 & -3+5 & 1+2 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1 & 8 & 3 \\ 6 & 2 & 3 \end{bmatrix}" />
+</MathContainer>
+
+Ini **mengesahkan satu contoh** sifat kalis tukar tertib: <InlineMath math="A+B = B+A" />. Secara am, setiap unsur memenuhi <InlineMath math="a_{ij}+b_{ij}=b_{ij}+a_{ij}" /> kerana penambahan nombor nyata bersifat kalis tukar tertib.
+
+Penambahan matriks <InlineMath math="A" /> dan <InlineMath math="C" /> (<InlineMath math="A+C" />):
+
+Tidak boleh dihitung. Matriks <InlineMath math="A" /> berperingkat <InlineMath math="2 \times 3" />, manakala matriks <InlineMath math="C" /> berperingkat <InlineMath math="2 \times 2" />. Oleh sebab peringkatnya berbeza, penambahan <InlineMath math="A+C" /> tidak boleh dilakukan.
+
+**Soalan 2**
+
+Diberi penambahan matriks:
+
+<BlockMath math="\begin{bmatrix} 2x & 5 \\ -1 & 3y \end{bmatrix} + \begin{bmatrix} 4 & -2 \\ z & 7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+
+Lakukan penambahan matriks di sebelah kiri:
+
+<MathContainer>
+  <BlockMath math="\begin{bmatrix} 2x+4 & 5+(-2) \\ -1+z & 3y+7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+  <BlockMath math="\begin{bmatrix} 2x+4 & 3 \\ -1+z & 3y+7 \end{bmatrix} = \begin{bmatrix} 10 & 3 \\ 6 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Berdasarkan kesamaan dua matriks, unsur-unsur sepadan mesti sama:
+
+Untuk unsur pada baris <InlineMath math="1" />, lajur <InlineMath math="1" />: <InlineMath math="2x+4 = 10" />
+
+<MathContainer>
+  <BlockMath math="2x = 10-4" />
+  <BlockMath math="2x = 6" />
+  <BlockMath math="x = 3" />
+</MathContainer>
+
+Untuk unsur pada baris <InlineMath math="1" />, lajur <InlineMath math="2" />: <InlineMath math="3 = 3" /> (sudah konsisten).
+
+Untuk unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="1" />: <InlineMath math="-1+z = 6" />
+
+<MathContainer>
+  <BlockMath math="z = 6+1" />
+  <BlockMath math="z = 7" />
+</MathContainer>
+
+Untuk unsur pada baris <InlineMath math="2" />, lajur <InlineMath math="2" />: <InlineMath math="3y+7 = 1" />
+
+<MathContainer>
+  <BlockMath math="3y = 1-7" />
+  <BlockMath math="3y = -6" />
+  <BlockMath math="y = -2" />
+</MathContainer>
+
+Nilainya ialah <InlineMath math="x=3" />, <InlineMath math="y=-2" />, dan <InlineMath math="z=7" />.
+
+**Soalan 3**
+
+Matriks yang diberi ialah:
+
+<BlockMath math="P = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix}" />
+
+Songsangan tambah bagi <InlineMath math="P" />, iaitu <InlineMath math="-P" />, ialah:
+
+<BlockMath math="-P = \begin{bmatrix} -1 & -(-2) \\ -3 & -0 \end{bmatrix} = \begin{bmatrix} -1 & 2 \\ -3 & 0 \end{bmatrix}" />
+
+Bukti bahawa <InlineMath math="P + (-P) = O" />:
+
+<MathContainer>
+  <BlockMath math="P + (-P) = \begin{bmatrix} 1 & -2 \\ 3 & 0 \end{bmatrix} + \begin{bmatrix} -1 & 2 \\ -3 & 0 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 1+(-1) & -2+2 \\ 3+(-3) & 0+0 \end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Hasilnya ialah matriks sifar <InlineMath math="O" /> berperingkat <InlineMath math="2 \times 2" />. Terbukti.

@@ -1,22 +1,42 @@
-Since <InlineMath math="55=5\times11" /> and 5 and 11 share no factor other than 1, the remainder of <InlineMath math="n^2+n" /> on division by 55 **is fixed by its remainders on division by 5 and by 11**. Compute both remainders, then combine them.
+You're looking for the <InlineMath math="500" />th number among the numbers that aren't divisible by <InlineMath math="4" />, <InlineMath math="6" />, or <InlineMath math="10" />. Listing <InlineMath math="500" /> numbers one by one takes too long. So find **the pattern that repeats** first, count what one round of the pattern holds, and then jump straight to the round that contains the number.
 
-# The remainder for each divisor
+# Finding the length of the pattern
 
-The remainder of an expression can be computed from the remainder of the number itself.
+Call a number that belongs to the list a chosen number. Whether a number is divisible by <InlineMath math="4" />, <InlineMath math="6" />, or <InlineMath math="10" /> depends only on its remainder when you divide it by the lcm of the three. The lcm (least common multiple) is the smallest positive number that all three divide.
+
+<BlockMath math="\operatorname{lcm}(4,6,10)=60" />
+
+So the numbers <InlineMath math="n" /> and <InlineMath math="n+60" /> are always both chosen or both not chosen. That means **the pattern of chosen numbers repeats every <InlineMath math="60" /> numbers**. Call each run of <InlineMath math="60" /> consecutive numbers a block.
+
+# Counting one block
+
+Let <InlineMath math="B" /> be how many numbers from <InlineMath math="1" /> to <InlineMath math="60" /> are divisible by at least one of <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="10" />. Count <InlineMath math="B" /> with inclusion-exclusion, the way to count a union of groups without counting a shared member twice. Add the multiples of each number, subtract the multiples of each pair, then add back the multiples of all three.
+
+A number divisible by two of them at once is **a multiple of the lcm of that pair**. All three divisors are even, so the lcm of a pair is smaller than its product.
 
 <BlockMath math="\begin{aligned}
-n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
-n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
+\operatorname{lcm}(4,6)&=12,\qquad \operatorname{lcm}(4,10)=20,\qquad \operatorname{lcm}(6,10)=30\\
+B&=\frac{60}{4}+\frac{60}{6}+\frac{60}{10}-\frac{60}{12}-\frac{60}{20}-\frac{60}{30}+\frac{60}{60}\\
+&=15+10+6-5-3-2+1\\
+&=22
 \end{aligned}" />
 
-So we need the number <InlineMath math="r" /> with <InlineMath math="0\le r<55" /> that **leaves 9 on division by 11 and 1 on division by 5**.
+Each block holds <InlineMath math="60-22=38" /> chosen numbers. In the first block, the first six chosen numbers are <InlineMath math="1, 2, 3, 5, 7, 9" />.
 
-# Combining the two remainders
+# Jumping to the right block
 
-The candidates for <InlineMath math="r" /> are 9, 20, 31, 42, and 53. Their remainders on division by 5 are 4, 0, 1, 2, and 3. **Only 31** leaves remainder 1, so <InlineMath math="r=31" />.
+Divide <InlineMath math="500" /> by what one block holds.
 
-Check with an actual number. The number <InlineMath math="n=37" /> satisfies both conditions, because <InlineMath math="37=7(5)+2" /> and <InlineMath math="37=3(11)+4" />. It gives <InlineMath math="37^2+37=1406=25(55)+31" />.
+<BlockMath math="500=13\times38+6" />
 
-The value 37 is the remainder of <InlineMath math="n" /> itself. The value 49 is the remainder of <InlineMath math="n^2" /> without the term <InlineMath math="n" />. The values 6 and 20 use only one condition each, namely <InlineMath math="2^2+2" /> and <InlineMath math="4^2+4" />, without combining them.
+So <InlineMath math="13" /> full blocks, the numbers <InlineMath math="1" /> to <InlineMath math="13\times60=780" />, already contain <InlineMath math="13\times38=494" /> chosen numbers. **The <InlineMath math="500" />th number is the <InlineMath math="6" />th chosen number in the next block**, the block from <InlineMath math="781" /> to <InlineMath math="840" />. Because the pattern repeats, that number is <InlineMath math="780+9=789" />.
 
-So the remainder when <InlineMath math="n^2+n" /> is divided by 55 is **31**.
+# Checking the result
+
+Check the numbers from <InlineMath math="781" /> to <InlineMath math="789" /> directly. The numbers <InlineMath math="784" /> and <InlineMath math="788" /> are divisible by <InlineMath math="4" />, and <InlineMath math="786" /> is divisible by <InlineMath math="6" />. The rest, <InlineMath math="781, 782, 783, 785, 787, 789" />, are **exactly six chosen numbers**, and the sixth one is <InlineMath math="789" />.
+
+# The wrong options
+
+The option <InlineMath math="769" /> comes from **forgetting to add back the multiples of <InlineMath math="60" />**, so a block seems to hold <InlineMath math="39" /> numbers and <InlineMath math="500=12\times39+32" /> points to <InlineMath math="720+49" />. The option <InlineMath math="729=12\times60+9" /> comes from looking in the <InlineMath math="13" />th block, when the <InlineMath math="13" /> full blocks already end at <InlineMath math="780" /> and the remainder falls in the <InlineMath math="14" />th block. The option <InlineMath math="907" /> comes from using the products <InlineMath math="24" />, <InlineMath math="40" />, <InlineMath math="60" />, and <InlineMath math="240" /> for the overlaps, so a block seems to hold <InlineMath math="33" /> numbers. The option <InlineMath math="1{,}031" /> comes from not subtracting the overlaps at all, so a block seems to hold <InlineMath math="60-31=29" /> numbers.
+
+So the <InlineMath math="500" />th number in the list is <InlineMath math="789" />.

@@ -1,28 +1,32 @@
-Berechne **die Endnote jeder Person** und prüfe dann alle drei Bedingungen. Bestanden hat nur, wer an keiner Bedingung scheitert. UTS und UAS sind die Zwischen- und Abschlussprüfung, *Kehadiran* ist die Anwesenheit.
+Gefragt ist, welche Option sicher wahr ist, wenn genau zwei der fünf Aussagen falsch sind. Statt Person für Person zu raten, suchst du zuerst **Paare von Aussagen, die aneinander gebunden sind**, denn diese Paare legen fest, wie viele Aussagen falsch sein können.
 
-<BlockMath math="\begin{aligned}
-\text{Ayu} &: 0{,}4(80)+0{,}6(50)=32+30=62 \\
-\text{Bagas} &: 0{,}4(90)+0{,}6(45)=36+27=63 \\
-\text{Citra} &: 0{,}4(55)+0{,}6(65)=22+39=61 \\
-\text{Dimas} &: 0{,}4(50)+0{,}6(66)=20+39{,}6=59{,}6 \\
-\text{Elsa} &: 0{,}4(70)+0{,}6(60)=28+36=64
-\end{aligned}" />
+Es gibt zwei solche Paare.
 
-| Person | Endnote mindestens 60 | Anwesenheit mindestens 75% | UAS mindestens 50 | Bestanden? |
-| --- | --- | --- | --- | --- |
-| Ayu | Ja | Ja | Ja, genau <InlineMath math="50" /> | Ja |
-| Bagas | Ja | Ja | Nein | Nein |
-| Citra | Ja | Nein | Ja | Nein |
-| Dimas | Nein | Ja | Ja | Nein |
-| Elsa | Ja | Ja, genau <InlineMath math="75\%" /> | Ja | Ja |
+- Yosef sagt, Ranis Aussage sei falsch. Yosefs Aussage ist also genau dann wahr, wenn Ranis falsch ist. Im Paar Rani und Yosef ist immer genau eine Aussage falsch.
+- Vina sagt, Putus Aussage sei wahr. Vinas und Putus Aussagen haben also immer denselben Wert: beide wahr oder beide falsch.
 
-Ayu und Elsa erfüllen Bedingungen genau an der Grenze. **Mindestens** heißt, dass ein Wert gleich der Grenze ausreicht.
+Jetzt zählst du. Genau zwei Aussagen sind falsch, und das Paar Rani und Yosef liefert schon eine. Unter Putu, Vina und Joko bleibt also genau eine falsche Aussage. Putu und Vina können nicht genau eine liefern, weil sie immer gemeinsam wahr oder gemeinsam falsch sind. Also sind Putu und Vina beide wahr, und Jokos Aussage ist die falsche.
 
-Die anderen Optionen entstehen, wenn eine Bedingung übersehen wird:
+Ist Jokos Aussage falsch, hat Vina den Schlüssel vergessen. Prüf die anderen mit Vina als Vergesslicher. Putu stimmt, denn vergessen hat Rani oder Vina. Rani stimmt auch, denn es war weder Rani noch Yosef. Dann ist Yosefs Aussage falsch, und die zwei falschen Aussagen gehören Yosef und Joko.
 
-- Bagas bestünde nur, wenn man die UAS-Bedingung übergeht, seine UAS beträgt aber <InlineMath math="45" />.
-- Citra bestünde nur ohne die Anwesenheitsbedingung, die Anwesenheit beträgt aber <InlineMath math="70\%" />.
-- Dimas bestünde nur, wenn man <InlineMath math="59{,}6" /> auf <InlineMath math="60" /> rundet, obwohl mindestens <InlineMath math="60" /> verlangt sind.
-- "Nur Elsa" entsteht, wenn man Ayus UAS von genau <InlineMath math="50" /> als nicht bestanden wertet.
+Die Tabelle prüft alle fünf Möglichkeiten auf einmal, damit du siehst, dass die Lösung eindeutig ist. W heißt, die Aussage ist wahr, und F heißt, sie ist falsch.
 
-Bestanden haben also Ayu und Elsa.
+| Wer vergaß | Putu | Rani | Vina | Yosef | Joko | Falsche Aussagen |
+| --- | --- | --- | --- | --- | --- | --- |
+| Joko | F | W | F | F | W | 3 |
+| Putu | F | W | F | F | W | 3 |
+| Rani | W | F | W | W | W | 1 |
+| Vina | W | W | W | F | F | 2 |
+| Yosef | F | F | F | W | W | 3 |
+
+Nur die Zeile Vina hat genau zwei falsche Aussagen.
+
+Jetzt prüfst du jede Option.
+
+- Rani hat vergessen und Yosefs Aussage ist wahr ergibt nur eine falsche Aussage, nämlich Ranis. In diese Falle tappst du, wenn du im Paar Rani und Yosef Rani beschuldigst und dann nicht nachzählst.
+- Putus und Vinas Aussagen sind beide falsch verbraucht schon die zwei falschen Aussagen, aber das Paar Rani und Yosef bringt immer noch eine dazu. Das sind drei.
+- Vina hat vergessen und Ranis Aussage ist wahr passt zur Zeile Vina. Das ist die einzige Option, die sicher wahr ist.
+- Yosef hat vergessen und Jokos Aussage ist wahr ergibt drei falsche Aussagen. Das passt nur, wenn du die Bedingung als "genau zwei wahr" statt "genau zwei falsch" liest.
+- Vina hat vergessen und Jokos Aussage ist wahr ist unmöglich, denn Joko sagt gerade, dass es nicht Vina war.
+
+Sicher wahr ist also, dass Vina den Schlüssel vergessen hat und Ranis Aussage wahr ist.

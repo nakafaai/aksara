@@ -1,0 +1,15 @@
+Each month the vector of customer numbers is multiplied by the transition matrix. The first row counts next month's customers of <InlineMath math="P" />: **those who stay with <InlineMath math="P" /> plus those who switch from <InlineMath math="Q" />**. Do it twice.
+
+<BlockMath math="\begin{aligned}
+\begin{pmatrix} p_1 \\ q_1 \end{pmatrix}&=\begin{pmatrix} 0.8\cdot500+0.3\cdot500 \\ 0.2\cdot500+0.7\cdot500 \end{pmatrix}=\begin{pmatrix} 550 \\ 450 \end{pmatrix} \\
+\begin{pmatrix} p_2 \\ q_2 \end{pmatrix}&=\begin{pmatrix} 0.8\cdot550+0.3\cdot450 \\ 0.2\cdot550+0.7\cdot450 \end{pmatrix}=\begin{pmatrix} 440+135 \\ 110+315 \end{pmatrix}=\begin{pmatrix} 575 \\ 425 \end{pmatrix}
+\end{aligned}" />
+
+Check: the total stays <InlineMath math="1{,}000" /> every month, because each column of the matrix adds up to <InlineMath math="1" />.
+
+So after <InlineMath math="2" /> months, <InlineMath math="P" /> has <InlineMath math="575" /> customers.
+
+- <InlineMath math="550" /> is only one month.
+- <InlineMath math="500" /> uses the transpose of the matrix, as if <InlineMath math="20\%" /> of <InlineMath math="Q" />'s customers switched to <InlineMath math="P" />. With that transpose the numbers never move from the start.
+- <InlineMath math="600" /> is the long-run balance, the number of <InlineMath math="P" /> customers after very many months, not after two.
+- <InlineMath math="425" /> is the number of <InlineMath math="Q" /> customers after two months.

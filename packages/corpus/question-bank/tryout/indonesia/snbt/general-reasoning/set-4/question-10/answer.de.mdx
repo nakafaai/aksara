@@ -1,19 +1,36 @@
-Die Form der Regel ist gegeben, deine Aufgabe ist also, **die Exponenten** <InlineMath math="m" /> und <InlineMath math="n" /> **zu finden**. Beginne mit den Beispielen, die eine <InlineMath math="1" /> enthalten, denn <InlineMath math="1" /> hoch einer beliebigen Zahl bleibt <InlineMath math="1" />.
+Jedes Glied zeigt eine Gruppe nebeneinanderliegender leuchtender Zellen. Deine Aufgabe ist, die Regel aus den ersten sechs Gliedern zu finden und auf das <InlineMath math="32" />. Glied anzuwenden. Es gibt **zwei Regeln, die gleichzeitig laufen**, eine für die Zahl der leuchtenden Zellen und eine für ihre Lage.
 
-<BlockMath math="\begin{aligned}
-3\star1=28 &\Rightarrow 3^m+1=28 \Rightarrow 3^m=27 \Rightarrow m=3 \\
-1\star4=17 &\Rightarrow 1+4^n=17 \Rightarrow 4^n=16 \Rightarrow n=2
-\end{aligned}" />
+Notiere bei jedem Glied zwei Dinge: wie viele Zellen leuchten und welche Zelle die linke Kante der leuchtenden Gruppe bildet (die Startzelle).
 
-Prüfe mit dem ersten Beispiel: <InlineMath math="2\star3=2^3+3^2=8+9=17" />, das passt. Die Regel lautet also <InlineMath math="a\star b=a^3+b^2" />. Die Exponenten für die erste und die zweite Zahl sind **verschieden**, die Reihenfolge der Zahlen spielt also eine Rolle.
+| Glied | Leuchtende Zellen | Startzelle |
+| :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 
-<BlockMath math="4\star3=4^3+3^2=64+9=73" />
+Die Tabelle zeigt zwei Regeln:
 
-Die anderen Optionen entstehen aus falschen Exponenten:
+- Die Zahl der leuchtenden Zellen wiederholt sich als <InlineMath math="1, 2, 3, 1, 2, 3, \ldots" />, kehrt also alle <InlineMath math="3" /> Glieder wieder.
+- Die Startzelle rückt mit jedem Glied <InlineMath math="2" /> Zellen nach rechts. Weil die Reihe ringförmig ist, landest du von Zelle <InlineMath math="7" /> aus nach zwei Schritten bei Zelle <InlineMath math="2" />, passend zum <InlineMath math="5" />. Glied. Die Lage kehrt alle <InlineMath math="7" /> Glieder wieder.
 
-- <InlineMath math="25" /> ist <InlineMath math="4^2+3^2" />, als wären beide Exponenten <InlineMath math="2" />.
-- <InlineMath math="43" /> ist <InlineMath math="4^2+3^3" />, die beiden Exponenten vertauscht.
-- <InlineMath math="67" /> ist <InlineMath math="4^3+3" />, der zweite Exponent vergessen.
-- <InlineMath math="91" /> ist <InlineMath math="4^3+3^3" />, als wären beide Exponenten <InlineMath math="3" />.
+Vom <InlineMath math="1" />. bis zum <InlineMath math="32" />. Glied sind es <InlineMath math="31" /> Schritte. Bestimme für jede Regel den Rest:
 
-<InlineMath math="4\star3" /> ergibt also <InlineMath math="73" />.
+<BlockMath math="\begin{aligned} 31 &= 3 \times 10 + 1 \\ 2 \times 31 = 62 &= 7 \times 8 + 6 \end{aligned}" />
+
+Die erste Zeile bedeutet, dass die Zahl der leuchtenden Zellen dieselbe ist wie nach <InlineMath math="1" /> Schritt, also wie beim <InlineMath math="2" />. Glied: zwei Zellen. Die zweite Zeile bedeutet, dass die Startzelle um <InlineMath math="6" /> Zellen von Zelle <InlineMath math="1" /> weitergerückt ist, also Zelle <InlineMath math="7" /> ist.
+
+Zwei Zellen ab Zelle <InlineMath math="7" /> sind Zelle <InlineMath math="7" /> und die nächste. Weil die Reihe ringförmig ist, folgt auf Zelle <InlineMath math="7" /> die Zelle <InlineMath math="1" />. Es leuchten also die Zelle ganz rechts und die Zelle ganz links: ● ○ ○ ○ ○ ○ ●.
+
+Prüf es auf einem zweiten Weg. Beide Regeln treffen sich alle <InlineMath math="3 \times 7 = 21" /> Glieder wieder, also ist das <InlineMath math="32" />. Glied gleich dem <InlineMath math="11" />. Glied. Mach ab dem <InlineMath math="6" />. Glied weiter: Das <InlineMath math="7" />. Glied hat eine Zelle bei Zelle <InlineMath math="6" />, das <InlineMath math="8" />. zwei Zellen bei <InlineMath math="1" /> und <InlineMath math="2" />, das <InlineMath math="9" />. drei Zellen bei <InlineMath math="3" /> bis <InlineMath math="5" />, das <InlineMath math="10" />. eine Zelle bei <InlineMath math="5" />, und das <InlineMath math="11" />. zwei Zellen bei <InlineMath math="7" /> und <InlineMath math="1" />. Dasselbe Ergebnis.
+
+So entstehen die falschen Optionen:
+
+- ○ ○ ○ ○ ○ ○ ● ist das <InlineMath math="4" />. Glied. Es entsteht, wenn du nur die Lageregel nutzt (<InlineMath math="32" /> geteilt durch <InlineMath math="7" /> lässt den Rest <InlineMath math="4" />) und die Zahlregel vergisst, oder wenn du die Gruppe am rechten Rand abschneidest, statt sie bei Zelle <InlineMath math="1" /> fortzusetzen.
+- ○ ○ ● ● ○ ○ ○ ist das <InlineMath math="2" />. Glied. Es entsteht, wenn du nur die Zahlregel nutzt (<InlineMath math="32" /> geteilt durch <InlineMath math="3" /> lässt den Rest <InlineMath math="2" />) und das <InlineMath math="2" />. Glied abschreibst, ohne es zu verschieben.
+- ○ ○ ○ ○ ○ ● ● hat die richtige Zahl an Zellen, aber die Gruppe wird zurückgeschoben, damit sie in die Reihe passt. Die Reihe ist ringförmig, also muss die zweite Zelle auf Zelle <InlineMath math="1" /> springen.
+- ○ ● ● ● ○ ○ ○ ist das <InlineMath math="33" />. Glied. Es entsteht, wenn du <InlineMath math="32" /> Schritte zählst, obwohl es vom <InlineMath math="1" />. Glied aus nur <InlineMath math="31" /> Schritte sind.
+
+Im <InlineMath math="32" />. Glied leuchten also nur die Zelle ganz links und die Zelle ganz rechts: ● ○ ○ ○ ○ ○ ●.

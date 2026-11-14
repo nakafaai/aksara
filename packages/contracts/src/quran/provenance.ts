@@ -3,9 +3,10 @@ import { Array as Arr, Effect, MutableList, Schema } from "effect";
 import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
+  type ActiveAppLocaleCode,
   type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
+  activeAppLocaleCode,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
@@ -58,6 +59,19 @@ export const QuranProvenanceScopeSchema = Schema.Union([
 ]);
 export type QuranProvenanceScope = typeof QuranProvenanceScopeSchema.Type;
 
+/**
+ * The tafsir scope of every active app locale. Activating a locale fails to
+ * compile until its tafsir source is named here.
+ */
+const QURAN_TAFSIR_PROVENANCE_SCOPES = {
+  de: "de-tafsir-access",
+  en: "en-tafsir-access",
+  id: "id-tafsir",
+} as const satisfies Record<
+  ActiveAppLocaleCode,
+  QuranNonTranslationProvenanceScope
+>;
+
 /** Derives the exact provenance scope order for one active locale set. */
 export function quranProvenanceScopes(
   activeAppLocales: ActiveAppLocaleList
@@ -67,13 +81,10 @@ export function quranProvenanceScopes(
   for (const appLocale of activeAppLocales) {
     MutableList.append(scopes, quranNameProvenanceScope(appLocale));
     MutableList.append(scopes, quranTranslationProvenanceScope(appLocale));
-    if (appLocale === AppLocaleSchema.make("en")) {
-      MutableList.append(scopes, "en-tafsir-access");
-    } else if (appLocale === AppLocaleSchema.make("id")) {
-      MutableList.append(scopes, "id-tafsir");
-    } else {
-      MutableList.append(scopes, "de-tafsir-access");
-    }
+    MutableList.append(
+      scopes,
+      QURAN_TAFSIR_PROVENANCE_SCOPES[activeAppLocaleCode(appLocale)]
+    );
   }
   MutableList.append(scopes, "metadata");
   return MutableList.toArray(scopes);

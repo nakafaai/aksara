@@ -1,0 +1,81 @@
+# Dua sudut di sekitar garis tinggi
+
+Garis tinggi <InlineMath math="CD" /> membahagikan segi tiga <InlineMath math="ABC" /> kepada dua segi tiga bersudut tegak, <InlineMath math="ACD" /> dan <InlineMath math="BCD" />, kedua-duanya bersudut tegak di <InlineMath math="D" />. Kamu akan menulis <InlineMath math="AD" /> dan <InlineMath math="DB" /> dalam sebutan <InlineMath math="CD" />, kemudian guna titik tengah <InlineMath math="M" /> untuk mencari panjang sebenar.
+
+Dalam segi tiga <InlineMath math="ACD" />, sisi bertentangan dengan sudut <InlineMath math="ACD" /> ialah <InlineMath math="AD" />, dan sisi bersebelahan ialah <InlineMath math="CD" />. Jadi <InlineMath math="\tan\angle ACD=\frac{AD}{CD}=2" />, iaitu <InlineMath math="AD=2\,CD" />.
+
+Sudut <InlineMath math="ACD" /> dan <InlineMath math="BCD" /> bersama-sama membentuk sudut tegak di <InlineMath math="C" />, jadi **<InlineMath math="\angle BCD=90^\circ-\angle ACD" /> dan tangennya ialah salingan bagi <InlineMath math="2" />**. Dalam segi tiga <InlineMath math="BCD" />, sisi bertentangan dengan sudut <InlineMath math="BCD" /> ialah <InlineMath math="DB" />:
+
+<BlockMath math="\begin{aligned}
+\tan\angle BCD&=\frac{DB}{CD}=\frac12\quad\Rightarrow\quad CD=2\,DB \\
+AD&=2\,CD=4\,DB
+\end{aligned}" />
+
+# Menggunakan titik tengah
+
+Katakan <InlineMath math="DB=k" />. Maka <InlineMath math="CD=2k" />, <InlineMath math="AD=4k" />, dan <InlineMath math="AB=5k" />. Titik tengah <InlineMath math="M" /> berada <InlineMath math="AM=2.5k" /> dari <InlineMath math="A" />. Oleh kerana <InlineMath math="AD=4k" /> lebih panjang daripada <InlineMath math="AM" />, **titik <InlineMath math="D" /> terletak di antara <InlineMath math="M" /> dan <InlineMath math="B" />**.
+
+<BlockMath math="\begin{aligned}
+DM&=AD-AM=4k-2.5k=1.5k \\
+1.5k&=6\quad\Rightarrow\quad k=4
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="ABC" /> dengan garis tinggi dan titik tengah</>}
+  description={<>Segi tiga <InlineMath math="ABC" /> bersudut tegak di <InlineMath math="C" /> dengan <InlineMath math="AB" /> mengufuk sepanjang <InlineMath math="20" />. <InlineMath math="M" /> ialah titik tengah <InlineMath math="AB" />, dan <InlineMath math="D" /> ialah kaki garis tinggi dari <InlineMath math="C" />. Pada <InlineMath math="AB" />, susunan titiknya ialah <InlineMath math="A" />, <InlineMath math="M" />, <InlineMath math="D" />, <InlineMath math="B" /> dengan <InlineMath math="AM=10" />, <InlineMath math="MD=6" />, dan <InlineMath math="DB=4" />. Garis tinggi <InlineMath math="CD=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    cd: <InlineMath math="8" />,
+    dm: <InlineMath math="6" />,
+    db: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 23 },
+      y: { min: -4, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 16, y: 8 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 16, y: 8 }, to: { x: 16, y: 0 } },
+      { id: "piece-dm", kind: "segment", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "piece-db", kind: "segment", appearance: "answer", from: { x: 16, y: 0 }, to: { x: 20, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 16, y: 8 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 20, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 16, y: 8 }, placement: "above" },
+      { key: "d", objectId: "point-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "m", objectId: "point-m", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "cd", objectId: "altitude", at: { x: 16, y: 4 }, placement: "left" },
+      { key: "dm", objectId: "piece-dm", at: { x: 13, y: 0 }, placement: "above" },
+      { key: "db", objectId: "piece-db", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Semak panjangnya
+
+Dengan <InlineMath math="k=4" />, kamu dapat <InlineMath math="DB=4" />, <InlineMath math="CD=8" />, <InlineMath math="AD=16" />, dan <InlineMath math="AB=20" />. Semak dengan dua cara. Pertama, <InlineMath math="MB=10" /> dan <InlineMath math="DM=MB-DB=10-4=6" />, sama seperti dalam soalan. Kedua, **segi tiga itu memang bersudut tegak di <InlineMath math="C" />**:
+
+<BlockMath math="AC^2+BC^2=(16^2+8^2)+(4^2+8^2)=320+80=400=20^2=AB^2" />
+
+Jadi, panjang <InlineMath math="DB" /> ialah <InlineMath math="4\text{ cm}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="8\text{ cm}" /> ialah panjang garis tinggi <InlineMath math="CD" />, bukan <InlineMath math="DB" />.
+- <InlineMath math="10\text{ cm}" /> ialah <InlineMath math="MB" />, separuh daripada <InlineMath math="AB" />. Titik <InlineMath math="D" /> bukan titik tengah <InlineMath math="AB" />.
+- <InlineMath math="12\text{ cm}" /> menggunakan nisbah <InlineMath math="AD:DB=2:1" />, seolah-olah tangen hanya digunakan sekali. Sebenarnya **nisbah <InlineMath math="2" /> muncul dua kali**, dalam <InlineMath math="AD:CD" /> dan dalam <InlineMath math="CD:DB" />, jadi <InlineMath math="AD:DB=4:1" />.
+- <InlineMath math="16\text{ cm}" /> tertukar sisi bertentangan dan sisi bersebelahan bagi sudut <InlineMath math="ACD" />, jadi diperoleh <InlineMath math="CD=2\,AD" />. Bahagian yang panjang lalu beralih ke sebelah <InlineMath math="B" />, dan panjang yang dikira sebenarnya ialah <InlineMath math="AD" />.

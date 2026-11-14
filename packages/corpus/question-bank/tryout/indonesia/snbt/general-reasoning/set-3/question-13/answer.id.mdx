@@ -1,16 +1,27 @@
-Implikasi <InlineMath math="p \Rightarrow q" /> hanya salah ketika <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah. Karena itu, **negasi implikasi adalah "p dan bukan q"**:
+Soal ini meminta ingkaran, yaitu pernyataan yang benar tepat ketika pernyataan asli salah. Pernyataan aslinya berbentuk jika-maka, dan bagian "maka"-nya berisi dua hal yang digabung dengan "dan". Dua bagiannya juga memuat kata kuantor, yaitu "tidak ada" dan "semua".
 
-<BlockMath math="\neg(p \Rightarrow q) \equiv p \wedge \neg q" />
+Beri nama setiap bagian supaya bentuknya terlihat jelas.
 
-Di sini <InlineMath math="p" /> adalah "hari ini libur" dan <InlineMath math="q" /> adalah "semua toko di pasar itu tutup". Negasi <InlineMath math="q" /> bukan "semua toko buka", melainkan **"ada toko yang tidak tutup"**, karena satu toko yang tetap buka sudah cukup untuk membantah "semua toko tutup".
+- <InlineMath math="p" />: tidak ada relawan yang absen pada apel pagi.
+- <InlineMath math="q" />: posko dibuka tepat waktu.
+- <InlineMath math="r" />: semua relawan mendapat jatah makan siang.
 
-Hasilnya: hari ini libur dan ada toko di pasar itu yang tidak tutup.
+Pernyataan aslinya adalah <InlineMath math="p \Rightarrow (q \wedge r)" />. Pernyataan jika-maka hanya salah dalam satu keadaan: bagian "jika" terjadi, tetapi bagian "maka" tidak terjadi. Jadi **bagian "jika" tetap dipertahankan apa adanya**, termasuk kata "tidak ada" di dalamnya, dan yang disangkal hanya bagian "maka".
 
-Pilihan lain tidak tepat:
+<BlockMath math="\neg\big(p \Rightarrow (q \wedge r)\big) \equiv p \wedge \neg(q \wedge r) \equiv p \wedge (\neg q \vee \neg r)" />
 
-- "Hari ini tidak libur dan semua toko buka" salah menegasikan <InlineMath math="p" /> dan <InlineMath math="q" /> sekaligus.
-- "Jika hari ini tidak libur, ada toko yang buka" masih berbentuk implikasi, bukan negasi.
-- "Hari ini libur dan semua toko buka" terlalu kuat. Negasi hanya memerlukan satu toko yang tidak tutup.
-- "Hari ini tidak libur atau semua toko tutup" adalah bentuk lain dari pernyataan semula, <InlineMath math="\neg p \vee q" />, jadi justru setara, bukan negasi.
+Langkah kedua memakai hukum De Morgan: ingkaran dari "<InlineMath math="q" /> dan <InlineMath math="r" />" adalah "bukan <InlineMath math="q" /> atau bukan <InlineMath math="r" />". Sekarang terjemahkan kembali setiap bagian.
 
-Jadi, negasinya adalah "Hari ini libur dan ada toko di pasar itu yang tidak tutup".
+- <InlineMath math="\neg q" />: posko tidak dibuka tepat waktu.
+- <InlineMath math="\neg r" />: ingkaran dari "semua relawan mendapat jatah makan siang" adalah "ada relawan yang tidak mendapat jatah makan siang". Untuk membantah "semua", cukup satu relawan yang tidak kebagian.
+
+Hasilnya: tidak ada relawan yang absen pada apel pagi, tetapi posko tidak dibuka tepat waktu atau ada relawan yang tidak mendapat jatah makan siang. Cek maknanya: pernyataan asli memang dilanggar kalau semua relawan hadir, tetapi salah satu janjinya gagal.
+
+Setiap pilihan lain meleset di satu titik.
+
+- Versi yang diawali "ada relawan yang absen" ikut menyangkal bagian "jika". Padahal ketika ada relawan yang absen, pernyataan asli tidak dilanggar sama sekali.
+- Versi dengan "tidak dibuka tepat waktu dan ada relawan yang tidak mendapat jatah" lupa bahwa hukum De Morgan mengubah "dan" menjadi "atau". Versi ini hanya menangkap keadaan ketika kedua janji gagal bersamaan, padahal satu kegagalan saja sudah cukup.
+- Versi dengan "semua relawan tidak mendapat jatah" salah menyangkal kuantor. Kalimat itu berarti tidak ada satu pun relawan yang mendapat jatah, jauh lebih kuat daripada ingkaran yang cukup meminta satu relawan.
+- Versi yang masih berbentuk jika-maka hanya menyangkal kedua bagian. Ingkaran sebuah pernyataan jika-maka tidak lagi berbentuk jika-maka, melainkan berbentuk "dan".
+
+Jadi, ingkarannya adalah "Tidak ada relawan yang absen pada apel pagi, tetapi posko tidak dibuka tepat waktu atau ada relawan yang tidak mendapat jatah makan siang".

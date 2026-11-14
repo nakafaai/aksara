@@ -1,20 +1,43 @@
-Beide Körper haben dieselbe Oberfläche. Berechne daraus die Maße jedes Körpers und **vergleiche dann die Volumina exakt**, ohne grobes Runden.
+Du musst alle Dreiecke mit ganzzahligen Seiten und dem Umfang <InlineMath math="24\text{ cm}" /> auflisten und sie nach ihrem größten Winkel einordnen. Der Plan: Begrenz die längste Seite mit **der strengen Dreiecksungleichung**, schreib alle Dreiecke auf und prüf jede Aussage an dieser Liste.
 
-# Volumen des Würfels
+# Die längste Seite begrenzen
 
-Ein Würfel hat **6 gleiche quadratische Seitenflächen**. Aus <InlineMath math="6s^2=24" /> folgt <InlineMath math="s=2" />, das Würfelvolumen ist also <InlineMath math="Q=2^3=8" />.
-
-# Volumen der Kugel
-
-Aus <InlineMath math="4\pi r^2=24" /> folgt <InlineMath math="r^2=\frac6\pi" />. Schreibe das Kugelvolumen mit <InlineMath math="r^2" />, damit **sich das Ergebnis mit 8 vergleichen lässt**.
+Schreib die Seiten als <InlineMath math="a\le b\le c" /> mit <InlineMath math="a+b+c=24" />. Drei Strecken bilden nur dann ein Dreieck, wenn die beiden kürzeren zusammen **länger** sind als die längste. Sind sie genau gleich lang, fallen die drei Strecken zu einer geraden Linie zusammen.
 
 <BlockMath math="\begin{aligned}
-P&=\tfrac43\pi r^3=\tfrac43\pi\cdot r^2\cdot r\\
-&=\tfrac43\pi\cdot\frac6\pi\cdot r=8r=8\sqrt{\frac6\pi}
+a+b>c\quad&\Rightarrow\quad24-c>c\quad\Rightarrow\quad c<12\\
+3c\ge a+b+c=24\quad&\Rightarrow\quad c\ge8
 \end{aligned}" />
 
-Wegen <InlineMath math="\pi<6" /> ist der Bruch <InlineMath math="\frac6\pi" /> größer als 1, also gilt <InlineMath math="\sqrt{\frac6\pi}>1" /> und <InlineMath math="P>8" />. Numerisch ist <InlineMath math="P\approx8\times1{,}38\approx11{,}1" />.
+Also kann <InlineMath math="c" /> nur <InlineMath math="8, 9, 10, 11" /> sein. Die zweite Aussage ist falsch: Bei <InlineMath math="c=12" /> bleibt <InlineMath math="a+b=12=c" />, die Figur ist flach und kein Dreieck.
 
-Die Wahl <InlineMath math="P=Q" /> nimmt an, dass gleiche Oberfläche gleiches Volumen bedeutet. Die Wahl <InlineMath math="Q>P" /> entsteht durch einen zu kleinen Kugelradius, etwa mit <InlineMath math="\pi r^2=24" />. Bei gleicher Oberfläche fasst eine Kugel immer mehr Volumen als ein Würfel.
+# Alle Dreiecke auflisten
 
-Die richtige Beziehung lautet also: **Die Kugel hat das größere Volumen**, also <InlineMath math="P>Q" />.
+Such für jedes <InlineMath math="c" /> die Paare <InlineMath math="a\le b\le c" /> mit <InlineMath math="a+b=24-c" />. Der größte Winkel liegt der längsten Seite gegenüber, also **vergleich <InlineMath math="c^2" /> mit <InlineMath math="a^2+b^2" />**: größer heißt stumpfwinklig, gleich heißt rechtwinklig, kleiner heißt spitzwinklig.
+
+| Seiten | <InlineMath math="c^2" /> | <InlineMath math="a^2+b^2" /> | Art |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="2, 11, 11" /> | <InlineMath math="121" /> | <InlineMath math="125" /> | spitz |
+| <InlineMath math="3, 10, 11" /> | <InlineMath math="121" /> | <InlineMath math="109" /> | stumpf |
+| <InlineMath math="4, 9, 11" /> | <InlineMath math="121" /> | <InlineMath math="97" /> | stumpf |
+| <InlineMath math="5, 8, 11" /> | <InlineMath math="121" /> | <InlineMath math="89" /> | stumpf |
+| <InlineMath math="6, 7, 11" /> | <InlineMath math="121" /> | <InlineMath math="85" /> | stumpf |
+| <InlineMath math="4, 10, 10" /> | <InlineMath math="100" /> | <InlineMath math="116" /> | spitz |
+| <InlineMath math="5, 9, 10" /> | <InlineMath math="100" /> | <InlineMath math="106" /> | spitz |
+| <InlineMath math="6, 8, 10" /> | <InlineMath math="100" /> | <InlineMath math="100" /> | rechtwinklig |
+| <InlineMath math="7, 7, 10" /> | <InlineMath math="100" /> | <InlineMath math="98" /> | stumpf |
+| <InlineMath math="6, 9, 9" /> | <InlineMath math="81" /> | <InlineMath math="117" /> | spitz |
+| <InlineMath math="7, 8, 9" /> | <InlineMath math="81" /> | <InlineMath math="113" /> | spitz |
+| <InlineMath math="8, 8, 8" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | spitz |
+
+# Jede Aussage beurteilen
+
+Die erste Aussage ist wahr: Die Liste enthält <InlineMath math="5+4+2+1=12" /> Dreiecke für <InlineMath math="c=11, 10, 9, 8" />. Würdest du <InlineMath math="c=12" /> mitzählen, kämen falsche Dreiecke wie <InlineMath math="6, 6, 12" /> dazu.
+
+Die zweite Aussage ist falsch, wie die Bedingung <InlineMath math="c<12" /> schon gezeigt hat.
+
+Die dritte Aussage ist wahr. Die stumpfwinkligen Dreiecke sind <InlineMath math="(3, 10, 11)" />, <InlineMath math="(4, 9, 11)" />, <InlineMath math="(5, 8, 11)" />, <InlineMath math="(6, 7, 11)" /> und <InlineMath math="(7, 7, 10)" />. Das letzte **übersieht man leicht**, weil der Unterschied winzig ist: <InlineMath math="100" /> gegen <InlineMath math="98" />.
+
+Die vierte Aussage ist falsch. Das Dreieck <InlineMath math="(2, 11, 11)" /> hat die längste Seite <InlineMath math="11\text{ cm}" />, aber <InlineMath math="121<4+121" />, also ist es spitzwinklig. Ein Gegenbeispiel reicht, um eine Behauptung über jedes Dreieck zu widerlegen.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

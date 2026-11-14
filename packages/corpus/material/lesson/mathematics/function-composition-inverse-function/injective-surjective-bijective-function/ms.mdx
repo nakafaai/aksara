@@ -1,0 +1,145 @@
+export const metadata = {
+  title: "Fungsi Injektif Surjektif dan Bijektif",
+  description: "Bezakan fungsi satu dengan satu, fungsi keseluruh dan fungsi bijektif, kemudian nyatakan bila fungsi songsang wujud.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-09-01",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Jenis Pemetaan Fungsi
+
+Fungsi memberikan setiap unsur domain **tepat satu output** dalam kodomain. Kita boleh semak sama ada sesuatu output digunakan lebih daripada sekali, dan sama ada seluruh kodomain dicapai. Semakan inilah yang membezakan fungsi injektif, surjektif dan bijektif.
+
+Andaikan kita ada fungsi <InlineMath math="f: X \to Y" />.
+
+## Fungsi Injektif atau Satu dengan Satu
+
+Fungsi dipanggil **injektif** atau **satu dengan satu** jika setiap unsur yang berbeza dalam domain <InlineMath math="X" /> dipetakan kepada unsur yang berbeza dalam kodomain <InlineMath math="Y" />. Dengan kata lain, tiada dua unsur domain yang berbeza boleh ada imej (output) yang sama dalam kodomain.
+
+**Takrif Formal**:
+
+Fungsi <InlineMath math="f: X \to Y" /> ialah fungsi injektif jika bagi setiap <InlineMath math="x_1, x_2 \in X" />, syarat berikut dipenuhi:
+
+<BlockMath math="f(x_1) = f(x_2) \implies x_1 = x_2" />
+
+Atau, secara setara (menggunakan kontrapositif):
+
+<BlockMath math="x_1 \neq x_2 \implies f(x_1) \neq f(x_2)" />
+
+Bayangkan setiap pelajar di sebuah sekolah (domain) mesti ada nombor ID pelajar yang unik (kodomain). Tiada dua pelajar yang boleh ada nombor ID yang sama. Fungsi pemetaan daripada pelajar kepada nombor ID ialah fungsi injektif.
+
+**Contoh**:
+
+- Fungsi <InlineMath math="f(x) = 2x" /> untuk <InlineMath math="x \in \mathbb{R}" /> ialah fungsi injektif, kerana setiap nilai <InlineMath math="x" /> yang berbeza akan menghasilkan nilai <InlineMath math="2x" /> yang berbeza.
+- Fungsi <InlineMath math="g(x) = x^2" /> untuk <InlineMath math="x \in \mathbb{R}" /> **bukan** fungsi injektif, kerana <InlineMath math="g(2) = 4" /> dan <InlineMath math="g(-2) = 4" />. Ada dua input yang berbeza (<InlineMath math="2" /> dan <InlineMath math="-2" />) yang menghasilkan output yang sama (<InlineMath math="4" />).
+
+<FunctionAndNonFunctionDiagram
+  title="Injektif tetapi Bukan Surjektif"
+  description="Input yang berbeza ada output yang berbeza, tetapi tiga tidak dicapai."
+>
+  <FunctionAndNonFunctionRelationVisualizer
+    accessibilityLabel="Input yang berbeza ada output yang berbeza, tetapi tiga tidak dicapai."
+    domainLabel={<InlineMath math="X" />}
+    codomainLabel={<InlineMath math="Y" />}
+    domain={[ { id: "a", label: <InlineMath math="a" /> }, { id: "b", label: <InlineMath math="b" /> } ]}
+    codomain={[ { id: "1", label: <InlineMath math="1" /> }, { id: "2", label: <InlineMath math="2" /> }, { id: "3", label: <InlineMath math="3" /> } ]}
+    mappings={[{ from: "a", to: "1" }, { from: "b", to: "2" }]}
+  />
+</FunctionAndNonFunctionDiagram>
+
+Kita boleh buktikan contoh linear tadi terus daripada takrif injektif:
+
+<BlockMath math="f(x_1)=f(x_2)\implies2x_1=2x_2\implies x_1=x_2" />
+
+## Fungsi Surjektif atau Keseluruh
+
+Fungsi dipanggil **surjektif** atau **keseluruh** jika setiap unsur dalam kodomain <InlineMath math="Y" /> ialah imej bagi **sekurang-kurangnya satu** unsur dalam domain <InlineMath math="X" />. Dengan kata lain, tiada unsur "yang tidak dapat dicapai" dalam kodomain, iaitu unsur yang tiada pasangan dalam domain. Julat fungsi surjektif sama dengan kodomainnya.
+
+**Takrif Formal**:
+
+Fungsi <InlineMath math="f: X \to Y" /> ialah fungsi surjektif jika bagi setiap <InlineMath math="y \in Y" />, wujud **sekurang-kurangnya satu** <InlineMath math="x \in X" /> dengan keadaan:
+
+<BlockMath math="f(x) = y" />
+
+Bayangkan setiap pelajar ditempatkan dalam satu kelas. Beberapa pelajar boleh berada dalam kelas yang sama. Pemetaan daripada pelajar kepada kelas ialah pemetaan **surjektif** jika setiap kelas dalam kodomain ada sekurang-kurangnya seorang pelajar.
+
+**Contoh**:
+
+- Fungsi <InlineMath math="f(x) = x^3" /> dari <InlineMath math="\mathbb{R} \to \mathbb{R}" /> ialah fungsi surjektif, kerana setiap nombor nyata <InlineMath math="y" /> dalam kodomain ialah kuasa tiga bagi suatu nombor nyata <InlineMath math="x" /> (iaitu <InlineMath math="x = \sqrt[3]{y}" />).
+- Fungsi <InlineMath math="g(x) = x^2" /> dari <InlineMath math="\mathbb{R} \to \mathbb{R}" /> **bukan** fungsi surjektif, kerana tiada nombor nyata <InlineMath math="x" /> yang menghasilkan <InlineMath math="g(x) = -1" /> (atau mana-mana nombor negatif lain). Unsur negatif dalam kodomain tiada pasangan dalam domain.
+- Namun, jika kita hadkan kodomain bagi <InlineMath math="g(x) = x^2" /> supaya fungsi itu dari <InlineMath math="\mathbb{R} \to [0, \infty)" /> (nombor nyata bukan negatif), fungsi ini menjadi surjektif.
+
+<FunctionAndNonFunctionDiagram
+  title="Surjektif tetapi Bukan Injektif"
+  description="Setiap output dicapai, tetapi dua input dipetakan kepada satu output yang sama."
+>
+  <FunctionAndNonFunctionRelationVisualizer
+    accessibilityLabel="Setiap output dicapai, tetapi dua input dipetakan kepada satu output yang sama."
+    domainLabel={<InlineMath math="X" />}
+    codomainLabel={<InlineMath math="Y" />}
+    domain={[ { id: "a", label: <InlineMath math="a" /> }, { id: "b", label: <InlineMath math="b" /> }, { id: "c", label: <InlineMath math="c" /> } ]}
+    codomain={[ { id: "1", label: <InlineMath math="1" /> }, { id: "2", label: <InlineMath math="2" /> } ]}
+    mappings={[{ from: "a", to: "1" }, { from: "b", to: "1" }, { from: "c", to: "2" }]}
+  />
+</FunctionAndNonFunctionDiagram>
+
+## Fungsi Bijektif
+
+Fungsi dipanggil **bijektif** jika fungsi itu **injektif dan surjektif** sekali gus. Maksudnya, setiap unsur dalam domain dipetakan kepada unsur yang unik dalam kodomain, dan setiap unsur dalam kodomain <Highlight>ada tepat satu unsur sepadan dalam domain</Highlight>.
+
+Fungsi bijektif membentuk padanan satu dengan satu yang sempurna antara unsur-unsur domain dengan unsur-unsur kodomain.
+
+**Takrif Formal**:
+
+Fungsi <InlineMath math="f: X \to Y" /> ialah fungsi bijektif jika bagi setiap <InlineMath math="y \in Y" />, wujud **tepat satu** <InlineMath math="x \in X" /> dengan keadaan:
+
+<BlockMath math="f(x) = y" />
+
+Bayangkan dua kumpulan yang bilangan ahlinya sama. Setiap ahli kumpulan pertama dipasangkan dengan tepat seorang ahli kumpulan kedua, dan setiap ahli kumpulan kedua juga ada tepat seorang pasangan. Pemetaan seperti ini ialah pemetaan bijektif.
+
+Fungsi <InlineMath math="f:X\to Y" /> ada songsangan dua sisi <InlineMath math="f^{-1}:Y\to X" /> jika dan hanya jika fungsi itu **bijektif**. Fungsi injektif masih boleh disongsangkan pada julat sebenarnya, selepas julat itu dipilih sebagai kodomain.
+
+| Pemetaan daripada nombor nyata kepada nombor nyata | Injektif | Surjektif | Sebab utama |
+| --- | --- | --- | --- |
+| <InlineMath math="2x" /> | Ya | Ya | Setiap output ada satu input, iaitu separuh daripada nilai output itu. |
+| <InlineMath math="x^3" /> | Ya | Ya | Setiap output ada tepat satu punca kuasa tiga nyata. |
+| <InlineMath math="x^2" /> | Tidak | Tidak | Input yang bertentangan memberi output yang sama, dan output negatif tidak dicapai. |
+| <InlineMath math="e^x" /> | Ya | Tidak | Output sentiasa positif, walaupun input yang berbeza memberi output yang berbeza. |
+| <InlineMath math="x^3-x" /> | Tidak | Ya | Setiap nilai nyata dicapai, tetapi sifar ada beberapa input. |
+
+Untuk <InlineMath math="k(x)=x^3-x" />, **tiga input menghasilkan sifar**, jadi fungsi ini bukan injektif:
+
+<BlockMath math="k(-1)=k(0)=k(1)=0" />
+
+Polinomial ini selanjar, menghampiri <InlineMath math="-\infty" /> apabila <InlineMath math="x\to-\infty" />, dan menghampiri <InlineMath math="+\infty" /> apabila <InlineMath math="x\to+\infty" />. Teorem nilai perantaraan menjamin setiap output nyata dicapai, jadi fungsi ini surjektif.
+
+<FunctionAndNonFunctionDiagram
+  title="Injektif dan Surjektif Sekali Gus"
+  description="Kedua-dua output dicapai, setiap satu daripada tepat satu input."
+>
+  <FunctionAndNonFunctionRelationVisualizer
+    accessibilityLabel="Kedua-dua output dicapai, setiap satu daripada tepat satu input."
+    domainLabel={<InlineMath math="X" />}
+    codomainLabel={<InlineMath math="Y" />}
+    domain={[ { id: "a", label: <InlineMath math="a" /> }, { id: "b", label: <InlineMath math="b" /> } ]}
+    codomain={[ { id: "1", label: <InlineMath math="1" /> }, { id: "2", label: <InlineMath math="2" /> } ]}
+    mappings={[{ from: "a", to: "1" }, { from: "b", to: "2" }]}
+  />
+</FunctionAndNonFunctionDiagram>
+
+## Semak Kefahaman Kamu
+
+Ketiga-tiga pemetaan menggunakan <InlineMath math="q(x)=x^2" />. **Kodomain berubah** dari bahagian pertama ke bahagian kedua, kemudian **domain dihadkan** dalam bahagian ketiga. Kelaskan setiap pemetaan sebagai injektif, surjektif, bijektif, atau bukan injektif dan bukan surjektif.
+
+1. <InlineMath math="q:\mathbb{R}\to\mathbb{R}" />
+2. <InlineMath math="q:\mathbb{R}\to[0,\infty)" />
+3. <InlineMath math="q:[0,\infty)\to[0,\infty)" />
+
+### Penyelesaian
+
+1. Pemetaan ini bukan injektif dan bukan surjektif. Ia bukan injektif kerana <InlineMath math="q(2)=q(-2)=4" />, dan ia bukan surjektif kerana tiada nombor nyata negatif yang dicapai.
+2. Pemetaan ini surjektif tetapi bukan injektif. Setiap <InlineMath math="y\ge0" /> dicapai dengan memilih <InlineMath math="x=\sqrt{y}" />, tetapi input yang bertentangan masih ada kuasa dua yang sama.
+3. Pemetaan ini bijektif. **Domain yang dihadkan** membuang input negatif yang menjadi pendua, dan setiap nilai dalam <InlineMath math="[0,\infty)" /> dicapai tepat sekali. Songsangannya ialah <InlineMath math="q^{-1}(x)=\sqrt{x}" />.
+
+Rumusnya tidak berubah. Pengelasannya berubah kerana domain dan kodomain berubah.

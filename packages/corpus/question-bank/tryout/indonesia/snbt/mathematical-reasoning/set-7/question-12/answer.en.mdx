@@ -1,17 +1,34 @@
-A travel distance of 300 m means 3 blocks, so the intersection <InlineMath math="(a,b)" /> must satisfy **<InlineMath math="\lvert a\rvert+\lvert b\rvert=3" />**. **Coordinates may be negative**, because the robot can go west and south.
+You're looking for how much water is removed before the tank is refilled with fresh water. The plan: work out the state of the tank after the trip, decide **how much salt may stay**, then find the amount of water to remove to get there.
 
-# Intersections on the axes
+# The tank after the trip
 
-If **one coordinate is zero**, the intersections are <InlineMath math="(3,0)" />, <InlineMath math="(-3,0)" />, <InlineMath math="(0,3)" /> and <InlineMath math="(0,-3)" />, which is 4 intersections.
+When full, the tank holds <InlineMath math="120\cdot36=4{,}320" /> grams of salt. Over <InlineMath math="6" /> days, <InlineMath math="6\cdot4=24\text{ liters}" /> evaporate, so <InlineMath math="96\text{ liters}" /> are left. **The salt doesn't evaporate**, so the salinity goes up.
 
-# Intersections off the axes
+<BlockMath math="\frac{4{,}320}{96}=45\text{ g/L}" />
 
-If neither coordinate is zero, their absolute values are 1 and 2 in some order, and **each coordinate may be positive or negative**.
+The water that gets removed later is at <InlineMath math="45\text{ g/L}" />, not <InlineMath math="36\text{ g/L}" />.
 
-<BlockMath math="2\cdot2\cdot2=8" />
+# How much salt may stay
 
-The first factor 2 picks the order of 1 and 2, and the next two pick the sign of each coordinate. So there are <InlineMath math="4+8=12" /> intersections, which together form a tilted square around G.
+In the end the tank is full again, <InlineMath math="120\text{ liters}" /> at <InlineMath math="33\text{ g/L}" />, so it holds <InlineMath math="120\cdot33=3{,}960" /> grams of salt. **Fresh water brings no salt**, so all of that salt must already be in the tank before the refill.
 
-The value 4 counts only the intersections on the axes, or only those to the north-east. The value 8 forgets the intersections on the axes.
+# The water to remove
 
-So there are **12 intersections** exactly 300 m of travel from G.
+Say <InlineMath math="x\text{ liters}" /> are removed. **Each liter removed carries <InlineMath math="45" /> grams of salt**.
+
+<BlockMath math="\begin{aligned}
+4{,}320-45x &= 3{,}960 \\
+45x &= 360 \\
+x &= 8
+\end{aligned}" />
+
+As a check, <InlineMath math="96-8=88\text{ liters}" /> remain at <InlineMath math="45\text{ g/L}" />, which is <InlineMath math="88\cdot45=3{,}960" /> grams of salt. Then <InlineMath math="32\text{ liters}" /> of fresh water fill it to <InlineMath math="120\text{ liters}" />, and <InlineMath math="\frac{3{,}960}{120}=33\text{ g/L}" />.
+
+# The wrong options
+
+- <InlineMath math="10\text{ liters}" /> comes from **ignoring evaporation**, so the water is removed from <InlineMath math="120\text{ liters}" /> at <InlineMath math="36\text{ g/L}" />.
+- <InlineMath math="25.6\text{ liters}" /> comes from assuming the tank is only filled back up to <InlineMath math="96\text{ liters}" />, when the refill makes it a full <InlineMath math="120\text{ liters}" />.
+- <InlineMath math="32\text{ liters}" /> is the amount of fresh water added, <InlineMath math="8+24" />, not the amount removed.
+- <InlineMath math="88\text{ liters}" /> is the amount of old water that stays in the tank.
+
+So <InlineMath math="8\text{ liters}" /> of tank water have to be removed.

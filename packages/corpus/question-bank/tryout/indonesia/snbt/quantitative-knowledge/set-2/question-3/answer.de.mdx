@@ -1,24 +1,55 @@
-Beide Größen hängen von <InlineMath math="x" /> ab, und <InlineMath math="x" /> kann jeder Wert zwischen 0 und 1 sein. Vergleiche sie über **das Vorzeichen ihrer Differenz**.
+Bestimme zuerst <InlineMath math="a" /> und <InlineMath math="b" /> aus den beiden Punkten, denn alle vier Aussagen hängen **von der vollständigen Vorschrift** für <InlineMath math="f" /> ab. Danach beurteilst du jede Aussage mit einem Beweis oder einem Gegenbeispiel.
 
-# Differenz vereinfachen
+# Die Konstanten bestimmen
+
+Der Punkt <InlineMath math="(1,12)" /> liefert <InlineMath math="ab=12" />, der Punkt <InlineMath math="(3,3)" /> liefert <InlineMath math="ab^3=3" />. Teile die zweite Gleichung durch die erste.
 
 <BlockMath math="\begin{aligned}
-P-Q&=\frac{x}{1+x}-x^2\\
-&=\frac{x-x^2(1+x)}{1+x}\\
-&=\frac{x\left(1-x-x^2\right)}{1+x}
+\frac{ab^3}{ab}=b^2&=\frac{3}{12}=\frac14\\
+b&=\frac12\ \text{oder}\ b=-\frac12
 \end{aligned}" />
 
-Für <InlineMath math="0<x<1" /> sind der Faktor <InlineMath math="x" /> und der Nenner <InlineMath math="1+x" /> positiv. Das Vorzeichen von <InlineMath math="P-Q" /> **ist also das Vorzeichen von <InlineMath math="1-x-x^2" />**.
+Der Kandidat <InlineMath math="b=-\tfrac12" /> fällt weg. Die Funktion <InlineMath math="f" /> **muss für jede reelle Zahl definiert sein**, auch für <InlineMath math="x=\tfrac12" />, aber <InlineMath math="\left(-\tfrac12\right)^{1/2}=\sqrt{-\tfrac12}" /> ist keine reelle Zahl. Also passt nur <InlineMath math="b=\tfrac12" />, dann ist <InlineMath math="a=\tfrac{12}{b}=24" />, und
 
-# Zwei Werte testen
+<BlockMath math="f(x)=24\cdot\left(\tfrac12\right)^{x}=24\cdot2^{-x}" />
 
-Der Term <InlineMath math="1-x-x^2" /> ist null bei <InlineMath math="x=\frac{\sqrt5-1}{2}\approx0{,}618" />, links davon positiv und rechts davon negativ. Zwei Beispiele zeigen, dass **sich die Beziehung ändert**.
+Die erste Aussage ist **falsch**.
 
-| <InlineMath math="x" /> | <InlineMath math="P=\frac{x}{1+x}" /> | <InlineMath math="Q=x^2" /> | Beziehung |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="\tfrac12" /> | <InlineMath math="\tfrac13\approx0{,}33" /> | <InlineMath math="\tfrac14=0{,}25" /> | <InlineMath math="P>Q" /> |
-| <InlineMath math="\tfrac45" /> | <InlineMath math="\tfrac49\approx0{,}44" /> | <InlineMath math="\tfrac{16}{25}=0{,}64" /> | <InlineMath math="Q>P" /> |
+# Schnittpunkte mit der Geraden
 
-Bei <InlineMath math="x\approx0{,}618" /> sind beide Größen sogar gleich. Ein einzelner Wert von <InlineMath math="x" /> kann die Beziehung nicht für alle <InlineMath math="x" /> festlegen.
+Die Schnittpunkte des Graphen von <InlineMath math="f" /> mit der Geraden <InlineMath math="y=10-x" /> sind die Nullstellen von <InlineMath math="h(x)=24\cdot2^{-x}+x-10" />. Bestimme das Vorzeichen von <InlineMath math="h" /> an einigen Stellen.
 
-Die **gegebenen Informationen reichen also nicht aus**, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.
+<BlockMath math="\begin{aligned}
+h(0)&=24+0-10=14>0\\
+h(2)&=6+2-10=-2<0\\
+h(10)&=\tfrac{24}{1{.}024}+10-10=\tfrac{3}{128}>0
+\end{aligned}" />
+
+Das Vorzeichen von <InlineMath math="h" /> wechselt zwischen <InlineMath math="0" /> und <InlineMath math="2" /> und noch einmal zwischen <InlineMath math="2" /> und <InlineMath math="10" />. Der Graph hat keine Sprünge, also gibt es mindestens zwei Schnittpunkte. Den zweiten übersieht man leicht: **Die Gerade schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="x=10" />, der Graph von <InlineMath math="f" /> bleibt aber immer über dieser Achse**.
+
+Mehr als zwei sind auch unmöglich. Die Steigung von <InlineMath math="24\cdot2^{-x}" /> wächst ständig, von sehr steil bis fast flach, und der Term <InlineMath math="x-10" /> addiert eine feste Steigung. Die Steigung von <InlineMath math="h" /> wächst also immer, darum kann <InlineMath math="h" /> nur einmal fallen und dann steigen und hat höchstens zwei Nullstellen. Die zweite Aussage ist **wahr**.
+
+# Zwei Funktionswerte vergleichen
+
+Aus <InlineMath math="f(p)=3f(q)" /> folgt nach Division durch <InlineMath math="f(q)" />:
+
+<BlockMath math="\begin{aligned}
+\frac{24\cdot2^{-p}}{24\cdot2^{-q}}=2^{q-p}&=3\\
+q-p&=\log_2 3\\
+p-q&=-\log_2 3
+\end{aligned}" />
+
+Das passt, weil <InlineMath math="f" /> fällt: **Der größere Wert gehört zur kleineren Eingabe**, also ist <InlineMath math="p<q" /> und <InlineMath math="p-q" /> negativ. Aber <InlineMath math="{}^{2}\log3=\log_2 3>0" />. Die dritte Aussage ist **falsch**.
+
+# Ob g immer fällt
+
+Um das Wort „immer“ zu widerlegen, reicht **ein Paar von Eingaben, bei dem <InlineMath math="g" /> steigt**. Nimm <InlineMath math="x=5" /> und <InlineMath math="x=10" />.
+
+<BlockMath math="\begin{aligned}
+g(5)&=\tfrac{24}{32}+5=\tfrac{23}{4}\\
+g(10)&=\tfrac{24}{1{.}024}+10=10+\tfrac{3}{128}
+\end{aligned}" />
+
+Die Eingabe steigt von <InlineMath math="5" /> auf <InlineMath math="10" />, und der Wert von <InlineMath math="g" /> steigt ebenfalls, von <InlineMath math="\tfrac{23}{4}" /> auf mehr als <InlineMath math="10" />. Für große <InlineMath math="x" /> ist <InlineMath math="f(x)" /> fast null, also ist <InlineMath math="g(x)" /> fast gleich <InlineMath math="x" />, und das wächst immer weiter. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte falsch.

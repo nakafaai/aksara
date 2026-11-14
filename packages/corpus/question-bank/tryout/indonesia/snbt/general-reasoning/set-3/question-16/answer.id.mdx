@@ -1,18 +1,29 @@
-Periksa setiap pernyataan pada **keempat susunan**. Untuk pernyataan berbentuk "jika", periksa hanya susunan yang memenuhi bagian "jika".
+Syarat tambahannya adalah Hamid di kursi 7. Sebuah pernyataan bernilai Benar hanya jika benar di **semua susunan yang masih sah** setelah syarat itu ditambahkan.
 
-| Susunan | Rak atas | Rak tengah | Rak bawah |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+Pakai dulu struktur yang berlaku untuk semua susunan.
 
-**Pernyataan 1** bernilai Benar. P berada di rak tengah pada susunan I dan II, serta di rak atas pada susunan III dan IV. P tidak pernah di rak bawah karena harus lebih tinggi daripada Q.
+- Aturan 1 memberi dua kasus: Asri di kursi 1 dan Bonar di kursi 5, atau Bonar di kursi 1 dan Asri di kursi 5.
+- Dimas tidak boleh di sebelah Asri (aturan 3), dan juga tidak bisa di kursi 3 atau kursi 7. Jika Dimas di salah satu kursi itu, Elok yang berhadapan dengannya duduk di kursi yang satu lagi, lalu Fajar harus berjarak dua dari Elok, yaitu di kursi 1 atau kursi 5, padahal dua kursi itu milik Asri dan Bonar. Jadi Dimas duduk di sebelah Bonar.
+- Cahya duduk di tetangga Dimas yang lain (aturan 2), yaitu kursi 3 atau kursi 7. Elok berhadapan dengan Dimas, jadi Elok di sebelah Asri (aturan 4). Fajar berjarak dua dari Elok (aturan 5).
 
-**Pernyataan 2** bernilai Salah. Pada susunan IV, rak bawah berisi K dan L, sedangkan Q berada di rak tengah.
+Sekarang masukkan Hamid di kursi 7. Kursi 7 sudah terisi, jadi **Cahya pasti di kursi 3**. Hamid di kursi 7 tidak bersebelahan dengan Cahya, jadi aturan 7 aman. Tinggal dua kasus.
 
-**Pernyataan 3** bernilai Salah. N berada di rak tengah pada susunan II dan IV. Pada susunan II, Q di rak bawah, tetapi pada susunan IV, Q di rak tengah.
+- Asri di kursi 1. Dimas di kursi 4, Bonar di kursi 5, dan Elok di kursi 8. Fajar berjarak dua dari Elok, jadi di kursi 2 atau kursi 6, dan Galuh mengisi kursi yang tersisa. Nomor Galuh tetap lebih kecil daripada nomor Hamid, jadi kedua cara sah.
+- Asri di kursi 5. Bonar di kursi 1, Dimas di kursi 2, dan Elok di kursi 6. Fajar di kursi 4 atau kursi 8. Kursi kosong yang tersisa adalah 4 dan 8, dan Galuh harus bernomor lebih kecil daripada Hamid di kursi 7. Jadi Galuh di kursi 4 dan Fajar di kursi 8.
 
-**Pernyataan 4** bernilai Benar. K berada di rak atas pada susunan I dan II, dan pada keduanya P berada di rak tengah.
+Hasilnya tiga susunan. Kolom 1 sampai 8 adalah nomor kursi, dan setiap orang ditulis dengan huruf pertama namanya.
 
-Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.
+| Susunan | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | B | D | C | G | A | E | H | F |
+
+Sekarang nilai setiap pernyataan.
+
+- Cahya di kursi 3 bernilai Benar. Cahya duduk di kursi 3 pada ketiga susunan, karena kursi 7 sudah ditempati Hamid.
+- Asri di kursi 1 bernilai Salah. Pernyataan ini benar pada susunan I dan II, tetapi susunan III menaruh Asri di kursi 5. Kasus Bonar di kursi 1 mudah terlewat karena di kasus itu Galuh harus pindah ke kursi 4 supaya tetap lebih kecil daripada Hamid.
+- Fajar bersebelahan dengan Asri bernilai Salah. Hanya susunan I yang menaruh Fajar di sebelah Asri. Pada susunan II Fajar di kursi 6, dan pada susunan III Fajar di kursi 8, sedangkan Asri di kursi 5.
+- Galuh berhadapan dengan Fajar bernilai Benar. Pasangan kursi mereka adalah 6 dan 2, 2 dan 6, serta 4 dan 8. Setiap pasangan berselisih <InlineMath math="4" />, jadi mereka selalu berhadapan.
+
+Jadi, pernyataan tentang Cahya di kursi 3 dan tentang Galuh yang berhadapan dengan Fajar bernilai Benar, sedangkan pernyataan tentang Asri di kursi 1 dan tentang Fajar yang bersebelahan dengan Asri bernilai Salah.

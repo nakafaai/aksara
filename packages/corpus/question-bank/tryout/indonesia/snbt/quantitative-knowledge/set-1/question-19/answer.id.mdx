@@ -1,22 +1,38 @@
-Ada dua syarat yang saling memengaruhi: Banu dan Citra menempati **dua kursi bersebelahan**, sedangkan Ayu harus berada di salah satu kursi tengah. Cara yang paling aman adalah menghitung per posisi pasangan Banu dan Citra.
+Banyak penyelesaian sistem ini bergantung pada <InlineMath math="k" />. Rencananya: buang <InlineMath math="x" /> dengan bantuan persamaan pertama, lihat kapan sistemnya **macet di satu faktor**, lalu periksa keempat pernyataan satu per satu.
 
-# Menghitung per posisi pasangan
+# Menyederhanakan sistem
 
-Beri nomor kursi 1 sampai 5. Pasangan Banu dan Citra dapat menempati kursi 1 dan 2, 2 dan 3, 3 dan 4, atau 4 dan 5. Untuk setiap posisi, hitung kursi tengah yang masih kosong untuk Ayu, lalu Dodi dan Eka mengisi dua kursi sisanya dengan 2 cara.
+Dari persamaan pertama, <InlineMath math="x=2-y-z" />. Masukkan bentuk ini ke persamaan kedua dan ketiga.
 
-| Kursi Banu dan Citra | Kursi kosong | Pilihan kursi Ayu | Susunan Ayu, Dodi, Eka |
-| :---: | :---: | :---: | :---: |
-| 1 dan 2 | 3, 4, 5 | 3 atau 4 | <InlineMath math="2\times2=4" /> |
-| 2 dan 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
-| 3 dan 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
-| 4 dan 5 | 1, 2, 3 | 2 atau 3 | <InlineMath math="2\times2=4" /> |
+<BlockMath math="\begin{aligned}
+2(2-y-z)+3y+kz&=5 &&\Longrightarrow\quad y+(k-2)z=1\\
+3(2-y-z)+ky+3z&=6 &&\Longrightarrow\quad (k-3)y=0
+\end{aligned}" />
 
-Jumlahnya <InlineMath math="4+2+2+4=12" />. **Banu dan Citra dapat bertukar tempat**, jadi setiap susunan dihitung dua kali urutannya.
+Persamaan kedua yang baru, <InlineMath math="(k-3)y=0" />, adalah kuncinya. **Jika <InlineMath math="k\ne3" />, maka <InlineMath math="y=0" />**, sedangkan jika <InlineMath math="k=3" />, persamaan itu berlaku untuk setiap <InlineMath math="y" />.
 
-<BlockMath math="12\times2=24" />
+# Tiga kasus nilai k
 
-# Memeriksa pilihan lain
+Untuk <InlineMath math="k\ne2" /> dan <InlineMath math="k\ne3" />, kamu dapat <InlineMath math="y=0" />, lalu <InlineMath math="(k-2)z=1" />, jadi <InlineMath math="z=\tfrac{1}{k-2}" /> dan <InlineMath math="x=2-\tfrac{1}{k-2}" />. Penyelesaiannya **tepat satu**.
 
-Nilai 48 adalah susunan dengan Banu dan Citra bersebelahan tanpa syarat Ayu, yaitu <InlineMath math="4!\times2" />. Nilai 12 lupa bahwa Banu dan Citra dapat bertukar tempat. Nilai 16 hanya menghitung pasangan di kursi 1 dan 2 atau 4 dan 5. Nilai 36 menempatkan Ayu di salah satu dari 3 kursi tengah lalu menganggap pasangan Banu dan Citra **selalu muat** di sisa kursi, padahal Ayu dapat memisahkan kursi kosong.
+Untuk <InlineMath math="k=2" />, kamu tetap dapat <InlineMath math="y=0" />, tetapi persamaan <InlineMath math="y+0\cdot z=1" /> meminta <InlineMath math="y=1" />. Dua tuntutan ini bertabrakan, jadi **sistem tidak mempunyai penyelesaian**.
 
-Jadi, banyak susunan duduk yang mungkin adalah **24**.
+Untuk <InlineMath math="k=3" />, syaratnya tinggal <InlineMath math="y+z=1" />, dan <InlineMath math="y" /> boleh apa saja. Setiap pilihan <InlineMath math="y" /> memberi satu penyelesaian, jadi **penyelesaiannya tak hingga banyak**.
+
+Cek dengan determinan koefisien:
+
+<BlockMath math="\begin{vmatrix}1&1&1\\2&3&k\\3&k&3\end{vmatrix}=(9-k^2)-(6-3k)+(2k-9)=-(k-2)(k-3)" />
+
+Determinannya nol tepat untuk <InlineMath math="k=2" /> dan <InlineMath math="k=3" />, **sama dengan dua kasus khusus tadi**.
+
+# Memeriksa setiap pernyataan
+
+Pernyataan pertama salah. Untuk <InlineMath math="k=2" />, sistem justru **tidak mempunyai penyelesaian**, bukan tak hingga banyak.
+
+Pernyataan kedua salah. Untuk <InlineMath math="k=3" />, sistem mempunyai tak hingga banyak penyelesaian, jadi **pasti ada penyelesaian**.
+
+Pernyataan ketiga salah. Untuk <InlineMath math="k=3" />, pilih <InlineMath math="y=1" /> sehingga <InlineMath math="z=0" /> dan <InlineMath math="x=1" />. Cek: <InlineMath math="1+1+0=2" />, <InlineMath math="2+3+0=5" />, dan <InlineMath math="3+3+0=6" />. Jadi **ada nilai <InlineMath math="k" /> yang memberi penyelesaian dengan <InlineMath math="z=0" />**.
+
+Pernyataan keempat benar. Untuk setiap <InlineMath math="k" /> selain <InlineMath math="2" /> dan <InlineMath math="3" />, penyelesaiannya tunggal dan **selalu memenuhi <InlineMath math="y=0" />**, seperti hasil kasus pertama.
+
+Jadi, pernyataan pertama, kedua, dan ketiga salah, sedangkan pernyataan keempat benar.

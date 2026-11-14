@@ -1,23 +1,40 @@
-Berechne zuerst die Kennwerte der ursprünglichen Daten und prüfe dann, **was sich bei jeder Änderung tatsächlich verschiebt**. Der Größe nach geordnet haben die Plätze 1 bis 3 den Wert 5, die Plätze 4 bis 8 den Wert 6, die Plätze 9 bis 14 den Wert 7, die Plätze 15 bis 18 den Wert 8 und die Plätze 19 und 20 den Wert 9.
+Teiler von <InlineMath math="N" /> zählst du am einfachsten über **den Exponenten jedes Primfaktors**. Der Plan: Zerlege <InlineMath math="N" /> in Primfaktoren, schreibe „Quadratzahl“ und „durch <InlineMath math="12" /> teilbar“ als Bedingungen an die Exponenten und zähle dann die möglichen Exponenten.
 
-# Kennwerte der ursprünglichen Daten
+# Die Zahl N zerlegen
 
-<BlockMath math="\bar x=\frac{3(5)+5(6)+6(7)+4(8)+2(9)}{20}=\frac{137}{20}=6{,}85" />
+Zerlege jede Fakultät und addiere die Exponenten jeder Primzahl.
 
-Der Median von 20 Werten ist der Mittelwert aus dem 10. und dem 11. Wert. Beide sind 7, also ist der Median 7. **Der Mittelwert 6,85 ist kleiner als der Median 7**, die dritte Aussage ist also wahr.
+<BlockMath math="\begin{aligned}
+2!&=2,\quad 3!=2\cdot3,\quad 4!=2^3\cdot3,\quad 5!=2^3\cdot3\cdot5,\quad 6!=2^4\cdot3^2\cdot5\\
+N&=2^{1+1+3+3+4}\cdot3^{1+1+1+2}\cdot5^{1+1}=2^{12}\cdot3^5\cdot5^2
+\end{aligned}" />
 
-# Neue Schüler hinzufügen
+**Der Faktor <InlineMath math="5" /> kommt zweimal vor**, einmal in <InlineMath math="5!" /> und einmal in <InlineMath math="6!" />.
 
-Mit zwei Schülern, die 9 Punkte haben, gibt es 22 Werte, und der Median ist der Mittelwert aus dem 11. und dem 12. Wert. Werte am oberen Ende verschieben die Siebenen nicht, sie belegen weiterhin die Plätze 9 bis 14. Der Median bleibt 7, die erste Aussage ist falsch.
+# Die Bedingungen an die Exponenten aufschreiben
 
-Mit drei Schülern, die 6 Punkte haben, steigt die Häufigkeit von 6 auf <InlineMath math="5+3=8" /> und **übertrifft damit die Häufigkeit von 7**, die bei 6 bleibt. Der Modalwert wird 6, die zweite Aussage ist falsch.
+Jeder positive Teiler von <InlineMath math="N" /> hat die Form <InlineMath math="d=2^p\cdot3^q\cdot5^r" /> mit <InlineMath math="0\le p\le12" />, <InlineMath math="0\le q\le5" /> und <InlineMath math="0\le r\le2" />. Die Zahl <InlineMath math="d" /> ist eine Quadratzahl, wenn **alle Exponenten gerade sind**. Wegen <InlineMath math="12=2^2\cdot3" /> ist <InlineMath math="d" /> durch <InlineMath math="12" /> teilbar, wenn <InlineMath math="p\ge2" /> und <InlineMath math="q\ge1" /> gilt.
 
-# Schüler mit fünf Punkten entfernen
+<BlockMath math="\begin{aligned}
+p&\in\{2,4,6,8,10,12\}\\
+q&\in\{2,4\}\\
+r&\in\{0,2\}
+\end{aligned}" />
 
-Ohne die drei Schüler mit 5 Punkten bleiben 17 Schüler mit der Punktsumme <InlineMath math="137-15=122" />.
+Der Exponent <InlineMath math="q" /> muss gerade und mindestens <InlineMath math="1" /> sein, also ist er mindestens <InlineMath math="2" />.
 
-<BlockMath math="\bar x=\frac{122}{17}\approx7{,}18>7" />
+# Die Teiler zählen
 
-Der neue Mittelwert ist **größer als 7**, die vierte Aussage ist also wahr.
+Jede Wahl von <InlineMath math="p" />, <InlineMath math="q" /> und <InlineMath math="r" /> liefert einen anderen Teiler, also ist **die Anzahl das Produkt der Wahlmöglichkeiten**.
 
-Die erste Aussage ist also **falsch**, die zweite **falsch**, die dritte **wahr** und die vierte **wahr**.
+<BlockMath math="6\cdot2\cdot2=24" />
+
+# Das Ergebnis prüfen
+
+Eine Quadratzahl mit dem Faktor <InlineMath math="3" /> enthält sogar <InlineMath math="3^2" />, also ist eine durch <InlineMath math="12" /> teilbare Quadratzahl auch durch <InlineMath math="36" /> teilbar. Ein solcher Teiler hat die Form <InlineMath math="36\cdot e" />, wobei <InlineMath math="e" /> eine Quadratzahl ist, die <InlineMath math="\frac{N}{36}=2^{10}\cdot3^3\cdot5^2" /> teilt. Für <InlineMath math="e" /> gibt es <InlineMath math="6\cdot2\cdot2=24" /> Möglichkeiten, **genauso viele wie oben**.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="20" /> entsteht, wenn du meinst, der Teiler müsse durch <InlineMath math="12^2=144" /> teilbar sein, also <InlineMath math="p\ge4" />. Die Antwort <InlineMath math="28" /> sichert nur den Faktor <InlineMath math="3" /> und **vergisst, dass <InlineMath math="12" /> auch <InlineMath math="2^2" /> verlangt**, sodass <InlineMath math="p=0" /> mitgezählt wird. Die Antwort <InlineMath math="36" /> zählt die Quadratteiler von <InlineMath math="\frac{N}{12}" />, obwohl <InlineMath math="36" /> herausgezogen werden muss. Die Antwort <InlineMath math="42" /> zählt alle Quadratteiler ohne die Bedingung, durch <InlineMath math="12" /> teilbar zu sein.
+
+Die Anzahl der positiven Teiler von <InlineMath math="N" />, die Quadratzahlen und durch <InlineMath math="12" /> teilbar sind, ist also <InlineMath math="24" />.

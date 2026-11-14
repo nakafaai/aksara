@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "knockout-cup",
+  stimulus: "pension-savings",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "4 jam 30 menit" },
-        { correct: false, label: "6 jam 45 menit" },
-        { correct: false, label: "7 jam 30 menit" },
-        { correct: true, label: "8 jam 15 menit" },
-        { correct: false, label: "29 jam 15 menit" },
+        { correct: false, label: "$$\\text{Rp}12{.}000{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}13{.}500{.}000{,}00$$" },
+        { correct: true, label: "$$\\text{Rp}14{.}000{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}15{.}500{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}21{.}000{.}000{,}00$$" },
       ],
     },
   },

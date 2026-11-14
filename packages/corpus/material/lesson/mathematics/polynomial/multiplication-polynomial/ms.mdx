@@ -1,0 +1,156 @@
+export const metadata = {
+  title: "Pendaraban Polinomial",
+  description: "Darab polinomial dengan sifat kalis agihan dan kaedah jadual melalui soalan berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Mendarab Setiap Sebutan dengan Setiap Sebutan
+
+Sama seperti [operasi penambahan dan penolakan polinomial](/ms/subjek/matematik/polinomial/penambahan-dan-penolakan-polinomial), operasi pendaraban polinomial juga boleh difahami melalui konsep asas pendaraban nombor dan sifat kalis agihan.
+
+Prinsip utama untuk mendarab dua polinomial ialah: darab <Highlight>setiap sebutan dalam polinomial pertama</Highlight> dengan setiap sebutan dalam polinomial kedua.
+
+Selepas semua pendaraban antara sebutan selesai, langkah seterusnya ialah **menggabungkan (menambah atau menolak) sebutan serupa** supaya hasilnya lebih ringkas.
+
+## Kaedah Pendaraban
+
+Ada beberapa cara untuk mendarab polinomial, tetapi semuanya berasaskan **sifat kalis agihan**. Kaedah mengufuk menulis setiap hasil darab separa dalam satu baris, manakala kaedah jadual menyusunnya dalam grid sebelum kamu menggabungkan sebutan serupa.
+
+### Kaedah Agihan Mengufuk
+
+Darab **setiap pasangan sebutan**, kemudian kumpulkan sebutan serupa. Dalam hasil darab pertama, bawa tanda negatif ke dalam setiap pendaraban. Oleh sebab <InlineMath math="(-5)(-1)=5" />, pemalar akhirnya positif.
+
+**Contoh 1**
+
+<BlockMath math="\begin{aligned}(x-5)(x^2+3x-1)&amp;=x(x^2+3x-1)-5(x^2+3x-1) \\ &amp;=x^3+3x^2-x-5x^2-15x+5 \\ &amp;=x^3+(3-5)x^2+(-1-15)x+5 \\ &amp;=x^3-2x^2-16x+5\end{aligned}" />
+
+**Contoh 2**:
+
+Perhatikan sebutan negatif dalam faktor kedua. Contohnya, <InlineMath math="(-2x)(-5)=10x" />, jadi sebutan linear bergabung menjadi <InlineMath math="10x+14x=24x" />.
+
+<BlockMath math="\begin{aligned}(x^2-2x+7)(2x-5)&amp;=x^2(2x-5)-2x(2x-5)+7(2x-5) \\ &amp;=2x^3-5x^2-4x^2+10x+14x-35 \\ &amp;=2x^3+(-5-4)x^2+(10+14)x-35 \\ &amp;=2x^3-9x^2+24x-35\end{aligned}" />
+
+Kumpulkan hasil darab <InlineMath math="(x - 5)(x^2 + 3x - 1)" /> mengikut darjah, satu demi satu. Sebutan kuasa tiga ialah <InlineMath math="x^3" />, sebutan kuasa dua memberikan <InlineMath math="3x^2 - 5x^2 = -2x^2" />, sebutan linear memberikan <InlineMath math="-x - 15x = -16x" />, dan pemalarnya ialah <InlineMath math="(-5)(-1) = 5" />.
+
+<BarChart
+  title={<>Pekali bagi <InlineMath math="x^3 - 2x^2 - 16x + 5" /></>}
+  description={<>Palang bagi pekali <InlineMath math="1" />, <InlineMath math="-2" />, <InlineMath math="-16" /> dan <InlineMath math="5" /> pada darjah 3, 2, 1 dan 0.</>}
+  yAxisLabel="Pekali"
+  data={[["darjah 3", 1], ["darjah 2", 3 - 5], ["darjah 1", -1 - 15], ["darjah 0", (-5) * (-1)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Pekali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Kaedah Jadual dengan Model Luas
+
+Kaedah ini menyusun pendaraban setiap sebutan dalam sebuah jadual, sama seperti mencari luas apabila kita mendarab dua nombor.
+
+Contohnya, pendaraban <InlineMath math="16 \times 12" /> boleh dilihat sebagai luas segi empat tepat dengan sisi <InlineMath math="10+6" /> dan <InlineMath math="10+2" />.
+
+|        | <InlineMath math="10" /> | <InlineMath math="6" /> |
+| :----- | :-- | :-- |
+| <InlineMath math="10" /> | <InlineMath math="100" /> | <InlineMath math="60" /> |
+| <InlineMath math="2" /> | <InlineMath math="20" /> | <InlineMath math="12" /> |
+
+Jumlah luasnya ialah <InlineMath math="100 + 60 + 20 + 12 = 192" />.
+
+Cara yang sama boleh digunakan pada polinomial.
+
+**Empat bahagian luas** ini menerangkan empat hasil darab dalam jadual. Setiap bahagian mengambil lebarnya daripada satu lajur dan tingginya daripada satu baris. Apabila semua luas ini ditambah, kamu dapat luas seluruh segi empat tepat.
+
+<MathVisual
+  title={<>Segi empat tepat berukuran enam belas darab dua belas</>}
+  description={<>Empat rantau berukuran sepuluh darab sepuluh, enam darab sepuluh, sepuluh darab dua, dan enam darab dua membentuk satu segi empat tepat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -1, max: 13 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 10 }, { x: 0, y: 10 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 10, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 10 }, { x: 10, y: 10 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 10 }, { x: 10, y: 10 }, { x: 10, y: 12 }, { x: 0, y: 12 }], appearance: "answer" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 10, y: 10 }, { x: 16, y: 10 }, { x: 16, y: 12 }, { x: 10, y: 12 }], appearance: "construction" }
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 5, y: 5 }, placement: "above" },
+      { key: "wide", objectId: "wide", at: { x: 13, y: 5 }, placement: "above" },
+      { key: "top", objectId: "top", at: { x: 5, y: 11 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 13, y: 11 }, placement: "above" }
+    ]
+  }}
+  labels={{ square: "100", wide: "60", top: "20", corner: "12" }}
+/>
+
+**Contoh 3**:
+
+Cari hasil darab <InlineMath math="(x + 6)(x + 2)" /> menggunakan kaedah jadual.
+
+|                             |  <InlineMath math="x" />  | <InlineMath math="+6" /> |
+| :-------------------------- | :-----------------------: | :------------------------ |
+| <InlineMath math="x" /> | <InlineMath math="x^2" /> | <InlineMath math="+6x" /> |
+| <InlineMath math="+2" /> | <InlineMath math="+2x" /> | <InlineMath math="+12" /> |
+
+Sekarang, tambahkan semua hasil di dalam petak jadual:
+
+<BlockMath math="(x+6)(x+2)=x^2+6x+2x+12=x^2+8x+12" />
+
+**Contoh 4**:
+
+Cari hasil darab <InlineMath math="(x - 5)(x^2 + 3x - 1)" /> menggunakan kaedah jadual.
+
+|                             |  <InlineMath math="x^2" />  |  <InlineMath math="+3x" />  | <InlineMath math="-1" /> |
+| :-------------------------- | :-------------------------: | :-------------------------: | :----------------------: |
+| <InlineMath math="x" /> |  <InlineMath math="x^3" />  | <InlineMath math="+3x^2" /> | <InlineMath math="-x" /> |
+| <InlineMath math="-5" /> | <InlineMath math="-5x^2" /> | <InlineMath math="-15x" />  | <InlineMath math="+5" /> |
+
+Tambahkan semua hasil di dalam petak jadual:
+
+<BlockMath math="\begin{aligned}(x-5)(x^2+3x-1)&amp;=x^3+3x^2-x-5x^2-15x+5 \\ &amp;=x^3-2x^2-16x+5\end{aligned}" />
+
+Jadual polinomial juga boleh mengandungi sebutan negatif. Dalam keadaan itu, petaknya mewakili **hasil darab algebra**, bukan luas geometri yang negatif.
+
+Kedua-dua kaedah memberikan hasil yang sama. Kaedah jadual menyusun hasil darab separa supaya tiada sebutan yang tertinggal.
+
+Untuk menyemak Contoh 3, gantikan <InlineMath math="x" /> dengan satu nombor. Dengan <InlineMath math="x = 3" />, segi empat tepat <InlineMath math="(x + 6)" /> darab <InlineMath math="(x + 2)" /> menjadi <InlineMath math="9" /> darab <InlineMath math="5" />. Rantaunya, <InlineMath math="x^2 = 9" />, <InlineMath math="6x = 18" />, <InlineMath math="2x = 6" /> dan <InlineMath math="12" />, berjumlah <InlineMath math="45" />, iaitu nilai <InlineMath math="x^2 + 8x + 12" /> pada <InlineMath math="x = 3" />.
+
+<MathVisual
+  title={<><InlineMath math="(x + 6)(x + 2)" /> sebagai luas pada <InlineMath math="x = 3" /></>}
+  description={<>Segi empat tepat <InlineMath math="9" /> darab <InlineMath math="5" /> yang dibahagikan kepada rantau dengan luas <InlineMath math="9" />, <InlineMath math="18" />, <InlineMath math="6" /> dan <InlineMath math="12" /> bagi <InlineMath math="x^2" />, <InlineMath math="6x" />, <InlineMath math="2x" /> dan <InlineMath math="12" />.</>}
+  labels={{
+    sq: <InlineMath math="x^2" />,
+    wide: <InlineMath math="6x" />,
+    top: <InlineMath math="2x" />,
+    corner: <InlineMath math="12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 9.6 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "sq", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 9, y: 0 }, { x: 9, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "top", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }, { x: 0, y: 5 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 9, y: 3 }, { x: 9, y: 5 }, { x: 3, y: 5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "sq", objectId: "sq", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "wide", objectId: "wide", at: { x: 6, y: 3 / 2 }, placement: "center" },
+      { key: "top", objectId: "top", at: { x: 3 / 2, y: 4 }, placement: "center" },
+      { key: "corner", objectId: "corner", at: { x: 6, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Kembangkan dan permudahkan <InlineMath math="(2x-3)(x^2+x-4)" />. Agihkan **kedua-dua sebutan** faktor pertama, kemudian gabungkan sebutan yang ada kuasa <InlineMath math="x" /> yang sama. Faktor linear didarab dengan faktor kuadratik menghasilkan darjah tiga, jadi hasilnya tidak boleh mengandungi kuasa yang lebih tinggi daripada <InlineMath math="x^3" />.
+
+### Jalan Kerja
+
+Agihkan **kedua-dua sebutan** faktor pertama kepada faktor kedua. Pastikan setiap **hasil darab separa** kelihatan sebelum kamu menggabungkan sebutan serupa:
+
+<BlockMath math="\begin{aligned}(2x-3)(x^2+x-4)&amp;=2x(x^2+x-4)-3(x^2+x-4) \\ &amp;=2x^3+2x^2-8x-3x^2-3x+12 \\ &amp;=2x^3-x^2-11x+12\end{aligned}" />
+
+Semakan ini dibuat berdasarkan struktur: faktor linear didarab dengan faktor kuadratik boleh menghasilkan darjah <InlineMath math="3" />, dan hasil darab sebutan pelopor <InlineMath math="2x\cdot x^2=2x^3" /> sepadan dengan sebutan pelopor dalam hasilnya.

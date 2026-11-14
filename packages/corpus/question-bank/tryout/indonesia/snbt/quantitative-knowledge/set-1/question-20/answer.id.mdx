@@ -1,25 +1,33 @@
-Kalimat "diketahui hasil kali genap" membuat ini **peluang bersyarat**. Ruang sampelnya bukan lagi 36 pasangan, melainkan hanya pasangan yang hasil kalinya genap.
+Kata MAMALIA punya huruf A sebanyak <InlineMath math="3" />, huruf M sebanyak <InlineMath math="2" />, serta L dan I masing-masing <InlineMath math="1" />. Ada dua syarat sekaligus: **tidak ada dua A yang bersebelahan dan tidak ada dua M yang bersebelahan**. Rencananya: penuhi syarat A dulu dengan metode sekat, lalu buang susunan yang masih membuat kedua M menempel.
 
-# Ruang sampel baru
+# Memenuhi syarat huruf A
 
-Hasil kali dua bilangan ganjil jika dan hanya jika kedua bilangan ganjil. Ada <InlineMath math="3\times3=9" /> pasangan ganjil-ganjil dari 36 pasangan, jadi **pasangan dengan hasil kali genap ada 27**. Setiap pasangan memiliki peluang yang sama karena dadunya seimbang.
+Susun dulu empat huruf selain A, yaitu M, M, L, dan I. Karena kedua M sama, banyak susunannya
 
-# Kejadian yang diminta
+<BlockMath math="\frac{4!}{2!}=12" />
 
-Pasangan dengan jumlah paling sedikit 8 ada 15.
+Empat huruf itu membuat <InlineMath math="5" /> celah, termasuk kedua ujung. Taruh setiap A di celah yang berbeda, maka **tidak ada dua A yang bersebelahan**. Ketiga A sama, jadi cukup memilih <InlineMath math="3" /> dari <InlineMath math="5" /> celah.
 
-| Jumlah | Pasangan | Banyak |
-| :---: | :---: | :---: |
-| 8 | (2,6), (3,5), (4,4), (5,3), (6,2) | 5 |
-| 9 | (3,6), (4,5), (5,4), (6,3) | 4 |
-| 10 | (4,6), (5,5), (6,4) | 3 |
-| 11 | (5,6), (6,5) | 2 |
-| 12 | (6,6) | 1 |
+<BlockMath math="12\cdot\binom{5}{3}=12\cdot10=120" />
 
-Dari 15 pasangan itu, **buang yang kedua matanya ganjil**, yaitu (3,5), (5,3), dan (5,5). Tersisa 12 pasangan.
+# Membuang susunan dengan dua M menempel
 
-<BlockMath math="P=\frac{12}{27}=\frac49" />
+Dari <InlineMath math="120" /> susunan tadi, hitung yang kedua M-nya bersebelahan. Itu terjadi jika kedua M bersebelahan di antara empat huruf **dan** tidak ada A yang masuk di antara keduanya.
 
-Nilai <InlineMath math="\tfrac13=\tfrac{12}{36}" /> lupa mengganti ruang sampel. Nilai <InlineMath math="\tfrac59=\tfrac{15}{27}" /> lupa membuang tiga pasangan ganjil dari kejadian. Nilai <InlineMath math="\tfrac23=\tfrac{12}{18}" /> menganggap hasil kali genap hanya terjadi pada setengah pasangan. Nilai <InlineMath math="\tfrac45=\tfrac{12}{15}" /> membalik syaratnya, yaitu peluang hasil kali genap jika jumlahnya paling sedikit 8.
+Gabungkan MM menjadi satu blok, lalu susun blok itu bersama L dan I: ada <InlineMath math="3!=6" /> cara. Sekarang ada <InlineMath math="4" /> celah di sekitar tiga unit itu, dan celah di dalam blok MM **tidak boleh dipakai**, karena A di situ akan memisahkan kedua M. Pilih <InlineMath math="3" /> dari <InlineMath math="4" /> celah.
 
-Jadi, peluang yang diminta adalah <InlineMath math="\tfrac49" />.
+<BlockMath math="6\cdot\binom{4}{3}=6\cdot4=24" />
+
+Jadi banyak susunan yang memenuhi kedua syarat adalah
+
+<BlockMath math="120-24=96" />
+
+# Memeriksa hasil
+
+Kata MAMALIA sendiri memenuhi syarat, karena urutan M, A, M, A, L, I, A tidak punya dua huruf sama yang bersebelahan. Penghitungan semua <InlineMath math="420" /> susunan satu per satu juga memberi **tepat <InlineMath math="96" /> susunan** yang lolos.
+
+# Kesalahan yang sering terjadi
+
+Jawaban <InlineMath math="120" /> muncul jika **syarat huruf M dilupakan**. Jawaban <InlineMath math="192" /> muncul jika kedua M dianggap huruf berbeda, sehingga setiap susunan terhitung dua kali. Jawaban <InlineMath math="420" /> adalah banyak semua susunan tanpa syarat apa pun.
+
+Jadi, banyak susunan yang tidak memuat dua huruf sama bersebelahan adalah <InlineMath math="96" />.

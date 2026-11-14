@@ -1,18 +1,22 @@
-Rewrite the statement in "if ... then" form. "No late participant is allowed into the exam room" means **if a participant is late, that participant is not allowed in**:
+The question asks for the statement that **has the same truth value in every situation** as the original sentence. Two statements are equivalent when no situation makes one true and the other false.
 
-<BlockMath math="\text{late} \Rightarrow \text{not allowed in}" />
+Step one: turn the form *tidak ada ... kecuali ...* ("no one ... except ...") into "if ..., then ...". The original says that the only students allowed to borrow lab equipment are students who meet both requirements at once. So it has this form.
 
-An equivalent statement must hold in exactly the same situations. The contrapositive is equivalent to the original:
+<BlockMath math="\text{may borrow} \Rightarrow (\text{did training} \wedge \text{has card})" />
 
-<BlockMath math="\text{allowed in} \Rightarrow \text{not late}" />
+The sentence sets a requirement, not a promise. A student who meets both requirements isn't guaranteed a loan, for example when someone else is using the equipment, and that situation doesn't contradict the original.
 
-It reads: every participant allowed into the exam room is not late.
+Step two: take the contrapositive, which means flipping the arrow and negating both sides. The negation of "did the training and has the card" is "didn't do the training or doesn't have the card", because one failed requirement is already enough to sink the pair.
 
-The other options are not equivalent:
+<BlockMath math="(\neg\text{did training} \vee \neg\text{has card}) \Rightarrow \neg\text{may borrow}" />
 
-- "Every participant who is not late is allowed in" is the inverse. The original does not guarantee that punctual participants are allowed in, since they might be refused for another reason.
-- "Some late participant is allowed in" is the negation of the original.
-- "Some late participants are not allowed in" is weaker. The original says **all** late participants are refused.
-- "Everyone not allowed in must be late" is the converse, which is also not equivalent.
+That form is exactly the statement "if a student hasn't done the safety training or doesn't bring a lab card, they may not borrow lab equipment".
 
-So the equivalent statement is "Every participant allowed into the exam room is not late".
+You can test every other option with one situation where its truth value differs from the original.
+
+- The statement that every student who did the training and has the card may borrow flips the arrow. Picture a student who meets both requirements but is turned away. The original stays true, while this statement is false.
+- The statement that some student may borrow even without the training or without the card is the negation of the original, not an equivalent form. Its truth value is always the opposite of the original.
+- The statement that mentions only the lab card drops the training requirement. Picture a student who has the card, hasn't done the training, and borrows equipment anyway. The original is broken, but this statement isn't.
+- The statement with "hasn't done the training **and** doesn't have the card" uses "and" where "or" belongs. It only forbids students who fail both requirements. Picture a student who did the training, doesn't have the card, and borrows equipment. The original is broken, but this statement isn't.
+
+So the equivalent statement is: if a student hasn't done the safety training or doesn't bring a lab card, they may not borrow lab equipment.

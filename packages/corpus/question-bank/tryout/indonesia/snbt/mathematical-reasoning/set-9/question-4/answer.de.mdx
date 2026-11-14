@@ -1,20 +1,36 @@
-Die Gesamtzahlung ist **der Barpreis plus die gesamten Zinsen**. Eine Obergrenze für die Gesamtzahlung gibt also eine Obergrenze für die Zinsen.
+Diese Aufgabe hat zwei Stufen. Zuerst suchst du das kleinste Gewicht an Rohkaffee für <InlineMath math="108" /> Beutel Dark, danach zählst du die Beutel Light aus dem Rest. Knifflig ist die erste Stufe: **die Zahl der Chargen wächst mit dem Rohgewicht**, und jede Charge gibt Kaffee für die Probe ab.
 
-# Obergrenze der Zinsen
+# Eine erste Schätzung ohne Probe
 
-<BlockMath math="4\,118\,400-3\,600\,000=518\,400" />
+Der Auftrag braucht <InlineMath math="108\times250=27{.}000\text{ g}" /> Dark. Ein Kilogramm Rohkaffee wird zu <InlineMath math="75\%\times1{.}000=750\text{ g}" />, ohne Probe würden also <InlineMath math="27{.}000:750=36\text{ kg}" /> reichen. Diese Zahl ist **nur eine untere Schranke**, weil die Probe noch nicht abgezogen ist.
 
-# Obergrenze des Monatszinses
+# Das kleinste Gewicht für Dark
 
-Bei einem Pauschalzins <InlineMath math="r" /> pro Monat betragen die Zinsen <InlineMath math="12\cdot r\cdot2\,880\,000=34\,560\,000\,r" />.
+Prüf jetzt die Gewichte rund um diese Schranke, und zwar mit der richtigen Zahl an Chargen. Eine Charge fasst höchstens <InlineMath math="12\text{ kg}" />.
 
 <BlockMath math="\begin{aligned}
-34\,560\,000\,r&\le518\,400\\
-r&\le0{,}015=1{,}5\,\%
+36\text{ kg},\ 3\text{ Chargen} &: 27{.}000-3\times200=26{.}400=105\times250+150 \\
+37\text{ kg},\ 4\text{ Chargen} &: 27{.}750-4\times200=26{.}950=107\times250+200 \\
+38\text{ kg},\ 4\text{ Chargen} &: 28{.}500-4\times200=27{.}700=110\times250+200
 \end{aligned}" />
 
-Bei <InlineMath math="1{,}5\,\%" /> beträgt die Gesamtzahlung **genau 4 118 400 Rupiah**, das passt also noch.
+Mit <InlineMath math="36\text{ kg}" /> gibt es nur <InlineMath math="105" /> Beutel. Mit <InlineMath math="37\text{ kg}" /> scheint es zu reichen, solange du bei <InlineMath math="3" /> Chargen bleibst, aber **das siebenunddreißigste Kilogramm erzwingt eine vierte Charge**, und dann sind es nur <InlineMath math="107" /> Beutel. Mit <InlineMath math="38\text{ kg}" /> gibt es <InlineMath math="110" /> Beutel, das reicht.
 
-Der Wert <InlineMath math="1{,}2\,\%" /> berechnet die Zinsen vom Barpreis 3 600 000 Rupiah statt vom Darlehen. Die Werte <InlineMath math="0{,}5\,\%" />, <InlineMath math="1\,\%" /> und <InlineMath math="1{,}25\,\%" /> passen zwar, sind aber nicht die höchsten.
+Jedes zusätzliche Kilogramm bringt <InlineMath math="750\text{ g}" /> und höchstens eine neue Charge, die <InlineMath math="200\text{ g}" /> abgibt. Ein größeres Gewicht liefert also nie weniger Beutel, und alles unter <InlineMath math="36\text{ kg}" /> reicht sicher nicht. Das kleinste Gewicht für Dark ist <InlineMath math="38\text{ kg}" />.
 
-Der höchste Pauschalzins beträgt also **<InlineMath math="1{,}5\,\%" /> pro Monat**.
+# Beutel Light aus dem Rest
+
+Übrig bleiben <InlineMath math="50-38=12\text{ kg}" /> Rohkaffee. **Das passt genau in eine Charge**, also gehen nur <InlineMath math="200\text{ g}" /> in die Probe.
+
+<BlockMath math="84\%\times12{.}000-200=10{.}080-200=9{.}880=39\times250+130" />
+
+Light füllt <InlineMath math="39" /> volle Beutel, und die restlichen <InlineMath math="130\text{ g}" /> werden nicht verkauft. Kontrolle der ersten Stufe: <InlineMath math="110\ge108" />, der Auftrag für Dark ist also erfüllt, während <InlineMath math="37\text{ kg}" /> wirklich scheitert, weil <InlineMath math="107<108" />.
+
+# Fallen, die du vermeiden solltest
+
+Andere Antworten entstehen, wenn **die Zahl der Chargen nicht neu bestimmt wird**.
+
+- Ohne Probe scheinen <InlineMath math="36\text{ kg}" /> Dark zu reichen. Die restlichen <InlineMath math="14\text{ kg}" /> brauchen dann <InlineMath math="2" /> Chargen Light und ergeben <InlineMath math="11{.}760-400=11{.}360" /> Gramm, also <InlineMath math="45" /> Beutel.
+- Mit <InlineMath math="3" /> Chargen für <InlineMath math="37\text{ kg}" /> scheint der Auftrag erfüllt. Die restlichen <InlineMath math="13\text{ kg}" /> brauchen dann <InlineMath math="2" /> Chargen Light und ergeben <InlineMath math="10{.}920-400=10{.}520" /> Gramm, also <InlineMath math="42" /> Beutel.
+
+Die Rösterei kann also <InlineMath math="39" /> Beutel Light verkaufen.

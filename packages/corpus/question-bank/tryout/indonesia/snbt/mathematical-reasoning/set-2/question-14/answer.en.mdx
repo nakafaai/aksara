@@ -1,13 +1,42 @@
-Rina now **sells** foreign currency, so the buying rate applies, the rupiah a customer receives. The service fee is subtracted from the money received.
+You're looking for the first person arriving after 08:00 who's served straight away. Persons <InlineMath math="1" /> and <InlineMath math="2" /> are served immediately too, but they came at 08:00, so they don't count. Look at **how fast the queue shrinks**, find the pattern in the waiting times, and then find when the wait first runs out.
 
-# Value of 60 SGD
+# How fast the queue shrinks
 
-<BlockMath math="60\cdot11{,}600=696{,}000" />
+While both counters stay busy, every <InlineMath math="12" /> minutes counter A starts <InlineMath math="12\div 4=3" /> services and counter B starts <InlineMath math="12\div 6=2" />. In those same <InlineMath math="12" /> minutes, <InlineMath math="12\div 3=4" /> people arrive. So **the queue shrinks by one person every <InlineMath math="12" /> minutes**, and at some point it has to empty.
 
-# Subtracting the service fee
+# The pattern in the waiting times
 
-<BlockMath math="696{,}000-25{,}000=671{,}000" />
+With the rule of the counter that frees up first, persons <InlineMath math="11" /> to <InlineMath math="15" /> start service at 08:24, 08:24, 08:28, 08:30 and 08:32. They arrived at 08:03, 08:06, 08:09, 08:12 and 08:15, so their waits are <InlineMath math="21" />, <InlineMath math="18" />, <InlineMath math="19" />, <InlineMath math="18" /> and <InlineMath math="17" /> minutes.
 
-In thousands of rupiah, this is 671. The buying rate is lower than the selling rate, so **a customer receives less than the purchase price**.
+Five people later, the counters' schedule has moved on by exactly one <InlineMath math="12" />-minute round, while the arrivals have moved on by <InlineMath math="5\cdot 3=15" /> minutes. So **every five numbers, the wait drops by three minutes**.
 
-So Rina receives **671 thousand rupiah**.
+<BlockMath math="\text{wait}(n+5)=\text{wait}(n)+12-15=\text{wait}(n)-3" />
+
+# When the wait first runs out
+
+That pattern holds while both counters stay busy, which is until someone doesn't have to wait. So for each position, count the rounds until the wait runs out, and then **take the smallest number**.
+
+| Person | First wait | Rounds until zero | Number with no wait |
+| --- | --- | --- | --- |
+| <InlineMath math="11" /> | <InlineMath math="21" /> | <InlineMath math="7" /> | <InlineMath math="46" /> |
+| <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
+| <InlineMath math="13" /> | <InlineMath math="19" /> | <InlineMath math="7" /> | <InlineMath math="48" /> |
+| <InlineMath math="14" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="44" /> |
+| <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="6" /> | <InlineMath math="45" /> |
+
+The smallest number is <InlineMath math="42" />, since <InlineMath math="12+5\cdot 6=42" /> and <InlineMath math="18-3\cdot 6=0" />.
+
+# A direct check
+
+Person <InlineMath math="42" /> arrives <InlineMath math="3\cdot(42-10)=96" /> minutes after 08:00, at 09:36. Counter B starts serving person <InlineMath math="39" /> at 09:30, so **counter B frees up exactly at 09:36**, just as person <InlineMath math="42" /> arrives. Person <InlineMath math="41" /> still waits <InlineMath math="21-3\cdot 6=3" /> minutes, so nobody before number <InlineMath math="42" /> is served straight away.
+
+# The wrong options
+
+Each other option comes from **guessing the pattern too quickly**.
+
+- Number <InlineMath math="29" /> comes from assuming people alternate between counters A and B.
+- Number <InlineMath math="45" /> comes from watching only counter A's schedule.
+- Number <InlineMath math="46" /> comes from applying the pattern only to person <InlineMath math="11" />, who has the longest wait.
+- Number <InlineMath math="50" /> comes from letting a queue of <InlineMath math="10" /> shrink by one every <InlineMath math="12" /> minutes until it's gone after <InlineMath math="120" /> minutes, although two of those people are served right at 08:00.
+
+So the first person arriving after 08:00 who's served straight away is person <InlineMath math="42" />.

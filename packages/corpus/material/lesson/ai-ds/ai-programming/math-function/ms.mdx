@@ -1,0 +1,441 @@
+export const metadata = {
+    title: "Fungsi Matematik",
+    description: "Gunakan modul math Python, fungsi berangka terbina dalam, gaya import, domain dan pemalar dalam pengiraan yang telah disemak.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-16",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Konsep Modul dalam Python
+
+Python <Highlight>menyimpan banyak kod yang boleh diguna semula dalam modul</Highlight>. Satu modul boleh mengandungi fungsi, pemalar, kelas dan nama lain tanpa meletakkan semuanya dalam ruang nama global.
+
+Pernyataan `import` memuatkan modul apabila diperlukan dan mengikat satu nama. Melalui nama itulah kod kamu boleh mencapai ahli awam modul tersebut. Pustaka standard sudah menyediakan operasi matematik yang diuji dengan teliti. Apabila kamu menggunakannya semula, kamu mengelakkan kesilapan yang timbul daripada menulis semula rumus sendiri.
+
+## Modul math untuk Fungsi Matematik
+
+Modul `math` menyediakan **fungsi dan pemalar bernilai nyata**. Modul ini menerima nombor nyata yang serasi seperti `int` dan `float`, tetapi tidak menerima nilai kompleks untuk operasi seperti `sqrt()`. Gunakan `cmath` apabila domain atau hasilnya mungkin kompleks.
+
+## Cara Mengimport Modul math
+
+Python menawarkan beberapa cara untuk mengimport modul, dan pilihan kamu menentukan **rupa setiap panggilan selepas itu**. Kamu boleh mengimport seluruh modul, mengimport nama tertentu sahaja daripadanya, atau menamakan semula modul itu semasa mengimport.
+
+### Import Asas dengan Ruang Nama
+
+Pernyataan `import math` mengimport modul itu di bawah **ruang nama `math`**. Selepas itu, fungsi dan pemalar dicapai dengan nama seperti `math.sqrt` dan `math.pi`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_basic.py",
+      code: `import math
+
+# Menggunakan fungsi sqrt dengan awalan math
+print(math.sqrt(9))  # Output: 3.0
+
+# Mencapai pemalar pi
+print(math.pi)  # Output: 3.141592653589793
+
+# Jika dicuba tanpa awalan, ralat akan berlaku
+# sqrt(9)  # NameError: name 'sqrt' is not defined`
+    }
+  ]}
+/>
+
+### Import dengan Alias
+
+Alias mengikat modul itu kepada **nama tempatan yang lain**. Gunakan alias hanya apabila ia mengikut konvensyen yang sudah mantap atau menyelesaikan konflik nama yang sebenar. Nama `math` sendiri sudah pendek dan jelas.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_alias.py",
+      code: `import math as m
+
+# Import math di bawah alias 'm' yang lebih pendek
+print(m.sqrt(9))  # Output: 3.0
+print(m.pi)       # Output: 3.141592653589793
+
+# Import ini mengikat m, bukan math
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+### Import Semua Fungsi
+
+Bentuk ini mengimport setiap nama awam daripada `math` ke dalam ruang nama semasa. Cara ini mungkin memudahkan dalam sesi interaktif yang sekali guna, tetapi kod aplikasi patut mengelakkannya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_all.py",
+      code: `from math import *
+
+# Fungsi boleh dipanggil terus tanpa awalan
+print(sqrt(9))  # Output: 3.0
+print(pi)       # Output: 3.141592653589793
+
+# Nama 'math' tidak tersedia kerana ia tidak diimport
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+`from math import *` meletakkan setiap nama awam daripada `math` dalam ruang nama semasa. Jika salah satu nama itu sudah digunakan, nilai daripada `math` menggantikannya tanpa sebarang ralat. Kod kamu juga tidak lagi menunjukkan modul mana yang membekalkan setiap nama, dan perubahan pada `math` pada masa hadapan boleh menambah nama baharu ke dalam modul yang mengimportnya. Import yang eksplisit pula <Highlight>menyenaraikan setiap kebergantungan pada baris import</Highlight>.
+
+### Import Fungsi Tertentu
+
+Import **fungsi yang digunakan oleh atur cara sahaja**. Nama fungsi itu boleh digunakan tanpa awalan modul, manakala baris import masih merekodkan asalnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_specific.py",
+      code: `from math import sqrt
+
+# Fungsi sqrt boleh dipanggil terus
+print(sqrt(9))  # Output: 3.0
+
+# Pemalar pi tidak tersedia kerana ia tidak diimport
+# print(pi)  # NameError: name 'pi' is not defined
+
+# Nama 'math' juga tidak tersedia
+# math.sqrt(9)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+### Import dengan Alias Fungsi
+
+Fungsi yang diimport boleh diberi alias untuk **menyelesaikan konflik nama** atau mengikut konvensyen tempatan yang sudah mantap.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "import_function_alias.py",
+      code: `from math import factorial as fac
+
+# Menggunakan alias 'fac' untuk fungsi factorial
+print(fac(5))  # Output: 120
+
+# Nama asal 'factorial' tidak tersedia
+# factorial(5)  # NameError: name 'factorial' is not defined
+
+# Begitu juga dengan 'math'
+# math.factorial(5)  # NameError: name 'math' is not defined`
+    }
+  ]}
+/>
+
+## Fungsi Terbina Dalam Berbanding Fungsi Modul
+
+Python menyediakan fungsi berangka terbina dalam seperti `abs()` dan `round()` **tanpa perlu import**. Fungsi ini boleh digunakan pada pelbagai jenis melalui protokol berangka Python. Setiap jenis boleh mentakrifkan operasi yang disokongnya.
+
+### Fungsi Nilai Mutlak
+
+Untuk nombor nyata, `abs()` memulangkan magnitud yang bukan negatif. Untuk nombor kompleks pula, `abs()` memulangkan **jarak dari asalan**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "abs_function.py",
+      code: `# Nilai mutlak bagi integer negatif
+print(abs(-5))    # Output: 5
+
+# Nilai mutlak bagi float negatif
+print(abs(-1.4))  # Output: 1.4
+
+# Nilai mutlak bagi nombor kompleks (modulus)
+print(abs(4 + 3j))  # Output: 5.0`
+    }
+  ]}
+/>
+
+Hasil bagi `4 + 3j` ialah <InlineMath math="5.0" /> kerana <InlineMath math="|4+3i|=\sqrt{4^2+3^2}=\sqrt{25}=5" />. Python menulis unit khayalan sebagai `j`, manakala rumus matematik lazimnya menggunakan <InlineMath math="i" />.
+
+### Fungsi Pembundaran
+
+Untuk jenis berangka terbina dalam Python, `round()` membundarkan kepada nilai yang terdekat, dan kes yang betul-betul di tengah diselesaikan dengan **membundarkan kepada nombor genap**. Tanpa `ndigits`, `round()` memulangkan integer bagi float. Berikan `ndigits` sebagai argumen kedua untuk memilih nilai tempat yang digunakan dalam pembundaran.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "round_function.py",
+      code: `# Pembundaran biasa
+print(round(-3.8))  # Output: -4
+print(round(3.5))   # Output: 4
+print(round(4.5))   # Output: 4
+
+# Pembundaran dengan kejituan tertentu
+print(round(3.141592653589793, 3))  # Output: 3.142
+print(round(1234.4321, -2))         # Output: 1200.0`
+    }
+  ]}
+/>
+
+`round(4.5)` menghasilkan <InlineMath math="4" />, manakala `round(3.5)` juga menghasilkan <InlineMath math="4" />. Nilai float yang nampak seperti nombor perpuluhan sebenarnya disimpan dalam bentuk binari, jadi nilai yang kelihatan betul-betul di tengah mungkin tidak begitu di dalam komputer. Gunakan aritmetik perpuluhan apabila sesuatu bidang memerlukan peraturan pembundaran perpuluhan.
+
+Fungsi terbina dalam `round()` serta fungsi modul `math.floor`, `math.ceil` dan `math.trunc` memberikan hasil yang berbeza untuk `-2.5`. `floor` turun ke <InlineMath math="-3" />, `ceil` dan `trunc` naik ke <InlineMath math="-2" />, manakala `round` membundarkan setengah kepada nombor genap, iaitu <InlineMath math="-2" />.
+
+<BarChart
+  title={<>Empat cara membundarkan <code>-2.5</code></>}
+  description={<>Setiap palang ialah hasil fungsi yang dinamakan di bawahnya untuk input <code>-2.5</code>. Hanya <code>math.floor</code> yang memberikan <InlineMath math="-3" />.</>}
+  yAxisLabel="Hasil"
+  data={[
+    { name: "floor", value: Math.floor(-2.5) },
+    { name: "ceil", value: Math.ceil(-2.5) },
+    { name: "trunc", value: Math.trunc(-2.5) },
+    { name: "round", value: -2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Fungsi dan Pemalar dalam Modul math
+
+Setiap fungsi `math` **mempunyai domain**. Contohnya, `sqrt(x)` memerlukan input nyata yang bukan negatif, dan logaritma memerlukan input nyata yang positif. Nilai di luar domain akan menimbulkan `ValueError`, bukannya memulangkan nombor.
+
+### Fungsi Punca Kuasa Dua dan Logaritma
+
+Contoh ini memanggil fungsi punca kuasa dua dan logaritma, kemudian menunjukkan cara Python melaporkan **input di luar domain yang dibenarkan**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_functions.py",
+      code: `import math
+
+# Fungsi punca kuasa dua
+print(f"Punca kuasa dua bagi 16: {math.sqrt(16)}")  # Output: Punca kuasa dua bagi 16: 4.0
+
+# Fungsi eksponen (e^x)
+print(f"e kuasa 2: {math.exp(2)}")  # Output: e kuasa 2: 7.38905609893065
+
+# Fungsi logaritma asli
+print(f"ln(10): {math.log(10)}")  # Output: ln(10): 2.302585092994046
+
+# Fungsi logaritma asas 10
+print(f"log10(100): {math.log10(100)}")  # Output: log10(100): 2.0
+
+# Logaritma dengan asas tertentu
+print(f"log2(8): {math.log(8, 2)}")  # Output: log2(8): 3.0
+
+try:
+    math.sqrt(-1)
+except ValueError as error:
+    print(type(error).__name__)
+# Output: ValueError`
+    }
+  ]}
+/>
+
+### Fungsi Trigonometri
+
+Fungsi trigonometri **mengambil input dalam radian**. Contoh ini menukar satu sudut, kemudian memanggil tiga fungsi utama.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "trigonometry.py",
+      code: `import math
+
+# Fungsi trigonometri (input dalam radian)
+angle_rad = math.pi / 4  # 45 darjah dalam radian
+
+print(f"sin(π/4): {math.sin(angle_rad)}")  # Output: sin(π/4): 0.7071067811865475
+print(f"cos(π/4): {math.cos(angle_rad)}")  # Output: cos(π/4): 0.7071067811865476
+print(f"tan(π/4): {math.tan(angle_rad)}")  # Output: tan(π/4): 0.9999999999999999
+
+# Menukar darjah kepada radian
+angle_deg = 45
+angle_rad = math.radians(angle_deg)
+print(f"45 darjah = {angle_rad} radian")  # Output: 45 darjah = 0.7853981633974483 radian`
+    }
+  ]}
+/>
+
+### Fungsi Siling Lantai dan Faktorial
+
+Pembundaran ke atas, pembundaran ke bawah dan faktorial menjawab **soalan yang berbeza**. Contoh ini menggunakan setiap fungsi itu dan mencetak hasilnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "ceiling_floor.py",
+      code: `import math
+
+number = 4.7
+
+# Siling: integer terkecil >= x
+print(f"ceil(4.7): {math.ceil(number)}")    # Output: ceil(4.7): 5
+
+# Lantai: integer terbesar <= x
+print(f"floor(4.7): {math.floor(number)}")  # Output: floor(4.7): 4
+
+# Faktorial
+print(f"5!: {math.factorial(5)}")  # Output: 5!: 120`
+    }
+  ]}
+/>
+
+### Pemalar Matematik
+
+Modul ini juga menyediakan pemalar, termasuk pemalar matematik yang terhingga dan **nilai titik apungan khas**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_constants.py",
+      code: `import math
+
+# Pemalar pi (π ≈ 3.141592...)
+print(f"Nilai π: {math.pi}")
+
+# Pemalar e (nombor Euler ≈ 2.718281...)
+print(f"Nilai e: {math.e}")
+
+# Infiniti (infiniti positif)
+print(f"Infiniti: {math.inf}")
+
+# Bukan nombor (NaN, Not a Number)
+print(f"NaN: {math.nan}")
+
+# Contoh penggunaan pemalar
+circle_radius = 5
+circle_area = math.pi * circle_radius ** 2
+print(f"Luas bulatan dengan jejari {circle_radius}: {circle_area}")`
+    }
+  ]}
+/>
+
+Ikuti lengkung ungu `math.sqrt(x)` daripada modul `math`. Lengkung ini bermula pada `0` dan naik semakin perlahan, jadi `math.sqrt(4)` memberikan `2.0` dan `math.sqrt(9)` memberikan `3.0`. Bentuknya ialah parabola `x = y**2` yang dibaringkan, kerana apabila setiap hasil dikuasaduakan, kamu mendapat semula inputnya. `math.sqrt(2)` jatuh di antara `0` dan `math.sqrt(4)`, pada kira-kira `1.414`, manakala `math.sqrt(-1)` menimbulkan `ValueError` kerana tiada titik di sebelah kiri `0`.
+
+<MathVisual
+  title={<>Lengkung <code>math.sqrt</code></>}
+  description={<>Lengkung ungu ialah <code>math.sqrt(x)</code> untuk input dari sifar hingga sembilan. Titik magenta ialah tiga panggilan yang hasilnya boleh kamu semak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "quadratic", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3 }, inputAxis: "y", appearance: "secondary" },
+      { id: "four", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "nine", kind: "point", at: { x: 9, y: 3 }, appearance: "answer" },
+      { id: "two", kind: "point", at: { x: 2, y: Math.SQRT2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "root", objectId: "root", at: { x: 6.25, y: 2.5 }, placement: "above-left" },
+      { key: "four", objectId: "four", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "nine", objectId: "nine", at: { x: 9, y: 3 }, placement: "below-left" },
+      { key: "two", objectId: "two", at: { x: 2, y: Math.SQRT2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "root": "math.sqrt(x)",
+    "four": "math.sqrt(4) = 2.0",
+    "nine": "math.sqrt(9) = 3.0",
+    "two": "math.sqrt(2)",
+  }}
+/>
+
+Fungsi trigonometri dalam modul `math` mengambil radian, jadi kamu menulis sudut menggunakan pemalar `math.pi`. Untuk sudut `math.pi / 3`, iaitu <InlineMath math="60^\circ" />, `math.cos` memberikan <InlineMath math="0.5" /> dan `math.sin` memberikan <InlineMath math="\tfrac{\sqrt3}2\approx0.866" />.
+
+<MathVisual
+  title={<><code>math.cos</code> dan <code>math.sin</code> pada <code>math.pi / 3</code></>}
+  description={<>Titik magenta terletak pada bulatan unit kelabu pada sudut <InlineMath math="60^\circ" />, yang ditandakan oleh lengkok ambar. Tembereng garis ungu ialah <code>math.cos(math.pi / 3)</code> dan tembereng garis hijau kebiruan ialah <code>math.sin(math.pi / 3)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 1.3 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.3, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "cosine", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.cos(Math.PI / 3), y: 0 }, appearance: "secondary" },
+      { id: "sine", kind: "segment", from: { x: Math.cos(Math.PI / 3), y: 0 }, to: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "construction" },
+      { id: "radius", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "reference" },
+      { id: "point", kind: "point", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cosine", objectId: "cosine", at: { x: Math.cos(Math.PI / 3) / 2, y: 0 }, placement: "below" },
+      { key: "sine", objectId: "sine", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "cosine": <code>math.cos</code>,
+    "sine": <code>math.sin</code>,
+  }}
+/>
+
+## Memilih Cara Import yang Sesuai
+
+Pilih gaya import yang menunjukkan **nama modul pada setiap panggilan** apabila konteks itu penting, dan bawa masuk hanya nama yang benar-benar digunakan oleh atur cara. Satu fungsi yang digunakan sekali sahaja mudah dibaca sebagai `from math import sqrt`, manakala beberapa panggilan lebih jelas dengan `import math`.
+
+### Panduan Memilih Cara Import
+
+Pilih gaya import berdasarkan bilangan nama yang kamu perlukan dan **sejauh mana tempat panggilan itu kekal mudah dibaca**. Senarai di bawah menyusun pilihan daripada yang paling eksplisit hingga yang paling kurang eksplisit.
+
+1. **Utamakan `import math`** apabila atur cara menggunakan beberapa ahli modul. Panggilan seperti `math.sqrt()` mengekalkan nama modul di sebelah fungsi.
+2. **Gunakan `import math as m` dengan tujuan yang jelas** hanya apabila alias itu ialah konvensyen tempatan yang didokumenkan.
+3. **Gunakan `from math import sqrt, pi`** apabila sekumpulan kecil nama yang tidak mengelirukan menjadikan kod setempat lebih baik.
+4. **Elakkan `from math import *`** kerana nama-namanya tiada awalan modul dan boleh menggantikan nama yang sudah digunakan oleh atur cara.
+
+### Mengira Jarak dan Luas
+
+Untuk titik `(0, 0)` dan `(3, 4)`, **jarak Euclidean** ialah punca kuasa dua bagi hasil tambah kuasa dua beza koordinat. Untuk sisi `3`, `4` dan `5`, rumus Heron memberikan hasil yang sama dengan rumus luas segi tiga bersudut tegak.
+
+<BlockMath math="\begin{aligned}d&=\sqrt{(3-0)^2+(4-0)^2}=5\\s&=\frac{3+4+5}{2}=6\\A&=\sqrt{6(6-3)(6-4)(6-5)}=\sqrt{36}=6\end{aligned}" />
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_example.py",
+      code: `import math
+
+def calculate_euclidean_distance(x1, y1, x2, y2):
+    """Kira jarak Euclidean antara dua titik"""
+    return math.hypot(x2 - x1, y2 - y1)
+
+def calculate_triangle_area(a, b, c):
+    """Kira luas segi tiga menggunakan rumus Heron"""
+    if not all(math.isfinite(side) for side in (a, b, c)):
+        raise ValueError("Panjang sisi mesti terhingga")
+    if min(a, b, c) <= 0:
+        raise ValueError("Panjang sisi mesti positif")
+
+    if a + b <= c or a + c <= b or b + c <= a:
+        raise ValueError("Panjang sisi mesti membentuk segi tiga")
+
+    # Kira separuh perimeter
+    s = (a + b + c) / 2
+
+    # Rumus Heron
+    area = math.sqrt(s * (s - a) * (s - b) * (s - c))
+    return area
+
+# Contoh penggunaan
+point1 = (0, 0)
+point2 = (3, 4)
+distance = calculate_euclidean_distance(*point1, *point2)
+print(f"Jarak antara {point1} dengan {point2}: {distance}")
+
+# Kira luas segi tiga dengan sisi 3, 4, 5
+area = calculate_triangle_area(3, 4, 5)
+print(f"Luas segi tiga dengan sisi 3, 4, 5: {area}")`
+    }
+  ]}
+/>
+
+Kod berangka yang jelas menyatakan tiga keputusan secara terang: ruang nama mana yang memiliki sesuatu operasi, **domain input mana** yang diterima oleh operasi itu, dan cara input luar biasa dikendalikan. Keputusan ini lebih penting daripada memendekkan nama fungsi beberapa aksara.

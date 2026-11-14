@@ -1,21 +1,32 @@
-Hal terpenting adalah menentukan **jarak yang ditempuh kereta pada setiap kejadian**, bukan hanya waktunya.
+Jam analog dengan angka <InlineMath math="1" /> sampai <InlineMath math="12" /> mengulang tampilannya setiap <InlineMath math="12" /> jam. Jadi, jam yang terlambat akan tampak tepat lagi saat keterlambatannya **genap satu putaran penuh**, yaitu <InlineMath math="12" /> jam atau <InlineMath math="12\times60=720" /> menit, bukan <InlineMath math="24" /> jam. Tugasmu adalah melacak keterlambatan itu sampai mencapai <InlineMath math="720" /> menit.
 
-Saat melewati tiang, bagian depan kereta bergerak dari tiang sampai bagian belakang meninggalkan tiang. Jaraknya sama dengan panjang kereta, <InlineMath math="150\text{ m}" />, sehingga kecepatannya
-
-<BlockMath math="v=\frac{150\text{ m}}{10\text{ s}}=15\text{ m/s}" />
-
-Saat melewati terowongan, bagian depan kereta harus menempuh **panjang terowongan ditambah panjang kereta**. Bagian depan masuk, menempuh seluruh terowongan, lalu masih harus maju sejauh panjang kereta agar bagian belakang keluar:
+Langkah pertama, hitung keterlambatan sampai baterai habis. Dari 1 Maret pukul 12.00 sampai 1 Mei pukul 12.00 ada <InlineMath math="31" /> hari di bulan Maret dan <InlineMath math="30" /> hari di bulan April.
 
 <BlockMath math="\begin{aligned}
-L+150 &= 15\times40=600 \\
-L &= 450\text{ m}
+\text{lama berjalan} &= 31+30 = 61 \text{ hari} \\
+\text{keterlambatan} &= 61\times6 = 366 \text{ menit}
 \end{aligned}" />
 
-Pilihan lain muncul dari kesalahan memahami jarak:
+Langkah kedua, masukkan efek jam berhenti. Selama <InlineMath math="3" /> jam itu, waktu sebenarnya maju <InlineMath math="180" /> menit, sedangkan jarum jam diam. Jadi, keterlambatannya bertambah tepat <InlineMath math="180" /> menit.
 
-- <InlineMath math="600\text{ m}" /> adalah seluruh jarak tempuh, tanpa mengurangi panjang kereta.
-- <InlineMath math="750\text{ m}" /> muncul jika panjang kereta justru ditambahkan pada <InlineMath math="600\text{ m}" />.
-- <InlineMath math="300\text{ m}" /> muncul jika panjang kereta dikurangkan dua kali.
-- <InlineMath math="525\text{ m}" /> muncul jika hanya setengah panjang kereta yang dikurangkan.
+<BlockMath math="366+180 = 546 \text{ menit pada 1 Mei pukul 15.00}" />
 
-Jadi, panjang terowongan adalah <InlineMath math="450\text{ m}" />.
+Langkah ketiga, hitung sisa keterlambatan yang dibutuhkan. Setelah berjalan lagi, jam itu tertinggal <InlineMath math="6" /> menit setiap hari.
+
+<BlockMath math="\begin{aligned}
+\text{sisa} &= 720-546 = 174 \text{ menit} \\
+\text{waktu} &= 174\div6 = 29 \text{ hari}
+\end{aligned}" />
+
+Dua puluh sembilan hari setelah 1 Mei pukul 15.00 adalah 30 Mei pukul 15.00. Pada saat itu jarum jam menunjuk pukul 03.00, dan pada jam berangka <InlineMath math="1" /> sampai <InlineMath math="12" />, tampilan itu sama dengan pukul 15.00.
+
+Cek bahwa ini memang yang pertama: sebelum baterai habis keterlambatannya baru <InlineMath math="366" /> menit, dan setelah berhenti baru <InlineMath math="546" /> menit. Keduanya belum mencapai <InlineMath math="720" />, jadi tidak ada saat yang lebih awal.
+
+Pilihan lain muncul dari satu langkah yang terlewat:
+
+- 29 Mei 2027 menghitung 1 Mei sebagai hari pertama dari <InlineMath math="29" /> hari, padahal <InlineMath math="29" /> hari setelah 1 Mei jatuh pada 30 Mei.
+- 29 Juni 2027 mengabaikan jam yang berhenti dan menghitung <InlineMath math="720\div6=120" /> hari sejak 1 Maret.
+- 30 Juli 2027 hanya memakai <InlineMath math="180" /> menit dari jam yang berhenti dan melupakan <InlineMath math="366" /> menit keterlambatan sebelumnya, sehingga menunggu <InlineMath math="540\div6=90" /> hari sejak 1 Mei.
+- 27 September 2027 menunggu keterlambatan <InlineMath math="24" /> jam (<InlineMath math="1{.}440" /> menit), seolah-olah jamnya digital <InlineMath math="24" /> jam, sehingga menunggu <InlineMath math="(1{.}440-546)\div6=149" /> hari.
+
+Jadi, jam itu pertama kali kembali menunjukkan waktu yang tepat pada 30 Mei 2027.

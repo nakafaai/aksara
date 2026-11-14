@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "mebel",
+  stimulus: "meteran",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Stok pada akhir Juni lebih banyak daripada stok pada awal Januari.",
+            "Jika pemakaian Keluarga Hasan pada suatu bulan $$20\\%$$ lebih sedikit daripada pemakaian Mei, tagihannya pada bulan itu turun kurang dari $$20\\%$$ dibandingkan tagihan Mei.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika biaya beban ikut dihitung, biaya rata-rata per kWh Keluarga Lestari pada Mei lebih rendah daripada biaya rata-rata per kWh Keluarga Hasan.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada Mei, pemakaian Keluarga Made kurang dari dua kali pemakaian Keluarga Hasan, tetapi tagihan Keluarga Made lebih dari dua kali tagihan Keluarga Hasan.",
         },
         {
           column: 1,
           label:
-            "Ada tepat tiga bulan ketika produksi lebih banyak daripada penjualan.",
-        },
-        {
-          column: 2,
-          label:
-            "Total penjualan selama enam bulan lebih banyak daripada total produksi.",
-        },
-        {
-          column: 2,
-          label:
-            "Penurunan stok terbesar dalam satu bulan terjadi pada bulan Juni.",
+            "Tagihan Mei Keluarga Made lebih dari $$65\\%$$ lebih tinggi daripada tagihan Mei Keluarga Hasan.",
         },
       ],
     },

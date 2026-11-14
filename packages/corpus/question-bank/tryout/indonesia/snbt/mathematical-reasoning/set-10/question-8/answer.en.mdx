@@ -1,16 +1,54 @@
-09.30 is 270 minutes after 05.00. For each line, find **the first multiple of its gap that is not less than 270**.
+You're looking for the shortest term whose instalment is at most <InlineMath math="400{,}000" />. The monthly interest changes after a <InlineMath math="12" />-month term, so here's the plan: **check the two groups of terms separately**, set up an inequality for the instalment, then test the terms right around the boundary.
 
-# Next departures
+# The instalment as a formula in the term
+
+The loan principal is <InlineMath math="6{,}000{,}000-1{,}200{,}000=4{,}800{,}000" />. Dividing the total interest by the term gives **a fixed interest per month**, <InlineMath math="4{,}800{,}000\cdot r" />.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad 270=16\cdot16+14,\quad 16\cdot17=272\to 09.32\\
-\text{B}&:\quad 270=24\cdot11+6,\quad 24\cdot12=288\to 09.48
+\text{instalment before rounding} &= \frac{4{,}800{,}000}{n}+4{,}800{,}000\cdot r
 \end{aligned}" />
 
-# Waiting time
+The limit <InlineMath math="400{,}000" /> is already a multiple of <InlineMath math="1{,}000" />. So the rounded-up instalment stays at most <InlineMath math="400{,}000" /> **exactly when the value before rounding is also at most** <InlineMath math="400{,}000" />.
 
-Line A leaves in 2 minutes and line B in 18, so **line A comes first**.
+# Terms up to twelve months
 
-The values 14 and 6 minutes are remainders, the times since the last line A and line B trains left, not waits. The value 18 minutes is the wait for line B, and 8 minutes is just half of line A's gap.
+In this group <InlineMath math="r=1.5\%" />, so the monthly interest is <InlineMath math="72{,}000" />. The smallest instalment in this group comes with the longest term, <InlineMath math="12" /> months.
 
-So Rina waits at least **2 minutes**.
+<BlockMath math="\begin{aligned}
+\frac{4{,}800{,}000}{12}+72{,}000 &= 400{,}000+72{,}000=472{,}000>400{,}000
+\end{aligned}" />
+
+Even the smallest instalment is over the limit, so **no term up to twelve months works**.
+
+# Terms longer than twelve months
+
+In this group <InlineMath math="r=2.5\%" />, so the monthly interest is <InlineMath math="120{,}000" />. The bigger interest means **the principal part has to be smaller**.
+
+<BlockMath math="\begin{aligned}
+\frac{4{,}800{,}000}{n}+120{,}000 &\le 400{,}000\\
+\frac{4{,}800{,}000}{n} &\le 280{,}000\\
+n &\ge \frac{4{,}800{,}000}{280{,}000}=17\tfrac{1}{7}
+\end{aligned}" />
+
+The term has to be a whole number, so the smallest possible term is <InlineMath math="18" /> months.
+
+# Checking around the boundary
+
+Test the <InlineMath math="17" />- and <InlineMath math="18" />-month terms directly.
+
+<BlockMath math="\begin{aligned}
+\text{term } 17\text{: } \frac{4{,}800{,}000}{17}+120{,}000 &= 402{,}352.94\ldots\to403{,}000>400{,}000\\
+\text{term } 18\text{: } \frac{4{,}800{,}000}{18}+120{,}000 &= 386{,}666.66\ldots\to387{,}000\le400{,}000
+\end{aligned}" />
+
+**The eighteen-month term works**, while the seventeen-month term doesn't yet.
+
+# Common wrong answers
+
+These answers **miss the interest, the interest jump, or the direction of rounding**.
+
+- The answer <InlineMath math="15" /> uses <InlineMath math="1.5\%" /> interest for every term, so <InlineMath math="320{,}000+72{,}000=392{,}000" /> seems to fit.
+- The answer <InlineMath math="12" /> forgets the interest and only divides the principal, <InlineMath math="\tfrac{4{,}800{,}000}{12}=400{,}000" />.
+- The answer <InlineMath math="17" /> rounds <InlineMath math="17\tfrac{1}{7}" /> down, but a <InlineMath math="17" />-month term gives an instalment of <InlineMath math="403{,}000" />.
+
+So the shortest term Sari can choose is <InlineMath math="18" /> months.

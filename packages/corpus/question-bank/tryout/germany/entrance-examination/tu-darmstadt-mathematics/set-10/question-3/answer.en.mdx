@@ -1,0 +1,19 @@
+The task asks for the largest number of crates the person may take. The total load of person and crates must not exceed <InlineMath math="630\text{ kg}" />. With <InlineMath math="n" /> crates this gives a **linear inequality**, whose solution you then restrict to whole numbers.
+
+<BlockMath math="\begin{aligned}
+90+24n&\le630 \\
+24n&\le540 \\
+n&\le22.5
+\end{aligned}" />
+
+The number of crates must be a whole number. The largest whole number with <InlineMath math="n\le22.5" /> is <InlineMath math="22" />.
+
+As a check, test both neighbours. With <InlineMath math="22" /> crates the load is <InlineMath math="90+528=618\text{ kg}" />, which is allowed. With <InlineMath math="23" /> crates it would be <InlineMath math="90+552=642\text{ kg}" />, which is too much.
+
+So the person may take at most <InlineMath math="22" /> crates.
+
+- <InlineMath math="23" /> rounds <InlineMath math="22.5" /> up. The lift would then be overloaded with <InlineMath math="642\text{ kg}" />.
+- <InlineMath math="26" /> forgets the person and computes <InlineMath math="630:24\approx26.25" />.
+- <InlineMath math="27" /> forgets the person and also rounds <InlineMath math="26.25" /> up.
+- <InlineMath math="22.5" /> is the bound of the inequality. Nobody can take half a crate.
+- <InlineMath math="24" /> mixes up the mass of one crate with the number of crates.

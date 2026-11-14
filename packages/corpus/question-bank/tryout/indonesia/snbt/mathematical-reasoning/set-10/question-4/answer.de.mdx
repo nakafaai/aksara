@@ -1,16 +1,46 @@
-Keinen Verlust machen heißt: **Der Gewinn aus den Brötchen ist mindestens so groß wie die Fixkosten**.
+Du suchst die kleinste Zahl von Überfahrten, wenn der Mitarbeiter jede Ladung frei zusammenstellen darf. Der Plan: Finde zuerst eine **untere Schranke**, also die Zahl der Fahrten, die sicher nötig sind, und zeige dann einen Plan, der diese Zahl wirklich erreicht.
 
-# Die Ungleichung aufstellen
+# Eine untere Schranke aus Gesamtlänge und Gesamtmasse
+
+Addiere Länge und Masse aller <InlineMath math="11" /> Fahrzeuge: <InlineMath math="3" /> Lkw, <InlineMath math="2" /> Busse, <InlineMath math="5" /> Autos und <InlineMath math="1" /> Pick-up.
 
 <BlockMath math="\begin{aligned}
-1\,500x&\ge120\,000\\
-x&\ge80
+\text{Gesamtlänge} &= 3\cdot10+2\cdot12+5\cdot5+6=85\text{ m}\\
+\text{Gesamtmasse} &= 3\cdot15+2\cdot16+5\cdot2+3=90\text{ Tonnen}
 \end{aligned}" />
 
-# Die Bedingungen prüfen
+Eine Fahrt trägt höchstens <InlineMath math="40\text{ m}" /> und <InlineMath math="30\text{ Tonnen}" />. Wegen <InlineMath math="85>2\cdot40" /> und <InlineMath math="90=3\cdot30" /> zeigen die Summen nur, dass mindestens <InlineMath math="3" /> Fahrten nötig sind. Aber **Fahrzeuge lassen sich nicht zerteilen**, also ist <InlineMath math="3" /> vielleicht gar nicht erreichbar.
 
-Achtzig Schokobrötchen passen in den Ofen und brauchen <InlineMath math="80\cdot50=4\,000" /> g Mehl, **innerhalb der 7 kg**. Der Plan geht also.
+# Schwere Fahrzeuge, die nicht zusammen fahren können
 
-Der Wert 60 nimmt den Gewinn eines Käsebrötchens, 2 000 Rupiah, obwohl an diesem Tag nur Schokobrötchen gebacken werden. Der Wert 70 bringt nur 105 000 Rupiah, weniger als die Fixkosten. Die Werte 90 und 100 vermeiden zwar einen Verlust, sind aber nicht die wenigsten.
+Prüfe die Paare schwerer Fahrzeuge.
 
-Bu Sari muss also mindestens **80 Schokobrötchen** backen und verkaufen.
+<BlockMath math="\begin{aligned}
+\text{Bus und Bus} &= 16+16=32\text{ Tonnen}>30\text{ Tonnen}\\
+\text{Bus und Lkw} &= 16+15=31\text{ Tonnen}>30\text{ Tonnen}\\
+\text{drei Lkw} &= 3\cdot15=45\text{ Tonnen}>30\text{ Tonnen}
+\end{aligned}" />
+
+Angenommen, <InlineMath math="3" /> Fahrten würden reichen. Die beiden Busse müssten auf zwei verschiedenen Fahrten sein, und **eine Fahrt mit Bus kann keinen Lkw mitnehmen**. Dann müssten alle drei Lkw auf die eine übrige Fahrt, doch drei Lkw wiegen <InlineMath math="45\text{ Tonnen}" />. Das ist unmöglich, also sind mindestens <InlineMath math="4" /> Fahrten nötig.
+
+# Ein Plan mit vier Fahrten
+
+Zeige jetzt, dass <InlineMath math="4" /> Fahrten wirklich reichen. Zwei Lkw dürfen zusammen fahren, weil <InlineMath math="30\text{ Tonnen}" /> genau die Grenze ist.
+
+| Fahrt | Ladung | Länge | Masse |
+| :---: | :---: | :---: | :---: |
+| erste | zwei Lkw | <InlineMath math="20\text{ m}" /> | <InlineMath math="30\text{ Tonnen}" /> |
+| zweite | Lkw, zwei Autos, Pick-up | <InlineMath math="26\text{ m}" /> | <InlineMath math="22\text{ Tonnen}" /> |
+| dritte | Bus, drei Autos | <InlineMath math="27\text{ m}" /> | <InlineMath math="22\text{ Tonnen}" /> |
+| vierte | Bus | <InlineMath math="12\text{ m}" /> | <InlineMath math="16\text{ Tonnen}" /> |
+
+Jede Zeile hält beide Grenzen ein, und **jedes Fahrzeug fährt genau einmal**: drei Lkw, zwei Busse, fünf Autos und ein Pick-up.
+
+# Häufige falsche Antworten
+
+Beide Antworten **lesen die Ladebedingungen falsch**.
+
+- Die Antwort <InlineMath math="3" /> nutzt nur Gesamtlänge und Gesamtmasse und übersieht, dass ein Bus weder mit einem Bus noch mit einem Lkw fahren kann.
+- Die Antwort <InlineMath math="5" /> folgt noch der Warteschlangenregel, obwohl diese Aufgabe die Reihenfolge freigibt. Auch <InlineMath math="5" /> bekommst du, wenn du glaubst, dass genau <InlineMath math="30\text{ Tonnen}" /> nicht erlaubt sind, denn dann muss jeder Lkw ohne einen zweiten Lkw fahren.
+
+Die Fähre braucht also mindestens <InlineMath math="4" /> Fahrten, um alle Fahrzeuge überzusetzen.

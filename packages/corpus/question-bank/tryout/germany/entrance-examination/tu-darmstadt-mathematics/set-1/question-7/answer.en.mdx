@@ -1,22 +1,40 @@
-First find the line's equation <InlineMath math="y=mx+b" /> from the two points. German notation writes a point as <InlineMath math="P(-1\mid4)" />. The **intersection with the <InlineMath math="x" />-axis** is then the point with <InlineMath math="y=0" />.
+# What's left after each drain
 
-The slope is the change in <InlineMath math="y" /> divided by the change in <InlineMath math="x" />.
+Say the first drain removes <InlineMath math="x" /> litres. Water carries no antifreeze, so **each drain removes the same share of the antifreeze as of the liquid**, and then the volume is back to <InlineMath math="40" /> litres.
 
-<BlockMath math="m=\frac{-4-4}{3-(-1)}=\frac{-8}{4}=-2" />
+- The first drain removes a share of <InlineMath math="\frac{x}{40}" />, so <InlineMath math="1-\frac{x}{40}" /> of the antifreeze is left.
+- The second drain removes <InlineMath math="2x" /> litres, a share of <InlineMath math="\frac{2x}{40}" />, so <InlineMath math="1-\frac{2x}{40}" /> of what was there is left.
 
-The intercept <InlineMath math="b" /> comes from substituting <InlineMath math="P(-1\mid4)" />: <InlineMath math="4=-2\cdot(-1)+b" />, so <InlineMath math="b=2" />. The line is <InlineMath math="y=-2x+2" />.
+The content drops from <InlineMath math="20\,\%" /> to <InlineMath math="5\,\%" />, to <InlineMath math="\frac14" /> of what it was. **The two remaining shares multiply, they don't add**:
+
+<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+
+# Solving the quadratic
+
+**Multiply both sides by <InlineMath math="1600" />** to clear the fractions:
 
 <BlockMath math="\begin{aligned}
-0&=-2x+2 \\
-x&=1
+(40-x)(40-2x)&=400 \\
+1600-120x+2x^2&=400 \\
+x^2-60x+600&=0 \\
+x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
 \end{aligned}" />
 
-As a check, substitute <InlineMath math="Q(3\mid-4)" />: <InlineMath math="-2\cdot3+2=-4" />, so the line really passes through <InlineMath math="Q" />. Also, <InlineMath math="x=1" /> lies between the <InlineMath math="x" />-values of <InlineMath math="P" /> and <InlineMath math="Q" />, where the line changes from positive to negative <InlineMath math="y" />-values.
+# Picking the possible root
 
-So the line meets the <InlineMath math="x" />-axis at <InlineMath math="(1\mid0)" />.
+The second drain removes <InlineMath math="2x" /> litres from a <InlineMath math="40" />-litre system, so **<InlineMath math="2x\le40" /> must hold, that is <InlineMath math="x\le20" />**.
 
-- <InlineMath math="(-1\mid0)" /> comes from the wrong intercept <InlineMath math="b=-2" />, that is, from <InlineMath math="0=-2x-2" />.
-- <InlineMath math="(2\mid0)" /> comes from taking the <InlineMath math="y" />-coordinate of <InlineMath math="P" />, <InlineMath math="4" />, as the intercept: <InlineMath math="0=-2x+4" />.
-- <InlineMath math="(0\mid2)" /> is the intersection with the <InlineMath math="y" />-axis, not the <InlineMath math="x" />-axis.
-- <InlineMath math="(0\mid1)" /> is not on the line, because at <InlineMath math="x=0" /> the line has <InlineMath math="y=2" />.
-- <InlineMath math="(7\mid0)" /> comes from using the reciprocal of the slope, <InlineMath math="m=-\frac12" />. The line would then be <InlineMath math="y=-\frac12x+\frac72" />, which no longer passes through <InlineMath math="Q" />.
+- <InlineMath math="30+10\sqrt3\approx47.3" /> is more than the whole system holds, so it drops out.
+- <InlineMath math="30-10\sqrt3\approx12.7" /> meets <InlineMath math="x\le20" />.
+
+Check: <InlineMath math="1-\frac{12.7}{40}\approx0.683" /> and <InlineMath math="1-\frac{25.4}{40}\approx0.366" />, and their product is about <InlineMath math="0.25" />.
+
+So the first drain removed <InlineMath math="30-10\sqrt3" /> litres, about <InlineMath math="12.7" /> litres.
+
+# Why the other options are wrong
+
+- <InlineMath math="30+10\sqrt3" /> litres **forgets to check the root against the system's volume**. You can't drain that much from <InlineMath math="40" /> litres.
+- The option with both roots forgets the same check.
+- <InlineMath math="20" /> litres treats both drains as the same size, so <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
+- <InlineMath math="10" /> litres adds the drained shares, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, but the second drain only hits the antifreeze that's still there.
+- <InlineMath math="60-20\sqrt3" /> litres **is the second drain**, <InlineMath math="2x" />, but the question asks for the first one.

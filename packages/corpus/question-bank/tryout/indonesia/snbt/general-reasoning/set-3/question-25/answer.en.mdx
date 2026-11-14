@@ -1,13 +1,31 @@
-Work with **numbers of students**, because school A still has <InlineMath math="800" /> students.
+The question asks for the smallest total number of departures from both ports over the next week. Three conditions work together: every day and every direction gets <InlineMath math="20\%" /> more passengers, each departure carries at most <InlineMath math="200" /> people, and on any given day both ports must have the same number of departures.
+
+Work it out **day by day**, because Sunday's passengers can't use Tuesday's empty seats. Since both ports need the same number of departures, the busier direction decides. For each day, multiply each bar by <InlineMath math="1.2" />, take the busier direction, and find the smallest multiple of <InlineMath math="200" /> that fits it.
+
+| Day | Batu Lintang | Karang Mas | Busier direction | Departures per port |
+| --- | --- | --- | --- | --- |
+| Monday | <InlineMath math="432" /> | <InlineMath math="672" /> | <InlineMath math="672" /> | <InlineMath math="4" /> |
+| Tuesday | <InlineMath math="456" /> | <InlineMath math="408" /> | <InlineMath math="456" /> | <InlineMath math="3" /> |
+| Wednesday | <InlineMath math="504" /> | <InlineMath math="480" /> | <InlineMath math="504" /> | <InlineMath math="3" /> |
+| Thursday | <InlineMath math="660" /> | <InlineMath math="456" /> | <InlineMath math="660" /> | <InlineMath math="4" /> |
+| Friday | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="4" /> |
+| Saturday | <InlineMath math="792" /> | <InlineMath math="768" /> | <InlineMath math="792" /> | <InlineMath math="4" /> |
+| Sunday | <InlineMath math="648" /> | <InlineMath math="828" /> | <InlineMath math="828" /> | <InlineMath math="5" /> |
+
+Take Monday as an example: <InlineMath math="3 \times 200 = 600" /> seats aren't enough for <InlineMath math="672" /> people, but <InlineMath math="4 \times 200 = 800" /> are. Check Saturday and Sunday carefully. On Saturday, <InlineMath math="792 \le 800" />, so four departures still work. On Sunday, <InlineMath math="828 > 800" />, so you need five.
+
+Add up the departures per port, then double it because there are two ports.
 
 <BlockMath math="\begin{aligned}
-\text{cyclists now} &= 25\%\times800=200 \\
-\text{target cyclists} &= 40\%\times800=320 \\
-\text{extra cyclists} &= 320-200=120
+4+3+3+4+4+4+5 &= 27 \\
+2 \times 27 &= 54
 \end{aligned}" />
 
-All the extra cyclists come from students who were driven. Originally <InlineMath math="25\%\times800=200" /> students were driven, so
+Some shortcuts give the wrong number.
 
-<BlockMath math="200-120=80" />
+- If you round the weekly totals, for example <InlineMath math="4{,}128 \div 200" /> up to <InlineMath math="21" /> and <InlineMath math="4{,}248 \div 200" /> up to <InlineMath math="22" />, you get <InlineMath math="43" />. That treats passengers as if they could switch days.
+- If you pool both directions on the same day, for example Monday's <InlineMath math="(432+672) \div 200 = 5.52" /> rounded up to <InlineMath math="6" />, you get <InlineMath math="45" />. That treats a boat leaving Batu Lintang as if it could carry people waiting in Karang Mas, and it breaks the equal-departures rule.
+- If you forget the <InlineMath math="20\%" /> increase, you get <InlineMath math="44" />.
+- If you stop at <InlineMath math="27" />, you've only counted one port.
 
-Check with percentages: driven students fall from <InlineMath math="25\%" /> to <InlineMath math="\frac{80}{800}=10\%" />, while cyclists rise from <InlineMath math="25\%" /> to <InlineMath math="40\%" />. The rise of <InlineMath math="15" /> percentage points equals the fall, so the total stays <InlineMath math="100\%" />. So <InlineMath math="80" /> students are still driven by family.
+So the operator needs at least <InlineMath math="54" /> departures from the two ports over the next week.

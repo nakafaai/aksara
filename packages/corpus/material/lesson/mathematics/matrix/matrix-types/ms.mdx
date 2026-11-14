@@ -1,0 +1,265 @@
+export const metadata = {
+  title: "Jenis-jenis Matriks",
+  description: "Kelaskan matriks sebagai matriks baris, lajur, segi empat sama, segi tiga, pepenjuru, identiti, sifar, atau simetri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Matriks Baris
+
+Matriks baris ialah matriks yang **hanya ada satu baris**.
+
+Peringkat matriks baris ialah <InlineMath math="1 \times n" />, dengan <InlineMath math="n" /> ialah bilangan lajur.
+
+Bentuk amnya ialah:
+
+<BlockMath math="A_{1 \times n} = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \end{bmatrix}" />
+
+Contoh:
+
+<BlockMath math="P = \begin{bmatrix} 3 & -1 & 0 & 7 \end{bmatrix}" />
+
+Matriks <InlineMath math="P" /> ialah matriks baris berperingkat <InlineMath math="1 \times 4" />.
+
+## Matriks Lajur
+
+Matriks lajur ialah matriks yang **hanya ada satu lajur**.
+
+Peringkat matriks lajur ialah <InlineMath math="m \times 1" />, dengan <InlineMath math="m" /> ialah bilangan baris.
+
+Bentuk amnya ialah:
+
+<BlockMath math="B_{m \times 1} = \begin{bmatrix} a_{11} \\ a_{21} \\ \vdots \\ a_{m1} \end{bmatrix}" />
+
+Contoh:
+
+<BlockMath math="Q = \begin{bmatrix} 2 \\ 5 \\ -4 \end{bmatrix}" />
+
+Matriks <InlineMath math="Q" /> ialah matriks lajur berperingkat <InlineMath math="3 \times 1" />.
+
+## Matriks Segi Empat Sama
+
+Matriks segi empat sama ialah matriks yang <Highlight>bilangan baris dan lajurnya sama</Highlight>.
+
+Kalau <InlineMath math="\text{bilangan baris} = \text{bilangan lajur} = n" />, maka matriks itu berperingkat <InlineMath math="n \times n" />.
+
+Bentuk amnya ialah:
+
+<BlockMath
+  math="A_{n \times n} = \begin{bmatrix}
+a_{11} & a_{12} & \dots & a_{1n} \\
+a_{21} & a_{22} & \dots & a_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+a_{n1} & a_{n2} & \dots & a_{nn}
+\end{bmatrix}"
+/>
+
+Dalam matriks segi empat sama, ada:
+
+1. **Pepenjuru Utama**:
+
+   Unsur <InlineMath math="a_{11}, a_{22}, \dots, a_{nn}" /> (iaitu <InlineMath math="a_{ij}" /> dengan <InlineMath math="i=j" />).
+
+2. **Pepenjuru Bertentangan**:
+
+   Unsur <InlineMath math="a_{1n}, a_{2,n-1}, \dots, a_{n1}" /> (iaitu <InlineMath math="a_{ij}" /> dengan <InlineMath math="i+j=n+1" />).
+
+Contoh:
+
+<BlockMath math="M = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9 \end{bmatrix}" />
+
+Matriks <InlineMath math="M" /> ialah matriks segi empat sama berperingkat <InlineMath math="3 \times 3" />. Unsur pepenjuru utamanya ialah <InlineMath math="1, 5, 9" />. Unsur pepenjuru bertentangannya ialah <InlineMath math="3, 5, 7" />.
+
+## Matriks Segi Empat Tepat
+
+Matriks segi empat tepat ialah matriks yang **bilangan baris dan lajurnya tidak sama** (<InlineMath math="m \neq n" />).
+
+Contoh am:
+
+<BlockMath math="C = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}" />
+
+Matriks <InlineMath math="C" /> di atas ada <InlineMath math="2" /> baris dan <InlineMath math="3" /> lajur, jadi peringkatnya <InlineMath math="2 \times 3" />. Oleh sebab bilangan baris tidak sama dengan bilangan lajur (<InlineMath math="2 \neq 3" />), matriks <InlineMath math="C" /> ialah matriks segi empat tepat.
+
+Matriks segi empat tepat yang lebih banyak lajur daripada baris selalu dipanggil matriks lebar, manakala yang lebih banyak baris daripada lajur selalu dipanggil matriks tinggi.
+
+### Matriks Lebar
+
+Matriks lebar ialah matriks segi empat tepat yang **lebih banyak lajur daripada baris** (<InlineMath math="n > m" />).
+
+Contoh:
+
+<BlockMath math="D = \begin{bmatrix} 1 & 0 & 4 \\ -2 & 3 & 5 \end{bmatrix}" />
+
+Matriks <InlineMath math="D" /> ialah matriks lebar berperingkat <InlineMath math="2 \times 3" />.
+### Matriks Tinggi
+
+Matriks tinggi ialah matriks segi empat tepat yang **lebih banyak baris daripada lajur** (<InlineMath math="m > n" />).
+
+Contoh:
+
+<BlockMath math="T = \begin{bmatrix} 7 & 1 \\ 0 & -3 \\ 4 & 2 \end{bmatrix}" />
+
+Matriks <InlineMath math="T" /> ialah matriks tinggi berperingkat <InlineMath math="3 \times 2" />.
+## Matriks Segi Tiga
+
+Matriks segi tiga ialah matriks segi empat sama yang unsurnya pada **satu sisi pepenjuru utama** semuanya sifar. Unsur pada pepenjuru itu sendiri boleh jadi apa-apa nilai. Matriks segi tiga atas dan bawah berbeza pada sisi mana yang sifar.
+### Matriks Segi Tiga Atas
+
+Matriks segi tiga atas ialah matriks segi empat sama yang **semua unsurnya di bawah pepenjuru utama ialah sifar**.
+
+Dalam simbol, <InlineMath math="a_{ij} = 0" /> setiap kali <InlineMath math="i > j" />.
+
+Contoh:
+
+<BlockMath math="U = \begin{bmatrix} 5 & 2 & -1 \\ 0 & 3 & 7 \\ 0 & 0 & 1 \end{bmatrix}" />
+
+### Matriks Segi Tiga Bawah
+
+Matriks segi tiga bawah ialah matriks segi empat sama yang **semua unsurnya di atas pepenjuru utama ialah sifar**.
+
+Dalam simbol, <InlineMath math="a_{ij} = 0" /> setiap kali <InlineMath math="i < j" />.
+
+Contoh:
+
+<BlockMath math="L = \begin{bmatrix} 2 & 0 & 0 \\ 4 & 6 & 0 \\ -3 & 1 & 9 \end{bmatrix}" />
+
+## Matriks Pepenjuru
+
+Matriks pepenjuru ialah matriks segi empat sama yang **semua unsurnya di luar pepenjuru utama ialah sifar**.
+
+Dalam simbol, <InlineMath math="a_{ij} = 0" /> setiap kali <InlineMath math="i \neq j" />. Unsur pada pepenjuru utama boleh jadi sifar atau bukan sifar.
+
+Contoh:
+
+<BlockMath math="X = \begin{bmatrix} 7 & 0 & 0 \\ 0 & -2 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
+
+Matriks <InlineMath math="X" /> ialah matriks pepenjuru berperingkat <InlineMath math="3 \times 3" />.
+
+## Matriks Identiti
+
+Matriks identiti (ditanda <InlineMath math="I" /> atau <InlineMath math="I_n" />) ialah matriks pepenjuru yang semua unsurnya pada **pepenjuru utama** ialah <InlineMath math="1" />.
+
+Contoh:
+
+<MathContainer>
+  <BlockMath math="I_2 = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}" />
+  <BlockMath math="I_3 = \begin{bmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{bmatrix}" />
+</MathContainer>
+
+Matriks identiti ialah unsur neutral bagi pendaraban matriks. Kalau <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" />, matriks identiti itu mesti sepadan dengan sisi yang didarabkan:
+
+<BlockMath math="I_mA=A=AI_n" />
+## Matriks Sifar
+
+Matriks sifar (ditanda <InlineMath math="O" /> atau <InlineMath math="O_{m \times n}" />) ialah matriks yang **semua unsurnya sifar**.
+
+Contoh:
+
+<MathContainer>
+  <BlockMath math="O_{2 \times 2} = \begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix}" />
+  <BlockMath math="O_{2 \times 3} = \begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Jenis-jenis matriks segi empat sama yang khas ini juga bertindak berbeza apabila dikenakan pada titik. Tulis setiap bucu <InlineMath math="(x, y)" /> segi empat sama unit sebagai satu lajur dan darabkan dengan matriks <InlineMath math="2 \times 2" />. Matriks identiti <InlineMath math="I_2" /> menghantar setiap bucu kepada dirinya sendiri, jadi segi empat sama itu kekal di tempatnya. Matriks pepenjuru dengan <InlineMath math="3" /> dan <InlineMath math="2" /> pada pepenjurunya meregangkan <InlineMath math="x" /> sebanyak <InlineMath math="3" /> kali dan <InlineMath math="y" /> sebanyak <InlineMath math="2" /> kali: bucu <InlineMath math="(1, 1)" /> pergi ke <InlineMath math="(3, 2)" />, dan segi empat sama itu menjadi segi empat tepat <InlineMath math="3" /> kali <InlineMath math="2" />. Matriks sifar <InlineMath math="O" /> menghantar setiap bucu ke <InlineMath math="(0, 0)" />.
+
+<MathVisual
+  title={<>Kesan tiga matriks segi empat sama pada segi empat sama unit</>}
+  description={<>Segi empat sama unit kekal di tempatnya di bawah <InlineMath math="I_2" />, meregang menjadi segi empat tepat <InlineMath math="3" /> kali <InlineMath math="2" /> di bawah matriks pepenjuru, dan runtuh ke asalan di bawah <InlineMath math="O" />.</>}
+  labels={{
+    square: <InlineMath math="I_2" />,
+    stretch: <InlineMath math="\begin{bmatrix} 3 & 0 \\ 0 & 2 \end{bmatrix}" />,
+    zero: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "stretch", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 0.5, y: 0.5 }, placement: "center" },
+      { key: "stretch", objectId: "stretch", at: { x: 3, y: 2 }, placement: "above-left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Matriks segi tiga menggelongsorkan segi empat sama itu dan bukan meregangkannya. Matriks segi tiga atas <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" /> mengekalkan tepi bawah dan menolak tepi atas sejauh <InlineMath math="2" /> ke kanan. Matriks segi tiga bawah <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" /> mengekalkan tepi kiri dan mengangkat tepi kanan sejauh <InlineMath math="2" />. Kedua-duanya mengekalkan luas <InlineMath math="1" />, iaitu hasil darab unsur pepenjurunya.
+
+<MathVisual
+  title={<>Dua matriks segi tiga menggelongsorkan segi empat sama unit</>}
+  description={<>Matriks segi tiga atas menggelongsorkan segi empat sama ke tepi, matriks segi tiga bawah menggelongsorkannya ke atas, dan kedua-duanya mengekalkan luasnya.</>}
+  labels={{
+    upper: <InlineMath math="\begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}" />,
+    lower: <InlineMath math="\begin{bmatrix} 1 & 0 \\ 2 & 1 \end{bmatrix}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "upper", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 3, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "lower", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 1, y: 3 }, { x: 0, y: 1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 1, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Matriks skalar ada satu nombor yang berulang pada pepenjurunya. <InlineMath math="2I" /> menggandakan setiap jarak dari asalan, jadi segi empat sama unit menjadi segi empat sama <InlineMath math="2" /> kali <InlineMath math="2" />. <InlineMath math="-I" /> menghantar setiap bucu ke sisi bertentangan asalan, iaitu separuh pusingan segi empat sama itu.
+
+<MathVisual
+  title={<>Matriks skalar <InlineMath math="2I" /> dan <InlineMath math="-I" /></>}
+  description={<>Segi empat sama unit, imejnya di bawah <InlineMath math="2I" /> dengan sisi <InlineMath math="2" />, dan imejnya di bawah <InlineMath math="-I" /> di sisi bertentangan asalan.</>}
+  labels={{
+    two: <InlineMath math="2I" />,
+    neg: <InlineMath math="-I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 2.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "two", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "neg", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: -1, y: 0 }, { x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "neg", objectId: "neg", at: { x: -1, y: -1 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Matriks Simetri
+
+Matriks simetri ialah matriks segi empat sama yang **sama dengan transposnya** (<InlineMath math="A^T = A" />).
+
+Untuk setiap pasangan indeks <InlineMath math="i" /> dan <InlineMath math="j" />, matriks simetri memenuhi <InlineMath math="a_{ij} = a_{ji}" />. Unsur pada sisi bertentangan pepenjuru utama adalah sama.
+
+Contoh:
+
+<BlockMath math="S = \begin{bmatrix} 1 & 7 & -3 \\ 7 & 2 & 0 \\ -3 & 0 & 5 \end{bmatrix}" />
+
+Dalam matriks <InlineMath math="S" />:
+
+- <InlineMath math="s_{12} = s_{21} = 7" />
+- <InlineMath math="s_{13} = s_{31} = -3" />
+- <InlineMath math="s_{23} = s_{32} = 0" />
+
+## Satu Matriks Boleh Tergolong dalam Beberapa Jenis
+
+Nama-nama ini **tidak saling eksklusif**. Matriks identiti ialah matriks pepenjuru dan juga matriks simetri. Tetapi, matriks sifar yang bukan segi empat sama bukan matriks pepenjuru dan bukan matriks simetri mengikut takrif di atas. Semak bentuknya dahulu, kemudian pola unsurnya.
+
+| Contoh | Jenis yang berkaitan | Sebab |
+| --- | --- | --- |
+| <InlineMath math="I_3" /> | Identiti, pepenjuru, segi tiga atas dan bawah, simetri | Setiap unsur di luar pepenjuru ialah sifar dan setiap unsur pepenjuru utama ialah satu. |
+| <InlineMath math="O_{2\times3}" /> | Sifar, segi empat tepat, lebar | Setiap unsur ialah sifar, tetapi bilangan baris dan lajurnya berbeza. |

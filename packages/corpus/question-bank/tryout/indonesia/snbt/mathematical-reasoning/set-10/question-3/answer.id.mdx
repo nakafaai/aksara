@@ -1,18 +1,33 @@
-Suatu rencana dapat dijalankan hanya jika **memenuhi batas oven dan batas tepung sekaligus**: <InlineMath math="x+y\le100" /> dan <InlineMath math="50x+100y\le7{.}000" />.
+Setiap pernyataan mengubah satu hal, jadi **ulangi pemuatan dari awal untuk setiap perubahan**. Ingat dua aturan pentingnya: kendaraan berikutnya ditahan jika panjang atau massanya tidak cukup, dan muatan yang tepat sama dengan batas masih boleh.
 
-# Memeriksa setiap rencana
+# Muatan perjalanan pertama
 
-| Rencana | Banyak roti | Tepung | Dapat dijalankan? |
-| :--- | :---: | :---: | :---: |
-| 80 cokelat, 30 keju | 110 | 7.000 g | tidak, oven |
-| 30 cokelat, 60 keju | 90 | 7.500 g | tidak, tepung |
-| 70 keju saja | 70 | 7.000 g | ya |
-| 100 cokelat saja | 100 | 5.000 g | ya |
+Dua truk pertama bermassa <InlineMath math="15+15=30\text{ ton}" />. Massa ini tidak melebihi batas, jadi **keduanya boleh naik**. Mobil pada urutan <InlineMath math="3" /> akan membuat massa <InlineMath math="32\text{ ton}" />, jadi kapal berangkat dengan muatan tepat <InlineMath math="30\text{ ton}" />. Pernyataan pertama benar.
 
-Rencana pertama melebihi kapasitas oven, sedangkan rencana kedua **melebihi tepung yang tersedia** meskipun ovennya cukup.
+# Mobil ketiga batal menyeberang
 
-# Batas roti keju
+Antreannya menjadi dua truk, lalu mobil, pikap, tiga mobil, truk, dan dua bus. Perjalanan pertama tetap dua truk. Pada perjalanan kedua, empat mobil dan pikap naik, lalu periksa truk berikutnya.
 
-Jika hanya membuat roti keju, tepung cukup untuk <InlineMath math="\tfrac{7{.}000}{100}=70" /> roti, dan 70 roti masih muat di oven. Jadi pernyataan ketiga benar.
+<BlockMath math="\begin{aligned}
+\text{panjang dengan truk} &= 4\cdot5+6+10=36\text{ m}\le40\text{ m}\\
+\text{massa dengan truk} &= 4\cdot2+3+15=26\text{ ton}\le30\text{ ton}
+\end{aligned}" />
 
-Jadi, pernyataan pertama **salah**, kedua **salah**, ketiga **benar**, dan keempat **benar**.
+Satu mobil yang hilang membebaskan <InlineMath math="5\text{ m}" />, sehingga **truk kini ikut perjalanan kedua**. Bus berikutnya tidak muat, dan dua bus tidak boleh berangkat bersama karena <InlineMath math="32\text{ ton}>30\text{ ton}" />. Antrean habis dalam <InlineMath math="4" /> perjalanan, bukan <InlineMath math="5" />. Pernyataan kedua salah.
+
+# Batas massa menjadi tiga puluh satu ton
+
+Perjalanan pertama masih dua truk, karena mobil berikutnya membuat <InlineMath math="32\text{ ton}>31\text{ ton}" />. Perjalanan kedua masih enam kendaraan kecil, karena panjang lajurnya tidak berubah dan truk berikutnya membuat <InlineMath math="41\text{ m}" />. Perubahannya muncul pada perjalanan ketiga.
+
+<BlockMath math="\begin{aligned}
+\text{truk dan bus} &= 15+16=31\text{ ton}\le31\text{ ton}\\
+\text{truk dan dua bus} &= 31+16=47\text{ ton}>31\text{ ton}
+\end{aligned}" />
+
+Truk dan bus kini **boleh berangkat bersama**, lalu bus terakhir menyeberang sendiri. Antrean habis dalam <InlineMath math="4" /> perjalanan. Pernyataan ketiga benar.
+
+# Truk kesembilan pindah ke belakang
+
+Antreannya menjadi dua truk, enam kendaraan kecil, dua bus, lalu truk. Perjalanan pertama dua truk, dan perjalanan kedua enam kendaraan kecil, karena bus berikutnya membuat panjang <InlineMath math="31+12=43\text{ m}" />. Setelah itu, **tidak ada pasangan kendaraan berat yang muat**: dua bus bermassa <InlineMath math="32\text{ ton}" />, serta bus dan truk bermassa <InlineMath math="31\text{ ton}" />. Bus, bus, dan truk berangkat sendiri-sendiri, jadi antrean tetap memerlukan <InlineMath math="5" /> perjalanan. Pernyataan keempat salah.
+
+Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.

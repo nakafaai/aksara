@@ -1,65 +1,38 @@
-Nenne die Mittelpunkte <InlineMath math="A" /> und <InlineMath math="B" /> und die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" />. Die Sehne <InlineMath math="PQ" /> teilt die Schnittfläche in **zwei gleich große Kreisabschnitte**, einen von jedem Kreis.
+Du kennst weder das erste Glied noch den Quotienten, aber beide Angaben lassen sich **in Angaben über die mittleren Glieder** <InlineMath math="u_2" /> und <InlineMath math="u_3" /> verwandeln. Der Plan: Mache aus dem Produkt der vier Glieder eine Aussage über <InlineMath math="u_2u_3" />, prüfe die möglichen Vorzeichen und drücke dann <InlineMath math="u_1+u_4" /> durch <InlineMath math="u_2" /> und <InlineMath math="u_3" /> aus.
 
-<MathVisual
-  title={<>Schnittfläche zweier Kreise</>}
-  description={<>Die Mittelpunkte <InlineMath math="A" /> und <InlineMath math="B" /> sind 4 cm voneinander entfernt. Die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" /> bilden mit den Mittelpunkten zwei gleichseitige Dreiecke, und die Sehne <InlineMath math="PQ" /> teilt die Schnittfläche in zwei gleiche Kreisabschnitte.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 9 },
-      y: { min: -5, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      { id: "circle-left", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
-      { id: "circle-right", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 4 },
-      {
-        id: "rhombus",
-        kind: "polygon",
-        appearance: "construction",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 2, y: 2 * Math.sqrt(3) },
-          { x: 4, y: 0 },
-          { x: 2, y: -2 * Math.sqrt(3) },
-        ],
-      },
-      { id: "chord-pq", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
-    ],
-    labels: [
-      { key: "a", objectId: "circle-left", at: { x: 0, y: 0 }, placement: "left" },
-      { key: "b", objectId: "circle-right", at: { x: 4, y: 0 }, placement: "right" },
-      { key: "p", objectId: "chord-pq", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above" },
-      { key: "q", objectId: "chord-pq", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-  }}
-/>
+# Das Produkt der vier Glieder
 
-# Mittelpunktswinkel jedes Abschnitts
-
-Die Strecken <InlineMath math="AB" />, <InlineMath math="AP" /> und <InlineMath math="BP" /> sind alle 4 cm lang, weil jeder Kreis durch den anderen Mittelpunkt geht. Das Dreieck <InlineMath math="ABP" /> ist also **gleichseitig**, und der Winkel <InlineMath math="PAB" /> beträgt <InlineMath math="60^\circ" />. Dieselbe Überlegung für <InlineMath math="Q" /> liefert den Mittelpunktswinkel <InlineMath math="PAQ=120^\circ" />.
-
-# Flächeninhalt eines Abschnitts
-
-Ein Kreisabschnitt ist ein Kreisausschnitt minus das Dreieck <InlineMath math="APQ" />.
+Mit dem ersten Glied <InlineMath math="a" /> und dem Quotienten <InlineMath math="r" /> gilt <InlineMath math="u_1u_4=a\cdot ar^3=a^2r^3" /> und <InlineMath math="u_2u_3=ar\cdot ar^2=a^2r^3" />. **Glieder, die gleich weit von der Mitte entfernt sind, haben also dasselbe Produkt**.
 
 <BlockMath math="\begin{aligned}
-A_{\text{Ausschnitt}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot4^2=\frac{16\pi}{3}\\
-A_{\triangle APQ}&=\tfrac12\cdot4\cdot4\cdot\sin120^\circ=4\sqrt3\\
-A_{\text{Abschnitt}}&=\frac{16\pi}{3}-4\sqrt3
+u_1u_2u_3u_4=\left(u_2u_3\right)^2&=144\\
+u_2u_3=12\ \text{oder}\ u_2u_3&=-12
 \end{aligned}" />
 
-Die Schnittfläche besteht aus **zwei Kreisabschnitten**.
+# Beide Vorzeichen prüfen
 
-<BlockMath math="A=2\left(\frac{16\pi}{3}-4\sqrt3\right)=\frac{32\pi}{3}-8\sqrt3" />
+Die Zahlen <InlineMath math="u_2" /> und <InlineMath math="u_3" /> haben die Summe <InlineMath math="1" />, sie sind also die Lösungen von <InlineMath math="t^2-t+p=0" /> mit <InlineMath math="p=u_2u_3" />. Für <InlineMath math="p=12" /> ist die Diskriminante <InlineMath math="1-48<0" />, es gibt also **keine reellen Glieder**, und dieser Fall fällt weg. Für <InlineMath math="p=-12" /> gilt:
 
-Die Wahl <InlineMath math="\frac{16\pi}{3}-4\sqrt3" /> zählt nur einen Abschnitt. Die Wahl <InlineMath math="\frac{32\pi}{3}-4\sqrt3" /> verdoppelt den Ausschnitt, zieht aber nur ein Dreieck ab. Die Wahlen <InlineMath math="\frac{32\pi}{3}-16\sqrt3" /> und <InlineMath math="\frac{16\pi}{3}-8\sqrt3" /> ziehen von jedem Ausschnitt die Raute <InlineMath math="APBQ" /> ab, obwohl nur das Dreieck <InlineMath math="APQ" /> abgezogen werden darf.
+<BlockMath math="t^2-t-12=(t-4)(t+3)=0" />
 
-Die Schnittfläche beträgt also **<InlineMath math="\left(\frac{32\pi}{3}-8\sqrt3\right)\text{ cm}^2" />**.
+Also ist <InlineMath math="\{u_2,u_3\}=\{4,-3\}" />, in beliebiger Reihenfolge. Der Quotient ist negativ.
+
+# Die Summe der äußeren Glieder
+
+In einer geometrischen Folge ist das mittlere von drei aufeinanderfolgenden Gliedern ihr geometrisches Mittel, also gilt <InlineMath math="u_1u_3=u_2^2" /> und <InlineMath math="u_2u_4=u_3^2" />. Daraus folgt <InlineMath math="u_1=\tfrac{u_2^2}{u_3}" /> und <InlineMath math="u_4=\tfrac{u_3^2}{u_2}" />. Nutze die Formel für die Summe von Kuben, dann sind **beide Reihenfolgen auf einmal erledigt**.
+
+<BlockMath math="\begin{aligned}
+u_1+u_4&=\frac{u_2^3+u_3^3}{u_2u_3}=\frac{\left(u_2+u_3\right)^3-3u_2u_3\left(u_2+u_3\right)}{u_2u_3}\\
+&=\frac{1^3-3(-12)(1)}{-12}=\frac{37}{-12}=-\frac{37}{12}
+\end{aligned}" />
+
+Prüfe das mit einer konkreten Folge. Für <InlineMath math="u_2=4" /> und <InlineMath math="u_3=-3" /> ist der Quotient <InlineMath math="-\tfrac34" />, also <InlineMath math="u_1=-\tfrac{16}{3}" /> und <InlineMath math="u_4=\tfrac94" />. Die Summe ist <InlineMath math="-\tfrac{64}{12}+\tfrac{27}{12}=-\tfrac{37}{12}" />, und das Produkt ist <InlineMath math="\left(-\tfrac{16}{3}\right)(4)(-3)\left(\tfrac94\right)=144" />. Die umgekehrte Reihenfolge, <InlineMath math="u_2=-3" /> und <InlineMath math="u_3=4" />, vertauscht nur <InlineMath math="u_1" /> und <InlineMath math="u_4" />, die Summe bleibt also gleich.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="-\tfrac{35}{12}" /> verwendet <InlineMath math="u_2u_3=12" />, obwohl dieser Fall keine reellen Glieder liefert.
+- <InlineMath math="-\tfrac{1}{12}" /> nimmt <InlineMath math="u_2^3+u_3^3=\left(u_2+u_3\right)^3" /> an, sodass der Term <InlineMath math="-3u_2u_3\left(u_2+u_3\right)" /> fehlt.
+- <InlineMath math="1" /> nimmt <InlineMath math="u_1+u_4=u_2+u_3" /> an. Gleich sind aber nur **die Produkte, nicht die Summen**.
+- <InlineMath math="\tfrac{37}{12}" /> übersieht, dass der Nenner <InlineMath math="u_2u_3=-12" /> negativ ist.
+
+Der Wert von <InlineMath math="u_1+u_4" /> ist also <InlineMath math="-\tfrac{37}{12}" />.

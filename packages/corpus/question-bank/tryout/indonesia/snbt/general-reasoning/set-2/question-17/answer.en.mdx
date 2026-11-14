@@ -1,15 +1,45 @@
-A locker directly above Fajar's exists only when **Fajar is in the bottom row**. Of the four arrangements, Fajar is in the bottom row in I and III.
+This question asks for the number of valid arrangements, so you have to find every one of them without missing any or counting any twice. The tidiest way is to **split the cases by the post of Fikri and Galih**, because that pair uses up two seats at once.
 
-- Arrangement I: Fajar is in the bottom row of column 3, with Eli above.
-- Arrangement III: Fajar is in the bottom row of column 2, with Eli above.
+Three facts first, since all of them are used in every case.
 
-In both arrangements, the person directly above Fajar is Eli. This matches the property found earlier: Eli and Fajar always share a column.
+- Fikri and Galih can't be in medical. That post has only two seats, and Jihan already takes one (rule 4).
+- Putri can't share a post with Fikri and Galih. That post has only one seat left, so Putri would be cut off from Hana and Indra (rule 3).
+- Nanda can't share a post with Fikri and Galih either (rule 5).
 
-No other student is possible:
+So the third seat in Fikri and Galih's post can only go to Hana, Indra or Kurnia.
 
-- Ana is always directly above Doni, not Fajar.
-- Beni is always in column 1, and Fajar is never in column 1.
-- Caca is always in column 1 as well.
-- Doni is always in the bottom row, so Doni cannot be above any locker.
+**Case 1: Fikri and Galih in registration**.
 
-So the locker that can be directly above Fajar's is Eli's.
+- Third seat for Hana. Putri must be with Indra, and medical has only one free seat, so Indra and Putri go to logistics. The last logistics seat goes to Kurnia or Nanda, and the other one goes to medical. Rule 6 isn't triggered because Kurnia isn't in registration. That's <InlineMath math="2" /> arrangements.
+- Third seat for Indra. Same pattern with Hana and Indra swapping roles. That's <InlineMath math="2" /> arrangements.
+- Third seat for Kurnia. Rule 6 forces Nanda into logistics. Putri can't sit alone with Jihan in medical, so Putri is in logistics too. Hana and Indra must split, one in logistics and one in medical. That's <InlineMath math="2" /> arrangements.
+
+**Case 2: Fikri and Galih in logistics**. Nanda can't be in logistics. The contrapositive of rule 6, "if Nanda isn't in logistics, Kurnia isn't in registration", says exactly the same as the original rule. So Kurnia can only be in logistics or in medical.
+
+- Kurnia in logistics. Hana, Indra, Nanda and Putri fill registration and the one free medical seat. Hana and Indra must split, so one goes to registration and one to medical. Nanda and Putri go to registration, and Putri is with whoever of Hana and Indra is there. That's <InlineMath math="2" /> arrangements.
+- Kurnia in medical with Jihan. The third logistics seat goes to Hana or Indra, and registration holds Nanda, Putri and the person left over. That's <InlineMath math="2" /> arrangements.
+
+Add up both cases.
+
+<BlockMath math="\underbrace{2+2+2}_{\text{case 1}}+\underbrace{2+2}_{\text{case 2}}=10" />
+
+Here are all ten arrangements.
+
+| No. | Registration | Logistics | Medical |
+| --- | --- | --- | --- |
+| 1 | Fikri, Galih, Hana | Indra, Kurnia, Putri | Jihan, Nanda |
+| 2 | Fikri, Galih, Hana | Indra, Nanda, Putri | Jihan, Kurnia |
+| 3 | Fikri, Galih, Indra | Hana, Kurnia, Putri | Jihan, Nanda |
+| 4 | Fikri, Galih, Indra | Hana, Nanda, Putri | Jihan, Kurnia |
+| 5 | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| 6 | Fikri, Galih, Kurnia | Indra, Nanda, Putri | Hana, Jihan |
+| 7 | Hana, Nanda, Putri | Fikri, Galih, Kurnia | Indra, Jihan |
+| 8 | Indra, Nanda, Putri | Fikri, Galih, Kurnia | Hana, Jihan |
+| 9 | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+| 10 | Indra, Nanda, Putri | Fikri, Galih, Hana | Jihan, Kurnia |
+
+A quick check on the table: Kurnia shows up in registration only in rows 5 and 6, and in both rows Nanda really is in logistics. In every row, Putri is with Hana or Indra, and Nanda is never with Fikri.
+
+Two wrong counts come up often. If you only work through the case with Fikri and Galih in registration, you stop at <InlineMath math="6" />. If you forget to **use the contrapositive of rule 6** in case 2, you also count two arrangements with Kurnia in registration and Nanda in medical, and you get <InlineMath math="12" />.
+
+So the number of arrangements that meet all six rules is <InlineMath math="10" />.

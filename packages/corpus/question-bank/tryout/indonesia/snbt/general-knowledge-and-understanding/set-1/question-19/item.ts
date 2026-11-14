@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "inference",
+    topic: "paragraph-relation",
   },
-  stimulus: "karang",
+  stimulus: "litium",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Paragraf ketiga menunjukkan bahwa lapisan tipis yang dibahas paragraf kedua lama-kelamaan tumbuh menjadi struktur runcing yang menembus selaput pemisah dan menyambungkan kedua elektrode.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf ketiga menawarkan cara untuk mencegah penurunan kapasitas yang disebabkan oleh menebalnya lapisan tipis seperti yang diuraikan pada paragraf kedua.",
+        },
+        {
           correct: true,
           label:
-            "Peluang karang untuk pulih bergantung pada seberapa cepat suhu air kembali normal.",
+            "Paragraf ketiga menguraikan kerusakan lain yang dipicu oleh ion yang didorong masuk terlalu cepat, berbeda dari penurunan kapasitas pada paragraf kedua yang dipercepat oleh panas.",
         },
         {
           correct: false,
           label:
-            "Alga hanya dapat tumbuh kembali di jaringan karang ketika suhu air laut tetap tinggi selama beberapa minggu.",
+            "Paragraf ketiga membantah paragraf kedua dengan menunjukkan bahwa yang sebenarnya merusak baterai adalah udara dingin, bukan panas yang disebut paragraf kedua.",
         },
         {
           correct: false,
-          label: "Kerangka kapur karang berubah warna ketika suhu air turun.",
-        },
-        {
-          correct: false,
-          label: "Luas karang yang memutih tidak dapat diukur oleh pengamat.",
-        },
-        {
-          correct: false,
-          label: "Penyakit karang hanya muncul ketika suhu air normal.",
+          label:
+            "Paragraf ketiga memberikan contoh pengisian cepat untuk memperjelas bagaimana lapisan tipis yang dibahas paragraf kedua terbentuk dan menebal di permukaan anode.",
         },
       ],
     },

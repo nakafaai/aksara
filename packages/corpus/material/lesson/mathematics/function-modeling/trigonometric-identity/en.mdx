@@ -22,8 +22,8 @@ An identity connects **two equal-valued forms** on their common domain. You may 
 
 Consider a unit circle with point <InlineMath math="P(x, y)" /> that forms angle <InlineMath math="\theta" /> with the positive <InlineMath math="x" />-axis.
 
-<UnitCircle
-  title="Unit Circle and Pythagorean Identity"
+<MathVisual
+  title={<>Unit Circle and Pythagorean Identity</>}
   description={
     <>
       Notice how the coordinates of point <InlineMath math="P" /> change as the
@@ -31,7 +31,32 @@ Consider a unit circle with point <InlineMath math="P(x, y)" /> that forms angle
       <InlineMath math="\cos\theta" /> and <InlineMath math="\sin\theta" />.
     </>
   }
-  angle={45}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 45, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 On the unit circle:
@@ -125,14 +150,39 @@ Quotient identities relate tangent and cotangent to sine and cosine:
 
 The quotient forms likewise require a nonzero denominator.
 
-  <Triangle
-    title="Trigonometric Function Visualization"
+  <MathVisual
+    title={<>Trigonometric Function Visualization</>}
     description={<>Observe how the ratios of triangle sides give <InlineMath math="\sin" />, <InlineMath math="\cos" />, and <InlineMath math="\tan" /> values. Also notice how these values change as the angle changes.</>}
-    angle={30}
     labels={{
-      opposite: "Opposite Side",
-      adjacent: "Adjacent Side",
-      hypotenuse: "Hypotenuse",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Opposite Side</>,
+      adjacent: <>Adjacent Side</>,
+      hypotenuse: <>Hypotenuse</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentStack>
@@ -158,10 +208,35 @@ Even function (symmetry about <InlineMath math="y" />-axis):
 <BlockMath math="\tan(-\theta) = -\tan \theta" />
 </MathContainer>
 
-  <UnitCircle
-    title="Exploring Even and Odd Properties"
+  <MathVisual
+    title={<>Exploring Even and Odd Properties</>}
     description={<>Enter negative and positive angles. Notice how <InlineMath math="\cos" />, <InlineMath math="\sin" />, and <InlineMath math="\tan" /> values change for opposite angles.</>}
-    angle={60}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      point: <InlineMath math="P" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      sine: <InlineMath math="\sin\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+      objects: [
+        { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+        { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+        { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+        { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+      readouts: [
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
   />
 </ContentStack>
 

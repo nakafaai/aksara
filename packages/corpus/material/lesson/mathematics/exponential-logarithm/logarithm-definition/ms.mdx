@@ -1,0 +1,124 @@
+export const metadata = {
+  title: "Mentakrifkan Logaritma",
+  description:
+    "Logaritma menyongsangkan operasi kuasa, menghubungkan bentuk indeks dengan bentuk logaritma, dan menentukan indeks yang tidak diketahui.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-04",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Logaritma Menentukan Indeks yang Tidak Diketahui
+
+Logaritma mencari **indeks yang tidak diketahui**. Jika <InlineMath math="a^c=b" />, maka <InlineMath math="\log_a b" /> memberikan indeks <InlineMath math="c" />.
+
+<BlockMath math="\log_a b=c\quad\Longleftrightarrow\quad a^c=b" />
+
+Untuk logaritma nyata, syaratnya ialah:
+
+<BlockMath math="a>0\qquad a\neq1\qquad b>0" />
+
+- <InlineMath math="a" /> ialah **asas**
+- <InlineMath math="b" /> ialah **hujah**
+- <InlineMath math="c" /> ialah indeks yang diberikan oleh logaritma
+
+Syarat ini sepadan dengan kelakuan [fungsi eksponen](/ms/subjek/matematik/indeks-dan-logaritma/definisi-fungsi-eksponen). Asas eksponen yang sah bernilai positif dan tidak sama dengan satu, dan <InlineMath math="a^c" /> sentiasa positif, jadi logaritma nyata tidak boleh mempunyai hujah yang bukan positif.
+
+## Menukar antara Dua Bentuk
+
+Setiap baris menyatakan hubungan yang sama sebanyak dua kali:
+
+| Bentuk indeks | Bentuk logaritma |
+| ---------------- | ---------------- |
+| <InlineMath math="2^5=32" /> | <InlineMath math="\log_2 32=5" /> |
+| <InlineMath math="3^2=9" /> | <InlineMath math="\log_3 9=2" /> |
+| <InlineMath math="5^{-2}=\frac1{25}" /> | <InlineMath math="\log_5\frac1{25}=-2" /> |
+| <InlineMath math="7^0=1" /> | <InlineMath math="\log_7 1=0" /> |
+
+Semasa menukar bentuk, kekalkan **asas yang sama**. Output eksponen menjadi hujah logaritma, dan indeks menjadi nilai logaritma. Dalam baris ketiga, indeks negatif menghasilkan output pecahan.
+
+Graf <InlineMath math="y = \log_2 x" /> menjawab soalan "<InlineMath math="2" /> kuasa berapakah yang memberikan <InlineMath math="x" />?" pada setiap input. Pada kuasa-kuasa bagi dua, graf itu melalui titik yang tepat: <InlineMath math="\log_2 \tfrac14 = -2" />, <InlineMath math="\log_2 1 = 0" /> dan <InlineMath math="\log_2 8 = 3" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="y = \log_2 x" /></>}
+  description={<>Lengkung <InlineMath math="y = \log_2 x" /> untuk <InlineMath math="\tfrac14 \le x \le 8" /> yang melalui titik <InlineMath math="\left(\tfrac14, -2\right)" />, <InlineMath math="\left(\tfrac12, -1\right)" />, <InlineMath math="(1, 0)" />, <InlineMath math="(2, 1)" />, <InlineMath math="(4, 2)" /> dan <InlineMath math="(8, 3)" />.</>}
+  labels={{
+    curve: <InlineMath math="y = \log_2 x" />,
+    p8: <InlineMath math="(8, 3)" />,
+    p1: <InlineMath math="(1, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 8.6 }, y: { min: -2.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 2 ** (-2), y: (-2) }, { x: 2 ** (-19 / 10), y: (-19 / 10) }, { x: 2 ** (-9 / 5), y: (-9 / 5) }, { x: 2 ** (-17 / 10), y: (-17 / 10) }, { x: 2 ** (-8 / 5), y: (-8 / 5) }, { x: 2 ** (-3 / 2), y: (-3 / 2) }, { x: 2 ** (-7 / 5), y: (-7 / 5) }, { x: 2 ** (-13 / 10), y: (-13 / 10) }, { x: 2 ** (-6 / 5), y: (-6 / 5) }, { x: 2 ** (-11 / 10), y: (-11 / 10) }, { x: 2 ** (-1), y: (-1) }, { x: 2 ** (-9 / 10), y: (-9 / 10) }, { x: 2 ** (-4 / 5), y: (-4 / 5) }, { x: 2 ** (-7 / 10), y: (-7 / 10) }, { x: 2 ** (-3 / 5), y: (-3 / 5) }, { x: 2 ** (-1 / 2), y: (-1 / 2) }, { x: 2 ** (-2 / 5), y: (-2 / 5) }, { x: 2 ** (-3 / 10), y: (-3 / 10) }, { x: 2 ** (-1 / 5), y: (-1 / 5) }, { x: 2 ** (-1 / 10), y: (-1 / 10) }, { x: 2 ** (0), y: (0) }, { x: 2 ** (1 / 10), y: (1 / 10) }, { x: 2 ** (1 / 5), y: (1 / 5) }, { x: 2 ** (3 / 10), y: (3 / 10) }, { x: 2 ** (2 / 5), y: (2 / 5) }, { x: 2 ** (1 / 2), y: (1 / 2) }, { x: 2 ** (3 / 5), y: (3 / 5) }, { x: 2 ** (7 / 10), y: (7 / 10) }, { x: 2 ** (4 / 5), y: (4 / 5) }, { x: 2 ** (9 / 10), y: (9 / 10) }, { x: 2 ** (1), y: (1) }, { x: 2 ** (11 / 10), y: (11 / 10) }, { x: 2 ** (6 / 5), y: (6 / 5) }, { x: 2 ** (13 / 10), y: (13 / 10) }, { x: 2 ** (7 / 5), y: (7 / 5) }, { x: 2 ** (3 / 2), y: (3 / 2) }, { x: 2 ** (8 / 5), y: (8 / 5) }, { x: 2 ** (17 / 10), y: (17 / 10) }, { x: 2 ** (9 / 5), y: (9 / 5) }, { x: 2 ** (19 / 10), y: (19 / 10) }, { x: 2 ** (2), y: (2) }, { x: 2 ** (21 / 10), y: (21 / 10) }, { x: 2 ** (11 / 5), y: (11 / 5) }, { x: 2 ** (23 / 10), y: (23 / 10) }, { x: 2 ** (12 / 5), y: (12 / 5) }, { x: 2 ** (5 / 2), y: (5 / 2) }, { x: 2 ** (13 / 5), y: (13 / 5) }, { x: 2 ** (27 / 10), y: (27 / 10) }, { x: 2 ** (14 / 5), y: (14 / 5) }, { x: 2 ** (29 / 10), y: (29 / 10) }, { x: 2 ** (3), y: (3) }], appearance: "primary" },
+      { id: "p0", kind: "point", at: { x: 1 / 4, y: -2 }, appearance: "answer" },
+      { id: "p1", kind: "point", at: { x: 1 / 2, y: -1 }, appearance: "answer" },
+      { id: "p2", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "p3", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "p4", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "p5", kind: "point", at: { x: 8, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4, y: 2 }, placement: "above" },
+      { key: "p8", objectId: "p5", at: { x: 8, y: 3 }, placement: "below" },
+      { key: "p1", objectId: "p2", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Logaritma Biasa dan Logaritma Jati
+
+Logaritma dengan asas <InlineMath math="10" /> dipanggil **logaritma biasa**. Asasnya selalunya tidak ditulis:
+
+<BlockMath math="\log_{10}x=\log x" />
+
+Logaritma dengan asas <InlineMath math="e" /> dipanggil **logaritma jati** dan ditulis sebagai <InlineMath math="\ln x" />. Pemalar <InlineMath math="e\approx2.71828" /> ialah nombor Euler. Kedua-dua tatatanda ini ialah kes khas bagi <InlineMath math="\log_a x" />.
+
+## Mencari Indeks yang Tidak Diketahui
+
+Katakan satu kultur yang ideal bermula dengan <InlineMath math="2{,}000" /> bakteria dan berganda setiap jam:
+
+<BlockMath math="P(x)=2{,}000\cdot2^x" />
+
+Untuk mencari bila model selanjar itu mencapai <InlineMath math="100{,}000" />, samakan populasi dengan sasaran. Bahagikan kedua-dua belah dengan **populasi awal** sebelum mencari indeks:
+
+<MathContainer>
+  <BlockMath math="100{,}000=2{,}000\cdot2^x" />
+  <BlockMath math="50=2^x" />
+  <BlockMath math="x=\log_2 50" />
+</MathContainer>
+
+Dengan kalkulator atau penukaran asas:
+
+<BlockMath math="x=\frac{\ln50}{\ln2}\approx5.643856" />
+
+Lengkung selanjar itu melintasi <InlineMath math="100{,}000" /> pada lebih kurang <InlineMath math="5.64\text{ jam}" />. Jika kultur itu hanya dibilang selepas setiap pembelahan sejam selesai, tafsirannya berubah:
+
+<MathContainer>
+  <BlockMath math="P(5)=2{,}000\cdot2^5=64{,}000" />
+  <BlockMath math="P(6)=2{,}000\cdot2^6=128{,}000" />
+</MathContainer>
+
+Jadi selang sejam lengkap yang pertama yang mencapai atau melebihi sasaran ialah <InlineMath math="6\text{ jam}" />. Logaritma menyelesaikan persamaan itu. Konteks pula menentukan cara jawapan bernilai nyata itu patut ditafsirkan.
+
+Pada graf, sasaran itu terletak **di antara dua pemerhatian setiap jam**. Titik selepas lima jam berada di bawah sasaran, manakala titik selepas enam jam berada di atasnya.
+
+<FunctionChart
+  a={2}
+  p={2000}
+  n={7}
+  title={<>Masa untuk Mencapai Sasaran</>}
+  description={<>Paksi mengufuk mengukur masa dalam jam. Bandingkan populasi selepas lima jam dan enam jam.</>}
+/>
+
+Jadualkan <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> jam demi jam. Sasaran <InlineMath math="100{,}000" /> terletak di antara <InlineMath math="P(5) = 64{,}000" /> dengan <InlineMath math="P(6) = 128{,}000" />, sebab itulah <InlineMath math="x = \log_2 50 \approx 5.64" /> jatuh di antara <InlineMath math="5" /> dengan <InlineMath math="6" />.
+
+<BarChart
+  title={<>Populasi jam demi jam</>}
+  description={<>Palang <InlineMath math="P(x) = 2{,}000 \cdot 2^x" /> untuk <InlineMath math="x = 0" /> hingga <InlineMath math="7" /> jam.</>}
+  yAxisLabel="Populasi"
+  data={[0, 1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: 2000 * 2 ** x }))}
+  chartConfig={{ value: { label: "Populasi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "recycling-rate",
+  stimulus: "solar-heat",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "25.0%",
+          label: "$$38$$ kWh",
         },
         {
           correct: true,
-          label: "31.0%",
+          label: "$$95$$ kWh",
         },
         {
           correct: false,
-          label: "45.0%",
+          label: "$$247$$ kWh",
         },
         {
           correct: false,
-          label: "67.5%",
+          label: "$$57$$ kWh",
         },
         {
           correct: false,
-          label: "68.9%",
+          label: "$$722$$ kWh",
         },
       ],
     },

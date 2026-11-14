@@ -1,15 +1,36 @@
-The remainder on division by 6 is known once we know which of the six possible remainders 0 to 5 applies. Check whether each statement **narrows the possibilities down to one**.
+The question compares two absolute values, so first rewrite it in an easier form. The plan: square both sides to get a simple condition on <InlineMath math="x" /> and <InlineMath math="y" />, then test each statement with **one example that answers yes and one that answers no**.
 
-# Statement one alone
+# Rewriting the question
 
-Numbers that leave remainder 2 on division by 3 include 2, 5, 8, and 11. Their remainders on division by 6 are 2, 5, 2, and 5. Division by 3 **does not separate even from odd numbers**, so both 2 and 5 are possible. Statement (1) alone is not sufficient.
+Both sides are non-negative, and for two non-negative numbers, the smaller one also has the smaller square. So you can compare the squares.
 
-# Statement two alone
+<BlockMath math="\begin{aligned}
+|x+y|<|x-y|\quad&\Longleftrightarrow\quad(x+y)^2<(x-y)^2\\
+&\Longleftrightarrow\quad x^2+2xy+y^2<x^2-2xy+y^2\\
+&\Longleftrightarrow\quad 4xy<0
+\end{aligned}" />
 
-Write <InlineMath math="n=12k+5" /> for some integer <InlineMath math="k\ge0" />. Since 12 is a multiple of 6, the part <InlineMath math="12k" /> **is divisible by 6**.
+So the question is the same as **whether <InlineMath math="x" /> and <InlineMath math="y" /> have opposite signs**.
 
-<BlockMath math="n=12k+5=6(2k)+5" />
+# The first statement alone
 
-The remainder is always 5: for example 5, 17, and 29 all leave remainder 5 on division by 6. Statement (2) alone is sufficient. The two statements also agree, because <InlineMath math="12k+5" /> does leave remainder 2 on division by 3.
+Statement (1) only compares the sizes of <InlineMath math="x" /> and <InlineMath math="y" />, not their signs. The pair <InlineMath math="x=3" /> and <InlineMath math="y=1" /> satisfies (1) and has the same signs, so the answer is no. The pair <InlineMath math="x=3" /> and <InlineMath math="y=-1" /> also satisfies (1) but has opposite signs, so the answer is yes. **Statement (1) alone isn't sufficient**.
 
-So **statement (2) alone is sufficient**, but statement (1) alone is not.
+# The second statement alone
+
+Cubing always preserves order, so <InlineMath math="x^3>y^3" /> is the same as <InlineMath math="x>y" />. The pair <InlineMath math="x=3" /> and <InlineMath math="y=1" /> gives no, while <InlineMath math="x=1" /> and <InlineMath math="y=-3" /> gives yes. **Statement (2) alone isn't sufficient**.
+
+# Both statements together
+
+Now <InlineMath math="x>y" /> and <InlineMath math="|x|>|y|" />. From <InlineMath math="|x|>|y|" /> you get <InlineMath math="x^2-y^2>0" />.
+
+<BlockMath math="\begin{aligned}
+(x-y)(x+y)&>0\\
+x-y>0\quad&\Rightarrow\quad x+y>0
+\end{aligned}" />
+
+So <InlineMath math="x>y" /> and <InlineMath math="x>-y" />, which means <InlineMath math="x" /> is bigger than <InlineMath math="|y|" /> and must be positive. But **the sign of <InlineMath math="y" /> is still unknown**. The pair <InlineMath math="x=3" /> and <InlineMath math="y=1" /> satisfies both statements and gives <InlineMath math="|4|<|2|" />, which is false, so the answer is no. The pair <InlineMath math="x=3" /> and <InlineMath math="y=-1" /> also satisfies both and gives <InlineMath math="|2|<|4|" />, which is true, so the answer is yes. Even together, they aren't sufficient.
+
+The option that says both statements together are sufficient traps anyone who stops once they know <InlineMath math="x" /> is positive and forgets to check the sign of <InlineMath math="y" />.
+
+So statements (1) and (2) aren't sufficient to answer the question, either alone or together.

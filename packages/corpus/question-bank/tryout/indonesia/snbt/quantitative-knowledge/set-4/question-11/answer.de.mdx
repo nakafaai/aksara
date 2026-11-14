@@ -1,17 +1,43 @@
-Der Winkel <InlineMath math="ADB" /> steht über der Sehne <InlineMath math="AB" />. Ein anderer Umfangswinkel über derselben Sehne und von derselben Seite ist der Winkel <InlineMath math="ACB" />, und **Umfangswinkel über demselben Bogen sind gleich groß**.
+Du suchst den kürzesten Weg von <InlineMath math="A" /> zu einem Punkt <InlineMath math="P" /> und weiter nach <InlineMath math="B" />, wobei <InlineMath math="P" /> auf der Strecke <InlineMath math="CD" /> liegt. Der übliche Trick ist, einen Punkt an der Geraden zu spiegeln, aber hier **darf <InlineMath math="P" /> nur auf der Strecke liegen, nicht auf der ganzen Geraden**. Der Plan: Bestimm die Geradengleichung, spiegel <InlineMath math="A" />, such den besten Punkt auf der ganzen Geraden und prüf, ob er auf der Strecke <InlineMath math="CD" /> liegt.
 
-# Winkel im gleichschenkligen Dreieck
+# Die Gerade und die Lage der Punkte
 
-Das Dreieck <InlineMath math="ABC" /> ist gleichschenklig, weil <InlineMath math="AB=BC" />, also **sind die Winkel <InlineMath math="BAC" /> und <InlineMath math="BCA" /> gleich groß**.
+Die Steigung der Geraden <InlineMath math="CD" /> ist <InlineMath math="\frac{9-5}{7-5}=2" />, also lautet ihre Gleichung <InlineMath math="y=2x-5" /> oder <InlineMath math="2x-y-5=0" />. Die Strecke <InlineMath math="CD" /> ist der Teil dieser Geraden mit <InlineMath math="5\le x\le7" />.
 
-<BlockMath math="\angle BCA=\frac{180^\circ-110^\circ}{2}=35^\circ" />
+Setz <InlineMath math="A" /> und <InlineMath math="B" /> in die linke Seite der Geradengleichung ein: <InlineMath math="2(0)-5-5=-10" /> und <InlineMath math="2(2)-1-5=-2" />. Beide Werte sind negativ, also **liegen <InlineMath math="A" /> und <InlineMath math="B" /> auf derselben Seite der Geraden**. Die Strecke <InlineMath math="AB" /> berührt die Gerade daher nie, und der gerade Weg von <InlineMath math="A" /> nach <InlineMath math="B" /> kann nicht über <InlineMath math="P" /> führen.
 
-# Den Winkel nach D übertragen
+# Den Punkt A spiegeln
 
-Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen beide auf dem Bogen gegenüber <InlineMath math="AB" />, denn die Punkte folgen in der Reihenfolge <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, <InlineMath math="D" />. Die Winkel <InlineMath math="ACB" /> und <InlineMath math="ADB" /> **stehen über demselben Bogen <InlineMath math="AB" />**.
+Das Spiegelbild von <InlineMath math="A(0,5)" /> an der Geraden ist <InlineMath math="A'(8,1)" />. Prüf die beiden Spiegelbedingungen. Der Mittelpunkt von <InlineMath math="AA'" /> ist <InlineMath math="(4,3)" />, und <InlineMath math="2(4)-3-5=0" />, er liegt also auf der Geraden. Die Richtung von <InlineMath math="AA'" /> ist <InlineMath math="(8,-4)" />, die Richtung der Geraden <InlineMath math="(1,2)" />. Ihr Skalarprodukt ist <InlineMath math="8-8=0" />, also steht <InlineMath math="AA'" /> senkrecht auf der Geraden.
 
-<BlockMath math="\angle ADB=\angle ACB=35^\circ" />
+Weil die Gerade wie ein Spiegel wirkt, **hat jeder Punkt <InlineMath math="P" /> der Geraden denselben Abstand zu <InlineMath math="A" /> und zu <InlineMath math="A'" />**. Also gilt <InlineMath math="PA+PB=PA'+PB" />, und diese Summe ist am kleinsten, wenn <InlineMath math="P" /> auf der Geraden <InlineMath math="A'B" /> liegt. Die Gerade <InlineMath math="A'B" /> ist waagerecht, nämlich <InlineMath math="y=1" />.
 
-Der Wert 70 ist der Mittelpunktswinkel über dem Bogen <InlineMath math="AB" />, also das Doppelte des Umfangswinkels. Der Wert 55 ist die Hälfte von 110. Der Wert 110 setzt <InlineMath math="ADB" /> mit dem Winkel <InlineMath math="ABC" /> gleich. Der Wert 145 ist der Nebenwinkel zu 35, der für einen Umfangswinkel von der anderen Seite der Sehne gilt.
+<BlockMath math="\begin{aligned}
+1&=2x-5\quad\Rightarrow\quad x=3\quad\Rightarrow\quad P^*=(3,1)\\
+A'B&=8-2=6
+\end{aligned}" />
 
-Der Winkel <InlineMath math="ADB" /> beträgt also <InlineMath math="35^\circ" />.
+# Die Enden der Strecke prüfen
+
+Der beste Punkt auf der ganzen Geraden ist <InlineMath math="P^*(3,1)" />, aber <InlineMath math="x=3" /> liegt nicht zwischen <InlineMath math="5" /> und <InlineMath math="7" />. Also **ist der Wert <InlineMath math="6" /> nicht erreichbar**.
+
+Der Abstand von einem festen Punkt zu einem Punkt, der sich auf einer Geraden bewegt, hat immer die Form eines Tals: Er fällt bis zum nächstgelegenen Punkt und steigt danach nur noch. Die Summe zweier solcher Täler ist wieder ein Tal, mit dem tiefsten Punkt bei <InlineMath math="P^*" />. Alle Punkte der Strecke <InlineMath math="CD" /> liegen rechts von <InlineMath math="P^*" />, wo die Summe nur noch steigt. Der kleinste Wert liegt also im Punkt der Strecke, der <InlineMath math="P^*" /> am nächsten ist, nämlich in <InlineMath math="C(5,5)" />.
+
+<BlockMath math="\begin{aligned}
+CA&=\sqrt{(5-0)^2+(5-5)^2}=5\\
+CB&=\sqrt{(5-2)^2+(5-1)^2}=\sqrt{9+16}=5\\
+CA+CB&=10
+\end{aligned}" />
+
+Vergleich das mit anderen Punkten der Strecke. Im Mittelpunkt <InlineMath math="(6,7)" /> ist die Summe <InlineMath math="2\sqrt{10}+2\sqrt{13}" />, also mehr als <InlineMath math="6+7=13" />. In <InlineMath math="D" /> ist sie <InlineMath math="\sqrt{65}+\sqrt{89}" />, also mehr als <InlineMath math="8+9=17" />. Beide sind größer als <InlineMath math="10" />.
+
+# Die verlockenden falschen Optionen
+
+Die anderen Optionen entstehen, wenn **die Enden der Strecke übersehen werden** oder der Punkt geraten wird.
+
+- <InlineMath math="6" /> ist das Minimum auf der ganzen Geraden, doch der Punkt <InlineMath math="P^*(3,1)" /> liegt nicht auf der Strecke <InlineMath math="CD" />.
+- <InlineMath math="2\sqrt5" /> ist die Länge von <InlineMath math="AB" />, als wäre der gerade Weg von <InlineMath math="A" /> nach <InlineMath math="B" /> erlaubt, obwohl er die Strecke <InlineMath math="CD" /> nie berührt.
+- <InlineMath math="2\sqrt{10}+2\sqrt{13}" /> entsteht, wenn du den Mittelpunkt der Strecke für den besten Punkt hältst.
+- <InlineMath math="\sqrt{65}+\sqrt{89}" /> entsteht, wenn du das falsche Ende wählst, nämlich <InlineMath math="D" />.
+
+Das Minimum von <InlineMath math="PA+PB" /> ist also <InlineMath math="10" />, erreicht für <InlineMath math="P" /> in <InlineMath math="C(5,5)" />.

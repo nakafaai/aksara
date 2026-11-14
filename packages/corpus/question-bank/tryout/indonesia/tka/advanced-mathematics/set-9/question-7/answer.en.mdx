@@ -1,0 +1,13 @@
+Find one integer root first. Rational root candidates have the form <InlineMath math="\pm\frac{\text{factor of }12}{\text{factor of }4}" />, and <InlineMath math="P(4)=256-192-76+12=0" />. So <InlineMath math="x-4" /> is a factor, and **synthetic division gives the remaining factor**.
+
+<BlockMath math="P(x)=(x-4)(4x^2+4x-3)=(x-4)(2x-1)(2x+3)" />
+
+The roots are <InlineMath math="4" />, <InlineMath math="\frac12" /> and <InlineMath math="-\frac32" />.
+
+- **True.** <InlineMath math="P(4)=0" />, so <InlineMath math="x-4" /> is a factor.
+- **False.** The remainder is <InlineMath math="P(-1)=-4-12+19+12=15" />. The value <InlineMath math="12" /> is <InlineMath math="P(0)" />.
+- **True.** <InlineMath math="4+\frac12-\frac32=3" />, which matches minus the <InlineMath math="x^2" /> coefficient divided by the <InlineMath math="x^3" /> coefficient, <InlineMath math="\frac{12}{4}=3" />.
+- **True.** <InlineMath math="4x^2+4x-3" /> is the quotient of <InlineMath math="P(x)" /> by <InlineMath math="x-4" />, so <InlineMath math="P(x)" /> is divisible by it.
+- **False.** Between <InlineMath math="\frac12" /> and <InlineMath math="4" /> the three factors have signs <InlineMath math="(-)(+)(+)" />, so <InlineMath math="P(x)" /> is negative. For example, <InlineMath math="P(1)=4-12-19+12=-15" />.
+
+So the true statements are the first, third and fourth.

@@ -31,91 +31,33 @@ Bayangkan kamu menggeser lingkaran kedua lurus mendekati lingkaran pertama. Jika
 
 Dua lingkaran **berpotongan** jika kelilingnya bertemu di tepat dua titik. Daerah yang tumpang tindih berbentuk lensa, dibatasi dua busur yang menghubungkan kedua titik itu.
 
-<LineEquation
-  title="Dua Lingkaran Berpotongan"
-  description="Kedua lingkaran bertemu di dua titik yang berbeda."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 3;
-        const centerX = -1;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2.5;
-        const centerX = 1.5;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -1, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 1.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        // Hitung titik potong secara akurat
-        const r1 = 3, r2 = 2.5;
-        const x1 = -1, y1 = 0, x2 = 1.5, y2 = 0;
-        const d = Math.sqrt((x2-x1)**2 + (y2-y1)**2); // d = 2.5
-
-        // Jarak dari pusat 1 ke garis radikal
-        const a = (r1**2 - r2**2 + d**2) / (2*d); // a = (9 - 6.25 + 6.25) / 5 = 1.8
-
-        // Tinggi titik potong dari garis yang menghubungkan pusat
-        const h = Math.sqrt(r1**2 - a**2); // h = sqrt(9 - 3.24) = sqrt(5.76) = 2.4
-
-        // Titik potong
-        const px = x1 + a * (x2-x1) / d; // px = -1 + 1.8 * 2.5 / 2.5 = 0.8
-        const py1 = y1 + h; // py1 = 2.4
-        const py2 = y1 - h; // py2 = -2.4
-
-        return [
-          { x: px, y: py1, z: 0 },
-          { x: px, y: py2, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] }
-      ],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Dua Lingkaran Berpotongan</>}
+  description={<>Kedua lingkaran bertemu di dua titik yang berbeda.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (3 * cos(((t * pi) / 180))))", y: "(0 + (3 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1.5 + (2.5 * cos(((t * pi) / 180))))", y: "(0 + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -1, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0.8, y: 2.4 }, { x: 0.8, y: -2.4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0.8, y: 2.4 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 0.8, y: -2.4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Syaratnya adalah
@@ -128,172 +70,66 @@ Syarat ini lahir dari segitiga. Titik potong <InlineMath math="A" />, pusat <Inl
 
 Dua lingkaran **bersinggungan** jika kelilingnya bertemu di tepat satu titik <InlineMath math="T" />. Titik singgung itu selalu terletak pada garis yang menghubungkan kedua pusat.
 
-<LineEquation
-  title="Lingkaran Bersinggungan Luar"
-  description="Kedua lingkaran bersentuhan di luar, bertemu di satu titik."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2.5;
-        const centerX = -2.5;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#059669",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2;
-        const centerX = 2;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -2.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 2, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Lingkaran Bersinggungan Luar</>}
+  description={<>Kedua lingkaran bersentuhan di luar, bertemu di satu titik.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.5) + (2.5 * cos(((t * pi) / 180))))", y: "(0 + (2.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -2.5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -2.5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 0, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 **Bersinggungan luar** terjadi ketika <InlineMath math="d = r_1 + r_2" />. Kedua lingkaran berada di sisi yang berlawanan dari <InlineMath math="T" />. Pada keadaan ini, kedua [garis singgung persekutuan dalam](/id/materi/matematika/lingkaran/garis-singgung-persekutuan-luar-dan-dalam) menyatu menjadi satu garis yang melalui <InlineMath math="T" /> dan tegak lurus <InlineMath math="P_1P_2" />.
 
 **Bersinggungan dalam** terjadi ketika <InlineMath math="d = |r_1 - r_2| > 0" />. Lingkaran kecil berada di dalam lingkaran besar dan menyentuhnya dari dalam.
 
-<LineEquation
-  title="Lingkaran Bersinggungan Dalam"
-  description="Lingkaran kecil berada di dalam lingkaran besar dan bersinggungan."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 4;
-        const centerX = 0;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 1.5;
-        const centerX = 2.5;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 2.5, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0, -0.8, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 5, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Lingkaran Bersinggungan Dalam</>}
+  description={<>Lingkaran kecil berada di dalam lingkaran besar dan bersinggungan.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="T" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(0 + (4 * cos(((t * pi) / 180))))", y: "(0 + (4 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2.5 + (1.5 * cos(((t * pi) / 180))))", y: "(0 + (1.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.5, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Pada persinggungan dalam, ambil <InlineMath math="P_1" /> sebagai pusat lingkaran yang lebih besar. Dengan pilihan itu, pada kedua jenis persinggungan titik singgungnya berjarak <InlineMath math="r_1" /> dari <InlineMath math="P_1" /> sepanjang arah <InlineMath math="P_1P_2" />:
@@ -304,127 +140,62 @@ Pada persinggungan dalam, ambil <InlineMath math="P_1" /> sebagai pusat lingkara
 
 Dua lingkaran dengan pusat berbeda bisa tidak punya titik persekutuan dengan dua cara. Keduanya **saling lepas di luar** ketika <InlineMath math="d > r_1 + r_2" />.
 
-<LineEquation
-  title="Dua Lingkaran Terpisah"
-  description="Kedua lingkaran terpisah jauh dan tidak saling bersentuhan."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2;
-        const centerX = -3;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 1.5;
-        const centerX = 3;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P_2" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="d" />, at: 1, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Dua Lingkaran Terpisah</>}
+  description={<>Kedua lingkaran terpisah jauh dan tidak saling bersentuhan.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+    "l3": <InlineMath math="d" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (1.5 * cos(((t * pi) / 180))))", y: "(0 + (1.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s5", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Celah terpendek di antara kedua keliling terletak pada garis pusat dan panjangnya <InlineMath math="d - (r_1 + r_2)" />. Tidak ada titik yang menjadi anggota kedua daerah lingkaran sekaligus.
 
 Cara kedua adalah **satu lingkaran di dalam yang lain tanpa bersinggungan**, ketika <InlineMath math="0 < d < |r_1 - r_2|" />. Ambil lingkaran besar berjari-jari <InlineMath math="4" />, lingkaran kecil berjari-jari <InlineMath math="1" />, dan jarak antarpusat <InlineMath math="1" />.
 
-<LineEquation
-  title="Lingkaran di Dalam tanpa Bersinggungan"
-  description="Pusat kedua lingkaran berbeda dan kelilingnya tidak bertemu."
-  cameraPosition={[0, 0, 12]}
-  showZAxis={false}
-  data={[
-    {
-      kind: "circle-outline",
-      radius: 4,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => ({
-        x: 1 + Math.cos((i * Math.PI) / 90),
-        y: Math.sin((i * Math.PI) / 90),
-        z: 0,
-      })),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="P_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-  ]}
+<MathVisual
+  title={<>Lingkaran di Dalam tanpa Bersinggungan</>}
+  description={<>Pusat kedua lingkaran berbeda dan kelilingnya tidak bertemu.</>}
+  labels={{
+    "l1": <InlineMath math="P_1" />,
+    "l2": <InlineMath math="P_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1 + cos(((t * pi) / 90)))", y: "sin(((t * pi) / 90))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Karena <InlineMath math="0 < 1 < 4 - 1" />, lingkaran kecil berada sepenuhnya di dalam lingkaran besar. Celah terpendeknya <InlineMath math="|r_1 - r_2| - d = 3 - 1 = 2" />.
@@ -433,90 +204,33 @@ Karena <InlineMath math="0 < 1 < 4 - 1" />, lingkaran kecil berada sepenuhnya di
 
 **Lingkaran konsentris** memiliki pusat yang sama tetapi jari-jari berbeda, seperti cincin-cincin pada papan sasaran panahan.
 
-<LineEquation
-  title="Lingkaran Konsentris"
-  description="Dua lingkaran dengan pusat sama tetapi jari-jari berbeda."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 3.5;
-        const centerX = 0;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0284c7",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2;
-        const centerX = 0;
-        const centerY = 0;
-        return {
-          x: centerX + radius * Math.cos(angle),
-          y: centerY + radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#65a30d",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: Math.sqrt(2), y: Math.sqrt(2), z: 0 }
-      ],
-      color: "#ca8a04",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [0, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3.5, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_2" />, at: 1, offset: [0, 0.8, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -5, z: 0 },
-        { x: 0, y: 5, z: 0 }
-      ],
-      color: "#c026d3",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Lingkaran Konsentris</>}
+  description={<>Dua lingkaran dengan pusat sama tetapi jari-jari berbeda.</>}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="r_1" />,
+    "l3": <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(0 + (3.5 * cos(((t * pi) / 180))))", y: "(0 + (3.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + (2 * cos(((t * pi) / 180))))", y: "(0 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(2), y: Math.sqrt(2) }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.5, y: 0 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 1.41, y: 1.41 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
 />
 
 Untuk lingkaran konsentris, <InlineMath math="d = 0" /> dan <InlineMath math="r_1 \ne r_2" />. Kelilingnya tidak pernah bertemu, dan jarak antara kedua keliling sama di setiap arah, yaitu <InlineMath math="|r_1 - r_2|" />.

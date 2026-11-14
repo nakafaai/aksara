@@ -1,0 +1,115 @@
+export const metadata = {
+  title: "Model Fungsi Eksponen",
+  description:
+    "Ikuti kisah penularan yang ringkas untuk membandingkan setiap fasa dengan jumlah terkumpul. Kemudian bandingkan lengkung eksponen, linear dan logaritma, dan lihat di mana model itu tidak lagi sepadan dengan kehidupan sebenar.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-02",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Kisah Penularan yang Ringkas
+
+Pengiraan ini bermula dengan seorang yang dijangkiti, dan orang itu menjangkiti tepat <InlineMath math="3" /> orang lain. Dalam fasa seterusnya, setiap orang yang baru dijangkiti menjangkiti <InlineMath math="3" /> orang lagi. Petua bercabang ini menggunakan **pendarab yang tetap**. Supaya pengiraannya kemas, andaikan tiada dua orang yang menjangkiti orang yang sama, tiada sesiapa yang sembuh, dan faktor tiga itu tidak pernah berubah.
+
+Sekarang coraknya mudah diikuti: setiap fasa ada tiga kali ganda bilangan orang yang baru dijangkiti berbanding fasa sebelumnya. Wabak sebenar lebih bercelaru. Kontak antara orang bertindih, orang sembuh, dan penularan berubah dari semasa ke semasa. Kisah ini mengasingkan corak eksponen. Kisah ini tidak meramalkan wabak.
+
+## Jangkitan Baharu dalam Setiap Fasa
+
+Setiap nombor di bawah memberitahu kita berapa ramai orang yang dijangkiti **dalam fasa itu**. Nombor itu bukan jumlah terkumpul:
+
+| Fasa | Jangkitan baharu | Jumlah sejak fasa satu |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="12" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="39" /> |
+| <InlineMath math="4" /> | <InlineMath math="81" /> | <InlineMath math="120" /> |
+| <InlineMath math="5" /> | <InlineMath math="243" /> | <InlineMath math="363" /> |
+
+Jika <InlineMath math="N(x)" /> ialah bilangan orang yang baru dijangkiti dalam fasa <InlineMath math="x" />, maka:
+
+<BlockMath math="N(x)=3^x" />
+
+Menjumlahkan jangkitan baharu dari fasa <InlineMath math="1" /> hingga fasa <InlineMath math="x" /> memberikan [siri geometri](/ms/subjek/matematik/jujukan-dan-siri/siri-geometri) yang sebutan pertama dan nisbah sepunyanya sama-sama <InlineMath math="3" />:
+
+<BlockMath math="\begin{aligned} S(x) &=3+3^2+\cdots+3^x \\ &=3\frac{3^x-1}{3-1} \\ &=\frac{3^{x+1}-3}{2} \end{aligned}" />
+
+Dua rumus ini menjawab soalan yang berbeza. <InlineMath math="N(x)" /> menerangkan satu fasa, manakala <InlineMath math="S(x)" /> menjumlahkan setiap fasa yang sudah lengkap.
+
+Jangkitan baharu menjadi tiga kali ganda dari satu fasa ke fasa seterusnya: <InlineMath math="N(x) = 3^x" /> memberikan <InlineMath math="3" />, <InlineMath math="9" />, <InlineMath math="27" />, <InlineMath math="81" /> dan <InlineMath math="243" />. Setiap palang ialah tiga kali ganda palang sebelumnya.
+
+<BarChart
+  title={<>Jangkitan baharu bagi setiap fasa</>}
+  description={<>Palang <InlineMath math="N(x) = 3^x" /> untuk fasa <InlineMath math="1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Jangkitan baharu"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 3 ** x }))}
+  chartConfig={{ value: { label: "Jangkitan baharu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Membandingkan Tiga Jenis Fungsi
+
+Carta ini membandingkan tiga rumus pada nilai fasa yang sama:
+
+1. **Eksponen**: <InlineMath math="y=3^x" />
+2. **Linear**: <InlineMath math="y=3x" />
+3. **Logaritma**: <InlineMath math="y=20\ln(x+1)" />
+
+Hanya lengkung eksponen yang mengikut petua “darab dengan tiga setiap fasa” yang dinyatakan. Lengkung lain hanya untuk perbandingan bentuk dan tidak menerangkan bentuk penularan yang lain.
+
+<FunctionExplorationVirusChart
+  labels={{
+    title: "Corak Penularan yang Ringkas",
+    description: "Orang yang baru dijangkiti dalam setiap fasa apabila faktornya kekal tiga.",
+    exponential: "Eksponen",
+    linear: "Linear",
+    logarithmic: "Logaritma",
+    yLabel: "Orang yang baru dijangkiti",
+    caption:
+      "Lengkung eksponen menjadi tiga kali ganda dari satu fasa ke fasa seterusnya. Wabak sebenar tidak akan terus mengikut corak yang kemas ini.",
+    phase: "Fasa",
+  }}
+/>
+
+## Soalan dengan Jalan Kerja
+
+1. Dalam kisah ringkas ini, berapa ramai orang yang dijangkiti dalam fasa <InlineMath math="20" />?
+
+   <BlockMath math="N(20)=3^{20}=3{,}486{,}784{,}401" />
+
+2. Jika kita menjumlahkan fasa <InlineMath math="1" /> hingga <InlineMath math="20" />, berapakah bilangan jangkitan baharu yang berlaku dalam fasa-fasa itu?
+
+   <BlockMath math="S(20)=\frac{3^{21}-3}{2}=5{,}230{,}176{,}600" />
+
+3. Bahagian manakah dalam petua “darab dengan tiga setiap fasa” yang membuatkan lengkung eksponen sesuai?
+
+   Model eksponen mendarabkan fasa sebelumnya dengan <InlineMath math="3" />. Model linear pula akan menambah jumlah yang sama setiap fasa. <Highlight>Pendaraban dengan faktor yang tetap</Highlight> dan penambahan jumlah yang tetap ialah dua proses yang berbeza.
+
+Fasa <InlineMath math="20" /> sahaja mengandungi <InlineMath math="3{,}486{,}784{,}401" /> orang yang baru dijangkiti dalam contoh kita. Menjumlahkan fasa <InlineMath math="1" /> hingga <InlineMath math="20" /> memberikan <InlineMath math="5{,}230{,}176{,}600" /> jangkitan baharu merentasi dua puluh fasa itu. Hasil tambah itu tidak termasuk seorang yang sudah dijangkiti sebelum fasa satu bermula.
+
+Nombor yang sangat besar itu datang daripada andaian kita yang kemas: setiap orang yang baru dijangkiti menjangkiti tepat tiga orang lain, tiada sesiapa yang dijangkiti dua kali, dan belum ada sesiapa yang sembuh. Corak ini berguna untuk belajar cara pertumbuhan eksponen berfungsi, tetapi corak ini tidak boleh memberitahu kita berapa ramai orang yang akan dijangkiti dalam wabak sebenar.
+
+Jumlah terkumpul <InlineMath math="S(x) = \frac{3^{x+1} - 3}{2}" /> ialah <InlineMath math="3" />, <InlineMath math="12" />, <InlineMath math="39" />, <InlineMath math="120" /> dan <InlineMath math="363" />. Setiap jumlah itu tepat <InlineMath math="1.5" /> kurang daripada separuh bilangan baharu yang seterusnya, jadi fasa seterusnya sahaja sentiasa melebihi gabungan semua fasa sebelumnya.
+
+<BarChart
+  title={<>Jumlah jangkitan sejak fasa satu</>}
+  description={<>Palang <InlineMath math="S(x) = \frac{3^{x+1} - 3}{2}" /> untuk fasa <InlineMath math="1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Jumlah jangkitan"
+  data={[1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: (3 ** (x + 1) - 3) / 2 }))}
+  chartConfig={{ value: { label: "Jumlah jangkitan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Sifat Fungsi Eksponen
+
+Untuk <InlineMath math="f(x)=a^x" /> dengan <InlineMath math="a>0" /> dan <InlineMath math="a\neq1" />:
+
+1. Domainnya ialah <InlineMath math="\mathbb{R}" /> dan julatnya ialah <InlineMath math="(0,\infty)" />.
+2. Graf itu melalui <InlineMath math="(0,1)" /> kerana <InlineMath math="a^0=1" />.
+3. Jika <InlineMath math="a>1" />, fungsi itu menokok.
+4. Jika <InlineMath math="0<a<1" />, fungsi itu menyusut.
+5. Untuk <InlineMath math="a>1" />, nilai <InlineMath math="a" /> yang lebih besar memberikan pertumbuhan yang lebih banyak bagi setiap selang. Untuk <InlineMath math="0<a<1" />, nilai <InlineMath math="a" /> yang lebih kecil memberikan susutan yang lebih banyak bagi setiap selang.
+
+Sifat am fungsi ini terpakai untuk **input nyata**. Apabila membilang fasa penularan, kita hanya menggunakan input integer bukan negatif. Jadi domain fungsi matematik itu berbeza daripada masa pemerhatian dalam model.
+
+## Di Mana Model Eksponen Muncul
+
+Fungsi eksponen boleh memodelkan faedah kompaun, reputan radioaktif, penggandaan berulang, dan fasa pendek perubahan populasi atau penularan. Sebelum menggunakannya, kenal pasti sama ada proses itu benar-benar menggunakan **faktor** yang lebih kurang tetap pada selang yang sama panjang. Jika kadar, sumber atau interaksi berubah, model itu juga mesti berubah.

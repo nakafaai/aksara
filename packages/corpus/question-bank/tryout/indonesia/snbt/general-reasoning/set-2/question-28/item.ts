@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "cost-comparison",
+    topic: "rate-comparison",
   },
   versions: {
     id: {
@@ -12,24 +12,24 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Bagi pembeli yang bukan anggota, harga per kilogram beras kemasan $$25\\text{ kg}$$ lebih murah daripada kemasan $$5\\text{ kg}$$.",
+            "Setelah disusul mesin Y untuk pertama kalinya, mesin X tidak pernah lagi mencetak lebih banyak lembar daripada mesin Y.",
         },
         {
           column: 1,
           label:
-            "Bagi anggota, membeli satu kemasan $$25\\text{ kg}$$ lebih murah $$\\text{Rp}52{.}000$$ daripada membeli lima kemasan $$5\\text{ kg}$$.",
+            "Tepat $$30$$ menit setelah kedua mesin mulai, hasil mesin Y $$60$$ lembar lebih banyak daripada hasil mesin X.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika jeda mesin X dipersingkat menjadi $$1$$ menit dan lama kerjanya tetap $$8$$ menit, hasil mesin X tidak pernah kurang dari hasil mesin Y.",
         },
         {
           column: 2,
           label:
-            "Bagi pembeli yang bukan anggota, cara paling murah untuk membeli tepat $$30\\text{ kg}$$ beras adalah membeli enam kemasan $$5\\text{ kg}$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Bagi anggota, harga per kilogram beras kemasan $$25\\text{ kg}$$ kurang dari $$\\text{Rp}11{.}000$$.",
+            "Untuk mencetak $$1{.}200$$ lembar, mesin X memerlukan waktu lebih singkat daripada mesin Y.",
         },
       ],
     },

@@ -1,12 +1,24 @@
-Verbinde die ersten beiden Prämissen. Jedes Wörterbuch ist ein Nachschlagewerk, und **kein Nachschlagewerk darf ausgeliehen werden**. Also darf kein Wörterbuch ausgeliehen werden.
+Gesucht ist die Schlussfolgerung, die aus vier Regeln und zwei Tatsachen vom letzten Donnerstag **sicher folgt**: Der Hauptbarista war da, und die Werbetafel wurde nicht aufgestellt. Der Schlüssel ist, von der Tatsache über die Werbetafel aus rückwärts zu gehen.
 
-<BlockMath math="\text{Wörterbuch} \Rightarrow \text{Nachschlagewerk} \Rightarrow \text{nicht ausleihbar}" />
+Das passende Werkzeug ist die Kontraposition. Aus einer Regel „wenn P, dann Q“ darfst du „wenn nicht Q, dann nicht P“ folgern. Geh die Schritte einzeln durch.
 
-Die anderen Optionen sind nicht sicher:
+1. Regel 2 lautet „wenn *kopi susu* (Milchkaffee) verkauft wird, wird die Werbetafel aufgestellt“. Die Tafel stand nicht, also wurde kein Milchkaffee verkauft.
+2. Regel 1 hat eine doppelte Bedingung: Der Hauptbarista ist da, und die Espressomaschine ist nicht kaputt. Es gab keinen Milchkaffee, also war die doppelte Bedingung nicht erfüllt. Mindestens ein Teil davon ist also falsch.
+3. Der erste Teil stimmt, denn der Hauptbarista war da. Also ist der zweite Teil falsch. Das Gegenteil von „die Espressomaschine ist nicht kaputt“ ist „die Espressomaschine ist kaputt“.
+4. Regel 3: Die Espressomaschine ist kaputt, also wird der Techniker gerufen.
+5. Regel 4 hat die Form „P nur dann, wenn Q“, und das bedeutet „wenn P, dann Q“. Sie sagt also nur, dass das Bezahlen der Servicegebühr einen gerufenen Techniker voraussetzt. Ein gerufener Techniker zwingt das Café nicht zum Bezahlen, und er verbietet es auch nicht.
 
-- Die dritte Prämisse sagt nur, dass **einige** Geschichtsbücher ausgeliehen werden dürfen, nicht alle.
-- Die Prämissen verbinden Wörterbücher nicht mit Geschichtsbüchern.
-- Die erste Prämisse lässt sich nicht umkehren. Ein nicht ausleihbares Buch kann ein anderes Nachschlagewerk sein, kein Wörterbuch.
-- Die ausleihbaren Geschichtsbücher sind zwar keine Nachschlagewerke, andere Geschichtsbücher können es aber sein. "Keines" ist also zu stark.
+Kurz zusammengefasst sehen die Schritte 1 bis 4 so aus.
 
-Sicher wahr ist also, dass kein Wörterbuch dieser Bibliothek ausgeliehen werden darf.
+<BlockMath math="\begin{aligned} \neg\text{Tafel} &\Rightarrow \neg\text{Milchkaffee} \\ \text{Barista da} \wedge \neg\text{Milchkaffee} &\Rightarrow \text{Maschine kaputt} \\ \text{Maschine kaputt} &\Rightarrow \text{Techniker gerufen} \end{aligned}" />
+
+Zur Kontrolle baust du den Donnerstag nach: Barista da, Maschine kaputt, kein Milchkaffee, keine Werbetafel, Techniker gerufen. Alle vier Regeln gelten, **egal ob das Café die Servicegebühr bezahlt oder nicht**. Über die Servicegebühr lässt sich also wirklich nichts sagen.
+
+Die anderen Optionen scheitern an jeweils einem falschen Schritt.
+
+- Maschine nicht kaputt und Techniker nicht gerufen entsteht, wenn du in Schritt 3 die doppelte Verneinung verlierst. Gescheitert ist der Teil „die Maschine ist nicht kaputt“, die Maschine ist also gerade kaputt, und der Techniker wird sicher gerufen.
+- Maschine kaputt und Servicegebühr bezahlt entsteht, wenn du „nur dann, wenn“ in Regel 4 verkehrt herum liest, also als „wenn der Techniker gerufen wird, zahlt das Café die Servicegebühr“.
+- Hauptbarista nicht da oder Maschine nicht kaputt ist eine Verneinung der doppelten Bedingung, bei der „nicht kaputt“ nicht umgedreht wurde. Richtig verneint heißt es „der Barista ist nicht da oder die Maschine ist kaputt“. An jenem Donnerstag sind beide Teile dieser Option falsch, also ist die ganze Option falsch.
+- Techniker gerufen, aber Servicegebühr nicht bezahlt behandelt etwas, das sich nicht entscheiden lässt, als sicher nicht geschehen.
+
+Sicher richtig ist also, dass die Espressomaschine kaputt ist und der Techniker gerufen wird.

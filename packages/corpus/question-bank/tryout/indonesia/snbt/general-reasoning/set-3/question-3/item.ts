@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "inference",
+    topic: "data-inference",
   },
-  stimulus: "pagar",
+  stimulus: "naungan",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Dapat disimpulkan", "Tidak dapat disimpulkan"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Persentase selisih kadar PM2,5 antara trotoar berpagar tanaman dan trotoar tanpa pemisah lebih besar pada hari berangin lemah daripada pada hari berangin kencang.",
+            "Pohon naungan mengurangi kejadian longsor kecil di kebun yang berada di lereng curam.",
         },
         {
           column: 1,
           label:
-            "Pada hari berangin kencang, kadar PM2,5 di trotoar berpagar tanaman masih lebih rendah daripada di trotoar tanpa pemisah.",
+            "Lebih dari separuh total panen seluruh kebun bernaungan berasal dari kebun di lereng curam.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika dihitung dalam persen terhadap rata-rata hasil kebun tanpa naungan di lereng yang sama, keunggulan kebun bernaungan lebih besar di lereng curam daripada di lereng landai.",
         },
         {
           column: 2,
           label:
-            "Pagar tanaman membuat udara di lajur kendaraan lebih bersih pada semua ruas berpagar.",
-        },
-        {
-          column: 2,
-          label:
-            "Penelitian menunjukkan bahwa pagar tanaman yang lebih tinggi dari $$1{,}5$$ meter memberikan hasil yang lebih baik.",
+            "Sejak pohon naungan ditanam, hasil kebun bernaungan di lereng curam meningkat.",
         },
       ],
     },

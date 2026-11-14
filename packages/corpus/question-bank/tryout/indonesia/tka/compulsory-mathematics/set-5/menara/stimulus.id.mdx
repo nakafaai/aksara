@@ -1,0 +1,43 @@
+Sebuah desa menampung air bersih dalam tandon di puncak sebuah menara. Bagian dalam tandon terdiri atas tabung tegak dan kerucut terbalik yang menempel tepat di bawah tabung, seperti pada gambar. Ukuran bagian dalam tandon adalah sebagai berikut.
+
+- Diameter tabung sama dengan diameter alas kerucut, yaitu <InlineMath math="1{,}4\text{ m}" />.
+- Tinggi tabung <InlineMath math="1{,}5\text{ m}" />.
+- Tinggi kerucut <InlineMath math="0{,}6\text{ m}" />. Ujung kerucut berada di bagian paling bawah, dan pipa keluar air terpasang di ujung itu.
+- Pada dinding tabung terdapat garis batas aman, <InlineMath math="0{,}3\text{ m}" /> di bawah tepi atas tabung. Permukaan air tidak boleh melewati garis ini.
+
+Tandon diisi oleh sebuah pompa dengan debit tetap <InlineMath math="3{,}96\text{ m}^3" /> per jam. Ketinggian permukaan air diukur tegak lurus dari ujung kerucut. Gunakan <InlineMath math="\pi=\frac{22}{7}" /> dan <InlineMath math="1\text{ m}^3=1{.}000" /> liter.
+
+<MathVisual
+  title={<>Penampang tandon air</>}
+  description={<>Penampang tegak tandon. Bagian atas berbentuk persegi panjang selebar <InlineMath math="1{,}4\text{ m}" /> dan setinggi <InlineMath math="1{,}5\text{ m}" /> (tabung). Di bawahnya ada segitiga dengan puncak di bawah dan tinggi <InlineMath math="0{,}6\text{ m}" /> (kerucut). Garis batas aman digambar mendatar <InlineMath math="0{,}3\text{ m}" /> di bawah tepi atas tabung.</>}
+  labels={{
+    diameter: <InlineMath math="1{,}4\text{ m}" />,
+    tube: <InlineMath math="1{,}5\text{ m}" />,
+    cone: <InlineMath math="0{,}6\text{ m}" />,
+    margin: <InlineMath math="0{,}3\text{ m}" />,
+    safe: <>garis batas aman</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 20 },
+      y: { min: -2, max: 24 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 7, y: 6 }, { x: 7, y: 21 }, { x: -7, y: 21 }, { x: -7, y: 6 }] },
+      { id: "junction", kind: "segment", appearance: "construction", from: { x: -7, y: 6 }, to: { x: 7, y: 6 } },
+      { id: "cone-height", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "safe-line", kind: "segment", appearance: "warning", from: { x: -7, y: 18 }, to: { x: 7, y: 18 } },
+      { id: "tip", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "diameter", objectId: "tank", at: { x: 0, y: 21 }, placement: "above" },
+      { key: "tube", objectId: "tank", at: { x: 7, y: 13.5 }, placement: "right" },
+      { key: "cone", objectId: "cone-height", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "margin", objectId: "tank", at: { x: -7, y: 19.5 }, placement: "left" },
+      { key: "safe", objectId: "safe-line", at: { x: 7, y: 18 }, placement: "right" },
+    ],
+  }}
+/>

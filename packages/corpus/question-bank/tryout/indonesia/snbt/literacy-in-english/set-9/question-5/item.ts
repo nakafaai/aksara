@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "application",
   },
-  stimulus: "tambora-1816",
+  stimulus: "hawthorne-effect",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To prove that the eruption was felt mostly by writers and artists in Europe",
+            "The report is right to set the rise aside, since the reanalysed lighting records traced such rises to the calendar rather than to real change.",
         },
         {
           correct: false,
-          label: "To argue that bad weather always produces better literature",
+          label:
+            "The report is right that the rise is not real learning, since any improvement in a group under study counts as a Hawthorne effect.",
+        },
+        {
+          correct: false,
+          label:
+            "The report should credit the inspectors' attention for the rise, since attention is the cause that the label refers to.",
+        },
+        {
+          correct: false,
+          label:
+            "The report should accept the rise as real learning, since the 2014 review found that the effect could not be measured.",
         },
         {
           correct: true,
           label:
-            "To show that the eruption's effects reached even into cultural life",
-        },
-        {
-          correct: false,
-          label:
-            "To explain how Mary Shelley learned about volcanoes in Indonesia",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that the ghost-story contest caused food prices to rise",
+            "The report has not yet explained the rise, and it still has to show which feature of the inspected term actually changed the scores.",
         },
       ],
     },

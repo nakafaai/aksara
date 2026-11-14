@@ -1,20 +1,42 @@
-Jalan setapak berada di luar taman, jadi **tepi luarnya membentuk persegi panjang yang lebih besar**. Setiap sisi bertambah dua kali lebar jalan, satu di setiap ujung.
+Pada paket bertingkat, **setiap <InlineMath math="\text{m}^3" /> dibayar sesuai tingkatnya sendiri**. Pemakaian <InlineMath math="20\text{ m}^3" />, misalnya, dibayar <InlineMath math="\text{Rp}3{.}000" /> untuk <InlineMath math="15\text{ m}^3" /> pertama dan <InlineMath math="\text{Rp}5{.}000" /> hanya untuk <InlineMath math="5\text{ m}^3" /> sisanya. Tulis tagihan dalam ribuan rupiah untuk pemakaian <InlineMath math="v\text{ m}^3" />. <InlineMath math="B(v)" /> adalah tagihan paket bertingkat dan <InlineMath math="T(v)" /> tagihan paket tetap.
 
 <BlockMath math="\begin{aligned}
-\text{ukuran luar} &= (26+2\times1{,}5)\times(18+2\times1{,}5)=29\times21 \\
-\text{luas jalan} &= 29\times21-26\times18=609-468=141\text{ m}^2
+B(v) &= 3v &&\text{untuk } v \le 15 \\
+B(v) &= 45 + 5(v - 15) &&\text{untuk } 15 < v \le 30 \\
+B(v) &= 120 + 7(v - 30) &&\text{untuk } v > 30 \\
+T(v) &= 60 + 2v
 \end{aligned}" />
 
-**Pernyataan 1** bernilai Benar, sesuai dengan hitungan di atas.
+Dari rumus itu, nilai yang dibutuhkan adalah <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" />, dan <InlineMath math="T(30) = 120" />.
 
-**Pernyataan 2** bernilai Benar. Keliling tepi luar adalah <InlineMath math="2(29+21)=100\text{ m}" />.
+Pernyataan 1: Benar. Tagihan bertingkat untuk <InlineMath math="20\text{ m}^3" /> adalah <InlineMath math="45 + 25 = 70" /> ribu rupiah, jadi rata-ratanya:
 
-**Pernyataan 3** bernilai Salah. Dengan lebar <InlineMath math="3\text{ m}" />:
+<BlockMath math="70{.}000 \div 20 = 3{.}500 < 4{.}000" />
 
-<BlockMath math="32\times24-468=768-468=300\text{ m}^2" />
+Kalau semua <InlineMath math="20\text{ m}^3" /> kamu kenai tarif <InlineMath math="\text{Rp}5{.}000" />, rata-ratanya menjadi <InlineMath math="\text{Rp}5{.}000" />. Kalau kamu merata-ratakan dua tarif begitu saja, <InlineMath math="(3{.}000 + 5{.}000) \div 2 = 4{.}000" />. Keduanya membuatmu keliru menilai pernyataan ini Salah. Rata-rata yang benar harus menimbang banyak air di setiap tingkat: <InlineMath math="15\text{ m}^3" /> murah dan hanya <InlineMath math="5\text{ m}^3" /> mahal.
 
-Dua kali luas semula adalah <InlineMath math="282\text{ m}^2" />, bukan <InlineMath math="300\text{ m}^2" />. Luas jalan tidak sebanding dengan lebarnya, karena bagian di keempat sudut bertambah lebih cepat.
+Pernyataan 2: Salah. Coba tepat di batasnya, <InlineMath math="30\text{ m}^3" />:
 
-**Pernyataan 4** bernilai Salah. <InlineMath math="\frac{141}{468}\approx30{,}1\%" />, kurang dari <InlineMath math="35\%" />.
+<BlockMath math="B(30) = 45 + 15 \times 5 = 120, \qquad T(30) = 60 + 2 \times 30 = 120" />
 
-Jadi, pernyataan 1 dan 2 benar, sedangkan pernyataan 3 dan 4 salah.
+Pada <InlineMath math="30\text{ m}^3" /> kedua paket sama mahal, jadi paket bertingkat tidak lebih murah di titik itu. Di bawah <InlineMath math="30\text{ m}^3" /> paket bertingkat memang selalu lebih murah. Setiap <InlineMath math="1\text{ m}^3" /> yang dikurangi dari <InlineMath math="30\text{ m}^3" /> menurunkan tagihan bertingkat <InlineMath math="3" /> atau <InlineMath math="5" /> ribu, sedangkan tagihan tetap hanya turun <InlineMath math="2" /> ribu. Kalau kamu hanya mengecek <InlineMath math="15" /> atau <InlineMath math="20\text{ m}^3" />, kamu melewatkan titik batas itu.
+
+Pernyataan 3: Salah. Tagihan bertingkat untuk <InlineMath math="35\text{ m}^3" /> adalah <InlineMath math="120 + 5 \times 7 = 155" /> ribu. Selisihnya dengan <InlineMath math="30\text{ m}^3" /> sama-sama <InlineMath math="35" /> ribu, tetapi pembaginya berbeda.
+
+<BlockMath math="\begin{aligned}
+\text{penurunan} &= \frac{35}{155} \approx 22{,}6\% \\
+\text{kenaikan} &= \frac{35}{120} \approx 29{,}2\%
+\end{aligned}" />
+
+Penurunan dihitung dari <InlineMath math="155" />, sedangkan kenaikan dihitung dari <InlineMath math="120" />. Karena dasar persentasenya berpindah, kedua persentase itu tidak sama.
+
+Pernyataan 4: Benar. Total airnya sama, yaitu <InlineMath math="60\text{ m}^3" />, tetapi tagihannya berbeda.
+
+<BlockMath math="\begin{aligned}
+B(20) + B(40) &= 70 + 190 = 260 \\
+B(30) + B(30) &= 120 + 120 = 240
+\end{aligned}" />
+
+Dibandingkan dengan pola <InlineMath math="30" /> dan <InlineMath math="30\text{ m}^3" />, pola <InlineMath math="20" /> dan <InlineMath math="40\text{ m}^3" /> memindahkan <InlineMath math="10\text{ m}^3" /> dari satu bulan ke bulan lain. Air itu tadinya dibayar <InlineMath math="\text{Rp}5{.}000" /> per <InlineMath math="\text{m}^3" /> dan kini dibayar <InlineMath math="\text{Rp}7{.}000" />, jadi tagihannya naik <InlineMath math="10 \times 2 = 20" /> ribu. Pada paket tetap kedua pola sama-sama <InlineMath math="240" /> ribu, karena tarifnya sama untuk setiap <InlineMath math="\text{m}^3" />.
+
+Jadi, pernyataan tentang rata-rata biaya pada <InlineMath math="20\text{ m}^3" /> dan tentang pemakaian <InlineMath math="20" /> dan <InlineMath math="40\text{ m}^3" /> Benar, sedangkan pernyataan tentang paket bertingkat sampai <InlineMath math="30\text{ m}^3" /> dan tentang persentase naik dan turun Salah.

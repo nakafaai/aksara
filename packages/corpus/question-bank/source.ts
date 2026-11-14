@@ -1,11 +1,13 @@
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
-  ACTIVE_APP_LOCALE_CODES,
+  ACTIVE_APP_LOCALES,
+  type AppLocaleCode,
   AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
+import { appLocaleCode, carriedAppLocales } from "#corpus/locale/source";
 import { QuestionReadError, readEntries } from "#corpus/question-bank/entries";
 import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
 import {
@@ -18,6 +20,8 @@ import { decodeItemSource } from "#corpus/question-bank/reader";
 
 /** One authored question: its set, its number, its folder, and its item. */
 export const QuestionSourceSchema = Schema.Struct({
+  /** The locales its explanations are written in, the same for every question of its set. */
+  explanations: Schema.Array(AppLocaleCodeSchema),
   item: ItemSourceSchema,
   number: Schema.Int.check(Schema.isGreaterThan(0)),
   set: SetPathSchema,
@@ -70,12 +74,15 @@ export class StimulusReferenceError extends Schema.TaggedError<
   set: SetPathSchema,
 }) {}
 
-/** The files a question must hold: its item, a prompt for each language, and an explanation for each locale. */
-function questionFiles(item: typeof ItemSourceSchema.Type) {
+/** The files a question must hold: its item, a prompt for each language, and an explanation for each locale of its set. */
+function questionFiles(
+  item: typeof ItemSourceSchema.Type,
+  explanations: readonly AppLocaleCode[]
+) {
   return Arr.sort(
     [
       "item.ts",
-      ...Arr.map(ACTIVE_APP_LOCALE_CODES, (locale) => `answer.${locale}.mdx`),
+      ...Arr.map(explanations, (locale) => `answer.${locale}.mdx`),
       ...Arr.map(
         itemVersions(item.versions),
         ({ language }) => `question.${language}.mdx`
@@ -105,7 +112,8 @@ const readQuestion = Effect.fn("AksaraCorpus.readQuestion")(function* (
   corpusRoot: string,
   set: SetPath,
   number: number,
-  files: readonly string[]
+  files: readonly string[],
+  explanations: readonly AppLocaleCode[]
 ) {
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
@@ -119,8 +127,14 @@ const readQuestion = Effect.fn("AksaraCorpus.readQuestion")(function* (
       )
     );
   const item = yield* decodeItemSource(text, itemPath);
-  yield* requireFiles(sourceRoot, files, questionFiles(item));
-  return QuestionSourceSchema.make({ item, number, set, sourceRoot });
+  yield* requireFiles(sourceRoot, files, questionFiles(item, explanations));
+  return QuestionSourceSchema.make({
+    explanations,
+    item,
+    number,
+    set,
+    sourceRoot,
+  });
 });
 
 /**
@@ -196,16 +210,22 @@ const readSet = Effect.fn("AksaraCorpus.readSet")(function* (
   ) {
     return yield* new QuestionSequenceError({ numbers, set });
   }
-  const questions = yield* Effect.forEach(numbers, (number) =>
-    readQuestion(
-      corpusRoot,
-      set,
-      number,
-      Arr.map(
-        Arr.filter(questionEntries, (entry) => entry.number === number),
-        ({ file }) => file
+  /** The files of one question folder of this set. */
+  const filesOf = (number: number) =>
+    Arr.map(
+      Arr.filter(questionEntries, (entry) => entry.number === number),
+      ({ file }) => file
+    );
+  const explanations = Arr.map(
+    carriedAppLocales(ACTIVE_APP_LOCALES, (code) =>
+      Arr.some(numbers, (number) =>
+        Arr.contains(filesOf(number), `answer.${code}.mdx`)
       )
-    )
+    ),
+    appLocaleCode
+  );
+  const questions = yield* Effect.forEach(numbers, (number) =>
+    readQuestion(corpusRoot, set, number, filesOf(number), explanations)
   );
   const stimuli = yield* readStimuli(
     set,

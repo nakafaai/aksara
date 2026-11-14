@@ -1,18 +1,49 @@
-All three trains leave together at every **least common multiple** of 16, 24 and 40 minutes.
+You're looking for everything Dodi pays: the down payment, the admin fee, five instalments, and the payoff amount. The deciding part is the payoff, because **only the remaining principal is paid off**, not the remaining instalments. Here's the plan: find the instalment, split off the principal part of each instalment, find the remaining principal, then add the penalty.
 
-# LCM of the three gaps
+# The instalment for twelve months
+
+A <InlineMath math="12" />-month term uses <InlineMath math="1.5\%" /> interest per month on the loan principal of <InlineMath math="4{,}800{,}000" />.
 
 <BlockMath math="\begin{aligned}
-16&=2^4\\
-24&=2^3\cdot3\\
-40&=2^3\cdot5\\
-\text{LCM}&=2^4\cdot3\cdot5=240\text{ min}=4\text{ h}
+\text{total interest} &= 4{,}800{,}000\cdot1.5\%\cdot12=864{,}000\\
+\text{instalment} &= \frac{4{,}800{,}000+864{,}000}{12}=\frac{5{,}664{,}000}{12}=472{,}000
 \end{aligned}" />
 
-# Joint departures
+The result is already a multiple of <InlineMath math="1{,}000" />, so **no rounding happens** for this term.
 
-At 05.00, 09.00, 13.00, 17.00 and 21.00. The next joint departure would be at 01.00, **outside the timetable**. So there are 5.
+# The remaining principal after five instalments
 
-The value 6 rounds <InlineMath math="\tfrac{1{,}020}{240}=4.25" /> up before adding the first departure. The values 9, 13 and 22 use the LCM of only two lines, 120, 80 and 48 minutes.
+Rule five splits each instalment into a principal part and an interest part. The principal part is <InlineMath math="\tfrac{4{,}800{,}000}{12}=400{,}000" />, and the other <InlineMath math="72{,}000" /> is one month of interest.
 
-So all three trains leave together **5 times**.
+<BlockMath math="\begin{aligned}
+\text{principal already paid} &= 5\cdot400{,}000=2{,}000{,}000\\
+\text{remaining principal} &= 4{,}800{,}000-2{,}000{,}000=2{,}800{,}000\\
+\text{payoff amount} &= 2{,}800{,}000+3\%\cdot2{,}800{,}000=2{,}884{,}000
+\end{aligned}" />
+
+The interest for the <InlineMath math="7" /> months that haven't run yet **isn't charged**, so it isn't part of the payoff.
+
+# Everything Dodi pays
+
+Add up **every payment from the day of purchase to the day of the payoff**.
+
+<BlockMath math="\begin{aligned}
+\text{total} &= 1{,}200{,}000+200{,}000+5\cdot472{,}000+2{,}884{,}000\\
+&= 1{,}400{,}000+2{,}360{,}000+2{,}884{,}000\\
+&= 6{,}644{,}000
+\end{aligned}" />
+
+# Checking with the saving
+
+If Dodi paid every instalment, the total would be <InlineMath math="1{,}400{,}000+12\cdot472{,}000=7{,}064{,}000" />. Paying off early removes <InlineMath math="7\cdot72{,}000=504{,}000" /> of interest but adds a penalty of <InlineMath math="84{,}000" />. **The saving** is <InlineMath math="504{,}000-84{,}000=420{,}000" />, and indeed <InlineMath math="7{,}064{,}000-420{,}000=6{,}644{,}000" />.
+
+# The wrong options
+
+Each wrong option **gets the payoff amount wrong**.
+
+- <InlineMath math="\text{Rp}6{,}232{,}000.00" /> takes the remaining principal for <InlineMath math="6" /> months, but after the fifth instalment there are still <InlineMath math="12-5=7" /> months left.
+- <InlineMath math="\text{Rp}6{,}560{,}000.00" /> forgets the <InlineMath math="3\%" /> penalty.
+- <InlineMath math="\text{Rp}6{,}704{,}000.00" /> takes the penalty on the original loan principal, <InlineMath math="3\%\cdot4{,}800{,}000=144{,}000" />.
+- <InlineMath math="\text{Rp}7{,}163{,}120.00" /> pays off the remaining instalments <InlineMath math="7\cdot472{,}000=3{,}304{,}000" /> plus the penalty, so it still pays interest for months that never ran.
+
+So Dodi pays <InlineMath math="\text{Rp}6{,}644{,}000.00" /> in total for the phone.

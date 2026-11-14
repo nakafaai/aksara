@@ -37,7 +37,7 @@ Vor dem Teilen braucht der Dividend einen Platz für jede Potenz. <InlineMath ma
 
 <BarChart
   title={<>Koeffizienten des Dividenden, Null eingeschlossen</>}
-  description={<>Der Koeffizient jeder Potenz von x im Dividenden, mit 0 für das fehlende Glied mit x Quadrat.</>}
+  description={<>Der Koeffizient jeder Potenz von x im Dividenden, mit <InlineMath math="0" /> für das fehlende Glied mit x Quadrat.</>}
   yAxisLabel="Koeffizient"
   data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Koeffizient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -62,7 +62,7 @@ Der Quotient lautet <InlineMath math="4x^2+x" /> und der Rest <InlineMath math="
 
 **Schritt 3**. Schritt-für-Schritt-Erklärung
 
-**Iteration 1**:
+**Iteration <InlineMath math="1" />**:
 
 **Dividieren**: Teile den führenden Term <InlineMath math="4x^4" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
@@ -82,7 +82,7 @@ Schreibe <InlineMath math="4x^2" /> als ersten Term des Quotienten.
 
 <InlineMath math="x^3 + 4x^2 - 3x" />
 
-**Iteration 2**:
+**Iteration <InlineMath math="2" />**:
 
 **Dividieren**: Teile den führenden Term des neuen Polynoms <InlineMath math="x^3" /> durch den führenden Term des Divisors <InlineMath math="x^2" />:
 
@@ -125,11 +125,11 @@ Die Polynomdivision hält jeden Divisions-, Multiplikations- und Subtraktionssch
 
 Die Bruchform gilt nur für Eingaben mit <InlineMath math="Q(x)\ne0" />. Die Produktidentität gilt weiterhin für alle Eingaben.
 
-Jeder Schritt der Polynomdivision senkt den Grad des Rests. Der Dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat Grad 4. Nach Abziehen von <InlineMath math="4x^2(x^2 + 4x - 1)" /> hat der Rest Grad 3, und nach Abziehen von <InlineMath math="x(x^2 + 4x - 1)" /> bleibt nur <InlineMath math="-2x + 1" /> mit Grad 1. Das liegt unter dem Grad 2 des Divisors, die Division hört auf.
+Jeder Schritt der Polynomdivision senkt den Grad des Rests. Der Dividend <InlineMath math="4x^4 + 17x^3 - 3x + 1" /> hat Grad <InlineMath math="4" />. Nach Abziehen von <InlineMath math="4x^2(x^2 + 4x - 1)" /> hat der Rest Grad <InlineMath math="3" />, und nach Abziehen von <InlineMath math="x(x^2 + 4x - 1)" /> bleibt nur <InlineMath math="-2x + 1" /> mit Grad <InlineMath math="1" />. Das liegt unter dem Grad <InlineMath math="2" /> des Divisors, die Division hört auf.
 
 <BarChart
   title={<>Der Grad sinkt bei jedem Schritt</>}
-  description={<>Der Grad des Dividenden und jedes Rests während der Division durch x Quadrat plus 4x minus 1.</>}
+  description={<>Der Grad des Dividenden und jedes Rests während der Division durch x Quadrat plus 4x minus <InlineMath math="1" />.</>}
   yAxisLabel="Grad"
   data={[["Start", 4], ["Schritt 1", 3], ["Schritt 2", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Grad", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

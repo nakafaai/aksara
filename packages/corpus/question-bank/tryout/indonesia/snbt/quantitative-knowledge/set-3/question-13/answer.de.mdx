@@ -1,20 +1,44 @@
-Alle Punkte, die von <InlineMath math="A" /> und <InlineMath math="B" /> gleich weit entfernt sind, liegen auf **der Mittelsenkrechten von <InlineMath math="AB" />**, also auf der Senkrechten zu <InlineMath math="AB" /> durch deren Mittelpunkt. Der Punkt <InlineMath math="P" /> ist der Schnittpunkt dieser Geraden mit <InlineMath math="y=2x" />.
+Die doppelte Lage ist dort, wo der umgeklappte Teil auf dem restlichen Papier liegt. Der Plan: Finde die Faltlinie, finde den umgeklappten Teil, schau, wo er nach dem Falten landet, und **behalte nur das Stück, das noch auf dem Papier liegt**.
 
-# Gleichung der Mittelsenkrechten
+# Die Gleichung der Faltlinie
 
-Der Mittelpunkt von <InlineMath math="AB" /> ist <InlineMath math="\left(\frac{1+5}{2},\frac{3-1}{2}\right)=(3,1)" />. Die Steigung von <InlineMath math="AB" /> ist <InlineMath math="\frac{-1-3}{5-1}=-1" />, also **ist die Steigung der Mittelsenkrechten der negative Kehrwert**, nämlich 1.
-
-<BlockMath math="y-1=1(x-3)\quad\Rightarrow\quad y=x-2" />
-
-# Schnittpunkt mit der Geraden
+Jeder Punkt der Faltlinie bleibt beim Falten liegen, also ist sein Abstand zu <InlineMath math="A" /> gleich seinem Abstand zu <InlineMath math="M" />. Leg Koordinaten fest: <InlineMath math="A(0,0)" />, <InlineMath math="B(16,0)" />, <InlineMath math="C(16,6)" /> und <InlineMath math="D(0,6)" />, also <InlineMath math="M(8,6)" />. Die Faltlinie ist **die Mittelsenkrechte von <InlineMath math="AM" />**.
 
 <BlockMath math="\begin{aligned}
-2x&=x-2\\
-x&=-2,\qquad y=2(-2)=-4
+x^2+y^2&=(x-8)^2+(y-6)^2\\
+0&=-16x+64-12y+36\\
+4x+3y&=25
 \end{aligned}" />
 
-Also ist <InlineMath math="P(-2,-4)" /> und <InlineMath math="a+b=-6" />. **Prüfe die Abstände**: <InlineMath math="PA^2=(-3)^2+(-7)^2=58" /> und <InlineMath math="PB^2=(-7)^2+(-3)^2=58" />.
+Diese Gerade trifft die Seite <InlineMath math="AB" /> in <InlineMath math="P\left(\tfrac{25}{4},0\right)" /> und die Seite <InlineMath math="CD" /> in <InlineMath math="Q\left(\tfrac{7}{4},6\right)" />. Auf der Seite <InlineMath math="AD" /> bräuchte sie <InlineMath math="y=\tfrac{25}{3}>6" />, und dieser Punkt liegt außerhalb des Papiers.
 
-Der Wert 4 entsteht, wenn die Mittelsenkrechte die Steigung <InlineMath math="-1" /> von <InlineMath math="AB" /> bekommt, dann liegt der Schnittpunkt bei <InlineMath math="\left(\tfrac43,\tfrac83\right)" />. Die Werte <InlineMath math="-2" /> und <InlineMath math="-4" /> liefern nur die <InlineMath math="x" />- oder die <InlineMath math="y" />-Koordinate von <InlineMath math="P" />. Der Wert 6 ist das richtige Ergebnis mit umgekehrtem Vorzeichen.
+# Der umgeklappte Teil
 
-Der Wert von <InlineMath math="a+b" /> ist also <InlineMath math="-6" />.
+Umgeklappt wird **der Teil auf derselben Seite der Faltlinie wie <InlineMath math="A" />**, also das Viereck <InlineMath math="APQD" />. Es ist ein Trapez mit den parallelen Seiten <InlineMath math="AP=\tfrac{25}{4}" /> und <InlineMath math="DQ=\tfrac{7}{4}" /> und der Höhe <InlineMath math="6" />.
+
+<BlockMath math="A_{APQD}=\tfrac{1}{2}\left(\tfrac{25}{4}+\tfrac{7}{4}\right)\cdot 6=24" />
+
+# Wo der umgeklappte Teil landet
+
+Falten spiegelt diesen Teil an der Faltlinie. Die Punkte <InlineMath math="P" /> und <InlineMath math="Q" /> bleiben liegen, <InlineMath math="A" /> landet auf <InlineMath math="M" />, und <InlineMath math="D" /> landet auf seinem Spiegelbild <InlineMath math="D'" />.
+
+<BlockMath math="D'=\left(\tfrac{56}{25},\tfrac{192}{25}\right),\qquad \tfrac{192}{25}=7{,}68>6" />
+
+Also **ragt die Ecke <InlineMath math="D'" /> über die Seite <InlineMath math="CD" /> hinaus**. Der umgeklappte Teil ist das Viereck <InlineMath math="MPQD'" />, und seine Seite <InlineMath math="QM" /> liegt genau auf der Kante <InlineMath math="CD" />. Auf dem Papier liegt davon nur das Dreieck <InlineMath math="PQM" />, das Dreieck <InlineMath math="QD'M" /> hängt über die Kante.
+
+# Die Fläche der doppelten Lage
+
+Das Dreieck <InlineMath math="PQM" /> hat seine Grundseite <InlineMath math="QM" /> auf der Seite <InlineMath math="CD" />, und seine Höhe ist der Abstand von <InlineMath math="P" /> zu dieser Seite.
+
+<BlockMath math="\begin{aligned}
+QM&=8-\tfrac{7}{4}=\tfrac{25}{4}\\
+A_{PQM}&=\tfrac{1}{2}\cdot\tfrac{25}{4}\cdot 6=\tfrac{75}{4}
+\end{aligned}" />
+
+Probe: Das überhängende Dreieck <InlineMath math="QD'M" /> hat die Grundseite <InlineMath math="\tfrac{25}{4}" /> und die Höhe <InlineMath math="\tfrac{192}{25}-6=\tfrac{42}{25}" />, also die Fläche <InlineMath math="\tfrac{21}{4}" />. Dann ist <InlineMath math="\tfrac{75}{4}+\tfrac{21}{4}=24" />, **genau der ganze umgeklappte Teil**.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="24\text{ cm}^2" /> zählt den ganzen umgeklappten Teil und **vergisst, dass eine Ecke über die Kante ragt**. Die Antwort <InlineMath math="\tfrac{21}{4}\text{ cm}^2" /> ist das überhängende Stück, nicht das Stück auf dem Papier. Die Antwort <InlineMath math="\tfrac{75}{2}\text{ cm}^2" /> lässt den Faktor <InlineMath math="\tfrac{1}{2}" /> in der Dreiecksfläche weg. Die Antwort <InlineMath math="\tfrac{15}{2}\text{ cm}^2" /> nimmt die Länge der Faltlinie <InlineMath math="PQ=\tfrac{15}{2}" />, als wäre sie eine Fläche.
+
+Also ist die Fläche der doppelten Lage <InlineMath math="\tfrac{75}{4}\text{ cm}^2" />.

@@ -121,7 +121,7 @@ Die Wahrscheinlichkeit, bei <InlineMath math="7" /> Münzwürfen genau <InlineMa
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Die Balken für zweimal und fünfmal Zahl sind gleich hoch. Bei einer fairen Münze ändert das **Vertauschen von Kopf und Zahl** die Wahrscheinlichkeit nicht. Beide Ereignisse umfassen 21 passende Folgen unter 128 gleich wahrscheinlichen Folgen.
+Die Balken für zweimal und fünfmal Zahl sind gleich hoch. Bei einer fairen Münze ändert das **Vertauschen von Kopf und Zahl** die Wahrscheinlichkeit nicht. Beide Ereignisse umfassen <InlineMath math="21" /> passende Folgen unter <InlineMath math="128" /> gleich wahrscheinlichen Folgen.
 
 ## Übungsaufgaben
 
@@ -221,21 +221,21 @@ Dann:
 
 Daher beträgt die Wahrscheinlichkeit, dass der Schüler genau <InlineMath math="2" /> Fragen richtig beantwortet, ungefähr <InlineMath math="0{,}3115" /> oder <InlineMath math="31{,}15\%" />.
 
-Die ganze Verteilung der Bogenschützin für 6 Schüsse mit <InlineMath math="p = 0{,}8" />: Die Balken türmen sich rechts. Der Balken bei 4 Treffern ist <InlineMath math="0{,}2458" />, die Antwort auf Aufgabe 2, während 5 Treffer mit der Wahrscheinlichkeit <InlineMath math="0{,}3932" /> am wahrscheinlichsten sind.
+Die ganze Verteilung der Bogenschützin für <InlineMath math="6" /> Schüsse mit <InlineMath math="p = 0{,}8" />: Die Balken türmen sich rechts. Der Balken bei <InlineMath math="4" /> Treffern ist <InlineMath math="0{,}2458" />, die Antwort auf Aufgabe 2, während <InlineMath math="5" /> Treffer mit der Wahrscheinlichkeit <InlineMath math="0{,}3932" /> am wahrscheinlichsten sind.
 
 <BarChart
   title={<>Alle Ergebnisse von <InlineMath math="X \sim B(6;\ 0{,}8)" /></>}
-  description={<>Balken von <InlineMath math="P(X = k) = \binom{6}{k} 0{,}8^k 0{,}2^{6-k}" /> für <InlineMath math="k = 0" /> bis 6 Treffer.</>}
+  description={<>Balken von <InlineMath math="P(X = k) = \binom{6}{k} 0{,}8^k 0{,}2^{6-k}" /> für <InlineMath math="k = 0" /> bis <InlineMath math="6" /> Treffer.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[1, 6, 15, 20, 15, 6, 1].map((c, k) => ({ name: String(k), value: c * 0.8 ** k * 0.2 ** (6 - k) }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Beim Raten von 8 Fragen mit <InlineMath math="p = \tfrac14" /> sind 2 richtige Antworten am wahrscheinlichsten, mit der Wahrscheinlichkeit <InlineMath math="0{,}3115" />, der Antwort auf Aufgabe 3. Sechs oder mehr richtige Antworten haben zusammen eine Wahrscheinlichkeit unter <InlineMath math="0{,}005" />.
+Beim Raten von <InlineMath math="8" /> Fragen mit <InlineMath math="p = \tfrac14" /> sind <InlineMath math="2" /> richtige Antworten am wahrscheinlichsten, mit der Wahrscheinlichkeit <InlineMath math="0{,}3115" />, der Antwort auf Aufgabe 3. Sechs oder mehr richtige Antworten haben zusammen eine Wahrscheinlichkeit unter <InlineMath math="0{,}005" />.
 
 <BarChart
   title={<>Alle Ergebnisse von <InlineMath math="X \sim B\left(8,\ \tfrac14\right)" /></>}
-  description={<>Balken von <InlineMath math="P(X = k) = \binom{8}{k} 0{,}25^k 0{,}75^{8-k}" /> für <InlineMath math="k = 0" /> bis 8 richtige Antworten.</>}
+  description={<>Balken von <InlineMath math="P(X = k) = \binom{8}{k} 0{,}25^k 0{,}75^{8-k}" /> für <InlineMath math="k = 0" /> bis <InlineMath math="8" /> richtige Antworten.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[1, 8, 28, 56, 70, 56, 28, 8, 1].map((c, k) => ({ name: String(k), value: c * 0.25 ** k * 0.75 ** (8 - k) }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

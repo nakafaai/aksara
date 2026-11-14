@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "evaluation",
+    topic: "explanation",
   },
-  stimulus: "kipas",
+  stimulus: "bangsal",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Harga tiket kolam renang pada setiap bulan.",
-        },
-        {
-          correct: false,
-          label: "Jumlah karyawan toko elektronik pada setiap bulan.",
-        },
-        {
-          correct: false,
-          label: "Merek kipas angin yang paling banyak terjual.",
+          label:
+            "Setelah sif malam dibagi dua, perawat malam lebih segar sehingga lebih jarang salah mencatat.",
         },
         {
           correct: false,
           label:
-            "Lama penutupan kolam renang pada bulan Mei dalam hari, beserta alasan perbaikan yang dilakukan pengelola kolam renang.",
+            "Mulai April, tim mutu memakai daftar periksa yang lebih rinci sehingga lebih banyak kesalahan kecil ikut terhitung.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada April sampai Juni, pemberian obat pada malam hari sekitar $$10\\%$$ lebih sedikit daripada pada Januari sampai Maret.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada April sampai Juni, lebih banyak pasien baru masuk bangsal pada malam hari sehingga pemberian obat pada malam hari bertambah.",
         },
         {
           correct: true,
           label:
-            "Penjualan kipas angin dan rata-rata suhu maksimum pada bulan-bulan yang sama di beberapa tahun sebelumnya.",
+            "Mulai April, dokter memindahkan jadwal obat rutin pukul 05.00 ke pukul 08.00 sehingga pemberian obat pada malam hari berkurang sekitar seperempat.",
         },
       ],
     },

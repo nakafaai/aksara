@@ -4,36 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "application",
   },
-  stimulus: "braille-code",
+  stimulus: "map-projection",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "To show that blind pupils in Paris did not want to learn to read",
+          correct: true,
+          label: "Use an equal-area map for the size comparison.",
         },
         {
           correct: false,
           label:
-            "To argue that raised letters were better for sighted teachers",
+            "Use Mercator's map, and shrink Greenland by eye to about half its size.",
+        },
+        {
+          correct: false,
+          label:
+            "Use any world map, since every projection distorts area in the same way.",
         },
         {
           correct: true,
-          label: "To show the problems that Braille's system would later solve",
+          label:
+            "If only Mercator's map is available, warn that lands far from the equator look larger than they are.",
         },
         {
           correct: false,
           label:
-            "To explain how Braille injured his eye in his father's workshop",
-        },
-        {
-          correct: false,
-          label:
-            "To prove that Barbier had invented raised-letter books for the army",
+            "Use Mercator's map, since it keeps shapes true and true shapes mean true sizes.",
         },
       ],
     },

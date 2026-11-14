@@ -1,0 +1,352 @@
+export const metadata = {
+  title: "Fungsi Nilai Mutlak",
+  description: "Baca dan jelmakan graf nilai mutlak, selesaikan persamaannya, dan gunakan sifat-sifatnya dalam contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Nilai Mutlak sebagai Jarak dari Sifar
+
+Fungsi induk nilai mutlak memetakan setiap nombor nyata kepada <Highlight>jaraknya dari sifar pada garis nombor</Highlight>. Jarak tidak boleh negatif, jadi <InlineMath math="f(x)=|x|" /> sentiasa memberikan output yang tidak negatif. Fungsi nilai mutlak yang sudah dijelmakan boleh mengalihkan atau memantulkan graf induk ini, jadi outputnya tidak semestinya kekal tidak negatif.
+
+### Takrif Fungsi Nilai Mutlak
+
+Untuk sebarang nombor nyata <InlineMath math="x" />, fungsi nilai mutlak ditakrifkan sebagai:
+
+<BlockMath math="f(x) = |x| = \begin{cases} x, & \text{jika } x \geq 0 \\ -x, & \text{jika } x < 0 \end{cases}" />
+
+**Komponen fungsi nilai mutlak**:
+
+- Simbol <InlineMath math="|x|" /> dibaca sebagai nilai mutlak bagi <InlineMath math="x" />.
+- Hasil fungsi ini sentiasa tidak negatif (<InlineMath math="|x| \geq 0" />)
+- Fungsi ini ialah fungsi genap: <InlineMath math="|-x| = |x|" />
+
+Takrif ini mengasingkan input mengikut **tandanya**. Kalau inputnya negatif, tanda tolak yang diletakkan di hadapan input itu menghasilkan jarak yang positif.
+
+<BlockMath math="|-3|=-(-3)=3,\qquad|3|=3" />
+
+## Sifat Fungsi Nilai Mutlak
+
+Apabila nilai mutlak ditafsirkan sebagai jarak, kita mendapat sifat-sifat berikut:
+
+**Sifat asas**:
+
+<MathContainer>
+
+<BlockMath math="|x| \geq 0 \text{ untuk semua } x \in \mathbb{R}" />
+
+<BlockMath math="|-x| = |x|" />
+
+<BlockMath math="|x|^2 = x^2" />
+
+<BlockMath math="|xy| = |x| \cdot |y|" />
+
+<BlockMath math="\left|\frac{x}{y}\right| = \frac{|x|}{|y|}, \text{ dengan } y \neq 0" />
+</MathContainer>
+
+**Sifat ketaksamaan segi tiga**:
+
+<MathContainer>
+
+<BlockMath math="|x + y| \leq |x| + |y|" />
+
+<BlockMath math="||x| - |y|| \leq |x - y|" />
+</MathContainer>
+
+Dalam **ketaksamaan segi tiga**, jarak bagi suatu hasil tambah tidak melebihi hasil tambah kedua-dua jarak itu. Cuba ambil dua nombor yang tandanya berlawanan.
+
+<MathContainer>
+
+<BlockMath math="|3+(-5)|=2\leq3+5=|3|+|-5|" />
+
+<BlockMath math="\bigl||3|-|-5|\bigr|=2\leq8=|3-(-5)|" />
+</MathContainer>
+
+## Graf Fungsi Nilai Mutlak
+
+Berikut ialah visualisasi **fungsi nilai mutlak** yang asas:
+
+<MathVisual
+  title={
+    <>
+      Graf Fungsi <InlineMath math="f(x) = |x|" />
+    </>
+  }
+  description={
+    <>
+      Graf ini menunjukkan bentuk khas fungsi nilai mutlak
+      yang membentuk huruf V.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=|x|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Jadual nilai bagi fungsi <InlineMath math="f(x) = |x|" />:
+
+| <InlineMath math="x" /> | <InlineMath math="-4" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+| ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- | ---------------------- |
+| <InlineMath math="f(x) = \lvert x \rvert" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+
+## Penjelmaan Fungsi Nilai Mutlak
+
+**Translasi mengalihkan verteks** tanpa mengubah arah bukaan graf. Regangan mengubah kecerunan kedua-dua lengan V itu. Pantulan pada paksi mengufuk menjadikan bukaannya menghala ke bawah. Operasi-operasi ini boleh digabungkan pada fungsi induk <InlineMath math="f(x)=|x|" />.
+
+### Translasi Mencancang
+
+Fungsi <InlineMath math="f(x) = |x| + k" /> **mengalihkan graf ke atas** (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+
+<MathVisual
+  title={<>Translasi Mencancang</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = |x|" /> dengan{" "}
+      <InlineMath math="g(x) = |x| + 2" /> dan{" "}
+      <InlineMath math="h(x) = |x| - 2" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=|x|" />,
+    "l2": <InlineMath math="g(x)=|x|+2" />,
+    "l3": <InlineMath math="h(x)=|x|-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -3, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t - 6)", y: "(abs((t - 6)) + 2)", parameter: { min: 0, max: 12 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(t - 6)", y: "(abs((t - 6)) - 2)", parameter: { min: 0, max: 12 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Translasi Mengufuk
+
+Fungsi <InlineMath math="f(x) = |x - h|" /> **mengalihkan graf ke kanan** (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
+
+<MathVisual
+  title={<>Translasi Mengufuk</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = |x|" /> dengan{" "}
+      <InlineMath math="g(x) = |x - 3|" /> dan{" "}
+      <InlineMath math="h(x) = |x + 3|" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=|x|" />,
+    "l2": <InlineMath math="g(x)=|x-3|" />,
+    "l3": <InlineMath math="h(x)=|x+3|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t - 6)", y: "abs(((t - 6) - 3))", parameter: { min: 0, max: 12 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(t - 6)", y: "abs(((t - 6) + 3))", parameter: { min: 0, max: 12 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+### Regangan dan Mampatan
+
+Fungsi <InlineMath math="f(x) = a|x|" /> **mengubah kecerunan graf**:
+
+- Jika <InlineMath math="|a| > 1" />: graf menjadi lebih curam
+- Jika <InlineMath math="0 < |a| < 1" />: graf menjadi lebih landai
+- Jika <InlineMath math="a < 0" />: graf juga dipantulkan pada paksi-<InlineMath math="x" />
+
+Perbandingan berikut menunjukkan perubahan-perubahan ini:
+
+<MathVisual
+  title={<>Regangan dan Mampatan</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = |x|" /> dengan{" "}
+      <InlineMath math="g(x) = 2|x|" /> dan <InlineMath math="h(x) = 0.5|x|" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=|x|" />,
+    "l2": <InlineMath math="g(x)=2|x|" />,
+    "l3": <InlineMath math="h(x)=0.5|x|" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1.5, max: 13.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t - 6)", y: "(2 * abs((t - 6)))", parameter: { min: 0, max: 12 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(t - 6)", y: "(0.5 * abs((t - 6)))", parameter: { min: 0, max: 12 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Bentuk Am Fungsi Nilai Mutlak
+
+<BlockMath math="f(x) = a|x - h| + k" />
+
+Parameter dalam bentuk ini ialah:
+
+- <InlineMath math="a" />: faktor regangan/mampatan dan pantulan
+- <InlineMath math="h" />: translasi mengufuk
+- <InlineMath math="k" />: translasi mencancang
+- Verteks terletak di <InlineMath math="(h, k)" />
+
+**Jadual penjelmaan**:
+
+| Parameter                       | Nilai        | Kesan pada Graf       |
+| ------------------------------- | ------------ | --------------------- |
+| <InlineMath math="\lvert a \rvert > 1" />     | Magnitud <InlineMath math="> 1" /> | Graf menjadi lebih curam |
+| <InlineMath math="0 < \lvert a \rvert < 1" /> | Magnitud <InlineMath math="< 1" /> | Graf menjadi lebih landai |
+| <InlineMath math="a < 0" />        | Negatif | Graf juga dipantulkan pada paksi-<InlineMath math="x" /> |
+| <InlineMath math="h > 0" />     | Positif     | Beralih ke kanan    |
+| <InlineMath math="h < 0" />     | Negatif     | Beralih ke kiri     |
+| <InlineMath math="k > 0" />     | Positif     | Beralih ke atas          |
+| <InlineMath math="k < 0" />     | Negatif     | Beralih ke bawah        |
+
+Untuk graf berbentuk V, pendarab itu memenuhi <InlineMath math="a\neq0" />. Jika pendarab itu sifar, graf menjadi **garis mengufuk** yang tidak mempunyai verteks unik.
+
+## Persamaan dan Ketaksamaan Nilai Mutlak
+
+**Menyelesaikan persamaan nilai mutlak**:
+
+Untuk menyelesaikan <InlineMath math="|x| = a" /> dengan <InlineMath math="a \geq 0" />:
+
+<MathContainer>
+
+<BlockMath math="|x| = a \Rightarrow x = a \text{ atau } x = -a" />
+</MathContainer>
+
+**Contoh**: Selesaikan <InlineMath math="|x - 3| = 5" />
+
+<MathContainer>
+
+<BlockMath math="|x - 3| = 5" />
+
+<BlockMath math="x - 3 = 5 \text{ atau } x - 3 = -5" />
+
+<BlockMath math="x = 8 \text{ atau } x = -2" />
+</MathContainer>
+
+**Menyelesaikan ketaksamaan nilai mutlak**:
+
+Untuk <InlineMath math="|x| < a" /> dengan <InlineMath math="a > 0" />:
+
+<BlockMath math="|x| < a \Rightarrow -a < x < a" />
+
+Untuk <InlineMath math="|x| > a" /> dengan <InlineMath math="a > 0" />:
+
+<BlockMath math="|x| > a \Rightarrow x < -a \text{ atau } x > a" />
+
+## Latihan
+
+Gunakan **nilai fungsi, dua kemungkinan tanda, dan verteks yang beralih** mengikut keperluan setiap soalan. Dalam soalan jarak, kedua-dua bandar dimodelkan pada satu garis lurus.
+
+1. Tentukan nilai <InlineMath math="f(x) = |2x - 6|" /> untuk <InlineMath math="x = -1, 0, 3, 5" />
+
+2. Selesaikan persamaan <InlineMath math="|3x + 1| = 7" />
+
+3. Selesaikan ketaksamaan <InlineMath math="|x - 2| < 4" />
+
+4. Tentukan verteks bagi fungsi <InlineMath math="f(x) = 2|x - 3| + 1" />
+
+5. Jarak antara dua bandar ialah <InlineMath math="150 \text{ km}" />. Jika bandar <InlineMath math="A" /> terletak pada koordinat <InlineMath math="-50 \text{ km}" />, di manakah letaknya bandar <InlineMath math="B" />?
+
+### Jalan Kerja
+
+**Soalan 1**. Gantikan **setiap nilai** <InlineMath math="x" /> ke dalam fungsi <InlineMath math="f(x) = |2x - 6|" />:
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} f(-1) &amp;= |2(-1) - 6| \\ &amp;= |-2 - 6| \\ &amp;= |-8| \\ &amp;= 8 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} f(0) &amp;= |2(0) - 6| \\ &amp;= |0 - 6| \\ &amp;= |-6| \\ &amp;= 6 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} f(3) &amp;= |2(3) - 6| \\ &amp;= |6 - 6| \\ &amp;= |0| \\ &amp;= 0 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} f(5) &amp;= |2(5) - 6| \\ &amp;= |10 - 6| \\ &amp;= |4| \\ &amp;= 4 \end{aligned}" />
+</MathContainer>
+
+**Soalan 2**. Untuk persamaan <InlineMath math="|3x + 1| = 7" />, kita gunakan takrif nilai mutlak, yang menghasilkan **dua kemungkinan**:
+
+<MathContainer>
+
+<BlockMath math="3x + 1 = 7 \quad \text{atau} \quad 3x + 1 = -7" />
+
+<BlockMath math="3x = 6 \quad \text{atau} \quad 3x = -8" />
+
+<BlockMath math="x = 2 \quad \text{atau} \quad x = -\frac{8}{3}" />
+</MathContainer>
+
+**Soalan 3**. Untuk <InlineMath math="|x - 2| < 4" />, kita gunakan sifat bahawa <InlineMath math="|a| < b" /> setara dengan <InlineMath math="-b < a < b" />:
+
+<MathContainer>
+
+<BlockMath math="-4 < x - 2 < 4" />
+
+<BlockMath math="-4 + 2 < x < 4 + 2" />
+
+<BlockMath math="-2 < x < 6" />
+</MathContainer>
+
+Jadi **set penyelesaiannya** ialah <InlineMath math="x \in (-2, 6)" />.
+
+**Soalan 4**. Daripada fungsi <InlineMath math="f(x) = 2|x - 3| + 1" />, kita boleh **kenal pasti parameternya**:
+
+- <InlineMath math="a = 2" /> (faktor regangan)
+- <InlineMath math="h = 3" /> (translasi mengufuk)
+- <InlineMath math="k = 1" /> (translasi mencancang)
+
+Verteks terletak di <InlineMath math="(h, k) = (3, 1)" />.
+
+Nilai mutlak mencapai nilai minimumnya apabila ungkapan di dalamnya sifar. Cari input itu, kemudian kira outputnya untuk mendapatkan kedua-dua koordinat verteks.
+
+<BlockMath math="x-3=0 \Rightarrow x=3,\qquad f(3)=2|3-3|+1=1" />
+
+**Soalan 5**. Diberi **jarak antara bandar** <InlineMath math="A" /> dan <InlineMath math="B" /> ialah <InlineMath math="150 \text{ km}" />, dengan bandar <InlineMath math="A" /> pada koordinat <InlineMath math="-50 \text{ km}" />. Katakan bandar <InlineMath math="B" /> berada pada koordinat <InlineMath math="x_B" />:
+
+<MathContainer>
+
+<BlockMath math="|-50 - x_B| = 150" />
+
+<BlockMath math="\begin{aligned} &amp;-50 - x_B = 150 \\ &amp;\text{atau} \\ &amp;-50 - x_B = -150 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} &amp;x_B = -50 - 150 = -200 \\ &amp;\text{atau} \\ &amp;x_B = -50 + 150 = 100 \end{aligned}" />
+</MathContainer>
+
+Jadi bandar <InlineMath math="B" /> boleh terletak pada koordinat <InlineMath math="100 \text{ km}" /> atau <InlineMath math="-200 \text{ km}" />.

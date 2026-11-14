@@ -4,31 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "modus-tollens",
+    topic: "conditional-chain",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Harga cabai segar naik minggu ini.",
-        },
-        {
           correct: true,
-          label: "Harga cabai segar tidak naik minggu ini.",
+          label: "Tandon air sudah penuh, dan petak timur diairi.",
         },
         {
           correct: false,
-          label: "Bu Sari membeli cabai segar lebih banyak daripada biasanya.",
+          label:
+            "Tandon air sudah penuh, tetapi belum dapat dipastikan petak mana yang diairi.",
         },
         {
           correct: false,
-          label: "Bu Sari tidak membeli cabai sama sekali minggu ini.",
+          label: "Tandon air sudah penuh, dan petak barat diairi.",
         },
         {
           correct: false,
-          label: "Harga cabai kering turun minggu ini.",
+          label: "Tandon air belum penuh, dan tidak ada petak yang diairi.",
+        },
+        {
+          correct: false,
+          label: "Tandon air sudah penuh, dan kedua petak diairi.",
         },
       ],
     },

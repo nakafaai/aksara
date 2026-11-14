@@ -1,15 +1,39 @@
-Unterscheide **eine Temperaturänderung** von **der Temperatur selbst**. Eine Änderung hängt nur vom Faktor <InlineMath math="\tfrac95" /> ab, die Temperatur zusätzlich von der addierten 32.
+Gesucht ist die kleinste Absenkung durch das Wehr, die den Wasserstand die ganze Zeit unter <InlineMath math="300\text{ cm}" /> hält. Der Plan: Rechne den Teil aus, der nicht von <InlineMath math="g" /> abhängt, **schreib den Höchststand als Formel** in <InlineMath math="g" /> und suche dann die kleinste ganze Zahl, die diesen Höchststand unter <InlineMath math="300" /> hält.
 
-# Temperaturänderung und Kelvinskala
+# Der Teil ohne Wehr
 
-Steigt <InlineMath math="C" /> um 5, steigt <InlineMath math="F" /> um <InlineMath math="\tfrac95\cdot5=9" />, weil sich die addierte 32 aufhebt. Die erste Aussage ist wahr.
+Der Regen kommt <InlineMath math="2" /> Stunden später an, also sind die stündlichen Änderungen ab 06.00 Uhr <InlineMath math="+40" />, <InlineMath math="+30" />, <InlineMath math="+60" />, <InlineMath math="+90" />, <InlineMath math="+50" />, <InlineMath math="+20" />, <InlineMath math="+10" /> und <InlineMath math="-10" /> cm. Um 08.00 Uhr steht das Wasser bei <InlineMath math="210\text{ cm}" /> und erreicht um 08.40 Uhr <InlineMath math="250\text{ cm}" />. **Bis 08.40 Uhr spielt der Wert von <InlineMath math="g" /> keine Rolle**, denn erst dann öffnet das Wehr.
 
-Aus <InlineMath math="K=C+273" /> folgt, dass 300 K gleich <InlineMath math="300-273=27^\circ\text{C}" /> sind, **nicht 37 °C**. Die zweite Aussage ist falsch.
+# Der Höchststand als Formel
 
-# Temperaturen vergleichen und verdoppeln
+Nach 08.40 Uhr sinkt jede Rate um <InlineMath math="g" />. Mit <InlineMath math="g=30" /> wird Awas noch erreicht, das gesuchte <InlineMath math="g" /> ist also größer als <InlineMath math="30" />. Für <InlineMath math="g" /> zwischen <InlineMath math="20" /> und <InlineMath math="50" /> steigt das Wasser von 10.00 Uhr bis 11.00 Uhr noch, weil <InlineMath math="50-g>0" />, und fällt von 11.00 Uhr bis 12.00 Uhr, weil <InlineMath math="20-g<0" />. Also **liegt der Höchststand um 11.00 Uhr**.
 
-Rechne 100 °F in Celsius um: <InlineMath math="C=\tfrac59(100-32)=\tfrac59\cdot68\approx37{,}8" />. Das ist höher als 37 °C, also ist die dritte Aussage wahr.
+<BlockMath math="\begin{aligned}
+P &= 250+(60-g)\cdot\frac{20}{60}+(90-g)+(50-g) \\
+&= 250+20-\frac{g}{3}+140-2g \\
+&= 410-\frac{7g}{3}
+\end{aligned}" />
 
-Beispiel: 10 °C sind 50 °F, 20 °C aber 68 °F und nicht 100 °F. Wegen **der addierten 32** ist Fahrenheit nicht proportional zu Celsius. Die vierte Aussage ist falsch.
+Der Term <InlineMath math="(60-g)\cdot\frac{20}{60}" /> ist der Anstieg von 08.40 Uhr bis 09.00 Uhr, der nur <InlineMath math="20" /> Minuten dauert.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+# Die Bedingung gegen Awas
+
+Awas beginnt bei <InlineMath math="300\text{ cm}" />, also **muss der Höchststand kleiner als <InlineMath math="300" /> sein, nicht gleich**.
+
+<BlockMath math="\begin{aligned}
+410-\frac{7g}{3} &< 300 \\
+\frac{7g}{3} &> 110 \\
+g &> \frac{330}{7}=47\frac17
+\end{aligned}" />
+
+Die kleinste ganze Zahl über <InlineMath math="47\frac17" /> ist <InlineMath math="48" />.
+
+# Probe an den Werten neben der Grenze
+
+Für <InlineMath math="g=48" /> liegt der Höchststand bei <InlineMath math="250+4+42+2=298\text{ cm}" />, unter <InlineMath math="300" />. Nach 11.00 Uhr fällt das Wasser, und falls es bis <InlineMath math="250\text{ cm}" /> sinkt, bleibt es dort stehen, also **wird der Höchststand von <InlineMath math="298\text{ cm}" /> nicht mehr überschritten**. Für <InlineMath math="g=47" /> liegt der Höchststand bei <InlineMath math="250+\frac{13}{3}+43+3=300\frac13\text{ cm}" />, Awas wird also erreicht.
+
+# Typische Fehler
+
+Legst du den Höchststand auf 10.00 Uhr, **vergisst du den Anstieg von 10.00 Uhr bis 11.00 Uhr** und bekommst einen zu kleinen Wert, nämlich <InlineMath math="46" />. Rundest du <InlineMath math="47\frac17" /> auf <InlineMath math="47" /> ab, liegt der Höchststand bei <InlineMath math="300\frac13\text{ cm}" />.
+
+Der kleinste Wert von <InlineMath math="g" /> ist also <InlineMath math="48" /> cm pro Stunde.

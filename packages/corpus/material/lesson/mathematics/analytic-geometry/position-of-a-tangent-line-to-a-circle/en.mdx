@@ -21,131 +21,35 @@ The perpendicular relationship is used in all three cases: constructing a tangen
 
 Start by checking that the proposed point of tangency really lies on the circle. Its radius vector then becomes a normal vector for the tangent.
 
-<LineEquation
-  title="Tangent Line Through a Point on the Circle"
-  description="The radius to the known contact point is normal to the tangent."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 3;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        const angle = Math.PI / 4;
-        const radius = 3;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const angle = Math.PI / 4;
-          const radius = 3;
-          const tangentPoint = {
-            x: radius * Math.cos(angle),
-            y: radius * Math.sin(angle),
-          };
-          const radiusSlope = tangentPoint.y / tangentPoint.x;
-          const tangentSlope = -1 / radiusSlope;
-
-          const xRange = 4;
-          return {
-            x: tangentPoint.x + (i - 0.5) * xRange,
-            y: tangentPoint.y + tangentSlope * (i - 0.5) * xRange,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent Line", at: 2, offset: [-2.5, 4.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const angle = Math.PI / 4;
-        const radius = 3;
-        return {
-          x: i * radius * Math.cos(angle),
-          y: i * radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Radius", at: 1, offset: [-2, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Tangent Line Through a Point on the Circle</>}
+  description={<>The radius to the known contact point is normal to the tangent.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="T" />,
+    "l3": <>Tangent Line</>,
+    "l4": <>Radius</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 7 }, y: { min: -5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.28, y: 5.52 }, { x: 0.12, y: 4.12 }, { x: 4.12, y: 0.12 }, { x: 5.52, y: -1.28 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((t * 3) * cos((pi / 4)))", y: "((t * 3) * sin((pi / 4)))", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "warning" },
+      { id: "s7", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 4.12, y: 0.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+    ],
+  }}
 />
 
 For the circle <InlineMath math="(x-a)^2+(y-b)^2=r^2" /> with center <InlineMath math="C(a,b)" /> and point of tangency <InlineMath math="T(x_1,y_1)" />, proceed as follows.
@@ -172,124 +76,32 @@ Using the point-on-circle condition from Step 1, this becomes the **point-tangen
 
 If the point of tangency is unknown but the slope is given, the intercept must place the line exactly one radius away from the center. This often appears when the tangent must be parallel to another line.
 
-<LineEquation
-  title="Tangent Line with Given Slope"
-  description="A given slope determines two parallel tangents, one on each side of the center."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2.5;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // given slope
-          const r = 2.5;
-          const c1 = r * Math.sqrt(1 + m * m);
-          const xRange = 6;
-          return {
-            x: -xRange / 2 + i * xRange,
-            y: m * (-xRange / 2 + i * xRange) + c1,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 1", at: 1, offset: [0.5, 2.5, 0] }],
-    },
-    {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          const m = 1; // given slope
-          const r = 2.5;
-          const c2 = -r * Math.sqrt(1 + m * m);
-          const xRange = 6;
-          return {
-            x: -xRange / 2 + i * xRange,
-            y: m * (-xRange / 2 + i * xRange) + c2,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 2", at: 2, offset: [0.5, -1.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -5;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -4;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Tangent Line with Given Slope</>}
+  description={<>A given slope determines two parallel tangents, one on each side of the center.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>Tangent 1</>,
+    "l3": <>Tangent 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 6.5 }, y: { min: -10.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2.5 * cos(((t * pi) / 180)))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5.1, y: -1.56 }, { x: -3, y: 0.54 }, { x: 3, y: 6.54 }, { x: 5.1, y: 8.64 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -5.1, y: -8.64 }, { x: -3, y: -6.54 }, { x: 3, y: -0.54 }, { x: 5.1, y: 1.56 }], appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "((-5) + (t * (5 - (-5))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "reference" },
+      { id: "s6", kind: "parametric", x: "0", y: "((-4) + (t * (4 - (-4))))", parameter: { min: 0, max: 1 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3, y: 0.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 3, y: -0.54 }, placement: "below-right" },
+    ],
+  }}
 />
 
 For circle <InlineMath math="x^2 + y^2 = r^2" /> and known slope <InlineMath math="m" />, we substitute the line equation <InlineMath math="y = mx + c" /> into the circle equation:
@@ -322,179 +134,41 @@ For every finite slope <InlineMath math="m" />, the centered circle has **two pa
 
 A point outside a circle determines exactly **two tangent lines**. Their two contact points lie on one useful auxiliary line, the polar of the outside point.
 
-<LineEquation
-  title="Tangents Through a Point Outside the Circle"
-  description="One outside point determines two contact points and two tangent lines."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        const radius = 2;
-        return {
-          x: radius * Math.cos(angle),
-          y: radius * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 0,
-          y: 0,
-          z: 0,
-        };
-      }),
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        return {
-          x: 4,
-          y: 2,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // First tangent point (calculated mathematically)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle1 = Math.atan2(py, px) - Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle1),
-          y: r * Math.sin(angle1),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_1" />, at: 0, offset: [0.5, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 1 }, () => {
-        // Second tangent point (calculated mathematically)
-        const px = 4, py = 2, r = 2;
-        const d = Math.sqrt(px*px + py*py);
-        const angle2 = Math.atan2(py, px) + Math.acos(r/d);
-        return {
-          x: r * Math.cos(angle2),
-          y: r * Math.sin(angle2),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="T_2" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          // First tangent line
-          const px = 4,
-            py = 2,
-            r = 2;
-          const d = Math.sqrt(px * px + py * py);
-          const angle1 = Math.atan2(py, px) - Math.acos(r / d);
-          const t1x = r * Math.cos(angle1);
-          const t1y = r * Math.sin(angle1);
-
-          return {
-            x: i === 0 ? px : t1x,
-            y: i === 0 ? py : t1y,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 1", at: 1, offset: [-0.3, -2.2, 0] }],
-    },
-    {
-      points: (() => {
-        const points = Array.from({ length: 2 }, (_, i) => {
-          // Second tangent line
-          const px = 4,
-            py = 2,
-            r = 2;
-          const d = Math.sqrt(px * px + py * py);
-          const angle2 = Math.atan2(py, px) + Math.acos(r / d);
-          const t2x = r * Math.cos(angle2);
-          const t2y = r * Math.sin(angle2);
-
-          return {
-            x: i === 0 ? px : t2x,
-            y: i === 0 ? py : t2y,
-            z: 0,
-          };
-        });
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.35,
-          y: (points[1].y - points[0].y) * 0.35,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Tangent 2", at: 1, offset: [-1.2, 1.3, 0] }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const xMin = -3;
-        const xMax = 5;
-        const y = 0;
-        return {
-          x: xMin + i * (xMax - xMin),
-          y: y,
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const yMin = -2;
-        const yMax = 4;
-        const x = 0;
-        return {
-          x: x,
-          y: yMin + i * (yMax - yMin),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[1, 0, 12]}
-  cameraTarget={[1, 0, 0]}
+<MathVisual
+  title={<>Tangents Through a Point Outside the Circle</>}
+  description={<>One outside point determines two contact points and two tangent lines.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="T_1" />,
+    "l4": <InlineMath math="T_2" />,
+    "l5": <>Tangent 1</>,
+    "l6": <>Tangent 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6.5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 * cos(((t * pi) / 180)))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 4, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.6, y: -1.2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4.84, y: 3.12 }, { x: 4, y: 2 }, { x: 1.6, y: -1.2 }, { x: 0.76, y: -2.32 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 5.4, y: 2 }, { x: 4, y: 2 }, { x: 0, y: 2 }, { x: -1.4, y: 2 }], appearance: "warning" },
+      { id: "s8", kind: "parametric", x: "((-3) + (t * (5 - (-3))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s9", kind: "parametric", x: "0", y: "((-2) + (t * (4 - (-2))))", parameter: { min: 0, max: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.6, y: -1.2 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 4, y: 2 }, placement: "below-left" },
+      { key: "l6", objectId: "s7", at: { x: 4, y: 2 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Let <InlineMath math="P(x_0,y_0)" /> lie outside the circle <InlineMath math="(x-a)^2+(y-b)^2=r^2" />. Its **polar line** is:

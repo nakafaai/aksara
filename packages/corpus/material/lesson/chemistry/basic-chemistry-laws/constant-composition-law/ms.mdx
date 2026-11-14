@@ -1,0 +1,234 @@
+
+export const metadata = {
+  title: "Hukum Komposisi Tetap",
+  description:
+    "Sebatian tulen mengandungi unsur-unsurnya dalam nisbah jisim yang tetap walaupun jisim permulaannya berbeza.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-03",
+  dateModified: "2026-09-12",
+  subject: "Hukum Asas Kimia",
+};
+
+## Sebatian Tulen Mempunyai Nisbah Jisim yang Tetap
+
+Hukum komposisi tetap menyatakan bahawa setiap sebatian tulen mengandungi unsur-unsur pembinanya dalam <Highlight>nisbah jisim yang tetap</Highlight>. Hukum ini juga dipanggil hukum perkadaran tetap atau hukum Proust.
+
+Hukum komposisi tetap berlaku untuk **sebatian tulen**. Komposisi campuran seperti air gula berubah apabila kuantiti gula atau air berubah. Air tulen pula sentiasa mengandungi hidrogen dan oksigen dalam nisbah jisim yang sama. [Bahan kimia](https://goldbook.iupac.org/terms/view/C01039/plain) mempunyai komposisi yang tetap dan sifat yang tersendiri.
+
+## Air Mengekalkan Nisbah yang Sama
+
+Formula air ialah <InlineMath math="\mathrm{H_2O}" />. Maksudnya, setiap molekul air mengandungi <InlineMath math="2" /> atom hidrogen dan <InlineMath math="1" /> atom oksigen. Dengan jisim atom relatif ringkas <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, nisbah jisim hidrogen kepada oksigen dalam air ialah:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{H}} : m_{\mathrm{O}}
+  &= (2 \times 1) : (1 \times 16) \\
+  &= 2 : 16 \\
+  &= 1 : 8
+\end{aligned}" />
+
+Walaupun kuantiti air yang terbentuk berbeza, **nisbah jisim hidrogen kepada oksigen yang bertindak balas** kekal <InlineMath math="1:8" /> dengan nilai bundar yang digunakan di atas. [Air](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/water/property/MolecularFormula/JSON) mempunyai formula <InlineMath math="\mathrm{H_2O}" />. [Jisim atom piawai ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun <InlineMath math="2024" /> ialah <InlineMath math="A_r\mathrm{(H)}=1.0080" /> dan <InlineMath math="A_r\mathrm{(O)}=15.999" />. Apabila kedua-dua jisim atom itu digantikan, kita mendapat jisim molar berikut:
+
+<BlockMath math="\begin{aligned} M(\mathrm{H_2O}) &amp;=2(1.0080)+15.999 \\ &amp;=18.015\ \mathrm{g\,mol^{-1}} \end{aligned}" />
+
+Bandingkan dua sampel air, dengan hidrogen berwarna ungu, oksigen berwarna jingga dan satu langkah grid bernilai <InlineMath math="4\ \mathrm{g}" />. Sampel besar dua kali lebih berat, tetapi kedua-duanya terbahagi dengan cara yang sama, kira-kira <InlineMath math="1:8" /> mengikut jisim. Pembahagian yang tetap inilah maksud komposisi tetap.
+
+<MathVisual
+  title={<>Dua Sampel, Satu Nisbah Jisim</>}
+  description={<>9 g dan 18 g air terbahagi kepada hidrogen (ungu) dan oksigen (jingga) pada kira-kira 1:8. Satu langkah grid ke atas ialah 4 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 6 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 9 }, target: { x: 1.5, y: 2, z: 0 } },
+    objects: [
+      { id: "small-h", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (1 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 1 / 4, width: 1.2 } },
+      { id: "small-o", kind: "cuboid", appearance: "primary", center: { x: 0, y: (8 / 4) / 2 + 1 / 4, z: 0 }, size: { length: 1.2, height: 8 / 4, width: 1.2 } },
+      { id: "large-h", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 2 / 4, width: 1.2 } },
+      { id: "large-o", kind: "cuboid", appearance: "primary", center: { x: 3, y: (16 / 4) / 2 + 2 / 4, z: 0 }, size: { length: 1.2, height: 16 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small-o", at: { x: 0, y: 2.75, z: 0 }, placement: "above" },
+      { key: "large", objectId: "large-o", at: { x: 3, y: 5.0, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    small: <InlineMath math="9\ \mathrm{g}:\ 1+8" />,
+    large: <InlineMath math="18\ \mathrm{g}:\ 2+16" />,
+  }}
+/>
+
+## Bahan Tindak Balas Berlebihan Tetap Berbaki
+
+Ubah jisim permulaan dalam model. Campuran permulaan yang berbeza mungkin **meninggalkan baki hidrogen atau oksigen**. Hidrogen dan oksigen yang membentuk air sentiasa bertindak balas dalam nisbah jisim <InlineMath math="1:8" />.
+
+Model ini mengira jisim setiap unsur. Persamaan seterusnya pula menunjukkan cara molekul bertindak balas. Label <InlineMath math="\mathrm{H}" /> dan <InlineMath math="\mathrm{O}" /> menandakan jisim unsur yang sedang dikira. Hidrogen dan oksigen dalam bentuk unsur ditulis dalam persamaan pembentukan yang seimbang sebagai <InlineMath math="\mathrm{H_2}" /> dan <InlineMath math="\mathrm{O_2}" />:
+
+<BlockMath math="2\mathrm{H_2(g)}+\mathrm{O_2(g)}\rightarrow 2\mathrm{H_2O}" />
+
+<ConstantCompositionLab
+  title={<>Nisbah Jisim Tetap dalam Air</>}
+  description={
+    <>
+      Lihat air terbentuk hanya daripada bahagian bahan tindak balas yang memenuhi nisbah
+      jisim <InlineMath math="1:8" />.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih jisim permulaan",
+    before: "Mula",
+    after: "Terbentuk",
+    reactionView: "Model komposisi tetap bagi pembentukan air",
+    ratioLabel: "Nisbah yang bertindak balas",
+    leftoverLabel: "Baki selepas tindak balas",
+    modes: {
+      exact: {
+        tab: "Tepat",
+        tabLabel: "Tepat",
+        helperCaption: (
+          <>
+            Semua bahan tindak balas membentuk air kerana jisim hidrogen dan oksigen
+            sudah sepadan dengan nisbah <InlineMath math="1:8" />.
+          </>
+        ),
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}" />,
+        ratio: (
+          <>
+            <InlineMath math="2:16 = 1:8" />, iaitu nisbah jisim air.
+          </>
+        ),
+        leftover: <>Tiada bahan berlebihan yang tinggal.</>,
+      },
+      "hydrogen-excess": {
+        tab: (
+          <>
+            Lebihan <InlineMath math="\mathrm{H}" />
+          </>
+        ),
+        tabLabel: "Lebihan H",
+        helperCaption: (
+          <>
+            Air tetap terbentuk mengikut nisbah <InlineMath math="1:8" />, dan
+            hidrogen di luar nisbah itu kekal berlebihan.
+          </>
+        ),
+        readoutBefore: <InlineMath math="3\,\mathrm{g}\,\mathrm{H}+16\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+1\,\mathrm{g}\,\mathrm{H}" />,
+        ratio: (
+          <>
+            Hanya <InlineMath math="2:16 = 1:8" /> yang bertindak balas.
+          </>
+        ),
+        leftover: (
+          <>
+            <InlineMath math="1\ \mathrm{g}" /> hidrogen tidak menjadi
+            air.
+          </>
+        ),
+      },
+      "oxygen-excess": {
+        tab: (
+          <>
+            Lebihan <InlineMath math="\mathrm{O}" />
+          </>
+        ),
+        tabLabel: "Lebihan O",
+        helperCaption: (
+          <>
+            Air tetap terbentuk mengikut nisbah <InlineMath math="1:8" />, dan
+            oksigen di luar nisbah itu kekal berlebihan.
+          </>
+        ),
+        readoutBefore: <InlineMath math="2\,\mathrm{g}\,\mathrm{H}+20\,\mathrm{g}\,\mathrm{O}" />,
+        readoutAfter: <InlineMath math="18\,\mathrm{g}\,\mathrm{H_2O}+4\,\mathrm{g}\,\mathrm{O}" />,
+        ratio: (
+          <>
+            Bahagian yang bertindak balas tetap <InlineMath math="2:16 = 1:8" />.
+          </>
+        ),
+        leftover: (
+          <>
+            <InlineMath math="4\ \mathrm{g}" /> oksigen tidak menjadi air.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+Dalam kes hidrogen berlebihan, <InlineMath math="16 \mathrm{g}" /> oksigen memerlukan hidrogen dalam nisbah jisim <InlineMath math="1:8" />. Hitung kuantiti yang bertindak balas dahulu sebelum mencari bakinya:
+
+<BlockMath math="\begin{aligned} m_{\mathrm{H,bertindak\ balas}} &= \frac{1}{8}\times16=2\ \mathrm{g} \\ m_{\mathrm{H,baki}} &=3-2=1\ \mathrm{g} \end{aligned}" />
+
+Air sentiasa mengandungi hidrogen dan oksigen dalam nisbah jisim <InlineMath math="1:8" />. Daripada <InlineMath math="3\ \mathrm{g}" /> hidrogen dan <InlineMath math="16\ \mathrm{g}" /> oksigen, oksigen itu hanya boleh menggunakan <InlineMath math="2\ \mathrm{g}" /> hidrogen. Putar bar itu: bahagian hidrogen yang berwarna merah jambu ialah baki, dan air yang terbentuk sama dengan hidrogen yang digunakan ditambah oksigen.
+
+<MathVisual
+  title={<>Hidrogen Berlebihan Tetap Berbaki</>}
+  description={<>Hidrogen (ungu, baki berwarna merah jambu), oksigen (jingga) dan air yang terbentuk (hijau kebiruan). Satu langkah grid ke atas ialah 2 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 10 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 10, y: 12, z: 11 }, target: { x: 3, y: 4.5, z: 0 } },
+    objects: [
+      { id: "h-used", kind: "cuboid", appearance: "secondary", center: { x: 0, y: 0.5, z: 0 }, size: { length: 1.6, height: 1, width: 1.6 } },
+      { id: "h-left", kind: "cuboid", appearance: "warning", center: { x: 0, y: 1.25, z: 0 }, size: { length: 1.6, height: 0.5, width: 1.6 } },
+      { id: "o-used", kind: "cuboid", appearance: "primary", center: { x: 3, y: 4, z: 0 }, size: { length: 1.6, height: 8, width: 1.6 } },
+      { id: "water", kind: "cuboid", appearance: "construction", center: { x: 6, y: 4.5, z: 0 }, size: { length: 1.6, height: 9, width: 1.6 } },
+    ],
+    labels: [
+      { key: "used", objectId: "h-used", at: { x: 0, y: 0.5, z: 0.8 }, placement: "right" },
+      { key: "left", objectId: "h-left", at: { x: 0, y: 1.5, z: 0 }, placement: "above" },
+      { key: "oxygen", objectId: "o-used", at: { x: 3, y: 8, z: 0 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 6, y: 9, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    used: <InlineMath math="\mathrm{H}:\ 2\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{H}:\ 3-2=1\ \mathrm{g}" />,
+    oxygen: <InlineMath math="\mathrm{O}:\ 16\ \mathrm{g}" />,
+    water: <InlineMath math="\mathrm{H_2O}:\ 2+16=18\ \mathrm{g}" />,
+  }}
+/>
+
+## Menguji Data Kalsium Oksida
+
+Dua eksperimen seterusnya menguji hukum komposisi tetap dengan kalsium oksida. [Kalsium oksida](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/calcium%20oxide/property/MolecularFormula/JSON) mempunyai unit formula <InlineMath math="\mathrm{CaO}" />. Nilai CIAAW <InlineMath math="A_r\mathrm{(Ca)}=40.078" /> dan <InlineMath math="A_r\mathrm{(O)}=15.999" /> memberi <InlineMath math="M(\mathrm{CaO})=56.077\ \mathrm{g\,mol^{-1}}" />, yang dibundarkan kepada <InlineMath math="56.08\ \mathrm{g\,mol^{-1}}" />.
+
+Katakan dua eksperimen itu memberi data berikut.
+
+| Percubaan | Jisim <InlineMath math="\mathrm{CaO}" /> | Jisim <InlineMath math="\mathrm{O}" /> | Jisim <InlineMath math="\mathrm{Ca}" /> | Nisbah <InlineMath math="\mathrm{Ca:O}" /> |
+| :---- | :----------------------------------------- | :-------------------------------------- | :--------------------------------------- | :----------------------------------------- |
+| <InlineMath math="1" /> | <InlineMath math="2.8\ \mathrm{g}" /> | <InlineMath math="0.8\ \mathrm{g}" /> | <InlineMath math="2.0\ \mathrm{g}" /> | <InlineMath math="2.0:0.8 = 2.5:1" /> |
+| <InlineMath math="2" /> | <InlineMath math="3.5\ \mathrm{g}" /> | <InlineMath math="1.0\ \mathrm{g}" /> | <InlineMath math="2.5\ \mathrm{g}" /> | <InlineMath math="2.5:1.0 = 2.5:1" /> |
+
+Jisim kalsium ialah **jisim sebatian tolak jisim oksigen**.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Ca,1}} &= 2.8 - 0.8 = 2.0\ \mathrm{g} \\
+m_{\mathrm{Ca,2}} &= 3.5 - 1.0 = 2.5\ \mathrm{g}
+\end{aligned}" />
+
+Kedua-dua eksperimen membentuk jisim sebatian yang berbeza. Namun, kedua-duanya mempunyai nisbah jisim kalsium kepada oksigen yang sama, iaitu <InlineMath math="2.5:1" />. Nisbah yang sama ini menunjukkan bahawa sampel-sampel itu mematuhi hukum komposisi tetap.
+
+## Mengira Jisim daripada Formula
+
+[Ferum(III) oksida](https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ferric%20oxide/property/MolecularFormula/JSON) mempunyai unit formula <InlineMath math="\mathrm{Fe_2O_3}" />.
+
+Dengan <InlineMath math="A_r\mathrm{(Fe)} = 56" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, **nisbah jisim ferum kepada oksigen** ialah:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Fe}} : m_{\mathrm{O}}
+  &= (2 \times 56) : (3 \times 16) \\
+  &= 112 : 48 \\
+  &= 7 : 3
+\end{aligned}" />
+
+Jika jisim <InlineMath math="\mathrm{Fe_2O_3}" /> ialah <InlineMath math="64\ \mathrm{g}" />, jumlah bahagian nisbah ialah <InlineMath math="7 + 3 = 10" />.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Fe}} &= \frac{7}{10} \times 64 = 44.8\ \mathrm{g} \\
+m_{\mathrm{O}} &= \frac{3}{10} \times 64 = 19.2\ \mathrm{g}
+\end{aligned}" />
+
+<InlineMath math="64\ \mathrm{g}" /> ferum(III) oksida mengandungi <InlineMath math="44.8\ \mathrm{g}" /> ferum dan <InlineMath math="19.2\ \mathrm{g}" /> oksigen yang terikat bersama.
+
+Hukum perkadaran berganda menerangkan keadaan apabila dua unsur yang sama membentuk lebih daripada satu sebatian.

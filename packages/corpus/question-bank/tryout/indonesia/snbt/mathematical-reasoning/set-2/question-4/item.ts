@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "ride-fare",
+  stimulus: "game-energy",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "paling jauh 2 km atau paling sedikit 11 km" },
-        { correct: false, label: "paling sedikit 11 km" },
-        { correct: false, label: "paling jauh 2 km atau paling sedikit 10 km" },
-        { correct: false, label: "paling jauh 2 km" },
-        { correct: false, label: "lebih dari 2 km dan kurang dari 10 km" },
+        { correct: false, label: "pukul 12.00" },
+        { correct: false, label: "pukul 12.15" },
+        { correct: false, label: "pukul 12.40" },
+        { correct: true, label: "pukul 12.45" },
+        { correct: false, label: "pukul 14.00" },
       ],
     },
   },

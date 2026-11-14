@@ -1,0 +1,374 @@
+
+export const metadata = {
+  title: "Pemodelan Fungsi Tangga",
+  description: "Modelkan diskaun kedai buku, kapasiti lif, serta petua fungsi lantai dan siling menggunakan fungsi tangga cebis demi cebis.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Output Tetap pada Selang yang Berasingan
+
+Fungsi tangga <Highlight>mempunyai nilai tetap pada setiap selang</Highlight> dan boleh melompat apabila satu selang berakhir dan selang berikutnya bermula. Grafnya menyerupai anak tangga: tembereng mengufuk mewakili nilai-nilai tetap itu, manakala titik hujung yang terpisah menandakan sebarang ketakselanjaran lompatan.
+
+### Takrif Fungsi Tangga
+
+Rumus di bawah menunjukkan **set selang yang terhingga**. Untuk fungsi lantai dan siling pada semua nombor nyata, selang-selang itu berterusan tanpa henti ke kedua-dua arah.
+
+Fungsi tangga boleh ditakrifkan sebagai fungsi cebis demi cebis yang berbentuk:
+
+<BlockMath math="f(x) = \begin{cases} c_1, & \text{jika } a_1 \leq x < b_1 \\ c_2, & \text{jika } a_2 \leq x < b_2 \\ c_3, & \text{jika } a_3 \leq x < b_3 \\ \vdots \\ c_n, & \text{jika } a_n \leq x < b_n \end{cases}" />
+
+Dalam takrif ini, <InlineMath math="c_1, c_2, c_3, \ldots, c_n" /> ialah pemalar dan <InlineMath math="[a_i, b_i)" /> ialah selang-selang yang tidak bertindih.
+
+**Ciri-ciri fungsi tangga**:
+
+- Nilainya tetap pada setiap selang
+- Mungkin ada ketakselanjaran lompatan pada sempadan selang
+- Grafnya berbentuk seperti anak tangga
+- Tergolong dalam kategori fungsi cebis demi cebis
+
+## Jenis Fungsi Tangga
+
+Fungsi lantai membundarkan **ke bawah kepada integer**, manakala fungsi siling membundarkan ke atas kepada integer. Input yang sudah integer kekal tidak berubah. Fungsi Heaviside menggunakan dua nilai tetap dengan satu lompatan pada sifar.
+
+### Fungsi Lantai
+
+Fungsi lantai, yang ditandakan dengan <InlineMath math="\lfloor x \rfloor" />, memberikan **integer terbesar** yang kurang daripada atau sama dengan <InlineMath math="x" />.
+
+<BlockMath math="\lfloor x \rfloor = \max\{n \in \mathbb{Z} : n \leq x\}" />
+
+Graf ini menandakan setiap titik hujung kiri yang termasuk dengan bulatan penuh dan setiap titik hujung kanan yang dikecualikan dengan bulatan kosong.
+
+<MathVisual
+  title={
+    <>
+      Fungsi Lantai <InlineMath math="f(x) = \lfloor x \rfloor" />
+    </>
+  }
+  description={
+    <>
+      Untuk setiap <InlineMath math="x" />, graf ini menunjukkan nilai integer terbesar
+      yang tidak melebihi <InlineMath math="x" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=\lfloor x \rfloor" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: -4, y: -5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -4 }, { x: -3, y: -4 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: -2, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -1, y: -2 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 4 }, { x: 5, y: 4 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+**Jadual nilai fungsi lantai**:
+
+| <InlineMath math="x" /> | <InlineMath math="-2.5" /> | <InlineMath math="-1.7" /> | <InlineMath math="-1" /> | <InlineMath math="-0.3" /> | <InlineMath math="0" /> | <InlineMath math="0.8" /> | <InlineMath math="1" /> | <InlineMath math="1.9" /> | <InlineMath math="2.4" /> |
+| --------------------------------------- | ---- | ---- | --- | ---- | --- | --- | --- | --- | --- |
+| <InlineMath math="\lfloor x \rfloor" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+### Fungsi Siling
+
+Fungsi siling, yang ditandakan dengan <InlineMath math="\lceil x \rceil" />, memberikan **integer terkecil** yang lebih besar daripada atau sama dengan <InlineMath math="x" />.
+
+<BlockMath math="\lceil x \rceil = \min\{n \in \mathbb{Z} : n \geq x\}" />
+
+Graf ini menandakan setiap titik hujung kiri yang dikecualikan dengan bulatan kosong dan setiap titik hujung kanan yang termasuk dengan bulatan penuh.
+
+<MathVisual
+  title={
+    <>
+      Fungsi Siling <InlineMath math="f(x) = \lceil x \rceil" />
+    </>
+  }
+  description={
+    <>
+      Untuk setiap <InlineMath math="x" />, graf ini menunjukkan nilai integer terkecil
+      yang tidak kurang daripada <InlineMath math="x" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=\lceil x \rceil" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -4 }, { x: -4, y: -4 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -3 }, { x: -3, y: -3 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: -2, y: -2 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -1 }, { x: -1, y: -1 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: 0, y: 0 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Fungsi Tangga Unit Heaviside
+
+Contoh-contoh di bawah menggunakan satu konvensyen yang lazim untuk fungsi tangga unit, atau fungsi Heaviside, yang ditandakan dengan <InlineMath math="H(x)" /> atau <InlineMath math="u(x)" />:
+
+<BlockMath math="H(x) = \begin{cases} 0, & \text{jika } x < 0 \\ 1, & \text{jika } x \geq 0 \end{cases}" />
+
+Mengikut konvensyen ini, fungsi tangga unit bernilai <InlineMath math="0" /> untuk <InlineMath math="x < 0" /> dan <InlineMath math="1" /> untuk <InlineMath math="x \geq 0" />. Bidang lain kadang-kadang memilih <InlineMath math="H(0)=0" /> atau <InlineMath math="H(0)=\frac12" />, jadi **nilai pada lompatan** mesti sentiasa dinyatakan.
+
+<MathVisual
+  title={
+    <>
+      Fungsi Tangga Unit <InlineMath math="H(x)" />
+    </>
+  }
+  description={
+    <>
+      Graf ini menunjukkan fungsi tangga unit yang melompat dari <InlineMath math="0" /> ke{" "}
+      <InlineMath math="1" /> pada titik <InlineMath math="x = 0" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="H(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 0 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 4, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Sifat Fungsi Tangga
+
+Domainnya ditentukan oleh **selang-selang yang dinyatakan**. Domain itu tidak semestinya semua nombor nyata. Contoh-contoh di sini mempunyai output diskret. Pada sempadan, lompatan hanya berlaku jika pemalar di kedua-dua belah sempadan itu berbeza.
+
+Untuk fungsi lantai dan siling, **dua integer mengapit input itu**. Pada input integer, kedua-dua output itu sama. Jika tidak, kedua-dua output itu berbeza sebanyak satu.
+
+**Sifat khas fungsi lantai dan siling**:
+
+1. <InlineMath math="\lfloor x \rfloor \leq x < \lfloor x \rfloor + 1" />
+2. <InlineMath math="\lceil x \rceil - 1 < x \leq \lceil x \rceil" />
+3. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor + 1 \text{ jika } x \notin \mathbb{Z}" />
+4. <InlineMath math="\lceil x \rceil = \lfloor x \rfloor \text{ jika } x \in \mathbb{Z}" />
+
+**Jadual perbandingan fungsi lantai dan siling**:
+
+| <InlineMath math="x" /> | <InlineMath math="\lfloor x \rfloor" /> | <InlineMath math="\lceil x \rceil" /> | Beza       |
+| ---- | --------------------------------------- | ------------------------------------- | ---------- |
+| <InlineMath math="-2.3" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="1" /> |
+| <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> |
+| <InlineMath math="0.7" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="0" /> |
+| <InlineMath math="3.8" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+
+## Penjelmaan Fungsi Tangga
+
+**Translasi mencancang** mengubah tinggi setiap anak tangga tanpa menggerakkan sempadan selang. Translasi mengufuk pula menggerakkan sempadan itu. Penskalaan mencancang mengubah tinggi lompatan, manakala penskalaan mengufuk mengubah lebar selang.
+
+### Translasi Mencancang
+
+Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> mengalihkan **tinggi graf fungsi lantai** ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+
+<MathVisual
+  title={<>Translasi Mencancang Fungsi Lantai</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = \lfloor x \rfloor" /> dengan{" "}
+      <InlineMath math="g(x) = \lfloor x \rfloor + 2" /> dan{" "}
+      <InlineMath math="h(x) = \lfloor x \rfloor - 1" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=\lfloor x \rfloor" />,
+    "l2": <InlineMath math="g(x)=\lfloor x \rfloor+2" />,
+    "l3": <InlineMath math="h(x)=\lfloor x \rfloor-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: -4, y: -5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -4 }, { x: -3, y: -4 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: -2, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -1, y: -2 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 4 }, { x: 5, y: 4 }], appearance: "primary" },
+      { id: "s11", kind: "polyline", vertices: [{ x: -5, y: -3 }, { x: -4, y: -3 }], appearance: "secondary" },
+      { id: "s12", kind: "polyline", vertices: [{ x: -4, y: -2 }, { x: -3, y: -2 }], appearance: "secondary" },
+      { id: "s13", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: -2, y: -1 }], appearance: "secondary" },
+      { id: "s14", kind: "polyline", vertices: [{ x: -2, y: 0 }, { x: -1, y: 0 }], appearance: "secondary" },
+      { id: "s15", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "s16", kind: "polyline", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "s17", kind: "polyline", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "s18", kind: "polyline", vertices: [{ x: 2, y: 4 }, { x: 3, y: 4 }], appearance: "secondary" },
+      { id: "s19", kind: "polyline", vertices: [{ x: 3, y: 5 }, { x: 4, y: 5 }], appearance: "secondary" },
+      { id: "s20", kind: "polyline", vertices: [{ x: 4, y: 6 }, { x: 5, y: 6 }], appearance: "secondary" },
+      { id: "s21", kind: "polyline", vertices: [{ x: -5, y: -6 }, { x: -4, y: -6 }], appearance: "answer" },
+      { id: "s22", kind: "polyline", vertices: [{ x: -4, y: -5 }, { x: -3, y: -5 }], appearance: "answer" },
+      { id: "s23", kind: "polyline", vertices: [{ x: -3, y: -4 }, { x: -2, y: -4 }], appearance: "answer" },
+      { id: "s24", kind: "polyline", vertices: [{ x: -2, y: -3 }, { x: -1, y: -3 }], appearance: "answer" },
+      { id: "s25", kind: "polyline", vertices: [{ x: -1, y: -2 }, { x: 0, y: -2 }], appearance: "answer" },
+      { id: "s26", kind: "polyline", vertices: [{ x: 0, y: -1 }, { x: 1, y: -1 }], appearance: "answer" },
+      { id: "s27", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }], appearance: "answer" },
+      { id: "s28", kind: "polyline", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }], appearance: "answer" },
+      { id: "s29", kind: "polyline", vertices: [{ x: 3, y: 2 }, { x: 4, y: 2 }], appearance: "answer" },
+      { id: "s30", kind: "polyline", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "l2", objectId: "s18", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s28", at: { x: 3, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Translasi Mengufuk
+
+Fungsi <InlineMath math="f(x)=\lfloor x-h\rfloor" /> mengalihkan graf secara **mengufuk**. Lompatan yang asalnya pada <InlineMath math="x=m" /> beralih ke <InlineMath math="x=m+h" /> bagi setiap integer <InlineMath math="m" />. Dengan <InlineMath math="h=2" />, lompatan pada sifar beralih ke dua. Itu bukan lompatan yang pertama, kerana lompatan berlaku pada setiap integer.
+
+## Soalan Latihan
+
+Soalan-soalan ini menggabungkan nilai lantai dan siling dengan kuantiti yang berubah mengikut langkah penuh. Cari **bahagian nombor bulat** dahulu sebelum kamu menggabungkan sebutan-sebutannya.
+
+1. Tentukan nilai <InlineMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil" />
+
+2. Sebuah kedai buku memberikan diskaun berdasarkan bilangan buku yang dibeli:
+
+- <InlineMath math="1\text{-}5" /> buku: tiada diskaun
+- <InlineMath math="6\text{-}10" /> buku: diskaun <InlineMath math="10\%" />
+- <InlineMath math="11\text{-}20" /> buku: diskaun <InlineMath math="15\%" />
+- <InlineMath math="> 20" /> buku: diskaun <InlineMath math="20\%" />
+
+   Jika harga sebuah buku ialah <InlineMath math="\text{Rp}50{,}000" />, bina fungsi yang mewakili jumlah harga selepas diskaun!
+
+3. Lukis graf fungsi <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" /> untuk <InlineMath math="-3 \leq x \leq 3" />
+
+4. Selesaikan persamaan <InlineMath math="\lfloor 2x + 1 \rfloor = 5" />
+
+5. Sebuah lif boleh memuatkan maksimum <InlineMath math="8 \text{ orang}" />. Jika ada <InlineMath math="n \text{ orang}" /> yang mahu menggunakan lif itu, berapa kali lif itu perlu beroperasi?
+
+### Jalan Kerja
+
+**Soalan 1**. Untuk **input negatif**, pembundaran ke bawah bergerak ke arah integer yang lebih kecil, bukan ke arah sifar.
+
+<BlockMath math="\lfloor3.7\rfloor=3" />
+
+<InlineMath math="3" /> ialah integer terbesar yang kurang daripada atau sama dengan <InlineMath math="3.7" />.
+<BlockMath math="\lceil-2.3\rceil=-2" />
+
+<InlineMath math="-2" /> ialah integer terkecil yang lebih besar daripada atau sama dengan <InlineMath math="-2.3" />.
+<BlockMath math="\lfloor 3.7 \rfloor + \lceil -2.3 \rceil = 3 + (-2) = 1" />
+
+**Soalan 2**. Peratus diskaun ialah **fungsi tangga**, tetapi jumlah harga <InlineMath math="H(n)" /> bertambah mengikut bilangan buku dalam setiap peringkat. Oleh itu, model jumlah harga di bawah ialah fungsi cebis demi cebis pada bilangan buku yang berupa integer, dan bukannya tetap dalam setiap peringkat.
+
+Diskaun itu dikenakan pada **keseluruhan pembelian**. Contohnya, enam buah buku mendapat diskaun sepuluh peratus:
+
+<BlockMath math="H(6)=50000(6)(1-10/100)=270000" />
+
+Katakan <InlineMath math="n\in\mathbb{N}" /> ialah bilangan buku yang dibeli, iaitu suatu nombor bulat positif. Jumlah harga selepas diskaun ialah:
+
+<BlockMath math="H(n) = \begin{cases}\begin{gathered}50000n\\\text{jika } 1 \leq n \leq 5\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.9\\\text{jika } 6 \leq n \leq 10\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.85\\\text{jika } 11 \leq n \leq 20\end{gathered}\\[4pt]\begin{gathered}50000n \times 0.8\\\text{jika } n > 20\end{gathered}\end{cases}" />
+
+**Soalan 3**. Semak **titik hujung kanan domain** secara berasingan: nilai pada <InlineMath math="x=3" /> berbeza daripada nilai pada selang yang betul-betul di sebelah kirinya.
+
+Untuk setiap selang:
+
+- <InlineMath math="-3 \leq x < -2: f(x) = 2(-3) - 1 = -7" />
+- <InlineMath math="-2 \leq x < -1: f(x) = 2(-2) - 1 = -5" />
+- <InlineMath math="-1 \leq x < 0: f(x) = 2(-1) - 1 = -3" />
+- <InlineMath math="0 \leq x < 1: f(x) = 2(0) - 1 = -1" />
+- <InlineMath math="1 \leq x < 2: f(x) = 2(1) - 1 = 1" />
+- <InlineMath math="2 \leq x < 3: f(x) = 2(2) - 1 = 3" />
+- Pada titik hujung, <InlineMath math="f(3)=2\lfloor3\rfloor-1=5" />
+
+Graf berikut menunjukkan nilai fungsi pada setiap selang dan pada titik-titik hujung:
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />
+    </>
+  }
+  description={
+    <>
+      Graf ini menunjukkan penjelmaan fungsi lantai dengan faktor
+      skala <InlineMath math="2" /> dan translasi mencancang sebanyak <InlineMath math="-1" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=2\lfloor x \rfloor-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -8.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -3, y: -7 }, { x: -2, y: -7 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -2, y: -5 }, { x: -1, y: -5 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -1, y: -3 }, { x: 0, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: -1 }, { x: 1, y: -1 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }], appearance: "primary" },
+      { id: "s7", kind: "point", at: { x: 3, y: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+**Soalan 4**. Gunakan **ketaksamaan yang mengapit fungsi lantai**, tolak satu daripada ketiga-tiga ungkapan, kemudian bahagikan semuanya dengan dua.
+
+<MathContainer>
+
+<BlockMath math="5 \leq 2x + 1 < 6" />
+
+<BlockMath math="4 \leq 2x < 5" />
+
+<BlockMath math="2 \leq x < 2.5" />
+</MathContainer>
+
+Jadi set penyelesaiannya ialah <InlineMath math="x \in [2, 2.5)" />.
+
+**Soalan 5**. Kira **perjalanan naik yang membawa penumpang**, dan lif itu boleh turun semula dalam keadaan kosong apabila perlu. Untuk sembilan orang, satu perjalanan penuh tidak mencukupi:
+
+<BlockMath math="9=8+1,\qquad \lceil9/8\rceil=2" />
+
+Jika <InlineMath math="n\in\mathbb{Z}_{\geq0}" /> ialah bilangan orang dan lif itu boleh memuatkan paling banyak <InlineMath math="8 \text{ orang}" />, maka bilangan perjalanan lif yang diperlukan ialah:
+
+<BlockMath math="f(n) = \lceil \frac{n}{8} \rceil" />
+
+Fungsi siling digunakan kerana sebarang baki yang bukan sifar memerlukan satu perjalanan tambahan. Fungsi ini juga memberikan <InlineMath math="f(0)=0" /> apabila tiada sesiapa yang menunggu.

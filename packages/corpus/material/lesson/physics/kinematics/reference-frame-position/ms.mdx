@@ -1,0 +1,180 @@
+export const metadata = {
+  title: "Kerangka Rujukan dan Kedudukan",
+  description:
+    "Nyatakan kedudukan objek menggunakan kerangka rujukan, tanda arah dan koordinat satu dimensi yang ringkas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Kinematik",
+};
+
+## Kedudukan Memerlukan Titik Rujukan
+
+Kalau kamu berkata, "Aku berada <InlineMath math="30 \text{ m}" /> dari kedai," kawan kamu masih boleh bertanya, "ke arah mana?" Kalau kamu berkata, "Aku di sebelah timur," kawan kamu masih boleh bertanya, "berapa jauh?"
+
+Dalam fizik, **kedudukan** ialah lokasi objek dalam satu **kerangka rujukan** yang dipilih. Kerangka itu memberikan sistem koordinat dan arah positif. Sebuah kedai, rumah, tiang bendera atau garisan permulaan boleh menjadi **titik rujukan**, atau asalan, dalam kerangka itu.
+
+> Pernyataan kedudukan yang lengkap menyebut titik rujukan, nilai, unit dan arah.
+
+Jika gerakan berlaku sepanjang satu garis lurus, kita boleh memilih satu arah sebagai positif. Dalam contoh jalan ini, arah timur ialah positif dan arah barat ialah negatif.
+
+<BlockMath math="x'=x_{\text{objek}}-x_{\text{asalan}}" />
+
+Persamaan ini mengekalkan objek di tempatnya dan menganjakkan asalan koordinat, sementara paksi dan arah positif kekal tetap.
+
+## Kedudukan daripada Rujukan yang Berbeza
+
+Ambil satu objek pada koordinat <InlineMath math="30 \text{ m}" /> apabila kedai dijadikan sifar. Jika asalan dianjakkan ke rumah Rani pada koordinat <InlineMath math="20 \text{ m}" />, koordinat baharu objek itu menjadi <InlineMath math="+10 \text{ m}" />.
+
+**Objek itu tidak bergerak** apabila asalan berubah. Hanya koordinatnya yang berubah. Menganjakkan asalan ke kanan boleh menukar koordinat positif yang besar kepada koordinat positif yang lebih kecil, sifar atau koordinat negatif.
+
+Lihat paparan di bawah. Garis kelabu ialah objek, dan objek itu tidak pernah bergerak. Setiap anak panah bermula di asalan yang berbeza dan berakhir di objek, jadi labelnya ialah koordinat objek yang diukur dari asalan itu. Kira sendiri langkah grid: satu langkah ialah <InlineMath math="10\text{ m}" />, dan anak panah yang menghala ke barat mendapat tanda negatif.
+
+<MathVisual
+  title={<>Satu Objek dengan Tiga Asalan</>}
+  description={<>Setiap baris mengukur objek yang sama dari asalan yang berbeza, dengan arah timur di sebelah kanan. Satu langkah grid ialah 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "object", kind: "segment", appearance: "reference", from: { x: 3, y: -0.5 }, to: { x: 3, y: 2.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 3, y: 2 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 2.78, y: 2.11 }, { x: 2.78, y: 1.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 2, y: 1 }, to: { x: 3, y: 1 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1 }, { x: 2.78, y: 1.11 }, { x: 2.78, y: 0.89 }] },
+      { id: "from-2", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "from-2-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 3.22, y: 0.11 }, { x: 3.22, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "object", objectId: "object", at: { x: 3, y: 2.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "name1", objectId: "from-1", at: { x: 2, y: 1 }, placement: "below" },
+      { key: "coord1", objectId: "from-1", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "name2", objectId: "from-2", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "coord2", objectId: "from-2", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    object: <>Objek</>,
+    name0: <>Kedai</>,
+    name1: <>Rumah Rani</>,
+    name2: <>Rumah Naya</>,
+    coord0: <InlineMath math="x'=+30\text{ m}" />,
+    coord1: <InlineMath math="x'=+10\text{ m}" />,
+    coord2: <InlineMath math="x'=-20\text{ m}" />,
+  }}
+/>
+
+## Membaca Tanda dan Arah
+
+Tanda bagi sesuatu kedudukan memberitahu kita <Highlight>di sebelah mana titik rujukan</Highlight> objek itu berada. Dalam contoh jalan ini, arah timur dipilih sebagai positif. Jadi, nilai positif bermaksud objek berada di sebelah timur titik rujukan, manakala nilai negatif bermaksud objek berada di sebelah baratnya.
+
+| Asalan dalam kerangka rujukan yang sama | Koordinat objek pada paksi jalan | Koordinat relatif kepada asalan |
+| :-------------- | :--------------------------------- | :----------------------- |
+| Kedai pada <InlineMath math="0 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> ke timur |
+| Rumah Rani pada <InlineMath math="20 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="+10 \text{ m}" /> ke timur |
+| Rumah Naya pada <InlineMath math="50 \text{ m}" /> | Objek pada <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> atau <InlineMath math="20 \text{ m}" /> ke barat |
+
+Nilai <InlineMath math="-20 \text{ m}" /> tidak bermaksud jaraknya negatif. Tanda negatif hanya memberitahu arah relatif kepada titik rujukan.
+
+## Pernyataan Kedudukan yang Lengkap
+
+Ayat kedudukan memerlukan empat bahagian. Jika satu bahagian tertinggal, orang lain mungkin membaca lokasi objek dari titik rujukan yang salah.
+
+<Mermaid
+  title="Membina Pernyataan Kedudukan"
+  description="Ikut urutan ini supaya kedudukan objek tidak dibaca dari titik rujukan yang salah."
+  chart={`flowchart LR
+    A["Objek yang diperhatikan"] --> B["Asalan dan arah positif"]
+    B --> C["Nilai koordinat dan unit"]
+    C --> D["Kedudukan relatif kepada asalan"]`}
+/>
+
+Pernyataan yang lengkap ialah: "Objek itu berada <InlineMath math="10 \text{ m}" /> di sebelah timur rumah Rani." Pernyataan ini menyebut objek, titik rujukan, magnitud koordinat, unit dan arah.
+
+Ayat "objek itu dekat dengan rumah" memang menyebut rumah sebagai rujukan, tetapi tidak menyatakan titik tepat pada rumah itu, jarak dalam bentuk nombor, unit dan arahnya. **Asalan yang tepat** membolehkan dua pemerhati mengukur koordinat objek dari tempat yang sama.
+
+Dalam dua dimensi, pernyataan kedudukan memerlukan satu asalan dan dua nombor. Dari <InlineMath math="O" />, titik <InlineMath math="P" /> berada pada <InlineMath math="(3,2)" />, tetapi dari asalan kedua <InlineMath math="O'" /> pada <InlineMath math="(1,1)" />, titik itu berada pada <InlineMath math="\vec r\,'=\vec r-\vec r_0" />. Besarkan paparan dan lihat anak panah merah jambu itu.
+
+<MathVisual
+  title={<>Satu Titik dengan Dua Asalan</>}
+  description={<>Kedudukan P dari O (jingga) dan dari O' (merah jambu), dengan anjakan antara kedua-dua asalan (ungu).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 4 }, y: { min: -0.8, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 2 } },
+      { id: "r-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) + ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) + ((0.25 / 2) * 3) / Math.hypot(3, 2) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 2) - ((0.25 / 2) * -2) / Math.hypot(3, 2), y: 2 - (0.25 * 2) / Math.hypot(3, 2) - ((0.25 / 2) * 3) / Math.hypot(3, 2) }] },
+      { id: "r0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 1 } },
+      { id: "r0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 1 }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) + ((0.25 / 2) * 1) / Math.hypot(1, 1) }, { x: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * -1) / Math.hypot(1, 1), y: 1 - (0.25 * 1) / Math.hypot(1, 1) - ((0.25 / 2) * 1) / Math.hypot(1, 1) }] },
+      { id: "rp", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 3, y: 2 } },
+      { id: "rp-head", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 2 }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) + ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) + ((0.25 / 2) * 2) / Math.hypot(2, 1) }, { x: 3 - (0.25 * 2) / Math.hypot(2, 1) - ((0.25 / 2) * -1) / Math.hypot(2, 1), y: 2 - (0.25 * 1) / Math.hypot(2, 1) - ((0.25 / 2) * 2) / Math.hypot(2, 1) }] },
+      { id: "o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "op", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: 3, y: 2 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "op", objectId: "op", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above-right" },
+      { key: "r", objectId: "r", at: { x: 1.5, y: 1 }, placement: "below-right" },
+      { key: "rp", objectId: "rp", at: { x: 2, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    o: <InlineMath math="O" />,
+    op: <InlineMath math="O'" />,
+    p: <InlineMath math="P" />,
+    r: <InlineMath math="\vec r=(3,2)" />,
+    rp: <InlineMath math="\vec r\,'=\vec r-\vec r_0=(2,1)" />,
+  }}
+/>
+
+## Ayat Kedudukan dari Kedai
+
+Sebuah penanda berada pada koordinat <InlineMath math="40 \text{ m}" /> apabila kedai menjadi asalan. Rumah Dimas berada pada koordinat <InlineMath math="30 \text{ m}" /> dalam kerangka yang sama. Jika **asalan dianjakkan** ke rumah Dimas, koordinat penanda itu ialah:
+
+<BlockMath math="\begin{aligned}
+x'
+&=x_{\text{penanda}}-x_{\text{Dimas}} \\
+&=40 \text{ m}-30 \text{ m} \\
+&=+10 \text{ m}
+\end{aligned}" />
+
+Jadi, penanda itu berada <InlineMath math="10 \text{ m}" /> di sebelah timur rumah Dimas. Dengan kedai sebagai asalan, koordinatnya ialah <InlineMath math="40 \text{ m}" />. Dengan rumah Dimas sebagai asalan, koordinatnya ialah <InlineMath math="+10 \text{ m}" />. Kedua-dua pernyataan ini betul kerana kedua-duanya menggunakan asalan yang berbeza dalam kerangka rujukan yang ditetapkan dengan jelas.
+
+Kedua-dua anak panah di bawah berakhir di penanda yang sama. Hanya titik mulanya, iaitu asalan, yang berubah, dan bersama-sama dengannya nombor dalam ayat kedudukan itu turut berubah.
+
+<MathVisual
+  title={<>Satu Penanda dengan Dua Asalan</>}
+  description={<>Penanda pada 40 m dari kedai, diukur dari kedai dan dari rumah Dimas yang berada pada 30 m. Satu langkah grid ialah 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "marker", kind: "segment", appearance: "reference", from: { x: 4, y: -0.5 }, to: { x: 4, y: 1.5 } },
+      { id: "from-0", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 4, y: 1 } },
+      { id: "from-0-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: 3.78, y: 1.11 }, { x: 3.78, y: 0.89 }] },
+      { id: "from-1", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "from-1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 3.78, y: 0.11 }, { x: 3.78, y: -0.11 }] },
+    ],
+    labels: [
+      { key: "marker", objectId: "marker", at: { x: 4, y: 1.5 }, placement: "above" },
+      { key: "name0", objectId: "from-0", at: { x: 0, y: 1 }, placement: "below" },
+      { key: "name1", objectId: "from-1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "coord0", objectId: "from-0", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "coord1", objectId: "from-1", at: { x: 3.5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    marker: <>Penanda</>,
+    name0: <>Kedai</>,
+    name1: <>Rumah Dimas</>,
+    coord0: <InlineMath math="+40\text{ m}" />,
+    coord1: <InlineMath math="+10\text{ m}" />,
+  }}
+/>

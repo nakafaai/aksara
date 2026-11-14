@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "rule-application",
+    topic: "truth-teller",
   },
   versions: {
     id: {
@@ -12,23 +12,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Elsa saja",
+          label:
+            "Rani yang lupa mengembalikan kunci, dan pernyataan Yosef benar.",
         },
         {
           correct: false,
-          label: "Ayu, Bagas, dan Elsa",
-        },
-        {
-          correct: false,
-          label: "Ayu, Citra, dan Elsa",
+          label: "Pernyataan Putu dan pernyataan Vina sama-sama salah.",
         },
         {
           correct: true,
-          label: "Ayu dan Elsa",
+          label:
+            "Vina yang lupa mengembalikan kunci, dan pernyataan Rani benar.",
         },
         {
           correct: false,
-          label: "Ayu, Dimas, dan Elsa",
+          label:
+            "Yosef yang lupa mengembalikan kunci, dan pernyataan Joko benar.",
+        },
+        {
+          correct: false,
+          label:
+            "Vina yang lupa mengembalikan kunci, dan pernyataan Joko benar.",
         },
       ],
     },

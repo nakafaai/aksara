@@ -1,0 +1,211 @@
+export const metadata = {
+   title: "Petua Pengisian Tempat",
+   description: "Kira kesudahan lengkap dengan mendarabkan pilihan yang sah pada setiap langkah, kemudian semak bilangannya dengan jadual atau gambar rajah pokok.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Kombinatorik",
+};
+
+## Mengira Pilihan Mengikut Tempat
+
+**Petua pengisian tempat** mengira susunan dengan mendarabkan bilangan <Highlight>pilihan yang sah bagi setiap tempat yang diisi berturut-turut</Highlight>. Petua ini boleh digunakan apabila setiap kesudahan lengkap dapat dibina melalui satu urutan pilihan yang tetap.
+
+Borang yang ada beberapa ruangan juga mengikut corak yang sama. Setiap ruangan ialah satu tempat, dan setiap isian yang dibenarkan ialah satu pilihan. Darabkan pilihan yang sah, dan kamu akan dapat bilangan borang lengkap.
+
+## Menyenaraikan Pilihan dalam Jadual
+
+Kaedah jadual menyenaraikan **setiap gabungan**. Baris mewakili pilihan daripada satu kategori, dan lajur mewakili pilihan daripada kategori yang lain.
+
+Katakan seorang pelajar mahu memilih pakej pembelajaran dalam talian. Ada tiga platform (Platform A, Platform B, Platform C) dan empat subjek (Matematik, Fizik, Kimia, Biologi).
+
+Jadual ini menyenaraikan semua gabungan yang mungkin:
+
+| Platform | Matematik | Fizik | Kimia | Biologi |
+|----------|-------------|---------|-----------|---------|
+| Platform A | A-Mat | A-Fiz | A-Kim | A-Bio |
+| Platform B | B-Mat | B-Fiz | B-Kim | B-Bio |
+| Platform C | C-Mat | C-Fiz | C-Kim | C-Bio |
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Jumlah gabungan} &amp;= 3 \times 4 \\ &amp;= 12 \text{ cara} \end{aligned}" />
+</MathContainer>
+
+Setiap pakej ialah satu pasangan (platform, subjek), jadi kamu boleh menyusunnya sebagai grid: <InlineMath math="3" /> baris untuk platform dan <InlineMath math="4" /> lajur untuk subjek. Setiap titik ialah satu pakej, dan grid itu ada <InlineMath math="3 \times 4 = 12" /> titik. Itulah petua pendaraban dalam satu gambar.
+
+<MathVisual
+  title={<>Dua belas pakej sebagai grid <InlineMath math="3" /> kali <InlineMath math="4" /></>}
+  description={<>Tiga baris platform darab empat lajur subjek memberikan dua belas titik, satu untuk setiap pakej.</>}
+  labels={{
+    g34: <InlineMath math="3 \times 4 = 12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "g11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "g12", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "g13", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "g14", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "g21", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "g22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "g23", kind: "point", at: { x: 3, y: 2 }, appearance: "primary" },
+      { id: "g24", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "g31", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "g32", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "g33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "g34", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "g34", objectId: "g34", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Kaedah Gambar Rajah Pokok
+
+Dalam **gambar rajah pokok**, setiap cabang mencatat satu pilihan. Satu laluan lengkap dari titik mula hingga ke titik hujung mewakili satu kesudahan lengkap.
+
+Untuk pemilihan pakej yang sama, cabang pertama memilih platform, dan cabang seterusnya memilih subjek.
+
+<Mermaid title={<>Dua peringkat pilihan pakej</>} description={<>Setiap satu daripada tiga pilihan platform bercabang kepada empat pilihan subjek.</>} chart={`flowchart LR
+  S["Mula"]
+  S --> A["Platform A"]
+  A --> A0["Matematik"]
+  A --> A1["Fizik"]
+  A --> A2["Kimia"]
+  A --> A3["Biologi"]
+  S --> B["Platform B"]
+  B --> B0["Matematik"]
+  B --> B1["Fizik"]
+  B --> B2["Kimia"]
+  B --> B3["Biologi"]
+  S --> C["Platform C"]
+  C --> C0["Matematik"]
+  C --> C1["Fizik"]
+  C --> C2["Kimia"]
+  C --> C3["Biologi"]
+`} />
+
+Setiap platform membuka empat cabang subjek. Jadi **setiap laluan lengkap** memilih tepat satu platform dan satu subjek. Contohnya, laluan dari Mula ke Platform A ke Fizik bermaksud Platform A untuk Fizik.
+
+<BlockMath math="3 \times 4 = 12" />
+
+## Kaedah Petua Pendaraban
+
+**Petua pendaraban** memberikan bilangan yang sama tanpa perlu menyenaraikan setiap kesudahan. Jika ada <InlineMath math="n" /> tempat dan tempat ke-<InlineMath math="i" /> ada <InlineMath math="k_i" /> pilihan yang sah, maka bilangan kesudahan lengkap ialah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah cara} \\ &amp;= k_1 \times k_2 \times k_3 \times \cdots \times k_n \end{aligned}" />
+</MathContainer>
+
+Tempat pertama ada bilangan pilihan yang tetap. Bagi setiap tempat selepas itu, bilangannya mesti sama **untuk setiap pilihan sah yang dibuat sebelumnya**, walaupun pilihan yang tersedia mungkin berbeza. Kalau bilangan cabang berbeza, kira setiap kumpulan cabang secara berasingan, kemudian tambahkan hasilnya.
+
+### Mengira Kod Akses
+
+Sebuah sekolah mahu membuat kod akses untuk sistem pembelajaran digital. Kod itu ada **tiga tempat mengikut urutan**:
+- Tempat pertama: <InlineMath math="3 \text{ huruf}" /> (<InlineMath math="A, B, C" />)
+- Tempat kedua: <InlineMath math="5 \text{ nombor}" /> (<InlineMath math="1, 2, 3, 4, 5" />)
+- Tempat ketiga: <InlineMath math="2 \text{ simbol}" /> (<InlineMath math="@, \#" />)
+
+Darabkan pilihan bagi ketiga-tiga tempat itu:
+
+<MathContainer>
+<BlockMath math="k_1 = 3 \text{ (pilihan huruf)}" />
+<BlockMath math="k_2 = 5 \text{ (pilihan nombor)}" />
+<BlockMath math="k_3 = 2 \text{ (pilihan simbol)}" />
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah kod yang berbeza} \\ &amp;= 3 \times 5 \times 2 \\ &amp;= 30 \text{ kod} \end{aligned}" />
+</MathContainer>
+
+Setiap tempat dalam kod itu ada bilangan pilihannya sendiri: <InlineMath math="3" /> huruf, <InlineMath math="5" /> digit dan <InlineMath math="2" /> warna. Palang dalam carta menunjukkan ketiga-tiga tempat itu bersebelahan, dan bilangan kod ialah hasil darabnya, <InlineMath math="3 \times 5 \times 2 = 30" />.
+
+<BarChart
+  title={<>Pilihan dalam setiap tempat kod</>}
+  description={<>Bilangan pilihan dalam tempat huruf, digit dan warna, yang hasil darabnya ialah <InlineMath math="30" />.</>}
+  yAxisLabel="Pilihan"
+  data={[["huruf", 3], ["digit", 5], ["warna", 2]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Pilihan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kes dengan Sekatan
+
+Sekatan boleh mengubah bilangan pilihan dari satu tempat ke tempat seterusnya. Untuk setiap tempat, tentukan sama ada **pilihan sebelumnya** mengurangkan satu pilihan, kerana itulah yang menentukan sama ada faktor-faktornya kekal sama. Contoh di bawah menghuraikan kedua-dua kes.
+### Pengulangan Tidak Dibenarkan
+
+Jika objek yang sama **tidak boleh digunakan berulang kali**, setiap tempat yang sudah diisi akan mengurangkan pilihan bagi tempat seterusnya.
+
+**Contoh**: Membentuk nombor <InlineMath math="3 \text{-digit}" /> daripada digit <InlineMath math="2, 3, 4, 5, 6" /> tanpa pengulangan.
+
+Tempat pertama ada <InlineMath math="5" /> pilihan. Selepas <InlineMath math="1" /> digit digunakan, tinggal <InlineMath math="4" /> pilihan untuk tempat kedua. Selepas <InlineMath math="2" /> digit digunakan, tempat ketiga ada <InlineMath math="3" /> pilihan.
+
+<BlockMath math="\begin{aligned} \text{Jumlah nombor} &amp;= 5 \times 4 \times 3 \\ &amp;= 60 \text{ nombor} \end{aligned}" />
+
+### Pengulangan Dibenarkan
+
+Jika objek yang sama **boleh digunakan berulang kali**, pilihan pada setiap tempat kekal sama.
+
+Untuk kes yang sama, tetapi kali ini pengulangan dibenarkan:
+
+<MathContainer>
+<BlockMath math="\text{Setiap tempat} = 5 \text{ pilihan}" />
+<BlockMath math="\begin{aligned} \text{Jumlah nombor} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ nombor} \end{aligned}" />
+</MathContainer>
+
+Bandingkan kedua-dua kes untuk nombor tiga digit yang dibentuk daripada digit <InlineMath math="1" /> hingga <InlineMath math="5" />. Tanpa pengulangan, tempat-tempat itu memberikan <InlineMath math="5 \times 4 \times 3 = 60" /> nombor, dan dengan pengulangan <InlineMath math="5 \times 5 \times 5 = 125" />. Apabila pengulangan dibenarkan, setiap tempat kekal dengan <InlineMath math="5" /> pilihan, jadi bilangannya bertambah lebih daripada dua kali ganda.
+
+<BarChart
+  title={<>Dengan dan tanpa pengulangan</>}
+  description={<>Bilangan nombor tiga digit daripada digit <InlineMath math="1" /> hingga <InlineMath math="5" />, tanpa dan dengan pengulangan.</>}
+  yAxisLabel="Bilangan nombor"
+  data={[["tanpa pengulangan", 5 * 4 * 3], ["dengan pengulangan", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Bilangan nombor", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Setiap soalan mengisi beberapa tempat mengikut urutan. Kira pilihan bagi satu tempat pada satu masa, darabkan semuanya, dan hati-hati dengan soalan yang **tidak membenarkan pengulangan**.
+
+1. Sebuah kedai elektronik menjual telefon pintar daripada <InlineMath math="4" /> jenama yang berbeza, dan setiap jenama ada dalam <InlineMath math="3" /> kapasiti memori dan <InlineMath math="5" /> pilihan warna. Berapakah gabungan telefon pintar yang berbeza?
+
+2. Satu kata laluan terdiri daripada <InlineMath math="1" /> huruf diikuti oleh <InlineMath math="2" /> digit. Pilih huruf itu daripada A, B, C, D dan digitnya daripada <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan. Berapakah kata laluan yang mungkin?
+
+3. Dari bandar <InlineMath math="P" /> ke bandar <InlineMath math="R" /> melalui bandar <InlineMath math="Q" />, ada <InlineMath math="3" /> jalan dari <InlineMath math="P" /> ke <InlineMath math="Q" /> dan <InlineMath math="4" /> jalan dari <InlineMath math="Q" /> ke <InlineMath math="R" />. Berapakah laluan berbeza yang boleh dipilih untuk perjalanan dari <InlineMath math="P" /> ke <InlineMath math="R" />?
+
+4. Satu plat nombor terdiri daripada <InlineMath math="2" /> huruf diikuti oleh <InlineMath math="3" /> digit. Jika kesemua <InlineMath math="26" /> huruf dan <InlineMath math="10" /> digit <InlineMath math="0\text{-}9" /> boleh digunakan dan pengulangan dibenarkan, berapakah plat nombor yang mungkin?
+### Kunci Jawapan
+
+**Soalan 1**. Setiap jenama boleh dipasangkan dengan setiap kapasiti dan warna, jadi **darabkan bilangan pilihan** bagi ketiga-tiga kategori itu.
+
+Diberi: <InlineMath math="4 \text{ jenama}" />, <InlineMath math="3 \text{ kapasiti memori}" />, <InlineMath math="5 \text{ pilihan warna}" />
+
+Bilangan gabungan telefon pintar ialah:
+
+<BlockMath math="4\times3\times5=60" />
+
+**Soalan 2**
+
+Diberi: <InlineMath math="1 \text{ huruf}" /> daripada <InlineMath math="\{A, B, C, D\}" />, <InlineMath math="2 \text{ digit}" /> daripada <InlineMath math="\{1, 2, 3, 4, 5\}" /> tanpa pengulangan
+
+Ada <InlineMath math="4" /> pilihan untuk huruf dan <InlineMath math="5" /> pilihan untuk digit pertama. **Pengulangan tidak dibenarkan**, jadi hanya tinggal <InlineMath math="4" /> pilihan untuk digit kedua.
+
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah kata laluan} \\ &amp;= 4 \times 5 \times 4 \\ &amp;= 80 \text{ kata laluan} \end{aligned}" />
+
+**Soalan 3**. Setiap jalan pada bahagian pertama perjalanan boleh diikuti oleh mana-mana jalan pada bahagian kedua. Gunakan **petua pendaraban** untuk mengira laluan lengkap.
+
+Diberi: <InlineMath math="3 \text{ jalan}" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" />, <InlineMath math="4 \text{ jalan}" /> dari <InlineMath math="Q" /> ke <InlineMath math="R" />
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\text{Jumlah laluan} \\ &amp;= 3 \times 4 \\ &amp;= 12 \text{ laluan berbeza} \end{aligned}" />
+</MathContainer>
+
+**Soalan 4**
+
+Diberi: <InlineMath math="2 \text{ huruf}" /> daripada <InlineMath math="26 \text{ huruf}" />, <InlineMath math="3 \text{ digit}" /> daripada <InlineMath math="10 \text{ digit}" />, **pengulangan dibenarkan**
+
+<BlockMath math="\begin{aligned} &amp;\text{Pilihan huruf pertama} = 26 \end{aligned}" />
+Huruf kedua ada <InlineMath math="26" /> pilihan.
+<BlockMath math="\text{Pilihan bagi setiap digit} = 10" />
+Jumlah plat nombor ialah:
+
+<BlockMath math="\begin{aligned}26\times26\times10\times10\times10 &amp;=676\times1000\\ &amp;=676000\text{  plat nombor}\end{aligned}" />

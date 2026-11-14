@@ -3,15 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$P>Q$$" },
-        { correct: true, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Jangkauan data itu bisa sama dengan $$30$$." },
         {
-          correct: false,
+          column: 2,
+          label: "Jangkauan data itu tidak mungkin kurang dari $$6$$.",
+        },
+        { column: 1, label: "Data terbesar pasti lebih dari $$12$$." },
+        {
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Jika tepat dua data bernilai $$8$$, jangkauan data itu paling sedikit $$7$$.",
         },
       ],
     },

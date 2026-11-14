@@ -9,6 +9,7 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
     de: "vielfalt-der-lebewesen",
     en: "biodiversity",
     id: "keanekaragaman-makhluk-hidup",
+    ms: "biodiversiti",
   },
   sections: [
     {
@@ -16,7 +17,12 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         "https://irp.nih.gov/catalyst/21/6/the-human-microbiome-project",
         "https://openstax.org/books/biology-2e/pages/22-2-structure-of-prokaryotes-bacteria-and-archaea",
       ],
-      routeSlugs: { de: "bakterien", en: "bacteria", id: "bakteri" },
+      routeSlugs: {
+        de: "bakterien",
+        en: "bacteria",
+        id: "bakteri",
+        ms: "bakteria",
+      },
       slug: "bacteria",
     },
     {
@@ -28,6 +34,7 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         de: "klassifikation",
         en: "classification",
         id: "klasifikasi-makhluk-hidup",
+        ms: "pengelasan-organisma",
       },
       slug: "classification",
     },
@@ -36,7 +43,7 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         "https://research.fs.usda.gov/treesearch/41353",
         "https://openstax.org/books/biology-2e/pages/24-1-characteristics-of-fungi",
       ],
-      routeSlugs: { de: "pilze", en: "fungi", id: "fungi" },
+      routeSlugs: { de: "pilze", en: "fungi", id: "fungi", ms: "fungi" },
       slug: "fungi",
     },
     {
@@ -51,6 +58,7 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         de: "ebenen-der-vielfalt",
         en: "levels",
         id: "keanekaragaman-hayati",
+        ms: "kepelbagaian-biologi",
       },
       slug: "levels",
     },
@@ -63,6 +71,7 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
         de: "lebewesen",
         en: "living-organisms",
         id: "makhluk-hidup-dalam-ekosistem",
+        ms: "organisma-dalam-ekosistem",
       },
       slug: "living-organisms",
     },
@@ -80,6 +89,10 @@ export const lessonBiologyBiodiversityMaterial = defineLessonMaterial({
     id: {
       description: "Kenali bentuk bakteri dan perannya dalam hidup.",
       title: "Keanekaragaman Makhluk Hidup",
+    },
+    ms: {
+      description: "Kaitkan bentuk dan bahagian bakteria dengan peranannya.",
+      title: "Biodiversiti",
     },
   },
 });

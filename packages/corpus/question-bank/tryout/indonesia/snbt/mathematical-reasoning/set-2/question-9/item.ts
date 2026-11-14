@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "exam-scoring",
+  stimulus: "loan-plans",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$22$$" },
-        { correct: false, label: "$$24$$" },
-        { correct: false, label: "$$26$$" },
-        { correct: false, label: "$$27$$" },
-        { correct: true, label: "$$28$$" },
+        { correct: false, label: "setelah cicilan bulan kedelapan" },
+        { correct: false, label: "setelah cicilan bulan kesembilan" },
+        { correct: true, label: "setelah cicilan bulan kesepuluh" },
+        { correct: false, label: "setelah cicilan bulan kedua belas" },
+        { correct: false, label: "tidak pernah sampai pinjaman lunas" },
       ],
     },
   },

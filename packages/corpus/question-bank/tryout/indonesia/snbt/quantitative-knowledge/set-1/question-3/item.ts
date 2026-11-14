@@ -6,10 +6,10 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: false, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
+        { correct: true, label: "$$Q>P$$" },
         { correct: false, label: "$$P=Q$$" },
         {
-          correct: true,
+          correct: false,
           label:
             "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
         },

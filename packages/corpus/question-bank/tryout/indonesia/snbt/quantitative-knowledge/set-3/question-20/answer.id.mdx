@@ -1,22 +1,37 @@
-Hitung tiga ukuran untuk setiap kelas: rata-rata, median, dan jangkauan. Data kedua kelas **sudah terurut**, jadi median adalah data ketiga dari lima data.
+Pembaginya tersusun dari beberapa bilangan prima, jadi uraikan dulu menjadi pangkat-pangkat prima. Lalu hitung berapa kali setiap prima muncul di dalam <InlineMath math="n!" />. Yang menentukan jawaban adalah **prima yang paling lambat terpenuhi**, belum tentu prima yang terbesar.
 
-# Ukuran setiap kelas
+# Faktorisasi prima pembagi
 
-| Ukuran | Kelas A | Kelas B |
-| :--- | :---: | :---: |
-| Jumlah | 375 | 375 |
-| Rata-rata | <InlineMath math="\tfrac{375}{5}=75" /> | <InlineMath math="\tfrac{375}{5}=75" /> |
-| Median | 70 | 75 |
-| Jangkauan | <InlineMath math="95-60=35" /> | <InlineMath math="90-65=25" /> |
+Gunakan <InlineMath math="6=2\cdot 3" /> dan <InlineMath math="10=2\cdot 5" />.
 
-Rata-rata kedua kelas **sama**, jadi pernyataan pertama salah. Median kelas A lebih kecil, jadi pernyataan kedua salah. Jangkauan kelas A lebih besar, jadi pernyataan ketiga benar.
+<BlockMath math="6^{12}\cdot 10^{6}=2^{12}\cdot 3^{12}\cdot 2^{6}\cdot 5^{6}=2^{18}\cdot 3^{12}\cdot 5^{6}" />
 
-# Mengganti satu nilai
+Jadi <InlineMath math="n!" /> harus memuat **paling sedikit <InlineMath math="18" /> faktor <InlineMath math="2" />, <InlineMath math="12" /> faktor <InlineMath math="3" />, dan <InlineMath math="6" /> faktor <InlineMath math="5" />**.
 
-Mengganti 95 dengan 85 **mengurangi jumlah nilai kelas A sebesar 10**.
+# Cara menghitung faktor prima dalam n faktorial
 
-<BlockMath math="\bar x_A=\frac{375-10}{5}=\frac{365}{5}=73<75" />
+Setiap kelipatan <InlineMath math="p" /> di antara <InlineMath math="1" /> sampai <InlineMath math="n" /> menyumbang satu faktor <InlineMath math="p" />. Kelipatan <InlineMath math="p^2" /> menyumbang satu faktor tambahan, kelipatan <InlineMath math="p^3" /> satu lagi, dan seterusnya. Lambang <InlineMath math="\lfloor y\rfloor" /> menyatakan bilangan bulat terbesar yang tidak melebihi <InlineMath math="y" />. Dengan lambang itu, banyak faktor <InlineMath math="p" /> dalam <InlineMath math="n!" /> adalah
 
-Rata-rata baru kelas A lebih kecil daripada rata-rata kelas B, jadi pernyataan keempat benar.
+<BlockMath math="\left\lfloor\frac{n}{p}\right\rfloor+\left\lfloor\frac{n}{p^2}\right\rfloor+\left\lfloor\frac{n}{p^3}\right\rfloor+\cdots" />
 
-Jadi, pernyataan pertama **salah**, kedua **salah**, ketiga **benar**, dan keempat **benar**.
+Akibatnya, bilangan seperti <InlineMath math="9" /> atau <InlineMath math="27" /> **menyumbang lebih dari satu faktor <InlineMath math="3" />**.
+
+# Syarat untuk setiap prima
+
+Cari <InlineMath math="n" /> terkecil yang memenuhi setiap prima secara terpisah.
+
+<BlockMath math="\begin{aligned}
+\text{prima } 5&:\quad 24!\ \text{memuat } 4,\quad 25!\ \text{memuat } 5+1=6\\
+\text{prima } 3&:\quad 26!\ \text{memuat } 8+2=10,\quad 27!\ \text{memuat } 9+3+1=13\\
+\text{prima } 2&:\quad 19!\ \text{memuat } 9+4+2+1=16,\quad 20!\ \text{memuat } 10+5+2+1=18
+\end{aligned}" />
+
+Jadi prima <InlineMath math="5" /> butuh <InlineMath math="n\ge 25" />, prima <InlineMath math="3" /> butuh <InlineMath math="n\ge 27" />, dan prima <InlineMath math="2" /> butuh <InlineMath math="n\ge 20" />. Banyak faktor <InlineMath math="3" /> **melompat dari <InlineMath math="10" /> ke <InlineMath math="13" />** di <InlineMath math="n=27" />, karena <InlineMath math="27=3^3" /> menyumbang tiga faktor sekaligus. Ketiga syarat terpenuhi bersama tepat ketika <InlineMath math="n\ge 27" />.
+
+# Memeriksa hasilnya
+
+Untuk <InlineMath math="n=27" />, banyak faktor <InlineMath math="2" /> adalah <InlineMath math="13+6+3+1=23\ge 18" />, faktor <InlineMath math="3" /> ada <InlineMath math="13\ge 12" />, dan faktor <InlineMath math="5" /> ada <InlineMath math="5+1=6" />. Untuk <InlineMath math="n=26" />, faktor <InlineMath math="3" /> **hanya <InlineMath math="10" />**, jadi <InlineMath math="26!" /> belum habis dibagi.
+
+Jebakan yang sering muncul: menjawab <InlineMath math="25" /> karena mengira prima terbesar <InlineMath math="5" /> yang menentukan, menjawab <InlineMath math="20" /> karena melihat pangkat terbesar <InlineMath math="2^{18}" />, atau menjawab <InlineMath math="36" /> karena mengira perlu <InlineMath math="12" /> kelipatan <InlineMath math="3" /> dan lupa bahwa <InlineMath math="9" />, <InlineMath math="18" />, dan <InlineMath math="27" /> menyumbang faktor tambahan.
+
+Jadi, bilangan asli terkecil itu adalah <InlineMath math="n=27" />.

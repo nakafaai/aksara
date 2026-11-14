@@ -1,15 +1,45 @@
-Loker yang berada tepat di atas loker Fajar hanya ada jika **Fajar berada di baris bawah**. Dari keempat susunan, Fajar berada di baris bawah pada susunan I dan III.
+Soal ini meminta jumlah semua susunan yang sah, jadi kamu harus menemukan setiap susunan tanpa ada yang terlewat atau terhitung dua kali. Cara yang paling rapi adalah **membagi kasus berdasarkan pos Fikri dan Galih**, karena pasangan itu memakan dua kursi sekaligus.
 
-- Susunan I: Fajar di baris bawah kolom 3, dan di atasnya Eli.
-- Susunan III: Fajar di baris bawah kolom 2, dan di atasnya Eli.
+Tiga fakta dulu, karena ketiganya dipakai di semua kasus.
 
-Pada kedua susunan, yang berada tepat di atas Fajar adalah Eli. Hal ini sesuai dengan sifat yang sudah ditemukan sebelumnya, yaitu Eli dan Fajar selalu berbagi satu kolom.
+- Fikri dan Galih tidak mungkin di medis. Pos medis hanya punya dua kursi dan satu sudah dipakai Jihan (syarat 4).
+- Putri tidak mungkin satu pos dengan Fikri dan Galih. Pos itu hanya menyisakan satu kursi, jadi Putri akan terpisah dari Hana dan Indra (syarat 3).
+- Nanda juga tidak satu pos dengan Fikri dan Galih (syarat 5).
 
-Siswa lain tidak mungkin:
+Jadi, kursi ketiga di pos Fikri dan Galih hanya bisa diisi Hana, Indra, atau Kurnia.
 
-- Ana selalu berada tepat di atas Doni, bukan di atas Fajar.
-- Beni selalu di kolom 1, sedangkan Fajar tidak pernah di kolom 1.
-- Caca juga selalu di kolom 1.
-- Doni selalu berada di baris bawah, jadi tidak mungkin berada di atas loker mana pun.
+**Kasus 1: Fikri dan Galih di registrasi**.
 
-Jadi, loker yang mungkin berada tepat di atas loker Fajar adalah loker Eli.
+- Kursi ketiga untuk Hana. Putri harus bersama Indra, dan medis hanya punya satu kursi kosong, jadi Indra dan Putri masuk logistik. Kursi terakhir logistik diisi Kurnia atau Nanda, dan yang lain masuk medis. Syarat 6 tidak terpicu karena Kurnia tidak di registrasi. Ada <InlineMath math="2" /> susunan.
+- Kursi ketiga untuk Indra. Polanya sama dengan Hana dan Indra bertukar peran. Ada <InlineMath math="2" /> susunan.
+- Kursi ketiga untuk Kurnia. Syarat 6 mewajibkan Nanda di logistik. Putri tidak boleh berdua saja dengan Jihan di medis, jadi Putri juga di logistik. Hana dan Indra harus berpisah, satu di logistik dan satu di medis. Ada <InlineMath math="2" /> susunan.
+
+**Kasus 2: Fikri dan Galih di logistik**. Nanda tidak boleh di logistik. Kontrapositif syarat 6, yaitu "jika Nanda tidak di logistik, Kurnia tidak di registrasi", bernilai sama dengan syarat aslinya. Jadi, Kurnia hanya bisa di logistik atau di medis.
+
+- Kurnia di logistik. Registrasi dan satu kursi medis diisi Hana, Indra, Nanda, dan Putri. Hana dan Indra harus berpisah, jadi satu di registrasi dan satu di medis. Nanda dan Putri masuk registrasi, dan Putri bersama orang yang ada di sana. Ada <InlineMath math="2" /> susunan.
+- Kurnia di medis bersama Jihan. Kursi ketiga logistik diisi Hana atau Indra, lalu registrasi berisi Nanda, Putri, dan orang yang tersisa. Ada <InlineMath math="2" /> susunan.
+
+Jumlahkan kedua kasus.
+
+<BlockMath math="\underbrace{2+2+2}_{\text{kasus 1}}+\underbrace{2+2}_{\text{kasus 2}}=10" />
+
+Berikut kesepuluh susunannya.
+
+| No. | Registrasi | Logistik | Medis |
+| --- | --- | --- | --- |
+| 1 | Fikri, Galih, Hana | Indra, Kurnia, Putri | Jihan, Nanda |
+| 2 | Fikri, Galih, Hana | Indra, Nanda, Putri | Jihan, Kurnia |
+| 3 | Fikri, Galih, Indra | Hana, Kurnia, Putri | Jihan, Nanda |
+| 4 | Fikri, Galih, Indra | Hana, Nanda, Putri | Jihan, Kurnia |
+| 5 | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| 6 | Fikri, Galih, Kurnia | Indra, Nanda, Putri | Hana, Jihan |
+| 7 | Hana, Nanda, Putri | Fikri, Galih, Kurnia | Indra, Jihan |
+| 8 | Indra, Nanda, Putri | Fikri, Galih, Kurnia | Hana, Jihan |
+| 9 | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+| 10 | Indra, Nanda, Putri | Fikri, Galih, Hana | Jihan, Kurnia |
+
+Cek cepat pada tabel: Kurnia hanya muncul di registrasi pada baris 5 dan 6, dan di kedua baris itu Nanda memang di logistik. Di setiap baris, Putri bersama Hana atau Indra, dan Nanda tidak pernah bersama Fikri.
+
+Dua hitungan keliru sering muncul. Kalau kamu hanya mengerjakan kasus Fikri dan Galih di registrasi, kamu berhenti di <InlineMath math="6" />. Kalau kamu lupa **memakai kontrapositif syarat 6** di kasus 2, kamu ikut menghitung dua susunan dengan Kurnia di registrasi dan Nanda di medis, sehingga hasilnya <InlineMath math="12" />.
+
+Jadi, banyak susunan pembagian tugas yang memenuhi keenam syarat adalah <InlineMath math="10" />.

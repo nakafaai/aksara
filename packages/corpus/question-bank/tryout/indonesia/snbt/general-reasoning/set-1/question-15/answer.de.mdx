@@ -1,19 +1,34 @@
-Die Zusatzbedingung "O sitzt K gegenüber" bedeutet **O sitzt auf Stuhl 4**. Nach der vollständigen Analyse sitzt O nur in zwei Anordnungen auf Stuhl 4:
+Eine Aussage, die sicher stimmt, muss in **jeder Reihenfolge gelten, die alle sechs Bedingungen erfüllt**. Eine passende Reihenfolge zu finden reicht also nicht. Du musst wissen, was sich nie ändert.
 
-| Anordnung | Stuhl 1 | Stuhl 2 | Stuhl 3 | Stuhl 4 | Stuhl 5 | Stuhl 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
+Am besten startest du bei Citra, denn drei Bedingungen legen sie gleichzeitig fest. Eka muss vor Citra kommen (Bedingung 3), Eka darf nicht auf Platz <InlineMath math="1" /> (Bedingung 4), und Dimas kommt genau zwei Plätze nach Citra (Bedingung 2).
 
-Du kannst das auch direkt herleiten. O auf Stuhl 4 bedeutet N auf Stuhl 3, weil O direkt nach N sitzt. Frei sind die Stühle 2, 5 und 6. L und M müssen sich gegenübersitzen, also nehmen sie die Stühle 2 und 5. Stuhl 6 bleibt für P, und Stuhl 6 ist tatsächlich gerade.
+Grenze zuerst Citras Platz ein. Eka steht frühestens auf Platz <InlineMath math="2" />, und Citra kommt nach Eka, also steht Citra frühestens auf Platz <InlineMath math="3" />. Dimas steht zwei Plätze nach Citra und höchstens auf Platz <InlineMath math="7" />, also steht Citra spätestens auf Platz <InlineMath math="5" />. Es bleiben drei Kandidaten.
 
-In beiden Anordnungen sitzt P auf Stuhl 6. Also **sitzt P sicher auf Stuhl 6**.
+<BlockMath math="\text{Citras Platz} \in \{3,\ 4,\ 5\}" />
 
-Die anderen Optionen sind nicht sicher:
+Teste dann Citra auf Platz <InlineMath math="3" />. Dimas landet auf Platz <InlineMath math="5" />, und Eka muss auf Platz <InlineMath math="2" />. Frei sind die Plätze <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="7" />. Galih und Hesti brauchen zwei freie Plätze direkt hintereinander, und das einzige solche Paar sind die Plätze <InlineMath math="6" /> und <InlineMath math="7" />. Bedingung 5 verbietet ihnen Platz <InlineMath math="7" />, also fällt dieser Fall weg.
 
-- N sitzt auf Stuhl 3, der nicht neben Stuhl 1 liegt. Diese Aussage ist immer falsch.
-- L sitzt in Anordnung I auf Stuhl 2, in Anordnung II aber auf Stuhl 5.
-- O auf Stuhl 4 sitzt neben den Stühlen 3 und 5, P aber auf Stuhl 6. Diese Aussage ist immer falsch.
-- M sitzt in Anordnung I auf Stuhl 5, in Anordnung II aber auf Stuhl 2.
+Teste danach Citra auf Platz <InlineMath math="4" />. Dimas landet auf Platz <InlineMath math="6" />, und Eka steht auf Platz <InlineMath math="2" /> oder <InlineMath math="3" />.
 
-Wenn O K gegenübersitzt, sitzt P also sicher auf Stuhl 6.
+- Steht Eka auf Platz <InlineMath math="2" />, sind die Plätze <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" /> frei. Keine zwei davon liegen nebeneinander, also finden Galih und Hesti keinen Platz.
+- Steht Eka auf Platz <InlineMath math="3" />, müssen Galih und Hesti auf die Plätze <InlineMath math="1" /> und <InlineMath math="2" />. Für Bayu und Fani bleiben die Plätze <InlineMath math="5" /> und <InlineMath math="7" />. Beide sind ungerade, also muss Fani direkt nach Bayu kommen: auf Platz <InlineMath math="6" />, den Dimas schon hat, oder auf Platz <InlineMath math="8" />, den es nicht gibt.
+
+Citra auf Platz <InlineMath math="3" /> und Citra auf Platz <InlineMath math="4" /> führen beide in eine Sackgasse. Übrig bleibt nur Citra auf Platz <InlineMath math="5" />, und damit steht Dimas immer auf Platz <InlineMath math="7" />. Dieser Fall kommt wirklich vor, zum Beispiel Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas. Dort steht Bayu auf dem geraden Platz <InlineMath math="6" />, also verlangt Bedingung 6 nichts.
+
+Die anderen Aussagen sind nicht sicher. Zu jeder gibt es eine Reihenfolge, die alle Bedingungen erfüllt, die Aussage aber falsch macht.
+
+| Aussage | Gültige Reihenfolge, die sie widerlegt |
+| --- | --- |
+| Bayu auf Platz <InlineMath math="6" /> | Galih, Hesti, Eka, Bayu, Citra, Fani, Dimas |
+| Galih oder Hesti auf Platz <InlineMath math="1" /> | Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas |
+| Eka auf Platz <InlineMath math="2" /> oder <InlineMath math="3" /> | Fani, Galih, Hesti, Eka, Citra, Bayu, Dimas |
+| Fani auf einem ungeraden Platz | Galih, Hesti, Eka, Fani, Citra, Bayu, Dimas |
+
+In allen vier Reihenfolgen steht Citra auf Platz <InlineMath math="5" />, Dimas auf Platz <InlineMath math="7" />, Eka vor Citra und nicht auf Platz <InlineMath math="1" />, und Galih und Hesti stehen nebeneinander und nicht auf Platz <InlineMath math="7" />. Bayu steht immer auf einem geraden Platz, <InlineMath math="4" /> oder <InlineMath math="6" />, also verlangt Bedingung 6 nie etwas.
+
+- Bayu auf Platz <InlineMath math="6" /> ist verlockend, weil dieser Platz oft an Bayu geht. Der Fehler ist, zu vergessen, dass auch Fani Platz <InlineMath math="6" /> bekommen kann, solange Bayu auf einem geraden Platz steht.
+- Galih oder Hesti auf Platz <InlineMath math="1" /> entsteht, wenn du annimmst, das Paar müsse das Seminar eröffnen. Fani kann aber zuerst dran sein.
+- Eka auf Platz <InlineMath math="2" /> oder <InlineMath math="3" /> übersieht, dass Eka direkt vor Citra stehen darf, also auf Platz <InlineMath math="4" />.
+- Fani auf einem ungeraden Platz verwechselt Bayus Regel für ungerade Plätze mit Fani. Bedingung 6 spricht über Bayus Platz, nicht über Fanis.
+
+Sicher stimmt also, dass Dimas auf Platz <InlineMath math="7" /> präsentiert.

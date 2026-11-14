@@ -1,19 +1,35 @@
-The mean depends directly on <InlineMath math="x" />: it is <InlineMath math="\frac{505+x}{8}" />, because the other seven scores add up to 505. The median is the mean of the 4th and 5th values in order, and **those middle values depend on where <InlineMath math="x" /> falls**. So the problem has to be solved case by case.
+There are two steps. First, find <InlineMath math="x" /> from the opposite angles, so you know <InlineMath math="Q" />. Second, find <InlineMath math="\angle ACB" /> through the isosceles triangle and inscribed angles. The exact position of <InlineMath math="C" /> isn't given, but it **doesn't change the size of <InlineMath math="\angle ACB" />**, as you'll see.
 
-# Three cases for the position of x
+# Opposite angles
 
-| Position of <InlineMath math="x" /> | 4th and 5th values | Median | Equation | <InlineMath math="x" /> | Fits the case? |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x\le70" /> | 70 and 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Yes |
-| <InlineMath math="70<x<75" /> | 70 and <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | No |
-| <InlineMath math="x\ge75" /> | 70 and 75 | 72.5 | <InlineMath math="505+x=580" /> | 75 | Yes |
+In a cyclic quadrilateral, **two opposite angles add up to <InlineMath math="180^\circ" />**. The angles at <InlineMath math="A" /> and <InlineMath math="C" /> are opposite.
 
-In the middle case, <InlineMath math="x=75" /> **does not satisfy** <InlineMath math="70<x<75" />, so that case gives no new solution.
+<BlockMath math="\begin{aligned}
+(2x+12)+(3x+18)&=180\\
+5x&=150\\
+x&=30
+\end{aligned}" />
 
-# Checking both solutions
+So <InlineMath math="\angle BAD=72^\circ" />, <InlineMath math="\angle BCD=108^\circ" />, and <InlineMath math="Q=(2\times30-7)^\circ=53^\circ" />.
 
-For <InlineMath math="x=55" />, the mean is <InlineMath math="\frac{560}{8}=70" /> and the median is 70. For <InlineMath math="x=75" />, the mean is <InlineMath math="\frac{580}{8}=72.5" /> and the median is <InlineMath math="\frac{70+75}{2}=72.5" />. **Both are valid**, so their sum is <InlineMath math="55+75=130" />.
+# Inscribed angles on the same arc
 
-The values 55 and 75 are each only one of the solutions. The value 72.5 is the median in the third case, not a value of <InlineMath math="x" />. The value 205 counts 75 twice, although the middle case is not valid.
+Triangle <InlineMath math="ABD" /> is isosceles because <InlineMath math="AB=AD" />, so its two base angles are equal.
 
-So the sum of all possible values of <InlineMath math="x" /> is **130**.
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-72^\circ}{2}=54^\circ" />
+
+The angles <InlineMath math="ACB" /> and <InlineMath math="ADB" /> both stand on the chord <InlineMath math="AB" />, and the points <InlineMath math="C" /> and <InlineMath math="D" /> lie on the same arc. **Inscribed angles that stand on the same arc are equal**, so <InlineMath math="\angle ACB=54^\circ" /> wherever <InlineMath math="C" /> sits on the arc <InlineMath math="BD" />.
+
+Check it with the angle at <InlineMath math="C" />. For the same reason, <InlineMath math="\angle ACD=\angle ABD=54^\circ" />, and <InlineMath math="54^\circ+54^\circ=108^\circ=\angle BCD" />. It matches.
+
+# Comparing the two quantities
+
+You get <InlineMath math="P=54^\circ" /> and <InlineMath math="Q=53^\circ" />, so <InlineMath math="P>Q" />. The gap is small, but **both values are fixed exactly**, so the comparison is certain.
+
+# Traps in the other options
+
+- <InlineMath math="Q>P" /> comes from taking <InlineMath math="\angle ACB" /> as half of <InlineMath math="\angle BAD" />, which is <InlineMath math="36^\circ" />. That half rule **is for a central angle**, not for two inscribed angles.
+- <InlineMath math="P=Q" /> would need <InlineMath math="\angle ACB=53^\circ" />, but the isosceles triangle forces <InlineMath math="54^\circ" />.
+- The not-enough-information option comes from thinking <InlineMath math="\angle ACB" /> changes when <InlineMath math="C" /> moves. Inscribed angles on the chord <InlineMath math="AB" /> always have the same size.
+
+So the quantity <InlineMath math="P" /> is greater than the quantity <InlineMath math="Q" />.

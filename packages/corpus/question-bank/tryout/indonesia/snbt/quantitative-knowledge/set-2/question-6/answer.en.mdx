@@ -1,24 +1,41 @@
-A parabola with a positive <InlineMath math="x^2" /> coefficient opens upward. Its value is always positive, so its graph stays above the <InlineMath math="x" />-axis, exactly when it **neither crosses nor touches the <InlineMath math="x" />-axis**, that is, when its discriminant is negative.
+You need a formula for <InlineMath math="f(x)" /> first, because <InlineMath math="f(a)=f(2)" /> can't be solved from a single value. The plan: build a second equation by swapping <InlineMath math="x" /> and <InlineMath math="\tfrac1x" />, eliminate <InlineMath math="f\left(\tfrac1x\right)" />, then solve for <InlineMath math="a" /> and **drop the forbidden candidate**.
 
-# The discriminant condition
+# A second equation from the swap
 
-With <InlineMath math="a=1" />, <InlineMath math="b=-2k" />, and <InlineMath math="c=k+6" />:
+The equation holds for every <InlineMath math="x\ne0" />, so you **may replace <InlineMath math="x" /> with <InlineMath math="\tfrac1x" />**, which isn't zero either.
+
+<BlockMath math="f\left(\frac1x\right)+2f(x)=\frac3x+3" />
+
+# Removing the partner term
+
+Multiply the second equation by <InlineMath math="2" /> and subtract the original equation. The terms <InlineMath math="2f\left(\tfrac1x\right)" /> **cancel out**, and only <InlineMath math="f(x)" /> is left.
 
 <BlockMath math="\begin{aligned}
-D=(-2k)^2-4(1)(k+6)&<0\\
-4k^2-4k-24&<0\\
-k^2-k-6&<0\\
-(k-3)(k+2)&<0
+4f(x)+2f\left(\tfrac1x\right)-f(x)-2f\left(\tfrac1x\right)&=\frac6x+6-3x-3\\
+3f(x)&=\frac6x-3x+3\\
+f(x)&=\frac2x-x+1
 \end{aligned}" />
 
-A product of two factors is negative when the factors **have opposite signs**, which happens for <InlineMath math="-2<k<3" />.
+Check it in the original equation: <InlineMath math="f(x)+2f\left(\tfrac1x\right)=\tfrac2x-x+1+2\left(2x-\tfrac1x+1\right)=3x+3" />. The formula is right.
 
-# Adding the integers
+# Solving for a
 
-The integers in that interval are <InlineMath math="-1" />, 0, 1, and 2. The endpoints <InlineMath math="k=-2" /> and <InlineMath math="k=3" /> are excluded because there <InlineMath math="D=0" /> and the parabola touches the <InlineMath math="x" />-axis.
+Compute <InlineMath math="f(2)=1-2+1=0" />, so you're looking for <InlineMath math="a" /> with <InlineMath math="f(a)=0" />. Multiply by <InlineMath math="a" />, which is allowed because <InlineMath math="a\ne0" />.
 
-<BlockMath math="-1+0+1+2=2" />
+<BlockMath math="\begin{aligned}
+\frac2a-a+1&=0\\
+2-a^2+a&=0\\
+a^2-a-2&=0\\
+(a-2)(a+1)&=0
+\end{aligned}" />
 
-The value 3 includes both endpoints. The value 5 includes <InlineMath math="k=3" />, while the value 0 includes <InlineMath math="k=-2" />. The value <InlineMath math="-2" /> comes from the sign slip <InlineMath math="k^2+k-6<0" />, which gives <InlineMath math="-3<k<2" />.
+The candidate <InlineMath math="a=2" /> is **ruled out by the condition <InlineMath math="a\ne2" />**, so <InlineMath math="a=-1" />. Check: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
-So the sum of all integers <InlineMath math="k" /> that work is **2**.
+# Traps in the other options
+
+- <InlineMath math="-2" /> is the product of the two roots of <InlineMath math="a^2-a-2=0" />, not the other root. From <InlineMath math="2\cdot a=-2" />, the other root is <InlineMath math="-1" />.
+- <InlineMath math="-\tfrac14" /> comes from **reading the elimination result for <InlineMath math="f\left(\tfrac1x\right)" />**, which is <InlineMath math="2x-\tfrac1x+1" />, as the formula for <InlineMath math="f(x)" />.
+- <InlineMath math="\tfrac12" /> comes from assuming <InlineMath math="f(a)=f\left(\tfrac1a\right)" /> because the equation pairs <InlineMath math="x" /> with <InlineMath math="\tfrac1x" />, but <InlineMath math="f\left(\tfrac12\right)=4-\tfrac12+1=\tfrac92\ne0" />.
+- <InlineMath math="1" /> comes from adding the two equations instead of subtracting them during elimination, which gives the wrong formula <InlineMath math="f(x)=\tfrac2x+x+3" />.
+
+So the value of <InlineMath math="a" /> is <InlineMath math="-1" />.

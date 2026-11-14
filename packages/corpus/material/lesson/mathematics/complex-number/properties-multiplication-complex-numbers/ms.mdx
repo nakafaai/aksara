@@ -1,0 +1,219 @@
+export const metadata = {
+  title: "Sifat Pendaraban Nombor Kompleks",
+  description: "Gunakan hukum pendaraban dan songsangan pendaraban untuk mengubah bentuk dan membuktikan ungkapan nombor kompleks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Hukum Algebra bagi Hasil Darab Kompleks
+
+Pendaraban nombor kompleks mengikut <Highlight>hukum kalis tukar tertib, kalis sekutuan, identiti dan kalis agihan yang sudah kamu kenal</Highlight>. Katakan <InlineMath math="z_1, z_2," /> dan <InlineMath math="z_3" /> ialah sebarang nombor kompleks. Setiap hukum disemak dengan satu contoh berangka, jadi kamu boleh ikut sendiri pengembangan hasil darabnya.
+
+### Sifat Kalis Tukar Tertib
+
+Sifat kalis tukar tertib bermaksud **tertib pendaraban** dua nombor kompleks tidak mempengaruhi hasilnya.
+
+<BlockMath math="z_1 \times z_2 = z_2 \times z_1" />
+
+**Contoh**:
+
+Katakan <InlineMath math="z_1 = 1+2i" /> dan <InlineMath math="z_2 = 3-i" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}z_1 \times z_2 &= (1+2i)(3-i) \\ &= 1(3-i) + 2i(3-i) \\ &= 3-i+6i-2i^2 \\ &= 3+5i-2(-1) \\ &= 5+5i\end{aligned}" />
+  <BlockMath math="\begin{aligned}z_2 \times z_1 &= (3-i)(1+2i) \\ &= 3(1+2i) - i(1+2i) \\ &= 3+6i-i-2i^2 \\ &= 3+5i-2(-1) \\ &= 5+5i\end{aligned}" />
+</MathContainer>
+
+Kedua-dua hasil darab sama dengan <InlineMath math="5+5i" />, dan ini mengesahkan sifat kalis tukar tertib dalam contoh ini.
+
+Hasil darab juga boleh digambarkan. Untuk <InlineMath math="z_1 = 1 + i" /> dan <InlineMath math="z_2 = 2 + i" />, hasil darabnya ialah <InlineMath math="z_1z_2 = 2 + i + 2i + i^2 = 1 + 3i" />. Panjangnya ialah <InlineMath math="\sqrt{10} = \sqrt 2 \cdot \sqrt 5" />, iaitu hasil darab kedua-dua panjang, dan menukar tertib faktor memberikan titik yang sama.
+
+<MathVisual
+  title={<>Hasil darab <InlineMath math="1 + i" /> dan <InlineMath math="2 + i" /></>}
+  description={<>Anak panah <InlineMath math="1 + i" />, <InlineMath math="2 + i" /> dan hasil darabnya <InlineMath math="1 + 3i" />, yang panjangnya, <InlineMath math="\sqrt{10}" />, ialah <InlineMath math="\sqrt2 \cdot \sqrt5" />.</>}
+  labels={{
+    z1: <InlineMath math="1 + i" />,
+    z2: <InlineMath math="2 + i" />,
+    p: <InlineMath math="1 + 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "p", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 1, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Sifat Kalis Sekutuan
+
+Sifat kalis sekutuan menyatakan bahawa apabila tiga atau lebih nombor kompleks didarab, **cara pendaraban itu dikumpulkan** tidak mengubah hasilnya.
+
+<BlockMath math="(z_1 \times z_2) \times z_3 = z_1 \times (z_2 \times z_3)" />
+
+**Contoh**:
+
+Katakan <InlineMath math="z_1 = i" />, <InlineMath math="z_2 = 2" />, dan <InlineMath math="z_3 = 3-i" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}(z_1 \times z_2) \times z_3 &= (i \times 2) \times (3-i) \\ &= 2i(3-i) \\ &= 6i - 2i^2 \\ &= 6i - 2(-1) \\ &= 2+6i\end{aligned}" />
+  <BlockMath math="\begin{aligned}z_1 \times (z_2 \times z_3) &= i \times (2 \times (3-i)) \\ &= i \times (6-2i) \\ &= 6i - 2i^2 \\ &= 6i - 2(-1) \\ &= 2+6i\end{aligned}" />
+</MathContainer>
+
+Kedua-dua cara pengumpulan memberikan <InlineMath math="2+6i" />, dan ini mengesahkan sifat kalis sekutuan dalam contoh ini.
+
+Faktor seperti <InlineMath math="2i" /> membuat dua perkara serentak: ia menggandakan panjang dan memutarkan nombor sebanyak suku pusingan. Untuk <InlineMath math="z = 2 + i" />, <InlineMath math="2iz = 4i + 2i^2 = -2 + 4i" />, iaitu dua kali lebih jauh dari asalan dan bersudut tegak dengan <InlineMath math="z" />. Mendarab dengan <InlineMath math="2" /> dan dengan <InlineMath math="i" />, dalam mana-mana tertib, memberikan titik yang sama.
+
+<MathVisual
+  title={<>Pendaraban dengan <InlineMath math="2i" /> menggandakan panjang dan memutarkan arah</>}
+  description={<>Titik <InlineMath math="z = 2 + i" /> dan titik <InlineMath math="2iz = -2 + 4i" />, yang dua kali lebih jauh dari asalan dan berputar suku pusingan lagi.</>}
+  labels={{
+    z: <InlineMath math="z = 2 + i" />,
+    w: <InlineMath math="2iz = -2 + 4i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -0.5, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "w", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "z", objectId: "z", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "w", objectId: "w", at: { x: -2, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Identiti Pendaraban
+
+Nombor kompleks <InlineMath math="1 = 1+0i" /> ialah **unsur identiti bagi pendaraban**. Maksudnya, sebarang nombor kompleks yang didarab dengan <InlineMath math="1" /> menghasilkan nombor kompleks itu sendiri.
+
+<BlockMath math="z \times 1 = z = 1 \times z" />
+
+**Contoh**:
+
+Katakan <InlineMath math="z = 4-7i" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} z \times 1 &amp;= (4-7i)(1+0i) \\ &amp;= 4(1) - (-7)(0) \\ &amp;\quad{}+ i(4(0) + (-7)(1)) \\ &amp;= 4 - 7i \\ &amp;= z \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;1 \times z \\ &amp;= (1+0i)(4-7i) \\ &amp;= 1(4) - (0)(-7) + i(1(-7) + 0(4)) \\ &amp;= 4 - 7i \\ &amp;= z \end{aligned}" />
+</MathContainer>
+
+### Sifat Kalis Agihan Pendaraban terhadap Penambahan
+
+Sifat ini menghubungkan **pendaraban dan penambahan** nombor kompleks.
+
+<BlockMath math="\begin{aligned} &amp;z_1 \times (z_2 + z_3) \\ &amp;= (z_1 \times z_2) + (z_1 \times z_3) \end{aligned}" />
+
+**Contoh**:
+
+Katakan <InlineMath math="z_1=2" />, <InlineMath math="z_2 = 1+i" />, <InlineMath math="z_3 = 3-2i" />.
+
+**Bahagian kiri**: <InlineMath math="z_1 \times (z_2 + z_3)" />
+
+<BlockMath math="z_1(z_2+z_3)=2((1+i)+(3-2i))=2(4-i)=8-2i" />
+
+**Bahagian kanan**: <InlineMath math="(z_1 \times z_2) + (z_1 \times z_3)" />
+
+<BlockMath math="z_1z_2+z_1z_3=2(1+i)+2(3-2i)=(2+2i)+(6-4i)=8-2i" />
+
+Kedua-dua belah sama dengan <InlineMath math="8-2i" />, dan ini mengesahkan hukum kalis agihan dalam contoh ini.
+
+## Contoh Bukti Menggunakan Sifat
+
+Gunakan **sifat kalis agihan** untuk mendapat empat sebutan, kemudian **sifat kalis tukar tertib** untuk menyamakan dua hasil darab silang. Akhir sekali, gabungkan dua sebutan yang sama itu menjadi dua kali hasil darabnya:
+
+<BlockMath math="\begin{aligned}(z_1+z_2)^2&amp;=(z_1+z_2)(z_1+z_2) \\ &amp;=z_1(z_1+z_2)+z_2(z_1+z_2) \\ &amp;=z_1^2+z_1z_2+z_2z_1+z_2^2 \\ &amp;=z_1^2+z_1z_2+z_1z_2+z_2^2 \\ &amp;=z_1^2+2z_1z_2+z_2^2\end{aligned}" />
+
+Pendaraban dengan <InlineMath math="i" /> memutarkan nombor sebanyak suku pusingan mengelilingi asalan. Mula pada <InlineMath math="z = 3 + i" />: <InlineMath math="iz = 3i + i^2 = -1 + 3i" />. Tiga pendaraban seterusnya memberikan <InlineMath math="-3 - i" />, <InlineMath math="1 - 3i" /> dan kembali ke <InlineMath math="3 + i" />, iaitu bucu-bucu sebuah segi empat sama, kerana <InlineMath math="i^4 = 1" />.
+
+<MathVisual
+  title={<>Pendaraban dengan i ialah putaran sebanyak <InlineMath math="90" /> darjah</>}
+  description={<>Titik <InlineMath math="z" />, <InlineMath math="iz" />, <InlineMath math="i^2z" /> dan <InlineMath math="i^3z" /> untuk <InlineMath math="z = 3 + i" />, iaitu empat bucu sebuah segi empat sama di sekeliling asalan.</>}
+  labels={{
+    w0: <InlineMath math="z = 3 + i" />,
+    w1: <InlineMath math="iz = -1 + 3i" />,
+    w2: <InlineMath math="i^2 z = -3 - i" />,
+    w3: <InlineMath math="i^3 z = 1 - 3i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 3, y: 1 }, { x: -1, y: 3 }, { x: -3, y: -1 }, { x: 1, y: -3 }], appearance: "reference" },
+      { id: "w0r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "construction" },
+      { id: "w1r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "construction" },
+      { id: "w2r", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "w3r", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "w0", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "w1", kind: "point", at: { x: -1, y: 3 }, appearance: "primary" },
+      { id: "w2", kind: "point", at: { x: -3, y: -1 }, appearance: "primary" },
+      { id: "w3", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "w0", objectId: "w0", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "w1", objectId: "w1", at: { x: -1, y: 3 }, placement: "above" },
+      { key: "w2", objectId: "w2", at: { x: -3, y: -1 }, placement: "left" },
+      { key: "w3", objectId: "w3", at: { x: 1, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Songsangan Pendaraban
+
+Setiap **nombor kompleks bukan sifar** <InlineMath math="z = x + iy \neq 0" /> ada songsangan pendaraban, yang ditulis sebagai <InlineMath math="z^{-1}" /> atau <InlineMath math="1/z" />, dengan keadaan <InlineMath math="z \times z^{-1} = 1" />.
+
+Katakan <InlineMath math="z^{-1} = u + iv" />. Maka:
+
+<MathContainer>
+  <BlockMath math="z \times z^{-1} = 1" />
+  <BlockMath math="(x+iy)(u+iv) = 1 + 0i" />
+  <BlockMath math="(xu - yv) + i(xv + uy) = 1 + 0i" />
+</MathContainer>
+
+Berdasarkan kesamaan dua nombor kompleks, kita dapat sistem persamaan ini:
+
+1.  <InlineMath math="xu - yv = 1" />
+2.  <InlineMath math="xv + uy = 0" />
+
+Untuk mengasingkan <InlineMath math="u" />, darab persamaan pertama dengan <InlineMath math="x" /> dan persamaan kedua dengan <InlineMath math="y" />, kemudian tambahkan kedua-duanya:
+
+<MathContainer>
+  <BlockMath math="x^2u-xyv=x" />
+  <BlockMath math="xyv+y^2u=0" />
+  <BlockMath math="(x^2+y^2)u=x" />
+</MathContainer>
+
+Untuk mengasingkan <InlineMath math="v" />, darab persamaan pertama dengan <InlineMath math="-y" /> dan persamaan kedua dengan <InlineMath math="x" />, kemudian tambahkan kedua-duanya. Oleh sebab <InlineMath math="z\neq0" />, maka <InlineMath math="x^2+y^2>0" />, jadi kita boleh membahagi dengan nilai ini:
+
+<MathContainer>
+  <BlockMath math="-xyu+y^2v=-y" />
+  <BlockMath math="x^2v+xyu=0" />
+  <BlockMath math="(x^2+y^2)v=-y" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="u = \frac{x}{x^2+y^2}" />
+  <BlockMath math="v = -\frac{y}{x^2+y^2}" />
+</MathContainer>
+
+Jadi, songsangan pendaraban bagi <InlineMath math="z = x+iy" /> ialah:
+
+<BlockMath math="z^{-1} = \frac{x}{x^2+y^2} - i\frac{y}{x^2+y^2}" />
+
+Oleh sebab <InlineMath math="x^2+y^2 = |z|^2" /> dan <InlineMath math="x-iy = \bar{z}" />, rumus songsangan itu juga boleh ditulis sebagai:
+
+<BlockMath math="z^{-1} = \frac{\bar{z}}{|z|^2}" />

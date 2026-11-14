@@ -1,28 +1,54 @@
-Bilangan kuadrat sempurna memiliki pangkat genap pada setiap faktor prima, sedangkan bilangan pangkat tiga sempurna memiliki pangkat kelipatan 3. Jadi tulis <InlineMath math="n=2^a\,3^b\,5^c" /> dan tentukan **setiap pangkat secara terpisah**. Faktor prima lain hanya akan membuat <InlineMath math="n" /> lebih besar.
+Kamu mencari dua bilangan asli yang jumlahnya <InlineMath math="112" /> dan yang FPB ditambah KPK-nya <InlineMath math="392" />. Rencananya begini: tulis kedua bilangan sebagai kelipatan FPB-nya, uji setiap nilai FPB yang mungkin, lalu **buang pasangan yang pembaginya tidak saling prima**.
 
-# Syarat untuk setiap pangkat
+# Menulis kedua bilangan lewat FPB
 
-Dengan <InlineMath math="20=2^2\cdot5" /> dan <InlineMath math="12=2^2\cdot3" />:
+Misalkan FPB kedua bilangan adalah <InlineMath math="d" />. Karena <InlineMath math="d" /> membagi <InlineMath math="a" /> dan <InlineMath math="b" />, kamu bisa menulis <InlineMath math="a=dm" /> dan <InlineMath math="b=dn" /> untuk bilangan asli <InlineMath math="m" /> dan <InlineMath math="n" />. Di sini **<InlineMath math="m" /> dan <InlineMath math="n" /> wajib saling prima**, artinya FPB keduanya <InlineMath math="1" />. Alasannya, kalau <InlineMath math="m" /> dan <InlineMath math="n" /> masih punya faktor bersama, faktor itu ikut masuk ke FPB, sehingga FPB-nya lebih besar dari <InlineMath math="d" />.
+
+Dengan syarat itu, KPK kedua bilangan sama dengan <InlineMath math="dmn" />. Kedua informasi di soal menjadi dua persamaan.
 
 <BlockMath math="\begin{aligned}
-20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
-12n&=2^{a+2}\,3^{b+1}\,5^{c}
+d(m+n)&=112\\
+d+dmn=d(1+mn)&=392
 \end{aligned}" />
 
-| Faktor prima | Syarat kuadrat dari <InlineMath math="20n" /> | Syarat pangkat tiga dari <InlineMath math="12n" /> | Pangkat terkecil |
-| :---: | :---: | :---: | :---: |
-| 2 | <InlineMath math="a+2" /> genap | <InlineMath math="a+2" /> kelipatan 3 | <InlineMath math="a=4" /> |
-| 3 | <InlineMath math="b" /> genap | <InlineMath math="b+1" /> kelipatan 3 | <InlineMath math="b=2" /> |
-| 5 | <InlineMath math="c+1" /> genap | <InlineMath math="c" /> kelipatan 3 | <InlineMath math="c=3" /> |
+# Mencari nilai FPB yang mungkin
 
-Setiap pangkat harus **memenuhi dua syarat sekaligus**. Misalnya <InlineMath math="a" /> genap dan <InlineMath math="a+2" /> kelipatan 3, sehingga nilai terkecilnya 4.
+Persamaan pertama menunjukkan bahwa <InlineMath math="d" /> membagi <InlineMath math="112" />, dan persamaan kedua menunjukkan bahwa <InlineMath math="d" /> membagi <InlineMath math="392" />. Jadi **<InlineMath math="d" /> harus membagi FPB dari <InlineMath math="112" /> dan <InlineMath math="392" />**, yaitu <InlineMath math="56" />. Calon nilai <InlineMath math="d" /> adalah <InlineMath math="1, 2, 4, 7, 8, 14, 28, 56" />.
 
-# Menghitung dan memeriksa
+Untuk setiap calon, kamu tahu jumlah <InlineMath math="m+n=\frac{112}{d}" /> dan hasil kali <InlineMath math="mn=\frac{392}{d}-1" />. Bilangan <InlineMath math="m" /> dan <InlineMath math="n" /> adalah akar persamaan <InlineMath math="t^2-(m+n)t+mn=0" />, jadi keduanya bulat hanya jika diskriminan <InlineMath math="(m+n)^2-4mn" /> berupa bilangan kuadrat.
 
-<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{.}000" />
+| <InlineMath math="d" /> | <InlineMath math="m+n" /> | <InlineMath math="mn" /> | Diskriminan | Hasil |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="112" /> | <InlineMath math="391" /> | <InlineMath math="10{.}980" /> | bukan kuadrat |
+| <InlineMath math="2" /> | <InlineMath math="56" /> | <InlineMath math="195" /> | <InlineMath math="2{.}356" /> | bukan kuadrat |
+| <InlineMath math="4" /> | <InlineMath math="28" /> | <InlineMath math="97" /> | <InlineMath math="396" /> | bukan kuadrat |
+| <InlineMath math="7" /> | <InlineMath math="16" /> | <InlineMath math="55" /> | <InlineMath math="36" /> | <InlineMath math="m=5,\ n=11" /> |
+| <InlineMath math="8" /> | <InlineMath math="14" /> | <InlineMath math="48" /> | <InlineMath math="4" /> | <InlineMath math="m=6,\ n=8" /> |
+| <InlineMath math="14" /> | <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="-44" /> | tidak ada |
+| <InlineMath math="28" /> | <InlineMath math="4" /> | <InlineMath math="13" /> | <InlineMath math="-36" /> | tidak ada |
+| <InlineMath math="56" /> | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="-20" /> | tidak ada |
 
-Cek: <InlineMath math="20n=360{.}000=600^2" /> dan <InlineMath math="12n=216{.}000=60^3" />.
+# Menyaring dengan syarat saling prima
 
-Nilai 5 hanya memenuhi syarat kuadrat, karena <InlineMath math="20\cdot5=100" />. Nilai 18 hanya memenuhi syarat pangkat tiga, karena <InlineMath math="12\cdot18=216" />. Nilai 90 adalah KPK keduanya, tetapi <InlineMath math="20\cdot90=1800" /> bukan kuadrat sempurna. Nilai 720 memenuhi syarat kuadrat, tetapi <InlineMath math="12\cdot720" /> hanya memuat <InlineMath math="5^1" />.
+Ada dua calon yang lolos uji diskriminan. Untuk <InlineMath math="d=8" />, pasangan <InlineMath math="m=6" /> dan <InlineMath math="n=8" /> sama-sama genap, jadi **pasangan ini melanggar syarat saling prima**. Bilangannya memang <InlineMath math="48" /> dan <InlineMath math="64" />, tetapi FPB keduanya <InlineMath math="16" />, bukan <InlineMath math="8" />, dan KPK-nya <InlineMath math="192" />, sehingga jumlahnya <InlineMath math="208" />, bukan <InlineMath math="392" />.
 
-Jadi, nilai <InlineMath math="n" /> terkecil adalah **18.000**.
+Untuk <InlineMath math="d=7" />, pasangan <InlineMath math="m=5" /> dan <InlineMath math="n=11" /> saling prima. Kedua bilangannya <InlineMath math="a=35" /> dan <InlineMath math="b=77" />. Coba cek ke soal.
+
+<BlockMath math="\begin{aligned}
+35+77&=112\\
+\text{FPB}+\text{KPK}&=7+385=392\\
+77-35&=42
+\end{aligned}" />
+
+Kedua syarat terpenuhi, dan pasangan ini satu-satunya yang lolos, jadi selisihnya pasti <InlineMath math="42" />.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain muncul dari **satu langkah yang terlewat** di jalan tadi.
+
+- <InlineMath math="16" /> muncul jika kamu memakai <InlineMath math="48" /> dan <InlineMath math="64" /> tanpa memeriksa bahwa <InlineMath math="6" /> dan <InlineMath math="8" /> tidak saling prima.
+- <InlineMath math="6" /> adalah selisih <InlineMath math="11-5" />, yaitu selisih <InlineMath math="m" /> dan <InlineMath math="n" /> yang lupa dikalikan dengan FPB <InlineMath math="7" />.
+- <InlineMath math="2" /> adalah selisih <InlineMath math="8-6" /> dari pasangan yang seharusnya dibuang, juga tanpa dikalikan dengan FPB.
+- <InlineMath math="0" /> muncul jika kamu langsung menganggap FPB kedua bilangan sama dengan FPB dari <InlineMath math="112" /> dan <InlineMath math="392" />, yaitu <InlineMath math="56" />, sehingga kedua bilangan sama-sama <InlineMath math="56" />. Padahal untuk <InlineMath math="56" /> dan <InlineMath math="56" />, FPB ditambah KPK hanya <InlineMath math="112" />.
+
+Jadi, selisih kedua bilangan itu adalah <InlineMath math="42" />.

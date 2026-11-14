@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "argument-evaluation",
   },
-  stimulus: "recycling-rate",
+  stimulus: "solar-heat",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The city collects far less waste each month than the report claims.",
+            "It counts the panels' output in kWh instead of as a share of the electricity the school uses.",
         },
         {
           correct: false,
-          label: "It includes waste from factories as well as from households.",
+          label:
+            "It assumes that July was the hottest month, although the table shows that June was hotter.",
         },
         {
           correct: true,
           label:
-            "It counts what goes into bins, not what is actually recycled.",
+            "It judges heat by total output, which more sunlight can raise even while each unit of sunlight is used less well.",
         },
         {
           correct: false,
           label:
-            "The newspaper checked a month in which far more glass was collected.",
+            "It forgets that the panels were not washed after March, so the dust on the glass, not the heat, explains the whole of July's loss.",
         },
         {
           correct: false,
           label:
-            "It leaves out paper and cardboard, the largest recycled material.",
+            "It compares July with March, when the panels were new and had not yet lost any of their efficiency.",
         },
       ],
     },

@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Sudut Pusat pada Lengkok",
+  description: "Kaitkan ukuran sudut pusat dengan lengkoknya, dan kira satu ukuran daripada ukuran yang lain.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-12",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+
+## Takrif Sudut Pusat
+
+Sudut pusat dibentuk oleh dua jejari dan bucunya terletak <Highlight>di pusat bulatan</Highlight>. Sepotong piza ada bentuk yang sama: hujungnya yang tajam berada di pusat, dan dua tepinya yang lurus mengikut jejari.
+
+Dalam bulatan berpusat <InlineMath math="O" />, biar <InlineMath math="A" /> dan <InlineMath math="B" /> terletak pada lilitan. Maka <InlineMath math="\angle AOB" /> ialah sudut pusat, dan sudut ini dicangkum oleh lengkok <InlineMath math="AB" /> di antara kedua-dua titik itu.
+
+<MathVisual
+  title={<>Gambaran Sudut Pusat <InlineMath math="\angle AOB" /></>}
+  description={
+    <>
+      Sudut pusat yang dibentuk oleh dua jejari <InlineMath math="OA" /> dan{" "}
+      <InlineMath math="OB" /> dengan bucunya di pusat bulatan{" "}
+      <InlineMath math="O" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+    "l3": <InlineMath math="\theta=120^\circ" />,
+    "l4": <>Lengkok <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(Math.PI / 6), y: 0.75 }, { x: 3 * Math.cos(Math.PI / 6), y: 1.5 }], appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 1.3, y: 0.75 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(5 * Math.PI / 6), y: 0.75 }, { x: 3 * Math.cos(5 * Math.PI / 6), y: 1.5 }], appearance: "primary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2-p1", kind: "point", at: { x: -1.3, y: 0.75 }, appearance: "primary" },
+      { id: "s2-p2", kind: "point", at: { x: -2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(1.5 * cos(((pi / 6) + (((t / 5) * ((2 * pi) / 3)) / 20))))", y: "(1.5 * sin(((pi / 6) + (((t / 5) * ((2 * pi) / 3)) / 20))))", parameter: { min: 0, max: 100 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos(((pi / 6) + ((t * ((2 * pi) / 3)) / 60))))", y: "(3 * sin(((pi / 6) + ((t * ((2 * pi) / 3)) / 60))))", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(3 * cos((t * ((2 * pi) / 100))))", y: "(3 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.3, y: 0.75 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.3, y: 0.75 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Hubungan antara Sudut Pusat dan Lengkok
+
+<Highlight>Sudut pusat dan lengkok yang dipotongnya</Highlight> ada ukuran darjah yang sama. Jadi sudut pusat <InlineMath math="60^\circ" /> memotong lengkok <InlineMath math="60^\circ" />.
+
+Kalau <InlineMath math="\angle AOB = 60^\circ" />, lengkok <InlineMath math="AB" /> juga berukuran <InlineMath math="60^\circ" />. Kedua-dua nombor itu ialah ukuran darjah. Panjang lengkok pula menggunakan unit panjang seperti sentimeter.
+
+## Jenis Lengkok Berdasarkan Sudut Pusat
+
+Sudut pusat memilih satu **pecahan lilitan**. Bandingkan sudut itu dengan setengah pusingan untuk membezakan tiga jenis lengkok. Dua lengkok yang ada titik hujung yang sama bersama-sama membentuk satu pusingan lengkap.
+
+### Lengkok Minor
+
+Lengkok minor mencangkum sudut pusat yang kurang daripada <InlineMath math="180^\circ" />. Lengkok ini **lebih pendek daripada setengah lilitan**. Pada <InlineMath math="90^\circ" />, lengkok itu meliputi suku lilitan, kerana <InlineMath math="90/360" /> tepat satu perempat.
+
+### Lengkok Semibulatan
+
+Lengkok semibulatan ialah lengkok yang mencangkum sudut pusat tepat <InlineMath math="180^\circ" />. Kedua-dua titik hujungnya terletak pada **satu diameter**, jadi panjang lengkok ini ialah setengah daripada lilitan bulatan itu.
+
+### Lengkok Major
+
+Lengkok major mencangkum **sudut pusat refleks** yang lebih besar daripada <InlineMath math="180^\circ" />. Lengkok ini lebih panjang daripada setengah lilitan. Ukuran darjahnya ialah baki satu pusingan lengkap selepas kamu tolak ukuran lengkok minor yang sepadan:
+
+<BlockMath math="\theta_{\mathrm{major}}=360^\circ-60^\circ=300^\circ" />
+
+<MathVisual
+  title={<>Lengkok Minor dan Major dengan Titik Hujung yang Sama</>}
+  description={<>Lengkok minor <InlineMath math="60" /> darjah dan lengkok major <InlineMath math="300" /> darjah bersama-sama membentuk satu lilitan penuh.</>}
+  labels={{
+    "l1": <InlineMath math="60^\circ" />,
+    "l2": <InlineMath math="300^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3.46 }, appearance: "secondary" },
+      { id: "s4", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 60, sweepDegrees: 300, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s5", at: { x: -3.46, y: -2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+
+## Pengiraan Panjang Lengkok
+
+Panjang lengkok boleh dikira menggunakan nisbah antara sudut pusat dengan sudut penuh bulatan. Rumus asas untuk mengira panjang lengkok ialah:
+
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+
+Pemboleh ubah dalam rumus ini ialah:
+- <InlineMath math="s" /> = panjang lengkok
+- <InlineMath math="\theta" /> = ukuran sudut pusat dalam darjah
+- <InlineMath math="r" /> = jejari bulatan
+
+Sudut dalam radian ialah **panjang lengkok dibahagi dengan jejari**, jadi kalau sudutnya dalam radian, rumusnya terus menjadi:
+
+<BlockMath math="s = \theta \times r" />
+
+Di sini <InlineMath math="\theta" /> mesti diukur dalam radian.
+
+## Mengira Panjang Lengkok daripada Sudut Pusat
+
+Ambil satu bulatan berjejari <InlineMath math="r = 6 \text{ cm}" /> dengan sudut pusat <InlineMath math="\theta = 120^\circ" />.
+
+Sudut ini meliputi **satu pertiga pusingan**, jadi ambil satu pertiga daripada lilitan:
+
+<MathContainer>
+<BlockMath math="s = \frac{120^\circ}{360^\circ} \times 2\pi \times 6" />
+<BlockMath math="s = \frac{1}{3} \times 12\pi" />
+<BlockMath math="s = 4\pi \text{ cm}" />
+</MathContainer>
+
+Jadi lengkok yang sepadan dengan sudut pusat <InlineMath math="120^\circ" /> panjangnya <InlineMath math="4\pi \text{ cm}" />, atau lebih kurang <InlineMath math="12.57 \text{ cm}" />.
+
+<MathVisual
+  title={<>Contoh Sudut Pusat <InlineMath math="120^\circ" /></>}
+  description={<>Lengkok <InlineMath math="120^\circ" /> di antara dua jejari, yang panjangnya diberi oleh pengiraan tadi.</>}
+  labels={{
+    "l1": <InlineMath math="r=6\,\mathrm{cm}" />,
+    "l2": <InlineMath math="r=6\,\mathrm{cm}" />,
+    "l3": <InlineMath math="\theta=120^\circ" />,
+    "l4": <InlineMath math="s=4\pi\,\mathrm{cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 6, y: 0 }], appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 6, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -1.5, y: 3 * Math.sin(2 * Math.PI / 3) }, { x: -3, y: 6 * Math.sin(2 * Math.PI / 3) }], appearance: "primary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2-p1", kind: "point", at: { x: -1.5, y: 2.6 }, appearance: "primary" },
+      { id: "s2-p2", kind: "point", at: { x: -3, y: 5.2 }, appearance: "primary" },
+      { id: "s3", kind: "parametric", x: "(3 * cos(((t * ((2 * pi) / 3)) / 24)))", y: "(3 * sin(((t * ((2 * pi) / 3)) / 24)))", parameter: { min: 0, max: 24 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(6 * cos(((t * ((2 * pi) / 3)) / 40)))", y: "(6 * sin(((t * ((2 * pi) / 3)) / 40)))", parameter: { min: 0, max: 40 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(6 * cos((t * ((2 * pi) / 100))))", y: "(6 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 5.2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Contoh Sudut Pusat
+
+**Jarum minit** jam membuat satu pusingan setiap jam. Dalam lima minit, jarum itu berpusing sebanyak <InlineMath math="30^\circ" />. Kalau panjang jarum itu <InlineMath math="10\text{ cm}" />, hujungnya bergerak sepanjang lengkok:
+
+<BlockMath math="s=\frac{30^\circ}{360^\circ}\times2\pi(10)=\frac{5\pi}{3}\text{ cm}" />
+
+## Latihan
+
+Setiap soalan mengaitkan sudut pusat dengan lengkok yang dipotongnya, jadi pilih antara **darjah dan radian** dan kekalkan satu unit sepanjang pengiraan.
+
+1. Satu bulatan ada jejari <InlineMath math="8 \text{ cm}" />. Kalau sudut pusat bagi satu lengkok ialah <InlineMath math="45^\circ" />, kira panjang lengkok itu.
+
+2. Diberi panjang lengkok satu bulatan ialah <InlineMath math="10\pi \text{ cm}" /> dan jejarinya ialah <InlineMath math="15 \text{ cm}" />. Tentukan ukuran sudut pusat bagi lengkok itu.
+
+3. Dalam satu bulatan berpusat <InlineMath math="O" />, ada sudut pusat <InlineMath math="\angle AOB = 72^\circ" />. Kalau jejari bulatan itu <InlineMath math="r = 5 \text{ cm}" />, tentukan panjang lengkok <InlineMath math="AB" /> dan nyatakan jawapannya dalam sebutan <InlineMath math="\pi" />.
+
+4. Sebuah roda basikal berjejari <InlineMath math="30 \text{ cm}" /> berputar sebanyak <InlineMath math="150^\circ" /> pada gandar yang tetap. Berapa jauhkah satu titik pada rim roda itu bergerak sepanjang laluan bulatnya?
+
+### Jalan Kerja
+
+Perhatikan **pecahan daripada satu pusingan lengkap** dalam soalan satu, tiga dan empat. Dalam soalan dua, susun semula persamaan kerana sudut itulah yang tidak diketahui.
+
+**Penyelesaian 1**
+
+Diberi: <InlineMath math="r = 8 \text{ cm}" /> dan <InlineMath math="\theta = 45^\circ" />
+
+Cari: Panjang lengkok <InlineMath math="s" />
+
+**Langkah 1**: Guna rumus panjang lengkok
+
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+
+**Langkah 2**: Gantikan nilai yang diketahui
+
+<BlockMath math="s = \frac{45^\circ}{360^\circ} \times 2\pi \times 8" />
+
+**Langkah 3**: Permudahkan pecahan
+
+<BlockMath math="s = \frac{1}{8} \times 16\pi" />
+
+**Langkah 4**: Kira jawapan akhir
+
+<BlockMath math="s = 2\pi \text{ cm}" />
+
+Jadi, panjang lengkok ialah <InlineMath math="2\pi \text{ cm}" /> atau lebih kurang <InlineMath math="6.28 \text{ cm}" />.
+
+**Penyelesaian 2**
+
+Diberi: <InlineMath math="s = 10\pi \text{ cm}" /> dan <InlineMath math="r = 15 \text{ cm}" />
+
+Cari: Ukuran sudut pusat <InlineMath math="\theta" />
+
+**Langkah 1**: Guna rumus panjang lengkok
+
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+
+**Langkah 2**: Gantikan nilai yang diketahui
+
+<BlockMath math="10\pi = \frac{\theta}{360^\circ} \times 2\pi \times 15" />
+
+**Langkah 3**: Permudahkan persamaan
+
+<BlockMath math="10\pi = \frac{\theta \times 30\pi}{360^\circ}" />
+
+**Langkah 4**: Jadikan <InlineMath math="\theta" /> perkara rumus
+
+<BlockMath math="\theta = \frac{10\pi \times 360^\circ}{30\pi}" />
+
+**Langkah 5**: Kira jawapan akhir
+
+<BlockMath math="\theta = \frac{3600^\circ}{30} = 120^\circ" />
+
+Jadi, ukuran sudut pusat bagi lengkok itu ialah <InlineMath math="120^\circ" />.
+
+**Penyelesaian 3**
+
+Diberi: <InlineMath math="\angle AOB = 72^\circ" /> dan <InlineMath math="r = 5 \text{ cm}" />
+
+Cari: Panjang lengkok <InlineMath math="AB" />
+
+**Langkah 1**: Guna rumus panjang lengkok
+
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+
+**Langkah 2**: Gantikan nilai yang diketahui
+
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 2\pi \times 5" />
+
+**Langkah 3**: Permudahkan pecahan
+
+<BlockMath math="s = \frac{72^\circ}{360^\circ} \times 10\pi = \frac{1}{5} \times 10\pi" />
+
+**Langkah 4**: Kira jawapan akhir
+
+<BlockMath math="s = 2\pi \text{ cm}" />
+
+Panjang lengkok <InlineMath math="AB" /> ialah <InlineMath math="2\pi \text{ cm}" />.
+
+**Penyelesaian 4**
+
+Diberi: <InlineMath math="r = 30 \text{ cm}" /> dan <InlineMath math="\theta = 150^\circ" />
+
+Cari: Jarak yang dilalui (panjang lengkok)
+
+**Langkah 1**: Guna rumus panjang lengkok
+
+<BlockMath math="s = \frac{\theta}{360^\circ} \times 2\pi r" />
+
+**Langkah 2**: Gantikan nilai yang diketahui
+
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 2\pi \times 30" />
+
+**Langkah 3**: Permudahkan pecahan
+
+<BlockMath math="s = \frac{150^\circ}{360^\circ} \times 60\pi = \frac{5}{12} \times 60\pi" />
+
+**Langkah 4**: Kira jawapan akhir
+
+<BlockMath math="s = 25\pi \text{ cm}" />
+
+Titik itu bergerak sejauh <InlineMath math="25\pi \text{ cm}" /> sepanjang laluan bulatnya, atau lebih kurang <InlineMath math="78.54 \text{ cm}" />.

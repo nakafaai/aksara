@@ -22,6 +22,8 @@ export interface VisibleTextScan {
   readonly attributes: ReadonlySet<string>;
   /** Returns the index of each match in one learner-visible text. */
   readonly find: (text: string) => readonly number[];
+  /** Names the JSX elements, such as `code`, whose text stays out. */
+  readonly protectedNames?: ReadonlySet<string>;
   readonly protectedTypes: ReadonlySet<string>;
 }
 
@@ -34,9 +36,21 @@ type TextMdxNode = MdxNode & {
   type: "text";
 };
 
-/** One scan in progress: its rules, the source, and the offsets found so far. */
+/**
+ * Where one learner-visible text sits: Markdown prose, JSX text inside an
+ * expression, or a string that JSX cannot enter without becoming a fragment.
+ */
+export type VisibleTextKind = "jsx" | "markdown" | "string";
+
+/** One learner-visible text range and the syntax that holds it. */
+export interface VisibleTextRange {
+  readonly kind: VisibleTextKind;
+  readonly range: SourceRange;
+}
+
+/** One scan in progress: its rules, the source, and the ranges found so far. */
 interface ScanState {
-  readonly offsets: Set<number>;
+  readonly ranges: VisibleTextRange[];
   readonly scan: VisibleTextScan;
   readonly source: string;
 }
@@ -51,19 +65,23 @@ function isTextMdxNode(node: MdxNode): node is TextMdxNode {
   return node.type === "text";
 }
 
-/** Adds the source offset of every match in one exact learner-visible range. */
-function collectRange(state: ScanState, range: SourceRange): void {
+/** Returns the source offset of every match in one learner-visible range. */
+function rangeOffsets(
+  source: string,
+  scan: VisibleTextScan,
+  { range }: VisibleTextRange
+): number[] {
   const start = range.start?.offset;
   const end = range.end?.offset;
   assert.ok(start !== undefined);
   assert.ok(end !== undefined);
   const { rendered } = range;
-  const text = rendered?.text ?? state.source.slice(start, end);
-  for (const index of state.scan.find(text)) {
+  const text = rendered?.text ?? source.slice(start, end);
+  return scan.find(text).map((index) => {
     const renderedOffset = rendered?.offsets[index];
     assert.ok(!rendered || renderedOffset !== undefined);
-    state.offsets.add(renderedOffset ?? start + index);
-  }
+    return renderedOffset ?? start + index;
+  });
 }
 
 /** Scans the rendered text ranges nested below one ESTree field. */
@@ -80,14 +98,23 @@ function collectExpression(state: ScanState, node: EstreeNode): void {
     node.type === "JSXText" ||
     node.type === "TemplateElement"
   ) {
-    collectRange(state, {
-      end: { offset: Number(node.end) },
-      start: { offset: Number(node.start) },
+    state.ranges.push({
+      kind: node.type === "JSXText" ? "jsx" : "string",
+      range: {
+        end: { offset: Number(node.end) },
+        start: { offset: Number(node.start) },
+      },
     });
     return;
   }
   if (node.type === "JSXElement") {
-    if (!isProtectedLineComponent(jsxComponentName(node))) {
+    const name = jsxComponentName(node);
+    if (
+      !(
+        isProtectedLineComponent(name) ||
+        state.scan.protectedNames?.has(String(name))
+      )
+    ) {
       collectExpressionValues(state, node.children);
     }
     return;
@@ -107,7 +134,7 @@ function collectAttribute(state: ScanState, attribute: MdxAttribute): void {
   }
   const directRange = directAttributeRange(attribute, state.source);
   if (directRange) {
-    collectRange(state, directRange);
+    state.ranges.push({ kind: "string", range: directRange });
     return;
   }
   const program = attributeEstree(attribute);
@@ -125,9 +152,11 @@ function collectNode(
   const protectedHere =
     isProtected ||
     state.scan.protectedTypes.has(String(node.type)) ||
-    (isJsxMdxNode(node) && isProtectedLineComponent(node.name));
+    (isJsxMdxNode(node) &&
+      (isProtectedLineComponent(node.name) ||
+        state.scan.protectedNames?.has(String(node.name)) === true));
   if (!protectedHere && isTextMdxNode(node)) {
-    collectRange(state, node.position);
+    state.ranges.push({ kind: "markdown", range: node.position });
   }
   if (!protectedHere && isJsxMdxNode(node)) {
     for (const attribute of node.attributes) {
@@ -149,7 +178,24 @@ export function visibleTextOffsets(
   tree: MdxNode,
   scan: VisibleTextScan
 ): number[] {
-  const state: ScanState = { offsets: new Set(), scan, source };
+  const offsets = new Set(
+    visibleTextRanges(source, tree, scan).flatMap((range) =>
+      rangeOffsets(source, scan, range)
+    )
+  );
+  return [...offsets].sort((left, right) => left - right);
+}
+
+/**
+ * Returns every text range a learner reads, in document order, with the
+ * syntax that holds it, so a codemod can rewrite exactly what a scan reads.
+ */
+export function visibleTextRanges(
+  source: string,
+  tree: MdxNode,
+  scan: VisibleTextScan
+): VisibleTextRange[] {
+  const state: ScanState = { ranges: [], scan, source };
   collectNode(state, tree, false);
-  return [...state.offsets].sort((left, right) => left - right);
+  return state.ranges;
 }

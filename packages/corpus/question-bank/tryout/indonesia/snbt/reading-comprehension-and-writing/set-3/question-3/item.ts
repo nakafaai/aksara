@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "effective-sentence",
+    topic: "sentence-order",
   },
-  stimulus: "salt-house",
+  stimulus: "resapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kata _Namun_ dihilangkan",
+          label: "(R), (Q), (T), (S), (P)",
+        },
+        {
+          correct: false,
+          label: "(Q), (R), (T), (S), (P)",
         },
         {
           correct: true,
-          label: "frasa _saling bantu-membantu_ diganti _saling membantu_",
+          label: "(R), (T), (Q), (S), (P)",
         },
         {
           correct: false,
-          label: "kata _cukup_ diganti _sangat_",
+          label: "(R), (T), (Q), (P), (S)",
         },
         {
           correct: false,
-          label: "kata _melalui_ diganti _dengan_",
-        },
-        {
-          correct: false,
-          label: "kata _modal_ diganti _uang modal_",
+          label: "(R), (T), (S), (Q), (P)",
         },
       ],
     },

@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "arrangement",
+    topic: "grouping",
   },
-  stimulus: "loker",
+  stimulus: "relawan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Loker Ana berada di kolom $$2$$.",
-        },
-        {
-          correct: false,
-          label: "Loker Eli berada di kolom $$3$$.",
-        },
-        {
-          correct: false,
-          label: "Loker Doni berada tepat di bawah loker Fajar.",
-        },
-        {
-          correct: false,
-          label: "Loker Beni berada di baris atas.",
-        },
-        {
           correct: true,
-          label: "Loker Caca berada di baris atas.",
+          label: "Kurnia dan Nanda tidak bertugas di pos yang sama.",
+        },
+        {
+          correct: false,
+          label: "Kurnia tidak bertugas di pos registrasi.",
+        },
+        {
+          correct: false,
+          label: "Putri bertugas di pos yang sama dengan Nanda.",
+        },
+        {
+          correct: false,
+          label: "Hana atau Indra bertugas di pos medis.",
+        },
+        {
+          correct: false,
+          label: "Fikri bertugas di pos registrasi.",
         },
       ],
     },

@@ -1,11 +1,39 @@
-Split the chimes into two kinds: **chimes on the hour** and **half-hour chimes**. Then list every time between <InlineMath math="09{:}15" /> and <InlineMath math="13{:}15" />.
+This question has two bans: a team can't be all one gender, and Dimas can't be on the same team as Rafi. The tidy approach is to count every team, then remove the ones that break a rule. Be careful: some teams **break both rules at once**, and those may only be removed once.
 
-The hours passed are <InlineMath math="10{:}00" />, <InlineMath math="11{:}00" />, <InlineMath math="12{:}00" />, and <InlineMath math="13{:}00" />. On a 12-hour clock, <InlineMath math="13{:}00" /> shows the number <InlineMath math="1" />, so the clock chimes once, not <InlineMath math="13" /> times.
+The order of members doesn't matter, so the number of ways to choose <InlineMath math="r" /> people from <InlineMath math="n" /> is the combination <InlineMath math="C(n,r)" />. Start with every team and no bans, which means choosing <InlineMath math="4" /> from <InlineMath math="6+5=11" /> students.
 
-<BlockMath math="10+11+12+1=34" />
+<BlockMath math="C(11,4) = \frac{11\times10\times9\times8}{4\times3\times2\times1} = 330" />
 
-The half hours passed are <InlineMath math="09{:}30" />, <InlineMath math="10{:}30" />, <InlineMath math="11{:}30" />, and <InlineMath math="12{:}30" />, one chime each. <InlineMath math="13{:}30" /> is already outside the range.
+Remove the teams that are all boys or all girls. No team can be all boys and all girls at the same time, so you can simply subtract both.
 
-<BlockMath math="34+4=38" />
+<BlockMath math="\begin{aligned}
+\text{all boys} &= C(6,4) = 15 \\
+\text{all girls} &= C(5,4) = 5 \\
+\text{mixed teams} &= 330-15-5 = 310
+\end{aligned}" />
 
-A common mistake is counting <InlineMath math="13" /> chimes at <InlineMath math="13{:}00" />, which gives <InlineMath math="50" />. So the clock chimes <InlineMath math="38" /> times.
+Now remove the mixed teams that contain both Dimas and Rafi. If Dimas and Rafi are already in, the other two places come from the <InlineMath math="9" /> remaining students, so there are <InlineMath math="C(9,2)=36" /> such teams. But some of those <InlineMath math="36" /> teams are all boys: Dimas, Rafi, and two of the other <InlineMath math="4" /> boys. Those were already removed in the previous step.
+
+<BlockMath math="\begin{aligned}
+\text{Dimas and Rafi, all boys} &= C(4,2) = 6 \\
+\text{Dimas and Rafi, mixed} &= 36-6 = 30 \\
+\text{valid teams} &= 310-30 = 280
+\end{aligned}" />
+
+Check it another way by counting according to the number of boys on the team. With one boy, Dimas and Rafi can't both be there. With two boys, take away the single pair Dimas and Rafi. With three boys, <InlineMath math="C(4,1)=4" /> trios contain both Dimas and Rafi.
+
+<BlockMath math="\begin{aligned}
+1 \text{ boy} &: C(6,1)\times C(5,3) = 6\times10 = 60 \\
+2 \text{ boys} &: \big(C(6,2)-1\big)\times C(5,2) = 14\times10 = 140 \\
+3 \text{ boys} &: \big(C(6,3)-4\big)\times C(5,1) = 16\times5 = 80
+\end{aligned}" />
+
+That's <InlineMath math="60+140+80=280" />, the same as before.
+
+Some tempting results that are wrong:
+
+- <InlineMath math="274" /> comes from subtracting all <InlineMath math="36" /> Dimas-and-Rafi teams from <InlineMath math="310" />. The six all-boy teams then get removed twice.
+- <InlineMath math="294" /> comes from using only the Dimas-and-Rafi ban, <InlineMath math="330-36" />, and forgetting the boys-and-girls rule.
+- <InlineMath math="310" /> comes from forgetting the Dimas-and-Rafi ban.
+
+So <InlineMath math="280" /> different teams can be formed.

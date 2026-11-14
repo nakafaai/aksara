@@ -1,23 +1,31 @@
-Suku ke-<InlineMath math="n" /> barisan geometri adalah <InlineMath math="u_n=ar^{n-1}" />. Dari suku pertama dan suku keempat, **rasio dapat ditentukan lebih dulu**, lalu semua pernyataan lain mengikuti.
+Kamu menghitung faktor <InlineMath math="d" /> dari <InlineMath math="3600" /> yang memenuhi dua syarat sekaligus: <InlineMath math="d" /> habis dibagi <InlineMath math="6" />, dan pasangannya <InlineMath math="\frac{3600}{d}" /> tidak habis dibagi <InlineMath math="6" />. Rencananya: faktorkan <InlineMath math="3600" /> menjadi bilangan prima, ubah kedua syarat menjadi batas pangkat, lalu hitung. Bagian yang paling sering keliru adalah **arti tidak habis dibagi <InlineMath math="6" />**.
 
-# Menentukan rasio
+# Faktorisasi prima
+
+<BlockMath math="3600=36\cdot100=2^2\cdot3^2\cdot2^2\cdot5^2=2^4\cdot3^2\cdot5^2" />
+
+Setiap faktor positif <InlineMath math="3600" /> berbentuk <InlineMath math="d=2^a\cdot3^b\cdot5^c" /> dengan <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" />, dan <InlineMath math="0\le c\le2" />. Pasangannya **memakai pangkat sisanya**, yaitu <InlineMath math="\frac{3600}{d}=2^{4-a}\cdot3^{2-b}\cdot5^{2-c}" />.
+
+# Menerjemahkan kedua syarat
+
+Sebuah bilangan habis dibagi <InlineMath math="6" /> jika memuat faktor <InlineMath math="2" /> dan faktor <InlineMath math="3" />. Jadi syarat pertama berarti <InlineMath math="a\ge1" /> dan <InlineMath math="b\ge1" />.
+
+Syarat kedua kebalikannya: pasangan <InlineMath math="d" /> **tidak memuat faktor <InlineMath math="2" /> atau tidak memuat faktor <InlineMath math="3" />**. Cukup salah satu faktor yang hilang. Artinya <InlineMath math="4-a=0" /> atau <InlineMath math="2-b=0" />, yaitu <InlineMath math="a=4" /> atau <InlineMath math="b=2" />.
+
+# Menghitung dengan komplemen
+
+**Menghitung lewat komplemen** lebih cepat daripada mendaftar satu per satu. Hitung dulu semua <InlineMath math="d" /> yang habis dibagi <InlineMath math="6" />, lalu buang yang pasangannya juga habis dibagi <InlineMath math="6" />, yaitu yang <InlineMath math="a\le3" /> dan <InlineMath math="b\le1" />.
 
 <BlockMath math="\begin{aligned}
-u_4&=ar^3=48r^3=6\\
-r^3&=\tfrac18\\
-r&=\tfrac12
+\text{semua kelipatan }6&:\ a\in\{1,2,3,4\},\ b\in\{1,2\},\ c\in\{0,1,2\}\quad\Rightarrow\quad4\cdot2\cdot3=24\\
+\text{pasangan juga kelipatan }6&:\ a\in\{1,2,3\},\ b=1,\ c\in\{0,1,2\}\quad\Rightarrow\quad3\cdot1\cdot3=9\\
+\text{yang dicari}&=24-9=15
 \end{aligned}" />
 
-Bilangan real yang pangkat tiganya <InlineMath math="\tfrac18" /> hanya <InlineMath math="\tfrac12" />, jadi **rasionya tunggal**. Pernyataan pertama benar.
+Coba cek dengan menghitung langsung. Jika <InlineMath math="a=4" />, ada <InlineMath math="2\cdot3=6" /> pilihan untuk <InlineMath math="b" /> dan <InlineMath math="c" />. Jika <InlineMath math="a\le3" /> dan <InlineMath math="b=2" />, ada <InlineMath math="3\cdot3=9" /> pilihan. Totalnya <InlineMath math="6+9=15" />. Contohnya <InlineMath math="d=48=2^4\cdot3" /> memberi pasangan <InlineMath math="75" />, yang memang tidak habis dibagi <InlineMath math="6" />.
 
-# Suku dan jumlah
+# Jebakan yang perlu dihindari
 
-<BlockMath math="\begin{aligned}
-u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1{,}5\\
-S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
-S_\infty&=\frac{48}{1-\tfrac12}=96
-\end{aligned}" />
+**Kesalahan paling umum** adalah membaca tidak habis dibagi <InlineMath math="6" /> sebagai tidak memuat faktor <InlineMath math="2" /> dan tidak memuat faktor <InlineMath math="3" />. Cara itu hanya menghitung <InlineMath math="a=4" /> dan <InlineMath math="b=2" />, sehingga hasilnya <InlineMath math="3" />. Kesalahan lain adalah lupa syarat kedua dan berhenti di <InlineMath math="24" />.
 
-Pernyataan ketiga benar. Suku keenam 1,5, bukan 3, jadi pernyataan keempat salah. Angka 3 adalah suku kelima. Jumlah tak hingga ada karena <InlineMath math="\lvert r\rvert<1" />, dan nilainya 96. Angka 64 muncul jika rasio dianggap <InlineMath math="\tfrac14" />, jadi **pernyataan kedua salah**.
-
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+Jadi, banyak bilangan <InlineMath math="d" /> yang memenuhi adalah <InlineMath math="15" />.

@@ -2,38 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "inference",
   },
-  stimulus: "shipping-container",
+  stimulus: "longitude-clock",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Phone makers agree on one connector so any charger fits any phone.",
+            "The Board's request for copies by other craftsmen was tied to the number of timekeepers that a navy would need.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "A company builds a larger factory to meet rising demand for its products.",
+            "Pendulum clocks failed at sea mainly because changes in temperature altered their metal parts.",
         },
         {
-          correct: false,
-          label: "A bakery hires more workers before the holiday season.",
+          column: 1,
+          label:
+            "A method based on the moon could have won the prize under the 1714 Act if it had reached the required accuracy.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "A city adds extra buses to its busiest route during rush hour.",
+            "Maskelyne's seat on the Board proves that the Board's decision about H4 was biased.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "A publisher translates a popular novel into several languages.",
+            "A ship that carried a chronometer could still gain something from taking lunar sightings.",
         },
       ],
     },

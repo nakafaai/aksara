@@ -1,28 +1,54 @@
-Eine Quadratzahl hat bei jedem Primfaktor einen geraden Exponenten, eine Kubikzahl hat Exponenten, die Vielfache von 3 sind. Schreibe deshalb <InlineMath math="n=2^a\,3^b\,5^c" /> und bestimme **jeden Exponenten einzeln**. Weitere Primfaktoren würden <InlineMath math="n" /> nur größer machen.
+Du suchst zwei natürliche Zahlen mit der Summe <InlineMath math="112" />, bei denen ggT plus kgV <InlineMath math="392" /> ergibt. (Die Aufgabe schreibt den ggT als FPB und das kgV als KPK.) Der Plan: Schreib beide Zahlen als Vielfache ihres ggT, prüf jeden möglichen ggT und **sortier jedes Paar aus, dessen Faktoren nicht teilerfremd sind**.
 
-# Bedingungen für jeden Exponenten
+# Beide Zahlen über den ggT schreiben
 
-Mit <InlineMath math="20=2^2\cdot5" /> und <InlineMath math="12=2^2\cdot3" /> gilt:
+Der ggT der beiden Zahlen sei <InlineMath math="d" />. Weil <InlineMath math="d" /> sowohl <InlineMath math="a" /> als auch <InlineMath math="b" /> teilt, kannst du <InlineMath math="a=dm" /> und <InlineMath math="b=dn" /> mit natürlichen Zahlen <InlineMath math="m" /> und <InlineMath math="n" /> schreiben. Dabei **müssen <InlineMath math="m" /> und <InlineMath math="n" /> teilerfremd sein**, ihr ggT ist also <InlineMath math="1" />. Hätten sie noch einen gemeinsamen Faktor, würde er in den ggT wandern, und der ggT wäre größer als <InlineMath math="d" />.
+
+Unter dieser Bedingung ist das kgV der beiden Zahlen gleich <InlineMath math="dmn" />. Die beiden Angaben der Aufgabe werden zu zwei Gleichungen.
 
 <BlockMath math="\begin{aligned}
-20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
-12n&=2^{a+2}\,3^{b+1}\,5^{c}
+d(m+n)&=112\\
+d+dmn=d(1+mn)&=392
 \end{aligned}" />
 
-| Primfaktor | Quadratbedingung aus <InlineMath math="20n" /> | Kubikbedingung aus <InlineMath math="12n" /> | Kleinster Exponent |
-| :---: | :---: | :---: | :---: |
-| 2 | <InlineMath math="a+2" /> gerade | <InlineMath math="a+2" /> Vielfaches von 3 | <InlineMath math="a=4" /> |
-| 3 | <InlineMath math="b" /> gerade | <InlineMath math="b+1" /> Vielfaches von 3 | <InlineMath math="b=2" /> |
-| 5 | <InlineMath math="c+1" /> gerade | <InlineMath math="c" /> Vielfaches von 3 | <InlineMath math="c=3" /> |
+# Die möglichen Werte des ggT finden
 
-Jeder Exponent muss **beide Bedingungen zugleich erfüllen**. Zum Beispiel ist <InlineMath math="a" /> gerade und <InlineMath math="a+2" /> ein Vielfaches von 3, der kleinste Wert ist also 4.
+Die erste Gleichung zeigt, dass <InlineMath math="d" /> die Zahl <InlineMath math="112" /> teilt, die zweite, dass <InlineMath math="d" /> die Zahl <InlineMath math="392" /> teilt. Also **muss <InlineMath math="d" /> den ggT von <InlineMath math="112" /> und <InlineMath math="392" /> teilen**, und der ist <InlineMath math="56" />. Als Kandidaten für <InlineMath math="d" /> bleiben <InlineMath math="1, 2, 4, 7, 8, 14, 28, 56" />.
 
-# Berechnen und prüfen
+Für jeden Kandidaten kennst du die Summe <InlineMath math="m+n=\frac{112}{d}" /> und das Produkt <InlineMath math="mn=\frac{392}{d}-1" />. Die Zahlen <InlineMath math="m" /> und <InlineMath math="n" /> sind die Lösungen von <InlineMath math="t^2-(m+n)t+mn=0" />. Ganzzahlig sind sie nur, wenn die Diskriminante <InlineMath math="(m+n)^2-4mn" /> eine Quadratzahl ist.
 
-<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{.}000" />
+| <InlineMath math="d" /> | <InlineMath math="m+n" /> | <InlineMath math="mn" /> | Diskriminante | Ergebnis |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="112" /> | <InlineMath math="391" /> | <InlineMath math="10{.}980" /> | keine Quadratzahl |
+| <InlineMath math="2" /> | <InlineMath math="56" /> | <InlineMath math="195" /> | <InlineMath math="2{.}356" /> | keine Quadratzahl |
+| <InlineMath math="4" /> | <InlineMath math="28" /> | <InlineMath math="97" /> | <InlineMath math="396" /> | keine Quadratzahl |
+| <InlineMath math="7" /> | <InlineMath math="16" /> | <InlineMath math="55" /> | <InlineMath math="36" /> | <InlineMath math="m=5,\ n=11" /> |
+| <InlineMath math="8" /> | <InlineMath math="14" /> | <InlineMath math="48" /> | <InlineMath math="4" /> | <InlineMath math="m=6,\ n=8" /> |
+| <InlineMath math="14" /> | <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="-44" /> | keine |
+| <InlineMath math="28" /> | <InlineMath math="4" /> | <InlineMath math="13" /> | <InlineMath math="-36" /> | keine |
+| <InlineMath math="56" /> | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="-20" /> | keine |
 
-Probe: <InlineMath math="20n=360{.}000=600^2" /> und <InlineMath math="12n=216{.}000=60^3" />.
+# Mit der Teilerfremdheit aussortieren
 
-Der Wert 5 erfüllt nur die Quadratbedingung, denn <InlineMath math="20\cdot5=100" />. Der Wert 18 erfüllt nur die Kubikbedingung, denn <InlineMath math="12\cdot18=216" />. Der Wert 90 ist das kgV der beiden, aber <InlineMath math="20\cdot90=1800" /> ist keine Quadratzahl. Der Wert 720 erfüllt die Quadratbedingung, doch <InlineMath math="12\cdot720" /> enthält nur <InlineMath math="5^1" />.
+Zwei Kandidaten bestehen den Test mit der Diskriminante. Für <InlineMath math="d=8" /> sind <InlineMath math="m=6" /> und <InlineMath math="n=8" /> beide gerade, also **verletzt dieses Paar die Teilerfremdheit**. Die Zahlen wären <InlineMath math="48" /> und <InlineMath math="64" />, aber ihr ggT ist <InlineMath math="16" /> und nicht <InlineMath math="8" />, und ihr kgV ist <InlineMath math="192" />. Damit ergibt ggT plus kgV <InlineMath math="208" /> und nicht <InlineMath math="392" />.
 
-Das kleinste <InlineMath math="n" /> ist also **18.000**.
+Für <InlineMath math="d=7" /> sind <InlineMath math="m=5" /> und <InlineMath math="n=11" /> teilerfremd. Die beiden Zahlen sind <InlineMath math="a=35" /> und <InlineMath math="b=77" />. Prüf sie an der Aufgabe.
+
+<BlockMath math="\begin{aligned}
+35+77&=112\\
+\text{ggT}+\text{kgV}&=7+385=392\\
+77-35&=42
+\end{aligned}" />
+
+Beide Bedingungen stimmen, und dieses Paar ist das einzige, das übrig bleibt. Die Differenz ist also sicher <InlineMath math="42" />.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht durch **einen übersprungenen Schritt** auf diesem Weg.
+
+- <InlineMath math="16" /> entsteht, wenn du <InlineMath math="48" /> und <InlineMath math="64" /> nimmst, ohne zu prüfen, dass <InlineMath math="6" /> und <InlineMath math="8" /> nicht teilerfremd sind.
+- <InlineMath math="6" /> ist <InlineMath math="11-5" />, also die Differenz von <InlineMath math="m" /> und <InlineMath math="n" />, bevor du mit dem ggT <InlineMath math="7" /> multiplizierst.
+- <InlineMath math="2" /> ist <InlineMath math="8-6" /> aus dem Paar, das du hättest aussortieren müssen, ebenfalls ohne den ggT.
+- <InlineMath math="0" /> entsteht, wenn du annimmst, der ggT der beiden Zahlen sei der ggT von <InlineMath math="112" /> und <InlineMath math="392" />, also <InlineMath math="56" />. Dann wären beide Zahlen <InlineMath math="56" />, doch für <InlineMath math="56" /> und <InlineMath math="56" /> ergibt ggT plus kgV nur <InlineMath math="112" />.
+
+Die Differenz der beiden Zahlen ist also <InlineMath math="42" />.

@@ -1,22 +1,38 @@
-The cutting plane separates a small cone at the top from the lower part that contains the base. The volume of the lower part is **the volume of the whole cone minus the volume of the small cone**.
+The empty space you're asked about is **the volume of the frustum minus the volume of the ball**. The plan: find the ball's radius from a cross-section of the cone, then find the small cone's volume by similarity, then subtract.
 
-# The similar small cone
+# The radius of the ball
 
-The small cone shares the apex of the whole cone and has height <InlineMath math="8-4=4\text{ cm}" />, half the original height. The two cones are **similar with scale factor <InlineMath math="\tfrac12" />**, so the base radius of the small cone is 3 cm.
+Cut the cone straight through its axis. The cross-section is an isosceles triangle with base <InlineMath math="12" />, height <InlineMath math="8" />, and legs <InlineMath math="\sqrt{6^2+8^2}=10" />. The ball's cross-section is **the incircle of that triangle**, so the ball's radius is the triangle's area divided by half its perimeter.
+
+<BlockMath math="r=\frac{\tfrac12\times12\times8}{\tfrac12(12+10+10)}=\frac{48}{16}=3" />
+
+# The small cone above the ball
+
+The top of the ball sits at height <InlineMath math="2r=6" />, so the small cone above it has height <InlineMath math="8-6=2" />. The small cone is similar to the big one with scale factor <InlineMath math="k=\tfrac28=\tfrac14" />, and **volume scales with the cube of the scale factor**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{whole}}&=\tfrac13\pi(6)^2(8)=96\pi\\
-V_{\text{small}}&=\tfrac13\pi(3)^2(4)=12\pi
+V_{\text{big}}&=\tfrac13\pi\times6^2\times8=96\pi\\
+V_{\text{small}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi
 \end{aligned}" />
 
-The small cone has <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> of the volume of the whole cone, because volume scales with the cube of the scale factor.
+Check it directly: the small cone's radius is <InlineMath math="\tfrac64=\tfrac32" />, so its volume is <InlineMath math="\tfrac13\pi\times\tfrac94\times2=\tfrac32\pi" />. Same result.
 
-# Computing the lower part
+# The empty space in the frustum
 
-The lower part is **what remains of the whole cone after the small cone is removed**.
+The ball lies between heights <InlineMath math="0" /> and <InlineMath math="6" />, so **the whole ball is inside the frustum**.
 
-<BlockMath math="V=96\pi-12\pi=84\pi\text{ cm}^3" />
+<BlockMath math="\begin{aligned}
+V_{\text{frustum}}&=96\pi-\tfrac32\pi=\tfrac{189}{2}\pi\\
+V_{\text{ball}}&=\tfrac43\pi\times3^3=36\pi\\
+V_{\text{empty}}&=\tfrac{189}{2}\pi-36\pi=\tfrac{117}{2}\pi\\
+\frac{V_{\text{empty}}}{V_{\text{ball}}}&=\frac{117}{72}=\frac{13}{8}
+\end{aligned}" />
 
-The value <InlineMath math="48\pi" /> assumes that cutting at half the height also halves the volume. The value <InlineMath math="72\pi" /> uses the area ratio <InlineMath math="\tfrac14" /> as the volume ratio and so subtracts <InlineMath math="24\pi" />. The value <InlineMath math="12\pi" /> is the small cone, and <InlineMath math="96\pi" /> is the whole cone.
+# Traps in the other options
 
-So the volume of the part containing the base is **<InlineMath math="84\pi\text{ cm}^3" />**.
+- <InlineMath math="1:1" /> uses the length scale <InlineMath math="\tfrac14" /> for volume, so the small cone wrongly becomes <InlineMath math="24\pi" /> and the empty space <InlineMath math="96\pi-24\pi-36\pi=36\pi" />, the same as the ball.
+- <InlineMath math="3:2" /> uses the area scale <InlineMath math="\left(\tfrac14\right)^2" /> for volume, so the small cone wrongly becomes <InlineMath math="6\pi" /> and the empty space <InlineMath math="54\pi" />.
+- <InlineMath math="5:3" /> uses **the whole cone** instead of just the frustum, so the empty space becomes <InlineMath math="96\pi-36\pi=60\pi" />.
+- <InlineMath math="21:8" /> forgets to subtract the ball and compares <InlineMath math="\tfrac{189}{2}\pi" /> with <InlineMath math="36\pi" />.
+
+So the ratio of the empty space in the frustum to the volume of the ball is <InlineMath math="13:8" />.

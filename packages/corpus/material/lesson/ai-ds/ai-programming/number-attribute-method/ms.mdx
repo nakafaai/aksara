@@ -1,0 +1,414 @@
+export const metadata = {
+    title: "Atribut dan Kaedah Nombor",
+    description: "Periksa objek nombor Python melalui jenis, atribut, kaedah dan operasi nombor kompleksnya.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-16",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Nombor sebagai Objek
+
+Setiap nombor Python ialah objek dengan [jenis berangka](/ms/subjek/ai-ds/pengaturcaraan-ai/nombor). Jenis itu menentukan atribut dan kaedah (method) yang boleh kamu akses melalui tatatanda titik.
+
+Apabila kamu menulis <InlineMath math="5" />, Python mencipta `int`, manakala <InlineMath math="3.14" /> mencipta `float`. Objek nombor terbina dalam yang dibincangkan di sini <Highlight>tidak boleh diubah (immutable)</Highlight>. Panggilan kaedah seperti `conjugate()` memulangkan hasil tanpa mengubah nilai objek asal.
+
+Jika `a = 5`, umpukan `a = a + 1` mengikat nama `a` kepada objek yang nilainya `6`. Bezakan [identiti objek dengan umpukan nama](/ms/subjek/ai-ds/pengaturcaraan-ai/kebolehubahan-identiti-objek): objek yang nilainya `5` tidak berubah menjadi `6`.
+
+## Mengakses Atribut dan Kaedah
+
+Akses atribut membaca **nilai melalui ahli objek yang bernama**, manakala panggilan kaedah menjalankan satu operasi. Secara umum, atribut juga boleh mengira nilai semasa ia diakses. Kamu membaca atribut dengan `object.attribute` dan memanggil kaedah dengan `object.method()`. Tanda kurung dalam bentuk kedua itulah yang memberitahu Python supaya menjalankan kaedah tersebut.
+
+Nombor kompleks menunjukkan perbezaan ini dengan jelas. Ungkapan `c.real` ialah data yang sudah Python simpan di dalam `c`, dan akses atribut memulangkan komponen nyata itu. Panggilan `c.conjugate()` pula ialah kerja yang Python lakukan pada saat itu, dan hasilnya ialah nombor kompleks kedua, manakala `c` tidak berubah langsung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "complex_example.py",
+      code: `# Cipta nombor kompleks
+c = 2 + 3j
+
+# Akses atribut real (bahagian nyata)
+print(c.real)  # Output: 2.0
+
+# Akses atribut imag (bahagian khayalan)
+print(c.imag)  # Output: 3.0
+
+# Panggil kaedah conjugate() untuk mendapatkan konjugat
+print(c.conjugate())  # Output: (2-3j)`
+    }
+  ]}
+/>
+
+## Mengenal Pasti Jenis Berangka
+
+Python memilih jenis berangka berdasarkan literal yang kamu tulis, dan jenis itu menentukan atribut dan kaedah yang dibawa oleh nilai tersebut. Jika kamu bertanya kepada Python tentang kelasnya dahulu sebelum memanggil kaedah khusus sesuatu jenis, kamu tidak perlu meneka sama ada operasi itu wujud pada nilai tersebut.
+
+Fungsi `type()` memulangkan <Highlight>kelas bagi nilai itu</Highlight>, iaitu objek kelas, bukan rentetan yang menamakan jenisnya. Tiga literal di bawah nampak serupa apabila kamu menghantarnya kepada fungsi, tetapi `type()` melaporkan kelas yang berbeza bagi setiap satu.
+
+### Menggunakan Fungsi Type
+
+Bezakan **literal dengan ungkapan**: `3j` ialah literal khayalan, manakala `2 + 3j` ialah operasi tambah yang menghasilkan objek `complex`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "type_example.py",
+      code: `# Lihat jenis data nombor
+print(type(42))        # Output: <class 'int'>
+print(type(3.14))      # Output: <class 'float'>
+print(type(2+3j))      # Output: <class 'complex'>`
+    }
+  ]}
+/>
+
+| Ungkapan | Kelas yang dilaporkan oleh `type()` | Sebab Python memilih kelas itu |
+| --- | --- | --- |
+| `42` | `int` | Literal itu tiada titik perpuluhan dan tiada eksponen |
+| `3.14` | `float` | Literal itu mengandungi titik perpuluhan |
+| `2+3j` | `complex` | Menambah integer dengan literal khayalan `3j` menghasilkan `complex` |
+
+## Membaca Bahagian Nombor Kompleks
+
+Nombor kompleks menyimpan dua komponen secara berasingan, dan Python mendedahkan kedua-duanya sebagai atribut supaya kamu tidak perlu membongkarnya sendiri. Atribut `real` memegang komponen nyata, atribut `imag` memegang **pekali bagi** unit khayalan, dan kedua-duanya dipulangkan sebagai <Highlight>float walaupun kamu menulis nombor bulat</Highlight>.
+
+Setiap atribut memulangkan satu komponen nombor itu. Apabila kamu membandingkan nombor nyata tulen, nombor khayalan tulen dan nombor campuran, kamu boleh nampak komponen mana milik atribut mana.
+
+### Atribut real
+
+Atribut `real` memulangkan **komponen nyata bagi nombor itu**. Membacanya tidak pernah mengubah nombor itu, jadi kamu boleh memeriksa nilai yang sama seberapa kerap yang kamu perlukan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "real_attribute.py",
+      code: `# Contoh penggunaan atribut real
+z1 = 4 + 5j
+z2 = -2 + 7j
+z3 = 10 + 0j  # Nombor nyata tulen
+
+print(f"Bahagian nyata bagi {z1} ialah {z1.real}")
+print(f"Bahagian nyata bagi {z2} ialah {z2.real}")
+print(f"Bahagian nyata bagi {z3} ialah {z3.real}")
+
+# Output:
+# Bahagian nyata bagi (4+5j) ialah 4.0
+# Bahagian nyata bagi (-2+7j) ialah -2.0
+# Bahagian nyata bagi (10+0j) ialah 10.0`
+    }
+  ]}
+/>
+
+### Atribut imag
+
+Atribut `imag` memulangkan pekali bagi <InlineMath math="i" />. Python menulis unit itu sebagai `j` di dalam literal kompleks. **Tanda itu milik pekali**, jadi sebutan yang ditolak akan dipulangkan sebagai nombor negatif.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "imag_attribute.py",
+      code: `# Contoh penggunaan atribut imag
+z1 = 3 + 8j
+z2 = 6 - 4j
+z3 = 0 + 9j  # Nombor khayalan tulen
+
+print(f"Bahagian khayalan bagi {z1} ialah {z1.imag}")
+print(f"Bahagian khayalan bagi {z2} ialah {z2.imag}")
+print(f"Bahagian khayalan bagi {z3} ialah {z3.imag}")
+
+# Output:
+# Bahagian khayalan bagi (3+8j) ialah 8.0
+# Bahagian khayalan bagi (6-4j) ialah -4.0
+# Bahagian khayalan bagi 9j ialah 9.0`
+    }
+  ]}
+/>
+
+Hasil bagi `z2` ialah <InlineMath math="-4.0" />, kerana pekali itu membawa tanda tolak yang berada di hadapan unit khayalan. Nilai bagi `z1` kekal positif, dan nombor khayalan tulen `z3` melaporkan <InlineMath math="9.0" /> dengan komponen nyata <InlineMath math="0.0" />.
+
+Kamu boleh membaca bahagian nyata dan bahagian khayalan bagi suatu hasil darab secara terus. Bagi `z1 = 1+2j` dan `z2 = 3-1j`, `(z1 * z2).real` ialah <InlineMath math="1\cdot3-2\cdot(-1)=5" /> dan `(z1 * z2).imag` ialah <InlineMath math="1\cdot(-1)+2\cdot3=5" />. Panjangnya juga didarab: `abs(z1) * abs(z2)` sama dengan <InlineMath math="\sqrt5\cdot\sqrt{10}=\sqrt{50}" />.
+
+<MathVisual
+  title={<>Bahagian <code>z1 * z2</code> bagi <code>1+2j</code> dan <code>3-1j</code></>}
+  description={<>Segmen ungu ialah <code>z1</code> dan segmen hijau kebiruan ialah <code>z2</code>. Segmen magenta ialah hasil darabnya, <code>(5+5j)</code>, dengan <code>real</code> dan <code>imag</code> kedua-duanya sama dengan <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "second", objectId: "second", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first": <code>z1 = 1+2j</code>,
+    "second": <code>z2 = 3-1j</code>,
+    "product": <code>z1 * z2 = (5+5j)</code>,
+  }}
+/>
+
+## Kaedah pada Nombor Kompleks
+
+Nombor kompleks juga membawa kaedahnya sendiri, dan kaedah di bawah meliputi operasi yang paling kerap kamu gunakan. Kaedah `conjugate()` **memulangkan nombor kompleks**, jadi kamu boleh terus memanggil kaedah pada hasilnya tanpa mengubah nilai asal.
+
+### Kaedah Konjugat
+
+Bagi <InlineMath math="z=a+bi" />, `conjugate()` memulangkan <InlineMath math="\overline{z}=a-bi" />. Bahagian nyata mengekalkan nilainya dan <Highlight>hanya bahagian khayalan yang bertukar tanda</Highlight>, jadi konjugat itu ialah imej cermin nombor tersebut merentasi paksi nyata.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conjugate_method.py",
+      code: `# Contoh penggunaan kaedah conjugate()
+z1 = 3 + 4j
+z2 = -2 - 5j
+z3 = 7 + 0j
+
+print(f"Konjugat bagi {z1} ialah {z1.conjugate()}")
+print(f"Konjugat bagi {z2} ialah {z2.conjugate()}")
+print(f"Konjugat bagi {z3} ialah {z3.conjugate()}")
+
+# Output:
+# Konjugat bagi (3+4j) ialah (3-4j)
+# Konjugat bagi (-2-5j) ialah (-2+5j)
+# Konjugat bagi (7+0j) ialah (7-0j)`
+    }
+  ]}
+/>
+
+Hasil kedua menunjukkan peraturan ini pada pekali negatif. Bahagian khayalan `z2` ialah <InlineMath math="-5" />, jadi konjugatnya membawa <InlineMath math="+5" />, manakala bahagian nyata kekal pada <InlineMath math="-2" />. Nombor nyata seperti `z3` ialah konjugat bagi dirinya sendiri, kerana bahagian khayalannya sudah sifar.
+
+### Mengira Saiz Nombor Kompleks
+
+Identiti <InlineMath math="z\overline{z}=|z|^2" /> **menghubungkan nombor kompleks dengan modulusnya**, dan contoh di bawah mengira identiti itu dalam kod. Dalam kod Python biasa, kamu akan memanggil `abs(z)` untuk mendapatkan modulus, jadi baca contoh ini sebagai penjelasan tentang cara fungsi terbina dalam itu mendapat jawapannya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conjugate_practical.py",
+      code: `import math
+
+# Kira modulus nombor kompleks menggunakan konjugat
+z = 3 + 4j
+modulus_squared = z * z.conjugate()
+modulus = math.sqrt(modulus_squared.real)
+
+print(f"Nombor kompleks: {z}")
+print(f"Konjugatnya: {z.conjugate()}")
+print(f"z × z*: {modulus_squared}")
+print(f"Modulus |z|: {modulus}")
+print(f"abs(z) terbina dalam: {abs(z)}")
+
+# Output:
+# Nombor kompleks: (3+4j)
+# Konjugatnya: (3-4j)
+# z × z*: (25+0j)
+# Modulus |z|: 5.0
+# abs(z) terbina dalam: 5.0`
+    }
+  ]}
+/>
+
+Mendarab <InlineMath math="z" /> dengan konjugatnya menghapuskan bahagian khayalan dan meninggalkan nombor nyata <InlineMath math="25" />. Punca kuasa dua nombor nyata itu ialah <InlineMath math="5.0" />, dan `abs(z)` terbina dalam melaporkan nilai yang sama dengan satu panggilan sahaja.
+
+Lukis `z = 3+4j` sebagai satu titik pada satah kompleks dan perhatikan apa yang dibaca oleh setiap atribut. `z.real` ialah jarak mengufuk `3.0`, manakala `z.imag` ialah ketinggian `4.0`. Kaedah `z.conjugate()` mencerminkan titik itu ke bawah paksi nyata menjadi `3-4j`, dan `abs(z)` ialah jejari `5.0` yang dikongsi oleh kedua-duanya. Kamu membaca atribut tanpa tanda kurung dan memanggil kaedah dengan tanda kurung.
+
+<MathVisual
+  title={<>Atribut dan kaedah bagi <code>z = complex(3, 4)</code></>}
+  description={<>Segmen ungu ialah <code>z</code>, dan segmen hijau kebiruan ialah <code>z.conjugate()</code>. Segmen dan titik kuning ambar menunjukkan <code>z.imag</code> dan <code>z.real</code>, dan bulatan kelabu berjejari <code>abs(z)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "modulus", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "reference" },
+      { id: "z", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -4 }, appearance: "construction" },
+      { id: "imag", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "highlight" },
+      { id: "real", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "modulus", objectId: "modulus", at: { x: -5 * Math.SQRT1_2, y: 5 * Math.SQRT1_2 }, placement: "above-left" },
+      { key: "z", objectId: "z", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "imag", objectId: "imag", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "real", objectId: "real", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "modulus": "abs(z) = 5.0",
+    "z": "z = 3+4j",
+    "conjugate": "z.conjugate() = 3-4j",
+    "imag": "z.imag = 4.0",
+    "real": "z.real = 3.0",
+  }}
+/>
+
+## Kaedah pada Integer dan Float
+
+Integer dan float mendedahkan kaedah yang sepadan dengan **perwakilan masing-masing**, dan kaedah itu tidak boleh ditukar ganti dengan kaedah nombor kompleks. `bit_length()` mengira bit dalam nilai mutlak integer, `to_bytes()` menulis bit itu ke dalam jujukan bait, `is_integer()` menyemak sama ada float mempunyai bahagian pecahan, dan `as_integer_ratio()` melaporkan pecahan yang sebenarnya disimpan oleh float.
+
+| Kaedah | Jenis pemiliknya | Soalan yang dijawabnya |
+| --- | --- | --- |
+| `bit_length()` | `int` | Berapa banyak bit yang diperlukan oleh nilai mutlaknya |
+| `to_bytes()` | `int` | Bait mana yang mewakili nilai ini dalam lebar dan susunan yang dipilih |
+| `is_integer()` | `float` | Adakah float ini tiada bahagian pecahan |
+| `as_integer_ratio()` | `float` | Pecahan tepat yang manakah sama dengan nilai yang disimpan |
+
+Python moden juga memberi `int` kaedah `is_integer()` dan `as_integer_ratio()`: `(42).is_integer()` memulangkan `True`, dan `(42).as_integer_ratio()` memulangkan `(42, 1)`. Jadual itu hanya memilih jenis yang digunakan dalam contoh-contoh ini, bukan menyenaraikan setiap jenis yang memiliki sesuatu kaedah.
+
+### Nombor Integer
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "integer_methods.py",
+      code: `# Beberapa kaedah pada nombor integer
+n = 42
+
+# Kaedah bit_length() - mengira bilangan bit yang diperlukan
+print(f"Bilangan bit bagi {n}: {n.bit_length()}")
+
+# Kaedah to_bytes() - menukar kepada bait
+byte_representation = n.to_bytes(2, byteorder='big')
+print(f"Perwakilan bait bagi {n}: {byte_representation}")
+
+# Output:
+# Bilangan bit bagi 42: 6
+# Perwakilan bait bagi 42: b'\\x00*'`
+    }
+  ]}
+/>
+
+`bit_length()` mengira bit yang diperlukan untuk nilai mutlak integer itu, **tidak termasuk tanda dan sifar di hadapannya**. Di sini, `to_bytes()` menerima panjang output dan susunan bait yang dinyatakan dengan jelas, jadi hasil dua bait di atas bermula dengan bait sifar.
+
+### Nombor Titik Apungan
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_methods.py",
+      code: `# Beberapa kaedah pada nombor float
+f = 3.14159
+
+# Kaedah is_integer() - menyemak sama ada float ialah nombor bulat
+print(f"{f} ialah nombor bulat: {f.is_integer()}")
+print(f"{4.0} ialah nombor bulat: {(4.0).is_integer()}")
+
+# Kaedah as_integer_ratio() - memulangkan nisbah sebagai pecahan
+ratio = f.as_integer_ratio()
+print(f"Nisbah bagi {f}: {ratio}")
+
+# Output:
+# 3.14159 ialah nombor bulat: False
+# 4.0 ialah nombor bulat: True
+# Nisbah bagi 3.14159: (3537115888337719, 1125899906842624)`
+    }
+  ]}
+/>
+
+`is_integer()` menyemak sama ada float terhingga tiada bahagian pecahan, jadi <InlineMath math="3.14159" /> gagal semakan itu manakala <InlineMath math="4.0" /> lulus. `as_integer_ratio()` memulangkan <Highlight>pecahan tepat yang disimpan dalam bentuk binari</Highlight>, sebab itulah nisbah bagi <InlineMath math="3.14159" /> mengandungi nombor yang begitu besar, bukan pecahan perpuluhan yang dijangka oleh pembaca.
+
+Kaedah `bit_length()` mengira bilangan digit binari yang diperlukan oleh integer positif, iaitu <InlineMath math="\lfloor\log_2n\rfloor+1" />. Panjang ini bertambah satu tepat pada setiap kuasa bagi 2, jadi `(255).bit_length()` masih <InlineMath math="8" /> dan `(256).bit_length()` sudah <InlineMath math="9" />.
+
+<BarChart
+  title={<><code>bit_length()</code> bagi tujuh nombor</>}
+  description={<>Setiap palang ialah <code>n.bit_length()</code> bagi nombor <InlineMath math="n" /> yang tertulis di bawahnya, dikira sebagai <InlineMath math="\lfloor\log_2n\rfloor+1" />.</>}
+  yAxisLabel="Bilangan bit"
+  data={[
+    { name: "1", value: Math.floor(Math.log2(1)) + 1 },
+    { name: "2", value: Math.floor(Math.log2(2)) + 1 },
+    { name: "3", value: Math.floor(Math.log2(3)) + 1 },
+    { name: "4", value: Math.floor(Math.log2(4)) + 1 },
+    { name: "8", value: Math.floor(Math.log2(8)) + 1 },
+    { name: "255", value: Math.floor(Math.log2(255)) + 1 },
+    { name: "256", value: Math.floor(Math.log2(256)) + 1 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan bit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Mengesahkan dan Mengira dengan Objek Berangka
+
+Atribut dan kaedah juga menyokong semakan dan penukaran, dan kedua-dua langkah itu berjalan seiring. Kamu **semak input dahulu**, kemudian barulah mengira, supaya nilai yang melanggar peraturan domain yang dipilih boleh ditolak sebelum aritmetik dijalankan.
+
+### Menyemak Input Sebelum Mengira
+
+Atribut boleh membawa peraturan pengesahan yang jelas. Fungsi di bawah mula-mula memerlukan objek `complex`, kemudian menggunakan **dua contoh peraturan domain** pada komponennya dan melaporkan mesej bagi setiap kes yang ditolaknya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "data_validation.py",
+      code: `def validate_complex_input(z):
+    """Fungsi untuk mengesahkan input nombor kompleks"""
+    if not isinstance(z, complex):
+        return False, "Input bukan nombor kompleks"
+
+    if z.real < 0:
+        return False, "Bahagian nyata tidak boleh negatif"
+
+    if z.imag == 0:
+        return False, "Bahagian khayalan tidak boleh sifar"
+
+    return True, "Input sah"
+
+# Uji fungsi pengesahan
+test_numbers = [3+4j, -2+5j, 7+0j, 2.5+1.5j]
+
+for num in test_numbers:
+    is_valid, message = validate_complex_input(num)
+    print(f"{num}: {message}")`
+    }
+  ]}
+/>
+
+Fungsi itu memulangkan sepasang nilai, jadi pemanggil menerima keputusan dan sebabnya serentak. Daripada empat nombor ujian itu, <InlineMath math="3+4j" /> dan <InlineMath math="2.5+1.5j" /> lulus ketiga-tiga semakan, <InlineMath math="-2+5j" /> ditolak kerana bahagian nyatanya negatif, dan <InlineMath math="7+0j" /> ditolak kerana bahagian khayalannya sifar.
+
+### Mengira dengan Nombor Kompleks
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "math_calculations.py",
+      code: `def complex_operations(z1, z2):
+    """Jalankan pelbagai operasi pada nombor kompleks"""
+    print(f"Nombor 1: {z1}")
+    print(f"Nombor 2: {z2}")
+    print(f"Bahagian nyata z1: {z1.real}")
+    print(f"Bahagian khayalan z1: {z1.imag}")
+    print(f"Konjugat z1: {z1.conjugate()}")
+
+    # Operasi matematik
+    addition = z1 + z2
+    multiplication = z1 * z2.conjugate()
+
+    print(f"z1 + z2 = {addition}")
+    print(f"z1 × z2* = {multiplication}")
+
+# Contoh penggunaan
+z1 = 2 + 3j
+z2 = 1 - 2j
+complex_operations(z1, z2)`
+    }
+  ]}
+/>
+
+Dengan input itu, `z1 + z2` ialah <InlineMath math="3+1j" />, kerana **bahagian nyata dan bahagian khayalan ditambah secara berasingan**. Ungkapan `z1 * z2.conjugate()` mendarab <InlineMath math="2+3j" /> dengan <InlineMath math="1+2j" /> dan memulangkan <InlineMath math="-4+7j" />.
+
+Kenal pasti jenis berangka dahulu, kemudian semak sama ada sesuatu operasi memulangkan komponen, perwakilan atau nilai baharu, kerana jenis pulangan itulah yang menentukan cara ungkapan seterusnya boleh menggunakan hasil tersebut.

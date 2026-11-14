@@ -1,0 +1,197 @@
+export const metadata = {
+  title: "Analisis Komponen Utama",
+  description: "Terbitkan PCA daripada data terpusat, vektor eigen kovarians dan SVD. Tafsirkan varians yang diterangkan dan pembinaan semula berpangkat rendah secara geometri.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-17",
+  dateModified: "2026-09-08",
+  subject: "Kaedah Linear AI",
+};
+
+## Mulakan dengan Data Terpusat
+
+Andaikan <InlineMath math="m\ge2" /> supaya penyebut kovarians sampel bukan sifar.
+
+Katakan <InlineMath math="X\in\mathbb{R}^{m\times n}" /> mengandungi <InlineMath math="m" /> cerapan bagi <InlineMath math="n" /> ciri (feature). <InlineMath math="\mathrm{PCA}" /> bermula dengan menolak min setiap ciri:
+
+<MathContainer>
+<BlockMath math="\mu_j=\frac1m\sum_{i=1}^m X_{ij}" />
+<BlockMath math="X_c=X-\mathbf{1}\mu^T" />
+</MathContainer>
+
+Matriks kovarians sampel ialah
+
+<BlockMath math="C=\frac{1}{m-1}X_c^TX_c" />
+
+Matriks ini simetri dan separa tentu positif. Matriks ini mungkin singular apabila ciri-cirinya bersandar linear atau apabila <InlineMath math="n>m-1" />.
+
+Pemusatan ini wajib. <Highlight>Memiawaikan setiap ciri kepada varians unit</Highlight> pula ialah <Highlight>pilihan pemodelan yang berasingan</Highlight>, dan pilihan ini selalunya sesuai apabila ciri-ciri menggunakan unit yang tidak boleh dibandingkan. Langkah ini mengubah soalan yang kamu tanya, daripada arah dengan varians mutlak terbesar kepada arah dengan varians terpiawai terbesar.
+
+Ambil tiga cerapan <InlineMath math="(2,3)" />, <InlineMath math="(4,4)" /> dan <InlineMath math="(6,8)" />. Min ciri-cirinya ialah <InlineMath math="4" /> dan <InlineMath math="5" />, jadi pemusatan menolak <InlineMath math="(4,5)" /> daripada setiap baris dan memberikan <InlineMath math="(-2,-2)" />, <InlineMath math="(0,-1)" /> dan <InlineMath math="(2,3)" />. Kelompok titik itu mengekalkan bentuknya, tetapi kini berada di sekitar asalan.
+
+<ScatterDiagram
+  title={<>Pemusatan mengalihkan data ke asalan</>}
+  description={<>Siri pertama ialah data mentah, dan siri kedua ialah data terpusat <InlineMath math="X_c=X-\mathbf1\mu^T" />. Setiap titik bergerak mengikut vektor yang sama, iaitu <InlineMath math="-(4,5)" />.</>}
+  xAxisLabel="Ciri pertama"
+  yAxisLabel="Ciri kedua"
+  datasets={[
+    {
+      name: "Data mentah",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 3 },
+        { x: 4, y: 4 },
+        { x: 6, y: 8 },
+      ],
+    },
+    {
+      name: "Data terpusat",
+      color: "var(--chart-2)",
+      points: [
+        { x: 2 - 4, y: 3 - 5 },
+        { x: 4 - 4, y: 4 - 5 },
+        { x: 6 - 4, y: 8 - 5 },
+      ],
+    },
+  ]}
+/>
+
+## Arah Utama
+
+Menurut teorem spektrum,
+
+<MathContainer>
+<BlockMath math="Cv_i=\lambda_i v_i" />
+<BlockMath math="\lambda_1\ge\lambda_2\ge\cdots\ge\lambda_n\ge0" />
+<BlockMath math="V=(v_1\ \,\cdots\ \,v_n),\qquad V^TV=I" />
+<BlockMath math="C=V\Lambda V^T" />
+</MathContainer>
+
+Arah utama pertama ialah penyelesaian bagi masalah ini:
+
+<BlockMath math="v_1=\underset{\|v\|_2=1}{\operatorname{argmax}}\;v^TCv" />
+
+Setiap arah seterusnya memaksimumkan varians yang sama, dengan syarat arah itu **ortogon terhadap semua arah sebelumnya**. Koordinat hasil transformasi, atau skor (scores), ialah
+
+<BlockMath math="Z=X_cV" />
+
+Kovarians sampel bagi skor <InlineMath math="Z" /> ialah matriks pepenjuru:
+
+<BlockMath math="\frac{1}{m-1}Z^TZ=V^TCV=\Lambda" />
+
+Oleh itu, komponen utama tidak berkorelasi antara satu sama lain. Namun, secara amnya komponen itu belum tentu tak bersandar. Untuk vektor rawak yang bertaburan Gauss secara bersama, asas eigen yang tetap bagi kovarians populasinya memberikan komponen hasil transformasi yang tak bersandar. Korelasi sampel yang sifar sahaja tidak membuktikan ketakbersandaran dalam populasi.
+
+## Varians yang Diterangkan dan Pengurangan Dimensi
+
+Nisbah varians yang diterangkan memerlukan **jumlah varians yang positif**, iaitu <InlineMath math="\operatorname{tr}(C)>0" />. Jika setiap cerapan terpusat ialah sifar, setiap nilai eigen juga sifar dan nisbah itu tidak tertakrif.
+
+Bahagian daripada jumlah varians sampel yang diterangkan oleh komponen <InlineMath math="j" /> ialah
+
+<BlockMath math="\operatorname{EVR}_j=\frac{\lambda_j}{\sum_{i=1}^n\lambda_i}=\frac{\lambda_j}{\operatorname{tr}(C)}" />
+
+Jika kamu menyimpan <InlineMath math="k" /> vektor eigen pertama dalam <InlineMath math="V_k" />, kamu mendapat skor dan pembinaan semula berikut:
+
+<MathContainer>
+<BlockMath math="Z_k=X_cV_k" />
+<BlockMath math="\widehat{X}_c=Z_kV_k^T=X_cV_kV_k^T" />
+<BlockMath math="\widehat{X}=\widehat{X}_c+\mathbf{1}\mu^T" />
+</MathContainer>
+
+Antara semua pembinaan semula linear yang berpangkat tidak melebihi <InlineMath math="k" />, pilihan ini **meminimumkan kuasa dua ralat pembinaan semula**. Dengan konvensyen kovarians sampel di atas,
+
+<BlockMath math="\|X_c-\widehat{X}_c\|_F^2=(m-1)\sum_{j=k+1}^n\lambda_j" />
+
+Setiap komponen utama menerangkan sebahagian daripada jumlah varians, dan saiz bahagian itu ditentukan oleh nilai eigennya. Dalam contoh lengkap di bawah, <InlineMath math="\lambda_1=9" /> dan <InlineMath math="\lambda_2=2.25" />, jadi komponen pertama menerangkan <InlineMath math="\tfrac9{11.25}=80\%" /> dan komponen kedua menerangkan baki <InlineMath math="20\%" />.
+
+<BarChart
+  title={<>Varians yang diterangkan oleh setiap komponen</>}
+  description={<>Setiap bar ialah <InlineMath math="\lambda_i/(\lambda_1+\lambda_2)" /> bagi komponen <InlineMath math="i" /> yang ditulis di bawahnya: <InlineMath math="0.8" /> dan <InlineMath math="0.2" />.</>}
+  yAxisLabel="Varians yang diterangkan"
+  data={[
+    { name: "1", value: 9 / (9 + 2.25) },
+    { name: "2", value: 2.25 / (9 + 2.25) },
+  ]}
+  chartConfig={{ value: { label: "Varians yang diterangkan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Pengiraan Setara dengan Penguraian Nilai Singular
+
+<InlineMath math="\mathrm{PCA}" /> juga boleh dikira melalui penguraian nilai singular nipis berikut:
+
+<BlockMath math="X_c=U\Sigma V^T" />
+
+**Vektor singular kanan** memberikan arah utama, manakala nilai eigen memenuhi:
+
+<BlockMath math="\lambda_j=\frac{\sigma_j^2}{m-1}" />
+
+Dengan <InlineMath math="\mathrm{SVD}" />, kamu tidak perlu membentuk <InlineMath math="X_c^TX_c" />, dan ini penting kerana pembentukan itu menyebabkan nombor syarat dikuasaduakan. <InlineMath math="\mathrm{SVD}" /> juga berfungsi dengan baik apabila <InlineMath math="X_c" /> berbentuk segi empat tepat atau kurang pangkat.
+
+## Contoh Lengkap Kovarians Dua Dimensi
+
+Elips kovarians diputarkan sebanyak sudut berikut:
+
+<BlockMath math="\theta=\frac{\pi}{6}" />
+
+Varians di sepanjang dua paksi utama ialah <InlineMath math="9" /> dan <InlineMath math="2.25" />. Matriks putaran dan matriks kovariansnya ialah:
+
+<MathContainer>
+<BlockMath math="R=\begin{pmatrix}\cos\theta&-\sin\theta\\\sin\theta&\cos\theta\end{pmatrix}" />
+<BlockMath math="C=R\begin{pmatrix}9&0\\0&2.25\end{pmatrix}R^T" />
+<BlockMath math="C=\frac1{16}\begin{pmatrix}117&27\sqrt3\\27\sqrt3&63\end{pmatrix}" />
+</MathContainer>
+
+Arah utama ialah lajur-lajur matriks <InlineMath math="R" />:
+
+<MathContainer>
+<BlockMath math="v_1=\begin{pmatrix}\sqrt3/2\\1/2\end{pmatrix},\qquad\lambda_1=9" />
+<BlockMath math="v_2=\begin{pmatrix}-1/2\\\sqrt3/2\end{pmatrix},\qquad\lambda_2=2.25" />
+</MathContainer>
+
+**Nisbah varians** yang diterangkan oleh komponen pertama dikira daripada dua nilai eigen itu:
+
+<BlockMath math="\frac{9}{9+2.25}=0.8=80\%" />
+
+Hasil <InlineMath math="80\%" /> ialah pecahan daripada jumlah varians yang diterangkan oleh komponen pertama.
+
+<MathVisual
+  title={<>Elips kovarians dan arah utama <InlineMath math="v_1,v_2" /></>}
+  description={<>Elips hijau kebiruan mempunyai separuh paksi <InlineMath math="\sqrt{\lambda_1}=3" /> di sepanjang <InlineMath math="v_1" /> yang jingga dan <InlineMath math="\sqrt{\lambda_2}=1.5" /> di sepanjang <InlineMath math="v_2" /> yang ungu. Gerakkan <InlineMath math="\varphi" />: bacaannya ialah varians <InlineMath math="u^TCu" /> di sepanjang arah magenta <InlineMath math="u=(\cos\varphi,\sin\varphi)" />, dan nilai terbesarnya, <InlineMath math="9" />, berlaku pada <InlineMath math="\varphi=\tfrac\pi6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 3.8 }, y: { min: -3.8, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "a", min: 0, max: Math.PI, value: 0.3, step: 0.01, label: "angle" },
+    ],
+    objects: [
+      { id: "ellipse", kind: "parametric", x: "3*cos(t)*sqrt(3)/2 - 1.5*sin(t)/2", y: "3*cos(t)/2 + 1.5*sin(t)*sqrt(3)/2", parameter: { min: 0, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, appearance: "primary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, appearance: "secondary" },
+      { id: "direction", kind: "path", points: [{ x: "-3.5*cos(a)", y: "-3.5*sin(a)" }, { x: "3.5*cos(a)", y: "3.5*sin(a)" }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "v1", objectId: "first", at: { x: 3 * Math.sqrt(3) / 2, y: 3 / 2 }, placement: "right" },
+      { key: "v2", objectId: "second", at: { x: -3 / 4, y: 3 * Math.sqrt(3) / 4 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "variance", formula: "9*cos(a - pi/6)^2 + 2.25*sin(a - pi/6)^2" },
+    ],
+  }}
+  labels={{
+    "angle": <InlineMath math="\varphi" />,
+    "variance": <InlineMath math="u^TCu" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+  }}
+/>
+
+## Batasan Tafsiran
+
+| Semakan | Sebab |
+| --- | --- |
+| Pusatkan data dengan min set latihan sahaja | mencegah kebocoran data dan mengekalkan sistem koordinat yang dipelajari |
+| Semak unit dan penskalaan ciri | jika tidak, nilai varians yang besar boleh mendominasi atas sebab yang salah |
+| Pilih <InlineMath math="k" /> berdasarkan keperluan pengesahan | varians yang diterangkan tidak mengukur kepentingan sesuatu arah untuk ramalan |
+| Ingat bahawa tanda vektor eigen boleh dipilih sesuka hati | <InlineMath math="v_j" /> dan <InlineMath math="-v_j" /> mentakrifkan komponen yang sama |
+| Periksa struktur tak linear dan pencilan | <InlineMath math="\mathrm{PCA}" /> ialah ringkasan linear berasaskan varians dan boleh peka terhadap kedua-duanya |
+
+<InlineMath math="\mathrm{PCA}" /> mengenal pasti arah yang mempunyai varians besar. <Highlight>Varians sahaja tidak membuktikan hubungan sebab</Highlight>. Satu komponen utama mungkin menggabungkan banyak ciri asal. Arah yang variansnya rendah masih mungkin membawa isyarat yang diperlukan oleh tugas ramalan atau pengelasan pada peringkat seterusnya.

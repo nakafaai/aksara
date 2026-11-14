@@ -1,0 +1,227 @@
+export const metadata = {
+    title: "Keserupaan Matriks",
+    description: "Hubungkan matriks serupa melalui transformasi asas, perubahan koordinat dan sifat seperti nilai eigen yang tidak berubah.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-16",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Matriks Berbeza untuk Transformasi Linear yang Sama
+
+Dalam algebra linear, keserupaan matriks menerangkan cara dua matriks yang berbeza boleh mewakili transformasi linear yang sama dalam asas yang berbeza. Unsur-unsurnya berubah mengikut koordinat, tetapi transformasi di sebaliknya tetap sama.
+
+Dua matriks <InlineMath math="A, B \in \mathbb{K}^{n \times n}" /> dikatakan **serupa** jika wujud matriks boleh disongsangkan <InlineMath math="S \in \mathbb{K}^{n \times n}" /> dengan keadaan:
+
+<BlockMath math="B = S^{-1} \cdot A \cdot S" />
+
+Matriks <InlineMath math="S" /> ialah matriks perubahan asas yang menghubungkan kedua-dua perwakilan itu.
+
+## Transformasi Asas dan Perwakilan Koordinat
+
+Matriks serupa mewakili transformasi linear yang sama dalam dua asas yang berbeza. Katakan <InlineMath math="e_1, \ldots, e_n \in \mathbb{K}^n" /> ialah asas kanonik dan <InlineMath math="v_1, \ldots, v_n \in \mathbb{K}^n" /> ialah satu lagi asas bagi <InlineMath math="\mathbb{K}^n" />.
+
+Jika <InlineMath math="S" /> ialah matriks boleh disongsangkan dengan lajur <InlineMath math="v_k" />:
+
+<BlockMath math="S = (v_1 \quad \ldots \quad v_n) \in \mathbb{K}^{n \times n}" />
+
+Maka kita ada <InlineMath math="v_k = S \cdot e_k" /> atau <InlineMath math="e_k = S^{-1} \cdot v_k" /> untuk <InlineMath math="k = 1, \ldots, n" />. Matriks <InlineMath math="S" /> mewakili **transformasi asas**.
+
+Vektor <InlineMath math="x \in \mathbb{K}^n" /> boleh dinyatakan dalam asas kanonik melalui koordinat <InlineMath math="x_k" />, dan dalam asas <InlineMath math="v_1, \ldots, v_n" /> melalui koordinat <InlineMath math="\xi_k" />:
+
+<MathContainer>
+<BlockMath math="x = \sum_{k=1}^n x_k \cdot e_k" />
+<BlockMath math="= \sum_{k=1}^n \xi_k \cdot v_k = S \cdot \xi" />
+<BlockMath math="\xi = \begin{pmatrix} \xi_1 \\ \vdots \\ \xi_n \end{pmatrix} = S^{-1} \cdot x" />
+</MathContainer>
+
+Matriks <InlineMath math="S^{-1}" /> mewakili **transformasi koordinat**.
+
+## Transformasi Linear dalam Asas Berbeza
+
+Untuk transformasi linear <InlineMath math="y = A \cdot x" />, asas kanonik menyatakan <InlineMath math="y" /> dengan koordinat <InlineMath math="y_k" />. Asas <InlineMath math="v_1, \ldots, v_n" /> pula menyatakan vektor yang sama dengan koordinat <InlineMath math="\eta_k" />:
+
+<MathContainer>
+<BlockMath math="y = \sum_{k=1}^n y_k \cdot e_k" />
+<BlockMath math="= \sum_{k=1}^n \eta_k \cdot v_k = S \cdot \eta" />
+<BlockMath math="\eta = \begin{pmatrix} \eta_1 \\ \vdots \\ \eta_n \end{pmatrix} = S^{-1} \cdot y" />
+</MathContainer>
+
+Pengiraan itu memberi:
+
+<MathContainer>
+<BlockMath math="S \cdot \eta = y = A \cdot x" />
+<BlockMath math="= A \cdot S \cdot \xi" />
+</MathContainer>
+
+**Hubungan koordinat yang sama** boleh ditulis seperti berikut.
+
+<BlockMath math="\eta = S^{-1} \cdot A \cdot S \cdot \xi" />
+
+Dalam asas <InlineMath math="v_1, \ldots, v_n" />, transformasi linear <InlineMath math="y = A \cdot x" /> diwakili oleh <InlineMath math="\eta = B \cdot \xi" /> dengan matriks:
+
+<BlockMath math="B = S^{-1} \cdot A \cdot S" />
+
+Matriks serupa mewakili satu transformasi linear terhadap asas yang berbeza bagi <InlineMath math="\mathbb{K}^n" />.
+
+Dengan <InlineMath math="A=\operatorname{diag}(2,3)" /> dan lajur <InlineMath math="s_1=(1,0)" />, <InlineMath math="s_2=(1,1)" />, kamu dapat <InlineMath math="As_1=(2,0)=2s_1" /> dan <InlineMath math="As_2=(2,3)=-s_1+3s_2" />. Koordinat kedua-dua imej ini dalam asas <InlineMath math="s_1,s_2" /> ialah lajur-lajur <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Membaca lajur <InlineMath math="B" /> daripada imej <InlineMath math="s_1" /> dan <InlineMath math="s_2" /></>}
+  description={<>Segi empat selari kelabu ialah sel asas bagi <InlineMath math="s_1,s_2" />. <InlineMath math="A" /> menghantarnya ke segi empat selari ungu yang bersisi hijau kebiruan <InlineMath math="As_1=2s_1" /> dan bersisi magenta <InlineMath math="As_2=-s_1+3s_2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cell", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 4, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "second", objectId: "second", at: { x: 2, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="As_1=2s_1" />,
+    "second": <InlineMath math="As_2=-s_1+3s_2" />,
+  }}
+/>
+
+## Contoh Lengkap Perubahan Asas
+
+Katakan
+
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&0\\0&3\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;S=\begin{pmatrix}1&amp;1\\0&amp;1\end{pmatrix}, \\ &amp;S^{-1}=\begin{pmatrix}1&amp;-1\\0&amp;1\end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+**Transformasi yang sama dalam asas** yang dibentuk oleh lajur-lajur <InlineMath math="S" /> mempunyai matriks
+
+<MathContainer>
+<BlockMath math="AS=\begin{pmatrix}2&2\\0&3\end{pmatrix},\qquad S^{-1}AS=\begin{pmatrix}2&2-3\\0&3\end{pmatrix}" />
+
+<BlockMath math="B=S^{-1}AS=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" />
+</MathContainer>
+
+Walaupun unsur-unsurnya berbeza, kedua-dua matriks mempunyai polinomial ciri <InlineMath math="(t-2)(t-3)" />, surih <InlineMath math="5" /> dan penentu <InlineMath math="6" /> yang sama.
+
+| Koordinat | Input | Output |
+| --- | --- | --- |
+| Asas kanonik | <InlineMath math="x=(2,1)^T" /> | <InlineMath math="Ax=(4,3)^T" /> |
+| Asas baharu | <InlineMath math="\xi=S^{-1}x=(1,1)^T" /> | <InlineMath math="B\xi=(1,3)^T" /> |
+
+Apabila ditukar semula, kita dapat **vektor output yang sama**:
+
+<BlockMath math="S\begin{pmatrix}1\\3\end{pmatrix}=\begin{pmatrix}1+3\\3\end{pmatrix}=\begin{pmatrix}4\\3\end{pmatrix}=Ax" />
+
+Grid kelabu di bawah dibina daripada lajur <InlineMath math="s_1=(1,0)^T" /> dan <InlineMath math="s_2=(1,1)^T" />, jadi setiap titik persilangan mempunyai koordinat nombor bulat dalam asas baharu. Segmen oren <InlineMath math="x" /> berakhir di <InlineMath math="1\cdot s_1+1\cdot s_2" />, sepadan dengan <InlineMath math="\xi=(1,1)^T" />. Segmen magenta <InlineMath math="Ax=(4,3)^T" /> dicapai melalui laluan ambar <InlineMath math="1\cdot s_1+3\cdot s_2" />, sepadan dengan <InlineMath math="B\xi=(1,3)^T" />. Segmen-segmen itu tetap sama. Yang berubah hanyalah cara kamu membaca koordinatnya.
+
+<MathVisual
+  title={<>Vektor yang sama dibaca dalam asas <InlineMath math="s_1,s_2" /></>}
+  description={<>Grid kelabu mengikut lajur-lajur <InlineMath math="S" />. Segmen-segmennya menunjukkan <InlineMath math="x=(2,1)^T" /> dan <InlineMath math="Ax=(4,3)^T" />, dan laluan ambar <InlineMath math="1\cdot s_1+3\cdot s_2" /> sampai ke <InlineMath math="Ax" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 7.7 }, y: { min: -0.5, max: 3.7 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "grid-u-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: -1 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-c", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-d", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-e", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-u-f", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4 + 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "grid-t-a", kind: "segment", from: { x: 0, y: 1 }, to: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "grid-t-b", kind: "segment", from: { x: 1, y: 2 }, to: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "grid-t-c", kind: "segment", from: { x: 2, y: 3 }, to: { x: 7, y: 3 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 4, y: 3 }], appearance: "highlight" },
+      { id: "s1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "ax", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "route", objectId: "route", at: { x: 5 / 2, y: 3 / 2 }, placement: "below-right" },
+      { key: "s1", objectId: "s1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "s2", objectId: "s2", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "ax", objectId: "ax", at: { x: 4, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "route": <InlineMath math="1\cdot s_1+3\cdot s_2" />,
+    "s1": <InlineMath math="s_1" />,
+    "s2": <InlineMath math="s_2" />,
+    "x": <InlineMath math="x" />,
+    "ax": <InlineMath math="Ax" />,
+  }}
+/>
+
+## Sifat Tak Varian bagi Matriks Serupa
+
+Oleh sebab matriks serupa menerangkan transformasi yang sama dalam koordinat yang berbeza, matriks itu <Highlight>mengekalkan sifat transformasi yang tidak bergantung pada asas</Highlight>. Matriks serupa mempunyai polinomial ciri, penentu, surih, pangkat, nilai eigen bersama kegandaan algebranya, polinomial minimum dan saiz blok Jordan yang sama.
+
+Matriks serupa **tidak** semestinya mempunyai unsur, koordinat vektor eigen, norma Euclid, kesimetrian atau keortogonan yang sama. Sifat-sifat itu boleh bergantung pada asas yang dipilih. Perubahan asas yang uniter atau ortogon mengekalkan lebih banyak struktur geometri berbanding transformasi keserupaan yang umum.
+
+| Dikekalkan oleh keserupaan | Secara umum tidak dikekalkan |
+| --- | --- |
+| Polinomial ciri dan polinomial minimum | Unsur matriks |
+| Nilai eigen dan saiz blok Jordan | Vektor koordinat bagi vektor eigen |
+| Penentu, surih dan pangkat | Norma Euclid dan kesimetrian |
+
+### Bukti Kesamaan Penentu
+
+**Untuk penentu**, kita boleh tunjukkan:
+
+<MathContainer>
+<BlockMath math="\det(B) = \det(S^{-1} \cdot A \cdot S)" />
+<BlockMath math="= \det(S^{-1}) \cdot \det(A) \cdot \det(S)" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\det(S^{-1}) = \frac{1}{\det(S)}" />, maka:
+
+<MathContainer>
+<BlockMath math="\det(B) = \frac{1}{\det(S)} \cdot \det(A) \cdot \det(S)" />
+<BlockMath math="= \det(A)" />
+</MathContainer>
+
+### Kesepadanan Nilai Eigen
+
+Jika <InlineMath math="v \in \mathbb{K}^n" /> ialah vektor eigen bagi <InlineMath math="A" /> dengan nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, iaitu <InlineMath math="A \cdot v = \lambda \cdot v" />, maka <InlineMath math="w = S^{-1} \cdot v" /> ialah vektor eigen bagi <InlineMath math="B" /> dengan **nilai eigen yang sama**:
+
+<MathContainer>
+<BlockMath math="B \cdot w = S^{-1} \cdot A \cdot S \cdot w" />
+<BlockMath math="= S^{-1} \cdot A \cdot v" />
+<BlockMath math="= S^{-1} \cdot \lambda \cdot v" />
+<BlockMath math="= \lambda \cdot w" />
+</MathContainer>
+
+Keserupaan matriks mengekalkan spektrum. Apabila asas berubah, koordinat vektor eigen berubah daripada <InlineMath math="v" /> kepada <InlineMath math="S^{-1}v" />, tetapi kedua-dua vektor koordinat itu mewakili arah geometri yang sama.
+
+<InlineMath math="A=\operatorname{diag}(2,3)" /> dan <InlineMath math="B=\begin{pmatrix}2&-1\\0&3\end{pmatrix}" /> berkongsi polinomial ciri <InlineMath math="t^2-5t+6=(t-2)(t-3)" />. Satu lengkung ini membawa semua sifat tak varian sekali gus: punca-puncanya ialah nilai eigen, pekali <InlineMath math="-5" /> ialah negatif surih, dan sebutan pemalar <InlineMath math="6" /> ialah penentu.
+
+<MathVisual
+  title={<>Satu polinomial untuk <InlineMath math="A" /> dan <InlineMath math="B" /></>}
+  description={<>Parabola ungu <InlineMath math="t^2-5t+6" /> memotong paksi pada titik magenta <InlineMath math="2" /> dan <InlineMath math="3" />. Titik ambar <InlineMath math="6" /> ialah <InlineMath math="\det A=\det B" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "polynomial", kind: "quadratic", coefficients: { a: 1, b: -5, c: 6 }, domain: { min: 0, max: 5 }, inputAxis: "x", appearance: "secondary" },
+      { id: "small", kind: "point", at: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "large", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "intercept", kind: "point", at: { x: 0, y: 6 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "intercept", objectId: "intercept", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "intercept": <InlineMath math="\det A=\det B=6" />,
+  }}
+/>

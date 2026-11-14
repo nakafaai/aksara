@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "conclusion",
+    topic: "detail",
   },
-  stimulus: "elektronik",
+  stimulus: "cabai",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengolahan oleh pengepul kecil tidak menghasilkan keuntungan sehingga perlu diganti.",
-        },
-        {
-          correct: false,
-          label:
-            "Fasilitas pengolahan yang aman akan berjalan baik selama peralatannya memadai.",
-        },
-        {
-          correct: false,
-          label:
-            "Bahaya pengolahan sampah elektronik hanya dirasakan oleh para pekerjanya.",
+            "Hujan yang berlebihan di sentra produksi dapat berujung pada tercatatnya cabai sebagai penyumbang inflasi bulanan.",
         },
         {
           correct: true,
           label:
-            "Pengolahan sampah elektronik yang aman memerlukan pemilahan, fasilitas penangkap bahan berbahaya, dan sistem pengumpulan dari warga.",
+            "Pengolahan cabai menjadi pasta membantu meredam lonjakan harga karena mengurangi jumlah cabai yang dibeli rumah tangga.",
         },
         {
           correct: false,
           label:
-            "Pemilahan komponen sejak awal sudah cukup untuk membuat seluruh proses pengolahan sampah elektronik menjadi aman bagi pekerja dan warga.",
+            "Kenaikan suku bunga tidak menambah pasokan cabai ketika panen merosot akibat hujan.",
+        },
+        {
+          correct: false,
+          label:
+            "Naiknya harga satu barang saja belum cukup untuk disebut inflasi, walaupun barang itu dapat menjadi penyumbang inflasi.",
+        },
+        {
+          correct: false,
+          label:
+            "Permintaan cabai yang cenderung tetap membuat kenaikan suku bunga kurang ampuh untuk meredam harga cabai.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "procedure",
-    topic: "outline",
+    cognitiveLevel: "inferential",
+    contentDomain: "narrative",
+    topic: "prediction",
   },
-  stimulus: "emergency-plan",
+  stimulus: "umbrella",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Buy emergency equipment first, then add contacts after the first practice.",
+            "Bu Sari will take it back to her cart, since she was the first to find it.",
         },
         {
           correct: false,
           label:
-            "Choose meeting places and rely on one shared phone for directions.",
+            "Raka will come back to the shelter to pay its owner for the bent rib.",
+        },
+        {
+          correct: false,
+          label:
+            "It will stay on the hook until the owner who lost it comes to collect it.",
+        },
+        {
+          correct: false,
+          label:
+            "Wulan will take it home again, since her own umbrella is broken.",
         },
         {
           correct: true,
           label:
-            "Identify needs, choose places and a contact, record essentials, then practice and revise.",
-        },
-        {
-          correct: false,
-          label:
-            "Add detailed medical instructions to the out-of-area contact card.",
-        },
-        {
-          correct: false,
-          label: "Invent a device backup before asking the provider.",
+            "The next person caught at the shelter without cover in the rain will take it and later pass it on.",
         },
       ],
     },

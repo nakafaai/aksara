@@ -3,38 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "recount",
-    topic: "sequence",
+    contentDomain: "analytical-exposition",
+    topic: "supporting-detail",
   },
-  stimulus: "accessible-fair",
+  stimulus: "meadow",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The pale lettering on the original signs would have become darker by itself during rain.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The robotics symbols could be understood before a parent finished reading.",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
         },
         {
           correct: true,
-          label:
-            "The alternative entrance had a step, while its portable ramp was stored in a locked room.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The moved displays made the original doorway wider than the alternative entrance.",
-        },
-        {
-          correct: false,
-          label:
-            "The fair would necessarily start early because fewer visitors would use the nearest entrance.",
+          label: "I, III, and IV only",
         },
       ],
     },

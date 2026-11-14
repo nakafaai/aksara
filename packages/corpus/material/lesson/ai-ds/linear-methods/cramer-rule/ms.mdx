@@ -1,0 +1,263 @@
+export const metadata = {
+    title: "Petua Cramer untuk Sistem Linear",
+    description: "Selesaikan sistem linear dengan petua Cramer. Kaitkan penentu, matriks adjugat, rumus songsangan dan satu contoh lengkap.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Menyelesaikan Sistem Linear
+
+Petua Cramer menyelesaikan sistem linear terus daripada penentu apabila matriks pekalinya boleh disongsangkan.
+
+Petua ini menulis setiap komponen penyelesaian sebagai <Highlight>nisbah dua penentu</Highlight>. Untuk sistem yang besar, penghapusan Gauss memerlukan pengiraan yang jauh lebih sedikit.
+
+## Matriks Adjugat
+
+**Matriks adjugat** menghubungkan penentu dengan rumus songsangan dan juga dengan petua Cramer.
+
+Di sini, **adjugat** bermaksud transpos bagi matriks kofaktor. Binaan ini berbeza daripada transpos konjugat bagi matriks kompleks.
+
+Untuk matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" />, matriks adjugat ditakrifkan seperti berikut:
+
+<MathContainer>
+<BlockMath math="\tilde{A} = (\tilde{a}_{ij})_{i=1,\ldots,n \atop j=1,\ldots,n} \in \mathbb{R}^{n \times n}" />
+</MathContainer>
+
+Setiap unsur matriks adjugat diberikan oleh
+
+<BlockMath math="\tilde{a}_{ij} = (-1)^{i+j} \cdot \det A_{ji}" />
+
+Di sini, <InlineMath math="A_{ji}" /> ialah submatriks yang terhasil apabila baris <InlineMath math="j" /> dan lajur <InlineMath math="i" /> dibuang daripada <InlineMath math="A" />. Indeksnya bertukar tempat kerana kofaktor terletak pada kedudukan yang ditranspos di dalam adjugat.
+
+Matriks adjugat <InlineMath math="\tilde{A}" /> mengandungi **kofaktor** bagi <InlineMath math="A" /> pada kedudukan yang ditranspos.
+
+### Struktur Matriks Adjugat
+
+Tulis setiap penentu minor sebagai <InlineMath math="c_{ij}" />. Tanda yang berselang-seli dan **indeks yang ditranspos** masih kelihatan dalam seluruh adjugat:
+
+<MathContainer>
+  <BlockMath math="c_{ij}=\det A_{ij}" />
+
+  <BlockMath math="\tilde{A} = \begin{pmatrix} c_{11} &amp; -c_{21} &amp; c_{31} &amp; \cdots \\ -c_{12} &amp; c_{22} &amp; -c_{32} &amp; \cdots \\ c_{13} &amp; -c_{23} &amp; c_{33} &amp; \cdots \\ \vdots &amp; \vdots &amp; \vdots &amp; \ddots \end{pmatrix}" />
+</MathContainer>
+
+Setiap unsur dikira dengan mengambil penentu submatriks yang sepadan, kemudian diberi tanda mengikut corak papan dam <InlineMath math="(-1)^{i+j}" />.
+
+Ambil <InlineMath math="A=\begin{pmatrix}3&1\\1&2\end{pmatrix}" />. Adjugatnya ialah <InlineMath math="\tilde A=\begin{pmatrix}2&-1\\-1&3\end{pmatrix}" />, dan <InlineMath math="\det A=3\cdot2-1\cdot1=5" />. Setiap baris <InlineMath math="\tilde A" /> berserenjang dengan lajur <InlineMath math="A" /> yang satu lagi, sebab itulah hasil darab <InlineMath math="\tilde AA" /> bernilai sifar di luar pepenjuru.
+
+<MathVisual
+  title={<>Baris <InlineMath math="\tilde A" /> berbanding lajur <InlineMath math="A" /></>}
+  description={<>Lajur ungu <InlineMath math="a_1=(3,1)" /> dan lajur hijau kebiruan <InlineMath math="a_2=(1,2)" /> bagi <InlineMath math="A" />. Baris magenta <InlineMath math="r_1=(2,-1)" /> bagi <InlineMath math="\tilde A" /> berserenjang dengan <InlineMath math="a_2" />, baris jingga <InlineMath math="r_2=(-1,3)" /> berserenjang dengan <InlineMath math="a_1" />, dan <InlineMath math="r_1\cdot a_1=r_2\cdot a_2=5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -2, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "answer" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a1", objectId: "a1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "r1", objectId: "r1", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: -1, y: 3 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "a1": <InlineMath math="a_1" />,
+    "a2": <InlineMath math="a_2" />,
+    "r1": <InlineMath math="r_1" />,
+    "r2": <InlineMath math="r_2" />,
+  }}
+/>
+
+## Identiti Matriks Adjugat
+
+Adjugat memenuhi **identiti berikut** bersama matriks asalnya:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;A \cdot \tilde{A} \\ &amp;= \tilde{A} \cdot A \\ &amp;= \begin{pmatrix} \det A &amp; 0 &amp; \cdots &amp; 0 \\ 0 &amp; \det A &amp; \cdots &amp; 0 \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ 0 &amp; 0 &amp; \cdots &amp; \det A \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Dengan kata lain:
+
+<BlockMath math="A \cdot \tilde{A} = (\det A) \cdot I" />
+
+Unsur pepenjuru bagi hasil darab ini ialah **kembangan Laplace di sepanjang baris yang sama**, jadi nilainya sama dengan penentu. Unsur luar pepenjuru pula menggunakan baris yang berbeza. Kembangan itu ialah penentu bagi matriks yang mempunyai dua baris yang sama, jadi nilainya sifar.
+
+## Rumus Songsangan Matriks
+
+Daripada identiti ini, kita boleh menerbitkan **rumus songsangan matriks** menggunakan matriks adjugat.
+
+Jika matriks <InlineMath math="A \in \mathbb{R}^{n \times n}" /> boleh disongsangkan, maka:
+
+<MathContainer>
+<BlockMath math="A^{-1} = \frac{1}{\det A} \cdot \tilde{A}" />
+</MathContainer>
+
+Namun, untuk matriks yang besar, mengira songsangan matriks dengan rumus ini jauh kurang cekap berbanding penghapusan Gauss.
+
+### Contoh untuk Matriks Dua Kali Dua
+
+Untuk matriks <InlineMath math="2\times2" />:
+
+<BlockMath math="A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
+
+Penentunya ialah:
+
+<BlockMath math="\det A = a \cdot d - b \cdot c" />
+
+Adjugatnya ialah:
+
+<BlockMath math="\tilde{A} = \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}" />
+
+Jadi, songsangannya ialah:
+
+<MathContainer>
+<BlockMath math="A^{-1} = \frac{1}{a \cdot d - b \cdot c} \cdot \begin{pmatrix} d & -b \\ -c & a \end{pmatrix}" />
+</MathContainer>
+
+Kira setiap unsur **matriks pengangka**:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=a\cdot d-b\cdot c \\ &amp;m_{12}=-a\cdot b+a\cdot b \\ &amp;m_{21}=c\cdot d-c\cdot d \\ &amp;m_{22}=-c\cdot b+a\cdot d \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;A\cdot A^{-1} \\ &amp;=\frac1{a\cdot d-b\cdot c}\begin{pmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} = I" />
+</MathContainer>
+
+## Menyelesaikan Sistem Linear dengan Penentu
+
+Katakan <InlineMath math="A \in \mathbb{R}^{n \times n}" /> ialah matriks yang boleh disongsangkan dan <InlineMath math="a^1, a^2, \ldots, a^n \in \mathbb{R}^n" /> ialah lajur-lajur bagi <InlineMath math="A" />. Untuk vektor <InlineMath math="b \in \mathbb{R}^n" />, penyelesaian <InlineMath math="x \in \mathbb{R}^n" /> bagi sistem persamaan linear <InlineMath math="A \cdot x = b" /> diberikan oleh:
+
+Tulis <InlineMath math="A_j(b)" /> untuk matriks yang lajur <InlineMath math="j" />-nya diganti dengan <InlineMath math="b" />:
+
+<MathContainer>
+  <BlockMath math="A_j(b)=(a^1\;\ldots\;a^{j-1}\;b\;a^{j+1}\;\ldots\;a^n)" />
+
+  <BlockMath math="x_j=\frac{\det A_j(b)}{\det A}" />
+</MathContainer>
+
+Rumus Cramer ini berlaku untuk <InlineMath math="j = 1, 2, \ldots, n" />.
+
+Untuk mengira komponen ke-<InlineMath math="j" /> bagi penyelesaian <InlineMath math="x" />, kita **gantikan** lajur ke-<InlineMath math="j" /> matriks <InlineMath math="A" /> dengan vektor <InlineMath math="b" />, kemudian kira penentu matriks yang sudah diubah ini dan bahagikannya dengan penentu matriks asal <InlineMath math="A" />.
+
+Inilah ideanya pada satah, untuk sistem <InlineMath math="2x_1+x_2=5" /> dan <InlineMath math="x_1+3x_2=5" />. Lajurnya ialah <InlineMath math="a^1=(2,1)^T" /> dan <InlineMath math="a^2=(1,3)^T" />, dengan <InlineMath math="b=(5,5)^T" />, jadi <InlineMath math="x_1=\det A_1(b)/\det A=10/5=2" /> dan <InlineMath math="x_2=\det A_2(b)/\det A=5/5=1" />. Dalam rajah, segi empat selari kelabu yang direntang oleh <InlineMath math="a^1" /> dan <InlineMath math="a^2" /> mempunyai luas <InlineMath math="5" />. Apabila <InlineMath math="a^1" /> diganti dengan <InlineMath math="b" />, kita dapat segi empat selari magenta dengan luas <InlineMath math="10" />. Segi empat selari ambar yang direntang oleh <InlineMath math="2a^1" /> dan <InlineMath math="a^2" /> mempunyai tapak <InlineMath math="a^2" /> yang sama dan tinggi yang sama, jadi luasnya juga <InlineMath math="10" />, dan faktor <InlineMath math="2" /> itu tepat sama dengan <InlineMath math="x_1" />.
+
+<MathVisual
+  title={<>Petua Cramer sebagai nisbah luas</>}
+  description={<>Untuk <InlineMath math="2x_1+x_2=5" /> dan <InlineMath math="x_1+3x_2=5" />: segi empat selari kelabu mempunyai luas <InlineMath math="\det A=5" />, manakala segi empat selari magenta dan ambar kedua-duanya mempunyai luas <InlineMath math="10" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.8 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 1 }, { x: 3, y: 4 }, { x: 1, y: 3 }], appearance: "reference" },
+      { id: "sheared", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 5, y: 5 }, { x: 1, y: 3 }], appearance: "highlight" },
+      { id: "replaced", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 5 }, { x: 6, y: 8 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "a1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "a2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "construction" },
+      { id: "b", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "sheared", objectId: "sheared", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "replaced", objectId: "replaced", at: { x: 6, y: 8 }, placement: "above-right" },
+      { key: "a1", objectId: "a1", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "a2", objectId: "a2", at: { x: 1, y: 3 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 5, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "sheared": <InlineMath math="2a^1" />,
+    "replaced": <InlineMath math="\det A_1(b)=10" />,
+    "a1": <InlineMath math="a^1" />,
+    "a2": <InlineMath math="a^2" />,
+    "b": <InlineMath math="b" />,
+  }}
+/>
+
+## Membuktikan Rumus Penyelesaian
+
+Bukti petua Cramer menggunakan **[kembangan Laplace](/ms/subjek/ai-ds/kaedah-linear-ai/kembangan-laplace)** dan identiti adjugat.
+
+Untuk <InlineMath math="j = 1, \ldots, n" />:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} x_j &amp;= (A^{-1} \cdot b)_j \\ &amp;= \sum_{i=1}^{n} (A^{-1})_{ji} \cdot b_i \\ &amp;= \sum_{i=1}^{n} \frac{1}{\det A} \cdot \tilde{a}_{ji} \cdot b_i \end{aligned}" />
+</MathContainer>
+
+<MathContainer>
+  <BlockMath math="= \frac{1}{\det A} \sum_{i=1}^{n} (-1)^{i+j} \cdot \det A_{ij} \cdot b_i" />
+  <BlockMath math="=\frac1{\det A}\cdot\det A_j(b)" />
+</MathContainer>
+
+Kesamaan yang terakhir itu terhasil daripada kembangan Laplace di sepanjang lajur ke-<InlineMath math="j" />.
+
+## Menyelesaikan Sistem Tiga Pemboleh Ubah dengan Penentu
+
+Selesaikan sistem berikut dengan menggantikan **satu lajur** <InlineMath math="A" /> pada satu masa:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;A = \begin{pmatrix} 1 &amp; 1 &amp; -1 \\ 1 &amp; -1 &amp; 1 \\ -1 &amp; 1 &amp; 1 \end{pmatrix}, \\ &amp;b = \begin{pmatrix} 20 \\ 40 \\ 30 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Kira penentu <InlineMath math="A" />.
+
+<BlockMath math="\begin{aligned} \det A &amp;= 1 \cdot ((-1) \cdot 1 - 1 \cdot 1) \\ &amp;\quad{}- 1 \cdot (1 \cdot 1 - (-1) \cdot 1) \\ &amp;\quad{}+ (-1) \cdot (1 \cdot 1 - (-1) \cdot (-1)) \\ &amp;=-4 \end{aligned}" />
+
+Pengiraan ini memberi <InlineMath math="\det A=-4" />, jadi penentunya bukan sifar. Maka <InlineMath math="A" /> boleh disongsangkan dan sistem ini mempunyai penyelesaian yang unik. Sekarang kita boleh menggunakan petua Cramer:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} x_1 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 20 &amp; 1 &amp; -1 \\ 40 &amp; -1 &amp; 1 \\ 30 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-120}{-4} \\ &amp;= 30 \end{aligned}" />
+</MathContainer>
+
+<MathContainer>
+<BlockMath math="\begin{aligned} x_2 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 20 &amp; -1 \\ 1 &amp; 40 &amp; 1 \\ -1 &amp; 30 &amp; 1 \end{pmatrix} \\ &amp;= \frac{-100}{-4} \\ &amp;= 25 \end{aligned}" />
+</MathContainer>
+
+<MathContainer>
+<BlockMath math="\begin{aligned} x_3 &amp;= \frac{1}{\det A} \cdot \det \begin{pmatrix} 1 &amp; 1 &amp; 20 \\ 1 &amp; -1 &amp; 40 \\ -1 &amp; 1 &amp; 30 \end{pmatrix} \\ &amp;= \frac{-140}{-4} \\ &amp;= 35 \end{aligned}" />
+</MathContainer>
+
+Semak ketiga-tiga penentu pengangka dengan mengembangkan baris pertama masing-masing. Kemudian gantikan penyelesaian itu ke dalam setiap persamaan asal.
+
+<MathContainer>
+<BlockMath math="\det A_1(b)=-40-10-70=-120" />
+<BlockMath math="\det A_2(b)=10-40-70=-100" />
+<BlockMath math="\det A_3(b)=-70-70+0=-140" />
+<BlockMath math="A\begin{pmatrix}30\\25\\35\end{pmatrix}=\begin{pmatrix}30+25-35\\30-25+35\\-30+25+35\end{pmatrix}=\begin{pmatrix}20\\40\\30\end{pmatrix}=b" />
+</MathContainer>
+
+Setiap persamaan dalam sistem ini ialah satu satah dalam ruang. Oleh sebab <InlineMath math="\det A=-4\neq0" />, ketiga-tiga satah itu bertemu pada tepat satu titik, dan petua Cramer meletakkan titik itu pada <InlineMath math="x_1=-120/(-4)=30" />, <InlineMath math="x_2=-100/(-4)=25" /> dan <InlineMath math="x_3=-140/(-4)=35" />.
+
+<MathVisual
+  title={<>Tiga satah bertemu di <InlineMath math="(30,25,35)" /></>}
+  description={<>Satah ungu <InlineMath math="x_1+x_2-x_3=20" />, satah hijau kebiruan <InlineMath math="x_1-x_2+x_3=40" /> dan satah jingga <InlineMath math="-x_1+x_2+x_3=30" /> bersilang pada titik magenta yang dikira oleh petua Cramer.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 5, max: 55 }, y: { min: 0, max: 50 }, z: { min: 20, max: 50 } },
+    view: { kind: "isometric", target: { x: 30, y: 25, z: 35 } },
+    objects: [
+      { id: "first", kind: "polygon", vertices: [{ x: 50, y: 15, z: 45 }, { x: 30, y: 15, z: 25 }, { x: 10, y: 35, z: 25 }, { x: 30, y: 35, z: 45 }], appearance: "secondary" },
+      { id: "second", kind: "polygon", vertices: [{ x: 40, y: 45, z: 45 }, { x: 40, y: 25, z: 25 }, { x: 20, y: 5, z: 25 }, { x: 20, y: 25, z: 45 }], appearance: "construction" },
+      { id: "third", kind: "polygon", vertices: [{ x: 50, y: 35, z: 45 }, { x: 30, y: 35, z: 25 }, { x: 10, y: 15, z: 25 }, { x: 30, y: 15, z: 45 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: -120 / -4, y: -100 / -4, z: -140 / -4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: -120 / -4, y: -100 / -4, z: -140 / -4 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(30,25,35)" />,
+  }}
+/>
+
+## Sifat Penyelesaian untuk Matriks Integer
+
+Jika <InlineMath math="A \in \mathbb{Z}^{n \times n}" /> boleh disongsangkan dan <InlineMath math="b \in \mathbb{Z}^n" />, maka unsur-unsur <InlineMath math="A^{-1}" /> dan penyelesaian <InlineMath math="x" /> bagi <InlineMath math="A \cdot x = b" /> **ialah nombor nisbah**. Sebelum diringkaskan, semuanya boleh ditulis dengan penyebut sepunya <InlineMath math="|\det A|" />. Oleh itu, setiap penyebut selepas diringkaskan membahagi <InlineMath math="|\det A|" />.
+
+Hal ini berlaku kerana pengiraan penentu hanya melibatkan operasi tambah, tolak dan darab, jadi penentu bagi matriks integer sentiasa integer. Dalam rumus songsangan dan petua Cramer, satu-satunya operasi bahagi ialah pembahagian dengan <InlineMath math="\det A" />.

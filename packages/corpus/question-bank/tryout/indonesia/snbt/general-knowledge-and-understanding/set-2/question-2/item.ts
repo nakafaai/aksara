@@ -2,31 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "word-relation",
-    topic: "synonym",
+    cognitiveLevel: "reasoning",
+    contentDomain: "vocabulary",
+    topic: "affix-meaning",
   },
-  stimulus: "gamelan",
+  stimulus: "delta",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "ciri khas",
+          correct: false,
+          label: "Hingga air surut, warga masih bertahan di *pengungsian*.",
         },
         {
-          column: 1,
-          label: "keunikan",
+          correct: false,
+          label:
+            "*Pendapatan* dari panen kali ini cukup untuk membeli bibit baru.",
         },
         {
-          column: 2,
-          label: "keanehan",
+          correct: false,
+          label:
+            "Sejak subuh, perahu nelayan sudah merapat di *pendaratan* ikan.",
         },
         {
-          column: 2,
-          label: "kemewahan",
+          correct: false,
+          label: "Kain tenun itu *pemberian* neneknya sebelum ia merantau.",
+        },
+        {
+          correct: true,
+          label:
+            "*Penyeberangan* ke pulau itu dihentikan selama gelombang tinggi.",
         },
       ],
     },

@@ -1,0 +1,348 @@
+
+export const metadata = {
+  title: "Bahagian Bulatan dan Lengkok",
+  description: "Namakan pusat, jejari, diameter, perentas, dan lengkok bulatan, bezakan lengkok minor dengan lengkok major, dan cari panjang lengkok serta luas sektor langkah demi langkah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Bulatan",
+};
+
+## Bulatan dan Bahagiannya
+
+Bulatan ialah set semua titik pada satu satah yang **sama jaraknya dari satu titik**. Titik itu ialah pusat, dan jarak yang sama itu ialah jejari. Lengkok ialah bahagian bulatan di antara dua titik pada bulatan itu, dan pada bulatan yang sama, panjang lengkok berkadar terus dengan sudut di pusatnya: <InlineMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />.
+
+Gambar rajah bahagian bulatan melabelkan empat bahagian yang kamu perlukan dalam hampir setiap soalan: pusat <InlineMath math="O" />, jejari <InlineMath math="r" />, diameter, dan perentas.
+
+<MathVisual
+  title={<>Bahagian Bulatan</>}
+  description={<>Jejari <InlineMath math="r = 3" /> bermula di pusat <InlineMath math="O" />, diameter sepanjang <InlineMath math="6" /> melalui pusat, dan perentas tidak melalui pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="r" />,
+    "l3": <>diameter</>,
+    "l4": <>perentas</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: -(3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 1.5, y: -2.6 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.12, y: 2.12 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Pusat <InlineMath math="O" /> ialah titik rujukan bagi setiap jejari. Jejari ialah tembereng garis dari pusat ke satu titik pada bulatan, dan dalam gambar rajah, panjangnya <InlineMath math="r = 3" />. [Perentas](/ms/subjek/matematik/bulatan/perentas-bulatan) ialah tembereng garis yang menyambungkan dua titik pada bulatan. Diameter ialah perentas yang paling panjang, iaitu perentas yang melalui pusat, jadi <InlineMath math="d = 2r = 6" />.
+
+Definisi jarak yang sama ini juga memberikan persamaan bulatan. Untuk pusat <InlineMath math="(a, b)" /> dan jejari <InlineMath math="r > 0" />, rumus jarak memberikan:
+
+<BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+
+Pada satah koordinat, ini ialah bentuk piawai [persamaan bulatan](/ms/subjek/matematik/geometri-analitik/persamaan-bulatan), dan kamu boleh membaca <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="r" /> terus daripadanya.
+
+## Lengkok Minor dan Lengkok Major
+
+Dua titik pada bulatan membahagikannya kepada **dua lengkok sekali gus**. Lengkok yang lebih pendek ialah lengkok minor, dan yang lebih panjang ialah lengkok major. Kalau dua titik itu ialah hujung sebuah diameter, kedua-dua lengkok sama panjang dan setiap satunya ialah semibulatan.
+
+<MathVisual
+  title={<>Lengkok Minor dan Lengkok Major</>}
+  description={<>Lengkok minor meliputi <InlineMath math="90^\circ" /> dan lengkok major meliputi <InlineMath math="270^\circ" /> daripada bulatan yang sama.</>}
+  labels={{
+    "l1": <>Lengkok minor</>,
+    "l2": <>Lengkok major</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos((((t / 3) * pi) / 180)))", y: "(3 * sin((((t / 3) * pi) / 180)))", parameter: { min: 0, max: 270 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s1-p90", kind: "point", at: { x: 2.6, y: 1.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 * cos((((t + 90) * pi) / 180)))", y: "(3 * sin((((t + 90) * pi) / 180)))", parameter: { min: 0, max: 270 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -2.12, y: -2.12 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah lengkok minor dan major, lengkok minor meliputi <InlineMath math="90^\circ" /> dan lengkok major meliputi bakinya, <InlineMath math="270^\circ" />. Hasil tambah ukuran kedua-dua lengkok sentiasa <InlineMath math="360^\circ" />.
+
+| Jenis lengkok | Ukuran lengkok | Bahagian daripada bulatan |
+| --- | --- | --- |
+| Lengkok minor | Kurang daripada <InlineMath math="180^\circ" /> | Kurang daripada separuh |
+| Semibulatan | Tepat <InlineMath math="180^\circ" /> | Tepat separuh |
+| Lengkok major | Lebih daripada <InlineMath math="180^\circ" /> | Lebih daripada separuh |
+
+Lengkok minor dinamakan dengan dua huruf, seperti <InlineMath math="\overset{\frown}{AB}" />. Lengkok major dinamakan dengan tiga huruf, seperti <InlineMath math="\overset{\frown}{ACB}" />, kerana titik <InlineMath math="C" />, yang terletak di antara <InlineMath math="A" /> dan <InlineMath math="B" />, menunjukkan lengkok mana yang dimaksudkan. Tanpa huruf ketiga, <InlineMath math="\overset{\frown}{AB}" /> sentiasa bermaksud lengkok minor.
+
+## Ukuran Lengkok Sama dengan Sudut di Pusat
+
+Setiap lengkok ada dua saiz yang berbeza. Ukuran lengkoknya diberikan dalam darjah dan **sama dengan sudut di pusat** yang dicangkum oleh lengkok itu. Panjang lengkoknya diberikan dalam unit panjang dan bergantung pada jejari.
+
+<MathVisual
+  title={<>Sudut di Pusat <InlineMath math="\angle AOB" /></>}
+  description={<>Sudut di pusat <InlineMath math="\alpha = 45^\circ" /> dicangkum oleh lengkok <InlineMath math="\overset{\frown}{AB}" />, jadi ukuran lengkok itu juga <InlineMath math="45^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\overset{\frown}{AB}" />,
+    "l5": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 5) * pi) / 180)))", y: "(3 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(0.8 * cos((((t / 5) * pi) / 180)))", y: "(0.8 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.78, y: 1.12 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 0.74, y: 0.3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah sudut di pusat, <InlineMath math="\angle AOB = \alpha = 45^\circ" />, jadi ukuran lengkok <InlineMath math="\overset{\frown}{AB}" /> juga <InlineMath math="45^\circ" />. Lengkok yang sama ukurannya boleh berbeza panjang, contohnya lengkok <InlineMath math="60^\circ" /> pada bulatan berjejari <InlineMath math="3\text{ cm}" /> dan <InlineMath math="6\text{ cm}" />:
+
+| Jejari | Ukuran lengkok | Panjang lengkok |
+| --- | --- | --- |
+| <InlineMath math="3\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(3)=\pi\text{ cm}" /> |
+| <InlineMath math="6\text{ cm}" /> | <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}(2\pi)(6)=2\pi\text{ cm}" /> |
+
+Apabila jejari digandakan, panjang lengkok turut berganda, tetapi ukuran lengkok kekal <InlineMath math="60^\circ" />.
+
+## Sudut di Lilitan Separuh Ukuran Lengkoknya
+
+Bucu sudut di lilitan terletak pada lilitan, dan lengannya ialah perentas. Sudut di lilitan berukuran **separuh daripada lengkok yang mencangkumnya**. Petua ini sama dengan hubungan antara [sudut di pusat dan sudut di lilitan](/ms/subjek/matematik/bulatan/sudut-di-pusat-dan-sudut-di-lilitan), cuma kali ini dibaca daripada lengkok.
+
+<MathVisual
+  title={<>Sudut di Lilitan <InlineMath math="\angle ACB" /></>}
+  description={<>Sudut di titik <InlineMath math="C" /> dicangkum oleh lengkok <InlineMath math="\overset{\frown}{AB}" /> yang berukuran <InlineMath math="45^\circ" />, jadi <InlineMath math="\angle ACB = 22.5^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="C" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\overset{\frown}{AB}" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 5) * pi) / 180)))", y: "(3 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -2.12, y: -2.12 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.78, y: 1.12 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah sudut di lilitan, sudut di titik <InlineMath math="C" /> dicangkum oleh lengkok <InlineMath math="\overset{\frown}{AB}" /> yang berukuran <InlineMath math="45^\circ" />, jadi <InlineMath math="\angle ACB = 22.5^\circ" />. Gambar rajah kedua menggunakan lengkok <InlineMath math="80^\circ" />.
+
+<MathVisual
+  title={<>Sudut di Lilitan yang Dicangkum oleh Lengkok <InlineMath math="80^\circ" /></>}
+  description={<>Ukuran lengkok <InlineMath math="\overset{\frown}{AB}" /> ialah <InlineMath math="80^\circ" />, jadi sudut di lilitan <InlineMath math="\angle ACB = 40^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="80^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0.52, y: 2.95 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.12, y: -2.12 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3 * Math.cos((80 * Math.PI) / 180), y: 3 * Math.sin((80 * Math.PI) / 180) }, { x: -3 / Math.sqrt(2), y: -3 / Math.sqrt(2) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(3 * cos((((t / 3) * pi) / 180)))", y: "(3 * sin((((t / 3) * pi) / 180)))", parameter: { min: 0, max: 240 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(0.8 * cos(((((t / 10) * 4) * pi) / 180)))", y: "(0.8 * sin(((((t / 10) * 4) * pi) / 180)))", parameter: { min: 0, max: 200 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0.52, y: 2.95 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: -2.12, y: -2.12 }, placement: "below-left" },
+      { key: "l5", objectId: "s7", at: { x: 0.61, y: 0.51 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah kedua, ukuran lengkok <InlineMath math="\overset{\frown}{AB}" /> ialah <InlineMath math="80^\circ" />, jadi:
+
+<BlockMath math="\angle ACB = \frac{1}{2} \times 80^\circ = 40^\circ" />
+
+Membaca daripada lengkok memudahkan kerja kamu apabila soalan memberikan ukuran lengkok, bukan sudut di pusat. Kamu tidak perlu melukis jejari dahulu untuk mencari sudut di lilitan.
+
+## Panjang Lengkok dan Luas Sektor
+
+Sektor ialah rantau yang dibatasi oleh dua jejari dan lengkok di antara kedua-duanya. Lengkok dan sektornya mengambil **bahagian yang sama daripada satu putaran penuh**, iaitu sudut di pusat dibahagi dengan <InlineMath math="360^\circ" />. Darabkan bahagian itu dengan lilitan untuk mendapat panjang lengkok, dan dengan luas bulatan untuk mendapat luas sektor.
+
+<MathContainer>
+  <BlockMath math="l = \frac{\alpha}{360^\circ} \times 2\pi r" />
+  <BlockMath math="A = \frac{\alpha}{360^\circ} \times \pi r^2" />
+</MathContainer>
+
+Dalam kedua-dua rumus, <InlineMath math="l" /> ialah panjang lengkok, <InlineMath math="A" /> ialah luas sektor, <InlineMath math="\alpha" /> ialah sudut di pusat dalam darjah, dan <InlineMath math="r" /> ialah jejari.
+
+<MathVisual
+  title={<>Sektor Bulatan</>}
+  description={<>Sektor <InlineMath math="60^\circ" /> berjejari <InlineMath math="3" /> ada panjang lengkok <InlineMath math="\pi" /> dan luas <InlineMath math="1.5\pi" />.</>}
+  labels={{
+    "l1": <>Sektor</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5, y: (3 * Math.sqrt(3)) / 2 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 1.5, y: 2.6 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(3 * cos((((t / 4) * pi) / 180)))", y: "(3 * sin((((t / 4) * pi) / 180)))", parameter: { min: 0, max: 240 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s4", at: { x: 2.6, y: 1.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Sektor dalam gambar rajah ada jejari <InlineMath math="3" /> dan sudut di pusat <InlineMath math="60^\circ" />, jadi bahagiannya ialah <InlineMath math="\frac{60}{360} = \frac{1}{6}" />. Panjang lengkoknya ialah <InlineMath math="\frac{1}{6} \times 6\pi = \pi" /> dan luasnya ialah <InlineMath math="\frac{1}{6} \times 9\pi = 1.5\pi" />. Walaupun tanpa sudut, [hubungan antara panjang lengkok dan luas sektor](/ms/subjek/matematik/lengkok-dan-sektor-bulatan/hubungan-panjang-lengkok-dan-luas-sektor) memberikan hasil yang sama: <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times \pi \times 3 = 1.5\pi" />.
+
+## Contoh Pengiraan Lengkok dan Sektor
+
+Setiap contoh bermula dengan **mencari bahagian daripada satu putaran penuh** yang diambil oleh lengkok. Sebaik sahaja kamu tahu bahagian itu, panjang lengkok dan luas sektor boleh terus dikira.
+
+**Contoh 1**. Sebuah bulatan ada jejari <InlineMath math="14\text{ cm}" />. Satu lengkok ada sudut di pusat <InlineMath math="90^\circ" />. Cari panjang lengkok dan luas sektornya.
+
+Bahagian daripada satu putaran penuh ialah <InlineMath math="\frac{90}{360} = \frac{1}{4}" />:
+
+<MathContainer>
+  <BlockMath math="l = \frac{1}{4} \times 2\pi \times 14 = 7\pi \approx 21.99\text{ cm}" />
+  <BlockMath math="A = \frac{1}{4} \times \pi \times 14^2 = 49\pi \approx 153.94\text{ cm}^2" />
+</MathContainer>
+
+Semak dengan hubungan <InlineMath math="A = \frac{1}{2} l r" />. Hubungan ini memberikan <InlineMath math="\frac{1}{2} \times 7\pi \times 14 = 49\pi" />, iaitu sama dengan luas sektor.
+
+**Contoh 2**. Satu lengkok sepanjang <InlineMath math="7\pi\text{ cm}" /> terletak pada bulatan berjejari <InlineMath math="21\text{ cm}" />. Cari sudut di pusatnya.
+
+Bahagian daripada satu putaran penuh ialah panjang lengkok dibahagi dengan lilitan:
+
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{7\pi}{2\pi \times 21} = \frac{7\pi}{42\pi} = \frac{1}{6}" />
+  <BlockMath math="\alpha = \frac{1}{6} \times 360^\circ = 60^\circ" />
+</MathContainer>
+
+Semak dari arah sebaliknya. Lengkok <InlineMath math="60^\circ" /> pada bulatan berjejari <InlineMath math="21" /> ada panjang <InlineMath math="\frac{60}{360} \times 42\pi = 7\pi" />.
+
+## Kesilapan Lazim
+
+Sebelum mengira, asingkan **ukuran lengkok daripada panjang lengkok**.
+
+| Kesilapan | Sebab salah | Cara menyemak |
+| --- | --- | --- |
+| Memberikan panjang lengkok dalam darjah | Darjah ialah ukuran lengkok, manakala panjang menggunakan unit panjang | Semak unit jawapan, contohnya cm |
+| Menggunakan diameter sebagai <InlineMath math="r" /> | Rumus lilitan <InlineMath math="2\pi r" /> sudah mengandungi faktor <InlineMath math="2" /> | Bahagi dua diameter sebelum kamu menggantikannya |
+| Menggunakan sudut lengkok minor untuk lengkok major | Lengkok major meliputi <InlineMath math="360^\circ" /> tolak lengkok minor | Lengkok major mesti lebih panjang daripada separuh lilitan |
+| Menganggap sektor sebagai tembereng | Sektor dibatasi oleh dua jejari, manakala [tembereng](/ms/subjek/matematik/lengkok-dan-sektor-bulatan/tembereng) dibatasi oleh perentas | Lihat sama ada sempadan rantau itu jejari atau perentas |
+
+Kesilapan diameter ini menggandakan panjang lengkok, tetapi hasilnya tidak semestinya nampak salah. Jadi tulis <InlineMath math="r = \frac{d}{2}" /> sebagai langkah pertama setiap kali soalan memberikan diameter.
+
+## Latihan Lengkok Bulatan
+
+Untuk setiap soalan, cari **bahagian daripada satu putaran penuh** yang diambil oleh lengkok atau sektor itu dahulu. Soalan 4 memerlukan dua langkah.
+
+1. Sebuah bulatan ada diameter <InlineMath math="20\text{ cm}" />. Sudut di lilitan yang dicangkum oleh lengkok <InlineMath math="\overset{\frown}{AB}" /> berukuran <InlineMath math="30^\circ" />. Cari ukuran lengkok <InlineMath math="\overset{\frown}{AB}" /> dan panjangnya.
+
+2. Pada bulatan berjejari <InlineMath math="21\text{ cm}" />, lengkok <InlineMath math="\overset{\frown}{PQ}" /> ada sudut di pusat <InlineMath math="120^\circ" />. Cari panjang lengkok <InlineMath math="\overset{\frown}{PQ}" /> dan luas sektor <InlineMath math="POQ" />.
+
+3. Pada bulatan berjejari <InlineMath math="10\text{ cm}" />, lengkok minor <InlineMath math="\overset{\frown}{AB}" /> ada sudut di pusat <InlineMath math="72^\circ" />. Cari panjang lengkok major <InlineMath math="\overset{\frown}{ACB}" />.
+
+4. Satu sektor bulatan berjejari <InlineMath math="12\text{ cm}" /> ada luas <InlineMath math="24\pi\text{ cm}^2" />. Cari panjang lengkoknya.
+
+### Jawapan
+
+**Soalan 1**. Ukuran lengkok ialah dua kali sudut di lilitan yang dicangkumnya, jadi ukuran lengkok <InlineMath math="\overset{\frown}{AB}" /> ialah <InlineMath math="60^\circ" />. Jejari ialah **separuh daripada diameter**, iaitu <InlineMath math="10\text{ cm}" />:
+
+<BlockMath math="l = \frac{60}{360} \times 2\pi \times 10 = \frac{10\pi}{3} \approx 10.47\text{ cm}" />
+
+Semak saiznya. Lilitan bulatan ialah <InlineMath math="20\pi \approx 62.83\text{ cm}" />, dan lengkok <InlineMath math="60^\circ" /> ialah satu perenam daripadanya.
+
+**Soalan 2**. Sudut <InlineMath math="120^\circ" /> mengambil **satu pertiga daripada satu putaran**, kerana <InlineMath math="\frac{120}{360} = \frac{1}{3}" />:
+
+<MathContainer>
+  <BlockMath math="l = \frac{1}{3} \times 2\pi \times 21 = 14\pi \approx 43.98\text{ cm}" />
+  <BlockMath math="A = \frac{1}{3} \times \pi \times 21^2 = 147\pi \approx 461.81\text{ cm}^2" />
+</MathContainer>
+
+Semak dengan <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times 14\pi \times 21 = 147\pi" />.
+
+**Soalan 3**. Lengkok major meliputi **baki putaran itu**, iaitu <InlineMath math="360^\circ - 72^\circ = 288^\circ" />:
+
+<BlockMath math="l = \frac{288}{360} \times 2\pi \times 10 = 16\pi \approx 50.27\text{ cm}" />
+
+Semak dengan lengkok minor. Panjang lengkok minor ialah <InlineMath math="\frac{72}{360} \times 20\pi = 4\pi" />, dan <InlineMath math="4\pi + 16\pi = 20\pi" /> ialah lilitan bulatan itu.
+
+**Soalan 4**. Cari dahulu bahagian daripada satu putaran penuh menggunakan luas, kemudian gunakan bahagian yang sama untuk **panjang lengkok**:
+
+<MathContainer>
+  <BlockMath math="\frac{\alpha}{360^\circ} = \frac{24\pi}{\pi \times 12^2} = \frac{24\pi}{144\pi} = \frac{1}{6}" />
+  <BlockMath math="l = \frac{1}{6} \times 2\pi \times 12 = 4\pi \approx 12.57\text{ cm}" />
+</MathContainer>
+
+Sudut di pusatnya ialah <InlineMath math="60^\circ" />. Semak dengan <InlineMath math="A = \frac{1}{2} l r = \frac{1}{2} \times 4\pi \times 12 = 24\pi" />.

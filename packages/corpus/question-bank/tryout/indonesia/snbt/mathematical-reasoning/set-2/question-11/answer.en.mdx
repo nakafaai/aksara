@@ -1,15 +1,49 @@
-Let the candidate answer <InlineMath math="b" /> questions correctly and <InlineMath math="w" /> wrongly, with <InlineMath math="b+w\le40" />. The total score is <InlineMath math="4b-w" />, **four times the correct answers minus the wrong answers**, and each statement is checked with this formula.
+For a principal of <InlineMath math="12{,}000{,}000" />, the principal part of each instalment is <InlineMath math="1{,}000{,}000" />. Rencana Tetap's interest is always <InlineMath math="120{,}000" />, while **Rencana Menurun's interest in month <InlineMath math="k" /> is <InlineMath math="20{,}000\,(13-k)" />**, because it's charged on the <InlineMath math="13-k" /> million left before the payment. With these two formulas, test each statement on its own.
 
-# Candidates who answer everything
+# The first statement
 
-If every question is answered, <InlineMath math="w=40-b" /> and the score is <InlineMath math="5b-40" />. This score is **always a multiple of 5**, while 102 is not. The first statement is false.
+Both plans repay the same principal part, so compare only the interest. Rencana Menurun's interest is smaller when <InlineMath math="20{,}000\,(13-k)<120{,}000" />.
 
-# A score of 159, negative scores and zero
+<BlockMath math="\begin{aligned}
+13-k&<6 \\
+k&>7
+\end{aligned}" />
 
-The top score is 160, with 40 correct answers. With only 39 correct, the score is at most <InlineMath math="4\cdot39=156" />. There is no way to get 159, so the second statement is true.
+In month seven Rencana Menurun's interest is <InlineMath math="20{,}000\cdot 6=120{,}000" />, **exactly equal, not yet smaller**. Its instalment only becomes smaller from month eight, so this statement is **false**.
 
-A candidate who answers one question wrongly scores <InlineMath math="-1" />, so a negative score is possible. The third statement is true.
+# The second statement
 
-A candidate with 1 correct and 4 wrong answers scores <InlineMath math="4-4=0" />. **A score of 0 also appears without leaving everything blank**, so the fourth statement is false.
+At <InlineMath math="1.8\%" />, each month's interest is <InlineMath math="1.8\%" /> of the remaining principal. The remaining principal from month one to month twelve adds up to <InlineMath math="12+11+\cdots+1=78" /> million, so **the total interest is the rate times the sum of all remaining principals**.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+<BlockMath math="\begin{aligned}
+1.8\%\cdot 78{,}000{,}000&=1{,}404{,}000 \\
+12\cdot 120{,}000&=1{,}440{,}000
+\end{aligned}" />
+
+Since <InlineMath math="1{,}404{,}000<1{,}440{,}000" />, this statement is **true**. At the table's <InlineMath math="2\%" /> the total is <InlineMath math="1{,}560{,}000" />, so Rencana Menurun only has less interest when its rate is low enough.
+
+# The third statement
+
+During the first six months, the principal left before each payment is <InlineMath math="12" />, <InlineMath math="11" />, down to <InlineMath math="7" /> million. **Add up those six months of interest**, then subtract six months of Rencana Tetap interest.
+
+<BlockMath math="\begin{aligned}
+2\%\cdot (12+11+10+9+8+7)\cdot 1{,}000{,}000&=2\%\cdot 57{,}000{,}000=1{,}140{,}000 \\
+1{,}140{,}000-6\cdot 120{,}000&=420{,}000
+\end{aligned}" />
+
+The difference is exactly <InlineMath math="420{,}000" />, so this statement is **true**.
+
+# The fourth statement
+
+Without early payoff, the total cost is interest plus the admin fee. For a principal <InlineMath math="P" />, Rencana Tetap's interest is <InlineMath math="12\%" /> of <InlineMath math="P" /> and its admin fee is <InlineMath math="2\%" /> of <InlineMath math="P" />. Rencana Menurun's interest is <InlineMath math="2\%\cdot\tfrac{78}{12}P=13\%" /> of <InlineMath math="P" />, but **its admin fee stays at <InlineMath math="100{,}000" /> whatever the principal**.
+
+<BlockMath math="\begin{aligned}
+P=12{,}000{,}000&:\ 1{,}680{,}000-(1{,}560{,}000+100{,}000)=20{,}000 \\
+P=18{,}000{,}000&:\ 2{,}520{,}000-(2{,}340{,}000+100{,}000)=80{,}000
+\end{aligned}" />
+
+The difference becomes <InlineMath math="4" /> times as big, not <InlineMath math="1.5" /> times. Only the parts proportional to the principal grow <InlineMath math="1.5" /> times, while the fixed admin fee doesn't grow at all. This statement is **false**.
+
+# Summary
+
+The second and third statements are true, and the first and fourth are false. Both false statements skip **one small condition**: the interest that's exactly equal in month seven, and the admin fee that doesn't depend on the principal.

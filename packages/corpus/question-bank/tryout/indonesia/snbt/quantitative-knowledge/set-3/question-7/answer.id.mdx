@@ -1,16 +1,34 @@
-Ada beberapa pasangan <InlineMath math="(a,b)" /> yang memenuhi syarat, misalnya <InlineMath math="(7,5)" /> dan <InlineMath math="(11,1)" />. Daripada mencoba satu per satu, **faktorkan <InlineMath math="P" />** sebagai selisih kuadrat.
+Setiap ruas baru membentuk segitiga sama kaki dengan ruas sebelumnya. Rencananya: cari pola sudut alas segitiga-segitiga itu, tentukan **kapan titik baru tidak dapat dibuat lagi**, lalu hitung ruasnya.
 
-# Memfaktorkan selisih kuadrat
+# Pola sudut alas
+
+Segitiga <InlineMath math="AP_1P_2" /> sama kaki karena <InlineMath math="AP_1=P_1P_2" />, dengan puncak <InlineMath math="P_1" />. Jadi kedua sudut alasnya <InlineMath math="12^\circ" />. Segitiga berikutnya, <InlineMath math="P_1P_2P_3" />, berpuncak di <InlineMath math="P_2" />, dan sudut alasnya di <InlineMath math="P_1" /> adalah sudut luar segitiga <InlineMath math="AP_1P_2" />. Aturannya: **sudut luar segitiga sama dengan jumlah dua sudut dalam yang tidak bersisian dengannya**.
 
 <BlockMath math="\begin{aligned}
-P=a^2-b^2&=(a+b)(a-b)\\
-&=12(a-b)
+\text{sudut alas segitiga } P_1P_2P_3&=12^\circ+12^\circ=24^\circ\\
+\text{sudut alas segitiga } P_2P_3P_4&=12^\circ+24^\circ=36^\circ
 \end{aligned}" />
 
-Bentuk terakhir **persis sama dengan <InlineMath math="Q" />**, untuk setiap pasangan yang memenuhi <InlineMath math="a+b=12" />.
+Baris kedua memakai segitiga <InlineMath math="AP_2P_3" />, yang sudutnya di <InlineMath math="A" /> adalah <InlineMath math="12^\circ" /> dan di <InlineMath math="P_3" /> adalah <InlineMath math="24^\circ" />. Setiap langkah menambah <InlineMath math="12^\circ" />, jadi segitiga ke-<InlineMath math="k" />, yang berpuncak di <InlineMath math="P_k" />, mempunyai sudut alas <InlineMath math="12k^\circ" />.
 
-# Memeriksa dengan contoh
+# Kapan titik baru masih bisa dibuat
 
-Untuk <InlineMath math="(7,5)" />: <InlineMath math="P=49-25=24" /> dan <InlineMath math="Q=12(2)=24" />. Untuk <InlineMath math="(11,1)" />: <InlineMath math="P=121-1=120" /> dan <InlineMath math="Q=12(10)=120" />. Nilai <InlineMath math="P" /> dan <InlineMath math="Q" /> berubah bersama, tetapi **selalu sama**.
+Titik baru adalah titik kedua tempat lingkaran berpusat di puncak dengan jari-jari <InlineMath math="1" /> memotong sinar. Titik itu lebih jauh dari <InlineMath math="A" /> daripada titik lama hanya jika **sudut alas segitiganya lancip**. Kalau sudut alasnya <InlineMath math="90^\circ" /> atau lebih, titik potong kedua jatuh di titik lama atau lebih dekat ke <InlineMath math="A" />. Hal yang sama terlihat dari jumlah sudut: dua sudut alas yang masing-masing <InlineMath math="90^\circ" /> atau lebih sudah tidak muat dalam <InlineMath math="180^\circ" />.
 
-Pilihan informasi tidak cukup terasa wajar karena <InlineMath math="a" /> dan <InlineMath math="b" /> tidak tunggal. Namun hubungan yang ditanyakan tetap sama untuk semua pasangan, jadi <InlineMath math="P=Q" />.
+<BlockMath math="\begin{aligned}
+12k&<90\\
+k&<7{,}5\\
+k&\le 7
+\end{aligned}" />
+
+Segitiga ketujuh bersudut alas <InlineMath math="84^\circ" /> dan sudut puncaknya <InlineMath math="180^\circ-2\cdot 84^\circ=12^\circ" />, jadi masih ada. Segitiga kedelapan memerlukan sudut alas <InlineMath math="96^\circ" />, jadi tidak mungkin.
+
+# Menghitung ruas garis
+
+Ruas pertama <InlineMath math="AP_1" /> tidak membentuk segitiga baru. Setelah itu, **setiap segitiga menambah tepat satu ruas**, yaitu <InlineMath math="P_1P_2" /> sampai <InlineMath math="P_7P_8" />. Banyak ruasnya <InlineMath math="1+7=8" />.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="7" /> hanya menghitung segitiganya dan **lupa ruas pertama** <InlineMath math="AP_1" />. Pilihan <InlineMath math="9" /> menghitung titik <InlineMath math="A,P_1,\ldots,P_8" />, bukan ruas garis. Pilihan <InlineMath math="15" /> hanya mensyaratkan sudut alas kurang dari <InlineMath math="180^\circ" />, sehingga <InlineMath math="12k<180" /> memberi <InlineMath math="14" /> segitiga. Pilihan <InlineMath math="4" /> menganggap sudut alasnya berlipat dua, yaitu <InlineMath math="12^\circ" />, <InlineMath math="24^\circ" />, <InlineMath math="48^\circ" />, lalu <InlineMath math="96^\circ" />, padahal setiap langkah hanya menambah <InlineMath math="12^\circ" />.
+
+Jadi, ada <InlineMath math="8" /> ruas garis sepanjang <InlineMath math="1\text{ satuan}" /> yang dapat dibuat.

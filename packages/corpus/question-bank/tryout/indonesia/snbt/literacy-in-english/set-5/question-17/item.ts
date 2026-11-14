@@ -2,35 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "great-stink",
+  stimulus: "night-orchard",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "John Snow's conclusion about cholera was widely accepted in 1854.",
-        },
-        {
           column: 1,
           label:
-            "The new sewers carried waste to outfalls downstream of central London.",
-        },
-        {
-          column: 1,
-          label:
-            "Some of the new sewers were built inside embankments that also created new roads.",
+            "The grandfather's method depends on water freezing onto the blossoms throughout the coldest hours.",
         },
         {
           column: 2,
           label:
-            "Since the new system was finished, the sewers have never overflowed into the Thames.",
+            "The ice protects the blossoms mainly by keeping the wind off them.",
+        },
+        {
+          column: 1,
+          label:
+            "Shutting the valve before the ice had melted could have harmed the blossoms.",
+        },
+        {
+          column: 2,
+          label:
+            "The narrator understood the method from the moment the water was turned on.",
+        },
+        {
+          column: 2,
+          label:
+            "The Hallers' bare trees prove that the grandfather's method works on every frosty night.",
         },
       ],
     },

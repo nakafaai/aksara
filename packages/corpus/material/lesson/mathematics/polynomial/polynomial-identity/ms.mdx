@@ -1,0 +1,151 @@
+export const metadata = {
+  title: "Identiti Polinomial",
+  description: "Gunakan identiti kuasa dua binomial dan hasil tambah dua kuasa tiga untuk memudahkan ungkapan dan menyelesaikan persamaan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Ungkapan Polinomial yang Sama Nilainya bagi Setiap Input
+
+Identiti ialah persamaan yang <Highlight>kekal benar bagi setiap nilai dalam domainnya</Highlight>. Identiti polinomial pula ialah identiti yang kedua-dua belahnya ialah ungkapan polinomial.
+
+Berbeza dengan persamaan biasa yang hanya benar bagi nilai pemboleh ubah tertentu (contohnya, <InlineMath math="x + 2 = 5" /> hanya benar jika <InlineMath math="x=3" />), identiti polinomial kekal benar bagi *semua* nilai yang mungkin bagi pemboleh ubah itu.
+
+## Identiti Polinomial yang Biasa Digunakan
+
+**Identiti polinomial** berikut berguna untuk mengembangkan ungkapan dan mencari faktor:
+
+<MathContainer>
+  <BlockMath math="a^2 - b^2 = (a + b)(a - b)" />
+  <BlockMath math="(a + b)^2 = a^2 + 2ab + b^2" />
+  <BlockMath math="(a - b)^2 = a^2 - 2ab + b^2" />
+  <BlockMath math="a^3 + b^3 = (a + b)(a^2 - ab + b^2)" />
+  <BlockMath math="a^3 - b^3 = (a - b)(a^2 + ab + b^2)" />
+  <BlockMath math="(a + b)^3 = a^3 + 3a^2b + 3ab^2 + b^3" />
+  <BlockMath math="(a - b)^3 = a^3 - 3a^2b + 3ab^2 - b^3" />
+</MathContainer>
+
+Kamu boleh membaca setiap identiti dari kedua-dua arah: daripada hasil darab kepada ungkapan yang dikembangkan, atau daripada ungkapan yang dikembangkan kepada faktor-faktornya.
+
+Identiti <InlineMath math="(a + b)^2 = a^2 + 2ab + b^2" /> boleh dilihat sebagai luas: segi empat sama bersisi <InlineMath math="a + b" /> terbahagi kepada segi empat sama <InlineMath math="a^2" />, dua segi empat tepat <InlineMath math="ab" /> dan segi empat sama <InlineMath math="b^2" />. Dengan <InlineMath math="a = 3" /> dan <InlineMath math="b = 1" />: <InlineMath math="16 = 9 + 3 + 3 + 1" />.
+
+<MathVisual
+  title={<><InlineMath math="(a + b)^2" /> sebagai empat bahagian luas</>}
+  description={<>Segi empat sama bersisi <InlineMath math="4" /> yang dipecahkan kepada <InlineMath math="a^2 = 9" />, dua segi empat tepat <InlineMath math="ab = 3" /> dan <InlineMath math="b^2 = 1" />, dengan <InlineMath math="a = 3" /> dan <InlineMath math="b = 1" />.</>}
+  labels={{
+    aa: <InlineMath math="a^2" />,
+    ab1: <InlineMath math="ab" />,
+    ab2: <InlineMath math="ab" />,
+    bb: <InlineMath math="b^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -0.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "aa", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "ab1", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "ab2", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "bb", kind: "polygon", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }, { x: 4, y: 4 }, { x: 3, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "aa", objectId: "aa", at: { x: 3 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab1", objectId: "ab1", at: { x: 7 / 2, y: 3 / 2 }, placement: "center" },
+      { key: "ab2", objectId: "ab2", at: { x: 3 / 2, y: 7 / 2 }, placement: "center" },
+      { key: "bb", objectId: "bb", at: { x: 7 / 2, y: 7 / 2 }, placement: "center" },
+    ],
+  }}
+/>
+
+### Melihat Beza Dua Kuasa Dua sebagai Luas
+
+Mulakan dengan segi empat sama bersisi <InlineMath math="4" />, kemudian buang segi empat sama bersisi <InlineMath math="1" /> dari penjuru kanan atasnya. Dua kepingan berwarna itu mengekalkan **jumlah luas yang sama** apabila disusun semula menjadi segi empat tepat <InlineMath math="5\times3" />. Kepingan yang lebih besar hanya diputar, jadi saiznya tidak berubah.
+
+<MathVisual
+  title={<>Dua susunan dengan luas <InlineMath math="15" /></>}
+  description={<>Segi empat sama empat kali empat, dengan satu penjuru satu kali satu dibuang, menjadi segi empat tepat lima kali tiga.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 11.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-large", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: 0, y: 4 }], appearance: "primary" },
+      { id: "left-small", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "right-large", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 3 }, { x: 6, y: 3 }], appearance: "primary" },
+      { id: "right-small", kind: "polygon", vertices: [{ x: 10, y: 0 }, { x: 11, y: 0 }, { x: 11, y: 3 }, { x: 10, y: 3 }], appearance: "secondary" }
+    ],
+    labels: [
+      { key: "left-large", objectId: "left-large", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "left-small", objectId: "left-small", at: { x: 3.5, y: 1.5 }, placement: "above" },
+      { key: "right-large", objectId: "right-large", at: { x: 8, y: 1.5 }, placement: "above" },
+      { key: "right-small", objectId: "right-small", at: { x: 10.5, y: 1.5 }, placement: "above" }
+    ]
+  }}
+  labels={{ "left-large": "12", "left-small": "3", "right-large": "12", "right-small": "3" }}
+/>
+
+<BlockMath math="4^2-1^2=16-1=15=(4+1)(4-1)" />
+
+Gambar ini menunjukkan <InlineMath math="a=4" /> dan <InlineMath math="b=1" />. Binaan luas ini memerlukan <InlineMath math="a>b>0" />, manakala identiti algebra itu benar bagi semua nombor nyata.
+
+## Membuktikan Persamaan sebagai Identiti
+
+Untuk **membuktikan identiti**, ubah satu belah menggunakan langkah algebra yang sah sehingga sama dengan belah yang satu lagi. Setiap langkah mesti benar bagi semua nilai pemboleh ubah. Untuk **menyangkal identiti**, cari satu input sahaja yang menjadikan kedua-dua belah berbeza.
+
+### Contoh Membuktikan Identiti
+
+Gunakan **pengembangan algebra atau contoh penyangkal** untuk menentukan sama ada setiap persamaan ialah identiti.
+
+1. <InlineMath math="(2x^2-y^2)^2=4x^4-4x^2y^2+y^4" />
+2. <InlineMath math="(2a-5)(2a+5)=4a^2-20a+25" />
+
+**Contoh 1**. Gunakan identiti kuasa dua bagi beza dengan <InlineMath math="A=2x^2" /> dan <InlineMath math="B=y^2" />:
+
+<BlockMath math="\begin{aligned}(2x^2-y^2)^2 &amp;=(2x^2)^2-2(2x^2)(y^2)+(y^2)^2 \\ &amp;=4x^4-4x^2y^2+y^4\end{aligned}" />
+
+Hasilnya sama dengan belah kanan bagi setiap input. Oleh itu, persamaan ini ialah **identiti polinomial**.
+
+**Contoh 2**. Gantikan <InlineMath math="a=0" /> ke dalam kedua-dua belah:
+
+<BlockMath math="\begin{aligned}(2(0)-5)(2(0)+5)&amp;=(-5)(5)=-25 \\ 4(0)^2-20(0)+25&amp;=25\end{aligned}" />
+
+Belah kiri bernilai <InlineMath math="-25" />, manakala belah kanan bernilai <InlineMath math="25" />. Perbezaan ini membuktikan bahawa persamaan itu **bukan identiti**. Pengembangan yang betul ialah:
+
+<BlockMath math="(2a-5)(2a+5)=(2a)^2-5^2=4a^2-25" />
+
+## Latihan
+
+Tentukan sama ada setiap persamaan ialah identiti. Berikan **pengembangan yang sah bagi semua input**, atau berikan satu contoh penyangkal.
+
+Jika kedua-dua belah sama pada satu input, itu belum membuktikan identiti. Contohnya, kedua-dua belah persamaan pertama sama apabila pemboleh ubahnya sifar, tetapi kedua-duanya mungkin masih berbeza pada nilai lain.
+
+1. <InlineMath math="(2m-3)^3=8m^3-27" />
+2. <InlineMath math="(2x-3)^2+5=4x^2-12x+14" />
+
+### Kunci Jawapan
+
+**Soalan 1**. Pilih <InlineMath math="m=1" />:
+
+<BlockMath math="\begin{aligned}(2(1)-3)^3&amp;=(-1)^3=-1 \\ 8(1)^3-27&amp;=8-27=-19\end{aligned}" />
+
+Kedua-dua belah berbeza, jadi persamaan itu **bukan identiti**. Sebutan campuran dalam kuasa tiga bagi beza tidak boleh ditinggalkan:
+
+<BlockMath math="\begin{aligned}(2m-3)^3&amp;=(2m)^3-3(2m)^2(3)+3(2m)(3)^2-3^3 \\ &amp;=8m^3-36m^2+54m-27\end{aligned}" />
+
+**Soalan 2**. Kembangkan kuasa dua bagi beza itu dan kekalkan pemalar <InlineMath math="5" /> yang ditambah:
+
+<BlockMath math="\begin{aligned}(2x-3)^2+5&amp;=(2x)^2-2(2x)(3)+3^2+5 \\ &amp;=4x^2-12x+9+5 \\ &amp;=4x^2-12x+14\end{aligned}" />
+
+Hasilnya sama dengan belah kanan bagi setiap input. Oleh itu, persamaan ini ialah **identiti polinomial**.
+
+Untuk Soalan 1, tolak belah kanan daripada belah kiri: <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" />. Nilainya <InlineMath math="0" /> pada <InlineMath math="m = 0" />, tetapi <InlineMath math="18" /> pada <InlineMath math="m = 1" /> dan <InlineMath math="-36" /> pada <InlineMath math="m = 2" />, jadi kedua-dua belah tidak sama dan persamaan itu bukan identiti.
+
+<BarChart
+  title={<>Beza kedua-dua belah dalam <InlineMath math="(2m - 3)^3 = 8m^3 - 27" /></>}
+  description={<>Palang bagi <InlineMath math="(2m - 3)^3 - (8m^3 - 27)" /> untuk <InlineMath math="m = 0, 1, 2, 3" />: <InlineMath math="0" />, <InlineMath math="18" />, <InlineMath math="-36" /> dan <InlineMath math="-162" />.</>}
+  yAxisLabel="Kiri tolak kanan"
+  data={[0, 1, 2, 3].map((x) => ({ name: String(x), value: (2 * x - 3) ** 3 - (8 * x ** 3 - 27) }))}
+  chartConfig={{ value: { label: "Kiri tolak kanan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

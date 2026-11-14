@@ -1,0 +1,21 @@
+Bei <InlineMath math="x=\pi" /> ist der Zähler <InlineMath math="1+\cos\pi=0" />, und der Nenner ist ebenfalls <InlineMath math="0" />. Damit die Standardgrenzwerte bei null greifen, **verschiebst du die Stelle nach null** mit <InlineMath math="t=x-\pi" />. Für <InlineMath math="x\to\pi" /> geht <InlineMath math="t\to0" />.
+
+Die Formeln für den Winkel <InlineMath math="\pi+t" /> liefern <InlineMath math="\cos(\pi+t)=-\cos t" /> und <InlineMath math="\sin(\pi+t)=-\sin t" />.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to\pi}h(x)&=\lim_{t\to0}\frac{1-\cos t}{t\cdot(-\sin t)} \\
+&=-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}
+\end{aligned}" />
+
+Die zweite Zeile nutzt <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Zerlege in Standardgrenzwerte.
+
+<BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
+
+Numerische Probe: Für <InlineMath math="x=\pi+0{,}01" /> ist der Wert etwa <InlineMath math="\frac{0{,}0000500}{0{,}01\cdot(-0{,}0099998)}\approx-0{,}50" />.
+
+Der Grenzwert ist also <InlineMath math="-\frac12" />.
+
+- <InlineMath math="\frac12" /> nimmt <InlineMath math="\sin(\pi+t)=\sin t" /> an und verliert so das Minuszeichen.
+- <InlineMath math="-1" /> verwendet <InlineMath math="1-\cos t\approx t^2" />, die Näherung ist aber <InlineMath math="\frac{t^2}{2}" />.
+- <InlineMath math="0" /> schaut nur auf den Zähler, der gegen null geht.
+- <InlineMath math="-2" /> stellt den Bruch <InlineMath math="\frac12" /> am Ende auf den Kopf.

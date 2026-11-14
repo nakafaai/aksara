@@ -1,23 +1,31 @@
-The <InlineMath math="n" />th term of a geometric sequence is <InlineMath math="u_n=ar^{n-1}" />. From the first and fourth terms, **the ratio can be found first**, and every other statement follows.
+You're counting the divisors <InlineMath math="d" /> of <InlineMath math="3600" /> that meet two conditions at once: <InlineMath math="d" /> is divisible by <InlineMath math="6" />, and its partner <InlineMath math="\frac{3600}{d}" /> isn't. Here's the plan: break <InlineMath math="3600" /> into primes, turn both conditions into limits on the exponents, then count. The step people get wrong most often is **what not divisible by <InlineMath math="6" /> means**.
 
-# Finding the ratio
+# Prime factorization
+
+<BlockMath math="3600=36\cdot100=2^2\cdot3^2\cdot2^2\cdot5^2=2^4\cdot3^2\cdot5^2" />
+
+Every positive divisor of <InlineMath math="3600" /> has the form <InlineMath math="d=2^a\cdot3^b\cdot5^c" /> with <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" />, and <InlineMath math="0\le c\le2" />. Its partner **uses the leftover exponents**: <InlineMath math="\frac{3600}{d}=2^{4-a}\cdot3^{2-b}\cdot5^{2-c}" />.
+
+# Translating both conditions
+
+A number is divisible by <InlineMath math="6" /> when it contains a factor <InlineMath math="2" /> and a factor <InlineMath math="3" />. So the first condition means <InlineMath math="a\ge1" /> and <InlineMath math="b\ge1" />.
+
+The second condition is the opposite: the partner of <InlineMath math="d" /> **is missing the factor <InlineMath math="2" /> or missing the factor <InlineMath math="3" />**. One missing factor is enough. That means <InlineMath math="4-a=0" /> or <InlineMath math="2-b=0" />, so <InlineMath math="a=4" /> or <InlineMath math="b=2" />.
+
+# Counting with the complement
+
+**Counting through the complement** is quicker than listing one by one. First count every <InlineMath math="d" /> divisible by <InlineMath math="6" />, then remove the ones whose partner is also divisible by <InlineMath math="6" />, which are those with <InlineMath math="a\le3" /> and <InlineMath math="b\le1" />.
 
 <BlockMath math="\begin{aligned}
-u_4&=ar^3=48r^3=6\\
-r^3&=\tfrac18\\
-r&=\tfrac12
+\text{all multiples of }6&:\ a\in\{1,2,3,4\},\ b\in\{1,2\},\ c\in\{0,1,2\}\quad\Rightarrow\quad4\cdot2\cdot3=24\\
+\text{partner also a multiple of }6&:\ a\in\{1,2,3\},\ b=1,\ c\in\{0,1,2\}\quad\Rightarrow\quad3\cdot1\cdot3=9\\
+\text{wanted}&=24-9=15
 \end{aligned}" />
 
-The only real number whose cube is <InlineMath math="\tfrac18" /> is <InlineMath math="\tfrac12" />, so **the ratio is unique**. The first statement is true.
+Check it by counting directly. If <InlineMath math="a=4" />, there are <InlineMath math="2\cdot3=6" /> choices for <InlineMath math="b" /> and <InlineMath math="c" />. If <InlineMath math="a\le3" /> and <InlineMath math="b=2" />, there are <InlineMath math="3\cdot3=9" /> choices. That's <InlineMath math="6+9=15" /> in total. For example, <InlineMath math="d=48=2^4\cdot3" /> has partner <InlineMath math="75" />, which really isn't divisible by <InlineMath math="6" />.
 
-# Terms and sums
+# Traps to avoid
 
-<BlockMath math="\begin{aligned}
-u_6&=48\left(\tfrac12\right)^5=\tfrac{48}{32}=1.5\\
-S_5&=\frac{48\left(1-\left(\tfrac12\right)^5\right)}{1-\tfrac12}=96\cdot\tfrac{31}{32}=93\\
-S_\infty&=\frac{48}{1-\tfrac12}=96
-\end{aligned}" />
+**The most common mistake** is reading not divisible by <InlineMath math="6" /> as missing the factor <InlineMath math="2" /> and missing the factor <InlineMath math="3" />. That only counts <InlineMath math="a=4" /> with <InlineMath math="b=2" />, which gives <InlineMath math="3" />. Another mistake is forgetting the second condition and stopping at <InlineMath math="24" />.
 
-The third statement is true. The sixth term is 1.5, not 3, so the fourth statement is false. The number 3 is the fifth term. The infinite sum exists because <InlineMath math="\lvert r\rvert<1" />, and its value is 96. The number 64 appears when the ratio is taken as <InlineMath math="\tfrac14" />, so **the second statement is false**.
-
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+So the number of values of <InlineMath math="d" /> that work is <InlineMath math="15" />.

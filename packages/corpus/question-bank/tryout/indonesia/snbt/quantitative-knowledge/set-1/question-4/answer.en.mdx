@@ -1,32 +1,48 @@
-All four statements can be checked without finding each root separately. Use **the sum and product of the roots** from the coefficients of the equation.
+Each statement needs its own check, and two of them depend on **the numbers left out of a domain**. The plan: build <InlineMath math="f\circ f" /> with its domain, find its range, find <InlineMath math="f^{-1}" /> with its domain, and then find where the graphs of <InlineMath math="f" /> and <InlineMath math="f^{-1}" /> meet.
 
-<BlockMath math="p+q=6,\qquad pq=k" />
+# Building the composition
 
-# Finding the value of k
-
-The difference of the roots is linked to their sum and product through the identity for the square of a difference.
+The value <InlineMath math="f(f(x))" /> exists only when <InlineMath math="f(x)" /> exists and <InlineMath math="f(x)" /> can go into <InlineMath math="f" /> again. So you need **<InlineMath math="x\neq-1" /> and <InlineMath math="f(x)\neq-1" />**. The second condition fails only at <InlineMath math="x=0" />, because <InlineMath math="3x-1=-(x+1)" /> gives <InlineMath math="x=0" />.
 
 <BlockMath math="\begin{aligned}
-(p-q)^2&=(p+q)^2-4pq\\
-\left(2\sqrt2\right)^2&=6^2-4k\\
-8&=36-4k\\
-k&=7
+f(f(x))&=\frac{3\cdot\frac{3x-1}{x+1}-1}{\frac{3x-1}{x+1}+1}=\frac{3(3x-1)-(x+1)}{(3x-1)+(x+1)}\\
+&=\frac{8x-4}{4x}=\frac{2x-1}{x}
 \end{aligned}" />
 
-The statement <InlineMath math="k=7" /> is **true**. The discriminant is <InlineMath math="36-28=8>0" />, so both roots really are real.
+This formula is right, but only for <InlineMath math="x\neq-1" /> and <InlineMath math="x\neq0" />. The first statement includes <InlineMath math="x=-1" />, where <InlineMath math="f(-1)" /> isn't defined. The formula gives <InlineMath math="\frac{-3}{-1}=3" /> there, but <InlineMath math="f(f(-1))" /> doesn't exist. So **the first statement is false**.
 
-# Checking the other three statements
+# Finding the range of the composition
 
-With <InlineMath math="p+q=6" /> and <InlineMath math="pq=7" />, express each quantity through the sum and product of the roots.
+Write <InlineMath math="f(f(x))=2-\frac1x" />. Since <InlineMath math="x\neq0" />, the value <InlineMath math="\frac1x" /> is never zero, so the output is never <InlineMath math="2" />. Since <InlineMath math="x\neq-1" />, the output <InlineMath math="2-\frac{1}{-1}=3" /> never shows up either, because only <InlineMath math="x=-1" /> gives <InlineMath math="3" />. Every other value <InlineMath math="y" /> is reached by <InlineMath math="x=\frac{1}{2-y}" />, which is neither <InlineMath math="0" /> nor <InlineMath math="-1" /> when <InlineMath math="y\neq2" /> and <InlineMath math="y\neq3" />. So **the range of <InlineMath math="f\circ f" /> is every real number except <InlineMath math="2" /> and <InlineMath math="3" />**, and the second statement is true.
+
+# Finding the inverse and its domain
+
+Write <InlineMath math="y=f(x)" /> and solve for <InlineMath math="x" /> in terms of <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-p^2+q^2&=(p+q)^2-2pq=36-14=22\\
-\frac1p+\frac1q&=\frac{p+q}{pq}=\frac67\\
-p^3+q^3&=(p+q)^3-3pq(p+q)=216-126=90
+y(x+1)&=3x-1\\
+x(y-3)&=-1-y\\
+x&=\frac{y+1}{3-y}
 \end{aligned}" />
 
-The statement <InlineMath math="p^2+q^2=22" /> is **true**. The statement <InlineMath math="\frac1p+\frac1q=\frac76" /> is false because the fraction is flipped: the correct value is <InlineMath math="\frac67" />. The statement <InlineMath math="p^3+q^3=132" /> is false because the value is 90. The number 132 comes from <InlineMath math="(p+q)(p^2+q^2)=6\times22" />, which drops the term <InlineMath math="-pq" /> in <InlineMath math="p^3+q^3=(p+q)(p^2-pq+q^2)" />.
+So <InlineMath math="f^{-1}(x)=\frac{x+1}{3-x}" />. The domain of an inverse **is the range of the original function**. The value <InlineMath math="3" /> is never reached by <InlineMath math="f" />, because <InlineMath math="3x-1=3x+3" /> is impossible. On the other hand, <InlineMath math="-1" /> is reached, since <InlineMath math="f(0)=-1" />, so <InlineMath math="f^{-1}(-1)=0" /> exists. The domain of <InlineMath math="f^{-1}" /> is every real number except <InlineMath math="3" />, so the fourth statement is false.
 
-As a check, the roots are <InlineMath math="3+\sqrt2" /> and <InlineMath math="3-\sqrt2" />. Their squares add up to <InlineMath math="(11+6\sqrt2)+(11-6\sqrt2)=22" />.
+# Finding where the graphs meet
 
-So the first and second statements are **true**, and the third and fourth statements are **false**.
+A meeting point satisfies <InlineMath math="f(x)=f^{-1}(x)" /> with <InlineMath math="x\neq-1" /> and <InlineMath math="x\neq3" />. Cross-multiply the two fractions.
+
+<BlockMath math="\begin{aligned}
+\frac{3x-1}{x+1}&=\frac{x+1}{3-x}\\
+(3x-1)(3-x)&=(x+1)^2\\
+-3x^2+10x-3&=x^2+2x+1\\
+4x^2-8x+4&=0\\
+4(x-1)^2&=0
+\end{aligned}" />
+
+The only solution is <InlineMath math="x=1" />, and <InlineMath math="f(1)=\frac22=1" />. The two graphs **meet at exactly the point <InlineMath math="(1,1)" />**, so the third statement is true.
+
+# Checking the results
+
+Test the composition formula at <InlineMath math="x=2" />. Working it out directly gives <InlineMath math="f(2)=\frac53" /> and <InlineMath math="f\left(\frac53\right)=\frac{4}{\frac83}=\frac32" />. The formula <InlineMath math="\frac{2x-1}{x}" /> also gives <InlineMath math="\frac32" />, so **the formula matches at an allowed point**. Test the inverse too: <InlineMath math="f^{-1}(2)=\frac{2+1}{3-2}=3" />, and indeed <InlineMath math="f(3)=\frac{8}{4}=2" />.
+
+So the first statement is false, the second is true, the third is true, and the fourth is false.

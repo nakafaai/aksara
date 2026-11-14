@@ -19,172 +19,38 @@ Eine gemeinsame Tangente ist eine Gerade, die **zwei Kreise gleichzeitig berühr
 
 Die äußere Tangente nutzt die **Differenz der Radien**, die innere die **Summe der Radien**. Die äußere Formel gilt für <InlineMath math="d > r_2 - r_1" />, die innere braucht <InlineMath math="d \ge r_1 + r_2" />. Das Diagramm zur äußeren Tangente zeigt zwei Kreise mit dem Mittelpunktsabstand <InlineMath math="8" /> und den Radien <InlineMath math="2" /> und <InlineMath math="3" />. Achte auf das rechtwinklige Dreieck <InlineMath math="AHB" />, aus dem die erste Formel stammt.
 
-<LineEquation
-  title="Äußere gemeinsame Tangenten"
+<MathVisual
+  title={<>Äußere gemeinsame Tangenten</>}
   description={<>Die Geraden <InlineMath math="g_1" /> und <InlineMath math="g_2" /> berühren beide Kreise von derselben Seite, und die Hilfsstrecke <InlineMath math="AH" /> verläuft parallel zur Tangente.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 + 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Erste Tangente (oben)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        // Gerade verlängern
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
-          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_1" />, at: 2, offset: [-5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Zweite Tangente (unten)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        // Gerade verlängern
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 4 * tux, y: T1y - 4 * tuy, z: 0 },
-          { x: T2x + 4 * tux, y: T2y + 4 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="g_2" />, at: 2, offset: [-5, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8, z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0.5, 0, 16.5]}
-  cameraTarget={[0.5, 0, 0]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="g_1" />,
+    "l4": <InlineMath math="g_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.8, y: 1.29 }, { x: -8.22, y: 1.48 }, { x: 7.59, y: 3.48 }, { x: 9.17, y: 3.68 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -9.8, y: -1.29 }, { x: -8.22, y: -1.48 }, { x: 7.59, y: -3.48 }, { x: 9.17, y: -3.68 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 31 / 8, y: Math.sqrt(63) / 8 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 7.59, y: 3.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 7.59, y: -3.48 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.88, y: 0.99 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Für dieses Kreispaar ist <InlineMath math="l_{\text{außen}} = \sqrt{8^2 - 1^2} = \sqrt{63} = 3\sqrt{7}" />. Die Formel liefert die Länge der Strecke zwischen den beiden Berührpunkten. Suchst du stattdessen die Gleichung der Geraden, brauchst du die [Tangentengleichung am Kreis](/de/faecher/mathematik/analytische-geometrie/tangentengleichung-am-kreis), die mit dem Berührpunkt oder der Steigung arbeitet statt mit einer Länge.
@@ -201,145 +67,39 @@ Nenne den größeren Radius <InlineMath math="r_2" />, damit die Differenz posit
 
 **Beispiel**. Der erste Kreis hat den Mittelpunkt <InlineMath math="A(-3, 0)" /> und den Radius <InlineMath math="1{,}5" />, der zweite den Mittelpunkt <InlineMath math="B(3, 0)" /> und den Radius <InlineMath math="2{,}5" />. Bestimme die Länge der äußeren gemeinsamen Tangente.
 
-<LineEquation
+<MathVisual
   title={<>Kreise mit <InlineMath math="r_1 = 1{,}5" /> und <InlineMath math="r_2 = 2{,}5" /></>}
   description={<>Die Mittelpunkte <InlineMath math="A" /> und <InlineMath math="B" /> sind <InlineMath math="6" /> voneinander entfernt, der äußere Tangentenabschnitt <InlineMath math="PQ" /> ist also <InlineMath math="\sqrt{35}" /> lang.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -3 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 + 2.5 * Math.cos(angle),
-          y: 2.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-        {
-      points: (() => {
-        const O1 = { x: -3, y: 0 };
-        const O2 = { x: 3, y: 0 };
-        const r1 = 1.5;
-        const r2 = 2.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Erste Tangente (oben)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -3, y: 0 };
-        const O2 = { x: 3, y: 0 };
-        const r1 = 1.5;
-        const r2 = 2.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Zweite Tangente (unten)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="R" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="S" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0.5, 0, 13]}
-  cameraTarget={[0.5, 0, 0]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="Q" />,
+    "l5": <InlineMath math="R" />,
+    "l6": <InlineMath math="S" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2.5 * cos(((t * pi) / 180))))", y: "(2.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.25, y: 1.48 }, { x: 2.58, y: 2.47 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.25, y: -1.48 }, { x: 2.58, y: -2.47 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -3.25, y: 1.48 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2.58, y: 2.47 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -3.25, y: -1.48 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 2.58, y: -2.47 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Den Mittelpunktsabstand liest du aus den Koordinaten ab und setzt ihn in die Formel für die äußere Tangente ein:
@@ -355,137 +115,38 @@ Die Länge beträgt <InlineMath math="\sqrt{35} \approx 5{,}92" /> Einheiten. Pr
 
 Eine innere Tangente **schneidet die Verbindungsstrecke der Mittelpunkte**, die beiden Kreise liegen also auf verschiedenen Seiten der Geraden. Die Radien zu den Berührpunkten zeigen jetzt in entgegengesetzte Richtungen, deshalb werden die beiden Radien addiert.
 
-<LineEquation
-  title="Innere gemeinsame Tangenten"
+<MathVisual
+  title={<>Innere gemeinsame Tangenten</>}
   description={<>Die Geraden <InlineMath math="h_1" /> und <InlineMath math="h_2" /> verlaufen zwischen den Kreisen, und <InlineMath math="BH" /> ist gleich der Summe der Radien.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
-          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_1" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -4, y: 0 };
-        const O2 = { x: 4, y: 0 };
-        const r1 = 2;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 3 * ux, y: T1y - 3 * uy, z: 0 },
-          { x: T2x + 3 * ux, y: T2y + 3 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="h_2" />, at: 1, offset: [-1, -0.5, 0] }],
-    },
-
-    { points: [{ x: -4, y: 0, z: 0 }, { x: 2, y: -2 * Math.sqrt(3), z: 0 }, { x: 4, y: 0, z: 0 }], smooth: false, color: "#0891b2", showPoints: false, labels: [{ text: <InlineMath math="H" />, at: 1, offset: [0.2, -0.4, 0] }] },
-]}
-cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="h_1" />,
+    "l4": <InlineMath math="h_2" />,
+    "l5": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(4 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6.72, y: 3.88 }, { x: -5.6, y: 3.23 }, { x: 5.6, y: -3.23 }, { x: 6.72, y: -3.88 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -6.72, y: -3.88 }, { x: -5.6, y: -3.23 }, { x: 5.6, y: 3.23 }, { x: 6.72, y: 3.88 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 2, y: -2 * Math.sqrt(3) }, { x: 4, y: 0 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -5.6, y: 3.23 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: -5.6, y: -3.23 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2, y: -3.46 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Verlängere im Diagramm zur inneren Tangente den Radius vom Mittelpunkt <InlineMath math="B" /> über den Berührpunkt hinaus bis zum Hilfspunkt <InlineMath math="H" />, wobei <InlineMath math="AH" /> parallel zur Tangente liegt. Die Strecke <InlineMath math="BH" /> besteht aus dem Radius <InlineMath math="r_2" /> von <InlineMath math="B" /> bis zum Berührpunkt und der Verlängerung der Länge <InlineMath math="r_1" />, also gilt <InlineMath math="BH = r_1 + r_2" />. Das Dreieck <InlineMath math="AHB" /> ist bei <InlineMath math="H" /> rechtwinklig:
@@ -499,112 +160,39 @@ Im Diagramm zur inneren Tangente ist <InlineMath math="d = 8" />, und beide Radi
 
 **Beispiel**. Der erste Kreis hat den Mittelpunkt <InlineMath math="P(-5, 0)" /> und den Radius <InlineMath math="2" />, der zweite den Mittelpunkt <InlineMath math="Q(5, 0)" /> und den Radius <InlineMath math="3" />. Bestimme die Länge der inneren gemeinsamen Tangente.
 
-<LineEquation
+<MathVisual
   title={<>Kreise mit <InlineMath math="r_1 = 2" /> und <InlineMath math="r_2 = 3" /></>}
   description={<>Die Mittelpunkte <InlineMath math="P" /> und <InlineMath math="Q" /> sind <InlineMath math="10" /> voneinander entfernt, der innere Tangentenabschnitt ist also <InlineMath math="5\sqrt{3}" /> lang.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -5 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 5 + 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: 5, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="P" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="Q" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -5, y: 0 };
-        const O2 = { x: 5, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: (() => {
-        const O1 = { x: -5, y: 0 };
-        const O2 = { x: 5, y: 0 };
-        const r1 = 2;
-        const r2 = 3;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        return [
-          { x: T1x, y: T1y, z: 0 },
-          { x: T2x, y: T2y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="G" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="H" />, at: 1, offset: [0.5, 0.5, 0] },
-      ],
-    },
-
-]}
-cameraPosition={[0, 0, 18]}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="E" />,
+    "l4": <InlineMath math="F" />,
+    "l5": <InlineMath math="G" />,
+    "l6": <InlineMath math="H" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 9.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-5) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(5 + (3 * cos(((t * pi) / 180))))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 1.73 }, { x: 3.5, y: -2.6 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: -1.73 }, { x: 3.5, y: 2.6 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: -4, y: 1.73 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.5, y: -2.6 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -4, y: -1.73 }, placement: "below-left" },
+      { key: "l6", objectId: "s5", at: { x: 3.5, y: 2.6 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Prüfe zuerst die Bedingung. Der Mittelpunktsabstand <InlineMath math="d = 10" /> ist größer als <InlineMath math="r_1 + r_2 = 5" />, die innere Tangente existiert also:
@@ -620,69 +208,31 @@ Die Länge beträgt <InlineMath math="5\sqrt{3} \approx 8{,}66" /> Einheiten. Pr
 
 Für <InlineMath math="r_1 = r_2 = r" /> ist die Differenz der Radien null. Die Formel für die äußere Tangente wird zu <InlineMath math="l = \sqrt{d^2 - 0} = d" />, die äußere Tangente ist also **genauso lang wie der Mittelpunktsabstand** und parallel zur Verbindungsgeraden der Mittelpunkte.
 
-<LineEquation
-  title="Äußere Tangenten bei gleichen Radien"
+<MathVisual
+  title={<>Äußere Tangenten bei gleichen Radien</>}
   description={<>Beide äußeren Tangenten sind parallel zur Mittelpunktsgeraden <InlineMath math="O_1O_2" /> und so lang wie der Mittelpunktsabstand <InlineMath math="6" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -3 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 3 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="O_2" />, at: 1, offset: [0.5, -0.5, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 2, z: 0 },
-        { x: 3, y: 2, z: 0 },
-      ],
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -3, y: -2, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O_1" />,
+    "l2": <InlineMath math="O_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(3 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: 3, y: 2 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: 3, y: -2 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Im Diagramm mit gleichen Radien haben die Mittelpunkte den Abstand <InlineMath math="6" />, und beide Radien messen <InlineMath math="2" />. Die beiden äußeren Tangenten verlaufen <InlineMath math="2" /> Einheiten über und unter der Mittelpunktsgeraden, und jede ist <InlineMath math="6" /> lang. Die inneren Tangenten sind hier nicht gezeichnet. Wegen der Symmetrie schneiden sie sich genau im Mittelpunkt zwischen <InlineMath math="O_1" /> und <InlineMath math="O_2" />, und jede hat die Länge <InlineMath math="\sqrt{36 - 16} = \sqrt{20} = 2\sqrt{5}" />.
@@ -693,236 +243,22 @@ Für dasselbe Kreispaar ist **die innere Tangente immer kürzer** als die äuße
 
 **Weit entfernte Kreise**. Der erste Kreis hat den Mittelpunkt <InlineMath math="(-6, 0)" /> und den Radius <InlineMath math="1" />, der zweite den Mittelpunkt <InlineMath math="(6, 0)" /> und den Radius <InlineMath math="2" />.
 
-<LineEquation
-  title="Weit entfernte Kreise"
+<MathVisual
+  title={<>Weit entfernte Kreise</>}
   description={<>Der Mittelpunktsabstand <InlineMath math="12" /> ist größer als die Summe der Radien <InlineMath math="3" />, also sind alle vier gemeinsamen Tangenten gezeichnet.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -6 + 1 * Math.cos(angle),
-          y: 1 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 6 + 2 * Math.cos(angle),
-          y: 2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-        {
-      points: (() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Erste Tangente (oben)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux + cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy + cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux + cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy + cos_alpha * vy);
-
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
-          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        // Winkel der äußeren Tangente berechnen
-        const sin_alpha = (r2 - r1) / d;
-        const cos_alpha = Math.sqrt(1 - sin_alpha * sin_alpha);
-
-        // Direction from O1 to O2
-        const dx = O2.x - O1.x;
-        const dy = O2.y - O1.y;
-
-        // Normalize direction
-        const ux = dx / d;
-        const uy = dy / d;
-
-        // Perpendicular direction (rotated 90 degrees)
-        const vx = -uy;
-        const vy = ux;
-
-        // Zweite Tangente (unten)
-        // Berührpunkt am ersten Kreis
-        const T1x = O1.x + r1 * (-sin_alpha * ux - cos_alpha * vx);
-        const T1y = O1.y + r1 * (-sin_alpha * uy - cos_alpha * vy);
-
-        // Berührpunkt am zweiten Kreis
-        const T2x = O2.x + r2 * (-sin_alpha * ux - cos_alpha * vx);
-        const T2y = O2.y + r2 * (-sin_alpha * uy - cos_alpha * vy);
-
-        const tdx = T2x - T1x;
-        const tdy = T2y - T1y;
-        const tlen = Math.sqrt(tdx * tdx + tdy * tdy);
-        const tux = tdx / tlen;
-        const tuy = tdy / tlen;
-
-        const points = [
-          { x: T1x - 2 * tux, y: T1y - 2 * tuy, z: 0 },
-          { x: T2x + 2 * tux, y: T2y + 2 * tuy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
-          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const O1 = { x: -6, y: 0 };
-        const O2 = { x: 6, y: 0 };
-        const r1 = 1;
-        const r2 = 2;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 1 * ux, y: T1y - 1 * uy, z: 0 },
-          { x: T2x + 1 * ux, y: T2y + 1 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0.5, 0, 19]}
-  cameraTarget={[0.5, 0, 0]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: 11.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-6) + (1 * cos(((t * pi) / 180))))", y: "(1 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(6 + (2 * cos(((t * pi) / 180))))", y: "(2 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -9.67, y: 0.7 }, { x: -8.08, y: 0.83 }, { x: 7.83, y: 2.16 }, { x: 9.42, y: 2.29 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -9.67, y: -0.7 }, { x: -8.08, y: -0.83 }, { x: 7.83, y: -2.16 }, { x: 9.42, y: -2.29 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -8.04, y: 1.56 }, { x: -6.72, y: 1.22 }, { x: 6.47, y: -2.19 }, { x: 7.79, y: -2.53 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -8.04, y: -1.56 }, { x: -6.72, y: -1.22 }, { x: 6.47, y: 2.19 }, { x: 7.79, y: 2.53 }], appearance: "reference" },
+    ],
+  }}
 />
 
 Der Mittelpunktsabstand <InlineMath math="d = 12" /> ist viel größer als die Summe der Radien <InlineMath math="3" />, also gibt es alle vier gemeinsamen Tangenten:
@@ -936,161 +272,22 @@ Beide Längen sind fast gleich, weil die Radien im Vergleich zum Mittelpunktsabs
 
 **Nahe Kreise**. Beide Kreise haben den Radius <InlineMath math="1{,}5" />, ihre Mittelpunkte liegen bei <InlineMath math="(-2, 0)" /> und <InlineMath math="(2, 0)" />.
 
-<LineEquation
-  title="Nahe Kreise mit gleichem Radius"
+<MathVisual
+  title={<>Nahe Kreise mit gleichem Radius</>}
   description={<>Die äußeren Tangenten sind parallel zur Mittelpunktsgeraden, die beiden inneren schneiden sich im Mittelpunkt zwischen den Kreisen.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: -2 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 2 + 1.5 * Math.cos(angle),
-          y: 1.5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const points = [
-          { x: -5, y: 1.5, z: 0 },
-          { x: 5, y: 1.5, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0891b2",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
-        const points = [
-          { x: -5, y: -1.5, z: 0 },
-          { x: 5, y: -1.5, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: (() => {
-        const O1 = { x: -2, y: 0 };
-        const O2 = { x: 2, y: 0 };
-        const r1 = 1.5;
-        const r2 = 1.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta + Math.PI / 2 - alpha);
-        const T1y = O1.y + r1 * Math.sin(theta + Math.PI / 2 - alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta + Math.PI / 2 - alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta + Math.PI / 2 - alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
-          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const O1 = { x: -2, y: 0 };
-        const O2 = { x: 2, y: 0 };
-        const r1 = 1.5;
-        const r2 = 1.5;
-        const d = Math.sqrt((O2.x - O1.x) ** 2 + (O2.y - O1.y) ** 2);
-
-        const alpha = Math.asin((r1 + r2) / d);
-        const theta = Math.atan2(O2.y - O1.y, O2.x - O1.x);
-
-        const T1x = O1.x + r1 * Math.cos(theta - Math.PI / 2 + alpha);
-        const T1y = O1.y + r1 * Math.sin(theta - Math.PI / 2 + alpha);
-
-        const T2x = O2.x + r2 * Math.cos(theta - Math.PI / 2 + alpha + Math.PI);
-        const T2y = O2.y + r2 * Math.sin(theta - Math.PI / 2 + alpha + Math.PI);
-
-        const dx = T2x - T1x;
-        const dy = T2y - T1y;
-        const len = Math.sqrt(dx * dx + dy * dy);
-        const ux = dx / len;
-        const uy = dy / len;
-
-        const points = [
-          { x: T1x - 2 * ux, y: T1y - 2 * uy, z: 0 },
-          { x: T2x + 2 * ux, y: T2y + 2 * uy, z: 0 },
-        ];
-        const extension = {
-          x: (points[1].x - points[0].x) * 0.1,
-          y: (points[1].y - points[0].y) * 0.1,
-        };
-        return [
-          { x: points[0].x - extension.x, y: points[0].y - extension.y, z: 0 },
-          ...points,
-          { x: points[1].x + extension.x, y: points[1].y + extension.y, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#d97706",
-      showPoints: false,
-    },
-
-]}
-cameraPosition={[0, 0, 10]}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + (1.5 * cos(((t * pi) / 180))))", y: "(1.5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -6, y: 1.5 }, { x: -5, y: 1.5 }, { x: 5, y: 1.5 }, { x: 6, y: 1.5 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: -1.5 }, { x: -5, y: -1.5 }, { x: 5, y: -1.5 }, { x: 6, y: -1.5 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.64, y: 2.99 }, { x: -2.2, y: 2.49 }, { x: 2.2, y: -2.49 }, { x: 2.64, y: -2.99 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2.64, y: -2.99 }, { x: -2.2, y: -2.49 }, { x: 2.2, y: 2.49 }, { x: 2.64, y: 2.99 }], appearance: "reference" },
+    ],
+  }}
 />
 
 Der Mittelpunktsabstand ist <InlineMath math="d = 4" />, und die Radien sind gleich, also ist die äußere Tangente sofort gleich <InlineMath math="d" />:

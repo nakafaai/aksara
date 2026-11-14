@@ -15,55 +15,29 @@ A **horizontal shift** by <InlineMath math="h" /> turns <InlineMath math="y = f(
 
 The minus sign inside the bracket looks as if it should move the graph left, but it moves the graph right. The new function <InlineMath math="g(x) = f(x - 3)" /> reaches the output <InlineMath math="f(x_0)" /> only when its input is <InlineMath math="x_0 + 3" />, which is three units further right. The domain moves with the graph, while **the range stays the same**.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = x^2" /> and <InlineMath math="g(x) = f(x - 3)" /></>}
   description={<>The vertex <InlineMath math="(0, 0)" /> of <InlineMath math="f" /> moves to <InlineMath math="(3, 0)" />, and the point <InlineMath math="(2, 4)" /> moves to <InlineMath math="(5, 4)" />. Both arrows are level, so no height changes.</>}
-  cameraPosition={[1, 4, 14]}
-  cameraTarget={[1, 4, 0]}
-  data={(() => {
-    // g(x) = f(x - 3) = (x - 3)^2 is sampled on the same inputs as f.
-    const f = (x) => x * x;
-    const g = (x) => f(x - 3);
-    const xs = Array.from({ length: 401 }, (_, i) => -4 + i / 40);
-    const index = (x) => Math.round((x + 4) * 40);
-    // The point (x0, f(x0)) moves three units right to (x0 + 3, f(x0)) on g.
-    const move = (x0) => [
-      { x: x0, y: f(x0), z: 0 },
-      { x: x0 + 3, y: f(x0), z: 0 },
-    ];
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-2), offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: move(0),
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-      {
-        points: move(2),
-        smooth: false,
-        color: "#d97706",
-        showPoints: false,
-        cone: { position: "end", size: 0.3 },
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -5, max: 54 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((-4) + (t / 40)) * ((-4) + (t / 40)))", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "((((-4) + (t / 40)) - 3) * (((-4) + (t / 40)) - 3))", parameter: { min: 0, max: 400 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 5, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 4 }, placement: "right" },
+    ],
+  }}
 />
 
 The graph shows the whole curve moving together. Its shape and its height at each position stay the same, and only its horizontal position changes. That is the meaning of a horizontal shift.
@@ -100,45 +74,31 @@ Let <InlineMath math="f(x) = x^2 - 2x - 3" />. **Completing the square** gives <
 
 Check the result with the points you already know. The new function factors as <InlineMath math="x^2 + 2x - 3 = (x + 3)(x - 1)" />, so its zeros are <InlineMath math="-3" /> and <InlineMath math="1" />. Each old zero moved two units to the left: <InlineMath math="-1 - 2 = -3" /> and <InlineMath math="3 - 2 = 1" />. The vertex moved the same way, from <InlineMath math="(1, -4)" /> to <InlineMath math="(-1, -4)" />, which agrees with the completed square <InlineMath math="(x + 1)^2 - 4" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = x^2 - 2x - 3" /> and <InlineMath math="g(x) = x^2 + 2x - 3" /></>}
   description={<>The vertex and both zeros of <InlineMath math="f" /> move two units to the left. The arrows start on <InlineMath math="f" /> and end on <InlineMath math="g" /> at the same height.</>}
-  cameraPosition={[-1, 6, 18]}
-  cameraTarget={[-1, 6, 0]}
-  data={(() => {
-    // Both parabolas are sampled on the same inputs, so each arrow joins equal heights.
-    const f = (x) => x * x - 2 * x - 3;
-    const g = (x) => x * x + 2 * x - 3;
-    const xs = Array.from({ length: 321 }, (_, i) => -4 + i / 40);
-    const index = (x) => Math.round((x + 4) * 40);
-    // A horizontal shift of -2 keeps the height of each point: (x0, f(x0)) goes to (x0 - 2, f(x0)).
-    const move = (x0) => [
-      { x: x0, y: f(x0), z: 0 },
-      { x: x0 - 2, y: f(x0), z: 0 },
-    ];
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(1)],
-        labels: [{ text: <InlineMath math="f" />, at: index(4), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(-1)],
-        labels: [{ text: <InlineMath math="g" />, at: index(-3.5), offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      { points: move(1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: move(-1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: move(3), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -7, max: 24 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) - (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) + (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p120", kind: "point", at: { x: -1, y: -4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: -1, y: -4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 0 }, to: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 3, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -3.5, y: 2.25 }, placement: "left" },
+    ],
+  }}
 />
 
 Each arrow is level, because a horizontal shift never changes a height. Notice that the vertex arrow ends at the vertex of <InlineMath math="g" />, and the two zero arrows end at the zeros of <InlineMath math="g" />.
@@ -149,132 +109,92 @@ The square root function <InlineMath math="f(x) = \sqrt{x}" /> needs <InlineMath
 
 The starting point <InlineMath math="(0, 0)" /> moves to <InlineMath math="(-4, 0)" />. The point <InlineMath math="(4, 2)" /> moves to <InlineMath math="(0, 2)" />, because <InlineMath math="g(0) = \sqrt{4} = 2" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = \sqrt{x}" /> and <InlineMath math="g(x) = \sqrt{x + 4}" /></>}
   description={<>The domain of <InlineMath math="g" /> starts at <InlineMath math="-4" />, four units left of the start of <InlineMath math="f" />. Both arrows keep their heights, and the range stays from zero upward.</>}
-  cameraPosition={[2, 3, 12]}
-  cameraTarget={[2, 3, 0]}
-  data={(() => {
-    // f needs x >= 0 and g needs x >= -4, so each curve is sampled from its own starting point.
-    const f = (x) => Math.sqrt(x);
-    const g = (x) => Math.sqrt(x + 4);
-    const fromZero = Array.from({ length: 321 }, (_, i) => i / 40);
-    const fromMinusFour = Array.from({ length: 481 }, (_, i) => -4 + i / 40);
-    // A horizontal shift of -4 keeps the height: (x0, f(x0)) goes to (x0 - 4, f(x0)).
-    const move = (x0) => [
-      { x: x0, y: f(x0), z: 0 },
-      { x: x0 - 4, y: g(x0 - 4), z: 0 },
-    ];
-    return [
-      {
-        points: fromZero.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="f" />, at: 200, offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: fromMinusFour.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="g" />, at: 280, offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      { points: move(0), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: move(4), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 9.5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t / 40)", y: "sqrt((t / 40))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "sqrt((((-4) + (t / 40)) + 4))", parameter: { min: 0, max: 480 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: 0, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5, y: 2.24 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 2.65 }, placement: "above-left" },
+    ],
+  }}
 />
 
 The exponential function gives a second example. Take <InlineMath math="f(x) = 2^x" /> and shift it two units to the right, so <InlineMath math="g(x) = 2^{x - 2}" />. The horizontal asymptote <InlineMath math="y = 0" /> stays where it is, because a horizontal shift never changes a height. The y-intercept does change. Its new value is <InlineMath math="g(0) = 2^{-2} = \frac{1}{4}" />, which is the value of <InlineMath math="f" /> at <InlineMath math="-2" />. The old intercept <InlineMath math="(0, 1)" /> moves to <InlineMath math="(2, 1)" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = 2^x" /> and <InlineMath math="g(x) = 2^{x - 2}" /></>}
   description={<>The arrow takes the intercept <InlineMath math="(0, 1)" /> of <InlineMath math="f" /> to <InlineMath math="(2, 1)" /> on <InlineMath math="g" />. The asymptote stays at height zero, and the new intercept of <InlineMath math="g" /> is at height one quarter.</>}
-  cameraPosition={[0, 4, 12]}
-  cameraTarget={[0, 4, 0]}
-  data={(() => {
-    // f(x) = 2^x and g(x) = 2^(x - 2) are sampled on the same inputs from -4 to 3.
-    const f = (x) => 2 ** x;
-    const g = (x) => 2 ** (x - 2);
-    const xs = Array.from({ length: 281 }, (_, i) => -4 + i / 40);
-    const index = (x) => Math.round((x + 4) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="g" />, at: index(3), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: -4, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }],
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="y = 0" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 0, y: 1, z: 0 }, { x: 2, y: 1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 4 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^(((-4) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^((((-4) + (t / 40)) - 2))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 0, y: 0.25 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 1 }, to: { x: 2, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 2 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Horizontal and Vertical Shifts Compared
 
 The expressions <InlineMath math="f(x - 3)" /> and <InlineMath math="f(x) - 3" /> look alike, but **they move a graph in different directions**. Take <InlineMath math="f(x) = x^2" />. The first shifts the vertex to <InlineMath math="(3, 0)" />, and the second shifts it down to <InlineMath math="(0, -3)" />. The graph places both results beside the original parabola.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Shifts of <InlineMath math="f(x) = x^2" /> in two directions</>}
   description={<>The horizontal shift gives <InlineMath math="g(x) = (x - 3)^2" />, and the vertical shift gives <InlineMath math="k(x) = x^2 - 3" />. Each arrow moves the vertex of <InlineMath math="f" /> to the vertex of the matching curve.</>}
-  cameraPosition={[1.5, 4, 15]}
-  cameraTarget={[1.5, 4, 0]}
-  data={(() => {
-    const f = (x) => x * x;
-    const g = (x) => (x - 3) * (x - 3);
-    const k = (x) => x * x - 3;
-    const xs = Array.from({ length: 281 }, (_, i) => -2 + i / 40);
-    const index = (x) => Math.round((x + 2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-1.5), offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(4.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: k(x), z: 0 })),
-        smooth: false,
-        color: "#7c3aed",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="k" />, at: index(-1.5), offset: [-0.3, -0.5, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 0, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: -3, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="k" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -6, max: 28 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((-2) + (t / 40)) * ((-2) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1-p80", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) - 3) * (((-2) + (t / 40)) - 3))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - 3)", parameter: { min: 0, max: 280 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4.5, y: 2.25 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: -1.5, y: -0.75 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Each shift changes a different part of the rule. A horizontal shift changes the input, so every <InlineMath math="x" /> moves. A vertical shift changes the output, so every height moves. The domain of <InlineMath math="f(x - 3)" /> moves by three units, while the range stays the same. The domain of <InlineMath math="f(x) - 3" /> stays the same, while its range moves down by three units.
@@ -283,36 +203,28 @@ A straight line can make the two rules look alike. For <InlineMath math="f(x) = 
 
 <BlockMath math="2(x - 3) + 1 = 2x - 5 = (2x + 1) - 6" />
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>The line <InlineMath math="f(x) = 2x + 1" /> and its shifted copy</>}
   description={<>The horizontal arrow moves the point <InlineMath math="(2, 5)" /> to <InlineMath math="(5, 5)" />. The vertical arrow moves the same point down to <InlineMath math="(2, -1)" />, which is also on <InlineMath math="g" />.</>}
-  cameraPosition={[2, 2, 16]}
-  cameraTarget={[2, 2, 0]}
-  data={(() => {
-    const f = (x) => 2 * x + 1;
-    const g = (x) => 2 * (x - 3) + 1;
-    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 20);
-    const index = (x) => Math.round((x + 2) * 20);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: index(-1), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(4), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 2, y: 5, z: 0 }, { x: 5, y: 5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: [{ x: 2, y: 5, z: 0 }, { x: 2, y: -1, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -12, max: 16 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * ((-2) + (t / 20))) + 1)", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * (((-2) + (t / 20)) - 3)) + 1)", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 5 }, to: { x: 5, y: 5 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 5 }, to: { x: 2, y: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: -1 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Common Mistakes With the Sign Inside the Bracket

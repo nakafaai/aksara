@@ -1,0 +1,266 @@
+export const metadata = {
+  title: "Hukum Logaritma",
+  description:
+    "Lapan hukum logaritma diterbitkan, kemudian digunakan pada persamaan dan model pertumbuhan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-04",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Lapan Hukum Logaritma daripada Hukum Indeks
+
+Setiap sifat logaritma datang daripada hukum indeks yang sepadan, jadi setiap rumus di bawah boleh diterbitkan daripada hukum itu.
+
+Semua sifat di bawah menggunakan syarat-syarat ini:
+
+<BlockMath math="\begin{aligned} &amp;a>0 \\ &amp;a\neq1 \\ &amp;b>0 \\ &amp;c>0 \\ &amp;n\in\mathbb{R} \end{aligned}" />
+
+Setiap kali <InlineMath math="m" /> atau <InlineMath math="b" /> digunakan sebagai asas logaritma, asas itu juga mesti <Highlight>positif dan tidak sama dengan satu</Highlight>.
+
+| Hukum | Identiti |
+| ---- | -------- |
+| Logaritma bagi asas | <InlineMath math="\log_a a=1" /> |
+| Logaritma bagi satu | <InlineMath math="\log_a 1=0" /> |
+| Hubungan songsang | <InlineMath math="\log_a(a^n)=n" /> |
+| Hasil darab | <InlineMath math="\log_a(bc)=\log_a b+\log_a c" /> |
+| Hasil bahagi | <InlineMath math="\log_a\left(\frac bc\right)=\log_a b-\log_a c" /> |
+| Kuasa | <InlineMath math="\log_a(b^n)=n\log_a b" /> |
+| Penukaran asas | <InlineMath math="\log_a b=\frac{\log_m b}{\log_m a}=\frac1{\log_b a}" /> |
+| Rantai | <InlineMath math="(\log_a b)(\log_b c)=\log_a c" /> |
+
+Tiga hukum pertama datang terus daripada <InlineMath math="a^1=a" />, <InlineMath math="a^0=1" /> dan hubungan songsang antara logaritma dengan indeks.
+
+Logaritma membilang penggandaan. <InlineMath math="\log_2 x" /> bertanya berapa banyak faktor <InlineMath math="2" /> yang membentuk <InlineMath math="x" />, jadi palang bagi <InlineMath math="x = 1, 2, 4, 8, 16, 32" /> naik tepat <InlineMath math="1" /> setiap kali <InlineMath math="x" /> menjadi dua kali ganda: <InlineMath math="0, 1, 2, 3, 4, 5" />.
+
+<BarChart
+  title={<>Logaritma asas <InlineMath math="2" /> bagi kuasa-kuasa nombor dua</>}
+  description={<>Palang <InlineMath math="\log_2 x" /> pada <InlineMath math="x = 1, 2, 4, 8, 16, 32" />, naik sebanyak <InlineMath math="1" /> setiap kali x menjadi dua kali ganda.</>}
+  yAxisLabel="log₂ x"
+  data={[1, 2, 4, 8, 16, 32].map((x) => ({ name: `${x}`, value: Math.log2(x) }))}
+  chartConfig={{ value: { label: "log₂ x", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Dari Mana Datangnya Hukum Logaritma
+
+Setiap hukum logaritma datang daripada **hukum indeks yang sepadan**. Logaritma memberitahu kita indeks yang menghasilkan sesuatu nombor, jadi hukum tentang indeks menjadi hukum tentang logaritma.
+
+### Hukum Hasil Darab
+
+Katakan:
+
+<MathContainer>
+  <BlockMath math="x=\log_a b\quad\Longleftrightarrow\quad b=a^x" />
+  <BlockMath math="y=\log_a c\quad\Longleftrightarrow\quad c=a^y" />
+</MathContainer>
+
+Apabila <InlineMath math="b" /> dan <InlineMath math="c" /> didarab, **indeksnya ditambah**:
+
+<BlockMath math="bc=a^x a^y=a^{x+y}" />
+
+Dengan mengambil logaritma asas <InlineMath math="a" />, kita dapat:
+
+<BlockMath math="\log_a(bc)=x+y=\log_a b+\log_a c" />
+
+Hukum hasil darab ialah hukum indeks yang dilihat dari sisi yang lain. <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> ialah dua langkah pada garis indeks. Apabila disambung hujung ke hujung, kedua-duanya sampai di <InlineMath math="5" />, dan <InlineMath math="2^5 = 32 = 8 \cdot 4" />, jadi <InlineMath math="\log_2 (8 \cdot 4) = \log_2 8 + \log_2 4" />.
+
+<MathVisual
+  title={<>Logaritma ditambah apabila nombor didarab</>}
+  description={<>Langkah sepanjang <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> berakhir di <InlineMath math="5" />, iaitu <InlineMath math="\log_2 32" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 8" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 32 = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Hukum Hasil Bahagi
+
+Dengan penggantian yang sama, pembahagian membuatkan **indeksnya ditolak**:
+
+<BlockMath math="\frac bc=\frac{a^x}{a^y}=a^{x-y}" />
+
+Hasil pengiraannya ialah:
+
+<BlockMath math="\log_a\left(\frac bc\right)=x-y=\log_a b-\log_a c" />
+
+Pembahagian berjalan ke belakang pada garis indeks. <InlineMath math="\log_2 32 = 5" /> ialah langkah sepanjang <InlineMath math="5" />, dan pembahagian dengan <InlineMath math="4" /> menarik balik langkah sepanjang <InlineMath math="\log_2 4 = 2" />. Perjalanan itu berakhir di <InlineMath math="3" />, dan <InlineMath math="\log_2 \frac{32}{4} = \log_2 8 = 3" />.
+
+<MathVisual
+  title={<>Logaritma ditolak apabila nombor dibahagi</>}
+  description={<>Langkah sepanjang <InlineMath math="\log_2 32 = 5" /> diikuti langkah ke belakang sepanjang <InlineMath math="\log_2 4 = 2" /> berakhir di <InlineMath math="3" />, iaitu <InlineMath math="\log_2 8" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 32" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 8 = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 5, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 5, y: 0.6 }, to: { x: 3, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 2.5, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 4, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Hukum Kuasa
+
+Katakan <InlineMath math="y=\log_a b" />, jadi <InlineMath math="b=a^y" />. Untuk sebarang nombor nyata <InlineMath math="n" />, syarat <InlineMath math="b>0" /> memastikan <InlineMath math="b^n" /> tertakrif dengan baik:
+
+<MathContainer>
+  <BlockMath math="b^n=(a^y)^n=a^{ny}" />
+  <BlockMath math="\log_a(b^n)=ny=n\log_a b" />
+</MathContainer>
+
+Bukti ini terus merangkumi **indeks nyata**. Pendaraban berulang hanya dapat menerangkan indeks integer positif.
+
+### Penukaran Asas dan Hukum Salingan
+
+Katakan <InlineMath math="x=\log_a b" />, jadi <InlineMath math="b=a^x" />. Ambil **logaritma bagi kedua-dua belah** dengan sebarang asas <InlineMath math="m" /> yang sah:
+
+<MathContainer>
+  <BlockMath math="\log_m b=\log_m(a^x)" />
+  <BlockMath math="\log_m b=x\log_m a" />
+  <BlockMath math="x=\frac{\log_m b}{\log_m a}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="x=\log_a b" />, ini membuktikan rumus penukaran asas. Dengan memilih <InlineMath math="m=b" />, kita dapat hubungan salingan:
+
+<BlockMath math="\log_a b=\frac{\log_b b}{\log_b a}=\frac1{\log_b a}" />
+
+### Hukum Rantai
+
+Selepas kedua-dua logaritma ditulis dengan **asas sah yang sama**, <InlineMath math="\log_m b" /> muncul sekali dalam pengangka dan sekali dalam penyebut, jadi kedua-dua faktor itu saling membatalkan:
+
+<BlockMath math="\begin{aligned} (\log_a b)(\log_b c) &amp;=\frac{\log_m b}{\log_m a}\cdot\frac{\log_m c}{\log_m b} \\ &amp;=\frac{\log_m c}{\log_m a} \\ &amp;=\log_a c \end{aligned}" />
+
+## Menilai Logaritma daripada Bentuk Indeks
+
+Kira nilai <InlineMath math="\log_5 125" />.
+
+Oleh sebab <InlineMath math="125=5^3" />, **hubungan songsang** dan hukum kuasa memberikan:
+
+<MathContainer>
+  <BlockMath math="\log_5 125=\log_5(5^3)" />
+  <BlockMath math="\log_5(5^3)=3\log_5 5=3" />
+</MathContainer>
+
+Hasil ini juga menjawab soalan asal tentang indeks: <InlineMath math="5^3=125" />.
+
+## Latihan
+
+Empat soalan di bawah melatih **hukum hasil darab, hasil bahagi, kuasa dan penukaran asas** sekali gus. Cuba selesaikan setiap soalan sebelum membaca jalan kerja, kemudian bandingkan langkah kamu dengan jawapannya.
+
+1. Permudahkan tiga ungkapan yang masing-masing memerlukan satu hukum: <InlineMath math="\log_9 81" />, <InlineMath math="\log_2 64-\log_2 16" /> dan <InlineMath math="\log_4(16^{10})" />.
+
+2. Jika <InlineMath math="\log_5 4=m" /> dan <InlineMath math="\log_4 3=n" />, ungkapkan <InlineMath math="\log_{12}100" /> dalam sebutan <InlineMath math="m" /> dan <InlineMath math="n" />.
+
+3. Sebuah bandar mempunyai <InlineMath math="300{,}000" /> penduduk dan dimodelkan bertambah sebanyak <InlineMath math="6\%" /> pada akhir setiap tahun. Dengan model kadar tetap ini, selepas berapa tahun penuh barulah penduduknya mencapai sekurang-kurangnya <InlineMath math="1{,}000{,}000" /> buat kali pertama?
+
+4. Dini menyimpan <InlineMath math="\text{Rp}\,2{,}000{,}000" /> dalam akaun yang memberikan faedah <InlineMath math="12\%" /> yang dikompaun setiap tahun. Anggap tiada simpanan tambahan, pengeluaran, caj atau perubahan kadar. Selepas berapa tahun penuh barulah baki akaun itu mencapai sekurang-kurangnya <InlineMath math="\text{Rp}\,6{,}500{,}000" /> buat kali pertama?
+
+### Jalan Kerja
+
+Untuk logaritma berangka, kenal pasti kuasa yang sepadan. Untuk ambang pertumbuhan, selesaikan bagi masa, kemudian semak **tahun penuh yang bersebelahan** dengan model asal. Pastikan hujah bagi setiap logaritma kekal positif apabila kamu menggabungkan atau mengembangkan logaritma.
+
+**Soalan 1**. Oleh sebab <InlineMath math="81=9^2" />:
+
+<MathContainer>
+  <BlockMath math="\log_9 81=\log_9(9^2)" />
+  <BlockMath math="\log_9(9^2)=2" />
+</MathContainer>
+
+Gunakan **hukum hasil bahagi**:
+
+<MathContainer>
+  <BlockMath math="\log_2 64-\log_2 16=\log_2\left(\frac{64}{16}\right)" />
+  <BlockMath math="\log_2 4=2" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="16=4^2" />:
+
+<MathContainer>
+  <BlockMath math="\log_4(16^{10})=\log_4((4^2)^{10})" />
+  <BlockMath math="\log_4(4^{20})=20" />
+</MathContainer>
+
+**Soalan 2**. Gunakan asas <InlineMath math="4" /> untuk **pengangka dan penyebut**:
+
+<MathContainer>
+  <BlockMath math="\log_{12}100=\frac{\log_4 100}{\log_4 12}" />
+  <BlockMath math="\begin{aligned} \log_4 100 &amp;=\log_4(4\cdot25) \\ &amp;=1+2\log_4 5 \end{aligned}" />
+  <BlockMath math="\log_4 12=\log_4(4\cdot3)=1+n" />
+</MathContainer>
+
+Hukum salingan memberikan <InlineMath math="\log_4 5=\frac1{\log_5 4}=\frac1m" />. Oleh itu:
+
+<BlockMath math="\log_{12}100=\frac{1+\frac2m}{1+n}" />
+
+**Soalan 3**. Untuk mencari bila penduduk mencapai sasarannya, gunakan **model kadar tetap**:
+
+<BlockMath math="P(x)=300{,}000(1.06)^x" />
+
+Mula-mula, selesaikan persamaan itu seolah-olah masa berubah secara selanjar:
+
+<MathContainer>
+  <BlockMath math="1{,}000{,}000=300{,}000(1.06)^x" />
+  <BlockMath math="\frac{10}{3}=(1.06)^x" />
+  <BlockMath math="\ln\left(\frac{10}{3}\right)=x\ln(1.06)" />
+  <BlockMath math="x=\frac{\ln(10/3)}{\ln(1.06)}\approx20.662354" />
+</MathContainer>
+
+Model ini dikemas kini selepas setiap tahun penuh, jadi semak integer yang bersebelahan:
+
+<MathContainer>
+  <BlockMath math="P(20)\approx962{,}141<1{,}000{,}000" />
+  <BlockMath math="P(21)\approx1{,}019{,}869>1{,}000{,}000" />
+</MathContainer>
+
+Penduduk mencapai sasaran buat kali pertama selepas <InlineMath math="21\text{ tahun penuh}" />. Jawapan ini menganggap kadar pertumbuhan yang dinyatakan kekal tetap sepanjang <InlineMath math="21" /> tahun itu. Kalau kadar pertumbuhan berubah, jawapannya juga akan berbeza.
+
+**Soalan 4**. Untuk mencari bila baki mencapai sasarannya, gunakan **model kompaun tahunan**:
+
+<BlockMath math="B(x)=2{,}000{,}000(1.12)^x" />
+
+Selesaikan persamaan itu seolah-olah masa berubah secara selanjar:
+
+<MathContainer>
+  <BlockMath math="6{,}500{,}000=2{,}000{,}000(1.12)^x" />
+  <BlockMath math="3.25=(1.12)^x" />
+  <BlockMath math="\ln(3.25)=x\ln(1.12)" />
+  <BlockMath math="x=\frac{\ln(3.25)}{\ln(1.12)}\approx10.400324" />
+</MathContainer>
+
+Faedah hanya dikreditkan selepas setiap tahun penuh, jadi bandingkan tahun <InlineMath math="10" /> dengan tahun <InlineMath math="11" />:
+
+<MathContainer>
+  <BlockMath math="B(10)\approx6{,}211{,}696<6{,}500{,}000" />
+  <BlockMath math="B(11)\approx6{,}957{,}100>6{,}500{,}000" />
+</MathContainer>
+
+Baki mencapai sasaran buat kali pertama selepas <InlineMath math="11\text{ tahun penuh}" />.

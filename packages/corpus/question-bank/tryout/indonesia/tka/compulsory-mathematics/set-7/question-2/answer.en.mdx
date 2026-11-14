@@ -1,0 +1,42 @@
+# The limit as an intensity
+
+The question asks for the largest number of big drums that keeps the front row of the audience quiet enough. The limit is written in decibels, but only intensities can be added. So **first turn the <InlineMath math="90\text{ dB}" /> limit into an intensity limit**.
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
+
+# What each drum contributes
+
+From the reading, one big drum at <InlineMath math="1\text{ m}" /> has intensity <InlineMath math="10^{-2}\ \text{W/m}^2" />, because <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. A small drum has a quarter of that. Now divide by the square of the distance to the front row.
+
+<BlockMath math="\begin{aligned}
+\text{one big drum at }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2.5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{one small drum at }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1.5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 small drums}&:\ 32\cdot1.5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+There's a quick way to see this. A small drum is a quarter of a big one, and it's twice as far away, so its intensity is divided by <InlineMath math="2^2=4" /> again. So **one small drum on stage B is worth <InlineMath math="\tfrac1{16}" /> of a big drum on stage A**, and <InlineMath math="32" /> small drums are worth <InlineMath math="2" /> big drums.
+
+# The largest number of big drums
+
+Add the intensities of both stages and use the strict limit.
+
+<BlockMath math="\begin{aligned}
+n\cdot2.5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2.5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Because the condition says **less than**, <InlineMath math="n=38" /> isn't allowed. With <InlineMath math="n=38" /> the intensity is exactly <InlineMath math="40\cdot2.5\cdot10^{-5}=10^{-3}" />, which is exactly <InlineMath math="90\text{ dB}" />. With <InlineMath math="n=37" /> it's <InlineMath math="39\cdot2.5\cdot10^{-5}=9.75\cdot10^{-4}" />, still below the limit.
+
+# Why the other options are wrong
+
+- <InlineMath math="31" /> comes from treating the small drums as if they were also <InlineMath math="20\text{ m}" /> away, or from forgetting the factor <InlineMath math="\tfrac14" />. Both make the <InlineMath math="32" /> small drums worth <InlineMath math="8" /> big ones.
+- <InlineMath math="35" /> comes from not squaring the distance ratio <InlineMath math="\tfrac{20}{40}" />. **Intensity follows the square of the distance**, so the factor is <InlineMath math="\tfrac14\cdot\tfrac14" />, not <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> uses less than or equal to. At <InlineMath math="n=38" /> the level is exactly <InlineMath math="90\text{ dB}" />, which isn't less than <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> forgets the <InlineMath math="32" /> small drums that are playing at the same time.
+
+So the largest possible <InlineMath math="n" /> is <InlineMath math="37" />.

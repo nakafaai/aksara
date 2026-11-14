@@ -1,0 +1,343 @@
+export const metadata = {
+    title: "Kamus",
+    description: "Kamus Python menyimpan, mengemas kini, melelar dan mencari pasangan kunci-nilai dengan selamat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-01",
+    subject: "Pengaturcaraan AI",
+};
+
+## Definisi Kamus dan Cara Membinanya
+
+Kamus (dictionary) ialah pemetaan yang boleh diubah (mutable) daripada **kunci unik kepada nilai**. Kamu mencari setiap item melalui kunci yang bermakna, contohnya nama, pengecam atau tarikh.
+
+### Pelbagai Cara Membina Kamus
+
+Python menyediakan beberapa cara untuk membina kamus, termasuk **kamus kosong** dan kamus yang sudah berisi data.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_creation.py",
+      code: `# Membina kamus kosong
+a = {}
+b = dict()
+print("Kamus kosong a:", a)
+print("Kamus kosong b:", b)
+# Output: Kamus kosong a: {}
+# Output: Kamus kosong b: {}
+
+# Membina kamus yang berisi data
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+print("Kamus phone:", phone)
+# Output: Kamus phone: {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Membina kamus bersarang
+person = {1: {'name': 'ann', 'age': 23}, 2: {'name': 'bob', 'age': 21}}
+print("Kamus bersarang:", person)
+# Output: Kamus bersarang: {1: {'name': 'ann', 'age': 23}, 2: {'name': 'bob', 'age': 21}}
+
+# Membina kamus dengan pembina (constructor)
+month = dict([(1, 'Jan'), (2, 'Feb'), (3, 'Mar')])
+mass = dict(Mercury=3.3e23, Venus=4.9e24, Earth=6.0e24)
+print("Kamus month:", month)
+print("Kamus mass:", mass)
+# Output: Kamus month: {1: 'Jan', 2: 'Feb', 3: 'Mar'}
+# Output: Kamus mass: {'Mercury': 3.3e+23, 'Venus': 4.9e+24, 'Earth': 6e+24}`
+    }
+  ]}
+/>
+
+### Sintaks Kamus
+
+Paparan kamus (dictionary display) menggunakan tanda kurung kerinting. Koma memisahkan setiap entri, dan **titik bertindih** memisahkan setiap kunci daripada nilainya. Paparan kosong `{}` membina kamus kosong.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_syntax.py",
+      code: `# Sintaks asas kamus
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'don': 999}
+print(phone)
+# Output: {'ann': 110, 'bob': 991, 'cat': 112, 'don': 999}`
+    }
+  ]}
+/>
+
+**Kunci mesti boleh dicincang (hashable)**. Rentetan dan nombor ialah pilihan yang biasa. Tuple hanya layak apabila setiap unsurnya juga boleh dicincang. Tuple yang mengandungi senarai tidak layak. Senarai itu sendiri tidak boleh dicincang. Nilai pula boleh jadi apa-apa objek Python, termasuk kamus lain.
+
+## Kamus sebagai Bekas
+
+Kamus ialah bekas (container) kerana ia memegang sekumpulan objek lain. Ciri utamanya ialah **memetakan setiap kunci kepada satu nilai** sambil mengekalkan susunan kunci itu mula-mula dimasukkan.
+
+<Mermaid
+  title="Kamus Menyimpan Pasangan mengikut Kunci"
+  description="Lihat cara sesuatu kunci memilih nilai pasangannya tanpa menggunakan kedudukan bernombor."
+  chart={`
+    flowchart LR
+        A["phone['ann']"] --> V1["110"]
+        B["phone['bob']"] --> V2["991"]
+        C["phone['cat']"] --> V3["112"]
+  `}
+/>
+
+Senarai dan tuple menyusun item mengikut kedudukan, manakala kamus menyusun entri mengikut kunci. Perbezaan inilah yang menentukan cara kamu membaca, mengemas kini dan melelar isinya.
+
+## Ciri-ciri Kamus
+
+Kamus boleh diubah, **kuncinya unik dan boleh dicincang**, dan susunan lelarannya mengikut susunan kunci dimasukkan. Tiga sifat ini menerangkan kebanyakan tingkah laku yang kamu akan lihat nanti: kenapa kamu boleh menambah atau membuang entri selepas kamus dibina, kenapa umpukan kepada kunci yang sudah ada menulis ganti nilainya dan bukan menduplikasikannya, dan kenapa lelaran ke atas kamus memberi susunan yang stabil dan boleh dijangka.
+
+### Susunan Kemasukan dan Kunci Unik
+
+Spesifikasi bahasa Python menjamin susunan kemasukan kamus mulai Python `3.7`. Apabila kamu mengumpukkan nilai baharu kepada kunci yang sudah ada, entri itu dikemas kini **tanpa mengalihkan kunci itu**. Kalau kamu memadam kunci itu lalu memasukkannya semula, kunci itu akan berada di hujung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_order.py",
+      code: `# Susunan kemasukan dikekalkan
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'bob': 999}
+print(phone)
+# Output: {'ann': 110, 'bob': 999, 'cat': 112}
+
+# Kunci 'bob' kekal di kedudukan kedua walaupun nilainya berubah`
+    }
+  ]}
+/>
+
+Oleh sebab kunci itu unik, kunci yang berulang dalam paparan kamus hanya menyimpan nilai terakhir yang diumpukkan kepadanya. Kunci yang tinggal itu kekal pada kedudukan yang ditetapkan oleh kemunculan pertamanya.
+
+Kunci dalam kamus sentiasa unik. Dalam `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `'a'` muncul dua kali dan umpukan yang terakhir menang, jadi `d` hanya memegang dua pasangan, dengan `d['a']` sama dengan `3`.
+
+<BarChart
+  title={<>Isi <code>d</code> selepas kunci <code>'a'</code> ditulis dua kali</>}
+  description={<>Setiap bar ialah nilai bagi kunci yang ditulis di bawahnya. Hanya ada dua bar, kerana <code>'a'</code> yang kedua menulis ganti nilai <code>1</code> dengan <code>3</code>.</>}
+  yAxisLabel="Nilai"
+  data={[
+    { name: "'a'", value: 3 },
+    { name: "'b'", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
+## Mengakses Kamus
+
+Untuk mendapatkan nilai daripada kamus, **berikan kuncinya**. Kunci yang bermakna seperti nama atau tarikh mengambil tempat indeks nombor yang berturutan, jadi kamu tidak perlu mengingati kedudukan setiap nilai.
+
+### Pengindeksan dengan Kunci
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_indexing.py",
+      code: `# Mengakses nilai dengan kunci
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Mendapatkan nilai
+print(phone['cat'])
+# Output: 112
+
+# Menggunakan pemboleh ubah sebagai kunci
+name = 'bob'
+print(phone[name])
+# Output: 991
+
+# Menambah atau menukar nilai
+phone['bob'] = 999  # Tukar nilai bagi kunci yang sudah ada
+phone['eve'] = 111  # Tambah kunci baharu
+print(phone)
+# Output: {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999, 'eve': 111}`
+    }
+  ]}
+/>
+
+Akses dengan kurungan siku mendapatkan nilai yang sudah ada. Umpukan dengan kurungan siku pula **mengemas kini kunci yang sudah ada** atau menambah pasangan kunci-nilai baharu di hujung susunan kemasukan.
+
+Untuk `phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}`, `phone['ann']` dan `phone.get('ann', 0)` kedua-duanya memberi `110`. Kunci `'eve'` pula tiada: `phone['eve']` menimbulkan `KeyError`, manakala `phone.get('eve', 0)` memulangkan nilai sandaran `0`.
+
+<BarChart
+  title={<><code>phone.get(key, 0)</code> untuk tiga kunci</>}
+  description={<>Setiap bar ialah hasil <code>phone.get(key, 0)</code> untuk kunci yang ditulis di bawahnya. Kunci <code>'eve'</code> tiada dalam kamus, jadi barnya ialah nilai sandaran <InlineMath math="0" />.</>}
+  yAxisLabel="Hasil get"
+  data={[
+    { name: "'ann'", value: 110 },
+    { name: "'bob'", value: 991 },
+    { name: "'eve'", value: 0 },
+  ]}
+  chartConfig={{ value: { label: "Hasil get", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
+## Lelaran Kamus
+
+Pilih bentuk lelaran yang sepadan dengan apa yang kamu perlukan: **kunci sahaja, nilai sahaja**, atau kedua-dua bahagian setiap entri. Melelar kamus secara terus memberi kunci, memanggil `.values()` memberi nilai, dan memanggil `.items()` memberi pasangan kunci-nilai.
+
+### Melelar Kunci Kamus
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_simple_loop.py",
+      code: `# Melelar kunci kamus
+phone = {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999}
+
+for key in phone:
+    print(key, phone[key])
+# Output:
+# ann 110
+# bob 999
+# cat 112
+# dan 999`
+    }
+  ]}
+/>
+
+Apabila kamu melelar kamus secara terus, Python mengambil **kunci mengikut susunan kemasukannya**.
+
+### Melelar Entri Kamus
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_items_loop.py",
+      code: `# Melelar pasangan kunci-nilai dengan items()
+phone = {'ann': 110, 'bob': 999, 'cat': 112, 'dan': 999}
+
+for key, val in phone.items():
+    print(key, val)
+# Output:
+# ann 110
+# bob 999
+# cat 112
+# dan 999`
+    }
+  ]}
+/>
+
+Pandangan `items()` menghasilkan **setiap kunci dan nilai bersama-sama**, jadi pembongkaran tuple (tuple unpacking) boleh menamakan kedua-duanya dalam satu gelung.
+
+## Tiga Jenis Pandangan Kamus
+
+Kamus menyediakan **pandangan dinamik** (dynamic view) bagi kunci, nilai dan pasangan kunci-nilainya. Pandangan bukan salinan: ia membaca isi semasa kamus setiap kali kamu melelarnya, jadi perubahan yang dibuat selepas pandangan itu dibina terus kelihatan dalam gelung yang berikutnya.
+
+### Membina Pandangan Kamus
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_methods.py",
+      code: `# Menggunakan kaedah kamus
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# Mendapatkan semua kunci
+keys = phone.keys()
+print("Kunci:", list(keys))
+# Output: Kunci: ['ann', 'bob', 'cat', 'dan']
+
+# Mendapatkan semua nilai
+values = phone.values()
+print("Nilai:", list(values))
+# Output: Nilai: [110, 991, 112, 999]
+
+# Mendapatkan pasangan kunci-nilai
+items = phone.items()
+print("Item:", list(items))
+# Output: Item: [('ann', 110), ('bob', 991), ('cat', 112), ('dan', 999)]
+
+snapshot = list(keys)
+phone['eve'] = 111
+print(list(keys))  # Output: ['ann', 'bob', 'cat', 'dan', 'eve']
+print(snapshot)    # Output: ['ann', 'bob', 'cat', 'dan']`
+    }
+  ]}
+/>
+
+Pandangan ini menyokong lelaran, tetapi tidak menyokong pengindeksan mengikut kedudukan atau umpukan item. Memanggil `list()` membina **salinan pegun (snapshot) bagi entri semasa**. Kunci yang dimasukkan kemudian akan muncul dalam pandangan, tetapi tidak dalam salinan pegun itu. Kalau sesuatu nilai boleh diubah, salinan pegun itu masih memegang rujukan kepada objek yang sama.
+
+## Kaedah Get
+
+Guna `get()` apabila kunci yang tiada memang dijangka dan kamu mahukan **nilai sandaran**. Guna akses kurungan siku apabila kunci yang tiada patut dianggap sebagai ralat.
+
+### Ralat daripada Akses Kurungan Siku kepada Kunci yang Tiada
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_indexing_problem.py",
+      code: `# Masalah apabila mengakses kunci yang tidak wujud
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+try:
+    print(phone['pat'])
+except KeyError as e:
+    print("KeyError:", e)
+# Output: KeyError: 'pat'`
+    }
+  ]}
+/>
+
+Mengindeks kamus dengan **kunci yang tidak wujud** akan menimbulkan `KeyError`.
+
+### Penyelesaian dengan Kaedah Get
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_get_method.py",
+      code: `# Menggunakan kaedah get() untuk akses yang selamat
+phone = {'ann': 110, 'bob': 991, 'cat': 112, 'dan': 999}
+
+# get() memulangkan None jika kunci tidak wujud
+result = phone.get('pat')
+print("Hasil get('pat'):", result)
+# Output: Hasil get('pat'): None
+
+# get() dengan nilai lalai
+result = phone.get('pat', -1)
+print("Hasil get('pat', -1):", result)
+# Output: Hasil get('pat', -1): -1
+
+# get() untuk kunci yang wujud
+result = phone.get('ann')
+print("Hasil get('ann'):", result)
+# Output: Hasil get('ann'): 110`
+    }
+  ]}
+/>
+
+`get()` memulangkan nilai yang disimpan apabila kunci itu wujud. Kalau tidak, ia memulangkan **nilai lalai yang kamu berikan**, atau `None` jika tiada nilai lalai diberikan. Apabila perbezaan itu penting, pilih nilai lalai yang tidak mungkin tertukar dengan nilai sah yang tersimpan.
+
+Kira huruf dalam `"banana"` dengan `counts[ch] = counts.get(ch, 0) + 1`. Apabila sesuatu huruf muncul buat kali pertama, `get` memulangkan nilai lalai `0`, jadi tiada `KeyError`. Hasilnya ada dalam gambar: `{"b": 1, "a": 3, "n": 2}`, dengan kunci mengikut susunan ia mula-mula muncul. Jumlah tinggi semua bar ialah `6`, sama dengan `len("banana")`.
+
+<MathVisual
+  title={<>Mengira huruf dengan <code>get</code></>}
+  description={<>Setiap bar ialah satu kunci dalam kamus <code>counts</code> untuk perkataan <code>banana</code>, dan tingginya ialah nilai kunci itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.3, max: 3.7 }, y: { min: -0.3, max: 3.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "bar-a", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "bar-n", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "bar-b", objectId: "bar-b", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "bar-a", objectId: "bar-a", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bar-n", objectId: "bar-n", at: { x: 3, y: 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "bar-b": "'b': 1",
+    "bar-a": "'a': 3",
+    "bar-n": "'n': 2",
+  }}
+/>

@@ -2,38 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "evidence-status",
   },
-  stimulus: "tambora-1816",
+  stimulus: "hawthorne-effect",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "They believed the cold was caused by Mary Shelley's novel.",
+          column: 1,
+          label:
+            "When Landsberger popularized the label, nobody had yet analysed the lighting records formally.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Scientists had already proved that volcanoes warm the planet.",
+            "The 2014 review found that taking part in research rarely changes what participants do.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tambora was too small an eruption to be noticed by anyone outside Indonesia.",
+            "The 2014 review shows that research participation effects arise mainly in health research.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "News was slow, and the idea of volcanic cooling was not yet established.",
-        },
-        {
-          correct: false,
-          label:
-            "Ice cores showed that the sulphate came from a different volcano.",
+            "Had each lighting change been judged against an ordinary Monday, the rises reported after the changes would probably have looked smaller.",
         },
       ],
     },

@@ -1,0 +1,336 @@
+
+
+export const metadata = {
+  title: "Persamaan Tangen kepada Lengkung",
+  description: "Gunakan terbitan untuk mencari kecerunan dan persamaan garis tangen melalui contoh visual dan algebra.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pembezaan",
+};
+
+## Hubungan antara Terbitan dan Garis Tangen
+
+Terbitan menerangkan cara sesuatu fungsi berubah pada satu input tertentu. Secara geometri, perubahan itu muncul sebagai **kecerunan** <Highlight>[garis tangen kepada graf](/ms/subjek/matematik/pembezaan/terbitan-sebagai-kadar-perubahan)</Highlight>.
+
+Jika kita besarkan lengkung licin berhampiran satu titik, bahagian yang cukup kecil akan nampak hampir lurus. Garis yang mengikut arah setempat ini ialah garis tangen. Pada <InlineMath math="x=a" /> di atas lengkung <InlineMath math="y=f(x)" />, kecerunannya ialah terbitan yang dinilai pada input itu: <InlineMath math="m=f'(a)" />.
+
+## Menentukan Persamaan Garis Tangen
+
+Untuk menentukan persamaan garis lurus, kita perlukan satu titik pada garis itu dan kecerunannya. Bagi garis tangen, kedua-duanya ialah:
+
+1.  **Titik Sentuhan**: Titik <InlineMath math="P(a, b)" /> tempat garis itu menyentuh lengkung.
+2.  **Kecerunan (m)**: Kecerunan garis pada titik itu, yang kita peroleh daripada terbitan, <InlineMath math="m = f'(a)" />.
+
+Gantikan kedua-dua nilai ke dalam bentuk titik-kecerunan bagi garis lurus:
+
+<BlockMath math="y - b = m(x - a)" />
+
+> Bezakan fungsi itu, nilaikan terbitan pada titik sentuhan, kemudian gunakan kecerunan itu dalam persamaan bentuk titik-kecerunan.
+
+## Mencari Garis Tangen kepada Parabola
+
+Tentukan persamaan garis tangen kepada parabola <InlineMath math="y = 2 - 4x^2" /> di titik <InlineMath math="(1, -2)" />.
+
+**Penyelesaian**:
+
+**Langkah 1**: Cari kecerunan garis tangen
+
+Bezakan <InlineMath math="f(x) = 2 - 4x^2" /> untuk mendapatkan kecerunan pada sebarang input.
+
+<BlockMath math="f'(x) = -8x" />
+
+Titik sentuhan berada pada <InlineMath math="x=1" />, jadi nilaikan terbitan di situ.
+
+<BlockMath math="m = f'(1) = -8(1) = -8" />
+
+Jadi garis tangen itu ada kecerunan <InlineMath math="-8" />.
+
+**Langkah 2**: Bina persamaannya
+
+Titik dan kecerunan yang diperlukan kini sudah diketahui:
+-   Titik sentuhan <InlineMath math="(a, b) = (1, -2)" />
+-   Kecerunan <InlineMath math="m = -8" />
+
+Gantikan kedua-duanya ke dalam persamaan bentuk titik-kecerunan:
+
+<MathContainer>
+    <BlockMath math="y - b = m(x - a)" />
+    <BlockMath math="y - (-2) = -8(x - 1)" />
+    <BlockMath math="y + 2 = -8x + 8" />
+    <BlockMath math="y = -8x + 6" />
+</MathContainer>
+
+Jadi garis tangennya ialah <InlineMath math="y = -8x + 6" />.
+
+<MathVisual
+  title={<>Tangen kepada <InlineMath math="y = 2 - 4x^2" /> di <InlineMath math="(1, -2)" /></>}
+  description={<>Parabola <InlineMath math="y = 2 - 4x^2" /> dan tangennya <InlineMath math="y = -8x + 6" />, yang menyentuh parabola itu hanya di titik sentuhan <InlineMath math="(1, -2)" />.</>}
+  labels={{
+    curve: <InlineMath math="y = 2 - 4x^2" />,
+    tangent: <InlineMath math="y = -8x + 6" />,
+    touch: <InlineMath math="(1, -2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 1.8 }, y: { min: -7.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: -4, b: 0, c: 2 }, domain: { min: -1 / 2, max: 3 / 2 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 3 / 2, y: -6 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "tangent", objectId: "tangent", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Setiap soalan meminta garis tangen yang memenuhi satu syarat tambahan. Gunakan terbitan untuk memadankan **kecerunan yang diperlukan** sebelum menulis persamaannya.
+
+1.  Cari persamaan garis tangen kepada lengkung <InlineMath math="y = x^2 - 6\frac{1}{5}x + 14\frac{1}{2}" /> yang selari dengan garis <InlineMath math="x + 2y + 3 = 0" />.
+
+2.  Tentukan persamaan garis tangen kepada parabola <InlineMath math="y = 2x^2 - 3x + 5" /> pada titik-titik yang koordinat-<InlineMath math="y" /> bernilai <InlineMath math="4" />.
+
+3.  Lengkung <InlineMath math="y = 3x - \frac{3}{x^2}" /> menyilang paksi-<InlineMath math="x" /> di <InlineMath math="P" />. Cari persamaan garis tangen pada titik itu.
+
+4.  Lengkung <InlineMath math="y = (x^2 + 2)^2" /> menyilang paksi-<InlineMath math="y" /> di <InlineMath math="A" />. Tunjukkan bahawa garis tangen di <InlineMath math="A" /> selari dengan paksi-<InlineMath math="x" /> dan berada <InlineMath math="4 \text{ unit}" /> dari asalan.
+
+5.  Tentukan titik pada lengkung <InlineMath math="y = 2x^2 - 7x + 1" /> tempat garis tangen membentuk sudut <InlineMath math="45^\circ" /> dengan paksi-<InlineMath math="x" /> positif. Kemudian, tentukan persamaan garis tangen itu.
+
+### Jalan Kerja
+
+**Soalan 1**. Tangen yang dicari selari dengan garis yang diberi, jadi kedua-dua garis itu ada **kecerunan yang sama**.
+
+**Langkah 1**: Tentukan kecerunan.
+
+Garis tangen mesti selari dengan <InlineMath math="x + 2y + 3 = 0" />. Tukarkan persamaan ini kepada bentuk kecerunan-pintasan <InlineMath math="y = mx + c" /> untuk membaca kecerunannya.
+
+<MathContainer>
+    <BlockMath math="2y = -x - 3" />
+    <BlockMath math="y = -\frac{1}{2}x - \frac{3}{2}" />
+</MathContainer>
+
+Daripada sini, kita tahu kecerunan garis itu ialah <InlineMath math="m = -\frac{1}{2}" />. Oleh sebab garis tangen selari dengannya, kecerunannya juga sama.
+
+**Langkah 2**: Cari titik sentuhan.
+
+Kecerunan lengkung pada satu titik sama dengan nilai terbitan di situ. Bezakan <InlineMath math="f(x) = x^2 - \frac{31}{5}x + \frac{29}{2}" /> dahulu.
+
+<BlockMath math="f'(x) = 2x - \frac{31}{5}" />
+
+Seterusnya, kita samakan terbitan ini dengan kecerunan yang diketahui (<InlineMath math="m = -\frac{1}{2}" />) untuk mencari koordinat-<InlineMath math="x" /> bagi titik sentuhan.
+
+<MathContainer>
+    <BlockMath math="2x - \frac{31}{5} = -\frac{1}{2}" />
+    <BlockMath math="2x = \frac{31}{5} - \frac{1}{2} = \frac{62 - 5}{10} = \frac{57}{10}" />
+    <BlockMath math="x = \frac{57}{20}" />
+</MathContainer>
+
+Selepas mendapat koordinat-<InlineMath math="x" />, <InlineMath math="x=\frac{57}{20}" />, kita gantikan nilai ini semula ke dalam persamaan lengkung *asal* untuk mencari koordinat-<InlineMath math="y" /> titik itu.
+
+<BlockMath math="\begin{aligned}y &= (\frac{57}{20})^2 - \frac{31}{5}(\frac{57}{20}) + \frac{29}{2} \\ &= \frac{3249}{400} - \frac{1767}{100} + \frac{29}{2} \\ &= \frac{3249 - 7068 + 5800}{400} \\ &= \frac{1981}{400}\end{aligned}" />
+
+Titik sentuhan ialah <InlineMath math="\left(\frac{57}{20}, \frac{1981}{400}\right)" />.
+
+**Langkah 3**: Bina persamaan garis.
+
+Dengan titik <InlineMath math="\left(\frac{57}{20}, \frac{1981}{400}\right)" /> dan kecerunan <InlineMath math="m = -\frac{1}{2}" />, persamaannya ialah:
+
+<MathContainer>
+    <BlockMath math="y - \frac{1981}{400} = -\frac{1}{2}\left(x - \frac{57}{20}\right)" />
+    <BlockMath math="y = -\frac{1}{2}x + \frac{57}{40} + \frac{1981}{400}" />
+    <BlockMath math="y = -\frac{1}{2}x + \frac{570 + 1981}{400}" />
+    <BlockMath math="y = -\frac{1}{2}x + \frac{2551}{400}" />
+</MathContainer>
+
+**Soalan 2**. Cari setiap titik pada parabola yang berada pada tinggi yang ditetapkan, kemudian tentukan tangen di setiap titik itu.
+
+**Langkah 1**: Cari titik-titik sentuhan.
+
+Oleh sebab ordinatnya ialah <InlineMath math="4" />, kita tetapkan <InlineMath math="y=4" /> dalam persamaan parabola.
+
+<MathContainer>
+    <BlockMath math="4 = 2x^2 - 3x + 5" />
+    <BlockMath math="2x^2 - 3x + 1 = 0" />
+    <BlockMath math="(2x-1)(x-1) = 0" />
+</MathContainer>
+
+Daripada pemfaktoran, kita dapat dua nilai x: <InlineMath math="x=1" /> dan <InlineMath math="x=\frac{1}{2}" />. Maksudnya, ada dua titik sentuhan: <InlineMath math="(1, 4)" /> dan <InlineMath math="\left(\frac{1}{2}, 4\right)" />. Jadi akan ada dua persamaan garis tangen.
+
+**Langkah 2**: Kira kecerunan dan bina persamaan bagi setiap titik.
+
+Kita akan selesaikan setiap titik sentuhan secara berasingan. Terbitan bagi fungsi ini ialah <InlineMath math="f'(x) = 4x - 3" />.
+
+**Kes Pertama: Titik <InlineMath math="(1, 4)" />**
+
+Kecerunan pada titik ini ialah <InlineMath math="m = f'(1) = 4(1) - 3 = 1" />.
+
+Jadi, persamaannya ialah:
+
+<BlockMath math="y - 4 = 1(x - 1) \implies y = x + 3" />
+
+**Kes Kedua: Titik <InlineMath math="\left(\frac{1}{2}, 4\right)" />**
+
+Kecerunan pada titik ini ialah <InlineMath math="m = f'(\frac{1}{2}) = 4(\frac{1}{2}) - 3 = -1" />.
+
+Jadi, persamaannya ialah:
+
+<BlockMath math="\begin{aligned} y - 4 &amp;= -1(x - \frac{1}{2}) \\ y &amp;= -x + \frac{9}{2} \end{aligned}" />
+
+**Soalan 3**. Cari **pintasan-x** lengkung itu dahulu sebelum mengira kecerunan tangen di situ.
+
+**Langkah 1**: Cari titik <InlineMath math="P" />.
+
+Lengkung itu menyilang paksi-<InlineMath math="x" /> apabila <InlineMath math="y=0" />.
+
+<MathContainer>
+    <BlockMath math="0 = 3x - \frac{3}{x^2}" />
+    <BlockMath math="\begin{aligned}3x&=\frac{3}{x^2}\\3x^3&=3\\x^3&=1\\x&=1\end{aligned}" />
+</MathContainer>
+
+Titik persilangan <InlineMath math="P" /> ialah <InlineMath math="(1, 0)" />.
+
+**Langkah 2**: Cari kecerunan di <InlineMath math="P" />.
+
+Tulis semula fungsi itu sebagai <InlineMath math="f(x) = 3x - 3x^{-2}" /> supaya petua kuasa boleh terus digunakan.
+
+<BlockMath math="f'(x) = 3 - (-2)(3)x^{-3} = 3 + \frac{6}{x^3}" />
+
+Kecerunan pada <InlineMath math="x=1" /> ialah <InlineMath math="m = f'(1) = 3 + \frac{6}{1^3} = 9" />.
+
+**Langkah 3**: Bina persamaannya.
+
+Dengan titik <InlineMath math="(1, 0)" /> dan kecerunan <InlineMath math="9" />, persamaannya ialah:
+
+<BlockMath math="y - 0 = 9(x - 1) \implies y = 9x - 9" />
+
+**Soalan 4**. Cari pintasan-y, kemudian gunakan terbitan untuk menyemak arah tangen.
+
+**Langkah 1**: Cari titik <InlineMath math="A" />.
+
+Lengkung itu menyilang paksi-<InlineMath math="y" /> apabila <InlineMath math="x=0" />.
+
+<BlockMath math="y = (0^2 + 2)^2 = 4" />
+
+Titik persilangan <InlineMath math="A" /> ialah <InlineMath math="(0, 4)" />.
+
+**Langkah 2**: Buktikan garis tangen selari dengan paksi-<InlineMath math="x" />.
+
+Garis yang selari dengan paksi-<InlineMath math="x" /> ada kecerunan <InlineMath math="0" />. Nilaikan terbitan di <InlineMath math="A" />, iaitu pada <InlineMath math="x=0" />.
+
+Dengan petua rantai, terbitan bagi <InlineMath math="f(x)=(x^2+2)^2" /> ialah <InlineMath math="f'(x) = 2(x^2+2)(2x) = 4x(x^2+2)" />.
+
+Kecerunan pada <InlineMath math="x=0" /> ialah <InlineMath math="m = f'(0) = 4(0)(0^2+2) = 0" />.
+
+Oleh sebab kecerunannya sifar, tangen itu **selari dengan paksi mengufuk**.
+
+**Langkah 3**: Buktikan jaraknya <InlineMath math="4 \text{ unit}" /> dari asalan.
+
+Persamaan garis tangen di titik <InlineMath math="(0,4)" /> dengan kecerunan <InlineMath math="m=0" /> ialah:
+
+<BlockMath math="y - 4 = 0(x - 0) \implies y = 4" />
+
+Garis <InlineMath math="y=4" /> ialah garis mengufuk. Jarak dari mana-mana titik pada garis ini ke paksi-<InlineMath math="x" /> (garis <InlineMath math="y=0" />) ialah <InlineMath math="4 \text{ unit}" />. Oleh sebab asalan <InlineMath math="(0,0)" /> terletak pada paksi-<InlineMath math="x" />, jarak dari garis tangen ini ke asalan juga <InlineMath math="4 \text{ unit}" />.
+
+**Soalan 5**. Sudut yang ditetapkan menentukan kecerunan. Samakan kecerunan itu dengan terbitan untuk mencari titik sentuhan.
+
+**Langkah 1**: Tentukan **kecerunan daripada sudut**.
+
+Hubungan antara kecerunan (<InlineMath math="m" />) dan sudut (<InlineMath math="\theta" />) yang dibentuk oleh garis dengan paksi-<InlineMath math="x" /> positif diberikan oleh <InlineMath math="m = \tan(\theta)" />.
+
+<BlockMath math="m = \tan(45^\circ) = 1" />
+
+Garis tangen yang dicari ada kecerunan <InlineMath math="1" />.
+
+**Langkah 2**: Cari koordinat titik sentuhan.
+
+Kecerunan itu juga ialah terbitan pertama bagi lengkung <InlineMath math="f(x) = 2x^2 - 7x + 1" />.
+
+<BlockMath math="f'(x) = 4x - 7" />
+
+Kita samakan terbitan itu dengan kecerunan yang kita peroleh tadi:
+
+<MathContainer>
+    <BlockMath math="4x - 7 = 1" />
+    <BlockMath math="4x = 8 \implies x = 2" />
+</MathContainer>
+
+Sekarang, cari nilai <InlineMath math="y" /> dengan menggantikan <InlineMath math="x=2" /> ke dalam persamaan lengkung:
+
+<BlockMath math="\begin{aligned} y &amp;= 2(2)^2 - 7(2) + 1 \\ &amp;= 8 - 14 + 1 \\ &amp;= -5 \end{aligned}" />
+
+Titik sentuhan ialah <InlineMath math="(2, -5)" />.
+
+**Langkah 3**: Tentukan persamaan garis tangen.
+
+Dengan titik <InlineMath math="(2, -5)" /> dan kecerunan <InlineMath math="m=1" />:
+
+<MathContainer>
+    <BlockMath math="y - (-5) = 1(x - 2)" />
+    <BlockMath math="y + 5 = x - 2" />
+    <BlockMath math="y = x - 7" />
+</MathContainer>
+
+Soalan 2 pada graf: garis <InlineMath math="y = 4" /> bersilang dengan <InlineMath math="y = 2x^2 - 3x + 5" /> pada <InlineMath math="x = \tfrac12" /> dan <InlineMath math="x = 1" />. Kecerunan di situ ialah <InlineMath math="-1" /> dan <InlineMath math="1" />, jadi tangen <InlineMath math="y = -x + \tfrac92" /> dan <InlineMath math="y = x + 3" /> ialah pantulan antara satu sama lain pada paksi <InlineMath math="x = \tfrac34" />.
+
+<MathVisual
+  title={<>Dua tangen pada tinggi <InlineMath math="4" /></>}
+  description={<>Parabola <InlineMath math="y = 2x^2 - 3x + 5" /> dengan tangen <InlineMath math="y = -x + \tfrac92" /> di <InlineMath math="\left(\tfrac12, 4\right)" /> dan tangen <InlineMath math="y = x + 3" /> di <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    left: <InlineMath math="y = -x + \tfrac92" />,
+    right: <InlineMath math="y = x + 3" />,
+    a: <InlineMath math="\left(\tfrac12, 4\right)" />,
+    b: <InlineMath math="(1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.3 }, y: { min: 3, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 5 }, domain: { min: -1 / 2, max: 2 }, appearance: "primary" },
+      { id: "level", kind: "line", through: [{ x: 0, y: 4 }, { x: 1, y: 4 }], appearance: "reference" },
+      { id: "left", kind: "segment", from: { x: -1 / 10, y: 23 / 5 }, to: { x: 11 / 10, y: 17 / 5 }, appearance: "construction" },
+      { id: "right", kind: "segment", from: { x: 2 / 5, y: 17 / 5 }, to: { x: 8 / 5, y: 23 / 5 }, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 1 / 2, y: 4 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 1, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -1 / 10, y: 23 / 5 }, placement: "above" },
+      { key: "right", objectId: "right", at: { x: 8 / 5, y: 23 / 5 }, placement: "above" },
+      { key: "a", objectId: "a", at: { x: 1 / 2, y: 4 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 1, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Soalan 5 pada graf: tangen <InlineMath math="45^\circ" /> ada kecerunan <InlineMath math="\tan 45^\circ = 1" />. Pada <InlineMath math="y = 2x^2 - 7x + 1" />, kecerunan <InlineMath math="4x - 7" /> sama dengan <InlineMath math="1" /> pada <InlineMath math="x = 2" />, jadi tangen itu menyentuh lengkung di <InlineMath math="(2, -5)" /> dan persamaannya ialah <InlineMath math="y = x - 7" />.
+
+<MathVisual
+  title={<>Tangen <InlineMath math="45^\circ" /> kepada <InlineMath math="y = 2x^2 - 7x + 1" /></>}
+  description={<>Parabola <InlineMath math="y = 2x^2 - 7x + 1" /> dan tangennya <InlineMath math="y = x - 7" /> yang berkecerunan <InlineMath math="1" /> di <InlineMath math="(2, -5)" />.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 - 7x + 1" />,
+    tangent: <InlineMath math="y = x - 7" />,
+    touch: <InlineMath math="(2, -5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 3.9 }, y: { min: -6.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -7, c: 1 }, domain: { min: 0, max: 7 / 2 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: 1, y: -6 }, to: { x: 3, y: -4 }, appearance: "construction" },
+      { id: "touch", kind: "point", at: { x: 2, y: -5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 2, y: -5 }, placement: "below" },
+    ],
+  }}
+/>

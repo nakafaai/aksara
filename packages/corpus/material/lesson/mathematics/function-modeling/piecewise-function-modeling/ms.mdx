@@ -1,0 +1,349 @@
+
+export const metadata = {
+  title: "Pemodelan Fungsi Cebis Demi Cebis",
+  description: "Bina model fungsi cebis demi cebis daripada sempadan selang, kadar bertingkat, gerakan berperingkat dan titik sambungan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Bila Perlu Menggunakan Fungsi Cebis Demi Cebis
+
+Fungsi cebis demi cebis berguna apabila satu situasi tidak dapat diterangkan dengan baik oleh satu rumus sahaja. Domainnya dibahagikan kepada beberapa selang, dan <Highlight>setiap selang menggunakan petuanya sendiri</Highlight>.
+
+Contohnya, kos elektrik boleh jadi lebih murah untuk peringkat penggunaan pertama dan lebih mahal selepas satu sempadan tertentu. Sempadan seperti ini ialah tanda bahawa model itu patut ditulis secara cebis demi cebis.
+
+### Takrif Fungsi Cebis Demi Cebis
+
+Fungsi cebis demi cebis boleh ditulis dalam bentuk:
+
+<BlockMath math="f(x) = \begin{cases} f_1(x), & \text{jika } x \in D_1 \\ f_2(x), & \text{jika } x \in D_2 \\ f_3(x), & \text{jika } x \in D_3 \\ \vdots \\ f_n(x), & \text{jika } x \in D_n \end{cases}" />
+
+Dalam takrif ini, <InlineMath math="D_1, D_2, D_3, \ldots, D_n" /> ialah **selang yang tidak bertindih** yang membahagikan domain fungsi itu.
+
+Semasa membaca atau membina fungsi cebis demi cebis, beri perhatian kepada tiga perkara:
+
+- Rumus pada setiap baris.
+- Syarat selang yang menentukan bila rumus itu digunakan.
+- Nilai fungsi pada titik sambungan, terutamanya apabila sempadan selang menggunakan <InlineMath math="\lt" />, <InlineMath math="\leq" />, <InlineMath math="\gt" /> atau <InlineMath math="\geq" />.
+
+## Bentuk Cebisan yang Biasa
+
+Rumus menentukan bentuk setiap cebisan. **Rumus linear** menghasilkan tembereng garis atau sinar, manakala rumus kuadratik menghasilkan sebahagian daripada parabola. Syarat selang pula memilih bahagian yang digunakan.
+
+### Cebisan Linear
+
+Fungsi cebis demi cebis linear menggunakan fungsi linear pada setiap selang. Bentuk ini sering muncul apabila **kadar perubahan tetap** untuk satu tempoh, kemudian berubah selepas satu titik tertentu.
+
+<MathVisual
+  title={<>Fungsi Cebis Demi Cebis Linear</>}
+  description={<>Contoh fungsi cebis demi cebis linear dengan tiga cebisan yang berbeza.</>}
+  labels={{
+    "l1": <InlineMath math="y=2x+3" />,
+    "l2": <InlineMath math="y=-x+3" />,
+    "l3": <InlineMath math="y=0.5x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t * 0.1))", y: "((2 * ((-2) + (t * 0.1))) + 3)", parameter: { min: 0, max: 20 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + (t * 0.1))", y: "((-(0 + (t * 0.1))) + 3)", parameter: { min: 0, max: 20 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(2 + (t * 0.1))", y: "(0.5 * (2 + (t * 0.1)))", parameter: { min: 0, max: 20 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 1 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 1.5 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Fungsi di atas boleh ditulis sebagai:
+
+<BlockMath math="\begin{aligned} &amp;f(x) = \begin{cases} 2x + 3, &amp; \text{jika } -2 \leq x &lt; 0 \\ -x + 3, &amp; \text{jika } 0 \leq x &lt; 2 \\ 0.5x, &amp; \text{jika } x \geq 2 \end{cases} \end{aligned}" />
+
+Tiga baris ini bukan tiga fungsi yang berasingan. Ketiga-tiganya bergabung sebagai satu fungsi, dan rumus yang dipilih bergantung pada nilai <InlineMath math="x" />.
+
+### Cebisan Kuadratik
+
+Fungsi cebis demi cebis juga boleh menggunakan cebisan kuadratik. Cebisan kuadratik boleh menerangkan **bahagian model yang melengkung**.
+
+<MathVisual
+  title={<>Fungsi Cebis Demi Cebis Gabungan</>}
+  description={<>Gabungan fungsi kuadratik dan fungsi linear dalam satu fungsi cebis demi cebis.</>}
+  labels={{
+    "l1": <InlineMath math="y=x^2" />,
+    "l2": <InlineMath math="y=2x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 150) / 50)", y: "(((t - 150) / 50) * ((t - 150) / 50))", parameter: { min: 0, max: 150 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + (t * 0.1))", y: "(2 * (0 + (t * 0.1)))", parameter: { min: 0, max: 30 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 1.5, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Graf ini menggabungkan **dua petua** berikut. Pada sempadan <InlineMath math="x=0" />, petua kedua yang memberikan nilai fungsi. Bulatan kosong pada petua pertama tidak menambah nilai lain.
+
+<BlockMath math="f(x)=\begin{cases}x^2,&amp;x&lt;0\\2x,&amp;x\geq0\end{cases}" />
+
+## Titik Sambungan dan Keselanjaran
+
+Pada **titik sambungan**, bandingkan output yang dihampiri dari kiri dan dari kanan dengan nilai fungsi pada sempadan itu sendiri. Ketiga-tiganya boleh sama, tetapi perbezaannya boleh mendedahkan lubang atau lompatan.
+
+### Sambungan Tanpa Lompatan
+
+Fungsi cebis demi cebis selanjar jika grafnya tidak melompat pada titik sambungan. Nilai dari kiri, nilai dari kanan dan nilai fungsi pada titik itu **mesti sama**.
+
+Syarat keselanjaran pada titik <InlineMath math="x = c" />:
+
+<BlockMath math="\lim_{x \to c^-} f(x) = \lim_{x \to c^+} f(x) = f(c)" />
+
+Contoh fungsi cebis demi cebis yang selanjar:
+
+<BlockMath math="f(x) = \begin{cases} x + 1, & \text{jika } x < 2 \\ 3, & \text{jika } x = 2 \\ 5 - x, & \text{jika } x > 2 \end{cases}" />
+
+Untuk keselanjaran pada <InlineMath math="x = 2" />:
+
+- <InlineMath math="\lim_{x \to 2^-} (x + 1) = 3" />
+- <InlineMath math="\lim_{x \to 2^+} (5 - x) = 3" />
+- <InlineMath math="f(2) = 3" />
+
+### Sambungan dengan Lompatan
+
+Fungsi cebis demi cebis yang tidak selanjar ada "lompatan" atau "lubang" pada titik tertentu.
+
+Contohnya, dua petua di bawah bertemu pada <InlineMath math="x=1" /> tetapi menghampiri **nilai output yang berbeza**:
+
+<BlockMath math="f(x)=\begin{cases}x+2,&\text{jika }x<1\\2x-3,&\text{jika }x\geq1\end{cases}" />
+
+<MathVisual
+  title={<>Fungsi Cebis Demi Cebis Tak Selanjar</>}
+  description={
+    <>
+      Contoh fungsi dengan ketakselanjaran lompatan pada{" "}
+      <InlineMath math="x = 1" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=x+2" />,
+    "l2": <InlineMath math="y=2x-3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (t * 0.1))", y: "(((-1) + (t * 0.1)) + 2)", parameter: { min: 0, max: 20 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(1 + (t * 0.1))", y: "((2 * (1 + (t * 0.1))) - 3)", parameter: { min: 0, max: 20 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Pemodelan dengan Fungsi Cebis Demi Cebis
+
+Situasi yang petuanya berubah pada satu nilai ambang sesuai dengan model cebis demi cebis. Kadar progresif dan laju berperingkat sama-sama menukar petua pada satu titik yang boleh kamu namakan, dan titik itu menjadi **sempadan antara dua cebisan**.
+
+### Kadar Progresif
+
+Fungsi cebis demi cebis memodelkan petua yang berubah pada nilai ambang yang ditetapkan. Cukai progresif, bayaran letak kereta bertingkat dan tarif elektrik bertingkat semuanya menggunakan petua yang berbeza selepas sesuatu sempadan dilepasi.
+
+**Contoh: Tarif Elektrik**
+
+Dalam contoh hipotetikal ini, **kadar baharu dikenakan hanya pada penggunaan tambahan** dalam peringkat itu. Penggunaan dalam peringkat sebelumnya kekal dengan kadar asalnya:
+
+- <InlineMath math="0\leq x\leq50" /> kWh: <InlineMath math="\text{Rp }1{,}000/\text{kWh}" />
+- <InlineMath math="50<x\leq100" /> kWh: <InlineMath math="\text{Rp }1{,}500/\text{kWh}" />
+- <InlineMath math="x>100" /> kWh: <InlineMath math="\text{Rp }2{,}000/\text{kWh}" />
+
+Model matematiknya:
+
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}1000x\\\text{jika } 0 \leq x \leq 50\end{gathered}\\[4pt]\begin{gathered}50000 + 1500(x-50)\\\text{jika } 50 &lt; x \leq 100\end{gathered}\\[4pt]\begin{gathered}125000 + 2000(x-100)\\\text{jika } x > 100\end{gathered}\end{cases}" />
+
+Nombor <InlineMath math="50{,}000" /> dalam baris kedua datang daripada <InlineMath math="50 \text{ kWh}" /> yang pertama. Nombor <InlineMath math="125{,}000" /> dalam baris ketiga datang daripada kos sehingga <InlineMath math="100 \text{ kWh}" /> yang pertama. Dengan cara ini, kos tidak bermula semula dari <InlineMath math="0" /> apabila penggunaan memasuki selang baharu.
+
+Kos dalam selang baharu tidak menggantikan kos sebelumnya. Contohnya, pada <InlineMath math="75\text{ kWh}" />:
+
+<BlockMath math="C(75)=1000(50)+1500(75-50)=50000+37500=87500" />
+
+**Jadual kos elektrik**:
+
+| Penggunaan (kWh) | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="75" /> | <InlineMath math="100" /> | <InlineMath math="150" /> |
+| ----------- | ------ | ------ | ------ | ------- | ------- |
+| Kos (Rp)   | <InlineMath math="30{,}000" /> | <InlineMath math="50{,}000" /> | <InlineMath math="87{,}500" /> | <InlineMath math="125{,}000" /> | <InlineMath math="225{,}000" /> |
+
+### Laju Berperingkat
+
+**Contoh: Perjalanan Pelbagai Mod**
+
+Seseorang membuat perjalanan dengan:
+
+- Berjalan kaki: <InlineMath math="5 \text{ km/h}" /> selama <InlineMath math="0.5 \text{ jam}" />
+- Berbasikal: <InlineMath math="15 \text{ km/h}" /> selama <InlineMath math="1 \text{ jam}" />
+- Memandu: <InlineMath math="60 \text{ km/h}" /> selama <InlineMath math="0.5 \text{ jam}" />
+
+Fungsi jarak terhadap masa:
+
+<BlockMath math="s(t) = \begin{cases}\begin{gathered}5t\\\text{jika } 0 \leq t \leq 0.5\end{gathered}\\[4pt]\begin{gathered}2.5 + 15(t-0.5)\\\text{jika } 0.5 &lt; t \leq 1.5\end{gathered}\\[4pt]\begin{gathered}17.5 + 60(t-1.5)\\\text{jika } 1.5 &lt; t \leq 2\end{gathered}\end{cases}" />
+
+Pemalar <InlineMath math="2.5" /> dan <InlineMath math="17.5" /> sama dengan **jarak yang sudah dilalui** pada permulaan setiap selang baharu. Pemalar ini memastikan <InlineMath math="s(t)" /> kekal selanjar apabila mod pengangkutan bertukar.
+
+## Menentukan Persamaan Fungsi Cebis Demi Cebis
+
+Untuk menentukan persamaan fungsi cebis demi cebis daripada graf atau situasi:
+
+- Bahagikan domain pada setiap **sempadan tempat petua berubah**.
+- Tentukan rumus bagi setiap selang.
+- Semak titik sambungan supaya tanda selang dan nilai fungsi tidak bercanggah.
+- Tulis semua cebisan dalam tatatanda cebis demi cebis.
+
+**Contoh**:
+
+Daripada graf yang menunjukkan:
+
+- Garis dengan kecerunan <InlineMath math="2" /> dari <InlineMath math="x = -2" /> hingga <InlineMath math="x = 0" />
+- Garis mengufuk <InlineMath math="y = 4" /> dari <InlineMath math="x = 0" /> hingga <InlineMath math="x = 2" />
+- Garis dengan kecerunan <InlineMath math="-1" /> dari <InlineMath math="x = 2" /> hingga <InlineMath math="x = 4" />
+
+Penyelesaiannya boleh diringkaskan seperti ini:
+
+| Selang | Maklumat graf | Persamaan |
+| -------- | ----------------- | -------- |
+| <InlineMath math="[-2, 0)" /> | Melalui <InlineMath math="(-2, 0)" /> dengan kecerunan <InlineMath math="2" /> | <InlineMath math="y = 2(x + 2) = 2x + 4" /> |
+| <InlineMath math="[0, 2)" /> | Garis mengufuk | <InlineMath math="y = 4" /> |
+| <InlineMath math="[2, 4]" /> | Melalui <InlineMath math="(2, 4)" /> dengan kecerunan <InlineMath math="-1" /> | <InlineMath math="y = -1(x - 2) + 4 = -x + 6" /> |
+
+Fungsi cebis demi cebis:
+
+<BlockMath math="\begin{aligned} &amp;f(x) = \begin{cases} 2x + 4, &amp; \text{jika } -2 \leq x &lt; 0 \\ 4, &amp; \text{jika } 0 \leq x &lt; 2 \\ -x + 6, &amp; \text{jika } 2 \leq x \leq 4 \end{cases} \end{aligned}" />
+
+## Soalan Latihan
+
+Pilih **selang yang mengandungi input** sebelum menggantikan nilai. Dalam model kos dan upah, bawa jumlah yang terkumpul dalam selang sebelumnya ke selang yang seterusnya.
+
+1. Tentukan nilai <InlineMath math="f(1)" />, <InlineMath math="f(3)" /> dan <InlineMath math="f(5)" /> bagi fungsi:
+
+<BlockMath math="f(x) = \begin{cases} x^2, & \text{jika } x < 2 \\ 2x + 1, & \text{jika } 2 \leq x < 4 \\ 9, & \text{jika } x \geq 4 \end{cases}" />
+
+2. Sebuah syarikat teksi dalam talian mengenakan kadar berikut:
+
+   Tambang asas ialah <InlineMath math="\text{Rp }10{,}000" /> untuk <InlineMath math="2 \text{ km}" /> yang pertama. Jarak melebihi <InlineMath math="2 \text{ km}" /> hingga <InlineMath math="10 \text{ km}" /> dikenakan <InlineMath math="\text{Rp }4{,}000/\text{km}" />. Melebihi <InlineMath math="10 \text{ km}" />, kadar tambahan menjadi <InlineMath math="\text{Rp }3{,}000/\text{km}" />.
+
+   Bina model fungsi cebis demi cebis bagi jumlah kos!
+
+3. Tentukan sama ada fungsi berikut selanjar pada <InlineMath math="x = 1" />:
+
+<BlockMath math="g(x) = \begin{cases} 3x - 1, & \text{jika } x < 1 \\ 2, & \text{jika } x = 1 \\ x + 1, & \text{jika } x > 1 \end{cases}" />
+
+4. Lakarkan graf fungsi:
+
+<BlockMath math="h(x) = \begin{cases} -x + 2, & \text{jika } x < 0 \\ x^2, & \text{jika } 0 \leq x < 2 \\ 4, & \text{jika } x \geq 2 \end{cases}" />
+
+5. Seorang pekerja dibayar mengikut sistem berikut:
+
+   Untuk <InlineMath math="8 \text{ jam}" /> yang pertama, bayarannya ialah <InlineMath math="\text{Rp }50{,}000/\text{jam}" />. Setiap jam tambahan dibayar <InlineMath math="\text{Rp }75{,}000/\text{jam}" />.
+
+   Jika pekerja itu boleh bekerja paling lama <InlineMath math="12 \text{ jam/hari}" />, bina fungsi upah harian.
+
+### Jalan Kerja
+
+**Soalan 1**. Kenal pasti **baris yang berkenaan** bagi setiap input, kemudian nilaikannya.
+
+Untuk <InlineMath math="f(1)" />: oleh sebab <InlineMath math="1 < 2" />, gunakan <InlineMath math="f(x) = x^2" />
+
+<BlockMath math="f(1) = 1^2 = 1" />
+
+Untuk <InlineMath math="f(3)" />: oleh sebab <InlineMath math="2 \leq 3 < 4" />, gunakan <InlineMath math="f(x) = 2x + 1" />
+
+<BlockMath math="f(3) = 2(3) + 1 = 7" />
+
+Untuk <InlineMath math="f(5)" />: oleh sebab <InlineMath math="5 \geq 4" />, gunakan <InlineMath math="f(x) = 9" />
+
+<BlockMath math="f(5) = 9" />
+
+**Soalan 2**. Kos pada sempadan pertama menjadi **kos permulaan** bagi selang seterusnya. Sehingga <InlineMath math="10\text{ km}" />, kos terkumpulnya ialah:
+
+<BlockMath math="10000+4000(10-2)=10000+32000=42000" />
+
+Katakan <InlineMath math="x" /> ialah jarak dalam km, maka:
+
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}10000 + 4000(x-2)\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}\begin{aligned}10000+32000\\+3000(x-10)\end{aligned}\\\text{jika } x > 10\end{gathered}\end{cases}" />
+
+Atau selepas dipermudahkan:
+
+<BlockMath math="C(x) = \begin{cases}\begin{gathered}10000\\\text{jika } 0 &lt; x \leq 2\end{gathered}\\[4pt]\begin{gathered}4000x + 2000\\\text{jika } 2 &lt; x \leq 10\end{gathered}\\[4pt]\begin{gathered}3000x + 12000\\\text{jika } x > 10\end{gathered}\end{cases}" />
+
+**Soalan 3**. Pada <InlineMath math="x = 1" />:
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} \lim_{x \to 1^-} g(x) &amp;= \lim_{x \to 1^-} (3x - 1) \\ &amp;= 3(1) - 1 \\ &amp;= 2 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \lim_{x \to 1^+} g(x) &amp;= \lim_{x \to 1^+} (x + 1) \\ &amp;= 1 + 1 \\ &amp;= 2 \end{aligned}" />
+
+<BlockMath math="g(1) = 2" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1) = 2" />, fungsi itu **selanjar** pada <InlineMath math="x = 1" />.
+
+**Soalan 4**. Perhatikan **titik hujung yang terbuka dan tertutup**: pada <InlineMath math="x=0" />, nilai fungsinya ialah <InlineMath math="0" />, bukan <InlineMath math="2" />. Pada <InlineMath math="x=2" />, nilainya ialah <InlineMath math="4" />.
+
+<MathVisual
+  title={
+    <>
+      Graf Fungsi <InlineMath math="h(x)" />
+    </>
+  }
+  description={
+    <>
+      Fungsi cebis demi cebis dengan tiga bahagian: linear yang menyusut, kuadratik dan
+      malar
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=-x+2" />,
+    "l2": <InlineMath math="y=x^2" />,
+    "l3": <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t * 0.1))", y: "((-((-2) + (t * 0.1))) + 2)", parameter: { min: 0, max: 20 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + ((t / 5) * 0.1))", y: "((0 + ((t / 5) * 0.1)) * (0 + ((t / 5) * 0.1)))", parameter: { min: 0, max: 100 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(2 + (t * 0.1))", y: "4", parameter: { min: 0, max: 20 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 3 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+**Soalan 5**. Bayaran selepas lapan jam merangkumi **upah yang sudah diperoleh**, diikuti bayaran tambahan untuk kerja lebih masa.
+
+<BlockMath math="50000(8)=400000" />
+
+Katakan <InlineMath math="t" /> ialah bilangan jam bekerja, maka:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}400000 + 75000(t-8)\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />
+
+Atau selepas dipermudahkan:
+
+<BlockMath math="U(t) = \begin{cases}\begin{gathered}50000t\\\text{jika } 0 \leq t \leq 8\end{gathered}\\[4pt]\begin{gathered}75000t - 200000\\\text{jika } 8 &lt; t \leq 12\end{gathered}\end{cases}" />

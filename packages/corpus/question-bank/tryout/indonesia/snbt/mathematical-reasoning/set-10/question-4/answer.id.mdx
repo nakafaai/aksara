@@ -1,16 +1,46 @@
-Tidak rugi berarti **keuntungan dari roti paling sedikit sama dengan biaya tetap**.
+Kamu mencari banyak perjalanan paling sedikit jika petugas bebas menyusun muatan. Rencananya begini: cari dulu **batas bawah**, yaitu banyak perjalanan yang pasti diperlukan, lalu tunjukkan satu rencana yang benar-benar mencapai batas itu.
 
-# Menyusun pertidaksamaan
+# Batas bawah dari jumlah panjang dan massa
+
+Hitung panjang dan massa seluruh <InlineMath math="11" /> kendaraan: <InlineMath math="3" /> truk, <InlineMath math="2" /> bus, <InlineMath math="5" /> mobil, dan <InlineMath math="1" /> pikap.
 
 <BlockMath math="\begin{aligned}
-1{.}500x&\ge120{.}000\\
-x&\ge80
+\text{panjang total} &= 3\cdot10+2\cdot12+5\cdot5+6=85\text{ m}\\
+\text{massa total} &= 3\cdot15+2\cdot16+5\cdot2+3=90\text{ ton}
 \end{aligned}" />
 
-# Memeriksa batasan
+Satu perjalanan membawa paling banyak <InlineMath math="40\text{ m}" /> dan <InlineMath math="30\text{ ton}" />. Karena <InlineMath math="85>2\cdot40" /> dan <InlineMath math="90=3\cdot30" />, jumlah ini hanya menunjukkan bahwa perlu paling sedikit <InlineMath math="3" /> perjalanan. Tetapi **kendaraan tidak bisa dipotong**, jadi angka <InlineMath math="3" /> belum tentu tercapai.
 
-Delapan puluh roti cokelat muat di oven dan memakai <InlineMath math="80\cdot50=4{.}000" /> g tepung, **masih dalam batas 7 kg**. Jadi rencana ini dapat dijalankan.
+# Kendaraan berat yang tidak bisa digabung
 
-Nilai 60 roti memakai keuntungan roti keju, Rp2.000,00, padahal hari itu hanya roti cokelat yang dibuat. Nilai 70 roti hanya memberi keuntungan Rp105.000,00, masih kurang dari biaya tetap. Nilai 90 dan 100 roti memang tidak rugi, tetapi bukan yang paling sedikit.
+Periksa pasangan kendaraan berat.
 
-Jadi, Bu Sari harus membuat dan menjual paling sedikit **80 roti cokelat**.
+<BlockMath math="\begin{aligned}
+\text{bus dan bus} &= 16+16=32\text{ ton}>30\text{ ton}\\
+\text{bus dan truk} &= 16+15=31\text{ ton}>30\text{ ton}\\
+\text{tiga truk} &= 3\cdot15=45\text{ ton}>30\text{ ton}
+\end{aligned}" />
+
+Misalkan cukup <InlineMath math="3" /> perjalanan. Kedua bus harus berada di dua perjalanan yang berbeda, dan **perjalanan yang membawa bus tidak bisa membawa truk**. Akibatnya ketiga truk harus masuk ke satu perjalanan yang tersisa, padahal tiga truk bermassa <InlineMath math="45\text{ ton}" />. Ini mustahil, jadi perlu paling sedikit <InlineMath math="4" /> perjalanan.
+
+# Rencana empat perjalanan
+
+Sekarang tunjukkan bahwa <InlineMath math="4" /> perjalanan memang cukup. Dua truk boleh berangkat bersama karena <InlineMath math="30\text{ ton}" /> tepat sama dengan batasnya.
+
+| Perjalanan | Muatan | Panjang | Massa |
+| :---: | :---: | :---: | :---: |
+| pertama | dua truk | <InlineMath math="20\text{ m}" /> | <InlineMath math="30\text{ ton}" /> |
+| kedua | truk, dua mobil, pikap | <InlineMath math="26\text{ m}" /> | <InlineMath math="22\text{ ton}" /> |
+| ketiga | bus, tiga mobil | <InlineMath math="27\text{ m}" /> | <InlineMath math="22\text{ ton}" /> |
+| keempat | bus | <InlineMath math="12\text{ m}" /> | <InlineMath math="16\text{ ton}" /> |
+
+Setiap baris memenuhi kedua batas, dan **semua kendaraan terangkut tepat satu kali**: tiga truk, dua bus, lima mobil, dan satu pikap.
+
+# Jawaban yang sering muncul
+
+Kedua jawaban ini **salah membaca syarat pemuatan**.
+
+- Jawaban <InlineMath math="3" /> hanya memakai jumlah panjang dan massa, lalu lupa bahwa bus tidak bisa digabung dengan bus atau truk.
+- Jawaban <InlineMath math="5" /> masih memakai aturan antre, padahal soal ini membebaskan urutan. Jawaban yang sama muncul jika muatan tepat <InlineMath math="30\text{ ton}" /> dianggap tidak boleh, karena setiap truk lalu harus berangkat tanpa truk lain.
+
+Jadi, paling sedikit diperlukan <InlineMath math="4" /> perjalanan untuk menyeberangkan seluruh kendaraan.

@@ -1,0 +1,328 @@
+export const metadata = {
+  title: "Memantulkan Fungsi pada Paksi Mengufuk",
+  description: "Pantulkan graf fungsi pada paksi-x dengan mendarab seluruh fungsi dengan negatif satu, kemudian cari titik pusingan, julat dan persamaan yang baharu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-10-24",
+  subject: "Penjelmaan Fungsi",
+};
+
+## Memantulkan Graf pada Paksi Mengufuk
+
+**Pantulan mencancang** pada paksi-x menukar <InlineMath math="y = f(x)" /> kepada <InlineMath math="y = -f(x)" />. Setiap titik <InlineMath math="(x_0, y_0)" /> bergerak ke <InlineMath math="(x_0, -y_0)" />, jadi **koordinat-x kekal sama** dan tanda setiap tinggi bertukar. Pensifar tidak bergerak, kerana tingginya sifar. Titik tertinggi menjadi titik terendah. Graf pertama menunjukkan <InlineMath math="x^2 - 1" /> di sebelah imej cerminnya <InlineMath math="-x^2 + 1" />, jadi kamu boleh mengikut satu titik semasa ia menyeberangi paksi-x.
+
+<BlockMath math="(x_0, y_0) \longmapsto (x_0,\ -y_0)" />
+
+Rumus juga memberikan hasil yang sama. Jika titik <InlineMath math="(x_0, y_0)" /> terletak pada <InlineMath math="f" />, maka <InlineMath math="y_0 = f(x_0)" />. Fungsi baharu memberikan <InlineMath math="-f(x_0) = -y_0" /> pada input yang sama, jadi titik <InlineMath math="(x_0, -y_0)" /> terletak pada <InlineMath math="-f(x)" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2 - 1" /> dan <InlineMath math="g(x) = -f(x)" /></>}
+  description={<>Anak panah membawa titik <InlineMath math="(2, 3)" /> pada <InlineMath math="f" /> ke <InlineMath math="(2, -3)" /> pada <InlineMath math="g" />. Titik terendah <InlineMath math="(0, -1)" /> bagi <InlineMath math="f" /> menjadi titik tertinggi <InlineMath math="(0, 1)" /> bagi <InlineMath math="g" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.5) + (t / 40))", y: "((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s1-p100", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2.5) + (t / 40))", y: "(-((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s2-p100", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 3 }, to: { x: 2, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Anak panah itu menunjukkan cara petua ini berfungsi. Tinggi titik itu didarab dengan <InlineMath math="-1" />, manakala kedudukan mengufuknya tidak bergerak. Titik terendah graf pertama kini menjadi titik tertinggi graf kedua.
+
+## Dua Bingkai Cermin pada Paksi
+
+Bayangkan graf <InlineMath math="y = 2^x" /> terletak pada satah <InlineMath math="z = 0" /> dalam **satu paparan tiga dimensi**. Pantulan pada paksi-x ialah cermin pada satah <InlineMath math="y = 0" />, dan pantulan pada paksi-y ialah cermin pada satah <InlineMath math="x = 0" />. Paparan di bawah menunjukkan kedua-dua bingkai cermin dan titik <InlineMath math="P(1, 2)" />. Putarkan paparan itu untuk melihat ke mana setiap bingkai menghantar titik itu.
+
+<MathVisual
+  title={<>Dua bingkai cermin untuk titik <InlineMath math="P(1, 2)" /> pada <InlineMath math="y = 2^x" /></>}
+  description={<>Bingkai lantai terletak pada satah <InlineMath math="y = 0" /> dan menghantar <InlineMath math="P" /> ke <InlineMath math="(1, -2)" />. Bingkai dinding terletak pada satah <InlineMath math="x = 0" /> dan menghantar <InlineMath math="P" /> ke <InlineMath math="(-1, 2)" />.</>}
+  labels={{
+    p: <InlineMath math="P(1, 2)" />,
+    q: <InlineMath math="(1, -2)" />,
+    r: <InlineMath math="(-1, 2)" />,
+    floor: <InlineMath math="y = 0" />,
+    wall: <InlineMath math="x = 0" />,
+  }}
+  scene={{
+    space: "space",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 3.5 },
+      y: { min: -4.5, max: 4.5 },
+      z: { min: -2.5, max: 2.5 },
+    },
+    view: { kind: "isometric", target: { x: 0, y: 0, z: 0 } },
+    objects: [
+      {
+        id: "floor-frame",
+        kind: "polygon",
+        appearance: "reference",
+        vertices: [
+          { x: -3, y: 0, z: -2 },
+          { x: 3, y: 0, z: -2 },
+          { x: 3, y: 0, z: 2 },
+          { x: -3, y: 0, z: 2 },
+        ],
+      },
+      {
+        id: "wall-frame",
+        kind: "polygon",
+        appearance: "reference",
+        vertices: [
+          { x: 0, y: -4, z: -2 },
+          { x: 0, y: 4, z: -2 },
+          { x: 0, y: 4, z: 2 },
+          { x: 0, y: -4, z: 2 },
+        ],
+      },
+      {
+        id: "point-p",
+        kind: "point",
+        appearance: "primary",
+        at: { x: 1, y: 2, z: 0 },
+      },
+      {
+        id: "image-floor",
+        kind: "point",
+        appearance: "answer",
+        at: { x: 1, y: -2, z: 0 },
+      },
+      {
+        id: "image-wall",
+        kind: "point",
+        appearance: "answer",
+        at: { x: -1, y: 2, z: 0 },
+      },
+      {
+        id: "path-floor",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 1, y: 2, z: 0 },
+        to: { x: 1, y: -2, z: 0 },
+      },
+      {
+        id: "path-wall",
+        kind: "segment",
+        appearance: "construction",
+        from: { x: 1, y: 2, z: 0 },
+        to: { x: -1, y: 2, z: 0 },
+      },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 1, y: 2, z: 0 }, placement: "right" },
+      { key: "q", objectId: "image-floor", at: { x: 1, y: -2, z: 0 }, placement: "right" },
+      { key: "r", objectId: "image-wall", at: { x: -1, y: 2, z: 0 }, placement: "left" },
+      { key: "floor", objectId: "floor-frame", at: { x: 3, y: 0, z: 2 }, placement: "right" },
+      { key: "wall", objectId: "wall-frame", at: { x: 0, y: 4, z: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Bingkai lantai memberikan <InlineMath math="-f(x)" />, kerana titik <InlineMath math="(1, -2)" /> terletak pada <InlineMath math="-2^x" />. Bingkai dinding memberikan <InlineMath math="f(-x)" />, kerana titik <InlineMath math="(-1, 2)" /> terletak pada <InlineMath math="2^{-x}" />. Kedua-dua bingkai bersama-sama menghantar <InlineMath math="P" /> ke <InlineMath math="(-1, -2)" />, yang terletak pada <InlineMath math="-2^{-x}" />. Pantulan berganda itu sama dengan setengah putaran satah itu pada asalan.
+
+## Mendarab Seluruh Output dengan Negatif Satu
+
+Biar <InlineMath math="f(x) = x^2 - 2x - 3 = (x - 1)^2 - 4" />. Pantulan mencancang **mendarab seluruh output dengan negatif satu**:
+
+<BlockMath math="\begin{aligned} g(x) &= -f(x) \\ &= -(x^2 - 2x - 3) \\ &= -x^2 + 2x + 3 \end{aligned}" />
+
+Semak tiga titik khas. Pensifar <InlineMath math="g" /> masih <InlineMath math="-1" /> dan <InlineMath math="3" />, kerana <InlineMath math="g(-1) = -1 - 2 + 3 = 0" /> dan <InlineMath math="g(3) = -9 + 6 + 3 = 0" />. Titik minimum <InlineMath math="(1, -4)" /> bagi <InlineMath math="f" /> menjadi titik maksimum <InlineMath math="(1, 4)" /> bagi <InlineMath math="g" />, kerana <InlineMath math="g(1) = -1 + 2 + 3 = 4" />. Pintasan-y bergerak dari <InlineMath math="(0, -3)" /> ke <InlineMath math="(0, 3)" />, kerana <InlineMath math="g(0) = 3" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2 - 2x - 3" /> dan <InlineMath math="g(x) = -x^2 + 2x + 3" /></>}
+  description={<>Anak panah mencancang membawa titik minimum <InlineMath math="f" /> ke titik maksimum <InlineMath math="g" />, dan pintasan-y <InlineMath math="(0, -3)" /> ke <InlineMath math="(0, 3)" />. Pensifar kekal pada <InlineMath math="-1" /> dan <InlineMath math="3" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: -3 }, to: { x: 0, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.5, y: 2.25 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 3.5, y: -2.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Julat dan Asimptot yang Terbalik
+
+Ambil <InlineMath math="f(x) = 2^x - 1" />. Asimptot mengufuknya ialah <InlineMath math="y = -1" />, julatnya ialah <InlineMath math="(-1, \infty)" />, dan grafnya melalui <InlineMath math="(0, 0)" />. Darab seluruh fungsi dengan negatif satu:
+
+<BlockMath math="g(x) = -f(x) = -2^x + 1" />
+
+Asimptot bergerak ke <InlineMath math="y = 1" />, kerana tinggi <InlineMath math="-1" /> menjadi <InlineMath math="1" />. **Julatnya terbalik** menjadi <InlineMath math="(-\infty, 1)" />, kerana setiap nilai <InlineMath math="f" /> di atas <InlineMath math="-1" /> menjadi nilai di bawah <InlineMath math="1" />. Titik <InlineMath math="(0, 0)" /> kekal di tempatnya, kerana titik itu terletak pada paksi-x. Semak dua nilai: <InlineMath math="-f(1) = -(2 - 1) = -1" /> dan <InlineMath math="-f(-1) = -\left(\tfrac{1}{2} - 1\right) = \tfrac{1}{2}" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = 2^x - 1" /> dan <InlineMath math="g(x) = -2^x + 1" /></>}
+  description={<>Anak panah membawa <InlineMath math="(1, 1)" /> ke <InlineMath math="(1, -1)" /> dan <InlineMath math="(-1, -\tfrac{1}{2})" /> ke <InlineMath math="(-1, \tfrac{1}{2})" />. Asimptot bergerak dari <InlineMath math="y = -1" /> ke <InlineMath math="y = 1" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = -1" />,
+    "l4": <InlineMath math="y = 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "((2)^(((-3) + (t / 40))) - 1)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "(-((2)^(((-3) + (t / 40))) - 1))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: 3, y: -1 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 1 }, { x: 3, y: 1 }], appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 1, y: 1 }, to: { x: 1, y: -1 }, appearance: "highlight" },
+      { id: "s6", kind: "vector", from: { x: -1, y: -0.5 }, to: { x: -1, y: 0.5 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: -1 }, placement: "below" },
+      { key: "l4", objectId: "s4", at: { x: -3, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Puncak dan Lembah Bertukar Tempat
+
+Untuk <InlineMath math="y = \sin x" />, graf mencapai titik tertingginya pada <InlineMath math="\left(\tfrac{\pi}{2}, 1\right)" /> dan titik terendahnya pada <InlineMath math="\left(-\tfrac{\pi}{2}, -1\right)" />. Pantulan <InlineMath math="y = -\sin x" /> **menukar tempat kedua-duanya**. Titik tertingginya ialah <InlineMath math="\left(-\tfrac{\pi}{2}, 1\right)" />, dan titik terendahnya ialah <InlineMath math="\left(\tfrac{\pi}{2}, -1\right)" />. Pensifar pada gandaan <InlineMath math="\pi" /> kekal di tempatnya, dan kalanya <InlineMath math="2\pi" /> tidak berubah.
+
+<MathVisual
+  title={<>Graf <InlineMath math="y = \sin x" /> dan <InlineMath math="y = -\sin x" /></>}
+  description={<>Anak panah membawa titik tertinggi lengkung sinus ke titik terendah imej cerminnya, dan titik terendah ke titik tertinggi. Pensifar pada <InlineMath math="0" /> dan <InlineMath math="\pi" /> tidak bergerak.</>}
+  labels={{
+    "l1": <InlineMath math="\sin x" />,
+    "l2": <InlineMath math="-\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "-1 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.14, y: 0 }], appearance: "primary" },
+      { id: "s4", kind: "vector", from: { x: 1.57, y: 1 }, to: { x: 1.57, y: -1 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: -1.57, y: -1 }, to: { x: -1.57, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5.5, y: -0.71 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -5.5, y: -0.71 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Tanda Negatif di Luar dan di Dalam
+
+Tanda negatif di luar fungsi dan tanda negatif di dalamnya **melakukan tugas yang berbeza**. Faktor di luar, seperti dalam <InlineMath math="-f(x)" />, menukar tanda tinggi. Tanda di dalam, seperti dalam <InlineMath math="f(-x)" />, menukar tanda input. Ambil <InlineMath math="f(x) = 2^x" /> dan titik <InlineMath math="P(1, 2)" />. Pantulan mencancang <InlineMath math="-2^x" /> menghantar <InlineMath math="P" /> ke <InlineMath math="(1, -2)" />, manakala pantulan mengufuk <InlineMath math="2^{-x}" /> menghantarnya ke <InlineMath math="(-1, 2)" />. Pada <InlineMath math="x = 1" />, kedua-dua hasil itu berbeza: <InlineMath math="-f(1) = -2" /> dan <InlineMath math="f(-1) = \tfrac{1}{2}" />.
+
+<MathVisual
+  title={<>Titik <InlineMath math="P(1, 2)" /> di bawah dua pantulan bagi <InlineMath math="2^x" /></>}
+  description={<>Anak panah di sebelah kanan turun ke <InlineMath math="(1, -2)" /> pada <InlineMath math="-2^x" />. Anak panah yang menghala ke kiri kekal pada tinggi dua dan berakhir pada <InlineMath math="2^{-x}" />.</>}
+  labels={{
+    "l1": <InlineMath math="2^x" />,
+    "l2": <InlineMath math="-2^x" />,
+    "l3": <InlineMath math="2^{-x}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^(((-2) + (t / 40)))", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(2)^(((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^((-((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: 2 }, to: { x: -1, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.8, y: 3.48 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.8, y: -3.48 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.8, y: 3.48 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Fungsi ganjil ialah pengecualian. Untuk <InlineMath math="f(x) = x^3 - 3x" />, identiti <InlineMath math="f(-x) = -f(x)" /> benar, jadi pantulan pada paksi-y dan pantulan pada paksi-x memberikan graf yang sama. Graf ini menunjukkan <InlineMath math="f" /> bersama kedua-dua pantulannya. Titik <InlineMath math="(-1, 2)" /> bergerak ke <InlineMath math="(-1, -2)" />, titik <InlineMath math="(1, -2)" /> bergerak ke <InlineMath math="(1, 2)" />, dan kedua-dua lengkung yang dipantulkan itu bertindih.
+
+<MathVisual
+  title={<>Fungsi ganjil <InlineMath math="x^3 - 3x" /> dan dua pantulannya</>}
+  description={<>Anak panah membawa <InlineMath math="(-1, 2)" /> ke <InlineMath math="(-1, -2)" /> dan <InlineMath math="(1, -2)" /> ke <InlineMath math="(1, 2)" />. Lengkung <InlineMath math="f(-x)" /> dan <InlineMath math="-f(x)" /> bertindih.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="f(-x)" />,
+    "l3": <InlineMath math="-f(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40))))", parameter: { min: 0, max: 176 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2.2) + (t / 40))", y: "((((-((-2.2) + (t / 40))) * (-((-2.2) + (t / 40)))) * (-((-2.2) + (t / 40)))) - (3 * (-((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(-(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 2 }, to: { x: -1, y: -2 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: -2 }, to: { x: 1, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.9, y: 1.16 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -1.9, y: 1.16 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 0.3, y: 0.87 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Kesilapan Semasa Menukar Tanda
+
+Jadual ini menyenaraikan **lima kesilapan**, sebab setiap satunya salah, dan cara untuk mengesannya.
+
+| Kesilapan | Sebab ia salah | Cara mengesannya |
+| --- | --- | --- |
+| Menukar tanda sebutan pertama sahaja, sehingga <InlineMath math="x^2 - 2x - 3" /> menjadi <InlineMath math="-x^2 - 2x - 3" /> | Tanda setiap sebutan bertukar, jadi hasil yang betul ialah <InlineMath math="-x^2 + 2x + 3" /> | Semak sebutan pemalar, yang mesti berubah dari <InlineMath math="-3" /> kepada <InlineMath math="3" /> |
+| Menulis <InlineMath math="f(-x)" /> untuk <InlineMath math="-f(x)" /> | <InlineMath math="f(-x)" /> sebaliknya memantulkan graf pada paksi-y | Uji satu titik, seperti <InlineMath math="(1, f(1))" />, dan bandingkan tanda tingginya |
+| Tidak menukar kedudukan titik hujung julat | Julat <InlineMath math="[c, d]" /> menjadi <InlineMath math="[-d, -c]" /> | Cari julat baharu daripada titik tertinggi dan titik terendah yang baharu |
+| Menyangka pensifar bergerak | Pensifar <InlineMath math="-f(x)" /> sama dengan pensifar <InlineMath math="f(x)" /> | Gantikan pensifar lama ke dalam petua baharu dan semak bahawa hasilnya sifar |
+| Membiarkan asimptot di tempatnya | Asimptot <InlineMath math="y = a" /> menjadi <InlineMath math="y = -a" /> | Tukar tanda tinggi yang dihampiri oleh graf |
+
+## Latihan
+
+Mulakan setiap soalan dengan **menulis seluruh output yang didarab dengan negatif satu**. Kemudian permudahkan, dan semak satu titik sebelum kamu selesai.
+
+1. Biar <InlineMath math="f(x) = x^2 + 4x + 3" />. Cari persamaan pantulan mencancangnya dan verteks pantulan itu.
+2. Biar <InlineMath math="g(x) = 3^x + 2" />. Cari persamaan pantulan mencancangnya, julatnya, dan asimptotnya.
+3. Biar <InlineMath math="h(x) = \sqrt{x + 1}" />. Cari persamaan pantulan mencancangnya, pintasan-y, dan julatnya.
+4. Graf <InlineMath math="f(x) = x^3 - 3x" /> melalui <InlineMath math="(-1, 2)" /> dan <InlineMath math="(1, -2)" />. Cari imej titik-titik ini di bawah pantulan mencancang, dan tunjukkan bahawa <InlineMath math="f(-x) = -f(x)" />.
+
+### Jalan Kerja
+
+**Soalan 1**. **Seluruh output** didarab dengan negatif satu, jadi <InlineMath math="-f(x) = -x^2 - 4x - 3" />. Verteks <InlineMath math="f" /> berada pada <InlineMath math="x = -2" />, dengan <InlineMath math="f(-2) = -1" />. Verteks yang dipantulkan ialah titik tertinggi <InlineMath math="(-2, 1)" />. Semak: <InlineMath math="-f(-2) = 1" />.
+
+**Soalan 2**. **Setiap nilai** <InlineMath math="g" /> didarab dengan negatif satu, jadi <InlineMath math="-g(x) = -3^x - 2" />. Julat <InlineMath math="g" /> ialah <InlineMath math="(2, \infty)" />, jadi julat pantulannya ialah <InlineMath math="(-\infty, -2)" />. Asimptot bergerak dari <InlineMath math="y = 2" /> ke <InlineMath math="y = -2" />.
+
+**Soalan 3**. **Tinggi** setiap titik didarab dengan negatif satu, jadi <InlineMath math="-h(x) = -\sqrt{x + 1}" />. Pada <InlineMath math="x = 0" />, <InlineMath math="h(0) = 1" />, jadi pintasan-y menjadi <InlineMath math="(0, -1)" />. Punca kuasa dua tidak pernah negatif, jadi pantulannya tidak pernah positif, dan julatnya ialah <InlineMath math="(-\infty, 0]" />.
+
+**Soalan 4**. **Tinggi** titik <InlineMath math="(-1, 2)" /> menjadi <InlineMath math="-2" />, jadi imejnya ialah <InlineMath math="(-1, -2)" />. Tinggi titik <InlineMath math="(1, -2)" /> menjadi <InlineMath math="2" />, jadi imejnya ialah <InlineMath math="(1, 2)" />. Untuk identiti itu, <InlineMath math="f(-x) = (-x)^3 - 3(-x) = -x^3 + 3x = -f(x)" />, jadi kedua-dua pantulan memberikan graf yang sama.

@@ -5,6 +5,7 @@ import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
 import {
   Array as Arr,
@@ -67,14 +68,14 @@ layer(NodeServices.layer)("article registry", (it) => {
         );
         const authoredPaths = Arr.sort(
           Arr.filter(globbed, (sourcePath) =>
-            Arr.some(ACTIVE_APP_LOCALES, (locale) =>
+            Arr.some(APP_LOCALE_CODES, (locale) =>
               sourcePath.endsWith(`/${locale}.mdx`)
             )
           ),
           Order.String
         );
 
-        expect(entries).toHaveLength(21);
+        expect(entries).toHaveLength(28);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)

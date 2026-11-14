@@ -1,9 +1,31 @@
-The flight time comes straight from the formula <InlineMath math="T=30-4m" />. **Each kilogram of load cuts the flight time by 4 minutes**.
+You're looking for the longest lesson period that still lets every day from Monday to Thursday finish by 15.00. The plan: work out the time available for lesson periods on each kind of day, divide by <InlineMath math="10" />, then **take the tightest limit** and round down.
 
-# Substitution
+# Time available for lesson periods
 
-<BlockMath math="T=30-4\cdot1.5=30-6=24\text{ minutes}" />
+From 07.00 to 15.00 there are <InlineMath math="480" /> minutes. **The opening activity and the breaks don't count as lesson time**, so subtract them. Monday to Thursday still have two breaks after the same periods as now, and both still come before period <InlineMath math="10" />.
 
-A load of 1.5 kg lies within <InlineMath math="0\le m\le5" />, so the formula applies.
+<BlockMath math="\begin{aligned}
+\text{Monday} &: 480-40-15-30=395\text{ min} \\
+\text{Tuesday to Thursday} &: 480-15-15-30=420\text{ min}
+\end{aligned}" />
 
-So the drone can fly for **24 minutes**.
+# The limit on one period
+
+Ten periods of equal length have to fit into that time.
+
+<BlockMath math="\begin{aligned}
+\text{Monday} &: 10t\le395 \Rightarrow t\le39.5 \\
+\text{Tuesday to Thursday} &: 10t\le420 \Rightarrow t\le42
+\end{aligned}" />
+
+**The period length is the same on all four days**, so it has to meet both limits at once. The tighter limit is Monday's, because its ceremony is longer. The length is a whole number of minutes, so <InlineMath math="t\le39.5" /> means **at most <InlineMath math="39" /> minutes**.
+
+# Checking
+
+With <InlineMath math="39" />-minute periods, Monday ends <InlineMath math="40+390+45=475" /> minutes after 07.00, which is 14.55. With <InlineMath math="40" />-minute periods, Monday ends <InlineMath math="40+400+45=485" /> minutes after 07.00, which is 15.05, **<InlineMath math="5" /> minutes too late**. Tuesday to Thursday with <InlineMath math="39" />-minute periods end at 14.30, which is fine.
+
+# Common slips
+
+If you **only use the Tuesday to Thursday row**, you get <InlineMath math="42" /> minutes, but Monday with <InlineMath math="42" />-minute periods wouldn't end until 15.25. If you round <InlineMath math="39.5" /> up, you get <InlineMath math="40" /> minutes, which makes Monday run late.
+
+So one lesson period can last at most <InlineMath math="39" /> minutes.

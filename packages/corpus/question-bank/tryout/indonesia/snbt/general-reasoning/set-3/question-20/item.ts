@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Q adalah kotak paling ringan.",
+          label: "Lusi adalah anggota yang paling tinggi.",
         },
         {
           correct: false,
-          label: "S lebih berat daripada T.",
+          label: "Kevin lebih tinggi daripada Mira.",
         },
         {
           correct: false,
-          label: "R lebih ringan daripada Q.",
+          label: "Oki adalah anggota yang paling pendek.",
         },
         {
           correct: true,
-          label: "P adalah kotak paling berat.",
+          label: "Sekar lebih tinggi daripada Mira.",
         },
         {
           correct: false,
-          label: "T adalah kotak terberat kedua.",
+          label: "Sekar lebih tinggi daripada Kevin.",
         },
       ],
     },

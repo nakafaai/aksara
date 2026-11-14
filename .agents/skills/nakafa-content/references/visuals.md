@@ -16,7 +16,11 @@ For assessed content, also apply the
   `Cek cepat:`, `Kurzer Check:`, `Kurze Kontrolle:`, or `Kurz geprüft:`.
 - Use Mermaid for a sequence, flow, hierarchy, state change, or relationship
   that is materially harder to understand in prose. Do not convert a simple
-  list or one-step process into a diagram.
+  list or one-step process into a diagram. Write the chart as static text in
+  a template literal, and quote any label that holds punctuation, such as
+  `A["E(C) = 28"]`. The compiler parses every chart with the Mermaid version
+  Nakafa draws it with and refuses one it cannot parse, naming its file and
+  line.
 - Use math components for notation and derivation. Use a domain component such
   as a graph, number line, simulation, or interactive model only when it models
   the concept the learner is studying.
@@ -157,16 +161,18 @@ graph teaches the wrong mathematics on an education platform.
   mirror image of a coordinate, as the same expression with its sign changed,
   because the contract rejects two coordinates that differ by less than the
   render resolution, and two different trigonometric calls can differ in their
-  last digits. A plane scene draws points, lines, rays, segments, polylines,
-  polygons, circles, arcs, and the exact `quadratic` object, which draws a
-  parabola without sampling. A space scene draws points, lines, rays,
-  segments, polylines, polygons, and cuboids, plus the formula objects below.
+  last digits. A plane scene draws points, lines, rays, segments, vectors,
+  polylines, polygons, circles, arcs, and the exact `quadratic` object, which
+  draws a parabola without sampling. A space scene draws points, lines, rays,
+  segments, vectors, polylines, polygons, and cuboids, plus the formula objects
+  below. A `vector` is `{ kind: "vector", from, to }`: a segment that ends in
+  an arrowhead at `to`, for a displacement, a force, or a position vector.
 - **`MathVisual` draws a formula, not its points.** A formula object names
   what the lesson teaches, and the renderer samples it: at least two hundred
   samples per visible branch, exact samples at the domain ends and at every
   label, a split at every break and asymptote, and only the part inside the
-  frame. It replaces a `LineEquation` series built with `Array.from`, which
-  no new lesson writes. A formula is text that the contract parses without running code: numbers,
+  frame. A scene never builds points with `Array.from`: the compiler reads it
+  without running code. A formula is text that the contract parses without running code: numbers,
   `+ - * / ^`, implied multiplication (`2x`, `a sin(t)`), parentheses, the
   constants `pi` and `e`, and the functions `abs acos asin atan cbrt ceil cos
   cosh cot csc exp floor ln log sec sign sin sinh sqrt tan tanh`, plus `min`,

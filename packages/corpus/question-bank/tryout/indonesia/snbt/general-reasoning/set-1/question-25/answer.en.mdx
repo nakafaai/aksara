@@ -1,9 +1,35 @@
-The target is **the semester I share of science books** (*Sains*), while the total follows **semester II**. Compute that share as a fraction so the result stays exact:
+This question runs in three steps: find when the trucks arrive, find Bakung's stock at that moment, then find how many trucks cover the five weeks after that. The key point is that **Bakung's stock must include shrinkage**, because shrinkage lowers the stock every week.
 
-<BlockMath math="\frac{800}{3{,}000}=\frac{4}{15}" />
+Bakung's stock changes each week by
 
-The semester III total equals the semester II total, <InlineMath math="3{,}450" />. The number of science books needed is:
+<BlockMath math="38-48-1 = -11" />
 
-<BlockMath math="\frac{4}{15}\times3{,}450=\frac{13{,}800}{15}=920" />
+So Bakung's stock at the end of week <InlineMath math="w" /> is <InlineMath math="150-11w" />. The trucks come in the first week the stock is below <InlineMath math="60" /> tonnes:
 
-Check the result: <InlineMath math="\frac{920}{3{,}450}=\frac{4}{15}\approx26.7\%" />, the same as the semester I share. Rounding the share to <InlineMath math="27\%" /> would give <InlineMath math="931.5" />, so keep the fraction. The library therefore needs <InlineMath math="920" /> science book loans in semester III.
+<BlockMath math="\begin{aligned}
+150-11\times8 &= 62 \quad (\text{not yet below } 60) \\
+150-11\times9 &= 51 \quad (\text{now below } 60)
+\end{aligned}" />
+
+The trucks arrive at the end of week <InlineMath math="9" />, when Bakung holds <InlineMath math="51" /> tonnes. That's still above the safety stock of <InlineMath math="40" /> tonnes, so the rule isn't broken before the trucks come.
+
+Say <InlineMath math="k" /> trucks are sent, adding <InlineMath math="6k" /> tonnes. After that the stock drops by <InlineMath math="11" /> tonnes each week, so the lowest stock in the next five weeks is at the end of the fifth week. It must not be less than <InlineMath math="40" />:
+
+<BlockMath math="\begin{aligned}
+51+6k-5\times11 &\ge 40 \\
+6k-4 &\ge 40 \\
+6k &\ge 44 \\
+k &\ge 7.33\ldots
+\end{aligned}" />
+
+The number of trucks has to be whole, so at least <InlineMath math="8" /> trucks are needed.
+
+Check both sides of the boundary. With <InlineMath math="8" /> trucks, the stock becomes <InlineMath math="51+48=99" />, then <InlineMath math="88, 77, 66, 55, 44" /> at the end of the next five weeks. All of them are at least <InlineMath math="40" />. With <InlineMath math="7" /> trucks, the stock becomes <InlineMath math="93" />, then <InlineMath math="82, 71, 60, 49, 38" />. The fifth week drops below <InlineMath math="40" />, so <InlineMath math="7" /> trucks aren't enough.
+
+Some wrong answers come up often:
+
+- <InlineMath math="7" /> trucks comes from rounding <InlineMath math="7.33" /> down. You also get <InlineMath math="7" /> if you forget shrinkage, because then the trucks come in week <InlineMath math="10" /> with <InlineMath math="50" /> tonnes and a drop of only <InlineMath math="10" /> tonnes a week.
+- <InlineMath math="6" /> trucks comes from sending the trucks in week <InlineMath math="8" />, even though <InlineMath math="62" /> tonnes isn't below <InlineMath math="60" />, or from checking only four weeks.
+- <InlineMath math="11" /> trucks comes from keeping the stock at <InlineMath math="60" /> or more, but the limit asked for is the safety stock of <InlineMath math="40" /> tonnes.
+
+So the cooperative needs to send at least <InlineMath math="8" /> trucks to the Bakung warehouse.

@@ -1,16 +1,49 @@
-Thirty cheese buns have already used part of **the oven capacity and part of the flour**. Check what is left of each and take the tighter limit.
+You're looking for the single-trip load with the highest fares. The heavy vehicles (trucks and buses) use up the mass limit fastest, so here's the plan: **split into cases by which heavy vehicles go**, fill the remaining space with small vehicles as well as you can, then compare all the cases.
 
-# Oven and flour left
+# Which heavy vehicles can travel together
+
+The queue has <InlineMath math="3" /> trucks, <InlineMath math="2" /> buses, <InlineMath math="5" /> cars, and only <InlineMath math="1" /> pickup. Check the pairs of heavy vehicles first.
 
 <BlockMath math="\begin{aligned}
-\text{oven}&:\quad 100-30=70\text{ buns}\\
-\text{flour}&:\quad 7{,}000-30\cdot100=4{,}000\text{ g},\quad \tfrac{4{,}000}{50}=80\text{ buns}
+\text{bus and bus} &= 16+16=32\text{ tonnes}>30\text{ tonnes}\\
+\text{bus and truck} &= 16+15=31\text{ tonnes}>30\text{ tonnes}\\
+\text{truck and truck} &= 15+15=30\text{ tonnes}\le30\text{ tonnes}
 \end{aligned}" />
 
-# The deciding limit
+So a trip has no heavy vehicle, one bus, one truck, or two trucks. Two trucks already bring the mass to exactly <InlineMath math="30\text{ tonnes}" />, so **nothing else can be added**, and the fares come to <InlineMath math="2\cdot850{,}000=1{,}700{,}000" />.
 
-There is flour for 80 chocolate buns, but the oven only holds 70 more. **The smaller limit decides**, so at most 70 chocolate buns.
+# Filling the remaining space
 
-The value 80 buns checks only the flour. The value 110 buns forgets that a cheese bun uses twice as much flour, and 140 buns ignores the cheese buns already made. The value 40 buns subtracts <InlineMath math="2\cdot30" /> from 100, as if the oven worked like the flour.
+Five cars and one pickup together take <InlineMath math="5\cdot5+6=31\text{ m}" /> and weigh <InlineMath math="13\text{ tonnes}" />. With no heavy vehicle, they all fit and the fares are <InlineMath math="5\cdot200{,}000+250{,}000=1{,}250{,}000" />.
 
-So Bu Sari can still bake at most **70 chocolate buns**.
+With one truck, the space left is <InlineMath math="30\text{ m}" /> and <InlineMath math="15\text{ tonnes}" />. All six small vehicles need <InlineMath math="31\text{ m}" />, so one car has to stay behind. Swapping a car for the pickup costs only <InlineMath math="1\text{ m}" /> more and adds <InlineMath math="50{,}000" /> in fares, so **take the pickup and four cars**. For a truck, four cars, and the pickup, the numbers are these.
+
+<BlockMath math="\begin{aligned}
+\text{length} &= 10+4\cdot5+6=36\text{ m}\\
+\text{mass} &= 15+4\cdot2+3=26\text{ tonnes}\\
+\text{fares} &= 850{,}000+4\cdot200{,}000+250{,}000=1{,}900{,}000
+\end{aligned}" />
+
+With one bus, the space left is <InlineMath math="28\text{ m}" /> and <InlineMath math="14\text{ tonnes}" />. The best small load is again four cars and the pickup (<InlineMath math="26\text{ m}" /> and <InlineMath math="11\text{ tonnes}" />), so the fares are <InlineMath math="750{,}000+1{,}050{,}000=1{,}800{,}000" />.
+
+# Comparing all the cases
+
+| Heavy vehicles | Highest fares |
+| :---: | :---: |
+| none | <InlineMath math="\text{Rp}1{,}250{,}000.00" /> |
+| two trucks | <InlineMath math="\text{Rp}1{,}700{,}000.00" /> |
+| one bus | <InlineMath math="\text{Rp}1{,}800{,}000.00" /> |
+| one truck | <InlineMath math="\text{Rp}1{,}900{,}000.00" /> |
+
+The one-truck case wins. A truck, four cars, and the pickup take <InlineMath math="36\text{ m}\le40\text{ m}" /> and weigh <InlineMath math="26\text{ tonnes}\le30\text{ tonnes}" />, so **both limits really hold**.
+
+# The wrong options
+
+Each wrong option **breaks one limit or the number of vehicles available**.
+
+- <InlineMath math="\text{Rp}1{,}700{,}000.00" /> comes from grabbing the highest fare first. Two trucks fill the mass limit right away, so no car or pickup can join.
+- <InlineMath math="\text{Rp}1{,}800{,}000.00" /> picks the bus as the heavy vehicle, even though the bus fare is lower than the truck fare.
+- <InlineMath math="\text{Rp}1{,}850{,}000.00" /> fills the truck trip with all five cars and forgets that one car can be swapped for the pickup.
+- <InlineMath math="\text{Rp}2{,}100{,}000.00" /> forgets that the queue has only one pickup (a truck and five pickups). You get the same value by ignoring the length, because a truck, five cars, and the pickup need <InlineMath math="41\text{ m}" />.
+
+So the highest fare income from one trip is <InlineMath math="\text{Rp}1{,}900{,}000.00" />, from one truck, four cars, and one pickup.

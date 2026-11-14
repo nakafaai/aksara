@@ -1,0 +1,182 @@
+export const metadata = {
+    title: "Kebolehkenalpastian dan Pangkat Matriks",
+    description: "Kaitkan kebolehkenalpastian parameter dengan pangkat matriks, nilai singular, nombor syarat dan pemfaktoran stabil yang mendedahkan pangkat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-15",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Kebolehkenalpastian dalam Model Linear
+
+Sesuatu parameter boleh dikenal pasti apabila data yang ada **menentukannya secara unik**. Katakan <InlineMath math="A \in \mathbb{R}^{m \times n}" />, <InlineMath math="b \in \mathbb{R}^m" /> dan <InlineMath math="m \geq n" />. Masalah kuasa dua terkecil linear ialah
+
+<BlockMath math="\min_{x \in \mathbb{R}^n} \|Ax-b\|_2^2" />
+
+Persamaan normal yang sepadan ialah
+
+<BlockMath math="A^T A x = A^T b" />
+
+Vektor parameter <InlineMath math="x" /> boleh dikenal pasti secara unik tepat apabila <InlineMath math="A" /> mempunyai pangkat lajur penuh:
+
+<MathContainer>
+<BlockMath math="\operatorname{rank}(A)=n" />
+<BlockMath math="\ker(A)=\{0\}" />
+</MathContainer>
+
+Kedua-dua pernyataan ini setara. Jika <InlineMath math="z \in \ker(A)" /> bukan sifar, maka
+
+<BlockMath math="A(x+z)=Ax" />
+
+Kesamaan ini menunjukkan bahawa data tidak dapat membezakan <InlineMath math="x" /> daripada <InlineMath math="x+z" />. Jika <InlineMath math="\ker(A)=\{0\}" />, maka <InlineMath math="A^TA" /> tentu positif dan masalah kuasa dua terkecil itu mempunyai satu sahaja peminimum.
+
+Sebagai contoh konkrit, dua lajur matriks berikut sama. Hanya hasil tambah parameter yang mempengaruhi ramalan.
+
+<BlockMath math="A=\begin{pmatrix}1&amp;1\\2&amp;2\end{pmatrix},\qquad Ax=\begin{pmatrix}x_1+x_2\\2(x_1+x_2)\end{pmatrix}" />
+
+| Vektor parameter | Ramalan |
+| --- | --- |
+| <InlineMath math="(1,0)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(0,1)^T" /> | <InlineMath math="(1,2)^T" /> |
+| <InlineMath math="(1/2,1/2)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<BlockMath math="A\begin{pmatrix}1\\-1\end{pmatrix}=\begin{pmatrix}0\\0\end{pmatrix}" />
+
+Ambil <InlineMath math="A=\begin{pmatrix}1&2\\1&2\end{pmatrix}" /> dan <InlineMath math="b=(2,2)^T" />. Lajur kedua ialah dua kali lajur pertama, jadi data hanya menetapkan gabungan <InlineMath math="x_1+2x_2" />. Fungsi <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" /> bernilai sifar pada seluruh garis magenta <InlineMath math="x_1+2x_2=2" />, contohnya pada titik hijau kebiruan <InlineMath math="(2,0)^T" />. Jadi, setiap titik pada garis itu sama baik padanannya, dan <InlineMath math="x" /> tidak boleh dikenal pasti. Segmen jingga dari asalan bertemu garis itu pada sudut tegak di <InlineMath math="x^+=(2/5,4/5)^T" />, jadi itulah pilihan dengan norma terkecil.
+
+<MathVisual
+  title={<>Garis peminimum dan penyelesaian norma minimum</>}
+  description={<>Garis magenta memuatkan setiap peminimum bagi <InlineMath math="\|Ax-b\|^2=2(x_1+2x_2-2)^2" />. Titik ungu ialah penyelesaian norma minimum <InlineMath math="x^+=(2/5,4/5)^T" />, dan segmen jingga ialah jaraknya ke asalan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 3 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "line", through: [{ x: 2, y: 0 }, { x: 0, y: 1 }], appearance: "answer" },
+      { id: "other", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "shortest", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 / 5, y: 4 / 5 }, appearance: "primary" },
+      { id: "best", kind: "point", at: { x: 2 / 5, y: 4 / 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: -1 / 2, y: 5 / 4 }, placement: "above-right" },
+      { key: "other", objectId: "other", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "best", objectId: "best", at: { x: 2 / 5, y: 4 / 5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "floor": <InlineMath math="x_1+2x_2=2" />,
+    "other": <InlineMath math="(2,0)^T" />,
+    "best": <InlineMath math="x^+" />,
+  }}
+/>
+
+## Keunikan Penyelesaian dan Kestabilan Berangka
+
+<Highlight>Pangkat lajur penuh menjamin peminimum kuasa dua terkecil yang unik</Highlight>, tetapi tidak menjamin peminimum yang boleh dipercayai secara berangka. Nilai singular bukan sifar yang sangat kecil boleh menjadikan anggaran sangat peka terhadap perubahan kecil dalam data.
+
+| Soalan | Diagnostik | Maksud |
+| --- | --- | --- |
+| Adakah parameter boleh dikenal pasti secara struktur? | <InlineMath math="\operatorname{rank}(A)=n" /> | Tiada dua vektor parameter yang menghasilkan ramalan yang sama. |
+| Adakah anggaran ditentukan dengan baik secara berangka? | <InlineMath math="\sigma_n" /> tidak terlalu kecil berbanding <InlineMath math="\sigma_1" /> | Usikan kecil tidak menyebabkan perubahan parameter yang besar. |
+| Sejauh mana masalah ini peka? | <InlineMath math="\kappa_2(A)=\sigma_1/\sigma_n" /> | Nombor syarat yang besar menandakan kepekaan yang kuat. |
+
+Kebolehkenalpastian struktur ialah sifat algebra yang tepat. Kebolehkenalpastian praktikal pula bergantung pada skala, hingar dan toleransi berangka yang digunakan.
+
+## Pemfaktoran untuk Menentukan Pangkat
+
+Dua pemfaktoran yang lazim **boleh menentukan pangkat** tanpa bergantung pada pengiraan penentu yang peka terhadap ralat berangka:
+
+| Kaedah | Kekuatan | Kegunaan lazim |
+| --- | --- | --- |
+| Pemfaktoran <InlineMath math="\mathrm{QR}" /> dengan pemangsian lajur | Biasanya lebih murah daripada <InlineMath math="\mathrm{SVD}" /> penuh | Penyelesaian kuasa dua terkecil yang pantas dan pengesanan pangkat secara praktikal |
+| Penguraian nilai singular | Memisahkan arah yang tak bersandar dan skala setiap arah | Mengesan nilai singular kecil yang menandakan matriks hampir kurang pangkat |
+
+Pemfaktoran <InlineMath math="\mathrm{LU}" /> biasa terutamanya alat untuk sistem segi empat sama. Untuk matriks reka bentuk segi empat tepat, pangkat biasanya ditentukan dengan <InlineMath math="\mathrm{QR}" /> berpangsi atau <InlineMath math="\mathrm{SVD}" />.
+
+## Penguraian Nilai Singular
+
+Katakan <InlineMath math="q=\min(m,n)" />. Setiap matriks <InlineMath math="A \in \mathbb{R}^{m \times n}" /> mempunyai penguraian nilai singular
+
+<BlockMath math="A=U\Sigma V^T" />
+
+Dalam penguraian ini, <InlineMath math="U \in \mathbb{R}^{m \times m}" /> dan <InlineMath math="V \in \mathbb{R}^{n \times n}" /> ialah matriks ortogon. Matriks <InlineMath math="\Sigma \in \mathbb{R}^{m \times n}" /> mempunyai unsur pepenjuru tak negatif yang memenuhi
+
+<BlockMath math="\sigma_1 \geq \sigma_2 \geq \cdots \geq \sigma_q \geq 0" />
+
+Pangkat tepat ialah **bilangan nilai singular positif**:
+
+<BlockMath math="\operatorname{rank}(A)=\#\{i:\sigma_i>0\}" />
+
+Oleh itu, untuk <InlineMath math="m \geq n" />, pangkat lajur penuh setara dengan <InlineMath math="\sigma_n>0" />. Arah parameter yang tidak dapat dikenal pasti oleh data direntang oleh vektor singular kanan yang sepadan dengan nilai singular sifar, dan vektor-vektor ini membentuk asas bagi <InlineMath math="\ker(A)" />.
+
+Untuk <InlineMath math="A=\begin{pmatrix}2&2\\1&1\end{pmatrix}" />, vektor singular kanan <InlineMath math="v_1=\tfrac1{\sqrt2}(1,1)" /> dipetakan kepada <InlineMath math="Av_1=(2\sqrt2,\sqrt2)" /> yang panjangnya <InlineMath math="\sigma_1=\sqrt{10}" />, manakala <InlineMath math="v_2=\tfrac1{\sqrt2}(1,-1)" /> dipetakan kepada <InlineMath math="0" />, jadi <InlineMath math="\sigma_2=0" />. Hanya satu nilai singular yang positif, jadi <InlineMath math="\operatorname{rank}A=1" />.
+
+<MathVisual
+  title={<>Satu nilai singular positif bermaksud pangkat <InlineMath math="1" /></>}
+  description={<>Segmen hijau kebiruan <InlineMath math="v_1" /> dan segmen jingga <InlineMath math="v_2" /> terletak pada bulatan unit kelabu. <InlineMath math="A" /> memetakan <InlineMath math="v_1" /> kepada segmen ungu yang panjangnya <InlineMath math="\sqrt{10}" />, dan <InlineMath math="v_2" /> kepada titik magenta <InlineMath math="0" />. Seluruh satah jatuh pada garis kelabu yang melalui <InlineMath math="(2,1)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "range", kind: "line", through: [{ x: 0, y: 0 }, { x: 2, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2 * Math.SQRT2, y: Math.SQRT2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1" />,
+    "second": <InlineMath math="v_2" />,
+    "image": <InlineMath math="Av_1=\sqrt{10}\,u_1" />,
+  }}
+/>
+
+## Pangkat Tepat dan Pangkat Berangka
+
+Jika pangkat tepat ialah <InlineMath math="r" /> dengan <InlineMath math="0<r<q" />, maka
+
+<BlockMath math="\sigma_r>0=\sigma_{r+1}=\cdots=\sigma_q" />
+
+Data titik apungan jarang mengandungi sifar yang tepat. Oleh itu, pangkat berangka mengira nilai singular yang melebihi **ambang yang mengambil kira skala** <InlineMath math="\tau" />:
+
+<MathContainer>
+<BlockMath math="\tau=c\,\max(m,n)\,\varepsilon_{\mathrm{mach}}\,\sigma_1" />
+<BlockMath math="\operatorname{rank}_{\tau}(A)=\#\{i:\sigma_i>\tau\}" />
+</MathContainer>
+
+Faktor <InlineMath math="c" /> mencerminkan aplikasi dan model hingar, jadi tiada nilai potong perpuluhan yang sesuai untuk semua keadaan. Jika <InlineMath math="A" /> kurang pangkat, minimum kuasa dua terkecil masih wujud, tetapi vektor parameter yang mencapai minimum itu tidak unik. Songsangan pseudo Moore-Penrose memilih penyelesaian norma minimum:
+
+<BlockMath math="x^{\dagger}=V\Sigma^{\dagger}U^T b" />
+
+Ubah satu unsur untuk mendapat <InlineMath math="A_\varepsilon=\begin{pmatrix}2&2\\1&1+\varepsilon\end{pmatrix}" /> dengan <InlineMath math="\varepsilon=10^{-6}" />. Secara tepat, <InlineMath math="\det A_\varepsilon=2\varepsilon\neq0" />, jadi pangkatnya <InlineMath math="2" />, tetapi <InlineMath math="\sigma_2=2\varepsilon/\sigma_1\approx6\cdot10^{-7}" />. Dengan toleransi ukuran <InlineMath math="10^{-4}" />, hanya <InlineMath math="\sigma_1" /> yang dikira, jadi pangkat berangkanya <InlineMath math="1" />.
+
+<BarChart
+  title={<>Nilai singular bagi <InlineMath math="A_\varepsilon" /> untuk <InlineMath math="\varepsilon=10^{-6}" /></>}
+  description={<>Bar pertama ialah <InlineMath math="\sigma_1\approx\sqrt{10}" />, dan bar kedua ialah <InlineMath math="\sigma_2=2\varepsilon/\sigma_1" />, terlalu kecil untuk dilihat. Kedua-duanya diperoleh daripada <InlineMath math="\sigma_1^2+\sigma_2^2=\|A_\varepsilon\|_F^2" /> dan <InlineMath math="\sigma_1\sigma_2=|\det A_\varepsilon|" />.</>}
+  yAxisLabel="Nilai singular"
+  data={[
+    { name: "1", value: Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+    { name: "2", value: 2e-6 / Math.sqrt((10 + 2e-6 + 1e-12 + Math.sqrt((10 + 2e-6 + 1e-12) ** 2 - 4 * (2e-6) ** 2)) / 2) },
+  ]}
+  chartConfig={{ value: { label: "Nilai singular", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Menganggar Pangkat Matriks dengan SVD atau QR yang Mendedahkan Pangkat
+
+Perhatikan identiti
+
+<BlockMath math="A^TA=V(\Sigma^T\Sigma)V^T" />
+
+Identiti ini menunjukkan kenapa kuasa dua nilai singular ialah nilai eigen bagi <InlineMath math="A^TA" />. Untuk matriks berpangkat lajur penuh dalam pengiraan berangka, membentuk <InlineMath math="A^TA" /> secara eksplisit menyebabkan **nombor syarat dikuasaduakan**:
+
+<BlockMath math="\kappa_2(A^TA)=\kappa_2(A)^2" />
+
+Oleh itu, perisian berangka biasanya menggunakan <InlineMath math="\mathrm{SVD}" /> atau <InlineMath math="\mathrm{QR}" /> yang mendedahkan pangkat untuk menganggar pangkat matriks. Kedua-dua algoritma ini bekerja terus pada <InlineMath math="A" />, jadi nombor syarat tidak dikuasaduakan seperti yang berlaku apabila <InlineMath math="A^TA" /> dibentuk.

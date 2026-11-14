@@ -1,18 +1,49 @@
-Alle drei Züge fahren gemeinsam zu jedem **kleinsten gemeinsamen Vielfachen** von 16, 24 und 40 Minuten ab.
+Du suchst alles, was Dodi zahlt: Anzahlung, Bearbeitungsgebühr, fünf Raten und den Ablösebetrag. Entscheidend ist der Ablösebetrag, denn **abgelöst wird nur die Restschuld des Kreditbetrags**, nicht die restlichen Raten. Der Plan: Berechne die Rate, trenne in jeder Rate den Tilgungsanteil ab, bestimme die Restschuld und addiere die Strafgebühr.
 
-# kgV der drei Abstände
+# Die Rate bei zwölf Monaten
+
+Eine Laufzeit von <InlineMath math="12" /> Monaten hat <InlineMath math="1{,}5\%" /> Zinsen pro Monat auf den Kreditbetrag von <InlineMath math="4{.}800{.}000" />.
 
 <BlockMath math="\begin{aligned}
-16&=2^4\\
-24&=2^3\cdot3\\
-40&=2^3\cdot5\\
-\text{kgV}&=2^4\cdot3\cdot5=240\text{ min}=4\text{ h}
+\text{Zinsen gesamt} &= 4{.}800{.}000\cdot1{,}5\%\cdot12=864{.}000\\
+\text{Rate} &= \frac{4{.}800{.}000+864{.}000}{12}=\frac{5{.}664{.}000}{12}=472{.}000
 \end{aligned}" />
 
-# Gemeinsame Abfahrten
+Das Ergebnis ist schon ein Vielfaches von <InlineMath math="1{.}000" />, also **wird bei dieser Laufzeit nicht gerundet**.
 
-Um 05.00, 09.00, 13.00, 17.00 und 21.00 Uhr. Die nächste gemeinsame Abfahrt wäre um 01.00 Uhr, **außerhalb des Fahrplans**. Es sind also 5.
+# Die Restschuld nach fünf Raten
 
-Der Wert 6 rundet <InlineMath math="\tfrac{1\,020}{240}=4{,}25" /> auf, bevor die erste Abfahrt dazukommt. Die Werte 9, 13 und 22 nutzen nur das kgV zweier Linien, also 120, 80 und 48 Minuten.
+Regel fünf teilt jede Rate in einen Tilgungsanteil und einen Zinsanteil. Der Tilgungsanteil ist <InlineMath math="\tfrac{4{.}800{.}000}{12}=400{.}000" />, die übrigen <InlineMath math="72{.}000" /> sind die Zinsen eines Monats.
 
-Alle drei Züge fahren also **5-mal** gemeinsam ab.
+<BlockMath math="\begin{aligned}
+\text{schon getilgt} &= 5\cdot400{.}000=2{.}000{.}000\\
+\text{Restschuld} &= 4{.}800{.}000-2{.}000{.}000=2{.}800{.}000\\
+\text{Ablösebetrag} &= 2{.}800{.}000+3\%\cdot2{.}800{.}000=2{.}884{.}000
+\end{aligned}" />
+
+Die Zinsen für die <InlineMath math="7" /> Monate, die noch nicht gelaufen sind, **werden nicht berechnet**, also gehören sie nicht zum Ablösebetrag.
+
+# Alles, was Dodi zahlt
+
+Addiere **alle Zahlungen vom Kauftag bis zum Tag der Ablösung**.
+
+<BlockMath math="\begin{aligned}
+\text{gesamt} &= 1{.}200{.}000+200{.}000+5\cdot472{.}000+2{.}884{.}000\\
+&= 1{.}400{.}000+2{.}360{.}000+2{.}884{.}000\\
+&= 6{.}644{.}000
+\end{aligned}" />
+
+# Kontrolle über die Ersparnis
+
+Würde Dodi alle Raten zahlen, wären es <InlineMath math="1{.}400{.}000+12\cdot472{.}000=7{.}064{.}000" />. Die vorzeitige Ablösung spart <InlineMath math="7\cdot72{.}000=504{.}000" /> Zinsen, kostet aber <InlineMath math="84{.}000" /> Strafgebühr. **Die Ersparnis** beträgt <InlineMath math="504{.}000-84{.}000=420{.}000" />, und tatsächlich gilt <InlineMath math="7{.}064{.}000-420{.}000=6{.}644{.}000" />.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **berechnet den Ablösebetrag falsch**.
+
+- <InlineMath math="\text{Rp}6{.}232{.}000{,}00" /> rechnet die Restschuld für <InlineMath math="6" /> Monate, aber nach der fünften Rate bleiben noch <InlineMath math="12-5=7" /> Monate.
+- <InlineMath math="\text{Rp}6{.}560{.}000{,}00" /> vergisst die Strafgebühr von <InlineMath math="3\%" />.
+- <InlineMath math="\text{Rp}6{.}704{.}000{,}00" /> rechnet die Strafgebühr vom ursprünglichen Kreditbetrag, also <InlineMath math="3\%\cdot4{.}800{.}000=144{.}000" />.
+- <InlineMath math="\text{Rp}7{.}163{.}120{,}00" /> löst die restlichen Raten <InlineMath math="7\cdot472{.}000=3{.}304{.}000" /> samt Strafgebühr ab und zahlt so Zinsen für Monate, die nie gelaufen sind.
+
+Dodi zahlt für das Handy also insgesamt <InlineMath math="\text{Rp}6{.}644{.}000{,}00" />.

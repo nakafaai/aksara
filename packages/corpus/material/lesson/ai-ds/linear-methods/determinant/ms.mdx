@@ -1,0 +1,219 @@
+export const metadata = {
+    title: "Definisi Penentu",
+   description: "Fahami penentu sebagai skala isi padu berorientasi, terbitkan sifat yang mentakrifkannya, dan kaitkan penentu sifar dengan pangkat dan kebolehsongsangan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-10",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Cara Matriks Mengubah Isi Padu dan Orientasi
+
+Penentu bagi matriks segi empat sama mengukur <Highlight>penskalaan isi padu berorientasi</Highlight> oleh transformasi linearnya. Nilai mutlaknya memberikan faktor isi padu, manakala tandanya merekodkan sama ada orientasi dikekalkan atau diterbalikkan.
+
+Setiap matriks segi empat sama mempunyai satu penentu. Penentu sifar bermakna imejnya terletak dalam set yang berdimensi lebih rendah, jadi transformasi itu tidak boleh disongsangkan.
+
+Penentu ialah fungsi khas yang menerima matriks segi empat sama dan menghasilkan satu nombor nyata:
+
+<BlockMath math="\det : \mathbb{R}^{n \times n} \to \mathbb{R} : A \mapsto \det A" />
+
+Tanda dan nilai penentu memberikan tiga kes:
+
+| Penentu | Kesan geometri | Kebolehsongsangan |
+|---|---|---|
+| <InlineMath math="\det A>0" /> | Menskalakan isi padu dengan <InlineMath math="\lvert\det A\rvert" /> dan mengekalkan orientasi | Boleh disongsangkan |
+| <InlineMath math="\det A<0" /> | Menskalakan isi padu dengan <InlineMath math="\lvert\det A\rvert" /> dan menterbalikkan orientasi | Boleh disongsangkan |
+| <InlineMath math="\det A=0" /> | Memetakan isi padu kepada sifar dan imej kepada set yang berdimensi lebih rendah | Tidak boleh disongsangkan |
+
+
+Kubus unit hijau kebiruan menjadi paralelepiped jingga di bawah matriks berikut. Tepi yang condong menunjukkan ricihan, tetapi isi padu menggunakan **panjang tapak dan tinggi serenjang**.
+
+<BlockMath math="A=\begin{pmatrix}2&1&0\\0&1&0\\0&0&1\end{pmatrix},\qquad \det A=2\cdot1\cdot1=2" />
+
+<MathVisual
+  title={<>Kubus unit dan imejnya di bawah <InlineMath math="A" /></>}
+  description={<>Kubus unit hijau kebiruan mempunyai isi padu <InlineMath math="1" />. Imej jingganya di bawah <InlineMath math="A" /> mempunyai panjang tapak <InlineMath math="2" /> dan tinggi yang sama, iaitu <InlineMath math="1" />, jadi isi padunya ialah <InlineMath math="\det A=2" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 0.5, z: 0.5 } },
+    objects: [
+      { id: "cube", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }, { x: 0, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "construction" },
+      { id: "image", kind: "prism", base: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 1, z: 0 }], offset: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+Panjang tapak menjadi <InlineMath math="2" />, manakala kedua-dua tinggi serenjang kekal <InlineMath math="1" />. Oleh itu, isi padu berubah daripada <InlineMath math="1" /> kepada <InlineMath math="2" />. Panjang tepi yang condong itu bukan tinggi serenjang.
+
+
+## Tiga Sifat yang Menentukan Penentu
+
+Hanya satu fungsi penentu yang memenuhi **tiga sifat** berikut. Setiap sifat menetapkan satu kelakuan fungsi itu: cara fungsi itu bertindak balas terhadap operasi baris, apa yang berlaku apabila dua baris sama, dan nilai yang mesti dipulangkan untuk matriks identiti. Bersama-sama, ketiga-tiganya menentukan penentu sepenuhnya.
+
+### Sifat Linear pada Setiap Baris
+
+Penentu bersifat **linear pada setiap baris apabila baris-baris lain ditetapkan**. Sifat ini dinamakan kemultilinearan.
+
+Apabila kita tambah dua vektor dalam satu baris:
+
+<BlockMath math="\begin{aligned} \det \begin{pmatrix} a_1 \\ \vdots \\ a_i + a_i' \\ \vdots \\ a_n \end{pmatrix} &amp;= \det \begin{pmatrix} a_1 \\ \vdots \\ a_i \\ \vdots \\ a_n \end{pmatrix} \\ &amp;\quad{}+ \det \begin{pmatrix} a_1 \\ \vdots \\ a_i' \\ \vdots \\ a_n \end{pmatrix} \end{aligned}" />
+
+Apabila kita darab satu baris dengan skalar:
+
+<MathContainer>
+<BlockMath math="\det \begin{pmatrix} a_1 \\ \vdots \\ \lambda \cdot a_i \\ \vdots \\ a_n \end{pmatrix}" />
+<BlockMath math="= \lambda \cdot \det \begin{pmatrix} a_1 \\ \vdots \\ a_i \\ \vdots \\ a_n \end{pmatrix}" />
+</MathContainer>
+
+### Sifat Silih Berganti
+
+Penentu bersifat **berselang-seli**: jika ada dua baris yang sama, nilainya sifar.
+
+<BlockMath math="\det \begin{pmatrix} \vdots \\ a \\ \vdots \\ a \\ \vdots \end{pmatrix} = 0" />
+
+Secara setara, menukar dua baris menterbalikkan tanda penentu. Baris yang sama tidak berubah apabila ditukar, tetapi tandanya juga mesti berubah, jadi satu-satunya nilai yang mungkin ialah sifar.
+
+### Sifat Penormalan
+
+Penentu **dinormalkan** supaya penentu matriks identiti sentiasa <InlineMath math="1" />:
+
+<BlockMath math="\det I = 1" />
+
+Di sini, <InlineMath math="I" /> ialah matriks identiti yang saiznya sepadan. Kemultilinearan, sifat berselang-seli dan penormalan ini <Highlight>menentukan penentu secara unik</Highlight>.
+
+## Operasi Matriks dan Penentu
+
+Jika kita darab **seluruh matriks** dengan skalar <InlineMath math="\lambda" />, penentu menerima satu faktor daripada setiap baris:
+
+<BlockMath math="\det(\lambda A) = \lambda^n \cdot \det A" />
+
+Ini kerana setiap baris didarab dengan <InlineMath math="\lambda" />, dan jumlah baris ialah <InlineMath math="n" />.
+
+Apabila kita tukar dua baris matriks, tanda penentu berubah:
+
+<BlockMath math="\det B = -\det A" />
+
+Menambah gandaan satu baris kepada baris yang lain tidak mengubah penentu:
+
+<MathContainer>
+<BlockMath math="\det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i + \lambda a_j \\ \vdots \end{pmatrix}" />
+<BlockMath math="= \det \begin{pmatrix} \vdots \\ a_j \\ \vdots \\ a_i \\ \vdots \end{pmatrix}" />
+</MathContainer>
+
+Dalam dua dimensi, <InlineMath math="\det(\lambda A)=\lambda^2\det A" />. Ambil <InlineMath math="A=I" />: apabila kedua-dua baris diskalakan dengan <InlineMath math="\lambda" />, segi empat sama unit menjadi segi empat sama bersisi <InlineMath math="\lambda" />, dan luasnya ialah <InlineMath math="\lambda^2" />, iaitu satu faktor <InlineMath math="\lambda" /> bagi setiap baris.
+
+<MathVisual
+  title={<><InlineMath math="\det(\lambda I)=\lambda^2" /> pada satah</>}
+  description={<>Segi empat sama unit kelabu mempunyai luas <InlineMath math="1" />. Gerakkan <InlineMath math="\lambda" />: segi empat sama ungu bersisi <InlineMath math="\lambda" />, dan bacaan menunjukkan luasnya <InlineMath math="\lambda^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 2.3 }, y: { min: -0.3, max: 2.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "l", min: 0.2, max: 2, value: 1.5, step: 0.01, label: "lambda" },
+    ],
+    objects: [
+      { id: "unit", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "scaled", kind: "loop", points: [{ x: "0", y: "0" }, { x: "l", y: "0" }, { x: "l", y: "l" }, { x: "0", y: "l" }], appearance: "secondary" },
+    ],
+    readouts: [
+      { key: "area", formula: "l^2" },
+    ],
+  }}
+  labels={{
+    "lambda": <InlineMath math="\lambda" />,
+    "area": <InlineMath math="\det(\lambda I)=\lambda^2" />,
+  }}
+/>
+
+## Hubungan dengan Kebolehsongsangan Matriks
+
+Penentu menentukan sama ada matriks segi empat sama <InlineMath math="A" /> boleh disongsangkan. Syarat-syarat berikut setara:
+
+1. **Matriks A boleh disongsangkan**
+2. **Wujud matriks songsang** <InlineMath math="A^{-1}" /> yang memenuhi <InlineMath math="AA^{-1} = I" />
+3. **Matriks berpangkat penuh**: <InlineMath math="\operatorname{rank}(A) = n" />
+4. **Ruang nol remeh**: <InlineMath math="\ker(A) = \{0\}" />
+5. **Lajur-lajurnya tak bersandar linear**
+6. **Baris-barisnya tak bersandar linear**
+7. **Penentu bukan sifar**: <InlineMath math="\det A \neq 0" />
+
+> Jika penentu ialah sifar, transformasi itu memetakan ruang ke dalam set yang berdimensi lebih rendah, jadi transformasi itu tidak boleh disongsangkan.
+
+Jika baris-baris bersandar linear, satu baris ialah gabungan linear baris-baris yang lain. Kemultilinearan mengembangkan penentu kepada sebutan yang mempunyai baris berulang, dan setiap sebutan itu bernilai sifar disebabkan sifat berselang-seli.
+
+Untuk <InlineMath math="A=\begin{pmatrix}1&k\\2&4\end{pmatrix}" />, lajur <InlineMath math="(1,2)" /> dan <InlineMath math="(k,4)" /> merentang segi empat selari dengan luas <InlineMath math="|4-2k|" />. Apabila <InlineMath math="k=2" />, kedua-dua lajur menghala ke arah yang sama, luasnya menjadi <InlineMath math="0" />, dan <InlineMath math="A" /> tiada songsangan.
+
+<MathVisual
+  title={<>Lajur bagi <InlineMath math="\begin{pmatrix}1&k\\2&4\end{pmatrix}" /> runtuh pada <InlineMath math="k=2" /></>}
+  description={<>Tembereng garis hijau kebiruan ialah lajur <InlineMath math="(1,2)" /> dan tembereng garis jingga ialah lajur <InlineMath math="(k,4)" />. Gerakkan <InlineMath math="k" />: segi empat selari ungu menjadi leper sehingga tinggal satu tembereng garis pada <InlineMath math="k=2" />, iaitu apabila bacaan <InlineMath math="\det A=4-2k" /> ialah <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    parameters: [
+      { name: "k", min: 0, max: 4, value: 1, step: 0.01, label: "k" },
+    ],
+    objects: [
+      { id: "cell", kind: "loop", points: [{ x: "0", y: "0" }, { x: "1", y: "2" }, { x: "1 + k", y: "6" }, { x: "k", y: "4" }], appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "second", kind: "path", points: [{ x: "0", y: "0" }, { x: "k", y: "4" }], appearance: "primary" },
+    ],
+    readouts: [
+      { key: "det", formula: "4 - 2*k" },
+    ],
+  }}
+  labels={{
+    "k": <InlineMath math="k" />,
+    "det": <InlineMath math="\det\begin{pmatrix}1&k\\2&4\end{pmatrix}" />,
+  }}
+/>
+
+## Sifat Pendaraban dan Matriks Serupa
+
+Penentu bagi hasil darab matriks sama dengan hasil darab kedua-dua penentu:
+
+<BlockMath math="\det(AB) = \det A \cdot \det B" />
+
+Jika matriks <InlineMath math="A" /> boleh disongsangkan, penentu bagi songsangannya ialah:
+
+<BlockMath math="\det(A^{-1}) = \frac{1}{\det A}" />
+
+Dua matriks <InlineMath math="A" /> dan <InlineMath math="B" /> dikatakan **serupa** jika wujud matriks <InlineMath math="S" /> yang boleh disongsangkan dengan keadaan:
+
+<BlockMath math="B = S^{-1}AS" />
+
+Matriks serupa mempunyai penentu yang sama. Guna petua hasil darab bagi penentu.
+
+<MathContainer>
+<BlockMath math="\det B = \det(S^{-1}AS)" />
+<BlockMath math="= \det(S^{-1}) \cdot \det A \cdot \det S" />
+<BlockMath math="= \frac{1}{\det S} \cdot \det A \cdot \det S = \det A" />
+</MathContainer>
+
+Jika penghapusan Gauss hanya menggunakan penambahan baris dan <InlineMath math="p" /> pertukaran baris, penentu bagi matriks segi tiga atas <InlineMath math="R" /> yang terhasil ialah
+
+<BlockMath math="\det R = (-1)^p \cdot \det A" />
+
+Jika ada baris yang turut diskalakan, faktor skala itu mesti dijejak secara berasingan. Apabila operasi yang dibenarkan dinyatakan dengan jelas, penyegitigaan memberikan algoritma penentu yang praktikal.
+
+## Kesilapan Lazim tentang Penentu
+
+Penentu **secara amnya tidak aditif**. Contoh berikut menyangkal petua penambahan.
+
+Sebagai contoh mudah:
+
+<MathContainer>
+<BlockMath math="\det\left(\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}\right)" />
+<BlockMath math="= \det\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} = 4" />
+</MathContainer>
+
+Jika kedua-dua penentu dikira secara berasingan, hasilnya ialah:
+
+<MathContainer>
+<BlockMath math="\det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix} + \det\begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}" />
+<BlockMath math="= 1 + 1 = 2" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="4 \neq 2" />, penentu tidak aditif terhadap penambahan matriks.

@@ -1,65 +1,38 @@
-Misalkan pusat kedua lingkaran <InlineMath math="A" /> dan <InlineMath math="B" />, dengan titik potong <InlineMath math="P" /> dan <InlineMath math="Q" />. Tali busur <InlineMath math="PQ" /> membagi daerah irisan menjadi **dua tembereng yang sama besar**, satu milik setiap lingkaran.
+Kamu belum tahu suku pertama maupun rasionya, tetapi kedua data itu bisa diubah menjadi **data tentang suku tengah** <InlineMath math="u_2" /> dan <InlineMath math="u_3" />. Rencananya: ubah hasil kali empat suku menjadi <InlineMath math="u_2u_3" />, periksa tanda yang mungkin, lalu nyatakan <InlineMath math="u_1+u_4" /> dengan <InlineMath math="u_2" /> dan <InlineMath math="u_3" />.
 
-<MathVisual
-  title={<>Irisan dua lingkaran</>}
-  description={<>Pusat <InlineMath math="A" /> dan <InlineMath math="B" /> berjarak 4 cm. Titik potong <InlineMath math="P" /> dan <InlineMath math="Q" /> membentuk dua segitiga sama sisi bersama kedua pusat, dan tali busur <InlineMath math="PQ" /> membagi irisan menjadi dua tembereng yang sama.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 9 },
-      y: { min: -5, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      { id: "circle-left", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 4 },
-      { id: "circle-right", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 4 },
-      {
-        id: "rhombus",
-        kind: "polygon",
-        appearance: "construction",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 2, y: 2 * Math.sqrt(3) },
-          { x: 4, y: 0 },
-          { x: 2, y: -2 * Math.sqrt(3) },
-        ],
-      },
-      { id: "chord-pq", kind: "segment", appearance: "highlight", from: { x: 2, y: 2 * Math.sqrt(3) }, to: { x: 2, y: -2 * Math.sqrt(3) } },
-    ],
-    labels: [
-      { key: "a", objectId: "circle-left", at: { x: 0, y: 0 }, placement: "left" },
-      { key: "b", objectId: "circle-right", at: { x: 4, y: 0 }, placement: "right" },
-      { key: "p", objectId: "chord-pq", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "above" },
-      { key: "q", objectId: "chord-pq", at: { x: 2, y: -2 * Math.sqrt(3) }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    p: <InlineMath math="P" />,
-    q: <InlineMath math="Q" />,
-  }}
-/>
+# Hasil kali empat suku
 
-# Sudut pusat setiap tembereng
-
-Panjang <InlineMath math="AB" />, <InlineMath math="AP" />, dan <InlineMath math="BP" /> semuanya 4 cm, karena setiap lingkaran melalui pusat lingkaran lain. Jadi segitiga <InlineMath math="ABP" /> **sama sisi** dan sudut <InlineMath math="PAB=60^\circ" />. Dengan alasan yang sama untuk <InlineMath math="Q" />, sudut pusat <InlineMath math="PAQ=120^\circ" />.
-
-# Luas satu tembereng
-
-Tembereng adalah juring dikurangi segitiga <InlineMath math="APQ" />.
+Dengan suku pertama <InlineMath math="a" /> dan rasio <InlineMath math="r" />, berlaku <InlineMath math="u_1u_4=a\cdot ar^3=a^2r^3" /> dan <InlineMath math="u_2u_3=ar\cdot ar^2=a^2r^3" />. Jadi **suku-suku yang berjarak sama dari tengah punya hasil kali sama**.
 
 <BlockMath math="\begin{aligned}
-L_{\text{juring}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot4^2=\frac{16\pi}{3}\\
-L_{\triangle APQ}&=\tfrac12\cdot4\cdot4\cdot\sin120^\circ=4\sqrt3\\
-L_{\text{tembereng}}&=\frac{16\pi}{3}-4\sqrt3
+u_1u_2u_3u_4=\left(u_2u_3\right)^2&=144\\
+u_2u_3=12\ \text{atau}\ u_2u_3&=-12
 \end{aligned}" />
 
-Daerah irisan terdiri atas **dua tembereng**.
+# Memeriksa kedua tanda
 
-<BlockMath math="L=2\left(\frac{16\pi}{3}-4\sqrt3\right)=\frac{32\pi}{3}-8\sqrt3" />
+Bilangan <InlineMath math="u_2" /> dan <InlineMath math="u_3" /> berjumlah <InlineMath math="1" />, jadi keduanya adalah akar <InlineMath math="t^2-t+p=0" /> dengan <InlineMath math="p=u_2u_3" />. Untuk <InlineMath math="p=12" />, diskriminannya <InlineMath math="1-48<0" />, jadi **tidak ada suku real**, dan kemungkinan ini gugur. Untuk <InlineMath math="p=-12" />:
 
-Pilihan <InlineMath math="\frac{16\pi}{3}-4\sqrt3" /> hanya menghitung satu tembereng. Pilihan <InlineMath math="\frac{32\pi}{3}-4\sqrt3" /> menggandakan juring tetapi hanya mengurangkan satu segitiga. Pilihan <InlineMath math="\frac{32\pi}{3}-16\sqrt3" /> dan <InlineMath math="\frac{16\pi}{3}-8\sqrt3" /> mengurangkan belah ketupat <InlineMath math="APBQ" /> dari setiap juring, padahal yang dikurangkan hanya segitiga <InlineMath math="APQ" />.
+<BlockMath math="t^2-t-12=(t-4)(t+3)=0" />
 
-Jadi, luas daerah irisan adalah **<InlineMath math="\left(\frac{32\pi}{3}-8\sqrt3\right)\text{ cm}^2" />**.
+Jadi <InlineMath math="\{u_2,u_3\}=\{4,-3\}" />, dalam urutan mana pun. Rasionya negatif.
+
+# Menghitung jumlah suku luar
+
+Dalam barisan geometri, suku tengah dari tiga suku berurutan adalah rata-rata geometrinya, jadi <InlineMath math="u_1u_3=u_2^2" /> dan <InlineMath math="u_2u_4=u_3^2" />. Dari situ <InlineMath math="u_1=\tfrac{u_2^2}{u_3}" /> dan <InlineMath math="u_4=\tfrac{u_3^2}{u_2}" />. Pakai identitas jumlah pangkat tiga supaya **kedua urutan langsung tercakup**.
+
+<BlockMath math="\begin{aligned}
+u_1+u_4&=\frac{u_2^3+u_3^3}{u_2u_3}=\frac{\left(u_2+u_3\right)^3-3u_2u_3\left(u_2+u_3\right)}{u_2u_3}\\
+&=\frac{1^3-3(-12)(1)}{-12}=\frac{37}{-12}=-\frac{37}{12}
+\end{aligned}" />
+
+Cek dengan barisan nyata. Untuk <InlineMath math="u_2=4" /> dan <InlineMath math="u_3=-3" />, rasionya <InlineMath math="-\tfrac34" />, sehingga <InlineMath math="u_1=-\tfrac{16}{3}" /> dan <InlineMath math="u_4=\tfrac94" />. Jumlahnya <InlineMath math="-\tfrac{64}{12}+\tfrac{27}{12}=-\tfrac{37}{12}" />, dan hasil kalinya <InlineMath math="\left(-\tfrac{16}{3}\right)(4)(-3)\left(\tfrac94\right)=144" />. Urutan sebaliknya, <InlineMath math="u_2=-3" /> dan <InlineMath math="u_3=4" />, hanya menukar <InlineMath math="u_1" /> dengan <InlineMath math="u_4" />, jadi jumlahnya sama.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="-\tfrac{35}{12}" /> memakai <InlineMath math="u_2u_3=12" />, padahal kemungkinan itu tidak menghasilkan suku real.
+- <InlineMath math="-\tfrac{1}{12}" /> menganggap <InlineMath math="u_2^3+u_3^3=\left(u_2+u_3\right)^3" />, sehingga suku <InlineMath math="-3u_2u_3\left(u_2+u_3\right)" /> hilang.
+- <InlineMath math="1" /> mengira <InlineMath math="u_1+u_4=u_2+u_3" />. Yang sama hanyalah **hasil kalinya, bukan jumlahnya**.
+- <InlineMath math="\tfrac{37}{12}" /> lupa bahwa penyebut <InlineMath math="u_2u_3=-12" /> negatif.
+
+Jadi, nilai <InlineMath math="u_1+u_4" /> adalah <InlineMath math="-\tfrac{37}{12}" />.

@@ -1,0 +1,17 @@
+A square matrix has no inverse exactly when **its determinant is zero**. Compute <InlineMath math="\det M" /> with the rule of Sarrus: the sum of the three down-right diagonal products minus the sum of the three down-left diagonal products.
+
+<BlockMath math="\begin{aligned}
+\det M&=(1\cdot k\cdot1+2\cdot2\cdot3+1\cdot0\cdot1)-(1\cdot k\cdot3+1\cdot2\cdot1+2\cdot0\cdot1) \\
+&=(k+12)-(3k+2)=10-2k
+\end{aligned}" />
+
+<BlockMath math="10-2k=0\ \Rightarrow\ k=5" />
+
+Check by expanding along the first row: <InlineMath math="1(k-2)-2(0-6)+1(0-3k)=10-2k" />, the same result. For <InlineMath math="k=5" />, the third row is <InlineMath math="3" /> times the first minus the second: <InlineMath math="3(1,2,1)-(0,5,2)=(3,1,1)" />, so the rows are indeed linearly dependent.
+
+So <InlineMath math="k=5" />.
+
+- <InlineMath math="-7" /> slips the sign of the middle cofactor in the first-row expansion, giving <InlineMath math="-2k-14" />.
+- <InlineMath math="-\frac52" /> slips the sign of the last term, giving <InlineMath math="4k+10" />.
+- <InlineMath math="-1" /> drops the diagonal product <InlineMath math="2\cdot2\cdot3=12" />, giving <InlineMath math="-2k-2" />.
+- <InlineMath math="2" /> only sets the first minor, <InlineMath math="k-2" />, to zero.

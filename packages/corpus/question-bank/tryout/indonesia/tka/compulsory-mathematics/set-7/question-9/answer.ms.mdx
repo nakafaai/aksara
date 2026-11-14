@@ -1,0 +1,59 @@
+# Fakta yang benar-benar diketahui
+
+Lakaran itu hanya satu contoh. Pernyataan yang **pasti benar** mesti berlaku bagi setiap parabola dengan <InlineMath math="a<0" />, <InlineMath math="-1<p<0" />, dan <InlineMath math="1<q<2" />. Jadi, tukar setiap pernyataan kepada fakta tentang graf, kemudian semak sama ada fakta itu sentiasa berlaku.
+
+Ada dua alat. Pertama, oleh sebab <InlineMath math="a<0" />, nilai <InlineMath math="g(x)" /> positif di antara kedua-dua pintasan-x dan negatif di luarnya. Kedua, koordinat-x bagi verteks, katakan <InlineMath math="h" />, ialah titik tengah kedua-dua pintasan-x:
+
+<BlockMath math="\begin{aligned}
+h&=-\frac{b}{2a}=\frac{p+q}{2} \\
+-1+1<p+q&<0+2 \\
+0<h&<1
+\end{aligned}" />
+
+Selain itu, <InlineMath math="g(0)=c" />, <InlineMath math="g(1)=a+b+c" />, dan <InlineMath math="g(-1)=a-b+c" />.
+
+# Menilai setiap pernyataan
+
+1. **Salah**. Pernyataan <InlineMath math="a+b>0" /> tidak pasti. Perhatikan bahawa <InlineMath math="a+b=g(1)-g(0)" />. Tandanya bergantung pada kedudukan verteks: jika <InlineMath math="h>\tfrac12" />, titik <InlineMath math="x=1" /> lebih dekat dengan verteks, maka <InlineMath math="g(1)>g(0)" />. Jika <InlineMath math="h<\tfrac12" />, keadaannya terbalik. Berikut dua contoh yang kedua-duanya memenuhi syarat soalan:
+
+<BlockMath math="\begin{aligned}
+p=-0.4,\ q=1.6:&\quad g(x)=-x^2+1.2x+0.64,\quad a+b=0.2>0 \\
+p=-0.9,\ q=1.2:&\quad g(x)=-x^2+0.3x+1.08,\quad a+b=-0.7<0
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dua parabola yang sama-sama memenuhi syarat</>}
+  description={<>Parabola pertama <InlineMath math="-x^2+1.2x+0.64" /> memotong paksi-<InlineMath math="x" /> pada <InlineMath math="-0.4" /> dan <InlineMath math="1.6" />, dengan <InlineMath math="g(0)=0.64" /> dan <InlineMath math="g(1)=0.84" />. Parabola kedua <InlineMath math="-x^2+0.3x+1.08" /> memotongnya pada <InlineMath math="-0.9" /> dan <InlineMath math="1.2" />, dengan <InlineMath math="g(0)=1.08" /> dan <InlineMath math="g(1)=0.38" />. Pada parabola pertama nilai pada <InlineMath math="x=1" /> lebih besar, pada parabola kedua lebih kecil.</>}
+  labels={{
+    first: <InlineMath math="g_1" />,
+    second: <InlineMath math="g_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 2.5 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-graph", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 1.2, c: 0.64 }, domain: { min: -0.8, max: 2 }, inputAxis: "x" },
+      { id: "second-graph", kind: "quadratic", appearance: "secondary", coefficients: { a: -1, b: 0.3, c: 1.08 }, domain: { min: -1.1, max: 1.4 }, inputAxis: "x" },
+      { id: "first-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 0.64 } },
+      { id: "first-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.84 } },
+      { id: "second-at-zero", kind: "point", appearance: "reference", at: { x: 0, y: 1.08 } },
+      { id: "second-at-one", kind: "point", appearance: "highlight", at: { x: 1, y: 0.38 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first-graph", at: { x: 1.5, y: 0.19 }, placement: "right" },
+      { key: "second", objectId: "second-graph", at: { x: -1, y: -0.22 }, placement: "left" },
+    ],
+  }}
+/>
+
+2. **Betul**. Daripada <InlineMath math="h=-\frac{b}{2a}" /> diperoleh <InlineMath math="b=-2a\,h" />. Oleh sebab <InlineMath math="a<0" />, nombor <InlineMath math="-2a" /> positif, dan <InlineMath math="h>0" />. Jadi <InlineMath math="b>0" /> bagi setiap parabola yang memenuhi syarat.
+3. **Betul**. Nilai <InlineMath math="a-b+c" /> ialah <InlineMath math="g(-1)" />. Oleh sebab <InlineMath math="-1<p" />, titik <InlineMath math="x=-1" /> berada di sebelah kiri kedua-dua pintasan-x, iaitu kawasan graf berada di bawah paksi-<InlineMath math="x" />. Jadi <InlineMath math="a-b+c<0" />.
+4. **Betul**. Gantikan <InlineMath math="b=-2a\,h" />, maka <InlineMath math="2a+b=2a\,(1-h)" />. Faktor <InlineMath math="2a" /> negatif, manakala <InlineMath math="1-h" /> positif kerana <InlineMath math="h<1" />. **Hasil darab nombor negatif dengan nombor positif sentiasa negatif**, jadi <InlineMath math="2a+b<0" />.
+5. **Betul**. Titik <InlineMath math="x=0" /> dan <InlineMath math="x=1" /> kedua-duanya berada di antara <InlineMath math="p" /> dan <InlineMath math="q" />, jadi <InlineMath math="c=g(0)>0" /> dan <InlineMath math="a+b+c=g(1)>0" />. Hasil darab dua nombor positif juga positif.
+
+Jadi, pernyataan yang pasti benar ialah <InlineMath math="b>0" />, <InlineMath math="a-b+c<0" />, <InlineMath math="2a+b<0" />, dan <InlineMath math="c\,(a+b+c)>0" />.

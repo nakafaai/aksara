@@ -1,15 +1,37 @@
-Babak pertama harus mengurangi 40 pemain menjadi 32, jadi **8 pemain harus gugur** di babak itu.
+Setiap pernyataan dinilai sendiri dengan dua alat. Pertama, **dana pendamping adalah setengah setoran tetapi paling banyak <InlineMath math="4" /> juta rupiah per tahun**. Kedua, dana yang masuk pada awal tahun ke-<InlineMath math="k" /> tumbuh sampai akhir tahun ke-<InlineMath math="n" /> dengan faktor <InlineMath math="(1{,}1)^{n-k+1}" /> dari tabel. Semua angka di bawah ini dalam juta rupiah.
 
-# Pemain yang bertanding
+# Pernyataan pertama tentang setoran dua tahunan
 
-Setiap pertandingan menggugurkan satu pemain, jadi **babak pertama memerlukan 8 pertandingan**. Delapan pertandingan dimainkan oleh <InlineMath math="8\cdot2=16" /> pemain.
+Pegawai yang menyetor setiap tahun mendapat dana pendamping <InlineMath math="5" />, tetapi dibatasi menjadi <InlineMath math="4" />, jadi dana yang masuk <InlineMath math="14" /> setiap tahun. Pegawai yang menyetor <InlineMath math="20" /> mestinya mendapat <InlineMath math="10" />, tetapi **batasnya berlaku per tahun**, jadi ia hanya mendapat <InlineMath math="4" /> dan dana yang masuk <InlineMath math="24" />.
 
-# Pemain yang mendapat bye
+<BlockMath math="\begin{aligned}
+\text{setiap tahun} &: 14\times(1{,}772+1{,}611+1{,}464+1{,}331+1{,}210+1{,}100)=14\times8{,}488=118{,}832 \\
+\text{dua tahunan} &: 24\times(1{,}772+1{,}464+1{,}210)=24\times4{,}446=106{,}704
+\end{aligned}" />
 
-<BlockMath math="40-16=24" />
+Setoran dua tahunan tumbuh selama <InlineMath math="6" />, <InlineMath math="4" />, dan <InlineMath math="2" /> tahun. Saldonya berbeda, karena total dana pendampingnya hanya <InlineMath math="12" />, bukan <InlineMath math="24" />. Pernyataan pertama salah.
 
-Pemeriksaan: 8 pemenang babak pertama ditambah 24 pemain bye sama dengan 32 pemain, **tepat sesuai aturan**.
+# Pernyataan kedua tentang menggandakan setoran
 
-Nilai 8 adalah banyak pertandingan babak pertama, dan nilai 16 adalah banyak pemain yang bertanding. Nilai 20 menganggap setengah pemain mendapat bye, dan nilai 32 adalah banyak pemain di babak kedua.
+Saldo sama dengan dana yang masuk per tahun dikalikan jumlah faktor yang sama, jadi perbandingan saldo sama dengan perbandingan dana yang masuk. Setoran <InlineMath math="6" /> mendapat pendamping <InlineMath math="3" />, jadi masuk <InlineMath math="9" />. Setoran <InlineMath math="12" /> seharusnya mendapat <InlineMath math="6" />, tetapi **dipotong batas menjadi <InlineMath math="4" />**, jadi masuk <InlineMath math="16" />.
 
-Jadi, ada **24 pemain** yang mendapat bye.
+<BlockMath math="\frac{16}{9}\approx1{,}78\neq2" />
+
+Saldonya naik, tetapi tidak sampai dua kali lipat. Pernyataan kedua salah.
+
+# Pernyataan ketiga tentang sepuluh tahun dan lima tahun
+
+Untuk setoran yang sama setiap tahun, saldo sama dengan dana tahunan dikalikan jumlah faktor, jadi cukup bandingkan jumlah faktornya. **Faktor lima tahun terakhir jauh lebih besar** daripada faktor lima tahun pertama.
+
+<BlockMath math="\begin{aligned}
+S_5 &= 1{,}100+1{,}210+1{,}331+1{,}464+1{,}611=6{,}716 \\
+S_{10} &= 6{,}716+1{,}772+1{,}949+2{,}144+2{,}358+2{,}594=17{,}533
+\end{aligned}" />
+
+Bandingkan dengan <InlineMath math="2{,}5\times6{,}716=16{,}79" />. Karena <InlineMath math="17{,}533>16{,}79" />, pernyataan ketiga benar.
+
+# Pernyataan keempat tentang lipat dua
+
+Dana yang masuk pada awal tahun ke-<InlineMath math="1" /> sudah tumbuh <InlineMath math="7" /> kali pada akhir tahun ke-<InlineMath math="7" />, jadi faktornya <InlineMath math="(1{,}1)^7=1{,}949" />. Faktor itu **masih di bawah dua**. Dana itu baru lebih dari dua kali lipat pada akhir tahun ke-<InlineMath math="8" />, dengan faktor <InlineMath math="2{,}144" />. Perkiraan cepat seperti <InlineMath math="72:10\approx7{,}2" /> tahun menggoda untuk menjawab tahun ke-<InlineMath math="7" />, tetapi tabel menunjukkan belum. Pernyataan keempat salah.
+
+Jadi, pernyataan pertama salah, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat salah.

@@ -1,17 +1,34 @@
-One-, two-, and three-digit numbers can be counted together if each number is written **as three digits with leading zeros**, for example 5 as 005 and 42 as 042. This adds no 7 and removes no 7.
+First count every path through <InlineMath math="P" />, then subtract the paths that use the closed road. What's closed is **a road segment, not an intersection**, so a path that only passes through <InlineMath math="(3,2)" /> or <InlineMath math="(4,2)" /> is still allowed.
 
-# Counting three-digit strings
+# Paths through point P
 
-Each position can hold any digit from 0 to 9 except 7, so there are 9 choices per position. The three positions are **chosen independently**.
+A shortest path from one point to another is a list of steps right and up, and the number of such paths equals **the number of ways to choose where the up steps go**. Every first part can join every second part, so multiply.
 
-<BlockMath math="9\times9\times9=729" />
+<BlockMath math="\begin{aligned}
+A\to P&:\ 2 \text{ right},\ 1 \text{ up},\quad \binom{3}{1}=3\\
+P\to B&:\ 4 \text{ right},\ 3 \text{ up},\quad \binom{7}{3}=35\\
+\text{through } P&:\ 3\cdot 35=105
+\end{aligned}" />
 
-This count includes the string 000, which is not a positive integer.
+# Paths that use the closed road
 
-<BlockMath math="729-1=728" />
+A path uses the closed road when it steps from <InlineMath math="(3,2)" /> straight to <InlineMath math="(4,2)" />. Split such a path into three parts and **multiply the number of ways for each part**.
+
+<BlockMath math="\begin{aligned}
+A\to P&:\ 3\\
+P\to(3,2)&:\ 1 \text{ right},\ 1 \text{ up},\quad \binom{2}{1}=2\\
+(4,2)\to B&:\ 2 \text{ right},\ 2 \text{ up},\quad \binom{4}{2}=6\\
+\text{using the closed road}&:\ 3\cdot 2\cdot 6=36
+\end{aligned}" />
+
+The number of allowed paths is <InlineMath math="105-36=69" />.
+
+# Checking another way
+
+Split the paths through <InlineMath math="P" /> by whether they pass through <InlineMath math="(3,2)" />. There are <InlineMath math="3\cdot 2\cdot\binom{5}{2}=60" /> paths through <InlineMath math="(3,2)" />, so <InlineMath math="105-60=45" /> paths avoid it, and all of those are safe. From <InlineMath math="(3,2)" />, a safe path **has to go up to <InlineMath math="(3,3)" /> first**, then reach <InlineMath math="B" /> in <InlineMath math="\binom{4}{1}=4" /> ways, so <InlineMath math="3\cdot 2\cdot 4=24" /> safe paths pass through <InlineMath math="(3,2)" />. The total is <InlineMath math="45+24=69" />, the same as before.
 
 # Checking the other options
 
-The value 729 forgets to remove 000. The value 648 counts only three-digit numbers, <InlineMath math="8\times9\times9" />, and forgets the one- and two-digit numbers. The value 700 subtracts 100 numbers for each position of the digit 7 without accounting for numbers that contain 7 more than once. The value 810 forbids 7 in only two positions, <InlineMath math="9\times9\times10" />.
+The option <InlineMath math="105" /> **ignores the closed road**. The option <InlineMath math="36" /> stops at the number of paths to remove. The option <InlineMath math="45" /> comes from treating the intersection <InlineMath math="(3,2)" /> as closed too, or from subtracting all <InlineMath math="10\cdot 6=60" /> paths from <InlineMath math="A" /> that use that road, including the ones that skip <InlineMath math="P" />. The option <InlineMath math="51" /> comes from treating the intersection <InlineMath math="(4,2)" /> as closed, which removes <InlineMath math="3\cdot 3\cdot 6=54" /> paths.
 
-So **728** such numbers exist.
+So the courier can choose from <InlineMath math="69" /> different shortest paths.

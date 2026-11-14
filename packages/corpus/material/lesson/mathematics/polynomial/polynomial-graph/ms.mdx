@@ -1,0 +1,398 @@
+export const metadata = {
+  title: "Graf Polinomial",
+  description: "Lakar graf polinomial linear, kuadratik dan kubik daripada titik yang diplot, punca dan kelakuan hujung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-09-24",
+  subject: "Polinomial",
+};
+
+## Cara Darjah dan Pekali Membentuk Graf Polinomial
+
+Graf sesuatu fungsi polinomial memberi kita gambaran visual tentang cara nilai fungsi itu berubah apabila nilai input <InlineMath math="x" /> berubah. Bentuk graf itu bergantung pada <Highlight>darjah dan pekali</Highlight> fungsi tersebut.
+
+## Kaedah Memplot Titik
+
+Satu cara untuk mula melukis graf ialah dengan mengira **beberapa titik**, iaitu pasangan <InlineMath math="(x,y)" /> yang memenuhi fungsi itu. Titik-titik ini membantu lakaran kamu, tetapi jadual yang kecil sahaja tidak menentukan setiap ciri graf. Punca, titik pusingan dan kelakuan hujung memberi semakan tambahan.
+
+**Langkah-langkah**:
+
+1.  Pilih beberapa nilai <InlineMath math="x" /> yang berbeza.
+2.  Kira nilai <InlineMath math="y = P(x)" /> bagi setiap nilai <InlineMath math="x" /> yang dipilih.
+3.  Bina jadual pasangan nilai <InlineMath math="(x, y)" />.
+4.  Plot titik-titik ini pada satah koordinat.
+5.  Sambungkan titik-titik itu dengan lengkung yang licin dan selanjar.
+
+### Fungsi Linear Darjah Satu
+
+**Pertambahan yang tetap** menghasilkan garis lurus. Setiap kali input bertambah satu, output fungsi ini bertambah dua. Contohnya:
+
+<BlockMath math="f(-3)=2(-3)+5=-1,\qquad f(-2)=2(-2)+5=1" />
+
+Lukis graf fungsi <InlineMath math="f(x) = 2x + 5" />.
+
+Kita pilih beberapa nilai <InlineMath math="x" /> dan kira <InlineMath math="y" />:
+
+| <InlineMath math="x" /> | <InlineMath math="y = f(x)" /> | <InlineMath math="(x, y)" />   |
+| :---------------------- | :----------------------------- | :----------------------------- |
+| <InlineMath math="-3" /> | <InlineMath math="-1" /> | <InlineMath math="(-3, -1)" /> |
+| <InlineMath math="-2" /> | <InlineMath math="1" /> | <InlineMath math="(-2, 1)" />  |
+| <InlineMath math="-1" /> | <InlineMath math="3" /> | <InlineMath math="(-1, 3)" />  |
+| <InlineMath math="0" /> | <InlineMath math="5" /> | <InlineMath math="(0, 5)" />   |
+| <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="(1, 7)" />   |
+| <InlineMath math="2" /> | <InlineMath math="9" /> | <InlineMath math="(2, 9)" />   |
+| <InlineMath math="3" /> | <InlineMath math="11" /> | <InlineMath math="(3, 11)" />  |
+
+Plot titik-titik itu dan sambungkan:
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="f(x) = 2x + 5" />
+    </>
+  }
+  description={<>Graf fungsi linear dengan darjah <InlineMath math="1" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.5, max: 12.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + t)", y: "((2 * ((-3) + t)) + 5)", parameter: { min: 0, max: 6 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+### Fungsi Kuadratik Darjah Dua
+
+**Bentuk penyempurnaan kuasa dua** menunjukkan titik terendah dan paksi simetri:
+
+<BlockMath math="g(x)=x^2-2x-3=(x-1)^2-4=(x-3)(x+1)" />
+
+Lukis graf fungsi <InlineMath math="g(x) = x^2 - 2x - 3" />.
+
+Jadual nilai:
+
+| <InlineMath math="x" /> | <InlineMath math="y = g(x)" /> | <InlineMath math="(x, y)" />  |
+| :---------------------- | :----------------------------- | :---------------------------- |
+| <InlineMath math="-2" /> | <InlineMath math="5" /> | <InlineMath math="(-2, 5)" /> |
+| <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="(-1, 0)" /> |
+| <InlineMath math="0" /> | <InlineMath math="-3" /> | <InlineMath math="(0, -3)" /> |
+| <InlineMath math="1" /> | <InlineMath math="-4" /> | <InlineMath math="(1, -4)" /> |
+| <InlineMath math="2" /> | <InlineMath math="-3" /> | <InlineMath math="(2, -3)" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="(3, 0)" />  |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="(4, 5)" />  |
+
+Plot titik-titik itu dan sambungkan dengan lengkung yang licin (parabola):
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="g(x) = x^2 - 2x - 3" />
+    </>
+  }
+  description={<>Graf fungsi kuadratik dengan darjah <InlineMath math="2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 16))", y: "(((((-2) + (t / 16)) * ((-2) + (t / 16))) - (2 * ((-2) + (t / 16)))) - 3)", parameter: { min: 0, max: 96 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+### Fungsi Kubik Darjah Tiga
+
+**Faktor berulang** menerangkan sebab graf ini menyentuh paksi pada satu punca dan memotong paksi pada punca yang satu lagi:
+
+<BlockMath math="h(x)=x^3+3x^2-4=(x+2)^2(x-1)" />
+
+Lukis graf fungsi <InlineMath math="h(x) = x^3 + 3x^2 - 4" />.
+
+Jadual nilai:
+
+| <InlineMath math="x" /> | <InlineMath math="y = h(x)" /> | <InlineMath math="(x, y)" />    |
+| :---------------------- | :----------------------------- | :------------------------------ |
+| <InlineMath math="-4" /> | <InlineMath math="-20" /> | <InlineMath math="(-4, -20)" /> |
+| <InlineMath math="-3" /> | <InlineMath math="-4" /> | <InlineMath math="(-3, -4)" />  |
+| <InlineMath math="-2" /> | <InlineMath math="0" /> | <InlineMath math="(-2, 0)" />   |
+| <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="(-1, -2)" />  |
+| <InlineMath math="0" /> | <InlineMath math="-4" /> | <InlineMath math="(0, -4)" />   |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="(1, 0)" />    |
+| <InlineMath math="2" /> | <InlineMath math="16" /> | <InlineMath math="(2, 16)" />   |
+
+Plot titik-titik itu dan sambungkan dengan lengkung yang licin:
+
+Paparan ini memfokus pada <InlineMath math="-3\le x\le1.25" /> supaya kedua-dua titik pusingan dan kedua-dua punca kelihatan jelas. Nilai di hujung jadual tetap betul, tetapi terletak di luar tetingkap plot.
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="h(x) = x^3 + 3x^2 - 4" />
+    </>
+  }
+  description={<>Graf fungsi kubik dengan darjah <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2 }, y: { min: -5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t * 0.025))", y: "((((((-3) + (t * 0.025)) * ((-3) + (t * 0.025))) * ((-3) + (t * 0.025))) + ((3 * ((-3) + (t * 0.025))) * ((-3) + (t * 0.025)))) - 4)", parameter: { min: 0, max: 170 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+## Ciri-ciri Umum Graf Polinomial
+
+Graf fungsi polinomial sentiasa **licin** (tiada bucu tajam) dan **selanjar** (tiada lompatan atau putus). Bentuk umumnya sangat dipengaruhi oleh **darjah** polinomial itu.
+
+Polinomial berdarjah positif mempunyai pekali pelopor yang bukan sifar. Polinomial pemalar yang bukan sifar berdarjah sifar. Graf polinomial sifar ialah seluruh paksi mengufuk, tetapi darjahnya tidak tertakrif mengikut konvensyen ini.
+
+- **Darjah** <InlineMath math="0" />: <InlineMath math="P(x) = c" />. Grafnya ialah garis mengufuk.
+- **Darjah** <InlineMath math="1" />: <InlineMath math="P(x) = ax + b" />. Grafnya ialah garis lurus (condong).
+- **Darjah** <InlineMath math="2" />: <InlineMath math="P(x) = ax^2 + bx + c" />. Grafnya ialah parabola.
+- **Darjah** <InlineMath math="3" />: <InlineMath math="P(x) = ax^3 + \dots" />. Kedua-dua hujungnya menghala ke arah mencancang yang bertentangan, dan grafnya boleh mempunyai paling banyak dua titik pusingan.
+- **Darjah** <InlineMath math="4" />: Grafnya boleh mempunyai sehingga tiga 'puncak' atau 'lembah'.
+- **Darjah** <InlineMath math="5" />: Grafnya boleh mempunyai sehingga empat 'puncak' atau 'lembah'.
+
+Bagi polinomial berdarjah <InlineMath math="n\ge1" />, terdapat paling banyak <InlineMath math="n" /> persilangan dengan paksi mengufuk dan paling banyak <InlineMath math="n-1" /> titik pusingan. Ini ialah batas atas, bukan bilangan yang pasti berlaku. Contohnya, <InlineMath math="x^3" /> tidak mempunyai titik pusingan.
+
+## Kelakuan Hujung
+
+**Sebutan pelopor** mengawal arah hujung graf kerana sebutan yang darjahnya lebih rendah menjadi kecil berbanding dengannya. Untuk darjah positif:
+
+<BlockMath math="P(x)=a_nx^n\left(1+\frac{a_{n-1}}{a_nx}+\cdots+\frac{a_0}{a_nx^n}\right),\quad x\ne0" />
+
+Setiap pecahan tambahan di dalam kurungan menghampiri sifar apabila magnitud input membesar tanpa batas. Oleh itu, kurungan itu menghampiri satu, dan sebutan pelopor yang tinggal menentukan arahnya. Gambar-gambar ini hanya menunjukkan tetingkap yang terhingga. Pernyataan tentang hujung yang tak terhingga datang daripada analisis ini.
+
+| Darjah | Tanda pekali pelopor | Hujung kiri | Hujung kanan |
+| --- | --- | --- | --- |
+| Genap | Positif | Naik | Naik |
+| Genap | Negatif | Turun | Turun |
+| Ganjil | Positif | Turun | Naik |
+| Ganjil | Negatif | Naik | Turun |
+
+<ContentStack>
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = x^2" /> (Genap, Positif)
+    </>
+  }
+  description={<>Graf naik ke kiri dan ke kanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + ((t / 16) * (2 / 3)))", y: "(((-2) + ((t / 16) * (2 / 3))) * ((-2) + ((t / 16) * (2 / 3))))", parameter: { min: 0, max: 96 }, appearance: "primary" },
+    ],
+  }}
+/>
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = -x^2" /> (Genap, Negatif)
+    </>
+  }
+  description={<>Graf turun ke kiri dan ke kanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -4.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + ((t / 16) * (2 / 3)))", y: "(-(((-2) + ((t / 16) * (2 / 3))) * ((-2) + ((t / 16) * (2 / 3)))))", parameter: { min: 0, max: 96 }, appearance: "primary" },
+    ],
+  }}
+/>
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = x^3" /> (Ganjil, Positif)
+    </>
+  }
+  description={<>Graf turun ke kiri dan naik ke kanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1.5) + (t * 0.075))", y: "((((-1.5) + (t * 0.075)) * ((-1.5) + (t * 0.075))) * ((-1.5) + (t * 0.075)))", parameter: { min: 0, max: 40 }, appearance: "primary" },
+    ],
+  }}
+/>
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = -x^3" /> (Ganjil, Negatif)
+    </>
+  }
+  description={<>Graf naik ke kiri dan turun ke kanan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1.5) + (t * 0.075))", y: "(-((((-1.5) + (t * 0.075)) * ((-1.5) + (t * 0.075))) * ((-1.5) + (t * 0.075))))", parameter: { min: 0, max: 40 }, appearance: "primary" },
+    ],
+  }}
+/>
+</ContentStack>
+
+### Menggunakan Kelakuan Hujung
+
+**Kelakuan hujung** menunjukkan arah graf di hujung paling kiri dan hujung paling kanan. Berhampiran asalan, semua pekali masih mempengaruhi bentuk graf, jadi lengkung itu mungkin berpusing beberapa kali sebelum akhirnya mengikut arah hujungnya.
+
+**Contoh 1**. <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
+
+Sebutan pelopor: <InlineMath math="x^4" />
+Darjah <InlineMath math="n=4" /> (Genap)
+Pekali pelopor <InlineMath math="a_n=1" /> (Positif)
+Kelakuan hujung: Naik di kiri (<InlineMath math="\nwarrow" />), Naik di kanan (<InlineMath math="\nearrow" />)
+
+<ContentBlock>
+      <MathVisual
+        title={
+                <>
+                  Graf <InlineMath math="f(x) = x^4 + 2x^3 - 2x - 3" />
+                </>
+              }
+        description={
+                <>
+                  Kelakuan Hujung: <InlineMath math="\nwarrow" />{" "}
+                  <InlineMath math="\nearrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -5, max: 7 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "parametric", x: "((-2.25) + (t * (3.75 / 50)))", y: "((((((-2.25) + (t * (3.75 / 50))))^(4) + (2 * (((-2.25) + (t * (3.75 / 50))))^(3))) - (2 * ((-2.25) + (t * (3.75 / 50))))) - 3)", parameter: { min: 0, max: 50 }, appearance: "primary" },
+          ],
+        }}
+      />
+</ContentBlock>
+
+**Contoh 2**. <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
+
+Sebutan pelopor: <InlineMath math="-x^3" />
+Darjah <InlineMath math="n=3" /> (Ganjil)
+Pekali pelopor <InlineMath math="a_n=-1" /> (Negatif)
+Kelakuan hujung: Naik di kiri (<InlineMath math="\nwarrow" />), Turun di kanan (<InlineMath math="\searrow" />)
+
+<ContentBlock>
+      <MathVisual
+        title={
+                <>
+                  Graf <InlineMath math="g(x) = -x^3 + 2x^2 - x + 1" />
+                </>
+              }
+        description={
+                <>
+                  Kelakuan Hujung: <InlineMath math="\nwarrow" />{" "}
+                  <InlineMath math="\searrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -1.5, max: 3 }, y: { min: -6, max: 6 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "parametric", x: "((-1) + (((t / 2) + 0) * (3.5 / 56)))", y: "((((-(((-1) + (((t / 2) + 0) * (3.5 / 56))))^(3)) + (2 * (((-1) + (((t / 2) + 0) * (3.5 / 56))))^(2))) - ((-1) + (((t / 2) + 0) * (3.5 / 56)))) + 1)", parameter: { min: 0, max: 112 }, appearance: "primary" },
+          ],
+        }}
+      />
+</ContentBlock>
+
+**Contoh 3**. <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
+
+Sebutan pelopor: <InlineMath math="-x^6" />
+Darjah <InlineMath math="n=6" /> (Genap)
+Pekali pelopor <InlineMath math="a_n=-1" /> (Negatif)
+Kelakuan hujung: Turun di kiri (<InlineMath math="\swarrow" />), Turun di kanan (<InlineMath math="\searrow" />)
+
+<ContentBlock>
+      <MathVisual
+        title={
+                <>
+                  Graf{" "}
+                  <InlineMath math="h(x) = -x^6 - \frac{11}{4}x^5 + x^4 + 5x^3 + 2" />
+                </>
+              }
+        description={
+                <>
+                  Kelakuan Hujung: <InlineMath math="\swarrow" />{" "}
+                  <InlineMath math="\searrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -3, max: 2 }, y: { min: -7.5, max: 5.5 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "parametric", x: "((-2.4) + (t * (3.8 / 110)))", y: "(((((-(((-2.4) + (t * (3.8 / 110))))^(6)) - ((11 / 4) * (((-2.4) + (t * (3.8 / 110))))^(5))) + (((-2.4) + (t * (3.8 / 110))))^(4)) + (5 * (((-2.4) + (t * (3.8 / 110))))^(3))) + 2)", parameter: { min: 0, max: 110 }, appearance: "primary" },
+          ],
+        }}
+      />
+</ContentBlock>
+
+**Contoh 4**. <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
+
+Sebutan pelopor: <InlineMath math="25x^5" />
+Darjah <InlineMath math="n=5" /> (Ganjil)
+Pekali pelopor <InlineMath math="a_n=25" /> (Positif)
+Kelakuan hujung: Turun di kiri (<InlineMath math="\swarrow" />), Naik di kanan (<InlineMath math="\nearrow" />)
+
+<ContentBlock>
+      <MathVisual
+        title={
+                <>
+                  Graf{" "}
+                  <InlineMath math="k(x) = 25x^5 - 20x^4 - 26x^3 + 12x^2 + 9x - 1" />
+                </>
+              }
+        description={
+                <>
+                  Kelakuan Hujung: <InlineMath math="\swarrow" />{" "}
+                  <InlineMath math="\nearrow" />
+                </>
+              }
+        scene={{
+          space: "plane",
+          frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -3, max: 3.5 } },
+          view: { kind: "fit", padding: 0.2 },
+          objects: [
+            { id: "s1", kind: "parametric", x: "((-0.75) + (((t / 4) + 0) * (1.9 / 75)))", y: "((((((25 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(5)) - (20 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(4))) - (26 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(3))) + (12 * (((-0.75) + (((t / 4) + 0) * (1.9 / 75))))^(2))) + (9 * ((-0.75) + (((t / 4) + 0) * (1.9 / 75))))) - 1)", parameter: { min: 0, max: 300 }, appearance: "primary" },
+          ],
+        }}
+      />
+</ContentBlock>
+
+Dengan menganalisis sebutan pelopor, kita boleh meramal bentuk umum graf di kedua-dua hujungnya.
+
+## Latihan
+
+Perhatikan polinomial berikut
+
+<BlockMath math="p(x)=-(x-2)^2(x+1)" />
+
+Tentukan **darjah dan pekali pelopornya**, pensifar nyata, kelakuan graf pada setiap pensifar dan kelakuan hujungnya. Kemudian, huraikan ciri-ciri utama yang mesti ditunjukkan oleh lakaran yang betul.
+
+### Jalan Kerja
+
+Apabila sebutan pelopor setiap faktor didarab, kita dapat <InlineMath math="-x^3" />, jadi polinomial ini berdarjah <InlineMath math="3" /> dengan pekali pelopor <InlineMath math="-1" />.
+
+**Bentuk faktor** memberi kita pensifar secara terus:
+
+- <InlineMath math="x=-1" /> mempunyai kegandaan <InlineMath math="1" />, jadi graf memotong paksi-<InlineMath math="x" /> di situ.
+- <InlineMath math="x=2" /> mempunyai kegandaan <InlineMath math="2" />, jadi graf menyentuh paksi-<InlineMath math="x" /> dan berpusing di situ.
+
+Oleh sebab darjahnya ganjil dan pekali pelopornya negatif,
+
+<MathContainer>
+  <BlockMath math="x\to-\infty \implies p(x)\to\infty" />
+  <BlockMath math="x\to\infty \implies p(x)\to-\infty" />
+</MathContainer>
+
+Sebagai satu titik semakan tambahan, <InlineMath math="p(0)=-4" />. Oleh itu, lakaran yang betul naik di hujung paling kiri, memotong paksi pada <InlineMath math="(-1,0)" />, melalui <InlineMath math="(0,-4)" />, menyentuh paksi pada <InlineMath math="(2,0)" />, dan turun di hujung paling kanan.

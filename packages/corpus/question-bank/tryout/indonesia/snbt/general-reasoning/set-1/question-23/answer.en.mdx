@@ -1,19 +1,40 @@
-The table's categories are Fiksi (fiction), Sains (science), Sejarah (history), and Bahasa (language). Each option uses a different measure: a count, a percentage increase, or a share of the total. Compute the measure that **each statement** asks for instead of reading only the change in counts.
+This question has two stages. First, find the week when the combined stock of the three warehouses first drops below <InlineMath math="200" /> tonnes. Second, work out each warehouse's stock in that week and rank them. Both stages use the same number: **the change in each warehouse's stock per week**.
 
-The share of science books in the total:
+Stock goes up with rice coming in, then goes down with rice going out and with shrinkage (*susut*). The text says shrinkage is recorded separately from rice going out, so you have to subtract it too:
 
 <BlockMath math="\begin{aligned}
-\text{Semester I: } & \frac{800}{3{,}000}\approx 26.7\% \\
-\text{Semester II: } & \frac{760}{3{,}450}\approx 22.0\%
+\text{Anggrek}: \quad 22-35-3 &= -16 \\
+\text{Bakung}: \quad 38-48-1 &= -11 \\
+\text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-The share falls, so the statement about science books matches the data.
+The three warehouses start with <InlineMath math="180+150+96=426" /> tonnes in total, and the total falls by <InlineMath math="16+11+5=32" /> tonnes every week. After <InlineMath math="w" /> weeks, the total is <InlineMath math="426-32w" />. Find the smallest whole <InlineMath math="w" /> that makes it less than <InlineMath math="200" />:
 
-Check the other statements:
+<BlockMath math="\begin{aligned}
+426-32w &< 200 \\
+32w &> 226 \\
+w &> 7.0625
+\end{aligned}" />
 
-- The largest increase in count belongs to fiction: <InlineMath math="300" /> books, or <InlineMath math="\frac{300}{1{,}200}=25\%" />. The largest percentage increase belongs to history: <InlineMath math="\frac{135}{450}=30\%" />. They are different categories.
-- Language books rose by <InlineMath math="\frac{55}{550}=10\%" />, not more than <InlineMath math="15\%" />.
-- Fiction makes up <InlineMath math="\frac{1{,}500}{3{,}450}\approx 43.5\%" /> of semester II loans, less than half.
-- The total rose by <InlineMath math="\frac{450}{3{,}000}=15\%" />, not more than <InlineMath math="20\%" />.
+So the week you need is week <InlineMath math="8" />. At the end of week <InlineMath math="7" />, the total is still <InlineMath math="426-224=202" /> tonnes, not yet below <InlineMath math="200" />. At the end of week <InlineMath math="8" />, it's <InlineMath math="426-256=170" /> tonnes.
 
-So the statement that matches the data is that the share of science book loans in the total fell.
+Now find each warehouse's stock after <InlineMath math="8" /> weeks:
+
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad 180-8\times16 &= 52 \\
+\text{Bakung}: \quad 150-8\times11 &= 62 \\
+\text{Cempaka}: \quad 96-8\times5 &= 56
+\end{aligned}" />
+
+From largest to smallest: Bakung with <InlineMath math="62" /> tonnes, Cempaka with <InlineMath math="56" />, then Anggrek with <InlineMath math="52" />. Check: <InlineMath math="62+56+52=170" />, which matches the total found above.
+
+Notice that Anggrek, the warehouse with the largest starting stock, ends up the smallest because its stock falls fastest. The cooperative chair only looked at the starting stock.
+
+The other orders come from specific wrong steps:
+
+- Bakung, Anggrek, Cempaka is the order at the end of week <InlineMath math="7" />: Bakung <InlineMath math="73" />, Anggrek <InlineMath math="68" />, Cempaka <InlineMath math="61" />. It happens if you round <InlineMath math="7.0625" /> down, but in that week the total is still <InlineMath math="202" /> tonnes.
+- Cempaka, Bakung, Anggrek ranks the warehouses by how slowly they decline, from <InlineMath math="-5" /> to <InlineMath math="-16" />. It forgets the starting stock.
+- Cempaka, Anggrek, Bakung comes from forgetting shrinkage at every step. The weekly drops become <InlineMath math="13" />, <InlineMath math="10" />, and <InlineMath math="3" /> tonnes, the total only goes below <InlineMath math="200" /> in week <InlineMath math="9" />, and the stocks become Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, Cempaka <InlineMath math="69" />.
+- Anggrek, Cempaka, Bakung comes from finding the right week but forgetting shrinkage for each warehouse, giving Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, Cempaka <InlineMath math="72" />.
+
+So at the end of that week, the stocks from largest to smallest are Bakung, Cempaka, then Anggrek.

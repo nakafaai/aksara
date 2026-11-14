@@ -1,18 +1,48 @@
-Eine quadratische Gleichung hat meist zwei Lösungen, prüfe also **beide Werte von <InlineMath math="x" />** und nicht nur den positiven.
+Du sollst bei vier Gleichungen die Lösungen zählen. Am meisten hilft dir **die Form des Graphen von <InlineMath math="f" />**. Danach löst du jede Gleichung algebraisch, damit keine Lösung verloren geht.
 
-<BlockMath math="x^2-2x-3=(x-3)(x+1)=0\quad\Rightarrow\quad x=3\ \text{oder}\ x=-1" />
+# Die Form des Graphen
 
-# Vergleich für jede Lösung
+Der Graph von <InlineMath math="y=x^2-4" /> ist eine Parabel, die die <InlineMath math="x" />-Achse bei <InlineMath math="x=-2" /> und <InlineMath math="x=2" /> schneidet und ihren tiefsten Punkt bei <InlineMath math="(0,-4)" /> hat. Der Betrag klappt den Teil unterhalb der <InlineMath math="x" />-Achse nach oben. So entsteht eine W-Form: Bei <InlineMath math="x=\pm2" /> ist der Wert <InlineMath math="0" />, dazwischen steigt der Graph zu **einer kleinen Spitze bei <InlineMath math="(0,4)" />**, und nach links und rechts steigt er immer weiter.
 
-| <InlineMath math="x" /> | <InlineMath math="P=x^3" /> | <InlineMath math="Q=9x" /> | Beziehung |
-| :---: | :---: | :---: | :---: |
-| 3 | 27 | 27 | <InlineMath math="P=Q" /> |
-| <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="-9" /> | <InlineMath math="P>Q" /> |
+Eine waagerechte Gerade <InlineMath math="y=k" /> schneidet diesen Graphen so oft.
 
-Beide Lösungen sind zulässig, liefern aber **verschiedene Beziehungen**. Wer nur <InlineMath math="x=3" /> verwendet, wählt <InlineMath math="P=Q" />.
+| Wert von <InlineMath math="k" /> | Anzahl der Schnittpunkte |
+| :---: | :---: |
+| <InlineMath math="k<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="k=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<k<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="k=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="k>4" /> | <InlineMath math="2" /> |
 
-# Algebraischer Weg
+# Die erste und die vierte Aussage
 
-Wegen <InlineMath math="x^2=2x+3" /> gilt <InlineMath math="x^3=x\cdot x^2=2x^2+3x=2(2x+3)+3x=7x+6" />. Also ist <InlineMath math="P-Q=7x+6-9x=6-2x" />, das ergibt 0 für <InlineMath math="x=3" /> und 8 für <InlineMath math="x=-1" />. Das Vorzeichen der Differenz **hängt davon ab, welche Lösung gewählt wird**.
+Bei <InlineMath math="f(x)=4" /> gibt es für den Inhalt des Betrags zwei Möglichkeiten.
 
-Die **gegebenen Informationen reichen also nicht aus**, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.
+<BlockMath math="\begin{aligned}
+x^2-4=4&\quad\Rightarrow\quad x^2=8\quad\Rightarrow\quad x=\pm2\sqrt2\\
+x^2-4=-4&\quad\Rightarrow\quad x^2=0\quad\Rightarrow\quad x=0
+\end{aligned}" />
+
+Es gibt genau <InlineMath math="3" /> Lösungen, weil **die Gerade <InlineMath math="y=4" /> die kleine Spitze nur in einem Punkt berührt**. Die erste Aussage ist wahr.
+
+Für die vierte Aussage zeigt die Tabelle, dass vier Lösungen nur bei <InlineMath math="0<k<4" /> auftreten. Die ganzen Zahlen dort sind <InlineMath math="1, 2, 3" />, also genau <InlineMath math="3" />. Die Werte <InlineMath math="k=0" /> und <InlineMath math="k=4" /> zählen nicht, denn sie liefern <InlineMath math="2" /> und <InlineMath math="3" /> Lösungen. Die vierte Aussage ist wahr.
+
+# Die zweite Aussage
+
+Die linke Seite <InlineMath math="f(x)" /> ist nie negativ, also **darf auch die rechte Seite <InlineMath math="x+2" /> nicht negativ sein**, das heißt <InlineMath math="x\ge-2" />. In diesem Bereich gilt <InlineMath math="|x+2|=x+2" />, und du kannst ausklammern, statt zu teilen.
+
+<BlockMath math="\begin{aligned}
+|x-2|\cdot|x+2|&=x+2\\
+(x+2)|x-2|-(x+2)&=0\\
+(x+2)\bigl(|x-2|-1\bigr)&=0
+\end{aligned}" />
+
+Der erste Faktor liefert <InlineMath math="x=-2" />. Der zweite liefert <InlineMath math="|x-2|=1" />, also <InlineMath math="x=1" /> oder <InlineMath math="x=3" />. Zur Probe: <InlineMath math="f(-2)=0=-2+2" />, <InlineMath math="f(1)=3=1+2" /> und <InlineMath math="f(3)=5=3+2" />. Es gibt <InlineMath math="3" /> Lösungen, die zweite Aussage ist also falsch. Die Anzahl <InlineMath math="2" /> entsteht, wenn du beide Seiten durch <InlineMath math="x+2" /> teilst und so die Lösung <InlineMath math="x=-2" /> verlierst.
+
+# Die dritte Aussage
+
+Setz <InlineMath math="y=f(x)" />. Die Gleichung wird zu <InlineMath math="\left|y^2-4\right|=2" />, also <InlineMath math="y^2=6" /> oder <InlineMath math="y^2=2" />. Weil **<InlineMath math="y=f(x)" /> nie negativ ist**, kommen nur <InlineMath math="y=\sqrt6" /> und <InlineMath math="y=\sqrt2" /> in Frage.
+
+Beide Werte liegen zwischen <InlineMath math="0" /> und <InlineMath math="4" />, denn <InlineMath math="\sqrt6<\sqrt{16}=4" />. Laut Tabelle liefert jeder von ihnen <InlineMath math="4" /> Lösungen, nämlich <InlineMath math="x^2=4\pm\sqrt6" /> und <InlineMath math="x^2=4\pm\sqrt2" />. Diese vier Werte von <InlineMath math="x^2" /> sind positiv und verschieden, zusammen sind es also <InlineMath math="8" /> Lösungen. Die dritte Aussage ist wahr. Würdest du auch die negativen Werte <InlineMath math="y=-\sqrt6" /> und <InlineMath math="y=-\sqrt2" /> verwenden, kämst du auf mehr Lösungen, obwohl <InlineMath math="f(x)" /> gar nicht negativ werden kann.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte wahr.

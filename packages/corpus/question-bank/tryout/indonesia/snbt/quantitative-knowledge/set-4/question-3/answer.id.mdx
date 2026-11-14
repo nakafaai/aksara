@@ -1,18 +1,48 @@
-Persamaan kuadrat biasanya memiliki dua akar, jadi periksa **kedua nilai <InlineMath math="x" />**, bukan hanya akar yang positif.
+Kamu perlu menghitung banyak penyelesaian dari empat persamaan. Alat yang paling membantu adalah **bentuk grafik <InlineMath math="f" />**, lalu setiap persamaan diselesaikan dengan aljabar supaya tidak ada akar yang hilang.
 
-<BlockMath math="x^2-2x-3=(x-3)(x+1)=0\quad\Rightarrow\quad x=3\ \text{atau}\ x=-1" />
+# Bentuk grafik fungsi
 
-# Membandingkan untuk setiap akar
+Grafik <InlineMath math="y=x^2-4" /> adalah parabola yang memotong sumbu-<InlineMath math="x" /> di <InlineMath math="x=-2" /> dan <InlineMath math="x=2" />, dengan titik terendah <InlineMath math="(0,-4)" />. Tanda mutlak membalik bagian di bawah sumbu-<InlineMath math="x" /> ke atas. Hasilnya grafik berbentuk huruf W: nilainya <InlineMath math="0" /> di <InlineMath math="x=\pm2" />, naik ke **puncak kecil di titik <InlineMath math="(0,4)" />**, dan naik terus ke kiri dan ke kanan.
 
-| <InlineMath math="x" /> | <InlineMath math="P=x^3" /> | <InlineMath math="Q=9x" /> | Hubungan |
-| :---: | :---: | :---: | :---: |
-| 3 | 27 | 27 | <InlineMath math="P=Q" /> |
-| <InlineMath math="-1" /> | <InlineMath math="-1" /> | <InlineMath math="-9" /> | <InlineMath math="P>Q" /> |
+Garis mendatar <InlineMath math="y=k" /> memotong grafik ini sebanyak berikut.
 
-Kedua akar sah, tetapi **hubungannya berbeda**. Siswa yang hanya memakai <InlineMath math="x=3" /> akan memilih <InlineMath math="P=Q" />.
+| Nilai <InlineMath math="k" /> | Banyak titik potong |
+| :---: | :---: |
+| <InlineMath math="k<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="k=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<k<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="k=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="k>4" /> | <InlineMath math="2" /> |
 
-# Cara aljabar
+# Pernyataan pertama dan keempat
 
-Karena <InlineMath math="x^2=2x+3" />, berlaku <InlineMath math="x^3=x\cdot x^2=2x^2+3x=2(2x+3)+3x=7x+6" />. Jadi <InlineMath math="P-Q=7x+6-9x=6-2x" />, yang bernilai 0 untuk <InlineMath math="x=3" /> dan 8 untuk <InlineMath math="x=-1" />. Tanda selisihnya **bergantung pada akar yang dipilih**.
+Untuk <InlineMath math="f(x)=4" />, ada dua kemungkinan isi tanda mutlak.
 
-Jadi, **informasi yang diberikan tidak cukup** untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
+<BlockMath math="\begin{aligned}
+x^2-4=4&\quad\Rightarrow\quad x^2=8\quad\Rightarrow\quad x=\pm2\sqrt2\\
+x^2-4=-4&\quad\Rightarrow\quad x^2=0\quad\Rightarrow\quad x=0
+\end{aligned}" />
+
+Ada tepat <InlineMath math="3" /> penyelesaian, karena **garis <InlineMath math="y=4" /> hanya menyentuh puncak kecil di satu titik**. Pernyataan pertama benar.
+
+Untuk pernyataan keempat, tabel di atas menunjukkan bahwa empat penyelesaian hanya terjadi saat <InlineMath math="0<k<4" />. Bilangan bulatnya <InlineMath math="1, 2, 3" />, jadi ada tepat <InlineMath math="3" />. Nilai <InlineMath math="k=0" /> dan <InlineMath math="k=4" /> tidak ikut karena keduanya memberi <InlineMath math="2" /> dan <InlineMath math="3" /> penyelesaian. Pernyataan keempat benar.
+
+# Pernyataan kedua
+
+Ruas kiri <InlineMath math="f(x)" /> tidak pernah negatif, jadi **ruas kanan <InlineMath math="x+2" /> juga harus tidak negatif**, yaitu <InlineMath math="x\ge-2" />. Pada daerah itu <InlineMath math="|x+2|=x+2" />, sehingga kamu bisa memfaktorkan tanpa membagi.
+
+<BlockMath math="\begin{aligned}
+|x-2|\cdot|x+2|&=x+2\\
+(x+2)|x-2|-(x+2)&=0\\
+(x+2)\bigl(|x-2|-1\bigr)&=0
+\end{aligned}" />
+
+Faktor pertama memberi <InlineMath math="x=-2" />. Faktor kedua memberi <InlineMath math="|x-2|=1" />, yaitu <InlineMath math="x=1" /> atau <InlineMath math="x=3" />. Coba cek: <InlineMath math="f(-2)=0=-2+2" />, <InlineMath math="f(1)=3=1+2" />, dan <InlineMath math="f(3)=5=3+2" />. Ada <InlineMath math="3" /> penyelesaian, jadi pernyataan kedua salah. Jawaban <InlineMath math="2" /> muncul jika kedua ruas dibagi <InlineMath math="x+2" />, sehingga akar <InlineMath math="x=-2" /> hilang.
+
+# Pernyataan ketiga
+
+Misalkan <InlineMath math="y=f(x)" />. Persamaannya menjadi <InlineMath math="\left|y^2-4\right|=2" />, jadi <InlineMath math="y^2=6" /> atau <InlineMath math="y^2=2" />. Karena **<InlineMath math="y=f(x)" /> tidak pernah negatif**, hanya <InlineMath math="y=\sqrt6" /> dan <InlineMath math="y=\sqrt2" /> yang dipakai.
+
+Kedua nilai itu terletak di antara <InlineMath math="0" /> dan <InlineMath math="4" />, sebab <InlineMath math="\sqrt6<\sqrt{16}=4" />. Menurut tabel, masing-masing memberi <InlineMath math="4" /> penyelesaian, yaitu <InlineMath math="x^2=4\pm\sqrt6" /> dan <InlineMath math="x^2=4\pm\sqrt2" />. Keempat nilai <InlineMath math="x^2" /> itu positif dan berbeda, jadi totalnya <InlineMath math="8" /> penyelesaian. Pernyataan ketiga benar. Jika nilai negatif <InlineMath math="y=-\sqrt6" /> dan <InlineMath math="y=-\sqrt2" /> ikut dipakai, kamu akan mengira ada lebih banyak penyelesaian, padahal <InlineMath math="f(x)" /> tidak bisa bernilai negatif.
+
+Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat benar.

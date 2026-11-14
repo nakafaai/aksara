@@ -1,17 +1,34 @@
-First work out **the part of the pool pump A can fill alone** by 11.00. Pump B must fill the rest.
+The six teams have <InlineMath math="9+10+12+12+13+14=70" /> members in total, but counting seats isn't enough. **A team can't be split**, and the 08:30 limit caps the number of trips. The plan: find the trip limits, find how many teams fit on one trip, then try plans from the cheapest up.
 
-# Part filled by pump A
+# Trip limits up to half past eight
 
-From 07.00 to 11.00 pump A **runs for 4 hours** and fills <InlineMath math="4\cdot\tfrac16=\tfrac23" /> of the pool. The part still to fill is
+The bus leaves at 07:00 and 07:50 and arrives at 07:25 and 08:15. Its next departure, at 08:40, is too late. Each minibus leaves at 07:00 and 07:40, while the 08:20 departure only arrives at 08:40. So **there are at most two bus trips and four minibus trips**.
 
-<BlockMath math="1-\frac14-\frac23=\frac{12}{12}-\frac{3}{12}-\frac{8}{12}=\frac{1}{12}" />
+# Teams per trip
 
-# How long pump B runs
+Even the two smallest teams make <InlineMath math="9+10=19" /> people, more than the <InlineMath math="14" /> seats of a minibus. So **one minibus trip can carry only one team**.
 
-<BlockMath math="\frac{1}{12}:\frac19=\frac{9}{12}=\frac34\text{ hour}=45\text{ minutes}" />
+The three smallest teams make <InlineMath math="9+10+12=31" /> people, more than the <InlineMath math="30" /> seats of the bus. So one bus trip carries at most two teams. Any two teams fit on the bus, since the two largest make only <InlineMath math="13+14=27" /> people.
 
-Pump B must run at least 45 minutes before 11.00, so **it must be switched on by 10.15 at the latest**.
+# The cheapest plan
 
-The answer 08.00 forgets that the pool is already a quarter full, so pump B would fill <InlineMath math="\tfrac13" /> of the pool in 3 hours. The times 09.00, 09.45 and 10.00 also fill the pool in time, but they are not the latest.
+Say there are <InlineMath math="b" /> bus trips and <InlineMath math="m" /> minibus trips. All six teams must travel, so <InlineMath math="2b+m\ge6" />, with <InlineMath math="b\le2" /> and <InlineMath math="m\le4" />. Try each value of <InlineMath math="b" />.
 
-So pump B must be switched on by **10.15** at the latest.
+<BlockMath math="\begin{aligned}
+b=0 &: m\ge6, \text{ but } m\le4 \\
+b=1 &: m\ge4, \quad \text{cost }150{,}000+4\times65{,}000=410{,}000 \\
+b=2 &: m\ge2, \quad \text{cost }2\times150{,}000+2\times65{,}000=430{,}000
+\end{aligned}" />
+
+So **one bus trip and four minibus trips** give the smallest cost, <InlineMath math="\text{Rp}410{,}000" />. One way to arrange it: the bus takes the teams of <InlineMath math="13" /> and <InlineMath math="14" /> (<InlineMath math="27" /> people), and four minibus trips take the teams of <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, and <InlineMath math="12" />. Check the times: the bus arrives at 07:25, and the minibuses arrive at 07:20 and 08:00. Everyone's on time.
+
+# The wrong options
+
+The cheaper options **only count seats** or forget the time limit.
+
+- <InlineMath math="\text{Rp}325{,}000" /> uses <InlineMath math="5" /> minibus trips because <InlineMath math="5\times14=70" />, but teams can't be split and the minibuses only have time for <InlineMath math="4" /> trips.
+- <InlineMath math="\text{Rp}345{,}000" /> uses <InlineMath math="1" /> bus trip and <InlineMath math="3" /> minibus trips (<InlineMath math="72" /> seats), but then the bus has to carry three teams, at least <InlineMath math="31" /> people.
+- <InlineMath math="\text{Rp}365{,}000" /> uses <InlineMath math="2" /> bus trips and <InlineMath math="1" /> minibus trip (<InlineMath math="74" /> seats), but five teams on two bus trips put three teams on one of them.
+- <InlineMath math="\text{Rp}390{,}000" /> uses <InlineMath math="6" /> minibus trips, one team each, but the minibuses only have time for <InlineMath math="4" /> trips before 08:30.
+
+So the cheapest cost for the six teams is <InlineMath math="\text{Rp}410{,}000" />.

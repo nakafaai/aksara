@@ -1,0 +1,371 @@
+
+export const metadata = {
+  title: "Graf Fungsi Logaritma",
+  description: "Lukis graf fungsi logaritma langkah demi langkah. Terokai penjelmaan, asimptot dan ciri-ciri utama graf melalui visualisasi interaktif.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Bagaimana Asas Membentuk Graf Logaritma
+
+Graf logaritma <Highlight>berubah dengan cepat berhampiran asimptot mencancangnya</Highlight>, kemudian semakin perlahan apabila inputnya bertambah. Bentuk ini muncul setiap kali output mencatat logaritma bagi satu nisbah positif, termasuk skala aras bunyi dan skala pH. Asas menentukan sama ada graf menokok atau menyusut, manakala penjelmaan menggerakkan graf dan asimptotnya.
+
+## Ciri-ciri Graf Logaritma
+
+Graf berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa asas yang lebih besar daripada <InlineMath math="1" />. **Setiap graf** melalui <InlineMath math="(1,0)" /> dan menokok pada kadar yang berbeza.
+
+<MathVisual
+  title={<>Perbandingan Graf Logaritma dengan Asas Berbeza</>}
+  description={
+    <>
+      Graf fungsi logaritma untuk <InlineMath math="b > 1" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="y=\log_{2} x" />,
+    "l2": <InlineMath math="y=\log_{10} x" />,
+    "l3": <InlineMath math="y=\ln x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -6, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "exp(t)", y: "log(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "exp(t)", y: "ln(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 7.17, y: 2.84 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 7.17, y: 0.86 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 7.17, y: 1.97 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Sifat Graf Logaritma
+
+Untuk <InlineMath math="f(x) = \log_b x" /> dengan <InlineMath math="b>0,\ b\neq1" />, graf ini <Highlight>hanya menerima input positif</Highlight>. Arahnya bergantung pada sama ada asas lebih besar atau lebih kecil daripada <InlineMath math="1" />.
+
+| Ciri | Apa yang dilakukan oleh graf |
+| :--- | :--- |
+| Domain | <InlineMath math="x>0" /> |
+| Julat | Setiap nombor nyata, <InlineMath math="-\infty<y<\infty" /> |
+| Pintasan-<InlineMath math="x" /> | Melalui <InlineMath math="(1,0)" /> kerana <InlineMath math="\log_b1=0" /> |
+| Asimptot mencancang | Menghampiri paksi-<InlineMath math="y" /> pada <InlineMath math="x=0" /> |
+| Asas <InlineMath math="b>1" /> | Menokok tegas |
+| Asas <InlineMath math="0<b<1" /> | Menyusut tegas |
+
+## Melukis Graf Fungsi Logaritma
+
+Pilih **kuasa bagi asas** sebagai input. Input <InlineMath math="b^n" /> memberikan output <InlineMath math="n" />, jadi kamu dapat titik yang tepat tanpa perlu membundarkan.
+
+Kuasa negatif juga memberikan input positif yang sah. Dengan asas dua, input satu perempat memberikan output negatif dua.
+
+<BlockMath math="2^{-2}=\frac14 \quad\Longleftrightarrow\quad \log_2\frac14=-2" />
+
+### Graf Asas Dua
+
+Untuk melukis graf ini, kita bina jadual nilai dengan memilih nilai <InlineMath math="x" /> daripada **kuasa** bagi <InlineMath math="2" />:
+
+| <InlineMath math="x" />            | <InlineMath math="\frac{1}{8}" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="8" /> |
+| ---------------------------------- | --------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_2 x" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = \log_2 x" />
+    </>
+  }
+  description={<>Bandingkan pintasan, asimptot dan arah lengkung.</>}
+  labels={{
+    "l1": <InlineMath math="y=\log_{2} x" />,
+    "l2": <InlineMath math="(1,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -6, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0.13, y: -3 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0.25, y: -2 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 0.5, y: -1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s7", kind: "point", at: { x: 4, y: 2 }, appearance: "secondary" },
+      { id: "s8", kind: "point", at: { x: 8, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5.06, y: 2.34 }, placement: "above-left" },
+      { key: "l2", objectId: "s5", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+### Graf Asas Satu Pertiga
+
+Untuk asas <InlineMath math="0 < b < 1" />, graf akan **menyusut**:
+
+| <InlineMath math="x" />                        | <InlineMath math="\frac{1}{27}" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="27" /> |
+| ---------------------------------------------- | ---------------------------------- | --------------------------------- | --------------------------------- | --- | --- | --- | --- |
+| <InlineMath math="y = \log_{\frac{1}{3}} x" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="y = \log_{\frac{1}{3}} x" />
+    </>
+  }
+  description={<>Graf menyusut kerana asasnya terletak antara <InlineMath math="0" /> dan <InlineMath math="1" />.</>}
+  labels={{
+    "l1": <InlineMath math="y=\log_{\frac{1}{3}} x" />,
+    "l2": <InlineMath math="(1,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -3, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "exp(t)", y: "(ln(exp(t)) / ln((1 / 3)))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0.04, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0.11, y: 2 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 0.33, y: 1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "s7", kind: "point", at: { x: 9, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.04, y: -1.01 }, placement: "below-right" },
+      { key: "l2", objectId: "s5", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Membandingkan Graf Logaritma
+
+Graf yang asasnya salingan antara satu sama lain ada **output yang bertentangan**. Oleh sebab <InlineMath math="\log(1/2)=-\log 2" />, dua lengkung di bawah ialah pantulan antara satu sama lain pada paksi mengufuk.
+
+<BlockMath math="\log_{1/2}x=-\log_2x" />
+
+<MathVisual
+  title={
+    <>
+      Perbandingan Graf Logaritma <InlineMath math="b > 1" /> dan{" "}
+      <InlineMath math="0 < b < 1" />.
+    </>
+  }
+  description={<>Perhatikan perbezaan arah graf.</>}
+  labels={{
+    "l1": <InlineMath math="y=\log_{2} x" />,
+    "l2": <InlineMath math="y=\log_{0.5} x" />,
+    "l3": <><InlineMath math="x=0" /> (asimptot)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((t / 99) * 8) + 0.01)", y: "log_2((((t / 99) * 8) + 0.01))", parameter: { min: 0, max: 99 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((t / 99) * 8) + 0.01)", y: "(ln((((t / 99) * 8) + 0.01)) / ln(0.5))", parameter: { min: 0, max: 99 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.24, y: 1.7 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.24, y: -1.7 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+| Sifat              | <InlineMath math="b > 1" />  | <InlineMath math="0 < b < 1" /> |
+| ------------------ | ---------------------------- | ------------------------------- |
+| Arah graf          | Menokok (monoton)            | Menyusut (monoton)              |
+| Domain             | <InlineMath math="x > 0" />  | <InlineMath math="x > 0" />     |
+| Julat              | Semua nombor nyata           | Semua nombor nyata              |
+| Pintasan-<InlineMath math="x" />        | <InlineMath math="(1, 0)" /> | <InlineMath math="(1, 0)" />    |
+| Asimptot mencancang | <InlineMath math="x = 0" />  | <InlineMath math="x = 0" />     |
+
+## Penjelmaan Graf Logaritma
+
+**Translasi mencancang** menggerakkan seluruh lengkung dan mengekalkan asimptot mencancang pada <InlineMath math="x = 0" />. Sebaliknya, translasi mengufuk menggerakkan asimptot bersama-sama pintasan-<InlineMath math="x" /> ke kanan atau ke kiri, jadi seluruh graf bergerak ke sisi.
+
+### Translasi Mencancang
+
+Tambahkan satu pemalar **di luar logaritma** untuk menggerakkan setiap output. Domain dan asimptot mencancang kekal di tempatnya, tetapi pintasan pada paksi mengufuk memenuhi <InlineMath math="\log_b x=-k" />, jadi <InlineMath math="x=b^{-k}" />.
+
+<ContentStack>
+
+<BlockMath math="y = \log_b x + k" />
+
+  <MathVisual
+    title={<>Translasi Mencancang</>}
+    description={
+        <>
+          Graf bergerak ke atas jika <InlineMath math="k > 0" /> dan ke bawah jika{" "}
+          <InlineMath math="k < 0" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="y=\log_{2} x" />,
+      "l2": <InlineMath math="y=\log_{2} x+2" />,
+      "l3": <InlineMath math="y=\log_{2} x-2" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -8.5, max: 7 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "exp(t)", y: "(log_2(exp(t)) + 2)", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
+        { id: "s3", kind: "parametric", x: "exp(t)", y: "(log_2(exp(t)) + (-2))", parameter: { min: -3.5, max: 2.5 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4.14, y: 2.05 }, placement: "below-right" },
+        { key: "l2", objectId: "s2", at: { x: 4.14, y: 4.05 }, placement: "below-right" },
+        { key: "l3", objectId: "s3", at: { x: 4.14, y: 0.05 }, placement: "below-right" },
+      ],
+    }}
+  />
+</ContentStack>
+
+### Translasi Mengufuk
+
+Untuk menggerakkan graf, gantikan input dengan <InlineMath math="x-h" /> sebagai **nilai di dalam logaritma**. Syarat <InlineMath math="x-h>0" /> memberikan domain <InlineMath math="x>h" /> dan asimptot <InlineMath math="x=h" />. Pintasan pada paksi mengufuk beralih dari <InlineMath math="1" /> ke <InlineMath math="h+1" />.
+
+<ContentStack>
+
+<BlockMath math="y = \log_b (x - h)" />
+
+  <MathVisual
+    title={<>Translasi Mengufuk</>}
+    description={
+        <>
+          Graf bergerak ke kanan jika <InlineMath math="h > 0" /> dan ke kiri jika{" "}
+          <InlineMath math="h < 0" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="y=\log_{2} x" />,
+      "l2": <InlineMath math="y=\log_{2}(x-2)" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -5, max: 4 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "parametric", x: "(2)^(((t - 128) / 32))", y: "((t - 128) / 32)", parameter: { min: 0, max: 224 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "(2 + (2)^(((t - 128) / 32)))", y: "((t - 128) / 32)", parameter: { min: 0, max: 224 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4.14, y: 2.05 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 5.33, y: 1.74 }, placement: "below-right" },
+      ],
+    }}
+  />
+</ContentStack>
+
+## Latihan
+
+Soalan-soalan ini mengaitkan **syarat nilai positif di dalam logaritma** dengan domain, asimptot dan arah translasi. Gunakan kuasa bagi asas untuk mencari titik sebelum melakar setiap lengkung.
+
+1. Bina jadual nilai dan lukis graf bagi:
+
+   - <InlineMath math="y = \log_3 x" />
+   - <InlineMath math="y = \log_{\frac{1}{2}} x" />
+
+2. Tentukan domain, julat dan asimptot bagi fungsi <InlineMath math="f(x) = \log_5 (x + 3)" />.
+
+3. Jika <InlineMath math="f(x) = \log_2 x" /> dan <InlineMath math="g(x) = \log_2 (x - 4)" />, tentukan:
+
+   - Translasi graf <InlineMath math="g(x)" /> berbanding <InlineMath math="f(x)" />
+   - Domain bagi <InlineMath math="g(x)" />
+
+4. Lakar graf <InlineMath math="y = \log_3 x + 2" /> dan tentukan pintasan-<InlineMath math="y" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Untuk <InlineMath math="y = \log_3 x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{9}" /> | <InlineMath math="\frac{1}{3}" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+
+Untuk <InlineMath math="y = \log_{\frac{1}{2}} x" />:
+| <InlineMath math="x" /> | <InlineMath math="\frac{1}{4}" /> | <InlineMath math="\frac{1}{2}" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+|-------------------------|-------------------------------------|------------------------------------|----|----|----|
+| <InlineMath math="y" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> |
+
+Plotkan setiap pasangan tertib dan lukis lengkung licin yang kekal di sebelah kanan **asimptot mencancang** <InlineMath math="x=0" />. Graf asas <InlineMath math="3" /> naik, manakala graf asas <InlineMath math="\frac{1}{2}" /> turun.
+
+**Soalan 2**. Logaritma hanya tertakrif apabila nilai di dalamnya positif. Sempadan bagi syarat itu memberikan asimptot mencancang:
+
+- Domain: <InlineMath math="x + 3 > 0 \Rightarrow x > -3" />
+- Julat: Semua nombor nyata
+- Asimptot mencancang: <InlineMath math="x = -3" />
+
+Sempadan itu dikecualikan kerana logaritma memerlukan **nilai positif di dalamnya**, bukan sifar. Negatif dua dibenarkan, tetapi negatif tiga menjadikan nilai di dalam logaritma sifar.
+
+<BlockMath math="(-2)+3=1>0,\qquad (-3)+3=0" />
+
+**Soalan 3**. Menggantikan <InlineMath math="x" /> dengan <InlineMath math="x-4" /> menggerakkan graf ke kanan. Ungkapan yang sama juga mesti kekal positif:
+
+- Translasi: <InlineMath math="4 \text{ unit}" /> ke kanan
+- Domain: <InlineMath math="x - 4 > 0 \Rightarrow x > 4" />
+
+Semak pintasan pada paksi mengufuk: input satu pada graf asal menjadi input lima. Nilai **output** kekal sifar.
+
+<BlockMath math="\log_b(5-4)=\log_b1=0,\qquad b>0,\ b\ne1" />
+
+**Soalan 4**. Menambah <InlineMath math="2" /> di luar logaritma menggerakkan setiap titik secara mencancang tanpa mengubah **domain** atau asimptot:
+
+- Graf <InlineMath math="y = \log_3 x" /> digerakkan <InlineMath math="2 \text{ unit}" /> ke atas
+- Tiada pintasan-<InlineMath math="y" /> kerana domainnya ialah <InlineMath math="x > 0" />
+
+Khususnya, pintasan-<InlineMath math="y" /> memerlukan <InlineMath math="x=0" />, sedangkan logaritma tidak tertakrif pada nilai itu. Graf di bawah mengesahkan bahawa lengkung itu menghampiri paksi-<InlineMath math="y" /> tetapi tidak pernah sampai kepadanya.
+
+<ContentBlock>
+  <MathVisual
+    title={
+        <>
+          Lakaran Graf <InlineMath math="y = \log_3 x + 2" />
+        </>
+      }
+    description={
+        <>
+          Graf logaritma asas <InlineMath math="3" /> yang digerakkan <InlineMath math="2 \text{ unit}" /> ke atas.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="y=\log_{3} x" />,
+      "l2": <InlineMath math="y=\log_{3} x+2" />,
+      "l3": <InlineMath math="(1,2)" />,
+      "l4": <InlineMath math="(3,3)" />,
+      "l5": <><InlineMath math="x=0" /> (asimptot)</>,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -4.5, max: 6 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "parametric", x: "exp(t)", y: "(ln(exp(t)) / ln(3))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+        { id: "s2", kind: "parametric", x: "exp(t)", y: "((ln(exp(t)) / ln(3)) + 2)", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
+        { id: "s3", kind: "point", at: { x: 0.11, y: 0 }, appearance: "answer" },
+        { id: "s4", kind: "point", at: { x: 0.33, y: 1 }, appearance: "answer" },
+        { id: "s5", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+        { id: "s6", kind: "point", at: { x: 3, y: 3 }, appearance: "answer" },
+        { id: "s7", kind: "point", at: { x: 9, y: 4 }, appearance: "answer" },
+        { id: "s8", kind: "polyline", vertices: [{ x: 0, y: -2 }, { x: 0, y: 5 }], appearance: "primary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4.05, y: 1.27 }, placement: "below-right" },
+        { key: "l2", objectId: "s2", at: { x: 5.06, y: 3.48 }, placement: "above-right" },
+        { key: "l3", objectId: "s5", at: { x: 1, y: 2 }, placement: "above" },
+        { key: "l4", objectId: "s6", at: { x: 3, y: 3 }, placement: "above" },
+        { key: "l5", objectId: "s8", at: { x: 0, y: 5 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>

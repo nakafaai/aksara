@@ -1,13 +1,49 @@
-Die Dateigröße ist in Megabyte angegeben, die Geschwindigkeit in Megabit pro Sekunde. **Rechne die Dateigröße zuerst in Megabit um** und teile dann durch die Geschwindigkeit.
+Gesucht ist die Reihenfolge der drei Tätigkeiten, bei der der Akku um 16.30 Uhr so voll wie möglich ist. Der Plan: Erst klärst du, **wann die Nutzung am wenigsten kostet und wann das Laden am schnellsten geht**. Dann rechnest du die beste Reihenfolge aus und vergleichst sie mit allen anderen.
 
-# Dateigröße in Megabit
+# Warum die Reihenfolge zählt
 
-<BlockMath math="600\text{ MB}\cdot8=4\,800\text{ Megabit}" />
+Zwei Regeln machen die Reihenfolge wichtig. Erstens **halbiert der Energiesparmodus den Verbrauch beim Spielen und Lesen**, aber nur, solange der Akku bei <InlineMath math="20\%" /> oder darunter liegt. Spielen und Lesen sind also billiger, wenn der Akku schon leer ist. Zweitens lädt das Ladegerät <InlineMath math="40\%" /> pro Stunde nur, solange der Akku unter <InlineMath math="80\%" /> liegt. Laden geht also am schnellsten, wenn der Akku niedrig ist.
 
-# Downloadzeit
+Beide Regeln zeigen in dieselbe Richtung: **erst den Akku leeren, zuletzt laden**. Du musst trotzdem prüfen, dass das Handy unterwegs nicht ausgeht.
 
-<BlockMath math="\frac{4\,800}{40}=120\text{ Sekunden}" />
+# Zuerst spielen und lesen
 
-Ohne angeglichene Einheiten erhält man 15 Sekunden, also **achtmal zu schnell**.
+Fang mit dem Spielen an. Der Akku fällt von <InlineMath math="22\%" /> auf <InlineMath math="20\%" /> mit der vollen Rate von <InlineMath math="30\%" /> pro Stunde. Sobald er bei <InlineMath math="20\%" /> ist, **schaltet sich der Energiesparmodus ein, und Spielen kostet nur noch <InlineMath math="15\%" /> pro Stunde**. Sei <InlineMath math="t" /> die Zeit, bis der Akku <InlineMath math="20\%" /> erreicht.
 
-Die Datei ist also nach **120 Sekunden** heruntergeladen.
+<BlockMath math="\begin{aligned}
+t &= \frac{22-20}{30}\text{ h}=\frac{1}{15}\text{ h}=4\text{ min} \\
+\text{Akku nach dem Spielen} &= 20\%-15\%\cdot\frac{56}{60}=20\%-14\%=6\%
+\end{aligned}" />
+
+Das Lesen läuft danach ganz im Energiesparmodus mit <InlineMath math="5\%" /> pro Stunde, der Akku sinkt also von <InlineMath math="6\%" /> auf <InlineMath math="1\%" />. Das Handy geht nicht aus. Liest du vor dem Spielen, landest du ebenfalls bei <InlineMath math="1\%" />: Das Lesen bringt den Akku auf <InlineMath math="16\%" />, danach bringt ihn das Spielen mit der Sparrate von <InlineMath math="15\%" /> pro Stunde auf <InlineMath math="1\%" />.
+
+# Zuletzt laden
+
+Beim Laden ohne Nutzung ist das Handy im Standby. Deshalb **steigt der Akku um <InlineMath math="40\%-4\%=36\%" /> pro Stunde**. Der Energiesparmodus ändert die Standby-Rate nicht.
+
+<BlockMath math="1\%+36\%\cdot1{,}5=1\%+54\%=55\%" />
+
+Der Akku bleibt die ganze Zeit unter <InlineMath math="80\%" />, also gilt die Rate von <InlineMath math="40\%" /> pro Stunde für alle <InlineMath math="1{,}5" /> Stunden.
+
+# Alle Reihenfolgen im Vergleich
+
+Das Laden über <InlineMath math="1{,}5" /> Stunden bringt immer <InlineMath math="54\%" />, weil der Akku in keiner Reihenfolge beim Laden <InlineMath math="80\%" /> erreicht. **Der einzige Unterschied ist, wie viel vom Spielen und Lesen im Energiesparmodus passiert**.
+
+| Reihenfolge | Rechnung | Akku um 16.30 Uhr |
+| --- | --- | --- |
+| Spielen, Lesen, Laden | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Lesen, Spielen, Laden | <InlineMath math="1\%+54\%" /> | <InlineMath math="55\%" /> |
+| Spielen, Laden, Lesen | <InlineMath math="6\%+54\%-10\%" /> | <InlineMath math="50\%" /> |
+| Lesen, Laden, Spielen | <InlineMath math="16\%+54\%-30\%" /> | <InlineMath math="40\%" /> |
+| Laden, dann Spielen und Lesen | <InlineMath math="22\%+54\%-30\%-10\%" /> | <InlineMath math="36\%" /> |
+
+In den letzten drei Zeilen läuft alles nach dem Laden oberhalb von <InlineMath math="20\%" />, also mit voller Rate. Der größte Wert in der Tabelle ist <InlineMath math="55\%" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="36\%" /> entsteht, wenn du **zuerst lädst**. Du bekommst den Wert auch, wenn du den Energiesparmodus übersiehst: Spielen und Lesen mit voller Rate verbrauchen <InlineMath math="40\%" />, mehr als <InlineMath math="22\%" />, und die beste Reihenfolge scheint das Handy auszuschalten.
+- <InlineMath math="40\%" /> ist das Ergebnis von Lesen, Laden und dann Spielen.
+- <InlineMath math="50\%" /> ist das Ergebnis von Spielen, Laden und dann Lesen.
+- <InlineMath math="61\%" /> entsteht, wenn du vergisst, dass das Handy im Standby auch beim Laden <InlineMath math="4\%" /> pro Stunde verbraucht. Dann zählst du <InlineMath math="40\%\cdot1{,}5=60\%" /> dazu.
+
+Der Akku kann um 16.30 Uhr also höchstens bei <InlineMath math="55\%" /> stehen, wenn Nara zuerst spielt und liest und zuletzt lädt.

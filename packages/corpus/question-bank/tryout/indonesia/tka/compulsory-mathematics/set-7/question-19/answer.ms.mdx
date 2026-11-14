@@ -1,0 +1,76 @@
+Soalan ini meminta nisbah **luas**, bukan nisbah sisi. Segi empat sama <InlineMath math="PQRS" /> hanya ada dua bucu pada bulatan, jadi ia bukan segi empat sama biasa yang dilukis di dalam bulatan. Kamu perlukan jejari bulatan dahulu, kemudian sisi <InlineMath math="PQRS" /> melalui teorem Pythagoras.
+
+# Jejari bulatan
+
+Bulatan <InlineMath math="L" /> menyentuh keempat-empat sisi segi empat sama <InlineMath math="ABCD" />, jadi **diameternya sama dengan sisi segi empat sama itu**, iaitu <InlineMath math="20\text{ cm}" />. Dua titik sentuhan pada sisi yang bertentangan terletak tepat di kedua-dua hujung satu diameter. Jejarinya <InlineMath math="r=10\text{ cm}" />, dan garis <InlineMath math="g" /> ialah salah satu diameter bulatan.
+
+# Sisi segi empat sama PQRS
+
+Katakan sisi <InlineMath math="PQRS" /> ialah <InlineMath math="s" />. Titik <InlineMath math="R" /> dan <InlineMath math="S" /> terletak pada bulatan, dan <InlineMath math="SR" /> selari dengan <InlineMath math="g" />. Garis serenjang dari pusat <InlineMath math="O" /> ke perentas <InlineMath math="SR" /> sentiasa membahagi dua sama panjang perentas itu. Garis serenjang yang sama juga membahagi dua <InlineMath math="PQ" />, kerana <InlineMath math="PS" /> dan <InlineMath math="QR" /> kedua-duanya berserenjang dengan <InlineMath math="g" />. Jadi **<InlineMath math="O" /> tepat di tengah-tengah <InlineMath math="PQ" />**, dan <InlineMath math="OQ=\tfrac{s}{2}" />.
+
+<MathVisual
+  title={<>Segi tiga bersudut tegak <InlineMath math="OQR" /></>}
+  description={<>Rajah soalan dengan tembereng garis <InlineMath math="OR" /> dilukis. Segi tiga <InlineMath math="OQR" /> bersudut tegak di <InlineMath math="Q" />, dengan <InlineMath math="OQ" /> separuh sisi segi empat sama, <InlineMath math="QR" /> satu sisi penuh, dan <InlineMath math="OR" /> ialah jejari <InlineMath math="10" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    s: <InlineMath math="S" />,
+    radius: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -12, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
+      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
+      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Segi tiga <InlineMath math="OQR" /> bersudut tegak di <InlineMath math="Q" />, dengan <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" />, dan hipotenus <InlineMath math="OR=10" /> kerana <InlineMath math="R" /> terletak pada bulatan.
+
+<BlockMath math="\begin{aligned}
+\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
+\frac{5s^2}{4}&=100 \\
+s^2&=80
+\end{aligned}" />
+
+# Nisbah luas
+
+Luas <InlineMath math="PQRS" /> ialah <InlineMath math="s^2=80\text{ cm}^2" />, dan luas <InlineMath math="ABCD" /> ialah <InlineMath math="20^2=400\text{ cm}^2" />. Bahagikan luas yang kecil dengan luas yang besar untuk mendapatkan nisbahnya.
+
+<BlockMath math="\frac{L_{PQRS}}{L_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
+
+Nisbah sisinya pula ialah <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **Nisbah luas ialah kuasa dua nisbah sisi**, jadi <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, sepadan dengan pengiraan di atas.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1:8" /> terhasil apabila <InlineMath math="O" /> dianggap berada di titik <InlineMath math="P" />. Maka <InlineMath math="OR" /> menjadi pepenjuru, <InlineMath math="s\sqrt{2}=10" />, dan <InlineMath math="s^2=50" />.
+- <InlineMath math="1:4" /> terhasil apabila sisi segi empat sama dianggap sama dengan jejari, <InlineMath math="s=10" />, tanpa sebarang alasan.
+- <InlineMath math="1:\sqrt{5}" /> ialah nisbah sisi. **Soalan meminta nisbah luas**, jadi nisbah sisi masih perlu dikuasaduakan.
+- <InlineMath math="1:2" /> ialah nisbah bagi segi empat sama yang keempat-empat bucunya terletak pada bulatan, dengan pepenjuru <InlineMath math="20" /> dan luas <InlineMath math="200" />. Di sini <InlineMath math="P" /> dan <InlineMath math="Q" /> terletak pada diameter, bukan pada bulatan.
+
+Jadi, nisbah luas segi empat sama <InlineMath math="PQRS" /> kepada luas segi empat sama <InlineMath math="ABCD" /> ialah <InlineMath math="1:5" />.

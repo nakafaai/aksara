@@ -1,0 +1,77 @@
+# Mengenal pasti prisma daripada bentangannya
+
+Dua pentagon yang kongruen ialah tapak dan penutup prisma. Lima segi empat tepat ialah permukaan sisinya: lebarnya <InlineMath math="6" />, <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="5" />, dan <InlineMath math="5" /> sepadan dengan lima sisi pentagon, dan panjang <InlineMath math="10\text{ cm}" /> ialah tinggi prisma. Jadi, bentuk ini ialah **prisma pentagon dengan tinggi <InlineMath math="10\text{ cm}" />**.
+
+Pentagon itu berbentuk seperti rumah. Oleh sebab <InlineMath math="\angle A=\angle B=90^\circ" /> dan <InlineMath math="BC=EA=4" />, bahagian bawahnya ialah segi empat tepat <InlineMath math="ABCE" /> berukuran <InlineMath math="6\times4" />. Di atasnya terdapat segi tiga sama kaki <InlineMath math="CDE" /> dengan tapak <InlineMath math="CE=6" /> dan kaki <InlineMath math="5" />. Tinggi segi tiga itu dikira dengan teorem Pythagoras pada separuh tapaknya:
+
+<BlockMath math="\begin{aligned}
+t&=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm} \\
+L_{\text{tapak}}&=6\cdot4+\tfrac12\cdot6\cdot4=24+12=36\text{ cm}^2
+\end{aligned}" />
+
+<MathVisual
+  title={<>Pentagon <InlineMath math="ABCDE" /></>}
+  description={<>Pentagon dengan bucu <InlineMath math="A(0,0)" />, <InlineMath math="B(6,0)" />, <InlineMath math="C(6,4)" />, <InlineMath math="D(3,8)" />, dan <InlineMath math="E(0,4)" />. Tembereng <InlineMath math="CE" /> membahagi pentagon itu kepada segi empat tepat <InlineMath math="6\times4" /> dan segi tiga sama kaki dengan tinggi <InlineMath math="4" />, jadi titik <InlineMath math="D" /> berada <InlineMath math="8" /> di atas <InlineMath math="AB" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    height: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pentagon", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 4 }, { x: 3, y: 8 }, { x: 0, y: 4 }] },
+      { id: "split", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "roof-height", kind: "segment", appearance: "highlight", from: { x: 3, y: 4 }, to: { x: 3, y: 8 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 6, y: 4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: 8 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 8 }, placement: "above" },
+      { key: "e", objectId: "point-e", at: { x: 0, y: 4 }, placement: "left" },
+      { key: "height", objectId: "roof-height", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Pernyataan pertama
+
+**Betul**. Prisma pentagon mempunyai <InlineMath math="5" /> tepi pada tapak, <InlineMath math="5" /> tepi pada penutup, dan <InlineMath math="5" /> tepi sisi, jadi <InlineMath math="15" /> tepi semuanya. Tepi tapak dan tepi penutup masing-masing berjumlah perimeter pentagon, manakala setiap tepi sisi panjangnya <InlineMath math="10\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\text{perimeter pentagon}&=6+4+4+5+5=24\text{ cm} \\
+\text{jumlah panjang tepi}&=2\cdot24+5\cdot10=98\text{ cm}
+\end{aligned}" />
+
+Berhati-hati jika kamu menjumlahkan perimeter semua permukaan dalam bentangan. Hasilnya <InlineMath math="196\text{ cm}" />, iaitu dua kali ganda, kerana **setiap tepi dikongsi oleh dua permukaan**.
+
+# Pernyataan kedua
+
+**Salah**. Isi padu prisma ialah luas tapak didarab dengan tinggi.
+
+<BlockMath math="V=36\cdot10=360\text{ cm}^3" />
+
+Nilai ini kurang daripada <InlineMath math="375\text{ cm}^3" />. Pernyataan ini nampak betul jika kaki segi tiga <InlineMath math="5" /> digunakan sebagai tingginya, kerana luas tapak menjadi <InlineMath math="24+15=39" /> dan isi padunya <InlineMath math="390\text{ cm}^3" />. **Tinggi segi tiga mesti berserenjang dengan tapaknya**, dan di sini nilainya <InlineMath math="4" />, bukan <InlineMath math="5" />.
+
+# Pernyataan ketiga
+
+**Betul**. Permukaan <InlineMath math="6\times10" /> datang daripada tepi <InlineMath math="AB" />. Jika permukaan itu dijadikan tapak, kedua-dua pentagon berdiri tegak dengan <InlineMath math="AB" /> di bawah. Titik-titik tertinggi terletak pada tepi yang melalui <InlineMath math="D" />. Ketinggiannya ialah tinggi segi empat tepat ditambah tinggi segi tiga:
+
+<BlockMath math="BC+t=4+4=8\text{ cm}" />
+
+Jadi, pernyataan pertama betul, pernyataan kedua salah, dan pernyataan ketiga betul.

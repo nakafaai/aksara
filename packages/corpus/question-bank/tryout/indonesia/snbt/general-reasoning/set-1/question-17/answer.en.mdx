@@ -1,11 +1,47 @@
-Count the arrangements by splitting into cases according to **the pair of facing chairs that L and M occupy**. K stays in chair 1, so the only available pairs are chairs 2 and 5 or chairs 3 and 6.
+The question asks how many complete orders meet all six conditions. Guessing a pattern won't do. You need to split into cases until every order shows up exactly once, and then count.
 
-**Case chairs 2 and 5**. N cannot sit in chair 2 or 6 because those are next to K, and chair 5 is taken. So N is in chair 3 or 4. If N were in chair 4, O would need chair 5, which is taken. So N is in chair 3, O in chair 4, and P in chair 6. Only the order of L and M is still free, giving <InlineMath math="2" /> arrangements.
+Start with Citra, because three conditions hold her in place. Eka can't take turn <InlineMath math="1" /> (condition 4) and Eka comes before Citra (condition 3), so Citra is in turn <InlineMath math="3" /> at the earliest. Dimas comes exactly two turns after Citra (condition 2) and can't go past turn <InlineMath math="7" />, so Citra is in turn <InlineMath math="5" /> at the latest.
 
-**Case chairs 3 and 6**. N is in chair 4 or 5. If N were in chair 5, O would need chair 6, which is taken. So N is in chair 4, O in chair 5, and P in chair 2. Chair 2 is even, so the condition on P holds. The order of L and M gives <InlineMath math="2" /> arrangements.
+Case Citra in turn <InlineMath math="3" />. Dimas is in turn <InlineMath math="5" /> and Eka in turn <InlineMath math="2" />. The empty turns are <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="7" />. Galih and Hesti need two empty turns in a row, and the only pair is <InlineMath math="6" /> and <InlineMath math="7" />. Condition 5 bans them from turn <InlineMath math="7" />, so this case gives <InlineMath math="0" /> orders.
 
-<BlockMath math="\text{Number of arrangements} = 2+2=4" />
+Case Citra in turn <InlineMath math="4" />. Dimas is in turn <InlineMath math="6" />. If Eka is in turn <InlineMath math="2" />, the empty turns are <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, and no two of them are next to each other for Galih and Hesti. If Eka is in turn <InlineMath math="3" />, Galih and Hesti take turns <InlineMath math="1" /> and <InlineMath math="2" />, while Bayu and Fani take turns <InlineMath math="5" /> and <InlineMath math="7" />. Bayu is then in an odd turn for sure, so Fani must come right after him, in turn <InlineMath math="6" />, which Dimas already has, or in turn <InlineMath math="8" />, which doesn't exist. This case also gives <InlineMath math="0" /> orders.
 
-The answer <InlineMath math="2" /> comes from counting only one case. The answer <InlineMath math="8" /> comes from counting the order of L and M twice, or from letting N sit freely in chair 4 or 5 without checking O's chair. The answers <InlineMath math="3" /> and <InlineMath math="6" /> do not fit the case split, because each case always yields a pair of arrangements in which L and M swap places.
+Case Citra in turn <InlineMath math="5" />. Dimas is in turn <InlineMath math="7" />. Galih or Hesti can't take turn <InlineMath math="6" />, because both of its neighbors are filled. Eka can't either, because Eka must come before Citra. So **turn six belongs to Bayu or Fani**, and the case splits in two.
 
-So <InlineMath math="4" /> seating arrangements satisfy all the conditions.
+Subcase Bayu in turn <InlineMath math="6" />. That turn is even, so condition 6 asks for nothing. Eka, Fani, Galih, and Hesti fill turns <InlineMath math="1" /> to <InlineMath math="4" />, with Galih and Hesti side by side and Eka not in turn <InlineMath math="1" />.
+
+- Galih and Hesti in turns <InlineMath math="1" /> and <InlineMath math="2" />: Eka and Fani can go either way in turns <InlineMath math="3" /> and <InlineMath math="4" />, so there are two ways.
+- Galih and Hesti in turns <InlineMath math="2" /> and <InlineMath math="3" />: turn <InlineMath math="1" /> has to be Fani, since Eka is banned there, and Eka takes turn <InlineMath math="4" />. One way.
+- Galih and Hesti in turns <InlineMath math="3" /> and <InlineMath math="4" />: Fani in turn <InlineMath math="1" /> and Eka in turn <InlineMath math="2" />. One way.
+
+That's four patterns, and each becomes two orders because Galih and Hesti can swap. This subcase gives <InlineMath math="8" /> orders.
+
+Subcase Fani in turn <InlineMath math="6" />. Bayu sits somewhere in turns <InlineMath math="1" /> to <InlineMath math="4" />. If Bayu were in an odd turn, Fani would have to come right after him, but Fani is in turn <InlineMath math="6" />. So Bayu is in turn <InlineMath math="2" /> or <InlineMath math="4" />.
+
+- Bayu in turn <InlineMath math="2" />: Eka, Galih, and Hesti fill turns <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />. Galih and Hesti must take turns <InlineMath math="3" /> and <InlineMath math="4" />, which drops Eka into turn <InlineMath math="1" />. Condition 4 forbids that.
+- Bayu in turn <InlineMath math="4" />: Eka, Galih, and Hesti fill turns <InlineMath math="1" /> to <InlineMath math="3" />. Eka can't be in turn <InlineMath math="1" />, and Galih and Hesti must sit together, so Galih and Hesti take turns <InlineMath math="1" /> and <InlineMath math="2" />, and Eka takes turn <InlineMath math="3" />.
+
+This subcase gives one pattern, which is two orders.
+
+Here are all ten orders.
+
+| No. | Turn 1 | Turn 2 | Turn 3 | Turn 4 | Turn 5 | Turn 6 | Turn 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Galih | Hesti | Eka | Fani | Citra | Bayu | Dimas |
+| 2 | Hesti | Galih | Eka | Fani | Citra | Bayu | Dimas |
+| 3 | Galih | Hesti | Fani | Eka | Citra | Bayu | Dimas |
+| 4 | Hesti | Galih | Fani | Eka | Citra | Bayu | Dimas |
+| 5 | Fani | Galih | Hesti | Eka | Citra | Bayu | Dimas |
+| 6 | Fani | Hesti | Galih | Eka | Citra | Bayu | Dimas |
+| 7 | Fani | Eka | Galih | Hesti | Citra | Bayu | Dimas |
+| 8 | Fani | Eka | Hesti | Galih | Citra | Bayu | Dimas |
+| 9 | Galih | Hesti | Eka | Bayu | Citra | Fani | Dimas |
+| 10 | Hesti | Galih | Eka | Bayu | Citra | Fani | Dimas |
+
+Recount from the case split:
+
+<BlockMath math="0 + 0 + (8 + 2) = 10" />
+
+Two common wrong answers come from a lost case. You get <InlineMath math="5" /> if you forget that Galih and Hesti can swap places. You get <InlineMath math="8" /> if you assume turn <InlineMath math="6" /> always goes to Bayu and miss orders 9 and 10, where Bayu sits in the even turn <InlineMath math="4" />.
+
+So the number of presentation orders that meet all six conditions is <InlineMath math="10" />.

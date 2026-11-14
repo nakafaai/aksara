@@ -1,19 +1,30 @@
-The outward and return legs use the battery at **different rates**, because the loads differ. Find the time for each leg, then convert it to battery percent.
+You're looking for the largest number of lab sessions in a week. The plan: cut each day into **runs of consecutive periods with no break** and without period <InlineMath math="1" />, count how many non-overlapping pairs of periods fit in each run, then add up all five days.
 
-# Time for each leg
+# Cutting each day into runs
 
-A speed of 36 km/h **is 0.6 km per minute**, so each direction takes <InlineMath math="\tfrac{5.4}{0.6}=9" /> minutes.
+A session can't be split by a break, so **every break separates two runs of periods**. Period <InlineMath math="1" /> is also dropped because the lab isn't ready.
 
-# Battery use
+| Day | Usable runs of periods | Sessions |
+| --- | --- | --- |
+| Monday | periods <InlineMath math="2" /> to <InlineMath math="4" />, <InlineMath math="5" /> to <InlineMath math="7" />, <InlineMath math="8" /> to <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> |
+| Tuesday, Wednesday, Thursday | periods <InlineMath math="2" /> to <InlineMath math="3" />, <InlineMath math="4" /> to <InlineMath math="6" />, <InlineMath math="7" /> to <InlineMath math="9" /> | <InlineMath math="1+1+1=3" /> per day |
+| Friday | periods <InlineMath math="2" /> to <InlineMath math="4" />, <InlineMath math="5" /> to <InlineMath math="6" /> | <InlineMath math="1+1=2" /> |
 
-With a 2.5 kg load a full battery lasts <InlineMath math="30-4\cdot2.5=20" /> minutes. With no load it lasts 30 minutes.
+# Why a run of three fits only one session
 
-<BlockMath math="\begin{aligned}
-\text{out}&:\quad \tfrac{9}{20}\cdot100\%=45\%\\
-\text{back}&:\quad \tfrac{9}{30}\cdot100\%=30\%\\
-\text{left}&=100\%-45\%-30\%=25\%
-\end{aligned}" />
+Two sessions can't share a period, so two sessions need <InlineMath math="4" /> different periods in one run. **A run of <InlineMath math="3" /> periods fits only one session**, and the leftover period is wasted. In general, a run of <InlineMath math="n" /> periods fits at most <InlineMath math="\left\lfloor \frac{n}{2}\right\rfloor" /> sessions.
 
-The value 75% is the battery **used**, not the battery left. The values 30% and 45% are the use of one leg only, and 55% is what is left after the outward leg alone.
+# The weekly total
 
-So the battery left when the drone returns is **25%**.
+<BlockMath math="3+3\cdot3+2=3+9+2=14" />
+
+As a check, **every run in the table holds exactly one session**, and there are <InlineMath math="3+3\cdot3+2=14" /> runs, so a timetable with <InlineMath math="14" /> sessions really can be built.
+
+# The wrong options
+
+- <InlineMath math="12" /> forgets Friday and only counts Monday to Thursday.
+- <InlineMath math="16" /> forgets that **period <InlineMath math="1" /> can't be used**. The run of periods <InlineMath math="1" /> to <InlineMath math="4" /> on Monday and Friday then seems to fit two sessions.
+- <InlineMath math="18" /> ignores the breaks and just halves the usable periods of each day: <InlineMath math="4+4\cdot3+2=18" />.
+- <InlineMath math="21" /> halves all <InlineMath math="42" /> periods of the week without looking at breaks or period <InlineMath math="1" />.
+
+So at most <InlineMath math="14" /> lab sessions can be scheduled in a week.

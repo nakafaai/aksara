@@ -1,9 +1,26 @@
-Die Folge wächst nicht um einen festen Betrag, also untersuchst du **die Differenzen aufeinanderfolgender Glieder**:
+Hier sind zwei Dinge gefragt: Finde die Regel der Folge und setze sie dann fort, bis ein Glied über <InlineMath math="200" /> liegt. Die Abstände zwischen den Gliedern sind nicht konstant, also such das Muster in den **Differenzen auf mehreren Stufen**: erst die Differenzen der Glieder, dann die Differenzen dieser Differenzen und so weiter.
 
-<BlockMath math="3-2=1,\quad 7-3=4,\quad 16-7=9,\quad 32-16=16,\quad 57-32=25" />
+<BlockMath math="\begin{aligned}
+\text{Glieder} &: 3,\ 4,\ 7,\ 15,\ 31,\ 58 \\
+\text{erste Differenzen} &: 1,\ 3,\ 8,\ 16,\ 27 \\
+\text{zweite Differenzen} &: 2,\ 5,\ 8,\ 11 \\
+\text{dritte Differenzen} &: 3,\ 3,\ 3
+\end{aligned}" />
 
-Die Differenzen sind <InlineMath math="1, 4, 9, 16, 25" />, also die Quadratzahlen <InlineMath math="1^2, 2^2, 3^2, 4^2, 5^2" />. Die nächste Differenz ist <InlineMath math="6^2=36" />.
+Die zweiten Differenzen sind nicht konstant, aber sie steigen jedes Mal um <InlineMath math="3" />. Die nächsten zweiten Differenzen sind also <InlineMath math="14" />, <InlineMath math="17" />, <InlineMath math="20" /> und so weiter.
 
-<BlockMath math="57+36=93" />
+Bau die Folge jetzt von unten nach oben auf. Addiere jede neue zweite Differenz zur letzten ersten Differenz und addiere das Ergebnis dann zum letzten Glied:
 
-Prüfe das Muster noch einmal: Jedes Glied ist das vorige plus das Quadrat der Nummer der Differenz, und das passt zu allen fünf gegebenen Differenzen. Die nächste Zahl ist also <InlineMath math="93" />.
+<BlockMath math="\begin{aligned}
+27+14 &= 41, & 58+41 &= 99 \\
+41+17 &= 58, & 99+58 &= 157 \\
+58+20 &= 78, & 157+78 &= 235
+\end{aligned}" />
+
+Das siebte Glied <InlineMath math="99" /> und das achte Glied <InlineMath math="157" /> sind noch nicht größer als <InlineMath math="200" />. Das neunte Glied <InlineMath math="235" /> ist das erste, das darüber liegt.
+
+Prüf es noch einmal rückwärts. Die neuen ersten Differenzen sind <InlineMath math="41, 58, 78" />, und ihre Abstände sind <InlineMath math="17" /> und <InlineMath math="20" />. Beide setzen das Muster <InlineMath math="2, 5, 8, 11, 14" /> fort, das um <InlineMath math="3" /> steigt, also passt die Rechnung.
+
+Zwei falsche Abkürzungen kommen oft vor. Wenn du die zweite Differenz als konstant <InlineMath math="11" /> nimmst, wird die Folge zu <InlineMath math="96, 145, 205" />, und du kommst auf <InlineMath math="205" />. Wenn du schon beim nächsten Glied aufhörst, erhältst du <InlineMath math="99" />, aber <InlineMath math="99" /> liegt noch nicht über <InlineMath math="200" />.
+
+Das erste Glied der Folge, das größer als <InlineMath math="200" /> ist, lautet also <InlineMath math="235" />.

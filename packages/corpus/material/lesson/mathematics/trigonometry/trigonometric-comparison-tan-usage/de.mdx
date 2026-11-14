@@ -12,18 +12,43 @@ export const metadata = {
 
 In einem rechtwinkligen Dreieck ist der Tangens des Winkels <InlineMath math="\theta" /> <Highlight>das Verhältnis der Gegenkathete zur Ankathete</Highlight>. Der Sinus vergleicht dagegen die Gegenkathete mit der Hypotenuse, der Kosinus die Ankathete mit der Hypotenuse.
 
-<Triangle
+<MathVisual
   title={
     <>
       Visualisierung des Tangens (<InlineMath math="\tan \theta" />)
     </>
   }
   description={<>Ändere den Winkel im Eingabefeld und beobachte, wie sich <InlineMath math="\tan" /> mit dem Winkel verändert.</>}
-  angle={30}
   labels={{
-    opposite: "Gegenkathete",
-    adjacent: "Ankathete",
-    hypotenuse: "Hypotenuse",
+    angle: <InlineMath math="\theta" />,
+    opposite: <>Gegenkathete</>,
+    adjacent: <>Ankathete</>,
+    hypotenuse: <>Hypotenuse</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
   }}
 />
 
@@ -55,14 +80,39 @@ Angenommen, ein Baum oder Gebäude steht senkrecht auf ebenem Boden. Werden die 
 </MathContainer>
 
 <ContentBlock>
-  <Triangle
-    title="Anwendung des Tangens bei einer Messung"
-    description="Beispiel eines Dreiecks, das bei der Höhenmessung mit Schatten entsteht."
-    angle={30}
+  <MathVisual
+    title={<>Anwendung des Tangens bei einer Messung</>}
+    description={<>Beispiel eines Dreiecks, das bei der Höhenmessung mit Schatten entsteht.</>}
     labels={{
-      opposite: "Objekthöhe",
-      adjacent: "Schattenlänge",
-      hypotenuse: "Hypotenuse",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Objekthöhe</>,
+      adjacent: <>Schattenlänge</>,
+      hypotenuse: <>Hypotenuse</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>
@@ -108,19 +158,44 @@ Bei einem Sonnenhöhenwinkel von <InlineMath math="30^\circ" /> und einer Körpe
 Dieser Schatten ist etwas kürzer als <InlineMath math="259{,}65 \text{ cm}" />, weil <InlineMath math="30^\circ" /> etwas größer ist als der gemessene Bezugswinkel <InlineMath math="29{,}68^\circ" />. Bei gleicher Höhe führt ein **größerer Höhenwinkel** zu einem kürzeren Schatten.
 
 <ContentBlock>
-  <Triangle
+  <MathVisual
     title={<>Winkel <InlineMath math="30^\circ" /> mit Tangens <InlineMath math="1/\sqrt{3}" /></>}
     description={
-      <>
-        Visualisierung des Dreiecks mit dem Winkel <InlineMath math="30^\circ" /> aus
-        dem Rechenbeispiel.
-      </>
-    }
-    angle={30}
+        <>
+          Visualisierung des Dreiecks mit dem Winkel <InlineMath math="30^\circ" /> aus
+          dem Rechenbeispiel.
+        </>
+      }
     labels={{
-      opposite: "Körpergröße",
-      adjacent: "Schattenlänge",
-      hypotenuse: "Hypotenuse",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Körpergröße</>,
+      adjacent: <>Schattenlänge</>,
+      hypotenuse: <>Hypotenuse</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>

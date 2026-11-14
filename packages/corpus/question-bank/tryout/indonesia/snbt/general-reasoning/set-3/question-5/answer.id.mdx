@@ -1,15 +1,26 @@
-Hitung setiap pernyataan langsung dari tabel. Beberapa pernyataan sengaja dibuat **dekat dengan batasnya**.
+Keempat pernyataan memakai **pembagi yang berbeda-beda**: per pemberian obat, per perawat, atau per seluruh bangsal. Jadi, siapkan dulu semua angka dasarnya. Angka kesalahan adalah kesalahan dibagi pemberian obat, dikali <InlineMath math="1{.}000" />.
 
-**Pernyataan 1** bernilai Benar. Dua kali penjualan Januari adalah <InlineMath math="2\times120=240" />, sedangkan penjualan April <InlineMath math="260" />.
+| Sif | Pemberian obat | Kesalahan | Angka kesalahan per <InlineMath math="1{.}000" /> | Kesalahan per perawat |
+| --- | --- | --- | --- | --- |
+| Pagi | <InlineMath math="7{.}200" /> | <InlineMath math="36" /> | <InlineMath math="\tfrac{36}{7{.}200}\cdot 1{.}000=5" /> | <InlineMath math="36:6=6" /> |
+| Sore | <InlineMath math="4{.}000" /> | <InlineMath math="24" /> | <InlineMath math="\tfrac{24}{4{.}000}\cdot 1{.}000=6" /> | <InlineMath math="24:4=6" /> |
+| Malam | <InlineMath math="2{.}000" /> | <InlineMath math="18" /> | <InlineMath math="\tfrac{18}{2{.}000}\cdot 1{.}000=9" /> | <InlineMath math="18:2=9" /> |
+| Total | <InlineMath math="13{.}200" /> | <InlineMath math="78" /> | | |
 
-**Pernyataan 2** bernilai Benar. Suhu tertinggi, <InlineMath math="35^{\circ}\text{C}" />, terjadi pada bulan Mei, dan penjualan kipas tertinggi, <InlineMath math="290" /> unit, juga pada bulan Mei.
+Pernyataan 1 benar. Ada dua pecahan dengan penyebut yang berbeda. Seperenam dari <InlineMath math="13{.}200" /> adalah <InlineMath math="2{.}200" />, dan sif malam hanya menangani <InlineMath math="2{.}000" /> pemberian, jadi kurang dari seperenam. Seperlima dari <InlineMath math="78" /> adalah <InlineMath math="15{,}6" />, dan sif malam menyumbang <InlineMath math="18" /> kesalahan, jadi lebih dari seperlima.
 
-**Pernyataan 3** bernilai Salah. Rata-ratanya adalah
+Pernyataan 2 salah. Per perawat, sif sore dan sif pagi sama-sama <InlineMath math="6" /> kesalahan, jadi sif sore tidak lebih besar. Jebakannya adalah memindahkan urutan angka kesalahan per <InlineMath math="1{.}000" /> pemberian (sore <InlineMath math="6" />, pagi <InlineMath math="5" />) ke perbandingan per perawat. Kedua urutan berbeda karena setiap perawat pagi menangani <InlineMath math="7{.}200:6=1{.}200" /> pemberian, sedangkan setiap perawat sore hanya <InlineMath math="4{.}000:4=1{.}000" />.
 
-<BlockMath math="\frac{3{.}000+3{.}400+3{.}900+5{.}200+1{.}100+4{.}600}{6}=\frac{21{.}200}{6}\approx3{.}533" />
+Pernyataan 3 salah. Kalau angka sif malam turun ke angka sif sore, yaitu <InlineMath math="6" /> per <InlineMath math="1{.}000" />, sif malam dengan <InlineMath math="2{.}000" /> pemberian hanya membuat <InlineMath math="12" /> kesalahan.
 
-Angka itu kurang dari <InlineMath math="3{.}600" />. Penutupan kolam pada bulan Mei menarik rata-ratanya turun.
+<BlockMath math="\begin{aligned} \text{penurunan} &= 18-12=6 \text{ kesalahan} \\ \text{persentase penurunan} &= \frac{6}{78}\cdot 100\%\approx 7{,}7\% \end{aligned}" />
 
-**Pernyataan 4** bernilai Salah. Penjualan Juni <InlineMath math="210" /> unit, lebih tinggi daripada Maret yang <InlineMath math="180" /> unit.
+Penurunannya kurang dari <InlineMath math="10\%" />. Sif malam memang punya angka kesalahan tertinggi, tetapi porsinya kecil, jadi memperbaikinya tidak banyak mengubah total bangsal.
 
-Jadi, pernyataan 1 dan 2 benar, sedangkan pernyataan 3 dan 4 salah.
+Pernyataan 4 benar. Angka kesalahan seluruh bangsal adalah total kesalahan dibagi total pemberian obat.
+
+<BlockMath math="\frac{78}{13{.}200}\cdot 1{.}000\approx 5{,}9<6" />
+
+Jebakannya adalah merata-ratakan tiga angka sif begitu saja, <InlineMath math="(5+6+9):3\approx 6{,}7" />, yang lebih dari <InlineMath math="6" />. Cara itu salah karena sif pagi menangani pemberian obat jauh lebih banyak daripada sif malam, jadi angka sif pagi yang rendah harus lebih berbobot.
+
+Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.

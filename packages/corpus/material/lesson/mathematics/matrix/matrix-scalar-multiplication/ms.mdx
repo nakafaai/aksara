@@ -1,0 +1,236 @@
+export const metadata = {
+  title: "Pendaraban Skalar Matriks",
+  description: "Darab setiap unsur matriks dengan satu skalar dan gunakan petua kalis agihan, identiti, dan sifar dalam contoh yang lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Menskalakan Setiap Unsur Matriks dengan Satu Nombor
+
+Matriks boleh digabungkan dengan matriks lain, tetapi matriks juga boleh diskalakan dengan satu nombor. Nombor itu dipanggil **skalar**.
+
+Contohnya, kalau setiap unsur dalam satu matriks ukuran direkodkan dalam meter, menukar seluruh jadual kepada sentimeter bermaksud mendarab setiap unsur dengan <InlineMath math="100" />. Pendaraban skalar menyatakan satu perubahan yang konsisten itu tanpa menulis semula setiap pengiraan secara berasingan.
+
+## Menulis Pendaraban Skalar Unsur demi Unsur
+
+Pendaraban skalar matriks ialah operasi <Highlight>mendarab setiap unsur dalam matriks</Highlight> dengan satu nombor skalar.
+
+Kalau kita ada matriks <InlineMath math="A" /> dan skalar <InlineMath math="k" />, maka hasil pendaraban skalar <InlineMath math="k" /> dengan matriks <InlineMath math="A" /> (ditulis <InlineMath math="kA" />) ialah matriks baharu yang setiap unsurnya ialah hasil darab unsur sepadan matriks <InlineMath math="A" /> dengan skalar <InlineMath math="k" />.
+
+Secara matematik, kalau matriks <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" />:
+
+<BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn} \end{bmatrix}" />
+
+Maka pendaraban matriks <InlineMath math="A" /> dengan skalar <InlineMath math="k" /> ialah:
+
+<BlockMath math="\begin{aligned} &amp;kA \\ &amp;= k \begin{bmatrix} a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n} \\ a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ a_{m1} &amp; a_{m2} &amp; \cdots &amp; a_{mn} \end{bmatrix} \\ &amp;= \begin{bmatrix} ka_{11} &amp; ka_{12} &amp; \cdots &amp; ka_{1n} \\ ka_{21} &amp; ka_{22} &amp; \cdots &amp; ka_{2n} \\ \vdots &amp; \vdots &amp; \ddots &amp; \vdots \\ ka_{m1} &amp; ka_{m2} &amp; \cdots &amp; ka_{mn} \end{bmatrix} \end{aligned}" />
+
+Matriks hasil, <InlineMath math="kA" />, sama peringkat dengan matriks <InlineMath math="A" />.
+
+Untuk integer positif <InlineMath math="k" />, pendaraban skalar boleh dilihat sebagai [penambahan berulang](/ms/subjek/matematik/matriks/penambahan-matriks). Contohnya, <InlineMath math="2A" /> sama dengan <InlineMath math="A + A" />. Menambah matriks <InlineMath math="A" /> tepat <InlineMath math="k\text{ kali}" /> memberikan <InlineMath math="kA" />.
+
+<BlockMath math="\underbrace{A + A + \cdots + A}_{k \text{ kali}} = kA" />
+
+## Contoh Pendaraban Skalar Matriks
+
+Dua contoh seterusnya mendarab setiap unsur matriks dengan skalar yang sama.
+
+**Contoh 1**:
+
+Katakan kita ada matriks <InlineMath math="P" /> seperti dalam contoh berikut:
+
+<BlockMath math="P = \begin{bmatrix} 9 & 7 \\ 3 & 1 \end{bmatrix}" />
+
+Tentukan <InlineMath math="2P" />!
+
+**Penyelesaian**:
+
+Untuk menghitung <InlineMath math="2P" />, kita darab setiap unsur matriks <InlineMath math="P" /> dengan skalar <InlineMath math="2" />.
+
+<BlockMath math="\begin{aligned} 2P &amp;= 2 \begin{bmatrix} 9 &amp; 7 \\ 3 &amp; 1 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2 \times 9 &amp; 2 \times 7 \\ 2 \times 3 &amp; 2 \times 1 \end{bmatrix} \\ &amp;= \begin{bmatrix} 18 &amp; 14 \\ 6 &amp; 2 \end{bmatrix} \end{aligned}" />
+
+Matriks di atas ialah hasil <InlineMath math="2P" />.
+
+**Contoh 2**:
+
+Matriks <InlineMath math="Q" /> diberi oleh:
+
+<BlockMath math="Q = \begin{bmatrix} -1 & \frac{1}{2} & 1 \\ 4 & -\frac{1}{4} & 2 \\ -6 & 1 & -4 \end{bmatrix}" />
+
+Untuk skalar <InlineMath math="k=4" />, tentukan <InlineMath math="4Q" />.
+
+**Penyelesaian**:
+
+Kita akan darab setiap unsur dalam matriks <InlineMath math="Q" /> dengan skalar <InlineMath math="4" />.
+
+<BlockMath math="4Q = 4 \begin{bmatrix} -1 & \frac{1}{2} & 1 \\ 4 & -\frac{1}{4} & 2 \\ -6 & 1 & -4 \end{bmatrix}" />
+Tulis setiap hasil darab dengan kurungan: <InlineMath math="4(a)" /> bermaksud <InlineMath math="4\times a" />.
+
+<MathContainer>
+  <BlockMath math="=\begin{bmatrix}4(-1)&amp;4(\frac12)&amp;4(1)\\4(4)&amp;4(-\frac14)&amp;4(2)\\4(-6)&amp;4(1)&amp;4(-4)\end{bmatrix}" />
+  <BlockMath math="= \begin{bmatrix} -4 & 2 & 4 \\ 16 & -1 & 8 \\ -24 & 4 & -16 \end{bmatrix}" />
+</MathContainer>
+
+Matriks di atas ialah hasil <InlineMath math="4Q" />.
+
+Ini Contoh 1 dalam bentuk gambar. Baca setiap baris <InlineMath math="P" /> sebagai satu titik: <InlineMath math="(9, 7)" /> dan <InlineMath math="(3, 1)" />. Mendarab dengan <InlineMath math="2" /> menggandakan kedua-dua koordinat, jadi setiap titik bergelongsor di sepanjang garisnya melalui asalan ke jarak dua kali ganda, iaitu <InlineMath math="(18, 14)" /> dan <InlineMath math="(6, 2)" />. Segmen antara kedua-duanya mengekalkan arahnya dan menjadi dua kali lebih panjang. Satu skalar mengubah setiap unsur dengan cara yang sama.
+
+<MathVisual
+  title={<><InlineMath math="2P" /> menggandakan setiap baris <InlineMath math="P" /></>}
+  description={<>Baris <InlineMath math="P" /> dan <InlineMath math="2P" /> sebagai titik. Setiap titik <InlineMath math="2P" /> terletak pada garis dari asalan melalui titik <InlineMath math="P" /> yang sepadan, dua kali lebih jauh.</>}
+  labels={{
+    p1: <InlineMath math="P: (9, 7)" />,
+    p2: <InlineMath math="P: (3, 1)" />,
+    d1: <InlineMath math="2P: (18, 14)" />,
+    d2: <InlineMath math="2P: (6, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 19 }, y: { min: -1, max: 15 } },
+    view: { kind: "fit", padding: 0.5 },
+    objects: [
+      { id: "ray1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 18, y: 14 }, appearance: "construction" },
+      { id: "ray2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "double", kind: "segment", from: { x: 18, y: 14 }, to: { x: 6, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p1", objectId: "p", at: { x: 9, y: 7 }, placement: "above-left" },
+      { key: "p2", objectId: "p", at: { x: 3, y: 1 }, placement: "below-right" },
+      { key: "d1", objectId: "double", at: { x: 18, y: 14 }, placement: "left" },
+      { key: "d2", objectId: "double", at: { x: 6, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Skalar negatif dan sifar mengikut peraturan yang sama. <InlineMath math="(-1)P" /> menghantar setiap baris ke sisi bertentangan asalan: <InlineMath math="(9, 7)" /> menjadi <InlineMath math="(-9, -7)" />. <InlineMath math="0P" /> memampatkan setiap baris ke <InlineMath math="(0, 0)" />, iaitu matriks sifar <InlineMath math="O" />.
+
+<MathVisual
+  title={<><InlineMath math="(-1)P" /> dan <InlineMath math="0P" /></>}
+  description={<>Baris <InlineMath math="P" />, lawannya dalam <InlineMath math="(-1)P" /> melalui asalan, dan <InlineMath math="0P" /> di asalan.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    neg: <InlineMath math="(-1)P" />,
+    zero: <InlineMath math="0P = O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 10 }, y: { min: -8, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c1", kind: "segment", from: { x: 9, y: 7 }, to: { x: -9, y: -7 }, appearance: "construction" },
+      { id: "c2", kind: "segment", from: { x: 3, y: 1 }, to: { x: -3, y: -1 }, appearance: "construction" },
+      { id: "p", kind: "segment", from: { x: 9, y: 7 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: -9, y: -7 }, to: { x: -3, y: -1 }, appearance: "warning" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 9, y: 7 }, placement: "left" },
+      { key: "neg", objectId: "neg", at: { x: -9, y: -7 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Menskalakan satu hasil tambah memberikan hasil tambah matriks-matriks yang diskalakan. Ambil baris <InlineMath math="a = (1, 2)" /> dan <InlineMath math="b = (3, 1)" />: hasil tambahnya ialah <InlineMath math="(4, 3)" />. Menggandakan setiap sisi segi empat selari yang kecil memberikan segi empat selari yang besar, dan bucu jauhnya <InlineMath math="(8, 6)" /> ialah <InlineMath math="2(a + b)" /> dan juga <InlineMath math="2a + 2b" />.
+
+<MathVisual
+  title={<><InlineMath math="k(A + B) = kA + kB" /> sebagai segi empat selari yang diskalakan</>}
+  description={<>Segi empat selari bagi <InlineMath math="(1, 2)" /> dan <InlineMath math="(3, 1)" /> serta segi empat selari yang sama setelah digandakan, dengan bucu jauh <InlineMath math="(4, 3)" /> dan <InlineMath math="(8, 6)" />.</>}
+  labels={{
+    small: <InlineMath math="a + b" />,
+    big: <InlineMath math="2(a + b)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "bigp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }, { x: 8, y: 6 }, { x: 6, y: 2 }], appearance: "secondary" },
+      { id: "smallp", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }, { x: 4, y: 3 }, { x: 3, y: 1 }], appearance: "primary" },
+      { id: "small", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "big", kind: "point", at: { x: 8, y: 6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "small", objectId: "small", at: { x: 4, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "big", at: { x: 8, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Sifat-sifat Pendaraban Skalar Matriks
+
+Biar <InlineMath math="A" /> dan <InlineMath math="B" /> ialah matriks yang **sama peringkat**, <InlineMath math="h" /> dan <InlineMath math="k" /> ialah skalar, dan <InlineMath math="O" /> ialah matriks sifar. Pendaraban skalar memenuhi identiti berikut.
+
+| Sifat | Identiti | Maksud |
+| --- | --- | --- |
+| Kalis Agihan terhadap Penambahan Matriks | <InlineMath math="k(A + B) = kA + kB" /> | Mendarab skalar dengan hasil tambah dua matriks sama dengan menambah hasil darab skalar itu dengan setiap matriks. |
+| Kalis Agihan terhadap Penambahan Skalar | <InlineMath math="(h + k)A = hA + kA" /> | Mendarab hasil tambah dua skalar dengan satu matriks sama dengan menambah hasil darab setiap skalar dengan matriks itu. |
+| Kalis Sekutuan dengan Pendaraban Skalar | <InlineMath math="(hk)A = h(kA) = k(hA)" /> | Mendarab matriks dengan hasil darab dua skalar sama dengan mendarab skalar pertama dengan hasil darab skalar kedua dan matriks itu. |
+| Identiti Pendaraban Skalar | <InlineMath math="1A = A" /> | Mendarab matriks dengan skalar <InlineMath math="1" /> tidak mengubah matriks itu. |
+| Pendaraban dengan Skalar Sifar | <InlineMath math="0A = O" /> | Mendarab matriks dengan skalar <InlineMath math="0" /> menghasilkan matriks sifar (<InlineMath math="O" />), iaitu matriks yang semua unsurnya <InlineMath math="0" />. |
+| Pendaraban Matriks Sifar dengan Skalar | <InlineMath math="kO = O" /> | Mendarab matriks sifar dengan sebarang skalar menghasilkan matriks sifar. |
+| Pendaraban dengan Skalar <InlineMath math="-1" /> | <InlineMath math="(-1)A = -A" /> | Mendarab matriks dengan skalar <InlineMath math="-1" /> menghasilkan negatif matriks itu. |
+
+Petua kalis agihan mengembangkan pendaraban skalar ke atas hasil tambah, manakala petua identiti dan sifar terus menentukan hasil bagi skalar <InlineMath math="1" /> dan <InlineMath math="0" />.
+## Latihan
+
+Setiap soalan di bawah meminta gandaan skalar bagi satu matriks. Darab setiap unsur dengan skalar itu, **termasuk unsur negatif dan sifar**, dan kekalkan bentuk matriks itu.
+
+1.  Diberi matriks berikut, hitung <InlineMath math="3X" />.
+
+    <BlockMath math="X = \begin{bmatrix} 5 & -2 \\ 0 & 4 \\ -1 & 7 \end{bmatrix}" />
+
+2.  Bagi matriks berikut, tentukan <InlineMath math="\frac{1}{10}Y" />.
+
+    <BlockMath math="Y = \begin{bmatrix} 10 & 20 \\ -30 & 0 \end{bmatrix}" />
+
+3.  Bagi matriks-matriks berikut, tunjukkan bahawa <InlineMath math="3(A+B) = 3A + 3B" />.
+
+    <MathContainer>
+      <BlockMath math="A = \begin{bmatrix} 2 & 1 \\ 3 & 4 \end{bmatrix}" />
+      <BlockMath math="B = \begin{bmatrix} 0 & 5 \\ 6 & -2 \end{bmatrix}" />
+    </MathContainer>
+
+### Penyelesaian
+
+1.  Penyelesaian:
+
+    <MathContainer>
+      <BlockMath math="3X = 3 \begin{bmatrix} 5 & -2 \\ 0 & 4 \\ -1 & 7 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} 3 \times 5 & 3 \times (-2) \\ 3 \times 0 & 3 \times 4 \\ 3 \times (-1) & 3 \times 7 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} 15 & -6 \\ 0 & 12 \\ -3 & 21 \end{bmatrix}" />
+    </MathContainer>
+
+2.  Penyelesaian:
+
+    <MathContainer>
+      <BlockMath math="\frac{1}{10}Y = \frac{1}{10} \begin{bmatrix} 10 & 20 \\ -30 & 0 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} \frac{1}{10} \times 10 & \frac{1}{10} \times 20 \\ \frac{1}{10} \times (-30) & \frac{1}{10} \times 0 \end{bmatrix}" />
+      <BlockMath math="= \begin{bmatrix} 1 & 2 \\ -3 & 0 \end{bmatrix}" />
+    </MathContainer>
+
+3.  Untuk menunjukkan <InlineMath math="3(A+B) = 3A + 3B" />:
+
+    Mula-mula, hitung **sebelah kiri** persamaan, <InlineMath math="3(A+B)" />.
+
+    <BlockMath math="\begin{aligned} A+B &amp;= \begin{bmatrix} 2 &amp; 1 \\ 3 &amp; 4 \end{bmatrix} + \begin{bmatrix} 0 &amp; 5 \\ 6 &amp; -2 \end{bmatrix} \\ &amp;= \begin{bmatrix} 2+0 &amp; 1+5 \\ 3+6 &amp; 4+(-2) \end{bmatrix} \\ &amp;= \begin{bmatrix} 2 &amp; 6 \\ 9 &amp; 2 \end{bmatrix} \end{aligned}" />
+
+    Kemudian,
+
+    <BlockMath math="3(A+B) = 3 \begin{bmatrix} 2 & 6 \\ 9 & 2 \end{bmatrix} = \begin{bmatrix} 6 & 18 \\ 27 & 6 \end{bmatrix}" />
+
+    Seterusnya, hitung sebelah kanan persamaan, <InlineMath math="3A + 3B" />.
+
+    <MathContainer>
+      <BlockMath math="3A = 3 \begin{bmatrix} 2 & 1 \\ 3 & 4 \end{bmatrix} = \begin{bmatrix} 6 & 3 \\ 9 & 12 \end{bmatrix}" />
+      <BlockMath math="3B = 3 \begin{bmatrix} 0 & 5 \\ 6 & -2 \end{bmatrix} = \begin{bmatrix} 0 & 15 \\ 18 & -6 \end{bmatrix}" />
+    </MathContainer>
+
+    Kemudian,
+
+    <BlockMath math="\begin{aligned} &amp;3A + 3B \\ &amp;= \begin{bmatrix} 6 &amp; 3 \\ 9 &amp; 12 \end{bmatrix} + \begin{bmatrix} 0 &amp; 15 \\ 18 &amp; -6 \end{bmatrix} \\ &amp;= \begin{bmatrix} 6+0 &amp; 3+15 \\ 9+18 &amp; 12+(-6) \end{bmatrix} \\ &amp;= \begin{bmatrix} 6 &amp; 18 \\ 27 &amp; 6 \end{bmatrix} \end{aligned}" />
+
+    Kedua-dua pengiraan memberikan matriks yang sama, jadi <InlineMath math="3(A+B) = 3A + 3B" />.

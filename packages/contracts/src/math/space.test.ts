@@ -43,6 +43,10 @@ describe("space math visual", () => {
         from: { x: -1, y: -1, z: -1 },
         to: { x: 1, y: 1, z: 1 },
       }),
+      object("vector", {
+        from: { x: 0, y: 0, z: 0 },
+        to: { x: 1, y: 2, z: 3 },
+      }),
       object("polyline", {
         vertices: [
           { x: -2, y: 0, z: 0 },

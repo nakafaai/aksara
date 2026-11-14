@@ -1,0 +1,34 @@
+Soalan ini bertanya kebarangkalian **tiga syarat serentak**: berselang-seli, Andi di salah satu hujung, dan Bela tidak bersebelahan dengan Andi. Kira susunan yang memenuhi ketiga-tiganya, kemudian bahagikan dengan bilangan semua susunan.
+
+# Semua susunan dan corak berselang-seli
+
+Lapan murid yang berbeza boleh disusun dalam <InlineMath math="8!=40{,}320" /> cara, dan menurut soalan semua susunan itu sama mungkin. Barisan berselang-seli mempunyai **dua corak**: murid lelaki di kedudukan <InlineMath math="1,3,5,7" />, atau murid lelaki di kedudukan <InlineMath math="2,4,6,8" />. Dalam corak pertama, hujung kiri (kedudukan <InlineMath math="1" />) milik murid lelaki dan hujung kanan (kedudukan <InlineMath math="8" />) milik murid perempuan. Corak kedua pula sebaliknya. Jadi dalam setiap corak, **hanya satu hujung yang boleh diduduki Andi**.
+
+# Mengira susunan yang sepadan
+
+Ambil corak pertama. Andi mesti berada di kedudukan <InlineMath math="1" />, dan satu-satunya jirannya berada di kedudukan <InlineMath math="2" />, iaitu tempat murid perempuan. Bela tidak boleh berada di kedudukan <InlineMath math="2" />, jadi **Bela memilih salah satu daripada tiga kedudukan perempuan yang lain**. Tiga murid perempuan yang lain mengisi tiga kedudukan perempuan yang tinggal, dan tiga murid lelaki yang lain mengisi tiga kedudukan lelaki yang tinggal:
+
+<BlockMath math="\begin{aligned}
+\text{corak pertama}&=1\cdot3\cdot3!\cdot3!=1\cdot3\cdot6\cdot6=108 \\
+\text{corak kedua}&=108\quad(\text{Andi di kedudukan }8,\ \text{Bela bukan di kedudukan }7) \\
+\text{jumlah}&=216
+\end{aligned}" />
+
+# Kebarangkaliannya
+
+<BlockMath math="P=\frac{216}{40{,}320}=\frac{3}{560}" />
+
+Semak dengan **pendaraban kebarangkalian berperingkat**. Kebarangkalian berselang-seli ialah <InlineMath math="\frac{2\cdot4!\cdot4!}{8!}=\frac{1}{35}" />. Dalam barisan berselang-seli, Andi menduduki satu daripada empat kedudukan lelaki dan hanya satu daripadanya di hujung, jadi kebarangkaliannya <InlineMath math="\frac14" />. Jiran Andi ialah salah seorang daripada empat murid perempuan, dan kebarangkalian jiran itu bukan Bela ialah <InlineMath math="\frac34" />:
+
+<BlockMath math="\frac{1}{35}\cdot\frac14\cdot\frac34=\frac{3}{560}" />
+
+Hasilnya sama.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{3}{1{,}120}" /> hanya mengira corak yang bermula dengan murid lelaki di kiri. **Corak yang bermula dengan murid perempuan juga berselang-seli**.
+- <InlineMath math="\frac{1}{140}" /> terlupa syarat tentang Bela, iaitu <InlineMath math="\frac{288}{40{,}320}" />.
+- <InlineMath math="\frac{3}{280}" /> membenarkan Andi di kedua-dua hujung dalam setiap corak, sedangkan satu hujung sentiasa milik murid perempuan.
+- <InlineMath math="\frac{3}{14}" /> terlupa syarat berselang-seli: <InlineMath math="\frac28\cdot\frac67" /> ialah kebarangkalian Andi di hujung dan Bela bukan jirannya dalam sebarang barisan.
+
+Jadi, kebarangkalian yang ditanya ialah <InlineMath math="\frac{3}{560}" />.

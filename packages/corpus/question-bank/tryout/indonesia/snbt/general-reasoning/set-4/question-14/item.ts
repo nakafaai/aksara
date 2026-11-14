@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "scheduling",
   },
-  stimulus: "pentas",
+  stimulus: "budaya",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "S tidak tampil pada hari Sabtu.",
+          label: "Wayang, gamelan, dongeng",
         },
         {
           correct: false,
-          label: "T tampil pada hari Sabtu.",
+          label: "Angklung, gamelan, dongeng",
         },
         {
           correct: false,
-          label: "Q tampil pada sesi sore.",
+          label: "Batik, kuliner, dongeng",
         },
         {
           correct: false,
-          label: "P tampil pada sesi sore.",
+          label: "Wayang, angklung, dongeng",
         },
         {
           correct: false,
-          label: "U tampil pada hari Minggu.",
+          label: "Wayang, dongeng, batik",
         },
       ],
     },

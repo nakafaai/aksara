@@ -1,24 +1,32 @@
-Die Durchschnittsgeschwindigkeit ist **Gesamtstrecke durch Gesamtzeit**, nicht der Mittelwert der beiden Geschwindigkeiten. Hin- und Rückweg dauern verschieden lang, daher zählen die beiden Geschwindigkeiten nicht gleich.
+Gesucht ist, wer am 8. März 2028 Dienst hat. Der Dienstplan rückt nur an Öffnungstagen weiter, also musst du zählen, **wie viele Öffnungstage** nach dem 15. Februar vergehen, nicht wie viele Kalendertage. Unterwegs warten zwei Fallen: das Jahr 2028 und die Sonntage.
 
-Sei die Strecke vom Haus zum Markt <InlineMath math="d" /> km. Die Fahrzeiten sind:
+Erster Schritt: Zähl die Tage. 2028 ist durch <InlineMath math="4" /> teilbar und kein Jahrhundertjahr, also ein Schaltjahr. Der Februar hat deshalb <InlineMath math="29" /> Tage.
 
 <BlockMath math="\begin{aligned}
-t_{\text{hin}} &= \frac{d}{14} \\
-t_{\text{zurück}} &= \frac{d}{21} \\
-t_{\text{gesamt}} &= \frac{d}{14}+\frac{d}{21}=\frac{3d+2d}{42}=\frac{5d}{42}
+\text{15. Februar bis 29. Februar} &: 29 - 15 = 14 \text{ Tage} \\
+\text{29. Februar bis 8. März} &: 8 \text{ Tage} \\
+\text{zusammen} &: 14 + 8 = 22 \text{ Tage}
 \end{aligned}" />
 
-Die Gesamtstrecke ist <InlineMath math="2d" />, also
+Zweiter Schritt: Streich die Sonntage. Der 15. Februar ist ein Dienstag, also sind die folgenden Sonntage der 20. Februar, der 27. Februar und der 5. März. Das sind <InlineMath math="3" /> Sonntage, und die Zahl der Öffnungstage nach dem 15. Februar bis einschließlich 8. März ist:
 
-<BlockMath math="\bar{v}=\frac{2d}{\frac{5d}{42}}=\frac{84}{5}=16{,}8\text{ km/h}" />
+<BlockMath math="22 - 3 = 19" />
 
-<InlineMath math="d" /> kürzt sich heraus, das Ergebnis hängt also nicht von der Strecke ab. Zur Probe: Mit <InlineMath math="d=42" /> km dauert die Fahrt <InlineMath math="3+2=5" /> Stunden für <InlineMath math="84" /> km, und <InlineMath math="84:5=16{,}8" />.
+Prüf auch, dass der 8. März kein Sonntag ist. Der Abstand beträgt <InlineMath math="22 = 3 \times 7 + 1" /> Tage, also liegt der 8. März einen Tag nach einem Dienstag, auf einem Mittwoch. An diesem Tag ist die Apotheke geöffnet.
 
-Die anderen Optionen entstehen aus diesen Fehlern:
+Dritter Schritt: Der Plan wiederholt sich alle <InlineMath math="5" /> Öffnungstage. Teile <InlineMath math="19" /> durch <InlineMath math="5" />:
 
-- <InlineMath math="17{,}5" /> km/h ist der einfache Mittelwert von <InlineMath math="14" /> und <InlineMath math="21" />. Er ist falsch, weil Raka länger mit <InlineMath math="14" /> km/h fährt.
-- <InlineMath math="8{,}4" /> km/h entsteht, wenn man die einfache Strecke durch die Gesamtzeit teilt.
-- <InlineMath math="21" /> km/h ist nur die Geschwindigkeit auf dem Rückweg.
-- <InlineMath math="35" /> km/h ist die Summe der Geschwindigkeiten, keine Durchschnittsgeschwindigkeit.
+<BlockMath math="19 = 3 \times 5 + 4" />
 
-Rakas Durchschnittsgeschwindigkeit beträgt also <InlineMath math="16{,}8" /> km/h.
+Drei volle Runden führen zurück zu Laras, und die restlichen <InlineMath math="4" /> Schritte gehen von Laras zu Made, Nina, Oka und Putri.
+
+Prüf es noch auf einem zweiten Weg. Eine volle Woche hat <InlineMath math="6" /> Öffnungstage, also rückt der Plan pro Woche um <InlineMath math="6" /> Plätze weiter, und das ist dasselbe wie <InlineMath math="1" /> Person. Drei Wochen nach dem 15. Februar ist Dienstag, der 7. März, und der Plan ist um <InlineMath math="3" /> Personen weitergerückt, bis zu Oka. Am nächsten Tag, Mittwoch, dem 8. März, ist Putri dran.
+
+Jede andere Antwort entsteht aus einem Zählfehler:
+
+- Laras bekommst du, wenn du den 15. Februar selbst als Schritt mitzählst und so auf <InlineMath math="20" /> Schritte kommst.
+- Made bekommst du, wenn du den 29. Februar vergisst und außerdem die Sonntage nicht streichst, also <InlineMath math="21" /> Schritte zählst.
+- Nina bekommst du, wenn du alle <InlineMath math="22" /> Kalendertage zählst, ohne die Sonntage zu streichen.
+- Oka bekommst du, wenn du die Sonntage streichst, aber vergisst, dass 2028 ein Schaltjahr ist, und so nur <InlineMath math="18" /> Öffnungstage zählst.
+
+Am 8. März 2028 hat also Putri Dienst.

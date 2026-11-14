@@ -5,31 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
-        },
-        {
-          correct: false,
-          label:
-            "Pernyataan (1) saja cukup untuk menjawab pertanyaan dan pernyataan (2) saja cukup.",
-        },
-        {
-          correct: true,
-          label:
-            "Pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.",
-        },
+        { correct: true, label: "$$\\dfrac35\\text{ cm}$$" },
+        { correct: false, label: "$$\\dfrac65\\text{ cm}$$" },
+        { correct: false, label: "$$\\dfrac32\\text{ cm}$$" },
+        { correct: false, label: "$$\\dfrac{21}{10}\\text{ cm}$$" },
+        { correct: false, label: "$$\\dfrac{18}{5}\\text{ cm}$$" },
       ],
     },
   },

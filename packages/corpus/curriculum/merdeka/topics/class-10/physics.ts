@@ -24,6 +24,10 @@ export const merdekaClass10PhysicsTopicNodes = [
         description: "Gunakan satuan dan alat ukur dengan tepat.",
         title: "Pengukuran",
       },
+      ms: {
+        description: "Guna unit dan alat pengukur dengan betul.",
+        title: "Pengukuran",
+      },
     },
     order: 10,
     translations: {
@@ -33,6 +37,7 @@ export const merdekaClass10PhysicsTopicNodes = [
       },
       en: { routeSlug: "measurement", title: "Measurement" },
       id: { routeSlug: "pengukuran-dalam-kerja-ilmiah", title: "Pengukuran" },
+      ms: { routeSlug: "pengukuran", title: "Pengukuran" },
     },
   }),
   unitNode({
@@ -58,12 +63,17 @@ export const merdekaClass10PhysicsTopicNodes = [
         description: "Bandingkan sumber energi dan dampaknya.",
         title: "Energi Terbarukan",
       },
+      ms: {
+        description: "Bandingkan sumber tenaga dan kesannya.",
+        title: "Tenaga Boleh Baharu",
+      },
     },
     order: 20,
     translations: {
       de: { routeSlug: "erneuerbare-energien", title: "Erneuerbare Energien" },
       en: { routeSlug: "renewable-energy", title: "Renewable Energy" },
       id: { routeSlug: "energi-terbarukan", title: "Energi Terbarukan" },
+      ms: { routeSlug: "tenaga-boleh-baharu", title: "Tenaga Boleh Baharu" },
     },
   }),
 ];

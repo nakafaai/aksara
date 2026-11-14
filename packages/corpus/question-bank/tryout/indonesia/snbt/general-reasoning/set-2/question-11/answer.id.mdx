@@ -1,22 +1,28 @@
-Mulailah dari fakta yang pasti, yaitu **tim voli berlatih pada hari Kamis**, lalu telusuri premis ke belakang. Misalkan:
+Kamu perlu memisahkan pernyataan yang dijamin oleh keempat keterangan dari pernyataan yang hanya mungkin terjadi. Perhatikan bahwa keterangan 1, 2, dan 4 hanya berbentuk aturan "semua" atau "tidak ada". Aturan seperti itu tidak menjamin ada satu stan pun. **Hanya keterangan 3 yang menjamin sebuah stan benar-benar ada**, jadi setiap pernyataan "sebagian" yang pasti benar harus bertumpu pada stan itu.
 
-- <InlineMath math="h" />: hujan turun sebelum pukul <InlineMath math="15.00" />
-- <InlineMath math="a" />: latihan sepak bola dipindahkan ke aula
-- <InlineMath math="b" />: tim basket berlatih di halaman
-- <InlineMath math="v" />: tim voli berlatih
+Beri nama stan itu stan Melati, yaitu stan kelolaan pelajar yang menjual anyaman. Sekarang ikuti stan Melati melewati keterangan lainnya.
 
-Premisnya adalah <InlineMath math="h \Rightarrow a" />, <InlineMath math="a \Rightarrow b" />, <InlineMath math="\neg b \vee \neg v" />, dan fakta <InlineMath math="v" />.
+- Keterangan 4: stan Melati menjual anyaman, jadi stan Melati berada di lantai dua.
+- Keterangan 2: stan Melati dikelola pelajar, jadi stan Melati tidak menerima pembayaran nontunai.
+- Keterangan 1 dalam bentuk kontrapositif. Kontrapositif dari "jika <InlineMath math="P" />, maka <InlineMath math="Q" />" adalah "jika tidak <InlineMath math="Q" />, maka tidak <InlineMath math="P" />", dan keduanya selalu bernilai sama. Jadi, stan yang tidak menerima pembayaran nontunai pasti tidak menjual batik tulis. Berarti stan Melati tidak menjual batik tulis.
 
-Karena <InlineMath math="v" /> benar, <InlineMath math="\neg v" /> salah. Agar disjungsi <InlineMath math="\neg b \vee \neg v" /> benar, <InlineMath math="\neg b" /> harus benar. Kemudian modus tollens dipakai dua kali:
+Ringkasnya, stan Melati berada di lantai dua, menjual anyaman, tidak menerima pembayaran nontunai, dan tidak menjual batik tulis.
 
-<BlockMath math="\neg b \;\Rightarrow\; \neg a \;\Rightarrow\; \neg h" />
+Untuk pernyataan yang tidak dijamin, cukup tunjukkan satu pameran yang memenuhi keempat keterangan tetapi membuat pernyataan itu salah. Bayangkan pameran dengan tiga stan berikut.
 
-**Pernyataan 1** bernilai Benar, karena <InlineMath math="\neg h" /> berarti hujan tidak turun sebelum pukul <InlineMath math="15.00" />.
+| Stan | Pengelola | Dagangan | Nontunai | Lantai |
+| --- | --- | --- | --- | --- |
+| Melati | Pelajar | Anyaman | Tidak | Dua |
+| Kenanga | Perajin dewasa | Batik tulis | Ya | Satu |
+| Cempaka | Perajin dewasa | Anyaman | Ya | Dua |
 
-**Pernyataan 2** bernilai Salah, karena <InlineMath math="\neg a" /> berarti latihan sepak bola tidak dipindahkan ke aula.
+Keempat keterangan terpenuhi. Stan batik tulis, yaitu Kenanga, menerima nontunai. Stan pelajar, yaitu Melati, tidak menerima nontunai. Stan Melati membuktikan ada stan pelajar penjual anyaman. Kedua stan anyaman, yaitu Melati dan Cempaka, ada di lantai dua.
 
-**Pernyataan 3** bernilai Salah. Premis hanya membicarakan hujan sebelum pukul <InlineMath math="15.00" />. Hujan setelah pukul <InlineMath math="15.00" /> bisa turun, bisa juga tidak, jadi pernyataan ini tidak pasti benar.
+Sekarang nilai keempat pernyataan.
 
-**Pernyataan 4** bernilai Benar, karena <InlineMath math="\neg b" /> adalah langkah pertama penalaran di atas.
+- "Tidak ada stan penjual anyaman yang menerima pembayaran nontunai" tidak pasti benar. Keterangan 2 hanya melarang nontunai untuk stan pelajar. Stan Cempaka menjual anyaman dan menerima nontunai tanpa melanggar apa pun. Jebakannya adalah membawa sifat stan Melati ke semua stan anyaman.
+- "Sebagian stan di lantai dua tidak menerima pembayaran nontunai" pasti benar. Stan Melati ada di lantai dua dan tidak menerima nontunai, dan stan Melati dijamin ada oleh keterangan 3.
+- "Sebagian stan penjual anyaman tidak menjual batik tulis" pasti benar. Stan Melati menjual anyaman, dan lewat kontrapositif keterangan 1, stan Melati tidak menjual batik tulis.
+- "Sebagian stan penjual batik tulis berada di lantai dua" tidak pasti benar. Tidak ada keterangan yang menghubungkan batik tulis dengan lantai dua, dan pada contoh di atas satu-satunya stan batik tulis, yaitu Kenanga, ada di lantai satu.
 
-Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.
+Jadi, pernyataan kedua dan ketiga pasti benar, sedangkan pernyataan pertama dan keempat tidak pasti benar.

@@ -4,25 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "explicit-information",
+    topic: "summary",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
-      columns: ["Outcome to measure", "Potential unequal effect"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Late arrivals",
+          correct: true,
+          label: "I and II only",
         },
         {
-          column: 1,
-          label: "Transport delays",
+          correct: false,
+          label: "I only",
         },
         {
-          column: 2,
-          label: "Difficulty collecting a younger sibling",
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
       ],
     },

@@ -1,0 +1,35 @@
+Soalan ini bertanya anggaran bilangan murid dengan <InlineMath math="15\le t<35" />. Jadual hanya memberi nombor pada sempadan <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, dan seterusnya, sedangkan <InlineMath math="15" /> dan <InlineMath math="35" /> terletak **di tengah-tengah satu kelas**. Jadi kamu perlukan kekerapan setiap kelas dahulu, kemudian memotong kelas dengan andaian taburan sekata.
+
+# Kekerapan setiap kelas
+
+Kekerapan longgokan ialah jumlah yang berterusan. Kekerapan sesuatu kelas diperoleh daripada beza dua baris yang berturutan, **bukan daripada nombor longgokan itu sendiri**:
+
+| Kelas | Pengiraan | Kekerapan |
+| :---: | :---: | :---: |
+| <InlineMath math="10\le t<20" /> | <InlineMath math="8-2" /> | <InlineMath math="6" /> |
+| <InlineMath math="20\le t<30" /> | <InlineMath math="32-8" /> | <InlineMath math="24" /> |
+| <InlineMath math="30\le t<40" /> | <InlineMath math="52-32" /> | <InlineMath math="20" /> |
+
+Hanya tiga kelas ini yang menyentuh julat yang ditanya, jadi kelas lain tidak perlu dikira.
+
+# Memotong kelas di hujung julat
+
+Oleh sebab murid dianggap bertaburan sekata, **bilangan murid dalam sebahagian kelas berkadar dengan lebar bahagian itu**. Julat <InlineMath math="15\le t<35" /> terdiri daripada tiga bahagian. Bahagian <InlineMath math="15\le t<20" /> ialah separuh lebar kelas <InlineMath math="10\le t<20" />, jadi ia mendapat separuh kekerapannya. Kelas <InlineMath math="20\le t<30" /> masuk sepenuhnya. Bahagian <InlineMath math="30\le t<35" /> ialah separuh lebar kelas <InlineMath math="30\le t<40" />.
+
+<BlockMath math="\begin{aligned}
+15\le t<20&:\quad\tfrac{5}{10}\cdot6=3 \\
+20\le t<30&:\quad24 \\
+30\le t<35&:\quad\tfrac{5}{10}\cdot20=10 \\
+\text{jumlah}&=3+24+10=37
+\end{aligned}" />
+
+Semak melalui kekerapan longgokan: anggaran bagi <InlineMath math="t<35" /> ialah <InlineMath math="32+10=42" />, dan bagi <InlineMath math="t<15" /> ialah <InlineMath math="2+3=5" />. Bezanya <InlineMath math="42-5=37" />. Hasilnya sepadan.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="40" /> muncul jika kelas <InlineMath math="10\le t<20" /> diambil sepenuhnya, <InlineMath math="6+24+10" />. Murid dengan <InlineMath math="t<15" /> turut terkira.
+- <InlineMath math="42" /> ialah anggaran bagi <InlineMath math="t<35" />. **Murid yang membaca kurang daripada** <InlineMath math="15" /> **minit belum ditolak**.
+- <InlineMath math="44" /> muncul jika <InlineMath math="35" /> dan <InlineMath math="15" /> diganti dengan baris jadual seterusnya, <InlineMath math="52-8" />. Itu mengira julat <InlineMath math="20\le t<40" />.
+- <InlineMath math="50" /> muncul jika kedua-dua kelas di hujung diambil sepenuhnya, <InlineMath math="52-2" />, iaitu julat <InlineMath math="10\le t<40" />.
+
+Jadi, anggaran bilangan murid yang membaca sekurang-kurangnya <InlineMath math="15" /> minit tetapi kurang daripada <InlineMath math="35" /> minit ialah <InlineMath math="37" /> orang.

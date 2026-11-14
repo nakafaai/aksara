@@ -1,14 +1,38 @@
-Der Anfangsbestand im Juli ist **der Endbestand im Juni**. Berechne ihn zuerst aus der Tabelle:
+Diese Aufgabe verbindet zwei Zeilen der Tabelle. Aus Hasans Zeile bekommst du **eine Obergrenze für die Rechnung pro Person**, die du dann auf Mades Zeile anwendest und rückwärts bis zu den kWh rechnest.
 
-<BlockMath math="10+(180-175)=15" />
-
-Von Januar bis Juni wurden insgesamt <InlineMath math="180" /> Schränke produziert und <InlineMath math="175" /> verkauft, also beträgt der Endbestand im Juni <InlineMath math="15" /> Schränke.
-
-Sei die Produktion im Juli <InlineMath math="x" />. Der Endbestand im Juli darf nicht kleiner sein als der Anfangsbestand im Januar, also <InlineMath math="10" />:
+Schritt eins: Bestimme Familie Hasans Mairechnung pro Person. Hasan hat <InlineMath math="2{.}495-2{.}385=110\text{ kWh}" /> verbraucht, und im Haus wohnen <InlineMath math="4" /> Personen.
 
 <BlockMath math="\begin{aligned}
-15+x-30 &\ge 10 \\
-x &\ge 25
+\text{Rechnung Hasan} &= 40(1{.}200)+70(1{.}600)+25{.}000 = 185{.}000 \\
+\text{pro Person} &= 185{.}000\div4 = 46{.}250
 \end{aligned}" />
 
-Prüfe den Grenzwert: Bei <InlineMath math="25" /> produzierten Schränken bleibt Ende Juli ein Bestand von <InlineMath math="15+25-30=10" />, genau der Anfangsbestand im Januar. Mit <InlineMath math="24" /> blieben nur <InlineMath math="9" />, weniger als <InlineMath math="10" />. Im Juli müssen also mindestens <InlineMath math="25" /> Schränke produziert werden.
+Schritt zwei: Mach daraus eine Obergrenze für Familie Mades Rechnung. Bei Made wohnen <InlineMath math="6" /> Personen, also darf Mades Junirechnung höchstens <InlineMath math="6\times46{.}250" /> Rupiah betragen. Die Grundgebühr fällt trotzdem an, die Verbrauchskosten dürfen also höchstens den Rest ausmachen.
+
+<BlockMath math="\begin{aligned}
+\text{Rechnung Made} &\le 6\times46{.}250 = 277{.}500 \\
+\text{Verbrauchskosten Made} &\le 277{.}500-25{.}000 = 252{.}500
+\end{aligned}" />
+
+Schritt drei: Rechne Block für Block von Rupiah zurück in kWh. Werden die ersten <InlineMath math="120" /> kWh voll genutzt, kosten sie <InlineMath math="40(1{.}200)+80(1{.}600)=176{.}000" />. Das liegt noch unter <InlineMath math="252{.}500" />, also geht der Rest des Geldes in kWh aus Block III.
+
+<BlockMath math="\frac{252{.}500-176{.}000}{2{.}200} = \frac{76{.}500}{2{.}200} \approx 34{,}8" />
+
+Weil der Verbrauch in ganzen kWh erfasst wird, passen höchstens <InlineMath math="34" /> kWh in Block III. Rundest du auf <InlineMath math="35" /> auf, ist die Grenze schon überschritten. Mades Juniverbrauch darf also höchstens <InlineMath math="120+34=154\text{ kWh}" /> betragen.
+
+Prüf die Grenze, indem du die Rechnung pro Person für <InlineMath math="154" /> kWh und <InlineMath math="155" /> kWh ausrechnest.
+
+<BlockMath math="\begin{aligned}
+154\text{ kWh} &: \frac{176{.}000+34(2{.}200)+25{.}000}{6} = \frac{275{.}800}{6} \approx 45{.}967 \le 46{.}250 \\
+155\text{ kWh} &: \frac{176{.}000+35(2{.}200)+25{.}000}{6} = \frac{278{.}000}{6} \approx 46{.}333 > 46{.}250
+\end{aligned}" />
+
+Mit <InlineMath math="154" /> kWh klappt es noch, mit <InlineMath math="155" /> kWh nicht mehr. Im Mai hat Made <InlineMath math="4{.}238-4{.}068=170\text{ kWh}" /> verbraucht, die Einsparung muss also mindestens <InlineMath math="170-154=16" /> kWh betragen.
+
+Ein paar Abkürzungen, die schiefgehen:
+
+- Verbrauch pro Person statt Rechnung pro Person vergleichen: Hasan verbraucht <InlineMath math="110\div4=27{,}5" /> kWh pro Person, das würde Made auf <InlineMath math="6\times27{,}5=165" /> kWh begrenzen und nur <InlineMath math="5" /> kWh Einsparung verlangen. Das ist falsch, weil Mades zusätzliche kWh im teureren Block III liegen.
+- Die Grundgebühr bei beiden Familien weglassen: Dann wird die Grenze zu Verbrauchskosten von <InlineMath math="6\times(160{.}000\div4)=240{.}000" />, Made darf höchstens <InlineMath math="149" /> kWh verbrauchen, und die Einsparung wäre <InlineMath math="21" /> kWh.
+- <InlineMath math="34{,}8" /> auf <InlineMath math="35" /> aufrunden ergibt <InlineMath math="155" /> kWh und eine Einsparung von <InlineMath math="15" /> kWh, aber <InlineMath math="155" /> kWh liegen schon über der Grenze.
+
+Familie Made muss ihren Verbrauch also um mindestens <InlineMath math="16" /> kWh senken.

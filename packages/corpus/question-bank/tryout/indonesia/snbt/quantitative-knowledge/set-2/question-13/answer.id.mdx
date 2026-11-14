@@ -1,22 +1,38 @@
-Bidang potong memisahkan kerucut kecil di bagian atas dari bagian bawah yang memuat alas. Volume bagian bawah adalah **volume kerucut utuh dikurangi volume kerucut kecil**.
+Ruang kosong yang ditanyakan adalah **volume kerucut terpancung dikurangi volume bola**. Rencananya: cari jari-jari bola dari penampang kerucut, lalu cari volume kerucut kecil dengan kesebangunan, lalu kurangkan.
 
-# Kerucut kecil yang sebangun
+# Jari-jari bola
 
-Kerucut kecil memiliki puncak yang sama dengan kerucut utuh dan tinggi <InlineMath math="8-4=4\text{ cm}" />, yaitu setengah tinggi semula. Kedua kerucut **sebangun dengan faktor skala <InlineMath math="\tfrac12" />**, jadi jari-jari alas kerucut kecil adalah 3 cm.
+Potong kerucut tepat melalui sumbunya. Penampangnya segitiga sama kaki dengan alas <InlineMath math="12" />, tinggi <InlineMath math="8" />, dan kaki <InlineMath math="\sqrt{6^2+8^2}=10" />. Bola terpotong menjadi **lingkaran dalam segitiga penampang itu**, jadi jari-jari bola sama dengan luas segitiga dibagi setengah kelilingnya.
+
+<BlockMath math="r=\frac{\tfrac12\times12\times8}{\tfrac12(12+10+10)}=\frac{48}{16}=3" />
+
+# Kerucut kecil di atas bola
+
+Titik teratas bola berada pada ketinggian <InlineMath math="2r=6" />, jadi kerucut kecil di atasnya tingginya <InlineMath math="8-6=2" />. Kerucut kecil sebangun dengan kerucut besar dengan faktor skala <InlineMath math="k=\tfrac28=\tfrac14" />, dan **volume berskala pangkat tiga dari faktor skala**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{utuh}}&=\tfrac13\pi(6)^2(8)=96\pi\\
-V_{\text{kecil}}&=\tfrac13\pi(3)^2(4)=12\pi
+V_{\text{besar}}&=\tfrac13\pi\times6^2\times8=96\pi\\
+V_{\text{kecil}}&=\left(\tfrac14\right)^3\times96\pi=\tfrac{3}{2}\pi
 \end{aligned}" />
 
-Volume kerucut kecil sama dengan <InlineMath math="\left(\tfrac12\right)^3=\tfrac18" /> volume kerucut utuh, karena volume berskala dengan pangkat tiga faktor skala.
+Cek langsung: jari-jari kerucut kecil <InlineMath math="\tfrac64=\tfrac32" />, sehingga volumenya <InlineMath math="\tfrac13\pi\times\tfrac94\times2=\tfrac32\pi" />. Hasilnya sama.
 
-# Menghitung bagian bawah
+# Ruang kosong di kerucut terpancung
 
-Bagian bawah adalah **sisa kerucut utuh setelah kerucut kecil diambil**.
+Bola terletak di antara ketinggian <InlineMath math="0" /> dan <InlineMath math="6" />, jadi **seluruh bola ada di dalam kerucut terpancung**.
 
-<BlockMath math="V=96\pi-12\pi=84\pi\text{ cm}^3" />
+<BlockMath math="\begin{aligned}
+V_{\text{terpancung}}&=96\pi-\tfrac32\pi=\tfrac{189}{2}\pi\\
+V_{\text{bola}}&=\tfrac43\pi\times3^3=36\pi\\
+V_{\text{kosong}}&=\tfrac{189}{2}\pi-36\pi=\tfrac{117}{2}\pi\\
+\frac{V_{\text{kosong}}}{V_{\text{bola}}}&=\frac{117}{72}=\frac{13}{8}
+\end{aligned}" />
 
-Nilai <InlineMath math="48\pi" /> menganggap pemotongan di tengah tinggi juga membagi volume menjadi dua. Nilai <InlineMath math="72\pi" /> memakai perbandingan luas <InlineMath math="\tfrac14" /> sebagai perbandingan volume, sehingga mengurangkan <InlineMath math="24\pi" />. Nilai <InlineMath math="12\pi" /> adalah kerucut kecil, sedangkan <InlineMath math="96\pi" /> adalah kerucut utuh.
+# Jebakan pada pilihan lain
 
-Jadi, volume bagian yang memuat alas adalah **<InlineMath math="84\pi\text{ cm}^3" />**.
+- <InlineMath math="1:1" /> memakai skala panjang <InlineMath math="\tfrac14" /> untuk volume, sehingga kerucut kecil keliru menjadi <InlineMath math="24\pi" /> dan ruang kosongnya <InlineMath math="96\pi-24\pi-36\pi=36\pi" />, sama dengan volume bola.
+- <InlineMath math="3:2" /> memakai skala luas <InlineMath math="\left(\tfrac14\right)^2" /> untuk volume, sehingga kerucut kecil keliru menjadi <InlineMath math="6\pi" /> dan ruang kosongnya <InlineMath math="54\pi" />.
+- <InlineMath math="5:3" /> memakai **seluruh kerucut**, bukan hanya kerucut terpancung, sehingga ruang kosongnya <InlineMath math="96\pi-36\pi=60\pi" />.
+- <InlineMath math="21:8" /> lupa mengurangkan volume bola dan membandingkan <InlineMath math="\tfrac{189}{2}\pi" /> dengan <InlineMath math="36\pi" />.
+
+Jadi, perbandingan volume ruang kosong di kerucut terpancung dengan volume bola adalah <InlineMath math="13:8" />.

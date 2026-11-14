@@ -1,23 +1,45 @@
-Both fares change formula at certain points: Jalan at 2 km, and Cepat at 4 km, where <InlineMath math="3{,}000k" /> reaches the minimum fare. So **compare interval by interval** in the distance <InlineMath math="k" /> km.
+You're looking for the earliest time Rio can start his sixth boss mission. Count the energy six boss missions need, subtract **the energy he's sure to have**, and then turn the shortfall into a number of automatic refills and a time.
 
-# Distances from 1 to 4 km
+# The energy needed
 
-Cepat **is always Rp12,000** on this interval.
+Six boss missions use <InlineMath math="6\cdot 20=120" /> energy. At 09:00 Rio has <InlineMath math="60" />, the same as at 08:30. From 08:30 to 09:00 his energy is full, so **there's no refill while the energy is full**. That half hour of waiting produces no energy at all.
 
-| <InlineMath math="k" /> | Jalan | Cepat | Cheaper |
-| :---: | :---: | :---: | :---: |
-| 1 or 2 | 10,000 | 12,000 | Jalan |
-| 3 | 12,500 | 12,000 | Cepat |
-| 4 | 15,000 | 12,000 | Cepat |
+# Other sources of energy
 
-# Distances of 4 km or more
+Rio drinks no potion, so the only other source is **the daily gift of <InlineMath math="15" /> at 12:00**. It counts if the sixth mission starts at 12:00 or later. The rest has to come from automatic refills.
 
-For <InlineMath math="k\ge2" />, the Jalan fare is <InlineMath math="10{,}000+2{,}500(k-2)=5{,}000+2{,}500k" />, and for <InlineMath math="k\ge4" /> the Cepat fare is <InlineMath math="3{,}000k" />.
+<BlockMath math="120-60-15=45" />
 
-<BlockMath math="5{,}000+2{,}500k<3{,}000k\;\Longleftrightarrow\;5{,}000<500k\;\Longleftrightarrow\;k>10" />
+# When the refills start
 
-At <InlineMath math="k=10" />, both fares **are Rp30,000**, so Jalan is not yet cheaper. From 11 km on, Jalan is cheaper.
+The first boss mission at 09:00 leaves <InlineMath math="40" />, so the energy drops below <InlineMath math="60" /> and **the timer starts from zero at 09:00**. The first refill comes at 09:05. If Rio always starts a boss mission as soon as he can, his energy never gets back to <InlineMath math="60" />, so the refills keep coming every <InlineMath math="5" /> minutes without a break. The last of those <InlineMath math="45" /> refills comes this many minutes after 09:00.
 
-The choices at least 11 km and at most 2 km each contain only one part of the answer. The choice at most 2 km or at least 10 km includes 10 km, where the fares are equal.
+<BlockMath math="45\cdot 5=225\text{ minutes}" />
 
-So Jalan is cheaper exactly when the distance is **at most 2 km or at least 11 km**.
+<InlineMath math="225" /> minutes is <InlineMath math="3" /> hours <InlineMath math="45" /> minutes, so that last refill comes at 12:45.
+
+# Checking the mission schedule
+
+Now make sure the schedule really works, including the <InlineMath math="10" /> minutes each boss mission lasts. **Each mission starts as soon as there's enough energy and the previous mission has ended**.
+
+| Start time | Energy before | Energy after |
+| --- | --- | --- |
+| 09:00 | <InlineMath math="60" /> | <InlineMath math="40" /> |
+| 09:10 | <InlineMath math="42" /> | <InlineMath math="22" /> |
+| 09:20 | <InlineMath math="24" /> | <InlineMath math="4" /> |
+| 10:40 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+| 12:00 | <InlineMath math="31" /> | <InlineMath math="11" /> |
+| 12:45 | <InlineMath math="20" /> | <InlineMath math="0" /> |
+
+From 09:20 to 10:40 there are <InlineMath math="16" /> refills, so the energy climbs from <InlineMath math="4" /> to <InlineMath math="20" />. From 10:45 to 12:00 there are <InlineMath math="16" /> refills and then the gift, so <InlineMath math="0+16+15=31" />. From 12:05 to 12:45 there are <InlineMath math="9" /> refills, so <InlineMath math="11+9=20" />, just enough for the sixth mission. Before 12:45 the energy after the fifth mission is always below <InlineMath math="20" />, so the sixth mission can't start any earlier.
+
+# The wrong options
+
+Each other option comes from **one counting step that slips**.
+
+- 12:00 is the start of the fifth boss mission, so the count stops one mission too early.
+- 12:15 comes from counting refills from 08:30, although Rio's energy was full until 09:00.
+- 12:40 comes from treating 09:00 itself as a refill, so only <InlineMath math="44" /> times <InlineMath math="5" /> minutes get counted.
+- 14:00 comes from forgetting the daily gift, which would need <InlineMath math="60" /> refills, or <InlineMath math="300" /> minutes.
+
+So the earliest Rio can start his sixth boss mission is 12:45.

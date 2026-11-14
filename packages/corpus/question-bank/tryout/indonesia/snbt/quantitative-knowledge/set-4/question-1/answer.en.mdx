@@ -1,28 +1,54 @@
-A perfect square has an even exponent on every prime, and a perfect cube has exponents that are multiples of 3. So write <InlineMath math="n=2^a\,3^b\,5^c" /> and decide **each exponent separately**. Any other prime factor would only make <InlineMath math="n" /> larger.
+You're looking for two natural numbers whose sum is <InlineMath math="112" /> and whose GCD plus LCM is <InlineMath math="392" />. (The prompt writes GCD as FPB and LCM as KPK.) Here's the plan: write both numbers as multiples of their GCD, test every possible GCD, then **throw out any pair whose cofactors aren't coprime**.
 
-# The conditions on each exponent
+# Writing both numbers through their GCD
 
-With <InlineMath math="20=2^2\cdot5" /> and <InlineMath math="12=2^2\cdot3" />:
+Let the GCD of the two numbers be <InlineMath math="d" />. Since <InlineMath math="d" /> divides both <InlineMath math="a" /> and <InlineMath math="b" />, you can write <InlineMath math="a=dm" /> and <InlineMath math="b=dn" /> for natural numbers <InlineMath math="m" /> and <InlineMath math="n" />. Here **<InlineMath math="m" /> and <InlineMath math="n" /> must be coprime**, which means their GCD is <InlineMath math="1" />. If they still shared a factor, that factor would join the GCD and make it bigger than <InlineMath math="d" />.
+
+With that condition, the LCM of the two numbers is <InlineMath math="dmn" />. The two facts in the prompt become two equations.
 
 <BlockMath math="\begin{aligned}
-20n&=2^{a+2}\,3^{b}\,5^{c+1}\\
-12n&=2^{a+2}\,3^{b+1}\,5^{c}
+d(m+n)&=112\\
+d+dmn=d(1+mn)&=392
 \end{aligned}" />
 
-| Prime | Square condition from <InlineMath math="20n" /> | Cube condition from <InlineMath math="12n" /> | Smallest exponent |
-| :---: | :---: | :---: | :---: |
-| 2 | <InlineMath math="a+2" /> even | <InlineMath math="a+2" /> a multiple of 3 | <InlineMath math="a=4" /> |
-| 3 | <InlineMath math="b" /> even | <InlineMath math="b+1" /> a multiple of 3 | <InlineMath math="b=2" /> |
-| 5 | <InlineMath math="c+1" /> even | <InlineMath math="c" /> a multiple of 3 | <InlineMath math="c=3" /> |
+# Finding the possible GCD values
 
-Every exponent must **satisfy both conditions at once**. For example, <InlineMath math="a" /> is even and <InlineMath math="a+2" /> is a multiple of 3, so its smallest value is 4.
+The first equation shows that <InlineMath math="d" /> divides <InlineMath math="112" />, and the second shows that <InlineMath math="d" /> divides <InlineMath math="392" />. So **<InlineMath math="d" /> has to divide the GCD of <InlineMath math="112" /> and <InlineMath math="392" />**, which is <InlineMath math="56" />. The candidates for <InlineMath math="d" /> are <InlineMath math="1, 2, 4, 7, 8, 14, 28, 56" />.
 
-# Computing and checking
+For each candidate you know the sum <InlineMath math="m+n=\frac{112}{d}" /> and the product <InlineMath math="mn=\frac{392}{d}-1" />. The numbers <InlineMath math="m" /> and <InlineMath math="n" /> are the roots of <InlineMath math="t^2-(m+n)t+mn=0" />, so they're whole numbers only when the discriminant <InlineMath math="(m+n)^2-4mn" /> is a perfect square.
 
-<BlockMath math="n=2^4\cdot3^2\cdot5^3=16\cdot9\cdot125=18{,}000" />
+| <InlineMath math="d" /> | <InlineMath math="m+n" /> | <InlineMath math="mn" /> | Discriminant | Result |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="112" /> | <InlineMath math="391" /> | <InlineMath math="10{,}980" /> | not a square |
+| <InlineMath math="2" /> | <InlineMath math="56" /> | <InlineMath math="195" /> | <InlineMath math="2{,}356" /> | not a square |
+| <InlineMath math="4" /> | <InlineMath math="28" /> | <InlineMath math="97" /> | <InlineMath math="396" /> | not a square |
+| <InlineMath math="7" /> | <InlineMath math="16" /> | <InlineMath math="55" /> | <InlineMath math="36" /> | <InlineMath math="m=5,\ n=11" /> |
+| <InlineMath math="8" /> | <InlineMath math="14" /> | <InlineMath math="48" /> | <InlineMath math="4" /> | <InlineMath math="m=6,\ n=8" /> |
+| <InlineMath math="14" /> | <InlineMath math="8" /> | <InlineMath math="27" /> | <InlineMath math="-44" /> | none |
+| <InlineMath math="28" /> | <InlineMath math="4" /> | <InlineMath math="13" /> | <InlineMath math="-36" /> | none |
+| <InlineMath math="56" /> | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="-20" /> | none |
 
-Check: <InlineMath math="20n=360{,}000=600^2" /> and <InlineMath math="12n=216{,}000=60^3" />.
+# Filtering with the coprime condition
 
-The value 5 satisfies only the square condition, since <InlineMath math="20\cdot5=100" />. The value 18 satisfies only the cube condition, since <InlineMath math="12\cdot18=216" />. The value 90 is the least common multiple of the two, but <InlineMath math="20\cdot90=1800" /> is not a perfect square. The value 720 satisfies the square condition, but <InlineMath math="12\cdot720" /> contains only <InlineMath math="5^1" />.
+Two candidates pass the discriminant test. For <InlineMath math="d=8" />, the pair <InlineMath math="m=6" /> and <InlineMath math="n=8" /> are both even, so **this pair breaks the coprime condition**. The numbers would be <InlineMath math="48" /> and <InlineMath math="64" />, but their GCD is <InlineMath math="16" />, not <InlineMath math="8" />, and their LCM is <InlineMath math="192" />, so GCD plus LCM is <InlineMath math="208" />, not <InlineMath math="392" />.
 
-So the smallest <InlineMath math="n" /> is **18,000**.
+For <InlineMath math="d=7" />, the pair <InlineMath math="m=5" /> and <InlineMath math="n=11" /> is coprime. The two numbers are <InlineMath math="a=35" /> and <InlineMath math="b=77" />. Check them against the prompt.
+
+<BlockMath math="\begin{aligned}
+35+77&=112\\
+\text{GCD}+\text{LCM}&=7+385=392\\
+77-35&=42
+\end{aligned}" />
+
+Both conditions hold, and this is the only pair that survives, so the difference has to be <InlineMath math="42" />.
+
+# The tempting wrong options
+
+Each other option comes from **one skipped step** along that route.
+
+- <InlineMath math="16" /> comes from using <InlineMath math="48" /> and <InlineMath math="64" /> without checking that <InlineMath math="6" /> and <InlineMath math="8" /> aren't coprime.
+- <InlineMath math="6" /> is <InlineMath math="11-5" />, the difference of <InlineMath math="m" /> and <InlineMath math="n" /> before multiplying by the GCD <InlineMath math="7" />.
+- <InlineMath math="2" /> is <InlineMath math="8-6" /> from the pair you should have thrown out, also not multiplied by the GCD.
+- <InlineMath math="0" /> comes from assuming the GCD of the two numbers equals the GCD of <InlineMath math="112" /> and <InlineMath math="392" />, which is <InlineMath math="56" />, so both numbers would be <InlineMath math="56" />. But for <InlineMath math="56" /> and <InlineMath math="56" />, GCD plus LCM is only <InlineMath math="112" />.
+
+So the difference between the two numbers is <InlineMath math="42" />.

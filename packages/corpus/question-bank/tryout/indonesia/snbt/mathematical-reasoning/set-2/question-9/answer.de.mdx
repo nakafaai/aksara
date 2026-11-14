@@ -1,20 +1,48 @@
-Es gibt zwei Unbekannte, die Anzahl richtiger Antworten <InlineMath math="b" /> und falscher Antworten <InlineMath math="w" />. Die Aufgabe liefert **zwei Gleichungen**: die Anzahl beantworteter Aufgaben und die Gesamtpunktzahl.
+Gesucht ist die erste Rate, nach der Anis gesamte Zinsen **größer als**, nicht nur gleich, die Zinsen eines ganzen Jahres bei Rencana Tetap sind. Bestimm diese Grenze aus Rencana Tetap, schreib die monatlichen Zinsen von Rencana Menurun auf und addier sie, bis die Grenze überschritten ist.
 
-# Das Gleichungssystem aufstellen
+# Die Gesamtzinsen von Rencana Tetap
+
+Rencana Tetap verlangt immer <InlineMath math="1\%" /> des ursprünglichen Darlehens, also sind **die Zinsen jeden Monat gleich**.
 
 <BlockMath math="\begin{aligned}
-b+w&=34\\
-4b-w&=106
+1\%\cdot 12{.}000{.}000&=120{.}000 \\
+12\cdot 120{.}000&=1{.}440{.}000
 \end{aligned}" />
 
-# Das System lösen
+# Die monatlichen Zinsen von Rencana Menurun
 
-Addiere beide Gleichungen, damit **<InlineMath math="w" /> wegfällt**.
+Die Tilgung beträgt jeden Monat <InlineMath math="12{.}000{.}000 : 12=1{.}000{.}000" />. Bevor die Rate von Monat <InlineMath math="k" /> bezahlt wird, sind schon <InlineMath math="k-1" /> Tilgungen bezahlt, die Restschuld beträgt also <InlineMath math="13-k" /> Millionen Rupiah. **Die Zinsen werden auf den Rest vor der Zahlung berechnet**, im ersten Monat also auf <InlineMath math="12" /> Millionen.
 
-<BlockMath math="5b=140\;\Longrightarrow\;b=28,\quad w=6" />
+<BlockMath math="\text{Zinsen in Monat }k=2\%\cdot (13-k)\cdot 1{.}000{.}000=20{.}000\,(13-k)" />
 
-Kontrolle: <InlineMath math="4\cdot28-6=112-6=106" />. Anders gedacht: Wären alle 34 Antworten richtig, gäbe es 136 Punkte. Jede falsche Antwort zieht 5 davon ab, denn 4 Punkte fehlen und <InlineMath math="-1" /> kommt hinzu. Die Differenz <InlineMath math="136-106=30" /> bedeutet 6 falsche Antworten.
+Die Zinsen betragen <InlineMath math="240{.}000" />, <InlineMath math="220{.}000" />, <InlineMath math="200{.}000" /> und so weiter, jeden Monat <InlineMath math="20{.}000" /> weniger.
 
-Der Wert 26 entsteht, wenn man 106 durch 4 teilt und den Abzug für falsche Antworten übersieht. Die anderen Werte erfüllen nicht beide Gleichungen.
+# Die Zinsen bis zu einem bestimmten Monat
 
-Die Person hat also **28 Aufgaben** richtig beantwortet.
+Diese Beträge bilden eine arithmetische Folge, die Summe der ersten <InlineMath math="k" /> Glieder ist also **die Anzahl der Glieder mal der Mittelwert aus erstem und letztem Glied**.
+
+<BlockMath math="\begin{aligned}
+S_k&=\frac{k}{2}\,\bigl(240{.}000+20{.}000\,(13-k)\bigr)=10{.}000\,k\,(25-k) \\
+S_8&=10{.}000\cdot 8\cdot 17=1{.}360{.}000 \\
+S_9&=10{.}000\cdot 9\cdot 16=1{.}440{.}000 \\
+S_{10}&=10{.}000\cdot 10\cdot 15=1{.}500{.}000
+\end{aligned}" />
+
+# Größer heißt nicht gleich
+
+Nach der neunten Rate hat Ani genau <InlineMath math="1{.}440{.}000" /> Zinsen bezahlt, also **gleich viel, aber noch nicht mehr** als bei Rencana Tetap. Nach der zehnten Rate sind es <InlineMath math="1{.}500{.}000" />, erst jetzt ist es mehr.
+
+# Kontrolle
+
+Addier die Monate eins bis neun direkt: <InlineMath math="240+220+200+180+160+140+120+100+80" /> Tausend Rupiah. **Diese direkte Summe** ergibt <InlineMath math="1{.}440" /> Tausend Rupiah, genau wie die Formel. Die Zinsen des zehnten Monats von <InlineMath math="60" /> Tausend bringen die Summe auf <InlineMath math="1{.}500" /> Tausend.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn du **eine Bedingung falsch liest**.
+
+- Der achte Monat entsteht, wenn du die Verwaltungsgebühr von <InlineMath math="\text{Rp}100{.}000{,}00" /> zu Anis Zinsen addierst, dann liegt <InlineMath math="1{.}360{.}000+100{.}000" /> schon über der Grenze.
+- Der neunte Monat entsteht, wenn du "größer" als "größer oder gleich" liest.
+- Der zwölfte Monat entsteht, wenn du nur die Jahressummen <InlineMath math="1{.}560{.}000" /> und <InlineMath math="1{.}440{.}000" /> vergleichst.
+- "Nie" entsteht, wenn du die Zinsen auf die Restschuld nach der Zahlung berechnest, dann betragen die Zinsen eines Jahres nur <InlineMath math="1{.}320{.}000" />.
+
+Anis Gesamtzinsen sind also erstmals nach der zehnten Rate größer.

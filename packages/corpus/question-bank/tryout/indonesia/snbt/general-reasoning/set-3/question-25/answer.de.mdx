@@ -1,13 +1,31 @@
-Rechne mit **Schülerzahlen**, denn Schule A hat weiterhin <InlineMath math="800" /> Schüler.
+Gesucht ist die kleinste Gesamtzahl an Abfahrten aus beiden Häfen in der nächsten Woche. Drei Bedingungen wirken zusammen: An jedem Tag und in jeder Richtung gibt es <InlineMath math="20\%" /> mehr Fahrgäste, jede Abfahrt nimmt höchstens <InlineMath math="200" /> Personen mit, und an einem Tag müssen beide Häfen gleich viele Abfahrten haben.
+
+Rechne **Tag für Tag**, denn die Fahrgäste vom Sonntag können keine freien Plätze vom Dienstag nutzen. Weil beide Häfen gleich viele Abfahrten brauchen, entscheidet die stärkere Richtung. Für jeden Tag gilt: Multipliziere jeden Balken mit <InlineMath math="1{,}2" />, nimm die stärkere Richtung und such das kleinste Vielfache von <InlineMath math="200" />, das reicht.
+
+| Tag | Batu Lintang | Karang Mas | Stärkere Richtung | Abfahrten pro Hafen |
+| --- | --- | --- | --- | --- |
+| Montag | <InlineMath math="432" /> | <InlineMath math="672" /> | <InlineMath math="672" /> | <InlineMath math="4" /> |
+| Dienstag | <InlineMath math="456" /> | <InlineMath math="408" /> | <InlineMath math="456" /> | <InlineMath math="3" /> |
+| Mittwoch | <InlineMath math="504" /> | <InlineMath math="480" /> | <InlineMath math="504" /> | <InlineMath math="3" /> |
+| Donnerstag | <InlineMath math="660" /> | <InlineMath math="456" /> | <InlineMath math="660" /> | <InlineMath math="4" /> |
+| Freitag | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="4" /> |
+| Samstag | <InlineMath math="792" /> | <InlineMath math="768" /> | <InlineMath math="792" /> | <InlineMath math="4" /> |
+| Sonntag | <InlineMath math="648" /> | <InlineMath math="828" /> | <InlineMath math="828" /> | <InlineMath math="5" /> |
+
+Nimm den Montag als Beispiel: <InlineMath math="3 \times 200 = 600" /> Plätze reichen nicht für <InlineMath math="672" /> Personen, <InlineMath math="4 \times 200 = 800" /> dagegen schon. Samstag und Sonntag solltest du genau prüfen. Am Samstag ist <InlineMath math="792 \le 800" />, also reichen vier Abfahrten noch. Am Sonntag ist <InlineMath math="828 > 800" />, also brauchst du fünf.
+
+Addiere die Abfahrten pro Hafen und verdopple, weil es zwei Häfen gibt.
 
 <BlockMath math="\begin{aligned}
-\text{Radfahrer jetzt} &= 25\%\times800=200 \\
-\text{Radfahrer als Ziel} &= 40\%\times800=320 \\
-\text{zusätzliche Radfahrer} &= 320-200=120
+4+3+3+4+4+4+5 &= 27 \\
+2 \times 27 &= 54
 \end{aligned}" />
 
-Alle zusätzlichen Radfahrer wurden bisher gebracht. Anfangs wurden <InlineMath math="25\%\times800=200" /> Schüler gebracht, also
+Manche Abkürzungen führen zu einer falschen Zahl.
 
-<BlockMath math="200-120=80" />
+- Rundest du die Wochensummen, etwa <InlineMath math="4{.}128 \div 200" /> auf <InlineMath math="21" /> und <InlineMath math="4{.}248 \div 200" /> auf <InlineMath math="22" />, erhältst du <InlineMath math="43" />. Damit tust du so, als könnten Fahrgäste den Tag wechseln.
+- Legst du beide Richtungen eines Tages zusammen, etwa am Montag <InlineMath math="(432+672) \div 200 = 5{,}52" /> aufgerundet auf <InlineMath math="6" />, erhältst du <InlineMath math="45" />. Damit tust du so, als könnte ein Schiff ab Batu Lintang Leute mitnehmen, die in Karang Mas warten, und du verletzt die Regel der gleichen Abfahrtszahl.
+- Vergisst du den Anstieg um <InlineMath math="20\%" />, erhältst du <InlineMath math="44" />.
+- Hörst du bei <InlineMath math="27" /> auf, hast du nur einen Hafen gezählt.
 
-Probe mit Prozentwerten: Die gebrachten Schüler sinken von <InlineMath math="25\%" /> auf <InlineMath math="\frac{80}{800}=10\%" />, die Radfahrer steigen von <InlineMath math="25\%" /> auf <InlineMath math="40\%" />. Der Anstieg um <InlineMath math="15" /> Prozentpunkte entspricht dem Rückgang, die Summe bleibt also <InlineMath math="100\%" />. Es werden also noch <InlineMath math="80" /> Schüler von der Familie gebracht.
+Der Betreiber braucht in der nächsten Woche also mindestens <InlineMath math="54" /> Abfahrten aus beiden Häfen.

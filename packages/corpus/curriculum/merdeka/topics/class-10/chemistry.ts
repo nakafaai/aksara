@@ -24,6 +24,10 @@ export const merdekaClass10ChemistryTopicNodes = [
         description: "Kenali perubahan kimia dari bukti.",
         title: "Hukum Dasar Kimia",
       },
+      ms: {
+        description: "Kenal pasti perubahan kimia daripada bukti.",
+        title: "Hukum Asas Kimia",
+      },
     },
     order: 10,
     translations: {
@@ -36,6 +40,7 @@ export const merdekaClass10ChemistryTopicNodes = [
         title: "Basic Laws of Chemistry",
       },
       id: { routeSlug: "hukum-dasar-kimia", title: "Hukum Dasar Kimia" },
+      ms: { routeSlug: "hukum-asas-kimia", title: "Hukum Asas Kimia" },
     },
   }),
   unitNode({
@@ -61,12 +66,17 @@ export const merdekaClass10ChemistryTopicNodes = [
         description: "Nilai reaksi lewat prinsip kimia hijau.",
         title: "Kimia Hijau",
       },
+      ms: {
+        description: "Nilai tindak balas dengan idea kimia hijau.",
+        title: "Kimia Hijau",
+      },
     },
     order: 20,
     translations: {
       de: { routeSlug: "gruene-chemie", title: "Grüne Chemie" },
       en: { routeSlug: "green-chemistry", title: "Green Chemistry" },
       id: { routeSlug: "kimia-hijau", title: "Kimia Hijau" },
+      ms: { routeSlug: "kimia-hijau", title: "Kimia Hijau" },
     },
   }),
   unitNode({
@@ -92,12 +102,17 @@ export const merdekaClass10ChemistryTopicNodes = [
         description: "Gunakan konsep atom untuk memahami materi.",
         title: "Struktur Atom",
       },
+      ms: {
+        description: "Guna konsep atom untuk menerangkan jirim.",
+        title: "Struktur Atom",
+      },
     },
     order: 30,
     translations: {
       de: { routeSlug: "atombau", title: "Atombau" },
       en: { routeSlug: "structure-matter", title: "Atomic Structure" },
       id: { routeSlug: "struktur-atom", title: "Struktur Atom" },
+      ms: { routeSlug: "struktur-atom", title: "Struktur Atom" },
     },
   }),
 ];

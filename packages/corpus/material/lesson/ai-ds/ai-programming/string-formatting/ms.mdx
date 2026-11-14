@@ -1,0 +1,364 @@
+export const metadata = {
+    title: "Pemformatan Rentetan",
+    description: "Gunakan format(), f-string, lebar lajur, penjajaran, kepersisan nombor, tanda dan pengendalian ralat untuk membentuk output teks Python.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Medan Format dan Lebar
+
+Pemformatan rentetan mengawal <Highlight>cara nilai dipaparkan sebagai teks</Highlight>. Dengannya, kamu boleh menjajarkan lajur jadual, memilih tatatanda nombor, mengawal kepersisan dan memasukkan nilai ke dalam mesej yang mudah dibaca. Python menyediakan kaedah `str.format()` dan f-string untuk kerja ini.
+
+Medan gantian yang asas berbentuk `{field_name:format_spec}`. Lebar di dalam spesifikasi format menetapkan **ruang minimum**. Jika nilai itu memerlukan lebih banyak ruang, Python tetap memaparkan nilai itu dengan lengkap.
+
+### Jenis Format untuk Sistem Nombor
+
+Penentu format boleh memaparkan satu integer dalam **sistem nombor yang berbeza**. Jadual ini menyenaraikan aksara jenis dan output yang dihasilkan oleh setiap satu untuk nilai yang sama.
+
+| Jenis Format | Simbol | Contoh Input | Output | Kegunaan |
+|-------------|---------|--------------|--------|-------|
+| Perpuluhan | `d` | `45` | `45` | Integer perpuluhan |
+| Perduaan | `b` | `45` | `101101` | Perwakilan bit |
+| Perlapanan | `o` | `45` | `55` | Perwakilan asas lapan |
+| Perenambelasan | `x/X` | `45` | `2d/2D` | Asas enam belas, huruf kecil atau huruf besar |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "width_and_types.py",
+      code: `# Kawalan lebar dengan pelbagai format
+print('|{0:15}|'.format('xxx'))     # Output: |xxx            |
+print('a = {0:6d}'.format(45))      # Output: a =     45
+print('a = {0:10b}'.format(45))     # Output: a =     101101
+print('a = {0:6x}'.format(45))      # Output: a =     2d
+
+# Lebar lebih kecil daripada rentetan - tidak dipangkas
+print('|{0:1}|'.format('xxx'))      # Output: |xxx|`
+    }
+  ]}
+/>
+
+## Tetapan Kedudukan dan Aksara Pengisi
+
+Medan yang lebarnya tetap memerlukan peraturan tentang **tempat teks itu diletakkan** dan apa yang mengisi baki ruangnya. Aksara penjajaran meletakkan nilai rapat ke tepi kiri, tepi kanan atau di tengah-tengah lebar itu, dan aksara pengisi menentukan simbol yang memenuhi ruang yang tinggal. Bersama-sama, kedua-duanya memastikan lajur nombor dan label kekal sejajar.
+
+### Pilihan Penjajaran
+
+Rajah ini membandingkan teks yang sama yang diletakkan **di kiri, di kanan dan di tengah** dalam satu lebar tetap, supaya kamu mudah membaca kesan setiap aksara penjajaran.
+
+<Mermaid
+  title="Cara Lebar Meletakkan Teks"
+  description="Bandingkan penjajaran kiri, kanan dan tengah untuk rentetan yang sama dalam medan yang lebarnya tetap."
+  chart={`
+    flowchart TD
+        A["Rentetan Input: 'xxx'"] --> B["Pilihan Penjajaran"]
+
+        B --> C["< (Kiri)"]
+        B --> D["> (Kanan)"]
+        B --> E["^ (Tengah)"]
+
+        C --> F["'xxx            '"]
+        D --> G["'            xxx'"]
+        E --> H["'      xxx      '"]
+  `}
+/>
+
+| Simbol | Nama | Tingkah Laku | Lalai untuk |
+|--------|------|----------|-------------|
+| `<` | Kiri | Teks di kiri, isian di kanan | Rentetan |
+| `>` | Kanan | Teks di kanan, isian di kiri | Nombor |
+| `^` | Tengah | Teks di tengah, isian sama rata | - |
+
+### Aksara Pengisi dan Pemformatan Lanjutan
+
+Aksara pengisi memenuhi ruang yang tidak digunakan dalam medan. Nilai lalainya ialah ruang, dan aksara ini <Highlight>ditulis betul-betul sebelum simbol penjajaran</Highlight>. Dalam `str.format()` dan f-string, `{` atau `}` literal tidak boleh digunakan sebagai aksara pengisi.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "alignment_fill.py",
+      code: `# Penjajaran asas
+print('|{0:<15}|'.format('xxx'))    # Output: |xxx            |
+print('|{0:>15}|'.format('xxx'))    # Output: |            xxx|
+print('|{0:^15}|'.format('xxx'))    # Output: |      xxx      |
+
+# Aksara pengisi tersuai
+print('|{0:-<15}|'.format('xxx'))   # Output: |xxx------------|
+print('|{0:*>15}|'.format('xxx'))   # Output: |************xxx|
+print('|{0:^^15}|'.format('xxx'))   # Output: |^^^^^^xxx^^^^^^|
+
+# Pemformatan nombor perpuluhan
+x = 123.98
+print('x = {0:12f}'.format(x))      # Output: x =   123.980000
+print('x = {0:12e}'.format(x))      # Output: x = 1.239800e+02`
+    }
+  ]}
+/>
+
+Lebar <InlineMath math="15" /> meninggalkan <InlineMath math="15-3=12" /> lajur isian di sekeliling `'xxx'`. Penjajaran kiri meletakkan semua isian di kanan, penjajaran kanan meletakkan semuanya di kiri, dan penjajaran tengah membahagikannya kepada <InlineMath math="6" /> dan <InlineMath math="6" />.
+
+<MathVisual
+  title={<><code>'xxx'</code> dalam lebar <InlineMath math="15" /> dengan tiga penjajaran</>}
+  description={<>Setiap baris terdiri daripada <InlineMath math="15" /> lajur. Segi empat tepat ungu ialah <code>'xxx'</code> dan segi empat tepat kelabu ialah isian. Dari atas ke bawah: penjajaran kiri, kanan dan tengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 15.5 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-text", kind: "polygon", vertices: [{ x: 0, y: 1.7 }, { x: 3, y: 1.7 }, { x: 3, y: 2.3 }, { x: 0, y: 2.3 }], appearance: "secondary" },
+      { id: "left-fill", kind: "polygon", vertices: [{ x: 3, y: 1.7 }, { x: 15, y: 1.7 }, { x: 15, y: 2.3 }, { x: 3, y: 2.3 }], appearance: "reference" },
+      { id: "right-fill", kind: "polygon", vertices: [{ x: 0, y: 0.7 }, { x: 12, y: 0.7 }, { x: 12, y: 1.3 }, { x: 0, y: 1.3 }], appearance: "reference" },
+      { id: "right-text", kind: "polygon", vertices: [{ x: 12, y: 0.7 }, { x: 15, y: 0.7 }, { x: 15, y: 1.3 }, { x: 12, y: 1.3 }], appearance: "secondary" },
+      { id: "center-fill-a", kind: "polygon", vertices: [{ x: 0, y: -0.3 }, { x: 6, y: -0.3 }, { x: 6, y: 0.3 }, { x: 0, y: 0.3 }], appearance: "reference" },
+      { id: "center-text", kind: "polygon", vertices: [{ x: 6, y: -0.3 }, { x: 9, y: -0.3 }, { x: 9, y: 0.3 }, { x: 6, y: 0.3 }], appearance: "secondary" },
+      { id: "center-fill-b", kind: "polygon", vertices: [{ x: 9, y: -0.3 }, { x: 15, y: -0.3 }, { x: 15, y: 0.3 }, { x: 9, y: 0.3 }], appearance: "reference" },
+    ],
+  }}
+/>
+
+## Kaedah Merujuk Argumen
+
+Medan gantian memilih **nilai yang dimasukkan ke dalam teks**. Gunakan indeks untuk argumen kedudukan, nama untuk argumen kata kunci, atau penomboran automatik untuk mengambil argumen kedudukan mengikut urutan.
+
+<Mermaid
+  title="Cara Pemegang Tempat Memilih Nilai"
+  description="Lihat cara rujukan kedudukan, bernama dan berindeks memilih nilai untuk setiap pemegang tempat dalam format."
+  chart={`
+    flowchart TD
+        A["Pemformatan Rentetan"] --> B["Kaedah Merujuk Argumen"]
+
+        B --> C["Bernombor: {0} {1}"]
+        B --> D["Kata kunci: {name}"]
+        B --> E["Automatik: {}"]
+
+        C --> F["Jelas dan boleh diulang"]
+        D --> G["Nama mengenal pasti nilai"]
+        E --> H["Mudah tetapi mengikut urutan"]
+  `}
+/>
+
+### Perbandingan Kaedah Rujukan
+
+Rentetan format boleh menamakan argumennya dengan **tiga cara**. Jadual ini membandingkan ketiga-tiganya berdasarkan keperluan dan had setiap satu.
+
+| Kaedah | Sintaks | Kelebihan | Had |
+|--------|---------|-----------|-------------|
+| Bernombor | `{0}, {1}` | Kawalan yang jelas, boleh diulang | Setiap indeks yang dirujuk mesti wujud |
+| Kata kunci | `{name}, {age}` | Setiap nama mengenal pasti nilainya dan boleh diulang | Nama mesti sepadan |
+| Automatik | `{}, {}` | Sintaks ringkas | Tidak boleh dicampur dengan bernombor |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "argument_methods.py",
+      code: `# Medan bernombor - kawalan yang jelas
+print('{2} - {0} - {1}'.format('pertama', 'kedua', 'ketiga'))
+# Output: ketiga - pertama - kedua
+
+# Medan kata kunci - menggunakan nama
+print('{name} berumur {age} tahun'.format(name='Alice', age=25))
+# Output: Alice berumur 25 tahun
+
+# Penomboran automatik - mengikut urutan
+print('{} + {} = {}'.format(5, 3, 8))
+# Output: 5 + 3 = 8
+
+# Pengendalian ralat
+try:
+    print('{a} - {b}'.format(a='xxx'))  # Akan menimbulkan ralat
+except KeyError as e:
+    print(f"KeyError: {e}")  # Output: KeyError: 'b'
+
+try:
+    print('{0} - {1}'.format('xxx'))    # Akan menimbulkan ralat
+except IndexError as e:
+    print(f"IndexError: {e}")  # Output: IndexError: Replacement index 1 out of range for positional args tuple`
+    }
+  ]}
+/>
+
+## Kawalan Kepersisan dan Penentuan Tanda
+
+Kepersisan mengawal **digit dalam teks yang diformat**, manakala pilihan tanda mengawal tanda tambah, tanda tolak atau ruang. Contohnya, `format(12.3, "+.2f")` menghasilkan `+12.30`: tanda `+` dan dua tempat perpuluhan itu datang daripada pilihan yang berasingan.
+
+### Kepersisan untuk Nombor Perpuluhan
+
+Kepersisan membawa maksud yang berbeza bagi setiap jenis persembahan. Bagi `f` dan `e`, kepersisan menetapkan digit selepas titik perpuluhan. Bagi `g`, kepersisan menetapkan **angka bererti**. Setiap baris jadual menggunakan input `123.98765`, jadi kamu boleh membandingkan paparan yang berbeza bagi nilai yang sama.
+
+| Jenis Format | Tingkah Laku Kepersisan | Contoh |
+|-------------|-------------------|---------|
+| `f/F` | Tempat perpuluhan | `{:.2f}` <InlineMath math="\rightarrow" /> `123.99` |
+| `e/E` | Tempat perpuluhan dalam bentuk eksponen | `{:.2e}` <InlineMath math="\rightarrow" /> `1.24e+02` |
+| `g/G` | Angka bererti | `{:.3g}` <InlineMath math="\rightarrow" /> `124` |
+
+### Pilihan Tanda
+
+<Mermaid
+  title="Cara Tanda Muncul pada Nombor"
+  description="Bandingkan tanda tambah, tanda tolak dan ruang supaya output nombor positif dan negatif dibaca dengan konsisten."
+  chart={`
+    flowchart TD
+        A["Input Nombor"] --> B{"Pilihan Tanda"}
+
+        B --> C["+ (sentiasa tunjuk)"]
+        B --> D["- (lalai)"]
+        B --> E["ruang (untuk positif)"]
+
+        C --> F["+100, -200"]
+        D --> G["100, -200"]
+        E --> H["' 100', '-200'"]
+  `}
+/>
+
+Dalam baris ruang, simbolnya ialah **satu aksara kosong** di dalam penentu format, seperti dalam `{: d}`. Oleh sebab aksara itu tidak kelihatan, jadual menamakannya sebagai ruang literal.
+
+| Simbol | Tingkah Laku | Contoh |
+|--------|----------|---------|
+| `+` | Sentiasa tunjukkan tanda | `+100`, `-200` |
+| `-` | Tanda negatif sahaja (lalai) | `100`, `-200` |
+| ruang literal | Meninggalkan satu ruang sebelum nombor positif | `' 100'`, `'-200'` |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "precision_sign.py",
+      code: `# Kawalan kepersisan
+print('x = {0:.3f}'.format(123.98765))     # Output: x = 123.988
+print('x = {0:12.2e}'.format(1.987e-10))   # Output: x =     1.99e-10
+print('x = {0:.3g}'.format(1.123456))      # Output: x = 1.12
+
+# Penentuan tanda
+numbers = [-100, 200, -300]
+print('Lalai:', ['{:d}'.format(n) for n in numbers])
+# Output: Lalai: ['-100', '200', '-300']
+print('Sentiasa bertanda:', ['{:+d}'.format(n) for n in numbers])
+# Output: Sentiasa bertanda: ['-100', '+200', '-300']
+print('Ruang untuk positif:', ['{: d}'.format(n) for n in numbers])
+# Output: Ruang untuk positif: ['-100', ' 200', '-300']
+
+# Tingkah laku pembundaran
+print('Nombor amat kecil f: {0:12f}'.format(1.1e-10))  # Output: Nombor amat kecil f:     0.000000
+print('Nombor amat kecil g: {0:12g}'.format(1.1e-10))  # Output: Nombor amat kecil g:      1.1e-10`
+    }
+  ]}
+/>
+
+Penentu `.1f` memaparkan setiap nombor dengan satu tempat perpuluhan, jadi setiap <InlineMath math="x" /> pada anak tangga yang sama dipaparkan sebagai nombor yang sama. Cuba zum ke dalam tangga ungu: setiap anak tangga selebar <InlineMath math="0.1" /> dan berpusat pada nilai yang dipaparkannya, jadi setiap nilai antara <InlineMath math="0.35" /> dan <InlineMath math="0.45" /> dipaparkan sebagai `0.4`. Tepat pada sempadan seperti <InlineMath math="0.25" />, hasilnya bergantung pada nilai perduaan yang disimpan, jadi rajah ini tidak menandakan sebarang nilai pada sempadan. Nilai asal tidak pernah berubah, yang berubah hanyalah cara nilai itu dipaparkan.
+
+<MathVisual
+  title={<>Kepersisan <code>.1f</code> sebagai tangga pembundaran</>}
+  description={<>Tangga ungu ialah nilai yang dipaparkan dengan <code>.1f</code> untuk input dari sifar hingga satu, dan garis kelabu ialah garis identiti.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.1, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / 20, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1 / 20, y: 1 / 10 }, to: { x: 3 / 20, y: 1 / 10 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 3 / 20, y: 2 / 10 }, to: { x: 5 / 20, y: 2 / 10 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 5 / 20, y: 3 / 10 }, to: { x: 7 / 20, y: 3 / 10 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: 7 / 20, y: 4 / 10 }, to: { x: 9 / 20, y: 4 / 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: 9 / 20, y: 5 / 10 }, to: { x: 11 / 20, y: 5 / 10 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: 11 / 20, y: 6 / 10 }, to: { x: 13 / 20, y: 6 / 10 }, appearance: "secondary" },
+      { id: "step-h", kind: "segment", from: { x: 13 / 20, y: 7 / 10 }, to: { x: 15 / 20, y: 7 / 10 }, appearance: "secondary" },
+      { id: "step-i", kind: "segment", from: { x: 15 / 20, y: 8 / 10 }, to: { x: 17 / 20, y: 8 / 10 }, appearance: "secondary" },
+      { id: "step-j", kind: "segment", from: { x: 17 / 20, y: 9 / 10 }, to: { x: 19 / 20, y: 9 / 10 }, appearance: "secondary" },
+      { id: "step-k", kind: "segment", from: { x: 19 / 20, y: 1 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "step", objectId: "step-e", at: { x: 9 / 20, y: 4 / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": 'float(f"{x:.1f}")',
+  }}
+/>
+
+Setiap digit kepersisan tambahan mengurangkan ralat pembundaran kira-kira sepuluh kali ganda. Untuk `math.pi`, kepersisan <InlineMath math="0" /> memaparkan <InlineMath math="3" /> dengan ralat kira-kira <InlineMath math="0.14" />, manakala kepersisan <InlineMath math="4" /> memaparkan <InlineMath math="3.1416" /> dengan ralat di bawah <InlineMath math="10^{-5}" />.
+
+<BarChart
+  title={<>Ralat pembundaran <code>math.pi</code> untuk kepersisan <InlineMath math="0" /> hingga <InlineMath math="4" /></>}
+  description={<>Setiap palang ialah jurang antara <InlineMath math="\pi" /> dengan nilai yang dipaparkan menggunakan bilangan digit perpuluhan yang tertulis di bawahnya.</>}
+  yAxisLabel="Ralat pembundaran"
+  data={[
+    { name: "0", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 0) / 10 ** 0) },
+    { name: "1", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 1) / 10 ** 1) },
+    { name: "2", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 2) / 10 ** 2) },
+    { name: "3", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 3) / 10 ** 3) },
+    { name: "4", value: Math.abs(Math.PI - Math.round(Math.PI * 10 ** 4) / 10 ** 4) },
+  ]}
+  chartConfig={{ value: { label: "Ralat pembundaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## F String dan Templat Dinamik
+
+F-string tersedia sejak Python 3.6. F-string menilai **ungkapan di dalam medan gantian** semasa baris itu dijalankan. Dalam `f"Umur tahun depan: {age + 1}"`, Python mengira `age + 1` dahulu, kemudian memasukkan hasil tambah itu ke dalam teks.
+
+### Templat Format Dinamik
+
+**Medan gantian bersarang** boleh menetapkan lebar, pengisi atau penjajaran daripada nilai lain. Gunakan bentuk ini apabila nilai format itu hanya diketahui semasa atur cara berjalan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "fstrings_dynamic.py",
+      code: `# F-string - sintaks ringkas
+name, age = 'Alice', 25
+print(f'{name} berumur {age} tahun')           # Output: Alice berumur 25 tahun
+print(f'Tahun depan: {name} akan berumur {age + 1}') # Output: Tahun depan: Alice akan berumur 26
+
+# Templat format dinamik
+value, width, fill, align = 'data', 12, '-', '^'
+template = '|{val:{f}{a}{w}}|'
+result = template.format(val=value, w=width, f=fill, a=align)
+print(result)                                 # Output: |----data----|
+
+# Perbandingan - output sama, kaedah berbeza
+x = 123.456
+print('Gaya lama: %8.2f' % x)                # Output: Gaya lama:   123.46
+print('Kaedah format: {0:8.2f}'.format(x))   # Output: Kaedah format:   123.46
+print(f'F-string: {x:8.2f}')                 # Output: F-string:   123.46
+
+# F-string kompleks dengan spesifikasi format
+import math
+radius = 5.7
+print(f'Luas: {math.pi * radius**2:.2f} cm²') # Output: Luas: 102.07 cm²`
+    }
+  ]}
+/>
+
+### Membaca Spesifikasi Format
+
+<Mermaid
+  title="Urutan di Dalam Penentu Format"
+  description="Ikuti urutan komponen daripada aksara pengisi hingga jenis persembahan."
+  chart={`
+    flowchart TD
+        A["Spesifikasi Format"] --> B["Urutan Komponen"]
+
+        B --> C[": (mula)"]
+        C --> D["fill (aksara pengisi)"]
+        D --> E["align (kedudukan: < > ^)"]
+        E --> F["sign (tanda: + - ruang)"]
+        F --> G["width (lebar minimum)"]
+        G --> H[".prec (kepersisan perpuluhan)"]
+        H --> I["type (jenis: d b o x f e g)"]
+
+        J["Contoh Lengkap"] --> K["{value:*^+10.2f}"]
+        K --> L["satu medan gantian yang lengkap"]
+  `}
+/>
+
+Cuba `"{value:*^+10.2f}".format(value=12.3)`. Outputnya ialah `**+12.30**`. Jenis `f` dengan kepersisan `2` menghasilkan `12.30`, tanda `+` menambah satu aksara, dan empat aksara pengisi melengkapkan **lebar minimum sepuluh**. Penjajaran `^` membahagikan empat aksara pengisi itu kepada dua di kiri dan dua di kanan.
+
+Pemformatan menghasilkan [objek rentetan](/ms/subjek/ai-ds/pengaturcaraan-ai/objek-rentetan) yang baharu. Nombor `12.3` kekal tidak berubah, jadi kamu masih boleh menggunakannya dalam pengiraan lain.

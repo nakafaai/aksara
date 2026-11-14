@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "narrative",
-    topic: "synthesis",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "recount",
+    topic: "reader-response",
   },
-  stimulus: "weather-notebook",
+  stimulus: "broadcast",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
+        },
+        {
           correct: true,
-          label:
-            "Protect useful records and avoid blaming someone without evidence.",
-        },
-        {
-          correct: false,
-          label:
-            "Weather records matter primarily when they are transferred from paper to a digital archive.",
-        },
-        {
-          correct: false,
-          label:
-            "The storm matters mainly because it reveals how the notebook had been stored.",
-        },
-        {
-          correct: false,
-          label:
-            "A digital copy is sufficient, so later volunteers do not need to add field observations.",
-        },
-        {
-          correct: false,
-          label:
-            "Sharing a diagram weakens the reliability of the record because its original owner changes.",
+          label: "I and III only",
         },
       ],
     },

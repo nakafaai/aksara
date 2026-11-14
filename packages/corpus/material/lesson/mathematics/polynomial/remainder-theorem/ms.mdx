@@ -1,0 +1,196 @@
+export const metadata = {
+  title: "Teorem Baki",
+  description: "Gunakan dan buktikan Teorem Baki untuk mencari baki pembahagian polinomial tanpa pembahagian panjang.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-04",
+  dateModified: "2026-11-08",
+  subject: "Polinomial",
+};
+
+## Mencari Baki dengan Menilai Polinomial
+
+**Teorem Baki** selalunya dapat mencari baki bagi pembahagian polinomial tanpa perlu melengkapkan [pembahagian panjang](/ms/subjek/matematik/polinomial/pembahagian-polinomial) atau [skema Horner](/ms/subjek/matematik/polinomial/kaedah-horner). Teorem ini mengaitkan baki itu terus dengan satu nilai polinomial.
+
+Teorem ini digunakan untuk **pembahagi linear**. Gantikan input yang menjadikan pembahagi itu sifar.
+
+### Pernyataan Teorem Baki
+
+Jika polinomial <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="(x - c)" />, maka bakinya ialah <InlineMath math="S = P(c)" />.
+
+Untuk mencari **baki** apabila <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="(x-c)" />, nilaikan <InlineMath math="P(x)" /> pada <InlineMath math="x=c" />.
+
+Bagi <InlineMath math="P(x) = 2x^2 - 3x + 4" /> yang dibahagi dengan <InlineMath math="x - 2" />, bakinya ialah <InlineMath math="P(2) = 6" />, jadi kamu boleh menjawab soalan itu dengan satu penggantian sahaja.
+
+<BlockMath math="P(2)=2(2)^2-3(2)+4=8-6+4=6" />
+
+Teorem ini memberitahu kita bahawa baki hanyalah satu ketinggian pada graf. Bagi <InlineMath math="P(x) = 2x^2 - 3x + 4" /> yang dibahagi dengan <InlineMath math="x - 2" />, pergi ke <InlineMath math="x = 2" /> pada lengkung itu: ketinggian di situ ialah <InlineMath math="P(2) = 6" />, iaitu bakinya.
+
+<MathVisual
+  title={<>Baki ialah <InlineMath math="P(2)" /></>}
+  description={<>Parabola <InlineMath math="2x^2 - 3x + 4" /> dengan titik <InlineMath math="(2, 6)" />: ketinggian titik itu ialah baki pembahagian dengan <InlineMath math="x - 2" />.</>}
+  labels={{
+    p: <InlineMath math="P(x)" />,
+    r: <InlineMath math="P(2) = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.5, max: 2.5 }, appearance: "primary" },
+      { id: "drop", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "r", kind: "point", at: { x: 2, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -0.5, y: 6 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 2, y: 6 }, placement: "left" },
+    ],
+  }}
+/>
+
+### Mengapa Teorem Baki Benar
+
+Teorem ini datang terus daripada **algoritma pembahagian polinomial** yang sudah kita kenali:
+
+<BlockMath math="P(x) = (x - c) \cdot H(x) + S" />
+
+Di sini:
+
+- <InlineMath math="P(x)" /> ialah polinomial yang dibahagi.
+- <InlineMath math="(x - c)" /> ialah polinomial pembahagi (darjah <InlineMath math="1" />).
+- <InlineMath math="H(x)" /> ialah hasil bahagi.
+- <InlineMath math="S" /> ialah baki (satu pemalar, kerana pembahagi berdarjah <InlineMath math="1" />).
+
+Sekarang, gantikan <InlineMath math="x = c" /> ke dalam persamaan algoritma pembahagian itu:
+
+<MathContainer>
+  <BlockMath math="P(c) = (c - c) \cdot H(c) + S" />
+  <BlockMath math="P(c) = (0) \cdot H(c) + S" />
+  <BlockMath math="P(c) = 0 + S" />
+  <BlockMath math="P(c) = S" />
+</MathContainer>
+
+Ini membuktikan bahawa nilai polinomial <InlineMath math="P(x)" /> pada <InlineMath math="x = c" /> <Highlight>sama dengan baki</Highlight> <InlineMath math="S" /> apabila <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="(x - c)" />.
+
+Bagi polinomial kuadratik tadi, hasil darab pembahagi dan hasil bahagi **menjadi sifar apabila input ialah dua**. Baki pula sentiasa enam dalam identiti pembahagian itu:
+
+<BlockMath math="2x^2-3x+4=(x-2)(2x+1)+6" />
+
+| Input | Nilai polinomial | Pembahagi darab hasil bahagi | Baki |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="6" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="0" /> | <InlineMath math="6" /> |
+| <InlineMath math="3" /> | <InlineMath math="13" /> | <InlineMath math="7" /> | <InlineMath math="6" /> |
+
+Bagi pembahagi berdarjah dua, bakinya mungkin linear. Oleh itu, satu nilai polinomial tidak cukup untuk menentukan keseluruhan baki dalam kes itu.
+
+Pecahkan <InlineMath math="P" /> kepada dua bahagiannya. Lengkung ungu <InlineMath math="(x - 2)(2x + 1)" /> boleh dibahagi tepat dengan <InlineMath math="x - 2" /> dan melalui <InlineMath math="(2, 0)" />. Apabila baki ditambah, lengkung itu naik sebanyak <InlineMath math="6" /> di semua tempat dan menjadi <InlineMath math="P(x)" /> yang berwarna jingga. Itulah sebabnya hanya baki yang tinggal pada <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Bahagian yang boleh dibahagi tepat ditambah baki</>}
+  description={<>Lengkung <InlineMath math="(x - 2)(2x + 1)" /> dan <InlineMath math="P(x) = (x - 2)(2x + 1) + 6" />, yang sentiasa berjarak <InlineMath math="6" /> antara satu sama lain.</>}
+  labels={{
+    whole: <InlineMath math="P(x)" />,
+    part: <InlineMath math="(x - 2)(2x + 1)" />,
+    gap: <InlineMath math="6" />,
+    top: <InlineMath math="(2, 6)" />,
+    foot: <InlineMath math="(2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 3.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "whole", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: 4 }, domain: { min: -0.75, max: 2.5 }, appearance: "primary" },
+      { id: "part", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: -3, c: -2 }, domain: { min: -0.75, max: 2.5 }, appearance: "secondary" },
+      { id: "gap", kind: "segment", from: { x: 2, y: 0 }, to: { x: 2, y: 6 }, appearance: "construction" },
+      { id: "top", kind: "point", at: { x: 2, y: 6 }, appearance: "primary" },
+      { id: "foot", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 2.5, y: 9 }, placement: "right" },
+      { key: "part", objectId: "part", at: { x: 2.5, y: 3 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 2, y: 0 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Mengira dengan Teorem Baki
+
+Teorem ini **menentukan baki secara terus** dan juga menerangkan sebab penilaian polinomial muncul dalam masalah pembahagian. Apabila kita menggantikan nilai yang menjadikan pembahagi sifar, pembahagian itu bertukar menjadi satu penilaian sahaja, dan cara ini biasanya lebih cepat.
+
+Cari baki apabila <InlineMath math="P(x) = 2x^5 + 5x^4 - 10x^3 + 9x^2 - 10" /> dibahagi dengan <InlineMath math="x + 4" />.
+
+### Menggunakan Kaedah Horner
+
+Pembahaginya ialah <InlineMath math="x + 4" />, atau <InlineMath math="x - (-4)" />, jadi <InlineMath math="c = -4" />.
+
+Pekali bagi <InlineMath math="P(x)" /> (**gunakan sifar untuk sebutan yang tiada**): <InlineMath math="2, 5, -10, 9, 0, -10" />.
+
+<BlockMath
+  math="
+\begin{array}{c|cccccc}
+-4 & 2 & 5 & -10 & 9 & 0 & -10 \\
+  &   & -8 & 12 & -8 & -4 & 16 \\
+\hline
+  & 2 & -3 & 2 & 1 & -4 & \boxed{6} \\
+\end{array}
+"
+/>
+
+Daripada kaedah Horner, kita dapat:
+
+- Hasil bahagi: <InlineMath math="H(x) = 2x^4 - 3x^3 + 2x^2 + x - 4" />
+- Baki: <InlineMath math="S = \boxed{6}" />
+
+Setiap nombor dalam baris bawah datang daripada nombor sebelumnya: darab dengan <InlineMath math="c = -4" />, kemudian tambah pekali seterusnya. Lima palang pertama ialah pekali hasil bahagi <InlineMath math="2, -3, 2, 1, -4" />, dan palang terakhir ialah baki <InlineMath math="6" />.
+
+<BarChart
+  title={<>Baris bawah skema Horner untuk <InlineMath math="c = -4" /></>}
+  description={<>Palang bagi baris bawah <InlineMath math="2, -3, 2, 1, -4" /> dan baki <InlineMath math="6" />, dengan setiap satu diperoleh sebagai pekali seterusnya ditambah <InlineMath math="-4" /> darab palang sebelumnya.</>}
+  yAxisLabel="Nilai"
+  data={[["darjah 4", 2], ["darjah 3", 5 - 4 * 2], ["darjah 2", -10 - 4 * -3], ["darjah 1", 9 - 4 * 2], ["darjah 0", 0 - 4 * 1], ["baki", -10 - 4 * -4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Menggunakan Teorem Baki
+
+Mengikut **Teorem Baki**, baki apabila <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="x - (-4)" /> ialah <InlineMath math="P(-4)" />.
+
+Kira <InlineMath math="P(-4)" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} P(-4) &amp;= 2(-4)^5 + 5(-4)^4 \\ &amp;\quad{}- 10(-4)^3 + 9(-4)^2 - 10 \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(-4) &amp;= 2(-1024) + 5(256) \\ &amp;\quad{}- 10(-64) + 9(16) - 10 \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(-4) &amp;= -2048 + 1280 \\ &amp;\quad{}+ 640 + 144 - 10 \end{aligned}" />
+  <BlockMath math="P(-4) = -2048 + 1920 + 144 - 10" />
+  <BlockMath math="P(-4) = -128 + 144 - 10" />
+  <BlockMath math="P(-4) = 16 - 10" />
+  <BlockMath math="P(-4) = 6" />
+</MathContainer>
+
+Kedua-dua kaedah memberi baki <InlineMath math="6" />. Teorem Baki sampai kepada jawapan itu tanpa perlu melengkapkan keseluruhan skema pembahagian.
+
+Oleh itu, nilai <InlineMath math="P(c)" /> memberi tepat baki selepas pembahagian dengan <InlineMath math="(x-c)" />.
+
+## Latihan
+
+Jika <InlineMath math="P(x) = 3x^5 - 20x^4 - 6x^3 - 48x - 8" /> dibahagi dengan <InlineMath math="x - 7" />, tentukan **baki menggunakan Teorem Baki**. Pembahagi <InlineMath math="x - 7" /> sepadan dengan nilai <InlineMath math="x = 7" />, jadi satu penggantian sudah cukup. Nilaikan polinomial itu pada nilai tersebut dan nyatakan nombor yang diperoleh sebagai bakinya.
+
+### Jalan Kerja
+
+Mengikut **Teorem Baki**, baki apabila <InlineMath math="P(x)" /> dibahagi dengan <InlineMath math="x - 7" /> ialah <InlineMath math="P(7)" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} P(7) &amp;= 3(7)^5 - 20(7)^4 \\ &amp;\quad{}- 6(7)^3 - 48(7) - 8 \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(7) &amp;= 3(16807) - 20(2401) \\ &amp;\quad{}- 6(343) - 336 - 8 \end{aligned}" />
+  <BlockMath math="\begin{aligned} P(7) &amp;= 50421 - 48020 - 2058 \\ &amp;\quad{}- 336 - 8 \end{aligned}" />
+  <BlockMath math="P(7) = 2401 - 2058 - 336 - 8" />
+  <BlockMath math="P(7) = 343 - 336 - 8" />
+  <BlockMath math="P(7) = 7 - 8" />
+  <BlockMath math="P(7) = -1" />
+</MathContainer>
+
+Jadi, bakinya ialah <InlineMath math="-1" />.

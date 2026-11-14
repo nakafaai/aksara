@@ -1,9 +1,35 @@
-A slope of 1 : 12 means **the horizontal length is at least 12 times the rise**. The ramp has to rise 60 cm in total.
+You're looking for the good parts made on Tuesday only. The tricky part: **machine P's operating hours carry over from Monday**, so its Tuesday maintenance times aren't the same as Monday's. The plan: trace each machine's schedule, find its operating hours on Tuesday, then multiply by the good parts per hour.
 
-# Horizontal length of the sloped part
+# Good parts per hour
 
-<BlockMath math="60\cdot12=720\text{ cm}=7.2\text{ m}" />
+Faulty parts are thrown out, so **only good parts count**. Machine P makes <InlineMath math="120" /> parts an hour and <InlineMath math="5\%" /> are faulty, so <InlineMath math="95\%\times120=114" /> good parts an hour. Machine Q makes <InlineMath math="90" /> parts an hour and <InlineMath math="10\%" /> are faulty, so <InlineMath math="90\%\times90=81" /> good parts an hour.
 
-A flat landing adds no height, so **the whole 60 cm rise must come from the sloped sections**, however many there are.
+# Machine P's schedule from Monday
 
-So the shortest total horizontal length of the sloped sections is **7.2 m**.
+Machine P runs <InlineMath math="5" /> hours and then gets <InlineMath math="1" /> hour of maintenance. On Monday it runs from 07:00 to 12:00, gets maintenance, runs 13:00 to 18:00, gets maintenance, then runs 19:00 to 23:00. That's <InlineMath math="14" /> operating hours, and **at 23:00 it has already logged <InlineMath math="4" /> hours toward the next maintenance**.
+
+On Tuesday, machine P needs only <InlineMath math="1" /> more hour to hit the limit. Its schedule becomes this.
+
+| Tuesday | Running | Maintenance starts |
+| :--- | :---: | :---: |
+| Machine P | <InlineMath math="1+5+5+2=13" /> hours | 08:00, 14:00, 20:00 |
+| Machine Q | <InlineMath math="7+7=14" /> hours | 14:00, 22:00 |
+
+Machine Q is simpler: two blocks of <InlineMath math="7" /> running hours and <InlineMath math="1" /> maintenance hour fill the <InlineMath math="16" /> shift hours exactly, so it starts from zero every day and runs <InlineMath math="14" /> hours.
+
+# Good parts on Tuesday
+
+<BlockMath math="13\times114+14\times81=1{,}482+1{,}134=2{,}616" />
+
+Check the hours, because **each machine has to fill exactly <InlineMath math="16" /> shift hours**. On Tuesday machine P uses <InlineMath math="13" /> running hours and <InlineMath math="3" /> maintenance hours, <InlineMath math="16" /> shift hours in total. Machine Q uses <InlineMath math="14+2=16" /> hours. Both fit.
+
+# The wrong options
+
+Each other option **skips one of the factory's rules**.
+
+- <InlineMath math="2{,}679" /> uses the <InlineMath math="5\%" /> fault rate for machine Q too, so Q counts as <InlineMath math="85.5" /> an hour.
+- <InlineMath math="2{,}730" /> resets P's operating hours to zero every morning, so P runs <InlineMath math="14" /> hours as on Monday.
+- <InlineMath math="2{,}820" /> forgets to throw out the faulty parts, <InlineMath math="13\times120+14\times90" />.
+- <InlineMath math="3{,}120" /> forgets the maintenance time, <InlineMath math="16\times(114+81)" />.
+
+So on Tuesday the two machines make <InlineMath math="2{,}616" /> good parts.

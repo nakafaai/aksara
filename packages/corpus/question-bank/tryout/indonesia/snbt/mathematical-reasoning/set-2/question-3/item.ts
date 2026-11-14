@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "ride-fare",
+  stimulus: "game-energy",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,22 +10,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Tarif Aplikasi Cepat untuk perjalanan 3,2 km adalah $$\\text{Rp}12{.}000{,}00$$.",
+            "Jika Nadia memulai misi bos pukul 10.00 dan tidak meminum ramuan, energinya pertama kali mencapai $$60$$ pada pukul 12.15.",
         },
         {
           column: 2,
           label:
-            "Tarif Aplikasi Cepat untuk perjalanan 1 km adalah $$\\text{Rp}3{.}000{,}00$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Di luar jam sibuk, untuk perjalanan 6 km, Aplikasi Jalan lebih murah daripada Aplikasi Cepat.",
+            "Jika Nadia tidak meminum ramuan, energinya pada pukul 12.30 selalu sama, kapan pun ia memulai misi bos.",
         },
         {
           column: 1,
           label:
-            "Di luar jam sibuk, untuk perjalanan 12 km, Aplikasi Jalan lebih murah daripada Aplikasi Cepat.",
+            "Nadia dapat mengatur waktu misi bos dan waktu minum ramuan sehingga energinya pada pukul 12.30 lebih dari $$85$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika Nadia meminum ramuan tepat pukul 10.00, energinya pada pukul 12.30 pasti tidak lebih dari $$75$$.",
         },
       ],
     },

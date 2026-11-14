@@ -1,18 +1,34 @@
-Let the length and width be <InlineMath math="p" /> and <InlineMath math="l" />. The area is <InlineMath math="pl" />. You **do not need <InlineMath math="p" /> and <InlineMath math="l" /> separately**, only their product.
+A data sufficiency question doesn't ask you to answer the question. It asks whether the information **leads to exactly one answer**. Check each statement on its own first, and only combine them if you need to.
 
-**Statement (1) alone**. A perimeter of <InlineMath math="30" /> gives <InlineMath math="p+l=15" />. Many pairs fit, such as <InlineMath math="10" /> and <InlineMath math="5" /> with area <InlineMath math="50" />, or <InlineMath math="8" /> and <InlineMath math="7" /> with area <InlineMath math="56" />. The area is not unique, so it is not sufficient.
+The average of the three scores is <InlineMath math="6" />, so their sum is <InlineMath math="3\times6=18" />. Name the scores from smallest to largest: <InlineMath math="a<b<c" />. They're different positive whole numbers with <InlineMath math="a+b+c=18" />. The question asks for <InlineMath math="c" />.
 
-**Statement (2) alone**. A diagonal of <InlineMath math="11" /> gives <InlineMath math="p^2+l^2=121" />. The rectangle can be long and thin or nearly square, so the area is again not unique. Not sufficient.
-
-**Both statements together**. Use the square of a sum:
+Check statement (1). If <InlineMath math="a=5" />, the rest adds up to <InlineMath math="b+c=13" />. At first glance that looks like too little, since two numbers are still unknown. But the order locks the answer: <InlineMath math="b" /> has to be more than <InlineMath math="5" />, and <InlineMath math="c" /> has to be more than <InlineMath math="b" />.
 
 <BlockMath math="\begin{aligned}
-(p+l)^2 &= p^2+2pl+l^2 \\
-15^2 &= 121+2pl \\
-2pl &= 225-121=104 \\
-pl &= 52
+b=6 &\quad\Rightarrow\quad c=13-6=7, \text{ and } 7>6 \text{ (works)} \\
+b\ge7 &\quad\Rightarrow\quad c\le13-7=6<b \text{ (fails)}
 \end{aligned}" />
 
-The area is unique, <InlineMath math="52\text{ cm}^2" />. Such a rectangle exists, because <InlineMath math="p" /> and <InlineMath math="l" /> are the positive roots of <InlineMath math="t^2-15t+52=0" />, whose discriminant is <InlineMath math="225-208=17>0" />. The sides are not whole numbers, but the area is still determined.
+The only possibility is <InlineMath math="5,\ 6,\ 7" />, so <InlineMath math="c=7" />. Statement (1) alone is enough.
 
-So both statements together are sufficient, but neither alone is.
+Check statement (2). Since the scores are different, the gap <InlineMath math="c-a" /> is at least <InlineMath math="2" />. So you only need to check gaps of <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" />, with every possible place for <InlineMath math="b" /> between <InlineMath math="a" /> and <InlineMath math="c" />.
+
+| Scores | Sum | Sum equal to <InlineMath math="18" /> |
+| --- | --- | --- |
+| <InlineMath math="a,\ a+1,\ a+2" /> | <InlineMath math="3a+3" /> | <InlineMath math="a=5" />, scores <InlineMath math="5,\ 6,\ 7" /> |
+| <InlineMath math="a,\ a+1,\ a+3" /> | <InlineMath math="3a+4" /> | no whole <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+2,\ a+3" /> | <InlineMath math="3a+5" /> | no whole <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+1,\ a+4" /> | <InlineMath math="3a+5" /> | no whole <InlineMath math="a" /> |
+| <InlineMath math="a,\ a+2,\ a+4" /> | <InlineMath math="3a+6" /> | <InlineMath math="a=4" />, scores <InlineMath math="4,\ 6,\ 8" /> |
+| <InlineMath math="a,\ a+3,\ a+4" /> | <InlineMath math="3a+7" /> | no whole <InlineMath math="a" /> |
+
+There are two possibilities, <InlineMath math="5,\ 6,\ 7" /> and <InlineMath math="4,\ 6,\ 8" />. The top score could be <InlineMath math="7" /> or <InlineMath math="8" />, so statement (2) alone isn't enough.
+
+The other options come from stopping the check too early:
+
+- "Both statements together are enough" is what you'd pick if you treat <InlineMath math="b+c=13" /> as having many answers and forget that <InlineMath math="5<b<c" /> leaves only <InlineMath math="6" /> and <InlineMath math="7" />.
+- "Each statement alone is enough" is what you'd pick if you find <InlineMath math="5,\ 6,\ 7" /> for statement (2) and stop, although <InlineMath math="4,\ 6,\ 8" /> works too.
+- "Statement (2) alone is enough" swaps both of the judgements above.
+- "Neither statement is enough" ignores that different whole numbers in a fixed order can pin down the answer.
+
+So statement (1) alone is enough to answer the question, but statement (2) alone isn't.

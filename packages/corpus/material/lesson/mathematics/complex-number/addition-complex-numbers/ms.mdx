@@ -1,0 +1,209 @@
+export const metadata = {
+  title: "Penambahan Nombor Kompleks",
+  description: "Tambahkan bahagian nyata dan bahagian khayalan dua nombor kompleks, kemudian wakilkan hasil tambahnya sebagai pepenjuru segi empat selari.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-01",
+  dateModified: "2026-11-08",
+  subject: "Nombor Kompleks",
+};
+
+## Menambah Bahagian Nyata dan Bahagian Khayalan Secara Berasingan
+
+Mula dengan dua nombor kompleks:
+
+<MathContainer>
+  <BlockMath math="z_1 = x_1 + iy_1" />
+  <BlockMath math="z_2 = x_2 + iy_2" />
+</MathContainer>
+
+Untuk membentuk <InlineMath math="z_1 + z_2" />, <Highlight>tambahkan bahagian nyata sesama sendiri</Highlight> dan buat perkara yang sama dengan bahagian khayalan.
+
+<BlockMath math="z_1 + z_2 = (x_1 + x_2) + i(y_1 + y_2)" />
+
+### Menambah Dua Nombor Kompleks Tertentu
+
+Biar <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" />.
+
+- **Bahagian nyata** bagi <InlineMath math="z_1" /> ialah <InlineMath math="2" />, bahagian nyata bagi <InlineMath math="z_2" /> ialah <InlineMath math="1" />.
+- **Bahagian khayalan** bagi <InlineMath math="z_1" /> ialah <InlineMath math="3" />, bahagian khayalan bagi <InlineMath math="z_2" /> ialah <InlineMath math="-1" />.
+
+Jadi hasil tambahnya ialah:
+
+<BlockMath math="\begin{aligned} z_1 + z_2 &amp;= (2 + 1) + i(3 + (-1)) \\ &amp;= 3 + i(2) \\ &amp;= 3 + 2i \end{aligned}" />
+
+### Menambah pada Satah Kompleks
+
+Dengan **hukum segi empat selari**, penambahan nombor kompleks boleh dilihat secara geometri pada satah kompleks. Jika kita wakilkan <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> sebagai vektor (anak panah) dari asalan <InlineMath math="(0, 0)" />, maka hasil tambahnya, <InlineMath math="z_1 + z_2" />, ialah vektor pepenjuru bagi segi empat selari yang dibentuk oleh <InlineMath math="z_1" /> dan <InlineMath math="z_2" />.
+
+<MathVisual
+  title={<>Menambah <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" /></>}
+  description={<>Vektor <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" /> membentuk segi empat selari yang pepenjurunya ialah <InlineMath math="z_1 + z_2 = 3 + 2i" />.</>}
+  labels={{
+    z1: <InlineMath math="z_1 = 2 + 3i" />,
+    z2: <InlineMath math="z_2 = 1 - i" />,
+    sum: <InlineMath math="z_1 + z_2 = 3 + 2i" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.6 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "h1", kind: "segment", from: { x: 2, y: 3 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "h2", kind: "segment", from: { x: 1, y: -1 }, to: { x: 3, y: 2 }, appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 2 }, appearance: "answer" },
+      { id: "sum-head", kind: "polygon", vertices: [{ x: 3, y: 2 }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }, { x: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 2, y: 3 }, placement: "above-left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "sum", objectId: "sum", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Menskalakan Menegatifkan dan Menolak
+
+Cara mengasingkan **bahagian nyata dan bahagian khayalan** ini juga berlaku apabila kamu mendarab dengan skalar, menegatifkan dan menolak. Mendarab dengan nombor nyata menskalakan kedua-dua bahagian dengan nombor itu, menegatifkan menukar tanda kedua-dua bahagian, dan menolak menggabungkan langkah menegatifkan dengan penambahan. Oleh sebab setiap petua bertindak ke atas dua bahagian itu secara berasingan, kamu tidak pernah perlu mencampurkan kedua-duanya.
+
+### Pendaraban Skalar
+
+Apabila nombor kompleks <InlineMath math="z = x + iy" /> didarab dengan skalar nyata <InlineMath math="c" />, skalar itu mendarab **kedua-dua bahagian dengan faktor yang sama**.
+
+<BlockMath math="cz = c(x + iy) = cx + i(cy)" />
+
+Secara geometri, langkah ini menskalakan panjang vektor <InlineMath math="z" /> dengan faktor <InlineMath math="|c|" />. Jika <InlineMath math="c" /> negatif, arah vektor itu menjadi terbalik.
+
+Untuk skalar sifar, kedua-dua komponen menjadi sifar. **Vektor sifar** tidak mempunyai arah.
+
+### Negatif bagi Nombor Kompleks
+
+Negatif bagi <InlineMath math="z = x + iy" /> ialah <InlineMath math="-z" />. Ini sama dengan pendaraban skalar dengan <InlineMath math="c = -1" />.
+
+<BlockMath math="\begin{aligned} -z &amp;= -(x + iy) \\ &amp;= -x + i(-y) \\ &amp;= -x - iy \end{aligned}" />
+
+Untuk <InlineMath math="z\ne0" />, secara geometri <InlineMath math="-z" /> ialah vektor yang sama panjang dengan <InlineMath math="z" /> tetapi menghala ke **arah yang bertentangan** (putaran <InlineMath math="180^\circ" />).
+
+### Penolakan Dua Nombor Kompleks
+
+Menolak <InlineMath math="z_2" /> daripada <InlineMath math="z_1" /> (<InlineMath math="z_1 - z_2" />) sama dengan menambah <InlineMath math="z_1" /> kepada **negatif** bagi <InlineMath math="z_2" /> (<InlineMath math="z_1 + (-z_2)" />).
+
+<BlockMath math="\begin{aligned} &amp;z_1 - z_2 = z_1 + (-z_2) \\ &amp;= (x_1 + (-x_2)) + i(y_1 + (-y_2)) \\ &amp;= (x_1 - x_2) + i(y_1 - y_2) \end{aligned}" />
+
+Jadi, tolak bahagian nyata dan tolak bahagian khayalan.
+
+Secara geometri, <InlineMath math="z_1 - z_2" /> ialah vektor dari hujung <InlineMath math="z_2" /> ke hujung <InlineMath math="z_1" />.
+
+Menolak bermaksud menambah negatifnya. Untuk <InlineMath math="z_1 = 2 + 3i" /> dan <InlineMath math="z_2 = 1 - i" />, sambungkan <InlineMath math="-z_2 = -1 + i" /> pada hujung <InlineMath math="z_1" />. Anak panah dari asalan ke titik akhir ialah <InlineMath math="z_1 - z_2 = 1 + 4i" />.
+
+<MathVisual
+  title={<><InlineMath math="z_1 - z_2" /> sebagai <InlineMath math="z_1 + (-z_2)" /></>}
+  description={<>Vektor <InlineMath math="z_1 = 2 + 3i" />, negatif <InlineMath math="-z_2 = -1 + i" /> yang disambung pada hujungnya, dan beza <InlineMath math="z_1 - z_2 = 1 + 4i" />, bersama <InlineMath math="z_2 = 1 - i" /> sebagai perbandingan.</>}
+  labels={{
+    z1: <InlineMath math="z_1" />,
+    neg: <InlineMath math="-z_2" />,
+    diff: <InlineMath math="z_1 - z_2 = 1 + 4i" />,
+    z2: <InlineMath math="z_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 3.4 }, y: { min: -1.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -1 }, appearance: "construction" },
+      { id: "z2-head", kind: "polygon", vertices: [{ x: 1, y: -1 }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }, { x: (1) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (-1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "z1-head", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)) }, { x: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)), y: (3) + (-3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "neg", kind: "segment", from: { x: 2, y: 3 }, to: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "neg-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (-1 / 10 / Math.sqrt(2)) }, { x: (1) + (1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)), y: (4) + (-1 / 4 / Math.sqrt(2)) + (1 / 10 / Math.sqrt(2)) }], appearance: "secondary" },
+      { id: "diff", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "diff-head", kind: "polygon", vertices: [{ x: 1, y: 4 }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)) }, { x: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)), y: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "z1", objectId: "z1", at: { x: 1, y: 3 / 2 }, placement: "right" },
+      { key: "neg", objectId: "neg", at: { x: 3 / 2, y: 7 / 2 }, placement: "right" },
+      { key: "diff", objectId: "diff", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "z2", objectId: "z2", at: { x: 1, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Menggabungkan Penambahan Penolakan dan Penskalaan
+
+Gunakan dua nombor berikut:
+
+<MathContainer>
+  <BlockMath math="z_1 = 2 + \frac{1}{2}i" />
+  <BlockMath math="z_2 = -3 + \sqrt{2}i" />
+</MathContainer>
+
+Kira tiga ungkapan dengan mengendalikan **bahagian nyata dan bahagian khayalan secara berasingan**:
+
+1.  <InlineMath math="2z_1" /> (**Pendaraban Skalar**):
+
+    <BlockMath math="\begin{aligned} 2z_1 &amp;= 2(2 + \frac{1}{2}i) \\ &amp;= 2(2) + i(2 \times \frac{1}{2}) \\ &amp;= 4 + i \end{aligned}" />
+
+2.  <InlineMath math="z_1 + 3z_2" /> (**Penambahan dan Pendaraban Skalar**):
+
+    <BlockMath math="\begin{aligned}z_1+3z_2&amp;=(2+\frac12i)+3(-3+\sqrt2i)\\&amp;=(2-9)+i(\frac12+3\sqrt2)\\&amp;=-7+i(\frac12+3\sqrt2)\end{aligned}" />
+
+3.  <InlineMath math="2z_1 - z_2" /> (**Penolakan dan Pendaraban Skalar**):
+
+    <BlockMath math="\begin{aligned}2z_1-z_2&amp;=(4+i)-(-3+\sqrt2i)\\&amp;=(4-(-3))+i(1-\sqrt2)\\&amp;=7+i(1-\sqrt2)\end{aligned}" />
+
+## Latihan
+
+Kira **hasil tambah dan beza**, kemudian gunakan komponen hasil tambah itu sebagai koordinat titik hujung pepenjuru. Tanda tolak dikenakan pada seluruh nombor yang ditolak, termasuk komponen khayalannya.
+
+Diberi <InlineMath math="z_1=1+2i" /> dan <InlineMath math="z_2=3-i" />, tentukan:
+
+1.  <InlineMath math="z_1 + z_2" />
+2.  <InlineMath math="z_1 - z_2" />
+3.  Untuk <InlineMath math="z_3=z_1+z_2" />, lukis <InlineMath math="z_1" />, <InlineMath math="z_2" />, dan <InlineMath math="z_3" /> pada satah kompleks.
+
+### Penyelesaian
+
+Tambah dan tolak bahagian yang sepadan, kemudian baca hasil tambah itu sebagai **pepenjuru** pada satah kompleks.
+
+1.  Tambah bahagian nyata dan bahagian khayalan secara berasingan:
+
+    <BlockMath math="\begin{aligned} z_1+z_2 &amp;=(1+3)+i(2+(-1)) \\ &amp;=4+i \end{aligned}" />
+
+2.  Tolak bahagian yang sepadan:
+
+    <BlockMath math="\begin{aligned} z_1-z_2 &amp;=(1-3)+i(2-(-1)) \\ &amp;=-2+3i \end{aligned}" />
+
+3.  Vektor <InlineMath math="z_1" /> dan <InlineMath math="z_2" /> membentuk dua sisi segi empat selari. Pepenjurunya berakhir di <InlineMath math="z_3=z_1+z_2=4+i" />:
+
+    <MathVisual
+      title={<><InlineMath math="z_3 = z_1 + z_2 = 4 + i" /></>}
+      description={<>Vektor <InlineMath math="z_1 = 1 + 2i" /> dan <InlineMath math="z_2 = 3 - i" /> membentuk dua sisi segi empat selari. Pepenjurunya berakhir di <InlineMath math="z_3 = 4 + i" />.</>}
+      labels={{
+        z1: <InlineMath math="z_1 = 1 + 2i" />,
+        z2: <InlineMath math="z_2 = 3 - i" />,
+        sum: <InlineMath math="z_3 = 4 + i" />,
+      }}
+      scene={{
+        space: "plane",
+        frame: { kind: "cartesian", x: { min: -0.6, max: 5 }, y: { min: -1.6, max: 2.8 } },
+        view: { kind: "fit", padding: 0.3 },
+        objects: [
+          { id: "h1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "h2", kind: "segment", from: { x: 3, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+          { id: "z1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "primary" },
+          { id: "z1-head", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (-1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (1 / 10 / Math.sqrt(5)) }, { x: (1) + (-1 / 4 / Math.sqrt(5)) + (1 / 5 / Math.sqrt(5)), y: (2) + (-1 / 2 / Math.sqrt(5)) + (-1 / 10 / Math.sqrt(5)) }], appearance: "primary" },
+          { id: "z2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: -1 }, appearance: "secondary" },
+          { id: "z2-head", kind: "polygon", vertices: [{ x: 3, y: -1 }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (3 / 10 / Math.sqrt(10)) }, { x: (3) + (-3 / 4 / Math.sqrt(10)) + (-1 / 10 / Math.sqrt(10)), y: (-1) + (1 / 4 / Math.sqrt(10)) + (-3 / 10 / Math.sqrt(10)) }], appearance: "secondary" },
+          { id: "sum", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "answer" },
+          { id: "sum-head", kind: "polygon", vertices: [{ x: 4, y: 1 }, { x: (4) + (-1 / Math.sqrt(17)) + (-1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (2 / 5 / Math.sqrt(17)) }, { x: (4) + (-1 / Math.sqrt(17)) + (1 / 10 / Math.sqrt(17)), y: (1) + (-1 / 4 / Math.sqrt(17)) + (-2 / 5 / Math.sqrt(17)) }], appearance: "answer" },
+        ],
+        labels: [
+          { key: "z1", objectId: "z1", at: { x: 1, y: 2 }, placement: "above-left" },
+          { key: "z2", objectId: "z2", at: { x: 3, y: -1 }, placement: "below" },
+          { key: "sum", objectId: "sum", at: { x: 4, y: 1 }, placement: "right" },
+        ],
+      }}
+    />

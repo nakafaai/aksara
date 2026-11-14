@@ -1,0 +1,391 @@
+export const metadata = {
+  title: "Tembereng Bulatan",
+  description: "Kira luas tembereng minor dan tembereng major dengan menolak luas segi tiga daripada luas sektor, termasuk masalah keratan rentas tangki.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-13",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+## Rantau yang Dibatasi oleh Perentas dan Lengkok
+
+Garis yang memotong bulatan pada dua titik membentuk [perentas](/ms/subjek/matematik/lengkok-dan-sektor-bulatan/perentas). Perentas itu bersama salah satu lengkok di antara kedua-dua hujungnya membatasi tembereng bulatan. <Highlight>Lengkok minor membatasi tembereng minor</Highlight>, manakala lengkok major yang selebihnya membatasi tembereng major. Diameter ialah kes had, iaitu apabila kedua-dua tembereng ialah semibulatan.
+
+## Perbezaan antara Lengkok dan Tembereng
+
+Lengkok ialah **garis melengkung**, manakala tembereng ialah rantau di antara lengkok dan perentasnya. Ukur lengkok dalam unit panjang seperti sentimeter, tetapi ukur tembereng dalam unit luas seperti sentimeter persegi.
+
+<ContentStack>
+
+<MathVisual
+  title={<>Lengkok Bulatan</>}
+  description={<>Lengkok ialah garis melengkung pada lilitan bulatan yang menyambungkan dua titik. Lengkok hanya ada panjang dalam satu dimensi dan tidak ada luas.</>}
+  labels={{
+    "l1": <>Perentas</>,
+    "l2": <>Lengkok</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 2 }, placement: "below-right" },
+      { key: "l2", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<MathVisual
+  title={<>Tembereng Bulatan</>}
+  description={<>Tembereng ialah rantau (kawasan) di dalam bulatan yang dibatasi oleh lengkok dan perentas. Tembereng ada luas dalam dua dimensi dan boleh diisi dengan warna.</>}
+  labels={{
+    "l1": <>Perentas</>,
+    "l2": <>Tembereng</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "answer" },
+      { id: "s4", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "highlight" },
+      { id: "s4-chord", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 2 }, placement: "below-right" },
+      { key: "l2", objectId: "s4", at: { x: 0, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+## Jenis Tembereng Berdasarkan Saiz
+
+Pilih **lengkok yang membatasinya** dahulu sebelum kamu mengelaskan tembereng. Lengkok minor membatasi kurang daripada separuh bulatan, manakala lengkok major membatasi rantau yang selebihnya. Jika perentas itu ialah diameter, kedua-dua rantau ada luas yang sama.
+
+<ContentStack>
+
+<MathVisual
+  title={<>Tembereng Minor (<InlineMath math="\theta < 180^\circ" />)</>}
+  description={<>Tembereng yang luasnya lebih kecil daripada separuh bulatan, terbentuk apabila sudut pusat kurang daripada <InlineMath math="180^\circ" />. Contoh ini menunjukkan tembereng dengan sudut pusat <InlineMath math="120^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="120^\circ" />,
+    "l5": <>Tembereng</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3.46, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3.46, y: 2 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 30, sweepDegrees: 120, appearance: "highlight" },
+      { id: "s6", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "reference" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 30, sweepDegrees: 120, appearance: "warning" },
+      { id: "s7-chord", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.73, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: -1.73, y: 1 }, placement: "above-left" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 1.5 }, placement: "above-right" },
+      { key: "l5", objectId: "s7", at: { x: 0, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+<MathVisual
+  title={<>Tembereng Major (<InlineMath math="\theta > 180^\circ" />)</>}
+  description={<>Tembereng yang luasnya lebih besar daripada separuh bulatan, terbentuk apabila sudut pusat lebih daripada <InlineMath math="180^\circ" />. Contoh ini menunjukkan tembereng dengan sudut pusat <InlineMath math="240^\circ" />.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="240^\circ" />,
+    "l5": <>Tembereng</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1.04, y: -3.86 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 45, sweepDegrees: 240, appearance: "highlight" },
+      { id: "s6", kind: "segment", from: { x: 2.83, y: 2.83 }, to: { x: 1.04, y: -3.86 }, appearance: "answer" },
+      { id: "s7", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 45, sweepDegrees: 240, appearance: "reference" },
+      { id: "s7-chord", kind: "segment", from: { x: 2.83, y: 2.83 }, to: { x: 1.04, y: -3.86 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 1.41, y: 1.41 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 0.52, y: -1.93 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: -1.16, y: 0.31 }, placement: "below-left" },
+      { key: "l5", objectId: "s7", at: { x: -3.86, y: 1.04 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+Untuk jejari yang tetap, sudut pusat membezakan kedua-dua tembereng itu:
+- **Tembereng Minor**: sudut pusat <InlineMath math="< 180^\circ" />, luas tembereng <InlineMath math="< \frac{1}{2}\pi r^2" />
+- **Tembereng Major**: sudut pusat <InlineMath math="> 180^\circ" />, luas tembereng <InlineMath math="> \frac{1}{2}\pi r^2" />
+
+## Rumus Luas Tembereng
+
+Untuk mengira luas tembereng minor, tolak **luas segi tiga daripada luas sektor**.
+
+Bandingkan panjang lengkok dengan luas tembereng sebelum kamu menggunakan rumusnya.
+
+| Kuantiti | Rumus | Jenis unit |
+| :------- | :------ | :-------- |
+| Panjang lengkok | <InlineMath math="s=\frac{\alpha}{360^\circ}\times 2\pi r" /> | Panjang, seperti <InlineMath math="\text{cm}" /> atau <InlineMath math="\text{m}" /> |
+| Luas tembereng | <InlineMath math="A_{\mathrm{tembereng}}=A_{\mathrm{sektor}}-A_{\mathrm{segi\ tiga}}" /> | Luas, seperti <InlineMath math="\text{cm}^2" /> atau <InlineMath math="\text{m}^2" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \text{Luas Tembereng} &amp;= \text{Luas Sektor} \\ &amp;\quad{}- \text{Luas Segi Tiga} \end{aligned}" />
+</MathContainer>
+
+Apabila rumus luas sektor dan rumus luas segi tiga digantikan, kita dapat:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \text{Luas Tembereng} &amp;= \frac{\alpha}{360^\circ} \times \pi r^2 \\ &amp;\quad{}- \frac{1}{2} r^2 \sin \alpha \end{aligned}" />
+</MathContainer>
+
+Di sini, <InlineMath math="0^\circ < \alpha < 180^\circ" /> ialah sudut pusat minor dalam darjah dan <InlineMath math="r" /> ialah jejari bulatan.
+
+Untuk tembereng major, mula-mula gunakan sudut minor yang melengkapkan satu pusingan penuh, <InlineMath math="\beta=360^\circ-\alpha" />, kemudian tolak tembereng minor yang sepadan daripada seluruh bulatan:
+
+<MathContainer>
+  <BlockMath math="\beta=360^\circ-\alpha" />
+  <BlockMath math="A_{\mathrm{minor}}=\frac\beta{360^\circ}\pi r^2-\frac12r^2\sin\beta" />
+
+  <BlockMath math="A_{\mathrm{major}}=\pi r^2-A_{\mathrm{minor}}" />
+</MathContainer>
+
+## Segi Tiga dan Tembereng dalam Sektor
+
+Dalam sektor <InlineMath math="90" /> darjah di bawah, perentas menyambungkan hujung dua jejari yang berserenjang. **Rantau di antara lengkok dan perentas** ialah bahagian yang tinggal selepas segi tiga bersudut tegak di dalam sektor itu dibuang.
+
+<ContentStack>
+
+<MathVisual
+  title={<>Sektor Tolak Segi Tiga</>}
+  description={
+    <>
+      Tembereng terbentuk daripada sektor <InlineMath math="AOB" /> tolak segi tiga{" "}
+      <InlineMath math="AOB" />, dengan sudut pusat{" "}
+      <InlineMath math="90^\circ" /> dan jejari{" "}
+      <InlineMath math="4 \text{ unit}" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="AB" />,
+    "l5": <InlineMath math="\widehat{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s4", kind: "segment", from: { x: 4, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s5", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 90, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 2, y: 2 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+## Pengiraan Luas Tembereng
+
+Gunakan **bentuk suku bulatan** yang sama seperti dalam gambar rajah, tetapi dengan ukuran baharu: sudut pusat <InlineMath math="90^\circ" /> dan jejari <InlineMath math="10\text{ cm}" />. Kira luas sektor dan luas segi tiga secara berasingan.
+
+**Langkah 1**: Kira Luas Sektor
+
+<MathContainer>
+<BlockMath math="\text{Luas Sektor} = \frac{90^\circ}{360^\circ} \times \pi r^2" />
+<BlockMath math="= \frac{1}{4} \times \pi \times 10^2" />
+<BlockMath math="= \frac{1}{4} \times \pi \times 100" />
+<BlockMath math="= 25\pi \text{ cm}^2 \approx 78.5398 \text{ cm}^2" />
+</MathContainer>
+
+**Langkah 2**: Kira Luas Segi Tiga
+
+Untuk sudut <InlineMath math="90^\circ" />, segi tiga yang terbentuk ialah segi tiga bersudut tegak, dan kedua-dua sisinya yang berserenjang ialah jejari:
+
+<MathContainer>
+<BlockMath math="\text{Luas Segi Tiga} = \frac{1}{2} \times r^2 \times \sin 90^\circ" />
+<BlockMath math="= \frac{1}{2} \times 10^2 \times 1" />
+<BlockMath math="= \frac{1}{2} \times 100 \times 1" />
+<BlockMath math="= 50 \text{ cm}^2" />
+</MathContainer>
+
+**Langkah 3**: Kira Luas Tembereng
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Luas Tembereng} &amp;= \text{Luas Sektor} \\ &amp;\quad{}- \text{Luas Segi Tiga} \end{aligned}" />
+<BlockMath math="= 25\pi - 50" />
+<BlockMath math="\approx 78.5398 - 50" />
+<BlockMath math="\approx 28.5398 \text{ cm}^2" />
+</MathContainer>
+
+## Latihan
+
+Soalan pertama meminta **luas tembereng**, soalan kedua mencari sudut daripada luas dan soalan ketiga mencari luas keratan rentas yang berisi air. Untuk tangki itu, ukur kedalaman dari dasar supaya kamu dapat mencari jarak dari permukaan air ke pusat.
+
+1. Sebuah bulatan ada jejari <InlineMath math="7 \text{ cm}" />. Jika ada tembereng dengan sudut pusat <InlineMath math="60^\circ" />, tentukan luas tembereng itu.
+
+2. Sebuah tembereng minor ada luas lebih kurang <InlineMath math="15.3546 \text{ cm}^2" /> dalam bulatan berjejari <InlineMath math="5 \text{ cm}" />. Tentukan sudut pusat minornya.
+
+3. Sebuah tangki silinder mengufuk berjejari <InlineMath math="2 \text{ m}" /> berisi air hingga kedalaman <InlineMath math="1.5 \text{ m}" />, diukur dari dasar. Tentukan luas keratan rentas yang diisi oleh air.
+
+### Jalan Kerja
+
+Gunakan **sektor tolak segi tiga** untuk luas tembereng minor. Apabila luas diberi, cari sudut yang membuatkan rumus itu menghasilkan luas tersebut. Untuk keratan rentas tangki, lukis dahulu perentas pada permukaan air.
+
+**Penyelesaian 1**
+
+Diberi: <InlineMath math="r = 7 \text{ cm}" />, <InlineMath math="\alpha = 60^\circ" />
+
+Kira luas sektor:
+
+<MathContainer>
+<BlockMath math="\text{Luas Sektor} = \frac{60^\circ}{360^\circ} \times \pi \times 7^2" />
+<BlockMath math="= \frac{1}{6} \times \pi \times 49" />
+<BlockMath math="= \frac{49\pi}{6} \text{ cm}^2" />
+</MathContainer>
+
+Kira luas segi tiga:
+
+<MathContainer>
+<BlockMath math="\text{Luas Segi Tiga} = \frac{1}{2} r^2 \sin 60^\circ" />
+<BlockMath math="= \frac{1}{2} \times 49 \times \frac{\sqrt{3}}{2}" />
+<BlockMath math="= \frac{49\sqrt{3}}{4} \text{ cm}^2" />
+</MathContainer>
+
+Kira luas tembereng:
+
+<MathContainer>
+<BlockMath math="\text{Luas Tembereng} = \frac{49\pi}{6} - \frac{49\sqrt{3}}{4}" />
+<BlockMath math="\approx 25.6563 - 21.2176 = 4.4387 \text{ cm}^2" />
+</MathContainer>
+
+**Penyelesaian 2**
+
+Diberi: luas tembereng <InlineMath math="\approx 15.3546 \text{ cm}^2" />, <InlineMath math="r = 5 \text{ cm}" />
+
+Gunakan rumus: <InlineMath math="\text{Luas Tembereng} = \frac{\alpha}{360^\circ} \times \pi r^2 - \frac{1}{2} r^2 \sin \alpha" />
+
+Cari sudut itu dengan **menyempitkan selang**. Luas tembereng minor bertambah apabila sudutnya semakin besar. Apabila kamu menggantikan nilai menggunakan kalkulator dalam mod darjah, kamu dapat:
+
+<BlockMath math="A(\alpha)=\frac{25\pi\alpha}{360^\circ}-\frac{25}{2}\sin\alpha" />
+
+| Sudut cubaan | Luas yang dikira |
+| --- | --- |
+| <InlineMath math="110^\circ" /> | <InlineMath math="12.2521\text{ cm}^2" /> |
+| <InlineMath math="130^\circ" /> | <InlineMath math="18.7860\text{ cm}^2" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="15.3546\text{ cm}^2" /> |
+
+Nilai sasaran terletak di antara nilai untuk <InlineMath math="110" /> dan <InlineMath math="130" /> darjah. Cuba titik tengah selang itu, iaitu <InlineMath math="120" /> darjah. Luasnya sepadan dengan sasaran hingga empat tempat perpuluhan:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \text{Luas Sektor} &amp;= \frac{120^\circ}{360^\circ} \times \pi \times 25 \\ &amp;= \frac{25\pi}{3} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Luas Segi Tiga} \\ &amp;= \frac{1}{2} \times 25 \times \sin 120^\circ \\ &amp;= \frac{25\sqrt{3}}{4} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;\text{Luas Tembereng} \\ &amp;= \frac{25\pi}{3} - \frac{25\sqrt{3}}{4} \\ &amp;\approx 26.1799 - 10.8253 \\ &amp;= 15.3546 \text{ cm}^2 \end{aligned}" />
+</MathContainer>
+
+Nilai ini sepadan dengan luas yang diberi selepas pembundaran, jadi sudut pusatnya lebih kurang <InlineMath math="120^\circ" />.
+
+**Penyelesaian 3**
+
+Dalam keratan rentas tangki, **permukaan air ialah perentas**. Jarak dari pusat ke permukaan air ialah jejari tolak kedalaman air:
+
+<BlockMath math="d=r-h=2-1.5=0.5\text{ m}" />
+
+<MathVisual
+  title={<>Keratan Rentas Tangki dengan Air Sedalam <InlineMath math="1.5" /> Meter</>}
+  description={<>Garis biru mengufuk melorek kawasan air. Permukaan air berada <InlineMath math="0.5" /> meter di bawah pusat dan <InlineMath math="1.5" /> meter di atas dasar.</>}
+  labels={{
+    "l1": <InlineMath math="d" />,
+    "l2": <InlineMath math="h" />,
+    "l3": <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 2, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -0.62, y: -1.9 }, { x: 0.62, y: -1.9 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.87, y: -1.8 }, { x: 0.87, y: -1.8 }], appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.05, y: -1.7 }, { x: 1.05, y: -1.7 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1.2, y: -1.6 }, { x: 1.2, y: -1.6 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -1.32, y: -1.5 }, { x: 1.32, y: -1.5 }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -1.43, y: -1.4 }, { x: 1.43, y: -1.4 }], appearance: "secondary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -1.52, y: -1.3 }, { x: 1.52, y: -1.3 }], appearance: "secondary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: -1.6, y: -1.2 }, { x: 1.6, y: -1.2 }], appearance: "secondary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: -1.67, y: -1.1 }, { x: 1.67, y: -1.1 }], appearance: "secondary" },
+      { id: "s11", kind: "polyline", vertices: [{ x: -1.73, y: -1 }, { x: 1.73, y: -1 }], appearance: "secondary" },
+      { id: "s12", kind: "polyline", vertices: [{ x: -1.79, y: -0.9 }, { x: 1.79, y: -0.9 }], appearance: "secondary" },
+      { id: "s13", kind: "polyline", vertices: [{ x: -1.83, y: -0.8 }, { x: 1.83, y: -0.8 }], appearance: "secondary" },
+      { id: "s14", kind: "polyline", vertices: [{ x: -1.87, y: -0.7 }, { x: 1.87, y: -0.7 }], appearance: "secondary" },
+      { id: "s15", kind: "polyline", vertices: [{ x: -1.91, y: -0.6 }, { x: 1.91, y: -0.6 }], appearance: "secondary" },
+      { id: "s16", kind: "polyline", vertices: [{ x: -Math.sqrt(3.75), y: -0.5 }, { x: Math.sqrt(3.75), y: -0.5 }], appearance: "secondary" },
+      { id: "s17", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -0.5 }], appearance: "answer" },
+      { id: "s18", kind: "polyline", vertices: [{ x: 0, y: -0.5 }, { x: 0, y: -2 }], appearance: "highlight" },
+      { id: "s19", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: Math.sqrt(3.75), y: -0.5 }], appearance: "answer" },
+      { id: "s20", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -Math.sqrt(3.75), y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s17", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s18", at: { x: 0, y: -2 }, placement: "above-right" },
+      { key: "l3", objectId: "s19", at: { x: 1.94, y: -0.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Lukis jejari ke kedua-dua hujung permukaan air. Biar separuh sudut sektor ialah <InlineMath math="\varphi" />. Segi tiga bersudut tegak di sebelah kanan memberikan:
+
+<MathContainer>
+<BlockMath math="\cos\varphi=\frac{d}{r}=\frac{0.5}{2}=0.25,\qquad \varphi=\arccos(0.25)\approx1.3181161\text{ rad}" />
+
+<BlockMath math="\frac{c}{2}=\sqrt{r^2-d^2}=\sqrt{4-0.25}=\sqrt{3.75}\text{ m}" />
+</MathContainer>
+
+Sektor dengan sudut penuh <InlineMath math="2\varphi" /> ada luas <InlineMath math="r^2\varphi" />. Segi tiga yang dibuang ada luas yang sama dengan separuh lebar permukaan air darab jarak dari pusat ke permukaan air:
+
+<BlockMath math="A_{\triangle}=\frac{1}{2}\times(2\sqrt{3.75})\times0.5=0.5\sqrt{3.75}\text{ m}^2" />
+
+Tolak kedua-dua luas itu. Gunakan sudut **dalam radian** dan kekalkan kejituan penuh kalkulator sehingga pembundaran terakhir:
+
+<BlockMath math="A=4\arccos(0.25)-0.5\sqrt{3.75}\approx5.2724643-0.9682458\approx4.3042\text{ m}^2" />

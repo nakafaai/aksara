@@ -1,22 +1,52 @@
-Bu Sari backt <InlineMath math="x" /> Schokobrötchen und <InlineMath math="y" /> Käsebrötchen. Der größte Gewinn liegt immer an **einer Ecke des Bereichs, der alle Bedingungen erfüllt**.
+Du suchst die Fahrgeldeinnahmen der zweiten Überfahrt. Der Plan: Lade die Fahrzeuge einzeln in der Reihenfolge der Warteschlange, **prüfe vor jedem Fahrzeug beide Grenzen** (Spurlänge und Masse) und addiere dann die Tarife der Fahrzeuge auf der zweiten Fahrt.
 
-# Bedingungen
+# Die erste Überfahrt
+
+Der Lkw auf Platz <InlineMath math="1" /> fährt auf. Der Lkw auf Platz <InlineMath math="2" /> bringt die Masse auf genau <InlineMath math="30\text{ Tonnen}" />. Im Text steht, dass **eine Ladung genau an der Grenze noch erlaubt ist**, also darf auch der zweite Lkw mit.
 
 <BlockMath math="\begin{aligned}
-x+y&\le100\\
-50x+100y&\le7\,000\iff x+2y\le140
+\text{Masse von zwei Lkw} &= 15+15=30\text{ Tonnen}\\
+\text{Masse mit dem Auto} &= 30+2=32\text{ Tonnen}>30\text{ Tonnen}
 \end{aligned}" />
 
-**Die beiden Grenzgeraden schneiden sich** bei <InlineMath math="y=140-100=40" /> und <InlineMath math="x=60" />.
+Das Auto auf Platz <InlineMath math="3" /> passt nicht mehr, also legt die Fähre nur mit den zwei Lkw ab. Dieses Auto ist das erste Fahrzeug der zweiten Fahrt.
 
-# Gewinn an jeder Ecke
+# Die zweite Überfahrt
 
-| Ecke | Gewinn |
-| :---: | :---: |
-| <InlineMath math="(100,0)" /> | 150 000 Rupiah |
-| <InlineMath math="(60,40)" /> | 170 000 Rupiah |
-| <InlineMath math="(0,70)" /> | 140 000 Rupiah |
+Auf den Plätzen <InlineMath math="3" /> bis <InlineMath math="8" /> stehen fünf Autos und ein Pick-up. Alle passen auf das Deck, denn zusammen brauchen sie <InlineMath math="31\text{ m}" /> und wiegen <InlineMath math="13\text{ Tonnen}" />. Danach kommt der Lkw auf Platz <InlineMath math="9" />.
 
-**Die Ecke (60, 40) bringt den größten Gewinn**, nämlich <InlineMath math="60\cdot1\,500+40\cdot2\,000=170\,000" />.
+<BlockMath math="\begin{aligned}
+\text{Länge von fünf Autos und einem Pick-up} &= 5\cdot5+6=31\text{ m}\\
+\text{Länge mit dem Lkw} &= 31+10=41\text{ m}>40\text{ m}\\
+\text{Masse mit dem Lkw} &= 13+15=28\text{ Tonnen}\le30\text{ Tonnen}
+\end{aligned}" />
 
-Der größte Gewinn beträgt also **170 Tausend Rupiah**, mit 60 Schoko- und 40 Käsebrötchen.
+Die Masse würde noch reichen, aber **die Spurlänge reicht nicht**. Eine einzige verletzte Grenze genügt, damit der Lkw warten muss, also legt die Fähre mit fünf Autos und einem Pick-up ab.
+
+<BlockMath math="\begin{aligned}
+\text{Einnahmen der zweiten Fahrt} &= 5\cdot200{.}000+250{.}000\\
+&= 1{.}000{.}000+250{.}000\\
+&= 1{.}250{.}000
+\end{aligned}" />
+
+# Kontrolle über alle Tarife
+
+Lade weiter. Der Lkw auf Platz <InlineMath math="9" /> und der folgende Bus wiegen <InlineMath math="15+16=31\text{ Tonnen}" />, also fährt der Lkw allein. Zwei Busse wiegen <InlineMath math="16+16=32\text{ Tonnen}" />, also **fährt jeder Bus allein**. Die Warteschlange ist nach <InlineMath math="5" /> Fahrten leer, und jedes Fahrzeug fährt genau einmal.
+
+<BlockMath math="\begin{aligned}
+\text{Einnahmen der fünf Fahrten} &= 1{.}700{.}000+1{.}250{.}000+850{.}000+750{.}000+750{.}000\\
+&= 5{.}300{.}000\\
+\text{Tarife der elf Fahrzeuge} &= 3\cdot850{.}000+2\cdot750{.}000+5\cdot200{.}000+250{.}000\\
+&= 5{.}300{.}000
+\end{aligned}" />
+
+Beide Summen stimmen überein, also ist die Aufteilung der Fahrzeuge auf die Fahrten stimmig.
+
+# Die falschen Antworten
+
+- <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> sind die Einnahmen **der ersten Fahrt**, also der zwei Lkw.
+- <InlineMath math="\text{Rp}1{.}900{.}000{,}00" /> entsteht, wenn du die Grenze als „weniger als <InlineMath math="30\text{ Tonnen}" />“ liest. Dann nimmt die erste Fahrt nur einen Lkw mit, und die zweite Fahrt trägt einen Lkw, vier Autos und den Pick-up.
+- <InlineMath math="\text{Rp}2{.}100{.}000{,}00" /> prüft nur die Masse, sodass der Lkw auf Platz <InlineMath math="9" /> mitfährt, obwohl die Länge <InlineMath math="41\text{ m}" /> wird.
+- <InlineMath math="\text{Rp}2{.}200{.}000{,}00" /> prüft nur die Länge. Die zweite Fahrt trägt dann drei Autos, einen Lkw und einen Bus mit <InlineMath math="6+15+16=37\text{ Tonnen}" />.
+
+Die Fähre nimmt auf der zweiten Überfahrt also <InlineMath math="\text{Rp}1{.}250{.}000{,}00" /> an Fahrgeld ein.

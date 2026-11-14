@@ -1,0 +1,43 @@
+Soalan ini bertanya pecahan isi padu kotak yang **tidak** diisi oleh bola. Ada dua jenis ruang kosong: celah di antara tabung, dan celah di dalam setiap tabung di sekeliling bolanya. Kedua-duanya mesti dibandingkan dengan **isi padu kotak yang sama**.
+
+# Satu sel sudah memadai
+
+Diameter bola ialah <InlineMath math="6.5\text{ cm}" />, jadi setiap tabung muat di dalam sebuah kuboid kecil bertapak segi empat sama <InlineMath math="6.5\times6.5" /> dengan tinggi <InlineMath math="3\cdot6.5=19.5" />. Namakan kuboid kecil ini sel. Susunan <InlineMath math="6" /> baris yang setiap satunya berisi <InlineMath math="4" /> tabung memenuhi kotak dengan tepat, tanpa baki:
+
+<BlockMath math="6\cdot6.5=39,\qquad 4\cdot6.5=26,\qquad 1\cdot19.5=19.5" />
+
+Jadi kotak itu terbahagi kepada <InlineMath math="24" /> sel yang serupa, dan **pecahan ruang kosong dalam kotak sama dengan pecahan ruang kosong dalam satu sel**.
+
+# Isi padu dalam satu sel
+
+Tulis jejari bola sebagai <InlineMath math="r" />. Tapak sel ialah segi empat sama bersisi <InlineMath math="2r" />, tinggi sel dan tinggi tabung ialah <InlineMath math="6r" />, dan jejari tabung juga <InlineMath math="r" />. Nilai <InlineMath math="r" /> tidak perlu dimasukkan **kerana ia akan terbatal**.
+
+<BlockMath math="\begin{aligned}
+V_\text{sel}&=(2r)^2\cdot6r=24r^3 \\
+V_\text{tabung}&=\pi r^2\cdot6r=6\pi r^3 \\
+V_\text{3 bola}&=3\cdot\tfrac43\pi r^3=4\pi r^3
+\end{aligned}" />
+
+Sekarang bandingkan isi padu bola dengan sel, kemudian ambil bakinya:
+
+<BlockMath math="\begin{aligned}
+\frac{V_\text{3 bola}}{V_\text{sel}}&=\frac{4\pi r^3}{24r^3}=\frac{\pi}{6} \\
+\text{bahagian kosong}&=1-\frac{\pi}{6}\approx1-0.524=0.476
+\end{aligned}" />
+
+# Semakan dalam dua peringkat
+
+Kira semula dalam dua langkah. Tabung mengisi <InlineMath math="\frac{6\pi r^3}{24r^3}=\frac{\pi}{4}" /> daripada sel, dan bola mengisi <InlineMath math="\frac{4\pi r^3}{6\pi r^3}=\frac23" /> daripada tabung. Jadi bola mengisi <InlineMath math="\frac23\cdot\frac{\pi}{4}=\frac{\pi}{6}" /> daripada sel, iaitu hasil yang sama. Ruang kosong di dalam tabung ialah <InlineMath math="\frac13" /> daripada tabung, iaitu <InlineMath math="\frac13\cdot\frac{\pi}{4}=\frac{\pi}{12}" /> daripada sel. Tambahkan dengan celah di luar tabung:
+
+<BlockMath math="\Bigl(1-\frac{\pi}{4}\Bigr)+\frac{\pi}{12}=1-\frac{3\pi}{12}+\frac{\pi}{12}=1-\frac{\pi}{6}" />
+
+Kedua-dua cara memberi jawapan yang sama, dan **hasilnya tidak bergantung pada saiz bola**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1-\frac{\pi}{4}" /> hanya mengira celah di antara tabung. Ruang kosong di dalam tabung tertinggal.
+- <InlineMath math="\frac13" /> hanya mengira ruang kosong di dalam tabung, seolah-olah tabung memenuhi kotak tanpa celah.
+- <InlineMath math="\frac{\pi}{6}" /> ialah pecahan yang **diisi** oleh bola, sedangkan soalan bertanya bahagian yang kosong.
+- <InlineMath math="\frac43-\frac{\pi}{4}" /> menjumlahkan <InlineMath math="1-\frac{\pi}{4}" /> dan <InlineMath math="\frac13" /> secara terus. Pecahan <InlineMath math="\frac13" /> itu dikira daripada isi padu tabung, bukan isi padu kotak, jadi ia mesti ditukar dahulu kepada <InlineMath math="\frac{\pi}{12}" />.
+
+Jadi, pecahan isi padu kotak pameran yang tidak diisi oleh bola ialah <InlineMath math="1-\frac{\pi}{6}" />.

@@ -1,0 +1,385 @@
+
+export const metadata = {
+  title: "Fungsi Trigonometri bagi Sebarang Sudut",
+  description: "Gunakan bulatan unit untuk mencari nilai trigonometri dalam setiap sukuan daripada tanda dan **sudut rujukan**.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Trigonometri untuk Sudut dalam Setiap Sukuan
+
+Apabila jarum minit jam bergerak dari <InlineMath math="12" /> ke <InlineMath math="6" />, jarum itu berputar sejauh <InlineMath math="180^\circ" />. Satu putaran lengkap pula meliputi <InlineMath math="360^\circ" />.
+
+Nilai trigonometri meliputi **sudut dalam setiap sukuan**, dan tidak terhad kepada sudut tirus dalam segi tiga bersudut tegak.
+
+## Bulatan Unit
+
+Untuk memahami fungsi trigonometri bagi sebarang sudut, kita gunakan **bulatan unit, iaitu bulatan berjejari** <InlineMath math="1" /> dan berpusat di <InlineMath math="O(0,0)" />.
+
+<MathVisual
+  title={<>Penerokaan Bulatan Unit</>}
+  description={<>Ubah sudut pada input di bawah untuk melihat bagaimana koordinat titik pada bulatan itu berubah.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Butiran berikut mengaitkan sudut dengan koordinatnya:
+
+- Sudut <InlineMath math="\theta" /> sentiasa diukur dari paksi-<InlineMath math="x" /> positif
+- Arah positif ialah lawan arah jam
+- Setiap titik pada bulatan ada koordinat <InlineMath math="(x, y)" />
+
+**Takrif**:
+
+<MathContainer>
+
+<BlockMath math="\sin \theta = y \text{ (koordinat mencancang)}" />
+
+<BlockMath math="\cos \theta = x \text{ (koordinat mengufuk)}" />
+
+<BlockMath math="\tan \theta = \frac{y}{x} = \frac{\sin \theta}{\cos \theta}, \quad x \neq 0" />
+</MathContainer>
+
+## Tanda Fungsi dalam Setiap Sukuan
+
+Apabila titik itu bergerak mengelilingi bulatan, koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> boleh jadi positif atau negatif. **Tanda koordinat itu** yang menentukan tanda fungsi trigonometri dalam setiap sukuan.
+
+<MathVisual
+  title={<>Visualisasi Perubahan Tanda</>}
+  description={<>Perhatikan bagaimana nilai <InlineMath math="\sin" />, <InlineMath math="\cos" />, dan <InlineMath math="\tan" /> berubah apabila sudut melalui setiap sukuan.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+**Tanda dalam setiap sukuan**:
+
+| Sukuan   | Julat Sudut                                | <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="\sin" /> | <InlineMath math="\cos" /> | <InlineMath math="\tan" /> |
+| -------- | ------------------------------------------ | --- | --- | --- | --- | --- |
+| <InlineMath math="\text{I}" />   | <InlineMath math="0^\circ < \theta < 90^\circ" />    | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> |
+| <InlineMath math="\text{II}" />  | <InlineMath math="90^\circ < \theta < 180^\circ" />  | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="\text{III}" /> | <InlineMath math="180^\circ < \theta < 270^\circ" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="\text{IV}" />  | <InlineMath math="270^\circ < \theta < 360^\circ" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> | <InlineMath math="-" /> |
+
+Baca tanda itu daripada koordinat: <InlineMath math="\sin\theta" /> ada tanda yang sama dengan <InlineMath math="y" />, <InlineMath math="\cos\theta" /> ada tanda yang sama dengan <InlineMath math="x" />, dan <InlineMath math="\tan\theta=y/x" /> positif tepat apabila <InlineMath math="x" /> dan <InlineMath math="y" /> ada tanda yang sama.
+
+## Sudut Rujukan
+
+Untuk sudut yang sisi terminalnya tidak terletak pada paksi, sudut rujukan ialah **satu-satunya sudut tirus** <InlineMath math="0^\circ<\alpha<90^\circ" /> di antara sisi terminal itu dengan bahagian paksi-<InlineMath math="x" /> yang paling dekat. Nilai trigonometri sudut tirus itu memberikan magnitud nilai trigonometri sudut asal. Sukuan pula menentukan tandanya. Untuk sudut sukuan, seperti <InlineMath math="90^\circ" /> atau <InlineMath math="180^\circ" />, baca sahaja koordinatnya terus daripada bulatan unit.
+
+<MathVisual
+  title={<>Memahami Sudut Rujukan</>}
+  description={<>Kenal pasti sudut tirus di antara jejari dengan paksi-<InlineMath math="x" /> apabila sudut itu berubah.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 135, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+**Cara menentukan sudut rujukan <InlineMath math="\alpha" /> bagi sudut bukan sukuan <InlineMath math="0^\circ<\theta<360^\circ" />**:
+
+- Sukuan I: <InlineMath math="\alpha = \theta" />
+- Sukuan II: <InlineMath math="\alpha = 180^\circ - \theta" />
+- Sukuan III: <InlineMath math="\alpha = \theta - 180^\circ" />
+- Sukuan IV: <InlineMath math="\alpha = 360^\circ - \theta" />
+
+## Menentukan Nilai Trigonometri
+
+Ikut langkah-langkah sistematik ini untuk menentukan nilai fungsi trigonometri:
+
+1. **Permudahkan sudut** (jika sudut itu lebih besar daripada <InlineMath math="360^\circ" /> atau negatif)
+2. **Tentukan sukuan** tempat sudut itu terletak
+3. **Kira sudut rujukan**
+4. **Gunakan nilai sudut rujukan** dengan tanda yang betul bagi sukuan itu
+
+### Sudut dalam Sukuan Kedua
+
+**Soalan**: Tentukan <InlineMath math="\sin 120^\circ" />, <InlineMath math="\cos 120^\circ" />, dan <InlineMath math="\tan 120^\circ" />
+
+**Penyelesaian**:
+
+- Sudut <InlineMath math="120^\circ" /> terletak dalam sukuan II (kerana <InlineMath math="90^\circ < 120^\circ < 180^\circ" />)
+- Sudut rujukan: <InlineMath math="\alpha = 180^\circ - 120^\circ = 60^\circ" />
+- Dalam sukuan II: <InlineMath math="\sin(+), \cos(-), \tan(-)" />
+
+Gunakan nilai sudut khas bagi <InlineMath math="60^\circ" />:
+
+<MathContainer>
+
+<BlockMath math="\sin 120^\circ = +\sin 60^\circ = \frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 120^\circ = -\cos 60^\circ = -\frac{1}{2}" />
+
+<BlockMath math="\tan 120^\circ = -\tan 60^\circ = -\sqrt{3}" />
+</MathContainer>
+
+### Sudut dalam Sukuan Ketiga
+
+**Soalan**: Tentukan nilai trigonometri bagi sudut <InlineMath math="240^\circ" />
+
+**Penyelesaian**:
+
+- Sudut <InlineMath math="240^\circ" /> terletak dalam sukuan III (kerana <InlineMath math="180^\circ < 240^\circ < 270^\circ" />)
+- Sudut rujukan: <InlineMath math="\alpha = 240^\circ - 180^\circ = 60^\circ" />
+- Dalam sukuan III: <InlineMath math="\sin(-), \cos(-), \tan(+)" />
+
+Gunakan nilai sudut khas bagi <InlineMath math="60^\circ" />:
+
+<MathContainer>
+
+<BlockMath math="\sin 240^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 240^\circ = -\cos 60^\circ = -\frac{1}{2}" />
+
+<BlockMath math="\tan 240^\circ = +\tan 60^\circ = \sqrt{3}" />
+</MathContainer>
+
+### Sudut dalam Sukuan Keempat
+
+**Soalan**: Tentukan nilai trigonometri bagi sudut <InlineMath math="300^\circ" />
+
+**Penyelesaian**:
+
+- Sudut <InlineMath math="300^\circ" /> terletak dalam **sukuan IV** (kerana <InlineMath math="270^\circ < 300^\circ < 360^\circ" />)
+
+- Sudut rujukan: <InlineMath math="\alpha = 360^\circ - 300^\circ = 60^\circ" />
+- Dalam sukuan IV: <InlineMath math="\sin(-), \cos(+), \tan(-)" />
+
+Gunakan nilai sudut khas bagi <InlineMath math="60^\circ" />:
+
+<MathContainer>
+
+<BlockMath math="\sin 300^\circ = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 300^\circ = +\cos 60^\circ = \frac{1}{2}" />
+
+<BlockMath math="\tan 300^\circ = -\tan 60^\circ = -\sqrt{3}" />
+</MathContainer>
+
+## Mengendalikan Sudut Khas
+
+Sudut negatif dan sudut yang melebihi satu putaran boleh digantikan dengan **sudut koterminal** pada bulatan unit. Baca koordinatnya terus jika titik hujungnya terletak pada paksi. Jika tidak, gunakan sudut rujukan dan tanda bagi sukuan itu.
+
+### Sudut Negatif
+
+Sudut negatif diukur **ikut arah jam**. Kamu boleh menambah satu putaran penuh untuk sampai ke titik hujung yang sama, atau terus gunakan sifat fungsi genap dan fungsi ganjil:
+
+- <InlineMath math="\sin(-\theta) = -\sin \theta" /> (fungsi ganjil)
+- <InlineMath math="\cos(-\theta) = \cos \theta" /> (fungsi genap)
+- <InlineMath math="\tan(-\theta) = -\tan \theta" /> (fungsi ganjil)
+
+**Contoh**: <InlineMath math="\sin(-30^\circ) = -\sin 30^\circ = -\frac{1}{2}" />
+
+### Sudut yang Lebih Besar daripada Satu Putaran Penuh
+
+Gunakan **sifat berkala**. Tolak atau tambah gandaan <InlineMath math="360^\circ" /> sehingga sudut itu berada dalam julat <InlineMath math="0^\circ" /> hingga <InlineMath math="360^\circ" />.
+
+**Contoh**:
+
+- Tolak dua putaran lengkap:
+
+<BlockMath math="\begin{aligned} &amp;750^\circ - 2(360^\circ) \\ &amp;= 750^\circ - 720^\circ \\ &amp;= 30^\circ \end{aligned}" />
+
+- Jadi <InlineMath math="\sin 750^\circ = \sin 30^\circ = \frac{1}{2}" />
+
+## Latihan
+
+Setiap soalan meminta nilai trigonometri pada sudut di luar sukuan pertama. Tukarkan sudut itu kepada sudut rujukannya dahulu, kemudian letakkan **tanda yang betul**.
+
+1. Tentukan nilai <InlineMath math="\sin 315^\circ" />, <InlineMath math="\cos 315^\circ" />, dan <InlineMath math="\tan 315^\circ" />.
+
+2. Kira <InlineMath math="\sin(-60^\circ) + \cos 210^\circ - \tan(-135^\circ)" />.
+
+3. Jika <InlineMath math="\sin \theta = \frac{3}{5}" /> dan <InlineMath math="\theta" /> berada dalam sukuan II, tentukan <InlineMath math="\cos \theta" /> dan <InlineMath math="\tan \theta" />.
+
+4. Permudahkan <InlineMath math="\sin 840^\circ \cdot \cos(-330^\circ)" />.
+
+5. Sebuah kincir angin berputar <InlineMath math="1050^\circ" /> dari kedudukan awalnya. Jika kedudukan awal bilahnya berada pada paksi-<InlineMath math="x" /> positif, tentukan koordinat hujung bilah itu pada bulatan unit selepas putaran ini.
+
+### Jalan Kerja
+
+**Soalan 1**. Untuk sudut <InlineMath math="315^\circ" />, kita perlu menentukan sukuannya dahulu.
+
+Oleh sebab <InlineMath math="270^\circ < 315^\circ < 360^\circ" />, sudut itu berada dalam sukuan IV.
+
+**Sudut rujukannya** ialah <InlineMath math="360^\circ - 315^\circ = 45^\circ" />.
+
+<MathContainer>
+
+<BlockMath math="\sin 315^\circ = -\sin 45^\circ = -\frac{\sqrt{2}}{2}" />
+
+<BlockMath math="\cos 315^\circ = +\cos 45^\circ = \frac{\sqrt{2}}{2}" />
+
+<BlockMath math="\tan 315^\circ = -\tan 45^\circ = -1" />
+</MathContainer>
+
+**Soalan 2**. Kira setiap sebutan secara berasingan. Untuk <InlineMath math="\sin(-60^\circ)" />, gunakan sifat fungsi ganjil.
+
+Untuk <InlineMath math="\cos 210^\circ" />, sudut itu berada dalam sukuan III dengan sudut rujukan <InlineMath math="30^\circ" />.
+
+Untuk tangen sudut negatif itu, gunakan **sifat fungsi ganjil** seperti dalam pengiraan di bawah.
+
+<MathContainer>
+
+<BlockMath math="\sin(-60^\circ) = -\sin 60^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\cos 210^\circ = -\cos 30^\circ = -\frac{\sqrt{3}}{2}" />
+
+<BlockMath math="\begin{aligned} \tan(-135^\circ) &amp;= -\tan 135^\circ \\ &amp;= -(-\tan 45^\circ) \\ &amp;= 1 \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \text{Hasil} &amp;= -\frac{\sqrt{3}}{2} - \frac{\sqrt{3}}{2} - 1 \\ &amp;= -\sqrt{3} - 1 \end{aligned}" />
+</MathContainer>
+
+**Soalan 3**. Diberi <InlineMath math="\sin \theta = \frac{3}{5}" /> dalam sukuan II.
+
+Gunakan **identiti Pythagoras** untuk mencari <InlineMath math="\cos \theta" />.
+
+Dalam sukuan II, <InlineMath math="\cos" /> bernilai negatif.
+
+<MathContainer>
+
+<BlockMath math="\sin^2 \theta + \cos^2 \theta = 1" />
+
+<BlockMath math="\left(\frac{3}{5}\right)^2 + \cos^2 \theta = 1" />
+
+<BlockMath math="\cos^2 \theta = 1 - \frac{9}{25} = \frac{16}{25}" />
+</MathContainer>
+Jadi nilainya negatif dalam sukuan II:
+
+<MathContainer>
+
+<BlockMath math="\cos\theta=-\frac45" />
+
+<BlockMath math="\tan \theta = \frac{\sin \theta}{\cos \theta} = \frac{3/5}{-4/5} = -\frac{3}{4}" />
+</MathContainer>
+
+**Soalan 4**. **Permudahkan sudut-sudutnya**.
+
+<BlockMath math="\begin{aligned} &amp;840^\circ - 2(360^\circ) \\ &amp;= 120^\circ \end{aligned}" />
+
+Untuk <InlineMath math="-330^\circ" />, tambah <InlineMath math="360^\circ" /> untuk mendapat <InlineMath math="30^\circ" />.
+
+<MathContainer>
+
+<BlockMath math="\begin{aligned} \sin 840^\circ &amp;= \sin 120^\circ \\ &amp;= \sin(180^\circ - 60^\circ) \\ &amp;= \sin 60^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \cos(-330^\circ) &amp;= \cos 330^\circ \\ &amp;= \cos(360^\circ - 30^\circ) \\ &amp;= \cos 30^\circ \\ &amp;= \frac{\sqrt{3}}{2} \end{aligned}" />
+
+<BlockMath math="\begin{aligned} \sin 840^\circ \cdot \cos(-330^\circ) &amp;= \frac{\sqrt{3}}{2} \cdot \frac{\sqrt{3}}{2} \\ &amp;= \frac{3}{4} \end{aligned}" />
+</MathContainer>
+
+**Soalan 5**. Sudut <InlineMath math="1050^\circ" /> perlu dipermudahkan dahulu.
+
+<BlockMath math="\begin{aligned} &amp;1050^\circ - 2(360^\circ) \\ &amp;= 1050^\circ - 720^\circ \\ &amp;= 330^\circ \end{aligned}" />
+
+Sudut <InlineMath math="330^\circ" /> berada dalam sukuan IV dengan **sudut rujukan** <InlineMath math="30^\circ" />.
+
+<MathContainer>
+
+<BlockMath math="x = \cos 330^\circ = \cos 30^\circ = \frac{\sqrt{3}}{2}" />
+
+<BlockMath math="y = \sin 330^\circ = -\sin 30^\circ = -\frac{1}{2}" />
+</MathContainer>
+Jadi hujung bilah itu ada koordinat <InlineMath math="\left(\frac{\sqrt3}{2},-\frac12\right)" />.
+
+<MathVisual
+  title={<>Koordinat Selepas Putaran</>}
+  description={<>Ubah sudut dari <InlineMath math="330" /> ke <InlineMath math="1050" /> darjah: titik hujungnya tetap sama kerana bezanya ialah dua putaran penuh.</>}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 1080, step: 1, value: 330, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>

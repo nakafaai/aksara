@@ -1,16 +1,49 @@
-Tiga puluh roti keju sudah memakai sebagian **kapasitas oven dan sebagian tepung**. Periksa sisa keduanya, lalu ambil batas yang lebih ketat.
+Kamu mencari muatan satu perjalanan dengan tarif terbesar. Kendaraan berat (truk dan bus) paling cepat menghabiskan batas massa, jadi rencananya begini: **pisahkan kasus menurut kendaraan berat yang ikut**, isi sisa tempat dengan kendaraan kecil sebaik mungkin, lalu bandingkan semua kasus.
 
-# Sisa oven dan sisa tepung
+# Kendaraan berat yang mungkin ikut
+
+Antrean berisi <InlineMath math="3" /> truk, <InlineMath math="2" /> bus, <InlineMath math="5" /> mobil, dan hanya <InlineMath math="1" /> pikap. Periksa dulu pasangan kendaraan berat.
 
 <BlockMath math="\begin{aligned}
-\text{oven}&:\quad 100-30=70\text{ roti}\\
-\text{tepung}&:\quad 7{.}000-30\cdot100=4{.}000\text{ g},\quad \tfrac{4{.}000}{50}=80\text{ roti}
+\text{bus dan bus} &= 16+16=32\text{ ton}>30\text{ ton}\\
+\text{bus dan truk} &= 16+15=31\text{ ton}>30\text{ ton}\\
+\text{truk dan truk} &= 15+15=30\text{ ton}\le30\text{ ton}
 \end{aligned}" />
 
-# Batas yang menentukan
+Jadi sebuah perjalanan berisi tanpa kendaraan berat, satu bus, satu truk, atau dua truk. Dua truk sudah membuat massa tepat <InlineMath math="30\text{ ton}" />, sehingga **tidak ada kendaraan lain yang bisa ditambahkan** dan tarifnya <InlineMath math="2\cdot850{.}000=1{.}700{.}000" />.
 
-Tepung cukup untuk 80 roti cokelat, tetapi oven hanya muat 70 roti lagi. **Batas yang lebih kecil yang menentukan**, jadi paling banyak 70 roti cokelat.
+# Mengisi sisa tempat
 
-Nilai 80 roti hanya memeriksa tepung. Nilai 110 roti lupa bahwa roti keju memakai tepung dua kali lebih banyak, dan 140 roti mengabaikan roti keju yang sudah dibuat. Nilai 40 roti mengurangi 100 dengan <InlineMath math="2\cdot30" />, seolah oven juga dibatasi seperti tepung.
+Lima mobil dan satu pikap bersama-sama memakai <InlineMath math="5\cdot5+6=31\text{ m}" /> dan bermassa <InlineMath math="13\text{ ton}" />. Tanpa kendaraan berat, semuanya muat dan tarifnya <InlineMath math="5\cdot200{.}000+250{.}000=1{.}250{.}000" />.
 
-Jadi, Bu Sari masih dapat membuat paling banyak **70 roti cokelat**.
+Dengan satu truk, sisa tempatnya <InlineMath math="30\text{ m}" /> dan <InlineMath math="15\text{ ton}" />. Keenam kendaraan kecil butuh <InlineMath math="31\text{ m}" />, jadi satu mobil harus ditinggal. Menukar satu mobil dengan pikap hanya menambah <InlineMath math="1\text{ m}" /> tetapi menambah tarif <InlineMath math="50{.}000" />, jadi **ambil pikap dan empat mobil**. Untuk truk, empat mobil, dan pikap, hitungannya seperti ini.
+
+<BlockMath math="\begin{aligned}
+\text{panjang} &= 10+4\cdot5+6=36\text{ m}\\
+\text{massa} &= 15+4\cdot2+3=26\text{ ton}\\
+\text{tarif} &= 850{.}000+4\cdot200{.}000+250{.}000=1{.}900{.}000
+\end{aligned}" />
+
+Dengan satu bus, sisa tempatnya <InlineMath math="28\text{ m}" /> dan <InlineMath math="14\text{ ton}" />. Muatan kecil terbaiknya juga empat mobil dan pikap (<InlineMath math="26\text{ m}" /> dan <InlineMath math="11\text{ ton}" />), sehingga tarifnya <InlineMath math="750{.}000+1{.}050{.}000=1{.}800{.}000" />.
+
+# Membandingkan semua kasus
+
+| Kendaraan berat | Tarif terbesar |
+| :---: | :---: |
+| tidak ada | <InlineMath math="\text{Rp}1{.}250{.}000{,}00" /> |
+| dua truk | <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> |
+| satu bus | <InlineMath math="\text{Rp}1{.}800{.}000{,}00" /> |
+| satu truk | <InlineMath math="\text{Rp}1{.}900{.}000{,}00" /> |
+
+Kasus satu truk menang. Muatan truk, empat mobil, dan pikap memakai <InlineMath math="36\text{ m}\le40\text{ m}" /> dan <InlineMath math="26\text{ ton}\le30\text{ ton}" />, jadi **kedua batas memang dipenuhi**.
+
+# Pilihan yang keliru
+
+Setiap pilihan yang keliru **melanggar satu batas atau jumlah kendaraan yang tersedia**.
+
+- <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> muncul jika kamu mengambil tarif tertinggi lebih dulu. Dua truk langsung memenuhi batas massa, sehingga mobil dan pikap tidak bisa ikut.
+- <InlineMath math="\text{Rp}1{.}800{.}000{,}00" /> memilih bus sebagai kendaraan berat, padahal tarif bus lebih kecil daripada tarif truk.
+- <InlineMath math="\text{Rp}1{.}850{.}000{,}00" /> mengisi truk dengan kelima mobil, lalu lupa bahwa satu mobil bisa ditukar dengan pikap.
+- <InlineMath math="\text{Rp}2{.}100{.}000{,}00" /> lupa bahwa antrean hanya punya satu pikap (truk dan lima pikap). Nilai yang sama muncul jika panjang diabaikan, karena truk, lima mobil, dan pikap butuh <InlineMath math="41\text{ m}" />.
+
+Jadi, pendapatan tarif terbesar dari satu perjalanan adalah <InlineMath math="\text{Rp}1{.}900{.}000{,}00" />, dari satu truk, empat mobil, dan satu pikap.

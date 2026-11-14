@@ -1,19 +1,38 @@
-Leiter, Wand und Boden bilden immer ein rechtwinkliges Dreieck mit der Hypotenuse 13 m. **Die Länge der Leiter bleibt gleich**, also gilt der Satz des Pythagoras vor und nach dem Verschieben.
+Der Wert <InlineMath math="S(n)" /> wächst nur, wenn <InlineMath math="n" /> eine neue Zahl erreicht, die beim Teilen durch <InlineMath math="7" /> den Rest <InlineMath math="3" /> lässt. Der Plan: Schreib diese Zahlen als arithmetische Folge, bestimme, **wie viele Glieder die Summe über <InlineMath math="1{.}000" /> bringen**, und mach daraus einen Wert für <InlineMath math="n" />.
 
-# Ausgangslage
+# Die Zahlen mit dem Rest drei
 
-<BlockMath math="t_{\text{Anfang}}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+Die kleinste positive Zahl, die beim Teilen durch <InlineMath math="7" /> den Rest <InlineMath math="3" /> lässt, ist <InlineMath math="3" /> selbst, denn <InlineMath math="3=7\cdot0+3" />. Also **ist das erste Glied <InlineMath math="3" /> und nicht <InlineMath math="10" />**. Jede weitere Zahl ist um <InlineMath math="7" /> größer, die Folge lautet also <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" /> und so weiter.
 
-Das obere Ende der Leiter liegt anfangs **12 m über dem Boden**.
+<BlockMath math="\begin{aligned}
+u_k&=3+7(k-1)=7k-4\\
+S_k&=\frac{k}{2}\left(3+7k-4\right)=\frac{k(7k-1)}{2}
+\end{aligned}" />
 
-# Lage nach dem Verschieben
+# Wie viele Glieder du brauchst
 
-Das obere Ende sinkt um 1 m und liegt jetzt 11 m hoch. Der Abstand des Fußes zur Wand wird zu
+Du brauchst <InlineMath math="\tfrac{k(7k-1)}{2}>1{.}000" />, also <InlineMath math="k(7k-1)>2{.}000" />. Grob geschätzt gilt <InlineMath math="7k^2\approx2{.}000" />, also liegt <InlineMath math="k" /> bei etwa <InlineMath math="17" />. Prüfe die beiden Zahlen um diese Schätzung.
 
-<BlockMath math="d=\sqrt{13^2-11^2}=\sqrt{48}=4\sqrt3" />
+<BlockMath math="\begin{aligned}
+k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
+k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{.}003
+\end{aligned}" />
 
-Der Fuß verschiebt sich um **die Differenz zwischen neuem und altem Abstand**, also <InlineMath math="4\sqrt3-5\approx1{,}93" /> m.
+Mit <InlineMath math="16" /> Gliedern reicht es nicht, mit <InlineMath math="17" /> Gliedern liegst du über <InlineMath math="1{.}000" />. Also **muss die Gliederzahl auf <InlineMath math="17" /> aufgerundet werden**.
 
-Der Wert 1 m nimmt an, dass sich der Fuß so weit bewegt, wie das obere Ende sinkt, obwohl der Zusammenhang nicht linear ist. Der Wert <InlineMath math="4\sqrt3" /> ist der neue Abstand zur Wand, noch nicht um 5 verringert. Der Wert <InlineMath math="\sqrt{23}" /> wendet Pythagoras auf die Seiten 12 und 11 an, die kein rechtwinkliges Dreieck der Aufgabe bilden. Der Wert <InlineMath math="\tfrac{12}{5}" /> skaliert das Absinken von 1 m mit dem Verhältnis <InlineMath math="12:5" />.
+# Von der Gliederzahl zu n
 
-Der Fuß der Leiter verschiebt sich also um <InlineMath math="\left(4\sqrt3-5\right)" /> m.
+Die Summe <InlineMath math="S(n)" /> enthält das Glied Nummer <InlineMath math="17" /> erst, wenn <InlineMath math="n" /> mindestens so groß wie dieses Glied ist.
+
+<BlockMath math="u_{17}=7\cdot17-4=115" />
+
+Für <InlineMath math="n=114" /> zählen erst <InlineMath math="16" /> Glieder, also gilt <InlineMath math="S(114)=888" />. Für <InlineMath math="n=115" /> ist die Summe <InlineMath math="S(115)=1{.}003>1{.}000" />. **Gefragt ist <InlineMath math="n" />, nicht die Anzahl der Glieder**, die Antwort ist also <InlineMath math="115" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="17" /> ist **die Anzahl der Glieder**, nicht der Wert von <InlineMath math="n" />.
+- <InlineMath math="87" /> entsteht, wenn der Faktor <InlineMath math="\tfrac12" /> in der Summenformel fehlt: <InlineMath math="k(7k-1)>1{.}000" /> liefert <InlineMath math="k=13" /> und <InlineMath math="u_{13}=87" />.
+- <InlineMath math="108" /> ist das Glied Nummer <InlineMath math="16" />, entstanden durch Abrunden von <InlineMath math="k" />, aber es gilt <InlineMath math="S(108)=888" />.
+- <InlineMath math="122" /> entsteht, wenn die Folge bei <InlineMath math="10" /> beginnt, denn dann ist das Glied Nummer <InlineMath math="17" /> gleich <InlineMath math="10+7\cdot16=122" />.
+
+Die kleinste positive ganze Zahl <InlineMath math="n" /> mit <InlineMath math="S(n)>1{.}000" /> ist also <InlineMath math="115" />.

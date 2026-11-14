@@ -1,15 +1,42 @@
-Pertanyaannya meminta **satu nilai <InlineMath math="x+y" />**. Hubungan yang menghubungkan ketiga besaran adalah <InlineMath math="(x+y)^2=x^2+y^2+2xy" />.
+Kamu mencari luas daerah yang masuk ke ketiga lingkaran bersamaan. Rencananya, kenali dulu bentuk daerah itu, lalu **potong menjadi bagian yang luasnya mudah dihitung**: satu segitiga dan beberapa tembereng (daerah di antara busur dan talibusurnya).
 
-# Setiap pernyataan saja
+# Bentuk daerah irisan
 
-Pernyataan (1) dipenuhi oleh <InlineMath math="(2,3)" /> dengan jumlah 5 dan oleh <InlineMath math="(1,6)" /> dengan jumlah 7. Pernyataan (2) dipenuhi oleh <InlineMath math="(2,3)" /> dengan jumlah 5 dan oleh <InlineMath math="(2,-3)" /> dengan jumlah <InlineMath math="-1" />. **Masing-masing memberi jumlah yang berbeda**, jadi tidak ada yang cukup sendirian.
+Jari-jari setiap lingkaran sama dengan panjang sisi segitiga, jadi lingkaran yang berpusat di <InlineMath math="A" /> melewati <InlineMath math="B" /> dan <InlineMath math="C" />, dan begitu juga untuk dua lingkaran lainnya. Segitiga <InlineMath math="ABC" /> seluruhnya ada di dalam ketiga lingkaran. Di luar sisi <InlineMath math="BC" />, daerah itu dibatasi busur <InlineMath math="BC" /> milik lingkaran berpusat <InlineMath math="A" />. Setiap titik pada busur itu berjarak paling jauh <InlineMath math="6\text{ cm}" /> dari <InlineMath math="B" /> dan dari <InlineMath math="C" />, jadi tembereng di luar <InlineMath math="BC" /> juga ada di dalam dua lingkaran lainnya. Jadi **daerah irisan adalah segitiga <InlineMath math="ABC" /> ditambah <InlineMath math="3" /> tembereng yang sama besar**.
 
-# Kedua pernyataan bersama
+# Luas satu tembereng
 
-<BlockMath math="(x+y)^2=13+2(6)=25\quad\Rightarrow\quad x+y=5\ \text{atau}\ x+y=-5" />
+Tembereng di luar sisi <InlineMath math="BC" /> adalah juring berpusat <InlineMath math="A" /> dikurangi segitiga <InlineMath math="ABC" />. Sudut juring itu adalah sudut segitiga sama sisi, yaitu <InlineMath math="60^\circ" />, sehingga **juringnya seperenam lingkaran**.
 
-Kedua tanda benar-benar terjadi: <InlineMath math="(2,3)" /> memberi 5, sedangkan <InlineMath math="(-2,-3)" /> juga memenuhi <InlineMath math="xy=6" /> dan <InlineMath math="x^2+y^2=13" /> tetapi memberi <InlineMath math="-5" />. **Akar kuadrat dari 25 memiliki dua tanda**, jadi nilai <InlineMath math="x+y" /> belum tunggal.
+<BlockMath math="\begin{aligned}
+L_{\text{juring}}&=\tfrac{60}{360}\cdot\pi\cdot6^2=6\pi\\
+L_{\text{segitiga}}&=\tfrac{\sqrt3}{4}\cdot6^2=9\sqrt3\\
+L_{\text{tembereng}}&=6\pi-9\sqrt3
+\end{aligned}" />
 
-Siswa yang hanya mengambil akar positif akan keliru memilih bahwa kedua pernyataan bersama cukup.
+# Luas seluruh daerah
 
-Jadi, **pernyataan (1) dan pernyataan (2) tidak cukup** untuk menjawab pertanyaan.
+**Jumlahkan segitiga dan <InlineMath math="3" /> tembereng**.
+
+<BlockMath math="\begin{aligned}
+L&=9\sqrt3+3\left(6\pi-9\sqrt3\right)\\
+&=9\sqrt3+18\pi-27\sqrt3\\
+&=18\pi-18\sqrt3
+\end{aligned}" />
+
+# Pemeriksaan dengan jalan lain
+
+Gabungan <InlineMath math="3" /> juring <InlineMath math="60^\circ" /> yang berpusat di <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> juga menutupi daerah yang sama. Setiap juring memuat segitiga <InlineMath math="ABC" />, jadi **segitiga itu terhitung <InlineMath math="3" /> kali** dan harus dikurangkan <InlineMath math="2" /> kali.
+
+<BlockMath math="3\cdot6\pi-2\cdot9\sqrt3=18\pi-18\sqrt3" />
+
+Hasilnya sama. Nilainya kira-kira <InlineMath math="56{,}5-31{,}2=25{,}3" />, lebih besar daripada luas segitiga <InlineMath math="9\sqrt3\approx15{,}6" />, dan itu masuk akal karena daerahnya memuat segitiga.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\left(18\pi-27\sqrt3\right)\text{ cm}^2" /> hanya menjumlahkan <InlineMath math="3" /> tembereng dan **lupa menambahkan segitiga di tengah**.
+- <InlineMath math="\left(18\pi-9\sqrt3\right)\text{ cm}^2" /> mengurangkan segitiga hanya sekali dari <InlineMath math="3" /> juring, padahal segitiga itu terhitung <InlineMath math="3" /> kali.
+- <InlineMath math="18\pi\text{ cm}^2" /> hanya menjumlahkan <InlineMath math="3" /> juring tanpa membuang bagian yang tumpang tindih.
+- <InlineMath math="\left(36\pi-18\sqrt3\right)\text{ cm}^2" /> memakai sudut juring <InlineMath math="120^\circ" />, padahal sudut segitiga sama sisi <InlineMath math="60^\circ" />.
+
+Jadi, luas daerah di dalam ketiga lingkaran sekaligus adalah <InlineMath math="\left(18\pi-18\sqrt3\right)\text{ cm}^2" />.

@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "term-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
   },
-  stimulus: "bahasa",
+  stimulus: "serapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Pembagian harta keluarga kepada keturunan.",
+          label:
+            "Kata daerah langsung menjadi kosakata bahasa Indonesia yang mapan begitu penutur di luar daerah asalnya sering menjumpainya di media nasional.",
         },
         {
           correct: false,
-          label: "Perpindahan penduduk dari desa ke kota.",
+          label:
+            "Kata daerah yang sering muncul di media nasional baru mapan setelah penutur di daerah asalnya tidak lagi merasa sedang meminjam kata itu.",
+        },
+        {
+          correct: false,
+          label:
+            "Kata daerah baru mapan jika sering muncul di media nasional sekaligus dipakai penutur di luar daerah asalnya dalam percakapan sehari-hari tanpa merasa meminjam.",
         },
         {
           correct: true,
           label:
-            "Penurunan bahasa dari generasi tua kepada generasi muda melalui pemakaian sehari-hari.",
+            "Sering muncul di media nasional belum cukup. Kata daerah baru mapan setelah dipakai penutur dari luar daerah asalnya dalam percakapan sehari-hari tanpa merasa meminjam.",
         },
         {
           correct: false,
           label:
-            "Pengajaran bahasa daerah oleh guru di sekolah formal sebagai mata pelajaran wajib bagi setiap murid.",
-        },
-        {
-          correct: false,
-          label: "Pencatatan kosakata bahasa daerah oleh peneliti.",
+            "Kata daerah baru mapan setelah penutur di luar daerah asalnya memakainya dalam tulisan resmi, tidak cukup hanya dengan sering muncul di media nasional.",
         },
       ],
     },

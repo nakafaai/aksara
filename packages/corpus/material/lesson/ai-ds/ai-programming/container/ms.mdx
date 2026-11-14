@@ -1,0 +1,565 @@
+export const metadata = {
+  title: "Koleksi Python",
+  description: "Bandingkan koleksi Python mengikut urutan, sama ada ia boleh diubah, keunikan ahlinya dan operasi untuk mencapai unsurnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-09-18",
+  dateModified: "2026-09-07",
+  subject: "Pengaturcaraan AI",
+};
+
+## Memilih Cara Menyimpan Beberapa Nilai
+
+Pilih koleksi mengikut cara atur cara kamu akan **mencapai dan mengubah datanya**.
+
+Sesetengah koleksi boleh menyimpan objek daripada jenis yang berbeza, tetapi setiap jenis ada peraturannya sendiri. Contohnya, kunci kamus dan ahli set mesti kekal boleh dicincang (hashable) selagi ia berada dalam koleksi itu. Jenis koleksi juga menentukan sama ada isinya boleh berubah selepas ia dicipta.
+
+
+Python menyediakan lima koleksi terbina dalam yang biasa digunakan:
+
+- **Rentetan** (string) menyimpan jujukan aksara yang tidak boleh diubah
+- **Senarai** (list) menyimpan jujukan berurutan yang unsurnya boleh diubah
+- **Tuple** menyimpan jujukan berurutan yang kedudukannya tidak boleh diubah
+- **Kamus** (dictionary) menyimpan **pasangan kunci-nilai**
+- **Set** menyimpan ahli unik tanpa indeks
+
+## Senarai Python
+
+Senarai **mengekalkan urutan unsur** dan membenarkan isinya diubah. Satu senarai boleh menyimpan nilai daripada jenis yang berbeza, walaupun unsur yang bentuknya seragam biasanya lebih mudah diproses.
+
+Tidak seperti tatasusunan (array) aras rendah yang saiznya tetap, senarai Python boleh membesar dan mengecil. Senarai menyimpan rujukan kepada objek Python, jadi jika kamu mengubah objek bersarang, perubahan itu boleh kelihatan melalui setiap rujukan kepada objek tersebut.
+
+
+### Sifat Senarai
+
+Bandingkan **urutan, jenis campuran dan sifat boleh diubah** semasa memilih senarai. Berurutan bermaksud setiap unsur ada kedudukannya. Ini tidak bermaksud nilainya diisih secara automatik.
+
+| Ciri | Penerangan | Contoh |
+|---------------|-------------|---------|
+| Berurutan | Setiap unsur ada kedudukan | `[1, 2, 3]` berbeza daripada `[3, 2, 1]` |
+| Heterogen | Boleh menyimpan pelbagai jenis data | `[1, 'text', 3.14, True]` |
+| Boleh diubah | Isinya boleh diubah selepas dicipta | Boleh menambah, membuang atau mengubah unsur |
+
+### Menulis Senarai
+
+Literal senarai menggunakan **kurungan segi empat sama** dan memisahkan unsurnya dengan koma. Senarai boleh menyimpan nilai daripada jenis yang berbeza, atau menyimpan senarai lain.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_creation.py",
+      code: `# Pelbagai senarai mengikut jenis data
+a = [True, False, True]              # Nilai: [True, False, True]
+b = [1, 2, 3]                        # Nilai: [1, 2, 3]
+c = [1.5, 2.5, 3.5]                  # Nilai: [1.5, 2.5, 3.5]
+d = ['red', 'green', 'blue']         # Nilai: ['red', 'green', 'blue']
+
+# Senarai kosong
+empty1 = []                          # Nilai: []
+empty2 = list()                      # Nilai: []
+
+# Senarai heterogen (jenis data bercampur)
+mixed = [False, 2, 3.5, 'blue']      # Nilai: [False, 2, 3.5, 'blue']
+
+# Senarai bersarang
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Nilai: [1, [2.5, False, 'red'], 3.5, 'blue']`
+    }
+  ]}
+/>
+
+## Pengindeksan Senarai
+
+Pengindeksan mencapai satu unsur senarai berdasarkan kedudukannya. Indeks dalam Python bermula dari sifar, jadi unsur pertama ada pada indeks <InlineMath math="0" />.
+
+
+Indeks senarai Python mengikut peraturan ini:
+
+- **Indeks positif** bermula dari <InlineMath math="0" /> untuk unsur pertama
+- **Indeks negatif** bermula dari <InlineMath math="-1" /> untuk unsur terakhir
+- **Indeks di luar julat yang sah** menimbulkan `IndexError`
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_indexing.py",
+      code: `# Contoh pengindeksan pada senarai bersarang
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+print('nested =', nested)                    # Output: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Mengindeks unsur utama
+print('nested[0] =', nested[0])              # Output: nested[0] = 1
+print('nested[-1] =', nested[-1])            # Output: nested[-1] = blue
+print('nested[1] =', nested[1])              # Output: nested[1] = [2.5, False, 'red']
+
+# Mengindeks unsur dalam senarai bersarang
+print('nested[1][2] =', nested[1][2])        # Output: nested[1][2] = red
+
+# Mengindeks aksara dalam rentetan (pengindeksan berganda)
+print('nested[1][2][1] =', nested[1][2][1])  # Output: nested[1][2][1] = e`
+    }
+  ]}
+/>
+
+Kamu juga boleh membuat umpukan melalui indeks. Selepas `x = [0, 1, 2, 3, 4, 5]` dan `x[2] = 9`, senarai yang sama itu kini menyimpan `[0, 1, 9, 3, 4, 5]`, kerana senarai boleh diubah terus di tempatnya. Indeks negatif masih dikira dari hujung, jadi `x[-1]` masih `5`.
+
+<MathVisual
+  title={<><code>x[2] = 9</code> mengubah satu unsur terus di tempatnya</>}
+  description={<>Setiap titik ialah satu unsur, dengan indeksnya dibaca ke kanan dan nilainya dibaca ke atas. Segmen jingga menggerakkan unsur pada indeks <InlineMath math="2" /> dari <InlineMath math="2" /> ke titik magenta <InlineMath math="9" />. Titik hijau kebiruan ialah <code>x[-1]</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-0", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-1", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "value-3", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "value-4", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "value-5", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "change", kind: "segment", from: { x: 2, y: 2 }, to: { x: 2, y: 9 }, appearance: "primary" },
+      { id: "old", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "new", kind: "point", at: { x: 2, y: 9 }, appearance: "answer" },
+      { id: "last", kind: "point", at: { x: 5, y: 5 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "new", objectId: "new", at: { x: 2, y: 9 }, placement: "right" },
+      { key: "last", objectId: "last", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "new": <code>x[2] = 9</code>,
+    "last": <code>x[-1]</code>,
+  }}
+/>
+
+## Penghirisan dengan Langkah
+
+Penghirisan (slicing) mengambil sebahagian daripada senarai. Langkah pula menentukan **jarak antara unsur yang dipilih**.
+
+
+Sintaks lengkapnya ialah `list[start:stop:step]`, dengan:
+
+- `start` ialah indeks pertama yang diambil
+- `stop` ialah indeks pertama yang tidak diambil
+- `step` ialah jarak antara indeks yang dipilih
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_slicing.py",
+      code: `# Senarai untuk contoh penghirisan
+x = [0, 1, 2, 3, 4, 5]
+print('x =', x)                              # Output: x = [0, 1, 2, 3, 4, 5]
+
+# Penghirisan asas
+print('x[1:4] =', x[1:4])                    # Output: x[1:4] = [1, 2, 3]
+
+# Penghirisan dari indeks negatif hingga ke hujung
+print('x[-3:] =', x[-3:])                    # Output: x[-3:] = [3, 4, 5]
+
+# Penghirisan dengan langkah (stride)
+print('x[1:4:2] =', x[1:4:2])                # Output: x[1:4:2] = [1, 3]
+
+# Menterbalikkan senarai dengan langkah negatif
+print('x[::-1] =', x[::-1])                  # Output: x[::-1] = [5, 4, 3, 2, 1, 0]`
+    }
+  ]}
+/>
+
+Penghirisan memilih bahagian senarai yang bersebelahan atau yang jaraknya sekata. Untuk `x = [0, 1, 2, 3, 4, 5]`, `x[1:4]` memulangkan unsur pada indeks <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="3" />. Indeks akhir <InlineMath math="4" /> tidak diambil. Ungkapan `x[1:4:2]` menggunakan langkah <InlineMath math="2" />, jadi ia memilih indeks <InlineMath math="1" /> dan <InlineMath math="3" />.
+
+Baris atas mengambil `x[1:4:2]`: ia bermula pada indeks <InlineMath math="1" />, melompat dua kedudukan, dan berhenti sebelum indeks <InlineMath math="4" />, jadi hasilnya `[1, 3]`. Baris bawah pula ialah `x[::-1]`. Langkah <InlineMath math="-1" /> membaca dari belakang, dan garis hijau kebiruan menunjukkan setiap unsur berpindah dari kedudukan <InlineMath math="i" /> ke kedudukan <InlineMath math="5-i" />. Semua garis itu bersilang di tengah, tepat di antara unsur <InlineMath math="2" /> dan <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Penghirisan dengan langkah pada <code>x = [0, 1, 2, 3, 4, 5]</code></>}
+  description={<>Baris tengah ialah <code>x</code>. Baris atas berwarna magenta ialah <code>x[1:4:2]</code>, dan baris bawah berwarna hijau kebiruan ialah <code>x[::-1]</code>, dengan garis yang menunjukkan ke mana setiap unsur berpindah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "value-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "value-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "value-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "swap-a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "swap-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "swap-c", kind: "segment", from: { x: 2, y: 0 }, to: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "swap-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "swap-e", kind: "segment", from: { x: 4, y: 0 }, to: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "swap-f", kind: "segment", from: { x: 5, y: 0 }, to: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "back-a", kind: "point", at: { x: 5, y: -1.2 }, appearance: "construction" },
+      { id: "back-b", kind: "point", at: { x: 4, y: -1.2 }, appearance: "construction" },
+      { id: "back-c", kind: "point", at: { x: 3, y: -1.2 }, appearance: "construction" },
+      { id: "back-d", kind: "point", at: { x: 2, y: -1.2 }, appearance: "construction" },
+      { id: "back-e", kind: "point", at: { x: 1, y: -1.2 }, appearance: "construction" },
+      { id: "back-f", kind: "point", at: { x: 0, y: -1.2 }, appearance: "construction" },
+      { id: "pick-b", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "pick-d", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 1.2 }, appearance: "answer" },
+      { id: "picked-b", kind: "point", at: { x: 1, y: 1.2 }, appearance: "answer" },
+      { id: "picked-d", kind: "point", at: { x: 3, y: 1.2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 0 }, placement: "above-right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "value-e", objectId: "value-e", at: { x: 4, y: 0 }, placement: "above-right" },
+      { key: "value-f", objectId: "value-f", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "back-a", objectId: "back-a", at: { x: 5, y: -1.2 }, placement: "below" },
+      { key: "back-b", objectId: "back-b", at: { x: 4, y: -1.2 }, placement: "below" },
+      { key: "back-c", objectId: "back-c", at: { x: 3, y: -1.2 }, placement: "below" },
+      { key: "back-d", objectId: "back-d", at: { x: 2, y: -1.2 }, placement: "below" },
+      { key: "back-e", objectId: "back-e", at: { x: 1, y: -1.2 }, placement: "below" },
+      { key: "back-f", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "below" },
+      { key: "picked-b", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "above" },
+      { key: "picked-d", objectId: "picked-d", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "row-x", objectId: "value-a", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "row-slice", objectId: "picked-b", at: { x: 1, y: 1.2 }, placement: "left" },
+      { key: "row-back", objectId: "back-f", at: { x: 0, y: -1.2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "value-a": "0",
+    "value-b": "1",
+    "value-c": "2",
+    "value-d": "3",
+    "value-e": "4",
+    "value-f": "5",
+    "back-a": "0",
+    "back-b": "1",
+    "back-c": "2",
+    "back-d": "3",
+    "back-e": "4",
+    "back-f": "5",
+    "picked-b": "1",
+    "picked-d": "3",
+    "row-x": "x",
+    "row-slice": "x[1:4:2]",
+    "row-back": "x[::-1]",
+  }}
+/>
+
+## Senarai dan Rentetan
+
+Senarai menyediakan operasi untuk membaca dan mengubah data. **Sintaks pengindeksan dan penghirisannya** sama dengan sintaks yang digunakan untuk rentetan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_output.py",
+      code: `# Pelbagai cara memaparkan senarai
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Papar dalam bentuk umpukan
+print('nested =', nested)
+# Output: nested = [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Papar tanpa bentuk umpukan
+print(nested)
+# Output: [1, [2.5, False, 'red'], 3.5, 'blue']
+
+# Papar dengan teks penerangan dalam fungsi print
+print('Isi senarai:', nested)
+# Output: Isi senarai: [1, [2.5, False, 'red'], 3.5, 'blue']`
+    }
+  ]}
+/>
+
+
+Senarai dan rentetan sama-sama menyokong pengindeksan dan penghirisan.
+
+| Operasi | Rentetan | Senarai |
+|---------|--------|------|
+| **Pengindeksan** | Ambil satu aksara | Ambil satu unsur |
+| **Penghirisan dengan langkah** | Ambil sebahagian rentetan | Ambil sebahagian senarai |
+
+Perbezaan utamanya ialah sifat boleh diubah. Rentetan tidak boleh berubah selepas dicipta, manakala senarai boleh. Oleh sebab itu, kaedah senarai boleh menambah, membuang, menggantikan atau menyusun semula unsur.
+
+<Mermaid
+  title="Kaedah Senarai yang Biasa"
+  description="Kaedah senarai ini menambah, membuang, mencari, menyalin atau menyusun semula unsur."
+  chart={`
+    flowchart LR
+        A[Kaedah Senarai] --> B[Menambah]
+        A --> C[Membuang]
+        A --> D[Menyusun]
+
+        B --> E[append]
+        B --> F[extend]
+        B --> G[insert]
+        C --> H[pop]
+        C --> I[remove]
+        D --> J[sort]
+        D --> K[reverse]
+        A --> L[copy]
+        A --> M[Mencari]
+        M --> N[index]
+        M --> O[count]
+  `}
+/>
+
+| Kaedah | Penerangan | Contoh Penggunaan |
+|--------|-------------|---------------|
+| `append(element)` | Tambah unsur di hujung senarai | Menambah item baharu |
+| `extend(list2)` | Gabungkan dengan unsur daripada senarai lain | Menggabungkan dua senarai |
+| `insert(index, element)` | Selitkan unsur pada kedudukan tertentu | Menambah di tengah senarai |
+| `index(element)` | Cari indeks pertama bagi unsur | Mencari kedudukan item |
+| `pop()` | Buang dan pulangkan unsur terakhir | Mengambil item terakhir |
+| `reverse()` | Terbalikkan susunan senarai secara terus | Menterbalikkan susunan |
+| `remove(element)` | Buang kemunculan pertama unsur | Membuang item tertentu |
+| `sort()` | Isih senarai secara terus | Mengisih data |
+| `copy()` | Cipta salinan cetek (shallow copy) | Salin senarai tanpa menyalin objek bersarang |
+| `count(element)` | Kira kemunculan unsur | Mengira kekerapan |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "list_methods.py",
+      code: `# Demonstrasi pelbagai kaedah senarai
+my_list = [1, 2, 3]
+print('Senarai asal:', my_list)             # Output: Senarai asal: [1, 2, 3]
+
+# Menambah unsur
+my_list.append(4)
+print('Selepas append(4):', my_list)        # Output: Selepas append(4): [1, 2, 3, 4]
+
+my_list.extend([5, 6])
+print('Selepas extend([5, 6]):', my_list)   # Output: Selepas extend([5, 6]): [1, 2, 3, 4, 5, 6]
+
+my_list.insert(0, 0)
+print('Selepas insert(0, 0):', my_list)     # Output: Selepas insert(0, 0): [0, 1, 2, 3, 4, 5, 6]
+
+# Mencari unsur
+idx = my_list.index(3)
+print('Indeks bagi 3:', idx)                # Output: Indeks bagi 3: 3
+
+my_list.append(3)
+count = my_list.count(3)
+print('Bilangan 3:', count)                 # Output: Bilangan 3: 2
+
+# Membuang unsur
+my_list.remove(3)
+print('Selepas remove(3):', my_list)        # Output: Selepas remove(3): [0, 1, 2, 4, 5, 6, 3]
+
+popped = my_list.pop()
+print('Unsur yang dikeluarkan:', popped)    # Output: Unsur yang dikeluarkan: 3
+print('Selepas pop():', my_list)            # Output: Selepas pop(): [0, 1, 2, 4, 5, 6]
+
+# Menyusun unsur
+my_list.reverse()
+print('Selepas reverse():', my_list)        # Output: Selepas reverse(): [6, 5, 4, 2, 1, 0]
+
+my_list.sort()
+print('Selepas sort():', my_list)           # Output: Selepas sort(): [0, 1, 2, 4, 5, 6]
+
+copied = my_list.copy()
+print('Senarai salinan:', copied)           # Output: Senarai salinan: [0, 1, 2, 4, 5, 6]`
+    }
+  ]}
+/>
+
+Kaedah `copy()` mencipta **senarai luar yang baharu**, tetapi objek bersarang masih dikongsi. Perubahan pada `salinan[0][0]` kelihatan dalam kedua-dua senarai, tetapi menambah satu baris hanya mengubah senarai luar `salinan`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "shallow_copy.py",
+      code: `original = [[1, 2], [3, 4]]
+salinan = original.copy()
+salinan[0][0] = 99
+print(original)  # Output: [[99, 2], [3, 4]]
+print(salinan)   # Output: [[99, 2], [3, 4]]
+
+salinan.append([5, 6])
+print(len(original), len(salinan))  # Output: 2 3`
+    }
+  ]}
+/>
+
+## Bentuk Senarai yang Biasa
+
+Senarai boleh kosong, menyimpan jenis campuran, atau menyimpan senarai lain:
+
+1. **Senarai Kosong**
+
+   Kedua-dua `[]` dan `list()` mencipta senarai kosong yang boleh diisi kemudian.
+
+2. **Senarai Heterogen**
+
+   Satu senarai boleh menyimpan nama, umur dan nilai Boolean. Guna jenis campuran hanya apabila setiap kedudukan ada makna yang jelas.
+
+3. **Senarai Bersarang**
+
+   Senarai bersarang menyimpan senarai lain sebagai unsurnya. Senarai dalam yang sama panjang boleh mewakili baris sesebuah matriks atau jadual.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "special_lists.py",
+      code: `# Senarai kosong - dua cara mencipta
+a = []                                       # Nilai: []
+b = list()                                   # Nilai: []
+
+# Senarai heterogen - pelbagai jenis data
+mixed = [False, 2, 3.5, 'blue']             # Nilai: [False, 2, 3.5, 'blue']
+
+# Senarai bersarang - senarai di dalam senarai
+nested = [1, [2.5, False, 'red'], 3.5, 'blue']  # Nilai: [1, [2.5, False, 'red'], 3.5, 'blue']
+
+print('Senarai kosong 1:', a)
+print('Senarai kosong 2:', b)
+print('Jenis campuran:', mixed)
+print('Struktur bersarang:', nested)`
+    }
+  ]}
+/>
+
+Senarai bersarang boleh mewakili baris, pepohon atau struktur kecil yang menyerupai jadual. Senarai bersarang tidak membentuk matriks segi empat tepat secara automatik. Beberapa unsur juga boleh merujuk kepada senarai dalam yang sama. Pengindeksan berantai seperti `nested[1][2]` memilih satu unsur pada setiap aras.
+
+## Jenis Bekas Lain
+
+Tiga lagi bekas (container) yang biasa digunakan ada peraturan berbeza tentang urutan, pendua dan perubahan selepas dicipta. Tuple menetapkan kedudukannya, kamus memetakan setiap kunci unik kepada satu nilai, dan set menyimpan <Highlight>item unik sahaja</Highlight> tanpa menjanjikan sebarang urutan.
+
+### Tuple
+
+Tuple menyerupai senarai, tetapi **kedudukannya tidak boleh digantikan** selepas dicipta. Beberapa nilai boleh dibungkus ke dalam satu tuple, kemudian dibongkar semula (unpacking) ke dalam beberapa pemboleh ubah yang berasingan.
+
+Tuple tidak boleh menggantikan unsurnya sendiri, tetapi sesuatu unsur mungkin merujuk kepada objek boleh diubah (mutable) yang isinya masih boleh berubah.
+
+| Aspek | Tuple | Senarai |
+|-------|-------|------|
+| **Sifat boleh diubah** | Tidak boleh diubah | Boleh diubah |
+| **Sintaks** | `()` atau tanpa kurungan | `[]` |
+| **Kegunaan** | Data dengan kedudukan tetap, seperti koordinat | Data yang perlu ditambah atau diubah |
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "tuple_operations.py",
+      code: `# Sintaks tuple - dua cara mencipta
+t1 = (0, 1, 2)                               # Nilai: t1 = (0, 1, 2)
+t2 = 3, 4, 5                                 # Nilai: t2 = (3, 4, 5)
+print('t1 =', t1)
+print('t2 =', t2)
+
+# Membongkar tuple (unpacking) - memisahkan nilai
+a, b, c = t2
+print('a, b, c =', a, b, c)                  # Output: a, b, c = 3 4 5
+
+# Mengendalikan ralat semasa membongkar tuple
+try:
+    a, b = (0, 1, 2)                         # Terlalu banyak nilai
+except ValueError as e:
+    print('ValueError:', e)                  # Output: ValueError: too many values to unpack (expected 2)
+
+try:
+    a, b, c, d = 0, 1, 2                     # Nilai tidak mencukupi
+except ValueError as e:
+    print('ValueError:', e)                  # Output: ValueError: not enough values to unpack (expected 4, got 3)
+
+# Tuple dengan objek boleh diubah
+t = (0, [1, 2, 3], 4)
+print('t asal =', t)                        # Output: t asal = (0, [1, 2, 3], 4)
+t[1][0] = 'x'                               # Mengubah isi senarai di dalam tuple
+print('Selepas senarai dalam diubah:', t)   # Output: Selepas senarai dalam diubah: (0, ['x', 2, 3], 4)
+
+# Tuple tidak boleh diubah, tetapi objek di dalamnya mungkin boleh diubah
+# t[1] = [9, 8, 7]  # Ralat: tidak boleh menukar rujukan
+# t[1][0] = 'y'     # Sah: isi objek boleh diubah itu masih boleh ditukar`
+    }
+  ]}
+/>
+
+### Kamus
+
+Kamus (dictionary) menyimpan pasangan kunci-nilai. Setiap kunci mesti **unik dan kekal boleh dicincang** selagi ia berada dalam kamus. Nilai boleh berulang dan boleh merujuk kepada objek boleh diubah. Literal kamus menggunakan `{}` dengan titik bertindih di antara setiap kunci dan nilai.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "dictionary_examples.py",
+      code: `# Mencipta kamus
+kontak = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
+print('kontak =', kontak)
+# Output: kontak = {'Alice': 'alice@example.com', 'Bob': 'bob@example.com'}
+
+# Mencapai nilai melalui kunci
+print("kontak['Alice'] =", kontak['Alice'])  # Output: kontak['Alice'] = alice@example.com
+
+# Menambah pasangan kunci-nilai baharu
+kontak['David'] = 'david@example.com'
+print('Selepas menambah David:', kontak)
+# Output: Selepas menambah David: {'Alice': 'alice@example.com', 'Bob': 'bob@example.com', 'David': 'david@example.com'}`
+    }
+  ]}
+/>
+
+### Set
+
+Set menyimpan unsur unik yang boleh dicincang dan menyokong operasi set dalam matematik. Set tidak menyediakan indeks unsur dan **tidak menjamin urutan lelaran**. Literal set yang tidak kosong menggunakan `{}`, manakala set kosong mesti dicipta dengan `set()` kerana `{}` mencipta kamus kosong.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "set_examples.py",
+      code: `# Mencipta set
+angka = {1, 2, 3, 4, 5}
+print('angka =', sorted(angka))              # Output: angka = [1, 2, 3, 4, 5]
+
+# Menambah unsur ke dalam set
+angka.add(6)
+print('Selepas menambah 6:', sorted(angka))  # Output: Selepas menambah 6: [1, 2, 3, 4, 5, 6]
+
+# Operasi set
+genap = {2, 4, 6, 8}
+ganjil = {1, 3, 5, 7}
+
+# Kesatuan (gabungan)
+print('genap | ganjil =', sorted(genap | ganjil))
+# Output: genap | ganjil = [1, 2, 3, 4, 5, 6, 7, 8]
+
+# Persilangan
+print('genap & ganjil =', genap & ganjil)    # Output: genap & ganjil = set()`
+    }
+  ]}
+/>
+
+### Perbandingan Jenis Koleksi
+
+Empat koleksi terbina dalam ini berbeza dari segi **urutan, sifat boleh diubah dan cara mengendalikan pendua**. Jadual ini membandingkannya supaya kamu boleh memilih yang sesuai dengan tugasan kamu.
+
+| Bekas | Sintaks | Berurutan | Boleh Diubah | Pendua | Kegunaan Utama |
+|-----------|---------|---------|---------|------------|------------|
+| **Senarai** | `[1, 2, 3]` | Ya | Ya | Ya | Data yang perlu diubah |
+| **Tuple** | `(1, 2, 3)` | Ya | Tidak | Ya | Data tetap, koordinat |
+| **Kamus** | `{'a': 1}` | Ya* | Ya | Tidak (kunci) | Pemetaan kunci-nilai |
+| **Set** | `{1, 2, 3}` | Tidak | Ya | Tidak | Unsur unik, operasi set |
+
+> Sejak Python `3.7`, bahasa ini menjamin bahawa lelaran kamus mengekalkan urutan kunci dimasukkan. Mengemas kini kunci yang sedia ada tidak mengubah kedudukannya. Jika kunci itu dipadam lalu dimasukkan semula, ia akan berada di hujung.
+
+Bina setiap bekas daripada data yang sama, `[3, 1, 3, 2, 1]`. `list` dan `tuple` menyimpan kesemua lima unsur mengikut urutan, manakala `set` dan kunci `dict.fromkeys` hanya menyimpan nilai unik `3`, `1` dan `2`.
+
+<BarChart
+  title={<><code>len()</code> bagi setiap bekas yang dibina daripada <code>[3, 1, 3, 2, 1]</code></>}
+  description={<>Setiap bar ialah <code>len()</code> bagi bekas yang dinamakan di bawahnya, dan semuanya diisi dengan data yang sama. Bar <code>set</code> dan <code>dict</code> lebih pendek kerana pendua dibuang.</>}
+  yAxisLabel="Bilangan unsur"
+  data={[
+    { name: "list", value: 5 },
+    { name: "tuple", value: 5 },
+    { name: "set", value: 3 },
+    { name: "dict", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan unsur", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>

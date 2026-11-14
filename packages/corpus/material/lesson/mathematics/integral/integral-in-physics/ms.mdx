@@ -1,0 +1,211 @@
+export const metadata = {
+   title: "Kamiran dalam Fizik",
+  description: "Kira kerja daripada daya yang berubah, tenaga spring, jisim yang tertabur dan pusat jisim menggunakan kamiran.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Pengamiran",
+};
+
+## Kamiran Mengumpul Kuantiti yang Berubah
+
+Banyak kuantiti fizik berubah secara selanjar. Contohnya, daya boleh berubah mengikut kedudukan, jadi satu nilai daya sahaja tidak dapat mewakili seluruh laluan. **Kamiran** <Highlight>menambah semua sumbangan di sepanjang selang yang dipilih</Highlight>.
+
+Idea yang sama boleh digunakan setiap kali kita tahu suatu kadar atau ketumpatan. Apabila kita kamirkan kadar perubahan, kita dapat jumlah perubahan. Apabila kita kamirkan ketumpatan pula, kita dapat kuantiti yang tertabur di sepanjang suatu panjang, luas atau isi padu.
+
+## Mengira Kerja dengan Kamiran
+
+Mari mulakan dengan kerja. Daya yang tetap dan selari dengan sesaran melakukan kerja <InlineMath math="W=Fs" />. Secara lebih umum, kerja ialah kamiran garis <InlineMath math="W=\int \mathbf{F}\cdot d\mathbf{r}" />. Dalam satu dimensi, apabila daya dan gerakan kedua-duanya terletak pada paksi-<InlineMath math="x" />, rumus ini menjadi <InlineMath math="W=\int F(x)\,dx" />.
+
+Bayangkan satu zarah pada koordinat <InlineMath math="x" />, diukur dalam meter dari asalan. Daya <InlineMath math="F(x) = x^2 + 2x" /> newton bertindak pada arah positif paksi-<InlineMath math="x" />. Berapakah kerja yang dilakukan oleh daya ini apabila zarah itu bergerak dari <InlineMath math="x = 1 \text{ meter}" /> ke <InlineMath math="x = 3 \text{ meter}" />?
+
+Oleh sebab **daya berubah mengikut kedudukan**, kita tidak boleh mendarab satu nilai <InlineMath math="F" /> yang tetap dengan seluruh sesaran. Sebaliknya, kita kumpulkan kerja itu di sepanjang laluan:
+
+<BlockMath math="\begin{aligned} W &amp;= \int_{1}^{3} F(x) \, dx \\ &amp;= \int_{1}^{3} (x^2 + 2x) \, dx \end{aligned}" />
+
+Mari kita selesaikan:
+
+<MathContainer>
+<BlockMath math="W = \left[\frac{x^3}{3} + x^2\right]_{1}^{3}" />
+<BlockMath math="W = \left(\frac{27}{3} + 9\right) - \left(\frac{1}{3} + 1\right)" />
+<BlockMath math="W = (9 + 9) - \left(\frac{1}{3} + \frac{3}{3}\right) = 18 - \frac{4}{3}" />
+<BlockMath math="W = \frac{54}{3} - \frac{4}{3} = \frac{50}{3} \text{ Joule}" />
+</MathContainer>
+
+Jadi, daya itu melakukan kerja sebanyak <InlineMath math="\frac{50}{3}" /> joule, iaitu lebih kurang <InlineMath math="16.67" /> joule.
+
+Daya <InlineMath math="F(x) = x^2 + 2x" /> semakin besar di sepanjang laluan, daripada <InlineMath math="3\text{ N}" /> pada <InlineMath math="x = 1" /> kepada <InlineMath math="15\text{ N}" /> pada <InlineMath math="x = 3" />. Kerja <InlineMath math="W = \tfrac{50}{3} \approx 16.67" /> J mengumpulkan semua nilai yang berubah ini di sepanjang <InlineMath math="2" /> meter tersebut.
+
+<BarChart
+  title={<>Daya di sepanjang laluan</>}
+  description={<>Palang <InlineMath math="F(x) = x^2 + 2x" /> dalam newton untuk <InlineMath math="x = 1, 1.5, 2, 2.5, 3" /> meter.</>}
+  yAxisLabel="Daya (N)"
+  data={[1, 1.5, 2, 2.5, 3].map((x) => ({ name: String(x), value: x ** 2 + 2 * x }))}
+  chartConfig={{ value: { label: "Daya (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Hukum Hooke dan Tenaga Spring
+
+Model ini menggunakan **spring unggul dalam julat kenyal linearnya**. Mengikut Hukum Hooke, pemanjangan atau mampatan yang lebih besar memerlukan daya penahan yang lebih besar.
+
+Hukum Hooke menyatakan bahawa daya pemulih spring bertindak pada arah yang bertentangan dengan sesaran. Jika spring diregangkan atau dimampatkan secara perlahan, daya luar yang diperlukan untuk menahannya pada sesaran <InlineMath math="x" /> mempunyai magnitud yang sama dan arah yang bertentangan:
+
+<BlockMath math="F_s(x)=-kx,\qquad F_{\mathrm{ext}}(x)=kx" />
+
+Di sini, <InlineMath math="k" /> ialah pemalar spring dan <InlineMath math="x" /> ialah sesaran bertanda dari kedudukan keseimbangan. Apabila kita kamirkan <InlineMath math="F_{\mathrm{ext}}" />, kita dapat kerja luar yang dilakukan ke atas spring, dan oleh itu pertambahan tenaga keupayaan kenyalnya.
+
+Katakan daya sebanyak <InlineMath math="40 \text{ N}" /> diperlukan untuk menahan sebuah spring yang telah diregangkan daripada panjang asalnya <InlineMath math="10 \text{ cm}" /> kepada <InlineMath math="15 \text{ cm}" />. Sekarang, berapakah kerja yang diperlukan untuk meregangkan spring itu daripada <InlineMath math="15 \text{ cm}" /> kepada <InlineMath math="18 \text{ cm}" />?
+
+Mula-mula, kita tentukan pemalar spring. Sesaran dari kedudukan keseimbangan ialah <InlineMath math="15 - 10 = 5 \text{ cm} = 0.05 \text{ m}" />. Oleh sebab magnitud daya penahan ialah <InlineMath math="F_{\mathrm{ext}} = kx" />:
+
+<BlockMath math="40 = k \times 0.05" />
+
+Jadi, <InlineMath math="k = \frac{40}{0.05} = 800 \text{ N/m}" />.
+
+Untuk mengira kerja luar yang diperlukan untuk meregangkan spring daripada <InlineMath math="15 \text{ cm}" /> kepada <InlineMath math="18 \text{ cm}" />, ukur kedua-dua kedudukan itu dari panjang keseimbangan:
+
+| Panjang keseluruhan | Pemanjangan dari panjang asal | Had kamiran |
+| --- | --- | --- |
+| <InlineMath math="15\text{ cm}" /> | <InlineMath math="(15-10)\text{ cm}=5\text{ cm}" /> | <InlineMath math="0.05\text{ m}" /> |
+| <InlineMath math="18\text{ cm}" /> | <InlineMath math="(18-10)\text{ cm}=8\text{ cm}" /> | <InlineMath math="0.08\text{ m}" /> |
+
+Kita boleh mengira kerja itu menggunakan kamiran:
+
+<MathContainer>
+<BlockMath math="W = \int_{0.05}^{0.08} 800x \, dx" />
+<BlockMath math="W = 800 \left[\frac{x^2}{2}\right]_{0.05}^{0.08}" />
+<BlockMath math="W = 400[(0.08)^2 - (0.05)^2]" />
+<BlockMath math="\begin{aligned} W &amp;= 400[0.0064 - 0.0025] \\ &amp;= 400 \times 0.0039 \\ &amp;= 1.56 \text{ Joule} \end{aligned}" />
+</MathContainer>
+
+Di antara <InlineMath math="0.05\text{ m}" /> dan <InlineMath math="0.08\text{ m}" />, daya spring <InlineMath math="F = 800x" /> meningkat daripada <InlineMath math="40\text{ N}" /> kepada <InlineMath math="64\text{ N}" />. Kerja itu ialah luas trapezium di bawah garis daya: <InlineMath math="\frac{40 + 64}{2} \times 0.03 = 1.56" /> J, sama dengan hasil kamiran tadi.
+
+<BarChart
+  title={<>Daya spring semasa regangan</>}
+  description={<>Palang <InlineMath math="F = 800x" /> dalam newton untuk <InlineMath math="x = 0.05, 0.06, 0.07, 0.08" /> meter.</>}
+  yAxisLabel="Daya (N)"
+  data={[0.05, 0.06, 0.07, 0.08].map((x) => ({ name: String(x), value: 800 * x }))}
+  chartConfig={{ value: { label: "Daya (N)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mengira Jisim daripada Fungsi Ketumpatan
+
+Jika ketumpatan sesuatu objek berubah mengikut kedudukan, **jisim** objek itu ialah kamiran fungsi ketumpatan di sepanjang panjang, luas atau isi padu objek tersebut.
+
+Katakan kita ada sebatang rod sepanjang <InlineMath math="2 \text{ meter}" /> dengan ketumpatan linear <InlineMath math="\rho(x) = (3x + 2)\,\text{kg/m}" />. Di sini, <InlineMath math="x" /> ialah nilai koordinat dalam meter, diukur dari satu hujung rod. Berapakah jumlah jisim rod itu?
+
+<MathContainer>
+<BlockMath math="m = \int_{0}^{2} \rho(x) \, dx = \int_{0}^{2} (3x + 2) \, dx" />
+<BlockMath math="m = \left[\frac{3x^2}{2} + 2x\right]_{0}^{2}" />
+<BlockMath math="m = \frac{3(4)}{2} + 2(2) = 6 + 4 = 10 \text{ kg}" />
+</MathContainer>
+
+## Menentukan Pusat Jisim
+
+Untuk objek yang ketumpatannya tidak seragam, kamiran juga menentukan **pusat jisim** objek itu.
+
+Jika sebatang rod mempunyai ketumpatan <InlineMath math="\rho(x)" /> pada selang <InlineMath math="[a, b]" />, maka koordinat pusat jisimnya ialah:
+
+<BlockMath math="\bar{x} = \frac{\int_{a}^{b} x \rho(x) \, dx}{\int_{a}^{b} \rho(x) \, dx}" />
+
+Untuk rod dengan ketumpatan <InlineMath math="\rho(x) = 3x + 2" /> tadi:
+
+<MathContainer>
+<BlockMath math="\bar{x} = \frac{\int_{0}^{2} x(3x + 2) \, dx}{10}" />
+<BlockMath math="\bar{x} = \frac{\int_{0}^{2} (3x^2 + 2x) \, dx}{10}" />
+<BlockMath math="\begin{aligned} \bar{x} &amp;= \frac{[x^3 + x^2]_{0}^{2}}{10} \\ &amp;= \frac{8 + 4}{10} \\ &amp;= 1.2 \text{ meter} \end{aligned}" />
+</MathContainer>
+
+> Pusat jisim ialah koordinat yang memberikan momen pertama yang sama dengan taburan sebenar apabila seluruh jisim diletakkan di situ. Dalam medan graviti seragam, pusat jisim ialah titik imbangan semula jadi, dan ia menerangkan gerakan translasi sistem. Namun, kelakuan putaran masih bergantung pada cara jisim itu tertabur.
+
+Ketumpatan meningkat daripada <InlineMath math="2 \text{ kg/m}" /> di hujung kiri kepada <InlineMath math="8 \text{ kg/m}" /> di hujung kanan. Oleh sebab **bahagian kanan lebih tumpat**, pusat jisim pada <InlineMath math="1.2 \text{ m}" /> terletak di sebelah kanan titik tengah pada <InlineMath math="1 \text{ m}" />.
+
+<MathVisual
+  title={<>Ketumpatan rod yang meningkat</>}
+  description={<>Garis ungu ialah ketumpatan <InlineMath math="\rho(x) = 3x + 2" /> dari <InlineMath math="(0, 2)" /> ke <InlineMath math="(2, 8)" />, dalam kilogram per meter di sepanjang rod. Tembereng jingga menandakan pusat jisim pada <InlineMath math="\bar x = 1.2" /> m, di sebelah kanan titik tengah <InlineMath math="1" />.</>}
+  labels={{
+    rho: <InlineMath math="\rho(x) = 3x + 2" />,
+    center: <InlineMath math="\bar x = 1.2" />,
+    a: <InlineMath math="(0, 2)" />,
+    b: <InlineMath math="(2, 8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 2.6 }, y: { min: -0.4, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "rho", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "center", kind: "segment", from: { x: 6 / 5, y: 0 }, to: { x: 6 / 5, y: 28 / 5 }, appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "rho", objectId: "rho", at: { x: 1, y: 5 }, placement: "left" },
+      { key: "center", objectId: "center", at: { x: 6 / 5, y: 14 / 5 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 2, y: 8 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Mengira Momen Inersia
+
+**Momen inersia** mengukur cara jisim tertabur relatif kepada suatu paksi putaran yang ditetapkan. Untuk putaran pada paksi tetap, momen inersia menentukan pecutan sudut yang terhasil daripada suatu tork melalui <InlineMath math="\tau=I\alpha" />. Untuk objek selanjar, momen inersia dikira dengan:
+
+<BlockMath math="I = \int r^2 \, dm" />
+
+Dalam rumus ini, <InlineMath math="r" /> ialah jarak dari paksi putaran dan <InlineMath math="dm" /> ialah unsur jisim.
+
+Untuk **rod nipis yang seragam** dengan jisim <InlineMath math="M" /> dan panjang <InlineMath math="L" />, pilih paksi yang melalui satu hujung dan **berserenjang dengan rod**. Setiap unsur jisim berada pada jarak <InlineMath math="x" /> dari paksi ini, jadi:
+
+<BlockMath math="\begin{aligned} I &amp;= \int_{0}^{L} x^2 \frac{M}{L} \, dx \\ &amp;= \frac{M}{L} \int_{0}^{L} x^2 \, dx \\ &amp;= \frac{M}{L} \left[\frac{x^3}{3}\right]_{0}^{L} \\ &amp;= \frac{ML^2}{3} \end{aligned}" />
+
+## Latihan
+
+Untuk kerja dan tenaga spring, kamirkan daya terhadap sesaran. Untuk jisim, kamirkan ketumpatan linear terhadap panjang. **Semak unitnya**: newton didarab dengan meter memberikan joule, manakala kilogram per meter didarab dengan meter memberikan kilogram.
+
+1. Satu zarah bergerak di sepanjang paksi-<InlineMath math="x" /> di bawah tindakan daya <InlineMath math="F(x) = 4x - x^2" /> newton. Hitung kerja yang dilakukan untuk menggerakkan zarah itu dari <InlineMath math="x = 0" /> ke <InlineMath math="x = 3 \text{ meter}" />.
+
+2. Sebuah spring mempunyai pemalar spring <InlineMath math="k = 200 \text{ N/m}" />. Berapakah tenaga yang tersimpan dalam spring itu apabila ia diregangkan sejauh <InlineMath math="0.1 \text{ meter}" /> dari kedudukan keseimbangan?
+
+3. Seutas dawai sepanjang <InlineMath math="4 \text{ meter}" /> mempunyai ketumpatan linear <InlineMath math="\rho(x) = (2 + x)\,\text{kg/m}" />, dengan <InlineMath math="x" /> diukur dalam meter. Tentukan jumlah jisim dawai itu dan kedudukan pusat jisimnya.
+
+### Jalan Kerja
+
+**Soalan 1**. Daya bergantung pada kedudukan. Tambahkan sumbangan <InlineMath math="F(x)\,dx" /> dari <InlineMath math="0" /> hingga <InlineMath math="3" />, kemudian **tolak nilai-nilai antiterbitan** pada kedua-dua had itu.
+
+<MathContainer>
+<BlockMath math="W = \int_{0}^{3} (4x - x^2) \, dx" />
+<BlockMath math="W = \left[2x^2 - \frac{x^3}{3}\right]_{0}^{3}" />
+<BlockMath math="\begin{aligned} W &amp;= \left(2(3)^2 - \frac{(3)^3}{3}\right) \\ &amp;\quad{}- \left(2(0)^2 - \frac{(0)^3}{3}\right) \end{aligned}" />
+<BlockMath math="W = \left(18 - 9\right) - 0 = 9 \text{ Joule}" />
+</MathContainer>
+
+Kerja yang dilakukan ialah <InlineMath math="9" /> joule.
+
+**Soalan 2**. Apabila spring diregangkan secara perlahan, daya luar yang diperlukan meningkat mengikut <InlineMath math="F(x)=kx" />. **Tenaga keupayaan** yang tersimpan sama dengan kerja yang dilakukan oleh daya ini dari pemanjangan sifar hingga <InlineMath math="0.1" /> meter.
+
+<MathContainer>
+<BlockMath math="E = \int_{0}^{0.1} kx \, dx = \int_{0}^{0.1} 200x \, dx" />
+<BlockMath math="E = 200 \left[\frac{x^2}{2}\right]_{0}^{0.1}" />
+<BlockMath math="\begin{aligned} E &amp;= 200 \times \frac{(0.1)^2 - 0^2}{2} \\ &amp;= 200 \times \frac{0.01}{2} \\ &amp;= 100 \times 0.01 \\ &amp;= 1 \text{ Joule} \end{aligned}" />
+</MathContainer>
+
+Tenaga keupayaan yang tersimpan ialah <InlineMath math="1" /> joule.
+
+**Soalan 3**. Tambahkan jisim setiap keratan pendek dawai. Jisim satu keratan didapati dengan mendarab ketumpatan linearnya dengan panjangnya:
+
+<BlockMath math="\begin{aligned} m &amp;= \int_{0}^{4} (2 + x) \, dx \\ &amp;= \left[2x + \frac{x^2}{2}\right]_{0}^{4} \\ &amp;= 8 + 8 \\ &amp;= 16 \text{ kg} \end{aligned}" />
+
+Untuk pusat jisim, darabkan jisim setiap keratan dengan kedudukannya, kemudian bahagikan jumlah momen jisim dengan jumlah jisim:
+
+<MathContainer>
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} x(2 + x) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{\int_{0}^{4} (2x + x^2) \, dx}{16}" />
+<BlockMath math="\bar{x} = \frac{[x^2 + \frac{x^3}{3}]_{0}^{4}}{16} = \frac{16 + \frac{64}{3}}{16}" />
+<BlockMath math="\bar{x} = \frac{\frac{48 + 64}{3}}{16} = \frac{\frac{112}{3}}{16} = \frac{112}{48} = \frac{7}{3} \text{ meter}" />
+</MathContainer>
+
+Jumlah jisim dawai itu ialah <InlineMath math="16 \text{ kg}" /> dan pusat jisimnya terletak pada kedudukan <InlineMath math="\frac{7}{3} \text{ meter}" /> dari hujung.
+
+Pusat jisim ini diukur dari hujung tempat <InlineMath math="x=0" />. Ia terletak di sebelah kanan titik tengah kerana **ketumpatan meningkat ke arah hujung yang satu lagi**.

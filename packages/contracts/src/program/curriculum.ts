@@ -1,7 +1,11 @@
 import { Array as Arr, Schema } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
-import { type AppLocale, AppLocaleSchema } from "#contracts/locale";
+import {
+  type AppLocale,
+  type AppLocaleCode,
+  AppLocaleSchema,
+} from "#contracts/locale";
 import { MaterialDomainSchema } from "#contracts/material/domain";
 import {
   LearningProgramKeySchema,
@@ -16,6 +20,7 @@ const CurriculumNamespaceMapSchema = Schema.Struct({
   de: Schema.Literal("lehrplaene"),
   en: Schema.Literal("curriculum"),
   id: Schema.Literal("kurikulum"),
+  ms: Schema.Literal("kurikulum"),
 });
 const RenderableCurriculumLevelSchema = Schema.Literals([
   "class",
@@ -33,23 +38,20 @@ function isCurriculumRouteNodeKey(value: string) {
   );
 }
 
-/** Localized public route namespaces shared by projection and verification. */
+/**
+ * Localized public route namespaces shared by projection and verification. A
+ * declared locale fails to compile until it names its own namespace here.
+ */
 export const CURRICULUM_NAMESPACES = CurriculumNamespaceMapSchema.make({
   de: "lehrplaene",
   en: "curriculum",
   id: "kurikulum",
-});
+  ms: "kurikulum",
+}) satisfies Record<AppLocaleCode, string>;
 
 /** Resolves the route namespace owned by one application locale. */
 export function curriculumNamespace(appLocale: AppLocale) {
-  const localeCode = String(appLocale);
-  if (localeCode === "de") {
-    return CURRICULUM_NAMESPACES.de;
-  }
-  if (localeCode === "id") {
-    return CURRICULUM_NAMESPACES.id;
-  }
-  return CURRICULUM_NAMESPACES.en;
+  return CURRICULUM_NAMESPACES[Schema.encodeSync(AppLocaleSchema)(appLocale)];
 }
 
 /** Checks whether one curriculum level owns a learner-renderable route. */

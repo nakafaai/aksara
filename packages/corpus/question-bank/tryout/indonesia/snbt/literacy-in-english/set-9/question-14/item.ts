@@ -6,33 +6,30 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "inference",
   },
-  stimulus: "recycling-rate",
+  stimulus: "solar-heat",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Few buyers want them, since their materials are hard to separate.",
+          label: "The panel temperature on hot, sunny days",
         },
         {
           correct: false,
-          label: "Residents put mixed plastics in the wrong bins on purpose.",
+          label: "The amount of sunlight reaching the panels",
+        },
+        {
+          correct: true,
+          label: "The panels' efficiency in the hottest months",
         },
         {
           correct: false,
-          label:
-            "The sorting plant had no machines that could handle plastics.",
+          label: "The panels' efficiency in March and April",
         },
         {
           correct: false,
-          label:
-            "Mixed plastics are always wet or covered in food when they are collected.",
-        },
-        {
-          correct: false,
-          label: "The newspaper did not count mixed plastics correctly.",
+          label: "The amount of dust that settles on the glass",
         },
       ],
     },

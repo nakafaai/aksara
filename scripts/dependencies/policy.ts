@@ -65,21 +65,22 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "override",
   },
   {
-    approvedCurrent: "5.0.5",
+    approvedCurrent: "5.1.0",
     cohort: "Effect testing",
     dependency: "vitest",
-    reason: "The Effect 4 test adapter requires Vitest version 5.",
+    reason:
+      "The Effect 4 test adapter requires Vitest version 5; @effect/vitest 4.1.2 admits >=5.0.0 <6.0.0, and nakafa.com runs the same 5.1.0.",
     registry: "vitest@latest",
-    reviewedLatest: "5.0.5",
+    reviewedLatest: "5.1.0",
     source: "catalog",
   },
   {
-    approvedCurrent: "5.0.5",
+    approvedCurrent: "5.1.0",
     cohort: "Effect testing",
     dependency: "@vitest/coverage-istanbul",
     reason: "Coverage instrumentation must match the supported Vitest runner.",
     registry: "@vitest/coverage-istanbul@latest",
-    reviewedLatest: "5.0.5",
+    reviewedLatest: "5.1.0",
     source: "catalog",
   },
   {
@@ -103,13 +104,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "catalog",
   },
   {
-    approvedCurrent: "26.13.0",
+    approvedCurrent: "26.13.1",
     cohort: "Node 26",
     dependency: "node",
     reason:
-      "Aksara runs on the current Node 26 LTS line, which nakafa.com also runs. The published contracts and CLI admit Node 24 and 26, so a Node 24 consumer, such as a Convex Node action, still loads them.",
+      "Aksara runs on the current Node 26 LTS line, which nakafa.com also runs. The published contracts and CLI admit Node 24 and 26, so a Node 24 consumer, such as a Convex Node action, still loads them. 26.13.1 is the security release of 10 November 2026 (nine high CVEs in HTTP/2, TLS and HTTP).",
     registry: "node@26",
-    reviewedLatest: "26.13.0",
+    reviewedLatest: "26.13.1",
     source: "node-runtime",
   },
   {
@@ -130,6 +131,16 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     registry: "bun@latest",
     reviewedLatest: "1.4.4",
     source: "package-manager",
+  },
+  {
+    approvedCurrent: "12.3.0",
+    cohort: "Mermaid",
+    dependency: "mermaid",
+    reason:
+      "The compiler parses every authored Mermaid diagram with the Mermaid that nakafa.com draws it with, the exact pin in nakafa.com's packages/design-system/package.json, so a diagram that passes here draws there. Both repositories move to a new release in one step: nakafa.com first, then this hold.",
+    registry: "mermaid@latest",
+    reviewedLatest: "12.3.0",
+    source: "catalog",
   },
 ];
 

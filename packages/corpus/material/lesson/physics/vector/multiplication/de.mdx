@@ -90,9 +90,7 @@ Das Kreuzprodukt von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}
 
 Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis senkrecht auf der von <InlineMath math="\vec{A}" /> und <InlineMath math="\vec{B}" /> aufgespannten Ebene. Seine Richtung folgt der **Rechte-Hand-Regel**: Krümme die Finger vom ersten zum zweiten Vektor über den kleineren Winkel. Der Daumen zeigt die Ergebnisrichtung. Bei parallelen Vektoren oder einem Nullvektor als Eingabe entsteht der Nullvektor ohne bestimmte Richtung.
 
-<LineEquation
-  cameraPosition={[9.9, 6.66, -7]}
-  cameraTarget={[1.5, 1.3, 5]}
+<MathVisual
   title={<>Richtung <InlineMath math="\vec{A}\times\vec{B}" /></>}
   description={
     <>
@@ -100,58 +98,29 @@ Für zwei Vektoren ungleich null, die nicht parallel sind, steht das Ergebnis se
       liegen in einer Ebene. Ihr Kreuzprodukt steht senkrecht auf dieser Ebene.
     </>
   }
-  data={(() => {
-    const a = [4, 0, 0];
-    const b = [0, 3, 0];
-    const cross = [
-      a[1] * b[2] - a[2] * b[1],
-      a[2] * b[0] - a[0] * b[2],
-      a[0] * b[1] - a[1] * b[0],
-    ];
-
-    return [
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((a)[0]) - (0)), y: (0) + 0.5 * (((a)[1]) - (0)), z: (0) + 0.5 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A" />,
-        at: 1,
-        offset: [0, -0.45, 0],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((b)[0]) - (0)), y: (0) + 0.5 * (((b)[1]) - (0)), z: (0) + 0.5 * (((b)[2]) - (0)) }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="B" />,
-        at: 1,
-        offset: [0.5, 0, 0.15],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * (((cross)[0]) - (0)), y: (0) + 0.5 * (((cross)[1]) - (0)), z: (0) + 0.5 * (((cross)[2]) - (0)) }, { x: (cross)[0], y: (cross)[1], z: (cross)[2] }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      lineWidth: 4,
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A\times B" />,
-        at: 1,
-        offset: [0, 1.2, 0],
-        anchorX: "center",
-      }],
-    },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="A\times B" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -1.5, max: 13.5 } },
+    view: { kind: "camera", position: { x: 9.9, y: 6.66, z: -7 }, target: { x: 1.5, y: 1.3, z: 5 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1.5, z: 0 }, { x: 0, y: 3, z: 0 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 0, y: 1.5, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 6 }, { x: 0, y: 0, z: 12 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 0, y: 0, z: 6 }, to: { x: 0, y: 0, z: 12 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1.5, z: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 6 }, placement: "above" },
+    ],
+  }}
 />
 
 In der Darstellung zeigt <InlineMath math="\vec{A}" /> entlang der positiven <InlineMath math="x" />-Achse und <InlineMath math="\vec{B}" /> entlang der positiven <InlineMath math="y" />-Achse. Die Rechnung liefert für <InlineMath math="\vec{A}\times\vec{B}" /> die positive <InlineMath math="z" />-Richtung. Beide Modellvektoren sind dimensionslos. Berechne die Komponenten: Die ersten beiden sind null und die dritte ist <InlineMath math="4\cdot3" />. Der Ergebnispfeil ist <InlineMath math="12" /> Einheiten lang. Drehe das Modell und vergleiche diesen Pfeil mit der Ebene der ursprünglichen Vektoren.

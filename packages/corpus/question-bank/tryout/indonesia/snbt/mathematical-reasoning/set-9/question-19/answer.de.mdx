@@ -1,21 +1,39 @@
-Die Neigung ist **der Anstieg geteilt durch die waagerechte Länge**. Je kleiner der Quotient, desto flacher die Rampe.
+Gesucht ist, wie viel dem Auftrag nach drei Arbeitstagen noch fehlt. Der Plan: Verfolge die Betriebsstunden jeder Maschine am Montag, Dienstag und Mittwoch, rechne sie in gute Teile um und vergleiche mit <InlineMath math="8{.}000" />. **Die Betriebsstunden von Maschine P werden von Tag zu Tag übernommen**, sie läuft also nicht jeden Tag gleich lange.
 
-# Neigungen lesen
+# Gute Teile pro Stunde
 
-<InlineMath math="\tfrac{1}{12}\approx0{,}083" />, also etwa <InlineMath math="8{,}3\,\%" />. Die erste Aussage ist wahr.
+Fehlerhafte Teile werden aussortiert, also **zählen nur gute Teile**. Maschine P liefert <InlineMath math="95\%\times120=114" /> gute Teile pro Stunde, Maschine Q <InlineMath math="90\%\times90=81" /> gute Teile pro Stunde.
 
-Eine Neigung von 1 : 10 sind <InlineMath math="10\,\%" />, mehr als <InlineMath math="8{,}3\,\%" />, **1 : 10 ist also steiler**, nicht flacher. Die zweite Aussage ist falsch.
+# Betriebsstunden von Maschine P
 
-# Länge der geneigten Fläche
+Maschine P läuft <InlineMath math="5" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet, und ihre Stundenzählung läuft in den nächsten Tag weiter.
 
-Ein Abschnitt von 6 m mit 1 : 12 steigt um <InlineMath math="\tfrac{600}{12}=50" /> cm. Nach dem Satz des Pythagoras gilt
+| Tag | Übernommene Stunden um 07.00 | Wartung ab | Betriebsstunden |
+| :--- | :---: | :---: | :---: |
+| Montag | <InlineMath math="0" /> | 12.00, 18.00 | <InlineMath math="5+5+4=14" /> |
+| Dienstag | <InlineMath math="4" /> | 08.00, 14.00, 20.00 | <InlineMath math="1+5+5+2=13" /> |
+| Mittwoch | <InlineMath math="2" /> | 10.00, 16.00, 22.00 | <InlineMath math="3+5+5=13" /> |
 
-<BlockMath math="\sqrt{600^2+50^2}=\sqrt{362\,500}\approx602\text{ cm}" />
+Also **läuft Maschine P <InlineMath math="14+13+13=40" /> Stunden**, nicht <InlineMath math="3\times14=42" /> Stunden.
 
-Das sind etwa 6,02 m, **weniger als 6,1 m**. Die dritte Aussage ist falsch.
+# Betriebsstunden von Maschine Q
 
-# Den Entwurf mit zwei Abschnitten prüfen
+Maschine Q läuft <InlineMath math="7" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet. Zwei solche Runden füllen die <InlineMath math="16" /> Schichtstunden genau, also wird Q jeden Tag um 14.00 und 22.00 Uhr gewartet, läuft <InlineMath math="14" /> Stunden und **beginnt am nächsten Morgen wieder bei null**. In drei Tagen läuft Q <InlineMath math="42" /> Stunden.
 
-Jeder Abschnitt von 3,6 m ist höchstens 6 m lang, und dazwischen liegt ein Podest. Bei 1 : 12 steigt jeder Abschnitt um <InlineMath math="\tfrac{360}{12}=30" /> cm, zusammen also genau 60 cm. Die vierte Aussage ist wahr.
+# Der Fehlbetrag
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+<BlockMath math="\begin{aligned}
+\text{gute Teile} &= 40\times114+42\times81=4{.}560+3{.}402=7{.}962 \\
+\text{Fehlbetrag} &= 8{.}000-7{.}962=38
+\end{aligned}" />
+
+Kontrolliere das, indem du **jeden Tag einzeln addierst**: Montag bringt <InlineMath math="14\times114+14\times81=2{.}730" />, Dienstag und Mittwoch je <InlineMath math="13\times114+14\times81=2{.}616" />. Zusammen sind das <InlineMath math="2{.}730+2{.}616+2{.}616=7{.}962" />, dasselbe.
+
+# Fallen, die du vermeiden solltest
+
+Der Fehlbetrag ist klein, deshalb **kippt schon eine falsch gezählte Stunde das Ergebnis**.
+
+- Setzt du die Stunden von P jeden Morgen auf null, läuft P <InlineMath math="42" /> Stunden, und die Summe ist <InlineMath math="3\times2{.}730=8{.}190" />. Der Auftrag scheint dann erfüllt.
+- Sortierst du die fehlerhaften Teile nicht aus, ist die Summe <InlineMath math="40\times120+42\times90=8{.}580" />, und der Auftrag scheint ebenfalls erfüllt.
+
+Am Mittwoch um 23.00 Uhr fehlen dem Auftrag also noch <InlineMath math="38" /> gute Teile.

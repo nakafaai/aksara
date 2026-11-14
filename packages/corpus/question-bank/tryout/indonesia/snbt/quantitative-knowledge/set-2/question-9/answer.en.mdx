@@ -1,23 +1,43 @@
-The base <InlineMath math="AB=4+9=13\text{ cm}" /> is known, so what you need is **the height <InlineMath math="CD" />** to that base.
+A point inside the triangle that doesn't touch a side satisfies three strict inequalities at once: <InlineMath math="y>0" />, <InlineMath math="y<2x" />, and <InlineMath math="3x+2y<30" />. The plan: find the vertices, then count lattice points **column by column** for each value of <InlineMath math="x" />.
 
-# Two similar small triangles
+# The vertices of the triangle
 
-The altitude from the right angle splits triangle <InlineMath math="ABC" /> into triangles <InlineMath math="ADC" /> and <InlineMath math="CDB" />. Angle <InlineMath math="ACD" /> and angle <InlineMath math="CBD" /> both complete angle <InlineMath math="A" /> to <InlineMath math="90^\circ" />, so the two small triangles are **similar**. Corresponding sides are proportional.
+The line <InlineMath math="y=0" /> meets <InlineMath math="y=2x" /> at <InlineMath math="(0,0)" /> and meets <InlineMath math="3x+2y=30" /> at <InlineMath math="(10,0)" />. The third vertex lies on both <InlineMath math="y=2x" /> and <InlineMath math="3x+2y=30" />.
 
 <BlockMath math="\begin{aligned}
-\frac{AD}{CD}&=\frac{CD}{DB}\\
-CD^2&=AD\cdot DB=4\cdot9=36\\
-CD&=6
+3x+2(2x)&=30\\
+x&=\frac{30}{7},\quad y=\frac{60}{7}
 \end{aligned}" />
 
-The height <InlineMath math="CD" /> is the **geometric mean** of 4 and 9, not their arithmetic mean.
+This top vertex **isn't a lattice point**, so shortcuts that need lattice-point vertices don't work here. Since <InlineMath math="4<\tfrac{30}{7}<5" />, the upper bound for <InlineMath math="y" /> comes from the line <InlineMath math="y=2x" /> up to the column <InlineMath math="x=4" />, and from the line <InlineMath math="3x+2y=30" /> from the column <InlineMath math="x=5" /> on.
 
-# Computing the area
+# Counting each column
 
-<BlockMath math="A=\tfrac12\cdot AB\cdot CD=\tfrac12\cdot13\cdot6=39\text{ cm}^2" />
+The columns <InlineMath math="x=0" /> and <InlineMath math="x=10" /> hold no interior points, so you only need <InlineMath math="x=1" /> to <InlineMath math="x=9" />. In each column, <InlineMath math="y" /> has to be an integer, at least <InlineMath math="1" />, and **less than both bounds**. When a bound is exactly an integer, that value doesn't count.
 
-Check with the legs, because **two ways of computing the area must agree**: <InlineMath math="AC=\sqrt{4^2+6^2}=2\sqrt{13}" /> and <InlineMath math="BC=\sqrt{9^2+6^2}=3\sqrt{13}" />, so <InlineMath math="\tfrac12\cdot2\sqrt{13}\cdot3\sqrt{13}=39" />.
+| <InlineMath math="x" /> | Condition <InlineMath math="y<2x" /> | Condition <InlineMath math="y<\tfrac{30-3x}{2}" /> | Values of <InlineMath math="y" /> | Count |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="y<2" /> | <InlineMath math="y<13.5" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="y<4" /> | <InlineMath math="y<12" /> | <InlineMath math="1" /> to <InlineMath math="3" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="y<6" /> | <InlineMath math="y<10.5" /> | <InlineMath math="1" /> to <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="4" /> | <InlineMath math="y<8" /> | <InlineMath math="y<9" /> | <InlineMath math="1" /> to <InlineMath math="7" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="y<10" /> | <InlineMath math="y<7.5" /> | <InlineMath math="1" /> to <InlineMath math="7" /> | <InlineMath math="7" /> |
+| <InlineMath math="6" /> | <InlineMath math="y<12" /> | <InlineMath math="y<6" /> | <InlineMath math="1" /> to <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="7" /> | <InlineMath math="y<14" /> | <InlineMath math="y<4.5" /> | <InlineMath math="1" /> to <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="8" /> | <InlineMath math="y<16" /> | <InlineMath math="y<3" /> | <InlineMath math="1" /> to <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="9" /> | <InlineMath math="y<18" /> | <InlineMath math="y<1.5" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-The value 42.25 uses the arithmetic mean <InlineMath math="6.5" /> as the height. The values 26 and 58.5 use <InlineMath math="AD" /> or <InlineMath math="DB" /> as the height. The value 78 forgets the factor <InlineMath math="\tfrac12" />.
+<BlockMath math="1+3+5+7+7+5+4+2+1=35" />
 
-So the area of triangle <InlineMath math="ABC" /> is **<InlineMath math="39\text{ cm}^2" />**.
+# Checking the points on the sides
+
+Lattice points that sit exactly on a slanted side are already removed by the strict signs. On the line <InlineMath math="y=2x" /> there are <InlineMath math="(1,2)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,6)" />, and <InlineMath math="(4,8)" />. On the line <InlineMath math="3x+2y=30" /> there are <InlineMath math="(6,6)" /> and <InlineMath math="(8,3)" />. **None of those six points is counted**, which matches the table.
+
+# Traps in the other options
+
+- <InlineMath math="52" /> counts every point on all three sides, including the points on the <InlineMath math="x" />-axis.
+- <InlineMath math="41" /> counts the six points on the two slanted sides, as if the signs were <InlineMath math="\le" />.
+- <InlineMath math="37" /> also counts <InlineMath math="(6,6)" /> and <InlineMath math="(8,3)" />, the two points that sit exactly on the line <InlineMath math="3x+2y=30" />.
+- <InlineMath math="33" /> rounds the top vertex to <InlineMath math="(4,8)" /> and then uses Pick's theorem, which only works for a triangle with **every vertex at a lattice point**.
+
+So the number of lattice points inside the triangle is <InlineMath math="35" />.

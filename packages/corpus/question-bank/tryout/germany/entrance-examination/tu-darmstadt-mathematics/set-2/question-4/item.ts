@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$84\\text{ cm}^2$$",
+          label: "$$4<x<6$$",
         },
         {
           correct: false,
-          label: "$$87{,}5\\text{ cm}^2$$",
+          label: "$$-2<x<6$$",
         },
         {
           correct: false,
-          label: "$$336\\text{ cm}^2$$",
+          label: "$$0<x<4$$",
         },
         {
           correct: false,
-          label: "$$175\\text{ cm}^2$$",
+          label: "$$x<0$$ oder $$x>4$$",
+        },
+        {
+          correct: false,
+          label: "$$-2\\le x\\le0$$ oder $$4\\le x\\le6$$",
         },
         {
           correct: true,
-          label: "$$168\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$350\\text{ cm}^2$$",
+          label: "$$-2<x<0$$ oder $$4<x<6$$",
         },
       ],
     },

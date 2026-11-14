@@ -1,20 +1,42 @@
-Mark each statement Benar (true) or Salah (false). The path lies outside the garden, so **its outer edge forms a larger rectangle**. Each side grows by twice the path width, once at each end.
+On the tiered plan, **each <InlineMath math="\text{m}^3" /> is charged at its own tier**. A use of <InlineMath math="20\text{ m}^3" />, for example, pays <InlineMath math="\text{Rp}3{,}000" /> for the first <InlineMath math="15\text{ m}^3" /> and <InlineMath math="\text{Rp}5{,}000" /> only for the remaining <InlineMath math="5\text{ m}^3" />. Write the bills in thousands of rupiah for a use of <InlineMath math="v\text{ m}^3" />. <InlineMath math="B(v)" /> is the tiered bill (the plan the text calls *bertingkat*), and <InlineMath math="T(v)" /> is the flat bill (*tetap*).
 
 <BlockMath math="\begin{aligned}
-\text{outer size} &= (26+2\times1.5)\times(18+2\times1.5)=29\times21 \\
-\text{path area} &= 29\times21-26\times18=609-468=141\text{ m}^2
+B(v) &= 3v &&\text{for } v \le 15 \\
+B(v) &= 45 + 5(v - 15) &&\text{for } 15 < v \le 30 \\
+B(v) &= 120 + 7(v - 30) &&\text{for } v > 30 \\
+T(v) &= 60 + 2v
 \end{aligned}" />
 
-**Statement 1** is true, as computed above.
+From these, the values you need are <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" />, and <InlineMath math="T(30) = 120" />.
 
-**Statement 2** is true. The outer perimeter is <InlineMath math="2(29+21)=100\text{ m}" />.
+Statement 1: Benar (true). The tiered bill for <InlineMath math="20\text{ m}^3" /> is <InlineMath math="45 + 25 = 70" /> thousand rupiah, so the average is:
 
-**Statement 3** is false. With a width of <InlineMath math="3\text{ m}" />:
+<BlockMath math="70{,}000 \div 20 = 3{,}500 < 4{,}000" />
 
-<BlockMath math="32\times24-468=768-468=300\text{ m}^2" />
+If you charge all <InlineMath math="20\text{ m}^3" /> at <InlineMath math="\text{Rp}5{,}000" />, the average becomes <InlineMath math="\text{Rp}5{,}000" />. If you just average the two prices, <InlineMath math="(3{,}000 + 5{,}000) \div 2 = 4{,}000" />. Both slips make you mark this statement false. The real average has to weigh how much water sits in each tier: <InlineMath math="15\text{ m}^3" /> cheap and only <InlineMath math="5\text{ m}^3" /> expensive.
 
-Twice the original area is <InlineMath math="282\text{ m}^2" />, not <InlineMath math="300\text{ m}^2" />. The path area is not proportional to its width, because the four corner pieces grow faster.
+Statement 2: Salah (false). Try exactly at the boundary, <InlineMath math="30\text{ m}^3" />:
 
-**Statement 4** is false. <InlineMath math="\frac{141}{468}\approx30.1\%" />, less than <InlineMath math="35\%" />.
+<BlockMath math="B(30) = 45 + 15 \times 5 = 120, \qquad T(30) = 60 + 2 \times 30 = 120" />
 
-So statements 1 and 2 are true, and statements 3 and 4 are false.
+At <InlineMath math="30\text{ m}^3" /> the two plans cost the same, so the tiered plan isn't cheaper there. Below <InlineMath math="30\text{ m}^3" /> the tiered plan really is always cheaper. Every <InlineMath math="1\text{ m}^3" /> you take away from <InlineMath math="30\text{ m}^3" /> cuts the tiered bill by <InlineMath math="3" /> or <InlineMath math="5" /> thousand, while the flat bill drops by only <InlineMath math="2" /> thousand. If you only check <InlineMath math="15" /> or <InlineMath math="20\text{ m}^3" />, you miss that boundary point.
+
+Statement 3: Salah (false). The tiered bill for <InlineMath math="35\text{ m}^3" /> is <InlineMath math="120 + 5 \times 7 = 155" /> thousand. The gap to <InlineMath math="30\text{ m}^3" /> is <InlineMath math="35" /> thousand both ways, but the denominators differ.
+
+<BlockMath math="\begin{aligned}
+\text{decrease} &= \frac{35}{155} \approx 22.6\% \\
+\text{increase} &= \frac{35}{120} \approx 29.2\%
+\end{aligned}" />
+
+The decrease is measured from <InlineMath math="155" />, and the increase from <InlineMath math="120" />. Because the base moves, the two percentages aren't equal.
+
+Statement 4: Benar (true). The total water is the same, <InlineMath math="60\text{ m}^3" />, but the bills aren't.
+
+<BlockMath math="\begin{aligned}
+B(20) + B(40) &= 70 + 190 = 260 \\
+B(30) + B(30) &= 120 + 120 = 240
+\end{aligned}" />
+
+Compared with the <InlineMath math="30" /> and <InlineMath math="30\text{ m}^3" /> pattern, the <InlineMath math="20" /> and <InlineMath math="40\text{ m}^3" /> pattern moves <InlineMath math="10\text{ m}^3" /> from one month to the other. That water used to cost <InlineMath math="\text{Rp}5{,}000" /> per <InlineMath math="\text{m}^3" /> and now costs <InlineMath math="\text{Rp}7{,}000" />, so the bill goes up by <InlineMath math="10 \times 2 = 20" /> thousand. On the flat plan both patterns cost <InlineMath math="240" /> thousand, because every <InlineMath math="\text{m}^3" /> has the same price.
+
+So the statements about the average cost at <InlineMath math="20\text{ m}^3" /> and about using <InlineMath math="20" /> and <InlineMath math="40\text{ m}^3" /> are true, and the statements about the tiered plan up to <InlineMath math="30\text{ m}^3" /> and about the rise and fall percentages are false.

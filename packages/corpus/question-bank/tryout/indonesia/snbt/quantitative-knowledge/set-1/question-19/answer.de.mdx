@@ -1,22 +1,38 @@
-Zwei Bedingungen beeinflussen sich gegenseitig: Banu und Citra belegen **zwei nebeneinanderliegende Stühle**, und Ayu muss auf einem der mittleren Stühle sitzen. Am sichersten zählst du getrennt nach der Lage des Paares Banu und Citra.
+Wie viele Lösungen das System hat, hängt von <InlineMath math="k" /> ab. Der Plan: Eliminiere <InlineMath math="x" /> mit der ersten Gleichung, schau, wann das System **an einem Faktor hängen bleibt**, und prüfe dann die vier Aussagen einzeln.
 
-# Nach der Lage des Paares zählen
+# Das System vereinfachen
 
-Nummeriere die Stühle von 1 bis 5. Das Paar kann die Stühle 1 und 2, 2 und 3, 3 und 4 oder 4 und 5 belegen. Zähle für jede Lage die freien mittleren Stühle für Ayu. Dodi und Eka besetzen die beiden übrigen Stühle dann auf 2 Arten.
+Aus der ersten Gleichung folgt <InlineMath math="x=2-y-z" />. Setze das in die zweite und dritte Gleichung ein.
 
-| Stühle von Banu und Citra | Freie Stühle | Stühle für Ayu | Anordnungen von Ayu, Dodi, Eka |
-| :---: | :---: | :---: | :---: |
-| 1 und 2 | 3, 4, 5 | 3 oder 4 | <InlineMath math="2\times2=4" /> |
-| 2 und 3 | 1, 4, 5 | 4 | <InlineMath math="1\times2=2" /> |
-| 3 und 4 | 1, 2, 5 | 2 | <InlineMath math="1\times2=2" /> |
-| 4 und 5 | 1, 2, 3 | 2 oder 3 | <InlineMath math="2\times2=4" /> |
+<BlockMath math="\begin{aligned}
+2(2-y-z)+3y+kz&=5 &&\Longrightarrow\quad y+(k-2)z=1\\
+3(2-y-z)+ky+3z&=6 &&\Longrightarrow\quad (k-3)y=0
+\end{aligned}" />
 
-Zusammen sind das <InlineMath math="4+2+2+4=12" />. **Banu und Citra können die Plätze tauschen**, jede Anordnung gibt es also in zwei Reihenfolgen.
+Die neue zweite Gleichung, <InlineMath math="(k-3)y=0" />, ist der Schlüssel. **Für <InlineMath math="k\ne3" /> gilt <InlineMath math="y=0" />**, für <InlineMath math="k=3" /> dagegen gilt die Gleichung für jedes <InlineMath math="y" />.
 
-<BlockMath math="12\times2=24" />
+# Drei Fälle für k
 
-# Andere Wahlmöglichkeiten prüfen
+Für <InlineMath math="k\ne2" /> und <InlineMath math="k\ne3" /> bekommst du <InlineMath math="y=0" />, dann <InlineMath math="(k-2)z=1" />, also <InlineMath math="z=\tfrac{1}{k-2}" /> und <InlineMath math="x=2-\tfrac{1}{k-2}" />. Es gibt **genau eine Lösung**.
 
-Der Wert 48 zählt die Anordnungen mit Banu und Citra nebeneinander, beachtet aber Ayus Bedingung nicht, also <InlineMath math="4!\times2" />. Der Wert 12 vergisst, dass Banu und Citra tauschen können. Der Wert 16 zählt nur das Paar auf den Stühlen 1 und 2 oder 4 und 5. Der Wert 36 setzt Ayu auf einen der 3 mittleren Stühle und nimmt dann an, dass das Paar **immer in die übrigen Stühle passt**, obwohl Ayu die freien Stühle trennen kann.
+Für <InlineMath math="k=2" /> bekommst du ebenfalls <InlineMath math="y=0" />, aber die Gleichung <InlineMath math="y+0\cdot z=1" /> verlangt <InlineMath math="y=1" />. Diese beiden Forderungen widersprechen sich, also **hat das System keine Lösung**.
 
-Es gibt also **24** mögliche Sitzordnungen.
+Für <InlineMath math="k=3" /> bleibt nur die Bedingung <InlineMath math="y+z=1" />, und <InlineMath math="y" /> ist frei wählbar. Jede Wahl von <InlineMath math="y" /> liefert eine Lösung, also gibt es **unendlich viele Lösungen**.
+
+Prüfe mit der Determinante der Koeffizienten:
+
+<BlockMath math="\begin{vmatrix}1&1&1\\2&3&k\\3&k&3\end{vmatrix}=(9-k^2)-(6-3k)+(2k-9)=-(k-2)(k-3)" />
+
+Die Determinante ist genau für <InlineMath math="k=2" /> und <InlineMath math="k=3" /> null, **also genau in den beiden Sonderfällen**.
+
+# Jede Aussage prüfen
+
+Die erste Aussage ist falsch. Für <InlineMath math="k=2" /> hat das System **gar keine Lösung**, nicht unendlich viele.
+
+Die zweite Aussage ist falsch. Für <InlineMath math="k=3" /> hat das System unendlich viele Lösungen, also **gibt es sicher eine Lösung**.
+
+Die dritte Aussage ist falsch. Wähle für <InlineMath math="k=3" /> den Wert <InlineMath math="y=1" />, dann ist <InlineMath math="z=0" /> und <InlineMath math="x=1" />. Probe: <InlineMath math="1+1+0=2" />, <InlineMath math="2+3+0=5" /> und <InlineMath math="3+3+0=6" />. Es gibt also **einen Wert von <InlineMath math="k" /> mit einer Lösung, in der <InlineMath math="z=0" /> ist**.
+
+Die vierte Aussage ist wahr. Für jedes <InlineMath math="k" /> außer <InlineMath math="2" /> und <InlineMath math="3" /> ist die Lösung eindeutig und **erfüllt immer <InlineMath math="y=0" />**, wie der erste Fall gezeigt hat.
+
+Also sind die erste, zweite und dritte Aussage falsch, und die vierte Aussage ist wahr.

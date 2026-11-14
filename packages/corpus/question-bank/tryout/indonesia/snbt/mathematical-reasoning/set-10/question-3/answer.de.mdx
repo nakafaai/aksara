@@ -1,18 +1,33 @@
-Ein Plan geht nur, wenn er **die Ofengrenze und die Mehlgrenze zugleich einhält**: <InlineMath math="x+y\le100" /> und <InlineMath math="50x+100y\le7\,000" />.
+Jede Aussage ändert genau eine Sache, also **lädst du für jede Änderung noch einmal von vorn**. Behalte die zwei wichtigen Regeln im Kopf: Das nächste Fahrzeug wartet, sobald die Länge oder die Masse nicht reicht, und eine Ladung genau an der Grenze ist noch erlaubt.
 
-# Jeden Plan prüfen
+# Die Ladung der ersten Fahrt
 
-| Plan | Brötchen | Mehl | Möglich? |
-| :--- | :---: | :---: | :---: |
-| 80 Schoko, 30 Käse | 110 | 7 000 g | nein, Ofen |
-| 30 Schoko, 60 Käse | 90 | 7 500 g | nein, Mehl |
-| nur 70 Käse | 70 | 7 000 g | ja |
-| nur 100 Schoko | 100 | 5 000 g | ja |
+Die ersten zwei Lkw wiegen <InlineMath math="15+15=30\text{ Tonnen}" />. Das überschreitet die Grenze nicht, also **dürfen beide auffahren**. Das Auto auf Platz <InlineMath math="3" /> würde die Masse auf <InlineMath math="32\text{ Tonnen}" /> bringen, also legt die Fähre mit genau <InlineMath math="30\text{ Tonnen}" /> ab. Die erste Aussage ist wahr.
 
-Der erste Plan überschreitet den Ofen, der zweite **braucht mehr Mehl als vorhanden**, obwohl der Ofen reicht.
+# Das dritte Auto fährt nicht mit
 
-# Grenze für Käsebrötchen
+Die Warteschlange lautet jetzt: zwei Lkw, dann ein Auto, der Pick-up, drei Autos, ein Lkw und zwei Busse. Die erste Fahrt sind weiterhin die zwei Lkw. Auf der zweiten Fahrt fahren vier Autos und der Pick-up auf, dann prüfst du den nächsten Lkw.
 
-Nur mit Käsebrötchen reicht das Mehl für <InlineMath math="\tfrac{7\,000}{100}=70" /> Brötchen, und 70 passen noch in den Ofen. Die dritte Aussage ist also wahr.
+<BlockMath math="\begin{aligned}
+\text{Länge mit dem Lkw} &= 4\cdot5+6+10=36\text{ m}\le40\text{ m}\\
+\text{Masse mit dem Lkw} &= 4\cdot2+3+15=26\text{ Tonnen}\le30\text{ Tonnen}
+\end{aligned}" />
 
-Die erste Aussage ist also **falsch**, die zweite **falsch**, die dritte **wahr** und die vierte **wahr**.
+Das fehlende Auto macht <InlineMath math="5\text{ m}" /> frei, also **fährt der Lkw jetzt bei der zweiten Fahrt mit**. Der nächste Bus passt nicht, und die zwei Busse dürfen nicht zusammen fahren, weil <InlineMath math="32\text{ Tonnen}>30\text{ Tonnen}" /> gilt. Die Warteschlange ist nach <InlineMath math="4" /> Fahrten leer, nicht nach <InlineMath math="5" />. Die zweite Aussage ist falsch.
+
+# Die Massegrenze wird einunddreißig Tonnen
+
+Die erste Fahrt sind weiterhin die zwei Lkw, denn das nächste Auto ergibt <InlineMath math="32\text{ Tonnen}>31\text{ Tonnen}" />. Die zweite Fahrt sind weiterhin die sechs kleinen Fahrzeuge, denn die Spurlänge bleibt gleich und der nächste Lkw ergäbe <InlineMath math="41\text{ m}" />. Die Änderung zeigt sich bei der dritten Fahrt.
+
+<BlockMath math="\begin{aligned}
+\text{Lkw und Bus} &= 15+16=31\text{ Tonnen}\le31\text{ Tonnen}\\
+\text{Lkw und zwei Busse} &= 31+16=47\text{ Tonnen}>31\text{ Tonnen}
+\end{aligned}" />
+
+Lkw und Bus **dürfen jetzt zusammen fahren**, und der letzte Bus fährt allein. Die Warteschlange ist nach <InlineMath math="4" /> Fahrten leer. Die dritte Aussage ist wahr.
+
+# Der neunte Lkw rückt ans Ende
+
+Die Warteschlange lautet jetzt: zwei Lkw, sechs kleine Fahrzeuge, zwei Busse und zuletzt der Lkw. Die erste Fahrt sind die zwei Lkw, die zweite die sechs kleinen Fahrzeuge, denn der nächste Bus ergäbe eine Länge von <InlineMath math="31+12=43\text{ m}" />. Danach **passt kein Paar schwerer Fahrzeuge zusammen**: Zwei Busse wiegen <InlineMath math="32\text{ Tonnen}" />, ein Bus mit einem Lkw wiegt <InlineMath math="31\text{ Tonnen}" />. Bus, Bus und Lkw fahren jeweils allein, also braucht die Warteschlange weiterhin <InlineMath math="5" /> Fahrten. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.

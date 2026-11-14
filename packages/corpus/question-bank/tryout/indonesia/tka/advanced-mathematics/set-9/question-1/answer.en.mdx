@@ -1,0 +1,14 @@
+Let <InlineMath math="K=\begin{pmatrix} 2 & 1 \\ 1 & 1 \end{pmatrix}" />. To decode, **multiply the code on the left by the inverse of <InlineMath math="K" />**, since <InlineMath math="K^{-1}K=I" />.
+
+<BlockMath math="\det K=2\cdot1-1\cdot1=1,\qquad K^{-1}=\frac{1}{1}\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}" />
+
+<BlockMath math="\begin{pmatrix} p \\ q \end{pmatrix}=\begin{pmatrix} 1 & -1 \\ -1 & 2 \end{pmatrix}\begin{pmatrix} 17 \\ 10 \end{pmatrix}=\begin{pmatrix} 17-10 \\ -17+20 \end{pmatrix}=\begin{pmatrix} 7 \\ 3 \end{pmatrix}" />
+
+Check: <InlineMath math="2\cdot7+3=17" /> and <InlineMath math="7+3=10" />, matching the code received.
+
+So <InlineMath math="(p,q)=(7,3)" />.
+
+- <InlineMath math="(3,7)" /> swaps <InlineMath math="p" /> and <InlineMath math="q" />. The code for that pair is <InlineMath math="(13,10)" />.
+- <InlineMath math="(44,27)" /> multiplies the code by <InlineMath math="K" /> again instead of by <InlineMath math="K^{-1}" />.
+- <InlineMath math="(27,37)" /> swaps the diagonal entries without changing the signs of the others, using <InlineMath math="\begin{pmatrix} 1 & 1 \\ 1 & 2 \end{pmatrix}" />.
+- <InlineMath math="(-7,-3)" /> flips the sign of the whole inverse.

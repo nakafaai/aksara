@@ -1,28 +1,25 @@
-Sowohl <InlineMath math="4^x" /> als auch <InlineMath math="2^{x+3}" /> lassen sich mit <InlineMath math="2^x" /> schreiben. **Setze deshalb <InlineMath math="t=2^x" />**, dann wird aus der Gleichung eine quadratische Gleichung in <InlineMath math="t" />.
+Die Frage hat die Antwort ja oder nein. Eine Aussage reicht, wenn **jedes <InlineMath math="n" />, das sie erfüllt, dieselbe Antwort liefert**. Wegen <InlineMath math="12=2^2\cdot3" /> musst du wissen, ob <InlineMath math="n" /> mindestens zwei Faktoren <InlineMath math="2" /> und einen Faktor <InlineMath math="3" /> enthält. Verfolge also die Primfaktoren in jeder Aussage.
 
-# In eine quadratische Gleichung umformen
+# Die Primfaktoren aufschreiben
 
-Verwende <InlineMath math="4^x=\left(2^x\right)^2=t^2" /> und <InlineMath math="2^{x+3}=2^3\cdot2^x=8t" />.
+Schreibe <InlineMath math="n=2^a\cdot3^b\cdot m" />, wobei <InlineMath math="m" /> weder durch <InlineMath math="2" /> noch durch <InlineMath math="3" /> teilbar ist. Dann ist <InlineMath math="n" /> genau dann durch <InlineMath math="12" /> teilbar, wenn <InlineMath math="a\ge2" /> und <InlineMath math="b\ge1" /> gilt. Beim Potenzieren **wird der Exponent jedes Primfaktors multipliziert**.
 
-<BlockMath math="\begin{aligned}
-t^2-8t+12&=0\\
-(t-2)(t-6)&=0
-\end{aligned}" />
+<BlockMath math="n^2=2^{2a}\cdot3^{2b}\cdot m^2,\qquad n^3=2^{3a}\cdot3^{3b}\cdot m^3" />
 
-Die Lösungen sind <InlineMath math="t=2" /> und <InlineMath math="t=6" />. Beide sind positiv, also **sind beide als Werte von <InlineMath math="2^x" /> zulässig**, denn <InlineMath math="2^x" /> ist nie null oder negativ.
+# Nur die erste Aussage
 
-# Lösungen addieren
+Wegen <InlineMath math="24=2^3\cdot3" /> bedeutet Aussage (1), dass <InlineMath math="2a\ge3" /> und <InlineMath math="2b\ge1" /> gilt. Die Zahl <InlineMath math="2a" /> ist immer gerade, und **eine gerade Zahl, die mindestens <InlineMath math="3" /> ist, ist mindestens <InlineMath math="4" />**. Also gilt <InlineMath math="a\ge2" />. Aus <InlineMath math="2b\ge1" /> mit ganzzahligem <InlineMath math="b" /> folgt <InlineMath math="b\ge1" />.
 
-Verbinde das Produkt der Werte von <InlineMath math="t" /> mit der Summe der Exponenten.
+Jedes <InlineMath math="n" />, das (1) erfüllt, ist durch <InlineMath math="12" /> teilbar, die Antwort ist also immer ja. Zum Beispiel liefert <InlineMath math="n=12" /> den Wert <InlineMath math="144=24\cdot6" />. Die Zahl <InlineMath math="n=6" /> erfüllt (1) nicht, weil <InlineMath math="36" /> nicht durch <InlineMath math="24" /> teilbar ist. Aussage (1) allein reicht.
 
-<BlockMath math="\begin{aligned}
-2^{x_1}\cdot2^{x_2}&=2\cdot6\\
-2^{x_1+x_2}&=12\\
-x_1+x_2&={}^{2}\log12={}^{2}\log4+{}^{2}\log3=2+{}^{2}\log3
-\end{aligned}" />
+# Nur die zweite Aussage
 
-Dasselbe Ergebnis folgt aus <InlineMath math="x_1=1" /> und <InlineMath math="x_2={}^{2}\log6=1+{}^{2}\log3" />.
+Wegen <InlineMath math="48=2^4\cdot3" /> bedeutet Aussage (2), dass <InlineMath math="3a\ge4" /> und <InlineMath math="3b\ge1" /> gilt. Für <InlineMath math="a=1" /> wäre der Exponent nur <InlineMath math="3" />, also kleiner als <InlineMath math="4" />. Deshalb **muss <InlineMath math="a" /> mindestens <InlineMath math="2" /> sein**. Aus <InlineMath math="3b\ge1" /> mit ganzzahligem <InlineMath math="b" /> folgt <InlineMath math="b\ge1" />.
 
-Der Wert 3 entsteht aus <InlineMath math="2^{x_1}+2^{x_2}=8=2^3" />, dabei **ergibt sich die Summe der Exponenten aus dem Produkt** und nicht aus der Summe. Die Werte 6 und 8 sind Werte von <InlineMath math="t" />, noch keine Werte von <InlineMath math="x" />. Der Wert <InlineMath math="{}^{2}\log6" /> ist nur eine der beiden Lösungen.
+Auch jedes <InlineMath math="n" />, das (2) erfüllt, ist durch <InlineMath math="12" /> teilbar. Zum Beispiel liefert <InlineMath math="n=12" /> den Wert <InlineMath math="1{.}728=48\cdot36" />, während <InlineMath math="n=6" /> die Aussage (2) nicht erfüllt, denn <InlineMath math="216=48\cdot4+24" />. Aussage (2) allein reicht.
 
-Also gilt <InlineMath math="x_1+x_2=2+{}^{2}\log3" />.
+# Warum die anderen Antworten verlocken
+
+Die Antwort, dass beide Aussagen zusammen nötig sind, entsteht, wenn du (1) nur als „<InlineMath math="n" /> ist gerade und durch <InlineMath math="3" /> teilbar“ oder (2) nur als „<InlineMath math="n" /> ist gerade“ liest. Diese Lesart **übersieht, dass ein Quadrat nur gerade Primexponenten hat** und eine dritte Potenz nur Exponenten, die Vielfache von <InlineMath math="3" /> sind. Die Antwort, dass keine Aussage reicht, entsteht, wenn du annimmst, dass <InlineMath math="n=6" /> passt, aber <InlineMath math="6" /> scheitert an beiden Aussagen.
+
+Aussage (1) allein reicht also, und auch Aussage (2) allein reicht, um sicher zu sein, dass <InlineMath math="n" /> durch <InlineMath math="12" /> teilbar ist.

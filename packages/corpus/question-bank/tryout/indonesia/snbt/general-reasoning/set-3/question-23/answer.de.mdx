@@ -1,19 +1,31 @@
-Prozentwerte zweier Schulen lassen sich nicht direkt vergleichen, weil **die Schulen unterschiedlich viele Schüler haben**. Rechne jeden Prozentwert zuerst in eine Schülerzahl um. Die Zeilen sind zu Fuß (*berjalan kaki*), mit dem Fahrrad (*bersepeda*), mit öffentlichen Verkehrsmitteln (*angkutan umum*) und von der Familie gebracht (*diantar keluarga*).
+Gefragt ist der Tag, an dem die Kapazität der Fähre am stärksten genutzt wird. Dafür brauchst du zwei Angaben: die Fahrgäste beider Richtungen aus dem Diagramm und die Zahl der Abfahrten pro Tag aus dem Text.
 
-| Weg | Schule A (von <InlineMath math="800" />) | Schule B (von <InlineMath math="1{.}200" />) |
-| --- | --- | --- |
-| Zu Fuß | <InlineMath math="120" /> | <InlineMath math="120" /> |
-| Fahrrad | <InlineMath math="200" /> | <InlineMath math="240" /> |
-| Öffentliche Verkehrsmittel | <InlineMath math="280" /> | <InlineMath math="480" /> |
-| Von der Familie gebracht | <InlineMath math="200" /> | <InlineMath math="360" /> |
+Der Knackpunkt: **Die Tageskapazität ist nicht jeden Tag gleich**. Von Montag bis Freitag gibt es drei Abfahrten pro Hafen, am Samstag und Sonntag vier. Jede Abfahrt nimmt höchstens <InlineMath math="200" /> Fahrgäste mit, und es gibt zwei Abfahrtshäfen. Die Tageskapazität ist also:
 
-Schule B hat <InlineMath math="240" /> Radfahrer, mehr als die <InlineMath math="200" /> an Schule A, **obwohl ihr Prozentwert kleiner ist**. Diese Aussage passt zu den Daten.
+<BlockMath math="\begin{aligned}
+\text{Montag bis Freitag} &: 2 \times 3 \times 200 = 1{.}200 \\
+\text{Samstag und Sonntag} &: 2 \times 4 \times 200 = 1{.}600
+\end{aligned}" />
 
-Die anderen Aussagen passen nicht:
+Addiere jetzt für jeden Tag die beiden Balken und teile durch die Kapazität dieses Tages.
 
-- Ein kleinerer Prozentwert bedeutet keine kleinere Anzahl. Schule B hat sogar mehr Radfahrer, weil sie mehr Schüler hat.
-- Öffentliche Verkehrsmittel nutzen <InlineMath math="280+480=760" /> Schüler, mehr als <InlineMath math="700" />.
-- Zu Fuß gehen an beiden Schulen gleich viele, nämlich je <InlineMath math="120" />.
-- An Schule B werden <InlineMath math="30\%+10\%=40\%" /> gebracht oder gehen zu Fuß, weniger als die Hälfte.
+| Tag | Fahrgäste gesamt | Kapazität | Auslastung |
+| --- | --- | --- | --- |
+| Montag | <InlineMath math="360+560=920" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 76{,}7\%" /> |
+| Dienstag | <InlineMath math="380+340=720" /> | <InlineMath math="1{.}200" /> | <InlineMath math="60\%" /> |
+| Mittwoch | <InlineMath math="420+400=820" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 68{,}3\%" /> |
+| Donnerstag | <InlineMath math="550+380=930" /> | <InlineMath math="1{.}200" /> | <InlineMath math="77{,}5\%" /> |
+| Freitag | <InlineMath math="530+530=1{.}060" /> | <InlineMath math="1{.}200" /> | <InlineMath math="\approx 88{,}3\%" /> |
+| Samstag | <InlineMath math="660+640=1{.}300" /> | <InlineMath math="1{.}600" /> | <InlineMath math="81{,}25\%" /> |
+| Sonntag | <InlineMath math="540+690=1{.}230" /> | <InlineMath math="1{.}600" /> | <InlineMath math="\approx 76{,}9\%" /> |
 
-Zu den Daten passt also, dass an Schule B mehr Schüler mit dem Fahrrad fahren als an Schule A.
+Die höchste Auslastung hat der Freitag. Vergleich ihn mit seinem stärksten Konkurrenten, dem Samstag. Um mit dem Freitag gleichzuziehen, bräuchte der Samstag etwa <InlineMath math="0{,}883 \times 1{.}600 \approx 1{.}413" /> Fahrgäste. Er hatte nur <InlineMath math="1{.}300" />, also liegt er wirklich darunter.
+
+So entstehen die anderen Antworten.
+
+- Der Samstag hat die meisten Fahrgäste, <InlineMath math="1{.}300" />. Das ist die Begründung des Mitarbeiters im Text, aber am Samstag ist auch die Kapazität größer, nämlich <InlineMath math="1{.}600" />.
+- Der Sonntag hat den höchsten Balken, <InlineMath math="690" /> Fahrgäste ab Karang Mas. Ein einzelner Balken beschreibt nicht den ganzen Tag, und die gemeinsame Auslastung am Sonntag beträgt nur etwa <InlineMath math="76{,}9\%" />.
+- Den Montag bekommst du, wenn du nur die Richtung ab Karang Mas ansiehst: <InlineMath math="560" /> von <InlineMath math="600" /> Plätzen, etwa <InlineMath math="93{,}3\%" />. Ab Batu Lintang war an dem Tag viel weniger los, deshalb liegt die gemeinsame Auslastung nur bei etwa <InlineMath math="76{,}7\%" />.
+- Den Donnerstag bekommst du, wenn du nur die Richtung ab Batu Lintang ansiehst: <InlineMath math="550" /> von <InlineMath math="600" />, etwa <InlineMath math="91{,}7\%" />. Die gemeinsame Auslastung beträgt nur <InlineMath math="77{,}5\%" />.
+
+Die gemeinsame Auslastung beider Richtungen ist also am Freitag am höchsten, mit etwa <InlineMath math="88{,}3\%" />.

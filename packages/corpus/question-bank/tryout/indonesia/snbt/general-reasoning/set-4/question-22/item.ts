@@ -4,31 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "figure-pattern",
+    topic: "percent-change",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$20\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$25\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$28\\%$$",
+        },
+        {
           correct: true,
-          label: "$$56$$",
+          label: "$$30\\%$$",
         },
         {
           correct: false,
-          label: "$$60$$",
-        },
-        {
-          correct: false,
-          label: "$$64$$",
-        },
-        {
-          correct: false,
-          label: "$$169$$",
-        },
-        {
-          correct: false,
-          label: "$$225$$",
+          label: "$$36\\%$$",
         },
       ],
     },

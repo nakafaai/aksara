@@ -1,0 +1,19 @@
+Direktes Einsetzen ergibt <InlineMath math="\frac{1-1}{0}=\frac00" />. **Schreibe <InlineMath math="\sec(2x)" /> als <InlineMath math="\frac{1}{\cos2x}" />**, damit der Zähler die Form <InlineMath math="1-\cos2x" /> bekommt.
+
+<BlockMath math="\sec(2x)-1=\frac{1-\cos2x}{\cos2x}=\frac{2\sin^2x}{\cos2x}" />
+
+Diese Zeile verwendet <InlineMath math="1-\cos2x=2\sin^2x" />. Jetzt zerlegst du in Standardgrenzwerte.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to0}\frac{2\sin^2x}{\cos2x\cdot x\tan x}&=2\cdot\lim_{x\to0}\frac{\sin x}{x}\cdot\lim_{x\to0}\frac{\sin x}{\tan x}\cdot\lim_{x\to0}\frac{1}{\cos2x} \\
+&=2\cdot1\cdot1\cdot1=2
+\end{aligned}" />
+
+Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Bruch etwa <InlineMath math="2{,}0003" />.
+
+Der Grenzwert ist also <InlineMath math="2" />.
+
+- <InlineMath math="0" /> schaut nur auf den Zähler, der gegen <InlineMath math="0" /> geht, aber der Nenner geht ebenfalls gegen <InlineMath math="0" />.
+- <InlineMath math="\frac12" /> verwendet <InlineMath math="1-\cos2x\approx\frac{x^2}{2}" />, die Regel für <InlineMath math="1-\cos x" />, nicht für <InlineMath math="1-\cos2x" />.
+- <InlineMath math="1" /> vergisst den Faktor <InlineMath math="2" /> in <InlineMath math="1-\cos2x=2\sin^2x" />.
+- <InlineMath math="4" /> verwendet <InlineMath math="1-\cos2x\approx(2x)^2" /> ohne den Faktor <InlineMath math="\frac12" />.

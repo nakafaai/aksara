@@ -1,15 +1,43 @@
-Yang dijumlahkan adalah **laju**, yaitu bagian kolam yang terisi setiap jam, bukan lama waktunya.
+Kamu mencari rencana perjalanan termurah untuk <InlineMath math="100" /> peserta. Ada dua hal yang dibatasi: **jumlah kursi harus cukup**, dan **setiap perjalanan harus tiba paling lambat pukul 08.30**. Rencananya: hitung dulu berapa perjalanan yang masih sempat, lalu cari kombinasi termurah di antara perjalanan itu.
 
-# Laju setiap pompa
+# Perjalanan yang masih tiba tepat waktu
 
-Pompa A mengisi <InlineMath math="\tfrac16" /> **kolam per jam** dan pompa B mengisi <InlineMath math="\tfrac19" /> kolam per jam.
+Satu kendaraan bolak-balik, jadi jarak antara dua keberangkatannya adalah dua kali waktu tempuh. Bus berangkat setiap <InlineMath math="50" /> menit, dan minibus setiap <InlineMath math="40" /> menit.
 
-<BlockMath math="\frac16+\frac19=\frac{3}{18}+\frac{2}{18}=\frac{5}{18}" />
+| Kendaraan | Berangkat | Tiba di gedung | Tepat waktu? |
+| :--- | :---: | :---: | :---: |
+| Bus | 07.00 | 07.25 | ya |
+| Bus | 07.50 | 08.15 | ya |
+| Bus | 08.40 | 09.05 | tidak |
+| Minibus | 07.00 | 07.20 | ya |
+| Minibus | 07.40 | 08.00 | ya |
+| Minibus | 08.20 | 08.40 | tidak |
 
-# Waktu mengisi
+Jadi **bus paling banyak melakukan dua perjalanan**, dan setiap minibus juga paling banyak dua perjalanan. Karena ada dua minibus, perjalanan minibus paling banyak <InlineMath math="4" />.
 
-<BlockMath math="1:\frac{5}{18}=\frac{18}{5}=3{,}6\text{ jam}" />
+# Kombinasi termurah
 
-Hasil ini **lebih singkat daripada 6 jam**, waktu pompa yang paling cepat, sesuai dugaan karena kedua pompa saling membantu.
+Misalkan ada <InlineMath math="b" /> perjalanan bus dan <InlineMath math="m" /> perjalanan minibus, dengan <InlineMath math="b\le2" /> dan <InlineMath math="m\le4" />. Kursinya harus cukup: <InlineMath math="30b+14m\ge100" />. Coba setiap nilai <InlineMath math="b" />.
 
-Jadi, kolam penuh dalam **3,6 jam**, yaitu 3 jam 36 menit.
+<BlockMath math="\begin{aligned}
+b=0 &: 14m\ge100 \Rightarrow m\ge 8, \text{ padahal } m\le4 \\
+b=1 &: 14m\ge70 \Rightarrow m\ge 5, \text{ padahal } m\le4 \\
+b=2 &: 14m\ge40 \Rightarrow m\ge 3
+\end{aligned}" />
+
+Hanya <InlineMath math="b=2" /> yang mungkin, jadi **kedua perjalanan bus wajib dipakai**, dan <InlineMath math="m=3" /> adalah yang termurah. Kursinya <InlineMath math="60+42=102" />, cukup untuk <InlineMath math="100" /> peserta.
+
+<BlockMath math="\text{biaya}=2\times150{.}000+3\times65{.}000=300{.}000+195{.}000=495{.}000" />
+
+Cek waktunya: dua perjalanan bus tiba pukul 07.25 dan 08.15, sedangkan tiga perjalanan minibus memakai dua keberangkatan pukul 07.00 dan satu keberangkatan pukul 07.40. Semuanya tiba sebelum 08.30.
+
+# Pilihan yang keliru
+
+Pilihan lain **melupakan batas waktu atau tidak mencari kombinasi termurah**.
+
+- <InlineMath math="\text{Rp}475{.}000{,}00" /> memakai <InlineMath math="1" /> bus dan <InlineMath math="5" /> minibus. Itu termurah kalau tidak ada batas waktu, tetapi minibus hanya sempat <InlineMath math="4" /> perjalanan.
+- <InlineMath math="\text{Rp}515{.}000{,}00" /> mengisi bus sebanyak mungkin, <InlineMath math="3" /> bus dan <InlineMath math="1" /> minibus, padahal bus hanya sempat <InlineMath math="2" /> perjalanan.
+- <InlineMath math="\text{Rp}520{.}000{,}00" /> memakai <InlineMath math="8" /> perjalanan minibus karena biaya per kursinya lebih murah, padahal itu tidak sempat dan juga tidak termurah.
+- <InlineMath math="\text{Rp}560{.}000{,}00" /> memakai semua perjalanan yang sempat, padahal satu perjalanan minibus tidak diperlukan.
+
+Jadi, biaya antar-jemput paling murah agar <InlineMath math="100" /> peserta tiba paling lambat pukul 08.30 adalah <InlineMath math="\text{Rp}495{.}000{,}00" />.

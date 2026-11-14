@@ -1,0 +1,193 @@
+export const metadata = {
+  title: "Pertumbuhan Eksponen",
+  description:
+    "Pendaraban berulang dengan faktor yang sama menghasilkan pertumbuhan eksponen. Model bakteria dan populasi menunjukkan corak ini melalui rumus, jadual dan graf.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-03",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Pertumbuhan Berulang dengan Faktor yang Sama
+
+Pertumbuhan eksponen berlaku apabila satu kuantiti positif <Highlight>didarab dengan faktor yang sama</Highlight> yang lebih besar daripada <InlineMath math="1" /> dalam setiap selang yang sama panjang. Model pertumbuhan berbentuk:
+
+<BlockMath math="f(x)=P_0a^x" />
+
+Kuantiti dalam model ini ialah:
+
+- <InlineMath math="P_0>0" /> ialah nilai awal
+- <InlineMath math="a>1" /> ialah faktor pertumbuhan bagi setiap selang
+- <InlineMath math="x" /> ialah bilangan selang
+
+Untuk peristiwa diskret seperti pembelahan sel yang sudah lengkap, <InlineMath math="x" /> ialah integer bukan negatif. Graf selanjar melanjutkan rumus yang sama kepada nilai nyata <InlineMath math="x" />, dan graf itu perlu difahami sebagai interpolasi bagi model.
+
+## Membina Model daripada Jadual
+
+Jadual nilai membolehkan kamu melihat faktor yang berulang itu secara terus. **Bahagikan satu sebutan dengan sebutan sebelumnya** untuk memastikan bahawa nisbahnya kekal sama pada setiap langkah.
+
+### Pertumbuhan Bakteria yang Ideal
+
+Katakan satu kultur bermula dengan <InlineMath math="30" /> bakteria dan setiap bakteria membelah menjadi dua setiap <InlineMath math="30\text{ minit}" />. Model ini mengabaikan kematian dan **kekangan sumber** supaya kita boleh fokus pada faktor yang berulang.
+
+Katakan <InlineMath math="x" /> ialah bilangan selang tiga puluh minit yang sudah lengkap:
+
+| Selang | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bakteria | <InlineMath math="30" /> | <InlineMath math="60" /> | <InlineMath math="120" /> | <InlineMath math="240" /> | <InlineMath math="480" /> | <InlineMath math="960" /> |
+
+Setiap nilai ialah bilangan awal yang didarab dengan satu kuasa bagi <InlineMath math="2" />:
+
+- <InlineMath math="f(0)=30\cdot2^0=30" />
+- <InlineMath math="f(1)=30\cdot2^1=60" />
+- <InlineMath math="f(2)=30\cdot2^2=120" />
+- <InlineMath math="f(3)=30\cdot2^3=240" />
+- <InlineMath math="f(4)=30\cdot2^4=480" />
+
+Modelnya ialah:
+
+<BlockMath math="f(x)=30\cdot2^x" />
+
+### Mengaitkan Jadual dan Graf
+
+Jadual itu mencatat pembelahan yang sudah lengkap pada **nilai integer** <InlineMath math="x" />. Lengkung yang diplot melanjutkan <InlineMath math="f(x)=30\cdot2^x" /> kepada nilai nyata <InlineMath math="x" />. Dalam model diskret ini, titik di antara dua integer ialah interpolasi bagi rumus. Titik itu tidak mengira satu pembelahan lengkap tambahan.
+
+<FunctionChart
+  p={30}
+  a={2}
+  title={<>Pertumbuhan Bakteria yang Ideal</>}
+  description={
+    <>
+      Bilangannya berganda setiap <InlineMath math="30\text{ minit}" />.
+    </>
+  }
+/>
+
+Setiap penggandaan menambah lebih banyak bakteria berbanding penggandaan sebelumnya, jadi kecerunan lengkung semakin bertambah. Kultur sebenar akhirnya berhenti mengikut model faktor tetap ini kerana ruang dan nutrien menjadi terhad.
+
+### Menukar Masa kepada Selang
+
+Lima jam mengandungi **sepuluh selang tiga puluh minit**:
+
+<BlockMath math="x=\frac{5\cdot60}{30}=10" />
+
+Sekarang gantikan bilangan selang itu ke dalam model:
+
+<BlockMath math="\begin{aligned} f(10) &amp;=30\cdot2^{10} \\ &amp;=30\cdot1{,}024 \\ &amp;=30{,}720 \end{aligned}" />
+
+Mengikut model yang ideal ini, kultur itu mengandungi <InlineMath math="30{,}720" /> bakteria selepas <InlineMath math="5\text{ jam}" />.
+
+## Mengubah atau Mendapatkan Semula Nilai Awal
+
+Untuk faktor pertumbuhan <InlineMath math="a" /> yang tetap, mengubah <InlineMath math="P_0" /> akan **menskalakan setiap output**:
+
+<BlockMath math="f(x)=P_0a^x" />
+
+Contohnya, dengan faktor penggandaan:
+
+- <InlineMath math="P_0=50" /> memberikan <InlineMath math="f(x)=50\cdot2^x" />
+- <InlineMath math="P_0=100" /> memberikan <InlineMath math="f(x)=100\cdot2^x" />
+- <InlineMath math="P_0=200" /> memberikan <InlineMath math="f(x)=200\cdot2^x" />
+
+### Mendapatkan Semula Nilai Awal yang Tidak Diketahui
+
+Katakan satu kultur mengandungi <InlineMath math="8{,}000" /> bakteria selepas <InlineMath math="2" /> selang penggandaan. Katakan <InlineMath math="P_0" /> ialah **bilangan awal yang tidak diketahui**:
+
+<MathContainer>
+  <BlockMath math="8{,}000=P_0\cdot2^2" />
+  <BlockMath math="8{,}000=4P_0" />
+  <BlockMath math="P_0=\frac{8{,}000}{4}" />
+  <BlockMath math="P_0=2{,}000" />
+</MathContainer>
+
+Kultur itu bermula dengan <InlineMath math="2{,}000" /> bakteria.
+
+Kira ke hadapan daripada nilai awal yang didapatkan semula, <InlineMath math="P_0 = 2{,}000" />: bilangannya berganda setiap selang, jadi selepas dua selang bilangannya ialah <InlineMath math="8{,}000" />, sama dengan pemerhatian.
+
+<BarChart
+  title={<>Pertumbuhan daripada <InlineMath math="P_0 = 2{,}000" /></>}
+  description={<>Palang <InlineMath math="2{,}000 \cdot 2^x" /> untuk <InlineMath math="x = 0" /> hingga <InlineMath math="4" /> selang.</>}
+  yAxisLabel="Bakteria"
+  data={[0, 1, 2, 3, 4].map((x) => ({ name: String(x), value: 2000 * 2 ** x }))}
+  chartConfig={{ value: { label: "Bakteria", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Melanjutkan Model Selang yang Sama
+
+Selepas <InlineMath math="10" /> selang penggandaan, kultur yang sama mengandungi:
+
+<MathContainer>
+  <BlockMath math="f(10)=2{,}000\cdot2^{10}" />
+  <BlockMath math="f(10)=2{,}000\cdot1{,}024" />
+  <BlockMath math="f(10)=2{,}048{,}000" />
+</MathContainer>
+
+Masa yang diwakili oleh sepuluh selang itu bergantung pada **panjang selang**. Jika satu selang ialah tiga puluh minit, sepuluh selang sama dengan lima jam.
+
+## Latihan
+
+Kedua-dua soalan memberikan nilai permulaan dan **pertumbuhan bagi setiap selang**. Kultur bakteria berganda setiap lima belas minit, manakala populasi bertambah dua peratus setiap tahun. Kenal pasti faktor pendarab dan unit masa sebelum membina setiap model.
+
+1. Satu kultur bakteria yang ideal bermula dengan <InlineMath math="50" /> sel dan berganda setiap <InlineMath math="15\text{ minit}" />.
+
+   Bina jadual dan graf dari selang <InlineMath math="0" /> hingga selang <InlineMath math="5" />. Tulis fungsi pertumbuhannya. Ramalkan bilangannya selepas <InlineMath math="3\text{ jam}" /> dan selepas <InlineMath math="4\text{ jam}" />.
+
+2. Populasi satu kawasan ialah <InlineMath math="36{,}000{,}000" />. Anggap populasi itu bertambah dengan kadar tetap <InlineMath math="2\%" /> setahun untuk lima tahun akan datang. Berapakah populasi yang diramalkan oleh model selepas lima tahun?
+
+### Jalan Kerja
+
+Gunakan **bilangan selang yang sudah lengkap** sebagai indeks. Tukarkan masa dalam jam kepada bilangan selang sebelum menggantikannya ke dalam rumus. Pada selang sifar, bilangan bakteria masih sama dengan bilangan awal.
+
+**Soalan 1**. Untuk kultur bakteria itu, nilai awalnya ialah <InlineMath math="50" /> dan **faktor pertumbuhannya** ialah <InlineMath math="2" />.
+
+Enam nilai pertama ialah:
+
+| Selang | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| -------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- | ----------------------- |
+| Bakteria | <InlineMath math="50" /> | <InlineMath math="100" /> | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="800" /> | <InlineMath math="1{,}600" /> |
+
+<FunctionChart
+  p={50}
+  a={2}
+  n={6}
+  title={<>Pertumbuhan Bakteria yang Ideal</>}
+  description={
+    <>
+      Bilangannya berganda setiap <InlineMath math="15\text{ minit}" />.
+    </>
+  }
+/>
+
+Dengan <InlineMath math="x" /> diukur dalam selang lima belas minit:
+
+<BlockMath math="f(x)=50\cdot2^x" />
+
+Tiga jam mengandungi <InlineMath math="\frac{3\cdot60}{15}=12" /> selang:
+
+<MathContainer>
+  <BlockMath math="f(12)=50\cdot2^{12}" />
+  <BlockMath math="f(12)=50\cdot4{,}096" />
+  <BlockMath math="f(12)=204{,}800" />
+</MathContainer>
+
+Empat jam mengandungi <InlineMath math="\frac{4\cdot60}{15}=16" /> selang:
+
+<MathContainer>
+  <BlockMath math="f(16)=50\cdot2^{16}" />
+  <BlockMath math="f(16)=50\cdot65{,}536" />
+  <BlockMath math="f(16)=3{,}276{,}800" />
+</MathContainer>
+
+**Soalan 2**. Untuk populasi itu, pertambahan <InlineMath math="2\%" /> sepadan dengan **faktor tahunan** <InlineMath math="1.02" />:
+
+<MathContainer>
+  <BlockMath math="P(t)=36{,}000{,}000(1.02)^t" />
+  <BlockMath math="P(5)=36{,}000{,}000(1.02)^5" />
+  <BlockMath math="P(5)\approx39{,}746{,}909" />
+</MathContainer>
+
+Model ini meramalkan lebih kurang <InlineMath math="39.75\text{ juta orang}" /> selepas lima tahun.
+
+## Batasan Model
+
+Pertumbuhan eksponen muncul dalam faedah kompaun, model populasi yang ideal, model penularan peringkat awal dan pertumbuhan makmal tanpa kekangan. Kenal pasti **nilai awal, faktor dan selang** sebelum menggunakan model ini. Sistem sebenar biasanya membawa kadar yang berubah, sumber yang terhad atau kekangan lain, jadi petua eksponen hanya patut dilanjutkan selagi andaiannya masih munasabah.

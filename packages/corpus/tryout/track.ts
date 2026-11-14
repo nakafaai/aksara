@@ -4,6 +4,7 @@ import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
+import { setLevel } from "#corpus/tryout/level";
 import { profileId } from "#corpus/tryout/profile";
 import { graphIdentity, localizedFields, publicPath } from "#corpus/tryout/row";
 import type {
@@ -148,6 +149,7 @@ const projectSet = Effect.fn("AksaraCorpus.projectTryoutCatalogSet")(function* (
         ? {}
         : { internalEntrySectionKey: internalEntry.value.key }),
       kind: "set",
+      level: setLevel(set.rating),
       order: set.order,
       paper,
       publicPath: setPath,

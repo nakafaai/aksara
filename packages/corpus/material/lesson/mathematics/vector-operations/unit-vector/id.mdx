@@ -23,39 +23,26 @@ Penyebut <InlineMath math="|\overrightarrow{PQ}|" /> adalah panjang vektor <Inli
 
 Vektor satuan searah dengan vektor asal, tetapi panjangnya selalu <InlineMath math="1 \text{ satuan}" />.
 
-<LineEquation
-  cameraPosition={[1.5, 2, 7]}
-  cameraTarget={[1.5, 2, 0]}
-  title="Vektor dan Vektor Satuan"
-  description="Visualisasi vektor asli dan vektor satuan yang memiliki arah sama namun panjang berbeda."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0.6, y: 0.8, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Vektor dan Vektor Satuan</>}
+  description={<>Visualisasi vektor asli dan vektor satuan yang memiliki arah sama namun panjang berbeda.</>}
+  labels={{
+    "l1": <InlineMath math="v" />,
+    "l2": <InlineMath math="\hat{v}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0.6, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.6, y: 0.8 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Menghitung Vektor Satuan
@@ -83,44 +70,31 @@ Vektor satuannya adalah:
 <BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[7.5, 6.5, -7]}
-    cameraTarget={[1.5, 2.9, 1.8]}
-    title="Contoh Vektor Satuan dalam Ruang 3D"
+  <MathVisual
+    title={<>Contoh Vektor Satuan dalam Ruang 3D</>}
     description={
-      <>
-        Visualisasi vektor <InlineMath math="v(3,6,4)" /> dan vektor satuan{" "}
-        <InlineMath math="\hat{v}" /> yang searah.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 6, z: 4 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3 / Math.sqrt(61), y: 6 / Math.sqrt(61), z: 4 / Math.sqrt(61) }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{v}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Visualisasi vektor <InlineMath math="v(3,6,4)" /> dan vektor satuan{" "}
+          <InlineMath math="\hat{v}" /> yang searah.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="v" />,
+      "l2": <InlineMath math="\hat{v}" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -1, max: 7 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 7.5, y: 6.5, z: -7 }, target: { x: 1.5, y: 2.9, z: 1.8 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 6, z: 4 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0.38, y: 0.77, z: 0.51 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 6, z: 4 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0.38, y: 0.77, z: 0.51 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -147,52 +121,29 @@ Dalam sistem koordinat tiga dimensi, terdapat tiga vektor satuan standar yang me
 
 Setiap vektor di <InlineMath math="\mathbb{R}^3" /> dapat dinyatakan sebagai kombinasi linear dari ketiga vektor satuan ini.
 
-<LineEquation
-  cameraPosition={[2, 1.5, 2.2]}
-  cameraTarget={[0.3, 0.35, 0.3]}
-  title="Vektor Satuan Standar"
-  description="Vektor satuan standar pada sumbu koordinat."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 0, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{\imath}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 1, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{\jmath}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 1 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\hat{k}" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Vektor Satuan Standar</>}
+  description={<>Vektor satuan standar pada sumbu koordinat.</>}
+  labels={{
+    "l1": <InlineMath math="\hat{\imath}" />,
+    "l2": <InlineMath math="\hat{\jmath}" />,
+    "l3": <InlineMath math="\hat{k}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 2, y: 1.5, z: 2.2 }, target: { x: 0.3, y: 0.35, z: 0.3 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 1 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Menyatakan Arah dengan Vektor Satuan

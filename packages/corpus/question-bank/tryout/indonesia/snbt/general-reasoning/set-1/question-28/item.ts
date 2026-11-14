@@ -12,24 +12,24 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Untuk pemakaian $$15$$ GB dalam sebulan, Paket A lebih murah daripada Paket B.",
-        },
-        {
           column: 1,
           label:
-            "Untuk pemakaian $$12$$ GB dalam sebulan, Paket A lebih murah daripada Paket B.",
+            "Untuk setiap lama pemakaian lebih dari $$8$$ jam, biaya di Ruang Q lebih kecil daripada biaya di Ruang P.",
         },
         {
           column: 2,
           label:
-            "Untuk pemakaian $$25$$ GB dalam sebulan, selisih biaya kedua paket adalah $$\\text{Rp}10{.}000$$.",
+            "Biaya memakai Ruang P selama $$5$$ jam $$10$$ menit kurang dari $$\\text{Rp}50{.}000$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Untuk setiap lama pemakaian kurang dari $$4$$ jam, biaya di Ruang Q lebih kecil daripada biaya di Ruang P.",
         },
         {
           column: 1,
           label:
-            "Untuk setiap pemakaian lebih dari $$15$$ GB dalam sebulan, Paket B lebih murah daripada Paket A.",
+            "Ada lama pemakaian antara $$7$$ jam dan $$8$$ jam yang membuat biaya di kedua ruang sama besar.",
         },
       ],
     },

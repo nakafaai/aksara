@@ -1,16 +1,26 @@
-Misalkan <InlineMath math="p" />: harga cabai segar naik, <InlineMath math="q" />: Bu Sari mengurangi pembelian cabai segar, dan <InlineMath math="r" />: Bu Sari beralih ke cabai kering. Premis pertama adalah <InlineMath math="p \Rightarrow (q \vee r)" />.
+Soal ini meminta simpulan tentang tadi malam dari empat aturan dan dua fakta: pompa air tidak dinyalakan, dan petak barat sudah dipupuk pada pekan itu. Kuncinya ada pada **cara membaca "kecuali jika" dan "hanya jika"** di aturan 1 dan aturan 4.
 
-Premis kedua menyatakan <InlineMath math="\neg q \wedge \neg r" />, yang setara dengan <InlineMath math="\neg(q \vee r)" />. Artinya, **bagian "maka" pada premis pertama salah**. Dengan modus tollens:
+Kalimat berbentuk "P kecuali jika Q" berarti "jika tidak Q, maka P". Jadi aturan 1 berbunyi: jika tandon belum penuh, pompa dinyalakan. Setiap pernyataan jika-maka setara dengan kontrapositifnya, yaitu bentuk yang membalik urutan dan menyangkal kedua bagian. Kontrapositif aturan 1 berbunyi: jika pompa tidak dinyalakan, tandon sudah penuh.
 
-<BlockMath math="p \Rightarrow (q \vee r),\quad \neg(q \vee r) \;\vdash\; \neg p" />
+Sekarang rangkai langkahnya.
 
-Jadi, harga cabai segar tidak naik minggu ini.
+1. Pompa tidak dinyalakan, jadi menurut kontrapositif aturan 1, tandon sudah penuh.
+2. Tandon penuh, jadi menurut aturan 2, pintu air pembagi dibuka.
+3. Pintu air dibuka, jadi menurut aturan 3, petak timur atau petak barat diairi. Paling sedikit satu dari keduanya diairi.
+4. Kalimat berbentuk "P hanya jika Q" berarti "jika P, maka Q". Jadi aturan 4 berbunyi: jika petak barat diairi, petak barat belum dipupuk pada pekan itu. Kontrapositifnya: jika petak barat sudah dipupuk, petak barat tidak diairi. Petak barat memang sudah dipupuk, jadi petak barat tidak diairi.
+5. Dari langkah 3, paling sedikit satu petak diairi. Petak barat tidak diairi, jadi petak timur yang diairi.
 
-Pilihan lain tidak tepat:
+Rantai lengkapnya terlihat seperti ini.
 
-- "Harga cabai segar naik" bertentangan dengan simpulan yang baru diperoleh.
-- Bu Sari tidak mengurangi pembelian, tetapi itu tidak berarti ia membeli lebih banyak daripada biasanya. Ia bisa membeli dalam jumlah yang sama.
-- Tidak mengurangi pembelian cabai segar berarti Bu Sari tetap membeli, jadi klaim tidak membeli sama sekali bertentangan dengan premis.
-- Premis tidak membahas harga cabai kering.
+<BlockMath math="\text{pompa tidak dinyalakan} \Rightarrow \text{tandon penuh} \Rightarrow \text{pintu dibuka} \Rightarrow (\text{timur} \vee \text{barat})" />
 
-Jadi, simpulan yang pasti benar adalah harga cabai segar tidak naik minggu ini.
+Karena barat gugur lewat aturan 4, yang tersisa adalah timur. Cek balik: tandon penuh, pintu dibuka, timur diairi, dan barat tidak diairi memenuhi keempat aturan sekaligus.
+
+Simpulan lain gugur karena satu langkah yang keliru.
+
+- Simpulan bahwa tandon sudah penuh tetapi petak yang diairi belum bisa dipastikan muncul jika "hanya jika" dibaca terbalik, yaitu "jika petak barat belum dipupuk, petak barat diairi". Dengan bacaan itu, aturan 4 tidak berkata apa pun tentang petak yang sudah dipupuk, sehingga langkahnya berhenti di langkah 3.
+- Simpulan bahwa tandon penuh dan petak barat diairi bertentangan dengan aturan 4, karena petak barat sudah dipupuk.
+- Simpulan bahwa tandon belum penuh dan tidak ada petak yang diairi lahir dari membaca aturan 1 terbalik, seolah-olah tandon penuh membuat pompa menyala. Setelah itu aturan 2 juga dibalik, padahal tandon yang belum penuh tidak menjamin apa pun tentang pintu air.
+- Simpulan bahwa kedua petak diairi membaca kata "atau" seperti "dan", lalu mengabaikan aturan 4.
+
+Jadi, simpulan yang pasti benar adalah tandon air sudah penuh dan petak timur diairi tadi malam.

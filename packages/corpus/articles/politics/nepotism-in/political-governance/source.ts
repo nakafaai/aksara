@@ -9,6 +9,7 @@ export const nepotismPoliticalGovernanceArticle = defineArticleSource({
     de: "nepotismus-und-politische-verantwortung",
     en: "nepotism-in-political-governance",
     id: "nepotism-in-political-governance",
+    ms: "nepotisme-dan-tadbir-urus-politik",
   },
   slug: "nepotism-in-political-governance",
   sourceRoot: "articles/politics/nepotism-in/political-governance",

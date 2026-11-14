@@ -29,7 +29,7 @@ Draw the <InlineMath math="7" /> as unit squares. One full group of <InlineMath 
 
 <MathVisual
   title={<>Seven squares in groups of four</>}
-  description={<>Seven unit squares: one group of 4 for the quotient 1 and 3 left over as the remainder, so <InlineMath math="7 = 4 \cdot 1 + 3" />.</>}
+  description={<>Seven unit squares: one group of <InlineMath math="4" /> for the quotient <InlineMath math="1" /> and <InlineMath math="3" /> left over as the remainder, so <InlineMath math="7 = 4 \cdot 1 + 3" />.</>}
   labels={{
     group: <InlineMath math="4 \cdot 1" />,
     rest: <InlineMath math="3" />,
@@ -116,7 +116,7 @@ Here is the check as numbers. Subtract <InlineMath math="(x + 3)(x^2 + x + 2)" /
 
 <BarChart
   title={<>The gap between <InlineMath math="P(x)" /> and <InlineMath math="(x + 3)(x^2 + x + 2)" /></>}
-  description={<>Bars of <InlineMath math="P(x) - (x + 3)(x^2 + x + 2)" /> for <InlineMath math="x = -3, -2, -1, 0, 1, 2" />, all equal to the remainder 2.</>}
+  description={<>Bars of <InlineMath math="P(x) - (x + 3)(x^2 + x + 2)" /> for <InlineMath math="x = -3, -2, -1, 0, 1, 2" />, all equal to the remainder <InlineMath math="2" />.</>}
   yAxisLabel="Difference"
   data={[-3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 4 * x ** 2 + 5 * x + 8 - (x + 3) * (x ** 2 + x + 2) }))}
   chartConfig={{ value: { label: "Difference", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -126,7 +126,7 @@ Collect the coefficients of <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> degre
 
 <BarChart
   title={<>Coefficients of the rebuilt dividend</>}
-  description={<>Bars of the coefficients of <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> at degrees 3, 2, 1 and 0: 1, 4, 5 and 8.</>}
+  description={<>Bars of the coefficients of <InlineMath math="(x + 3)(x^2 + x + 2) + 2" /> at degrees <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="1" /> and <InlineMath math="0" />: <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="5" /> and <InlineMath math="8" />.</>}
   yAxisLabel="Coefficient"
   data={[["degree 3", 1], ["degree 2", 1 + 3], ["degree 1", 2 + 3], ["degree 0", 6 + 2]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Coefficient", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

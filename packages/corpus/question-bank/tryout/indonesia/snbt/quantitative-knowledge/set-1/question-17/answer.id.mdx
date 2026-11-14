@@ -1,20 +1,37 @@
-Dari informasi awal, jumlah nilai kelas A adalah <InlineMath math="30\times72=2160" />. Pertanyaannya meminta **banyak siswa kelas B**, misalnya <InlineMath math="n" />. Sebuah pernyataan cukup jika ia menghasilkan satu nilai <InlineMath math="n" /> saja.
+Sebuah pernyataan cukup jika **semua segitiga yang memenuhinya mempunyai luas yang sama**. Alat utamanya adalah rumus panjang garis berat, yang menghubungkan ketiga sisi dengan <InlineMath math="AM" />. Periksa pernyataan (1) sendiri, lalu pernyataan (2) sendiri.
+
+# Menurunkan rumus garis berat
+
+Pada segitiga <InlineMath math="ABM" /> dan <InlineMath math="ACM" />, sudut di <InlineMath math="M" /> saling berpelurus, jadi **kosinusnya berlawanan tanda**. Tulis aturan kosinus untuk kedua segitiga, dengan <InlineMath math="BM=CM=\frac{BC}{2}" /> dan <InlineMath math="\theta=\angle AMB" />.
+
+<BlockMath math="\begin{aligned}
+AB^2&=AM^2+BM^2-2\cdot AM\cdot BM\cos\theta\\
+AC^2&=AM^2+CM^2+2\cdot AM\cdot CM\cos\theta\\
+AB^2+AC^2&=2AM^2+\frac{BC^2}{2}
+\end{aligned}" />
+
+Baris ketiga adalah jumlah dua baris pertama. Suku kosinusnya saling menghapus karena <InlineMath math="BM=CM" />.
 
 # Pernyataan pertama saja
 
-Jumlah nilai kelas B adalah <InlineMath math="77n" />, dan rata-rata gabungan adalah jumlah seluruh nilai dibagi banyak seluruh siswa. Persamaan ini **hanya memuat satu variabel**.
+Masukkan <InlineMath math="AB=6" />, <InlineMath math="AC=8" />, dan <InlineMath math="AM=5" /> ke rumus garis berat.
 
 <BlockMath math="\begin{aligned}
-\frac{2160+77n}{30+n}&=74\\
-2160+77n&=2220+74n\\
-3n&=60\\
-n&=20
+36+64&=2\cdot25+\frac{BC^2}{2}\\
+BC^2&=100\\
+BC&=10
 \end{aligned}" />
 
-Cek: <InlineMath math="\frac{2160+1540}{50}=\frac{3700}{50}=74" />. Pernyataan (1) saja cukup.
+Ketiga sisi sekarang tertentu, yaitu <InlineMath math="6" />, <InlineMath math="8" />, dan <InlineMath math="10" />, jadi **segitiganya tunggal** dan luasnya tunggal. Karena <InlineMath math="6^2+8^2=10^2" />, sudut <InlineMath math="A" /> siku-siku dan luasnya <InlineMath math="\frac12\cdot6\cdot8=24\text{ cm}^2" />. Pernyataan (1) saja cukup.
 
 # Pernyataan kedua saja
 
-Pernyataan (2) memberi jumlah nilai kelas B, tetapi **tanpa rata-rata atau banyak siswa**. Kelas B bisa berisi 20 siswa dengan rata-rata 77 atau 22 siswa dengan rata-rata 70, dan keduanya berjumlah 1.540. Pernyataan (2) saja tidak cukup.
+Dari <InlineMath math="BC=10" /> didapat <InlineMath math="BM=MC=5=AM" />. Titik <InlineMath math="A" /> berjarak <InlineMath math="5" /> dari titik tengah <InlineMath math="BC" />, jadi <InlineMath math="A" /> terletak pada lingkaran berdiameter <InlineMath math="BC" /> dan sudut <InlineMath math="A" /> siku-siku. Namun **panjang kedua sisi siku-sikunya belum tertentu**, hanya <InlineMath math="AB^2+AC^2=100" />.
 
-Karena pernyataan (1) saja sudah cukup sedangkan pernyataan (2) saja tidak, jawabannya adalah **pernyataan (1) saja cukup**, tetapi pernyataan (2) saja tidak cukup.
+Contoh pertama, <InlineMath math="AB=6" /> dan <InlineMath math="AC=8" />, memberi luas <InlineMath math="24\text{ cm}^2" />. Contoh kedua, <InlineMath math="AB=AC=5\sqrt2" />, juga memenuhi (2), sebab <InlineMath math="50+50=2\cdot25+\frac{100}{2}" />, tetapi luasnya <InlineMath math="\frac12\cdot5\sqrt2\cdot5\sqrt2=25\text{ cm}^2" />. Dua luas yang berbeda berarti pernyataan (2) saja tidak cukup.
+
+# Mengapa pilihan lain menggoda
+
+Pilihan bahwa kedua pernyataan harus digabung atau bahwa keduanya tidak cukup muncul jika pernyataan (1) dianggap **masih memerlukan sudut di antara <InlineMath math="AB" /> dan <InlineMath math="AC" />**, padahal garis berat sudah menentukan sisi ketiga. Pilihan bahwa setiap pernyataan saja cukup muncul jika sudut siku-siku dari pernyataan (2) dianggap sudah menentukan luas.
+
+Jadi, pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.

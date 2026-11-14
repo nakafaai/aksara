@@ -5,7 +5,12 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
   domain: "chemistry",
   key: "lesson.chemistry.green-chemistry",
   kind: "lesson",
-  routeSlugs: { de: "gruene-chemie", en: "green-chemistry", id: "kimia-hijau" },
+  routeSlugs: {
+    de: "gruene-chemie",
+    en: "green-chemistry",
+    id: "kimia-hijau",
+    ms: "kimia-hijau",
+  },
   sections: [
     {
       evidenceUrls: [
@@ -21,6 +26,7 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         de: "chemische-prozesse-im-alltag",
         en: "chemical-processes-daily-life",
         id: "proses-kimia-sehari-hari",
+        ms: "proses-kimia-dalam-kehidupan-harian",
       },
       slug: "chemical-processes-daily-life",
     },
@@ -36,6 +42,7 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         de: "definition",
         en: "definition",
         id: "pengertian-kimia-hijau",
+        ms: "maksud-kimia-hijau",
       },
       slug: "definition",
     },
@@ -51,6 +58,7 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         de: "massnahmen-der-gruenen-chemie",
         en: "green-chemistry-activities",
         id: "kegiatan-kimia-hijau",
+        ms: "aktiviti-kimia-hijau",
       },
       slug: "green-chemistry-activities",
     },
@@ -66,6 +74,7 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
         de: "prinzipien",
         en: "principles",
         id: "prinsip-kimia-hijau",
+        ms: "prinsip-kimia-hijau",
       },
       slug: "principles",
     },
@@ -82,6 +91,10 @@ export const lessonChemistryGreenChemistryMaterial = defineLessonMaterial({
     },
     id: {
       description: "Nilai reaksi sehari-hari dengan prinsip kimia hijau.",
+      title: "Kimia Hijau",
+    },
+    ms: {
+      description: "Nilai tindak balas harian dengan prinsip kimia hijau.",
       title: "Kimia Hijau",
     },
   },

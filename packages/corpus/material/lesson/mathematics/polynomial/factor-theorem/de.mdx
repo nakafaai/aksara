@@ -150,11 +150,11 @@ Fasse alle Faktoren zusammen.
 
 Prüfe die Faktorisierung durch Einsetzen: <InlineMath math="P(-5) = -125 + 50 + 65 + 10 = 0" /> sowie <InlineMath math="P(2) = 8 + 8 - 26 + 10 = 0" />. Die Nullstellen <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" /> liefern drei Linearfaktoren. Ihr Produkt hat den Grad drei und den Leitkoeffizienten <InlineMath math="1" /> wie <InlineMath math="P(x)" />, also gilt genau <InlineMath math="P(x) = (x + 5)(x - 1)(x - 2)" />.
 
-Berechne <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> für die ganzen Zahlen von <InlineMath math="-5" /> bis 2. Die Balken sind genau bei <InlineMath math="-5" />, 1 und 2 null, den drei Nullstellen hinter <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
+Berechne <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /> für die ganzen Zahlen von <InlineMath math="-5" /> bis <InlineMath math="2" />. Die Balken sind genau bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" /> null, den drei Nullstellen hinter <InlineMath math="(x - 1)(x - 2)(x + 5)" />.
 
 <BarChart
   title={<>Werte von <InlineMath math="P(x) = x^3 + 2x^2 - 13x + 10" /></>}
-  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -5" /> bis 2, null bei <InlineMath math="-5" />, 1 und 2.</>}
+  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -5" /> bis <InlineMath math="2" />, null bei <InlineMath math="-5" />, <InlineMath math="1" /> und <InlineMath math="2" />.</>}
   yAxisLabel="P(x)"
   data={[-5, -4, -3, -2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: x ** 3 + 2 * x ** 2 - 13 * x + 10 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -239,11 +239,11 @@ Der Faktor <InlineMath math="(x - 2)" /> kommt zweimal vor, also ist <InlineMath
 
 Für <InlineMath math="k = 3" /> liefert die Horner-Methode mit <InlineMath math="c = -2" /> und den Koeffizienten <InlineMath math="1, 3, -4, -12" /> die Zeile <InlineMath math="1, 1, -6, 0" />, also ist der Quotient <InlineMath math="x^2 + x - 6 = (x + 3)(x - 2)" /> und <InlineMath math="x^3 + 3x^2 - 4x - 12 = (x + 2)(x + 3)(x - 2)" />. Probe durch Ausmultiplizieren: <InlineMath math="(x + 2)(x + 3) = x^2 + 5x + 6" /> und <InlineMath math="(x^2 + 5x + 6)(x - 2) = x^3 + 3x^2 - 4x - 12" />.
 
-Die Lösung in einem Diagramm: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> ist bei <InlineMath math="-3" />, <InlineMath math="-1" /> und 6 null und dazwischen nirgends sonst, passend zu <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
+Die Lösung in einem Diagramm: <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /> ist bei <InlineMath math="-3" />, <InlineMath math="-1" /> und <InlineMath math="6" /> null und dazwischen nirgends sonst, passend zu <InlineMath math="(x + 1)(x - 6)(x + 3)" />.
 
 <BarChart
   title={<>Werte von <InlineMath math="P(x) = x^3 - 2x^2 - 21x - 18" /></>}
-  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -3" /> bis 6, null bei <InlineMath math="-3" />, <InlineMath math="-1" /> und 6.</>}
+  description={<>Balken von <InlineMath math="P(x)" /> für <InlineMath math="x = -3" /> bis <InlineMath math="6" />, null bei <InlineMath math="-3" />, <InlineMath math="-1" /> und <InlineMath math="6" />.</>}
   yAxisLabel="P(x)"
   data={[-3, -2, -1, 0, 1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: x ** 3 - 2 * x ** 2 - 21 * x - 18 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

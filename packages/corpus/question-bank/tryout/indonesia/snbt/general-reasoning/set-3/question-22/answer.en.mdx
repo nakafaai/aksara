@@ -1,18 +1,29 @@
-Count the matches **by direction**, because every match is either horizontal or vertical.
+This question uses three percentages, and **each one has a different base**. The <InlineMath math="10\%" /> is taken from the starting number, the <InlineMath math="50\%" /> from the seedlings still alive, and the <InlineMath math="60\%" /> from the starting number again. You only know the final count, <InlineMath math="840" />, so the safest move is to write everything in one unit: the starting number of seedlings.
 
-A big <InlineMath math="n\times n" /> square has <InlineMath math="n+1" /> horizontal lines, each made of <InlineMath math="n" /> matches. In the same way there are <InlineMath math="n+1" /> vertical lines of <InlineMath math="n" /> matches each. So
+Let the starting number be <InlineMath math="N" />. Follow the seedlings month by month.
 
-<BlockMath math="\text{number of matches}=n(n+1)+n(n+1)=2n(n+1)" />
+<BlockMath math="\begin{aligned}
+\text{alive after month one} &= 0.9N \\
+\text{moved} &= 0.5 \times 0.9N = 0.45N \\
+\text{new seedlings} &= 0.6N \\
+\text{final count} &= 0.9N - 0.45N + 0.6N = 1.05N
+\end{aligned}" />
 
-Check with the table: <InlineMath math="2(1)(2)=4" />, <InlineMath math="2(2)(3)=12" />, and <InlineMath math="2(3)(4)=24" />. The formula fits all three patterns. For pattern <InlineMath math="10" />:
+The final count is <InlineMath math="840" />, so you can find <InlineMath math="N" /> and then the number moved.
 
-<BlockMath math="2(10)(11)=220" />
+<BlockMath math="\begin{aligned}
+1.05N &= 840 \\
+N &= 800 \\
+0.45N &= 0.45 \times 800 = 360
+\end{aligned}" />
 
-The other options come from these mistakes:
+Check by tracing it again: <InlineMath math="800" /> seedlings, <InlineMath math="80" /> die so <InlineMath math="720" /> are left, half of them, <InlineMath math="360" />, are moved so <InlineMath math="360" /> remain, then <InlineMath math="480" /> new ones are added. That gives <InlineMath math="360 + 480 = 840" />, which matches the question.
 
-- <InlineMath math="110" /> counts matches in one direction only, such as the horizontal ones.
-- <InlineMath math="200" /> uses <InlineMath math="2n^2" />, as if there were only <InlineMath math="n" /> lines in each direction, although the edge lines count too.
-- <InlineMath math="242" /> uses <InlineMath math="2(n+1)^2" />, treating each line as <InlineMath math="n+1" /> matches long.
-- <InlineMath math="400" /> counts <InlineMath math="4" /> matches for every small square, so shared sides are counted twice.
+Each of the other options comes from mixing up a base.
 
-So pattern <InlineMath math="10" /> needs <InlineMath math="220" /> matches.
+- <InlineMath math="378" /> comes from just adding the percentages: <InlineMath math="-10\% - 50\% + 60\% = 0\%" />. You then think the starting number was <InlineMath math="840" />, so the number moved is <InlineMath math="0.5 \times 0.9 \times 840 = 378" />.
+- <InlineMath math="400" /> comes from taking <InlineMath math="50\%" /> of the starting <InlineMath math="800" />, even though only half of the surviving seedlings were moved.
+- <InlineMath math="420" /> comes from taking <InlineMath math="50\%" /> of the final <InlineMath math="840" />.
+- <InlineMath math="525" /> comes from treating the new seedlings as <InlineMath math="60\%" /> of what was left after moving. Then the final count is <InlineMath math="1.6" /> times that remainder, so the remainder is <InlineMath math="840 \div 1.6 = 525" />, and since half were moved, the number moved is taken to equal that remainder.
+
+So <InlineMath math="360" /> seedlings were moved to the orchard in the second month.

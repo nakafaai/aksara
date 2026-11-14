@@ -1,22 +1,46 @@
-Yang dibandingkan adalah **jumlah bibit sejak tahun pertama**, bukan banyak bibit pada satu tahun saja.
+Kamu menghitung semua banyak pohon yang keuntungannya mencapai <InlineMath math="\text{Rp}30{.}720{.}000" />. Kuncinya, **keuntungan punya dua rumus**: satu untuk paling banyak <InlineMath math="40" /> pohon dan satu untuk paling sedikit <InlineMath math="40" /> pohon. Rencananya: tulis kedua rumus, selesaikan syaratnya di daerah masing-masing, lalu gabungkan.
 
-# Jumlah bibit setelah n tahun
+# Dua rumus keuntungan
 
-<BlockMath math="\begin{aligned}
-\text{Sukamaju}&:\quad \tfrac{n}{2}\bigl(240+15(n-1)\bigr)=120n+7{,}5n(n-1)\\
-\text{tetangga}&:\quad 195n
-\end{aligned}" />
-
-# Menyamakan keduanya
+Untuk <InlineMath math="n" /> paling banyak <InlineMath math="40" />, setiap pohon menghasilkan <InlineMath math="120\text{ kg}" />, jadi untung per pohon <InlineMath math="120\cdot8{.}000-96{.}000=864{.}000" /> rupiah. Untuk <InlineMath math="n" /> paling sedikit <InlineMath math="40" />, hasil per pohon <InlineMath math="200-2n" /> kilogram:
 
 <BlockMath math="\begin{aligned}
-120n+7{,}5n(n-1)&=195n\\
-7{,}5(n-1)&=75\\
-n&=11
+n\le40: \ \text{keuntungan}&=864{.}000n\\
+n\ge40: \ \text{keuntungan}&=8{.}000n(200-2n)-96{.}000n=16{.}000n(94-n)
 \end{aligned}" />
 
-Pemeriksaan: setelah 11 tahun, Sukamaju menanam <InlineMath math="1{.}320+825=2{.}145" /> bibit, dan desa tetangga <InlineMath math="11\cdot195=2{.}145" /> bibit.
+Kedua rumus memberi nilai yang sama di <InlineMath math="n=40" />, yaitu <InlineMath math="34{.}560{.}000" />, jadi **keduanya tersambung dengan benar**.
 
-Tahun ke-6 adalah tahun ketika **banyak bibit dalam satu tahun** sama, yaitu 195, padahal saat itu desa tetangga masih unggul jauh. Pada akhir tahun ke-8 dan ke-10 desa tetangga masih lebih banyak, dan pada akhir tahun ke-12 Sukamaju sudah lebih banyak.
+# Daerah di atas empat puluh pohon
 
-Jadi, jumlah bibit kedua desa pertama kali sama pada akhir **tahun ke-11**.
+Untuk <InlineMath math="n" /> paling sedikit <InlineMath math="40" />, bagi kedua ruas dengan <InlineMath math="16{.}000" />:
+
+<BlockMath math="\begin{aligned}
+16{.}000n(94-n)&\ge30{.}720{.}000\\
+n(94-n)&\ge1{.}920\\
+n^2-94n+1{.}920&\le0\\
+(n-30)(n-64)&\le0
+\end{aligned}" />
+
+Bentuk ini berlaku untuk <InlineMath math="n" /> dari <InlineMath math="30" /> sampai <InlineMath math="64" />. Tetapi **rumus ini hanya sah untuk paling sedikit empat puluh pohon**, jadi yang dipakai hanya <InlineMath math="n" /> dari <InlineMath math="40" /> sampai <InlineMath math="64" />. Batas atas <InlineMath math="64" /> masih di bawah kapasitas kebun, <InlineMath math="70" />.
+
+# Daerah sampai empat puluh pohon
+
+Untuk <InlineMath math="n" /> paling banyak <InlineMath math="40" />, pakai rumus pertama:
+
+<BlockMath math="\begin{aligned}
+864{.}000n&\ge30{.}720{.}000\\
+n&\ge35\tfrac{5}{9}
+\end{aligned}" />
+
+Jadi <InlineMath math="n" /> dari <InlineMath math="36" /> sampai <InlineMath math="40" /> memenuhi. **Akar tiga puluh dari persamaan kuadrat tidak berlaku di sini**, karena untuk kurang dari <InlineMath math="40" /> pohon hasil per pohon tetap <InlineMath math="120\text{ kg}" />.
+
+# Menggabungkan kedua daerah
+
+Gabungan kedua daerah adalah <InlineMath math="n" /> dari <InlineMath math="36" /> sampai <InlineMath math="64" />, dengan <InlineMath math="40" /> **hanya dihitung sekali**. Banyaknya <InlineMath math="64-36+1=29" /> pilihan.
+
+Coba cek di keempat ujungnya. <InlineMath math="864{.}000\cdot35=30{.}240{.}000" /> masih kurang, sedangkan <InlineMath math="864{.}000\cdot36=31{.}104{.}000" /> sudah cukup. <InlineMath math="16{.}000\cdot64\cdot30=30{.}720{.}000" /> tepat mencapai syarat, sedangkan <InlineMath math="16{.}000\cdot65\cdot29=30{.}160{.}000" /> kurang.
+
+Kalau rumus kuadrat dipakai untuk semua banyak pohon, hasilnya <InlineMath math="35" /> pilihan, dari <InlineMath math="30" /> sampai <InlineMath math="64" />. Kalau <InlineMath math="64" /> pohon dibuang karena keuntungannya hanya sama dengan batas, hasilnya <InlineMath math="28" />, padahal kata paling sedikit mencakup nilai yang sama.
+
+Jadi, ada <InlineMath math="29" /> pilihan banyak pohon yang memberi keuntungan paling sedikit <InlineMath math="\text{Rp}30{.}720{.}000" />.

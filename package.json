@@ -20,20 +20,22 @@
       "@types/estree-jsx": "1.0.5",
       "@types/mdast": "4.0.4",
       "@types/unist": "3.0.3",
-      "@vitest/coverage-istanbul": "5.0.5",
+      "@vitest/coverage-istanbul": "5.1.0",
       "effect": "4.1.2",
       "esbuild": "0.28.2",
       "eslint-scope": "9.1.2",
       "estree-util-visit": "2.0.0",
+      "happy-dom": "21.0.4",
       "mdast-util-mdx": "3.0.0",
       "mdast-util-to-string": "4.0.0",
+      "mermaid": "12.3.0",
       "remark-gfm": "4.0.1",
       "remark-math": "6.0.0",
       "remark-parse": "11.0.0",
       "tsrs": "0.23.0-ts7.1.0-beta",
       "unified": "11.0.5",
       "unist-util-visit": "5.2.0",
-      "vitest": "5.0.5"
+      "vitest": "5.1.0"
     }
   },
   "scripts": {
@@ -72,6 +74,7 @@
     "typecheck": "turbo run typecheck",
     "typecheck:root": "tsrs --project tsconfig.json",
     "verify:consumer": "turbo run verify:consumer --",
+    "visuals": "node --conditions=aksara-source scripts/check/visuals.ts",
     "workflows": "node scripts/workflow/check.ts"
   },
   "overrides": {
@@ -87,26 +90,27 @@
   },
   "devDependencies": {
     "@actions/expressions": "0.3.61",
-    "@biomejs/biome": "2.6.4",
+    "@biomejs/biome": "2.6.7",
     "@effect/platform-node": "catalog:",
     "@effect/tsgo": "0.67.5",
     "@effect/vitest": "catalog:",
     "@mdx-js/mdx": "catalog:",
+    "@nakafa/aksara-compiler": "workspace:*",
     "@nakafa/aksara-contracts": "workspace:*",
     "@nakafa/aksara-corpus": "workspace:*",
     "@nakafa/aksara-utilities": "workspace:*",
     "@nakafa/testing": "workspace:*",
-    "@sigstore/bundle": "5.0.0",
+    "@sigstore/bundle": "5.0.1",
     "@types/mdast": "catalog:",
     "@types/node": "26.6.6",
     "@vitest/coverage-istanbul": "catalog:",
     "effect": "catalog:",
     "remark-gfm": "catalog:",
     "remark-parse": "catalog:",
-    "sigstore": "5.0.0",
+    "sigstore": "5.0.1",
     "tsrs": "catalog:",
-    "turbo": "2.11.10",
-    "ultracite": "8.1.0",
+    "turbo": "2.11.11",
+    "ultracite": "8.2.0",
     "vitest": "catalog:",
     "yaml": "2.9.1"
   },
@@ -117,7 +121,7 @@
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "26.13.0",
+      "version": "26.13.1",
       "onFail": "download"
     }
   },

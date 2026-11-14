@@ -1,15 +1,35 @@
-Tuliskan bilangan sebagai <InlineMath math="\overline{abc}" />, dengan <InlineMath math="a+b+c=5" />. Syarat pentingnya adalah **angka ratusan <InlineMath math="a" /> tidak boleh nol**, karena bilangan harus tiga angka.
+Sebut angka ratusan <InlineMath math="r" />, angka puluhan <InlineMath math="p" />, dan angka satuan <InlineMath math="s" />. Semua angka diambil dari <InlineMath math="1" /> sampai <InlineMath math="9" /> dan berbeda satu sama lain. Syarat kedua meminta <InlineMath math="r > s" />. Pengecualiannya membuang bilangan dengan <InlineMath math="p > r" />, jadi yang tersisa adalah bilangan dengan <InlineMath math="p < r" />, karena <InlineMath math="p" /> tidak mungkin sama dengan <InlineMath math="r" />.
 
-Hitung menurut nilai <InlineMath math="a" />. Untuk setiap <InlineMath math="a" />, sisa <InlineMath math="5-a" /> dibagi ke <InlineMath math="b" /> dan <InlineMath math="c" />, masing-masing dari <InlineMath math="0" /> sampai <InlineMath math="9" />. Banyak pasangan <InlineMath math="(b,c)" /> dengan <InlineMath math="b+c=s" /> adalah <InlineMath math="s+1" />.
+Gabungkan kedua ketentuan itu: <InlineMath math="r > s" /> dan <InlineMath math="r > p" />. Artinya, **angka ratusan harus menjadi angka terbesar** di antara ketiganya. Sekarang hitung per kasus menurut nilai <InlineMath math="r" />.
 
-| <InlineMath math="a" /> | <InlineMath math="b+c" /> | Banyak pasangan |
-| --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
-| <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
-| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
-| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
-| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+Untuk satu nilai <InlineMath math="r" />, angka satuan dipilih dari <InlineMath math="1" /> sampai <InlineMath math="r - 1" />, jadi ada <InlineMath math="r - 1" /> pilihan. Angka puluhan juga harus lebih kecil daripada <InlineMath math="r" /> dan tidak boleh sama dengan angka satuan, jadi ada <InlineMath math="r - 2" /> pilihan.
 
-<BlockMath math="5+4+3+2+1=15" />
+| Angka ratusan <InlineMath math="r" /> | Pilihan satuan | Pilihan puluhan | Banyak bilangan |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> atau <InlineMath math="2" /> | tidak cukup angka | tidak cukup angka | <InlineMath math="0" /> |
+| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> |
+| <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="6" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="12" /> |
+| <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="20" /> |
+| <InlineMath math="7" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="30" /> |
+| <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
+| <InlineMath math="9" /> | <InlineMath math="8" /> | <InlineMath math="7" /> | <InlineMath math="56" /> |
 
-Sebagai contoh, untuk <InlineMath math="a=3" /> bilangannya adalah <InlineMath math="302" />, <InlineMath math="311" />, dan <InlineMath math="320" />. Jika angka ratusan nol ikut dihitung, hasilnya menjadi <InlineMath math="21" />, padahal bilangan seperti <InlineMath math="023" /> bukan bilangan tiga angka. Jadi, ada <InlineMath math="15" /> bilangan.
+Jumlahkan semua kasus.
+
+<BlockMath math="2 + 6 + 12 + 20 + 30 + 42 + 56 = 168" />
+
+Cek dengan cara lain. Pilih dulu tiga angka berbeda dari <InlineMath math="1" /> sampai <InlineMath math="9" />. Ada <InlineMath math="\binom{9}{3} = 84" /> cara. Angka terbesar wajib menjadi ratusan, sedangkan dua angka lainnya boleh ditukar posisinya, jadi setiap pilihan menghasilkan <InlineMath math="2" /> bilangan.
+
+<BlockMath math="84 \times 2 = 168" />
+
+Cara ini juga menjelaskan pengecualiannya. Sebelum pengecualian, setiap tiga angka memberi <InlineMath math="3" /> bilangan dengan ratusan lebih besar daripada satuan, total <InlineMath math="84 \times 3 = 252" />. Dari ketiganya, tepat satu bilangan menaruh angka terbesar di puluhan, dan bilangan itulah yang dibuang.
+
+Beberapa hasil keliru yang sering muncul:
+
+- <InlineMath math="252" /> berarti pengecualiannya terlupa.
+- <InlineMath math="126" /> muncul kalau kamu mengira puluhan lebih besar daripada ratusan pada separuh kasus. Ternyata hanya sepertiga, yaitu satu dari tiga susunan.
+- <InlineMath math="240" /> muncul kalau angka <InlineMath math="0" /> ikut dipakai di puluhan atau satuan.
+- <InlineMath math="84" /> adalah banyak bilangan yang dibuang, bukan yang tersisa.
+
+Jadi, banyak bilangan yang tersisa adalah <InlineMath math="168" />.

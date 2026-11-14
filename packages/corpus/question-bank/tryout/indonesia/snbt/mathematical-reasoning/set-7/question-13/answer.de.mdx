@@ -1,18 +1,40 @@
-Kehre die Formel <InlineMath math="F=\tfrac95C+32" /> um, indem du ihre Schritte von hinten rückgängig machst: **zuerst 32 abziehen, dann mit <InlineMath math="\tfrac59" /> multiplizieren**.
+Gesucht ist der erste Zeitpunkt, an dem der Wasserstand <InlineMath math="300\text{ cm}" /> erreicht. Der Plan: Ordne jeder Stunde am Pegel den Regen zu, der <InlineMath math="2" /> Stunden früher gefallen ist, verfolge den Anstieg Stunde für Stunde und **ändere die Rate**, sobald das Wehr bei <InlineMath math="250\text{ cm}" /> öffnet.
 
-# Die Formel umkehren
+# Der Regen, der in jeder Stunde ankommt
+
+Regen am Oberlauf kommt erst <InlineMath math="2" /> Stunden später an, also **gehört zu jeder Pegelstunde der Regen von zwei Stunden davor**. Die Änderung beträgt <InlineMath math="(2p-20)\text{ cm}" /> pro Stunde.
+
+| Stunde am Pegel | Ankommender Regen | Änderung pro Stunde |
+| --- | --- | --- |
+| 06.00-07.00 | <InlineMath math="30\text{ mm}" /> | <InlineMath math="+40\text{ cm}" /> |
+| 07.00-08.00 | <InlineMath math="25\text{ mm}" /> | <InlineMath math="+30\text{ cm}" /> |
+| 08.00-09.00 | <InlineMath math="40\text{ mm}" /> | <InlineMath math="+60\text{ cm}" /> |
+| 09.00-10.00 | <InlineMath math="55\text{ mm}" /> | <InlineMath math="+90\text{ cm}" /> |
+
+# Anstieg bis das Wehr öffnet
+
+Der Wasserstand wird um 07.00 Uhr <InlineMath math="140+40=180\text{ cm}" /> und um 08.00 Uhr <InlineMath math="180+30=210\text{ cm}" />. Ab 08.00 Uhr steigt er um <InlineMath math="60\text{ cm}" /> pro Stunde, also **öffnet das Wehr, wenn der Wasserstand <InlineMath math="250\text{ cm}" /> erreicht**.
+
+<BlockMath math="\frac{250-210}{60}\text{ h}=\frac{40}{60}\text{ h}=40\text{ min}" />
+
+Das Wehr öffnet um 08.40 Uhr.
+
+# Langsamerer Anstieg bei offenem Wehr
+
+Solange das Wehr offen ist, sinkt jede Änderung um <InlineMath math="30\text{ cm}" /> pro Stunde. **Von 08.40 Uhr bis 09.00 Uhr beträgt die Rate nur noch <InlineMath math="60-30=30\text{ cm}" /> pro Stunde**, von 09.00 Uhr bis 10.00 Uhr <InlineMath math="90-30=60\text{ cm}" /> pro Stunde.
 
 <BlockMath math="\begin{aligned}
-F-32&=\tfrac95C\\
-C&=\tfrac59(F-32)
+\text{Stand um 09.00 Uhr} &= 250+30\cdot\frac{20}{60}=250+10=260\text{ cm} \\
+\text{Zeit bis } 300\text{ cm} &= \frac{300-260}{60}\text{ h}=40\text{ min}
 \end{aligned}" />
 
-# Einsetzen
+Der Status Awas beginnt um 09.00 Uhr plus <InlineMath math="40" /> Minuten, also um 09.40 Uhr. Zur Probe: Um 10.00 Uhr steht das Wasser bei <InlineMath math="260+60=320\text{ cm}" />, und <InlineMath math="300" /> liegt tatsächlich zwischen <InlineMath math="260" /> und <InlineMath math="320" />.
 
-<BlockMath math="C=\tfrac59(356-32)=\tfrac59\cdot324=180" />
+# Die falschen Antworten
 
-Kontrolle: <InlineMath math="\tfrac95\cdot180+32=324+32=356" />, **passt zum Rezept**.
+- 08.40 Uhr ist der Beginn des Status **Siaga** bei <InlineMath math="250\text{ cm}" />, noch nicht Awas.
+- 09.10 Uhr entsteht, wenn der Regen schon nach <InlineMath math="1" /> Stunde ankommen soll. Dann bekommt jede Pegelstunde den falschen Regen.
+- 09.20 Uhr entsteht, wenn du das Wehr übersiehst: Der Stand um 09.00 Uhr wird <InlineMath math="270\text{ cm}" />, danach steigt er um <InlineMath math="90\text{ cm}" /> pro Stunde.
+- 09.30 Uhr entsteht, wenn das Wehr erst ab 09.00 Uhr wirkt. Dann steht das Wasser um 09.00 Uhr bei <InlineMath math="270\text{ cm}" /> und steigt danach um <InlineMath math="60\text{ cm}" /> pro Stunde.
 
-Der Wert 197,8 °C vergisst, 32 abzuziehen. Der Wert 165,8 °C multipliziert zuerst und zieht danach 32 ab. Der Wert 215,6 °C addiert 32 stattdessen. Der Wert 324 °C zieht nur 32 ab, ohne mit <InlineMath math="\tfrac59" /> zu multiplizieren.
-
-Die Ofentemperatur beträgt also **180 °C**.
+Der Status Awas beginnt also zum ersten Mal um 09.40 Uhr.

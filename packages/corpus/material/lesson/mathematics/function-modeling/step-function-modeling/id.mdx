@@ -41,7 +41,7 @@ Fungsi lantai, dilambangkan dengan <InlineMath math="\lfloor x \rfloor" />, memb
 
 Grafik menandai setiap ujung kiri yang termasuk dengan titik penuh dan setiap ujung kanan yang tidak termasuk dengan titik kosong.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Fungsi Lantai <InlineMath math="f(x) = \lfloor x \rfloor" />
@@ -53,27 +53,29 @@ Grafik menandai setiap ujung kiri yang termasuk dengan titik penuh dan setiap uj
       terbesar yang tidak melebihi <InlineMath math="x" />.
     </>
   }
-  data={[
-    ...Array.from({ length: 10 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 5;
-      return {
-        endpoints: { start: "closed", end: "open" },
-        points: [
-          { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 1, y: integerValue, z: 0 },
-        ],
-        color: "#9333ea",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 2
-            ? [{ text: <InlineMath math="f(x)=\lfloor x \rfloor" />, at: 1, offset: [1, -1, 0] }]
-            : [],
-      };
-    }),
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="f(x)=\lfloor x \rfloor" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: -4, y: -5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -4 }, { x: -3, y: -4 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: -2, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -1, y: -2 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 4 }, { x: 5, y: 4 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 **Tabel nilai fungsi lantai**:
@@ -90,7 +92,7 @@ Fungsi langit-langit, dilambangkan dengan <InlineMath math="\lceil x \rceil" />,
 
 Grafik menandai setiap ujung kiri yang tidak termasuk dengan titik kosong dan setiap ujung kanan yang termasuk dengan titik penuh.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Fungsi Langit-langit <InlineMath math="f(x) = \lceil x \rceil" />
@@ -102,27 +104,29 @@ Grafik menandai setiap ujung kiri yang tidak termasuk dengan titik kosong dan se
       terkecil yang tidak kurang dari <InlineMath math="x" />.
     </>
   }
-  data={[
-    ...Array.from({ length: 10 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 4;
-      return {
-        endpoints: { start: "open", end: "closed" },
-        points: [
-          { x: integerValue - 1, y: integerValue, z: 0 },
-          { x: integerValue, y: integerValue, z: 0 },
-        ],
-        color: "#ea580c",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 3
-            ? [{ text: <InlineMath math="f(x)=\lceil x \rceil" />, at: 1, offset: [1, -1, 0] }]
-            : [],
-      };
-    }),
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="f(x)=\lceil x \rceil" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -4 }, { x: -4, y: -4 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -3 }, { x: -3, y: -3 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -2 }, { x: -2, y: -2 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -1 }, { x: -1, y: -1 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: 0, y: 0 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 1, y: 1 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 2 }, { x: 2, y: 2 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 4 }, { x: 4, y: 4 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 5 }, { x: 5, y: 5 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ### Fungsi Tangga Satuan Heaviside
@@ -133,7 +137,7 @@ Contoh berikut memakai konvensi umum untuk fungsi unit step atau fungsi Heavisid
 
 Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <InlineMath math="x < 0" /> dan <InlineMath math="1" /> untuk <InlineMath math="x \geq 0" />. Bidang lain kadang memilih <InlineMath math="H(0)=0" /> atau <InlineMath math="H(0)=\frac12" />, sehingga **nilai fungsi pada titik lompatan** harus selalu dinyatakan.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Fungsi Unit Step <InlineMath math="H(x)" />
@@ -145,33 +149,21 @@ Dalam konvensi ini, fungsi unit step bernilai <InlineMath math="0" /> untuk <Inl
       <InlineMath math="1" /> di titik <InlineMath math="x = 0" />.
     </>
   }
-  data={[
-    {
-      endpoints: { end: "open" },
-      lineWidth: 4,
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      endpoints: { start: "closed" },
-      lineWidth: 4,
-      points: [
-        { x: 0, y: 1, z: 0 },
-        { x: 4, y: 1, z: 0 },
-      ],
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="H(x)" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="H(x)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 0 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 1 }, { x: 4, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 1 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ## Sifat Fungsi Tangga
@@ -205,7 +197,7 @@ Pada fungsi lantai dan langit-langit, **dua bilangan bulat mengapit masukan**. U
 
 Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser **tinggi grafik fungsi lantai** ke atas (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
 
-<LineEquation
+<MathVisual
   title={<>Translasi Vertikal Fungsi Lantai</>}
   description={
     <>
@@ -214,61 +206,53 @@ Fungsi <InlineMath math="f(x) = \lfloor x \rfloor + k" /> menggeser **tinggi gra
       <InlineMath math="h(x) = \lfloor x \rfloor - 1" />.
     </>
   }
-  data={[
-    ...Array.from({ length: 10 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 5;
-      return {
-        endpoints: { start: "closed", end: "open" },
-        points: [
-          { x: integerValue, y: integerValue, z: 0 },
-          { x: integerValue + 1, y: integerValue, z: 0 },
-        ],
-        color: "#9333ea",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 2
-            ? [{ text: <InlineMath math="f(x)=\lfloor x \rfloor" />, at: 1, offset: [0, 0.5, 0] }]
-            : [],
-      };
-    }),
-    ...Array.from({ length: 10 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 5;
-      return {
-        endpoints: { start: "closed", end: "open" },
-        points: [
-          { x: integerValue, y: integerValue + 2, z: 0 },
-          { x: integerValue + 1, y: integerValue + 2, z: 0 },
-        ],
-        color: "#0891b2",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 2
-            ? [{ text: <InlineMath math="g(x)=\lfloor x \rfloor+2" />, at: 1, offset: [0, 0.5, 0] }]
-            : [],
-      };
-    }),
-    ...Array.from({ length: 10 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 5;
-      return {
-        endpoints: { start: "closed", end: "open" },
-        points: [
-          { x: integerValue, y: integerValue - 1, z: 0 },
-          { x: integerValue + 1, y: integerValue - 1, z: 0 },
-        ],
-        color: "#e11d48",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 2
-            ? [{ text: <InlineMath math="h(x)=\lfloor x \rfloor-1" />, at: 1, offset: [0, 0.5, 0] }]
-            : [],
-      };
-    }),
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="f(x)=\lfloor x \rfloor" />,
+    "l2": <InlineMath math="g(x)=\lfloor x \rfloor+2" />,
+    "l3": <InlineMath math="h(x)=\lfloor x \rfloor-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -5, y: -5 }, { x: -4, y: -5 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: -4 }, { x: -3, y: -4 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: -2, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -1, y: -2 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1, y: -1 }, { x: 0, y: -1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }], appearance: "primary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 3, y: 3 }, { x: 4, y: 3 }], appearance: "primary" },
+      { id: "s10", kind: "polyline", vertices: [{ x: 4, y: 4 }, { x: 5, y: 4 }], appearance: "primary" },
+      { id: "s11", kind: "polyline", vertices: [{ x: -5, y: -3 }, { x: -4, y: -3 }], appearance: "secondary" },
+      { id: "s12", kind: "polyline", vertices: [{ x: -4, y: -2 }, { x: -3, y: -2 }], appearance: "secondary" },
+      { id: "s13", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: -2, y: -1 }], appearance: "secondary" },
+      { id: "s14", kind: "polyline", vertices: [{ x: -2, y: 0 }, { x: -1, y: 0 }], appearance: "secondary" },
+      { id: "s15", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 0, y: 1 }], appearance: "secondary" },
+      { id: "s16", kind: "polyline", vertices: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "s17", kind: "polyline", vertices: [{ x: 1, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "s18", kind: "polyline", vertices: [{ x: 2, y: 4 }, { x: 3, y: 4 }], appearance: "secondary" },
+      { id: "s19", kind: "polyline", vertices: [{ x: 3, y: 5 }, { x: 4, y: 5 }], appearance: "secondary" },
+      { id: "s20", kind: "polyline", vertices: [{ x: 4, y: 6 }, { x: 5, y: 6 }], appearance: "secondary" },
+      { id: "s21", kind: "polyline", vertices: [{ x: -5, y: -6 }, { x: -4, y: -6 }], appearance: "answer" },
+      { id: "s22", kind: "polyline", vertices: [{ x: -4, y: -5 }, { x: -3, y: -5 }], appearance: "answer" },
+      { id: "s23", kind: "polyline", vertices: [{ x: -3, y: -4 }, { x: -2, y: -4 }], appearance: "answer" },
+      { id: "s24", kind: "polyline", vertices: [{ x: -2, y: -3 }, { x: -1, y: -3 }], appearance: "answer" },
+      { id: "s25", kind: "polyline", vertices: [{ x: -1, y: -2 }, { x: 0, y: -2 }], appearance: "answer" },
+      { id: "s26", kind: "polyline", vertices: [{ x: 0, y: -1 }, { x: 1, y: -1 }], appearance: "answer" },
+      { id: "s27", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }], appearance: "answer" },
+      { id: "s28", kind: "polyline", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }], appearance: "answer" },
+      { id: "s29", kind: "polyline", vertices: [{ x: 3, y: 2 }, { x: 4, y: 2 }], appearance: "answer" },
+      { id: "s30", kind: "polyline", vertices: [{ x: 4, y: 3 }, { x: 5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s8", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "l2", objectId: "s18", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s28", at: { x: 3, y: 1 }, placement: "above" },
+    ],
+  }}
 />
 
 ### Translasi Horizontal
@@ -332,7 +316,7 @@ Untuk setiap interval:
 
 Grafik berikut menampilkan nilai fungsi pada setiap interval dan titik ujung:
 
-<LineEquation
+<MathVisual
   title={
     <>
       Grafik <InlineMath math="f(x) = 2\lfloor x \rfloor - 1" />
@@ -344,38 +328,26 @@ Grafik berikut menampilkan nilai fungsi pada setiap interval dan titik ujung:
       translasi vertikal <InlineMath math="-1" />.
     </>
   }
-  data={[
-    ...Array.from({ length: 6 }, (_, intervalIndex) => {
-      const integerValue = intervalIndex - 3;
-      const functionValue = 2 * integerValue - 1;
-      return {
-        endpoints: { start: "closed", end: "open" },
-        points: [
-          { x: integerValue, y: functionValue, z: 0 },
-          { x: integerValue + 1, y: functionValue, z: 0 },
-        ],
-        color: "#7c3aed",
-        showPoints: false,
-        smooth: false,
-        labels:
-          integerValue === 1
-            ? [{ text: <InlineMath math="f(x)=2\lfloor x \rfloor-1" />, at: 1, offset: [-0.2, 1, 0] }]
-            : [],
-      };
-    }),
-    {
-      endpoints: { start: "closed" },
-      points: [
-        { x: 3, y: 5, z: 0 },
-      ],
-      color: "#7c3aed",
-      showPoints: true,
-      smooth: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, -1, 16]}
-  cameraTarget={[0, -1, 0]}
+  labels={{
+    "l1": <InlineMath math="f(x)=2\lfloor x \rfloor-1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -8.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -3, y: -7 }, { x: -2, y: -7 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -2, y: -5 }, { x: -1, y: -5 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -1, y: -3 }, { x: 0, y: -3 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: -1 }, { x: 1, y: -1 }], appearance: "primary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 3, y: 3 }], appearance: "primary" },
+      { id: "s7", kind: "point", at: { x: 3, y: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
 />
 
 **Soal 4**. Gunakan **ketaksamaan pembatas fungsi lantai**, kurangi kedua batas dengan satu, lalu bagi seluruh pertidaksamaan dengan dua.

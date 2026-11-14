@@ -1,21 +1,42 @@
-Das Wasservolumen ändert sich nicht, aber der Würfel nimmt am Boden des Beckens Platz weg. Zuerst musst du entscheiden, **ob der Würfel vollständig unter Wasser liegt**, denn die Formel für den Wasserstand ist in beiden Fällen verschieden.
+Was Beutel B beim zweiten Ziehen enthält, **hängt von der Farbe der umgelegten Kugel ab**. Der Plan: Bestimme aus der gegebenen Wahrscheinlichkeit den Inhalt von Beutel A, unterscheide zwei Fälle nach der Farbe der umgelegten Kugel, berechne die Wahrscheinlichkeit in jedem Fall und kombiniere sie mit ihren Gewichten.
 
-# Annahme des Untertauchens prüfen
+# Den Inhalt von Beutel A bestimmen
 
-Das Wasservolumen beträgt <InlineMath math="30\times20\times8=4800\text{ cm}^3" />. Läge der Würfel vollständig unter Wasser, würde sein ganzes Volumen das Wasser über der Grundfläche von <InlineMath math="600\text{ cm}^2" /> anheben.
+Beutel A enthalte <InlineMath math="r" /> rote Kugeln. Es gibt <InlineMath math="\binom52=10" /> Möglichkeiten, zwei Kugeln aus <InlineMath math="5" /> zu ziehen, und <InlineMath math="\binom r2" /> Möglichkeiten, zwei rote zu ziehen.
 
-<BlockMath math="h=\frac{4800+1000}{600}=\frac{29}{3}\approx9{,}67\text{ cm}" />
+<BlockMath math="\begin{aligned}
+\frac{\binom r2}{10}&=\frac{3}{10}\\
+\frac{r(r-1)}{2}&=3\\
+r^2-r-6&=0\\
+(r-3)(r+2)&=0
+\end{aligned}" />
 
-Dieser Stand ist **niedriger als die Kante des Würfels**, die 10 cm misst. Die Annahme ist also falsch, und die Oberseite des Würfels ragt aus dem Wasser.
+Eine Anzahl von Kugeln kann nicht negativ sein, also ist <InlineMath math="r=3" />. Beutel A enthält **<InlineMath math="3" /> rote und <InlineMath math="2" /> weiße Kugeln**.
 
-# Wasserstand berechnen
+# Die Wahrscheinlichkeit in jedem Fall berechnen
 
-Weil der Würfel durch die Oberfläche ragt, füllt das Wasser **nur den Raum um den Würfel** herum. Für das Wasser bleibt die Grundfläche <InlineMath math="600-10\times10=500\text{ cm}^2" />, und das Wasservolumen ist weiterhin <InlineMath math="4800\text{ cm}^3" />.
+Die umgelegte Kugel ist mit der Wahrscheinlichkeit <InlineMath math="\frac35" /> rot. Dann enthält Beutel B **<InlineMath math="3" /> rote und <InlineMath math="4" /> weiße**, insgesamt <InlineMath math="7" /> Kugeln. Mit der Wahrscheinlichkeit <InlineMath math="\frac25" /> ist sie weiß. Dann enthält Beutel B <InlineMath math="2" /> rote und <InlineMath math="5" /> weiße Kugeln. In beiden Fällen gibt es <InlineMath math="\binom72=21" /> Möglichkeiten, zwei Kugeln aus <InlineMath math="7" /> zu ziehen.
 
-<BlockMath math="500h=4800\quad\Rightarrow\quad h=9{,}6\text{ cm}" />
+<BlockMath math="\begin{aligned}
+P(\text{zwei rote}\mid\text{rot umgelegt})&=\frac{\binom32}{21}=\frac{3}{21}=\frac17\\
+P(\text{zwei rote}\mid\text{weiß umgelegt})&=\frac{\binom22}{21}=\frac{1}{21}
+\end{aligned}" />
 
-Probe: <InlineMath math="9{,}6<10" />, der Würfel liegt also tatsächlich nicht vollständig unter Wasser.
+# Die beiden Fälle zusammenführen
 
-Die Wahl <InlineMath math="\tfrac{29}{3}" /> cm setzt voraus, dass der Würfel untergetaucht ist. Die Wahl 10 cm nimmt an, dass das Wasser genau bis zur Oberseite reicht. Die Wahl 11,6 cm addiert das Würfelvolumen und verkleinert zugleich die Grundfläche, zählt den Raum des Würfels also doppelt. Die Wahl 18 cm addiert die Würfelkante zur Wassertiefe.
+Jeder Fall wird **mit der Wahrscheinlichkeit multipliziert, dass dieser Fall eintritt**, und dann werden die Ergebnisse addiert.
 
-Der Wasserstand beträgt also **<InlineMath math="9{,}6\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+P(\text{zwei rote})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
+&=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}
+\end{aligned}" />
+
+# Das Ergebnis prüfen
+
+Zähle auch direkt. Es gibt <InlineMath math="5" /> Möglichkeiten für die umgelegte Kugel und <InlineMath math="21" /> Möglichkeiten für das Paar aus Beutel B, also <InlineMath math="5\cdot21=105" /> gleich wahrscheinliche Ausgänge. Günstig sind <InlineMath math="3\cdot3=9" />, wenn eine rote Kugel umgelegt wird, und <InlineMath math="2\cdot1=2" />, wenn eine weiße umgelegt wird. **Das Ergebnis ist dasselbe, nämlich <InlineMath math="\frac{11}{105}" />**, und es liegt zwischen <InlineMath math="\frac1{21}" /> und <InlineMath math="\frac17" />.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="\frac1{15}" /> übersieht die umgelegte Kugel, als enthielte Beutel B weiterhin <InlineMath math="6" /> Kugeln. Die Antwort <InlineMath math="\frac3{35}" /> zählt nur den Fall einer roten umgelegten Kugel und vergisst den weißen Fall. Die Antwort <InlineMath math="\frac2{21}" /> ist der einfache Mittelwert <InlineMath math="\frac12\left(\frac17+\frac1{21}\right)" /> und **übersieht die Gewichte <InlineMath math="\frac35" /> und <InlineMath math="\frac25" />**. Die Antwort <InlineMath math="\frac17" /> entsteht, wenn du die Kugeln einzeln mit Zurücklegen ziehst, also <InlineMath math="\frac35\left(\frac37\right)^2+\frac25\left(\frac27\right)^2=\frac{35}{245}" />.
+
+Die Wahrscheinlichkeit, dass beide aus Beutel B gezogenen Kugeln rot sind, ist also <InlineMath math="\frac{11}{105}" />.

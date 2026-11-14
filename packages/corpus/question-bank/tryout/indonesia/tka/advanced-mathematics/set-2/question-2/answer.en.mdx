@@ -1,0 +1,18 @@
+A linear system of three equations in three unknowns has a unique solution exactly when the determinant of its coefficient matrix is not zero. So you are looking for the value of <InlineMath math="a" /> that **makes that determinant zero**.
+
+Write the coefficient matrix and expand its determinant along the first row. The cofactor signs alternate <InlineMath math="+,-,+" />.
+
+<BlockMath math="\begin{aligned}
+\det\begin{pmatrix} 1 & 2 & 1 \\ 2 & a & -1 \\ 1 & 1 & 2 \end{pmatrix}&=1\begin{vmatrix} a & -1 \\ 1 & 2 \end{vmatrix}-2\begin{vmatrix} 2 & -1 \\ 1 & 2 \end{vmatrix}+1\begin{vmatrix} 2 & a \\ 1 & 1 \end{vmatrix} \\
+&=(2a+1)-2(4+1)+(2-a) \\
+&=a-7
+\end{aligned}" />
+
+The determinant is zero when <InlineMath math="a-7=0" />, that is <InlineMath math="a=7" />. For every other value of <InlineMath math="a" /> the determinant is nonzero and the system has exactly one solution.
+
+So the system has no unique solution when <InlineMath math="a=7" />.
+
+- <InlineMath math="-7" /> comes from a sign slip when solving <InlineMath math="a-7=0" />.
+- <InlineMath math="-13" /> comes from giving the second cofactor a plus sign, which turns the determinant into <InlineMath math="a+13" />.
+- <InlineMath math="8" /> comes from writing the first minor as just <InlineMath math="2a" /> and losing the <InlineMath math="+1" /> from <InlineMath math="-(-1)\cdot1" />.
+- <InlineMath math="13" /> combines the wrong cofactor sign with a sign slip when solving.

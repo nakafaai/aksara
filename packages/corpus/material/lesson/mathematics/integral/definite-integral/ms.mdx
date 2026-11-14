@@ -1,0 +1,179 @@
+export const metadata = {
+    title: "Kamiran Tentu",
+    description: "Takrifkan kamiran tentu sebagai had hasil tambah Riemann dan nilaikan satu kamiran tentu terus daripada had itu.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Daripada Anggaran kepada Luas Tepat
+
+Dalam bahan [Hasil Tambah Riemann](/ms/subjek/matematik/pengamiran/hasil-tambah-riemann), kita menganggarkan luas di bawah lengkung yang tidak negatif dengan segi empat tepat. Apabila selang dibahagikan dengan lebih halus, hasil tambah Riemann yang sepadan akan menghampiri satu nilai yang sama bagi fungsi yang boleh dikamirkan.
+
+Jika semua subselang sama lebar, biarkan bilangan subselang <InlineMath math="n" /> bertambah tanpa batas. Lebarnya, <InlineMath math="\Delta x" />, kemudian menghampiri sifar. Syarat pentingnya ialah **lebar subselang terbesar menghampiri sifar**. Jika hasil tambah Riemann mempunyai had, had itu ialah **kamiran tentu**.
+
+## Tatatanda dan Maksud Kamiran Tentu
+
+Kamiran tentu merekodkan pengumpulan yang diperoleh melalui had ini. Kamiran ini <Highlight>ditakrifkan sebagai had hasil tambah Riemann</Highlight>, dengan syarat had itu wujud.
+
+<BlockMath math="\int_{a}^{b} f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \Delta x" />
+
+Tatatanda ini mempunyai maksud yang khusus:
+- <InlineMath math="\int_{a}^{b}" />: Ini ialah simbol kamiran dengan had **bawah** <InlineMath math="a" /> dan had **atas** <InlineMath math="b" />. Kedua-dua nombor ini menentukan selang tempat kita mengira luas.
+- <InlineMath math="f(x)" />: Ini ialah **kamiranan**, iaitu fungsi yang dikamirkan. Nilainya di sepanjang <InlineMath math="[a,b]" /> menentukan pengumpulan bertanda.
+- <InlineMath math="dx" />: Sama seperti dalam kamiran tak tentu, simbol ini menunjukkan bahawa kita mengamirkan terhadap pemboleh ubah <InlineMath math="x" />.
+
+Kamiran tak tentu merangkumi setiap fungsi yang berbentuk <InlineMath math="F(x) + C" />. Kamiran tentu pula memberikan **satu nombor** yang mengukur pengumpulan bertanda dari <InlineMath math="x=a" /> hingga <InlineMath math="x=b" />. Nombor ini sama dengan luas geometri biasa apabila kamiranan tidak negatif di sepanjang selang itu.
+
+## Mengira Kamiran Tentu dengan Had
+
+**Soalan**: Tentukan nilai <InlineMath math="\int_{0}^{7} x \, dx" />.
+
+**Penyelesaian**:
+
+Untuk menyelesaikannya, kita tukarkan kamiran ini kembali kepada bentuk had hasil tambah Riemann.
+
+**Langkah 1**: Tentukan komponen hasil tambah Riemann
+
+Daripada soalan <InlineMath math="\int_{0}^{7} x \, dx" />, kita tahu:
+- Fungsi: <InlineMath math="f(x) = x" />
+- Selang: <InlineMath math="[a, b] = [0, 7]" />
+
+Lebar setiap subselang ialah:
+
+<BlockMath math="\Delta x = \frac{b-a}{n} = \frac{7-0}{n} = \frac{7}{n}" />
+
+Kita gunakan titik hujung kanan (<InlineMath math="x_i" />) sebagai titik sampel bagi setiap subselang:
+
+<BlockMath math="x_i = a + i \Delta x = 0 + i \left(\frac{7}{n}\right) = \frac{7i}{n}" />
+
+**Langkah 2**: Bina hasil tambah Riemann
+
+Tinggi setiap segi empat tepat ialah <InlineMath math="f(x_i)" />, jadi:
+
+<BlockMath math="f(x_i) = x_i = \frac{7i}{n}" />
+
+Sekarang, kita gantikan nilai ini ke dalam rumus hasil tambah Riemann:
+
+<BlockMath math="\begin{aligned} \sum_{i=1}^{n} f(x_i) \Delta x &amp;= \sum_{i=1}^{n} \left(\frac{7i}{n}\right) \left(\frac{7}{n}\right) \\ &amp;= \sum_{i=1}^{n} \frac{49i}{n^2} \end{aligned}" />
+
+**Langkah 3**: Permudahkan dan gunakan sifat hasil tambah
+
+Kita boleh keluarkan pemalar daripada tatatanda sigma, kerana <InlineMath math="n" /> dianggap sebagai pemalar dalam hasil tambah dari <InlineMath math="i=1" /> hingga <InlineMath math="n" />.
+
+<BlockMath math="R_n=\frac{49}{n^2} \sum_{i=1}^{n} i" />
+
+Seterusnya, gantikan <InlineMath math="\sum_{i=1}^{n} i" /> dengan <InlineMath math="\frac{n(n+1)}{2}" /> dan permudahkan sehingga sebutan yang bergantung pada <InlineMath math="n" /> terasing.
+
+<BlockMath math="\begin{aligned}R_n&=\frac{49}{n^2}\cdot\frac{n(n+1)}{2}\\&=\frac{49n(n+1)}{2n^2}\\&=\frac{49(n+1)}{2n}\\&=\frac{49}{2}\left(1+\frac1n\right)\end{aligned}" />
+
+Langkah algebra ini meringkaskan ungkapan itu kepada satu faktor pemalar yang didarab dengan <InlineMath math="1+\frac{1}{n}" />. Had yang tinggal boleh diperoleh daripada <InlineMath math="\frac{1}{n}\to0" />.
+
+> Untuk menyelesaikan had hasil tambah Riemann, kita selalu memerlukan beberapa rumus hasil tambah siri yang biasa:
+> - <InlineMath math="\sum_{i=1}^{n} i = \frac{n(n+1)}{2}" />
+> - <InlineMath math="\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}" />
+> - <InlineMath math="\sum_{i=1}^{n} i^3 = \left( \frac{n(n+1)}{2} \right)^2" />
+
+**Langkah 4**: Ambil Had
+
+Akhir sekali, kita ambil had apabila <InlineMath math="n \to \infty" />. Dalam had ini, <InlineMath math="\frac{1}{n}" /> menghampiri sifar.
+
+<MathContainer>
+<BlockMath math="\int_{0}^{7} x \, dx = \lim_{n \to \infty} \frac{49}{2} \left( 1 + \frac{1}{n} \right)" />
+<BlockMath math="= \frac{49}{2} \left( 1 + 0 \right)" />
+<BlockMath math="= \frac{49}{2}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="f(x) = x" /> tidak negatif dari <InlineMath math="x=0" /> hingga <InlineMath math="x=7" />, kamiran tentu ini juga ialah luas geometri: <InlineMath math="\frac{49}{2}" />, atau <InlineMath math="24.5" /> unit persegi. Had telah menukar anggaran segi empat tepat itu kepada nilai yang tepat.
+
+Mari lihat cara had ini berfungsi. Luas tepat di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> hingga <InlineMath math="7" /> ialah luas segi tiga <InlineMath math="\tfrac12 \cdot 7 \cdot 7 = \tfrac{49}{2}" />. Tujuh segi empat tepat titik hujung kanan dengan lebar <InlineMath math="1" /> menutupi luas itu dengan sedikit lebihan di bahagian atas: <InlineMath math="1 + 2 + \cdots + 7 = 28" />, yang sepadan dengan <InlineMath math="\tfrac{49}{2}(1 + \tfrac17) = 28" />.
+
+<MathVisual
+  title={<>Tujuh segi empat tepat yang menutupi luas tepat</>}
+  description={<>Segi tiga di bawah <InlineMath math="y = x" /> dari <InlineMath math="0" /> hingga <InlineMath math="7" />, dengan luas <InlineMath math="\tfrac{49}{2}" />, ditutupi oleh tujuh segi empat tepat yang jumlah luasnya <InlineMath math="28" />.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: (1 * 7) / 7 }, { x: (0 * 7) / 7, y: (1 * 7) / 7 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: (2 * 7) / 7 }, { x: (1 * 7) / 7, y: (2 * 7) / 7 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: (3 * 7) / 7 }, { x: (2 * 7) / 7, y: (3 * 7) / 7 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: 0 }, { x: (4 * 7) / 7, y: (4 * 7) / 7 }, { x: (3 * 7) / 7, y: (4 * 7) / 7 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: 0 }, { x: (5 * 7) / 7, y: (5 * 7) / 7 }, { x: (4 * 7) / 7, y: (5 * 7) / 7 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: 0 }, { x: (6 * 7) / 7, y: (6 * 7) / 7 }, { x: (5 * 7) / 7, y: (6 * 7) / 7 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: 0 }, { x: (7 * 7) / 7, y: (7 * 7) / 7 }, { x: (6 * 7) / 7, y: (7 * 7) / 7 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Membandingkan Bilangan Segi Empat Tepat yang Berbeza
+
+Tulis hasil tambah titik hujung kanan sebagai <InlineMath math="R_n=\frac{49}{2}(1+\frac1n)" />. Kita boleh semak beberapa nilai <InlineMath math="n" /> sebelum mengambil had. Oleh sebab graf itu menokok, segi empat tepat titik hujung kanan memberikan **anggaran berlebihan**.
+
+| Bilangan segi empat tepat | Anggaran titik hujung kanan |
+| --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="49" /> |
+| <InlineMath math="2" /> | <InlineMath math="36.75" /> |
+| <InlineMath math="7" /> | <InlineMath math="28" /> |
+| <InlineMath math="10" /> | <InlineMath math="26.95" /> |
+| <InlineMath math="100" /> | <InlineMath math="24.745" /> |
+
+Beza daripada nilai tepat ialah <InlineMath math="R_n-\frac{49}{2}=\frac{49}{2n}" />. Jadi, apabila bilangan segi empat tepat digandakan, ralat dalam contoh linear ini menjadi separuh. Kamu juga boleh semak luas tepat itu sebagai segi tiga yang tapak dan tingginya sama-sama <InlineMath math="7" />:
+
+<BlockMath math="A=\frac12(7)(7)=\frac{49}{2}" />
+
+Gandakan bilangan segi empat tepat kepada <InlineMath math="14" />, setiap satu dengan lebar <InlineMath math="\tfrac12" />. Jalur lebihan di bahagian atas menjadi lebih nipis, dan jumlahnya turun kepada <InlineMath math="\tfrac{49}{2}(1 + \tfrac{1}{14}) = 26.25" />. Setiap kali <InlineMath math="n" /> bertambah, hasil tambah itu semakin hampir kepada <InlineMath math="24.5" />.
+
+<MathVisual
+  title={<>Empat belas segi empat tepat yang lebih sempit</>}
+  description={<>Empat belas segi empat tepat dengan lebar setengah di bawah <InlineMath math="y = x" />, dengan jumlah luas <InlineMath math="26.25" /> berbanding luas tepat <InlineMath math="24.5" />.</>}
+  labels={{
+    f: <InlineMath math="y = x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: (1 * 7) / 14 }, { x: (0 * 7) / 14, y: (1 * 7) / 14 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: (2 * 7) / 14 }, { x: (1 * 7) / 14, y: (2 * 7) / 14 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: (3 * 7) / 14 }, { x: (2 * 7) / 14, y: (3 * 7) / 14 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: (3 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: 0 }, { x: (4 * 7) / 14, y: (4 * 7) / 14 }, { x: (3 * 7) / 14, y: (4 * 7) / 14 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: (4 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: 0 }, { x: (5 * 7) / 14, y: (5 * 7) / 14 }, { x: (4 * 7) / 14, y: (5 * 7) / 14 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: (5 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: 0 }, { x: (6 * 7) / 14, y: (6 * 7) / 14 }, { x: (5 * 7) / 14, y: (6 * 7) / 14 }], appearance: "secondary" },
+      { id: "r7", kind: "polygon", vertices: [{ x: (6 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: 0 }, { x: (7 * 7) / 14, y: (7 * 7) / 14 }, { x: (6 * 7) / 14, y: (7 * 7) / 14 }], appearance: "secondary" },
+      { id: "r8", kind: "polygon", vertices: [{ x: (7 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: 0 }, { x: (8 * 7) / 14, y: (8 * 7) / 14 }, { x: (7 * 7) / 14, y: (8 * 7) / 14 }], appearance: "secondary" },
+      { id: "r9", kind: "polygon", vertices: [{ x: (8 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: 0 }, { x: (9 * 7) / 14, y: (9 * 7) / 14 }, { x: (8 * 7) / 14, y: (9 * 7) / 14 }], appearance: "secondary" },
+      { id: "r10", kind: "polygon", vertices: [{ x: (9 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: 0 }, { x: (10 * 7) / 14, y: (10 * 7) / 14 }, { x: (9 * 7) / 14, y: (10 * 7) / 14 }], appearance: "secondary" },
+      { id: "r11", kind: "polygon", vertices: [{ x: (10 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: 0 }, { x: (11 * 7) / 14, y: (11 * 7) / 14 }, { x: (10 * 7) / 14, y: (11 * 7) / 14 }], appearance: "secondary" },
+      { id: "r12", kind: "polygon", vertices: [{ x: (11 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: 0 }, { x: (12 * 7) / 14, y: (12 * 7) / 14 }, { x: (11 * 7) / 14, y: (12 * 7) / 14 }], appearance: "secondary" },
+      { id: "r13", kind: "polygon", vertices: [{ x: (12 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: 0 }, { x: (13 * 7) / 14, y: (13 * 7) / 14 }, { x: (12 * 7) / 14, y: (13 * 7) / 14 }], appearance: "secondary" },
+      { id: "r14", kind: "polygon", vertices: [{ x: (13 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: 0 }, { x: (14 * 7) / 14, y: (14 * 7) / 14 }, { x: (13 * 7) / 14, y: (14 * 7) / 14 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Letakkan hasil tambah titik hujung kanan bersebelahan. Dari <InlineMath math="n = 1" /> hingga <InlineMath math="n = 100" />, palang mengecil daripada <InlineMath math="49" /> ke arah luas tepat <InlineMath math="\frac{49}{2} = 24.5" />, dan jurang di atasnya sentiasa <InlineMath math="\frac{49}{2n}" />.
+
+<BarChart
+  title={<>Hasil tambah titik hujung kanan <InlineMath math="R_n" /> bagi enam bilangan segi empat tepat</>}
+  description={<>Palang <InlineMath math="R_n = \frac{49}{2}\left(1 + \frac1n\right)" /> bagi <InlineMath math="n = 1, 2, 7, 10, 14, 100" />, yang menurun ke arah <InlineMath math="24.5" />.</>}
+  yAxisLabel="Anggaran"
+  data={[1, 2, 7, 10, 14, 100].map((n) => ({ name: String(n), value: (49 / 2) * (1 + 1 / n) }))}
+  chartConfig={{ value: { label: "Anggaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

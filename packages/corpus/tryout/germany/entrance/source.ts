@@ -14,24 +14,26 @@ import { defineExamSource } from "#corpus/tryout/schema";
 const entranceTryoutCatalog = defineExamSource({
   ...germanyTryoutCountry,
   examKey: "entrance-examination",
+  examName: "Aufnahmeprüfung",
   examOrder: 1,
   examRouteSlugs: {
     de: "aufnahmepruefung",
-    en: "entrance-examination",
-    id: "ujian-masuk",
+    en: "aufnahmepruefung",
+    id: "aufnahmepruefung",
+    ms: "aufnahmepruefung",
   },
   examTranslations: {
     de: {
       description: "Probetests für die Aufnahmeprüfungen der Studienkollegs.",
-      title: "Aufnahmeprüfung",
     },
     en: {
-      description: "Try-outs for the entrance examinations of Studienkollegs.",
-      title: "Entrance Examination",
+      description: "Try-outs for the Aufnahmeprüfung of the Studienkollegs.",
     },
     id: {
-      description: "Try out ujian masuk Studienkolleg di Jerman.",
-      title: "Ujian Masuk",
+      description: "Try out Aufnahmeprüfung Studienkolleg di Jerman.",
+    },
+    ms: {
+      description: "Ujian percubaan Aufnahmeprüfung Studienkolleg di Jerman.",
     },
   },
   grouping: {
@@ -44,11 +46,13 @@ const entranceTryoutCatalog = defineExamSource({
           de: "studienkolleg-der-tu-darmstadt",
           en: "tu-darmstadt-studienkolleg",
           id: "studienkolleg-tu-darmstadt",
+          ms: "studienkolleg-tu-darmstadt",
         },
         translations: {
           de: { title: "Studienkolleg der TU Darmstadt" },
           en: { title: "TU Darmstadt Studienkolleg" },
           id: { title: "Studienkolleg TU Darmstadt" },
+          ms: { title: "Studienkolleg TU Darmstadt" },
         },
       },
     ],

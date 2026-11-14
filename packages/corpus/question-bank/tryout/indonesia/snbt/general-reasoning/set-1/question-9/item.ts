@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "generalization",
+    topic: "parallel-reasoning",
   },
   versions: {
     id: {
@@ -12,27 +12,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Semua jembatan yang berada di pesisir mengalami karat berat.",
+          label:
+            "Sebuah perusahaan taksi mengundi $$15$$ dari $$30$$ sopirnya untuk mengikuti pelatihan. Bulan berikutnya, keluhan penumpang terhadap ke-$$15$$ sopir itu turun, sedangkan keluhan terhadap sopir lainnya tetap. Jadi, pelatihan itu mengurangi keluhan.",
         },
         {
           correct: false,
           label:
-            "Umur jembatan tidak berpengaruh terhadap munculnya karat berat.",
-        },
-        {
-          correct: false,
-          label:
-            "Lokasi jembatan hanya berpengaruh pada jembatan beton bertulang.",
-        },
-        {
-          correct: false,
-          label:
-            "Jembatan baja yang berumur kurang dari $$20$$ tahun tidak mengalami karat berat, sedangkan jembatan baja yang berumur lebih tua selalu mengalami karat berat.",
+            "Survei di sebuah stasiun menunjukkan bahwa $$80\\%$$ penumpang setuju tarif kereta dinaikkan. Jadi, sebagian besar warga kota setuju tarif kereta dinaikkan.",
         },
         {
           correct: true,
           label:
-            "Jembatan baja di pesisir mengalami karat berat, sedangkan jembatan baja di pedalaman baru mengalami karat berat setelah berumur lebih tua.",
+            "Sebuah rumah sakit memilih $$20$$ perawat yang paling sering terlambat pada bulan lalu, lalu memberi mereka teguran tertulis. Bulan ini, rata-rata keterlambatan ke-$$20$$ perawat itu turun tajam. Jadi, teguran tertulis itu membuat perawat jauh lebih tepat waktu.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebuah bengkel memilih $$30$$ pompa air yang paling boros listrik pada bulan lalu, lalu mengundi separuhnya untuk dibersihkan. Bulan ini, pemakaian listrik kedua kelompok turun hampir sama besar. Jadi, pembersihan itu tidak banyak menghemat listrik.",
+        },
+        {
+          correct: false,
+          label:
+            "Sejak lampu lalu lintas dipasang di sebuah perempatan, kecelakaan di perempatan itu turun. Jadi, lampu lalu lintas itu menurunkan kecelakaan.",
         },
       ],
     },

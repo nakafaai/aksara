@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "machine-pictures",
+  stimulus: "homeschooling",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Anything made with the help of AI should never receive copyright.",
+            "It rejects the parent's survey figures and argues that most families who began homeschooling in 2020 have already gone back to school.",
         },
         {
           correct: false,
           label:
-            "Photographs should lose copyright, since cameras do most of the work.",
+            "It accepts the parent's conclusion about results but faults her for relying on her own family rather than on national test data.",
         },
         {
           correct: false,
           label:
-            "People who type prompts are authors in the same way as photographers.",
+            "It questions only how homeschooling is counted, since state rules make national figures unreliable, and it leaves all of her claims about results entirely alone.",
         },
         {
           correct: false,
           label:
-            "AI image generators should be banned until their training is proved fair.",
+            "It shares her view that the burden of proof belongs to those who want tighter rules, although it would like better data first.",
         },
         {
           correct: true,
           label:
-            "Copyright should follow a person's creative choices, not a prompt alone.",
+            "It grants that the rise is real and that many homeschooled children do well, but holds that neither her studies nor her story shows what homeschooling causes.",
         },
       ],
     },

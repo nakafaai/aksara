@@ -1,20 +1,43 @@
-Die Mietkosten sind eine lineare Funktion <InlineMath math="B(t)=a+bt" />, wobei <InlineMath math="a" /> die Grundgebühr, <InlineMath math="b" /> der Stundenpreis und <InlineMath math="t" /> die Mietdauer in Stunden ist. **Zwei Kostenangaben** reichen, um <InlineMath math="a" /> und <InlineMath math="b" /> zu bestimmen (in Tausend Rupiah).
+Der Plan: <InlineMath math="{}^{a}\log b" /> aus der ersten Gleichung bestimmen, mit der Bedingung <InlineMath math="1<b<a" /> **eine Möglichkeit streichen**, die Basen zu <InlineMath math="{}^{a}\log c" /> verketten und dann die Basis <InlineMath math="ab" /> in die Basis <InlineMath math="a" /> umrechnen.
 
-# Grundgebühr und Stundenpreis bestimmen
+# Zwei Möglichkeiten für den ersten Logarithmus
+
+Setze <InlineMath math="m={}^{a}\log b" />. Vertauschst du Basis und Argument, **kehrt sich der Logarithmus um**, also <InlineMath math="{}^{b}\log a=\tfrac{1}{m}" />. Multipliziere die Gleichung mit <InlineMath math="2m" />.
 
 <BlockMath math="\begin{aligned}
-a+5b&=38\\
-a+3b&=26\\
-2b&=12\quad\Rightarrow\quad b=6\\
-a&=26-3(6)=8
+m+\frac{1}{m}&=\frac{5}{2}\\
+2m^2-5m+2&=0\\
+(2m-1)(m-2)&=0
 \end{aligned}" />
 
-Die Grundgebühr beträgt Rp8.000,00 und der Stundenpreis Rp6.000,00. Die erste Aussage ist **wahr**, die dritte Aussage ist falsch.
+Also ist <InlineMath math="m=\tfrac{1}{2}" /> oder <InlineMath math="m=2" />.
 
-# Die zwei übrigen Aussagen prüfen
+# Die Bedingung, die eine Möglichkeit streicht
 
-Zehn Stunden kosten <InlineMath math="8+6(10)=68" /> Tausend Rupiah, das Doppelte der Kosten für 5 Stunden ist dagegen <InlineMath math="2(38)=76" /> Tausend Rupiah. Der Unterschied entsteht, weil **die Grundgebühr nur einmal anfällt** und nicht mitverdoppelt wird. Die zweite Aussage ist falsch.
+Die Basis <InlineMath math="a" /> ist größer als <InlineMath math="1" />, also ist <InlineMath math="{}^{a}\log" /> steigend. Aus <InlineMath math="1<b<a" /> folgt <InlineMath math="{}^{a}\log 1<{}^{a}\log b<{}^{a}\log a" />, also <InlineMath math="0<m<1" />. Deshalb **fällt <InlineMath math="m=2" /> weg**, und es gilt <InlineMath math="m=\tfrac{1}{2}" />.
 
-Mit Rp50.000,00 muss die Mietdauer <InlineMath math="8+6t\le50" /> erfüllen, also <InlineMath math="t\le7" />. Genau 7 Stunden kosten <InlineMath math="8+42=50" /> Tausend Rupiah, 8 Stunden kosten 56 Tausend Rupiah. Die vierte Aussage ist wahr.
+# Die Basen verketten
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Die Kettenregel <InlineMath math="{}^{a}\log b\cdot{}^{b}\log c={}^{a}\log c" /> gilt, weil sich die mittlere Basis <InlineMath math="b" /> herauskürzt. Sie liefert **den Logarithmus von <InlineMath math="c" /> zur Basis <InlineMath math="a" />**.
+
+<BlockMath math="{}^{a}\log c=\frac{1}{2}\cdot 4=2" />
+
+# Wechsel zur Basis a
+
+Nach dem Basiswechsel ist <InlineMath math="{}^{ab}\log (bc)=\dfrac{{}^{a}\log (bc)}{{}^{a}\log (ab)}" />. Der Logarithmus eines Produkts ist **die Summe der Logarithmen seiner Faktoren**, im Nenner also auch <InlineMath math="{}^{a}\log a=1" />.
+
+<BlockMath math="\begin{aligned}
+{}^{a}\log (bc)&=\frac{1}{2}+2=\frac{5}{2}\\
+{}^{a}\log (ab)&=1+\frac{1}{2}=\frac{3}{2}\\
+{}^{ab}\log (bc)&=\frac{5/2}{3/2}=\frac{5}{3}
+\end{aligned}" />
+
+# Probe mit Potenzen von a
+
+Aus <InlineMath math="m=\tfrac{1}{2}" /> folgt <InlineMath math="b=a^{1/2}" />, und aus <InlineMath math="{}^{b}\log c=4" /> folgt <InlineMath math="c=b^4=a^2" />. Dann ist <InlineMath math="ab=a^{3/2}" /> und <InlineMath math="bc=a^{5/2}" />, der Logarithmus also <InlineMath math="\tfrac{5/2}{3/2}=\tfrac{5}{3}" />. Ein konkretes Beispiel: <InlineMath math="a=16" />, <InlineMath math="b=4" /> und <InlineMath math="c=256" /> erfüllen alle Bedingungen, und **das Beispiel passt**, denn <InlineMath math="64^{5/3}=1024=bc" />.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="\tfrac{10}{3}" /> nutzt <InlineMath math="m=2" /> und **übersieht die Bedingung <InlineMath math="b<a" />**. Die Antwort <InlineMath math="3" /> überspringt die Verkettung und nimmt <InlineMath math="{}^{a}\log c=4" />. Die Antwort <InlineMath math="\tfrac{5}{2}" /> bleibt bei <InlineMath math="{}^{a}\log (bc)" /> stehen, ohne die Basis zu wechseln. Die Antwort <InlineMath math="5" /> teilt nur durch <InlineMath math="{}^{a}\log b" />, obwohl der Nenner <InlineMath math="{}^{a}\log (ab)" /> ist.
+
+Also ist <InlineMath math="{}^{ab}\log (bc)=\tfrac{5}{3}" />.

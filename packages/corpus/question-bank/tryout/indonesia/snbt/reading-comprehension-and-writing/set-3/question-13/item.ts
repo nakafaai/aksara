@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "text-structure",
+    topic: "referent",
   },
-  stimulus: "suspension-bridge",
+  stimulus: "lapak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "perbandingan dua cara menyeberangi sungai",
+          label: "warga yang sebelumnya membeli ikan dari pedagang keliling",
         },
         {
           correct: false,
-          label: "pendapat umum yang diikuti beberapa contoh",
+          label: "semua pedagang keliling yang dulu didatangi warga",
         },
         {
           correct: false,
-          label: "sebab-sebab banjir di Sungai Cibening",
-        },
-        {
-          correct: false,
-          label: "langkah-langkah teknis membangun jembatan gantung",
+          label: "pedagang lama pasar yang lapaknya diperiksa setiap pagi",
         },
         {
           correct: true,
           label:
-            "masalah yang dihadapi warga, upaya mengatasinya, lalu hasil upaya itu",
+            "pedagang keliling yang kehilangan pelanggan lalu menyewa lapak di dalam pasar",
+        },
+        {
+          correct: false,
+          label: "pedagang keliling yang tetap berjualan dengan berkeliling",
         },
       ],
     },

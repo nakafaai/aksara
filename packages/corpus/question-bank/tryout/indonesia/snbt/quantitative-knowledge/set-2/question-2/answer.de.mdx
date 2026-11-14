@@ -1,20 +1,49 @@
-Du könntest jeden Bruch einzeln rational machen. Schneller geht es, wenn du **beide Brüche zuerst auf einen gemeinsamen Nenner bringst**.
+Gesucht ist die Anzahl der ganzen Zahlen <InlineMath math="m" />, für die die Gleichung zwei verschiedene reelle Lösungen <InlineMath math="x_1" /> und <InlineMath math="x_2" /> hat, die beide größer als <InlineMath math="1" /> sind. Die Gleichung **muss wirklich quadratisch sein**, also gilt <InlineMath math="m\ne0" />. Der Plan: Prüfe die Diskriminante und verschiebe dann beide Lösungen um <InlineMath math="1" />, damit aus „größer als <InlineMath math="1" />“ die Bedingung „positiv“ wird.
 
-<BlockMath math="\frac xy+\frac yx=\frac{x^2+y^2}{xy}" />
+# Bedingung für zwei verschiedene Lösungen
 
-# Zähler und Nenner berechnen
-
-Der Nenner ist eine Differenz von Quadraten, im Zähler heben sich die **gemischten Glieder** der beiden Quadrate auf.
+Zwei verschiedene reelle Lösungen gibt es genau dann, wenn **die Diskriminante positiv ist**, nicht bloß nichtnegativ.
 
 <BlockMath math="\begin{aligned}
-xy&=\left(\sqrt5+\sqrt3\right)\left(\sqrt5-\sqrt3\right)=5-3=2\\
-x^2+y^2&=\left(8+2\sqrt{15}\right)+\left(8-2\sqrt{15}\right)=16
+D&=(8-3m)^2-4m(3m-1)\\
+&=64-48m+9m^2-12m^2+4m\\
+&=-3m^2-44m+64\\
+&=-(3m-4)(m+16)
 \end{aligned}" />
 
-Also ist <InlineMath math="\frac{x^2+y^2}{xy}=\frac{16}{2}=8" />. Zur Probe mit den einzelnen Brüchen: <InlineMath math="\frac xy=4+\sqrt{15}" /> und <InlineMath math="\frac yx=4-\sqrt{15}" />, zusammen 8.
+Also bedeutet <InlineMath math="D>0" /> dasselbe wie <InlineMath math="(3m-4)(m+16)<0" />, also <InlineMath math="-16<m<\tfrac43" />. Für <InlineMath math="m=-16" /> wird die Gleichung zu <InlineMath math="-(4x-7)^2=0" />, mit zwei gleichen Lösungen <InlineMath math="\tfrac74" />.
 
-# Die falschen Wahlmöglichkeiten
+# Die Lösungen verschieben
 
-Der Wert 2 ist nur das Produkt <InlineMath math="xy" />, also der Nenner. Der Wert <InlineMath math="4+\sqrt{15}" /> berechnet nur <InlineMath math="\frac xy" />. Der Wert <InlineMath math="2\sqrt{15}" /> ist die **Differenz** der beiden Brüche und nicht ihre Summe. Der Wert 4 teilt den Zähler durch <InlineMath math="2xy" />.
+Setze <InlineMath math="y_1=x_1-1" /> und <InlineMath math="y_2=x_2-1" />. Beide Lösungen sind genau dann größer als <InlineMath math="1" />, wenn <InlineMath math="y_1" /> und <InlineMath math="y_2" /> positiv sind. Zwei reelle Zahlen sind **genau dann beide positiv, wenn ihr Produkt und ihre Summe positiv sind**: Das positive Produkt gibt ihnen dasselbe Vorzeichen, und die positive Summe macht dieses Vorzeichen positiv.
 
-Der Wert von <InlineMath math="\frac xy+\frac yx" /> ist also **8**.
+Nach dem Satz von Vieta gilt <InlineMath math="x_1+x_2=\tfrac{3m-8}{m}" /> und <InlineMath math="x_1x_2=\tfrac{3m-1}{m}" />.
+
+<BlockMath math="\begin{aligned}
+y_1+y_2&=(x_1+x_2)-2=\frac{3m-8-2m}{m}=\frac{m-8}{m}\\
+y_1y_2&=x_1x_2-(x_1+x_2)+1=\frac{3m-1-3m+8+m}{m}=\frac{m+7}{m}
+\end{aligned}" />
+
+# Das Vorzeichen des Leitkoeffizienten
+
+Ein Bruch ist genau dann positiv, wenn Zähler und Nenner dasselbe Vorzeichen haben. **Multipliziere also nicht mit <InlineMath math="m" />, bevor du sein Vorzeichen kennst**.
+
+<BlockMath math="\begin{aligned}
+\frac{m-8}{m}>0&\iff m<0\ \text{oder}\ m>8\\
+\frac{m+7}{m}>0&\iff m<-7\ \text{oder}\ m>0
+\end{aligned}" />
+
+Die Diskriminante erzwingt <InlineMath math="m<\tfrac43" />, also ist <InlineMath math="m>8" /> unmöglich. Übrig bleiben <InlineMath math="m<0" /> und <InlineMath math="m<-7" />, zusammen mit <InlineMath math="m>-16" />, also <InlineMath math="-16<m<-7" />. Die ganzen Zahlen darin sind <InlineMath math="-15" />, <InlineMath math="-14" /> bis <InlineMath math="-8" />, also <InlineMath math="8" /> Werte.
+
+# Die Ränder prüfen
+
+Prüfe beide Enden. Für <InlineMath math="m=-7" /> lautet die Gleichung <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, eine Lösung ist also genau <InlineMath math="1" />, und **dieses Ende fällt zu Recht weg**. Für <InlineMath math="m=-8" /> lautet die Gleichung <InlineMath math="-8x^2+32x-25=0" /> mit den Lösungen <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Wegen <InlineMath math="\sqrt{14}<4" /> liegen beide Lösungen zwischen <InlineMath math="1" /> und <InlineMath math="3" />, also passt <InlineMath math="m=-8" />.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="6" /> entsteht, wenn du die Bedingung <InlineMath math="f(1)=m+7>0" /> benutzt, die nur für eine nach oben geöffnete Parabel gilt. Hier ist <InlineMath math="m" /> negativ, **die Bedingung kehrt sich also um**, und das Ergebnis wird fälschlich <InlineMath math="-7<m<0" />.
+- <InlineMath math="9" /> benutzt <InlineMath math="D\ge0" /> und zählt so auch <InlineMath math="m=-16" /> mit, obwohl dort beide Lösungen gleich sind.
+- <InlineMath math="15" /> benutzt <InlineMath math="x_1+x_2>2" /> und <InlineMath math="x_1x_2>1" />, was nicht garantiert, dass beide Lösungen größer als <InlineMath math="1" /> sind. Zum Beispiel liefert <InlineMath math="m=-3" /> die Gleichung <InlineMath math="-3x^2+17x-10=0" /> mit den Lösungen <InlineMath math="5" /> und <InlineMath math="\tfrac23" />.
+- <InlineMath math="16" /> benutzt nur <InlineMath math="D>0" /> und <InlineMath math="m\ne0" />, ohne Bedingung für die Lage der Lösungen.
+
+Es gibt also <InlineMath math="8" /> ganze Zahlen <InlineMath math="m" />, die die Bedingung erfüllen.

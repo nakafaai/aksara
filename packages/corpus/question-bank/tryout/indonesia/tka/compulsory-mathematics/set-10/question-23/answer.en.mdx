@@ -1,0 +1,27 @@
+# The range of Gita's score
+
+Gita's score isn't known, so the word **"pasti"** (surely) in each statement means it has to hold for every score Gita could have. The first step is to find all those scores from the condition on the mean.
+
+Call Gita's score <InlineMath math="x" />. The eight original scores add up to <InlineMath math="560" />, and the mean of the nine students must be more than <InlineMath math="71" />:
+
+<BlockMath math="\begin{aligned}
+\frac{560+x}{9}&>71 \\
+560+x&>639 \\
+x&>79
+\end{aligned}" />
+
+Scores also go up to <InlineMath math="100" /> at most, so Gita's possible scores are <InlineMath math="79<x\le100" />.
+
+# Checking each statement
+
+**Statement 1**. There are <InlineMath math="9" /> values, an odd number, so the median is the <InlineMath math="5" />th value in order, with no averaging. The original scores in order are <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. Since <InlineMath math="x>79" />, Gita's score always lands above <InlineMath math="70" />. The five smallest values stay <InlineMath math="56,\ 58,\ 66,\ 68,\ 70" />, so the <InlineMath math="5" />th value is always <InlineMath math="70" />, whatever <InlineMath math="x" /> is. **True**.
+
+**Statement 2**. The students who study more than Gita are Bima (<InlineMath math="11" /> hours, score <InlineMath math="88" />) and Fajar (<InlineMath math="17" /> hours, score <InlineMath math="82" />). For the statement to be sure, <InlineMath math="x" /> would always have to be above <InlineMath math="88" />. Try <InlineMath math="x=80" />, which fits the condition because <InlineMath math="\frac{640}{9}\approx71.1>71" />. A score of <InlineMath math="80" /> is lower than Fajar's <InlineMath math="82" />, so **there's a counterexample**. **False**.
+
+**Statement 3**. The students with at least <InlineMath math="8" /> study hours are Gita, Bima, and Fajar. Their mean score is:
+
+<BlockMath math="\frac{x+88+82}{3}=\frac{170+x}{3}>\frac{170+79}{3}=83" />
+
+The sign stays strict because <InlineMath math="x" /> is **more than** <InlineMath math="79" />, not equal to it. So their mean is always more than <InlineMath math="83" /> for every possible score of Gita. **True**.
+
+So the answers are True, False, True.

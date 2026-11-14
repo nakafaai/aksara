@@ -1,10 +1,10 @@
-import type { ArrayExpressionNode } from "#nakafa-content/line/ast";
 import {
   asEstreeNode,
   type EstreeNode,
   estreeChildren,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import type { ArrayExpressionNode } from "#nakafa-content/points/ast";
 import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
 import {
   type NumericLiteral,

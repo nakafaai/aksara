@@ -1,25 +1,32 @@
-Kuncinya adalah **bilangan terakhir pada setiap baris**. Baris 1 sampai baris <InlineMath math="k" /> memuat <InlineMath math="1+2+\cdots+k" /> bilangan, jadi bilangan terakhir pada baris ke-<InlineMath math="k" /> adalah
+Setiap persen di soal ini diambil dari **kelompok yang berbeda**: <InlineMath math="60\%" /> dari seluruh peserta, separuh dari yang gagal tahap 1, <InlineMath math="75\%" /> dari yang lolos langsung, dan <InlineMath math="52\%" /> dari seluruh peserta lagi. Cara paling aman adalah mengubah semuanya menjadi banyak orang dari satu kelompok awal yang sama.
 
-<BlockMath math="1+2+\cdots+k=\frac{k(k+1)}{2}" />
-
-Cari baris yang bilangan terakhirnya pertama kali mencapai <InlineMath math="100" />:
+Karena semua data berupa persen, kamu boleh memisalkan ada <InlineMath math="100" /> peserta awal. Hitung dulu ukuran setiap kelompok.
 
 <BlockMath math="\begin{aligned}
-k=13 &: \frac{13\times14}{2}=91 \\
-k=14 &: \frac{14\times15}{2}=105
+\text{lolos langsung} &= 60\%\times100 = 60 \\
+\text{gagal tahap 1} &= 100-60 = 40 \\
+\text{lolos melalui ujian ulang} &= \tfrac12\times40 = 20
 \end{aligned}" />
 
-Baris ke-<InlineMath math="13" /> berakhir di <InlineMath math="91" />, sehingga baris ke-<InlineMath math="14" /> berisi <InlineMath math="92" /> sampai <InlineMath math="105" />. Bilangan <InlineMath math="100" /> berada di baris itu pada urutan
+Dari <InlineMath math="60" /> peserta yang lolos langsung, <InlineMath math="75\%" /> lolos tahap 2.
 
-<BlockMath math="100-91=9" />
+<BlockMath math="75\%\times60 = 45" />
 
-Periksa dengan baris contoh: baris ke-<InlineMath math="4" /> berakhir di <InlineMath math="\frac{4\times5}{2}=10" />, sesuai dengan susunan yang diberikan.
+Seluruh peserta yang lolos tahap 2 ada <InlineMath math="52\%\times100=52" /> orang. Yang bukan berasal dari jalur langsung pasti berasal dari jalur ujian ulang.
 
-Pilihan lain berasal dari kesalahan berikut:
+<BlockMath math="52-45 = 7" />
 
-- Baris ke-<InlineMath math="13" /> muncul jika baris yang berakhir di <InlineMath math="91" /> dianggap masih memuat <InlineMath math="100" />.
-- Urutan ke-<InlineMath math="5" /> muncul jika urutan dihitung mundur dari <InlineMath math="105" />, karena <InlineMath math="105-100=5" />.
-- Urutan ke-<InlineMath math="10" /> muncul jika <InlineMath math="100-90" /> dipakai, seolah-olah baris sebelumnya berakhir di <InlineMath math="90" />.
-- Baris ke-<InlineMath math="10" />, urutan ke-<InlineMath math="10" /> muncul dari anggapan keliru bahwa <InlineMath math="100=10\times10" /> menentukan letaknya.
+Sekarang perhatikan pembaginya. Pertanyaannya meminta persen **dari peserta yang lolos melalui ujian ulang**, yaitu <InlineMath math="20" /> orang.
 
-Jadi, bilangan <InlineMath math="100" /> terletak pada baris ke-<InlineMath math="14" />, urutan ke-<InlineMath math="9" />.
+<BlockMath math="\frac{7}{20}\times100\% = 35\%" />
+
+Cek balik: kalau <InlineMath math="35\%" /> dari <InlineMath math="20" /> orang lolos, itu <InlineMath math="7" /> orang. Bersama <InlineMath math="45" /> orang dari jalur langsung, totalnya <InlineMath math="52" /> orang, cocok dengan <InlineMath math="52\%" /> dari <InlineMath math="100" /> peserta.
+
+Pilihan lain muncul dari pembagi yang salah atau rata-rata yang salah:
+
+- <InlineMath math="7\%" /> berhenti di <InlineMath math="7" /> orang dari <InlineMath math="100" /> peserta awal. Angka itu belum dibagi dengan kelompok ujian ulang.
+- <InlineMath math="17{,}5\%" /> membagi <InlineMath math="7" /> dengan <InlineMath math="40" />, yaitu semua yang gagal tahap 1. Padahal separuh dari mereka gugur di ujian ulang dan tidak pernah ikut tahap 2.
+- <InlineMath math="55\%" /> mula-mula menghitung tingkat lolos tahap 2 untuk semua peserta tahap 2, <InlineMath math="\tfrac{52}{80}=65\%" />, lalu menganggap <InlineMath math="65\%" /> sebagai rata-rata biasa dari <InlineMath math="75\%" /> dan jawaban. Rata-rata itu seharusnya berbobot <InlineMath math="60" /> orang banding <InlineMath math="20" /> orang, bukan sama rata.
+- <InlineMath math="65\%" /> adalah tingkat lolos tahap 2 untuk gabungan kedua jalur, bukan untuk jalur ujian ulang saja.
+
+Jadi, dari peserta yang lolos melalui ujian ulang, ada <InlineMath math="35\%" /> yang berhasil lolos tahap 2.

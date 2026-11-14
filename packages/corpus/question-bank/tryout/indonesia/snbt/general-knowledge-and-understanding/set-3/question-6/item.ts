@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "vocabulary",
-    topic: "term-meaning",
+    topic: "figurative-meaning",
   },
-  stimulus: "tsunami",
+  stimulus: "kedelai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Pancuran air yang menyembur tegak ke atas.",
+          label:
+            "Isi tabungan itu dinikmati tanaman yang ditanam sesudah kedelai, bukan kedelai yang mengumpulkannya.",
         },
         {
           correct: false,
           label:
-            "Tabel yang memuat data ketinggian air laut di beberapa stasiun pengamatan.",
+            "Isi tabungan itu berasal dari bagian tanaman kedelai yang tidak ikut dipanen.",
+        },
+        {
+          correct: false,
+          label:
+            "Tabungan itu biasanya tidak cukup untuk menghapus kebutuhan jagung berikutnya akan pupuk nitrogen.",
+        },
+        {
+          correct: false,
+          label:
+            "Tabungan itu dicairkan oleh mikroba tanah sedikit demi sedikit, tidak sekaligus.",
         },
         {
           correct: true,
           label:
-            "Seluruh massa air laut dari dasar sampai permukaan di atas suatu tempat.",
-        },
-        {
-          correct: false,
-          label: "Aliran sungai yang bermuara ke laut.",
-        },
-        {
-          correct: false,
-          label: "Awan tebal yang membawa hujan.",
+            "Sebagian besar isi tabungan itu berupa nitrogen yang tersimpan di dalam biji kedelai.",
         },
       ],
     },

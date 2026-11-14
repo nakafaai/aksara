@@ -1,22 +1,41 @@
-Luas gambar berubah sebesar **kuadrat perbandingan panjang**. Jadi bandingkan luasnya dulu, lalu ambil akarnya untuk mendapat perbandingan panjang.
+Kamu mencari banyak pasien terbesar yang bisa dilayani. Setiap pasien yang dilayani memakai satu kantong berbeda, jadi **banyak pasien yang dilayani tidak mungkin melebihi banyak kantong yang benar-benar berguna**. Rencananya: cari kantong mana yang berguna, hitung batas atasnya, lalu tunjukkan pembagian yang mencapai batas itu.
 
-# Perbandingan luas dan panjang
+# Kantong yang cocok untuk setiap pasien
 
-Pada peta wisata, luas gambar danau <InlineMath math="2\cdot1{,}2=2{,}4\text{ cm}^2" />.
+Gabungkan syarat ABO dan syarat rhesus untuk setiap golongan pasien yang menunggu:
 
-<BlockMath math="\begin{aligned}
-\frac{2{,}4}{0{,}6}&=4\\
-\sqrt4&=2
-\end{aligned}" />
+| Pasien | Kantong yang cocok |
+| --- | --- |
+| <InlineMath math="\mathrm{O}^-" /> | <InlineMath math="\mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^-" /> | <InlineMath math="\mathrm{A}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{B}^-" /> | <InlineMath math="\mathrm{B}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{O}^+" /> | <InlineMath math="\mathrm{O}^+,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^+" /> | <InlineMath math="\mathrm{A}^+,\ \mathrm{A}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> |
 
-Setiap panjang pada peta lain **setengah panjang** pada peta wisata, jadi setiap 1 cm mewakili dua kali jarak semula.
+Kantong O dibutuhkan oleh banyak golongan sekaligus. Karena itu, **satu kantong O tidak boleh dihitung dua kali** untuk dua golongan pasien yang berbeda.
 
-# Skala peta lain
+# Batas atas dari kantong yang berguna
 
-<BlockMath math="2\cdot250{.}000=500{.}000" />
+Tidak ada pasien B positif atau AB, jadi kantong <InlineMath math="\mathrm{B}^+" />, <InlineMath math="\mathrm{AB}^+" />, dan <InlineMath math="\mathrm{AB}^-" /> tidak berguna. Kantong <InlineMath math="\mathrm{B}^-" /> hanya cocok untuk pasien <InlineMath math="\mathrm{B}^-" />, dan pasien itu hanya satu orang, jadi **paling banyak satu dari dua kantong** <InlineMath math="\mathrm{B}^-" /> terpakai. Kantong yang mungkin terpakai:
 
-Pemeriksaan: pada skala 1 : 500.000, 1 cm mewakili 5 km, jadi <InlineMath math="1\text{ cm}^2" /> mewakili <InlineMath math="25\text{ km}^2" />, dan <InlineMath math="0{,}6\cdot25=15\text{ km}^2" />.
+<BlockMath math="\underbrace{2}_{\mathrm{O}^-}+\underbrace{1}_{\mathrm{A}^-}+\underbrace{1}_{\mathrm{B}^-}+\underbrace{14}_{\mathrm{O}^+}+\underbrace{9}_{\mathrm{A}^+}=27" />
 
-Nilai 1 : 1.000.000 mengalikan dengan perbandingan luas 4 tanpa mengambil akar. Nilai 1 : 125.000 dan 1 : 62.500 membagi, padahal gambar yang lebih kecil berarti setiap 1 cm mewakili jarak yang lebih jauh. Nilai 1 : 250.000 adalah skala peta wisata itu sendiri.
+Jadi paling banyak <InlineMath math="27" /> pasien yang dapat dilayani.
 
-Jadi, skala peta lain itu adalah **1 : 500.000**.
+# Pembagian yang mencapai batas
+
+Sekarang tunjukkan bahwa <InlineMath math="27" /> memang bisa dicapai:
+
+- Dua kantong <InlineMath math="\mathrm{O}^-" /> untuk dua pasien <InlineMath math="\mathrm{O}^-" />.
+- Satu kantong <InlineMath math="\mathrm{A}^-" /> untuk satu pasien <InlineMath math="\mathrm{A}^-" />.
+- Satu kantong <InlineMath math="\mathrm{B}^-" /> untuk pasien <InlineMath math="\mathrm{B}^-" />.
+- Empat belas kantong <InlineMath math="\mathrm{O}^+" /> untuk empat belas pasien <InlineMath math="\mathrm{O}^+" />.
+- Sembilan kantong <InlineMath math="\mathrm{A}^+" /> untuk sembilan pasien <InlineMath math="\mathrm{A}^+" />.
+
+**Semua pemberian ini cocok**, dan jumlahnya <InlineMath math="2+1+1+14+9=27" /> pasien. Coba cek dari sisi pasien: yang belum dilayani adalah satu pasien <InlineMath math="\mathrm{O}^-" />, dua pasien <InlineMath math="\mathrm{A}^-" />, dua pasien <InlineMath math="\mathrm{O}^+" />, dan tiga pasien <InlineMath math="\mathrm{A}^+" />, yaitu <InlineMath math="8" /> orang. Dari <InlineMath math="35" /> pasien, yang dilayani <InlineMath math="35-8=27" />, cocok.
+
+# Jawaban yang sering keliru
+
+Kalau setiap golongan pasien dihitung terpisah, misalnya pasien <InlineMath math="\mathrm{O}^+" /> dianggap bisa memakai semua <InlineMath math="16" /> kantong O dan pasien <InlineMath math="\mathrm{A}^+" /> juga memakai kantong O yang sama, hasilnya <InlineMath math="2+3+1+16+12=34" />. Angka itu terlalu besar karena **kantong O dipakai berkali-kali**. Jawaban <InlineMath math="35" /> menganggap semua pasien terlayani, padahal kantong yang berguna hanya <InlineMath math="27" />.
+
+Jadi, paling banyak <InlineMath math="27" /> pasien dapat menerima darah yang cocok.

@@ -3,36 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
+    contentDomain: "fiction",
+    topic: "symbol",
   },
-  stimulus: "golden-record",
+  stimulus: "river-ferry",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The makers expected to play the record again after the launch.",
+            "The narrator had never before seen her father read back through the ledger.",
         },
         {
-          correct: false,
-          label: "The record was too small for anyone else ever to notice it.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "The makers' names were engraved in large letters on the cover.",
+            "The closed ledger on the windowsill links the story's last scene to the father's years of keeping records.",
         },
         {
-          correct: true,
-          label: "Choosing its contents made them reflect on what humanity is.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "The makers planned to sell copies of the music on the record.",
+            "The father kept the ledger because the ferry company required him to.",
+        },
+        {
+          column: 2,
+          label:
+            'The final entry, "river quiet", shows that the river was unusually calm for the time of year.',
         },
       ],
     },

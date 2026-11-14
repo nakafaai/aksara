@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Fikri",
+          label: "Sekar adalah yang termuda di antara mereka.",
         },
         {
           correct: false,
-          label: "Gita",
+          label: "Tegar lebih tua daripada Oki.",
+        },
+        {
+          correct: false,
+          label: "Rafi adalah yang tertua di antara mereka.",
+        },
+        {
+          correct: false,
+          label: "Wulan lebih tua daripada Tegar.",
         },
         {
           correct: true,
-          label: "Hasan",
-        },
-        {
-          correct: false,
-          label: "Indah",
-        },
-        {
-          correct: false,
-          label: "Joni",
+          label: "Rafi lebih tua daripada Sekar.",
         },
       ],
     },

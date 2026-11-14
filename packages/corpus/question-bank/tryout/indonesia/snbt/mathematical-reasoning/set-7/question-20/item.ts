@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "delivery-drone",
+  stimulus: "class-timetable",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "1 kg" },
-        { correct: false, label: "1,5 kg" },
-        { correct: false, label: "2 kg" },
-        { correct: false, label: "2,25 kg" },
-        { correct: true, label: "2,5 kg" },
+        { correct: false, label: "Kamis pukul 09.00" },
+        { correct: false, label: "Kamis pukul 09.45" },
+        { correct: true, label: "Kamis pukul 10.00" },
+        { correct: false, label: "Kamis pukul 10.15" },
+        { correct: false, label: "Kamis pukul 10.30" },
       ],
     },
   },

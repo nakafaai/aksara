@@ -1,27 +1,25 @@
-Untuk soal "pasti benar", cari **semua susunan yang memenuhi syarat**, lalu pilih pernyataan yang berlaku pada semuanya.
+Setiap pilihan hanya mengisi giliran <InlineMath math="3" /> sampai <InlineMath math="6" />. Tiga siswa sisanya harus masuk ke giliran <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="7" />. Keempat nama di tengah baru mungkin kalau **ketiga giliran di tepi masih bisa diisi tanpa melanggar satu pun syarat**.
 
-K duduk di kursi 1, jadi kursi 4 berhadapan dengan K. Kursi 2 dan 6 bersebelahan dengan K, sehingga N hanya bisa duduk di kursi 3, 4, atau 5. L dan M harus menempati pasangan kursi yang berhadapan, yaitu kursi 2 dan 5 atau kursi 3 dan 6. Pasangan 1 dan 4 tidak bisa dipakai karena kursi 1 milik K.
+Di antara empat nama dalam setiap pilihan, tidak ada syarat yang langsung dilanggar. Pelanggaran baru muncul saat kamu bertanya di mana tiga siswa sisanya bisa tampil. Jadi, setiap pilihan perlu kamu lengkapi dulu, baru dinilai.
 
-**Kasus L dan M di kursi 2 dan 5**. Kursi tersisa adalah 3, 4, dan 6. N harus di kursi 3 atau 4. Jika N di kursi 4, O harus di kursi 5, padahal kursi 5 sudah terisi. Jadi, N di kursi 3, O di kursi 4, dan P di kursi 6. Kursi 6 genap, jadi syarat 5 terpenuhi.
+Mulai dari Eka, Bayu, Citra, Fani. Sisanya Dimas, Galih, dan Hesti. Citra di giliran <InlineMath math="5" />, jadi Dimas harus di giliran <InlineMath math="7" /> (syarat 2). Galih dan Hesti mendapat giliran <InlineMath math="1" /> dan <InlineMath math="2" />, yang memang berurutan. Salah satu urutan lengkapnya adalah Galih, Hesti, Eka, Bayu, Citra, Fani, Dimas.
 
-**Kasus L dan M di kursi 3 dan 6**. Kursi tersisa adalah 2, 4, dan 5. N harus di kursi 4 atau 5. Jika N di kursi 5, O harus di kursi 6, padahal kursi 6 sudah terisi. Jadi, N di kursi 4, O di kursi 5, dan P di kursi 2.
+| Syarat | Keadaan pada urutan ini | Hasil |
+| --- | --- | --- |
+| 1 | Galih di giliran <InlineMath math="1" />, Hesti di giliran <InlineMath math="2" /> | berurutan |
+| 2 | Citra di giliran <InlineMath math="5" />, Dimas di giliran <InlineMath math="7" /> | tepat dua giliran |
+| 3 | Eka di giliran <InlineMath math="3" />, Citra di giliran <InlineMath math="5" /> | Eka lebih dulu |
+| 4 | Eka di giliran <InlineMath math="3" /> | bukan giliran <InlineMath math="1" /> |
+| 5 | Giliran <InlineMath math="7" /> diisi Dimas | bukan Galih atau Hesti |
+| 6 | Bayu di giliran <InlineMath math="4" />, nomor genap | syarat ini tidak menuntut apa pun |
 
-L dan M bisa bertukar tempat dalam setiap kasus, sehingga ada empat susunan:
+Syarat 6 hanya berlaku saat Bayu berada di giliran bernomor ganjil. Bayu di giliran <InlineMath math="4" />, jadi Fani di giliran <InlineMath math="6" /> tidak melanggar apa pun.
 
-| Susunan | Kursi 1 | Kursi 2 | Kursi 3 | Kursi 4 | Kursi 5 | Kursi 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+Keempat pilihan lain buntu saat dilengkapi, masing-masing karena syarat yang berbeda.
 
-P selalu duduk di kursi 6 atau kursi 2. Kedua kursi itu bersebelahan dengan kursi 1, jadi **P pasti bersebelahan dengan K**.
+- Eka, Galih, Citra, Bayu: Citra di giliran <InlineMath math="5" /> memaksa Dimas ke giliran <InlineMath math="7" />. Hesti harus tepat di sebelah Galih, yaitu di giliran <InlineMath math="3" /> atau <InlineMath math="5" />. Keduanya sudah terisi, jadi syarat 1 gagal.
+- Hesti, Fani, Citra, Bayu: Dimas lagi-lagi di giliran <InlineMath math="7" />. Galih harus di sebelah Hesti, dan giliran <InlineMath math="4" /> sudah milik Fani, jadi Galih di giliran <InlineMath math="2" />. Eka terpaksa di giliran <InlineMath math="1" />, dan itu dilarang syarat 4.
+- Eka, Citra, Fani, Dimas: sisanya Bayu, Galih, dan Hesti untuk giliran <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="7" />. Galih dan Hesti harus berdampingan, jadi mereka di giliran <InlineMath math="1" /> dan <InlineMath math="2" />, dan Bayu di giliran <InlineMath math="7" />. Giliran itu ganjil, sehingga Fani harus di giliran <InlineMath math="8" /> yang tidak ada. Syarat 6 gagal.
+- Citra, Bayu, Dimas, Fani: sisanya Eka, Galih, dan Hesti untuk giliran <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="7" />. Eka harus sebelum Citra dan tidak di giliran <InlineMath math="1" />, jadi Eka di giliran <InlineMath math="2" />. Galih dan Hesti terpisah di giliran <InlineMath math="1" /> dan <InlineMath math="7" />, padahal mereka harus berurutan dan giliran <InlineMath math="7" /> terlarang bagi mereka.
 
-Pernyataan lain hanya benar pada sebagian susunan:
-
-- N berhadapan dengan P pada susunan I dan II, tetapi tidak pada susunan III dan IV, karena N di kursi 4 berhadapan dengan K.
-- L duduk di kursi genap pada susunan I saja.
-- O berhadapan dengan K pada susunan I dan II, tetapi O duduk di kursi 5 pada susunan III dan IV.
-- Pada susunan I, M di kursi 5 bersebelahan dengan O di kursi 4.
-
-Jadi, pernyataan yang pasti benar adalah P duduk bersebelahan dengan K.
+Jadi, urutan yang mungkin untuk giliran <InlineMath math="3" /> sampai <InlineMath math="6" /> adalah Eka, Bayu, Citra, Fani.

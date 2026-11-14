@@ -1,15 +1,57 @@
-Two steps are easy to miss: **the distance is rounded up first**, and the base fare already covers the first 2 km.
+You're looking for Bima's energy at 12:30. Follow his energy from one event to the next, and each time check **whether the energy is below <InlineMath math="60" />**, because energy only refills automatically while it's below <InlineMath math="60" />.
 
-# Rounding the distance
+# The potion stops the refill
 
-The distance 7.3 km rounds up to 8 km. Of those 8 km, the first 2 km are covered by the base fare, so **the remaining 6 km** are charged per kilometre.
+At 10:03 there's no new refill yet, since the next one is due at 10:05. So Bima still has <InlineMath math="52" />. The potion adds <InlineMath math="30" />, and the boss mission then uses <InlineMath math="20" />.
 
-# Computing the fare
+<BlockMath math="\begin{aligned}
+52+30&=82 \\
+82-20&=62
+\end{aligned}" />
 
-<BlockMath math="10{,}000+6\cdot2{,}500=10{,}000+15{,}000=25{,}000" />
+An energy of <InlineMath math="62" /> is still above <InlineMath math="60" />, so **the automatic refill stops from the moment he drinks the potion**. Until 10:13 his energy stays at <InlineMath math="62" />.
 
-The trip is outside peak hours, so the fare is not multiplied by 1.2.
+# The timer starts again from zero
 
-A fare of Rp22,500 rounds 7.3 km down to 7 km. A fare of Rp23,250 does not round the distance at all. A fare of Rp30,000 appears if the fare is multiplied by 1.2 as in peak hours, or if the first 2 km are also charged Rp2,500 per kilometre.
+At 10:13 Bima starts the second boss mission, so his energy becomes <InlineMath math="62-20=42" />. The energy has just dropped below <InlineMath math="60" />. By the timer rule, **the timer restarts from zero at exactly 10:13**. It doesn't follow the old schedule of 10:15, 10:20 and so on. The next refills come at 10:18, 10:23, 10:28, and so on.
 
-So the fare Dewi pays is **Rp25,000**.
+By 10:23 two refills have happened, at 10:18 and 10:23, and then a normal mission uses <InlineMath math="6" />. At 10:27 there's no new refill, and another normal mission uses <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+42+2-6&=38 \\
+38-6&=32
+\end{aligned}" />
+
+All this time the energy stays below <InlineMath math="60" />, so the timer keeps running and doesn't restart when energy is spent.
+
+# Refills until just before noon
+
+After 10:27 Bima stops playing. Refills happen at 10:28, 10:33, and so on, and the last one before noon is at 11:58. From 10:28 to 11:58 is <InlineMath math="90" /> minutes. **The refill at 10:28 counts too**, so the number of refills is <InlineMath math="90 \div 5" /> plus one.
+
+<BlockMath math="\begin{aligned}
+\frac{90}{5}+1&=19 \\
+32+19&=51
+\end{aligned}" />
+
+An energy of <InlineMath math="51" /> is still below <InlineMath math="60" />, so the refill never stops in this stretch.
+
+# The noon gift stops the refill
+
+12:00 isn't a refill time, because the next refill would be at 12:03. The daily gift adds <InlineMath math="15" />, so the energy becomes <InlineMath math="51+15=66" />. That's above <InlineMath math="60" />, so **the automatic refill stops again**. Bima doesn't spend any energy afterwards, so it stays at <InlineMath math="66" /> until 12:30.
+
+# Checking by adding every change
+
+Now recount by adding all the changes at once. There are <InlineMath math="2+19=21" /> automatic refills, one potion, one gift, two boss missions and two normal missions. **The total has to match** the step-by-step result.
+
+<BlockMath math="52+21+30+15-2\cdot 20-2\cdot 6=66" />
+
+# The wrong options
+
+Each other option comes from **skipping one energy rule**.
+
+- <InlineMath math="52" /> comes from treating the potion as filling energy only up to <InlineMath math="60" />, so the refill would already be running again after the first boss mission.
+- <InlineMath math="60" /> comes from treating the daily gift as filling energy only up to <InlineMath math="60" />.
+- <InlineMath math="72" /> comes from letting the automatic refill keep running after the gift lifts the energy to <InlineMath math="66" />.
+- <InlineMath math="75" /> comes from ignoring the limit of <InlineMath math="60" /> altogether, as if energy rose every <InlineMath math="5" /> minutes from 10:00.
+
+So Bima's energy at 12:30 is <InlineMath math="66" />.

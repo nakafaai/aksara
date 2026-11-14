@@ -1,19 +1,38 @@
-Pertanyaannya meminta jawaban pasti ya atau pasti tidak. Satu pernyataan dianggap cukup hanya jika **semua pasangan bilangan yang memenuhinya memberi jawaban yang sama**. Untuk menunjukkan bahwa pernyataan tidak cukup, satu contoh ya dan satu contoh tidak sudah memadai.
+Kamu mencari luas segitiga kecil di atas trapesium, padahal soal hanya memberi luas dua segitiga di dalamnya. Jembatannya adalah **perbandingan sisi sejajar**. Dari dua luas itu, cari perbandingan <InlineMath math="AB" /> dan <InlineMath math="CD" />, hitung luas trapesium, lalu pakai kesebangunan segitiga <InlineMath math="EAB" /> dan <InlineMath math="ECD" />.
 
-# Pernyataan pertama saja
+# Mencari perbandingan sisi sejajar
 
-Pasangan <InlineMath math="x=3,\ y=1" /> memenuhi <InlineMath math="9>1" /> dan memberi <InlineMath math="x>y" />. Pasangan <InlineMath math="x=-3,\ y=1" /> juga memenuhi <InlineMath math="9>1" />, tetapi <InlineMath math="x<y" />. Kuadrat **menghapus informasi tanda**, jadi pernyataan (1) saja tidak cukup.
+Karena <InlineMath math="AB\parallel CD" />, sudut <InlineMath math="OAB" /> sama dengan sudut <InlineMath math="OCD" /> dan sudut <InlineMath math="OBA" /> sama dengan sudut <InlineMath math="ODC" /> (sudut dalam berseberangan). Jadi segitiga <InlineMath math="AOB" /> sebangun dengan segitiga <InlineMath math="COD" />. Perbandingan luas dua bangun sebangun **sama dengan kuadrat perbandingan sisinya**.
 
-# Pernyataan kedua saja
+<BlockMath math="\left(\frac{AB}{CD}\right)^2=\frac{9}{25}\quad\Rightarrow\quad\frac{AB}{CD}=\frac35=\frac{AO}{OC}" />
 
-Pasangan <InlineMath math="x=3,\ y=1" /> memenuhi <InlineMath math="x+y>0" /> dan memberi <InlineMath math="x>y" />. Pasangan <InlineMath math="x=1,\ y=3" /> juga memenuhi <InlineMath math="x+y>0" />, tetapi <InlineMath math="x<y" />. Jumlah positif **tidak menentukan bilangan mana yang lebih besar**, jadi pernyataan (2) saja tidak cukup.
+# Menghitung luas trapesium
 
-# Kedua pernyataan bersama
+Segitiga <InlineMath math="AOB" /> dan <InlineMath math="BOC" /> sama-sama berpuncak di <InlineMath math="B" />, dan alasnya <InlineMath math="AO" /> dan <InlineMath math="OC" /> terletak pada satu garis. Tingginya sama, jadi **luasnya sebanding dengan alasnya**. Hal yang sama berlaku untuk segitiga <InlineMath math="AOD" /> dan <InlineMath math="COD" /> yang berpuncak di <InlineMath math="D" />. Lambang <InlineMath math="[\,\cdot\,]" /> berarti luas, dalam <InlineMath math="\text{cm}^2" />.
 
-Tulis pernyataan (1) sebagai hasil kali dua faktor.
+<BlockMath math="\begin{aligned}
+[BOC]&=\frac53\cdot[AOB]=\frac53\cdot9=15\\
+[AOD]&=\frac35\cdot[COD]=\frac35\cdot25=15\\
+[ABCD]&=9+15+15+25=64
+\end{aligned}" />
 
-<BlockMath math="x^2-y^2=(x-y)(x+y)>0" />
+# Menghitung luas segitiga kecil
 
-Hasil kali dua bilangan positif hanya jika kedua faktor bertanda sama. Pernyataan (2) memastikan <InlineMath math="x+y>0" />, jadi **faktor <InlineMath math="x-y" /> juga harus positif**. Hasilnya <InlineMath math="x>y" /> untuk setiap pasangan yang memenuhi kedua pernyataan.
+Karena <InlineMath math="AB\parallel CD" />, segitiga <InlineMath math="EAB" /> sebangun dengan segitiga <InlineMath math="ECD" /> dengan perbandingan sisi <InlineMath math="3:5" />. Perbandingan luasnya **kuadrat dari perbandingan sisi**, yaitu <InlineMath math="9:25" />. Tulis <InlineMath math="[EAB]=9k" /> dan <InlineMath math="[ECD]=25k" />. Trapesium adalah segitiga besar dikurangi segitiga kecil.
 
-Jadi, **dua pernyataan bersama-sama cukup**, tetapi satu pernyataan saja tidak cukup.
+<BlockMath math="\begin{aligned}
+[ECD]-[EAB]&=[ABCD]\\
+25k-9k&=64\\
+k&=4\\
+[EAB]&=9\cdot4=36
+\end{aligned}" />
+
+# Memeriksa hasil
+
+Ambil satu contoh trapesium yang cocok: <InlineMath math="AB=3\text{ cm}" />, <InlineMath math="CD=5\text{ cm}" />, dan tinggi <InlineMath math="16\text{ cm}" />. Titik <InlineMath math="O" /> membagi tinggi dengan perbandingan <InlineMath math="3:5" />, jadi jaraknya ke <InlineMath math="AB" /> adalah <InlineMath math="6\text{ cm}" /> dan ke <InlineMath math="CD" /> adalah <InlineMath math="10\text{ cm}" />. Luasnya cocok: <InlineMath math="\frac12\cdot3\cdot6=9" /> dan <InlineMath math="\frac12\cdot5\cdot10=25" />. Jika tinggi <InlineMath math="E" /> di atas <InlineMath math="AB" /> adalah <InlineMath math="t" />, maka <InlineMath math="\frac{t}{t+16}=\frac35" />, sehingga <InlineMath math="t=24" /> dan <InlineMath math="[EAB]=\frac12\cdot3\cdot24=36" />. Hasilnya **sama dengan cara perbandingan**.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="24\text{ cm}^2" /> muncul jika titik <InlineMath math="E" /> dianggap sejauh tinggi trapesium dari <InlineMath math="AB" />, sehingga <InlineMath math="[EAB]=\frac12\cdot AB\cdot h" />, dengan tinggi trapesium <InlineMath math="h" /> yang memenuhi <InlineMath math="AB\cdot h=48" />. Pilihan <InlineMath math="64\text{ cm}^2" /> berhenti di luas trapesium. Pilihan <InlineMath math="96\text{ cm}^2" /> muncul jika **perbandingan sisi <InlineMath math="3:5" /> dipakai langsung untuk luas**, sehingga <InlineMath math="\frac23[EAB]=64" />. Pilihan <InlineMath math="100\text{ cm}^2" /> adalah luas segitiga besar <InlineMath math="ECD" />, sedangkan yang ditanyakan segitiga kecil.
+
+Jadi, luas segitiga <InlineMath math="EAB" /> adalah <InlineMath math="36\text{ cm}^2" />.

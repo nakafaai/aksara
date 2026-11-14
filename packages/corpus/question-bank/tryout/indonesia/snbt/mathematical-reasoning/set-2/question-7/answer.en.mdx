@@ -1,20 +1,48 @@
-Every statement rests on the similar triangles of the pole and the child. For a child of height <InlineMath math="h" /> at distance <InlineMath math="x" />, **the shadow length <InlineMath math="s" /> satisfies <InlineMath math="\tfrac{h}{s}=\tfrac{4.8}{x+s}" />**.
+The key: the paint in the bucket can't be thrown away, so each colour can only be **added to, never reduced**. First find the fix with the least added paint, then judge the four statements with that result.
 
-# A child 1.6 m tall
+# The fix with the least added paint
 
-<BlockMath math="4.8s=1.6(x+s)\;\Longrightarrow\;3.2s=1.6x\;\Longrightarrow\;s=\tfrac x2" />
-
-The first statement is true. After 10 seconds the child is at <InlineMath math="x=12" />, the shadow is 6 m, and **the tip is at <InlineMath math="12+6=18" /> m**. The second statement is true.
-
-The child moves away 1.2 m every second, so the shadow grows only <InlineMath math="\tfrac{1.2}{2}=0.6" /> m every second. The third statement is false.
-
-# A child 2 m tall
+The final mix has to be <InlineMath math="5k" /> litres of white, <InlineMath math="3k" /> litres of yellow and <InlineMath math="2k" /> litres of blue for some number <InlineMath math="k" />. No colour in the bucket may exceed its share, so <InlineMath math="k" /> has to meet all three conditions at once.
 
 <BlockMath math="\begin{aligned}
-4.8s&=2(x+s)\;\Longrightarrow\;2.8s=2x\\
-x=7&\;\Longrightarrow\;2.8s=14\;\Longrightarrow\;s=5
+5k&\ge 6 \quad\Rightarrow\quad k\ge 1.2 \\
+3k&\ge 3 \quad\Rightarrow\quad k\ge 1 \\
+2k&\ge 3 \quad\Rightarrow\quad k\ge 1.5
 \end{aligned}" />
 
-A taller child **has a longer shadow**, 5 m, not 3.5 m. The figure 3.5 m comes from reusing <InlineMath math="s=\tfrac x2" />, which holds only for the 1.6 m child. The fourth statement is false.
+**The tightest condition comes from the blue paint**, so the smallest <InlineMath math="k" /> is <InlineMath math="1.5" />. The final mix is <InlineMath math="7.5" /> litres of white, <InlineMath math="4.5" /> litres of yellow and <InlineMath math="3" /> litres of blue.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+<BlockMath math="\begin{aligned}
+\text{added white}&=7.5-6=1.5 \\
+\text{added yellow}&=4.5-3=1.5 \\
+\text{added blue}&=3-3=0 \\
+\text{final volume}&=7.5+4.5+3=15
+\end{aligned}" />
+
+# The first statement
+
+The added blue in this fix is <InlineMath math="0" />. The blue in the bucket is already exactly <InlineMath math="2k" /> for <InlineMath math="k=1.5" />, so **white and yellow are enough for the fix**. This statement is **true**.
+
+# The second statement
+
+A volume of <InlineMath math="12\text{ litres}" /> means <InlineMath math="k=1.2" />, which makes the blue share only <InlineMath math="2\cdot 1.2=2.4" /> litres. But the bucket already holds <InlineMath math="3\text{ litres}" /> of blue, and **blue can't be reduced**. The number <InlineMath math="12" /> only comes from fitting the fix to the white paint. The smallest volume is <InlineMath math="15\text{ litres}" />, so this statement is **false**.
+
+# The third statement
+
+The fix needs <InlineMath math="1.5\text{ litres}" /> of white and <InlineMath math="1.5\text{ litres}" /> of yellow, and **cans are only sold whole**. White is cheapest as two small cans, since one big can costs <InlineMath math="200{,}000" />. Yellow needs one <InlineMath math="2\text{-litre}" /> can.
+
+<BlockMath math="2\cdot 45{,}000+110{,}000=200{,}000" />
+
+The cheapest cost is <InlineMath math="\text{Rp}200{,}000.00" />, more than <InlineMath math="\text{Rp}150{,}000.00" />. The number <InlineMath math="150{,}000" /> only comes from pricing the paint by the litre, but you can't buy half a can. This statement is **false**.
+
+# The fourth statement
+
+With that cheapest purchase, the white cans hold <InlineMath math="2\text{ litres}" /> and <InlineMath math="1.5\text{ litres}" /> get used, while the yellow can holds <InlineMath math="2\text{ litres}" /> and <InlineMath math="1.5\text{ litres}" /> get used. **Both colours leave some paint behind**.
+
+<BlockMath math="(2-1.5)+(2-1.5)=1" />
+
+What's left is <InlineMath math="1\text{ litre}" />, not <InlineMath math="0.5\text{ litres}" />. The number <InlineMath math="0.5" /> comes from counting the leftover of only one colour. This statement is **false**.
+
+# Summary
+
+Only the first statement is true. The other three fail because **the fix is set by the colour that's most over-poured**, which is blue, and the cans have to be bought whole.

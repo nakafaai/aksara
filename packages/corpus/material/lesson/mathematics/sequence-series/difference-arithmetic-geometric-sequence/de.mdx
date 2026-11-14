@@ -73,7 +73,7 @@ Prüf die Sparfolge: Zieh jede Einlage von der nächsten ab. Jeder Balken zeigt 
 
 <BarChart
   title={<>Die Änderung von einem Monat zum nächsten</>}
-  description={<>Die Differenz zwischen jeder Monatseinlage und der vorigen, von Monat 2 bis Monat 10.</>}
+  description={<>Die Differenz zwischen jeder Monatseinlage und der vorigen, von Monat <InlineMath math="2" /> bis Monat <InlineMath math="10" />.</>}
   yAxisLabel="Änderung (Rp)"
   data={[["2", (5000 + (2 - 1) * 2000) - (5000 + (2 - 2) * 2000)], ["3", (5000 + (3 - 1) * 2000) - (5000 + (3 - 2) * 2000)], ["4", (5000 + (4 - 1) * 2000) - (5000 + (4 - 2) * 2000)], ["5", (5000 + (5 - 1) * 2000) - (5000 + (5 - 2) * 2000)], ["6", (5000 + (6 - 1) * 2000) - (5000 + (6 - 2) * 2000)], ["7", (5000 + (7 - 1) * 2000) - (5000 + (7 - 2) * 2000)], ["8", (5000 + (8 - 1) * 2000) - (5000 + (8 - 2) * 2000)], ["9", (5000 + (9 - 1) * 2000) - (5000 + (9 - 2) * 2000)], ["10", (5000 + (10 - 1) * 2000) - (5000 + (10 - 2) * 2000)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Änderung (Rp)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -137,7 +137,7 @@ Hier sind die Spareinlagen Monat für Monat, <InlineMath math="U_n = 5{.}000 + (
 
 <BarChart
   title={<>Spareinlagen wachsen um denselben Betrag</>}
-  description={<>Monatliche Einlagen von Monat 1 bis Monat 10, jede 2.000 Rupiah höher als im Vormonat.</>}
+  description={<>Monatliche Einlagen von Monat <InlineMath math="1" /> bis Monat <InlineMath math="10" />, jede <InlineMath math="2{.}000" /> Rupiah höher als im Vormonat.</>}
   yAxisLabel="Einlage (Rp)"
   data={Array.from({ length: 10 }, (_, i) => {
     const n = i + 1;
@@ -162,7 +162,7 @@ Jeder Schritt multipliziert mit demselben Faktor, also bleibt der Quotient <Inli
 
    <BlockMath math="B(3)=B_0\cdot2^3=8B_0" />
 
-Lass das Verdopplungsmodell jetzt mit <InlineMath math="100" /> Bakterien beginnen. Nach <InlineMath math="t" /> Stunden sind es dann <InlineMath math="100 \cdot 2^t" />. Jeder Balken ist doppelt so hoch wie der vorige. Die ersten Schritte wirken klein, doch nach 8 Stunden sind es <InlineMath math="25{.}600" />. Ein konstanter Quotient lässt das Wachstum immer schneller werden.
+Lass das Verdopplungsmodell jetzt mit <InlineMath math="100" /> Bakterien beginnen. Nach <InlineMath math="t" /> Stunden sind es dann <InlineMath math="100 \cdot 2^t" />. Jeder Balken ist doppelt so hoch wie der vorige. Die ersten Schritte wirken klein, doch nach <InlineMath math="8" /> Stunden sind es <InlineMath math="25{.}600" />. Ein konstanter Quotient lässt das Wachstum immer schneller werden.
 
 <BarChart
   title={<>Eine Population, die sich stündlich verdoppelt</>}
@@ -186,6 +186,6 @@ Berechne die **Differenzen und Quotienten** der gegebenen Glieder. Jeder Nenner 
 
 | Aufgabe | Folge | Prüfung | Einordnung |
 | --- | --- | --- | --- |
-| 1 | <InlineMath math="18,12,6,0" /> | <InlineMath math="12-18=6-12=0-6=-6" /> | Arithmetisch |
-| 2 | <InlineMath math="81,-27,9,-3" /> | <InlineMath math="\frac{-27}{81}=\frac9{-27}=\frac{-3}9=-\frac13" /> | Geometrisch |
-| 3 | <InlineMath math="2,4,8,14" /> | <InlineMath math="4-2=2,\quad8-4=4,\quad\frac42=2,\quad\frac{14}8=\frac74" /> | Keines von beiden |
+| <InlineMath math="1" /> | <InlineMath math="18,12,6,0" /> | <InlineMath math="12-18=6-12=0-6=-6" /> | Arithmetisch |
+| <InlineMath math="2" /> | <InlineMath math="81,-27,9,-3" /> | <InlineMath math="\frac{-27}{81}=\frac9{-27}=\frac{-3}9=-\frac13" /> | Geometrisch |
+| <InlineMath math="3" /> | <InlineMath math="2,4,8,14" /> | <InlineMath math="4-2=2,\quad8-4=4,\quad\frac42=2,\quad\frac{14}8=\frac74" /> | Keines von beiden |

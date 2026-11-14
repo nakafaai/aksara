@@ -120,7 +120,7 @@ Der Erwartungswert unterscheidet sich auch vom wahrscheinlichsten Ergebnis. Die 
 
 <BarChart
   title={<>Wie oft die Fünf in sieben Würfen fällt</>}
-  description={<>Der höchste Balken steht bei 1, der Erwartungswert 7/6, etwa 1,17, liegt zwischen 1 und 2.</>}
+  description={<>Der höchste Balken steht bei <InlineMath math="1" />, der Erwartungswert <InlineMath math="\frac{7}{6}" />, etwa <InlineMath math="1{,}17" />, liegt zwischen <InlineMath math="1" /> und <InlineMath math="2" />.</>}
   data={Array.from({ length: 8 }, (_, k) => {
     const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
     const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
@@ -140,11 +140,11 @@ Angenommen, eine richtige Antwort bringt <InlineMath math="4" /> Punkte und eine
 
 Probe pro Frage: Ein geratener Versuch hat den Erwartungswert <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> Punkte, also haben auch zwanzig geratene Fragen den Erwartungswert <InlineMath math="0" />. Bei dieser Regel bringt Raten auf lange Sicht keine Punkte.
 
-Die Verteilung der richtig geratenen Antworten von 20 mit <InlineMath math="p = \tfrac15" /> hat ihren Gipfel bei 4, genau beim Erwartungswert <InlineMath math="np = 4" />, und etwa <InlineMath math="98\%" /> ihrer Wahrscheinlichkeit liegen zwischen 1 und 8 richtigen Antworten.
+Die Verteilung der richtig geratenen Antworten von <InlineMath math="20" /> mit <InlineMath math="p = \tfrac15" /> hat ihren Gipfel bei <InlineMath math="4" />, genau beim Erwartungswert <InlineMath math="np = 4" />, und etwa <InlineMath math="98\%" /> ihrer Wahrscheinlichkeit liegen zwischen <InlineMath math="1" /> und <InlineMath math="8" /> richtigen Antworten.
 
 <BarChart
-  title={<>Richtig geratene Antworten von 20 mit <InlineMath math="p = \tfrac15" /></>}
-  description={<>Balken von <InlineMath math="P(X = k)" /> in Prozent für <InlineMath math="k = 0" /> bis 10 richtige Antworten. Größere Anzahlen haben jeweils eine Wahrscheinlichkeit unter <InlineMath math="0{,}3\%" />.</>}
+  title={<>Richtig geratene Antworten von <InlineMath math="20" /> mit <InlineMath math="p = \tfrac15" /></>}
+  description={<>Balken von <InlineMath math="P(X = k)" /> in Prozent für <InlineMath math="k = 0" /> bis <InlineMath math="10" /> richtige Antworten. Größere Anzahlen haben jeweils eine Wahrscheinlichkeit unter <InlineMath math="0{,}3\%" />.</>}
   yAxisLabel="Wahrscheinlichkeit (%)"
   data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

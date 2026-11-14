@@ -1,0 +1,42 @@
+Du sollst fünf Aussagen über Fixpunkte und über Geraden beurteilen, die auf sich selbst abgebildet werden. Am sichersten ist es, **zuerst die Abbildungsvorschrift von** <InlineMath math="T" /> **aufzustellen** und dann jede Aussage damit zu prüfen.
+
+# Die Abbildungsvorschrift
+
+Eine Drehung um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> ändert das Vorzeichen beider Koordinaten. Eine Spiegelung an der Geraden <InlineMath math="x=3" /> behält <InlineMath math="y" /> und macht aus <InlineMath math="x" /> den Wert <InlineMath math="6-x" />, denn <InlineMath math="3" /> liegt genau in der Mitte zwischen <InlineMath math="x" /> und <InlineMath math="6-x" />. Zuerst kommt die Drehung, dann die Spiegelung:
+
+<BlockMath math="\begin{aligned}
+(x,y)&\xrightarrow{\text{Drehung }180^\circ}(-x,-y) \\
+&\xrightarrow{\text{Spiegelung an }x=3}\bigl(6-(-x),\,-y\bigr)=(x+6,\,-y)
+\end{aligned}" />
+
+Also gilt <InlineMath math="T(x,y)=(x+6,\,-y)" />. In Worten: **Jeder Punkt wird an der waagerechten Achse umgeklappt und dann nach rechts verschoben**, und zwar um <InlineMath math="6" /> Einheiten.
+
+# Jede Aussage prüfen
+
+**Aussage 1**. Ein Fixpunkt müsste <InlineMath math="(x+6,-y)=(x,y)" /> erfüllen. Die Gleichung <InlineMath math="x+6=x" /> bedeutet <InlineMath math="6=0" />, und das ist unmöglich. Kein einziger Punkt bleibt stehen. **Richtig**.
+
+**Aussage 2**. Nimm einen beliebigen Punkt dieser Geraden, <InlineMath math="(3,t)" />:
+
+<BlockMath math="T(3,t)=(3+6,\,-t)=(9,\,-t)" />
+
+Alle Bildpunkte liegen auf der Geraden <InlineMath math="x=9" />, nicht auf <InlineMath math="x=3" />. Bei der Spiegelung allein bleibt die Spiegelachse zwar liegen, aber hier bringt die Drehung <InlineMath math="(3,t)" /> vorher nach <InlineMath math="(-3,-t)" />, weit weg von der Achse. **Falsch**.
+
+**Aussage 3**. Ein Punkt auf der <InlineMath math="x" />-Achse hat die Form <InlineMath math="(t,0)" />, und sein Bild <InlineMath math="(t+6,0)" /> liegt wieder auf der <InlineMath math="x" />-Achse. Umgekehrt ist jeder Punkt <InlineMath math="(s,0)" /> das Bild von <InlineMath math="(s-6,0)" />, also füllt das Bild die ganze <InlineMath math="x" />-Achse aus. Die Punkte wandern, die Gerade bleibt. **Richtig**.
+
+**Aussage 4**. Ein Punkt auf der Geraden <InlineMath math="y=x" /> hat die Form <InlineMath math="(t,t)" />:
+
+<BlockMath math="\begin{aligned}
+T(t,t)&=(t+6,\,-t) \\
+X=t+6,\quad Y&=-t \\
+Y&=-(X-6)=-X+6
+\end{aligned}" />
+
+Probe mit zwei Punkten: <InlineMath math="(0,0)" /> geht nach <InlineMath math="(6,0)" />, und <InlineMath math="(1,1)" /> geht nach <InlineMath math="(7,-1)" />. Beide erfüllen <InlineMath math="y=-x+6" />. **Richtig**.
+
+**Aussage 5**. Wende die Vorschrift von <InlineMath math="T" /> zweimal an:
+
+<BlockMath math="T\bigl(T(x,y)\bigr)=T(x+6,\,-y)=\bigl((x+6)+6,\,-(-y)\bigr)=(x+12,\,y)" />
+
+Das Umklappen an der <InlineMath math="x" />-Achse passiert zweimal und hebt sich auf, die Verschiebungen addieren sich. Jeder Punkt rückt um <InlineMath math="12" /> Einheiten nach rechts. **Richtig**.
+
+Richtig sind also die Aussagen 1, 3, 4 und 5.

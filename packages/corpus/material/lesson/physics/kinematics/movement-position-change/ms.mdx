@@ -1,0 +1,162 @@
+export const metadata = {
+  title: "Gerakan sebagai Perubahan Kedudukan",
+  description:
+    "Guna jujukan kedudukan mengikut masa untuk mengenal pasti gerakan, kemudian guna dua titik hujung untuk menentukan sesaran dalam satu kerangka rujukan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-07",
+  subject: "Kinematik",
+};
+
+## Membandingkan Kedudukan pada Masa yang Berbeza
+
+Objek bergerak relatif kepada suatu kerangka rujukan apabila kedudukannya berubah dengan berlalunya masa. Jadi, satu pemerhatian sahaja tidak cukup. Bandingkan kedudukannya pada beberapa masa untuk menentukan sama ada objek itu bergerak. **Kedudukan awal** dan **kedudukan akhir** merumuskan perubahan bersihnya dalam satu selang masa.
+
+Jika kedudukan awal ialah <InlineMath math="x_{\text{awal}}" /> dan kedudukan akhir ialah <InlineMath math="x_{\text{akhir}}" />, perubahan kedudukannya ialah:
+
+<BlockMath math="\Delta x=x_{\text{akhir}}-x_{\text{awal}}" />
+
+Simbol <InlineMath math="\Delta x" /> dibaca "delta x" dan bermaksud sesaran di sepanjang garis ini. Nilainya boleh positif, negatif atau sifar.
+
+> Gerakan dikenal pasti daripada kedudukan yang berubah dengan masa. Sesaran hanya membandingkan dua titik hujung yang dipilih.
+
+## Perbezaan Kedudukan pada Landasan Lurus
+
+Pada landasan lurus yang mempunyai titik sifar yang tetap, perubahan kedudukan hanya bergantung pada **kedudukan akhir tolak kedudukan awal**. Contohnya, jika objek bermula pada <InlineMath math="20 \text{ m}" /> dan berakhir pada <InlineMath math="50 \text{ m}" />, perubahan kedudukannya ialah <InlineMath math="+30 \text{ m}" />.
+
+Jika kedudukan awal dan kedudukan akhir adalah sama, sesarannya sifar. Dua titik hujung itu sahaja tidak memberitahu kita sama ada objek itu kekal pegun atau bergerak pergi lalu kembali. Kita perlukan kedudukan perantaraan atau laluan yang dilalui untuk membezakan kedua-dua kes itu.
+
+Bandingkan dua kes ini. Objek A kekal pegun sepanjang pemerhatian. Objek B bergerak lurus dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" />, kemudian terus kembali.
+
+| Masa | Kedudukan A | Kedudukan B |
+| --- | --- | --- |
+| <InlineMath math="0\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+| <InlineMath math="3\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="50\text{ m}" /> |
+| <InlineMath math="6\text{ s}" /> | <InlineMath math="20\text{ m}" /> | <InlineMath math="20\text{ m}" /> |
+
+Kedua-duanya mempunyai sesaran <InlineMath math="20-20=0\text{ m}" />. A tidak melalui sebarang jarak, manakala B melalui <InlineMath math="(50-20)+(50-20)=60\text{ m}" />. Kedudukan perantaraan itulah yang membezakan kedua-dua kes.
+
+Lukis kedua-dua kes sebagai graf kedudukan melawan masa, kemudian ikut setiap garis dari kiri ke kanan. A kekal mendatar pada <InlineMath math="20\text{ m}" />, manakala B naik ke <InlineMath math="50\text{ m}" /> pada <InlineMath math="3\text{ s}" />, kemudian kembali semula. Kedua-dua garis bermula dan berakhir pada titik yang sama, dan itulah sebabnya kedua-dua sesaran adalah sifar.
+
+<MathVisual
+  title={<>Titik Hujung Sama tetapi Gerakan Berbeza</>}
+  description={<>Masa dalam saat bertambah ke kanan. Kedudukan naik dalam unit 10 m, jadi 5 bermaksud 50 m. Bandingkan kedudukan A dan B pada 3 s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "polyline", appearance: "construction", vertices: [{ x: 0, y: 2 }, { x: 3, y: 2 }, { x: 6, y: 2 }] },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 2 }, { x: 3, y: 5 }, { x: 6, y: 2 }] },
+      { id: "a-0", kind: "point", appearance: "construction", at: { x: 0, y: 2 } },
+      { id: "a-3", kind: "point", appearance: "construction", at: { x: 3, y: 2 } },
+      { id: "a-6", kind: "point", appearance: "construction", at: { x: 6, y: 2 } },
+      { id: "b-0", kind: "point", appearance: "primary", at: { x: 0, y: 2 } },
+      { id: "b-3", kind: "point", appearance: "primary", at: { x: 3, y: 5 } },
+      { id: "b-6", kind: "point", appearance: "primary", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-6", at: { x: 6, y: 2 }, placement: "below-left" },
+      { key: "b", objectId: "b-3", at: { x: 3, y: 5 }, placement: "above" },
+      { key: "top", objectId: "b-3", at: { x: 3, y: 5 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    top: <InlineMath math="50\text{ m}" />,
+  }}
+/>
+
+## Kekalkan Titik Rujukan yang Sama
+
+Apabila mengira perubahan kedudukan, kedudukan awal dan kedudukan akhir mesti diukur dari **titik rujukan yang sama**. Jangan ambil kedudukan awal yang diukur dari kedai dan kedudukan akhir yang diukur dari rumah lain, kerana nombor itu tidak lagi menerangkan gerakan yang sama dalam satu kerangka rujukan.
+
+| Rujukan | Kedudukan awal | Kedudukan akhir | Perubahan kedudukan |
+| :-------- | :--------------- | :------------- | :----------------- |
+| Kedai pada <InlineMath math="0 \text{ m}" /> | <InlineMath math="+20 \text{ m}" /> | <InlineMath math="+50 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
+| Rumah Rani pada <InlineMath math="20 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
+| Rumah Naya pada <InlineMath math="50 \text{ m}" /> | <InlineMath math="-30 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
+
+Tiga baris itu mempunyai nombor kedudukan awal dan kedudukan akhir yang berbeza, tetapi perubahan kedudukannya sama. Titik rujukan mengalihkan nombor koordinat. Beza kedudukan akhir tolak kedudukan awal tetap menerangkan gerakan dari mula hingga akhir.
+
+## Membaca Tanda Perubahan Kedudukan
+
+Pada satu garis lurus, kita boleh memilih satu arah sebagai positif. Dalam contoh ini, **timur ialah arah positif**.
+
+- <InlineMath math="\Delta x>0" /> bermaksud kedudukan akhir berada di sebelah timur kedudukan awal.
+- <InlineMath math="\Delta x<0" /> bermaksud kedudukan akhir berada di sebelah barat kedudukan awal.
+- <InlineMath math="\Delta x=0" /> bermaksud kedudukan awal dan kedudukan akhir adalah sama.
+
+Tanda negatif tidak bermaksud gerakan itu lebih kecil atau salah. Tanda itu hanya memberitahu arah perubahan kedudukan.
+
+Ukur kedua-dua kedudukan dari rujukan yang sama, kira <InlineMath math="\Delta x=x_\text{akhir}-x_\text{awal}" />, kemudian baca tandanya. Dua kedudukan yang sama memberikan <InlineMath math="+30\text{ m}" /> semasa pergi ke timur dan <InlineMath math="-30\text{ m}" /> semasa kembali.
+
+<MathVisual
+  title={<>Empat Langkah Mencari Sesaran</>}
+  description={<>Dua gerakan antara 20 m dan 50 m pada satu paksi. Satu petak grid mewakili 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 2, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 1 }, { x: 4.75, y: 1.125 }, { x: 4.75, y: 0.875 }] },
+      { id: "west", kind: "segment", appearance: "secondary", from: { x: 5, y: 0.5 }, to: { x: 2, y: 0.5 } },
+      { id: "west-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0.5 }, { x: 2.25, y: 0.625 }, { x: 2.25, y: 0.375 }] },
+      { id: "origin", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "west", objectId: "west", at: { x: 3.5, y: 0.5 }, placement: "below" },
+      { key: "origin", objectId: "origin", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="\Delta x=50-20=+30\text{ m}" />,
+    west: <InlineMath math="\Delta x=20-50=-30\text{ m}" />,
+    origin: <InlineMath math="x=0" />,
+  }}
+/>
+
+## Tolak Kedudukan Awal daripada Kedudukan Akhir
+
+Seorang pelajar bermula <InlineMath math="10 \text{ m}" /> di sebelah timur sebuah pintu pagar. Beberapa saat kemudian, pelajar itu berada <InlineMath math="40 \text{ m}" /> di sebelah timur pintu pagar itu. Perubahan kedudukannya ialah:
+
+<BlockMath math="\begin{aligned}
+\Delta x
+&=x_{\text{akhir}}-x_{\text{awal}} \\
+&=40 \text{ m}-10 \text{ m} \\
+&=+30 \text{ m}
+\end{aligned}" />
+
+Oleh itu, **sesaran** pelajar itu ialah <InlineMath math="30 \text{ m}" /> ke timur. Dua kedudukan ini tidak menentukan jarak yang dilalui. Jika pelajar itu berpatah balik semasa perjalanan, jaraknya melebihi <InlineMath math="30 \text{ m}" />.
+
+Perhatikan urutan penolakan. Kita sentiasa membaca kedudukan akhir tolak kedudukan awal, kemudian menggunakan <Highlight>tanda hasilnya</Highlight> untuk menentukan arah perubahan kedudukan.
+
+Anak panah di bawah bermula pada kedudukan awal dan berakhir pada kedudukan akhir. Panjangnya ialah saiz sesaran, dan arahnya yang menghala ke timur menjadikan tandanya positif.
+
+<MathVisual
+  title={<>Sesaran Pelajar Itu</>}
+  description={<>Kedudukan di sebelah timur pintu pagar, satu petak grid bagi setiap 10 m. Anak panah bergerak dari 10 m ke 40 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "gate", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 1, y: 0.6 }, to: { x: 4, y: 0.6 } },
+      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0.6 }, { x: 3.78, y: 0.71 }, { x: 3.78, y: 0.49 }] },
+      { id: "walk-start", kind: "point", appearance: "primary", at: { x: 1, y: 0.6 } },
+    ],
+    labels: [
+      { key: "gate", objectId: "gate", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "change", objectId: "walk", at: { x: 2.5, y: 0.6 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    gate: <>Pintu pagar</>,
+    change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
+  }}
+/>

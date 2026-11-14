@@ -1,22 +1,34 @@
-Setiap pasangan terdiri atas dua huruf, jadi periksa **huruf pertama dan huruf kedua secara terpisah** dengan memakai urutan abjad: A = 1, B = 2, sampai Z = 26.
+Setiap suku punya dua bagian, huruf dan bilangan, dan keduanya punya aturan yang berjalan bersamaan. Supaya huruf bisa dihitung, ubah dulu setiap huruf menjadi nomor urutnya dalam alfabet, dengan <InlineMath math="\text{A} = 1" /> sampai <InlineMath math="\text{Z} = 26" />.
 
-| Pasangan | Huruf pertama | Huruf kedua |
-| --- | --- | --- |
-| AY | <InlineMath math="1" /> | <InlineMath math="25" /> |
-| DW | <InlineMath math="4" /> | <InlineMath math="23" /> |
-| HT | <InlineMath math="8" /> | <InlineMath math="20" /> |
-| MP | <InlineMath math="13" /> | <InlineMath math="16" /> |
-| SK | <InlineMath math="19" /> | <InlineMath math="11" /> |
+| Suku ke- | 1 | 2 | 3 | 4 | 5 |
+| --- | --- | --- | --- | --- | --- |
+| Huruf | B | D | G | L | U |
+| Nomor huruf | <InlineMath math="2" /> | <InlineMath math="4" /> | <InlineMath math="7" /> | <InlineMath math="12" /> | <InlineMath math="21" /> |
+| Bilangan | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="17" /> |
 
-Huruf pertama bertambah <InlineMath math="3, 4, 5, 6" />, jadi berikutnya bertambah <InlineMath math="7" />: <InlineMath math="19+7=26" />, yaitu Z. Huruf kedua berkurang <InlineMath math="2, 3, 4, 5" />, jadi berikutnya berkurang <InlineMath math="6" />: <InlineMath math="11-6=5" />, yaitu E.
+Aturan pertama ada pada bilangan. Setiap bilangan sama dengan dua kali bilangan sebelumnya dikurangi satu.
 
-Ada cara pemeriksaan lain: jumlah nomor kedua huruf adalah <InlineMath math="26, 27, 28, 29, 30" />, selalu **naik satu**. Pasangan berikutnya harus berjumlah <InlineMath math="31" />, dan Z dengan E memenuhi <InlineMath math="26+5=31" />.
+<BlockMath math="2 \times 2 - 1 = 3,\quad 2 \times 3 - 1 = 5,\quad 2 \times 5 - 1 = 9,\quad 2 \times 9 - 1 = 17" />
+
+Aturan kedua menghubungkan huruf dengan bilangan. Lompatan nomor huruf dari satu suku ke suku berikutnya sama dengan **bilangan pada suku yang sedang kamu lihat**.
+
+<BlockMath math="2 + 2 = 4,\quad 4 + 3 = 7,\quad 7 + 5 = 12,\quad 12 + 9 = 21" />
+
+Sekarang lanjutkan dua langkah. Untuk suku ke-6, bilangannya <InlineMath math="2 \times 17 - 1 = 33" />, dan nomor hurufnya <InlineMath math="21 + 17 = 38" />. Karena alfabet hanya sampai <InlineMath math="26" />, putar kembali ke A dengan mengurangi <InlineMath math="26" />.
+
+<BlockMath math="38 - 26 = 12 \quad\Rightarrow\quad \text{L}, \qquad \text{suku ke-6} = \text{L}33" />
+
+Untuk suku ke-7, bilangannya <InlineMath math="2 \times 33 - 1 = 65" />, dan huruf L bergeser sebanyak <InlineMath math="33" />, yaitu bilangan suku ke-6.
+
+<BlockMath math="12 + 33 = 45,\quad 45 - 26 = 19 \quad\Rightarrow\quad \text{S}, \qquad \text{suku ke-7} = \text{S}65" />
+
+Cek dengan cara lain. Kalau huruf tidak diputar, nomornya <InlineMath math="2, 4, 7, 12, 21, 38, 71" />, dan selisih antarsukunya <InlineMath math="2, 3, 5, 9, 17, 33" />, persis bilangan pada barisan. Nomor <InlineMath math="71" /> diputar dua kali: <InlineMath math="71 - 52 = 19" />, yaitu S. Hasilnya sama.
 
 Pilihan lain muncul dari kesalahan berikut:
 
-- YE menambah huruf pertama dengan <InlineMath math="6" /> lagi, padahal langkahnya selalu naik satu.
-- YF mengulang langkah terakhir pada kedua huruf, yaitu <InlineMath math="+6" /> dan <InlineMath math="-5" />.
-- ZD mengurangi huruf kedua dengan <InlineMath math="7" />, padahal langkah huruf kedua selalu satu lebih kecil daripada langkah huruf pertama.
-- ZF mengurangi huruf kedua dengan <InlineMath math="5" /> lagi.
+- <InlineMath math="\text{L}33" /> adalah suku ke-6. Ini terjadi kalau kamu berhenti satu langkah terlalu cepat.
+- <InlineMath math="\text{O}65" /> muncul kalau huruf digeser dengan bilangan suku yang baru, bukan suku yang sedang dilihat: <InlineMath math="21 + 33 = 54" /> menjadi B, lalu <InlineMath math="2 + 65 = 67" /> menjadi O. Aturan ini tidak cocok dengan data, karena B digeser <InlineMath math="3" /> menghasilkan E, bukan D.
+- <InlineMath math="\text{T}68" /> muncul kalau bilangan dianggap selalu dikali dua, sehingga suku berikutnya <InlineMath math="34" /> lalu <InlineMath math="68" />. Aturan ini juga tidak cocok dengan data, karena <InlineMath math="2 \times 9 = 18" />, bukan <InlineMath math="17" />.
+- <InlineMath math="\text{F}129" /> adalah suku ke-8. Ini terjadi kalau kamu melangkah satu suku terlalu jauh.
 
-Jadi, pasangan huruf berikutnya adalah ZE.
+Jadi, suku ke-7 barisan itu adalah <InlineMath math="\text{S}65" />.

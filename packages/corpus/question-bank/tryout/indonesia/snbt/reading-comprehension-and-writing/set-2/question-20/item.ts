@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "reading",
-    topic: "inference",
+    contentDomain: "writing",
+    topic: "concision",
   },
-  stimulus: "sleep-survey",
+  stimulus: "bantaran",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Semua siswa yang tidur kurang dari enam jam bermain gawai hingga larut malam.",
+            "Mural yang paling sering dipotret pengunjung adalah gambar ikan yang dulu hidup di Sungai Ciwangi.",
         },
         {
           correct: false,
           label:
-            "OSIS SMA Bakti sudah mengadakan kampanye tidur cukup pada bulan Maret.",
+            "Menurut warga, mural yang sering dipotret pengunjung adalah gambar ikan yang dulu hidup di Sungai Ciwangi.",
         },
         {
           correct: false,
           label:
-            "Siswa yang tidur enam sampai tujuh jam sudah memenuhi anjuran para ahli kesehatan.",
+            "Menurut warga, mural yang paling sering dipotret pengunjung adalah gambar ikan yang hidup di Sungai Ciwangi.",
+        },
+        {
+          correct: false,
+          label:
+            "Menurut keterangan para warga, mural yang paling sering dipotret oleh pengunjung adalah mural bergambar ikan-ikan sungai yang dulu pernah hidup di Sungai Ciwangi.",
         },
         {
           correct: true,
           label:
-            "Sebagian besar siswa yang disurvei tidur lebih sedikit daripada waktu yang dianjurkan.",
-        },
-        {
-          correct: false,
-          label: "Survei itu diikuti oleh siswa dari semua kelas di SMA Bakti.",
+            "Menurut warga, mural yang paling sering dipotret pengunjung adalah gambar ikan yang dulu hidup di Sungai Ciwangi.",
         },
       ],
     },

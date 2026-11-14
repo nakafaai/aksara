@@ -1,13 +1,31 @@
-Kerjakan dengan **banyak siswa**, karena total siswa sekolah A tetap <InlineMath math="800" />.
+Soal ini meminta jumlah keberangkatan paling sedikit dari kedua pelabuhan selama seminggu. Ada tiga syarat yang bekerja bersama: penumpang setiap hari dan setiap arah naik <InlineMath math="20\%" />, setiap keberangkatan memuat paling banyak <InlineMath math="200" /> orang, dan pada hari yang sama banyak keberangkatan dari kedua pelabuhan harus sama.
+
+Hitung **per hari**, karena penumpang hari Minggu tidak bisa memakai kursi kosong hari Selasa. Karena banyak keberangkatan dari kedua pelabuhan harus sama, arah yang lebih ramai yang menentukan. Untuk setiap hari, langkahnya begini: kalikan setiap batang dengan <InlineMath math="1{,}2" />, ambil arah yang lebih ramai, lalu cari kelipatan <InlineMath math="200" /> terkecil yang cukup menampungnya.
+
+| Hari | Batu Lintang | Karang Mas | Arah lebih ramai | Keberangkatan per pelabuhan |
+| --- | --- | --- | --- | --- |
+| Senin | <InlineMath math="432" /> | <InlineMath math="672" /> | <InlineMath math="672" /> | <InlineMath math="4" /> |
+| Selasa | <InlineMath math="456" /> | <InlineMath math="408" /> | <InlineMath math="456" /> | <InlineMath math="3" /> |
+| Rabu | <InlineMath math="504" /> | <InlineMath math="480" /> | <InlineMath math="504" /> | <InlineMath math="3" /> |
+| Kamis | <InlineMath math="660" /> | <InlineMath math="456" /> | <InlineMath math="660" /> | <InlineMath math="4" /> |
+| Jumat | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="636" /> | <InlineMath math="4" /> |
+| Sabtu | <InlineMath math="792" /> | <InlineMath math="768" /> | <InlineMath math="792" /> | <InlineMath math="4" /> |
+| Minggu | <InlineMath math="648" /> | <InlineMath math="828" /> | <InlineMath math="828" /> | <InlineMath math="5" /> |
+
+Contohnya Senin: <InlineMath math="3 \times 200 = 600" /> kursi belum cukup untuk <InlineMath math="672" /> orang, sedangkan <InlineMath math="4 \times 200 = 800" /> sudah cukup. Hari Sabtu dan Minggu perlu dicek teliti. Pada Sabtu, <InlineMath math="792 \le 800" />, jadi empat keberangkatan masih cukup. Pada Minggu, <InlineMath math="828 > 800" />, jadi perlu lima.
+
+Jumlahkan keberangkatan per pelabuhan, lalu kalikan dua karena ada dua pelabuhan.
 
 <BlockMath math="\begin{aligned}
-\text{pesepeda sekarang} &= 25\%\times800=200 \\
-\text{pesepeda target} &= 40\%\times800=320 \\
-\text{tambahan pesepeda} &= 320-200=120
+4+3+3+4+4+4+5 &= 27 \\
+2 \times 27 &= 54
 \end{aligned}" />
 
-Semua tambahan itu berasal dari siswa yang diantar. Awalnya ada <InlineMath math="25\%\times800=200" /> siswa yang diantar, jadi
+Beberapa jalan pintas memberi angka yang salah.
 
-<BlockMath math="200-120=80" />
+- Kalau kamu membulatkan total seminggu, misalnya <InlineMath math="4{.}128 \div 200" /> menjadi <InlineMath math="21" /> dan <InlineMath math="4{.}248 \div 200" /> menjadi <InlineMath math="22" />, kamu mendapat <InlineMath math="43" />. Cara ini menganggap penumpang boleh pindah hari.
+- Kalau kamu menggabungkan dua arah dalam satu hari, misalnya Senin <InlineMath math="(432+672) \div 200 = 5{,}52" /> menjadi <InlineMath math="6" />, kamu mendapat <InlineMath math="45" />. Cara ini menganggap kapal dari Batu Lintang bisa mengangkut penumpang yang menunggu di Karang Mas, dan melanggar aturan jumlah keberangkatan yang sama.
+- Kalau kamu lupa kenaikan <InlineMath math="20\%" />, kamu mendapat <InlineMath math="44" />.
+- Kalau kamu berhenti di <InlineMath math="27" />, kamu baru menghitung satu pelabuhan.
 
-Periksa dengan persentase: siswa yang diantar turun dari <InlineMath math="25\%" /> menjadi <InlineMath math="\frac{80}{800}=10\%" />, sedangkan pesepeda naik dari <InlineMath math="25\%" /> menjadi <InlineMath math="40\%" />. Kenaikan <InlineMath math="15" /> poin persen sama dengan penurunannya, jadi total tetap <InlineMath math="100\%" />. Jadi, masih ada <InlineMath math="80" /> siswa yang diantar keluarga.
+Jadi, operator membutuhkan paling sedikit <InlineMath math="54" /> keberangkatan dari kedua pelabuhan selama minggu berikutnya.

@@ -2,27 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "narrative",
-    topic: "explicit-information",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "procedure",
+    topic: "information-validity",
   },
-  stimulus: "last-bus",
+  stimulus: "sprout",
   versions: {
     en: {
-      columns: ["Planned", "Live", "Direct"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "The printed timetable",
+          correct: true,
+          label:
+            "Plants grown from packet A will be healthier than plants grown from packet B.",
         },
         {
-          column: 2,
-          label: "The official service page",
+          correct: false,
+          label: "Packet A germinated at a higher rate than packet B.",
         },
         {
-          column: 3,
-          label: "The clinic receptionist",
+          correct: true,
+          label:
+            "Packet B lost its ability to sprout because the tool shed was damp.",
+        },
+        {
+          correct: true,
+          label:
+            "Packet A's seeds would sprout at the same rate in a cold spring.",
+        },
+        {
+          correct: false,
+          label:
+            "Under the club's rule, packet B should be replaced with new seed.",
         },
       ],
     },

@@ -1,22 +1,52 @@
-Misalkan Bu Sari membuat <InlineMath math="x" /> roti cokelat dan <InlineMath math="y" /> roti keju. Keuntungan terbesar selalu dicapai di **salah satu titik pojok daerah yang memenuhi semua batasan**.
+Kamu mencari pendapatan tarif dari perjalanan kedua. Rencananya begini: muat kendaraan satu per satu sesuai antrean, **periksa dua batas sekaligus** (panjang lajur dan massa) sebelum setiap kendaraan naik, lalu jumlahkan tarif kendaraan yang ikut perjalanan kedua.
 
-# Batasan
+# Perjalanan pertama
+
+Truk pada urutan <InlineMath math="1" /> naik. Truk pada urutan <InlineMath math="2" /> membuat massa tepat <InlineMath math="30\text{ ton}" />. Stimulus menyebut bahwa **muatan yang tepat sama dengan batas masih diizinkan**, jadi truk kedua ikut.
 
 <BlockMath math="\begin{aligned}
-x+y&\le100\\
-50x+100y&\le7{.}000\iff x+2y\le140
+\text{massa dua truk} &= 15+15=30\text{ ton}\\
+\text{massa jika mobil ikut} &= 30+2=32\text{ ton}>30\text{ ton}
 \end{aligned}" />
 
-**Kedua garis batas berpotongan** saat <InlineMath math="y=140-100=40" /> dan <InlineMath math="x=60" />.
+Mobil pada urutan <InlineMath math="3" /> tidak muat, jadi kapal berangkat hanya dengan dua truk. Mobil itu menjadi kendaraan pertama pada perjalanan kedua.
 
-# Keuntungan di setiap titik pojok
+# Perjalanan kedua
 
-| Titik pojok | Keuntungan |
-| :---: | :---: |
-| <InlineMath math="(100,0)" /> | Rp150.000,00 |
-| <InlineMath math="(60,40)" /> | Rp170.000,00 |
-| <InlineMath math="(0,70)" /> | Rp140.000,00 |
+Kendaraan pada urutan <InlineMath math="3" /> sampai <InlineMath math="8" /> adalah lima mobil dan satu pikap. Semuanya muat, karena panjangnya <InlineMath math="31\text{ m}" /> dan massanya <InlineMath math="13\text{ ton}" />. Berikutnya truk pada urutan <InlineMath math="9" />.
 
-**Titik (60, 40) memberi keuntungan terbesar**, yaitu <InlineMath math="60\cdot1{.}500+40\cdot2{.}000=170{.}000" />.
+<BlockMath math="\begin{aligned}
+\text{panjang lima mobil dan satu pikap} &= 5\cdot5+6=31\text{ m}\\
+\text{panjang jika truk ikut} &= 31+10=41\text{ m}>40\text{ m}\\
+\text{massa jika truk ikut} &= 13+15=28\text{ ton}\le30\text{ ton}
+\end{aligned}" />
 
-Jadi, keuntungan terbesar adalah **170 ribu rupiah**, dengan membuat 60 roti cokelat dan 40 roti keju.
+Massanya masih cukup, tetapi **panjang lajur yang tidak cukup**. Satu batas yang gagal sudah cukup untuk menahan truk, jadi kapal berangkat dengan lima mobil dan satu pikap.
+
+<BlockMath math="\begin{aligned}
+\text{pendapatan perjalanan kedua} &= 5\cdot200{.}000+250{.}000\\
+&= 1{.}000{.}000+250{.}000\\
+&= 1{.}250{.}000
+\end{aligned}" />
+
+# Pemeriksaan dengan seluruh tarif
+
+Teruskan pemuatannya. Truk pada urutan <InlineMath math="9" /> dan bus berikutnya bermassa <InlineMath math="15+16=31\text{ ton}" />, jadi truk berangkat sendiri. Dua bus bermassa <InlineMath math="16+16=32\text{ ton}" />, jadi **setiap bus berangkat sendiri**. Antrean habis dalam <InlineMath math="5" /> perjalanan, dan setiap kendaraan ikut tepat satu kali.
+
+<BlockMath math="\begin{aligned}
+\text{jumlah pendapatan lima perjalanan} &= 1{.}700{.}000+1{.}250{.}000+850{.}000+750{.}000+750{.}000\\
+&= 5{.}300{.}000\\
+\text{jumlah tarif sebelas kendaraan} &= 3\cdot850{.}000+2\cdot750{.}000+5\cdot200{.}000+250{.}000\\
+&= 5{.}300{.}000
+\end{aligned}" />
+
+Kedua jumlah itu sama, jadi pembagian kendaraan ke setiap perjalanan konsisten.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> adalah pendapatan **perjalanan pertama**, yaitu dua truk.
+- <InlineMath math="\text{Rp}1{.}900{.}000{,}00" /> muncul jika batas dianggap harus kurang dari <InlineMath math="30\text{ ton}" />. Perjalanan pertama lalu hanya membawa satu truk, dan perjalanan kedua membawa truk, empat mobil, dan pikap.
+- <InlineMath math="\text{Rp}2{.}100{.}000{,}00" /> hanya memeriksa massa, sehingga truk pada urutan <InlineMath math="9" /> ikut walaupun panjangnya menjadi <InlineMath math="41\text{ m}" />.
+- <InlineMath math="\text{Rp}2{.}200{.}000{,}00" /> hanya memeriksa panjang. Perjalanan kedua lalu berisi tiga mobil, satu truk, dan satu bus dengan massa <InlineMath math="6+15+16=37\text{ ton}" />.
+
+Jadi, pendapatan tarif kapal dari perjalanan kedua adalah <InlineMath math="\text{Rp}1{.}250{.}000{,}00" />.

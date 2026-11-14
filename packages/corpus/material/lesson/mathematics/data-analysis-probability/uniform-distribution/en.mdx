@@ -44,11 +44,11 @@ Rolling <InlineMath math="1" /> is as likely as rolling <InlineMath math="6" />.
 
 <BlockMath math="P(X\text{ even})=\frac{3}{6}=\frac{1}{2}" />
 
-Every face of a fair die gets the same bar, <InlineMath math="\tfrac16 \approx 16.67\%" />. The six equal bars together make 1, and the event "even" collects three of them: <InlineMath math="\tfrac36 = \tfrac12" />.
+Every face of a fair die gets the same bar, <InlineMath math="\tfrac16 \approx 16.67\%" />. The six equal bars together make <InlineMath math="1" />, and the event "even" collects three of them: <InlineMath math="\tfrac36 = \tfrac12" />.
 
 <BarChart
   title={<>One roll of a fair die</>}
-  description={<>Six equal bars of <InlineMath math="P(X = x) = \tfrac16" /> for <InlineMath math="x = 1" /> to 6.</>}
+  description={<>Six equal bars of <InlineMath math="P(X = x) = \tfrac16" /> for <InlineMath math="x = 1" /> to <InlineMath math="6" />.</>}
   yAxisLabel="Probability"
   data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
   chartConfig={{ value: { label: "Probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -95,11 +95,11 @@ The sample space is <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, so <InlineMath 
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0.125=12.5\%" />
 
-Add the equal probabilities one sector at a time. <InlineMath math="P(X \le x) = \frac{x}{8}" /> climbs in equal steps of <InlineMath math="\tfrac18" /> and reaches 1 at <InlineMath math="x = 8" />.
+Add the equal probabilities one sector at a time. <InlineMath math="P(X \le x) = \frac{x}{8}" /> climbs in equal steps of <InlineMath math="\tfrac18" /> and reaches <InlineMath math="1" /> at <InlineMath math="x = 8" />.
 
 <BarChart
   title={<>Cumulative probability on the wheel</>}
-  description={<>Bars of <InlineMath math="P(X \le x) = \frac{x}{8}" /> for <InlineMath math="x = 1" /> to 8.</>}
+  description={<>Bars of <InlineMath math="P(X \le x) = \frac{x}{8}" /> for <InlineMath math="x = 1" /> to <InlineMath math="8" />.</>}
   yAxisLabel="Cumulative probability"
   data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
   chartConfig={{ value: { label: "Cumulative probability", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -110,7 +110,7 @@ Add the equal probabilities one sector at a time. <InlineMath math="P(X \le x) =
 Identify the outcome set, count the **equally likely outcomes**, and find the requested event probability. Check that the requested object belongs to the outcome set before dividing.
 
 1. A bag contains ten balls identical except for color. There is one red, one blue, one green, one yellow, and six more balls each with a different color. Each ball is equally likely to be drawn. Write the probability mass function for the ball color and calculate the probability of yellow.
-2. A standard bridge deck contains 52 distinct cards, each equally likely to be drawn. Identify the probability distribution for drawing one card and calculate the probability of the King of Hearts.
+2. A standard bridge deck contains <InlineMath math="52" /> distinct cards, each equally likely to be drawn. Identify the probability distribution for drawing one card and calculate the probability of the King of Hearts.
 ### Worked Solutions
 
 **Problem 1**. There are **ten colors**, so <InlineMath math="k=10" />. For each color <InlineMath math="x" /> in the color set <InlineMath math="S" />,
@@ -120,6 +120,6 @@ Identify the outcome set, count the **equally likely outcomes**, and find the re
 Drawing yellow corresponds to exactly one outcome. Therefore,
 
 <BlockMath math="P(\text{yellow ball})=\frac{1}{10}=0.1=10\%" />
-**Problem 2**. Drawing one card follows a **discrete uniform distribution** because all 52 cards are equally likely. Only one of those 52 outcomes is the King of Hearts.
+**Problem 2**. Drawing one card follows a **discrete uniform distribution** because all <InlineMath math="52" /> cards are equally likely. Only one of those <InlineMath math="52" /> outcomes is the King of Hearts.
 
 <BlockMath math="P(\text{King of Hearts})=\frac{1}{52}\approx0.01923\approx1.92\%" />

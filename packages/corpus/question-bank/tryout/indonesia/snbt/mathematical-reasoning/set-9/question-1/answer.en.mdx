@@ -1,20 +1,48 @@
-The instalment is based on **the principal**, the cash price minus the down payment, not on the cash price.
+You're looking for the profit on this order. The plan: count the batches, find how much coffee can be packed, count the full bags, then subtract three kinds of cost from the revenue. Keep the key rule in mind: **light and dark never mix**, not in the roaster and not in a bag, so you handle them separately.
 
-# Down payment and principal
+# Batches for each roast level
+
+One batch holds only one roast level and at most <InlineMath math="12\text{ kg}" />. Light at <InlineMath math="18\text{ kg}" /> needs <InlineMath math="2" /> batches, <InlineMath math="12\text{ kg}" /> and <InlineMath math="6\text{ kg}" />. Dark at <InlineMath math="15\text{ kg}" /> also needs <InlineMath math="2" /> batches, <InlineMath math="12\text{ kg}" /> and <InlineMath math="3\text{ kg}" />.
+
+So **this order uses four batches**, not three. You'd only get three by treating the <InlineMath math="33\text{ kg}" /> as one pile, but light and dark can't share a batch.
+
+# Bags that get sold
+
+A loss of <InlineMath math="16\%" /> means light coffee keeps <InlineMath math="84\%" /> of its green weight. A loss of <InlineMath math="25\%" /> means dark keeps <InlineMath math="75\%" />. Then each batch gives up <InlineMath math="200\text{ g}" /> for the taste test.
 
 <BlockMath math="\begin{aligned}
-\text{down payment}&=20\%\cdot3{,}600{,}000=720{,}000\\
-\text{principal}&=3{,}600{,}000-720{,}000=2{,}880{,}000
+W_{\text{light}} &= 84\%\times18{,}000-2\times200=15{,}120-400=14{,}720\text{ g} \\
+W_{\text{dark}} &= 75\%\times15{,}000-2\times200=11{,}250-400=10{,}850\text{ g}
 \end{aligned}" />
 
-# Monthly instalment
+Only full <InlineMath math="250\text{ g}" /> bags are sold, so divide each weight by <InlineMath math="250" /> and keep the whole part.
 
 <BlockMath math="\begin{aligned}
-\tfrac{1}{12}\cdot2{,}880{,}000&=240{,}000\\
-2\%\cdot2{,}880{,}000&=57{,}600\\
-240{,}000+57{,}600&=297{,}600
+14{,}720 &= 58\times250+220 \\
+10{,}850 &= 43\times250+100
 \end{aligned}" />
 
-In thousands of rupiah, **the instalment is 297.6**.
+That's <InlineMath math="58" /> light bags and <InlineMath math="43" /> dark bags, <InlineMath math="101" /> bags in all. **The light and dark leftovers can't be combined** into one bag, because a bag holds only one roast level.
 
-So the monthly instalment is **297.6 thousand rupiah**, which is Rp297,600.
+# Revenue minus every cost
+
+Revenue comes from the bags sold. There are three costs: <InlineMath math="33\text{ kg}" /> of green beans, gas for <InlineMath math="4" /> batches, and <InlineMath math="101" /> bags.
+
+<BlockMath math="\begin{aligned}
+\text{revenue} &= 58\times75{,}000+43\times70{,}000=4{,}350{,}000+3{,}010{,}000=7{,}360{,}000 \\
+\text{cost} &= 33\times90{,}000+4\times30{,}000+101\times4{,}000=2{,}970{,}000+120{,}000+404{,}000=3{,}494{,}000 \\
+\text{profit} &= 7{,}360{,}000-3{,}494{,}000=3{,}866{,}000
+\end{aligned}" />
+
+Check it by **working out the profit of each roast level on its own**. Light gives <InlineMath math="4{,}350{,}000-1{,}620{,}000-60{,}000-232{,}000=2{,}438{,}000" />. Dark gives <InlineMath math="3{,}010{,}000-1{,}350{,}000-60{,}000-172{,}000=1{,}428{,}000" />. Together that's <InlineMath math="2{,}438{,}000+1{,}428{,}000=3{,}866{,}000" />, the same.
+
+# The wrong options
+
+Each other option comes from **skipping exactly one step**.
+
+- <InlineMath math="\text{Rp}3{,}986{,}000" /> forgets the gas cost of <InlineMath math="\text{Rp}120{,}000" />.
+- <InlineMath math="\text{Rp}4{,}003{,}000" /> takes the taste-test coffee once per roast level instead of once per batch, which gives <InlineMath math="59" /> light bags and <InlineMath math="44" /> dark bags.
+- <InlineMath math="\text{Rp}4{,}140{,}000" /> forgets the taste-test coffee, which gives <InlineMath math="60" /> light bags and <InlineMath math="45" /> dark bags.
+- <InlineMath math="\text{Rp}4{,}270{,}000" /> forgets the bag cost of <InlineMath math="\text{Rp}404{,}000" />.
+
+So the profit on this order is <InlineMath math="\text{Rp}3{,}866{,}000" />.

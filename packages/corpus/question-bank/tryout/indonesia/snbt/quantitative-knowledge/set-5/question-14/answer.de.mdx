@@ -1,21 +1,37 @@
-Verbinde den Mittelpunkt des Sechsecks mit seinen sechs Ecken. So entstehen **sechs gleichseitige Dreiecke mit der Seite 4 cm**, an denen sich alle gefragten Maße ablesen lassen.
+Gefragt ist der mit der Formel für klassierte Daten geschätzte Modus, das Ergebnis darf also eine Dezimalzahl sein, obwohl jede Punktzahl ganzzahlig ist. Diese Schätzung ergibt sich aus der Klasse mit der größten Häufigkeit, aber eine Häufigkeit ist noch unbekannt. Der Plan: Bestimme <InlineMath math="x" /> aus dem Mittelwert, **leg die Modalklasse erst fest, wenn <InlineMath math="x" /> bekannt ist**, und benutze dann die Modusformel.
 
-# Diagonalen
+# Die fehlende Häufigkeit
 
-Die längste Diagonale geht durch den Mittelpunkt und besteht aus zwei Umkreisradien, sie ist also <InlineMath math="4+4=8" /> cm lang. Die zweite Aussage ist wahr.
+Die Klassenmitten sind <InlineMath math="3" />, <InlineMath math="8" />, <InlineMath math="13" />, <InlineMath math="18" /> und <InlineMath math="23" />. Der Mittelwert ist **die Summe aus Häufigkeit mal Klassenmitte, geteilt durch die Gesamthäufigkeit**.
 
-Die kürzeste Diagonale verbindet zwei Ecken, zwischen denen genau eine weitere Ecke liegt. Der Innenwinkel eines regelmäßigen Sechsecks beträgt <InlineMath math="120^\circ" />, nach dem Kosinussatz gilt also:
+<BlockMath math="\begin{aligned}
+\frac{3\cdot3+2\cdot8+7\cdot13+18x+5\cdot23}{3+2+7+x+5}&=15\\
+\frac{231+18x}{17+x}&=15\\
+231+18x&=255+15x\\
+3x&=24\\
+x&=8
+\end{aligned}" />
 
-<BlockMath math="d^2=4^2+4^2-2\cdot4\cdot4\cos120^\circ=16+16+16=48" />
+# Die Modalklasse festlegen
 
-Daraus folgt <InlineMath math="d=4\sqrt3" />, **nicht <InlineMath math="4\sqrt2" />**. Die erste Aussage ist falsch.
+Die Häufigkeiten sind jetzt <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="7" />, <InlineMath math="8" /> und <InlineMath math="5" />. Die größte ist <InlineMath math="8" />, und sie gehört zur Klasse <InlineMath math="16" /> bis <InlineMath math="20" />. Also **ist die Modalklasse nicht die Klasse mit der Häufigkeit <InlineMath math="7" />**, die vor der Berechnung von <InlineMath math="x" /> am größten aussah.
 
-# Inkreis und Flächeninhalt
+# Den Modus berechnen
 
-Der Inkreisradius ist die Höhe eines der gleichseitigen Dreiecke, also <InlineMath math="\frac{\sqrt3}{2}\cdot4=2\sqrt3" />. Der Wert 4 cm ist der **Umkreisradius**, die dritte Aussage ist also falsch.
+Die Modusformel für klassierte Daten lautet <InlineMath math="Mo=L+\tfrac{d_1}{d_1+d_2}\cdot p" />. Dabei ist <InlineMath math="L" /> die untere Klassengrenze der Modalklasse, <InlineMath math="d_1" /> der Unterschied ihrer Häufigkeit zur Klasse davor, <InlineMath math="d_2" /> der Unterschied zur Klasse danach und <InlineMath math="p" /> die Klassenbreite. Die Punktzahlen sind ganze Zahlen, also **ist die untere Klassengrenze der Klasse <InlineMath math="16" /> bis <InlineMath math="20" /> gleich <InlineMath math="15{,}5" />** und nicht <InlineMath math="16" />.
 
-<BlockMath math="A=6\cdot\frac{\sqrt3}{4}\cdot4^2=24\sqrt3" />
+<BlockMath math="\begin{aligned}
+d_1&=8-7=1,\qquad d_2=8-5=3\\
+Mo&=15{,}5+\frac{1}{1+3}\cdot5=15{,}5+1{,}25=16{,}75
+\end{aligned}" />
 
-Die vierte Aussage ist wahr.
+Prüfe, ob das passt: Der Modus liegt in der Klasse von <InlineMath math="15{,}5" /> bis <InlineMath math="20{,}5" />, näher am unteren Rand. Das passt, denn die Klasse davor (Häufigkeit <InlineMath math="7" />) ist dichter besetzt als die Klasse danach (Häufigkeit <InlineMath math="5" />).
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="19{,}25" /> vertauscht <InlineMath math="d_1" /> und <InlineMath math="d_2" /> und erhält so <InlineMath math="15{,}5+\tfrac34\cdot5" />.
+- <InlineMath math="18" /> nimmt nur die Mitte der Modalklasse, ohne die Modusformel.
+- <InlineMath math="17{,}25" /> benutzt die Klassenangabe <InlineMath math="16" /> statt der unteren Klassengrenze <InlineMath math="15{,}5" />.
+- <InlineMath math="15" /> ist **der gegebene Mittelwert, nicht der Modus**.
+
+Der Modus der Quizpunkte ist also <InlineMath math="16{,}75" />.

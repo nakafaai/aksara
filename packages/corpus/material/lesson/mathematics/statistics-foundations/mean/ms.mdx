@@ -1,0 +1,232 @@
+export const metadata = {
+  title: "Min Aritmetik",
+  description: "Kira min, lihat bagaimana nilai ekstrem mempengaruhinya, dan bandingkan dengan median dan mod melalui contoh yang realistik.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-22",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Membahagikan Jumlah Sama Rata
+
+Selain median (nilai tengah) dan mod (nilai paling kerap), **min, atau purata**, ialah satu lagi cara menerangkan pusat satu set data.
+
+Min ialah <Highlight>nilai yang akan diterima oleh setiap ahli</Highlight> kalau kita membahagikan jumlahnya sama rata. Bayangkan kamu kumpulkan semua gula-gula kawan-kawan kamu dalam satu longgokan, kemudian bahagikan sama rata. Bilangan yang diterima oleh setiap kawan ialah min.
+
+## Cara mengira min
+
+Untuk mengira min:
+
+1. Tambah semua nilai data.
+2. Bahagikan hasil tambah itu dengan bilangan nilai.
+
+**Rumus min**:
+
+<BlockMath math="\bar{x} = \frac{\sum x}{n}" />
+
+Kuantiti dalam rumus ini ialah:
+
+- <InlineMath math="\bar{x}" />, dibaca "x bar", mewakili **min**.
+- <InlineMath math="\sum x" />, dibaca "sigma x", mewakili **hasil tambah semua nilai data**.
+- <InlineMath math="n" /> ialah **bilangan nilai data**.
+
+Bayangkan sepuluh kiraan itu sebagai titik pada garis nombor dan min sebagai titik tempat garis itu seimbang. Titik di kiri <InlineMath math="6" /> berada sejumlah <InlineMath math="3 + 3 + 2 + 1 + 1 = 10" /> unit jauhnya, dan titik di kanan berada <InlineMath math="1 + 2 + 3 + 4 = 10" /> unit jauhnya. Jarak-jarak itu saling membatalkan tepat pada min.
+
+<MathVisual
+  title={<>Min ialah titik keseimbangan</>}
+  description={<>Titik bagi <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> pada garis nombor, diseimbangkan pada penyokong di min <InlineMath math="6" />.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 11 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 11, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 6 - 0.5, y: -0.5 }, { x: 6 + 0.5, y: -0.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 6 - 0.5, y: -0.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Kesan Nilai Besar terhadap Min Median dan Mod
+
+Kita akan bandingkan min, median, dan mod bagi set data yang sama sebelum dan selepas **dua nilai yang luar biasa besar** ditambah. Tiga sukatan itu tidak bertindak balas dengan cara yang sama, dan perbandingan ini menunjukkan sukatan mana yang masih menerangkan nilai yang biasa.
+### Mengumpul Pakaian untuk Kempen Komuniti
+
+**Situasi awal**:
+
+Sepuluh orang ahli majlis perwakilan murid Sekolah A mengumpul pakaian yang masih boleh dipakai untuk satu kempen komuniti. Bilangan helai pakaian yang dikumpul oleh setiap ahli ialah:
+
+<BlockMath math="3, 5, 7, 10, 5, 3, 4, 6, 9, 8" />
+
+**Mencari min, median, dan mod awal**:
+
+1.  **Susun data itu** (untuk median dan mod):
+
+    <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10" /> (ada <InlineMath math="10 \text{ data}" />, <InlineMath math="n = 10" />)
+
+2.  **Kira min**:
+
+    <MathContainer>
+      <BlockMath math="\begin{aligned} \sum x &amp;= 3+3+4+5+5 \\ &amp;\quad+6+7+8+9+10 \\ &amp;= 60 \end{aligned}" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{60}{10} = 6" />
+    </MathContainer>
+
+    Jadi, min awalnya ialah <InlineMath math="6" />.
+
+3.  **Cari median**:
+
+    Bilangan data ialah genap (<InlineMath math="n = 10" />). Data tengah berada pada kedudukan <InlineMath math="10/2 = 5" /> dan <InlineMath math="(10/2)+1 = 6" />.
+
+    Nilai pada kedudukan <InlineMath math="5" /> ialah <InlineMath math="5" />, dan nilai pada kedudukan <InlineMath math="6" /> ialah <InlineMath math="6" />.
+
+    <BlockMath math="\text{Median} = \frac{5+6}{2} = 5.5" />
+
+    Jadi, median awalnya ialah <InlineMath math="5.5" />.
+
+4.  **Cari mod**:
+
+    Nilai yang paling kerap ialah <InlineMath math="3" /> (<InlineMath math="2 \text{ kali}" />) dan <InlineMath math="5" /> (<InlineMath math="2 \text{ kali}" />).
+
+    Jadi, mod awalnya ialah <InlineMath math="3" /> dan <InlineMath math="5" /> (bimod).
+
+**Situasi baharu**:
+
+Keesokan harinya, <InlineMath math="2 \text{ orang murid}" /> menyertai dan menderma <InlineMath math="20" /> dan <InlineMath math="22" /> helai pakaian.
+
+Data baharunya menjadi:
+
+<BlockMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 22" />
+
+**Mencari min, median, dan mod baharu**:
+
+1.  **Susun data itu**:
+
+    <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 22" /> (ada <InlineMath math="12 \text{ data}" />, <InlineMath math="n = 12" />)
+
+2.  **Kira min baharu**:
+
+    <MathContainer>
+      <BlockMath math="\sum x = 60 + 20 + 22 = 102" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{102}{12} = 8.5" />
+    </MathContainer>
+
+    Jadi, min baharunya ialah <InlineMath math="8.5" />.
+
+3.  **Cari median baharu**:
+
+    Bilangan data ialah genap (<InlineMath math="n=12" />). Data tengah berada pada kedudukan <InlineMath math="12/2 = 6" /> dan <InlineMath math="(12/2)+1 = 7" />.
+
+    Nilai pada kedudukan <InlineMath math="6" /> ialah <InlineMath math="6" />, nilai pada kedudukan <InlineMath math="7" /> ialah <InlineMath math="7" />.
+
+    <BlockMath math="\text{Median} = \frac{6+7}{2} = 6.5" />
+
+    Jadi, median baharunya ialah <InlineMath math="6.5" />.
+
+4.  **Cari mod baharu**:
+
+    Nilai yang paling kerap masih <InlineMath math="3" /> (<InlineMath math="2 \text{ kali}" />) dan <InlineMath math="5" /> (<InlineMath math="2 \text{ kali}" />).
+
+    Jadi, mod baharunya ialah <InlineMath math="3" /> dan <InlineMath math="5" />.
+
+## Kesan Penambahan Data
+
+Bandingkan sukatan kecenderungan memusat sebelum dan selepas dua nilai itu ditambah:
+
+| Sukatan | Sebelum | Selepas Nilai Ditambah | Perubahan |
+| --- | --- | --- | --- |
+| Min | <InlineMath math="6" /> | <InlineMath math="8.5" /> | <InlineMath math="+2.5" /> |
+| Median | <InlineMath math="5.5" /> | <InlineMath math="6.5" /> | <InlineMath math="+1" /> |
+| Mod | <InlineMath math="3,5" /> | <InlineMath math="3,5" /> | <InlineMath math="0" /> |
+
+Menambah <InlineMath math="20" /> dan <InlineMath math="22" />, dua nilai yang jauh di atas data asal, memberikan **kesan paling besar kepada min**. Nilai-nilai besar itu menarik min ke atas.
+
+Median juga berubah, tetapi tidak begitu ketara. Mod langsung tidak berubah.
+
+Sekarang tambah dua nilai besar <InlineMath math="20" /> dan <InlineMath math="22" />. Titik keseimbangan perlu bergerak ke kanan ke <InlineMath math="102 / 12 = 8.5" /> supaya titik-titik yang jauh itu tetap seimbang. Median, iaitu nilai tengah senarai yang sudah disusun, hanya bergerak daripada <InlineMath math="5.5" /> ke <InlineMath math="6.5" />.
+
+<MathVisual
+  title={<>Dua nilai besar menarik min</>}
+  description={<>Dua belas nilai pada garis nombor dengan min <InlineMath math="8.5" /> sebagai penyokong dan median <InlineMath math="6.5" /> ditanda secara berasingan.</>}
+  labels={{
+    mean: <InlineMath math="\bar{x} = 8.5" />,
+    median: <InlineMath math="\operatorname{Me} = 6.5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 23 }, y: { min: -0.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.4 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: 2, y: 0 }, to: { x: 23, y: 0 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 3, y: 0.6 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 4, y: 0.6 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 5, y: 0.6 }, appearance: "primary" },
+      { id: "d4", kind: "point", at: { x: 5, y: 1.2 }, appearance: "primary" },
+      { id: "d5", kind: "point", at: { x: 6, y: 0.6 }, appearance: "primary" },
+      { id: "d6", kind: "point", at: { x: 7, y: 0.6 }, appearance: "primary" },
+      { id: "d7", kind: "point", at: { x: 8, y: 0.6 }, appearance: "primary" },
+      { id: "d8", kind: "point", at: { x: 9, y: 0.6 }, appearance: "primary" },
+      { id: "d9", kind: "point", at: { x: 10, y: 0.6 }, appearance: "primary" },
+      { id: "d10", kind: "point", at: { x: 20, y: 0.6 }, appearance: "primary" },
+      { id: "d11", kind: "point", at: { x: 22, y: 0.6 }, appearance: "primary" },
+      { id: "mean", kind: "polygon", vertices: [{ x: 102 / 12, y: 0 }, { x: 102 / 12 - 0.5, y: -0.5 }, { x: 102 / 12 + 0.5, y: -0.5 }], appearance: "answer" },
+      { id: "median", kind: "segment", from: { x: 6.5, y: 0 }, to: { x: 6.5, y: 1.4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "mean", objectId: "mean", at: { x: 102 / 12 + 0.5, y: -0.5 }, placement: "right" },
+      { key: "median", objectId: "median", at: { x: 6.5, y: 1.4 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Kesan Satu Nilai Ekstrem
+
+Gantikan derma murid ke-<InlineMath math="12" /> dengan <InlineMath math="100 \text{ helai}" />, kemudian kira semula min untuk mengukur kesan nilai yang luar biasa besar ini.
+
+Data menjadi: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" /> (<InlineMath math="n=12" />)
+
+1.  **Kira min**:
+
+    <MathContainer>
+      <BlockMath math="\sum x = 60 + 20 + 100 = 180" />
+      <BlockMath math="\bar{x} = \frac{\sum x}{n} = \frac{180}{12} = 15" />
+    </MathContainer>
+
+    Min menjadi <InlineMath math="15" />, jauh di atas min awal (<InlineMath math="6" />) dan min sebelumnya (<InlineMath math="8.5" />).
+
+2.  **Cari median**:
+
+    Data yang sudah disusun: <InlineMath math="3, 3, 4, 5, 5, 6, 7, 8, 9, 10, 20, 100" />
+
+    Median masih <InlineMath math="(6+7)/2 = 6.5" />, sama seperti sebelumnya.
+
+3.  **Cari mod**:
+
+    Mod kekal <InlineMath math="3" /> dan <InlineMath math="5" />.
+
+Satu nilai ekstrem boleh dikelaskan sebagai **pencilan** mengikut peraturan statistik yang dinyatakan atau melalui pertimbangan bidang itu. Dalam contoh ini, menggantikan <InlineMath math="22" /> dengan <InlineMath math="100" /> mengubah hasil tambah tetapi tidak mengubah kedudukan tengah dan kekerapan paling tinggi. Jadi min naik, manakala median dan mod kekal sama. Pilih sukatan pusat mengikut kuantiti yang kamu mahu terangkan.
+
+Ini kiraan setiap ahli dalam bentuk bar. Bar paling tinggi ialah <InlineMath math="10" /> dan yang paling rendah ialah <InlineMath math="3" />. Kalau setiap orang memberi bilangan yang sama, setiap bar akan berada pada min <InlineMath math="6" />, kerana jumlahnya <InlineMath math="60" /> helai untuk <InlineMath math="10" /> orang ahli.
+
+<BarChart
+  title={<>Helai pakaian yang dikumpul oleh setiap ahli</>}
+  description={<>Bilangan helai pakaian yang dikumpul oleh setiap satu daripada sepuluh ahli, yang jumlahnya <InlineMath math="60" />.</>}
+  yAxisLabel="Helai pakaian"
+  data={[["1", 3], ["2", 5], ["3", 7], ["4", 10], ["5", 5], ["6", 3], ["7", 4], ["8", 6], ["9", 9], ["10", 8]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Helai pakaian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

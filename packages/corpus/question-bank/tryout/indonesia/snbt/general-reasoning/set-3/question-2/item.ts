@@ -4,36 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "explanation",
+    topic: "weakening",
   },
-  stimulus: "pagar",
+  stimulus: "naungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Di kedua jenis lereng, tanaman kopi di kebun bernaungan rata-rata lebih tua daripada tanaman kopi di kebun tanpa naungan, dan kopi yang lebih tua umumnya berbuah lebih sedikit.",
+        },
+        {
+          correct: false,
+          label:
+            "Di lereng curam, kebun bernaungan lebih sering dipupuk daripada kebun tanpa naungan, sedangkan di lereng landai kedua jenis kebun dipupuk sama seringnya.",
+        },
+        {
           correct: true,
           label:
-            "Pagar yang sangat rapat menghambat pergerakan udara sehingga asap dan partikel dari knalpot terkumpul di lajur kendaraan dan tidak mudah tersebar.",
+            "Di kedua jenis lereng, hampir semua kebun bernaungan dipangkas secara rutin, sedangkan hampir semua kebun tanpa naungan tidak pernah dipangkas, dan pemangkasan rutin menaikkan hasil kopi.",
         },
         {
           correct: false,
           label:
-            "Pada ruas berpagar rapat, jumlah pejalan kaki dan pedagang kaki lima di trotoar jauh lebih banyak daripada di ruas lain, sehingga trotoar menjadi lebih ramai.",
+            "Pada musim panen tahun lalu, curah hujan di lereng curam jauh lebih tinggi daripada di lereng landai sehingga banyak bunga kopi di lereng curam rontok.",
         },
         {
           correct: false,
           label:
-            "Tanaman pada pagar yang rapat mengeluarkan partikel PM2,5 dalam jumlah besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengukuran di ruas berpagar rapat dilakukan lebih banyak pada malam hari.",
-        },
-        {
-          correct: false,
-          label: "Ruas berpagar rapat terletak lebih jauh dari pusat kota.",
+            "Rata-rata hasil seluruh kebun bernaungan lebih rendah daripada rata-rata hasil seluruh kebun tanpa naungan.",
         },
       ],
     },

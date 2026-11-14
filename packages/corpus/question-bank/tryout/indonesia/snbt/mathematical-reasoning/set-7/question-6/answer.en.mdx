@@ -1,18 +1,37 @@
-The long-run average prize is **the expected value**: multiply each prize by its probability, then add.
+Every statement depends on the capital-months, so work those out first. Ayu has <InlineMath math="40\cdot3+20\cdot9=300" />, Bima <InlineMath math="30\cdot6+40\cdot6=420" />, and Citra <InlineMath math="90\cdot8=720" />, for a total of <InlineMath math="1{,}440" />. The plan: judge each statement with these capital-months, and for every what-if, **recount the capital-months that change**.
 
-# Probability of each prize
+# Bima's part and Ayu's part
 
-Of **the 36 equally likely pairs**, sum 12 occurs once, sum 11 twice and sum 7 six times.
+Ayu's first deposit is bigger, but **the profit is shared by capital-months, not by first deposits**. Ayu takes out <InlineMath math="20" /> million from April, while Bima adds <InlineMath math="10" /> million from July. That gives <InlineMath math="420>300" />, so Bima's part is bigger whatever the profit. The first statement is **true**.
 
-# Expected prize
+# Doubling the profit
+
+Ayu's salary stays at <InlineMath math="12" /> million, so **the salary doesn't double**. Compare with numbers. For a profit of <InlineMath math="252" /> million, the shared profit is <InlineMath math="0.9\cdot240=216" /> million and Ayu receives <InlineMath math="12+\frac{5}{24}\cdot216=57" /> million. For a profit of <InlineMath math="504" /> million, the calculation looks like this.
 
 <BlockMath math="\begin{aligned}
-E&=36{,}000\cdot\tfrac{1}{36}+18{,}000\cdot\tfrac{2}{36}+9{,}000\cdot\tfrac{6}{36}\\
-&=1{,}000+1{,}000+1{,}500=3{,}500
+\text{shared profit} &= 0.9\cdot(504-12)=0.9\cdot492=442.8 \\
+\text{Ayu's money} &= 12+\frac{5}{24}\cdot442.8=12+92.25=104.25
 \end{aligned}" />
 
-The average prize of Rp3,500 is less than the Rp5,000 fee, so **in the long run the player loses** Rp1,500 per game.
+That's <InlineMath math="104.25" /> million, not <InlineMath math="2\cdot57=114" /> million. The second statement is **false**.
 
-The value Rp1,500 is the player's average loss, not the average prize. The value Rp21,000 averages the three prizes without their probabilities.
+# If Ayu keeps her money in
 
-So the average prize per game approaches **Rp3,500**.
+Citra's part is her capital-months divided by **the capital-months of all the owners together**, so a change in someone else's capital affects her too. Without the withdrawal, Ayu has <InlineMath math="40\cdot12=480" />.
+
+<BlockMath math="\begin{aligned}
+\text{Citra's part now} &= \frac{720}{1{,}440}=\frac{1}{2} \\
+\text{Citra's part without the withdrawal} &= \frac{720}{480+420+720}=\frac{720}{1{,}620}=\frac{4}{9}
+\end{aligned}" />
+
+Citra's part falls from <InlineMath math="\frac12" /> to <InlineMath math="\frac49" />. The third statement is **false**.
+
+# If Citra joins earlier
+
+Joining at the start of April means Citra's money works for <InlineMath math="9" /> months, so her capital-months are <InlineMath math="90\cdot9=810" />. **The top and the bottom of the fraction both grow by <InlineMath math="90" />**, so you have to recalculate the fraction.
+
+<BlockMath math="\frac{810}{300+420+810}=\frac{810}{1{,}530}=\frac{9}{17}" />
+
+Since <InlineMath math="9\cdot2=18>17" />, the fraction <InlineMath math="\frac{9}{17}" /> is more than a half. The fourth statement is **true**.
+
+So the first statement is true, the second is false, the third is false, and the fourth is true.

@@ -1,17 +1,39 @@
-Let the amount of syrup B be <InlineMath math="b" /> mL, so syrup A is <InlineMath math="1{,}000-b" /> mL. What must match is **the amount of juice**, <InlineMath math="35\%\cdot1{,}000=350" /> mL.
+You're looking for the concentration on Wednesday morning and whether the solution is still suitable. Here's the plan: count the days that pass, find the volume and stock A left, turn them into a concentration, then compare it with the week-five range, **bounds included**.
 
-# Juice equation
+# How many days pass
+
+From Monday morning to Tuesday morning there's one daily change, and from Tuesday morning to Wednesday morning there's one more. So **only two daily changes** happen, not three.
+
+# Volume and stock left
+
+On Monday morning, the tank holds <InlineMath math="\tfrac{1{,}200}{200}\cdot200=1{,}200\text{ ml}" /> of stock A. Each day the volume drops by <InlineMath math="8" /> litres and stock A drops by <InlineMath math="25\text{ ml}" />. **Both of them shrink**, so work out each one.
 
 <BlockMath math="\begin{aligned}
-0.6(1{,}000-b)+0.2b&=350\\
-600-0.4b&=350\\
-b&=625
+\text{volume on Wednesday morning} &= 200-2\cdot8=184\text{ litres}\\
+\text{stock A on Wednesday morning} &= 1{,}200-2\cdot25=1{,}150\text{ ml}
 \end{aligned}" />
 
-# Check
+# The concentration on Wednesday morning
 
-375 mL of syrup A gives 225 mL of juice, and 625 mL of syrup B gives 125 mL, **350 mL together**.
+The concentration is the stock A per litre times <InlineMath math="200" />.
 
-The value 375 mL is the amount of syrup A, not B. The value 500 mL mixes equal amounts, giving 40%. With 600 mL of syrup B the mixture is 36%, and with 300 mL it is 48%, neither 35%.
+<BlockMath math="\begin{aligned}
+\text{concentration} &= \frac{1{,}150}{184}\cdot200=\frac{230{,}000}{184}=1{,}250\text{ ppm}
+\end{aligned}" />
 
-So **625 mL** of syrup B is needed.
+Check the division: <InlineMath math="184\cdot1{,}250=230{,}000" />. The suitable range for week five runs from <InlineMath math="1{,}150" /> to <InlineMath math="1{,}250\text{ ppm}" />, and **both bounds count**. So the solution sits exactly on the upper bound and is still suitable.
+
+# Why the concentration goes up
+
+On the first day the water drops by <InlineMath math="\tfrac{8}{200}=4\%" />, while stock A drops by only <InlineMath math="\tfrac{25}{1{,}200}" />, about <InlineMath math="2\%" />. **Water disappears faster than nutrients**, so the solution gets stronger. A result of <InlineMath math="1{,}250\text{ ppm}" />, above the starting <InlineMath math="1{,}200\text{ ppm}" />, makes sense.
+
+# The wrong options
+
+Each wrong option **misses one change or misreads the bound**.
+
+- About <InlineMath math="1{,}304\text{ ppm}" /> forgets that the plants also take up stock, so it uses <InlineMath math="\tfrac{1{,}200}{184}\cdot200" />.
+- About <InlineMath math="1{,}278\text{ ppm}" /> counts three daily changes, <InlineMath math="\tfrac{1{,}125}{176}\cdot200" />.
+- Exactly <InlineMath math="1{,}250\text{ ppm}" /> but not suitable treats the upper bound as excluded.
+- Exactly <InlineMath math="1{,}150\text{ ppm}" /> forgets that the volume shrinks too, so it divides <InlineMath math="1{,}150\text{ ml}" /> of stock by <InlineMath math="200" /> litres.
+
+So on Wednesday morning the concentration is exactly <InlineMath math="1{,}250\text{ ppm}" />, and the solution is still suitable.

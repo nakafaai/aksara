@@ -1,19 +1,36 @@
-The form of the rule is given, so your job is **to find the exponents** <InlineMath math="m" /> and <InlineMath math="n" />. Start with the examples that contain a <InlineMath math="1" />, because <InlineMath math="1" /> to any power is still <InlineMath math="1" />.
+Each term shows a group of lit cells sitting side by side. Your job is to find the rule from the first six terms and use it for term <InlineMath math="32" />. It turns out there are **two rules running at the same time**, one for how many cells are lit and one for where they are.
 
-<BlockMath math="\begin{aligned}
-3\star1=28 &\Rightarrow 3^m+1=28 \Rightarrow 3^m=27 \Rightarrow m=3 \\
-1\star4=17 &\Rightarrow 1+4^n=17 \Rightarrow 4^n=16 \Rightarrow n=2
-\end{aligned}" />
+For each term, note two things: how many cells are lit, and the leftmost cell of the lit group (the starting cell).
 
-Check with the first example: <InlineMath math="2\star3=2^3+3^2=8+9=17" />, which fits. So the rule is <InlineMath math="a\star b=a^3+b^2" />. The exponents for the first and second number are **different**, so the order of the numbers matters.
+| Term | Lit cells | Starting cell |
+| :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="5" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
 
-<BlockMath math="4\star3=4^3+3^2=64+9=73" />
+The table shows two rules:
 
-The other options come from wrong exponents:
+- The number of lit cells repeats <InlineMath math="1, 2, 3, 1, 2, 3, \ldots" />, so it comes back every <InlineMath math="3" /> terms.
+- The starting cell moves <InlineMath math="2" /> cells to the right each term. Since the row wraps around, moving two cells from cell <InlineMath math="7" /> lands on cell <InlineMath math="2" />, which matches term <InlineMath math="5" />. The position comes back every <InlineMath math="7" /> terms.
 
-- <InlineMath math="25" /> is <InlineMath math="4^2+3^2" />, as if both exponents were <InlineMath math="2" />.
-- <InlineMath math="43" /> is <InlineMath math="4^2+3^3" />, the two exponents swapped.
-- <InlineMath math="67" /> is <InlineMath math="4^3+3" />, the second exponent forgotten.
-- <InlineMath math="91" /> is <InlineMath math="4^3+3^3" />, as if both exponents were <InlineMath math="3" />.
+From term <InlineMath math="1" /> to term <InlineMath math="32" /> there are <InlineMath math="31" /> steps. Find the remainder for each rule:
 
-So <InlineMath math="4\star3" /> is <InlineMath math="73" />.
+<BlockMath math="\begin{aligned} 31 &= 3 \times 10 + 1 \\ 2 \times 31 = 62 &= 7 \times 8 + 6 \end{aligned}" />
+
+The first line means the number of lit cells is the same as after <InlineMath math="1" /> step, like term <InlineMath math="2" />: two cells. The second line means the starting cell has moved <InlineMath math="6" /> cells from cell <InlineMath math="1" />, so it's cell <InlineMath math="7" />.
+
+Two cells starting at cell <InlineMath math="7" /> are cell <InlineMath math="7" /> and the next one. Because the row wraps around, the cell after cell <InlineMath math="7" /> is cell <InlineMath math="1" />. So the lit cells are the rightmost and the leftmost: ● ○ ○ ○ ○ ○ ●.
+
+Check it another way. Both rules line up again every <InlineMath math="3 \times 7 = 21" /> terms, so term <InlineMath math="32" /> is the same as term <InlineMath math="11" />. Carry on from term <InlineMath math="6" />: term <InlineMath math="7" /> has one cell at cell <InlineMath math="6" />, term <InlineMath math="8" /> has two cells at cells <InlineMath math="1" /> and <InlineMath math="2" />, term <InlineMath math="9" /> has three cells at cells <InlineMath math="3" /> to <InlineMath math="5" />, term <InlineMath math="10" /> has one cell at cell <InlineMath math="5" />, and term <InlineMath math="11" /> has two cells at cells <InlineMath math="7" /> and <InlineMath math="1" />. Same result.
+
+Here's where the wrong options come from:
+
+- ○ ○ ○ ○ ○ ○ ● is term <InlineMath math="4" />. You get it if you only use the position rule (<InlineMath math="32" /> divided by <InlineMath math="7" /> leaves <InlineMath math="4" />) and forget the count rule, or if you cut the group off at the right end instead of carrying it on to cell <InlineMath math="1" />.
+- ○ ○ ● ● ○ ○ ○ is term <InlineMath math="2" />. You get it if you only use the count rule (<InlineMath math="32" /> divided by <InlineMath math="3" /> leaves <InlineMath math="2" />) and copy term <InlineMath math="2" /> without moving it.
+- ○ ○ ○ ○ ○ ● ● has the right number of cells, but the group is pushed back so it fits inside the row. The row wraps around, so the second cell has to go to cell <InlineMath math="1" />.
+- ○ ● ● ● ○ ○ ○ is term <InlineMath math="33" />. You get it if you count <InlineMath math="32" /> steps, but from term <InlineMath math="1" /> there are only <InlineMath math="31" /> steps.
+
+So in term <InlineMath math="32" />, only the leftmost and rightmost cells are lit: ● ○ ○ ○ ○ ○ ●.

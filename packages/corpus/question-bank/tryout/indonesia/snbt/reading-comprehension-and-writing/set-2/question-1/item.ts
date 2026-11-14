@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "explicit-information",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "conjunction",
   },
-  stimulus: "weaving-class",
+  stimulus: "perahu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "agar kain hasil kelas dapat dijual kepada pengunjung balai desa",
+          label: "(9) _meskipun demikian_, (14) _sebaliknya_",
+        },
+        {
+          correct: false,
+          label: "(9) _sebaliknya_, (14) _oleh karena itu_",
         },
         {
           correct: true,
-          label: "agar kain ikat tetap hidup di tangan generasi muda",
+          label: "(9) _sebaliknya_, (14) _meskipun demikian_",
         },
         {
           correct: false,
-          label: "agar remaja desa dapat memintal benang lebih cepat",
+          label: "(9) _sebaliknya_, (14) _meskipun_",
         },
         {
           correct: false,
-          label: "agar pewarna alami menggantikan pewarna buatan di pasar",
-        },
-        {
-          correct: false,
-          label: "agar sanggar tenun mendapat penenun baru untuk pameran",
+          label: "(9) _oleh karena itu_, (14) _meskipun demikian_",
         },
       ],
     },

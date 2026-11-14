@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "symbol-pattern",
+    topic: "letter-pattern",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "MBNQV",
-        },
-        {
-          correct: false,
-          label: "KYJLP",
-        },
-        {
-          correct: false,
-          label: "MCPTY",
-        },
-        {
-          correct: false,
-          label: "NDQUA",
+          label: "KNSW",
         },
         {
           correct: true,
-          label: "MCPTZ",
+          label: "NSWK",
+        },
+        {
+          correct: false,
+          label: "JOSG",
+        },
+        {
+          correct: false,
+          label: "WKNS",
+        },
+        {
+          correct: false,
+          label: "MRVJ",
         },
       ],
     },

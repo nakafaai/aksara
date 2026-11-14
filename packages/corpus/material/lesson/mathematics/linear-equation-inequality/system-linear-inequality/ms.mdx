@@ -1,0 +1,314 @@
+export const metadata = {
+  title: "Sistem Ketaksamaan Linear",
+  description: "Selesaikan sistem ketaksamaan linear dengan kaedah graf. Terokai pemodelan kekangan, masalah pengoptimuman, dan visualisasi interaktif.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-18",
+  dateModified: "2026-11-08",
+  subject: "Sistem Persamaan dan Ketaksamaan Linear",
+};
+
+## Pilihan yang Memenuhi Beberapa Ketaksamaan Serentak
+
+Satu rancangan mungkin perlu kekal dalam bajet dan pada masa yang sama mencapai sasaran kehadiran minimum. Setiap syarat <Highlight>membuang sebahagian daripada pilihan yang mungkin</Highlight>. Sistem ketaksamaan linear menerangkan pilihan yang memenuhi setiap syarat bersama-sama.
+
+### Sistem Ketaksamaan Linear
+
+Sistem ketaksamaan linear ialah kumpulan dua atau lebih ketaksamaan linear yang mesti **dipenuhi serentak**. Contohnya, had atas ada bentuk:
+
+<BlockMath math="a_1x_1+a_2x_2+\cdots+a_nx_n\leq b" />
+
+Had bawah menggunakan perbandingan yang bertentangan:
+
+<BlockMath math="a_1x_1+a_2x_2+\cdots+a_nx_n\geq b" />
+
+Dengan <InlineMath math="a_1, a_2, ..., a_n" /> ialah pekali, <InlineMath math="x_1, x_2, ..., x_n" /> ialah pemboleh ubah, <InlineMath math="b" /> ialah pemalar, dan tanda ketaksamaan boleh jadi <InlineMath math="\leq, \geq, <, >" />.
+
+Perbezaan utama antara persamaan linear dan ketaksamaan linear ialah hubungan antara dua belahnya:
+
+- Persamaan linear menyatakan bahawa dua ungkapan adalah sama (<InlineMath math="=" />)
+- Ketaksamaan linear membandingkan dua ungkapan (<InlineMath math="\leq, \geq, <, >" />)
+
+### Sistem Ketaksamaan Linear Dua Pemboleh Ubah
+
+Sistem ini mengandungi dua atau lebih ketaksamaan dengan dua pemboleh ubah (biasanya <InlineMath math="x" /> dan <InlineMath math="y" />):
+
+<BlockMath math="\begin{cases} a_1x + b_1y \leq c_1 \\ a_2x + b_2y \leq c_2 \end{cases}" />
+
+**Contoh**:
+
+<BlockMath math="\begin{cases} 2x + 5y < 10 \\ 6x + 2y > 10 \end{cases}" />
+
+Penyelesaian sistem ini ialah set pasangan tertib <InlineMath math="(x,y)" /> yang memenuhi semua ketaksamaan serentak.
+
+## Menyelesaikan Sistem Ketaksamaan Linear
+
+Untuk menyelesaikan sistem ketaksamaan linear dua pemboleh ubah, kita gunakan kaedah graf. Setiap ketaksamaan menjadi satu separuh satah, dan penyelesaiannya ialah <Highlight>rantau tempat semua separuh satah bertindih</Highlight>. Langkah di bawah membina rantau itu mengikut urutan.
+
+### Lukis Garis Sempadan
+
+Untuk setiap ketaksamaan, lukis garis sempadannya dengan menukar tanda ketaksamaan kepada tanda sama dengan.
+
+**Contoh**:
+
+Untuk sistem:
+
+<BlockMath math="\begin{cases} 2x + 5y < 10 \\ 6x + 2y > 10 \end{cases}" />
+
+Lukis garis-garis ini:
+
+<BlockMath math="\begin{cases} 2x + 5y = 10 \\ 6x + 2y = 10 \end{cases}" />
+
+### Tentukan Rantau Penyelesaian
+
+Untuk menentukan rantau penyelesaian bagi setiap ketaksamaan:
+
+1. Ambil satu titik ujian (contohnya asalan <InlineMath math="(0,0)" /> kalau ia tidak terletak pada garis)
+2. Gantikan titik itu ke dalam ketaksamaan
+3. Kalau hasilnya benar, rantau yang mengandungi titik ujian ialah rantau penyelesaian
+4. Kalau hasilnya palsu, rantau yang tidak mengandungi titik ujian ialah rantau penyelesaian
+
+**Contoh**:
+
+Untuk <InlineMath math="2x + 5y < 10" />, semak titik <InlineMath math="(0, 0)" />:
+
+<BlockMath math="2(0) + 5(0) = 0 < 10" />
+
+_(benar)_
+
+Rantau penyelesaiannya ialah kawasan yang mengandungi titik <InlineMath math="(0, 0)" />, iaitu di bawah garis <InlineMath math="2x + 5y = 10" />.
+
+Untuk <InlineMath math="6x + 2y > 10" />, semak titik <InlineMath math="(0, 0)" />:
+
+<BlockMath math="6(0) + 2(0) = 0 > 10" />
+
+_(palsu)_
+
+Rantau penyelesaiannya ialah kawasan yang tidak mengandungi titik <InlineMath math="(0, 0)" />, iaitu di atas garis <InlineMath math="6x + 2y = 10" />.
+
+### Tentukan Persilangan Rantau Penyelesaian
+
+**Persilangan** mengandungi titik-titik yang memenuhi kedua-dua syarat bersama-sama. Titik <InlineMath math="(2,1)" /> terletak di bawah garis pertama dan di atas garis kedua. Semak dengan menggantikan kedua-dua koordinat:
+
+<MathContainer>
+  <BlockMath math="2(2)+5(1)=9<10" />
+  <BlockMath math="6(2)+2(1)=14>10" />
+</MathContainer>
+
+Titik <InlineMath math="(0,0)" /> hanya memenuhi syarat pertama, jadi ia bukan penyelesaian sistem ini. Dengan ketaksamaan tegas, **titik pada sempadan dikecualikan**, termasuk persilangan dua garis sempadan itu.
+
+Lorek kedua-dua syarat serentak. Titik <InlineMath math="(2, 1)" /> lulus kedua-dua ujian, <InlineMath math="9 < 10" /> dan <InlineMath math="14 > 10" />, jadi ia berada dalam kawasan bertindih: baji yang bermula di tempat garis sempadan bertemu pada <InlineMath math="\left(\tfrac{15}{13}, \tfrac{20}{13}\right)" />. Garis sempadan bukan sebahagian daripada penyelesaian, kerana kedua-dua ketaksamaan adalah tegas.
+
+<MathVisual
+  title={<>Kawasan bertindih mengandungi <InlineMath math="(2, 1)" /></>}
+  description={<>Garis sempadan <InlineMath math="2x + 5y = 10" /> dan <InlineMath math="6x + 2y = 10" />, baji tempat <InlineMath math="2x + 5y < 10" /> dan <InlineMath math="6x + 2y > 10" /> kedua-duanya benar, dilukis sehingga <InlineMath math="x = 4" />, dan titik ujian <InlineMath math="(2, 1)" />.</>}
+  labels={{
+    l1: <InlineMath math="2x + 5y = 10" />,
+    l2: <InlineMath math="6x + 2y = 10" />,
+    test: <InlineMath math="(2, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -7.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 15 / 13, y: 20 / 13 }, { x: 4, y: 2 / 5 }, { x: 4, y: -7 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 2 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 5 }, { x: 5 / 3, y: 0 }], appearance: "secondary" },
+      { id: "test", kind: "point", at: { x: 2, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "test", objectId: "test", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Perwakilan Graf
+
+Semasa melukis graf ketaksamaan:
+
+- Untuk <InlineMath math="\leq" /> atau <InlineMath math="\geq" />: gunakan garis padu (rantau penyelesaian termasuk titik pada garis)
+- Untuk <InlineMath math="<" /> atau <InlineMath math=">" />: gunakan garis **putus-putus** (rantau penyelesaian tidak termasuk titik pada garis)
+- Rantau penyelesaian dilorek untuk menunjukkan penyelesaian
+
+## Semak Kefahaman
+
+<BlockMath math="\begin{cases} x+y\leq6 \\ 2x-y\geq0 \end{cases}" />
+
+Tentukan sama ada <InlineMath math="(2,3)" /> dan <InlineMath math="(1,5)" /> tergolong dalam **set penyelesaian**.
+
+### Penyelesaian
+
+Apabila kamu mendarab atau membahagikan ketaksamaan dengan **nombor negatif**, songsangkan tanda perbandingannya. Untuk melukis graf kekangan kedua, gunakan:
+
+<BlockMath math="2x-y\ge0\quad\Longleftrightarrow\quad-y\ge-2x\quad\Longleftrightarrow\quad y\le2x" />
+
+Gantikan <InlineMath math="(2,3)" /> ke dalam kedua-dua ketaksamaan:
+
+<MathContainer>
+  <BlockMath math="2+3=5\leq6" />
+  <BlockMath math="2(2)-3=1\geq0" />
+</MathContainer>
+
+Kedua-dua pernyataan benar, jadi <InlineMath math="(2,3)" /> ialah penyelesaian.
+
+Sekarang uji <InlineMath math="(1,5)" />:
+
+<MathContainer>
+  <BlockMath math="1+5=6\leq6" />
+  <BlockMath math="2(1)-5=-3\not\geq0" />
+</MathContainer>
+
+Pernyataan kedua palsu, jadi <InlineMath math="(1,5)" /> bukan penyelesaian. Garis sempadan bertemu pada <InlineMath math="(2,4)" />, tetapi titik itu hanya satu bahagian penyelesaian. Penyelesaian penuhnya ialah seluruh rantau bertindih, termasuk hanya bahagian setiap sempadan padu yang memenuhi ketaksamaan yang satu lagi.
+
+Lukis kedua-dua sempadan melalui titik pertemuannya <InlineMath math="(2, 4)" />. Rantau penyelesaian berada di bawah <InlineMath math="x + y = 6" /> dan di bawah <InlineMath math="y = 2x" />. Titik <InlineMath math="(2, 3)" /> terletak di dalamnya, manakala <InlineMath math="(1, 5)" /> berada di atas garis <InlineMath math="y = 2x" />, sebab itulah <InlineMath math="2(1) - 5 = -3" /> gagal memenuhi ketaksamaan kedua.
+
+<MathVisual
+  title={<>Menguji <InlineMath math="(2, 3)" /> dan <InlineMath math="(1, 5)" /></>}
+  description={<>Rantau tempat <InlineMath math="x + y \leq 6" /> dan <InlineMath math="2x - y \geq 0" />, dilukis sehingga <InlineMath math="y = -2" />, dengan bucu <InlineMath math="(2, 4)" />, penyelesaian <InlineMath math="(2, 3)" /> dan bukan penyelesaian <InlineMath math="(1, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y = 6" />,
+    l2: <InlineMath math="y = 2x" />,
+    corner: <InlineMath math="(2, 4)" />,
+    yes: <InlineMath math="(2, 3)" />,
+    no: <InlineMath math="(1, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: -3, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "region", kind: "polygon", vertices: [{ x: 2, y: 4 }, { x: 8, y: -2 }, { x: -1, y: -2 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "yes", kind: "point", at: { x: 2, y: 3 }, appearance: "highlight" },
+      { id: "no", kind: "point", at: { x: 1, y: 5 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 6, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "l2", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "yes", objectId: "yes", at: { x: 2, y: 3 }, placement: "below" },
+      { key: "no", objectId: "no", at: { x: 1, y: 5 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Memodelkan Pilihan yang Dibenarkan
+
+Sistem ketaksamaan linear menerangkan set gabungan yang **dibenarkan bersama-sama**. Masalah berayat perlu ditukar kepada sistem sebegini sebelum ia boleh diselesaikan, dan penyelesaiannya ialah seluruh rantau gabungan yang dibenarkan.
+
+### Memodelkan Pilihan yang Dibenarkan dengan Ketaksamaan
+
+Sistem ketaksamaan linear menerangkan **pilihan yang dibenarkan** dalam masalah pengoptimuman, seperti:
+
+- Masalah pengeluaran dengan kekangan sumber
+- Perancangan bajet dengan kekangan kos
+- Perancangan pemakanan dengan kekangan kalori
+
+Model pengoptimuman juga perlukan satu matlamat, seperti meminimumkan kos atau memaksimumkan hasil. Ketaksamaan sahaja hanya menentukan pilihan yang dibenarkan.
+
+### Merancang Aktiviti
+
+Kiki menganjurkan sambutan hari kemerdekaan di kawasan kejiranannya. Daripada tabung komuniti, ada <InlineMath math="\text{Rp}500{,}000.00" /> yang boleh digunakan. Untuk menganjurkan pertandingan, kosnya <InlineMath math="\text{Rp}20{,}000.00" /> bagi setiap kanak-kanak. Hadiah untuk pemenang diperuntukkan sebanyak <InlineMath math="\text{Rp}40{,}000.00" /> bagi **setiap jenis pertandingan**. Dijangka lebih daripada <InlineMath math="13" /> kanak-kanak akan menyertainya.
+
+Takrifkan:
+
+- <InlineMath math="x" /> = bilangan peserta
+- <InlineMath math="y" /> = bilangan pertandingan
+
+Model matematiknya ialah:
+
+<BlockMath math="\begin{cases} 20{,}000x + 40{,}000y \leq 500{,}000 \\ x > 13 \\ x,y \in \mathbb{Z}_{>0} \end{cases}" />
+
+Kalau kita permudahkan:
+
+<BlockMath math="\begin{cases} 20x + 40y \leq 500 \\ x > 13 \\ x,y \in \mathbb{Z}_{>0} \end{cases}" />
+
+Tanpa syarat integer, kekangan kos dan kehadiran mentakrifkan rantau yang dibenarkan secara selanjar. Oleh sebab peserta dan pertandingan dikira dalam nombor bulat, rancangan yang sah ialah titik integer positif di dalam rantau itu.
+
+### Memaksimumkan Bilangan Pertandingan
+
+Kalau Kiki mahu **seberapa banyak pertandingan yang boleh**, matlamatnya ialah memaksimumkan <InlineMath math="y" />. Bilangan peserta ialah integer yang lebih besar daripada <InlineMath math="13" />, jadi nilai terkecilnya ialah <InlineMath math="x=14" />. Bahagikan kekangan bajet dengan <InlineMath math="20{,}000" /> untuk mendapat:
+
+<BlockMath math="\begin{aligned}x+2y&amp;\le25\\14+2y&amp;\le25\\2y&amp;\le11\\y&amp;\le\frac{11}{2}\end{aligned}" />
+
+Bilangan pertandingan mesti integer, jadi paling banyak ada **lima pertandingan**. Enam memerlukan sekurang-kurangnya <InlineMath math="14+2(6)=26" /> unit kos, melebihi had <InlineMath math="25" />. Kedua-dua rancangan di bawah mencapai lima pertandingan:
+
+| Peserta | Pertandingan | Jumlah kos |
+| --- | --- | --- |
+| <InlineMath math="14" /> | <InlineMath math="5" /> | <InlineMath math="\text{Rp}480{,}000" /> |
+| <InlineMath math="15" /> | <InlineMath math="5" /> | <InlineMath math="\text{Rp}500{,}000" /> |
+
+## Perbezaan antara Sistem Persamaan Linear dan Sistem Ketaksamaan Linear
+
+Dua jenis sistem ini berbeza dari segi apa yang dikira sebagai jawapan. Jadual ini meletakkan tanda operasi, bentuk penyelesaian, dan graf bersebelahan.
+
+| Aspek                        | Sistem Persamaan Linear                                   | Sistem Ketaksamaan Linear                                                                        |
+| ---------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| **Tanda Operasi**            | Menggunakan tanda sama dengan (<InlineMath math="=" />)   | Menggunakan tanda ketaksamaan (<InlineMath math="<, >, \leq, \geq" />)                          |
+| **Bentuk Penyelesaian**      | Titik sepunya bagi persamaan-persamaan itu                | Set sepunya yang dibenarkan oleh semua ketaksamaan                                               |
+| **Perwakilan Graf**          | Titik sepunya bagi garis-garis                            | Persilangan separuh satah yang dilorek                                                           |
+| **Kaedah Penyelesaian**      | Penggantian, penghapusan, penentu                         | Graf, semakan kebolehlaksanaan, dan pengaturcaraan linear apabila ada matlamat                   |
+| **Bilangan Penyelesaian**    | Sifar, satu, atau tak terhingga banyaknya                 | Mungkin kosong, satu titik atau segmen sempadan, atau rantau dengan penyelesaian nyata yang tak terhingga |
+| **Lukisan**                  | Sentiasa menggunakan garis padu                           | Garis padu untuk <InlineMath math="\leq, \geq" /> dan garis putus-putus untuk <InlineMath math="<, >" /> |
+
+## Visualisasi Interaktif Sistem Ketaksamaan Linear
+
+Setiap ketaksamaan mentakrifkan satu separuh satah yang dibenarkan. Dengan beberapa ketaksamaan, hanya **kawasan bertindih separuh satah itu** yang memenuhi setiap syarat.
+
+Visualisasi interaktif ini menunjukkan kawasan bertindih itu secara terus.
+
+### Contoh Sistem Ketaksamaan
+
+Sistem ini mengandungi dua ketaksamaan, dan **setiap ketaksamaan menghasilkan rantaunya sendiri**:
+
+<BlockMath math="\begin{cases} x + y \leq 10 \\ 15x + 9y \geq 120 \end{cases}" />
+
+Dalam visualisasi di bawah, rantau jingga menunjukkan penyelesaian bagi <InlineMath math="x + y \leq 10" /> (semua titik di bawah atau pada garis <InlineMath math="x + y = 10" />).
+
+Rantau ungu menunjukkan penyelesaian bagi <InlineMath math="15x + 9y \geq 120" /> (semua titik di atas atau pada garis <InlineMath math="15x + 9y = 120" />).
+
+Persilangan dua rantau itu ialah penyelesaian sistem ketaksamaan linear.
+
+<MathVisual
+  title={<>Rantau tempat kedua-dua ketaksamaan benar</>}
+  description={<>Garis sempadan <InlineMath math="x + y = 10" /> (jingga) dan <InlineMath math="15x + 9y = 120" /> (ungu) bertemu pada <InlineMath math="(5, 5)" />. Separuh satah jingga ialah <InlineMath math="x + y \leq 10" />, separuh satah ungu ialah <InlineMath math="15x + 9y \geq 120" />, dan kawasan bertindihnya ialah baji di sebelah kanan <InlineMath math="(5, 5)" />.</>}
+  labels={{
+    l1: <InlineMath math="x + y \le 10" />,
+    l2: <InlineMath math="15x + 9y \ge 120" />,
+    corner: <InlineMath math="(5, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 12.5 }, y: { min: -6.5, max: 14.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "h1", kind: "polygon", vertices: [{ x: -1, y: -6 }, { x: 12, y: -6 }, { x: 12, y: -2 }, { x: -1, y: 11 }], appearance: "primary" },
+      { id: "h2", kind: "polygon", vertices: [{ x: -2 / 5, y: 14 }, { x: 12, y: 14 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "secondary" },
+      { id: "region", kind: "polygon", vertices: [{ x: 5, y: 5 }, { x: 12, y: -2 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "answer" },
+      { id: "l1", kind: "line", through: [{ x: 0, y: 10 }, { x: 10, y: 0 }], appearance: "primary" },
+      { id: "l2", kind: "line", through: [{ x: 8, y: 0 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "corner", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "l1", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "l2", objectId: "l2", at: { x: 16 / 5, y: 8 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 5, y: 5 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Cara Membaca Visualisasi
+
+Dalam visualisasi interaktif ini:
+
+1. **Garis sempadan** menunjukkan persamaan (contohnya <InlineMath math="x + y = 10" /> dan <InlineMath math="15x + 9y = 120" />)
+2. **Rantau berwarna** menunjukkan penyelesaian bagi setiap ketaksamaan
+3. **Rantau persilangan** (kawasan yang memenuhi semua ketaksamaan) ialah penyelesaian sistem ketaksamaan
+
+Dua garis sempadan bertemu pada <InlineMath math="(5,5)" />. Titik ini membentuk satu bucu set yang dibenarkan. Lorekan yang bertindih menunjukkan bahagian set penyelesaian yang kelihatan dalam tetingkap graf. Set penyelesaian itu tidak berakhir di tepi paparan.
+
+Urutan membaca yang sama digunakan untuk masalah berayat: lukis graf setiap syarat, simpan sebelah yang dibenarkan, kemudian ambil rantau sepunya.

@@ -1,0 +1,207 @@
+export const metadata = {
+  title: "Konsep Tenaga",
+  description:
+    "Tenaga diukur dalam joule, dipindahkan melalui kerja, berkait dengan kuasa melalui masa, dan dikira dalam kilowatt-jam pada bil elektrik rumah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Tenaga Dikenal Pasti daripada Perubahan
+
+Apabila lampu menyala, air mendidih, basikal bergerak atau telefon dicas, ada tenaga yang sedang dipindahkan atau ditukar bentuknya. Dalam fizik, [**tenaga**](https://www.eia.gov/energyexplained/what-is-energy/) ialah keupayaan untuk melakukan kerja atau menyebabkan perubahan.
+
+Tenaga <Highlight>dikenal pasti melalui kesannya</Highlight>: objek bergerak, suhu berubah, cahaya muncul, bunyi terhasil atau cas elektrik mengalir.
+
+## Kerja Mekanik Memindahkan Tenaga
+
+Apabila daya malar bertindak pada **arah yang sama** dengan sesaran objek, tenaga yang dipindahkan melalui kerja mekanik ialah:
+
+<BlockMath math="W = F \Delta s" />
+
+Dari sini dan seterusnya, kita guna Sistem Unit Antarabangsa (S.I.) supaya daya, sesaran dan tenaga memakai satu sistem unit yang konsisten.
+
+Panduan simbol:
+
+| Simbol | Maksud | Unit S.I. |
+| :----- | :------ | :------ |
+| <InlineMath math="W" /> | kerja atau tenaga yang dipindahkan | <InlineMath math="\text{J}" /> |
+| <InlineMath math="F" /> | daya | <InlineMath math="\text{N}" /> |
+| <InlineMath math="\Delta s" /> | sesaran | <InlineMath math="\text{m}" /> |
+
+Katakan kamu menolak sebuah kotak dengan daya <InlineMath math="15 \text{ N}" /> sehingga kotak itu bergerak sejauh <InlineMath math="2 \text{ m}" />. Tenaga yang dipindahkan kepada kotak melalui kerja ialah:
+
+<BlockMath math="\begin{aligned}
+W &= F \Delta s \\
+&= 15 \text{ N} \times 2 \text{ m} \\
+&= 30 \text{ J}
+\end{aligned}" />
+
+Jadi, kotak itu menerima <InlineMath math="30 \text{ J}" /> tenaga melalui tolakan itu.
+
+> Jika daya dikenakan tetapi objek tidak bergerak, kerja mekanik pada objek itu ialah <InlineMath math="0 \text{ J}" />. Orang yang menolak tetap menggunakan tenaga metabolik dan mungkin berasa penat, tetapi objek yang pegun tidak menerima tenaga melalui sesaran.
+
+Lukis tolakan itu sebagai graf daya melawan sesaran, dan kerja itu menjadi satu luas. Segi empat tepat di bawah tingginya <InlineMath math="15\text{ N}" /> dan lebarnya <InlineMath math="2\text{ m}" />, jadi luasnya tepat sama dengan <InlineMath math="30\text{ J}" /> yang diterima oleh kotak itu.
+
+<MathVisual
+  title={<>Kerja sebagai Luas</>}
+  description={<>Daya malar 15 N sepanjang 2 m. Mengufuk: sesaran dalam m. Menegak: daya dalam unit 5 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "work", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }] },
+    ],
+    labels: [
+      { key: "force", objectId: "work", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "area", objectId: "work", at: { x: 1, y: 1.5 }, placement: "center" },
+    ],
+  }}
+  labels={{
+    force: <InlineMath math="F=15\text{ N}" />,
+    area: <InlineMath math="W=15\times2=30\text{ J}" />,
+  }}
+/>
+
+## Tenaga Diukur dalam Joule
+
+Dalam S.I., unit bagi tenaga ialah joule, dengan simbol <InlineMath math="\text{J}" />. Oleh sebab tenaga boleh dihitung daripada **daya didarab dengan sesaran**, satu joule boleh dibaca sebagai:
+
+<BlockMath math="\begin{aligned}
+1 \text{ J}
+&= 1 \text{ N} \cdot 1 \text{ m} \\
+&= 1 \text{ kg m}^2\text{ s}^{-2}
+\end{aligned}" />
+
+Joule ialah [unit terbitan S.I.](https://www.nist.gov/pml/special-publication-330/sp-330-section-2) bagi tenaga. [Satu joule bersamaan dengan satu newton meter](https://www.nist.gov/glossary-term/26261), iaitu satu kilogram meter kuasa dua per saat kuasa dua.
+
+## Pemindahan dan Penukaran Tenaga
+
+Tenaga boleh **dipindahkan daripada sumber kepada alat**. Alat itu kemudian boleh menukarkannya kepada output yang berguna seperti cahaya, gerakan, pemanasan atau elektrik.
+
+<Mermaid
+  title="Pemindahan Tenaga daripada Sumber kepada Penggunaan"
+  description="Contoh harian menunjukkan cara tenaga dipindahkan dan ditukar."
+  chart={`flowchart TD
+    A["Tenaga di sekeliling kita"] --> B["Cahaya matahari ke panel"]
+    B --> C["Elektrik untuk lampu"]
+    A --> D["Air tinggi ke turbin"]
+    D --> C
+    A --> E["Makanan ke badan"]
+    E --> F["Otot bergerak"]`}/>
+
+Dalam panel suria, tenaga cahaya bertukar menjadi tenaga elektrik. Dalam sistem hidroelektrik, tenaga keupayaan graviti air bertukar menjadi gerakan turbin, kemudian menjadi tenaga elektrik. Dalam badan, tenaga kimia daripada makanan membantu otot melakukan kerja.
+
+Tenaga tidak pernah hilang dalam penukaran, cuma diagihkan. Dalam contoh lampu ini, setiap <InlineMath math="100\text{ J}" /> terbahagi kepada <InlineMath math="20\text{ J}" /> cahaya dan <InlineMath math="80\text{ J}" /> haba, jadi kecekapannya <InlineMath math="\eta=\tfrac{20}{100}=20\%" />. Besarkan paparan pada kedua-dua cabang itu.
+
+<MathVisual
+  title={<>Kecekapan ialah Bahagian yang Berguna</>}
+  description={<>Contoh aliran tenaga melalui sebuah lampu, dengan lebar jalur dilukis mengikut skala. Satu petak grid ialah 10 J.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -1.5, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "in", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 0, y: 10 }] },
+      { id: "to-light", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 8 }, { x: 5, y: 8 }, { x: 5, y: 10 }, { x: 3, y: 10 }] },
+      { id: "to-heat", kind: "polygon", appearance: "warning", vertices: [{ x: 3, y: 0 }, { x: 5, y: -1 }, { x: 5, y: 7 }, { x: 3, y: 8 }] },
+      { id: "light", kind: "polygon", appearance: "highlight", vertices: [{ x: 5, y: 8 }, { x: 8, y: 8 }, { x: 8, y: 10 }, { x: 5, y: 10 }] },
+      { id: "heat", kind: "polygon", appearance: "warning", vertices: [{ x: 5, y: -1 }, { x: 8, y: -1 }, { x: 8, y: 7 }, { x: 5, y: 7 }] },
+    ],
+    labels: [
+      { key: "in", objectId: "in", at: { x: 1.5, y: 10 }, placement: "above" },
+      { key: "light", objectId: "light", at: { x: 8, y: 9 }, placement: "right" },
+      { key: "heat", objectId: "heat", at: { x: 8, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    in: <InlineMath math="100\text{ J masuk}" />,
+    light: <InlineMath math="\text{cahaya }20\text{ J},\ \eta=20\%" />,
+    heat: <InlineMath math="\text{haba }80\text{ J}" />,
+  }}
+/>
+
+## Kuasa Mengukur Kadar Pemindahan Tenaga
+
+Tenaga menjawab soalan *berapa banyak tenaga yang dipindahkan atau ditukar bentuknya*. Kuasa menjawab soalan *berapa cepat pemindahan atau penukaran itu berlaku*.
+
+Kuasa purata ialah tenaga yang dipindahkan dibahagi dengan masa yang diambil. Dalam contoh di bawah, kita anggap **kuasa malar** sepanjang alat itu dihidupkan.
+
+<BlockMath math="P = \frac{E}{t}" />
+
+Daripada persamaan itu, tenaga boleh ditulis sebagai:
+
+<BlockMath math="E = P t" />
+
+Unit kuasa ialah watt, dengan simbol <InlineMath math="\text{W}" />. Satu watt bermaksud <InlineMath math="1 \text{ J}" /> bagi setiap <InlineMath math="1 \text{ s}" />.
+
+<BlockMath math="1 \text{ W} = 1 \text{ J/s}" />
+
+Perhatikan konteks simbolnya: <InlineMath math="W" /> condong biasanya bermaksud kerja, manakala <InlineMath math="\text{W}" /> tegak bermaksud unit watt.
+
+Watt mengukur kuasa, iaitu tenaga per unit masa. Kuasa didarab dengan masa menjadikan <InlineMath math="\text{kWj}" /> satu unit tenaga, dan itulah sebabnya bil elektrik menggunakan kilowatt-jam.
+
+<BlockMath math="\begin{aligned}
+1 \text{ kWj}
+&= 1000 \text{ W} \times 1 \text{ j} \\
+&= 1000 \text{ J/s} \times 3600 \text{ s} \\
+&= 3.6 \times 10^6 \text{ J}
+\end{aligned}" />
+
+Lampu <InlineMath math="10 \text{ W}" /> yang dibiarkan menyala selama <InlineMath math="5 \text{ j}" /> menggunakan tenaga sebanyak:
+
+<BlockMath math="\begin{aligned}
+E &= P t \\
+&= 10 \text{ W} \times 5 \text{ j} \\
+&= 50 \text{ Wj} \\
+&= 0.05 \text{ kWj}
+\end{aligned}" />
+
+Jika lampu yang sama menyala lebih lama, penggunaan tenaganya bertambah. Jika kuasanya lebih tinggi, penggunaan tenaganya juga bertambah untuk tempoh masa yang sama.
+
+Graf di bawah menunjukkan kedua-dua pernyataan itu sekali gus. Ikuti garis oren bagi lampu <InlineMath math="10\text{ W}" />: makin lama lampu menyala, makin banyak tenaganya, dan pada <InlineMath math="5\text{ j}" /> tenaganya mencecah <InlineMath math="50\text{ Wj}" />. Garis ungu bagi lampu <InlineMath math="20\text{ W}" /> naik dua kali lebih curam, kerana kuasa menunjukkan betapa cepat tenaga itu terkumpul.
+
+<MathVisual
+  title={<>Penggunaan Tenaga Bertambah dengan Masa</>}
+  description={<>E = Pt bagi lampu 10 W dan lampu 20 W. Mengufuk: masa dalam jam. Menegak: tenaga dalam unit 20 Wj.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ten", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 6, y: 3 } },
+      { id: "twenty", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 6, y: 6 } },
+      { id: "used", kind: "segment", appearance: "answer", from: { x: 5, y: 0 }, to: { x: 5, y: 2.5 } },
+      { id: "used-top", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "ten", objectId: "ten", at: { x: 6, y: 3 }, placement: "right" },
+      { key: "twenty", objectId: "twenty", at: { x: 6, y: 6 }, placement: "right" },
+      { key: "used", objectId: "used-top", at: { x: 5, y: 2.5 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    ten: <InlineMath math="P=10\text{ W}" />,
+    twenty: <InlineMath math="P=20\text{ W}" />,
+    used: <InlineMath math="E=50\text{ Wj}" />,
+  }}
+/>
+
+## Analisis Tenaga bagi Sumber Boleh Baharu
+
+Untuk menganalisis sistem tenaga boleh baharu, kenal pasti sumber tenaganya, jejaki setiap penukaran, dan bandingkan tenaga output yang berguna dengan tenaga input.
+
+| Situasi | Soalan fizik |
+| :-------- | :--------------- |
+| Panel suria dipasang di atas bumbung | Berapa banyak tenaga cahaya yang bertukar menjadi tenaga elektrik? |
+| Air yang mengalir memutarkan turbin | Berapa banyak tenaga kinetik air yang boleh dipindahkan kepada penjana? |
+| Lampu rumah dihidupkan setiap malam | Berapa banyak tenaga elektrik yang digunakan dalam <InlineMath math="\text{kWj}" />? |
+| Bahan api terbakar di dalam enjin | Berapa banyak tenaga kimia yang bertukar menjadi gerakan dan haba? |
+
+Sesuatu sumber tenaga dikatakan [**boleh baharu**](https://www.eia.gov/energyexplained/renewable-sources/) apabila proses semula jadi menggantikannya dalam skala masa manusia. Contohnya ialah cahaya matahari, angin, air yang mengalir, haba geoterma dan biojisim yang diurus dengan betul. Sumber **tidak boleh baharu** terbentuk jauh lebih perlahan daripada kadar manusia menggunakannya. Contohnya ialah arang batu, minyak dan gas asli.
+
+[Penambahan kapasiti tenaga boleh baharu sedunia](https://www.iea.org/reports/renewables-2023/executive-summary) mencecah hampir <InlineMath math="510 \text{ GW}" /> pada tahun <InlineMath math="2023" />. Gigawatt mengukur kuasa terkadar bagi peralatan yang baru ditambah. Tenaga yang dijana bergantung pada kuasa yang digunakan dan tempoh operasinya.
+
+Tenaga ialah suatu kuantiti yang diukur dalam joule. Kuasa ialah kadar tenaga dipindahkan, dan sumber tenaga membekalkan tenaga yang ditukar oleh sesuatu alat.

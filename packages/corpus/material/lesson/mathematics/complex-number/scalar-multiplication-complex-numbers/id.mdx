@@ -11,8 +11,8 @@ export const metadata = {
 
 Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang disebut **skalar**.
 
-<LineEquation
-  title="Visualisasi Perkalian Skalar"
+<MathVisual
+  title={<>Visualisasi Perkalian Skalar</>}
   description={
     <>
       Perhatikan bagaimana vektor <InlineMath math="z = 1+2i" /> berubah ketika
@@ -20,44 +20,26 @@ Perkalian skalar adalah mengalikan bilangan kompleks dengan bilangan real yang d
       <InlineMath math="c=-0{,}5" />.
     </>
   }
-  cameraPosition={[0.75, 1.5, 9]}
-  cameraTarget={[0.75, 1.5, 0]}
-  showZAxis={false}
-  data={[
-    // Vektor z asli
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#0284c7",
-      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Vektor 2z
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 4, z: 0 }, // 2 * (1+2i) = 2+4i
-      ],
-      smooth: false,
-      color: "#059669",
-      labels: [{ text: <InlineMath math="2z" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    // Vektor -0.5z
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -0.5, y: -1, z: 0 }, // -0.5 * (1+2i) = -0.5 - i
-      ],
-      smooth: false,
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="-0{,}5z" />, at: 1, offset: [-0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="2z" />,
+    "l3": <InlineMath math="-0{,}5z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 2.5 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -0.5, y: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -0.5, y: -1 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Untuk vektor tak nol, berlaku kasus berikut:
@@ -103,7 +85,7 @@ Skalar positif mempertahankan arah, sedangkan nilai lebih besar dari satu **memp
 
 <BlockMath math="\frac32(-2+i)=\frac32(-2)+\frac32i=-3+\frac32i" />
 
-<LineEquation
+<MathVisual
   title={
     <>
       Perkalian dengan Skalar <InlineMath math="c = 1{,}5" />
@@ -116,31 +98,23 @@ Skalar positif mempertahankan arah, sedangkan nilai lebih besar dari satu **memp
       <InlineMath math="1{,}5z = -3 + 1{,}5i" />.
     </>
   }
-  cameraPosition={[-1.5, 0.75, 6.5]}
-  cameraTarget={[-1.5, 0.75, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -2, y: 1, z: 0 },
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -3, y: 1.5, z: 0 }, // 1.5 * (-2+i)
-      ],
-      smooth: false,
-      color: "#65a30d",
-      labels: [{ text: <InlineMath math="1{,}5z" />, at: 1, offset: [-0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="1{,}5z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 0.5 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -2, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 1.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -3, y: 1.5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 ### Skalar di antara Nol dan Satu
@@ -149,7 +123,7 @@ Skalar di antara nol dan satu **memperpendek vektor** tanpa membalik arah. Fakto
 
 <BlockMath math="\frac34(3-2i)=\frac94-\frac64i=\frac94-\frac32i" />
 
-<LineEquation
+<MathVisual
   title={
     <>
       Perkalian dengan Skalar <InlineMath math="c = 0{,}75" />
@@ -162,38 +136,30 @@ Skalar di antara nol dan satu **memperpendek vektor** tanpa membalik arah. Fakto
       <InlineMath math="0{,}75z = 2{,}25 - 1{,}5i" />.
     </>
   }
-  cameraPosition={[1.5, -1, 6.5]}
-  cameraTarget={[1.5, -1, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 3, y: -2, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2.25, y: -1.5, z: 0 }, // 0.75 * (3-2i)
-      ],
-      smooth: false,
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="0{,}75z" />, at: 1, offset: [0.5, 1, 0] }],
-      cone: { position: "end" },
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="0{,}75z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -2.5, max: 0.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2.25, y: -1.5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: -2 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2.25, y: -1.5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Skalar Negatif
 
 Perkalian dengan <InlineMath math="-1" /> menghasilkan **invers aditif (negatif)** dari bilangan kompleks.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Perkalian dengan Skalar <InlineMath math="c = -1" /> (Invers Aditif)
@@ -206,29 +172,21 @@ Perkalian dengan <InlineMath math="-1" /> menghasilkan **invers aditif (negatif)
       <InlineMath math="-z = 1 + 3i" />.
     </>
   }
-  cameraPosition={[0, 0, 10]}
-  cameraTarget={[0, 0, 0]}
-  showZAxis={false}
-  data={[
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: -1, y: -3, z: 0 },
-      ],
-      smooth: false,
-      color: "#c026d3",
-      labels: [{ text: <InlineMath math="z" />, at: 1, offset: [-0.5, -0.5, 0] }],
-      cone: { position: "end" },
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: 3, z: 0 }, // -1 * (-1-3i)
-      ],
-      smooth: false,
-      color: "#ca8a04",
-      labels: [{ text: <InlineMath math="-z" />, at: 1, offset: [0.5, 0.5, 0] }],
-      cone: { position: "end" },
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="z" />,
+    "l2": <InlineMath math="-z" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -1, y: -3 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: -3 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 3 }, placement: "above-right" },
+    ],
+  }}
 />

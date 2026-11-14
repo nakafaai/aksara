@@ -1,0 +1,125 @@
+export const metadata = {
+  title: "Taburan Seragam Diskret",
+  description: "Kira kebarangkalian bagi kesudahan diskret yang sama boleh jadi, seperti dadu dan kad.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Analisis Data dan Kebarangkalian",
+};
+
+## Kebarangkalian yang Sama bagi Setiap Kesudahan
+
+Dalam satu lambungan syiling adil, kepala dan ekor ada <Highlight>kebarangkalian yang sama</Highlight>. Setiap satu mendapat separuh daripada jumlah kebarangkalian. Taburan seragam diskret meluaskan idea ini kepada satu kumpulan kesudahan yang terhingga.
+
+[Taburan kebarangkalian](/ms/subjek/matematik/kebarangkalian/taburan-kebarangkalian) memadankan setiap nilai dengan kebarangkalian nilai itu berlaku. Dalam ruang sampel <InlineMath math="S" /> yang semua kesudahannya sama boleh jadi, peristiwa <InlineMath math="A" /> ada kebarangkalian
+
+<BlockMath math="P(A)=\frac{n(A)}{n(S)}" />
+
+Di sini <InlineMath math="n(A)" /> mengira kesudahan yang tergolong dalam peristiwa itu, manakala <InlineMath math="n(S)" /> mengira setiap kesudahan yang mungkin. Syarat **semua kesudahan sama boleh jadi** mesti dipenuhi sebelum kamu menggunakan nisbah ini.
+
+## Kebarangkalian bagi Satu Nilai
+
+Katakan pemboleh ubah rawak <InlineMath math="X" /> ada <InlineMath math="k" /> nilai yang sama boleh jadi dalam set <InlineMath math="S" />. Fungsi jisim kebarangkaliannya memberikan bahagian yang sama kepada setiap nilai:
+
+<BlockMath math="P(X=x)=\frac{1}{k},\qquad x\in S" />
+
+| Simbol | Maksud | Contoh dengan dadu adil |
+| --- | --- | --- |
+| <InlineMath math="x" /> | Satu nilai yang mungkin | Nombor <InlineMath math="3" /> |
+| <InlineMath math="k" /> | Bilangan nilai yang mungkin | Enam muka |
+| <InlineMath math="P(X=x)" /> | Kebarangkalian nilai itu | <InlineMath math="P(X=3)=1/6" /> |
+
+Jumlah kebarangkalian mesti satu. Ada <InlineMath math="k" /> bahagian yang setiap satunya bersaiz <InlineMath math="1/k" />, jadi <InlineMath math="k(1/k)=1" />. Model ini menggunakan **set nilai yang terhingga**. Taburan seragam selanjar menggunakan ketumpatan pada satu selang, jadi kebarangkalian datang daripada luas, bukan daripada membilang nilai.
+
+## Membandingkan Dadu dengan Roda Putar
+
+Dalam model seragam, menambah bilangan kesudahan yang mungkin **mengurangkan kebarangkalian satu kesudahan**. Dadu membahagikan jumlah kebarangkalian kepada enam bahagian, manakala roda dengan lapan sektor membahagikannya kepada lapan bahagian.
+### Satu Lambungan Dadu
+
+Dadu adil ada ruang sampel <InlineMath math="S=\{1,2,3,4,5,6\}" />. Bagi setiap <InlineMath math="x\in S" />, kita dapat
+
+<BlockMath math="P(X=x)=\frac{1}{6}\approx16.67\%" />
+
+Mendapat <InlineMath math="1" /> sama berkemungkinan dengan mendapat <InlineMath math="6" />. Namun, peristiwa mendapat nombor genap mengandungi tiga kesudahan: <InlineMath math="2,4,6" />. Jadi **satu nilai dan satu peristiwa** boleh ada kebarangkalian yang berbeza:
+
+<BlockMath math="P(X\text{ genap})=\frac{3}{6}=\frac{1}{2}" />
+
+Setiap muka dadu adil mendapat palang yang sama, <InlineMath math="\tfrac16 \approx 16.67\%" />. Enam palang yang sama itu bersama-sama berjumlah <InlineMath math="1" />, dan peristiwa "genap" mengumpulkan tiga daripadanya: <InlineMath math="\tfrac36 = \tfrac12" />.
+
+<BarChart
+  title={<>Satu lambungan dadu adil</>}
+  description={<>Enam palang sama tinggi bagi <InlineMath math="P(X = x) = \tfrac16" /> untuk <InlineMath math="x = 1" /> hingga <InlineMath math="6" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Roda dengan Lapan Sektor
+
+Roda putar adil ada **lapan sektor yang sama besar** yang bernombor <InlineMath math="1" /> hingga <InlineMath math="8" />. Bandingkan sektor <InlineMath math="5" /> dengan sektor lain. Setiap sektor ada sudut di pusat <InlineMath math="360^\circ/8=45^\circ" />.
+
+<MathVisual
+  title={<>Lapan sektor yang sama besar</>}
+  description={<>Setiap nombor menduduki satu sektor <InlineMath math="45" /> darjah. Semua sektor sama luas.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
+    view: { kind: "fit" },
+    objects: [
+      { id: "wheel", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "radius-1", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "radius-2", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 } },
+      { id: "radius-3", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "radius-4", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 } },
+      { id: "radius-5", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "radius-6", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 } },
+      { id: "radius-7", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -1 } },
+      { id: "radius-8", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: -Math.SQRT1_2 } },
+    ],
+    labels: [
+      { key: "sector-1", objectId: "wheel", at: { x: 0.63 * Math.cos(Math.PI / 8), y: 0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-2", objectId: "wheel", at: { x: 0.63 * Math.sin(Math.PI / 8), y: 0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-3", objectId: "wheel", at: { x: -0.63 * Math.sin(Math.PI / 8), y: 0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-4", objectId: "wheel", at: { x: -0.63 * Math.cos(Math.PI / 8), y: 0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-5", objectId: "wheel", at: { x: -0.63 * Math.cos(Math.PI / 8), y: -0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+      { key: "sector-6", objectId: "wheel", at: { x: -0.63 * Math.sin(Math.PI / 8), y: -0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-7", objectId: "wheel", at: { x: 0.63 * Math.sin(Math.PI / 8), y: -0.63 * Math.cos(Math.PI / 8) }, placement: "center" },
+      { key: "sector-8", objectId: "wheel", at: { x: 0.63 * Math.cos(Math.PI / 8), y: -0.63 * Math.sin(Math.PI / 8) }, placement: "center" },
+    ],
+  }}
+  labels={{ "sector-1": <InlineMath math="1" />, "sector-2": <InlineMath math="2" />, "sector-3": <InlineMath math="3" />, "sector-4": <InlineMath math="4" />, "sector-5": <InlineMath math="5" />, "sector-6": <InlineMath math="6" />, "sector-7": <InlineMath math="7" />, "sector-8": <InlineMath math="8" /> }}
+/>
+
+
+Ruang sampelnya ialah <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, jadi <InlineMath math="k=8" />. Setiap sektor sama boleh jadi, dan ini memberikan fungsi jisim <InlineMath math="P(X=x)=1/8" /> bagi setiap <InlineMath math="x\in S" />. Untuk sektor lima,
+
+<BlockMath math="P(X=5)=\frac{1}{8}=0.125=12.5\%" />
+
+Tambahkan kebarangkalian yang sama itu satu sektor demi satu sektor. Nilai <InlineMath math="P(X \le x) = \frac{x}{8}" /> naik dengan langkah yang sama besar, iaitu <InlineMath math="\tfrac18" />, dan mencapai <InlineMath math="1" /> pada <InlineMath math="x = 8" />.
+
+<BarChart
+  title={<>Kebarangkalian longgokan pada roda</>}
+  description={<>Palang <InlineMath math="P(X \le x) = \frac{x}{8}" /> untuk <InlineMath math="x = 1" /> hingga <InlineMath math="8" />.</>}
+  yAxisLabel="Kebarangkalian longgokan"
+  data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
+  chartConfig={{ value: { label: "Kebarangkalian longgokan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Kenal pasti set kesudahan, kira **kesudahan yang sama boleh jadi**, dan cari kebarangkalian peristiwa yang diminta. Pastikan objek yang diminta tergolong dalam set kesudahan sebelum kamu membahagi.
+
+1. Sebuah beg mengandungi sepuluh biji bola yang sama kecuali warnanya. Ada sebiji bola merah, sebiji biru, sebiji hijau, sebiji kuning, dan enam biji lagi yang setiap satunya berlainan warna. Setiap bola sama berkemungkinan dikeluarkan. Tulis fungsi jisim kebarangkalian bagi warna bola itu dan kira kebarangkalian mendapat bola kuning.
+2. Satu pek kad terup standard mengandungi <InlineMath math="52" /> keping kad yang berbeza, dan setiap kad sama berkemungkinan dicabut. Kenal pasti taburan kebarangkalian bagi mencabut sekeping kad dan kira kebarangkalian mendapat kad raja hati.
+### Jalan Kerja
+
+**Soalan 1**. Ada **sepuluh warna**, jadi <InlineMath math="k=10" />. Bagi setiap warna <InlineMath math="x" /> dalam set warna <InlineMath math="S" />,
+
+<BlockMath math="P(X=x)=\frac{1}{10},\qquad x\in S" />
+
+Mendapat bola kuning sepadan dengan tepat satu kesudahan. Jadi,
+
+<BlockMath math="P(\text{bola kuning})=\frac{1}{10}=0.1=10\%" />
+**Soalan 2**. Mencabut sekeping kad mengikut **taburan seragam diskret** kerana kesemua <InlineMath math="52" /> kad sama boleh jadi. Hanya satu daripada <InlineMath math="52" /> kesudahan itu ialah raja hati.
+
+<BlockMath math="P(\text{raja hati})=\frac{1}{52}\approx0.01923\approx1.92\%" />

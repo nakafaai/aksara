@@ -1,18 +1,38 @@
-Der Download läuft in **zwei Abschnitten mit verschiedener Geschwindigkeit**: 40 Mbps in den ersten 60 Sekunden, danach 30 Mbps bis zum Ende.
+Gesucht ist die Uhrzeit, zu der Dimas' Handy ausgeht. Der Plan: Verfolge den Akku Schritt für Schritt ab 19.00 Uhr, und prüfe jedes Mal, wenn er <InlineMath math="20\%" /> überschreitet, **ob sich der Energiesparmodus ein- oder ausschaltet**, denn das ändert die Rate.
 
-# Im ersten Abschnitt geladene Menge
+# Video und dann Spielen bis zum Sparmodus
 
-<BlockMath math="40\cdot60=2\,400\text{ Megabit}=\frac{2\,400}{8}=300\text{ MB}" />
+Anderthalb Stunden Video verbrauchen <InlineMath math="20\%\cdot1{,}5=30\%" />, um 20.30 Uhr steht der Akku also bei <InlineMath math="40\%" />. Spielen mit vollen <InlineMath math="30\%" /> pro Stunde bringt ihn in <InlineMath math="\frac{20}{30}" /> Stunden, also in <InlineMath math="40" /> Minuten, auf <InlineMath math="20\%" />, das ist 21.10 Uhr. Danach **schaltet sich der Energiesparmodus ein, und Spielen kostet nur noch <InlineMath math="15\%" /> pro Stunde**.
 
-# Zeit des zweiten Abschnitts und Gesamtzeit
+<BlockMath math="20\%-15\%\cdot\frac{20}{60}=20\%-5\%=15\%" />
 
-Die übrigen <InlineMath math="900-300=600" /> MB, also 4 800 Megabit, werden mit <InlineMath math="40-10=30" /> Mbps geladen.
+Um 21.30 Uhr, als das Ladegerät eingesteckt wird, steht der Akku bei <InlineMath math="15\%" />.
 
-<BlockMath math="\begin{aligned}
-\frac{4\,800}{30}&=160\text{ Sekunden}\\
-60+160&=220\text{ Sekunden}
-\end{aligned}" />
+# Laden beim Spielen
 
-Der Wert 160 Sekunden ist nur der zweite Abschnitt. Der Wert 180 Sekunden übersieht den Fernseher, und 240 Sekunden verwendet von Anfang an 30 Mbps. Die Gesamtzeit **muss zwischen diesen beiden Werten liegen**, weil der Fernseher erst nach 60 Sekunden startet.
+Solange der Akku bei <InlineMath math="20\%" /> oder darunter liegt, ändert er sich um <InlineMath math="40\%-15\%=25\%" /> pro Stunde. Der Anstieg von <InlineMath math="15\%" /> auf <InlineMath math="20\%" /> dauert <InlineMath math="\frac{5}{25}" /> Stunden, also <InlineMath math="12" /> Minuten, bis 21.42 Uhr.
 
-Der Download dauert also insgesamt **220 Sekunden**.
+Über <InlineMath math="20\%" /> **schaltet sich der Sparmodus aus, Spielen kostet wieder <InlineMath math="30\%" /> pro Stunde**, und der Akku steigt nur um <InlineMath math="40\%-30\%=10\%" /> pro Stunde.
+
+<BlockMath math="20\%+10\%\cdot\frac{18}{60}=20\%+3\%=23\%" />
+
+Um 22.00 Uhr, als das Ladegerät herauskommt, steht der Akku bei <InlineMath math="23\%" />.
+
+# Spielen bis das Handy ausgeht
+
+Von <InlineMath math="23\%" /> auf <InlineMath math="20\%" /> läuft das Spielen mit voller Rate, das dauert <InlineMath math="\frac{3}{30}" /> Stunden, also <InlineMath math="6" /> Minuten, bis 22.06 Uhr. Dann **schaltet sich der Sparmodus wieder ein**, und die letzten <InlineMath math="20\%" /> sinken mit <InlineMath math="15\%" /> pro Stunde.
+
+<BlockMath math="\frac{20}{15}\text{ h}=1\text{ h }20\text{ min}" />
+
+Das Handy geht um 22.06 Uhr plus <InlineMath math="1" /> Stunde <InlineMath math="20" /> Minuten aus, also um 23.26 Uhr.
+
+Zur Probe zählst du alle Abschnitte zusammen: <InlineMath math="90+40+20+12+18+6+80=266" /> Minuten, und 19.00 Uhr plus <InlineMath math="266" /> Minuten ergibt tatsächlich 23.26 Uhr.
+
+# Die falschen Antworten
+
+- 22.30 Uhr entsteht, wenn du **den Energiesparmodus ganz übersiehst**: Der Akku steht dann um 22.00 Uhr bei <InlineMath math="15\%" /> und ist nach <InlineMath math="30" /> Minuten leer.
+- 22.46 Uhr entsteht, wenn du vergisst, dass sich der Sparmodus nach 22.00 Uhr wieder einschaltet. Dann werden die <InlineMath math="23\%" /> mit <InlineMath math="30\%" /> pro Stunde verbraucht.
+- 23.35 Uhr entsteht, wenn der Sparmodus während des ganzen Ladens an bleibt. Dann steht der Akku um 22.00 Uhr bei <InlineMath math="27{,}5\%" />.
+- 23.50 Uhr entsteht, wenn du beim Laden den Verbrauch des Spiels nicht abziehst. Dann scheint der Akku um <InlineMath math="40\%" /> pro Stunde zu steigen.
+
+Dimas' Handy geht also um 23.26 Uhr aus.

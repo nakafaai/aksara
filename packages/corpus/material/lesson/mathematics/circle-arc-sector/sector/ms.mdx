@@ -1,0 +1,139 @@
+export const metadata = {
+  title: "Sektor",
+  description: "Huraikan sektor menggunakan dua jejari dan satu lengkok, kaitkan saiznya dengan sudut pusat dan bezakan sektor minor daripada sektor major.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Lengkok dan Sektor Bulatan",
+};
+
+
+## Rantau yang Dibatasi oleh Dua Jejari dan Satu Lengkok
+
+Sektor ialah rantau dalam bulatan yang dibatasi oleh <Highlight>dua jejari dan satu lengkok</Highlight>. Sehiris kek bulat yang dipotong dari pusatnya ialah model yang berguna: dua sisi lurusnya mewakili jejari, dan tepinya yang melengkung mewakili lengkok.
+
+Dalam gambar rajah, bezakan sempadan daripada rantau. **Lengkok** hanyalah tepi yang melengkung, manakala **sektor** merangkumi seluruh rantau di antara jejari dan lengkok.
+
+<MathVisual
+  title={<>Sektor yang dibatasi oleh <InlineMath math="OA" />, <InlineMath math="OB" /> dan lengkok <InlineMath math="AB" /></>}
+  description={<>Pada bulatan berjejari <InlineMath math="3" />, jejari <InlineMath math="OA" /> dan <InlineMath math="OB" /> pada <InlineMath math="45^\circ" /> dan <InlineMath math="135^\circ" /> serta lengkok <InlineMath math="AB" /> di antaranya membatasi sektor <InlineMath math="90^\circ" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    arc: <>Lengkok</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "reference" },
+      { id: "oa", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "ob", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "arc", kind: "arc", center: { x: 0, y: 0 }, radius: 3, startDegrees: 45, sweepDegrees: 90, appearance: "primary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "a", kind: "point", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+      { id: "b", kind: "point", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -3 / Math.sqrt(2), y: 3 / Math.sqrt(2) }, placement: "left" },
+      { key: "arc", objectId: "arc", at: { x: 0, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Ciri-ciri Sektor
+
+Bucu sektor terletak di pusat bulatan. Dua jejari bertemu di situ dan membentuk sudut pusat, manakala lengkok yang menyambungkan kedua-duanya melengkapkan sempadan sektor.
+
+Bagi satu bulatan yang tetap, sudut pusat menentukan berapa pecahan bulatan yang menjadi milik sektor itu. Sudut pusat yang lebih besar memberikan pecahan yang lebih besar. Sudut yang lebih kecil memberikan pecahan yang lebih kecil.
+
+Jika sudut pusat yang dipilih kurang daripada <InlineMath math="180^\circ" />, rantau yang dibatasi ialah <Highlight>sektor minor</Highlight>. Jika sudut itu lebih besar daripada <InlineMath math="180^\circ" />, rantau itu ialah sektor major. Sudut yang tepat <InlineMath math="180^\circ" /> menghasilkan semibulatan.
+
+Dalam bulatan yang sama, panjang lengkok dan luas sektor kedua-duanya berkadar terus dengan sudut pusat. Oleh itu, sudut pusat yang sama dalam bulatan itu menghasilkan panjang lengkok yang sama dan luas sektor yang sama.
+
+## Hubungan antara Sudut Pusat dan Sektor
+
+Sudut pusat diukur di pusat bulatan, di antara dua jejari yang membatasi sektor. Sudut ini boleh dinyatakan dalam darjah atau radian.
+
+Contohnya, <InlineMath math="90^\circ" /> ialah **satu perempat daripada satu pusingan penuh**, jadi sektornya ada satu perempat daripada luas bulatan. Sektor <InlineMath math="180^\circ" /> pula ada separuh daripada luas bulatan.
+
+<MathVisual
+  title={<>Tiga sektor pada satu bulatan</>}
+  description={<>Sektor bersebelahan dengan sudut pusat <InlineMath math="60^\circ" />, <InlineMath math="90^\circ" /> dan <InlineMath math="120^\circ" /> pada bulatan berjejari <InlineMath math="4" />, iaitu <InlineMath math="\tfrac16" />, <InlineMath math="\tfrac14" /> dan <InlineMath math="\tfrac13" /> daripada bulatan.</>}
+  labels={{
+    s60: <InlineMath math="60^\circ" />,
+    s90: <InlineMath math="90^\circ" />,
+    s120: <InlineMath math="120^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.6, max: 4.6 }, y: { min: -4.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "reference" },
+      { id: "r0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "r60", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) }, appearance: "construction" },
+      { id: "r150", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.sqrt(3), y: 2 }, appearance: "construction" },
+      { id: "r270", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: -4 }, appearance: "construction" },
+      { id: "s60", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 0, sweepDegrees: 60, appearance: "primary" },
+      { id: "s90", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 60, sweepDegrees: 90, appearance: "secondary" },
+      { id: "s120", kind: "arc", center: { x: 0, y: 0 }, radius: 4, startDegrees: 150, sweepDegrees: 120, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "s60", objectId: "s60", at: { x: 2 * Math.sqrt(3), y: 2 }, placement: "right" },
+      { key: "s90", objectId: "s90", at: { x: 4 * Math.cos(105 * Math.PI / 180), y: 4 * Math.sin(105 * Math.PI / 180) }, placement: "above" },
+      { key: "s120", objectId: "s120", at: { x: 4 * Math.cos(210 * Math.PI / 180), y: 4 * Math.sin(210 * Math.PI / 180) }, placement: "left" },
+    ],
+  }}
+/>
+
+
+Hubungan ini ialah nisbah bahagian kepada keseluruhan. Jika sudut pusat ialah <InlineMath math="\theta" /> dalam darjah, nisbah luas sektor kepada luas bulatan ialah <InlineMath math="\frac{\theta}{360^\circ}" />. Jika <InlineMath math="\theta" /> diukur dalam radian, nisbahnya ialah <InlineMath math="\frac{\theta}{2\pi}" />.
+
+| Sudut pusat | Pecahan daripada bulatan |
+| --- | --- |
+| <InlineMath math="60^\circ" /> | <InlineMath math="\frac{60}{360}=\frac{1}{6}" /> |
+| <InlineMath math="90^\circ" /> | <InlineMath math="\frac{90}{360}=\frac{1}{4}" /> |
+| <InlineMath math="120^\circ" /> | <InlineMath math="\frac{120}{360}=\frac{1}{3}" /> |
+
+## Mengenal Pasti Sektor dalam Konteks
+
+Geometri sektor boleh menerangkan **rantau yang disapu** melalui satu sudut yang tetap. Contohnya, pemercik air yang ideal dengan jarak capaian <InlineMath math="r" /> dan sudut sapuan <InlineMath math="\theta" /> meliputi satu sektor, sebelum halangan, angin dan taburan air yang tidak sekata diambil kira.
+
+Sektor juga muncul dalam gambar rajah berbentuk bulatan dan templat jejarian. Nisbah sudut pusat menentukan pecahan cakera penuh yang sepadan, tetapi geometri sahaja tidak menentukan beban atau kecekapan sesebuah mesin.
+
+Pada muka jam yang ditanda sama rata, dua tanda jam yang bersebelahan membatasi satu daripada <InlineMath math="12" /> sektor yang sama besar, dan setiap sektor ada sudut pusat <InlineMath math="30^\circ" />. Sehiris piza atau kek bulat yang dipotong dari pusat ialah satu lagi model yang biasa kamu lihat, asalkan sisinya mengikut jejari.
+
+Pemercik air ideal berjejari <InlineMath math="6\text{ m}" /> yang menyapu <InlineMath math="90^\circ" /> menyiram satu perempat daripada cakera:
+
+<BlockMath math="A=\frac{90^\circ}{360^\circ}\pi(6)^2=\frac14\times36\pi=9\pi\text{ m}^2" />
+
+Pemercik air itu menyiram suku bulatan berjejari <InlineMath math="6\text{ m}" />. Luasnya ialah satu perempat daripada luas bulatan penuh: <InlineMath math="\frac{90^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 9\pi \approx 28.27\ \text{m}^2" />.
+
+<MathVisual
+  title={<>Sektor <InlineMath math="90^\circ" /> bagi pemercik air</>}
+  description={<>Sektor berjejari <InlineMath math="6\text{ m}" /> dengan sudut pusat <InlineMath math="90^\circ" />, yang luasnya <InlineMath math="9\pi\ \text{m}^2" />.</>}
+  labels={{
+    r: <InlineMath math="6" />,
+    area: <InlineMath math="9\pi" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 6.8 }, y: { min: -0.8, max: 6.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "r1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "secondary" },
+      { id: "r2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 6 }, appearance: "secondary" },
+      { id: "edge", kind: "arc", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90, appearance: "primary" },
+      { id: "sprinkler", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "r", objectId: "r1", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "area", objectId: "edge", at: { x: 6 * Math.cos(Math.PI / 4), y: 6 * Math.sin(Math.PI / 4) }, placement: "below-left" },
+    ],
+  }}
+/>

@@ -4,33 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "supporting-detail",
   },
-  stimulus: "placebo-effect",
+  stimulus: "continental-drift",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Beecher concluded that about a third of patients felt better after a placebo.",
-        },
-        {
           column: 2,
           label:
-            "The 2001 review found a large placebo effect on outcomes measured objectively.",
-        },
-        {
-          column: 2,
-          label:
-            "The 2010 study measured improvement mainly with laboratory tests.",
+            "Wegener's estimate of Greenland's speed was one of the reasons physicists judged his proposed forces too feeble to move a continent.",
         },
         {
           column: 1,
           label:
-            "In the dental study, naloxone removed much of the pain relief from the placebo.",
+            "The land bridges that critics proposed were meant to explain the shared fossils, yet they left the ancient ice in India unexplained.",
+        },
+        {
+          column: 2,
+          label:
+            "Most speakers at the 1926 symposium in New York accepted Wegener's fossil and rock evidence and objected only to his mechanism.",
+        },
+        {
+          column: 2,
+          label:
+            "The seafloor evidence gathered from the 1950s onwards showed that Harold Jeffreys's objection to Wegener had been mistaken.",
         },
       ],
     },

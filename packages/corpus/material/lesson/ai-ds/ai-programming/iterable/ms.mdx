@@ -1,0 +1,437 @@
+export const metadata = {
+    title: "Objek Boleh Lelar",
+    description: "Objek boleh lelar (iterable) dalam Python menyokong gelung, semakan keahlian, ujian nilai kebenaran dan pembongkaran mengikut kedudukan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-07",
+    subject: "Pengaturcaraan AI",
+};
+
+## Objek yang Menghasilkan Item Satu demi Satu
+
+Dalam Python, objek boleh lelar (iterable) ialah objek yang boleh menghasilkan **satu item pada satu masa** untuk gelung atau bahagian kod lain yang menggunakannya. Rentetan, senarai, tuple, set, kamus, fail dan penjana (generator) semuanya boleh dilelar, walaupun cara ia menyusun dan menghasilkan item berbeza-beza.
+
+Objek boleh lelar tidak semestinya berurutan, boleh diindeks, boleh digunakan semula atau terhingga. Panggilan `iter()` mesti memulangkan pelelar (iterator) yang menghasilkan item. Pelelar yang terhingga akan berhenti apabila ia sudah habis.
+
+### Jenis Objek Boleh Lelar
+
+Rentetan, senarai dan tuple menghasilkan **satu item bagi setiap lelaran**. Contoh di bawah menunjukkan satu aksara, satu nombor atau satu koordinat dihantar kepada pemboleh ubah gelung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterable_examples.py",
+      code: `# Rentetan sebagai objek boleh lelar
+text = "hello"
+print("Aksara dalam rentetan:")
+for char in text:
+    print(char)
+# Output:
+# Aksara dalam rentetan:
+# h
+# e
+# l
+# l
+# o
+
+print()
+
+# Senarai sebagai objek boleh lelar
+numbers = [1, 2, 3, 4, 5]
+print("Unsur dalam senarai:")
+for num in numbers:
+    print(num)
+# Output:
+# Unsur dalam senarai:
+# 1
+# 2
+# 3
+# 4
+# 5
+
+print()
+
+# Tuple sebagai objek boleh lelar
+coordinates = (10, 20, 30)
+print("Unsur dalam tuple:")
+for coord in coordinates:
+    print(coord)
+# Output:
+# Unsur dalam tuple:
+# 10
+# 20
+# 30`
+    }
+  ]}
+/>
+
+Rentetan menghasilkan aksara mengikut susunan teks. Senarai dan tuple menghasilkan unsur yang disimpan mengikut susunan kedudukannya. Jenis objek boleh lelar yang lain mungkin mengikut peraturan susunan yang berbeza.
+
+Senarai boleh dilalui semula, tetapi objek penjana **mengingati kemajuan lelarannya**. Panggilan `list(iterator)` yang pertama menghabiskan penjana di bawah. Panggilan kedua tidak memulakan semula pengiraan, jadi ia memulangkan senarai kosong.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "iterator_consumption.py",
+      code: `numbers = [1, 2, 3]
+iterator = (number * 2 for number in numbers)
+print(list(iterator))  # Output: [2, 4, 6]
+print(list(iterator))  # Output: []
+print(list(numbers))   # Output: [1, 2, 3]`
+    }
+  ]}
+/>
+
+Setiap pusingan `for item in [3, 8, 1, 6]` memanggil `next()` sekali dan menyerahkan satu unsur. Dengan `total += item` dalam badan gelung, jumlahnya bertambah satu langkah setiap kali, sehingga pelelar habis selepas unsur keempat.
+
+<BarChart
+  title={<><code>total</code> selepas setiap <code>next()</code></>}
+  description={<>Setiap bar ialah <code>total</code> selepas unsur yang tertulis di bawahnya ditambah: <InlineMath math="3" />, <InlineMath math="11" />, <InlineMath math="12" />, kemudian <InlineMath math="18" />.</>}
+  yAxisLabel="Jumlah terkumpul"
+  data={[
+    { name: "3", value: 3 },
+    { name: "8", value: 3 + 8 },
+    { name: "1", value: 3 + 8 + 1 },
+    { name: "6", value: 3 + 8 + 1 + 6 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah terkumpul", colors: { light: ["var(--chart-5)"], dark: ["var(--chart-5)"] } } }}
+/>
+
+## Operator Keahlian
+
+Operator `in` dan `not in` bertanya sama ada sesuatu bekas **mengandungi sesuatu nilai**. Setiap jenis bekas menentukan cara keahlian disemak: senarai mengimbas unsurnya, kamus mencari dalam kuncinya, dan rentetan mencari subrentetan.
+
+### Menggunakan Operator in dan not in
+
+Senarai dan tuple membandingkan unsur satu per satu sehingga menemui padanan atau sampai ke hujung. Rentetan mencari subrentetan. Set dan kamus menggunakan cara carian tersendiri. Dalam kamus, `in` menyemak **kunci, bukan nilai**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "membership_operators.py",
+      code: `# Menyemak keahlian dalam senarai
+fruits = ["apple", "orange", "mango"]
+
+# Menggunakan operator in
+if "apple" in fruits:
+    print("Epal ada dalam senarai buah")
+# Output: Epal ada dalam senarai buah
+
+# Menggunakan operator not in
+if "durian" not in fruits:
+    print("Durian tiada dalam senarai buah")
+# Output: Durian tiada dalam senarai buah
+
+print()
+
+# Menyemak keahlian dalam rentetan
+message = "Python is a programming language"
+
+# Mencari subrentetan dalam rentetan
+if "Python" in message:
+    print("Perkataan Python ditemui dalam mesej")
+# Output: Perkataan Python ditemui dalam mesej
+
+if "Java" not in message:
+    print("Perkataan Java tidak ditemui dalam mesej")
+# Output: Perkataan Java tidak ditemui dalam mesej`
+    }
+  ]}
+/>
+
+### Kes Khas dalam Rentetan
+
+Untuk rentetan, operan kiri boleh jadi satu aksara atau subrentetan yang lebih panjang. Ujian ini **peka huruf besar dan kecil** dan menyemak satu kemunculan yang bersambung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_membership.py",
+      code: `# Menyemak aksara dalam rentetan
+text = "programming"
+
+# Mencari satu aksara
+print("g" in text)        # Output: True
+print("z" in text)        # Output: False
+
+print()
+
+# Mencari subrentetan dalam rentetan
+print("gram" in text)     # Output: True
+print("program" in text)  # Output: True
+print("java" in text)     # Output: False
+
+# Semak penanda yang digunakan dalam contoh kecil ini
+email = "user@example.com"
+if "@" in email and ".com" in email:
+    print("Mengandungi penanda asas e-mel")
+# Output: Mengandungi penanda asas e-mel`
+    }
+  ]}
+/>
+
+Semakan terakhir itu hanya menunjukkan dua penanda. Semakan itu tidak cukup untuk mengesahkan e-mel kerana banyak alamat yang tidak sah mengandungi kedua-dua `@` dan `.com`, manakala banyak alamat yang sah menggunakan akhiran domain lain.
+
+## Fungsi Any dan All
+
+Fungsi terbina dalam `any()` dan `all()` membaca item daripada objek boleh lelar dan menguji nilai kebenaran setiap item. Kedua-duanya <Highlight>berhenti sebaik sahaja hasilnya diketahui</Highlight>, jadi ungkapan penjana (generator expression) mengelakkan pembinaan senarai perantaraan yang tidak perlu.
+
+### Fungsi Any
+
+`any()` memulangkan `True` sebaik sahaja menemui **item pertama yang bernilai benar**. Ia memulangkan `False` hanya apabila setiap item bernilai palsu atau objek boleh lelar itu kosong.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "any_function.py",
+      code: `# Contoh menggunakan any()
+grades = [60, 75, 45, 80]
+
+# Semak sama ada terdapat nilai yang melebihi 70
+print("Ada markah tinggi:", any(grade > 70 for grade in grades))
+# Output: Ada markah tinggi: True
+
+# Contoh dengan nilai boolean secara terus
+conditions = [False, False, True, False]
+print("Ada syarat yang benar:", any(conditions))
+# Output: Ada syarat yang benar: True
+
+# Contoh dengan senarai kosong
+empty_list = []
+print("any pada senarai kosong:", any(empty_list))
+# Output: any pada senarai kosong: False
+
+# Contoh praktikal
+numbers = [0, 0, 5, 0]
+if any(numbers):
+    print("Ada nombor bukan sifar dalam senarai")
+# Output: Ada nombor bukan sifar dalam senarai`
+    }
+  ]}
+/>
+
+### Fungsi All
+
+`all()` memulangkan `False` sebaik sahaja menemui **item pertama yang bernilai palsu**. Jika lelaran tamat tanpa menemui item sebegitu, ia memulangkan `True`. Ini juga menerangkan kes kosong: tiada item yang melanggar syarat.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "all_function.py",
+      code: `# Contoh menggunakan all()
+scores = [85, 90, 78, 92]
+
+# Semak sama ada semua nilai sekurang-kurangnya 70
+print("Semua markah lulus:", all(score >= 70 for score in scores))
+# Output: Semua markah lulus: True
+
+# Contoh dengan nilai boolean secara terus
+conditions = [True, True, True, True]
+print("Semua syarat benar:", all(conditions))
+# Output: Semua syarat benar: True
+
+# Contoh dengan satu syarat palsu
+mixed_conditions = [True, True, False, True]
+print("Semua syarat benar:", all(mixed_conditions))
+# Output: Semua syarat benar: False
+
+# Contoh praktikal
+ages = [18, 21, 25, 30]
+if all(age >= 18 for age in ages):
+    print("Semua peserta sudah dewasa")
+# Output: Semua peserta sudah dewasa
+
+print(all([]))  # Output: True`
+    }
+  ]}
+/>
+
+Semak senarai `[3, 8, 1, 6]` dengan syarat `v > 5`. Dua titik magenta, <InlineMath math="8" /> dan <InlineMath math="6" />, berada di atas garis, jadi `any(v > 5 for v in values)` ialah `True`. Titik hijau kebiruan <InlineMath math="3" /> dan <InlineMath math="1" /> berada di bawahnya, jadi `all(v > 5 for v in values)` ialah `False`. Dengan syarat `v > 0` pula, setiap titik lulus dan `all` menjadi `True`.
+
+<MathVisual
+  title={<><code>any</code> dan <code>all</code> pada <code>[3, 8, 1, 6]</code></>}
+  description={<>Setiap titik ialah satu nilai pada kedudukannya. Titik magenta memenuhi <InlineMath math="v>5" />, titik hijau kebiruan tidak, dan garis kelabu ialah nilai ambang <InlineMath math="5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.7, max: 3.7 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "limit", kind: "segment", from: { x: -0.5, y: 5 }, to: { x: 3.5, y: 5 }, appearance: "reference" },
+      { id: "value-a", kind: "point", at: { x: 0, y: 3 }, appearance: "construction" },
+      { id: "value-b", kind: "point", at: { x: 1, y: 8 }, appearance: "answer" },
+      { id: "value-c", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+      { id: "value-d", kind: "point", at: { x: 3, y: 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: 3.5, y: 5 }, placement: "right" },
+      { key: "value-a", objectId: "value-a", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "value-b", objectId: "value-b", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "value-c", objectId: "value-c", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "value-d", objectId: "value-d", at: { x: 3, y: 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "limit": "v > 5",
+    "value-a": "3",
+    "value-b": "8",
+    "value-c": "1",
+    "value-d": "6",
+  }}
+/>
+
+## Operator Pembongkaran
+
+Dalam panggilan fungsi, tanda bintang (`*`) di hadapan objek boleh lelar mengembangkannya menjadi **argumen kedudukan** (positional argument). Bilangan argumen yang terhasil mesti tetap sepadan dengan apa yang diterima oleh fungsi itu.
+
+### Masalah Tanpa Pembongkaran
+
+Fungsi yang menjangkakan koordinat secara berasingan akan menerima **senarai sebagai satu argumen** melainkan kamu membongkarnya. Pengindeksan manual berfungsi untuk bentuk yang tetap, tetapi kamu terpaksa mengulang struktur bekas itu di setiap tempat panggilan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_problem.py",
+      code: `import math
+
+# Masalah: fungsi math.hypot memerlukan argumen yang berasingan
+coordinates = [3, 4]
+
+# Cara yang salah - akan menghasilkan ralat
+try:
+    result = math.hypot(coordinates)
+    print(result)
+except TypeError as e:
+    print("Ralat:", e)
+# Output: Ralat: must be real number, not list
+
+# Cara manual yang menyusahkan apabila argumennya banyak
+result = math.hypot(coordinates[0], coordinates[1])
+print("Hasil manual:", result)
+# Output: Hasil manual: 5.0
+
+# Contoh dengan lebih banyak argumen
+points = [1, 1, 1, 1]
+# Cara manual menjadi sangat menyusahkan
+result = math.hypot(points[0], points[1], points[2], points[3])
+print("Hasil dengan 4 argumen:", result)
+# Output: Hasil dengan 4 argumen: 2.0`
+    }
+  ]}
+/>
+
+### Penyelesaian dengan Operator Pembongkaran
+
+Letakkan `*` sebelum objek boleh lelar dalam panggilan, dan setiap item yang dihasilkan akan dihantar sebagai **argumen kedudukannya sendiri**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_solution.py",
+      code: `import math
+
+# Penyelesaian dengan operator pembongkaran
+coordinates = [3, 4]
+result = math.hypot(*coordinates)
+print("Jarak dari asalan:", result)
+# Output: Jarak dari asalan: 5.0
+
+# Contoh dengan tuple
+point_3d = (1, 2, 2)
+distance = math.hypot(*point_3d)
+print("Jarak 3D:", distance)
+# Output: Jarak 3D: 3.0
+
+# Contoh dengan banyak argumen
+dimensions = [2, 3, 6, 1, 4]
+euclidean_distance = math.hypot(*dimensions)
+print("Jarak Euclidean:", euclidean_distance)
+# Output: Jarak Euclidean: 8.12403840463596
+
+# Contoh praktikal lain
+def calculate_average(a, b, c):
+    return (a + b + c) / 3
+
+grades = [85, 90, 78]
+average = calculate_average(*grades)
+print("Purata markah:", average)
+# Output: Purata markah: 84.33333333333333`
+    }
+  ]}
+/>
+
+### Kegunaan Praktikal Pembongkaran
+
+Sintaks yang sama berfungsi dalam panggilan fungsi dan dalam paparan koleksi (collection display). Gunakannya apabila antara muka menjangkakan **item yang sudah dikembangkan**. Hantar objek boleh lelar itu terus jika fungsi menerima satu objek boleh lelar.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "unpacking_practical.py",
+      code: `# Pembongkaran untuk fungsi print
+items = ["apple", "orange", "mango"]
+print("Buah:", *items)
+# Output: Buah: apple orange mango
+
+# Membongkar argumen tetap untuk range()
+bounds = [2, 10, 2]
+print("Nilai genap:", list(range(*bounds)))
+# Output: Nilai genap: [2, 4, 6, 8]
+
+# Pembongkaran untuk menggabungkan senarai
+list1 = [1, 2, 3]
+list2 = [4, 5, 6]
+combined = [*list1, *list2]
+print("Senarai gabungan:", combined)
+# Output: Senarai gabungan: [1, 2, 3, 4, 5, 6]
+
+# Pembongkaran dalam fungsi format rentetan
+template = "Nama: {}, Umur: {}, Bandar: {}"
+data = ["Alice", 25, "Jakarta"]
+formatted = template.format(*data)
+print(formatted)
+# Output: Nama: Alice, Umur: 25, Bandar: Jakarta`
+    }
+  ]}
+/>
+
+Nama yang berbintang mengambil setiap unsur yang tidak diambil oleh nama lain, dan ia sentiasa menjadi senarai. `a, *rest = [1, 2, 3, 4]` memberikan `a = 1` dan `rest = [2, 3, 4]`. `first, *middle, last = [1, 2, 3, 4, 5]` pula memberikan `middle = [2, 3, 4]`.
+
+<MathVisual
+  title={<>Ke mana setiap unsur pergi dalam pembongkaran berbintang</>}
+  description={<>Baris atas ialah <code>[1, 2, 3, 4]</code>: sel ungu pergi ke <code>a</code> dan sel hijau kebiruan ke <code>rest</code>. Baris bawah ialah <code>[1, 2, 3, 4, 5]</code>: sel ungu pergi ke <code>first</code>, tiga sel hijau kebiruan ke <code>middle</code>, dan sel jingga ke <code>last</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-name", kind: "polygon", vertices: [{ x: 0.05, y: 0.7 }, { x: 0.95, y: 0.7 }, { x: 0.95, y: 1.3 }, { x: 0.05, y: 1.3 }], appearance: "secondary" },
+      { id: "rest-name", kind: "polygon", vertices: [{ x: 1.05, y: 0.7 }, { x: 3.95, y: 0.7 }, { x: 3.95, y: 1.3 }, { x: 1.05, y: 1.3 }], appearance: "construction" },
+      { id: "head", kind: "polygon", vertices: [{ x: 0.05, y: -0.3 }, { x: 0.95, y: -0.3 }, { x: 0.95, y: 0.3 }, { x: 0.05, y: 0.3 }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1.05, y: -0.3 }, { x: 3.95, y: -0.3 }, { x: 3.95, y: 0.3 }, { x: 1.05, y: 0.3 }], appearance: "construction" },
+      { id: "tail", kind: "polygon", vertices: [{ x: 4.05, y: -0.3 }, { x: 4.95, y: -0.3 }, { x: 4.95, y: 0.3 }, { x: 4.05, y: 0.3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-name", objectId: "first-name", at: { x: 0.5, y: 1.3 }, placement: "above" },
+      { key: "rest-name", objectId: "rest-name", at: { x: 2.5, y: 1.3 }, placement: "above" },
+      { key: "head", objectId: "head", at: { x: 0.5, y: -0.3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 2.5, y: -0.3 }, placement: "below" },
+      { key: "tail", objectId: "tail", at: { x: 4.5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "first-name": <code>a</code>,
+    "rest-name": <code>rest</code>,
+    "head": <code>first</code>,
+    "middle": <code>middle</code>,
+    "tail": <code>last</code>,
+  }}
+/>

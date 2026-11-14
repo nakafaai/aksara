@@ -1,0 +1,214 @@
+
+export const metadata = {
+  title: "Pantulan pada Sebarang Titik",
+  description: "Pantulkan titik pada sebarang pusat dengan menggabungkan translasi dan operasi matriks.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Memusatkan Titik Sebelum Menggunakan Matriks Pantulan
+
+Imej bagi titik <InlineMath math="(x,y)" /> yang dipantulkan pada titik <InlineMath math="(a,b)" /> ialah <InlineMath math="(-x+2a, -y+2b)" /> atau <InlineMath math="(2a-x, 2b-y)" />.
+
+Kalau pusat pantulan bukan di asalan, kita memerlukan translasi selain pendaraban dengan matriks <InlineMath math="2 \times 2" />.
+
+**Translasikan ke pusat, songsangkan tanda, kemudian translasikan semula**. Jejaki koordinat melalui tiga operasi itu:
+
+| Operasi | Koordinat |
+| --- | --- |
+| Tolak pusat | <InlineMath math="(x-a,y-b)" /> |
+| Pantulkan pada asalan | <InlineMath math="(-x+a,-y+b)" /> |
+| Tambah pusat | <InlineMath math="(-x+2a,-y+2b)" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -(x-a) \\ -(y-b) \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} -x+a \\ -y+b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} -x+2a \\ -y+2b \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Vektor akhir itu memberikan <Highlight>petua koordinat</Highlight> <InlineMath math="(x,y)\mapsto(2a-x,2b-y)" />.
+
+Ikuti <InlineMath math="Q(2, 3)" /> melalui tiga langkah itu. Menolak pusat <InlineMath math="(1, 1)" /> memberikan <InlineMath math="(1, 2)" />, memantulkan pada asalan memberikan <InlineMath math="(-1, -2)" />, dan menambah semula pusat memberikan imej <InlineMath math="(0, -1)" />.
+
+<MathVisual
+  title={<>Translasikan, pantulkan, translasikan semula</>}
+  description={<>Titik <InlineMath math="(2, 3)" /> dialihkan ke <InlineMath math="(1, 2)" />, dipantulkan pada asalan ke <InlineMath math="(-1, -2)" />, kemudian dialihkan semula ke <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    q: <InlineMath math="(2, 3)" />,
+    s1: <InlineMath math="(1, 2)" />,
+    s2: <InlineMath math="(-1, -2)" />,
+    image: <InlineMath math="(0, -1)" />,
+    c: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 2.6 }, y: { min: -2.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "step1", kind: "segment", from: { x: 2, y: 3 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "step1-head", kind: "polygon", vertices: [{ x: 1, y: 2 }, { x: (1) + (1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)), y: (2) + (1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)) }, { x: (1) + (1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)), y: (2) + (1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "step2", kind: "segment", from: { x: 1, y: 2 }, to: { x: -1, y: -2 }, appearance: "construction" },
+      { id: "step2-head", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: (-1) + (1 / 3 / Math.sqrt(20)) + (4 / 15 / Math.sqrt(20)), y: (-2) + (2 / 3 / Math.sqrt(20)) + (-2 / 15 / Math.sqrt(20)) }, { x: (-1) + (1 / 3 / Math.sqrt(20)) + (-4 / 15 / Math.sqrt(20)), y: (-2) + (2 / 3 / Math.sqrt(20)) + (2 / 15 / Math.sqrt(20)) }], appearance: "construction" },
+      { id: "step3", kind: "segment", from: { x: -1, y: -2 }, to: { x: 0, y: -1 }, appearance: "construction" },
+      { id: "step3-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: (0) + (-1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)), y: (-1) + (-1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)) }, { x: (0) + (-1 / 6 / Math.sqrt(2)) + (1 / 15 / Math.sqrt(2)), y: (-1) + (-1 / 6 / Math.sqrt(2)) + (-1 / 15 / Math.sqrt(2)) }], appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s1", kind: "point", at: { x: 1, y: 2 }, appearance: "highlight" },
+      { id: "s2", kind: "point", at: { x: -1, y: -2 }, appearance: "highlight" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "s1", objectId: "s1", at: { x: 1, y: 2 }, placement: "left" },
+      { key: "s2", objectId: "s2", at: { x: -1, y: -2 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Operasi Matriks bagi Pantulan pada Titik
+
+Pendaraban dengan matriks <InlineMath math="2 \times 2" /> sahaja sentiasa memetakan <InlineMath math="(0,0)" /> ke <InlineMath math="(0,0)" />. Pantulan pada pusat bukan sifar memetakan asalan ke <InlineMath math="(2a,2b)" />, jadi kita memerlukan **vektor translasi tambahan**:
+
+<BlockMath math="\begin{pmatrix}x'\\y'\end{pmatrix}=\begin{pmatrix}-1&0\\0&-1\end{pmatrix}\begin{pmatrix}x\\y\end{pmatrix}+2\begin{pmatrix}a\\b\end{pmatrix}" />
+
+Rumus itu membahagikan gerakan yang sama kepada dua bahagian. Matriks <InlineMath math="-I" /> menghantar <InlineMath math="(2, 3)" /> ke <InlineMath math="(-2, -3)" />, iaitu pantulan pada asalan, dan menambah <InlineMath math="2(1, 1) = (2, 2)" /> menggelongsorkan titik itu ke imej <InlineMath math="(0, -1)" />.
+
+<MathVisual
+  title={<>Darab dengan <InlineMath math="-I" />, kemudian tambah <InlineMath math="2(a, b)" /></>}
+  description={<>Titik <InlineMath math="(2, 3)" /> dipantulkan pada asalan ke <InlineMath math="(-2, -3)" />, kemudian dianjakkan sejauh <InlineMath math="(2, 2)" /> ke imejnya <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    q: <InlineMath math="(2, 3)" />,
+    flip: <InlineMath math="(-2, -3)" />,
+    image: <InlineMath math="(0, -1)" />,
+    shift: <InlineMath math="(2, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -3.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 3 }, to: { x: -2, y: -3 }, appearance: "construction" },
+      { id: "shift", kind: "segment", from: { x: -2, y: -3 }, to: { x: 0, y: -1 }, appearance: "highlight" },
+      { id: "shift-head", kind: "polygon", vertices: [{ x: 0, y: -1 }, { x: (0) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)), y: (-1) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)) }, { x: (0) + (-2 / 5 / Math.sqrt(8)) + (4 / 25 / Math.sqrt(8)), y: (-1) + (-2 / 5 / Math.sqrt(8)) + (-4 / 25 / Math.sqrt(8)) }], appearance: "highlight" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "flip", kind: "point", at: { x: -2, y: -3 }, appearance: "construction" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "flip", objectId: "flip", at: { x: -2, y: -3 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "right" },
+      { key: "shift", objectId: "shift", at: { x: -1, y: -2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Mencari Imej Satu Titik
+
+Tentukan imej bagi titik <InlineMath math="(2,3)" /> selepas pantulan pada titik <InlineMath math="(1,1)" />.
+
+Titik yang dipantulkan ialah <InlineMath math="(x,y) = (2,3)" /> dan pusat pantulan ialah <InlineMath math="(a,b) = (1,1)" />.
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix} \begin{pmatrix} 2 \\ 3 \end{pmatrix} + 2 \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="= \begin{pmatrix} (-1)(2) + (0)(3) \\ (0)(2) + (-1)(3) \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} -2 \\ -3 \end{pmatrix} + \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -2+2 \\ -3+2 \end{pmatrix} \\ &amp;= \begin{pmatrix} 0 \\ -1 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Rajah ini meletakkan **pusat di tengah-tengah** antara titik asal dengan imejnya.
+
+<MathVisual
+  title={<><InlineMath math="(2, 3)" /> dipantulkan pada <InlineMath math="(1, 1)" /></>}
+  description={<>Pusat <InlineMath math="(1, 1)" /> terletak di tengah-tengah antara titik <InlineMath math="(2, 3)" /> dengan imejnya <InlineMath math="(0, -1)" />.</>}
+  labels={{
+    c: <InlineMath math="(1, 1)" />,
+    q: <InlineMath math="(2, 3)" />,
+    image: <InlineMath math="(0, -1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1.6, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 2, y: 3 }, to: { x: 0, y: -1 }, appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "q", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 0, y: -1 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Kedua-dua soalan menggunakan **pusat yang bukan asalan**. Soalan kedua memantulkan seluruh garis, jadi garis imej mesti ditulis sebagai persamaan.
+
+1.  Tentukan imej bagi titik <InlineMath math="(3,1)" /> selepas pantulan pada titik <InlineMath math="(-2,-1)" />.
+2.  Sebuah garis melalui titik <InlineMath math="A(1,2)" /> dan <InlineMath math="B(3,4)" />. Tentukan persamaan garis imej selepas pantulan pada titik <InlineMath math="C(0,1)" />.
+
+### Penyelesaian
+
+Kira **dua kali vektor pusat** sebelum menolak koordinat titik. Bagi soalan garis, dua titik imej menentukan satu persamaan. Semak sama ada persamaan itu menerangkan garis yang berlainan daripada garis asal.
+
+**Penyelesaian 1**
+
+Titik <InlineMath math="(x,y) = (3,1)" />. Pusat <InlineMath math="(a,b) = (-2,-1)" />.
+
+Menggunakan rumus <InlineMath math="x' = 2a-x" /> dan <InlineMath math="y' = 2b-y" />:
+
+<MathContainer>
+  <BlockMath math="x' = 2(-2) - 3 = -4 - 3 = -7" />
+  <BlockMath math="y' = 2(-1) - 1 = -2 - 1 = -3" />
+</MathContainer>
+
+Imejnya ialah <InlineMath math="(-7,-3)" />. Atau dengan operasi matriks:
+
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} \\ &amp;= \begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 3 \\ 1 \end{pmatrix} + 2 \begin{pmatrix} -2 \\ -1 \end{pmatrix} \\ &amp;= \begin{pmatrix} -3 \\ -1 \end{pmatrix} + \begin{pmatrix} -4 \\ -2 \end{pmatrix} \\ &amp;= \begin{pmatrix} -7 \\ -3 \end{pmatrix} \end{aligned}" />
+
+**Penyelesaian 2**
+
+Pusat pantulan <InlineMath math="C(0,1)" />. (<InlineMath math="a=0, b=1" />)
+
+Imej bagi titik <InlineMath math="A(1,2)" />:
+
+<MathContainer>
+  <BlockMath math="x'_A = 2(0)-1 = -1" />
+  <BlockMath math="y'_A = 2(1)-2 = 0" />
+</MathContainer>
+
+Jadi <InlineMath math="A'(-1,0)" />.
+
+Imej bagi titik <InlineMath math="B(3,4)" />:
+
+<MathContainer>
+  <BlockMath math="x'_B = 2(0)-3 = -3" />
+  <BlockMath math="y'_B = 2(1)-4 = -2" />
+</MathContainer>
+
+Jadi <InlineMath math="B'(-3,-2)" />.
+
+Garis imej melalui <InlineMath math="A'(-1,0)" /> dan <InlineMath math="B'(-3,-2)" />.
+
+Kecerunan <InlineMath math="m' = \frac{-2 - 0}{-3 - (-1)} = \frac{-2}{-2} = 1" />.
+
+Persamaan garis:
+
+<MathContainer>
+  <BlockMath math="y - y'_A = m'(x - x'_A)" />
+  <BlockMath math="y - 0 = 1(x - (-1))" />
+  <BlockMath math="y = x + 1" />
+</MathContainer>
+
+Garis yang sama mempunyai bentuk piawai:
+
+<BlockMath math="x - y + 1 = 0" />
+
+Hasilnya ialah garis asal <InlineMath math="y=x+1" /> sekali lagi. Pusat <InlineMath math="C(0,1)" /> terletak pada garis itu kerana <InlineMath math="1=0+1" />. Setengah pusingan menukar tempat titik sepanjang mana-mana garis yang melalui pusatnya, jadi **garis itu sebagai satu set kekal tidak berubah**.

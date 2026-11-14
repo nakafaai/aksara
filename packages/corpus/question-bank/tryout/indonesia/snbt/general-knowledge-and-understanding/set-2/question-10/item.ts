@@ -2,34 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "paragraph-meaning",
-    topic: "detail",
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "referent",
   },
-  stimulus: "bakau",
+  stimulus: "antibiotik",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Akar mangrove membantu menahan lumpur di tepi pantai.",
+          correct: false,
+          label: "*keduanya* pada kalimat (2) merujuk pada bakteri dan virus",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penanaman kembali mangrove selalu berhasil di pesisir mana pun.",
+            "*aturan itu* pada kalimat (4) merujuk pada pengawasan yang longgar",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Tambak yang dibuat dengan menebang mangrove lebih mudah terkikis gelombang.",
+            "*Sifat itu* pada kalimat (6) merujuk pada kemampuan obat untuk menghambat bakteri",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Pemecah ombak bambu dipasang untuk menggantikan hutan mangrove secara permanen.",
+            "*Hal itu* pada kalimat (16) merujuk pada pencarian obat baru dan upaya menjaga keampuhan antibiotik",
+        },
+        {
+          correct: true,
+          label:
+            "*sel-sel itu* pada kalimat (8) merujuk pada sebagian kecil sel yang membawa perubahan genetik",
         },
       ],
     },

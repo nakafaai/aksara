@@ -1,16 +1,36 @@
-Let Rina buy <InlineMath math="x" /> stamps at <InlineMath math="\text{Rp}3{,}000" /> and <InlineMath math="y" /> stamps at <InlineMath math="\text{Rp}5{,}000" />. In thousands of rupiah, the condition is
+The two kinds of hamper compete for the stock in opposite ways. The *Parsel Sirup* (syrup hamper) uses little cake but a lot of syrup, while the *Parsel Kue* (cake hamper) uses little syrup but a lot of cake. So making mostly one kind uses up one item and leaves the other behind. The largest total usually sits at **a mix that nearly uses up both items**, and since hamper counts must be whole numbers, that mix has to be checked carefully.
 
-<BlockMath math="3x+5y=100,\qquad x\ge1,\ y\ge1" />
+Let <InlineMath math="x" /> be the number of syrup hampers and <InlineMath math="y" /> the number of cake hampers. The conditions are:
 
-Rewrite it as <InlineMath math="3x=100-5y" />. For <InlineMath math="x" /> to be a whole number, **<InlineMath math="100-5y" /> must be divisible by <InlineMath math="3" />**. Try small values of <InlineMath math="y" />: <InlineMath math="y=2" /> gives <InlineMath math="90" />, which is divisible by <InlineMath math="3" />. Each time <InlineMath math="y" /> rises by <InlineMath math="3" />, <InlineMath math="100-5y" /> falls by <InlineMath math="15" />, so it stays divisible by <InlineMath math="3" />.
+<BlockMath math="\begin{aligned}
+\text{jars of cake} &: x+4y\le44 \\
+\text{bottles of syrup} &: 2x+y\le28 \\
+\text{minimum} &: x\ge3,\ y\ge3
+\end{aligned}" />
 
-| <InlineMath math="y" /> | <InlineMath math="100-5y" /> | <InlineMath math="x" /> |
-| --- | --- | --- |
-| <InlineMath math="2" /> | <InlineMath math="90" /> | <InlineMath math="30" /> |
-| <InlineMath math="5" /> | <InlineMath math="75" /> | <InlineMath math="25" /> |
-| <InlineMath math="8" /> | <InlineMath math="60" /> | <InlineMath math="20" /> |
-| <InlineMath math="11" /> | <InlineMath math="45" /> | <InlineMath math="15" /> |
-| <InlineMath math="14" /> | <InlineMath math="30" /> | <InlineMath math="10" /> |
-| <InlineMath math="17" /> | <InlineMath math="15" /> | <InlineMath math="5" /> |
+The clearest method is to test a target total <InlineMath math="T=x+y" />. Replace <InlineMath math="y" /> with <InlineMath math="T-x" /> in both stock conditions.
 
-The next value, <InlineMath math="y=20" />, gives <InlineMath math="x=0" />, but Rina wants at least one stamp of each kind. So there are <InlineMath math="6" /> possible pairs of stamp counts.
+<BlockMath math="\begin{aligned}
+\text{syrup} &: 2x+(T-x)\le28 \quad\Rightarrow\quad x\le28-T \\
+\text{cake} &: x+4(T-x)\le44 \quad\Rightarrow\quad x\ge\frac{4T-44}{3}
+\end{aligned}" />
+
+Try <InlineMath math="T=19" />. The syrup condition needs <InlineMath math="x\le9" />, but the cake condition needs <InlineMath math="x\ge\frac{32}{3}\approx10.7" />. No number fits both, so <InlineMath math="19" /> hampers is impossible. For any larger <InlineMath math="T" />, the upper limit drops and the lower limit rises, so those are impossible too.
+
+Try <InlineMath math="T=18" />. The syrup condition needs <InlineMath math="x\le10" />, and the cake condition needs <InlineMath math="x\ge\frac{28}{3}\approx9.3" />. The only whole number in between is <InlineMath math="x=10" />, so <InlineMath math="y=8" />.
+
+<BlockMath math="\begin{aligned}
+\text{jars of cake} &: 10+4(8) = 42 \le 44 \\
+\text{bottles of syrup} &: 2(10)+8 = 28 \le 28
+\end{aligned}" />
+
+Both kinds are also at least <InlineMath math="3" />. So <InlineMath math="10" /> syrup hampers and <InlineMath math="8" /> cake hampers give <InlineMath math="18" />, and no arrangement gives more.
+
+The other options come from strategies that move too fast:
+
+- <InlineMath math="13" /> comes from making <InlineMath math="3" /> syrup hampers and then as many cake hampers as possible. The cake only covers <InlineMath math="10" /> cake hampers, while plenty of syrup is left over.
+- <InlineMath math="15" /> comes from making <InlineMath math="3" /> cake hampers and then as many syrup hampers as possible because they hold fewer items. The syrup only covers <InlineMath math="12" /> syrup hampers, while <InlineMath math="20" /> jars of cake are left over.
+- <InlineMath math="17" /> comes from the crossing point of <InlineMath math="x+4y=44" /> and <InlineMath math="2x+y=28" />, which is <InlineMath math="x\approx9.7" /> and <InlineMath math="y\approx8.6" />, rounded down to <InlineMath math="9+8" /> without checking the whole-number arrangements nearby.
+- <InlineMath math="19" /> rounds that crossing point to the nearest whole numbers, <InlineMath math="10+9" />, but that arrangement needs <InlineMath math="29" /> bottles of syrup and <InlineMath math="46" /> jars of cake.
+
+So the shop can make at most <InlineMath math="18" /> hampers.

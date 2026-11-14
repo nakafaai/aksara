@@ -1,0 +1,28 @@
+# The factor for one dosing gap
+
+The question asks how much medicine is left just before the <InlineMath math="5" />th dose, when the level is at its lowest. Watch the time units: the amount halves **every <InlineMath math="6" /> hours**, but the doses are <InlineMath math="12" /> hours apart. In <InlineMath math="12" /> hours the medicine halves twice.
+
+<BlockMath math="r=\tfrac{1}{2}\cdot\tfrac{1}{2}=\tfrac{1}{4}" />
+
+So every <InlineMath math="12" /> hours, only <InlineMath math="\tfrac{1}{4}" /> of the medicine remains.
+
+# Adding up what's left of each dose
+
+Just before the <InlineMath math="5" />th dose, <InlineMath math="48" /> hours have passed since the first one. The first dose has shrunk by the factor <InlineMath math="\tfrac{1}{4}" /> four times, the second three times, the third twice, and the fourth once. **Each dose shrinks on its own, then you add what's left**.
+
+<BlockMath math="\begin{aligned}
+\text{left}&=256\left(\tfrac14\right)^4+256\left(\tfrac14\right)^3+256\left(\tfrac14\right)^2+256\left(\tfrac14\right) \\
+&=1+4+16+64 \\
+&=85\text{ mg}
+\end{aligned}" />
+
+That's a geometric series with first term <InlineMath math="1" /> and ratio <InlineMath math="4" />. Check it another way: right after the <InlineMath math="4" />th dose the body holds <InlineMath math="256+64+16+4=340\text{ mg}" />, and <InlineMath math="12" /> hours later only <InlineMath math="\tfrac14\cdot340=85\text{ mg}" /> is left.
+
+So just before the <InlineMath math="5" />th dose, there are <InlineMath math="85\text{ mg}" /> of medicine in the body.
+
+# Why the other options are wrong
+
+- <InlineMath math="240\text{ mg}" /> comes from using the factor <InlineMath math="\tfrac12" /> for every <InlineMath math="12" /> hours. The halving happens every <InlineMath math="6" /> hours, so the factor for <InlineMath math="12" /> hours is <InlineMath math="\tfrac14" />.
+- <InlineMath math="340\text{ mg}" /> is the amount **right after the <InlineMath math="4" />th dose**, at the highest level. The question asks about the moment before the <InlineMath math="5" />th dose.
+- <InlineMath math="480\text{ mg}" /> combines two slips: the factor <InlineMath math="\tfrac12" /> per <InlineMath math="12" /> hours and the amount after the <InlineMath math="4" />th dose.
+- <InlineMath math="1{,}024\text{ mg}" /> is the four doses added up with no shrinking at all.

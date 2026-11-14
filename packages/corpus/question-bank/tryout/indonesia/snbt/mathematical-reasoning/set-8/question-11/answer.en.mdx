@@ -1,19 +1,40 @@
-The yearly increase is **always 15 seedlings**, and only <InlineMath math="80\%" /> of each batch grows, so <InlineMath math="20\%" /> die.
+This orchard has **two harvest rules**: up to <InlineMath math="40" /> trees, each tree yields <InlineMath math="120\text{ kg}" />. Above <InlineMath math="40" /> trees, the yield per tree is <InlineMath math="120-2(n-40)=200-2n" /> kilograms. Test each statement with the rule that fits its number of trees.
 
-# Fixed increase and percentage increase
+# The harvest of sixty and forty trees
 
-From 120 to 135 is a rise of <InlineMath math="\tfrac{15}{120}=12.5\%" />, while from 135 to 150 is about <InlineMath math="11.1\%" />. The increase is fixed in seedlings, but **the percentage keeps shrinking**. The first statement is false.
+With <InlineMath math="60" /> trees, each tree yields <InlineMath math="200-120=80\text{ kg}" />. With <InlineMath math="40" /> trees, the first rule applies, so <InlineMath math="120\text{ kg}" /> per tree.
 
-# Trees that grow and seedlings that die
+<BlockMath math="\begin{aligned}
+60\cdot80&=4{,}800\text{ kg}\\
+40\cdot120&=4{,}800\text{ kg}
+\end{aligned}" />
 
-In the fifth year <InlineMath math="120+4\cdot15=180" /> seedlings are planted, and <InlineMath math="80\%\cdot180=144" /> grow. The second statement is true.
+The totals are **exactly the same**, so the first statement is true. The twenty extra trees add nothing to the harvest.
 
-The first three years plant <InlineMath math="120+135+150=405" /> seedlings, and <InlineMath math="20\%\cdot405=81" /> **of them die**. The third statement is true.
+# The best number when the price rises
 
-# The eleventh year
+For <InlineMath math="n" /> of at least <InlineMath math="40" />, the profit at a price of <InlineMath math="p" /> rupiah per kilogram is <InlineMath math="p\cdot n(200-2n)-96{,}000n" />. Compare the two prices:
 
-<BlockMath math="U_{11}=120+10\cdot15=270" />
+<BlockMath math="\begin{aligned}
+p=8{,}000: \ 16{,}000n(100-n)-96{,}000n&=16{,}000n(94-n)\\
+p=12{,}000: \ 24{,}000n(100-n)-96{,}000n&=24{,}000n(96-n)
+\end{aligned}" />
 
-Twice the first year's number is 240, **not 270**. The fourth statement is false.
+Each peak sits halfway between its two zeros. At the old price the peak is <InlineMath math="\tfrac{94}{2}=47" /> trees. At the new price it's <InlineMath math="\tfrac{96}{2}=48" /> trees. **A higher price moves the best number**, because the care cost becomes a smaller part of the sales. The second statement is false.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+# Seventy trees and thirty trees
+
+For <InlineMath math="70" /> trees, each tree yields <InlineMath math="200-140=60\text{ kg}" />. For <InlineMath math="30" /> trees, **the drop rule doesn't apply**, because <InlineMath math="30" /> hasn't passed <InlineMath math="40" />.
+
+<BlockMath math="\begin{aligned}
+70\text{ trees}: \ 8{,}000\cdot70\cdot60-96{,}000\cdot70&=33{,}600{,}000-6{,}720{,}000=26{,}880{,}000\\
+30\text{ trees}: \ 8{,}000\cdot30\cdot120-96{,}000\cdot30&=28{,}800{,}000-2{,}880{,}000=25{,}920{,}000
+\end{aligned}" />
+
+The profit with <InlineMath math="70" /> trees is larger, so the third statement is false. If you use the formula <InlineMath math="16{,}000n(94-n)" /> for <InlineMath math="30" /> trees, you get <InlineMath math="30{,}720{,}000" />, and the statement looks true.
+
+# The yield per tree at sixty five
+
+With exactly <InlineMath math="65" /> trees, the yield per tree is <InlineMath math="200-130=70\text{ kg}" />. That isn't less than <InlineMath math="70\text{ kg}" />. The words **at least sixty five** include <InlineMath math="65" /> itself, so the fourth statement is false. The yield per tree only drops below <InlineMath math="70\text{ kg}" /> from <InlineMath math="66" /> trees on.
+
+So the first statement is true, and the second, third and fourth statements are false.

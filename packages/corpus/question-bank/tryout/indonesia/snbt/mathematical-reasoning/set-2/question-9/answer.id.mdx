@@ -1,20 +1,48 @@
-Ada dua besaran yang belum diketahui, banyak jawaban benar <InlineMath math="b" /> dan banyak jawaban salah <InlineMath math="w" />. Informasi soal memberi **dua persamaan**: banyak soal yang dijawab dan skor totalnya.
+Kamu mencari cicilan pertama yang membuat total bunga Ani **lebih besar**, bukan sekadar sama, daripada total bunga Rencana Tetap selama setahun. Rencananya, hitung batasnya dari Rencana Tetap, tulis bunga Rencana Menurun setiap bulan, lalu jumlahkan sampai batas itu terlewati.
 
-# Membentuk sistem persamaan
+# Total bunga Rencana Tetap
+
+Bunga Rencana Tetap selalu <InlineMath math="1\%" /> dari pokok awal, jadi **bunganya sama setiap bulan**.
 
 <BlockMath math="\begin{aligned}
-b+w&=34\\
-4b-w&=106
+1\%\cdot 12{.}000{.}000&=120{.}000 \\
+12\cdot 120{.}000&=1{.}440{.}000
 \end{aligned}" />
 
-# Menyelesaikan sistem
+# Bunga Rencana Menurun setiap bulan
 
-Jumlahkan kedua persamaan agar **<InlineMath math="w" /> hilang**.
+Cicilan pokok setiap bulan <InlineMath math="12{.}000{.}000 : 12=1{.}000{.}000" />. Sebelum cicilan bulan ke-<InlineMath math="k" /> dibayar, sudah ada <InlineMath math="k-1" /> cicilan pokok yang lunas, jadi sisa pokoknya <InlineMath math="13-k" /> juta rupiah. **Bunga dihitung dari sisa sebelum pembayaran**, jadi bunga bulan pertama dihitung dari <InlineMath math="12" /> juta.
 
-<BlockMath math="5b=140\;\Longrightarrow\;b=28,\quad w=6" />
+<BlockMath math="\text{bunga bulan ke-}k=2\%\cdot (13-k)\cdot 1{.}000{.}000=20{.}000\,(13-k)" />
 
-Pemeriksaan: <InlineMath math="4\cdot28-6=112-6=106" />. Cara lain: jika ke-34 jawaban benar, skornya 136. Setiap jawaban salah mengurangi 5 dari skor itu, karena kehilangan 4 dan mendapat <InlineMath math="-1" />. Selisih <InlineMath math="136-106=30" /> berarti 6 jawaban salah.
+Bunganya <InlineMath math="240{.}000" />, <InlineMath math="220{.}000" />, <InlineMath math="200{.}000" />, dan seterusnya, turun <InlineMath math="20{.}000" /> setiap bulan.
 
-Nilai 26 muncul jika skor 106 dibagi 4 tanpa memperhitungkan pengurangan untuk jawaban salah. Nilai lain tidak memenuhi kedua persamaan sekaligus.
+# Jumlah bunga sampai bulan tertentu
 
-Jadi, peserta itu menjawab benar **28 soal**.
+Bunga itu membentuk barisan aritmetika, jadi jumlah <InlineMath math="k" /> suku pertamanya adalah **banyak suku kali rata-rata suku pertama dan suku terakhir**.
+
+<BlockMath math="\begin{aligned}
+S_k&=\frac{k}{2}\,\bigl(240{.}000+20{.}000\,(13-k)\bigr)=10{.}000\,k\,(25-k) \\
+S_8&=10{.}000\cdot 8\cdot 17=1{.}360{.}000 \\
+S_9&=10{.}000\cdot 9\cdot 16=1{.}440{.}000 \\
+S_{10}&=10{.}000\cdot 10\cdot 15=1{.}500{.}000
+\end{aligned}" />
+
+# Lebih besar berarti tidak sama
+
+Setelah cicilan bulan kesembilan, total bunga Ani tepat <InlineMath math="1{.}440{.}000" />, **sama dengan, belum lebih besar dari** total bunga Rencana Tetap. Setelah cicilan bulan kesepuluh, totalnya <InlineMath math="1{.}500{.}000" />, dan baru di sini lebih besar.
+
+# Pemeriksaan
+
+Jumlahkan langsung bunga bulan pertama sampai kesembilan: <InlineMath math="240+220+200+180+160+140+120+100+80" /> ribu rupiah. **Hasil penjumlahan langsung** itu <InlineMath math="1{.}440" /> ribu rupiah, sama dengan rumus tadi. Bunga bulan kesepuluh <InlineMath math="60" /> ribu rupiah membuat totalnya <InlineMath math="1{.}500" /> ribu rupiah.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **satu syarat yang dibaca keliru**.
+
+- Bulan kedelapan muncul jika biaya administrasi <InlineMath math="\text{Rp}100{.}000{,}00" /> ikut dijumlahkan ke bunga Ani, sehingga <InlineMath math="1{.}360{.}000+100{.}000" /> sudah melewati batas.
+- Bulan kesembilan muncul jika "lebih besar" dibaca sebagai "lebih besar atau sama".
+- Bulan kedua belas muncul jika hanya total setahun yang dibandingkan, yaitu <InlineMath math="1{.}560{.}000" /> dan <InlineMath math="1{.}440{.}000" />.
+- Pilihan tidak pernah muncul jika bunga dihitung dari sisa pokok sesudah pembayaran, karena total bunganya setahun hanya <InlineMath math="1{.}320{.}000" />.
+
+Jadi, total bunga Ani pertama kali lebih besar setelah cicilan bulan kesepuluh.

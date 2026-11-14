@@ -1,0 +1,257 @@
+export const metadata = {
+  title: "Konsep Fungsi Logaritma",
+    description: "Fungsi logaritma ialah songsangan bagi fungsi eksponen. Graf, sifat dan soalan berserta jalan kerja menunjukkan hubungan antara kedua-dua fungsi ini.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Mencari Indeks yang Menghasilkan Satu Nilai
+
+Logaritma menjawab satu soalan yang khusus: <Highlight>indeks manakah yang menghasilkan nilai yang diberikan</Highlight>? Dalam erti kata itu, fungsi logaritma dan [fungsi eksponen](/ms/subjek/matematik/fungsi-dan-pemodelannya/fungsi-eksponen) membatalkan kesan antara satu sama lain.
+
+Mulakan dengan persamaan eksponen ini:
+
+<BlockMath math="2^3 = 8" />
+
+Indeks yang mengubah <InlineMath math="2" /> menjadi <InlineMath math="8" /> ialah <InlineMath math="3" />. Tatatanda logaritma mencatat hubungan yang sama dari arah yang bertentangan:
+
+<BlockMath math="\log_2 8 = 3" />
+
+Secara am, tatatanda eksponen dan tatatanda logaritma berkait seperti berikut:
+
+<BlockMath math="y = b^x \quad \Leftrightarrow \quad x = \log_b y" />
+
+## Takrif dan Jenis Logaritma
+
+Fungsi logaritma dengan asas <InlineMath math="b" /> (dengan <InlineMath math="b > 0" /> dan <InlineMath math="b \neq 1" />) ditulis sebagai:
+
+<BlockMath math="f(x) = \log_b x \quad \text{untuk setiap } x > 0" />
+
+| Nama | Asas | Tatatanda dan contoh | Sebab |
+| --- | --- | --- | --- |
+| **Logaritma biasa** | <InlineMath math="10" /> | <InlineMath math="\log100=2" /> | <InlineMath math="10^2=100" /> |
+| **Logaritma jati** | <InlineMath math="e\approx2.7183" /> | <InlineMath math="\ln e=1" /> | <InlineMath math="e^1=e" /> |
+| **Logaritma binari** | <InlineMath math="2" /> | <InlineMath math="\log_2 8=3" /> | <InlineMath math="2^3=8" /> |
+
+## Graf Fungsi Logaritma
+
+**Menukar susunan koordinat** menerangkan pantulan pada graf. Titik <InlineMath math="(3,8)" /> pada graf eksponen menjadi <InlineMath math="(8,3)" /> pada graf logaritma. Setiap input logaritma kekal positif.
+
+<MathVisual
+  title={<>Perbandingan fungsi eksponen dan fungsi logaritma</>}
+  description={<>Graf <InlineMath math="y = \log_2 x" /> ialah pantulan graf <InlineMath math="y = 2^x" /> pada garis <InlineMath math="y = x" />. Titik <InlineMath math="(3, 8)" /> pada graf eksponen sepadan dengan <InlineMath math="(8, 3)" /> pada graf logaritma.</>}
+  labels={{
+    exp: <InlineMath math="y = 2^x" />,
+    log: <InlineMath math="y = \log_2 x" />,
+    mirror: <InlineMath math="y = x" />,
+    p: <InlineMath math="(3, 8)" />,
+    q: <InlineMath math="(8, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 8.6 }, y: { min: -3.4, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "exp", kind: "polyline", vertices: [{ x: -3, y: 2 ** (-3) }, { x: -29 / 10, y: 2 ** (-29 / 10) }, { x: -14 / 5, y: 2 ** (-14 / 5) }, { x: -27 / 10, y: 2 ** (-27 / 10) }, { x: -13 / 5, y: 2 ** (-13 / 5) }, { x: -5 / 2, y: 2 ** (-5 / 2) }, { x: -12 / 5, y: 2 ** (-12 / 5) }, { x: -23 / 10, y: 2 ** (-23 / 10) }, { x: -11 / 5, y: 2 ** (-11 / 5) }, { x: -21 / 10, y: 2 ** (-21 / 10) }, { x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }, { x: 13 / 5, y: 2 ** (13 / 5) }, { x: 27 / 10, y: 2 ** (27 / 10) }, { x: 14 / 5, y: 2 ** (14 / 5) }, { x: 29 / 10, y: 2 ** (29 / 10) }, { x: 3, y: 2 ** (3) }], appearance: "primary" },
+      { id: "log", kind: "polyline", vertices: [{ x: 2 ** (-3), y: (-3) }, { x: 2 ** (-29 / 10), y: (-29 / 10) }, { x: 2 ** (-14 / 5), y: (-14 / 5) }, { x: 2 ** (-27 / 10), y: (-27 / 10) }, { x: 2 ** (-13 / 5), y: (-13 / 5) }, { x: 2 ** (-5 / 2), y: (-5 / 2) }, { x: 2 ** (-12 / 5), y: (-12 / 5) }, { x: 2 ** (-23 / 10), y: (-23 / 10) }, { x: 2 ** (-11 / 5), y: (-11 / 5) }, { x: 2 ** (-21 / 10), y: (-21 / 10) }, { x: 2 ** (-2), y: (-2) }, { x: 2 ** (-19 / 10), y: (-19 / 10) }, { x: 2 ** (-9 / 5), y: (-9 / 5) }, { x: 2 ** (-17 / 10), y: (-17 / 10) }, { x: 2 ** (-8 / 5), y: (-8 / 5) }, { x: 2 ** (-3 / 2), y: (-3 / 2) }, { x: 2 ** (-7 / 5), y: (-7 / 5) }, { x: 2 ** (-13 / 10), y: (-13 / 10) }, { x: 2 ** (-6 / 5), y: (-6 / 5) }, { x: 2 ** (-11 / 10), y: (-11 / 10) }, { x: 2 ** (-1), y: (-1) }, { x: 2 ** (-9 / 10), y: (-9 / 10) }, { x: 2 ** (-4 / 5), y: (-4 / 5) }, { x: 2 ** (-7 / 10), y: (-7 / 10) }, { x: 2 ** (-3 / 5), y: (-3 / 5) }, { x: 2 ** (-1 / 2), y: (-1 / 2) }, { x: 2 ** (-2 / 5), y: (-2 / 5) }, { x: 2 ** (-3 / 10), y: (-3 / 10) }, { x: 2 ** (-1 / 5), y: (-1 / 5) }, { x: 2 ** (-1 / 10), y: (-1 / 10) }, { x: 2 ** (0), y: (0) }, { x: 2 ** (1 / 10), y: (1 / 10) }, { x: 2 ** (1 / 5), y: (1 / 5) }, { x: 2 ** (3 / 10), y: (3 / 10) }, { x: 2 ** (2 / 5), y: (2 / 5) }, { x: 2 ** (1 / 2), y: (1 / 2) }, { x: 2 ** (3 / 5), y: (3 / 5) }, { x: 2 ** (7 / 10), y: (7 / 10) }, { x: 2 ** (4 / 5), y: (4 / 5) }, { x: 2 ** (9 / 10), y: (9 / 10) }, { x: 2 ** (1), y: (1) }, { x: 2 ** (11 / 10), y: (11 / 10) }, { x: 2 ** (6 / 5), y: (6 / 5) }, { x: 2 ** (13 / 10), y: (13 / 10) }, { x: 2 ** (7 / 5), y: (7 / 5) }, { x: 2 ** (3 / 2), y: (3 / 2) }, { x: 2 ** (8 / 5), y: (8 / 5) }, { x: 2 ** (17 / 10), y: (17 / 10) }, { x: 2 ** (9 / 5), y: (9 / 5) }, { x: 2 ** (19 / 10), y: (19 / 10) }, { x: 2 ** (2), y: (2) }, { x: 2 ** (21 / 10), y: (21 / 10) }, { x: 2 ** (11 / 5), y: (11 / 5) }, { x: 2 ** (23 / 10), y: (23 / 10) }, { x: 2 ** (12 / 5), y: (12 / 5) }, { x: 2 ** (5 / 2), y: (5 / 2) }, { x: 2 ** (13 / 5), y: (13 / 5) }, { x: 2 ** (27 / 10), y: (27 / 10) }, { x: 2 ** (14 / 5), y: (14 / 5) }, { x: 2 ** (29 / 10), y: (29 / 10) }, { x: 2 ** (3), y: (3) }], appearance: "secondary" },
+      { id: "pair", kind: "segment", from: { x: 3, y: 8 }, to: { x: 8, y: 3 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 3, y: 8 }, appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 8, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "exp", objectId: "exp", at: { x: 2, y: 4 }, placement: "left" },
+      { key: "log", objectId: "log", at: { x: 4, y: 2 }, placement: "below" },
+      { key: "mirror", objectId: "mirror", at: { x: -3, y: -3 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 8 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 8, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+**Ciri-ciri graf** <InlineMath math="f(x) = \log_b x" /> dengan <InlineMath math="b > 1" />:
+
+- Domain: <InlineMath math="x > 0" /> (nombor positif sahaja)
+- Julat: Semua nombor nyata
+- Pintasan-<InlineMath math="x" />: <InlineMath math="(1, 0)" />
+- Asimptot mencancang: paksi-<InlineMath math="y" /> (<InlineMath math="x = 0" />)
+- Fungsi menokok untuk <InlineMath math="b > 1" />
+
+## Sifat Logaritma
+
+Setiap sifat datang daripada takrif logaritma sebagai **songsangan bagi fungsi eksponen**, kerana apabila fungsi eksponen dibatalkan, hukum-hukumnya juga mesti dibatalkan. Sifat asas melibatkan satu nilai sahaja, manakala sifat operasi melibatkan hasil darab, hasil bahagi atau kuasa.
+
+### Membaca Satu Logaritma
+
+Dua identiti pertama membaca **indeks sifar dan satu**. Dua identiti seterusnya membatalkan logaritma dan eksponen yang sama asasnya.
+
+<MathContainer>
+
+<BlockMath math="\log_b 1 = 0" />
+
+<BlockMath math="\log_b b = 1" />
+
+<BlockMath math="\log_b b^n = n" />
+
+<BlockMath math="b^{\log_b x} = x" />
+</MathContainer>
+
+### Sifat Operasi
+
+Hukum di bawah memerlukan **nilai di dalam logaritma yang positif**: <InlineMath math="x,y>0" />. Kedua-dua asas memenuhi <InlineMath math="a,b>0" /> dan <InlineMath math="a,b\neq1" />, dan <InlineMath math="n" /> boleh jadi sebarang nombor nyata.
+
+<MathContainer>
+
+<BlockMath math="\log_b (xy) = \log_b x + \log_b y" />
+
+<BlockMath math="\log_b \left(\frac{x}{y}\right) = \log_b x - \log_b y" />
+
+<BlockMath math="\log_b x^n = n \cdot \log_b x" />
+
+<BlockMath math="\log_b x = \frac{\log_a x}{\log_a b} \quad \text{(penukaran asas)}" />
+</MathContainer>
+
+Contohnya, **pendaraban di dalam logaritma** menjadi penambahan dua nilai logaritma.
+
+<BlockMath math="\log_2(8\cdot4)=\log_2 8+\log_2 4=3+2=5" />
+
+Logaritma menukar hasil darab menjadi hasil tambah langkah. Apabila <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> disambung hujung ke hujung, kita sampai ke <InlineMath math="5" />, dan memang <InlineMath math="\log_2 (8 \cdot 4) = \log_2 32 = 5" />.
+
+<MathVisual
+  title={<>Hukum hasil darab sebagai langkah</>}
+  description={<>Langkah sepanjang <InlineMath math="\log_2 8 = 3" /> dan <InlineMath math="\log_2 4 = 2" /> yang disambung hujung ke hujung, berakhir di <InlineMath math="\log_2 32 = 5" />.</>}
+  labels={{
+    s0: <InlineMath math="\log_2 8" />,
+    s1: <InlineMath math="\log_2 4" />,
+    end: <InlineMath math="\log_2 32 = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -1 / 2, y: 0 }, to: { x: 13 / 2, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 3 / 10 }, to: { x: 3, y: 3 / 10 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 3 / 5 }, to: { x: 5, y: 3 / 5 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 3 / 2, y: 3 / 10 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 4, y: 3 / 5 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Model Eksponen daripada Dua Titik Data
+
+[Kementerian Kesihatan Indonesia](https://kemkes.go.id/id/positif-covid-19-usai-kontak-wn-jepang), atau Kemenkes, melaporkan dua kes COVID-19 yang disahkan pada 2 Mac 2020.
+
+Pada 30 April 2020, [kementerian itu melaporkan](https://kemkes.go.id/id/pasien-positif-covid-19-capai-10-ribu) <InlineMath math="10{,}118" /> kes disahkan secara kumulatif.
+
+Jarak antara kedua-dua tarikh itu ialah <InlineMath math="59 \text{ hari}" />.
+
+Untuk berlatih menggunakan logaritma, kita boleh menyuaikan satu lengkung eksponen yang mudah melalui dua nilai yang dilaporkan itu. Katakan <InlineMath math="t" /> ialah bilangan hari yang berlalu selepas 2 Mac dan <InlineMath math="P(t)" /> ialah bilangan kes daripada model yang disuaikan. Oleh sebab <InlineMath math="P(0)=2" /> dan <InlineMath math="P(59)=10{,}118" />, modelnya ialah:
+
+Untuk mencari **kadar yang disuaikan dengan dua titik data itu**, mulakan dengan model berikut. Laporan awal menentukan pendarab, dan laporan hari ke-<InlineMath math="59" /> menentukan kadar.
+
+<MathContainer>
+
+<BlockMath math="P(t)=Ce^{kt},\quad P(0)=C=2" />
+
+<BlockMath math="10118=2e^{59k}\quad\Longrightarrow\quad5059=e^{59k}" />
+
+<BlockMath math="\ln5059=59k\quad\Longrightarrow\quad k=\frac{\ln5059}{59}" />
+</MathContainer>
+
+<ContentStack>
+
+<BlockMath math="P(t) = 2e^{\frac{1}{59}\ln(5059)t}" />
+
+  <MathVisual
+    title={<>Penyuaian eksponen dua titik</>}
+    description={<>Satu unit pada paksi mengufuk <InlineMath math="X = t/10" /> mewakili <InlineMath math="10" /> hari, dan satu unit pada paksi mencancang <InlineMath math="Y = P(t)/10{,}000" /> mewakili <InlineMath math="10{,}000" /> kes. Lengkung jingga melalui dua nilai yang dilaporkan, dan lengkung biru kehijauan mengekstrapolasi dari <InlineMath math="t = 59" /> hingga <InlineMath math="t = 71" />.</>}
+    labels={{
+      start: <InlineMath math="P(0) = 2" />,
+      end: <InlineMath math="P(59) = 10{,}118" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.4, max: 7.6 }, y: { min: -0.4, max: 6.2 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "fit", kind: "polyline", vertices: [{ x: (0) / 10, y: (2 * 5059 ** ((0) / 59)) / 10000 }, { x: (1) / 10, y: (2 * 5059 ** ((1) / 59)) / 10000 }, { x: (2) / 10, y: (2 * 5059 ** ((2) / 59)) / 10000 }, { x: (3) / 10, y: (2 * 5059 ** ((3) / 59)) / 10000 }, { x: (4) / 10, y: (2 * 5059 ** ((4) / 59)) / 10000 }, { x: (5) / 10, y: (2 * 5059 ** ((5) / 59)) / 10000 }, { x: (6) / 10, y: (2 * 5059 ** ((6) / 59)) / 10000 }, { x: (7) / 10, y: (2 * 5059 ** ((7) / 59)) / 10000 }, { x: (8) / 10, y: (2 * 5059 ** ((8) / 59)) / 10000 }, { x: (9) / 10, y: (2 * 5059 ** ((9) / 59)) / 10000 }, { x: (10) / 10, y: (2 * 5059 ** ((10) / 59)) / 10000 }, { x: (11) / 10, y: (2 * 5059 ** ((11) / 59)) / 10000 }, { x: (12) / 10, y: (2 * 5059 ** ((12) / 59)) / 10000 }, { x: (13) / 10, y: (2 * 5059 ** ((13) / 59)) / 10000 }, { x: (14) / 10, y: (2 * 5059 ** ((14) / 59)) / 10000 }, { x: (15) / 10, y: (2 * 5059 ** ((15) / 59)) / 10000 }, { x: (16) / 10, y: (2 * 5059 ** ((16) / 59)) / 10000 }, { x: (17) / 10, y: (2 * 5059 ** ((17) / 59)) / 10000 }, { x: (18) / 10, y: (2 * 5059 ** ((18) / 59)) / 10000 }, { x: (19) / 10, y: (2 * 5059 ** ((19) / 59)) / 10000 }, { x: (20) / 10, y: (2 * 5059 ** ((20) / 59)) / 10000 }, { x: (21) / 10, y: (2 * 5059 ** ((21) / 59)) / 10000 }, { x: (22) / 10, y: (2 * 5059 ** ((22) / 59)) / 10000 }, { x: (23) / 10, y: (2 * 5059 ** ((23) / 59)) / 10000 }, { x: (24) / 10, y: (2 * 5059 ** ((24) / 59)) / 10000 }, { x: (25) / 10, y: (2 * 5059 ** ((25) / 59)) / 10000 }, { x: (26) / 10, y: (2 * 5059 ** ((26) / 59)) / 10000 }, { x: (27) / 10, y: (2 * 5059 ** ((27) / 59)) / 10000 }, { x: (28) / 10, y: (2 * 5059 ** ((28) / 59)) / 10000 }, { x: (29) / 10, y: (2 * 5059 ** ((29) / 59)) / 10000 }, { x: (30) / 10, y: (2 * 5059 ** ((30) / 59)) / 10000 }, { x: (31) / 10, y: (2 * 5059 ** ((31) / 59)) / 10000 }, { x: (32) / 10, y: (2 * 5059 ** ((32) / 59)) / 10000 }, { x: (33) / 10, y: (2 * 5059 ** ((33) / 59)) / 10000 }, { x: (34) / 10, y: (2 * 5059 ** ((34) / 59)) / 10000 }, { x: (35) / 10, y: (2 * 5059 ** ((35) / 59)) / 10000 }, { x: (36) / 10, y: (2 * 5059 ** ((36) / 59)) / 10000 }, { x: (37) / 10, y: (2 * 5059 ** ((37) / 59)) / 10000 }, { x: (38) / 10, y: (2 * 5059 ** ((38) / 59)) / 10000 }, { x: (39) / 10, y: (2 * 5059 ** ((39) / 59)) / 10000 }, { x: (40) / 10, y: (2 * 5059 ** ((40) / 59)) / 10000 }, { x: (41) / 10, y: (2 * 5059 ** ((41) / 59)) / 10000 }, { x: (42) / 10, y: (2 * 5059 ** ((42) / 59)) / 10000 }, { x: (43) / 10, y: (2 * 5059 ** ((43) / 59)) / 10000 }, { x: (44) / 10, y: (2 * 5059 ** ((44) / 59)) / 10000 }, { x: (45) / 10, y: (2 * 5059 ** ((45) / 59)) / 10000 }, { x: (46) / 10, y: (2 * 5059 ** ((46) / 59)) / 10000 }, { x: (47) / 10, y: (2 * 5059 ** ((47) / 59)) / 10000 }, { x: (48) / 10, y: (2 * 5059 ** ((48) / 59)) / 10000 }, { x: (49) / 10, y: (2 * 5059 ** ((49) / 59)) / 10000 }, { x: (50) / 10, y: (2 * 5059 ** ((50) / 59)) / 10000 }, { x: (51) / 10, y: (2 * 5059 ** ((51) / 59)) / 10000 }, { x: (52) / 10, y: (2 * 5059 ** ((52) / 59)) / 10000 }, { x: (53) / 10, y: (2 * 5059 ** ((53) / 59)) / 10000 }, { x: (54) / 10, y: (2 * 5059 ** ((54) / 59)) / 10000 }, { x: (55) / 10, y: (2 * 5059 ** ((55) / 59)) / 10000 }, { x: (56) / 10, y: (2 * 5059 ** ((56) / 59)) / 10000 }, { x: (57) / 10, y: (2 * 5059 ** ((57) / 59)) / 10000 }, { x: (58) / 10, y: (2 * 5059 ** ((58) / 59)) / 10000 }, { x: (59) / 10, y: (2 * 5059 ** ((59) / 59)) / 10000 }], appearance: "primary" },
+        { id: "extra", kind: "polyline", vertices: [{ x: (59) / 10, y: (2 * 5059 ** ((59) / 59)) / 10000 }, { x: (119 / 2) / 10, y: (2 * 5059 ** ((119 / 2) / 59)) / 10000 }, { x: (60) / 10, y: (2 * 5059 ** ((60) / 59)) / 10000 }, { x: (121 / 2) / 10, y: (2 * 5059 ** ((121 / 2) / 59)) / 10000 }, { x: (61) / 10, y: (2 * 5059 ** ((61) / 59)) / 10000 }, { x: (123 / 2) / 10, y: (2 * 5059 ** ((123 / 2) / 59)) / 10000 }, { x: (62) / 10, y: (2 * 5059 ** ((62) / 59)) / 10000 }, { x: (125 / 2) / 10, y: (2 * 5059 ** ((125 / 2) / 59)) / 10000 }, { x: (63) / 10, y: (2 * 5059 ** ((63) / 59)) / 10000 }, { x: (127 / 2) / 10, y: (2 * 5059 ** ((127 / 2) / 59)) / 10000 }, { x: (64) / 10, y: (2 * 5059 ** ((64) / 59)) / 10000 }, { x: (129 / 2) / 10, y: (2 * 5059 ** ((129 / 2) / 59)) / 10000 }, { x: (65) / 10, y: (2 * 5059 ** ((65) / 59)) / 10000 }, { x: (131 / 2) / 10, y: (2 * 5059 ** ((131 / 2) / 59)) / 10000 }, { x: (66) / 10, y: (2 * 5059 ** ((66) / 59)) / 10000 }, { x: (133 / 2) / 10, y: (2 * 5059 ** ((133 / 2) / 59)) / 10000 }, { x: (67) / 10, y: (2 * 5059 ** ((67) / 59)) / 10000 }, { x: (135 / 2) / 10, y: (2 * 5059 ** ((135 / 2) / 59)) / 10000 }, { x: (68) / 10, y: (2 * 5059 ** ((68) / 59)) / 10000 }, { x: (137 / 2) / 10, y: (2 * 5059 ** ((137 / 2) / 59)) / 10000 }, { x: (69) / 10, y: (2 * 5059 ** ((69) / 59)) / 10000 }, { x: (139 / 2) / 10, y: (2 * 5059 ** ((139 / 2) / 59)) / 10000 }, { x: (70) / 10, y: (2 * 5059 ** ((70) / 59)) / 10000 }, { x: (141 / 2) / 10, y: (2 * 5059 ** ((141 / 2) / 59)) / 10000 }, { x: (71) / 10, y: (2 * 5059 ** ((71) / 59)) / 10000 }], appearance: "construction" },
+        { id: "start", kind: "point", at: { x: 0, y: 1 / 5000 }, appearance: "primary" },
+        { id: "end", kind: "point", at: { x: 59 / 10, y: 5059 / 5000 }, appearance: "primary" },
+      ],
+      labels: [
+        { key: "start", objectId: "start", at: { x: 0, y: 1 / 5000 }, placement: "above-right" },
+        { key: "end", objectId: "end", at: { x: 59 / 10, y: 5059 / 5000 }, placement: "above-left" },
+      ],
+    }}
+  />
+</ContentStack>
+
+Jika kadar yang disuaikan itu dilanjutkan, logaritma akan meletakkan ambang <InlineMath math="50{,}000" /> pada:
+
+<MathContainer>
+
+<BlockMath math="50000 = 2e^{\frac{1}{59}\ln(5059)t}" />
+
+<BlockMath math="25000=e^{\frac{\ln5059}{59}t}\quad\Longrightarrow\quad\ln25000=\frac{\ln5059}{59}t" />
+
+<BlockMath math="t = \frac{59 \cdot \ln(25000)}{\ln(5059)} \approx 70.1 \text{ hari}" />
+</MathContainer>
+
+Pengiraan ini menggunakan logaritma untuk menyelesaikan model eksponen. Bilangan sebenar kes yang disahkan juga bergantung pada saringan, pelaporan, tingkah laku dan langkah kesihatan awam. Kadar eksponen yang tetap hanya berguna selagi andaiannya masih sesuai dengan keadaan.
+
+## Latihan
+
+Empat soalan ini bergerak daripada membaca satu logaritma hingga menyelesaikan **model eksponen**. Cuba jawab setiap soalan sebelum melihat jalan kerja, kemudian semak jawapan kamu dengan langkah-langkah selepasnya.
+
+1. Tentukan nilai <InlineMath math="\log_3 27" />, <InlineMath math="\log_5 \frac{1}{125}" /> dan <InlineMath math="\ln e^3" />.
+
+2. Jika <InlineMath math="\log_2 x = 4" />, tentukan nilai <InlineMath math="x" />.
+
+3. Permudahkan: <InlineMath math="\log_2 8 + \log_2 4 - \log_2 2" />
+
+4. Satu pelaburan bertambah mengikut rumus <InlineMath math="A = 1000 \cdot 2^t" /> (dalam juta rupiah). Berapa tahunkah yang diperlukan supaya pelaburan itu menjadi <InlineMath math="8 \text{ bilion rupiah}" />?
+
+### Jalan Kerja
+
+**Soalan 1**. Baca setiap logaritma sebagai **soalan tentang indeks**. Kuasa yang diperlukan ialah:
+
+<MathContainer>
+
+<BlockMath math="3^3=27\quad\Longrightarrow\quad\log_3 27=3" />
+
+<BlockMath math="5^{-3}=\frac{1}{125}\quad\Longrightarrow\quad\log_5\frac{1}{125}=-3" />
+
+<BlockMath math="e^3=e^3\quad\Longrightarrow\quad\ln e^3=3" />
+</MathContainer>
+
+**Soalan 2**. Tulis semula persamaan logaritma itu dalam **bentuk indeks**:
+
+<BlockMath math="\log_2 x=4\quad\Longleftrightarrow\quad x=2^4=16" />
+
+Apabila <InlineMath math="x=16" /> digantikan, kita dapat <InlineMath math="\log_2 16=4" />, jadi jawapan ini betul.
+
+**Soalan 3**. Kira **tiga kuasa** bagi <InlineMath math="2" /> itu dahulu sebelum menggabungkannya:
+
+<BlockMath math="\begin{aligned} &amp;\log_2 8+\log_2 4-\log_2 2 \\ &amp;=3+2-1 \\ &amp;=4 \end{aligned}" />
+
+**Soalan 4**. Rumus itu mengukur <InlineMath math="A" /> dalam **juta rupiah**, jadi <InlineMath math="8 \text{ bilion rupiah}=8000 \text{ juta rupiah}" />. Gantikan nilai sasaran itu dan asingkan sebutan eksponen:
+
+<MathContainer>
+
+<BlockMath math="8000=1000\cdot2^t" />
+
+<BlockMath math="8=2^t" />
+
+<BlockMath math="2^3=2^t\quad\Longrightarrow\quad t=3" />
+</MathContainer>
+
+Pelaburan itu mencapai sasaran selepas <InlineMath math="3 \text{ tahun}" />.

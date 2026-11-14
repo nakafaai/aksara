@@ -1,24 +1,41 @@
-Eine Parabel mit positivem Koeffizienten vor <InlineMath math="x^2" /> ist nach oben geöffnet. Ihr Wert ist genau dann immer positiv, ihr Graph liegt also oberhalb der <InlineMath math="x" />-Achse, wenn er die <InlineMath math="x" />-Achse **weder schneidet noch berührt**, also wenn die Diskriminante negativ ist.
+Du brauchst zuerst eine Formel für <InlineMath math="f(x)" />, denn <InlineMath math="f(a)=f(2)" /> lässt sich mit einem einzelnen Wert nicht lösen. Der Plan: Stelle durch Vertauschen von <InlineMath math="x" /> und <InlineMath math="\tfrac1x" /> eine zweite Gleichung auf, eliminiere <InlineMath math="f\left(\tfrac1x\right)" />, löse dann nach <InlineMath math="a" /> auf und **streiche den verbotenen Kandidaten**.
 
-# Bedingung an die Diskriminante
+# Eine zweite Gleichung durch Vertauschen
 
-Mit <InlineMath math="a=1" />, <InlineMath math="b=-2k" /> und <InlineMath math="c=k+6" /> gilt:
+Die Gleichung gilt für jedes <InlineMath math="x\ne0" />, du **darfst also <InlineMath math="x" /> durch <InlineMath math="\tfrac1x" /> ersetzen**, das ebenfalls nicht null ist.
+
+<BlockMath math="f\left(\frac1x\right)+2f(x)=\frac3x+3" />
+
+# Den Partnerterm entfernen
+
+Multipliziere die zweite Gleichung mit <InlineMath math="2" /> und ziehe die ursprüngliche Gleichung ab. Die Terme <InlineMath math="2f\left(\tfrac1x\right)" /> **heben sich auf**, und nur <InlineMath math="f(x)" /> bleibt übrig.
 
 <BlockMath math="\begin{aligned}
-D=(-2k)^2-4(1)(k+6)&<0\\
-4k^2-4k-24&<0\\
-k^2-k-6&<0\\
-(k-3)(k+2)&<0
+4f(x)+2f\left(\tfrac1x\right)-f(x)-2f\left(\tfrac1x\right)&=\frac6x+6-3x-3\\
+3f(x)&=\frac6x-3x+3\\
+f(x)&=\frac2x-x+1
 \end{aligned}" />
 
-Ein Produkt zweier Faktoren ist negativ, wenn die Faktoren **entgegengesetzte Vorzeichen haben**, also für <InlineMath math="-2<k<3" />.
+Probe in der ursprünglichen Gleichung: <InlineMath math="f(x)+2f\left(\tfrac1x\right)=\tfrac2x-x+1+2\left(2x-\tfrac1x+1\right)=3x+3" />. Die Formel stimmt.
 
-# Ganze Zahlen addieren
+# Nach a auflösen
 
-Die ganzen Zahlen in diesem Intervall sind <InlineMath math="-1" />, 0, 1 und 2. Die Ränder <InlineMath math="k=-2" /> und <InlineMath math="k=3" /> gehören nicht dazu, weil dort <InlineMath math="D=0" /> gilt und die Parabel die <InlineMath math="x" />-Achse berührt.
+Berechne <InlineMath math="f(2)=1-2+1=0" />, du suchst also <InlineMath math="a" /> mit <InlineMath math="f(a)=0" />. Multipliziere mit <InlineMath math="a" />, das ist erlaubt, weil <InlineMath math="a\ne0" /> gilt.
 
-<BlockMath math="-1+0+1+2=2" />
+<BlockMath math="\begin{aligned}
+\frac2a-a+1&=0\\
+2-a^2+a&=0\\
+a^2-a-2&=0\\
+(a-2)(a+1)&=0
+\end{aligned}" />
 
-Der Wert 3 nimmt beide Ränder mit. Der Wert 5 nimmt <InlineMath math="k=3" /> mit, der Wert 0 dagegen <InlineMath math="k=-2" />. Der Wert <InlineMath math="-2" /> entsteht aus dem Vorzeichenfehler <InlineMath math="k^2+k-6<0" />, der <InlineMath math="-3<k<2" /> liefert.
+Der Kandidat <InlineMath math="a=2" /> wird **durch die Bedingung <InlineMath math="a\ne2" /> ausgeschlossen**, also ist <InlineMath math="a=-1" />. Probe: <InlineMath math="f(-1)=-2+1+1=0=f(2)" />.
 
-Die Summe aller passenden ganzen Zahlen <InlineMath math="k" /> ist also **2**.
+# Fallen in den anderen Antworten
+
+- <InlineMath math="-2" /> ist das Produkt der beiden Lösungen von <InlineMath math="a^2-a-2=0" />, nicht die andere Lösung. Aus <InlineMath math="2\cdot a=-2" /> folgt die andere Lösung <InlineMath math="-1" />.
+- <InlineMath math="-\tfrac14" /> entsteht, wenn du **das Eliminationsergebnis für <InlineMath math="f\left(\tfrac1x\right)" />**, also <InlineMath math="2x-\tfrac1x+1" />, als Formel für <InlineMath math="f(x)" /> liest.
+- <InlineMath math="\tfrac12" /> entsteht, wenn du <InlineMath math="f(a)=f\left(\tfrac1a\right)" /> annimmst, weil die Gleichung <InlineMath math="x" /> mit <InlineMath math="\tfrac1x" /> paart. Aber <InlineMath math="f\left(\tfrac12\right)=4-\tfrac12+1=\tfrac92\ne0" />.
+- <InlineMath math="1" /> entsteht, wenn du bei der Elimination die Gleichungen addierst statt subtrahierst. Dann erhältst du die falsche Formel <InlineMath math="f(x)=\tfrac2x+x+3" />.
+
+Der Wert von <InlineMath math="a" /> ist also <InlineMath math="-1" />.

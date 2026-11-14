@@ -57,86 +57,50 @@ Two quantities describe the basic shape of a trigonometric graph: **amplitude** 
 
 Amplitude is <Highlight>the maximum vertical distance from a sinusoid's midline</Highlight> to a peak or trough. In the unshifted functions <InlineMath math="y = A \sin x" /> and <InlineMath math="y = A \cos x" />, that midline is the <InlineMath math="x" />-axis and the amplitude is <InlineMath math="|A|" />.
 
-<LineEquation
-  title="Amplitude Concept"
+<MathVisual
+  title={<>Amplitude Concept</>}
   description={<>Amplitude determines the 'height' of the wave. Notice the distance from the <InlineMath math="x" />-axis to the peak.</>}
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 298,
-        domain: [0, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <>Amplitude = <InlineMath math="2" /></>, at: 75, offset: [0, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: Math.PI / 2, y: 0, z: 0 },
-        { x: Math.PI / 2, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[Math.PI, 0, 10]}
-  cameraTarget={[Math.PI, 0, 0]}
+  labels={{
+    "l1": <>Amplitude = <InlineMath math="2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x)", domain: { min: 0, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: Math.PI / 2, y: 0 }, { x: Math.PI / 2, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.59, y: 2 }, placement: "above" },
+    ],
+  }}
 />
 
 ### Period
 
 **Period** is the length of interval needed for one complete cycle. For functions <InlineMath math="y = \sin(Bx)" /> or <InlineMath math="y = \cos(Bx)" />, the period is <InlineMath math="\frac{2\pi}{|B|}" />.
 
-<LineEquation
-  title="Period Concept"
-  description="Period is the horizontal distance for one complete wave."
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 298,
-        domain: [0, 4 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <>Period = <InlineMath math="2\pi" /></>, at: 75, offset: [0, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: -1.2, z: 0 },
-        { x: 2 * Math.PI, y: -1.2, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      cone: { position: "both" },
-      labels: [
-        {
-          text: <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
-          at: 1,
-          offset: [-3, -0.5, 0],
-
-        },
-      ],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[2*Math.PI, 0, 16]}
-  cameraTarget={[2*Math.PI, 0, 0]}
+<MathVisual
+  title={<>Period Concept</>}
+  description={<>Period is the horizontal distance for one complete wave.</>}
+  labels={{
+    "l1": <>Period = <InlineMath math="2\pi" /></>,
+    "l2": <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 14 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: 0, max: 4 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "line", through: [{ x: 0, y: -1.2 }, { x: 6.28, y: -1.2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.17, y: -0.03 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 6.28, y: -1.2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ### Amplitude and Period from the Coefficients
@@ -153,32 +117,27 @@ For the formulas below, take <InlineMath math="A\neq0" /> and <InlineMath math="
 
 The function <InlineMath math="y = \sin x" /> is periodic with period <InlineMath math="2\pi" />. Its graph pattern therefore repeats over every interval of length <InlineMath math="2\pi" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = \sin x" />
     </>
   }
-  description="Notice how the graph forms waves that repeat regularly."
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  description={<>Notice how the graph forms waves that repeat regularly.</>}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Graph characteristics**: <InlineMath math="y = \sin x" />
@@ -195,32 +154,27 @@ The function <InlineMath math="y = \sin x" /> is periodic with period <InlineMat
 
 The function <InlineMath math="y = \cos x" /> has a shape similar to sine, but shifted <InlineMath math="\frac{\pi}{2}" /> to the left.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = \cos x" />
     </>
   }
   description={<>Compare with the <InlineMath math="\sin" /> graph. Notice the shift.</>}
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "cos",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 228, offset: [0.3, 1.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: 0.44 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Graph characteristics**: <InlineMath math="y = \cos x" />
@@ -237,101 +191,65 @@ The function <InlineMath math="y = \cos x" /> has a shape similar to sine, but s
 
 Both curves repeat after a full turn and differ by a **horizontal shift**. Compare the peaks and the zero crossings of the two curves in the same view.
 
-<LineEquation
+<MathVisual
   title={<>Comparison of <InlineMath math="\sin" /> and <InlineMath math="\cos" /> Graphs</>}
   description={
     <>
       Notice that <InlineMath math="\cos x = \sin(x + \frac{\pi}{2})" />.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "cos",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 328, offset: [1.5, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.16, y: 0.4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Tangent Function Graph
 
 The function <InlineMath math="y = \tan x" /> differs from <InlineMath math="\sin" /> and <InlineMath math="\cos" /> because it has vertical asymptotes.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Graph of <InlineMath math="y = \tan x" />
     </>
   }
-  description="The red vertical lines mark the asymptotes."
-  data={[
-    // Tangent function
-    ...Array.from({ length: 3 }, (_, periodIndex) => {
-      const offset = (periodIndex - 1) * Math.PI;
-      return {
-        smooth: false,
-        curve: {
-          kind: "tan",
-          amplitude: 1,
-          frequency: 1,
-          phase: 0,
-          shift: 0,
-          samples: 322,
-          domain: [
-            offset - Math.atan(Math.sinh(2.5)),
-            offset + Math.atan(Math.sinh(2.5)),
-          ],
-        },
-        color: "#059669",
-        labels:
-          periodIndex === 1
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 162, offset: [2, 0.5, 0] }]
-            : [],
-        showPoints: false,
-      };
-    }),
-    // Vertical asymptotes
-    ...Array.from({ length: 4 }, (_, i) => {
-      const x = (i - 1) * Math.PI - Math.PI / 2;
-      return {
-        points: [{ x, y: -6, z: 0 }, { x, y: 5, z: 0 }, { x, y: 6, z: 0 }],
-        smooth: false,
-        color: "#e11d48",
-        showPoints: false,
-        labels:
-          i === 2 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
-      };
-    }),
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  description={<>The red vertical lines mark the asymptotes.</>}
+  labels={{
+    "l1": <InlineMath math="y=\tan x" />,
+    "l2": <InlineMath math="x=\frac{\pi}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "tan(x)", domain: { min: -4.55, max: -1.73 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "tan(x)", domain: { min: -1.41, max: 1.41 }, appearance: "primary" },
+      { id: "s3", kind: "function", formula: "tan(x)", domain: { min: 1.73, max: 4.55 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4.71, y: -6 }, { x: -4.71, y: 5 }, { x: -4.71, y: 6 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1.57, y: -6 }, { x: -1.57, y: 5 }, { x: -1.57, y: 6 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1.57, y: -6 }, { x: 1.57, y: 5 }, { x: 1.57, y: 6 }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4.71, y: -6 }, { x: 4.71, y: 5 }, { x: 4.71, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0.01, y: 0.01 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: 1.57, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Graph characteristics**: <InlineMath math="y = \tan x" />
@@ -351,124 +269,66 @@ Changes in **amplitude, period, and midline position** can be read from the coef
 
 The function <InlineMath math="y = A \sin x" /> changes the **amplitude** to <InlineMath math="|A|" />.
 
-<LineEquation
-  title="Effect of Amplitude"
+<MathVisual
+  title={<>Effect of Amplitude</>}
   description={
     <>
       Notice how the value of <InlineMath math="A" /> affects the wave height.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=2\sin x" />, at: 228, offset: [1.25, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 0.5,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 278,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=0.5\sin x" />, at: 114, offset: [1, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin x" />,
+    "l3": <InlineMath math="y=0.5\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "0.5 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -1.79 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.45 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Period Changes
 
 The function <InlineMath math="y = \sin(Bx)" /> changes the **period** to <InlineMath math="\frac{2\pi}{|B|}" />.
 
-<LineEquation
-  title="Effect of Period"
+<MathVisual
+  title={<>Effect of Period</>}
   description={
     <>
       The value of <InlineMath math="B" /> affects how fast the function repeats.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 2,
-        phase: 0,
-        shift: 0,
-        samples: 1109,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\sin 2x" />, at: 596, offset: [1.25, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 0.5,
-        phase: 0,
-        shift: 0,
-        samples: 278,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=\sin 0.5x" />, at: 114, offset: [1, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\sin 2x" />,
+    "l3": <InlineMath math="y=\sin 0.5x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "sin(2 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "sin(0.5 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.48, y: 0.81 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.53 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Vertical and Horizontal Shifts
@@ -487,50 +347,31 @@ General form:
 
 Notice the horizontal and vertical shifts of the graph:
 
-<LineEquation
-  title="Complete Transformation"
+<MathVisual
+  title={<>Complete Transformation</>}
   description={
     <>
       Graph of <InlineMath math="y = 2\sin(x - \frac{\pi}{4}) + 1" /> shows all
       transformations.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: -Math.PI / 4,
-        shift: 1,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [
-        { text: <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />, at: 228, offset: [0.5, 1.5, 0] },
-      ],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x - 0.7853981633974483) + 1", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -0.89 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Exercises
@@ -595,29 +436,22 @@ For the second curve, the input coefficient is one third. The cosine argument ne
 | --- | --- | --- | --- | --- | --- |
 | <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
 
-<LineEquation
-  title="Sketching One Cycle"
-  description="The marked points show the midline, peak, and trough after the shifts."
-  data={[
-    {
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: Math.PI / 3,
-        shift: -1,
-        samples: 321,
-        domain: [-Math.PI / 3, 5 * Math.PI / 3],
-      },
-      smooth: false,
-      showPoints: false,
-      color: "#9333ea",
-    },
-    ...[{x: -Math.PI/3,y:-1,z:0},{x:Math.PI/6,y:1,z:0},{x:2*Math.PI/3,y:-1,z:0},{x:7*Math.PI/6,y:-3,z:0},{x:5*Math.PI/3,y:-1,z:0}].map((point) => ({points:[point],showPoints:true,color:"#ea580c"}))
-  ]}
-  showZAxis={false}
-  cameraPosition={[2,-1,11]}
-  cameraTarget={[2,-1,0]}
+<MathVisual
+  title={<>Sketching One Cycle</>}
+  description={<>The marked points show the midline, peak, and trough after the shifts.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x + 1.0471975511965976) - 1", domain: { min: -Math.PI / 3, max: 5 * Math.PI / 3 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1.05, y: -1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0.52, y: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 2.09, y: -1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 3.67, y: -3 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: 5.24, y: -1 }, appearance: "secondary" },
+    ],
+  }}
 />
 
 **Problem 4**. The water level oscillates about a **midline** of five meters, with a maximum displacement of two meters.

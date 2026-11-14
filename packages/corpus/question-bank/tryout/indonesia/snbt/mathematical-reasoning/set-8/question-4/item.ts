@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "garden-fence",
+  stimulus: "cooking-gas",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$100\\text{ m}^2$$" },
-        { correct: false, label: "$$112\\text{ m}^2$$" },
-        { correct: false, label: "$$117\\text{ m}^2$$" },
-        { correct: false, label: "$$120\\text{ m}^2$$" },
-        { correct: true, label: "$$121\\text{ m}^2$$" },
+        { correct: false, label: "$$\\text{Rp}1{.}260{.}000$$" },
+        { correct: true, label: "$$\\text{Rp}1{.}064{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}1{.}036{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}980{.}000$$" },
+        { correct: false, label: "$$\\text{Rp}840{.}000$$" },
       ],
     },
   },

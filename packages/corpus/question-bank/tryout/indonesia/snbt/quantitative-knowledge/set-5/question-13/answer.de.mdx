@@ -1,20 +1,37 @@
-Die Oberfläche der Pyramide ist die Grundfläche plus die vier Seitenflächen. Jede Seitenfläche ist ein Dreieck mit der Grundseite 6 cm, und **die Höhe dieses Dreiecks ist die Höhe der Seitenfläche**, nicht die Höhe der Pyramide.
+Für das Volumen einer Pyramide brauchst du ihre Höhe, aber ein Netz zeigt nur ebene Flächen. Der Plan: Lies aus dem Netz **die Höhe jedes Seitendreiecks** ab, falte dann die Pyramide und mach aus dieser Dreieckshöhe die Höhe der Pyramide.
 
-# Höhe der Seitenfläche
+# Das Netz lesen
 
-Zieh die Strecke von der Spitze <InlineMath math="T" /> zur Mitte einer Grundkante. Diese Strecke, die Pyramidenhöhe und die halbe Grundseite bilden **ein rechtwinkliges Dreieck** mit den Katheten 4 cm und 3 cm.
+Sei <InlineMath math="O" /> der Mittelpunkt des quadratischen Grundrisses und <InlineMath math="s" /> die Höhe jedes Seitendreiecks, also der Abstand von der Dreiecksspitze zur Grundseite, an der es hängt. Im flach ausgebreiteten Netz liegt jede Spitze auf der Geraden durch <InlineMath math="O" />, die senkrecht zu dieser Seite steht. Also **ist der Abstand einer Spitze von <InlineMath math="O" /> die halbe Grundkante plus <InlineMath math="s" />**, nämlich <InlineMath math="3+s" />. Die vier Spitzen liegen gleich weit von <InlineMath math="O" /> entfernt in vier zueinander senkrechten Richtungen, also ist dieser Abstand die halbe Diagonale des großen Quadrats.
 
-<BlockMath math="t_{\text{Seite}}=\sqrt{4^2+3^2}=5" />
+# Die Höhe der Seitendreiecke
 
-# Oberfläche
-
-Addiere **die Grundfläche und die vier Seitendreiecke**.
+Der Flächeninhalt eines Quadrats ist **die Hälfte des Quadrats seiner Diagonale**. Aus dem Flächeninhalt <InlineMath math="128\text{ cm}^2" /> bekommst du die Diagonale.
 
 <BlockMath math="\begin{aligned}
-A&=6^2+4\cdot\tfrac12\cdot6\cdot5\\
-&=36+60=96\text{ cm}^2
+\tfrac12 d^2&=128\\
+d^2&=256\\
+d&=16\\
+3+s&=\tfrac{16}{2}=8\\
+s&=5
 \end{aligned}" />
 
-Der Wert 84 verwendet die Pyramidenhöhe 4 cm als Höhe der Seitenfläche, dadurch wird der Mantel 48. Der Wert 60 ist nur der Mantel ohne Grundfläche, der Wert 48 der Mantel mit falscher Höhe ohne Grundfläche. Der Wert 36 ist nur die Grundfläche.
+# Höhe und Volumen der Pyramide
 
-Die Oberfläche der Pyramide beträgt also **<InlineMath math="96\text{ cm}^2" />**.
+Nach dem Falten liegt die Spitze <InlineMath math="T" /> genau über <InlineMath math="O" />. Sei <InlineMath math="M" /> der Mittelpunkt einer Grundkante. Das Dreieck <InlineMath math="TOM" /> ist bei <InlineMath math="O" /> rechtwinklig, mit <InlineMath math="OM=3" /> und <InlineMath math="TM=s=5" />. Also **ist die Höhe eines Seitendreiecks die Hypotenuse und nicht die Höhe der Pyramide**.
+
+<BlockMath math="\begin{aligned}
+TO&=\sqrt{5^2-3^2}=4\text{ cm}\\
+V&=\tfrac13\cdot6^2\cdot4=48\text{ cm}^3
+\end{aligned}" />
+
+Prüfe die Seitenkante auf zwei Wegen. Aus einem Seitendreieck ergibt sich <InlineMath math="\sqrt{5^2+3^2}=\sqrt{34}" />. Aus der Pyramidenhöhe und der halben Grunddiagonale <InlineMath math="3\sqrt2" /> ergibt sich <InlineMath math="\sqrt{4^2+18}=\sqrt{34}" />. Beide Werte stimmen überein, die Maße passen also zusammen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12\sqrt{55}\text{ cm}^3" /> entsteht, wenn du den Abstand <InlineMath math="8" /> als <InlineMath math="s" /> nimmst, **ohne die halbe Grundkante abzuziehen**.
+- <InlineMath math="60\text{ cm}^3" /> benutzt die Höhe <InlineMath math="5" /> des Seitendreiecks als Pyramidenhöhe.
+- <InlineMath math="144\text{ cm}^3" /> vergisst den Faktor <InlineMath math="\tfrac13" /> in der Volumenformel der Pyramide.
+- <InlineMath math="12\sqrt7\text{ cm}^3" /> zieht die halbe Grunddiagonale von <InlineMath math="s" /> ab, als wäre <InlineMath math="s" /> die Seitenkante: <InlineMath math="\sqrt{25-18}=\sqrt7" />.
+
+Das Volumen der Pyramide beträgt also <InlineMath math="48\text{ cm}^3" />.

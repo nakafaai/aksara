@@ -1,19 +1,44 @@
-A sack cannot be split, so what matters is **the number of whole sacks in one trip**, not the total weight of all sacks.
+Each statement needs its own calculation. The first two are about averages, and for those **each price has to be weighted by its number of tickets**. The last two are about one purchase, so the order is always: price by ticket number, the discount if there are exactly four tickets, then the service fee.
 
-# Sacks per trip
+# The average of all tickets
 
-Pak Wahyu always rides along, so the load left for sacks is <InlineMath math="700-70=630" /> kg.
+The total price of all tickets is:
 
-<BlockMath math="\frac{630}{60}=10.5" />
+<BlockMath math="\begin{aligned}
+150\cdot120{,}000+300\cdot150{,}000+550\cdot200{,}000&=18{,}000{,}000+45{,}000{,}000+110{,}000{,}000\\
+&=173{,}000{,}000
+\end{aligned}" />
 
-One trip carries **at most 10 sacks**, because 11 sacks weigh 660 kg.
+The average is <InlineMath math="\tfrac{173{,}000{,}000}{1{,}000}=173{,}000" /> rupiah, which is more than <InlineMath math="\text{Rp}170{,}000" />. The first statement is true. Watch out for the plain average of the three prices, <InlineMath math="\tfrac{120{,}000+150{,}000+200{,}000}{3}\approx156{,}667" />. That value is wrong because **the normal tier holds the most tickets**, so its price must count for more.
 
-# Number of trips
+# The average of the early tickets
 
-Four trips carry 40 sacks, and the remaining 2 sacks need one more trip.
+For the first <InlineMath math="450" /> tickets, the total price is <InlineMath math="18{,}000{,}000+45{,}000{,}000=63{,}000{,}000" /> rupiah, so:
 
-<BlockMath math="10+10+10+10+2=42" />
+<BlockMath math="\frac{63{,}000{,}000}{450}=140{,}000" />
 
-The value 4 trips divides the total weight <InlineMath math="42\cdot60=2{,}520" /> kg by 630 kg as if sacks could be split, or forgets Pak Wahyu's weight. The value 3 trips divides the total weight by 700 kg and rounds down. The values 6 and 7 trips are enough, but not the fewest.
+The average is **exactly equal to** <InlineMath math="\text{Rp}140{,}000" />, not less than it. The second statement is false.
 
-So the lift must go up at least **5 times**.
+# The cheapest four ticket purchase
+
+The cheapest purchase of four tickets holds four early bird tickets, for example numbers <InlineMath math="1" /> to <InlineMath math="4" />. It has exactly four tickets, so **the ten percent discount applies**:
+
+<BlockMath math="\begin{aligned}
+4\cdot120{,}000&=480{,}000\\
+90\%\cdot480{,}000+5{,}000&=432{,}000+5{,}000=437{,}000
+\end{aligned}" />
+
+<InlineMath math="\text{Rp}437{,}000" /> is less than <InlineMath math="\text{Rp}450{,}000" />, so such a purchase really exists. The third statement is true.
+
+# A purchase across a tier limit
+
+Tickets <InlineMath math="449" /> and <InlineMath math="450" /> are still presale, while <InlineMath math="451" /> and <InlineMath math="452" /> are already normal. **Each ticket is priced by its own number**, and the discount applies because the purchase holds exactly four tickets:
+
+<BlockMath math="\begin{aligned}
+2\cdot150{,}000+2\cdot200{,}000&=700{,}000\\
+90\%\cdot700{,}000+5{,}000&=630{,}000+5{,}000=635{,}000
+\end{aligned}" />
+
+<InlineMath math="\text{Rp}635{,}000" /> is more than <InlineMath math="\text{Rp}630{,}000" />, so the fourth statement is true. If you forget the service fee, you get exactly <InlineMath math="\text{Rp}630{,}000" />, and the statement looks false.
+
+So the first statement is true, the second is false, the third is true, and the fourth is true.

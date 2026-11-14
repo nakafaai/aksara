@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "term-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "batik",
+  stimulus: "kabin",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Mencetak motif pada kain dengan mesin.",
-        },
-        {
-          correct: false,
-          label: "Mencampur dua pewarna agar muncul warna baru.",
-        },
-        {
-          correct: true,
-          label: "Menutup bagian kain tertentu agar tidak menyerap pewarna.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Mencuci kain dengan air mendidih sesudah dicelup agar warnanya lebih cerah.",
+            "Seandainya semua kaca mobil diganti dengan bahan yang tembus inframerah gelombang panjang, kabin yang tertutup tetap dapat menjadi jauh lebih panas daripada udara luar.",
         },
         {
-          correct: false,
-          label: "Menggambar pola dengan pensil sebelum diwarnai.",
+          column: 2,
+          label:
+            "Kaca biasa menahan inframerah, baik yang datang bersama cahaya matahari maupun yang dipancarkan oleh benda di dalam kabin.",
+        },
+        {
+          column: 2,
+          label:
+            "Membuka sedikit kaca jendela kurang menolong karena pertukaran udara hanya berpengaruh kecil terhadap suhu kabin.",
+        },
+        {
+          column: 1,
+          label:
+            "Pelindung kaca depan bekerja pada tahap sebelum energi matahari dipancarkan ulang oleh dasbor sebagai inframerah gelombang panjang.",
         },
       ],
     },

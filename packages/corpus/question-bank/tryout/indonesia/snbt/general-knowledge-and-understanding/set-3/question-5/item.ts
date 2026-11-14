@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "paragraph-meaning",
-    topic: "detail",
+    cognitiveLevel: "reasoning",
+    contentDomain: "word-relation",
+    topic: "analogy",
   },
-  stimulus: "batik",
+  stimulus: "kabin",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Canting dipakai untuk menggoreskan malam pada batik tulis.",
+          correct: false,
+          label: "kaca pembesar : cahaya",
         },
         {
-          column: 2,
-          label: "Batik cap umumnya lebih mahal daripada batik tulis.",
+          correct: false,
+          label: "tutup panci : uap",
         },
         {
-          column: 1,
-          label: "Malam dilunturkan setelah kain dicelup agar motif terlihat.",
+          correct: false,
+          label: "jendela terbuka : angin",
         },
         {
-          column: 2,
-          label: "Motif batik tulis selalu identik di setiap bagian kain.",
+          correct: true,
+          label: "kasa nyamuk : udara",
+        },
+        {
+          correct: false,
+          label: "atap : air hujan",
         },
       ],
     },

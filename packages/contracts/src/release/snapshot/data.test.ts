@@ -119,7 +119,7 @@ describe("structured snapshot data", () => {
       expect(
         Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
       ).toBe(
-        "a850674b1e0b5b8b156e9cf1280009fc82c9d017f75611fc8f7534efee8b49d9"
+        "b53eb9ffb5523c09872f14d104deb8b8d4b99b1cd11b6512aa65e0a2e4de0670"
       );
     })
   );

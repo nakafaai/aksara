@@ -3,15 +3,24 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Banyak segitiga yang memenuhi adalah $$12$$." },
         {
-          correct: false,
+          column: 2,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Panjang sisi terpanjang segitiga itu dapat bernilai $$12\\text{ cm}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Tepat $$5$$ di antara segitiga itu merupakan segitiga tumpul.",
+        },
+        {
+          column: 2,
+          label:
+            "Setiap segitiga yang sisi terpanjangnya $$11\\text{ cm}$$ merupakan segitiga tumpul.",
         },
       ],
     },

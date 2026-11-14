@@ -24,12 +24,17 @@ export const merdekaClass11PhysicsTopicNodes = [
         description: "Lacak posisi, kecepatan, dan percepatan.",
         title: "Kinematika",
       },
+      ms: {
+        description: "Jejaki kedudukan, laju dan pecutan.",
+        title: "Kinematik",
+      },
     },
     order: 10,
     translations: {
       de: { routeSlug: "kinematik", title: "Kinematik" },
       en: { routeSlug: "kinematics", title: "Kinematics" },
       id: { routeSlug: "kinematika", title: "Kinematika" },
+      ms: { routeSlug: "kinematik", title: "Kinematik" },
     },
   }),
   unitNode({
@@ -55,6 +60,10 @@ export const merdekaClass11PhysicsTopicNodes = [
         description: "Gunakan arah vektor dalam soal gerak.",
         title: "Vektor dalam Fisika",
       },
+      ms: {
+        description: "Guna arah vektor dalam soalan gerakan.",
+        title: "Vektor dalam Fizik",
+      },
     },
     order: 20,
     translations: {
@@ -64,6 +73,7 @@ export const merdekaClass11PhysicsTopicNodes = [
       },
       en: { routeSlug: "vector", title: "Vectors in Physics" },
       id: { routeSlug: "vektor", title: "Vektor dalam Fisika" },
+      ms: { routeSlug: "vektor", title: "Vektor dalam Fizik" },
     },
   }),
 ];

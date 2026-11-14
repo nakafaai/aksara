@@ -1,0 +1,18 @@
+Ein lineares Gleichungssystem mit drei Gleichungen und drei Unbekannten hat genau dann eine eindeutige Lösung, wenn die Determinante seiner Koeffizientenmatrix nicht null ist. Gesucht ist also der Wert von <InlineMath math="a" />, der **diese Determinante zu null macht**.
+
+Schreib die Koeffizientenmatrix auf und entwickle ihre Determinante nach der ersten Zeile. Die Vorzeichen der Kofaktoren wechseln <InlineMath math="+,-,+" />.
+
+<BlockMath math="\begin{aligned}
+\det\begin{pmatrix} 1 & 2 & 1 \\ 2 & a & -1 \\ 1 & 1 & 2 \end{pmatrix}&=1\begin{vmatrix} a & -1 \\ 1 & 2 \end{vmatrix}-2\begin{vmatrix} 2 & -1 \\ 1 & 2 \end{vmatrix}+1\begin{vmatrix} 2 & a \\ 1 & 1 \end{vmatrix} \\
+&=(2a+1)-2(4+1)+(2-a) \\
+&=a-7
+\end{aligned}" />
+
+Die Determinante ist null für <InlineMath math="a-7=0" />, also <InlineMath math="a=7" />. Für jeden anderen Wert von <InlineMath math="a" /> ist sie ungleich null, und das System hat genau eine Lösung.
+
+Das System hat also keine eindeutige Lösung für <InlineMath math="a=7" />.
+
+- <InlineMath math="-7" /> entsteht durch einen Vorzeichenfehler beim Lösen von <InlineMath math="a-7=0" />.
+- <InlineMath math="-13" /> entsteht, wenn der zweite Kofaktor ein Plus bekommt. Dann wird die Determinante zu <InlineMath math="a+13" />.
+- <InlineMath math="8" /> entsteht, wenn der erste Minor nur als <InlineMath math="2a" /> notiert wird und das <InlineMath math="+1" /> aus <InlineMath math="-(-1)\cdot1" /> verloren geht.
+- <InlineMath math="13" /> verbindet das falsche Kofaktorvorzeichen mit einem Vorzeichenfehler beim Lösen.

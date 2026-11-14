@@ -3,36 +3,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "golden-record",
+  stimulus: "river-ferry",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Its discovery is unlikely, but it was still worth making.",
+          label:
+            "Halfway over on the last crossing, he cuts the engine and lets the boat drift in silence.",
+        },
+        {
+          correct: true,
+          label:
+            "He stays home from the opening, saying that he has a bad knee.",
         },
         {
           correct: false,
-          label: "It was a waste of effort, since no one will ever find it.",
+          label: "A woman who has not ridden the ferry in years brings a cake.",
         },
         {
           correct: false,
           label:
-            "It will certainly be found and played by another civilisation.",
+            "The bridge has been growing out of both banks for three summers.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "Its music was badly chosen by a committee that was too small.",
-        },
-        {
-          correct: false,
-          label:
-            "It matters mainly because it is made of valuable gold-plated copper.",
+            "He counts the first cars crossing the bridge under his breath.",
         },
       ],
     },

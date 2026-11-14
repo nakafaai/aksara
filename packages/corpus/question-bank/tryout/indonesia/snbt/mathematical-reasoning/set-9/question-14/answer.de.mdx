@@ -1,13 +1,41 @@
-Den Median kannst du erst ablesen, wenn **die Daten sortiert sind**. Es gibt 12 Werte, der Median ist also der Mittelwert aus dem 6. und 7. Wert.
+Jede Aussage nutzt den effektiven Schlaf der einzelnen Nächte, also berechnest du den zuerst und prüfst dann jede Aussage mit ihrem eigenen Beweis. **Effektiver Schlaf ist die Zeit im Bett minus die Wachzeit**, und alle Zeiten unten sind in Minuten.
 
-# Sortierte Daten
+# Effektiver Schlaf in jeder Nacht
 
-<BlockMath math="40,\ 50,\ 70,\ 80,\ 120,\ \mathbf{140},\ \mathbf{190},\ 230,\ 250,\ 280,\ 310,\ 340" />
+Zähl die Zeit im Bett vom Einschlafen bis zum Aufwachen. Liegt die Schlafenszeit vor Mitternacht, zählst du zuerst bis 24.00 Uhr. Nach Abzug der Wachzeit ergibt sich Folgendes.
 
-# Median
+| Tag | Mo | Di | Mi | Do | Fr | Sa | So |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Effektiver Schlaf | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-<BlockMath math="\frac{140+190}{2}=165\text{ mm}" />
+Zusammen sind das <InlineMath math="3{.}290" /> Minuten. Die Schlafschuld wird Nacht für Nacht mit dem Ziel <InlineMath math="480" /> Minuten verrechnet, und **die Schuld fällt nie unter null**.
 
-Der Wert 65 mm nimmt den 6. und 7. Wert in Kalenderreihenfolge, Juni und Juli, **ohne zu sortieren**. Die Werte 140 mm und 190 mm sind nur einer der beiden mittleren Werte. Der Wert 175 mm ist der Mittelwert, <InlineMath math="\tfrac{2\,100}{12}" />, nicht der Median.
+<BlockMath math="0\to0\to105\to205\to170\to290\to170\to90" />
 
-Der Median des monatlichen Niederschlags beträgt also **165 mm**.
+Am Montagabend schläft die Person <InlineMath math="20" /> Minuten mehr als das Ziel, aber die Schuld ist noch null, also verfällt dieser Überschuss.
+
+# Die erste Aussage über die Differenzformel
+
+Die Formel ergibt <InlineMath math="7\times480-3{.}290=3{.}360-3{.}290=70" /> Minuten. Die echte Schuld beträgt <InlineMath math="90" /> Minuten, denn **die zusätzlichen <InlineMath math="20" /> Minuten vom Montagabend können keine Schuld tilgen, die es noch nicht gibt**. Die Formel stimmt nur, wenn die Schuld nie bei null steht, während es einen Überschuss gibt. Die erste Aussage ist falsch.
+
+# Die zweite Aussage über Median und Mittelwert
+
+Der Mittelwert ist <InlineMath math="3{.}290:7=470" /> Minuten. Sortiere die Daten: <InlineMath math="360, 375, 380, 500, 515, 560, 600" />. Es sind sieben Werte, also ist **der Median der vierte Wert**, nämlich <InlineMath math="500" /> Minuten. Weil <InlineMath math="500>470" />, ist die zweite Aussage wahr.
+
+# Die dritte Aussage über Dienstag und Mittwoch
+
+Am Dienstagabend geht die Person um 23.30 Uhr ins Bett und wacht um 06.00 Uhr auf, das sind <InlineMath math="30+360=390" /> Minuten im Bett und <InlineMath math="390-15=375" /> Minuten effektiver Schlaf. Am Mittwochabend schläft sie erst um 00.20 Uhr ein und wacht um 06.50 Uhr auf, ebenfalls <InlineMath math="390" /> Minuten im Bett, aber nur <InlineMath math="10" /> Minuten wach, also <InlineMath math="380" /> Minuten effektiver Schlaf. **Später ins Bett heißt nicht weniger Schlaf**, weil sie auch später aufwacht. Die dritte Aussage ist wahr.
+
+# Die vierte Aussage über zwei zusätzliche Stunden
+
+Zwei zusätzliche Stunden machen den Freitagabend zu <InlineMath math="360+120=480" /> Minuten, genau das Ziel. Rechne die Schuld ab Freitag neu.
+
+<BlockMath math="\begin{aligned}
+\text{nach Freitag} &: 170+0=170 \\
+\text{nach Samstag} &: 170-120=50 \\
+\text{nach Sonntag} &: 50-80<0,\ \text{also ist die Schuld }0
+\end{aligned}" />
+
+**Die Schuld bleibt bei null stehen**, und die restlichen <InlineMath math="30" /> Minuten Überschuss vom Sonntagabend verfallen. Die Schuld nach dem Sonntagabend ist also wirklich null. Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also falsch, die zweite, dritte und vierte sind wahr.

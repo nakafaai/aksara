@@ -1,21 +1,35 @@
-The task asks for the *Lösungsmenge* (solution set) of a linear inequality. Solve it like an equation, with one exception: multiplying or dividing by a negative number **reverses the inequality sign**. First bring every term with <InlineMath math="x" /> to the left and every number to the right.
+# Three factors that behave differently
 
-<BlockMath math="\begin{aligned}
-3-2x&>7+3x \\
--2x-3x&>7-3 \\
--5x&>4
-\end{aligned}" />
+The fraction has three parts, and **each part behaves differently with respect to sign**:
 
-Now divide by <InlineMath math="-5" />. Since <InlineMath math="-5" /> is negative, the sign <InlineMath math=">" /> becomes <InlineMath math="<" />.
+- <InlineMath math="x" /> changes sign at <InlineMath math="x=0" />.
+- <InlineMath math="(x-3)^2" /> is a square, so it's never negative. It's zero only at <InlineMath math="x=3" />.
+- <InlineMath math="x+2" /> changes sign at <InlineMath math="x=-2" />, and there the fraction isn't defined.
 
-<BlockMath math="x<-\frac45" />
+# Where it equals zero
 
-As a check, test one value on each side of the boundary. For <InlineMath math="x=-1" />, <InlineMath math="3+2=5>7-3=4" />, so the inequality holds. For <InlineMath math="x=0" />, <InlineMath math="3>7" /> is false.
+The fraction is zero exactly when the numerator is zero and the denominator isn't: at <InlineMath math="x=0" /> and at <InlineMath math="x=3" />. Since the sign is <InlineMath math="\le" />, **both points are solutions**.
 
-So the solution set consists of all <InlineMath math="x" /> with <InlineMath math="x<-\frac45" />.
+# Where it's negative
 
-- <InlineMath math="x>-\frac45" /> comes from not reversing the sign when dividing by <InlineMath math="-5" />. The test with <InlineMath math="x=0" /> shows that this set contains wrong values.
-- <InlineMath math="x<\frac45" /> comes from losing the sign of the numbers while rearranging, that is, computing <InlineMath math="-5x>-4" />.
-- <InlineMath math="x>\frac45" /> combines that sign error with the missing reversal of the inequality sign.
-- <InlineMath math="x<-2" /> comes from adding the <InlineMath math="3" /> instead of subtracting it while rearranging, which gives <InlineMath math="-5x>10" />.
-- <InlineMath math="x>2" /> comes from <InlineMath math="-5x>-7-3=-10" />, when the <InlineMath math="7" /> is taken with the wrong sign and the inequality sign is not reversed either.
+For <InlineMath math="x\ne3" />, the factor <InlineMath math="(x-3)^2" /> is positive, so the fraction has the same sign as <InlineMath math="\frac{x}{x+2}" />:
+
+| Part | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Fraction |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-2" /> | negative | negative | positive |
+| <InlineMath math="-2<x<0" /> | negative | positive | negative |
+| <InlineMath math="x>0" /> | positive | positive | positive |
+
+The fraction is **negative only on <InlineMath math="-2<x<0" />**. The point <InlineMath math="x=3" /> doesn't change the sign, so around <InlineMath math="3" /> the fraction stays positive, except exactly at <InlineMath math="3" />, where it's zero.
+
+Check: <InlineMath math="x=-1" /> gives <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> gives <InlineMath math="\frac{2\cdot1}{4}>0" />, and <InlineMath math="x=-3" /> gives <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+
+So the solutions are <InlineMath math="-2<x\le0" /> or <InlineMath math="x=3" />.
+
+# Why the other options are wrong
+
+- Only <InlineMath math="-2<x\le0" /> **forgets the point <InlineMath math="x=3" />**, where the numerator is zero.
+- <InlineMath math="-2\le x\le0" /> or <InlineMath math="x=3" /> includes <InlineMath math="x=-2" />, where the denominator is zero.
+- <InlineMath math="x\le0" /> or <InlineMath math="x=3" /> multiplies by <InlineMath math="x+2" /> as if it were always positive. For <InlineMath math="x=-3" /> the fraction is actually positive.
+- <InlineMath math="-2<x\le0" /> or <InlineMath math="x\ge3" /> switches sign at <InlineMath math="x=3" />, but a square factor doesn't switch sign. For <InlineMath math="x=4" /> the fraction is <InlineMath math="\frac{4}{6}>0" />.
+- <InlineMath math="x<-2" /> or <InlineMath math="x\ge0" /> is where the fraction is not negative, so the signs were read the wrong way round.

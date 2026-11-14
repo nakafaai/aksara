@@ -12,60 +12,43 @@ export const metadata = {
 
 A chord is a line segment with **both endpoints on the circle**. A taut string between two points on the circumference models a chord. A chord other than a diameter divides the disk into a [minor and major segment](/en/subjects/mathematics/circle-arc-sector/segment). A diameter produces two equal semicircles.
 
-<LineEquation
+<MathVisual
   title={<>Chord Visualization in Circle</>}
-  description="Various chords with different lengths and positions."
-  cameraPosition={[0, 0, 12]}
-  data={[
-    {
-      kind: "circle-outline", radius: 4,
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: "Circle", at: 25, offset: [1, 0.5, 0] }]
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 30,
-        sweepDegrees: 120,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [-0.3, 0.3, 0] }
-      ]
-    },
-    {
-      kind: "circle-chord", radius: 4,
-        startDegrees: 60,
-        sweepDegrees: 180,
-      color: "#9333ea",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [0.3, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [-0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 }
-      ],
-      color: "#d97706",
-      smooth: false,
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="E" />, at: 0, offset: [-0.3, -0.3, 0] },
-        { text: <InlineMath math="F" />, at: 1, offset: [0.3, -0.3, 0] }
-      ]
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0.3, 0.3, 0] }]
-    }
-  ]}
+  description={<>Various chords with different lengths and positions.</>}
+  labels={{
+    "l1": <>Circle</>,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+    "l8": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 4, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 3.46, y: 2 }, to: { x: -3.46, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 3.46 }, to: { x: -2, y: -3.46 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s2", at: { x: 0, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: 0 }, placement: "above-right" },
+      { key: "l5", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l6", objectId: "s4", at: { x: -4, y: 0 }, placement: "below-left" },
+      { key: "l7", objectId: "s4", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "l8", objectId: "s5", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Useful Chord Configurations
@@ -88,67 +71,38 @@ If <InlineMath math="d" /> is that perpendicular distance, <InlineMath math="r" 
 
 This formula shows that when <InlineMath math="d = 0" /> (chord passes through the center), then <InlineMath math="l = 2r" /> which is the diameter.
 
-<LineEquation
+<MathVisual
   title={<>Relationship Between Chord Length and Distance to Center</>}
-  description="Chords with different distances from the center of the circle."
-  cameraPosition={[0, 0, 8]}
-  data={[
-    {
-      kind: "circle-outline", radius: 3,
-      color: "#0891b2",
-      showPoints: false
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: true,
-      labels: [{ text: <>Diameter: <InlineMath math="d=0" /></>, at: 0, offset: [2.2, -0.7, 0] }]
-    },
-    {
-      points: [
-        { x: -Math.sqrt(9 - 1), y: 1, z: 0 },
-        { x: Math.sqrt(9 - 1), y: 1, z: 0 }
-      ],
-      color: "#9333ea",
-      smooth: false,
-      showPoints: true,
-      labels: []
-    },
-    {
-      points: [
-        { x: -Math.sqrt(9 - 4), y: 2, z: 0 },
-        { x: Math.sqrt(9 - 4), y: 2, z: 0 }
-      ],
-      color: "#d97706",
-      smooth: false,
-      showPoints: true,
-      labels: []
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 1, z: 0 }
-      ],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="d=1" />, at: 1, offset: [0.8, -0.45, 0] }]
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 0, y: 2, z: 0 }
-      ],
-      color: "#7c3aed",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="d=2" />, at: 1, offset: [0.8, -0.45, 0] }]
-    }
-  ]}
+  description={<>Chords with different distances from the center of the circle.</>}
+  labels={{
+    "l1": <>Diameter: <InlineMath math="d=0" /></>,
+    "l2": <InlineMath math="d=1" />,
+    "l3": <InlineMath math="d=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 3, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 1), y: 1 }, { x: Math.sqrt(9 - 1), y: 1 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -2.83, y: 1 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -Math.sqrt(9 - 4), y: 2 }, { x: Math.sqrt(9 - 4), y: 2 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: -2.24, y: 2 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 2.24, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s5", at: { x: 0, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s6", at: { x: 0, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Properties of Equal Length Chords
@@ -172,19 +126,40 @@ Add segments <InlineMath math="AC" /> and <InlineMath math="DB" />. Angles <Inli
 
 <BlockMath math="\frac{AP}{PD}=\frac{CP}{PB}\quad\Longrightarrow\quad AP\cdot PB=CP\cdot PD" />
 
-<LineEquation
-  title="Intersecting Chords and Similar Triangles"
-  description="Two chords and two auxiliary segments show the similar triangles."
-  data={[
-    { points: Array.from({ length: 181 }, (_, i) => ({ x: 1 + Math.sqrt(65) * Math.cos(i * Math.PI / 90), y: -4 + Math.sqrt(65) * Math.sin(i * Math.PI / 90), z: 0 })), smooth: false, color: "#0891b2", showPoints: false },
-    { points: [{ x: -6, y: 0, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#ea580c", showPoints: true, labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0.4, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0.4, 0] }] },
-    { points: [{ x: 0, y: 4, z: 0 }, { x: 0, y: -12, z: 0 }], smooth: false, color: "#9333ea", showPoints: true, labels: [{ text: <InlineMath math="C" />, at: 0, offset: [0.4, 0.5, 0] }, { text: <InlineMath math="D" />, at: 1, offset: [0.4, -0.5, 0] }] },
-    { points: [{ x: -6, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
-    { points: [{ x: 0, y: -12, z: 0 }, { x: 8, y: 0, z: 0 }], smooth: false, color: "#65a30d", showPoints: false },
-    { points: [{ x: 0, y: 0, z: 0 }], color: "#db2777", showPoints: true, labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }] },
-  ]}
-  cameraTarget={[1, -4, 0]}
-  cameraPosition={[1, -4, 24]}
+<MathVisual
+  title={<>Intersecting Chords and Similar Triangles</>}
+  description={<>Two chords and two auxiliary segments show the similar triangles.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -14, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1 + (sqrt(65) * cos(((t * pi) / 90))))", y: "((-4) + (sqrt(65) * sin(((t * pi) / 90))))", parameter: { min: 0, max: 180 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 8, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -6, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 8, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 0, y: -12 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: -12 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -12 }, { x: 8, y: 0 }], appearance: "highlight" },
+      { id: "s6", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -6, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 8, y: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 0, y: -12 }, placement: "below-right" },
+      { key: "l5", objectId: "s6", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 <BlockMath math="AP\cdot PB=6\times8=48=4\times12=CP\cdot PD" />

@@ -1,18 +1,34 @@
-Of the four possible arrangements, only **arrangement IV** puts Q on the middle shelf:
+A statement that must be true (*PASTI*) has to hold in **every valid arrangement**, not just in the first one you find. So you either need all the arrangements or a reason that covers all of them.
 
-| Arrangement | Top shelf | Middle shelf | Bottom shelf |
-| --- | --- | --- | --- |
-| IV | M, P | N, O, Q | K, L |
+Start with the most constrained people.
 
-You can also derive it directly. If Q is in the middle, P must be on top. The middle shelf already holds O and Q, so only one place is left there and the pair K and L does not fit. K and L cannot go on top either, because only one top place remains after P. So **K and L are at the bottom**. The last top place and the last middle place go to M and N, and since N cannot be on top, M is on top and N in the middle.
+- Rule 1 gives two cases: Asri in chair 1 and Bonar in chair 5, or Bonar in chair 1 and Asri in chair 5. So Asri always sits in an odd-numbered chair.
+- Dimas can't sit next to Asri (rule 3). He can't sit in chair 3 or chair 7 either, the chairs two away from Asri. If Dimas is in chair 3, Elok faces him from chair 7, and then Fajar has to be in chair 5 or chair 1, but those belong to Asri and Bonar. The same happens with Dimas in chair 7. So Dimas sits next to Bonar.
+- Cahya sits next to Dimas (rule 2), on the side Bonar doesn't take, which is chair 3 or chair 7.
+- Elok faces Dimas (rule 4). That chair turns out to be Asri's neighbour, on the side away from Cahya.
+- Fajar is two chairs from Elok (rule 5), and two empty chairs fit.
+- Galuh and Hamid fill the last two chairs with Galuh on the smaller number (rule 6), and rule 7 removes the two arrangements that put Hamid next to Cahya.
 
-In this arrangement, K is on the bottom shelf.
+The chain already shows the general reason. Asri is always in an odd chair. Elok sits next to Asri, so Elok's number is always even. Fajar is two chairs from Elok, and adding or subtracting <InlineMath math="2" /> doesn't change odd or even, so **Fajar's chair number is always even**.
 
-The other options are false in arrangement IV:
+The table of the six valid arrangements confirms it. Columns 1 to 8 are chair numbers, and each person is written by the first letter of their name, so A is Asri and F is Fajar.
 
-- M is on the top shelf, not the middle.
-- N is on the middle shelf, not the bottom.
-- P is on the top shelf, not the middle.
-- L is on the bottom shelf with K, not on top.
+| Arrangement | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | A | E | G | H | B | D | C | F |
+| IV | B | D | C | F | A | E | G | H |
+| V | B | D | C | G | A | E | H | F |
+| VI | B | G | H | E | A | F | C | D |
 
-So if Q is on the middle shelf, K must be on the bottom shelf.
+Fajar sits in chairs 2, 6, 8, 4, 8 and 6. They're all even.
+
+The other statements hold in some arrangements, so they fool you if you only try one or two.
+
+- Cahya next to Fajar fails in arrangement II, with Cahya in chair 3 and Fajar in chair 6. Fajar has two possible chairs, and only one of them touches Cahya.
+- Galuh in an even chair fails in arrangements III (chair 3) and IV (chair 7). This copies the argument for Fajar, but Galuh isn't tied to Elok, so Galuh's parity is free.
+- Asri's number smaller than Fajar's is always true when Asri is in chair 1, but it fails in arrangement IV, with Asri in chair 5 and Fajar in chair 4.
+- Bonar's number smaller than Hamid's fails in arrangement III, with Bonar in chair 5 and Hamid in chair 4. You miss it if you don't work out the branch with Cahya in chair 7.
+
+So the statement that must be true is that Fajar sits in an even-numbered chair.

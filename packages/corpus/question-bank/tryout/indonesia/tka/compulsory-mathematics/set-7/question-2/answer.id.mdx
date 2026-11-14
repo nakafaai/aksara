@@ -1,0 +1,42 @@
+# Batas dalam bentuk intensitas
+
+Soal ini mencari banyak bedug besar paling banyak supaya garis depan penonton tidak terlalu bising. Batasnya ditulis dalam desibel, padahal yang bisa dijumlahkan adalah intensitas. Jadi, **ubah dulu batas <InlineMath math="90\text{ dB}" /> menjadi batas intensitas**.
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
+
+# Sumbangan setiap bedug
+
+Dari bacaan, satu bedug besar pada jarak <InlineMath math="1\text{ m}" /> punya intensitas <InlineMath math="10^{-2}\ \text{W/m}^2" />, karena <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. Satu bedug kecil punya seperempatnya. Sekarang bagi dengan kuadrat jarak ke garis depan penonton.
+
+<BlockMath math="\begin{aligned}
+\text{satu bedug besar di }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2{,}5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{satu bedug kecil di }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1{,}5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 bedug kecil}&:\ 32\cdot1{,}5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+Ada cara singkat untuk melihatnya. Satu bedug kecil seperempat bedug besar, dan jaraknya dua kali lebih jauh sehingga intensitasnya dibagi <InlineMath math="2^2=4" /> lagi. Jadi, **satu bedug kecil di panggung B setara <InlineMath math="\tfrac1{16}" /> bedug besar di panggung A**, dan <InlineMath math="32" /> bedug kecil setara <InlineMath math="2" /> bedug besar.
+
+# Banyak bedug besar paling banyak
+
+Jumlahkan intensitas kedua panggung, lalu pakai batas yang ketat.
+
+<BlockMath math="\begin{aligned}
+n\cdot2{,}5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2{,}5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Karena tandanya **kurang dari**, nilai <InlineMath math="n=38" /> tidak boleh. Dengan <InlineMath math="n=38" />, intensitasnya tepat <InlineMath math="40\cdot2{,}5\cdot10^{-5}=10^{-3}" />, yaitu tepat <InlineMath math="90\text{ dB}" />. Dengan <InlineMath math="n=37" />, intensitasnya <InlineMath math="39\cdot2{,}5\cdot10^{-5}=9{,}75\cdot10^{-4}" />, masih di bawah batas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="31" /> muncul kalau bedug kecil dihitung seolah-olah juga berjarak <InlineMath math="20\text{ m}" />, atau kalau faktor <InlineMath math="\tfrac14" /> terlupa. Keduanya membuat <InlineMath math="32" /> bedug kecil setara <InlineMath math="8" /> bedug besar.
+- <InlineMath math="35" /> muncul kalau perbandingan jarak <InlineMath math="\tfrac{20}{40}" /> tidak dikuadratkan. **Intensitas mengikuti kuadrat jarak**, jadi faktornya <InlineMath math="\tfrac14\cdot\tfrac14" />, bukan <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> memakai tanda kurang dari atau sama dengan. Pada <InlineMath math="n=38" /> tarafnya tepat <InlineMath math="90\text{ dB}" />, dan itu belum kurang dari <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> melupakan <InlineMath math="32" /> bedug kecil yang juga sedang dipukul.
+
+Jadi, nilai <InlineMath math="n" /> terbesar adalah <InlineMath math="37" />.

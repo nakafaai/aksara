@@ -1,49 +1,27 @@
-The vertex (*Scheitelpunkt*) is easiest to read from the **vertex form** <InlineMath math="y=(x-d)^2+e" />, which you get by completing the square. Halve the coefficient of <InlineMath math="x" />, <InlineMath math="6" />, to get <InlineMath math="3" />. Then add its square <InlineMath math="9" /> and subtract it again straight away.
+# Looking at a cross-section
 
-<BlockMath math="\begin{aligned}
-y&=x^2+6x+9-9+7 \\
-&=(x+3)^2-2
-\end{aligned}" />
+Cut the cone and the sphere through the cone's axis. **The cross-section is an isosceles triangle inside a circle of radius <InlineMath math="5" />**. The cone's tip is on the circle, and the sphere's centre <InlineMath math="M" /> is on the cone's axis.
 
-The expression <InlineMath math="(x+3)^2" /> is never negative and equals zero exactly at <InlineMath math="x=-3" />. So the smallest <InlineMath math="y" />-value is <InlineMath math="-2" />, and the vertex is <InlineMath math="(-3\mid-2)" />.
+# Where the base sits
 
-<MathVisual
-  title="Parabola and its vertex"
-  description={<>The parabola <InlineMath math="y=x^2+6x+7" /> opens upward. Its lowest point is <InlineMath math="(-3\mid-2)" />. The points <InlineMath math="(-6\mid7)" /> and <InlineMath math="(0\mid7)" /> lie on the parabola, symmetric about the line <InlineMath math="x=-3" />.</>}
-  labels={{
-    vertex: <InlineMath math="(-3\mid-2)" />,
-    "point-left": <InlineMath math="(-6\mid7)" />,
-    "point-right": <InlineMath math="(0\mid7)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -7, max: 1 },
-      y: { min: -3, max: 9 },
-    },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "graph", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: 6, c: 7 }, domain: { min: -6.2, max: 0.2 }, inputAxis: "x" },
-      { id: "axis", kind: "segment", appearance: "construction", from: { x: -3, y: -2 }, to: { x: -3, y: 8 } },
-      { id: "vertex-point", kind: "point", appearance: "answer", at: { x: -3, y: -2 } },
-      { id: "point-left-dot", kind: "point", appearance: "reference", at: { x: -6, y: 7 } },
-      { id: "point-right-dot", kind: "point", appearance: "reference", at: { x: 0, y: 7 } },
-    ],
-    labels: [
-      { key: "vertex", objectId: "vertex-point", at: { x: -3, y: -2 }, placement: "below" },
-      { key: "point-left", objectId: "point-left-dot", at: { x: -6, y: 7 }, placement: "left" },
-      { key: "point-right", objectId: "point-right-dot", at: { x: 0, y: 7 }, placement: "right" },
-    ],
-  }}
-/>
+From the tip to the centre <InlineMath math="M" /> is <InlineMath math="5" />, the sphere's radius. The base is <InlineMath math="8" /> below the tip, so **the base is <InlineMath math="8-5=3" /> below the sphere's centre**.
 
-As a check, the points <InlineMath math="(-6\mid7)" /> and <InlineMath math="(0\mid7)" /> lie on the parabola and have the same <InlineMath math="y" />-value. The vertex lies exactly halfway between them, at <InlineMath math="x=-3" />, and <InlineMath math="(-3)^2+6\cdot(-3)+7=-2" />.
+The edge of the base is on the sphere too. The sphere's centre, the centre of the base and one point on the edge of the base form a right triangle:
 
-So the vertex is <InlineMath math="(-3\mid-2)" />.
+<BlockMath math="r^2+3^2=5^2\quad\Rightarrow\quad r^2=16" />
 
-- <InlineMath math="(-3\mid7)" /> has the right <InlineMath math="x" />-coordinate but takes the constant term <InlineMath math="7" /> as the <InlineMath math="y" />-value instead of substituting <InlineMath math="x=-3" />.
-- <InlineMath math="(3\mid34)" /> comes from the wrong sign of the <InlineMath math="x" />-coordinate, because the vertex lies at <InlineMath math="x=-\frac{b}{2a}=-3" />.
-- <InlineMath math="(-6\mid7)" /> takes the coefficient <InlineMath math="6" /> with a minus sign as the <InlineMath math="x" />-coordinate without halving it. This point does lie on the parabola, but it is not the lowest point.
-- <InlineMath math="(-3\mid2)" /> swaps the signs while completing the square and computes <InlineMath math="9-7=2" /> instead of <InlineMath math="-9+7=-2" />.
-- <InlineMath math="(-3\mid16)" /> adds the square used for completing instead of subtracting it again, because <InlineMath math="9+7=16" />.
+# The cone's volume
+
+<BlockMath math="V=\frac13\pi r^2h=\frac13\pi\cdot16\cdot8=\frac{128\pi}{3}\text{ cm}^3" />
+
+**The base radius is <InlineMath math="r=4" />**, so the right triangle you used has sides <InlineMath math="3" />, <InlineMath math="4" /> and <InlineMath math="5" />.
+
+So the cone's volume is <InlineMath math="\frac{128\pi}{3}\text{ cm}^3" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{200\pi}{3}" /> **uses the sphere's radius as the base radius**, as if the base went through the centre.
+- <InlineMath math="24\pi" /> puts the sphere's centre halfway up the cone, so <InlineMath math="r^2=25-16=9" />.
+- <InlineMath math="128\pi" /> forgets the factor <InlineMath math="\frac13" /> in the cone's volume.
+- <InlineMath math="\frac{272\pi}3" /> adds in Pythagoras, <InlineMath math="r^2=25+9" />, but the hypotenuse is the sphere's radius.
+- <InlineMath math="\frac{80\pi}{3}" /> gets <InlineMath math="r^2=16" /> right but takes the sphere's radius <InlineMath math="5" /> as the cone's height.

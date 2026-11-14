@@ -1,21 +1,41 @@
-The number of floors walked is **the sum of the distances from the stop to each destination**. Distances down and up both count.
+You're looking for the first moment when **the money the organisers receive reaches the production cost** of <InlineMath math="\text{Rp}100{,}000{,}000" />. Here's the plan: find what the organisers receive per ticket in each tier, add it up tier by tier, then find how many normal tickets are still needed.
 
-# Working out some choices
+# Money received per ticket
 
-Work out **the total distance for each stopping floor** in the choices.
+The organisers receive <InlineMath math="90\%" /> of each ticket price by tier. The discount and the service fee are the platform's business, so **neither changes what the organisers receive**.
 
-| Stop at | Floors walked in total |
-| :---: | :---: |
-| 6 | <InlineMath math="3+0+0+4+9=16" /> |
-| 8 | <InlineMath math="5+2+2+2+7=18" /> |
-| 9 | <InlineMath math="6+3+3+1+6=19" /> |
-| 10 | <InlineMath math="7+4+4+0+5=20" /> |
-| 15 | <InlineMath math="12+9+9+5+0=35" /> |
+<BlockMath math="\begin{aligned}
+\text{early bird: } 90\%\cdot120{,}000&=108{,}000\\
+\text{presale: } 90\%\cdot150{,}000&=135{,}000\\
+\text{normal: } 90\%\cdot200{,}000&=180{,}000
+\end{aligned}" />
 
-# Why the median
+# The total after the first two tiers
 
-If the lift stops one floor above floor 6, the three employees going to floors 3, 6 and 6 each walk one floor more, while only two employees walk less. **The median, floor 6, makes the total distance smallest**.
+First find the money collected once all early bird and presale tickets are sold:
 
-Floor 8 is the mean of the destinations, and floor 9 is the midpoint between the lowest and highest floors. Both give a larger total.
+<BlockMath math="\begin{aligned}
+150\cdot108{,}000+300\cdot135{,}000&=16{,}200{,}000+40{,}500{,}000\\
+&=56{,}700{,}000
+\end{aligned}" />
 
-So the lift should stop at **floor 6**.
+That's still less than <InlineMath math="100{,}000{,}000" />, so **the break-even point falls in the normal tier**.
+
+# Normal tickets needed
+
+The shortfall is <InlineMath math="100{,}000{,}000-56{,}700{,}000=43{,}300{,}000" /> rupiah. Each normal ticket adds <InlineMath math="180{,}000" /> rupiah, so the number of normal tickets <InlineMath math="k" /> must satisfy:
+
+<BlockMath math="\begin{aligned}
+180{,}000k&\ge43{,}300{,}000\\
+k&\ge240\tfrac{5}{9}
+\end{aligned}" />
+
+Tickets come in whole numbers, so you **round up** to <InlineMath math="k=241" />. The total number sold is <InlineMath math="450+241=691" />.
+
+Check both sides. After <InlineMath math="690" /> tickets, the organisers have <InlineMath math="56{,}700{,}000+240\cdot180{,}000=99{,}900{,}000" /> rupiah, still short. After <InlineMath math="691" /> tickets, they have <InlineMath math="56{,}700{,}000+241\cdot180{,}000=100{,}080{,}000" /> rupiah, which reaches the production cost.
+
+# Common wrong answers
+
+A few shortcuts lead to other numbers. If you forget **the ninety percent share for the organisers**, you get <InlineMath math="635" /> tickets, because <InlineMath math="63{,}000{,}000+185\cdot200{,}000=100{,}000{,}000" />. If you round <InlineMath math="240\tfrac{5}{9}" /> down, you get <InlineMath math="690" /> tickets, but the money isn't enough yet. If you subtract the four ticket discount from the organisers' money, your answer comes out too large, because the platform pays that discount.
+
+So at least <InlineMath math="691" /> tickets have to be sold.

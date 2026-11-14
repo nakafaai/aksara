@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "explanation",
   },
-  stimulus: "bibit",
+  stimulus: "kantin",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Bibit yang disiram pada sore hari menerima cahaya matahari lebih lama setiap hari, sehingga fotosintesisnya lebih banyak daripada bibit yang disiram pada pagi hari.",
-        },
-        {
-          correct: false,
-          label:
-            "Kompos melepaskan unsur hara ke tanah lebih lambat daripada pupuk cair.",
-        },
-        {
-          correct: false,
-          label:
-            "Petani lebih teliti mengukur takaran air ketika menyiram pada sore hari.",
+            "Sesudah label dipasang, siswa membeli lebih banyak kemasan minuman daripada sebelumnya.",
         },
         {
           correct: true,
           label:
-            "Nitrogen pupuk cair mudah lepas ke udara saat tanah panas, sedangkan larutan yang disiram sore sempat meresap semalaman.",
+            "Minuman pengganti yang paling banyak dipilih hanya mengandung $$6$$ gram gula per $$100$$ ml, tetapi dijual dalam kemasan $$600$$ ml, sedangkan minuman tinggi gula yang ditinggalkan umumnya mengandung $$11$$ gram gula per $$100$$ ml dalam kemasan $$200$$ ml.",
         },
         {
           correct: false,
           label:
-            "Varietas cabai yang ditanam membutuhkan lebih banyak air daripada varietas lain.",
+            "Harga minuman tinggi gula naik pada minggu sesudah label dipasang.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa yang berhenti membeli minuman tinggi gula di kantin menggantinya dengan minuman tinggi gula yang dibawa dari rumah.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa yang beralih memilih minuman dengan angka gula per $$100$$ ml paling rendah di kantin.",
         },
       ],
     },

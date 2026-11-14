@@ -1,0 +1,259 @@
+export const metadata = {
+  title: "Translasi Mengufuk Fungsi",
+  description: "Gerakkan graf fungsi ke kiri atau ke kanan, lihat sebab tanda tolak di dalam kurungan menggerakkannya ke kanan, dan cari titik serta domain yang baharu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-10-24",
+  subject: "Penjelmaan Fungsi",
+};
+
+## Menggerakkan Graf ke Kiri atau ke Kanan
+
+**Translasi mengufuk** sejauh <InlineMath math="h" /> menukar <InlineMath math="y = f(x)" /> kepada <InlineMath math="y = f(x - h)" />. Setiap titik <InlineMath math="(x_0, y_0)" /> bergerak ke <InlineMath math="(x_0 + h, y_0)" />, jadi **tingginya kekal sama** dan seluruh graf bergerak ke sisi. Untuk <InlineMath math="h > 0" /> graf bergerak ke kanan, dan untuk <InlineMath math="h < 0" /> graf bergerak ke kiri. Graf pertama menunjukkan satu parabola dan salinannya yang digerakkan tiga unit ke kanan, jadi kamu boleh mengikut verteks itu semasa ia bergerak.
+
+<BlockMath math="(x_0, y_0) \longmapsto (x_0 + h,\ y_0)" />
+
+Tanda tolak di dalam kurungan nampak seperti patut menggerakkan graf ke kiri, tetapi sebenarnya ia menggerakkan graf ke kanan. Fungsi baharu <InlineMath math="g(x) = f(x - 3)" /> hanya mencapai output <InlineMath math="f(x_0)" /> apabila inputnya <InlineMath math="x_0 + 3" />, iaitu tiga unit lebih jauh ke kanan. Domain bergerak bersama graf, manakala **julatnya kekal sama**.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2" /> dan <InlineMath math="g(x) = f(x - 3)" /></>}
+  description={<>Verteks <InlineMath math="(0, 0)" /> bagi <InlineMath math="f" /> bergerak ke <InlineMath math="(3, 0)" />, dan titik <InlineMath math="(2, 4)" /> bergerak ke <InlineMath math="(5, 4)" />. Kedua-dua anak panah mengufuk, jadi tiada tinggi yang berubah.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -5, max: 54 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((-4) + (t / 40)) * ((-4) + (t / 40)))", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "((((-4) + (t / 40)) - 3) * (((-4) + (t / 40)) - 3))", parameter: { min: 0, max: 400 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 5, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Graf ini menunjukkan seluruh lengkung bergerak bersama-sama. Bentuknya dan tingginya pada setiap kedudukan kekal sama, dan hanya kedudukan mengufuknya yang berubah. Itulah maksud translasi mengufuk.
+
+## Mengapa Tanda Tolak Menggerakkan Graf ke Kanan
+
+Baca <InlineMath math="g(x) = f(x - 3)" /> sebagai dua langkah. Mula-mula mesin menolak <InlineMath math="3" /> daripada input, kemudian mesin menggunakan petua <InlineMath math="f" />. Mesin fungsi ini menjalankan <InlineMath math="f(x) = 2x + 1" />. Taip satu nombor, dan kad itu menunjukkan hasil yang dikeluarkan oleh petua itu.
+
+<FunctionMachine
+  title={<>Mesin untuk <InlineMath math="f(x) = 2x + 1" /></>}
+  description={<>Taip <InlineMath math="0" />, <InlineMath math="2" />, kemudian <InlineMath math="5" /> untuk melihat output <InlineMath math="f" />. Graf <InlineMath math="g" /> memerlukan input yang <InlineMath math="3" /> lebih besar untuk menghasilkan setiap output itu.</>}
+  inputLabel="Input mesin"
+/>
+
+Sekarang biar mesin menerima <InlineMath math="x - 3" /> dan bukan <InlineMath math="x" />. Untuk input <InlineMath math="8" /> bagi <InlineMath math="g" />, nombor yang masuk ke dalam mesin ialah <InlineMath math="8 - 3 = 5" />, dan petua itu mengeluarkan <InlineMath math="f(5) = 11" />. Jadi <InlineMath math="g(8) = 11" />. Jadual ini menyenaraikan tiga lagi pasangan.
+
+| Input bagi <InlineMath math="g" /> | Nombor yang masuk ke dalam mesin | Output <InlineMath math="g(x)" /> |
+| --- | --- | --- |
+| <InlineMath math="3" /> | <InlineMath math="3 - 3 = 0" /> | <InlineMath math="f(0) = 1" /> |
+| <InlineMath math="5" /> | <InlineMath math="5 - 3 = 2" /> | <InlineMath math="f(2) = 5" /> |
+| <InlineMath math="8" /> | <InlineMath math="8 - 3 = 5" /> | <InlineMath math="f(5) = 11" /> |
+
+Setiap output <InlineMath math="f" /> muncul semula pada input yang **tiga lebih besar**. Untuk sebarang translasi <InlineMath math="h" />, penaakulan yang sama memberikan
+
+<BlockMath math="g(x_0 + h) = f\big((x_0 + h) - h\big) = f(x_0)" />
+
+Setiap titik <InlineMath math="(x_0, f(x_0))" /> pada <InlineMath math="f" /> ada pasangan <InlineMath math="(x_0 + h, f(x_0))" /> pada <InlineMath math="g" />.
+
+## Menggerakkan Parabola dan Verteksnya
+
+Biar <InlineMath math="f(x) = x^2 - 2x - 3" />. **Penyempurnaan kuasa dua** memberikan <InlineMath math="f(x) = (x - 1)^2 - 4" />, jadi verteksnya ialah <InlineMath math="(1, -4)" /> dan pensifarnya ialah <InlineMath math="-1" /> dan <InlineMath math="3" />. Gerakkan graf <InlineMath math="2" /> unit ke kiri, maksudnya <InlineMath math="h = -2" />. Gantikan setiap <InlineMath math="x" /> dengan <InlineMath math="x + 2" />:
+
+<BlockMath math="\begin{aligned} g(x) &= f(x + 2) \\ &= (x + 2)^2 - 2(x + 2) - 3 \\ &= x^2 + 4x + 4 - 2x - 4 - 3 \\ &= x^2 + 2x - 3 \end{aligned}" />
+
+Semak hasilnya dengan titik yang kamu sudah tahu. Fungsi baharu ini boleh difaktorkan sebagai <InlineMath math="x^2 + 2x - 3 = (x + 3)(x - 1)" />, jadi pensifarnya ialah <InlineMath math="-3" /> dan <InlineMath math="1" />. Setiap pensifar lama bergerak dua unit ke kiri: <InlineMath math="-1 - 2 = -3" /> dan <InlineMath math="3 - 2 = 1" />. Verteks juga bergerak dengan cara yang sama, dari <InlineMath math="(1, -4)" /> ke <InlineMath math="(-1, -4)" />, dan ini sepadan dengan bentuk kuasa dua sempurna <InlineMath math="(x + 1)^2 - 4" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = x^2 - 2x - 3" /> dan <InlineMath math="g(x) = x^2 + 2x - 3" /></>}
+  description={<>Verteks dan kedua-dua pensifar <InlineMath math="f" /> bergerak dua unit ke kiri. Anak panah bermula pada <InlineMath math="f" /> dan berakhir pada <InlineMath math="g" /> pada tinggi yang sama.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -7, max: 24 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) - (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) + (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p120", kind: "point", at: { x: -1, y: -4 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: -1, y: -4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: -1, y: 0 }, to: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 3, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 5 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -3.5, y: 2.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+Setiap anak panah mengufuk, kerana translasi mengufuk tidak pernah mengubah tinggi. Perhatikan bahawa anak panah verteks berakhir pada verteks <InlineMath math="g" />, dan dua anak panah pensifar berakhir pada pensifar <InlineMath math="g" />.
+
+## Domain dan Pintasan Bergerak Bersama Graf
+
+Fungsi punca kuasa dua <InlineMath math="f(x) = \sqrt{x}" /> memerlukan <InlineMath math="x \ge 0" />, jadi domainnya ialah <InlineMath math="[0, \infty)" />. Gerakkan graf itu empat unit ke kiri untuk mendapat <InlineMath math="g(x) = \sqrt{x + 4}" />. Syarat <InlineMath math="x + 4 \ge 0" /> memberikan <InlineMath math="x \ge -4" />, jadi **domain baharu bermula pada** <InlineMath math="-4" />. Julatnya kekal <InlineMath math="[0, \infty)" />, kerana setiap nilai dari sifar ke atas masih dicapai.
+
+Titik permulaan <InlineMath math="(0, 0)" /> bergerak ke <InlineMath math="(-4, 0)" />. Titik <InlineMath math="(4, 2)" /> bergerak ke <InlineMath math="(0, 2)" />, kerana <InlineMath math="g(0) = \sqrt{4} = 2" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = \sqrt{x}" /> dan <InlineMath math="g(x) = \sqrt{x + 4}" /></>}
+  description={<>Domain <InlineMath math="g" /> bermula pada <InlineMath math="-4" />, empat unit di sebelah kiri titik permulaan <InlineMath math="f" />. Kedua-dua anak panah mengekalkan tingginya, dan julatnya kekal dari sifar ke atas.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 9.5 }, y: { min: -0.5, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t / 40)", y: "sqrt((t / 40))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "sqrt((((-4) + (t / 40)) + 4))", parameter: { min: 0, max: 480 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: 0, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5, y: 2.24 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 2.65 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Fungsi eksponen memberikan contoh kedua. Ambil <InlineMath math="f(x) = 2^x" /> dan gerakkan grafnya dua unit ke kanan, jadi <InlineMath math="g(x) = 2^{x - 2}" />. Asimptot mengufuk <InlineMath math="y = 0" /> kekal di tempatnya, kerana translasi mengufuk tidak pernah mengubah tinggi. Pintasan-y pula memang berubah. Nilai baharunya ialah <InlineMath math="g(0) = 2^{-2} = \frac{1}{4}" />, iaitu nilai <InlineMath math="f" /> pada <InlineMath math="-2" />. Pintasan lama <InlineMath math="(0, 1)" /> bergerak ke <InlineMath math="(2, 1)" />.
+
+<MathVisual
+  title={<>Graf <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = 2^{x - 2}" /></>}
+  description={<>Anak panah membawa pintasan <InlineMath math="(0, 1)" /> bagi <InlineMath math="f" /> ke <InlineMath math="(2, 1)" /> pada <InlineMath math="g" />. Asimptot kekal pada tinggi sifar, dan pintasan baharu <InlineMath math="g" /> berada pada tinggi satu perempat.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = 0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 4 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^(((-4) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^((((-4) + (t / 40)) - 2))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 0, y: 0.25 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 1 }, to: { x: 2, y: 1 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 2 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Perbandingan Translasi Mengufuk dan Mencancang
+
+Ungkapan <InlineMath math="f(x - 3)" /> dan <InlineMath math="f(x) - 3" /> nampak serupa, tetapi **kedua-duanya menggerakkan graf ke arah yang berbeza**. Ambil <InlineMath math="f(x) = x^2" />. Ungkapan pertama menggerakkan verteks ke <InlineMath math="(3, 0)" />, dan ungkapan kedua menggerakkannya ke bawah ke <InlineMath math="(0, -3)" />. Graf ini meletakkan kedua-dua hasil itu di sebelah parabola asal.
+
+<MathVisual
+  title={<>Translasi <InlineMath math="f(x) = x^2" /> dalam dua arah</>}
+  description={<>Translasi mengufuk memberikan <InlineMath math="g(x) = (x - 3)^2" />, dan translasi mencancang memberikan <InlineMath math="k(x) = x^2 - 3" />. Setiap anak panah menggerakkan verteks <InlineMath math="f" /> ke verteks lengkung yang sepadan.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="k" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -6, max: 28 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((-2) + (t / 40)) * ((-2) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1-p80", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) - 3) * (((-2) + (t / 40)) - 3))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - 3)", parameter: { min: 0, max: 280 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4.5, y: 2.25 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: -1.5, y: -0.75 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Setiap translasi mengubah bahagian petua yang berbeza. Translasi mengufuk mengubah input, jadi setiap <InlineMath math="x" /> bergerak. Translasi mencancang mengubah output, jadi setiap tinggi bergerak. Domain <InlineMath math="f(x - 3)" /> bergerak sejauh tiga unit, manakala julatnya kekal sama. Domain <InlineMath math="f(x) - 3" /> kekal sama, manakala julatnya bergerak tiga unit ke bawah.
+
+Garis lurus boleh membuatkan kedua-dua petua itu nampak serupa. Untuk <InlineMath math="f(x) = 2x + 1" />, translasi tiga unit ke kanan memberikan <InlineMath math="2(x - 3) + 1 = 2x - 5" />. Garis itu sama dengan <InlineMath math="f(x) - 6" />, iaitu turun sebanyak enam unit. Graf ini menunjukkan kedua-dua anak panah pada satu garis yang sama. Gunakan lengkung, bukan garis lurus, apabila kamu perlu membaca arah sesuatu translasi.
+
+<BlockMath math="2(x - 3) + 1 = 2x - 5 = (2x + 1) - 6" />
+
+<MathVisual
+  title={<>Garis <InlineMath math="f(x) = 2x + 1" /> dan salinannya yang digerakkan</>}
+  description={<>Anak panah mengufuk menggerakkan titik <InlineMath math="(2, 5)" /> ke <InlineMath math="(5, 5)" />. Anak panah mencancang menggerakkan titik yang sama ke bawah ke <InlineMath math="(2, -1)" />, yang juga terletak pada <InlineMath math="g" />.</>}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -12, max: 16 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * ((-2) + (t / 20))) + 1)", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * (((-2) + (t / 20)) - 3)) + 1)", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: 5 }, to: { x: 5, y: 5 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 2, y: 5 }, to: { x: 2, y: -1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: -1 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Kesilapan Lazim dengan Tanda di Dalam Kurungan
+
+Kebanyakan kesilapan berlaku apabila kamu menganggap **input dan output** seolah-olah sama. Jadual ini menyenaraikan lima kesilapan, sebab setiap satunya salah, dan cara untuk mengesannya.
+
+| Kesilapan | Sebab ia salah | Cara mengesannya |
+| --- | --- | --- |
+| Membaca <InlineMath math="x - 3" /> sebagai translasi tiga unit ke kiri | Graf bergerak ke kanan, seperti yang ditunjukkan oleh mesin untuk <InlineMath math="g(8) = 11" /> | Semak bahawa verteks <InlineMath math="x^2" /> jatuh pada <InlineMath math="(3, 0)" /> |
+| Menggantikan satu <InlineMath math="x" /> sahaja | Setiap <InlineMath math="x" /> dalam petua menjadi <InlineMath math="x - 3" /> | Tulis <InlineMath math="2(x - 3) + 1" /> dan bukan <InlineMath math="2x - 3 + 1" />, yang sama dengan <InlineMath math="2x - 2" /> |
+| Menulis <InlineMath math="f(x) - 3" /> untuk translasi mengufuk | Menolak di luar kurungan menggerakkan graf ke bawah | Tanya sama ada perubahan itu berlaku pada input atau pada output |
+| Menentukan arah dengan garis lurus | Garis yang digerakkan boleh sama dengan translasi mencancang garis asal | Bandingkan lengkung atau satu pasangan titik yang sepadan |
+| Menganggap domain tidak berubah | Domain bergerak sebanyak translasi pada input | Selesaikan syarat input yang baharu, contohnya <InlineMath math="x + 4 \ge 0" /> |
+
+## Latihan
+
+Sebelum kamu menulis persamaan, **cari translasi** <InlineMath math="h" /> **dan arahnya**. Kemudian gantikan setiap <InlineMath math="x" /> dalam petua dengan <InlineMath math="x - h" />, dan semak satu titik yang sepadan sebelum kamu selesai.
+
+1. Gerakkan <InlineMath math="f(x) = x^2 + 2x + 1" /> tiga unit ke kanan. Tulis persamaan baharu dan cari verteksnya.
+2. Gerakkan <InlineMath math="g(x) = \sqrt{x - 1}" /> lima unit ke kiri. Tulis persamaan baharu, domainnya, dan imej bagi titik <InlineMath math="(1, 0)" />.
+3. Graf <InlineMath math="h(x) = 3^x" /> melalui <InlineMath math="(0, 1)" />. Gerakkan graf itu supaya titik ini berpindah ke <InlineMath math="(-2, 1)" />. Tulis persamaan baharu dan pintasan-y bagi graf baharu itu.
+4. Verteks <InlineMath math="f(x) = x^2 - 4x + 3" /> ialah <InlineMath math="(2, -1)" />. Gerakkan graf supaya verteks itu berpindah ke <InlineMath math="(-3, -1)" />. Tulis persamaan baharu dan cari kedua-dua pensifarnya.
+
+### Jalan Kerja
+
+**Soalan 1**. **Translasinya ialah** <InlineMath math="h = 3" />, jadi gantikan <InlineMath math="x" /> dengan <InlineMath math="x - 3" />: <InlineMath math="(x - 3)^2 + 2(x - 3) + 1 = x^2 - 6x + 9 + 2x - 6 + 1 = x^2 - 4x + 4" />. Petua ini boleh difaktorkan sebagai <InlineMath math="(x - 2)^2" />, jadi verteksnya ialah <InlineMath math="(2, 0)" />. Verteks lama <InlineMath math="(-1, 0)" /> bergerak tiga unit ke kanan, jadi jawapan ini sepadan.
+
+**Soalan 2**. Translasinya ialah <InlineMath math="h = -5" />, jadi gantikan <InlineMath math="x" /> dengan <InlineMath math="x + 5" />: <InlineMath math="g(x + 5) = \sqrt{x + 5 - 1} = \sqrt{x + 4}" />. Syarat <InlineMath math="x + 4 \ge 0" /> memberikan domain <InlineMath math="[-4, \infty)" />. Titik <InlineMath math="(1, 0)" /> bergerak ke <InlineMath math="(-4, 0)" />, dan memang <InlineMath math="\sqrt{-4 + 4} = 0" />.
+
+**Soalan 3**. Titik <InlineMath math="(0, 1)" /> mesti bergerak ke <InlineMath math="(-2, 1)" />, jadi <InlineMath math="h = -2" />, dan petua baharunya ialah <InlineMath math="H(x) = 3^{x + 2}" />. Nilai pintasan-y ialah <InlineMath math="H(0) = 3^2 = 9" />, jadi titik pintasannya ialah <InlineMath math="(0, 9)" />. Semakan <InlineMath math="H(-2) = 3^0 = 1" /> mengesahkan bahawa titik yang digerakkan itu terletak pada graf baharu.
+
+**Soalan 4**. Verteks bergerak dari <InlineMath math="(2, -1)" /> ke <InlineMath math="(-3, -1)" />, jadi translasinya ialah lima unit ke kiri, <InlineMath math="h = -5" />. Maka <InlineMath math="g(x) = (x + 5)^2 - 4(x + 5) + 3 = x^2 + 6x + 8" />. Pensifar <InlineMath math="g" /> ialah pensifar <InlineMath math="f" />, iaitu <InlineMath math="1" /> dan <InlineMath math="3" />, masing-masing digerakkan lima unit ke kiri. Semak <InlineMath math="g(-4) = 16 - 24 + 8 = 0" /> dan <InlineMath math="g(-2) = 4 - 12 + 8 = 0" />.

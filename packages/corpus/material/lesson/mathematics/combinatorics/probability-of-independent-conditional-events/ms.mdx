@@ -1,0 +1,258 @@
+export const metadata = {
+    title: "Kebarangkalian Bersyarat dan Ketaksandaran",
+    description: "Gunakan kebarangkalian bersyarat dengan betul, bezakan peristiwa bersandar daripada peristiwa tak bersandar, dan selesaikan masalah pemilihan berturut-turut.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Kombinatorik",
+};
+
+## Kebarangkalian Bersyarat dan Peristiwa Bersandar
+
+Bayangkan kamu mencabut sekeping kad daripada satu pek kad sebelum kawan kamu mencabut kad yang seterusnya. Adakah kad kamu mengubah kebarangkalian kad yang boleh dicabut oleh kawan kamu? Tanpa pengembalian, selalunya ya. **Kebarangkalian bersyarat** mengira kebarangkalian kedua menggunakan maklumat yang sudah diketahui.
+
+Dalam ruang sampel terhingga yang kesudahannya sama kemungkinan, **kebarangkalian bersyarat** bagi peristiwa <InlineMath math="B" /> diberi peristiwa <InlineMath math="A" /> ialah pecahan kesudahan dalam <InlineMath math="A" /> yang juga tergolong dalam <InlineMath math="B" />. Kalau maklumat bahawa <InlineMath math="A" /> berlaku mengubah kebarangkalian <InlineMath math="B" />, kedua-dua peristiwa itu bersandar. Kalau kebarangkalian itu kekal sama, kedua-duanya tak bersandar.
+
+Sebelum mengira kebarangkalian seterusnya, hadkan kesudahan yang mungkin menggunakan **syarat yang sudah diketahui**.
+
+## Rumus dan Tatatanda Matematik
+
+Bagi peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> dengan <InlineMath math="P(A) > 0" />, **kebarangkalian bersyarat** ditakrifkan sebagai:
+
+<BlockMath math="P(B|A) = \frac{P(A \cap B)}{P(A)}" />
+
+Kuantiti dalam rumus ini ialah:
+- <InlineMath math="P(B|A)" /> ialah kebarangkalian <InlineMath math="B" /> dengan syarat <InlineMath math="A" /> sudah berlaku
+- <InlineMath math="P(A \cap B)" /> ialah kebarangkalian <InlineMath math="A" /> dan <InlineMath math="B" /> kedua-duanya berlaku
+- <InlineMath math="P(A)" /> ialah kebarangkalian peristiwa yang menjadi syarat, iaitu <InlineMath math="A" />
+
+Kalau takrif ini disusun semula, kita dapat petua pendaraban am:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B|A)" />
+
+Kalau peristiwa itu tak bersandar, mengetahui bahawa <InlineMath math="A" /> berlaku tidak mengubah kebarangkalian <InlineMath math="B" />:
+
+<BlockMath math="P(B|A) = P(B)" />
+
+Sifat bersandar ini juga kelihatan dalam model luas. Jalur kiri, dengan lebar <InlineMath math="\frac{13}{52}" />, mewakili kad lekuk pada cabutan pertama. Dalam jalur itu, hanya <InlineMath math="\frac{12}{51}" /> daripada tingginya mewakili kad lekuk kedua, jadi sudut yang berlorek ada luas <InlineMath math="\frac{13}{52} \cdot \frac{12}{51} = \frac{1}{17}" />.
+
+<MathVisual
+  title={<>Dua kad lekuk berturut-turut sebagai luas</>}
+  description={<>Segi empat sama unit: jalur dengan lebar <InlineMath math="\frac{13}{52}" /> untuk kad lekuk pertama dan, di dalamnya, bahagian dengan tinggi <InlineMath math="\frac{12}{51}" /> untuk kad lekuk kedua.</>}
+  labels={{
+    first: <InlineMath math="\tfrac{13}{52}" />,
+    both: <InlineMath math="\tfrac{1}{17}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 1.1 }, y: { min: -0.15, max: 1.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "first", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 13 / 52, y: 0 }, { x: 13 / 52, y: 12 / 51 }, { x: 0, y: 12 / 51 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 13 / 104, y: 1 }, placement: "above" },
+      { key: "both", objectId: "both", at: { x: 13 / 52, y: 6 / 51 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Penggunaan dalam Cabutan Kad
+
+Cabutan tanpa pengembalian mengubah ruang sampel setiap kali sekeping kad keluar dari pek. Kedua-dua contoh di bawah mengemas kini kebarangkalian pada cabutan kedua. Oleh sebab kad pertama tidak dikembalikan, **penyebut kebarangkalian kedua** berkurang satu.
+### Senario Kad Sat dan Kad Raja
+
+Satu pek kad terup biasa ada <InlineMath math="52 \text{ kad}" />. Pek itu mengandungi <InlineMath math="4 \text{ kad sat}" /> dan <InlineMath math="4 \text{ kad raja}" />. Dua keping kad dicabut tanpa pengembalian. Apakah kebarangkalian mencabut kad sat pada cabutan pertama dan kad raja pada cabutan kedua?
+
+**Analisis langkah demi langkah**:
+
+Katakan:
+- Peristiwa <InlineMath math="C" /> ialah mencabut kad sat pada cabutan pertama
+- Peristiwa <InlineMath math="D" /> ialah mencabut kad raja pada cabutan kedua
+
+Pengiraan kebarangkalian:
+
+<MathContainer>
+<BlockMath math="P(C) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(D|C) = \frac{4}{51}" />
+<BlockMath math="\begin{aligned} &amp;P(C \cap D) = P(C) \times P(D|C) \\ &amp;= \frac{4}{52} \times \frac{4}{51} = \frac{1}{13} \times \frac{4}{51} = \frac{4}{663} \end{aligned}" />
+</MathContainer>
+
+Selepas sekeping kad sat dicabut, tinggal <InlineMath math="51 \text{ kad}" />. Kesemua <InlineMath math="4 \text{ kad raja}" /> masih ada, jadi kebarangkalian bersyarat untuk mencabut kad raja ialah <InlineMath math="\frac{4}{51}" />.
+
+Tanpa pengembalian, cabang kedua bergantung pada cabang pertama. Kad sat dicabut dengan kebarangkalian <InlineMath math="\frac{4}{52}" />. Kemudian tinggal <InlineMath math="51" /> kad dan kesemua <InlineMath math="4" /> kad raja masih ada, jadi kad raja menyusul dengan kebarangkalian <InlineMath math="\frac{4}{51}" />. Darabkan sepanjang laluan: <InlineMath math="\frac{4}{52} \cdot \frac{4}{51} = \frac{16}{2652} = \frac{4}{663}" />.
+
+<MathVisual
+  title={<>Kad sat kemudian kad raja tanpa pengembalian</>}
+  description={<>Gambar rajah pokok untuk dua cabutan: sat atau bukan sat dahulu, kemudian, selepas sat, raja atau bukan raja, dengan kebarangkalian kedua diambil daripada <InlineMath math="51" /> kad yang tinggal.</>}
+  labels={{
+    b0: <InlineMath math="\text{sat}\ \tfrac{4}{52}" />,
+    b1: <InlineMath math="\text{bukan sat}\ \tfrac{48}{52}" />,
+    h0: <InlineMath math="\text{raja}\ \tfrac{4}{51}" />,
+    h1: <InlineMath math="\text{bukan raja}\ \tfrac{47}{51}" />,
+    p0: <InlineMath math="\tfrac{4}{663}" />,
+    p1: <InlineMath math="\tfrac{47}{663}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -2.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "b0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "n0", kind: "point", at: { x: 2, y: 1.8 }, appearance: "primary" },
+      { id: "b1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "n1", kind: "point", at: { x: 2, y: -1.8 }, appearance: "reference" },
+      { id: "l0", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "e0", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "l1", kind: "segment", from: { x: 2, y: 1.8 }, to: { x: 4, y: 0.6 }, appearance: "secondary" },
+      { id: "e1", kind: "point", at: { x: 4, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b0", objectId: "b0", at: { x: 1, y: 1.8 / 2 }, placement: "above" },
+      { key: "b1", objectId: "b1", at: { x: 1, y: -1.8 / 2 }, placement: "above" },
+      { key: "h0", objectId: "l0", at: { x: 3, y: (1.8 + 3) / 2 }, placement: "above" },
+      { key: "p0", objectId: "e0", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "h1", objectId: "l1", at: { x: 3, y: (1.8 + 0.6) / 2 }, placement: "above" },
+      { key: "p1", objectId: "e1", at: { x: 4, y: 0.6 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Kebarangkalian Mencabut Dua Kad Hati Mengikut Urutan
+
+Untuk melihat bagaimana **bilangan kesudahan yang dikehendaki** boleh berubah, lihat cabutan dua kad lekuk berturut-turut:
+
+- Cabutan pertama: <InlineMath math="P(A) = \frac{13}{52} = \frac{1}{4}" />
+- Cabutan kedua selepas mendapat kad lekuk: <InlineMath math="P(B|A) = \frac{12}{51}" />
+
+Jadi kebarangkalian mencabut kad lekuk pada kedua-dua cabutan ialah:
+
+<BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{13}{52} \times \frac{12}{51} \\ &amp;= \frac{156}{2652} \\ &amp;= \frac{1}{17} \end{aligned}" />
+
+Bandingkan kebarangkalian mendapat kad lekuk pada cabutan kedua. Dengan pengembalian, kebarangkalian itu kekal <InlineMath math="\frac{13}{52} = 0.25" />. Tanpa pengembalian, selepas kad lekuk pertama, hanya tinggal <InlineMath math="12" /> kad lekuk dalam <InlineMath math="51" /> kad, jadi kebarangkalian itu turun kepada <InlineMath math="\frac{12}{51} \approx 0.235" />. Cabutan pertama telah mengubah ruang sampel.
+
+<BarChart
+  title={<>Kad lekuk kedua dengan dan tanpa pengembalian</>}
+  description={<>Kebarangkalian mendapat kad lekuk pada cabutan kedua selepas kad lekuk pertama, dengan pengembalian dan tanpa pengembalian.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[["dengan pengembalian", 13 / 52], ["tanpa pengembalian", 12 / 51]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Penggunaan dalam Pemilihan Pengurus
+
+Katakan sebuah syarikat ada data pengurus seperti di bawah. Jadual ini membezakan jantina dan peringkat jawatan, jadi kita boleh mengehadkan pengiraan kepada kumpulan yang berkaitan.
+
+| Peringkat Pengurusan | Lelaki | Perempuan | Jumlah |
+|------------------|---------------|---------------|-------|
+| Kanan (S)       | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
+| Pertengahan (M)     | <InlineMath math="78" /> | <InlineMath math="122" /> | <InlineMath math="200" /> |
+| Rendah (J)       | <InlineMath math="44" /> | <InlineMath math="156" /> | <InlineMath math="200" /> |
+| **Jumlah**        | <InlineMath math="200" /> | <InlineMath math="400" /> | <InlineMath math="600" /> |
+
+Katakan <InlineMath math="L" /> mewakili peristiwa bahawa pengurus yang dipilih ialah lelaki.
+
+Kalau kita tahu pengurus yang dipilih ialah pengurus kanan, ruang sampelnya hanya **baris kanan**, bukan semua pengurus. Daripada <InlineMath math="200" /> orang pengurus kanan, <InlineMath math="78" /> orang ialah lelaki.
+
+<BlockMath math="P(L|S)=\frac{78}{200}=0.39\ne\frac{200}{600}=P(L)" />
+
+Dalam data ini, maklumat peringkat jawatan mengubah kebarangkalian jantina. Kebarangkalian bersyarat **tidak memerlukan urutan masa**.
+
+Syarikat itu memilih dua orang pengurus secara rawak tanpa pengembalian untuk satu jawatankuasa. Kebarangkalian bahawa kedua-dua pengurus yang dipilih itu lelaki ialah:
+
+<MathContainer>
+<BlockMath math="P(L_1) = \frac{200}{600} = \frac{1}{3}" />
+<BlockMath math="P(L_2|L_1) = \frac{199}{599}" />
+<BlockMath math="\begin{aligned} P(L_1 \cap L_2) &amp;= \frac{200}{600} \times \frac{199}{599} \\ &amp;= \frac{1}{3} \times \frac{199}{599} \\ &amp;= \frac{199}{1797} \end{aligned}" />
+</MathContainer>
+
+Selepas seorang pengurus lelaki dipilih, tinggal <InlineMath math="599" /> orang pengurus kesemuanya, dengan <InlineMath math="199" /> orang pengurus lelaki, jadi kebarangkalian memilih pengurus lelaki kedua turun kepada <InlineMath math="\frac{199}{599}" />.
+
+## Cara Mengemas Kini Ruang Sampel Sebelum Mendarab
+
+Langkah pertama di bawah menggantikan ruang sampel asal <Highlight>dengan kesudahan yang tinggal</Highlight>. Langkah-langkah seterusnya menunjukkan bagaimana penggantian itu membezakan kebarangkalian bersyarat daripada hasil darab peristiwa tak bersandar.
+
+### Kemas Kini Ruang Sampel Sebelum Mendarab
+
+Untuk menyelesaikan masalah kebarangkalian bersyarat:
+
+1. **Kenal pasti peristiwa** pertama dan kedua dengan jelas
+2. **Tentukan syaratnya** selepas peristiwa pertama berlaku
+3. **Kira kebarangkalian** peristiwa pertama daripada keadaan awal
+4. **Kira kebarangkalian bersyarat** bagi peristiwa kedua selepas peristiwa pertama
+5. **Darabkan kedua-dua kebarangkalian** untuk mendapat kebarangkalian kedua-dua peristiwa berlaku bersama
+
+### Perbezaan daripada Kebarangkalian Biasa
+
+Bagi **peristiwa tak bersandar**, syarat itu tidak mengubah kebarangkalian seterusnya. Bagi **peristiwa bersandar**, kesudahan yang sudah diketahui mengubah bilangan kesudahan yang dikehendaki, jumlah bilangan kesudahan, atau kedua-duanya.
+
+**Contoh konkrit: mencabut dua kad sat**
+
+Katakan kita mahu mengira kebarangkalian mendapat dua kad sat berturut-turut daripada satu pek kad terup biasa (<InlineMath math="52 \text{ kad}" />, <InlineMath math="4" /> kad sat). Di sini, <InlineMath math="A_1" /> mewakili peristiwa kad pertama ialah kad sat dan <InlineMath math="A_2" /> mewakili peristiwa kad kedua ialah kad sat.
+
+1. **Kebarangkalian Tak Bersandar (Dengan Pengembalian)**:
+
+    Kalau selepas kad pertama dicabut, kad itu dikembalikan dan pek kad dikocok semula:
+
+    <MathContainer>
+    <BlockMath math="P(A_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(A_2) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="\begin{aligned} P(A_1 \cap A_2) &amp;= \frac{4}{52} \times \frac{4}{52} \\ &amp;= \frac{1}{13} \times \frac{1}{13} \\ &amp;= \frac{1}{169} \end{aligned}" />
+    </MathContainer>
+
+2. **Cabutan Bersandar (Tanpa Pengembalian)**:
+
+    Kalau kad pertama tidak dikembalikan:
+
+    <MathContainer>
+    <BlockMath math="P(A_1) = \frac{4}{52} = \frac{1}{13}" />
+    <BlockMath math="P(A_2|A_1) = \frac{3}{51} = \frac{1}{17}" />
+    <BlockMath math="\begin{aligned} P(A_1 \cap A_2) &amp;= \frac{4}{52} \times \frac{3}{51} \\ &amp;= \frac{1}{13} \times \frac{1}{17} \\ &amp;= \frac{1}{221} \end{aligned}" />
+    </MathContainer>
+
+**Perbandingan Keputusan**:
+- Dengan pengembalian: <InlineMath math="\frac{1}{169} \approx 0.00592" />
+- Tanpa pengembalian: <InlineMath math="\frac{1}{221} \approx 0.00452" />
+
+Dalam contoh ini, cabutan tanpa pengembalian memberikan jawapan yang **lebih kecil** kerana bilangan kad sat yang tinggal berkurang daripada <InlineMath math="4" /> kepada <InlineMath math="3" />, manakala jumlah kad berkurang daripada <InlineMath math="52" /> kepada <InlineMath math="51" />.
+
+## Latihan
+
+1. Sebuah kotak mengandungi <InlineMath math="8 \text{ bola merah}" /> dan <InlineMath math="12 \text{ bola biru}" />. Kalau dua biji bola dikeluarkan satu demi satu tanpa pengembalian, kira kebarangkalian mendapat bola merah pada kali pertama dan bola biru pada kali kedua.
+
+2. Satu pek kad terup dikocok secara rawak. Tiga keping kad dicabut berturut-turut tanpa pengembalian. Apakah kebarangkalian mendapat kad sat pada cabutan pertama, kad raja pada cabutan kedua, dan kad permaisuri pada cabutan ketiga?
+
+Cuba setiap latihan dahulu sebelum membaca jalan kerjanya. Pada setiap cabutan, tulis bilangan kesudahan yang dikehendaki dan **jumlah baharu** sebelum mendarab.
+### Jalan Kerja
+
+**Soalan 1**
+
+Katakan <InlineMath math="A" /> mewakili peristiwa mendapat bola merah pada kali pertama, dan <InlineMath math="B" /> mewakili peristiwa mendapat bola biru pada kali kedua
+
+Jumlah bola pada awalnya ialah <InlineMath math="8 + 12 = 20 \text{ bola}" />
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{8}{20} = \frac{2}{5}" />
+<BlockMath math="P(B|A) = \frac{12}{19}" />
+<BlockMath math="\begin{aligned} P(A \cap B) &amp;= \frac{8}{20} \times \frac{12}{19} \\ &amp;= \frac{2}{5} \times \frac{12}{19} \\ &amp;= \frac{24}{95} \end{aligned}" />
+</MathContainer>
+
+Selepas sebiji bola merah dikeluarkan, tinggal <InlineMath math="19 \text{ bola}" /> kesemuanya (<InlineMath math="8 - 1 = 7" /> merah, <InlineMath math="12" /> biru). **Bilangan bola biru tidak berubah** (kekal <InlineMath math="12" />), jadi kebarangkalian mendapat bola biru pada kali kedua ialah <InlineMath math="\frac{12}{19}" />.
+
+**Soalan 2**
+
+Katakan <InlineMath math="A" /> mewakili peristiwa mendapat kad sat pada cabutan pertama, <InlineMath math="K" /> mewakili peristiwa mendapat kad raja pada cabutan kedua, dan <InlineMath math="Q" /> mewakili peristiwa mendapat kad permaisuri pada cabutan ketiga
+
+Satu pek kad terup biasa ada <InlineMath math="52 \text{ kad}" />, termasuk <InlineMath math="4" /> kad sat, <InlineMath math="4" /> kad raja, dan <InlineMath math="4" /> kad permaisuri.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(K|A) = \frac{4}{51}" />
+<BlockMath math="P(Q|A \cap K) = \frac{4}{50} = \frac{2}{25}" />
+<BlockMath math="\begin{aligned} P(A \cap K \cap Q) &amp;= \frac{4}{52} \times \frac{4}{51} \times \frac{4}{50} \\ &amp;= \frac{1}{13} \times \frac{4}{51} \times \frac{2}{25} \\ &amp;= \frac{8}{16575} \end{aligned}" />
+</MathContainer>
+
+Setiap cabutan **mengurangkan jumlah kad** (<InlineMath math="52 \rightarrow 51 \rightarrow 50" />). Jenis kad yang diperlukan seterusnya masih ada kesemua <InlineMath math="4" /> keping: mencabut kad sat tidak membuang kad raja, dan mencabut kad raja tidak membuang kad permaisuri.

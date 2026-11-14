@@ -1,0 +1,28 @@
+# Der Faktor für einen Dosisabstand
+
+Gefragt ist die Menge kurz vor der <InlineMath math="5" />. Dosis, also wenn der Spiegel am niedrigsten ist. Achte auf die Zeiteinheiten: Die Menge halbiert sich **alle <InlineMath math="6" /> Stunden**, die Dosen liegen aber <InlineMath math="12" /> Stunden auseinander. In <InlineMath math="12" /> Stunden halbiert sich das Medikament also zweimal.
+
+<BlockMath math="r=\tfrac{1}{2}\cdot\tfrac{1}{2}=\tfrac{1}{4}" />
+
+Alle <InlineMath math="12" /> Stunden bleibt also nur <InlineMath math="\tfrac{1}{4}" /> des Medikaments übrig.
+
+# Die Reste aller Dosen addieren
+
+Kurz vor der <InlineMath math="5" />. Dosis sind seit der ersten Dosis <InlineMath math="48" /> Stunden vergangen. Die erste Dosis ist viermal um den Faktor <InlineMath math="\tfrac{1}{4}" /> geschrumpft, die zweite dreimal, die dritte zweimal und die vierte einmal. **Jede Dosis schrumpft für sich, dann addierst du die Reste**.
+
+<BlockMath math="\begin{aligned}
+\text{Rest}&=256\left(\tfrac14\right)^4+256\left(\tfrac14\right)^3+256\left(\tfrac14\right)^2+256\left(\tfrac14\right) \\
+&=1+4+16+64 \\
+&=85\text{ mg}
+\end{aligned}" />
+
+Das ist eine geometrische Reihe mit erstem Glied <InlineMath math="1" /> und Quotient <InlineMath math="4" />. Probe auf anderem Weg: Direkt nach der <InlineMath math="4" />. Dosis enthält der Körper <InlineMath math="256+64+16+4=340\text{ mg}" />, und <InlineMath math="12" /> Stunden später sind davon nur <InlineMath math="\tfrac14\cdot340=85\text{ mg}" /> übrig.
+
+Kurz vor der <InlineMath math="5" />. Dosis sind also <InlineMath math="85\text{ mg}" /> im Körper.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="240\text{ mg}" /> entsteht, wenn du für je <InlineMath math="12" /> Stunden den Faktor <InlineMath math="\tfrac12" /> nimmst. Halbiert wird aber alle <InlineMath math="6" /> Stunden, also ist der Faktor für <InlineMath math="12" /> Stunden <InlineMath math="\tfrac14" />.
+- <InlineMath math="340\text{ mg}" /> ist die Menge **direkt nach der <InlineMath math="4" />. Dosis**, beim höchsten Spiegel. Gefragt ist der Moment vor der <InlineMath math="5" />. Dosis.
+- <InlineMath math="480\text{ mg}" /> kombiniert zwei Fehler: den Faktor <InlineMath math="\tfrac12" /> pro <InlineMath math="12" /> Stunden und die Menge nach der <InlineMath math="4" />. Dosis.
+- <InlineMath math="1{.}024\text{ mg}" /> ist die Summe der vier Dosen ganz ohne Abbau.

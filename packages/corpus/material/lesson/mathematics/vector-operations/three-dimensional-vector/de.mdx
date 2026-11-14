@@ -13,10 +13,8 @@ export const metadata = {
 
 Ein dreidimensionaler Vektor wird durch <Highlight>drei Koordinatenkomponenten</Highlight> beschrieben. Sie geben die Verschiebungen entlang der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse an. Ein Vektor ungleich null hat einen Betrag und eine Richtung. Der Nullvektor besitzt keine geometrische Richtung.
 
-<LineEquation
-  cameraPosition={[7, 5, -5]}
-  cameraTarget={[1.5, 2, 1]}
-  title="Vektor im dreidimensionalen Raum"
+<MathVisual
+  title={<>Vektor im dreidimensionalen Raum</>}
   description={
     <>
       Darstellung eines Vektors im Raum mit den Komponenten{" "}
@@ -24,21 +22,20 @@ Ein dreidimensionaler Vektor wird durch <Highlight>drei Koordinatenkomponenten</
       <InlineMath math="z" />.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 2 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -5 }, target: { x: 1.5, y: 2, z: 1 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 4, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4, z: 2 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Darstellung dreidimensionaler Vektoren
@@ -73,69 +70,36 @@ Die Komponenten in dieser Form bedeuten:
 - <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> sind die Einheitsvektoren auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[7, 5, -6]}
-    cameraTarget={[2, 1.5, 1]}
-    title="Komponenten eines dreidimensionalen Vektors"
+  <MathVisual
+    title={<>Komponenten eines dreidimensionalen Vektors</>}
     description={
-      <>
-        Dreidimensionaler Vektor mit Komponenten auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_x" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_y" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 2 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_z" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 2 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Dreidimensionaler Vektor mit Komponenten auf der <InlineMath math="x" />-, <InlineMath math="y" />- und <InlineMath math="z" />-Achse.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a_x" />,
+      "l2": <InlineMath math="a_y" />,
+      "l3": <InlineMath math="a_z" />,
+      "l4": <InlineMath math="a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+      view: { kind: "camera", position: { x: 7, y: 5, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 2 }, appearance: "answer" },
+        { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 2 }, placement: "above-right" },
+        { key: "l4", objectId: "s4", at: { x: 4, y: 3, z: 2 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -167,58 +131,37 @@ Für <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> und <InlineMath math="\vec{
 </MathContainer>
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[9, 6, -7]}
-    cameraTarget={[2.5, 2, 1.5]}
-    title="Vektoraddition in drei Dimensionen"
+  <MathVisual
+    title={<>Vektoraddition in drei Dimensionen</>}
     description={
-      <>
-        Die Addition der Vektoren <InlineMath math="a" /> und{" "}
-        <InlineMath math="b" /> ergibt den Vektor{" "}
-        <InlineMath math="c = a + b" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 4, z: 3 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="c=a + b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Die Addition der Vektoren <InlineMath math="a" /> und{" "}
+          <InlineMath math="b" /> ergibt den Vektor{" "}
+          <InlineMath math="c = a + b" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="c=a + b" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 3.5 } },
+      view: { kind: "camera", position: { x: 9, y: 6, z: -7 }, target: { x: 2.5, y: 2, z: 1.5 } },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 1, y: 1.5, z: 0.5 }, to: { x: 2, y: 3, z: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3.5, y: 3.5, z: 2 }, to: { x: 5, y: 4, z: 3 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 4, z: 3 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 1.5, z: 0.5 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 3.5, y: 3.5, z: 2 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 5, y: 4, z: 3 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -229,44 +172,31 @@ Die Multiplikation eines Skalars <InlineMath math="k" /> mit einem Vektor <Inlin
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[8, 4, -5]}
-    cameraTarget={[2, 1, 2]}
-    title="Skalare Multiplikation eines Vektors"
+  <MathVisual
+    title={<>Skalare Multiplikation eines Vektors</>}
     description={
-      <>
-        Darstellung der Skalarmultiplikation mit <InlineMath math="k" /> für den
-        Vektor <InlineMath math="a" />, wobei <InlineMath math="k = 2" /> gilt.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 2 }],
-      color: "#059669",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 2, z: 4 }],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="2a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Darstellung der Skalarmultiplikation mit <InlineMath math="k" /> für den
+          Vektor <InlineMath math="a" />, wobei <InlineMath math="k = 2" /> gilt.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="2a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 8, y: 4, z: -5 }, target: { x: 2, y: 1, z: 2 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 2, z: 4 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 1, z: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 4, y: 2, z: 4 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -302,52 +232,29 @@ Für diese Winkelformel müssen beide Vektoren ungleich null sein. Das Symbol <I
 
 Wenn <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" /> gilt, steht seine Richtung senkrecht auf beiden Faktoren und folgt der Rechte-Hand-Regel von <InlineMath math="\vec{a}" /> zu <InlineMath math="\vec{b}" />. Ist einer der Faktoren der Nullvektor oder sind beide Faktoren parallel, ist das Kreuzprodukt <InlineMath math="\vec{0}" /> und besitzt deshalb keine geometrische Richtung.
 
-<LineEquation
-  cameraPosition={[4.6, 3.6, -4.2]}
-  cameraTarget={[0.8, 0.8, 1.7]}
-  title="Kreuzprodukt von Vektoren"
+<MathVisual
+  title={<>Kreuzprodukt von Vektoren</>}
   description={<>Die Rechte-Hand-Richtung von <InlineMath math="\vec{a}\times\vec{b}" />, senkrecht zu beiden nicht parallelen Vektoren.</>}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
-      color: "#65a30d",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a \times b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="a \times b" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 4.6, y: 3.6, z: -4.2 }, target: { x: 0.8, y: 0.8, z: 1.7 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 

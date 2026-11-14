@@ -1,0 +1,131 @@
+export const metadata = {
+  title: "Beza antara Jujukan dan Siri",
+  description: "Bezakan jujukan yang tersusun daripada hasil tambah sebutannya, dan lihat cara hasil tambah separa menghubungkan kedua-dua idea ini.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Jujukan
+
+Senarai nombor yang tersusun dan mengikut satu petua ialah <Highlight>jujukan</Highlight>, dan setiap nombor dalam senarai itu ialah <Highlight>sebutan</Highlight>. **Kedudukan setiap sebutan** menentukan susunannya. Kalau dua sebutan yang tidak sama ditukar tempat, jujukan yang terhasil sudah berbeza.
+
+### Sebutan dan Susunan dalam Jujukan
+
+Petua jujukan menentukan **nilai pada setiap kedudukan**. Untuk nombor genap, darabkan kedudukan dengan dua. Untuk nombor kuasa dua, kuasa duakan kedudukan itu. Dua contoh ini sudah ada nilai yang berbeza pada kedudukan pertama.
+
+- Jujukan nombor genap: <InlineMath math="2, 4, 6, 8, \dots" />
+- Jujukan nombor kuasa dua: <InlineMath math="1, 4, 9, 16, \dots" />
+
+Dalam kedua-dua contoh, jujukan itu mencatat setiap sebutan secara berasingan, berserta petua yang menghasilkan sebutan seterusnya.
+
+## Siri
+
+Siri ditulis sebagai **hasil tambah sebutan-sebutan jujukan**. Hasil tambah separa <InlineMath math="S_n" /> menambah <InlineMath math="n" /> sebutan pertama. Apabila satu lagi sebutan ditambah, hasil tambah separa berubah sebanyak nilai sebutan baharu itu. Kalau sebutan baharu itu sifar, hasil tambah separa tidak berubah.
+
+### Siri sebagai Hasil Tambah
+
+Siri **menambah sebutan-sebutan** sesuatu jujukan, dan tanda tambah di antara sebutan menunjukkan penambahan itu. Dua hasil tambah di bawah menambah nombor genap dan nombor kuasa dua sebutan demi sebutan.
+
+- Siri nombor genap: <InlineMath math="2 + 4 + 6 + 8 + \dots" />
+- Siri nombor kuasa dua: <InlineMath math="1 + 4 + 9 + 16 + \dots" />
+
+Apabila sebutan berhenti selepas sebutan ke-<InlineMath math="n" />, nilai hasil tambah itu ialah hasil tambah separa, yang biasanya ditulis sebagai <InlineMath math="S_n" />.
+
+## Beza antara Jujukan dan Siri
+
+Jadual ini meletakkan kedua-duanya bersebelahan. Jujukan menyimpan sebutan mengikut susunannya, manakala siri mewakili **penambahan sebutan-sebutan itu**.
+
+| Aspek       | Jujukan                                                                                 | Siri                                                                             |
+| ----------- | --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Bentuk**  | Senarai nombor yang tersusun dan dipisahkan oleh koma, seperti <InlineMath math="U_1, U_2, U_3, \dots" /> | Hasil tambah nombor yang dipisahkan oleh tanda tambah, seperti <InlineMath math="U_1 + U_2 + U_3 + \dots" /> |
+| **Fokus**   | Corak dan nilai setiap sebutan                                                          | Hasil daripada menambah sebutan-sebutan                                          |
+
+Ini jujukan <InlineMath math="a_n = n" /> dalam bentuk palang: <InlineMath math="1, 2, 3, \ldots, 8" />. Setiap palang ialah satu sebutan sahaja. Belum ada apa-apa yang ditambah, jadi palang <InlineMath math="8" /> hanyalah <InlineMath math="8" />.
+
+<BarChart
+  title={<>Sebutan-sebutan sesuatu jujukan</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan sebutan <InlineMath math="a_n = n" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="8" />.</>}
+  yAxisLabel="Sebutan"
+  data={Array.from({ length: 8 }, (_, i) => ({ name: `${i + 1}`, value: i + 1 }))}
+  chartConfig={{ value: { label: "Sebutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Hasil Tambah Separa bagi Sebutan Jujukan
+
+Hasil tambah <InlineMath math="n" /> sebutan pertama sesuatu jujukan ialah **hasil tambah separa** ke-<InlineMath math="n" /> jujukan itu:
+
+<BlockMath math="S_n=\sum_{k=1}^{n}a_k" />
+
+Jadi, jujukan <InlineMath math="(a_n)" /> menghasilkan satu jujukan baharu <InlineMath math="(S_n)" /> yang terdiri daripada hasil tambah separa. Untuk <InlineMath math="a_n=n" />:
+
+<MathContainer>
+  <BlockMath math="a_1,a_2,a_3,a_4,\ldots=1,2,3,4,\ldots" />
+  <BlockMath math="S_1,S_2,S_3,S_4,\ldots=1,3,6,10,\ldots" />
+</MathContainer>
+
+Apabila kamu menambah sebutan-sebutan <InlineMath math="a_n=n" />, kamu dapat jujukan kedua, <InlineMath math="1, 3, 6, 10, \dots" />, dan hasil tambah separa ini membesar lebih cepat daripada sebutan asal.
+
+Sekarang tambah sebutan-sebutan itu satu demi satu. Palang <InlineMath math="n" /> ialah hasil tambah separa <InlineMath math="S_n = 1 + 2 + \cdots + n" />, jadi nilai palang-palangnya ialah <InlineMath math="1, 3, 6, 10, \ldots, 36" />. Bandingkan palang <InlineMath math="8" /> dengan carta sebelumnya: sebutannya <InlineMath math="8" />, tetapi hasil tambah lapan sebutan pertama ialah <InlineMath math="36" />.
+
+<BarChart
+  title={<>Hasil tambah separa bagi jujukan yang sama</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n(n+1)}{2}" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="8" />.</>}
+  yAxisLabel="Hasil tambah separa"
+  data={Array.from({ length: 8 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n * (n + 1)) / 2 };
+  })}
+  chartConfig={{ value: { label: "Hasil tambah separa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Hasil Tambah Terhingga dan Tak Terhingga
+
+<InlineMath math="S_{20}" /> ialah hasil tambah terhingga bagi dua puluh sebutan. Bagi siri tak terhingga pula, kita tanya sama ada <InlineMath math="S_n" /> menghampiri satu had apabila <InlineMath math="n\to\infty" />.
+
+Siri tak terhingga ditakrifkan melalui **had hasil tambah separanya**. Apabila hasil tambah separa itu menghampiri satu nilai tetap, siri itu menumpu. Topik [siri menumpu dan siri mencapah](/ms/subjek/matematik/jujukan-dan-siri/penumpuan-dan-pencapahan) menggunakan had ini untuk mengasingkan siri yang menetap pada satu nilai daripada siri yang tidak menetap.
+
+Hasil tambah separa bagi <InlineMath math="a_n = n" /> terletak pada satu parabola. Setiap titik <InlineMath math="(n, S_n)" /> berada pada <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />, kerana <InlineMath math="S_n = \frac{n(n+1)}{2}" />. Jujukan yang bertambah dengan langkah yang sama besar mempunyai hasil tambah separa yang membesar seperti kuasa dua.
+
+<MathVisual
+  title={<>Hasil tambah separa pada parabola</>}
+  description={<>Titik-titik <InlineMath math="(n, S_n)" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" /> pada parabola <InlineMath math="y = \tfrac12 x^2 + \tfrac12 x" />.</>}
+  labels={{
+    s5: <InlineMath math="S_5 = 15" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 6 }, y: { min: -0.5, max: 16.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 0.5, b: 0.5, c: 0 }, domain: { min: 0, max: 5.2 }, appearance: "reference" },
+      { id: "s1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: 10 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: 5, y: 15 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s5", objectId: "s5", at: { x: 5, y: 15 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Diberi jujukan <InlineMath math="a_n=2n" />. Tulis empat sebutan pertamanya, kemudian tentukan empat hasil tambah separa yang pertama. Asingkan kedua-dua senarai itu, kerana **sebutan menerangkan satu kedudukan** manakala hasil tambah separa menjumlahkan setiap sebutan hingga kedudukan itu.
+
+1. Tulis empat sebutan pertamanya.
+2. Tentukan empat hasil tambah separa yang pertama.
+
+### Penyelesaian
+
+Gantikan <InlineMath math="n=1,2,3,4" /> ke dalam <InlineMath math="a_n=2n" /> untuk mendapat empat sebutan pertama, kemudian **tambah sebutan-sebutan itu satu demi satu** untuk mendapat hasil tambah separa.
+
+| Kedudukan | Soalan 1: sebutan | Soalan 2: hasil tambah separa |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="a_1=2\cdot1=2" /> | <InlineMath math="S_1=2" /> |
+| <InlineMath math="2" /> | <InlineMath math="a_2=2\cdot2=4" /> | <InlineMath math="S_2=2+4=6" /> |
+| <InlineMath math="3" /> | <InlineMath math="a_3=2\cdot3=6" /> | <InlineMath math="S_3=2+4+6=12" /> |
+| <InlineMath math="4" /> | <InlineMath math="a_4=2\cdot4=8" /> | <InlineMath math="S_4=2+4+6+8=20" /> |

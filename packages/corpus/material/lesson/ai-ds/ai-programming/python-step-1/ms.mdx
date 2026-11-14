@@ -1,0 +1,490 @@
+export const metadata = {
+  title: "Langkah Pertama dalam Python",
+  description: "Jalankan Python dalam mod interaktif, skrip dan Jupyter, kemudian bina atur cara kecil dengan pemboleh ubah, input dan output.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-26",
+  dateModified: "2026-09-04",
+  subject: "Pengaturcaraan AI",
+};
+
+## Menjalankan Kod Python Pertama Kamu
+
+<Highlight>Python menggunakan lekukan (indentation) untuk menandakan blok kod</Highlight> dan kata kunci yang pendek untuk operasi yang biasa. Dalam contoh-contoh awal, kamu sudah boleh mengenal pasti umpukan, panggilan fungsi dan syarat sebelum mempelajari setiap bahagian sintaks.
+
+Bahasa yang sama digunakan dalam pembangunan web, analisis data, pembelajaran mesin dan kecerdasan buatan. Contoh pertama ialah atur cara kecil yang mencetak teks.
+
+Apabila kamu perlu menyemak sintaks atau mencari fungsi dalam pustaka standard, buka [dokumentasi rasmi Python](https://docs.python.org). Pilih versi Python yang sama dengan yang kamu jalankan supaya contoh dan senarai ciri di situ sepadan dengan atur cara kamu.
+
+## Atur Cara Hello World
+
+Atur cara pertama yang biasa ditulis **memaparkan teks "Hello World!"**. Apabila kamu menjalankannya, kamu dapat memastikan Python boleh melaksanakan fail, dan kamu juga mendapat satu atur cara kecil yang lengkap untuk diteliti.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "hello.py",
+    code: `print("Hello World!")`
+  }]}
+/>
+
+Fungsi terbina dalam `print()` menulis nilai di dalam kurungannya ke output.
+
+## Tiga Cara Menjalankan Atur Cara Python
+
+Kod Python boleh dijalankan dengan tiga cara yang biasa. Gesaan interaktif paling sesuai untuk mencuba satu ungkapan pada satu masa, fail skrip yang disimpan paling sesuai untuk atur cara yang kamu jalankan berulang kali, dan buku nota paling sesuai untuk **menggabungkan kod dengan nota bertulis**.
+
+### Mod Interaktif
+
+Mod interaktif menjalankan pernyataan Python terus dalam terminal. Guna mod ini untuk menyemak ungkapan pendek atau **melihat sesuatu nilai tanpa membuat fail**.
+
+Begini cara menggunakan mod interaktif. Mula-mula, buka terminal atau Command Prompt, kemudian taip `python` atau `python3` dan tekan Enter. Kamu akan nampak gesaan `>>>` yang menunjukkan Python sudah sedia menerima arahan. Seterusnya, tulis kod Python dan tekan Enter untuk melaksanakannya.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "terminal",
+    code: `$ python3
+>>> print("Hello World!")
+Hello World!
+>>> 2 + 3
+5
+>>> name = "Alice"
+>>> print(f"Hello, {name}!")
+Hello, Alice!
+>>>`
+  }]}
+/>
+
+### Mod Skrip
+
+Mod skrip ialah cara untuk **menjalankan fail Python yang disimpan**. Mod ini sesuai untuk atur cara yang lebih kompleks atau atur cara yang kamu mahu simpan untuk digunakan berulang kali.
+
+Untuk menjalankan skrip, buat fail dengan sambungan `.py` dalam penyunting teks, tulis kod Python dan simpan fail itu. Kemudian buka terminal, pergi ke folder yang mengandungi fail itu dan jalankan `python3 filename.py`.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "greeting.py",
+    code: `# Atur cara ringkas untuk menyapa pengguna
+name = input("Siapa nama kamu? ")
+age = input("Berapa umur kamu? ")
+
+print(f"Helo {name}!")
+print(f"Umur kamu {age} tahun.")
+print("Selamat belajar Python!")`
+  }]}
+/>
+
+Untuk menjalankan fail di atas:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "terminal",
+    code: `$ python3 greeting.py
+Siapa nama kamu? John
+Berapa umur kamu? 20
+Helo John!
+Umur kamu 20 tahun.
+Selamat belajar Python!`
+  }]}
+/>
+
+### Jupyter Lab dan Buku Nota
+
+Jupyter ialah persekitaran interaktif yang sering digunakan untuk sains data dan pengajaran. Buku nota (notebook) menggabungkan **kod yang boleh dilaksanakan**, outputnya dan penerangan bertulis dalam satu dokumen.
+
+Setiap sel boleh dijalankan secara berasingan, dan outputnya muncul terus di bawah sel itu. Oleh sebab kod, hasil, teks penerangan, imej dan graf berada dalam satu dokumen, buku nota boleh merekodkan setiap langkah dalam sesuatu eksperimen atau analisis data.
+
+Sel-sel berkongsi keadaan dalam kernel yang sama. Selepas kernel dimulakan semula, jalankan sel dari atas ke bawah: sel yang menggunakan `math` atau sesuatu fungsi bergantung pada sel yang mentakrifkan nama itu.
+
+Pasang JupyterLab dalam persekitaran Python yang khusus untuknya supaya pakej-pakejnya tidak mengganggu projek lain yang tidak berkaitan:
+
+Arahan di bawah menggunakan laluan macOS/Linux. Pada Windows, guna `py -m venv .venv`, kemudian `.venv\Scripts\python -m pip install jupyterlab` dan `.venv\Scripts\jupyter lab`.
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "terminal",
+    code: `# Pasang JupyterLab dengan pentafsir Python yang dipilih
+python3 -m venv .venv
+.venv/bin/python -m pip install jupyterlab`
+  }]}
+/>
+
+Kedua, jalankan Jupyter Lab:
+
+<CodeBlock
+  data={[{
+    language: "bash",
+    filename: "terminal",
+    code: `# Jalankan Jupyter Lab
+.venv/bin/jupyter lab
+
+# Pelayar akan dibuka dengan antara muka Jupyter`
+  }]}
+/>
+
+Ketiga, buat buku nota baharu dengan sambungan `.ipynb` dan tulis kod dalam sel, kemudian tekan Shift+Enter untuk melaksanakannya.
+
+Contoh penggunaan dalam Jupyter:
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "jupyter_example.ipynb",
+    code: `# Sel 1: Import dan persediaan
+import math
+
+# Sel 2: Pemboleh ubah dan operasi
+radius = 5
+area = math.pi * radius ** 2
+print(f"Luas bulatan dengan jejari {radius} ialah {area:.2f}")
+
+# Sel 3: Cipta fungsi
+def calculate_circle_area(r):
+    """Fungsi untuk mengira luas bulatan"""
+    return math.pi * r ** 2
+
+# Sel 4: Uji fungsi
+test_radius = 7
+result = calculate_circle_area(test_radius)
+print(f"Luas bulatan dengan jejari {test_radius} ialah {result:.2f}")`
+  }]}
+/>
+
+## Sintaks Asas Python
+
+Atur cara Python yang pertama membaca pernyataannya dari atas ke bawah. Pemboleh ubah menyimpan nilai, **jenis data menentukan operasi** yang disokong oleh nilai itu, dan input, output serta aritmetik menukar nilai-nilai itu menjadi atur cara yang berfungsi.
+
+### Pemboleh Ubah dan Jenis Data
+
+Python mempunyai beberapa jenis data asas. **Nama pemboleh ubah merujuk kepada sesuatu nilai**. Apabila kamu mengumpukkan nilai lain, nama itu akan menunjuk kepada nilai baharu tersebut.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "data_types.py",
+    code: `# Jenis data asas dalam Python
+
+# Rentetan atau string (teks)
+name = "John Doe"
+message = 'Hello Python!'
+
+# Integer (nombor bulat)
+age = 25
+year = 2025
+
+# Float (nombor titik apungan)
+height = 175.5
+pi = 3.14159
+
+# Boolean (True/False)
+is_student = True
+is_graduated = False
+
+# List (senarai item)
+fruits = ["apple", "orange", "mango", "banana"]
+numbers = [1, 2, 3, 4, 5]
+
+# Dictionary (pasangan kunci-nilai)
+person = {
+    "name": "Alice",
+    "age": 22,
+    "major": "Computer Science"
+}
+
+# Paparkan jenis data
+print(type(name))        # <class 'str'>
+print(type(age))         # <class 'int'>
+print(type(height))      # <class 'float'>
+print(type(is_student))  # <class 'bool'>
+print(type(fruits))      # <class 'list'>
+print(type(person))      # <class 'dict'>`
+  }]}
+/>
+
+### Input dan Output
+
+Atur cara menerima data pengguna sebagai input dan memulangkan teks atau nilai yang dikira sebagai output. Python menggunakan `input()` untuk **membaca teks** dan `print()` untuk memaparkan hasil.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "input_output.py",
+    code: `# Input daripada pengguna
+user_name = input("Masukkan nama kamu: ")
+user_age = input("Masukkan umur kamu: ")
+
+# Penukaran jenis data
+age_number = int(user_age)  # Tukar rentetan kepada integer
+
+# Output dengan format yang kemas
+print(f"Helo {user_name}!")
+print(f"Umur kamu {age_number} tahun.")
+
+# Operasi matematik
+next_year = age_number + 1
+print(f"Tahun depan umur kamu {next_year} tahun.")
+
+# Output dengan format yang berbeza
+print("Nama:", user_name)
+print("Umur:", age_number)
+print("Umur tahun depan:", next_year)`
+  }]}
+/>
+
+### Operasi Matematik Asas
+
+Python menyokong pelbagai **operasi matematik**:
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "math_operations.py",
+    code: `# Operasi matematik asas
+a = 10
+b = 3
+
+# Operasi aritmetik
+addition = a + b      # 13
+subtraction = a - b   # 7
+multiplication = a * b # 30
+division = a / b      # 3.333...
+floor_division = a // b # 3 (hasil bahagi dibundarkan ke bawah)
+modulus = a % b       # 1 (baki)
+exponent = a ** b     # 1000 (10 kuasa 3)
+
+print(f"{a} + {b} = {addition}")
+print(f"{a} - {b} = {subtraction}")
+print(f"{a} * {b} = {multiplication}")
+print(f"{a} / {b} = {division}")
+print(f"{a} // {b} = {floor_division}")
+print(f"{a} % {b} = {modulus}")
+print(f"{a} ** {b} = {exponent}")
+
+# Operasi dengan umpukan
+x = 5
+x += 3  # x = x + 3, hasilnya x = 8
+x *= 2  # x = x * 2, hasilnya x = 16
+print(f"Nilai semasa x: {x}")`
+  }]}
+/>
+
+Operator matematik asas memberi hasil yang berbeza untuk nombor yang sama. Dengan `7` dan `2`, `/` memberi `3.5`, `//` memberi hasil bahagi bulat `3`, `%` memberi baki `1` dan `**` memberi kuasa `49`.
+
+<BarChart
+  title={<>Empat operator pada <code>7</code> dan <code>2</code></>}
+  description={<>Setiap palang ialah hasil <code>7</code>, operator di bawahnya, kemudian <code>2</code>. Pembahagian sebenar memberi float, manakala tiga hasil yang lain ialah integer.</>}
+  yAxisLabel="Hasil"
+  data={[
+    { name: "/", value: 7 / 2 },
+    { name: "//", value: Math.floor(7 / 2) },
+    { name: "%", value: 7 % 2 },
+    { name: "**", value: 7 ** 2 },
+  ]}
+  chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan Amali
+
+Selesaikan latihan ini untuk berlatih **pemboleh ubah, input, output dan operasi asas**. Tulis setiap jawapan sendiri sebelum menyemaknya, kerana latihan ini melatih langkah-langkah yang kamu ambil. Penyelesaiannya mengikut susunan yang sama dengan soalan.
+
+### Kalkulator Mudah
+
+Atur cara ini membaca **dua nombor dan satu operator**, kemudian mencetak hasilnya. Atur cara ini menggabungkan input, penukaran jenis dan pencabangan dalam satu fail.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "calculator.py",
+    code: `# Kalkulator mudah
+print("=== KALKULATOR MUDAH ===")
+
+# Input daripada pengguna
+number1 = float(input("Masukkan nombor pertama: "))
+operator = input("Masukkan operator (+, -, *, /): ")
+number2 = float(input("Masukkan nombor kedua: "))
+
+# Proses pengiraan
+if operator == "+":
+    result = number1 + number2
+elif operator == "-":
+    result = number1 - number2
+elif operator == "*":
+    result = number1 * number2
+elif operator == "/":
+    if number2 != 0:
+        result = number1 / number2
+    else:
+        print("Ralat: Tidak boleh bahagi dengan sifar!")
+        result = None
+else:
+    print("Operator tidak sah!")
+    result = None
+
+# Paparkan hasil
+if result is not None:
+    print(f"Hasil: {number1} {operator} {number2} = {result}")`
+  }]}
+/>
+
+### Penukaran Suhu
+
+Atur cara ini menukar **suhu Celsius kepada Fahrenheit dan Kelvin**, dan menolak nilai di bawah sifar mutlak.
+
+Mesej tentang takat beku dan takat didih ialah anggaran bagi air tulen pada tekanan satu atmosfera. Cuba `26.85`: penukarannya menghasilkan `80.3 °F` dan `300.0 K`.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "temperature_converter.py",
+    code: `import math
+
+# Penukar suhu daripada Celsius kepada Fahrenheit dan Kelvin
+print("=== PENUKAR SUHU ===")
+
+# Input suhu dalam Celsius
+celsius = float(input("Masukkan suhu dalam Celsius: "))
+
+if not math.isfinite(celsius) or celsius < -273.15:
+    raise ValueError("Suhu mesti terhingga dan tidak kurang daripada sifar mutlak")
+
+# Tukar kepada Fahrenheit dan Kelvin
+fahrenheit = (celsius * 9/5) + 32
+kelvin = celsius + 273.15
+
+# Paparkan hasil penukaran
+print(f"\\nHasil penukaran daripada {celsius}°C:")
+print(f"Fahrenheit: {fahrenheit:.1f}°F")
+print(f"Kelvin: {kelvin:.1f}K")
+
+# Bonus: Maklumat tambahan
+if celsius < 0:
+    print("Suhu ini di bawah takat beku air!")
+elif celsius == 0:
+    print("Suhu ini ialah takat beku air!")
+elif celsius == 100:
+    print("Suhu ini ialah takat didih air!")
+elif celsius > 100:
+    print("Suhu ini melebihi takat didih air!")`
+  }]}
+/>
+
+### Profil Pelajar
+
+Atur cara ini meminta butiran seorang pelajar, menyimpannya dalam pemboleh ubah dan **mencetak profil ringkas**.
+
+<CodeBlock
+  data={[{
+    language: "python",
+    filename: "personal_info.py",
+    code: `# Atur cara untuk mengumpul dan memaparkan maklumat peribadi
+print("=== PROFIL PELAJAR ===")
+
+# Input maklumat
+name = input("Nama penuh: ")
+student_id = input("ID pelajar: ")
+major = input("Program pengajian: ")
+semester = int(input("Semester: "))
+if semester < 1:
+    raise ValueError("Semester mesti sekurang-kurangnya 1")
+hobby = input("Hobi kegemaran: ")
+current_year = int(input("Tahun mula sesi akademik semasa: "))
+
+# Anggaran dengan dua semester bagi setiap sesi akademik
+entry_year = current_year - (semester - 1) // 2
+estimated_graduation = entry_year + 4
+
+# Paparkan profil lengkap
+print("\\n" + "="*40)
+print("PROFIL PELAJAR")
+print("="*40)
+print(f"Nama        : {name}")
+print(f"ID Pelajar  : {student_id}")
+print(f"Program     : {major}")
+print(f"Semester    : {semester}")
+print(f"Hobi        : {hobby}")
+print(f"Tahun Masuk : {entry_year}")
+print(f"Jangkaan Tamat: {estimated_graduation}")
+print("="*40)
+
+# Mesej motivasi
+if semester <= 2:
+    print("Semoga berjaya di awal pengajian kamu!")
+elif semester <= 6:
+    print("Teruskan semangat belajar kamu!")
+else:
+    print("Semoga berjaya menamatkan pengajian kamu!")`
+  }]}
+/>
+
+### Semak Kerja Kamu
+
+**Atur cara latihan kamu betul** apabila:
+
+- Kalkulator meminta dua nombor dan satu operator, kemudian memaparkan hasil operasi yang dipilih.
+- Penukar suhu memaparkan nilai Fahrenheit dan Kelvin daripada input Celsius.
+- Profil pelajar memaparkan data yang dimasukkan, tahun masuk, anggaran tahun tamat pengajian dan mesej yang bergantung pada semester.
+
+Tetapkan `number1 = 2` dan bayangkan kamu mencuba banyak nilai `number2` dalam kalkulator di atas. Setiap operator memberi grafnya sendiri: `+` dan `-` ialah garis yang condong ke arah bertentangan, `*` ialah garis yang lebih curam, dan `/` memberi titik-titik magenta. Pembahagian tiada titik pada `number2 = 0`, kerana Python menolak pembahagian dengan sifar melalui `ZeroDivisionError`, manakala setiap garis melalui kedudukan itu tanpa masalah.
+
+<MathVisual
+  title={<>Empat operator kalkulator untuk <code>number1 = 2</code></>}
+  description={<>Setiap garis ialah hasil kalkulator apabila <code>number2</code> berubah manakala <code>number1</code> kekal <InlineMath math="2" />. Titik magenta ialah <code>2 / number2</code> untuk lima input, dan tiada titik apabila <code>number2</code> ialah <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -8.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plus", kind: "segment", from: { x: -4, y: -2 }, to: { x: 4, y: 6 }, appearance: "secondary" },
+      { id: "minus", kind: "segment", from: { x: -4, y: 6 }, to: { x: 4, y: -2 }, appearance: "construction" },
+      { id: "times", kind: "segment", from: { x: -4, y: -8 }, to: { x: 4, y: 8 }, appearance: "highlight" },
+      { id: "divide-a", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "divide-b", kind: "point", at: { x: -1, y: -2 }, appearance: "answer" },
+      { id: "divide-c", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+      { id: "divide-d", kind: "point", at: { x: 2, y: 1 }, appearance: "answer" },
+      { id: "divide-e", kind: "point", at: { x: 4, y: 1 / 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "plus", objectId: "plus", at: { x: 4, y: 6 }, placement: "above-left" },
+      { key: "minus", objectId: "minus", at: { x: 4, y: -2 }, placement: "below-left" },
+      { key: "times", objectId: "times", at: { x: 4, y: 8 }, placement: "left" },
+      { key: "divide", objectId: "divide-e", at: { x: 4, y: 1 / 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "plus": "2 + number2",
+    "minus": "2 - number2",
+    "times": "2 * number2",
+    "divide": "2 / number2",
+  }}
+/>
+
+Atur cara suhu mengira `fahrenheit = (celsius * 9/5) + 32`. Formula itu ialah garis lurus <InlineMath math="F=\tfrac95C+32" />: setiap langkah <InlineMath math="1^\circ\mathrm{C}" /> menambah <InlineMath math="1.8^\circ\mathrm{F}" />, dan garis itu bertemu paksi menegak pada <InlineMath math="32" />.
+
+<MathVisual
+  title={<>Garis penukaran <InlineMath math="F=\tfrac95C+32" /></>}
+  description={<>Garis ungu memasangkan setiap suhu Celsius di paksi mendatar dengan suhu Fahrenheit di paksi menegak. Tiga titik itu ialah output atur cara untuk takat beku air, suhu badan dan takat didih air.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -10, max: 110 }, y: { min: 0, max: 230 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "conversion", kind: "line", through: [{ x: 0, y: 32 }, { x: 100, y: 212 }], appearance: "secondary" },
+      { id: "freezing", kind: "point", at: { x: 0, y: 0 * 9 / 5 + 32 }, appearance: "construction" },
+      { id: "body", kind: "point", at: { x: 37, y: 37 * 9 / 5 + 32 }, appearance: "answer" },
+      { id: "boiling", kind: "point", at: { x: 100, y: 100 * 9 / 5 + 32 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "freezing", objectId: "freezing", at: { x: 0, y: 0 * 9 / 5 + 32 }, placement: "right" },
+      { key: "body", objectId: "body", at: { x: 37, y: 37 * 9 / 5 + 32 }, placement: "right" },
+      { key: "boiling", objectId: "boiling", at: { x: 100, y: 100 * 9 / 5 + 32 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "freezing": <InlineMath math="0^\circ\mathrm{C}=32^\circ\mathrm{F}" />,
+    "body": <InlineMath math="37^\circ\mathrm{C}=98.6^\circ\mathrm{F}" />,
+    "boiling": <InlineMath math="100^\circ\mathrm{C}=212^\circ\mathrm{F}" />,
+  }}
+/>

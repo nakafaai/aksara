@@ -3,20 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 2,
-          label:
-            "Persamaan $$f(x)=2$$ mempunyai dua penyelesaian real yang berbeda.",
-        },
-        { column: 1, label: "$$f(x)\\ge2$$ untuk setiap bilangan real $$x$$." },
-        { column: 1, label: "$$f(2)=\\bigl(f(1)\\bigr)^2-2$$" },
-        {
-          column: 2,
-          label: "$$f(x+1)=2f(x)$$ untuk setiap bilangan real $$x$$.",
-        },
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$\\frac{8}{19}$$" },
+        { correct: false, label: "$$\\frac{6}{19}$$" },
+        { correct: false, label: "$$\\frac{5}{19}$$" },
+        { correct: true, label: "$$\\frac{4}{19}$$" },
+        { correct: false, label: "$$\\frac{3}{19}$$" },
       ],
     },
   },

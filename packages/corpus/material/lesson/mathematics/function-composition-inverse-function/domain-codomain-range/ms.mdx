@@ -1,0 +1,275 @@
+export const metadata = {
+  title: "Domain Kodomain dan Julat",
+  description:
+    "Bezakan input yang dibenarkan, set sasaran yang diisytiharkan, dan output yang benar-benar dicapai oleh fungsi melalui contoh konkrit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Domain
+
+**Domain** ialah set input yang ditetapkan bagi suatu fungsi. Petuanya mesti tertakrif bagi setiap unsur set itu. Apabila domain tidak dinyatakan, biasanya kita cari domain nyata yang paling besar: penyebut mesti bukan sifar dan punca kuasa genap memerlukan nilai di bawah tanda punca yang tidak negatif.
+
+Domain juga boleh **sengaja dihadkan**. Contohnya, petua <InlineMath math="x^2" /> tertakrif untuk semua nombor nyata, tetapi suatu fungsi boleh ditetapkan hanya untuk <InlineMath math="x\ge0" />.
+
+### Contoh Mencari Domain
+
+Fungsi ini membahagi dengan inputnya, dan pembahagian hanya tertakrif apabila penyebutnya bukan sifar:
+
+<BlockMath math="f(x) = \frac{1}{x}" />
+
+Petua ini membahagi <InlineMath math="1" /> dengan input. Pada input <InlineMath math="0" />, penyebutnya menjadi sifar:
+
+<BlockMath math="\frac10" />
+
+Pembahagian dengan sifar tidak tertakrif, jadi <InlineMath math="0" /> dikecualikan manakala setiap nombor nyata yang lain dibenarkan.
+
+Jadi, domain bagi fungsi <InlineMath math="f(x) = \frac{1}{x}" /> ialah **semua nombor nyata** kecuali <InlineMath math="0" />.
+
+Contoh lain:
+
+<BlockMath math="g(x) = \sqrt{x}" />
+
+Petua ini mengambil punca kuasa dua inputnya. Jika kita uji <InlineMath math="-4" />, kita dapat:
+
+<BlockMath math="\sqrt{-4}" />
+
+Dalam nombor nyata, punca kuasa dua memerlukan nilai di bawah tanda punca yang tidak negatif. Oleh itu, hanya <InlineMath math="0" /> dan input positif yang dibenarkan.
+
+Jadi, domain bagi fungsi <InlineMath math="g(x) = \sqrt{x}" /> ialah semua nombor nyata yang lebih besar daripada atau sama dengan <InlineMath math="0" /> (<InlineMath math="x \ge 0" />).
+
+Domain menentukan titik yang ada pada graf. Dengan <InlineMath math="f(x) = x^2" /> dan domain <InlineMath math="\{0, 1, 2, 3\}" />, graf itu hanyalah empat titik <InlineMath math="(0, 0)" />, <InlineMath math="(1, 1)" />, <InlineMath math="(2, 4)" /> dan <InlineMath math="(3, 9)" /> pada parabola yang dilukis samar. Kalau domain itu ditukar, set titik itu turut berubah.
+
+<MathVisual
+  title={<>Graf yang terdiri daripada empat titik</>}
+  description={<>Titik-titik <InlineMath math="y = x^2" /> bagi input <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="3" />, pada parabola yang dilukis samar di belakangnya.</>}
+  labels={{
+    d0: <InlineMath math="(0, 0)" />,
+    d1: <InlineMath math="(1, 1)" />,
+    d2: <InlineMath math="(2, 4)" />,
+    d3: <InlineMath math="(3, 9)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: -0.5, max: 9.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "faint", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.1 }, appearance: "reference" },
+      { id: "d0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d1", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "d3", kind: "point", at: { x: 3, y: 9 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d0", objectId: "d0", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "d1", objectId: "d1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "d2", objectId: "d2", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "d3", objectId: "d3", at: { x: 3, y: 9 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Kodomain
+
+**Kodomain** ialah set sasaran yang diisytiharkan sebagai sebahagian daripada takrif fungsi. Setiap output mesti berada dalam set ini, tetapi fungsi itu tidak semestinya mencapai setiap unsurnya.
+
+Contohnya, takrifkan fungsi <InlineMath math="f(x) = 2x" />.
+
+Kita tetapkan **Domain** (input) sebagai set nombor asli:
+
+<BlockMath math="\{1, 2, 3, ...\}" />
+
+Kemudian, kita tetapkan **kodomain** sebagai set integer:
+
+<BlockMath math="\{..., -2, -1, 0, 1, 2, ...\}" />
+
+Dengan memilih integer sebagai kodomain, kita mengisytiharkan set yang mesti mengandungi setiap nilai <InlineMath math="f(x)=2x" />. Untuk input nombor asli, fungsi ini sebenarnya hanya menghasilkan nombor genap positif. Nilai-nilai yang dicapai itu membentuk julat:
+
+<BlockMath math="\{2, 4, 6, ...\}" />
+
+Kodomain yang dipilih itu sah kerana setiap hasil sebenar dalam julat ialah integer.
+
+Jadi kodomain menerangkan ruang sasaran yang dibenarkan. Kodomain bukan senarai nilai yang semestinya dihasilkan oleh fungsi.
+
+## Julat
+
+**Julat** ialah set output yang benar-benar terhasil apabila setiap unsur domain digunakan. Julat ialah subset bagi kodomain.
+
+**Contoh**:
+
+Untuk contoh ini, domain dan kodomain bagi <InlineMath math="f(x) = x^2" /> ialah set integer.
+
+<BlockMath math="\{..., -2, -1, 0, 1, 2, ...\}" />
+
+Apabila kita masukkan nilai daripada domain:
+
+| Input | Output kuasa dua |
+| --- | --- |
+| <InlineMath math="-2" /> | <InlineMath math="(-2)^2=4" /> |
+| <InlineMath math="-1" /> | <InlineMath math="(-1)^2=1" /> |
+| <InlineMath math="0" /> | <InlineMath math="0^2=0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1^2=1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2^2=4" /> |
+
+Nilai yang _sebenarnya_ keluar sebagai output ialah <InlineMath math="0, 1, 4, 9, 16" />, dan seterusnya (nombor kuasa dua yang tidak negatif).
+
+Jadi, **Julat** fungsi ini (dengan domain ini) ialah set:
+
+<BlockMath math="\{0, 1, 4, 9, 16, ...\}" />
+
+Perhatikan bahawa julat ini (<InlineMath math="\{0, 1, 4, 9, ...\}" />) ialah sebahagian (subset) daripada kodomain yang kita takrifkan (integer):
+
+<BlockMath math="\{..., -1, 0, 1, 2, ...\}" />
+
+Bukan semua unsur kodomain termasuk dalam julat.
+
+Di sini <InlineMath math="f(x) = x^2" /> memetakan domain <InlineMath math="\{-2, -1, 0, 1, 2\}" /> ke dalam kodomain <InlineMath math="\{0, 1, 2, 3, 4\}" />. Setiap input ada tepat satu anak panah, tetapi hanya <InlineMath math="0" />, <InlineMath math="1" /> dan <InlineMath math="4" /> yang menerima anak panah. Nilai-nilai itu membentuk julat, manakala <InlineMath math="2" /> dan <InlineMath math="3" /> kekal dalam kodomain tanpa dicapai.
+
+<MathVisual
+  title={<>Domain, kodomain dan julat bagi x kuasa dua</>}
+  description={<>Anak panah dari setiap input ke kuasa duanya. Output <InlineMath math="0" />, <InlineMath math="1" /> dan <InlineMath math="4" /> yang ditonjolkan membentuk julat di dalam kodomain.</>}
+  labels={{
+    a0: <InlineMath math="-2" />,
+    a1: <InlineMath math="-1" />,
+    a2: <InlineMath math="0" />,
+    a3: <InlineMath math="1" />,
+    a4: <InlineMath math="2" />,
+    b0: <InlineMath math="0" />,
+    b1: <InlineMath math="1" />,
+    b2: <InlineMath math="2" />,
+    b3: <InlineMath math="3" />,
+    b4: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "m0", kind: "segment", from: { x: 0, y: -2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "m1", kind: "segment", from: { x: 0, y: -1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "m3", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 1 }, appearance: "construction" },
+      { id: "m4", kind: "segment", from: { x: 0, y: 2 }, to: { x: 4, y: 4 }, appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: -2 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a3", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a4", kind: "point", at: { x: 0, y: 2 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "b1", kind: "point", at: { x: 4, y: 1 }, appearance: "answer" },
+      { id: "b2", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "b3", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "b4", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a0", objectId: "a0", at: { x: 0, y: -2 }, placement: "left" },
+      { key: "a1", objectId: "a1", at: { x: 0, y: -1 }, placement: "left" },
+      { key: "a2", objectId: "a2", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "a3", objectId: "a3", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "a4", objectId: "a4", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "b0", objectId: "b0", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "b1", objectId: "b1", at: { x: 4, y: 1 }, placement: "right" },
+      { key: "b2", objectId: "b2", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "b3", objectId: "b3", at: { x: 4, y: 3 }, placement: "right" },
+      { key: "b4", objectId: "b4", at: { x: 4, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Peranan Berbeza Domain Kodomain dan Julat
+
+Domain menghalang input yang tidak sah, seperti pembahagian dengan sifar, daripada masuk ke dalam fungsi. Kodomain mengisytiharkan ruang sasaran, manakala julat mengenal pasti nilai yang benar-benar dicapai oleh fungsi.
+
+Untuk melihat perbezaannya, hadkan contoh kuasa dua kepada <InlineMath math="D=\{-2,-1,0,1,2\}" /> dan pilih <InlineMath math="K=\{0,1,2,3,4\}" />. **Setiap input ada satu anak panah**, tetapi sesetengah unsur kodomain tidak menerima sebarang anak panah.
+
+<Mermaid
+  title={<>Domain Kodomain dan Output yang Dicapai</>}
+  description={<>Anak panah memetakan lima input kepada kuasa duanya. Julat terletak di dalam kodomain. Dua unsur kodomain tidak dicapai.</>}
+  chart={`flowchart LR
+  subgraph D["Domain D"]
+    d1["-2"]
+    d2["-1"]
+    d3["0"]
+    d4["1"]
+    d5["2"]
+  end
+  subgraph K["Kodomain K"]
+    subgraph R["Julat R"]
+      r0["0"]
+      r1["1"]
+      r4["4"]
+    end
+    k2["2"]
+    k3["3"]
+  end
+  d1 --> r4
+  d2 --> r1
+  d3 --> r0
+  d4 --> r1
+  d5 --> r4`}
+/>
+
+Anak panah sampai ke <InlineMath math="0,1,4" />, jadi <InlineMath math="R=\{0,1,4\}" />. Nilai <InlineMath math="2" /> dan <InlineMath math="3" /> kekal dalam kodomain tetapi berada di luar julat bagi contoh terhad ini.
+
+Pada graf, idea yang sama menjadi selang. Dengan domain <InlineMath math="-2 \le x \le 2" />, parabola <InlineMath math="y = x^2" /> meliputi ketinggian dari <InlineMath math="0" /> hingga <InlineMath math="4" />. Selang pada paksi-y itu ialah julat, manakala kodomain seperti semua nombor nyata boleh jadi lebih besar.
+
+<MathVisual
+  title={<>Domain dan julat pada graf</>}
+  description={<>Parabola <InlineMath math="y = x^2" /> pada domain dari <InlineMath math="-2" /> hingga <InlineMath math="2" />, dengan julat dari <InlineMath math="0" /> hingga <InlineMath math="4" /> ditanda pada paksi-y.</>}
+  labels={{
+    dom: <>domain</>,
+    rng: <>julat</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -2, max: 2 }, appearance: "primary" },
+      { id: "dom", kind: "segment", from: { x: -2, y: 0 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "rng", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "dom", objectId: "dom", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "rng", objectId: "rng", at: { x: 0, y: 2.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Hubungan Matematik
+
+Secara matematik, fungsi <InlineMath math="f" /> memetakan setiap unsur daripada set Domain (<InlineMath math="D" />) kepada satu unsur dalam set Kodomain (<InlineMath math="K" />). Ini selalunya ditulis sebagai:
+
+<BlockMath math="f: D \to K" />
+
+Julat (<InlineMath math="R" />) ialah set semua hasil sebenar <InlineMath math="f(x)" /> bagi setiap <InlineMath math="x" /> dalam Domain. Dengan kata lain:
+
+<BlockMath math="R = \{ f(x) \mid x \in D \}" />
+
+Julat <Highlight>sentiasa subset bagi kodomain</Highlight>:
+
+<BlockMath math="R \subseteq K" />
+
+Setiap nilai yang benar-benar dicapai oleh fungsi mesti berada dalam kodomain. Sebaliknya tidak semestinya benar: suatu nilai dalam kodomain mungkin tidak pernah muncul sebagai output.
+
+## Semak Kefahaman Kamu
+
+Katakan <InlineMath math="h:\mathbb{R}\setminus\{2\}\to\mathbb{R}" /> ditakrifkan oleh <InlineMath math="h(x)=\frac1{x-2}" />. Jawab tiga soalan di bawah untuk fungsi ini. Mulakan dengan input yang dilarang oleh penyebut, kemudian fikirkan nilai **output** mana yang boleh dicapai oleh pecahan itu.
+
+1. Mengapa <InlineMath math="2" /> dikecualikan daripada domain?
+2. Bolehkah <InlineMath math="0" /> berada dalam julat?
+3. Nyatakan julat bagi <InlineMath math="h" />.
+
+### Jalan Kerja
+
+1. Pada <InlineMath math="x=2" />, penyebutnya sifar:
+
+   <BlockMath math="2-2=0" />
+
+   Ungkapan itu tidak tertakrif, jadi <InlineMath math="2" /> tidak boleh berada dalam domain.
+2. Tidak. Pecahan dengan **pengangka** <InlineMath math="1" /> tidak boleh sama dengan <InlineMath math="0" />.
+3. Setiap nilai nyata yang bukan sifar dapat dicapai. Bagi sebarang <InlineMath math="y\neq0" />, jika kita pilih <InlineMath math="x=2+\frac1y" />, kita dapat <InlineMath math="h(x)=y" />. Jadi:
+
+   <BlockMath math="R_h=\mathbb{R}\setminus\{0\}" />

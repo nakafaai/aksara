@@ -3,35 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "paragraph-meaning",
-    topic: "inference",
+    contentDomain: "vocabulary",
+    topic: "word-meaning",
   },
-  stimulus: "batik",
+  stimulus: "kabin",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "kalimat itu menjadi menyebut istilah *efek rumah kaca* sebagai ungkapan tetap yang diwariskan turun-temurun",
+        },
+        {
           correct: true,
           label:
-            "Pembuatannya tidak memakai malam untuk menghalangi pewarna pada bagian kain tertentu.",
-        },
-        {
-          correct: false,
-          label: "Motifnya tidak pernah meniru motif batik tradisional.",
-        },
-        {
-          correct: false,
-          label: "Kain itu tidak dapat dipakai untuk pakaian sehari-hari.",
-        },
-        {
-          correct: false,
-          label: "Harganya lebih mahal daripada batik tulis.",
+            "kalimat itu tidak lagi membandingkan atmosfer dengan rumah kaca, tetapi menyatakan bahwa efek rumah kaca di atmosfer hanya diandaikan dan bukan kenyataan",
         },
         {
           correct: false,
           label:
-            "Kain itu tidak diakui oleh UNESCO karena dibuat setelah tahun $$2009$$, ketika batik ditetapkan sebagai warisan budaya.",
+            "makna kalimat tidak berubah karena *perumpamaan* dan *pengandaian* sama-sama menyatakan sesuatu yang bukan makna sebenarnya",
+        },
+        {
+          correct: false,
+          label:
+            "makna kalimat tidak berubah karena kata dasar keduanya, *umpama* dan *andai*, sama-sama dapat bermakna 'seandainya'",
+        },
+        {
+          correct: false,
+          label:
+            "kalimat itu menjadi menganggap atmosfer sebagai salah satu contoh rumah kaca",
         },
       ],
     },

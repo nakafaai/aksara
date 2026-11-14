@@ -1,0 +1,30 @@
+# Apa yang dikehendaki setiap pandangan
+
+Soalan ini meminta bilangan kubus **paling sedikit**, jadi kamu mencari susunan yang memenuhi ketiga-tiga pandangan dengan kubus sesedikit mungkin. Setiap pandangan memberi syarat tersendiri:
+
+- Pandangan atas: tujuh petak bertanda ■ mesti mengandungi sekurang-kurangnya satu kubus, dan dua petak bertanda □ kosong.
+- Pandangan hadapan: lajur kiri mesti ada timbunan setinggi <InlineMath math="3" />, lajur tengah setinggi <InlineMath math="2" />, dan lajur kanan setinggi <InlineMath math="3" />.
+- Pandangan sisi: baris hadapan mesti ada timbunan setinggi <InlineMath math="3" />, baris tengah setinggi <InlineMath math="3" />, dan baris belakang setinggi <InlineMath math="2" />.
+
+Selain itu, tinggi sesuatu timbunan tidak boleh melebihi pandangan lajur atau pandangan barisnya.
+
+# Satu timbunan untuk dua syarat
+
+Caranya, **satu timbunan tinggi boleh memenuhi syarat lajur dan syarat baris serentak**. Timbunan setinggi <InlineMath math="3" /> di petak hadapan-kanan memenuhi lajur kanan dan baris hadapan. Timbunan setinggi <InlineMath math="3" /> di petak tengah-kiri memenuhi lajur kiri dan baris tengah. Timbunan setinggi <InlineMath math="2" /> di petak belakang-tengah memenuhi lajur tengah dan baris belakang. Petak bertanda ■ yang lain cukup diisi satu kubus.
+
+| Baris | Kiri | Tengah | Kanan |
+| :---: | :---: | :---: | :---: |
+| Belakang | kosong | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Tengah | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Hadapan | <InlineMath math="1" /> | kosong | <InlineMath math="3" /> |
+
+<BlockMath math="3+3+2+1+1+1+1=12" />
+
+Tidak boleh lebih jimat daripada ini. Ketiga-tiga timbunan tinggi itu wajib ada, dan tiada petak lain yang boleh memenuhi dua syarat setinggi itu serentak, kerana petak hadapan-tengah dan belakang-kiri kosong. Empat petak bertanda ■ yang lain masing-masing memerlukan sekurang-kurangnya satu kubus.
+
+Jadi, bilangan kubus paling sedikit ialah <InlineMath math="12" />.
+
+- <InlineMath math="8" /> mengabaikan pandangan atas, jadi empat petak bertanda ■ dianggap boleh kosong.
+- <InlineMath math="16" /> menjumlahkan nombor pandangan hadapan dan pandangan sisi, seolah-olah tiada timbunan yang dikira dua kali.
+- <InlineMath math="18" /> ialah bilangan kubus **paling banyak**, iaitu setiap timbunan setinggi yang dibenarkan oleh pandangan lajur dan barisnya.
+- <InlineMath math="21" /> menganggap ketujuh-tujuh petak bertanda ■ mengandungi timbunan setinggi <InlineMath math="3" />.

@@ -1,21 +1,37 @@
-Das Viereck <InlineMath math="DBCE" /> ist das Dreieck <InlineMath math="ABC" /> ohne das Dreieck <InlineMath math="ADE" />. Du brauchst also nur den Flächeninhalt von <InlineMath math="ADE" />, das **den Winkel <InlineMath math="A" /> mit dem Dreieck <InlineMath math="ABC" /> teilt**.
+Der Ergebnisraum besteht aus allen Auswahlen von drei der sieben Punkte, auch aus denen, die **kein Dreieck bilden**. Der Plan: den Ergebnisraum zählen und dann jede Auswahl danach einordnen, wo <InlineMath math="O" /> im Verhältnis zu ihrem Dreieck liegt.
 
-# Flächenverhältnis bei gemeinsamem Winkel
+# Die Größe des Ergebnisraums
 
-Den Flächeninhalt eines Dreiecks kannst du als <InlineMath math="\tfrac12\cdot\text{Seite}\cdot\text{Seite}\cdot\sin A" /> schreiben. Weil der Winkel <InlineMath math="A" /> gleich ist, ist das Flächenverhältnis **das Produkt der Verhältnisse der beiden Seiten, die diesen Winkel einschließen**.
+Die Reihenfolge der Auswahl spielt keine Rolle, also ist die Anzahl eine Kombination.
 
-<BlockMath math="\frac{[ADE]}{[ABC]}=\frac{\tfrac12\,AD\cdot AE\sin A}{\tfrac12\,AB\cdot AC\sin A}=\frac{AD}{AB}\cdot\frac{AE}{AC}" />
+<BlockMath math="\binom{7}{3}=\frac{7\cdot 6\cdot 5}{3\cdot 2\cdot 1}=35" />
 
-Aus <InlineMath math="AD:DB=1:2" /> folgt <InlineMath math="\frac{AD}{AB}=\frac13" />, und aus <InlineMath math="AE:EC=3:1" /> folgt <InlineMath math="\frac{AE}{AC}=\frac34" />.
+Diese <InlineMath math="35" /> Auswahlen sind gleich wahrscheinlich, die Wahrscheinlichkeit ist also **die Anzahl der passenden Auswahlen geteilt durch <InlineMath math="35" />**.
 
-<BlockMath math="[ADE]=\frac13\cdot\frac34\cdot48=12" />
+# Auswahlen mit dem Mittelpunkt
 
-# Viereck berechnen
+Es gibt <InlineMath math="\binom{6}{2}=15" /> Auswahlen mit <InlineMath math="O" /> und zwei Ecken. Drei davon liegen auf einer Geraden, nämlich <InlineMath math="O" /> mit einem gegenüberliegenden Paar <InlineMath math="A" /> und <InlineMath math="D" />, <InlineMath math="B" /> und <InlineMath math="E" /> oder <InlineMath math="C" /> und <InlineMath math="F" />, und bilden kein Dreieck. Die übrigen <InlineMath math="12" /> sind Dreiecke, die **<InlineMath math="O" /> zu einer Ecke machen**, nicht zu einem inneren Punkt. Keine dieser <InlineMath math="15" /> Auswahlen passt.
 
-Das Viereck ist **der Rest des Dreiecks ohne <InlineMath math="ADE" />**.
+# Auswahlen aus drei Ecken
 
-<BlockMath math="[DBCE]=48-12=36\text{ cm}^2" />
+Es gibt <InlineMath math="\binom{6}{3}=20" /> Dreiecke, deren Ecken aus dem Sechseck stammen. Ordne sie nach ihren Seiten.
 
-Der Wert 12 ist der Flächeninhalt des Dreiecks <InlineMath math="ADE" />, noch nicht von 48 abgezogen. Der Wert 30 liest <InlineMath math="AD:DB=1:2" /> als <InlineMath math="\frac{AD}{AB}=\frac12" />. Der Wert 44 verwendet <InlineMath math="\frac{AE}{AC}=\frac14" />, also den Anteil <InlineMath math="EC" /> statt <InlineMath math="AE" />. Der Wert 24 nimmt nur die Hälfte der Dreiecksfläche.
+| Art des Dreiecks | Anzahl | Lage von <InlineMath math="O" /> |
+| :--- | :---: | :---: |
+| Enthält eine lange Diagonale, etwa <InlineMath math="ABD" /> | <InlineMath math="3\cdot 4=12" /> | auf einer Seite |
+| Drei benachbarte Ecken, etwa <InlineMath math="ABC" /> | <InlineMath math="6" /> | außerhalb |
+| Gleichseitig, nämlich <InlineMath math="ACE" /> und <InlineMath math="BDF" /> | <InlineMath math="2" /> | innen |
 
-Das Viereck <InlineMath math="DBCE" /> hat also den Flächeninhalt **<InlineMath math="36\text{ cm}^2" />**.
+Eine lange Diagonale geht durch <InlineMath math="O" />, also liegt <InlineMath math="O" /> genau auf der Seite eines Dreiecks, das diese Diagonale als Seite hat. Drei benachbarte Ecken liegen auf einer Seite der Geraden durch die beiden äußeren Ecken, und diese Gerade verfehlt <InlineMath math="O" />, also liegt <InlineMath math="O" /> außerhalb. **Nur die gleichseitigen Dreiecke <InlineMath math="ACE" /> und <InlineMath math="BDF" />** enthalten <InlineMath math="O" /> im Inneren, denn ihr Mittelpunkt ist genau <InlineMath math="O" />.
+
+# Die Wahrscheinlichkeit und eine Probe
+
+<BlockMath math="P=\frac{2}{35}" />
+
+Prüfe, dass jede Auswahl gezählt ist: <InlineMath math="3" /> Auswahlen auf einer Geraden, <InlineMath math="12" /> mit <InlineMath math="O" /> als Ecke, <InlineMath math="12" /> mit <InlineMath math="O" /> auf einer Seite, <InlineMath math="6" /> mit <InlineMath math="O" /> außerhalb und <InlineMath math="2" /> mit <InlineMath math="O" /> innen. Zusammen sind das <InlineMath math="3+12+12+6+2=35" />, **genau der Ergebnisraum**.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="\tfrac{1}{10}=\tfrac{2}{20}" /> nutzt nur die <InlineMath math="20" /> Dreiecke aus Ecken und **vergisst, dass auch <InlineMath math="O" /> gewählt werden kann**. Die Antwort <InlineMath math="\tfrac{1}{16}=\tfrac{2}{32}" /> streicht die <InlineMath math="3" /> Auswahlen auf einer Geraden aus dem Ergebnisraum, obwohl sie trotzdem eintreten können. Die Antwort <InlineMath math="\tfrac{2}{5}=\tfrac{14}{35}" /> zählt die <InlineMath math="12" /> Dreiecke mit <InlineMath math="O" /> auf einer Seite mit. Die Antwort <InlineMath math="\tfrac{26}{35}" /> zählt jedes Dreieck, das <InlineMath math="O" /> berührt, also <InlineMath math="2+12+12" />.
+
+Die Wahrscheinlichkeit, dass das Dreieck <InlineMath math="O" /> im Inneren enthält, ist also <InlineMath math="\tfrac{2}{35}" />.

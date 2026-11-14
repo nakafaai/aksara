@@ -1,24 +1,25 @@
-Compare each letter with its code letter by **alphabet position**, and see whether the shift follows the position in the word.
+Compare two neighboring groups letter by letter. You'll find **two rules working at the same time**: the order of the letters rotates, and every letter moves forward in the alphabet by a step that keeps growing.
 
-| Position | BAKSO to CCNWT | MEJA to NGME |
-| --- | --- | --- |
-| 1 | B to C, forward <InlineMath math="1" /> | M to N, forward <InlineMath math="1" /> |
-| 2 | A to C, forward <InlineMath math="2" /> | E to G, forward <InlineMath math="2" /> |
-| 3 | K to N, forward <InlineMath math="3" /> | J to M, forward <InlineMath math="3" /> |
-| 4 | S to W, forward <InlineMath math="4" /> | A to E, forward <InlineMath math="4" /> |
-| 5 | O to T, forward <InlineMath math="5" /> | none |
+Start with the rotation. Move the first letter of DIMA to the end and you get IMAD. Now compare IMAD with JNBE: <InlineMath math="\mathrm{I}\to\mathrm{J}" />, <InlineMath math="\mathrm{M}\to\mathrm{N}" />, <InlineMath math="\mathrm{A}\to\mathrm{B}" />, <InlineMath math="\mathrm{D}\to\mathrm{E}" />. Every letter moves forward <InlineMath math="1" /> step.
 
-The rule: **the <InlineMath math="n" />th letter moves forward <InlineMath math="n" /> places** in the alphabet. Apply it to LAMPU:
+Check that the rule continues. JNBE rotates to NBEJ, and comparing it with PDGL gives <InlineMath math="\mathrm{N}\to\mathrm{P}" />, with every other letter also moving forward <InlineMath math="2" /> steps. PDGL rotates to DGLP, and comparing it with GJOS shows every letter moving forward <InlineMath math="3" /> steps. The rotation stays the same, while the shift grows by one each time.
 
-<BlockMath math="\text{L}+1=\text{M},\quad \text{A}+2=\text{C},\quad \text{M}+3=\text{P},\quad \text{P}+4=\text{T},\quad \text{U}+5=\text{Z}" />
+| Group | After rotating | Shift | Result |
+| --- | --- | --- | --- |
+| DIMA | IMAD | <InlineMath math="+1" /> | JNBE |
+| JNBE | NBEJ | <InlineMath math="+2" /> | PDGL |
+| PDGL | DGLP | <InlineMath math="+3" /> | GJOS |
+| GJOS | JOSG | <InlineMath math="+4" /> | NSWK |
 
-The result is MCPTZ. U is letter <InlineMath math="21" />, and <InlineMath math="21+5=26" /> lands exactly on Z, so there is no need to wrap around to the start of the alphabet.
+For the fifth group, rotate GJOS to JOSG, then move every letter forward <InlineMath math="4" /> steps: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. The result is NSWK.
 
-The other options come from wrong rules:
+Here's a quick check. Four rotations of a four-letter group bring back the original order, and the total shift is <InlineMath math="1+2+3+4=10" />. So the fifth group must be DIMA with every letter moved forward <InlineMath math="10" /> steps: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Same answer, NSWK.
 
-- MBNQV moves every letter forward only <InlineMath math="1" /> place.
-- KYJLP moves letters backward, while the examples move them forward.
-- MCPTY moves the fifth letter forward only <InlineMath math="4" /> places.
-- NDQUA starts the shift at <InlineMath math="2" /> places instead of <InlineMath math="1" />.
+Here's why the other options fail.
 
-So the code for LAMPU is MCPTZ.
+- JOSG is only rotated and never shifted.
+- KNSW is shifted <InlineMath math="4" /> steps but never rotated.
+- WKNS is rotated the wrong way, with the last letter moved to the front, and then shifted <InlineMath math="4" /> steps.
+- MRVJ is rotated correctly but shifted <InlineMath math="3" /> steps again, as if the shift stayed fixed.
+
+So the group that fills the blank is NSWK.

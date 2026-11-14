@@ -1,15 +1,48 @@
-The wire covers **the two sides perpendicular to the wall and the one side parallel to it**. What is left after the two perpendicular sides is the length of the parallel side.
+You're looking for the longest daily run of the small stove that keeps the gas cost per day at most <InlineMath math="\text{Rp}30{,}000" /> from <InlineMath math="16" /> July. Here's the plan: for each cylinder size, find **the fewest days the cylinder must last**, turn that into a limit on daily gas use, then turn that into a limit on hours. Finally, compare the two sizes.
 
-# Length of the side parallel to the wall
+# Gas used per day
 
-<BlockMath math="44-2\cdot14=44-28=16\text{ m}" />
+The big stove burns <InlineMath math="0.3\text{ kg}" /> per hour for <InlineMath math="3\text{ hours}" />. The small stove burns <InlineMath math="0.1\text{ kg}" /> per hour for <InlineMath math="h" /> hours. The daily use is the sum of the two:
 
-16 m does not exceed the 20 m wall, so this garden **can be built**.
+<BlockMath math="d=0.3\cdot3+0.1\cdot h=0.9+0.1h\text{ kg}" />
 
-# Area of the garden
+The longer the small stove runs, the larger <InlineMath math="d" /> gets. The cylinder is then swapped sooner, so **the cost per day goes up**. That's why you want the largest <InlineMath math="h" /> that still meets the cost limit.
 
-<BlockMath math="14\cdot16=224\text{ m}^2" />
+# The twelve kilogram cylinder
 
-The value 112 <InlineMath math="\text{m}^2" /> fences all four sides, leaving only 8 m for the other side. The value 280 <InlineMath math="\text{m}^2" /> uses the whole 20 m wall as a side, although there is not enough wire. The value 308 <InlineMath math="\text{m}^2" /> takes half the wire, 22 m, as the parallel side. The value 420 <InlineMath math="\text{m}^2" /> subtracts only one perpendicular side.
+Say a <InlineMath math="12\text{ kg}" /> cylinder lasts <InlineMath math="n" /> days. From <InlineMath math="16" /> July it costs <InlineMath math="\text{Rp}224{,}000" />, so its cost per day is <InlineMath math="\tfrac{224{,}000}{n}" /> rupiah. The cost condition is:
 
-So the area of the garden is **224 <InlineMath math="\text{m}^2" />**.
+<BlockMath math="\begin{aligned}
+\frac{224{,}000}{n}&\le30{,}000\\
+n&\ge\frac{224{,}000}{30{,}000}=7\tfrac{7}{15}
+\end{aligned}" />
+
+Cylinders are only swapped in the morning, so **the number of days is always a whole number**. The smallest whole number that isn't below <InlineMath math="7\tfrac{7}{15}" /> is <InlineMath math="8" />. The cylinder lasts <InlineMath math="8" /> days when <InlineMath math="8" /> days of use fit inside <InlineMath math="12\text{ kg}" />:
+
+<BlockMath math="\begin{aligned}
+8(0.9+0.1h)&\le12\\
+0.9+0.1h&\le1.5\\
+h&\le6
+\end{aligned}" />
+
+Check both sides of the limit. For <InlineMath math="h=6" />, the daily use is <InlineMath math="1.5\text{ kg}" />. The gas runs out exactly after <InlineMath math="8" /> days, so the cost is <InlineMath math="\tfrac{224{,}000}{8}=28{,}000" /> rupiah per day. For <InlineMath math="h=7" />, the daily use is <InlineMath math="1.6\text{ kg}" />. After <InlineMath math="7" /> days, <InlineMath math="12-11.2=0.8\text{ kg}" /> is left, which is less than <InlineMath math="1.6\text{ kg}" />. The cylinder gets swapped, and the cost is <InlineMath math="\tfrac{224{,}000}{7}=32{,}000" /> rupiah per day, over the limit.
+
+# The five and a half kilogram cylinder
+
+At <InlineMath math="\text{Rp}93{,}000" />, a <InlineMath math="5.5\text{ kg}" /> cylinder has to last at least <InlineMath math="\tfrac{93{,}000}{30{,}000}=3.1" /> days. Days are whole, so this cylinder has to last **at least four days**:
+
+<BlockMath math="\begin{aligned}
+4(0.9+0.1h)&\le5.5\\
+0.9+0.1h&\le1.375\\
+h&\le4.75
+\end{aligned}" />
+
+Hours are whole too, so with this cylinder <InlineMath math="h" /> is at most <InlineMath math="4" />. For <InlineMath math="h=5" />, the daily use is <InlineMath math="1.4\text{ kg}" />, the cylinder lasts only <InlineMath math="3" /> days, and the cost is <InlineMath math="\tfrac{93{,}000}{3}=31{,}000" /> rupiah per day.
+
+# Choosing the cylinder size
+
+The <InlineMath math="12\text{ kg}" /> cylinder allows up to <InlineMath math="6" /> hours, while the <InlineMath math="5.5\text{ kg}" /> cylinder allows only <InlineMath math="4" /> hours. Bu Sari gets to choose, so **the looser of the two limits decides**: <InlineMath math="6" /> hours with the <InlineMath math="12\text{ kg}" /> cylinder.
+
+The usual wrong answers each skip a step. You get <InlineMath math="7" /> if you work from the price per kilogram, as if a cylinder could last part of a day. You get <InlineMath math="8" /> if you round <InlineMath math="7\tfrac{7}{15}" /> down to <InlineMath math="7" /> days. You get <InlineMath math="4" /> if you only check the <InlineMath math="5.5\text{ kg}" /> cylinder. You get <InlineMath math="15" /> if you forget the gas the big stove uses.
+
+So the small stove can run for at most <InlineMath math="6" /> hours a day, with the <InlineMath math="12\text{ kg}" /> cylinder.

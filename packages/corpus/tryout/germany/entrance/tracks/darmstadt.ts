@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { darmstadtRatings } from "#corpus/tryout/germany/entrance/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /**
@@ -15,9 +16,9 @@ export const tuDarmstadtEntranceTrack = {
     names: {
       de: { title: "Mathematiktest im Aufnahmeverfahren der TU Darmstadt" },
       en: {
-        title: "TU Darmstadt Entrance Examination, Mathematics Test",
+        title: "Mathematics test of the TU Darmstadt Aufnahmeverfahren",
       },
-      id: { title: "Tes Matematika Ujian Masuk TU Darmstadt" },
+      id: { title: "Tes Matematika Aufnahmeverfahren TU Darmstadt" },
     },
     report: { sections: false, standardError: false, total: true },
     scoring: { kind: "raw" },
@@ -41,21 +42,26 @@ export const tuDarmstadtEntranceTrack = {
     de: "mathematik",
     en: "mathematics",
     id: "matematika",
+    ms: "matematik",
   },
-  sets: Arr.map([1, 2, 3], (setNumber) => {
+  sets: Arr.map(darmstadtRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -63,5 +69,6 @@ export const tuDarmstadtEntranceTrack = {
     de: { title: "Mathematik" },
     en: { title: "Mathematics" },
     id: { title: "Matematika" },
+    ms: { title: "Matematik" },
   },
 } satisfies TrackSourceInput;

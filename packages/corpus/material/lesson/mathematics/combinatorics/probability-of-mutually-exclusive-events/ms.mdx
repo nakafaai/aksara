@@ -1,0 +1,407 @@
+export const metadata = {
+   title: "Kebarangkalian Peristiwa Saling Eksklusif",
+   description: "Kenal pasti peristiwa yang tidak bertindih, bezakannya daripada peristiwa tak bersandar, dan gunakan petua penambahan tanpa mengira kesudahan dua kali.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Kombinatorik",
+};
+
+## Dua Peristiwa Tidak Boleh Berlaku dalam Percubaan yang Sama
+
+Dalam kehidupan seharian, kita selalu berdepan dengan situasi apabila **dua peristiwa tidak boleh berlaku serentak**. Contohnya, apabila melambung sekeping duit syiling, kita tidak boleh mendapat gambar dan angka pada masa yang sama dalam satu lambungan. Peristiwa seperti ini dipanggil peristiwa saling eksklusif.
+
+**Peristiwa saling eksklusif** ialah dua atau lebih peristiwa yang tidak boleh berlaku serentak dalam satu eksperimen. Kalau satu peristiwa berlaku, peristiwa yang lain pasti tidak berlaku.
+
+Sebagai gambaran mudah, bayangkan kamu mencabut sekeping kad daripada satu pek kad. Kad yang kamu cabut tidak boleh berwarna merah dan hitam pada masa yang sama. Dua peristiwa ini saling eksklusif kerana tiada kad yang ada kedua-dua warna itu.
+
+## Sifat Peristiwa Saling Eksklusif
+
+Peristiwa saling eksklusif **tidak berkongsi sebarang kesudahan**, jadi bahagian yang bertindih tidak menyumbang apa-apa kepada jumlah. Tiga semakan di bawah menerangkan idea itu dari segi kesudahan dan kebarangkalian.
+
+Dalam gambar rajah, peristiwa saling eksklusif ialah dua bulatan yang tidak bertindih. Dengan sebiji dadu, <InlineMath math="A" /> = nombor genap <InlineMath math="\{2, 4, 6\}" /> dan <InlineMath math="B" /> = nombor <InlineMath math="1" />: tiada kesudahan yang berada dalam kedua-duanya, jadi tiada apa-apa yang dikira dua kali.
+
+<MathVisual
+  title={<>Dua peristiwa yang tidak bertindih</>}
+  description={<>Dua bulatan berasingan bagi peristiwa A dan B, yang tidak berkongsi sebarang kesudahan.</>}
+  labels={{
+    a: <InlineMath math="A = \{2, 4, 6\}" />,
+    b: <InlineMath math="B = \{1\}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 3.6 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -1.5, y: 0 }, radius: 1.1, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 1.5, y: 0 }, radius: 1.1, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.5, y: 0 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
+### Tiada Persilangan
+
+Ciri utama peristiwa saling eksklusif ialah **tiada persilangan atau unsur sepunya**. Dalam tatatanda matematik, kalau <InlineMath math="A" /> dan <InlineMath math="B" /> ialah peristiwa saling eksklusif, maka:
+
+<BlockMath math="A \cap B = \emptyset" />
+
+Simbol <InlineMath math="\emptyset" /> menandakan set kosong, maksudnya tiada unsur sepunya antara dua peristiwa itu.
+
+### Kesudahan yang Tidak Boleh Berlaku Bersama
+
+Pasangan berikut tidak boleh berlaku dalam **percubaan yang sama**:
+
+- Dalam lambungan dadu: mendapat nombor genap dan mendapat nombor ganjil
+- Dalam cabutan kad: mencabut kad sat dan mencabut kad raja dalam satu cabutan
+- Dalam perlumbaan: mendapat tempat pertama dan tempat kedua serentak
+### Mengenal Pasti Peristiwa Saling Eksklusif
+
+Periksa set kesudahan sebelum mengira. Dua peristiwa saling eksklusif hanya apabila <Highlight>persilangannya kosong</Highlight>.
+
+| Semakan | Persilangan kosong | Persilangan tidak kosong |
+| :--- | :--- | :--- |
+| Bolehkah satu kesudahan memenuhi kedua-dua peristiwa? | Tidak | Ya |
+| Pengelasan | Saling eksklusif | Tidak saling eksklusif |
+| Petua penambahan | <InlineMath math="P(A)+P(B)" /> | <InlineMath math="P(A)+P(B)-P(A\cap B)" /> |
+
+Contohnya, "nilai dadu genap" dan "nilai dadu ganjil" tidak boleh menggambarkan lambungan yang sama, jadi persilangannya kosong. "Nilai dadu perdana" dan "nilai dadu ganjil" kedua-duanya boleh menggambarkan lambungan <InlineMath math="3" /> atau <InlineMath math="5" />, jadi persilangannya tidak kosong.
+## Rumus Kebarangkalian Peristiwa Saling Eksklusif
+
+Petua penambahan am menolak bahagian yang bertindih, iaitu <InlineMath math="P(A \cap B)" />. Bagi peristiwa saling eksklusif, <InlineMath math="P(A \cap B)=0" />, jadi sebutan itu hilang:
+
+<BlockMath math="P(A \cup B) = P(A) + P(B)" />
+
+Rumus ini menunjukkan bahawa kebarangkalian peristiwa <InlineMath math="A" /> atau peristiwa <InlineMath math="B" /> berlaku sama dengan hasil tambah kebarangkalian setiap peristiwa.
+
+Saling eksklusif **tidak** bermaksud tak bersandar. Kalau <InlineMath math="P(A) > 0" /> dan <InlineMath math="P(B) > 0" />, mengetahui bahawa <InlineMath math="A" /> berlaku menjadikan <InlineMath math="B" /> mustahil. Jadi <InlineMath math="P(A \cap B) = 0" />, sedangkan peristiwa tak bersandar memerlukan <InlineMath math="P(A \cap B) = P(A)P(B) > 0" />.
+
+### Persilangan Sifar dalam Petua Penambahan
+
+Berbeza dengan peristiwa yang tidak saling eksklusif, bagi peristiwa saling eksklusif kita tidak perlu **menolak persilangan** kerana <InlineMath math="P(A \cap B) = 0" />. Jadi, rumus am:
+
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;\quad{}- P(A \cap B) \end{aligned}" />
+
+Menjadi:
+
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) - 0 \\ &amp;= P(A) + P(B) \end{aligned}" />
+## Pengiraan dengan Petua Penambahan
+
+Contoh pertama ada **bahagian bertindih yang mesti ditolak**. Contoh-contoh perbandingan selepas itu menggunakan peristiwa saling eksklusif, daripada sebiji dadu hingga hasil tambah dua biji dadu. Periksa set kesudahan sebelum memilih petua penambahan.
+
+### Lambungan Dadu
+
+Sebiji dadu adil dilambung sekali. Tentukan kebarangkalian mendapat nombor perdana atau nombor yang lebih besar daripada <InlineMath math="4" />.
+
+**Penyelesaian**:
+
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />
+
+- Peristiwa <InlineMath math="A" /> (nombor perdana): <InlineMath math="A = \{2, 3, 5\}" />
+- Peristiwa <InlineMath math="B" /> (<InlineMath math="\text{nombor} > 4" />): <InlineMath math="B = \{5, 6\}" />
+
+Semak persilangan: <InlineMath math="A \cap B = \{5\}" />
+
+Oleh sebab nombor <InlineMath math="5" /> berada dalam kedua-dua peristiwa, peristiwa itu **tidak saling eksklusif**. Soalan asal masih ada jawapan yang sah, tetapi kita perlu menolak bahagian yang bertindih:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;=P(A)+P(B) \\ &amp;\quad{}-P(A\cap B) \end{aligned}" />
+<BlockMath math="P(A \cup B)=\frac{3}{6}+\frac{2}{6}-\frac{1}{6}=\frac{4}{6}=\frac{2}{3}" />
+</MathContainer>
+
+Contoh seterusnya menunjukkan bila petua saling eksklusif yang lebih pendek boleh digunakan.
+
+**Contoh Saling Eksklusif sebagai Perbandingan**:
+
+- Peristiwa <InlineMath math="A" /> (nombor ganjil): <InlineMath math="A = \{1, 3, 5\}" />
+- Peristiwa <InlineMath math="C" /> (nombor genap): <InlineMath math="C = \{2, 4, 6\}" />
+
+Semak persilangan: <InlineMath math="A \cap C = \emptyset" />
+
+Oleh sebab tiada persilangan, dua peristiwa itu **saling eksklusif**.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="P(C) = \frac{3}{6} = \frac{1}{2}" />
+<BlockMath math="\begin{aligned} P(A \cup C) &amp;= P(A) + P(C) \\ &amp;= \frac{1}{2} + \frac{1}{2} \\ &amp;= 1 \end{aligned}" />
+</MathContainer>
+
+Kesudahan ganjil dan genap bersama-sama meliputi keenam-enam muka dadu, jadi kesatuannya ada kebarangkalian <InlineMath math="1" />.
+
+### Melambung Dua Biji Dadu
+
+Dua biji dadu adil dilambung secara tak bersandar. Tentukan kebarangkalian mendapat hasil tambah <InlineMath math="5" /> atau hasil tambah <InlineMath math="7" />.
+
+**Penyelesaian**:
+
+Jadual ini menyenaraikan kesemua <InlineMath math="36" /> kesudahan bertertib bagi dua biji dadu itu:
+
+| Dadu <InlineMath math="1" /> \\ Dadu <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+|------------------|---|---|---|---|---|---|
+| <InlineMath math="1" /> | <InlineMath math="(1,1)" /> | <InlineMath math="(1,2)" /> | <InlineMath math="(1,3)" /> | <InlineMath math="(1,4)" /> | <InlineMath math="(1,5)" /> | <InlineMath math="(1,6)" /> |
+| <InlineMath math="2" /> | <InlineMath math="(2,1)" /> | <InlineMath math="(2,2)" /> | <InlineMath math="(2,3)" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(2,5)" /> | <InlineMath math="(2,6)" /> |
+| <InlineMath math="3" /> | <InlineMath math="(3,1)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(3,3)" /> | <InlineMath math="(3,4)" /> | <InlineMath math="(3,5)" /> | <InlineMath math="(3,6)" /> |
+| <InlineMath math="4" /> | <InlineMath math="(4,1)" /> | <InlineMath math="(4,2)" /> | <InlineMath math="(4,3)" /> | <InlineMath math="(4,4)" /> | <InlineMath math="(4,5)" /> | <InlineMath math="(4,6)" /> |
+| <InlineMath math="5" /> | <InlineMath math="(5,1)" /> | <InlineMath math="(5,2)" /> | <InlineMath math="(5,3)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="(5,5)" /> | <InlineMath math="(5,6)" /> |
+| <InlineMath math="6" /> | <InlineMath math="(6,1)" /> | <InlineMath math="(6,2)" /> | <InlineMath math="(6,3)" /> | <InlineMath math="(6,4)" /> | <InlineMath math="(6,5)" /> | <InlineMath math="(6,6)" /> |
+
+Jumlah kemungkinan ialah <InlineMath math="6 \times 6 = 36" />
+
+**Mengenal pasti peristiwa**:
+
+**Peristiwa <InlineMath math="A" />** (<InlineMath math="\text{hasil tambah} = 5" />):
+
+Daripada jadual di atas, pasangan yang menghasilkan hasil tambah <InlineMath math="5" /> ialah:
+- <InlineMath math="(1,4): 1 + 4 = 5" />
+- <InlineMath math="(2,3): 2 + 3 = 5" />
+- <InlineMath math="(3,2): 3 + 2 = 5" />
+- <InlineMath math="(4,1): 4 + 1 = 5" />
+
+Jadi ada **<InlineMath math="4 \text{ cara}" />** untuk mendapat hasil tambah <InlineMath math="5" />.
+
+**Peristiwa <InlineMath math="B" />** (<InlineMath math="\text{hasil tambah} = 7" />):
+
+Daripada jadual di atas, pasangan yang menghasilkan hasil tambah <InlineMath math="7" /> ialah:
+- <InlineMath math="(1,6): 1 + 6 = 7" />
+- <InlineMath math="(2,5): 2 + 5 = 7" />
+- <InlineMath math="(3,4): 3 + 4 = 7" />
+- <InlineMath math="(4,3): 4 + 3 = 7" />
+- <InlineMath math="(5,2): 5 + 2 = 7" />
+- <InlineMath math="(6,1): 6 + 1 = 7" />
+
+Jadi ada **<InlineMath math="6 \text{ cara}" />** untuk mendapat hasil tambah <InlineMath math="7" />.
+
+**Semak persilangan**: Hasil tambah tidak mungkin <InlineMath math="5" /> dan <InlineMath math="7" /> serentak, jadi <InlineMath math="A \cap B = \emptyset" />
+
+Kedua-dua peristiwa itu **saling eksklusif**.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{36} = \frac{1}{9}" />
+<BlockMath math="P(B) = \frac{6}{36} = \frac{1}{6}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{9} + \frac{1}{6} \end{aligned}" />
+</MathContainer>
+
+**Penyelesaian untuk penambahan pecahan**:
+
+Untuk menambah <InlineMath math="\frac{1}{9} + \frac{1}{6}" />, kita perlukan gandaan sepunya terkecil bagi <InlineMath math="9" /> dan <InlineMath math="6" />.
+
+<InlineMath math="\operatorname{lcm}(9, 6) = 18" />, jadi:
+
+<MathContainer>
+<BlockMath math="\frac{1}{9} = \frac{1 \times 2}{9 \times 2} = \frac{2}{18}" />
+<BlockMath math="\frac{1}{6} = \frac{1 \times 3}{6 \times 3} = \frac{3}{18}" />
+<BlockMath math="P(A \cup B) = \frac{2}{18} + \frac{3}{18} = \frac{5}{18}" />
+</MathContainer>
+
+Pada grid dua biji dadu, kesudahan kembar terletak pada satu pepenjuru dan hasil tambah <InlineMath math="7" /> pada pepenjuru yang satu lagi. Dua pepenjuru itu tidak pernah berkongsi titik, kerana kembar <InlineMath math="(k, k)" /> ada hasil tambah genap. Jadi peristiwa itu saling eksklusif dan <InlineMath math="P = \frac{6}{36} + \frac{6}{36} = \frac13" />.
+
+<MathVisual
+  title={<>Kembar dan hasil tambah tujuh tidak pernah bertemu</>}
+  description={<>Kesemua <InlineMath math="36" /> kesudahan bagi dua biji dadu. Enam kembar dan enam kesudahan dengan hasil tambah <InlineMath math="7" /> tidak berkongsi sebarang titik.</>}
+  labels={{
+    d11: <>kembar</>,
+    d16: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "secondary" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "secondary" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "primary" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "secondary" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d11", objectId: "d11", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "d16", objectId: "d16", at: { x: 1, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Cara Menyelesaikan Masalah Saling Eksklusif
+
+Sebelum menambah dua kebarangkalian, <Highlight>semak sama ada peristiwa itu berkongsi kesudahan</Highlight>. Langkah-langkah di bawah meletakkan ujian itu di awal dan mengesahkan jawapan selepas itu. Kalau kamu menambah tanpa semakan itu, sebarang kesudahan yang dikongsi akan dikira dua kali.
+
+### Semak Persilangan Sebelum Menambah
+
+Untuk menyelesaikan masalah kebarangkalian bagi peristiwa saling eksklusif, ikut langkah-langkah ini:
+
+1. **Kenal pasti ruang sampel** dan tentukan jumlah kesudahan yang mungkin
+2. **Takrifkan peristiwa** yang disebut dalam soalan dengan jelas
+3. **Semak persilangan** antara peristiwa untuk memastikan peristiwa itu saling eksklusif
+4. **Kira kebarangkalian setiap** peristiwa secara berasingan
+5. **Gunakan rumus** <InlineMath math="P(A \cup B) = P(A) + P(B)" />
+
+Apabila dua peristiwa tidak boleh berlaku bersama, palangnya hanya bertindan. Kembar ada <InlineMath math="\frac{6}{36}" />, hasil tambah <InlineMath math="7" /> ada <InlineMath math="\frac{6}{36}" />, dan salah satu daripadanya ada <InlineMath math="\frac{12}{36}" />, tanpa apa-apa yang perlu ditolak.
+
+<BarChart
+  title={<>Menambah dua peristiwa saling eksklusif</>}
+  description={<>Palang bagi kembar, hasil tambah <InlineMath math="7" /> dan salah satu peristiwa, dengan <InlineMath math="\frac{6}{36} + \frac{6}{36} = \frac{12}{36}" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[["kembar", 6 / 36], ["hasil tambah 7", 6 / 36], ["salah satu", 12 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Semakan untuk Jawapan Akhir
+
+Semak tiga perkara sebelum menerima jawapan:
+
+- Lukis set peristiwa dalam gambar rajah atau jadual apabila persilangannya belum jelas.
+- Pastikan **kebarangkalian akhir** terletak antara <InlineMath math="0" /> dan <InlineMath math="1" />.
+- Baca "atau" sebagai kesatuan, kecuali soalan menyatakan maksud lain dengan jelas.
+### Peristiwa dengan Persilangan Tidak Kosong
+
+Dua peristiwa tidak saling eksklusif apabila persilangannya mengandungi sekurang-kurangnya satu kesudahan. Contoh-contoh berikut ada persilangan yang tidak kosong:
+
+**Contoh 1: Lambungan Dadu**
+- Peristiwa <InlineMath math="A" />: Mendapat nombor perdana, iaitu <InlineMath math="\{2, 3, 5\}" />
+- Peristiwa <InlineMath math="B" />: Mendapat nombor ganjil, iaitu <InlineMath math="\{1, 3, 5\}" />
+
+**Kesilapan lazim**: "Perdana dan ganjil itu berbeza, jadi kedua-duanya saling eksklusif"
+**Hakikatnya**: <InlineMath math="A \cap B = \{3, 5\} \ne \emptyset" />, jadi **tidak saling eksklusif**
+
+**Contoh 2: Cabutan Kad**
+- Peristiwa <InlineMath math="A" />: Mencabut kad merah
+- Peristiwa <InlineMath math="B" />: Mencabut kad sat
+
+**Kesilapan lazim**: "Warna dan jenis kad itu berbeza, jadi kedua-duanya saling eksklusif"
+**Hakikatnya**: Ada kad sat merah (sat lekuk dan sat daiman), jadi **tidak saling eksklusif**
+
+**Contoh 3: Dua Kriteria Murid**
+- Peristiwa <InlineMath math="A" />: Murid yang tinggi (<InlineMath math=">160 \text{ cm}" />)
+- Peristiwa <InlineMath math="B" />: Murid yang markahnya melebihi <InlineMath math="80" />
+
+**Kesilapan lazim**: “Tinggi dan markah ujian ialah ciri yang berbeza, jadi peristiwa itu saling eksklusif”
+**Hakikatnya**: Katakan kumpulan itu ada seorang murid yang tingginya <InlineMath math="170\text{ cm}" /> dan mendapat markah <InlineMath math="90" />. Murid itu tergolong dalam kedua-dua set, jadi peristiwa dalam kumpulan ini **tidak saling eksklusif**
+
+**Strategi Mengenal Pasti**:
+1. **Tanya**: "Bolehkah satu unsur memenuhi kedua-dua kriteria serentak?"
+2. **Cari persilangan**: Kenal pasti unsur yang tergolong dalam kedua-dua peristiwa
+3. **Kalau ada persilangan**: Peristiwa itu **tidak saling eksklusif**
+4. **Kalau tiada persilangan**: Peristiwa itu **saling eksklusif**
+
+## Latihan
+
+Cuba setiap latihan dahulu sebelum membaca jalan kerjanya. Tulis kedua-dua set dengan jelas dan **semak persilangannya** sebelum memilih petua penambahan.
+
+1. Sebiji dadu adil dilambung sekali. Tentukan kebarangkalian mendapat nombor yang kurang daripada <InlineMath math="3" /> atau nombor yang lebih besar daripada <InlineMath math="5" />.
+
+2. Sekeping kad dicabut secara rawak daripada satu pek kad terup biasa. Kira kebarangkalian mencabut kad sat atau kad raja.
+
+3. Dua keping duit syiling adil dilambung secara tak bersandar. Tentukan kebarangkalian mendapat tepat <InlineMath math="1" /> angka atau tepat <InlineMath math="2" /> gambar.
+
+4. Dalam sebuah kotak ada <InlineMath math="10 \text{ biji bola}" /> yang bernombor <InlineMath math="1" /> hingga <InlineMath math="10" />. Sebiji bola dikeluarkan secara rawak. Kira kebarangkalian mendapat bola bernombor genap atau bola bernombor perdana ganjil.
+### Jalan Kerja
+
+**Soalan 1**
+
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6\}" />, jadi <InlineMath math="n(S) = 6" />
+
+- Peristiwa <InlineMath math="A" /> (<InlineMath math="\text{nombor} < 3" />): <InlineMath math="A = \{1, 2\}" />, jadi <InlineMath math="n(A) = 2" />
+- Peristiwa <InlineMath math="B" /> (<InlineMath math="\text{nombor} > 5" />): <InlineMath math="B = \{6\}" />, jadi <InlineMath math="n(B) = 1" />
+
+Semak persilangan: <InlineMath math="A \cap B = \emptyset" /> (tiada nombor yang memenuhi <InlineMath math="x < 3" /> dan <InlineMath math="x > 5" /> serentak)
+
+Oleh sebab kedua-duanya saling eksklusif, gunakan rumus:
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{2}{6} = \frac{1}{3}" />
+<BlockMath math="P(B) = \frac{1}{6}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{3} + \frac{1}{6} \\ &amp;= \frac{2}{6} + \frac{1}{6} \\ &amp;= \frac{3}{6} \\ &amp;= \frac{1}{2} \end{aligned}" />
+</MathContainer>
+
+**Soalan 2**
+
+Jumlah kad ialah <InlineMath math="52" />
+
+- Peristiwa <InlineMath math="A" /> (kad sat): <InlineMath math="4 \text{ kad sat}" />
+- Peristiwa <InlineMath math="B" /> (kad raja): <InlineMath math="4 \text{ kad raja}" />
+
+Semak persilangan: Tiada kad yang menjadi kad sat dan kad raja serentak, jadi <InlineMath math="A \cap B = \emptyset" />
+
+Kedua-dua peristiwa itu saling eksklusif.
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="P(B) = \frac{4}{52} = \frac{1}{13}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{13} + \frac{1}{13} \\ &amp;= \frac{2}{13} \end{aligned}" />
+</MathContainer>
+
+**Soalan 3**
+
+Gunakan <InlineMath math="0" /> untuk gambar dan <InlineMath math="1" /> untuk angka. Ruang sampelnya ialah <InlineMath math="\{(0,0), (0,1), (1,0), (1,1)\}" />, dengan <InlineMath math="4" /> kesudahan.
+
+- Peristiwa <InlineMath math="A" /> (tepat satu angka): <InlineMath math="\{(0,1), (1,0)\}" />, jadi <InlineMath math="n(A) = 2" />
+- Peristiwa <InlineMath math="B" /> (tepat dua gambar): <InlineMath math="\{(0,0)\}" />, jadi <InlineMath math="n(B) = 1" />
+
+Semak persilangan: <InlineMath math="A \cap B = \emptyset" /> (mustahil mendapat tepat satu angka dan tepat dua gambar serentak)
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{2}{4} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{1}{4}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{1}{4} \\ &amp;= \frac{2}{4} + \frac{1}{4} \\ &amp;= \frac{3}{4} \end{aligned}" />
+</MathContainer>
+
+**Soalan 4**
+
+Nombor perdana ganjil ialah nombor perdana yang juga ganjil. Nombor perdana dari <InlineMath math="1\text{-}10" /> ialah <InlineMath math="\{2, 3, 5, 7\}" />, jadi nombor perdana ganjil ialah <InlineMath math="\{3, 5, 7\}" />.
+
+Ruang sampel: <InlineMath math="S = \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}" />, jadi <InlineMath math="n(S) = 10" />
+
+- Peristiwa <InlineMath math="A" /> (nombor genap): <InlineMath math="A = \{2, 4, 6, 8, 10\}" />, jadi <InlineMath math="n(A) = 5" />
+- Peristiwa <InlineMath math="B" /> (nombor perdana ganjil): <InlineMath math="B = \{3, 5, 7\}" />, jadi <InlineMath math="n(B) = 3" />
+
+Semak persilangan: <InlineMath math="A \cap B = \emptyset" /> (tiada nombor yang genap dan juga perdana ganjil serentak)
+
+<MathContainer>
+<BlockMath math="P(A) = \frac{5}{10} = \frac{1}{2}" />
+<BlockMath math="P(B) = \frac{3}{10}" />
+<BlockMath math="\begin{aligned} P(A \cup B) &amp;= P(A) + P(B) \\ &amp;= \frac{1}{2} + \frac{3}{10} \end{aligned}" />
+</MathContainer>
+
+**Penyelesaian untuk penambahan pecahan**:
+
+Untuk menambah <InlineMath math="\frac{1}{2} + \frac{3}{10}" />, kita perlu menyamakan penyebutnya.
+
+<InlineMath math="\operatorname{lcm}(2, 10) = 10" />, jadi:
+
+<MathContainer>
+<BlockMath math="\frac{1}{2} = \frac{1 \times 5}{2 \times 5} = \frac{5}{10}" />
+<BlockMath math="P(A \cup B) = \frac{5}{10} + \frac{3}{10} = \frac{8}{10} = \frac{4}{5}" />
+</MathContainer>

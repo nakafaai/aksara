@@ -1,0 +1,240 @@
+export const metadata = {
+  title: "Taburan Kebarangkalian",
+  description: "Bina taburan kebarangkalian bagi sebiji dadu dan dua biji dadu, kemudian kira kebarangkalian peristiwa daripada ruang sampelnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-21",
+  dateModified: "2026-11-08",
+  subject: "Kebarangkalian",
+};
+
+## Nilai yang Mungkin dan Kebarangkaliannya
+
+Taburan kebarangkalian menyenaraikan nilai yang mungkin bagi satu kuantiti rawak dan <Highlight>memberikan satu kebarangkalian kepada setiap nilai</Highlight>. Untuk sebiji dadu, kuantiti itu mungkin nombor yang muncul. Untuk dua biji dadu, kuantiti itu mungkin hasil tambahnya. Taburan itu memberitahu kita nilai mana yang mungkin dan sejauh mana setiap satu berkemungkinan berlaku.
+
+## Ruang Sampel bagi Semua Kesudahan yang Mungkin
+
+Ruang sampel ialah set **setiap kesudahan asas** yang _boleh_ berlaku dalam satu eksperimen. Kita menulisnya dengan simbol <InlineMath math="\Omega" /> (Omega).
+
+Untuk satu lambungan dadu biasa yang ada <InlineMath math="6" /> sisi, kesudahan yang mungkin ialah <InlineMath math="1, 2, 3, 4, 5," /> dan <InlineMath math="6" />. Bersama-sama, kesudahan itu membentuk ruang sampel:
+
+<BlockMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />
+
+Semuanya ada <InlineMath math="6" /> kesudahan yang mungkin di sini.
+## Peristiwa dan Kebarangkaliannya
+
+Peristiwa ialah **set kesudahan yang memenuhi satu syarat**. Kebarangkaliannya ialah hasil tambah kebarangkalian kesudahan-kesudahan itu. Apabila semua kesudahan asas sama boleh jadi, bahagikan bilangan kesudahan yang dikehendaki dengan jumlah bilangan kesudahan.
+### Peristiwa
+
+Peristiwa ialah subset ruang sampel yang mengandungi kesudahan yang memenuhi syarat yang kita minati.
+
+**Contoh**:
+
+Untuk eksperimen dadu (<InlineMath math="\Omega = \{1, 2, 3, 4, 5, 6\}" />), pertimbangkan peristiwa "keputusannya genap." Kesudahan genap ialah <InlineMath math="2, 4," /> dan <InlineMath math="6" />, jadi peristiwa <InlineMath math="A" /> ialah:
+
+<BlockMath math="A = \{2, 4, 6\}" />
+
+Ada <InlineMath math="3" /> kesudahan dalam peristiwa <InlineMath math="A" /> ini.
+
+### Mengira Kebarangkalian Satu Peristiwa
+
+Kebarangkalian mengukur **sejauh mana satu peristiwa berkemungkinan** berlaku.
+
+Apabila semua kesudahan asas sama boleh jadi, kebarangkalian ialah bilangan kesudahan yang dikehendaki dibahagi dengan jumlah bilangan kesudahan:
+
+<BlockMath math="P(\text{Peristiwa}) = \frac{\text{Bilangan kesudahan dalam peristiwa itu}}{\text{Jumlah bilangan kesudahan dalam ruang sampel}}" />
+
+Dengan simbol daripada contoh kita:
+
+<BlockMath math="P(A) = \frac{|A|}{|\Omega|}" />
+
+Di sini:
+
+- <InlineMath math="|A|" /> ialah bilangan kesudahan dalam peristiwa <InlineMath math="A" />, iaitu <InlineMath math="3" />.
+- <InlineMath math="|\Omega|" /> ialah jumlah bilangan kesudahan dalam ruang
+  sampel, iaitu <InlineMath math="6" />.
+
+Jadi kebarangkalian peristiwa "mendapat nombor genap" (peristiwa <InlineMath math="A" />) ialah:
+
+<BlockMath math="P(A) = \frac{3}{6} = \frac{1}{2}" />
+
+Jadi peristiwa itu ada kebarangkalian <InlineMath math="1/2" />, atau <InlineMath math="50\%" />.
+## Peraturan bagi Taburan Kebarangkalian
+
+Taburan kebarangkalian sah apabila kedua-dua peraturan ini benar untuk setiap nilai yang mungkin bagi pemboleh ubah rawak itu. Dua syarat ini memastikan kebarangkalian yang disenaraikan **bertambah menjadi gambaran lengkap** bagi semua kesudahan.
+
+1.  Kebarangkalian setiap nilai (<InlineMath math="P(x)" />) terletak antara <InlineMath math="0" /> dan <InlineMath math="1" />.
+
+    <BlockMath math="0 \leq P(x) \leq 1" />
+
+2.  Kebarangkalian semua nilai yang mungkin bertambah tepat menjadi <InlineMath math="1" />.
+
+    <BlockMath math="\sum_{x \in \Omega} P(x) = 1" />
+## Melambung Sebiji Dadu
+
+Untuk sebiji dadu adil, setiap muka ada **kebarangkalian yang sama**. Taburannya ialah:
+
+| Kesudahan <InlineMath math="x" /> | Kebarangkalian <InlineMath math="P(x)" /> |
+| :------------------------------ | :------------------------------------- |
+| <InlineMath math="1" />         | <InlineMath math="1/6" />              |
+| <InlineMath math="2" />         | <InlineMath math="1/6" />              |
+| <InlineMath math="3" />         | <InlineMath math="1/6" />              |
+| <InlineMath math="4" />         | <InlineMath math="1/6" />              |
+| <InlineMath math="5" />         | <InlineMath math="1/6" />              |
+| <InlineMath math="6" />         | <InlineMath math="1/6" />              |
+
+Mengapa semuanya <InlineMath math="1/6" />?
+
+Dadu itu ada <InlineMath math="6" /> muka yang sama boleh jadi, jadi setiap muka ada kebarangkalian <InlineMath math="1/6" />. Hasil tambahnya <InlineMath math="1/6 + 1/6 + 1/6 + 1/6 + 1/6 + 1/6 = 6/6 = 1" />, seperti yang dikehendaki.
+## Melambung Dua Biji Dadu
+
+Sekarang lambung **sebiji dadu merah dan sebiji dadu putih**. Apabila keputusannya disenaraikan sebagai pasangan tertib, terhasil <InlineMath math="36" /> kesudahan yang mungkin.
+
+Mengapa <InlineMath math="36" />?
+
+Dadu merah ada <InlineMath math="6" /> kemungkinan dan dadu putih ada <InlineMath math="6" /> kemungkinan, jadi terdapat <InlineMath math="6 \times 6 = 36" /> pasangan tertib.
+
+Pasangan yang terhasil boleh ditulis seperti ini:
+
+- Dadu merah <InlineMath math="1" />, dadu putih <InlineMath math="1" /> memberikan <InlineMath math="(1, 1)" />.
+- Dadu merah <InlineMath math="1" />, dadu putih <InlineMath math="2" /> memberikan <InlineMath math="(1, 2)" />.
+- ... dan seterusnya sehingga ...
+- Dadu merah <InlineMath math="6" />, dadu putih <InlineMath math="6" /> memberikan <InlineMath math="(6, 6)" />.
+
+Oleh sebab dadu itu adil dan tak bersandar, setiap pasangan tertib ada kebarangkalian <InlineMath math="1/36" />.
+
+**Bezakan <InlineMath math="(1, 2)" /> daripada <InlineMath math="(2, 1)" />**
+
+Oleh sebab dadu itu berlainan warna, <InlineMath math="3" /> merah dengan <InlineMath math="2" /> putih berbeza daripada <InlineMath math="2" /> merah dengan <InlineMath math="3" /> putih. Tertib itu merekodkan dadu mana yang menghasilkan setiap nombor.
+
+Setiap satu daripada <InlineMath math="36" /> titik ialah satu pasangan tertib (merah, putih). Enam pasangan pada garis <InlineMath math="\text{merah} + \text{putih} = 7" /> menjadikan <InlineMath math="7" /> hasil tambah yang paling berkemungkinan, dengan kebarangkalian <InlineMath math="\tfrac{6}{36} = \tfrac16" />.
+
+<MathVisual
+  title={<><InlineMath math="36" /> kesudahan dua biji dadu</>}
+  description={<>Grid <InlineMath math="6" /> kali <InlineMath math="6" /> bagi pasangan tertib, dengan enam pasangan yang hasil tambahnya <InlineMath math="7" /> ditanda pada garis <InlineMath math="x + y = 7" />.</>}
+  labels={{
+    seven: <InlineMath math="x + y = 7" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 6.6 }, y: { min: 0.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "seven", kind: "segment", from: { x: 1, y: 6 }, to: { x: 6, y: 1 }, appearance: "construction" },
+      { id: "o11", kind: "point", at: { x: 1, y: 1 }, appearance: "reference" },
+      { id: "o12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "o13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "o14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "o15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "o16", kind: "point", at: { x: 1, y: 6 }, appearance: "answer" },
+      { id: "o21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "o22", kind: "point", at: { x: 2, y: 2 }, appearance: "reference" },
+      { id: "o23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "o24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "o25", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+      { id: "o26", kind: "point", at: { x: 2, y: 6 }, appearance: "reference" },
+      { id: "o31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "o32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "o33", kind: "point", at: { x: 3, y: 3 }, appearance: "reference" },
+      { id: "o34", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "o35", kind: "point", at: { x: 3, y: 5 }, appearance: "reference" },
+      { id: "o36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "o41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "o42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "o43", kind: "point", at: { x: 4, y: 3 }, appearance: "answer" },
+      { id: "o44", kind: "point", at: { x: 4, y: 4 }, appearance: "reference" },
+      { id: "o45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "o46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "o51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "o52", kind: "point", at: { x: 5, y: 2 }, appearance: "answer" },
+      { id: "o53", kind: "point", at: { x: 5, y: 3 }, appearance: "reference" },
+      { id: "o54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "o55", kind: "point", at: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "o56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "o61", kind: "point", at: { x: 6, y: 1 }, appearance: "answer" },
+      { id: "o62", kind: "point", at: { x: 6, y: 2 }, appearance: "reference" },
+      { id: "o63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "o64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "o65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "o66", kind: "point", at: { x: 6, y: 6 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "seven", objectId: "seven", at: { x: 6, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Taburan Kebarangkalian bagi Hasil Tambah Dua Biji Dadu
+
+Kalau pemboleh ubah rawak itu ialah _hasil tambah_ dua biji dadu, nilai terkecilnya <InlineMath math="1+1=2" /> dan nilai terbesarnya <InlineMath math="6+6=12" />. Hasil tambah yang berbeza mengandungi **bilangan pasangan tertib yang berbeza**, jadi kebarangkaliannya juga berbeza:
+
+| Hasil Tambah Nombor <InlineMath math="j" /> | Pasangan yang Mungkin                                          | Bilangan Pasangan       | Kebarangkalian <InlineMath math="P(j)" /> |
+| :------------------------------------- | :------------------------------------------------------------- | :---------------------- | :------------------------------------- |
+| <InlineMath math="2" />                | <InlineMath math="(1,1)" />                                    | <InlineMath math="1" /> | <InlineMath math="1/36" />             |
+| <InlineMath math="3" />                | <InlineMath math="(1,2)" />, <InlineMath math="(2,1)" />                             | <InlineMath math="2" /> | <InlineMath math="2/36" />             |
+| <InlineMath math="4" />                | <InlineMath math="(1,3)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,1)" />                      | <InlineMath math="3" /> | <InlineMath math="3/36" />             |
+| <InlineMath math="5" />                | <InlineMath math="(1,4)" />, <InlineMath math="(2,3)" />, <InlineMath math="(3,2)" />, <InlineMath math="(4,1)" />               | <InlineMath math="4" /> | <InlineMath math="4/36" />             |
+| <InlineMath math="6" />                | <InlineMath math="(1,5)" />, <InlineMath math="(2,4)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,2)" />, <InlineMath math="(5,1)" />        | <InlineMath math="5" /> | <InlineMath math="5/36" />             |
+| <InlineMath math="7" />                | <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> | <InlineMath math="6" /> | <InlineMath math="6/36" />             |
+| <InlineMath math="8" />                | <InlineMath math="(2,6)" />, <InlineMath math="(3,5)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,3)" />, <InlineMath math="(6,2)" />        | <InlineMath math="5" /> | <InlineMath math="5/36" />             |
+| <InlineMath math="9" />                | <InlineMath math="(3,6)" />, <InlineMath math="(4,5)" />, <InlineMath math="(5,4)" />, <InlineMath math="(6,3)" />               | <InlineMath math="4" /> | <InlineMath math="4/36" />             |
+| <InlineMath math="10" />               | <InlineMath math="(4,6)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,4)" />                      | <InlineMath math="3" /> | <InlineMath math="3/36" />             |
+| <InlineMath math="11" />               | <InlineMath math="(5,6)" />, <InlineMath math="(6,5)" />                             | <InlineMath math="2" /> | <InlineMath math="2/36" />             |
+| <InlineMath math="12" />               | <InlineMath math="(6,6)" />                                    | <InlineMath math="1" /> | <InlineMath math="1/36" />             |
+
+Hasil tambah <InlineMath math="7" /> paling berkemungkinan kerana <InlineMath math="6" /> pasangan tertib menghasilkannya, manakala hasil tambah <InlineMath math="2" /> dan <InlineMath math="12" /> masing-masing datang daripada satu pasangan sahaja. Perbezaan ini penting apabila satu permainan atau model menggunakan jumlah daripada kedua-dua dadu.
+
+<BarChart
+  title={<>Bilangan Kesudahan bagi Setiap Hasil Tambah Dadu</>}
+  description={<>Bar di tengah paling tinggi kerana lebih banyak pasangan tertib menghasilkan hasil tambah itu.</>}
+  data={[{ name: "2", value: 1 }, { name: "3", value: 2 }, { name: "4", value: 3 }, { name: "5", value: 4 }, { name: "6", value: 5 }, { name: "7", value: 6 }, { name: "8", value: 5 }, { name: "9", value: 4 }, { name: "10", value: 3 }, { name: "11", value: 2 }, { name: "12", value: 1 }]}
+  chartConfig={{ value: { label: "Bilangan pasangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  yAxisLabel="Bilangan pasangan"
+/>
+## Membandingkan Kesudahan dan Risiko
+
+Taburan kebarangkalian memasangkan setiap kesudahan yang mungkin dengan kebarangkaliannya. Nombor-nombor itu membantu beberapa perbandingan yang konkrit:
+
+- **Bandingkan kesudahan**: Hasil tambah <InlineMath math="7" /> ada kebarangkalian lebih tinggi daripada hasil tambah <InlineMath math="12" />.
+- **Analisis permainan**: Dalam permainan yang menggunakan dadu, taburan menunjukkan langkah atau jumlah mana yang lebih kerap berlaku, walaupun keputusan satu lambungan tetap tidak pasti.
+- **Buat ramalan**: Taburan boleh meringkaskan ketidakpastian, seperti kebarangkalian hujan dalam satu model cuaca.
+- **Bantu keputusan**: Sains dan perniagaan menggunakan taburan kebarangkalian untuk membandingkan risiko dan kesudahan yang dijangka dengan bukti daripada data.
+
+Setiap kegunaan ini bergantung pada struktur yang sama: satu set kesudahan yang ditakrifkan dan <Highlight>kebarangkalian yang diberikan kepada setiap kesudahan</Highlight>.
+
+## Latihan
+
+Tiga keping duit syiling adil dilambung. Biar <InlineMath math="X" /> ialah **bilangan gambar**. Bina taburan kebarangkalian <InlineMath math="X" />, sahkan bahawa taburan itu sah, dan cari <InlineMath math="P(X \geq 2)" />. Mulakan dengan menyenaraikan ruang sampelnya supaya setiap kesudahan dikira sekali sahaja.
+### Penyelesaian
+
+Kodkan gambar sebagai <InlineMath math="1" /> dan angka sebagai <InlineMath math="0" />. Tiga lambungan itu kemudian menghasilkan <InlineMath math="2^3=8" /> **tigaan tertib yang sama boleh jadi**:
+
+<BlockMath math="\Omega=\{(1,1,1),(1,1,0),(1,0,1),(0,1,1),(1,0,0),(0,1,0),(0,0,1),(0,0,0)\}" />
+
+Kira kesudahan yang mengandungi <InlineMath math="0,1,2" /> atau <InlineMath math="3" /> gambar:
+
+| Bilangan gambar <InlineMath math="x" /> | Kesudahan | Bilangan | <InlineMath math="P(X=x)" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="0" /> | <InlineMath math="(0,0,0)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+| <InlineMath math="1" /> | <InlineMath math="(1,0,0),(0,1,0),(0,0,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="2" /> | <InlineMath math="(1,1,0),(1,0,1),(0,1,1)" /> | <InlineMath math="3" /> | <InlineMath math="3/8" /> |
+| <InlineMath math="3" /> | <InlineMath math="(1,1,1)" /> | <InlineMath math="1" /> | <InlineMath math="1/8" /> |
+
+Setiap kebarangkalian terletak antara <InlineMath math="0" /> dan <InlineMath math="1" />, dan hasil tambahnya ialah
+
+<BlockMath math="\frac{1}{8}+\frac{3}{8}+\frac{3}{8}+\frac{1}{8}=\frac{8}{8}=1" />
+
+Jadi taburan itu sah. Sekurang-kurangnya dua gambar bermaksud <InlineMath math="X=2" /> atau <InlineMath math="X=3" />, jadi
+
+<BlockMath math="P(X \geq 2)=P(X=2)+P(X=3)=\frac{3}{8}+\frac{1}{8}=\frac{1}{2}" />
+
+Apabila ruang sampel disenaraikan dahulu, taburan itu boleh disemak: setiap satu daripada <InlineMath math="8" /> kesudahan muncul dalam _tepat satu baris_.
+
+Penyelesaian itu sebagai carta: bar <InlineMath math="\tfrac18, \tfrac38, \tfrac38, \tfrac18" /> bagi <InlineMath math="0" /> hingga <InlineMath math="3" /> gambar bertambah menjadi <InlineMath math="1" />, dan dua bar di kanan memberikan <InlineMath math="P(X \geq 2) = \tfrac12" />.
+
+<BarChart
+  title={<>Gambar dalam tiga lambungan duit syiling</>}
+  description={<>Bar <InlineMath math="P(X = x)" /> untuk <InlineMath math="x = 0" /> hingga <InlineMath math="3" /> gambar.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[1, 3, 3, 1].map((c, x) => ({ name: String(x), value: c / 8 }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

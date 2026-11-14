@@ -1,24 +1,32 @@
-Kecepatan rata-rata adalah **jarak total dibagi waktu total**, bukan rata-rata dua kecepatan. Waktu pergi dan waktu pulang berbeda, sehingga kedua kecepatan tidak berbobot sama.
+Soal ini meminta nama apoteker yang berjaga pada 8 Maret 2028. Giliran hanya bergeser pada hari buka, jadi kamu perlu menghitung **berapa hari buka** yang lewat setelah 15 Februari, bukan berapa hari kalender. Ada dua jebakan di jalan: tahun 2028 dan hari Minggu.
 
-Misalkan jarak rumah ke pasar <InlineMath math="d" /> km. Waktu tempuhnya:
+Langkah pertama, hitung jarak harinya. Tahun 2028 habis dibagi <InlineMath math="4" /> dan bukan tahun abad, jadi 2028 adalah tahun kabisat dan Februari punya <InlineMath math="29" /> hari.
 
 <BlockMath math="\begin{aligned}
-t_{\text{pergi}} &= \frac{d}{14} \\
-t_{\text{pulang}} &= \frac{d}{21} \\
-t_{\text{total}} &= \frac{d}{14}+\frac{d}{21}=\frac{3d+2d}{42}=\frac{5d}{42}
+\text{15 Februari sampai 29 Februari} &: 29 - 15 = 14 \text{ hari} \\
+\text{29 Februari sampai 8 Maret} &: 8 \text{ hari} \\
+\text{total} &: 14 + 8 = 22 \text{ hari}
 \end{aligned}" />
 
-Jarak total adalah <InlineMath math="2d" />, sehingga
+Langkah kedua, buang hari Minggu. Tanggal 15 Februari jatuh pada hari Selasa, jadi hari Minggu sesudahnya adalah 20 Februari, 27 Februari, dan 5 Maret. Ada <InlineMath math="3" /> hari Minggu, sehingga banyak hari buka sesudah 15 Februari sampai 8 Maret adalah:
 
-<BlockMath math="\bar{v}=\frac{2d}{\frac{5d}{42}}=\frac{84}{5}=16{,}8\text{ km/jam}" />
+<BlockMath math="22 - 3 = 19" />
 
-Nilai <InlineMath math="d" /> saling menghapus, jadi hasilnya tidak bergantung pada jarak. Sebagai pemeriksaan, jika <InlineMath math="d=42" /> km, waktu totalnya <InlineMath math="3+2=5" /> jam untuk <InlineMath math="84" /> km, dan <InlineMath math="84:5=16{,}8" />.
+Pastikan juga 8 Maret bukan hari Minggu. Jarak <InlineMath math="22 = 3 \times 7 + 1" /> hari, jadi 8 Maret jatuh satu hari setelah Selasa, yaitu hari Rabu. Apotek buka pada hari itu.
 
-Pilihan lain berasal dari kesalahan berikut:
+Langkah ketiga, giliran berulang setiap <InlineMath math="5" /> hari buka. Bagi <InlineMath math="19" /> dengan <InlineMath math="5" />:
 
-- <InlineMath math="17{,}5" /> km/jam adalah rata-rata biasa dari <InlineMath math="14" /> dan <InlineMath math="21" />. Rata-rata ini salah karena Raka lebih lama bersepeda dengan kecepatan <InlineMath math="14" /> km/jam.
-- <InlineMath math="8{,}4" /> km/jam muncul jika jarak satu arah dibagi waktu total.
-- <InlineMath math="21" /> km/jam hanya kecepatan pulang.
-- <InlineMath math="35" /> km/jam adalah jumlah kedua kecepatan, bukan kecepatan rata-rata.
+<BlockMath math="19 = 3 \times 5 + 4" />
 
-Jadi, kecepatan rata-rata Raka adalah <InlineMath math="16{,}8" /> km/jam.
+Tiga putaran penuh membawa giliran kembali ke Laras, lalu sisa <InlineMath math="4" /> langkah bergerak dari Laras ke Made, Nina, Oka, dan Putri.
+
+Cek dengan cara lain. Satu minggu penuh punya <InlineMath math="6" /> hari buka, jadi setiap minggu giliran bergeser <InlineMath math="6" />, sama dengan bergeser <InlineMath math="1" /> orang. Tiga minggu setelah 15 Februari adalah Selasa, 7 Maret, dan giliran sudah bergeser <InlineMath math="3" /> orang, yaitu ke Oka. Esoknya, Rabu 8 Maret, giliran Putri.
+
+Setiap pilihan lain berasal dari satu kekeliruan hitung:
+
+- Laras muncul kalau kamu ikut menghitung 15 Februari sebagai satu langkah, sehingga mendapat <InlineMath math="20" /> langkah.
+- Made muncul kalau kamu lupa 29 Februari dan juga tidak membuang hari Minggu, sehingga mendapat <InlineMath math="21" /> langkah.
+- Nina muncul kalau kamu menghitung semua <InlineMath math="22" /> hari kalender tanpa membuang hari Minggu.
+- Oka muncul kalau kamu membuang hari Minggu tetapi lupa bahwa 2028 tahun kabisat, sehingga hanya mendapat <InlineMath math="18" /> hari buka.
+
+Jadi, yang berjaga pada 8 Maret 2028 adalah Putri.

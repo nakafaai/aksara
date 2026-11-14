@@ -1,15 +1,43 @@
-What you add is **the rate**, the part of the pool filled each hour, not the times.
+You're looking for the cheapest trip plan for <InlineMath math="100" /> participants. Two things are limited: **there must be enough seats**, and **every trip must arrive by 08:30**. The plan: first count how many trips can still make it, then find the cheapest mix among those trips.
 
-# Rate of each pump
+# Trips that still arrive on time
 
-Pump A fills <InlineMath math="\tfrac16" /> **of the pool per hour** and pump B fills <InlineMath math="\tfrac19" /> per hour.
+A vehicle goes there and back, so the gap between two of its departures is twice the travel time. The bus leaves every <InlineMath math="50" /> minutes and each minibus every <InlineMath math="40" /> minutes.
 
-<BlockMath math="\frac16+\frac19=\frac{3}{18}+\frac{2}{18}=\frac{5}{18}" />
+| Vehicle | Leaves | Arrives at the hall | On time? |
+| :--- | :---: | :---: | :---: |
+| Bus | 07:00 | 07:25 | yes |
+| Bus | 07:50 | 08:15 | yes |
+| Bus | 08:40 | 09:05 | no |
+| Minibus | 07:00 | 07:20 | yes |
+| Minibus | 07:40 | 08:00 | yes |
+| Minibus | 08:20 | 08:40 | no |
 
-# Filling time
+So **the bus makes at most two trips**, and each minibus also makes at most two. With two minibuses, that's at most <InlineMath math="4" /> minibus trips.
 
-<BlockMath math="1:\frac{5}{18}=\frac{18}{5}=3.6\text{ hours}" />
+# The cheapest mix
 
-This is **shorter than 6 hours**, the faster pump's time, as expected because the pumps help each other.
+Say there are <InlineMath math="b" /> bus trips and <InlineMath math="m" /> minibus trips, with <InlineMath math="b\le2" /> and <InlineMath math="m\le4" />. The seats must be enough: <InlineMath math="30b+14m\ge100" />. Try each value of <InlineMath math="b" />.
 
-So the pool is full in **3.6 hours**, which is 3 hours 36 minutes.
+<BlockMath math="\begin{aligned}
+b=0 &: 14m\ge100 \Rightarrow m\ge 8, \text{ but } m\le4 \\
+b=1 &: 14m\ge70 \Rightarrow m\ge 5, \text{ but } m\le4 \\
+b=2 &: 14m\ge40 \Rightarrow m\ge 3
+\end{aligned}" />
+
+Only <InlineMath math="b=2" /> works, so **both bus trips are a must**, and <InlineMath math="m=3" /> is the cheapest choice. That gives <InlineMath math="60+42=102" /> seats, enough for <InlineMath math="100" /> people.
+
+<BlockMath math="\text{cost}=2\times150{,}000+3\times65{,}000=300{,}000+195{,}000=495{,}000" />
+
+Check the times: the two bus trips arrive at 07:25 and 08:15, and the three minibus trips use the two 07:00 departures and one 07:40 departure. All of them arrive before 08:30.
+
+# The wrong options
+
+The other options **forget the time limit or don't search for the cheapest mix**.
+
+- <InlineMath math="\text{Rp}475{,}000" /> uses <InlineMath math="1" /> bus trip and <InlineMath math="5" /> minibus trips. That's cheapest with no time limit, but the minibuses only have time for <InlineMath math="4" /> trips.
+- <InlineMath math="\text{Rp}515{,}000" /> fills the bus as much as possible, <InlineMath math="3" /> bus trips and <InlineMath math="1" /> minibus trip, but the bus only has time for <InlineMath math="2" /> trips.
+- <InlineMath math="\text{Rp}520{,}000" /> uses <InlineMath math="8" /> minibus trips because a minibus seat is cheaper, but that's neither on time nor cheapest.
+- <InlineMath math="\text{Rp}560{,}000" /> uses every trip that makes it, but one minibus trip isn't needed.
+
+So the cheapest cost to get <InlineMath math="100" /> participants there by 08:30 is <InlineMath math="\text{Rp}495{,}000" />.

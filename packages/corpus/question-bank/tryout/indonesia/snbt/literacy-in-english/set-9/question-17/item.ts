@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "braille-code",
+  stimulus: "map-projection",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Louis Braille was born blind.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "The school adopted Braille's system officially while he was still alive.",
+            "Comparing the land areas of countries that lie far apart in latitude",
         },
         {
-          column: 1,
-          label: "Pupils could not write using the raised-letter books.",
+          correct: true,
+          label:
+            "Plotting a course that a ship can follow on one compass heading",
         },
         {
-          column: 1,
-          label: "Braille published his system in 1829.",
+          correct: false,
+          label:
+            "Finding the shortest route between two distant cities with a ruler",
+        },
+        {
+          correct: false,
+          label:
+            "Showing the true outline of a whole continent close to a pole",
+        },
+        {
+          correct: true,
+          label:
+            "Zooming into any city without bending the angles of its street corners",
         },
       ],
     },

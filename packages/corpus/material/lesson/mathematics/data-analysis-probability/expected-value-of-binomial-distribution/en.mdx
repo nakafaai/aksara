@@ -120,7 +120,7 @@ The expected value also differs from the most likely result. The binomial formul
 
 <BarChart
   title={<>How many fives appear in seven rolls</>}
-  description={<>The tallest bar is at 1, while the expected value 7/6, about 1.17, lies between 1 and 2.</>}
+  description={<>The tallest bar is at <InlineMath math="1" />, while the expected value <InlineMath math="\frac{7}{6}" />, about <InlineMath math="1.17" />, lies between <InlineMath math="1" /> and <InlineMath math="2" />.</>}
   data={Array.from({ length: 8 }, (_, k) => {
     const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
     const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
@@ -140,11 +140,11 @@ Suppose a correct answer earns <InlineMath math="4" /> points and a wrong answer
 
 Check per question: one guess has an expected value of <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> points, so twenty guesses also have an expected value of <InlineMath math="0" />. Under this rule, guessing adds nothing to the score in the long run.
 
-The distribution of correct guesses out of 20 with <InlineMath math="p = \tfrac15" /> peaks at 4, exactly the expected value <InlineMath math="np = 4" />, and about <InlineMath math="98\%" /> of its probability lies between 1 and 8 correct answers.
+The distribution of correct guesses out of <InlineMath math="20" /> with <InlineMath math="p = \tfrac15" /> peaks at <InlineMath math="4" />, exactly the expected value <InlineMath math="np = 4" />, and about <InlineMath math="98\%" /> of its probability lies between <InlineMath math="1" /> and <InlineMath math="8" /> correct answers.
 
 <BarChart
-  title={<>Correct guesses out of 20 with <InlineMath math="p = \tfrac15" /></>}
-  description={<>Bars of <InlineMath math="P(X = k)" /> in percent for <InlineMath math="k = 0" /> to 10 correct answers. Higher counts have probability below <InlineMath math="0.3\%" /> each.</>}
+  title={<>Correct guesses out of <InlineMath math="20" /> with <InlineMath math="p = \tfrac15" /></>}
+  description={<>Bars of <InlineMath math="P(X = k)" /> in percent for <InlineMath math="k = 0" /> to <InlineMath math="10" /> correct answers. Higher counts have probability below <InlineMath math="0.3\%" /> each.</>}
   yAxisLabel="Probability (%)"
   data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
   chartConfig={{ value: { label: "Probability (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

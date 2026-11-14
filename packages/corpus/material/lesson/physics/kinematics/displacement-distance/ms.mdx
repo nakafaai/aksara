@@ -1,0 +1,175 @@
+
+export const metadata = {
+  title: "Sesaran dan Jarak",
+  description:
+    "Jarak mengukur panjang laluan, manakala sesaran mengukur perubahan dari kedudukan awal ke kedudukan akhir.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Kinematik",
+};
+
+## Panjang Laluan dan Perubahan Kedudukan
+
+Apabila objek bergerak dari titik mula ke titik akhir, ada dua kuantiti yang bunyinya hampir sama tetapi maksudnya berbeza, iaitu **jarak** dan **sesaran**.
+
+**Jarak** ialah jumlah panjang laluan yang dilalui. Jika laluan itu membelok, setiap bahagian belokan turut dikira. **Sesaran** ialah perubahan kedudukan dari mula hingga akhir, jadi sesaran hanya bergantung pada titik mula, titik akhir dan arah.
+
+<BlockMath math="\begin{aligned}
+s&=\text{panjang laluan} \\
+\Delta \vec{r}&=\vec{r}_{\text{akhir}}-\vec{r}_{\text{awal}}
+\end{aligned}" />
+
+Di sini, <InlineMath math="s" /> bermaksud jumlah panjang laluan, manakala <InlineMath math="\Delta \vec{r}" /> bermaksud perubahan kedudukan dari mula hingga akhir.
+
+Dalam gerakan dua dimensi, sesaran dilukis sebagai garis lurus dari titik mula ke titik akhir.
+
+> Jarak menjumlahkan setiap bahagian laluan yang dilalui. Sesaran hanya membandingkan kedudukan mula dan kedudukan akhir.
+
+<DisplacementDistanceLab
+  title={<>Panjang Laluan dan Sesaran</>}
+  description={
+    <>
+      Pilih satu laluan untuk membandingkan laluan yang dilalui dengan sesaran
+      yang lurus.
+    </>
+  }
+  labels={{
+    chooseCase: "Pilih laluan",
+    modeLabels: {
+      straight: <>Lurus</>,
+      turn: <>Membelok</>,
+      return: <>Kembali ke Titik Mula</>,
+    },
+    factLabels: {
+      distance: <>Jarak dilalui</>,
+      displacement: <>Magnitud sesaran</>,
+      vector: <>Vektor sesaran</>,
+      meaning: <>Apa yang berubah</>,
+    },
+    meanings: {
+      straight: <>Jarak dan magnitud sesaran adalah sama.</>,
+      turn: <>Jarak lebih panjang kerana kereta mengikut belokan.</>,
+      return: <>Kereta melalui satu laluan tetapi berakhir di tempat ia bermula.</>,
+    },
+    viewLabel: "Visual jarak dan sesaran",
+  }}
+/>
+
+## Lencongan Mengubah Jarak
+
+Bandingkan satu objek yang bergerak dari titik mula yang sama ke titik akhir yang sama melalui dua cara. Laluan lurus memberikan jarak yang sama dengan magnitud sesaran. Lencongan memberikan jarak yang lebih panjang, tetapi sesarannya tetap garis lurus dari mula hingga akhir.
+
+Dalam simulasi, pilih laluan membelok, kemudian laluan kembali. Bandingkan **panjang laluan** dengan **magnitud sesaran**. Apabila kereta kembali ke titik mula, laluannya masih mempunyai panjang, manakala segmen yang menyambungkan kedudukan awal dan kedudukan akhirnya mempunyai panjang sifar.
+
+## Jarak Menerangkan Panjang Laluan
+
+Jarak sentiasa sifar atau positif. Jarak menjawab soalan, "berapa panjang laluan yang dilalui?" Jadi, jarak **tidak mengambil kira arah**.
+
+Jika objek bergerak <InlineMath math="4 \text{ m}" /> ke timur, kemudian <InlineMath math="3 \text{ m}" /> ke selatan, jaraknya ialah:
+
+<BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
+
+Simbol <InlineMath math="s" /> selalu digunakan untuk jarak yang dilalui.
+
+## Sesaran Mempunyai Magnitud dan Arah
+
+Sesaran ialah kuantiti vektor. Maksudnya, sesaran mempunyai magnitud dan arah. Bagi contoh <InlineMath math="4 \text{ m}" /> ke timur, kemudian <InlineMath math="3 \text{ m}" /> ke selatan, magnitud sesaran ialah panjang garis lurus dari mula hingga akhir:
+
+<BlockMath math="\begin{aligned}
+|\Delta \vec{r}|&=\sqrt{(4 \text{ m})^2+(3 \text{ m})^2} \\
+&=\sqrt{16+9}\text{ m} \\
+&=\sqrt{25}\text{ m}=5\text{ m}
+\end{aligned}" />
+
+Arah sesaran <Highlight>menghala terus dari titik mula ke titik akhir</Highlight>.
+
+## Kembali ke Titik Mula
+
+Jika objek bergerak berpusing-pusing dan kembali ke titik mula, jaraknya bukan sifar kerana masih ada laluan yang dilalui. Namun, sesarannya sifar kerana **kedudukan awal dan kedudukan akhir adalah sama**.
+
+| Perjalanan | Jarak | Sesaran |
+| :--- | :------- | :----------- |
+| Dari mula ke akhir melalui laluan lurus | sama dengan garis lurus | garis dari mula ke akhir |
+| Dari mula ke akhir melalui lencongan | lebih panjang | tetap garis dari mula ke akhir |
+| Mengelilingi gelung kembali ke titik mula | bukan sifar | <InlineMath math="0" /> |
+
+Jadi, jarak memberitahu panjang laluan sebenar yang dilalui, manakala sesaran memberitahu perubahan bersih kedudukan.
+
+Tiga perjalanan bermula dari titik yang sama. Perjalanan lurus mempunyai jarak yang sama dengan saiz sesarannya, lencongan lebih panjang untuk sesaran yang sama, dan gelung kembali ke titik mula dengan sesaran sifar. Zum masuk pada setiap laluan.
+
+<MathVisual
+  title={<>Tiga Perjalanan dari Satu Titik Mula</>}
+  description={<>Perjalanan lurus (hijau kebiruan), lencongan (jingga) dan gelung yang kembali ke titik mula (ungu).</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -2.5, max: 2.8 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "straight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "straight-head", kind: "polygon", appearance: "construction", vertices: [{ x: 4, y: 0 }, { x: 3.75, y: 0.125 }, { x: 3.75, y: -0.125 }] },
+      { id: "detour", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2, y: 2 }, { x: 4, y: 0 }] },
+      { id: "loop", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: -1.5 }, { x: 3, y: -1.5 }, { x: 2, y: -0.5 }] },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "finish", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "straight", objectId: "straight", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "detour", objectId: "detour", at: { x: 2, y: 2 }, placement: "above" },
+      { key: "loop", objectId: "loop", at: { x: 2, y: -1.5 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    straight: <InlineMath math="s=\lvert\Delta x\rvert=4\text{ m}" />,
+    detour: <InlineMath math="s=2\sqrt8\approx5.66\text{ m},\ \Delta x=4\text{ m}" />,
+    loop: <InlineMath math="s>0,\ \Delta x=0" />,
+    start: <>mula</>,
+  }}
+/>
+
+## Jarak dan Sesaran pada Laluan yang Membelok
+
+Seorang pelajar berjalan <InlineMath math="8 \text{ m}" /> ke timur, kemudian <InlineMath math="6 \text{ m}" /> ke utara. Jarak yang dilalui ialah:
+
+<BlockMath math="s=8 \text{ m}+6 \text{ m}=14 \text{ m}" />
+
+Magnitud sesarannya ialah:
+
+<BlockMath math="\begin{aligned}
+|\Delta \vec{r}|&=\sqrt{(8 \text{ m})^2+(6 \text{ m})^2} \\
+&=\sqrt{64+36}\text{ m} \\
+&=\sqrt{100}\text{ m}=10\text{ m}
+\end{aligned}" />
+
+Jaraknya ialah <InlineMath math="14 \text{ m}" />, tetapi magnitud sesarannya <InlineMath math="10 \text{ m}" />. Nilainya berbeza kerana laluan yang dilalui tidak sama dengan **garis lurus dari mula hingga akhir**.
+
+Putar perjalanan di bawah. Anak panah jingga dan ungu ialah laluannya, iaitu jarak <InlineMath math="8+6=14\text{ m}" />. Anak panah magenta menyambungkan titik mula terus ke titik akhir, jadi panjangnya ialah sesaran, iaitu <InlineMath math="10\text{ m}" />, yang diperoleh daripada segi tiga bersudut tegak.
+
+<MathVisual
+  title={<>Jarak dan Sesaran pada Selekoh</>}
+  description={<>8 m ke timur, kemudian 6 m ke utara, dilihat dari atas. Satu petak grid mewakili 2 m.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },
+    view: { kind: "camera", position: { x: 2, y: 7, z: 5 }, target: { x: 2, y: 0, z: -1.5 } },
+    objects: [
+      { id: "east", kind: "segment", appearance: "primary", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 } },
+      { id: "east-head", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 0, z: 0 }, { x: 3.75, y: 0, z: 0.125 }, { x: 3.75, y: 0, z: -0.125 }] },
+      { id: "north", kind: "segment", appearance: "secondary", from: { x: 4, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
+      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4.125, y: 0, z: -2.75 }, { x: 3.875, y: 0, z: -2.75 }] },
+      { id: "straight", kind: "segment", appearance: "answer", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: -3 } },
+      { id: "straight-head", kind: "polygon", appearance: "answer", vertices: [{ x: 4, y: 0, z: -3 }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) + ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) + ((0.25 / 2) * 4) / Math.hypot(4, -3) }, { x: 4 - (0.25 * 4) / Math.hypot(4, -3) - ((0.25 / 2) * 3) / Math.hypot(4, -3), y: 0, z: -3 - (0.25 * -3) / Math.hypot(4, -3) - ((0.25 / 2) * 4) / Math.hypot(4, -3) }] },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 2, y: 0, z: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 4, y: 0, z: -1.5 }, placement: "right" },
+      { key: "straight", objectId: "straight", at: { x: 2, y: 0, z: -1.5 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="8\text{ m}" />,
+    north: <InlineMath math="6\text{ m}" />,
+    straight: <InlineMath math="\sqrt{8^2+6^2}=10\text{ m}" />,
+  }}
+/>

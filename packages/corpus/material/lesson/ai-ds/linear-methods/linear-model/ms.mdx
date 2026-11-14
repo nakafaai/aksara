@@ -1,0 +1,199 @@
+export const metadata = {
+  title: "Model Linear",
+  description: "Bina model linear pada parameter daripada fungsi asas, susun pengukuran dalam matriks reka bentuk, dan bezakan model linear tepat daripada pelinearan setempat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-14",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Linear pada Parameter Model
+
+Model linear mengaitkan input yang diketahui <InlineMath math="t \in \mathbb{R}^k" /> dengan respons yang dicerap <InlineMath math="y \in \mathbb{R}^d" /> melalui parameter yang tidak diketahui <InlineMath math="x \in \mathbb{R}^n" />:
+
+<BlockMath math="y=h(t)x,\qquad h(t)\in\mathbb{R}^{d\times n}" />
+
+Kata kuncinya ialah **linear pada parameter**. Untuk <InlineMath math="t" /> yang tetap, pemetaan daripada <InlineMath math="x" /> kepada <InlineMath math="y" /> bersifat linear. Kebergantungan pada <InlineMath math="t" /> pula boleh mengandungi kuasa, logaritma, sinus atau fungsi asas tak linear yang lain.
+
+## Daripada Pengukuran kepada Matriks Reka Bentuk
+
+Katakan kita mengumpul <InlineMath math="M" /> pasangan input-respons <InlineMath math="(t_i,y_i)" /> dan memodelkan setiap cerapan sebagai
+
+<BlockMath math="y_i=h(t_i)x+\varepsilon_i,\qquad i=1,\ldots,M" />
+
+Ralat <InlineMath math="\varepsilon_i" /> mengandungi hingar pengukuran dan ketidakpadanan model. Apabila semua respons dan blok model disusun, kita dapat
+
+<MathContainer>
+<BlockMath math="b=\begin{pmatrix}y_1\\\vdots\\y_M\end{pmatrix}\in\mathbb{R}^{Md}" />
+<BlockMath math="A=\begin{pmatrix}h(t_1)\\\vdots\\h(t_M)\end{pmatrix}\in\mathbb{R}^{Md\times n}" />
+<BlockMath math="b=Ax+\varepsilon" />
+</MathContainer>
+
+Matriks <InlineMath math="A" /> ialah **matriks reka bentuk**. Apabila tiada satu vektor parameter pun yang memenuhi semua cerapan dengan tepat, anggarkan <InlineMath math="x" /> dengan kuasa dua terkecil atau model reja yang lain. Data menentukan parameter secara unik apabila <InlineMath math="A" /> mempunyai pangkat lajur penuh. Nombor syarat bagi <InlineMath math="A" /> pula mengukur kepekaan berangka anggaran itu secara berasingan.
+
+## Fungsi Asas Menghasilkan Pelbagai Bentuk Model
+
+Katakan <InlineMath math="\phi_1(t),\ldots,\phi_n(t)" /> ialah fungsi asas yang diketahui. Model respons skalar boleh ditulis sebagai
+
+<BlockMath math="\begin{aligned} y(t) &amp;=\sum_{j=1}^{n}x_j\phi_j(t) \\ &amp;=\begin{pmatrix}\phi_1(t)&amp;\cdots&amp;\phi_n(t)\end{pmatrix}x \end{aligned}" />
+
+Pilihan fungsi asas yang berbeza menghasilkan bentuk yang berbeza, sementara model kekal linear pada <InlineMath math="x" />.
+
+Garis afin:
+
+<BlockMath math="\begin{aligned} y&=a+bt\\&=\begin{pmatrix}1&t\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}\end{aligned}" />
+
+Polinomial berdarjah <InlineMath math="p" />:
+
+<BlockMath math="\begin{aligned} y&=\sum_{j=0}^{p}a_jt^j\\&=\begin{pmatrix}1&t&\cdots&t^p\end{pmatrix}\begin{pmatrix}a_0\\a_1\\\vdots\\a_p\end{pmatrix}\end{aligned}" />
+
+Asas Fourier:
+
+<BlockMath math="\begin{aligned} y&=a_0+\sum_{j=1}^{p}a_j\cos(jt)\\&\quad+\sum_{j=1}^{p}b_j\sin(jt)\end{aligned}" />
+
+Interaksi antara dua input:
+
+<BlockMath math="\begin{aligned} y&=a+bt+cs+dts\\&=\begin{pmatrix}1&t&s&ts\end{pmatrix}\begin{pmatrix}a\\b\\c\\d\end{pmatrix}\end{aligned}" />
+
+Sebutan seperti <InlineMath math="t^p" />, <InlineMath math="\sin(jt)" /> dan <InlineMath math="ts" /> mungkin tak linear pada input. Sebaik sahaja input dicerap, sebutan ini menjadi pekali yang diketahui, jadi <Highlight>model kekal linear pada parameternya yang tidak diketahui</Highlight>.
+
+Ambil cerapan <InlineMath math="(t,y)=(0,1),(1,3),(2,5)" /> dan asas <InlineMath math="1,t" />. Setiap input yang dicerap memberi satu baris matriks reka bentuk.
+
+<MathContainer>
+<BlockMath math="\begin{pmatrix}1&amp;0\\1&amp;1\\1&amp;2\end{pmatrix}\begin{pmatrix}a\\b\end{pmatrix}=\begin{pmatrix}1\\3\\5\end{pmatrix}" />
+<BlockMath math="a=1,\qquad a+b=3\Rightarrow b=2" />
+<BlockMath math="a+2b=1+2(2)=5" />
+</MathContainer>
+
+Cerapan ketiga sepadan dengan dua cerapan yang pertama: satu vektor parameter <InlineMath math="(a,b)=(1,2)" /> menerangkan ketiga-tiga nilai.
+
+Putar permukaan model interaksi <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /> di bawah. Setiap garis ungu mengekalkan <InlineMath math="s" /> tetap dan setiap garis hijau kebiruan mengekalkan <InlineMath math="t" /> tetap, dan setiap garis itu lurus. Pilinan itu datang hanya daripada sebutan <InlineMath math="\tfrac{ts}2" />, yang menjadikan kecerunan dalam arah <InlineMath math="t" /> sama dengan <InlineMath math="\tfrac12+\tfrac s2" />. Keempat-empat pekali masih masuk secara linear, jadi kuasa dua terkecil boleh memadankannya dengan baris matriks reka bentuk <InlineMath math="(1,t,s,ts)" />.
+
+<MathVisual
+  title={<>Model interaksi <InlineMath math="y=1+\tfrac t2+\tfrac s2+\tfrac{ts}2" /></>}
+  description={<>Garis ungu mengekalkan <InlineMath math="s" /> tetap, garis hijau kebiruan mengekalkan <InlineMath math="t" /> tetap. Paksi <InlineMath math="t" /> menghala ke kanan, <InlineMath math="s" /> ke arah kamu, dan <InlineMath math="y" /> ke atas.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 5.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "isometric", target: { x: 0, y: 1.5, z: 0 } },
+    objects: [
+      { id: "along-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, appearance: "secondary" },
+      { id: "along-b", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1.5) / 2 + (-2) * (-1.5) / 2, z: -1.5 }, to: { x: 2, y: 1 + (2) / 2 + (-1.5) / 2 + (2) * (-1.5) / 2, z: -1.5 }, appearance: "secondary" },
+      { id: "along-c", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-1) / 2 + (-2) * (-1) / 2, z: -1 }, to: { x: 2, y: 1 + (2) / 2 + (-1) / 2 + (2) * (-1) / 2, z: -1 }, appearance: "secondary" },
+      { id: "along-d", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-0.5) / 2 + (-2) * (-0.5) / 2, z: -0.5 }, to: { x: 2, y: 1 + (2) / 2 + (-0.5) / 2 + (2) * (-0.5) / 2, z: -0.5 }, appearance: "secondary" },
+      { id: "along-e", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0) / 2 + (-2) * (0) / 2, z: 0 }, to: { x: 2, y: 1 + (2) / 2 + (0) / 2 + (2) * (0) / 2, z: 0 }, appearance: "secondary" },
+      { id: "along-f", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (0.5) / 2 + (-2) * (0.5) / 2, z: 0.5 }, to: { x: 2, y: 1 + (2) / 2 + (0.5) / 2 + (2) * (0.5) / 2, z: 0.5 }, appearance: "secondary" },
+      { id: "along-g", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1) / 2 + (-2) * (1) / 2, z: 1 }, to: { x: 2, y: 1 + (2) / 2 + (1) / 2 + (2) * (1) / 2, z: 1 }, appearance: "secondary" },
+      { id: "along-h", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (1.5) / 2 + (-2) * (1.5) / 2, z: 1.5 }, to: { x: 2, y: 1 + (2) / 2 + (1.5) / 2 + (2) * (1.5) / 2, z: 1.5 }, appearance: "secondary" },
+      { id: "along-i", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "secondary" },
+      { id: "across-a", kind: "segment", from: { x: -2, y: 1 + (-2) / 2 + (-2) / 2 + (-2) * (-2) / 2, z: -2 }, to: { x: -2, y: 1 + (-2) / 2 + (2) / 2 + (-2) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-b", kind: "segment", from: { x: -1.5, y: 1 + (-1.5) / 2 + (-2) / 2 + (-1.5) * (-2) / 2, z: -2 }, to: { x: -1.5, y: 1 + (-1.5) / 2 + (2) / 2 + (-1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-c", kind: "segment", from: { x: -1, y: 1 + (-1) / 2 + (-2) / 2 + (-1) * (-2) / 2, z: -2 }, to: { x: -1, y: 1 + (-1) / 2 + (2) / 2 + (-1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-d", kind: "segment", from: { x: -0.5, y: 1 + (-0.5) / 2 + (-2) / 2 + (-0.5) * (-2) / 2, z: -2 }, to: { x: -0.5, y: 1 + (-0.5) / 2 + (2) / 2 + (-0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-e", kind: "segment", from: { x: 0, y: 1 + (0) / 2 + (-2) / 2 + (0) * (-2) / 2, z: -2 }, to: { x: 0, y: 1 + (0) / 2 + (2) / 2 + (0) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-f", kind: "segment", from: { x: 0.5, y: 1 + (0.5) / 2 + (-2) / 2 + (0.5) * (-2) / 2, z: -2 }, to: { x: 0.5, y: 1 + (0.5) / 2 + (2) / 2 + (0.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-g", kind: "segment", from: { x: 1, y: 1 + (1) / 2 + (-2) / 2 + (1) * (-2) / 2, z: -2 }, to: { x: 1, y: 1 + (1) / 2 + (2) / 2 + (1) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-h", kind: "segment", from: { x: 1.5, y: 1 + (1.5) / 2 + (-2) / 2 + (1.5) * (-2) / 2, z: -2 }, to: { x: 1.5, y: 1 + (1.5) / 2 + (2) / 2 + (1.5) * (2) / 2, z: 2 }, appearance: "construction" },
+      { id: "across-i", kind: "segment", from: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, to: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "along", objectId: "along-i", at: { x: 2, y: 1 + (2) / 2 + (2) / 2 + (2) * (2) / 2, z: 2 }, placement: "right" },
+      { key: "across", objectId: "across-i", at: { x: 2, y: 1 + (2) / 2 + (-2) / 2 + (2) * (-2) / 2, z: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "along": <InlineMath math="s=2" />,
+    "across": <InlineMath math="t=2" />,
+  }}
+/>
+
+Model <InlineMath math="y=a+bt" /> mempunyai baris <InlineMath math="(1,t_i)" />. Dua cerapan pertama memberi <InlineMath math="a=1" /> dan <InlineMath math="a+b=3" />, jadi <InlineMath math="b=2" />, dan cerapan ketiga <InlineMath math="1+2\cdot2=5" /> jatuh tepat pada garis itu.
+
+<ScatterDiagram
+  title={<>Tiga cerapan pada garis <InlineMath math="y=1+2t" /></>}
+  description={<>Titik <InlineMath math="(0,1)" />, <InlineMath math="(1,3)" /> dan <InlineMath math="(2,5)" /> bersama garis padanan. Setiap reja bernilai <InlineMath math="0" />, jadi baris ketiga mengesahkan <InlineMath math="a=1" /> dan <InlineMath math="b=2" />.</>}
+  xAxisLabel="Nilai input"
+  yAxisLabel="Nilai cerapan"
+  datasets={[
+    {
+      name: "Cerapan",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 3 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
+/>
+
+## Respons Berbilang
+
+Jika setiap input menghasilkan beberapa respons, letakkan vektor parameternya dalam satu matriks <InlineMath math="B" />. Untuk satu baris nilai asas <InlineMath math="\phi(t)^{\mathsf T}" />,
+
+<BlockMath math="y(t)^{\mathsf T}=\phi(t)^{\mathsf T}B" />
+
+**Setiap lajur** <InlineMath math="B" /> menerangkan satu respons. Ini masih model linear kerana setiap output ialah gabungan linear bagi nilai asas yang sama dan sudah diketahui.
+
+## Hukum Gas Unggul
+
+<BlockMath math="pV=nRT" />
+
+Pada suhu <InlineMath math="T" /> dan isi padu <InlineMath math="V" /> yang diketahui, apabila kita selesaikan persamaan ini untuk tekanan, kita dapat
+
+<BlockMath math="p=\frac{RT}{V}n" />
+
+Tekanan <InlineMath math="p" /> bersifat linear pada **kuantiti bahan yang tidak diketahui** <InlineMath math="n" />, yang diukur dalam mol. Kuantiti <InlineMath math="n" /> itu sendiri bukan bilangan molekul. Bilangan entiti yang ditentukan ialah <InlineMath math="N=nN_A" />.
+
+Pengukuran tekanan berulang pada beberapa nilai <InlineMath math="(T_i,V_i)" /> yang diketahui menghasilkan satu baris matriks reka bentuk <InlineMath math="RT_i/V_i" /> bagi setiap cerapan.
+
+Lima pengukuran pada <InlineMath math="(T_i,V_i)" /> yang berbeza memberi lima baris <InlineMath math="RT_i/V_i" />, di sini dengan <InlineMath math="R=8.314\ \mathrm{kPa\,L/(mol\,K)}" />, suhu dalam kelvin dan isi padu dalam liter. Untuk gas dengan <InlineMath math="n=2\ \mathrm{mol}" />, setiap tekanan ialah dua kali unsur reka bentuknya, jadi titik-titiknya tersusun pada satu garis yang melalui asalan.
+
+<ScatterDiagram
+  title={<>Tekanan linear pada kuantiti <InlineMath math="n" /></>}
+  description={<>Setiap titik memasangkan unsur reka bentuk <InlineMath math="RT_i/V_i" /> dengan tekanan <InlineMath math="p_i=(RT_i/V_i)\,n" /> untuk <InlineMath math="n=2\ \mathrm{mol}" />. Garis padanan melalui asalan dengan kecerunan <InlineMath math="2" />.</>}
+  xAxisLabel="Unsur reka bentuk (kPa/mol)"
+  yAxisLabel="Tekanan (kPa)"
+  datasets={[
+    {
+      name: "Pengukuran",
+      color: "var(--chart-2)",
+      points: [
+        { x: 8.314 * 280 / 10, y: 2 * 8.314 * 280 / 10 },
+        { x: 8.314 * 300 / 12, y: 2 * 8.314 * 300 / 12 },
+        { x: 8.314 * 320 / 8, y: 2 * 8.314 * 320 / 8 },
+        { x: 8.314 * 350 / 10, y: 2 * 8.314 * 350 / 10 },
+        { x: 8.314 * 300 / 6, y: 2 * 8.314 * 300 / 6 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+/>
+
+## Pelinearan Setempat bagi Model Tak Linear
+
+Model parameter yang benar-benar tak linear mempunyai bentuk
+
+<BlockMath math="y=g(t,x)" />
+
+Dalam model ini, parameter boleh muncul di dalam fungsi eksponen, kuasa atau hasil darab sesama sendiri. Berhampiran nilai parameter semasa <InlineMath math="x_0" />, **penghampiran Taylor peringkat pertama** memberi
+
+<BlockMath math="g(t,x) \approx g(t,x_0) +J_xg(t,x_0)(x-x_0)" />
+
+Jacobian <InlineMath math="J_xg(t,x_0)" /> sudah diketahui selepas <InlineMath math="x_0" /> dipilih, jadi pembetulan <InlineMath math="x-x_0" /> muncul secara linear. Penghampiran ini hanya tepat berhampiran <InlineMath math="x_0" />. Kaedah lelaran seperti Gauss-Newton mengemas kini titik pelinearan itu berulang kali.
+
+## Semakan Sebelum Memadankan Model
+
+Sebelum mentafsir parameter yang dipadankan, pastikan bahawa:
+
+- lajur matriks reka bentuk mewakili fungsi asas dan unit yang dimaksudkan
+- data mengandungi **maklumat bebas** yang cukup untuk parameter, biasanya <InlineMath math="\operatorname{rank}(A)=n" />
+- skala ciri dan nombor syarat tidak menjadikan penyelesaian itu rapuh secara berangka
+- fungsi kerugian reja yang dipilih sepadan dengan andaian tentang hingar dan pencilan
+- pelinearan setempat disemak semula terhadap model tak linear yang asal
+
+Asas yang fleksibel boleh memadankan banyak bentuk, tetapi fleksibiliti sahaja tidak menjamin kebolehkenalpastian, kestabilan berangka atau ramalan yang berguna.

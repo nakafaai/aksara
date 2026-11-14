@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "word-choice",
+    topic: "punctuation",
   },
-  stimulus: "grain-barn",
+  stimulus: "kenikir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kalimat (2)",
+          label:
+            "Bedeng cabai, yang dikelilingi kenikir mulai ramai didatangi kepik pada minggu keenam.",
         },
         {
           correct: false,
-          label: "kalimat (3)",
-        },
-        {
-          correct: false,
-          label: "kalimat (4)",
-        },
-        {
-          correct: false,
-          label: "kalimat (5)",
+          label:
+            "Bedeng cabai yang dikelilingi kenikir, mulai ramai didatangi kepik pada minggu keenam.",
         },
         {
           correct: true,
-          label: "kalimat (6)",
+          label:
+            "Bedeng cabai yang dikelilingi kenikir mulai ramai didatangi kepik pada minggu keenam.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada minggu keenam, bedeng cabai, yang dikelilingi kenikir, mulai ramai didatangi kepik.",
+        },
+        {
+          correct: false,
+          label:
+            "Bedeng cabai mulai ramai didatangi kepik, yang dikelilingi kenikir, pada minggu keenam.",
         },
       ],
     },

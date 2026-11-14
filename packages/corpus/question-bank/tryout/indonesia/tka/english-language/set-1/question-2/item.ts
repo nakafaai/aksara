@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "descriptive",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "narrative",
+    topic: "prediction",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The western corner uses mesh to cool seedlings kept inside dark containers.",
+            "Wait until late October and have Grandmother name the last houses at the kitchen table, where the map is kept.",
+        },
+        {
+          correct: false,
+          label:
+            "Ask the boatman to name the last houses, since he grew up nearby and knows where the well lay.",
+        },
+        {
+          correct: false,
+          label:
+            "Go out by boat with Grandmother before mid-October and lengthen the step distances, since a seven-year-old's steps cover more ground than Laras's.",
         },
         {
           correct: true,
           label:
-            "The eastern side uses shade cloth to protect seedlings during the brightest hours.",
+            "Go out by boat with Grandmother before mid-October and shorten the step distances to fit a seven-year-old's stride.",
         },
         {
           correct: false,
           label:
-            "The stair area uses heavy planters to shade the herbs from afternoon light.",
-        },
-        {
-          correct: false,
-          label:
-            "The work area uses the sealed notebook to reduce heat around seedlings.",
-        },
-        {
-          correct: false,
-          label:
-            "The western corner moves flowering plants beneath bamboo frames whenever sunlight is strongest.",
+            "Go out by boat once the October rains have raised the water, so the boat can reach the houses near the school.",
         },
       ],
     },

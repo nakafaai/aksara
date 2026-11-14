@@ -24,11 +24,11 @@ What _total distance_ does the ball travel from the moment it is released until 
 
 In the idealized model, the ball moves down, then up, down again, and so on without a final bounce. The total distance is built from all downward and upward paths. Because their lengths form an infinite geometric pattern, the calculation uses an **infinite geometric series**.
 
-Each bounce reaches a quarter of the previous height: 1 m, then <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. The bars shrink so fast that after a few bounces they are almost invisible.
+Each bounce reaches a quarter of the previous height: <InlineMath math="1\text{ m}" />, then <InlineMath math="\tfrac14" /> m, <InlineMath math="\tfrac{1}{16}" /> m, <InlineMath math="\tfrac{1}{64}" /> m. The bars shrink so fast that after a few bounces they are almost invisible.
 
 <BarChart
   title={<>Heights of the first five bounces</>}
-  description={<>Bars of <InlineMath math="\left(\tfrac14\right)^{n-1}" /> metres for <InlineMath math="n = 1" /> to 5.</>}
+  description={<>Bars of <InlineMath math="\left(\tfrac14\right)^{n-1}" /> metres for <InlineMath math="n = 1" /> to <InlineMath math="5" />.</>}
   yAxisLabel="Height (m)"
   data={[1, 2, 3, 4, 5].map((n) => ({ name: String(n), value: (1 / 4) ** (n - 1) }))}
   chartConfig={{ value: { label: "Height (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -80,8 +80,8 @@ No finite partial sum equals <InlineMath math="2" />, but the partial sums can g
 
 
 <MathVisual
-  title={<>Partial sums approaching 2</>}
-  description={<>The sums <InlineMath math="S_n = 2 - 2^{1-n}" /> after 1 to 6 terms climb toward the line <InlineMath math="y = 2" /> without reaching it.</>}
+  title={<>Partial sums approaching <InlineMath math="2" /></>}
+  description={<>The sums <InlineMath math="S_n = 2 - 2^{1-n}" /> after <InlineMath math="1" /> to <InlineMath math="6" /> terms climb toward the line <InlineMath math="y = 2" /> without reaching it.</>}
   labels={{
     limit: <InlineMath math="2" />,
     s: <InlineMath math="S_n" />,
@@ -159,10 +159,10 @@ Here <InlineMath math="a=12" /> and <InlineMath math="r=-\frac12" />. Since <Inl
 
 The negative ratio makes the terms alternate in sign, but their magnitudes shrink quickly enough for the partial sums to approach <InlineMath math="8" />.
 
-The partial sums of <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> are 12, 6, 9, 7.5, 8.25 and 7.875. They land alternately above and below 8 and close in on it from both sides.
+The partial sums of <InlineMath math="12 - 6 + 3 - \tfrac32 + \cdots" /> are <InlineMath math="12" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="7.5" />, <InlineMath math="8.25" /> and <InlineMath math="7.875" />. They land alternately above and below <InlineMath math="8" /> and close in on it from both sides.
 
 <MathVisual
-  title={<>Partial sums on both sides of 8</>}
+  title={<>Partial sums on both sides of <InlineMath math="8" /></>}
   description={<>The partial sums <InlineMath math="S_1" /> to <InlineMath math="S_6" /> of the series with <InlineMath math="a = 12" /> and <InlineMath math="r = -\tfrac12" />, around the line <InlineMath math="y = 8" />.</>}
   labels={{
     limit: <InlineMath math="8" />,

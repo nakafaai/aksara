@@ -1,0 +1,18 @@
+Sebuah aplikasi pelacak tidur mencatat tidur seorang pengguna selama satu pekan. Baris Senin berisi tidur yang dimulai pada Senin malam dan berakhir saat bangun pada Selasa pagi, dan begitu seterusnya. Jam mulai tidur 00.20 berarti pengguna baru tidur setelah lewat tengah malam.
+
+| Hari | Mulai tidur | Bangun | Waktu terjaga |
+| :--- | :---: | :---: | :---: |
+| Senin | 22.00 | 06.40 | <InlineMath math="20" /> menit |
+| Selasa | 23.30 | 06.00 | <InlineMath math="15" /> menit |
+| Rabu | 00.20 | 06.50 | <InlineMath math="10" /> menit |
+| Kamis | 22.15 | 07.15 | <InlineMath math="25" /> menit |
+| Jumat | 23.45 | 05.45 | <InlineMath math="0" /> menit |
+| Sabtu | 22.30 | 09.00 | <InlineMath math="30" /> menit |
+| Minggu | 21.30 | 07.30 | <InlineMath math="40" /> menit |
+
+Aplikasi itu memakai aturan berikut.
+
+- Waktu di tempat tidur adalah selang dari jam mulai tidur sampai jam bangun.
+- Tidur efektif adalah waktu di tempat tidur dikurangi waktu terjaga.
+- Target tidur efektif adalah <InlineMath math="8" /> jam setiap malam.
+- Utang tidur bernilai nol sebelum Senin malam. Setiap malam, kekurangan tidur efektif dari target ditambahkan ke utang tidur. Kelebihan tidur efektif dari target dipakai untuk mengurangi utang tidur, tetapi utang tidur tidak pernah kurang dari nol, dan kelebihan yang tidak terpakai tidak disimpan untuk malam berikutnya.

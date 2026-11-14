@@ -1,15 +1,40 @@
-Jalan itu adalah diagonal persegi panjang. Diagonal membagi persegi panjang menjadi dua segitiga siku-siku dengan sisi siku-siku <InlineMath math="21\text{ m}" /> dan <InlineMath math="20\text{ m}" />. Diagonal itu adalah **sisi miring**, jadi teorema Pythagoras berlaku.
+# Mengkuadratkan kedua ruas
+
+Kamu belum tahu <InlineMath math="\sin x" /> dan <InlineMath math="\cos x" /> satu per satu. **Kuadratkan kedua ruas**, karena hasilnya memuat <InlineMath math="\sin^2x+\cos^2x" />, yang selalu bernilai <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-Sebagai pemeriksaan, <InlineMath math="29^2=841" />, dan sisi miring lebih panjang dari setiap sisi siku-siku tetapi lebih pendek dari jumlah keduanya, <InlineMath math="41\text{ m}" />.
+# Dua bilangan dari jumlah dan hasil kalinya
 
-Jadi, panjang jalan itu adalah <InlineMath math="29\text{ m}" />.
+Sekarang kamu tahu jumlah <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> dan hasil kali <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Dua bilangan dengan jumlah dan hasil kali itu adalah akar persamaan kuadrat berikut**:
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> berasal dari <InlineMath math="21^2-20^2=41" />. Untuk sisi miring, kuadrat sisi siku-siku dijumlahkan.
-- <InlineMath math="21\text{ m}" /> hanyalah sisi yang lebih panjang. Diagonal selalu lebih panjang dari setiap sisi.
-- <InlineMath math="25\text{ m}" /> dan <InlineMath math="27\text{ m}" /> tidak cocok, karena <InlineMath math="25^2=625" /> dan <InlineMath math="27^2=729" /> lebih kecil dari <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> adalah jumlah kedua sisi, yaitu jalan menyusuri dua tepi, bukan memotong langsung.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
+
+Jadi kedua bilangan itu adalah <InlineMath math="\frac{5}{13}" /> dan <InlineMath math="\frac{12}{13}" />. Tinggal menentukan mana yang sinus dan mana yang kosinus.
+
+# Memakai batas sudutnya
+
+Untuk <InlineMath math="0^\circ<x<45^\circ" />, sudutnya lebih dekat ke <InlineMath math="0^\circ" />, jadi **sinusnya lebih kecil daripada kosinusnya**. Karena itu:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Cek: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, dan <InlineMath math="\tan x=\frac{5}{12}<1" /> memang cocok dengan sudut di bawah <InlineMath math="45^\circ" />.
+
+Jadi, <InlineMath math="\tan x=\frac{5}{12}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{12}{5}" /> **menukar sinus dan kosinus**. Nilai tangen di atas <InlineMath math="1" /> berarti sudutnya lebih dari <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> adalah <InlineMath math="\sin x\cos x" />, hasil langkah tengah, bukan tangennya.
+- <InlineMath math="\frac{5}{12}" /> atau <InlineMath math="\frac{12}{5}" /> mengabaikan batas sudut. Tanpa batas itu kedua nilai mungkin, tetapi di sini hanya satu yang berlaku.
+- <InlineMath math="\frac{120}{169}" /> adalah <InlineMath math="2\sin x\cos x=\sin2x" />.
+- "Tidak ada sudut seperti itu" muncul kalau kuadrat dihitung tanpa suku tengah. Hasilnya <InlineMath math="1=\frac{289}{169}" />, yang tampak mustahil, padahal suku <InlineMath math="2\sin x\cos x" /> terlupa.

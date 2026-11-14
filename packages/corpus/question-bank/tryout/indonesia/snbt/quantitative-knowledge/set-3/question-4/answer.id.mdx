@@ -1,20 +1,43 @@
-Biaya sewa berbentuk fungsi linear <InlineMath math="B(t)=a+bt" />, dengan <InlineMath math="a" /> biaya tetap, <InlineMath math="b" /> biaya per jam, dan <InlineMath math="t" /> lama sewa dalam jam. **Dua data biaya** cukup untuk menentukan <InlineMath math="a" /> dan <InlineMath math="b" /> (dalam ribu rupiah).
+Rencananya: cari <InlineMath math="{}^{a}\log b" /> dari persamaan pertama, pakai syarat <InlineMath math="1<b<a" /> untuk **membuang satu kemungkinan**, rantai basisnya untuk mendapat <InlineMath math="{}^{a}\log c" />, lalu ganti basis <InlineMath math="ab" /> menjadi basis <InlineMath math="a" />.
 
-# Menentukan biaya tetap dan biaya per jam
+# Dua kemungkinan logaritma pertama
+
+Misalkan <InlineMath math="m={}^{a}\log b" />. Menukar basis dan numerus **membalik nilai logaritma**, jadi <InlineMath math="{}^{b}\log a=\tfrac{1}{m}" />. Kalikan persamaannya dengan <InlineMath math="2m" />.
 
 <BlockMath math="\begin{aligned}
-a+5b&=38\\
-a+3b&=26\\
-2b&=12\quad\Rightarrow\quad b=6\\
-a&=26-3(6)=8
+m+\frac{1}{m}&=\frac{5}{2}\\
+2m^2-5m+2&=0\\
+(2m-1)(m-2)&=0
 \end{aligned}" />
 
-Biaya tetapnya Rp8.000,00 dan biaya per jamnya Rp6.000,00. Pernyataan pertama **benar**, sedangkan pernyataan ketiga salah.
+Jadi <InlineMath math="m=\tfrac{1}{2}" /> atau <InlineMath math="m=2" />.
 
-# Memeriksa dua pernyataan lain
+# Syarat yang membuang satu kemungkinan
 
-Biaya 10 jam adalah <InlineMath math="8+6(10)=68" /> ribu rupiah, sedangkan dua kali biaya 5 jam adalah <InlineMath math="2(38)=76" /> ribu rupiah. Keduanya berbeda karena **biaya tetap hanya dibayar sekali**, tidak ikut digandakan. Pernyataan kedua salah.
+Basis <InlineMath math="a" /> lebih dari <InlineMath math="1" />, jadi <InlineMath math="{}^{a}\log" /> naik. Dari <InlineMath math="1<b<a" /> diperoleh <InlineMath math="{}^{a}\log 1<{}^{a}\log b<{}^{a}\log a" />, yaitu <InlineMath math="0<m<1" />. Karena itu **<InlineMath math="m=2" /> dibuang** dan <InlineMath math="m=\tfrac{1}{2}" />.
 
-Dengan Rp50.000,00, lama sewa harus memenuhi <InlineMath math="8+6t\le50" />, yaitu <InlineMath math="t\le7" />. Sewa 7 jam tepat berbiaya <InlineMath math="8+42=50" /> ribu rupiah, dan 8 jam berbiaya 56 ribu rupiah. Pernyataan keempat benar.
+# Merantai basis
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Aturan rantai <InlineMath math="{}^{a}\log b\cdot{}^{b}\log c={}^{a}\log c" /> berlaku karena basis tengah <InlineMath math="b" /> saling menghapus. Hasilnya **logaritma <InlineMath math="c" /> berbasis <InlineMath math="a" />**.
+
+<BlockMath math="{}^{a}\log c=\frac{1}{2}\cdot 4=2" />
+
+# Mengganti basis ke a
+
+Dengan rumus ganti basis, <InlineMath math="{}^{ab}\log (bc)=\dfrac{{}^{a}\log (bc)}{{}^{a}\log (ab)}" />. Logaritma hasil kali adalah **jumlah logaritma faktornya**, termasuk <InlineMath math="{}^{a}\log a=1" /> di penyebut.
+
+<BlockMath math="\begin{aligned}
+{}^{a}\log (bc)&=\frac{1}{2}+2=\frac{5}{2}\\
+{}^{a}\log (ab)&=1+\frac{1}{2}=\frac{3}{2}\\
+{}^{ab}\log (bc)&=\frac{5/2}{3/2}=\frac{5}{3}
+\end{aligned}" />
+
+# Memeriksa dengan pangkat dari a
+
+Dari <InlineMath math="m=\tfrac{1}{2}" />, <InlineMath math="b=a^{1/2}" />, dan dari <InlineMath math="{}^{b}\log c=4" />, <InlineMath math="c=b^4=a^2" />. Maka <InlineMath math="ab=a^{3/2}" /> dan <InlineMath math="bc=a^{5/2}" />, sehingga logaritmanya <InlineMath math="\tfrac{5/2}{3/2}=\tfrac{5}{3}" />. Contoh nyata: <InlineMath math="a=16" />, <InlineMath math="b=4" />, dan <InlineMath math="c=256" /> memenuhi semua syarat, dan **contoh itu cocok**, karena <InlineMath math="64^{5/3}=1024=bc" />.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="\tfrac{10}{3}" /> memakai <InlineMath math="m=2" />, yaitu **lupa syarat <InlineMath math="b<a" />**. Pilihan <InlineMath math="3" /> melompati rantai basis dan memakai <InlineMath math="{}^{a}\log c=4" />. Pilihan <InlineMath math="\tfrac{5}{2}" /> berhenti di <InlineMath math="{}^{a}\log (bc)" /> tanpa mengganti basis. Pilihan <InlineMath math="5" /> membagi dengan <InlineMath math="{}^{a}\log b" /> saja, padahal penyebutnya <InlineMath math="{}^{a}\log (ab)" />.
+
+Jadi, <InlineMath math="{}^{ab}\log (bc)=\tfrac{5}{3}" />.

@@ -1,14 +1,38 @@
-Stok awal Juli sama dengan **stok akhir Juni**. Hitung dulu stok itu dari tabel:
+Soal ini menggabungkan dua baris tabel. Dari baris Hasan kamu mendapat **batas tagihan per penghuni**, lalu batas itu dipakai di baris Made dan dihitung mundur sampai menjadi kWh.
 
-<BlockMath math="10+(180-175)=15" />
-
-Total produksi Januari sampai Juni adalah <InlineMath math="180" /> dan total penjualannya <InlineMath math="175" />, jadi stok akhir Juni adalah <InlineMath math="15" /> lemari.
-
-Misalkan produksi Juli <InlineMath math="x" />. Stok akhir Juli tidak boleh kurang dari stok awal Januari, yaitu <InlineMath math="10" />:
+Langkah pertama, cari tagihan Mei Keluarga Hasan per penghuni. Pemakaian Hasan <InlineMath math="2{.}495-2{.}385=110\text{ kWh}" />, dan rumahnya dihuni <InlineMath math="4" /> orang.
 
 <BlockMath math="\begin{aligned}
-15+x-30 &\ge 10 \\
-x &\ge 25
+\text{tagihan Hasan} &= 40(1{.}200)+70(1{.}600)+25{.}000 = 185{.}000 \\
+\text{per penghuni} &= 185{.}000\div4 = 46{.}250
 \end{aligned}" />
 
-Periksa nilai batasnya: dengan produksi <InlineMath math="25" />, stok akhir Juli adalah <InlineMath math="15+25-30=10" />, tepat sama dengan stok awal Januari. Produksi <InlineMath math="24" /> akan membuat stok <InlineMath math="9" />, kurang dari <InlineMath math="10" />. Jadi, produksi Juli paling sedikit <InlineMath math="25" /> lemari.
+Langkah kedua, ubah batas itu menjadi batas tagihan Keluarga Made. Rumah Made dihuni <InlineMath math="6" /> orang, jadi tagihan Juni Made paling besar <InlineMath math="6\times46{.}250" /> rupiah. Biaya beban tetap dibayar, jadi biaya pemakaian paling besar adalah sisanya.
+
+<BlockMath math="\begin{aligned}
+\text{tagihan Made} &\le 6\times46{.}250 = 277{.}500 \\
+\text{biaya pemakaian Made} &\le 277{.}500-25{.}000 = 252{.}500
+\end{aligned}" />
+
+Langkah ketiga, hitung mundur dari rupiah ke kWh dengan mengikuti blok. Kalau <InlineMath math="120" /> kWh pertama terpakai penuh, biayanya <InlineMath math="40(1{.}200)+80(1{.}600)=176{.}000" />. Angka ini masih di bawah <InlineMath math="252{.}500" />, jadi sisa uangnya dipakai untuk kWh Blok III.
+
+<BlockMath math="\frac{252{.}500-176{.}000}{2{.}200} = \frac{76{.}500}{2{.}200} \approx 34{,}8" />
+
+Karena pemakaian dicatat dalam kWh bulat, Blok III paling banyak berisi <InlineMath math="34" /> kWh. Kalau dibulatkan ke <InlineMath math="35" />, biayanya sudah melewati batas. Jadi, pemakaian Juni Made paling banyak <InlineMath math="120+34=154\text{ kWh}" />.
+
+Cek batasnya dengan menghitung tagihan per penghuni untuk <InlineMath math="154" /> kWh dan <InlineMath math="155" /> kWh.
+
+<BlockMath math="\begin{aligned}
+154\text{ kWh} &: \frac{176{.}000+34(2{.}200)+25{.}000}{6} = \frac{275{.}800}{6} \approx 45{.}967 \le 46{.}250 \\
+155\text{ kWh} &: \frac{176{.}000+35(2{.}200)+25{.}000}{6} = \frac{278{.}000}{6} \approx 46{.}333 > 46{.}250
+\end{aligned}" />
+
+Pemakaian <InlineMath math="154" /> kWh masih memenuhi, sedangkan <InlineMath math="155" /> kWh sudah tidak. Pemakaian Mei Made <InlineMath math="4{.}238-4{.}068=170\text{ kWh}" />, jadi pengurangannya paling sedikit <InlineMath math="170-154=16" /> kWh.
+
+Beberapa jalan pintas yang keliru:
+
+- Membandingkan pemakaian per penghuni, bukan tagihan per penghuni: Hasan memakai <InlineMath math="110\div4=27{,}5" /> kWh per orang, sehingga Made dibatasi <InlineMath math="6\times27{,}5=165" /> kWh dan cukup berhemat <InlineMath math="5" /> kWh. Ini salah karena tarif per kWh Made di Blok III lebih mahal.
+- Melupakan biaya beban di kedua keluarga: batasnya menjadi biaya pemakaian <InlineMath math="6\times(160{.}000\div4)=240{.}000" />, pemakaian Made paling banyak <InlineMath math="149" /> kWh, dan pengurangannya <InlineMath math="21" /> kWh.
+- Membulatkan <InlineMath math="34{,}8" /> ke atas menjadi <InlineMath math="35" /> memberi pemakaian <InlineMath math="155" /> kWh dan pengurangan <InlineMath math="15" /> kWh, padahal <InlineMath math="155" /> kWh sudah melewati batas.
+
+Jadi, Keluarga Made harus mengurangi pemakaian paling sedikit <InlineMath math="16" /> kWh.

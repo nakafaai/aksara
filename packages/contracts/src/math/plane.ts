@@ -31,6 +31,7 @@ import {
   MATH_POLYLINE_MESSAGE,
   MATH_RAY_MESSAGE,
   MATH_SEGMENT_MESSAGE,
+  MATH_VECTOR_MESSAGE,
   MathObjectFields,
   mathLabelAnchorFields,
 } from "#contracts/math/object";
@@ -137,6 +138,23 @@ const PlaneSegmentObjectSchema = Schema.Struct({
   )
 );
 
+/**
+ * An arrow from its tail to its head, such as a displacement, a force, or a
+ * position vector: a segment that ends in an arrowhead.
+ */
+const PlaneVectorObjectSchema = Schema.Struct({
+  ...MathObjectFields,
+  from: PlanePointSchema,
+  kind: Schema.Literal("vector"),
+  to: PlanePointSchema,
+}).pipe(
+  Schema.check(
+    Schema.makeFilter(({ from, to }) => !samePlanePoint(from, to), {
+      message: MATH_VECTOR_MESSAGE,
+    })
+  )
+);
+
 const PlanePolylineObjectSchema = Schema.Struct({
   ...MathObjectFields,
   kind: Schema.Literal("polyline"),
@@ -210,6 +228,7 @@ export const PlaneMathObjectSchema = Schema.Union([
   PlaneQuadraticObjectSchema,
   PlaneRayObjectSchema,
   PlaneSegmentObjectSchema,
+  PlaneVectorObjectSchema,
 ]);
 export type PlaneMathObject = typeof PlaneMathObjectSchema.Type;
 

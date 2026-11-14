@@ -1,21 +1,46 @@
-Write the number as <InlineMath math="\overline{abc}" /> with <InlineMath math="a" /> from 1 to 9, <InlineMath math="b" /> from 0 to 9, and <InlineMath math="c" /> even because the number is even. Fix <InlineMath math="c" /> first, then **count the pairs <InlineMath math="(a,b)" /> with sum <InlineMath math="10-c" />**.
+Everyone in the room can shake hands with at most <InlineMath math="6" /> other people, so each answer is one of the numbers <InlineMath math="0" /> to <InlineMath math="6" />. The plan: first work out which answers can appear, then **pair the person with the largest answer against the person with the smallest answer** until Ani's handshakes show up.
 
-# Counting by the units digit
+# The possible answers
 
-For a sum <InlineMath math="a+b=s" /> with <InlineMath math="1\le s\le10" />, <InlineMath math="a" /> can be 1 to <InlineMath math="s" /> as long as <InlineMath math="b=s-a" /> **is at most 9**. For <InlineMath math="s=10" />, <InlineMath math="a=10" /> is impossible, which leaves 9 pairs.
+There are <InlineMath math="7" /> values, from <InlineMath math="0" /> to <InlineMath math="6" />, and <InlineMath math="6" /> different answers. The answers <InlineMath math="0" /> and <InlineMath math="6" /> can't both appear: the person who answers <InlineMath math="6" /> shook hands with everyone, including the person who says they shook no hands. So **there are two cases**: the answers are <InlineMath math="0" /> to <InlineMath math="5" />, or <InlineMath math="1" /> to <InlineMath math="6" />. Call the person who answered <InlineMath math="k" /> by the name <InlineMath math="P_k" />.
 
-| Units digit <InlineMath math="c" /> | <InlineMath math="a+b" /> | Number of pairs <InlineMath math="(a,b)" /> |
-| :---: | :---: | :---: |
-| 0 | 10 | 9 |
-| 2 | 8 | 8 |
-| 4 | 6 | 6 |
-| 6 | 4 | 4 |
-| 8 | 2 | 2 |
+# The case with answers zero to five
 
-<BlockMath math="9+8+6+4+2=29" />
+Person <InlineMath math="P_5" /> didn't shake hands with <InlineMath math="P_0" />, so all <InlineMath math="5" /> of their handshakes go to everyone else, Ani included. Then <InlineMath math="P_1" /> is already full with just <InlineMath math="P_5" />. Person <InlineMath math="P_4" /> can't use <InlineMath math="P_0" /> or <InlineMath math="P_1" />, so they have to shake hands with everyone left. The same step repeats until every answer is met.
 
-# Checking the other options
+| Person | Shook hands with |
+| :---: | :---: |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_3" /> | Ani, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_5" /> |
+| <InlineMath math="P_0" /> | nobody |
 
-There are 54 three-digit numbers with digit sum 10 in all, and 25 of them are odd. **Even and odd numbers are not split evenly**, so 27, half of 54, is wrong. The value 54 counts every number without the even condition, and the value 25 counts the odd ones. The value 31 counts the case <InlineMath math="c=0" /> with 11 pairs, as if <InlineMath math="a=0" /> or <InlineMath math="a=10" /> were allowed.
+**Each row is forced by the rows before it**, so there's no other choice. Ani shook hands with <InlineMath math="P_5" />, <InlineMath math="P_4" />, and <InlineMath math="P_3" />, which is <InlineMath math="3" /> people.
 
-So **29** such numbers exist.
+# The case with answers one to six
+
+Now <InlineMath math="P_6" /> shook hands with everyone, Ani included, so <InlineMath math="P_1" /> is already full with just <InlineMath math="P_6" />. Person <InlineMath math="P_5" /> can't use <InlineMath math="P_1" />, so they shake hands with everyone left. The same pattern continues.
+
+| Person | Shook hands with |
+| :---: | :---: |
+| <InlineMath math="P_6" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_3" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_3" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_6" /> |
+
+Ani shook hands with <InlineMath math="P_6" />, <InlineMath math="P_5" />, and <InlineMath math="P_4" />, again <InlineMath math="3" /> people. **Both cases give the same answer**, so the answer is certain.
+
+# A parity check
+
+Every handshake is counted by <InlineMath math="2" /> people, so **the sum of all the answers has to be even**. The first case gives <InlineMath math="0+1+2+3+4+5+3=18" />, and the second gives <InlineMath math="1+2+3+4+5+6+3=24" />. Both are even.
+
+# Why the other options are wrong
+
+- <InlineMath math="0" /> and <InlineMath math="6" /> come from assuming Ani holds the one value nobody else used. Parity rules them out: <InlineMath math="15+6=21" /> and <InlineMath math="21+0=21" /> are both odd.
+- <InlineMath math="1" /> and <InlineMath math="5" /> pass the parity test because they're odd, but the tables above force exactly <InlineMath math="3" /> people to shake Ani's hand. **Stopping at the parity test isn't enough** to pick one number.
+
+So the number of people who shook hands with Ani is <InlineMath math="3" />.

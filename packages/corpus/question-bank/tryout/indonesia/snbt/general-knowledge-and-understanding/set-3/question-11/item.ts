@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "figurative-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "sentence-meaning",
+    topic: "paraphrase",
   },
-  stimulus: "bunga",
+  stimulus: "beber",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Meradang karena luka",
-        },
-        {
-          correct: false,
-          label: "Menjadi lunas",
-        },
-        {
-          correct: false,
-          label: "Berkurang sedikit demi sedikit",
-        },
-        {
-          correct: false,
-          label: "Tetap seperti semula",
-        },
-        {
           correct: true,
-          label: "Bertambah besar dengan cepat",
+          label:
+            "Karena dalang dapat memanjangkan atau memendekkan tuturan setiap adegan sesuai bobotnya, lama pertunjukan lebih bergantung pada dalang daripada pada banyaknya adegan, dan satu gulungan bisa dipentaskan dengan durasi berlainan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena setiap adegan hanya menangkap satu saat, lama pertunjukan lebih bergantung pada dalang daripada pada banyaknya adegan, dan satu gulungan bisa dipentaskan dengan durasi berlainan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena dalang dapat memanjangkan atau memendekkan tuturan setiap adegan sesuai bobotnya, lama pertunjukan lebih bergantung pada dalang daripada pada banyaknya adegan, dan satu gulungan pasti dipentaskan dengan durasi berlainan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena dalang dapat memanjangkan atau memendekkan tuturan setiap adegan sesuai bobotnya, lama pertunjukan hanya bergantung pada dalang, bukan pada banyaknya adegan, dan satu gulungan bisa dipentaskan dengan durasi berlainan.",
+        },
+        {
+          correct: false,
+          label:
+            "Karena satu gulungan bisa dipentaskan dengan durasi berlainan, dalang dapat memanjangkan atau memendekkan tuturan setiap adegan sesuai bobotnya, dan lama pertunjukan lebih bergantung pada dalang daripada pada banyaknya adegan.",
         },
       ],
     },

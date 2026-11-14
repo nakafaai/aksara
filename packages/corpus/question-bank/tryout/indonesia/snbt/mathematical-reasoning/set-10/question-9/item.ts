@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "class-photo",
+  stimulus: "marathon-water",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "susunan",
-      value: "120",
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$65$$ dus" },
+        { correct: false, label: "$$90$$ dus" },
+        { correct: false, label: "$$98$$ dus" },
+        { correct: false, label: "$$99$$ dus" },
+        { correct: true, label: "$$102$$ dus" },
+      ],
     },
   },
 };

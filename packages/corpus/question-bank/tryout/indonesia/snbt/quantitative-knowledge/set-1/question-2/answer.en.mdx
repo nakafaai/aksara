@@ -1,19 +1,47 @@
-The three numbers have different bases and different exponents, so they cannot be compared directly. The exponents 30, 20, and 12 are all divisible by 2, which lets you write each number as **the square of a smaller number**.
+To build the new quadratic equation, you only need **the sum and the product of its two new roots**. The plan has three steps: find <InlineMath math="p" /> first, simplify the cubes with the help of the original equation, and then compute the sum and product of the new roots.
 
-# Matching the exponents
+# Finding the missing coefficient
 
-Write each number as some number squared.
+Vieta's formulas link the roots to the coefficients. For <InlineMath math="x^2+px+1=0" />, the sum of the roots is <InlineMath math="\alpha+\beta=-p" /> and their product is <InlineMath math="\alpha\beta=1" />. You can write the sum of the squares of the roots with these two.
 
 <BlockMath math="\begin{aligned}
-a&=2^{30}=\left(2^{15}\right)^2=32{,}768^2\\
-b&=3^{20}=\left(3^{10}\right)^2=59{,}049^2\\
-c&=5^{12}=\left(5^{6}\right)^2=15{,}625^2
+\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta\\
+7&=p^2-2\\
+p^2&=9
 \end{aligned}" />
 
-For positive numbers, **squaring keeps the order**. Since <InlineMath math="15{,}625<32{,}768<59{,}049" />, it follows that <InlineMath math="c<a<b" />.
+There are two candidates, <InlineMath math="p=3" /> or <InlineMath math="p=-3" />. The problem says **both roots are positive**, so their sum is positive: <InlineMath math="-p>0" />. The candidate <InlineMath math="p=3" /> is rejected because it gives a root sum of <InlineMath math="-3" />. So <InlineMath math="p=-3" />, the equation is <InlineMath math="x^2-3x+1=0" />, and <InlineMath math="\alpha+\beta=3" /> and <InlineMath math="\alpha\beta=1" />. The discriminant is <InlineMath math="9-4=5>0" />, so both roots really are real.
 
-# Checking the other orders
+# Simplifying the cubes
 
-A correct order must **account for base and exponent together**. The order <InlineMath math="a<b<c" /> looks only at the bases, although <InlineMath math="c" /> has the smallest exponent. The order <InlineMath math="c<b<a" /> looks only at the exponents. The orders <InlineMath math="a<c<b" /> and <InlineMath math="b<a<c" /> contradict the comparison of the squared numbers above.
+Since <InlineMath math="\alpha" /> is a root, <InlineMath math="\alpha^2-3\alpha+1=0" />, or <InlineMath math="\alpha^2=3\alpha-1" />. That lets you **replace every <InlineMath math="\alpha^2" /> with <InlineMath math="3\alpha-1" />**. For <InlineMath math="\alpha^3" />, first multiply <InlineMath math="\alpha^2" /> by <InlineMath math="\alpha" />, then replace the <InlineMath math="\alpha^2" /> that shows up again.
 
-So the order from smallest to largest is **<InlineMath math="c<a<b" />**.
+<BlockMath math="\begin{aligned}
+\alpha^3&=\alpha\cdot\alpha^2=3\alpha^2-\alpha=3(3\alpha-1)-\alpha=8\alpha-3\\
+\alpha^3-2\alpha^2&=(8\alpha-3)-2(3\alpha-1)=2\alpha-1
+\end{aligned}" />
+
+In the same way, <InlineMath math="\beta^3-2\beta^2=2\beta-1" />. So the two new roots are <InlineMath math="2\alpha-1" /> and <InlineMath math="2\beta-1" />.
+
+# Building the new equation
+
+Compute the sum and product of the new roots from <InlineMath math="\alpha+\beta=3" /> and <InlineMath math="\alpha\beta=1" />.
+
+<BlockMath math="\begin{aligned}
+(2\alpha-1)+(2\beta-1)&=2(\alpha+\beta)-2=6-2=4\\
+(2\alpha-1)(2\beta-1)&=4\alpha\beta-2(\alpha+\beta)+1=4-6+1=-1
+\end{aligned}" />
+
+A quadratic equation whose roots have sum <InlineMath math="4" /> and product <InlineMath math="-1" /> follows **the sum and product pattern**, <InlineMath math="x^2-(\text{sum})x+(\text{product})=0" />. That gives <InlineMath math="x^2-4x-1=0" />.
+
+# Checking the result
+
+The roots of <InlineMath math="x^2-3x+1=0" /> are <InlineMath math="\frac{3+\sqrt5}{2}" /> and <InlineMath math="\frac{3-\sqrt5}{2}" />, and both are positive. The new root <InlineMath math="2\alpha-1" /> becomes <InlineMath math="2+\sqrt5" />, and **substituting it into the new equation gives zero**.
+
+<BlockMath math="(2+\sqrt5)^2-4(2+\sqrt5)-1=(9+4\sqrt5)-(8+4\sqrt5)-1=0" />
+
+# The wrong options
+
+The option <InlineMath math="x^2+32x+11=0" /> comes from **not rejecting the candidate <InlineMath math="p=3" />**, even though its roots are negative. The option <InlineMath math="x^2+4x-1=0" /> uses the sum of the roots with the wrong sign when the equation is built. The option <InlineMath math="x^2-4x+11=0" /> comes from a sign slip in the product, writing <InlineMath math="4\alpha\beta+2(\alpha+\beta)+1=11" />. The option <InlineMath math="x^2-5x-5=0" /> comes from writing <InlineMath math="\alpha^3" /> as <InlineMath math="3\alpha^2-1" />, which multiplies only the first term by <InlineMath math="\alpha" />.
+
+So the quadratic equation whose roots are <InlineMath math="\alpha^3-2\alpha^2" /> and <InlineMath math="\beta^3-2\beta^2" /> is <InlineMath math="x^2-4x-1=0" />.

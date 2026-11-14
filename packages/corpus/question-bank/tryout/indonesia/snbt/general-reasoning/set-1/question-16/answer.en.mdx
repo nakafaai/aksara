@@ -1,18 +1,32 @@
-A statement is Benar (true) only if it **holds in all four arrangements** that satisfy the conditions. Otherwise it is Salah (false).
+The extra condition "Fani presents before Eka" narrows things down. The safest route is to list every order that's still possible and then judge the four statements against that list. A statement is Benar (true) only if it holds in every order on the list, and Salah (false) if at least one valid order breaks it.
 
-| Arrangement | Chair 1 | Chair 2 | Chair 3 | Chair 4 | Chair 5 | Chair 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+First, find Citra's turn. Fani now comes before Eka, and Eka comes before Citra (condition 3). Eka also can't take turn <InlineMath math="1" /> (condition 4), so Citra is in turn <InlineMath math="3" /> at the earliest. Dimas comes exactly two turns after Citra (condition 2), so Citra is in turn <InlineMath math="5" /> at the latest.
 
-**Statement 1** is true. N sits in chair 3 in arrangements I and II and in chair 4 in arrangements III and IV. Chair 5 is impossible, because O would then need chair 6, which is always taken.
+- Citra in turn <InlineMath math="3" /> forces Fani into turn <InlineMath math="1" />, Eka into turn <InlineMath math="2" />, and Dimas into turn <InlineMath math="5" />. Bayu, Galih, and Hesti are left with turns <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="7" />. The only pair of neighboring turns is <InlineMath math="6" /> and <InlineMath math="7" />, but Galih and Hesti are banned from turn <InlineMath math="7" /> (condition 5). Ruled out.
+- Citra in turn <InlineMath math="4" /> forces Dimas into turn <InlineMath math="6" />. Fani and Eka both sit somewhere in turns <InlineMath math="1" /> to <InlineMath math="3" />, so only one empty turn is left in front of Citra. The other empty turns are <InlineMath math="5" /> and <InlineMath math="7" />. No two empty turns are next to each other, so Galih and Hesti have no place. Ruled out.
 
-**Statement 2** is true. Facing chairs differ by <InlineMath math="3" />, an odd number. Adding or subtracting an odd number always turns even into odd and odd into even. Since L and M face each other, one sits in an even chair and the other in an odd chair. You can see this in the pairs 2 and 5 and 3 and 6.
+So Citra is in turn <InlineMath math="5" /> and Dimas is in turn <InlineMath math="7" />.
 
-**Statement 3** is false. In arrangements I and II, O sits in chair 4, an even chair.
+Second, decide who takes turn <InlineMath math="6" />. Galih or Hesti can't, because both neighboring turns, <InlineMath math="5" /> and <InlineMath math="7" />, are taken. Eka can't, because Eka has to come before Citra. Fani can't either, because Fani comes before Eka. So **Bayu must present sixth**. That turn is even, so condition 6 asks for nothing.
 
-**Statement 4** is false. In arrangements I and II, P in chair 6 faces N in chair 3, not L or M.
+Third, fill turns <InlineMath math="1" /> to <InlineMath math="4" /> with Eka, Fani, Galih, and Hesti. Galih and Hesti must sit side by side, Fani comes before Eka, and Eka isn't in turn <InlineMath math="1" />.
 
-So statements 1 and 2 are true, and statements 3 and 4 are false.
+| Galih and Hesti in turns | Fani | Eka |
+| --- | --- | --- |
+| <InlineMath math="1" /> and <InlineMath math="2" /> | turn <InlineMath math="3" /> | turn <InlineMath math="4" /> |
+| <InlineMath math="2" /> and <InlineMath math="3" /> | turn <InlineMath math="1" /> | turn <InlineMath math="4" /> |
+| <InlineMath math="3" /> and <InlineMath math="4" /> | turn <InlineMath math="1" /> | turn <InlineMath math="2" /> |
+
+Each row gives two orders, because Galih and Hesti can swap, so there are six valid orders.
+
+Now judge the four statements.
+
+Statement 1 is Benar. The second step shows Bayu is always in turn <InlineMath math="6" />.
+
+Statement 2 is Salah. In the order Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas, Galih is in turn <InlineMath math="3" />, which is odd.
+
+Statement 3 is Salah. In the order Fani, Galih, Hesti, Eka, Citra, Bayu, Dimas, Fani is in turn <InlineMath math="1" /> and Eka in turn <InlineMath math="4" />. Fani does come before Eka, but not right before.
+
+Statement 4 is Benar. It's an if-then statement, so you only need the orders that put Hesti in turn <InlineMath math="1" />. Hesti in turn <InlineMath math="1" /> means the pair takes turns <InlineMath math="1" /> and <InlineMath math="2" />. In the table, that row only allows Fani in turn <InlineMath math="3" /> and Eka in turn <InlineMath math="4" />, so Eka really is always in turn <InlineMath math="4" />.
+
+So statements 1 and 4 are true, while statements 2 and 3 are false.

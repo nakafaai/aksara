@@ -1,17 +1,39 @@
-Untuk pertidaksamaan kuadrat, tentukan dulu **pembuat nolnya**. Setelah itu, arah bukaan parabola menentukan di mana bentuk itu bernilai negatif. Bentuk ini dapat difaktorkan, karena <InlineMath math="-3\cdot2=-6" /> dan <InlineMath math="-3+2=-1" />.
+# Hanya sebagian parabola yang diperiksa
 
-<BlockMath math="x^2-x-6=(x-3)(x+2)" />
+Ruas kirinya parabola yang terbuka ke atas dengan puncak di <InlineMath math="x=-\frac a2" />. Ketaksamaannya hanya diminta untuk <InlineMath math="x\ge1" />, jadi **yang penting adalah nilai terkecil parabola pada daerah itu**, bukan pada seluruh sumbu <InlineMath math="x" />. Letak puncaknya menentukan di mana nilai terkecil itu.
 
-Pembuat nolnya adalah <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />. Parabola <InlineMath math="y=x^2-x-6" /> terbuka ke atas, karena koefisien <InlineMath math="x^2" /> positif. Jadi, parabola itu berada di bawah sumbu <InlineMath math="x" /> **di antara** kedua pembuat nol, dan di atasnya di luar selang itu. Karena tanda <InlineMath math="=0" /> juga diizinkan, kedua pembuat nol termasuk penyelesaian.
+# Kasus puncak di kiri daerah
 
-<BlockMath math="-2\le x\le3" />
+Kalau <InlineMath math="-\frac a2\le1" />, yaitu <InlineMath math="a\ge-2" />, parabola sudah naik terus pada <InlineMath math="x\ge1" />. **Nilai terkecilnya ada di ujung <InlineMath math="x=1" />**:
 
-Sebagai pemeriksaan, <InlineMath math="x=0" /> memberi <InlineMath math="-6\le0" />, yang benar, sedangkan <InlineMath math="x=4" /> memberi <InlineMath math="16-4-6=6" />, yang tidak <InlineMath math="\le0" />.
+<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
 
-Jadi, himpunan penyelesaiannya adalah <InlineMath math="-2\le x\le3" />.
+Semua <InlineMath math="a\ge-2" /> memenuhi ini, jadi seluruh kasus ini berlaku.
 
-- <InlineMath math="-3\le x\le2" /> muncul jika tanda pembuat nol terbalik, yaitu dari <InlineMath math="(x+3)(x-2)" />. Hasil kali itu sama dengan <InlineMath math="x^2+x-6" />, bukan bentuk pada soal.
-- <InlineMath math="x\le-2" /> atau <InlineMath math="x\ge3" /> menyatakan daerah tempat bentuk itu bernilai lebih dari atau sama dengan nol, yaitu penyelesaian <InlineMath math="x^2-x-6\ge0" />.
-- <InlineMath math="-2<x<3" /> membuang titik ujung, padahal tanda <InlineMath math="\le" /> mengizinkan bentuk itu bernilai nol.
-- <InlineMath math="x\le3" /> melupakan syarat kedua, <InlineMath math="x\ge-2" />. Misalnya, <InlineMath math="x=-5" /> memenuhi <InlineMath math="x\le3" />, tetapi <InlineMath math="25+5-6=24" /> tidak <InlineMath math="\le0" />.
-- <InlineMath math="x\ge-2" /> melupakan syarat kedua, <InlineMath math="x\le3" />. Misalnya, <InlineMath math="x=4" /> memenuhi <InlineMath math="x\ge-2" />, tetapi <InlineMath math="16-4-6=6" /> tidak <InlineMath math="\le0" />.
+# Kasus puncak di dalam daerah
+
+Kalau <InlineMath math="a<-2" />, puncaknya ada di <InlineMath math="x=-\frac a2>1" />. **Nilai terkecilnya adalah nilai di puncak**:
+
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
+4-\frac{a^2}4&>0 \\
+-4<a&<4
+\end{aligned}" />
+
+Bersama <InlineMath math="a<-2" />, kasus ini memberi <InlineMath math="-4<a<-2" />.
+
+# Menggabungkan kedua kasus
+
+<InlineMath math="-4<a<-2" /> dan <InlineMath math="a\ge-2" /> **bersambung menjadi <InlineMath math="a>-4" />**.
+
+Cek di batas: untuk <InlineMath math="a=-4" />, <InlineMath math="x^2-4x+4=(x-2)^2" /> bernilai <InlineMath math="0" /> di <InlineMath math="x=2\ge1" />, jadi <InlineMath math="a=-4" /> tidak ikut.
+
+Jadi, ketaksamaan itu berlaku untuk semua <InlineMath math="x\ge1" /> tepat saat <InlineMath math="a>-4" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="-4<a<4" /> **memeriksa seluruh sumbu <InlineMath math="x" />** dengan diskriminan. Untuk <InlineMath math="a=10" />, parabola memang memotong sumbu <InlineMath math="x" />, tetapi hanya di <InlineMath math="x<0" />.
+- <InlineMath math="a>-5" /> hanya memeriksa <InlineMath math="x=1" />. Untuk <InlineMath math="a=-4{,}5" />, nilai di puncak <InlineMath math="x=2{,}25" /> negatif.
+- <InlineMath math="a\ge-4" /> memasukkan <InlineMath math="a=-4" />, padahal di sana ruas kiri bernilai nol di <InlineMath math="x=2" />.
+- <InlineMath math="a\ge-2" /> hanya memakai kasus puncak di kiri daerah dan membuang <InlineMath math="-4<a<-2" />.
+- <InlineMath math="a<4" /> menaruh puncak di <InlineMath math="x=\frac a2" />, dengan tanda yang salah, sehingga semua kasusnya tercermin.

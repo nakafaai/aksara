@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "logical-equivalence",
+    topic: "negation",
   },
   versions: {
     id: {
@@ -13,27 +13,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jika Rani naik bus atau menunda perjalanan, tiket kereta habis.",
+            "Ada atlet yang lolos seleksi daerah dan belum pernah cedera berat, tetapi bukan anggota tim inti provinsi atau bukan penerima beasiswa olahraga.",
         },
         {
           correct: false,
           label:
-            "Jika tiket kereta tidak habis, Rani tidak naik bus dan tidak menunda perjalanan.",
+            "Semua atlet yang lolos seleksi daerah dan belum pernah cedera berat bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga.",
+        },
+        {
+          correct: false,
+          label:
+            "Ada atlet yang tidak lolos seleksi daerah atau pernah cedera berat, tetapi bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga.",
         },
         {
           correct: true,
           label:
-            "Jika tiket kereta habis dan Rani tidak naik bus, Rani menunda perjalanan.",
+            "Ada atlet yang lolos seleksi daerah dan belum pernah cedera berat, tetapi bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga.",
         },
         {
           correct: false,
           label:
-            "Jika Rani tidak naik bus atau tidak menunda perjalanan, tiket kereta tidak habis.",
-        },
-        {
-          correct: false,
-          label:
-            "Tiket kereta habis, tetapi Rani tidak naik bus dan tidak menunda perjalanan.",
+            "Ada atlet yang bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga.",
         },
       ],
     },

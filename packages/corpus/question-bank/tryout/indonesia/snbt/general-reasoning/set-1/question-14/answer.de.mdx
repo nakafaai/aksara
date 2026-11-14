@@ -1,27 +1,25 @@
-Bei einer Frage nach dem, was sicher stimmt, suchst du **alle Anordnungen, die die Bedingungen erfüllen**, und wählst die Aussage, die in allen gilt.
+Jede Auswahl besetzt nur die Plätze <InlineMath math="3" /> bis <InlineMath math="6" />. Die übrigen drei Personen müssen auf die Plätze <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="7" />. Die vier Namen in der Mitte sind nur möglich, wenn sich **die drei Randplätze noch ohne Verstoß gegen eine Bedingung besetzen lassen**.
 
-K sitzt auf Stuhl 1, also liegt Stuhl 4 K gegenüber. Die Stühle 2 und 6 liegen neben K, daher kann N nur auf Stuhl 3, 4 oder 5 sitzen. L und M brauchen ein gegenüberliegendes Stuhlpaar: die Stühle 2 und 5 oder die Stühle 3 und 6. Das Paar 1 und 4 fällt weg, weil Stuhl 1 K gehört.
+Zwischen den vier Namen einer Auswahl wird keine Bedingung direkt verletzt. Ein Problem zeigt sich erst, wenn du fragst, wo die anderen drei Personen präsentieren können. Du musst also jede Auswahl zuerst vervollständigen und erst dann beurteilen.
 
-**Fall L und M auf den Stühlen 2 und 5**. Frei sind die Stühle 3, 4 und 6. N muss auf Stuhl 3 oder 4 sitzen. Säße N auf Stuhl 4, bräuchte O Stuhl 5, der besetzt ist. Also sitzt N auf Stuhl 3, O auf Stuhl 4 und P auf Stuhl 6. Stuhl 6 ist gerade, Bedingung 5 ist erfüllt.
+Beginne mit Eka, Bayu, Citra, Fani. Übrig sind Dimas, Galih und Hesti. Citra steht auf Platz <InlineMath math="5" />, also muss Dimas auf Platz <InlineMath math="7" /> (Bedingung 2). Galih und Hesti bekommen die Plätze <InlineMath math="1" /> und <InlineMath math="2" />, die direkt hintereinander liegen. Eine vollständige Reihenfolge ist Galih, Hesti, Eka, Bayu, Citra, Fani, Dimas.
 
-**Fall L und M auf den Stühlen 3 und 6**. Frei sind die Stühle 2, 4 und 5. N muss auf Stuhl 4 oder 5 sitzen. Säße N auf Stuhl 5, bräuchte O Stuhl 6, der besetzt ist. Also sitzt N auf Stuhl 4, O auf Stuhl 5 und P auf Stuhl 2.
+| Bedingung | Lage in dieser Reihenfolge | Ergebnis |
+| --- | --- | --- |
+| 1 | Galih auf Platz <InlineMath math="1" />, Hesti auf Platz <InlineMath math="2" /> | direkt hintereinander |
+| 2 | Citra auf Platz <InlineMath math="5" />, Dimas auf Platz <InlineMath math="7" /> | genau zwei Plätze Abstand |
+| 3 | Eka auf Platz <InlineMath math="3" />, Citra auf Platz <InlineMath math="5" /> | Eka ist früher dran |
+| 4 | Eka auf Platz <InlineMath math="3" /> | nicht Platz <InlineMath math="1" /> |
+| 5 | Platz <InlineMath math="7" /> hat Dimas | weder Galih noch Hesti |
+| 6 | Bayu auf Platz <InlineMath math="4" />, einer geraden Zahl | die Bedingung verlangt nichts |
 
-In jedem Fall können L und M die Plätze tauschen. Das ergibt vier Anordnungen:
+Bedingung 6 greift nur, wenn Bayu auf einem ungeraden Platz steht. Bayu steht auf Platz <InlineMath math="4" />, also verletzt Fani auf Platz <InlineMath math="6" /> nichts.
 
-| Anordnung | Stuhl 1 | Stuhl 2 | Stuhl 3 | Stuhl 4 | Stuhl 5 | Stuhl 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+Die anderen vier Auswahlen laufen beim Vervollständigen in eine Sackgasse, jede an einer anderen Bedingung.
 
-P sitzt immer auf Stuhl 6 oder Stuhl 2. Beide liegen neben Stuhl 1, also **sitzt P sicher neben K**.
+- Eka, Galih, Citra, Bayu: Citra auf Platz <InlineMath math="5" /> zwingt Dimas auf Platz <InlineMath math="7" />. Hesti muss direkt neben Galih stehen, also auf Platz <InlineMath math="3" /> oder <InlineMath math="5" />. Beide sind besetzt, also scheitert Bedingung 1.
+- Hesti, Fani, Citra, Bayu: Dimas steht wieder auf Platz <InlineMath math="7" />. Galih muss neben Hesti stehen, und Platz <InlineMath math="4" /> gehört schon Fani, also nimmt Galih Platz <InlineMath math="2" />. Damit landet Eka auf Platz <InlineMath math="1" />, und das verbietet Bedingung 4.
+- Eka, Citra, Fani, Dimas: Für die Plätze <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="7" /> bleiben Bayu, Galih und Hesti. Galih und Hesti müssen nebeneinander stehen, also nehmen sie die Plätze <InlineMath math="1" /> und <InlineMath math="2" />, und Bayu nimmt Platz <InlineMath math="7" />. Dieser Platz ist ungerade, also müsste Fani auf Platz <InlineMath math="8" />, den es nicht gibt. Bedingung 6 scheitert.
+- Citra, Bayu, Dimas, Fani: Für die Plätze <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="7" /> bleiben Eka, Galih und Hesti. Eka muss vor Citra kommen und darf nicht auf Platz <InlineMath math="1" />, also nimmt Eka Platz <InlineMath math="2" />. Galih und Hesti landen getrennt auf den Plätzen <InlineMath math="1" /> und <InlineMath math="7" />, obwohl sie direkt hintereinander stehen müssen und Platz <InlineMath math="7" /> für sie verboten ist.
 
-Die anderen Aussagen gelten nur in manchen Anordnungen:
-
-- N sitzt P in den Anordnungen I und II gegenüber, nicht aber in III und IV, wo N auf Stuhl 4 K gegenübersitzt.
-- L sitzt nur in Anordnung I auf einem geraden Stuhl.
-- O sitzt K in den Anordnungen I und II gegenüber, in III und IV aber auf Stuhl 5.
-- In Anordnung I sitzt M auf Stuhl 5 neben O auf Stuhl 4.
-
-Sicher stimmt also, dass P neben K sitzt.
+Die Plätze <InlineMath math="3" /> bis <InlineMath math="6" /> können also mit Eka, Bayu, Citra, Fani besetzt sein.

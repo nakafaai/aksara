@@ -1,0 +1,68 @@
+Soalan ini ada dua bahagian yang didarab pada akhirnya: **berapa batang paip dalam satu ikatan** dan berapa jisim sebatang paip. Bahagian pertama ialah membilang, bahagian kedua ialah isi padu dan ketumpatan.
+
+# Bilangan paip dalam satu ikatan
+
+Bayangkan hujung ikatan sebagai baris-baris bulatan yang mengufuk. Sisi atas memuatkan <InlineMath math="3" /> paip. Setiap baris di bawahnya bertambah satu paip hingga baris tengah, kemudian berkurang semula, jadi baris-barisnya berisi <InlineMath math="3,4,5,4,3" /> paip.
+
+<BlockMath math="3+4+5+4+3=19\text{ paip}" />
+
+Kamu juga boleh membilang lapisan demi lapisan. Paip tengah ialah <InlineMath math="1" />, lapisan pertama <InlineMath math="6" />, dan lapisan luar <InlineMath math="6\cdot3-6=12" />. **Setiap paip di bucu dikongsi oleh dua sisi sekali gus**, jadi enam paip bucu ditolak sekali. Jumlahnya tetap sama, <InlineMath math="1+6+12=19" />.
+
+<MathVisual
+  title={<>Keratan rentas satu ikatan paip</>}
+  description={<>Sembilan belas bulatan yang sama besar dan saling bersentuhan membentuk heksagon sekata. Baris-barisnya berisi <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="4" /> dan <InlineMath math="3" /> bulatan. Ada satu bulatan di tengah, <InlineMath math="6" /> bulatan pada lapisan pertama dan <InlineMath math="12" /> bulatan pada lapisan luar, dengan <InlineMath math="3" /> bulatan pada setiap sisi luar.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-center", kind: "circle", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "pipe-inner-1", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-2", kind: "circle", appearance: "primary", center: { x: -2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-3", kind: "circle", appearance: "primary", center: { x: 1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-4", kind: "circle", appearance: "primary", center: { x: -1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-5", kind: "circle", appearance: "primary", center: { x: 1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-6", kind: "circle", appearance: "primary", center: { x: -1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-1", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-2", kind: "circle", appearance: "secondary", center: { x: -4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-3", kind: "circle", appearance: "secondary", center: { x: 3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-4", kind: "circle", appearance: "secondary", center: { x: -3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-5", kind: "circle", appearance: "secondary", center: { x: 3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-6", kind: "circle", appearance: "secondary", center: { x: -3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-7", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-8", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-9", kind: "circle", appearance: "secondary", center: { x: -2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-10", kind: "circle", appearance: "secondary", center: { x: 2, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-11", kind: "circle", appearance: "secondary", center: { x: 0, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-12", kind: "circle", appearance: "secondary", center: { x: -2, y: -2 * Math.sqrt(3) }, radius: 1 },
+    ],
+  }}
+/>
+
+# Jisim sebatang paip
+
+Jejari luar ialah <InlineMath math="R=5\text{ cm}" />. Dinding setebal <InlineMath math="1\text{ cm}" /> berada di kedua-dua belah rongga, jadi jejari dalam ialah <InlineMath math="r=4\text{ cm}" />. Panjang paip ialah <InlineMath math="5\text{ m}=500\text{ cm}" />. Isi padu besi ialah luas cincin didarab panjang, kemudian **jisim sama dengan ketumpatan didarab isi padu**.
+
+<BlockMath math="\begin{aligned}
+V&=\frac{22}{7}\,(5^2-4^2)\cdot500=\frac{22}{7}\cdot9\cdot500=\frac{99{,}000}{7}\text{ cm}^3 \\
+m&=7\cdot\frac{99{,}000}{7}=99{,}000\text{ g}=99\text{ kg}
+\end{aligned}" />
+
+# Jisim satu ikatan
+
+Satu ikatan berisi <InlineMath math="19" /> batang paip yang sama, dan jisim tali pengikat diabaikan. Oleh sebab semua paip sama saiz, **jisim ikatan ialah bilangan paip didarab jisim sebatang paip**.
+
+<BlockMath math="19\cdot99\text{ kg}=1{,}881\text{ kg}" />
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2{,}475\text{ kg}" /> ialah <InlineMath math="25\cdot99" />. Lapisan luar dikira sebagai <InlineMath math="6\cdot3=18" /> tanpa menolak paip bucu yang terkira dua kali.
+- <InlineMath math="3{,}663\text{ kg}" /> ialah <InlineMath math="37\cdot99" />. Maklumat <InlineMath math="3" /> paip pada setiap sisi dibaca sebagai tiga lapisan di sekeliling paip tengah, <InlineMath math="1+6+12+18=37" />.
+- <InlineMath math="5{,}225\text{ kg}" /> ialah <InlineMath math="19\cdot275" />. Paip dianggap pejal, sedangkan **rongga di dalam paip tidak berisi besi**.
+- <InlineMath math="7{,}524\text{ kg}" /> ialah <InlineMath math="19\cdot396" />. Diameter <InlineMath math="10" /> dan <InlineMath math="8" /> digunakan sebagai jejari, jadi luas cincin menjadi empat kali terlalu besar.
+
+Jadi, jisim satu ikatan paip ialah <InlineMath math="1{,}881\text{ kg}" />.

@@ -1,22 +1,50 @@
-Alle Aussagen handeln von Teilern, deshalb beginnst du mit der **Primfaktorzerlegung von <InlineMath math="n" />**.
+Die beiden Logarithmen in der Gleichung sind Kehrwerte voneinander, also wird daraus eine quadratische Gleichung in einer Variablen. Danach muss jeder Kandidat **die Bedingungen für Basis und Argument** erfüllen. Der Plan: Schreibe zuerst die Bedingungen auf, ersetze den Logarithmus durch eine Variable, löse jeden Fall und siebe dann die Kandidaten.
+
+# Die Bedingungen aufschreiben
+
+Die Basis eines Logarithmus muss positiv und ungleich <InlineMath math="1" /> sein, und sein Argument (die Zahl, deren Logarithmus du nimmst) muss positiv sein. Hier sind <InlineMath math="x" /> und <InlineMath math="6-x" /> jeweils Basis und Argument zugleich.
+
+<BlockMath math="0<x<6,\qquad x\neq1,\qquad x\neq5" />
+
+Jeder Kandidat außerhalb dieser Bedingungen **muss gestrichen werden**, auch wenn die Rechnung schön aufgeht.
+
+# Durch eine Variable ersetzen
+
+Vertauschst du Basis und Argument, wird der Logarithmus zu seinem Kehrwert: <InlineMath math="{}^{b}\log a=\frac{1}{{}^{a}\log b}" />. Setze <InlineMath math="u={}^{x}\log(6-x)" />. Dann ist der zweite Summand gleich <InlineMath math="\frac1u" />.
 
 <BlockMath math="\begin{aligned}
-n&=1\times2\times3\times4\times5\times6=720\\
-&=2^4\times3^2\times5
+u+\frac1u&=\frac52\\
+2u^2-5u+2&=0\\
+(2u-1)(u-2)&=0
 \end{aligned}" />
 
-# Teiler zählen
+Es gibt also **zwei Fälle**, <InlineMath math="u=2" /> oder <InlineMath math="u=\frac12" />.
 
-Jeder positive Teiler von <InlineMath math="n" /> hat die Form <InlineMath math="2^a3^b5^c" /> mit <InlineMath math="0\le a\le4" />, <InlineMath math="0\le b\le2" /> und <InlineMath math="0\le c\le1" />. **Jeder Exponent wird unabhängig gewählt**, also ist die Anzahl der Teiler das Produkt der Wahlmöglichkeiten.
+# Jeden Fall lösen
 
-<BlockMath math="(4+1)(2+1)(1+1)=5\times3\times2=30" />
+Für <InlineMath math="u=2" /> liefert die Definition des Logarithmus <InlineMath math="6-x=x^2" />.
 
-Die dritte Aussage ist **wahr**. Ein ungerader Teiler enthält keine 2, also ist nur <InlineMath math="a=0" /> erlaubt. Davon gibt es <InlineMath math="1\times3\times2=6" />, deshalb ist die erste Aussage falsch.
+<BlockMath math="x^2+x-6=0\quad\Rightarrow\quad(x+3)(x-2)=0\quad\Rightarrow\quad x=-3\ \text{oder}\ x=2" />
 
-# Quadratzahlen prüfen
+Für <InlineMath math="u=\frac12" /> liefert die Definition <InlineMath math="6-x=\sqrt x" />. Quadriere beide Seiten. **Quadrieren kann falsche Kandidaten erzeugen**, deshalb musst du die Ergebnisse noch einmal prüfen.
 
-Eine Quadratzahl hat **bei jedem Primfaktor einen geraden Exponenten**. In <InlineMath math="5n=2^4\times3^2\times5^2" /> sind alle Exponenten gerade, also gilt <InlineMath math="5n=3600=60^2" />. Die zweite Aussage ist wahr.
+<BlockMath math="(6-x)^2=x\quad\Rightarrow\quad x^2-13x+36=0\quad\Rightarrow\quad(x-4)(x-9)=0" />
 
-Ein Teiler von <InlineMath math="n" />, der eine Quadratzahl ist, braucht <InlineMath math="a\in\{0,2,4\}" />, <InlineMath math="b\in\{0,2\}" /> und <InlineMath math="c=0" />. Davon gibt es <InlineMath math="3\times2\times1=6" />, nämlich 1, 4, 9, 16, 36 und 144. Die vierte Aussage nennt 4 und ist deshalb falsch.
+Die Kandidaten aus diesem Fall sind <InlineMath math="x=4" /> und <InlineMath math="x=9" />.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.
+# Die Kandidaten sieben
+
+Der Kandidat <InlineMath math="x=-3" /> fällt weg, weil die Basis <InlineMath math="x" /> negativ ist. Der Kandidat <InlineMath math="x=9" /> fällt weg, weil <InlineMath math="6-9=-3" /> negativ ist. Er **erfüllt auch die Gleichung vor dem Quadrieren nicht**, denn <InlineMath math="6-9=-3" /> ist nicht gleich <InlineMath math="\sqrt9=3" />. Die Kandidaten <InlineMath math="x=2" /> und <InlineMath math="x=4" /> erfüllen alle Bedingungen.
+
+<BlockMath math="\begin{aligned}
+x=2:&\quad {}^{2}\log4+{}^{4}\log2=2+\frac12=\frac52\\
+x=4:&\quad {}^{4}\log2+{}^{2}\log4=\frac12+2=\frac52
+\end{aligned}" />
+
+Die Summe der Lösungen ist <InlineMath math="2+4=6" />.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="2" /> entsteht, wenn du nur den Fall <InlineMath math="u=2" /> löst. Die Antwort <InlineMath math="3" /> entsteht, wenn du <InlineMath math="-3" /> behältst, also <InlineMath math="-3+2+4" />. Die Antwort <InlineMath math="12" /> entsteht, wenn du gar keine Bedingung prüfst und alle vier Kandidaten addierst: <InlineMath math="-3+2+4+9" />. Die Antwort <InlineMath math="15" /> entsteht, wenn du **den falschen Kandidaten <InlineMath math="9" /> mitzählst**, also <InlineMath math="2+4+9" />.
+
+Die Summe aller reellen Zahlen, die die Gleichung erfüllen, ist also <InlineMath math="6" />.

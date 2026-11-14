@@ -1,0 +1,36 @@
+# Die Umkehrfunktion einer abschnittsweise definierten Funktion
+
+Die Aufgabe wendet die Umkehrfunktion zweimal an. <InlineMath math="f^{-1}(k)" /> bedeutet einfach: Suche das <InlineMath math="x" />, für das <InlineMath math="f(x)=k" /> gilt. Weil <InlineMath math="f" /> zwei Vorschriften hat, **musst du jeden Kandidaten mit der Bedingung seines eigenen Zweigs prüfen**. Die erste Vorschrift gilt nur für <InlineMath math="x<2" />, die zweite nur für <InlineMath math="x\ge2" />.
+
+Es gibt eine schnelle Probe. Der erste Zweig liefert Werte unter <InlineMath math="\frac22+4=5" />, der zweite Zweig Werte ab <InlineMath math="3\cdot2-1=5" /> aufwärts. Ein Funktionswert von <InlineMath math="5" /> oder mehr kommt also aus dem zweiten Zweig, ein Wert unter <InlineMath math="5" /> aus dem ersten.
+
+# Der erste Schritt
+
+Suche <InlineMath math="x" /> mit <InlineMath math="f(x)=11" />. Probiere beide Vorschriften:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=11\ &\Rightarrow\ x=14,\ \text{aber }14\not<2\ \text{(verworfen)} \\
+3x-1=11\ &\Rightarrow\ x=4,\ \text{und }4\ge2\ \text{(passt)}
+\end{aligned}" />
+
+Also ist <InlineMath math="f^{-1}(11)=4" />. Probe: <InlineMath math="f(4)=3\cdot4-1=11" />. **Diese <InlineMath math="4" /> ist die Eingabe für den zweiten Schritt**.
+
+# Der zweite Schritt
+
+Suche jetzt <InlineMath math="x" /> mit <InlineMath math="f(x)=4" />:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=4\ &\Rightarrow\ x=0,\ \text{und }0<2\ \text{(passt)} \\
+3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{aber }\tfrac53\not\ge2\ \text{(verworfen)}
+\end{aligned}" />
+
+Also ist <InlineMath math="f^{-1}(4)=0" />. Probe: <InlineMath math="f(0)=\frac02+4=4" />. Diesmal **fällt gerade der zweite Zweig weg**, also umgekehrt wie im ersten Schritt.
+
+Damit ist <InlineMath math="f^{-1}\left(f^{-1}(11)\right)=0" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac53" /> nimmt im zweiten Schritt die zweite Vorschrift ohne Probe. Wegen <InlineMath math="\frac53<2" /> **gilt diese Vorschrift dort nicht**.
+- <InlineMath math="4" /> hört nach einer Umkehrung auf. Das ist nur <InlineMath math="f^{-1}(11)" />, noch nicht <InlineMath math="f^{-1}" /> davon.
+- <InlineMath math="20" /> nimmt immer den ersten Zweig: <InlineMath math="11\to14\to20" />. Keiner der beiden Werte erfüllt <InlineMath math="x<2" />.
+- <InlineMath math="95" /> berechnet <InlineMath math="f\left(f(11)\right)=f(32)=95" />. Das ist <InlineMath math="f" /> mit sich selbst verkettet, nicht die Umkehrfunktion.

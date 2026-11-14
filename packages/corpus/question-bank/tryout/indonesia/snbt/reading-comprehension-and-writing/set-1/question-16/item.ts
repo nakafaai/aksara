@@ -2,34 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "title",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "effective-sentence",
   },
-  stimulus: "waste-bank",
+  stimulus: "gelasan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Harga Kardus yang Terus Naik",
+          column: 1,
+          label: "Kalimat (2) diperbaiki dengan menghapus kata *yang*.",
         },
         {
-          correct: false,
-          label: "Jenis-Jenis Sampah Anorganik",
+          column: 2,
+          label:
+            "Kalimat (8) diperbaiki dengan mengganti frasa *di garis pantai* menjadi *pada garis pantai*.",
         },
         {
-          correct: true,
-          label: "Menabung Sampah di Bank Sampah Sejahtera",
+          column: 2,
+          label:
+            "Kalimat (6) diperbaiki dengan mengganti *agar supaya* menjadi *sehingga*.",
         },
         {
-          correct: false,
-          label: "Pembagian Tempat Sampah Terpilah",
-        },
-        {
-          correct: false,
-          label: "Kegiatan Warga Kelurahan Mekar pada Hari Sabtu",
+          column: 1,
+          label: "Kalimat (6) diperbaiki dengan menghapus kata *agar*.",
         },
       ],
     },

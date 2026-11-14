@@ -1,17 +1,31 @@
-First solve the inequality, then test each statement on **the whole solution interval**, not on a single example.
+The phrase "but not both" means you're looking for numbers that **meet exactly one condition**. Let <InlineMath math="A" /> be the set of squares and <InlineMath math="B" /> the set of cubes in that range. The plan: count <InlineMath math="|A|" />, <InlineMath math="|B|" />, and <InlineMath math="|A\cap B|" />, then combine them correctly.
 
-<BlockMath math="x^2-5x+4=(x-1)(x-4)<0\quad\Rightarrow\quad 1<x<4" />
+# Squares in the range
 
-# Statements that do not always hold
+Find the positive integers <InlineMath math="k" /> with <InlineMath math="10\le k^2\le10{,}000" />. Since <InlineMath math="3^2=9<10" /> and <InlineMath math="4^2=16" />, the values of <InlineMath math="k" /> **start at <InlineMath math="4" />**, not at <InlineMath math="1" />. The upper end is <InlineMath math="100^2=10{,}000" />. So <InlineMath math="k=4,\ 5,\ \ldots,\ 100" />, and <InlineMath math="|A|=97" />.
 
-The statement <InlineMath math="x-2>0" /> fails for <InlineMath math="x=1.5" />, which lies in the interval but is less than 2. One **counterexample** is enough, so the first statement is false.
+# Cubes in the range
 
-For <InlineMath math="1<x<4" />, taking reciprocals of positive numbers reverses the order: <InlineMath math="\frac1x>\frac14" />. The third statement claims the opposite, so it is false for every <InlineMath math="x" /> in the interval.
+Find <InlineMath math="k" /> with <InlineMath math="10\le k^3\le10{,}000" />. Since <InlineMath math="2^3=8<10" />, the values of <InlineMath math="k" /> start at <InlineMath math="3" />. At the top, <InlineMath math="21^3=9{,}261\le10{,}000" />, but <InlineMath math="22^3=10{,}648" /> is **already too big**. So <InlineMath math="k=3,\ 4,\ \ldots,\ 21" />, and <InlineMath math="|B|=19" />.
 
-# Statements that always hold
+# Numbers that are both
 
-Since <InlineMath math="0<x<4" />, both sides are positive and **squaring keeps the order**, so <InlineMath math="x^2<16" />. The second statement is true.
+A number that's both a square and a cube is **a sixth power**. That's because every prime factor needs an exponent that's a multiple of <InlineMath math="2" /> and a multiple of <InlineMath math="3" />, so a multiple of <InlineMath math="6" />. The range holds <InlineMath math="2^6=64" />, <InlineMath math="3^6=729" />, and <InlineMath math="4^6=4{,}096" />, while <InlineMath math="5^6=15{,}625" /> is too big and <InlineMath math="1^6=1" /> is below <InlineMath math="10" />. So <InlineMath math="|A\cap B|=3" />.
 
-On the interval <InlineMath math="1<x<4" />, the factor <InlineMath math="x-1" /> is positive and the factor <InlineMath math="x-5" /> is negative. Their product is negative, so the fourth statement is true.
+# Counting exactly one
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+The three sixth powers appear in <InlineMath math="|A|" /> and again in <InlineMath math="|B|" />, but they shouldn't be counted at all. So they're **subtracted twice**.
+
+<BlockMath math="\begin{aligned}
+|A|+|B|-2|A\cap B|&=97+19-2\times3\\
+&=110
+\end{aligned}" />
+
+Check it another way. There are <InlineMath math="97-3=94" /> squares that aren't cubes and <InlineMath math="19-3=16" /> cubes that aren't squares. Together that's <InlineMath math="94+16=110" />, the same.
+
+# Common mistakes
+
+- The result <InlineMath math="113" /> subtracts the overlap **only once**. That's the number of squares or cubes, including the ones that are both.
+- The result <InlineMath math="116" /> doesn't subtract the overlap at all, so <InlineMath math="64" />, <InlineMath math="729" />, and <InlineMath math="4{,}096" /> are counted twice.
+
+So there are <InlineMath math="110" /> such numbers.

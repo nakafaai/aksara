@@ -1,0 +1,204 @@
+export const metadata = {
+  title: "Norma Matriks dan Nombor Syarat",
+   description: "Kaitkan norma matriks teraruh, jejari spektrum, nilai singular, nombor syarat dan batas usikan, kemudian bezakan kesyaratan dengan kestabilan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-13",
+  dateModified: "2026-09-13",
+  subject: "Kaedah Linear AI",
+};
+
+## Norma Matriks Teraruh
+
+Norma vektor mengukur saiz vektor. Norma matriks teraruh yang sepadan pula mengukur faktor regangan terbesar yang boleh dikenakan oleh matriks pada suatu vektor:
+
+<BlockMath math="\|A\|=\sup_{x\ne0}\frac{\|Ax\|}{\|x\|}=\max_{\|x\|=1}\|Ax\|" />
+
+Definisi ini terus memberikan dua batas penting bagi matriks dan vektor yang dimensinya serasi:
+
+<MathContainer>
+<BlockMath math="\|Ax\|\le\|A\|\|x\|" />
+<BlockMath math="\|AB\|\le\|A\|\|B\|" />
+</MathContainer>
+
+**Norma vektor yang dipilih** menentukan norma matriks teraruh.
+
+| Norma vektor | Norma matriks teraruh |
+| --- | --- |
+| <InlineMath math="\displaystyle\|x\|_1=\sum_{i=1}^{n}\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_1=\max_j\sum_i\lvert a_{ij}\rvert" />, iaitu hasil tambah nilai mutlak lajur yang terbesar |
+| <InlineMath math="\displaystyle\|x\|_\infty=\max_i\lvert x_i\rvert" /> | <InlineMath math="\displaystyle\|A\|_\infty=\max_i\sum_j\lvert a_{ij}\rvert" />, iaitu hasil tambah nilai mutlak baris yang terbesar |
+| <InlineMath math="\displaystyle\|x\|_2=\sqrt{x^{\mathsf T}x}" /> | <InlineMath math="\displaystyle\|A\|_2=\sigma_{\max}(A)" />, iaitu nilai singular terbesar |
+
+## Jejari Spektrum dan Norma Spektrum
+
+Bagi matriks segi empat sama, jejari spektrum ialah
+
+<BlockMath math="\rho(A)=\max_{\lambda\in\operatorname{spec}(A)}|\lambda|" />
+
+Setiap norma matriks teraruh membatasi jejari spektrum:
+
+<BlockMath math="\rho(A)\le\|A\|" />
+
+Norma spektrum memenuhi
+
+<BlockMath math="\|A\|_2=\sigma_{\max}(A)=\sqrt{\lambda_{\max}(A^{\mathsf T}A)}" />
+
+Jika <InlineMath math="A" /> ialah matriks simetri nyata, nilai singularnya ialah nilai mutlak bagi nilai eigennya, jadi
+
+<BlockMath math="\|A\|_2=\max_i|\lambda_i(A)|=\rho(A)" />
+
+Bagi matriks tak normal yang umum, jejari spektrum dan norma spektrum **tidak semestinya sama**.
+
+Ricihan <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> mempunyai satu nilai eigen sahaja, iaitu <InlineMath math="1" />, jadi <InlineMath math="\rho(A)=1" />. Matriks <InlineMath math="A^{\mathsf T}A=\begin{pmatrix}1&1\\1&2\end{pmatrix}" /> baginya pula mempunyai nilai eigen terbesar <InlineMath math="\tfrac{3+\sqrt5}2=\varphi^2" />, jadi <InlineMath math="\|A\|_2=\varphi\approx1.618" />. Matriks tak normal boleh meregangkan sesuatu vektor lebih jauh daripada yang ditunjukkan oleh nilai eigennya.
+
+<MathVisual
+  title={<><InlineMath math="\rho(A)=1" /> tetapi <InlineMath math="\|A\|_2=\varphi" /></>}
+  description={<>Bagi ricihan <InlineMath math="A=\begin{pmatrix}1&1\\0&1\end{pmatrix}" />, vektor eigen magenta <InlineMath math="e_1" /> mengekalkan panjang <InlineMath math="1" />. Vektor unit hijau kebiruan <InlineMath math="v_1" /> menjadi vektor ungu <InlineMath math="Av_1" /> dengan panjang <InlineMath math="\varphi=\tfrac{1+\sqrt5}2" />, dan vektor itu mencecah bulatan ambar berjejari <InlineMath math="\|A\|_2" />. Bulatan kelabu ialah bulatan unit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 1.8 }, y: { min: -1.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "norm", kind: "circle", center: { x: 0, y: 0 }, radius: (1 + Math.sqrt(5)) / 2, appearance: "highlight" },
+      { id: "eigen", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "singular", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "construction" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "eigen", objectId: "eigen", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "singular", objectId: "singular", at: { x: 1 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "above-left" },
+      { key: "image", objectId: "image", at: { x: (3 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2), y: (1 + Math.sqrt(5)) / 2 / Math.sqrt((5 + Math.sqrt(5)) / 2) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "eigen": <InlineMath math="e_1" />,
+    "singular": <InlineMath math="v_1" />,
+    "image": <InlineMath math="Av_1" />,
+  }}
+/>
+
+## Nombor Syarat bagi Penyelesaian Linear
+
+Bagi matriks segi empat sama yang boleh disongsangkan dan suatu norma teraruh, takrifkan
+
+<BlockMath math="\kappa(A)=\|A\|\|A^{-1}\|" />
+
+Nombor syarat sentiasa sekurang-kurangnya satu. Matriks singular mempunyai nombor syarat tak terhingga. Dalam norma Euclidean,
+
+<BlockMath math="\kappa_2(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}" />
+
+Bagi matriks simetri yang boleh disongsangkan, rumus ini menjadi
+
+<BlockMath math="\kappa_2(A)=\frac{\max_i|\lambda_i(A)|}{\min_i|\lambda_i(A)|}" />
+
+Gunakan nilai eigen dengan **magnitud terkecil** pada penyebut. Tanda nilai eigen itu tidak menentukan pilihan ini.
+
+| Saiz <InlineMath math="\kappa(A)" /> | Tafsiran |
+| --- | --- |
+| Hampir <InlineMath math="1" /> | Dalam **kes terburuk**, perubahan relatif pada penyelesaian lebih kurang sama besar dengan perubahan relatif pada input. |
+| Besar | Sesetengah arah input boleh menghasilkan perubahan relatif yang jauh lebih besar pada penyelesaian. |
+| Tak terhingga | Matriks itu singular, jadi masalah songsangnya tidak boleh diselesaikan secara unik. |
+
+## Kepekaan Sistem Pepenjuru Dua Dimensi
+
+Perhatikan
+
+<BlockMath math="A=\begin{pmatrix}1&0\\0&\varepsilon\end{pmatrix},\qquad 0<\varepsilon\ll1" />
+
+Nilai singularnya ialah <InlineMath math="1" /> dan <InlineMath math="\varepsilon" />, maka
+
+<BlockMath math="\kappa_2(A)=\frac{1}{\varepsilon}" />
+
+Bagi <InlineMath math="b=(b_1,b_2)^{\mathsf T}" />, penyelesaiannya ialah
+
+<BlockMath math="x=A^{-1}b=\begin{pmatrix}b_1\\b_2/\varepsilon\end{pmatrix}" />
+
+Perubahan kecil pada <InlineMath math="b_2" /> **dibesarkan dengan faktor** <InlineMath math="1/\varepsilon" /> dalam komponen kedua penyelesaian. Matriks ini hampir singular kerana ia mendarab vektor di sepanjang arah koordinat kedua dengan <InlineMath math="\varepsilon" />, iaitu nilai yang hampir sifar.
+
+Tetapkan <InlineMath math="\varepsilon=1/1000" /> dan bandingkan dua vektor sebelah kanan. Hanya cerapan kedua yang berubah.
+
+| <InlineMath math="b" /> | <InlineMath math="x=A^{-1}b" /> |
+| --- | --- |
+| <InlineMath math="(1,1/1000)^T" /> | <InlineMath math="(1,1)^T" /> |
+| <InlineMath math="(1,2/1000)^T" /> | <InlineMath math="(1,2)^T" /> |
+
+<MathContainer>
+<BlockMath math="\Delta b_2=\frac1{1000},\qquad\Delta x_2=\frac{1/1000}{1/1000}=1" />
+<BlockMath math="\kappa_2(A)=\frac1{1/1000}=1000" />
+</MathContainer>
+
+Untuk melihat pembesaran ini, ambil <InlineMath math="\varepsilon=1/3" /> supaya gambarnya muat. Setiap usikan <InlineMath math="\Delta b" /> dengan komponen bersaiz paling besar <InlineMath math="1" /> terletak dalam segi empat sama kelabu, dan kesannya <InlineMath math="\Delta x=A^{-1}\Delta b" /> terletak dalam segi empat tepat magenta. Putar atau zum rajah ini: arah kedua diregangkan tiga kali ganda manakala arah pertama tidak diregangkan langsung, seperti bucu <InlineMath math="\Delta b=(1,1)^T" /> yang menjadi <InlineMath math="\Delta x=(1,3)^T" />. Nisbah <InlineMath math="3" /> itu ialah <InlineMath math="\kappa_2(A)=1/\varepsilon" />. Bagi <InlineMath math="\varepsilon=1/1000" />, segi empat tepat yang sama akan menjadi seribu kali lebih tinggi daripada lebarnya.
+
+<MathVisual
+  title={<>Usikan <InlineMath math="\Delta b" /> diregangkan oleh <InlineMath math="A^{-1}" /></>}
+  description={<>Bagi <InlineMath math="\varepsilon=1/3" />, setiap usikan dalam segi empat sama kelabu <InlineMath math="|\Delta b_i|\le1" /> dipetakan ke dalam segi empat tepat magenta yang lebarnya <InlineMath math="2" /> dan tingginya <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -3.4, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: -1, y: -1 }, { x: 1, y: -1 }, { x: 1, y: 1 }, { x: -1, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -3 }, { x: 1, y: -3 }, { x: 1, y: 3 }, { x: -1, y: 3 }], appearance: "answer" },
+      { id: "db", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "construction" },
+      { id: "dx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: -1, y: -1 }, placement: "below-left" },
+      { key: "image", objectId: "image", at: { x: -1, y: 3 }, placement: "above-left" },
+      { key: "db", objectId: "db", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "dx", objectId: "dx", at: { x: 1, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "square": <InlineMath math="|\Delta b_i|\le1" />,
+    "image": <InlineMath math="A^{-1}\Delta b" />,
+    "db": <InlineMath math="\Delta b" />,
+    "dx": <InlineMath math="\Delta x" />,
+  }}
+/>
+
+## Batas Usikan
+
+Andaikan <InlineMath math="A" /> boleh disongsangkan dan <InlineMath math="b\ne0" />, supaya ralat relatif di bawah mempunyai **penyebut bukan sifar**. Bandingkan sistem asal <InlineMath math="Ax=b" /> dengan sistem yang matriks dan vektornya berubah sedikit:
+
+<BlockMath math="(A+\delta A)(x+\delta x)=b+\delta b" />
+
+Gunakan norma teraruh yang sama untuk setiap kuantiti. Batas berikut memerlukan
+
+<BlockMath math="\kappa(A)\frac{\|\delta A\|}{\|A\|}<1" />
+
+Dengan syarat ini, perubahan relatif penyelesaian dibatasi oleh
+
+<BlockMath math="\begin{aligned} \frac{\|\delta x\|}{\|x\|} &amp;\le\frac{\kappa(A)}{1-\kappa(A)\|\delta A\|/\|A\|} \\ &amp;\quad{}\cdot\left(\frac{\|\delta b\|}{\|b\|}+\frac{\|\delta A\|}{\|A\|}\right) \end{aligned}" />
+
+Batas ini menggambarkan kes terburuk. Kebanyakan usikan mungkin menghasilkan pembesaran yang lebih kecil.
+
+## Kesyaratan Masalah dan Kestabilan Algoritma
+
+Kesyaratan masalah dan kestabilan algoritma menggambarkan dua sifat yang berbeza:
+
+- **kesyaratan** (conditioning) menggambarkan <Highlight>kepekaan masalah matematik terhadap perubahan input</Highlight>
+- **kestabilan** menggambarkan berapa banyak ralat tambahan yang dimasukkan oleh sesuatu algoritma berangka
+
+Algoritma yang stabil tidak dapat membuang kepekaan yang sudah ada dalam masalah yang bersyarat buruk. Sebaliknya, masalah yang bersyarat baik masih boleh diselesaikan dengan teruk oleh pelaksanaan yang tidak stabil. Reja yang kecil <InlineMath math="\|b-A\hat{x}\|" /> sahaja juga tidak menjamin ralat ke hadapan <InlineMath math="\|x-\hat{x}\|" /> yang kecil apabila <InlineMath math="\kappa(A)" /> besar.
+
+Dalam kerja berangka, anggarkan salingan nombor syarat daripada pemfaktoran yang boleh dipercayai. Cara ini memberikan <InlineMath math="\kappa(A)" /> tanpa membentuk <InlineMath math="A^{-1}" /> secara eksplisit.
+
+Dalam sistem dengan <InlineMath math="A=\begin{pmatrix}1&1\\1&1.01\end{pmatrix}" />, kedua-dua baris menghala ke arah yang hampir sama. Perubahan sebanyak <InlineMath math="0.01" /> pada satu unsur <InlineMath math="b" /> menggerakkan penyelesaian sejauh <InlineMath math="\sqrt2" />. Itu sifat masalah itu sendiri, jadi tiada algoritma stabil yang dapat membuangnya. Algoritma yang stabil hanya memastikan tidak banyak lagi ralat yang ditambah di atasnya.
+
+<MathVisual
+  title={<>Garis yang hampir selari menjadikan penyelesaian peka</>}
+  description={<>Garis ungu <InlineMath math="x+y=2" /> dan garis hijau kebiruan <InlineMath math="x+1.01y=2.01" /> bersilang pada titik magenta <InlineMath math="(1,1)" />. Apabila sebelah kanan ditukar kepada <InlineMath math="2.02" />, kita dapat garis jingga, dan penyelesaian berpindah ke titik ambar <InlineMath math="(0,2)" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 2 }, { x: 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 2.01, y: 0 }], appearance: "construction" },
+      { id: "shifted", kind: "line", through: [{ x: 0, y: 2 }, { x: 2.02, y: 0 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "moved", kind: "point", at: { x: 0, y: 2 }, appearance: "highlight" },
+    ],
+  }}
+/>

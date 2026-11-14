@@ -5,13 +5,14 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.limit",
   kind: "lesson",
-  routeSlugs: { de: "grenzwerte", en: "limit", id: "limit" },
+  routeSlugs: { de: "grenzwerte", en: "limit", id: "limit", ms: "had" },
   sections: [
     {
       routeSlugs: {
         de: "anwendungen-von-grenzwerten",
         en: "application-of-limit-function",
         id: "aplikasi-limit-fungsi",
+        ms: "aplikasi-had",
       },
       slug: "application-of-limit-function",
     },
@@ -20,6 +21,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         de: "begriff-des-grenzwerts",
         en: "concept-of-limit-function",
         id: "konsep-limit-fungsi",
+        ms: "konsep-had-fungsi",
       },
       slug: "concept-of-limit-function",
     },
@@ -28,6 +30,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         de: "grenzwerte-algebraischer-funktionen",
         en: "limit-of-algebraic-function",
         id: "limit-fungsi-aljabar",
+        ms: "had-fungsi-algebra",
       },
       slug: "limit-of-algebraic-function",
     },
@@ -36,6 +39,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         de: "grenzwerte-trigonometrischer-funktionen",
         en: "limit-of-trigonometric-function",
         id: "limit-fungsi-trigonometri",
+        ms: "had-fungsi-trigonometri",
       },
       slug: "limit-of-trigonometric-function",
     },
@@ -44,6 +48,7 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
         de: "eigenschaften-von-grenzwerten",
         en: "properties-of-limit-function",
         id: "sifat-limit-fungsi",
+        ms: "sifat-had-fungsi",
       },
       slug: "properties-of-limit-function",
     },
@@ -61,6 +66,10 @@ export const lessonMathematicsLimitMaterial = defineLessonMaterial({
     id: {
       description: "Gunakan limit untuk membaca perubahan nyata.",
       title: "Limit",
+    },
+    ms: {
+      description: "Guna had untuk membaca perubahan dalam situasi sebenar.",
+      title: "Had",
     },
   },
 });

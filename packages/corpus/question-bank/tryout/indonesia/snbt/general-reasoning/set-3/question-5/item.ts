@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
     topic: "data-comparison",
   },
-  stimulus: "kipas",
+  stimulus: "bangsal",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Penjualan kipas angin pada bulan April lebih dari dua kali penjualan pada bulan Januari.",
+            "Sif malam menangani kurang dari seperenam seluruh pemberian obat, tetapi menyumbang lebih dari seperlima seluruh kesalahan pencatatan.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika banyak kesalahan pencatatan dibagi banyak perawat yang bertugas, hasil untuk sif sore lebih besar daripada hasil untuk sif pagi.",
+        },
+        {
+          column: 2,
+          label:
+            "Seandainya angka kesalahan sif malam turun menjadi sama dengan angka kesalahan sif sore, sedangkan banyak pemberian obat tetap, banyak kesalahan pencatatan seluruh bangsal turun lebih dari $$10\\%$$.",
         },
         {
           column: 1,
           label:
-            "Bulan dengan rata-rata suhu maksimum tertinggi juga merupakan bulan dengan penjualan kipas angin tertinggi.",
-        },
-        {
-          column: 2,
-          label:
-            "Rata-rata pengunjung kolam renang per bulan untuk keenam bulan dalam tabel lebih dari $$3{.}600$$ orang.",
-        },
-        {
-          column: 2,
-          label:
-            "Penjualan kipas angin pada bulan Juni lebih rendah daripada penjualan pada bulan Maret.",
+            "Angka kesalahan untuk seluruh bangsal lebih rendah daripada angka kesalahan sif sore.",
         },
       ],
     },

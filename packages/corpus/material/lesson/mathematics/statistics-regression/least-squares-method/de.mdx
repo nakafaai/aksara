@@ -141,11 +141,11 @@ Lass die Gerade durch den Schwerpunkt <InlineMath math="(\bar x, \bar y) = \left
   chartConfig={{ value: { label: "Summe der quadrierten Residuen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Behalte jetzt die Steigung <InlineMath math="b \approx 8{,}222" /> und verschieb die Gerade um <InlineMath math="d" /> Tausend Stück nach oben oder unten. Jede Verschiebung fügt der Summe der quadrierten Residuen <InlineMath math="12d^2" /> hinzu, ein <InlineMath math="d^2" /> für jedes der 12 Paare, also ist der Achsenabschnitt <InlineMath math="a \approx 30{,}491" /> der beste.
+Behalte jetzt die Steigung <InlineMath math="b \approx 8{,}222" /> und verschieb die Gerade um <InlineMath math="d" /> Tausend Stück nach oben oder unten. Jede Verschiebung fügt der Summe der quadrierten Residuen <InlineMath math="12d^2" /> hinzu, ein <InlineMath math="d^2" /> für jedes der <InlineMath math="12" /> Paare, also ist der Achsenabschnitt <InlineMath math="a \approx 30{,}491" /> der beste.
 
 <BarChart
   title={<>Summe der quadrierten Residuen gegen eine Verschiebung</>}
-  description={<>Balken der Summe der quadrierten Residuen für die um <InlineMath math="d = -10, -5, 0, 5, 10" /> verschobene Gerade. Der kleinste Balken, etwa 1906,6, ist die angepasste Gerade selbst.</>}
+  description={<>Balken der Summe der quadrierten Residuen für die um <InlineMath math="d = -10, -5, 0, 5, 10" /> verschobene Gerade. Der kleinste Balken, etwa <InlineMath math="1906{,}6" />, ist die angepasste Gerade selbst.</>}
   yAxisLabel="Summe der quadrierten Residuen"
   data={[-10, -5, 0, 5, 10].map((d) => ({ name: String(d), value: 31265 / 4 - 2875 ** 2 / (16 * (1049 / 12)) + 12 * d ** 2 }))}
   chartConfig={{ value: { label: "Summe der quadrierten Residuen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

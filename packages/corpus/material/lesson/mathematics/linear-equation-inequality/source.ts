@@ -10,6 +10,7 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
       de: "lineare-gleichungs-und-ungleichungssysteme",
       en: "linear-equation-inequality",
       id: "sistem-persamaan-dan-pertidaksamaan-linear",
+      ms: "sistem-persamaan-dan-ketaksamaan-linear",
     },
     sections: [
       {
@@ -17,6 +18,7 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
           de: "lineare-gleichungssysteme",
           en: "system-linear-equation",
           id: "sistem-persamaan-linear",
+          ms: "sistem-persamaan-linear",
         },
         slug: "system-linear-equation",
       },
@@ -25,6 +27,7 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
           de: "lineare-ungleichungssysteme",
           en: "system-linear-inequality",
           id: "sistem-pertidaksamaan-linear",
+          ms: "sistem-ketaksamaan-linear",
         },
         slug: "system-linear-inequality",
       },
@@ -42,6 +45,10 @@ export const lessonMathematicsLinearEquationInequalityMaterial =
       id: {
         description: "Selesaikan sistem linear dengan dua cara utama.",
         title: "Sistem Persamaan dan Pertidaksamaan Linear",
+      },
+      ms: {
+        description: "Selesaikan sistem linear dengan dua kaedah utama.",
+        title: "Sistem Persamaan dan Ketaksamaan Linear",
       },
     },
   });

@@ -1,0 +1,41 @@
+Soalan ini bertanya bilangan kotak paling sedikit untuk <InlineMath math="1{,}000" /> biji bola. Jalannya ada tiga langkah: tukar bola kepada tabung, cari **arah tabung yang memuatkan paling banyak tabung dalam satu kotak**, kemudian bahagi dan bundarkan ke atas.
+
+# Bilangan tabung
+
+Satu tabung memuatkan paling banyak <InlineMath math="3" /> biji bola. Tabung yang hanya separuh berisi tetap memerlukan satu tempat penuh di dalam kotak, jadi **hasil bahagi dibundarkan ke atas**. Di sini tabung terakhir hanya berisi sebiji bola:
+
+<BlockMath math="\frac{1{,}000}{3}=333.3\ldots\quad\Rightarrow\quad334\text{ tabung}" />
+
+# Muatan satu kotak
+
+Saiz tabung mengikut bola: diameternya <InlineMath math="6.5\text{ cm}" /> dan panjangnya <InlineMath math="3\cdot6.5=19.5\text{ cm}" />. Pada setiap sisi kotak, bilangan tabung yang muat ialah panjang sisi dibahagi dengan saiz tabung pada arah itu, **dibundarkan ke bawah**, kerana tiada tabung yang boleh terkeluar. Contohnya, <InlineMath math="7\cdot6.5=45.5\le50" /> tetapi <InlineMath math="8\cdot6.5=52>50" />, jadi sisi <InlineMath math="50\text{ cm}" /> memuatkan <InlineMath math="7" /> diameter. Terdapat tiga kemungkinan arah paksi tabung:
+
+| Paksi tabung selari dengan | Sepanjang paksi | Dua arah lain | Muatan satu kotak |
+| :---: | :---: | :---: | :---: |
+| tinggi <InlineMath math="30" /> (tegak) | <InlineMath math="1" /> | <InlineMath math="7" /> dan <InlineMath math="6" /> | <InlineMath math="42" /> |
+| panjang <InlineMath math="50" /> | <InlineMath math="2" /> | <InlineMath math="6" /> dan <InlineMath math="4" /> | <InlineMath math="48" /> |
+| lebar <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="7" /> dan <InlineMath math="4" /> | <InlineMath math="56" /> |
+
+Baris terakhir paling banyak. Tabung dibaringkan selari dengan sisi <InlineMath math="40\text{ cm}" />: dua tabung bersambung menggunakan <InlineMath math="39\text{ cm}" />, tujuh deret menggunakan <InlineMath math="45.5\text{ cm}" /> daripada sisi <InlineMath math="50\text{ cm}" />, dan empat lapisan menggunakan <InlineMath math="26\text{ cm}" /> daripada tinggi <InlineMath math="30\text{ cm}" />.
+
+<BlockMath math="2\cdot7\cdot4=56\text{ tabung bagi setiap kotak}" />
+
+# Bilangan kotak
+
+Bahagikan bilangan tabung dengan muatan terbesar, kemudian bundarkan ke atas kerana kotak terakhir tetap digunakan walaupun tidak penuh:
+
+<BlockMath math="\begin{aligned}
+\frac{334}{56}&=5.96\ldots\quad\Rightarrow\quad6\text{ kotak} \\
+5\cdot56&=280<334,\qquad 6\cdot56=336\ge334
+\end{aligned}" />
+
+Lima kotak belum mencukupi, manakala enam kotak sudah mencukupi. Isi padu kotak tidak boleh terus dibahagi dengan isi padu tabung, kerana **ruang di hujung sisi yang terlalu pendek untuk satu tabung lagi akan tetap kosong**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="7" /> muncul jika tabung dibaringkan selari dengan sisi terpanjang <InlineMath math="50\text{ cm}" />. **Sisi terpanjang belum tentu arah terbaik**: muatannya hanya <InlineMath math="48" />, dan <InlineMath math="334\div48=6.96\ldots" /> dibundarkan kepada <InlineMath math="7" />.
+- <InlineMath math="8" /> muncul jika kamu hanya mencuba tabung yang berdiri tegak. Muatannya <InlineMath math="42" />, dan <InlineMath math="334\div42=7.95\ldots" /> dibundarkan kepada <InlineMath math="8" />.
+- <InlineMath math="18" /> muncul jika <InlineMath math="1{,}000" /> biji bola terus dibahagi dengan <InlineMath math="56" />, seolah-olah setiap bola memerlukan satu tabung.
+- <InlineMath math="24" /> muncul jika tabung yang dibaringkan hanya disusun satu lapisan, iaitu <InlineMath math="2\cdot7=14" /> tabung bagi setiap kotak, jadi <InlineMath math="334\div14=23.86\ldots" /> dibundarkan kepada <InlineMath math="24" />.
+
+Jadi, bilangan kotak paling sedikit yang diperlukan ialah <InlineMath math="6" />.

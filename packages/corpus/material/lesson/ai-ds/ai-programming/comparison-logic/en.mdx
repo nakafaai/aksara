@@ -328,11 +328,11 @@ True`
 Python provides the `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` function to test approximate equality. This function uses **relative and absolute tolerances** through `rel_tol` and `abs_tol` to determine whether two values are close enough.
 
 
-For `math.isclose(100, 95, rel_tol=0.05)`, the absolute difference is 5. Relative tolerance uses the larger absolute value, which is 100.
+For `math.isclose(100, 95, rel_tol=0.05)`, the absolute difference is <InlineMath math="5" />. Relative tolerance uses the larger absolute value, which is <InlineMath math="100" />.
 
 <BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0.05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
 
-The difference does not exceed the tolerance, so the result is `True`. With `abs_tol=5`, the absolute tolerance of 5 also accepts this difference.
+The difference does not exceed the tolerance, so the result is `True`. With `abs_tol=5`, the absolute tolerance of <InlineMath math="5" /> also accepts this difference.
 
 
 > Use exact equality when exact identity of the floating-point value is genuinely required. For measured or calculated quantities, choose tolerances from the problem domain and use `math.isclose()`. Near zero, relative tolerance alone shrinks with the compared values, so set an `abs_tol` that reflects the smallest meaningful difference.

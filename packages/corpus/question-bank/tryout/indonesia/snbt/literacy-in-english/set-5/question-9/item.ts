@@ -6,34 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "assumption",
   },
-  stimulus: "basic-income",
+  stimulus: "nuclear-power",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Most basic income pilots last longer than ten years.",
+          label:
+            "That gas plants used only during rare windless weeks would add little carbon dioxide to the air while they are held in reserve.",
         },
         {
           correct: false,
           label:
-            "People who dislike their jobs never leave them, whatever their income.",
-        },
-        {
-          correct: false,
-          label:
-            "Starting a business is always more useful than keeping a steady job.",
-        },
-        {
-          correct: false,
-          label:
-            "Participants in pilots do not know when their payments will end.",
+            "That wind farms and solar parks can be planned and built far more quickly than a reactor that is approved at the same time.",
         },
         {
           correct: true,
           label:
-            "People may act differently when they expect payments to last for life.",
+            "That storage will improve enough to take over from the reserve gas plants before the country has to stop burning gas altogether.",
+        },
+        {
+          correct: false,
+          label:
+            "That a reactor emits almost no carbon dioxide while it runs and produces power steadily whatever the weather happens to be.",
+        },
+        {
+          correct: false,
+          label:
+            "That batteries can already carry the whole grid through a windless winter week without any help from a steady source.",
         },
       ],
     },

@@ -1,0 +1,149 @@
+
+
+export const metadata = {
+  title: "Penambahan dan Penolakan Vektor secara Grafik",
+  description:
+    "Cari vektor paduan dengan kaedah segi tiga, segi empat selari, poligon dan vektor negatif secara grafik.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Vektor",
+};
+
+## Menambah Vektor secara Grafik
+
+Apabila beberapa sesaran berlaku berturut-turut, atau beberapa vektor bertindak pada satu titik, hasil tambah vektornya boleh diwakili oleh satu anak panah yang dipanggil **vektor paduan**. Bagi daya yang dikenakan pada titik berlainan, daya paduan menerangkan kesan translasi bersih, tetapi kesan putarannya mesti disemak secara berasingan melalui tork.
+
+Kaedah grafik mencari vektor paduan menggunakan lukisan berskala. Panjang anak panah berkadar dengan magnitud vektor, dan arah anak panah mengikut sudut atau arah kompas yang diberikan.
+
+> Dalam kaedah grafik, ketepatan jawapan bergantung pada skala lukisan, penggunaan pembaris dan pengukuran sudut.
+
+### Kaedah Segi Tiga Hujung ke Pangkal
+
+Kaedah segi tiga digunakan untuk menambah dua vektor. Lukis vektor pertama, kemudian letakkan pangkal vektor kedua pada hujung vektor pertama. Vektor paduan dilukis dari pangkal vektor pertama ke hujung vektor kedua.
+
+<MathVisual
+  title={<>Penambahan Hujung ke Pangkal</>}
+  description={
+    <>
+      Vektor <InlineMath math="\vec{a}" /> diikuti oleh{" "}
+      <InlineMath math="\vec{b}" />. Vektor paduan <InlineMath math="\vec{R}" /> terus
+      menyambungkan titik mula dengan titik akhir.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="R" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0.5 }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: 5, y: 2.5 }, { x: 6, y: 4 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.6, y: 2.4 }, { x: 6, y: 4 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 3.6, y: 2.4 }, to: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 2.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.6, y: 2.4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Letakkan **pangkal vektor kedua pada hujung vektor pertama**. Unit koordinat dalam model ini ialah meter: sesaran pertama ialah <InlineMath math="(4,1)" />, diikuti oleh <InlineMath math="(2,3)" />. Titik akhirnya ialah <InlineMath math="(6,4)" /> kerana kamu menambah perubahan kedudukan pada setiap paksi.
+
+<BlockMath math="\vec{R}=(4+2,1+3)\text{ m}=(6,4)\text{ m}" />
+
+### Kaedah Segi Empat Selari bagi Dua Vektor dengan Pangkal Sepunya
+
+Dua daya yang bertindak pada satu titik boleh dilukis dari **pangkal yang sama**. Contohnya, dua tali menarik sebentuk cincin. Vektor salinan dalam model mengekalkan panjang dan arah anak panah asal. Ikut sisi bawah kemudian sisi kanan, atau sisi kiri kemudian sisi atas. Kedua-dua laluan berakhir pada titik yang sama.
+
+<MathVisual
+  title={<>Pepenjuru Segi Empat Selari</>}
+  description={<>Anak panah ungu menyambungkan pangkal sepunya dengan titik akhir kedua-dua laluan. Vektor <InlineMath math="\vec{a}" /> dan <InlineMath math="\vec{b}" /> tetap sama dengan salinan selarinya.</>}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="a" />,
+    "l4": <InlineMath math="b" />,
+    "l5": <InlineMath math="R" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)) }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 1, y: 1.5 }, to: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: (2) + 0.5 * ((6) - (2)), y: (3) + 0.5 * ((4) - (3)) }, { x: 6, y: 4 }], appearance: "primary" },
+      { id: "s3-head", kind: "vector", from: { x: 4, y: 3.5 }, to: { x: 6, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)) }, { x: 6, y: 4 }], appearance: "secondary" },
+      { id: "s4-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((6) - (0)), y: (0) + 0.5 * ((4) - (0)) }, { x: 6, y: 4 }], appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: 3, y: 2 }, to: { x: 6, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 1.5 }, placement: "left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3.5 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: 5, y: 2.5 }, placement: "right" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+### Kaedah Poligon bagi Banyak Vektor
+
+Susunan lukisan boleh ditukar asalkan <Highlight>setiap vektor mengekalkan magnitud dan arahnya</Highlight>. Vektor paduan dilukis dari pangkal vektor pertama yang dipilih ke hujung vektor terakhir.
+
+<BlockMath math="\vec{R}=\vec{a}+\vec{b}+\vec{c}" />
+
+Jika poligon kembali ke titik mula, hasil tambah vektornya ialah sifar. Bagi daya, daya bersih sifar bermaksud keseimbangan translasi. Keseimbangan putaran pula memerlukan tork bersih yang juga sifar.
+
+Sebagai contoh, tambahkan <InlineMath math="\vec{c}=(-6,-4)" /> selepas dua sesaran dalam model tadi. Anak panah ketiga mengikut pepenjuru kembali ke titik mula. Perjalanan itu masih ada panjangnya, tetapi jumlah sesarannya ialah sifar.
+
+<BlockMath math="\vec{a}+\vec{b}+\vec{c}=(4+2-6,1+3-4)=(0,0)" />
+
+## Penolakan Vektor secara Grafik
+
+Untuk penolakan, **terbalikkan arah vektor yang ditolak**. Dengan pasangan yang sama, komponen <InlineMath math="\vec{b}=(2,3)" /> menjadi <InlineMath math="-\vec{b}=(-2,-3)" />.
+
+<ContentStack>
+  <BlockMath math="\vec{a}-\vec{b}=(4,1)+(-2,-3)=(2,-2)" />
+
+  <MathVisual
+    title={<>Menambah Vektor Negatif</>}
+    description={<>Dari hujung <InlineMath math="\vec{a}" /> pada <InlineMath math="(4,1)" />, gerak dua unit ke kiri dan tiga unit ke bawah. Vektor paduan berakhir pada <InlineMath math="(2,-2)" />.</>}
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="-b" />,
+      "l3": <InlineMath math="a-b" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((1) - (0)) }, { x: 4, y: 1 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 2, y: 0.5 }, to: { x: 4, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((2) - (4)), y: (1) + 0.5 * ((-2) - (1)) }, { x: 2, y: -2 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3, y: -0.5 }, to: { x: 2, y: -2 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((-2) - (0)) }, { x: 2, y: -2 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: 1, y: -1 }, to: { x: 2, y: -2 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 0.5 }, placement: "above" },
+        { key: "l2", objectId: "s2", at: { x: 3, y: -0.5 }, placement: "right" },
+        { key: "l3", objectId: "s3", at: { x: 1, y: -1 }, placement: "below-left" },
+      ],
+    }}
+  />
+</ContentStack>

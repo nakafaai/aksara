@@ -1,25 +1,26 @@
-Beginne bei der Tatsache, die sicher ist, und schließe Schritt für Schritt weiter. Schreib die Aussagen als Symbole:
+Die einzige Tatsache, die du hast, ist: Neue Kostüme wurden nicht angefertigt. Von dort verfolgst du die Prämissen eine nach der anderen und hörst auf, sobald eine Prämisse nichts Neues mehr liefert.
 
-- <InlineMath math="p" />: Das Lager erhält am Montag eine Reislieferung.
-- <InlineMath math="q" />: Die Mitarbeiter wiegen alle Säcke neu.
-- <InlineMath math="r" />: Der Bestandsbericht wird verspätet verschickt.
-- <InlineMath math="s" />: Der Lagerleiter ruft den Lieferanten an.
+Nimm Symbole, damit die Form jeder Prämisse sichtbar wird. Sei <InlineMath math="p" />: ein neuer Sponsor steigt ein, <InlineMath math="k" />: neue Kostüme werden angefertigt, <InlineMath math="g" />: der Proberaum wird aus der Chorkasse gemietet, <InlineMath math="s" />: jeden Samstag gibt es Zusatzproben, <InlineMath math="f" />: der Chor nimmt am nationalen Festival teil, und <InlineMath math="v" />: ein Gastgesangscoach wird eingeladen.
 
-Die Prämissen sind <InlineMath math="p \Rightarrow q" />, <InlineMath math="q \Rightarrow r" />, <InlineMath math="\neg r \vee s" /> und die Tatsache <InlineMath math="\neg s" />.
+Der erste Schlüssel ist die Bedeutung von *hanya jika* ("nur wenn"). **"A nur wenn B" heißt, dass A ohne B nicht passieren kann**, also hat es dieselbe Form wie "wenn A, dann B". Prämisse 1 wird zu <InlineMath math="p \Rightarrow k" />, Prämisse 4 zu <InlineMath math="f \Rightarrow s" />. Die übrigen Prämissen sind <InlineMath math="p \vee g" />, <InlineMath math="g \Rightarrow s" /> und <InlineMath math="p \Rightarrow v" />. Die Tatsache ist <InlineMath math="\neg k" />.
 
-**Schritt 1** nutzt die Disjunktion. In <InlineMath math="\neg r \vee s" /> muss mindestens ein Teil wahr sein. Da <InlineMath math="s" /> falsch ist, muss <InlineMath math="\neg r" /> wahr sein. Also ist **der Bestandsbericht nicht verspätet**.
+Verfolge jetzt die Kette.
 
-**Schritt 2** nutzt zweimal den Modus tollens. Aus <InlineMath math="q \Rightarrow r" /> und <InlineMath math="\neg r" /> folgt <InlineMath math="\neg q" />. Aus <InlineMath math="p \Rightarrow q" /> und <InlineMath math="\neg q" /> folgt <InlineMath math="\neg p" />.
+1. Prämisse 1 sagt: Wenn ein Sponsor einsteigt, werden sicher neue Kostüme angefertigt. Es wurden keine neuen Kostüme angefertigt, also ist kein neuer Sponsor eingestiegen. Dieser Schritt heißt Modus tollens: Wenn der Dann-Teil scheitert, scheitert auch der Wenn-Teil.
+2. Prämisse 2 sagt, dass mindestens eines von zwei Dingen passiert: Ein Sponsor steigt ein, oder der Proberaum wird aus der Kasse gemietet. Kein Sponsor ist eingestiegen, also wird der Proberaum sicher aus der Kasse gemietet. Dieser Schritt heißt disjunktiver Syllogismus.
+3. Prämisse 3 sagt: Wenn der Proberaum aus der Kasse gemietet wird, gibt es jeden Samstag Zusatzproben. Der Proberaum wird aus der Kasse gemietet, also gibt es jeden Samstag Zusatzproben.
 
-<BlockMath math="\neg s,\; \neg r \vee s \;\Rightarrow\; \neg r \;\Rightarrow\; \neg q \;\Rightarrow\; \neg p" />
+<BlockMath math="\neg k \;\xrightarrow{\ (1)\ }\; \neg p \;\xrightarrow{\ (2)\ }\; g \;\xrightarrow{\ (3)\ }\; s" />
 
-Das Lager hat also am Montag keine Reislieferung erhalten.
+Hier endet die Kette. Prämisse 4 hilft nur, wenn du weißt, dass <InlineMath math="f" /> wahr oder <InlineMath math="s" /> falsch ist, du weißt aber, dass <InlineMath math="s" /> wahr ist. Prämisse 5 hilft nur, wenn du weißt, dass <InlineMath math="p" /> wahr oder <InlineMath math="v" /> falsch ist, du weißt aber, dass <InlineMath math="p" /> falsch ist. Festival und Gastcoach bleiben also offen.
 
-Die anderen Optionen sind falsch:
+Die Schlussfolgerung mit <InlineMath math="\neg p" /> und <InlineMath math="s" /> lautet "kein neuer Sponsor steigt ein, und jeden Samstag gibt es Zusatzproben". Beide Teile sind bewiesen.
 
-- Dass alle Säcke neu gewogen werden, widerspricht <InlineMath math="\neg q" />.
-- Ein verspäteter Bericht widerspricht <InlineMath math="\neg r" />.
-- Die Prämissen sagen nichts über andere Tage, eine Lieferung an einem anderen Tag ist also möglich, aber nicht sicher.
-- Die Prämissen betreffen nur diese Woche, über die nächste Woche folgt nichts.
+Jede andere Auswahl enthält einen Teil, der nicht bewiesen ist.
 
-Sicher wahr ist also, dass das Lager in dieser Woche am Montag keine Reislieferung erhalten hat.
+- Proberaum aus der Kasse gemietet und Teilnahme am Festival: Der zweite Teil dreht Prämisse 4 um. Zusatzproben sind eine Voraussetzung für das Festival, keine Garantie für die Teilnahme.
+- Kein Sponsor und Proberaum nicht aus der Kasse gemietet: Der zweite Teil ist falsch. Scheitert eine Seite eines "oder", muss die andere wahr sein, statt mit zu scheitern.
+- Zusatzproben und kein Gastcoach: Der zweite Teil benutzt die Inverse von Prämisse 5, nämlich "wenn kein Sponsor einsteigt, wird kein Gastcoach eingeladen". Prämisse 5 spricht nur über den Fall, dass ein Sponsor einsteigt, also sagt "kein Sponsor" nichts über den Coach.
+- Neuer Sponsor und Zusatzproben: Der erste Teil widerspricht Schritt 1. Diese Auswahl entsteht, wenn du den Modus tollens bei Prämisse 1 überspringst und das "oder" in Prämisse 2 wie "und" liest.
+
+Sicher stimmt also, dass kein neuer Sponsor einsteigt und es jeden Samstag Zusatzproben gibt.

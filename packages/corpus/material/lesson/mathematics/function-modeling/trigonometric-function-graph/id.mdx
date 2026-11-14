@@ -57,86 +57,50 @@ Mengubah radian ke derajat:
 
 Amplitudo adalah <Highlight>jarak vertikal maksimum dari garis tengah gelombang</Highlight> sinusoidal ke puncak atau lembahnya. Pada fungsi tanpa pergeseran <InlineMath math="y = A \sin x" /> dan <InlineMath math="y = A \cos x" />, garis tengah tersebut adalah sumbu <InlineMath math="x" /> dan amplitudonya <InlineMath math="|A|" />.
 
-<LineEquation
-  title="Konsep Amplitudo"
+<MathVisual
+  title={<>Konsep Amplitudo</>}
   description={<>Amplitudo menentukan 'tinggi' gelombang. Perhatikan jarak dari sumbu <InlineMath math="x" /> ke puncak.</>}
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 298,
-        domain: [0, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <>Amplitudo = <InlineMath math="2" /></>, at: 75, offset: [0, 0.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: Math.PI / 2, y: 0, z: 0 },
-        { x: Math.PI / 2, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[Math.PI, 0, 10]}
-  cameraTarget={[Math.PI, 0, 0]}
+  labels={{
+    "l1": <>Amplitudo = <InlineMath math="2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x)", domain: { min: 0, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: Math.PI / 2, y: 0 }, { x: Math.PI / 2, y: 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.59, y: 2 }, placement: "above" },
+    ],
+  }}
 />
 
 ### Periode
 
 Periode adalah panjang **interval** yang diperlukan untuk satu siklus lengkap. Untuk fungsi <InlineMath math="y = \sin(Bx)" /> atau <InlineMath math="y = \cos(Bx)" />, periode adalah <InlineMath math="\frac{2\pi}{|B|}" />.
 
-<LineEquation
-  title="Konsep Periode"
-  description="Periode adalah jarak horizontal untuk satu gelombang penuh."
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 298,
-        domain: [0, 4 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <>Periode = <InlineMath math="2\pi" /></>, at: 75, offset: [0, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: -1.2, z: 0 },
-        { x: 2 * Math.PI, y: -1.2, z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      cone: { position: "both" },
-      labels: [
-        {
-          text: <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
-          at: 1,
-          offset: [-3, -0.5, 0],
-
-        },
-      ],
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[2*Math.PI, 0, 16]}
-  cameraTarget={[2*Math.PI, 0, 0]}
+<MathVisual
+  title={<>Konsep Periode</>}
+  description={<>Periode adalah jarak horizontal untuk satu gelombang penuh.</>}
+  labels={{
+    "l1": <>Periode = <InlineMath math="2\pi" /></>,
+    "l2": <InlineMath math="\longleftarrow\;2\pi\;\longrightarrow" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 14 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: 0, max: 4 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "line", through: [{ x: 0, y: -1.2 }, { x: 6.28, y: -1.2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.17, y: -0.03 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 6.28, y: -1.2 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ### Amplitudo dan Periode dari Koefisien
@@ -153,32 +117,27 @@ Untuk rumus berikut, ambil <InlineMath math="A\neq0" /> dan <InlineMath math="B\
 
 Fungsi <InlineMath math="y = \sin x" /> bersifat periodik dengan periode <InlineMath math="2\pi" />. Artinya, pola grafiknya berulang pada setiap interval sepanjang <InlineMath math="2\pi" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Grafik <InlineMath math="y = \sin x" />
     </>
   }
-  description="Perhatikan bagaimana grafik membentuk gelombang yang berulang secara teratur."
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, 0.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  description={<>Perhatikan bagaimana grafik membentuk gelombang yang berulang secara teratur.</>}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Karakteristik grafik**: <InlineMath math="y = \sin x" />
@@ -195,32 +154,27 @@ Fungsi <InlineMath math="y = \sin x" /> bersifat periodik dengan periode <Inline
 
 Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus, tetapi bergeser <InlineMath math="\frac{\pi}{2}" /> ke kiri.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Grafik <InlineMath math="y = \cos x" />
     </>
   }
   description={<>Bandingkan dengan grafik <InlineMath math="\sin" />. Perhatikan pergeserannya.</>}
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "cos",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 228, offset: [0.3, 1.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: 0.44 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Karakteristik grafik**: <InlineMath math="y = \cos x" />
@@ -237,101 +191,65 @@ Fungsi <InlineMath math="y = \cos x" /> memiliki bentuk yang mirip dengan sinus,
 
 Kedua kurva berulang setelah satu putaran penuh dan berbeda pada **pergeseran horizontal**. Bandingkan puncak dan titik nol kedua kurva itu pada tampilan yang sama.
 
-<LineEquation
+<MathVisual
   title={<>Perbandingan Grafik <InlineMath math="\sin" /> dan <InlineMath math="\cos" /></>}
   description={
     <>
       Perhatikan bahwa <InlineMath math="\cos x = \sin(x + \frac{\pi}{2})" />.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "cos",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\cos x" />, at: 328, offset: [1.5, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\cos x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "cos(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1.16, y: 0.4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Grafik Fungsi Tangen
 
 Fungsi <InlineMath math="y = \tan x" /> berbeda dengan <InlineMath math="\sin" /> dan <InlineMath math="\cos" /> karena memiliki asimtot vertikal.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Grafik <InlineMath math="y = \tan x" />
     </>
   }
-  description="Garis vertikal merah menandai asimtotnya."
-  data={[
-    // Fungsi tangen
-    ...Array.from({ length: 3 }, (_, periodIndex) => {
-      const offset = (periodIndex - 1) * Math.PI;
-      return {
-        smooth: false,
-        curve: {
-          kind: "tan",
-          amplitude: 1,
-          frequency: 1,
-          phase: 0,
-          shift: 0,
-          samples: 322,
-          domain: [
-            offset - Math.atan(Math.sinh(2.5)),
-            offset + Math.atan(Math.sinh(2.5)),
-          ],
-        },
-        color: "#059669",
-        labels:
-          periodIndex === 1
-            ? [{ text: <InlineMath math="y=\tan x" />, at: 162, offset: [2, 0.5, 0] }]
-            : [],
-        showPoints: false,
-      };
-    }),
-    // Asimtot vertikal
-    ...Array.from({ length: 4 }, (_, i) => {
-      const x = (i - 1) * Math.PI - Math.PI / 2;
-      return {
-        points: [{ x, y: -6, z: 0 }, { x, y: 5, z: 0 }, { x, y: 6, z: 0 }],
-        smooth: false,
-        color: "#e11d48",
-        showPoints: false,
-        labels:
-          i === 2 ? [{ text: <InlineMath math="x=\frac{\pi}{2}" />, at: 1, offset: [1, 0.5, 0] }] : [],
-      };
-    }),
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  description={<>Garis vertikal merah menandai asimtotnya.</>}
+  labels={{
+    "l1": <InlineMath math="y=\tan x" />,
+    "l2": <InlineMath math="x=\frac{\pi}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "tan(x)", domain: { min: -4.55, max: -1.73 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "tan(x)", domain: { min: -1.41, max: 1.41 }, appearance: "primary" },
+      { id: "s3", kind: "function", formula: "tan(x)", domain: { min: 1.73, max: 4.55 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -4.71, y: -6 }, { x: -4.71, y: 5 }, { x: -4.71, y: 6 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -1.57, y: -6 }, { x: -1.57, y: 5 }, { x: -1.57, y: 6 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 1.57, y: -6 }, { x: 1.57, y: 5 }, { x: 1.57, y: 6 }], appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4.71, y: -6 }, { x: 4.71, y: 5 }, { x: 4.71, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0.01, y: 0.01 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: 1.57, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 **Karakteristik grafik**: <InlineMath math="y = \tan x" />
@@ -351,125 +269,67 @@ Perubahan **amplitudo, periode, dan posisi garis tengah** dapat dibaca dari koef
 
 Fungsi <InlineMath math="y = A \sin x" /> mengubah **amplitudo** menjadi <InlineMath math="|A|" />.
 
-<LineEquation
-  title="Pengaruh Amplitudo"
+<MathVisual
+  title={<>Pengaruh Amplitudo</>}
   description={
     <>
       Perhatikan bagaimana nilai <InlineMath math="A" /> memengaruhi tinggi
       gelombang.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=2\sin x" />, at: 228, offset: [1.25, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 0.5,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 278,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=0{,}5\sin x" />, at: 114, offset: [1, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin x" />,
+    "l3": <InlineMath math="y=0{,}5\sin x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "0.5 sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -1.79 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.45 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Perubahan Periode
 
 Fungsi <InlineMath math="y = \sin(Bx)" /> mengubah **periode** menjadi <InlineMath math="\frac{2\pi}{|B|}" />.
 
-<LineEquation
-  title="Pengaruh Periode"
+<MathVisual
+  title={<>Pengaruh Periode</>}
   description={
     <>
       Nilai <InlineMath math="B" /> memengaruhi seberapa cepat fungsi berulang.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [1.5, -2.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 2,
-        phase: 0,
-        shift: 0,
-        samples: 1109,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [{ text: <InlineMath math="y=\sin 2x" />, at: 596, offset: [1.25, 1.5, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 0.5,
-        phase: 0,
-        shift: 0,
-        samples: 278,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#059669",
-      labels: [{ text: <InlineMath math="y=\sin 0{,}5x" />, at: 114, offset: [1, 2.5, 0] }],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=\sin 2x" />,
+    "l3": <InlineMath math="y=\sin 0{,}5x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "sin(2 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "sin(0.5 x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.48, y: 0.81 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -1.11, y: -0.53 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Pergeseran Vertikal dan Horizontal
@@ -488,50 +348,31 @@ Bentuk umum:
 
 Perhatikan pergeseran horizontal dan vertikal dari grafik:
 
-<LineEquation
-  title="Transformasi Lengkap"
+<MathVisual
+  title={<>Transformasi Lengkap</>}
   description={
     <>
       Grafik <InlineMath math="y = 2\sin(x - \frac{\pi}{4}) + 1" /> menunjukkan
       semua transformasi.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 1,
-        frequency: 1,
-        phase: 0,
-        shift: 0,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#0d9488",
-      labels: [{ text: <InlineMath math="y=\sin x" />, at: 228, offset: [0.5, -2, 0] }],
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: -Math.PI / 4,
-        shift: 1,
-        samples: 555,
-        domain: [-2 * Math.PI, 2 * Math.PI],
-      },
-      color: "#e11d48",
-      labels: [
-        { text: <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />, at: 228, offset: [0.5, 1.5, 0] },
-      ],
-      showPoints: false,
-    },
-  ]}
-  showZAxis={false}
-  cameraPosition={[0, 0, 15]}
+  labels={{
+    "l1": <InlineMath math="y=\sin x" />,
+    "l2": <InlineMath math="y=2\sin(x-\frac{\pi}{4})+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "2 sin(x - 0.7853981633974483) + 1", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.11, y: -0.9 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: -1.11, y: -0.89 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Latihan
@@ -596,29 +437,22 @@ Untuk kurva kedua, koefisien masukan adalah sepertiga. Argumen kosinus memerluka
 | --- | --- | --- | --- | --- | --- |
 | <InlineMath math="y" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
 
-<LineEquation
-  title="Sketsa Satu Siklus"
-  description="Titik-titik menandai garis tengah, puncak, dan lembah setelah pergeseran."
-  data={[
-    {
-      curve: {
-        kind: "sin",
-        amplitude: 2,
-        frequency: 1,
-        phase: Math.PI / 3,
-        shift: -1,
-        samples: 321,
-        domain: [-Math.PI / 3, 5 * Math.PI / 3],
-      },
-      smooth: false,
-      showPoints: false,
-      color: "#9333ea",
-    },
-    ...[{x: -Math.PI/3,y:-1,z:0},{x:Math.PI/6,y:1,z:0},{x:2*Math.PI/3,y:-1,z:0},{x:7*Math.PI/6,y:-3,z:0},{x:5*Math.PI/3,y:-1,z:0}].map((point) => ({points:[point],showPoints:true,color:"#ea580c"}))
-  ]}
-  showZAxis={false}
-  cameraPosition={[2,-1,11]}
-  cameraTarget={[2,-1,0]}
+<MathVisual
+  title={<>Sketsa Satu Siklus</>}
+  description={<>Titik-titik menandai garis tengah, puncak, dan lembah setelah pergeseran.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "function", formula: "2 sin(x + 1.0471975511965976) - 1", domain: { min: -Math.PI / 3, max: 5 * Math.PI / 3 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1.05, y: -1 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 0.52, y: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 2.09, y: -1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 3.67, y: -3 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: 5.24, y: -1 }, appearance: "secondary" },
+    ],
+  }}
 />
 
 **Soal 4**. Tinggi air berpusat pada **garis tengah** lima meter, dengan simpangan maksimum dua meter.

@@ -1,0 +1,136 @@
+export const metadata = {
+  title: "Konsep Analisis Korelasi",
+  description:
+    "Gunakan korelasi untuk menggambarkan arah dan kekuatan hubungan linear, tafsirkan nilai r Pearson, dan terangkan mengapa korelasi tidak bermaksud hubungan sebab dan akibat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-30",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Arah dan Kekuatan Korelasi Linear
+
+Katakan kita merekod dua pemboleh ubah numerik bagi cerapan yang sama, contohnya masa belajar dan markah peperiksaan seorang murid, atau umur dan harga jualan sebuah kereta. Gambar rajah serakan memaparkan nilai-nilai berpasangan itu dan apa-apa corak yang terbentuk. **Analisis korelasi** <Highlight>meringkaskan arah dan kekuatan</Highlight> corak linear, iaitu corak garis lurus.
+
+Korelasi menjawab soalan deskriptif: bagaimanakah dua pemboleh ubah itu berubah bersama-sama? Korelasi belum memberitahu kita mengapa corak itu wujud.
+
+## Pekali Korelasi
+
+Pekali korelasi Pearson ditandakan dengan <InlineMath math="r" />. **Tanda pekali itu** menggambarkan arah, manakala jaraknya dari sifar menggambarkan kekuatan corak linear.
+
+| Nilai | Tafsiran |
+| --- | --- |
+| <InlineMath math="r>0" /> | Nilai yang lebih besar bagi satu pemboleh ubah cenderung muncul bersama nilai yang lebih besar bagi pemboleh ubah yang satu lagi. |
+| <InlineMath math="r<0" /> | Nilai yang lebih besar bagi satu pemboleh ubah cenderung muncul bersama nilai yang lebih kecil bagi pemboleh ubah yang satu lagi. |
+| <InlineMath math="\lvert r\rvert\approx1" /> | Titik-titik terletak hampir dengan satu garis lurus. |
+| <InlineMath math="r\approx0" /> | Perkaitan linear yang diukur sangat lemah atau sifar. |
+
+Selagi kedua-dua pemboleh ubah ada variasi bukan sifar dan <InlineMath math="r" /> tertakrif, pekali itu terletak dalam selang ini:
+
+<BlockMath math="-1\le r\le1" />
+
+- <InlineMath math="r=1" /> bermaksud korelasi linear positif yang sempurna.
+- <InlineMath math="r=-1" /> bermaksud korelasi linear negatif yang sempurna.
+- <InlineMath math="r=0" /> bermaksud tiada korelasi linear.
+
+Nilai yang hampir sifar tidak bermaksud tiada sebarang hubungan. Titik-titik mungkin mengikut satu lengkung yang jelas walaupun korelasi linearnya kekal kecil. Jadi gambar rajah serakan dan konteksnya mesti dibaca bersama-sama dengan <InlineMath math="r" />.
+
+### Corak Melengkung dengan Korelasi Sifar
+
+Katakan data itu memenuhi <InlineMath math="y=x^2" /> untuk <InlineMath math="x=-2,-1,0,1,2" />. Kamu boleh nampak **corak berbentuk U** pada plot itu walaupun korelasi linearnya sifar.
+
+<ScatterDiagram
+  title={<>Hubungan Melengkung dalam Lima Pasangan Data</>}
+  description={<>Nilai-nilainya turun ke arah tengah, kemudian naik semula, jadi satu garis lurus tidak dapat menggambarkan corak itu.</>}
+  datasets={[{ name: "Pasangan data", color: "var(--chart-1)", points: [{ x: -2, y: 4 }, { x: -1, y: 1 }, { x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 4 }] }]}
+/>
+
+Min koordinatnya ialah <InlineMath math="\bar x=0" /> dan <InlineMath math="\bar y=2" />. Hasil darab sisihan di sebelah kiri dan kanan saling membatalkan:
+
+<BlockMath math="\begin{aligned}\sum(x_i-\bar x)(y_i-\bar y)&=(-2)(2)+(-1)(-1)+0(-2) \\ &\quad+1(-1)+2(2) \\ &=-4+1+0-1+4=0\end{aligned}" />
+
+Kedua-dua pemboleh ubah masih ada variasi. Hasil tambah kuasa dua sisihan mengufuk ialah <InlineMath math="10" />, dan hasil tambah kuasa dua sisihan mencancang ialah <InlineMath math="14" />. Jadi <InlineMath math="r=0/\sqrt{10\cdot14}=0" />. **Korelasi sifar** di sini wujud bersama hubungan kuadratik yang tepat.
+
+Bahagikan plot itu pada <InlineMath math="\bar x = 0" /> dan <InlineMath math="\bar y = 2" />. Hasil darab sisihannya ialah <InlineMath math="-4" />, <InlineMath math="1" />, <InlineMath math="0" />, <InlineMath math="-1" /> dan <InlineMath math="4" />: setiap titik di sebelah kiri ada pasangan di sebelah kanan dengan hasil darab yang bertentangan, jadi semuanya saling membatalkan dan <InlineMath math="r = 0" />.
+
+<MathVisual
+  title={<>Hasil darab sisihan saling membatalkan</>}
+  description={<>Lima titik bagi <InlineMath math="y = x^2" /> dengan garis min <InlineMath math="x = 0" /> dan <InlineMath math="y = 2" />, dilabel dengan hasil darab masing-masing, <InlineMath math="(x - \bar x)(y - \bar y)" />.</>}
+  labels={{
+    a: <InlineMath math="-4" />,
+    b: <InlineMath math="1" />,
+    c: <InlineMath math="0" />,
+    d: <InlineMath math="-1" />,
+    e: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.8, max: 2.8 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "mx", kind: "line", through: [{ x: 0, y: 0 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "my", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "a", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: -1, y: 1 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "d", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "e", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -2, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -1, y: 1 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "d", objectId: "d", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "e", objectId: "e", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Menukar Tempat Pemboleh Ubah dan Mengubah Unit
+
+Korelasi melayan kedua-dua pemboleh ubah secara simetri. Kalau kamu tukar tempat pemboleh ubah mengufuk dan mencancang, nilainya tidak berubah:
+
+<BlockMath math="r_{xy}=r_{yx}" />
+
+Mengubah **skala unit yang positif** juga tidak mengubah <InlineMath math="r" />. Mengukur tinggi dalam sentimeter atau meter menghasilkan pekali yang sama. Hal ini berbeza daripada regresi, yang sengaja menggunakan satu pemboleh ubah untuk meramal pemboleh ubah yang satu lagi.
+
+## Pekali Penentuan
+
+Kuasa dua pekali korelasi, <InlineMath math="r^2" />, dipanggil **pekali penentuan**. Dalam regresi linear mudah yang ada pintasan, nilai ini memberikan kadaran variasi dalam pemboleh ubah respons yang diterangkan oleh model linear yang disuaikan.
+
+Kalau masa belajar dan markah peperiksaan ada <InlineMath math="r=0.8" />, maka:
+
+<BlockMath math="r^2=(0.8)^2=0.64" />
+
+Perkaitan linear itu menerangkan <InlineMath math="64\%" /> daripada variasi markah yang dicerap dalam set data tersebut. Baki <InlineMath math="36\%" /> tidak diterangkan oleh hubungan linear ini. Peratusan ini menggambarkan sejauh mana model itu sepadan dengan data. Peratusan ini tidak dapat menunjukkan bahawa masa belajar sahaja yang menyebabkan perbezaan markah.
+
+Pekali penentuan memenuhi:
+
+<BlockMath math="0\le r^2\le1" />
+
+Semakin lemah korelasi, semakin banyak nilainya mengecil apabila dikuasaduakan: <InlineMath math="r = 0.5" /> hanya menerangkan <InlineMath math="r^2 = 25\%" /> daripada variasi, <InlineMath math="r = 0.8" /> menerangkan <InlineMath math="64\%" />, dan <InlineMath math="r = 0.9" /> menerangkan <InlineMath math="81\%" />.
+
+<BarChart
+  title={<><InlineMath math="r^2" /> bagi lima korelasi</>}
+  description={<>Palang <InlineMath math="r^2" /> dalam peratus bagi <InlineMath math="r = 0.2, 0.5, 0.8, 0.9, 1" />.</>}
+  yAxisLabel="Bahagian variasi (%)"
+  data={[0.2, 0.5, 0.8, 0.9, 1].map((r) => ({ name: String(r), value: 100 * r ** 2 }))}
+  chartConfig={{ value: { label: "Bahagian variasi (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Korelasi serta Hubungan Sebab dan Akibat
+
+**Korelasi yang kuat** tidak membuktikan bahawa satu pemboleh ubah menyebabkan perubahan pada pemboleh ubah yang satu lagi. Beberapa penjelasan boleh menghasilkan corak yang sama:
+
+- pemboleh ubah pertama mungkin mempengaruhi pemboleh ubah kedua.
+- pemboleh ubah kedua mungkin mempengaruhi pemboleh ubah pertama.
+- pemboleh ubah ketiga mungkin mempengaruhi kedua-duanya.
+- persampelan, pengukuran atau satu cerapan yang luar biasa mungkin memesongkan corak itu.
+
+Contohnya, jualan aiskrim dan kejadian lemas mungkin sama-sama meningkat semasa cuaca panas. Korelasi itu tidak bermaksud membeli aiskrim menyebabkan orang lemas. Cuaca musim panas dan aktiviti berenang yang bertambah mempengaruhi kedua-dua cerapan itu.
+
+Gunakan korelasi untuk menggambarkan corak linear. Kesimpulan tentang sebab dan akibat memerlukan bukti tambahan daripada reka bentuk kajian, urutan masa, mekanisme yang munasabah dan penjelasan alternatif.
+
+## Semak Tafsiran Kamu
+
+Katakan satu set data ada <InlineMath math="r=-0.9" />. Nilai ini menunjukkan **hubungan linear negatif yang kuat**: nilai yang lebih besar bagi satu pemboleh ubah cenderung disertai nilai yang lebih kecil bagi pemboleh ubah yang satu lagi. Nilai ini sendiri tidak mengenal pasti sebabnya dan tidak menjamin setiap titik terletak pada garis yang sama.

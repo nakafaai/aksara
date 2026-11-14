@@ -31,10 +31,10 @@ Die Tabelle enthält alle möglichen Kombinationen:
 <BlockMath math="\begin{aligned} \text{Gesamtkombinationen} &amp;= 3 \times 4 \\ &amp;= 12 \text{ Wege} \end{aligned}" />
 </MathContainer>
 
-Jedes Paket ist ein Paar (Plattform, Fach), also kannst du sie als Raster anordnen: 3 Zeilen für die Plattformen und 4 Spalten für die Fächer. Jeder Punkt ist ein Paket, und das Raster enthält <InlineMath math="3 \times 4 = 12" /> Punkte. Das ist die Multiplikationsregel in einem Bild.
+Jedes Paket ist ein Paar (Plattform, Fach), also kannst du sie als Raster anordnen: <InlineMath math="3" /> Zeilen für die Plattformen und <InlineMath math="4" /> Spalten für die Fächer. Jeder Punkt ist ein Paket, und das Raster enthält <InlineMath math="3 \times 4 = 12" /> Punkte. Das ist die Multiplikationsregel in einem Bild.
 
 <MathVisual
-  title={<>Zwölf Pakete als Raster 3 mal 4</>}
+  title={<>Zwölf Pakete als Raster <InlineMath math="3" /> mal <InlineMath math="4" /></>}
   description={<>Drei Zeilen Plattformen mal vier Spalten Fächer ergeben zwölf Punkte, einen für jedes Paket.</>}
   labels={{
     g34: <InlineMath math="3 \times 4 = 12" />,
@@ -122,7 +122,7 @@ Jeder Platz des Codes hat seine eigene Anzahl an Möglichkeiten: <InlineMath mat
 
 <BarChart
   title={<>Möglichkeiten an jedem Platz des Codes</>}
-  description={<>Die Anzahl der Möglichkeiten für Buchstabe, Ziffer und Farbe, deren Produkt 30 ist.</>}
+  description={<>Die Anzahl der Möglichkeiten für Buchstabe, Ziffer und Farbe, deren Produkt <InlineMath math="30" /> ist.</>}
   yAxisLabel="Möglichkeiten"
   data={[["Buchstabe", 3], ["Ziffer", 5], ["Farbe", 2]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Möglichkeiten", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -152,11 +152,11 @@ Für den gleichen Fall mit erlaubter Wiederholung:
 <BlockMath math="\begin{aligned} \text{Gesamtzahlen} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ Zahlen} \end{aligned}" />
 </MathContainer>
 
-Vergleich die beiden Fälle für dreistellige Zahlen aus den Ziffern <InlineMath math="1" /> bis <InlineMath math="5" />. Ohne Wiederholung bieten die Plätze <InlineMath math="5 \times 4 \times 3 = 60" /> Zahlen, mit Wiederholung <InlineMath math="5 \times 5 \times 5 = 125" />. Mit Wiederholung behält jeder Platz 5 Möglichkeiten, die Anzahl wird also mehr als doppelt so groß.
+Vergleich die beiden Fälle für dreistellige Zahlen aus den Ziffern <InlineMath math="1" /> bis <InlineMath math="5" />. Ohne Wiederholung bieten die Plätze <InlineMath math="5 \times 4 \times 3 = 60" /> Zahlen, mit Wiederholung <InlineMath math="5 \times 5 \times 5 = 125" />. Mit Wiederholung behält jeder Platz <InlineMath math="5" /> Möglichkeiten, die Anzahl wird also mehr als doppelt so groß.
 
 <BarChart
   title={<>Mit und ohne Wiederholung</>}
-  description={<>Die Anzahl dreistelliger Zahlen aus den Ziffern 1 bis 5, ohne und mit Wiederholung.</>}
+  description={<>Die Anzahl dreistelliger Zahlen aus den Ziffern <InlineMath math="1" /> bis <InlineMath math="5" />, ohne und mit Wiederholung.</>}
   yAxisLabel="Zahlen"
   data={[["ohne Wiederholung", 5 * 4 * 3], ["mit Wiederholung", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Zahlen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

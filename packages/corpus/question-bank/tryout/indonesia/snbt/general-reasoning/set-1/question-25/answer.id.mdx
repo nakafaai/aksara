@@ -1,9 +1,35 @@
-Proporsi yang ingin dicapai adalah **proporsi buku sains pada semester I**, sedangkan totalnya mengikuti **semester II**. Hitung proporsi itu dulu dalam bentuk pecahan agar hasilnya tepat:
+Soal ini berjalan dalam tiga langkah: tentukan kapan truk datang, hitung stok Bakung saat itu, lalu hitung berapa truk yang cukup untuk lima minggu sesudahnya. Kuncinya, **stok Bakung harus dihitung dengan susut**, karena susut ikut mengurangi stok setiap minggu.
 
-<BlockMath math="\frac{800}{3{.}000}=\frac{4}{15}" />
+Perubahan stok Bakung setiap minggu adalah
 
-Total peminjaman semester III sama dengan semester II, yaitu <InlineMath math="3{.}450" />. Banyak buku sains yang diperlukan:
+<BlockMath math="38-48-1 = -11" />
 
-<BlockMath math="\frac{4}{15}\times3{.}450=\frac{13{.}800}{15}=920" />
+Jadi, stok Bakung pada akhir minggu ke-<InlineMath math="w" /> adalah <InlineMath math="150-11w" />. Truk datang pada minggu pertama ketika stok kurang dari <InlineMath math="60\text{ ton}" />:
 
-Periksa hasilnya: <InlineMath math="\frac{920}{3{.}450}=\frac{4}{15}\approx26{,}7\%" />, sama dengan proporsi semester I. Jika proporsi dibulatkan menjadi <InlineMath math="27\%" />, hasilnya menjadi <InlineMath math="931{,}5" />, jadi bentuk pecahan perlu dipertahankan. Jadi, perpustakaan memerlukan <InlineMath math="920" /> peminjaman buku sains pada semester III.
+<BlockMath math="\begin{aligned}
+150-11\times8 &= 62 \quad (\text{belum kurang dari } 60) \\
+150-11\times9 &= 51 \quad (\text{sudah kurang dari } 60)
+\end{aligned}" />
+
+Truk datang pada akhir minggu ke-<InlineMath math="9" />, ketika stok Bakung <InlineMath math="51\text{ ton}" />. Stok itu masih di atas stok aman <InlineMath math="40\text{ ton}" />, jadi sebelum truk datang aturan stok aman belum dilanggar.
+
+Misalkan dikirim <InlineMath math="k" /> truk, jadi stok bertambah <InlineMath math="6k" /> ton. Setelah itu stok turun <InlineMath math="11\text{ ton}" /> setiap minggu, sehingga stok terendah dalam lima minggu berikutnya ada pada akhir minggu kelima. Stok itu tidak boleh kurang dari <InlineMath math="40" />:
+
+<BlockMath math="\begin{aligned}
+51+6k-5\times11 &\ge 40 \\
+6k-4 &\ge 40 \\
+6k &\ge 44 \\
+k &\ge 7{,}33\ldots
+\end{aligned}" />
+
+Banyak truk harus bulat, jadi paling sedikit <InlineMath math="8" /> truk.
+
+Cek kedua sisi batasnya. Dengan <InlineMath math="8" /> truk, stok menjadi <InlineMath math="51+48=99" />, lalu pada lima akhir minggu berikutnya <InlineMath math="88, 77, 66, 55, 44" />. Semuanya paling sedikit <InlineMath math="40" />. Dengan <InlineMath math="7" /> truk, stok menjadi <InlineMath math="93" />, lalu <InlineMath math="82, 71, 60, 49, 38" />. Minggu kelima turun di bawah <InlineMath math="40" />, jadi <InlineMath math="7" /> truk tidak cukup.
+
+Beberapa jawaban keliru yang sering muncul:
+
+- <InlineMath math="7" /> truk muncul jika <InlineMath math="7{,}33" /> dibulatkan ke bawah. Hasil yang sama muncul jika susut dilupakan, karena truk lalu datang pada minggu ke-<InlineMath math="10" /> dengan stok <InlineMath math="50" /> dan penurunan hanya <InlineMath math="10" /> ton per minggu.
+- <InlineMath math="6" /> truk muncul jika truk dianggap datang pada minggu ke-<InlineMath math="8" />, padahal stok <InlineMath math="62\text{ ton}" /> belum kurang dari <InlineMath math="60" />, atau jika hanya empat minggu yang diperiksa.
+- <InlineMath math="11" /> truk muncul jika stok dijaga agar tidak kurang dari <InlineMath math="60" />, padahal batas yang diminta adalah stok aman <InlineMath math="40\text{ ton}" />.
+
+Jadi, koperasi perlu mengirim paling sedikit <InlineMath math="8" /> truk ke Gudang Bakung.

@@ -1,18 +1,33 @@
-A plan works only if it **meets the oven limit and the flour limit at once**: <InlineMath math="x+y\le100" /> and <InlineMath math="50x+100y\le7{,}000" />.
+Each statement changes one thing, so **run the loading again from the start for every change**. Keep the two key rules in mind: the next vehicle is held back if either the length or the mass runs out, and a load exactly equal to a limit is still allowed.
 
-# Checking each plan
+# The load of the first trip
 
-| Plan | Buns | Flour | Possible? |
-| :--- | :---: | :---: | :---: |
-| 80 chocolate, 30 cheese | 110 | 7,000 g | no, oven |
-| 30 chocolate, 60 cheese | 90 | 7,500 g | no, flour |
-| 70 cheese only | 70 | 7,000 g | yes |
-| 100 chocolate only | 100 | 5,000 g | yes |
+The first two trucks weigh <InlineMath math="15+15=30\text{ tonnes}" />. That doesn't exceed the limit, so **both of them may board**. The car in place <InlineMath math="3" /> would bring the mass to <InlineMath math="32\text{ tonnes}" />, so the ferry leaves with a load of exactly <InlineMath math="30\text{ tonnes}" />. The first statement is true.
 
-The first plan exceeds the oven, while the second **needs more flour than there is**, even though the oven is fine.
+# The third car drops out
 
-# Limit on cheese buns
+The queue becomes two trucks, then a car, the pickup, three cars, a truck, and two buses. The first trip is still the two trucks. On the second trip, four cars and the pickup board, and then you check the next truck.
 
-With cheese buns only, the flour is enough for <InlineMath math="\tfrac{7{,}000}{100}=70" /> buns, and 70 buns still fit in the oven. So the third statement is true.
+<BlockMath math="\begin{aligned}
+\text{length with the truck} &= 4\cdot5+6+10=36\text{ m}\le40\text{ m}\\
+\text{mass with the truck} &= 4\cdot2+3+15=26\text{ tonnes}\le30\text{ tonnes}
+\end{aligned}" />
 
-So the first statement is **false**, the second is **false**, the third is **true**, and the fourth is **true**.
+The missing car frees up <InlineMath math="5\text{ m}" />, so **the truck now joins the second trip**. The next bus doesn't fit, and the two buses can't travel together because <InlineMath math="32\text{ tonnes}>30\text{ tonnes}" />. The queue is cleared in <InlineMath math="4" /> trips, not <InlineMath math="5" />. The second statement is false.
+
+# The mass limit becomes thirty one tonnes
+
+The first trip is still the two trucks, because the next car makes <InlineMath math="32\text{ tonnes}>31\text{ tonnes}" />. The second trip is still the six small vehicles, because the lane length hasn't changed and the next truck would make <InlineMath math="41\text{ m}" />. The change shows up on the third trip.
+
+<BlockMath math="\begin{aligned}
+\text{truck and bus} &= 15+16=31\text{ tonnes}\le31\text{ tonnes}\\
+\text{truck and two buses} &= 31+16=47\text{ tonnes}>31\text{ tonnes}
+\end{aligned}" />
+
+The truck and a bus **may now travel together**, and the last bus crosses alone. The queue is cleared in <InlineMath math="4" /> trips. The third statement is true.
+
+# The ninth truck moves to the back
+
+The queue becomes two trucks, six small vehicles, two buses, and then the truck. The first trip is the two trucks, and the second trip is the six small vehicles, because the next bus would make the length <InlineMath math="31+12=43\text{ m}" />. After that, **no pair of heavy vehicles fits**: two buses weigh <InlineMath math="32\text{ tonnes}" />, and a bus with a truck weighs <InlineMath math="31\text{ tonnes}" />. The bus, the bus, and the truck each cross alone, so the queue still needs <InlineMath math="5" /> trips. The fourth statement is false.
+
+So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.

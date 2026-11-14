@@ -70,9 +70,7 @@ Dalam ruang tiga dimensi, vektor memerlukan tiga komponen. Bentuk umumnya adalah
 
 Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan **arah sumbu ketiga**, yaitu sumbu <InlineMath math="z" />. Komponen ini diperlukan saat gerak atau gaya keluar dari bidang datar, misalnya ketika drone bergerak ke timur, ke utara, sekaligus naik.
 
-<LineEquation
-  cameraPosition={[8, 6, -6]}
-  cameraTarget={[2, 1.5, 1]}
+<MathVisual
   title={<>Komponen Vektor <InlineMath math="\vec{A}" /></>}
   description={
     <>
@@ -80,80 +78,33 @@ Vektor satuan <InlineMath math="\hat{k}" /> menunjukkan **arah sumbu ketiga**, y
       menjadi tiga komponen yang saling tegak lurus.
     </>
   }
-  data={(() => {
-    const components = [
-      [4, 0, 0],
-      [0, 3, 0],
-      [0, 0, 2],
-    ];
-    const points = components.reduce(
-      (path, component) => [
-        ...path,
-        path.at(-1).map((value, index) => value + component.at(index)),
-      ],
-      [[0, 0, 0]]
-    );
-    const resultant = components.reduce(
-      (sum, component) =>
-        sum.map((value, index) => value + component.at(index)),
-      [0, 0, 0]
-    );
-
-    return [
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((resultant)[0]) - (0)), y: (0) + 0.6 * (((resultant)[1]) - (0)), z: (0) + 0.6 * (((resultant)[2]) - (0)) }, { x: (resultant)[0], y: (resultant)[1], z: (resultant)[2] }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A" />,
-        at: 1,
-        offset: [0.35, 0.55, 0.3],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (points[0])[0], y: (points[0])[1], z: (points[0])[2] }, { x: ((points[0])[0]) + 0.5 * (((points[1])[0]) - ((points[0])[0])), y: ((points[0])[1]) + 0.5 * (((points[1])[1]) - ((points[0])[1])), z: ((points[0])[2]) + 0.5 * (((points[1])[2]) - ((points[0])[2])) }, { x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A_x" />,
-        at: 1,
-        offset: [0, -0.45, 0],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (points[1])[0], y: (points[1])[1], z: (points[1])[2] }, { x: ((points[1])[0]) + 0.5 * (((points[2])[0]) - ((points[1])[0])), y: ((points[1])[1]) + 0.5 * (((points[2])[1]) - ((points[1])[1])), z: ((points[1])[2]) + 0.5 * (((points[2])[2]) - ((points[1])[2])) }, { x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A_y" />,
-        at: 1,
-        offset: [0.55, 0, 0.15],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (points[2])[0], y: (points[2])[1], z: (points[2])[2] }, { x: ((points[2])[0]) + 0.5 * (((points[3])[0]) - ((points[2])[0])), y: ((points[2])[1]) + 0.5 * (((points[3])[1]) - ((points[2])[1])), z: ((points[2])[2]) + 0.5 * (((points[3])[2]) - ((points[2])[2])) }, { x: (points[3])[0], y: (points[3])[1], z: (points[3])[2] }],
-      color: "#0891b2",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="A_z" />,
-        at: 1,
-        offset: [0.65, -0.25, 0.15],
-        anchorX: "center",
-      }],
-    },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="A_x" />,
+    "l3": <InlineMath math="A_y" />,
+    "l4": <InlineMath math="A_z" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.8, z: 1.2 }, { x: 4, y: 3, z: 2 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.8, z: 1.2 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 1.5, z: 0 }, { x: 4, y: 3, z: 0 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 4, y: 1.5, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 3, z: 1 }, { x: 4, y: 3, z: 2 }], appearance: "highlight" },
+      { id: "s4-head", kind: "vector", from: { x: 4, y: 3, z: 1 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.8, z: 1.2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0, z: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 1.5, z: 0 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 4, y: 3, z: 1 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Visual ini memakai langkah komponen yang berurutan: bergerak pada sumbu <InlineMath math="x" />, lalu sumbu <InlineMath math="y" />, lalu sumbu <InlineMath math="z" />. Ujung akhirnya tetap sama dengan ujung vektor <InlineMath math="\vec{A}" />.

@@ -1,0 +1,246 @@
+export const metadata = {
+  title: "Kaedah Kembangan Kofaktor",
+  description: "Kira penentu matriks dengan kembangan kofaktor menggunakan minor dan pengiraan langkah demi langkah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Memecahkan Penentu kepada Penentu yang Lebih Kecil
+
+Kembangan kofaktor memecahkan penentu matriks segi empat sama kepada **penentu yang lebih kecil**. Pilih satu baris atau lajur, darab setiap unsur dalam baris atau lajur itu dengan kofaktor sepadannya, kemudian tambahkan hasil darabnya. Kaedah ini boleh digunakan untuk matriks yang lebih besar daripada <InlineMath math="2 \times 2" />.
+
+## Minor bagi Unsur Matriks
+
+Setiap unsur <InlineMath math="a_{ij}" /> dalam **matriks segi empat sama** mempunyai minor <InlineMath math="M_{ij}" />.
+
+Untuk mengira <InlineMath math="M_{ij}" />, potong baris <InlineMath math="i" /> dan lajur <InlineMath math="j" />, kemudian kira penentu submatriks yang tinggal. Minor inilah bahan asas setiap kofaktor, jadi kamu akan menggunakannya berulang kali semasa mengembangkan penentu.
+### Mencari Minor
+
+Katakan kita ada matriks <InlineMath math="A" /> berperingkat <InlineMath math="3 \times 3" /> seperti berikut:
+
+<BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}" />
+
+Kalau kita mahu mencari minor bagi unsur <InlineMath math="a_{22}" /> (iaitu <InlineMath math="M_{22}" />), kita buang **baris kedua dan lajur kedua** daripada matriks <InlineMath math="A" />:
+
+Potong baris kedua dan lajur kedua seperti berikut:
+
+<BlockMath math="A = \begin{bmatrix} a_{11} & \cancel{a_{12}} & a_{13} \\ \cancel{a_{21}} & \cancel{a_{22}} & \cancel{a_{23}} \\ a_{31} & \cancel{a_{32}} & a_{33} \end{bmatrix}" />
+
+Matriks yang tinggal selepas pembuangan itu ialah:
+
+<BlockMath math="\begin{bmatrix} a_{11} & a_{13} \\ a_{31} & a_{33} \end{bmatrix}" />
+
+Minor <InlineMath math="M_{22}" /> ialah penentu matriks yang tinggal ini:
+
+<BlockMath math="\begin{aligned} M_{22} &amp;= \det \begin{pmatrix} a_{11} &amp; a_{13} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{11} \times a_{33}) - (a_{13} \times a_{31}) \end{aligned}" />
+## Kofaktor bagi Unsur Matriks
+
+Kofaktor bagi unsur <InlineMath math="a_{ij}" /> ditulis sebagai <InlineMath math="k_{ij}" /> atau <InlineMath math="C_{ij}" /> dan dikira daripada minor <InlineMath math="M_{ij}" />:
+
+<BlockMath math="k_{ij} = (-1)^{i+j} M_{ij}" />
+
+Pariti <InlineMath math="i+j" /> menentukan **tanda yang mendarab minor itu**:
+
+- Kalau hasil tambah <InlineMath math="i+j" /> ialah nombor genap, maka <InlineMath math="(-1)^{i+j} = 1" />. Maksudnya, <InlineMath math="k_{ij} = M_{ij}" /> (kofaktor sama dengan minornya).
+- Kalau hasil tambah <InlineMath math="i+j" /> ialah nombor ganjil, maka <InlineMath math="(-1)^{i+j} = -1" />. Maksudnya, <InlineMath math="k_{ij} = -M_{ij}" /> (kofaktor ialah negatif minornya).
+
+Bagi matriks <InlineMath math="3 \times 3" />, corak tanda <InlineMath math="(-1)^{i+j}" /> ialah:
+
+<BlockMath math="\begin{pmatrix} + & - & + \\ - & + & - \\ + & - & + \end{pmatrix}" />
+
+Tanda ini menunjukkan sama ada kofaktor akan sama dengan minornya (tanda <InlineMath math="+" />) atau negatif minornya (tanda <InlineMath math="-" />).
+
+### Mencari Kofaktor
+
+Pengiraan berikut menyambung contoh matriks <InlineMath math="A" /> dan minor <InlineMath math="M_{22}" />.
+
+**Kofaktor** bagi unsur <InlineMath math="a_{22}" /> ialah <InlineMath math="k_{22}" />.
+
+Oleh sebab <InlineMath math="i=2" /> dan <InlineMath math="j=2" />, maka <InlineMath math="i+j = 2+2 = 4" /> (genap).
+
+<BlockMath math="k_{22} = (-1)^{2+2} M_{22} = (1) M_{22} = M_{22}" />
+
+Seterusnya, kita kira kofaktor <InlineMath math="k_{12}" /> bagi unsur <InlineMath math="a_{12}" />.
+
+Pertama, kita cari minornya, <InlineMath math="M_{12}" />, dengan membuang baris pertama dan lajur kedua daripada matriks <InlineMath math="A" />:
+
+<BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} a_{21} &amp; a_{23} \\ a_{31} &amp; a_{33} \end{pmatrix} \\ &amp;= (a_{21} \times a_{33}) - (a_{23} \times a_{31}) \end{aligned}" />
+
+Kemudian, kita kira kofaktornya. Bagi <InlineMath math="a_{12}" />, <InlineMath math="i=1" /> dan <InlineMath math="j=2" />, jadi <InlineMath math="i+j = 1+2 = 3" /> (ganjil).
+
+<BlockMath math="\begin{aligned} k_{12} &amp;= (-1)^{1+2} M_{12} \\ &amp;= (-1) M_{12} \\ &amp;= -M_{12} \end{aligned}" />
+## Mengira Penentu dengan Kembangan Kofaktor
+
+Untuk mengira penentu matriks <InlineMath math="A" /> dengan kembangan kofaktor, pilih satu baris atau lajur. Darab setiap unsur yang dipilih dengan kofaktor sepadannya, kemudian tambahkan hasil darabnya. Penentu <InlineMath math="A" /> ditulis sebagai <InlineMath math="\det(A)" /> atau <InlineMath math="|A|" />.
+
+**Rumus Kembangan Kofaktor Sepanjang Baris ke-<InlineMath math="i" />**:
+
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{j=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{i1}k_{i1} + a_{i2}k_{i2} + \dots + a_{in}k_{in} \end{aligned}" />
+
+Maksudnya, kita pilih baris ke-<InlineMath math="i" />. Kemudian, bagi setiap lajur <InlineMath math="j" /> dalam baris itu, kita darab unsur <InlineMath math="a_{ij}" /> dengan kofaktornya <InlineMath math="k_{ij}" />, lalu jumlahkan semuanya.
+
+**Rumus Kembangan Kofaktor Sepanjang Lajur ke-<InlineMath math="j" />**:
+
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;= |A| \\ &amp;= \sum_{i=1}^{n} a_{ij}k_{ij} \\ &amp;= a_{1j}k_{1j} + a_{2j}k_{2j} + \dots + a_{nj}k_{nj} \end{aligned}" />
+
+Maksudnya, kita pilih lajur ke-<InlineMath math="j" />. Kemudian, bagi setiap baris <InlineMath math="i" /> dalam lajur itu, kita darab unsur <InlineMath math="a_{ij}" /> dengan kofaktornya <InlineMath math="k_{ij}" />, lalu jumlahkan semuanya.
+
+Kembangan sepanjang sebarang baris atau lajur memberikan penentu yang sama.
+
+<Highlight>Pilih baris atau lajur yang banyak sifarnya</Highlight> kalau ada. Setiap sifar menghapuskan hasil darabnya, jadi lebih sedikit sebutan yang perlu dikira.
+
+## Contoh Pengiraan Penentu
+
+Kira penentu matriks <InlineMath math="P" /> berikut dengan kaedah kembangan kofaktor:
+
+<BlockMath math="P = \begin{bmatrix} 1 & 3 & 2 \\ 2 & 6 & 2 \\ 5 & 9 & 4 \end{bmatrix}" />
+
+Kita akan melakukan kembangan kofaktor sepanjang baris pertama (iaitu <InlineMath math="i=1" />).
+
+Berdasarkan rumus itu, penentu <InlineMath math="P" /> ialah:
+
+<BlockMath math="\det(P) = a_{11}k_{11} + a_{12}k_{12} + a_{13}k_{13}" />
+
+Daripada matriks <InlineMath math="P" />, unsur baris pertama ialah:
+
+- <InlineMath math="a_{11} = 1" />
+- <InlineMath math="a_{12} = 3" />
+- <InlineMath math="a_{13} = 2" />
+
+Sekarang, kita perlu mengira kofaktor <InlineMath math="k_{11}" />, <InlineMath math="k_{12}" />, dan <InlineMath math="k_{13}" />.
+
+**Mengira <InlineMath math="k_{11}" />** (<InlineMath math="i=1, j=1" />, jadi <InlineMath math="i+j=2" />, genap):
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{11} &amp;= \det \begin{pmatrix} 6 &amp; 2 \\ 9 &amp; 4 \end{pmatrix} \\ &amp;= (6 \times 4) - (2 \times 9) \\ &amp;= 24 - 18 \\ &amp;= 6 \end{aligned}" />
+  <BlockMath math="k_{11} = (-1)^{1+1} M_{11} = (1)(6) = 6" />
+</MathContainer>
+
+**Mengira <InlineMath math="k_{12}" />** (<InlineMath math="i=1, j=2" />, jadi <InlineMath math="i+j=3" />, ganjil):
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{12} &amp;= \det \begin{pmatrix} 2 &amp; 2 \\ 5 &amp; 4 \end{pmatrix} \\ &amp;= (2 \times 4) - (2 \times 5) \\ &amp;= 8 - 10 \\ &amp;= -2 \end{aligned}" />
+  <BlockMath math="k_{12} = (-1)^{1+2} M_{12} = (-1)(-2) = 2" />
+</MathContainer>
+
+**Mengira <InlineMath math="k_{13}" />** (<InlineMath math="i=1, j=3" />, jadi <InlineMath math="i+j=4" />, genap):
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} M_{13} &amp;= \det \begin{pmatrix} 2 &amp; 6 \\ 5 &amp; 9 \end{pmatrix} \\ &amp;= (2 \times 9) - (6 \times 5) \\ &amp;= 18 - 30 \\ &amp;= -12 \end{aligned}" />
+  <BlockMath math="\begin{aligned} k_{13} &amp;= (-1)^{1+3} M_{13} \\ &amp;= (1)(-12) \\ &amp;= -12 \end{aligned}" />
+</MathContainer>
+
+Selepas semua kofaktor diperoleh, kita gantikan semula ke dalam rumus penentu:
+
+<MathContainer>
+  <BlockMath math="\det(P) = a_{11}k_{11} + a_{12}k_{12} + a_{13}k_{13}" />
+  <BlockMath math="\det(P) = (1)(6) + (3)(2) + (2)(-12)" />
+  <BlockMath math="\det(P) = 6 + 6 - 24" />
+  <BlockMath math="\det(P) = 12 - 24" />
+  <BlockMath math="\det(P) = -12" />
+</MathContainer>
+
+Jadi, penentu matriks <InlineMath math="P" /> ialah <InlineMath math="-12" />.
+
+Perhatikan <InlineMath math="k_{12}=(-1)(-2)=2" />. Kedudukan bertanda negatif boleh menghasilkan **kofaktor positif** apabila minornya negatif. Jangan gunakan tanda negatif sekali lagi semasa menggantikan kofaktor itu ke dalam hasil tambah akhir.
+
+Tiga kofaktor baris pertama juga mempunyai bentuk. Baris kedua dan ketiga <InlineMath math="P" /> membentuk sebuah segi empat selari. Anak panah <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" /> berdiri tegak pada segi empat selari itu, dan panjangnya <InlineMath math="\sqrt{184}" /> sama dengan luas segi empat selari tersebut. Kembangan <InlineMath math="(1)(6) + (3)(2) + (2)(-12) = -12" /> ialah panjang anak panah itu didarab dengan sejauh mana baris pertama menjangkau sepanjang anak panah tersebut. Putarkan pemandangan ini: baris pertama menghala ke sisi yang satu lagi bagi segi empat selari itu, sebab itulah penentunya bernilai negatif.
+
+<MathVisual
+  title={<>Kofaktor baris pertama membentuk anak panah merentasi dua baris yang lain</>}
+  description={<>Baris kedua dan ketiga <InlineMath math="P" /> membentuk sebuah segi empat selari. Anak panah kofaktor <InlineMath math="(6, 2, -12)" /> berserenjang dengannya, dan baris pertama condong menjauhi anak panah itu.</>}
+  labels={{
+    base: <>baris kedua dan ketiga</>,
+    normal: <InlineMath math="(k_{11}, k_{12}, k_{13}) = (6, 2, -12)" />,
+    row1: <>baris pertama <InlineMath math="(1, 3, 2)" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: 0, max: 16 }, z: { min: -13, max: 7 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "base", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 6, z: 2 }, { x: 7, y: 15, z: 6 }, { x: 5, y: 9, z: 4 }], appearance: "secondary" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 6, y: 2, z: -12 }, appearance: "answer" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "base", objectId: "base", at: { x: 7, y: 15, z: 6 }, placement: "above" },
+      { key: "normal", objectId: "normal", at: { x: 6, y: 2, z: -12 }, placement: "below" },
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Tanda <InlineMath math="(-1)^{i+j}" /> mengikut corak papan dam. Mulakan dengan <InlineMath math="+" /> di penjuru kiri atas dan selang-selikan tanda sepanjang setiap baris dan lajur. Sebab itulah kofaktor baris pertama membawa tanda <InlineMath math="+, -, +" />, dan sebab itu juga <InlineMath math="k_{12} = -M_{12}" />.
+
+<MathVisual
+  title={<>Corak tanda <InlineMath math="(-1)^{i+j}" /></>}
+  description={<>Setiap kedudukan dalam matriks <InlineMath math="3 \times 3" /> membawa <InlineMath math="+" /> apabila <InlineMath math="i+j" /> genap dan <InlineMath math="-" /> apabila nilainya ganjil.</>}
+  labels={{
+    s11: <InlineMath math="+" />,
+    s12: <InlineMath math="-" />,
+    s13: <InlineMath math="+" />,
+    s21: <InlineMath math="-" />,
+    s22: <InlineMath math="+" />,
+    s23: <InlineMath math="-" />,
+    s31: <InlineMath math="+" />,
+    s32: <InlineMath math="-" />,
+    s33: <InlineMath math="+" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "warning" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "warning" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "warning" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "primary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "warning" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Setiap minor itu sendiri ialah penentu kecil yang boleh kamu lukis. Potong baris pertama dan lajur pertama <InlineMath math="P" />, dan tinggallah baris <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />. Baris itu membentuk segi empat selari dengan luas <InlineMath math="6 \cdot 4 - 2 \cdot 9 = 6" />, iaitu <InlineMath math="M_{11}" />, dan dengan tanda <InlineMath math="+" /> ia memberikan <InlineMath math="k_{11} = 6" />.
+
+<MathVisual
+  title={<>Minor <InlineMath math="M_{11}" /> sebagai luas</>}
+  description={<>Segi empat selari yang dibentuk oleh <InlineMath math="(6, 2)" /> dan <InlineMath math="(9, 4)" />, iaitu baris yang tinggal selepas baris pertama dan lajur pertama dipotong, dengan luas <InlineMath math="6" />.</>}
+  labels={{
+    area: <InlineMath math="M_{11} = 6" />,
+    r1: <InlineMath math="(6, 2)" />,
+    r2: <InlineMath math="(9, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 16 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 15, y: 6 }, { x: 9, y: 4 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 9, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 7.5, y: 3 }, placement: "above-left" },
+      { key: "r1", objectId: "r1", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "r2", objectId: "r2", at: { x: 9, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>

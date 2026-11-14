@@ -123,7 +123,7 @@ Jarak langsung lebih pendek daripada lintasan melalui sudut siku-siku:
 
 <MathVisual
   title={<>Jarak langsung dan lintasan dua sisi</>}
-  description={<>Vektor mendatar panjang 3 dan vektor tegak panjang 4 menghasilkan vektor langsung panjang 5. Panjang 5 tidak melebihi lintasan 3 tambah 4.</>}
+  description={<>Vektor mendatar panjang <InlineMath math="3" /> dan vektor tegak panjang <InlineMath math="4" /> menghasilkan vektor langsung panjang <InlineMath math="5" />. Panjang <InlineMath math="5" /> tidak melebihi lintasan <InlineMath math="3" /> tambah <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4 }, y: { min: -0.5, max: 4.5 } },
@@ -235,11 +235,11 @@ Kedua batas dapat dicapai: vektor berlawanan arah memberi batas bawah, sedangkan
 
 <BlockMath math="\begin{aligned}|3+(-5)|&amp;=2\\|3+5|&amp;=8\end{aligned}" />
 
-Putar <InlineMath math="z_2" /> dengan <InlineMath math="|z_2| = 5" /> sementara <InlineMath math="z_1 = 3" /> tetap. Panjang <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> turun dari 8 di <InlineMath math="\theta = 0^\circ" /> sampai 2 di <InlineMath math="\theta = 180^\circ" />, jadi selalu berada di antara <InlineMath math="5 - 3 = 2" /> dan <InlineMath math="3 + 5 = 8" />.
+Putar <InlineMath math="z_2" /> dengan <InlineMath math="|z_2| = 5" /> sementara <InlineMath math="z_1 = 3" /> tetap. Panjang <InlineMath math="|z_1 + z_2| = \sqrt{34 + 30\cos\theta}" /> turun dari <InlineMath math="8" /> di <InlineMath math="\theta = 0^\circ" /> sampai <InlineMath math="2" /> di <InlineMath math="\theta = 180^\circ" />, jadi selalu berada di antara <InlineMath math="5 - 3 = 2" /> dan <InlineMath math="3 + 5 = 8" />.
 
 <BarChart
   title={<><InlineMath math="|z_1 + z_2|" /> saat <InlineMath math="z_2" /> berputar</>}
-  description={<>Batang <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> untuk <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: 8, 7, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" />, dan 2.</>}
+  description={<>Batang <InlineMath math="|3 + 5(\cos\theta + i\sin\theta)|" /> untuk <InlineMath math="\theta = 0^\circ, 60^\circ, 90^\circ, 120^\circ, 180^\circ" />: <InlineMath math="8" />, <InlineMath math="7" />, <InlineMath math="\sqrt{34}" />, <InlineMath math="\sqrt{19}" />, dan <InlineMath math="2" />.</>}
   yAxisLabel="Modulus"
   data={[0, 60, 90, 120, 180].map((d) => ({ name: d + "°", value: Math.sqrt(34 + 30 * Math.cos((d * Math.PI) / 180)) }))}
   chartConfig={{ value: { label: "Modulus", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

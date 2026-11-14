@@ -1,18 +1,48 @@
-Ein Budget von 30 000 Rupiah reicht für <InlineMath math="\tfrac{30\,000}{50}=600" /> <InlineMath math="\text{cm}^2" /> Material. **Der Rahmen darf also höchstens 600 <InlineMath math="\text{cm}^2" /> groß sein**.
+Du suchst die kleinste Zahl an Portionen pro Woche, die einen Reingewinn von mindestens <InlineMath math="600{.}000" /> bringt, bei festem Verhältnis der Gerichte. Der Plan: Bestimme das Verhältnis aus den Summen im Diagramm, mache daraus ein **Portionspaket**, berechne den Gewinn eines Pakets und dann, wie viele Pakete reichen.
 
-# Rahmenfläche mit x
+# Das Verhältnis der drei Gerichte
 
-<BlockMath math="(24+2x)(36+2x)-864=4x^2+120x" />
+Addiere die Portionen jedes Gerichts über die fünf Tage.
 
-# Ganze Zahlen ausprobieren
+<BlockMath math="\begin{aligned}
+\text{Hähnchenreis} &= 40+30+20+35+25=150\\
+\text{gebratene Nudeln} &= 30+25+10+20+15=100\\
+\text{Orangeneis} &= 40+65+40+45+60=250
+\end{aligned}" />
 
-| Breite | Rahmenfläche | Kosten |
-| :---: | :---: | :---: |
-| 4 cm | <InlineMath math="64+480=544" /> <InlineMath math="\text{cm}^2" /> | 27 200 Rupiah |
-| 5 cm | <InlineMath math="100+600=700" /> <InlineMath math="\text{cm}^2" /> | 35 000 Rupiah |
+Das Verhältnis ist <InlineMath math="150:100:250=3:2:5" />. Damit es **genau gleich** bleibt, muss der Wochenverkauf aus ganzen Paketen mit <InlineMath math="3" /> Hähnchenreis, <InlineMath math="2" /> gebratenen Nudeln und <InlineMath math="5" /> Orangeneis bestehen, also <InlineMath math="10" /> Portionen pro Paket.
 
-Mit 4 cm bleibt man im Budget, **mit 5 cm nicht mehr**.
+# Gewinn eines Pakets und feste Kosten
 
-Der Wert 5 cm entsteht, wenn man die Rahmenfläche nur als <InlineMath math="120x" /> rechnet, ohne die vier Ecken <InlineMath math="4x^2" />. Die Werte 1, 2 und 3 cm passen zwar ins Budget, sind aber nicht die größten.
+Der Gewinn pro Portion beträgt <InlineMath math="4{.}000" />, <InlineMath math="3{.}000" /> und <InlineMath math="2{.}000" />. Miete und Lohn einer Woche **hängen nicht von der Zahl der Portionen ab**.
 
-Die größte Rahmenbreite beträgt also **4 cm**.
+<BlockMath math="\begin{aligned}
+\text{Gewinn eines Pakets} &= 3\cdot4{.}000+2\cdot3{.}000+5\cdot2{.}000=28{.}000\\
+\text{Miete und Lohn pro Woche} &= 350{.}000+5\cdot70{.}000=700{.}000
+\end{aligned}" />
+
+# Wie viele Pakete reichen
+
+Es werden <InlineMath math="k" /> Pakete verkauft. Der Reingewinn muss mindestens <InlineMath math="600{.}000" /> betragen.
+
+<BlockMath math="\begin{aligned}
+28{.}000k-700{.}000 &\ge 600{.}000\\
+28{.}000k &\ge 1{.}300{.}000\\
+k &\ge 46{,}42\ldots
+\end{aligned}" />
+
+Pakete müssen ganz sein, also **mindestens** <InlineMath math="47" /> Pakete, das sind <InlineMath math="47\cdot10=470" /> Portionen.
+
+# Kontrolle
+
+Mit <InlineMath math="46" /> Paketen beträgt der Reingewinn <InlineMath math="46\cdot28{.}000-700{.}000=588{.}000" />, das reicht noch nicht. Mit <InlineMath math="47" /> Paketen sind es <InlineMath math="616{.}000\ge600{.}000" />. Also **wird das siebenundvierzigste Paket wirklich gebraucht**.
+
+# Häufige falsche Antworten
+
+Diese Antworten **verletzen das Verhältnis der Gerichte oder zählen die festen Kosten falsch**.
+
+- Die Antwort <InlineMath math="465" /> teilt <InlineMath math="1{.}300{.}000" /> durch den durchschnittlichen Gewinn von <InlineMath math="2{.}800" /> pro Portion. Aber <InlineMath math="465" /> Portionen lassen sich nicht genau im Verhältnis <InlineMath math="3:2:5" /> aufteilen.
+- Die Antwort <InlineMath math="434" /> nimmt den einfachen Mittelwert des Gewinns pro Portion, <InlineMath math="\tfrac{4{.}000+3{.}000+2{.}000}{3}=3{.}000" />, obwohl Orangeneis am häufigsten verkauft wird.
+- Die Antwort <InlineMath math="340" /> rechnet nur mit der Miete oder nur mit dem Lohn, sodass die festen Kosten <InlineMath math="350{.}000" /> betragen.
+
+Es müssen also mindestens <InlineMath math="470" /> Portionen pro Woche verkauft werden.

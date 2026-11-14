@@ -36,31 +36,41 @@ const materialDomainSources = [
   {
     key: "ai-ds",
     rendererDomain: "ai-ds",
-    routeSlugs: { de: "ki-und-data-science", en: "ai-ds", id: "ai-ds" },
+    routeSlugs: {
+      de: "ki-und-data-science",
+      en: "ai-ds",
+      id: "ai-ds",
+      ms: "ai-ds",
+    },
   },
   {
     key: "biology",
     navigationIconKey: "science",
     rendererDomain: "biology",
-    routeSlugs: { de: "biologie", en: "biology", id: "biologi" },
+    routeSlugs: { de: "biologie", en: "biology", id: "biologi", ms: "biologi" },
   },
   {
     key: "chemistry",
     navigationIconKey: "science",
     rendererDomain: "chemistry",
-    routeSlugs: { de: "chemie", en: "chemistry", id: "kimia" },
+    routeSlugs: { de: "chemie", en: "chemistry", id: "kimia", ms: "kimia" },
   },
   {
     key: "mathematics",
     navigationIconKey: "mathematics",
     rendererDomain: "mathematics",
-    routeSlugs: { de: "mathematik", en: "mathematics", id: "matematika" },
+    routeSlugs: {
+      de: "mathematik",
+      en: "mathematics",
+      id: "matematika",
+      ms: "matematik",
+    },
   },
   {
     key: "physics",
     navigationIconKey: "science",
     rendererDomain: "physics",
-    routeSlugs: { de: "physik", en: "physics", id: "fisika" },
+    routeSlugs: { de: "physik", en: "physics", id: "fisika", ms: "fizik" },
   },
 ];
 

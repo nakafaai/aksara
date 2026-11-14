@@ -1,24 +1,55 @@
-Both quantities depend on <InlineMath math="x" />, and <InlineMath math="x" /> can be any number between 0 and 1. Compare them through **the sign of their difference**.
+First find <InlineMath math="a" /> and <InlineMath math="b" /> from the two points, because all four statements **depend on the complete rule** for <InlineMath math="f" />. Then judge each statement with a proof or a counterexample.
 
-# Simplifying the difference
+# Finding the constants
+
+The point <InlineMath math="(1,12)" /> gives <InlineMath math="ab=12" />, and the point <InlineMath math="(3,3)" /> gives <InlineMath math="ab^3=3" />. Divide the second equation by the first.
 
 <BlockMath math="\begin{aligned}
-P-Q&=\frac{x}{1+x}-x^2\\
-&=\frac{x-x^2(1+x)}{1+x}\\
-&=\frac{x\left(1-x-x^2\right)}{1+x}
+\frac{ab^3}{ab}=b^2&=\frac{3}{12}=\frac14\\
+b&=\frac12\ \text{or}\ b=-\frac12
 \end{aligned}" />
 
-For <InlineMath math="0<x<1" />, the factor <InlineMath math="x" /> and the denominator <InlineMath math="1+x" /> are positive. So the sign of <InlineMath math="P-Q" /> **is the sign of <InlineMath math="1-x-x^2" />**.
+The candidate <InlineMath math="b=-\tfrac12" /> drops out. The function <InlineMath math="f" /> **has to be defined for every real number**, including <InlineMath math="x=\tfrac12" />, but <InlineMath math="\left(-\tfrac12\right)^{1/2}=\sqrt{-\tfrac12}" /> isn't a real number. So only <InlineMath math="b=\tfrac12" /> works, then <InlineMath math="a=\tfrac{12}{b}=24" />, and
 
-# Testing two values
+<BlockMath math="f(x)=24\cdot\left(\tfrac12\right)^{x}=24\cdot2^{-x}" />
 
-The expression <InlineMath math="1-x-x^2" /> is zero at <InlineMath math="x=\frac{\sqrt5-1}{2}\approx0.618" />, positive to the left of that point, and negative to the right. Two examples show that **the relation changes**.
+The first statement is **false**.
 
-| <InlineMath math="x" /> | <InlineMath math="P=\frac{x}{1+x}" /> | <InlineMath math="Q=x^2" /> | Relation |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="\tfrac12" /> | <InlineMath math="\tfrac13\approx0.33" /> | <InlineMath math="\tfrac14=0.25" /> | <InlineMath math="P>Q" /> |
-| <InlineMath math="\tfrac45" /> | <InlineMath math="\tfrac49\approx0.44" /> | <InlineMath math="\tfrac{16}{25}=0.64" /> | <InlineMath math="Q>P" /> |
+# Intersections with the line
 
-At <InlineMath math="x\approx0.618" /> the two quantities are even equal. A single value of <InlineMath math="x" /> cannot decide the relation for every <InlineMath math="x" />.
+The intersections of the graph of <InlineMath math="f" /> with the line <InlineMath math="y=10-x" /> are the zeros of <InlineMath math="h(x)=24\cdot2^{-x}+x-10" />. Find the sign of <InlineMath math="h" /> at a few points.
 
-So **the information given is not enough** to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.
+<BlockMath math="\begin{aligned}
+h(0)&=24+0-10=14>0\\
+h(2)&=6+2-10=-2<0\\
+h(10)&=\tfrac{24}{1{,}024}+10-10=\tfrac{3}{128}>0
+\end{aligned}" />
+
+The sign of <InlineMath math="h" /> changes between <InlineMath math="0" /> and <InlineMath math="2" />, and changes again between <InlineMath math="2" /> and <InlineMath math="10" />. The graph has no breaks, so there are at least two intersections. The second one is easy to miss: **the line crosses the <InlineMath math="x" />-axis at <InlineMath math="x=10" />, while the graph of <InlineMath math="f" /> always stays above that axis**.
+
+More than two is impossible too. The slope of <InlineMath math="24\cdot2^{-x}" /> keeps rising, from very steep to almost flat, and the term <InlineMath math="x-10" /> adds a fixed slope. So the slope of <InlineMath math="h" /> always rises, which means <InlineMath math="h" /> can only go down and then up once, and it crosses zero at most twice. The second statement is **true**.
+
+# Comparing two function values
+
+From <InlineMath math="f(p)=3f(q)" />, divide both sides by <InlineMath math="f(q)" />.
+
+<BlockMath math="\begin{aligned}
+\frac{24\cdot2^{-p}}{24\cdot2^{-q}}=2^{q-p}&=3\\
+q-p&=\log_2 3\\
+p-q&=-\log_2 3
+\end{aligned}" />
+
+That makes sense because <InlineMath math="f" /> is decreasing: **the bigger value comes from the smaller input**, so <InlineMath math="p<q" /> and <InlineMath math="p-q" /> is negative. But <InlineMath math="{}^{2}\log3=\log_2 3>0" />. The third statement is **false**.
+
+# Whether g always decreases
+
+To refute the word "always", **one pair of inputs where <InlineMath math="g" /> goes up** is enough. Take <InlineMath math="x=5" /> and <InlineMath math="x=10" />.
+
+<BlockMath math="\begin{aligned}
+g(5)&=\tfrac{24}{32}+5=\tfrac{23}{4}\\
+g(10)&=\tfrac{24}{1{,}024}+10=10+\tfrac{3}{128}
+\end{aligned}" />
+
+The input goes up from <InlineMath math="5" /> to <InlineMath math="10" />, and the value of <InlineMath math="g" /> goes up too, from <InlineMath math="\tfrac{23}{4}" /> to more than <InlineMath math="10" />. For large <InlineMath math="x" />, the term <InlineMath math="f(x)" /> is almost zero, so <InlineMath math="g(x)" /> is almost <InlineMath math="x" />, which keeps rising. The fourth statement is **false**.
+
+So the first statement is false, the second is true, the third is false, and the fourth is false.

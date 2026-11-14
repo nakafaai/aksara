@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "wheelchair-ramp",
+  stimulus: "factory-shifts",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "10 cm" },
-        { correct: false, label: "20 cm" },
-        { correct: false, label: "30 cm" },
-        { correct: false, label: "50 cm" },
-        { correct: false, label: "60 cm" },
+        { correct: false, label: "Tidak berubah" },
+        { correct: true, label: "Bertambah $$114$$ komponen" },
+        { correct: false, label: "Bertambah $$120$$ komponen" },
+        { correct: false, label: "Bertambah $$228$$ komponen" },
+        { correct: false, label: "Bertambah $$342$$ komponen" },
       ],
     },
   },

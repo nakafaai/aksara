@@ -9,6 +9,7 @@ export const kimPlusEmptyBoxArticle = defineArticleSource({
     de: "kim-plus-und-das-leere-feld",
     en: "kim-plus-empty-box",
     id: "kim-plus-empty-box",
+    ms: "kim-plus-dan-kotak-kosong",
   },
   slug: "kim-plus-empty-box",
   sourceRoot: "articles/politics/kim-plus/empty-box",

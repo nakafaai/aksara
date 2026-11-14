@@ -1,19 +1,31 @@
-Ada tiga variabel tetapi hanya dua persamaan, jadi nilai <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> masing-masing memang tidak tunggal. Namun soal hanya meminta **jumlah ketiganya**, dan jumlah itu bisa saja tetap.
+Kamu perlu menghitung segitiga menurut letak titik sudutnya, menyatakan luasnya dengan satu jarak saja, lalu menghitung pasangan titik yang cocok. Kuncinya, **luas segitiga hanya bergantung pada panjang alas** di salah satu garis.
 
-# Menjumlahkan kedua persamaan
+# Bentuk segitiga yang mungkin
 
-Perhatikan koefisiennya: <InlineMath math="1+3" />, <InlineMath math="2+2" />, dan <InlineMath math="3+1" /> semuanya 4. Jadi **jumlah kedua persamaan** memuat <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> dengan koefisien yang sama.
+Tiga titik pada garis yang sama segaris, jadi tidak membentuk segitiga. Karena itu setiap segitiga mempunyai **dua titik sudut pada satu garis dan satu titik sudut pada garis lain**. Banyak semua segitiga adalah <InlineMath math="\binom{7}{2}\cdot 5+\binom{5}{2}\cdot 7=105+70=175" />.
+
+# Luas setiap segitiga
+
+Ambil dua titik sudut yang segaris sebagai alas, dengan panjang <InlineMath math="d\text{ cm}" />. Karena jarak antartitik <InlineMath math="1\text{ cm}" />, nilai <InlineMath math="d" /> adalah bilangan bulat. Titik sudut ketiga ada di garis yang sejajar, jadi tingginya selalu jarak kedua garis, yaitu <InlineMath math="3\text{ cm}" />, bagaimanapun letak titik itu.
+
+<BlockMath math="L=\frac{1}{2}\cdot d\cdot 3=\frac{3d}{2}" />
+
+Bilangan <InlineMath math="3" /> ganjil, jadi <InlineMath math="\tfrac{3d}{2}" /> bulat tepat ketika **panjang alas <InlineMath math="d" /> genap**.
+
+# Menghitung pasangan berjarak genap
+
+Pada garis dengan <InlineMath math="k" /> titik berjarak <InlineMath math="1\text{ cm}" />, banyak pasangan yang berjarak <InlineMath math="d" /> adalah <InlineMath math="k-d" />. Garis <InlineMath math="g" /> punya <InlineMath math="7" /> titik, jadi jarak genapnya <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Garis <InlineMath math="h" /> punya <InlineMath math="5" /> titik, jadi jarak genapnya <InlineMath math="2" /> dan <InlineMath math="4" />. Setiap alas lalu dipasangkan dengan **semua titik di garis seberang**.
 
 <BlockMath math="\begin{aligned}
-(x+2y+3z)+(3x+2y+z)&=14+10\\
-4x+4y+4z&=24\\
-x+y+z&=6
+\text{alas di } g&: (5+3+1)\cdot 5=9\cdot 5=45\\
+\text{alas di } h&: (3+1)\cdot 7=4\cdot 7=28\\
+\text{jumlah}&: 45+28=73
 \end{aligned}" />
 
-# Memastikan penyelesaian ada
+# Memeriksa lewat pasangan berjarak ganjil
 
-Jumlah itu bermakna jika ada bilangan yang benar-benar memenuhi sistem. Contohnya <InlineMath math="x=1" />, <InlineMath math="y=2" />, dan <InlineMath math="z=3" />: <InlineMath math="1+4+9=14" /> dan <InlineMath math="3+4+3=10" />, dengan jumlah 6. **Setiap penyelesaian lain memberi jumlah yang sama**, karena jumlah itu diturunkan langsung dari kedua persamaan.
+Hitung juga segitiga yang luasnya tidak bulat, yaitu yang alasnya ganjil. Di <InlineMath math="g" /> ada <InlineMath math="6+4+2=12" /> pasangan berjarak <InlineMath math="1" />, <InlineMath math="3" />, atau <InlineMath math="5" />, dan di <InlineMath math="h" /> ada <InlineMath math="4+2=6" /> pasangan berjarak <InlineMath math="1" /> atau <InlineMath math="3" />. Banyaknya <InlineMath math="12\cdot 5+6\cdot 7=102" />, dan **<InlineMath math="73+102=175" /> cocok dengan banyak semua segitiga**.
 
-Pilihan tidak dapat ditentukan muncul dari anggapan bahwa tiga variabel selalu membutuhkan tiga persamaan. Nilai 24 berhenti sebelum membagi dengan 4, sedangkan nilai 12 hanya membagi dengan 2. Nilai 4 berasal dari selisih kedua persamaan, <InlineMath math="2z-2x=4" />, yang bukan jumlah ketiga variabel.
+Jebakan yang sering terjadi: lupa faktor <InlineMath math="\tfrac{1}{2}" /> membuat luas <InlineMath math="3d" /> selalu bulat sehingga jawabannya <InlineMath math="175" />, dan lupa segitiga yang alasnya di <InlineMath math="h" /> memberi <InlineMath math="45" />.
 
-Jadi, nilai <InlineMath math="x+y+z" /> adalah **6**.
+Jadi, ada <InlineMath math="73" /> segitiga yang luasnya bilangan bulat.

@@ -1,0 +1,374 @@
+export const metadata = {
+  title: "Garis Tangen kepada Keratan Kon",
+  description: "Cari garis tangen kepada parabola, elips, dan hiperbola daripada satu titik pada lengkung, kecerunan yang diberi, atau satu titik luar.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Geometri Analitik",
+};
+
+## Punca Berulang Menunjukkan Tangen
+
+Pembaris yang diletakkan rapat pada lengkung yang licin boleh bertemu dengan lengkung itu pada satu titik sahaja tanpa memotongnya di sekitar titik itu. Garis di sepanjang pembaris itu memodelkan **garis tangen** pada titik tersebut.
+
+Apabila penggantian garis ke dalam keratan kon menghasilkan persamaan kuadratik, tangen dikenal pasti melalui <Highlight>punca berulang</Highlight>. Dua punca yang berbeza bermaksud dua titik persilangan. Semak pekali bagi sebutan kuasa dua dahulu sebelum menggunakan pembezalayan. Contohnya, garis yang selari dengan asimptot hiperbola boleh menghasilkan persamaan linear.
+
+Maklumat yang diberi menentukan kaedahnya: titik sentuhan yang diketahui memberikan bentuk titik, kecerunan yang diketahui memberikan garis dengan pintasan yang belum diketahui, dan titik luar memberikan satu keluarga garis yang melalui titik itu.
+
+Gantikan tiga garis selari ke dalam <InlineMath math="y = x^2" />. Untuk <InlineMath math="y = 2x - 1" />, persamaan <InlineMath math="x^2 - 2x + 1 = (x - 1)^2 = 0" /> mempunyai satu punca berulang, jadi garis itu menyentuh parabola pada <InlineMath math="(1, 1)" />. Garis <InlineMath math="y = 2x" /> memotongnya dua kali, iaitu pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 2" />, manakala <InlineMath math="y = 2x - 2" /> langsung tidak bertemu dengannya, kerana <InlineMath math="x^2 - 2x + 2 = 0" /> tiada punca nyata.
+
+<MathVisual
+  title={<>Dua punca, satu punca berulang, tiada punca</>}
+  description={<>Parabola <InlineMath math="y = x^2" /> dengan sekan <InlineMath math="y = 2x" />, tangen <InlineMath math="y = 2x - 1" /> pada <InlineMath math="(1, 1)" />, dan garis <InlineMath math="y = 2x - 2" /> yang tidak bertemu dengannya.</>}
+  labels={{
+    parabola: <InlineMath math="y = x^2" />,
+    secant: <InlineMath math="y = 2x" />,
+    tangent: <InlineMath math="y = 2x - 1" />,
+    miss: <InlineMath math="y = 2x - 2" />,
+    touch: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -3.4, max: 6.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -5 / 4, max: 5 / 2 }, appearance: "secondary" },
+      { id: "secant", kind: "segment", from: { x: -1 / 2, y: -1 }, to: { x: 3, y: 6 }, appearance: "primary" },
+      { id: "tangent", kind: "segment", from: { x: -1, y: -3 }, to: { x: 3, y: 5 }, appearance: "answer" },
+      { id: "miss", kind: "segment", from: { x: -1 / 2, y: -3 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "x0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "x2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "touch", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 5 / 2, y: 25 / 4 }, placement: "left" },
+      { key: "secant", objectId: "secant", at: { x: 3, y: 6 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "miss", objectId: "miss", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Titik pada Lengkung
+
+Apabila **titik sentuhan sudah diketahui**, pembezaan tersirat memberikan kecerunan tangen pada titik itu. Gabungkan kecerunan itu dengan persamaan titik-kecerunan, dan kamu terus mendapat persamaan tangen dalam bentuk titik.
+
+### Bentuk Titik daripada Pembezaan Tersirat
+
+Untuk titik <InlineMath math="T(x_1, y_1)" /> pada keratan kon, bentuk titik yang terhasil menggantikan setiap koordinat kuasa dua dengan hasil darab koordinat itu dengan koordinat titik sentuhan yang sepadan. Sebutan linear pula dikongsi secara simetri antara titik berubah dengan titik sentuhan. Bentuk ringkas ini datang daripada pengiraan terbitan. Sebelum menggunakannya, semak bahawa <InlineMath math="T" /> **terletak pada lengkung**.
+
+Untuk parabola <InlineMath math="y^2 = 4px" /> pada titik sentuhan <InlineMath math="T(x_1, y_1)" />, persamaan garis tangennya ialah:
+
+<BlockMath math="yy_1 = 2p(x + x_1)" />
+
+Untuk menerbitkan rumus ini, ambil <InlineMath math="p \ne 0" /> dan <InlineMath math="y_1 \ne 0" />. Bezakan persamaan parabola terhadap <InlineMath math="x" />.
+
+<BlockMath math="2y\frac{dy}{dx}=4p\quad\Longrightarrow\quad m=\frac{2p}{y_1}" />
+
+Darabkan persamaan titik-kecerunan dengan <InlineMath math="y_1" />, kemudian gunakan <InlineMath math="y_1^2=4px_1" /> kerana titik sentuhan terletak pada parabola.
+
+<BlockMath math="\begin{aligned}y-y_1&amp;=\frac{2p}{y_1}(x-x_1)\\yy_1-y_1^2&amp;=2px-2px_1\\yy_1-4px_1&amp;=2px-2px_1\\yy_1&amp;=2p(x+x_1)\end{aligned}" />
+
+Pada verteks <InlineMath math="(0,0)" />, kecerunan terhadap paksi mengufuk tidak tertakrif. Bentuk titik masih memberikan tangen mencancang <InlineMath math="x=0" />. Untuk contoh <InlineMath math="(2,4)" />, semakan titik itu memberikan <InlineMath math="4^2=8(2)=16" />.
+
+Gunakan rumus ini untuk parabola <InlineMath math="y^2 = 8x" /> pada <InlineMath math="(2, 4)" />.
+
+Daripada parabola <InlineMath math="y^2 = 8x" />, kita tahu <InlineMath math="4p = 8" />, jadi <InlineMath math="p = 2" />. Garis tangen pada titik <InlineMath math="(2, 4)" /> ialah:
+
+<MathContainer>
+  <BlockMath math="y \cdot 4 = 2 \cdot 2 \cdot (x + 2)" />
+  <BlockMath math="4y = 4(x + 2)" />
+  <BlockMath math="y = x + 2" />
+</MathContainer>
+
+> Bentuk titik hanya sah selepas titik yang diberi disahkan terletak pada keratan kon. Bentuk ini meringkaskan pengiraan terbitan menjadi satu penggantian algebra yang boleh digunakan berulang kali.
+
+Pada <InlineMath math="(2, 4)" />, bentuk titik memberikan <InlineMath math="y = x + 2" />. Garis ini menyentuh <InlineMath math="y^2 = 8x" /> di situ sahaja: apabila <InlineMath math="x = y - 2" /> digantikan, kita dapat <InlineMath math="y^2 - 8y + 16 = (y - 4)^2 = 0" />, iaitu punca berulang.
+
+<MathVisual
+  title={<>Tangen <InlineMath math="y = x + 2" /> pada <InlineMath math="(2, 4)" /></>}
+  description={<>Parabola <InlineMath math="y^2 = 8x" /> dan tangennya <InlineMath math="y = x + 2" />, yang bertemu dengan parabola itu hanya pada <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    tangent: <InlineMath math="y = x + 2" />,
+    p: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.6 }, y: { min: -4.6, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -4, max: 8 }, appearance: "secondary" },
+      { id: "tangent", kind: "segment", from: { x: -2, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 2, y: -4 }, placement: "right" },
+      { key: "tangent", objectId: "tangent", at: { x: 6, y: 8 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Kecerunan yang Diberi
+
+Kadangkala kita tidak tahu titik sentuhannya, tetapi kita tahu **kecerunan** garis tangen itu. Dalam kes seperti ini, kita gantikan persamaan garis yang berkecerunan <InlineMath math="m" /> ke dalam persamaan keratan kon.
+
+Contohnya, kita mahu mencari tangen kepada <InlineMath math="4x^2 - 9y^2 = 36" /> yang berserenjang dengan <InlineMath math="x + 4y + 10 = 0" />.
+
+Mula-mula, tentukan kecerunan tangen yang diperlukan. Garis <InlineMath math="x + 4y + 10 = 0" /> mempunyai kecerunan <InlineMath math="m_g = -\frac{1}{4}" />, jadi setiap tangen yang berserenjang dengannya mesti mempunyai kecerunan <InlineMath math="m_s = 4" />.
+
+Garis dengan kecerunan <InlineMath math="m" /> mempunyai bentuk <InlineMath math="y = mx + c" />. Gantikannya ke dalam persamaan hiperbola:
+
+<MathContainer>
+  <BlockMath math="4x^2 - 9(4x + c)^2 = 36" />
+  <BlockMath math="4x^2 - 9(16x^2 + 8cx + c^2) = 36" />
+  <BlockMath math="-140x^2 - 72cx - 9c^2 - 36 = 0" />
+</MathContainer>
+
+Supaya <InlineMath math="y=4x+c" /> menjadi tangen kepada hiperbola, persamaan kuadratik selepas penggantian mesti mempunyai punca berulang. Jadi pembezalayannya mesti sifar:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} D &amp;= (-72c)^2 - 4(-140)(-9c^2-36) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="5184c^2 - 5040c^2 - 20160 = 0" />
+  <BlockMath math="144c^2 = 20160" />
+  <BlockMath math="c = \pm 2\sqrt{35}" />
+</MathContainer>
+
+Dua garis tangen itu ialah <InlineMath math="y = 4x + 2\sqrt{35}" /> dan <InlineMath math="y = 4x - 2\sqrt{35}" />.
+
+## Tangen melalui Titik Luar
+
+Bergantung pada keratan kon dan kedudukan titik itu, sifar, satu, atau dua tangen nyata boleh melalui titik yang diberi. Dalam contoh di bawah, ada dua. Melukis tangen dari titik di luar bulatan ialah satu kes khas yang sudah biasa kamu temui.
+
+Untuk parabola <InlineMath math="y^2 = 8x" />, dua garis tangen yang berbeza melalui <InlineMath math="A(2, 5)" />.
+
+Untuk titik luar, persamaan polar memberikan **perentas sentuhan**, iaitu garis yang menyambungkan dua titik sentuhan. Garis ini sendiri bukan salah satu daripada tangen itu. Untuk <InlineMath math="y^2 = 8x" /> dan <InlineMath math="A(2,5)" />, garis polarnya ialah:
+
+<BlockMath math="yy_1 = 4(x + x_1)" />
+
+Gantikan <InlineMath math="x_1 = 2" /> dan <InlineMath math="y_1 = 5" />:
+
+<MathContainer>
+  <BlockMath math="5y = 4(x + 2)" />
+  <BlockMath math="5y = 4x + 8" />
+  <BlockMath math="y = \frac{4x + 8}{5}" />
+</MathContainer>
+
+Sekarang kita gantikan ke dalam persamaan parabola untuk mencari titik-titik sentuhan:
+
+<MathContainer>
+  <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
+  <BlockMath math="\frac{16x^2 + 64x + 64}{25} = 8x" />
+  <BlockMath math="16x^2 + 64x + 64 = 200x" />
+  <BlockMath math="16x^2 - 136x + 64 = 0" />
+  <BlockMath math="2x^2 - 17x + 8 = 0" />
+</MathContainer>
+
+Dengan [rumus kuadratik](/ms/subjek/matematik/fungsi-kuadratik/rumus-kuadratik), kita dapat <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />. Titik-titik sentuhannya ialah <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />. Sambungkan setiap titik itu ke <InlineMath math="A(2,5)" />, dan kita dapat dua tangen <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.
+
+<MathVisual
+  title={<>Dua tangen dari <InlineMath math="A(2, 5)" /> dan perentas sentuhan</>}
+  description={<>Parabola <InlineMath math="y^2 = 8x" />, tangen <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \tfrac12 x + 4" /> yang melalui <InlineMath math="A(2, 5)" />, serta perentas merah jambu yang menyambungkan titik-titik sentuhan <InlineMath math="\left(\tfrac12, 2\right)" /> dan <InlineMath math="(8, 8)" />.</>}
+  labels={{
+    parabola: <InlineMath math="y^2 = 8x" />,
+    t1: <InlineMath math="T_1" />,
+    t2: <InlineMath math="T_2" />,
+    a: <InlineMath math="A" />,
+    l1: <InlineMath math="y = 2x + 1" />,
+    l2: <InlineMath math="y = \tfrac12 x + 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -2.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "y", coefficients: { a: 1 / 8, b: 0, c: 0 }, domain: { min: -2, max: 9 }, appearance: "secondary" },
+      { id: "l1", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 9 }, appearance: "construction" },
+      { id: "l2", kind: "segment", from: { x: 0, y: 4 }, to: { x: 10, y: 9 }, appearance: "highlight" },
+      { id: "chord", kind: "segment", from: { x: 1 / 2, y: 2 }, to: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "t1", kind: "point", at: { x: 1 / 2, y: 2 }, appearance: "warning" },
+      { id: "t2", kind: "point", at: { x: 8, y: 8 }, appearance: "warning" },
+      { id: "a", kind: "point", at: { x: 2, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "parabola", objectId: "parabola", at: { x: 81 / 8, y: 9 }, placement: "left" },
+      { key: "t1", objectId: "t1", at: { x: 1 / 2, y: 2 }, placement: "right" },
+      { key: "t2", objectId: "t2", at: { x: 8, y: 8 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 5 }, placement: "left" },
+      { key: "l1", objectId: "l1", at: { x: 4, y: 9 }, placement: "left" },
+      { key: "l2", objectId: "l2", at: { x: 10, y: 9 }, placement: "above" },
+    ],
+  }}
+/>
+
+Bandingkan **dua garis yang melalui titik luar** dengan perentas sentuhan berwarna merah jambu. Kedua-dua tangen melalui <InlineMath math="A" />, manakala perentas itu menyambungkan <InlineMath math="T_1" /> dengan <InlineMath math="T_2" /> dan bersilang dengan parabola pada dua titik itu.
+
+## Persamaan Garis Tangen bagi Setiap Keratan Kon
+
+Jadual ini meringkaskan persamaan garis tangen yang ditulis dalam **bentuk titik**.
+
+| Keratan Kon | Persamaan Garis Tangen |
+|---|---|
+| <InlineMath math="y^2 = 4px" /> | <InlineMath math="yy_1 = 2p(x + x_1)" /> |
+| <InlineMath math="x^2 = 4py" /> | <InlineMath math="xx_1 = 2p(y + y_1)" /> |
+| <InlineMath math="(x - h)^2 = 4p(y - k)" /> | <InlineMath math="(x - h)(x_1 - h) = 2p((y - k) + (y_1 - k))" /> |
+| <InlineMath math="(y - k)^2 = 4p(x - h)" /> | <InlineMath math="(y - k)(y_1 - k) = 2p((x - h) + (x_1 - h))" /> |
+| <InlineMath math="\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1" /> | <InlineMath math="\frac{xx_1}{a^2} + \frac{yy_1}{b^2} = 1" /> |
+| <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> | <InlineMath math="\frac{xx_1}{a^2} - \frac{yy_1}{b^2} = 1" /> |
+| <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> | <InlineMath math="\frac{yy_1}{a^2} - \frac{xx_1}{b^2} = 1" /> |
+| <InlineMath math="\frac{(x-h)^2}{a^2} + \frac{(y-k)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-h)(x_1-h)}{a^2} + \frac{(y-k)(y_1-k)}{b^2} = 1" /> |
+| <InlineMath math="\frac{(x-h)^2}{a^2} - \frac{(y-k)^2}{b^2} = 1" /> | <InlineMath math="\frac{(x-h)(x_1-h)}{a^2} - \frac{(y-k)(y_1-k)}{b^2} = 1" /> |
+| <InlineMath math="\frac{(y-k)^2}{a^2} - \frac{(x-h)^2}{b^2} = 1" /> | <InlineMath math="\frac{(y-k)(y_1-k)}{a^2} - \frac{(x-h)(x_1-h)}{b^2} = 1" /> |
+
+> Rumus-rumus ini ialah bentuk titik berasaskan terbitan bagi keratan kon piawai yang biasa. Sentiasa sahkan dahulu bahawa titik sentuhan yang diberi terletak pada keratan kon itu.
+
+## Latihan
+
+Pilih kaedah berdasarkan maklumat yang diberi: **titik sentuhan, kecerunan, atau titik luar**. Semak bahawa titik sentuhan terletak pada lengkung, dan pastikan setiap garis yang kamu dapat memenuhi syarat yang dinyatakan.
+
+1. Cari persamaan garis tangen kepada parabola <InlineMath math="y^2 = 12x" /> pada titik <InlineMath math="(3, 6)" />.
+
+2. Cari persamaan tangen kepada <InlineMath math="4x^2 - 9y^2 = 36" /> yang berserenjang dengan <InlineMath math="x + 4y + 10 = 0" />.
+
+3. Cari persamaan tangen kepada <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> yang melalui <InlineMath math="A(1, 3)" />.
+
+4. Cari persamaan tangen kepada <InlineMath math="y^2 = 8x" /> yang melalui <InlineMath math="A(2, 5)" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**:
+
+Diberi: parabola <InlineMath math="y^2 = 12x" /> dengan titik sentuhan <InlineMath math="(3, 6)" />.
+
+Daripada persamaan <InlineMath math="y^2 = 12x" />, kita dapat <InlineMath math="4p = 12" />, jadi <InlineMath math="p = 3" />.
+
+Gunakan **rumus garis tangen parabola**:
+
+<MathContainer>
+  <BlockMath math="yy_1 = 2p(x + x_1)" />
+  <BlockMath math="y \cdot 6 = 2 \cdot 3 \cdot (x + 3)" />
+  <BlockMath math="6y = 6(x + 3)" />
+  <BlockMath math="6y = 6x + 18" />
+  <BlockMath math="y = x + 3" />
+</MathContainer>
+
+Jadi persamaan garis tangennya ialah <InlineMath math="y = x + 3" />.
+
+**Penyelesaian 2**:
+
+Diberi: hiperbola <InlineMath math="4x^2 - 9y^2 = 36" /> atau <InlineMath math="\frac{x^2}{9} - \frac{y^2}{4} = 1" />.
+
+Garis <InlineMath math="x + 4y + 10 = 0" /> mempunyai kecerunan <InlineMath math="m = -\frac{1}{4}" />.
+
+Oleh sebab garis tangen itu **berserenjang** dengan garis tersebut, kecerunan garis tangen ialah:
+
+<BlockMath math="m_s = -\frac{1}{m} = -\frac{1}{-\frac{1}{4}} = 4" />
+
+Rumus garis tangen hiperbola dengan kecerunan <InlineMath math="m" />:
+
+<BlockMath math="y = mx \pm \sqrt{a^2m^2 - b^2}" />
+
+Rumus ini memerlukan <InlineMath math="a^2m^2-b^2>0" />. Jika ungkapan itu sifar, garis yang terhasil ialah asimptot, bukan tangen.
+
+Dengan <InlineMath math="a^2 = 9" />, <InlineMath math="b^2 = 4" />, dan <InlineMath math="m = 4" />:
+
+<MathContainer>
+  <BlockMath math="y = 4x \pm \sqrt{9 \cdot 16 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{144 - 4}" />
+  <BlockMath math="y = 4x \pm \sqrt{140}" />
+  <BlockMath math="y = 4x \pm 2\sqrt{35}" />
+</MathContainer>
+
+Jadi persamaan garis tangennya ialah <InlineMath math="y = 4x + 2\sqrt{35}" /> atau <InlineMath math="y = 4x - 2\sqrt{35}" />.
+
+**Penyelesaian 3**:
+
+Diberi: elips <InlineMath math="\frac{x^2}{9} + \frac{y^2}{4} = 1" /> dan titik <InlineMath math="A(1, 3)" />.
+
+Mula-mula, semak sama ada titik <InlineMath math="A(1, 3)" /> terletak pada elips:
+
+<BlockMath math="\begin{aligned} \frac{1^2}{9} + \frac{3^2}{4} &amp;= \frac{1}{9} + \frac{9}{4} \\ &amp;= \frac{4 + 81}{36} \\ &amp;= \frac{85}{36} > 1 \end{aligned}" />
+
+Oleh sebab <InlineMath math="\frac{85}{36} > 1" />, titik <InlineMath math="A" /> berada di luar elips.
+
+Tulis garis yang melalui <InlineMath math="A(1,3)" /> dengan kecerunan <InlineMath math="m" />:
+
+<BlockMath math="y-3=m(x-1)" />
+
+Gantikan garis ini ke dalam persamaan elips dan tetapkan **pembezalayan sama dengan sifar**. Kita dapat:
+
+<MathContainer>
+  <BlockMath math="4x^2 + 9(mx+3-m)^2 = 36" />
+  <BlockMath math="(4+9m^2)x^2+18m(3-m)x+9(3-m)^2-36=0" />
+  <BlockMath math="D=[18m(3-m)]^2-4(4+9m^2)[9(3-m)^2-36]=0" />
+  <BlockMath math="D=144[9m^2-(3-m)^2+4]=144(8m^2+6m-5)=0" />
+  <BlockMath math="8m^2 + 6m - 5 = 0" />
+  <BlockMath math="(4m+5)(2m-1)=0" />
+  <BlockMath math="m=-\frac{5}{4} \quad \text{atau} \quad m=\frac{1}{2}" />
+</MathContainer>
+
+Masukkan setiap kecerunan ke dalam persamaan titik-kecerunan:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;y-3=-\frac{5}{4}(x-1) \\ &amp;\Longrightarrow \\ &amp;5x+4y-17=0 \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;y-3=\frac{1}{2}(x-1) \\ &amp;\Longrightarrow \\ &amp;x-2y+5=0 \end{aligned}" />
+</MathContainer>
+
+Jadi, dua garis tangen itu ialah <InlineMath math="5x+4y-17=0" /> dan <InlineMath math="x-2y+5=0" />.
+
+**Penyelesaian 4**:
+
+Diberi: parabola <InlineMath math="y^2 = 8x" /> dan titik <InlineMath math="A(2, 5)" />.
+
+Mula-mula, semak sama ada titik <InlineMath math="A(2, 5)" /> terletak pada parabola:
+
+<BlockMath math="5^2 = 25 \neq 8 \cdot 2 = 16" />
+
+Titik <InlineMath math="A" /> berada di luar parabola.
+
+Gunakan **persamaan polar** parabola dengan <InlineMath math="p = 2" />:
+
+<BlockMath math="yy_1 = 4(x + x_1)" />
+
+Gantikan <InlineMath math="x_1 = 2" /> dan <InlineMath math="y_1 = 5" />:
+
+<MathContainer>
+  <BlockMath math="5y = 4(x + 2)" />
+  <BlockMath math="5y = 4x + 8" />
+  <BlockMath math="y = \frac{4x + 8}{5}" />
+</MathContainer>
+
+Gantikan ke dalam persamaan parabola:
+
+<MathContainer>
+  <BlockMath math="\left(\frac{4x + 8}{5}\right)^2 = 8x" />
+  <BlockMath math="\frac{(4x + 8)^2}{25} = 8x" />
+  <BlockMath math="(4x + 8)^2 = 200x" />
+  <BlockMath math="16x^2 + 64x + 64 = 200x" />
+  <BlockMath math="16x^2 - 136x + 64 = 0" />
+  <BlockMath math="2x^2 - 17x + 8 = 0" />
+</MathContainer>
+
+Gunakan rumus kuadratik:
+
+<BlockMath math="\begin{aligned} x &amp;= \frac{17 \pm \sqrt{289 - 64}}{4} \\ &amp;= \frac{17 \pm \sqrt{225}}{4} \\ &amp;= \frac{17 \pm 15}{4} \end{aligned}" />
+
+Jadi <InlineMath math="x_1 = \frac{1}{2}" /> dan <InlineMath math="x_2 = 8" />.
+
+Titik-titik sentuhannya ialah <InlineMath math="(\frac{1}{2}, 2)" /> dan <InlineMath math="(8, 8)" />.
+
+Persamaan garis tangen yang melalui <InlineMath math="(\frac{1}{2}, 2)" />:
+
+<BlockMath math="\begin{aligned} y - 2 &amp;= \frac{2 - 5}{\frac{1}{2} - 2}(x - \frac{1}{2}) \\ &amp;= \frac{-3}{-\frac{3}{2}}(x - \frac{1}{2}) \\ &amp;= 2(x - \frac{1}{2}) \end{aligned}" />
+
+Jadi <InlineMath math="y = 2x + 1" />.
+
+Persamaan garis tangen yang melalui <InlineMath math="(8, 8)" />:
+
+<BlockMath math="\begin{aligned} y - 8 &amp;= \frac{8 - 5}{8 - 2}(x - 8) \\ &amp;= \frac{3}{6}(x - 8) \\ &amp;= \frac{1}{2}(x - 8) \end{aligned}" />
+
+Jadi <InlineMath math="y = \frac{1}{2}x + 4" />.
+
+Persamaan garis tangennya ialah <InlineMath math="y = 2x + 1" /> dan <InlineMath math="y = \frac{1}{2}x + 4" />.

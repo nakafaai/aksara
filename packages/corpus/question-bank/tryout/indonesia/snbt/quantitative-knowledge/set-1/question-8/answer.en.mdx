@@ -1,28 +1,25 @@
-Both <InlineMath math="4^x" /> and <InlineMath math="2^{x+3}" /> can be written in terms of <InlineMath math="2^x" />. So **let <InlineMath math="t=2^x" />**, which turns the equation into a quadratic in <InlineMath math="t" />.
+The question has a yes or no answer. A statement is enough when **every <InlineMath math="n" /> that satisfies it gives the same answer**. Since <InlineMath math="12=2^2\cdot3" />, you need to know whether <InlineMath math="n" /> contains at least two factors <InlineMath math="2" /> and one factor <InlineMath math="3" />. So track the prime factors in each statement.
 
-# Turning it into a quadratic
+# Writing the prime factors
 
-Use <InlineMath math="4^x=\left(2^x\right)^2=t^2" /> and <InlineMath math="2^{x+3}=2^3\cdot2^x=8t" />.
+Write <InlineMath math="n=2^a\cdot3^b\cdot m" />, where <InlineMath math="m" /> isn't divisible by <InlineMath math="2" /> or <InlineMath math="3" />. Then <InlineMath math="n" /> is divisible by <InlineMath math="12" /> exactly when <InlineMath math="a\ge2" /> and <InlineMath math="b\ge1" />. When you raise <InlineMath math="n" /> to a power, **the exponent of each prime gets multiplied**.
 
-<BlockMath math="\begin{aligned}
-t^2-8t+12&=0\\
-(t-2)(t-6)&=0
-\end{aligned}" />
+<BlockMath math="n^2=2^{2a}\cdot3^{2b}\cdot m^2,\qquad n^3=2^{3a}\cdot3^{3b}\cdot m^3" />
 
-The roots are <InlineMath math="t=2" /> and <InlineMath math="t=6" />. Both are positive, so **both are valid values of <InlineMath math="2^x" />**, which is never zero or negative.
+# Statement one alone
 
-# Adding the solutions
+Since <InlineMath math="24=2^3\cdot3" />, statement (1) means <InlineMath math="2a\ge3" /> and <InlineMath math="2b\ge1" />. The number <InlineMath math="2a" /> is always even, and **an even number that's at least <InlineMath math="3" /> must be at least <InlineMath math="4" />**. So <InlineMath math="a\ge2" />. From <InlineMath math="2b\ge1" /> with <InlineMath math="b" /> a whole number, you get <InlineMath math="b\ge1" />.
 
-Connect the product of the <InlineMath math="t" /> values with the sum of the exponents.
+Every <InlineMath math="n" /> that satisfies (1) is divisible by <InlineMath math="12" />, so the answer is always yes. For example, <InlineMath math="n=12" /> gives <InlineMath math="144=24\cdot6" />. The number <InlineMath math="n=6" /> doesn't satisfy (1), because <InlineMath math="36" /> isn't divisible by <InlineMath math="24" />. Statement (1) alone is enough.
 
-<BlockMath math="\begin{aligned}
-2^{x_1}\cdot2^{x_2}&=2\cdot6\\
-2^{x_1+x_2}&=12\\
-x_1+x_2&={}^{2}\log12={}^{2}\log4+{}^{2}\log3=2+{}^{2}\log3
-\end{aligned}" />
+# Statement two alone
 
-The same result follows from <InlineMath math="x_1=1" /> and <InlineMath math="x_2={}^{2}\log6=1+{}^{2}\log3" />.
+Since <InlineMath math="48=2^4\cdot3" />, statement (2) means <InlineMath math="3a\ge4" /> and <InlineMath math="3b\ge1" />. If <InlineMath math="a=1" />, the exponent is only <InlineMath math="3" />, which is less than <InlineMath math="4" />. So **<InlineMath math="a" /> has to be at least <InlineMath math="2" />**. From <InlineMath math="3b\ge1" /> with <InlineMath math="b" /> a whole number, you get <InlineMath math="b\ge1" />.
 
-The value 3 comes from <InlineMath math="2^{x_1}+2^{x_2}=8=2^3" />, although **the sum of exponents comes from the product**, not from the sum. The values 6 and 8 are values of <InlineMath math="t" />, not of <InlineMath math="x" />. The value <InlineMath math="{}^{2}\log6" /> is only one of the solutions.
+Every <InlineMath math="n" /> that satisfies (2) is divisible by <InlineMath math="12" /> too. For example, <InlineMath math="n=12" /> gives <InlineMath math="1{,}728=48\cdot36" />, while <InlineMath math="n=6" /> doesn't satisfy (2) because <InlineMath math="216=48\cdot4+24" />. Statement (2) alone is enough.
 
-So <InlineMath math="x_1+x_2=2+{}^{2}\log3" />.
+# Why the other options are tempting
+
+The option that both statements are needed together comes from reading (1) only as "<InlineMath math="n" /> is even and a multiple of <InlineMath math="3" />", or reading (2) only as "<InlineMath math="n" /> is even". Those readings **ignore that a square always has even prime exponents** and a cube always has prime exponents that are multiples of <InlineMath math="3" />. The option that neither statement is enough comes from assuming <InlineMath math="n=6" /> fits, but <InlineMath math="6" /> fails both statements.
+
+So statement (1) alone is enough, and statement (2) alone is also enough to be sure that <InlineMath math="n" /> is divisible by <InlineMath math="12" />.

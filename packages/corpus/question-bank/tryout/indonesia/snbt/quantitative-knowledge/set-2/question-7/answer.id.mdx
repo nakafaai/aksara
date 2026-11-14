@@ -1,27 +1,40 @@
-Pertanyaannya meminta **satu nilai <InlineMath math="x" />**. Pernyataan dianggap cukup hanya jika menyisakan tepat satu nilai.
+Titik <InlineMath math="D" /> dan <InlineMath math="H" /> sama-sama terletak pada <InlineMath math="AB" />, jadi <InlineMath math="DH" /> adalah **selisih jaraknya** dari <InlineMath math="A" />. Rencananya: cari panjang ketiga sisi dari lingkaran dalam, lalu cari <InlineMath math="AH" /> dari kesebangunan, lalu kurangkan.
 
-# Pernyataan pertama saja
+# Panjang garis singgung
 
-Pindahkan semua suku ke satu ruas lalu faktorkan. Jangan membagi dengan <InlineMath math="x" />, karena cara itu **menghilangkan penyelesaian <InlineMath math="x=0" />**.
+Misalkan lingkaran dalam berpusat di <InlineMath math="O" /> dan menyinggung <InlineMath math="BC" /> di <InlineMath math="E" /> serta <InlineMath math="CA" /> di <InlineMath math="F" />. **Dua garis singgung dari satu titik ke lingkaran sama panjang**, jadi <InlineMath math="AF=AD=6" /> dan <InlineMath math="BE=BD" />. Misalkan <InlineMath math="BD=y" />.
 
-<BlockMath math="x^2-4x=x(x-4)=0\quad\Rightarrow\quad x=0\ \text{atau}\ x=4" />
+Sudut <InlineMath math="C" /> siku-siku, dan jari-jari <InlineMath math="OE" /> serta <InlineMath math="OF" /> tegak lurus sisi yang disinggungnya. Jadi <InlineMath math="CEOF" /> adalah persegi bersisi <InlineMath math="3" />, sehingga <InlineMath math="CE=CF=3" />. Akibatnya <InlineMath math="AC=6+3=9" />, <InlineMath math="BC=y+3" />, dan <InlineMath math="AB=6+y" />.
 
-Ada dua nilai, jadi pernyataan (1) saja tidak cukup.
+# Panjang sisi dengan Pythagoras
 
-# Pernyataan kedua saja
+Segitiganya siku-siku di <InlineMath math="C" />, jadi <InlineMath math="AB" /> adalah **sisi terpanjang, yaitu hipotenusa**.
 
-Dengan cara yang sama:
+<BlockMath math="\begin{aligned}
+9^2+(y+3)^2&=(y+6)^2\\
+81+y^2+6y+9&=y^2+12y+36\\
+54&=6y\\
+y&=9
+\end{aligned}" />
 
-<BlockMath math="x^3-16x=x(x-4)(x+4)=0\quad\Rightarrow\quad x\in\{-4,0,4\}" />
+Jadi <InlineMath math="BC=12" /> dan <InlineMath math="AB=15" />. Cek jari-jarinya dengan rumus segitiga siku-siku <InlineMath math="r=\tfrac{AC+BC-AB}{2}=\tfrac{9+12-15}{2}=3" />, cocok dengan soal.
 
-Ada **tiga nilai**, jadi pernyataan (2) saja tidak cukup.
+# Letak kaki garis tinggi
 
-# Kedua pernyataan bersama
+Segitiga <InlineMath math="ACH" /> dan <InlineMath math="ABC" /> sebangun, karena keduanya siku-siku dan berbagi sudut <InlineMath math="A" />. Perbandingan sisi yang bersesuaian memberi <InlineMath math="\tfrac{AH}{AC}=\tfrac{AC}{AB}" />, jadi **<InlineMath math="AH" /> dihitung dari kuadrat sisi <InlineMath math="AC" />**, bukan dari tinggi <InlineMath math="CH" />.
 
-Nilai yang memenuhi kedua pernyataan adalah **irisan kedua himpunan penyelesaian**.
+<BlockMath math="\begin{aligned}
+AH&=\frac{AC^2}{AB}=\frac{81}{15}=\frac{27}{5}\\
+DH&=AD-AH=6-\frac{27}{5}=\frac35
+\end{aligned}" />
 
-<BlockMath math="\{0,4\}\cap\{-4,0,4\}=\{0,4\}" />
+Pengurangan ini benar karena <InlineMath math="\tfrac{27}{5}<6" />, jadi <InlineMath math="H" /> terletak di antara <InlineMath math="A" /> dan <InlineMath math="D" />. Cek dari arah <InlineMath math="B" />: <InlineMath math="BH=\tfrac{BC^2}{AB}=\tfrac{144}{15}=\tfrac{48}{5}" /> dan <InlineMath math="BD=9" />, sehingga <InlineMath math="DH=\tfrac{48}{5}-9=\tfrac35" />. Hasilnya sama.
 
-Masih ada dua nilai, yaitu 0 dan 4. Jika kedua persamaan dibagi dengan <InlineMath math="x" />, kamu akan mendapat <InlineMath math="x=4" /> saja dan keliru memilih bahwa kedua pernyataan bersama cukup.
+# Jebakan pada pilihan lain
 
-Jadi, **pernyataan (1) dan pernyataan (2) tidak cukup** untuk menjawab pertanyaan.
+- <InlineMath math="\tfrac65\text{ cm}" /> memakai **tinggi <InlineMath math="CH=\tfrac{9\cdot12}{15}=\tfrac{36}{5}" /> sebagai <InlineMath math="AH" />**, lalu menghitung <InlineMath math="\tfrac{36}{5}-6" />.
+- <InlineMath math="\tfrac32\text{ cm}" /> menganggap <InlineMath math="H" /> titik tengah <InlineMath math="AB" />, lalu menghitung <InlineMath math="\tfrac{15}{2}-6" />.
+- <InlineMath math="\tfrac{21}{10}\text{ cm}" /> menganggap <InlineMath math="D" /> titik tengah <InlineMath math="AB" />, lalu menghitung <InlineMath math="\tfrac{15}{2}-\tfrac{27}{5}" />.
+- <InlineMath math="\tfrac{18}{5}\text{ cm}" /> menukar kedua kaki, memakai <InlineMath math="AH=\tfrac{BC^2}{AB}=\tfrac{48}{5}" />, lalu menghitung <InlineMath math="\tfrac{48}{5}-6" />.
+
+Jadi, panjang <InlineMath math="DH" /> adalah <InlineMath math="\tfrac35\text{ cm}" />.

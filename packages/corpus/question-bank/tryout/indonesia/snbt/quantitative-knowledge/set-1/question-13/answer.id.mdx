@@ -1,21 +1,42 @@
-Volume air tidak berubah, tetapi kubus mengambil sebagian ruang di dasar akuarium. Hal yang harus diputuskan lebih dulu adalah **apakah kubus terendam seluruhnya atau tidak**, karena rumus ketinggian air berbeda untuk kedua keadaan.
+Isi kantong B pada pengambilan kedua **bergantung pada warna bola yang dipindahkan**. Jadi rencananya: cari dulu isi kantong A dari peluang yang diketahui, bagi menjadi dua kasus menurut warna bola yang dipindahkan, hitung peluang di setiap kasus, lalu gabungkan dengan bobotnya.
 
-# Menguji dugaan terendam
+# Menentukan isi kantong A
 
-Volume air adalah <InlineMath math="30\times20\times8=4800\text{ cm}^3" />. Seandainya kubus terendam seluruhnya, seluruh volume kubus menaikkan air pada alas <InlineMath math="600\text{ cm}^2" />.
+Misalkan kantong A berisi <InlineMath math="r" /> bola merah. Banyak cara mengambil dua bola dari <InlineMath math="5" /> bola adalah <InlineMath math="\binom52=10" />, dan banyak cara mengambil dua bola merah adalah <InlineMath math="\binom r2" />.
 
-<BlockMath math="h=\frac{4800+1000}{600}=\frac{29}{3}\approx9{,}67\text{ cm}" />
+<BlockMath math="\begin{aligned}
+\frac{\binom r2}{10}&=\frac{3}{10}\\
+\frac{r(r-1)}{2}&=3\\
+r^2-r-6&=0\\
+(r-3)(r+2)&=0
+\end{aligned}" />
 
-Ketinggian ini **lebih kecil daripada rusuk kubus**, yaitu 10 cm. Jadi dugaan terendam keliru, dan puncak kubus tetap berada di atas air.
+Banyak bola tidak mungkin negatif, jadi <InlineMath math="r=3" />. Kantong A berisi **<InlineMath math="3" /> bola merah dan <InlineMath math="2" /> bola putih**.
 
-# Menghitung tinggi air
+# Menghitung peluang di setiap kasus
 
-Karena kubus menembus permukaan, air **hanya mengisi ruang di sekeliling kubus**. Luas alas yang tersedia untuk air adalah <InlineMath math="600-10\times10=500\text{ cm}^2" />, dan volume air tetap <InlineMath math="4800\text{ cm}^3" />.
+Bola yang dipindahkan berwarna merah dengan peluang <InlineMath math="\frac35" />. Kantong B lalu berisi **<InlineMath math="3" /> merah dan <InlineMath math="4" /> putih**, total <InlineMath math="7" /> bola. Bola yang dipindahkan berwarna putih dengan peluang <InlineMath math="\frac25" />. Kantong B lalu berisi <InlineMath math="2" /> merah dan <InlineMath math="5" /> putih. Pada kedua kasus, banyak cara mengambil dua bola dari <InlineMath math="7" /> bola adalah <InlineMath math="\binom72=21" />.
 
-<BlockMath math="500h=4800\quad\Rightarrow\quad h=9{,}6\text{ cm}" />
+<BlockMath math="\begin{aligned}
+P(\text{dua merah}\mid\text{pindah merah})&=\frac{\binom32}{21}=\frac{3}{21}=\frac17\\
+P(\text{dua merah}\mid\text{pindah putih})&=\frac{\binom22}{21}=\frac{1}{21}
+\end{aligned}" />
 
-Cek: <InlineMath math="9{,}6<10" />, jadi kubus memang tidak terendam seluruhnya.
+# Menggabungkan kedua kasus
 
-Pilihan <InlineMath math="\tfrac{29}{3}" /> cm menganggap kubus terendam. Pilihan 10 cm menganggap air tepat mencapai puncak kubus. Pilihan 11,6 cm menambahkan volume kubus sekaligus mengurangi luas alas, sehingga ruang kubus dihitung dua kali. Pilihan 18 cm menambahkan rusuk kubus ke tinggi air.
+Setiap kasus **dikalikan dengan peluang kasus itu terjadi**, lalu hasilnya dijumlahkan.
 
-Jadi, tinggi permukaan air menjadi **<InlineMath math="9{,}6\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+P(\text{dua merah})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
+&=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}
+\end{aligned}" />
+
+# Memeriksa hasil
+
+Hitung juga dengan membilang langsung. Ada <InlineMath math="5" /> pilihan bola yang dipindahkan dan <InlineMath math="21" /> pilihan pasangan dari kantong B, jadi ada <InlineMath math="5\cdot21=105" /> kejadian yang sama mungkin. Kejadian yang cocok adalah <InlineMath math="3\cdot3=9" /> saat bola merah dipindahkan dan <InlineMath math="2\cdot1=2" /> saat bola putih dipindahkan. **Hasilnya sama, yaitu <InlineMath math="\frac{11}{105}" />**, dan nilainya terletak di antara <InlineMath math="\frac1{21}" /> dan <InlineMath math="\frac17" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="\frac1{15}" /> mengabaikan bola yang dipindahkan, sehingga kantong B dianggap tetap berisi <InlineMath math="6" /> bola. Pilihan <InlineMath math="\frac3{35}" /> hanya menghitung kasus bola merah yang dipindahkan dan lupa menambahkan kasus bola putih. Pilihan <InlineMath math="\frac2{21}" /> adalah rata-rata biasa <InlineMath math="\frac12\left(\frac17+\frac1{21}\right)" />, yang **mengabaikan bobot <InlineMath math="\frac35" /> dan <InlineMath math="\frac25" />**. Pilihan <InlineMath math="\frac17" /> muncul jika bola diambil satu per satu dengan pengembalian, yaitu <InlineMath math="\frac35\left(\frac37\right)^2+\frac25\left(\frac27\right)^2=\frac{35}{245}" />.
+
+Jadi, peluang kedua bola yang terambil dari kantong B berwarna merah adalah <InlineMath math="\frac{11}{105}" />.

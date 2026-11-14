@@ -1,17 +1,41 @@
-Beim Verdampfen geht nur Wasser verloren, **das Saftvolumen bleibt also gleich**. Bestimme das Endvolumen, bei dem dieser Saft 32 % ausmacht.
+Du suchst die kleinste Menge Lösung, die weggegossen werden muss. Eine Lösung mit <InlineMath math="1{.}500\text{ ppm}" /> ist für die fünfte Woche zu stark, und **der Tank fasst nur** <InlineMath math="200" /> Liter. Der Plan: Bestimme die Stammlösung A im Tank, prüfe, ob Wasser allein reicht, und berechne dann, wie viel du weggießen musst, bevor der Tank mit Wasser aufgefüllt wird.
 
-# Gleichbleibender Saft
+# Stammlösung A im Tank
 
-<BlockMath math="20\,\%\cdot800=160\text{ mL}" />
-
-# Endvolumen und verdampftes Wasser
+Die Stammlösung A ist **die Konzentration geteilt durch** <InlineMath math="200" />, mal das Volumen.
 
 <BlockMath math="\begin{aligned}
-32\,\%\cdot V&=160\\
-V&=500\text{ mL}\\
-800-500&=300\text{ mL}
+\text{Stammlösung A} &= \frac{1{.}500}{200}\cdot180=7{,}5\cdot180=1{.}350\text{ ml}
 \end{aligned}" />
 
-Der Wert 500 mL ist das Endvolumen, nicht das verdampfte Wasser. Der Wert 160 mL ist das Saftvolumen. Der Wert 256 mL sind 32 % von 800 mL, und 96 mL sind die Änderung des Gehalts, 12 %, mal 800 mL. **Beide nehmen das Anfangsvolumen**, obwohl sich die 32 % auf das Endvolumen beziehen.
+# Wasser allein reicht nicht
 
-Es müssen also **300 mL** Wasser verdampfen.
+Der passende Bereich der fünften Woche reicht von <InlineMath math="1{.}150" /> bis <InlineMath math="1{.}250\text{ ppm}" />. Das größte mögliche Volumen sind <InlineMath math="200" /> Liter, also ist die niedrigste Konzentration ohne Weggießen <InlineMath math="\tfrac{1{.}350}{200}\cdot200=1{.}350\text{ ppm}" />. Das liegt noch über <InlineMath math="1{.}250\text{ ppm}" />, also **muss zuerst ein Teil der Lösung weg**.
+
+# Wie viel weggegossen wird
+
+Herr Darto gießt <InlineMath math="x" /> Liter weg. Der Rest hat weiterhin <InlineMath math="1{.}500\text{ ppm}" />, enthält also <InlineMath math="7{,}5(180-x)" /> ml Stammlösung A. Damit möglichst wenig weggegossen wird, **füllst du den Tank bis ganz oben mit Wasser**, denn mehr Wasser macht die Lösung schwächer.
+
+<BlockMath math="\begin{aligned}
+\frac{7{,}5(180-x)}{200}\cdot200 &\le 1{.}250\\
+7{,}5(180-x) &\le 1{.}250\\
+180-x &\le 166\tfrac{2}{3}\\
+x &\ge 13\tfrac{1}{3}
+\end{aligned}" />
+
+Weggegossen wird in ganzen Litern, also mindestens <InlineMath math="14" /> Liter.
+
+# Kontrolle beider Grenzen
+
+Mit <InlineMath math="x=14" /> beträgt die Konzentration <InlineMath math="7{,}5\cdot166=1{.}245\text{ ppm}" />. Das liegt unter <InlineMath math="1{.}250" /> und über <InlineMath math="1{.}150" />, also **passt die Lösung**. Mit <InlineMath math="x=13" /> sind es <InlineMath math="7{,}5\cdot167=1{.}252{,}5\text{ ppm}" />, noch zu stark.
+
+# Häufige falsche Antworten
+
+Diese Antworten **übersehen Fassungsvermögen, Bereich oder Rundung**.
+
+- Die Antwort <InlineMath math="45" /> füllt einfach Wasser bis <InlineMath math="225" /> Liter auf, aber der Tank fasst nur <InlineMath math="200" /> Liter.
+- Die Antwort <InlineMath math="20" /> zielt auf genau <InlineMath math="1{.}200\text{ ppm}" />, obwohl die obere Grenze von <InlineMath math="1{.}250\text{ ppm}" /> schon reicht.
+- Die Antwort <InlineMath math="13" /> rundet <InlineMath math="13\tfrac{1}{3}" /> ab.
+- Die Antwort <InlineMath math="30" /> füllt nur wieder auf <InlineMath math="180" /> Liter auf, statt den Tank ganz zu füllen.
+
+Herr Darto muss also mindestens <InlineMath math="14" /> Liter Lösung weggießen.

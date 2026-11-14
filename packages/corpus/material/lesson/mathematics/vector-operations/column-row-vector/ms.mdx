@@ -1,0 +1,193 @@
+export const metadata = {
+   title: "Vektor Lajur dan Vektor Baris",
+  description: "Tulis vektor lajur dan vektor baris, cari transposnya, dan gunakan vektor unit Cartesan dalam pengiraan algebra linear.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-04-12",
+   dateModified: "2026-11-08",
+   subject: "Vektor dan Operasinya",
+};
+
+## Menulis Komponen Vektor secara Menegak atau Mendatar
+
+Vektor mempunyai magnitud dan arah. Dalam pengiraan koordinat, kita biasanya menyusun komponennya sama ada sebagai **vektor lajur** atau **vektor baris**. Vektor juga boleh ditunjukkan dengan anak panah atau tatatanda lain yang setara.
+
+Vektor lajur ialah vektor yang <Highlight>komponennya ditulis secara menegak</Highlight> (ke bawah). Vektor baris pula ialah vektor yang komponennya ditulis secara mendatar (ke tepi).
+
+## Tatatanda Vektor Lajur dan Vektor Baris
+
+Vektor lajur dan vektor baris mengandungi komponen yang sama dalam susunan yang sama, jadi bezanya hanya pada cara komponen itu disusun. Kurungan biasa dan kurungan siku kedua-duanya boleh digunakan.
+
+Dalam dua dimensi, komponennya membentuk baris <InlineMath math="(3 \; 4)" /> atau <InlineMath math="[3 \; 4]" />. Apabila ditulis sebagai lajur, susunannya tetap sama:
+
+<BlockMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix} = \begin{bmatrix} 3 \\ 4 \end{bmatrix}" />
+
+Dalam tiga dimensi, baris <InlineMath math="(2 \; 1 \; 3)" /> atau <InlineMath math="[2 \; 1 \; 3]" /> menjadi lajur di bawah. **Susunan komponen tetap sama** walaupun bentuk susunannya berubah.
+
+<BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix} = \begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+Kedua-dua tatatanda menerangkan anak panah yang sama. <InlineMath math="(3 \; 4)" /> sebagai baris dan <InlineMath math="\begin{pmatrix} 3 \\ 4 \end{pmatrix}" /> sebagai lajur sama-sama bermaksud: <InlineMath math="3" /> ke kanan, kemudian <InlineMath math="4" /> ke atas. Anak panah dari asalan ke <InlineMath math="(3, 4)" /> mempunyai panjang <InlineMath math="\sqrt{3^2 + 4^2} = 5" />.
+
+<MathVisual
+  title={<>Satu vektor, dua tatatanda</>}
+  description={<>Vektor dengan komponen <InlineMath math="3" /> dan <InlineMath math="4" /> sebagai anak panah dari asalan, bersama komponen mengufuk dan komponen mencancangnya.</>}
+  labels={{
+    v: <InlineMath math="(3 \; 4)" />,
+    cx: <InlineMath math="3" />,
+    cy: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "cx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "cy", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 4 }, appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "cx", objectId: "cx", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "cy", objectId: "cy", at: { x: 3, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Perwakilan Komponen yang Setara
+
+Vektor yang sama, dalam bentuk komponen, boleh diwakili dengan beberapa cara yang berguna:
+
+1. Tatatanda dengan kurungan biasa:
+
+   <BlockMath math="\begin{pmatrix} 2 \\ 1 \\ 3 \end{pmatrix}" />
+
+2. Tatatanda dengan kurungan siku:
+
+   <BlockMath math="\begin{bmatrix} 2 \\ 1 \\ 3 \end{bmatrix}" />
+
+3. Tatatanda dengan vektor unit Cartesan:
+
+   <BlockMath math="2\mathbf{i} + \mathbf{j} + 3\mathbf{k}" />
+
+Ketiga-tiga ungkapan ini menerangkan **vektor yang sama**. Dua yang pertama memaparkan komponennya sebagai lajur, manakala yang ketiga menyatakan komponen itu mengikut vektor unit Cartesan. Simbol yang memakai garis tegak mesti dibaca mengikut konteks: <InlineMath math="\det A" /> atau <InlineMath math="|A|" /> boleh menandakan penentu bagi matriks segi empat sama, <InlineMath math="|x|" /> menandakan nilai mutlak bagi skalar, dan <InlineMath math="\lVert \vec{v} \rVert" /> menandakan magnitud, atau norma, bagi vektor.
+
+Vektor hanya menyimpan perubahan, bukan titik awal. Anak panah dari <InlineMath math="(0, 0)" /> ke <InlineMath math="(3, 4)" /> dan anak panah dari <InlineMath math="(2, -1)" /> ke <InlineMath math="(5, 3)" /> kedua-duanya bergerak <InlineMath math="3" /> ke kanan dan <InlineMath math="4" /> ke atas, jadi kedua-duanya ialah vektor <InlineMath math="(3 \; 4)" />, sama ada ditulis sebagai baris atau sebagai lajur.
+
+<MathVisual
+  title={<>Vektor sama dari titik awal yang berbeza</>}
+  description={<>Dua anak panah, dari <InlineMath math="(0, 0)" /> dan dari <InlineMath math="(2, -1)" />, dengan komponen yang sama, iaitu <InlineMath math="3" /> dan <InlineMath math="4" />.</>}
+  labels={{
+    a: <InlineMath math="(3 \; 4)" />,
+    b: <InlineMath math="(3 \; 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.8 }, y: { min: -1.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 2, y: -1 }, to: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "a0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3.5, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Vektor Unit dalam Sistem Koordinat Cartesan
+
+Untuk asas Cartesan piawai, kita pilih satu vektor unit dalam **setiap arah paksi positif**. Vektor unit dalam arah negatif juga wujud, tetapi ia ialah vektor bertentangan bagi vektor asas yang dipilih itu.
+
+Vektor unit ialah vektor yang panjangnya <InlineMath math="1 \text{ unit}" /> dengan arah tertentu. Dalam sistem koordinat Cartesan, kita mengenali beberapa vektor unit:
+
+### Vektor Unit dalam Sistem Koordinat Cartesan Dua Dimensi
+
+Satah mempunyai dua arah asas, dan panjang setiap vektor asas ialah satu. Jadual ini memberikan kedua-dua vektor unit itu dalam bentuk baris.
+
+| Arah | Vektor baris |
+| --- | --- |
+| mengufuk, sepanjang paksi-<InlineMath math="x" /> | <InlineMath math="(1 \; 0)" /> |
+| mencancang, sepanjang paksi-<InlineMath math="y" /> | <InlineMath math="(0 \; 1)" /> |
+
+Apabila dua vektor unit yang sama ditulis sebagai lajur, komponennya kekal dalam **susunan yang sama**:
+
+<BlockMath math="\begin{pmatrix} 1 \\ 0 \end{pmatrix} \qquad \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
+
+Matriks pertama ialah vektor unit mengufuk, dan matriks kedua ialah vektor unit mencancang.
+
+### Vektor Unit dalam Sistem Koordinat Cartesan Tiga Dimensi
+
+Ruang menambah **arah asas ketiga**. Tiga vektor unit itu menghala sepanjang tiga paksi, dan panjang setiap satunya ialah satu. Jadual ini memberikan ketiga-tiganya dalam bentuk baris.
+
+| Arah | Vektor baris |
+| --- | --- |
+| sepanjang paksi-<InlineMath math="x" /> | <InlineMath math="(1 \; 0 \; 0)" /> |
+| sepanjang paksi-<InlineMath math="y" /> | <InlineMath math="(0 \; 1 \; 0)" /> |
+| sepanjang paksi-<InlineMath math="z" /> | <InlineMath math="(0 \; 0 \; 1)" /> |
+
+Apabila tiga vektor unit yang sama ditulis sebagai lajur, komponennya kekal dalam susunan yang sama:
+
+<BlockMath math="\begin{pmatrix} 1 \\ 0 \\ 0 \end{pmatrix} \qquad \begin{pmatrix} 0 \\ 1 \\ 0 \end{pmatrix} \qquad \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}" />
+
+Matriks pertama ialah vektor unit sepanjang paksi-<InlineMath math="x" />, yang kedua sepanjang paksi-<InlineMath math="y" />, dan yang ketiga sepanjang paksi-<InlineMath math="z" />.
+
+Dalam ruang, vektor mempunyai tiga komponen. <InlineMath math="(2 \; 1 \; 3)" /> bermaksud <InlineMath math="2\vec{i} + \vec{j} + 3\vec{k}" />: <InlineMath math="2" /> sepanjang x, <InlineMath math="1" /> sepanjang y, <InlineMath math="3" /> sepanjang z. Laluan tiga langkah itu berakhir di hujung anak panah. Putarkan gambar rajah ini untuk melihat langkah-langkah itu dari setiap sisi.
+
+<MathVisual
+  title={<>Vektor dalam ruang dan langkah vektor unitnya</>}
+  description={<>Vektor <InlineMath math="(2 \; 1 \; 3)" /> dari asalan, dengan laluan <InlineMath math="2" /> sepanjang x, <InlineMath math="1" /> sepanjang y dan <InlineMath math="3" /> sepanjang z.</>}
+  labels={{
+    v: <InlineMath math="(2 \; 1 \; 3)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 2 }, z: { min: 0, max: 3.5 } },
+    view: { kind: "isometric" },
+    objects: [
+      { id: "steps", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 1, z: 0 }, { x: 2, y: 1, z: 3 }], appearance: "construction" },
+      { id: "v", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: 2, y: 1, z: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Hubungan antara Vektor Lajur dan Vektor Baris
+
+Vektor lajur dan vektor baris berkait melalui operasi transpos. **Transpos** ialah operasi yang menukar baris kepada lajur atau sebaliknya.
+
+Jika <InlineMath math="\vec{a} = (a_1 \; a_2 \; \ldots \; a_n)" /> ialah vektor baris, maka transposnya ialah vektor lajur:
+
+<BlockMath math="\vec{a}^T = \begin{pmatrix} a_1 \\ a_2 \\ \vdots \\ a_n \end{pmatrix}" />
+
+Sebaliknya, lihat vektor lajur ini:
+
+<BlockMath math="\vec{b} = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \\ b_m \end{pmatrix}" />
+
+Transposnya ialah vektor baris:
+
+<BlockMath math="\vec{b}^T = (b_1 \; b_2 \; \ldots \; b_m)" />
+
+## Aplikasi Vektor Lajur dan Vektor Baris
+
+Vektor lajur dan vektor baris mempunyai bentuk yang berbeza dalam operasi seperti pendaraban matriks. Kekalkan bentuk yang kamu pilih secara konsisten supaya dimensi matriksnya sepadan.
+
+Dalam pengkomputeran, vektor lajur dan vektor baris digunakan untuk mewakili data dan pemboleh ubah dalam pengaturcaraan berangka, pemprosesan imej, kecerdasan buatan dan banyak lagi bidang lain.
+
+Bentuk baris dan lajur menentukan **bentuk hasil darab**. Ambil dua komponen yang sudah kita gunakan tadi:
+
+<BlockMath math="r=\begin{pmatrix}3&amp;4\end{pmatrix},\qquad c=\begin{pmatrix}3\\4\end{pmatrix}" />
+
+Baris yang didarab dengan lajur menghasilkan satu nilai kerana hasilnya berbentuk <InlineMath math="1\times1" />:
+
+<BlockMath math="rc=3\cdot3+4\cdot4=9+16=25" />
+
+Lajur yang didarab dengan baris menghasilkan matriks <InlineMath math="2\times2" />. Setiap unsur lajur mendarab kedua-dua unsur baris:
+
+<BlockMath math="cr=\begin{pmatrix}3\cdot3&amp;3\cdot4\\4\cdot3&amp;4\cdot4\end{pmatrix}=\begin{pmatrix}9&amp;12\\12&amp;16\end{pmatrix}" />
+
+Nilai komponennya sama, tetapi apabila tertib pendaraban diterbalikkan, kita mendapat objek dengan bentuk yang berbeza.

@@ -1,17 +1,38 @@
-This exchange consists of **two separate transactions**: selling Singapore dollars at the buying rate, then buying ringgit at the selling rate. Each transaction has its own service fee.
+You're looking for the longest wait on the day counter B takes a break. Follow the usual schedule up to 08:30, build the schedule during the break, and then show that **after the break the waits fall again**, so the biggest value has to show up around the break.
 
-# Selling Singapore dollars
+# Before the break
 
-<BlockMath math="200\cdot11{,}600-25{,}000=2{,}320{,}000-25{,}000=2{,}295{,}000" />
+Nothing changes until 08:30. Persons <InlineMath math="1" /> to <InlineMath math="13" /> start as usual, and the longest wait so far is <InlineMath math="21" /> minutes for person <InlineMath math="11" />. Counter B finishes person <InlineMath math="12" /> exactly at 08:30, and then **it can't start a new service until 08:45**.
 
-# Buying ringgit
+# The schedule around the break
 
-The service fee for the purchase is also paid from that money, so 2,270,000 is left for ringgit.
+During the break only counter A takes new people, every <InlineMath math="4" /> minutes. At 08:45 counter B may work again, and **the person at the front still goes to whichever counter frees up first**. The wait is the start time minus the arrival time.
 
-<BlockMath math="\frac{2{,}270{,}000}{3{,}450}\approx657.97" />
+| Person | Arrives | Service starts | Counter | Wait |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="11" /> | 08:03 | 08:24 | A | <InlineMath math="21" /> |
+| <InlineMath math="12" /> | 08:06 | 08:24 | B | <InlineMath math="18" /> |
+| <InlineMath math="13" /> | 08:09 | 08:28 | A | <InlineMath math="19" /> |
+| <InlineMath math="14" /> | 08:12 | 08:32 | A | <InlineMath math="20" /> |
+| <InlineMath math="15" /> | 08:15 | 08:36 | A | <InlineMath math="21" /> |
+| <InlineMath math="16" /> | 08:18 | 08:40 | A | <InlineMath math="22" /> |
+| <InlineMath math="17" /> | 08:21 | 08:44 | A | <InlineMath math="23" /> |
+| <InlineMath math="18" /> | 08:24 | 08:45 | B | <InlineMath math="21" /> |
+| <InlineMath math="19" /> | 08:27 | 08:48 | A | <InlineMath math="21" /> |
+| <InlineMath math="20" /> | 08:30 | 08:51 | B | <InlineMath math="21" /> |
+| <InlineMath math="21" /> | 08:33 | 08:52 | A | <InlineMath math="19" /> |
+| <InlineMath math="22" /> | 08:36 | 08:56 | A | <InlineMath math="20" /> |
 
-Ringgit are sold only in whole numbers, so the tourist gets 657 ringgit. The amount 658 **is impossible**, because it would need <InlineMath math="658\cdot3{,}450=2{,}270{,}100" />, more than the money left.
+Person <InlineMath math="17" /> arrives at 08:21 and is only served at 08:44, so they wait <InlineMath math="44-21=23" /> minutes.
 
-The value 665 deducts the service fee only once, and 672 deducts no fee at all. The value 669 sells the dollars at the selling rate, and 677 buys ringgit at the buying rate.
+# After the break
 
-So the tourist gets **657 ringgit**.
+From 08:44 both counters stay busy again. Every <InlineMath math="12" /> minutes counter A starts <InlineMath math="3" /> services and counter B starts <InlineMath math="2" />, while only <InlineMath math="4" /> people arrive. So person <InlineMath math="n+5" /> starts <InlineMath math="12" /> minutes after person <InlineMath math="n" /> but arrives <InlineMath math="15" /> minutes later, which means **every five numbers the wait drops by three minutes**.
+
+<BlockMath math="\text{wait}(n+5)=\text{wait}(n)+12-15=\text{wait}(n)-3" />
+
+Persons <InlineMath math="18" /> to <InlineMath math="22" /> wait <InlineMath math="21" />, <InlineMath math="21" />, <InlineMath math="21" />, <InlineMath math="19" /> and <InlineMath math="20" /> minutes, all less than <InlineMath math="23" />. Everyone after them waits even less. So the longest wait is <InlineMath math="23" /> minutes, for person <InlineMath math="17" />.
+
+The answer <InlineMath math="21" /> comes from ignoring the break. The answer <InlineMath math="33" /> comes from making person <InlineMath math="14" /> wait for counter B until 08:45, although counter A is free for them at 08:32. The answer <InlineMath math="36" /> comes from adding the <InlineMath math="15" />-minute break straight onto the usual longest wait.
+
+So the longest wait that day is <InlineMath math="23" /> minutes.

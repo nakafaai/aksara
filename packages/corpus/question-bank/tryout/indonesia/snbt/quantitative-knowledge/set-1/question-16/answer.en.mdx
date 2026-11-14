@@ -1,17 +1,35 @@
-Order the five numbers as <InlineMath math="a<b<c<d<e" />. The median of five values is the third value, so <InlineMath math="c=10" />. A mean of 12 means that **the five numbers always add up to 60**.
+The value <InlineMath math="(g\circ f)^{-1}(8)" /> is **the number <InlineMath math="x" /> that <InlineMath math="g\circ f" /> sends to <InlineMath math="8" />**. The exponent <InlineMath math="-1" /> here means an inverse function, so you're looking for an input, not the reciprocal of a number. The plan: undo the step <InlineMath math="g" /> first, then undo the step <InlineMath math="f" />.
 
-<BlockMath math="a+b+10+d+e=60\quad\Rightarrow\quad e=50-a-b-d" />
+# Choosing the order to undo the functions
 
-# Making the other numbers small
+The function <InlineMath math="g\circ f" /> does <InlineMath math="f" /> first and then <InlineMath math="g" />. To get back to the input, you undo the last step first. So **the inverse of a composition reverses the order**.
 
-To make <InlineMath math="e" /> as large as possible, the other three numbers must be as small as the conditions allow. The smallest distinct positive integers below 10 are <InlineMath math="a=1" /> and <InlineMath math="b=2" />. The number <InlineMath math="d" /> must be **greater than the median** and different from it, so its smallest value is <InlineMath math="d=11" />.
+<BlockMath math="(g\circ f)^{-1}(8)=f^{-1}\left(g^{-1}(8)\right)" />
 
-<BlockMath math="e=50-1-2-11=36" />
+# Undoing the outer function
 
-Check: the data <InlineMath math="1,2,10,11,36" /> are all different, the median is 10, and the mean is <InlineMath math="\tfrac{60}{5}=12" />.
+Find the number <InlineMath math="y" /> with <InlineMath math="g(y)=8" />. This is the number that **must be the value of <InlineMath math="f(x)" />**.
 
-# The tempting wrong values
+<BlockMath math="3y-1=8\quad\Rightarrow\quad y=3" />
 
-The value 37 uses <InlineMath math="d=10" />, although the numbers must be different. The value 38 uses <InlineMath math="1,1,10,10" />, which breaks the distinctness condition twice. The value 34 starts from <InlineMath math="a=2" /> and <InlineMath math="b=3" />, although 1 is also a positive integer. The value 46 leaves the median 10 out of the sum, as in <InlineMath math="60-1-2-11" />.
+# Undoing the inner function
 
-So the largest possible value of the greatest number is **36**.
+Now find <InlineMath math="x" /> with <InlineMath math="f(x)=3" />. Multiply both sides by <InlineMath math="x-4" />, which **isn't zero because <InlineMath math="x\neq4" />**.
+
+<BlockMath math="\begin{aligned}
+\frac{2x+3}{x-4}&=3\\
+2x+3&=3x-12\\
+x&=15
+\end{aligned}" />
+
+The value <InlineMath math="x=15" /> meets the condition <InlineMath math="x\neq4" />.
+
+# Checking the result
+
+Put <InlineMath math="15" /> into <InlineMath math="g\circ f" />: <InlineMath math="f(15)=\frac{33}{11}=3" />, then <InlineMath math="g(3)=9-1=8" />. **You land back on <InlineMath math="8" />**, so <InlineMath math="15" /> really is the input you want.
+
+# The wrong options
+
+The option <InlineMath math="\frac{53}{4}" /> is <InlineMath math="(g\circ f)(8)" />, which forgets the inverse: <InlineMath math="f(8)=\frac{19}{4}" /> and <InlineMath math="g\left(\frac{19}{4}\right)=\frac{53}{4}" />. The option <InlineMath math="\frac{4}{53}" /> reads <InlineMath math="(g\circ f)^{-1}(8)" /> as **the reciprocal <InlineMath math="\frac{1}{(g\circ f)(8)}" />**. The option <InlineMath math="\frac{41}{18}" /> uses the wrong order, <InlineMath math="g^{-1}\left(f^{-1}(8)\right)" />, with <InlineMath math="f^{-1}(8)=\frac{35}{6}" />. The option <InlineMath math="-\frac19" /> undoes <InlineMath math="g" /> correctly but reads <InlineMath math="f^{-1}(3)" /> as <InlineMath math="\frac{1}{f(3)}=\frac{3-4}{9}" />.
+
+So the value of <InlineMath math="(g\circ f)^{-1}(8)" /> is <InlineMath math="15" />.

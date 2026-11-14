@@ -1,18 +1,29 @@
-Hitung batang **menurut arahnya**, karena setiap batang mendatar atau tegak.
+Soal ini memakai tiga persentase, dan **setiap persentase punya dasar yang berbeda**. Yang <InlineMath math="10\%" /> dihitung dari jumlah awal, yang <InlineMath math="50\%" /> dari bibit yang masih hidup, dan yang <InlineMath math="60\%" /> kembali dari jumlah awal. Kamu hanya tahu jumlah akhirnya, <InlineMath math="840" />, jadi cara paling aman adalah menulis semuanya dalam satu satuan, yaitu jumlah bibit awal.
 
-Persegi besar berukuran <InlineMath math="n\times n" /> memiliki <InlineMath math="n+1" /> garis mendatar, dan setiap garis mendatar terdiri atas <InlineMath math="n" /> batang. Dengan cara yang sama, ada <InlineMath math="n+1" /> garis tegak yang masing-masing terdiri atas <InlineMath math="n" /> batang. Jadi,
+Misalkan jumlah bibit awal adalah <InlineMath math="N" />. Ikuti bibitnya bulan demi bulan.
 
-<BlockMath math="\text{banyak batang}=n(n+1)+n(n+1)=2n(n+1)" />
+<BlockMath math="\begin{aligned}
+\text{masih hidup setelah bulan pertama} &= 0{,}9N \\
+\text{dipindahkan} &= 0{,}5 \times 0{,}9N = 0{,}45N \\
+\text{bibit baru} &= 0{,}6N \\
+\text{jumlah akhir} &= 0{,}9N - 0{,}45N + 0{,}6N = 1{,}05N
+\end{aligned}" />
 
-Periksa dengan tabel: <InlineMath math="2(1)(2)=4" />, <InlineMath math="2(2)(3)=12" />, dan <InlineMath math="2(3)(4)=24" />. Rumus cocok dengan ketiga pola. Untuk pola ke-<InlineMath math="10" />:
+Jumlah akhirnya <InlineMath math="840" />, jadi kamu bisa mencari <InlineMath math="N" />, lalu jumlah bibit yang dipindahkan.
 
-<BlockMath math="2(10)(11)=220" />
+<BlockMath math="\begin{aligned}
+1{,}05N &= 840 \\
+N &= 800 \\
+0{,}45N &= 0{,}45 \times 800 = 360
+\end{aligned}" />
 
-Pilihan lain berasal dari kesalahan berikut:
+Cek dengan menelusuri ulang: <InlineMath math="800" /> bibit, <InlineMath math="80" /> mati sehingga tersisa <InlineMath math="720" />, separuhnya atau <InlineMath math="360" /> dipindahkan sehingga tersisa <InlineMath math="360" />, lalu ditambah <InlineMath math="480" /> bibit baru. Hasilnya <InlineMath math="360 + 480 = 840" />, sama dengan data soal.
 
-- <InlineMath math="110" /> hanya menghitung batang satu arah, misalnya batang mendatar saja.
-- <InlineMath math="200" /> memakai <InlineMath math="2n^2" />, seolah-olah hanya ada <InlineMath math="n" /> garis di setiap arah, padahal garis tepi juga dihitung.
-- <InlineMath math="242" /> memakai <InlineMath math="2(n+1)^2" />, yaitu menganggap setiap garis terdiri atas <InlineMath math="n+1" /> batang.
-- <InlineMath math="400" /> menghitung <InlineMath math="4" /> batang untuk setiap persegi kecil, sehingga sisi bersama terhitung dua kali.
+Setiap pilihan lain muncul dari dasar persentase yang tertukar.
 
-Jadi, pola ke-<InlineMath math="10" /> memerlukan <InlineMath math="220" /> batang korek api.
+- <InlineMath math="378" /> muncul kalau persentasenya dijumlahkan begitu saja: <InlineMath math="-10\% - 50\% + 60\% = 0\%" />. Kamu lalu mengira jumlah awal sama dengan <InlineMath math="840" />, sehingga yang dipindahkan <InlineMath math="0{,}5 \times 0{,}9 \times 840 = 378" />.
+- <InlineMath math="400" /> muncul kalau <InlineMath math="50\%" /> dihitung dari jumlah awal <InlineMath math="800" />, padahal yang dipindahkan adalah separuh dari bibit yang masih hidup.
+- <InlineMath math="420" /> muncul kalau <InlineMath math="50\%" /> dihitung dari jumlah akhir <InlineMath math="840" />.
+- <InlineMath math="525" /> muncul kalau bibit baru dihitung <InlineMath math="60\%" /> dari sisa bibit setelah pemindahan. Jumlah akhir menjadi <InlineMath math="1{,}6" /> kali sisa itu, sehingga sisanya <InlineMath math="840 \div 1{,}6 = 525" />, dan karena yang dipindahkan separuh, banyaknya dianggap sama dengan sisa itu.
+
+Jadi, bibit yang dipindahkan ke kebun pada bulan kedua ada <InlineMath math="360" />.

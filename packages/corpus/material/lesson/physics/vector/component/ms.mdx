@@ -1,0 +1,179 @@
+export const metadata = {
+  title: "Komponen Vektor",
+  description:
+    "Nyatakan vektor sebagai komponen di sepanjang paksi x, y dan z menggunakan vektor unit.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-01",
+  subject: "Vektor",
+};
+
+## Mengapa Vektor Dileraikan kepada Komponen
+
+Vektor yang condong bertindak di sepanjang lebih daripada satu paksi koordinat. Kita leraikan vektor itu kepada bahagian yang selari dengan paksi-paksi tersebut supaya kesan dalam setiap arah boleh dikira secara berasingan. Bahagian ini dipanggil **komponen vektor**.
+
+Komponen mengufuk menunjukkan berapa banyak bahagian vektor yang terletak di sepanjang paksi <InlineMath math="x" />. Komponen menegak menunjukkan berapa banyak bahagian yang terletak di sepanjang paksi <InlineMath math="y" />. Dalam ruang tiga dimensi, ada juga komponen di sepanjang paksi <InlineMath math="z" />.
+
+> Vektor sama dengan hasil tambah semua komponennya di sepanjang paksi koordinat.
+
+## Membaca Komponen dalam Satah
+
+Dalam satah, vektor <InlineMath math="\vec{A}" /> boleh ditulis sebagai gabungan komponen <InlineMath math="x" /> dan komponen <InlineMath math="y" /> vektor itu.
+
+<BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}" />
+
+Tatatanda <InlineMath math="\hat{i}" /> ialah **vektor unit** dalam arah <InlineMath math="x" />, manakala <InlineMath math="\hat{j}" /> ialah vektor unit dalam arah <InlineMath math="y" />. Skalar bertanda <InlineMath math="A_x" /> dan <InlineMath math="A_y" /> memberikan komponen di sepanjang paksi-paksi itu. Setiap tanda menunjukkan ke arah mana vektor itu menghala di sepanjang paksinya.
+
+### Mengira Panjang daripada Dua Komponen
+
+Contohnya, <InlineMath math="\vec{A}=6\hat{i}+8\hat{j}" /> bermaksud vektor itu mempunyai komponen <InlineMath math="6" /> unit dalam arah <InlineMath math="x" /> positif dan komponen <InlineMath math="8" /> unit dalam arah <InlineMath math="y" /> positif.
+
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{6^2+8^2} \\ &= \sqrt{36+64} \\ &= \sqrt{100}=10\end{aligned}" />
+
+Panjang vektor diperoleh daripada **teorem Pythagoras** kerana komponen <InlineMath math="x" /> dan <InlineMath math="y" /> saling berserenjang.
+
+Dua anak panah komponen di bawah dan vektor itu membentuk segi tiga bersudut tegak, jadi panjang vektor ialah hipotenusnya: <InlineMath math="\sqrt{6^2+8^2}=10" />.
+
+<MathVisual
+  title={<>Satu Vektor dan Dua Komponennya</>}
+  description={<><InlineMath math="\vec A=6\hat i+8\hat j" /> bersama komponen x dan komponen y. Satu petak grid ialah 2 unit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ax", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "ax-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+      { id: "ay", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "ay-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+    ],
+    labels: [
+      { key: "ax", objectId: "ax", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "ay", objectId: "ay", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    ax: <InlineMath math="A_x=6" />,
+    ay: <InlineMath math="A_y=8" />,
+    a: <InlineMath math="\lvert\vec A\rvert=10" />,
+  }}
+/>
+
+## Komponen dalam Ruang Tiga Dimensi
+
+Dalam ruang tiga dimensi, vektor memerlukan tiga komponen. Bentuk amnya ialah:
+
+<BlockMath math="\vec{A}=A_x\hat{i}+A_y\hat{j}+A_z\hat{k}" />
+
+Vektor unit <InlineMath math="\hat{k}" /> menghala di sepanjang **paksi koordinat ketiga**, iaitu paksi <InlineMath math="z" />. Komponen ini diperlukan apabila gerakan atau daya tidak terhad pada satah rata, contohnya dron yang bergerak ke timur, ke utara dan ke atas pada masa yang sama.
+
+<MathVisual
+  title={<>Komponen <InlineMath math="\vec{A}" /></>}
+  description={
+    <>
+      Vektor <InlineMath math="\vec{A}=4\hat{i}+3\hat{j}+2\hat{k}" /> dileraikan
+      kepada tiga komponen yang saling berserenjang.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="A_x" />,
+    "l3": <InlineMath math="A_y" />,
+    "l4": <InlineMath math="A_z" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 8, y: 6, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.8, z: 1.2 }, { x: 4, y: 3, z: 2 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.8, z: 1.2 }, to: { x: 4, y: 3, z: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 2, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0, z: 0 }, { x: 4, y: 1.5, z: 0 }, { x: 4, y: 3, z: 0 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 4, y: 1.5, z: 0 }, to: { x: 4, y: 3, z: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 3, z: 0 }, { x: 4, y: 3, z: 1 }, { x: 4, y: 3, z: 2 }], appearance: "highlight" },
+      { id: "s4-head", kind: "vector", from: { x: 4, y: 3, z: 1 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.8, z: 1.2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0, z: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 1.5, z: 0 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 4, y: 3, z: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Visual ini menggunakan langkah komponen secara berturutan: bergerak di sepanjang paksi <InlineMath math="x" />, kemudian paksi <InlineMath math="y" />, kemudian paksi <InlineMath math="z" />. Titik akhirnya sama dengan titik akhir vektor <InlineMath math="\vec{A}" />.
+
+
+### Mengira Panjang dalam Ruang
+
+Putar model itu untuk melihat bahawa komponen <InlineMath math="z" /> **berserenjang dengan satah <InlineMath math="xy" />**. Komponen <InlineMath math="x" /> dan <InlineMath math="y" /> membentuk satu vektor dalam satah itu. Panjang vektor dalam ruang turut mengambil kira komponen <InlineMath math="z" />.
+
+<BlockMath math="\begin{aligned}\lvert\vec{A}\rvert &= \sqrt{4^2+3^2+2^2} \\ &= \sqrt{16+9+4} \\ &= \sqrt{29}\end{aligned}" />
+
+
+## Tanda Positif dan Negatif Komponen
+
+Magnitud vektor sentiasa sifar atau positif. Tanda sesuatu komponen pula menunjukkan <Highlight>arah di sepanjang paksinya</Highlight>.
+
+| Komponen | Tanda positif bermaksud | Tanda negatif bermaksud |
+| :-------- | :------------------ | :------------------ |
+| <InlineMath math="A_x" /> | ke arah <InlineMath math="x" /> positif | ke arah <InlineMath math="x" /> negatif |
+| <InlineMath math="A_y" /> | ke arah <InlineMath math="y" /> positif | ke arah <InlineMath math="y" /> negatif |
+| <InlineMath math="A_z" /> | ke arah <InlineMath math="z" /> positif | ke arah <InlineMath math="z" /> negatif |
+
+Jika <InlineMath math="\vec{B}=-5\hat{i}+2\hat{j}" />, vektor itu mempunyai komponen <InlineMath math="5" /> unit ke arah <InlineMath math="x" /> negatif dan komponen <InlineMath math="2" /> unit ke arah <InlineMath math="y" /> positif.
+
+## Sesaran Ditulis sebagai Komponen
+
+Seorang murid berjalan <InlineMath math="3\text{ m}" /> ke timur, kemudian <InlineMath math="4\text{ m}" /> ke utara. Jika timur ialah arah <InlineMath math="x" /> positif dan utara ialah arah <InlineMath math="y" /> positif, sesarannya ialah:
+
+<MathContainer>
+  <BlockMath math="\vec{s}=(3\hat{i}+4\hat{j})\text{ m}" />
+  <BlockMath math="\begin{aligned}\lvert\vec{s}\rvert &= \sqrt{3^2+4^2}\text{ m} \\ &= \sqrt{9+16}\text{ m} \\ &= 5\text{ m}\end{aligned}" />
+</MathContainer>
+
+Komponen sesaran mempunyai **unit meter**. Vektor unit hanya menentukan arah, jadi persamaan vektor mesti mengekalkan unit fizik itu.
+
+Bentuk komponen ini menunjukkan sesaran bersih ke arah timur dan utara. Magnitudnya, <InlineMath math="5\text{ m}" />, datang daripada segi tiga bersudut tegak dengan panjang sisi <InlineMath math="3\text{ m}" /> dan <InlineMath math="4\text{ m}" />.
+
+Ukur arah sesaran dari timur ke arah utara. Kedua-dua komponen adalah positif, jadi sudutnya berada dalam sukuan pertama.
+
+<BlockMath math="\begin{aligned}\tan\theta &= \frac{4}{3} \\ \theta &= \arctan\left(\frac{4}{3}\right) \\ &\approx 53.1^\circ\end{aligned}" />
+
+Oleh itu, sesaran menghala kira-kira <InlineMath math="53.1^\circ" /> dari timur ke arah utara.
+
+Inilah perjalanan itu dalam bentuk komponen. Bahagian ke timur dan ke utara ialah komponennya, dan anak panah jingga ialah sesaran yang ditulis daripada komponen itu, iaitu <InlineMath math="3\hat{i}+4\hat{j}" /> meter, kira-kira <InlineMath math="53.1^\circ" /> dari timur.
+
+<MathVisual
+  title={<>Perjalanan yang Ditulis sebagai Komponen</>}
+  description={<>3 m ke timur, kemudian 4 m ke utara. Satu petak grid ialah 1 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "east", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "east-head", kind: "polygon", appearance: "construction", vertices: [{ x: 3, y: 0 }, { x: 2.75, y: 0.125 }, { x: 2.75, y: -0.125 }] },
+      { id: "north", kind: "segment", appearance: "secondary", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "north-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 4 }, { x: 3.125, y: 3.75 }, { x: 2.875, y: 3.75 }] },
+      { id: "walk", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "walk-head", kind: "polygon", appearance: "primary", vertices: [{ x: 3, y: 4 }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) + ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) + ((0.25 / 2) * 3) / Math.hypot(3, 4) }, { x: 3 - (0.25 * 3) / Math.hypot(3, 4) - ((0.25 / 2) * -4) / Math.hypot(3, 4), y: 4 - (0.25 * 4) / Math.hypot(3, 4) - ((0.25 / 2) * 3) / Math.hypot(3, 4) }] },
+    ],
+    labels: [
+      { key: "east", objectId: "east", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "north", objectId: "north", at: { x: 3, y: 2 }, placement: "right" },
+      { key: "walk", objectId: "walk", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    east: <InlineMath math="3\text{ m}" />,
+    north: <InlineMath math="4\text{ m}" />,
+    walk: <InlineMath math="5\text{ m},\ 53.1^\circ" />,
+  }}
+/>

@@ -1,17 +1,34 @@
-Hitung dulu **bagian kolam yang dapat diisi pompa A sendiri** sampai pukul 11.00. Sisanya harus diisi pompa B.
+Jumlah anggota keenam tim adalah <InlineMath math="9+10+12+12+13+14=70" /> orang, tetapi menghitung kursi saja tidak cukup. **Satu tim tidak boleh dipecah**, dan batas pukul 08.30 membatasi banyak perjalanan. Rencananya: cari batas perjalanan, cari berapa tim yang muat dalam satu perjalanan, lalu coba rencana dari yang termurah.
 
-# Bagian yang diisi pompa A
+# Batas perjalanan sampai pukul delapan tiga puluh
 
-Dari pukul 07.00 sampai 11.00, pompa A **bekerja 4 jam** dan mengisi <InlineMath math="4\cdot\tfrac16=\tfrac23" /> kolam. Bagian yang masih harus diisi adalah
+Bus berangkat pukul 07.00 dan 07.50, lalu tiba pukul 07.25 dan 08.15. Keberangkatan berikutnya pukul 08.40 sudah terlambat. Setiap minibus berangkat pukul 07.00 dan 07.40, sedangkan keberangkatan pukul 08.20 baru tiba pukul 08.40. Jadi **paling banyak ada dua perjalanan bus dan empat perjalanan minibus**.
 
-<BlockMath math="1-\frac14-\frac23=\frac{12}{12}-\frac{3}{12}-\frac{8}{12}=\frac{1}{12}" />
+# Banyak tim dalam satu perjalanan
 
-# Lama pompa B bekerja
+Dua tim terkecil saja sudah <InlineMath math="9+10=19" /> orang, lebih dari <InlineMath math="14" /> kursi minibus. Jadi **satu perjalanan minibus hanya bisa membawa satu tim**.
 
-<BlockMath math="\frac{1}{12}:\frac19=\frac{9}{12}=\frac34\text{ jam}=45\text{ menit}" />
+Tiga tim terkecil sudah <InlineMath math="9+10+12=31" /> orang, lebih dari <InlineMath math="30" /> kursi bus. Jadi satu perjalanan bus paling banyak membawa dua tim. Dua tim mana pun muat di bus, karena dua tim terbesar hanya <InlineMath math="13+14=27" /> orang.
 
-Pompa B harus bekerja paling sedikit 45 menit sebelum pukul 11.00, jadi **paling lambat dinyalakan pukul 10.15**.
+# Rencana termurah
 
-Nilai pukul 08.00 lupa bahwa kolam sudah terisi seperempatnya, sehingga pompa B harus mengisi <InlineMath math="\tfrac13" /> kolam selama 3 jam. Pukul 09.00, 09.45, dan 10.00 juga membuat kolam penuh tepat waktu, tetapi bukan yang paling lambat.
+Misalkan ada <InlineMath math="b" /> perjalanan bus dan <InlineMath math="m" /> perjalanan minibus. Keenam tim harus terangkut, jadi <InlineMath math="2b+m\ge6" />, dengan <InlineMath math="b\le2" /> dan <InlineMath math="m\le4" />. Coba setiap nilai <InlineMath math="b" />.
 
-Jadi, pompa B paling lambat dinyalakan **pukul 10.15**.
+<BlockMath math="\begin{aligned}
+b=0 &: m\ge6, \text{ padahal } m\le4 \\
+b=1 &: m\ge4, \quad \text{biaya }150{.}000+4\times65{.}000=410{.}000 \\
+b=2 &: m\ge2, \quad \text{biaya }2\times150{.}000+2\times65{.}000=430{.}000
+\end{aligned}" />
+
+Jadi **satu perjalanan bus dan empat perjalanan minibus** memberi biaya terkecil, yaitu <InlineMath math="\text{Rp}410{.}000{,}00" />. Contoh pengaturannya: bus membawa tim <InlineMath math="13" /> dan <InlineMath math="14" /> orang (<InlineMath math="27" /> orang), lalu empat perjalanan minibus membawa tim <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, dan <InlineMath math="12" /> orang. Cek waktunya: bus tiba pukul 07.25, dan minibus tiba pukul 07.20 dan 08.00. Semuanya tepat waktu.
+
+# Pilihan yang keliru
+
+Pilihan yang lebih murah **hanya menghitung kursi** atau melupakan batas waktu.
+
+- <InlineMath math="\text{Rp}325{.}000{,}00" /> memakai <InlineMath math="5" /> minibus karena <InlineMath math="5\times14=70" />, padahal tim tidak boleh dipecah dan minibus hanya sempat <InlineMath math="4" /> perjalanan.
+- <InlineMath math="\text{Rp}345{.}000{,}00" /> memakai <InlineMath math="1" /> bus dan <InlineMath math="3" /> minibus (<InlineMath math="72" /> kursi), padahal busnya harus membawa tiga tim, paling sedikit <InlineMath math="31" /> orang.
+- <InlineMath math="\text{Rp}365{.}000{,}00" /> memakai <InlineMath math="2" /> bus dan <InlineMath math="1" /> minibus (<InlineMath math="74" /> kursi), padahal lima tim di dua bus membuat salah satu bus membawa tiga tim.
+- <InlineMath math="\text{Rp}390{.}000{,}00" /> memakai <InlineMath math="6" /> minibus, satu tim per perjalanan, padahal minibus hanya sempat <InlineMath math="4" /> perjalanan sebelum pukul 08.30.
+
+Jadi, biaya antar-jemput paling murah untuk keenam tim itu adalah <InlineMath math="\text{Rp}410{.}000{,}00" />.

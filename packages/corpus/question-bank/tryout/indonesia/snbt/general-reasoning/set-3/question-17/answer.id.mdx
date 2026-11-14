@@ -1,19 +1,43 @@
-Gunakan daftar lengkap keempat susunan, lalu **pilih susunan yang menempatkan M dan P di rak yang sama**.
+Soal ini menanyakan banyak susunan yang memenuhi **ketujuh aturan sekaligus**. Kursinya bernomor, jadi dua susunan yang hanya berbeda karena semua orang bergeser satu kursi tetap dihitung sebagai dua susunan.
 
-| Susunan | Rak atas | Rak tengah | Rak bawah | M dan P serak? |
-| --- | --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q | Ya, di rak tengah |
-| II | K, L | N, O, P | M, Q | Tidak |
-| III | M, P | K, L, O | N, Q | Ya, di rak atas |
-| IV | M, P | N, O, Q | K, L | Ya, di rak atas |
+Cara paling aman adalah mengunci orang yang posisinya paling terikat, lalu menurunkan posisi orang lain satu per satu. Setiap kali ada lebih dari satu pilihan, catat sebagai cabang baru.
 
-Ada <InlineMath math="3" /> susunan yang memenuhi syarat tambahan, yaitu susunan I, III, dan IV.
+Mulai dari aturan 1. Hanya ada dua kemungkinan: Asri di kursi 1 dan Bonar di kursi 5, atau Bonar di kursi 1 dan Asri di kursi 5. Di kedua kasus, kursi 3 dan kursi 7 berjarak dua dari Asri.
 
-Pilihan lain muncul dari kesalahan berikut:
+Sekarang cari kursi Dimas. Kursi yang masih kosong terbagi tiga: dua tetangga Asri, dua kursi yang berjarak dua dari Asri (kursi 3 dan kursi 7), dan dua tetangga Bonar.
 
-- <InlineMath math="4" /> adalah banyak seluruh susunan tanpa syarat tambahan.
-- <InlineMath math="2" /> muncul jika hanya susunan dengan M dan P di rak atas yang dihitung, sehingga susunan I terlewat.
-- <InlineMath math="1" /> muncul jika hanya satu kasus yang diperiksa.
-- <InlineMath math="6" /> muncul jika urutan buku di dalam satu rak dianggap membedakan susunan, padahal soal hanya menanyakan rak tempat setiap buku.
+- Tetangga Asri langsung dilarang oleh aturan 3.
+- Coba taruh Dimas di kursi 3. Menurut aturan 4, Elok duduk di kursi 7. Menurut aturan 5, Fajar harus di kursi 5 atau kursi 1, padahal dua kursi itu milik Asri dan Bonar. Fajar tidak kebagian kursi. Hal yang sama terjadi jika Dimas di kursi 7, karena Elok lalu di kursi 3. Pilihan ini gugur.
 
-Jadi, ada <InlineMath math="3" /> susunan yang mungkin.
+Artinya, Dimas selalu duduk di sebelah Bonar. Dari sini posisi orang lain ikut terkunci.
+
+- Cahya bersebelahan dengan Dimas (aturan 2). Satu tetangga Dimas sudah ditempati Bonar, jadi Cahya duduk di tetangga Dimas yang lain, yaitu kursi 3 atau kursi 7.
+- Elok berhadapan dengan Dimas (aturan 4), sehingga Elok duduk di sebelah Asri, di sisi yang jauh dari Cahya.
+- Fajar berjarak dua dari Elok (aturan 5). Ada dua kursi kosong yang cocok: kursi di antara Asri dan Cahya, atau kursi kosong di sebelah Bonar.
+- Dua kursi terakhir untuk Galuh dan Hamid. Aturan 6 menaruh Galuh di nomor yang lebih kecil, jadi hanya ada satu cara.
+- Aturan 7 lalu mencoret susunan yang menaruh Hamid di sebelah Cahya.
+
+Tabel berikut mencatat semua cabang. Angka di dalam tabel adalah nomor kursi. Bonar selalu berhadapan dengan Asri, jadi Bonar di kursi 5 saat Asri di kursi 1, dan di kursi 1 saat Asri di kursi 5.
+
+| Asri | Cahya | Dimas | Elok | Fajar | Galuh | Hamid | Aturan 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 3 | 4 | 8 | 2 | 6 | 7 | terpenuhi |
+| 1 | 3 | 4 | 8 | 6 | 2 | 7 | terpenuhi |
+| 1 | 7 | 6 | 2 | 4 | 3 | 8 | dilanggar |
+| 1 | 7 | 6 | 2 | 8 | 3 | 4 | terpenuhi |
+| 5 | 3 | 2 | 6 | 4 | 7 | 8 | terpenuhi |
+| 5 | 3 | 2 | 6 | 8 | 4 | 7 | terpenuhi |
+| 5 | 7 | 8 | 4 | 2 | 3 | 6 | dilanggar |
+| 5 | 7 | 8 | 4 | 6 | 2 | 3 | terpenuhi |
+
+Dua baris yang melanggar aturan 7 menaruh Hamid tepat di sebelah Cahya: kursi 8 di sebelah kursi 7, dan kursi 6 di sebelah kursi 7. Hitungannya seperti ini.
+
+<BlockMath math="\begin{aligned} \text{calon} &= 2 \times 2 \times 2 = 8 \\ \text{susunan sah} &= 8 - 2 = 6 \end{aligned}" />
+
+Faktor pertama berasal dari dua pilihan kursi Asri, faktor kedua dari dua pilihan kursi Cahya, dan faktor ketiga dari dua pilihan kursi Fajar. Galuh dan Hamid tidak menambah cabang karena aturan 6 sudah menentukan urutan mereka.
+
+Untuk mengecek, ambil baris terakhir: Bonar 1, Galuh 2, Hamid 3, Elok 4, Asri 5, Fajar 6, Cahya 7, Dimas 8. Asri dan Bonar berhadapan, Dimas bersebelahan dengan Cahya tetapi tidak dengan Asri, Elok di kursi 4 berhadapan dengan Dimas di kursi 8, Fajar di kursi 6 berjarak dua dari Elok, nomor Galuh lebih kecil daripada nomor Hamid, dan Hamid di kursi 3 tidak bersebelahan dengan Cahya di kursi 7. Semua aturan terpenuhi.
+
+Hasil lain yang sering muncul berasal dari langkah yang terlewat. Angka <InlineMath math="8" /> muncul jika aturan 7 lupa dipakai. Angka <InlineMath math="3" /> muncul jika hanya kasus Asri di kursi 1 yang dihitung. Angka <InlineMath math="12" /> muncul jika aturan 6 diabaikan, karena Galuh dan Hamid lalu boleh bertukar tempat.
+
+Jadi, banyak susunan duduk yang memenuhi semua aturan adalah <InlineMath math="6" />.

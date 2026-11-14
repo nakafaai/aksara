@@ -1,0 +1,45 @@
+Sebuah kamar tidur akan dicat ulang. Denah lantainya berbentuk huruf L, karena sudut kanan atas denah adalah gudang berbentuk persegi panjang yang pintunya menghadap ke lorong, bukan ke kamar tidur. Ukuran denah kamar tidur ditunjukkan pada gambar berikut.
+
+<MathVisual
+  title={<>Denah lantai kamar tidur</>}
+  description={<>Denah kamar tidur berbentuk huruf L. Sisi bawah panjangnya <InlineMath math="6\text{ m}" />, sisi kiri <InlineMath math="5\text{ m}" />, sisi atas <InlineMath math="3\text{ m}" />, dan sisi kanan <InlineMath math="3\text{ m}" />. Sudut kanan atas yang terpotong berbentuk persegi panjang dan merupakan gudang, bukan bagian kamar tidur.</>}
+  labels={{
+    bottom: <InlineMath math="6\text{ m}" />,
+    left: <InlineMath math="5\text{ m}" />,
+    top: <InlineMath math="3\text{ m}" />,
+    right: <InlineMath math="3\text{ m}" />,
+    store: <>Gudang</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "room", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 5 }, { x: 0, y: 5 }] },
+      { id: "store", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 5 }, { x: 3, y: 5 }] },
+      { id: "bottom-side", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "left-side", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 5 } },
+      { id: "top-side", kind: "segment", appearance: "reference", from: { x: 0, y: 5 }, to: { x: 3, y: 5 } },
+      { id: "right-side", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom-side", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "left", objectId: "left-side", at: { x: 0, y: 2.5 }, placement: "left" },
+      { key: "top", objectId: "top-side", at: { x: 1.5, y: 5 }, placement: "above" },
+      { key: "right", objectId: "right-side", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "store", objectId: "store", at: { x: 4.5, y: 4 }, placement: "center" },
+    ],
+  }}
+/>
+
+Data kamar tidur dan cat yang dipakai adalah sebagai berikut.
+
+- Tinggi dinding kamar tidur <InlineMath math="3\text{ m}" /> dan plafonnya datar. Tebal dinding diabaikan.
+- Semua dinding kamar tidur, termasuk dua dinding yang berbatasan dengan gudang, dilapisi keramik dari lantai sampai ketinggian <InlineMath math="1{,}2\text{ m}" />. Bagian yang berkeramik tidak dicat.
+- Kamar tidur hanya mempunyai satu pintu dan satu jendela, keduanya tidak dicat. Pintu berukuran lebar <InlineMath math="1\text{ m}" /> dan tinggi <InlineMath math="2{,}1\text{ m}" />, dimulai dari lantai. Jendela berukuran lebar <InlineMath math="2\text{ m}" /> dan tinggi <InlineMath math="1{,}5\text{ m}" />, dengan tepi bawah <InlineMath math="0{,}8\text{ m}" /> di atas lantai.
+- Bagian dinding di atas keramik dicat dua lapis dengan cat dinding. Satu liter cat dinding cukup untuk <InlineMath math="10\text{ m}^2" /> per lapis.
+- Plafon dicat dua lapis dengan cat plafon. Satu liter cat plafon cukup untuk <InlineMath math="9\text{ m}^2" /> per lapis. Cat plafon dijual dalam kaleng <InlineMath math="1" /> liter seharga <InlineMath math="\text{Rp}45{.}000" /> dan kaleng <InlineMath math="2{,}5" /> liter seharga <InlineMath math="\text{Rp}105{.}000" />.

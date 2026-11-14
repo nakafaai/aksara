@@ -1,7 +1,7 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "money-changer",
+  stimulus: "service-counters",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -10,22 +10,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Pelanggan yang membeli 100 dolar Singapura lalu langsung menjualnya kembali kehilangan $$\\text{Rp}70{.}000{,}00$$.",
-        },
-        {
-          column: 1,
-          label:
-            "Selisih kurs jual dan kurs beli ringgit lebih kecil daripada selisih kurs jual dan kurs beli dolar Singapura.",
+            "Sampai tepat pukul 09.00, banyak orang yang sudah selesai dilayani di Loket A sama dengan $$1{,}5$$ kali banyak orang yang sudah selesai dilayani di Loket B.",
         },
         {
           column: 2,
           label:
-            "Dengan uang $$\\text{Rp}1{.}700{.}000{,}00$$, pelanggan dapat membeli 490 ringgit dalam satu transaksi.",
+            "Rata-rata waktu tunggu orang nomor $$1$$ sampai $$10$$ adalah $$10$$ menit.",
         },
         {
           column: 2,
           label:
-            "Menurut kurs jual, harga 1 dolar Singapura lebih mahal daripada harga 3,5 ringgit.",
+            "Orang nomor $$30$$ selesai dilayani lebih awal daripada orang nomor $$29$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Jika Loket B melayani setiap orang dalam $$5$$ menit, waktu tunggu orang nomor $$11$$ kurang dari $$15$$ menit.",
         },
       ],
     },

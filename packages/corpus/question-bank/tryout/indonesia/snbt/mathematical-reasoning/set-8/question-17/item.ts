@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "tourist-map",
+  stimulus: "blood-donor",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "2,4 menit" },
-        { correct: true, label: "24 menit" },
-        { correct: false, label: "40 menit" },
-        { correct: false, label: "2 jam 30 menit" },
-        { correct: false, label: "4 jam" },
+        { correct: true, label: "$$\\dfrac{2}{13}$$" },
+        { correct: false, label: "$$\\dfrac{2}{11}$$" },
+        { correct: false, label: "$$\\dfrac{1}{5}$$" },
+        { correct: false, label: "$$\\dfrac{3}{13}$$" },
+        { correct: false, label: "$$\\dfrac{2}{3}$$" },
       ],
     },
   },

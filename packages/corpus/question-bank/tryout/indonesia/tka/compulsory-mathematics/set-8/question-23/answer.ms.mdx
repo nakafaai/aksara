@@ -1,0 +1,37 @@
+Ketiga-tiga pernyataan menyentuh data sebenar, sedangkan jadual hanya memberitahu bilangan murid dalam setiap kelas. Sesuatu pernyataan **pasti betul hanya jika ia benar bagi setiap cara murid bertaburan di dalam kelas masing-masing**. Untuk menunjukkan sesuatu pernyataan salah, satu contoh data yang sepadan dengan jadual tetapi melanggar pernyataan itu sudah memadai.
+
+# Kekerapan setiap kelas
+
+Kekerapan setiap kelas diperoleh daripada beza baris longgokan yang berturutan:
+
+| Kelas | <InlineMath math="0\text{ hingga }10" /> | <InlineMath math="10\text{ hingga }20" /> | <InlineMath math="20\text{ hingga }30" /> | <InlineMath math="30\text{ hingga }40" /> | <InlineMath math="40\text{ hingga }50" /> | <InlineMath math="50\text{ hingga }60" /> | <InlineMath math="60\text{ hingga }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Kekerapan | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+Setiap kelas merangkumi sempadan bawahnya tetapi tidak merangkumi sempadan atasnya. Jadi murid dalam kelas <InlineMath math="30\le t<40" /> boleh membaca tepat <InlineMath math="30" /> minit, tetapi **sentiasa kurang daripada** <InlineMath math="40" /> minit.
+
+# Menilai setiap pernyataan
+
+**Pernyataan 1**. Min sebenar paling besar apabila setiap murid membaca sehampir mungkin dengan sempadan atas kelasnya. Kira jumlahnya jika setiap murid tepat pada sempadan atas:
+
+<BlockMath math="\begin{aligned}
+&2\cdot10+6\cdot20+24\cdot30+20\cdot40+16\cdot50+6\cdot60+6\cdot70 \\
+&=20+120+720+800+800+360+420=3{,}240 \\
+&\frac{3{,}240}{80}=40.5
+\end{aligned}" />
+
+Setiap murid membaca kurang daripada sempadan atas kelasnya, jadi jumlah sebenar kurang daripada <InlineMath math="3{,}240" /> dan min kurang daripada <InlineMath math="40.5" />. Nilai itu sentiasa kurang daripada <InlineMath math="41" />, walau bagaimanapun taburannya. **Betul**.
+
+**Pernyataan 2**. Hingga kelas <InlineMath math="20\le t<30" /> ada <InlineMath math="32" /> murid, dan hingga kelas <InlineMath math="30\le t<40" /> ada <InlineMath math="52" />. Jadi data ke-<InlineMath math="40" /> dan ke-<InlineMath math="41" /> pasti berada dalam kelas <InlineMath math="30\le t<40" />, dan median sebenar hanya pasti terletak antara <InlineMath math="30" /> dengan <InlineMath math="40" />. Contoh yang melanggar: kesemua dua puluh murid dalam kelas itu membaca tepat <InlineMath math="30" /> minit. Data ini sepadan dengan jadual, dan
+
+<BlockMath math="\text{median}=\frac{30+30}{2}=30\le32" />
+
+Anggaran median memang <InlineMath math="34" />, tetapi anggaran bukan kepastian. **Salah**.
+
+**Pernyataan 3**. Murid yang pasti membaca sekurang-kurangnya <InlineMath math="45" /> minit hanyalah murid dalam kelas <InlineMath math="50\le t<60" /> dan <InlineMath math="60\le t<70" />, iaitu <InlineMath math="6+6=12" /> orang. Keenam belas murid dalam kelas <InlineMath math="40\le t<50" /> mungkin semuanya membaca tepat <InlineMath math="40" /> minit, dan data itu tetap sepadan dengan jadual. Dalam contoh ini, bilangan murid yang membaca <InlineMath math="45" /> minit atau lebih hanyalah
+
+<BlockMath math="6+6=12<20" />
+
+Nombor <InlineMath math="20" /> datang daripada anggaran <InlineMath math="\tfrac12\cdot16+12=20" />, yang menganggap kelas <InlineMath math="40\le t<50" /> terbahagi dua sama rata. **Salah**.
+
+Jadi, keputusannya ialah Betul, Salah, Salah.

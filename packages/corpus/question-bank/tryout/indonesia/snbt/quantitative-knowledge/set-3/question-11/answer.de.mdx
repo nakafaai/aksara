@@ -1,27 +1,35 @@
-Die Zahl <InlineMath math="3+2\sqrt2" /> hat die konjugierte Zahl <InlineMath math="3-2\sqrt2" />, und ihr Produkt ist 1. Diese Tatsache **legt <InlineMath math="\frac1x" /> fest**, das drei der Aussagen brauchen.
+Der Graph von <InlineMath math="f" /> ist eine nach unten geöffnete Parabel mit dem Scheitel bei <InlineMath math="x=a" />. Das Maximum auf dem Intervall liegt im Scheitel, **aber nur wenn der Scheitel im Intervall liegt**. Sonst liegt es am Intervallende, das dem Scheitel am nächsten ist. Arbeite also drei Fälle ab, je nachdem, wo <InlineMath math="a" /> liegt.
 
-<BlockMath math="\left(3+2\sqrt2\right)\left(3-2\sqrt2\right)=9-8=1\quad\Rightarrow\quad\frac1x=3-2\sqrt2" />
+# Werte an den Enden und im Scheitel
 
-Die vierte Aussage ist falsch, weil vor <InlineMath math="2\sqrt2" /> ein Minuszeichen stehen muss.
+Berechne die drei Werte, die als Maximum infrage kommen.
 
-# Quadratwurzel und Summe mit dem Kehrwert
+<BlockMath math="\begin{aligned}
+f(-1)&=-1-2a+1=-2a\\
+f(2)&=-4+4a+1=4a-3\\
+f(a)&=-a^2+2a^2+1=a^2+1
+\end{aligned}" />
 
-Quadriere <InlineMath math="1+\sqrt2" />, um die erste Aussage zu prüfen.
+Eine nach unten geöffnete Parabel steigt links vom Scheitel und fällt rechts davon. Das ist **der Grund, warum das Maximum an ein Ende wandert**, wenn der Scheitel außerhalb des Intervalls liegt.
 
-<BlockMath math="\left(1+\sqrt2\right)^2=1+2\sqrt2+2=3+2\sqrt2" />
+# Drei Fälle für den Scheitel
 
-Weil <InlineMath math="1+\sqrt2" /> positiv ist und sein Quadrat <InlineMath math="x" /> ergibt, ist <InlineMath math="\sqrt x=1+\sqrt2" /> wahr. Auch die Summe von <InlineMath math="x" /> und seinem Kehrwert geht schnell, weil **sich die Wurzelterme aufheben**.
+Löse jeden Fall und **prüfe dann, ob das Ergebnis die Bedingung seines eigenen Falls erfüllt**.
 
-<BlockMath math="x+\frac1x=\left(3+2\sqrt2\right)+\left(3-2\sqrt2\right)=6" />
+<BlockMath math="\begin{aligned}
+a\le -1&:\quad -2a=5 \implies a=-\tfrac{5}{2}\ \text{(passt)}\\
+-1<a<2&:\quad a^2+1=5 \implies a=2\ \text{oder}\ a=-2\ \text{(beide außerhalb des Falls)}\\
+a\ge 2&:\quad 4a-3=5 \implies a=2\ \text{(passt)}
+\end{aligned}" />
 
-Die zweite Aussage ist wahr.
+Im ersten Fall liegt der Scheitel links vom Intervall, <InlineMath math="f" /> fällt also auf dem ganzen Intervall, und das Maximum ist <InlineMath math="f(-1)" />. Im dritten Fall liegt der Scheitel rechts oder genau bei <InlineMath math="x=2" />, also ist das Maximum <InlineMath math="f(2)" />. Möglich sind nur <InlineMath math="a=-\tfrac{5}{2}" /> und <InlineMath math="a=2" />, ihre Summe ist <InlineMath math="-\tfrac{5}{2}+2=-\tfrac{1}{2}" />.
 
-# Summe der quadrierten Kehrwerte
+# Jeden Parameterwert prüfen
 
-Quadriere <InlineMath math="x+\frac1x" /> und ziehe das gemischte Glied ab. Dieses Glied ist <InlineMath math="2\cdot x\cdot\frac1x=2" /> und **nicht null**.
+Für <InlineMath math="a=-\tfrac{5}{2}" /> gilt <InlineMath math="f(-1)=5" /> und <InlineMath math="f(2)=-13" />, der Scheitel liegt außerhalb, also ist das Maximum <InlineMath math="5" />. Für <InlineMath math="a=2" /> gilt <InlineMath math="f(2)=5" /> und <InlineMath math="f(-1)=-4" />, also ist das Maximum <InlineMath math="5" />. Für <InlineMath math="a=-2" /> liegt der Scheitel bei <InlineMath math="x=-2" />, außerhalb des Intervalls, daher ist **das Maximum auf dem Intervall nur <InlineMath math="f(-1)=4" />** und nicht <InlineMath math="5" />. Der Wert <InlineMath math="a=-2" /> fällt also wirklich weg.
 
-<BlockMath math="x^2+\frac1{x^2}=\left(x+\frac1x\right)^2-2=36-2=34" />
+# Die anderen Antworten prüfen
 
-Die dritte Aussage ist falsch. Die Zahl 36 entsteht, wenn <InlineMath math="\left(x+\frac1x\right)^2" /> mit <InlineMath math="x^2+\frac1{x^2}" /> gleichgesetzt wird.
+Die Antwort <InlineMath math="0" /> nutzt nur die Scheitelformel <InlineMath math="a^2+1=5" /> und **übernimmt <InlineMath math="a=2" /> und <InlineMath math="a=-2" /> ohne Intervallprobe**. Die Antwort <InlineMath math="-\tfrac{5}{2}" /> bearbeitet alle drei Fälle, addiert aber trotzdem <InlineMath math="a=-2" />, also <InlineMath math="-\tfrac{5}{2}-2+2" />. Die Antwort <InlineMath math="\tfrac{3}{2}" /> zählt <InlineMath math="a=2" /> doppelt, einmal aus dem Scheitelfall und einmal aus dem Fall des rechten Endes. Der Antwort <InlineMath math="2" /> fehlt der Fall, in dem der Scheitel links vom Intervall liegt.
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+Die Summe aller möglichen Werte von <InlineMath math="a" /> ist also <InlineMath math="-\tfrac{1}{2}" />.

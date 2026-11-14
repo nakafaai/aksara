@@ -1,20 +1,43 @@
-Kedua bangun memiliki luas permukaan yang sama, jadi hitung ukuran masing-masing dari luas itu, lalu **bandingkan volumenya secara tepat** tanpa pembulatan yang kasar.
+Kamu perlu mendaftar semua segitiga dengan sisi bulat dan keliling <InlineMath math="24\text{ cm}" />, lalu menggolongkannya menurut jenis sudut terbesarnya. Rencananya: tentukan batas sisi terpanjang dengan **ketaksamaan segitiga yang tegas**, daftar semua segitiga, lalu uji setiap pernyataan dengan daftar itu.
 
-# Volume kubus
+# Batas sisi terpanjang
 
-Kubus memiliki **6 sisi persegi yang sama**. Dari <InlineMath math="6s^2=24" /> diperoleh <InlineMath math="s=2" />, sehingga volume kubus <InlineMath math="Q=2^3=8" />.
-
-# Volume bola
-
-Dari <InlineMath math="4\pi r^2=24" /> diperoleh <InlineMath math="r^2=\frac6\pi" />. Tulis volume bola dengan <InlineMath math="r^2" /> agar **hasilnya dapat dibandingkan dengan 8**.
+Tulis sisi-sisinya <InlineMath math="a\le b\le c" /> dengan <InlineMath math="a+b+c=24" />. Tiga ruas garis membentuk segitiga hanya jika dua sisi yang lebih pendek jumlahnya **lebih besar** dari sisi terpanjang. Jika jumlahnya sama, ketiga ruas rebah menjadi satu garis lurus.
 
 <BlockMath math="\begin{aligned}
-P&=\tfrac43\pi r^3=\tfrac43\pi\cdot r^2\cdot r\\
-&=\tfrac43\pi\cdot\frac6\pi\cdot r=8r=8\sqrt{\frac6\pi}
+a+b>c\quad&\Rightarrow\quad24-c>c\quad\Rightarrow\quad c<12\\
+3c\ge a+b+c=24\quad&\Rightarrow\quad c\ge8
 \end{aligned}" />
 
-Karena <InlineMath math="\pi<6" />, pecahan <InlineMath math="\frac6\pi" /> lebih dari 1, sehingga <InlineMath math="\sqrt{\frac6\pi}>1" /> dan <InlineMath math="P>8" />. Secara numerik <InlineMath math="P\approx8\times1{,}38\approx11{,}1" />.
+Jadi <InlineMath math="c" /> hanya boleh <InlineMath math="8, 9, 10, 11" />. Pernyataan kedua salah: untuk <InlineMath math="c=12" />, sisanya <InlineMath math="a+b=12=c" />, sehingga bangunnya rata dan tidak membentuk segitiga.
 
-Pilihan <InlineMath math="P=Q" /> menganggap luas permukaan sama berarti volume sama. Pilihan <InlineMath math="Q>P" /> muncul jika jari-jari bola dihitung terlalu kecil, misalnya dengan memakai <InlineMath math="\pi r^2=24" />. Untuk luas permukaan yang sama, bola selalu memuat volume lebih besar daripada kubus.
+# Daftar semua segitiga
 
-Jadi, hubungan yang benar adalah **volume bola lebih besar**, yaitu <InlineMath math="P>Q" />.
+Untuk setiap <InlineMath math="c" />, cari pasangan <InlineMath math="a\le b\le c" /> dengan <InlineMath math="a+b=24-c" />. Sudut terbesar ada di depan sisi terpanjang, jadi **bandingkan <InlineMath math="c^2" /> dengan <InlineMath math="a^2+b^2" />**: lebih besar berarti tumpul, sama berarti siku-siku, lebih kecil berarti lancip.
+
+| Sisi | <InlineMath math="c^2" /> | <InlineMath math="a^2+b^2" /> | Jenis |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="2, 11, 11" /> | <InlineMath math="121" /> | <InlineMath math="125" /> | lancip |
+| <InlineMath math="3, 10, 11" /> | <InlineMath math="121" /> | <InlineMath math="109" /> | tumpul |
+| <InlineMath math="4, 9, 11" /> | <InlineMath math="121" /> | <InlineMath math="97" /> | tumpul |
+| <InlineMath math="5, 8, 11" /> | <InlineMath math="121" /> | <InlineMath math="89" /> | tumpul |
+| <InlineMath math="6, 7, 11" /> | <InlineMath math="121" /> | <InlineMath math="85" /> | tumpul |
+| <InlineMath math="4, 10, 10" /> | <InlineMath math="100" /> | <InlineMath math="116" /> | lancip |
+| <InlineMath math="5, 9, 10" /> | <InlineMath math="100" /> | <InlineMath math="106" /> | lancip |
+| <InlineMath math="6, 8, 10" /> | <InlineMath math="100" /> | <InlineMath math="100" /> | siku-siku |
+| <InlineMath math="7, 7, 10" /> | <InlineMath math="100" /> | <InlineMath math="98" /> | tumpul |
+| <InlineMath math="6, 9, 9" /> | <InlineMath math="81" /> | <InlineMath math="117" /> | lancip |
+| <InlineMath math="7, 8, 9" /> | <InlineMath math="81" /> | <InlineMath math="113" /> | lancip |
+| <InlineMath math="8, 8, 8" /> | <InlineMath math="64" /> | <InlineMath math="128" /> | lancip |
+
+# Menilai setiap pernyataan
+
+Pernyataan pertama benar: daftar itu berisi <InlineMath math="5+4+2+1=12" /> segitiga untuk <InlineMath math="c=11, 10, 9, 8" />. Jika <InlineMath math="c=12" /> ikut dihitung, kamu akan mendapat segitiga palsu seperti <InlineMath math="6, 6, 12" />.
+
+Pernyataan kedua salah, seperti sudah ditunjukkan oleh syarat <InlineMath math="c<12" />.
+
+Pernyataan ketiga benar. Segitiga tumpulnya <InlineMath math="(3, 10, 11)" />, <InlineMath math="(4, 9, 11)" />, <InlineMath math="(5, 8, 11)" />, <InlineMath math="(6, 7, 11)" />, dan <InlineMath math="(7, 7, 10)" />. Yang terakhir **mudah terlewat** karena selisihnya tipis, <InlineMath math="100" /> lawan <InlineMath math="98" />.
+
+Pernyataan keempat salah. Segitiga <InlineMath math="(2, 11, 11)" /> punya sisi terpanjang <InlineMath math="11\text{ cm}" />, tetapi <InlineMath math="121<4+121" />, jadi segitiga itu lancip. Satu contoh penyangkal cukup untuk menggugurkan klaim untuk setiap segitiga.
+
+Jadi, pernyataan pertama benar, kedua salah, ketiga benar, dan keempat salah.

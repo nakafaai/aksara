@@ -8,7 +8,6 @@ import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
 import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
 import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
 import { findHighlightVariantIssues } from "#nakafa-content/highlight/variant";
-import { findExactLineSmoothingIssues } from "#nakafa-content/line/check";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
@@ -47,7 +46,6 @@ export function findDocumentIssues(
     ...findInternalLinkIssues(source, tree),
     ...findHighlightNestingIssues(source, tree),
     ...findHighlightVariantIssues(source, tree),
-    ...findExactLineSmoothingIssues(source, tree),
     ...findDroppedSpaceIssues(source, tree),
   ];
   if (profile === "question") {

@@ -3,38 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
-    contentDomain: "recount",
-    topic: "summary",
+    contentDomain: "analytical-exposition",
+    topic: "synthesis",
   },
-  stimulus: "accessible-fair",
+  stimulus: "meadow",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The class postponed the fair until the originally planned route could be restored.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "Repeated route testing revealed barriers and improved the fair, while exposing remaining problems.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "The class focused its revisions on the robotics display because it received the most visitors.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The rain showed that accessibility planning was mainly useful in dry weather.",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer considered the first route adequate because it followed the shortest path.",
+          label: "I, III, and IV only",
         },
       ],
     },

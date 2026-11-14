@@ -1,9 +1,35 @@
-From 06:00 to 22:00, 16 hours pass. In this model, **the amount of medicine halves every 8 hours**, so 16 hours means halving twice.
+You're looking for the fewest posts. First mark the posts that must be there, cut the fence into straight pieces between those posts, find the fewest gaps on each piece, and then turn gaps into posts. **The required posts split the fence into pieces you count separately**.
 
-# Substituting into the formula
+# The required posts
 
-<BlockMath math="M(16)=360\cdot\left(\frac12\right)^{16/8}=360\cdot\left(\frac12\right)^2=360\cdot\frac14=90" />
+There are <InlineMath math="4" /> corner posts and <InlineMath math="2" /> **posts at the gate edges**. The <InlineMath math="3\text{ m}" /> gate sits in the middle of a <InlineMath math="24\text{ m}" /> side, so the rest of that side splits into two equal pieces.
 
-Step by step: 360 mg becomes 180 mg at 14:00, then 90 mg at 22:00.
+<BlockMath math="\frac{24-3}{2}=10.5" />
 
-So the medicine left at 22:00 is **90 mg**.
+So the fence is made of one <InlineMath math="24\text{ m}" /> piece, two <InlineMath math="15\text{ m}" /> pieces and two <InlineMath math="10.5\text{ m}" /> pieces, plus the gate opening.
+
+# The gaps on each piece
+
+Neighbouring posts are at most <InlineMath math="3\text{ m}" /> apart, so a piece of length <InlineMath math="\ell" /> needs at least <InlineMath math="\tfrac{\ell}{3}" /> gaps, **rounded up** when it isn't whole. A gap of exactly <InlineMath math="3\text{ m}" /> is still allowed.
+
+<BlockMath math="\begin{aligned}
+\frac{24}{3}&=8 \\
+\frac{15}{3}&=5 \\
+\frac{10.5}{3}&=3.5\ \Rightarrow\ 4
+\end{aligned}" />
+
+A <InlineMath math="10.5\text{ m}" /> piece can't manage with <InlineMath math="3" /> gaps, because each gap would be <InlineMath math="3.5\text{ m}" />. With <InlineMath math="4" /> gaps each one is <InlineMath math="10.5\div 4=2.625\text{ m}" />, which is allowed.
+
+# From gaps to posts
+
+The fence goes all the way around, so every gap ends at a post and every post starts a gap. That's why **the number of posts equals the number of gaps**, and the gate opening counts as one gap between the two gate posts.
+
+<BlockMath math="8+5+5+4+4+1=27" />
+
+# Checking
+
+Without the gate, that side would need only <InlineMath math="8" /> gaps, for a total of <InlineMath math="26" />. With the gate in the middle, that side needs <InlineMath math="4+4+1=9" /> gaps. So **a gate in the middle actually adds a post**, because a <InlineMath math="10.5\text{ m}" /> piece doesn't divide evenly by <InlineMath math="3" />.
+
+The answer <InlineMath math="26" /> comes from dividing the <InlineMath math="78\text{ m}" /> perimeter straight by <InlineMath math="3" />, or from ignoring the gate. The answer <InlineMath math="25" /> comes from dividing the <InlineMath math="75\text{ m}" /> of fence without the gate by <InlineMath math="3" /> and ignoring the required posts.
+
+So the fewest posts needed is <InlineMath math="27" />.

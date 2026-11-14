@@ -1,12 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "medicine-level",
+  stimulus: "seedling-grid",
   versions: {
     id: {
       kind: "numericEntry",
-      unit: "mg",
-      value: "90",
+      unit: "tiang",
+      value: "27",
     },
   },
 };

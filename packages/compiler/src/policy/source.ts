@@ -4,6 +4,7 @@ import type {
 } from "@nakafa/aksara-contracts/ids";
 import { Effect, type HashSet, MutableList } from "effect";
 import {
+  type DiagramPolicyError,
   ExecutablePolicyError,
   type ExecutablePolicyViolation,
   type MathVisualPolicyError,
@@ -11,6 +12,7 @@ import {
   UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import { enforceExecutablePolicy } from "#compiler/policy";
+import { createDiagramPolicy } from "#compiler/policy/diagram";
 import {
   type AuthoredHeadingDepthError,
   type AuthoredListHeadingError,
@@ -22,6 +24,7 @@ import { createMathVisualPolicy } from "#compiler/policy/math";
 export type SourcePolicyError =
   | AuthoredHeadingDepthError
   | AuthoredListHeadingError
+  | DiagramPolicyError
   | ExecutablePolicyError
   | MathVisualPolicyError
   | UnsupportedMdxModuleSyntaxError;
@@ -34,11 +37,13 @@ export function createSourcePolicy(
 ) {
   const headingPolicy = createHeadingPolicy(contentKey, sourcePath);
   const mathVisualPolicy = createMathVisualPolicy(contentKey);
+  const diagramPolicy = createDiagramPolicy(contentKey, sourcePath);
   const unsupportedModules = MutableList.make<UnsupportedMdxModuleOccurrence>();
   const violations = MutableList.make<ExecutablePolicyViolation>();
   const remarkPlugins = [
     headingPolicy.remarkPlugin,
     mathVisualPolicy.remarkPlugin,
+    diagramPolicy.remarkPlugin,
     enforceExecutablePolicy(allowedComponents, unsupportedModules, violations),
   ];
 
@@ -52,6 +57,7 @@ export function createSourcePolicy(
         });
       }
       yield* mathVisualPolicy.validate();
+      yield* diagramPolicy.validate();
       if (violations.length > 0) {
         return yield* new ExecutablePolicyError({
           contentKey,

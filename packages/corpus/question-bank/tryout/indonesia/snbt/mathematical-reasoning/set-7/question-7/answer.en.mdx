@@ -1,19 +1,32 @@
-There are **36 equally likely pairs of dice faces**. Each probability is the number of matching pairs divided by 36.
+You're looking for Dani's smallest deposit, in steps of <InlineMath math="10" /> million, that gives him more than <InlineMath math="\frac15" /> of the shared profit. The plan: find the capital-months of the existing owners, **write Dani's part as a fraction**, solve the inequality, then pick the multiple of <InlineMath math="10" /> that works.
 
-# Sum 11 and two games
+# Capital months of the existing owners
 
-Sum 11 comes from <InlineMath math="(5,6)" /> and <InlineMath math="(6,5)" />, so its probability is <InlineMath math="\tfrac{2}{36}=\tfrac{1}{18}" />. The first statement is true.
+Ayu has <InlineMath math="40\cdot3+20\cdot9=300" />, Bima <InlineMath math="30\cdot6+40\cdot6=420" />, and Citra <InlineMath math="90\cdot8=720" />. **Dani joining doesn't change their capital-months**, so they still add up to <InlineMath math="1{,}440" />.
 
-Two games **do not affect each other**, so the probability of sum 12 in both is the product of the two probabilities.
+# Dani's part as a fraction
 
-<BlockMath math="\frac{1}{36}\cdot\frac{1}{36}=\frac{1}{1{,}296}" />
+Say Dani deposits <InlineMath math="x" /> million. That money works from July to December, which is <InlineMath math="6" /> months, so Dani has <InlineMath math="6x" /> capital-months. **Dani's money also adds to the total capital-months of all owners**, so the bottom of the fraction becomes <InlineMath math="1{,}440+6x" />.
 
-The second statement is true.
+<BlockMath math="\begin{aligned}
+\frac{6x}{1{,}440+6x} &> \frac{1}{5} \\
+30x &> 1{,}440+6x \\
+24x &> 1{,}440 \\
+x &> 60
+\end{aligned}" />
 
-# Expected count and comparing probabilities
+Cross-multiplying is safe here, because both denominators are positive.
 
-Sum 12 comes only from <InlineMath math="(6,6)" />, so in 360 games it is expected <InlineMath math="360\cdot\tfrac{1}{36}=10" /> times, **not 20 times**. The third statement is false.
+# Picking a multiple of ten million
 
-Sum 6 comes from 5 pairs, (1,5), (2,4), (3,3), (4,2) and (5,1), while sum 7 comes from 6 pairs. The probabilities are <InlineMath math="\tfrac{5}{36}" /> and <InlineMath math="\tfrac{6}{36}" />, **not equal**, so the fourth statement is false.
+The inequality is strict, so **a deposit of <InlineMath math="60" /> million isn't enough**: it gives <InlineMath math="\frac{360}{1{,}800}=\frac15" />, exactly a fifth and no more. The next multiple of <InlineMath math="10" /> million is <InlineMath math="70" /> million.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+<BlockMath math="\frac{6\cdot70}{1{,}440+6\cdot70}=\frac{420}{1{,}860}=\frac{7}{31}" />
+
+Since <InlineMath math="7\cdot5=35>31" />, the fraction <InlineMath math="\frac{7}{31}" /> is indeed more than <InlineMath math="\frac15" />.
+
+# Common slips
+
+If you **don't add Dani's money to the bottom of the fraction**, the condition becomes <InlineMath math="6x>\frac{1{,}440}{5}=288" />, and <InlineMath math="50" /> million seems enough. But with <InlineMath math="50" /> million his part is only <InlineMath math="\frac{300}{1{,}740}=\frac{5}{29}" />, less than <InlineMath math="\frac15" />. If you count Dani's months as <InlineMath math="5" /> (December minus July), you get <InlineMath math="80" /> million. If you read "more than" as "at least", you get <InlineMath math="60" /> million.
+
+So Dani has to deposit at least <InlineMath math="70" /> million rupiah.

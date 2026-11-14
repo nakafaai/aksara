@@ -1,0 +1,203 @@
+export const metadata = {
+  title: "Kaedah Sarrus",
+  description: "Kira penentu matriks peringkat tiga dengan hasil darab pepenjuru kaedah Sarrus dan jejaki tandanya melalui contoh.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Hasil Darab Pepenjuru dalam Penentu Peringkat Dua
+
+Kaedah Sarrus <Highlight>ialah cara praktikal untuk mengira penentu</Highlight> matriks <InlineMath math="3 \times 3" />. Untuk memahami corak tandanya, ingat semula dahulu cara mengira penentu matriks <InlineMath math="2 \times 2" />.
+
+Kalau kita ada matriks <InlineMath math="2 \times 2" />:
+
+<BlockMath math="M = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
+
+Penentunya, <InlineMath math="\det(M)" /> atau <InlineMath math="|M|" />, dikira seperti berikut:
+
+<BlockMath math="\det(M) = ad - bc" />
+
+Ini ialah beza antara hasil darab unsur pepenjuru utama (<InlineMath math="ad" />) dengan hasil darab unsur pepenjuru kedua (<InlineMath math="bc" />). Kaedah Sarrus menyesuaikan prinsip ini untuk matriks <InlineMath math="3 \times 3" />.
+
+## Mengira Penentu Peringkat Tiga dengan Kaedah Sarrus
+
+Katakan kita ada matriks <InlineMath math="A" /> berperingkat <InlineMath math="3 \times 3" />:
+
+<BlockMath math="A = \begin{bmatrix} a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33} \end{bmatrix}" />
+
+Unsur <InlineMath math="a_{ij}" /> ialah unsur pada baris ke-<InlineMath math="i" /> dan lajur ke-<InlineMath math="j" />.
+
+**Langkah 1**: Salin Dua Lajur Pertama
+
+Tulis semula dua lajur pertama matriks <InlineMath math="A" /> di sebelah kanan lajur ketiga:
+
+<BlockMath math="\begin{array}{|ccc|cc} a_{11} & a_{12} & a_{13} & a_{11} & a_{12} \\ a_{21} & a_{22} & a_{23} & a_{21} & a_{22} \\ a_{31} & a_{32} & a_{33} & a_{31} & a_{32} \end{array}" />
+
+Lajur yang disalin itu membentuk tiga pepenjuru ke bawah dan tiga pepenjuru ke atas yang digunakan dalam hasil darab.
+
+**Langkah 2**: Kira Hasil Tambah Hasil Darab Pepenjuru Positif
+
+Darab unsur sepanjang tiga pepenjuru dari **kiri atas ke kanan bawah**. Jumlahkan hasil darab itu dan namakannya <InlineMath math="D_{\text{positif}}" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} D_{\text{positif}} &amp;= (a_{11} \cdot a_{22} \cdot a_{33}) \\ &amp;\quad{}+ (a_{12} \cdot a_{23} \cdot a_{31}) \\ &amp;\quad{}+ (a_{13} \cdot a_{21} \cdot a_{32}) \end{aligned}" />
+</MathContainer>
+
+Sebutan pertama ialah hasil darab pepenjuru utama. Sebutan kedua dan ketiga ialah hasil darab pepenjuru selari yang melibatkan unsur daripada lajur yang disalin.
+
+**Langkah 3**: Kira Hasil Tambah Hasil Darab Pepenjuru Negatif
+
+Darab unsur sepanjang tiga pepenjuru dari **kanan atas ke kiri bawah**. Jumlahkan hasil darab itu dan namakannya <InlineMath math="D_{\text{negatif}}" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} D_{\text{negatif}} &amp;= (a_{13} \cdot a_{22} \cdot a_{31}) \\ &amp;\quad{}+ (a_{11} \cdot a_{23} \cdot a_{32}) \\ &amp;\quad{}+ (a_{12} \cdot a_{21} \cdot a_{33}) \end{aligned}" />
+</MathContainer>
+
+Sebutan pertama ialah hasil darab pepenjuru kedua (antipepenjuru). Sebutan kedua dan ketiga ialah hasil darab pepenjuru selari yang melibatkan unsur daripada lajur yang disalin, bergerak ke arah kiri bawah.
+
+**Langkah 4**: Kira Penentu Akhir
+
+Penentu matriks <InlineMath math="A" />, iaitu <InlineMath math="\det(A)" />, ialah **beza antara** <InlineMath math="D_{\text{positif}}" /> dengan <InlineMath math="D_{\text{negatif}}" />:
+
+<BlockMath math="\det(A) = D_{\text{positif}} - D_{\text{negatif}}" />
+
+Gantikan nilai <InlineMath math="D_{\text{positif}}" /> dan <InlineMath math="D_{\text{negatif}}" />:
+
+<BlockMath math="\begin{aligned} &amp;\det(A) \\ &amp;=\left(\begin{aligned} &amp;a_{11}a_{22}a_{33} \\ &amp;{}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\end{aligned}\right) \\ &amp;\quad{}-\left(\begin{aligned} &amp;a_{13}a_{22}a_{31} \\ &amp;{}+a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}\end{aligned}\right) \end{aligned}" />
+
+Atau, selepas tanda negatif diagihkan:
+
+<BlockMath math="\begin{aligned} \det(A) &amp;= a_{11}a_{22}a_{33} + a_{12}a_{23}a_{31} \\ &amp;\quad{}+ a_{13}a_{21}a_{32} - a_{13}a_{22}a_{31} \\ &amp;\quad{}- a_{11}a_{23}a_{32} - a_{12}a_{21}a_{33} \end{aligned}" />
+
+### Contoh Berangka
+
+Kira penentu matriks <InlineMath math="P" />:
+
+<BlockMath math="P=\begin{bmatrix}1&3&2\\2&6&2\\5&9&4\end{bmatrix}" />
+
+Simpan **dua hasil tambah pepenjuru** secara berasingan sehingga penolakan terakhir. Cara ini memudahkan kamu menyemak tandanya:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} D_+ &amp;=(1)(6)(4)+(3)(2)(5) \\ &amp;\quad+(2)(2)(9) \\ &amp;=24+30+36 \\ &amp;=90 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(2)(6)(5)+(1)(2)(9) \\ &amp;\quad+(3)(2)(4) \\ &amp;=60+18+24 \\ &amp;=102 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(P) &amp;=D_+-D_- \\ &amp;=90-102 \\ &amp;=-12 \end{aligned}" />
+</MathContainer>
+
+Penentunya ialah <InlineMath math="-12" />. Mengembangkan matriks yang sama [dengan kofaktor](/ms/subjek/matematik/matriks/kaedah-kembangan-kofaktor) memberikan nilai yang sama, jadi itu semakan bebas yang berguna.
+
+Nombor yang diberikan oleh Sarrus juga mempunyai bentuk. Anggap tiga baris <InlineMath math="P" />, iaitu <InlineMath math="(1, 3, 2)" />, <InlineMath math="(2, 6, 2)" /> dan <InlineMath math="(5, 9, 4)" />, sebagai tiga sisi yang bermula di asalan. Sisi itu membina sebuah kotak condong, dan isi padunya ialah <InlineMath math="|\det(P)| = |-12| = 12" />. Putarkan kotak itu dan bayangkan baris ketiga ditolak ke dalam satah dua baris yang lain: kotak itu menjadi leper, isi padunya jatuh kepada <InlineMath math="0" />, dan begitu juga penentunya.
+
+<MathVisual
+  title={<>Baris <InlineMath math="P" /> membina kotak dengan isi padu <InlineMath math="12" /></>}
+  description={<>Tiga baris <InlineMath math="P" /> yang dilukis sebagai sisi dari asalan membentuk kotak condong yang isi padunya sama dengan <InlineMath math="|\det(P)| = 12" />.</>}
+  labels={{
+    row1: <InlineMath math="(1, 3, 2)" />,
+    row2: <InlineMath math="(2, 6, 2)" />,
+    row3: <InlineMath math="(5, 9, 4)" />,
+    volume: <>isi padu <InlineMath math="12" /></>,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 18 }, z: { min: 0, max: 8 } },
+    view: { kind: "isometric", target: { x: 4, y: 9, z: 4 } },
+    objects: [
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "row2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 6, z: 2 }, appearance: "secondary" },
+      { id: "row3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 9, z: 4 }, appearance: "answer" },
+      { id: "e1", kind: "segment", from: { x: 1, y: 3, z: 2 }, to: { x: 3, y: 9, z: 4 }, appearance: "reference" },
+      { id: "e2", kind: "segment", from: { x: 1, y: 3, z: 2 }, to: { x: 6, y: 12, z: 6 }, appearance: "reference" },
+      { id: "e3", kind: "segment", from: { x: 2, y: 6, z: 2 }, to: { x: 3, y: 9, z: 4 }, appearance: "reference" },
+      { id: "e4", kind: "segment", from: { x: 2, y: 6, z: 2 }, to: { x: 7, y: 15, z: 6 }, appearance: "reference" },
+      { id: "e5", kind: "segment", from: { x: 5, y: 9, z: 4 }, to: { x: 6, y: 12, z: 6 }, appearance: "reference" },
+      { id: "e6", kind: "segment", from: { x: 5, y: 9, z: 4 }, to: { x: 7, y: 15, z: 6 }, appearance: "reference" },
+      { id: "e7", kind: "segment", from: { x: 3, y: 9, z: 4 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+      { id: "e8", kind: "segment", from: { x: 6, y: 12, z: 6 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+      { id: "e9", kind: "segment", from: { x: 7, y: 15, z: 6 }, to: { x: 8, y: 18, z: 8 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+      { key: "row2", objectId: "row2", at: { x: 2, y: 6, z: 2 }, placement: "left" },
+      { key: "row3", objectId: "row3", at: { x: 5, y: 9, z: 4 }, placement: "right" },
+      { key: "volume", objectId: "e9", at: { x: 8, y: 18, z: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
+Kalau satu baris ialah hasil tambah dua baris yang lain, kotak itu tidak mempunyai tinggi. Dengan baris <InlineMath math="(1, 3, 2)" />, <InlineMath math="(2, 6, 2)" /> dan <InlineMath math="(3, 9, 4)" />, sisi ketiga terletak dalam satah dua sisi pertama, jadi isi padunya <InlineMath math="0" />. Sarrus bersetuju: <InlineMath math="D_+ = 24 + 18 + 36 = 78" /> dan <InlineMath math="D_- = 36 + 18 + 24 = 78" />, jadi penentunya <InlineMath math="78 - 78 = 0" />.
+
+<MathVisual
+  title={<>Kotak leper mempunyai penentu <InlineMath math="0" /></>}
+  description={<>Baris ketiga sama dengan baris pertama tambah baris kedua, jadi semua sisi terletak dalam satu satah dan isi padu kotak itu <InlineMath math="0" />.</>}
+  labels={{
+    row1: <InlineMath math="(1, 3, 2)" />,
+    row2: <InlineMath math="(2, 6, 2)" />,
+    row3: <InlineMath math="(3, 9, 4)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 9 }, z: { min: 0, max: 4 } },
+    view: { kind: "isometric", target: { x: 1.5, y: 4.5, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 1, y: 3, z: 2 }, { x: 3, y: 9, z: 4 }, { x: 2, y: 6, z: 2 }], appearance: "reference" },
+      { id: "row1", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 3, z: 2 }, appearance: "primary" },
+      { id: "row2", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 6, z: 2 }, appearance: "secondary" },
+      { id: "row3", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 9, z: 4 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "row1", objectId: "row1", at: { x: 1, y: 3, z: 2 }, placement: "left" },
+      { key: "row2", objectId: "row2", at: { x: 2, y: 6, z: 2 }, placement: "right" },
+      { key: "row3", objectId: "row3", at: { x: 3, y: 9, z: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Corak <InlineMath math="2 \times 2" />, iaitu <InlineMath math="ad - bc" />, juga ialah luas. Bagi <InlineMath math="M = \begin{bmatrix} 3 & 1 \\ 1 & 2 \end{bmatrix}" />, baris <InlineMath math="(3, 1)" /> dan <InlineMath math="(1, 2)" /> membentuk segi empat selari dengan luas <InlineMath math="3 \cdot 2 - 1 \cdot 1 = 5" />. Sarrus memanjangkan hasil darab pepenjuru yang sama kepada tiga baris, dan luas itu menjadi isi padu.
+
+<MathVisual
+  title={<>Dua hasil darab pepenjuru sebagai luas</>}
+  description={<>Segi empat selari yang dibentuk oleh <InlineMath math="(3, 1)" /> dan <InlineMath math="(1, 2)" />, dengan luas <InlineMath math="3 \cdot 2 - 1 \cdot 1 = 5" />.</>}
+  labels={{
+    area: <InlineMath math="5" />,
+    r1: <InlineMath math="(3, 1)" />,
+    r2: <InlineMath math="(1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 1 }, { x: 4, y: 3 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "r2", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "area", objectId: "area", at: { x: 2, y: 1.5 }, placement: "center" },
+      { key: "r1", objectId: "r1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "r2", objectId: "r2", at: { x: 1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Kaedah Sarrus Hanya untuk Matriks Peringkat Tiga
+
+Kaedah Sarrus **hanya boleh digunakan pada matriks <InlineMath math="3 \times 3" />**. Pengiraan <InlineMath math="2 \times 2" /> di atas hanya mengingatkan kita tentang corak tanda pepenjuru. Untuk matriks yang lebih besar, seperti matriks <InlineMath math="4 \times 4" />, gunakan kaedah lain seperti kembangan kofaktor atau penurunan baris.
+
+## Latihan dengan Penyelesaian Lengkap
+
+Gunakan kaedah Sarrus untuk mengira penentu bagi:
+
+<BlockMath math="B=\begin{bmatrix}2&-1&3\\0&4&5\\1&2&-2\end{bmatrix}" />
+
+Istilah pepenjuru positif dan pepenjuru negatif merujuk kepada **tanda dalam rumus**, bukan tanda berangka hasil darabnya. Di sini, hasil tambah pepenjuru positif bernilai negatif kerana sebahagian unsur matriks bernilai negatif.
+
+Kira dahulu dua hasil tambah pepenjuru, kemudian tolak hasil tambah pepenjuru negatif daripada hasil tambah pepenjuru positif:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} D_+ &amp;=(2)(4)(-2)+(-1)(5)(1) \\ &amp;\quad+(3)(0)(2) \\ &amp;=-16-5+0 \\ &amp;=-21 \end{aligned}" />
+  <BlockMath math="\begin{aligned} D_- &amp;=(3)(4)(1)+(2)(5)(2) \\ &amp;\quad+(-1)(0)(-2) \\ &amp;=12+20+0 \\ &amp;=32 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \det(B) &amp;=D_+-D_- \\ &amp;=-21-32 \\ &amp;=-53 \end{aligned}" />
+</MathContainer>
+
+<InlineMath math="\det(B)=-53" />.

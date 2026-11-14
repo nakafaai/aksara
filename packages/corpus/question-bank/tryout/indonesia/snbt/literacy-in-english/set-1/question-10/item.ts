@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "research-design",
   },
-  stimulus: "parking-minimums",
+  stimulus: "homework-limits",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Run it for a full school year with Years 3 to 6, and survey parents each month about arguments and bedtimes.",
+        },
+        {
           correct: true,
           label:
-            "If most buyers there want two spaces per home, developers should be free to build them.",
+            "Include older pupils, and compare them with similar pupils in the same year who keep homework, on tests that count.",
         },
         {
           correct: false,
           label:
-            "The town should keep its parking minimums permanently, whatever buyers want.",
+            "Keep Years 3 to 6, add a second term, and compare the scores with the average of the last three years.",
         },
         {
           correct: false,
           label:
-            "The town should ban new parking in order to make residents use public transport.",
+            "Include older pupils for one term, and ask their teachers to rate each pupil's effort in the end-of-term tests.",
         },
         {
           correct: false,
           label:
-            "The town should copy the parking rules of large cities that have removed their minimums.",
-        },
-        {
-          correct: false,
-          label:
-            "The town should require developers to build no more than one space per home.",
+            "Compare the pilot pupils with the same year groups the year before, on tests that count towards their grades.",
         },
       ],
     },

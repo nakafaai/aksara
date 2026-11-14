@@ -1,17 +1,45 @@
-Saat selimut dibuka, garis pelukis menjadi jari-jari juring, dan keliling alas kerucut menjadi panjang busur juring. Jadi **panjang busur juring sama dengan keliling alas**.
+Kamu mencari <InlineMath math="n" /> terkecil yang membuat jumlah <InlineMath math="S_n" /> melewati <InlineMath math="0{,}245" />. Menjumlahkan suku satu per satu terlalu lama, jadi rencananya: **pecah setiap suku menjadi selisih dua pecahan** supaya jumlahnya saling menghapus, cari rumus <InlineMath math="S_n" />, lalu selesaikan pertidaksamaannya.
 
-# Menyamakan panjang busur
+# Memecah setiap suku
 
-Juring berjari-jari 9 cm dengan sudut pusat <InlineMath math="\theta" /> memiliki busur sepanjang <InlineMath math="\frac{\theta}{360^\circ}\cdot2\pi\cdot9" />. Keliling alas kerucut adalah <InlineMath math="2\pi\cdot3" />, dan **kedua panjang itu disamakan**.
+Coba kurangkan dua pecahan yang penyebutnya bertetangga.
+
+<BlockMath math="\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}=\frac{(k+2)-k}{k(k+1)(k+2)}=\frac{2}{k(k+1)(k+2)}" />
+
+Hasilnya dua kali suku yang kita perlukan. Jadi **setiap suku sama dengan setengah dari selisih itu**.
+
+<BlockMath math="\frac{1}{k(k+1)(k+2)}=\frac12\left(\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}\right)" />
+
+# Rumus jumlahnya
+
+Saat suku-suku dijumlahkan, bagian kedua suatu suku **saling menghapus dengan bagian pertama suku berikutnya**. Yang tersisa hanya bagian pertama suku pertama dan bagian kedua suku terakhir.
 
 <BlockMath math="\begin{aligned}
-\frac{\theta}{360^\circ}\cdot2\pi\cdot9&=2\pi\cdot3\\
-\frac{\theta}{360^\circ}&=\frac39=\frac13\\
-\theta&=120^\circ
+S_n&=\frac12\left(\frac{1}{1\cdot2}-\frac{1}{(n+1)(n+2)}\right)\\
+&=\frac14-\frac{1}{2(n+1)(n+2)}
 \end{aligned}" />
 
-# Memeriksa pilihan lain
+# Menyelesaikan pertidaksamaan
 
-Sudut pusat adalah <InlineMath math="360^\circ" /> dikali **perbandingan jari-jari alas dengan garis pelukis**. Nilai <InlineMath math="240^\circ" /> memakai diameter alas, 6 cm, sebagai pembilang. Nilai <InlineMath math="60^\circ" /> memakai <InlineMath math="180^\circ" /> sebagai pengali. Nilai <InlineMath math="180^\circ" /> menganggap selimut selalu setengah lingkaran, dan <InlineMath math="90^\circ" /> menganggapnya seperempat lingkaran.
+Karena <InlineMath math="0{,}245=\frac14-0{,}005" />, syaratnya menjadi **sisa pengurangnya harus kurang dari <InlineMath math="0{,}005" />**.
 
-Jadi, besar sudut pusat juring adalah <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+\frac{1}{2(n+1)(n+2)}&<0{,}005=\frac{1}{200}\\
+2(n+1)(n+2)&>200\\
+(n+1)(n+2)&>100
+\end{aligned}" />
+
+Untuk <InlineMath math="n=8" />, <InlineMath math="9\cdot10=90" /> belum cukup. Untuk <InlineMath math="n=9" />, <InlineMath math="10\cdot11=110>100" />. Jadi <InlineMath math="n" /> terkecil adalah <InlineMath math="9" />.
+
+Coba cek dengan pecahan biasa. <InlineMath math="S_8=\frac14-\frac{1}{180}=\frac{11}{45}" /> dan <InlineMath math="S_9=\frac14-\frac{1}{220}=\frac{27}{110}" />, sedangkan <InlineMath math="0{,}245=\frac{49}{200}" />. Bandingkan dengan perkalian silang: <InlineMath math="11\cdot200=2200<2205=49\cdot45" />, jadi <InlineMath math="S_8" /> belum melewati. Lalu <InlineMath math="27\cdot200=5400>5390=49\cdot110" />, jadi <InlineMath math="S_9" /> sudah melewati.
+
+# Pilihan yang menjebak
+
+Pilihan lain muncul dari **faktor setengah, indeks, atau taksiran yang meleset** saat memecah suku dan menyelesaikan pertidaksamaan.
+
+- <InlineMath math="13" /> muncul jika sisa pengurangnya ditulis <InlineMath math="\frac{1}{(n+1)(n+2)}" /> tanpa faktor setengah, sehingga syaratnya menjadi <InlineMath math="(n+1)(n+2)>200" />.
+- <InlineMath math="11" /> muncul jika <InlineMath math="(n+1)(n+2)" /> ditaksir dengan <InlineMath math="n^2" />, sehingga syaratnya <InlineMath math="n^2>100" /> dan <InlineMath math="n" /> terkecilnya <InlineMath math="11" />.
+- <InlineMath math="10" /> muncul jika suku terakhir digeser satu indeks ke belakang menjadi <InlineMath math="\frac{1}{2n(n+1)}" />, sehingga syaratnya <InlineMath math="n(n+1)>100" />.
+- <InlineMath math="6" /> muncul jika faktor setengah dipakai dua kali pada sisa pengurangnya, sehingga syaratnya <InlineMath math="(n+1)(n+2)>50" />.
+
+Jadi, bilangan asli <InlineMath math="n" /> terkecil yang memenuhi <InlineMath math="S_n>0{,}245" /> adalah <InlineMath math="9" />.

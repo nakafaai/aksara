@@ -19,7 +19,7 @@ Klausurpunkte mit der Verteilung <InlineMath math="N(75, 10^2)" /> haben den Erw
 
 <BarChart
   title={<>Paare gleich hoher Werte um <InlineMath math="\mu = 2" /></>}
-  description={<>Höhen der <InlineMath math="N(2, 1)" />-Dichte bei <InlineMath math="x = 0{,}5;\ 1;\ 2;\ 3;\ 3{,}5" />. Die Werte bei 1 und 3 sind gleich, etwa <InlineMath math="0{,}242" />, ebenso die bei 0,5 und 3,5, etwa <InlineMath math="0{,}130" />, weil sie gleich weit vom Zentrum entfernt sind.</>}
+  description={<>Höhen der <InlineMath math="N(2, 1)" />-Dichte bei <InlineMath math="x = 0{,}5;\ 1;\ 2;\ 3;\ 3{,}5" />. Die Werte bei <InlineMath math="1" /> und <InlineMath math="3" /> sind gleich, etwa <InlineMath math="0{,}242" />, ebenso die bei <InlineMath math="0{,}5" /> und <InlineMath math="3{,}5" />, etwa <InlineMath math="0{,}130" />, weil sie gleich weit vom Zentrum entfernt sind.</>}
   yAxisLabel="Dichte"
   data={[0.5, 1, 2, 3, 3.5].map((x) => ({ name: String(x), value: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI) }))}
   chartConfig={{ value: { label: "Dichte", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

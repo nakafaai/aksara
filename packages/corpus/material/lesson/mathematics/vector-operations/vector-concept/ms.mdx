@@ -1,0 +1,147 @@
+
+export const metadata = {
+  title: "Konsep Vektor",
+    description: "Baca magnitud dan arah vektor daripada peta angin, kemudian wakilkan setiap vektor dengan tatatanda dan anak panah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Vektor dan Operasinya",
+};
+
+## Anak Panah Angin Menunjukkan Magnitud dan Arah
+
+Bayangkan sebuah peta cuaca dengan anak panah yang menunjukkan angin di beberapa lokasi yang berbeza. Arah setiap anak panah menunjukkan **ke mana angin bertiup**, manakala panjang atau ketebalannya boleh menunjukkan **berapa laju angin bertiup**.
+
+Halaju angin ialah satu **vektor** kerana halaju itu mempunyai **magnitud** dan juga **arah**. _Magnitudnya_ ialah laju angin, contohnya <InlineMath math="30 \text{ km/h}" />, dan _arahnya_ memberitahu kita ke mana angin bertiup.
+
+## Melukis dan Menulis Vektor
+
+Vektor ialah kuantiti abstrak, tetapi kita biasanya <Highlight>mewakilkannya dengan tembereng garis berarah</Highlight>, iaitu anak panah.
+
+<MathVisual
+  title={<>Tiga vektor sebagai anak panah</>}
+  description={<>Vektor <InlineMath math="1" /> dari <InlineMath math="(0, 0)" /> ke <InlineMath math="(6, 8)" />, vektor <InlineMath math="2" /> dari <InlineMath math="(5, 2)" /> ke <InlineMath math="(1, 1)" />, dan vektor <InlineMath math="3" /> dari <InlineMath math="(4, 7)" /> ke <InlineMath math="(2, 0)" />.</>}
+  labels={{
+    v1: <InlineMath math="1" />,
+    v2: <InlineMath math="2" />,
+    v3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "v1-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "v2", kind: "segment", from: { x: 5, y: 2 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "v2-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (-16 / 25 / Math.sqrt(17)) }, { x: (1) + (8 / 5 / Math.sqrt(17)) + (-4 / 25 / Math.sqrt(17)), y: (1) + (2 / 5 / Math.sqrt(17)) + (16 / 25 / Math.sqrt(17)) }], appearance: "secondary" },
+      { id: "v3", kind: "segment", from: { x: 4, y: 7 }, to: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "v3-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 3, y: 3 / 2 }, placement: "below" },
+      { key: "v3", objectId: "v3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+- **Vektor** <InlineMath math="1" />: Arah vektor dari titik <InlineMath math="(0, 0)" /> ke titik <InlineMath math="(6, 8)" />
+- **Vektor** <InlineMath math="2" />: Arah vektor dari titik <InlineMath math="(5, 2)" /> ke titik <InlineMath math="(1, 1)" />
+- **Vektor** <InlineMath math="3" />: Arah vektor dari titik <InlineMath math="(4, 7)" /> ke titik <InlineMath math="(2, 0)" />
+
+### Menamakan Bahagian Vektor
+
+Titik awal dan titik akhir sebuah anak panah menentukan arah dan panjangnya. Empat istilah di bawah mengaitkan tembereng garis berarah itu dengan vektor yang diwakilinya.
+
+1.  **Titik Awal**: Titik tempat vektor itu bermula.
+2.  **Titik Akhir**: Titik tempat vektor itu berakhir, yang ditandakan dengan kepala anak panah.
+3.  **Magnitud**: Panjang anak panah mewakili saiz vektor itu, yang juga dipanggil _panjang vektor_. Magnitud vektor <InlineMath math="\overrightarrow{AB}" /> dilambangkan dengan <InlineMath math="|\overrightarrow{AB}|" />.
+4.  **Arah**: Arah yang ditunjukkan oleh kepala anak panah.
+
+Magnitud ialah panjang anak panah. Bagi anak panah dari <InlineMath math="A(0, 0)" /> ke <InlineMath math="B(6, 8)" />, langkah mengufuk <InlineMath math="6" /> dan langkah mencancang <InlineMath math="8" /> membentuk segi tiga bersudut tegak dengan anak panah itu sebagai hipotenusnya, jadi <InlineMath math="|\overrightarrow{AB}| = \sqrt{6^2 + 8^2} = 10" />.
+
+<MathVisual
+  title={<>Magnitud <InlineMath math="\overrightarrow{AB}" /> ialah <InlineMath math="10" /></>}
+  description={<>Anak panah dari titik awal <InlineMath math="A(0, 0)" /> ke titik akhir <InlineMath math="B(6, 8)" />, dengan langkah 6 dan 8 yang memberikan panjang <InlineMath math="\sqrt{36 + 64} = 10" />.</>}
+  labels={{
+    ab: <InlineMath math="|\overrightarrow{AB}| = 10" />,
+    run: <InlineMath math="6" />,
+    rise: <InlineMath math="8" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 7 }, y: { min: -0.8, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "run", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "rise", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+      { id: "ab", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "primary" },
+      { id: "ab-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "point", at: { x: 6, y: 8 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "ab", objectId: "ab", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "run", objectId: "run", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 6, y: 4 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 8 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Tatatanda Vektor
+
+Ada beberapa cara untuk menulis vektor:
+
+1.  **Dua Huruf Besar dengan Anak Panah di Atasnya**: Menunjukkan titik awal dan titik akhir. Contoh: <InlineMath math="\overrightarrow{AB}" />, iaitu vektor dari titik <InlineMath math="A" /> ke titik <InlineMath math="B" />.
+2.  **Satu Huruf Kecil dengan Anak Panah di Atasnya**: Contoh: <InlineMath math="\vec{a}" />.
+3.  **Satu Huruf Kecil Bercetak Tebal**: Contoh: <InlineMath math="\mathbf{a}" /> atau <InlineMath math="\mathbf{v}" />.
+
+## Latihan
+
+Adakah lukisan di bawah mewakili satu anak panah vektor? Terangkan sebab jawapan kamu.
+
+<MathVisual
+  title={<>Tiga bentuk yang bukan satu vektor</>}
+  description={<>Bentuk <InlineMath math="1" /> ialah laluan tiga tembereng, bentuk <InlineMath math="2" /> ialah garis patah dengan kepala anak panah di permulaannya, dan bentuk <InlineMath math="3" /> ialah tembereng dengan kepala anak panah di kedua-dua hujungnya.</>}
+  labels={{
+    s1: <InlineMath math="1" />,
+    s2: <InlineMath math="2" />,
+    s3: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 9 }, { x: 3, y: 4 }, { x: 6, y: 8 }], appearance: "primary" },
+      { id: "s1-end-head", kind: "polygon", vertices: [{ x: 6, y: 8 }, { x: 704 / 125, y: 972 / 125 }, { x: 736 / 125, y: 948 / 125 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 6 }, { x: 5, y: 2 }], appearance: "secondary" },
+      { id: "s2-start-head", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (-4 / 25 / Math.sqrt(26)) }, { x: (1) + (2 / 5 / Math.sqrt(26)) + (-4 / 5 / Math.sqrt(26)), y: (1) + (2 / Math.sqrt(26)) + (4 / 25 / Math.sqrt(26)) }], appearance: "secondary" },
+      { id: "s3", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 7 }, appearance: "construction" },
+      { id: "s3-a-head", kind: "polygon", vertices: [{ x: 4, y: 7 }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }, { x: (4) + (-4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (7) + (-14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+      { id: "s3-b-head", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (-8 / 25 / Math.sqrt(53)) }, { x: (2) + (4 / 5 / Math.sqrt(53)) + (-28 / 25 / Math.sqrt(53)), y: (0) + (14 / 5 / Math.sqrt(53)) + (8 / 25 / Math.sqrt(53)) }], appearance: "construction" },
+    ],
+    labels: [
+      { key: "s1", objectId: "s1", at: { x: 1, y: 9 }, placement: "above" },
+      { key: "s2", objectId: "s2", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "s3", objectId: "s3", at: { x: 3, y: 7 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Seperti yang dilukis, tiada satu pun bentuk itu merupakan **perwakilan piawai** bagi satu vektor:
+
+1. **Bentuk <InlineMath math="1" />**: Laluan poligon ini mewakili laluan yang terdiri daripada beberapa tembereng. Sesaran bersihnya masih boleh diwakili oleh satu anak panah dari titik awal ke titik akhir.
+2. **Bentuk <InlineMath math="2" />**: Garis patah ini juga mewakili laluan dengan beberapa tembereng. Satu anak panah vektor akan menyambungkan titik awalnya terus ke titik akhirnya.
+3. **Bentuk <InlineMath math="3" />**: Garis ini mempunyai kepala anak panah di kedua-dua hujung, jadi garis itu tidak memilih satu orientasi. Satu vektor mesti mempunyai satu titik awal dan satu titik akhir.
+
+Perwakilan anak panah piawai bagi satu vektor mesti mempunyai ciri-ciri ini:
+
+- Berbentuk satu tembereng garis lurus
+- Mempunyai satu arah yang ditunjukkan oleh kepala anak panah
+- Mempunyai titik awal dan titik akhir yang dikenal pasti dengan jelas

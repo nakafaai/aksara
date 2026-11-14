@@ -1,0 +1,19 @@
+Rewrite <InlineMath math="1-\cos ax" /> in terms of sine with **the double-angle identity <InlineMath math="1-\cos2\theta=2\sin^2\theta" />**, using <InlineMath math="\theta=\frac{ax}{2}" />.
+
+<BlockMath math="1-\cos ax=2\sin^2\frac{ax}{2}" />
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to0}\frac{2\sin^2\frac{ax}{2}}{x^2}&=2\left(\lim_{x\to0}\frac{\sin\frac{ax}{2}}{x}\right)^2 \\
+&=2\left(\frac a2\right)^2=\frac{a^2}{2}
+\end{aligned}" />
+
+The limit equals <InlineMath math="8" />, so <InlineMath math="\frac{a^2}{2}=8" /> and <InlineMath math="a^2=16" />. Since <InlineMath math="a" /> is positive, <InlineMath math="a=4" />.
+
+Numerical check: for <InlineMath math="a=4" /> and <InlineMath math="x=0.01" />, <InlineMath math="\frac{1-\cos0.04}{0.0001}\approx7.9989" />.
+
+So <InlineMath math="a=4" />.
+
+- <InlineMath math="4\sqrt2" /> drops the factor <InlineMath math="2" /> in <InlineMath math="2\sin^2\frac{ax}{2}" />, giving <InlineMath math="\frac{a^2}{4}=8" />.
+- <InlineMath math="16" /> stops at <InlineMath math="a^2=16" /> and forgets the square root.
+- <InlineMath math="8" /> forgets to square <InlineMath math="\frac a2" />, giving <InlineMath math="2\cdot\frac a2=8" />.
+- <InlineMath math="2\sqrt2" /> takes the limit to be <InlineMath math="a^2" />, without the factor <InlineMath math="\frac12" />.

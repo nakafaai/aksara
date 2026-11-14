@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "shipping-container",
+  stimulus: "longitude-clock",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Metal boxes could protect goods from theft and damage better than wooden crates.",
+            "About $$7.5$$ minutes, which is about $$55$$ km at the equator",
+        },
+        {
+          correct: false,
+          label:
+            "About $$30$$ seconds, which is about $$55$$ km at the equator",
         },
         {
           correct: true,
-          label:
-            "The box, not the goods inside it, should be the unit every part of transport was built to handle.",
+          label: "About $$2$$ minutes, which is about $$55$$ km at the equator",
         },
         {
           correct: false,
           label:
-            "Converted tankers could carry more cargo than purpose-built cargo ships of the time.",
+            "About $$2$$ minutes, which is about $$111$$ km at the equator",
         },
         {
           correct: false,
           label:
-            "Trucks could replace ships on long routes such as the one between Newark and Houston.",
-        },
-        {
-          correct: false,
-          label:
-            "Ports should hire more dockworkers so that ships could be loaded faster.",
+            "About $$4$$ minutes, which is about $$111$$ km at the equator",
         },
       ],
     },

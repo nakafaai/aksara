@@ -3,36 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
-    contentDomain: "sentence-meaning",
-    topic: "sentence-relation",
+    contentDomain: "word-relation",
+    topic: "analogy",
   },
-  stimulus: "elektronik",
+  stimulus: "cabai",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Kalimat (6) dan (7) menjelaskan penyebab munculnya banyak pengepul kecil tanpa peralatan pelindung yang disebut pada kalimat (5).",
+          label: "nilai mata kuliah : IPK",
         },
         {
           correct: false,
-          label: "Kalimat (6) dan (7) membantah keterangan pada kalimat (5).",
+          label: "berat badan : timbangan",
         },
         {
           correct: false,
-          label: "Kalimat (6) dan (7) merupakan simpulan dari kalimat (5).",
+          label: "SKS : mata kuliah",
         },
         {
           correct: false,
-          label:
-            "Kalimat (6) dan (7) membandingkan pengolahan yang aman dengan pengolahan yang tidak aman.",
+          label: "dosis : khasiat obat",
         },
         {
           correct: true,
-          label:
-            "Kalimat (6) dan (7) memberikan contoh cara pengolahan tanpa perlindungan yang disebut pada kalimat (5).",
+          label: "SKS : IPK",
         },
       ],
     },

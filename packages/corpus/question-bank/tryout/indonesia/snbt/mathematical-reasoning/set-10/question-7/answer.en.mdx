@@ -1,15 +1,51 @@
-A train leaves at a given time if **the time since 05.00 is divisible by its gap**.
+Each statement tests a different credit rule: the order of the instalments, **the jump in interest** after a <InlineMath math="12" />-month term, the rounding, and the early payoff. Here's the plan: write the instalment as a general formula first, then judge each statement with its own proof.
 
-# Line A
+# The instalment formula
 
-06.00 is 60 minutes after 05.00, and 60 is not divisible by 16. The multiples of 16 between 60 and 120 are 64, 80, 96 and 112, so line A leaves at 06.04, 06.20, 06.36 and 06.52, **exactly 4 times**. The first statement is true.
+Say the term is <InlineMath math="n" /> months and the interest is <InlineMath math="r" /> per month. The total interest is <InlineMath math="4{,}800{,}000\cdot r\cdot n" />, so when you divide by <InlineMath math="n" />, **the interest per month doesn't depend on the term**.
 
-21.00 is 960 minutes after 05.00, and <InlineMath math="\tfrac{960}{16}=60" />, a whole number. The fourth statement is true.
+<BlockMath math="\begin{aligned}
+\text{instalment before rounding} &= \frac{4{,}800{,}000+4{,}800{,}000\cdot r\cdot n}{n}\\
+&= \frac{4{,}800{,}000}{n}+4{,}800{,}000\cdot r
+\end{aligned}" />
 
-# Lines B and C
+For <InlineMath math="r=1.5\%" />, the second term is <InlineMath math="72{,}000" />. For <InlineMath math="r=2.5\%" />, the second term is <InlineMath math="120{,}000" />.
 
-07.15 is 135 minutes after 05.00, and <InlineMath math="\tfrac{135}{24}=5.625" />, **not a whole number**. The second statement is false.
+# Terms up to twelve months
 
-12.10 is 430 minutes after 05.00, and 430 is not divisible by 40. The third statement is false.
+For terms of <InlineMath math="3" /> to <InlineMath math="12" /> months, the <InlineMath math="72{,}000" /> stays fixed, while <InlineMath math="\tfrac{4{,}800{,}000}{n}" /> shrinks as <InlineMath math="n" /> grows. The smallest gap between two neighbouring terms is between <InlineMath math="11" /> and <InlineMath math="12" /> months, namely <InlineMath math="\tfrac{4{,}800{,}000}{11}-\tfrac{4{,}800{,}000}{12}=36{,}363.63\ldots" />. That gap is far above <InlineMath math="1{,}000" />, so **rounding up can't make two instalments equal**. The first statement is true.
+
+# The interest jump at thirteen months
+
+A <InlineMath math="13" />-month term already uses <InlineMath math="2.5\%" /> interest per month.
+
+<BlockMath math="\begin{aligned}
+\text{instalment for } 12 &= 400{,}000+72{,}000=472{,}000\\
+\text{instalment for } 13 &= 369{,}230.76\ldots+120{,}000=489{,}230.76\ldots
+\end{aligned}" />
+
+After rounding, the <InlineMath math="13" />-month instalment is <InlineMath math="490{,}000" />. The term is longer, but **the rise in monthly interest is bigger** than the drop in the principal part. The second statement is false.
+
+# Rounding with nine months
+
+The <InlineMath math="9" />-month instalment before rounding is <InlineMath math="\tfrac{4{,}800{,}000}{9}+72{,}000=605{,}333.33\ldots" />, which rounds up to <InlineMath math="606{,}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{sum of all instalments} &= 9\cdot606{,}000=5{,}454{,}000\\
+\text{principal plus interest} &= 4{,}800{,}000+648{,}000=5{,}448{,}000
+\end{aligned}" />
+
+There's a gap of <InlineMath math="6{,}000" /> because **every instalment is rounded up**. The third statement is false.
+
+# Paying off early
+
+Compare one month that hasn't run yet. If the instalments continue, that month costs one instalment, at least <InlineMath math="\tfrac{4{,}800{,}000}{n}+4{,}800{,}000\cdot r" />. If you pay off early, that month only costs its principal part plus the penalty, <InlineMath math="1.03\cdot\tfrac{4{,}800{,}000}{n}" />. The difference is at least <InlineMath math="4{,}800{,}000\cdot r-0.03\cdot\tfrac{4{,}800{,}000}{n}" />.
+
+<BlockMath math="\begin{aligned}
+4{,}800{,}000\cdot r &\ge 4{,}800{,}000\cdot1.5\%=72{,}000\\
+0.03\cdot\frac{4{,}800{,}000}{n} &\le 0.03\cdot\frac{4{,}800{,}000}{3}=48{,}000
+\end{aligned}" />
+
+So every month paid off early saves at least <InlineMath math="72{,}000-48{,}000=24{,}000" />. Since **the saving is positive for every term and every remaining month**, the total is always smaller. The fourth statement is true.
 
 So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.

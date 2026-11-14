@@ -1,0 +1,14 @@
+For <InlineMath math="x" /> very large in absolute value, <InlineMath math="\sqrt{x^2+1}" /> behaves like <InlineMath math="\sqrt{x^2}" />. The key is that **<InlineMath math="\sqrt{x^2}=|x|" />, which equals <InlineMath math="-x" /> for <InlineMath math="x<0" />**, not <InlineMath math="x" />.
+
+Divide numerator and denominator by <InlineMath math="x" />. Since <InlineMath math="x<0" />, moving <InlineMath math="x" /> inside the root needs a minus sign: <InlineMath math="\frac{\sqrt{x^2+1}}{x}=-\sqrt{\frac{x^2+1}{x^2}}=-\sqrt{1+\frac{1}{x^2}}" />.
+
+<BlockMath math="\lim_{x\to-\infty}\frac{\sqrt{x^2+1}}{2x-3}=\lim_{x\to-\infty}\frac{-\sqrt{1+\frac{1}{x^2}}}{2-\frac3x}=\frac{-1}{2}=-\frac12" />
+
+Sign check: for negative <InlineMath math="x" />, the numerator is positive and the denominator negative, so the fraction is negative. For example <InlineMath math="q(-100)=\frac{\sqrt{10{,}001}}{-203}\approx-0.4926" />.
+
+So the limit is <InlineMath math="-\frac12" />.
+
+- <InlineMath math="\frac12" /> writes <InlineMath math="\sqrt{x^2}=x" />, which only holds for <InlineMath math="x\ge0" />. That is the limit at <InlineMath math="+\infty" />.
+- <InlineMath math="0" /> assumes the root lowers the degree of the numerator. In fact <InlineMath math="\sqrt{x^2+1}" /> grows like <InlineMath math="|x|" />, the same degree as the denominator.
+- <InlineMath math="-\infty" /> assumes the numerator grows much faster than the denominator.
+- <InlineMath math="1" /> forgets both the coefficient <InlineMath math="2" /> in the denominator and the sign.

@@ -1,14 +1,19 @@
-Nilai setiap pernyataan hanya dengan informasi dalam teks, termasuk kapan suhu diukur dan alasan yang diberikan untuk tagihan listrik.
+Sebuah pernyataan dapat disimpulkan hanya jika data cukup untuk memastikannya. Dua pernyataan di sini perlu dihitung dengan teliti, dan dua lainnya membutuhkan **kelompok pembanding yang tidak ada di data**.
 
-| Pernyataan | Nilai | Alasan |
-| --- | --- | --- |
-| Selisih tanpa plafon lebih dari tiga kali selisih berplafon | Benar | Tiga kali <InlineMath math="1{,}1^{\circ}\text{C}" /> adalah <InlineMath math="3{,}3^{\circ}\text{C}" />, sedangkan selisih tanpa plafon <InlineMath math="4{,}0^{\circ}\text{C}" />. |
-| Cat putih menurunkan suhu sepanjang hari | Salah | Suhu hanya dicatat pada pukul <InlineMath math="13.00" />. |
-| Tagihan sama karena kipas tetap sering menyala | Salah | Penghuni melaporkan kipas lebih jarang menyala, dan teks memberi alasan lain untuk tagihan. |
-| Sebagian rumah berplafon, sebagian tidak | Benar | Teks membandingkan rumah berplafon dan rumah tanpa plafon secara terpisah. |
+Pernyataan 1 dapat disimpulkan, walaupun terdengar salah. Di setiap baris, petak yang kemudian berkincir tidak pernah lebih buruk pada siklus lalu: <InlineMath math="10\% = 10\%" /> di baris rendah dan <InlineMath math="22\% < 26\%" /> di baris tinggi. Namun, pernyataan ini tentang rata-rata seluruh petak, jadi hitung dengan bobot banyak petak:
 
-Pernyataan kedua memperluas klaim. Data **hanya mewakili pukul <InlineMath math="13.00" />**, jadi teks tidak memberi tahu apa yang terjadi pada pagi atau malam hari.
+<BlockMath math="\begin{aligned} \text{Kemudian berkincir: } & \frac{5(10\%) + 15(22\%)}{20} = \frac{380\%}{20} = 19\% \\ \text{Tetap tanpa kincir: } & \frac{15(10\%) + 5(26\%)}{20} = \frac{280\%}{20} = 14\% \end{aligned}" />
 
-Pernyataan ketiga keliru karena teks menjelaskan penyebab tagihan yang hampir sama: sebagian besar listrik dipakai untuk menanak nasi, memompa air, dan lampu malam. Pemakaian kipas yang berkurang hanya bagian kecil dari tagihan, dan penghuni sendiri melaporkan kipas lebih jarang dinyalakan.
+Hasilnya <InlineMath math="19\% > 14\%" />. Kelompok yang kemudian berkincir lebih tinggi karena <InlineMath math="15" /> dari <InlineMath math="20" /> petaknya berpadat tebar tinggi.
 
-Jadi, pernyataan pertama dan keempat benar, sedangkan pernyataan kedua dan ketiga salah.
+Pernyataan 2 tidak dapat disimpulkan, walaupun terdengar masuk akal. Kalau kenaikan <InlineMath math="8" /> poin dari petak berkincir dipakai, kamu mendapat <InlineMath math="26\% + 8 = 34\%" />. Namun, kelima petak itu tidak pernah dipasangi kincir. Tidak ada data tentang petak-petak itu dengan kincir, dan tidak ada jaminan efek kincir pada petak lain berlaku sama di sana.
+
+Pernyataan 3 tidak dapat disimpulkan. Kemarau memang terjadi pada siklus terakhir, tetapi semua petak melewatinya. Tidak ada petak pada siklus terakhir yang lepas dari kemarau, jadi tidak ada kelompok pembanding untuk memisahkan pengaruh kemarau dari perubahan lain antarsiklus.
+
+Pernyataan 4 dapat disimpulkan. Kenaikan setiap kelompok adalah:
+
+<BlockMath math="\begin{aligned} \text{Rendah: } & 14 - 10 = 4 \text{ poin, untuk kedua kelompok} \\ \text{Tinggi, berkincir: } & 30 - 22 = 8 \text{ poin} \\ \text{Tinggi, tanpa kincir: } & 42 - 26 = 16 \text{ poin} \end{aligned}" />
+
+Dua kali kenaikan kelompok rendah adalah <InlineMath math="8" /> poin. Kelompok tinggi berkincir naik tepat <InlineMath math="8" /> poin, jadi tidak lebih dari dua kali. Hanya kelompok tinggi tanpa kincir, dengan <InlineMath math="16" /> poin, yang lebih dari dua kali.
+
+Jadi, pernyataan 1 dan 4 dapat disimpulkan, sedangkan pernyataan 2 dan 3 tidak dapat disimpulkan.

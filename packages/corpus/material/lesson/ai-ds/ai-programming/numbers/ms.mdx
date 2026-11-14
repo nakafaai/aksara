@@ -1,0 +1,280 @@
+export const metadata = {
+  title: "Nombor",
+  description: "Jenis nombor dalam Python, iaitu integer, float dan nombor kompleks, termasuk cara menyemak jenis, pembina dan tatatanda saintifik.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-26",
+  dateModified: "2026-09-07",
+  subject: "Pengaturcaraan AI",
+};
+
+## Jenis Nombor Bermula dengan Tatatanda Literal
+
+Python ada tiga jenis nombor terbina dalam: `int` untuk integer, `float` untuk pengiraan nombor nyata secara anggaran, dan `complex` untuk nombor kompleks. <Highlight>Jenis inilah yang menentukan cara Python mewakili sesuatu nilai</Highlight> dan cara ia menjalankan aritmetik dengan nilai itu.
+
+Shell interaktif menilai literal nombor lalu memaparkan nilainya. Bandingkan literal di bawah.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_numbers.py",
+      code: `>>> 4
+4
+
+>>> 4.
+4.0
+
+>>> 0.30
+0.3
+
+>>> 0.0000999
+9.99e-05
+
+>>> 2. + 1j
+(2+1j)`
+    }
+  ]}
+/>
+
+Python membaca setiap literal mengikut cara ia ditulis. <InlineMath math="4" /> menghasilkan integer, manakala titik perpuluhan dalam <InlineMath math="4." /> menjadikannya literal titik apungan, dan nilai yang dipaparkan ialah <InlineMath math="4.0" />.
+
+Dalam tatatanda saintifik, nombor selepas `e` menganjakkan titik perpuluhan. `3.2e5` bermaksud <InlineMath math="3.2\cdot10^5=320000" />, dan `2e-2` bermaksud <InlineMath math="2\cdot10^{-2}=0.02" />. Logaritma asas sepuluh menunjukkan anjakan itu sebagai nombor yang hampir dengan eksponennya.
+
+<BarChart
+  title={<><InlineMath math="\log_{10}" /> bagi empat literal tatatanda saintifik</>}
+  description={<>Setiap palang ialah <InlineMath math="\log_{10}" /> bagi literal yang tertulis di bawahnya. Palang negatif mewakili nombor yang kurang daripada <InlineMath math="1" />, seperti <code>9.99e-05</code>, yang palangnya hampir tepat <InlineMath math="-4" />.</>}
+  yAxisLabel="Kuasa sepuluh"
+  data={[
+    { name: "2.e4", value: Math.log10(2.e4) },
+    { name: "2e-2", value: Math.log10(2e-2) },
+    { name: "3.2e5", value: Math.log10(3.2e5) },
+    { name: "9.99e-05", value: Math.log10(9.99e-05) },
+  ]}
+  chartConfig={{ value: { label: "Kuasa sepuluh", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Jenis Data Nombor
+
+Python ada **tiga jenis nombor terbina dalam yang utama**, iaitu `int`, `float` dan `complex`. `int` menyimpan nombor bulat tanpa had saiz, `float` menyimpan nilai anggaran bagi nombor nyata, dan `complex` menyimpan bahagian nyata dan bahagian khayalan.
+
+### Integer
+
+Integer ialah **nombor bulat**: positif, negatif atau sifar. Integer Python boleh membesar setakat yang dibenarkan oleh memori yang ada. Integer Python tiada had tetap 32-bit atau 64-bit.
+
+**Contoh integer yang sah**
+
+<MathContainer>
+<BlockMath math="-2, -1, 0, 1, 2" />
+<BlockMath math="+1, +2, +3" />
+</MathContainer>
+
+**Ciri istimewa integer dalam Python**
+
+Python membenarkan garis bawah di antara digit supaya literal yang panjang lebih mudah dibaca. Contohnya, <InlineMath math="123\_456\_789" /> mempunyai nilai yang sama dengan <InlineMath math="123456789" />. Garis bawah itu hanya memberi kesan pada cara nombor ditulis dalam kod sumber.
+
+### Float
+
+`float` menyimpan **nilai anggaran titik apungan perduaan**. Literal float boleh mengandungi titik perpuluhan atau eksponen. Float berguna untuk ukuran dan pengiraan berangka, tetapi banyak pecahan perpuluhan tidak dapat diwakili dengan tepat dalam bentuk perduaan.
+
+**Contoh float yang biasa**
+
+<MathContainer>
+<BlockMath math="-1.2, 3.85, +7.01" />
+<BlockMath math="-.21, .01, 2., +5." />
+</MathContainer>
+
+**Tatatanda saintifik untuk nombor yang sangat kecil atau sangat besar**
+
+Tatatanda eksponen `e` atau `E` memudahkan kamu menulis literal float yang sangat kecil atau sangat besar. Contohnya:
+
+<MathContainer>
+<BlockMath math="-3.2e5 = -3.2 \times 10^5" />
+<BlockMath math="2e-2 = 2 \times 10^{-2}" />
+<BlockMath math="+2.e4 = +2.0 \times 10^4" />
+</MathContainer>
+
+Tatatanda <InlineMath math="e" /> atau <InlineMath math="E" /> dalam Python sama dengan bentuk piawai (tatatanda saintifik) yang kamu pelajari dalam Matematik. Nombor <InlineMath math="1E1" /> bersamaan dengan <InlineMath math="1 \times 10^1 = 10.0" />, dan <InlineMath math="3.1E-7" /> bersamaan dengan <InlineMath math="3.1 \times 10^{-7}" />.
+
+### Kompleks
+
+Nombor kompleks ada **bahagian nyata dan bahagian khayalan**. Dalam literal Python, akhiran <InlineMath math="j" /> menandakan pekali bagi unit khayalan. Aritmetik kompleks banyak digunakan dalam pemprosesan isyarat, kejuruteraan elektrik dan pengkomputeran saintifik.
+
+**Contoh nombor kompleks**
+
+<MathContainer>
+<BlockMath math="2 + 3j" />
+<BlockMath math="4.5 - 2.1j" />
+</MathContainer>
+
+Nombor kompleks boleh diplot pada satah koordinat. Bahagian nyatanya menentukan koordinat mendatar, dan bahagian khayalannya menentukan koordinat menegak.
+
+Ketiga-tiga jenis nombor ini berada di tempat yang berbeza. `int` hanya duduk pada titik nombor bulat, `float` boleh duduk di antara titik-titik itu, dan `complex` seperti `1+2j` keluar dari garis nombor kerana ia ada bahagian khayalan.
+
+<MathVisual
+  title={<>Tempat <code>int</code>, <code>float</code> dan <code>complex</code> berada</>}
+  description={<>Titik ungu ialah nilai <code>int</code> dari <InlineMath math="-3" /> hingga <InlineMath math="3" /> pada garis kelabu. Titik hijau kebiruan ialah nilai <code>float</code> <code>2.5</code> dan <code>-0.75</code>. Titik magenta <code>1+2j</code> berada dalam satah, dengan bahagian nyata <InlineMath math="1" /> dan bahagian khayalan <InlineMath math="2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -1, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -3.5, y: 0 }, to: { x: 3.5, y: 0 }, appearance: "reference" },
+      { id: "int-0", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "int-1", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "int-2", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "int-3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "int-4", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "int-5", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "int-6", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "float-a", kind: "point", at: { x: 2.5, y: 0 }, appearance: "construction" },
+      { id: "float-b", kind: "point", at: { x: -0.75, y: 0 }, appearance: "construction" },
+      { id: "complex", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "float-a", objectId: "float-a", at: { x: 2.5, y: 0 }, placement: "above" },
+      { key: "float-b", objectId: "float-b", at: { x: -0.75, y: 0 }, placement: "above" },
+      { key: "complex", objectId: "complex", at: { x: 1, y: 2 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "float-a": <code>2.5</code>,
+    "float-b": <code>-0.75</code>,
+    "complex": <code>1+2j</code>,
+  }}
+/>
+
+## Fungsi type untuk Menyemak Jenis Data
+
+Fungsi `type()` memberitahu **kelas yang tepat** bagi sesuatu objek. Fungsi ini berguna semasa kamu meneroka nilai dalam shell Python atau mencari punca data yang tidak dijangka.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "check_types.py",
+      code: `>>> type(5)
+<class 'int'>
+
+>>> type(.1)
+<class 'float'>
+
+>>> type(2j)
+<class 'complex'>`
+    }
+  ]}
+/>
+
+Untuk semakan kesamaan yang ketat, kamu boleh bandingkan `type(value)` dengan sesuatu kelas. Dalam kod aplikasi biasa, `isinstance(value, SomeType)` selalunya lebih fleksibel kerana ia turut mengenal pasti subkelas.
+
+## Pembina untuk Mencipta Objek Nombor
+
+Python menyediakan pembina (constructor) yang mencipta objek nombor daripada jenis lain. Contohnya, guna pembina untuk menukar **input teks kepada nombor** sebelum kamu mengira dengannya, kerana `input()` sentiasa memulangkan rentetan.
+
+### Pembina float
+
+Pembina `float()` menukar nombor lain atau **teks nombor yang sah** kepada nilai titik apungan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_constructor.py",
+      code: `>>> float(2)
+2.0
+
+>>> float()
+0.0`
+    }
+  ]}
+/>
+
+Apabila kamu memanggil `float(2)`, Python menukar integer <InlineMath math="2" /> kepada float <InlineMath math="2.0" />. Jika kamu memanggil `float()` tanpa argumen, Python memberikan nilai lalai <InlineMath math="0.0" />.
+
+### Pembina int
+
+Pembina `int()` menukar float terhingga kepada integer dengan **memangkas ke arah sifar**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "int_constructor.py",
+      code: `>>> int(2.1)
+2
+
+>>> int(2.9)
+2
+
+>>> int(-2.9)
+-2`
+    }
+  ]}
+/>
+
+`int()` tidak membundarkan kepada integer terdekat. Kedua-dua contoh positif menjadi <InlineMath math="2" />, manakala `int(-2.9)` menjadi <InlineMath math="-2" /> kerana pemangkasan sentiasa bergerak ke arah sifar.
+
+### Pembina complex
+
+Pembina `complex()` mencipta nombor kompleks daripada **satu atau dua nombor nyata**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "complex_constructor.py",
+      code: `>>> complex(2.)
+(2+0j)
+
+>>> complex(0., 2.)
+2j`
+    }
+  ]}
+/>
+
+`complex(2.)` mencipta nombor kompleks dengan bahagian nyata <InlineMath math="2" /> dan bahagian khayalan <InlineMath math="0" />. Sementara itu, `complex(0., 2.)` mencipta nombor khayalan tulen <InlineMath math="2j" />.
+
+Bandingkan tangga ungu dengan garis kelabu <InlineMath math="y=x" />. Untuk nombor positif, `int()` membuang bahagian perpuluhan, jadi hasilnya berada di bawah garis itu, contohnya `int(2.9)` menjadi `2`. Untuk nombor negatif pula, hasilnya berada di atas garis, kerana `int(-2.9)` menjadi `-2`, bukan `-3`. Jadi `int()` sentiasa memangkas ke arah sifar, dan anak tangga di sekitar sifar lebih lebar daripada yang lain.
+
+<MathVisual
+  title={<><code>int()</code> memangkas ke arah sifar</>}
+  description={<>Tangga ungu ialah <code>int(x)</code>, dan garis kelabu ialah garis identiti. Titik magenta menandakan <code>int(2.9)</code> dan <code>int(-2.9)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "identity", kind: "segment", from: { x: -3.5, y: -3.5 }, to: { x: 3.5, y: 3.5 }, appearance: "reference" },
+      { id: "step-a", kind: "segment", from: { x: -1, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "step-b", kind: "segment", from: { x: 1, y: 1 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "segment", from: { x: 2, y: 2 }, to: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "step-d", kind: "segment", from: { x: 3, y: 3 }, to: { x: 3.5, y: 3 }, appearance: "secondary" },
+      { id: "step-e", kind: "segment", from: { x: -2, y: -1 }, to: { x: -1, y: -1 }, appearance: "secondary" },
+      { id: "step-f", kind: "segment", from: { x: -3, y: -2 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "step-g", kind: "segment", from: { x: -3.5, y: -3 }, to: { x: -3, y: -3 }, appearance: "secondary" },
+      { id: "positive", kind: "point", at: { x: 2.9, y: 2 }, appearance: "answer" },
+      { id: "negative", kind: "point", at: { x: -2.9, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "identity", objectId: "identity", at: { x: 3.5, y: 3.5 }, placement: "above-left" },
+      { key: "step", objectId: "step-d", at: { x: 3.5, y: 3 }, placement: "right" },
+      { key: "positive", objectId: "positive", at: { x: 2.9, y: 2 }, placement: "below-right" },
+      { key: "negative", objectId: "negative", at: { x: -2.9, y: -2 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    "identity": <InlineMath math="y=x" />,
+    "step": "int(x)",
+    "positive": "int(2.9) = 2",
+    "negative": "int(-2.9) = -2",
+  }}
+/>
+
+## Jadual Ringkasan Jenis Data Nombor
+
+Jadual ini mengumpulkan **tiga jenis nombor** bersama contoh dan penerangan ringkas, jadi kamu boleh menyemak sesuatu jenis di satu tempat sahaja.
+
+| Kategori | Jenis | Contoh | Penerangan |
+|----------|------|----------|-------------|
+| **Integer** | `int` | <InlineMath math="-2, -1, 0, 1, 2" /> dan <InlineMath math="+1, +2, +3" /> | Nombor bulat, boleh guna garis bawah supaya lebih jelas |
+| **Titik Apungan** | `float` | <InlineMath math="-1.2, 3.85, +7.01" /> dan <InlineMath math="-.21, .01, 2." /> | Nombor perpuluhan, menyokong tatatanda saintifik dengan <InlineMath math="e" /> atau <InlineMath math="E" /> |
+| **Kompleks** | `complex` | <InlineMath math="2 + 3j" /> dan <InlineMath math="4.5 - 2.1j" /> | Nombor kompleks dengan <InlineMath math="j" /> sebagai unit khayalan |

@@ -1,23 +1,28 @@
-Zähle alle Dreiecke und **ziehe die Dreiecke ab, die eine Seite des Achtecks benutzen**. Teile diese nach der Anzahl der benutzten Achteckseiten auf, damit keines doppelt gezählt wird.
+Es gibt zwei Verbote: Das Komitee darf nicht nur aus einem Geschlecht bestehen, und Andi darf nicht mit Budi zusammen sein. **Die Reihenfolge der Mitglieder spielt keine Rolle**, also rechnest du mit Kombinationen. Der Plan: Zähle die gemischten Komitees und entferne dann die gemischten Komitees, in denen Andi und Budi beide sitzen.
 
-# Alle Dreiecke
+# Gemischte Komitees
 
-**Keine drei Ecken** eines regelmäßigen Achtecks **liegen auf einer Geraden**, also bildet jede Wahl von drei Ecken ein Dreieck.
+Aus <InlineMath math="9" /> Schülern gibt es <InlineMath math="\binom94=126" /> Komitees mit vier Personen. Entferne **die Komitees mit nur einem Geschlecht**, also die reinen Jungen- und Mädchenkomitees.
 
-<BlockMath math="\binom83=\frac{8\cdot7\cdot6}{3\cdot2\cdot1}=56" />
+<BlockMath math="\begin{aligned}
+\binom94-\binom54-\binom44&=126-5-1=120
+\end{aligned}" />
 
-# Dreiecke mit einer Achteckseite
+# Komitees mit Andi und Budi
 
-Ein Dreieck mit **zwei Achteckseiten** entsteht aus drei aufeinanderfolgenden Ecken. Für die mittlere Ecke gibt es 8 Möglichkeiten, also gibt es 8 solche Dreiecke.
+Sind Andi und Budi beide dabei, kommen die anderen zwei Mitglieder aus den übrigen <InlineMath math="7" /> Schülern: <InlineMath math="\binom72=21" /> Komitees. Davon bestehen aber <InlineMath math="\binom32=3" /> nur aus Jungen, nämlich Andi, Budi und zwei der drei anderen Jungen. Diese drei Komitees **wurden schon im ersten Schritt entfernt**, also entfernst du sie nicht ein zweites Mal. Gemischte Komitees mit Andi und Budi gibt es <InlineMath math="21-3=18" />.
 
-Ein Dreieck mit **genau einer Achteckseite** entsteht aus einer Achteckseite und einer dritten Ecke, die keinem der beiden Endpunkte benachbart ist. Für jede Seite scheiden die beiden Endpunkte und ihre beiden anderen Nachbarn aus, es bleiben also <InlineMath math="8-4=4" /> Ecken.
+# Das Endergebnis
 
-<BlockMath math="8\times4=32" />
+<BlockMath math="120-18=102" />
 
-Die Anzahl der Dreiecke ohne Achteckseite ist
+Prüfe das in der anderen Reihenfolge: **Entferne zuerst das Paar Andi und Budi**. Komitees ohne das Paar Andi und Budi gibt es <InlineMath math="126-21=105" />. Darunter sind <InlineMath math="5-3=2" /> reine Jungenkomitees ohne die beiden und <InlineMath math="1" /> reines Mädchenkomitee. Also <InlineMath math="105-2-1=102" />, dasselbe Ergebnis.
 
-<BlockMath math="56-8-32=16" />
+# Fallen in den anderen Antworten
 
-Der Wert 56 zählt alle Dreiecke. Der Wert 48 entfernt nur die Dreiecke mit zwei Achteckseiten. Der Wert 40 zählt die Dreiecke mit mindestens einer Achteckseite, also das Gegenteil des Gesuchten. Der Wert 32 zählt die Dreiecke mit genau einer Achteckseite.
+- <InlineMath math="120" /> vergisst das Verbot für Andi und Budi.
+- <InlineMath math="108" /> entfernt nur die Komitees mit Andi und Budi, deren andere zwei Mitglieder ein Junge und ein Mädchen sind, also <InlineMath math="3\times4=12" /> Komitees, und **vergisst die Komitees aus Andi, Budi und zwei Mädchen**, das sind <InlineMath math="\binom42=6" />.
+- <InlineMath math="105" /> beachtet das Verbot für Andi und Budi, vergisst aber, dass mindestens ein Junge und ein Mädchen dabei sein müssen.
+- <InlineMath math="99" /> zieht alle <InlineMath math="21" /> Komitees mit Andi und Budi ab, auch die drei reinen Jungenkomitees, die schon entfernt waren.
 
-Es lassen sich also **16** solche Dreiecke bilden.
+Es gibt also <InlineMath math="102" /> Möglichkeiten, das Komitee zu bilden.

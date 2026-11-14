@@ -1,0 +1,41 @@
+# Menulis kedua-dua koloni sebagai fungsi eksponen
+
+Soalan ini bertanya kiraan tepat pada jam yang pertama apabila koloni P lebih banyak daripada koloni Q. Katakan <InlineMath math="t" /> ialah bilangan jam sejak 5:00 pagi. Koloni P didarab dengan <InlineMath math="2" /> setiap <InlineMath math="2" /> jam dan koloni Q didarab dengan <InlineMath math="\tfrac{1}{2}" /> setiap <InlineMath math="3" /> jam, jadi
+
+<BlockMath math="P(t)=500\cdot2^{\frac{t}{2}}, \qquad Q(t)=32{,}000\cdot2^{-\frac{t}{3}}" />
+
+Kedua-dua koloni berubah serentak, satu naik dan satu turun. **Bandingkan kedua-duanya sekali gus**, jangan mengira setiap satu sehingga mencecah bilangan awal koloni yang lain.
+
+# Bila P memintas Q
+
+Ketaksamaan <InlineMath math="P(t)>Q(t)" /> diselesaikan dengan menulis semuanya dalam asas <InlineMath math="2" />. Perhatikan bahawa <InlineMath math="32{,}000\div500=64=2^{6}" />:
+
+<BlockMath math="\begin{aligned}
+500\cdot2^{\frac{t}{2}}&>32{,}000\cdot2^{-\frac{t}{3}} \\
+2^{\frac{t}{2}}\cdot2^{\frac{t}{3}}&>64 \\
+2^{\frac{5t}{6}}&>2^{6} \\
+\frac{5t}{6}&>6 \\
+t&>7.2
+\end{aligned}" />
+
+Langkah dari baris ketiga ke baris keempat sah kerana <InlineMath math="2^{x}" /> sentiasa menokok, jadi indeks yang lebih besar memberi nilai yang lebih besar. Kedua-dua koloni sama banyak tepat pada <InlineMath math="t=7.2" /> jam, iaitu pukul 12:12 tengah hari. **Tiada kiraan pada pukul 12:12**, kerana kiraan hanya dibuat tepat pada jam. Nombor bulat terkecil yang melebihi <InlineMath math="7.2" /> ialah <InlineMath math="8" />, jadi jawapannya pukul 1:00 petang (13.00).
+
+# Semak pada dua kiraan
+
+<BlockMath math="\begin{aligned}
+t=7&: \quad \tfrac{5\cdot7}{6}=\tfrac{35}{6}<6, \text{ maka } P(7)\lt Q(7) \\
+t=8&: \quad \tfrac{5\cdot8}{6}=\tfrac{40}{6}>6, \text{ maka } P(8)>Q(8)
+\end{aligned}" />
+
+Dalam angka, <InlineMath math="P(8)=500\cdot2^{4}=8{,}000" /> sel manakala <InlineMath math="Q(8)\approx5{,}040" /> sel. **Pada pukul 12:00 tengah hari koloni Q masih mendahului**, kira-kira <InlineMath math="6{,}350" /> sel berbanding <InlineMath math="5{,}657" /> sel.
+
+# Kenapa pilihan lain salah
+
+Pilihan yang salah muncul apabila **salah satu perubahan atau syarat kiraan tepat pada jam dilupakan**.
+
+- Pukul 12.00 muncul jika <InlineMath math="7.2" /> dibundarkan ke bawah. Pada kiraan itu koloni Q masih lebih banyak.
+- Pukul 12.12 ialah saat kedua-dua koloni sama banyak, bukan waktu kiraan. Pada saat itu P belum lebih banyak, baru sama.
+- Pukul 17.00 muncul jika susutan Q diabaikan: <InlineMath math="500\cdot2^{\frac{t}{2}}=32{,}000" /> memberi <InlineMath math="t=12" />.
+- Pukul 23.00 muncul jika pertumbuhan P diabaikan: <InlineMath math="32{,}000\cdot2^{-\frac{t}{3}}=500" /> memberi <InlineMath math="t=18" />.
+
+Jadi, koloni P pertama kali dicatat lebih banyak daripada koloni Q pada kiraan pukul 13.00.

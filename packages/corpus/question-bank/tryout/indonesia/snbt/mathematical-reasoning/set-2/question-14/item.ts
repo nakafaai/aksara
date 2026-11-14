@@ -1,12 +1,17 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "money-changer",
+  stimulus: "service-counters",
   versions: {
     id: {
-      kind: "numericEntry",
-      unit: "ribu rupiah",
-      value: "671",
+      kind: "choice",
+      options: [
+        { correct: false, label: "orang nomor $$29$$" },
+        { correct: true, label: "orang nomor $$42$$" },
+        { correct: false, label: "orang nomor $$45$$" },
+        { correct: false, label: "orang nomor $$46$$" },
+        { correct: false, label: "orang nomor $$50$$" },
+      ],
     },
   },
 };

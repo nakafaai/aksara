@@ -1,13 +1,42 @@
-Rina **verkauft** jetzt Fremdwährung, es gilt also der Ankaufskurs, die Rupiah, die die Kundschaft erhält. Die Servicegebühr wird vom ausgezahlten Betrag abgezogen.
+Gesucht ist die erste Person, die nach 08:00 Uhr kommt und sofort bedient wird. Die Personen <InlineMath math="1" /> und <InlineMath math="2" /> werden zwar auch sofort bedient, sie kamen aber um 08:00 Uhr und zählen deshalb nicht. Schau dir an, **wie schnell die Schlange schrumpft**, such das Muster der Wartezeiten und bestimm dann, wann die Wartezeit zum ersten Mal null wird.
 
-# Wert von 60 SGD
+# Wie schnell die Schlange schrumpft
 
-<BlockMath math="60\cdot11\,600=696\,000" />
+Solange beide Schalter beschäftigt sind, beginnt Schalter A in je <InlineMath math="12" /> Minuten <InlineMath math="12:4=3" /> Bedienungen und Schalter B <InlineMath math="12:6=2" />. In denselben <InlineMath math="12" /> Minuten kommen <InlineMath math="12:3=4" /> Personen an. Also **wird die Schlange alle <InlineMath math="12" /> Minuten um eine Person kürzer**, und irgendwann ist sie leer.
 
-# Die Servicegebühr abziehen
+# Das Muster der Wartezeiten
 
-<BlockMath math="696\,000-25\,000=671\,000" />
+Mit der Regel des zuerst freien Schalters beginnen die Personen <InlineMath math="11" /> bis <InlineMath math="15" /> um 08:24, 08:24, 08:28, 08:30 und 08:32 Uhr. Diese Personen kamen um 08:03, 08:06, 08:09, 08:12 und 08:15 Uhr an, ihre Wartezeiten sind also <InlineMath math="21" />, <InlineMath math="18" />, <InlineMath math="19" />, <InlineMath math="18" /> und <InlineMath math="17" /> Minuten.
 
-In Tausend Rupiah sind das 671. Der Ankaufskurs liegt unter dem Verkaufskurs, also **erhält die Kundschaft weniger als den Kaufpreis**.
+Fünf Personen später ist der Plan der Schalter um genau eine Runde von <InlineMath math="12" /> Minuten weiter, die Ankünfte aber um <InlineMath math="5\cdot 3=15" /> Minuten. Also **sinkt die Wartezeit alle fünf Nummern um drei Minuten**.
 
-Rina erhält also **671 Tausend Rupiah**.
+<BlockMath math="\text{Wartezeit}(n+5)=\text{Wartezeit}(n)+12-15=\text{Wartezeit}(n)-3" />
+
+# Wann die Wartezeit zum ersten Mal null wird
+
+Dieses Muster gilt, solange beide Schalter beschäftigt sind, also bis jemand nicht mehr warten muss. Zähl deshalb für jede Position die Runden, bis die Wartezeit aufgebraucht ist, und **nimm die kleinste Nummer**.
+
+| Person | Erste Wartezeit | Runden bis null | Nummer ohne Wartezeit |
+| --- | --- | --- | --- |
+| <InlineMath math="11" /> | <InlineMath math="21" /> | <InlineMath math="7" /> | <InlineMath math="46" /> |
+| <InlineMath math="12" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="42" /> |
+| <InlineMath math="13" /> | <InlineMath math="19" /> | <InlineMath math="7" /> | <InlineMath math="48" /> |
+| <InlineMath math="14" /> | <InlineMath math="18" /> | <InlineMath math="6" /> | <InlineMath math="44" /> |
+| <InlineMath math="15" /> | <InlineMath math="17" /> | <InlineMath math="6" /> | <InlineMath math="45" /> |
+
+Die kleinste Nummer ist <InlineMath math="42" />, denn <InlineMath math="12+5\cdot 6=42" /> und <InlineMath math="18-3\cdot 6=0" />.
+
+# Direkte Kontrolle
+
+Person <InlineMath math="42" /> kommt <InlineMath math="3\cdot(42-10)=96" /> Minuten nach 08:00 Uhr an, also um 09:36 Uhr. Schalter B beginnt um 09:30 Uhr mit Person <InlineMath math="39" />, also **ist Schalter B genau um 09:36 Uhr frei**, wenn Person <InlineMath math="42" /> ankommt. Person <InlineMath math="41" /> wartet noch <InlineMath math="21-3\cdot 6=3" /> Minuten, vor Nummer <InlineMath math="42" /> wird also niemand sofort bedient.
+
+# Die falschen Optionen
+
+Jede andere Option entsteht, wenn du **das Muster zu schnell errätst**.
+
+- Nummer <InlineMath math="29" /> entsteht, wenn sich die Personen zwischen Schalter A und B abwechseln.
+- Nummer <InlineMath math="45" /> entsteht, wenn du nur den Plan von Schalter A verfolgst.
+- Nummer <InlineMath math="46" /> entsteht, wenn du das Muster nur auf Person <InlineMath math="11" /> mit der längsten Wartezeit anwendest.
+- Nummer <InlineMath math="50" /> entsteht, wenn eine Schlange von <InlineMath math="10" /> Personen alle <InlineMath math="12" /> Minuten um eine kürzer wird und nach <InlineMath math="120" /> Minuten leer ist, obwohl zwei dieser Personen schon um 08:00 Uhr bedient werden.
+
+Die erste Person, die nach 08:00 Uhr kommt und sofort bedient wird, ist also Person <InlineMath math="42" />.

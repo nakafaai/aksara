@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "conclusion",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
       columns: ["Yes", "No"],
@@ -15,20 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The Arabian oryx was bred in captivity and returned to its homeland.",
-        },
-        {
-          column: 1,
-          label: "Elephants in captivity may repeatedly pace the same route.",
-        },
-        {
-          column: 2,
-          label: "Most animals in most zoos belong to endangered species.",
+            "The badge records alone cannot show whether the conversations lost after the move were about work.",
         },
         {
           column: 2,
           label:
-            "Large, well-designed enclosures fully meet the needs of polar bears.",
+            "Employees at the two companies communicated less in total after the move than before it.",
+        },
+        {
+          column: 2,
+          label:
+            "The move to an open plan made the employees' work worse at both companies.",
+        },
+        {
+          column: 2,
+          label:
+            "Moving staff into an open plan reduces face-to-face interaction at most companies that try it.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "museum",
+  stimulus: "bakau",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Banyak pengunjung dalam satu minggu naik lebih dari $$5\\%$$.",
+            "Secara keseluruhan, kurang dari sepertiga bibit yang ditanam di keempat desa masih hidup pada 2025.",
+        },
+        {
+          column: 2,
+          label:
+            "Desa yang menanam bibit paling rapat per kilometer pantai juga memiliki bibit hidup per kilometer pantai paling sedikit.",
+        },
+        {
+          column: 2,
+          label:
+            "Penurunan laju mundur pantai Pasirkuning kurang dari separuh laju mundurnya sebelum penanaman.",
         },
         {
           column: 1,
           label:
-            "Jumlah penurunan pengunjung pada hari-hari selain Rabu lebih dari $$150$$ orang per minggu.",
-        },
-        {
-          column: 2,
-          label:
-            "Pendapatan tiket mingguan pada bulan kedua lebih besar daripada pada bulan pertama.",
-        },
-        {
-          column: 2,
-          label:
-            "Pada bulan kedua, pengunjung hari Rabu lebih banyak daripada pengunjung hari Sabtu.",
+            "Lebih dari separuh bibit yang mati di keempat desa adalah bibit yang ditanam di Karangsari.",
         },
       ],
     },

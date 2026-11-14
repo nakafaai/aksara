@@ -1,21 +1,25 @@
-Mulailah dari **pasangan Q dan R**, karena keduanya memerlukan satu hari penuh. Hari Sabtu sudah dipakai P, jadi Q dan R tampil pada hari Jumat atau Minggu. Hari yang tersisa, selain Sabtu dan hari Q serta R, diisi dua penampil lain.
+Soal ini hanya menyebut kegiatan untuk tiga sesi pagi. Sebuah daftar **mungkin** jika tiga sesi siang masih bisa diisi dengan tiga kegiatan sisanya sehingga keenam syarat terpenuhi. Daftar itu tidak mungkin jika setiap cara mengisi sesi siang selalu melanggar paling sedikit satu syarat.
 
-Sekarang uji apakah S bisa tampil pada hari Sabtu. Jika S tampil Sabtu malam, P tampil Sabtu sore, dan Sabtu penuh. Hari yang tersisa untuk T dan U hanya satu hari, sehingga keduanya tampil pada hari yang sama. Ini melanggar syarat 4, karena T harus tampil pada hari yang lebih awal daripada U. Jadi, **S tidak mungkin tampil pada hari Sabtu**.
+Cara memeriksanya: letakkan dulu tiga kegiatan pagi, lalu pakai syarat yang paling mengikat. Syarat 1 mengikat batik dan gamelan pada dua sesi yang berurutan. Ingat, sesi yang persis sebelum Selasa pagi adalah Senin siang, dan sesi yang persis sebelum Rabu pagi adalah Selasa siang. Syarat 2 dan 3 membatasi hari untuk wayang.
 
-Dengan cara yang sama, semua jadwal yang mungkin dapat disusun. S tampil malam pada hari Jumat atau Minggu, sedangkan T dan U menempati satu tempat di Sabtu dan satu tempat di hari lain dengan T lebih awal:
+Daftar wayang, gamelan, dongeng bisa dilengkapi.
 
-| Kelompok | Jumat | Sabtu | Minggu |
-| --- | --- | --- | --- |
-| A | Q dan R | P dan T | U sore, S malam |
-| B | T sore, S malam | P dan U | Q dan R |
+- Gamelan di Selasa pagi, jadi menurut syarat 1 batik di Senin siang.
+- Angklung dan kuliner mengisi Selasa siang dan Rabu siang.
+- Syarat 2 terpenuhi karena gamelan di Selasa, sedangkan wayang di Senin. Syarat 3 terpenuhi karena Senin lebih awal daripada Rabu, hari dongeng. Dongeng di sesi pagi, jadi syarat 4 terpenuhi. Kuliner di sesi siang, jadi syarat 5 tidak menuntut apa pun. Batik di Senin, lebih awal daripada hari kuliner, jadi syarat 6 terpenuhi.
 
-Pada kelompok A, T tampil Sabtu dan U Minggu. Pada kelompok B, T tampil Jumat dan U Sabtu. Pada setiap kelompok, Q dan R dapat bertukar sesi, begitu pula P dengan T atau U, sehingga ada <InlineMath math="8" /> jadwal.
+Dari daftar ini ada dua jadwal lengkap yang sah.
 
-Pilihan lain tidak pasti benar:
+| Jadwal | Senin pagi | Senin siang | Selasa pagi | Selasa siang | Rabu pagi | Rabu siang |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| II | wayang | batik | gamelan | kuliner | dongeng | angklung |
 
-- T tampil Sabtu hanya pada kelompok A.
-- Q tampil sore pada sebagian jadwal dan malam pada jadwal lain.
-- P dapat tampil sore atau malam.
-- U tampil Minggu hanya pada kelompok A.
+Keempat daftar lain gagal, masing-masing karena satu syarat yang mudah terlewat.
 
-Jadi, pernyataan yang pasti benar adalah S tidak tampil pada hari Sabtu.
+- Angklung, gamelan, dongeng gagal karena wayang tidak kebagian tempat. Gamelan di Selasa pagi membuat batik di Senin siang, sehingga hari Senin penuh. Wayang tidak boleh di Selasa karena ada gamelan (syarat 2), dan tidak boleh di Rabu karena harinya harus lebih awal daripada hari dongeng (syarat 3).
+- Batik, kuliner, dongeng gagal karena syarat 5. Batik di Senin pagi membuat gamelan di Senin siang. Kuliner ada di sesi pagi, jadi wayang wajib di Senin, padahal Senin sudah penuh.
+- Wayang, angklung, dongeng gagal karena syarat 1. Sesi yang masih kosong adalah Senin siang, Selasa siang, dan Rabu siang. Tidak ada dua sesi kosong yang berurutan, karena di antara Senin siang dan Selasa siang masih ada Selasa pagi. Daftar ini menjebak jika "tepat satu sesi sebelum" dibaca sebagai sesi yang sama pada hari sebelumnya.
+- Wayang, dongeng, batik gagal karena syarat 6. Batik di Rabu pagi membuat gamelan di Rabu siang, sehingga kuliner harus diadakan pada hari setelah Rabu, padahal hari itu tidak ada.
+
+Jadi, daftar kegiatan sesi pagi yang mungkin adalah wayang pada hari Senin, gamelan pada hari Selasa, dan dongeng pada hari Rabu.

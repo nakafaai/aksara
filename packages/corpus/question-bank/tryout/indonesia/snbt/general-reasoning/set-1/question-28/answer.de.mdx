@@ -1,22 +1,30 @@
-Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Schreib die Kosten jedes Tarifs als Funktion der Nutzung <InlineMath math="u" /> GB. Zusatzkosten fallen erst an, **wenn das enthaltene Datenvolumen aufgebraucht ist**.
+Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Zwei Regeln machen die Aufgabe knifflig. Erstens wird **die Zeit auf volle Stunden aufgerundet**, also kosten <InlineMath math="3" /> Stunden <InlineMath math="30" /> Minuten so viel wie <InlineMath math="4" /> Stunden. Zweitens hat Raum Q eine Tagesobergrenze von <InlineMath math="\text{Rp}72{.}000" />. Wandle deshalb jede Nutzungsdauer zuerst in berechnete Stunden um und vergleiche erst dann die Kosten.
 
-<BlockMath math="\begin{aligned}
-A(u) &= 50{.}000+6{.}000(u-10) &&\text{für } u>10 \\
-B(u) &= 80{.}000 &&\text{für } u\le 20 \\
-B(u) &= 80{.}000+4{.}000(u-20) &&\text{für } u>20
-\end{aligned}" />
+Sei <InlineMath math="c" /> die aufgerundete Dauer. In Tausend Rupiah betragen die Kosten
 
-**Aussage 1** ist falsch. Für <InlineMath math="15" /> GB gilt <InlineMath math="A(15)=50{.}000+5\times6{.}000=80{.}000" /> und <InlineMath math="B(15)=80{.}000" />. Die Kosten sind gleich, Tarif A ist also nicht günstiger.
+<BlockMath math="P=\begin{cases} 40, & c\le4 \\ 40+8(c-4), & c>4 \end{cases} \qquad Q=\min(10c,\ 72)" />
 
-**Aussage 2** ist richtig. <InlineMath math="A(12)=50{.}000+2\times6{.}000=62{.}000" /> ist günstiger als <InlineMath math="80{.}000" />.
+Das Zeichen <InlineMath math="\min" /> bedeutet den kleineren der beiden Werte. Die Tabelle enthält alle Werte, die du brauchst (in Tausend Rupiah):
 
-**Aussage 3** ist falsch. <InlineMath math="A(25)=50{.}000+15\times6{.}000=140{.}000" /> und <InlineMath math="B(25)=80{.}000+5\times4{.}000=100{.}000" />. Der Unterschied beträgt <InlineMath math="\text{Rp}40{.}000" />.
+| <InlineMath math="c" /> (Stunden) | Raum P | Raum Q |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="40" /> | <InlineMath math="10" /> |
+| <InlineMath math="2" /> | <InlineMath math="40" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="40" /> | <InlineMath math="30" /> |
+| <InlineMath math="4" /> | <InlineMath math="40" /> | <InlineMath math="40" /> |
+| <InlineMath math="5" /> | <InlineMath math="48" /> | <InlineMath math="50" /> |
+| <InlineMath math="6" /> | <InlineMath math="56" /> | <InlineMath math="60" /> |
+| <InlineMath math="7" /> | <InlineMath math="64" /> | <InlineMath math="70" /> |
+| <InlineMath math="8" /> | <InlineMath math="72" /> | <InlineMath math="72" /> |
+| <InlineMath math="9" /> | <InlineMath math="80" /> | <InlineMath math="72" /> |
+| <InlineMath math="10" /> | <InlineMath math="88" /> | <InlineMath math="72" /> |
 
-**Aussage 4** ist richtig. Prüfe zwei Nutzungsbereiche:
+**Aussage 1** ist Benar. Jede Nutzung über <InlineMath math="8" /> Stunden wird mit mindestens <InlineMath math="9" /> Stunden berechnet. Raum P kostet dann mindestens <InlineMath math="40+8\times5=80" /> Tausend und steigt weiter, während Raum Q bei <InlineMath math="72" /> Tausend gedeckelt bleibt. Vergisst du die Obergrenze, scheint Q <InlineMath math="90" /> Tausend oder mehr zu kosten, und du hältst die Aussage fälschlich für falsch.
 
-- Für <InlineMath math="16\le u\le 20" /> ist <InlineMath math="A(u)" /> mindestens <InlineMath math="A(16)=86{.}000" />, während <InlineMath math="B(u)=80{.}000" /> ist.
-- Für <InlineMath math="u>20" /> ist der Unterschied <InlineMath math="A(u)-B(u)=(6{.}000u-10{.}000)-4{.}000u=2{.}000u-10{.}000" />, und das ist positiv, weil <InlineMath math="u>5" /> gilt.
+**Aussage 2** ist Salah. Eine Nutzung von <InlineMath math="5" /> Stunden <InlineMath math="10" /> Minuten wird als <InlineMath math="6" /> Stunden berechnet und kostet <InlineMath math="40+8\times2=56" /> Tausend, also nicht weniger als <InlineMath math="50" /> Tausend. Ohne Aufrunden sieht es nach knapp über <InlineMath math="48" /> Tausend aus, und die Aussage wirkt richtig.
 
-In beiden Bereichen ist Tarif B günstiger.
+**Aussage 3** ist Salah. Ein Gegenbeispiel genügt. <InlineMath math="3" /> Stunden <InlineMath math="30" /> Minuten sind weniger als <InlineMath math="4" /> Stunden, werden aber als <InlineMath math="4" /> Stunden berechnet. Raum Q kostet dann <InlineMath math="40" /> Tausend, genauso viel wie Raum P, also ist Q nicht günstiger. Q ist günstiger bei höchstens <InlineMath math="3" /> Stunden, aber nicht bei jeder Nutzung unter <InlineMath math="4" /> Stunden.
 
-Die Aussagen 2 und 4 sind also richtig, die Aussagen 1 und 3 falsch.
+**Aussage 4** ist Benar. Eine Nutzung zwischen <InlineMath math="7" /> und <InlineMath math="8" /> Stunden, etwa <InlineMath math="7" /> Stunden <InlineMath math="30" /> Minuten, wird als <InlineMath math="8" /> Stunden berechnet. Raum P kostet <InlineMath math="40+8\times4=72" /> Tausend, und die <InlineMath math="80" /> Tausend von Raum Q werden durch die Obergrenze auf <InlineMath math="72" /> Tausend gekappt. Beide sind gleich. Ohne Aufrunden und Obergrenze stimmen die Kosten nur bei genau <InlineMath math="4" /> Stunden überein, deshalb wirkt die Aussage falsch.
+
+Die Aussagen 1 und 4 sind also Benar, die Aussagen 2 und 3 Salah.

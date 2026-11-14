@@ -1,17 +1,35 @@
-Urutkan kelima bilangan sebagai <InlineMath math="a<b<c<d<e" />. Median lima data adalah data ketiga, jadi <InlineMath math="c=10" />. Rata-rata 12 berarti **jumlah kelima bilangan tetap 60**.
+Nilai <InlineMath math="(g\circ f)^{-1}(8)" /> adalah **bilangan <InlineMath math="x" /> yang dikirim <InlineMath math="g\circ f" /> ke <InlineMath math="8" />**. Lambang pangkat <InlineMath math="-1" /> di sini berarti invers fungsi, jadi kamu mencari masukan, bukan kebalikan sebuah bilangan. Rencananya: buka langkah <InlineMath math="g" /> dulu, lalu buka langkah <InlineMath math="f" />.
 
-<BlockMath math="a+b+10+d+e=60\quad\Rightarrow\quad e=50-a-b-d" />
+# Menentukan urutan membuka fungsi
 
-# Memperkecil bilangan lain
+Fungsi <InlineMath math="g\circ f" /> mengerjakan <InlineMath math="f" /> lebih dulu, lalu <InlineMath math="g" />. Untuk kembali ke masukan, langkah terakhir harus dibuka lebih dulu. Jadi **invers komposisi membalik urutannya**.
 
-Agar <InlineMath math="e" /> sebesar mungkin, ketiga bilangan lain harus sekecil mungkin, tetapi tetap memenuhi syarat. Bilangan bulat positif yang berbeda dan kurang dari 10 paling kecil adalah <InlineMath math="a=1" /> dan <InlineMath math="b=2" />. Bilangan <InlineMath math="d" /> harus **lebih besar daripada median** dan berbeda darinya, jadi nilai terkecilnya <InlineMath math="d=11" />.
+<BlockMath math="(g\circ f)^{-1}(8)=f^{-1}\left(g^{-1}(8)\right)" />
 
-<BlockMath math="e=50-1-2-11=36" />
+# Membuka fungsi luar
 
-Cek: data <InlineMath math="1,2,10,11,36" /> berbeda semua, mediannya 10, dan rata-ratanya <InlineMath math="\tfrac{60}{5}=12" />.
+Cari bilangan <InlineMath math="y" /> dengan <InlineMath math="g(y)=8" />. Bilangan inilah yang **harus menjadi nilai <InlineMath math="f(x)" />**.
+
+<BlockMath math="3y-1=8\quad\Rightarrow\quad y=3" />
+
+# Membuka fungsi dalam
+
+Sekarang cari <InlineMath math="x" /> dengan <InlineMath math="f(x)=3" />. Kalikan kedua ruas dengan <InlineMath math="x-4" />, yang **tidak nol karena <InlineMath math="x\neq4" />**.
+
+<BlockMath math="\begin{aligned}
+\frac{2x+3}{x-4}&=3\\
+2x+3&=3x-12\\
+x&=15
+\end{aligned}" />
+
+Nilai <InlineMath math="x=15" /> memenuhi syarat <InlineMath math="x\neq4" />.
+
+# Memeriksa hasil
+
+Masukkan <InlineMath math="15" /> ke <InlineMath math="g\circ f" />: <InlineMath math="f(15)=\frac{33}{11}=3" />, lalu <InlineMath math="g(3)=9-1=8" />. **Hasilnya kembali ke <InlineMath math="8" />**, jadi <InlineMath math="15" /> memang masukan yang dicari.
 
 # Pilihan yang keliru
 
-Nilai 37 memakai <InlineMath math="d=10" />, padahal bilangannya harus berbeda. Nilai 38 memakai <InlineMath math="1,1,10,10" />, yang melanggar syarat berbeda dua kali. Nilai 34 memulai dari <InlineMath math="a=2" /> dan <InlineMath math="b=3" />, padahal 1 juga bilangan bulat positif. Nilai 46 melupakan median 10 dalam jumlah, yaitu dari <InlineMath math="60-1-2-11" />.
+Pilihan <InlineMath math="\frac{53}{4}" /> adalah <InlineMath math="(g\circ f)(8)" />, yaitu lupa mencari invers: <InlineMath math="f(8)=\frac{19}{4}" /> dan <InlineMath math="g\left(\frac{19}{4}\right)=\frac{53}{4}" />. Pilihan <InlineMath math="\frac{4}{53}" /> membaca <InlineMath math="(g\circ f)^{-1}(8)" /> sebagai **kebalikan <InlineMath math="\frac{1}{(g\circ f)(8)}" />**. Pilihan <InlineMath math="\frac{41}{18}" /> memakai urutan yang salah, <InlineMath math="g^{-1}\left(f^{-1}(8)\right)" />, dengan <InlineMath math="f^{-1}(8)=\frac{35}{6}" />. Pilihan <InlineMath math="-\frac19" /> membuka <InlineMath math="g" /> dengan benar, tetapi membaca <InlineMath math="f^{-1}(3)" /> sebagai <InlineMath math="\frac{1}{f(3)}=\frac{3-4}{9}" />.
 
-Jadi, nilai terbesar yang mungkin dari bilangan terbesar adalah **36**.
+Jadi, nilai <InlineMath math="(g\circ f)^{-1}(8)" /> adalah <InlineMath math="15" />.

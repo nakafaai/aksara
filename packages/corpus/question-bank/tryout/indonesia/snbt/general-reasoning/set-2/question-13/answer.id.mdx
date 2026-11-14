@@ -1,19 +1,38 @@
-Negasi harus bernilai benar **tepat ketika pernyataan semula salah**. Pernyataan semula salah jika ada satu kendaraan saja yang melintas tetapi tidak memenuhi kedua syarat sekaligus.
+Kamu mencari kalimat yang selalu bernilai sama dengan pernyataan asli dalam setiap keadaan. Beri lambang pada keempat bagiannya.
 
-Kerjakan dalam dua langkah:
+- <InlineMath math="p" />: Rendi terlambat mengembalikan buku.
+- <InlineMath math="q" />: buku itu koleksi referensi.
+- <InlineMath math="r" />: Rendi membayar denda.
+- <InlineMath math="s" />: kartu anggota Rendi dibekukan.
 
-1. Negasi dari "semua kendaraan yang melintas memenuhi syarat" adalah "**ada** kendaraan yang melintas yang tidak memenuhi syarat".
-2. Syaratnya berbentuk "membayar tol **dan** memiliki kartu". Negasi konjungsi adalah disjungsi dari negasinya: "tidak membayar tol **atau** tidak memiliki kartu".
+Pernyataan aslinya adalah <InlineMath math="(p \wedge q) \Rightarrow (r \vee s)" />. Cara paling aman untuk membandingkan implikasi majemuk adalah **mengubah semuanya ke bentuk "atau"**, memakai aturan <InlineMath math="(A \Rightarrow B) \equiv (\neg A \vee B)" />. Ingkaran dari "<InlineMath math="p" /> dan <InlineMath math="q" />" adalah "tidak <InlineMath math="p" /> atau tidak <InlineMath math="q" />" (hukum De Morgan).
 
-<BlockMath math="\neg(p \wedge q) \equiv \neg p \vee \neg q" />
+<BlockMath math="\begin{aligned}
+(p \wedge q) \Rightarrow (r \vee s) &\equiv \neg(p \wedge q) \vee r \vee s \\
+&\equiv \neg p \vee \neg q \vee r \vee s
+\end{aligned}" />
 
-Hasilnya: ada kendaraan yang melintas di jalan itu yang tidak membayar tol atau tidak memiliki kartu elektronik.
+Bentuk ini berisi empat potongan yang dihubungkan "atau". Sebuah implikasi setara dengan aslinya kalau, setelah diubah ke bentuk "atau", isinya tepat keempat potongan itu. Dari sini muncul aturan praktis: setiap potongan yang dipindah melewati tanda panah **harus dinegasikan**.
 
-Pilihan lain keliru:
+Ubah setiap pilihan dengan cara yang sama.
 
-- Pilihan yang diawali "Semua kendaraan ... tidak membayar tol dan tidak memiliki kartu" tidak mengganti "semua" dengan "ada" dan salah menegasikan "dan".
-- Pilihan "Ada kendaraan ... tidak membayar tol dan tidak memiliki kartu" terlalu sempit. Kendaraan yang membayar tol tetapi tidak memiliki kartu sudah cukup untuk membuat pernyataan semula salah.
-- Kendaraan yang tidak melintas tidak dibahas oleh pernyataan semula.
-- "Tidak ada kendaraan ... yang membayar tol atau memiliki kartu" jauh lebih kuat daripada negasi.
+| Pilihan | Bentuk "atau" | Setara? |
+| --- | --- | --- |
+| Tidak bayar dan tidak dibekukan, maka tidak terlambat dan bukan referensi | <InlineMath math="r \vee s \vee (\neg p \wedge \neg q)" /> | Tidak |
+| Terlambat dan tidak bayar, maka bukan referensi atau dibekukan | <InlineMath math="\neg p \vee r \vee \neg q \vee s" /> | Ya |
+| Terlambat, referensi, dan bayar, maka dibekukan | <InlineMath math="\neg p \vee \neg q \vee \neg r \vee s" /> | Tidak |
+| Terlambat dan tidak bayar, maka referensi atau dibekukan | <InlineMath math="\neg p \vee r \vee q \vee s" /> | Tidak |
+| Tidak terlambat atau bukan referensi, maka tidak bayar dan tidak dibekukan | <InlineMath math="(p \wedge q) \vee (\neg r \wedge \neg s)" /> | Tidak |
 
-Jadi, negasinya adalah "Ada kendaraan yang melintas di jalan itu yang tidak membayar tol atau tidak memiliki kartu elektronik".
+Pilihan yang setara memindahkan <InlineMath math="q" /> ke kanan menjadi <InlineMath math="\neg q" />, dan memindahkan <InlineMath math="r" /> ke kiri menjadi <InlineMath math="\neg r" />. Keempat potongannya kembali utuh.
+
+Cek dengan satu keadaan. Misalkan Rendi terlambat, bukunya koleksi referensi, Rendi tidak membayar denda, dan kartunya tidak dibekukan. Pernyataan asli salah karena syaratnya terpenuhi tetapi akibatnya tidak terjadi. Pilihan yang setara juga salah, karena "terlambat dan tidak bayar" terpenuhi, sedangkan "bukan referensi atau dibekukan" tidak terjadi. Keduanya kompak.
+
+Setiap pilihan lain gagal di satu keadaan.
+
+- Pilihan "tidak bayar dan tidak dibekukan, maka tidak terlambat dan bukan referensi" keliru menerapkan De Morgan. Kontrapositif yang benar berakhir dengan "tidak terlambat atau bukan referensi". Kalau Rendi terlambat dengan buku biasa tanpa denda dan tanpa pembekuan, pernyataan asli benar, tetapi pilihan ini salah.
+- Pilihan "terlambat, referensi, dan bayar, maka dibekukan" memindahkan <InlineMath math="r" /> ke kiri tanpa negasi. Kalau Rendi terlambat dengan buku referensi lalu membayar denda tanpa pembekuan, pernyataan asli benar, tetapi pilihan ini salah.
+- Pilihan "terlambat dan tidak bayar, maka referensi atau dibekukan" memindahkan <InlineMath math="q" /> ke kanan tanpa negasi. Bedanya dengan pilihan yang setara hanya kata "bukan". Kalau Rendi terlambat dengan buku biasa, tidak membayar, dan kartunya tidak dibekukan, pernyataan asli benar, tetapi pilihan ini salah.
+- Pilihan "tidak terlambat atau bukan referensi, maka tidak bayar dan tidak dibekukan" adalah invers, yaitu kedua sisi dinegasikan tanpa ditukar. Kalau Rendi tidak terlambat tetapi tetap membayar denda karena urusan lain, pernyataan asli benar, tetapi pilihan ini salah.
+
+Jadi, pernyataan yang setara adalah "Jika Rendi terlambat mengembalikan buku dan tidak membayar denda, maka buku itu bukan koleksi referensi atau kartu anggotanya dibekukan."

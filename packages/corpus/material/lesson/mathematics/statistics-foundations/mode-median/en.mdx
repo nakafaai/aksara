@@ -34,11 +34,11 @@ Middle position: <InlineMath math="(5+1)/2 = 3" />. The data at position <Inline
 
 So, <InlineMath math="\text{Median} = 7" />.
 
-Line the five sorted scores up by position. The bar in the middle position <InlineMath math="\frac{5 + 1}{2} = 3" /> has height 7, so the median is 7, with two scores on each side.
+Line the five sorted scores up by position. The bar in the middle position <InlineMath math="\frac{5 + 1}{2} = 3" /> has height <InlineMath math="7" />, so the median is <InlineMath math="7" />, with two scores on each side.
 
 <BarChart
   title={<>Five sorted scores</>}
-  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9" /> at positions 1 to 5. The third bar is the median.</>}
+  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9" /> at positions <InlineMath math="1" /> to <InlineMath math="5" />. The third bar is the median.</>}
   yAxisLabel="Score"
   data={[6, 7, 7, 8, 9].map((value, i) => ({ name: "position " + (i + 1), value }))}
   chartConfig={{ value: { label: "Score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -68,11 +68,11 @@ So, the median is <InlineMath math="7.5" />.
 
 The median depends on the **values at the middle positions**. Changing the largest value while preserving the order and number of observations leaves the median unchanged. Adding or removing observations can shift the middle positions, so the median must be recalculated.
 
-With six scores there is no single middle bar. Positions 3 and 4 hold 7 and 8, so the median is their average, <InlineMath math="\frac{7 + 8}{2} = 7.5" />, a value that is not one of the scores.
+With six scores there is no single middle bar. Positions <InlineMath math="3" /> and <InlineMath math="4" /> hold <InlineMath math="7" /> and <InlineMath math="8" />, so the median is their average, <InlineMath math="\frac{7 + 8}{2} = 7.5" />, a value that is not one of the scores.
 
 <BarChart
   title={<>Six sorted scores</>}
-  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9, 10" /> at positions 1 to 6. The median lies between the third and fourth bars.</>}
+  description={<>Bars of the sorted scores <InlineMath math="6, 7, 7, 8, 9, 10" /> at positions <InlineMath math="1" /> to <InlineMath math="6" />. The median lies between the third and fourth bars.</>}
   yAxisLabel="Score"
   data={[6, 7, 7, 8, 9, 10].map((value, i) => ({ name: "position " + (i + 1), value }))}
   chartConfig={{ value: { label: "Score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

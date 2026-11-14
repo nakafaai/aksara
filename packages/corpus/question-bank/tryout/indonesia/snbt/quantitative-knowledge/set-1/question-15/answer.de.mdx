@@ -1,50 +1,37 @@
-Die Punkte <InlineMath math="A" /> und <InlineMath math="B" /> liegen beide oberhalb der <InlineMath math="x" />-Achse, der Weg <InlineMath math="A\to P\to B" /> muss also die Achse berühren und wieder nach oben führen. Der passende Schritt ist, **einen der Punkte an der <InlineMath math="x" />-Achse zu spiegeln**, denn dann wird aus dem Weg eine gerade Linie.
+Die Aufgabe nennt nur zwei Seitenlängen, deshalb **lässt sich das gleichschenklige Dreieck auf zwei Arten bauen**. Der Plan: Bestimme beide möglichen dritten Seiten, prüfe, ob beide wirklich ein Dreieck ergeben, berechne jeweils die Fläche und vergleiche sie mit <InlineMath math="7" />.
 
-<MathVisual
-  title={<>Kürzester Weg über die <InlineMath math="x" />-Achse</>}
-  description={<>Das Spiegelbild von <InlineMath math="B" /> an der <InlineMath math="x" />-Achse ist <InlineMath math="B'" />. Die Strecke <InlineMath math="PB" /> ist so lang wie <InlineMath math="PB'" />, deshalb folgt der kürzeste Weg der Geraden von <InlineMath math="A" /> nach <InlineMath math="B'" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -5, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
-      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
-      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
-      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
-      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
-      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
-      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
-      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
-      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
-      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(1,2)" />,
-    b: <InlineMath math="B(7,4)" />,
-    image: <InlineMath math="B'(7,-4)" />,
-    p: <InlineMath math="P(3,0)" />,
-  }}
-/>
+# Die möglichen Seiten bestimmen
 
-# Punkt B spiegeln
+Im gleichschenkligen Dreieck ist die dritte Seite gleich einer der beiden gegebenen Seiten. Die Seiten sind also <InlineMath math="4, 4, 7" /> oder <InlineMath math="4, 7, 7" />. Ein Dreieck existiert, wenn **die beiden kürzeren Seiten zusammen länger sind als die längste Seite**. Für <InlineMath math="4, 4, 7" /> gilt <InlineMath math="4+4=8>7" />. Für <InlineMath math="4, 7, 7" /> gilt <InlineMath math="4+7=11>7" />. Beide Dreiecke existieren.
 
-Das Spiegelbild von <InlineMath math="B(7,4)" /> an der <InlineMath math="x" />-Achse ist <InlineMath math="B'(7,-4)" />. Jeder Punkt <InlineMath math="P" /> auf der <InlineMath math="x" />-Achse ist von <InlineMath math="B" /> und von <InlineMath math="B'" /> gleich weit entfernt, also gilt <InlineMath math="AP+PB=AP+PB'" />. Ein Weg von <InlineMath math="A" /> nach <InlineMath math="B'" /> ist **am kürzesten, wenn er gerade ist**, und diese Gerade schneidet die <InlineMath math="x" />-Achse tatsächlich, weil <InlineMath math="A" /> oberhalb und <InlineMath math="B'" /> unterhalb der Achse liegt.
+# Die Fläche im ersten Fall berechnen
 
-<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
+Im Dreieck <InlineMath math="4, 4, 7" /> ist die Basis <InlineMath math="7" />, und beide Schenkel sind <InlineMath math="4" />. Die Höhe von der Spitze aus **teilt die Basis in zwei gleich lange Teile**, jeweils <InlineMath math="\frac72" />. Nenne diese Höhe <InlineMath math="t" /> und die Fläche <InlineMath math="L_1" />.
 
-# Punkt P bestimmen
+<BlockMath math="\begin{aligned}
+t^2&=4^2-\left(\tfrac72\right)^2=16-\tfrac{49}{4}=\tfrac{15}{4}\\
+t&=\tfrac{\sqrt{15}}{2}\\
+L_1&=\tfrac12\cdot7\cdot\tfrac{\sqrt{15}}{2}=\tfrac{7\sqrt{15}}{4}
+\end{aligned}" />
 
-Die Gerade <InlineMath math="AB'" /> hat die Steigung <InlineMath math="\frac{-4-2}{7-1}=-1" />, ihre Gleichung ist also <InlineMath math="y-2=-(x-1)" />. Sie schneidet die <InlineMath math="x" />-Achse in <InlineMath math="P(3,0)" />. **Prüfe den Wert**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> und <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, zusammen <InlineMath math="6\sqrt2" />.
+Vergleiche mit <InlineMath math="7" />: <InlineMath math="\frac{7\sqrt{15}}{4}<7" /> bedeutet dasselbe wie <InlineMath math="\sqrt{15}<4" />, und das stimmt wegen <InlineMath math="15<16" />. In diesem Fall gilt <InlineMath math="P<Q" />.
 
-Der Wert <InlineMath math="2\sqrt{10}" /> ist der direkte Abstand <InlineMath math="AB" />, der die <InlineMath math="x" />-Achse nie berührt. Der Wert <InlineMath math="5+\sqrt{13}" /> wählt <InlineMath math="P(4,0)" /> unter der Mitte der <InlineMath math="x" />-Koordinaten. Der Wert <InlineMath math="2+2\sqrt{13}" /> wählt <InlineMath math="P" /> genau unter <InlineMath math="A" />, und <InlineMath math="4+2\sqrt{10}" /> wählt <InlineMath math="P" /> genau unter <InlineMath math="B" />. Alle drei sind länger als <InlineMath math="6\sqrt2" />.
+# Die Fläche im zweiten Fall berechnen
 
-Der kleinste Wert von <InlineMath math="AP+PB" /> ist also <InlineMath math="6\sqrt2" />.
+Im Dreieck <InlineMath math="4, 7, 7" /> ist die Basis <InlineMath math="4" />, und beide Schenkel sind <InlineMath math="7" />. Die Höhe teilt die Basis in <InlineMath math="2" /> und <InlineMath math="2" />. Nenne die Fläche <InlineMath math="L_2" />.
+
+<BlockMath math="\begin{aligned}
+t^2&=7^2-2^2=45\\
+t&=3\sqrt5\\
+L_2&=\tfrac12\cdot4\cdot3\sqrt5=6\sqrt5
+\end{aligned}" />
+
+Wegen <InlineMath math="(6\sqrt5)^2=180>49=7^2" /> gilt **in diesem Fall <InlineMath math="P>Q" />**.
+
+# Die Schlussfolgerung ziehen
+
+Beide Dreiecke passen zu allen Angaben der Aufgabe, aber das eine liefert <InlineMath math="P<Q" /> und das andere <InlineMath math="P>Q" />. Also **lässt sich die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> nicht festlegen**.
+
+Die Antwort <InlineMath math="P>Q" /> entsteht, wenn du nur das Dreieck <InlineMath math="4, 7, 7" /> nimmst, etwa weil du das Dreieck <InlineMath math="4, 4, 7" /> für unmöglich hältst. Die Antwort <InlineMath math="Q>P" /> entsteht, wenn du nur das Dreieck <InlineMath math="4, 4, 7" /> nimmst. Die Antwort <InlineMath math="P=Q" /> tritt in keinem Fall ein, denn <InlineMath math="\left(\frac{7\sqrt{15}}{4}\right)^2=\frac{735}{16}" /> und <InlineMath math="180" /> sind beide von <InlineMath math="49" /> verschieden.
+
+Die Angaben reichen also nicht aus, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> zu entscheiden.

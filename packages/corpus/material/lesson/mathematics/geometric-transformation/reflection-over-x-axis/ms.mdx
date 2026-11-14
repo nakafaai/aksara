@@ -1,0 +1,232 @@
+
+
+export const metadata = {
+  title: "Pantulan pada Paksi Mengufuk",
+  description: "Pantulkan titik, segi tiga, dan garis pada paksi mengufuk dan terbitkan petua koordinat daripada jarak yang sama.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-09-12",
+  subject: "Transformasi Geometri",
+};
+
+## Cara Pantulan Mengubah Koordinat Mencancang
+
+Dalam pantulan pada paksi-<InlineMath math="x" />, imej bagi titik yang tidak terletak pada paksi itu berada di sisi bertentangan paksi-<InlineMath math="x" /> pada jarak yang sama. Paksi-<InlineMath math="x" /> <Highlight>bertindak seperti cermin mengufuk</Highlight>.
+
+Kalau titik <InlineMath math="P" /> mempunyai koordinat <InlineMath math="(x,y)" />, maka pantulannya, yang kita namakan <InlineMath math="P'" />, mempunyai koordinat-<InlineMath math="x" /> yang sama, tetapi koordinat-<InlineMath math="y" /> bagi pantulan itu ialah negatif nilai <InlineMath math="y" /> yang asal.
+
+Secara matematik, kalau titik awalnya <InlineMath math="P(x,y)" />, maka selepas pantulan pada paksi-<InlineMath math="x" />, imejnya ialah <InlineMath math="P'(x,-y)" />.
+
+### Visualisasi Titik dan Pantulannya
+
+Cari **pasangan titik pada garis mencancang yang sama**. Titik di atas paksi dipantulkan ke bawahnya, manakala titik di bawah dipantulkan ke atas. Setiap titik dan imejnya kekal sama jauh dari paksi.
+
+<MathVisual
+  title={
+    <>
+      Pantulan Titik pada Paksi-<InlineMath math="x" />
+    </>
+  }
+  description={
+    <>
+      Visualisasi titik <InlineMath math="A, B, C, D" /> dan
+      pantulannya <InlineMath math="A', B', C', D'" /> selepas dicerminkan pada
+      paksi-<InlineMath math="x" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="A'" />,
+    "l6": <InlineMath math="B'" />,
+    "l7": <InlineMath math="C'" />,
+    "l8": <InlineMath math="D'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: -5, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -3, y: 1 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "s4", kind: "point", at: { x: 4, y: -2 }, appearance: "primary" },
+      { id: "s5", kind: "point", at: { x: -5, y: -2 }, appearance: "secondary" },
+      { id: "s6", kind: "point", at: { x: -3, y: -1 }, appearance: "secondary" },
+      { id: "s7", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s8", kind: "point", at: { x: 4, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -5, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -3, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 4, y: -2 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -5, y: -2 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: -3, y: -1 }, placement: "above-right" },
+      { key: "l7", objectId: "s7", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "l8", objectId: "s8", at: { x: 4, y: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Pasangan yang diplot menunjukkan hubungan antara setiap titik asal (praimej) dengan pantulannya (imej):
+
+- Titik <InlineMath math="A(-5,2)" /> menjadi <InlineMath math="A'(-5,-2)" />
+- Titik <InlineMath math="B(-3,1)" /> menjadi <InlineMath math="B'(-3,-1)" />
+- Titik <InlineMath math="C(1,2)" /> menjadi <InlineMath math="C'(1,-2)" />
+- Titik <InlineMath math="D(4,-2)" /> menjadi <InlineMath math="D'(4,2)" />
+
+Setiap pasangan mengekalkan nilai <InlineMath math="x" /> yang sama dan menukar tanda bagi nilai <InlineMath math="y" />.
+
+## Sifat Pantulan pada Paksi Mengufuk
+
+Pantulan mengekalkan koordinat mengufuk dan **menyongsangkan tanda koordinat mencancang**. Titik tengah antara titik asal dengan imejnya terletak pada paksi cermin:
+
+<BlockMath math="P(x,y)\longmapsto P'(x,-y),\qquad M=\left(\frac{x+x}{2},\frac{y+(-y)}{2}\right)=(x,0)" />
+
+Kedua-dua titik berada pada jarak <InlineMath math="|y|" /> dari paksi. Kalau titik asal terletak pada paksi, koordinat mencancangnya sifar dan titik itu kekal di tempatnya:
+
+<BlockMath math="P(x,0)\longmapsto P'(x,-0)=P(x,0)" />
+
+## Memantulkan Segi Tiga dan Garis
+
+Pantulan bertindak pada **setiap titik sesuatu rajah**. Tiga bucu sudah cukup untuk menentukan segi tiga yang dipantulkan. Bagi garis, gantikan petua koordinat ke dalam persamaannya supaya persamaan itu mewakili setiap titik pada garis sekali gus.
+
+### Memantulkan Segi Tiga
+
+Tentukan imej bagi segi tiga <InlineMath math="ABC" /> dengan bucu <InlineMath math="A(-1,4)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(-2,-1)" /> yang dipantulkan pada paksi-<InlineMath math="x" />.
+
+Untuk menentukan imej segi tiga <InlineMath math="ABC" />, kita gunakan sifat pantulan pada **setiap bucunya**:
+
+<MathContainer>
+  <BlockMath math="A(-1,4) \xrightarrow{\text{paksi-}x} A'(-1,-4)" />
+  <BlockMath math="B(2,1) \xrightarrow{\text{paksi-}x} B'(2,-1)" />
+  <BlockMath math="C(-2,-1) \xrightarrow{\text{paksi-}x} C'(-2,1)" />
+</MathContainer>
+
+Oleh itu, imej bagi segi tiga <InlineMath math="ABC" /> ialah segi tiga <InlineMath math="A'B'C'" /> dengan bucu <InlineMath math="A'(-1,-4)" />, <InlineMath math="B'(2,-1)" />, dan <InlineMath math="C'(-2,1)" />.
+
+<MathVisual
+  title={
+    <>
+      Pantulan Segi Tiga <InlineMath math="ABC" /> pada{" "}
+      Paksi-<InlineMath math="x" />
+    </>
+  }
+  description={
+    <>
+      Visualisasi segi tiga <InlineMath math="ABC" /> dan
+      pantulannya <InlineMath math="A'B'C'" /> selepas dicerminkan pada
+      paksi-<InlineMath math="x" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="C" />,
+    "l6": <InlineMath math="A" />,
+    "l7": <InlineMath math="A'" />,
+    "l8": <InlineMath math="B'" />,
+    "l9": <InlineMath math="B'" />,
+    "l10": <InlineMath math="C'" />,
+    "l11": <InlineMath math="C'" />,
+    "l12": <InlineMath math="A'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: -1, y: 4 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 1 }, { x: -2, y: -1 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2, y: -1 }, { x: -1, y: 4 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1, y: -4 }, { x: 2, y: -1 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -1 }, { x: -2, y: 1 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2, y: 1 }, { x: -1, y: -4 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s1", at: { x: 2, y: 1 }, placement: "above-right" },
+      { key: "l3", objectId: "s2", at: { x: 2, y: 1 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -2, y: -1 }, placement: "below-left" },
+      { key: "l5", objectId: "s3", at: { x: -2, y: -1 }, placement: "below-left" },
+      { key: "l6", objectId: "s3", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "l7", objectId: "s4", at: { x: -1, y: -4 }, placement: "below-left" },
+      { key: "l8", objectId: "s4", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "l9", objectId: "s5", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "l10", objectId: "s5", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "l11", objectId: "s6", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "l12", objectId: "s6", at: { x: -1, y: -4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+### Memantulkan Garis
+
+Kalau sebuah garis mempunyai persamaan <InlineMath math="2x - 3y = 0" /> dan dipantulkan pada paksi-<InlineMath math="x" />, tentukan persamaan garis pantulannya.
+
+**Penyelesaian**:
+
+Biar sebarang titik <InlineMath math="P(a,b)" /> terletak pada garis <InlineMath math="2x - 3y = 0" />. Maka, yang berikut benar:
+
+<BlockMath math="2a - 3b = 0" />
+
+Titik <InlineMath math="P(a,b)" /> yang dipantulkan pada paksi-<InlineMath math="x" /> menghasilkan imej <InlineMath math="P'(a,-b)" />.
+
+Untuk mendapat persamaan garis pantulan, kita gantikan koordinat imej dengan pemboleh ubah baharu. Biar <InlineMath math="x' = a" /> dan <InlineMath math="y' = -b" />.
+
+Daripada sini, kita dapat <InlineMath math="a = x'" /> dan <InlineMath math="b = -y'" />.
+
+Gantikan <InlineMath math="a = x'" /> dan <InlineMath math="b = -y'" /> ke dalam **persamaan asal** <InlineMath math="2a - 3b = 0" />:
+
+<MathContainer>
+  <BlockMath math="2(x') - 3(-y') = 0" />
+  <BlockMath math="2x' + 3y' = 0" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="x'" /> dan <InlineMath math="y'" /> ialah pemboleh ubah sebarang yang mewakili koordinat pada garis pantulan, kita boleh menulisnya semula sebagai <InlineMath math="x" /> dan <InlineMath math="y" />.
+
+Persamaan garis pantulan ialah:
+
+<ContentStack>
+
+  <BlockMath math="2x + 3y = 0" />
+
+  <MathVisual
+    title={
+        <>
+          Pantulan Garis <InlineMath math="2x - 3y = 0" /> pada{" "}
+          Paksi-<InlineMath math="x" />
+        </>
+      }
+    description={
+        <>
+          Garis asal <InlineMath math="2x - 3y = 0" /> (hijau limau) dan
+          pantulannya <InlineMath math="2x + 3y = 0" /> (magenta) selepas dicerminkan.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="2x-3y=0" />,
+      "l2": <InlineMath math="2x+3y=0" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -5, max: 5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -6, y: (2 / 3) * -6 }, { x: 6, y: (2 / 3) * 6 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -6, y: -(2 / 3) * -6 }, { x: 6, y: -(2 / 3) * 6 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 6, y: 4 }, placement: "above-left" },
+        { key: "l2", objectId: "s2", at: { x: 6, y: -4 }, placement: "below-left" },
+      ],
+    }}
+  />
+</ContentStack>
+
+Pantulan pada paksi-<InlineMath math="x" /> mengubah <InlineMath math="2x-3y=0" /> menjadi <InlineMath math="2x+3y=0" /> dengan menggantikan <InlineMath math="y" /> dengan <InlineMath math="-y" />.

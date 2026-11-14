@@ -2,33 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "rule-application",
+    topic: "truth-teller",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Ani",
-        },
-        {
-          correct: false,
-          label: "Budi",
-        },
-        {
-          correct: false,
-          label: "Cici",
-        },
-        {
           correct: true,
-          label: "Dedi",
+          label:
+            "Pelakunya Kirana, sedangkan pernyataan yang benar adalah milik Lutfi.",
         },
         {
           correct: false,
-          label: "Eka",
+          label:
+            "Pelakunya Joko, sedangkan pernyataan yang benar adalah milik Kirana.",
+        },
+        {
+          correct: false,
+          label:
+            "Pelakunya Maya, sedangkan pernyataan yang benar adalah milik Joko.",
+        },
+        {
+          correct: false,
+          label:
+            "Pelakunya Kirana, sedangkan pernyataan yang benar adalah milik Maya.",
+        },
+        {
+          correct: false,
+          label:
+            "Pelakunya Lutfi, sedangkan pernyataan yang benar adalah milik Joko.",
         },
       ],
     },

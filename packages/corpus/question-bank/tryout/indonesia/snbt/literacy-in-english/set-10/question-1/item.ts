@@ -6,32 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "main-idea",
   },
-  stimulus: "glacier-flow",
+  stimulus: "ant-foraging",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "They show that colonies favour shorter routes less than popular accounts suggest, since most colonies in the experiments ended on the longer branch.",
+        },
+        {
+          correct: false,
+          label:
+            "They reveal a weakness that faster-fading pheromone would remove, which is why real species have probably evolved short-lived trails.",
+        },
+        {
           correct: true,
           label:
-            "Glaciers keep moving, at speeds that vary by place and season.",
-        },
-        {
-          correct: false,
-          label: "Glaciers grow only in winter and shrink only in summer.",
-        },
-        {
-          correct: false,
-          label: "A retreating glacier flows backwards up its valley.",
+            "They show a cost of the same feedback that finds short routes, a cost that is usually worth paying where food sources stay put.",
         },
         {
           correct: false,
           label:
-            "Greenland's glaciers are fastest because they are the thickest.",
+            "They prove that a colony cannot solve shortest-path problems at all, so the writers who claim it can are simply mistaken.",
         },
         {
           correct: false,
-          label: "Scientists did not begin to study glaciers until the 1840s.",
+          label:
+            "They arise because experienced foragers follow a remembered route, which holds the colony on the old branch even when the trail changes.",
         },
       ],
     },

@@ -13,6 +13,7 @@ export const lessonAiDsLinearMethodsMaterial = defineLessonMaterial({
     de: "lineare-methoden-der-ki",
     en: "linear-methods",
     id: "metode-linear-ai",
+    ms: "kaedah-linear-ai",
   },
   sections: [
     linearMethodsEigen.allEigenvaluesCalculation,
@@ -69,6 +70,10 @@ export const lessonAiDsLinearMethodsMaterial = defineLessonMaterial({
     id: {
       description: "Perkirakan nilai eigen lewat iterasi QR.",
       title: "Metode Linear AI",
+    },
+    ms: {
+      description: "Anggarkan nilai eigen melalui lelaran QR.",
+      title: "Kaedah Linear AI",
     },
   },
 });

@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "photo-frame",
+  stimulus: "school-canteen",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$189\\text{ cm}^2$$" },
-        { correct: false, label: "$$324\\text{ cm}^2$$" },
-        { correct: false, label: "$$360\\text{ cm}^2$$" },
-        { correct: false, label: "$$369\\text{ cm}^2$$" },
-        { correct: true, label: "$$396\\text{ cm}^2$$" },
+        { correct: true, label: "Turun $$\\text{Rp}195{.}000{,}00$$" },
+        { correct: false, label: "Turun $$\\text{Rp}265{.}000{,}00$$" },
+        { correct: false, label: "Turun $$\\text{Rp}335{.}000{,}00$$" },
+        { correct: false, label: "Turun $$\\text{Rp}680{.}000{,}00$$" },
+        { correct: false, label: "Turun $$\\text{Rp}750{.}000{,}00$$" },
       ],
     },
   },

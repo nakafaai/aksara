@@ -1,12 +1,25 @@
-Ein Mittelwert von <InlineMath math="12" /> bei fünf Zahlen legt **ihre Summe** fest:
+Gesucht ist eine Kombination aus mittleren Bussen und Kleinbussen, die mindestens <InlineMath math="96" /> Personen fasst, mindestens einen mittleren Bus enthält und möglichst wenig kostet. Die Zahl der Fahrzeuge muss ganz sein, also entscheidet eine Regel wie „Kosten pro Sitzplatz“ allein nichts. Sicher ist es, **jede mögliche Anzahl mittlerer Busse durchzuprüfen** und dann gerade so viele Kleinbusse dazuzunehmen, wie für die restlichen Fahrgäste nötig sind.
 
-<BlockMath math="5\times12=60" />
+Für jede Anzahl <InlineMath math="b" /> mittlerer Busse bleiben <InlineMath math="96-31b" /> Fahrgäste übrig. Die Zahl der Kleinbusse ist dieser Rest geteilt durch <InlineMath math="14" />, aufgerundet, weil man keinen halben Kleinbus mieten kann. Der Fall <InlineMath math="b=0" /> ist nicht erlaubt, weil mindestens ein mittlerer Bus Pflicht ist. Mit <InlineMath math="b=4" /> gibt es schon <InlineMath math="124" /> Plätze, ein fünfter Bus würde nur Kosten verursachen.
 
-Ordne die Zahlen aufsteigend: <InlineMath math="a<b<10<d<e" />. Ein Median von <InlineMath math="10" /> bedeutet, dass die dritte Zahl <InlineMath math="10" /> ist. Damit <InlineMath math="e" /> möglichst groß wird, **müssen die anderen vier Zahlen möglichst klein sein**, denn die Summe bleibt <InlineMath math="60" />.
+| Mittlere Busse | Restliche Fahrgäste | Kleinbusse | Plätze | Kosten |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="65" /> | <InlineMath math="5" /> | <InlineMath math="101" /> | <InlineMath math="\text{Rp}6{.}850{.}000" /> |
+| <InlineMath math="2" /> | <InlineMath math="34" /> | <InlineMath math="3" /> | <InlineMath math="104" /> | <InlineMath math="\text{Rp}7{.}050{.}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="107" /> | <InlineMath math="\text{Rp}7{.}250{.}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="124" /> | <InlineMath math="\text{Rp}8{.}400{.}000" /> |
 
-- <InlineMath math="a" /> und <InlineMath math="b" /> sind die beiden kleinsten verschiedenen positiven ganzen Zahlen, <InlineMath math="1" /> und <InlineMath math="2" />.
-- <InlineMath math="d" /> muss größer als <InlineMath math="10" /> und davon verschieden sein, also ist der kleinste Wert <InlineMath math="11" />.
+So entstehen die Kosten in der ersten Zeile:
 
-<BlockMath math="e=60-(1+2+10+11)=60-24=36" />
+<BlockMath math="1\times2{.}100{.}000+5\times950{.}000 = 2{.}100{.}000+4{.}750{.}000 = 6{.}850{.}000" />
 
-Probe: <InlineMath math="1, 2, 10, 11, 36" /> sind alle verschieden, der Median ist <InlineMath math="10" />, und der Mittelwert ist <InlineMath math="\frac{60}{5}=12" />. Mit <InlineMath math="d=10" /> käme eine Zahl doppelt vor, also ist <InlineMath math="d=11" /> wirklich die kleinste Wahl. Der größtmögliche Wert ist <InlineMath math="36" />.
+Die niedrigsten Kosten betragen <InlineMath math="\text{Rp}6{.}850{.}000" />, mit einem mittleren Bus und fünf Kleinbussen. Prüf, dass vier Kleinbusse nicht reichen: <InlineMath math="31+4\times14=87" /> Plätze, weniger als <InlineMath math="96" />.
+
+Die anderen Optionen entstehen aus verschiedenen Fallen:
+
+- <InlineMath math="\text{Rp}6{.}650{.}000" /> sind die Kosten von sieben Kleinbussen (<InlineMath math="98" /> Plätze). Ohne Bedingungen wäre das am günstigsten, aber es ist kein mittlerer Bus dabei, also fällt dieser Plan weg.
+- <InlineMath math="\text{Rp}7{.}250{.}000" /> entsteht aus einem gierigen Vorgehen: Ein mittlerer Bus ist pro Platz etwas billiger (etwa <InlineMath math="\text{Rp}67{.}742" /> gegen <InlineMath math="\text{Rp}67{.}857" />), also nimmst du so viele wie möglich. Das ergibt drei mittlere Busse und einen Kleinbus mit <InlineMath math="11" /> leeren Plätzen. Die leeren Plätze bezahlst du trotzdem, deshalb ist dieser Plan teurer.
+- <InlineMath math="\text{Rp}8{.}400{.}000" /> sind die Kosten, wenn nur mittlere Busse fahren.
+- <InlineMath math="\text{Rp}8{.}750{.}000" /> entsteht, wenn du zum Plan mit sieben Kleinbussen einen mittleren Bus hinzufügst, ohne Kleinbusse wegzulassen.
+
+Die günstigste Miete, die alle Bedingungen erfüllt, kostet also <InlineMath math="\text{Rp}6{.}850{.}000" />.

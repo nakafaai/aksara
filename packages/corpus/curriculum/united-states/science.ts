@@ -49,6 +49,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
           description: "Hubungkan gerak, energi, materi, dan reaksi.",
           title: "Ilmu fisika dan kimia",
         },
+        ms: {
+          description: "Kaitkan gerakan, tenaga, jirim dan tindak balas.",
+          title: "Sains Fizikal",
+        },
       },
       order: 10,
       translations: {
@@ -63,6 +67,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
         id: {
           routeSlug: "ilmu-fisika-dan-kimia",
           title: "Ilmu fisika dan kimia",
+        },
+        ms: {
+          routeSlug: "sains-fizikal",
+          title: "Sains Fizikal",
         },
       },
     }),
@@ -95,6 +103,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
           description: "Bandingkan sistem hayati, virus, dan keragaman.",
           title: "Ilmu hayati",
         },
+        ms: {
+          description: "Bandingkan sistem hidupan, virus dan kepelbagaian.",
+          title: "Sains Hayat",
+        },
       },
       order: 20,
       translations: {
@@ -109,6 +121,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
         id: {
           routeSlug: "ilmu-hayati",
           title: "Ilmu hayati",
+        },
+        ms: {
+          routeSlug: "sains-hayat",
+          title: "Sains Hayat",
         },
       },
     }),
@@ -135,6 +151,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
           description: "Telusuri perubahan iklim lewat sistem bumi.",
           title: "Ilmu bumi dan antariksa",
         },
+        ms: {
+          description: "Jejaki perubahan iklim melalui sistem Bumi.",
+          title: "Sains Bumi dan Angkasa",
+        },
       },
       order: 30,
       translations: {
@@ -150,6 +170,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
           routeSlug: "ilmu-bumi-dan-antariksa",
           title: "Ilmu bumi dan antariksa",
         },
+        ms: {
+          routeSlug: "sains-bumi-dan-angkasa",
+          title: "Sains Bumi dan Angkasa",
+        },
       },
     }),
   ],
@@ -163,6 +187,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
       title: "Science",
     },
     id: {
+      routeSlug: "sains",
+      title: "Sains",
+    },
+    ms: {
       routeSlug: "sains",
       title: "Sains",
     },

@@ -1,22 +1,46 @@
-Verglichen wird **die Gesamtzahl der Setzlinge seit dem ersten Jahr**, nicht die Zahl in einem einzelnen Jahr.
+Du zählst alle Baumzahlen, deren Gewinn <InlineMath math="\text{Rp}30{.}720{.}000" /> erreicht. Entscheidend ist, dass **der Gewinn zwei Formeln hat**: eine für höchstens <InlineMath math="40" /> Bäume und eine für mindestens <InlineMath math="40" /> Bäume. So gehst du vor: Stelle beide Formeln auf, löse die Bedingung in jedem Bereich und füge die Ergebnisse zusammen.
 
-# Gesamtzahl nach n Jahren
+# Zwei Gewinnformeln
 
-<BlockMath math="\begin{aligned}
-\text{Sukamaju}&:\quad \tfrac{n}{2}\bigl(240+15(n-1)\bigr)=120n+7{,}5n(n-1)\\
-\text{Nachbardorf}&:\quad 195n
-\end{aligned}" />
-
-# Beide gleichsetzen
+Für <InlineMath math="n" /> höchstens <InlineMath math="40" /> trägt jeder Baum <InlineMath math="120\text{ kg}" />, bringt also <InlineMath math="120\cdot8{.}000-96{.}000=864{.}000" /> Rupiah ein. Für <InlineMath math="n" /> mindestens <InlineMath math="40" /> trägt jeder Baum <InlineMath math="200-2n" /> Kilogramm:
 
 <BlockMath math="\begin{aligned}
-120n+7{,}5n(n-1)&=195n\\
-7{,}5(n-1)&=75\\
-n&=11
+n\le40: \ \text{Gewinn}&=864{.}000n\\
+n\ge40: \ \text{Gewinn}&=8{.}000n(200-2n)-96{.}000n=16{.}000n(94-n)
 \end{aligned}" />
 
-Kontrolle: Nach 11 Jahren hat Sukamaju <InlineMath math="1\,320+825=2\,145" /> Setzlinge gepflanzt, das Nachbardorf <InlineMath math="11\cdot195=2\,145" />.
+Beide Formeln liefern bei <InlineMath math="n=40" /> denselben Wert, nämlich <InlineMath math="34{.}560{.}000" />, **sie passen also zusammen**.
 
-Im 6. Jahr ist **die Zahl in einem einzelnen Jahr** gleich, nämlich 195, während das Nachbardorf insgesamt noch weit vorn liegt. Am Ende des 8. und des 10. Jahres hat das Nachbardorf noch mehr, am Ende des 12. Jahres hat Sukamaju schon mehr.
+# Der Bereich über vierzig Bäumen
 
-Die Gesamtzahlen sind also zum ersten Mal am Ende des **11. Jahres** gleich.
+Für <InlineMath math="n" /> mindestens <InlineMath math="40" /> teilst du beide Seiten durch <InlineMath math="16{.}000" />:
+
+<BlockMath math="\begin{aligned}
+16{.}000n(94-n)&\ge30{.}720{.}000\\
+n(94-n)&\ge1{.}920\\
+n^2-94n+1{.}920&\le0\\
+(n-30)(n-64)&\le0
+\end{aligned}" />
+
+Das gilt für <InlineMath math="n" /> von <InlineMath math="30" /> bis <InlineMath math="64" />. Aber **diese Formel gilt nur für mindestens vierzig Bäume**, du behältst also nur <InlineMath math="n" /> von <InlineMath math="40" /> bis <InlineMath math="64" />. Die obere Grenze <InlineMath math="64" /> liegt noch unter der Kapazität des Gartens von <InlineMath math="70" />.
+
+# Der Bereich bis vierzig Bäume
+
+Für <InlineMath math="n" /> höchstens <InlineMath math="40" /> nimmst du die erste Formel:
+
+<BlockMath math="\begin{aligned}
+864{.}000n&\ge30{.}720{.}000\\
+n&\ge35\tfrac{5}{9}
+\end{aligned}" />
+
+Also passen <InlineMath math="n" /> von <InlineMath math="36" /> bis <InlineMath math="40" />. **Die Nullstelle dreißig der quadratischen Gleichung gilt hier nicht**, weil unter <InlineMath math="40" /> Bäumen jeder Baum weiter <InlineMath math="120\text{ kg}" /> trägt.
+
+# Beide Bereiche zusammen
+
+Zusammen ergeben beide Bereiche <InlineMath math="n" /> von <InlineMath math="36" /> bis <InlineMath math="64" />, wobei <InlineMath math="40" /> **nur einmal zählt**. Das sind <InlineMath math="64-36+1=29" /> Möglichkeiten.
+
+Prüfe alle vier Ränder. <InlineMath math="864{.}000\cdot35=30{.}240{.}000" /> reicht nicht, <InlineMath math="864{.}000\cdot36=31{.}104{.}000" /> reicht. <InlineMath math="16{.}000\cdot64\cdot30=30{.}720{.}000" /> erfüllt die Bedingung genau, <InlineMath math="16{.}000\cdot65\cdot29=30{.}160{.}000" /> reicht nicht.
+
+Wer die quadratische Formel für alle Baumzahlen nutzt, kommt auf <InlineMath math="35" /> Möglichkeiten, von <InlineMath math="30" /> bis <InlineMath math="64" />. Wer <InlineMath math="64" /> Bäume weglässt, weil der Gewinn dort nur gleich der Grenze ist, kommt auf <InlineMath math="28" />, obwohl mindestens die Gleichheit einschließt.
+
+Es gibt also <InlineMath math="29" /> mögliche Baumzahlen mit einem Gewinn von mindestens <InlineMath math="\text{Rp}30{.}720{.}000" />.

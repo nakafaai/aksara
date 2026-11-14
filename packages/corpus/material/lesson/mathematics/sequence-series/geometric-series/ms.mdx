@@ -1,0 +1,154 @@
+export const metadata = {
+  title: "Siri Geometri",
+  description: "Terbitkan rumus siri geometri terhingga, tangani nisbah khas, dan selesaikan masalah pengeluaran kumulatif langkah demi langkah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Menambah Kelompok Anak Benih Setiap Bulan
+
+Katakan sebuah tapak semaian menyediakan satu kelompok anak benih baharu setiap bulan mengikut corak yang diidealkan ini:
+
+| Bulan                 | Januari | Februari | Mac | April | Mei |
+| :-------------------- | :------ | :------- | :---- | :---- | :-- |
+| Anak benih baharu yang disediakan | <InlineMath math="4" /> | <InlineMath math="12" /> | <InlineMath math="36" /> | <InlineMath math="108" /> | <InlineMath math="324" /> |
+
+Bilangan yang disediakan setiap bulan membentuk janjang geometri. Apabila kelompok baharu ditambah dari bulan pertama hingga bulan yang dipilih, terbentuklah **siri geometri**. Oleh sebab setiap kelompok terdiri daripada anak benih yang baru disediakan, hasil tambah ini tidak mengira anak benih yang sama dua kali.
+
+Siri geometri ialah hasil tambah sebutan-sebutan [janjang geometri](/ms/subjek/matematik/jujukan-dan-siri/janjang-geometri). Dalam janjang itu, setiap sebutan <Highlight>diperoleh dengan mendarab sebutan sebelumnya</Highlight> dengan satu faktor tetap <InlineMath math="r" />. Apabila sebutan sebelumnya bukan sifar, faktor ini juga ialah hasil bahagi dua sebutan yang berturutan itu.
+
+Dalam data anak benih ini:
+
+- Sebutan pertama (<InlineMath math="a" /> atau <InlineMath math="U_1" />) ialah <InlineMath math="4" />.
+- Nisbahnya <InlineMath math="(r) = \frac{12}{4} = \frac{36}{12} = \frac{108}{36} = \frac{324}{108} = 3" />.
+
+Jadi, jujukan kelompok bulanan ialah <InlineMath math="4, 12, 36, 108, 324" />.
+Siri geometri ialah hasil tambah sebutan-sebutan jujukan ini:
+
+- Hasil tambah <InlineMath math="2 \text{ bulan}" /> pertama <InlineMath math="(S_2) = 4 + 12 = 16" />
+- Hasil tambah <InlineMath math="3 \text{ bulan}" /> pertama <InlineMath math="(S_3) = 4 + 12 + 36 = 52" />
+- Hasil tambah <InlineMath math="4 \text{ bulan}" /> pertama <InlineMath math="(S_4) = 4 + 12 + 36 + 108 = 160" />
+- dan seterusnya.
+
+Setiap bulan, anak benih yang disediakan ialah tiga kali ganda bilangan bulan sebelumnya: <InlineMath math="U_n = 4 \cdot 3^{n-1}" />. Palang-palang ini menunjukkan betapa cepatnya bilangan itu membesar, daripada <InlineMath math="4" /> pada bulan Januari hingga <InlineMath math="324" /> pada bulan Mei.
+
+<BarChart
+  title={<>Anak benih baharu setiap bulan</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="4 \cdot 3^{n-1}" />, iaitu anak benih yang disediakan pada bulan ke-<InlineMath math="n" />.</>}
+  yAxisLabel="Anak benih baharu"
+  data={['Jan', 'Feb', 'Mac', 'Apr', 'Mei'].map((name, i) => ({ name, value: 4 * 3 ** i }))}
+  chartConfig={{ value: { label: "Anak benih baharu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mencari Rumus Hasil Tambah Beberapa Sebutan Pertama
+
+Kuncinya ialah **menolak dua hasil tambah yang hampir sama**. Untuk tiga bulan pertama, darabkan jumlah anak benih dengan nisbahnya, iaitu tiga. Sebutan <InlineMath math="12" /> dan <InlineMath math="36" /> kemudian muncul dalam kedua-dua hasil tambah dan saling membatalkan.
+
+<BlockMath math="\begin{aligned}S_3&amp;=4+12+36\\3S_3&amp;=12+36+108\\3S_3-S_3&amp;=108-4\\2S_3&amp;=104\\S_3&amp;=52\end{aligned}" />
+
+Sekarang gunakan penolakan yang sama pada hasil tambah dengan sebutan pertama <InlineMath math="a" />, nisbah <InlineMath math="r" /> dan <InlineMath math="n" /> sebutan. Pendaraban dengan nisbah menganjakkan setiap sebutan satu kedudukan ke hadapan:
+
+<MathContainer>
+  <BlockMath math="S_n=a+ar+ar^2+\cdots+ar^{n-1}" />
+  <BlockMath math="rS_n=ar+ar^2+\cdots+ar^n" />
+  <BlockMath math="\begin{aligned}rS_n-S_n&amp;=ar^n-a\\(r-1)S_n&amp;=a(r^n-1)\end{aligned}" />
+</MathContainer>
+
+Yang tinggal hanyalah **sebutan pertama dan sebutan selepas sebutan terakhir**. Oleh sebab <InlineMath math="U_1=a" /> dan <InlineMath math="U_{n+1}=ar^n" />, untuk <InlineMath math="r\ne1" /> kita boleh bahagikan kedua-dua belah dengan <InlineMath math="r-1" />:
+
+<BlockMath math="\begin{aligned}S_n&amp;=\frac{U_{n+1}-U_1}{r-1}\\&amp;=\frac{a(r^n-1)}{r-1}\end{aligned}" />
+
+Semak nisbahnya bulan demi bulan: <InlineMath math="\frac{12}{4}" />, <InlineMath math="\frac{36}{12}" />, <InlineMath math="\frac{108}{36}" />, <InlineMath math="\frac{324}{108}" />. Setiap palang sama tinggi, iaitu <InlineMath math="3" />, dan inilah yang menjadikan anak benih itu satu janjang geometri dan jumlahnya satu siri geometri.
+
+<BarChart
+  title={<>Nisbah antara bulan yang berturutan</>}
+  description={<>Nisbah setiap bulan kepada bulan sebelumnya, sentiasa <InlineMath math="3" />.</>}
+  yAxisLabel="Nisbah"
+  data={[["Feb", (4 * 3 ** 1) / (4 * 3 ** 0)], ["Mac", (4 * 3 ** 2) / (4 * 3 ** 1)], ["Apr", (4 * 3 ** 3) / (4 * 3 ** 2)], ["Mei", (4 * 3 ** 4) / (4 * 3 ** 3)]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Nisbah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Rumus Siri Geometri
+
+Secara umum, rumus untuk mengira hasil tambah <InlineMath math="n" /> sebutan pertama siri geometri ialah:
+
+<BlockMath math="S_n=\frac{a(r^n-1)}{r-1},\quad r\ne1" />
+
+Bentuk yang setara ialah
+
+<BlockMath math="S_n=\frac{a(1-r^n)}{1-r},\quad r\ne1" />
+
+Kedua-dua bentuk ini boleh digunakan untuk nisbah positif atau negatif asalkan <InlineMath math="r\ne1" />. Kalau <InlineMath math="r=1" />, semua sebutan sama dengan <InlineMath math="a" />, jadi:
+
+<BlockMath math="S_n=na" />
+
+Apabila nisbahnya satu, pembahagian dengan <InlineMath math="r-1" /> menjadi **pembahagian dengan sifar**. Jadi, tambah terus sahaja, contohnya <InlineMath math="5+5+5+5=4\cdot5=20" />. Apabila nisbahnya sifar, hanya sebutan pertama yang boleh bukan sifar, jadi <InlineMath math="S_n=a" />.
+
+**Petunjuk**:
+
+- <InlineMath math="S_n" /> = hasil tambah <InlineMath math="n" /> sebutan pertama
+- <InlineMath math="a" /> = sebutan pertama <InlineMath math="(U_1)" />
+- <InlineMath math="r" /> = nisbah <InlineMath math="(r \neq 1)" />
+- <InlineMath math="n" /> = bilangan sebutan
+
+Sekarang kira semua anak benih yang sudah disediakan setakat ini. Palang <InlineMath math="n" /> ialah <InlineMath math="S_n = \frac{4(3^n - 1)}{3 - 1}" />: <InlineMath math="4, 16, 52, 160, 484" />. Bandingkan dengan carta sebelumnya: jumlah hingga bulan Mei, <InlineMath math="484" />, berada sedikit di bawah <InlineMath math="1.5" /> kali bilangan anak benih bulan Mei sahaja, kerana <InlineMath math="S_n = \frac{3U_n - 4}{2}" />.
+
+<BarChart
+  title={<>Jumlah anak benih setakat ini</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan jumlah <InlineMath math="S_n = 2(3^n - 1)" /> selepas <InlineMath math="n" /> bulan.</>}
+  yAxisLabel="Jumlah anak benih"
+  data={['Jan', 'Feb', 'Mac', 'Apr', 'Mei'].map((name, i) => ({ name, value: (4 * (3 ** (i + 1) - 1)) / (3 - 1) }))}
+  chartConfig={{ value: { label: "Jumlah anak benih", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mengira Jumlah Pengeluaran Basikal
+
+Dalam satu pelan pengeluaran yang dipermudahkan untuk tahun <InlineMath math="2020" />, bilangan unit baharu yang dihasilkan oleh sebuah syarikat basikal setiap bulan membentuk janjang geometri. Pengeluaran bulan Januari ialah <InlineMath math="120 \text{ unit}" />, dan pengeluaran bulan April ialah <InlineMath math="3{,}240 \text{ unit}" />. Berapakah jumlah pengeluaran dari bulan Januari hingga bulan Mei?
+
+**Penyelesaian**:
+
+- Pengeluaran Januari <InlineMath math="(U_1) = a = 120" />
+- Pengeluaran April <InlineMath math="(U_4) = 3{,}240" />
+- Soalan: Jumlah pengeluaran hingga bulan Mei <InlineMath math="(S_5)" />
+
+**Langkah 1**: Cari nisbah <InlineMath math="(r)" />
+
+<MathContainer>
+  <BlockMath math="U_4 = ar^{4-1} = ar^3" />
+  <BlockMath math="3{,}240 = 120 \cdot r^3" />
+  <BlockMath math="r^3 = \frac{3{,}240}{120}" />
+  <BlockMath math="r^3 = 27" />
+  <BlockMath math="r = \sqrt[3]{27} = 3" />
+</MathContainer>
+
+**Langkah 2**: Kira <InlineMath math="S_5" />. Oleh sebab <InlineMath math="r = 3 > 1" />, gunakan rumus:
+
+<MathContainer>
+  <BlockMath math="S_n = \frac{a(r^n - 1)}{r - 1}" />
+  <BlockMath math="S_5 = \frac{120(3^5 - 1)}{3 - 1}" />
+  <BlockMath math="S_5 = \frac{120(243 - 1)}{2}" />
+  <BlockMath math="S_5 = \frac{120(242)}{2}" />
+  <BlockMath math="S_5 = 60 \cdot 242" />
+  <BlockMath math="S_5 = 14{,}520" />
+</MathContainer>
+
+Jumlah pengeluaran basikal hingga bulan Mei ialah <InlineMath math="14{,}520 \text{ unit}" />.
+
+Penambahan ini bermakna di sini kerana setiap nilai bulanan mewakili basikal yang baru dihasilkan. Kalau kamu menambah ukuran berulang bagi satu stok yang tidak berubah, kamu akan mengira objek yang sama lebih daripada sekali.
+
+## Latihan dengan Nisbah Negatif
+
+Kira **hasil tambah terhingga** ini:
+
+<BlockMath math="81-27+9-3+1" />
+
+Sebutan pertama ialah <InlineMath math="a=81" />, nisbahnya <InlineMath math="r=-\frac13" />, dan ada <InlineMath math="n=5" /> sebutan. Oleh itu:
+
+<MathContainer>
+  <BlockMath math="S_5=81\left(\frac{1-(-1/3)^5}{1-(-1/3)}\right)" />
+  <BlockMath math="\begin{aligned}S_5&amp;=81\left(\frac{244/243}{4/3}\right)\\&amp;=81\cdot\frac{244}{243}\cdot\frac34\\&amp;=\frac{244}{4}=61\end{aligned}" />
+</MathContainer>
+
+Semak dengan penambahan terus: <InlineMath math="81-27+9-3+1=61" />.

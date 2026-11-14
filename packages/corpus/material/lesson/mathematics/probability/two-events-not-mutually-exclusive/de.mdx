@@ -17,7 +17,7 @@ Die Schnittmenge wird **einmal** abgezogen, weil ihre Ergebnisse schon in <Inlin
 
 <MathVisual
   title={<>Ein Venn-Diagramm für einen Würfelwurf</>}
-  description={<>Das Ereignis <InlineMath math="A" /> = gerade Augenzahl und <InlineMath math="B" /> = Augenzahl größer als 3. Die Ergebnisse 4 und 6 liegen in der Überschneidung beider Kreise.</>}
+  description={<>Das Ereignis <InlineMath math="A" /> = gerade Augenzahl und <InlineMath math="B" /> = Augenzahl größer als <InlineMath math="3" />. Die Ergebnisse <InlineMath math="4" /> und <InlineMath math="6" /> liegen in der Überschneidung beider Kreise.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
@@ -58,7 +58,7 @@ Die Schnittmenge wird **einmal** abgezogen, weil ihre Ergebnisse schon in <Inlin
   }}
 />
 
-Beim Würfel ist <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" />, also <InlineMath math="A \cap B = \{4, 6\}" />. Die Formel liefert <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Probe durch Aufzählen: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> enthält 4 der 6 Ergebnisse.
+Beim Würfel ist <InlineMath math="A = \{2, 4, 6\}" /> und <InlineMath math="B = \{4, 5, 6\}" />, also <InlineMath math="A \cap B = \{4, 6\}" />. Die Formel liefert <InlineMath math="\frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />. Probe durch Aufzählen: <InlineMath math="A \cup B = \{2, 4, 5, 6\}" /> enthält <InlineMath math="4" /> der <InlineMath math="6" /> Ergebnisse.
 
 ## Vereinbare Ereignisse erkennen
 
@@ -78,7 +78,7 @@ Zähle zuerst die Elemente. Addierst du <InlineMath math="n(A)" /> und <InlineMa
 
 <BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
 
-Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisraum mit gleichwahrscheinlichen Ergebnissen, erhältst du die Formel für Wahrscheinlichkeiten. Die Formel selbst gilt für jeden Ergebnisraum, nur das Teilen durch <InlineMath math="n(\Omega)" /> braucht gleichwahrscheinliche Ergebnisse. Beim Würfel sind es <InlineMath math="3 + 3 - 2 = 4" /> Elemente, wie in der Liste <InlineMath math="\{2, 4, 5, 6\}" />. Ohne den Abzug käme <InlineMath math="\frac{6}{6} = 1" /> heraus, als würde jeder Wurf in <InlineMath math="A" /> oder <InlineMath math="B" /> landen, obwohl 1 und 3 zu keinem der beiden gehören.
+Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisraum mit gleichwahrscheinlichen Ergebnissen, erhältst du die Formel für Wahrscheinlichkeiten. Die Formel selbst gilt für jeden Ergebnisraum, nur das Teilen durch <InlineMath math="n(\Omega)" /> braucht gleichwahrscheinliche Ergebnisse. Beim Würfel sind es <InlineMath math="3 + 3 - 2 = 4" /> Elemente, wie in der Liste <InlineMath math="\{2, 4, 5, 6\}" />. Ohne den Abzug käme <InlineMath math="\frac{6}{6} = 1" /> heraus, als würde jeder Wurf in <InlineMath math="A" /> oder <InlineMath math="B" /> landen, obwohl <InlineMath math="1" /> und <InlineMath math="3" /> zu keinem der beiden gehören.
 
 <Mermaid
   title={<>Die Formel für P(A oder B) wählen</>}
@@ -93,7 +93,7 @@ Teilst du jeden Term durch <InlineMath math="n(\Omega)" /> für einen Ergebnisra
 
 ## Beispiel mit Herz oder König
 
-Aus 52 Spielkarten wird eine Karte gezogen. Wie groß ist die Wahrscheinlichkeit, eine Herzkarte oder einen König zu ziehen?
+Aus <InlineMath math="52" /> Spielkarten wird eine Karte gezogen. Wie groß ist die Wahrscheinlichkeit, eine Herzkarte oder einen König zu ziehen?
 
 Es gibt <InlineMath math="13" /> Herzkarten, <InlineMath math="4" /> Könige und **<InlineMath math="1" /> Karte, die zu beiden gehört**, den Herzkönig:
 
@@ -101,7 +101,7 @@ Es gibt <InlineMath math="13" /> Herzkarten, <InlineMath math="4" /> Könige und
 
 <MathVisual
   title={<>Die Anzahl der Karten in jedem Bereich des Venn-Diagramms</>}
-  description={<>Der Kreis <InlineMath math="A" /> enthält die 13 Herzkarten und der Kreis <InlineMath math="B" /> die 4 Könige. Der Herzkönig liegt in der Überschneidung.</>}
+  description={<>Der Kreis <InlineMath math="A" /> enthält die <InlineMath math="13" /> Herzkarten und der Kreis <InlineMath math="B" /> die <InlineMath math="4" /> Könige. Der Herzkönig liegt in der Überschneidung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -2.6, max: 2.6 } },
@@ -134,11 +134,11 @@ Es gibt <InlineMath math="13" /> Herzkarten, <InlineMath math="4" /> Könige und
   }}
 />
 
-Prüfe durch Zählen der Bereiche: 12 Herzkarten außer dem König, 1 Herzkönig und 3 weitere Könige, also <InlineMath math="12 + 1 + 3 = 16" /> Karten. Die übrigen <InlineMath math="52 - 16 = 36" /> Karten gehören zu keinem der beiden Ereignisse.
+Prüfe durch Zählen der Bereiche: <InlineMath math="12" /> Herzkarten außer dem König, <InlineMath math="1" /> Herzkönig und <InlineMath math="3" /> weitere Könige, also <InlineMath math="12 + 1 + 3 = 16" /> Karten. Die übrigen <InlineMath math="52 - 16 = 36" /> Karten gehören zu keinem der beiden Ereignisse.
 
 ## Beispiel mit Umfragedaten
 
-Von 40 Lernenden mögen 25 Mathematik, 18 Physik und 10 beides. Eine Person wird zufällig ausgewählt. Sei <InlineMath math="M" /> das Ereignis „mag Mathematik“ und <InlineMath math="F" /> das Ereignis „mag Physik“. Bestimme die Wahrscheinlichkeit, dass sie Mathematik oder Physik mag, und die Wahrscheinlichkeit, dass sie keines von beiden mag.
+Von <InlineMath math="40" /> Lernenden mögen <InlineMath math="25" /> Mathematik, <InlineMath math="18" /> Physik und <InlineMath math="10" /> beides. Eine Person wird zufällig ausgewählt. Sei <InlineMath math="M" /> das Ereignis „mag Mathematik“ und <InlineMath math="F" /> das Ereignis „mag Physik“. Bestimme die Wahrscheinlichkeit, dass sie Mathematik oder Physik mag, und die Wahrscheinlichkeit, dass sie keines von beiden mag.
 
 <MathContainer>
   <BlockMath math="P(M \cup F) = \frac{25}{40} + \frac{18}{40} - \frac{10}{40} = \frac{33}{40}" />
@@ -147,11 +147,11 @@ Von 40 Lernenden mögen 25 Mathematik, 18 Physik und 10 beides. Eine Person wird
 
 Die zweite Wahrscheinlichkeit nutzt das **Gegenereignis**: Wer keines von beiden mag, liegt außerhalb von <InlineMath math="M \cup F" />. Probe mit den Bereichen im Venn-Diagramm: <InlineMath math="25 - 10 = 15" /> mögen nur Mathematik, <InlineMath math="18 - 10 = 8" /> nur Physik und <InlineMath math="10" /> beides. Das sind <InlineMath math="33" />, und <InlineMath math="40 - 33 = 7" /> Personen mögen keines von beiden.
 
-Füll das Venn-Diagramm von innen nach außen: 10 Schüler mögen beides, also mögen <InlineMath math="25 - 10 = 15" /> nur Mathematik und <InlineMath math="18 - 10 = 8" /> nur Physik. Zusammen sind das <InlineMath math="15 + 10 + 8 = 33" />, und die übrigen 7 mögen keins von beiden.
+Füll das Venn-Diagramm von innen nach außen: <InlineMath math="10" /> Schüler mögen beides, also mögen <InlineMath math="25 - 10 = 15" /> nur Mathematik und <InlineMath math="18 - 10 = 8" /> nur Physik. Zusammen sind das <InlineMath math="15 + 10 + 8 = 33" />, und die übrigen <InlineMath math="7" /> mögen keins von beiden.
 
 <MathVisual
   title={<>Die Umfrage im Venn-Diagramm</>}
-  description={<>Die Kreise <InlineMath math="M" /> und <InlineMath math="F" /> für Mathematik und Physik mit 15, 10 und 8 Schülern in ihren Bereichen und 7 außerhalb.</>}
+  description={<>Die Kreise <InlineMath math="M" /> und <InlineMath math="F" /> für Mathematik und Physik mit <InlineMath math="15" />, <InlineMath math="10" /> und <InlineMath math="8" /> Schülern in ihren Bereichen und <InlineMath math="7" /> außerhalb.</>}
   labels={{
     m: <InlineMath math="M" />,
     f: <InlineMath math="F" />,
@@ -188,11 +188,11 @@ Füll das Venn-Diagramm von innen nach außen: 10 Schüler mögen beides, also m
 
 | Fehler | Warum er scheitert | So prüfst du |
 | --- | --- | --- |
-| <InlineMath math="P(A) + P(B)" /> addieren, ohne die Schnittmenge abzuziehen | Ergebnisse in der Schnittmenge werden doppelt gezählt | Beim Würfel käme <InlineMath math="1" /> heraus, obwohl 1 und 3 zu keinem Ereignis gehören |
+| <InlineMath math="P(A) + P(B)" /> addieren, ohne die Schnittmenge abzuziehen | Ergebnisse in der Schnittmenge werden doppelt gezählt | Beim Würfel käme <InlineMath math="1" /> heraus, obwohl <InlineMath math="1" /> und <InlineMath math="3" /> zu keinem Ereignis gehören |
 | Die Schnittmenge zweimal abziehen | Die Schnittmenge ist nur einmal zu viel gezählt | Zähle die Elemente der Vereinigung durch Aufzählen |
 | Vereinbar mit unabhängig verwechseln | Vereinbar betrifft die Schnittmenge, unabhängig bedeutet <InlineMath math="P(A \cap B) = P(A)P(B)" /> | Prüfe beide Bedingungen getrennt |
 | Eine Karte vergessen, die zu beiden Ereignissen gehört | Der Herzkönig ist Herzkarte und König zugleich | Schreibe die Schnittmenge auf, bevor du rechnest |
-| Eine Wahrscheinlichkeit über 1 erhalten | Ohne Abzug kann die Summe 1 überschreiten | Die Wahrscheinlichkeit einer Vereinigung ist nie größer als 1 |
+| Eine Wahrscheinlichkeit über <InlineMath math="1" /> erhalten | Ohne Abzug kann die Summe <InlineMath math="1" /> überschreiten | Die Wahrscheinlichkeit einer Vereinigung ist nie größer als <InlineMath math="1" /> |
 
 Die einfachste Probe ist, **jeden Bereich des Venn-Diagramms zu zählen** und zu addieren. Die Summe muss mit der Formel übereinstimmen.
 
@@ -202,11 +202,11 @@ Schreibe zuerst die Schnittmenge auf und **prüfe deine Antwort durch Aufzählen
 
 1. Ein Würfel wird einmal geworfen. <InlineMath math="A" /> ist das Ereignis einer Primzahl und <InlineMath math="B" /> das Ereignis einer ungeraden Zahl. Bestimme <InlineMath math="P(A \cup B)" />.
 
-2. Aus 52 Spielkarten wird eine Karte gezogen. Bestimme die Wahrscheinlichkeit, eine rote Karte oder ein Ass zu ziehen.
+2. Aus <InlineMath math="52" /> Spielkarten wird eine Karte gezogen. Bestimme die Wahrscheinlichkeit, eine rote Karte oder ein Ass zu ziehen.
 
 3. Gegeben sind <InlineMath math="P(A) = 0{,}5" />, <InlineMath math="P(B) = 0{,}4" /> und <InlineMath math="P(A \cup B) = 0{,}7" />. Bestimme <InlineMath math="P(A \cap B)" /> und entscheide, ob <InlineMath math="A" /> und <InlineMath math="B" /> unvereinbar sind.
 
-4. Aus den Zahlen 1 bis 30 wird eine zufällig gewählt. Bestimme die Wahrscheinlichkeit, dass sie durch 3 oder durch 5 teilbar ist.
+4. Aus den Zahlen <InlineMath math="1" /> bis <InlineMath math="30" /> wird eine zufällig gewählt. Bestimme die Wahrscheinlichkeit, dass sie durch <InlineMath math="3" /> oder durch <InlineMath math="5" /> teilbar ist.
 
 ### Lösungen
 
@@ -214,13 +214,13 @@ Schreibe zuerst die Schnittmenge auf und **prüfe deine Antwort durch Aufzählen
 
 <BlockMath math="P(A \cup B) = \frac{3}{6} + \frac{3}{6} - \frac{2}{6} = \frac{4}{6} = \frac{2}{3}" />
 
-Probe: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> enthält 4 der 6 Ergebnisse.
+Probe: <InlineMath math="A \cup B = \{1, 2, 3, 5\}" /> enthält <InlineMath math="4" /> der <InlineMath math="6" /> Ergebnisse.
 
 **Aufgabe 2**. Es gibt <InlineMath math="26" /> rote Karten, <InlineMath math="4" /> Asse und <InlineMath math="2" /> rote Asse (Herz und Karo):
 
 <BlockMath math="P = \frac{26}{52} + \frac{4}{52} - \frac{2}{52} = \frac{28}{52} = \frac{7}{13}" />
 
-Probe: 26 rote Karten und die 2 schwarzen Asse ergeben 28 Karten.
+Probe: <InlineMath math="26" /> rote Karten und die <InlineMath math="2" /> schwarzen Asse ergeben <InlineMath math="28" /> Karten.
 
 **Aufgabe 3**. Stelle die Formel um:
 
@@ -228,8 +228,8 @@ Probe: 26 rote Karten und die 2 schwarzen Asse ergeben 28 Karten.
 
 Wegen <InlineMath math="P(A \cap B) = 0{,}2 \ne 0" /> sind die Ereignisse **vereinbar**, also nicht unvereinbar. Probe: <InlineMath math="0{,}5 + 0{,}4 - 0{,}2 = 0{,}7" />, die gegebene Wahrscheinlichkeit der Vereinigung.
 
-**Aufgabe 4**. Es gibt <InlineMath math="10" /> Vielfache von 3, <InlineMath math="6" /> Vielfache von 5 und <InlineMath math="2" /> Vielfache von beiden, also von 15 (15 und 30):
+**Aufgabe 4**. Es gibt <InlineMath math="10" /> Vielfache von <InlineMath math="3" />, <InlineMath math="6" /> Vielfache von <InlineMath math="5" /> und <InlineMath math="2" /> Vielfache von beiden, also von <InlineMath math="15" /> (<InlineMath math="15" /> und <InlineMath math="30" />):
 
 <BlockMath math="P = \frac{10}{30} + \frac{6}{30} - \frac{2}{30} = \frac{14}{30} = \frac{7}{15}" />
 
-Probe durch Aufzählen: 3, 5, 6, 9, 10, 12, 15, 18, 20, 21, 24, 25, 27, 30, also 14 Zahlen.
+Probe durch Aufzählen: <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, <InlineMath math="15" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="21" />, <InlineMath math="24" />, <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="30" />, also <InlineMath math="14" /> Zahlen.

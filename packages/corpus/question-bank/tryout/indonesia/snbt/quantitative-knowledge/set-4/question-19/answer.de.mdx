@@ -1,21 +1,52 @@
-„Mindestens zwei“ bedeutet **genau zwei oder genau drei** Treffer. Beide Ereignisse schließen sich aus, ihre Wahrscheinlichkeiten werden also addiert. Die Schüsse sind unabhängig, die Wahrscheinlichkeit einer Ergebnisfolge ist daher das Produkt der Einzelwahrscheinlichkeiten.
+Du suchst jedes <InlineMath math="m" />, für das <InlineMath math="f" /> nach zweimaliger Anwendung wieder bei <InlineMath math="x" /> landet. Der Plan: Schreib <InlineMath math="f(x)=ax+b" />, berechne <InlineMath math="f\bigl(f(x)\bigr)" />, vergleich die Koeffizienten mit <InlineMath math="x" /> und **prüf beide entstehenden Fälle mit ihrer eigenen Bedingung**.
 
-# Genau zwei Treffer
+# Eine lineare Funktion verketten
 
-Der eine Fehlschuss kann der erste, zweite oder dritte Schuss sein, es gibt also **drei Reihenfolgen** mit gleicher Wahrscheinlichkeit.
+Setz <InlineMath math="a=m^2-8m+13" /> und <InlineMath math="b=m-6" />.
 
-<BlockMath math="P(\text{genau }2)=3\cdot(0{,}6)^2(0{,}4)=3\cdot0{,}144=0{,}432" />
+<BlockMath math="f\bigl(f(x)\bigr)=a(ax+b)+b=a^2x+(a+1)b" />
 
-# Genau drei Treffer
+Damit das für jedes <InlineMath math="x" /> gleich <InlineMath math="x" /> ist, **muss der Koeffizient von <InlineMath math="x" /> gleich <InlineMath math="1" /> und das konstante Glied gleich <InlineMath math="0" /> sein**: <InlineMath math="a^2=1" /> und <InlineMath math="(a+1)b=0" />. Aus <InlineMath math="a^2=1" /> folgen zwei Fälle, <InlineMath math="a=1" /> oder <InlineMath math="a=-1" />.
 
-Es gibt **nur eine Reihenfolge**, bei der alle drei Schüsse treffen.
+# Der Fall mit Koeffizient eins
 
-<BlockMath math="P(\text{genau }3)=(0{,}6)^3=0{,}216" />
+Für <InlineMath math="a=1" /> wird die zweite Bedingung zu <InlineMath math="2b=0" />, also **muss auch <InlineMath math="b" /> gleich <InlineMath math="0" /> sein**. Die Funktion muss <InlineMath math="f(x)=x" /> sein.
 
-Addiere beide Fälle.
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=1\\
+m^2-8m+12&=0\\
+(m-2)(m-6)&=0
+\end{aligned}" />
 
-<BlockMath math="P(\text{mindestens }2)=0{,}432+0{,}216=0{,}648" />
+Für <InlineMath math="m=6" /> ist <InlineMath math="b=0" />, das passt. Für <InlineMath math="m=2" /> ist <InlineMath math="b=-4" />, dann gilt <InlineMath math="f(x)=x-4" /> und <InlineMath math="f\bigl(f(x)\bigr)=x-8" />. Der Wert <InlineMath math="m=2" /> fällt weg.
 
-Der Wert 0,432 zählt nur genau zwei, der Wert 0,216 nur genau drei Treffer. Der Wert 0,36 ist <InlineMath math="(0{,}6)^2" /> und übersieht den dritten Schuss und die Anzahl der Reihenfolgen. Der Wert 0,784 ist <InlineMath math="1-0{,}216" />, also die Wahrscheinlichkeit für höchstens zwei Treffer.
+# Der Fall mit Koeffizient minus eins
 
-Die Wahrscheinlichkeit für mindestens zwei Treffer ist also <InlineMath math="0{,}648" />.
+Für <InlineMath math="a=-1" /> ist die zweite Bedingung <InlineMath math="(a+1)b=0\cdot b=0" /> **immer erfüllt**, egal wie groß <InlineMath math="b" /> ist. Zum Beispiel liefert <InlineMath math="f(x)=-x+b" /> das Ergebnis <InlineMath math="f\bigl(f(x)\bigr)=-(-x+b)+b=x" />.
+
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=-1\\
+m^2-8m+14&=0\\
+m&=\frac{8\pm\sqrt{64-56}}{2}=4\pm\sqrt2
+\end{aligned}" />
+
+Beide Werte sind gültig.
+
+# Das Produkt aller Werte
+
+**Alle gültigen Werte von <InlineMath math="m" />** sind <InlineMath math="6" />, <InlineMath math="4+\sqrt2" /> und <InlineMath math="4-\sqrt2" />.
+
+<BlockMath math="6\cdot\left(4+\sqrt2\right)\left(4-\sqrt2\right)=6\cdot(16-2)=6\cdot14=84" />
+
+Prüf das Produkt der beiden Lösungen aus dem zweiten Fall mit Vieta: Die Lösungen von <InlineMath math="m^2-8m+14=0" /> haben das Produkt <InlineMath math="14" />, das passt.
+
+# Die verlockenden falschen Optionen
+
+Jede andere Option entsteht durch **einen übersehenen Fall oder einen ungeprüften Kandidaten**.
+
+- <InlineMath math="14" /> entsteht, wenn du den Fall <InlineMath math="a=1" /> übersiehst, etwa weil du glaubst, nur <InlineMath math="f(x)=-x+b" /> führe zurück zu <InlineMath math="x" />.
+- <InlineMath math="168" /> entsteht, wenn du <InlineMath math="m=2" /> behältst, ohne <InlineMath math="b=0" /> zu prüfen.
+- <InlineMath math="6" /> entsteht, wenn du den Fall <InlineMath math="a=-1" /> übersiehst.
+- <InlineMath math="12" /> entsteht, wenn du den Fall <InlineMath math="a=-1" /> übersiehst und zusätzlich <InlineMath math="m=2" /> behältst.
+
+Das Produkt aller möglichen Werte von <InlineMath math="m" /> ist also <InlineMath math="84" />.

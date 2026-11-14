@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "flaw",
+    topic: "strengthening",
   },
-  stimulus: "aplikasi",
+  stimulus: "posyandu",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengelola memakai persentase, bukan jumlah pengguna yang lulus.",
+            "Pada 2024, sebelum ada SMS, cakupan imunisasi dasar lengkap seluruh bayi di Sindangjaya adalah $$75\\%$$.",
         },
         {
           correct: false,
           label:
-            "Ujian masuk perguruan tinggi negeri memiliki tingkat kesulitan yang tinggi.",
-        },
-        {
-          correct: false,
-          label: "Survei dikirim secara daring kepada pengguna aplikasi.",
+            "Anak sebelumnya dari orang tua yang tidak mendaftarkan nomor, yang diimunisasi sebelum ada SMS, juga hanya sekitar $$60\\%$$ yang mendapat imunisasi dasar lengkap.",
         },
         {
           correct: false,
           label:
-            "Pengelola menganggap semua pengguna aplikasi belajar lebih dari dua jam setiap hari, padahal sebagian pengguna belajar jauh lebih singkat.",
+            "Hampir semua orang tua penerima SMS mengaku membaca pesan itu pada hari pesan dikirim.",
+        },
+        {
+          correct: false,
+          label:
+            "Orang tua yang mendaftarkan nomor dan orang tua yang tidak mendaftar rata-rata tinggal sama jauhnya dari posyandu.",
         },
         {
           correct: true,
           label:
-            "Pengelola tidak membandingkan hasil itu dengan tingkat kelulusan siswa yang belajar kurang dari dua jam atau tidak memakai aplikasi.",
+            "Anak sebelumnya dari orang tua yang mendaftarkan nomor, yang diimunisasi sebelum ada SMS, hanya sekitar $$60\\%$$ yang mendapat imunisasi dasar lengkap.",
         },
       ],
     },

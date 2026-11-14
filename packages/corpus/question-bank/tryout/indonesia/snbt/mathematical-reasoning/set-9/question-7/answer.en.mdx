@@ -1,15 +1,38 @@
-Compare the pumps and the drain through **their rates**: A <InlineMath math="\tfrac16" />, B <InlineMath math="\tfrac19" /> and the drain <InlineMath math="\tfrac{1}{18}" /> of the pool per hour.
+You're looking for when the last participant arrives, not when they leave. The plan: build each vehicle's departure timetable, add up the people carried until you reach <InlineMath math="150" />, then add the travel time of the vehicle that takes the last group. **Count time in minutes after 07:00** so it's easy to add.
 
-# Comparing rates
+# Each vehicle's departures
 
-<InlineMath math="\tfrac16:\tfrac19=\tfrac96=1.5" />, so pump A is 1.5 times as fast. The first statement is true.
+A vehicle goes there and back, so its next departure comes two travel times later. The bus leaves at minute <InlineMath math="0" />, <InlineMath math="50" />, <InlineMath math="100" />, and so on. The two minibuses leave together at minute <InlineMath math="0" />, <InlineMath math="40" />, <InlineMath math="80" />, <InlineMath math="120" />, and so on. **Put all departures in time order**, because people board whichever vehicle leaves first.
 
-<InlineMath math="\tfrac{1}{18}" /> is half of <InlineMath math="\tfrac19" />, so **the drain's rate is half of pump B's rate**. The second statement is true.
+# People carried so far
 
-# Tempting but wrong ideas
+Each departure carries a full load, except the last group, which carries only who's left.
 
-A pump twice as fast as A fills <InlineMath math="\tfrac13" /> of the pool per hour. With B the rate is <InlineMath math="\tfrac13+\tfrac19=\tfrac49" />, so the time is 2.25 hours. Half of 3.6 hours is 1.8 hours, **so the time is not halved**, because pump B is not sped up. The third statement is false.
+| Minute it leaves | Vehicle | Carried | Total carried | Minute it arrives |
+| :---: | :--- | :---: | :---: | :---: |
+| <InlineMath math="0" /> | bus | <InlineMath math="30" /> | <InlineMath math="30" /> | <InlineMath math="25" /> |
+| <InlineMath math="0" /> | two minibuses | <InlineMath math="28" /> | <InlineMath math="58" /> | <InlineMath math="20" /> |
+| <InlineMath math="40" /> | two minibuses | <InlineMath math="28" /> | <InlineMath math="86" /> | <InlineMath math="60" /> |
+| <InlineMath math="50" /> | bus | <InlineMath math="30" /> | <InlineMath math="116" /> | <InlineMath math="75" /> |
+| <InlineMath math="80" /> | two minibuses | <InlineMath math="28" /> | <InlineMath math="144" /> | <InlineMath math="100" /> |
+| <InlineMath math="100" /> | bus | <InlineMath math="6" /> | <InlineMath math="150" /> | <InlineMath math="125" /> |
 
-Half the mean of the two times is <InlineMath math="\tfrac12\cdot\tfrac{6+9}{2}=3.75" /> hours, while the real time is 3.6 hours. The fourth statement is false.
+By minute <InlineMath math="80" />, <InlineMath math="144" /> people have left, so <InlineMath math="150-144=6" /> are still waiting. The first vehicle back at the station after that is **the bus, back at minute** <InlineMath math="100" />, since the minibuses only return at minute <InlineMath math="120" />.
 
-So the first statement is **true**, the second is **true**, the third is **false**, and the fourth is **false**.
+# When the last participant arrives
+
+The bus takes the last <InlineMath math="6" /> people and arrives <InlineMath math="25" /> minutes later.
+
+<BlockMath math="t_{\text{last}}=100+25=125\text{ minutes}" />
+
+Check that nobody arrives later: every earlier group arrives by minute <InlineMath math="100" />. So **the last participant arrives at 09:05**, which is <InlineMath math="125" /> minutes after 07:00.
+
+# Traps to avoid
+
+Other answers come from **mixing up leaving time and arrival time**, or from replacing the timetable with an average.
+
+- Answering <InlineMath math="100" /> uses the minute the last group leaves, not the minute it arrives.
+- Adding average rates, <InlineMath math="\tfrac{30}{50}+\tfrac{28}{40}=1.3" /> people per minute, gives <InlineMath math="150\div1.3\approx115" /> minutes. The vehicles don't move people a little at a time, so this method is wrong.
+- Waiting for a minibus at minute <InlineMath math="120" /> gives <InlineMath math="140" /> minutes, even though the bus is ready earlier.
+
+So the last participant arrives at the hall <InlineMath math="125" /> minutes after 07:00.

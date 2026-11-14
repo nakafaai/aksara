@@ -20,7 +20,8 @@ import {
   type LessonVoiceReport,
 } from "#nakafa-content/voice/types";
 
-interface LessonFile {
+/** One locale-qualified content file and its locale. */
+export interface LessonFile {
   file: string;
   locale: LessonVoiceLocale;
 }
@@ -31,7 +32,7 @@ interface LessonFile {
  * Lessons and articles are named `<locale>.mdx`; question-bank files carry a
  * role prefix such as `answer.id.mdx`. Both shapes end in the locale segment.
  */
-function localeFromFile(file: string): string {
+export function localeFromFile(file: string): string {
   const stem = basename(file, ".mdx");
   const separator = stem.lastIndexOf(".");
   return separator === -1 ? stem : stem.slice(separator + 1);
@@ -54,44 +55,44 @@ const isDirectory = Effect.fn("LessonVoiceCheck.isDirectory")(function* (
 });
 
 /** Collects locale-qualified lesson files without validating them twice. */
-const collectLocaleFiles = Effect.fn("LessonVoiceCheck.collectLocaleFiles")(
-  function* (root: string) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const files: LessonFile[] = [];
+export const collectLocaleFiles = Effect.fn(
+  "LessonVoiceCheck.collectLocaleFiles"
+)(function* (root: string) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const files: LessonFile[] = [];
 
-    /** Traverses one lesson directory without following non-directory entries. */
-    const visit = (
-      directory: string
-    ): Effect.Effect<void, LessonVoiceCheckError, FileSystem.FileSystem> =>
-      Effect.gen(function* () {
-        const entries = yield* Effect.mapError(
-          fileSystem.readDirectory(directory),
-          (cause) =>
-            new LessonVoiceCheckError({
-              detail: `Cannot list ${directory}: ${String(cause)}`,
-              reason: "unreadable-entry",
-            })
-        );
-        for (const entry of entries) {
-          const file = join(directory, entry);
-          if (yield* isSymbolicLink(fileSystem, file)) {
-            continue;
-          }
-          if (yield* isDirectory(fileSystem, file)) {
-            yield* visit(file);
-            continue;
-          }
-          const locale = localeFromFile(file);
-          if (isLessonVoiceLocale(locale)) {
-            files.push({ file, locale });
-          }
+  /** Traverses one lesson directory without following non-directory entries. */
+  const visit = (
+    directory: string
+  ): Effect.Effect<void, LessonVoiceCheckError, FileSystem.FileSystem> =>
+    Effect.gen(function* () {
+      const entries = yield* Effect.mapError(
+        fileSystem.readDirectory(directory),
+        (cause) =>
+          new LessonVoiceCheckError({
+            detail: `Cannot list ${directory}: ${String(cause)}`,
+            reason: "unreadable-entry",
+          })
+      );
+      for (const entry of entries) {
+        const file = join(directory, entry);
+        if (yield* isSymbolicLink(fileSystem, file)) {
+          continue;
         }
-      });
+        if (yield* isDirectory(fileSystem, file)) {
+          yield* visit(file);
+          continue;
+        }
+        const locale = localeFromFile(file);
+        if (isLessonVoiceLocale(locale)) {
+          files.push({ file, locale });
+        }
+      }
+    });
 
-    yield* visit(root);
-    return files.sort((left, right) => left.file.localeCompare(right.file));
-  }
-);
+  yield* visit(root);
+  return files.sort((left, right) => left.file.localeCompare(right.file));
+});
 
 /** Collects every English, Indonesian, and German lesson source below a root. */
 export const collectLessonFiles = Effect.fn(
@@ -161,8 +162,8 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       )
     );
     const pending = documents.flatMap(
-      ({ locale, repositoryPath, source, tree }) =>
-        findPendingIssues(source, tree).map((issue) => ({
+      ({ file, locale, repositoryPath, source, tree }) =>
+        findPendingIssues(file, source, tree).map((issue) => ({
           file: repositoryPath,
           locale,
           ...issue,

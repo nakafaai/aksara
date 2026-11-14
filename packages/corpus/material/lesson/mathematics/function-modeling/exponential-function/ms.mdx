@@ -1,0 +1,313 @@
+export const metadata = {
+  title: "Fungsi Eksponen",
+  description: "Gunakan fungsi eksponen untuk memodelkan kuantiti yang berubah dengan faktor tetap, termasuk populasi, reputan radioaktif dan faedah kompaun.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Pemboleh Ubah pada Indeks
+
+Dalam fungsi eksponen, <Highlight>pemboleh ubah tak bersandar berada pada indeks</Highlight>. Model pertumbuhan dan susutan di bawah menggunakan bentuk am <InlineMath math="f(x) = a \cdot b^x" /> dengan <InlineMath math="a > 0" />, <InlineMath math="b > 0" /> dan <InlineMath math="b \neq 1" />.
+
+**Komponen fungsi eksponen**:
+
+Dalam fungsi <InlineMath math="f(x) = a \cdot b^x" />:
+
+- <InlineMath math="a" /> ialah pemalar pendarab yang menentukan nilai
+  awal fungsi
+- <InlineMath math="b" /> ialah asas eksponen yang menentukan kadar pertumbuhan
+  atau susutan
+- <InlineMath math="x" /> ialah pemboleh ubah tak bersandar (indeks)
+
+## Ciri-ciri Fungsi Eksponen
+
+Apabila nilai awalnya positif, **asas menentukan arah perubahan**. Pada input sifar, nilai fungsi sama dengan pendarab awalnya.
+
+Setiap kali input bertambah satu, output sentiasa didarab dengan asas yang sama. Inilah yang membezakan perubahan eksponen daripada penambahan jumlah yang tetap dalam fungsi linear.
+
+<BlockMath math="\frac{f(x+1)}{f(x)}=\frac{ab^{x+1}}{ab^x}=b" />
+
+### Bagaimana Graf Berkelakuan
+
+Hukum indeks memberikan identiti berikut. Hasil darab dua nilai fungsi mengandungi **pendarab awal** sebanyak dua kali. Jadi kita mesti membahagikan hasil darab itu dengan pendarab awal untuk mendapat nilai fungsi pada hasil tambah input.
+
+<MathContainer>
+
+<BlockMath math="f(0) = a \cdot b^0 = a \cdot 1 = a" />
+
+<BlockMath math="\begin{aligned} f(x_1 + x_2) &amp;= a \cdot b^{x_1 + x_2} \\ &amp;= a \cdot b^{x_1} \cdot b^{x_2} \end{aligned}" />
+
+<BlockMath math="f(x_1 - x_2) = a \cdot b^{x_1 - x_2} = \frac{a \cdot b^{x_1}}{b^{x_2}}" />
+
+<BlockMath math="f(x_1+x_2)=\frac{f(x_1)f(x_2)}{a},\quad f(x_1-x_2)=\frac{a f(x_1)}{f(x_2)}" />
+</MathContainer>
+
+### Jenis Fungsi Eksponen
+
+| Jenis | Asas | Perubahan | Contoh |
+| --- | --- | --- | --- |
+| **Pertumbuhan** | <InlineMath math="b>1" /> | Menokok | <InlineMath math="2^x" /> |
+| **Susutan** | <InlineMath math="0<b<1" /> | Menyusut | <InlineMath math="(1/2)^x" /> |
+
+## Graf Fungsi Eksponen
+
+Berikut ialah visualisasi bagi beberapa **fungsi eksponen**:
+
+<MathVisual
+  title={<>Perbandingan fungsi eksponen</>}
+  description={<>Fungsi pertumbuhan <InlineMath math="f(x) = 2^x" /> dan fungsi susutan <InlineMath math="g(x) = (0.5)^x" /> untuk <InlineMath math="-3 \le x \le 3" />. Kedua-dua graf melalui <InlineMath math="(0, 1)" /> dan setiap satu ialah pantulan yang lain pada paksi-y.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2^x" />,
+    g: <InlineMath math="g(x) = (0.5)^x" />,
+    one: <InlineMath math="(0, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -0.5, max: 8.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "polyline", vertices: [{ x: -3, y: 2 ** (-3) }, { x: -29 / 10, y: 2 ** (-29 / 10) }, { x: -14 / 5, y: 2 ** (-14 / 5) }, { x: -27 / 10, y: 2 ** (-27 / 10) }, { x: -13 / 5, y: 2 ** (-13 / 5) }, { x: -5 / 2, y: 2 ** (-5 / 2) }, { x: -12 / 5, y: 2 ** (-12 / 5) }, { x: -23 / 10, y: 2 ** (-23 / 10) }, { x: -11 / 5, y: 2 ** (-11 / 5) }, { x: -21 / 10, y: 2 ** (-21 / 10) }, { x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }, { x: 13 / 5, y: 2 ** (13 / 5) }, { x: 27 / 10, y: 2 ** (27 / 10) }, { x: 14 / 5, y: 2 ** (14 / 5) }, { x: 29 / 10, y: 2 ** (29 / 10) }, { x: 3, y: 2 ** (3) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: -3, y: 2 ** (-(-3)) }, { x: -29 / 10, y: 2 ** (-(-29 / 10)) }, { x: -14 / 5, y: 2 ** (-(-14 / 5)) }, { x: -27 / 10, y: 2 ** (-(-27 / 10)) }, { x: -13 / 5, y: 2 ** (-(-13 / 5)) }, { x: -5 / 2, y: 2 ** (-(-5 / 2)) }, { x: -12 / 5, y: 2 ** (-(-12 / 5)) }, { x: -23 / 10, y: 2 ** (-(-23 / 10)) }, { x: -11 / 5, y: 2 ** (-(-11 / 5)) }, { x: -21 / 10, y: 2 ** (-(-21 / 10)) }, { x: -2, y: 2 ** (-(-2)) }, { x: -19 / 10, y: 2 ** (-(-19 / 10)) }, { x: -9 / 5, y: 2 ** (-(-9 / 5)) }, { x: -17 / 10, y: 2 ** (-(-17 / 10)) }, { x: -8 / 5, y: 2 ** (-(-8 / 5)) }, { x: -3 / 2, y: 2 ** (-(-3 / 2)) }, { x: -7 / 5, y: 2 ** (-(-7 / 5)) }, { x: -13 / 10, y: 2 ** (-(-13 / 10)) }, { x: -6 / 5, y: 2 ** (-(-6 / 5)) }, { x: -11 / 10, y: 2 ** (-(-11 / 10)) }, { x: -1, y: 2 ** (-(-1)) }, { x: -9 / 10, y: 2 ** (-(-9 / 10)) }, { x: -4 / 5, y: 2 ** (-(-4 / 5)) }, { x: -7 / 10, y: 2 ** (-(-7 / 10)) }, { x: -3 / 5, y: 2 ** (-(-3 / 5)) }, { x: -1 / 2, y: 2 ** (-(-1 / 2)) }, { x: -2 / 5, y: 2 ** (-(-2 / 5)) }, { x: -3 / 10, y: 2 ** (-(-3 / 10)) }, { x: -1 / 5, y: 2 ** (-(-1 / 5)) }, { x: -1 / 10, y: 2 ** (-(-1 / 10)) }, { x: 0, y: 2 ** (-(0)) }, { x: 1 / 10, y: 2 ** (-(1 / 10)) }, { x: 1 / 5, y: 2 ** (-(1 / 5)) }, { x: 3 / 10, y: 2 ** (-(3 / 10)) }, { x: 2 / 5, y: 2 ** (-(2 / 5)) }, { x: 1 / 2, y: 2 ** (-(1 / 2)) }, { x: 3 / 5, y: 2 ** (-(3 / 5)) }, { x: 7 / 10, y: 2 ** (-(7 / 10)) }, { x: 4 / 5, y: 2 ** (-(4 / 5)) }, { x: 9 / 10, y: 2 ** (-(9 / 10)) }, { x: 1, y: 2 ** (-(1)) }, { x: 11 / 10, y: 2 ** (-(11 / 10)) }, { x: 6 / 5, y: 2 ** (-(6 / 5)) }, { x: 13 / 10, y: 2 ** (-(13 / 10)) }, { x: 7 / 5, y: 2 ** (-(7 / 5)) }, { x: 3 / 2, y: 2 ** (-(3 / 2)) }, { x: 8 / 5, y: 2 ** (-(8 / 5)) }, { x: 17 / 10, y: 2 ** (-(17 / 10)) }, { x: 9 / 5, y: 2 ** (-(9 / 5)) }, { x: 19 / 10, y: 2 ** (-(19 / 10)) }, { x: 2, y: 2 ** (-(2)) }, { x: 21 / 10, y: 2 ** (-(21 / 10)) }, { x: 11 / 5, y: 2 ** (-(11 / 5)) }, { x: 23 / 10, y: 2 ** (-(23 / 10)) }, { x: 12 / 5, y: 2 ** (-(12 / 5)) }, { x: 5 / 2, y: 2 ** (-(5 / 2)) }, { x: 13 / 5, y: 2 ** (-(13 / 5)) }, { x: 27 / 10, y: 2 ** (-(27 / 10)) }, { x: 14 / 5, y: 2 ** (-(14 / 5)) }, { x: 29 / 10, y: 2 ** (-(29 / 10)) }, { x: 3, y: 2 ** (-(3)) }], appearance: "secondary" },
+      { id: "one", kind: "point", at: { x: 0, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 3, y: 8 }, placement: "left" },
+      { key: "g", objectId: "g", at: { x: -3, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 0, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+Perbandingan nilai fungsi <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = (0.5)^x" />:
+
+| <InlineMath math="x" />                                    | <InlineMath math="-2" />   | <InlineMath math="-1" />  | <InlineMath math="0" />   | <InlineMath math="1" />   | <InlineMath math="2" />    | <InlineMath math="3" />     |
+| ------------------------------------ | ---- | --- | --- | --- | ---- | ----- |
+| <InlineMath math="f(x) = 2^x" />     | <InlineMath math="0.25" /> | <InlineMath math="0.5" /> | <InlineMath math="1" />   | <InlineMath math="2" />   | <InlineMath math="4" />    | <InlineMath math="8" />     |
+| <InlineMath math="g(x) = (0.5)^x" /> | <InlineMath math="4" />    | <InlineMath math="2" />   | <InlineMath math="1" />   | <InlineMath math="0.5" /> | <InlineMath math="0.25" /> | <InlineMath math="0.125" /> |
+
+## Penjelmaan Fungsi Eksponen
+
+**Translasi mencancang** menggerakkan asimptot, manakala translasi mengufuk menggerakkan titik rujukan pada graf. Setiap pemalar yang ditambah pada fungsi menggerakkan graf ke satu arah yang tetap, dan persamaan selepas penjelmaan menunjukkan arah itu.
+
+### Translasi Mencancang
+
+Fungsi <InlineMath math="f(x) = a \cdot b^x + c" /> menggerakkan graf **ke atas** (jika <InlineMath math="c > 0" />) atau ke bawah (jika <InlineMath math="c < 0" />).
+
+<MathVisual
+  title={<>Translasi mencancang</>}
+  description={<>Graf <InlineMath math="g(x) = 2^x + 2" /> ialah graf <InlineMath math="f(x) = 2^x" /> yang digerakkan ke atas sebanyak <InlineMath math="2" />. Asimptot mengufuk beralih dari <InlineMath math="y = 0" /> ke <InlineMath math="y = 2" />.</>}
+  labels={{
+    f: <InlineMath math="f(x) = 2^x" />,
+    g: <InlineMath math="g(x) = 2^x + 2" />,
+    asym: <InlineMath math="y = 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.4, max: 2.8 }, y: { min: -0.5, max: 8.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "asym", kind: "line", through: [{ x: 0, y: 2 }, { x: 1, y: 2 }], appearance: "reference" },
+      { id: "f", kind: "polyline", vertices: [{ x: -4, y: 2 ** (-4) }, { x: -39 / 10, y: 2 ** (-39 / 10) }, { x: -19 / 5, y: 2 ** (-19 / 5) }, { x: -37 / 10, y: 2 ** (-37 / 10) }, { x: -18 / 5, y: 2 ** (-18 / 5) }, { x: -7 / 2, y: 2 ** (-7 / 2) }, { x: -17 / 5, y: 2 ** (-17 / 5) }, { x: -33 / 10, y: 2 ** (-33 / 10) }, { x: -16 / 5, y: 2 ** (-16 / 5) }, { x: -31 / 10, y: 2 ** (-31 / 10) }, { x: -3, y: 2 ** (-3) }, { x: -29 / 10, y: 2 ** (-29 / 10) }, { x: -14 / 5, y: 2 ** (-14 / 5) }, { x: -27 / 10, y: 2 ** (-27 / 10) }, { x: -13 / 5, y: 2 ** (-13 / 5) }, { x: -5 / 2, y: 2 ** (-5 / 2) }, { x: -12 / 5, y: 2 ** (-12 / 5) }, { x: -23 / 10, y: 2 ** (-23 / 10) }, { x: -11 / 5, y: 2 ** (-11 / 5) }, { x: -21 / 10, y: 2 ** (-21 / 10) }, { x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: -4, y: 2 ** (-4) + 2 }, { x: -39 / 10, y: 2 ** (-39 / 10) + 2 }, { x: -19 / 5, y: 2 ** (-19 / 5) + 2 }, { x: -37 / 10, y: 2 ** (-37 / 10) + 2 }, { x: -18 / 5, y: 2 ** (-18 / 5) + 2 }, { x: -7 / 2, y: 2 ** (-7 / 2) + 2 }, { x: -17 / 5, y: 2 ** (-17 / 5) + 2 }, { x: -33 / 10, y: 2 ** (-33 / 10) + 2 }, { x: -16 / 5, y: 2 ** (-16 / 5) + 2 }, { x: -31 / 10, y: 2 ** (-31 / 10) + 2 }, { x: -3, y: 2 ** (-3) + 2 }, { x: -29 / 10, y: 2 ** (-29 / 10) + 2 }, { x: -14 / 5, y: 2 ** (-14 / 5) + 2 }, { x: -27 / 10, y: 2 ** (-27 / 10) + 2 }, { x: -13 / 5, y: 2 ** (-13 / 5) + 2 }, { x: -5 / 2, y: 2 ** (-5 / 2) + 2 }, { x: -12 / 5, y: 2 ** (-12 / 5) + 2 }, { x: -23 / 10, y: 2 ** (-23 / 10) + 2 }, { x: -11 / 5, y: 2 ** (-11 / 5) + 2 }, { x: -21 / 10, y: 2 ** (-21 / 10) + 2 }, { x: -2, y: 2 ** (-2) + 2 }, { x: -19 / 10, y: 2 ** (-19 / 10) + 2 }, { x: -9 / 5, y: 2 ** (-9 / 5) + 2 }, { x: -17 / 10, y: 2 ** (-17 / 10) + 2 }, { x: -8 / 5, y: 2 ** (-8 / 5) + 2 }, { x: -3 / 2, y: 2 ** (-3 / 2) + 2 }, { x: -7 / 5, y: 2 ** (-7 / 5) + 2 }, { x: -13 / 10, y: 2 ** (-13 / 10) + 2 }, { x: -6 / 5, y: 2 ** (-6 / 5) + 2 }, { x: -11 / 10, y: 2 ** (-11 / 10) + 2 }, { x: -1, y: 2 ** (-1) + 2 }, { x: -9 / 10, y: 2 ** (-9 / 10) + 2 }, { x: -4 / 5, y: 2 ** (-4 / 5) + 2 }, { x: -7 / 10, y: 2 ** (-7 / 10) + 2 }, { x: -3 / 5, y: 2 ** (-3 / 5) + 2 }, { x: -1 / 2, y: 2 ** (-1 / 2) + 2 }, { x: -2 / 5, y: 2 ** (-2 / 5) + 2 }, { x: -3 / 10, y: 2 ** (-3 / 10) + 2 }, { x: -1 / 5, y: 2 ** (-1 / 5) + 2 }, { x: -1 / 10, y: 2 ** (-1 / 10) + 2 }, { x: 0, y: 2 ** (0) + 2 }, { x: 1 / 10, y: 2 ** (1 / 10) + 2 }, { x: 1 / 5, y: 2 ** (1 / 5) + 2 }, { x: 3 / 10, y: 2 ** (3 / 10) + 2 }, { x: 2 / 5, y: 2 ** (2 / 5) + 2 }, { x: 1 / 2, y: 2 ** (1 / 2) + 2 }, { x: 3 / 5, y: 2 ** (3 / 5) + 2 }, { x: 7 / 10, y: 2 ** (7 / 10) + 2 }, { x: 4 / 5, y: 2 ** (4 / 5) + 2 }, { x: 9 / 10, y: 2 ** (9 / 10) + 2 }, { x: 1, y: 2 ** (1) + 2 }, { x: 11 / 10, y: 2 ** (11 / 10) + 2 }, { x: 6 / 5, y: 2 ** (6 / 5) + 2 }, { x: 13 / 10, y: 2 ** (13 / 10) + 2 }, { x: 7 / 5, y: 2 ** (7 / 5) + 2 }, { x: 3 / 2, y: 2 ** (3 / 2) + 2 }, { x: 8 / 5, y: 2 ** (8 / 5) + 2 }, { x: 17 / 10, y: 2 ** (17 / 10) + 2 }, { x: 9 / 5, y: 2 ** (9 / 5) + 2 }, { x: 19 / 10, y: 2 ** (19 / 10) + 2 }, { x: 2, y: 2 ** (2) + 2 }, { x: 21 / 10, y: 2 ** (21 / 10) + 2 }, { x: 11 / 5, y: 2 ** (11 / 5) + 2 }, { x: 23 / 10, y: 2 ** (23 / 10) + 2 }, { x: 12 / 5, y: 2 ** (12 / 5) + 2 }, { x: 5 / 2, y: 2 ** (5 / 2) + 2 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "g", objectId: "g", at: { x: 2, y: 6 }, placement: "left" },
+      { key: "asym", objectId: "asym", at: { x: -4, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Translasi Mengufuk
+
+Fungsi <InlineMath math="f(x) = a \cdot b^{x-h}" /> menggerakkan graf ke kanan (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />). Translasi ini menggerakkan setiap titik sejauh yang sama, jadi asimptot kekal di tempatnya dan bentuk lengkung tidak berubah.
+
+Untuk **translasi dua unit ke kanan**, tambahkan dua kepada setiap input asal dan kekalkan outputnya.
+
+<BlockMath math="g(x)=2^{x-2},\qquad g(2)=2^0=1" />
+
+| Titik asal | Titik baharu |
+| --- | --- |
+| <InlineMath math="(0,1)" /> | <InlineMath math="(2,1)" /> |
+| <InlineMath math="(1,2)" /> | <InlineMath math="(3,2)" /> |
+| <InlineMath math="(2,4)" /> | <InlineMath math="(4,4)" /> |
+
+Translasi ke kanan sebanyak <InlineMath math="2" /> menggerakkan setiap titik pada <InlineMath math="y = 2^x" /> sejauh <InlineMath math="2" /> unit: <InlineMath math="(0, 1)" /> berpindah ke <InlineMath math="(2, 1)" />, <InlineMath math="(1, 2)" /> ke <InlineMath math="(3, 2)" /> dan <InlineMath math="(2, 4)" /> ke <InlineMath math="(4, 4)" />. Bentuk graf dan asimptot <InlineMath math="y = 0" /> kekal sama.
+
+<MathVisual
+  title={<><InlineMath math="y = 2^x" /> dan <InlineMath math="y = 2^{x-2}" /></>}
+  description={<>Lengkung <InlineMath math="y = 2^x" /> dan <InlineMath math="y = 2^{x - 2}" /> dengan tiga titik serta imejnya <InlineMath math="2" /> unit ke kanan.</>}
+  labels={{
+    f: <InlineMath math="y = 2^x" />,
+    g: <InlineMath math="y = 2^{x-2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.4, max: 4.8 }, y: { min: -0.4, max: 6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "polyline", vertices: [{ x: -2, y: 2 ** (-2) }, { x: -19 / 10, y: 2 ** (-19 / 10) }, { x: -9 / 5, y: 2 ** (-9 / 5) }, { x: -17 / 10, y: 2 ** (-17 / 10) }, { x: -8 / 5, y: 2 ** (-8 / 5) }, { x: -3 / 2, y: 2 ** (-3 / 2) }, { x: -7 / 5, y: 2 ** (-7 / 5) }, { x: -13 / 10, y: 2 ** (-13 / 10) }, { x: -6 / 5, y: 2 ** (-6 / 5) }, { x: -11 / 10, y: 2 ** (-11 / 10) }, { x: -1, y: 2 ** (-1) }, { x: -9 / 10, y: 2 ** (-9 / 10) }, { x: -4 / 5, y: 2 ** (-4 / 5) }, { x: -7 / 10, y: 2 ** (-7 / 10) }, { x: -3 / 5, y: 2 ** (-3 / 5) }, { x: -1 / 2, y: 2 ** (-1 / 2) }, { x: -2 / 5, y: 2 ** (-2 / 5) }, { x: -3 / 10, y: 2 ** (-3 / 10) }, { x: -1 / 5, y: 2 ** (-1 / 5) }, { x: -1 / 10, y: 2 ** (-1 / 10) }, { x: 0, y: 2 ** (0) }, { x: 1 / 10, y: 2 ** (1 / 10) }, { x: 1 / 5, y: 2 ** (1 / 5) }, { x: 3 / 10, y: 2 ** (3 / 10) }, { x: 2 / 5, y: 2 ** (2 / 5) }, { x: 1 / 2, y: 2 ** (1 / 2) }, { x: 3 / 5, y: 2 ** (3 / 5) }, { x: 7 / 10, y: 2 ** (7 / 10) }, { x: 4 / 5, y: 2 ** (4 / 5) }, { x: 9 / 10, y: 2 ** (9 / 10) }, { x: 1, y: 2 ** (1) }, { x: 11 / 10, y: 2 ** (11 / 10) }, { x: 6 / 5, y: 2 ** (6 / 5) }, { x: 13 / 10, y: 2 ** (13 / 10) }, { x: 7 / 5, y: 2 ** (7 / 5) }, { x: 3 / 2, y: 2 ** (3 / 2) }, { x: 8 / 5, y: 2 ** (8 / 5) }, { x: 17 / 10, y: 2 ** (17 / 10) }, { x: 9 / 5, y: 2 ** (9 / 5) }, { x: 19 / 10, y: 2 ** (19 / 10) }, { x: 2, y: 2 ** (2) }, { x: 21 / 10, y: 2 ** (21 / 10) }, { x: 11 / 5, y: 2 ** (11 / 5) }, { x: 23 / 10, y: 2 ** (23 / 10) }, { x: 12 / 5, y: 2 ** (12 / 5) }, { x: 5 / 2, y: 2 ** (5 / 2) }], appearance: "primary" },
+      { id: "g", kind: "polyline", vertices: [{ x: 0, y: 2 ** (-2) }, { x: 1 / 10, y: 2 ** (-19 / 10) }, { x: 1 / 5, y: 2 ** (-9 / 5) }, { x: 3 / 10, y: 2 ** (-17 / 10) }, { x: 2 / 5, y: 2 ** (-8 / 5) }, { x: 1 / 2, y: 2 ** (-3 / 2) }, { x: 3 / 5, y: 2 ** (-7 / 5) }, { x: 7 / 10, y: 2 ** (-13 / 10) }, { x: 4 / 5, y: 2 ** (-6 / 5) }, { x: 9 / 10, y: 2 ** (-11 / 10) }, { x: 1, y: 2 ** (-1) }, { x: 11 / 10, y: 2 ** (-9 / 10) }, { x: 6 / 5, y: 2 ** (-4 / 5) }, { x: 13 / 10, y: 2 ** (-7 / 10) }, { x: 7 / 5, y: 2 ** (-3 / 5) }, { x: 3 / 2, y: 2 ** (-1 / 2) }, { x: 8 / 5, y: 2 ** (-2 / 5) }, { x: 17 / 10, y: 2 ** (-3 / 10) }, { x: 9 / 5, y: 2 ** (-1 / 5) }, { x: 19 / 10, y: 2 ** (-1 / 10) }, { x: 2, y: 2 ** (0) }, { x: 21 / 10, y: 2 ** (1 / 10) }, { x: 11 / 5, y: 2 ** (1 / 5) }, { x: 23 / 10, y: 2 ** (3 / 10) }, { x: 12 / 5, y: 2 ** (2 / 5) }, { x: 5 / 2, y: 2 ** (1 / 2) }, { x: 13 / 5, y: 2 ** (3 / 5) }, { x: 27 / 10, y: 2 ** (7 / 10) }, { x: 14 / 5, y: 2 ** (4 / 5) }, { x: 29 / 10, y: 2 ** (9 / 10) }, { x: 3, y: 2 ** (1) }, { x: 31 / 10, y: 2 ** (11 / 10) }, { x: 16 / 5, y: 2 ** (6 / 5) }, { x: 33 / 10, y: 2 ** (13 / 10) }, { x: 17 / 5, y: 2 ** (7 / 5) }, { x: 7 / 2, y: 2 ** (3 / 2) }, { x: 18 / 5, y: 2 ** (8 / 5) }, { x: 37 / 10, y: 2 ** (17 / 10) }, { x: 19 / 5, y: 2 ** (9 / 5) }, { x: 39 / 10, y: 2 ** (19 / 10) }, { x: 4, y: 2 ** (2) }, { x: 41 / 10, y: 2 ** (21 / 10) }, { x: 21 / 5, y: 2 ** (11 / 5) }, { x: 43 / 10, y: 2 ** (23 / 10) }, { x: 22 / 5, y: 2 ** (12 / 5) }, { x: 9 / 2, y: 2 ** (5 / 2) }], appearance: "secondary" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 9 / 5, y: 1 }, appearance: "construction" },
+      { id: "s0-head", kind: "polygon", vertices: [{ x: 9 / 5, y: 1 }, { x: 49 / 30, y: 16 / 15 }, { x: 49 / 30, y: 14 / 15 }], appearance: "construction" },
+      { id: "s1", kind: "segment", from: { x: 1, y: 2 }, to: { x: 14 / 5, y: 2 }, appearance: "construction" },
+      { id: "s1-head", kind: "polygon", vertices: [{ x: 14 / 5, y: 2 }, { x: 79 / 30, y: 31 / 15 }, { x: 79 / 30, y: 29 / 15 }], appearance: "construction" },
+      { id: "s2", kind: "segment", from: { x: 2, y: 4 }, to: { x: 19 / 5, y: 4 }, appearance: "construction" },
+      { id: "s2-head", kind: "polygon", vertices: [{ x: 19 / 5, y: 4 }, { x: 109 / 30, y: 61 / 15 }, { x: 109 / 30, y: 59 / 15 }], appearance: "construction" },
+      { id: "a0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "a1", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
+      { id: "a2", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "b0", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "b1", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+      { id: "b2", kind: "point", at: { x: 4, y: 4 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5 / 2, y: 2 ** 2.5 }, placement: "left" },
+      { key: "g", objectId: "g", at: { x: 9 / 2, y: 2 ** 2.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Aplikasi Fungsi Eksponen
+
+Kuantiti dalam setiap contoh di bawah berubah dengan **faktor tetap** dalam selang yang sama panjang. Faktor itu mewakili pertumbuhan populasi, susutan, atau pertambahan baki akaun kerana faedah.
+
+Peratus yang sama dikenakan pada jumlah yang terkini, jadi pertambahan mutlaknya tidak tetap. Pertumbuhan sepuluh peratus mengubah seratus menjadi seratus sepuluh, kemudian menjadi seratus dua puluh satu.
+
+<BlockMath math="100\cdot1.1=110,\qquad110\cdot1.1=121" />
+
+### Pertumbuhan Populasi
+
+Apabila satu populasi ada kadar pertumbuhan berkadar yang tetap dan keadaannya tidak berubah, model eksponen boleh menerangkan pertumbuhannya. Jika populasi awal ialah <InlineMath math="P_0" /> dan kadar pertumbuhan ialah <InlineMath math="r" /> bagi setiap tempoh masa, maka:
+
+<BlockMath math="P(t) = P_0 \cdot (1 + r)^t" />
+
+**Contoh**: Populasi bakteria yang membiak setiap jam pada kadar <InlineMath math="20\%" />:
+
+- Populasi awal: <InlineMath math="1000 \text{ bakteria}" />
+- Kadar pertumbuhan: <InlineMath math="r = 0.2" />
+- Fungsi: <InlineMath math="P(t) = 1000 \cdot (1.2)^t" />
+
+| Masa (jam) | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> |
+| ------------ | ---- | ---- | ---- | ---- | ---- | ---- |
+| Populasi   | <InlineMath math="1000" /> | <InlineMath math="1200" /> | <InlineMath math="1440" /> | <InlineMath math="1728" /> | <InlineMath math="2074" /> | <InlineMath math="2488" /> |
+
+Model ini memberikan <InlineMath math="2073.6" /> dan <InlineMath math="2488.32" /> pada jam <InlineMath math="4" /> dan <InlineMath math="5" />. Jadual itu membundarkan kedua-dua populasi tersebut kepada nombor bulat terdekat kerana bilangan bakteria mesti nombor bulat.
+
+### Reputan Radioaktif
+
+Bahan radioaktif mereput mengikut fungsi eksponen. Jika jisim awal ialah <InlineMath math="M_0" /> dan setengah hayatnya ialah <InlineMath math="t_{1/2}" />, maka:
+
+<BlockMath math="M(t) = M_0 \cdot \left(\frac{1}{2}\right)^{t/t_{1/2}}" />
+
+Contohnya, jisim awal lapan puluh gram dengan **setengah hayat dua tahun** menjadi separuh setiap dua tahun.
+
+<BlockMath math="M(4)=80\left(\frac12\right)^{4/2}=80\cdot\frac14=20" />
+
+| Masa (tahun) | Jisim (gram) |
+| --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="40" /> |
+| <InlineMath math="4" /> | <InlineMath math="20" /> |
+
+### Faedah Kompaun
+
+Pelaburan dengan faedah kompaun bertambah secara eksponen. Jika modal awal ialah <InlineMath math="P" />, kadar faedah ialah <InlineMath math="r" /> setahun, dan masa ialah <InlineMath math="t \text{ tahun}" />:
+
+<BlockMath math="A = P \cdot \left(1 + \frac{r}{n}\right)^{nt}" />
+
+Dalam rumus ini, <InlineMath math="n" /> ialah bilangan kali faedah dikompaunkan dalam setahun.
+
+Katakan modal awal satu juta rupiah memperoleh kadar nominal tahunan sepuluh peratus, **dikompaunkan dua kali setahun**. Dalam model ini, tiada deposit, pengeluaran, yuran atau cukai.
+
+<BlockMath math="A=1{,}000{,}000\left(1+\frac{0.10}{2}\right)^{2\cdot1}=1{,}000{,}000(1.05)^2=1{,}102{,}500" />
+
+Setiap setengah tahun, baki didarab dengan faktor yang sama. Model ini memberikan baki akhir tahun sebanyak <InlineMath math="\text{Rp}1{,}102{,}500" />.
+
+## Persamaan Eksponen
+
+Persamaan eksponen ialah persamaan yang ada pemboleh ubah pada indeksnya. Bentuk amnya:
+
+<BlockMath math="b^x = c" />
+
+**Kaedah 1: Menyamakan Asas**
+
+Jika <InlineMath math="b^{f(x)} = b^{g(x)}" />, maka <InlineMath math="f(x) = g(x)" />
+
+**Contoh**: Selesaikan <InlineMath math="2^{x+1} = 8" />
+
+<MathContainer>
+
+<BlockMath math="2^{x+1} = 8" />
+
+<BlockMath math="2^{x+1} = 2^3" />
+
+<BlockMath math="x + 1 = 3" />
+
+<BlockMath math="x = 2" />
+</MathContainer>
+
+**Kaedah 2: Menggunakan Logaritma**
+
+Untuk <InlineMath math="b>0" />, <InlineMath math="b\neq1" /> dan <InlineMath math="c>0" />, selesaikan <InlineMath math="b^x = c" /> menggunakan logaritma:
+
+<BlockMath math="x = \log_b c = \frac{\log c}{\log b}" />
+
+## Latihan
+
+Setiap soalan memberikan maklumat tentang satu fungsi eksponen dan meminta fungsi itu sendiri atau salah satu nilainya, jadi tulis bentuk am dahulu, kemudian gantikan titik yang diberikan.
+
+1. Tentukan nilai <InlineMath math="f(3)" /> jika <InlineMath math="f(x) = 5 \cdot 2^x" />
+
+2. Selesaikan persamaan <InlineMath math="3^{2x-1} = 27" />
+
+3. Populasi sebuah bandar ialah <InlineMath math="50{,}000 \text{ orang}" /> dan bertambah <InlineMath math="3\%" /> setahun. Berapakah populasinya selepas <InlineMath math="10 \text{ tahun}" />?
+
+4. Satu bahan radioaktif ada **setengah hayat** <InlineMath math="5 \text{ tahun}" />. Jika jisim awalnya <InlineMath math="100 \text{ gram}" />, berapakah jisim yang tinggal selepas <InlineMath math="15 \text{ tahun}" />?
+
+### Jalan Kerja
+
+**Soalan 1**. Gantikan <InlineMath math="x = 3" /> ke dalam <InlineMath math="f(x) = 5 \cdot 2^x" />. Kira **nilai kuasa sebelum mendarab** dengan faktor awal.
+
+<BlockMath math="f(3) = 5 \cdot 2^3 = 5 \cdot 8 = 40" />
+
+<InlineMath math="f(3) = 40" />.
+
+**Soalan 2**. Tulis semula <InlineMath math="27" /> sebagai <InlineMath math="3^3" />. Oleh sebab asas tiga positif dan bukan satu, dua kuasa yang sama nilainya mesti ada **indeks yang sama**.
+
+<MathContainer>
+
+<BlockMath math="3^{2x-1} = 3^3" />
+
+<BlockMath math="2x - 1 = 3" />
+
+<BlockMath math="x = 2" />
+</MathContainer>
+
+Apabila disemak, <InlineMath math="3^{2(2)-1} = 3^3 = 27" />, jadi penyelesaian ini betul.
+
+**Soalan 3**. Populasi awal ialah <InlineMath math="P_0 = 50{,}000" />, **kadar pertumbuhan** tahunan ialah <InlineMath math="r = 0.03" />, dan masa ialah <InlineMath math="t = 10" /> tahun. Gunakan faktor pertumbuhan tahunan <InlineMath math="1 + r = 1.03" />.
+
+<MathContainer>
+
+<BlockMath math="P(10) = 50{,}000 \cdot (1.03)^{10}" />
+
+<BlockMath math="\begin{aligned} P(10) &amp;\approx 50{,}000 \cdot 1.343916 \\ &amp;\approx 67{,}195.82 \end{aligned}" />
+
+<BlockMath math="P(10) \approx 67{,}196 \text{ orang}" />
+</MathContainer>
+
+Populasi itu dibundarkan kepada nombor bulat terdekat kerana bilangan orang mesti nombor bulat.
+
+**Soalan 4**. Lima belas tahun mengandungi <InlineMath math="15/5 = 3" /> tempoh **setengah hayat**. Jadi jisim itu didarab dengan <InlineMath math="1/2" /> sebanyak tiga kali.
+
+<MathContainer>
+
+<BlockMath math="M(15) = 100 \cdot \left(\frac{1}{2}\right)^3" />
+
+<BlockMath math="M(15) = 100 \cdot \frac{1}{8} = 12.5 \text{ gram}" />
+</MathContainer>
+
+Selepas <InlineMath math="15 \text{ tahun}" />, jisim yang tinggal ialah <InlineMath math="12.5 \text{ gram}" />.

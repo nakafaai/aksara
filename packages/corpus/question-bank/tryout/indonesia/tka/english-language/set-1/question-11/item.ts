@@ -2,27 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "narrative",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "recount",
+    topic: "cause-effect",
   },
-  stimulus: "weather-notebook",
+  stimulus: "broadcast",
   versions: {
     en: {
-      columns: ["Before it was found", "After it was found"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Mina blamed Arif.",
+          correct: false,
+          label:
+            "Rina could hear herself clearly in her headphones throughout the broadcast.",
         },
         {
-          column: 2,
-          label: "The pages were placed between clean sheets.",
+          correct: true,
+          label: "No sound reached the speakers in the classrooms.",
         },
         {
-          column: 2,
-          label: "A shared digital copy was created.",
+          correct: false,
+          label: "The club's own recording of the broadcast was complete.",
+        },
+        {
+          correct: true,
+          label:
+            "The exam room changes had to be read again at the first break.",
+        },
+        {
+          correct: true,
+          label: "Pak Hadi knocked on the studio window during the broadcast.",
         },
       ],
     },

@@ -1,19 +1,35 @@
-First find the total of every row and column. Each statement uses **a different reference group**, so pay attention to which group counts as the whole.
+You're counting three-digit numbers with two conditions: the digits add up to <InlineMath math="15" />, and the hundreds digit is bigger than the units digit. Here's the plan: count every digit arrangement that adds up to <InlineMath math="15" />, then use **swapping the hundreds and units digits** to split the count into two equal groups.
 
-| Gender | Scouts | Basketball | Total |
-| :--- | :---: | :---: | :---: |
-| Boys | 12 | 18 | 30 |
-| Girls | 20 | 10 | 30 |
-| Total | 32 | 28 | 60 |
+# Every digit arrangement adding to fifteen
 
-# Conditional probability and group sizes
+Call the hundreds, tens, and units digits <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />. For now, allow <InlineMath math="a=0" />, so each digit can be <InlineMath math="0" /> to <InlineMath math="9" />. Without an upper limit, the number of whole-number solutions of <InlineMath math="a+b+c=15" /> is <InlineMath math="\binom{17}{2}" /> (stars and bars). Then **remove the arrangements with a digit of <InlineMath math="10" /> or more**, since those aren't digits.
 
-The first statement chooses a student **only from the Scouts members**, so the sample space has 32 students, not 60. The probability is <InlineMath math="\frac{20}{32}=\frac58" />, so the first statement is true. There are 30 boys and 30 girls, so the fourth statement is true as well.
+If <InlineMath math="a\ge10" />, write <InlineMath math="a=10+a'" />, which gives <InlineMath math="a'+b+c=5" /> with <InlineMath math="\binom{7}{2}=21" /> solutions. The same goes for <InlineMath math="b" /> and <InlineMath math="c" />. Two digits can't both be at least <InlineMath math="10" />, because the total is only <InlineMath math="15" />.
 
-# The two percentage statements
+<BlockMath math="\binom{17}{2}-3\binom{7}{2}=136-63=73" />
 
-Basketball has 28 of the 60 students, that is, <InlineMath math="\frac{28}{60}\approx46.7\%" />, less than half. The second statement is false.
+# Swapping hundreds and units
 
-Among the 30 boys, 18 play basketball, that is, <InlineMath math="\frac{18}{30}=60\%" />. This is **not more than 65%**, so the third statement is false. Note that the divisor is the 30 boys, not the 28 basketball players.
+Swapping <InlineMath math="a" /> and <InlineMath math="c" /> doesn't change the digit sum. The swap pairs every arrangement with <InlineMath math="a>c" /> with exactly one arrangement with <InlineMath math="a<c" />, so **those two groups are the same size**. The only arrangements without a partner are the ones with <InlineMath math="a=c" />.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+For <InlineMath math="a=c" />, you get <InlineMath math="2a+b=15" />, so <InlineMath math="b=15-2a" /> has to be between <InlineMath math="0" /> and <InlineMath math="9" />. That happens for <InlineMath math="a=3, 4, 5, 6, 7" />, which is <InlineMath math="5" /> arrangements.
+
+<BlockMath math="\text{arrangements with }a>c=\frac{73-5}{2}=34" />
+
+The condition <InlineMath math="a>c\ge0" /> automatically makes <InlineMath math="a\ge1" />, so all of these really are three-digit numbers.
+
+# Checking another way
+
+Count **directly by the units digit** <InlineMath math="c" />. For each <InlineMath math="c" />, choose <InlineMath math="a>c" /> so that <InlineMath math="b=15-a-c" /> lies between <InlineMath math="0" /> and <InlineMath math="9" />.
+
+| <InlineMath math="c" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Choices of <InlineMath math="a" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+The total is <InlineMath math="4+5+6+6+5+4+3+1=34" />, matching the result above.
+
+# Traps to avoid
+
+**The sneakiest mistake** is starting from the <InlineMath math="69" /> three-digit numbers with digit sum <InlineMath math="15" /> and computing <InlineMath math="\frac{69-5}{2}=32" />. That's wrong, because the <InlineMath math="4" /> arrangements with <InlineMath math="a=0" /> were removed only from the group with <InlineMath math="a<c" />, so the two groups are no longer equal. Another mistake is forgetting to remove digits of <InlineMath math="10" /> or more, which starts you at <InlineMath math="136" />.
+
+So the number of three-digit numbers meeting both conditions is <InlineMath math="34" />.

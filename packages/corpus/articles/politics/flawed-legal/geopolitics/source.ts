@@ -9,6 +9,7 @@ export const flawedLegalGeopoliticsArticle = defineArticleSource({
     de: "nusantara-rechtsgrundlage-und-sicherheit",
     en: "flawed-legal-geopolitics",
     id: "flawed-legal-geopolitics",
+    ms: "kerangka-undang-undang-ibu-kota-nusantara",
   },
   slug: "flawed-legal-geopolitics",
   sourceRoot: "articles/politics/flawed-legal/geopolitics",

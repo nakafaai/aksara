@@ -1,17 +1,44 @@
-Rumus <InlineMath math="T=30-4m" /> adalah **fungsi linear yang turun**, bukan perbandingan berbalik nilai. Bedakan berkurang dengan laju tetap dari berbanding terbalik.
+Keempat pernyataan memerlukan jam mulai dan jam selesai setiap JP, dan **jadwalnya berbeda menurut hari**. Rencananya: susun jadwal jam untuk tiga jenis hari, lalu nilai setiap pernyataan dengan jadwal itu.
 
-# Jenis hubungan
+# Jadwal jam untuk tiga jenis hari
 
-Koefisien <InlineMath math="-4" /> berarti setiap tambahan 1 kg mengurangi lama terbang 4 menit. Pernyataan kedua benar.
+**Setiap jam mulai diperoleh dari jam sebelumnya ditambah lama JP atau istirahat**, dimulai setelah kegiatan pembuka.
 
-Jika berbanding terbalik, hasil kali <InlineMath math="T\cdot m" /> selalu tetap. Padahal beban 1 kg memberi <InlineMath math="26\cdot1=26" />, sedangkan beban 2 kg memberi <InlineMath math="22\cdot2=44" />. Tanpa beban pun lama terbangnya 30 menit, **bukan tak hingga**. Pernyataan pertama salah.
+| Hari | JP pertama mulai | Istirahat pertama | Istirahat kedua | JP terakhir selesai |
+| --- | --- | --- | --- | --- |
+| Senin | 07.40 | 10.20-10.35 | 12.35-13.05 | 14.25 |
+| Selasa, Rabu, Kamis | 07.15 | 09.30-09.45 | 12.00-12.30 | 14.45 |
+| Jumat | 07.30 | 09.50-10.05 | tidak ada | 11.15 |
 
-# Menggandakan beban dan setengah lama terbang
+Contohnya hari Senin: JP ke-<InlineMath math="1" /> sampai ke-<InlineMath math="4" /> berlangsung <InlineMath math="4\cdot40=160" /> menit dari pukul 07.40, sehingga istirahat pertama mulai pukul 10.20.
 
-Beban 1 kg memberi 26 menit, sedangkan beban 2 kg memberi 22 menit, **bukan 13 menit**. Pernyataan ketiga salah.
+# JP kedelapan pada Senin dan Selasa
 
-<BlockMath math="30-4\cdot3{,}75=30-15=15=\tfrac12\cdot30" />
+Pada hari Senin, JP ke-<InlineMath math="8" /> mulai setelah istirahat kedua, yaitu pukul 13.05. Pada hari Selasa, JP ke-<InlineMath math="8" /> mulai setelah JP ke-<InlineMath math="7" /> (12.30 sampai 13.15), yaitu pukul 13.15. **Upacara Senin <InlineMath math="25" /> menit lebih lama, tetapi tujuh JP Senin sebelum JP ke-<InlineMath math="8" /> masing-masing <InlineMath math="5" /> menit lebih pendek**, sehingga Senin lebih cepat <InlineMath math="35-25=10" /> menit.
 
-Dengan beban 3,75 kg lama terbangnya 15 menit, tepat setengah dari 30 menit tanpa beban. Pernyataan keempat benar.
+<BlockMath math="\begin{aligned}
+\text{Senin} &: 40+7\cdot40+15+30=365\text{ menit setelah pukul 07.00} \\
+\text{Selasa} &: 15+7\cdot45+15+30=375\text{ menit setelah pukul 07.00}
+\end{aligned}" />
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+JP ke-<InlineMath math="8" /> hari Senin mulai lebih awal, jadi pernyataan pertama **salah**.
+
+# Membandingkan total waktu JP
+
+Total waktu JP adalah banyak JP dikali lamanya: Jumat <InlineMath math="6\cdot35=210" /> menit, Senin <InlineMath math="9\cdot40=360" /> menit, dan Selasa <InlineMath math="9\cdot45=405" /> menit. Setengah waktu JP Senin adalah <InlineMath math="180" /> menit, dan setengah waktu JP Selasa adalah <InlineMath math="202{,}5" /> menit.
+
+Bagian pertama benar karena <InlineMath math="210>180" />, tetapi **bagian kedua gagal karena <InlineMath math="210>202{,}5" />**. Pernyataan yang memakai kata "tetapi" benar hanya jika kedua bagiannya benar, jadi pernyataan kedua **salah**.
+
+# Siapa yang sedang istirahat
+
+Pukul 10.25 berada di dalam istirahat pertama hari Senin (10.20 sampai 10.35). Pada hari Selasa sampai Kamis, pukul 10.25 berada di dalam JP ke-<InlineMath math="4" /> (09.45 sampai 10.30). Pada hari Jumat, pukul 10.25 berada di dalam JP ke-<InlineMath math="5" /> (10.05 sampai 10.40). **Hanya hari Senin yang sedang istirahat**, jadi pernyataan ketiga **benar**.
+
+# Jam pulang Senin sampai Kamis
+
+Hari Senin selesai pukul 14.25, sebelum pukul 14.30. Namun, **hari Selasa sampai Kamis baru selesai pukul 14.45**.
+
+<BlockMath math="15+9\cdot45+15+30=465\text{ menit setelah pukul 07.00}" />
+
+Satu hari yang selesai sesudah pukul 14.30 sudah cukup untuk membantah kata "setiap", jadi pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama salah, kedua salah, ketiga benar, dan keempat salah.

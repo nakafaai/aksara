@@ -13,44 +13,29 @@ Die Normalverteilung ist ein Wahrscheinlichkeitsmodell für eine stetige Größe
 
 In der interaktiven Grafik hat die Kurve der Standardnormalverteilung mit <InlineMath math="\mu = 0" /> und <InlineMath math="\sigma = 1" /> ihr Maximum in der Mitte. Zwei senkrechte Strecken markieren die Wendepunkte bei <InlineMath math="\mu - \sigma" /> und <InlineMath math="\mu + \sigma" />, an denen die Krümmung wechselt: Zwischen den beiden Punkten ist die Kurve rechtsgekrümmt, außerhalb linksgekrümmt.
 
-<LineEquation
-  title="Kurve der Standardnormalverteilung"
+<MathVisual
+  title={<>Kurve der Standardnormalverteilung</>}
   description={<>Die Dichte der Standardnormalverteilung hat ihre Mitte bei <InlineMath math="\mu = 0" />. Die senkrechten Strecken markieren ihre Wendepunkte bei <InlineMath math="\mu \pm \sigma" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 5]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
-        const x = (index - 350) / 100;
-        const y = Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI);
-        return { x, y, z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu = 0" />, at: 350, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -1, y: 0, z: 0 },
-        { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu - \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 1, y: 0, z: 0 },
-        { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\mu + \sigma" />, at: 0, offset: [0, -0.3, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="\mu = 0" />,
+    "l2": <InlineMath math="\mu - \sigma" />,
+    "l3": <InlineMath math="\mu + \sigma" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 350) / 100)", y: "(exp((((-0.5) * ((t - 350) / 100)) * ((t - 350) / 100))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 0 }, { x: -1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 1, y: (1 / Math.sqrt(2 * Math.PI)) * Math.exp(-0.5) }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Mittelwert, Median und Modus fallen bei <InlineMath math="\mu" /> zusammen, weil die Kurve symmetrisch ist und nur ein Maximum hat. Die Kurve berührt die <InlineMath math="x" />-Achse nie: Ihre Dichte ist für jedes <InlineMath math="x" /> positiv und fällt weit von der Mitte entfernt gegen null. Abraham de Moivre leitete diese Kurve im Jahr <InlineMath math="1733" /> als Näherung der [Binomialverteilung](/de/faecher/mathematik/datenanalyse-und-wahrscheinlichkeit/binomialverteilung) mit <InlineMath math="p = \frac{1}{2}" /> für eine große Zahl von Versuchen her, und Pierre-Simon Laplace erweiterte sie später auf andere Trefferwahrscheinlichkeiten.
@@ -69,44 +54,29 @@ Eine Dichte ist keine Wahrscheinlichkeit. Im Maximum der Standardnormalverteilun
 
 Der Parameter <InlineMath math="\mu" /> **verschiebt die Kurve, ohne ihre Form zu ändern**, während <InlineMath math="\sigma" /> ihre Breite festlegt. Die Fläche unter der Kurve bleibt immer <InlineMath math="1" />, also ist eine breitere Kurve auch niedriger, mit der Maximalhöhe <InlineMath math="\frac{1}{\sigma\sqrt{2\pi}}" />. Die interaktive Grafik zeichnet drei Kurven aus derselben Formel.
 
-<LineEquation
+<MathVisual
   title={<>Die Kurven <InlineMath math="N(0, 1)" />, <InlineMath math="N(2, 1)" /> und <InlineMath math="N(0, 4)" /></>}
   description={<>Wenn <InlineMath math="\mu" /> von <InlineMath math="0" /> auf <InlineMath math="2" /> wächst, verschiebt sich die Kurve nach rechts. Wenn <InlineMath math="\sigma" /> von <InlineMath math="1" /> auf <InlineMath math="2" /> wächst, wird die Kurve breiter und ihr Maximum halb so hoch.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 9]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
-        const x = -4 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 1)" />, at: 400, offset: [-1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 801 }, (_, index) => {
-        const x = -2 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x - 2) ** 2) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(2, 1)" />, at: 400, offset: [1, 0.1, 0] }],
-    },
-    {
-      points: Array.from({ length: 1201 }, (_, index) => {
-        const x = -6 + index / 100;
-        return { x, y: Math.exp(-0.5 * (x / 2) ** 2) / (2 * Math.sqrt(2 * Math.PI)), z: 0 };
-      }),
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="N(0, 4)" />, at: 300, offset: [-0.5, 0.2, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="N(0, 1)" />,
+    "l2": <InlineMath math="N(2, 1)" />,
+    "l3": <InlineMath math="N(0, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-4) + (t / 100))", y: "(exp((((-0.5) * ((-4) + (t / 100))) * ((-4) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 100))", y: "(exp(((-0.5) * ((((-2) + (t / 100)) - 2))^(2))) / sqrt((2 * pi)))", parameter: { min: 0, max: 800 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-6) + (t / 100))", y: "(exp(((-0.5) * ((((-6) + (t / 100)) / 2))^(2))) / (2 * sqrt((2 * pi))))", parameter: { min: 0, max: 1200 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0.4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 0.4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0.06 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Die Kurven <InlineMath math="N(0, 1)" /> und <InlineMath math="N(2, 1)" /> haben dieselbe Form, nur ihre Mitte liegt um <InlineMath math="2" /> Einheiten weiter rechts. Die Kurve <InlineMath math="N(0, 4)" /> hat dieselbe Mitte wie <InlineMath math="N(0, 1)" />, ist aber doppelt so breit, und ihr Maximum sinkt von <InlineMath math="0{,}399" /> auf <InlineMath math="0{,}199" />. Der zweite Parameter in <InlineMath math="N(\mu, \sigma^2)" /> ist die Varianz, also bedeutet <InlineMath math="N(0, 4)" /> eine Standardabweichung <InlineMath math="\sigma = 2" />.
@@ -155,53 +125,28 @@ Eine Wahrscheinlichkeit der Normalverteilung braucht drei Schritte: Grenzen stan
 
 Die Wahrscheinlichkeit beträgt etwa <InlineMath math="0{,}5764" />, also <InlineMath math="57{,}64\%" />. Die interaktive Grafik zeigt diese Fläche unter der Standardnormalverteilung zwischen <InlineMath math="z = -0{,}5" /> und <InlineMath math="z = 1{,}2" />.
 
-<LineEquation
+<MathVisual
   title={<>Die Fläche zwischen <InlineMath math="z = -0{,}5" /> und <InlineMath math="z = 1{,}2" /></>}
   description={<>Der dicke Bogen ist der Teil der Standardnormalverteilungskurve über dem standardisierten Intervall. Die Fläche unter diesem Bogen ist <InlineMath math="P(45 < X < 62) \approx 0{,}5764" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0.2, 5.5]}
-  cameraTarget={[0, 0.2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 701 }, (_, index) => {
-        const x = -3.5 + index / 100;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#9333ea",
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: Array.from({ length: 341 }, (_, index) => {
-        const x = -0.5 + index / 200;
-        return { x, y: Math.exp(-0.5 * x * x) / Math.sqrt(2 * Math.PI), z: 0 };
-      }),
-      color: "#0d9488",
-      lineWidth: 4,
-      smooth: false,
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -0.5, y: 0, z: 0 },
-        { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="-0{,}5" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-    {
-      points: [
-        { x: 1.2, y: 0, z: 0 },
-        { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI), z: 0 },
-      ],
-      color: "#ea580c",
-      smooth: false,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="1{,}2" />, at: 0, offset: [0, -0.2, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="-0{,}5" />,
+    "l2": <InlineMath math="1{,}2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -0.5, max: 1 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3.5) + (t / 100))", y: "(exp((((-0.5) * ((-3.5) + (t / 100))) * ((-3.5) + (t / 100)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 700 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-0.5) + (t / 200))", y: "(exp((((-0.5) * ((-0.5) + (t / 200))) * ((-0.5) + (t / 200)))) / sqrt((2 * pi)))", parameter: { min: 0, max: 340 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -0.5, y: 0 }, { x: -0.5, y: Math.exp(-0.5 * 0.5 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1.2, y: 0 }, { x: 1.2, y: Math.exp(-0.5 * 1.2 ** 2) / Math.sqrt(2 * Math.PI) }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -0.5, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s4", at: { x: 1.2, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Probe durch Teilen des Intervalls in der Mitte. Der linke Teil ist <InlineMath math="P(-0{,}5 < Z < 0) = 0{,}5 - 0{,}3085 = 0{,}1915" />, der rechte Teil <InlineMath math="P(0 < Z < 1{,}2) = 0{,}8849 - 0{,}5 = 0{,}3849" />. Ihre Summe ist <InlineMath math="0{,}1915 + 0{,}3849 = 0{,}5764" />, genau wie zuerst berechnet.

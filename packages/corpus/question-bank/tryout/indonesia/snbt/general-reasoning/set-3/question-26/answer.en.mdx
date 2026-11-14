@@ -1,11 +1,41 @@
-A number is divisible by <InlineMath math="6" /> exactly when it is **divisible by both <InlineMath math="2" /> and <InlineMath math="3" />**, because <InlineMath math="6=2\times3" /> and <InlineMath math="2" /> and <InlineMath math="3" /> share no factor other than <InlineMath math="1" />.
+The question asks how many A packs Wulan bought. A statement is sufficient when it leaves only one possible number of A packs. Let Wulan buy <InlineMath math="a" /> A packs and <InlineMath math="b" /> B packs, where <InlineMath math="a" /> and <InlineMath math="b" /> are whole numbers of at least <InlineMath math="1" />. Test each statement on its own first, then combine them.
 
-**Statement (1) alone**. <InlineMath math="n" /> is divisible by <InlineMath math="3" /> but not necessarily even. For example, <InlineMath math="n=6" /> is divisible by <InlineMath math="6" />, but <InlineMath math="n=9" /> is not. Not sufficient.
+Statement (1) gives an equation in thousands of rupiah:
 
-**Statement (2) alone**. If <InlineMath math="n" /> were odd, <InlineMath math="n^2" /> would also be odd and could not be divisible by <InlineMath math="4" />. So <InlineMath math="n^2" /> divisible by <InlineMath math="4" /> means <InlineMath math="n" /> is even. But <InlineMath math="n" /> need not be divisible by <InlineMath math="3" />. For example, <InlineMath math="n=2" /> is not divisible by <InlineMath math="6" />, while <InlineMath math="n=12" /> is. Not sufficient.
+<BlockMath math="7a + 4b = 61" />
 
-**Both statements together**. Statement (2) makes <InlineMath math="n" /> even, and statement (1) makes it divisible by <InlineMath math="3" />. So <InlineMath math="n" /> must be divisible by <InlineMath math="6" />. Sufficient.
+Since <InlineMath math="4b" /> is a multiple of <InlineMath math="4" />, the remainder <InlineMath math="61 - 7a" /> has to be divisible by <InlineMath math="4" /> too. The value of <InlineMath math="a" /> is at most <InlineMath math="8" />, because <InlineMath math="7 \times 9 = 63" /> is already more than <InlineMath math="61" />. Try every value.
 
-A common mistake is thinking statement (2) only tells you about <InlineMath math="n^2" /> and is therefore useless. In fact it guarantees that <InlineMath math="n" /> is even.
+| <InlineMath math="a" /> | <InlineMath math="61 - 7a" /> | Divisible by <InlineMath math="4" />? | <InlineMath math="b" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="54" /> | no | not whole |
+| <InlineMath math="2" /> | <InlineMath math="47" /> | no | not whole |
+| <InlineMath math="3" /> | <InlineMath math="40" /> | yes | <InlineMath math="10" /> |
+| <InlineMath math="4" /> | <InlineMath math="33" /> | no | not whole |
+| <InlineMath math="5" /> | <InlineMath math="26" /> | no | not whole |
+| <InlineMath math="6" /> | <InlineMath math="19" /> | no | not whole |
+| <InlineMath math="7" /> | <InlineMath math="12" /> | yes | <InlineMath math="3" /> |
+| <InlineMath math="8" /> | <InlineMath math="5" /> | no | not whole |
 
-So both statements together are sufficient, but neither alone is.
+There are **two possible pairs**: <InlineMath math="(a, b) = (3, 10)" /> and <InlineMath math="(7, 3)" />. The number of A packs could be <InlineMath math="3" /> or <InlineMath math="7" />, so statement (1) alone isn't sufficient.
+
+Statement (2) says the swapped purchase would cost more. Write that as an inequality and simplify.
+
+<BlockMath math="\begin{aligned}
+7b + 4a &> 7a + 4b \\
+3b &> 3a \\
+b &> a
+\end{aligned}" />
+
+Statement (2) only tells you that Wulan bought more B packs than A packs. Lots of pairs fit, such as <InlineMath math="(1, 2)" /> or <InlineMath math="(5, 9)" />, so statement (2) alone isn't sufficient.
+
+Now combine them. Of the two pairs from statement (1), only <InlineMath math="(3, 10)" /> satisfies <InlineMath math="b > a" />. The pair <InlineMath math="(7, 3)" /> drops out because <InlineMath math="3 < 7" />. Check: <InlineMath math="7 \times 3 + 4 \times 10 = 61" />, and after swapping the price is <InlineMath math="7 \times 10 + 4 \times 3 = 82" />, which really is more. The number of A packs must be <InlineMath math="3" />.
+
+Why the other options are wrong:
+
+- Statement (1) alone looks sufficient if you stop at the first pair you find, <InlineMath math="(3, 10)" />, and never check <InlineMath math="(7, 3)" />.
+- Statement (2) alone only gives the order <InlineMath math="b > a" />, not a specific value.
+- Each statement alone being sufficient means making both of those mistakes at once.
+- Neither being sufficient is what you conclude if you don't turn statement (2) into <InlineMath math="b > a" />, so you miss that it removes the pair <InlineMath math="(7, 3)" />.
+
+So the two statements together are sufficient to answer the question, but neither statement alone is.

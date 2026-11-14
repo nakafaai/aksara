@@ -5,13 +5,13 @@ import { capture } from "#nakafa-content/points/test/console";
 import { findPendingIssues, printPending } from "#nakafa-content/voice/pending";
 
 /** The rule, line, and column of every pending finding in one MDX source. */
-function pending(source: string) {
-  return findPendingIssues(source, parseLessonMdx(source)).map(
+function pending(source: string, file = "lesson/id.mdx") {
+  return findPendingIssues(file, source, parseLessonMdx(source)).map(
     ({ column, line, rule }) => `${rule} ${line}:${column}`
   );
 }
 
-it("finds retired visuals, string visual text, and plain-text math", () => {
+it("finds retired visuals, string visual text, plain-text math, and plain numbers", () => {
   const source = [
     '<LineEquation title="Garis lurus" data={[]} />',
     "",
@@ -25,10 +25,17 @@ it("finds retired visuals, string visual text, and plain-text math", () => {
   ].join("\n");
   assert.deepEqual(pending(source), [
     "plain-math-text 6:8",
+    "plain-number 6:6",
+    "plain-number 6:10",
     "retired-visual 1:1",
     "string-visual-text 1:15",
     "string-visual-text 3:13",
   ]);
+});
+
+it("keeps plain numbers on public pages out of the pending report", () => {
+  assert.deepEqual(pending("Ada 5 soal.", "pages/about/id.mdx"), []);
+  assert.deepEqual(pending("Ada 5 soal."), ["plain-number 1:5"]);
 });
 
 it.effect("prints each pending rule's count, fix, and occurrences", () =>

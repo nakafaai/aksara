@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "detail",
+    topic: "inference",
   },
-  stimulus: "bunga",
+  stimulus: "beber",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Pada bunga tunggal, bunga dihitung dari saldo terbaru.",
+          correct: false,
+          label:
+            "Jika dua pertunjukan berlangsung sama lama, keduanya membentangkan gulungan yang sama.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Bunga yang tidak dibayar dapat membuat utang kartu kredit bertambah cepat.",
+            "Jika dua dalang membentangkan seluruh adegan dari gulungan yang sama, tuturan mereka tentang setiap adegan sama panjang.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Selisih hasil bunga tunggal dan bunga majemuk sudah sangat besar sejak tahun pertama.",
+            "Jika urutan adegan dalam dua pertunjukan berbeda, kedua pertunjukan itu tidak membentangkan seluruh adegan dari satu gulungan yang sama.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Menabung lebih awal memberi waktu lebih panjang bagi bunga untuk berlipat.",
+            "Jika dua dalang membentangkan gulungan yang sama, percakapan antartokoh yang mereka tuturkan sama persis.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika sebuah gulungan dibuat dari daluang, gulungan itu adalah gulungan warisan yang disimpan sebagai pusaka.",
         },
       ],
     },

@@ -6,27 +6,27 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "scheduling",
   },
-  stimulus: "pentas",
+  stimulus: "budaya",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "U tidak tampil pada hari Jumat.",
-        },
-        {
           column: 2,
-          label: "T tampil pada sesi sore.",
-        },
-        {
-          column: 2,
-          label: "S tampil pada hari Minggu.",
+          label: "Angklung diadakan pada hari Senin.",
         },
         {
           column: 1,
-          label: "Jika Q tampil pada hari Jumat, U tampil pada hari Minggu.",
+          label: "Wayang diadakan pada hari Senin.",
+        },
+        {
+          column: 1,
+          label: "Batik diadakan pada sesi siang.",
+        },
+        {
+          column: 2,
+          label: "Wayang diadakan pada sesi pagi.",
         },
       ],
     },

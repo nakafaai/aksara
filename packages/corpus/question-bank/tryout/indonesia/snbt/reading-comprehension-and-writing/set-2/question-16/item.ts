@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "data-interpretation",
+    topic: "main-idea",
   },
-  stimulus: "sleep-survey",
+  stimulus: "bantaran",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$18\\,\\%$$",
+          label:
+            "Jumlah pengunjung akhir pekan Kampung Lebak Tirta bertambah pesat dalam dua tahun.",
         },
         {
           correct: false,
-          label: "$$42\\,\\%$$",
+          label:
+            "Sampah yang diangkat dari sungai setiap pekan tidak berkurang sejak kampung itu dicat.",
+        },
+        {
+          correct: false,
+          label:
+            "Pengunjung yang datang untuk berfoto menambah sampah yang dibuang ke sungai.",
         },
         {
           correct: true,
-          label: "$$60\\,\\%$$",
+          label:
+            "Ramainya kampung itu belum diikuti oleh berubahnya kebiasaan sebagian warga membuang sampah ke sungai.",
         },
         {
           correct: false,
-          label: "$$70\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "$$88\\,\\%$$",
+          label:
+            "Kampung warna berhasil menarik pengunjung sekaligus mengurangi sampah di sungai.",
         },
       ],
     },

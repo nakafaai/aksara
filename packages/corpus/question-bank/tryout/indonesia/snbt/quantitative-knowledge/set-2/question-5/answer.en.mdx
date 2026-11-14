@@ -1,26 +1,41 @@
-First find <InlineMath math="a" /> from <InlineMath math="f(3)=7" />, because **every other statement depends on the complete rule** for <InlineMath math="f" />.
+Both quantities are fixed by <InlineMath math="u_1=4" /> and the ratio <InlineMath math="r" />. The ratio is hidden in the rule <InlineMath math="u_{n+2}=u_{n+1}+u_n" />, and **the convergence condition** picks one of two candidate ratios. After that, compute <InlineMath math="P" /> and <InlineMath math="Q" /> exactly and compare them.
 
-<BlockMath math="f(3)=\frac{3a+1}{3-2}=3a+1=7\quad\Rightarrow\quad a=2" />
+# Finding the ratio
 
-The second statement is true, and <InlineMath math="f(x)=\dfrac{2x+1}{x-2}" />.
-
-# Finding the inverse function
-
-Write <InlineMath math="y=f(x)" /> and express <InlineMath math="x" /> in terms of <InlineMath math="y" />.
+Write <InlineMath math="u_n=4r^{n-1}" />. The ratio <InlineMath math="r" /> can't be <InlineMath math="0" />, because <InlineMath math="r=0" /> gives <InlineMath math="u_3=0" />, while <InlineMath math="u_2+u_1=4" />. Divide the rule by <InlineMath math="u_n=4r^{n-1}" />, which isn't zero.
 
 <BlockMath math="\begin{aligned}
-y(x-2)&=2x+1\\
-xy-2y&=2x+1\\
-x(y-2)&=2y+1\\
-x&=\frac{2y+1}{y-2}
+4r^{n+1}&=4r^{n}+4r^{n-1}\\
+r^2&=r+1\\
+r&=\frac{1+\sqrt5}{2}\ \text{or}\ r=\frac{1-\sqrt5}{2}
 \end{aligned}" />
 
-So <InlineMath math="f^{-1}(x)=\dfrac{2x+1}{x-2}" />, **exactly the same as <InlineMath math="f(x)" />**, and its domain is also <InlineMath math="x\ne2" />. The third statement is true.
+An infinite geometric series **converges only when <InlineMath math="|r|<1" />**. Since <InlineMath math="\sqrt5>2" />, the first candidate is more than <InlineMath math="\tfrac32" /> and drops out. The second candidate satisfies <InlineMath math="-1<\tfrac{1-\sqrt5}{2}<0" /> because <InlineMath math="2<\sqrt5<3" />. So <InlineMath math="r=\tfrac{1-\sqrt5}{2}" />, and the ratio is negative.
 
-# What a self-inverse function implies
+# Computing both quantities
 
-Because <InlineMath math="f^{-1}=f" />, applying <InlineMath math="f" /> twice **returns the input**. A direct check: <InlineMath math="f(5)=\frac{11}{3}" /> and <InlineMath math="f\left(\frac{11}{3}\right)=\frac{25/3}{5/3}=5" />. The fourth statement is true.
+For <InlineMath math="P" />, use the infinite-sum formula <InlineMath math="\tfrac{u_1}{1-r}" />. For <InlineMath math="Q" />, **replace <InlineMath math="r^2" /> with <InlineMath math="r+1" />** so you don't have to square a radical.
 
-The equation <InlineMath math="f(x)=2" /> means <InlineMath math="2x+1=2(x-2)=2x-4" />, which gives <InlineMath math="1=-4" />. No <InlineMath math="x" /> works, because 2 is the horizontal asymptote of the graph of <InlineMath math="f" />. The first statement is false.
+<BlockMath math="\begin{aligned}
+P&=\frac{4}{1-r}=\frac{4}{\frac{1+\sqrt5}{2}}=\frac{8}{1+\sqrt5}=\frac{8(\sqrt5-1)}{4}=2\sqrt5-2\\
+Q&=4\left(1+r+r^2\right)=4\left(2+2r\right)=8(1+r)=8\cdot\frac{3-\sqrt5}{2}=12-4\sqrt5
+\end{aligned}" />
 
-So the first statement is **false**, and the second, third, and fourth statements are **true**.
+# Comparing the radicals
+
+Find the difference, then compare two positive numbers through their squares.
+
+<BlockMath math="\begin{aligned}
+Q-P&=12-4\sqrt5-2\sqrt5+2=14-6\sqrt5\\
+14^2=196&>180=\left(6\sqrt5\right)^2
+\end{aligned}" />
+
+So <InlineMath math="14>6\sqrt5" />, which means <InlineMath math="Q-P>0" />. Check it a second way. Since <InlineMath math="r<0" />, **the terms alternate in sign**, and <InlineMath math="u_4=4r^3" /> is negative. The rest of the series after the third term is <InlineMath math="\tfrac{u_4}{1-r}" />, which is also negative, so <InlineMath math="P=Q+\tfrac{u_4}{1-r}" /> is smaller than <InlineMath math="Q" />.
+
+# Traps in the other options
+
+- <InlineMath math="P>Q" /> comes from assuming an infinite sum is **always bigger than the sum of its first few terms**. That's only true when every term is positive.
+- <InlineMath math="P=Q" /> would mean the rest of the series, <InlineMath math="u_4+u_5+\cdots" />, is zero, but that rest equals <InlineMath math="\tfrac{u_4}{1-r}\ne0" />.
+- The not-enough-information option comes from thinking both candidates for <InlineMath math="r" /> are possible, but <InlineMath math="r=\tfrac{1+\sqrt5}{2}" /> makes the series diverge.
+
+So the quantity <InlineMath math="Q" /> is greater than the quantity <InlineMath math="P" />.

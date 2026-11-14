@@ -1,22 +1,30 @@
-An upward parabola has its minimum at the vertex, **but only if the vertex lies in the interval**. So first locate the vertex.
+You need to decide whether each statement pins down **exactly one value** for the number of girls. Here's the plan: write the class sizes with one integer <InlineMath math="k" />, turn each statement into a condition on <InlineMath math="k" />, then see whether <InlineMath math="k" /> is unique.
 
-# The position of the vertex
+# Writing the class with one number
 
-<BlockMath math="f(x)=x^2-6x+13=(x-3)^2+4" />
+The ratio <InlineMath math="4:3" /> is already in lowest terms, because <InlineMath math="4" /> and <InlineMath math="3" /> share no factor other than <InlineMath math="1" />. So **there are <InlineMath math="4k" /> boys and <InlineMath math="3k" /> girls** for some natural number <InlineMath math="k" />. The question asks for <InlineMath math="3k" />.
 
-The vertex is at <InlineMath math="x=3" /> with value 4. The point <InlineMath math="x=3" /> **lies outside the interval** <InlineMath math="4\le x\le7" />, so the value 4 is not reached there.
+# The first statement alone
 
-# Values on the interval
-
-To the right of the vertex, the parabola keeps rising. On <InlineMath math="4\le x\le7" /> the smallest value is at the left end and the largest at the right end.
+Statement (1) holds two conditions. With <InlineMath math="5" /> girls added, the girls outnumber the boys. With <InlineMath math="4" /> added, the girls **don't exceed** the boys yet, so they're at most equal.
 
 <BlockMath math="\begin{aligned}
-f(4)&=(4-3)^2+4=5\\
-f(7)&=(7-3)^2+4=20
+3k+5&>4k\quad\Rightarrow\quad k<5\\
+3k+4&\le4k\quad\Rightarrow\quad k\ge4
 \end{aligned}" />
 
-The minimum value is 5, reached at <InlineMath math="x=4" />.
+The only integer that meets both is <InlineMath math="k=4" />, so there are <InlineMath math="16" /> boys and <InlineMath math="12" /> girls. Check it: <InlineMath math="12+5=17>16" />, while <InlineMath math="12+4=16" /> doesn't exceed <InlineMath math="16" />. Statement (1) alone is sufficient.
 
-The value 4 is the value at the vertex, which lies outside the interval. The value 20 is the maximum on the interval. The value 8 is <InlineMath math="f(5)" />, the value in the middle of the interval, and the value 13 is the constant term, which also equals <InlineMath math="f(6)" />.
+# The second statement alone
 
-So the minimum value of the function on the interval is **5**.
+After <InlineMath math="4" /> boys and <InlineMath math="3" /> girls leave, <InlineMath math="4k-4" /> boys and <InlineMath math="3k-3" /> girls remain.
+
+<BlockMath math="\frac{4k-4}{3k-3}=\frac{4(k-1)}{3(k-1)}=\frac43\quad\text{for every }k\ge2" />
+
+The ratio **always stays <InlineMath math="4:3" />**, because the students who leave are also in the ratio <InlineMath math="4:3" />. So statement (2) tells you nothing new about <InlineMath math="k" />. A class with <InlineMath math="8" /> boys and <InlineMath math="6" /> girls fits statement (2), and so does a class with <InlineMath math="16" /> boys and <InlineMath math="12" /> girls. The number of girls could be <InlineMath math="6" /> or <InlineMath math="12" />, so statement (2) alone isn't sufficient.
+
+# Both statements together
+
+Together they give <InlineMath math="k=4" />, of course, but **statement (1) already fixed that value alone**. If you read statement (2) as an equation for <InlineMath math="k" />, you'd think both are needed or that each one is enough. If you think inequalities only give a range, you'd miss that this range holds just one integer.
+
+So **statement (1) alone is sufficient**, but statement (2) alone isn't.

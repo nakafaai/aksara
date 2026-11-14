@@ -1,25 +1,52 @@
-Squaring both sides is safe only when **neither side is negative**. So first find the conditions under which the inequality makes sense, and only then square.
+You're looking for every integer <InlineMath math="m" /> that keeps <InlineMath math="f(x)=x^2-2mx+m+6" /> positive, but **only for <InlineMath math="x\ge0" />, not for all real numbers**. So a negative discriminant isn't the only way. Here's the plan: find where the vertex of the parabola is, split into two cases, then check the boundaries.
 
-# Conditions before squaring
+# Where the vertex is
 
-The root is defined when <InlineMath math="x+3\ge0" />, that is, <InlineMath math="x\ge-3" />. The left side is never negative, so the right side must be **positive** for the left side to be smaller.
+Complete the square so the vertex shows.
 
-<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
+<BlockMath math="f(x)=x^2-2mx+m+6=(x-m)^2-m^2+m+6" />
 
-The condition <InlineMath math="x>3" /> already includes <InlineMath math="x\ge-3" />.
+This parabola opens upward and **its lowest point is at <InlineMath math="x=m" />**. The smallest value of <InlineMath math="f" /> on the region <InlineMath math="x\ge0" /> depends on whether <InlineMath math="x=m" /> lies inside that region.
 
-# Squaring both sides
+# Vertex on the left
 
-For <InlineMath math="x>3" /> both sides are positive, so **squaring keeps the direction of the inequality**.
+If <InlineMath math="m\le0" />, the vertex is left of the region or exactly at <InlineMath math="x=0" />. For <InlineMath math="x\ge0" /> the parabola keeps rising, so **its smallest value is <InlineMath math="f(0)" />**.
 
 <BlockMath math="\begin{aligned}
-x+3&<x^2-6x+9\\
-0&<x^2-7x+6\\
-0&<(x-1)(x-6)
+f(0)=m+6&>0\\
+m&>-6
 \end{aligned}" />
 
-The product is positive for <InlineMath math="x<1" /> or <InlineMath math="x>6" />. Its intersection with <InlineMath math="x>3" /> is <InlineMath math="x>6" />. Check <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3.16<4" />, while <InlineMath math="x=6" /> gives the false statement <InlineMath math="3<3" />.
+The integers with <InlineMath math="-6<m\le0" /> are <InlineMath math="-5, -4, -3, -2, -1, 0" />. The value <InlineMath math="m=-6" /> doesn't count, since <InlineMath math="f(0)=0" /> and the inequality is strict.
 
-The set <InlineMath math="x<1" /> or <InlineMath math="x>6" /> squares without any condition. The set containing <InlineMath math="-3\le x<1" /> uses only the root condition, although the right side is negative there. The set <InlineMath math="1<x<6" /> flips the sign, and the set <InlineMath math="x\ge3" /> stops at the condition on the right side.
+# Vertex on the right
 
-So the solution set is <InlineMath math="\{x\mid x>6\}" />.
+If <InlineMath math="m>0" />, the vertex is inside the region, so **the smallest value is the value at the vertex**.
+
+<BlockMath math="\begin{aligned}
+f(m)=-m^2+m+6&>0\\
+m^2-m-6&<0\\
+(m-3)(m+2)&<0\\
+-2<m&<3
+\end{aligned}" />
+
+Together with <InlineMath math="m>0" />, the integers are <InlineMath math="1" /> and <InlineMath math="2" />. The value <InlineMath math="m=3" /> doesn't count, because <InlineMath math="f(3)=9-18+9=0" />.
+
+# Adding up all the values
+
+**The two cases together** give <InlineMath math="m=-5, -4, \ldots, 2" />.
+
+<BlockMath math="(-5)+(-4)+(-3)+(-2)+(-1)+0+1+2=-12" />
+
+Check one value from each case. For <InlineMath math="m=-5" />, <InlineMath math="f(x)=x^2+10x+1" />, and every term is positive when <InlineMath math="x\ge0" />. For <InlineMath math="m=2" />, <InlineMath math="f(x)=(x-2)^2+4>0" />.
+
+# The tempting wrong options
+
+Each other option comes from **the wrong region or a boundary that slipped in**.
+
+- <InlineMath math="2" /> comes from requiring a negative discriminant, <InlineMath math="-2<m<3" />. That condition is for all real numbers, so it throws away <InlineMath math="-5" /> to <InlineMath math="-2" />, which actually work.
+- <InlineMath math="-18" /> comes from counting <InlineMath math="m=-6" />, even though <InlineMath math="f(0)=0" />.
+- <InlineMath math="-9" /> comes from counting <InlineMath math="m=3" />, even though <InlineMath math="f(3)=0" />.
+- <InlineMath math="-15" /> comes from counting only the case <InlineMath math="m\le0" />, or from counting both boundaries <InlineMath math="-6" /> and <InlineMath math="3" />.
+
+So the sum of all integer values of <InlineMath math="m" /> that work is <InlineMath math="-12" />.

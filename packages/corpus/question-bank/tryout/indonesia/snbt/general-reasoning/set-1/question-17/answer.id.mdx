@@ -1,11 +1,47 @@
-Hitung susunan dengan membagi kasus menurut **pasangan kursi berhadapan yang ditempati L dan M**. K tetap di kursi 1, jadi pasangan yang tersedia hanya kursi 2 dan 5 atau kursi 3 dan 6.
+Soal ini meminta banyak urutan lengkap yang memenuhi keenam syarat. Menebak pola tidak cukup. Kamu perlu membagi kasus sampai setiap urutan muncul tepat satu kali, lalu menghitungnya.
 
-**Kasus kursi 2 dan 5**. N tidak boleh di kursi 2 atau 6 karena bersebelahan dengan K, dan kursi 5 sudah terisi. Jadi, N di kursi 3 atau 4. Jika N di kursi 4, O harus di kursi 5, padahal kursi 5 terisi. Maka N di kursi 3, O di kursi 4, dan P di kursi 6. Hanya urutan L dan M yang masih bebas, sehingga ada <InlineMath math="2" /> susunan.
+Mulailah dari Citra, karena tiga syarat mengikatnya. Eka tidak di giliran <InlineMath math="1" /> (syarat 4) dan Eka sebelum Citra (syarat 3), jadi Citra paling awal di giliran <InlineMath math="3" />. Dimas tepat dua giliran setelah Citra (syarat 2) dan tidak bisa melewati giliran <InlineMath math="7" />, jadi Citra paling jauh di giliran <InlineMath math="5" />.
 
-**Kasus kursi 3 dan 6**. N di kursi 4 atau 5. Jika N di kursi 5, O harus di kursi 6, padahal kursi 6 terisi. Maka N di kursi 4, O di kursi 5, dan P di kursi 2. Kursi 2 genap, jadi syarat P terpenuhi. Urutan L dan M memberi <InlineMath math="2" /> susunan.
+Kasus Citra di giliran <InlineMath math="3" />. Dimas di giliran <InlineMath math="5" /> dan Eka di giliran <InlineMath math="2" />. Giliran kosong tinggal <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="7" />. Galih dan Hesti butuh dua giliran kosong yang berurutan, dan satu-satunya adalah <InlineMath math="6" /> dan <InlineMath math="7" />. Syarat 5 melarang mereka di giliran <InlineMath math="7" />, jadi kasus ini menyumbang <InlineMath math="0" /> urutan.
 
-<BlockMath math="\text{Banyak susunan} = 2+2=4" />
+Kasus Citra di giliran <InlineMath math="4" />. Dimas di giliran <InlineMath math="6" />. Kalau Eka di giliran <InlineMath math="2" />, giliran kosongnya <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, dan tidak ada dua yang berurutan untuk Galih dan Hesti. Kalau Eka di giliran <InlineMath math="3" />, Galih dan Hesti mengisi giliran <InlineMath math="1" /> dan <InlineMath math="2" />, sedangkan Bayu dan Fani mengisi giliran <InlineMath math="5" /> dan <InlineMath math="7" />. Bayu pasti berada di giliran ganjil, sehingga Fani harus tepat setelahnya, di giliran <InlineMath math="6" /> yang sudah milik Dimas atau di giliran <InlineMath math="8" /> yang tidak ada. Kasus ini juga menyumbang <InlineMath math="0" /> urutan.
 
-Pilihan <InlineMath math="2" /> muncul jika hanya satu kasus yang dihitung. Pilihan <InlineMath math="8" /> muncul jika urutan L dan M dihitung dua kali, atau jika N dianggap bebas di kursi 4 dan 5 tanpa memeriksa kursi O. Pilihan <InlineMath math="3" /> dan <InlineMath math="6" /> tidak sesuai dengan pembagian kasus, karena setiap kasus selalu menghasilkan pasangan susunan L dan M yang bertukar tempat.
+Kasus Citra di giliran <InlineMath math="5" />. Dimas di giliran <InlineMath math="7" />. Giliran <InlineMath math="6" /> tidak bisa diisi Galih atau Hesti, karena kedua tetangganya sudah terisi. Eka juga tidak bisa, karena Eka harus sebelum Citra. Jadi, **giliran keenam milik Bayu atau Fani**, dan dari sini kasus dibagi dua.
 
-Jadi, ada <InlineMath math="4" /> susunan duduk yang memenuhi semua syarat.
+Subkasus Bayu di giliran <InlineMath math="6" />. Giliran itu genap, jadi syarat 6 tidak menuntut apa pun. Eka, Fani, Galih, dan Hesti mengisi giliran <InlineMath math="1" /> sampai <InlineMath math="4" />, dengan Galih dan Hesti berdampingan dan Eka tidak di giliran <InlineMath math="1" />.
+
+- Galih dan Hesti di giliran <InlineMath math="1" /> dan <InlineMath math="2" />: Eka dan Fani bebas di giliran <InlineMath math="3" /> dan <InlineMath math="4" />, jadi ada dua cara.
+- Galih dan Hesti di giliran <InlineMath math="2" /> dan <InlineMath math="3" />: giliran <InlineMath math="1" /> harus Fani, karena Eka dilarang di sana, dan Eka di giliran <InlineMath math="4" />. Satu cara.
+- Galih dan Hesti di giliran <InlineMath math="3" /> dan <InlineMath math="4" />: Fani di giliran <InlineMath math="1" /> dan Eka di giliran <InlineMath math="2" />. Satu cara.
+
+Itu empat pola, dan setiap pola menjadi dua urutan karena Galih dan Hesti boleh bertukar. Subkasus ini menghasilkan <InlineMath math="8" /> urutan.
+
+Subkasus Fani di giliran <InlineMath math="6" />. Bayu berada di salah satu giliran <InlineMath math="1" /> sampai <InlineMath math="4" />. Kalau Bayu di giliran ganjil, Fani harus tepat setelahnya, padahal Fani di giliran <InlineMath math="6" />. Jadi, Bayu di giliran <InlineMath math="2" /> atau <InlineMath math="4" />.
+
+- Bayu di giliran <InlineMath math="2" />: Eka, Galih, dan Hesti mengisi giliran <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />. Galih dan Hesti harus di giliran <InlineMath math="3" /> dan <InlineMath math="4" />, sehingga Eka jatuh di giliran <InlineMath math="1" />. Itu dilarang syarat 4.
+- Bayu di giliran <InlineMath math="4" />: Eka, Galih, dan Hesti mengisi giliran <InlineMath math="1" /> sampai <InlineMath math="3" />. Eka tidak boleh di giliran <InlineMath math="1" />, dan Galih serta Hesti harus berdampingan, jadi Galih dan Hesti di giliran <InlineMath math="1" /> dan <InlineMath math="2" />, Eka di giliran <InlineMath math="3" />.
+
+Subkasus ini memberi satu pola, yaitu dua urutan.
+
+Berikut kesepuluh urutan itu.
+
+| No. | Giliran 1 | Giliran 2 | Giliran 3 | Giliran 4 | Giliran 5 | Giliran 6 | Giliran 7 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | Galih | Hesti | Eka | Fani | Citra | Bayu | Dimas |
+| 2 | Hesti | Galih | Eka | Fani | Citra | Bayu | Dimas |
+| 3 | Galih | Hesti | Fani | Eka | Citra | Bayu | Dimas |
+| 4 | Hesti | Galih | Fani | Eka | Citra | Bayu | Dimas |
+| 5 | Fani | Galih | Hesti | Eka | Citra | Bayu | Dimas |
+| 6 | Fani | Hesti | Galih | Eka | Citra | Bayu | Dimas |
+| 7 | Fani | Eka | Galih | Hesti | Citra | Bayu | Dimas |
+| 8 | Fani | Eka | Hesti | Galih | Citra | Bayu | Dimas |
+| 9 | Galih | Hesti | Eka | Bayu | Citra | Fani | Dimas |
+| 10 | Hesti | Galih | Eka | Bayu | Citra | Fani | Dimas |
+
+Hitung ulang dari pembagian kasus:
+
+<BlockMath math="0 + 0 + (8 + 2) = 10" />
+
+Dua jawaban yang sering muncul berasal dari kasus yang hilang. Angka <InlineMath math="5" /> muncul kalau kamu lupa bahwa Galih dan Hesti boleh bertukar tempat. Angka <InlineMath math="8" /> muncul kalau kamu menganggap giliran <InlineMath math="6" /> pasti milik Bayu dan melewatkan urutan 9 dan 10, tempat Bayu berada di giliran genap <InlineMath math="4" />.
+
+Jadi, banyak urutan tampil yang memenuhi keenam syarat adalah <InlineMath math="10" />.

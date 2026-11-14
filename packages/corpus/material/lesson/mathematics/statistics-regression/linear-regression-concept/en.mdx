@@ -98,7 +98,7 @@ Formula key:
 These formulas determine the unique least-squares line when the observed <InlineMath math="x" /> values are not all equal. If every <InlineMath math="x" /> value is identical, the slope denominator is zero and the data do not determine a unique regression slope.
 
 
-Keep the line through the point of means and vary its slope <InlineMath math="b" />. For the study data the sum of squared residuals <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> is smallest at <InlineMath math="b = \tfrac{9184}{1331} \approx 6.900" />, about 94.45, and larger for every other slope.
+Keep the line through the point of means and vary its slope <InlineMath math="b" />. For the study data the sum of squared residuals <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> is smallest at <InlineMath math="b = \tfrac{9184}{1331} \approx 6.900" />, about <InlineMath math="94.45" />, and larger for every other slope.
 
 <BarChart
   title={<>Sum of squared residuals against the slope</>}
@@ -149,11 +149,11 @@ For <InlineMath math="7\text{ hours}" />, the same calculation gives:
 
 The observed study times run only from <InlineMath math="1" /> to <InlineMath math="6\text{ hours}" />. The second prediction is an **extrapolation**. The available data do not check whether the linear trend continues beyond that range. If exam scores are capped at <InlineMath math="100" />, the second prediction even exceeds the score limit. Check a regression line against both the observed range and the limits of the predicted quantity.
 
-Predicted scores from <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> for 1 to 7 hours. Inside the observed range of 1 to 6 hours the predictions stay realistic, but at 7 hours the line predicts about 103.2, more than the maximum score of 100.
+Predicted scores from <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> for <InlineMath math="1" /> to <InlineMath math="7" /> hours. Inside the observed range of <InlineMath math="1" /> to <InlineMath math="6" /> hours the predictions stay realistic, but at <InlineMath math="7" /> hours the line predicts about <InlineMath math="103.2" />, more than the maximum score of <InlineMath math="100" />.
 
 <BarChart
   title={<>Predictions inside and outside the data</>}
-  description={<>Bars of the predicted score <InlineMath math="\hat y" /> for <InlineMath math="x = 1" /> to 7 hours of study.</>}
+  description={<>Bars of the predicted score <InlineMath math="\hat y" /> for <InlineMath math="x = 1" /> to <InlineMath math="7" /> hours of study.</>}
   yAxisLabel="Predicted score"
   data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
   chartConfig={{ value: { label: "Predicted score", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

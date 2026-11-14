@@ -4,12 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "integer-solutions",
+    topic: "optimization",
   },
   versions: {
     id: {
-      kind: "numericEntry",
-      value: "6",
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "$$13$$",
+        },
+        {
+          correct: false,
+          label: "$$15$$",
+        },
+        {
+          correct: false,
+          label: "$$17$$",
+        },
+        {
+          correct: true,
+          label: "$$18$$",
+        },
+        {
+          correct: false,
+          label: "$$19$$",
+        },
+      ],
     },
   },
 };

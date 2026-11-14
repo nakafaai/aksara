@@ -9,6 +9,7 @@ export const regionalElectionsTurmoilArticle = defineArticleSource({
     de: "pilkada-2024-gerichtsurteile-und-kandidaturen",
     en: "regional-elections-turmoil",
     id: "regional-elections-turmoil",
+    ms: "kemelut-pilkada-2024",
   },
   slug: "regional-elections-turmoil",
   sourceRoot: "articles/politics/regional-elections/turmoil",

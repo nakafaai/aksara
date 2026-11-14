@@ -1,0 +1,286 @@
+export const metadata = {
+  title: "Nilai Ekstremum serta Ujian Terbitan Pertama dan Kedua",
+  description: "Cari maksimum dan minimum setempat dengan ujian terbitan pertama dan kedua, tangani kes f''(c) = 0 dan cari nilai terbesar pada selang tertutup.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pembezaan",
+};
+
+## Di Mana Fungsi Boleh Ada Ekstremum
+
+Fungsi ada **maksimum setempat** pada <InlineMath math="c" /> apabila <InlineMath math="f(c)" /> ialah nilai terbesar di sekitarnya, dan ada **minimum setempat** apabila nilai itu ialah nilai terkecil di sekitarnya. <Highlight>Bagi fungsi yang boleh dibezakan, setiap ekstremum setempat di dalam domain terletak pada titik pegun</Highlight>, iaitu apabila <InlineMath math="f'(c)=0" />. Cari titik-titik itu dahulu, kemudian uji setiap satu, kerana bukan semua titik pegun ialah ekstremum.
+
+Untuk <InlineMath math="f(x)=x^2-4x" />, terbitan <InlineMath math="f'(x)=2x-4" /> bernilai sifar pada <InlineMath math="x=2" />. Graf itu turun sebelum <InlineMath math="x=2" /> dan naik selepasnya, jadi <InlineMath math="f(2)=-4" /> ialah minimum setempat.
+
+Tiga jenis titik boleh menjadi ekstremum:
+
+- [titik pegun](/ms/subjek/matematik/pembezaan/fungsi-menokok-menyusut-dan-pegun), iaitu apabila <InlineMath math="f'(x)=0" />
+- titik tempat <InlineMath math="f'(x)" /> tidak wujud, seperti penjuru tajam graf <InlineMath math="|x|" /> pada <InlineMath math="x=0" />
+- titik hujung, apabila fungsi itu hanya dilihat pada selang tertutup
+
+Dalam masalah harian, titik-titik inilah yang memberikan nilai terbaik, seperti keuntungan paling besar, kos paling kecil atau jarak paling pendek. Terbitan dapat mencari nilai-nilai ini tanpa perlu melukis seluruh graf.
+
+## Ujian Terbitan Pertama
+
+Ujian terbitan pertama membaca **tanda <InlineMath math="f'(x)" /> pada kedua-dua belah** titik pegun, dan tanda itu memberitahu kamu sama ada fungsi itu naik atau turun di situ.
+
+-   **Titik pusingan maksimum**: fungsi bertukar daripada menokok kepada menyusut, jadi <InlineMath math="f'(x)" /> bertukar daripada positif kepada negatif, seperti di puncak bukit.
+-   **Titik pusingan minimum**: fungsi bertukar daripada menyusut kepada menokok, jadi <InlineMath math="f'(x)" /> bertukar daripada negatif kepada positif, seperti di dasar lembah.
+-   **Tiada ekstremum setempat**: tanda <InlineMath math="f'(x)" /> tidak berubah. Titik itu mungkin titik lengkok balas mengufuk, dan kamu perlu menyemak secara berasingan bahawa kecekungannya memang berubah.
+
+Graf ini menunjukkan tangen mengufuk pada maksimum setempat dan minimum setempat.
+
+<MathVisual
+  title={<>Gambaran Ujian Terbitan Pertama</>}
+  description={
+    <>
+      Garis bantu mengufuk menunjukkan tempat kecerunan bernilai sifar pada
+      maksimum setempat dan minimum setempat.
+    </>
+  }
+  labels={{
+    "l1": <>Titik maksimum</>,
+    "l2": <>Titik minimum</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((-2) + (t * 0.1)) - 3)", y: "((-(((-2) + (t * 0.1)))^(2)) + 4)", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -3, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 4 }, { x: -2, y: 4 }], appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(((-2) + (t * 0.1)) + 3)", y: "(((-2) + (t * 0.1)))^(2)", parameter: { min: 0, max: 40 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3, y: 4 }, placement: "above" },
+      { key: "l2", objectId: "s5", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Contoh Ujian Terbitan Pertama
+
+Tentukan nilai pegun bagi <InlineMath math="f(x) = x(x-3)^2" /> dengan ujian terbitan pertama.
+
+**Langkah 1**: Kembangkan fungsi itu dan bezakan.
+
+<MathContainer>
+    <BlockMath math="f(x) = x(x^2 - 6x + 9) = x^3 - 6x^2 + 9x" />
+    <BlockMath math="f'(x) = 3x^2 - 12x + 9" />
+</MathContainer>
+
+**Langkah 2**: Tetapkan <InlineMath math="f'(x) = 0" />.
+
+<MathContainer>
+    <BlockMath math="3x^2 - 12x + 9 = 0" />
+    <BlockMath math="x^2 - 4x + 3 = 0" />
+    <BlockMath math="(x-1)(x-3) = 0" />
+</MathContainer>
+
+Titik pegunnya ialah <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
+
+**Langkah 3**: Uji tanda <InlineMath math="f'" /> pada setiap belah.
+
+| Selang | Nilai ujian | Tanda <InlineMath math="f'" /> | Kelakuan |
+| --- | --- | --- | --- |
+| <InlineMath math="x < 1" /> | <InlineMath math="f'(0) = 9" /> | positif | menokok |
+| <InlineMath math="1 < x < 3" /> | <InlineMath math="f'(2) = -3" /> | negatif | menyusut |
+| <InlineMath math="x > 3" /> | <InlineMath math="f'(4) = 9" /> | positif | menokok |
+
+Tanda bertukar daripada positif kepada negatif pada <InlineMath math="x=1" />, iaitu **maksimum**, dan daripada negatif kepada positif pada <InlineMath math="x=3" />, iaitu **minimum**.
+
+**Langkah 4**: Gantikan ke dalam fungsi *asal*.
+
+<MathContainer>
+    <BlockMath math="f(1) = 1(1-3)^2 = 4" />
+    <BlockMath math="f(3) = 3(3-3)^2 = 0" />
+</MathContainer>
+
+Nilai maksimum setempat ialah <InlineMath math="4" /> pada <InlineMath math="(1,4)" />, dan nilai minimum setempat ialah <InlineMath math="0" /> pada <InlineMath math="(3,0)" />. Semak dengan titik berdekatan: <InlineMath math="f(0.9) = 3.969" /> dan <InlineMath math="f(1.1) = 3.971" /> kedua-duanya kurang daripada <InlineMath math="4" />, manakala <InlineMath math="f(2.9)=0.029" /> dan <InlineMath math="f(3.1)=0.031" /> kedua-duanya lebih daripada <InlineMath math="0" />.
+
+<MathVisual
+  title={<>Gambaran Titik Ekstremum</>}
+  description={
+    <>
+      Gambaran lengkung <InlineMath math="f(x) = x(x-3)^2" /> dengan
+      garis tangen mengufuk pada titik maksimum dan titik minimumnya.
+    </>
+  }
+  labels={{
+    "l1": <>Titik maksimum <InlineMath math="(1,4)" /></>,
+    "l2": <>Titik minimum <InlineMath math="(3,0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: -16, max: 20 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-0.5) + ((t - 7) * 0.05))", y: "(((-0.5) + ((t - 7) * 0.05)) * ((((-0.5) + ((t - 7) * 0.05)) - 3))^(2))", parameter: { min: 0, max: 114 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 4 }, { x: 2, y: 4 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "l2", objectId: "s4", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Ujian Terbitan Kedua
+
+Ujian terbitan kedua menentukan jenis titik pegun terus pada titik itu sendiri, tanpa menguji selang yang bersebelahan. Ujian ini menggunakan **kecekungan yang diberikan oleh <InlineMath math="f''(c)" />**. Katakan <InlineMath math="f'(c) = 0" /> dan <InlineMath math="f''" /> selanjar berhampiran <InlineMath math="c" />.
+
+-   Jika <InlineMath math="f''(c) < 0" />, lengkung itu cekung ke bawah seperti mangkuk terbalik, dan <InlineMath math="f(c)" /> ialah maksimum setempat.
+-   Jika <InlineMath math="f''(c) > 0" />, lengkung itu cekung ke atas seperti mangkuk yang terbuka ke atas, dan <InlineMath math="f(c)" /> ialah minimum setempat.
+-   Jika <InlineMath math="f''(c) = 0" />, ujian ini tidak memberikan jawapan. Titik itu mungkin maksimum, minimum atau bukan kedua-duanya.
+
+Terbitan kedua biasanya cepat diperoleh dengan [petua pembezaan untuk fungsi algebra](/ms/subjek/matematik/pembezaan/pembezaan-fungsi-algebra), jadi ujian ini selalunya lebih cepat daripada jadual tanda.
+
+## Contoh Ujian Terbitan Kedua
+
+Tentukan nilai ekstremum bagi <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" /> dengan ujian terbitan kedua.
+
+**Langkah 1**: Cari kedua-dua terbitan.
+
+<MathContainer>
+    <BlockMath math="f'(x) = x^2 - 2x - 3" />
+    <BlockMath math="f''(x) = 2x - 2" />
+</MathContainer>
+
+**Langkah 2**: Selesaikan <InlineMath math="f'(x) = 0" />.
+
+<MathContainer>
+    <BlockMath math="x^2 - 2x - 3 = 0" />
+    <BlockMath math="(x-3)(x+1) = 0" />
+</MathContainer>
+
+Titik pegunnya ialah <InlineMath math="x = 3" /> dan <InlineMath math="x = -1" />.
+
+**Langkah 3**: Nilaikan <InlineMath math="f''" /> pada setiap titik.
+
+-   <InlineMath math="f''(3) = 4 > 0" />, jadi <InlineMath math="x=3" /> memberikan **minimum setempat**.
+-   <InlineMath math="f''(-1) = -4 < 0" />, jadi <InlineMath math="x=-1" /> memberikan **maksimum setempat**.
+
+**Langkah 4**: Gantikan ke dalam fungsi asal.
+
+<MathContainer>
+    <BlockMath math="f(3) = 9 - 9 - 9 + 2 = -7" />
+    <BlockMath math="f(-1) = -\frac{1}{3} - 1 + 3 + 2 = \frac{11}{3}" />
+</MathContainer>
+
+Semak nilai maksimum dengan titik berdekatan: <InlineMath math="f(-2) = -\frac{8}{3} - 4 + 6 + 2 = \frac{4}{3}" />, iaitu kurang daripada <InlineMath math="\frac{11}{3}" />. Lengkung itu cekung ke bawah pada <InlineMath math="x=-1" /> dan cekung ke atas pada <InlineMath math="x=3" />.
+
+<MathVisual
+  title={<>Gambaran Ujian Terbitan Kedua</>}
+  description={
+    <>
+      Graf <InlineMath math="f(x) = \frac{1}{3}x^3 - x^2 - 3x + 2" />.
+      Garis bantu menandakan titik maksimum, tempat lengkung cekung ke bawah, dan titik minimum, tempat lengkung cekung ke atas.
+      Lengkung itu cekung ke bawah pada titik <InlineMath math="x=-1" /> dan cekung ke atas pada titik <InlineMath math="x=3" />.
+    </>
+  }
+  labels={{
+    "l1": <>Titik maksimum <InlineMath math="(-1,\frac{11}{3})" /></>,
+    "l2": <>Titik minimum <InlineMath math="(3,-7)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 7.5 }, y: { min: -25, max: 26 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2.5) + ((t - 17) * 0.08))", y: "(((((1 / 3) * (((-2.5) + ((t - 17) * 0.08)))^(3)) - (((-2.5) + ((t - 17) * 0.08)))^(2)) - (3 * ((-2.5) + ((t - 17) * 0.08)))) + 2)", parameter: { min: 0, max: 124 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1, y: 3.67 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2, y: 11 / 3 }, { x: 0, y: 11 / 3 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 3, y: -7 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: -7 }, { x: 4, y: -7 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -1, y: 3.67 }, placement: "above-left" },
+      { key: "l2", objectId: "s4", at: { x: 3, y: -7 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Apabila Ujian Terbitan Kedua Tidak Memberikan Jawapan
+
+Apabila <InlineMath math="f'(c)=0" /> dan <InlineMath math="f''(c)=0" />, **kembali kepada ujian terbitan pertama**. Dua fungsi berikut menunjukkan sebab ujian kedua tidak dapat membuat keputusan sendiri.
+
+Untuk <InlineMath math="f(x)=x^3" />, kedua-dua <InlineMath math="f'(0)=0" /> dan <InlineMath math="f''(0)=0" />. Terbitan <InlineMath math="f'(x)=3x^2" /> positif pada kedua-dua belah <InlineMath math="0" />, jadi tandanya tidak pernah berubah dan <InlineMath math="x=0" /> bukan ekstremum. Titik itu ialah titik lengkok balas mengufuk.
+
+Untuk <InlineMath math="f(x)=x^4" />, sekali lagi <InlineMath math="f'(0)=0" /> dan <InlineMath math="f''(0)=0" />. Kali ini <InlineMath math="f'(x)=4x^3" /> negatif untuk <InlineMath math="x<0" /> dan positif untuk <InlineMath math="x>0" />, jadi <InlineMath math="f(0)=0" /> ialah minimum setempat. Semak: <InlineMath math="x^4 \ge 0" /> untuk setiap <InlineMath math="x" />.
+
+<Mermaid
+  title="Memilih ujian untuk titik pegun"
+  description="Terbitan kedua cepat membuat keputusan apabila nilainya bukan sifar, dan terbitan pertama menyelesaikan semua kes yang tinggal."
+  chart={`flowchart TD
+  A["f'(c) = 0"] --> B{"Tanda f''(c)?"}
+  B -->|"negatif"| C["Maksimum setempat"]
+  B -->|"positif"| D["Minimum setempat"]
+  B -->|"sifar"| E{"Tanda f' bertukar pada c?"}
+  E -->|"positif kepada negatif"| C
+  E -->|"negatif kepada positif"| D
+  E -->|"tiada perubahan"| F["Tiada ekstremum"]`}
+/>
+
+## Nilai Terbesar dan Terkecil pada Selang Tertutup
+
+Pada selang tertutup <InlineMath math="[a,b]" />, fungsi selanjar sentiasa mencapai nilai terbesar dan nilai terkecil. Nilai-nilai ini boleh berada pada titik pegun, pada titik tempat <InlineMath math="f'" /> tidak wujud atau pada titik hujung, jadi **bandingkan nilai fungsi pada semua calon**.
+
+**Soalan**: Cari nilai terbesar dan terkecil bagi <InlineMath math="f(x)=x^3-3x" /> pada <InlineMath math="[-2,3]" />.
+
+Terbitan <InlineMath math="f'(x)=3x^2-3" /> bernilai sifar pada <InlineMath math="x=-1" /> dan <InlineMath math="x=1" />, dan kedua-duanya berada di dalam selang itu. Nilaikan <InlineMath math="f" /> pada dua titik ini dan pada kedua-dua titik hujung:
+
+| <InlineMath math="x" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> | <InlineMath math="3" /> |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="f(x)" /> | <InlineMath math="-2" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="18" /> |
+
+Nilai terbesar ialah <InlineMath math="18" /> pada titik hujung <InlineMath math="x=3" />, walaupun maksimum setempat pada <InlineMath math="x=-1" /> hanya <InlineMath math="2" />. Nilai terkecil ialah <InlineMath math="-2" />, dan nilai ini dicapai dua kali, iaitu pada <InlineMath math="x=-2" /> dan <InlineMath math="x=1" />. Masalah berayat tentang saiz terbaik atau kos paling rendah menggunakan perbandingan yang sama ini, seperti yang ditunjukkan dalam [aplikasi terbitan](/ms/subjek/matematik/pembezaan/aplikasi-pembezaan).
+
+## Kesilapan Lazim
+
+Kebanyakan jawapan yang salah datang daripada **semakan yang dilangkau**, bukan daripada terbitan itu sendiri.
+
+| Kesilapan | Mengapa salah | Pembetulan |
+| --- | --- | --- |
+| Menganggap setiap titik pegun ialah ekstremum | <InlineMath math="f(x)=x^3" /> ada <InlineMath math="f'(0)=0" /> tetapi tiada ekstremum | Uji setiap titik pegun |
+| Melaporkan nilai <InlineMath math="x" /> sebagai nilai ekstremum | Nilainya ialah <InlineMath math="f(c)" />, bukan <InlineMath math="c" /> | Gantikan <InlineMath math="c" /> ke dalam fungsi asal |
+| Menggantikan ke dalam <InlineMath math="f'" /> dan bukan <InlineMath math="f" /> | <InlineMath math="f'(c)=0" /> pada setiap titik pegun | Guna <InlineMath math="f" /> untuk nilai, <InlineMath math="f''" /> untuk jenis |
+| Menganggap <InlineMath math="f''(c)=0" /> sebagai titik lengkok balas | <InlineMath math="x^4" /> ada minimum di situ | Kembali kepada ujian terbitan pertama |
+| Terlupa titik hujung pada selang tertutup | Nilai terbesar boleh berada pada titik hujung | Bandingkan titik pegun dan titik hujung |
+
+## Latihan
+
+Untuk mengelaskan titik pegun, gunakan **ujian terbitan pertama atau kedua**. Tangen mengufuk sahaja tidak memberitahu kamu sama ada fungsi itu mencapai maksimum atau minimum.
+
+1. Tentukan titik pegun bagi <InlineMath math="y = x^2 + 2x - 3" /> dan jenisnya.
+2. Cari dan kelaskan titik pegun bagi <InlineMath math="f(x) = 2x^3 - 3x^2 - 12x + 1" />.
+3. Cari nilai terbesar dan terkecil bagi <InlineMath math="f(x) = x^2 - 6x + 5" /> pada <InlineMath math="[0, 4]" />.
+
+### Jalan Kerja
+
+1. Terbitannya ialah <InlineMath math="f'(x) = 2x + 2" />, yang bernilai sifar pada <InlineMath math="x = -1" />. Gantikan ke dalam fungsi asal:
+
+    <BlockMath math="y = (-1)^2 + 2(-1) - 3 = -4" />
+
+    Titik pegunnya ialah <InlineMath math="(-1, -4)" />, dan <InlineMath math="f''(x)=2 > 0" /> menjadikannya titik **minimum**. Semak: <InlineMath math="y=(x+1)^2-4" />, jadi <InlineMath math="y" /> tidak pernah kurang daripada <InlineMath math="-4" />.
+
+2. Terbitannya ialah <InlineMath math="f'(x) = 6x^2 - 6x - 12 = 6(x-2)(x+1)" />, jadi titik pegunnya ialah <InlineMath math="x=2" /> dan <InlineMath math="x=-1" />. Dengan <InlineMath math="f''(x) = 12x - 6" />:
+
+    <MathContainer>
+        <BlockMath math="f''(-1) = -18 < 0, \qquad f(-1) = -2 - 3 + 12 + 1 = 8" />
+        <BlockMath math="f''(2) = 18 > 0, \qquad f(2) = 16 - 12 - 24 + 1 = -19" />
+    </MathContainer>
+
+    Maksimum setempat ialah <InlineMath math="8" /> pada <InlineMath math="x=-1" />, dan minimum setempat ialah <InlineMath math="-19" /> pada <InlineMath math="x=2" />. Semak: <InlineMath math="f(0)=1" /> terletak di antara kedua-duanya, kerana <InlineMath math="f" /> menyusut dari <InlineMath math="x=-1" /> hingga <InlineMath math="x=2" />.
+
+3. Terbitan <InlineMath math="f'(x) = 2x - 6" /> bernilai sifar pada <InlineMath math="x=3" />, iaitu di dalam <InlineMath math="[0,4]" />. Bandingkan calon-calonnya:
+
+    <BlockMath math="f(0) = 5, \qquad f(3) = -4, \qquad f(4) = -3" />
+
+    Nilai terbesar ialah <InlineMath math="5" /> pada <InlineMath math="x=0" />, dan nilai terkecil ialah <InlineMath math="-4" /> pada <InlineMath math="x=3" />. Semak: <InlineMath math="f(x)=(x-3)^2-4" />, dan verteksnya ialah <InlineMath math="(3,-4)" />.

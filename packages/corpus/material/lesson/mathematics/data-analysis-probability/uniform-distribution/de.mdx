@@ -44,11 +44,11 @@ Eine <InlineMath math="1" /> ist genauso wahrscheinlich wie eine <InlineMath mat
 
 <BlockMath math="P(X\text{ gerade})=\frac{3}{6}=\frac{1}{2}" />
 
-Jede Augenzahl eines fairen Würfels bekommt denselben Balken, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Die sechs gleichen Balken ergeben zusammen 1, und das Ereignis "gerade" sammelt drei davon: <InlineMath math="\tfrac36 = \tfrac12" />.
+Jede Augenzahl eines fairen Würfels bekommt denselben Balken, <InlineMath math="\tfrac16 \approx 16{,}67\%" />. Die sechs gleichen Balken ergeben zusammen <InlineMath math="1" />, und das Ereignis "gerade" sammelt drei davon: <InlineMath math="\tfrac36 = \tfrac12" />.
 
 <BarChart
   title={<>Ein Wurf mit einem fairen Würfel</>}
-  description={<>Sechs gleiche Balken <InlineMath math="P(X = x) = \tfrac16" /> für <InlineMath math="x = 1" /> bis 6.</>}
+  description={<>Sechs gleiche Balken <InlineMath math="P(X = x) = \tfrac16" /> für <InlineMath math="x = 1" /> bis <InlineMath math="6" />.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[1, 2, 3, 4, 5, 6].map((x) => ({ name: String(x), value: 1 / 6 }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -60,7 +60,7 @@ Ein faires Glücksrad besteht aus **acht gleich großen Sektoren** mit den Numme
 
 <MathVisual
   title={<>Acht gleich große Sektoren</>}
-  description={<>Jede Nummer belegt einen Sektor mit 45 Grad. Alle Sektoren haben dieselbe Fläche.</>}
+  description={<>Jede Nummer belegt einen Sektor mit <InlineMath math="45" /> Grad. Alle Sektoren haben dieselbe Fläche.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1.25, max: 1.25 }, y: { min: -1.25, max: 1.25 } },
@@ -95,11 +95,11 @@ Der Ergebnisraum lautet <InlineMath math="S=\{1,2,3,4,5,6,7,8\}" />, also ist <I
 
 <BlockMath math="P(X=5)=\frac{1}{8}=0{,}125=12{,}5\%" />
 
-Addier die gleichen Wahrscheinlichkeiten Sektor für Sektor. <InlineMath math="P(X \le x) = \frac{x}{8}" /> steigt in gleichen Schritten von <InlineMath math="\tfrac18" /> und erreicht 1 bei <InlineMath math="x = 8" />.
+Addier die gleichen Wahrscheinlichkeiten Sektor für Sektor. <InlineMath math="P(X \le x) = \frac{x}{8}" /> steigt in gleichen Schritten von <InlineMath math="\tfrac18" /> und erreicht <InlineMath math="1" /> bei <InlineMath math="x = 8" />.
 
 <BarChart
   title={<>Kumulierte Wahrscheinlichkeit am Glücksrad</>}
-  description={<>Balken von <InlineMath math="P(X \le x) = \frac{x}{8}" /> für <InlineMath math="x = 1" /> bis 8.</>}
+  description={<>Balken von <InlineMath math="P(X \le x) = \frac{x}{8}" /> für <InlineMath math="x = 1" /> bis <InlineMath math="8" />.</>}
   yAxisLabel="Kumulierte Wahrscheinlichkeit"
   data={[1, 2, 3, 4, 5, 6, 7, 8].map((x) => ({ name: String(x), value: x / 8 }))}
   chartConfig={{ value: { label: "Kumulierte Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -110,7 +110,7 @@ Addier die gleichen Wahrscheinlichkeiten Sektor für Sektor. <InlineMath math="P
 Bestimme die Ergebnismenge, zähle die **gleich wahrscheinlichen Ergebnisse** und berechne die gesuchte Wahrscheinlichkeit. Prüfe vor dem Teilen, ob das gesuchte Objekt überhaupt zur Ergebnismenge gehört.
 
 1. Ein Beutel enthält zehn Kugeln, die sich nur durch ihre Farbe unterscheiden. Es gibt eine rote, eine blaue, eine grüne, eine gelbe und sechs weitere Kugeln mit jeweils einer anderen Farbe. Jede Kugel wird gleich wahrscheinlich gezogen. Gib die Massenfunktion für die Kugelfarbe an und berechne die Wahrscheinlichkeit für Gelb.
-2. Ein Standard-Bridge-Kartensatz enthält 52 unterschiedliche Karten, die jeweils gleich wahrscheinlich gezogen werden. Bestimme die Verteilung für das Ziehen einer Karte und die Wahrscheinlichkeit für den Herzkönig.
+2. Ein Standard-Bridge-Kartensatz enthält <InlineMath math="52" /> unterschiedliche Karten, die jeweils gleich wahrscheinlich gezogen werden. Bestimme die Verteilung für das Ziehen einer Karte und die Wahrscheinlichkeit für den Herzkönig.
 ### Lösungen
 
 **Aufgabe 1**. Es gibt **zehn Farben**, also ist <InlineMath math="k=10" />. Für jede Farbe <InlineMath math="x" /> aus der Farbmenge <InlineMath math="S" /> gilt:
@@ -120,6 +120,6 @@ Bestimme die Ergebnismenge, zähle die **gleich wahrscheinlichen Ergebnisse** un
 Genau ein Ergebnis entspricht der gelben Kugel. Somit erhalten wir:
 
 <BlockMath math="P(\text{gelbe Kugel})=\frac{1}{10}=0{,}1=10\%" />
-**Aufgabe 2**. Das Ziehen einer Karte folgt einer **diskreten Gleichverteilung**, weil alle 52 Karten gleich wahrscheinlich sind. Genau eines dieser 52 Ergebnisse entspricht dem Herzkönig.
+**Aufgabe 2**. Das Ziehen einer Karte folgt einer **diskreten Gleichverteilung**, weil alle <InlineMath math="52" /> Karten gleich wahrscheinlich sind. Genau eines dieser <InlineMath math="52" /> Ergebnisse entspricht dem Herzkönig.
 
 <BlockMath math="P(\text{Herzkönig})=\frac{1}{52}\approx0{,}01923\approx1{,}92\%" />

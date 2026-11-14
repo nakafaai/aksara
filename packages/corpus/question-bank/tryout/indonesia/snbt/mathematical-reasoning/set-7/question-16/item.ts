@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "temperature-scales",
+  stimulus: "river-gauge",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$32^\\circ\\text{C}$$" },
-        { correct: false, label: "$$36^\\circ\\text{C}$$" },
-        { correct: false, label: "$$38^\\circ\\text{C}$$" },
-        { correct: true, label: "$$40^\\circ\\text{C}$$" },
-        { correct: false, label: "$$44^\\circ\\text{C}$$" },
+        { correct: false, label: "Pukul 11.20" },
+        { correct: true, label: "Pukul 13.15" },
+        { correct: false, label: "Pukul 13.25" },
+        { correct: false, label: "Pukul 14.00" },
+        { correct: false, label: "Sesudah pukul 14.00" },
       ],
     },
   },

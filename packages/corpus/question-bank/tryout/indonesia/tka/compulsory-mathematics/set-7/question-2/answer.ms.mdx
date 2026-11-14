@@ -1,0 +1,42 @@
+# Had dalam bentuk keamatan
+
+Soalan ini mencari bilangan beduk besar paling banyak supaya barisan hadapan penonton tidak terlalu bising. Had itu ditulis dalam desibel, tetapi yang boleh dijumlahkan hanyalah keamatan. Jadi, **tukar dahulu had <InlineMath math="90\text{ dB}" /> kepada had keamatan**.
+
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
+
+# Sumbangan setiap beduk
+
+Daripada bacaan, satu beduk besar pada jarak <InlineMath math="1\text{ m}" /> mempunyai keamatan <InlineMath math="10^{-2}\ \text{W/m}^2" />, kerana <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. Satu beduk kecil mempunyai suku daripadanya. Sekarang bahagikan dengan kuasa dua jarak ke barisan hadapan penonton.
+
+<BlockMath math="\begin{aligned}
+\text{satu beduk besar pada }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2.5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{satu beduk kecil pada }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1.5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 beduk kecil}&:\ 32\cdot1.5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+Ada cara ringkas untuk melihatnya. Satu beduk kecil ialah suku beduk besar, dan jaraknya dua kali lebih jauh, jadi keamatannya dibahagi <InlineMath math="2^2=4" /> sekali lagi. Maka, **satu beduk kecil di pentas B bersamaan dengan <InlineMath math="\tfrac1{16}" /> beduk besar di pentas A**, dan <InlineMath math="32" /> beduk kecil bersamaan dengan <InlineMath math="2" /> beduk besar.
+
+# Bilangan beduk besar paling banyak
+
+Jumlahkan keamatan kedua-dua pentas, kemudian gunakan had yang ketat.
+
+<BlockMath math="\begin{aligned}
+n\cdot2.5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2.5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Oleh sebab syaratnya **kurang daripada**, nilai <InlineMath math="n=38" /> tidak dibenarkan. Dengan <InlineMath math="n=38" />, keamatannya tepat <InlineMath math="40\cdot2.5\cdot10^{-5}=10^{-3}" />, iaitu tepat <InlineMath math="90\text{ dB}" />. Dengan <InlineMath math="n=37" />, keamatannya <InlineMath math="39\cdot2.5\cdot10^{-5}=9.75\cdot10^{-4}" />, masih di bawah had.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="31" /> muncul jika beduk kecil dikira seolah-olah juga berjarak <InlineMath math="20\text{ m}" />, atau jika faktor <InlineMath math="\tfrac14" /> terlupa. Kedua-dua cara itu menjadikan <InlineMath math="32" /> beduk kecil sama dengan <InlineMath math="8" /> beduk besar.
+- <InlineMath math="35" /> muncul jika nisbah jarak <InlineMath math="\tfrac{20}{40}" /> tidak dikuasaduakan. **Keamatan mengikut kuasa dua jarak**, jadi faktornya <InlineMath math="\tfrac14\cdot\tfrac14" />, bukan <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> menggunakan tanda kurang daripada atau sama dengan. Pada <InlineMath math="n=38" /> arasnya tepat <InlineMath math="90\text{ dB}" />, dan nilai itu belum kurang daripada <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> melupakan <InlineMath math="32" /> beduk kecil yang turut dipukul pada masa yang sama.
+
+Jadi, nilai <InlineMath math="n" /> terbesar ialah <InlineMath math="37" />.

@@ -3,23 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 2,
-          label:
-            "Panjang diagonal terpendeknya adalah $$4\\sqrt2\\text{ cm}$$.",
-        },
-        {
-          column: 1,
-          label: "Panjang diagonal terpanjangnya adalah $$8\\text{ cm}$$.",
-        },
-        {
-          column: 2,
-          label: "Jari-jari lingkaran dalamnya adalah $$4\\text{ cm}$$.",
-        },
-        { column: 1, label: "Luasnya adalah $$24\\sqrt3\\text{ cm}^2$$." },
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$19{,}25$$" },
+        { correct: false, label: "$$18$$" },
+        { correct: false, label: "$$17{,}25$$" },
+        { correct: true, label: "$$16{,}75$$" },
+        { correct: false, label: "$$15$$" },
       ],
     },
   },

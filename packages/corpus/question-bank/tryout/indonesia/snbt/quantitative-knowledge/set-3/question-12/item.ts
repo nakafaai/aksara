@@ -3,13 +3,23 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$3\\sqrt5\\text{ cm}$$" },
-        { correct: false, label: "$$6\\sqrt2\\text{ cm}$$" },
-        { correct: true, label: "$$9\\text{ cm}$$" },
-        { correct: false, label: "$$6\\sqrt3\\text{ cm}$$" },
-        { correct: false, label: "$$15\\text{ cm}$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Rata-rata data itu pasti lebih dari $$7$$." },
+        {
+          column: 2,
+          label: "Data itu mungkin mempunyai modus tunggal $$15$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Mungkin hanya ada $$1$$ data yang nilainya lebih dari $$10$$.",
+        },
+        {
+          column: 2,
+          label: "Rata-rata data itu mungkin sama dengan $$8{,}5$$.",
+        },
       ],
     },
   },

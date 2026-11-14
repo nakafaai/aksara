@@ -1,0 +1,13 @@
+Suche zuerst eine ganzzahlige Nullstelle. Rationale Kandidaten haben die Form <InlineMath math="\pm\frac{\text{Teiler von }12}{\text{Teiler von }4}" />, und <InlineMath math="P(4)=256-192-76+12=0" />. Also ist <InlineMath math="x-4" /> ein Faktor, und **das Horner-Schema liefert den restlichen Faktor**.
+
+<BlockMath math="P(x)=(x-4)(4x^2+4x-3)=(x-4)(2x-1)(2x+3)" />
+
+Die Nullstellen sind <InlineMath math="4" />, <InlineMath math="\frac12" /> und <InlineMath math="-\frac32" />.
+
+- **Wahr.** <InlineMath math="P(4)=0" />, also ist <InlineMath math="x-4" /> ein Faktor.
+- **Falsch.** Der Rest ist <InlineMath math="P(-1)=-4-12+19+12=15" />. Der Wert <InlineMath math="12" /> ist <InlineMath math="P(0)" />.
+- **Wahr.** <InlineMath math="4+\frac12-\frac32=3" />, passend zu minus dem Koeffizienten von <InlineMath math="x^2" /> geteilt durch den von <InlineMath math="x^3" />, also <InlineMath math="\frac{12}{4}=3" />.
+- **Wahr.** <InlineMath math="4x^2+4x-3" /> ist der Quotient von <InlineMath math="P(x)" /> und <InlineMath math="x-4" />, also ist <InlineMath math="P(x)" /> durch ihn teilbar.
+- **Falsch.** Zwischen <InlineMath math="\frac12" /> und <InlineMath math="4" /> haben die drei Faktoren die Vorzeichen <InlineMath math="(-)(+)(+)" />, also ist <InlineMath math="P(x)" /> negativ. Zum Beispiel ist <InlineMath math="P(1)=4-12-19+12=-15" />.
+
+Wahr sind also die erste, dritte und vierte Aussage.

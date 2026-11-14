@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "research-design",
   },
-  stimulus: "screens-sleep",
+  stimulus: "measles-coverage",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Students who chose to take part may differ from those who did not.",
+            "The number of unvaccinated children in each district and in each school",
         },
         {
           correct: false,
           label:
-            "Sixty students are too many for a school counsellor to follow closely.",
+            "The total number of vaccine doses given in the province last year",
         },
         {
           correct: false,
           label:
-            "Two weeks is too long for students to remember their usual bedtimes.",
+            "The provincial coverage figure for each of the previous five years",
+        },
+        {
+          correct: true,
+          label: "Which communities and schools the outbreak's cases came from",
         },
         {
           correct: false,
           label:
-            "The volunteers' sleep fell instead of rising during the two weeks.",
-        },
-        {
-          correct: false,
-          label: "The volunteers were the heaviest screen users in the survey.",
+            "The share of children with two doses in neighbouring provinces",
         },
       ],
     },

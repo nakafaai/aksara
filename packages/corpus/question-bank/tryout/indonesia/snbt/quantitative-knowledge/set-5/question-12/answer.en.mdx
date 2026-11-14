@@ -1,17 +1,44 @@
-The radius of the circle is not given, so express both areas in terms of the same radius <InlineMath math="r" />. The two shapes **share the same circumscribed circle**, so their comparison does not depend on the value of <InlineMath math="r" />.
+Both lines contain the parameter <InlineMath math="a" />, so how they sit relative to each other changes. The plan: first find when the lines are parallel or the same line, then use slopes for the perpendicular condition and the distance formula for the last two statements. Each statement gets **a proof or one counterexample**.
 
-# The area of the regular hexagon
+# The first statement
 
-A regular hexagon with its vertices on the circle consists of **six equilateral triangles** with side <InlineMath math="r" />.
+Two lines <InlineMath math="p_1x+q_1y=r_1" /> and <InlineMath math="p_2x+q_2y=r_2" /> are parallel or the same line exactly when <InlineMath math="p_1q_2=p_2q_1" />, because then their slopes match.
 
-<BlockMath math="P=6\cdot\frac{\sqrt3}{4}r^2=\frac{3\sqrt3}{2}r^2\approx2.60\,r^2" />
+<BlockMath math="\begin{aligned}
+a(a+1)&=3\cdot2\\
+a^2+a-6&=0\\
+(a+3)(a-2)&=0
+\end{aligned}" />
 
-# The area of the square
+There are <InlineMath math="2" /> candidates, <InlineMath math="a=-3" /> and <InlineMath math="a=2" />, but you have to check both. For <InlineMath math="a=2" />, line <InlineMath math="g" /> becomes <InlineMath math="2x+2y=6" /> and line <InlineMath math="h" /> becomes <InlineMath math="3x+3y=9" />. Both are the same as <InlineMath math="x+y=3" />, so **the two lines coincide** and share infinitely many points. For <InlineMath math="a=-3" />, line <InlineMath math="g" /> is <InlineMath math="-3x+2y=6" /> and line <InlineMath math="h" /> is <InlineMath math="3x-2y=9" />, that is, <InlineMath math="-3x+2y=-9" />. The right sides differ, so the lines are parallel with no common point. Only <InlineMath math="1" /> value of <InlineMath math="a" /> works, so the first statement is false.
 
-The diagonal of the square is the diameter <InlineMath math="2r" />. The area of a square is **half the product of its diagonals**.
+# The second statement
 
-<BlockMath math="Q=\tfrac12\cdot2r\cdot2r=2r^2" />
+The slope of line <InlineMath math="g" /> is <InlineMath math="-\tfrac a2" />, and the slope of line <InlineMath math="h" /> is <InlineMath math="-\tfrac{3}{a+1}" /> for <InlineMath math="a\ne-1" />. **Two lines are perpendicular when the product of their slopes is <InlineMath math="-1" />**.
 
-Since <InlineMath math="\frac{3\sqrt3}{2}\approx2.60>2" />, <InlineMath math="P>Q" /> for every radius. The option saying the information is not enough is wrong because the ratio of the two areas does not depend on <InlineMath math="r" />. In general, regular polygons inscribed in the same circle grow in area as the number of sides grows.
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)\left(-\frac{3}{a+1}\right)&=-1\\
+3a&=-2(a+1)\\
+5a&=-2\\
+a&=-\tfrac25
+\end{aligned}" />
 
-So the correct relation is that **the hexagon has the larger area**, <InlineMath math="P>Q" />.
+Check it directly: for <InlineMath math="a=-\tfrac25" />, the slope of <InlineMath math="g" /> is <InlineMath math="\tfrac15" /> and the slope of <InlineMath math="h" /> is <InlineMath math="-\tfrac{3}{3/5}=-5" />, and their product is <InlineMath math="-1" />. For <InlineMath math="a=-1" />, line <InlineMath math="h" /> is vertical (<InlineMath math="x=3" />) while line <InlineMath math="g" /> isn't horizontal, so that case doesn't give perpendicular lines. The second statement is true.
+
+# The third statement
+
+For <InlineMath math="a=-3" />, the lines are parallel. The distance between parallel lines <InlineMath math="px+qy=r_1" /> and <InlineMath math="px+qy=r_2" /> is <InlineMath math="\tfrac{|r_1-r_2|}{\sqrt{p^2+q^2}}" />, but that formula only works once **the <InlineMath math="x" /> and <InlineMath math="y" /> coefficients of both equations match**. Write <InlineMath math="h" /> as <InlineMath math="-3x+2y=-9" />.
+
+<BlockMath math="d=\frac{|6-(-9)|}{\sqrt{(-3)^2+2^2}}=\frac{15}{\sqrt{13}}" />
+
+Check with the point <InlineMath math="(0,3)" /> on <InlineMath math="g" />: its distance to <InlineMath math="3x-2y-9=0" /> is <InlineMath math="\tfrac{|0-6-9|}{\sqrt{13}}=\tfrac{15}{\sqrt{13}}" />. The value <InlineMath math="\tfrac{3}{\sqrt{13}}" /> comes from computing <InlineMath math="9-6" /> without matching the coefficients. The third statement is false.
+
+# The fourth statement
+
+The distance from <InlineMath math="(0,0)" /> to the line <InlineMath math="ax+2y-6=0" /> comes from the point-to-line distance formula.
+
+<BlockMath math="d(a)=\frac{|a\cdot0+2\cdot0-6|}{\sqrt{a^2+4}}=\frac{6}{\sqrt{a^2+4}}" />
+
+The denominator is smallest when <InlineMath math="a=0" />, and then <InlineMath math="d(0)=\tfrac62=3" />. So for <InlineMath math="a=0" /> the distance is exactly <InlineMath math="3" />, not less than <InlineMath math="3" />. **One example is enough to break a claim about every value**, so the fourth statement is false.
+
+So the first statement is false, the second is true, the third is false, and the fourth is false.

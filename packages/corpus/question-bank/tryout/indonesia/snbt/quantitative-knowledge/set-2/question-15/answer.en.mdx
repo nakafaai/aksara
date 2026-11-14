@@ -1,68 +1,36 @@
-Every statement can be checked directly from the coordinates. Side <InlineMath math="AB" /> lies on the <InlineMath math="x" />-axis, so **the height of the triangle to <InlineMath math="AB" /> is the <InlineMath math="y" />-coordinate of <InlineMath math="C" />**, which is 4.
+The variance is the mean of the squared deviations, so you need **the sum of the squared deviations** and the number of data values. The plan: find <InlineMath math="x" /> from the condition on the mean, turn the standard deviation into a variance, find the sum of squared deviations of the old data, add the deviations of the two new values, then divide by the new number of values.
 
-# Area and side length
+# Finding x
+
+The old data add up to <InlineMath math="10\times15=150" />. The new data hold <InlineMath math="12" /> numbers with mean <InlineMath math="15" />, so they add up to <InlineMath math="12\times15=180" />. That means **the two new values must add up to <InlineMath math="2\times15=30" />**.
 
 <BlockMath math="\begin{aligned}
-A&=\tfrac12\cdot AB\cdot h=\tfrac12\cdot6\cdot4=12\\
-AC&=\sqrt{(2-0)^2+(4-0)^2}=\sqrt{20}=2\sqrt5
+x+2x&=180-150=30\\
+x&=10
 \end{aligned}" />
 
-The first and third statements are **true**.
+The two new values are <InlineMath math="10" /> and <InlineMath math="20" />.
 
-# The angle at C
+# Deviations of the old data
 
-The angle at <InlineMath math="C" /> is a right angle if the vectors <InlineMath math="\overrightarrow{CA}" /> and <InlineMath math="\overrightarrow{CB}" /> are perpendicular, that is, if **their dot product is zero**.
+The problem gives the standard deviation <InlineMath math="2" />, so **the old variance is <InlineMath math="2^2=4" />**, not <InlineMath math="2" />. The mean stays at <InlineMath math="15" />, so the deviation of every old value stays the same. The sum of squared deviations of the old data is the variance times the number of values: <InlineMath math="10\times4=40" />.
 
-<BlockMath math="\overrightarrow{CA}\cdot\overrightarrow{CB}=(-2,-4)\cdot(4,-4)=-8+16=8\ne0" />
+# The new variance
 
-The angle at <InlineMath math="C" /> is not a right angle, so the second statement is false.
+Add the squared deviations of the two new values, then **divide by the new count**, which is <InlineMath math="12" />.
 
-# The circumcenter
+<BlockMath math="\begin{aligned}
+(10-15)^2+(20-15)^2&=25+25=50\\
+\text{new variance}&=\frac{40+50}{12}=\frac{90}{12}=\frac{15}{2}
+\end{aligned}" />
 
-The circumcenter is where the perpendicular bisectors of the sides meet. The perpendicular bisector of <InlineMath math="AB" /> is the line <InlineMath math="x=3" />. The perpendicular bisector of <InlineMath math="AC" /> passes through the midpoint <InlineMath math="(1,2)" /> and is perpendicular to <InlineMath math="AC" />, whose gradient is 2, so its gradient is <InlineMath math="-\tfrac12" />. Substitute <InlineMath math="x=3" /> into that bisector.
+Check it with real data. Five copies of <InlineMath math="13" /> and five copies of <InlineMath math="17" /> have mean <InlineMath math="15" /> and variance <InlineMath math="4" />, so their standard deviation is <InlineMath math="2" />. After adding <InlineMath math="10" /> and <InlineMath math="20" />, the sum of squared deviations is <InlineMath math="10\times4+25+25=90" />, and the variance is <InlineMath math="\tfrac{90}{12}=\tfrac{15}{2}" />.
 
-<BlockMath math="y-2=-\tfrac12(3-1)\quad\Rightarrow\quad y=1" />
+# Traps in the other options
 
-The circumcenter is <InlineMath math="(3,1)" />. **Check the distances**: <InlineMath math="OA^2=9+1" />, <InlineMath math="OB^2=9+1" />, and <InlineMath math="OC^2=1+9" /> are all 10. The point <InlineMath math="(3,2)" /> is <InlineMath math="\sqrt{13}" /> from <InlineMath math="A" /> but <InlineMath math="\sqrt5" /> from <InlineMath math="C" />, so the fourth statement is false.
+- <InlineMath math="\tfrac{55}{4}" /> uses <InlineMath math="x+2x=15" />, so <InlineMath math="x=5" /> and the new values are <InlineMath math="5" /> and <InlineMath math="10" />. That gives <InlineMath math="\tfrac{40+100+25}{12}" />, but with those values the mean isn't <InlineMath math="15" /> anymore.
+- <InlineMath math="9" /> divides <InlineMath math="90" /> by <InlineMath math="10" />, **the old number of values**, instead of <InlineMath math="12" />.
+- <InlineMath math="\tfrac{49}{6}" /> adds <InlineMath math="\tfrac{50}{12}" /> to the old variance <InlineMath math="4" /> without redividing <InlineMath math="40" /> by <InlineMath math="12" />.
+- <InlineMath math="\tfrac{35}{6}" /> uses the standard deviation <InlineMath math="2" /> as the variance, so the old sum of squared deviations wrongly becomes <InlineMath math="20" /> and the result is <InlineMath math="\tfrac{20+50}{12}" />.
 
-<MathVisual
-  title={<>Triangle <InlineMath math="ABC" /> and its circumcircle</>}
-  description={<>The circumcenter <InlineMath math="O(3,1)" /> is the same distance, <InlineMath math="\sqrt{10}" />, from all three vertices.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 9 },
-      y: { min: -3, max: 6 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "triangle",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 6, y: 0 },
-          { x: 2, y: 4 },
-        ],
-      },
-      { id: "circumcircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
-    ],
-    labels: [
-      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "triangle", at: { x: 2, y: 4 }, placement: "above" },
-      { key: "o", objectId: "center", at: { x: 3, y: 1 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(0,0)" />,
-    b: <InlineMath math="B(6,0)" />,
-    c: <InlineMath math="C(2,4)" />,
-    o: <InlineMath math="O(3,1)" />,
-  }}
-/>
-
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+So the variance of the new data is <InlineMath math="\tfrac{15}{2}" />.

@@ -2,7 +2,7 @@ import { fileURLToPath } from "node:url";
 import { assert, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { capture } from "#nakafa-content/points/test/console";
-import { runMain } from "#nakafa-content/similar/check";
+import { formulaLine, runMain } from "#nakafa-content/similar/check";
 
 const SET =
   "packages/corpus/question-bank/tryout/indonesia/tka/english-language/set-4";
@@ -49,11 +49,23 @@ it.effect(
       assert.equal(result.code, 0);
       assert.deepStrictEqual(result.error, []);
       assert.deepStrictEqual(result.log, [
-        `0 item pairs and 0 passages under ${SET} reach 0.5.`,
+        `0 item pairs, 0 formula pairs and 0 passages under ${SET} reach 0.5.`,
       ]);
     }),
   BANK_TIMEOUT
 );
+
+it("names a formula pair, the shapes it shares, and the fix", () => {
+  assert.equal(
+    formulaLine({
+      first: "set-1/question-1",
+      score: 0.75,
+      second: "set-2/question-4",
+      shared: ["x+y=#", "x^#+y^#=#"],
+    }),
+    "FORMULA 0.75 set-1/question-1 <> set-2/question-4 shares x+y=# ; x^#+y^#=#: rewrite one as a different task, not new numbers"
+  );
+});
 
 it.effect("runs when the module is the process entrypoint", () =>
   Effect.gen(function* () {

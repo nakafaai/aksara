@@ -1,31 +1,31 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "juice-mix",
+  stimulus: "hydroponic-nutrient",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Menambahkan air ke suatu campuran mengubah volume sari jeruk di dalam campuran itu.",
-        },
-        {
           column: 1,
           label:
-            "Mencampur sirup A dan sirup B sama banyak menghasilkan kadar sari jeruk $$40\\%$$.",
-        },
-        {
-          column: 1,
-          label:
-            "Kadar sari jeruk campuran sirup A dan sirup B, tanpa air, selalu berada di antara $$20\\%$$ dan $$60\\%$$.",
+            "Mencampur $$50$$ liter larutan $$1{.}600\\text{ ppm}$$ dengan $$150$$ liter larutan $$1{.}100\\text{ ppm}$$ menghasilkan larutan yang sesuai untuk tanaman minggu kelima.",
         },
         {
           column: 2,
           label:
-            "Mencampur sirup A dengan sedikit air dapat menghasilkan kadar sari jeruk $$70\\%$$.",
+            "Jika tandon diisi $$200$$ liter larutan $$600\\text{ ppm}$$ untuk tanaman minggu pertama lalu dibiarkan tanpa tambahan, setelah satu perubahan harian konsentrasinya lebih tinggi daripada $$600\\text{ ppm}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Menambahkan $$100\\text{ ml}$$ stok A dan $$100\\text{ ml}$$ stok B ke dalam $$160$$ liter larutan menaikkan konsentrasinya sebesar $$125\\text{ ppm}$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Larutan $$1{.}200\\text{ ppm}$$ sebanyak $$150$$ liter menjadi sesuai untuk tanaman minggu ketiga jika ditambah air bersih sampai tandon penuh.",
         },
       ],
     },

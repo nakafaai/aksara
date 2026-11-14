@@ -1,21 +1,39 @@
-A slope is **the rise divided by the horizontal length**. The smaller the quotient, the gentler the ramp.
+You're looking for how far short the order is after three working days. The plan: trace each machine's operating hours on Monday, Tuesday, and Wednesday, turn them into good parts, then compare with <InlineMath math="8{,}000" />. **Machine P's operating hours carry over from day to day**, so it doesn't run the same number of hours every day.
 
-# Reading slopes
+# Good parts per hour
 
-<InlineMath math="\tfrac{1}{12}\approx0.083" />, which is about <InlineMath math="8.3\%" />. The first statement is true.
+Faulty parts are thrown out, so **only good parts count**. Machine P makes <InlineMath math="95\%\times120=114" /> good parts an hour, and machine Q makes <InlineMath math="90\%\times90=81" /> good parts an hour.
 
-A 1 : 10 slope is <InlineMath math="10\%" />, more than <InlineMath math="8.3\%" />, so **1 : 10 is steeper**, not gentler. The second statement is false.
+# Machine P's operating hours
 
-# Length of the sloped surface
+Machine P runs <InlineMath math="5" /> hours and then gets <InlineMath math="1" /> hour of maintenance, and its hour count continues into the next day.
 
-A 6 m section at 1 : 12 rises <InlineMath math="\tfrac{600}{12}=50" /> cm. By Pythagoras,
+| Day | Hours carried at 07:00 | Maintenance starts | Running hours |
+| :--- | :---: | :---: | :---: |
+| Monday | <InlineMath math="0" /> | 12:00, 18:00 | <InlineMath math="5+5+4=14" /> |
+| Tuesday | <InlineMath math="4" /> | 08:00, 14:00, 20:00 | <InlineMath math="1+5+5+2=13" /> |
+| Wednesday | <InlineMath math="2" /> | 10:00, 16:00, 22:00 | <InlineMath math="3+5+5=13" /> |
 
-<BlockMath math="\sqrt{600^2+50^2}=\sqrt{362{,}500}\approx602\text{ cm}" />
+So **machine P runs <InlineMath math="14+13+13=40" /> hours**, not <InlineMath math="3\times14=42" /> hours.
 
-That is about 6.02 m, **less than 6.1 m**. The third statement is false.
+# Machine Q's operating hours
 
-# Checking the two-section design
+Machine Q runs <InlineMath math="7" /> hours and then gets <InlineMath math="1" /> hour of maintenance. Two of those rounds fill the <InlineMath math="16" /> shift hours exactly, so every day Q has maintenance at 14:00 and 22:00, runs <InlineMath math="14" /> hours, and **starts from zero again the next morning**. Over three days, Q runs <InlineMath math="42" /> hours.
 
-Each 3.6 m section is at most 6 m, and there is one landing between them. At 1 : 12 each section rises <InlineMath math="\tfrac{360}{12}=30" /> cm, so together they rise exactly 60 cm. The fourth statement is true.
+# The shortfall
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+<BlockMath math="\begin{aligned}
+\text{good parts} &= 40\times114+42\times81=4{,}560+3{,}402=7{,}962 \\
+\text{shortfall} &= 8{,}000-7{,}962=38
+\end{aligned}" />
+
+Check it by **adding up each day separately**: Monday gives <InlineMath math="14\times114+14\times81=2{,}730" />, and Tuesday and Wednesday each give <InlineMath math="13\times114+14\times81=2{,}616" />. Together that's <InlineMath math="2{,}730+2{,}616+2{,}616=7{,}962" />, the same.
+
+# Traps to avoid
+
+The shortfall is small, so **one miscounted hour already flips the conclusion**.
+
+- If P's hours reset to zero every morning, P runs <InlineMath math="42" /> hours and the total is <InlineMath math="3\times2{,}730=8{,}190" />, so the order looks finished.
+- If the faulty parts aren't thrown out, the total is <InlineMath math="40\times120+42\times90=8{,}580" />, so the order also looks finished.
+
+So at 23:00 on Wednesday the order is still <InlineMath math="38" /> good parts short.

@@ -1,0 +1,215 @@
+export const metadata = {
+  title: "Punca Khayalan Persamaan Kuadratik",
+  description: "Persamaan kuadratik dengan pekali nyata ada punca khayalan apabila pembezalayannya negatif. Cari punca konjugatnya dan bacanya daripada parabola.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Punca Khayalan Muncul Apabila Pembezalayan Negatif
+
+Persamaan kuadratik <InlineMath math="ax^2 + bx + c = 0" /> dengan pekali nyata ada **punca khayalan** (punca tidak nyata) tepat apabila pembezalayannya negatif, <InlineMath math="D = b^2 - 4ac < 0" />. Dua puncanya ialah
+
+<BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a}" />
+
+Di sini <InlineMath math="i" /> ialah unit khayalan dengan <InlineMath math="i^2 = -1" />. Punca-punca itu sentiasa membentuk **pasangan konjugat**: kedua-duanya ada bahagian nyata yang sama, <InlineMath math="-\frac{b}{2a}" />, dan bahagian khayalannya berlawanan tanda. Pada graf, parabola <InlineMath math="y = ax^2 + bx + c" /> tidak pernah bertemu paksi-<InlineMath math="x" />.
+
+<MathVisual
+  title={<>Tiga parabola dengan pembezalayan berbeza</>}
+  description={<>Graf <InlineMath math="y = x^2 + 4x + c" /> untuk <InlineMath math="c = 3" />, <InlineMath math="4" />, dan <InlineMath math="5" />. Pembezalayannya ialah <InlineMath math="4" />, <InlineMath math="0" />, dan <InlineMath math="-4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -2, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 3 }, domain: { min: -5, max: 1 }, appearance: "secondary" },
+      { id: "one", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 4 }, domain: { min: -5, max: 1 }, appearance: "highlight" },
+      { id: "none", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "left-root", kind: "point", at: { x: -3, y: 0 }, appearance: "secondary" },
+      { id: "right-root", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "double-root", kind: "point", at: { x: -2, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "two", objectId: "two", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: 1, y: 9 }, placement: "right" },
+      { key: "none", objectId: "none", at: { x: 1, y: 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="c = 3" />,
+    one: <InlineMath math="c = 4" />,
+    none: <InlineMath math="c = 5" />,
+  }}
+/>
+
+Untuk <InlineMath math="c = 3" />, parabola memotong paksi-<InlineMath math="x" /> pada <InlineMath math="-3" /> dan <InlineMath math="-1" />. Untuk <InlineMath math="c = 4" />, ia hanya menyentuh paksi pada <InlineMath math="-2" />. Untuk <InlineMath math="c = 5" />, parabola terangkat di atas paksi, dan dua puncanya menjadi <InlineMath math="-2 \pm i" />.
+
+## Unit Khayalan i
+
+Persamaan <InlineMath math="x^2 + 1 = 0" /> meminta <InlineMath math="x^2 = -1" />. Kuasa dua nombor nyata **tidak pernah negatif**, jadi tiada nombor nyata yang menyelesaikannya. Sebab itulah sistem nombor diluaskan dengan unit khayalan <InlineMath math="i" />, yang memenuhi <InlineMath math="i^2 = -1" />.
+
+Dengan <InlineMath math="i" />, kamu boleh tulis punca kuasa dua nombor negatif. Untuk <InlineMath math="k > 0" />, <InlineMath math="\sqrt{-k} = i\sqrt{k}" />, contohnya <InlineMath math="\sqrt{-4} = 2i" /> dan <InlineMath math="\sqrt{-23} = i\sqrt{23}" />. Nombor berbentuk <InlineMath math="z = p + qi" /> dengan <InlineMath math="p" /> dan <InlineMath math="q" /> nyata ialah [nombor kompleks](/ms/subjek/matematik/nombor-kompleks/konsep-nombor-kompleks). Nombor <InlineMath math="2 + 5i" /> ada bahagian nyata <InlineMath math="2" />, manakala <InlineMath math="3i" /> ialah nombor khayalan tulen.
+
+## Rumus Punca Apabila Pembezalayan Negatif
+
+Mulakan daripada [rumus kuadratik](/ms/subjek/matematik/fungsi-kuadratik/rumus-kuadratik):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{D}}{2a}" />
+
+Kalau <InlineMath math="D < 0" />, tulis <InlineMath math="D = -|D|" />. Punca kuasa duanya menjadi nombor khayalan, dan rumus itu menjadi
+
+<MathContainer>
+  <BlockMath math="\sqrt{D} = \sqrt{-|D|} = i\sqrt{|D|}" />
+  <BlockMath math="x = \frac{-b \pm i\sqrt{|D|}}{2a} = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />
+</MathContainer>
+
+Bentuk terakhir memisahkan **bahagian nyata** <InlineMath math="-\frac{b}{2a}" /> daripada **bahagian khayalan** <InlineMath math="\pm\frac{\sqrt{|D|}}{2a}" />. Kamu boleh baca kedua-dua bahagian terus daripada pekali, tanpa menyusun semula persamaan.
+
+## Contoh Apabila Pekali Utama Satu
+
+Selesaikan <InlineMath math="x^2 + 4x + 5 = 0" />.
+
+Pekalinya ialah <InlineMath math="a = 1" />, <InlineMath math="b = 4" />, dan <InlineMath math="c = 5" />. Kira pembezalayan dahulu:
+
+<BlockMath math="D = 4^2 - 4 \cdot 1 \cdot 5 = 16 - 20 = -4" />
+
+Oleh sebab <InlineMath math="D < 0" />, **kedua-dua punca ialah punca khayalan**. Gantikan ke dalam rumus:
+
+<MathContainer>
+  <BlockMath math="x = \frac{-4 \pm \sqrt{-4}}{2 \cdot 1} = \frac{-4 \pm 2i}{2}" />
+  <BlockMath math="x_1 = -2 + i, \qquad x_2 = -2 - i" />
+</MathContainer>
+
+Semak <InlineMath math="x_1" /> dengan menggantikannya ke dalam persamaan:
+
+<BlockMath math="\begin{aligned}(-2+i)^2+4(-2+i)+5&amp;=4-4i+i^2-8+4i+5\\&amp;=1+i^2=1-1=0\end{aligned}" />
+
+Punca <InlineMath math="x_2" /> juga memenuhi persamaan itu, kerana konjugat bagi punca polinomial dengan pekali nyata sentiasa juga merupakan punca.
+
+## Contoh Apabila Pekali Utama Bukan Satu
+
+Selesaikan <InlineMath math="2x^2 + x + 3 = 0" />.
+
+Di sini <InlineMath math="a = 2" />, <InlineMath math="b = 1" />, dan <InlineMath math="c = 3" />, jadi
+
+<MathContainer>
+  <BlockMath math="D = 1^2 - 4 \cdot 2 \cdot 3 = 1 - 24 = -23" />
+  <BlockMath math="x = \frac{-1 \pm i\sqrt{23}}{2 \cdot 2} = -\frac{1}{4} \pm \frac{\sqrt{23}}{4}\,i" />
+</MathContainer>
+
+Bahagikan **kedua-dua bahagian** dengan <InlineMath math="2a = 4" />, bukan bahagian nyata sahaja. Semak dengan hasil tambah dan hasil darab punca. Hasil tambahnya <InlineMath math="-\frac14 - \frac14 = -\frac12" />, sama dengan <InlineMath math="-\frac{b}{a}" />. Hasil darabnya <InlineMath math="\left(-\frac14\right)^2 + \left(\frac{\sqrt{23}}{4}\right)^2 = \frac{1}{16} + \frac{23}{16} = \frac{3}{2}" />, sama dengan <InlineMath math="\frac{c}{a}" />.
+
+## Verteks Menyimpan Punca Khayalan
+
+Tulis fungsi dalam bentuk verteks, <InlineMath math="f(x) = a(x - h)^2 + k" />. Persamaan <InlineMath math="f(x) = 0" /> memberikan <InlineMath math="(x - h)^2 = -\frac{k}{a}" />. Kalau <InlineMath math="a" /> dan <InlineMath math="k" /> sama tanda, sebelah kanan negatif, parabola tidak menyentuh paksi-<InlineMath math="x" />, dan
+
+<BlockMath math="x = h \pm i\sqrt{\frac{k}{a}}" />
+
+Jadi **bahagian nyata punca ialah koordinat-x verteks**, dan bahagian khayalannya bergantung pada <InlineMath math="\frac{k}{a}" />, iaitu tinggi verteks dibahagi dengan <InlineMath math="a" />.
+
+<MathVisual
+  title={<>Parabola tanpa pintasan-x</>}
+  description={<>Graf <InlineMath math="y = x^2 + 4x + 5 = (x + 2)^2 + 1" /> dengan verteks <InlineMath math="(-2, 1)" />. Nilai terendahnya ialah <InlineMath math="1" />, bukan <InlineMath math="0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 1.5 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 4, c: 5 }, domain: { min: -5, max: 1 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -2, y: 1 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: -2, y: 1 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="(-2,1)" /> }}
+/>
+
+Untuk <InlineMath math="x^2 + 4x + 5 = (x + 2)^2 + 1" />, verteksnya ialah <InlineMath math="(-2, 1)" />, jadi puncanya ialah <InlineMath math="-2 \pm i\sqrt{1} = -2 \pm i" />, sama seperti yang diberikan oleh rumus kuadratik. Punca khayalan bukan titik persilangan yang tersembunyi pada graf nyata. Ia berada dalam satah kompleks, di luar satah-<InlineMath math="xy" /> tempat parabola dilukis.
+
+<MathVisual
+  title={<>Verteks parabola <InlineMath math="2x^2 + x + 3" /></>}
+  description={<>Graf <InlineMath math="y = 2x^2 + x + 3" /> ada verteks pada <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />. Bahagian nyata kedua-dua punca sama dengan koordinat-x verteks.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 1, c: 3 }, domain: { min: -2.25, max: 1.75 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: -1 / 4, y: 23 / 8 }, appearance: "answer" },
+      { id: "axis", kind: "segment", from: { x: -1 / 4, y: 0 }, to: { x: -1 / 4, y: 23 / 8 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "vertex", objectId: "vertex", at: { x: -1 / 4, y: 23 / 8 }, placement: "below-right" },
+      { key: "axis", objectId: "axis", at: { x: -1 / 4, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    vertex: <InlineMath math="\left(-\frac14, \frac{23}{8}\right)" />,
+    axis: <InlineMath math="x = -\frac14" />,
+  }}
+/>
+
+Untuk <InlineMath math="2x^2 + x + 3" />, verteksnya ada <InlineMath math="h = -\frac14" /> dan <InlineMath math="k = \frac{23}{8}" />. Peraturan verteks memberikan <InlineMath math="\sqrt{\frac{k}{a}} = \sqrt{\frac{23}{16}} = \frac{\sqrt{23}}{4}" />, jadi puncanya ialah <InlineMath math="-\frac14 \pm \frac{\sqrt{23}}{4}\,i" />. Bahagian nyata <InlineMath math="-\frac14" /> ialah koordinat-x verteks, dan <InlineMath math="\frac{\sqrt{23}}{4}" /> ialah bahagian khayalan, sama seperti yang diberikan oleh rumus kuadratik.
+
+## Mengapa Punca Sentiasa Datang Berpasangan Konjugat
+
+Dalam rumus <InlineMath math="x = -\frac{b}{2a} \pm \frac{\sqrt{|D|}}{2a}\,i" />, tanda <InlineMath math="\pm" /> hanya mengubah **bahagian khayalan**. Dua punca itu berbentuk <InlineMath math="u + vi" /> dan <InlineMath math="u - vi" />, dan punca sebegini ialah [nombor kompleks konjugat](/ms/subjek/matematik/nombor-kompleks/nombor-kompleks-konjugat).
+
+Jadi hasil tambah punca sentiasa nyata, <InlineMath math="2u = -\frac{b}{a}" />, dan begitu juga hasil darabnya, <InlineMath math="u^2 + v^2 = \frac{c}{a}" />. Akibat lain: persamaan kuadratik dengan pekali nyata **tidak boleh** ada tepat satu punca khayalan. Kalau <InlineMath math="3 + 2i" /> ialah punca, maka <InlineMath math="3 - 2i" /> juga punca.
+
+## Kesilapan Lazim
+
+| Kesilapan | Sebab ia salah | Cara menyemak |
+| --- | --- | --- |
+| Menulis <InlineMath math="\sqrt{-4} = -2" /> | <InlineMath math="(-2)^2 = 4" />, bukan <InlineMath math="-4" /> | <InlineMath math="(2i)^2 = 4i^2 = -4" />, jadi <InlineMath math="\sqrt{-4} = 2i" /> |
+| Membahagikan bahagian nyata sahaja dengan <InlineMath math="2a" /> | <InlineMath math="\frac{-4 \pm 2i}{2}" /> menjadi <InlineMath math="-2 \pm 2i" /> | Bahagikan setiap sebutan: <InlineMath math="-2 \pm i" /> |
+| Mengambil <InlineMath math="i^2 = 1" /> | Unit khayalan ditakrifkan oleh <InlineMath math="i^2 = -1" /> | Gantikan punca ke dalam persamaan, hasilnya mesti <InlineMath math="0" /> |
+| Tertinggal tanda tolak dalam <InlineMath math="-b" /> | Untuk <InlineMath math="x^2 - 6x + 13 = 0" />, bahagian nyatanya ialah <InlineMath math="3" />, bukan <InlineMath math="-3" /> | Bahagian nyata sama dengan koordinat-x verteks |
+| Menyangka graf memotong paksi pada bahagian nyata | Parabola dengan <InlineMath math="D < 0" /> tidak pernah menyentuh paksi-<InlineMath math="x" /> | Nilaikan fungsi pada verteks, hasilnya bukan sifar |
+
+Semakan paling cepat menggunakan **hasil tambah dan hasil darab punca**: hasil tambahnya mesti <InlineMath math="-\frac{b}{a}" /> dan hasil darabnya <InlineMath math="\frac{c}{a}" />.
+
+## Soalan Latihan
+
+Kira pembezalayan dahulu, kemudian tulis puncanya sebagai **bahagian nyata tambah atau tolak bahagian khayalan**.
+
+1. Selesaikan <InlineMath math="x^2 - 6x + 13 = 0" />.
+
+2. Selesaikan <InlineMath math="2x^2 + 2x + 5 = 0" /> dalam nombor kompleks.
+
+3. Cari setiap nilai <InlineMath math="k" /> yang menjadikan <InlineMath math="x^2 + kx + 9 = 0" /> ada punca khayalan.
+
+4. Tulis persamaan kuadratik dengan pekali integer yang puncanya <InlineMath math="1 + 2i" /> dan <InlineMath math="1 - 2i" />.
+
+### Penyelesaian
+
+**Soalan 1**. Kira **pembezalayan dahulu**. Nilainya <InlineMath math="D = (-6)^2 - 4 \cdot 1 \cdot 13 = 36 - 52 = -16" />, jadi <InlineMath math="\sqrt{D} = 4i" />:
+
+<BlockMath math="x = \frac{6 \pm 4i}{2} = 3 \pm 2i" />
+
+Semak: hasil tambahnya <InlineMath math="6 = -\frac{b}{a}" />, dan hasil darabnya <InlineMath math="3^2 + 2^2 = 13 = \frac{c}{a}" />. Verteks bagi <InlineMath math="(x - 3)^2 + 4" /> ialah <InlineMath math="(3, 4)" />, sesuai dengan peraturan verteks <InlineMath math="3 \pm i\sqrt{4}" />.
+
+**Soalan 2**. Pembezalayannya <InlineMath math="D = 2^2 - 4 \cdot 2 \cdot 5 = -36" />, jadi <InlineMath math="\sqrt{D} = 6i" />:
+
+<BlockMath math="x = \frac{-2 \pm 6i}{4} = -\frac12 \pm \frac32 i" />
+
+Semak: hasil tambahnya <InlineMath math="-1 = -\frac{b}{a}" />, dan hasil darabnya <InlineMath math="\frac14 + \frac94 = \frac52 = \frac{c}{a}" />.
+
+**Soalan 3**. Punca khayalan muncul tepat apabila pembezalayan negatif:
+
+<MathContainer>
+  <BlockMath math="D = k^2 - 4 \cdot 1 \cdot 9 = k^2 - 36 < 0" />
+  <BlockMath math="k^2 < 36 \quad\Longrightarrow\quad -6 < k < 6" />
+</MathContainer>
+
+Semak dua nilai. Untuk <InlineMath math="k = 0" />, persamaan <InlineMath math="x^2 + 9 = 0" /> memberikan <InlineMath math="x = \pm 3i" />. Untuk <InlineMath math="k = 6" />, <InlineMath math="D = 0" /> dan puncanya ialah nombor nyata berulang <InlineMath math="-3" />, jadi titik hujung <InlineMath math="6" /> tidak termasuk.
+
+**Soalan 4**. Gunakan hasil tambah dan hasil darab punca:
+
+<MathContainer>
+  <BlockMath math="x_1 + x_2 = (1 + 2i) + (1 - 2i) = 2" />
+  <BlockMath math="x_1 x_2 = 1^2 - (2i)^2 = 1 + 4 = 5" />
+  <BlockMath math="x^2 - 2x + 5 = 0" />
+</MathContainer>
+
+Semak: pembezalayannya <InlineMath math="4 - 20 = -16" />, dan rumus kuadratik memberikan <InlineMath math="\frac{2 \pm 4i}{2} = 1 \pm 2i" />. Mana-mana gandaan integer bukan sifar bagi persamaan ini juga boleh, contohnya <InlineMath math="2x^2 - 4x + 10 = 0" />.

@@ -1,0 +1,18 @@
+Substitusi langsung memberi <InlineMath math="\frac00" />. Penyebutnya selisih akar, jadi **kalikan pembilang dan penyebut dengan bentuk sekawan <InlineMath math="\sqrt{4+x^2}+2" />**.
+
+<BlockMath math="\left(\sqrt{4+x^2}-2\right)\left(\sqrt{4+x^2}+2\right)=4+x^2-4=x^2" />
+
+<BlockMath math="\frac{x\sin3x}{\sqrt{4+x^2}-2}=\frac{x\sin3x\left(\sqrt{4+x^2}+2\right)}{x^2}=\frac{\sin3x}{x}\cdot\left(\sqrt{4+x^2}+2\right)" />
+
+Sekarang kedua faktor punya limit yang jelas: <InlineMath math="\lim_{x\to0}\frac{\sin3x}{x}=3" /> dan <InlineMath math="\sqrt{4+0}+2=4" />.
+
+<BlockMath math="\lim_{x\to0}\frac{x\sin3x}{\sqrt{4+x^2}-2}=3\cdot4=12" />
+
+Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="11{,}998" />.
+
+Jadi, nilai limitnya <InlineMath math="12" />.
+
+- <InlineMath math="3" /> menganggap <InlineMath math="\sqrt{4+x^2}-2" /> mendekati <InlineMath math="x^2" />, padahal mendekati <InlineMath math="\frac{x^2}{4}" />.
+- <InlineMath math="6" /> memakai <InlineMath math="2" /> sebagai nilai bentuk sekawan, padahal <InlineMath math="\sqrt4+2=4" />.
+- <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
+- <InlineMath math="4" /> memperlakukan <InlineMath math="\sin3x" /> seperti <InlineMath math="x" />, sehingga faktor <InlineMath math="3" /> hilang.

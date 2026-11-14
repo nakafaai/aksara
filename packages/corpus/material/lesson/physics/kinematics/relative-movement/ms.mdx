@@ -1,0 +1,153 @@
+
+export const metadata = {
+  title: "Gerakan Relatif",
+  description:
+    "Menukar kerangka rujukan boleh mengubah kedudukan dan halaju yang diperhatikan bagi objek bergerak yang sama.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Kinematik",
+};
+
+## Gerakan Bergantung pada Pemerhati
+
+Gerakan sentiasa diterangkan <Highlight>relatif kepada [kerangka rujukan](/ms/subjek/fizik/kinematik/kerangka-rujukan-dan-kedudukan)</Highlight>. Objek yang bergerak laju melepasi pemerhati di tepi jalan boleh mempunyai halaju yang lebih kecil, sifar atau berlawanan arah relatif kepada pemerhati lain yang sedang bergerak.
+
+Untuk laju kenderaan biasa dan paksi yang selari serta tidak berputar, kita menggunakan petua halaju Galileo. Jika kedua-dua halaju diukur dahulu relatif kepada kerangka tanah yang sama <InlineMath math="G" />, halaju objek <InlineMath math="X" /> relatif kepada pemerhati <InlineMath math="Y" /> ialah:
+
+<BlockMath math="\vec{v}_{X/Y}=\vec{v}_{X/G}-\vec{v}_{Y/G}" />
+
+Tanda positif dan negatif merekodkan arah sepanjang paksi yang dipilih.
+
+> Kerangka rujukan mengubah halaju relatif yang diukur. Peristiwa fizikalnya tetap sama.
+
+<RelativeMovementLab
+  title={<>Gerakan Relatif Dua Kereta</>}
+  description={
+    <>
+      Pilih arah kereta <InlineMath math="B" /> untuk melihat gerakannya seperti yang diperhatikan dari kereta <InlineMath math="A" />.
+    </>
+  }
+  labels={{
+    chooseCase: "Pilih arah",
+    modeLabels: {
+      "same-direction": <>Arah Sama</>,
+      "opposite-direction": <>Berlawanan</>,
+    },
+    factLabels: {
+      observer: <>Kereta <InlineMath math="A" /></>,
+      target: <>Kereta <InlineMath math="B" /></>,
+      relativeVelocity: <>Halaju relatif <InlineMath math="B" /> terhadap <InlineMath math="A" /></>,
+      visibleDirection: <>Seperti dilihat dari <InlineMath math="A" /></>,
+    },
+    directionLabels: {
+      left: <><InlineMath math="B" /> kelihatan bergerak ke kiri relatif kepada <InlineMath math="A" />.</>,
+      right: <><InlineMath math="B" /> kelihatan bergerak ke kanan relatif kepada <InlineMath math="A" />.</>,
+    },
+    viewLabel: "Visual gerakan relatif",
+  }}
+/>
+
+## Halaju Pemerhati Mengubah Halaju Relatif
+
+Halaju sesuatu objek menurut seorang pemerhati berubah apabila pemerhati itu juga bergerak. Pengiraan mesti membandingkan **gerakan objek dengan gerakan pemerhati**.
+
+Katakan arah ke kanan dipilih sebagai positif. Sebuah kereta bergerak pada <InlineMath math="+12 \text{ m/s}" /> dan sebuah teksi bergerak pada <InlineMath math="+14 \text{ m/s}" />. Bagi penumpang di dalam teksi, kereta itu kelihatan bergerak ke belakang:
+
+<BlockMath math="v_{\text{kereta/teksi}}=12-14=-2 \text{ m/s}" />
+
+Nilai negatif ini bermaksud gerakan relatif itu menghala ke kiri.
+
+Apabila dua kenderaan bergerak dalam arah yang sama, pemerhati yang lebih laju boleh melihat kenderaan yang satu lagi seolah-olah bergerak ke belakang. Kereta itu masih bergerak ke hadapan relatif kepada jalan, tetapi halajunya relatif kepada teksi adalah negatif.
+
+## Apabila Pemerhati Pegun
+
+Jika pemerhati pegun relatif kepada tanah, halaju relatif adalah sama dengan halaju relatif kepada tanah.
+
+<BlockMath math="\begin{aligned} &amp;v_{\text{objek/pemerhati}} = v_{\text{objek/tanah}}-0 \\ &amp;= v_{\text{objek/tanah}} \end{aligned}" />
+
+Itulah sebabnya, dalam banyak soalan mudah, halaju yang tidak menyebut kerangka lain biasanya dianggap relatif kepada tanah.
+
+Sesuatu objek juga boleh **pegun relatif kepada pemerhati yang bergerak**. Jika kereta dan teksi kedua-duanya bergerak ke kanan pada <InlineMath math="12\text{ m/s}" />, beza halaju antara kedua-duanya ialah sifar:
+
+<BlockMath math="v_{\text{kereta/teksi}}=12-12=0\text{ m/s}" />
+
+## Apabila Objek dan Pemerhati Bergerak
+
+Jika dua objek bergerak dalam **arah yang bertentangan**, laju relatif antara kedua-duanya boleh lebih besar daripada laju setiap objek relatif kepada tanah. Contohnya, sebuah kereta bergerak ke kanan pada <InlineMath math="+12 \text{ m/s}" />, manakala sebuah lori bergerak ke kiri pada <InlineMath math="-8 \text{ m/s}" />.
+
+Bagi pemandu lori, halaju kereta itu ialah:
+
+<BlockMath math="v_{\text{kereta/lori}}=12-(-8)=+20 \text{ m/s}" />
+
+Nilai <InlineMath math="+20 \text{ m/s}" /> bermaksud kedudukan kereta relatif kepada lori berubah ke arah kanan dengan laju relatif <InlineMath math="20\text{ m/s}" />. Sama ada kedua-dua kenderaan itu semakin dekat atau semakin jauh juga bergantung pada kenderaan mana yang berada di sebelah kiri pada mulanya.
+
+Pemerhati yang berbeza memberikan halaju relatif yang berbeza kepada gerakan fizikal yang sama.
+
+Berikut ialah kereta, teksi dan lori yang bertolak dari tempat yang sama. Jurang antara dua garis ialah kedudukan satu kenderaan seperti yang dilihat oleh kenderaan yang satu lagi. Kereta dan teksi semakin berjauhan secara perlahan, <InlineMath math="2\text{ m}" /> setiap saat, manakala kereta dan lori berpisah sejauh <InlineMath math="20\text{ m}" /> setiap saat.
+
+<MathVisual
+  title={<>Jurang Bertambah pada Kadar Halaju Relatif</>}
+  description={<>Kedudukan tiga kenderaan relatif kepada tanah, bermula bersama. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "car", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: (-8 * 3) / 10 } },
+      { id: "car-end", kind: "point", appearance: "primary", at: { x: 3, y: (12 * 3) / 10 } },
+      { id: "taxi-end", kind: "point", appearance: "secondary", at: { x: 3, y: (14 * 3) / 10 } },
+      { id: "truck-end", kind: "point", appearance: "construction", at: { x: 3, y: (-8 * 3) / 10 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car-end", at: { x: 3, y: (12 * 3) / 10 }, placement: "right" },
+      { key: "taxi", objectId: "taxi-end", at: { x: 3, y: (14 * 3) / 10 }, placement: "right" },
+      { key: "truck", objectId: "truck-end", at: { x: 3, y: (-8 * 3) / 10 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    car: <>kereta +12</>,
+    taxi: <>teksi +14</>,
+    truck: <>lori -8</>,
+  }}
+/>
+
+## Halaju Relatif sebagai Perbezaan
+
+| Situasi | Pengiraan | Maksud **gerakan relatif** |
+| :-------- | :---------- | :----------------------------- |
+| Pemerhati pegun | <InlineMath math="v_Y=0" /> | <InlineMath math="v_{X/Y}=v_X" /> |
+| Pemerhati lebih laju dalam arah yang sama | <InlineMath math="12-14=-2 \text{ m/s}" /> | Objek kelihatan bergerak dalam arah negatif |
+| Pemerhati bergerak dalam arah bertentangan | <InlineMath math="12-(-8)=+20 \text{ m/s}" /> | Objek kelihatan bergerak dalam arah positif |
+
+Jadi, sebelum mengatakan sesuatu objek laju, perlahan, pegun atau bergerak ke belakang, sentiasa semak kerangka rujukannya dahulu.
+
+Setiap pemerhati menggunakan penolakan yang sama, <InlineMath math="v_\text{rel}=v_\text{kereta}-v_\text{pemerhati}" />. Jika kamu berdiri pegun, kamu melihat <InlineMath math="12\text{ m/s}" />, teksi yang lebih laju melihat kereta itu seolah-olah berundur, dan lori dari arah bertentangan melihat kereta itu meluru ke arahnya pada <InlineMath math="20\text{ m/s}" />. Besarkan paparan pada setiap bar.
+
+<MathVisual
+  title={<>Satu Penolakan untuk Setiap Pemerhati</>}
+  description={<>Halaju kereta dalam m/s seperti yang dilihat dari tepi jalan (kelabu), teksi (ungu) dan lori (hijau kebiruan). Satu langkah grid ialah 4 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -1.5, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "still", kind: "polygon", appearance: "reference", vertices: [{ x: 0.5, y: 0 }, { x: 1.5, y: 0 }, { x: 1.5, y: 3 }, { x: 0.5, y: 3 }] },
+      { id: "taxi", kind: "polygon", appearance: "secondary", vertices: [{ x: 2.5, y: 0 }, { x: 3.5, y: 0 }, { x: 3.5, y: -0.5 }, { x: 2.5, y: -0.5 }] },
+      { id: "truck", kind: "polygon", appearance: "construction", vertices: [{ x: 4.5, y: 0 }, { x: 5.5, y: 0 }, { x: 5.5, y: 5 }, { x: 4.5, y: 5 }] },
+    ],
+    labels: [
+      { key: "still", objectId: "still", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "taxi", objectId: "taxi", at: { x: 3, y: -0.5 }, placement: "below" },
+      { key: "truck", objectId: "truck", at: { x: 5, y: 5 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    still: <InlineMath math="12-0=12" />,
+    taxi: <InlineMath math="12-14=-2" />,
+    truck: <InlineMath math="12-(-8)=+20" />,
+  }}
+/>

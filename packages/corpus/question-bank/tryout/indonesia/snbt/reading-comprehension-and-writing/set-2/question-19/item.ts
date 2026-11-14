@@ -2,36 +2,32 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "sentence-relation",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "effective-sentence",
   },
-  stimulus: "sleep-survey",
+  stimulus: "bantaran",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
+          label: "Kalimat (5) dihapus karena hanya mengulang isi kalimat (4).",
+        },
+        {
+          column: 1,
+          label: "Kata *daripada* pada kalimat (10) dihapus.",
+        },
+        {
+          column: 1,
+          label: "Kata *tetapi* pada kalimat (11) dihapus.",
+        },
+        {
+          column: 2,
           label:
-            "Kalimat (5) menjelaskan alasan keadaan yang disebut pada kalimat (4).",
-        },
-        {
-          correct: false,
-          label:
-            "Kalimat (5) memberi contoh siswa yang tidur lebih dari delapan jam.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) menyatakan pertentangan dengan kalimat (4).",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) menyimpulkan seluruh hasil survei.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (5) menyatakan akibat dari kampanye OSIS.",
+            "Frasa *Sebagian besar daripada* pada kalimat (10) diganti dengan *Semua*.",
         },
       ],
     },

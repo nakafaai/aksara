@@ -4,35 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "argument-evaluation",
   },
-  stimulus: "app-reminders",
+  stimulus: "subscription-churn",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The number of reminders each person in the study received in total",
+            "Measured by the growth in subscribers counted, July to September was Lumen's best quarter of the year.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "How many times each user opened the app on their very first day",
+            "Measured by the growth in paying subscribers, July to September was Lumen's best quarter of the year.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The share of users who had switched off the sound on their phones",
+            "Some of the people who signed up in July to September went on to pay for Lumen.",
         },
         {
-          correct: false,
-          label: "The number of languages the app offers to people who sign up",
-        },
-        {
-          correct: true,
-          label: "Scores on one vocabulary test taken by both groups on day 90",
+          column: 2,
+          label:
+            "People who joined through the free trial cancelled at a higher rate than people who joined before July.",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "zoo-purpose",
+  stimulus: "open-offices",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Zoos should be closed because animals always suffer in captivity.",
+            "It rejects the research as outdated, arguing that the badge studies show distance no longer affects how often colleagues talk.",
+        },
+        {
+          correct: false,
+          label:
+            "It accepts the research and agrees that an open plan, by bringing desks closer, will lead colleagues to talk more in person.",
+        },
+        {
+          correct: false,
+          label:
+            "It doubts the research because Allen studied only engineers, whose habits may not match those of other office workers.",
         },
         {
           correct: true,
           label:
-            "Zoos should focus on species they can help and drop those they cannot keep well.",
+            "It grants that distance cuts contact but argues that removing partitions does not bring people closer in the way that counts.",
         },
         {
           correct: false,
           label:
-            "Zoos already do enough conservation work to justify all their animals.",
-        },
-        {
-          correct: false,
-          label:
-            "Zoos should keep more elephants and polar bears to attract far more paying visitors.",
-        },
-        {
-          correct: false,
-          label:
-            "Zoos should release every animal born in captivity back into the wild.",
+            "It uses the research to explain the rise in email, since colleagues who sit far apart send messages instead of walking over.",
         },
       ],
     },

@@ -1,22 +1,41 @@
-Drawn area changes by **the square of the length ratio**. So compare the areas first, then take the square root to get the length ratio.
+You're looking for the largest number of patients who can be served. Each patient served uses a different bag, so **the number of patients served can't be more than the number of bags that are actually useful**. Here's the plan: find which bags are useful, count that upper limit, then show a way to hand out the bags that reaches it.
 
-# Ratio of areas and lengths
+# Bags that suit each patient
 
-On the tourist map the lake is drawn with area <InlineMath math="2\cdot1.2=2.4\text{ cm}^2" />.
+Combine the ABO rule and the rhesus rule for each waiting patient group:
 
-<BlockMath math="\begin{aligned}
-\frac{2.4}{0.6}&=4\\
-\sqrt4&=2
-\end{aligned}" />
+| Patient | Suitable bags |
+| --- | --- |
+| <InlineMath math="\mathrm{O}^-" /> | <InlineMath math="\mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^-" /> | <InlineMath math="\mathrm{A}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{B}^-" /> | <InlineMath math="\mathrm{B}^-,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{O}^+" /> | <InlineMath math="\mathrm{O}^+,\ \mathrm{O}^-" /> |
+| <InlineMath math="\mathrm{A}^+" /> | <InlineMath math="\mathrm{A}^+,\ \mathrm{A}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> |
 
-Each length on the other map is **half as long** as on the tourist map, so each centimetre stands for twice the distance.
+Several patient groups need O bags at the same time. So **one O bag can't be counted twice** for two different patient groups.
 
-# Scale of the other map
+# An upper limit from the useful bags
 
-<BlockMath math="2\cdot250{,}000=500{,}000" />
+No patient is B positive or AB, so the <InlineMath math="\mathrm{B}^+" />, <InlineMath math="\mathrm{AB}^+" /> and <InlineMath math="\mathrm{AB}^-" /> bags are no use. A <InlineMath math="\mathrm{B}^-" /> bag only suits the <InlineMath math="\mathrm{B}^-" /> patient, and there's only one, so **at most one of the two** <InlineMath math="\mathrm{B}^-" /> bags gets used. The bags that could be used are:
 
-Check: at 1 : 500,000, 1 cm stands for 5 km, so <InlineMath math="1\text{ cm}^2" /> stands for <InlineMath math="25\text{ km}^2" />, and <InlineMath math="0.6\cdot25=15\text{ km}^2" />.
+<BlockMath math="\underbrace{2}_{\mathrm{O}^-}+\underbrace{1}_{\mathrm{A}^-}+\underbrace{1}_{\mathrm{B}^-}+\underbrace{14}_{\mathrm{O}^+}+\underbrace{9}_{\mathrm{A}^+}=27" />
 
-The value 1 : 1,000,000 multiplies by the area ratio 4 without taking the square root. The values 1 : 125,000 and 1 : 62,500 divide, although a smaller drawing means each centimetre stands for a longer distance. The value 1 : 250,000 is the tourist map's own scale.
+So at most <InlineMath math="27" /> patients can be served.
 
-So the scale of the other map is **1 : 500,000**.
+# A way to reach the limit
+
+Now show that <InlineMath math="27" /> really can be reached:
+
+- Two <InlineMath math="\mathrm{O}^-" /> bags to two <InlineMath math="\mathrm{O}^-" /> patients.
+- One <InlineMath math="\mathrm{A}^-" /> bag to one <InlineMath math="\mathrm{A}^-" /> patient.
+- One <InlineMath math="\mathrm{B}^-" /> bag to the <InlineMath math="\mathrm{B}^-" /> patient.
+- Fourteen <InlineMath math="\mathrm{O}^+" /> bags to fourteen <InlineMath math="\mathrm{O}^+" /> patients.
+- Nine <InlineMath math="\mathrm{A}^+" /> bags to nine <InlineMath math="\mathrm{A}^+" /> patients.
+
+**Every one of these matches**, and the total is <InlineMath math="2+1+1+14+9=27" /> patients. Check it from the patients' side: the ones left waiting are one <InlineMath math="\mathrm{O}^-" />, two <InlineMath math="\mathrm{A}^-" />, two <InlineMath math="\mathrm{O}^+" /> and three <InlineMath math="\mathrm{A}^+" /> patients, that's <InlineMath math="8" /> people. Out of <InlineMath math="35" /> patients, <InlineMath math="35-8=27" /> are served, a match.
+
+# Common wrong answers
+
+If you count each patient group separately, letting the <InlineMath math="\mathrm{O}^+" /> patients use all <InlineMath math="16" /> O bags and the <InlineMath math="\mathrm{A}^+" /> patients use the same O bags again, you get <InlineMath math="2+3+1+16+12=34" />. That's too big because **the O bags get used more than once**. The answer <InlineMath math="35" /> assumes every patient is served, but only <InlineMath math="27" /> bags are useful.
+
+So at most <InlineMath math="27" /> patients can receive suitable blood.

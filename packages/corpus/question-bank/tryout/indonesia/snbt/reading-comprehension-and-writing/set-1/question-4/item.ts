@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "word-choice",
+    topic: "coherence",
   },
-  stimulus: "village-radio",
+  stimulus: "lumbung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "_ialah_ diganti _adalah_",
+          label: "kalimat (3)",
         },
         {
           correct: false,
-          label: "_gabah_ diganti _padi_",
+          label: "kalimat (9)",
         },
         {
           correct: false,
-          label: "_kabar_ diganti _khabar_",
+          label: "kalimat (10)",
         },
         {
           correct: true,
-          label: "_jam_ diganti _pukul_",
+          label: "kalimat (11)",
         },
         {
           correct: false,
-          label: "_setiap_ diganti _tiap-tiap_",
+          label: "kalimat (13)",
         },
       ],
     },

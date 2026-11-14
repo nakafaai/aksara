@@ -1,0 +1,347 @@
+export const metadata = {
+    title: "Binomial Newton",
+  description: "Kembangkan kuasa bagi suatu hasil tambah dengan teorem binomial, kemudian gunakan pekalinya untuk mencari sebutan tertentu dan sebutan pemalar.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Kombinatorik",
+};
+
+## Cara Pekali Binomial Berubah Mengikut Kuasa
+
+Kalau kamu mengembangkan <InlineMath math="(x + y)^{10}" /> dengan pendaraban berulang, langkahnya sangat banyak. **Teorem binomial Newton** menulis <InlineMath math="(x + y)^n" /> terus sebagai satu hasil tambah yang pekalinya ialah pekali binomial.
+
+Pekali-pekali ini mengikut corak yang boleh dijangka. Sebaik sahaja kita faham corak itu, rumus yang sama boleh digunakan untuk setiap kuasa integer bukan negatif.
+
+Lihat corak asas bagi beberapa kuasa yang pertama:
+
+<MathContainer>
+<BlockMath math="(x + y)^0 = 1" />
+<BlockMath math="(x + y)^1 = x + y" />
+<BlockMath math="(x + y)^2 = x^2 + 2xy + y^2" />
+<BlockMath math="(x + y)^3 = x^3 + 3x^2y + 3xy^2 + y^3" />
+<BlockMath math="\begin{aligned} (x + y)^4 &amp;= x^4 + 4x^3y + 6x^2y^2 \\ &amp;\quad{}+ 4xy^3 + y^4 \end{aligned}" />
+</MathContainer>
+
+Pekalinya berubah mengikut kuasa, tetapi kedudukannya mengikut satu peraturan yang konsisten.
+
+Ambil satu segi empat sama dengan sisi <InlineMath math="x + y" />, di sini <InlineMath math="x = 2" /> dan <InlineMath math="y = 1" />. Potong segi empat sama itu pada jarak <InlineMath math="x" /> di kedua-dua sisi: kamu akan dapat satu segi empat sama <InlineMath math="x^2" />, dua segi empat tepat <InlineMath math="xy" /> dan satu segi empat sama <InlineMath math="y^2" />. Itulah <InlineMath math="(x + y)^2 = x^2 + 2xy + y^2" />, dan pekali <InlineMath math="2" /> mengira dua segi empat tepat itu.
+
+<MathVisual
+  title={<>Kuasa dua binomial sebagai luas</>}
+  description={<>Segi empat sama bersisi <InlineMath math="x + y" /> dibahagikan kepada <InlineMath math="x^2" />, dua segi empat tepat <InlineMath math="xy" /> dan <InlineMath math="y^2" />.</>}
+  labels={{
+    xx: <InlineMath math="x^2" />,
+    xy1: <InlineMath math="xy" />,
+    xy2: <InlineMath math="xy" />,
+    yy: <InlineMath math="y^2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: -0.3, max: 3.3 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "xx", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "xy1", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "xy2", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "yy", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 2, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "xx", objectId: "xx", at: { x: 1, y: 1 }, placement: "center" },
+      { key: "xy1", objectId: "xy1", at: { x: 2.5, y: 1 }, placement: "center" },
+      { key: "xy2", objectId: "xy2", at: { x: 1, y: 2.5 }, placement: "center" },
+      { key: "yy", objectId: "yy", at: { x: 2.5, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Rumus Am dan Pekali Binomial
+
+Rumus am bagi binomial Newton boleh ditulis sebagai:
+
+<BlockMath math="(x + y)^n = \sum_{k=0}^{n} \binom{n}{k} x^{n-k} y^k" />
+
+Dengan keadaan <InlineMath math="\binom{n}{k}" /> ialah **pekali binomial** yang dikira menggunakan rumus:
+
+<BlockMath math="\binom{n}{k} = \frac{n!}{k!(n-k)!}" />
+
+Pekali binomial ini dibaca sebagai "<InlineMath math="n" /> pilih <InlineMath math="k" />" kerana ia mengira bilangan cara memilih <InlineMath math="k" /> objek daripada <InlineMath math="n" /> objek yang ada.
+
+Bentuk kembangan lengkapnya boleh ditulis sebagai:
+
+<BlockMath math="\begin{aligned} (x + y)^n &amp;= \binom{n}{0}x^n + \binom{n}{1}x^{n-1}y \\ &amp;\quad{}+ \binom{n}{2}x^{n-2}y^2 \\ &amp;\quad{}+\cdots + \binom{n}{n}y^n \end{aligned}" />
+
+Setiap sebutan dalam kembangan ini ada struktur <InlineMath math="\binom{n}{k}x^{n-k}y^k" />, dengan hasil tambah kuasa <InlineMath math="x" /> dan <InlineMath math="y" /> sentiasa sama dengan <InlineMath math="n" />.
+
+Dalam hasil darab <InlineMath math="(x+y)(x+y)(x+y)(x+y)" />, setiap sebutan memilih satu unsur daripada setiap kurungan. Untuk membentuk <InlineMath math="x^2y^2" />, pilih **dua kurungan yang menyumbang faktor y**. Ada enam pasangan kurungan yang menghasilkan sebutan yang sama, jadi pekalinya ialah enam.
+
+| Bilangan pilihan y | Pekali | Sebutan |
+| --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="x^4" /> |
+| <InlineMath math="1" /> | <InlineMath math="4" /> | <InlineMath math="4x^3y" /> |
+| <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="6x^2y^2" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4xy^3" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="y^4" /> |
+
+Pekali bagi <InlineMath math="(x + y)^n" /> untuk <InlineMath math="n = 0" /> hingga <InlineMath math="5" /> membentuk segi tiga Pascal. Setiap nombor di bahagian dalam ialah hasil tambah dua nombor di atasnya, contohnya <InlineMath math="\binom{5}{2} = \binom{4}{1} + \binom{4}{2} = 4 + 6 = 10" />, dan baris <InlineMath math="n" /> menyenaraikan <InlineMath math="\binom{n}{0}" /> hingga <InlineMath math="\binom{n}{n}" />.
+
+<MathVisual
+  title={<>Segi tiga Pascal hingga kuasa kelima</>}
+  description={<>Baris <InlineMath math="0" /> hingga <InlineMath math="5" /> segi tiga Pascal, iaitu pekali <InlineMath math="\binom{n}{k}" /> bagi <InlineMath math="(x + y)^n" />.</>}
+  labels={{
+    c00: <InlineMath math="1" />,
+    c10: <InlineMath math="1" />,
+    c11: <InlineMath math="1" />,
+    c20: <InlineMath math="1" />,
+    c21: <InlineMath math="2" />,
+    c22: <InlineMath math="1" />,
+    c30: <InlineMath math="1" />,
+    c31: <InlineMath math="3" />,
+    c32: <InlineMath math="3" />,
+    c33: <InlineMath math="1" />,
+    c40: <InlineMath math="1" />,
+    c41: <InlineMath math="4" />,
+    c42: <InlineMath math="6" />,
+    c43: <InlineMath math="4" />,
+    c44: <InlineMath math="1" />,
+    c50: <InlineMath math="1" />,
+    c51: <InlineMath math="5" />,
+    c52: <InlineMath math="10" />,
+    c53: <InlineMath math="10" />,
+    c54: <InlineMath math="5" />,
+    c55: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5.6, max: 0.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "c00", kind: "point", at: { x: 0 - 0 / 2, y: 0 }, appearance: "reference" },
+      { id: "c10", kind: "point", at: { x: 0 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c11", kind: "point", at: { x: 1 - 1 / 2, y: -1 }, appearance: "reference" },
+      { id: "c20", kind: "point", at: { x: 0 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c21", kind: "point", at: { x: 1 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c22", kind: "point", at: { x: 2 - 2 / 2, y: -2 }, appearance: "reference" },
+      { id: "c30", kind: "point", at: { x: 0 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c31", kind: "point", at: { x: 1 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c32", kind: "point", at: { x: 2 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c33", kind: "point", at: { x: 3 - 3 / 2, y: -3 }, appearance: "reference" },
+      { id: "c40", kind: "point", at: { x: 0 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c41", kind: "point", at: { x: 1 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c42", kind: "point", at: { x: 2 - 4 / 2, y: -4 }, appearance: "primary" },
+      { id: "c43", kind: "point", at: { x: 3 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c44", kind: "point", at: { x: 4 - 4 / 2, y: -4 }, appearance: "reference" },
+      { id: "c50", kind: "point", at: { x: 0 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c51", kind: "point", at: { x: 1 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c52", kind: "point", at: { x: 2 - 5 / 2, y: -5 }, appearance: "secondary" },
+      { id: "c53", kind: "point", at: { x: 3 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c54", kind: "point", at: { x: 4 - 5 / 2, y: -5 }, appearance: "reference" },
+      { id: "c55", kind: "point", at: { x: 5 - 5 / 2, y: -5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "c00", objectId: "c00", at: { x: 0 - 0 / 2, y: 0 }, placement: "above" },
+      { key: "c10", objectId: "c10", at: { x: 0 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c11", objectId: "c11", at: { x: 1 - 1 / 2, y: -1 }, placement: "above" },
+      { key: "c20", objectId: "c20", at: { x: 0 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c21", objectId: "c21", at: { x: 1 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c22", objectId: "c22", at: { x: 2 - 2 / 2, y: -2 }, placement: "above" },
+      { key: "c30", objectId: "c30", at: { x: 0 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c31", objectId: "c31", at: { x: 1 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c32", objectId: "c32", at: { x: 2 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c33", objectId: "c33", at: { x: 3 - 3 / 2, y: -3 }, placement: "above" },
+      { key: "c40", objectId: "c40", at: { x: 0 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c41", objectId: "c41", at: { x: 1 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c42", objectId: "c42", at: { x: 2 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c43", objectId: "c43", at: { x: 3 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c44", objectId: "c44", at: { x: 4 - 4 / 2, y: -4 }, placement: "above" },
+      { key: "c50", objectId: "c50", at: { x: 0 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c51", objectId: "c51", at: { x: 1 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c52", objectId: "c52", at: { x: 2 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c53", objectId: "c53", at: { x: 3 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c54", objectId: "c54", at: { x: 4 - 5 / 2, y: -5 }, placement: "above" },
+      { key: "c55", objectId: "c55", at: { x: 5 - 5 / 2, y: -5 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Mencari Pekali Tertentu
+
+Teorem binomial Newton boleh mencari pekali bagi sebutan yang dipilih <Highlight>tanpa mengembangkan seluruh ungkapan</Highlight>.
+
+Katakan kita mahu mencari pekali <InlineMath math="x^2" /> dalam kembangan <InlineMath math="(1 - x)^{2014}" />.
+
+Kita tulis semula dalam bentuk binomial piawai dengan <InlineMath math="a = 1" />, <InlineMath math="b = -x" /> dan <InlineMath math="n = 2014" />:
+
+<BlockMath math="\begin{aligned} &amp;(1 + (-x))^{2014} \\ &amp;= \sum_{k=0}^{2014} \binom{2014}{k} (1)^{2014-k} (-x)^k \end{aligned}" />
+
+Untuk mendapat sebutan yang mengandungi <InlineMath math="x^2" />, kita perlukan <InlineMath math="k = 2" />:
+
+<BlockMath math="\begin{aligned} &amp;\binom{2014}{2} (1)^{2012} (-x)^2 \\ &amp;= \binom{2014}{2} \cdot 1 \cdot x^2 \\ &amp;= \binom{2014}{2} x^2 \end{aligned}" />
+
+Kira pekali binomial itu:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \binom{2014}{2} &amp;= \frac{2014!}{2!(2014-2)!} \\ &amp;= \frac{2014 \times 2013}{2 \times 1} \end{aligned}" />
+<BlockMath math="= \frac{4{,}054{,}182}{2} = 2{,}027{,}091" />
+</MathContainer>
+
+Pekali <InlineMath math="x^2" /> ialah <InlineMath math="2{,}027{,}091" />.
+
+Bagi kuasa kesepuluh, pekalinya ialah <InlineMath math="\binom{10}{k}" />: <InlineMath math="1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1" />. Sebutan tengah <InlineMath math="252x^5y^5" /> ada pekali yang paling besar, dan nilai dalam baris itu menurun secara simetri di kedua-dua belah.
+
+<BarChart
+  title={<>Pekali bagi binomial berkuasa sepuluh</>}
+  description={<>Palang <InlineMath math="k" /> menunjukkan <InlineMath math="\binom{10}{k}" />, iaitu pekali bagi <InlineMath math="x^{10-k}y^k" />.</>}
+  yAxisLabel="Pekali"
+  data={Array.from({ length: 11 }, (_, k) => {
+    const factorial = (n) => Array.from({ length: n }, (_, i) => i + 1).reduce((product, i) => product * i, 1);
+    return { name: `${k}`, value: factorial(10) / (factorial(k) * factorial(10 - k)) };
+  })}
+  chartConfig={{ value: { label: "Pekali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mencari Sebutan Pemalar
+
+Sebutan pemalar ialah sebutan yang tidak mengandungi sebarang pemboleh ubah. Untuk mencarinya, kita perlu mengenal pasti sebutan yang kuasa bagi semua pemboleh ubahnya sama dengan sifar.
+
+**Contoh**: Tentukan sebutan pemalar bagi <InlineMath math="\left(3x^3 - \frac{2}{x}\right)^8" />.
+
+Oleh sebab ungkapan ini ada pembahagian dengan <InlineMath math="x" />, syaratnya <InlineMath math="x\ne0" />. Kita tulis dalam bentuk binomial dengan <InlineMath math="a = 3x^3" /> dan <InlineMath math="b = -\frac{2}{x}" />:
+
+<BlockMath math="\begin{aligned} &amp;\left(3x^3 - \frac{2}{x}\right)^8 \\ &amp;= \sum_{k=0}^{8} \binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \end{aligned}" />
+
+Sebutan amnya ialah:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (3x^3)^{8-k} \left(-\frac{2}{x}\right)^k \\ &amp;= \binom{8}{k} \cdot (3)^{8-k} \cdot (x^3)^{8-k} \\ &amp;\quad{}\cdot (-2)^k \cdot (x^{-1})^k \end{aligned}" />
+<BlockMath math="= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{3(8-k)} \cdot x^{-k}" />
+<BlockMath math="\begin{aligned}  &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-3k-k} \\ &amp;= \binom{8}{k} \cdot 3^{8-k} \cdot (-2)^k \cdot x^{24-4k} \end{aligned}" />
+</MathContainer>
+
+Untuk sebutan pemalar, kuasa <InlineMath math="x" /> mesti sifar:
+
+<BlockMath math="24 - 4k = 0 \Rightarrow 4k = 24 \Rightarrow k = 6" />
+
+Gantikan <InlineMath math="k = 6" />:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\binom{8}{6} \cdot 3^{8-6} \cdot (-2)^6 \cdot x^0 \\ &amp;= \binom{8}{6} \cdot 3^2 \cdot (-2)^6 \end{aligned}" />
+<BlockMath math="= \frac{8!}{6! \cdot 2!} \cdot 9 \cdot 64 = \frac{8 \times 7}{2 \times 1} \cdot 9 \cdot 64" />
+<BlockMath math="= 28 \cdot 9 \cdot 64 = 252 \cdot 64 = 16{,}128" />
+</MathContainer>
+
+Kedua-dua <InlineMath math="(-2)^6" /> dan <InlineMath math="(+2)^6" /> sama dengan <InlineMath math="64" /> kerana kuasa genap bagi nombor nyata yang bukan sifar ialah nombor positif.
+
+Sebutan pemalarnya ialah <InlineMath math="16{,}128" />.
+
+## Strategi Penyelesaian Masalah
+
+Apabila berdepan dengan masalah binomial Newton, ikut langkah-langkah sistematik ini:
+
+1. **Kenal pasti komponen** dalam bentuk <InlineMath math="(a + b)^n" /> dan tentukan nilai <InlineMath math="a" />, <InlineMath math="b" /> dan <InlineMath math="n" /> dengan jelas.
+
+2. **Tentukan jenis sebutan** yang dicari, sama ada pekali tertentu, sebutan pemalar, atau sebutan dengan kuasa tertentu.
+
+3. **Gunakan rumus sebutan am** <InlineMath math="\binom{n}{k} a^{n-k} b^k" /> dan sesuaikan mengikut syarat yang diperlukan.
+
+4. **Kira dengan teliti** nilai pekali binomial dan operasi aritmetik yang lain.
+
+**Contoh Penggunaan Strategi**:
+
+Tentukan pekali <InlineMath math="x^5" /> dalam kembangan <InlineMath math="(2x + 3)^8" />.
+
+**Langkah 1**: Kenal pasti komponen
+
+Daripada <InlineMath math="(2x + 3)^8" />, kita dapat:
+- <InlineMath math="a = 2x" />
+- <InlineMath math="b = 3" />
+- <InlineMath math="n = 8" />
+
+**Langkah 2**: Tentukan jenis sebutan
+
+Kita mencari pekali bagi sebutan yang mengandungi <InlineMath math="x^5" />.
+
+**Langkah 3**: Gunakan rumus sebutan am
+
+Sebutan am: <InlineMath math="\binom{8}{k} (2x)^{8-k} (3)^k" />
+
+Kembangkan sebutan am itu:
+
+<BlockMath math="\begin{aligned} &amp;\binom{8}{k} (2x)^{8-k} (3)^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot x^{8-k} \cdot 3^k \\ &amp;= \binom{8}{k} \cdot 2^{8-k} \cdot 3^k \cdot x^{8-k} \end{aligned}" />
+
+Untuk mendapat <InlineMath math="x^5" />, kita perlukan <InlineMath math="8-k = 5" />, jadi <InlineMath math="k = 3" />.
+
+**Langkah 4**: Kira dengan teliti
+
+Gantikan <InlineMath math="k = 3" />:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;\binom{8}{3} \cdot 2^{8-3} \cdot 3^3 \cdot x^5 \\ &amp;= \binom{8}{3} \cdot 2^5 \cdot 3^3 \cdot x^5 \end{aligned}" />
+<BlockMath math="= \frac{8!}{3! \cdot 5!} \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= \frac{8 \times 7 \times 6}{3 \times 2 \times 1} \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= 56 \cdot 32 \cdot 27 \cdot x^5" />
+<BlockMath math="= 1{,}792 \cdot 27 \cdot x^5 = 48{,}384x^5" />
+</MathContainer>
+
+Jadi, pekali <InlineMath math="x^5" /> ialah <InlineMath math="48{,}384" />.
+
+Dalam kembangan <InlineMath math="(a+b)^n" />, hasil tambah kuasa bagi faktor <InlineMath math="a" /> dan <InlineMath math="b" /> ialah <InlineMath math="n" />. Selepas faktor-faktor ini digantikan dengan ungkapan dalam <InlineMath math="x" />, kira semula kuasa <InlineMath math="x" />. Satu lagi cara semakan menggunakan **simetri pekali binomial**: <InlineMath math="\binom{n}{k} = \binom{n}{n-k}" />.
+
+## Latihan
+
+Setiap soalan meminta satu sebutan sahaja daripada satu kembangan. Gunakan rumus sebutan am dan **padankan kuasa** yang disebut dalam soalan.
+
+1. Tentukan pekali <InlineMath math="x^4" /> dalam kembangan <InlineMath math="(2x - 3)^7" />.
+
+2. Kira sebutan pemalar bagi <InlineMath math="\left(x^2 + \frac{1}{x}\right)^9" />.
+
+3. Dalam kembangan <InlineMath math="(1 + 2x)^{10}" />, tentukan sebutan yang mengandungi <InlineMath math="x^3" />.
+### Kunci Jawapan
+
+1. **Penyelesaian**:
+
+   Tulis dalam bentuk binomial dengan <InlineMath math="a = 2x" />, <InlineMath math="b = -3" /> dan <InlineMath math="n = 7" />.
+
+   Sebutan am: <InlineMath math="\binom{7}{k} (2x)^{7-k} (-3)^k = \binom{7}{k} \cdot 2^{7-k} \cdot (-3)^k \cdot x^{7-k}" />
+
+   Untuk pekali <InlineMath math="x^4" />, kita perlukan <InlineMath math="7-k = 4" />, jadi <InlineMath math="k = 3" />.
+
+   <MathContainer>
+   <BlockMath math="\begin{aligned} &amp;\binom{7}{3} \cdot 2^{7-3} \cdot (-3)^3 \\ &amp;= \binom{7}{3} \cdot 2^4 \cdot (-3)^3 \end{aligned}" />
+   <BlockMath math="= \frac{7!}{3! \cdot 4!} \cdot 16 \cdot (-27)" />
+   <BlockMath math="= \frac{7 \times 6 \times 5}{3 \times 2 \times 1} \cdot 16 \cdot (-27)" />
+   <BlockMath math="\begin{aligned}  &amp;= 35 \cdot 16 \cdot (-27) \\ &amp;= 560 \cdot (-27) \\ &amp;= -15{,}120 \end{aligned}" />
+   </MathContainer>
+
+   Jadi, pekali <InlineMath math="x^4" /> ialah <InlineMath math="-15{,}120" />.
+
+2. **Penyelesaian**:
+
+   Tulis dalam bentuk binomial dengan <InlineMath math="a = x^2" />, <InlineMath math="b = \frac{1}{x}" /> dan <InlineMath math="n = 9" />.
+
+   Sebutan amnya ialah:
+
+   <MathContainer>
+     <BlockMath math="\begin{aligned} &amp;\binom{9}{k} (x^2)^{9-k} \left(\frac{1}{x}\right)^k \\ &amp;=\binom{9}{k} \cdot x^{2(9-k)} \cdot x^{-k} \end{aligned}" />
+     <BlockMath math="\begin{aligned}  &amp;= \binom{9}{k} \cdot x^{18-2k} \cdot x^{-k} \\ &amp;= \binom{9}{k} \cdot x^{18-2k-k} \\ &amp;= \binom{9}{k} \cdot x^{18-3k} \end{aligned}" />
+   </MathContainer>
+
+   Untuk sebutan pemalar, kuasa <InlineMath math="x" /> mesti sifar: <InlineMath math="18-3k = 0" />, jadi <InlineMath math="k = 6" />.
+
+   <BlockMath math="\begin{aligned} \binom{9}{6} &amp;= \binom{9}{3} \\ &amp;= \frac{9!}{3! \cdot 6!} \\ &amp;= \frac{9 \times 8 \times 7}{3 \times 2 \times 1} \\ &amp;= 84 \end{aligned}" />
+
+   Sebutan pemalarnya ialah <InlineMath math="84" />.
+
+3. **Penyelesaian**:
+
+   Tulis dalam bentuk binomial dengan <InlineMath math="a = 1" />, <InlineMath math="b = 2x" /> dan <InlineMath math="n = 10" />.
+
+   Sebutan am: <InlineMath math="\binom{10}{k} (1)^{10-k} (2x)^k = \binom{10}{k} \cdot 2^k \cdot x^k" />
+
+   Untuk sebutan yang mengandungi <InlineMath math="x^3" />, kita perlukan <InlineMath math="k = 3" />.
+
+   <MathContainer>
+   <BlockMath math="\begin{aligned} \binom{10}{3} \cdot 2^3 \cdot x^3 &amp;= 120 \cdot 8 \cdot x^3 \\ &amp;= 960x^3 \end{aligned}" />
+   </MathContainer>
+
+   Sebutan yang mengandungi <InlineMath math="x^3" /> ialah <InlineMath math="960x^3" />.

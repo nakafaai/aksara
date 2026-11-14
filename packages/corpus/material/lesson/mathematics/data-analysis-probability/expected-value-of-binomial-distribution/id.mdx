@@ -120,7 +120,7 @@ Nilai harapan juga berbeda dari hasil yang paling mungkin. Dari rumus binomial, 
 
 <BarChart
   title={<>Sebaran banyak angka lima dalam tujuh lemparan</>}
-  description={<>Batang tertinggi ada di 1, sedangkan nilai harapan 7/6, sekitar 1,17, berada di antara 1 dan 2.</>}
+  description={<>Batang tertinggi ada di <InlineMath math="1" />, sedangkan nilai harapan <InlineMath math="\frac{7}{6}" />, sekitar <InlineMath math="1{,}17" />, berada di antara <InlineMath math="1" /> dan <InlineMath math="2" />.</>}
   data={Array.from({ length: 8 }, (_, k) => {
     const ways = Array.from({ length: k }, (_, i) => (7 - i) / (i + 1)).reduce((product, factor) => product * factor, 1);
     const probability = ways * (1 / 6) ** k * (5 / 6) ** (7 - k);
@@ -140,11 +140,11 @@ Misalkan jawaban benar mendapat <InlineMath math="4" /> poin dan jawaban salah d
 
 Periksa per soal: satu tebakan bernilai harapan <InlineMath math="4 \cdot \frac{1}{5} - 1 \cdot \frac{4}{5} = 0" /> poin, jadi dua puluh tebakan juga bernilai harapan <InlineMath math="0" />. Dengan aturan ini, menebak tidak menambah skor dalam jangka panjang.
 
-Distribusi tebakan benar dari 20 soal dengan <InlineMath math="p = \tfrac15" /> memuncak di 4, tepat nilai harapan <InlineMath math="np = 4" />, dan sekitar <InlineMath math="98\%" /> peluangnya terletak antara 1 dan 8 jawaban benar.
+Distribusi tebakan benar dari <InlineMath math="20" /> soal dengan <InlineMath math="p = \tfrac15" /> memuncak di <InlineMath math="4" />, tepat nilai harapan <InlineMath math="np = 4" />, dan sekitar <InlineMath math="98\%" /> peluangnya terletak antara <InlineMath math="1" /> dan <InlineMath math="8" /> jawaban benar.
 
 <BarChart
-  title={<>Tebakan benar dari 20 soal dengan <InlineMath math="p = \tfrac15" /></>}
-  description={<>Batang <InlineMath math="P(X = k)" /> dalam persen untuk <InlineMath math="k = 0" /> sampai 10 jawaban benar. Banyak benar yang lebih besar masing-masing berpeluang kurang dari <InlineMath math="0{,}3\%" />.</>}
+  title={<>Tebakan benar dari <InlineMath math="20" /> soal dengan <InlineMath math="p = \tfrac15" /></>}
+  description={<>Batang <InlineMath math="P(X = k)" /> dalam persen untuk <InlineMath math="k = 0" /> sampai <InlineMath math="10" /> jawaban benar. Banyak benar yang lebih besar masing-masing berpeluang kurang dari <InlineMath math="0{,}3\%" />.</>}
   yAxisLabel="Peluang (%)"
   data={[1, 20, 190, 1140, 4845, 15504, 38760, 77520, 125970, 167960, 184756].map((c, k) => ({ name: String(k), value: 100 * c * 0.2 ** k * 0.8 ** (20 - k) }))}
   chartConfig={{ value: { label: "Peluang (%)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

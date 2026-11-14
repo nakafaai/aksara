@@ -6,31 +6,36 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "recycling-rate",
+  stimulus: "solar-heat",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "More tonnes of mixed plastics were recycled than of plastic bottles.",
-        },
-        {
           column: 1,
           label:
-            "Glass had the highest share of bin material that was actually recycled.",
-        },
-        {
-          column: 1,
-          label:
-            "Paper and cardboard made up the largest amount put in recycling bins.",
+            "Every month with an average panel temperature above $$25$$ °C had a lower efficiency than March.",
         },
         {
           column: 2,
           label:
-            "Everything put in the recycling bins was sent to recycling companies.",
+            "In July the panels turned a larger share of the arriving sunlight into electricity than in June.",
+        },
+        {
+          column: 1,
+          label:
+            "From March to April the sunlight reaching the panels rose by more than a quarter while their efficiency stayed the same.",
+        },
+        {
+          column: 2,
+          label:
+            "The table shows that heat alone caused the panels' lower efficiency in July.",
+        },
+        {
+          column: 2,
+          label:
+            "The months with the most electricity produced were also the months with the highest efficiency.",
         },
       ],
     },

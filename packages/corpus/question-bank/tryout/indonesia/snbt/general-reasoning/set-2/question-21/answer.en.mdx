@@ -1,9 +1,25 @@
-Look at **the differences between consecutive terms**:
+This question asks for two terms far down the list, the <InlineMath math="20" />th and the <InlineMath math="21" />st. You need to find the pattern, then **translate each position** into a position inside that pattern.
 
-<BlockMath math="7-5=2,\quad 11-7=4,\quad 19-11=8,\quad 35-19=16" />
+The differences between neighbouring terms go up and down: <InlineMath math="+2,\ +1,\ +6,\ -1,\ +8,\ -1,\ +8" />. Differences like these don't form a single pattern. That tells you the list is two sequences woven together. Split it into the terms in odd positions and the terms in even positions.
 
-Each difference is twice the one before: <InlineMath math="2, 4, 8, 16" />. The next difference is <InlineMath math="32" />.
+The odd-position terms (1st, 3rd, 5th, 7th) are <InlineMath math="2,\ 5,\ 10,\ 17" />. Their differences are <InlineMath math="3,\ 5,\ 7" />, growing by <InlineMath math="2" /> each time. These are square numbers plus one: <InlineMath math="1^2+1,\ 2^2+1,\ 3^2+1,\ 4^2+1" />. So the <InlineMath math="k" />th odd-position term is <InlineMath math="k^2+1" />, and it sits in position <InlineMath math="2k-1" />.
 
-<BlockMath math="35+32=67" />
+The even-position terms (2nd, 4th, 6th, 8th) are <InlineMath math="4,\ 11,\ 18,\ 25" />. Each one adds <InlineMath math="7" />. So the <InlineMath math="k" />th even-position term is <InlineMath math="4+7(k-1)=7k-3" />, and it sits in position <InlineMath math="2k" />.
 
-The same pattern follows from the rule <InlineMath math="u_{n+1}=2u_n-3" />, for example <InlineMath math="2\times5-3=7" /> and <InlineMath math="2\times35-3=67" />. Both methods agree. So the next number is <InlineMath math="67" />.
+Position <InlineMath math="20" /> is even, so that term belongs to the even sequence with <InlineMath math="2k=20" />, which means <InlineMath math="k=10" />. Position <InlineMath math="21" /> is odd, so that term belongs to the odd sequence with <InlineMath math="2k-1=21" />, which means <InlineMath math="k=11" />.
+
+<BlockMath math="\begin{aligned}
+U_{20} &= 7(10)-3 = 67 \\
+U_{21} &= 11^2+1 = 122 \\
+U_{20}+U_{21} &= 67+122 = 189
+\end{aligned}" />
+
+Check by extending both sequences. Odd sequence: <InlineMath math="2,\ 5,\ 10,\ 17,\ 26,\ 37,\ 50,\ 65,\ 82,\ 101,\ 122" />, and its <InlineMath math="11" />th term really is <InlineMath math="122" />. Even sequence: <InlineMath math="4,\ 11,\ 18,\ 25,\ 32,\ 39,\ 46,\ 53,\ 60,\ 67" />, and its <InlineMath math="10" />th term really is <InlineMath math="67" />.
+
+Some tempting routes that go wrong:
+
+- Plugging <InlineMath math="20" /> and <InlineMath math="21" /> straight into the formulas gives <InlineMath math="7(20)-3=137" /> and <InlineMath math="21^2+1=442" />, which add up to <InlineMath math="579" />. The positions in the combined list haven't been turned into positions in each sequence.
+- Using <InlineMath math="k=10" /> for both terms gives <InlineMath math="67+101=168" />. Position <InlineMath math="21" /> is the <InlineMath math="11" />th odd-position term, not the <InlineMath math="10" />th.
+- Swapping the sequences, so the square rule goes to position <InlineMath math="20" /> and the add-<InlineMath math="7" /> rule to position <InlineMath math="21" />, gives <InlineMath math="101+74=175" />.
+
+So the <InlineMath math="20" />th and <InlineMath math="21" />st terms add up to <InlineMath math="189" />.

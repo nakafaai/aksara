@@ -15,44 +15,31 @@ Sebuah **translasi vertikal** sejauh <InlineMath math="k" /> mengubah <InlineMat
 
 Menambahkan <InlineMath math="k" /> mengubah setiap tinggi dengan jumlah yang sama, termasuk tinggi titik-titik pada sumbu x. Karena itu pembuat nol tidak sekadar ikut bergeser sejauh <InlineMath math="k" />. Pembuat nol <InlineMath math="f" /> memenuhi <InlineMath math="f(x) = 0" />, sedangkan pembuat nol <InlineMath math="f(x) + k" /> memenuhi <InlineMath math="f(x) = -k" />, yaitu persamaan yang berbeda.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Grafik <InlineMath math="f(x) = x^2 - 4x + 3" /> dan <InlineMath math="g(x) = f(x) + 5" /></>}
   description={<>Setiap panah vertikal menambah tinggi sebesar lima. Pembuat nol <InlineMath math="f" /> di <InlineMath math="1" /> dan <InlineMath math="3" /> naik ke tinggi <InlineMath math="5" /> pada <InlineMath math="g" />, sedangkan titik puncak naik dari <InlineMath math="(2, -1)" /> ke <InlineMath math="(2, 4)" />.</>}
-  cameraPosition={[2, 3, 14]}
-  cameraTarget={[2, 3, 0]}
-  data={(() => {
-    // Both curves use the same inputs, so every arrow starts on f and ends on g at the same x.
-    const f = (x) => x * x - 4 * x + 3;
-    const g = (x) => f(x) + 5;
-    const xs = Array.from({ length: 241 }, (_, i) => -1 + i / 40);
-    const index = (x) => Math.round((x + 1) * 40);
-    // A vertical shift by 5 keeps the x-coordinate: (x0, f(x0)) goes to (x0, f(x0) + 5).
-    const lift = (x0) => [
-      { x: x0, y: f(x0), z: 0 },
-      { x: x0, y: g(x0), z: 0 },
-    ];
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(1), index(3)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-0.5), offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(-0.5), offset: [-0.3, 0.4, 0], anchorX: "right" }],
-      },
-      { points: lift(2), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: lift(1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: lift(3), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -2.5, max: 14.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (t / 40))", y: "(((((-1) + (t / 40)) * ((-1) + (t / 40))) - (4 * ((-1) + (t / 40)))) + 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p80", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-1) + (t / 40))", y: "((((((-1) + (t / 40)) * ((-1) + (t / 40))) - (4 * ((-1) + (t / 40)))) + 3) + 5)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: -1 }, to: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 1, y: 0 }, to: { x: 1, y: 5 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 3, y: 0 }, to: { x: 3, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -0.5, y: 5.25 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: -0.5, y: 10.25 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Grafik ini memperlihatkan titik puncak yang naik dan kedua pembuat nol yang meninggalkan sumbu x. Setiap panah di pembuat nol berakhir pada tinggi <InlineMath math="5" />, dan <InlineMath math="g" /> tidak punya pembuat nol sama sekali, karena titik terendahnya tetap di atas sumbu x.
@@ -61,50 +48,37 @@ Grafik ini memperlihatkan titik puncak yang naik dan kedua pembuat nol yang meni
 
 Untuk mencari pembuat nol setelah pergeseran, **selesaikan persamaan baru sama dengan nol**. Ambil keluarga <InlineMath math="f(x) = x^2 - 4" /> lalu tambahkan konstanta <InlineMath math="k" />. Pembuat nolnya memenuhi <InlineMath math="x^2 - 4 + k = 0" />, atau <InlineMath math="x^2 = 4 - k" />. Jumlah penyelesaiannya bergantung pada <InlineMath math="k" />. Untuk <InlineMath math="k = 0" /> ada dua pembuat nol, yaitu <InlineMath math="\pm 2" />. Untuk <InlineMath math="k = 3" /> keduanya adalah <InlineMath math="\pm 1" />, dan untuk <InlineMath math="k = 4" /> satu-satunya pembuat nol adalah <InlineMath math="0" />, tempat parabola menyentuh sumbu x. Untuk <InlineMath math="k = 5" />, persamaan <InlineMath math="x^2 = -1" /> tidak punya penyelesaian real.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Keluarga <InlineMath math="x^2 - 4 + k" /> untuk empat nilai <InlineMath math="k" /></>}
   description={<>Dua pembuat nol menjadi satu saat titik puncak menyentuh sumbu x pada <InlineMath math="k = 4" />, dan tidak ada pembuat nol lagi saat titik puncak berada di atas sumbu pada <InlineMath math="k = 5" />. Titik menandai setiap pembuat nol yang ada.</>}
-  cameraPosition={[0, 4, 13]}
-  cameraTarget={[0, 4, 0]}
-  data={(() => {
-    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
-    const index = (x) => Math.round((x + 3) * 40);
-    const family = (k) => (x) => x * x - 4 + k;
-    return [
-      {
-        points: xs.map((x) => ({ x, y: family(0)(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(-2), index(2)],
-        labels: [{ text: <InlineMath math="k = 0" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(3)(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(-1), index(1)],
-        labels: [{ text: <InlineMath math="k = 3" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(4)(x), z: 0 })),
-        smooth: false,
-        color: "#7c3aed",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="k = 4" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(5)(x), z: 0 })),
-        smooth: false,
-        color: "#db2777",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="k = 5" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="k = 0" />,
+    "l2": <InlineMath math="k = 3" />,
+    "l3": <InlineMath math="k = 4" />,
+    "l4": <InlineMath math="k = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -5.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 0)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p80", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 4)", parameter: { min: 0, max: 240 }, appearance: "answer" },
+      { id: "s3-p120", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 5)", parameter: { min: 0, max: 240 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 2.25 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.5, y: 5.25 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.5, y: 6.25 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: 7.25 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Uji yang sama berlaku untuk contoh pertama. Grafik <InlineMath math="g(x) = x^2 - 4x + 8" /> memiliki diskriminan <InlineMath math="(-4)^2 - 4(1)(8) = 16 - 32 = -16" />, yang negatif. Jadi <InlineMath math="g" /> tidak punya pembuat nol real, dan titik terendahnya, yaitu titik puncak <InlineMath math="(2, 4)" />, berada di atas sumbu x.
@@ -115,51 +89,34 @@ Fungsi eksponensial <InlineMath math="f(x) = 2^x" /> punya asimtot horizontal <I
 
 Grafik <InlineMath math="g" /> memotong sumbu x saat <InlineMath math="2^x = 3" />, sehingga <InlineMath math="x = \log_2 3 \approx 1{,}585" />. Periksa dengan <InlineMath math="g(\log_2 3) = 3 - 3 = 0" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Grafik <InlineMath math="f(x) = 2^x" /> dan <InlineMath math="g(x) = 2^x - 3" /></>}
   description={<>Panah membawa titik potong <InlineMath math="(0, 1)" /> milik <InlineMath math="f" /> turun ke <InlineMath math="(0, -2)" /> pada <InlineMath math="g" />. Garis tipis adalah asimtot <InlineMath math="y = -3" />, dan titik menandai pembuat nol <InlineMath math="g" />.</>}
-  cameraPosition={[0, 2.5, 13]}
-  cameraTarget={[0, 2.5, 0]}
-  data={(() => {
-    const f = (x) => 2 ** x;
-    const g = (x) => 2 ** x - 3;
-    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
-    const index = (x) => Math.round((x + 3) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(2), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: -3, y: -3, z: 0 }, { x: 3, y: -3, z: 0 }],
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: Math.log2(3), y: 0, z: 0 }],
-        smooth: false,
-        color: "#db2777",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="x = \log_2 3" />, at: 0, offset: [0.3, 0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 0, y: 1, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = -3" />,
+    "l4": <InlineMath math="x = \log_2 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "(2)^(((-3) + (t / 40)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "((2)^(((-3) + (t / 40))) - 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.58, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 1 }, to: { x: 0, y: -2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: -3 }, placement: "below" },
+      { key: "l4", objectId: "s4", at: { x: 1.58, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Range yang Terlihat dari Samping
@@ -168,110 +125,92 @@ Dua grafik di dua bidang sejajar **menampilkan range secara langsung**. Taruh <I
 
 Dari atas, kedua parabola menyebar pada batang domain yang sama, <InlineMath math="[-2, 2]" />, karena translasi vertikal menjaga setiap koordinat x. Pandangan samping memperlihatkan perubahannya, sedangkan pandangan atas memperlihatkan apa yang tetap sama.
 
-<LineEquation
-  showZAxis={true}
+<MathVisual
   title={<>Dua parabola bergeser dilihat dari samping</>}
   description={<>Dari samping ini, kurva <InlineMath math="f" /> berada pada batang range dari <InlineMath math="-1" /> sampai <InlineMath math="3" />, dan kurva <InlineMath math="g" /> berada pada batang dari <InlineMath math="1" /> sampai <InlineMath math="5" />. Kedua batang berjarak dua satuan dalam tinggi.</>}
-  cameraPosition={[12, 2, 0.75]}
-  cameraTarget={[0, 2, 0.75]}
-  data={(() => {
-    // The parabolas are sampled on -2 <= x <= 2; the range and domain bars are exact straight lines.
-    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
-    const index = (x) => Math.round((x + 2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: x * x - 1, z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: x * x + 1, z: 1.5 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 2.6, y: -1, z: 0 }, { x: 2.6, y: 3, z: 0 }], smooth: false, color: "#ea580c", showPoints: false, labels: [{ text: <InlineMath math="[-1, 3]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
-      { points: [{ x: 2.6, y: 1, z: 1.5 }, { x: 2.6, y: 5, z: 1.5 }], smooth: false, color: "#0d9488", showPoints: false, labels: [{ text: <InlineMath math="[1, 5]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
-      { points: [{ x: -2, y: -2.5, z: 0 }, { x: 2, y: -2.5, z: 0 }], smooth: false, color: "#475569", showPoints: false, labels: [{ text: <InlineMath math="[-2, 2]" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }] },
-      { points: [{ x: -2, y: -2.5, z: 1.5 }, { x: 2, y: -2.5, z: 1.5 }], smooth: false, color: "#475569", showPoints: false },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="[-1, 3]" />,
+    "l4": <InlineMath math="[1, 5]" />,
+    "l5": <InlineMath math="[-2, 2]" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -3.5, max: 6 }, z: { min: -0.5, max: 2 } },
+    view: { kind: "camera", position: { x: 12, y: 2, z: 0.75 }, target: { x: 0, y: 2, z: 0.75 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - 1)", z: "0", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) + 1)", z: "1.5", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2.6, y: -1, z: 0 }, { x: 2.6, y: 3, z: 0 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2.6, y: 1, z: 1.5 }, { x: 2.6, y: 5, z: 1.5 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2, y: -2.5, z: 0 }, { x: 2, y: -2.5, z: 0 }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2, y: -2.5, z: 1.5 }, { x: 2, y: -2.5, z: 1.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 0, z: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 2, z: 1.5 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 2.6, y: -1, z: 0 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 2.6, y: 1, z: 1.5 }, placement: "right" },
+      { key: "l5", objectId: "s5", at: { x: -2, y: -2.5, z: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Akar Persegi dan Garis setelah Digeser
 
 Fungsi akar <InlineMath math="f(x) = \sqrt{x}" /> yang **digeser ke atas tiga satuan** menjadi <InlineMath math="g(x) = \sqrt{x} + 3" />. Titik awal <InlineMath math="(0, 0)" /> pindah ke <InlineMath math="(0, 3)" />, dan <InlineMath math="(4, 2)" /> pindah ke <InlineMath math="(4, 5)" />. Domainnya tetap <InlineMath math="[0, \infty)" />, sedangkan range-nya berubah dari <InlineMath math="[0, \infty)" /> menjadi <InlineMath math="[3, \infty)" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Grafik <InlineMath math="f(x) = \sqrt{x}" /> dan <InlineMath math="g(x) = \sqrt{x} + 3" /></>}
   description={<>Panah mengangkat titik <InlineMath math="(4, 2)" /> ke <InlineMath math="(4, 5)" />. Domain kedua grafik dimulai dari nol, dan range <InlineMath math="g" /> dimulai dari tinggi tiga.</>}
-  cameraPosition={[3, 3, 12]}
-  cameraTarget={[3, 3, 0]}
-  data={(() => {
-    const f = (x) => Math.sqrt(x);
-    const g = (x) => Math.sqrt(x) + 3;
-    const xs = Array.from({ length: 321 }, (_, i) => i / 40);
-    const index = (x) => Math.round(x * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="f" />, at: index(6), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="g" />, at: index(7), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 4, y: 2, z: 0 }, { x: 4, y: 5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t / 40)", y: "sqrt((t / 40))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t / 40)", y: "(sqrt((t / 40)) + 3)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 4, y: 2 }, to: { x: 4, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 6, y: 2.45 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 5.65 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Bei einer Geraden liefert dieselbe Regel ein klares Bild. Nimm <InlineMath math="f(x) = 3x + 2" /> und verschiebe sie um sieben Einheiten nach unten, sodass <InlineMath math="g(x) = 3x - 5" /> entsteht. Der Schnittpunkt mit der y-Achse wandert von <InlineMath math="(0, 2)" /> nach <InlineMath math="(0, -5)" />, und die Nullstelle wandert von <InlineMath math="x = -\frac{2}{3}" /> nach <InlineMath math="x = \frac{5}{3}" />. Hier wandert die Nullstelle tatsächlich, weil die Nullstelle einer Geraden vom konstanten Glied abhängt.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Garis <InlineMath math="f(x) = 3x + 2" /> dan salinannya <InlineMath math="g(x) = 3x - 5" /></>}
   description={<>Panah membawa titik potong <InlineMath math="(0, 2)" /> milik <InlineMath math="f" /> turun ke <InlineMath math="(0, -5)" /> pada <InlineMath math="g" />. Titik menandai dua pembuat nol yang letaknya berbeda.</>}
-  cameraPosition={[1, 0, 14]}
-  cameraTarget={[1, 0, 0]}
-  data={(() => {
-    const f = (x) => 3 * x + 2;
-    const g = (x) => 3 * x - 5;
-    // The step 1/30 puts both zeros, -2/3 and 5/3, exactly on the sample grid.
-    const xs = Array.from({ length: 181 }, (_, i) => -2 + i / 30);
-    const index = (x) => Math.round((x + 2) * 30);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(-2 / 3)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-1.5), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(5 / 3)],
-        labels: [{ text: <InlineMath math="g" />, at: index(3), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 0, y: 2, z: 0 }, { x: 0, y: -5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -14, max: 17 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 30))", y: "((3 * ((-2) + (t / 30))) + 2)", parameter: { min: 0, max: 180 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -0.67, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 30))", y: "((3 * ((-2) + (t / 30))) - 5)", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s2-p110", kind: "point", at: { x: 1.67, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 2 }, to: { x: 0, y: -5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.5, y: -2.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Kesalahan Saat Menambahkan Konstanta

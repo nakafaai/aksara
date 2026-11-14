@@ -3,13 +3,16 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$\\dfrac{5}{16}$$" },
-        { correct: false, label: "$$\\dfrac{15}{32}$$" },
-        { correct: true, label: "$$\\dfrac12$$" },
-        { correct: false, label: "$$\\dfrac{13}{16}$$" },
-        { correct: false, label: "$$\\dfrac{31}{32}$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "Barisan itu adalah barisan aritmetika." },
+        { column: 1, label: "Suku ke-$$15$$ barisan itu adalah $$53$$." },
+        {
+          column: 2,
+          label: "Ada $$2$$ suku berurutan yang jumlahnya $$2{.}026$$.",
+        },
+        { column: 1, label: "$$a_1+a_3+a_5+\\dots+a_{19}=333$$." },
       ],
     },
   },

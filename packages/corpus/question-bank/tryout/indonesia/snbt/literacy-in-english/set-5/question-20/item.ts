@@ -3,38 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
+    contentDomain: "fiction",
+    topic: "point-of-view",
   },
-  stimulus: "great-stink",
+  stimulus: "night-orchard",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "London has replaced every one of Bazalgette's sewers with new tunnels.",
+            "The narrator's understanding of her grandfather's habits changes as she grows older.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Growth beyond what Bazalgette planned for has partly brought the old problem back.",
+            "The grandfather explains his method to the narrator in full before they begin.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The new tunnel was needed because his pipes were too small from the start.",
+            "The grandfather's nod after her clumsy explanation shows encouragement rather than judgement.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Heavy rain no longer reaches the old sewers since the tunnel was built.",
-        },
-        {
-          correct: false,
-          label:
-            "The Thames is probably cleaner today than at any time in its history.",
+            "The story is told by the grandfather looking back on his life.",
         },
       ],
     },

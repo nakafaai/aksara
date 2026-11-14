@@ -1,18 +1,32 @@
-Eine Aussage ist Benar (richtig) nur, wenn sie **in allen vier Anordnungen gilt**, die die Bedingungen erfüllen. Sonst ist sie Salah (falsch).
+Die Zusatzbedingung "Fani präsentiert vor Eka" engt die Möglichkeiten ein. Am sichersten listest du alle noch möglichen Reihenfolgen auf und beurteilst die vier Aussagen an dieser Liste. Eine Aussage ist Benar (richtig) nur, wenn sie in jeder Reihenfolge der Liste gilt, und Salah (falsch), wenn mindestens eine gültige Reihenfolge ihr widerspricht.
 
-| Anordnung | Stuhl 1 | Stuhl 2 | Stuhl 3 | Stuhl 4 | Stuhl 5 | Stuhl 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+Suche zuerst Citras Platz. Jetzt kommt Fani vor Eka, und Eka vor Citra (Bedingung 3). Eka darf außerdem nicht auf Platz <InlineMath math="1" /> (Bedingung 4), also steht Citra frühestens auf Platz <InlineMath math="3" />. Dimas kommt genau zwei Plätze nach Citra (Bedingung 2), also steht Citra spätestens auf Platz <InlineMath math="5" />.
 
-**Aussage 1** ist richtig. N sitzt in den Anordnungen I und II auf Stuhl 3, in III und IV auf Stuhl 4. Stuhl 5 ist unmöglich, denn dann bräuchte O Stuhl 6, und der ist immer besetzt.
+- Citra auf Platz <InlineMath math="3" /> zwingt Fani auf Platz <InlineMath math="1" />, Eka auf Platz <InlineMath math="2" /> und Dimas auf Platz <InlineMath math="5" />. Für Bayu, Galih und Hesti bleiben die Plätze <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="7" />. Das einzige Paar benachbarter Plätze ist <InlineMath math="6" /> und <InlineMath math="7" />, aber Galih und Hesti dürfen nicht auf Platz <InlineMath math="7" /> (Bedingung 5). Fällt weg.
+- Citra auf Platz <InlineMath math="4" /> zwingt Dimas auf Platz <InlineMath math="6" />. Fani und Eka stehen beide irgendwo auf den Plätzen <InlineMath math="1" /> bis <InlineMath math="3" />, also bleibt vor Citra nur ein freier Platz. Die anderen freien Plätze sind <InlineMath math="5" /> und <InlineMath math="7" />. Keine zwei freien Plätze liegen nebeneinander, also finden Galih und Hesti keinen Platz. Fällt weg.
 
-**Aussage 2** ist richtig. Gegenüberliegende Stühle unterscheiden sich um <InlineMath math="3" />, eine ungerade Zahl. Addierst oder subtrahierst du eine ungerade Zahl, wird aus gerade immer ungerade und umgekehrt. Da L und M sich gegenübersitzen, sitzt einer auf einem geraden und der andere auf einem ungeraden Stuhl. Das zeigen die Paare 2 und 5 sowie 3 und 6.
+Also steht Citra auf Platz <InlineMath math="5" /> und Dimas auf Platz <InlineMath math="7" />.
 
-**Aussage 3** ist falsch. In den Anordnungen I und II sitzt O auf Stuhl 4, einem geraden Stuhl.
+Kläre dann, wer Platz <InlineMath math="6" /> bekommt. Galih oder Hesti nicht, weil beide Nachbarplätze, <InlineMath math="5" /> und <InlineMath math="7" />, schon besetzt sind. Eka nicht, weil Eka vor Citra kommen muss. Fani auch nicht, weil Fani vor Eka kommt. Also **präsentiert Bayu sicher als Sechster**. Dieser Platz ist gerade, also verlangt Bedingung 6 nichts.
 
-**Aussage 4** ist falsch. In den Anordnungen I und II sitzt P auf Stuhl 6 N auf Stuhl 3 gegenüber, nicht L oder M.
+Besetze danach die Plätze <InlineMath math="1" /> bis <InlineMath math="4" /> mit Eka, Fani, Galih und Hesti. Galih und Hesti stehen nebeneinander, Fani kommt vor Eka, und Eka steht nicht auf Platz <InlineMath math="1" />.
 
-Die Aussagen 1 und 2 sind also richtig, die Aussagen 3 und 4 falsch.
+| Galih und Hesti auf den Plätzen | Fani | Eka |
+| --- | --- | --- |
+| <InlineMath math="1" /> und <InlineMath math="2" /> | Platz <InlineMath math="3" /> | Platz <InlineMath math="4" /> |
+| <InlineMath math="2" /> und <InlineMath math="3" /> | Platz <InlineMath math="1" /> | Platz <InlineMath math="4" /> |
+| <InlineMath math="3" /> und <InlineMath math="4" /> | Platz <InlineMath math="1" /> | Platz <InlineMath math="2" /> |
+
+Jede Zeile liefert zwei Reihenfolgen, weil Galih und Hesti tauschen dürfen. Es gibt also sechs gültige Reihenfolgen.
+
+Beurteile jetzt die vier Aussagen.
+
+Aussage 1 ist Benar. Der zweite Schritt zeigt, dass Bayu immer auf Platz <InlineMath math="6" /> steht.
+
+Aussage 2 ist Salah. In der Reihenfolge Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas steht Galih auf Platz <InlineMath math="3" />, und der ist ungerade.
+
+Aussage 3 ist Salah. In der Reihenfolge Fani, Galih, Hesti, Eka, Citra, Bayu, Dimas steht Fani auf Platz <InlineMath math="1" /> und Eka auf Platz <InlineMath math="4" />. Fani ist zwar vor Eka dran, aber nicht direkt davor.
+
+Aussage 4 ist Benar. Sie ist eine Wenn-dann-Aussage, also musst du nur die Reihenfolgen prüfen, in denen Hesti auf Platz <InlineMath math="1" /> steht. Dann besetzt das Paar die Plätze <InlineMath math="1" /> und <InlineMath math="2" />. In der Tabelle erlaubt diese Zeile nur Fani auf Platz <InlineMath math="3" /> und Eka auf Platz <InlineMath math="4" />, also steht Eka tatsächlich immer auf Platz <InlineMath math="4" />.
+
+Die Aussagen 1 und 4 sind also richtig, die Aussagen 2 und 3 falsch.

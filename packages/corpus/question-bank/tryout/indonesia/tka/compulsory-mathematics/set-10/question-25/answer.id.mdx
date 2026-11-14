@@ -1,0 +1,43 @@
+# Peluang lampu menyala
+
+Soal ini memberi informasi tambahan: lampu **sudah diketahui menyala**. Jadi yang ditanya adalah peluang bersyarat, yaitu peluang <InlineMath math="C" /> tidak berfungsi di antara semua keadaan yang membuat lampu menyala:
+
+<BlockMath math="P(C\text{ rusak}\mid\text{menyala})=\frac{P(C\text{ rusak dan menyala})}{P(\text{menyala})}" />
+
+Mulai dari penyebut. Bagian paralel <InlineMath math="B" /> dan <InlineMath math="C" /> gagal hanya kalau keduanya rusak, jadi pakai komplemen. Setelah itu kalikan dengan peluang <InlineMath math="A" /> berfungsi karena <InlineMath math="A" /> dipasang seri:
+
+<BlockMath math="\begin{aligned}
+P(B\text{ atau }C\text{ berfungsi})&=1-(1-0{,}6)(1-0{,}5)=1-0{,}2=0{,}8 \\
+P(\text{menyala})&=0{,}9\cdot0{,}8=0{,}72
+\end{aligned}" />
+
+# Lampu menyala dan sakelar rusak
+
+Kalau <InlineMath math="C" /> rusak, satu-satunya jalan arus adalah lewat <InlineMath math="B" />. Jadi lampu menyala dengan <InlineMath math="C" /> rusak berarti **<InlineMath math="A" /> berfungsi, <InlineMath math="B" /> berfungsi, dan <InlineMath math="C" /> rusak**:
+
+<BlockMath math="P(C\text{ rusak dan menyala})=0{,}9\cdot0{,}6\cdot0{,}5=0{,}27" />
+
+# Peluang bersyarat
+
+Bagi kedua peluang itu:
+
+<BlockMath math="P(C\text{ rusak}\mid\text{menyala})=\frac{0{,}27}{0{,}72}=\frac{3}{8}" />
+
+Perhatikan bahwa <InlineMath math="0{,}9" /> milik <InlineMath math="A" /> ada di pembilang dan penyebut, jadi saling menghapus. Lampu menyala sudah memastikan <InlineMath math="A" /> berfungsi, sehingga yang tersisa hanya tiga keadaan <InlineMath math="B" /> dan <InlineMath math="C" />. **Ketiga keadaan itu tidak sama peluangnya**:
+
+| Keadaan <InlineMath math="B" /> dan <InlineMath math="C" /> | Peluang |
+| :--- | :---: |
+| <InlineMath math="B" /> berfungsi, <InlineMath math="C" /> berfungsi | <InlineMath math="0{,}6\cdot0{,}5=0{,}3" /> |
+| <InlineMath math="B" /> berfungsi, <InlineMath math="C" /> rusak | <InlineMath math="0{,}6\cdot0{,}5=0{,}3" /> |
+| <InlineMath math="B" /> rusak, <InlineMath math="C" /> berfungsi | <InlineMath math="0{,}4\cdot0{,}5=0{,}2" /> |
+
+Bagian <InlineMath math="C" /> rusak adalah <InlineMath math="\frac{0{,}3}{0{,}3+0{,}3+0{,}2}=\frac{0{,}3}{0{,}8}=\frac38" />, sama dengan hasil tadi.
+
+Jadi, peluang sakelar <InlineMath math="C" /> tidak berfungsi saat lampu menyala adalah <InlineMath math="\frac{3}{8}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\frac{27}{100}" /> adalah peluang lampu menyala **dan** <InlineMath math="C" /> rusak. Itu belum dibagi dengan peluang lampu menyala, padahal lampu sudah diketahui menyala.
+- <InlineMath math="\frac{1}{3}" /> muncul kalau ketiga keadaan <InlineMath math="B" /> dan <InlineMath math="C" /> dianggap sama peluangnya. Tabel di atas menunjukkan peluangnya <InlineMath math="0{,}3" />, <InlineMath math="0{,}3" />, dan <InlineMath math="0{,}2" />.
+- <InlineMath math="\frac{5}{12}" /> adalah <InlineMath math="\frac{0{,}3}{0{,}72}" />. Peluang <InlineMath math="A" /> lupa dikalikan di pembilang, tetapi tetap ada di penyebut.
+- <InlineMath math="\frac{1}{2}" /> adalah peluang awal <InlineMath math="C" /> rusak. Informasi bahwa lampu menyala tidak dipakai sama sekali.

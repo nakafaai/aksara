@@ -1,19 +1,45 @@
-Dua dadu yang seimbang memberi **36 pasangan hasil yang sama mungkin**. Pemain mendapat hadiah jika jumlahnya 12, 11, atau 7.
+Kamu mencari seluruh uang yang diterima Ayu: gaji pengelola ditambah bagiannya dari laba yang dibagi. Rencananya: hitung modal-bulan tiap pemilik, hitung laba yang dibagi dengan **urutan potongan yang benar**, lalu ambil bagian Ayu dan tambahkan gajinya.
 
-# Banyak pasangan untuk setiap jumlah
+# Modal bulan setiap pemilik
 
-Hitung **pasangan mata dadu untuk setiap jumlah yang berhadiah**.
+Modal-bulan menghitung berapa besar modal dan berapa lama modal itu bekerja. **Setiap kali modal berubah, hitung bagian sebelum dan sesudah perubahan secara terpisah**.
 
-| Jumlah | Pasangan | Banyak |
-| :---: | :---: | :---: |
-| 12 | <InlineMath math="(6,6)" /> | 1 |
-| 11 | <InlineMath math="(5,6),(6,5)" /> | 2 |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
+<BlockMath math="\begin{aligned}
+\text{Ayu} &= 40\cdot3+20\cdot9=120+180=300 \\
+\text{Bima} &= 30\cdot6+40\cdot6=180+240=420 \\
+\text{Citra} &= 90\cdot8=720
+\end{aligned}" />
 
-# Peluang mendapat hadiah
+Ayu memakai <InlineMath math="40" /> juta pada Januari sampai Maret, lalu <InlineMath math="20" /> juta pada April sampai Desember. Citra baru bergabung awal Mei, jadi modalnya bekerja <InlineMath math="8" /> bulan, dari Mei sampai Desember. Jumlah modal-bulan adalah <InlineMath math="1{.}440" />, dan perbandingannya <InlineMath math="300:420:720=5:7:12" />.
 
-Ketiga kejadian tidak mungkin terjadi bersamaan, jadi **banyak pasangannya dijumlahkan**.
+# Laba yang dibagi
 
-<BlockMath math="\frac{1+2+6}{36}=\frac{9}{36}=0{,}25" />
+Urutannya penting: **gaji Ayu diambil lebih dulu, baru dana cadangan dihitung dari sisanya**.
 
-Jadi, peluang mendapat hadiah adalah **0,25**.
+<BlockMath math="\begin{aligned}
+\text{sisa setelah gaji} &= 252-12=240 \\
+\text{dana cadangan} &= 10\%\cdot240=24 \\
+\text{laba yang dibagi} &= 240-24=216
+\end{aligned}" />
+
+Semua angka di atas dalam juta rupiah.
+
+# Uang yang diterima Ayu
+
+Bagian Ayu adalah <InlineMath math="\frac{5}{24}" /> dari laba yang dibagi. **Gaji pengelola tetap harus ditambahkan**, karena pertanyaannya meminta seluruh uang yang diterima Ayu.
+
+<BlockMath math="\begin{aligned}
+\text{bagian Ayu} &= \frac{5}{24}\cdot216=45 \\
+\text{seluruh uang Ayu} &= 45+12=57
+\end{aligned}" />
+
+Sebagai pemeriksaan, bagian Bima <InlineMath math="\frac{7}{24}\cdot216=63" /> dan bagian Citra <InlineMath math="\frac{12}{24}\cdot216=108" />. Jumlahnya <InlineMath math="45+63+108=216" />, dan <InlineMath math="216+12+24=252" />, tepat laba bersihnya.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\text{Rp}60" /> juta muncul kalau modal Citra dihitung <InlineMath math="7" /> bulan (Desember dikurangi Mei). Totalnya menjadi <InlineMath math="1{.}350" />, bagian Ayu <InlineMath math="216\cdot\frac{300}{1{.}350}=48" />, lalu ditambah gaji.
+- <InlineMath math="\text{Rp}62" /> juta muncul kalau dana cadangan lupa disisihkan, sehingga yang dibagi <InlineMath math="240" /> juta dan bagian Ayu <InlineMath math="50" /> juta.
+- <InlineMath math="\text{Rp}76" /> juta muncul kalau penarikan modal Ayu diabaikan. Modal-bulan Ayu menjadi <InlineMath math="480" />, totalnya <InlineMath math="1{.}620" />, dan bagian Ayu <InlineMath math="216\cdot\frac{480}{1{.}620}=64" />.
+- <InlineMath math="\text{Rp}84" /> juta muncul kalau laba yang dibagi dipecah rata bertiga, <InlineMath math="216:3=72" />, lalu ditambah gaji. Pembagian itu **mengabaikan modal-bulan**.
+
+Jadi, seluruh uang yang diterima Ayu adalah <InlineMath math="\text{Rp}57" /> juta.

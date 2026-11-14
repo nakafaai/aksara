@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "descriptive",
+    topic: "text-fit",
   },
-  stimulus: "source-checking",
+  stimulus: "observatory",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Use the same high-effort verification process for low-risk entertainment claims.",
+            '"Since the observatory moved to a darker hill in 1998, the building has been the town library, and almost every floor now does something its builders never planned."',
         },
         {
           correct: true,
           label:
-            "Graphs, quotations, and product claims all require evidence questions.",
-        },
-        {
-          correct: false,
-          label: "Screenshots are original sources by definition.",
+            '"The town\'s new sports hall, finished last year, also has tall windows."',
         },
         {
           correct: false,
           label:
-            "Check each minor claim in full before continuing the assignment.",
+            '"Visitors may read them only at the table by the door, under a lamp that gives off almost no heat."',
         },
         {
           correct: false,
           label:
-            "Prefer a polished website when the original source is difficult to locate.",
+            '"Its wide doors, made for moving heavy equipment, now let prams and wheelchairs straight in."',
+        },
+        {
+          correct: false,
+          label:
+            '"On those evenings, no books are carried up, because the night air off the hill is damp."',
         },
       ],
     },

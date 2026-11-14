@@ -1,17 +1,31 @@
-Löse zuerst die Ungleichung und prüfe dann jede Aussage auf **dem ganzen Lösungsintervall**, nicht nur an einem Beispiel.
+Die Worte „aber nicht beides“ bedeuten, dass du Zahlen suchst, die **genau eine Bedingung erfüllen**. Sei <InlineMath math="A" /> die Menge der Quadratzahlen und <InlineMath math="B" /> die Menge der Kubikzahlen in diesem Bereich. Der Plan: Zähle <InlineMath math="|A|" />, <InlineMath math="|B|" /> und <InlineMath math="|A\cap B|" /> und setze sie dann richtig zusammen.
 
-<BlockMath math="x^2-5x+4=(x-1)(x-4)<0\quad\Rightarrow\quad 1<x<4" />
+# Quadratzahlen im Bereich
 
-# Aussagen, die nicht immer gelten
+Gesucht sind die positiven ganzen Zahlen <InlineMath math="k" /> mit <InlineMath math="10\le k^2\le10{.}000" />. Wegen <InlineMath math="3^2=9<10" /> und <InlineMath math="4^2=16" /> **beginnt <InlineMath math="k" /> bei <InlineMath math="4" />**, nicht bei <InlineMath math="1" />. Die obere Grenze ist <InlineMath math="100^2=10{.}000" />. Also ist <InlineMath math="k=4,\ 5,\ \ldots,\ 100" /> und <InlineMath math="|A|=97" />.
 
-Die Aussage <InlineMath math="x-2>0" /> scheitert bei <InlineMath math="x=1{,}5" />, das im Intervall liegt, aber kleiner als 2 ist. Ein **Gegenbeispiel** genügt, die erste Aussage ist also falsch.
+# Kubikzahlen im Bereich
 
-Für <InlineMath math="1<x<4" /> kehrt der Kehrwert positiver Zahlen die Reihenfolge um: <InlineMath math="\frac1x>\frac14" />. Die dritte Aussage behauptet das Gegenteil und ist für jedes <InlineMath math="x" /> im Intervall falsch.
+Gesucht sind <InlineMath math="k" /> mit <InlineMath math="10\le k^3\le10{.}000" />. Wegen <InlineMath math="2^3=8<10" /> beginnt <InlineMath math="k" /> bei <InlineMath math="3" />. Oben gilt <InlineMath math="21^3=9{.}261\le10{.}000" />, aber <InlineMath math="22^3=10{.}648" /> ist **schon zu groß**. Also ist <InlineMath math="k=3,\ 4,\ \ldots,\ 21" /> und <InlineMath math="|B|=19" />.
 
-# Aussagen, die immer gelten
+# Zahlen, die beides sind
 
-Wegen <InlineMath math="0<x<4" /> sind beide Seiten positiv, und **Quadrieren erhält die Reihenfolge**, also <InlineMath math="x^2<16" />. Die zweite Aussage ist wahr.
+Eine Zahl, die zugleich Quadrat- und Kubikzahl ist, ist **eine sechste Potenz**. Denn jeder Primfaktor braucht einen Exponenten, der ein Vielfaches von <InlineMath math="2" /> und von <InlineMath math="3" /> ist, also ein Vielfaches von <InlineMath math="6" />. Im Bereich liegen <InlineMath math="2^6=64" />, <InlineMath math="3^6=729" /> und <InlineMath math="4^6=4{.}096" />, während <InlineMath math="5^6=15{.}625" /> zu groß ist und <InlineMath math="1^6=1" /> unter <InlineMath math="10" /> liegt. Also ist <InlineMath math="|A\cap B|=3" />.
 
-Auf dem Intervall <InlineMath math="1<x<4" /> ist der Faktor <InlineMath math="x-1" /> positiv und der Faktor <InlineMath math="x-5" /> negativ. Ihr Produkt ist negativ, die vierte Aussage ist also wahr.
+# Genau eine Bedingung zählen
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+Die drei sechsten Potenzen stecken in <InlineMath math="|A|" /> und noch einmal in <InlineMath math="|B|" />, sollen aber gar nicht gezählt werden. Darum werden sie **zweimal abgezogen**.
+
+<BlockMath math="\begin{aligned}
+|A|+|B|-2|A\cap B|&=97+19-2\times3\\
+&=110
+\end{aligned}" />
+
+Prüfe das auf einem anderen Weg. Es gibt <InlineMath math="97-3=94" /> Quadratzahlen, die keine Kubikzahlen sind, und <InlineMath math="19-3=16" /> Kubikzahlen, die keine Quadratzahlen sind. Zusammen sind das <InlineMath math="94+16=110" />, dasselbe Ergebnis.
+
+# Häufige Fehler
+
+- Das Ergebnis <InlineMath math="113" /> zieht die Schnittmenge **nur einmal** ab. Das ist die Anzahl der Zahlen, die Quadrat- oder Kubikzahl sind, einschließlich derer, die beides sind.
+- Das Ergebnis <InlineMath math="116" /> zieht die Schnittmenge gar nicht ab, sodass <InlineMath math="64" />, <InlineMath math="729" /> und <InlineMath math="4{.}096" /> doppelt gezählt werden.
+
+Es gibt also <InlineMath math="110" /> solche Zahlen.

@@ -1,15 +1,26 @@
-First turn the length on the map into **the real distance in kilometres**, then divide by the speed.
+This question gives a condition first: the bag **is certain to suit a patient** with <InlineMath math="\mathrm{B}^+" /> blood. So the sample space is no longer all <InlineMath math="40" /> bags, only the bags that suit. Here's the plan: find the suitable donors using both rules, count them, then count how many of them are rhesus negative.
 
-# Real distance
+# Donors who suit that patient
 
-<BlockMath math="6.4\cdot250{,}000=1{,}600{,}000\text{ cm}=16\text{ km}" />
+By the ABO rule, a group B patient can take blood from B donors and O donors. By the rhesus rule, a rhesus positive patient can take blood from rhesus positive donors and **from rhesus negative donors too**. So the suitable donors are <InlineMath math="\mathrm{B}^+" />, <InlineMath math="\mathrm{B}^-" />, <InlineMath math="\mathrm{O}^+" /> and <InlineMath math="\mathrm{O}^-" />.
 
-Remember that **1 km is 100,000 cm**.
+<BlockMath math="8+2+14+2=26" />
 
-# Travel time
+# The conditional probability
 
-<BlockMath math="\frac{16}{40}=0.4\text{ h}=0.4\cdot60\text{ min}=24\text{ min}" />
+Among the <InlineMath math="26" /> suitable bags, the rhesus negative ones are <InlineMath math="\mathrm{B}^-" /> and <InlineMath math="\mathrm{O}^-" />, a total of <InlineMath math="2+2=4" />. Every suitable bag is equally likely, so **you divide by the number of suitable bags**:
 
-The value 40 minutes reads 0.4 hours as 40 minutes, although **an hour has 60 minutes**, not 100. The value 2 hours 30 minutes divides 40 by 16. The values 2.4 minutes and 4 hours come from a wrong centimetre to kilometre conversion, giving 1.6 km or 160 km.
+<BlockMath math="P=\frac{4}{26}=\frac{2}{13}" />
 
-So the bus needs **24 minutes**.
+Check the size. <InlineMath math="\tfrac{2}{13}\approx0.15" /> lies between <InlineMath math="0" /> and <InlineMath math="1" />, and it's close to the share of rhesus negative donors in the whole table, <InlineMath math="\tfrac{6}{40}=0.15" />. That makes sense, because a rhesus positive patient doesn't filter donors by rhesus.
+
+# The wrong options
+
+Each other option picks **the wrong top or bottom of the fraction**.
+
+- <InlineMath math="\tfrac{2}{11}" /> is <InlineMath math="\tfrac{4}{22}" />, comparing negative donors with positive donors among the suitable ones, not with all suitable ones.
+- <InlineMath math="\tfrac{1}{5}" /> is <InlineMath math="\tfrac{2}{10}" />, which forgets that O donors also suit a B patient.
+- <InlineMath math="\tfrac{3}{13}" /> is <InlineMath math="\tfrac{6}{26}" />, which counts every rhesus negative donor, including <InlineMath math="\mathrm{A}^-" /> and <InlineMath math="\mathrm{AB}^-" />, who don't suit.
+- <InlineMath math="\tfrac{2}{3}" /> is <InlineMath math="\tfrac{4}{6}" />, which flips the condition: the chance of suiting given a rhesus negative donor.
+
+So the probability that the bag came from a rhesus negative donor is <InlineMath math="\tfrac{2}{13}" />.

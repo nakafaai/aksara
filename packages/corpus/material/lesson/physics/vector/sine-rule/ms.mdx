@@ -1,0 +1,200 @@
+export const metadata = {
+  title: "Menentukan Arah Vektor Paduan dengan Petua Sinus",
+  description:
+    "Selepas magnitud vektor paduan diketahui, petua sinus menentukan arahnya relatif kepada vektor asal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Vektor",
+};
+
+## Arah Paduan Memerlukan Satu Lagi Sudut
+
+Petua kosinus memberikan magnitud paduan, tetapi tidak memberikan arahnya sepenuhnya. Dalam soalan vektor, jawapan seperti <InlineMath math="15.6\text{ N}" /> belum lengkap jika arah daya itu tidak dinyatakan.
+
+Bagi dua vektor, arah paduan boleh dicari menggunakan **petua sinus**. Petua ini digunakan pada segi tiga paduan yang dibentuk oleh dua vektor itu dan paduannya.
+
+<BlockMath math="\frac{\sin\phi}{B}=\frac{\sin\theta}{R}" />
+
+Di sini, <InlineMath math="\theta" /> ialah sudut di antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" />, <InlineMath math="R" /> ialah magnitud paduan, dan <InlineMath math="\phi" /> ialah sudut di antara <InlineMath math="\vec{A}" /> dan paduan <InlineMath math="\vec{R}" />.
+
+
+Gunakan segi tiga ini untuk **dua vektor bukan sifar yang tidak segaris**, dengan <InlineMath math="0^\circ<\theta<180^\circ" />. Paduan sifar tidak mempunyai arah untuk dikira.
+
+> Petua sinus biasanya digunakan selepas magnitud paduan diketahui.
+
+## Membaca Sudut yang Ditanya
+
+Sebelum mengira, tentukan dahulu **arah rujukan**. Jika soalan bertanya arah paduan relatif kepada <InlineMath math="\vec{A}" />, sudut yang dikehendaki ialah sudut dari <InlineMath math="\vec{A}" /> ke arah <InlineMath math="\vec{R}" />.
+
+Jika soalan bertanya arah relatif kepada <InlineMath math="\vec{B}" />, sudutnya berbeza. Jangan tukar sudut tanpa menyemak segi tiga vektor itu dahulu.
+
+Hubungan yang biasa digunakan ialah:
+
+<MathContainer>
+  <BlockMath math="\sin\phi=\frac{B\sin\theta}{R}" />
+  <BlockMath math="\phi_0=\sin^{-1}\left(\frac{B\sin\theta}{R}\right)" />
+</MathContainer>
+
+Nilai <InlineMath math="\phi_0" /> ialah **calon sudut tirus atau sudut tegak**. Semak komponen paduan untuk memilih antara <InlineMath math="\phi=\phi_0" /> dengan <InlineMath math="\phi=180^\circ-\phi_0" />.
+
+Rumus ini mencari sudut paduan relatif kepada vektor <InlineMath math="\vec{A}" />. Oleh sebab sisi yang bertentangan dengan sudut <InlineMath math="\phi" /> mempunyai magnitud <InlineMath math="B" />, <InlineMath math="B" /> muncul pada pengangka.
+
+## Arah Daya Paduan
+
+Dua daya bertindak pada satu titik. <InlineMath math="A=10\text{ N}" />, <InlineMath math="B=8\text{ N}" /> dan sudut di antara kedua-duanya ialah <InlineMath math="60^\circ" />. Daripada petua kosinus, magnitud paduan ialah <InlineMath math="R\approx15.6\text{ N}" />.
+
+Gunakan **magnitud paduan yang belum dibundarkan** untuk mencari sudut <InlineMath math="\phi" /> di antara <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{R}" />.
+
+<BlockMath math="\begin{aligned}
+\sin\phi&=\frac{B\sin\theta}{R} \\
+&=\frac{8\sin60^\circ}{\sqrt{244}} \\
+&=\frac{4\sqrt3}{\sqrt{244}} \\
+&\approx0.4435
+\end{aligned}" />
+
+Pengiraan ini memberikan:
+
+<BlockMath math="\phi=\sin^{-1}(0.4435)\approx26.3^\circ" />
+
+Jadi, daya paduan ialah kira-kira <InlineMath math="15.6\text{ N}" /> pada <InlineMath math="26.3^\circ" /> dari <InlineMath math="\vec{A}" /> ke arah <InlineMath math="\vec{B}" />.
+
+Berikut ialah dua daya itu bersama segi empat selarinya. Paduan berwarna magenta condong ke arah daya yang lebih besar, dan sudut yang dibentuknya dengan <InlineMath math="\vec A" /> ialah <InlineMath math="\phi\approx26.3^\circ" /> yang diperoleh daripada petua sinus.
+
+<MathVisual
+  title={<>Arah Paduan</>}
+  description={<><InlineMath math="A=10\text{ N}" /> dan <InlineMath math="B=8\text{ N}" /> pada sudut 60° bersama segi empat selari yang memberikan R. Satu petak grid ialah 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "sides", kind: "polyline", appearance: "reference", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 7, y: 2 * Math.sqrt(3) }, { x: 5, y: 0 }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "r", objectId: "r", at: { x: 7, y: 2 * Math.sqrt(3) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R\approx15.62\text{ N},\ \phi\approx26.3^\circ" />,
+  }}
+/>
+
+## Menyemak dengan Komponen
+
+Arah yang sama boleh disemak menggunakan **komponen paduan**. Jika <InlineMath math="\vec{A}" /> diletakkan pada paksi <InlineMath math="x" /> positif, maka:
+
+<MathContainer>
+  <BlockMath math="R_x=A+B\cos\theta" />
+  <BlockMath math="R_y=B\sin\theta" />
+  <BlockMath math="\tan\phi=\frac{R_y}{R_x}" />
+</MathContainer>
+
+Bagi contoh yang sama:
+
+<BlockMath math="\begin{aligned} \tan\phi &amp;=\frac{8\sin60^\circ}{10+8\cos60^\circ} \\ &amp;=\frac{4\sqrt3}{14} \\ &amp;\approx0.495 \end{aligned}" />
+
+Ini memberikan <InlineMath math="\phi\approx26.3^\circ" />, sama dengan jawapan petua sinus. Semakan ini berguna apabila kamu tidak pasti sudut mana yang sedang dicari.
+
+Oleh sebab <InlineMath math="\sin\phi=\sin(180^\circ-\phi)" />, sinus songsang sahaja boleh memberikan sudut tirus walaupun segi tiga itu sebenarnya memerlukan sudut cakah yang menjadi penggenapnya. Gunakan geometri vektor atau bentuk komponen <InlineMath math="\phi=\operatorname{atan2}(R_y,R_x)" /> untuk memilih sukuan yang betul.
+
+### Memilih Sudut Cakah
+
+Katakan <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" /> dan <InlineMath math="\theta=150^\circ" />. Letakkan daya pertama di sepanjang paksi mengufuk positif. Kira komponennya sebelum memilih sudut:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}R_x &= A+B\cos150^\circ \\ &= 1+\sqrt3\left(-\frac{\sqrt3}{2}\right) \\ &= -\frac12\text{ N}\end{aligned}" />
+  <BlockMath math="\begin{aligned}R_y &= B\sin150^\circ \\ &= \sqrt3\cdot\frac12 \\ &= \frac{\sqrt3}{2}\text{ N}\end{aligned}" />
+</MathContainer>
+
+Komponen mengufuknya **negatif** dan komponen menegaknya **positif**. Jadi, paduan itu terletak dalam sukuan kedua.
+
+<ContentStack>
+  <MathVisual
+    title={<>Paduan dalam Sukuan Kedua</>}
+    description={<>Paduan berwarna ungu menghala ke atas dan ke kiri. Bandingkan arah itu dengan sudut tirus yang diberikan oleh sinus songsang.</>}
+    labels={{
+      "l1": <InlineMath math="\vec{A}" />,
+      "l2": <InlineMath math="\vec{B}" />,
+      "l3": <InlineMath math="\vec{R}" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((1) - (0)), y: (0) + 0.5 * ((0) - (0)) }, { x: 1, y: 0 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 0.5, y: 0 }, to: { x: 1, y: 0 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: (1) + 0.5 * ((-0.5) - (1)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((-0.5) - (0)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: -0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 0.5, y: 0 }, placement: "below" },
+        { key: "l2", objectId: "s2", at: { x: 0.25, y: 0.43 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: -0.25, y: 0.43 }, placement: "left" },
+      ],
+    }}
+  />
+
+
+  <MathContainer>
+    <BlockMath math="\begin{aligned}R &= \sqrt{\left(-\frac12\right)^2+\left(\frac{\sqrt3}{2}\right)^2}\text{ N} \\ &= \sqrt{\frac14+\frac34}\text{ N} \\ &= 1\text{ N}\end{aligned}" />
+    <BlockMath math="\begin{aligned}\sin\phi &= \frac{\sqrt3\sin150^\circ}{1} \\ &= \frac{\sqrt3}{2}\end{aligned}" />
+  </MathContainer>
+</ContentStack>
+
+Sinus songsang memberikan <InlineMath math="60^\circ" />, tetapi arah paduan ialah <InlineMath math="180^\circ-60^\circ=120^\circ" />. Tanda komponen membezakan kedua-dua calon sudut itu.
+
+Sambungkan vektor-vektor itu secara hujung ke pangkal dan kamu akan mendapat sebuah segi tiga. Petua kosinus memberikan magnitudnya, <InlineMath math="R=\sqrt{244}\approx15.62\text{ N}" />, manakala petua sinus atau komponen memberikan arahnya. Zum masuk pada kedua-dua sudut: nilai <InlineMath math="\phi" /> yang sama daripada kedua-dua kaedah mengesahkan jawapan itu.
+
+<MathVisual
+  title={<>Magnitud, Arah dan Semakan</>}
+  description={<>Segi tiga vektor bagi A (jingga), B (ungu) dan paduannya R (magenta), dengan sudut di antara A dan B (hijau kebiruan) serta arah R (kuning ambar). Satu petak grid ialah 2 N.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.8, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "a-head", kind: "polygon", appearance: "primary", vertices: [{ x: 5, y: 0 }, { x: 4.75, y: 0.125 }, { x: 4.75, y: -0.125 }] },
+      { id: "b", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "b-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 7 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 7, y: 2 * Math.sqrt(3) } },
+      { id: "r-head", kind: "polygon", appearance: "answer", vertices: [{ x: 7, y: 2 * Math.sqrt(3) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) + ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }, { x: 7 - (0.25 * 7) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(7, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(7, 3.4641016151377544) - ((0.25 / 2) * 7) / Math.hypot(7, 3.4641016151377544) }] },
+      { id: "phi", kind: "arc", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 0, sweepDegrees: (Math.atan2(2 * Math.sqrt(3), 7) * 180) / Math.PI },
+      { id: "theta", kind: "arc", appearance: "construction", center: { x: 5, y: 0 }, radius: 1, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 2.5, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 6, y: Math.sqrt(3) }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: Math.sqrt(3) }, placement: "above-left" },
+      { key: "phi", objectId: "phi", at: { x: 1.5, y: 0.35 }, placement: "right" },
+      { key: "theta", objectId: "theta", at: { x: 6, y: 0.3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A=10\text{ N}" />,
+    b: <InlineMath math="B=8\text{ N}" />,
+    r: <InlineMath math="R^2=10^2+8^2+2\cdot10\cdot8\cos60^\circ=244" />,
+    phi: <InlineMath math="\phi\approx26.3^\circ" />,
+    theta: <InlineMath math="\theta=60^\circ" />,
+  }}
+/>
+
+## Kaedah Komponen bagi Lebih daripada Dua Vektor
+
+Apabila terdapat lebih daripada dua vektor, kaedah komponen meletakkan setiap vektor pada paksi <InlineMath math="x" /> dan <InlineMath math="y" /> yang sama, kemudian menjumlahkan komponennya. Cara ini mengelakkan kamu daripada membina beberapa segi tiga dan menentukan sudut segi tiga mana yang sesuai bagi setiap persamaan petua sinus. Kaedah komponen yang sama juga sesuai untuk arah yang sudah diukur dari paksi koordinat.
+
+Gunakan petua sinus apabila soalannya jelas: dua vektor, sudut di antara yang diketahui, magnitud paduan yang diketahui, dan arah paduan yang diminta relatif kepada salah satu vektor. Sentiasa <Highlight>selesaikan ambiguiti sinus songsang</Highlight> sebelum menyatakan arahnya.

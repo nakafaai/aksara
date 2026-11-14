@@ -1,24 +1,32 @@
-Average speed is **total distance divided by total time**, not the average of the two speeds. The outbound and return times differ, so the two speeds do not carry equal weight.
+The question asks which pharmacist is on duty on 8 March 2028. The rota only moves on days the pharmacy is open, so you need to count **how many open days** pass after 15 February, not how many calendar days. There are two traps along the way: the year 2028 and Sundays.
 
-Let the distance from home to the market be <InlineMath math="d" /> km. The travel times are:
+Step one: count the days. The year 2028 is divisible by <InlineMath math="4" /> and isn't a century year, so 2028 is a leap year and February has <InlineMath math="29" /> days.
 
 <BlockMath math="\begin{aligned}
-t_{\text{out}} &= \frac{d}{14} \\
-t_{\text{back}} &= \frac{d}{21} \\
-t_{\text{total}} &= \frac{d}{14}+\frac{d}{21}=\frac{3d+2d}{42}=\frac{5d}{42}
+\text{15 February to 29 February} &: 29 - 15 = 14 \text{ days} \\
+\text{29 February to 8 March} &: 8 \text{ days} \\
+\text{total} &: 14 + 8 = 22 \text{ days}
 \end{aligned}" />
 
-The total distance is <InlineMath math="2d" />, so
+Step two: drop the Sundays. 15 February is a Tuesday, so the Sundays after it are 20 February, 27 February, and 5 March. That's <InlineMath math="3" /> Sundays, so the number of open days after 15 February up to 8 March is:
 
-<BlockMath math="\bar{v}=\frac{2d}{\frac{5d}{42}}=\frac{84}{5}=16.8\text{ km/h}" />
+<BlockMath math="22 - 3 = 19" />
 
-The <InlineMath math="d" /> cancels, so the result does not depend on the distance. As a check, with <InlineMath math="d=42" /> km the total time is <InlineMath math="3+2=5" /> hours for <InlineMath math="84" /> km, and <InlineMath math="84\div5=16.8" />.
+Also make sure 8 March isn't a Sunday. The gap is <InlineMath math="22 = 3 \times 7 + 1" /> days, so 8 March falls one day after a Tuesday, on a Wednesday. The pharmacy is open that day.
 
-The other options come from these mistakes:
+Step three: the rota repeats every <InlineMath math="5" /> open days. Divide <InlineMath math="19" /> by <InlineMath math="5" />:
 
-- <InlineMath math="17.5" /> km/h is the plain average of <InlineMath math="14" /> and <InlineMath math="21" />. It is wrong because Raka rides longer at <InlineMath math="14" /> km/h.
-- <InlineMath math="8.4" /> km/h comes from dividing the one-way distance by the total time.
-- <InlineMath math="21" /> km/h is only the return speed.
-- <InlineMath math="35" /> km/h is the sum of the speeds, not an average speed.
+<BlockMath math="19 = 3 \times 5 + 4" />
 
-So Raka's average speed is <InlineMath math="16.8" /> km/h.
+Three full rounds bring the rota back to Laras, and the remaining <InlineMath math="4" /> steps go from Laras to Made, Nina, Oka, and Putri.
+
+Check it another way. A full week has <InlineMath math="6" /> open days, so each week the rota moves <InlineMath math="6" /> places, which is the same as moving <InlineMath math="1" /> person. Three weeks after 15 February is Tuesday 7 March, and the rota has moved <InlineMath math="3" /> people, to Oka. The next day, Wednesday 8 March, it's Putri's turn.
+
+Each other option comes from one counting slip:
+
+- Laras comes from counting 15 February itself as a step, which gives <InlineMath math="20" /> steps.
+- Made comes from forgetting 29 February and also not dropping Sundays, which gives <InlineMath math="21" /> steps.
+- Nina comes from counting all <InlineMath math="22" /> calendar days without dropping Sundays.
+- Oka comes from dropping Sundays but forgetting that 2028 is a leap year, which gives only <InlineMath math="18" /> open days.
+
+So the pharmacist on duty on 8 March 2028 is Putri.

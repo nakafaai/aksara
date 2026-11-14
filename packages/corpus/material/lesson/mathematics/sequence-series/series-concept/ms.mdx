@@ -1,0 +1,153 @@
+export const metadata = {
+  title: "Konsep Siri",
+  description: "Wakilkan siri sebagai hasil tambah sebutan jujukan dan bandingkan dua cara untuk mengira bilangan jabat tangan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Menambah Sebutan Sesuatu Jujukan
+
+Bagaimanakah sebutan-sebutan sesuatu jujukan nombor boleh dikumpulkan? Ungkapan seperti <InlineMath math="1+2+3+\cdots" /> dipanggil **siri**.
+
+Siri nombor terbentuk dengan **menambah sebutan-sebutan** [jujukan nombor](/ms/subjek/matematik/jujukan-dan-siri/konsep-jujukan) mengikut susunan yang diberikan. Dua contoh yang biasa ialah siri aritmetik, yang sebutannya datang daripada janjang aritmetik, dan **siri geometri**, yang sebutannya datang daripada janjang geometri.
+
+Dalam contoh jabat tangan di bawah, setiap orang baharu menambah satu lagi sebutan kepada hasil tambah itu.
+
+## Hasil Tambah Separa Menghubungkan Jujukan dengan Sirinya
+
+Bagi jujukan <InlineMath math="(U_n)" />, hasil tambah <InlineMath math="n" /> sebutan pertamanya ialah **hasil tambah separa** ke-<InlineMath math="n" />:
+
+<BlockMath math="S_n=U_1+U_2+\cdots+U_n=\sum_{k=1}^{n}U_k" />
+
+Masalah siri terhingga meminta satu hasil tambah separa yang tertentu. Bagi siri tak terhingga, kita kaji sama ada jujukan <InlineMath math="(S_n)" /> menghampiri satu had yang terhingga apabila <InlineMath math="n" /> semakin besar.
+
+Apabila orang ke-<InlineMath math="n" /> menyertai kumpulan itu, dia berjabat tangan dengan <InlineMath math="n - 1" /> orang yang sudah ada di situ. Palang-palang ini menunjukkan jabat tangan baharu itu, <InlineMath math="1, 2, 3, \ldots, 7" />: nilai-nilai ini ialah sebutan siri, dan apabila kamu menambahnya, kamu dapat jumlah jabat tangan.
+
+<BarChart
+  title={<>Jabat tangan baharu apabila seorang lagi menyertai kumpulan</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="n - 1" /> jabat tangan baharu apabila orang ke-<InlineMath math="n" /> menyertai kumpulan, untuk <InlineMath math="n = 2" /> hingga <InlineMath math="8" />.</>}
+  yAxisLabel="Jabat tangan baharu"
+  data={[["2", 2 - 1], ["3", 3 - 1], ["4", 4 - 1], ["5", 5 - 1], ["6", 6 - 1], ["7", 7 - 1], ["8", 8 - 1]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Jabat tangan baharu", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Bilangan Jabat Tangan
+
+Bayangkan ada beberapa orang dalam satu kumpulan. Kalau setiap orang berjabat tangan tepat sekali dengan setiap orang lain dalam kumpulan itu, berapakah jumlah jabat tangan yang berlaku?
+
+Dengan tiga orang, orang pertama berjabat tangan dengan dua orang yang lain. Tinggal satu pasangan lagi, iaitu antara orang kedua dan orang ketiga, jadi jumlahnya <InlineMath math="2+1=3" />. Untuk empat orang, gambar rajah ini ada **satu garis bagi setiap pasangan**. Garis yang bersilang tidak menambah orang atau jabat tangan.
+
+<Mermaid
+  title={<>Pasangan Jabat Tangan</>}
+  description={<>Setiap garis menghubungkan satu pasangan. Kira setiap garis sekali sahaja walaupun garis itu ada dua hujung.</>}
+  chart={`flowchart LR
+  A["Orang pertama"]
+  B["Orang kedua"]
+  C["Orang ketiga"]
+  D["Orang keempat"]
+  A --- B
+  A --- C
+  A --- D
+  B --- C
+  B --- D
+  C --- D`}
+/>
+
+Jadual ini mengira jabat tangan setiap kali seorang lagi menyertai kumpulan. Setiap orang baharu berjabat tangan dengan semua orang yang sudah ada, jadi bilangan jabat tangan tambahan ialah <InlineMath math="1,2,3,4" />.
+
+| Bilangan orang yang ada  | Bilangan jabat tangan | Perincian jabat tangan        |
+| :----------------------- | :------------------- | :---------------------------- |
+| Dua orang                | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| Tiga orang               | <InlineMath math="3" /> | <InlineMath math="1+2" />     |
+| Empat orang              | <InlineMath math="6" /> | <InlineMath math="1+2+3" />   |
+| Lima orang               | <InlineMath math="10" /> | <InlineMath math="1+2+3+4" /> |
+
+Penambahan seperti <InlineMath math="1+2+3+4" /> ialah contoh **siri nombor**. Dalam kes ini, siri itu terbentuk daripada hasil tambah sebutan-sebutan jujukan nombor asli <InlineMath math="(1, 2, 3, 4, ...)" />.
+
+Setiap pasangan mesti dikira tepat sekali. Kalau jabat tangan setiap orang dikira secara berasingan, setiap pasangan akan terkira dua kali, iaitu sekali dari sudut pandangan setiap orang dalam pasangan itu.
+
+Sekarang cuba lima orang, <InlineMath math="A" /> hingga <InlineMath math="E" />, yang berdiri dalam satu bulatan. <InlineMath math="A" /> berjabat tangan <InlineMath math="4" /> kali, <InlineMath math="B" /> menambah <InlineMath math="3" /> jabat tangan baharu, <InlineMath math="C" /> menambah <InlineMath math="2" /> dan <InlineMath math="D" /> menambah <InlineMath math="1" />, dan setiap kumpulan ada warnanya sendiri. <InlineMath math="E" /> sudah berjabat tangan dengan semua orang. Kira tembereng garisnya: <InlineMath math="4 + 3 + 2 + 1 = 10" />.
+
+<MathVisual
+  title={<>Sepuluh jabat tangan dalam kalangan lima orang</>}
+  description={<>Setiap pasangan daripada lima orang itu dihubungkan oleh satu tembereng garis. Tembereng garis itu dikumpulkan mengikut orang yang memulakannya: <InlineMath math="4" /> daripada A, <InlineMath math="3" /> daripada B, <InlineMath math="2" /> daripada C dan <InlineMath math="1" /> daripada D.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "primary" },
+      { id: "ac", kind: "segment", from: { x: 0, y: 2 }, to: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "primary" },
+      { id: "ad", kind: "segment", from: { x: 0, y: 2 }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "primary" },
+      { id: "ae", kind: "segment", from: { x: 0, y: 2 }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "primary" },
+      { id: "bc", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "secondary" },
+      { id: "bd", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "secondary" },
+      { id: "be", kind: "segment", from: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "secondary" },
+      { id: "cd", kind: "segment", from: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "answer" },
+      { id: "ce", kind: "segment", from: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "answer" },
+      { id: "de", kind: "segment", from: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, to: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "highlight" },
+      { id: "a", kind: "point", at: { x: 0, y: 2 }, appearance: "reference" },
+      { id: "b", kind: "point", at: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "reference" },
+      { id: "c", kind: "point", at: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "reference" },
+      { id: "d", kind: "point", at: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, appearance: "reference" },
+      { id: "e", kind: "point", at: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: -2 * Math.cos(3 * Math.PI / 10), y: -2 * Math.sin(3 * Math.PI / 10) }, placement: "below-left" },
+      { key: "e", objectId: "e", at: { x: -2 * Math.cos(Math.PI / 10), y: 2 * Math.sin(Math.PI / 10) }, placement: "left" },
+    ],
+  }}
+/>
+
+### Cara Kedua untuk Membilang
+
+Satu jabat tangan ialah satu **pasangan dua orang yang susunannya tidak penting**. Bilangan pasangan yang boleh dipilih daripada <InlineMath math="n" /> orang ialah:
+
+<BlockMath math="\binom{n}{2}=\frac{n(n-1)}{2}" />
+
+Untuk <InlineMath math="n=5" />, rumus ini memberikan <InlineMath math="\binom52=10" />, sama dengan hasil tambah berturutan tadi.
+
+Jumlah jabat tangan bagi kumpulan 2 hingga 8 orang membentuk satu siri. Apabila bilangan orang bertambah daripada <InlineMath math="n - 1" /> kepada <InlineMath math="n" />, ada <InlineMath math="n - 1" /> jabat tangan baharu, jadi jumlahnya ialah hasil tambah separa <InlineMath math="1, 3, 6, 10, 15, 21, 28" /> bagi <InlineMath math="1 + 2 + 3 + \cdots" />.
+
+<BarChart
+  title={<>Jabat tangan apabila kumpulan semakin besar</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="\frac{n(n-1)}{2}" />, iaitu bilangan jabat tangan dalam kalangan <InlineMath math="n" /> orang, untuk <InlineMath math="n = 2" /> hingga <InlineMath math="8" />.</>}
+  yAxisLabel="Jabat tangan"
+  data={Array.from({ length: 7 }, (_, i) => {
+    const n = i + 2;
+    return { name: `${n}`, value: (n * (n - 1)) / 2 };
+  })}
+  chartConfig={{ value: { label: "Jabat tangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Corak Aritmetik dan Geometri
+
+Jumlah jabat tangan <InlineMath math="(1, 3, 6, 10, ...)" /> bukan janjang aritmetik dan bukan juga janjang geometri kerana sebutan berturutannya tidak ada beza atau nisbah yang tetap (<InlineMath math="3-1=2" />, <InlineMath math="6-3=3" />, <InlineMath math="10-6=4" />).
+
+Setiap ungkapan <InlineMath math="1" />, <InlineMath math="1+2" />, <InlineMath math="1+2+3" /> dan <InlineMath math="1+2+3+4" /> ialah hasil tambah separa bagi jujukan nombor asli. Hasil tambah separa ini menunjukkan cara **siri** dibina daripada sebutan-sebutan sesuatu jujukan.
+
+## Latihan
+
+Berapakah bilangan jabat tangan dalam kalangan <InlineMath math="12 \text{ orang}" /> kalau setiap pasangan berjabat tangan **tepat sekali**?
+
+Kaedah hasil tambah berturutan memberikan:
+
+<BlockMath math="S_{11}=1+2+\cdots+11" />
+
+Rumus membilang pasangan pula memberikan hasil yang sama secara terus:
+
+<BlockMath math="S_{11}=\frac{12\cdot11}{2}=66" />
+
+Jumlahnya ialah <InlineMath math="66 \text{ jabat tangan}" />.

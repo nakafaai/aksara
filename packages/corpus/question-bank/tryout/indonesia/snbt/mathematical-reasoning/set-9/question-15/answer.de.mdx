@@ -1,23 +1,43 @@
-Jede Aussage verlangt **eine andere Auswertung der Daten**: eine Summe, ein Verhältnis, aufeinanderfolgende Differenzen und das Zählen von Werten mit einer Bedingung.
+Gesucht ist der Mindestschlaf am Montagabend der nächsten Woche. Diese Nacht muss ihr eigenes Ziel von <InlineMath math="480" /> Minuten erfüllen **und** die Schuld aus dieser Woche tilgen. Der Plan: Bestimm den effektiven Schlaf jeder Nacht, verfolge die Schuld Nacht für Nacht mit der Nullregel und addiere dann das Ziel einer Nacht. Alle Zeiten sind in Minuten.
 
-# Summen und Verhältnis
+# Effektiver Schlaf in jeder Nacht
 
-Die ersten sechs Monate ergeben <InlineMath math="310+280+250+190+120+80=1\,230" /> mm, die letzten sechs <InlineMath math="50+40+70+140+230+340=870" /> mm. **Sie sind nicht gleich**, die erste Aussage ist also falsch.
+Die Zeit im Bett reicht vom Einschlafen bis zum Aufwachen. Liegt die Schlafenszeit vor Mitternacht, zählst du zuerst bis 24.00 Uhr. Am Dienstag sind das <InlineMath math="30" /> Minuten bis 24.00 Uhr plus <InlineMath math="360" /> Minuten bis 06.00 Uhr, also <InlineMath math="390" /> Minuten. **Der Mittwoch beginnt erst nach Mitternacht**, er läuft also direkt von 00.20 bis 06.50 Uhr, das sind <InlineMath math="390" /> Minuten. Nach Abzug der Wachzeit ergibt sich Folgendes.
 
-Dezember im Verhältnis zu August ist <InlineMath math="\tfrac{340}{40}=8{,}5" />, mehr als 8. Die zweite Aussage ist wahr.
+| Tag | Mo | Di | Mi | Do | Fr | Sa | So |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Im Bett | <InlineMath math="520" /> | <InlineMath math="390" /> | <InlineMath math="390" /> | <InlineMath math="540" /> | <InlineMath math="360" /> | <InlineMath math="630" /> | <InlineMath math="600" /> |
+| Effektiver Schlaf | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-# Aufeinanderfolgende Rückgänge
+# Schlafschuld Nacht für Nacht
 
-| Von bis | Rückgang |
-| :--- | :---: |
-| März bis April | 60 mm |
-| April bis Mai | 70 mm |
-| Mai bis Juni | 40 mm |
+Jede Nacht ist die neue Schuld die alte Schuld plus <InlineMath math="480" /> minus den effektiven Schlaf. **Kommt etwas Negatives heraus, wird die Schuld auf null gesetzt**, weil zusätzlicher Schlaf nicht gespeichert wird.
 
-Die übrigen Rückgänge von Januar bis August betragen höchstens 30 mm. **Der größte Rückgang liegt zwischen April und Mai**, die dritte Aussage ist also falsch.
+<BlockMath math="\begin{aligned}
+\text{Montag} &: 0+480-500=-20,\ \text{also }0 \\
+\text{Dienstag} &: 0+480-375=105 \\
+\text{Mittwoch} &: 105+480-380=205 \\
+\text{Donnerstag} &: 205+480-515=170 \\
+\text{Freitag} &: 170+480-360=290 \\
+\text{Samstag} &: 290+480-600=170 \\
+\text{Sonntag} &: 170+480-560=90
+\end{aligned}" />
 
-# Nasse und trockene Monate
+Nach dem Sonntagabend beträgt die Schuld <InlineMath math="90" /> Minuten. Nur der Montagabend fällt unter die Nullregel, deshalb verfallen dort <InlineMath math="20" /> Minuten.
 
-Nasse Monate sind Januar, Februar, März, April, Mai, Oktober, November und Dezember, also 8 Monate. Trocken sind nur Juli und August, also 2 Monate. Da 8 mehr als <InlineMath math="2\cdot2=4" /> ist, ist die vierte Aussage wahr.
+# Schlaf, der am nächsten Montagabend nötig ist
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.
+Damit die Schuld null wird, muss der effektive Schlaf das Ziel dieser Nacht und die ganze alte Schuld abdecken.
+
+<BlockMath math="90+480-x\le0\ \Rightarrow\ x\ge570" />
+
+Kontrolle: Mit <InlineMath math="570" /> Minuten ist die Schuld <InlineMath math="90+480-570=0" />. Mit <InlineMath math="569" /> Minuten bleibt noch <InlineMath math="1" /> Minute. Es braucht also **mindestens <InlineMath math="570" /> Minuten**, das sind <InlineMath math="9" /> Stunden <InlineMath math="30" /> Minuten.
+
+# Fallen, die du vermeiden solltest
+
+Andere Antworten entstehen, wenn **die Schuld nur aus der Gesamtdifferenz berechnet wird** oder das Ziel vergessen wird.
+
+- Die Gesamtdifferenz <InlineMath math="7\times480-3{.}290=70" /> übersieht die Nullregel am Montagabend und führt zu <InlineMath math="480+70=550" /> Minuten.
+- Die Antwort <InlineMath math="90" /> tilgt nur die alte Schuld und vergisst, dass der nächste Montagabend selbst ein Ziel von <InlineMath math="480" /> Minuten hat.
+
+Die Person braucht am Montagabend der nächsten Woche also mindestens <InlineMath math="570" /> Minuten effektiven Schlaf.

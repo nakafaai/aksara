@@ -1,9 +1,25 @@
-Periksa **selisih antarsuku yang berurutan**:
+Soal ini meminta dua suku yang letaknya jauh, yaitu suku ke-<InlineMath math="20" /> dan ke-<InlineMath math="21" />. Kamu perlu menemukan pola barisannya, lalu **menerjemahkan nomor suku** ke nomor di dalam pola itu.
 
-<BlockMath math="7-5=2,\quad 11-7=4,\quad 19-11=8,\quad 35-19=16" />
+Selisih dua suku yang berdekatan berganti-ganti naik dan turun: <InlineMath math="+2,\ +1,\ +6,\ -1,\ +8,\ -1,\ +8" />. Selisih seperti ini tidak membentuk satu pola. Itu tanda bahwa barisan ini gabungan dua barisan yang berselang-seling. Pisahkan suku bernomor ganjil dan suku bernomor genap.
 
-Selisihnya selalu dua kali selisih sebelumnya: <InlineMath math="2, 4, 8, 16" />. Selisih berikutnya adalah <InlineMath math="32" />.
+Suku bernomor ganjil (ke-<InlineMath math="1" />, ke-<InlineMath math="3" />, ke-<InlineMath math="5" />, ke-<InlineMath math="7" />) adalah <InlineMath math="2,\ 5,\ 10,\ 17" />. Selisihnya <InlineMath math="3,\ 5,\ 7" />, naik <InlineMath math="2" /> setiap kali. Bilangan ini adalah bilangan kuadrat ditambah satu: <InlineMath math="1^2+1,\ 2^2+1,\ 3^2+1,\ 4^2+1" />. Jadi, suku ganjil yang ke-<InlineMath math="k" /> bernilai <InlineMath math="k^2+1" /> dan letaknya di nomor <InlineMath math="2k-1" />.
 
-<BlockMath math="35+32=67" />
+Suku bernomor genap (ke-<InlineMath math="2" />, ke-<InlineMath math="4" />, ke-<InlineMath math="6" />, ke-<InlineMath math="8" />) adalah <InlineMath math="4,\ 11,\ 18,\ 25" />. Setiap suku bertambah <InlineMath math="7" />. Jadi, suku genap yang ke-<InlineMath math="k" /> bernilai <InlineMath math="4+7(k-1)=7k-3" /> dan letaknya di nomor <InlineMath math="2k" />.
 
-Pola yang sama juga dapat dilihat dari aturan <InlineMath math="u_{n+1}=2u_n-3" />, misalnya <InlineMath math="2\times5-3=7" /> dan <InlineMath math="2\times35-3=67" />. Kedua cara memberi hasil yang sama. Jadi, bilangan berikutnya adalah <InlineMath math="67" />.
+Nomor <InlineMath math="20" /> genap, jadi suku itu milik barisan genap dengan <InlineMath math="2k=20" />, atau <InlineMath math="k=10" />. Nomor <InlineMath math="21" /> ganjil, jadi suku itu milik barisan ganjil dengan <InlineMath math="2k-1=21" />, atau <InlineMath math="k=11" />.
+
+<BlockMath math="\begin{aligned}
+U_{20} &= 7(10)-3 = 67 \\
+U_{21} &= 11^2+1 = 122 \\
+U_{20}+U_{21} &= 67+122 = 189
+\end{aligned}" />
+
+Cek dengan melanjutkan kedua barisan. Barisan ganjil: <InlineMath math="2,\ 5,\ 10,\ 17,\ 26,\ 37,\ 50,\ 65,\ 82,\ 101,\ 122" />, dan sukunya yang ke-<InlineMath math="11" /> memang <InlineMath math="122" />. Barisan genap: <InlineMath math="4,\ 11,\ 18,\ 25,\ 32,\ 39,\ 46,\ 53,\ 60,\ 67" />, dan sukunya yang ke-<InlineMath math="10" /> memang <InlineMath math="67" />.
+
+Beberapa jalan yang menggoda tetapi salah:
+
+- Memasukkan <InlineMath math="20" /> dan <InlineMath math="21" /> langsung ke rumus memberi <InlineMath math="7(20)-3=137" /> dan <InlineMath math="21^2+1=442" />, jumlahnya <InlineMath math="579" />. Nomor suku di barisan gabungan belum diubah menjadi nomor di barisan masing-masing.
+- Memakai <InlineMath math="k=10" /> untuk kedua suku memberi <InlineMath math="67+101=168" />. Suku ke-<InlineMath math="21" /> adalah suku ganjil yang ke-<InlineMath math="11" />, bukan ke-<InlineMath math="10" />.
+- Menukar barisannya, yaitu memakai aturan kuadrat untuk nomor <InlineMath math="20" /> dan aturan tambah <InlineMath math="7" /> untuk nomor <InlineMath math="21" />, memberi <InlineMath math="101+74=175" />.
+
+Jadi, jumlah suku ke-<InlineMath math="20" /> dan suku ke-<InlineMath math="21" /> adalah <InlineMath math="189" />.

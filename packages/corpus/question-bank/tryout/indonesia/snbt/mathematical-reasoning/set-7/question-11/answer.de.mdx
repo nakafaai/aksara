@@ -1,15 +1,31 @@
-Die Fahrstrecke im Gitter ist **die Zahl der Abschnitte nach Osten oder Westen plus die Zahl der Abschnitte nach Norden oder Süden**, weil der Roboter nicht schräg fahren kann.
+Jede Aussage vergleicht Wege, den Salzgehalt zu steuern, also braucht jede ihre eigene Rechnung. Der Plan: **Halte Salzmenge und Wassermenge immer getrennt**, denn der Salzgehalt ist Salz geteilt durch Wasser, und prüfe dann, was jeder Schritt hinzufügt oder wegnimmt.
 
-# Von A nach C und die Wege nach B
+# Zweimal wenig oder einmal viel
 
-Von A(3,4) nach C(1,6) fährt der Roboter 2 Abschnitte nach Westen und 2 nach Norden, also 4 Abschnitte oder 400 m, **nicht 500 m**. Die erste Aussage ist falsch.
+Wenn <InlineMath math="20\text{ Liter}" /> entfernt werden, bleiben <InlineMath math="\frac{100}{120}=\frac56" /> des Salzes, und Auffüllen mit Süßwasser bringt kein Salz. Wenn <InlineMath math="40\text{ Liter}" /> entfernt werden, bleiben <InlineMath math="\frac{80}{120}=\frac23" /> des Salzes. **Zwei kleine Wechsel bedeuten, zweimal mit <InlineMath math="\frac56" /> zu multiplizieren**, nicht einmal mit <InlineMath math="\frac23" />.
 
-Ein kürzester Weg von G nach B besteht aus 5 Schritten nach Osten und 1 Schritt nach Norden. Die Wege unterscheiden sich nur darin, **wann der Schritt nach Norden kommt**, beim 1. bis 6. Schritt, es gibt also 6 Wege. Die zweite Aussage ist wahr.
+<BlockMath math="\left(\frac56\right)^2=\frac{25}{36}\neq\frac{24}{36}=\frac23" />
 
-# Akkuverbrauch
+Zum Beispiel ergibt ein Wechsel von <InlineMath math="40\text{ Liter}" /> ab <InlineMath math="42\text{ g/L}" /> genau <InlineMath math="28\text{ g/L}" />, zwei Wechsel von <InlineMath math="20\text{ Liter}" /> ergeben <InlineMath math="29\frac16\text{ g/L}" />. Die Ergebnisse unterscheiden sich. Die erste Aussage ist **falsch**.
 
-Von G nach B sind es <InlineMath math="5+1=6" /> Abschnitte, hin und zurück also 12 Abschnitte mit <InlineMath math="12\cdot2\,\%=24\,\%" /> Akku. Die dritte Aussage ist wahr.
+# Verdunstung mit künstlichem Meerwasser ausgleichen
 
-Ein voller Akku reicht für <InlineMath math="\tfrac{100\,\%}{2\,\%}=50" /> Abschnitte, genau 5 000 m oder 5 km. Der Roboter **kann nicht mehr als 5 km fahren**, die vierte Aussage ist also falsch.
+Jeden Tag verdunsten <InlineMath math="4\text{ Liter}" /> Wasser ohne Salz. Auffüllen mit <InlineMath math="4\text{ Liter}" /> künstlichem Meerwasser bringt <InlineMath math="4\cdot35=140" /> Gramm Salz, und das Aquarium hat wieder <InlineMath math="120\text{ Liter}" />.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.
+<BlockMath math="\text{Anstieg pro Tag}=\frac{140}{120}=\frac76\text{ g/L}" />
+
+**Dieser Anstieg hängt nicht vom aktuellen Salzgehalt ab**, denn es kommen immer <InlineMath math="140" /> Gramm Salz dazu, und es geht kein Salz verloren. Der Salzgehalt steigt also jeden Tag um <InlineMath math="\frac76\text{ g/L}" />, jedes Mal gleich viel. Die zweite Aussage ist **wahr**.
+
+# Wiederholte Wechsel mit künstlichem Meerwasser
+
+Wird ein Teil des Wassers durch Wasser mit <InlineMath math="35" /> ersetzt, ist der neue Salzgehalt ein gewichteter Mittelwert aus dem alten Salzgehalt und <InlineMath math="35" />. **Ein Mittelwert aus zwei Zahlen, die beide mindestens <InlineMath math="35" /> sind, kann nicht unter <InlineMath math="35" /> liegen**. Der Salzgehalt nähert sich <InlineMath math="35\text{ g/L}" /> nur von oben und fällt nie darunter. Die dritte Aussage ist **falsch**.
+
+# Ein Wechsel mit künstlichem Meerwasser
+
+Rechne mit dem Salz. Nach dem Entfernen von <InlineMath math="20\text{ Liter}" /> bleiben <InlineMath math="100\cdot42=4{.}200" /> Gramm Salz. **Künstliches Meerwasser bringt sein eigenes Salz mit**, nämlich <InlineMath math="20\cdot35=700" /> Gramm.
+
+<BlockMath math="\frac{4{.}200+700}{120}=\frac{4{.}900}{120}=40\frac56\text{ g/L}" />
+
+Das sind <InlineMath math="40\frac56\text{ g/L}" />, nicht <InlineMath math="35\text{ g/L}" />. Auf <InlineMath math="35" /> kommst du nur, wenn mit Süßwasser aufgefüllt wird, denn <InlineMath math="\frac{4{.}200}{120}=35" />. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte falsch.

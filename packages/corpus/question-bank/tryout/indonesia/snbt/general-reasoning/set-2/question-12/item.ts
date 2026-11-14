@@ -4,32 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "categorical-syllogism",
+    topic: "conditional-chain",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Semua siswa kelas XI adalah anggota paduan suara.",
-        },
-        {
           correct: true,
-          label: "Sebagian siswa kelas XI dibebaskan dari piket hari Sabtu.",
-        },
-        {
-          correct: false,
-          label: "Semua anggota paduan suara dibebaskan dari piket hari Sabtu.",
+          label:
+            "Jika robot tidak dijalankan dalam mode hemat daya, tim robotik sekolah lolos ke tingkat nasional.",
         },
         {
           correct: false,
           label:
-            "Semua peserta olimpiade matematika adalah anggota paduan suara.",
+            "Jika tim robotik sekolah lolos ke tingkat nasional, baterai cadangan dipasang.",
         },
         {
           correct: false,
-          label: "Sebagian anggota paduan suara bukan siswa kelas XI.",
+          label:
+            "Jika robot dijalankan dalam mode hemat daya, tim robotik sekolah tidak lolos ke tingkat nasional.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika sensor garis robot tidak rusak, tim robotik sekolah lolos ke tingkat nasional.",
+        },
+        {
+          correct: false,
+          label:
+            "Jika tim robotik sekolah tidak lolos ke tingkat nasional, sensor garis robot rusak.",
         },
       ],
     },

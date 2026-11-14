@@ -1,0 +1,439 @@
+
+export const metadata = {
+  title: "Perentas Bulatan",
+  description: "Kaitkan panjang perentas dengan jejari, sudut di pusat dan jarak dari pusat, kemudian gunakan teorem perentas dalam soalan berserta jalan kerja lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Bulatan",
+};
+
+## Menyambungkan Dua Titik pada Bulatan dengan Tembereng Garis
+
+Perentas ialah <Highlight>tembereng garis yang kedua-dua hujungnya terletak pada bulatan</Highlight>. Diameter ialah perentas istimewa yang melalui pusat. Perentas lain tidak perlu melalui pusat.
+
+<MathVisual
+  title={<>Perentas pada Bulatan</>}
+  description={<>Dua perentas yang sama panjang mencangkum sudut tiga puluh darjah, dan perentas yang lebih panjang mencangkum sudut enam puluh darjah.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+    "l6": <InlineMath math="E" />,
+    "l7": <InlineMath math="F" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2.6, y: 1.5 }, { x: 1.5, y: 2.6 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1.5, y: 2.6 }, { x: -2.6, y: 1.5 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2.6, y: -1.5 }, { x: 0, y: -3 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 2.6, y: 1.5 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1.5, y: 2.6 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -1.5, y: 2.6 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: -2.6, y: 1.5 }, placement: "above-left" },
+      { key: "l6", objectId: "s5", at: { x: -2.6, y: -1.5 }, placement: "below-left" },
+      { key: "l7", objectId: "s5", at: { x: 0, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Perentas <InlineMath math="AB" /> dan <InlineMath math="CD" /> mencangkum sudut di pusat yang sama besar, jadi kedua-duanya sama panjang. Perentas <InlineMath math="EF" /> pula mencangkum sudut di pusat yang lebih besar, dan perentas itu lebih panjang.
+
+## Hubungan antara Panjang Perentas dan Jarak dari Pusat
+
+Dalam **bulatan yang sama**, panjang perentas dan jarak serenjangnya dari pusat saling menentukan. Jarak yang lebih kecil menghasilkan perentas yang lebih panjang, dan kamu boleh menukar satu kuantiti kepada yang lain melalui teorem Pythagoras.
+
+### Perentas yang Sama Panjang
+
+<Highlight>Dua perentas yang sama panjang</Highlight> berada pada jarak yang sama dari pusat bulatan. Sebaliknya, dua perentas yang berada pada jarak yang sama dari pusat juga sama panjang.
+
+<MathVisual
+  title={<>Perentas yang Sama Panjang</>}
+  description={<>Dua perentas yang sama panjang berada pada jarak yang sama dari pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="R" />,
+    "l5": <InlineMath math="S" />,
+    "l6": <InlineMath math="d_1" />,
+    "l7": <InlineMath math="d_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: -2 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l5", objectId: "s4", at: { x: 3.46, y: -2 }, placement: "below-right" },
+      { key: "l6", objectId: "s5", at: { x: 0, y: 2 }, placement: "right" },
+      { key: "l7", objectId: "s6", at: { x: 0, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Kalau <InlineMath math="PQ = RS" />, jarak dari pusat <InlineMath math="O" /> ke perentas <InlineMath math="PQ" /> sama dengan jarak dari <InlineMath math="O" /> ke perentas <InlineMath math="RS" />, iaitu <InlineMath math="d_1 = d_2" />.
+
+### Garis dari Pusat yang Berserenjang dengan Perentas
+
+Garis yang dilukis dari pusat bulatan dan berserenjang dengan perentas membahagikan perentas itu kepada **dua bahagian yang sama panjang**.
+
+<MathVisual
+  title={<>Garis Serenjang dari Pusat</>}
+  description={<>Garis dari pusat yang berserenjang dengan perentas membahagi dua sama perentas itu.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="M" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.54, y: 3.54 }, { x: -3.54, y: 3.54 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3.54 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3.54 }, { x: -0.3, y: 3.24 }, { x: 0, y: 3.24 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.54, y: 3.54 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.54, y: 3.54 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3.54 }, placement: "above" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah di atas, <InlineMath math="OM \perp AB" /> dan <InlineMath math="M" /> ialah titik tengah perentas <InlineMath math="AB" />, jadi <InlineMath math="AM = MB" />.
+
+## Panjang Perentas
+
+Perentas dan sudut di pusatnya membentuk segi tiga sama kaki bersama dua jejari. Rumus di bawah datang daripada **membahagi segi tiga itu kepada dua**. Separuh segi tiga itu memberikan separuh panjang perentas sebagai <InlineMath math="r\sin(\theta/2)" />.
+
+### Rumus Panjang Perentas
+
+<BlockMath math="AB = 2r \sin\left(\frac{\theta}{2}\right)" />
+
+Dalam rumus ini:
+
+- <InlineMath math="r" /> = jejari bulatan
+- <InlineMath math="\theta" /> = **sudut di pusat yang lebih kecil** yang dicangkum oleh perentas itu. Gunakan mod kalkulator yang sepadan dengan unit sudut
+
+Apabila sudut di pusat yang lebih kecil, <InlineMath math="\theta" />, bertambah dari <InlineMath math="0" /> hingga <InlineMath math="180^\circ" />, faktor <InlineMath math="\sin(\theta/2)" /> bertambah dari <InlineMath math="0" /> hingga <InlineMath math="1" />. Jadi panjang perentas bertambah dari <InlineMath math="0" /> hingga diameter <InlineMath math="2r" />.
+
+<MathVisual
+  title={<>Sudut di Pusat dan Perentas</>}
+  description={<>Perentas menjadi lebih panjang apabila sudut di pusat yang lebih kecil bertambah menghampiri seratus lapan puluh darjah.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 3.46, y: 2 }, { x: -2, y: 3.46 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3.46, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -2, y: 3.46 }], appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(1.5 * cos(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", y: "(1.5 * sin(((pi / 6) + ((((2 * pi) / 3) - (pi / 6)) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2, y: 3.46 }, placement: "above-left" },
+      { key: "l4", objectId: "s6", at: { x: 0.39, y: 1.45 }, placement: "below" },
+    ],
+  }}
+/>
+
+### Jarak Perentas dari Pusat
+
+Dalam segi tiga bersudut tegak itu, jarak dari pusat ialah sisi bersebelahan bagi separuh sudut di pusat, manakala jejari ialah hipotenus. Jadi **kosinus separuh sudut** memberikan:
+
+<BlockMath math="d = r \cos\left(\frac{\theta}{2}\right)" />
+
+Kalau panjang perentas <InlineMath math="l" /> diketahui, gunakan **separuh panjang perentas** sebagai salah satu sisi yang mengapit sudut tegak dalam segi tiga itu:
+
+<BlockMath math="d^2+\left(\frac{l}{2}\right)^2=r^2\quad\Longrightarrow\quad d=\sqrt{r^2-\left(\frac{l}{2}\right)^2}" />
+
+## Teorem Perentas Bersilang
+
+Kalau dua perentas bersilang di dalam bulatan, hasil darab panjang dua bahagian satu perentas sama dengan hasil darab panjang dua bahagian perentas yang satu lagi.
+
+<MathVisual
+  title={<>Persilangan Dua Perentas</>}
+  description={<>Dua perentas yang bersilang pada satu titik selain pusat bulatan.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "circle", center: { x: 0, y: 0 }, radius: 5, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: -5, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 5, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -5, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: Math.sqrt(24) }, { x: 1, y: -Math.sqrt(24) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 1, y: 4.9 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 1, y: -4.9 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 5, y: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 4.9 }, placement: "above-right" },
+      { key: "l4", objectId: "s3", at: { x: 1, y: -4.9 }, placement: "below-right" },
+      { key: "l5", objectId: "s4", at: { x: 1, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah, bulatan itu ada jejari <InlineMath math="5" /> dan titik persilangan <InlineMath math="P(1,0)" />. Dua bahagian mengufuk tidak sama panjang, tetapi **hasil darab** kedua-duanya sama dengan hasil darab dua bahagian mencancang.
+
+<MathContainer>
+  <BlockMath math="PA=5-1=4,\quad PB=1-(-5)=6" />
+  <BlockMath math="PC=PD=\sqrt{5^2-1^2}=\sqrt{24}" />
+  <BlockMath math="PA\cdot PB=4\cdot6=24=\sqrt{24}\cdot\sqrt{24}=PC\cdot PD" />
+</MathContainer>
+
+## Sudut di Lilitan dalam Tembereng yang Sama
+
+Sudut di lilitan yang dicangkum oleh perentas yang sama akan sama besar apabila bucunya terletak pada **sisi yang sama** bagi perentas itu.
+
+<MathVisual
+  title={<>Sudut di Lilitan dalam Tembereng yang Sama</>}
+  description={
+    <>
+      Kedua-dua sudut di lilitan ini dicangkum oleh perentas <InlineMath math="AB" /> dari
+      sisi yang sama, jadi kedua-duanya sama besar.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2.83, y: 2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: 2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -2.83, y: -2.83 }, { x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "highlight" },
+      { id: "s4-close", kind: "segment", from: { x: 0, y: 4 }, to: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah di atas, <InlineMath math="\angle ACB = \angle ADB" /> kerana kedua-dua bucu terletak pada sisi yang sama bagi perentas <InlineMath math="AB" /> dan kedua-dua sudut dicangkum oleh perentas itu.
+
+## Apotem
+
+Apotem bagi perentas ialah tembereng garis serenjang dari pusat bulatan ke perentas itu. Panjangnya ialah **jarak terpendek** antara pusat dengan perentas.
+
+<MathVisual
+  title={<>Apotem Perentas</>}
+  description={<>Apotem berserenjang dengan perentas dan mengukur jarak perentas itu dari pusat.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P" />,
+    "l3": <InlineMath math="Q" />,
+    "l4": <InlineMath math="M" />,
+    "l5": <>apotem</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos(((t * pi) / 180)))", y: "(5 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 3 }, { x: 4, y: 3 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -0.3, y: 3 }, { x: -0.3, y: 2.7 }, { x: 0, y: 2.7 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 3 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "l5", objectId: "s4", at: { x: 0, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Panjang apotem boleh dikira dengan rumus:
+
+<BlockMath math="a = r \cos\left(\frac{\theta}{2}\right) = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+
+Dalam rumus ini:
+
+- <InlineMath math="a" /> = panjang apotem
+- <InlineMath math="r" /> = jejari bulatan
+- <InlineMath math="l" /> = panjang perentas
+- <InlineMath math="\theta" /> = sudut di pusat
+
+## Perentas Selari
+
+Dua perentas selari memotong **lengkok penyambung yang sama panjang** pada dua sisi bulatan yang bertentangan. Bandingkan lengkok minor di sebelah kiri dan kanan, bukan lengkok yang lebih panjang yang mengelilingi sisi yang satu lagi.
+
+<MathVisual
+  title={<>Perentas Selari</>}
+  description={<>Lengkok di antara perentas selari sama panjang.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -3.46, y: 2 }, { x: 3.46, y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.46, y: -2 }, { x: 3.46, y: -2 }], appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2)))))))) + ((((2 * atan(((-2)) / (sqrt(((-sqrt((16 - ((-2) * (-2))))))^2 + ((-2))^2) + ((-sqrt((16 - ((-2) * (-2))))))))) + (2 * pi)) - (2 * atan((2) / (sqrt(((-sqrt((16 - (2 * 2)))))^2 + (2)^2) + ((-sqrt((16 - (2 * 2))))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(4 * cos(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", y: "(4 * sin(((2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2))))))) + (((2 * atan(((-2)) / (sqrt((sqrt((16 - ((-2) * (-2)))))^2 + ((-2))^2) + (sqrt((16 - ((-2) * (-2)))))))) - (2 * atan((2) / (sqrt((sqrt((16 - (2 * 2))))^2 + (2)^2) + (sqrt((16 - (2 * 2)))))))) * (t / 20)))))", parameter: { min: 0, max: 20 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3.46, y: -2 }, placement: "below-left" },
+      { key: "l4", objectId: "s3", at: { x: 3.46, y: -2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Kalau <InlineMath math="AB \parallel CD" />, lengkok <InlineMath math="AC" /> sama panjang dengan lengkok <InlineMath math="BD" />.
+
+## Soalan Latihan
+
+Empat soalan pertama menggunakan sudut, jarak dari pusat, atau bahagian perentas untuk mencari ukuran yang belum diketahui. Dalam soalan terakhir, gunakan **nilai maksimum fungsi sinus** untuk membuktikan panjang perentas maksimum.
+
+1. Sebuah bulatan mempunyai jejari <InlineMath math="10 \text{ cm}" />. Jika sudut di pusat yang dicangkum oleh satu perentas ialah <InlineMath math="60^\circ" />, tentukan panjang perentas itu dan jaraknya dari pusat bulatan.
+
+2. Dua perentas <InlineMath math="AB" /> dan <InlineMath math="CD" /> bersilang di titik <InlineMath math="P" /> di dalam sebuah bulatan. Jika <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, dan <InlineMath math="PC = 3 \text{ cm}" />, cari panjang <InlineMath math="PD" />.
+
+3. Dalam sebuah bulatan berjejari <InlineMath math="13 \text{ cm}" />, terdapat perentas sepanjang <InlineMath math="24 \text{ cm}" />. Hitung jarak perentas ini dari pusat bulatan.
+
+4. Dua perentas selari dalam sebuah bulatan masing-masing berada <InlineMath math="3 \text{ cm}" /> dan <InlineMath math="4 \text{ cm}" /> dari pusat. Jika jejari bulatan itu ialah <InlineMath math="5 \text{ cm}" />, tentukan panjang kedua-dua perentas itu.
+
+5. Buktikan bahawa perentas paling panjang dalam sebuah bulatan ialah diameter.
+
+### Jalan Kerja
+
+**Penyelesaian 1**: Mengira **panjang perentas** dan jaraknya dari pusat
+
+Diberi: <InlineMath math="r = 10 \text{ cm}" />, <InlineMath math="\theta = 60^\circ = \frac{\pi}{3}" /> rad
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} l &amp;= 2r \sin\left(\frac{\theta}{2}\right) \\ &amp;= 2 \times 10 \times \sin\left(\frac{\pi/3}{2}\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} l &amp;= 20 \times \sin(30^\circ) \\ &amp;= 20 \times 0.5 \\ &amp;= 10 \text{ cm} \end{aligned}" />
+  <BlockMath math="d = r \cos\left(\frac{\theta}{2}\right) = 10 \times \cos(30^\circ)" />
+  <BlockMath math="d = 10 \times \frac{\sqrt{3}}{2} = 5\sqrt{3} \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 2**: **Teorem perentas bersilang**
+
+Diberi: <InlineMath math="PA = 4 \text{ cm}" />, <InlineMath math="PB = 6 \text{ cm}" />, <InlineMath math="PC = 3 \text{ cm}" />
+
+<MathContainer>
+  <BlockMath math="PA \times PB = PC \times PD" />
+  <BlockMath math="4 \times 6 = 3 \times PD" />
+  <BlockMath math="24 = 3 \times PD" />
+  <BlockMath math="PD = 8 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 3**: Mengira **jarak perentas dari pusat**
+
+Diberi: <InlineMath math="r = 13 \text{ cm}" />, <InlineMath math="l = 24 \text{ cm}" />
+
+<MathContainer>
+  <BlockMath math="d = \sqrt{r^2 - \left(\frac{l}{2}\right)^2}" />
+  <BlockMath math="d = \sqrt{13^2 - 12^2}" />
+  <BlockMath math="d = \sqrt{169 - 144}" />
+  <BlockMath math="d = \sqrt{25} = 5 \text{ cm}" />
+</MathContainer>
+
+**Penyelesaian 4**: **Perentas selari**
+
+Diberi: <InlineMath math="r = 5 \text{ cm}" />, <InlineMath math="d_1 = 3 \text{ cm}" />, <InlineMath math="d_2 = 4 \text{ cm}" />
+
+Untuk perentas pertama:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_1 &amp;= 2\sqrt{r^2 - d_1^2} \\ &amp;= 2\sqrt{25 - 9} \\ &amp;= 2\sqrt{16} \\ &amp;= 8 \text{ cm} \end{aligned}" />
+</MathContainer>
+
+Untuk perentas kedua:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} l_2 &amp;= 2\sqrt{r^2 - d_2^2} \\ &amp;= 2\sqrt{25 - 16} \\ &amp;= 2\sqrt{9} \\ &amp;= 6 \text{ cm} \end{aligned}" />
+</MathContainer>
+
+**Penyelesaian 5**: Bukti bahawa diameter ialah perentas paling panjang
+
+Untuk mana-mana perentas, ambil <InlineMath math="\theta" /> sebagai **sudut di pusat yang lebih kecil**, jadi <InlineMath math="0^\circ\leq\theta\leq180^\circ" />:
+
+<MathContainer>
+  <BlockMath math="l = 2r \sin\left(\frac{\theta}{2}\right)" />
+</MathContainer>
+
+Nilai maksimum <InlineMath math="\sin\left(\frac{\theta}{2}\right) = 1" /> dicapai apabila <InlineMath math="\frac{\theta}{2} = 90^\circ" />, iaitu <InlineMath math="\theta = 180^\circ" />.
+
+Apabila <InlineMath math="\theta = 180^\circ" />, perentas itu **melalui pusat** bulatan (diameter) dan panjangnya ialah:
+
+<MathContainer>
+  <BlockMath math="l_{\max} = 2r \times 1 = 2r" />
+</MathContainer>
+
+Jadi, diameter ialah perentas paling panjang.

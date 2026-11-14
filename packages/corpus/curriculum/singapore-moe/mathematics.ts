@@ -37,6 +37,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           description: "Bangun aljabar dari persamaan dan pangkat.",
           title: "Bilangan dan aljabar",
         },
+        ms: {
+          description: "Bina kemahiran algebra melalui persamaan dan kuasa.",
+          title: "Nombor dan algebra",
+        },
       },
       order: 10,
       translations: {
@@ -48,6 +52,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
         id: {
           routeSlug: "bilangan-dan-aljabar",
           title: "Bilangan dan aljabar",
+        },
+        ms: {
+          routeSlug: "nombor-dan-algebra",
+          title: "Nombor dan algebra",
         },
       },
     }),
@@ -86,6 +94,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           description: "Gunakan bentuk, data, dan peluang dalam soal.",
           title: "Geometri, statistika, dan peluang",
         },
+        ms: {
+          description: "Guna bentuk, data dan kebarangkalian dalam soalan.",
+          title: "Geometri, statistik dan kebarangkalian",
+        },
       },
       order: 20,
       translations: {
@@ -100,6 +112,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
         id: {
           routeSlug: "geometri-statistika-dan-peluang",
           title: "Geometri, statistika, dan peluang",
+        },
+        ms: {
+          routeSlug: "geometri-statistik-dan-kebarangkalian",
+          title: "Geometri, statistik dan kebarangkalian",
         },
       },
     }),
@@ -117,6 +133,10 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
     id: {
       routeSlug: "matematika",
       title: "Matematika",
+    },
+    ms: {
+      routeSlug: "matematik",
+      title: "Matematik",
     },
   },
 });
@@ -158,6 +178,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           description: "Hubungkan fungsi dengan laju dan akumulasi.",
           title: "Fungsi dan kalkulus",
         },
+        ms: {
+          description: "Kaitkan fungsi dengan kadar dan perubahan terkumpul.",
+          title: "Fungsi dan kalkulus",
+        },
       },
       order: 10,
       translations: {
@@ -170,6 +194,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           title: "Functions and calculus",
         },
         id: {
+          routeSlug: "fungsi-dan-kalkulus",
+          title: "Fungsi dan kalkulus",
+        },
+        ms: {
           routeSlug: "fungsi-dan-kalkulus",
           title: "Fungsi dan kalkulus",
         },
@@ -192,6 +220,10 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
     id: {
       routeSlug: "additional-mathematics",
       title: "Additional Mathematics",
+    },
+    ms: {
+      routeSlug: "matematik-tambahan",
+      title: "Matematik Tambahan",
     },
   },
 });

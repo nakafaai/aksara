@@ -1,0 +1,323 @@
+export const metadata = {
+  title: "Persamaan Tangen kepada Bulatan",
+  description: "Bina persamaan tangen kepada bulatan daripada titik sentuhan yang diketahui, kecerunan yang diberi, atau titik di luar bulatan, dengan jalan kerja lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-23",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Bagaimana Tangen Bertemu dengan Jejari
+
+Bayangkan sebuah roda basikal di atas jalan yang rata. Pada ketika itu, jalan menyentuh rim roda yang berbentuk bulatan pada tepat satu titik. Jalan itu sendiri memodelkan **garis tangen**, dan jejari ke titik sentuhan berserenjang dengan jalan itu.
+
+Kita akan bina persamaan garis itu dalam tiga situasi: apabila titik sentuhan diketahui, apabila kecerunan diketahui, dan apabila garis itu mesti melalui satu titik di luar bulatan.
+
+Geometrinya sama dalam setiap situasi. Tangen menyentuh bulatan pada <Highlight>tepat satu titik</Highlight>, manakala jejari ke titik sentuhan memberikan arah serenjang atau jarak yang diperlukan.
+
+## Tangen pada Titik yang Diketahui
+
+Apabila titik sentuhan diketahui, semak dahulu bahawa titik itu terletak pada bulatan. Kemudian jejari ke titik itu menjadi vektor normal bagi tangen.
+
+<MathVisual
+  title={<>Tangen pada Titik yang Diketahui</>}
+  description={<>Membina persamaan tangen apabila titik sentuhan diketahui.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <InlineMath math="M" />,
+    "l3": <>Tangen</>,
+    "l4": <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 7.5 }, y: { min: -6.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3.46, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -7.36, y: -4.75 }, { x: -6.46, y: -3.2 }, { x: -0.46, y: 7.2 }, { x: 0.44, y: 8.75 }], appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3.46, y: 2 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 5 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: -3.46, y: 2 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -0.46, y: 7.2 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3.46, y: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Untuk bulatan <InlineMath math="x^2 + y^2 = r^2" /> dan titik sentuhan <InlineMath math="M(p, q)" /> pada bulatan itu, **bentuk titik-tangen** ialah:
+
+<BlockMath math="px + qy = r^2" />
+
+Mengapa rumus ini betul? Jejari <InlineMath math="OM" /> mempunyai vektor arah <InlineMath math="(p,q)" />. Oleh sebab tangen berserenjang dengan <InlineMath math="OM" />, vektor yang sama itu ialah vektor normal kepada tangen. Apabila <InlineMath math="M" /> digantikan, kita dapat <InlineMath math="p^2+q^2=r^2" />, jadi garis itu memang melalui titik sentuhan.
+
+Untuk bulatan <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> dengan titik sentuhan <InlineMath math="M(p,q)" />, anjakkan idea yang sama ke pusat <InlineMath math="(h,k)" />:
+
+<BlockMath math="\begin{aligned} &amp;(p-h)(x-h) + (q-k)(y-k) \\ &amp;= r^2 \end{aligned}" />
+
+> Bentuk ini menggunakan jejari terus sebagai vektor normal. Rumus ini juga boleh digunakan untuk tangen mencancang, yang tidak mempunyai kecerunan terhingga.
+
+## Kaedah Jarak untuk Kecerunan yang Diberi
+
+Kalau kecerunan diketahui tetapi pintasan tidak, gunakan syarat jarak yang mentakrifkan tangen: jarak serenjang dari pusat ke tangen sama dengan jejari.
+
+<MathVisual
+  title={<>Tangen dengan Kecerunan yang Diberi</>}
+  description={<>Jarak dari pusat ke garis menentukan dua pintasan yang mungkin.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <>Tangen Atas</>,
+    "l3": <>Tangen Bawah</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 8.5 }, y: { min: -11.5, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1 + (3.5 * cos(((t * pi) / 180))))", y: "((-0.5) + (3.5 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: -0.5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.2, y: 7.03 }, { x: -2, y: 6.13 }, { x: 6, y: 0.13 }, { x: 7.2, y: -0.77 }], appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.2, y: -1.72 }, { x: -2, y: -2.62 }, { x: 6, y: -8.62 }, { x: 7.2, y: -9.52 }], appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 1, y: -0.5 }, to: { x: 3.1, y: 2.3 }, appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 7, y: 0 }], appearance: "warning" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: -5 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 1, y: -0.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 6, y: 0.13 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -2, y: -2.62 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Katakan bulatan itu ialah <InlineMath math="(x-h)^2 + (y-k)^2 = r^2" /> dan tangennya mempunyai kecerunan <InlineMath math="m" />. Tulis garis itu sebagai <InlineMath math="y=mx+c" />.
+
+**Rumus jarak titik ke garis** memberikan jarak dari pusat <InlineMath math="(h,k)" /> ke garis <InlineMath math="mx-y+c=0" />:
+
+<BlockMath math="d = \frac{|mh - k + c|}{\sqrt{m^2 + 1}}" />
+
+Supaya garis itu menjadi tangen, jarak ini mesti sama dengan jejari:
+
+<MathContainer>
+  <BlockMath math="\frac{|mh - k + c|}{\sqrt{m^2 + 1}} = r" />
+  <BlockMath math="|mh - k + c| = r\sqrt{m^2 + 1}" />
+  <BlockMath math="mh - k + c = \pm r\sqrt{m^2 + 1}" />
+</MathContainer>
+
+Apabila persamaan nilai mutlak ini diselesaikan, kita dapat dua pintasan:
+
+<BlockMath math="c = k - mh \pm r\sqrt{m^2 + 1}" />
+
+Dua tangen yang selari itu ialah:
+
+<BlockMath math="y = mx + k - mh \pm r\sqrt{m^2 + 1}" />
+
+## Tangen melalui Titik Luar
+
+Dari satu titik di luar bulatan, **tepat dua garis tangen** boleh dilukis. Apabila kedua-dua tangen mempunyai kecerunan terhingga, kecerunannya boleh dicari daripada satu persamaan kuadratik.
+
+<MathVisual
+  title={<>Tangen melalui Titik Luar</>}
+  description={<>Syarat persilangan berulang menentukan dua kecerunan yang mungkin.</>}
+  labels={{
+    "l1": <>Pusat</>,
+    "l2": <>Titik luar</>,
+    "l3": <InlineMath math="S_1" />,
+    "l4": <InlineMath math="S_2" />,
+    "l5": <>Tangen 1</>,
+    "l6": <>Tangen 2</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -10.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (2.8 * cos(((t * pi) / 180))))", y: "(1.5 + (2.8 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: -1, y: 1.5 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 3.5, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.47, y: 0.19 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: -0.81, y: 4.29 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4.4, y: 5.69 }, { x: 3.5, y: 4 }, { x: -2.5, y: -7.29 }, { x: -3.4, y: -8.98 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 4.4, y: 3.94 }, { x: 3.5, y: 4 }, { x: -2.5, y: 4.41 }, { x: -3.4, y: 4.47 }], appearance: "warning" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 0, y: -2 }, { x: 0, y: 6 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -1, y: 1.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.5, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s4", at: { x: 1.47, y: 0.19 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -0.81, y: 4.29 }, placement: "above-right" },
+      { key: "l5", objectId: "s6", at: { x: 3.5, y: 4 }, placement: "below-right" },
+      { key: "l6", objectId: "s7", at: { x: 3.5, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Katakan titik luar itu ialah <InlineMath math="P(x_0,y_0)" /> dan bulatan itu ialah <InlineMath math="x^2+y^2=r^2" />. Garis yang tidak mencancang dan melalui <InlineMath math="P" /> mempunyai kecerunan <InlineMath math="m" />.
+
+Persamaannya ialah <InlineMath math="y-y_0=m(x-x_0)" />, atau <InlineMath math="y=mx-mx_0+y_0" />.
+
+Gantikan ungkapan ini ke dalam persamaan bulatan. Tangen bertemu bulatan pada satu titik berulang, jadi persamaan kuadratik dalam <InlineMath math="x" /> yang terhasil mesti mempunyai [pembezalayan](/ms/subjek/matematik/fungsi-kuadratik/jenis-punca-persamaan-kuadratik) sifar:
+
+<MathContainer>
+  <BlockMath math="x^2 + (mx - mx_0 + y_0)^2 = r^2" />
+  <BlockMath math="\begin{aligned} &amp;(1 + m^2)x^2 + 2m(y_0 - mx_0)x \\ &amp;\quad{}+ (y_0 - mx_0)^2 - r^2 = 0 \end{aligned}" />
+</MathContainer>
+
+Selepas dipermudahkan, syarat pembezalayan menjadi:
+
+<BlockMath math="\begin{aligned} &amp;(x_0^2 - r^2)m^2 - 2x_0y_0m + (y_0^2 - r^2) \\ &amp;= 0 \end{aligned}" />
+
+Punca-puncanya ialah kecerunan dua tangen yang tidak mencancang. Kalau tangen mencancang mungkin wujud, uruskan <InlineMath math="x=x_0" /> secara berasingan kerana garis itu tidak boleh ditulis sebagai <InlineMath math="y=mx+c" />.
+
+## Mencari Dua Tangen dari Titik Luar
+
+Tentukan dua garis tangen kepada <InlineMath math="x^2+y^2=25" /> yang melalui <InlineMath math="A(7,1)" />.
+
+**Langkah 1**: Semak bahawa <InlineMath math="A" /> terletak **di luar bulatan**.
+
+<BlockMath math="7^2 + 1^2 = 49 + 1 = 50 > 25 \quad \checkmark" />
+
+**Langkah 2**: Gantikan <InlineMath math="x_0=7" />, <InlineMath math="y_0=1" />, dan <InlineMath math="r^2=25" /> ke dalam persamaan kuadratik bagi <InlineMath math="m" />:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(49 - 25)m^2 - 2(7)(1)m + (1 - 25) \\ &amp;= 0 \end{aligned}" />
+  <BlockMath math="24m^2 - 14m - 24 = 0" />
+  <BlockMath math="12m^2 - 7m - 12 = 0" />
+</MathContainer>
+
+**Langkah 3**: Selesaikan persamaan kuadratik itu.
+
+<BlockMath math="\begin{aligned} m &amp;= \frac{7 \pm \sqrt{49 + 576}}{24} \\ &amp;= \frac{7 \pm \sqrt{625}}{24} \\ &amp;= \frac{7 \pm 25}{24} \end{aligned}" />
+
+Jadi <InlineMath math="m_1 = \frac{32}{24} = \frac{4}{3}" /> dan <InlineMath math="m_2 = \frac{-18}{24} = -\frac{3}{4}" />.
+
+**Langkah 4**: Gunakan setiap kecerunan dalam **persamaan bentuk titik-kecerunan** yang melalui <InlineMath math="A" />.
+
+<MathContainer>
+  <BlockMath math="y - 1 = \frac{4}{3}(x - 7) \Rightarrow 4x - 3y = 25" />
+  <BlockMath math="\begin{aligned} y - 1 &amp;= -\frac{3}{4}(x - 7) \\ &amp;\Rightarrow 3x + 4y \\ &amp;= 25 \end{aligned}" />
+</MathContainer>
+
+## Latihan
+
+Setiap soalan meminta persamaan garis yang menyentuh bulatan pada satu titik, jadi mulakan dengan **syarat tangen**, kemudian gunakan titik atau kecerunan yang diberi.
+
+1. Tentukan persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = 16" /> pada titik <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />.
+
+2. Cari persamaan tangen kepada bulatan <InlineMath math="x^2 + y^2 = 9" /> dengan kecerunan <InlineMath math="-\frac{1}{2}" />.
+
+3. Tentukan persamaan tangen kepada bulatan <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> yang melalui titik <InlineMath math="(11, 10)" />.
+
+4. Sebuah bulatan mempunyai persamaan <InlineMath math="x^2 + y^2 - 6x - 8y = 0" />. Tentukan persamaan tangen yang selari dengan garis <InlineMath math="3x + 4y = 7" />.
+
+### Jalan Kerja
+
+**Penyelesaian 1**:
+
+Untuk bulatan <InlineMath math="x^2 + y^2 = 16" /> pada titik <InlineMath math="(2\sqrt{2}, 2\sqrt{2})" />, gunakan rumus:
+
+<BlockMath math="x \cdot x_1 + y \cdot y_1 = r^2" />
+
+**Langkah 1**: Gantikan **koordinat titik sentuhan**
+
+<MathContainer>
+  <BlockMath math="x \cdot 2\sqrt{2} + y \cdot 2\sqrt{2} = 16" />
+  <BlockMath math="2\sqrt{2}x + 2\sqrt{2}y = 16" />
+</MathContainer>
+
+**Langkah 2**: Permudahkan dengan membahagikan kedua-dua belah dengan <InlineMath math="2\sqrt{2}" />
+
+<BlockMath math="\begin{aligned} x + y &amp;= \frac{16}{2\sqrt{2}} \\ &amp;= \frac{8}{\sqrt{2}} \\ &amp;= \frac{8\sqrt{2}}{2} \\ &amp;= 4\sqrt{2} \end{aligned}" />
+
+Jadi persamaan tangennya ialah <InlineMath math="x + y = 4\sqrt{2}" />.
+
+**Penyelesaian 2**:
+
+Untuk kecerunan <InlineMath math="m = -\frac{1}{2}" /> dan <InlineMath math="r = 3" />, gunakan rumus:
+
+<BlockMath math="y = mx \pm r\sqrt{1 + m^2}" />
+
+**Langkah 1**: Kira nilai <InlineMath math="\sqrt{1 + m^2}" />
+
+<BlockMath math="\begin{aligned} \sqrt{1 + m^2} &amp;= \sqrt{1 + \left(-\frac{1}{2}\right)^2} \\ &amp;= \sqrt{1 + \frac{1}{4}} \\ &amp;= \sqrt{\frac{5}{4}} \\ &amp;= \frac{\sqrt{5}}{2} \end{aligned}" />
+
+**Langkah 2**: Gantikan ke dalam rumus
+
+<BlockMath math="y = -\frac{1}{2}x \pm 3 \cdot \frac{\sqrt{5}}{2} = -\frac{1}{2}x \pm \frac{3\sqrt{5}}{2}" />
+
+Jadi **dua persamaan tangen** itu ialah: <InlineMath math="y = -\frac{1}{2}x + \frac{3\sqrt{5}}{2}" /> dan <InlineMath math="y = -\frac{1}{2}x - \frac{3\sqrt{5}}{2}" />.
+
+**Penyelesaian 3**:
+
+Bulatan <InlineMath math="(x-3)^2 + (y-4)^2 = 25" /> mempunyai pusat <InlineMath math="(3,4)" /> dan jejari <InlineMath math="r = 5" />.
+
+**Langkah 1**: Semak kedudukan titik <InlineMath math="(11,10)" />
+
+<BlockMath math="\begin{aligned} &amp;(11-3)^2 + (10-4)^2 \\ &amp;= 8^2 + 6^2 \\ &amp;= 64 + 36 \\ &amp;= 100 > 25 \end{aligned}" />
+
+Titik itu berada di luar bulatan.
+
+**Langkah 2**: **Anjakkan pusat ke asalan**. Apabila diukur dari pusat, titik <InlineMath math="(11,10)" /> mempunyai koordinat <InlineMath math="(8,6)" />.
+
+**Langkah 3**: Bentuk persamaan kuadratik bagi kecerunan dari <InlineMath math="(8,6)" /> ke bulatan <InlineMath math="x^2 + y^2 = 25" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(8^2 - 25)m^2 - 2(8)(6)m \\ &amp;\quad{}+ (6^2 - 25) = 0 \end{aligned}" />
+  <BlockMath math="39m^2 - 96m + 11 = 0" />
+</MathContainer>
+
+**Langkah 4**: Selesaikannya dengan rumus kuadratik.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} m &amp;= \frac{96 \pm \sqrt{96^2 - 4(39)(11)}}{2(39)} \\ &amp;= \frac{96 \pm \sqrt{9216 - 1716}}{78} \end{aligned}" />
+  <BlockMath math="m = \frac{96 \pm \sqrt{7500}}{78} = \frac{96 \pm 50\sqrt{3}}{78}" />
+</MathContainer>
+
+**Langkah 5**: Permudahkan kecerunan itu dan gunakan bentuk titik-kecerunan yang melalui <InlineMath math="(11,10)" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_1 = \frac{48 + 25\sqrt{3}}{39} \\ &amp;\text{dan} \\ &amp;m_2 = \frac{48 - 25\sqrt{3}}{39} \end{aligned}" />
+  <BlockMath math="y-10=\frac{48+25\sqrt{3}}{39}(x-11)" />
+  <BlockMath math="y-10=\frac{48-25\sqrt{3}}{39}(x-11)" />
+</MathContainer>
+
+Inilah dua garis tangen yang melalui <InlineMath math="(11,10)" />.
+
+**Penyelesaian 4**:
+
+**Langkah 1**: Sempurnakan kuasa dua untuk menulis persamaan bulatan dalam bentuk piawai.
+
+<MathContainer>
+  <BlockMath math="x^2 + y^2 - 6x - 8y = 0" />
+  <BlockMath math="\begin{aligned} &amp;(x^2 - 6x + 9) + (y^2 - 8y + 16) \\ &amp;= 9 + 16 \end{aligned}" />
+  <BlockMath math="(x-3)^2 + (y-4)^2 = 25" />
+</MathContainer>
+
+Pusat <InlineMath math="(3,4)" />, jejari <InlineMath math="r = 5" />.
+
+**Langkah 2**: Baca kecerunan garis yang diberi. Oleh sebab <InlineMath math="3x + 4y = 7" /> boleh ditulis sebagai <InlineMath math="y = -\frac{3}{4}x + \frac{7}{4}" />, **setiap garis yang selari** dengannya mempunyai kecerunan <InlineMath math="m = -\frac{3}{4}" />.
+
+**Langkah 3**: Gantikan pusat <InlineMath math="(3,4)" />, jejari, dan kecerunan ke dalam rumus tangen.
+
+<MathContainer>
+  <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5\sqrt{1 + \frac{9}{16}}" />
+  <BlockMath math="y - 4 = -\frac{3}{4}(x - 3) \pm 5 \cdot \frac{5}{4}" />
+  <BlockMath math="y = -\frac{3}{4}x + \frac{9}{4} + 4 \pm \frac{25}{4}" />
+</MathContainer>
+
+**Langkah 4**: Permudahkan kedua-dua persamaan.
+
+<MathContainer>
+  <BlockMath math="y = -\frac{3}{4}x + \frac{50}{4} = -\frac{3}{4}x + \frac{25}{2}" />
+  <BlockMath math="y = -\frac{3}{4}x" />
+</MathContainer>
+
+Jadi **dua persamaan tangen** itu ialah: <InlineMath math="y = -\frac{3}{4}x + \frac{25}{2}" /> dan <InlineMath math="y = -\frac{3}{4}x" />.

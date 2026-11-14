@@ -1,50 +1,37 @@
-Points <InlineMath math="A" /> and <InlineMath math="B" /> both lie above the <InlineMath math="x" />-axis, so the path <InlineMath math="A\to P\to B" /> must touch the axis and come back up. The right move is **reflecting one of the points in the <InlineMath math="x" />-axis**, which turns the path into a straight line.
+The problem names only two side lengths, so the isosceles triangle **can be built in two ways**. The plan: find both possible third sides, check that both really form a triangle, compute each area, and compare it with <InlineMath math="7" />.
 
-<MathVisual
-  title={<>Shortest path through the <InlineMath math="x" />-axis</>}
-  description={<>The reflection of <InlineMath math="B" /> in the <InlineMath math="x" />-axis is <InlineMath math="B'" />. The segment <InlineMath math="PB" /> is as long as <InlineMath math="PB'" />, so the shortest path follows the straight line from <InlineMath math="A" /> to <InlineMath math="B'" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -5, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
-      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
-      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
-      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
-      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
-      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
-      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
-      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
-      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
-      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(1,2)" />,
-    b: <InlineMath math="B(7,4)" />,
-    image: <InlineMath math="B'(7,-4)" />,
-    p: <InlineMath math="P(3,0)" />,
-  }}
-/>
+# Finding the possible sides
 
-# Reflecting point B
+In an isosceles triangle, the third side equals one of the two given sides. So the sides are <InlineMath math="4, 4, 7" /> or <InlineMath math="4, 7, 7" />. A triangle exists when **the two shorter sides add up to more than the longest side**. For <InlineMath math="4, 4, 7" />, <InlineMath math="4+4=8>7" />. For <InlineMath math="4, 7, 7" />, <InlineMath math="4+7=11>7" />. Both triangles exist.
 
-The reflection of <InlineMath math="B(7,4)" /> in the <InlineMath math="x" />-axis is <InlineMath math="B'(7,-4)" />. Every point <InlineMath math="P" /> on the <InlineMath math="x" />-axis is equally far from <InlineMath math="B" /> and from <InlineMath math="B'" />, so <InlineMath math="AP+PB=AP+PB'" />. A path from <InlineMath math="A" /> to <InlineMath math="B'" /> is **shortest when it is straight**, and that straight line does cross the <InlineMath math="x" />-axis because <InlineMath math="A" /> is above the axis and <InlineMath math="B'" /> is below it.
+# Computing the area in the first case
 
-<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
+In the triangle <InlineMath math="4, 4, 7" />, the base is <InlineMath math="7" /> and both legs are <InlineMath math="4" />. The height from the top vertex **cuts the base into two equal parts**, each <InlineMath math="\frac72" />. Call that height <InlineMath math="t" /> and the area <InlineMath math="L_1" />.
 
-# Finding point P
+<BlockMath math="\begin{aligned}
+t^2&=4^2-\left(\tfrac72\right)^2=16-\tfrac{49}{4}=\tfrac{15}{4}\\
+t&=\tfrac{\sqrt{15}}{2}\\
+L_1&=\tfrac12\cdot7\cdot\tfrac{\sqrt{15}}{2}=\tfrac{7\sqrt{15}}{4}
+\end{aligned}" />
 
-The line <InlineMath math="AB'" /> has gradient <InlineMath math="\frac{-4-2}{7-1}=-1" />, so its equation is <InlineMath math="y-2=-(x-1)" />. It meets the <InlineMath math="x" />-axis at <InlineMath math="P(3,0)" />. **Check the value**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> and <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, which add up to <InlineMath math="6\sqrt2" />.
+Compare with <InlineMath math="7" />: <InlineMath math="\frac{7\sqrt{15}}{4}<7" /> means the same as <InlineMath math="\sqrt{15}<4" />, which is true because <InlineMath math="15<16" />. In this case <InlineMath math="P<Q" />.
 
-The value <InlineMath math="2\sqrt{10}" /> is the direct distance <InlineMath math="AB" />, which never touches the <InlineMath math="x" />-axis. The value <InlineMath math="5+\sqrt{13}" /> chooses <InlineMath math="P(4,0)" /> below the midpoint of the <InlineMath math="x" />-coordinates. The value <InlineMath math="2+2\sqrt{13}" /> chooses <InlineMath math="P" /> directly below <InlineMath math="A" />, and <InlineMath math="4+2\sqrt{10}" /> chooses <InlineMath math="P" /> directly below <InlineMath math="B" />. All three are longer than <InlineMath math="6\sqrt2" />.
+# Computing the area in the second case
 
-So the smallest value of <InlineMath math="AP+PB" /> is <InlineMath math="6\sqrt2" />.
+In the triangle <InlineMath math="4, 7, 7" />, the base is <InlineMath math="4" /> and both legs are <InlineMath math="7" />. The height cuts the base into <InlineMath math="2" /> and <InlineMath math="2" />. Call the area <InlineMath math="L_2" />.
+
+<BlockMath math="\begin{aligned}
+t^2&=7^2-2^2=45\\
+t&=3\sqrt5\\
+L_2&=\tfrac12\cdot4\cdot3\sqrt5=6\sqrt5
+\end{aligned}" />
+
+Since <InlineMath math="(6\sqrt5)^2=180>49=7^2" />, **in this case <InlineMath math="P>Q" />**.
+
+# Drawing the conclusion
+
+Both triangles fit every piece of information in the problem, but one gives <InlineMath math="P<Q" /> and the other gives <InlineMath math="P>Q" />. So **the relation between <InlineMath math="P" /> and <InlineMath math="Q" /> can't be pinned down**.
+
+The option <InlineMath math="P>Q" /> comes from using only the triangle <InlineMath math="4, 7, 7" />, for example by thinking the triangle <InlineMath math="4, 4, 7" /> can't exist. The option <InlineMath math="Q>P" /> comes from using only the triangle <InlineMath math="4, 4, 7" />. The option <InlineMath math="P=Q" /> happens in neither case, because <InlineMath math="\left(\frac{7\sqrt{15}}{4}\right)^2=\frac{735}{16}" /> and <InlineMath math="180" /> both differ from <InlineMath math="49" />.
+
+So the information given isn't enough to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.

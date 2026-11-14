@@ -31,10 +31,10 @@ A table lists all possible combinations:
 <BlockMath math="\begin{aligned} \text{Total combinations} &amp;= 3 \times 4 \\ &amp;= 12 \text{ ways} \end{aligned}" />
 </MathContainer>
 
-Each package is one pair (platform, subject), so you can lay them out as a grid: 3 rows for the platforms and 4 columns for the subjects. Every dot is one package, and the grid holds <InlineMath math="3 \times 4 = 12" /> dots. That is the multiplication rule in one picture.
+Each package is one pair (platform, subject), so you can lay them out as a grid: <InlineMath math="3" /> rows for the platforms and <InlineMath math="4" /> columns for the subjects. Every dot is one package, and the grid holds <InlineMath math="3 \times 4 = 12" /> dots. That is the multiplication rule in one picture.
 
 <MathVisual
-  title={<>Twelve packages as a 3 by 4 grid</>}
+  title={<>Twelve packages as a <InlineMath math="3" /> by <InlineMath math="4" /> grid</>}
   description={<>Three rows of platforms times four columns of subjects give twelve dots, one for each package.</>}
   labels={{
     g34: <InlineMath math="3 \times 4 = 12" />,
@@ -122,7 +122,7 @@ Each slot of the code has its own number of choices: <InlineMath math="3" /> let
 
 <BarChart
   title={<>Choices in each slot of the code</>}
-  description={<>The number of choices in the letter, digit and color slots, whose product is 30.</>}
+  description={<>The number of choices in the letter, digit and color slots, whose product is <InlineMath math="30" />.</>}
   yAxisLabel="Choices"
   data={[["letter", 3], ["digit", 5], ["color", 2]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Choices", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -152,11 +152,11 @@ For the same case with repetition allowed:
 <BlockMath math="\begin{aligned} \text{Total numbers} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ numbers} \end{aligned}" />
 </MathContainer>
 
-Compare the two cases for three-digit numbers made from the digits <InlineMath math="1" /> to <InlineMath math="5" />. Without repetition the slots offer <InlineMath math="5 \times 4 \times 3 = 60" /> numbers, and with repetition <InlineMath math="5 \times 5 \times 5 = 125" />. Allowing repeats keeps every slot at 5 choices, so the count more than doubles.
+Compare the two cases for three-digit numbers made from the digits <InlineMath math="1" /> to <InlineMath math="5" />. Without repetition the slots offer <InlineMath math="5 \times 4 \times 3 = 60" /> numbers, and with repetition <InlineMath math="5 \times 5 \times 5 = 125" />. Allowing repeats keeps every slot at <InlineMath math="5" /> choices, so the count more than doubles.
 
 <BarChart
   title={<>With and without repetition</>}
-  description={<>The number of three-digit numbers from the digits 1 to 5, without and with repetition.</>}
+  description={<>The number of three-digit numbers from the digits <InlineMath math="1" /> to <InlineMath math="5" />, without and with repetition.</>}
   yAxisLabel="Numbers"
   data={[["no repetition", 5 * 4 * 3], ["repetition", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Numbers", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

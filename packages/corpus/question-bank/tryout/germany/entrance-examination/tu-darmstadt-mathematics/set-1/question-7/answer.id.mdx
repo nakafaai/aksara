@@ -1,22 +1,40 @@
-Tentukan dulu persamaan garis <InlineMath math="y=mx+b" /> dari kedua titik. Notasi Jerman menulis titik sebagai <InlineMath math="P(-1\mid4)" />. **Titik potong dengan sumbu <InlineMath math="x" />** adalah titik dengan <InlineMath math="y=0" />.
+# Apa yang tersisa setiap kali dikuras
 
-Gradien adalah perubahan <InlineMath math="y" /> dibagi perubahan <InlineMath math="x" />.
+Misalkan pada pengurasan pertama dibuang <InlineMath math="x" /> liter. Air tidak membawa zat antibeku, jadi **setiap pengurasan membuang bagian yang sama dari zat antibeku seperti dari cairannya**, lalu volumenya kembali menjadi <InlineMath math="40" /> liter.
 
-<BlockMath math="m=\frac{-4-4}{3-(-1)}=\frac{-8}{4}=-2" />
+- Pengurasan pertama membuang <InlineMath math="\frac{x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{x}{40}" /> bagian zat antibeku.
+- Pengurasan kedua membuang <InlineMath math="2x" /> liter, yaitu <InlineMath math="\frac{2x}{40}" /> bagian, jadi tersisa <InlineMath math="1-\frac{2x}{40}" /> dari yang ada saat itu.
 
-Konstanta <InlineMath math="b" /> diperoleh dengan menyubstitusikan <InlineMath math="P(-1\mid4)" />: <InlineMath math="4=-2\cdot(-1)+b" />, sehingga <InlineMath math="b=2" />. Persamaan garisnya adalah <InlineMath math="y=-2x+2" />.
+Kadarnya turun dari <InlineMath math="20\,\%" /> ke <InlineMath math="5\,\%" />, yaitu menjadi <InlineMath math="\frac14" /> kadar awalnya. **Kedua sisa itu dikalikan, bukan dijumlahkan**:
+
+<BlockMath math="\left(1-\frac{x}{40}\right)\left(1-\frac{2x}{40}\right)=\frac14" />
+
+# Menyelesaikan persamaan kuadratnya
+
+**Kalikan kedua ruas dengan <InlineMath math="1600" />** agar pecahannya hilang:
 
 <BlockMath math="\begin{aligned}
-0&=-2x+2 \\
-x&=1
+(40-x)(40-2x)&=400 \\
+1600-120x+2x^2&=400 \\
+x^2-60x+600&=0 \\
+x&=30\pm\sqrt{900-600}=30\pm10\sqrt3
 \end{aligned}" />
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="Q(3\mid-4)" />: <InlineMath math="-2\cdot3+2=-4" />, jadi garis itu memang melalui <InlineMath math="Q" />. Selain itu, <InlineMath math="x=1" /> berada di antara absis <InlineMath math="P" /> dan <InlineMath math="Q" />, tempat nilai <InlineMath math="y" /> pada garis berubah dari positif ke negatif.
+# Memilih akar yang mungkin
 
-Jadi, garis itu memotong sumbu <InlineMath math="x" /> di titik <InlineMath math="(1\mid0)" />.
+Pengurasan kedua membuang <InlineMath math="2x" /> liter dari tangki <InlineMath math="40" /> liter, jadi **harus berlaku <InlineMath math="2x\le40" />, yaitu <InlineMath math="x\le20" />**.
 
-- <InlineMath math="(-1\mid0)" /> berasal dari konstanta yang salah, <InlineMath math="b=-2" />, yaitu dari <InlineMath math="0=-2x-2" />.
-- <InlineMath math="(2\mid0)" /> berasal dari mengambil ordinat <InlineMath math="P" />, yaitu <InlineMath math="4" />, sebagai konstanta: <InlineMath math="0=-2x+4" />.
-- <InlineMath math="(0\mid2)" /> adalah titik potong dengan sumbu <InlineMath math="y" />, bukan sumbu <InlineMath math="x" />.
-- <InlineMath math="(0\mid1)" /> tidak terletak pada garis, karena di <InlineMath math="x=0" /> nilai <InlineMath math="y" /> pada garis adalah <InlineMath math="2" />.
-- <InlineMath math="(7\mid0)" /> berasal dari kebalikan gradien, <InlineMath math="m=-\frac12" />. Garisnya menjadi <InlineMath math="y=-\frac12x+\frac72" />, yang tidak lagi melalui <InlineMath math="Q" />.
+- <InlineMath math="30+10\sqrt3\approx47{,}3" /> bahkan lebih besar dari isi tangki, jadi gugur.
+- <InlineMath math="30-10\sqrt3\approx12{,}7" /> memenuhi <InlineMath math="x\le20" />.
+
+Cek: <InlineMath math="1-\frac{12{,}7}{40}\approx0{,}683" /> dan <InlineMath math="1-\frac{25{,}4}{40}\approx0{,}366" />, hasil kalinya sekitar <InlineMath math="0{,}25" />.
+
+Jadi, pada pengurasan pertama dibuang <InlineMath math="30-10\sqrt3" /> liter, sekitar <InlineMath math="12{,}7" /> liter.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="30+10\sqrt3" /> liter **lupa memeriksa akar terhadap isi tangki**. Liter sebanyak itu tidak mungkin dibuang dari <InlineMath math="40" /> liter.
+- Pilihan yang memuat kedua akar juga lupa pemeriksaan itu.
+- <InlineMath math="20" /> liter menganggap kedua pengurasan sama besar, sehingga <InlineMath math="\left(1-\frac{x}{40}\right)^2=\frac14" />.
+- <InlineMath math="10" /> liter menjumlahkan bagian yang dibuang, <InlineMath math="\frac{x}{40}+\frac{2x}{40}=\frac34" />, padahal pengurasan kedua hanya mengenai zat antibeku yang masih tersisa.
+- <InlineMath math="60-20\sqrt3" /> liter **adalah banyaknya cairan pada pengurasan kedua**, yaitu <InlineMath math="2x" />, padahal yang ditanya pengurasan pertama.

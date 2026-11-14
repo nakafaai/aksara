@@ -1,0 +1,190 @@
+export const metadata = {
+  title: "Pengiraan Nilai Eigen Berangka",
+  description: "Kira nilai eigen dengan lelaran kuasa, lelaran songsang dengan anjakan dan algoritma QR. Fahami andaian penumpuan, semakan reja dan pemilihan kaedah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-17",
+  dateModified: "2026-09-01",
+  subject: "Kaedah Linear AI",
+};
+
+## Kaedah untuk Satu Nilai Eigen atau Seluruh Spektrum
+
+Pasangan eigen bagi matriks segi empat sama <InlineMath math="A" /> memenuhi
+
+<BlockMath math="Av=\lambda v,\qquad v\ne0" />
+
+Untuk matriks simbolik yang kecil, kita boleh menyelesaikan <InlineMath math="\det(A-\lambda I)=0" />. Perisian berangka biasanya <Highlight>mengelak daripada membentuk polinomial ciri dan mencari puncanya</Highlight> kerana pekalinya boleh menjadi peka terhadap pembundaran. Apabila hanya sebahagian spektrum bagi matriks jarang yang besar diperlukan, kaedah Krylov menggunakan hasil darab matriks-vektor tanpa membentuk polinomial itu. Algoritma matriks padat yang mengira seluruh spektrum pula bekerja dengan pemfaktoran matriks.
+
+Bahagian spektrum yang diperlukan dan struktur matriks menentukan algoritma yang dipilih:
+
+- Lelaran kuasa menganggar satu nilai eigen yang mempunyai magnitud terbesar.
+- Lelaran songsang dengan anjakan menyasarkan nilai eigen yang berhampiran dengan anjakan yang dipilih.
+- Algoritma <InlineMath math="\mathrm{QR}" /> mengira seluruh spektrum bagi matriks padat.
+- Kaedah Lanczos dan Arnoldi menyasarkan sebahagian kecil spektrum bagi matriks jarang yang besar.
+
+## Lelaran Kuasa
+
+Rumus di bawah menggunakan matriks nyata dan vektor lelaran nyata. Untuk vektor lelaran kompleks, gantikan transpos dalam hasil bahagi Rayleigh dengan transpos konjugat. Jika <InlineMath math="z_k=0" />, penormalan tidak boleh dilakukan. Semak sama ada vektor sebelumnya ialah vektor eigen bagi nilai eigen sifar.
+
+Pilih vektor permulaan bukan sifar <InlineMath math="q_0" /> dan normalkan vektor itu. Ulang
+
+<MathContainer>
+<BlockMath math="z_k=Aq_{k-1}" />
+<BlockMath math="q_k=\frac{z_k}{\|z_k\|_2}" />
+<BlockMath math="\mu_k=q_k^TAq_k" />
+</MathContainer>
+
+Skalar <InlineMath math="\mu_k" /> ialah hasil bahagi Rayleigh. Untuk matriks yang boleh dipepenjurukan dengan **magnitud dominan yang unik**,
+
+<BlockMath math="|\lambda_1|>|\lambda_2|\ge\cdots\ge|\lambda_n|" />
+
+Jika ketaksamaan di atas berlaku dan vektor permulaan mempunyai komponen bukan sifar dalam arah eigen dominan, <InlineMath math="q_k" /> akan menghampiri arah eigen itu. Ralat asimptot biasanya mengecil secara berkadar dengan
+
+<BlockMath math="\left|\frac{\lambda_2}{\lambda_1}\right|^k" />
+
+Hal ini menerangkan dua punca kegagalan. Magnitud dominan yang sama boleh menghalang penumpuan kepada satu vektor, manakala pekali sifar dalam arah dominan bagi asas eigen menghalang penumpuan kepada arah itu. Untuk matriks simetri, hal ini setara dengan keortogonan terhadap vektor eigen dominan. Untuk matriks tak normal, asas eigen tidak semestinya ortogon, jadi pekali itu mesti disemak dalam asas tersebut.
+
+### Berhenti Berdasarkan Reja
+
+Jangan berhenti hanya kerana anggaran nilai eigen yang berturutan kelihatan serupa. Semak reja pasangan eigen
+
+<BlockMath math="r_k=Aq_k-\mu_kq_k" />
+
+Syarat yang mengambil kira skala ialah
+
+<BlockMath math="\|r_k\|_2\le \tau\bigl(\|A\|_2+|\mu_k|\bigr)" />
+
+Di sini, <InlineMath math="\tau" /> ialah toleransi yang diminta. Reja yang kecil menjamin bahawa <Highlight>pasangan yang dikira hampir memenuhi persamaan nilai eigen</Highlight>, walaupun reja itu sendiri tidak memberitahu nilai eigen berhampiran yang mana satu telah ditemui.
+
+Dalam contoh di bawah, anggaran <InlineMath math="\mu_k" /> untuk <InlineMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> memenuhi <InlineMath math="3-\mu_k=\tfrac2{9^k+1}" />. Ralatnya dibahagi dengan kira-kira <InlineMath math="9=(\lambda_1/\lambda_2)^2" /> pada setiap langkah, kerana hasil bahagi Rayleigh bagi matriks simetri menggandakan kadar penumpuan vektornya.
+
+<BarChart
+  title={<>Ralat <InlineMath math="3-\mu_k" /> menyusut kira-kira sembilan kali ganda setiap langkah</>}
+  description={<>Setiap bar ialah <InlineMath math="\tfrac2{9^k+1}" /> untuk lelaran <InlineMath math="k" /> yang tertulis di bawahnya: <InlineMath math="1" />, kemudian <InlineMath math="0.2" />, kemudian kira-kira <InlineMath math="0.024" />.</>}
+  yAxisLabel="Ralat anggaran"
+  data={[
+    { name: "0", value: 2 / (9 ** 0 + 1) },
+    { name: "1", value: 2 / (9 ** 1 + 1) },
+    { name: "2", value: 2 / (9 ** 2 + 1) },
+    { name: "3", value: 2 / (9 ** 3 + 1) },
+    { name: "4", value: 2 / (9 ** 4 + 1) },
+  ]}
+  chartConfig={{ value: { label: "Ralat anggaran", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Contoh Lengkap Lelaran Kuasa
+
+Pertimbangkan
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}2&1\\1&2\end{pmatrix}" />
+<BlockMath math="q_0=\begin{pmatrix}1\\0\end{pmatrix}" />
+</MathContainer>
+
+Langkah pertama memberi
+
+<MathContainer>
+<BlockMath math="z_1=Aq_0=\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="q_1=\frac{1}{\sqrt5}\begin{pmatrix}2\\1\end{pmatrix}" />
+<BlockMath math="\mu_1=q_1^TAq_1=\frac{14}{5}=2.8" />
+</MathContainer>
+
+Langkah kedua memberi
+
+<MathContainer>
+<BlockMath math="q_2=\frac{1}{\sqrt{41}}\begin{pmatrix}5\\4\end{pmatrix}" />
+<BlockMath math="\mu_2=\frac{122}{41}\approx2.97561" />
+</MathContainer>
+
+Vektor lelaran itu menghampiri
+
+<BlockMath math="q_*=\frac{1}{\sqrt2}\begin{pmatrix}1\\1\end{pmatrix},\qquad \lambda_*=3" />
+
+Nilai eigen yang satu lagi ialah <InlineMath math="1" />, jadi **faktor penumpuan yang dijangka** ialah <InlineMath math="|1/3|" /> bagi setiap lelaran selepas rejim asimptot dicapai.
+
+| Lelaran | Anggaran Rayleigh | Norma reja |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="14/5" /> | <InlineMath math="3/5" /> |
+| <InlineMath math="2" /> | <InlineMath math="122/41" /> | <InlineMath math="9/41" /> |
+
+Untuk matriks ini, vektor lelaran kuasa <InlineMath math="q_k" /> menghala sepanjang <InlineMath math="(3^k+1,3^k-1)^T" />, dan anggaran Rayleighnya ialah <InlineMath math="\mu_k=q_k^TAq_k=3-\frac{2}{9^k+1}" />. Ikuti titik magenta di bawah: <InlineMath math="\mu_0=2" />, <InlineMath math="\mu_1=14/5" />, kemudian <InlineMath math="\mu_2=122/41" />. Jurang ke garis ungu <InlineMath math="3" /> mengecil dengan faktor yang menghampiri <InlineMath math="9" /> pada setiap langkah, iaitu kuasa dua bagi faktor <InlineMath math="1/3" /> untuk arah vektor. Sebab itulah anggaran nilai eigen sudah sangat hampir dengan <InlineMath math="3" /> sedangkan <InlineMath math="q_k" /> masih sedikit menyimpang.
+
+<MathVisual
+  title={<>Anggaran Rayleigh mendaki ke <InlineMath math="\lambda_1=3" /></>}
+  description={<>Titik magenta ialah anggaran Rayleigh <InlineMath math="\mu_k" /> bagi vektor lelaran kuasa untuk <InlineMath math="k=0,1,2" />. Garis ungu ialah nilai eigen terbesar <InlineMath math="3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: 1.6, max: 3.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 3 }], appearance: "secondary" },
+      { id: "mu0", kind: "point", at: { x: 0, y: 2 }, appearance: "answer" },
+      { id: "mu1", kind: "point", at: { x: 1, y: 14 / 5 }, appearance: "answer" },
+      { id: "mu2", kind: "point", at: { x: 2, y: 122 / 41 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 3, y: 3 }, placement: "above-left" },
+      { key: "mu0", objectId: "mu0", at: { x: 0, y: 2 }, placement: "below" },
+      { key: "mu1", objectId: "mu1", at: { x: 1, y: 14 / 5 }, placement: "below-right" },
+      { key: "mu2", objectId: "mu2", at: { x: 2, y: 122 / 41 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "top": <InlineMath math="\lambda_1=3" />,
+    "mu0": <InlineMath math="\mu_0=2" />,
+    "mu1": <InlineMath math="\mu_1=\tfrac{14}{5}" />,
+    "mu2": <InlineMath math="\mu_2=\tfrac{122}{41}" />,
+  }}
+/>
+
+## Lelaran Songsang dengan Anjakan
+
+Pilih anjakan yang **bukan nilai eigen**. Penumpuan kepada satu arah eigen memerlukan satu nilai eigen yang paling hampir secara unik dan pekali bukan sifar dalam arah asas eigennya. Jarak yang sama boleh menghalang penumpuan kepada satu arah.
+
+Lelaran kuasa mengutamakan magnitud terbesar. Untuk menyasarkan nilai eigen yang berhampiran dengan anjakan <InlineMath math="\sigma" />, ulang
+
+<MathContainer>
+<BlockMath math="(A-\sigma I)z_k=q_{k-1}" />
+<BlockMath math="q_k=\frac{z_k}{\|z_k\|_2}" />
+<BlockMath math="\mu_k=q_k^TAq_k" />
+</MathContainer>
+
+Nilai eigen bagi <InlineMath math="(A-\sigma I)^{-1}" /> ialah <InlineMath math="1/(\lambda_i-\sigma)" />, jadi nilai eigen yang paling hampir dengan <InlineMath math="\sigma" /> menjadi dominan. Jangan sekali-kali membentuk songsangan secara eksplisit. **Faktorkan** <InlineMath math="A-\sigma I" /> dan selesaikan satu sistem linear pada setiap lelaran. Anjakan yang tetap membolehkan pemfaktoran itu digunakan semula.
+
+Jika <InlineMath math="\sigma" /> terlalu hampir dengan sesuatu nilai eigen, sistem yang dianjak itu berkeadaan buruk. Oleh itu, penyelesaian sistem linear yang tepat dan semakan reja sangat penting.
+
+Untuk matriks yang sama dengan nilai eigen <InlineMath math="3" /> dan <InlineMath math="1" />, ambil anjakan <InlineMath math="\sigma=0.9" />. Matriks <InlineMath math="(A-\sigma I)^{-1}" /> mempunyai nilai eigen <InlineMath math="1/(1-0.9)=10" /> dan <InlineMath math="1/(3-0.9)\approx0.48" />, jadi lelaran songsang menguatkan arah eigen bagi <InlineMath math="1" /> kira-kira <InlineMath math="21" /> kali lebih kuat berbanding arah eigen bagi <InlineMath math="3" />.
+
+<BarChart
+  title={<>Anjakan <InlineMath math="\sigma=0.9" /> menguatkan nilai eigen <InlineMath math="1" /></>}
+  description={<>Bar menunjukkan <InlineMath math="1/|\lambda_i-\sigma|" /> untuk nilai eigen <InlineMath math="\lambda_i" /> yang tertulis di bawah setiap bar. Nilai eigen yang paling hampir dengan <InlineMath math="\sigma" /> mendapat bar yang paling tinggi.</>}
+  yAxisLabel="Faktor penguatan"
+  data={[
+    { name: "1", value: 1 / Math.abs(1 - 0.9) },
+    { name: "3", value: 1 / Math.abs(3 - 0.9) },
+  ]}
+  chartConfig={{ value: { label: "Faktor penguatan", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Algoritma QR untuk Seluruh Spektrum
+
+Mulakan dengan <InlineMath math="A_0=A" />. Pada lelaran <InlineMath math="k" />, kira
+
+<MathContainer>
+<BlockMath math="A_k=Q_kR_k" />
+<BlockMath math="A_{k+1}=R_kQ_k=Q_k^TA_kQ_k" />
+</MathContainer>
+
+Setiap langkah ialah **transformasi keserupaan ortogon**, jadi nilai eigen tetap dikekalkan. Algoritma <InlineMath math="\mathrm{QR}" /> yang praktikal mula-mula menurunkan matriks padat kepada bentuk Hessenberg, menggunakan anjakan, dan melakukan deflasi pada blok yang sudah menumpu. Untuk matriks nyata yang tak simetri, hadnya secara amnya ialah bentuk Schur nyata dengan blok pepenjuru <InlineMath math="1\times1" /> dan <InlineMath math="2\times2" />. Matriks simetri diturunkan kepada bentuk tiga pepenjuru dan menumpu kepada matriks pepenjuru.
+
+## Memilih Kaedah yang Sesuai
+
+| Matlamat dan struktur matriks | Kaedah yang sesuai | Semakan penting |
+| --- | --- | --- |
+| Satu pasangan eigen dominan | Lelaran kuasa | magnitud dominan yang unik dan komponen permulaan bukan sifar |
+| Pasangan eigen berhampiran <InlineMath math="\sigma" /> | Lelaran songsang dengan anjakan | penyelesaian yang stabil dengan <InlineMath math="A-\sigma I" /> |
+| Beberapa pasangan eigen ekstrem bagi matriks jarang simetri yang besar | Lanczos | kehilangan keortogonan dan reja |
+| Beberapa pasangan eigen bagi matriks jarang tak simetri yang besar | Arnoldi | saiz subruang, mula semula dan reja |
+| Seluruh spektrum bagi matriks padat | <InlineMath math="\mathrm{QR}" /> dengan anjakan ke bentuk Schur | blok pepenjuru atau kuasi-pepenjuru yang sudah menumpu |
+
+Ujian penerimaan terakhir sentiasa terikat pada pasangan eigen yang diminta: **semak reja**, kekalkan pasangan konjugat kompleks bagi matriks nyata, dan jangan mendakwa sesuatu vektor eigen itu tepat hanya kerana anggaran nilai eigennya sudah stabil.

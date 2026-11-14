@@ -1,0 +1,264 @@
+
+export const metadata = {
+  title: "Kaitan Matriks dengan Transformasi",
+  description: "Kaitkan matriks segi empat sama dengan putaran, pantulan, dan ricihan melalui vektor kedudukan dan contoh lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-09-13",
+  subject: "Transformasi Geometri",
+};
+
+## Memetakan Titik dengan Matriks
+
+Matriks <InlineMath math="2 \times 2" /> mentakrifkan transformasi linear pada satah Cartes. Matriks itu <Highlight>sentiasa memetakan asalan kepada dirinya sendiri</Highlight>, jadi translasi bukan sifar memerlukan penambahan vektor atau koordinat homogen.
+
+Titik pada satah Cartes boleh ditulis sebagai pasangan tertib <InlineMath math="(x,y)" /> atau sebagai vektor kedudukan:
+
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Kita menggunakan tatatanda vektor ini untuk menyatakan transformasi melalui pendaraban matriks.
+
+Pertimbangkan transformasi dengan matriks <InlineMath math="M" />:
+
+<BlockMath math="M = \begin{pmatrix} a & b \\ c & d \end{pmatrix}" />
+
+Imej <InlineMath math="P'(x',y')" /> bagi titik <InlineMath math="P(x,y)" /> diperoleh melalui pendaraban matriks:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} a &amp; b \\ c &amp; d \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} ax + by \\ cx + dy \end{pmatrix} \end{aligned}" />
+
+<InlineMath math="x' = ax + by" /> dan <InlineMath math="y' = cx + dy" />.
+
+## Mendarab Matriks dengan Vektor Kedudukan
+
+Biar vektor berikut mewakili sebarang titik pada satah Cartes:
+
+<BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}" />
+
+Kira hasil darab matriks ini dan kenal pasti transformasinya:
+
+<BlockMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
+
+**Penyelesaian**:
+
+Gunakan **baris pertama untuk koordinat mengufuk** dan baris kedua untuk koordinat mencancang:
+
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; -1 \\ 1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (-1)(y) \\ (1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} -y \\ x \end{pmatrix} \end{aligned}" />
+
+Matriks <InlineMath math="R_{90^\circ}" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,x)" />, jadi matriks itu memutarkan titik sebanyak <InlineMath math="90^\circ" /> mengikut arah lawan jam pada asalan:
+
+<ContentStack>
+
+<BlockMath math="R_{90^\circ} = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" />
+
+<MathVisual
+  title={
+    <>
+      Transformasi Titik <InlineMath math="P(2,3)" /> oleh Matriks{" "}
+      <InlineMath math="R_{90^\circ}" />
+    </>
+  }
+  description={
+    <>
+      Titik <InlineMath math="P(2,3)" /> ditransformasikan menjadi{" "}
+      <InlineMath math="P'(-3,2)" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="P(2,3)" />,
+    "l3": <InlineMath math="P'(-3,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -3, y: 2 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 3 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -3, y: 2 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+## Mendarab Matriks dengan Tiga Titik Serentak
+
+Cari imej bagi <InlineMath math="\triangle ABC" />, dengan bucu <InlineMath math="A(1,1)" />, <InlineMath math="B(4,1)" />, dan <InlineMath math="C(4,2)" /> yang ditransformasikan oleh matriks:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+**Penyelesaian**:
+
+Pertama, tulis koordinat titik sebagai **lajur matriks**:
+
+<BlockMath math="\begin{pmatrix} 1 & 4 & 4 \\ 1 & 1 & 2 \end{pmatrix}" />
+
+Tiga lajur itu sepadan dengan <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" />, mengikut tertib itu.
+
+Seterusnya, darab matriks ini dari kiri dengan:
+
+<BlockMath math="\begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+Kira setiap unsur dengan mendarab satu baris dengan satu lajur:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(-1)(1)+(0)(1) \\ &amp;m_{12}=(-1)(4)+(0)(1) \\ &amp;m_{13}=(-1)(4)+(0)(2) \\ &amp;m_{21}=(0)(1)+(-1)(1) \\ &amp;m_{22}=(0)(4)+(-1)(1) \\ &amp;m_{23}=(0)(4)+(-1)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} -1 &amp; 0 \\ 0 &amp; -1 \end{pmatrix} \begin{pmatrix} 1 &amp; 4 &amp; 4 \\ 1 &amp; 1 &amp; 2 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="= \begin{pmatrix} -1 & -4 & -4 \\ -1 & -1 & -2 \end{pmatrix}" />
+</MathContainer>
+
+Hasil transformasi ialah segi tiga baharu <InlineMath math="\triangle A'B'C'" /> dengan bucu <InlineMath math="A'(-1,-1)" />, <InlineMath math="B'(-4,-1)" />, dan <InlineMath math="C'(-4,-2)" />.
+
+Matriks <InlineMath math="R_{180^\circ}" /> mewakili putaran <InlineMath math="180^\circ" /> pada asalan:
+
+<ContentStack>
+
+<BlockMath math="R_{180^\circ} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}" />
+
+<MathVisual
+  title={
+    <>
+      Transformasi <InlineMath math="\triangle ABC" /> oleh Matriks{" "}
+      <InlineMath math="R_{180^\circ}" />
+    </>
+  }
+  description={
+    <>
+      Segi tiga <InlineMath math="ABC" /> ditransformasikan menjadi{" "}
+      <InlineMath math="A'B'C'" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="A(1,1)" />,
+    "l2": <InlineMath math="B(4,1)" />,
+    "l3": <InlineMath math="C(4,2)" />,
+    "l4": <InlineMath math="A'(-1,-1)" />,
+    "l5": <InlineMath math="B'(-4,-1)" />,
+    "l6": <InlineMath math="C'(-4,-2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 4, y: 1 }], appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: 4, y: 2 }], appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 2 }, { x: 1, y: 1 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -1, y: -1 }, { x: -4, y: -1 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -4, y: -1 }, { x: -4, y: -2 }], appearance: "secondary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: -2 }, { x: -1, y: -1 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 1 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 2 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: -1, y: -1 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -4, y: -1 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: -4, y: -2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+</ContentStack>
+
+## Latihan
+
+Cari dahulu **petua koordinat** melalui pendaraban baris dengan lajur. Dalam soalan kedua, perubahan mengufuk bergantung pada ketinggian titik, jadi titik yang berlainan tidak semestinya bergerak sejauh yang sama.
+
+1.  Kira hasil darab matriks berikut. Transformasi apakah yang diwakili oleh matriks itu?
+
+    <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix}" />
+2.  Satu transformasi mempunyai matriks berikut:
+
+    <BlockMath math="\begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+    Cari imej bagi segi tiga dengan bucu <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, dan <InlineMath math="C(0,1)" /> di bawah transformasi ini.
+
+### Penyelesaian
+
+Baca kedua-dua koordinat output sebelum menamakan transformasinya. **Putaran mengekalkan panjang**, sedangkan matriks umum boleh mengubah panjang sisi yang sepadan.
+
+**Penyelesaian 1**
+
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 0 &amp; 1 \\ -1 &amp; 0 \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} \\ &amp;= \begin{pmatrix} (0)(x) + (1)(y) \\ (-1)(x) + (0)(y) \end{pmatrix} \\ &amp;= \begin{pmatrix} y \\ -x \end{pmatrix} \end{aligned}" />
+
+Titik <InlineMath math="(x,y)" /> ditransformasikan menjadi <InlineMath math="(y,-x)" />.
+
+Ini ialah putaran <InlineMath math="90^\circ" /> mengikut arah jam, iaitu setara dengan putaran <InlineMath math="270^\circ" /> mengikut arah lawan jam, pada asalan.
+
+**Penyelesaian 2**
+
+Matriks transformasi:
+
+<BlockMath math="M = \begin{pmatrix} 1 & 2 \\ 0 & 1 \end{pmatrix}" />
+
+Bucu: <InlineMath math="A(2,0)" />, <InlineMath math="B(2,1)" />, <InlineMath math="C(0,1)" />.
+
+Matriks titik:
+
+<BlockMath math="\begin{pmatrix} 2 & 2 & 0 \\ 0 & 1 & 1 \end{pmatrix}" />
+
+Kira setiap unsur dengan mendarab satu baris dengan satu lajur:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(2)+(2)(0) \\ &amp;m_{12}=(1)(2)+(2)(1) \\ &amp;m_{13}=(1)(0)+(2)(1) \\ &amp;m_{21}=(0)(2)+(1)(0) \\ &amp;m_{22}=(0)(2)+(1)(1) \\ &amp;m_{23}=(0)(0)+(1)(1) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;\begin{pmatrix} 1 &amp; 2 \\ 0 &amp; 1 \end{pmatrix} \begin{pmatrix} 2 &amp; 2 &amp; 0 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \\ &amp;=\begin{pmatrix}m_{11}&amp;m_{12}&amp;m_{13}\\m_{21}&amp;m_{22}&amp;m_{23}\end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned}  &amp;= \begin{pmatrix} 2+0 &amp; 2+2 &amp; 0+2 \\ 0+0 &amp; 0+1 &amp; 0+1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 &amp; 4 &amp; 2 \\ 0 &amp; 1 &amp; 1 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Bucu imej: <InlineMath math="A'(2,0)" />, <InlineMath math="B'(4,1)" />, <InlineMath math="C'(2,1)" />.
+
+Ini ialah ricihan mengufuk: koordinat-<InlineMath math="x" /> berubah sebanyak dua kali koordinat-<InlineMath math="y" />, manakala <InlineMath math="y" /> kekal tidak berubah.
+
+Dalam ricihan ini, sisi <InlineMath math="AB" /> yang asalnya mencancang menjadi sisi condong <InlineMath math="A' B'" />. **Panjang sisi yang sepadan berubah**, tetapi kedua-dua segi tiga mengekalkan panjang tapak mengufuk dan tinggi yang sama:
+
+<MathContainer>
+  <BlockMath math="AB=1,\qquad A'B'=\sqrt{(4-2)^2+(1-0)^2}=\sqrt5" />
+  <BlockMath math="L=\frac12\cdot2\cdot1=1,\qquad L'=\frac12\cdot2\cdot1=1" />
+</MathContainer>
+
+<MathVisual
+  title={<>Ricihan mengufuk bagi sebuah segi tiga</>}
+  description={<>Titik pada ketinggian <InlineMath math="1" /> bergerak <InlineMath math="2" /> unit ke kanan. Titik <InlineMath math="A" /> pada paksi mengufuk kekal di tempatnya.</>}
+  labels={{
+    "l1": <InlineMath math="A=A'" />,
+    "l2": <InlineMath math="B=C'" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 2, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 0, y: 1 }, to: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 2, y: 1 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s1-p3", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 4, y: 1 }, { x: 2, y: 1 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 1 }, appearance: "secondary" },
+      { id: "s2-p2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "s2-p3", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s1", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "l3", objectId: "s1", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 4, y: 1 }, placement: "above-right" },
+    ],
+  }}
+/>

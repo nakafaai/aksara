@@ -1,19 +1,35 @@
-Rata-rata langsung bergantung pada <InlineMath math="x" />, yaitu <InlineMath math="\frac{505+x}{8}" />, karena tujuh nilai lainnya berjumlah 505. Median adalah rata-rata data ke-4 dan ke-5 setelah diurutkan, dan **data tengah itu bergantung pada letak <InlineMath math="x" />**. Jadi soal ini harus diselesaikan per kasus.
+Ada dua langkah. Pertama, cari <InlineMath math="x" /> dari sudut-sudut yang berhadapan, supaya <InlineMath math="Q" /> diketahui. Kedua, cari <InlineMath math="\angle ACB" /> lewat segitiga sama kaki dan sudut keliling. Letak tepat titik <InlineMath math="C" /> tidak diberikan, tetapi itu **tidak mengubah besar <InlineMath math="\angle ACB" />**, seperti yang akan kamu lihat.
 
-# Tiga kasus letak x
+# Sudut yang berhadapan
 
-| Letak <InlineMath math="x" /> | Data ke-4 dan ke-5 | Median | Persamaan | <InlineMath math="x" /> | Sesuai kasus? |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x\le70" /> | 70 dan 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Ya |
-| <InlineMath math="70<x<75" /> | 70 dan <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | Tidak |
-| <InlineMath math="x\ge75" /> | 70 dan 75 | 72,5 | <InlineMath math="505+x=580" /> | 75 | Ya |
+Pada segiempat tali busur, **dua sudut yang berhadapan berjumlah <InlineMath math="180^\circ" />**. Sudut <InlineMath math="A" /> dan <InlineMath math="C" /> berhadapan.
 
-Pada kasus tengah, <InlineMath math="x=75" /> **tidak memenuhi syarat** <InlineMath math="70<x<75" />, jadi kasus itu tidak menghasilkan penyelesaian baru.
+<BlockMath math="\begin{aligned}
+(2x+12)+(3x+18)&=180\\
+5x&=150\\
+x&=30
+\end{aligned}" />
 
-# Memeriksa kedua penyelesaian
+Jadi <InlineMath math="\angle BAD=72^\circ" />, <InlineMath math="\angle BCD=108^\circ" />, dan <InlineMath math="Q=(2\times30-7)^\circ=53^\circ" />.
 
-Untuk <InlineMath math="x=55" />, rata-ratanya <InlineMath math="\frac{560}{8}=70" /> dan mediannya 70. Untuk <InlineMath math="x=75" />, rata-ratanya <InlineMath math="\frac{580}{8}=72{,}5" /> dan mediannya <InlineMath math="\frac{70+75}{2}=72{,}5" />. **Keduanya sah**, jadi jumlahnya <InlineMath math="55+75=130" />.
+# Sudut keliling pada busur yang sama
 
-Nilai 55 dan 75 masing-masing hanya satu penyelesaian. Nilai 72,5 adalah median pada kasus ketiga, bukan nilai <InlineMath math="x" />. Nilai 205 menghitung 75 dua kali, padahal kasus tengah tidak sah.
+Segitiga <InlineMath math="ABD" /> sama kaki karena <InlineMath math="AB=AD" />, jadi kedua sudut alasnya sama besar.
 
-Jadi, jumlah semua nilai <InlineMath math="x" /> yang mungkin adalah **130**.
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-72^\circ}{2}=54^\circ" />
+
+Sudut <InlineMath math="ACB" /> dan sudut <InlineMath math="ADB" /> sama-sama menghadap tali busur <InlineMath math="AB" />, dan titik <InlineMath math="C" /> serta <InlineMath math="D" /> berada pada busur yang sama. **Sudut keliling yang menghadap busur yang sama besarnya sama**, jadi <InlineMath math="\angle ACB=54^\circ" /> di mana pun <InlineMath math="C" /> terletak pada busur <InlineMath math="BD" />.
+
+Cek dengan sudut <InlineMath math="C" />. Dengan alasan yang sama, <InlineMath math="\angle ACD=\angle ABD=54^\circ" />, dan <InlineMath math="54^\circ+54^\circ=108^\circ=\angle BCD" />. Hasilnya cocok.
+
+# Membandingkan kedua kuantitas
+
+Diperoleh <InlineMath math="P=54^\circ" /> dan <InlineMath math="Q=53^\circ" />, jadi <InlineMath math="P>Q" />. Selisihnya kecil, tetapi **kedua nilai sudah tertentu secara tepat**, sehingga perbandingannya pasti.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="Q>P" /> muncul jika <InlineMath math="\angle ACB" /> dianggap setengah dari <InlineMath math="\angle BAD" />, yaitu <InlineMath math="36^\circ" />. Aturan setengah itu **berlaku untuk sudut pusat**, bukan untuk dua sudut keliling.
+- <InlineMath math="P=Q" /> membutuhkan <InlineMath math="\angle ACB=53^\circ" />, padahal segitiga sama kaki memaksa <InlineMath math="54^\circ" />.
+- Pilihan informasi tidak cukup muncul jika kamu mengira <InlineMath math="\angle ACB" /> berubah ketika <InlineMath math="C" /> bergeser. Sudut keliling yang menghadap tali busur <InlineMath math="AB" /> selalu sama besar.
+
+Jadi, kuantitas <InlineMath math="P" /> lebih besar daripada kuantitas <InlineMath math="Q" />.

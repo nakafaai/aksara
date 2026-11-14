@@ -1,0 +1,184 @@
+export const metadata = {
+  title: "Menentukan Luas Minimum",
+  description: "Bina model kuadratik bagi luas yang terhad, cari nilai minimumnya, dan semak sama ada jawapannya sah dalam masalah asal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Mencari Nilai Terkecil dalam Domain yang Dibenarkan
+
+Sesetengah masalah pengoptimuman meminta nilai yang paling kecil. Pengilang mungkin mahu kos paling rendah, atau satu reka bentuk mungkin perlukan jumlah luas paling kecil di bawah satu syarat geometri yang tetap. Matlamatnya berubah, tetapi cara membina modelnya sama: terjemahkan kekangan, bina fungsi dalam satu pemboleh ubah, kemudian tafsirkan verteksnya.
+
+Mencari minimum tidak bermaksud kamu terus pilih sifar. Masalah asal itulah yang menentukan nilai mana yang dibenarkan, dan **input yang menghasilkan minimum** mesti berada dalam domain yang dibenarkan itu.
+
+## Mengapa kuadratik yang terbuka ke atas ada minimum
+
+Fungsi kuadratik ada bentuk
+
+<BlockMath math="f(x)=ax^2+bx+c,\qquad a\neq0" />
+
+Apabila <InlineMath math="a>0" />, grafnya terbuka ke atas. Jadi verteksnya ialah **titik paling rendah pada graf**. Kalau verteks itu berada dalam domain yang dibenarkan, nilai fungsinya ialah nilai minimum.
+
+### Mencari kedudukan verteks
+
+Untuk <InlineMath math="f(x)=ax^2+bx+c" />, gunakan
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{b}{2a}" />
+  <BlockMath math="y_v=f(x_v)" />
+</MathContainer>
+
+**Bentuk pembezalayan** yang setara ialah
+
+<MathContainer>
+  <BlockMath math="\Delta=b^2-4ac" />
+  <BlockMath math="y_v=-\frac{\Delta}{4a}" />
+</MathContainer>
+
+Selepas kamu kira verteks, sentiasa kembali kepada konteks. Semak domain, unit, dan sama ada pemboleh ubah itu mesti integer.
+
+## Luas Minimum daripada Satu Dawai dan Dua Segi Empat Sama
+
+Seutas dawai sepanjang <InlineMath math="40\text{ cm}" /> dipotong kepada dua bahagian. Setiap bahagian dibengkokkan menjadi segi empat sama. Di mana dawai itu patut dipotong supaya hasil tambah luas dua segi empat sama itu sekecil mungkin?
+
+**Langkah 1**: Namakan panjang sisi. Biar segi empat sama pertama bersisi <InlineMath math="x\text{ cm}" /> dan yang kedua bersisi <InlineMath math="y\text{ cm}" />.
+**Langkah 2**: Terjemahkan kekangan panjang dawai.
+
+<MathContainer>
+  <BlockMath math="4x+4y=40" />
+  <BlockMath math="x+y=10" />
+  <BlockMath math="y=10-x" />
+</MathContainer>
+
+**Langkah 3**: Bina fungsi jumlah luas.
+
+<MathContainer>
+  <BlockMath math="A=x^2+y^2" />
+  <BlockMath math="A(x)=x^2+(10-x)^2" />
+  <BlockMath math="A(x)=x^2+(100-20x+x^2)" />
+  <BlockMath math="A(x)=2x^2-20x+100" />
+</MathContainer>
+
+**Langkah 4**: Nyatakan domain yang dibenarkan. Kedua-dua segi empat sama mesti ada panjang sisi positif, jadi <InlineMath math="0<x<10" />. Oleh sebab <InlineMath math="a=2>0" />, grafnya terbuka ke atas.
+**Langkah 5**: Cari kedudukan verteks.
+
+<BlockMath math="x_v=-\frac{-20}{2(2)}=\frac{20}{4}=5" />
+
+**Langkah 6**: Dapatkan panjang sisi kedua dan kira jumlah luas.
+
+<MathContainer>
+  <BlockMath math="y=10-x=10-5=5" />
+  <BlockMath math="A(5)=5^2+5^2=50" />
+</MathContainer>
+
+**Langkah 7**: Tafsirkan potongan itu. Setiap segi empat sama perlukan perimeter <InlineMath math="4(5)=20\text{ cm}" />, jadi dawai dipotong kepada dua bahagian <InlineMath math="20\text{ cm}" />. Seluruh dawai <InlineMath math="40\text{ cm}" /> tetap digunakan. Yang diminimumkan hanyalah hasil tambah luas yang dilingkungi.
+
+Penyempurnaan kuasa dua menerangkan sebab nilai ini minimum. Sebutan kuasa dua **tidak boleh negatif**, dan nilainya sifar tepat apabila sisi pertama ialah lima:
+
+<BlockMath math="A(x)=2(x-5)^2+50\ge50" />
+
+<MathVisual
+  title={<>Luas Melawan Ukuran yang Dipilih</>}
+  description={<>Paksi mengufuk menunjukkan sisi segi empat sama pertama dalam sentimeter. Satu unit menegak mewakili sepuluh sentimeter persegi, jadi kuantiti yang diplot ialah <InlineMath math="A(x)/10" />. Titik <InlineMath math="(5,5)" /> bermaksud sisi <InlineMath math="5\text{ cm}" /> dan jumlah luas <InlineMath math="50\ \text{cm}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 11 }, y: { min: -0.5, max: 11 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "area", kind: "quadratic", inputAxis: "x", coefficients: { a: 0.2, b: -2, c: 10 }, domain: { min: 0, max: 10 }, appearance: "primary" },
+      { id: "vertex", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" }
+    ],
+    labels: [{ key: "vertex", objectId: "vertex", at: { x: 5, y: 5 }, placement: "below" }]
+  }}
+  labels={{ vertex: <InlineMath math="x=5,\ A=50" /> }}
+/>
+
+Hujung graf menunjukkan kes had. Sifar dan sepuluh dikecualikan apabila kedua-dua panjang sisi mesti positif.
+
+Jumlah luas minimum ialah <InlineMath math="50\text{ cm}^2" />, iaitu apabila kedua-dua segi empat sama bersisi <InlineMath math="5\text{ cm}" />.
+
+Cuba sisi nombor bulat: <InlineMath math="A(1) = 82" />, <InlineMath math="A(3) = 58" />, <InlineMath math="A(5) = 50" />, <InlineMath math="A(7) = 58" /> dan <InlineMath math="A(9) = 82" />. Jumlah luas itu simetri pada <InlineMath math="x = 5" /> dan paling kecil di situ.
+
+<BarChart
+  title={<>Jumlah luas bagi setiap sisi pertama</>}
+  description={<>Bar <InlineMath math="A(x) = 2x^2 - 20x + 100" /> dalam sentimeter persegi untuk <InlineMath math="x = 1" /> hingga <InlineMath math="9" />.</>}
+  yAxisLabel="Jumlah luas (cm²)"
+  data={[1, 2, 3, 4, 5, 6, 7, 8, 9].map((x) => ({ name: String(x), value: 2 * x ** 2 - 20 * x + 100 }))}
+  chartConfig={{ value: { label: "Jumlah luas (cm²)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kekangan Model Domain dan Verteks
+
+Jadual ini mengumpulkan tiga bahagian yang menukar masalah dawai kepada **satu pemboleh ubah**. Setiap baris meletakkan satu bahagian masalah di sebelah bentuk matematiknya.
+
+| Bahagian masalah | Pernyataan matematik | Maksud |
+| ---------------- | -------------------- | ------ |
+| Panjang dawai tetap | <InlineMath math="4x+4y=40" /> | Perimeter kedua-dua segi empat sama menggunakan semua <InlineMath math="40\text{ cm}" /> dawai. |
+| Model satu pemboleh ubah | <InlineMath math="A(x)=2x^2-20x+100" /> | Setiap panjang sisi pertama yang dibenarkan menentukan satu jumlah luas. |
+| Verteks | <InlineMath math="(5,50)" /> | Panjang sisi yang sama menghasilkan jumlah luas paling kecil. |
+
+## Satu Lagi Aplikasi dengan Kos Pengeluaran
+
+Katakan kos menghasilkan <InlineMath math="x" /> barang, diukur dalam **ribu rupiah**, ialah
+
+<BlockMath math="C(x)=3x^2-60x+500" />
+
+Oleh sebab <InlineMath math="a=3>0" />, model ini ada minimum:
+
+<MathContainer>
+  <BlockMath math="x_v=-\frac{-60}{2(3)}=10" />
+  <BlockMath math="\begin{aligned} C(10) &amp;=3(10)^2-60(10)+500 \\ &amp;=300-600+500 \\ &amp;=200 \end{aligned}" />
+</MathContainer>
+
+Model ini meramalkan kos minimum <InlineMath math="\text{IDR }200\,000" /> pada <InlineMath math="10" /> barang. Keputusan pengeluaran sebenar juga perlu menyemak sama ada domain yang dinyatakan dalam model dan kekangan operasi membenarkan kuantiti itu.
+
+Bar kos turun daripada <InlineMath math="500" /> pada <InlineMath math="x = 0" /> kepada <InlineMath math="200" /> pada <InlineMath math="x = 10" />, kemudian naik semula kepada <InlineMath math="500" /> pada <InlineMath math="x = 20" />, bercermin antara satu sama lain di sekitar verteks.
+
+<BarChart
+  title={<>Kos pengeluaran di sekitar verteks</>}
+  description={<>Bar <InlineMath math="C(x) = 3x^2 - 60x + 500" /> dalam ribu rupiah untuk <InlineMath math="x = 0, 5, 10, 15, 20" />.</>}
+  yAxisLabel="Kos (ribu rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 3 * x ** 2 - 60 * x + 500 }))}
+  chartConfig={{ value: { label: "Kos (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Hasil tambahnya tetap, jadi apabila kamu pilih nombor pertama, nombor kedua juga sudah ditentukan. Matlamatnya ialah meminimumkan **hasil tambah kuasa dua kedua-dua nombor**, bukan hasil tambah nombor itu sendiri. Gunakan hubungan antara kedua-duanya untuk menulis matlamat itu dalam satu pemboleh ubah.
+
+Hasil tambah dua nombor positif ialah <InlineMath math="16" />. Tentukan dua nombor yang meminimumkan hasil tambah kuasa dua mereka, dan cari hasil tambah minimum itu.
+
+### Jalan kerja
+
+1. Biar nombor pertama ialah <InlineMath math="x" /> dan nombor kedua ialah <InlineMath math="y" />.
+2. Terjemahkan **kekangan hasil tambah**.
+
+   <MathContainer>
+     <BlockMath math="x+y=16" />
+     <BlockMath math="y=16-x" />
+   </MathContainer>
+
+3. Bina fungsi matlamat.
+
+   <MathContainer>
+     <BlockMath math="S=x^2+y^2" />
+     <BlockMath math="S(x)=x^2+(16-x)^2" />
+     <BlockMath math="S(x)=x^2+(256-32x+x^2)" />
+     <BlockMath math="S(x)=2x^2-32x+256" />
+   </MathContainer>
+
+4. Domain yang dibenarkan ialah <InlineMath math="0<x<16" />, dan <InlineMath math="a=2>0" />, jadi verteks memberikan nilai minimum.
+5. Cari nombor pertama pada verteks.
+
+   <BlockMath math="x_v=-\frac{-32}{2(2)}=\frac{32}{4}=8" />
+
+6. Cari nombor kedua dan kira nilai fungsi matlamat.
+
+   <MathContainer>
+     <BlockMath math="y=16-x=16-8=8" />
+     <BlockMath math="S(8)=8^2+8^2=128" />
+   </MathContainer>
+
+Dua nombor itu ialah <InlineMath math="8" /> dan <InlineMath math="8" />, dan hasil tambah minimum kuasa dua mereka ialah <InlineMath math="128" />.

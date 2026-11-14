@@ -3,15 +3,27 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Ada tepat $$2$$ nilai $$a$$ yang membuat garis $$g$$ dan garis $$h$$ tidak mempunyai titik persekutuan.",
+        },
+        {
+          column: 1,
+          label: "Untuk $$a=-\\tfrac25$$, garis $$g$$ tegak lurus garis $$h$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Untuk $$a=-3$$, jarak antara garis $$g$$ dan garis $$h$$ adalah $$\\dfrac{3}{\\sqrt{13}}$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Untuk setiap nilai $$a$$, jarak titik $$(0,0)$$ ke garis $$g$$ kurang dari $$3$$.",
         },
       ],
     },

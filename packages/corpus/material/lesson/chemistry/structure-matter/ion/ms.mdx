@@ -1,0 +1,196 @@
+
+export const metadata = {
+  title: "Ion",
+  description:
+    "Atom menjadi ion apabila menerima atau kehilangan elektron. Cas ion menunjukkan sama ada ion itu kation atau anion, dan berapa banyak elektron yang dimilikinya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Struktur Atom",
+};
+
+## Apabila Atom Tidak Lagi Neutral
+
+Atom neutral mempunyai bilangan proton dan elektron yang sama. **Ion** terbentuk apabila satu atom atau sekumpulan atom mempunyai cas keseluruhan. Di sini, kita fokus dahulu pada ion yang terbentuk daripada satu atom.
+
+Ion terbentuk apabila bilangan <Highlight>elektron berbeza daripada bilangan proton</Highlight>.
+
+Proton berada dalam nukleus dan biasanya tidak berpindah semasa proses kimia yang ringkas. Bilangan elektron pula berubah apabila ion terbentuk. Bilangan proton menentukan unsur, manakala beza antara bilangan proton dan bilangan elektron menentukan cas ion.
+
+Setiap proton menyumbang <InlineMath math="+1" /> dan setiap elektron menyumbang <InlineMath math="-1" />. Oleh itu, cas ion ialah bilangan proton tolak bilangan elektron. Bilangan yang sama menghasilkan atom neutral. Elektron yang lebih sedikit menghasilkan ion positif, manakala elektron yang lebih banyak menghasilkan ion negatif.
+
+## Kation dan Anion
+
+Ion yang bercas positif dipanggil **kation**. Kation terbentuk apabila atom kehilangan elektron.
+
+Ion yang bercas negatif dipanggil **anion**. Anion terbentuk apabila atom menerima elektron.
+
+[Ion](https://goldbook.iupac.org/terms/view/I03158) ialah zarah atom atau molekul yang mempunyai cas elektrik bersih.
+
+<IonLab
+  title={<>Simulator Pembentukan Ion</>}
+  description={
+    <>
+      Ikuti laluan dari kiri ke kanan: atom neutral kehilangan atau menerima elektron,
+      kemudian menjadi kation atau anion. Proton dan neutron kekal sama.
+    </>
+  }
+  labels={{
+    beforeChange: "Sebelum",
+    electronChange: "Bilangan elektron berubah",
+    afterChange: "Selepas",
+    chooseIon: "Pilih contoh ion",
+    neutralAtom: "Atom neutral",
+    protons: "Proton",
+    neutrons: "Neutron",
+    electrons: "Elektron",
+    charge: "Cas",
+    samples: {
+      "sodium-cation": {
+        name: "Ion natrium",
+        type: "Kation",
+        action: <>Kehilangan <InlineMath math="1" /> elektron</>,
+      },
+      "fluoride-anion": {
+        name: "Ion fluorida",
+        type: "Anion",
+        action: <>Menerima <InlineMath math="1" /> elektron</>,
+      },
+      "lithium-cation": {
+        name: "Ion litium",
+        type: "Kation",
+        action: <>Kehilangan <InlineMath math="1" /> elektron</>,
+      },
+      "oxide-anion": {
+        name: "Ion oksida",
+        type: "Anion",
+        action: <>Menerima <InlineMath math="2" /> elektron</>,
+      },
+    },
+  }}
+/>
+
+Tanda bagi <InlineMath math="q=p^{+}-e^{-}" /> memberitahu kamu jenis zarah yang kamu ada. Elektron yang kurang daripada proton menghasilkan kation positif di sebelah kanan, elektron tambahan menghasilkan anion negatif di sebelah kiri, dan atom neutral berada pada sifar. Zum masuk dan semak setiap penolakan.
+
+<MathVisual
+  title={<>Kation atau Anion daripada Cas</>}
+  description={<>Lima zarah diletakkan mengikut casnya, iaitu proton tolak elektron. Kation (jingga) berada di sebelah kanan, anion (ungu) di sebelah kiri.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "charge-axis", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0 }, to: { x: 2.5, y: 0 } },
+      { id: "oxide", kind: "point", appearance: "secondary", at: { x: -2, y: 0 } },
+      { id: "chloride", kind: "point", appearance: "secondary", at: { x: -1, y: 0 } },
+      { id: "neon", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "sodium", kind: "point", appearance: "primary", at: { x: 1, y: 0 } },
+      { id: "magnesium", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "oxide", objectId: "oxide", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "chloride", objectId: "chloride", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "neon", objectId: "neon", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "sodium", objectId: "sodium", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "magnesium", objectId: "magnesium", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    oxide: <InlineMath math="\mathrm{O^{2-}}:\ 8-10=-2" />,
+    chloride: <InlineMath math="\mathrm{Cl^{-}}:\ 17-18=-1" />,
+    neon: <InlineMath math="\mathrm{Ne}:\ 10-10=0" />,
+    sodium: <InlineMath math="\mathrm{Na^{+}}:\ 11-10=+1" />,
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}}:\ 12-10=+2" />,
+  }}
+/>
+
+## Cas Ion daripada Beza antara Bilangan Proton dan Elektron
+
+<BlockMath math="q = p^+ - e^-" />
+
+Simbol <InlineMath math="q" /> ialah nombor cas ion dalam **unit cas asas**, bukan coulomb, <InlineMath math="p^+" /> ialah bilangan proton, dan <InlineMath math="e^-" /> ialah bilangan elektron.
+
+Untuk mencari bilangan elektron sesuatu ion, susun semula rumus yang sama:
+
+<BlockMath math="e^- = p^+ - q" />
+
+Contoh natrium:
+
+<BlockMath math="\begin{aligned}
+{}^{23}_{11}\mathrm{Na}^{+} &: p^+ = 11,\ q = +1 \\
+e^- &= 11 - (+1) \\
+&= 10
+\end{aligned}" />
+
+Contoh fluorida:
+
+<BlockMath math="\begin{aligned}
+{}^{19}_{9}\mathrm{F}^{-} &: p^+ = 9,\ q = -1 \\
+e^- &= 9 - (-1) \\
+&= 10
+\end{aligned}" />
+
+Tanda negatif dalam <InlineMath math="\mathrm{F}^{-}" /> bermaksud ada lebih banyak elektron daripada proton. Itulah sebabnya <InlineMath math="9 - (-1)" /> menjadi <InlineMath math="10" />.
+
+Bandingkan atom litium dengan ion litium, dengan proton berwarna jingga di belakang dan elektron berwarna ungu di hadapan. Kehilangan satu elektron meninggalkan <InlineMath math="3" /> proton berbanding <InlineMath math="2" /> elektron, jadi <InlineMath math="q=3-2=+1" />.
+
+<MathVisual
+  title={<>Atom Litium dan Ion Litium</>}
+  description={<>Proton (jingga, belakang) dan elektron (ungu, hadapan) dalam <InlineMath math="\mathrm{Li}" /> dan <InlineMath math="\mathrm{Li^+}" />. Satu petak grid ke atas mewakili 2 zarah.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 3 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 6, y: 5, z: 8 }, target: { x: 1.5, y: 1, z: 0 } },
+    objects: [
+      { id: "atom-p", kind: "cuboid", appearance: "primary", center: { x: 0, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "atom-e", kind: "cuboid", appearance: "secondary", center: { x: 0, y: (3 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-p", kind: "cuboid", appearance: "primary", center: { x: 3, y: (3 / 2) / 2 + 0, z: -0.75 }, size: { length: 1.2, height: 3 / 2, width: 1.2 } },
+      { id: "ion-e", kind: "cuboid", appearance: "secondary", center: { x: 3, y: (2 / 2) / 2 + 0, z: 0.75 }, size: { length: 1.2, height: 2 / 2, width: 1.2 } },
+    ],
+    labels: [
+      { key: "atom", objectId: "atom-e", at: { x: 0, y: 2, z: 0.75 }, placement: "above" },
+      { key: "ion", objectId: "ion-e", at: { x: 3, y: 1.5, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    atom: <InlineMath math="\mathrm{Li}:\ 3-3=0" />,
+    ion: <InlineMath math="\mathrm{Li^+}:\ 3-2=+1" />,
+  }}
+/>
+
+## Komposisi Ion
+
+Apabila atom menjadi ion, **bilangan proton dan neutronnya kekal sama**. Bilangan elektronnya berubah mengikut cas ion itu. Jadual ini menunjukkan apa yang berlaku pada setiap bahagian.
+
+| Bahagian yang dibaca | Apabila ion terbentuk | Kesan |
+| :----------- | :---------------- | :----- |
+| Proton | Kekal sama | Unsur tidak berubah. |
+| Neutron | Kekal sama bagi isotop yang sama | Nombor nukleon tidak berubah. |
+| Elektron | Berubah | Cas ion berubah. |
+
+Jadi, <InlineMath math="\mathrm{Na}" /> dan <InlineMath math="\mathrm{Na}^{+}" /> kedua-duanya ialah natrium kerana bilangan protonnya kekal <InlineMath math="11" />. Atom natrium neutral mempunyai <InlineMath math="11" /> elektron. Selepas kehilangan satu elektron, <InlineMath math="\mathrm{Na}^{+}" /> mempunyai <InlineMath math="10" /> elektron.
+
+## Jadual Contoh Lengkap bagi Bilangan Zarah Ion
+
+Gunakan jadual di bawah sebagai contoh yang sudah lengkap. Baca setiap baris dari kiri ke kanan: nombor proton <InlineMath math="Z" /> memberikan bilangan proton, <InlineMath math="A - Z" /> memberikan bilangan neutron, dan <InlineMath math="q = p^+ - e^-" /> **mengaitkan cas dengan bilangan elektron**.
+
+| Simbol | Nombor proton | Nombor nukleon | Cas | Proton | Elektron | Neutron |
+| :----- | :------------ | :---------- | :----- | :------ | :-------- | :------- |
+| <InlineMath math="{}^{7}_{3}\mathrm{Li}" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="4" /> |
+| <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" /> | <InlineMath math="3" /> | <InlineMath math="7" /> | <InlineMath math="+1" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="4" /> |
+| <InlineMath math="{}^{16}_{8}\mathrm{O}" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="0" /> | <InlineMath math="8" /> | <InlineMath math="8" /> | <InlineMath math="8" /> |
+| <InlineMath math="{}^{16}_{8}\mathrm{O}^{2-}" /> | <InlineMath math="8" /> | <InlineMath math="16" /> | <InlineMath math="-2" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="8" /> |
+| <InlineMath math="{}^{27}_{13}\mathrm{Al}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="0" /> | <InlineMath math="13" /> | <InlineMath math="13" /> | <InlineMath math="14" /> |
+| <InlineMath math="{}^{27}_{13}\mathrm{Al}^{3+}" /> | <InlineMath math="13" /> | <InlineMath math="27" /> | <InlineMath math="+3" /> | <InlineMath math="13" /> | <InlineMath math="10" /> | <InlineMath math="14" /> |
+
+### Menyemak Baris Litium
+
+Semak satu baris, contohnya <InlineMath math="{}^{7}_{3}\mathrm{Li}^{+}" />. Nombor protonnya ialah <InlineMath math="3" />, jadi ion ini mempunyai <InlineMath math="3" /> proton. Casnya ialah <InlineMath math="+1" />, jadi bilangan elektronnya ialah:
+
+<BlockMath math="e^- = 3 - (+1) = 2" />
+
+Bilangan neutronnya diperoleh daripada nombor nukleon:
+
+<BlockMath math="n^0 = 7 - 3 = 4" />
+
+Jika kamu rasa kurang pasti, mulakan dengan pengiraan cas. Kation sentiasa mempunyai **lebih sedikit elektron daripada proton**, manakala anion mempunyai lebih banyak elektron daripada proton.

@@ -1,19 +1,38 @@
-Gefragt ist ein sicheres Ja oder ein sicheres Nein. Eine Aussage reicht nur dann aus, wenn **jedes Zahlenpaar, das sie erfüllt, dieselbe Antwort liefert**. Um zu zeigen, dass eine Aussage nicht ausreicht, genügen ein Beispiel mit Ja und eines mit Nein.
+Du suchst den Flächeninhalt des kleinen Dreiecks über dem Trapez, aber die Aufgabe nennt nur die Flächen zweier Dreiecke im Inneren. Die Brücke ist **das Verhältnis der parallelen Seiten**. Bestimme aus den beiden Flächen das Verhältnis von <InlineMath math="AB" /> zu <InlineMath math="CD" />, berechne die Fläche des Trapezes und nutze dann die ähnlichen Dreiecke <InlineMath math="EAB" /> und <InlineMath math="ECD" />.
 
-# Erste Aussage allein
+# Das Verhältnis der parallelen Seiten finden
 
-Das Paar <InlineMath math="x=3,\ y=1" /> erfüllt <InlineMath math="9>1" /> und liefert <InlineMath math="x>y" />. Das Paar <InlineMath math="x=-3,\ y=1" /> erfüllt ebenfalls <InlineMath math="9>1" />, aber hier gilt <InlineMath math="x<y" />. Das Quadrieren **löscht die Information über das Vorzeichen**, deshalb reicht Aussage (1) allein nicht aus.
+Wegen <InlineMath math="AB\parallel CD" /> ist der Winkel <InlineMath math="OAB" /> gleich dem Winkel <InlineMath math="OCD" />, und der Winkel <InlineMath math="OBA" /> ist gleich dem Winkel <InlineMath math="ODC" /> (Wechselwinkel). Also ist das Dreieck <InlineMath math="AOB" /> ähnlich zum Dreieck <InlineMath math="COD" />. Das Flächenverhältnis zweier ähnlicher Figuren **ist das Quadrat ihres Seitenverhältnisses**.
 
-# Zweite Aussage allein
+<BlockMath math="\left(\frac{AB}{CD}\right)^2=\frac{9}{25}\quad\Rightarrow\quad\frac{AB}{CD}=\frac35=\frac{AO}{OC}" />
 
-Das Paar <InlineMath math="x=3,\ y=1" /> erfüllt <InlineMath math="x+y>0" /> und liefert <InlineMath math="x>y" />. Das Paar <InlineMath math="x=1,\ y=3" /> erfüllt ebenfalls <InlineMath math="x+y>0" />, aber hier gilt <InlineMath math="x<y" />. Eine positive Summe **legt nicht fest, welche Zahl größer ist**, deshalb reicht Aussage (2) allein nicht aus.
+# Die Fläche des Trapezes berechnen
 
-# Beide Aussagen zusammen
+Die Dreiecke <InlineMath math="AOB" /> und <InlineMath math="BOC" /> haben beide die Spitze <InlineMath math="B" />, und ihre Grundseiten <InlineMath math="AO" /> und <InlineMath math="OC" /> liegen auf einer Geraden. Beide Dreiecke haben dieselbe Höhe, also **verhalten sich ihre Flächen wie ihre Grundseiten**. Dasselbe gilt für die Dreiecke <InlineMath math="AOD" /> und <InlineMath math="COD" /> mit der gemeinsamen Spitze <InlineMath math="D" />. Das Zeichen <InlineMath math="[\,\cdot\,]" /> steht für den Flächeninhalt in <InlineMath math="\text{cm}^2" />.
 
-Schreibe Aussage (1) als Produkt zweier Faktoren.
+<BlockMath math="\begin{aligned}
+[BOC]&=\frac53\cdot[AOB]=\frac53\cdot9=15\\
+[AOD]&=\frac35\cdot[COD]=\frac35\cdot25=15\\
+[ABCD]&=9+15+15+25=64
+\end{aligned}" />
 
-<BlockMath math="x^2-y^2=(x-y)(x+y)>0" />
+# Die Fläche des kleinen Dreiecks berechnen
 
-Ein Produkt ist nur dann positiv, wenn beide Faktoren dasselbe Vorzeichen haben. Aussage (2) sichert <InlineMath math="x+y>0" />, also **muss auch der Faktor <InlineMath math="x-y" /> positiv sein**. Damit gilt <InlineMath math="x>y" /> für jedes Paar, das beide Aussagen erfüllt.
+Wegen <InlineMath math="AB\parallel CD" /> ist das Dreieck <InlineMath math="EAB" /> ähnlich zum Dreieck <InlineMath math="ECD" />, mit dem Seitenverhältnis <InlineMath math="3:5" />. Ihr Flächenverhältnis ist **das Quadrat des Seitenverhältnisses**, also <InlineMath math="9:25" />. Schreibe <InlineMath math="[EAB]=9k" /> und <InlineMath math="[ECD]=25k" />. Das Trapez ist das große Dreieck ohne das kleine.
 
-**Beide Aussagen zusammen reichen also aus**, eine Aussage allein reicht nicht.
+<BlockMath math="\begin{aligned}
+[ECD]-[EAB]&=[ABCD]\\
+25k-9k&=64\\
+k&=4\\
+[EAB]&=9\cdot4=36
+\end{aligned}" />
+
+# Das Ergebnis prüfen
+
+Nimm ein passendes Trapez: <InlineMath math="AB=3\text{ cm}" />, <InlineMath math="CD=5\text{ cm}" /> und Höhe <InlineMath math="16\text{ cm}" />. Der Punkt <InlineMath math="O" /> teilt die Höhe im Verhältnis <InlineMath math="3:5" />, liegt also <InlineMath math="6\text{ cm}" /> von <InlineMath math="AB" /> und <InlineMath math="10\text{ cm}" /> von <InlineMath math="CD" /> entfernt. Die Flächen passen: <InlineMath math="\frac12\cdot3\cdot6=9" /> und <InlineMath math="\frac12\cdot5\cdot10=25" />. Liegt <InlineMath math="E" /> um <InlineMath math="t" /> über <InlineMath math="AB" />, dann gilt <InlineMath math="\frac{t}{t+16}=\frac35" />, also <InlineMath math="t=24" /> und <InlineMath math="[EAB]=\frac12\cdot3\cdot24=36" />. Das Ergebnis **stimmt mit der Verhältnisrechnung überein**.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="24\text{ cm}^2" /> entsteht, wenn du <InlineMath math="E" /> eine Trapezhöhe über <InlineMath math="AB" /> setzt, also <InlineMath math="[EAB]=\frac12\cdot AB\cdot h" />, wobei die Trapezhöhe <InlineMath math="h" /> die Gleichung <InlineMath math="AB\cdot h=48" /> erfüllt. Die Antwort <InlineMath math="64\text{ cm}^2" /> bleibt bei der Fläche des Trapezes stehen. Die Antwort <InlineMath math="96\text{ cm}^2" /> entsteht, wenn du **das Seitenverhältnis <InlineMath math="3:5" /> direkt für die Flächen nimmst**, also <InlineMath math="\frac23[EAB]=64" />. Die Antwort <InlineMath math="100\text{ cm}^2" /> ist die Fläche des großen Dreiecks <InlineMath math="ECD" /> statt des kleinen.
+
+Der Flächeninhalt des Dreiecks <InlineMath math="EAB" /> ist also <InlineMath math="36\text{ cm}^2" />.

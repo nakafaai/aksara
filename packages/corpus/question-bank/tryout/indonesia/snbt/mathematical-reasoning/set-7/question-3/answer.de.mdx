@@ -1,24 +1,43 @@
-Rechne Megabit in Megabyte um, indem du **durch 8 teilst**, und denk daran, dass sich die 40 Mbps auf alle gleichzeitig genutzten Geräte verteilen.
+Jede Aussage braucht ihre eigene Rechnung mit den Akkuregeln. Der Plan: Bestimme für jede Aussage die Rate, die in jedem Akkubereich gilt, besonders dort, wo der Akku <InlineMath math="20\%" /> oder <InlineMath math="80\%" /> überschreitet, denn **dort ändern sich die Raten**.
 
-# Einheiten der Geschwindigkeit und Gerätegrenze
+# Laden beim Videoschauen
 
-40 Mbps sind 40 Megabit pro Sekunde, also <InlineMath math="\tfrac{40}{8}=5" /> MB pro Sekunde. Die erste Aussage ist wahr.
+Unter <InlineMath math="80\%" /> ändert sich der Akku um <InlineMath math="40\%-20\%=+20\%" /> pro Stunde, im Sparmodus um <InlineMath math="40\%-10\%=+30\%" /> pro Stunde. Er steigt also bis <InlineMath math="80\%" />. Ab <InlineMath math="80\%" /> **lädt das Gerät nur noch <InlineMath math="16\%" /> pro Stunde, weniger als die <InlineMath math="20\%" />, die das Video verbraucht**.
 
-Vierzehn Geräte mit HD-Video brauchen <InlineMath math="14\cdot3=42" /> Mbps, **mehr als 40 Mbps**, die zweite Aussage ist also falsch.
+<BlockMath math="16\%-20\%=-4\%\text{ pro Stunde}" />
 
-# Daten für eine Stunde Video
+Sobald der Akku <InlineMath math="80\%" /> erreicht, fällt er, und knapp unter <InlineMath math="80\%" /> steigt er wieder. Er bleibt bei <InlineMath math="80\%" /> hängen und kommt nie darüber. Die erste Aussage ist **wahr**.
 
-Eine Stunde hat 3 600 Sekunden, und HD-Video verbraucht jede Sekunde 3 Megabit.
+# Spielen mit vollem Akku
+
+Von <InlineMath math="100\%" /> bis <InlineMath math="20\%" /> kostet Spielen die vollen <InlineMath math="30\%" /> pro Stunde. Danach **senkt der Energiesparmodus den Verbrauch beim Spielen auf <InlineMath math="15\%" /> pro Stunde**.
 
 <BlockMath math="\begin{aligned}
-3\cdot3\,600&=10\,800\text{ Megabit}\\
-\tfrac{10\,800}{8}&=1\,350\text{ MB}=1{,}35\text{ GB}
+\text{von } 100\% \text{ bis } 20\% &: \frac{80}{30}\text{ h}=2\text{ h }40\text{ min} \\
+\text{von } 20\% \text{ bis } 0\% &: \frac{20}{15}\text{ h}=1\text{ h }20\text{ min}
 \end{aligned}" />
 
-Das ist **mehr als 1 GB**, die dritte Aussage ist also falsch.
+Zusammen sind das genau <InlineMath math="4" /> Stunden. Die schnelle Rechnung <InlineMath math="\frac{100}{30}" /> Stunden, also <InlineMath math="3" /> Stunden <InlineMath math="20" /> Minuten, vergisst den Sparmodus. Die zweite Aussage ist **wahr**.
 
-# Schnelleres Internet
+# Laden ab halbem Akku
 
-Die Downloadzeit ist umgekehrt proportional zur Geschwindigkeit. Bei 100 Mbps wird die Zeit <InlineMath math="\tfrac{40}{100}=0{,}4" />-mal so lang, sie **sinkt also um 60 %** für jede Datei. Die vierte Aussage ist wahr.
+Ohne Nutzung ist das Handy im Standby, unter <InlineMath math="80\%" /> steigt der Akku also um <InlineMath math="40\%-4\%=36\%" /> pro Stunde. Ab <InlineMath math="80\%" /> **steigt er nur noch um <InlineMath math="16\%-4\%=12\%" /> pro Stunde**.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+<BlockMath math="\begin{aligned}
+\text{von } 50\% \text{ bis } 80\% &: \frac{30}{36}\text{ h}=50\text{ min} \\
+\text{restliche } 10 \text{ min} &: 80\%+12\%\cdot\frac{10}{60}=82\%
+\end{aligned}" />
+
+Der Akku landet bei <InlineMath math="82\%" />, nicht bei <InlineMath math="86\%" />. Auf <InlineMath math="86\%" /> kommst du, wenn du die ganze Stunde mit <InlineMath math="36\%" /> pro Stunde rechnest. Die dritte Aussage ist **falsch**.
+
+# Lesen und Video vertauschen
+
+Erste Reihenfolge: <InlineMath math="3" /> Stunden Lesen verbrauchen <InlineMath math="30\%" />, der Akku steht also genau bei <InlineMath math="20\%" />. Die Stunde Video läuft dann im Sparmodus mit <InlineMath math="10\%" /> pro Stunde, und es bleiben <InlineMath math="10\%" />.
+
+Zweite Reihenfolge: Eine Stunde Video bringt den Akku auf <InlineMath math="30\%" />. Die erste Stunde Lesen bringt ihn auf <InlineMath math="20\%" />, die letzten zwei Stunden laufen im Sparmodus mit <InlineMath math="5\%" /> pro Stunde.
+
+<BlockMath math="30\%-10\%-5\%\cdot2=10\%" />
+
+Beide Reihenfolgen enden bei <InlineMath math="10\%" />. Das ist kein Zufall: **Ohne Laden wird alles, was nach dem Erreichen von <InlineMath math="20\%" /> verbraucht wird, halbiert, egal in welcher Reihenfolge**. Die vierte Aussage ist **wahr**.
+
+Die erste Aussage ist also wahr, die zweite wahr, die dritte falsch und die vierte wahr.

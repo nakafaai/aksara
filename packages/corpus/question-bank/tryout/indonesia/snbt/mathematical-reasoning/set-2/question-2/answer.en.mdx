@@ -1,19 +1,49 @@
-The peak fare is the normal fare multiplied by 1.2. So **first divide by 1.2** to get the normal fare, then find the distance.
+You're looking for the largest number of normal missions Citra can start. Two things limit her: **time and energy**. Find the limit from time, find the limit from energy, and then show one schedule that really reaches the smaller limit.
 
-# Fare before the increase
+# The limit from time
 
-<BlockMath math="\frac{36{,}000}{1.2}=30{,}000" />
+A normal mission lasts <InlineMath math="4" /> minutes, so the next one can start <InlineMath math="4" /> minutes later at the earliest. The tightest start times are 08:00, 08:04, and so on up to 09:08. From 08:00 to 09:08 is <InlineMath math="68" /> minutes, and **the first start time counts too**.
 
-# The charged distance
+<BlockMath math="\frac{68}{4}+1=18" />
 
-Let the charged distance be <InlineMath math="k" /> km, with <InlineMath math="k>2" /> because the fare is above the base fare. The normal fare is **the base fare plus the kilometre charge after the first 2 km**.
+So time allows at most <InlineMath math="18" /> missions.
+
+# The limit from energy
+
+The energy drops below <InlineMath math="60" /> at exactly 08:00, when the first mission starts. So the timer starts at 08:00, and the refills come at 08:05, 08:10, and so on up to 09:10. That's at most <InlineMath math="70 \div 5=14" /> refills, but **only if the energy never climbs back to <InlineMath math="60" />**. Add the potion, and the most energy she can use is this.
 
 <BlockMath math="\begin{aligned}
-10{,}000+2{,}500(k-2)&=30{,}000\\
-2{,}500(k-2)&=20{,}000\\
-k-2=8\;\Longrightarrow\;k&=10
+60+30+14&=104 \\
+104&=17\cdot 6+2
 \end{aligned}" />
 
-Check: <InlineMath math="1.2\cdot(10{,}000+8\cdot2{,}500)=1.2\cdot30{,}000=36{,}000" />.
+So energy is enough for at most <InlineMath math="17" /> missions, because <InlineMath math="18" /> missions need <InlineMath math="18\cdot 6=108" /> energy. The energy limit is smaller than the time limit.
 
-So the distance charged to Bayu is **10 km**.
+# A schedule that reaches seventeen missions
+
+So that no refill is lost, she has to drink the potion while her energy plus <InlineMath math="30" /> is still below <InlineMath math="60" />. In other words, she drinks the potion **when her energy is below <InlineMath math="30" />**.
+
+Try this schedule. Citra starts a mission every <InlineMath math="4" /> minutes from 08:00 to 08:40. That's <InlineMath math="11" /> missions, and <InlineMath math="8" /> refills happen meanwhile, from 08:05 to 08:40. Her energy before the missions is <InlineMath math="60" />, <InlineMath math="54" />, <InlineMath math="49" />, <InlineMath math="44" />, <InlineMath math="39" />, <InlineMath math="34" />, <InlineMath math="28" />, <InlineMath math="23" />, <InlineMath math="18" />, <InlineMath math="13" /> and <InlineMath math="8" />, so every mission has enough.
+
+At 08:40, after the eleventh mission, Citra drinks the potion. Then she starts <InlineMath math="6" /> more missions at 08:44, 08:48, 08:52, 08:56, 09:00 and 09:04, while <InlineMath math="4" /> refills happen at 08:45, 08:50, 08:55 and 09:00. Her energy before those six missions is <InlineMath math="32" />, <InlineMath math="27" />, <InlineMath math="22" />, <InlineMath math="17" />, <InlineMath math="12" /> and <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+60+8-11\cdot 6&=2 \\
+2+30&=32 \\
+32+4-6\cdot 6&=0
+\end{aligned}" />
+
+An energy of <InlineMath math="32" /> stays below <InlineMath math="60" />, so the timer never stops. This schedule starts <InlineMath math="11+6=17" /> missions, and the last one starts at 09:04, before the 09:10 limit.
+
+# Drinking the potion too early
+
+Suppose Citra drinks the potion at 08:00 before playing. Her energy is <InlineMath math="90" />, and the refill stops until the energy drops below <InlineMath math="60" />. That only happens at 08:20, after the sixth mission, so the refills from 08:05 to 08:20 are lost. **When she drinks the potion changes the result**.
+
+<BlockMath math="\begin{aligned}
+60+30+10&=100 \\
+100&=16\cdot 6+4
+\end{aligned}" />
+
+That way she only gets <InlineMath math="16" /> missions. The answer <InlineMath math="18" /> comes from counting only the time limit, and <InlineMath math="12" /> comes from forgetting the potion, since <InlineMath math="60+14=74" /> only covers <InlineMath math="12" /> missions.
+
+So Citra can start at most <InlineMath math="17" /> normal missions.

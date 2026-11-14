@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "data-interpretation",
   },
-  stimulus: "screens-sleep",
+  stimulus: "measles-coverage",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Using screens after 8 p.m. is the main cause of sleepiness in morning lessons.",
+            "Eastport's figures show that a district can reach the $$95\\%$$ aim overall and still have an outbreak in one community.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Students who sleep less use screens because they find it hard to fall asleep.",
+            "Eastport's $$38$$ cases show that two doses of the vaccine often fail to protect children.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Switching off screens at 9 p.m. would give every student eight hours of sleep.",
+            "Eastport's coverage figure for the whole district could not, on its own, have warned the health office about the school.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "More evening screen time goes with less sleep, but the survey cannot show why.",
-        },
-        {
-          correct: false,
-          label:
-            "Evening screen time has no connection with how long students sleep.",
+            "Eastport had more cases than Hillcrest because Eastport has more children.",
         },
       ],
     },

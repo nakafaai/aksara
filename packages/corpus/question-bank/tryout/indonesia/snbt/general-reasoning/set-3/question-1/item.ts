@@ -6,34 +6,35 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "conclusion",
   },
-  stimulus: "pagar",
+  stimulus: "naungan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Pagar tanaman menurunkan kadar PM2,5 di seluruh kota.",
+          label:
+            "Baik di lereng landai maupun di lereng curam, rata-rata hasil kebun tanpa naungan lebih tinggi daripada rata-rata hasil kebun bernaungan.",
+        },
+        {
+          correct: false,
+          label:
+            "Rata-rata hasil seluruh kebun bernaungan adalah $$850$$ kilogram per hektare, sehingga lebih tinggi daripada rata-rata hasil seluruh kebun tanpa naungan.",
+        },
+        {
+          correct: false,
+          label:
+            "Pohon naungan menaikkan hasil setiap kebun kopi sebanyak $$100$$ kilogram per hektare, di lereng mana pun kebun itu berada.",
         },
         {
           correct: true,
           label:
-            "Pagar tanaman menghalangi sebagian partikel dari jalan mencapai trotoar, terutama ketika udara tidak banyak bergerak.",
+            "Seandainya kebun bernaungan juga terdiri atas $$40$$ kebun di lereng landai dan $$10$$ kebun di lereng curam, dengan rata-rata tiap kelompok tetap, rata-rata hasilnya akan melampaui rata-rata kebun tanpa naungan.",
         },
         {
           correct: false,
           label:
-            "Pada hari berangin kencang, pagar tanaman sama sekali tidak memengaruhi kadar PM2,5 di trotoar karena partikel langsung terbawa angin ke arah lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Pagar tanaman yang rapat lebih menguntungkan bagi pengendara di lajur kendaraan.",
-        },
-        {
-          correct: false,
-          label:
-            "Kadar PM2,5 di trotoar tanpa pemisah selalu melampaui batas aman.",
+            "Rata-rata hasil kebun di lereng curam lebih rendah daripada di lereng landai karena sebagian besar kebun di lereng curam ditanami pohon naungan.",
         },
       ],
     },

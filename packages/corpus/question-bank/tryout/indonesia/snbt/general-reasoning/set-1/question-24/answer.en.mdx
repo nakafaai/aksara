@@ -1,15 +1,44 @@
-The table's categories are Fiksi (fiction), Sains (science), Sejarah (history), and Bahasa (language). Mark each statement Benar (true) or Salah (false) after computing it carefully. Some statements are deliberately **almost true**, so compare each result with its threshold exactly.
+Mark each statement Benar (true) or Salah (false). Each one hides a condition that's easy to miss, so start with **the change in each warehouse's stock per week**, which is rice in minus rice out minus shrinkage:
 
-**Statement 1** is true. History rose by <InlineMath math="\frac{585-450}{450}=\frac{135}{450}=30\%" />, while fiction rose by <InlineMath math="\frac{300}{1{,}200}=25\%" />.
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad 22-35-3 &= -16 \\
+\text{Bakung}: \quad 38-48-1 &= -11 \\
+\text{Cempaka}: \quad 15-18-2 &= -5
+\end{aligned}" />
 
-**Statement 2** is false. Twice the science loans is <InlineMath math="2\times760=1{,}520" />, while fiction is <InlineMath math="1{,}500" />. Since <InlineMath math="1{,}500<1{,}520" />, fiction does not reach twice science.
+With these numbers, the stocks at the end of some weeks are (in tonnes):
 
-**Statement 3** is true. Language books rose by <InlineMath math="\frac{55}{550}=10\%" />. The same increase in semester III gives:
+| End of week | Anggrek | Bakung | Cempaka |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> | <InlineMath math="84" /> | <InlineMath math="84" /> | <InlineMath math="66" /> |
+| <InlineMath math="7" /> | <InlineMath math="68" /> | <InlineMath math="73" /> | <InlineMath math="61" /> |
+| <InlineMath math="8" /> | <InlineMath math="52" /> | <InlineMath math="62" /> | <InlineMath math="56" /> |
+| <InlineMath math="9" /> | <InlineMath math="36" /> | <InlineMath math="51" /> | <InlineMath math="51" /> |
 
-<BlockMath math="605\times1.1=665.5" />
+**Statement 1** is Benar. The gap between Anggrek and Bakung starts at <InlineMath math="180-150=30" /> tonnes and shrinks by <InlineMath math="16-11=5" /> tonnes a week, so it closes after exactly <InlineMath math="30:5=6" /> weeks. Then both hold <InlineMath math="84" /> tonnes and Cempaka holds <InlineMath math="66" />, all at least <InlineMath math="40" />. There's a second match too: Bakung and Cempaka both hold <InlineMath math="51" /> tonnes in week <InlineMath math="9" />, but Anggrek is down to <InlineMath math="36" /> then. One moment that meets the condition is enough to make the statement true.
 
-This is more than <InlineMath math="660" />. Note that the <InlineMath math="10\%" /> increase is taken from <InlineMath math="605" />, not by adding another <InlineMath math="55" /> books. Adding <InlineMath math="55" /> books would give <InlineMath math="660" />, which is not more than <InlineMath math="660" />.
+**Statement 2** is Salah. The handover cuts Anggrek's rice out to <InlineMath math="31" /> and raises Cempaka's to <InlineMath math="22" />:
 
-**Statement 4** is false. The share of history goes from <InlineMath math="\frac{450}{3{,}000}=15\%" /> to <InlineMath math="\frac{585}{3{,}450}\approx16.96\%" />. That is a rise of about <InlineMath math="1.96" /> percentage points, less than <InlineMath math="3" /> percentage points. The <InlineMath math="30\%" /> in statement 1 is the percentage increase in the number of history books, not the change in share.
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad 22-31-3 &= -12, & 180-8\times12 &= 84 \\
+\text{Cempaka}: \quad 15-22-2 &= -9, & 96-7\times9 &= 33
+\end{aligned}" />
 
-So statements 1 and 3 are true, and statements 2 and 4 are false.
+Anggrek is safe now, but Cempaka is already down to <InlineMath math="33" /> tonnes at the end of week <InlineMath math="7" />, below the safety stock. The statement only looks true if you check Anggrek, the warehouse being helped.
+
+**Statement 3** is Salah. The denominator is the stock at the end of week <InlineMath math="8" />, not the starting stock:
+
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad \frac{3}{52} &\approx 5.77\% \\
+\text{Cempaka}: \quad \frac{2}{56} &\approx 3.57\%
+\end{aligned}" />
+
+Anggrek's percentage is larger. The statement looks true if you use the starting stock, because <InlineMath math="2/96\approx2.08\%" /> is indeed more than <InlineMath math="3/180\approx1.67\%" />. Anggrek's stock falls much faster, so the comparison flips.
+
+**Statement 4** is Benar. Each week, the total stock of the three warehouses drops by <InlineMath math="32" /> tonnes, and <InlineMath math="3+1+2=6" /> tonnes of that is shrinkage:
+
+<BlockMath math="\frac{6}{32} = 18.75\% > 10\%" />
+
+The statement looks false if you compare shrinkage with all the rice going out, <InlineMath math="6/101\approx5.9\%" />. What it asks for is the share of the drop in stock, and that drop already has the incoming rice taken off.
+
+So statements 1 and 4 are Benar, and statements 2 and 3 are Salah.

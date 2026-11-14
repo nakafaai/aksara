@@ -1,12 +1,39 @@
-Eine prozentuale Zunahme bezieht sich immer auf **den Anfangswert**, den Niederschlag im September.
+Gesucht ist der Mindestschlaf für die beiden Wochenendnächte der nächsten Woche. Der Schlüssel: **ein Durchschnitt von mindestens <InlineMath math="8" /> Stunden über <InlineMath math="14" /> Nächte heißt insgesamt mindestens <InlineMath math="14\times8" /> Stunden**. Der Plan: Berechne den effektiven Schlaf dieser Woche, bestimm, was insgesamt noch fehlt, und teil den Rest auf die zwei Wochenendnächte auf. Alle Zeiten sind in Minuten.
 
-# Zunahme und ihr Prozentsatz
+# Effektiver Schlaf in der Woche der Tabelle
+
+Die Zeit im Bett reicht vom Einschlafen bis zum Aufwachen. **Liegt die Schlafenszeit vor Mitternacht, zählst du zuerst bis 24.00 Uhr** und addierst dann die Zeit danach. Am Montag sind es von 22.00 bis 24.00 Uhr <InlineMath math="120" /> Minuten, dazu <InlineMath math="400" /> Minuten bis 06.40 Uhr, also <InlineMath math="520" /> Minuten. Der Mittwoch ist anders: Von 00.20 bis 06.50 Uhr sind es nur <InlineMath math="390" /> Minuten, weil der Schlaf erst nach Mitternacht beginnt.
+
+| Tag | Im Bett | Wach | Effektiver Schlaf |
+| :--- | :---: | :---: | :---: |
+| Montag | <InlineMath math="520" /> | <InlineMath math="20" /> | <InlineMath math="500" /> |
+| Dienstag | <InlineMath math="390" /> | <InlineMath math="15" /> | <InlineMath math="375" /> |
+| Mittwoch | <InlineMath math="390" /> | <InlineMath math="10" /> | <InlineMath math="380" /> |
+| Donnerstag | <InlineMath math="540" /> | <InlineMath math="25" /> | <InlineMath math="515" /> |
+| Freitag | <InlineMath math="360" /> | <InlineMath math="0" /> | <InlineMath math="360" /> |
+| Samstag | <InlineMath math="630" /> | <InlineMath math="30" /> | <InlineMath math="600" /> |
+| Sonntag | <InlineMath math="600" /> | <InlineMath math="40" /> | <InlineMath math="560" /> |
+
+Der effektive Schlaf dieser Woche beträgt insgesamt <InlineMath math="500+375+380+515+360+600+560=3{.}290" /> Minuten.
+
+# Was die nächste Woche braucht
+
+Das Ziel für <InlineMath math="14" /> Nächte sind <InlineMath math="14\times480=6{.}720" /> Minuten. Die fünf Werktagsnächte der nächsten Woche bringen höchstens <InlineMath math="5\times470=2{.}350" /> Minuten. Was dann noch fehlt, **müssen Samstag- und Sonntagnacht liefern**.
 
 <BlockMath math="\begin{aligned}
-140-70&=70\text{ mm}\\
-\tfrac{70}{70}\cdot100\,\%&=100\,\%
+2x &\ge 6{.}720-3{.}290-2{.}350=1{.}080 \\
+x &\ge 540\text{ Minuten}=9\text{ Stunden}
 \end{aligned}" />
 
-Im Oktober fällt genau doppelt so viel Regen wie im September. **Verdoppeln heißt um 100 % steigen**, nicht um 200 %.
+Kontrolle: Die Summe der <InlineMath math="14" /> Nächte wird <InlineMath math="3{.}290+2{.}350+2\times540=6{.}720" /> Minuten, und <InlineMath math="6{.}720:14=480" /> Minuten sind genau <InlineMath math="8" /> Stunden.
 
-Der Niederschlag stieg also um **100 %**.
+# Die falschen Antworten
+
+Die anderen Antworten **lassen einen Teil der Summe über <InlineMath math="14" /> Nächte weg**.
+
+- <InlineMath math="7" /> Stunden <InlineMath math="50" /> Minuten nimmt die Zeit im Bett dieser Woche (<InlineMath math="3{.}430" /> Minuten) und vergisst, die Wachzeit abzuziehen.
+- <InlineMath math="8" /> Stunden erfüllt nur das Ziel einer Nacht und übersieht das bestehende Defizit.
+- <InlineMath math="8" /> Stunden <InlineMath math="25" /> Minuten bringt nur die nächste Woche auf <InlineMath math="8" /> Stunden im Schnitt, <InlineMath math="(3{.}360-2{.}350):2=505" />, und vergisst das Defizit von <InlineMath math="70" /> Minuten aus dieser Woche.
+- <InlineMath math="8" /> Stunden <InlineMath math="35" /> Minuten nimmt an, dass die Werktagsnächte der nächsten Woche <InlineMath math="8" /> Stunden schaffen, dabei sind höchstens <InlineMath math="7" /> Stunden <InlineMath math="50" /> Minuten möglich.
+
+In der nächsten Woche braucht also jede der beiden Nächte Samstag und Sonntag mindestens <InlineMath math="9" /> Stunden effektiven Schlaf.

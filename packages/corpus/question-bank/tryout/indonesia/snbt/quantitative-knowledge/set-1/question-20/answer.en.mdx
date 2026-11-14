@@ -1,25 +1,33 @@
-The phrase "given that the product is even" makes this a **conditional probability**. The sample space is no longer all 36 pairs but only the pairs whose product is even.
+The word MAMALIA has <InlineMath math="3" /> letters A, <InlineMath math="2" /> letters M, and one each of L and I. Two conditions hold at once: **no two A's side by side and no two M's side by side**. The plan: meet the A condition first with the gap method, then throw out the arrangements where the two M's still touch.
 
-# The new sample space
+# Meeting the A condition
 
-A product of two numbers is odd exactly when both numbers are odd. There are <InlineMath math="3\times3=9" /> odd-odd pairs out of 36, so **27 pairs have an even product**. Each pair is equally likely because the dice are fair.
+First arrange the four letters that aren't A, namely M, M, L, and I. The two M's are identical, so the number of arrangements is
 
-# The required event
+<BlockMath math="\frac{4!}{2!}=12" />
 
-There are 15 pairs whose sum is at least 8.
+These four letters make <InlineMath math="5" /> gaps, counting both ends. Put each A in a different gap, and **no two A's end up side by side**. The three A's are identical, so you just choose <InlineMath math="3" /> of the <InlineMath math="5" /> gaps.
 
-| Sum | Pairs | Count |
-| :---: | :---: | :---: |
-| 8 | (2,6), (3,5), (4,4), (5,3), (6,2) | 5 |
-| 9 | (3,6), (4,5), (5,4), (6,3) | 4 |
-| 10 | (4,6), (5,5), (6,4) | 3 |
-| 11 | (5,6), (6,5) | 2 |
-| 12 | (6,6) | 1 |
+<BlockMath math="12\cdot\binom{5}{3}=12\cdot10=120" />
 
-From these 15 pairs, **remove those with two odd faces**: (3,5), (5,3), and (5,5). That leaves 12 pairs.
+# Throwing out arrangements where the M's touch
 
-<BlockMath math="P=\frac{12}{27}=\frac49" />
+Out of those <InlineMath math="120" /> arrangements, count the ones where the two M's are next to each other. That happens when the two M's are adjacent among the four letters **and** no A goes between them.
 
-The value <InlineMath math="\tfrac13=\tfrac{12}{36}" /> forgets to change the sample space. The value <InlineMath math="\tfrac59=\tfrac{15}{27}" /> forgets to remove the three odd pairs from the event. The value <InlineMath math="\tfrac23=\tfrac{12}{18}" /> assumes that only half of the pairs have an even product. The value <InlineMath math="\tfrac45=\tfrac{12}{15}" /> reverses the condition: it is the probability of an even product given a sum of at least 8.
+Glue MM into one block, then arrange that block with L and I: there are <InlineMath math="3!=6" /> ways. Now there are <InlineMath math="4" /> gaps around these three units, and the gap inside the MM block **can't be used**, because an A there would split the two M's. Choose <InlineMath math="3" /> of the <InlineMath math="4" /> gaps.
 
-So the required probability is <InlineMath math="\tfrac49" />.
+<BlockMath math="6\cdot\binom{4}{3}=6\cdot4=24" />
+
+So the number of arrangements meeting both conditions is
+
+<BlockMath math="120-24=96" />
+
+# Checking the result
+
+The word MAMALIA itself qualifies, because the order M, A, M, A, L, I, A has no two equal letters side by side. Listing all <InlineMath math="420" /> arrangements one by one also gives **exactly <InlineMath math="96" /> arrangements** that pass.
+
+# Common mistakes
+
+The answer <InlineMath math="120" /> comes from **forgetting the M condition**. The answer <InlineMath math="192" /> comes from treating the two M's as different letters, which counts every arrangement twice. The answer <InlineMath math="420" /> is the number of all arrangements with no condition at all.
+
+So the number of arrangements with no two equal letters side by side is <InlineMath math="96" />.

@@ -1,22 +1,26 @@
-Tulis pernyataan itu dengan lambang agar bentuknya terlihat jelas. Misalkan <InlineMath math="p" />: tiket kereta habis, <InlineMath math="q" />: Rani naik bus, dan <InlineMath math="r" />: Rani menunda perjalanan. Pernyataannya adalah <InlineMath math="p \Rightarrow (q \vee r)" />.
+Ingkaran adalah pernyataan yang benar tepat ketika pernyataan asal salah. Jadi, tanyakan dulu kapan pernyataan asal salah.
 
-Sebuah implikasi hanya salah ketika bagian "jika" benar dan bagian "maka" salah. Jadi, pernyataan ini **hanya dilanggar ketika tiket habis, Rani tidak naik bus, dan Rani tidak menunda perjalanan**. Pernyataan yang setara harus dilanggar tepat pada keadaan yang sama.
+Pernyataan asal membicarakan satu kelompok, yaitu atlet yang lolos seleksi daerah dan belum pernah cedera berat. Untuk kelompok ini, pernyataan asal menuntut setiap atlet memenuhi paling sedikit satu dari dua hal: anggota tim inti provinsi atau penerima beasiswa olahraga.
 
-Ubah bentuknya secara aljabar:
+Pernyataan asal salah kalau ada paling sedikit satu atlet di kelompok itu yang gagal memenuhi tuntutan. Gagal memenuhi "A atau B" berarti tidak A dan juga tidak B. Aturan ini disebut hukum De Morgan: ingkaran "atau" menjadi "dan", dan setiap bagiannya diingkar.
 
-<BlockMath math="\begin{aligned}
-p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
-&\equiv \neg(p \wedge \neg q) \vee r \\
-&\equiv (p \wedge \neg q) \Rightarrow r
-\end{aligned}" />
+Dengan lambang, misalkan <InlineMath math="K(x)" />: atlet <InlineMath math="x" /> lolos seleksi daerah dan belum pernah cedera berat, <InlineMath math="T(x)" />: anggota tim inti provinsi, dan <InlineMath math="B(x)" />: penerima beasiswa olahraga.
 
-Bentuk terakhir berbunyi: jika tiket kereta habis dan Rani tidak naik bus, Rani menunda perjalanan. Bentuk ini juga hanya dilanggar ketika tiket habis, Rani tidak naik bus, dan Rani tidak menunda perjalanan.
+<BlockMath math="\neg\,\forall x\,\big(K(x) \Rightarrow (T(x) \vee B(x))\big) \;\equiv\; \exists x\,\big(K(x) \wedge \neg T(x) \wedge \neg B(x)\big)" />
 
-Pilihan lain tidak setara:
+Ada tiga langkah, dan hanya tiga.
 
-- "Jika Rani naik bus atau menunda perjalanan, tiket habis" adalah konvers. Konvers dilanggar ketika Rani naik bus padahal tiket masih ada, keadaan yang tidak melanggar pernyataan semula.
-- "Jika tiket tidak habis, Rani tidak naik bus dan tidak menunda" adalah invers, yang juga tidak setara dengan implikasi semula.
-- "Jika Rani tidak naik bus atau tidak menunda, tiket tidak habis" salah menegasikan <InlineMath math="q \vee r" />. Negasi yang benar adalah "tidak naik bus **dan** tidak menunda".
-- "Tiket habis, tetapi Rani tidak naik bus dan tidak menunda" adalah negasi pernyataan semula, bukan pernyataan yang setara.
+1. "Semua" berubah menjadi "ada".
+2. Keterangan kelompok, yaitu lolos seleksi daerah dan belum pernah cedera berat, **tetap utuh dan tidak diingkar**. Keterangan ini hanya menunjuk atlet mana yang sedang dibicarakan.
+3. Tuntutan "anggota tim inti atau penerima beasiswa" diingkar menjadi "bukan anggota tim inti dan bukan penerima beasiswa".
 
-Jadi, pernyataan yang setara adalah "jika tiket kereta habis dan Rani tidak naik bus, Rani menunda perjalanan".
+Hasilnya adalah "ada atlet yang lolos seleksi daerah dan belum pernah cedera berat, tetapi bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga".
+
+Pilihan lain gagal karena kesalahan berikut.
+
+- Versi dengan "bukan anggota tim inti atau bukan penerima beasiswa" lupa mengubah "atau" menjadi "dan". Atlet di kelompok itu yang menerima beasiswa tetapi bukan anggota tim inti memenuhi pilihan ini, padahal ia tidak membantah pernyataan asal.
+- Versi yang diawali "semua" bukan ingkaran, melainkan pernyataan yang jauh lebih kuat. Kalau kelompok itu berisi satu anggota tim inti dan satu atlet tanpa keduanya, pernyataan asal salah dan pilihan ini juga salah. Ingkaran tidak boleh ikut salah bersama pernyataan asal.
+- Versi dengan "tidak lolos seleksi daerah atau pernah cedera berat" mengingkar keterangan kelompok. Atlet seperti itu berada di luar kelompok, jadi apa pun statusnya tidak bisa membantah pernyataan asal.
+- Versi "ada atlet yang bukan anggota tim inti dan bukan penerima beasiswa" membuang keterangan kelompok. Atlet yang tidak pernah lolos seleksi daerah bisa memenuhi pilihan ini tanpa membantah pernyataan asal.
+
+Jadi, ingkarannya adalah ada atlet yang lolos seleksi daerah dan belum pernah cedera berat, tetapi bukan anggota tim inti provinsi dan bukan penerima beasiswa olahraga.

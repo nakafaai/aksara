@@ -1,23 +1,26 @@
-Perubahan persen selalu dihitung **terhadap nilai awal**, yaitu bulan sebelumnya. Baca nilai setiap batang, lalu periksa pernyataan satu per satu.
+Ruas kiri adalah selisih dua kuadrat, jadi **ubah persamaannya menjadi perkalian dua faktor**: <InlineMath math="(x-y)(x+y)=144" />. Misalkan <InlineMath math="d=x-y" /> dan <InlineMath math="e=x+y" />. Maka <InlineMath math="x=\tfrac{d+e}{2}" /> dan <InlineMath math="y=\tfrac{e-d}{2}" />, sehingga setiap pasangan berurutan <InlineMath math="(d,e)" /> dengan <InlineMath math="de=144" /> memberi tepat satu pasangan <InlineMath math="(x,y)" />, asalkan hasilnya bulat. Rencananya: cari syarat bulat itu, lalu hitung pasangan faktornya, termasuk yang negatif.
 
-# Perubahan persen
+# Syarat paritas
 
-<BlockMath math="\begin{aligned}
-\text{produk } A\text{, Februari ke Maret}&=\frac{60-50}{50}\times100\%=20\%\\
-\text{produk } B\text{, Januari ke Februari}&=\frac{45-60}{60}\times100\%=-25\%
-\end{aligned}" />
+Nilai <InlineMath math="x=\tfrac{d+e}{2}" /> bulat hanya jika <InlineMath math="d+e" /> genap, artinya <InlineMath math="d" /> dan <InlineMath math="e" /> **sama-sama genap atau sama-sama ganjil**. Keduanya tidak mungkin ganjil, karena hasil kali dua bilangan ganjil itu ganjil, padahal <InlineMath math="144" /> genap. Jadi keduanya genap: <InlineMath math="d=2m" /> dan <InlineMath math="e=2n" /> dengan
 
-Pernyataan pertama **benar**. Penurunan produk <InlineMath math="B" /> adalah 25%, bukan 15%, jadi pernyataan ketiga salah. Angka 15 adalah selisih unit, belum dibagi nilai awal.
+<BlockMath math="(2m)(2n)=144\ \Rightarrow\ mn=36,\quad x=m+n,\quad y=n-m" />
 
-# Total dan rata-rata
+# Menghitung pasangan faktor
 
-Total Januari adalah <InlineMath math="40+60=100" /> unit, sedangkan total Februari <InlineMath math="50+45=95" /> unit. **Total Februari lebih rendah**, jadi pernyataan kedua salah.
+Pembagi positif <InlineMath math="36" /> adalah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="12" />, <InlineMath math="18" />, dan <InlineMath math="36" />, jadi ada <InlineMath math="9" /> pasangan berurutan <InlineMath math="(m,n)" /> yang keduanya positif. **Faktor negatif juga boleh**: <InlineMath math="(-m)(-n)=36" />, yang memberi <InlineMath math="9" /> pasangan lagi.
 
-<BlockMath math="\begin{aligned}
-\bar x_A&=\frac{40+50+60}{3}=50\\
-\bar x_B&=\frac{60+45+54}{3}=53
-\end{aligned}" />
+<BlockMath math="9+9=18" />
 
-Rata-rata produk <InlineMath math="B" /> lebih besar, jadi pernyataan keempat benar.
+# Memeriksa dengan daftar penyelesaian
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Pasangan positif <InlineMath math="(m,n)" /> dengan <InlineMath math="m<n" /> memberi <InlineMath math="(x,y)" /> sama dengan <InlineMath math="(37,35)" />, <InlineMath math="(20,16)" />, <InlineMath math="(15,9)" />, dan <InlineMath math="(13,5)" />. Setiap penyelesaian itu menghasilkan empat pasangan karena tanda <InlineMath math="x" /> dan <InlineMath math="y" /> bebas, jadi ada <InlineMath math="4\times4=16" />. Pasangan <InlineMath math="m=n=6" /> memberi <InlineMath math="y=0" />, dan di sini **hanya ada dua pasangan**, <InlineMath math="(12,0)" /> dan <InlineMath math="(-12,0)" />, karena <InlineMath math="0" /> dan <InlineMath math="-0" /> sama. Totalnya <InlineMath math="16+2=18" />, cocok.
+
+# Kesalahan yang sering terjadi
+
+- Hasil <InlineMath math="16" /> melupakan penyelesaian dengan <InlineMath math="y=0" />.
+- Hasil <InlineMath math="20" /> menghitung <InlineMath math="(\pm12,0)" /> sebagai empat pasangan.
+- Hasil <InlineMath math="30" /> memakai semua <InlineMath math="15" /> pembagi <InlineMath math="144" /> **tanpa syarat paritas**, padahal pasangan seperti <InlineMath math="d=1" /> dan <InlineMath math="e=144" /> memberi <InlineMath math="x=\tfrac{145}{2}" /> yang tidak bulat.
+- Hasil <InlineMath math="9" /> lupa bahwa kedua faktor boleh negatif.
+
+Jadi, banyak pasangan bilangan bulat <InlineMath math="(x,y)" /> yang memenuhi adalah <InlineMath math="18" />.

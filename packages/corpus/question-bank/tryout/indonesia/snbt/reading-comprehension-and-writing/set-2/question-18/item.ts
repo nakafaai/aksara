@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "spelling",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
   },
-  stimulus: "sleep-survey",
+  stimulus: "bantaran",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "18 orang siswa tidur kurang dari enam jam setiap malam.",
+          label:
+            "Kelurahan akan kembali menyumbangkan cat ketika dinding kampung itu mulai pudar.",
         },
         {
           correct: true,
-          label: "Delapan belas siswa tidur kurang dari enam jam setiap malam.",
+          label:
+            "Mural di kampung itu ikut menentukan besarnya dana untuk merawat mural itu sendiri.",
         },
         {
           correct: false,
           label:
-            "Delapan belas (18) siswa-siswa tidur kurang dari enam jam setiap malam.",
+            "Uang parkir pengunjung selama ini sudah cukup untuk mengecat ulang seluruh kampung.",
         },
         {
           correct: false,
           label:
-            "Sebanyak 18 orang siswa-siswa tidur kurang dari enam jam setiap malam.",
+            "Pengunjung tertarik datang karena dinding kampung itu dicat ulang setiap dua tahun.",
         },
         {
           correct: false,
-          label: "18 siswa, tidur kurang dari enam jam setiap malam.",
+          label:
+            "Kebiasaan warga membuang sampah ke sungai membuat cat dinding kampung itu cepat pudar.",
         },
       ],
     },

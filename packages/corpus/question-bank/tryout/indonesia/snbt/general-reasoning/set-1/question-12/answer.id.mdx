@@ -1,25 +1,26 @@
-Mulailah dari fakta yang pasti, lalu tarik simpulan langkah demi langkah. Tuliskan pernyataannya dengan lambang:
+Satu-satunya fakta yang kamu pegang adalah kostum baru tidak dibuat. Dari fakta itu, kamu perlu menelusuri premis satu per satu dan berhenti setiap kali sebuah premis tidak lagi memberi informasi baru.
 
-- <InlineMath math="p" />: gudang menerima kiriman beras pada hari Senin
-- <InlineMath math="q" />: petugas menimbang ulang semua karung
-- <InlineMath math="r" />: laporan stok terlambat dikirim
-- <InlineMath math="s" />: kepala gudang menelepon pemasok
+Pakai lambang supaya bentuk premisnya terlihat. Misalkan <InlineMath math="p" />: sponsor baru bergabung, <InlineMath math="k" />: kostum baru dibuat, <InlineMath math="g" />: gedung latihan disewa dengan uang kas, <InlineMath math="s" />: latihan tambahan diadakan setiap Sabtu, <InlineMath math="f" />: paduan suara mengikuti festival tingkat nasional, dan <InlineMath math="v" />: pelatih vokal tamu diundang.
 
-Premisnya adalah <InlineMath math="p \Rightarrow q" />, <InlineMath math="q \Rightarrow r" />, <InlineMath math="\neg r \vee s" />, dan fakta <InlineMath math="\neg s" />.
+Kunci pertama adalah arti "hanya jika". Kalimat **"A hanya jika B" berarti A tidak mungkin terjadi tanpa B**, jadi bentuknya sama dengan "jika A, maka B". Premis 1 menjadi <InlineMath math="p \Rightarrow k" />, dan premis 4 menjadi <InlineMath math="f \Rightarrow s" />. Premis lainnya adalah <InlineMath math="p \vee g" />, <InlineMath math="g \Rightarrow s" />, dan <InlineMath math="p \Rightarrow v" />. Faktanya adalah <InlineMath math="\neg k" />.
 
-**Langkah 1** memakai disjungsi. Pada <InlineMath math="\neg r \vee s" />, paling sedikit satu bagian harus benar. Karena <InlineMath math="s" /> salah, <InlineMath math="\neg r" /> harus benar. Jadi, **laporan stok tidak terlambat**.
+Sekarang telusuri rantainya.
 
-**Langkah 2** memakai modus tollens dua kali. Dari <InlineMath math="q \Rightarrow r" /> dan <InlineMath math="\neg r" />, diperoleh <InlineMath math="\neg q" />. Dari <InlineMath math="p \Rightarrow q" /> dan <InlineMath math="\neg q" />, diperoleh <InlineMath math="\neg p" />.
+1. Premis 1 berkata bahwa kalau sponsor bergabung, kostum baru pasti dibuat. Kostum baru tidak dibuat, jadi sponsor baru tidak bergabung. Langkah ini disebut modus tollens: kalau bagian "maka" gagal, bagian "jika" juga gagal.
+2. Premis 2 berkata paling sedikit satu dari dua hal terjadi: sponsor bergabung atau gedung disewa dengan uang kas. Sponsor tidak bergabung, jadi gedung pasti disewa dengan uang kas. Langkah ini disebut silogisme disjungtif.
+3. Premis 3 berkata kalau gedung disewa dengan uang kas, latihan tambahan diadakan setiap Sabtu. Gedung memang disewa dengan uang kas, jadi latihan tambahan diadakan setiap Sabtu.
 
-<BlockMath math="\neg s,\; \neg r \vee s \;\Rightarrow\; \neg r \;\Rightarrow\; \neg q \;\Rightarrow\; \neg p" />
+<BlockMath math="\neg k \;\xrightarrow{\ (1)\ }\; \neg p \;\xrightarrow{\ (2)\ }\; g \;\xrightarrow{\ (3)\ }\; s" />
 
-Jadi, gudang tidak menerima kiriman beras pada hari Senin.
+Rantai berhenti di sini. Premis 4 hanya bekerja kalau kamu tahu <InlineMath math="f" /> benar atau <InlineMath math="s" /> salah, padahal yang kamu tahu justru <InlineMath math="s" /> benar. Premis 5 hanya bekerja kalau kamu tahu <InlineMath math="p" /> benar atau <InlineMath math="v" /> salah, padahal yang kamu tahu justru <InlineMath math="p" /> salah. Jadi, keikutsertaan di festival dan kedatangan pelatih tamu tetap tidak diketahui.
 
-Pilihan lain tidak tepat:
+Simpulan yang memuat <InlineMath math="\neg p" /> dan <InlineMath math="s" /> adalah "sponsor baru tidak bergabung dan latihan tambahan diadakan setiap Sabtu". Kedua bagiannya terbukti.
 
-- Petugas menimbang ulang semua karung bertentangan dengan <InlineMath math="\neg q" />.
-- Laporan terlambat bertentangan dengan <InlineMath math="\neg r" />.
-- Premis tidak membahas hari lain, jadi kiriman pada hari selain Senin mungkin ada, mungkin juga tidak.
-- Premis hanya membahas minggu ini, sehingga tidak ada dasar untuk menyimpulkan apa pun tentang minggu depan.
+Pilihan lain masing-masing memuat satu bagian yang tidak terbukti.
 
-Jadi, simpulan yang pasti benar adalah gudang tidak menerima kiriman beras pada hari Senin minggu ini.
+- Gedung disewa dengan uang kas dan paduan suara mengikuti festival: bagian kedua membalik premis 4. Latihan tambahan adalah syarat wajib untuk ikut festival, bukan jaminan ikut festival.
+- Sponsor tidak bergabung dan gedung tidak disewa dengan uang kas: bagian kedua salah. Kalau satu bagian dari "atau" gagal, bagian lainnya justru harus benar, bukan ikut gagal.
+- Latihan tambahan diadakan dan pelatih vokal tamu tidak diundang: bagian kedua memakai invers premis 5, yaitu mengira "jika sponsor tidak bergabung, pelatih tamu tidak diundang". Premis 5 hanya berbicara tentang keadaan saat sponsor bergabung, jadi dari "sponsor tidak bergabung" kamu tidak bisa menyimpulkan apa pun tentang pelatih tamu.
+- Sponsor baru bergabung dan latihan tambahan diadakan: bagian pertama bertentangan dengan langkah pertama. Pilihan ini muncul kalau langkah modus tollens pada premis 1 dilewati dan "atau" di premis 2 dibaca seperti "dan".
+
+Jadi, simpulan yang pasti benar adalah sponsor baru tidak bergabung dan latihan tambahan diadakan setiap Sabtu.

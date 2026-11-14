@@ -1,0 +1,74 @@
+Soalan ini tidak memberikan tinggi tiang secara langsung. Tinggi itu mesti dicari daripada bayang-bayang pada dinding. Selepas itu, kamu perlu menyemak **sama ada bayang-bayang masih sampai ke dinding** pada setiap sudut dongak, kerana dinding memotong bahagian bayang-bayang yang jatuh di tanah.
+
+# Tinggi tiang
+
+Sinar matahari yang melalui puncak tiang membentuk sudut <InlineMath math="45^\circ" /> dengan tanah. Oleh sebab <InlineMath math="\tan45^\circ=1" />, sinar itu turun <InlineMath math="1\text{ m}" /> bagi setiap <InlineMath math="1\text{ m}" /> mengufuk. Apabila sampai ke dinding, sinar itu sudah bergerak <InlineMath math="6\text{ m}" /> mengufuk dan turun <InlineMath math="6\text{ m}" />, lalu mengenai dinding pada ketinggian <InlineMath math="3\text{ m}" />:
+
+<BlockMath math="\begin{aligned}
+h-6\cdot\tan45^\circ&=3 \\
+h-6&=3 \\
+h&=9\text{ m}
+\end{aligned}" />
+
+Jadi **tinggi tiang ialah <InlineMath math="9\text{ m}" />**, bukan <InlineMath math="6\text{ m}" />. Pada sudut dongak <InlineMath math="45^\circ" />, bahagian bayang-bayang di tanah hanya <InlineMath math="6\text{ m}" /> kerana terhenti oleh dinding.
+
+# Bayang-bayang pada enam puluh darjah
+
+Jika tiada dinding, panjang bayang-bayang ialah tinggi tiang dibahagi dengan <InlineMath math="\tan60^\circ" />:
+
+<BlockMath math="\frac{9}{\tan60^\circ}=\frac{9}{\sqrt3}=3\sqrt3\approx5.2\text{ m}" />
+
+Nilai <InlineMath math="3\sqrt3\approx5.2" /> kurang daripada <InlineMath math="6" />, jadi **bayang-bayang tidak sampai ke dinding** dan semuanya jatuh di tanah.
+
+<MathVisual
+  title={<>Tiang, dinding dan dua sinar matahari</>}
+  description={<>Tiang setinggi <InlineMath math="9\text{ m}" /> berdiri <InlineMath math="6\text{ m}" /> dari dinding. Sinar dengan sudut dongak <InlineMath math="45^\circ" /> dari puncak tiang mengenai dinding pada ketinggian <InlineMath math="3\text{ m}" />. Sinar dengan sudut dongak <InlineMath math="60^\circ" /> mengenai tanah <InlineMath math="3\sqrt3\approx5.2\text{ m}" /> dari kaki tiang, sebelum sampai ke dinding.</>}
+  labels={{
+    pole: <InlineMath math="9" />,
+    gap: <InlineMath math="6" />,
+    mark: <InlineMath math="3" />,
+    low: <InlineMath math="45^\circ" />,
+    high: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 10 } },
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 9 } },
+      { id: "ray-low", kind: "segment", appearance: "highlight", from: { x: 0, y: 9 }, to: { x: 6, y: 3 } },
+      { id: "ray-high", kind: "segment", appearance: "answer", from: { x: 0, y: 9 }, to: { x: Math.sqrt(27), y: 0 } },
+      { id: "wall-mark", kind: "segment", appearance: "highlight", from: { x: 6, y: 0 }, to: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "pole", objectId: "pole", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "gap", objectId: "ground", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "mark", objectId: "wall-mark", at: { x: 6, y: 1.5 }, placement: "right" },
+      { key: "low", objectId: "ray-low", at: { x: 3, y: 6 }, placement: "above-right" },
+      { key: "high", objectId: "ray-high", at: { x: Math.sqrt(27) / 2, y: 4.5 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+# Perubahan bayang-bayang di tanah
+
+Sekarang bandingkan bahagian bayang-bayang di tanah pada kedua-dua masa: <InlineMath math="6\text{ m}" /> pada sudut dongak <InlineMath math="45^\circ" /> dan <InlineMath math="3\sqrt3\text{ m}" /> pada sudut dongak <InlineMath math="60^\circ" />.
+
+<BlockMath math="\text{berkurang}=6-3\sqrt3\approx6-5.2=0.8\text{ m}" />
+
+Bayang-bayang di tanah hanya memendek sedikit, kerana pada <InlineMath math="45^\circ" /> sebahagian besar lebihan bayang-bayang **naik ke dinding**, bukan terbentang di tanah.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac32" /> terhasil jika tiang dianggap hipotenus, jadi bayang-bayang dikira sebagai <InlineMath math="9\cos60^\circ=4.5" />. Bayang-bayang ialah sisi mengufuk yang bersebelahan dengan sudut dongak, jadi rumusnya <InlineMath math="\frac{h}{\tan\theta}" />.
+- <InlineMath math="6-2\sqrt3" /> menggunakan tinggi tiang <InlineMath math="6\text{ m}" />. Bayang-bayang setinggi <InlineMath math="3\text{ m}" /> pada dinding terlupa.
+- <InlineMath math="9-3\sqrt3" /> menggunakan <InlineMath math="9\text{ m}" /> sebagai bayang-bayang di tanah pada <InlineMath math="45^\circ" />. **Dinding menghentikan bayang-bayang itu pada <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="3\sqrt3" /> ialah panjang bayang-bayang pada <InlineMath math="60^\circ" />, belum ditolak daripada panjang asal.
+
+Jadi, panjang bayang-bayang tiang di tanah berkurang sebanyak <InlineMath math="6-3\sqrt3" /> meter.

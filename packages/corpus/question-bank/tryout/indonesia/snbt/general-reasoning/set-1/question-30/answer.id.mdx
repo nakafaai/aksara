@@ -1,12 +1,25 @@
-Rata-rata <InlineMath math="12" /> untuk lima bilangan berarti **jumlahnya tetap**:
+Yang dicari adalah gabungan bus sedang dan minibus yang memuat paling sedikit <InlineMath math="96" /> orang, memakai paling sedikit satu bus sedang, dan biayanya paling kecil. Banyak kendaraan harus bilangan bulat, jadi rumus "biaya per kursi" saja tidak cukup. Cara yang aman adalah **memeriksa setiap kemungkinan banyak bus sedang**, lalu menambah minibus secukupnya untuk sisa penumpang.
 
-<BlockMath math="5\times12=60" />
+Untuk setiap banyak bus sedang <InlineMath math="b" />, sisa penumpang adalah <InlineMath math="96-31b" />. Banyak minibus adalah sisa itu dibagi <InlineMath math="14" />, lalu dibulatkan ke atas, karena minibus tidak bisa disewa sebagian. Kasus <InlineMath math="b=0" /> tidak boleh dipakai karena panitia wajib menyewa bus sedang. Kasus <InlineMath math="b=4" /> sudah memuat <InlineMath math="124" /> orang, jadi bus kelima hanya menambah biaya.
 
-Urutkan bilangan dari yang terkecil: <InlineMath math="a<b<10<d<e" />. Median <InlineMath math="10" /> berarti bilangan ketiga adalah <InlineMath math="10" />. Agar <InlineMath math="e" /> sebesar mungkin, **empat bilangan lainnya harus sekecil mungkin**, karena jumlah kelimanya tetap <InlineMath math="60" />.
+| Bus sedang | Sisa penumpang | Minibus | Kursi | Biaya |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="65" /> | <InlineMath math="5" /> | <InlineMath math="101" /> | <InlineMath math="\text{Rp}6{.}850{.}000" /> |
+| <InlineMath math="2" /> | <InlineMath math="34" /> | <InlineMath math="3" /> | <InlineMath math="104" /> | <InlineMath math="\text{Rp}7{.}050{.}000" /> |
+| <InlineMath math="3" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="107" /> | <InlineMath math="\text{Rp}7{.}250{.}000" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="124" /> | <InlineMath math="\text{Rp}8{.}400{.}000" /> |
 
-- <InlineMath math="a" /> dan <InlineMath math="b" /> adalah dua bilangan bulat positif berbeda yang terkecil, yaitu <InlineMath math="1" /> dan <InlineMath math="2" />.
-- <InlineMath math="d" /> harus lebih besar dari <InlineMath math="10" /> dan berbeda dari <InlineMath math="10" />, jadi nilai terkecilnya <InlineMath math="11" />.
+Biaya baris pertama dihitung seperti ini:
 
-<BlockMath math="e=60-(1+2+10+11)=60-24=36" />
+<BlockMath math="1\times2{.}100{.}000+5\times950{.}000 = 2{.}100{.}000+4{.}750{.}000 = 6{.}850{.}000" />
 
-Periksa: bilangan <InlineMath math="1, 2, 10, 11, 36" /> berbeda semua, mediannya <InlineMath math="10" />, dan rata-ratanya <InlineMath math="\frac{60}{5}=12" />. Jika <InlineMath math="d" /> dibuat <InlineMath math="10" />, bilangan tidak lagi berbeda, sehingga <InlineMath math="d=11" /> memang batas terkecilnya. Jadi, nilai terbesar yang mungkin adalah <InlineMath math="36" />.
+Biaya terkecil adalah <InlineMath math="\text{Rp}6{.}850{.}000" />, dengan satu bus sedang dan lima minibus. Cek bahwa empat minibus tidak cukup: <InlineMath math="31+4\times14=87" /> kursi, kurang dari <InlineMath math="96" />.
+
+Pilihan lain berasal dari jebakan yang berbeda:
+
+- <InlineMath math="\text{Rp}6{.}650{.}000" /> adalah biaya tujuh minibus (<InlineMath math="98" /> kursi). Ini memang paling murah jika tanpa syarat, tetapi tidak memakai bus sedang, jadi gugur.
+- <InlineMath math="\text{Rp}7{.}250{.}000" /> muncul dari cara rakus: bus sedang sedikit lebih murah per kursi (sekitar <InlineMath math="\text{Rp}67{.}742" /> lawan <InlineMath math="\text{Rp}67{.}857" />), lalu dipakai sebanyak mungkin. Hasilnya tiga bus sedang dan satu minibus dengan <InlineMath math="11" /> kursi kosong. Kursi kosong itu tetap dibayar, jadi cara ini lebih mahal.
+- <InlineMath math="\text{Rp}8{.}400{.}000" /> adalah biaya jika hanya memakai bus sedang.
+- <InlineMath math="\text{Rp}8{.}750{.}000" /> muncul jika satu bus sedang ditambahkan ke rencana tujuh minibus tanpa mengurangi minibusnya.
+
+Jadi, biaya sewa paling murah yang memenuhi semua syarat adalah <InlineMath math="\text{Rp}6{.}850{.}000" />.

@@ -37,7 +37,7 @@ Sebelum membagi, yang dibagi perlu tempat untuk setiap pangkat. <InlineMath math
 
 <BarChart
   title={<>Koefisien yang dibagi, termasuk nol</>}
-  description={<>Koefisien setiap pangkat x pada yang dibagi, dengan 0 untuk suku x kuadrat yang tidak ada.</>}
+  description={<>Koefisien setiap pangkat x pada yang dibagi, dengan <InlineMath math="0" /> untuk suku x kuadrat yang tidak ada.</>}
   yAxisLabel="Koefisien"
   data={[["x⁴", 4], ["x³", 17], ["x²", 0], ["x", -3], ["1", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Koefisien", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -62,7 +62,7 @@ Hasil baginya adalah <InlineMath math="4x^2+x" /> dan sisanya <InlineMath math="
 
 **Langkah 3**. Penjelasan Langkah Demi Langkah
 
-**Iterasi 1**:
+**Iterasi <InlineMath math="1" />**:
 
 **Bagi**: Bagi suku pertama <InlineMath math="4x^4" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
 
@@ -82,7 +82,7 @@ Tulis <InlineMath math="4x^2" /> sebagai suku pertama hasil bagi.
 
 <InlineMath math="x^3 + 4x^2 - 3x" />
 
-**Iterasi 2**:
+**Iterasi <InlineMath math="2" />**:
 
 **Bagi**: Bagi suku pertama polinomial baru <InlineMath math="x^3" /> dengan suku pertama pembagi <InlineMath math="x^2" />:
 
@@ -125,11 +125,11 @@ Pembagian bersusun mencatat setiap langkah pembagian, perkalian, dan pengurangan
 
 Bentuk pecahan hanya berlaku untuk input dengan <InlineMath math="Q(x)\ne0" />. Identitas perkalian tetap berlaku untuk semua input.
 
-Setiap langkah pembagian bersusun menurunkan derajat sisanya. Yang dibagi, <InlineMath math="4x^4 + 17x^3 - 3x + 1" />, berderajat 4. Setelah dikurangi <InlineMath math="4x^2(x^2 + 4x - 1)" />, sisanya berderajat 3, dan setelah dikurangi <InlineMath math="x(x^2 + 4x - 1)" />, tinggal <InlineMath math="-2x + 1" /> yang berderajat 1. Derajat itu di bawah derajat pembagi, yaitu 2, jadi pembagian berhenti.
+Setiap langkah pembagian bersusun menurunkan derajat sisanya. Yang dibagi, <InlineMath math="4x^4 + 17x^3 - 3x + 1" />, berderajat <InlineMath math="4" />. Setelah dikurangi <InlineMath math="4x^2(x^2 + 4x - 1)" />, sisanya berderajat <InlineMath math="3" />, dan setelah dikurangi <InlineMath math="x(x^2 + 4x - 1)" />, tinggal <InlineMath math="-2x + 1" /> yang berderajat <InlineMath math="1" />. Derajat itu di bawah derajat pembagi, yaitu <InlineMath math="2" />, jadi pembagian berhenti.
 
 <BarChart
   title={<>Derajat turun di setiap langkah</>}
-  description={<>Derajat yang dibagi dan setiap sisa selama pembagian bersusun oleh x kuadrat ditambah 4x dikurangi 1.</>}
+  description={<>Derajat yang dibagi dan setiap sisa selama pembagian bersusun oleh x kuadrat ditambah 4x dikurangi <InlineMath math="1" />.</>}
   yAxisLabel="Derajat"
   data={[["awal", 4], ["langkah 1", 3], ["langkah 2", 1]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Derajat", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

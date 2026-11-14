@@ -1,0 +1,146 @@
+
+export const metadata = {
+  title: "Gambar Rajah Serakan",
+  description: "Gambar rajah serakan membandingkan data numerik yang berpasangan. Arah dan serakan titiknya menunjukkan trend positif, negatif atau tidak jelas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-30",
+  dateModified: "2026-09-24",
+  subject: "Statistik",
+};
+
+## Memplot Cerapan Berpasangan sebagai Titik
+
+Gambar rajah serakan memplot nilai berpasangan daripada dua pemboleh ubah numerik sebagai titik. Contohnya, kita boleh letakkan masa belajar pada paksi-<InlineMath math="x" /> dan markah peperiksaan pada paksi-<InlineMath math="y" />.
+
+Setiap titik mewakili satu cerapan berpasangan, contohnya masa belajar dan markah seorang murid. Kelompok titik itu menunjukkan <Highlight>sama ada pasangan-pasangan itu membentuk corak yang boleh dikenal pasti</Highlight>.
+
+### Memilih Gambar Rajah Serakan
+
+Gambar rajah serakan sangat berguna apabila kita mahu:
+
+- menyemak sama ada satu pemboleh ubah numerik cenderung naik, turun atau tidak menunjukkan perubahan yang konsisten apabila pemboleh ubah yang satu lagi berubah, contohnya tinggi dan berat badan atau masa belajar dan markah.
+- meneliti **arah dan bentuk** corak itu, termasuk kecenderungan positif, negatif atau tidak jelas.
+
+Gambar rajah serakan berbeza daripada gambar rajah yang lain:
+
+- **Carta palang**: membandingkan nilai antara **kategori**, contohnya bilangan murid dalam kelas yang berlainan.
+- **Graf garis**: menunjukkan perkembangan mengikut **masa** atau urutan tetap yang lain, contohnya suhu harian.
+- **Carta pai**: menunjukkan **bahagian daripada keseluruhan**, contohnya taburan jenis buah kegemaran.
+
+Apabila soalan utama kamu berkaitan dengan kemungkinan wujudnya **hubungan antara dua pemboleh ubah numerik**, gambar rajah serakan ialah titik permulaan yang sesuai.
+
+## Contoh Gambar Rajah Serakan dan Corak Korelasi
+
+Bandingkan **arah dan pengelompokan titik** dalam tiga set data. Arah yang menaik atau menurun menggambarkan perkaitan positif atau negatif. Sejauh mana titik-titik berkelompok di sekitar satu garis lurus menggambarkan kekuatan corak linear itu, manakala perbezaan antara titik merekodkan variasi antara cerapan.
+
+### Korelasi Positif
+
+Kalau titik-titik cenderung naik dari kiri bawah ke kanan atas, maksudnya ada **korelasi positif**. Apabila nilai <InlineMath math="X" /> bertambah, nilai <InlineMath math="Y" /> juga cenderung bertambah.
+
+<ScatterDiagram
+  title="Hubungan antara Masa Belajar (Jam) dan Markah Peperiksaan"
+  description="Contoh korelasi positif: Semakin lama masa belajar, markah peperiksaan cenderung semakin tinggi, walaupun tidak selalu secara sempurna."
+  xAxisLabel="Masa Belajar (Jam)"
+  yAxisLabel="Markah Peperiksaan"
+  datasets={[
+    {
+      name: "Murid",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 60 },
+        { x: 1.5, y: 68 },
+        { x: 2, y: 65 },
+        { x: 2.5, y: 75 },
+        { x: 3, y: 72 },
+        { x: 3.5, y: 80 },
+        { x: 4, y: 85 },
+        { x: 4, y: 82 },
+        { x: 4.5, y: 90 },
+        { x: 5, y: 88 },
+        { x: 5.5, y: 95 },
+        { x: 6, y: 92 },
+      ],
+    },
+  ]}
+/>
+
+Pada masa belajar <InlineMath math="4\text{ jam}" />, ada dua markah, iaitu <InlineMath math="82" /> dan <InlineMath math="85" />. Jadi **nilai mengufuk yang sama** boleh berpasangan dengan nilai mencancang yang berbeza. Corak positif menggambarkan kecenderungan keseluruhan, tetapi tidak menentukan markah setiap murid.
+
+### Korelasi Negatif
+
+Kalau titik-titik cenderung turun dari kiri atas ke kanan bawah, maksudnya ada **korelasi negatif**. Apabila nilai <InlineMath math="X" /> bertambah, nilai <InlineMath math="Y" /> cenderung berkurang.
+
+<ScatterDiagram
+  title="Hubungan antara Umur Kereta (Tahun) dan Harga Jualan (Puluhan Juta)"
+  description="Contoh korelasi negatif: Semakin tua umur kereta, harga jualannya cenderung semakin rendah."
+  xAxisLabel="Umur Kereta (Tahun)"
+  yAxisLabel="Harga Jualan (Puluhan Juta Rupiah)"
+  datasets={[
+    {
+      name: "Kereta Terpakai",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 25 },
+        { x: 2, y: 22 },
+        { x: 2, y: 23 },
+        { x: 3, y: 20 },
+        { x: 4, y: 18 },
+        { x: 4, y: 19 },
+        { x: 5, y: 15 },
+        { x: 6, y: 14 },
+        { x: 7, y: 12 },
+        { x: 8, y: 10 },
+      ],
+    },
+  ]}
+/>
+
+### Tiada Korelasi Linear yang Jelas dengan Dua Kumpulan
+
+Kalau titik-titik bertaburan **tanpa corak garis lurus yang jelas**, korelasi linearnya lemah atau tiada langsung. Kita juga boleh paparkan kumpulan yang berlainan dalam satu gambar rajah.
+
+<ScatterDiagram
+  title={
+    <>
+      Hubungan antara Tinggi (<InlineMath math="\text{cm}" />) dan Masa Larian <InlineMath math="100 \text{ m}" /> (saat) bagi Dua Sekolah
+    </>
+  }
+  description={
+    <>
+      Tiada korelasi linear yang jelas antara tinggi dan masa lari pecut <InlineMath math="100 \text{ m}" /> dalam data dua sekolah ini.
+    </>
+  }
+  xAxisLabel="Tinggi (cm)"
+  yAxisLabel="Masa Lari Pecut (saat)"
+  xAxisDomain="min-max"
+  datasets={[
+    {
+      name: "Sekolah A",
+      color: "var(--chart-3)",
+      points: [
+        { x: 165, y: 13.5 },
+        { x: 170, y: 13.1 },
+        { x: 172, y: 13.8 },
+        { x: 175, y: 12.9 },
+        { x: 178, y: 13.3 },
+        { x: 180, y: 12.8 },
+        { x: 182, y: 13.6 },
+      ],
+    },
+    {
+      name: "Sekolah B",
+      color: "var(--chart-5)",
+      points: [
+        { x: 168, y: 13.9 },
+        { x: 171, y: 13.0 },
+        { x: 174, y: 13.5 },
+        { x: 176, y: 13.2 },
+        { x: 179, y: 12.7 },
+        { x: 181, y: 14.0 },
+        { x: 185, y: 13.1 },
+      ],
+    },
+  ]}
+/>
+
+Arah, bentuk dan serakan titik-titik memberikan gambaran awal tentang cara dua pemboleh ubah berubah bersama-sama. Warna atau penanda yang berasingan membezakan corak kumpulan yang berlainan. Gambar rajah serakan menggambarkan perkaitan, tetapi gambar rajah itu sendiri tidak membuktikan bahawa satu pemboleh ubah menyebabkan perubahan pada pemboleh ubah yang satu lagi.

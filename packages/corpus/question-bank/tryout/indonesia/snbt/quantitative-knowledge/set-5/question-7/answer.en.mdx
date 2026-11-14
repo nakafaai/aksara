@@ -1,15 +1,42 @@
-The question asks for **a single value of <InlineMath math="x+y" />**. The relation linking the three quantities is <InlineMath math="(x+y)^2=x^2+y^2+2xy" />.
+You're looking for the area of the region that lies inside all three circles at once. The plan: first work out what that region looks like, then **cut it into pieces whose areas are easy to find**: one triangle and some circular segments (the region between an arc and its chord).
 
-# Each statement alone
+# The shape of the common region
 
-Statement (1) is satisfied by <InlineMath math="(2,3)" /> with sum 5 and by <InlineMath math="(1,6)" /> with sum 7. Statement (2) is satisfied by <InlineMath math="(2,3)" /> with sum 5 and by <InlineMath math="(2,-3)" /> with sum <InlineMath math="-1" />. **Each allows different sums**, so neither is sufficient alone.
+Each radius equals the side of the triangle, so the circle centred at <InlineMath math="A" /> passes through <InlineMath math="B" /> and <InlineMath math="C" />, and the same goes for the other two circles. Triangle <InlineMath math="ABC" /> lies completely inside all three circles. Beyond side <InlineMath math="BC" />, the region is bounded by arc <InlineMath math="BC" /> of the circle centred at <InlineMath math="A" />. Every point on that arc is at most <InlineMath math="6\text{ cm}" /> from <InlineMath math="B" /> and from <InlineMath math="C" />, so the segment beyond <InlineMath math="BC" /> is inside the other two circles as well. So **the common region is triangle <InlineMath math="ABC" /> plus <InlineMath math="3" /> equal circular segments**.
 
-# Both statements together
+# The area of one segment
 
-<BlockMath math="(x+y)^2=13+2(6)=25\quad\Rightarrow\quad x+y=5\ \text{or}\ x+y=-5" />
+The segment beyond side <InlineMath math="BC" /> is the sector centred at <InlineMath math="A" /> minus triangle <InlineMath math="ABC" />. The sector's angle is the angle of an equilateral triangle, <InlineMath math="60^\circ" />, so **the sector is one sixth of the circle**.
 
-Both signs really occur: <InlineMath math="(2,3)" /> gives 5, while <InlineMath math="(-2,-3)" /> also satisfies <InlineMath math="xy=6" /> and <InlineMath math="x^2+y^2=13" /> but gives <InlineMath math="-5" />. **The square root of 25 has two signs**, so the value of <InlineMath math="x+y" /> is not yet unique.
+<BlockMath math="\begin{aligned}
+A_{\text{sector}}&=\tfrac{60}{360}\cdot\pi\cdot6^2=6\pi\\
+A_{\text{triangle}}&=\tfrac{\sqrt3}{4}\cdot6^2=9\sqrt3\\
+A_{\text{segment}}&=6\pi-9\sqrt3
+\end{aligned}" />
 
-A student who takes only the positive root wrongly concludes that both statements together are sufficient.
+# The area of the whole region
 
-So **statements (1) and (2) together are not sufficient** to answer the question.
+**Add the triangle and the <InlineMath math="3" /> segments**.
+
+<BlockMath math="\begin{aligned}
+A&=9\sqrt3+3\left(6\pi-9\sqrt3\right)\\
+&=9\sqrt3+18\pi-27\sqrt3\\
+&=18\pi-18\sqrt3
+\end{aligned}" />
+
+# A check by another route
+
+The <InlineMath math="3" /> sectors of <InlineMath math="60^\circ" /> centred at <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> also cover the same region. Each sector contains triangle <InlineMath math="ABC" />, so **the triangle gets counted <InlineMath math="3" /> times** and has to be subtracted <InlineMath math="2" /> times.
+
+<BlockMath math="3\cdot6\pi-2\cdot9\sqrt3=18\pi-18\sqrt3" />
+
+You get the same result. Its value is about <InlineMath math="56.5-31.2=25.3" />, which is bigger than the triangle's area <InlineMath math="9\sqrt3\approx15.6" />. That makes sense, since the region contains the triangle.
+
+# Why the other options are wrong
+
+- <InlineMath math="\left(18\pi-27\sqrt3\right)\text{ cm}^2" /> only adds the <InlineMath math="3" /> segments and **forgets the triangle in the middle**.
+- <InlineMath math="\left(18\pi-9\sqrt3\right)\text{ cm}^2" /> subtracts the triangle just once from the <InlineMath math="3" /> sectors, even though it was counted <InlineMath math="3" /> times.
+- <InlineMath math="18\pi\text{ cm}^2" /> just adds the <InlineMath math="3" /> sectors without removing the overlap.
+- <InlineMath math="\left(36\pi-18\sqrt3\right)\text{ cm}^2" /> uses a sector angle of <InlineMath math="120^\circ" />, but an equilateral triangle's angle is <InlineMath math="60^\circ" />.
+
+So the area of the region inside all three circles is <InlineMath math="\left(18\pi-18\sqrt3\right)\text{ cm}^2" />.

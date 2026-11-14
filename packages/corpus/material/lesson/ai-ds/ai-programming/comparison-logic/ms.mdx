@@ -1,0 +1,338 @@
+export const metadata = {
+    title: "Perbandingan dan Logik",
+    description: "Operator perbandingan dan operator boolean Python, keutamaan operator, nilai falsy/truthy dan cara selamat membandingkan float.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-16",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Susunan Keutamaan Operator
+
+Keutamaan operator <Highlight>menentukan cara Python mengumpulkan sesuatu ungkapan apabila tanda kurung tidak menyatakan kumpulan itu dengan jelas</Highlight>. Peraturan ini menerangkan cara pengumpulan itu. Python menilai operan dari kiri ke kanan. Keutamaan pula menentukan cara operasi pada operan-operan itu dikumpulkan.
+
+<Mermaid
+  title="Keutamaan Operator yang Dibincangkan"
+  description="Rajah ini meringkaskan keutamaan operator yang dibincangkan, bukan masa setiap operan dinilai."
+  chart={`
+    flowchart LR
+        A["tanda kurung, panggilan, pengindeksan"] --> B["** eksponen"]
+        B --> C["unari +, -, ~"]
+        C --> D["*, /, //, %"]
+        D --> E["+, -"]
+        E --> F["operator perbandingan"]
+        F --> G["not"]
+        G --> H["and"]
+        H --> I["or"]
+  `}
+/>
+
+Operasi kuasa (exponentiation) melayan operator unari di sebelah kanannya secara khas: `2 ** -1` bermaksud `2 ** (-1)` dan sama dengan `0.5`. Sebaliknya, `-2 ** 2` bermaksud `-(2 ** 2)` dan sama dengan `-4`.
+
+Operator yang keutamaannya lebih tinggi mengikat dengan lebih kuat. Kebanyakan operator binari pada aras yang sama dikumpulkan dari kiri ke kanan, tetapi operasi kuasa dikumpulkan dari kanan ke kiri, dan perbandingan membentuk rantai. Tanda kurung ialah pilihan yang paling jelas apabila kumpulan yang kamu maksudkan mungkin terlepas pandang.
+
+## Operator Perbandingan
+
+Operator perbandingan digunakan untuk membandingkan dua nilai dan menghasilkan nilai boolean (`True` atau `False`). Operator perbandingan yang ada dalam Python:
+
+- `==` sama dengan
+- `!=` tidak sama dengan
+- `<` kurang daripada
+- `<=` kurang daripada atau sama dengan
+- `>` lebih besar daripada
+- `>=` lebih besar daripada atau sama dengan
+
+Perbandingan nilai terbina dalam seperti nombor dan rentetan memulangkan **nilai boolean**. Objek yang ditakrifkan oleh pengguna boleh melaksanakan hasil perbandingan yang lain. Kesamaan boleh membandingkan objek daripada jenis yang berbeza, tetapi perbandingan susunan seperti `<` memerlukan jenis yang mentakrifkan susunan yang serasi, dan jika tidak, perbandingan itu mungkin menimbulkan `TypeError`. Semua perbandingan berkongsi aras keutamaan yang sama dan boleh dirantaikan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "comparison_example.py",
+      code: `# Contoh penggunaan operator perbandingan
+>>> 4 == 5
+False
+
+>>> 3 > 2.1  # Python menyokong perbandingan nombor bercampur jenis ini
+True`
+    }
+  ]}
+/>
+
+## Operator Boolean
+
+Operator boolean menggabungkan beberapa syarat atau mengubah nilai boolean. Python menyediakan tiga operator boolean utama:
+
+<Mermaid
+  title="Operator Boolean Menggabungkan Keputusan"
+  description="Lihat cara ketiga-tiga operator boolean menggabungkan nilai benar dan palsu dalam keputusan atur cara."
+  chart={`
+    flowchart LR
+        A[Input A] --> AND{and}
+        B[Input B] --> AND
+        AND --> C["A palsu: A"]
+        AND --> D["A benar: B"]
+
+        E[Input A] --> OR{or}
+        F[Input B] --> OR
+        OR --> G["A benar: A"]
+        OR --> H["A palsu: B"]
+
+        I[Input] --> NOT{not}
+        NOT --> J["Boolean yang berlawanan"]
+  `}
+/>
+
+1. **Operator `and`** memulangkan nilai pertama jika nilai itu palsu, atau nilai kedua jika nilai pertama benar.
+
+2. **Operator `or`** memulangkan nilai pertama jika nilai itu benar, atau nilai kedua jika nilai pertama palsu.
+
+3. **Operator `not`** berbeza daripada operator `and` dan `or` kerana ia sentiasa menghasilkan nilai boolean yang baharu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_operators.py",
+      code: `# Contoh operator boolean
+>>> 4.0 and 5.0  # 4.0 truthy, jadi 5.0 dipulangkan tanpa menguji nilai kebenaran 5.0
+5.0
+
+>>> 0 and 5  # 0 dinilai sebagai palsu, 0 dipulangkan (litar pintas)
+0
+
+>>> 4.0 or 5.0  # 4.0 dinilai sebagai benar, 4.0 dipulangkan (litar pintas)
+4.0
+
+>>> 0 or 5  # 0 falsy, jadi 5 dipulangkan tanpa menguji nilai kebenaran 5
+5
+
+>>> not 4.0  # 4.0 dinilai sebagai benar, False dipulangkan
+False
+
+>>> not 0  # 0 dinilai sebagai palsu, True dipulangkan
+True`
+    }
+  ]}
+/>
+
+Operator `and` dan `or` menggunakan <Highlight>penilaian litar pintas</Highlight> (short-circuit evaluation), iaitu penilaian berhenti sebaik sahaja hasilnya dapat ditentukan tanpa menilai semua operan. Kedua-duanya memulangkan argumen terakhir yang dinilai, manakala operator `not` sentiasa mencipta nilai boolean yang baharu.
+
+Setiap perbandingan bernilai `True` pada satu kawasan garis nombor. Dalam gambar ini, jalur ungu menandakan setiap <InlineMath math="x" /> dengan `x > 2`, dan jalur hijau kebiruan menandakan setiap <InlineMath math="x" /> dengan `x < 5`. Operator `and` hanya memberi `True` di tempat kedua-dua jalur bertindih, iaitu jalur magenta antara <InlineMath math="2" /> dan <InlineMath math="5" />. Nilai <InlineMath math="2" /> dan <InlineMath math="5" /> itu sendiri tidak termasuk, kerana `2 > 2` dan `5 < 5` kedua-duanya `False`.
+
+<MathVisual
+  title={<>Perbandingan sebagai kawasan pada garis nombor</>}
+  description={<>Jalur ungu ialah <InlineMath math="x>2" />, jalur hijau kebiruan ialah <InlineMath math="x<5" />, dan jalur magenta ialah tempat kedua-duanya benar, jadi <code>and</code> mengekalkan <InlineMath math="2<x<5" />. Setiap jalur berhenti tepat pada <InlineMath math="2" /> atau <InlineMath math="5" />, dan nilai-nilai itu sendiri tidak termasuk.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 8.5 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "above", kind: "segment", from: { x: 2, y: 3 }, to: { x: 8, y: 3 }, appearance: "secondary" },
+      { id: "below", kind: "segment", from: { x: -1, y: 2 }, to: { x: 5, y: 2 }, appearance: "construction" },
+      { id: "both", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "above", objectId: "above", at: { x: 8, y: 3 }, placement: "right" },
+      { key: "below", objectId: "below", at: { x: -1, y: 2 }, placement: "left" },
+      { key: "both", objectId: "both", at: { x: 5, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "above": "x > 2",
+    "below": "x < 5",
+    "both": "x > 2 and x < 5",
+  }}
+/>
+
+## Nilai dalam Konteks Boolean
+
+Sebarang objek Python boleh melalui **ujian kebenaran** (truth testing), termasuk objek yang bukan nilai `True` dan `False`. Python kemudian menentukan sendiri nilai mana yang dikira palsu. Mengikut peraturan itu, senarai kosong, nombor sifar dan rentetan kosong semuanya berkelakuan seperti `False` di dalam `if`, manakala bekas (container) yang tidak kosong berkelakuan seperti `True`.
+
+### Nilai Falsy dan Truthy
+
+<Mermaid
+  title="Nilai yang Python Anggap sebagai Hasil Syarat"
+  description="Kumpulkan nilai yang Python anggap sebagai False atau True sebelum nilai itu digunakan dalam syarat."
+  chart={`
+    flowchart TD
+        A[Nilai Python] --> B{Penilaian Boolean}
+        B -->|Falsy| C[False]
+        B -->|Falsy| D[None]
+        B -->|Falsy| E["Sifar dan bekas kosong"]
+        B -->|Truthy| F["Contoh nilai terbina dalam yang truthy"]
+        F --> G["Nombor bukan sifar"]
+        F --> H["Nilai yang tidak kosong"]
+  `}
+/>
+
+Nilai terbina dalam ini mengikut **peraturan nilai kebenaran** (truthiness) yang boleh kamu uji dengan `bool()`.
+
+| Kumpulan | Contoh falsy | Contoh truthy |
+| --- | --- | --- |
+| Boolean | `False` | `True` |
+| Tiada nilai | `None` | Tidak berkenaan |
+| Nombor | `0`, `0.0`, `0j` | `-1`, `0.5`, `2j` |
+| Rentetan | `""` | `"0"` |
+| Bekas | `[]`, `{}`, `()`, `set()` | `[0]`, `{"a": 0}` |
+
+Rentetan `"0"` dan senarai `[0]` kekal truthy kerana kedua-duanya tidak kosong. Nilai sesuatu unsur tidak menentukan truthiness bekas terbina dalam yang memegangnya.
+
+Objek yang ditakrifkan oleh pengguna boleh menyesuaikan ujian kebenaran dengan `__bool__()` atau `__len__()`. Jika kedua-duanya tidak ditakrifkan, tika (instance) objek itu truthy secara lalai.
+
+### Jenis Data Boolean
+
+Jenis `bool` dalam Python mewakili **nilai kebenaran** `False` dan `True`, ialah subjenis integer (`int`), dan nilai boolean berkelakuan seperti <InlineMath math="0" /> dan <InlineMath math="1" /> dalam operasi matematik.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "boolean_values.py",
+      code: `# Pembina bool dan operasi aritmetik
+>>> bool(-1)
+True
+
+>>> bool(0.0)
+False
+
+>>> True + True
+2
+
+>>> 3 * False
+0`
+    }
+  ]}
+/>
+
+Di dalam `if`, Python memanggil `bool()` pada sebarang nilai. Sifar dan bekas kosong menjadi `False`, manakala nombor bukan sifar dan bekas yang berisi menjadi `True`, termasuk `[0]`, kerana senarai itu memegang satu unsur.
+
+<BarChart
+  title={<>Hasil <code>bool()</code> untuk tujuh nilai</>}
+  description={<>Palang setinggi <InlineMath math="1" /> bermaksud <code>True</code> dan tiada palang bermaksud <code>False</code>, bagi nilai yang ditulis di bawahnya. Hanya <code>0</code>, <code>''</code> dan <code>[]</code> yang falsy.</>}
+  yAxisLabel="Nilai boolean"
+  data={[
+    { name: "0", value: 0 },
+    { name: "1", value: 1 },
+    { name: "-2", value: 1 },
+    { name: "''", value: 0 },
+    { name: "'a'", value: 1 },
+    { name: "[]", value: 0 },
+    { name: "[0]", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Nilai boolean", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Menggabungkan Operator
+
+Kamu boleh menggabungkan operator perbandingan dengan operator boolean untuk membina **syarat gabungan**. Python juga membenarkan rantaian perbandingan yang lebih semula jadi seperti `1 < 2 < 3`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "combined_operators.py",
+      code: `# Contoh gabungan operator
+>>> 4.0 > 3 and 2 >= 3  # ⇔ True and False
+False
+
+>>> 7 < 6 or 4 != 2  # ⇔ False or True
+True
+
+>>> not 0 < 2  # ⇔ not (0 < 2) ⇔ not True
+False
+
+# Rantaian perbandingan
+>>> 1 < 2 < 3  # ⇔ (1 < 2) and (2 < 3)
+True
+
+>>> 5 <= 7 < 10  # ⇔ (5 <= 7) and (7 < 10) --- aplikasi: ujian selang
+True`
+    }
+  ]}
+/>
+
+Gabungkan dua perbandingan pada titik <InlineMath math="(x,y)" /> dengan <InlineMath math="0\le x\le5" /> dan <InlineMath math="0\le y\le5" />. `and` hanya mengekalkan titik dengan <InlineMath math="x>1" /> dan <InlineMath math="y<3" /> serentak, manakala `or` menerima titik yang memenuhi sekurang-kurangnya satu daripadanya.
+
+<MathVisual
+  title={<><code>and</code> dan <code>or</code> sebagai kawasan</>}
+  description={<>Garis ungu ialah <InlineMath math="x=1" /> dan garis jingga ialah <InlineMath math="y=3" />. Segi empat tepat magenta ialah kawasan tempat <InlineMath math="x>1" /> dan <InlineMath math="y<3" /> kedua-duanya benar. Kawasan hijau kebiruan yang berbentuk L ialah tempat sekurang-kurangnya satu perbandingan benar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "either", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 1, y: 5 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "construction" },
+      { id: "both", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 3 }, { x: 1, y: 3 }], appearance: "answer" },
+      { id: "first", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 0, y: 3 }, { x: 5, y: 3 }], appearance: "primary" },
+    ],
+  }}
+/>
+
+## Perbandingan Nombor Titik Apungan
+
+Banyak pecahan perpuluhan tidak mempunyai perwakilan titik apungan binari yang tepat dan terhingga. Aritmetik membundarkan hasil perantaraan, jadi dua pengiraan yang setara secara matematik boleh menghasilkan **float yang hampir sama tetapi tidak sama**.
+
+### Masalah Kepersisan Float
+
+Pecahan perpuluhan mungkin memerlukan **pembundaran dalam binari**. Rajah ini membezakan nilai yang boleh diwakili dengan tepat daripada nilai yang perlu dibundarkan.
+
+<Mermaid
+  title="Perbandingan Perpuluhan Boleh Berbeza daripada Rupanya"
+  description="Nilai perpuluhan menjadi float binari, dan kepersisan yang terhad boleh menyebabkan ralat pembundaran yang menggagalkan perbandingan. math.isclose dengan toleransi relatif atau mutlak membandingkan nilai-nilai itu berdasarkan toleransi yang dipilih."
+  chart={`
+    flowchart TD
+        A[Nombor Perpuluhan] --> B[Penukaran Binari]
+        B --> C[Perwakilan Float]
+        C --> D{Boleh diwakili dengan tepat?}
+        D -->|Tidak| E[Pembundaran]
+        D -->|Ya| F[Perwakilan Tepat]
+        E --> G[Kesamaan boleh berbeza]
+        F --> H[Nilai ini disimpan dengan tepat]
+
+        I[Penyelesaian math.isclose] --> J[Toleransi Relatif]
+        I --> K[Toleransi Mutlak]
+        J --> L[Perbandingan dengan toleransi]
+        K --> L
+  `}
+/>
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "float_comparison.py",
+      code: `# Masalah kepersisan titik apungan
+>>> a = 0.01
+>>> b = 0.1**2  # b ialah 0.010000000000000002
+>>> a == b
+False
+
+# Penyelesaian dengan math.isclose()
+>>> import math
+>>> math.isclose(0.01, 0.1**2)
+True
+
+>>> math.isclose(100, 95, rel_tol=0.05)  # toleransi relatif ialah 5%
+True
+
+>>> math.isclose(100, 95, abs_tol=5)  # toleransi mutlak ialah 5
+True`
+    }
+  ]}
+/>
+
+### Penyelesaian dengan Fungsi Isclose
+
+Python menyediakan fungsi `math.isclose(a, b, rel_tol=1e-09, abs_tol=0.0)` untuk menguji kesamaan hampiran. Fungsi ini menggunakan **toleransi relatif dan mutlak** melalui `rel_tol` dan `abs_tol` untuk menentukan sama ada dua nilai cukup hampir.
+
+
+Untuk `math.isclose(100, 95, rel_tol=0.05)`, beza mutlaknya ialah <InlineMath math="5" />. Toleransi relatif menggunakan nilai mutlak yang lebih besar, iaitu <InlineMath math="100" />.
+
+<BlockMath math="\begin{aligned} |100-95| &= 5 \\ 0.05\max(|100|,|95|) &= 5 \\ 5 &\leq \max(5,0) \end{aligned}" />
+
+Beza itu tidak melebihi toleransi, jadi hasilnya `True`. Dengan `abs_tol=5`, toleransi mutlak <InlineMath math="5" /> juga menerima beza ini.
+
+
+> Guna kesamaan tepat apabila identiti tepat nilai titik apungan itu benar-benar diperlukan. Untuk kuantiti yang diukur atau dikira, pilih toleransi berdasarkan domain masalah dan guna `math.isclose()`. Berhampiran sifar, toleransi relatif sahaja akan mengecil bersama nilai yang dibandingkan, jadi tetapkan `abs_tol` yang mencerminkan beza bermakna yang paling kecil.

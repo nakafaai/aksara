@@ -1,23 +1,43 @@
-Each statement needs **a different way of handling the data**: a sum, a ratio, consecutive differences, and a count of values meeting a condition.
+You're looking for the minimum effective sleep on next Monday night. That night has to meet its own target of <InlineMath math="480" /> minutes **and** pay off the debt left from this week. The plan: find each night's effective sleep, track the debt night by night with the zero rule, then add one night's target. All times are in minutes.
 
-# Sums and ratio
+# Effective sleep each night
 
-The first six months add up to <InlineMath math="310+280+250+190+120+80=1{,}230" /> mm, the last six to <InlineMath math="50+40+70+140+230+340=870" /> mm. **They are not equal**, so the first statement is false.
+Time in bed runs from bedtime to wake-up time. If bedtime is before midnight, count up to 24:00 first. For Tuesday, that's <InlineMath math="30" /> minutes to 24:00 plus <InlineMath math="360" /> minutes to 06:00, so <InlineMath math="390" /> minutes. **Wednesday starts after midnight**, so it runs straight from 00:20 to 06:50, which is <InlineMath math="390" /> minutes. After taking off the time awake, you get this.
 
-December against August is <InlineMath math="\tfrac{340}{40}=8.5" />, more than 8. The second statement is true.
+| Day | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| In bed | <InlineMath math="520" /> | <InlineMath math="390" /> | <InlineMath math="390" /> | <InlineMath math="540" /> | <InlineMath math="360" /> | <InlineMath math="630" /> | <InlineMath math="600" /> |
+| Effective sleep | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-# Consecutive drops
+# Sleep debt night by night
 
-| From to | Drop |
-| :--- | :---: |
-| March to April | 60 mm |
-| April to May | 70 mm |
-| May to June | 40 mm |
+Each night, the new debt is the old debt plus <InlineMath math="480" /> minus the effective sleep. **If that comes out negative, the debt is set to zero**, because extra sleep isn't saved.
 
-The other drops from January to August are at most 30 mm. **The largest drop is from April to May**, so the third statement is false.
+<BlockMath math="\begin{aligned}
+\text{Monday} &: 0+480-500=-20,\ \text{so }0 \\
+\text{Tuesday} &: 0+480-375=105 \\
+\text{Wednesday} &: 105+480-380=205 \\
+\text{Thursday} &: 205+480-515=170 \\
+\text{Friday} &: 170+480-360=290 \\
+\text{Saturday} &: 290+480-600=170 \\
+\text{Sunday} &: 170+480-560=90
+\end{aligned}" />
 
-# Wet and dry months
+The debt after Sunday night is <InlineMath math="90" /> minutes. Only Monday night hits the zero rule, so those extra <InlineMath math="20" /> minutes are wasted.
 
-The wet months are January, February, March, April, May, October, November and December, 8 months. The dry months are only July and August, 2 months. Since 8 is more than <InlineMath math="2\cdot2=4" />, the fourth statement is true.
+# Sleep needed on next Monday night
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+For the debt to reach zero, the effective sleep has to cover that night's target and all the old debt.
+
+<BlockMath math="90+480-x\le0\ \Rightarrow\ x\ge570" />
+
+Check: with <InlineMath math="570" /> minutes the debt is <InlineMath math="90+480-570=0" />. With <InlineMath math="569" /> minutes it's still <InlineMath math="1" /> minute. So it takes **at least <InlineMath math="570" /> minutes**, which is <InlineMath math="9" /> hours <InlineMath math="30" /> minutes.
+
+# Traps to avoid
+
+Other answers show up when **the debt is taken from the total difference alone** or the target is forgotten.
+
+- The total difference <InlineMath math="7\times480-3{,}290=70" /> ignores the zero rule on Monday night, giving <InlineMath math="480+70=550" /> minutes.
+- Answering <InlineMath math="90" /> only pays off the old debt and forgets that next Monday night has its own <InlineMath math="480" />-minute target.
+
+So the user needs at least <InlineMath math="570" /> minutes of effective sleep on Monday night of the next week.

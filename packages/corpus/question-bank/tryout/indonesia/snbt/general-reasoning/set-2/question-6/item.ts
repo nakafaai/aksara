@@ -4,35 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "strengthening",
+    topic: "explanation",
   },
-  stimulus: "museum",
+  stimulus: "bakau",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Sebagian besar garis pantai utara kabupaten itu berada di luar keempat desa, sehingga data keempat desa hanya mewakili sebagian kecil pesisir.",
+        },
+        {
           correct: true,
           label:
-            "Survei menunjukkan sebagian besar pengunjung hari Rabu pada bulan kedua pernah berkunjung pada hari lain selama bulan pertama.",
-        },
-        {
-          correct: false,
-          label: "Museum menambah koleksi baru pada awal bulan kedua.",
+            "Sejak 2023, sekitar $$3$$ km pantai di dekat pelabuhan baru, di luar keempat desa, mundur $$4$$ m per tahun lebih cepat daripada sebelumnya karena pemecah gelombangnya menahan pasir.",
         },
         {
           correct: false,
           label:
-            "Hujan lebih sering turun pada bulan kedua daripada bulan pertama.",
+            "Sejak 2023, sekitar $$40$$ km pantai lain di luar keempat desa mundur rata-rata $$0{,}1$$ m per tahun lebih cepat daripada sebelumnya karena musim angin barat makin panjang.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar pengunjung hari Rabu pada bulan kedua adalah pelajar yang datang bersama sekolahnya dalam rombongan kunjungan belajar.",
+            "Bibit di Karangsari dan Lontar banyak yang mati sehingga laju mundur pantai di kedua desa itu hampir tidak berubah.",
         },
         {
           correct: false,
-          label: "Tarif parkir di sekitar museum naik pada bulan kedua.",
+          label:
+            "Keempat desa itu dipilih untuk penanaman karena sebelum 2022 pantainya mundur paling cepat dibandingkan desa lain di kabupaten itu.",
         },
       ],
     },

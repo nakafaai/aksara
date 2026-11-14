@@ -1,20 +1,36 @@
-Persamaan kuadrat dengan akar <InlineMath math="u" /> dan <InlineMath math="v" /> dapat ditulis <InlineMath math="x^2-(u+v)x+uv=0" />. Jadi yang dibutuhkan adalah **jumlah dan hasil kali akar baru**, yang dapat dihitung dari <InlineMath math="\alpha+\beta=3" /> dan <InlineMath math="\alpha\beta=1" /> tanpa mencari akarnya.
+Kamu menghitung susunan melingkar yang menghindari dua pasangan terlarang sekaligus. Menghitung langsung susunan yang memenuhi kedua larangan itu rumit, jadi rencananya hitung semua susunan, kurangi susunan yang melanggar, dan pakai **prinsip inklusi eksklusi** supaya tidak ada susunan yang terkurangi dua kali.
 
-# Jumlah dan hasil kali akar baru
+# Semua susunan melingkar
+
+Dua susunan dianggap sama kalau tetangga kiri dan kanan setiap orang sama, artinya **memutar semua orang bersama-sama tidak menghasilkan susunan baru**. Karena itu, tempatkan Ani di satu kursi sebagai patokan, lalu atur <InlineMath math="6" /> orang lainnya di <InlineMath math="6" /> kursi sisanya.
+
+<BlockMath math="(7-1)!=6!=720" />
+
+# Susunan yang melanggar
+
+Kalau Ani dan Budi bersebelahan, **gabungkan mereka menjadi satu blok**. Ada <InlineMath math="6" /> unit yang duduk melingkar, dan di dalam blok ada <InlineMath math="2" /> urutan (Ani di kiri atau di kanan Budi). Hal yang sama berlaku untuk Citra dan Dodi. Kalau kedua pasangan sama-sama bersebelahan, ada dua blok dan <InlineMath math="3" /> orang lain, jadi <InlineMath math="5" /> unit.
 
 <BlockMath math="\begin{aligned}
-\alpha^2+\beta^2&=(\alpha+\beta)^2-2\alpha\beta=9-2=7\\
-\alpha^2\beta^2&=(\alpha\beta)^2=1
+\text{Ani dan Budi bersebelahan}&=(6-1)!\times2=240\\
+\text{Citra dan Dodi bersebelahan}&=(6-1)!\times2=240\\
+\text{keduanya bersebelahan}&=(5-1)!\times2\times2=96
 \end{aligned}" />
 
-# Menyusun persamaan
+# Inklusi dan eksklusi
 
-Masukkan jumlah dan hasil kali itu ke bentuk umum. **Tanda di depan jumlah akar negatif**.
+Susunan yang membuat kedua pasangan bersebelahan ikut terhitung di kelompok pertama dan juga di kelompok kedua. Jadi **susunan dengan dua pelanggaran harus ditambahkan kembali satu kali**.
 
-<BlockMath math="x^2-7x+1=0" />
+<BlockMath math="\begin{aligned}
+\text{melanggar paling sedikit satu}&=240+240-96=384\\
+\text{memenuhi syarat}&=720-384=336
+\end{aligned}" />
 
-Cek dengan akar sebenarnya: <InlineMath math="\alpha=\frac{3+\sqrt5}{2}" /> memberi <InlineMath math="\alpha^2=\frac{7+3\sqrt5}{2}" />, dan nilai ini memenuhi <InlineMath math="x^2-7x+1=0" />.
+# Pemeriksaan dengan jalan lain
 
-Persamaan dengan koefisien 9 lupa mengurangkan <InlineMath math="2\alpha\beta" />, sedangkan koefisien 11 menambahkannya. Persamaan <InlineMath math="x^2+7x+1=0" /> salah tanda pada jumlah akar. Persamaan dengan konstanta 2 memakai <InlineMath math="2\alpha\beta" /> sebagai hasil kali.
+Hitung bertahap. Susunan dengan Ani dan Budi tidak bersebelahan ada <InlineMath math="720-240=480" />. Dari <InlineMath math="240" /> susunan dengan Citra dan Dodi bersebelahan, sebanyak <InlineMath math="96" /> juga membuat Ani dan Budi bersebelahan, jadi yang membuat Ani dan Budi tidak bersebelahan ada <InlineMath math="240-96=144" />. Buang susunan itu dari <InlineMath math="480" />.
 
-Jadi, persamaan kuadrat yang dimaksud adalah <InlineMath math="x^2-7x+1=0" />.
+<BlockMath math="480-144=336" />
+
+Hasilnya sama. **Kesalahan yang sering muncul** adalah lupa menambahkan kembali <InlineMath math="96" /> sehingga mendapat <InlineMath math="720-480=240" />, memakai <InlineMath math="7!" /> padahal putaran dianggap sama, atau lupa mengalikan <InlineMath math="2" /> untuk urutan di dalam blok.
+
+Jadi, banyak susunan duduk yang memenuhi syarat adalah <InlineMath math="336" /> cara.

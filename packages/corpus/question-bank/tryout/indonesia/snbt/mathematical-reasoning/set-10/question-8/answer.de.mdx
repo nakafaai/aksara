@@ -1,16 +1,54 @@
-09.30 Uhr liegt 270 Minuten nach 05.00 Uhr. Suche für jede Linie **das erste Vielfache ihres Abstands, das nicht kleiner als 270 ist**.
+Du suchst die kürzeste Laufzeit, deren Rate höchstens <InlineMath math="400{.}000" /> beträgt. Der Monatszins ändert sich nach <InlineMath math="12" /> Monaten, also gehst du so vor: **Prüfe die beiden Gruppen von Laufzeiten getrennt**, stelle eine Ungleichung für die Rate auf und teste dann die Laufzeiten direkt an der Grenze.
 
-# Nächste Abfahrten
+# Die Rate als Formel der Laufzeit
+
+Der Kreditbetrag ist <InlineMath math="6{.}000{.}000-1{.}200{.}000=4{.}800{.}000" />. Teilst du die Zinsen gesamt durch die Laufzeit, bekommst du **einen festen Zins pro Monat**, nämlich <InlineMath math="4{.}800{.}000\cdot r" />.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad 270=16\cdot16+14,\quad 16\cdot17=272\to 09.32\\
-\text{B}&:\quad 270=24\cdot11+6,\quad 24\cdot12=288\to 09.48
+\text{Rate vor dem Runden} &= \frac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r
 \end{aligned}" />
 
-# Wartezeit
+Die Grenze <InlineMath math="400{.}000" /> ist schon ein Vielfaches von <InlineMath math="1{.}000" />. Die aufgerundete Rate bleibt also höchstens <InlineMath math="400{.}000" />, **genau wenn auch der Wert vor dem Runden höchstens** <InlineMath math="400{.}000" /> ist.
 
-Linie A fährt in 2 Minuten, Linie B in 18 Minuten, **Linie A kommt also zuerst**.
+# Laufzeiten bis zwölf Monate
 
-Die Werte 14 und 6 Minuten sind Reste, also die Zeiten seit der letzten Abfahrt von A und von B, keine Wartezeiten. Der Wert 18 Minuten ist die Wartezeit auf B, und 8 Minuten sind nur der halbe Abstand von A.
+In dieser Gruppe ist <InlineMath math="r=1{,}5\%" />, der Monatszins also <InlineMath math="72{.}000" />. Die kleinste Rate dieser Gruppe gehört zur längsten Laufzeit, <InlineMath math="12" /> Monaten.
 
-Rina wartet also mindestens **2 Minuten**.
+<BlockMath math="\begin{aligned}
+\frac{4{.}800{.}000}{12}+72{.}000 &= 400{.}000+72{.}000=472{.}000>400{.}000
+\end{aligned}" />
+
+Schon die kleinste Rate liegt über der Grenze, also **passt keine Laufzeit bis zwölf Monate**.
+
+# Laufzeiten von dreizehn bis vierundzwanzig Monaten
+
+In dieser Gruppe ist <InlineMath math="r=2{,}5\%" />, der Monatszins also <InlineMath math="120{.}000" />. Der höhere Zins bedeutet, dass **der Tilgungsanteil kleiner sein muss**.
+
+<BlockMath math="\begin{aligned}
+\frac{4{.}800{.}000}{n}+120{.}000 &\le 400{.}000\\
+\frac{4{.}800{.}000}{n} &\le 280{.}000\\
+n &\ge \frac{4{.}800{.}000}{280{.}000}=17\tfrac{1}{7}
+\end{aligned}" />
+
+Die Laufzeit muss eine ganze Zahl sein, also ist die kleinste mögliche Laufzeit <InlineMath math="18" /> Monate.
+
+# Kontrolle an der Grenze
+
+Teste die Laufzeiten von <InlineMath math="17" /> und <InlineMath math="18" /> Monaten direkt.
+
+<BlockMath math="\begin{aligned}
+\text{Laufzeit } 17\text{: } \frac{4{.}800{.}000}{17}+120{.}000 &= 402{.}352{,}94\ldots\to403{.}000>400{.}000\\
+\text{Laufzeit } 18\text{: } \frac{4{.}800{.}000}{18}+120{.}000 &= 386{.}666{,}66\ldots\to387{.}000\le400{.}000
+\end{aligned}" />
+
+**Achtzehn Monate passen**, siebzehn Monate noch nicht.
+
+# Häufige falsche Antworten
+
+Diese Antworten **übersehen die Zinsen, den Zinssprung oder die Rundungsrichtung**.
+
+- Die Antwort <InlineMath math="15" /> nimmt für jede Laufzeit <InlineMath math="1{,}5\%" /> Zinsen, sodass <InlineMath math="320{.}000+72{.}000=392{.}000" /> zu passen scheint.
+- Die Antwort <InlineMath math="12" /> vergisst die Zinsen und teilt nur den Kreditbetrag, <InlineMath math="\tfrac{4{.}800{.}000}{12}=400{.}000" />.
+- Die Antwort <InlineMath math="17" /> rundet <InlineMath math="17\tfrac{1}{7}" /> ab, aber eine Laufzeit von <InlineMath math="17" /> Monaten ergibt eine Rate von <InlineMath math="403{.}000" />.
+
+Die kürzeste Laufzeit, die Sari wählen kann, beträgt also <InlineMath math="18" /> Monate.

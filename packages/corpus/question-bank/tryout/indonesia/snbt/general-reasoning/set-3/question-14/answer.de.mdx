@@ -1,27 +1,31 @@
-Suche alle möglichen Anordnungen. Beginne mit **dem Paar K und L**, denn beide müssen auf demselben Brett stehen und belegen zwei Plätze auf einmal. Die Bretter heißen *rak atas* (oben), *rak tengah* (Mitte) und *rak bawah* (unten).
+Eine Aussage, die wahr sein kann (*MUNGKIN*), muss nur in **mindestens einer gültigen Sitzordnung** gelten. Die anderen vier Aussagen müssen in jeder Sitzordnung unmöglich sein. Am sichersten findest du also zuerst alle gültigen Sitzordnungen und prüfst dann jede Aussage.
 
-O belegt schon einen Platz auf dem mittleren Brett, dort sind also nur noch zwei Plätze frei. K und L können oben, in der Mitte oder unten stehen.
+Leg zuerst die Personen fest, die am stärksten gebunden sind, und setz dann alle anderen nacheinander.
 
-**K und L oben**. Das obere Brett ist voll. P muss höher stehen als Q, also steht P in der Mitte und Q unten. M und N füllen den letzten Platz in der Mitte und den letzten unten, auf zwei Arten.
+- Regel 1 ergibt zwei Fälle: Asri auf Stuhl 1 und Bonar auf Stuhl 5, oder Bonar auf Stuhl 1 und Asri auf Stuhl 5. In beiden Fällen sind die Stühle 3 und 7 zwei Stühle von Asri entfernt.
+- Dimas darf nicht neben Asri sitzen (Regel 3). Er kann auch nicht auf Stuhl 3 oder Stuhl 7 sitzen. Sitzt Dimas auf Stuhl 3, sitzt Elok ihm gegenüber auf Stuhl 7, und Fajar müsste zwei Stühle von Elok entfernt sitzen, also auf Stuhl 5 oder Stuhl 1. Die gehören aber Asri und Bonar, also bekommt Fajar keinen Stuhl. Mit Dimas auf Stuhl 7 passiert dasselbe. Dimas sitzt also neben Bonar.
+- Cahya sitzt neben Dimas (Regel 2). Einen Nachbarstuhl von Dimas hat schon Bonar, also nimmt Cahya den anderen, nämlich Stuhl 3 oder Stuhl 7.
+- Elok sitzt Dimas gegenüber (Regel 4) und landet damit neben Asri, auf der Seite, die von Cahya weg zeigt.
+- Fajar sitzt zwei Stühle von Elok entfernt (Regel 5). Zwei freie Stühle passen, also verzweigt sich der Baum.
+- Galuh und Hamid besetzen die letzten zwei Stühle, Galuh die kleinere Nummer (Regel 6). Regel 7 streicht dann die zwei Sitzordnungen, in denen Hamid neben Cahya sitzt.
 
-**K und L in der Mitte**. Das mittlere Brett trägt K, L und O. Oben und unten sind je zwei Plätze für M, N, P und Q. N darf nicht oben stehen, also steht N unten. M muss auf einem anderen Brett als N stehen, also oben. P muss höher stehen als Q, also steht P oben und Q unten.
+Übrig bleiben sechs gültige Sitzordnungen. Die Spalten 1 bis 8 sind Stuhlnummern, und jede Person steht mit dem Anfangsbuchstaben ihres Namens da, also A für Asri und F für Fajar.
 
-**K und L unten**. Das obere Brett und die zwei freien Plätze in der Mitte nehmen M, N, P und Q auf. N darf nicht oben stehen, also steht N in der Mitte. M muss auf einem anderen Brett stehen, also oben. Q darf nicht höher stehen als P, also steht P oben und Q in der Mitte.
+| Sitzordnung | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | A | E | G | H | B | D | C | F |
+| IV | B | D | C | F | A | E | G | H |
+| V | B | D | C | G | A | E | H | F |
+| VI | B | G | H | E | A | F | C | D |
 
-| Anordnung | Oberes Brett | Mittleres Brett | Unteres Brett |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+Jetzt prüfst du jede Aussage.
 
-In allen vier Anordnungen **steht K nie auf demselben Brett wie M**. Diese Aussage stimmt sicher.
+- Hamid auf Stuhl 4 kommt in Sitzordnung III vor. Prüf die Regeln: Asri (1) sitzt Bonar (5) gegenüber, Dimas (6) sitzt neben Cahya (7) und nicht neben Asri, Elok (2) sitzt Dimas (6) gegenüber, Fajar (8) ist zwei Stühle von Elok (2) entfernt, Galuh (3) hat eine kleinere Nummer als Hamid (4), und Hamid sitzt nicht neben Cahya. Alle Regeln gelten, also kann diese Aussage wahr sein.
+- Dimas auf Stuhl 3 ist unmöglich, weil Fajar keinen Stuhl mehr bekommt, wie oben gezeigt. Die Falle schnappt zu, wenn du nur die Regeln 2 bis 4 prüfst und vergisst, ob Fajar noch Platz hat.
+- Asri auf Stuhl 1 zusammen mit Fajar auf Stuhl 4 ist unmöglich. Mit Asri auf Stuhl 1 kann Fajar nur auf Stuhl 4 sitzen, wenn Cahya auf Stuhl 7, Dimas auf Stuhl 6 und Elok auf Stuhl 2 sitzt. Übrig sind die Stühle 3 und 8, also bekommt Galuh Stuhl 3 und Hamid Stuhl 8, und Stuhl 8 liegt neben Cahya auf Stuhl 7. Diese Falle trifft alle, die Regel 7 vergessen.
+- Fajar gegenüber von Cahya ist unmöglich. Cahya sitzt immer auf einem ungeraden Stuhl (3 oder 7). Elok sitzt neben Asri, deren Stuhl ungerade ist, also ist Eloks Stuhl gerade, und Fajar, zwei Stühle von Elok entfernt, sitzt ebenfalls gerade. Gegenüberliegende Stühle unterscheiden sich um <InlineMath math="4" />, sind also beide ungerade oder beide gerade. Die Aussage wirkt nur frei, weil keine Regel Fajar und Cahya direkt verbindet.
+- Hamid auf Stuhl 6 ist ebenfalls unmöglich. Sitzt Asri auf Stuhl 1 und Cahya auf Stuhl 3, muss Hamid auf Stuhl 7, weil seine Nummer größer als Galuhs sein muss. Sitzt Bonar auf Stuhl 1 und Cahya auf Stuhl 7, säße Hamid auf Stuhl 6 neben Cahya. In den anderen beiden Fällen gehört Stuhl 6 Dimas oder Elok. Die Falle ist, Galuh und Hamid zu tauschen, ohne die Regeln 6 und 7 zu prüfen.
 
-Die anderen Aussagen gelten nicht in jeder Anordnung:
-
-- P steht in III und IV oben.
-- Q steht in IV in der Mitte.
-- N steht in II und IV in der Mitte.
-- M steht in I in der Mitte und in II unten.
-
-Sicher stimmt also, dass K nicht auf demselben Brett steht wie M.
+Wahr sein kann also die Aussage, dass Hamid auf Stuhl 4 sitzt.

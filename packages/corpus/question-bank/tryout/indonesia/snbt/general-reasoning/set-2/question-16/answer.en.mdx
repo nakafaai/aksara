@@ -1,18 +1,35 @@
-A statement is Benar (true) only if it holds in **all four arrangements** that satisfy the conditions. Otherwise it is Salah (false).
+A statement is Benar (true) when it holds in **every arrangement that meets all seven rules**, the six original rules plus "Kurnia isn't in logistics". The safest route is to list every valid arrangement, then judge the four statements.
 
-| Arrangement | Top row (columns 1, 2, 3) | Bottom row (columns 1, 2, 3) |
-| --- | --- | --- |
-| I | Beni, Ana, Eli | Caca, Doni, Fajar |
-| II | Caca, Ana, Fajar | Beni, Doni, Eli |
-| III | Beni, Eli, Ana | Caca, Fajar, Doni |
-| IV | Caca, Fajar, Ana | Beni, Eli, Doni |
+Three facts hold in every case.
 
-**Statement 1** is true. Ana and Doni fill one column and Caca and Beni fill column 1, so Eli and Fajar always fill the remaining column together. They are both in column 3 in I and II and both in column 2 in III and IV.
+- Fikri and Galih can't be in medical. That post has only two seats, and Jihan takes one (rule 4).
+- Putri can't share a post with Fikri and Galih. That post has only one seat left, so Putri would be cut off from Hana and Indra (rule 3).
+- Nanda can't share a post with Fikri and Galih either (rule 5).
 
-**Statement 2** is true. Caca and Beni are both in column 1, so they must be in different rows.
+So Fikri and Galih are in registration or in logistics. Split the cases by their post.
 
-**Statement 3** is false. In arrangements I and II, Doni is in column 2.
+**Case 1: Fikri and Galih in registration**. The third registration seat can't go to Nanda, Putri or Jihan, so it belongs to Hana, Indra or Kurnia.
 
-**Statement 4** is false. Ana is always in the top row, while Eli is in the bottom row in arrangements II and IV.
+- If Hana takes it, Putri must be with Indra. Medical has only one free seat, so Indra and Putri go to logistics. The last logistics seat can't go to Kurnia (the new rule), so Nanda goes to logistics and Kurnia to medical.
+- If Indra takes it, the pattern is the same with Hana and Indra swapped.
+- If Kurnia takes it, rule 6 forces Nanda into logistics. Putri can't sit alone with Jihan in medical, so Putri is in logistics too. Hana and Indra then split, one in logistics and one in medical. That gives two arrangements.
 
-So statements 1 and 2 are true, and statements 3 and 4 are false.
+**Case 2: Fikri and Galih in logistics**. Nanda can't be in logistics. Now use the contrapositive of rule 6, the form "if Nanda isn't in logistics, Kurnia isn't in registration", which says exactly the same as the original rule. So Kurnia isn't in registration, and the new rule bans logistics. Kurnia must be in medical with Jihan. The third logistics seat goes to Hana or Indra, and registration holds Nanda, Putri and whichever of Hana and Indra is left.
+
+| Case | Registration | Logistics | Medical |
+| --- | --- | --- | --- |
+| 1 | Fikri, Galih, Hana | Indra, Nanda, Putri | Jihan, Kurnia |
+| 1 | Fikri, Galih, Indra | Hana, Nanda, Putri | Jihan, Kurnia |
+| 1 | Fikri, Galih, Kurnia | Hana, Nanda, Putri | Indra, Jihan |
+| 1 | Fikri, Galih, Kurnia | Indra, Nanda, Putri | Hana, Jihan |
+| 2 | Hana, Nanda, Putri | Fikri, Galih, Indra | Jihan, Kurnia |
+| 2 | Indra, Nanda, Putri | Fikri, Galih, Hana | Jihan, Kurnia |
+
+With this table, judge the statements one at a time.
+
+- "Nanda and Putri are in the same post" is Benar. In all six arrangements they share a post, logistics in case 1 and registration in case 2.
+- "Kurnia is in the medical post" is Salah (false). In the third and fourth rows, Kurnia is in registration. Rule 6 allows that as long as Nanda is in logistics.
+- "Putri is in the logistics post" is Salah. In case 2, Putri is in registration. This statement only feels certain if you forget that Fikri and Galih can also be in logistics.
+- "If Fikri is in the logistics post, Kurnia is in the medical post" is Benar. The "if" part means case 2, and there Kurnia is always in medical. The chain: Fikri in logistics, so Nanda isn't in logistics (rule 5), so Kurnia isn't in registration (contrapositive of rule 6), and the new rule removes logistics.
+
+So the first and fourth statements are Benar, while the second and third are Salah.

@@ -1,15 +1,31 @@
-Travel distance on the grid is **the number of blocks east or west plus the number of blocks north or south**, because the robot cannot cut diagonally.
+Each statement compares ways of controlling salinity, so each one needs its own calculation. The plan: **always keep the amount of salt and the amount of water apart**, because salinity is salt divided by water, then check what each step brings in or takes out.
 
-# From A to C and the routes to B
+# Two small changes or one big one
 
-From A(3,4) to C(1,6) the robot moves 2 blocks west and 2 blocks north, which is 4 blocks or 400 m, **not 500 m**. The first statement is false.
+Removing <InlineMath math="20\text{ liters}" /> keeps <InlineMath math="\frac{100}{120}=\frac56" /> of the salt, and refilling with fresh water adds no salt. Removing <InlineMath math="40\text{ liters}" /> keeps <InlineMath math="\frac{80}{120}=\frac23" /> of the salt. **Two small changes mean multiplying by <InlineMath math="\frac56" /> twice**, not multiplying by <InlineMath math="\frac23" /> once.
 
-A shortest route from G to B consists of 5 steps east and 1 step north. The routes differ only in **when the step north is taken**, at step 1 up to step 6, so there are 6 routes. The second statement is true.
+<BlockMath math="\left(\frac56\right)^2=\frac{25}{36}\neq\frac{24}{36}=\frac23" />
 
-# Battery use
+For example, starting at <InlineMath math="42\text{ g/L}" />, one change of <InlineMath math="40\text{ liters}" /> gives <InlineMath math="28\text{ g/L}" />, while two changes of <InlineMath math="20\text{ liters}" /> give <InlineMath math="29\frac16\text{ g/L}" />. The results differ. The first statement is **false**.
 
-From G to B there are <InlineMath math="5+1=6" /> blocks, so a round trip is 12 blocks and uses <InlineMath math="12\cdot2\%=24\%" /> of the battery. The third statement is true.
+# Topping up evaporation with artificial seawater
 
-A full battery lasts for <InlineMath math="\tfrac{100\%}{2\%}=50" /> blocks, exactly 5,000 m or 5 km. The robot **cannot travel more than 5 km**, so the fourth statement is false.
+Each day <InlineMath math="4\text{ liters}" /> of water evaporate without taking any salt. Refilling with <InlineMath math="4\text{ liters}" /> of artificial seawater adds <InlineMath math="4\cdot35=140" /> grams of salt, and the tank is back to <InlineMath math="120\text{ liters}" />.
 
-So the first statement is **false**, the second is **true**, the third is **true**, and the fourth is **false**.
+<BlockMath math="\text{rise per day}=\frac{140}{120}=\frac76\text{ g/L}" />
+
+**This rise doesn't depend on the current salinity**, because the salt added is always <InlineMath math="140" /> grams and no salt leaves. So the salinity rises by <InlineMath math="\frac76\text{ g/L}" /> every day, the same amount each time. The second statement is **true**.
+
+# Repeated changes with artificial seawater
+
+When part of the water is replaced by water at <InlineMath math="35" />, the new salinity is a weighted average of the old salinity and <InlineMath math="35" />. **An average of two numbers that are both at least <InlineMath math="35" /> can't be less than <InlineMath math="35" />**. The salinity only creeps towards <InlineMath math="35\text{ g/L}" /> from above and never drops below it. The third statement is **false**.
+
+# One change using artificial seawater
+
+Count the salt. After removing <InlineMath math="20\text{ liters}" />, <InlineMath math="100\cdot42=4{,}200" /> grams of salt are left. **Artificial seawater brings its own salt**, namely <InlineMath math="20\cdot35=700" /> grams.
+
+<BlockMath math="\frac{4{,}200+700}{120}=\frac{4{,}900}{120}=40\frac56\text{ g/L}" />
+
+That's <InlineMath math="40\frac56\text{ g/L}" />, not <InlineMath math="35\text{ g/L}" />. You only get <InlineMath math="35" /> when the refill water is fresh water, because <InlineMath math="\frac{4{,}200}{120}=35" />. The fourth statement is **false**.
+
+So the first statement is false, the second is true, the third is false, and the fourth is false.

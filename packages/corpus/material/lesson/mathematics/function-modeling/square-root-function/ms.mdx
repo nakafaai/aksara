@@ -1,0 +1,359 @@
+export const metadata = {
+  title: "Fungsi Punca Kuasa Dua",
+  description: "Analisis fungsi punca kuasa dua melalui domain, julat, penjelmaan graf, persamaan, ketaksamaan, dan satu model ketinggian.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-09-23",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Mengambil Punca Kuasa Dua Utama
+
+Fungsi punca kuasa dua <Highlight>mengambil punca kuasa dua utama bagi suatu ungkapan</Highlight>. Bentuknya ialah <InlineMath math="f(x) = \sqrt{g(x)}" />, dengan <InlineMath math="g(x)" /> ialah radikan, iaitu ungkapan di bawah tanda radikal.
+
+Fungsi induknya ialah <InlineMath math="f(x) = \sqrt{x}" />. Fungsi ini memadankan setiap input yang tidak negatif dengan punca kuasa duanya yang juga tidak negatif.
+
+### Ciri-ciri Fungsi Punca Kuasa Dua
+
+Semua fungsi punca kuasa dua ada tiga ciri yang sama. Semak setiap ciri itu pada <InlineMath math="f(x) = \sqrt{x}" /> semasa kamu membaca.
+
+1. **Domain yang terhad**: Punca kuasa dua bagi nombor negatif tidak tertakrif dalam nombor nyata, jadi domain fungsi punca kuasa dua terhad kepada nilai-nilai yang menjadikan ungkapan di dalam punca kuasa dua itu tidak negatif.
+
+2. **Graf induk yang mudah dikenali**: Graf <InlineMath math="y=\sqrt{x}" /> bermula di <InlineMath math="(0,0)" /> dan naik semakin perlahan apabila <InlineMath math="x" /> bertambah. Penjelmaan boleh mengalihkan, meregangkan atau memantulkan bentuk ini.
+
+3. **Punca utama yang tidak negatif**: Nilai <InlineMath math="\sqrt{g(x)}" /> itu sendiri sentiasa tidak negatif. Namun, pendarab di luar punca atau translasi masih boleh menjadikan fungsi yang sudah dijelmakan bernilai negatif.
+
+## Domain dan Julat Fungsi Punca Kuasa Dua
+
+**Domain mengehadkan input**, manakala julat merekodkan output yang benar-benar dicapai. Punca kuasa dua utama tanpa pendarab atau translasi di luarnya sentiasa memberikan output yang tidak negatif. Radikan yang terbatas juga boleh memberikan julat itu satu batas atas.
+
+### Menentukan Domain
+
+Semak syarat ini hanya pada nilai yang menjadikan **radikan itu tertakrif**. Kalau radikan itu berbentuk pecahan, nilai yang menjadikan penyebutnya sifar tetap dikecualikan.
+
+<BlockMath math="D_f=\{x\in D_g\mid g(x)\geq0\}" />
+
+Domain bagi fungsi punca kuasa dua <InlineMath math="f(x) = \sqrt{g(x)}" /> ialah semua nilai <InlineMath math="x" /> yang menjadikan <InlineMath math="g(x) \geq 0" />.
+
+**Langkah menentukan domain**:
+
+| Langkah | Penerangan                                              | Contoh: <InlineMath math="f(x) = \sqrt{x-2}" />                   |
+| ---- | ------------------------------------------------------- | ----------------------------------------------------------------- |
+| <InlineMath math="1" /> | Kenal pasti ungkapan di dalam punca kuasa dua           | <InlineMath math="g(x) = x-2" />                                  |
+| <InlineMath math="2" /> | Bina ketaksamaan <InlineMath math="g(x) \geq 0" />      | <InlineMath math="x-2 \geq 0" />                                  |
+| <InlineMath math="3" /> | Selesaikan ketaksamaan itu                              | <InlineMath math="x \geq 2" />                                    |
+| <InlineMath math="4" /> | Tulis domainnya                                         | <InlineMath math="D_f = \{x \mid x \geq 2, x \in \mathbb{R}\}" /> |
+
+### Menentukan Julat
+
+Julat bagi fungsi punca kuasa dua ialah semua nilai output yang boleh dihasilkan oleh fungsi itu.
+
+Untuk <InlineMath math="f(x) = \sqrt{x-2}" />, radikannya boleh menghasilkan setiap nilai dari sifar **ke atas**. Jadi punca kuasa dua utamanya mempunyai julat
+
+<BlockMath math="R_f = \{y \mid y \geq 0, y \in \mathbb{R}\}" />
+
+Julat juga bergantung pada **nilai maksimum radikan**. Sebagai perbandingan, radikan berikut tidak pernah melebihi empat.
+
+<MathContainer>
+
+<BlockMath math="r(x)=\sqrt{4-x^2},\quad -2\leq x\leq2" />
+
+<BlockMath math="0\leq4-x^2\leq4\quad\Longrightarrow\quad0\leq r(x)\leq2" />
+
+<BlockMath math="r(-2)=0,\quad r(0)=2,\quad r(2)=0" />
+</MathContainer>
+
+## Graf Fungsi Punca Kuasa Dua Asas
+
+Graf induk hanya wujud untuk <InlineMath math="x \geq 0" /> dan melalui <InlineMath math="(0,0)" />, <InlineMath math="(1,1)" /> dan <InlineMath math="(4,2)" />. **Untuk menaikkan output** satu unit lagi, input perlu bertambah lebih banyak daripada sebelumnya.
+
+<MathVisual
+  title={
+    <>
+      Fungsi Punca Kuasa Dua Asas: <InlineMath math="f(x) = \sqrt{x}" />
+    </>
+  }
+  description={
+    <>
+      Graf fungsi punca kuasa dua asas bermula dari titik <InlineMath math="(0,0)" /> dan naik dengan kadar yang semakin perlahan.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="f(x)=\sqrt{x}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 18 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * t)", y: "t", parameter: { min: 0, max: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Penjelmaan Fungsi Punca Kuasa Dua
+
+Translasi mengubah **kedudukan titik permulaan**. Penskalaan mencancang mengubah tinggi setiap titik dari paksi mengufuk, manakala pantulan boleh menterbalikkan arah lengkung. Kalau fungsi induk hanya diskalakan, titik permulaannya kekal di asalan.
+
+### Translasi Mengufuk
+
+Fungsi <InlineMath math="f(x) = \sqrt{x-h}" /> mengalihkan graf fungsi punca kuasa dua asas sejauh <InlineMath math="h \text{ unit}" /> **ke kanan** (jika <InlineMath math="h > 0" />) atau ke kiri (jika <InlineMath math="h < 0" />).
+
+<MathVisual
+  title={<>Translasi Mengufuk Fungsi Punca Kuasa Dua</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = \sqrt{x}" />,{" "}
+      <InlineMath math="g(x) = \sqrt{x-2}" /> dan{" "}
+      <InlineMath math="h(x) = \sqrt{x+2}" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="\sqrt{x}" />,
+    "l2": <InlineMath math="\sqrt{x-2}" />,
+    "l3": <InlineMath math="\sqrt{x+2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 20 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * t)", y: "t", parameter: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t * t) + 2)", y: "t", parameter: { min: 0, max: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((t * t) + (-2))", y: "t", parameter: { min: 0, max: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 2.24 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 3, y: 2.24 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Translasi Mencancang
+
+Fungsi <InlineMath math="f(x) = \sqrt{x} + k" /> mengalihkan graf fungsi punca kuasa dua asas sejauh <InlineMath math="k \text{ unit}" /> **ke atas** (jika <InlineMath math="k > 0" />) atau ke bawah (jika <InlineMath math="k < 0" />).
+
+| Fungsi                                    | Penjelmaan             | Domain                         | Julat                           |
+| ----------------------------------------- | ---------------------- | ------------------------------ | ------------------------------- |
+| <InlineMath math="f(x) = \sqrt{x}" />     | Fungsi asas            | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq 0" />  |
+| <InlineMath math="f(x) = \sqrt{x} + 2" /> | Translasi <InlineMath math="2 \text{ unit}" /> ke atas | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq 2" />  |
+| <InlineMath math="f(x) = \sqrt{x} - 3" /> | Translasi <InlineMath math="3 \text{ unit}" /> ke bawah | <InlineMath math="x \geq 0" /> | <InlineMath math="y \geq -3" /> |
+
+### Regangan
+
+Untuk <InlineMath math="f(x) = a\sqrt{x}" />, nilai <InlineMath math="|a|>1" /> **meregangkan graf secara mencancang**, manakala <InlineMath math="0<|a|<1" /> memampatkannya. Nilai <InlineMath math="a" /> yang negatif juga memantulkan graf itu pada paksi-<InlineMath math="x" />.
+
+<MathVisual
+  title={<>Regangan Mencancang Fungsi Punca Kuasa Dua</>}
+  description={
+    <>
+      Perbandingan <InlineMath math="f(x) = \sqrt{x}" />,{" "}
+      <InlineMath math="g(x) = 2\sqrt{x}" /> dan{" "}
+      <InlineMath math="h(x) = \frac{1}{2}\sqrt{x}" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="\sqrt{x}" />,
+    "l2": <InlineMath math="2\sqrt{x}" />,
+    "l3": <InlineMath math="\frac{1}{2}\sqrt{x}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 18 }, y: { min: -1, max: 9 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * t)", y: "t", parameter: { min: 0, max: 4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t * t)", y: "(2 * t)", parameter: { min: 0, max: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(t * t)", y: "(0.5 * t)", parameter: { min: 0, max: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 1.58 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 4.47 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 5, y: 1.12 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Bentuk Am Fungsi Punca Kuasa Dua
+
+Untuk kes tak degenerat, iaitu <InlineMath math="a\neq 0" /> dan <InlineMath math="b\neq 0" />, fungsi punca kuasa dua yang sudah dijelmakan mempunyai bentuk:
+
+<BlockMath math="f(x) = a\sqrt{b(x-h)} + k" />
+
+Di sini:
+
+- <InlineMath math="a" /> menentukan penskalaan mencancang dan, apabila <InlineMath math="a<0" />, pantulan pada paksi-<InlineMath math="x" />
+- <InlineMath math="b" /> menentukan penskalaan mengufuk dan, apabila <InlineMath math="b<0" />, pantulan mengufuk
+- <InlineMath math="h" /> menentukan translasi mengufuk
+- <InlineMath math="k" /> menentukan translasi mencancang
+
+Domain nyatanya ditentukan oleh <InlineMath math="b(x-h)\geq 0" />. Kemudian, tanda <InlineMath math="a" /> menentukan sama ada julat itu memanjang ke atas atau ke bawah dari <InlineMath math="y=k" />.
+
+**Langkah melukis graf**:
+
+| Langkah | Tindakan                  | Contoh: <InlineMath math="f(x) = 2\sqrt{x-1} + 3" />                                           |
+| ---- | ------------------------- | ---------------------------------------------------------------------------------------------- |
+| <InlineMath math="1" /> | Tentukan titik permulaan  | <InlineMath math="x-1 = 0 \Rightarrow x = 1" />, <InlineMath math="f(1) = 3" />, Titik: <InlineMath math="(1, 3)" /> |
+| <InlineMath math="2" /> | Tentukan domain           | <InlineMath math="x-1 \geq 0 \Rightarrow x \geq 1" />                                          |
+| <InlineMath math="3" /> | Bina jadual nilai         | Pilih beberapa nilai <InlineMath math="x \geq 1" />                                            |
+| <InlineMath math="4" /> | Kira nilai fungsi         | Untuk <InlineMath math="x = 2" />: <InlineMath math="f(2) = 2\sqrt{1} + 3 = 5" />              |
+| <InlineMath math="5" /> | Plot titik                | Plot <InlineMath math="(1,3)" />, <InlineMath math="(2,5)" />, <InlineMath math="(5,7)" />, dan lain-lain |
+| <InlineMath math="6" /> | Sambungkan titik          | Lukis lengkung licin yang melalui titik-titik itu                                              |
+
+## Persamaan Fungsi Punca Kuasa Dua
+
+Untuk menyelesaikan persamaan yang mengandungi punca kuasa dua, **asingkan sebutan radikal**, kuasa duakan kedua-dua belah, selesaikan, kemudian semak setiap calon jawapan dalam persamaan asal. Langkah mengkuasaduakan tidak boleh diterbalikkan untuk sebarang ungkapan nyata, jadi langkah itu boleh menghasilkan penyelesaian palsu.
+
+| Langkah | Penerangan              | Contoh: <InlineMath math="\sqrt{2x+3} = 5" />          |
+| ---- | ----------------------- | ------------------------------------------------------ |
+| <InlineMath math="1" /> | Asingkan punca kuasa dua | Sudah diasingkan                                      |
+| <InlineMath math="2" /> | Kuasa duakan kedua-dua belah | <InlineMath math="(\sqrt{2x+3})^2 = 5^2" />       |
+| <InlineMath math="3" /> | Permudahkan             | <InlineMath math="2x+3 = 25" />                        |
+| <InlineMath math="4" /> | Selesaikan              | <InlineMath math="2x = 22 \Rightarrow x = 11" />       |
+| <InlineMath math="5" /> | Sahkan                  | <InlineMath math="\sqrt{2(11)+3} = \sqrt{25} = 5" /> ✓ |
+
+**Semak dalam persamaan asal** untuk menolak penyelesaian palsu. Contohnya, apabila punca kuasa dua yang disamakan dengan negatif dua dikuasaduakan, kita dapat calon empat, tetapi calon itu gagal apabila digantikan semula.
+
+<MathContainer>
+
+<BlockMath math="\sqrt{x}=-2\quad\Longrightarrow\quad x=4" />
+
+<BlockMath math="\sqrt4=2\neq-2" />
+</MathContainer>
+
+## Ketaksamaan Fungsi Punca Kuasa Dua
+
+Untuk ketaksamaan punca kuasa dua, **kenakan syarat domain dahulu**. Sebelum mengkuasaduakan, semak juga tanda belah yang tiada radikal supaya perbandingan itu kekal setara.
+
+**Contoh**: Selesaikan <InlineMath math="\sqrt{x-1} < 3" />
+
+<MathContainer>
+
+<BlockMath math="\text{Syarat: } x-1 \geq 0 \Rightarrow x \geq 1" />
+
+<BlockMath math="\sqrt{x-1} < 3" />
+
+<BlockMath math="x-1 < 9" />
+
+<BlockMath math="x < 10" />
+</MathContainer>
+
+Oleh sebab kedua-dua belah tidak negatif dalam domain itu, langkah mengkuasaduakan mengekalkan ketaksamaan. Gabungkan <InlineMath math="x\geq 1" /> dengan <InlineMath math="x<10" />, dan kamu dapat <InlineMath math="1 \leq x < 10" />.
+
+## Soalan Latihan
+
+Soalan-soalan ini meminta domain, julat atau graf bagi fungsi punca. Mulakan dengan **syarat di dalam punca kuasa dua**.
+
+1. Tentukan domain dan julat bagi fungsi <InlineMath math="f(x) = \sqrt{3x-6}" />
+
+2. Lukis graf bagi fungsi <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+
+3. Selesaikan persamaan <InlineMath math="\sqrt{x+5} + \sqrt{x} = 5" />
+
+4. Dalam satu model latihan, sebuah roket dilancarkan tegak ke atas. Tinggi roket mengikut model selepas <InlineMath math="t \text{ saat}" /> diberikan oleh <InlineMath math="h(t) = 100\sqrt{t} \text{ meter}" />. Berapakah tinggi roket itu selepas <InlineMath math="9 \text{ saat}" />?
+
+5. Tentukan nilai <InlineMath math="x" /> yang memenuhi <InlineMath math="2\sqrt{x-3} \geq 6" />
+
+### Jalan Kerja
+
+**Soalan 1**. **Radikan mesti tidak negatif**:
+
+<MathContainer>
+
+<BlockMath math="3x-6\geq 0" />
+
+<BlockMath math="x\geq 2." />
+</MathContainer>
+
+Oleh itu, <InlineMath math="D_f=\{x\in\mathbb{R}\mid x\geq 2\}" />. Apabila <InlineMath math="x" /> merentasi domain ini, <InlineMath math="3x-6" /> mengambil setiap nilai yang tidak negatif, jadi <InlineMath math="R_f=\{y\in\mathbb{R}\mid y\geq 0\}" />.
+
+**Soalan 2**. **Melukis graf** <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+
+**Langkah melukis**:
+
+| Langkah | Penerangan               | Butiran bagi <InlineMath math="g(x) = -\sqrt{x+4} + 2" />                                                                                                  |
+| ---- | ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <InlineMath math="1" /> | Kenal pasti penjelmaan   | <InlineMath math="a = -1" /> (pantulan pada paksi-<InlineMath math="x" />), <InlineMath math="h = -4" /> (translasi <InlineMath math="4 \text{ unit}" /> ke kiri), <InlineMath math="k = 2" /> (translasi <InlineMath math="2 \text{ unit}" /> ke atas) |
+| <InlineMath math="2" /> | Tentukan titik permulaan | <InlineMath math="x+4 = 0 \Rightarrow x = -4" />, <InlineMath math="g(-4) = 0 + 2 = 2" />, Titik permulaan: <InlineMath math="(-4, 2)" /> |
+| <InlineMath math="3" /> | Tentukan domain          | <InlineMath math="x+4 \geq 0 \Rightarrow x \geq -4" />                                                                                                     |
+| <InlineMath math="4" /> | Tentukan julat           | Oleh sebab <InlineMath math="a = -1 < 0" />, graf menyusut dari titik permulaan, jadi <InlineMath math="y \leq 2" />                                       |
+| <InlineMath math="5" /> | Bina jadual nilai        | Pilih nilai-nilai <InlineMath math="x \geq -4" />                                                                                                          |
+
+**Jadual nilai**:
+
+| <InlineMath math="x" /> | <InlineMath math="x+4" /> | <InlineMath math="\sqrt{x+4}" /> | <InlineMath math="-\sqrt{x+4}" /> | <InlineMath math="g(x) = -\sqrt{x+4} + 2" /> |
+| ----------------------- | ------------------------- | -------------------------------- | --------------------------------- | -------------------------------------------- |
+| <InlineMath math="-4" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="2" /> |
+| <InlineMath math="-3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="-1" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="0" /> |
+| <InlineMath math="5" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="-3" /> | <InlineMath math="-1" /> |
+| <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="4" /> | <InlineMath math="-4" /> | <InlineMath math="-2" /> |
+
+<MathVisual
+  title={
+    <>
+      Graf <InlineMath math="g(x) = -\sqrt{x+4} + 2" />
+    </>
+  }
+  description={<>Graf fungsi punca kuasa dua yang mengalami pantulan pada paksi-<InlineMath math="x" /> dan translasi.</>}
+  labels={{
+    "l1": <InlineMath math="g(x)=-\sqrt{x+4}+2" />,
+    "l2": <InlineMath math="(-4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 14 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t * t) + (-4))", y: "(((-1) * t) + 2)", parameter: { min: 0, max: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: -0.53 }, placement: "below" },
+      { key: "l2", objectId: "s1", at: { x: -4, y: 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Graf ini bermula di <InlineMath math="(-4,2)" />. Tanda negatif memantulkan graf induk pada paksi-<InlineMath math="x" />, jadi lengkung itu turun ke kanan dan outputnya kekal pada atau di bawah <InlineMath math="2" />.
+
+**Soalan 3**. Domainnya memerlukan <InlineMath math="x\geq 0" />. **Asingkan satu sebutan radikal**:
+
+<MathContainer>
+
+<BlockMath math="\sqrt{x+5}=5-\sqrt{x}" />
+
+<BlockMath math="x+5=25-10\sqrt{x}+x" />
+
+<BlockMath math="10\sqrt{x}=20" />
+
+<BlockMath math="\sqrt{x}=2" />
+
+<BlockMath math="x=4." />
+</MathContainer>
+
+Semak dalam persamaan asal: <InlineMath math="\sqrt{4+5}+\sqrt{4}=3+2=5" />. Jadi, <InlineMath math="x=4" /> ialah penyelesaian yang sah.
+
+**Soalan 4**. **Gantikan** <InlineMath math="t=9" /> ke dalam model:
+
+<BlockMath math="h(9)=100\sqrt{9}=100\cdot 3=300\text{ m}." />
+
+Model ini menggunakan <InlineMath math="t\geq 0" />, dan <InlineMath math="9" /> terletak dalam domain itu. Tinggi roket mengikut model ialah <InlineMath math="300\text{ m}" />.
+
+**Soalan 5**. Catat domainnya, <InlineMath math="x-3\geq 0" />, jadi <InlineMath math="x\geq 3" />. **Bahagikan dengan nombor positif** <InlineMath math="2" />, kemudian kuasa duakan kedua-dua belah yang tidak negatif:
+
+<MathContainer>
+
+<BlockMath math="2\sqrt{x-3}\geq 6" />
+
+<BlockMath math="\sqrt{x-3}\geq 3" />
+
+<BlockMath math="x-3\geq 9" />
+
+<BlockMath math="x\geq 12." />
+</MathContainer>
+
+Kalau kamu ambil persilangan keputusan ini dengan domain, jawapannya tetap <InlineMath math="x\geq 12" />.

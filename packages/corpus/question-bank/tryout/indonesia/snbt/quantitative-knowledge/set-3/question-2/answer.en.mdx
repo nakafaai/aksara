@@ -1,18 +1,42 @@
-Neither <InlineMath math="a" /> nor <InlineMath math="b" /> is an integer, but their product can be found exactly. Write both as logarithms and use the property of **two reciprocal logarithms**, <InlineMath math="\log_p q\cdot\log_q p=1" />.
+Both equations stay the same when you swap <InlineMath math="x" /> and <InlineMath math="y" />, so it's easier to work with **the sum and the product**, namely <InlineMath math="s=x+y" /> and <InlineMath math="p=xy" />. The plan: find the pairs <InlineMath math="(s,p)" />, throw out any pair that makes <InlineMath math="x" /> and <InlineMath math="y" /> non-real, then compute <InlineMath math="x^3+y^3" /> from <InlineMath math="s" /> and <InlineMath math="p" />.
 
-# Writing them as logarithms
+# Rewriting with the sum and the product
+
+Factor the first equation: <InlineMath math="x^2y+xy^2=xy(x+y)=ps" />. The second equation says <InlineMath math="p+s=12" />. Two numbers with sum <InlineMath math="12" /> and product <InlineMath math="35" /> are **the roots of a quadratic equation** <InlineMath math="t^2-12t+35=0" />.
 
 <BlockMath math="\begin{aligned}
-a&=\log_2 9=\log_2 3^2=2\log_2 3\\
-b&=\log_3 16=\log_3 2^4=4\log_3 2
+t^2-12t+35&=0\\
+(t-5)(t-7)&=0\\
+t=5 \quad&\text{or}\quad t=7
 \end{aligned}" />
 
-# Multiplying them
+So there are two possibilities: <InlineMath math="s=5" /> with <InlineMath math="p=7" />, or <InlineMath math="s=7" /> with <InlineMath math="p=5" />.
 
-The factors <InlineMath math="\log_2 3" /> and <InlineMath math="\log_3 2" /> are **reciprocals of each other**, because <InlineMath math="\log_2 3=\frac{\log3}{\log2}" /> and <InlineMath math="\log_3 2=\frac{\log2}{\log3}" />.
+# The condition for real solutions
 
-<BlockMath math="ab=2\cdot4\cdot\log_2 3\cdot\log_3 2=8\cdot1=8" />
+The numbers <InlineMath math="x" /> and <InlineMath math="y" /> are the roots of <InlineMath math="z^2-sz+p=0" />. They're real only when **the discriminant isn't negative**, that is, <InlineMath math="s^2-4p\ge 0" />.
 
-The value 1 multiplies only the two logarithms and forgets the coefficients 2 and 4. The value 6 adds the coefficients, although they are multiplied. The value 24 takes <InlineMath math="a=\tfrac92" /> and <InlineMath math="b=\tfrac{16}3" />, as if a power were a division. The value 12 estimates <InlineMath math="a\approx3" /> and <InlineMath math="b\approx4" />, which is too rough for an exact result.
+<BlockMath math="\begin{aligned}
+s=5,\ p=7&:\quad 5^2-4\cdot 7=-3<0\\
+s=7,\ p=5&:\quad 7^2-4\cdot 5=29\ge 0
+\end{aligned}" />
 
-So the value of <InlineMath math="ab" /> is **8**.
+The first pair makes <InlineMath math="x" /> and <InlineMath math="y" /> non-real, so you drop it. Only <InlineMath math="s=7" /> and <InlineMath math="p=5" /> remain.
+
+# Computing the sum of cubes
+
+Expand <InlineMath math="(x+y)^3=x^3+3x^2y+3xy^2+y^3=x^3+y^3+3xy(x+y)" />. From this, **<InlineMath math="x^3+y^3" /> equals <InlineMath math="s^3-3ps" />**.
+
+<BlockMath math="\begin{aligned}
+x^3+y^3&=s^3-3ps\\
+&=7^3-3\cdot 5\cdot 7\\
+&=343-105=238
+\end{aligned}" />
+
+As a check, the roots are <InlineMath math="x,y=\tfrac{7\pm\sqrt{29}}{2}" />. Their sum is <InlineMath math="7" /> and their product is <InlineMath math="\tfrac{49-29}{4}=5" />, which fits. Another route gives the same value: <InlineMath math="x^3+y^3=s\left(s^2-3p\right)=7\cdot 34=238" />.
+
+# Checking the other options
+
+The option <InlineMath math="20" /> comes from **the rejected pair**, since <InlineMath math="5^3-3\cdot 7\cdot 5=20" />, but that pair doesn't give real <InlineMath math="x" /> and <InlineMath math="y" />. The option <InlineMath math="258" /> adds the results of both pairs, <InlineMath math="20+238" />. The option <InlineMath math="273" /> uses <InlineMath math="x^3+y^3=(x+y)\left(x^2+y^2\right)=7\cdot 39" /> and forgets to subtract the <InlineMath math="xy" /> term. The option <InlineMath math="448" /> has a sign error: <InlineMath math="s^3+3ps" />.
+
+So the value of <InlineMath math="x^3+y^3" /> is <InlineMath math="238" />.

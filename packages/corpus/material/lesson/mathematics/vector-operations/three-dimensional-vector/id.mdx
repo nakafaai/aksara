@@ -13,10 +13,8 @@ export const metadata = {
 
 Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highlight>. Ketiga komponen mengukur perpindahan sepanjang sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />. Vektor tak nol memiliki besar dan arah, sedangkan vektor nol tidak memiliki arah geometris.
 
-<LineEquation
-  cameraPosition={[7, 5, -5]}
-  cameraTarget={[1.5, 2, 1]}
-  title="Vektor dalam Ruang Tiga Dimensi"
+<MathVisual
+  title={<>Vektor dalam Ruang Tiga Dimensi</>}
   description={
     <>
       Visualisasi vektor dalam ruang tiga dimensi dengan komponen{" "}
@@ -24,21 +22,20 @@ Vektor tiga dimensi dinyatakan oleh <Highlight>tiga komponen koordinat</Highligh
       <InlineMath math="z" />.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 2 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="v" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -5 }, target: { x: 1.5, y: 2, z: 1 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 4, z: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4, z: 2 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Representasi Vektor Tiga Dimensi
@@ -73,69 +70,36 @@ Pada bentuk ini:
 - <InlineMath math="\vec{i}, \vec{j}, \vec{k}" /> adalah vektor satuan pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[7, 5, -6]}
-    cameraTarget={[2, 1.5, 1]}
-    title="Komponen Vektor Tiga Dimensi"
+  <MathVisual
+    title={<>Komponen Vektor Tiga Dimensi</>}
     description={
-      <>
-        Vektor tiga dimensi dengan komponen pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_x" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 3, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_y" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 2 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a_z" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 3, z: 2 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Vektor tiga dimensi dengan komponen pada sumbu <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a_x" />,
+      "l2": <InlineMath math="a_y" />,
+      "l3": <InlineMath math="a_z" />,
+      "l4": <InlineMath math="a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+      view: { kind: "camera", position: { x: 7, y: 5, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 3, z: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 2 }, appearance: "answer" },
+        { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 3, z: 2 }, appearance: "highlight" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0, y: 3, z: 0 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 2 }, placement: "above-right" },
+        { key: "l4", objectId: "s4", at: { x: 4, y: 3, z: 2 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -167,58 +131,37 @@ Jika <InlineMath math="\vec{a} = (a_x, a_y, a_z)" /> dan <InlineMath math="\vec{
 </MathContainer>
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[9, 6, -7]}
-    cameraTarget={[2.5, 2, 1.5]}
-    title="Penjumlahan Vektor Tiga Dimensi"
+  <MathVisual
+    title={<>Penjumlahan Vektor Tiga Dimensi</>}
     description={
-      <>
-        Visualisasi penjumlahan vektor <InlineMath math="a" /> dan{" "}
-        <InlineMath math="b" /> menghasilkan vektor{" "}
-        <InlineMath math="c = a + b" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 5, y: 4, z: 3 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="c=a + b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Visualisasi penjumlahan vektor <InlineMath math="a" /> dan{" "}
+          <InlineMath math="b" /> menghasilkan vektor{" "}
+          <InlineMath math="c = a + b" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="c=a + b" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 3.5 } },
+      view: { kind: "camera", position: { x: 9, y: 6, z: -7 }, target: { x: 2.5, y: 2, z: 1.5 } },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((3) - (0)), z: (0) + 0.5 * ((1) - (0)) }, { x: 2, y: 3, z: 1 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 1, y: 1.5, z: 0.5 }, to: { x: 2, y: 3, z: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 2, y: 3, z: 1 }, { x: (2) + 0.5 * ((5) - (2)), y: (3) + 0.5 * ((4) - (3)), z: (1) + 0.5 * ((3) - (1)) }, { x: 5, y: 4, z: 3 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3.5, y: 3.5, z: 2 }, to: { x: 5, y: 4, z: 3 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 4, z: 3 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 1.5, z: 0.5 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 3.5, y: 3.5, z: 2 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 5, y: 4, z: 3 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -229,44 +172,31 @@ Perkalian skalar <InlineMath math="k" /> dengan vektor <InlineMath math="\vec{a}
 <BlockMath math="k\vec{a} = (k \cdot a_x, k \cdot a_y, k \cdot a_z)" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[8, 4, -5]}
-    cameraTarget={[2, 1, 2]}
-    title="Perkalian Skalar dengan Vektor"
+  <MathVisual
+    title={<>Perkalian Skalar dengan Vektor</>}
     description={
-      <>
-        Visualisasi perkalian skalar oleh <InlineMath math="k" /> pada vektor{" "}
-        <InlineMath math="a" />, dengan <InlineMath math="k = 2" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 1, z: 2 }],
-      color: "#059669",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 2, z: 4 }],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="2a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Visualisasi perkalian skalar oleh <InlineMath math="k" /> pada vektor{" "}
+          <InlineMath math="a" />, dengan <InlineMath math="k = 2" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="2a" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 8, y: 4, z: -5 }, target: { x: 2, y: 1, z: 2 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 1, z: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 2, z: 4 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 1, z: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 4, y: 2, z: 4 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 
@@ -302,52 +232,29 @@ Pada rumus sudut ini, kedua vektor harus tak nol. Simbol <InlineMath math="\thet
 
 Jika <InlineMath math="\vec{a}\times\vec{b}\neq\vec{0}" />, arahnya tegak lurus terhadap kedua faktor dan mengikuti kaidah tangan kanan dari <InlineMath math="\vec{a}" /> menuju <InlineMath math="\vec{b}" />. Jika salah satu faktor adalah vektor nol atau kedua faktor sejajar, hasil kali silangnya adalah <InlineMath math="\vec{0}" /> sehingga tidak memiliki arah geometris.
 
-<LineEquation
-  cameraPosition={[4.6, 3.6, -4.2]}
-  cameraTarget={[0.8, 0.8, 1.7]}
-  title="Perkalian Silang Vektor"
+<MathVisual
+  title={<>Perkalian Silang Vektor</>}
   description={<>Arah kaidah tangan kanan dari <InlineMath math="\vec{a}\times\vec{b}" />, yang tegak lurus terhadap kedua vektor tak sejajar.</>}
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 2, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
-      color: "#65a30d",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a \times b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="a \times b" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 4.6, y: 3.6, z: -4.2 }, target: { x: 0.8, y: 0.8, z: 1.7 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 2, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 

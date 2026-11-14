@@ -1,15 +1,36 @@
-Sisa pembagian oleh 6 ditentukan jika kita tahu letak <InlineMath math="n" /> di antara enam kemungkinan sisa 0 sampai 5. Periksa apakah setiap pernyataan **mempersempit kemungkinan itu menjadi satu**.
+Pertanyaan ini membandingkan dua nilai mutlak, jadi ubah dulu ke bentuk yang lebih mudah. Rencananya, kuadratkan kedua ruas untuk mendapat syarat sederhana tentang <InlineMath math="x" /> dan <InlineMath math="y" />, lalu uji setiap pernyataan dengan **satu contoh yang menjawab ya dan satu contoh yang menjawab tidak**.
+
+# Mengubah pertanyaan
+
+Kedua ruas tidak negatif, dan untuk dua bilangan tidak negatif, yang lebih kecil juga punya kuadrat yang lebih kecil. Jadi kamu boleh membandingkan kuadratnya.
+
+<BlockMath math="\begin{aligned}
+|x+y|<|x-y|\quad&\Longleftrightarrow\quad(x+y)^2<(x-y)^2\\
+&\Longleftrightarrow\quad x^2+2xy+y^2<x^2-2xy+y^2\\
+&\Longleftrightarrow\quad 4xy<0
+\end{aligned}" />
+
+Jadi pertanyaannya sama dengan **apakah <InlineMath math="x" /> dan <InlineMath math="y" /> berlawanan tanda**.
 
 # Pernyataan pertama saja
 
-Bilangan yang bersisa 2 jika dibagi 3 antara lain 2, 5, 8, dan 11. Sisanya jika dibagi 6 berturut-turut 2, 5, 2, dan 5. Pembagi 3 **tidak membedakan bilangan genap dan ganjil**, jadi sisa 2 dan 5 sama-sama mungkin. Pernyataan (1) saja tidak cukup.
+Pernyataan (1) hanya membandingkan besar <InlineMath math="x" /> dan <InlineMath math="y" />, bukan tandanya. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> memenuhi (1) dan bertanda sama, jadi jawabannya tidak. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=-1" /> juga memenuhi (1) tetapi berlawanan tanda, jadi jawabannya ya. **Pernyataan (1) saja tidak cukup**.
 
 # Pernyataan kedua saja
 
-Tulis <InlineMath math="n=12k+5" /> untuk suatu bilangan bulat <InlineMath math="k\ge0" />. Karena 12 adalah kelipatan 6, bagian <InlineMath math="12k" /> **habis dibagi 6**.
+Fungsi pangkat tiga selalu naik, jadi <InlineMath math="x^3>y^3" /> sama dengan <InlineMath math="x>y" />. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> memberi jawaban tidak, sedangkan <InlineMath math="x=1" /> dan <InlineMath math="y=-3" /> memberi jawaban ya. **Pernyataan (2) saja tidak cukup**.
 
-<BlockMath math="n=12k+5=6(2k)+5" />
+# Kedua pernyataan bersama
 
-Sisanya selalu 5, misalnya 5, 17, dan 29 semuanya bersisa 5 jika dibagi 6. Pernyataan (2) saja cukup. Kedua pernyataan juga sejalan, karena <InlineMath math="12k+5" /> memang bersisa 2 jika dibagi 3.
+Sekarang <InlineMath math="x>y" /> dan <InlineMath math="|x|>|y|" />. Dari <InlineMath math="|x|>|y|" /> diperoleh <InlineMath math="x^2-y^2>0" />.
 
-Jadi, **pernyataan (2) saja cukup**, tetapi pernyataan (1) saja tidak cukup.
+<BlockMath math="\begin{aligned}
+(x-y)(x+y)&>0\\
+x-y>0\quad&\Rightarrow\quad x+y>0
+\end{aligned}" />
+
+Jadi <InlineMath math="x>y" /> dan <InlineMath math="x>-y" />, artinya <InlineMath math="x" /> lebih besar daripada <InlineMath math="|y|" /> dan pasti positif. Namun **tanda <InlineMath math="y" /> tetap belum diketahui**. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=1" /> memenuhi kedua pernyataan dan memberi <InlineMath math="|4|<|2|" /> yang salah, jadi jawabannya tidak. Pasangan <InlineMath math="x=3" /> dan <InlineMath math="y=-1" /> juga memenuhi keduanya dan memberi <InlineMath math="|2|<|4|" /> yang benar, jadi jawabannya ya. Gabungan keduanya pun tidak cukup.
+
+Pilihan dua pernyataan bersama-sama cukup menjebak siswa yang berhenti setelah tahu <InlineMath math="x" /> positif dan lupa memeriksa tanda <InlineMath math="y" />.
+
+Jadi, pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan, baik sendiri-sendiri maupun bersama-sama.

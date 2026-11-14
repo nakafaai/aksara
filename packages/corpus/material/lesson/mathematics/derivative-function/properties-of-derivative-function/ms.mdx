@@ -1,0 +1,185 @@
+export const metadata = {
+  title: "Petua Pembezaan",
+  description: "Gabungkan petua pemalar, petua kuasa, petua hasil tambah, petua hasil darab, petua hasil bahagi dan petua rantai dalam contoh pembezaan berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pembezaan",
+};
+
+## Daripada Takrif Had kepada Petua Praktikal
+
+Takrif had menerangkan <Highlight>maksud terbitan</Highlight>. Kalau kamu ulang pengiraan had yang penuh untuk beberapa fungsi, langkah algebra yang sama akan muncul berulang kali. Petua pembezaan merekodkan hasil pengiraan berulang itu tanpa mengubah idea asasnya, iaitu kadar perubahan seketika.
+
+Untuk setiap fungsi, kenal pasti dahulu bagaimana fungsi itu dibina. Kemudian pilih petua pembezaan yang sepadan dan tulis setiap langkah algebra dengan jelas.
+
+## Petua Pemalar dan Kuasa serta Gabungan Linear
+
+**Takrif terbitan** membawa kepada beberapa petua yang lebih cepat digunakan. Fungsi pemalar, kuasa dan hasil tambah sebutan masing-masing ada petua sendiri, dan setiap petua memberikan jawapan yang sama seperti yang akan diberikan oleh had.
+
+### Fungsi Pemalar dan Fungsi Kuasa
+
+1. **Petua pemalar**: Fungsi pemalar ada graf yang mengufuk, jadi kecerunannya sifar di semua tempat.
+
+   <BlockMath math="f(x)=k \implies f'(x)=0" />
+
+2. **Petua kuasa**: Untuk pemalar <InlineMath math="a" />, darabkan dengan indeks, kemudian kurangkan indeks itu sebanyak satu.
+
+   <BlockMath math="f(x)=ax^n \implies f'(x)=anx^{n-1}" />
+
+   Rumus ini berlaku untuk setiap integer <InlineMath math="n" /> di mana-mana sahaja <InlineMath math="x^n" /> tertakrif. Untuk indeks nyata secara umum, rumus ini berlaku pada <InlineMath math="x>0" /> dan pada mana-mana domain nyata yang lebih besar asalkan fungsi kuasa itu tertakrif dan boleh dibezakan di situ.
+
+### Gabungan Linear
+
+Biar <InlineMath math="u(x)" /> dan <InlineMath math="v(x)" /> ialah fungsi yang boleh dibezakan.
+
+1. **Gandaan pemalar**: Faktor pemalar kekal di hadapan terbitan.
+
+   <BlockMath math="f(x)=k\,u(x) \implies f'(x)=k\,u'(x)" />
+
+2. **Hasil tambah dan beza**: Bezakan setiap sebutan secara berasingan dan kekalkan operasi di antaranya.
+
+   <BlockMath math="\begin{aligned} f(x) &amp;=u(x)\pm v(x) \\ f'(x)&amp;=u'(x)\pm v'(x) \end{aligned}" />
+
+Kecerunan ditambah sama seperti fungsinya ditambah. Pada <InlineMath math="x = 1" />, tangen kepada <InlineMath math="x^2" /> ada kecerunan <InlineMath math="2" /> dan tangen kepada <InlineMath math="x" /> ada kecerunan <InlineMath math="1" />. Tangen kepada hasil tambahnya, <InlineMath math="x^2 + x" />, ada kecerunan <InlineMath math="2 + 1 = 3" />. Inilah cara petua gabungan linear berfungsi.
+
+<MathVisual
+  title={<>Kecerunan hasil tambah ialah hasil tambah kecerunan</>}
+  description={<>Lengkung <InlineMath math="x^2" />, <InlineMath math="x" /> dan <InlineMath math="x^2 + x" /> dengan tangen masing-masing pada <InlineMath math="x = 1" />, yang kecerunannya <InlineMath math="2" />, <InlineMath math="1" /> dan <InlineMath math="3" />.</>}
+  labels={{
+    square: <InlineMath math="x^2" />,
+    identity: <InlineMath math="x" />,
+    sum: <InlineMath math="x^2 + x" />,
+    "t-square": <InlineMath math="m = 2" />,
+    "t-sum": <InlineMath math="m = 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 2.6 }, y: { min: -0.8, max: 6.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "square", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "primary" },
+      { id: "identity", kind: "segment", from: { x: -0.5, y: -0.5 }, to: { x: 2, y: 2 }, appearance: "secondary" },
+      { id: "sum", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 1, c: 0 }, domain: { min: -0.5, max: 2 }, appearance: "construction" },
+      { id: "t-square", kind: "segment", from: { x: 0.5, y: 0 }, to: { x: 1.5, y: 2 }, appearance: "primary" },
+      { id: "t-sum", kind: "segment", from: { x: 0.5, y: 0.5 }, to: { x: 1.5, y: 3.5 }, appearance: "construction" },
+      { id: "p-square", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "p-sum", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "identity", objectId: "identity", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 2, y: 6 }, placement: "right" },
+      { key: "t-square", objectId: "t-square", at: { x: 0.5, y: 0 }, placement: "left" },
+      { key: "t-sum", objectId: "t-sum", at: { x: 1.5, y: 3.5 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Petua Hasil Darab dan Hasil Bahagi serta Petua Rantai
+
+Sesetengah ungkapan tidak boleh dibezakan sebutan demi sebutan. Setiap petua ini wujud kerana terbitan bagi suatu gabungan bukan gabungan bagi terbitan-terbitannya. Dalam hasil darab, kamu **bezakan satu faktor** sementara faktor yang satu lagi kekal tetap, kemudian tambahkan kedua-dua hasilnya. Hasil bahagi pula melibatkan penyebut, dan fungsi gubahan mendarabkan terbitan fungsi luar dengan terbitan fungsi dalam.
+
+### Petua Hasil Darab
+
+Untuk hasil darab, membezakan kedua-dua faktor lalu mendarabkan hasilnya tidak mencukupi. Bezakan satu faktor pada satu masa dan biarkan faktor yang satu lagi tidak berubah, kemudian tambahkan kedua-dua sebutan itu.
+
+<BlockMath math="\begin{aligned} f(x) &amp;=u(x)v(x) \\ f'(x)&amp;=u'(x)v(x)+u(x)v'(x) \end{aligned}" />
+
+Biar <InlineMath math="u(x)=x^2" /> dan <InlineMath math="v(x)=x+1" />. Kita perlukan **dua sebutan hasil darab** kerana kedua-dua faktor berubah apabila <InlineMath math="x" /> berubah:
+
+<BlockMath math="\begin{aligned}f'(x)&=(2x)(x+1)+x^2(1)\\&=2x^2+2x+x^2\\&=3x^2+2x\end{aligned}" />
+
+Kamu boleh menyemak jawapan ini dengan mengembangkan fungsi asal kepada <InlineMath math="x^3+x^2" />. Apabila kedua-dua sebutan ini dibezakan, kamu dapat <InlineMath math="3x^2+2x" /> sekali lagi.
+
+Beginilah asal usul petua hasil darab. Sebuah segi empat tepat dengan sisi <InlineMath math="u = 2" /> dan <InlineMath math="v = 3" /> ada luas <InlineMath math="uv" />. Biar kedua-dua sisi bertambah sedikit, sebanyak <InlineMath math="\Delta u" /> dan <InlineMath math="\Delta v" />: luas baharu ialah luas lama ditambah dua jalur, <InlineMath math="\Delta u \cdot v" /> dan <InlineMath math="u \cdot \Delta v" />, serta satu petak penjuru yang sangat kecil, <InlineMath math="\Delta u \Delta v" />. Bahagikan dengan <InlineMath math="\Delta x" /> dan biarkan nilainya semakin kecil: petak penjuru itu lenyap dan yang tinggal ialah <InlineMath math="(uv)' = u'v + uv'" />.
+
+<MathVisual
+  title={<>Petua hasil darab sebagai segi empat tepat yang membesar</>}
+  description={<>Segi empat tepat dengan luas <InlineMath math="uv" /> bertambah dengan jalur <InlineMath math="\Delta u \cdot v" /> dan <InlineMath math="u \cdot \Delta v" /> serta satu petak penjuru kecil <InlineMath math="\Delta u \Delta v" />.</>}
+  labels={{
+    uv: <InlineMath math="uv" />,
+    du: <InlineMath math="\Delta u \cdot v" />,
+    dv: <InlineMath math="u \cdot \Delta v" />,
+    corner: <InlineMath math="\Delta u \Delta v" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3 }, y: { min: -0.5, max: 4.25 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "uv", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "du", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 2.5, y: 0 }, { x: 2.5, y: 3 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "dv", kind: "polygon", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 3.75 }, { x: 0, y: 3.75 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 3 }, { x: 2.5, y: 3 }, { x: 2.5, y: 3.75 }, { x: 2, y: 3.75 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "uv", objectId: "uv", at: { x: 1, y: 1.5 }, placement: "center" },
+      { key: "du", objectId: "du", at: { x: 2.5, y: 1.5 }, placement: "right" },
+      { key: "dv", objectId: "dv", at: { x: 1, y: 3.75 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 2.5, y: 3.75 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Petua Hasil Bahagi
+
+Untuk hasil bahagi, <Highlight>susunan dalam pengangka itu penting</Highlight>. Penyebut <InlineMath math="v(x)" /> juga mesti bukan sifar di mana-mana sahaja fungsi asal tertakrif.
+
+<BlockMath math="\begin{aligned}f(x) &= \frac{u(x)}{v(x)} \\ f'(x)&= \frac{u'(x)v(x)-u(x)v'(x)}{[v(x)]^2}\end{aligned}" />
+
+Untuk <InlineMath math="f(x)=\frac{x+1}{x-1}" />, pilih <InlineMath math="u=x+1" /> dan <InlineMath math="v=x-1" />. Kedua-dua terbitannya sama dengan <InlineMath math="1" />. Kekalkan **susunan penolakan** dalam pengangka:
+
+<BlockMath math="\begin{aligned}f'(x)&=\frac{1(x-1)-(x+1)1}{(x-1)^2}\\&=\frac{x-1-x-1}{(x-1)^2}\\&=\frac{-2}{(x-1)^2}\end{aligned}" />
+
+Syarat <InlineMath math="x\ne1" /> terpakai untuk fungsi itu dan juga terbitannya. Kalau dua sebutan dalam pengangka itu ditukar susunannya, tandanya akan salah.
+
+Semak tanda <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> pada kedua-dua belah input yang dikecualikan, iaitu <InlineMath math="1" />. Setiap palang negatif, jadi <InlineMath math="f" /> turun pada setiap belah. Palang-palang itu simetri kerana <InlineMath math="(x-1)^2" /> memberikan nilai yang sama pada <InlineMath math="0" /> dan <InlineMath math="2" />, pada <InlineMath math="-1" /> dan <InlineMath math="3" />, dan pada <InlineMath math="-2" /> dan <InlineMath math="4" />.
+
+<BarChart
+  title={<>Kecerunan <InlineMath math="f(x) = \frac{x+1}{x-1}" /> di sekitar <InlineMath math="x = 1" /></>}
+  description={<>Palang <InlineMath math="f'(x) = \frac{-2}{(x-1)^2}" /> untuk <InlineMath math="x = -2, -1, 0, 2, 3, 4" />, semuanya negatif dan paling curam berhampiran <InlineMath math="1" />.</>}
+  yAxisLabel="Kecerunan"
+  data={[-2, -1, 0, 2, 3, 4].map((x) => ({ name: String(x), value: -2 / (x - 1) ** 2 }))}
+  chartConfig={{ value: { label: "Kecerunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Petua Rantai
+
+[Fungsi gubahan](/ms/subjek/matematik/fungsi-gubahan-dan-fungsi-songsang/fungsi-gubahan) meletakkan satu fungsi di dalam fungsi yang lain. Bezakan fungsi luar pada **input dalam yang tidak diubah**, kemudian darabkan dengan terbitan fungsi dalam itu.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} f(x) &amp;=g(u(x)) \\ f'(x)&amp;=g'(u(x))\,u'(x) \end{aligned}" />
+  <BlockMath math="\begin{aligned} f(x) &amp;=[u(x)]^n \\ f'(x)&amp;=n[u(x)]^{n-1}u'(x) \end{aligned}" />
+</MathContainer>
+
+## Menggunakan Petua Rantai pada Fungsi Gubahan
+
+Bezakan <InlineMath math="f(x)=(x^2+1)^3" />.
+
+Fungsi luar ialah kuasa tiga bagi inputnya. Fungsi dalam ialah <InlineMath math="u(x)=x^2+1" />. Gunakan petua kuasa pada fungsi luar, kemudian darabkan dengan **terbitan fungsi dalam**.
+
+<MathContainer>
+  <BlockMath math="u'(x)=2x" />
+  <BlockMath math="f'(x)=3[u(x)]^2u'(x)" />
+  <BlockMath math="f'(x)=6x(x^2+1)^2" />
+</MathContainer>
+
+Faktor <InlineMath math="2x" /> sangat penting. Kalau faktor ini tertinggal, maksudnya kamu hanya membezakan fungsi luar dan berhenti sebelum petua rantai selesai.
+
+## Latihan
+
+Setiap soalan memerlukan satu atau lebih **petua pembezaan yang digabungkan**. Tentukan petuanya dahulu sebelum menulis terbitan. Tulis petua yang kamu pilih di sebelah baris pertama, supaya petua yang salah dapat dikesan sebelum kerja algebra menjadi panjang.
+
+1. Bezakan <InlineMath math="h(x)=(2x-1)^4" />.
+
+### Jalan Kerja
+
+**Fungsi luar** ialah kuasa empat, manakala fungsi dalam ialah <InlineMath math="u(x)=2x-1" /> dengan terbitan <InlineMath math="u'(x)=2" />.
+
+<MathContainer>
+  <BlockMath math="h'(x)=4[u(x)]^3u'(x)" />
+  <BlockMath math="h'(x)=8(2x-1)^3" />
+</MathContainer>
+
+Jawapannya mengandungi kedua-dua bahagian gubahan itu: terbitan kuasa empat dan terbitan fungsi linear di dalamnya.

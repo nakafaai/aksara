@@ -10,6 +10,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
       de: "funktionstransformationen",
       en: "function-transformation",
       id: "transformasi-fungsi",
+      ms: "penjelmaan-fungsi",
     },
     sections: [
       {
@@ -17,6 +18,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "kombinierte-funktionstransformationen",
           en: "combined-transformation-function",
           id: "kombinasi-transformasi-fungsi",
+          ms: "gabungan-penjelmaan-fungsi",
         },
         slug: "combined-transformation-function",
       },
@@ -25,6 +27,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "horizontale-streckung-und-stauchung",
           en: "horizontal-dilation",
           id: "dilatasi-horizontal",
+          ms: "regangan-mengufuk",
         },
         slug: "horizontal-dilation",
       },
@@ -33,6 +36,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "spiegelung-an-der-y-achse",
           en: "horizontal-reflection",
           id: "refleksi-horizontal",
+          ms: "pantulan-pada-paksi-y",
         },
         slug: "horizontal-reflection",
       },
@@ -41,11 +45,17 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "horizontale-verschiebung",
           en: "horizontal-translation",
           id: "translasi-horizontal",
+          ms: "translasi-mengufuk",
         },
         slug: "horizontal-translation",
       },
       {
-        routeSlugs: { de: "rotation", en: "rotation", id: "rotasi" },
+        routeSlugs: {
+          de: "rotation",
+          en: "rotation",
+          id: "rotasi",
+          ms: "putaran-graf-fungsi",
+        },
         slug: "rotation",
       },
       {
@@ -53,6 +63,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "vertikale-streckung-und-stauchung",
           en: "vertical-dilation",
           id: "dilatasi-vertikal",
+          ms: "regangan-mencancang",
         },
         slug: "vertical-dilation",
       },
@@ -61,6 +72,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "spiegelung-an-der-x-achse",
           en: "vertical-reflection",
           id: "refleksi-vertikal",
+          ms: "pantulan-pada-paksi-x",
         },
         slug: "vertical-reflection",
       },
@@ -69,6 +81,7 @@ export const lessonMathematicsFunctionTransformationMaterial =
           de: "vertikale-verschiebung",
           en: "vertical-translation",
           id: "translasi-vertikal",
+          ms: "translasi-mencancang",
         },
         slug: "vertical-translation",
       },
@@ -86,6 +99,10 @@ export const lessonMathematicsFunctionTransformationMaterial =
       id: {
         description: "Gabungkan geser, regang, dan cermin sesuai urutan.",
         title: "Transformasi Fungsi",
+      },
+      ms: {
+        description: "Gabungkan translasi, regangan dan pantulan ikut urutan.",
+        title: "Penjelmaan Fungsi",
       },
     },
   });

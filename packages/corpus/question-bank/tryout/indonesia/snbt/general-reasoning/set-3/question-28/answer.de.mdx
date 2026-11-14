@@ -1,20 +1,42 @@
-Ordne jede Aussage als Benar (richtig) oder Salah (falsch) ein. Der Weg liegt außerhalb des Gartens, also **bildet sein äußerer Rand ein größeres Rechteck**. Jede Seite wächst um die doppelte Wegbreite, einmal an jedem Ende.
+Im Stufentarif wird **jeder <InlineMath math="\text{m}^3" /> nach seiner eigenen Stufe berechnet**. Ein Verbrauch von <InlineMath math="20\text{ m}^3" /> kostet zum Beispiel <InlineMath math="\text{Rp}3{.}000" /> für die ersten <InlineMath math="15\text{ m}^3" /> und <InlineMath math="\text{Rp}5{.}000" /> nur für die restlichen <InlineMath math="5\text{ m}^3" />. Schreib die Rechnungen in Tausend Rupiah für einen Verbrauch von <InlineMath math="v\text{ m}^3" />. <InlineMath math="B(v)" /> ist die Rechnung im Stufentarif (im Text *bertingkat*) und <InlineMath math="T(v)" /> die Rechnung im Festtarif (*tetap*).
 
 <BlockMath math="\begin{aligned}
-\text{Außenmaß} &= (26+2\times1{,}5)\times(18+2\times1{,}5)=29\times21 \\
-\text{Wegfläche} &= 29\times21-26\times18=609-468=141\text{ m}^2
+B(v) &= 3v &&\text{für } v \le 15 \\
+B(v) &= 45 + 5(v - 15) &&\text{für } 15 < v \le 30 \\
+B(v) &= 120 + 7(v - 30) &&\text{für } v > 30 \\
+T(v) &= 60 + 2v
 \end{aligned}" />
 
-**Aussage 1** ist richtig, wie oben berechnet.
+Daraus brauchst du <InlineMath math="B(20) = 70" />, <InlineMath math="B(30) = 120" />, <InlineMath math="B(35) = 155" />, <InlineMath math="B(40) = 190" /> und <InlineMath math="T(30) = 120" />.
 
-**Aussage 2** ist richtig. Der äußere Umfang beträgt <InlineMath math="2(29+21)=100\text{ m}" />.
+Aussage 1: Benar (richtig). Die Stufenrechnung für <InlineMath math="20\text{ m}^3" /> beträgt <InlineMath math="45 + 25 = 70" /> Tausend Rupiah, der Durchschnitt also:
 
-**Aussage 3** ist falsch. Mit einer Breite von <InlineMath math="3\text{ m}" />:
+<BlockMath math="70{.}000 \div 20 = 3{.}500 < 4{.}000" />
 
-<BlockMath math="32\times24-468=768-468=300\text{ m}^2" />
+Berechnest du alle <InlineMath math="20\text{ m}^3" /> mit <InlineMath math="\text{Rp}5{.}000" />, wird der Durchschnitt <InlineMath math="\text{Rp}5{.}000" />. Mittelst du einfach die zwei Preise, kommst du auf <InlineMath math="(3{.}000 + 5{.}000) \div 2 = 4{.}000" />. Beide Fehler lassen dich die Aussage für falsch halten. Der richtige Durchschnitt gewichtet, wie viel Wasser in jeder Stufe liegt: <InlineMath math="15\text{ m}^3" /> günstig und nur <InlineMath math="5\text{ m}^3" /> teuer.
 
-Das Doppelte der ursprünglichen Fläche sind <InlineMath math="282\text{ m}^2" />, nicht <InlineMath math="300\text{ m}^2" />. Die Wegfläche ist nicht proportional zur Breite, weil die vier Eckstücke schneller wachsen.
+Aussage 2: Salah (falsch). Probier es genau an der Grenze, bei <InlineMath math="30\text{ m}^3" />:
 
-**Aussage 4** ist falsch. <InlineMath math="\frac{141}{468}\approx30{,}1\%" /> ist weniger als <InlineMath math="35\%" />.
+<BlockMath math="B(30) = 45 + 15 \times 5 = 120, \qquad T(30) = 60 + 2 \times 30 = 120" />
 
-Die Aussagen 1 und 2 sind also richtig, die Aussagen 3 und 4 falsch.
+Bei <InlineMath math="30\text{ m}^3" /> kosten beide Tarife gleich viel, also ist der Stufentarif dort nicht günstiger. Unter <InlineMath math="30\text{ m}^3" /> ist der Stufentarif tatsächlich immer günstiger. Jeder <InlineMath math="1\text{ m}^3" />, den du von <InlineMath math="30\text{ m}^3" /> abziehst, senkt die Stufenrechnung um <InlineMath math="3" /> oder <InlineMath math="5" /> Tausend, die Festrechnung aber nur um <InlineMath math="2" /> Tausend. Wenn du nur <InlineMath math="15" /> oder <InlineMath math="20\text{ m}^3" /> prüfst, übersiehst du diesen Grenzpunkt.
+
+Aussage 3: Salah (falsch). Die Stufenrechnung für <InlineMath math="35\text{ m}^3" /> beträgt <InlineMath math="120 + 5 \times 7 = 155" /> Tausend. Der Abstand zu <InlineMath math="30\text{ m}^3" /> ist in beide Richtungen <InlineMath math="35" /> Tausend, aber die Nenner sind verschieden.
+
+<BlockMath math="\begin{aligned}
+\text{Rückgang} &= \frac{35}{155} \approx 22{,}6\% \\
+\text{Anstieg} &= \frac{35}{120} \approx 29{,}2\%
+\end{aligned}" />
+
+Der Rückgang wird an <InlineMath math="155" /> gemessen, der Anstieg an <InlineMath math="120" />. Weil sich der Grundwert verschiebt, sind die beiden Prozentsätze nicht gleich.
+
+Aussage 4: Benar (richtig). Die Wassermenge ist insgesamt gleich, nämlich <InlineMath math="60\text{ m}^3" />, die Rechnungen aber nicht.
+
+<BlockMath math="\begin{aligned}
+B(20) + B(40) &= 70 + 190 = 260 \\
+B(30) + B(30) &= 120 + 120 = 240
+\end{aligned}" />
+
+Verglichen mit dem Muster <InlineMath math="30" /> und <InlineMath math="30\text{ m}^3" /> verschiebt das Muster <InlineMath math="20" /> und <InlineMath math="40\text{ m}^3" /> genau <InlineMath math="10\text{ m}^3" /> von einem Monat in den anderen. Dieses Wasser kostete vorher <InlineMath math="\text{Rp}5{.}000" /> pro <InlineMath math="\text{m}^3" /> und jetzt <InlineMath math="\text{Rp}7{.}000" />, die Rechnung steigt also um <InlineMath math="10 \times 2 = 20" /> Tausend. Im Festtarif kosten beide Muster <InlineMath math="240" /> Tausend, weil jeder <InlineMath math="\text{m}^3" /> gleich viel kostet.
+
+Richtig sind also die Aussagen über den Durchschnittspreis bei <InlineMath math="20\text{ m}^3" /> und über den Verbrauch von <InlineMath math="20" /> und <InlineMath math="40\text{ m}^3" />, falsch die Aussagen über den Stufentarif bis <InlineMath math="30\text{ m}^3" /> und über die Prozentsätze für Rückgang und Anstieg.

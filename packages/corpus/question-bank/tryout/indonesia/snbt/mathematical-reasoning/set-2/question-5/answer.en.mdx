@@ -1,19 +1,63 @@
-The ray from the lamp past the top of the child's head forms **two similar right triangles**: a large one with the pole and a small one with the child. They share the angle at the tip of the shadow.
+You're looking for the cheapest cost of the base paint cans. Work out the wall area that really gets painted, turn it into litres of mixed paint, split that into litres of each base paint, and then pick **the cheapest whole cans for each colour**.
 
-# Setting up the ratio
+# The painted wall area
 
-Let the child's distance from the pole be <InlineMath math="x" /> and the shadow length <InlineMath math="s" />. **The base of the large triangle** is <InlineMath math="x+s" />.
-
-<BlockMath math="\frac{1.6}{s}=\frac{4.8}{x+s}" />
-
-# Solving for x equal to 9
+The four walls together are the perimeter of the floor times the wall height. The door and the window aren't painted, so **their areas are subtracted**.
 
 <BlockMath math="\begin{aligned}
-4.8s&=1.6(x+s)\\
-3.2s&=1.6x\\
-s&=\tfrac{x}{2}=\tfrac92=4.5
+2\cdot(5+4)\cdot 3&=54 \\
+54-1\cdot 2-2\cdot 2&=48
 \end{aligned}" />
 
-The relation <InlineMath math="s=\tfrac x2" /> means **the shadow is always half the child's distance from the pole**, because the child is one third as tall as the pole.
+So the painted wall area is <InlineMath math="48\text{ m}^2" />.
 
-So the shadow is **4.5 m** long.
+# The amount of mixed paint
+
+Two coats means every square metre is painted twice, so the paint has to cover <InlineMath math="96\text{ m}^2" /> in one coat. One litre covers <InlineMath math="6\text{ m}^2" />, so **the number of litres is the one-coat area divided by six**.
+
+<BlockMath math="\frac{2\cdot 48}{6}=16" />
+
+Bu Rina needs <InlineMath math="16\text{ litres}" /> of Hijau Daun.
+
+# The amount of each base paint
+
+The ratio <InlineMath math="5 : 3 : 2" /> has <InlineMath math="10" /> parts in total, so **each part is one tenth of the mix**.
+
+<BlockMath math="\begin{aligned}
+\text{white}&=\tfrac{5}{10}\cdot 16=8 \\
+\text{yellow}&=\tfrac{3}{10}\cdot 16=4.8 \\
+\text{blue}&=\tfrac{2}{10}\cdot 16=3.2
+\end{aligned}" />
+
+# The cheapest cans
+
+Cans are sold whole, so each amount gets rounded up to whole cans.
+
+- Yellow <InlineMath math="4.8\text{ litres}" />: two cans hold only <InlineMath math="4\text{ litres}" />, so you need three cans, which is <InlineMath math="3\cdot 110{,}000=330{,}000" /> rupiah.
+- Blue <InlineMath math="3.2\text{ litres}" />: you need four cans, which is <InlineMath math="4\cdot 70{,}000=280{,}000" /> rupiah.
+- White <InlineMath math="8\text{ litres}" />: there are several ways, so compare their costs.
+
+<BlockMath math="\begin{aligned}
+2\cdot 200{,}000&=400{,}000 \\
+200{,}000+3\cdot 45{,}000&=335{,}000 \\
+8\cdot 45{,}000&=360{,}000
+\end{aligned}" />
+
+The <InlineMath math="5\text{-litre}" /> can is cheaper per litre, but **a second big can wastes two litres you still pay for**. Four small cans cost <InlineMath math="180{,}000" />, still less than one big can at <InlineMath math="200{,}000" />, so the remaining <InlineMath math="3\text{ litres}" /> are cheapest in small cans.
+
+<BlockMath math="335{,}000+330{,}000+280{,}000=945{,}000" />
+
+# Checking
+
+The cans hold <InlineMath math="8\text{ litres}" /> of white, <InlineMath math="6\text{ litres}" /> of yellow and <InlineMath math="4\text{ litres}" /> of blue. Each one is **at least the amount needed**, <InlineMath math="8" />, <InlineMath math="4.8" /> and <InlineMath math="3.2" /> litres, and you can't drop any can without running short of one colour.
+
+# The wrong options
+
+Each other option comes from **one skipped step**.
+
+- <InlineMath math="\text{Rp}905{,}000.00" /> comes from swapping the yellow and blue parts, so yellow is only <InlineMath math="3.2\text{ litres}" /> and blue is <InlineMath math="4.8\text{ litres}" />.
+- <InlineMath math="\text{Rp}990{,}000.00" /> comes from painting over the door and window too, which gives <InlineMath math="54\text{ m}^2" /> and <InlineMath math="18\text{ litres}" /> of mix.
+- <InlineMath math="\text{Rp}1{,}010{,}000.00" /> comes from buying white only in <InlineMath math="5\text{-litre}" /> cans.
+- <InlineMath math="\text{Rp}1{,}280{,}000.00" /> comes from painting the <InlineMath math="5\text{ m}\times 4\text{ m}" /> ceiling as well, although only the four walls get painted.
+
+So the cheapest cost of the base paint cans is <InlineMath math="\text{Rp}945{,}000.00" />.

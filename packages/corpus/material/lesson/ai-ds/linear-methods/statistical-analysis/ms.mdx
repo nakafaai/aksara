@@ -1,0 +1,211 @@
+export const metadata = {
+    title: "Analisis Statistik",
+    description: "Anggarkan kovarians parameter dan selang keyakinan menggunakan maklumat Fisher serta kuasa dua terkecil berpemberat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-15",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Mulakan dengan Model Statistik
+
+Kuasa dua terkecil hanya menjadi penganggar statistik selepas kita menyatakan <Highlight>cara cerapan itu dijana</Highlight>. Katakan
+
+<BlockMath math="y=X\beta+\varepsilon" />
+
+Dalam model ini, <InlineMath math="X\in\mathbb{R}^{m\times p}" /> ialah matriks reka bentuk yang tetap, <InlineMath math="\beta\in\mathbb{R}^p" /> ialah vektor parameter yang tidak diketahui, dan <InlineMath math="y\in\mathbb{R}^m" /> mengandungi cerapan. Untuk kuasa dua terkecil Gauss yang biasa, andaikan
+
+<BlockMath math="\varepsilon\sim\mathcal N(0,\sigma^2I_m),\qquad \sigma^2>0" />
+
+Andaian kedua ialah <InlineMath math="X" /> mempunyai pangkat lajur penuh. Di bawah dua andaian ini, vektor cerapan <InlineMath math="y" /> mengikut taburan <InlineMath math="\mathcal N(X\beta,\sigma^2I_m)" />. Minnya ialah <InlineMath math="X\beta" />, dan matriks kovariansnya ialah <InlineMath math="\sigma^2I_m" />.
+
+Ambil tiga cerapan daripada contoh berpemberat di hujung pelajaran ini, iaitu <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" /> dan <InlineMath math="(2,5)" />, dengan pemberat yang sama. Kuasa dua terkecil biasa memberikan <InlineMath math="\hat\beta=(X^TX)^{-1}X^Ty=(\tfrac23,2)" /> dengan reja <InlineMath math="\tfrac13" />, <InlineMath math="-\tfrac23" /> dan <InlineMath math="\tfrac13" />. Dalam model <InlineMath math="y=X\beta+\varepsilon" />, reja ini menganggarkan ralat <InlineMath math="\varepsilon" />, dan hasil tambah kuasa duanya ialah <InlineMath math="\tfrac23" />.
+
+<ScatterDiagram
+  title={<>Garis kuasa dua terkecil <InlineMath math="y=\tfrac23+2t" /> dan rejanya</>}
+  description={<>Tiga titik <InlineMath math="(0,1)" />, <InlineMath math="(1,2)" /> dan <InlineMath math="(2,5)" /> bersama garis penyuaian. Segmen reja mempunyai panjang <InlineMath math="\tfrac13" />, <InlineMath math="\tfrac23" /> dan <InlineMath math="\tfrac13" />, jadi hasil tambah kuasa dua reja ialah <InlineMath math="\tfrac23" />.</>}
+  xAxisLabel="Nilai input"
+  yAxisLabel="Respons"
+  datasets={[
+    {
+      name: "Cerapan",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 1 },
+        { x: 1, y: 2 },
+        { x: 2, y: 5 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{ color: "var(--chart-4)" }}
+  showResiduals
+/>
+
+## Maklumat Fisher dan Kovarians Penganggar
+
+Jika kita abaikan pemalar yang tidak bergantung pada <InlineMath math="\beta" />, log kebolehjadiannya ialah
+
+<BlockMath math="\ell(\beta)=-\frac1{2\sigma^2}\lVert y-X\beta\rVert_2^2" />
+
+Skor, Hessian dan maklumat Fisher baginya ialah
+
+<MathContainer>
+<BlockMath math="\nabla\ell(\beta)=\frac1{\sigma^2}X^T(y-X\beta)" />
+<BlockMath math="\nabla^2\ell(\beta)=-\frac1{\sigma^2}X^TX" />
+<BlockMath math="\mathcal I(\beta)=-\mathbb E[\nabla^2\ell(\beta)]=\frac1{\sigma^2}X^TX" />
+</MathContainer>
+
+<InlineMath math="X^TX" /> ialah maklumat Fisher hanya dalam kes piawai <InlineMath math="\sigma^2=1" />. Menyelesaikan persamaan skor memberikan
+
+<MathContainer>
+<BlockMath math="\hat\beta=(X^TX)^{-1}X^Ty" />
+<BlockMath math="\hat\beta=\beta+(X^TX)^{-1}X^T\varepsilon" />
+</MathContainer>
+
+Oleh sebab transformasi linear bagi vektor Gauss juga bertaburan Gauss,
+
+<BlockMath math="\hat\beta\sim\mathcal N\left(\beta,\sigma^2(X^TX)^{-1}\right)" />
+
+Di bawah model ini, kovarians itu <Highlight>tepat sama dengan songsangan maklumat Fisher</Highlight>:
+
+<BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2(X^TX)^{-1}=\mathcal I(\beta)^{-1}" />
+
+Unsur pepenjuru <InlineMath math="c_{jj}" /> ialah varians bagi <InlineMath math="\hat\beta_j" />. Unsur luar pepenjuru <InlineMath math="c_{jk}" /> mengukur sejauh mana dua anggaran pekali berubah bersama-sama, dan korelasinya ialah
+
+<BlockMath math="\rho_{jk}=\frac{c_{jk}}{\sqrt{c_{jj}c_{kk}}}" />
+
+Untuk data yang sama, <InlineMath math="(X^TX)^{-1}=\tfrac16\begin{pmatrix}5&-3\\-3&3\end{pmatrix}" /> dan <InlineMath math="\hat\sigma^2=\tfrac{2/3}{3-2}=\tfrac23" />. Kovarians penganggar <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /> memberikan ralat piawai <InlineMath math="\sqrt{5/9}\approx0.75" /> untuk pintasan dan <InlineMath math="\sqrt{1/3}\approx0.58" /> untuk kecerunan.
+
+<MathVisual
+  title={<>Ralat piawai daripada <InlineMath math="\hat\sigma^2(X^TX)^{-1}" /></>}
+  description={<>Titik magenta ialah <InlineMath math="\hat\beta" /> dalam satah parameter, dengan pintasan pada paksi mengufuk dan kecerunan pada paksi menegak. Segmen ungu menjangkau satu ralat piawai pintasan ke setiap sisi, dan segmen hijau kebiruan menjangkau satu ralat piawai kecerunan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.8 }, y: { min: 1.2, max: 2.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "intercept", kind: "segment", from: { x: 2 / 3 - Math.sqrt(5 / 9), y: 2 }, to: { x: 2 / 3 + Math.sqrt(5 / 9), y: 2 }, appearance: "secondary" },
+      { id: "slope", kind: "segment", from: { x: 2 / 3, y: 2 - Math.sqrt(1 / 3) }, to: { x: 2 / 3, y: 2 + Math.sqrt(1 / 3) }, appearance: "construction" },
+      { id: "estimate", kind: "point", at: { x: 2 / 3, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "estimate", objectId: "estimate", at: { x: 2 / 3, y: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "estimate": <InlineMath math="\hat\beta=(\tfrac23,2)" />,
+  }}
+/>
+
+## Selang Keyakinan Apabila Varians Tidak Diketahui
+
+Jika <InlineMath math="\sigma^2" /> tidak diketahui dan <InlineMath math="m>p" />, anggarkan nilainya daripada reja:
+
+<BlockMath math="s^2=\frac{\lVert y-X\hat\beta\rVert_2^2}{m-p}" />
+
+Di bawah model Gauss, selang keyakinan dua hujung <InlineMath math="100(1-\alpha)\%" /> yang tepat untuk pekali <InlineMath math="\beta_j" /> ialah
+
+<BlockMath math="\hat\beta_j\pm t_{m-p,\,1-\alpha/2}\,s\sqrt{[(X^TX)^{-1}]_{jj}}" />
+
+Selang ini ialah **pernyataan tentang pensampelan berulang** bagi prosedur itu. Selang ini bukan kebarangkalian bahawa parameter yang tetap terletak dalam satu selang yang sudah dikira.
+
+## Pengiraan Stabil daripada Penguraian Ortogon
+
+Katakan <InlineMath math="X=QR" /> ialah penguraian <InlineMath math="\mathrm{QR}" /> terturun (reduced), dengan <InlineMath math="Q" /> mempunyai lajur ortonormal dan <InlineMath math="R" /> ialah matriks segi tiga atas yang tak singular. Maka
+
+<MathContainer>
+<BlockMath math="\hat\beta=R^{-1}Q^Ty" />
+<BlockMath math="\operatorname{Cov}(\hat\beta)=\sigma^2R^{-1}R^{-T}" />
+</MathContainer>
+
+Dalam kod berangka, **selesaikan sistem segi tiga** <InlineMath math="R\hat\beta=Q^Ty" /> secara terus. Cara ini mengelakkan pembentukan <InlineMath math="R^{-1}" />. <InlineMath math="\mathrm{QR}" /> juga mengelakkan nombor syarat daripada dikuasaduakan melalui <InlineMath math="X^TX" />.
+
+## Kuasa Dua Terkecil Berpemberat dan Teritlak
+
+Sekarang, andaikan pula ralat itu mempunyai kovarians tentu positif <InlineMath math="\Omega" /> yang diketahui:
+
+<BlockMath math="\varepsilon\sim\mathcal N(0,\Omega)" />
+
+Kuasa dua terkecil teritlak meminimumkan
+
+<BlockMath math="(y-X\beta)^T\Omega^{-1}(y-X\beta)" />
+
+Penyelesaian kuasa dua terkecil teritlak, maklumat Fisher dan kovarians penganggarnya ialah
+
+<MathContainer>
+<BlockMath math="\hat\beta_{\mathrm{GLS}}=(X^T\Omega^{-1}X)^{-1}X^T\Omega^{-1}y" />
+<BlockMath math="\mathcal I(\beta)=X^T\Omega^{-1}X" />
+<BlockMath math="\operatorname{Cov}(\hat\beta_{\mathrm{GLS}})=(X^T\Omega^{-1}X)^{-1}" />
+</MathContainer>
+
+Untuk ralat yang tak bersandar dengan varians <InlineMath math="\sigma_i^2" />, gunakan <InlineMath math="\Omega=\operatorname{diag}(\sigma_1^2,\ldots,\sigma_m^2)" />. Fungsi objektifnya menjadi
+
+<BlockMath math="\sum_{i=1}^m\frac{(y_i-x_i^T\beta)^2}{\sigma_i^2}" />
+
+Setiap cerapan <InlineMath math="i" /> menerima **pemberat** <InlineMath math="1/\sigma_i^2" />. Pemutihan (whitening) dengan <InlineMath math="W=\Omega^{-1/2}" /> menukar masalah ini kepada kuasa dua terkecil biasa untuk <InlineMath math="\widetilde X=WX" /> dan <InlineMath math="\widetilde y=Wy" />.
+
+## Menyuaikan Model Linear Berpemberat
+
+Pertimbangkan tiga cerapan untuk pintasan dan kecerunan:
+
+<MathContainer>
+<BlockMath math="X=\begin{pmatrix}1&0\\1&1\\1&2\end{pmatrix},\qquad y=\begin{pmatrix}1\\2\\5\end{pmatrix}" />
+<BlockMath math="\begin{aligned} &amp;\Omega=\operatorname{diag}(1,1,4), \\ &amp;\Omega^{-1}=\operatorname{diag}\left(1,1,\frac14\right) \end{aligned}" />
+</MathContainer>
+
+Cerapan ketiga mempunyai sisihan piawai <InlineMath math="2" />, jadi cerapan itu hanya menerima **suku daripada pemberat** cerapan pertama atau kedua. Persamaan normal berpemberatnya ialah
+
+<MathContainer>
+<BlockMath math="X^T\Omega^{-1}X=\begin{pmatrix}\frac94&\frac32\\\frac32&2\end{pmatrix}" />
+<BlockMath math="X^T\Omega^{-1}y=\begin{pmatrix}\frac{17}4\\\frac92\end{pmatrix}" />
+</MathContainer>
+
+Tulis kedua-dua persamaan itu dan hapuskan pintasan supaya pengiraan parameter menjadi jelas:
+
+<BlockMath math="\begin{aligned}9\hat\beta_0+6\hat\beta_1&=17\\3\hat\beta_0+4\hat\beta_1&=9\\6\hat\beta_1&=27-17=10\\\hat\beta_1&=\frac53,\qquad\hat\beta_0=\frac{9-4(5/3)}3=\frac79\end{aligned}" />
+
+| Cerapan | Sisihan piawai | Pemberat varians songsang |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="3" /> | <InlineMath math="2" /> | <InlineMath math="1/4" /> |
+
+Menyelesaikan persamaan normal berpemberat ini memberikan
+
+<MathContainer>
+<BlockMath math="\hat\beta_{\mathrm{GLS}}=\begin{pmatrix}\frac79\\\frac53\end{pmatrix}" />
+<BlockMath math="\operatorname{Cov}(\hat\beta_{\mathrm{GLS}})=\begin{pmatrix}\frac89&-\frac23\\-\frac23&1\end{pmatrix}" />
+</MathContainer>
+
+Pemberat ini hanya mempunyai makna kebarangkalian jika model varians itu munasabah dan boleh dipertahankan. Pemberat yang salah boleh menghasilkan ralat piawai yang mengelirukan, dan selang keyakinan Gauss yang tepat juga memerlukan andaian min linear, andaian kovarians dan andaian ralat normal yang memadai.
+
+Bandingkan dua garis untuk data contoh ini. Bar kelabu pada setiap titik menunjukkan sisihan piawainya <InlineMath math="\sigma_i" />, iaitu <InlineMath math="1" />, <InlineMath math="1" /> dan <InlineMath math="2" />. Kuasa dua terkecil biasa melayan ketiga-tiga titik secara sama rata dan memberikan garis kuning ambar <InlineMath math="y=\tfrac23+2t" />. Versi berpemberat memberikan pemberat <InlineMath math="1/4" /> kepada titik ketiga kerana variansnya empat kali lebih besar, jadi garis magenta <InlineMath math="y=\tfrac79+\tfrac53t" /> lebih landai dan lebih dekat dengan dua titik pertama.
+
+<MathVisual
+  title={<>Garis kuasa dua terkecil biasa dan berpemberat</>}
+  description={<>Titik ungu ialah data <InlineMath math="(0,1),(1,2),(2,5)" /> dengan bar kelabu sepanjang <InlineMath math="\pm\sigma_i" />. Garis kuning ambar ialah kuasa dua terkecil biasa, dan garis magenta ialah penyuaian berpemberat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.7, max: 2.7 }, y: { min: -1.2, max: 7.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 2 }, appearance: "reference" },
+      { id: "bar-1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "bar-2", kind: "segment", from: { x: 2, y: 3 }, to: { x: 2, y: 7 }, appearance: "reference" },
+      { id: "data-0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "data-1", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "data-2", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "ordinary", kind: "segment", from: { x: -0.5, y: 2 / 3 - 1 }, to: { x: 2.5, y: 2 / 3 + 5 }, appearance: "highlight" },
+      { id: "weighted", kind: "segment", from: { x: -0.5, y: 7 / 9 - 5 / 6 }, to: { x: 2.5, y: 7 / 9 + 25 / 6 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "ordinary", objectId: "ordinary", at: { x: 2.5, y: 2 / 3 + 5 }, placement: "above-left" },
+      { key: "weighted", objectId: "weighted", at: { x: 2.5, y: 7 / 9 + 25 / 6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "ordinary": <InlineMath math="y=\tfrac23+2t" />,
+    "weighted": <InlineMath math="y=\tfrac79+\tfrac53t" />,
+  }}
+/>

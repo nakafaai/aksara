@@ -1,28 +1,37 @@
-Both quantities can be computed without finding each side first. The key is **the area formula that uses the inradius**, together with the length of the hypotenuse.
+A "can" statement is proved by one valid data set. A "must" or "can't" statement needs a proof for every data set, or it's broken by **one counterexample**. So translate the conditions first, then check the four statements one at a time.
 
-# Computing quantity P
+# Translating the conditions
 
-For every triangle, **the area equals the inradius times the semiperimeter**, <InlineMath math="A=r\cdot s" />. Here <InlineMath math="s=\tfrac{24}{2}=12" />.
+Sort the data as <InlineMath math="a\le b\le c\le d\le e" />. A mean of <InlineMath math="10" /> means the sum is <InlineMath math="50" />, and a median of <InlineMath math="8" /> means <InlineMath math="c=8" />.
 
-<BlockMath math="r=\frac{A}{s}=\frac{24}{12}=2" />
+<BlockMath math="a+b+d+e=42,\qquad a\le b\le8\le d\le e" />
 
-So <InlineMath math="P=2" />.
+A single mode of <InlineMath math="8" /> means **<InlineMath math="8" /> shows up more often than any other value**. If <InlineMath math="8" /> shows up twice, every other value can show up only once. If <InlineMath math="8" /> shows up three times, another value may still show up twice.
 
-# Computing quantity Q
+# Statement one
 
-Let the legs be <InlineMath math="a" /> and <InlineMath math="b" /> and the hypotenuse <InlineMath math="c" />. The area gives <InlineMath math="ab=48" />. The perimeter gives <InlineMath math="a+b=24-c" />. **The Pythagorean theorem** links the two.
+For a big range, make the smallest value as small as possible and the largest as large as possible. The data <InlineMath math="1, 2, 8, 8, 31" /> add up to <InlineMath math="50" />, the median is <InlineMath math="8" />, and <InlineMath math="8" /> shows up twice while every other value shows up once. The range is <InlineMath math="31-1=30" />. **One valid example is enough** for a "can" statement, so statement one is true.
 
-<BlockMath math="\begin{aligned}
-(a+b)^2&=a^2+b^2+2ab\\
-(24-c)^2&=c^2+96\\
-576-48c&=96\\
-c&=10
-\end{aligned}" />
+# Statement two
 
-The height to the hypotenuse comes from two ways of writing the same area, <InlineMath math="\tfrac12ab=\tfrac12c\,t" />.
+Try the data <InlineMath math="8, 8, 8, 13, 13" />. They add up to <InlineMath math="50" />, the median is <InlineMath math="8" />, and <InlineMath math="8" /> shows up three times while <InlineMath math="13" /> shows up only twice, so the only mode is still <InlineMath math="8" />. **A single mode doesn't stop another value from showing up twice**, as long as <InlineMath math="8" /> shows up more often. The range is <InlineMath math="13-8=5" />, which is less than <InlineMath math="6" />. Statement two is false.
 
-<BlockMath math="t=\frac{ab}{c}=\frac{48}{10}=4.8" />
+# Statement three
 
-So <InlineMath math="Q=\tfrac12(4.8)=2.4" />. The sides are 6, 8, and 10, which indeed give perimeter 24 and area 24.
+Suppose the largest value is <InlineMath math="e\le12" />. Then <InlineMath math="d\le12" />, and <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" /> are at most <InlineMath math="8" />.
 
-Since <InlineMath math="2.4>2" />, **<InlineMath math="Q>P" />** holds. The option saying the information is not enough is wrong, because the perimeter and the area together fix this right triangle.
+<BlockMath math="a+b+c+d+e\le8+8+8+12+12=48<50" />
+
+The sum can't reach <InlineMath math="50" />, so **that assumption is impossible**. The largest value must be at least <InlineMath math="13" />, and statement three is true. The example <InlineMath math="8, 8, 8, 13, 13" /> shows that <InlineMath math="13" /> really can happen.
+
+# Statement four
+
+If <InlineMath math="8" /> shows up exactly twice, all the other values must be different. There are two ways to place the two eights.
+
+If <InlineMath math="b=c=8" />, then <InlineMath math="a\le7" />, <InlineMath math="9\le d<e" />, and <InlineMath math="d+e=34-a" />. Since <InlineMath math="d<e" />, the largest value is more than half of their sum, so <InlineMath math="e\ge\frac{35-a}{2}" />.
+
+<BlockMath math="e-a\ge\frac{35-a}{2}-a=\frac{35-3a}{2}\ge\frac{35-21}{2}=7" />
+
+If <InlineMath math="c=d=8" />, then <InlineMath math="a<b\le7" /> and <InlineMath math="e=34-a-b\ge34-6-7=21" />, so <InlineMath math="e-a\ge21-6=15" />. In both cases **the range is at least <InlineMath math="7" />**, and the data <InlineMath math="7, 8, 8, 13, 14" /> reach exactly <InlineMath math="7" />. Statement four is true.
+
+So statement one is true, statement two is false, statement three is true, and statement four is true.

@@ -143,7 +143,6 @@ layer(NodeServices.layer)("material source", (it) => {
         const { entries, sourceByPath } = yield* loadMaterialFixtures();
         const documents = yield* readSources(entries, sourceByPath);
 
-        expect(documents).toHaveLength(1149);
         expect(Arr.map(documents, ({ sourcePath }) => sourcePath)).toEqual(
           Arr.map(entries, ({ sourcePath }) => sourcePath)
         );

@@ -1,0 +1,281 @@
+export const metadata = {
+  title: "Fungsi Rasional",
+  description: "Analisis fungsi rasional melalui sekatan domain, pemudahan yang setara, operasi aritmetik, serta model luas dan masa perjalanan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-18",
+  dateModified: "2026-11-08",
+  subject: "Fungsi dan Pemodelannya",
+};
+
+## Hasil Bahagi Polinomial
+
+Fungsi rasional ialah hasil bahagi dua polinomial. Bentuk amnya ialah
+
+<BlockMath math="f(x)=\frac{P(x)}{Q(x)}" />
+
+Dalam bentuk ini, <InlineMath math="P(x)" /> dan <InlineMath math="Q(x)" /> ialah polinomial, dan <InlineMath math="Q(x)" /> bukan polinomial sifar.
+
+Penyebut menambah satu petua penting: setiap input yang menjadikan <InlineMath math="Q(x)=0" /> mesti dikecualikan. <Highlight>Sekatan itu sebahagian daripada fungsi</Highlight> walaupun faktor sepunya dibatalkan kemudian.
+
+## Model Rasional daripada Luas
+
+Andaikan Encik Budi merancang sebuah reban ayam berbentuk segi empat tepat dengan luas <InlineMath math="100\text{ m}^2" />. Katakan panjangnya <InlineMath math="x\text{ m}" /> dan lebarnya <InlineMath math="w\text{ m}" />. Maka
+
+<MathContainer>
+
+<BlockMath math="xw=100" />
+
+<BlockMath math="w(x)=\frac{100}{x}" />
+</MathContainer>
+
+Rumus ini rasional kerana pengangka dan penyebutnya ialah polinomial. Dalam situasi fizikal, kedua-dua ukuran mesti positif, jadi domain yang bermakna ialah <InlineMath math="x>0" />. Syarat <InlineMath math="x\neq 0" /> masih membenarkan panjang negatif yang tidak sesuai dengan situasi ini.
+
+Model ini juga menunjukkan bagaimana kedua-dua ukuran bergantung antara satu sama lain: jika luasnya mesti kekal tetap, reban yang lebih panjang memaksa lebarnya menjadi lebih kecil.
+
+Kedua-dua ukuran ini **berkadar songsang**. Panjang lima meter memerlukan lebar dua puluh meter, manakala panjang sepuluh meter memerlukan lebar sepuluh meter.
+
+<MathVisual
+  title={<>Panjang dan lebar pada luas tetap</>}
+  description={<>Lengkung <InlineMath math="w = \frac{100}{x}" /> untuk panjang dari <InlineMath math="5" /> hingga <InlineMath math="20" /> meter. Bagi setiap titik, panjang darab lebar sama dengan <InlineMath math="100" /> meter persegi, contohnya <InlineMath math="(5, 20)" />, <InlineMath math="(10, 10)" /> dan <InlineMath math="(20, 5)" />.</>}
+  labels={{
+    curve: <InlineMath math="w = \frac{100}{x}" />,
+    a: <InlineMath math="(5, 20)" />,
+    c: <InlineMath math="(20, 5)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 3.5, max: 21.5 }, y: { min: 3.5, max: 21.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "polyline", vertices: [{ x: 5, y: 100 / (5) }, { x: 11 / 2, y: 100 / (11 / 2) }, { x: 6, y: 100 / (6) }, { x: 13 / 2, y: 100 / (13 / 2) }, { x: 7, y: 100 / (7) }, { x: 15 / 2, y: 100 / (15 / 2) }, { x: 8, y: 100 / (8) }, { x: 17 / 2, y: 100 / (17 / 2) }, { x: 9, y: 100 / (9) }, { x: 19 / 2, y: 100 / (19 / 2) }, { x: 10, y: 100 / (10) }, { x: 21 / 2, y: 100 / (21 / 2) }, { x: 11, y: 100 / (11) }, { x: 23 / 2, y: 100 / (23 / 2) }, { x: 12, y: 100 / (12) }, { x: 25 / 2, y: 100 / (25 / 2) }, { x: 13, y: 100 / (13) }, { x: 27 / 2, y: 100 / (27 / 2) }, { x: 14, y: 100 / (14) }, { x: 29 / 2, y: 100 / (29 / 2) }, { x: 15, y: 100 / (15) }, { x: 31 / 2, y: 100 / (31 / 2) }, { x: 16, y: 100 / (16) }, { x: 33 / 2, y: 100 / (33 / 2) }, { x: 17, y: 100 / (17) }, { x: 35 / 2, y: 100 / (35 / 2) }, { x: 18, y: 100 / (18) }, { x: 37 / 2, y: 100 / (37 / 2) }, { x: 19, y: 100 / (19) }, { x: 39 / 2, y: 100 / (39 / 2) }, { x: 20, y: 100 / (20) }], appearance: "primary" },
+      { id: "a", kind: "point", at: { x: 5, y: 20 }, appearance: "answer" },
+      { id: "b", kind: "point", at: { x: 10, y: 10 }, appearance: "answer" },
+      { id: "c", kind: "point", at: { x: 20, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "b", at: { x: 10, y: 10 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 5, y: 20 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 20, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Bentuk yang Biasa
+
+Contoh-contoh ini ada penyebut dengan darjah yang berbeza. **Faktor penyebut** menentukan input yang dikecualikan. Semak faktor mana yang terbatal sebelum kamu memutuskan sama ada sesuatu pengecualian menghasilkan lubang atau asimptot mencancang.
+
+| Bentuk | Sekatan penyebut |
+| --- | --- |
+| <InlineMath math="\frac{k}{x}" /> | <InlineMath math="x\neq0" /> |
+| <InlineMath math="\frac{ax+b}{cx+d}" /> | <InlineMath math="cx+d\neq0" /> |
+| <InlineMath math="\frac{x^2+2x+1}{x-3}" /> | <InlineMath math="x\neq3" /> |
+
+Satu contoh bentuk salingan ialah <InlineMath math="5/x" />. Untuk contoh linear atas linear, <InlineMath math="(2x+3)/(x-1)" /> tidak tertakrif pada <InlineMath math="x=1" />.
+
+## Mencari Domain
+
+Untuk mencari domain nyata bagi fungsi rasional:
+
+1. Samakan **penyebut asal** dengan sifar.
+2. Selesaikan untuk mencari setiap nilai yang menjadikannya sifar.
+3. Keluarkan nilai-nilai itu daripada set nombor nyata.
+
+Tiga langkah ini digunakan pada fungsi rasional yang penyebutnya boleh menjadi sifar:
+
+<BlockMath math="f(x)=\frac{x+2}{x-3}," />
+
+Penyebutnya sifar apabila:
+
+<MathContainer>
+
+<BlockMath math="x-3=0" />
+
+<BlockMath math="x=3." />
+</MathContainer>
+
+Pengiraan ini memberikan:
+
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq 3\}." />
+
+## Mempermudahkan Tanpa Kehilangan Domain
+
+Kamu boleh membatalkan **faktor sepunya** hanya apabila faktor itu bukan sifar. Ungkapan yang dipermudahkan memberikan output yang sama pada domain asal, tetapi ungkapan itu tidak mengembalikan input yang telah dikecualikan.
+
+### Membuang Kuasa Sepunya bagi Pemboleh Ubah
+
+Permudahkan
+
+<BlockMath math="f(x)=\frac{6x^2}{3x}." />
+
+**Penyebut** asal memerlukan <InlineMath math="x\neq 0" />. Pada domain itu,
+
+<MathContainer>
+
+<BlockMath math="\frac{6x^2}{3x}=\frac{3x\cdot 2x}{3x}" />
+
+<BlockMath math="\frac{6x^2}{3x}=2x,\qquad x\neq 0." />
+</MathContainer>
+
+Walaupun ungkapan <InlineMath math="2x" /> tertakrif pada <InlineMath math="x=0" />, fungsi rasional asal tidak tertakrif di situ.
+
+### Membatalkan Selepas Memfaktorkan
+
+Permudahkan
+
+<BlockMath math="g(x)=\frac{x^2-4}{x-2}." />
+
+Catat <InlineMath math="x\neq 2" /> dahulu, kemudian faktorkan **beza dua kuasa dua**:
+
+<MathContainer>
+
+<BlockMath math="\frac{x^2-4}{x-2}=\frac{(x-2)(x+2)}{x-2}" />
+
+<BlockMath math="\frac{x^2-4}{x-2}=x+2,\qquad x\neq 2." />
+</MathContainer>
+
+Graf ini sama dengan garis <InlineMath math="y=x+2" /> kecuali ada lubang pada <InlineMath math="x=2" />.
+
+Graf <InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" /> ialah graf <InlineMath math="y = x + 2" /> dengan satu titik yang hilang. Pada <InlineMath math="x = 2" />, pecahan asal tidak tertakrif, jadi garis itu ada lubang pada <InlineMath math="(2, 4)" /> walaupun <InlineMath math="x + 2" /> akan memberikan <InlineMath math="4" /> di situ.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = x + 2" /> dengan lubang pada <InlineMath math="(2, 4)" /></>}
+  description={<>Graf <InlineMath math="g(x) = \frac{x^2 - 4}{x - 2}" />: garis <InlineMath math="y = x + 2" /> dengan bulatan kosong pada <InlineMath math="(2, 4)" />.</>}
+  labels={{
+    line: <InlineMath math="y = x + 2" />,
+    hole: <InlineMath math="(2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: -0.6, max: 7.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "left", kind: "segment", from: { x: -1, y: 1 }, to: { x: 2 - 0.12 / Math.sqrt(2), y: 4 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 2 + 0.12 / Math.sqrt(2), y: 4 + 0.12 / Math.sqrt(2) }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 2, y: 4 }, radius: 3 / 25, appearance: "warning" },
+    ],
+    labels: [
+      { key: "line", objectId: "right", at: { x: 5, y: 7 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Operasi pada Ungkapan Rasional
+
+Penambahan, penolakan, pendaraban dan pembahagian ungkapan rasional mengikut petua bagi pecahan. Langkah tambahannya ialah domain, kerana faktor yang terbatal daripada pengangka dan penyebut tetap membuang satu nilai daripada input yang dibenarkan.
+
+Catat **syarat penyebut bukan sifar** sebelum mempermudahkan. Contohnya, mendarab ungkapan-ungkapan ini membatalkan beberapa faktor, tetapi input sifar dan negatif satu tetap tidak dibenarkan.
+
+<BlockMath math="\frac{x}{x+1}\cdot\frac{x+1}{x}=1,\qquad x\neq-1,0" />
+
+### Penambahan dan Penolakan
+
+Gunakan **penyebut sepunya** dan kekalkan setiap sekatan daripada penyebut asal.
+
+<MathContainer>
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{2(x+1)+3x}{x(x+1)}" />
+
+<BlockMath math="\frac{2}{x}+\frac{3}{x+1}=\frac{5x+2}{x(x+1)},\qquad x\neq 0,-1." />
+</MathContainer>
+
+### Pendaraban
+
+Darabkan pengangka dengan pengangka dan penyebut dengan penyebut, kemudian faktorkan sebelum membatalkan:
+
+<MathContainer>
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2x(x+1)}{x(x-1)}" />
+
+<BlockMath math="\frac{x+1}{x}\cdot\frac{2x}{x-1}=\frac{2(x+1)}{x-1},\qquad x\neq 0,1." />
+</MathContainer>
+
+Faktor <InlineMath math="x" /> yang dibatalkan tidak menghapuskan **sekatan asal** <InlineMath math="x\neq 0" />.
+
+### Pembahagian
+
+Membahagi dengan suatu pecahan bermaksud mendarab dengan salingannya:
+
+<BlockMath math="\frac{a}{b}\div\frac{c}{d}=\frac{a}{b}\cdot\frac{d}{c}=\frac{ad}{bc}." />
+
+Ini memerlukan <InlineMath math="b\neq 0" /> dan <InlineMath math="d\neq 0" /> supaya kedua-dua pecahan asal wujud, dan <InlineMath math="c\neq 0" /> supaya pembahaginya bukan sifar.
+
+**Pembahagi juga mesti bukan sifar**. Dalam contoh ini, kedua-dua pecahan mengecualikan input sifar, dan pembahagi menambah pengecualian input satu.
+
+<BlockMath math="\frac{x+1}{x}\div\frac{x-1}{x}=\frac{x+1}{x}\cdot\frac{x}{x-1}=\frac{x+1}{x-1},\quad x\neq0,1" />
+
+## Latihan
+
+Setiap soalan memberikan satu ungkapan rasional dan meminta **domainnya** atau bentuknya yang telah dipermudahkan. Cari nilai yang dikecualikan dahulu, kemudian permudahkan.
+
+1. Tentukan domain bagi <InlineMath math="f(x)=\frac{x+3}{x^2-9}" />.
+
+2. Permudahkan <InlineMath math="g(x)=\frac{x^2-1}{x+1}" /> dan kekalkan sekatan asalnya.
+
+3. Hitung <InlineMath math="\frac{1}{x-1}-\frac{2}{x+1}" /> dan nyatakan sekatan domainnya.
+
+4. Sebuah kereta bergerak sejauh <InlineMath math="300\text{ km}" /> dengan laju purata <InlineMath math="v\text{ km/h}" />. Tulis masa perjalanan sebagai fungsi <InlineMath math="v" /> dan nyatakan domain yang bermakna secara fizikal.
+
+### Jalan Kerja
+
+**Soalan 1**. **Pengangka** tidak menentukan domain. Faktorkan penyebut:
+
+<MathContainer>
+
+<BlockMath math="x^2-9=(x-3)(x+3)" />
+
+<BlockMath math="\begin{aligned} &amp;(x-3)(x+3) = 0 \\ &amp;\Longrightarrow x = 3 \text{ atau } x = -3. \end{aligned}" />
+</MathContainer>
+
+Kedua-dua nilai menjadikan penyebut asal sifar, jadi
+
+<BlockMath math="D_f=\{x\in\mathbb{R}\mid x\neq -3,\ x\neq 3\}." />
+
+**Soalan 2**. Penyebut asal memberikan <InlineMath math="x\neq -1" />. Faktorkan dan batalkan hanya pada domain itu:
+
+<MathContainer>
+
+<BlockMath math="\frac{x^2-1}{x+1}=\frac{(x-1)(x+1)}{x+1}" />
+
+<BlockMath math="\frac{x^2-1}{x+1}=x-1,\qquad x\neq -1." />
+</MathContainer>
+
+Rumus yang telah dipermudahkan masih ada lubang pada **input** yang dikecualikan, <InlineMath math="x=-1" />.
+
+**Soalan 3**. Penyebut asal memerlukan <InlineMath math="x\neq 1" /> dan <InlineMath math="x\neq -1" />. Dengan menggunakan <InlineMath math="(x-1)(x+1)" /> sebagai **penyebut** sepunya, kita dapat
+
+<MathContainer>
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2(x-1)}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{x+1-2x+2}{(x-1)(x+1)}" />
+
+<BlockMath math="\frac{1}{x-1}-\frac{2}{x+1}=\frac{3-x}{(x-1)(x+1)},\qquad x\neq -1,1." />
+</MathContainer>
+
+**Soalan 4**. Masa sama dengan jarak dibahagi dengan laju:
+
+<MathContainer>
+
+<BlockMath math="\text{masa}=\frac{\text{jarak}}{\text{laju}}" />
+
+<BlockMath math="t(v)=\frac{300}{v}." />
+</MathContainer>
+
+Secara algebra, <InlineMath math="v\neq 0" />. Untuk kereta yang bergerak, **laju mesti positif**, jadi model fizikal menggunakan <InlineMath math="v>0" />.
+
+Masa perjalanan untuk <InlineMath math="300\text{ km}" /> daripada <InlineMath math="t(v) = \frac{300}{v}" />: <InlineMath math="10" /> jam pada <InlineMath math="30\text{ km/h}" />, <InlineMath math="6" /> pada <InlineMath math="50" />, <InlineMath math="5" /> pada <InlineMath math="60" />, <InlineMath math="4" /> pada <InlineMath math="75" /> dan <InlineMath math="3" /> pada <InlineMath math="100" />. Apabila laju digandakan dari <InlineMath math="30" /> kepada <InlineMath math="60\text{ km/h}" />, masanya menjadi separuh.
+
+<BarChart
+  title={<>Masa perjalanan melawan laju</>}
+  description={<>Palang <InlineMath math="t(v) = \frac{300}{v}" /> dalam jam untuk <InlineMath math="v = 30, 50, 60, 75, 100" /> km/h.</>}
+  yAxisLabel="Masa (jam)"
+  data={[30, 50, 60, 75, 100].map((x) => ({ name: String(x), value: 300 / x }))}
+  chartConfig={{ value: { label: "Masa (jam)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

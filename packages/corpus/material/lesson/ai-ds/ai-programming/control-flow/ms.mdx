@@ -1,0 +1,536 @@
+export const metadata = {
+    title: "Aliran Kawalan",
+  description: "Kawal perjalanan atur cara Python dengan syarat, gelung, break, continue, pass, enumerate, zip dan range.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-18",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Pernyataan Kawalan Gelung
+
+Python menyediakan beberapa pernyataan yang mengubah aliran sesuatu gelung. Pernyataan ini boleh <Highlight>menghentikan gelung, melompat ke lelaran seterusnya, atau menentukan apa yang berlaku selepas gelung selesai seperti biasa</Highlight>.
+
+### Break Continue Pass dan Else
+
+Pernyataan `break` <Highlight>terus keluar dari gelung terdekat yang melingkunginya</Highlight> apabila sesuatu syarat dipenuhi. Selepas itu, pelaksanaan diteruskan dengan pernyataan pertama selepas gelung tersebut.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "break_example.py",
+      code: `# Mencari nombor yang boleh dibahagi dengan 15 dan 25
+x = 0
+while True:
+    x += 1
+    if not (x % 15 or x % 25):
+        break
+print(x, 'boleh dibahagi dengan 15 dan 25')
+# Output: 75 boleh dibahagi dengan 15 dan 25`
+    }
+  ]}
+/>
+
+Pernyataan `continue` melangkau baki kod dalam lelaran semasa, lalu terus ke lelaran seterusnya. Ini berbeza daripada `break`, yang menghentikan seluruh gelung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "continue_example.py",
+      code: `# Mencetak nombor genap sahaja
+for i in range(1, 11):
+    if i % 2:
+        continue
+    print(i, 'ialah nombor genap.')
+# Output:
+# 2 ialah nombor genap.
+# 4 ialah nombor genap.
+# 6 ialah nombor genap.
+# 8 ialah nombor genap.
+# 10 ialah nombor genap.`
+    }
+  ]}
+/>
+
+Pernyataan `pass` tidak melakukan apa-apa. Ia memastikan blok yang akan kosong tanpanya tetap sah dari segi sintaks sementara kod sebenarnya belum ditulis.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "pass_example.py",
+      code: `# pass tidak melakukan apa-apa. Ia tidak melangkau lelaran
+for i in range(1, 11):
+    if i == 6:
+        pass  # Tidak buat apa-apa untuk nombor 6
+    if not i % 3:
+        print(i, 'boleh dibahagi dengan 3')
+# Output:
+# 3 boleh dibahagi dengan 3
+# 6 boleh dibahagi dengan 3
+# 9 boleh dibahagi dengan 3`
+    }
+  ]}
+/>
+
+Blok `else` dijalankan apabila gelung selesai tanpa melaksanakan `break`. Dalam gelung carian, uruskan padanan sebelum `break`, dan uruskan kes "tidak dijumpai" dalam `else`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "loop_else_example.py",
+      code: `# Mencari nombor negatif dalam senarai
+numbers = [0, 4, 2, 5]
+for i in numbers:
+    if i < 0:
+        break
+else:
+    print('tiada nombor negatif dalam senarai')
+# Output: tiada nombor negatif dalam senarai`
+    }
+  ]}
+/>
+
+Jalankan `for i in range(10)` dengan `if i == 7: break` dan kemudian `if i % 2 == 0: continue` sebelum `print(i)`. Nombor genap terus melompat ke pusingan seterusnya, nombor ganjil sampai ke `print`, dan `7` menamatkan gelung, jadi hanya `1`, `3` dan `5` yang dicetak.
+
+<MathVisual
+  title={<>Ke mana setiap <code>i</code> pergi dengan <code>break</code> dan <code>continue</code></>}
+  description={<>Titik hijau kebiruan dilangkau oleh <code>continue</code>, titik magenta sampai ke <code>print</code>, dan titik jingga <code>7</code> mencetuskan <code>break</code>. Titik kelabu <code>8</code> dan <code>9</code> tidak pernah dicapai.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.5 }, y: { min: -0.8, max: 0.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.3, y: 0 }, to: { x: 9.3, y: 0 }, appearance: "reference" },
+      { id: "skip-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "skip-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "skip-4", kind: "point", at: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "skip-6", kind: "point", at: { x: 6, y: 0 }, appearance: "construction" },
+      { id: "print-1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "print-3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "print-5", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "stop", kind: "point", at: { x: 7, y: 0 }, appearance: "primary" },
+      { id: "never-8", kind: "point", at: { x: 8, y: 0 }, appearance: "reference" },
+      { id: "never-9", kind: "point", at: { x: 9, y: 0 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "print-1", objectId: "print-1", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "print-3", objectId: "print-3", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "print-5", objectId: "print-5", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 7, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "print-1": <InlineMath math="1" />,
+    "print-3": <InlineMath math="3" />,
+    "print-5": <InlineMath math="5" />,
+    "stop": <code>break</code>,
+  }}
+/>
+
+## Fungsi Enumerate
+
+Guna `enumerate()` apabila lelaran memerlukan **pembilang dan setiap nilai sekali gus**. Ia memulangkan pelelar yang menghasilkan tuple `(index, value)`.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "enumerate_basic.py",
+      code: `# Menggunakan enumerate untuk mendapatkan indeks dan nilai
+fruits = ['apple', 'banana', 'mango', 'melon']
+
+for i, fruit in enumerate(fruits):
+    print(i, ':', fruit)
+# Output:
+# 0 : apple
+# 1 : banana
+# 2 : mango
+# 3 : melon`
+    }
+  ]}
+/>
+
+Secara lalai, `enumerate()` mula mengira dari <InlineMath math="0" />, tetapi kamu boleh menetapkan nilai permulaannya melalui parameter kedua.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "enumerate_custom_start.py",
+      code: `# Menetapkan indeks permulaan sendiri untuk enumerate
+fruits = ['apple', 'banana', 'mango', 'melon']
+
+for i, fruit in enumerate(fruits, 5):
+    print(i, ':', fruit)
+# Output:
+# 5 : apple
+# 6 : banana
+# 7 : mango
+# 8 : melon`
+    }
+  ]}
+/>
+
+Dalam `for i, fruit in enumerate(fruits)`, pembongkaran tuple (tuple unpacking) mengikat indeks kepada `i` dan nilai yang sepadan kepada `fruit` pada setiap lelaran.
+
+## Gelung While
+
+Gelung `while` melaksanakan sesuatu blok **selagi syaratnya bernilai benar (truthy)**. Gelung `for` mengambil nilai daripada objek boleh lelar sehingga habis, manakala gelung `while` berulang berdasarkan syarat yang biasanya dikemas kini oleh badan gelung.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "while_loop_example.py",
+      code: `# Contoh gelung while dengan pengiraan matematik
+z = 1
+while abs(z) < 100:
+    z = z**2 + 1
+print(z)
+# Output: 677`
+    }
+  ]}
+/>
+
+Gelung `while` sesuai untuk ulangan yang dipandu oleh syarat, tetapi badan gelung akhirnya mesti mengubah syarat itu atau keluar secara jelas. Kalau tidak, gelung itu boleh berjalan tanpa henti.
+
+<Mermaid
+  title="Gelung While Berulang Selagi Syaratnya Benar"
+  description="Baca kitaran menyemak syarat, menjalankan blok dan menyemak semula sehingga gelung berhenti."
+  chart={`
+    flowchart TD
+        A[Mula] --> B{Syarat while bernilai True?}
+        B -->|Ya| C[Laksanakan blok kod]
+        C --> D[Kemas kini pemboleh ubah]
+        D --> B
+        B -->|Tidak| E[Keluar dari gelung]
+        E --> F[Teruskan program]
+  `}
+/>
+
+## Fungsi Zip
+
+Fungsi `zip()` **memasangkan item pada kedudukan yang sama** dalam beberapa objek boleh lelar. Lelaran berhenti apabila objek boleh lelar yang paling pendek kehabisan item, jadi bilangan pasangan sama dengan panjang input yang paling pendek.
+
+### Penggunaan Asas Zip
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_basic.py",
+      code: `# Menggabungkan dua senarai dengan zip
+p = [1, 2, 3, 4]
+q = ['a', 'b', 'c', 'd']
+
+for pair in zip(p, q):
+    print(pair)
+# Output:
+# (1, 'a')
+# (2, 'b')
+# (3, 'c')
+# (4, 'd')`
+    }
+  ]}
+/>
+
+Fungsi `zip()` memulangkan **pelelar tuple**. Setiap tuple mengandungi unsur yang sepadan daripada setiap input. Secara lalai, lelaran berhenti apabila objek boleh lelar yang paling pendek tamat, jadi unsur yang berbaki dalam input yang lebih panjang ditinggalkan. Guna `zip(..., strict=True)` untuk menimbulkan ralat apabila panjang input berbeza.
+
+### Menukar Hasil Zip
+
+Kamu boleh membaca pasangan daripada pelelar `zip()` secara terus dalam gelung. Tukarkannya kepada **senarai atau tuple** apabila kamu perlu menyimpan pasangan itu untuk digunakan semula.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_conversion.py",
+      code: `# Menukar hasil zip kepada senarai atau tuple
+p = [1, 2, 3, 4]
+q = ['a', 'b', 'c', 'd']
+
+zipped = zip(p, q)
+print(list(zipped))  # Tukar kepada senarai
+# Output: [(1, 'a'), (2, 'b'), (3, 'c'), (4, 'd')]
+
+# Objek zip sudah habis digunakan, jadi cipta yang baharu
+zipped_new = zip(p, q)
+print(tuple(zipped_new))  # Tukar kepada tuple
+# Output: ((1, 'a'), (2, 'b'), (3, 'c'), (4, 'd'))`
+    }
+  ]}
+/>
+
+### Memisahkan Zip dengan Operator Asterisk
+
+Operator pembongkaran `*` boleh memisahkan **koleksi tuple hasil zip yang tidak kosong** mengikut kedudukan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "zip_unpacking.py",
+      code: `# Memisahkan data yang sudah digabungkan dengan zip
+pairs = [(1, 'a'), (2, 'b'), (3, 'd')]
+numbers, letters = zip(*pairs)
+print(numbers, letters)
+# Output: (1, 2, 3) ('a', 'b', 'd')`
+    }
+  ]}
+/>
+
+Proses ini dipanggil "unzipping" kerana ia memisahkan semula data yang telah digabungkan.
+
+`zip` memasangkan unsur pada kedudukan yang sama dan berhenti apabila input yang paling pendek habis. Jika `p` mendapat unsur kelima, `p = [1, 2, 3, 4, 5]`, manakala `q = ['a', 'b', 'c', 'd']` kekal dengan empat unsur, `zip(p, q)` tetap memberi empat pasangan dan `5` ditinggalkan.
+
+<MathVisual
+  title={<><code>zip(p, q)</code> berhenti pada input yang paling pendek</>}
+  description={<>Titik ungu ialah <code>p</code>, titik hijau kebiruan ialah <code>q</code>, dan setiap garis kelabu ialah satu tuple daripada <code>zip</code>. Titik jingga <code>5</code> tiada pasangan, jadi <code>zip</code> meninggalkannya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "pair-1", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "pair-2", kind: "segment", from: { x: 2, y: 1 }, to: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "pair-3", kind: "segment", from: { x: 3, y: 1 }, to: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "number-0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "number-1", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "number-2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "number-3", kind: "point", at: { x: 3, y: 1 }, appearance: "secondary" },
+      { id: "letter-0", kind: "point", at: { x: 0, y: 0 }, appearance: "construction" },
+      { id: "letter-1", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "letter-2", kind: "point", at: { x: 2, y: 0 }, appearance: "construction" },
+      { id: "letter-3", kind: "point", at: { x: 3, y: 0 }, appearance: "construction" },
+      { id: "extra", kind: "point", at: { x: 4, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "number-0", objectId: "number-0", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "number-1", objectId: "number-1", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "number-2", objectId: "number-2", at: { x: 2, y: 1 }, placement: "above" },
+      { key: "number-3", objectId: "number-3", at: { x: 3, y: 1 }, placement: "above" },
+      { key: "letter-0", objectId: "letter-0", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "letter-1", objectId: "letter-1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "letter-2", objectId: "letter-2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "letter-3", objectId: "letter-3", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "extra", objectId: "extra", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number-0": <code>1</code>,
+    "number-1": <code>2</code>,
+    "number-2": <code>3</code>,
+    "number-3": <code>4</code>,
+    "letter-0": <code>a</code>,
+    "letter-1": <code>b</code>,
+    "letter-2": <code>c</code>,
+    "letter-3": <code>d</code>,
+    "extra": <code>5</code>,
+  }}
+/>
+
+## Range dan Gelung For
+
+Fungsi `range()` menghasilkan **jujukan integer** untuk lelaran. Gunakannya apabila gelung memerlukan kedudukan bernombor atau bilangan ulangan yang tetap. Oleh sebab `range` menghasilkan setiap nilai hanya apabila diminta dan tidak menyimpan seluruh jujukan, penggunaan memorinya kekal kecil walaupun gelung berjalan berjuta-juta kali.
+
+### Sintaks Range
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "range_syntax.py",
+      code: `# Pelbagai cara menggunakan range
+# range(stop) - dari 0 hingga stop-1
+for i in range(4):
+    print(i)
+# Output:
+# 0
+# 1
+# 2
+# 3
+
+print()
+
+# range(start, stop) - dari start hingga stop-1
+for i in range(2, 6):
+    print(i)
+# Output:
+# 2
+# 3
+# 4
+# 5
+
+print()
+
+# range(start, stop, step) - dengan langkah tertentu
+for i in range(8, 4, -1):
+    print(i)
+# Output:
+# 8
+# 7
+# 6
+# 5`
+    }
+  ]}
+/>
+
+Range mengikut **formula aritmetik**, iaitu unsur ke-i ialah `start + i * step` untuk semua `i` dari <InlineMath math="0" /> hingga `n-1`.
+
+### Kecekapan Range berbanding Senarai
+
+`range` menyimpan **start, stop dan step sahaja**. Ia mengira setiap integer apabila diminta, jadi penggunaan memorinya tidak bertambah walaupun bilangan integer yang diwakilinya bertambah.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "range_efficiency.py",
+      code: `# Membandingkan kecekapan range dan senarai
+n = 10000
+k = 10
+
+# Menjana setiap integer dan menyimpannya dalam memori
+index = list(range(n))
+for i in index:
+    if i < k:
+        print(i)
+    else:
+        break
+
+# Menggunakan range tanpa membina senarai
+for i in range(n):  # Tidak menyimpan semua nombor dalam memori
+    if i < k:
+        print(i)
+    else:
+        break`
+    }
+  ]}
+/>
+
+Ikuti gelung `for i in range(1, 6): total += i` pusingan demi pusingan. Sebelum gelung bermula, `total` ialah `0`, dan setiap pusingan menambah nilai semasa `i`. Titik-titiknya naik semakin curam kerana nombor yang ditambah terus membesar: `1`, `3`, `6`, `10`, kemudian `15`. Nilai terakhir sama dengan `sum(range(1, 6))`, dan `range(1, 6)` berhenti sebelum `6`.
+
+<MathVisual
+  title={<>Membina jumlah terkumpul dengan <code>total += i</code></>}
+  description={<>Setiap titik ialah nilai <code>total</code> selepas satu pusingan gelung <code>for i in range(1, 6)</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 16 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "total", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 3 }, { x: 3, y: 6 }, { x: 4, y: 10 }, { x: 5, y: 15 }], appearance: "secondary" },
+      { id: "step-b", kind: "point", at: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "step-c", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+      { id: "step-d", kind: "point", at: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "step-e", kind: "point", at: { x: 4, y: 10 }, appearance: "secondary" },
+      { id: "step-f", kind: "point", at: { x: 5, y: 15 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "step-b", objectId: "step-b", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "step-c", objectId: "step-c", at: { x: 2, y: 3 }, placement: "left" },
+      { key: "step-d", objectId: "step-d", at: { x: 3, y: 6 }, placement: "left" },
+      { key: "step-e", objectId: "step-e", at: { x: 4, y: 10 }, placement: "left" },
+      { key: "step-f", objectId: "step-f", at: { x: 5, y: 15 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "step-b": "total = 1",
+    "step-c": "total = 3",
+    "step-d": "total = 6",
+    "step-e": "total = 10",
+    "step-f": "total = 15",
+  }}
+/>
+
+## Pernyataan Bersyarat
+
+Pernyataan bersyarat membolehkan program **memilih satu cabang** berdasarkan syarat yang dinilai. Inden (indentation) ialah sebahagian daripada sintaks Python. Gunakan empat ruang bagi setiap aras dan jangan sekali-kali mencampurkan tab dengan ruang dalam satu blok.
+
+### Sintaks If Elif dan Else
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "conditional_syntax.py",
+      code: `# Struktur if/elif/else yang lengkap
+age = 20
+
+if age <= 5:
+    print("masuk percuma")
+elif age <= 14:
+    print("15.00 EUR")
+elif age <= 65:
+    print("30.00 EUR")
+else:
+    print("20.00 EUR")
+# Output: 30.00 EUR`
+    }
+  ]}
+/>
+
+Syarat tidak perlu diapit tanda kurung, tetapi titik bertindih selepas setiap pengepala cabang mesti ada. Setiap pernyataan dalam satu blok mesti menggunakan **aras inden yang konsisten**.
+
+### Pernyataan If Bersarang
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "nested_if.py",
+      code: `# Menentukan sukuan bagi sesuatu titik koordinat
+x = (-1, -3)
+
+if x[0] == 0 or x[1] == 0:
+    print('pada paksi koordinat')
+elif x[0] > 0:
+    if x[1] > 0:
+        print('sukuan pertama')
+    else:
+        print('sukuan keempat')
+elif x[1] > 0:
+    print('sukuan kedua')
+else:
+    print('sukuan ketiga')
+# Output: sukuan ketiga`
+    }
+  ]}
+/>
+
+Guna **keputusan bersarang** apabila cabang yang dipilih menentukan syarat mana yang perlu disemak seterusnya. Dengan menyemak koordinat sifar dahulu, titik yang terletak pada paksi tidak akan dimasukkan ke dalam mana-mana sukuan.
+
+## Sintaks Gelung For
+
+Gelung `for` melawati **unsur sesuatu objek boleh lelar** seperti senarai, tuple, rentetan atau range.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "for_loop_syntax.py",
+      code: `# Contoh lelaran senarai
+fruit_list = ['apple', 'banana', 'mango']
+for fruit in fruit_list:
+    print(fruit)
+# Output:
+# apple
+# banana
+# mango
+
+# Contoh lelaran rentetan
+text = 'hi'
+for char in text:
+    print(char)
+# Output:
+# h
+# i`
+    }
+  ]}
+/>
+
+Objek boleh lelar membekalkan nilai satu demi satu, tetapi ia tidak semestinya tersusun, boleh diindeks, boleh digunakan semula atau terhingga. Gelung `for` meminta nilai yang berturutan daripada pelelarnya. Dalam pengepala `for`, `in` menghubungkan sasaran lelaran dengan objek boleh lelar. Dalam ungkapan seperti `3 in [1, 3]`, `in` menguji keahlian.

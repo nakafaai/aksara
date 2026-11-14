@@ -1,22 +1,42 @@
-Karena <InlineMath math="55=5\times11" /> dan 5 tidak memiliki faktor persekutuan dengan 11 selain 1, sisa <InlineMath math="n^2+n" /> terhadap 55 **ditentukan oleh sisanya terhadap 5 dan terhadap 11**. Hitung kedua sisa itu, lalu gabungkan.
+Kamu mencari bilangan ke-<InlineMath math="500" /> di antara bilangan yang tidak habis dibagi <InlineMath math="4" />, <InlineMath math="6" />, maupun <InlineMath math="10" />. Mendaftar <InlineMath math="500" /> bilangan satu per satu terlalu lama. Jadi, cari dulu **pola yang berulang**, hitung isi satu putaran pola, lalu lompat langsung ke putaran yang memuat bilangan itu.
 
-# Sisa terhadap setiap pembagi
+# Mencari panjang pola
 
-Sisa sebuah hasil operasi cukup dihitung dari sisa bilangannya.
+Sebut bilangan yang masuk urutan sebagai bilangan terpilih. Apakah suatu bilangan habis dibagi <InlineMath math="4" />, <InlineMath math="6" />, atau <InlineMath math="10" /> hanya bergantung pada sisanya jika dibagi KPK ketiganya. KPK (kelipatan persekutuan terkecil) adalah bilangan positif terkecil yang habis dibagi ketiga bilangan itu.
+
+<BlockMath math="\operatorname{KPK}(4,6,10)=60" />
+
+Akibatnya, bilangan <InlineMath math="n" /> dan <InlineMath math="n+60" /> selalu sama-sama terpilih atau sama-sama tidak terpilih. Jadi **pola bilangan terpilih berulang setiap <InlineMath math="60" /> bilangan**. Sebut setiap kelompok <InlineMath math="60" /> bilangan berurutan itu satu blok.
+
+# Menghitung isi satu blok
+
+Misalkan <InlineMath math="B" /> adalah banyak bilangan dari <InlineMath math="1" /> sampai <InlineMath math="60" /> yang habis dibagi paling sedikit satu dari <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="10" />. Hitung <InlineMath math="B" /> dengan prinsip inklusi-eksklusi, yaitu cara menghitung gabungan beberapa kelompok tanpa menghitung anggota yang sama dua kali. Jumlahkan kelipatan masing-masing bilangan, kurangi kelipatan setiap pasangan, lalu tambahkan lagi kelipatan ketiganya.
+
+Bilangan yang habis dibagi dua bilangan sekaligus adalah **kelipatan KPK pasangan itu**. Ketiga pembagi sama-sama genap, jadi KPK pasangannya lebih kecil daripada hasil kalinya.
 
 <BlockMath math="\begin{aligned}
-n^2+n&\equiv 2^2+2=6\equiv1 \pmod 5\\
-n^2+n&\equiv 4^2+4=20\equiv9 \pmod{11}
+\operatorname{KPK}(4,6)&=12,\qquad \operatorname{KPK}(4,10)=20,\qquad \operatorname{KPK}(6,10)=30\\
+B&=\frac{60}{4}+\frac{60}{6}+\frac{60}{10}-\frac{60}{12}-\frac{60}{20}-\frac{60}{30}+\frac{60}{60}\\
+&=15+10+6-5-3-2+1\\
+&=22
 \end{aligned}" />
 
-Jadi kita mencari bilangan <InlineMath math="r" /> dengan <InlineMath math="0\le r<55" /> yang **bersisa 9 jika dibagi 11 dan bersisa 1 jika dibagi 5**.
+Setiap blok berisi <InlineMath math="60-22=38" /> bilangan terpilih. Di blok pertama, enam bilangan terpilih yang pertama adalah <InlineMath math="1, 2, 3, 5, 7, 9" />.
 
-# Menggabungkan kedua sisa
+# Melompat ke blok yang tepat
 
-Calon <InlineMath math="r" /> adalah 9, 20, 31, 42, dan 53. Sisanya jika dibagi 5 berturut-turut 4, 0, 1, 2, dan 3. **Hanya 31** yang bersisa 1, jadi <InlineMath math="r=31" />.
+Bagi <InlineMath math="500" /> dengan isi satu blok.
 
-Cek dengan bilangan nyata. Bilangan <InlineMath math="n=37" /> memenuhi kedua syarat, karena <InlineMath math="37=7(5)+2" /> dan <InlineMath math="37=3(11)+4" />. Hasilnya <InlineMath math="37^2+37=1406=25(55)+31" />.
+<BlockMath math="500=13\times38+6" />
 
-Nilai 37 adalah sisa <InlineMath math="n" /> sendiri. Nilai 49 adalah sisa <InlineMath math="n^2" /> tanpa suku <InlineMath math="n" />. Nilai 6 dan 20 hanya memakai salah satu syarat, yaitu <InlineMath math="2^2+2" /> dan <InlineMath math="4^2+4" />, tanpa digabungkan.
+Artinya, <InlineMath math="13" /> blok penuh, yaitu bilangan <InlineMath math="1" /> sampai <InlineMath math="13\times60=780" />, sudah memuat <InlineMath math="13\times38=494" /> bilangan terpilih. **Bilangan ke-<InlineMath math="500" /> adalah bilangan terpilih ke-<InlineMath math="6" /> di blok berikutnya**, yaitu blok <InlineMath math="781" /> sampai <InlineMath math="840" />. Karena polanya berulang, bilangan itu adalah <InlineMath math="780+9=789" />.
 
-Jadi, sisa pembagian <InlineMath math="n^2+n" /> oleh 55 adalah **31**.
+# Memeriksa hasil
+
+Cek bilangan dari <InlineMath math="781" /> sampai <InlineMath math="789" /> secara langsung. Bilangan <InlineMath math="784" /> dan <InlineMath math="788" /> habis dibagi <InlineMath math="4" />, sedangkan <InlineMath math="786" /> habis dibagi <InlineMath math="6" />. Sisanya, yaitu <InlineMath math="781, 782, 783, 785, 787, 789" />, **tepat enam bilangan terpilih**, dan yang keenam adalah <InlineMath math="789" />.
+
+# Pilihan yang keliru
+
+Pilihan <InlineMath math="769" /> muncul jika **kelipatan <InlineMath math="60" /> lupa ditambahkan kembali**, sehingga satu blok dianggap berisi <InlineMath math="39" /> bilangan dan <InlineMath math="500=12\times39+32" /> menunjuk ke <InlineMath math="720+49" />. Pilihan <InlineMath math="729=12\times60+9" /> muncul jika bilangan itu dicari di blok ke-<InlineMath math="13" />, padahal <InlineMath math="13" /> blok penuh sudah berakhir di <InlineMath math="780" /> dan sisanya jatuh di blok ke-<InlineMath math="14" />. Pilihan <InlineMath math="907" /> muncul jika kelipatan bersama dihitung dari hasil kali <InlineMath math="24" />, <InlineMath math="40" />, <InlineMath math="60" />, dan <InlineMath math="240" />, sehingga satu blok dianggap berisi <InlineMath math="33" /> bilangan. Pilihan <InlineMath math="1{.}031" /> muncul jika irisan tidak dikurangkan sama sekali, sehingga satu blok dianggap berisi <InlineMath math="60-31=29" /> bilangan.
+
+Jadi, bilangan ke-<InlineMath math="500" /> pada urutan itu adalah <InlineMath math="789" />.

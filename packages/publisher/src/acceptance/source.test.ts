@@ -1,7 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import {
+  ACTIVE_APP_LOCALES,
+  ArtifactLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
@@ -26,6 +29,10 @@ const homeLessonKeys = [
 ];
 const homeLessonIdentities = Arr.flatMap(homeLessonKeys, (key) =>
   Arr.map(ACTIVE_APP_LOCALES, (locale) => `${key}:${locale}`)
+);
+// The artifact locales the active app locales read.
+const activeArtifactLocales = Arr.map(ACTIVE_APP_LOCALES, (locale) =>
+  ArtifactLocaleSchema.make(locale)
 );
 const state = vi.hoisted(() => ({ missing: "" }));
 type ArticleEntry = Effect.Success<
@@ -134,14 +141,17 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
         );
         expect(selected.article).toEqual(
           Arr.sort(
-            Arr.filter(articles, ({ route }) =>
-              Arr.contains(
-                [
-                  "articles/politics/merah-putih-cabinet-analysis",
-                  "articles/politics/regional-elections-turmoil",
-                ],
-                route.contentKey
-              )
+            Arr.filter(
+              articles,
+              ({ route }) =>
+                Arr.contains(activeArtifactLocales, route.artifactLocale) &&
+                Arr.contains(
+                  [
+                    "articles/politics/merah-putih-cabinet-analysis",
+                    "articles/politics/regional-elections-turmoil",
+                  ],
+                  route.contentKey
+                )
             ),
             Order.make((left: ArticleEntry, right: ArticleEntry) =>
               compareContentHeads(left.route, right.route)

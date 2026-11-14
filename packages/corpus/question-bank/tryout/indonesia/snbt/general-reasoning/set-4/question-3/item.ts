@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "inference",
+    topic: "data-inference",
   },
-  stimulus: "lampu",
+  stimulus: "itik",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Dapat disimpulkan", "Tidak dapat disimpulkan"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Perangkap di bawah lampu LED rata-rata menangkap lebih dari dua kali jumlah serangga di bawah lampu natrium.",
+            "Sepertiga dari petak yang disemprot pada musim itu adalah petak yang sejak awal musim dilepasi itik.",
         },
         {
           column: 2,
           label:
-            "Penutup penyaring cahaya biru membuat lampu LED sama sekali tidak menarik serangga.",
+            "Petak-petak yang sejak awal musim dilepasi itik lebih jarang disemprot pada musim gadu 2025 daripada pada musim tanam sebelumnya.",
+        },
+        {
+          column: 2,
+          label:
+            "Seandainya petak-petak yang itiknya ditarik tidak disemprot, rata-rata hasil panennya akan lebih rendah daripada $$4{,}5$$ ton gabah per hektare.",
         },
         {
           column: 1,
           label:
-            "Menurut pengelola kota, penggantian lampu natrium dengan lampu LED mengurangi pemakaian listrik.",
-        },
-        {
-          column: 2,
-          label:
-            "Kelelawar lebih sering terlihat berburu di sekitar lampu natrium daripada di sekitar lampu LED.",
+            "Rata-rata hasil panen petak yang sejak awal musim tidak dilepasi itik lebih tinggi daripada $$5{,}0$$ ton gabah per hektare.",
         },
       ],
     },

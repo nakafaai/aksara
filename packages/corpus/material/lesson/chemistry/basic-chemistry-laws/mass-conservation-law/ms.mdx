@@ -1,0 +1,189 @@
+
+export const metadata = {
+  title: "Hukum Keabadian Jisim",
+  description:
+    "Jisim dalam tindak balas kimia kekal sama apabila seluruh sistem dikira, termasuk hasil tindak balas, baki bahan tindak balas dan sebarang gas yang mungkin terlepas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-03",
+  dateModified: "2026-09-12",
+  subject: "Hukum Asas Kimia",
+};
+
+## Jumlah Jisim Sistem Kekal Sama
+
+Apabila tindak balas kimia berlaku, atom tidak lenyap dan tidak muncul daripada tiada. Atom-atom itu cuma disusun semula menjadi bahan baharu. Sebab itulah jisim seluruh sistem sebelum tindak balas sama dengan jisim seluruh sistem selepas tindak balas.
+
+<BlockMath math="m_{\text{sistem sebelum}} = m_{\text{sistem selepas}}" />
+
+Sempadan sistem menentukan apa yang dikira dalam jisim. Dalam bekas tertutup, setiap bahan kekal di dalam bahagian yang ditimbang. Dalam bekas terbuka, gas boleh keluar melepasi sempadan itu. Neraca kemudian menunjukkan jisim yang lebih kecil kerana gas yang terlepas tidak lagi berada di atasnya. <Highlight>Jumlah keseluruhan jirim</Highlight> kekal sama semasa perubahan kimia dan perubahan fizik, jadi bacaan neraca turun walaupun jirim itu tidak lenyap.
+
+## Penimbangan oleh Lavoisier
+
+Sebelum kimia moden muncul, pembakaran sering diterangkan dengan konsep flogiston, seolah-olah ada sesuatu yang keluar daripada bahan apabila bahan itu terbakar. Antoine Lavoisier mencabar idea itu melalui penimbangan yang teliti. Beliau menjejaki jisim bahan tindak balas dan hasil tindak balas, **termasuk gas**, lalu menunjukkan bahawa pembakaran melibatkan tindak balas dengan oksigen.
+
+Lavoisier membantu menetapkan hukum keabadian jisim dan mengaitkan pembakaran dengan oksigen.
+
+## Neraca Sistem Tertutup
+
+Bandingkan sistem tertutup dengan sistem terbuka. Keabadian jisim mengambil kira setiap bahan. Dalam model sistem terbuka, sulfur yang melepasi sempadan bekas masih wujud, tetapi sulfur itu tidak lagi menyumbang kepada bacaan neraca.
+
+Neraca dalam model ini **disifarkan bersama bekas kosong**. Jadi, bacaannya hanya mengira bahan-bahan itu, tanpa jisim bekas.
+
+<MassConservationLab
+  title={<>Neraca Sistem</>}
+  description={
+    <>
+      Bandingkan bacaan neraca apabila semua sulfur kekal di dalam bekas dengan
+      bacaannya apabila satu bahagian model melepasi sempadan sebelum bertindak balas.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih sempadan sistem",
+    before: "Sebelum",
+    after: "Selepas",
+    reactionView: "Model neraca keabadian jisim",
+    systemLabel: "Apa yang dikira",
+    calculationLabel: "Bacaan jisim",
+    modes: {
+      closed: {
+        tab: "Tertutup",
+        helperCaption: (
+          <>
+            Dalam sistem tertutup, hasil tindak balas dan baki bahan tindak balas kekal
+            di dalam bahagian yang ditimbang.
+          </>
+        ),
+        readoutBefore: <InlineMath math="12.00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="12.00\,\mathrm{g}" />,
+        system: <>Bekas, hasil tindak balas dan baki bahan tindak balas ialah satu sistem.</>,
+        calculation: (
+          <>
+            <InlineMath math="10.00 + 2.00 = 6.08 + 5.92" />, jadi jumlah jisim
+            kekal <InlineMath math="12.00\ \mathrm{g}" />.
+          </>
+        ),
+      },
+      open: {
+        tab: "Terbuka",
+        helperCaption: (
+          <>
+            Dalam model terbuka, wap sulfur melepasi sempadan, jadi neraca
+            tidak lagi menimbang keseluruhan sistem asal.
+          </>
+        ),
+        readoutBefore: <InlineMath math="12.00\,\mathrm{g}" />,
+        readoutAfter: <InlineMath math="11.00\,\mathrm{g}" />,
+        system: <>Bekas yang ditimbang ialah isi padu kawalan yang terbuka. Sistem yang diperluas turut merangkumi sulfur yang terlepas.</>,
+        calculation: (
+          <>
+            <InlineMath math="12.00 - 1.00 = 11.00\ \mathrm{g}" /> kekal di atas
+            neraca, manakala jumlahnya menjadi <InlineMath math="11.00 + 1.00 = 12.00\ \mathrm{g}" /> apabila sulfur yang terlepas turut dikira.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+## Imbangan Jisim dalam Sistem Terbuka
+
+Paparan terbuka bermula dengan <InlineMath math="10.00\ \mathrm{g}" /> zink dan <InlineMath math="2.00\ \mathrm{g}" /> sulfur yang sama. Model itu kemudian menunjukkan <InlineMath math="1.00\ \mathrm{g}" /> sulfur **melepasi sempadan sebagai wap** sebelum bertindak balas. Nilai [jisim atom piawai versi ringkas](https://www.ciaaw.org/abridged-atomic-weights.htm) tahun 2024 ialah <InlineMath math="A_r(\mathrm{Zn})=65.38" /> dan <InlineMath math="A_r(\mathrm{S})=32.06" />. Dengan nilai ini, baki sulfur bertindak balas dengan kira-kira <InlineMath math="2.04\ \mathrm{g}" /> zink.
+
+<MathContainer>
+<BlockMath math="m_{\mathrm{Zn}}=1\ \mathrm{g}\times\frac{65.38}{32.06}\approx 2.04\ \mathrm{g}" />
+
+<BlockMath math="\begin{aligned} &amp;m_{\mathrm{ZnS}} \approx 2.04 + 1.00 = 3.04\ \mathrm{g} \\ &amp;m_{\mathrm{Zn\ baki}} \approx 10.00 - 2.04 = 7.96\ \mathrm{g} \\ &amp;m_{\mathrm{di\ atas\ neraca}} \approx 3.04 + 7.96 = 11.00\ \mathrm{g} \\ &amp;m_{\mathrm{sistem\ diperluas}} = 11.00 + 1.00 \\ &amp;= 12.00\ \mathrm{g} \end{aligned}" />
+</MathContainer>
+
+Neraca hanya mengukur jirim yang masih berada di dalam sempadan yang dipilih, jadi neraca menunjukkan <InlineMath math="11.00\ \mathrm{g}" /> selepas <InlineMath math="1.00\ \mathrm{g}" /> wap sulfur keluar. Jika wap yang terlepas itu dimasukkan ke dalam sistem, jumlah jisim tetap <InlineMath math="12.00\ \mathrm{g}" />.
+
+Tiga turus di bawah ialah bacaan neraca, dengan satu petak grid mewakili <InlineMath math="4\ \mathrm{g}" />. Apabila setiap bahan kekal di dalam bekas, turus tertutup kekal pada <InlineMath math="12.00\ \mathrm{g}" />. Dalam paparan terbuka, <InlineMath math="1.00\ \mathrm{g}" /> sulfur melepasi sempadan sebelum bertindak balas, jadi neraca hanya menunjukkan <InlineMath math="11.00\ \mathrm{g}" />. Jisim itu tidak lenyap, cuma keluar daripada sistem yang sedang kamu timbang.
+
+<MathVisual
+  title={<>Bacaan Neraca</>}
+  description={<>10.00 g zink dan 2.00 g sulfur sebelum tindak balas, kemudian selepas tindak balas dalam sistem tertutup dan dalam sistem terbuka. Satu petak grid ke atas mewakili 4 g.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 4.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 3, y: 1.5, z: 0 } },
+    objects: [
+      { id: "before", kind: "cuboid", appearance: "primary", center: { x: 0, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "closed", kind: "cuboid", appearance: "construction", center: { x: 3, y: (12 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 12 / 4, width: 1.2 } },
+      { id: "open", kind: "cuboid", appearance: "warning", center: { x: 6, y: (11 / 4) / 2 + 0, z: 0 }, size: { length: 1.2, height: 11 / 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "before", objectId: "before", at: { x: 0, y: 3.5, z: 0 }, placement: "above" },
+      { key: "closed", objectId: "closed", at: { x: 3, y: 3.5, z: 0 }, placement: "above" },
+      { key: "open", objectId: "open", at: { x: 6, y: 3.25, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="12.00\ \mathrm{g}" />,
+    closed: <InlineMath math="12.00\ \mathrm{g}" />,
+    open: <InlineMath math="11.00\ \mathrm{g}" />,
+  }}
+/>
+
+## Zink dan Sulfur
+
+Dalam satu eksperimen, <InlineMath math="10.00\ \mathrm{g}" /> zink dipanaskan bersama <InlineMath math="2.00\ \mathrm{g}" /> sulfur. Selepas tindak balas, <InlineMath math="6.08\ \mathrm{g}" /> zink sulfida terbentuk dan <InlineMath math="5.92\ \mathrm{g}" /> zink **tinggal tanpa bertindak balas**.
+
+Tatatanda ringkas stoikiometri pada aras zarah ialah:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
+
+Persamaan ini menyatakan nisbah satu atom zink bagi setiap atom sulfur yang bergabung ke dalam zink sulfida. Tatatanda ringkas ini digunakan untuk mengira nisbah atom dalam tindak balas. Tatatanda ini tidak menunjukkan struktur zarah bagi unsur sulfur dalam bentuk pukal.
+
+Jisim hasil tindak balas tidak semestinya sama dengan jisim semua bahan permulaan jika ada bahan tindak balas yang berbaki. Mula-mula, kira hanya zink yang benar-benar bertindak balas.
+
+<BlockMath math="\begin{aligned} &amp;m_{\mathrm{Zn\ bertindak\ balas}} = 10.00 - 5.92 = 4.08\ \mathrm{g} \\ &amp;m_{\mathrm{bahan\ yang\ bertindak\ balas}} = 4.08 + 2.00 \\ &amp;= 6.08\ \mathrm{g} \\ &amp;m_{\mathrm{hasil}} = 6.08\ \mathrm{g} \end{aligned}" />
+
+Dalam contoh ini, keabadian jisim dipatuhi bagi bahagian yang bertindak balas: jisim zink yang bertindak balas ditambah jisim sulfur sama dengan jisim zink sulfida yang terbentuk.
+
+Jika seluruh bekas dikira, jisimnya juga tidak berubah:
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{sebelum}} &= 10.00 + 2.00 = 12.00\ \mathrm{g} \\
+m_{\mathrm{selepas}} &= 6.08 + 5.92 = 12.00\ \mathrm{g}
+\end{aligned}" />
+
+## Tiga Kuantiti Jisim dalam Pengiraan
+
+Pisahkan tiga soalan ini.
+
+- Berapakah **jisim hasil tindak balas**? Hanya hasil baharu yang dikira, jadi jisimnya <InlineMath math="6.08\ \mathrm{g}" /> zink sulfida.
+- Adakah **jisim sistem** kekal? Ya, apabila hasil tindak balas dan baki bahan tindak balas dikira bersama.
+- Bolehkah **bacaan neraca** kelihatan lebih rendah? Boleh, jika gas keluar daripada bekas terbuka dan tidak ditimbang.
+
+Persamaan kimia mesti seimbang kerana kedua-dua belah persamaan mengandungi bilangan atom yang sama bagi setiap unsur. Pengiraan jisim mengikut prinsip keabadian jirim.
+
+Hukum komposisi tetap menjawab soalan yang lain. Apabila dua unsur membentuk sebatian yang sama, adakah nisbah jisim kedua-dua unsur itu sentiasa tetap?
+
+Asingkan tiga jisim dalam eksperimen zink dan sulfur. Sebelum tindak balas, turus itu memuatkan zink yang akan bertindak balas, zink yang tidak akan bertindak balas dan sulfur. Selepas tindak balas, bahagian yang bertindak balas sudah menjadi <InlineMath math="6.08\ \mathrm{g}" /> <InlineMath math="\mathrm{ZnS}" /> di sebelah baki zink yang sama. Putar turus-turus itu: jumlah kedua-duanya sama, iaitu <InlineMath math="12.00\ \mathrm{g}" />.
+
+<MathVisual
+  title={<>Tiga Soalan tentang Jisim</>}
+  description={<>Sebelum (kiri): baki zink (kelabu), zink yang bertindak balas (oren) dan sulfur (kuning ambar). Selepas (kanan): baki zink (kelabu) dan zink sulfida (biru kehijauan). Satu petak grid ke atas mewakili 1 gram.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: 0, max: 13 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8.5, y: 15, z: 11 }, target: { x: 1.5, y: 6, z: 0 } },
+    objects: [
+      { id: "zn-left-before", kind: "cuboid", appearance: "reference", center: { x: 0, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zn-reacted", kind: "cuboid", appearance: "primary", center: { x: 0, y: 7.96, z: 0 }, size: { length: 1.6, height: 4.08, width: 1.6 } },
+      { id: "sulfur", kind: "cuboid", appearance: "highlight", center: { x: 0, y: 11, z: 0 }, size: { length: 1.6, height: 2, width: 1.6 } },
+      { id: "zn-left-after", kind: "cuboid", appearance: "reference", center: { x: 3, y: 2.96, z: 0 }, size: { length: 1.6, height: 5.92, width: 1.6 } },
+      { id: "zns", kind: "cuboid", appearance: "construction", center: { x: 3, y: 8.96, z: 0 }, size: { length: 1.6, height: 6.08, width: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "sulfur", at: { x: 0, y: 12, z: 0 }, placement: "above" },
+      { key: "after", objectId: "zns", at: { x: 3, y: 12, z: 0 }, placement: "above" },
+      { key: "left", objectId: "zn-left-after", at: { x: 3, y: 2.96, z: 0.8 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    before: <InlineMath math="4.08+5.92+2.00=12.00\ \mathrm{g}" />,
+    after: <InlineMath math="6.08+5.92=12.00\ \mathrm{g}" />,
+    left: <InlineMath math="\mathrm{Zn}:\ 5.92\ \mathrm{g}" />,
+  }}
+/>

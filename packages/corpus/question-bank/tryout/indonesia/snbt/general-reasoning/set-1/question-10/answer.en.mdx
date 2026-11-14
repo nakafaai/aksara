@@ -1,24 +1,30 @@
-Look for a rule that works for **all three examples at once**. First compare the arrangement of the consonants, then the change in the vowels.
+Each term has two letters, and the two letters move by **different rules**. To make counting easy, turn each letter into its position in the alphabet: <InlineMath math="\text{A} = 1" />, <InlineMath math="\text{B} = 2" />, and so on up to <InlineMath math="\text{Z} = 26" />.
 
-Look at the consonants. In RAKIT, the last letter T moves to the front. In BOLAN, N moves to the front. In MUSIK, K moves to the front. So the first step is **moving the last letter to the first position**:
+The first letters are B, D, G, K, P, which is <InlineMath math="2, 4, 7, 11, 16" />. The steps are <InlineMath math="+2, +3, +4, +5" />, so the next steps are <InlineMath math="+6, +7, +8, +9, +10" />.
 
-| Input | After moving the last letter | Output |
-| --- | --- | --- |
-| RAKIT | TRAKI | TREKO |
-| BOLAN | NBOLA | NBULE |
-| MUSIK | KMUSI | KMASO |
+The second letters are S, Z, G, N, U, which is <InlineMath math="19, 26, 7, 14, 21" />. Going from Z to G looks like a step back, but the alphabet wraps around: <InlineMath math="26 + 7 = 33" />, and <InlineMath math="33 - 26 = 7" />, which is G. So the second letter always moves forward <InlineMath math="7" />.
 
-Compare the middle column with the output. The consonants stay, but each vowel becomes **the next vowel** in the cycle A, E, I, O, U: A becomes E, I becomes O, O becomes U, and U becomes A. All four changes appear in the examples: A to E (RAKIT, BOLAN), I to O (RAKIT, MUSIK), O to U (BOLAN), and U to A (MUSIK).
+Whenever a position goes past <InlineMath math="26" />, subtract <InlineMath math="26" />. Now run both rules side by side from term <InlineMath math="6" /> to term <InlineMath math="10" />:
 
-Apply both steps to PITAR:
+| Term | First letter | Second letter | Pair |
+| --- | --- | --- | --- |
+| <InlineMath math="6" /> | <InlineMath math="16 + 6 = 22" />, V | <InlineMath math="21 + 7 = 28" />, then <InlineMath math="28 - 26 = 2" />, B | VB |
+| <InlineMath math="7" /> | <InlineMath math="22 + 7 = 29" />, then <InlineMath math="29 - 26 = 3" />, C | <InlineMath math="2 + 7 = 9" />, I | CI |
+| <InlineMath math="8" /> | <InlineMath math="3 + 8 = 11" />, K | <InlineMath math="9 + 7 = 16" />, P | KP |
+| <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
+| <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, then <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, then <InlineMath math="30 - 26 = 4" />, D | DD |
 
-<BlockMath math="\text{PITAR} \;\rightarrow\; \text{RPITA} \;\rightarrow\; \text{RPOTE}" />
+Check by jumping straight from term <InlineMath math="5" />. The first letter moves <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> places, and the second letter moves <InlineMath math="5 \times 7 = 35" /> places:
 
-The other options come from an incomplete or wrong rule:
+<BlockMath math="\begin{aligned} \text{First letter: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Second letter: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />
 
-- RPITA only moves the last letter and keeps the vowels.
-- POTER only changes the vowels and does not move a letter.
-- OTERP moves the first letter to the end, while the examples move the last letter to the front.
-- RPETU shifts the vowels backward, for example I to E.
+Both land on position <InlineMath math="4" />, which is D, matching the table.
 
-So the machine turns PITAR into RPOTE.
+The other options come from these slips:
+
+- TW is term <InlineMath math="9" />, so it stops one term too early.
+- OD appears if you assume the first letter always moves <InlineMath math="5" /> and miss that its steps keep growing.
+- YD appears if the first letter's steps restart at <InlineMath math="+5" /> instead of <InlineMath math="+6" />: <InlineMath math="16 + 5 + 6 + 7 + 8 + 9 = 51" />, then <InlineMath math="51 - 26 = 25" />, which is Y.
+- DW appears if you move the second letter only as far as term <InlineMath math="9" />.
+
+So term <InlineMath math="10" /> of the sequence is DD.

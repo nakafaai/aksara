@@ -4,33 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "categorical-syllogism",
+    topic: "conditional-chain",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Mesin espresso tidak rusak dan teknisi tidak dipanggil.",
+        },
+        {
+          correct: false,
+          label: "Mesin espresso rusak dan kedai membayar biaya servis.",
+        },
+        {
           correct: true,
-          label:
-            "Tidak ada kamus di perpustakaan itu yang boleh dipinjam pulang.",
+          label: "Mesin espresso rusak dan teknisi dipanggil.",
         },
         {
           correct: false,
-          label:
-            "Semua buku sejarah di perpustakaan itu boleh dipinjam pulang.",
+          label: "Barista utama tidak masuk atau mesin espresso tidak rusak.",
         },
         {
           correct: false,
-          label: "Sebagian kamus di perpustakaan itu adalah buku sejarah.",
-        },
-        {
-          correct: false,
-          label: "Semua buku yang tidak boleh dipinjam pulang adalah kamus.",
-        },
-        {
-          correct: false,
-          label: "Tidak ada buku sejarah yang merupakan buku referensi.",
+          label: "Teknisi dipanggil, tetapi kedai tidak membayar biaya servis.",
         },
       ],
     },

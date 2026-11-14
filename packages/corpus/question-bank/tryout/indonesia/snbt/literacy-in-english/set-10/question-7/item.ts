@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "assumption",
   },
-  stimulus: "machine-pictures",
+  stimulus: "homeschooling",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "A person who commissions a portrait becomes one of its authors.",
+            "That homeschooled children have as many chances to make friends as children who attend school every day.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Photographs have been protected by copyright for more than a hundred years.",
+            "That the number of households teaching at home will keep growing in the years after the pandemic.",
         },
         {
-          column: 1,
-          label: "The same prompt can produce many different pictures.",
+          correct: false,
+          label:
+            "That parents know their own children's habits and gaps better than any trained teacher could, however experienced that teacher might be.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "AI image systems have been shown to be trained unfairly on artists' work.",
+            "That tighter rules would lower the test scores of the children who are now taught at home.",
+        },
+        {
+          correct: true,
+          label:
+            "That the scores in the studies she cites describe homeschooled students in general, not mainly the families who report them.",
         },
       ],
     },

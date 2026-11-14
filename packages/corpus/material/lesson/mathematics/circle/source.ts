@@ -5,7 +5,12 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
   domain: "mathematics",
   key: "lesson.mathematics.circle",
   kind: "lesson",
-  routeSlugs: { de: "kreisgeometrie", en: "circle", id: "lingkaran" },
+  routeSlugs: {
+    de: "kreisgeometrie",
+    en: "circle",
+    id: "lingkaran",
+    ms: "bulatan",
+  },
   sections: [
     {
       evidenceUrls: [
@@ -15,6 +20,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "mittelpunkt-und-umfangswinkel",
         en: "central-angle-and-inscribed-angle",
         id: "sudut-pusat-dan-sudut-keliling",
+        ms: "sudut-di-pusat-dan-sudut-di-lilitan",
       },
       slug: "central-angle-and-inscribed-angle",
     },
@@ -26,6 +32,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "kreis-und-kreisbogen",
         en: "circle-and-arc-circle",
         id: "lingkaran-dan-busur-lingkaran",
+        ms: "bahagian-bulatan-dan-lengkok",
       },
       slug: "circle-and-arc-circle",
     },
@@ -37,6 +44,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "kreis-und-sehne",
         en: "circle-and-chord",
         id: "lingkaran-dan-tali-busur",
+        ms: "perentas-bulatan",
       },
       slug: "circle-and-chord",
     },
@@ -45,6 +53,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "kreis-und-tangente",
         en: "circle-and-tangent-line",
         id: "lingkaran-dan-garis-singgung",
+        ms: "tangen-kepada-bulatan",
       },
       slug: "circle-and-tangent-line",
     },
@@ -53,6 +62,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "aeussere-und-innere-gemeinsame-tangente",
         en: "external-tangent-line-and-internal-tangent-line",
         id: "garis-singgung-persekutuan-luar-dan-dalam",
+        ms: "tangen-sepunya-luar-dan-dalam",
       },
       slug: "external-tangent-line-and-internal-tangent-line",
     },
@@ -64,6 +74,7 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
         de: "winkelsaetze-am-kreis",
         en: "properties-of-angle-in-circle",
         id: "sifat-sudut-dalam-lingkaran",
+        ms: "teorem-sudut-dalam-bulatan",
       },
       slug: "properties-of-angle-in-circle",
     },
@@ -81,6 +92,10 @@ export const lessonMathematicsCircleMaterial = defineLessonMaterial({
     id: {
       description: "Hubungkan sudut pusat dan keliling pada lingkaran.",
       title: "Lingkaran",
+    },
+    ms: {
+      description: "Kaitkan sudut di pusat dengan sudut di lilitan.",
+      title: "Bulatan",
     },
   },
 });

@@ -1,25 +1,52 @@
-Mengkuadratkan kedua ruas hanya aman jika **kedua ruas tidak negatif**. Karena itu tentukan dulu syarat yang membuat pertidaksamaan bermakna, baru kemudian kuadratkan.
+Kamu mencari semua bilangan bulat <InlineMath math="m" /> yang membuat <InlineMath math="f(x)=x^2-2mx+m+6" /> selalu positif, tetapi **hanya untuk <InlineMath math="x\ge0" />, bukan untuk semua bilangan real**. Jadi diskriminan negatif bukan satu-satunya jalan. Rencananya: cari letak titik puncak parabola, pisahkan dua kasus, lalu periksa batasnya.
 
-# Syarat sebelum mengkuadratkan
+# Letak titik puncak
 
-Bentuk akar terdefinisi jika <InlineMath math="x+3\ge0" />, yaitu <InlineMath math="x\ge-3" />. Ruas kiri tidak pernah negatif, jadi ruas kanan harus **positif** agar ruas kiri bisa lebih kecil darinya.
+Lengkapkan kuadratnya supaya titik puncak terlihat.
 
-<BlockMath math="x-3>0\quad\Rightarrow\quad x>3" />
+<BlockMath math="f(x)=x^2-2mx+m+6=(x-m)^2-m^2+m+6" />
 
-Syarat <InlineMath math="x>3" /> sudah mencakup <InlineMath math="x\ge-3" />.
+Parabola ini terbuka ke atas dan **titik terendahnya ada di <InlineMath math="x=m" />**. Nilai terkecil <InlineMath math="f" /> pada daerah <InlineMath math="x\ge0" /> bergantung pada apakah <InlineMath math="x=m" /> berada di dalam daerah itu.
 
-# Mengkuadratkan kedua ruas
+# Kasus puncak di kiri
 
-Untuk <InlineMath math="x>3" />, kedua ruas positif, sehingga **pengkuadratan mempertahankan tanda pertidaksamaan**.
+Jika <InlineMath math="m\le0" />, titik puncak ada di kiri daerah atau tepat di <InlineMath math="x=0" />. Pada <InlineMath math="x\ge0" /> parabola terus naik, jadi **nilai terkecilnya adalah <InlineMath math="f(0)" />**.
 
 <BlockMath math="\begin{aligned}
-x+3&<x^2-6x+9\\
-0&<x^2-7x+6\\
-0&<(x-1)(x-6)
+f(0)=m+6&>0\\
+m&>-6
 \end{aligned}" />
 
-Hasil kali positif untuk <InlineMath math="x<1" /> atau <InlineMath math="x>6" />. Irisannya dengan <InlineMath math="x>3" /> adalah <InlineMath math="x>6" />. Cek <InlineMath math="x=7" />: <InlineMath math="\sqrt{10}\approx3{,}16<4" />, sedangkan <InlineMath math="x=6" /> memberi <InlineMath math="3<3" /> yang salah.
+Bilangan bulat yang memenuhi <InlineMath math="-6<m\le0" /> adalah <InlineMath math="-5, -4, -3, -2, -1, 0" />. Nilai <InlineMath math="m=-6" /> tidak ikut, karena <InlineMath math="f(0)=0" /> dan tanda ketidaksamaannya tegas.
 
-Himpunan <InlineMath math="x<1" /> atau <InlineMath math="x>6" /> mengkuadratkan tanpa syarat apa pun. Himpunan yang memuat <InlineMath math="-3\le x<1" /> hanya memakai syarat akar, padahal pada selang itu ruas kanan negatif. Himpunan <InlineMath math="1<x<6" /> membalik tanda, dan himpunan <InlineMath math="x\ge3" /> berhenti pada syarat ruas kanan.
+# Kasus puncak di kanan
 
-Jadi, himpunan penyelesaiannya adalah <InlineMath math="\{x\mid x>6\}" />.
+Jika <InlineMath math="m>0" />, titik puncak ada di dalam daerah, jadi **nilai terkecilnya adalah nilai di puncak**.
+
+<BlockMath math="\begin{aligned}
+f(m)=-m^2+m+6&>0\\
+m^2-m-6&<0\\
+(m-3)(m+2)&<0\\
+-2<m&<3
+\end{aligned}" />
+
+Digabung dengan <InlineMath math="m>0" />, bilangan bulatnya <InlineMath math="1" /> dan <InlineMath math="2" />. Nilai <InlineMath math="m=3" /> tidak ikut, karena <InlineMath math="f(3)=9-18+9=0" />.
+
+# Menjumlahkan semua nilai
+
+**Gabungan kedua kasus** adalah <InlineMath math="m=-5, -4, \ldots, 2" />.
+
+<BlockMath math="(-5)+(-4)+(-3)+(-2)+(-1)+0+1+2=-12" />
+
+Coba cek satu nilai dari tiap kasus. Untuk <InlineMath math="m=-5" />, <InlineMath math="f(x)=x^2+10x+1" />, dan semua sukunya positif saat <InlineMath math="x\ge0" />. Untuk <InlineMath math="m=2" />, <InlineMath math="f(x)=(x-2)^2+4>0" />.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain berasal dari **daerah yang salah atau batas yang ikut terhitung**.
+
+- <InlineMath math="2" /> muncul dari syarat diskriminan negatif, yaitu <InlineMath math="-2<m<3" />. Syarat itu untuk semua bilangan real, sehingga nilai <InlineMath math="-5" /> sampai <InlineMath math="-2" /> yang sebenarnya memenuhi ikut terbuang.
+- <InlineMath math="-18" /> muncul jika <InlineMath math="m=-6" /> ikut dihitung, padahal <InlineMath math="f(0)=0" />.
+- <InlineMath math="-9" /> muncul jika <InlineMath math="m=3" /> ikut dihitung, padahal <InlineMath math="f(3)=0" />.
+- <InlineMath math="-15" /> muncul jika hanya kasus <InlineMath math="m\le0" /> yang dihitung, atau jika kedua batas <InlineMath math="-6" /> dan <InlineMath math="3" /> sama-sama ikut.
+
+Jadi, jumlah semua nilai bulat <InlineMath math="m" /> yang memenuhi adalah <InlineMath math="-12" />.

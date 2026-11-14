@@ -1,0 +1,24 @@
+The value <InlineMath math="(f\circ g)^{-1}(5)" /> is **the number <InlineMath math="x" /> that <InlineMath math="f\circ g" /> sends to <InlineMath math="5" />**. So you do not need a formula for the inverse. Just solve <InlineMath math="f\big(g(x)\big)=5" /> from the outside in.
+
+The outer layer is <InlineMath math="f" />. Find the value of <InlineMath math="g(x)" /> that makes <InlineMath math="f" /> equal <InlineMath math="5" />.
+
+<BlockMath math="2\,g(x)+1=5\ \Rightarrow\ g(x)=2" />
+
+The inner layer is <InlineMath math="g" />. Solve <InlineMath math="g(x)=2" /> with <InlineMath math="x\ne0" />.
+
+<BlockMath math="\begin{aligned}
+\frac{x-3}{x}&=2 \\
+x-3&=2x \\
+x&=-3
+\end{aligned}" />
+
+Check: <InlineMath math="g(-3)=\frac{-6}{-3}=2" /> and <InlineMath math="f(2)=5" />, so <InlineMath math="(f\circ g)(-3)=5" />.
+
+Another route uses <InlineMath math="(f\circ g)^{-1}=g^{-1}\circ f^{-1}" />: <InlineMath math="f^{-1}(5)=2" />, then <InlineMath math="g^{-1}(2)=-3" />. The order is the reverse of the original composition.
+
+So <InlineMath math="(f\circ g)^{-1}(5)=-3" />.
+
+- <InlineMath math="\frac95" /> computes <InlineMath math="(f\circ g)(5)=f\left(\frac25\right)" />, the function rather than its inverse.
+- <InlineMath math="-\frac78" /> uses the wrong order, <InlineMath math="f^{-1}\big(g^{-1}(5)\big)=f^{-1}\left(-\frac34\right)" />.
+- <InlineMath math="2" /> stops at <InlineMath math="f^{-1}(5)" /> and never undoes <InlineMath math="g" />.
+- <InlineMath math="-\frac34" /> is <InlineMath math="g^{-1}(5)" />, without undoing <InlineMath math="f" /> first.

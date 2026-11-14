@@ -1,0 +1,241 @@
+export const metadata = {
+  title: "Petua Tambah",
+  description: "Gunakan petua tambah kebarangkalian untuk peristiwa saling eksklusif dan peristiwa yang bertindih melalui contoh yang jelas, rumus, dan jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-21",
+  dateModified: "2026-11-08",
+  subject: "Kebarangkalian",
+};
+
+## Mengira Kesudahan yang Tergolong dalam Salah Satu Peristiwa
+
+Katakan kita tanya setiap murid dalam satu kelas bagaimana mereka pergi ke sekolah. Kemudian kita pilih seorang murid secara rawak dan cari kebarangkalian murid itu datang dengan **basikal ATAU motosikal**.
+
+Perkataan **"ATAU"** menggabungkan dua peristiwa. Petua tambah mengira kebarangkalian bahawa peristiwa <InlineMath math="A" /> berlaku, peristiwa <InlineMath math="B" /> berlaku, atau kedua-duanya berlaku apabila pertindihan boleh berlaku.
+
+Dua kes menentukan rumus mana yang perlu digunakan:
+
+1.  Peristiwa itu tidak boleh berlaku dalam cubaan yang sama. Ini ialah peristiwa **saling eksklusif**.
+2.  Peristiwa itu boleh berlaku dalam cubaan yang sama. Peristiwa ini **tidak saling eksklusif**.
+
+Bezanya ialah sama ada dua peristiwa itu bertindih.
+
+## Peristiwa Saling Eksklusif
+
+Peristiwa saling eksklusif, juga dipanggil peristiwa _tak bercantum_, **tidak boleh berlaku bersama** dalam satu cubaan.
+
+Kalau peristiwa <InlineMath math="A" /> berlaku, peristiwa <InlineMath math="B" /> tidak berlaku, dan begitu juga sebaliknya.
+
+**Contoh**:
+
+1.  Satu lambungan duit syiling menghasilkan sama ada "Gambar" atau "Angka", tidak pernah kedua-duanya serentak.
+2.  Zain pergi ke sekolah dengan motosikal **ATAU** dengan basikal, dengan andaian setiap murid menggunakan satu jenis pengangkutan.
+
+Melambung dua biji dadu: Peristiwa "hasil tambahnya <InlineMath math="7" />" **ATAU** peristiwa "mendapat kembar (nombor yang sama pada kedua-dua dadu)".
+
+| Peristiwa | Pasangan kesudahan |
+| --- | --- |
+| Hasil tambah <InlineMath math="7" /> | <InlineMath math="(1,6)" />, <InlineMath math="(2,5)" />, <InlineMath math="(3,4)" />, <InlineMath math="(4,3)" />, <InlineMath math="(5,2)" />, <InlineMath math="(6,1)" /> |
+| Kembar | <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" /> |
+
+Tiada pasangan tertib yang tergolong dalam kedua-dua kumpulan, jadi peristiwa itu saling eksklusif.
+
+### Rumus untuk Peristiwa Saling Eksklusif
+
+Kalau peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> saling eksklusif, persilangannya kosong. Jadi kebarangkalian "A ATAU B" ialah hasil tambah kebarangkalian masing-masing.
+
+<BlockMath math="P(A \text{ atau } B) = P(A) + P(B)" />
+
+**Contoh lengkap**:
+
+Untuk eksperimen dua biji dadu di atas:
+
+- Kebarangkalian hasil tambahnya <InlineMath math="7" /> (<InlineMath math="P(S=7)" />): ada <InlineMath math="6" /> pasangan daripada <InlineMath math="36" /> semuanya, jadi kebarangkaliannya <InlineMath math="6/36" />
+- Kebarangkalian mendapat kembar (<InlineMath math="P(\text{Kembar})" />): ada <InlineMath math="6" /> pasangan daripada <InlineMath math="36" /> semuanya, jadi kebarangkaliannya <InlineMath math="6/36" />
+
+Kebarangkalian mendapat hasil tambah <InlineMath math="7" /> ATAU kembar ialah:
+
+<BlockMath math="\begin{aligned}P(S=7\text{ atau Kembar}) &= P(S=7)+P(\text{Kembar}) \\ &= \frac{6}{36}+\frac{6}{36} \\ &= \frac{12}{36}=\frac{1}{3}\end{aligned}" />
+
+## Peristiwa Tidak Saling Eksklusif
+
+Peristiwa yang tidak saling eksklusif **boleh berlaku bersama** dalam satu cubaan, jadi set kesudahannya bertindih.
+
+**Contoh**:
+
+1.  Cabut satu kad daripada satu pek kad terup biasa. Peristiwa "mencabut kad As" dan "mencabut kad hati (<InlineMath math="\heartsuit" />)" bertindih pada kad As hati (<InlineMath math="A\heartsuit" />).
+
+Melambung dua biji dadu: Peristiwa "hasil tambahnya <InlineMath math="8" />" **ATAU** peristiwa "mendapat kembar".
+
+| Peristiwa | Pasangan kesudahan |
+| --- | --- |
+| Hasil tambah <InlineMath math="8" /> | <InlineMath math="(2,6)" />, <InlineMath math="(3,5)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,3)" />, <InlineMath math="(6,2)" /> |
+| Kembar | <InlineMath math="(1,1)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,3)" />, <InlineMath math="(4,4)" />, <InlineMath math="(5,5)" />, <InlineMath math="(6,6)" /> |
+
+Pasangan <InlineMath math="(4,4)" /> tergolong dalam kedua-dua kumpulan. Jadi peristiwa itu **tidak saling eksklusif**.
+
+**Mengapa tambah biasa tidak mencukupi**
+
+Menambah <InlineMath math="P(A) + P(B)" /> akan mengira persilangan dua kali: sekali sebagai sebahagian daripada <InlineMath math="A" /> dan sekali sebagai sebahagian daripada <InlineMath math="B" />.
+
+Untuk contoh "hasil tambah <InlineMath math="8" /> ATAU kembar":
+
+- <InlineMath math="P(S=8)" />: ada <InlineMath math="5" /> pasangan, jadi kebarangkaliannya <InlineMath math="5/36" />
+- <InlineMath math="P(\text{Kembar})" /> ialah <InlineMath math="6" /> pasangan, iaitu <InlineMath math="6/36" />
+
+Tambah terus memberikan <InlineMath math="5/36 + 6/36 = 11/36" />, tetapi pasangan <InlineMath math="(4,4)" /> muncul dalam kedua-dua kumpulan. Tolak kebarangkaliannya sekali untuk membuang kiraan berganda itu.
+
+Pada grid dua biji dadu, kembar terletak pada satu pepenjuru dan hasil tambah <InlineMath math="8" /> pada pepenjuru yang lain. Kedua-duanya bersilang pada <InlineMath math="(4, 4)" />, iaitu kembar yang hasil tambahnya <InlineMath math="8" />. Kalau kedua-dua senarai dikira, titik itu dikira dua kali, jadi <InlineMath math="P = \frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<MathVisual
+  title={<>Kembar dan hasil tambah lapan berkongsi satu kesudahan</>}
+  description={<><InlineMath math="36" /> kesudahan dua biji dadu dengan enam kembar, lima hasil tambah <InlineMath math="8" />, dan kesudahan sepunya <InlineMath math="(4, 4)" />.</>}
+  labels={{
+    d44: <InlineMath math="(4, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "d11", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "d12", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "d13", kind: "point", at: { x: 1, y: 3 }, appearance: "reference" },
+      { id: "d14", kind: "point", at: { x: 1, y: 4 }, appearance: "reference" },
+      { id: "d15", kind: "point", at: { x: 1, y: 5 }, appearance: "reference" },
+      { id: "d16", kind: "point", at: { x: 1, y: 6 }, appearance: "reference" },
+      { id: "d21", kind: "point", at: { x: 2, y: 1 }, appearance: "reference" },
+      { id: "d22", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "d23", kind: "point", at: { x: 2, y: 3 }, appearance: "reference" },
+      { id: "d24", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "d25", kind: "point", at: { x: 2, y: 5 }, appearance: "reference" },
+      { id: "d26", kind: "point", at: { x: 2, y: 6 }, appearance: "secondary" },
+      { id: "d31", kind: "point", at: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "d32", kind: "point", at: { x: 3, y: 2 }, appearance: "reference" },
+      { id: "d33", kind: "point", at: { x: 3, y: 3 }, appearance: "primary" },
+      { id: "d34", kind: "point", at: { x: 3, y: 4 }, appearance: "reference" },
+      { id: "d35", kind: "point", at: { x: 3, y: 5 }, appearance: "secondary" },
+      { id: "d36", kind: "point", at: { x: 3, y: 6 }, appearance: "reference" },
+      { id: "d41", kind: "point", at: { x: 4, y: 1 }, appearance: "reference" },
+      { id: "d42", kind: "point", at: { x: 4, y: 2 }, appearance: "reference" },
+      { id: "d43", kind: "point", at: { x: 4, y: 3 }, appearance: "reference" },
+      { id: "d44", kind: "point", at: { x: 4, y: 4 }, appearance: "answer" },
+      { id: "d45", kind: "point", at: { x: 4, y: 5 }, appearance: "reference" },
+      { id: "d46", kind: "point", at: { x: 4, y: 6 }, appearance: "reference" },
+      { id: "d51", kind: "point", at: { x: 5, y: 1 }, appearance: "reference" },
+      { id: "d52", kind: "point", at: { x: 5, y: 2 }, appearance: "reference" },
+      { id: "d53", kind: "point", at: { x: 5, y: 3 }, appearance: "secondary" },
+      { id: "d54", kind: "point", at: { x: 5, y: 4 }, appearance: "reference" },
+      { id: "d55", kind: "point", at: { x: 5, y: 5 }, appearance: "primary" },
+      { id: "d56", kind: "point", at: { x: 5, y: 6 }, appearance: "reference" },
+      { id: "d61", kind: "point", at: { x: 6, y: 1 }, appearance: "reference" },
+      { id: "d62", kind: "point", at: { x: 6, y: 2 }, appearance: "secondary" },
+      { id: "d63", kind: "point", at: { x: 6, y: 3 }, appearance: "reference" },
+      { id: "d64", kind: "point", at: { x: 6, y: 4 }, appearance: "reference" },
+      { id: "d65", kind: "point", at: { x: 6, y: 5 }, appearance: "reference" },
+      { id: "d66", kind: "point", at: { x: 6, y: 6 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "d44", objectId: "d44", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Kiraan yang sama sebagai gambar rajah: <InlineMath math="5" /> kembar yang bukan hasil tambah <InlineMath math="8" />, <InlineMath math="4" /> hasil tambah <InlineMath math="8" /> yang bukan kembar, dan <InlineMath math="1" /> kesudahan dalam kedua-duanya. Kesatuannya mengandungi <InlineMath math="5 + 1 + 4 = 10" /> kesudahan, tepat seperti yang diberikan oleh rumus.
+
+<MathVisual
+  title={<>Pertindihan dikira sekali</>}
+  description={<>Dua bulatan yang bertindih untuk kembar dan hasil tambah <InlineMath math="8" />, dengan <InlineMath math="5" />, <InlineMath math="1" /> dan <InlineMath math="4" /> kesudahan dalam tiga rantau itu.</>}
+  labels={{
+    a: <>kembar</>,
+    b: <InlineMath math="x + y = 8" />,
+    onlya: <InlineMath math="5" />,
+    onlyb: <InlineMath math="4" />,
+    both: <InlineMath math="1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -1.6, max: 1.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "circle", center: { x: -0.6, y: 0 }, radius: 1.2, appearance: "primary" },
+      { id: "b", kind: "circle", center: { x: 0.6, y: 0 }, radius: 1.2, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1.8, y: 0 }, placement: "left" },
+      { key: "b", objectId: "b", at: { x: 1.8, y: 0 }, placement: "right" },
+      { key: "onlya", objectId: "a", at: { x: -1.1, y: 0 }, placement: "center" },
+      { key: "onlyb", objectId: "b", at: { x: 1.1, y: 0 }, placement: "center" },
+      { key: "both", objectId: "a", at: { x: 0, y: 0 }, placement: "center" },
+    ],
+  }}
+/>
+
+### Rumus untuk Peristiwa Tidak Saling Eksklusif
+
+Untuk peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> yang tidak saling eksklusif, cara mengira kebarangkalian "A ATAU B" ialah:
+
+<BlockMath math="P(A \text{ atau } B) = P(A) + P(B) - P(A \text{ dan } B)" />
+
+Sebutan <InlineMath math="P(A \text{ dan } B)" /> ialah kebarangkalian persilangan, iaitu apabila <InlineMath math="A" /> dan <InlineMath math="B" /> berlaku bersama. Tolak sebutan itu sekali untuk <Highlight>membetulkan kiraan berganda</Highlight>.
+
+**Contoh lengkap**:
+
+Teruskan dengan contoh "hasil tambah <InlineMath math="8" /> ATAU kembar":
+
+- <InlineMath math="P(S=8) = 5/36" />
+- <InlineMath math="P(\text{Kembar}) = 6/36" />
+- Kebarangkalian peristiwa "hasil tambah <InlineMath math="8" /> DAN kembar" (<InlineMath math="P(S=8 \text{ dan Kembar})" />) hanya satu kesudahan: pasangan <InlineMath math="(4, 4)" />. Jadi kebarangkaliannya <InlineMath math="1/36" />.
+
+Kebarangkalian mendapat hasil tambah <InlineMath math="8" /> ATAU kembar ialah:
+
+<BlockMath math="\begin{aligned}P(S=8\text{ atau Kembar}) &= P(S=8)+P(\text{Kembar}) \\ &\quad-P(S=8\text{ dan Kembar}) \\ &= \frac{5}{36}+\frac{6}{36}-\frac{1}{36} \\ &= \frac{10}{36}=\frac{5}{18}\end{aligned}" />
+
+**Cara matematik menggunakan "ATAU"**
+
+Dalam matematik, "<InlineMath math="A" /> atau <InlineMath math="B" />" merangkumi tiga kemungkinan: hanya <InlineMath math="A" />, hanya <InlineMath math="B" />, atau kedua-duanya apabila ada pertindihan. Ini ialah penggunaan "atau" yang **inklusif**, berbeza dengan percakapan harian yang mungkin meminta kita memilih tepat satu pilihan.
+
+## Bila Menggunakan Rumus yang Mana
+
+Dua rumus ini berbeza pada satu soalan sahaja, iaitu sama ada peristiwa itu boleh berlaku dalam **cubaan yang sama**. Jadual ini memadankan setiap jawapan dengan rumus yang dipilihnya.
+
+| Bolehkah peristiwa itu berlaku dalam cubaan yang sama? | Rumus |
+| --- | --- |
+| Tidak, peristiwa itu tidak boleh bertindih | <InlineMath math="P(A \text{ atau } B) = P(A) + P(B)" /> |
+| Ya, peristiwa itu bertindih | <InlineMath math="P(A \text{ atau } B) = P(A) + P(B) - P(A \text{ dan } B)" /> |
+
+Rumus kedua menolak pertindihan kerana kesudahan yang tergolong dalam kedua-dua peristiwa sudah dikira dua kali, sekali untuk <InlineMath math="A" /> dan sekali untuk <InlineMath math="B" />.
+
+Apabila ada pertindihan, bar tidak lagi boleh disusun terus. Kembar ada <InlineMath math="\frac{6}{36}" /> dan hasil tambah <InlineMath math="8" /> ada <InlineMath math="\frac{5}{36}" />, tetapi <InlineMath math="(4, 4)" /> tergolong dalam kedua-duanya, jadi salah satu daripadanya ada <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.
+
+<BarChart
+  title={<>Menambah dua peristiwa yang bertindih</>}
+  description={<>Bar untuk kembar, hasil tambah <InlineMath math="8" />, kedua-duanya dan salah satu, dengan <InlineMath math="\frac{6}{36} + \frac{5}{36} - \frac{1}{36} = \frac{10}{36}" />.</>}
+  yAxisLabel="Kebarangkalian"
+  data={[["kembar", 6 / 36], ["hasil tambah 8", 5 / 36], ["kedua-duanya", 1 / 36], ["salah satu", 10 / 36]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Dalam sebuah kelas yang ada <InlineMath math="30" /> orang murid, <InlineMath math="18" /> orang ahli kelab matematik, <InlineMath math="14" /> orang ahli kelab sains, dan <InlineMath math="8" /> orang ahli kedua-dua kelab. Seorang murid dipilih secara rawak.
+
+1.  Apakah kebarangkalian murid yang dipilih itu ahli kelab matematik **atau** kelab sains?
+2.  Apakah kebarangkalian murid itu bukan ahli mana-mana kelab?
+
+### Penyelesaian
+
+**Soalan 1**. Biar <InlineMath math="M" /> ialah peristiwa “ahli kelab matematik” dan <InlineMath math="S" /> ialah peristiwa “ahli kelab sains.” <InlineMath math="8" /> orang murid dalam kedua-dua kelab termasuk dalam kedua-dua kiraan, jadi menambah <InlineMath math="18+14" /> akan mengira mereka dua kali. Petua tambah am membuang kiraan berganda itu:
+
+<MathContainer>
+  <BlockMath math="n(M \cup S)=n(M)+n(S)-n(M \cap S)=18+14-8=24" />
+  <BlockMath math="P(M \cup S)=\frac{24}{30}=\frac{4}{5}" />
+</MathContainer>
+
+**Soalan 2**. Ada <InlineMath math="30-24=6" /> orang murid di luar kedua-dua kelab. Jadi,
+
+<BlockMath math="P(\text{bukan ahli mana-mana kelab})=\frac{6}{30}=\frac{1}{5}" />
+
+Dua kebarangkalian itu jika ditambah menjadi <InlineMath math="4/5+1/5=1" />, yang mengesahkan bahawa kelas itu dibahagikan kepada dua kumpulan pelengkap: murid yang menyertai sekurang-kurangnya satu kelab dan murid yang tidak menyertai mana-mana kelab.
+
+**Pertindihan mesti ditolak tepat sekali** kerana ia sudah termasuk dalam _kedua-dua kiraan asal_. **Semakan pelengkap** ini ialah cara cepat untuk menangkap kumpulan yang tertinggal atau terkira dua kali _sebelum menerima jawapan_.

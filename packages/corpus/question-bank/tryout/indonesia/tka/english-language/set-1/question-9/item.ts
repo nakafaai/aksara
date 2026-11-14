@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "recount",
-    topic: "comparison",
+    cognitiveLevel: "textual",
+    contentDomain: "procedure",
+    topic: "classification",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Spoils every reading", "Spoils only one morning's reading"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "The writer relied on symptoms from each bicycle instead of asking owners for details.",
+            "Looking down at the measuring cylinder from above while the marks are being made",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The writer began by replacing the noisy brake before asking what the rider had noticed.",
+            "Drawing the zero line before the water has covered the domed base",
         },
         {
-          correct: false,
-          label: "The writer stopped using service notes.",
+          column: 2,
+          label: "Reading the gauge three hours late on a hot afternoon",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The writer still depended on Sari to identify each fault before taking action.",
-        },
-        {
-          correct: true,
-          label: "The writer asked questions before suggesting a change.",
+            "Drawing the marks with a ruler held against the bottle instead of test pours",
         },
       ],
     },

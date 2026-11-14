@@ -37,6 +37,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           description: "Ukur gerak, vektor, dan energi dengan jelas.",
           title: "Fisika",
         },
+        ms: {
+          description: "Ukur gerakan, vektor dan tenaga dengan jelas.",
+          title: "Fizik",
+        },
       },
       materialDomain: "physics",
       order: 10,
@@ -49,6 +53,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
         id: {
           routeSlug: "fisika",
           title: "Fisika",
+        },
+        ms: {
+          routeSlug: "fizik",
+          title: "Fizik",
         },
       },
     }),
@@ -82,6 +90,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           description: "Modelkan materi dan reaksi dari bukti.",
           title: "Kimia",
         },
+        ms: {
+          description: "Bina model jirim dan tindak balas daripada bukti.",
+          title: "Kimia",
+        },
       },
       materialDomain: "chemistry",
       order: 20,
@@ -92,6 +104,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           title: "Chemistry",
         },
         id: {
+          routeSlug: "kimia",
+          title: "Kimia",
+        },
+        ms: {
           routeSlug: "kimia",
           title: "Kimia",
         },
@@ -126,6 +142,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           description: "Pelajari sistem hayati dan perubahan ekosistem.",
           title: "Biologi",
         },
+        ms: {
+          description: "Kaji sistem hidupan dan perubahan ekosistem.",
+          title: "Biologi",
+        },
       },
       materialDomain: "biology",
       order: 30,
@@ -136,6 +156,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           title: "Biology",
         },
         id: {
+          routeSlug: "biologi",
+          title: "Biologi",
+        },
+        ms: {
           routeSlug: "biologi",
           title: "Biologi",
         },
@@ -152,6 +176,10 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
       title: "Science",
     },
     id: {
+      routeSlug: "sains",
+      title: "Sains",
+    },
+    ms: {
       routeSlug: "sains",
       title: "Sains",
     },

@@ -1,19 +1,40 @@
-Setiap pilihan memakai ukuran yang berbeda: jumlah, persentase kenaikan, atau proporsi terhadap total. Hitung ukuran yang diminta oleh **setiap pernyataan**, jangan hanya membaca selisih jumlah.
+Soal ini punya dua tahap. Pertama, cari minggu ketika jumlah stok ketiga gudang pertama kali turun di bawah <InlineMath math="200\text{ ton}" />. Kedua, hitung stok tiap gudang pada minggu itu, lalu urutkan. Kedua tahap memakai satu angka yang sama, yaitu **perubahan stok tiap gudang dalam seminggu**.
 
-Proporsi buku sains terhadap total:
+Stok bertambah karena beras masuk, lalu berkurang karena beras keluar dan karena susut. Teks menyebut susut dicatat terpisah dari beras keluar, jadi susut juga harus dikurangkan:
 
 <BlockMath math="\begin{aligned}
-\text{Semester I: } & \frac{800}{3{.}000}\approx 26{,}7\% \\
-\text{Semester II: } & \frac{760}{3{.}450}\approx 22{,}0\%
+\text{Anggrek}: \quad 22-35-3 &= -16 \\
+\text{Bakung}: \quad 38-48-1 &= -11 \\
+\text{Cempaka}: \quad 15-18-2 &= -5
 \end{aligned}" />
 
-Proporsinya turun, jadi pernyataan tentang buku sains sesuai dengan data.
+Jumlah stok ketiga gudang mula-mula <InlineMath math="180+150+96=426\text{ ton}" /> dan turun <InlineMath math="16+11+5=32\text{ ton}" /> setiap minggu. Setelah <InlineMath math="w" /> minggu, jumlah stoknya <InlineMath math="426-32w" />. Cari <InlineMath math="w" /> bulat terkecil yang membuat jumlah itu kurang dari <InlineMath math="200" />:
 
-Periksa pernyataan lain:
+<BlockMath math="\begin{aligned}
+426-32w &< 200 \\
+32w &> 226 \\
+w &> 7{,}0625
+\end{aligned}" />
 
-- Kenaikan jumlah terbesar dimiliki fiksi, yaitu <InlineMath math="300" /> buku atau <InlineMath math="\frac{300}{1{.}200}=25\%" />. Persentase kenaikan terbesar dimiliki sejarah, yaitu <InlineMath math="\frac{135}{450}=30\%" />. Kategorinya berbeda.
-- Buku bahasa naik <InlineMath math="\frac{55}{550}=10\%" />, tidak lebih dari <InlineMath math="15\%" />.
-- Buku fiksi pada semester II mencakup <InlineMath math="\frac{1{.}500}{3{.}450}\approx 43{,}5\%" />, kurang dari separuh.
-- Total naik <InlineMath math="\frac{450}{3{.}000}=15\%" />, tidak lebih dari <InlineMath math="20\%" />.
+Jadi, minggu yang dicari adalah minggu ke-<InlineMath math="8" />. Pada akhir minggu ke-<InlineMath math="7" />, jumlahnya masih <InlineMath math="426-224=202\text{ ton}" />, belum kurang dari <InlineMath math="200" />. Pada akhir minggu ke-<InlineMath math="8" />, jumlahnya <InlineMath math="426-256=170\text{ ton}" />.
 
-Jadi, pernyataan yang sesuai dengan data adalah bahwa proporsi peminjaman buku sains terhadap total turun.
+Sekarang hitung stok tiap gudang setelah <InlineMath math="8" /> minggu:
+
+<BlockMath math="\begin{aligned}
+\text{Anggrek}: \quad 180-8\times16 &= 52 \\
+\text{Bakung}: \quad 150-8\times11 &= 62 \\
+\text{Cempaka}: \quad 96-8\times5 &= 56
+\end{aligned}" />
+
+Urutannya dari terbesar: Bakung <InlineMath math="62\text{ ton}" />, Cempaka <InlineMath math="56\text{ ton}" />, lalu Anggrek <InlineMath math="52\text{ ton}" />. Cek: <InlineMath math="62+56+52=170" />, sama dengan jumlah yang dihitung tadi.
+
+Perhatikan bahwa Gudang Anggrek, yang stok awalnya paling besar, justru menjadi yang terkecil, karena stoknya turun paling cepat. Pendapat ketua koperasi hanya melihat stok awal.
+
+Urutan lain berasal dari salah langkah tertentu:
+
+- Bakung, Anggrek, Cempaka adalah urutan pada akhir minggu ke-<InlineMath math="7" />, yaitu Bakung <InlineMath math="73" />, Anggrek <InlineMath math="68" />, dan Cempaka <InlineMath math="61" />. Ini terjadi jika <InlineMath math="7{,}0625" /> dibulatkan ke bawah, padahal pada minggu itu jumlah stok masih <InlineMath math="202\text{ ton}" />.
+- Cempaka, Bakung, Anggrek adalah urutan laju penurunan, dari yang paling lambat (<InlineMath math="-5" />) sampai yang paling cepat (<InlineMath math="-16" />). Urutan ini melupakan stok awal.
+- Cempaka, Anggrek, Bakung muncul jika susut dilupakan di semua langkah. Penurunan per minggu menjadi <InlineMath math="13" />, <InlineMath math="10" />, dan <InlineMath math="3\text{ ton}" />, jumlah stok baru kurang dari <InlineMath math="200" /> pada minggu ke-<InlineMath math="9" />, dan stoknya menjadi Anggrek <InlineMath math="63" />, Bakung <InlineMath math="60" />, dan Cempaka <InlineMath math="69" />.
+- Anggrek, Cempaka, Bakung muncul jika minggunya benar, tetapi susut lupa dikurangkan saat menghitung stok tiap gudang, sehingga stoknya menjadi Anggrek <InlineMath math="76" />, Bakung <InlineMath math="70" />, dan Cempaka <InlineMath math="72" />.
+
+Jadi, pada akhir minggu itu urutan stok dari terbesar ke terkecil adalah Bakung, Cempaka, lalu Anggrek.

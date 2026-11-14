@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "referent",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "punctuation",
   },
-  stimulus: "medicine-delivery",
+  stimulus: "debat",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "dilatihnya dua puluh relawan muda",
-        },
-        {
-          correct: false,
-          label: "kunjungan tambahan bagi warga yang tinggal sendiri",
+          label:
+            "Setelah mosi dibacakan, ketua juri tim menyusun argumen tanpa telepon genggam dan tanpa bantuan pelatih.",
         },
         {
           correct: true,
-          label: "berkurangnya warga lanjut usia yang lupa minum obat",
+          label:
+            "Setelah mosi dibacakan ketua juri, tim menyusun argumen tanpa telepon genggam dan tanpa bantuan pelatih.",
         },
         {
           correct: false,
-          label: "pemeriksaan catatan kesehatan setiap Senin",
+          label:
+            "Kalimat (8) tidak perlu diberi koma karena anak kalimatnya berada di awal kalimat.",
         },
         {
           correct: false,
-          label: "pengantaran obat pada hari yang sama",
+          label:
+            "Setelah mosi dibacakan ketua, juri tim menyusun argumen tanpa telepon genggam dan tanpa bantuan pelatih.",
+        },
+        {
+          correct: false,
+          label:
+            "Setelah mosi dibacakan ketua juri tim, menyusun argumen tanpa telepon genggam dan tanpa bantuan pelatih.",
         },
       ],
     },

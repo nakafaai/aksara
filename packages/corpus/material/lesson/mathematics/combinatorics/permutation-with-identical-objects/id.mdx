@@ -22,23 +22,23 @@ Contohnya, huruf kata MAMA punya <InlineMath math="n = 4" /> dengan dua M dan du
 Beri label sementara pada huruf yang sama: <InlineMath math="M_1, M_2, A_1, A_2" />. Dengan label, keempat huruf berbeda dan bisa disusun dalam <InlineMath math="4! = 24" /> cara. Saat label dihapus, susunan <InlineMath math="M_1 A_1 M_2 A_2" /> dan <InlineMath math="M_2 A_1 M_1 A_2" /> menjadi kata yang sama, yaitu MAMA.
 
 <Mermaid
-  title={<>Dari 24 susunan berlabel ke 6 kata MAMA</>}
+  title={<>Dari <InlineMath math="24" /> susunan berlabel ke <InlineMath math="6" /> kata MAMA</>}
   description={<>Setiap penghapusan label menggabungkan susunan yang hanya berbeda pada urutan huruf yang sama.</>}
   chart={`flowchart LR
   A["24 susunan berlabel"] -->|"hapus label M, bagi 2!"| B["12 susunan"]
   B -->|"hapus label A, bagi 2!"| C["6 susunan terlihat"]`}
 />
 
-Setiap susunan yang terlihat muncul tepat <InlineMath math="2! \times 2! = 4" /> kali di antara 24 susunan berlabel: <InlineMath math="2!" /> cara menukar kedua M dan <InlineMath math="2!" /> cara menukar kedua A. Jadi banyak susunan yang terlihat adalah <InlineMath math="\frac{24}{4} = 6" />. Kamu bisa memeriksanya dengan mendaftar semua posisi huruf M:
+Setiap susunan yang terlihat muncul tepat <InlineMath math="2! \times 2! = 4" /> kali di antara <InlineMath math="24" /> susunan berlabel: <InlineMath math="2!" /> cara menukar kedua M dan <InlineMath math="2!" /> cara menukar kedua A. Jadi banyak susunan yang terlihat adalah <InlineMath math="\frac{24}{4} = 6" />. Kamu bisa memeriksanya dengan mendaftar semua posisi huruf M:
 
 | Posisi huruf M | Susunan yang terlihat |
 | --- | --- |
-| 1 dan 2 | MMAA |
-| 1 dan 3 | MAMA |
-| 1 dan 4 | MAAM |
-| 2 dan 3 | AMMA |
-| 2 dan 4 | AMAM |
-| 3 dan 4 | AAMM |
+| <InlineMath math="1" /> dan <InlineMath math="2" /> | MMAA |
+| <InlineMath math="1" /> dan <InlineMath math="3" /> | MAMA |
+| <InlineMath math="1" /> dan <InlineMath math="4" /> | MAAM |
+| <InlineMath math="2" /> dan <InlineMath math="3" /> | AMMA |
+| <InlineMath math="2" /> dan <InlineMath math="4" /> | AMAM |
+| <InlineMath math="3" /> dan <InlineMath math="4" /> | AAMM |
 
 Daftar posisi itu menghasilkan **tepat enam susunan**, sesuai dengan rumus. Pembagian dengan <InlineMath math="r_i!" /> menghapus semua penukaran di dalam satu kelompok yang tidak terlihat oleh mata.
 
@@ -65,9 +65,9 @@ Kata BANANA punya <InlineMath math="n = 6" /> huruf. Catat frekuensinya dulu:
 
 | Huruf | Banyak kemunculan |
 | --- | --- |
-| B | 1 |
-| A | 3 |
-| N | 2 |
+| B | <InlineMath math="1" /> |
+| A | <InlineMath math="3" /> |
+| N | <InlineMath math="2" /> |
 
 Jumlah frekuensinya <InlineMath math="1 + 3 + 2 = 6" />, sama dengan <InlineMath math="n" />. Tanpa syarat, banyak susunannya <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" />.
 
@@ -85,7 +85,7 @@ Syarat memperkecil banyaknya susunan. Semua susunan <InlineMath math="BANANA" />
 
 <BarChart
   title={<>Susunan <InlineMath math="BANANA" /> dengan dan tanpa syarat</>}
-  description={<>Batang 60 susunan tanpa syarat, 10 dengan B di depan, dan 20 dengan kedua N berdampingan.</>}
+  description={<>Batang <InlineMath math="60" /> susunan tanpa syarat, <InlineMath math="10" /> dengan B di depan, dan <InlineMath math="20" /> dengan kedua N berdampingan.</>}
   yAxisLabel="Susunan"
   data={[["tanpa syarat", 720 / (1 * 6 * 2)], ["B di depan", 120 / (6 * 2)], ["NN berdampingan", 120 / 6]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -100,7 +100,7 @@ Jika hanya ada dua jenis objek, **rumusnya sama dengan** [kombinasi](/id/materi/
 Contohnya, jalur terpendek yang bergerak <InlineMath math="3" /> petak ke kanan dan <InlineMath math="2" /> petak ke atas adalah susunan langkah KKKAA, dengan K berarti satu petak ke kanan dan A satu petak ke atas. Jadi ada <InlineMath math="10" /> jalur.
 
 <MathVisual
-  title={<>Dua jalur terpendek pada petak 3 kali 2</>}
+  title={<>Dua jalur terpendek pada petak <InlineMath math="3" /> kali <InlineMath math="2" /></>}
   description={<>Setiap jalur dari <InlineMath math="S" /> ke <InlineMath math="F" /> memakai tiga langkah K dan dua langkah A. Jalur KKKAA dan KAKKA hanya berbeda urutan langkahnya.</>}
   scene={{
     space: "plane",
@@ -165,7 +165,7 @@ Setiap huruf yang berulang membagi banyaknya susunan: <InlineMath math="ABCD" />
 
 <BarChart
   title={<>Susunan empat huruf</>}
-  description={<>Batang banyaknya susunan <InlineMath math="ABCD" />, <InlineMath math="AABC" />, dan <InlineMath math="AABB" />: 24, 12, dan 6.</>}
+  description={<>Batang banyaknya susunan <InlineMath math="ABCD" />, <InlineMath math="AABC" />, dan <InlineMath math="AABB" />: <InlineMath math="24" />, <InlineMath math="12" />, dan <InlineMath math="6" />.</>}
   yAxisLabel="Susunan"
   data={[["ABCD", 24 / 1], ["AABC", 24 / 2], ["AABB", 24 / (2 * 2)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Susunan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -209,7 +209,7 @@ Periksa dengan memilih posisi: <InlineMath math="\binom{10}{3}\binom{7}{2}\binom
 
 Periksa: pilih <InlineMath math="3" /> posisi merah dari <InlineMath math="8" />, lalu <InlineMath math="3" /> posisi putih dari <InlineMath math="5" />, dan sisanya kuning, sehingga <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Soal 3**. Angka 1 muncul dua kali, angka 2 tiga kali, dan angka 3 sekali, jadi banyak bilangannya <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" />. Bilangan lebih dari <InlineMath math="300\,000" /> harus diawali angka 3, karena angka lain di depan memberi bilangan di bawah <InlineMath math="300\,000" />. Sebaliknya, setiap bilangan yang diawali 3 pasti lebih dari <InlineMath math="300\,000" />, karena tidak ada angka 0 dan bilangan terkecilnya <InlineMath math="311\,222" />. Sisanya, <InlineMath math="1, 1, 2, 2, 2" />, disusun dalam <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> cara. Periksa: angka 3 berada di depan pada <InlineMath math="\frac{1}{6}" /> dari semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Soal 3**. Angka <InlineMath math="1" /> muncul dua kali, angka <InlineMath math="2" /> tiga kali, dan angka <InlineMath math="3" /> sekali, jadi banyak bilangannya <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" />. Bilangan lebih dari <InlineMath math="300\,000" /> harus diawali angka <InlineMath math="3" />, karena angka lain di depan memberi bilangan di bawah <InlineMath math="300\,000" />. Sebaliknya, setiap bilangan yang diawali <InlineMath math="3" /> pasti lebih dari <InlineMath math="300\,000" />, karena tidak ada angka <InlineMath math="0" /> dan bilangan terkecilnya <InlineMath math="311\,222" />. Sisanya, <InlineMath math="1, 1, 2, 2, 2" />, disusun dalam <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> cara. Periksa: angka <InlineMath math="3" /> berada di depan pada <InlineMath math="\frac{1}{6}" /> dari semua susunan, dan <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Soal 4**. INDONESIA punya <InlineMath math="9" /> huruf: I dua kali, N dua kali, dan D, O, E, S, A masing-masing sekali.
 

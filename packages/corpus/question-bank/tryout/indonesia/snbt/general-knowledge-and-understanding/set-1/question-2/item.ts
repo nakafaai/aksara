@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "word-relation",
-    topic: "antonym",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "leuit",
+  stimulus: "mikoriza",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "rentan",
+          column: 1,
+          label:
+            "Fosfor yang diterima tanaman bermikoriza dapat berasal dari pori tanah yang terlalu sempit untuk dimasuki akarnya, walaupun fosfor sangat lambat berpindah di dalam tanah.",
         },
         {
-          correct: false,
-          label: "kebal",
+          column: 2,
+          label:
+            "Jika dua tanaman sejenis tumbuh di tanah yang miskin fosfor dan salah satunya tumbuh lebih baik, tanaman yang tumbuh lebih baik itulah yang bermikoriza.",
         },
         {
-          correct: false,
-          label: "awet",
+          column: 2,
+          label:
+            "Pembajakan tanah merugikan mikoriza hanya di lahan yang kaya fosfor.",
         },
         {
-          correct: false,
-          label: "kuat",
-        },
-        {
-          correct: false,
-          label: "tabah",
+          column: 1,
+          label:
+            "Di lahan kaya fosfor yang tidak pernah dibajak pun, pupuk hayati mikoriza belum tentu memberikan hasil yang terlihat.",
         },
       ],
     },

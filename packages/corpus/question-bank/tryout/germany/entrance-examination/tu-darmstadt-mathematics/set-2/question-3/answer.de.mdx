@@ -1,17 +1,39 @@
-Bei einer quadratischen Ungleichung bestimmst du zuerst die **Nullstellen**, dann entscheidet die Öffnung der Parabel, wo der Term negativ ist. Der Term lässt sich faktorisieren, denn <InlineMath math="-3\cdot2=-6" /> und <InlineMath math="-3+2=-1" />.
+# Nur ein Teil der Parabel zählt
 
-<BlockMath math="x^2-x-6=(x-3)(x+2)" />
+Die linke Seite ist eine nach oben geöffnete Parabel mit dem Scheitel bei <InlineMath math="x=-\frac a2" />. Die Ungleichung muss nur für <InlineMath math="x\ge1" /> gelten, also **zählt der kleinste Wert der Parabel auf diesem Bereich**, nicht auf der ganzen <InlineMath math="x" />-Achse. Wo der Scheitel liegt, entscheidet, wo dieser kleinste Wert ist.
 
-Die Nullstellen sind <InlineMath math="x=-2" /> und <InlineMath math="x=3" />. Die Parabel <InlineMath math="y=x^2-x-6" /> ist nach oben geöffnet, weil der Koeffizient von <InlineMath math="x^2" /> positiv ist. Sie liegt also **zwischen** den Nullstellen unterhalb der <InlineMath math="x" />-Achse und außerhalb davon oberhalb. Weil auch <InlineMath math="=0" /> erlaubt ist, gehören die Nullstellen selbst dazu.
+# Scheitel links vom Bereich
 
-<BlockMath math="-2\le x\le3" />
+Ist <InlineMath math="-\frac a2\le1" />, also <InlineMath math="a\ge-2" />, dann steigt die Parabel auf <InlineMath math="x\ge1" /> schon. **Ihr kleinster Wert liegt am Rand <InlineMath math="x=1" />**:
 
-Zur Kontrolle: Für <InlineMath math="x=0" /> ist <InlineMath math="-6\le0" /> erfüllt, für <InlineMath math="x=4" /> ist <InlineMath math="16-4-6=6" /> nicht <InlineMath math="\le0" />.
+<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
 
-Die Lösungsmenge ist also <InlineMath math="-2\le x\le3" />.
+Jedes <InlineMath math="a\ge-2" /> erfüllt das, dieser Fall gilt also ganz.
 
-- <InlineMath math="-3\le x\le2" /> entsteht mit vertauschten Vorzeichen der Nullstellen, also aus <InlineMath math="(x+3)(x-2)" />. Dieser Term ergibt aber <InlineMath math="x^2+x-6" />.
-- <InlineMath math="x\le-2" /> oder <InlineMath math="x\ge3" /> beschreibt, wo der Term größer oder gleich null ist, also die Lösung von <InlineMath math="x^2-x-6\ge0" />.
-- <InlineMath math="-2<x<3" /> lässt die Randwerte weg, obwohl die Ungleichung <InlineMath math="\le" /> zulässt, dass der Term null wird.
-- <InlineMath math="x\le3" /> vergisst die zweite Bedingung <InlineMath math="x\ge-2" />. Zum Beispiel erfüllt <InlineMath math="x=-5" /> zwar <InlineMath math="x\le3" />, aber <InlineMath math="25+5-6=24" /> ist nicht <InlineMath math="\le0" />.
-- <InlineMath math="x\ge-2" /> vergisst die zweite Bedingung <InlineMath math="x\le3" />. Zum Beispiel erfüllt <InlineMath math="x=4" /> zwar <InlineMath math="x\ge-2" />, aber <InlineMath math="16-4-6=6" /> ist nicht <InlineMath math="\le0" />.
+# Scheitel im Bereich
+
+Ist <InlineMath math="a<-2" />, dann liegt der Scheitel bei <InlineMath math="x=-\frac a2>1" />. **Der kleinste Wert ist der Wert im Scheitel**:
+
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
+4-\frac{a^2}4&>0 \\
+-4<a&<4
+\end{aligned}" />
+
+Zusammen mit <InlineMath math="a<-2" /> ergibt dieser Fall <InlineMath math="-4<a<-2" />.
+
+# Beide Fälle zusammensetzen
+
+<InlineMath math="-4<a<-2" /> und <InlineMath math="a\ge-2" /> **schließen lückenlos an zu <InlineMath math="a>-4" />**.
+
+Probe am Rand: Für <InlineMath math="a=-4" /> ist <InlineMath math="x^2-4x+4=(x-2)^2" /> bei <InlineMath math="x=2\ge1" /> gleich <InlineMath math="0" />, also gehört <InlineMath math="a=-4" /> nicht dazu.
+
+Die Ungleichung gilt also genau dann für alle <InlineMath math="x\ge1" />, wenn <InlineMath math="a>-4" /> ist.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-4<a<4" /> **prüft mit der Diskriminante die ganze <InlineMath math="x" />-Achse**. Für <InlineMath math="a=10" /> schneidet die Parabel die <InlineMath math="x" />-Achse zwar, aber nur bei <InlineMath math="x<0" />.
+- <InlineMath math="a>-5" /> prüft nur <InlineMath math="x=1" />. Für <InlineMath math="a=-4{,}5" /> ist der Wert im Scheitel <InlineMath math="x=2{,}25" /> negativ.
+- <InlineMath math="a\ge-4" /> nimmt <InlineMath math="a=-4" /> mit, wo die linke Seite bei <InlineMath math="x=2" /> null ist.
+- <InlineMath math="a\ge-2" /> benutzt nur den Fall mit dem Scheitel links vom Bereich und lässt <InlineMath math="-4<a<-2" /> weg.
+- <InlineMath math="a<4" /> setzt den Scheitel bei <InlineMath math="x=\frac a2" /> an, mit falschem Vorzeichen, und spiegelt so alle Fälle.

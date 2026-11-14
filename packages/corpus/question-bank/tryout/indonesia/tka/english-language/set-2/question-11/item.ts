@@ -3,36 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "narrative",
-    topic: "character",
+    contentDomain: "procedure",
+    topic: "prediction",
   },
-  stimulus: "last-bus",
+  stimulus: "sprout",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "He expects a printed schedule to remain the most precise source during a disruption.",
+          label: "$$48\\%$$, so the club should buy new seed",
         },
         {
           correct: false,
-          label: "He refuses to use the service page again.",
-        },
-        {
-          correct: false,
-          label:
-            "He decides that service pages make direct phone contact unnecessary.",
+          label: "$$54\\%$$, so the club should buy new seed",
         },
         {
           correct: true,
-          label:
-            "He learns to combine sources rather than reject an imperfect one.",
+          label: "$$54\\%$$, so the club should sow two seeds in every hole",
         },
         {
           correct: false,
-          label: "He thinks the storm did not affect transport.",
+          label: "$$27\\%$$, so the club should buy new seed",
+        },
+        {
+          correct: false,
+          label: "$$84\\%$$, so the club should sow as usual",
         },
       ],
     },

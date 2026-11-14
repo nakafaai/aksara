@@ -1,26 +1,26 @@
-Bei einer arithmetischen Folge aus drei Gliedern schreibst du die Glieder am einfachsten **symmetrisch um das mittlere Glied**: <InlineMath math="u-b" />, <InlineMath math="u" /> und <InlineMath math="u+b" /> mit der Differenz <InlineMath math="b>0" />.
-
-# Mittleres Glied aus der Summe
-
-<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
-
-Die ursprüngliche Folge lautet <InlineMath math="6-b" />, 6 und <InlineMath math="6+b" />. Nach den Änderungen lautet **die neue Folge** <InlineMath math="7-b" />, 6 und <InlineMath math="13+b" />.
-
-# Bedingung für die geometrische Folge
-
-In einer geometrischen Folge ist **das Quadrat des mittleren Glieds gleich dem Produkt aus erstem und drittem Glied**.
+Du kannst die Frage in eine Frage nach einem Vorzeichen verwandeln. Schreibe den Abstand jedes Werts zum Median: <InlineMath math="a=x_3-x_1" />, <InlineMath math="b=x_3-x_2" />, <InlineMath math="c=x_4-x_3" /> und <InlineMath math="d=x_5-x_3" />. Alle vier sind nichtnegativ, weil die Daten sortiert sind. **Mittelwert minus Median ist der Mittelwert der Abweichungen vom Median**, also
 
 <BlockMath math="\begin{aligned}
-6^2&=(7-b)(13+b)\\
-36&=91-6b-b^2\\
-b^2+6b-55&=0\\
-(b+11)(b-5)&=0
+\bar x-x_3&=\frac{(x_1-x_3)+(x_2-x_3)+(x_4-x_3)+(x_5-x_3)}{5}\\
+&=\frac{(c-b)+(d-a)}{5}
 \end{aligned}" />
 
-Weil die Differenz positiv ist, gilt <InlineMath math="b=5" />. Die ursprüngliche Folge ist 1, 6 und 11. Probe: Die neue Folge 2, 6 und 18 ist tatsächlich geometrisch mit dem Quotienten 3.
+Der Mittelwert ist also genau dann größer als der Median, wenn <InlineMath math="(c-b)+(d-a)>0" /> gilt. Aussage (1) bedeutet <InlineMath math="c=b" />, Aussage (2) bedeutet <InlineMath math="d>a" />.
 
-<BlockMath math="1\times6\times11=66" />
+# Erste Aussage allein
 
-Der Wert <InlineMath math="-510" /> kommt von <InlineMath math="b=-11" />, das die Folge 17, 6 und <InlineMath math="-5" /> mit negativer Differenz liefert. Der Wert 216 ist das Produkt der neuen geometrischen Folge, <InlineMath math="2\times6\times18" />. Der Wert 108 vermischt beide Folgen, nämlich <InlineMath math="1\times6\times18" />.
+Aus <InlineMath math="c=b" /> wird die Differenz zu <InlineMath math="\tfrac{d-a}{5}" />, und **das Vorzeichen von <InlineMath math="d-a" /> ist noch unbekannt**. Die Daten <InlineMath math="2,\ 9,\ 10,\ 11,\ 19" /> erfüllen Aussage (1) mit dem Mittelwert <InlineMath math="\tfrac{51}{5}>10" />, die Antwort ist also ja. Die Daten <InlineMath math="1,\ 9,\ 10,\ 11,\ 12" /> erfüllen Aussage (1) ebenfalls, haben aber den Mittelwert <InlineMath math="\tfrac{43}{5}<10" />, die Antwort ist also nein. Aussage (1) allein reicht nicht aus.
 
-Das Produkt der drei ursprünglichen Zahlen ist also **66**.
+# Zweite Aussage allein
+
+Aus <InlineMath math="d>a" /> ist der Term <InlineMath math="d-a" /> positiv, aber <InlineMath math="c-b" /> kann negativ sein und den Mittelwert nach unten ziehen. **Ein weiter entferntes oberes Ende garantiert also keinen Mittelwert über dem Median**. Die Daten <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> erfüllen Aussage (2), denn <InlineMath math="19-10=9>8=10-2" />, und ihr Mittelwert ist <InlineMath math="\tfrac{51}{5}>10" />. Die Daten <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> erfüllen Aussage (2) ebenfalls, haben aber den Mittelwert <InlineMath math="\tfrac{49}{5}<10" />. Aussage (2) allein reicht nicht aus.
+
+# Beide Aussagen zusammen
+
+Verbinde <InlineMath math="c=b" /> und <InlineMath math="d>a" />. Der Term <InlineMath math="c-b" /> **fällt weg, weil er null ist**, und der verbleibende Term ist positiv.
+
+<BlockMath math="\bar x-x_3=\frac{0+(d-a)}{5}>0" />
+
+Für jede Datenreihe, die beide Aussagen erfüllt, ist der Mittelwert sicher größer als der Median. Die Antwort ist immer ja.
+
+**Beide Aussagen zusammen reichen also aus**, aber keine Aussage allein reicht, um die Frage zu beantworten.

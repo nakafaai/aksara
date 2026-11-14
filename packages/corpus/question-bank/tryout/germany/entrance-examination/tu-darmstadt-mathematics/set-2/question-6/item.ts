@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(-3\\mid7)$$",
+          label: "$$\\frac{200\\pi}{3}\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$(3\\mid34)$$",
+          label: "$$24\\pi\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$(-6\\mid7)$$",
+          label: "$$128\\pi\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$(-3\\mid2)$$",
-        },
-        {
-          correct: false,
-          label: "$$(-3\\mid16)$$",
+          label: "$$\\frac{272\\pi}{3}\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$(-3\\mid-2)$$",
+          label: "$$\\frac{128\\pi}{3}\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{80\\pi}{3}\\text{ cm}^3$$",
         },
       ],
     },

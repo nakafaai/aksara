@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "word-relation",
     topic: "analogy",
   },
-  stimulus: "gamelan",
+  stimulus: "delta",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "sungai : sedimentasi",
+        },
+        {
+          correct: false,
+          label: "pasir : gumuk",
+        },
+        {
+          correct: false,
+          label: "sungai : ngarai",
+        },
+        {
           correct: true,
-          label: "pedal : sepeda",
+          label: "angin : gumuk",
         },
         {
           correct: false,
-          label: "penyetel : gamelan",
-        },
-        {
-          correct: false,
-          label: "gending : pesinden",
-        },
-        {
-          correct: false,
-          label: "laras : slendro",
-        },
-        {
-          correct: false,
-          label: "kikir : logam",
+          label: "gunung api : kawah",
         },
       ],
     },

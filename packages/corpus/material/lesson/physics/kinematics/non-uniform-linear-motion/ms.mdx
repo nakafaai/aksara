@@ -1,0 +1,149 @@
+
+export const metadata = {
+  title: "Gerakan Linear dengan Pecutan Seragam",
+  description:
+    "Gerakan linear dengan pecutan seragam berlaku pada lintasan lurus dengan pecutan malar, dan boleh diwakili oleh jejak kedudukan serta graf halaju-masa.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Kinematik",
+};
+
+## Perubahan Halaju yang Sama dalam Sela Masa yang Sama
+
+Gerakan linear dengan pecutan seragam ialah gerakan pada lintasan lurus dengan pecutan malar. Pecutan malar bermaksud halaju <Highlight>berubah dengan nilai yang sama</Highlight> dalam setiap sela masa yang sama.
+
+Katakan sebuah kereta bermula pada <InlineMath math="0\text{ m/s}" /> dan halajunya bertambah <InlineMath math="2\text{ m/s}" /> setiap saat. Halajunya menjadi <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" /> dan seterusnya. Pertambahan yang sama berulang pada setiap saat.
+
+> Dalam gerakan dengan pecutan seragam, pecutan kekal malar manakala halaju berubah pada kadar yang tetap.
+
+<MathContainer>
+  <BlockMath math="v_t=v_0+at" />
+  <BlockMath math="\Delta x=v_0t+\frac{1}{2}at^2" />
+  <BlockMath math="v_t^2=v_0^2+2a\Delta x" />
+</MathContainer>
+
+Di sini, <InlineMath math="v_0" /> ialah halaju awal, <InlineMath math="v_t" /> ialah halaju selepas masa <InlineMath math="t" />, <InlineMath math="a" /> ialah pecutan dan <InlineMath math="\Delta x" /> ialah sesaran.
+
+## Tanda Kedudukan Tidak Lagi Berjarak Sekata
+
+Dalam gerakan linear seragam, tanda kedudukan pada setiap saat berjarak sama. Dalam gerakan dengan pecutan seragam, jarak antara tanda itu boleh berubah. Selagi objek terus bergerak dalam **arah yang sama**, jarak antara tanda bertambah apabila lajunya meningkat dan berkurang apabila lajunya menurun. Jika objek berpatah balik, kamu juga perlu memeriksa susunan tanda dan di sebelah mana setiap tanda itu jatuh.
+
+Lihat gerakan "Dari Pegun". Pada mulanya, kereta belum bergerak, kemudian jarak antara tanda menjadi semakin panjang. Itulah petunjuk bahawa halaju sedang bertambah. Grafnya naik sebagai garis lurus kerana pecutannya malar.
+
+<NonUniformLinearMotionLab
+  title={<>Tanda Kedudukan pada Landasan</>}
+  description={
+    <>
+      Tanda pada landasan menunjukkan kedudukan kereta api setiap{" "}
+      <InlineMath math="1\text{ s}" /> sementara pecutannya kekal malar.
+    </>
+  }
+  labels={{
+    chooseScenario: "Pilih gerakan",
+    scenarioNames: {
+      "from-rest": <>Dari Pegun</>,
+      "speed-up": <>Semakin Laju</>,
+      brake: <>Membrek</>,
+    },
+    factLabels: {
+      initialVelocity: <>Halaju awal</>,
+      acceleration: <>Pecutan</>,
+      finalVelocity: <>Halaju akhir</>,
+      displacement: <>Sesaran</>,
+    },
+    viewLabel: "Visual gerakan dengan pecutan seragam",
+  }}
+/>
+
+Bagi kereta mainan yang bermula dari keadaan pegun, tanda pada setiap saat jatuh pada <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="9" />, <InlineMath math="16" /> dan <InlineMath math="25\text{ m}" />. Jarak antara tanda bertambah <InlineMath math="2\text{ m}" /> setiap saat, jadi graf kedudukan melengkung menjadi parabola, bukan garis lurus.
+
+<MathVisual
+  title={<>Tanda Kedudukan Semakin Renggang</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama 5 s. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 5 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "primary", coefficients: { a: 0.2, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "mark-1", kind: "point", appearance: "answer", at: { x: 1, y: 1 ** 2 / 5 } },
+      { id: "mark-2", kind: "point", appearance: "answer", at: { x: 2, y: 2 ** 2 / 5 } },
+      { id: "mark-3", kind: "point", appearance: "answer", at: { x: 3, y: 3 ** 2 / 5 } },
+      { id: "mark-4", kind: "point", appearance: "answer", at: { x: 4, y: 4 ** 2 / 5 } },
+      { id: "mark-5", kind: "point", appearance: "answer", at: { x: 5, y: 5 ** 2 / 5 } },
+    ],
+    labels: [
+      { key: "marks", objectId: "mark-5", at: { x: 5, y: 5 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
+  }}
+/>
+
+## Mengira Sesaran daripada Luas Graf
+
+Graf halaju-masa bukan sekadar menunjukkan halaju. **Luas bertanda** antara graf dengan paksi masa mewakili sesaran. Dalam gerakan dengan pecutan seragam di atas paksi masa, luas itu boleh berbentuk segi tiga atau trapezium. Luas di bawah paksi pula menyumbang sesaran negatif.
+
+<NonUniformLinearMotionGraphCard
+  title={<>Luas di Bawah Graf Halaju</>}
+  description={
+    <>
+      Pilih satu gerakan, kemudian kira luas bertanda antara grafnya dengan
+      paksi masa untuk mendapatkan sesaran objek itu.
+    </>
+  }
+  labels={{
+    chooseScenario: "Pilih Gerakan",
+    scenarioNames: {
+      "from-rest": "Dari Pegun",
+      "speed-up": "Semakin Laju",
+      brake: "Membrek",
+    },
+    timeAxis: "Masa (s)",
+    velocityAxis: "Halaju (m/s)",
+  }}
+/>
+
+| Situasi | Bentuk luas pada graf | Rumus sesaran |
+| --- | --- | --- |
+| Bermula dari keadaan pegun | Segi tiga | <InlineMath math="\Delta x=\frac{1}{2}at^2" /> |
+| Halaju awal dan akhir positif | Trapezium | <InlineMath math="\Delta x=\frac{1}{2}(v_0+v_t)t" /> |
+| Menggunakan pecutan secara terus | Segi empat tepat ditambah segi tiga | <InlineMath math="\Delta x=v_0t+\frac{1}{2}at^2" /> |
+
+Rumus-rumus ini menyatakan hubungan yang sama: sesaran ialah luas bertanda antara graf halaju-masa dengan paksi masa.
+
+## Kereta Bermula dari Pegun
+
+Sebuah kereta mainan bermula dari keadaan pegun, kemudian bergerak dengan pecutan malar <InlineMath math="2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />.
+
+Halaju akhirnya ialah:
+
+<BlockMath math="\begin{aligned}
+v_t &= v_0+at \\
+&= 0+2(5) \\
+&= 10\text{ m/s}
+\end{aligned}" />
+
+Sesarannya ialah:
+
+<BlockMath math="\begin{aligned}
+\Delta x &= v_0t+\frac{1}{2}at^2 \\
+&= 0(5)+\frac{1}{2}(2)(5^2) \\
+&= 25\text{ m}
+\end{aligned}" />
+
+Jadi, selepas <InlineMath math="5\text{ s}" />, kereta itu bergerak dengan halaju <InlineMath math="10\text{ m/s}" /> dan sudah berada <InlineMath math="25\text{ m}" /> dari titik mulanya.
+
+Kedua-dua hasil ini menjawab soalan yang berbeza. Halaju akhir memberitahu laju dan arah kereta pada penghujung gerakan, manakala sesaran memberitahu perubahan bersih kedudukannya sepanjang sela masa itu.
+
+Kamu boleh menyemak sesaran ini dengan **luas segi tiga di bawah graf halaju-masa**. Tapaknya ialah masa yang berlalu dan tingginya ialah halaju akhir.
+
+<BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
+
+## Tanda Pecutan Bergantung pada Arah Positif
+
+Dalam gerakan satu dimensi, tanda positif dan negatif bergantung pada **arah positif yang kita pilih**. Jika arah ke kanan dipilih sebagai positif, pecutan positif bermaksud perubahan halaju menghala ke kanan.
+
+Pecutan negatif tidak semestinya bermaksud objek bergerak ke kiri. Kereta yang sedang membrek masih boleh bergerak ke kanan walaupun pecutannya negatif. Halajunya tetap menghala ke kanan, tetapi nilainya semakin kecil.

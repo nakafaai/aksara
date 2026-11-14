@@ -1,0 +1,203 @@
+export const metadata = {
+  title: "Aplikasi Hukum Kimia",
+  description:
+    "Hukum asas kimia mengaitkan data jisim, nisbah komposisi, pasangan sebatian dan isi padu gas dengan kaedah pengiraan yang berbeza.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-03",
+  dateModified: "2026-09-12",
+  subject: "Hukum Asas Kimia",
+};
+
+## Pilih Hukum Berdasarkan Data
+
+Jenis data dalam sesuatu soalan menunjukkan <Highlight>hukum asas kimia yang perlu digunakan</Highlight>. Soalan itu mungkin melibatkan jumlah jisim, komposisi satu sebatian, dua sebatian yang dibina daripada unsur yang sama, atau isi padu gas pada keadaan yang sama.
+
+Pengiraan stoikiometri menggunakan faktor daripada persamaan seimbang untuk mengaitkan kuantiti bahan. Sebelum mengira, kita perlu menyemak persamaan seimbang, bahan atau kuantiti yang hendak dikira, dan unit bagi data yang diberi.
+
+Senarai berikut memadankan setiap jenis data dengan hukum yang sesuai.
+
+- Jika setiap bahan dalam sistem dikira, gunakan hukum keabadian jisim.
+- Jika satu sebatian tulen dianalisis, gunakan hukum komposisi tetap.
+- Jika dua sebatian berbeza dibina daripada dua unsur yang sama, gunakan hukum perkadaran berganda.
+- Jika semua bahan yang dibandingkan ialah gas pada suhu dan tekanan yang sama, gunakan hukum gabungan isi padu.
+
+Sebelum kamu memilih hukum, semak sama ada sistem itu tertutup. Setiap titik ialah satu eksperimen, dengan jisim sebelum pada paksi melintang dan jisim selepas pada paksi menegak, jadi sistem tertutup terletak pada garis kelabu. Apabila <InlineMath math="2\ \mathrm{g}" /> <InlineMath math="\mathrm{CaCO_3}" /> bertindak balas dengan asid dalam bikar terbuka, <InlineMath math="2\ \mathrm{g}\cdot\tfrac{44}{100}=0.88\ \mathrm{g}" /> karbon dioksida terlepas, dan titik itu jatuh di bawah garis. Zum ke titik merah jambu.
+
+<MathVisual
+  title={<>Titik pada Garis Mengekalkan Jisimnya</>}
+  description={<>Jisim sebelum (melintang) dan selepas (menegak) bagi tiga eksperimen tertutup dan satu bikar terbuka, dalam gram.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 46, max: 51 }, y: { min: 46, max: 51 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "same", kind: "segment", appearance: "reference", from: { x: 46, y: 46 }, to: { x: 51, y: 51 } },
+      { id: "flask", kind: "point", appearance: "secondary", at: { x: 47, y: 47 } },
+      { id: "bag", kind: "point", appearance: "secondary", at: { x: 48.5, y: 48.5 } },
+      { id: "sealed", kind: "point", appearance: "secondary", at: { x: 50, y: 50 } },
+      { id: "open", kind: "point", appearance: "warning", at: { x: 50, y: 49.12 } },
+    ],
+    labels: [
+      { key: "closed", objectId: "bag", at: { x: 48.5, y: 48.5 }, placement: "above-left" },
+      { key: "open", objectId: "open", at: { x: 50, y: 49.12 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    closed: <>sistem tertutup</>,
+    open: <InlineMath math="\text{terbuka: }50.00-0.88=49.12\ \mathrm{g}" />,
+  }}
+/>
+
+## Corak Jisim dan Isi Padu
+
+Sebelum mengira, kenal pasti **kuantiti yang kekal tetap** dan kuantiti yang sedang dibandingkan. Pilihan itu menentukan hukum dan nisbah yang digunakan dalam pengiraan. Corak di bawah mengasingkan nisbah jisim daripada nisbah isi padu, kerana kedua-duanya mengikut hukum yang berbeza.
+
+### Sistem Tindak Balas
+
+Katakan <InlineMath math="10.00\ \mathrm{g}" /> zink bertindak balas dengan <InlineMath math="2.00\ \mathrm{g}" /> sulfur. Selepas tindak balas, <InlineMath math="6.08\ \mathrm{g}" /> zink sulfida terbentuk dan <InlineMath math="5.92\ \mathrm{g}" /> zink masih berbaki.
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{S(s)} \rightarrow \mathrm{ZnS(s)}" />
+
+Zink yang bertindak balas bukan <InlineMath math="10.00\ \mathrm{g}" />, kerana sebahagian zink masih berbaki.
+
+<BlockMath math="\begin{aligned} &amp;m_{\mathrm{Zn\ bertindak\ balas}} = 10.00 - 5.92 = 4.08\ \mathrm{g} \\ &amp;m_{\mathrm{bahan\ yang\ bertindak\ balas}} = 4.08 + 2.00 \\ &amp;= 6.08\ \mathrm{g} \end{aligned}" />
+
+Jisim **bahan tindak balas yang benar-benar bertindak balas** sama dengan jisim hasil tindak balas. Jika kamu mengira semua bahan di dalam bekas, tanpa jisim bekas itu, jisim sebelum dan selepas tindak balas tetap sama, iaitu <InlineMath math="12.00\ \mathrm{g}" />.
+
+### Komposisi Satu Sebatian
+
+Kalsium oksida, <InlineMath math="\mathrm{CaO}" />, boleh disemak dengan dua sampel yang berbeza. Sampel pertama berjisim <InlineMath math="2.8\ \mathrm{g}" /> dan mengandungi <InlineMath math="0.8\ \mathrm{g}" /> oksigen. Sampel kedua berjisim <InlineMath math="3.5\ \mathrm{g}" /> dan mengandungi <InlineMath math="1.0\ \mathrm{g}" /> oksigen.
+
+<BlockMath math="\begin{aligned}
+m_{\mathrm{Ca,1}} &= 2.8 - 0.8 = 2.0\ \mathrm{g} \\
+m_{\mathrm{Ca,2}} &= 3.5 - 1.0 = 2.5\ \mathrm{g} \\
+2.0:0.8 &= 2.5:1 \\
+2.5:1.0 &= 2.5:1
+\end{aligned}" />
+
+Jisim sampel mungkin berbeza, tetapi **nisbah jisim kalsium kepada oksigen** tetap sama. Itulah corak hukum komposisi tetap.
+
+### Membandingkan Sebatian Berbeza daripada Unsur yang Sama
+
+Air dan hidrogen peroksida kedua-duanya dibina daripada hidrogen dan oksigen, tetapi formulanya berbeza.
+
+<BlockMath math="\mathrm{H_2O}\quad\text{dan}\quad\mathrm{H_2O_2}" />
+
+Dengan <InlineMath math="A_r\mathrm{(H)} = 1" /> dan <InlineMath math="A_r\mathrm{(O)} = 16" />, jisim hidrogen dalam kedua-dua sebatian boleh dibuat sama, iaitu <InlineMath math="2\ \mathrm{g}" />.
+
+<BlockMath math="\begin{aligned}
+\mathrm{H_2O} &: 2\ \mathrm{g\ H} + 16\ \mathrm{g\ O} \\
+\mathrm{H_2O_2} &: 2\ \mathrm{g\ H} + 32\ \mathrm{g\ O} \\
+m_{\mathrm{O}} &: 16:32 = 1:2
+\end{aligned}" />
+
+Oleh sebab **jisim hidrogen sudah sama**, bandingkan pula jisim oksigen. Nisbah <InlineMath math="1:2" /> ialah nisbah nombor bulat yang ringkas, sepadan dengan hukum perkadaran berganda.
+
+### Gas pada Keadaan yang Sama
+
+Dalam contoh penguraian ini, anggap ammonia terurai **sepenuhnya**, gas mengikut anggaran gas unggul, dan semua isi padu diukur pada suhu dan tekanan yang sama:
+
+<BlockMath math="2\mathrm{NH_3(g)} \rightarrow 3\mathrm{H_2(g)} + \mathrm{N_2(g)}" />
+
+Jika <InlineMath math="600\ \mathrm{mL}" /> ammonia terurai, maka <InlineMath math="2" /> bahagian bersamaan dengan <InlineMath math="600\ \mathrm{mL}" /> dan <InlineMath math="1" /> bahagian bersamaan dengan <InlineMath math="300\ \mathrm{mL}" />.
+
+<BlockMath math="\begin{aligned}
+V_{\mathrm{H_2}} &= 3 \times 300 = 900\ \mathrm{mL} \\
+V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
+\end{aligned}" />
+
+Rajah di bawah menyusun gas sebagai blok yang sama besar, satu blok bagi setiap pekali dan setiap blok bernilai <InlineMath math="300\ \mathrm{mL}" />. Putar rajah itu dan kira: dua blok ammonia menjadi tiga blok hidrogen dan satu blok nitrogen. Saiz blok tidak pernah berubah, jadi nisbah isi padu <InlineMath math="2:3:1" /> sama dengan nisbah pekali, dan hal ini hanya berlaku kerana setiap gas diukur pada suhu dan tekanan yang sama.
+
+<MathVisual
+  title={<>Isi Padu Gas Mengikut Pekali</>}
+  description={<>Setiap blok ialah satu bahagian bernilai 300 mL pada suhu dan tekanan yang sama. Kira blok dalam setiap lajur <InlineMath math="2\mathrm{NH_3}\rightarrow3\mathrm{H_2}+\mathrm{N_2}" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 7.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 9, y: 9, z: 13 }, target: { x: 3, y: 3, z: 0 } },
+    objects: [
+      { id: "ammonia-1", kind: "cuboid", appearance: "primary", center: { x: 0, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "ammonia-2", kind: "cuboid", appearance: "primary", center: { x: 0, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-1", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-2", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 2 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "hydrogen-3", kind: "cuboid", appearance: "secondary", center: { x: 3, y: 3 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+      { id: "nitrogen-1", kind: "cuboid", appearance: "construction", center: { x: 6, y: 1 * 2 - 1, z: 0 }, size: { length: 1.6, height: 300 / 150, width: 1.6 } },
+    ],
+    labels: [
+      { key: "ammonia", objectId: "ammonia-2", at: { x: 0, y: 2 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "hydrogen", objectId: "hydrogen-3", at: { x: 3, y: 3 * 2 + 0.6, z: 0 }, placement: "above" },
+      { key: "nitrogen", objectId: "nitrogen-1", at: { x: 6, y: 1 * 2 + 0.6, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ammonia: <InlineMath math="2\,\mathrm{NH_3}:\ 600\ \mathrm{mL}" />,
+    hydrogen: <InlineMath math="3\,\mathrm{H_2}:\ 900\ \mathrm{mL}" />,
+    nitrogen: <InlineMath math="1\,\mathrm{N_2}:\ 300\ \mathrm{mL}" />,
+  }}
+/>
+
+Persamaan seimbang mempunyai bilangan atom yang sama pada sebelah bahan tindak balas dan sebelah hasil tindak balas. Pada suhu dan tekanan yang sama, nisbah isi padu gas mengikut pekali dalam persamaan.
+
+## Apabila Satu Soalan Menggunakan Dua Hukum
+
+Satu soalan boleh menggunakan lebih daripada satu hukum. Jisim hasil tindak balas dan baki bahan tindak balas menggunakan hukum keabadian jisim, tetapi jika soalan itu kemudian bertanya tentang komposisi unsur dalam sebatian yang sama, bahagian itu menggunakan hukum komposisi tetap. Jangan paksa satu hukum untuk menjawab setiap soalan.
+
+Tentukan **sempadan sistem**, kemudian pilih bahagian data yang benar-benar dibandingkan.
+
+- Jika soalan bertanya tentang jumlah jisim, tentukan sempadan sistem dahulu.
+- Jika soalan bertanya tentang komposisi satu sebatian, bandingkan jisim unsur-unsurnya.
+- Jika soalan membandingkan dua sebatian daripada unsur yang sama, tetapkan jisim satu unsur dahulu sebelum membandingkan unsur yang lain.
+- Jika soalan bertanya tentang isi padu gas, pastikan semua gas diukur pada suhu dan tekanan yang sama.
+
+## Pembakaran Metana
+
+Metana terbakar mengikut persamaan seimbang ini.
+
+<BlockMath math="\begin{aligned}
+\mathrm{CH_4(g)} + 2\mathrm{O_2(g)}
+  &\rightarrow \mathrm{CO_2(g)} \\
+  &\quad + 2\mathrm{H_2O(g)}
+\end{aligned}" />
+
+Jika <InlineMath math="50\ \mathrm{mL}" /> gas metana bertindak balas sepenuhnya dan setiap gas diukur pada **suhu dan tekanan yang sama**, berapakah isi padu <InlineMath math="\mathrm{O_2}" /> yang diperlukan dan berapakah isi padu <InlineMath math="\mathrm{CO_2}" /> yang terbentuk?
+
+Pekali memberi nisbah isi padu <InlineMath math="\mathrm{CH_4:O_2:CO_2:H_2O} = 1:2:1:2" />. Oleh itu:
+
+<BlockMath math="\begin{aligned}
+V_{\mathrm{O_2}} &= 2 \times 50 = 100\ \mathrm{mL} \\
+V_{\mathrm{CO_2}} &= 1 \times 50 = 50\ \mathrm{mL}
+\end{aligned}" />
+
+Jawapannya ialah <InlineMath math="100\ \mathrm{mL}" /> gas oksigen dan <InlineMath math="50\ \mathrm{mL}" /> gas karbon dioksida. Jika air yang terhasil sudah terkondensasi menjadi cecair, isi padunya tidak boleh dibaca terus daripada nisbah gas.
+
+Hukum komposisi tetap dan hukum perkadaran berganda menunjukkan corak jisim yang menyokong idea bahawa atom bergabung dalam nisbah yang tetap.
+
+Baca pekali dalam <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\mathrm{CO_2(g)}+2\mathrm{H_2O(g)}" /> sebagai isi padu, kemudian darabkan setiap satu dengan <InlineMath math="50\ \mathrm{mL}" /> yang sama. Putar bar itu: gas-gas ini bertindak balas dalam nisbah <InlineMath math="1:2:1:2" />. Isi padu air hanya betul selagi air kekal sebagai gas.
+
+<MathVisual
+  title={<>Pembakaran Metana Mengikut Isi Padu</>}
+  description={<>Isi padu gas pada satu suhu dan tekanan: bahan tindak balas di belakang, hasil tindak balas di hadapan. Satu langkah grid ke atas ialah 25 mL.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4 }, y: { min: 0, max: 5.5 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: 10 }, target: { x: 1.25, y: 2, z: 0 } },
+    objects: [
+      { id: "ch4", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: -0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "o2", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: 2, z: -0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+      { id: "co2", kind: "cuboid", appearance: "reference", center: { x: 0, y: 1, z: 0.75 }, size: { length: 1.2, height: 2, width: 1.2 } },
+      { id: "h2o", kind: "cuboid", appearance: "construction", center: { x: 2.5, y: 2, z: 0.75 }, size: { length: 1.2, height: 4, width: 1.2 } },
+    ],
+    labels: [
+      { key: "ch4", objectId: "ch4", at: { x: 0, y: 2.3, z: -0.75 }, placement: "above" },
+      { key: "o2", objectId: "o2", at: { x: 2.5, y: 4.3, z: -0.75 }, placement: "above" },
+      { key: "co2", objectId: "co2", at: { x: 0, y: 2.3, z: 0.75 }, placement: "above" },
+      { key: "h2o", objectId: "h2o", at: { x: 2.5, y: 4.3, z: 0.75 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    ch4: <InlineMath math="\mathrm{CH_4}:\ 50\ \mathrm{mL}" />,
+    o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
+    co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
+    h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
+/>

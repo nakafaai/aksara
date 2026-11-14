@@ -1,21 +1,37 @@
-Join the center of the hexagon to its six vertices. This gives **six equilateral triangles with side 4 cm**, and every measurement asked for can be read from them.
+The question asks for the mode estimated with the grouped-data formula, so the result can be a decimal even though every score is a whole number. That estimate comes from the class with the highest frequency, but one frequency isn't known yet. The plan: find <InlineMath math="x" /> from the mean, **decide the modal class once you know <InlineMath math="x" />**, then use the mode formula.
 
-# Diagonals
+# Finding the missing frequency
 
-The longest diagonal passes through the center and consists of two circumradii, so its length is <InlineMath math="4+4=8" /> cm. The second statement is true.
+The class midpoints are <InlineMath math="3" />, <InlineMath math="8" />, <InlineMath math="13" />, <InlineMath math="18" />, and <InlineMath math="23" />. The mean is **the sum of frequency times midpoint divided by the total frequency**.
 
-The shortest diagonal joins two vertices on either side of a third vertex. The interior angle of a regular hexagon is <InlineMath math="120^\circ" />, so by the cosine rule:
+<BlockMath math="\begin{aligned}
+\frac{3\cdot3+2\cdot8+7\cdot13+18x+5\cdot23}{3+2+7+x+5}&=15\\
+\frac{231+18x}{17+x}&=15\\
+231+18x&=255+15x\\
+3x&=24\\
+x&=8
+\end{aligned}" />
 
-<BlockMath math="d^2=4^2+4^2-2\cdot4\cdot4\cos120^\circ=16+16+16=48" />
+# Deciding the modal class
 
-This gives <InlineMath math="d=4\sqrt3" />, **not <InlineMath math="4\sqrt2" />**. The first statement is false.
+The frequencies are now <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="7" />, <InlineMath math="8" />, and <InlineMath math="5" />. The largest is <InlineMath math="8" />, which belongs to the class <InlineMath math="16" /> to <InlineMath math="20" />. So **the modal class isn't the class with frequency <InlineMath math="7" />** that looked largest before you found <InlineMath math="x" />.
 
-# The incircle and the area
+# Working out the mode
 
-The inradius is the height of one equilateral triangle, <InlineMath math="\frac{\sqrt3}{2}\cdot4=2\sqrt3" />. The value 4 cm is the **circumradius**, so the third statement is false.
+The mode formula for grouped data is <InlineMath math="Mo=L+\tfrac{d_1}{d_1+d_2}\cdot p" />. Here <InlineMath math="L" /> is the lower boundary of the modal class, <InlineMath math="d_1" /> is how much its frequency exceeds the class before it, <InlineMath math="d_2" /> is how much it exceeds the class after it, and <InlineMath math="p" /> is the class width. The scores are whole numbers, so **the lower boundary of the class <InlineMath math="16" /> to <InlineMath math="20" /> is <InlineMath math="15.5" />**, not <InlineMath math="16" />.
 
-<BlockMath math="A=6\cdot\frac{\sqrt3}{4}\cdot4^2=24\sqrt3" />
+<BlockMath math="\begin{aligned}
+d_1&=8-7=1,\qquad d_2=8-5=3\\
+Mo&=15.5+\frac{1}{1+3}\cdot5=15.5+1.25=16.75
+\end{aligned}" />
 
-The fourth statement is true.
+Check that it makes sense: the mode lies inside the class from <InlineMath math="15.5" /> to <InlineMath math="20.5" />, closer to the lower end. That fits, because the class before it (frequency <InlineMath math="7" />) is more crowded than the class after it (frequency <InlineMath math="5" />).
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+# Why the other options are wrong
+
+- <InlineMath math="19.25" /> swaps <InlineMath math="d_1" /> and <InlineMath math="d_2" />, which gives <InlineMath math="15.5+\tfrac34\cdot5" />.
+- <InlineMath math="18" /> just takes the midpoint of the modal class, without the mode formula.
+- <InlineMath math="17.25" /> uses the class limit <InlineMath math="16" /> instead of the lower boundary <InlineMath math="15.5" />.
+- <InlineMath math="15" /> is **the given mean, not the mode**.
+
+So the mode of the quiz scores is <InlineMath math="16.75" />.

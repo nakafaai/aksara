@@ -1,0 +1,156 @@
+
+export const metadata = {
+  title: "Punca Perubahan Iklim",
+  description:
+    "Kesan rumah hijau menerangkan cara gas memerangkap haba, manakala pembakaran bahan api fosil, perubahan guna tanah, sisa organik, pengeluaran plastik dan aktiviti manusia lain menambah pemanasan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-26",
+  dateModified: "2026-09-12",
+  subject: "Perubahan Iklim",
+};
+
+## Kesan Rumah Hijau Semula Jadi dan Pelepasan Tambahan daripada Manusia
+
+Kesan rumah hijau semula jadi Bumi <Highlight>memastikan permukaan cukup panas untuk kehidupan</Highlight>. Masalah bermula apabila aktiviti manusia menambah gas rumah hijau, lalu kehilangan tenaga ke angkasa lepas menjadi lebih perlahan lagi.
+
+### Kesan Rumah Hijau Semula Jadi Memastikan Bumi Kekal Hangat
+
+**Kesan rumah hijau** ialah proses apabila gas tertentu menyerap dan memancarkan semula sebahagian sinaran inframerah yang meninggalkan permukaan Bumi. Proses ini melambatkan kehilangan tenaga ke angkasa lepas. Tanpa kesan rumah hijau semula jadi, suhu purata Bumi akan jauh lebih rendah. Apabila kepekatan gas rumah hijau meningkat, ketidakseimbangan tenaga memanaskan sistem iklim.
+
+**Gas rumah hijau** termasuk karbon dioksida, metana, nitrus oksida dan gas berfluorin. Nama ini tidak bermaksud atmosfera berfungsi sama seperti rumah hijau kaca. Rumah hijau kaca menjadi panas terutamanya kerana ia mengehadkan pertukaran udara, manakala gas rumah hijau berinteraksi dengan sinaran inframerah yang keluar.
+
+Tiada keraguan lagi bahawa aktiviti manusia, terutamanya melalui [pelepasan gas rumah hijau](https://www.ipcc.ch/report/ar6/syr/), telah menyebabkan pemanasan global.
+
+<GreenhouseEffectLab
+  title={<>Gas Rumah Hijau Melambatkan Kehilangan Tenaga ke Angkasa Lepas</>}
+  description={
+    <>
+      Ubah aras gas rumah hijau untuk melihat cara tenaga inframerah yang keluar
+      diserap dan dipancarkan semula di dalam atmosfera.
+    </>
+  }
+  labels={{
+    gasControl: "Aras gas rumah hijau",
+    heatFlow: <>Cahaya Matahari memanaskan permukaan. Bumi memancarkan sinaran inframerah, dan gas rumah hijau menyerap serta memancarkan semula sebahagian daripadanya.</>,
+    heatFlowLabel: "Aliran tenaga",
+    meaning: <>Apabila kepekatan gas rumah hijau meningkat, tenaga lebih sukar terlepas ke angkasa lepas sehingga sistem iklim memanas dan mencapai keseimbangan baharu.</>,
+    meaningLabel: "Maksud bagi iklim",
+    viewLabel: "Model kesan rumah hijau",
+  }}
+/>
+
+### Sumber Utama Gas Rumah Hijau
+
+Pelepasan karbon dioksida akibat aktiviti manusia datang terutamanya daripada [pembakaran bahan api fosil dan bahan biologi](https://www.epa.gov/ghgemissions/overview-greenhouse-gases). Metana berkait dengan **pengeluaran tenaga, pertanian dan pereputan sisa organik**. Nitrus oksida pula boleh datang daripada pertanian, industri, pembakaran dan rawatan air sisa.
+
+| Aktiviti manusia | Perubahan gas atau karbon | Kaitan dengan iklim |
+| --- | --- | --- |
+| Membakar bahan api fosil | Karbon dioksida bertambah | Karbon lama yang tersimpan berpindah ke udara dengan cepat |
+| Sisa organik yang tidak diurus dengan baik | Metana boleh bertambah | Pereputan dengan sedikit oksigen boleh membebaskan metana yang melambatkan kehilangan tenaga inframerah |
+| Kehilangan hutan | Penyerapan karbon berkurang | Biojisim hidup yang tinggal untuk menyimpan karbon menjadi lebih sedikit |
+| Pengeluaran dan pembuangan plastik | Penggunaan tenaga dan sisa bertambah | Bahan mentah fosil, tenaga pengeluaran dan pembuangan menambah pelepasan sepanjang kitar hayat |
+
+> Bagi setiap punca perubahan iklim, kenal pasti sumber karbon, aktiviti manusia, gas yang bertambah atau penyerap karbon yang berkurang, dan perubahan yang terhasil pada keseimbangan tenaga Bumi.
+
+Dalam model buku teks yang ringkas, setiap lapisan gas rumah hijau menyerap semua sinaran haba dari bawah dan memancarkannya semula, separuh ke atas dan separuh ke bawah. Dengan <InlineMath math="n" /> lapisan seperti itu, permukaan tanah menjadi panas sehingga <InlineMath math="T=255\,(n+1)^{1/4}" /> kelvin. Putar palang-palang ini: satu lapisan sahaja sudah menaikkan suhu permukaan tanah daripada <InlineMath math="255" /> kepada kira-kira <InlineMath math="303" /> kelvin.
+
+<MathVisual
+  title={<>Lebih Banyak Lapisan, Tanah Lebih Panas</>}
+  description={<>Suhu permukaan tanah dalam model lapisan dengan sifar, satu dan dua lapisan yang menyerap sepenuhnya. Satu petak grid ke atas bersamaan 50 kelvin.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 6.5 }, y: { min: 0, max: 8 }, z: { min: -1.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 8, y: 8, z: 12 }, target: { x: 2.5, y: 3.5, z: 0 } },
+    objects: [
+      { id: "layers-0", kind: "cuboid", appearance: "reference", center: { x: 0, y: ((255 * 1 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 1 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-1", kind: "cuboid", appearance: "primary", center: { x: 2.5, y: ((255 * 2 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 2 ** (1 / 4)) / 50, width: 1.2 } },
+      { id: "layers-2", kind: "cuboid", appearance: "warning", center: { x: 5, y: ((255 * 3 ** (1 / 4)) / 50) / 2, z: 0 }, size: { length: 1.2, height: (255 * 3 ** (1 / 4)) / 50, width: 1.2 } },
+    ],
+    labels: [
+      { key: "t0", objectId: "layers-0", at: { x: 0, y: (255 * 1 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t1", objectId: "layers-1", at: { x: 2.5, y: (255 * 2 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+      { key: "t2", objectId: "layers-2", at: { x: 5, y: (255 * 3 ** (1 / 4)) / 50, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    t0: <InlineMath math="255\ \mathrm{K}" />,
+    t1: <InlineMath math="303\ \mathrm{K}" />,
+    t2: <InlineMath math="336\ \mathrm{K}" />,
+  }}
+/>
+
+## Pembakaran Memindahkan Karbon ke Atmosfera
+
+Apabila bahan api fosil dibakar, atau apabila biojisim hutan dibakar atau mereput selepas hutan ditebang, karbon yang tersimpan masuk ke atmosfera terutamanya sebagai karbon dioksida. Karbon itu tidak terhasil secara baharu, sebaliknya ia **berpindah daripada simpanan jangka panjang ke atmosfera**. Pergerakan karbon inilah yang menaikkan kepekatannya di atmosfera.
+
+### Karbon Tersimpan Memasuki Udara
+
+Bahan api fosil terbentuk daripada karbon yang tersimpan selama berjuta-juta tahun di bawah permukaan Bumi. Apabila arang batu, minyak atau gas dibakar, karbon itu **bertindak balas dengan oksigen** dan menghasilkan karbon dioksida.
+
+Karbon dioksida ialah salah satu daripada beberapa gas rumah hijau. Pembakaran bahan api fosil dalam kenderaan, stesen janakuasa, kilang dan proses industri lain ialah sumber utama pelepasan karbon dioksida oleh manusia.
+
+### Mangkin Kenderaan Menyasarkan Bahan Pencemar Tertentu
+
+Mangkin kenderaan boleh mengurangkan bahan pencemar seperti karbon monoksida dan nitrogen oksida. Namun, karbon dalam bahan api **tetap membentuk karbon dioksida** semasa pembakaran. Oleh itu, untuk mengurangkan karbon dioksida, kita perlu menggunakan kurang bahan api atau beralih kepada sumber tenaga yang membebaskan kurang karbon.
+
+## Guna Tanah dan Sisa Mengubah Aliran Karbon
+
+Guna tanah, rawatan sisa dan pengeluaran plastik turut mengubah aliran karbon. Aktiviti ini sama ada menambah gas rumah hijau atau **mengurangkan karbon yang tersimpan** dalam hutan dan ekosistem lain.
+
+### Hutan Menyimpan Karbon dan Melindungi Habitat
+
+Hutan menyerap karbon melalui fotosintesis dan menyimpannya dalam biojisim. Apabila hutan ditebang atau dibakar, penyerapan karbon berkurang dan **karbon yang tersimpan boleh kembali ke udara**. Tanaman monokultur yang rendah kepelbagaiannya tidak selalu dapat menggantikan fungsi ekosistem hutan yang kompleks.
+
+### Sisa Organik Boleh Menghasilkan Metana
+
+Sisa organik boleh menghasilkan karbon dioksida atau metana semasa mereput. **Metana** ialah gas rumah hijau yang kuat. Sisa yang bertimbun tanpa pengurusan yang betul menjadikan gas hasil pereputan lebih sukar dikawal.
+
+Jumlah oksigen menentukan gas yang terbentuk. Apabila oksigen sedikit, mikroorganisma boleh menghasilkan metana semasa menguraikan bahan organik. Penguraian dengan oksigen yang cukup terutamanya menghasilkan karbon dioksida.
+
+### Pelepasan Sepanjang Kitar Hayat Plastik
+
+Plastik dikaitkan dengan [pelepasan sepanjang kitar hayatnya](https://www.oecd.org/en/publications/global-plastics-outlook_de747aef-en.html), daripada bahan mentah fosil dan pengeluaran yang menggunakan banyak tenaga hinggalah rawatan sisa, terutamanya pembakaran dalam insinerator. Mikroplastik yang terlepas ke alam sekitar ialah masalah pencemaran yang serius. Namun, laluan utama kesannya kepada iklim datang daripada **pelepasan semasa pengeluaran dan di akhir hayat plastik**.
+
+<Mermaid
+  title="Tiga Laluan Karbon Menambah Pemanasan"
+  description="Kaitkan bahan api fosil, sisa organik dan kehilangan hutan dengan perubahan gas atau penyerap karbon yang menahan lebih banyak haba."
+  chart={`flowchart LR
+    A["Bahan api fosil"] --> B["Karbon dioksida"]
+    C["Sisa organik mereput dengan sedikit oksigen"] --> D["Metana"]
+    E["Perubahan hutan"] --> F["Penyerapan karbon menurun"]
+    B --> G["Pada mulanya, kurang tenaga inframerah terlepas ke angkasa"]
+    D --> G
+    F --> B`}
+/>
+
+Bayangkan udara sebagai sebuah tab mandi: pelepasan menuang karbon masuk, manakala hutan dan lautan mengeluarkan sebahagiannya semula. Jumlah karbon tambahan meningkat sebanyak <InlineMath math="\text{masuk}-\text{keluar}" /> setiap tahun. Dengan nombor contoh, <InlineMath math="10" /> unit masuk dan hutan mengeluarkan <InlineMath math="5" />, jadi <InlineMath math="5" /> unit kekal setiap tahun. Tebang sebahagian hutan sehingga ia hanya mengeluarkan <InlineMath math="3" />, dan <InlineMath math="7" /> unit pula kekal. Zum masuk dan bandingkan berapa pantas kedua-dua garis itu naik.
+
+<MathVisual
+  title={<>Kurang Penyerapan, Karbon Lebih Cepat Bertimbun</>}
+  description={<>Karbon tambahan di udara dalam model tab mandi contoh, dengan hutan yang utuh (kelabu) dan selepas penebangan (merah jambu). Paksi mengufuk: tahun. Paksi menegak: satu petak grid bersamaan 10 unit karbon.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 12.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "forest", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: ((10 - 5) * 0) / 10 }, { x: 1, y: ((10 - 5) * 1) / 10 }, { x: 2, y: ((10 - 5) * 2) / 10 }, { x: 3, y: ((10 - 5) * 3) / 10 }, { x: 4, y: ((10 - 5) * 4) / 10 }, { x: 5, y: ((10 - 5) * 5) / 10 }, { x: 6, y: ((10 - 5) * 6) / 10 }, { x: 7, y: ((10 - 5) * 7) / 10 }, { x: 8, y: ((10 - 5) * 8) / 10 }, { x: 9, y: ((10 - 5) * 9) / 10 }, { x: 10, y: ((10 - 5) * 10) / 10 }] },
+      { id: "cleared", kind: "polyline", appearance: "warning", vertices: [{ x: 0, y: ((10 - 3) * 0) / 10 }, { x: 1, y: ((10 - 3) * 1) / 10 }, { x: 2, y: ((10 - 3) * 2) / 10 }, { x: 3, y: ((10 - 3) * 3) / 10 }, { x: 4, y: ((10 - 3) * 4) / 10 }, { x: 5, y: ((10 - 3) * 5) / 10 }, { x: 6, y: ((10 - 3) * 6) / 10 }, { x: 7, y: ((10 - 3) * 7) / 10 }, { x: 8, y: ((10 - 3) * 8) / 10 }, { x: 9, y: ((10 - 3) * 9) / 10 }, { x: 10, y: ((10 - 3) * 10) / 10 }] },
+      { id: "forest-end", kind: "point", appearance: "reference", at: { x: 10, y: 5 } },
+      { id: "cleared-end", kind: "point", appearance: "warning", at: { x: 10, y: 7 } },
+    ],
+    labels: [
+      { key: "forest", objectId: "forest-end", at: { x: 10, y: 5 }, placement: "right" },
+      { key: "cleared", objectId: "cleared-end", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    forest: <InlineMath math="10-5=5" />,
+    cleared: <InlineMath math="10-3=7" />,
+  }}
+/>
+
+## Daripada Aktiviti Manusia kepada Pemanasan
+
+Petrol yang dibakar dalam kenderaan terutamanya menambah karbon dioksida kerana bahan api berasaskan karbon bertindak balas dengan oksigen semasa pembakaran. Bagi setiap punca, kenal pasti aktiviti manusia, **sumber gas rumah hijau atau perubahan penyerap karbon**, dan cara perubahan itu mengubah keseimbangan tenaga Bumi.
+
+Pembakaran bahan api fosil terutamanya membebaskan karbon dioksida. Sisa organik yang mereput dengan sedikit oksigen boleh membebaskan metana. Kerosakan hutan membebaskan karbon yang tersimpan dan mengurangkan penyerapan karbon pada masa hadapan.

@@ -1,5 +1,6 @@
 import { Array as Arr, Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { snbtRatings } from "#corpus/tryout/indonesia/snbt/ratings";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import {
@@ -17,6 +18,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "allgemeines-schlussfolgern",
       en: "general-reasoning",
       id: "penalaran-umum",
+      ms: "penaakulan-umum",
     },
     seconds: 1800,
     translations: {
@@ -35,6 +37,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "allgemeines-wissen-und-verstaendnis",
       en: "general-knowledge-and-understanding",
       id: "pengetahuan-dan-pemahaman-umum",
+      ms: "pengetahuan-dan-kefahaman-umum",
     },
     seconds: 900,
     translations: {
@@ -53,6 +56,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "leseverstaendnis-und-schreiben",
       en: "reading-comprehension-and-writing",
       id: "pemahaman-bacaan-dan-menulis",
+      ms: "kefahaman-bacaan-dan-penulisan",
     },
     seconds: 1500,
     translations: {
@@ -71,6 +75,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "quantitatives-wissen",
       en: "quantitative-knowledge",
       id: "pengetahuan-kuantitatif",
+      ms: "pengetahuan-kuantitatif",
     },
     seconds: 1200,
     translations: {
@@ -89,6 +94,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "lesekompetenz-in-indonesischer-sprache",
       en: "literacy-in-indonesian",
       id: "literasi-dalam-bahasa-indonesia",
+      ms: "literasi-dalam-bahasa-indonesia",
     },
     seconds: 2550,
     translations: {
@@ -107,6 +113,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "lesekompetenz-in-englischer-sprache",
       en: "literacy-in-english",
       id: "literasi-dalam-bahasa-inggris",
+      ms: "literasi-dalam-bahasa-inggeris",
     },
     seconds: 1200,
     translations: {
@@ -125,6 +132,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
       de: "mathematisches-schlussfolgern",
       en: "mathematical-reasoning",
       id: "penalaran-matematika",
+      ms: "penaakulan-matematik",
     },
     seconds: 2550,
     translations: {
@@ -144,21 +152,22 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
 const snbtTryoutCatalog = defineExamSource({
   ...indonesiaTryoutCountry,
   examKey: "snbt",
+  examName: "SNBT",
   examOrder: 1,
-  examRouteSlugs: { de: "snbt", en: "snbt", id: "snbt" },
+  examRouteSlugs: { de: "snbt", en: "snbt", id: "snbt", ms: "snbt" },
   examTranslations: {
     de: {
       description:
         "Probetest für das indonesische Auswahlverfahren zur Hochschulzulassung.",
-      title: "SNBT",
     },
     en: {
       description: "Indonesian university entrance try-outs.",
-      title: "SNBT",
     },
     id: {
       description: "Try out seleksi masuk perguruan tinggi Indonesia.",
-      title: "SNBT",
+    },
+    ms: {
+      description: "Ujian percubaan kemasukan universiti Indonesia.",
     },
   },
   grouping: {
@@ -167,11 +176,12 @@ const snbtTryoutCatalog = defineExamSource({
       {
         key: "2027",
         order: 1,
-        routeSlugs: { de: "2027", en: "2027", id: "2027" },
+        routeSlugs: { de: "2027", en: "2027", id: "2027", ms: "2027" },
         translations: {
           de: { title: "2027" },
           en: { title: "2027" },
           id: { title: "2027" },
+          ms: { title: "2027" },
         },
       },
     ],
@@ -193,21 +203,25 @@ const snbtTryoutCatalog = defineExamSource({
         scoring: { kind: "irt" },
         sections: snbtSections,
       },
-      routeSlugs: { de: "utbk", en: "utbk", id: "utbk" },
-      sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (setNumber) => {
+      routeSlugs: { de: "utbk", en: "utbk", id: "utbk", ms: "utbk" },
+      sets: Arr.map(snbtRatings, (rating, index) => {
+        const setNumber = index + 1;
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,
           order: setNumber,
+          rating,
           routeSlugs: {
             de: `aufgabensatz-${setNumber}`,
             en: setKey,
             id: setKey,
+            ms: setKey,
           },
           translations: {
             de: { title: `Aufgabensatz ${setNumber}` },
             en: { title: `Set ${setNumber}` },
             id: { title: `Set ${setNumber}` },
+            ms: { title: `Set ${setNumber}` },
           },
         };
       }),
@@ -215,6 +229,7 @@ const snbtTryoutCatalog = defineExamSource({
         de: { title: "UTBK" },
         en: { title: "UTBK" },
         id: { title: "UTBK" },
+        ms: { title: "UTBK" },
       },
     },
   ],

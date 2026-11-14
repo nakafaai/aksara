@@ -1,24 +1,25 @@
-Vergleiche jeden Buchstaben mit seinem Codebuchstaben nach **der Stelle im Alphabet** und prüfe, ob die Verschiebung von der Position im Wort abhängt.
+Vergleiche zwei benachbarte Gruppen Buchstabe für Buchstabe. Du findest **zwei Regeln, die gleichzeitig wirken**: Die Reihenfolge der Buchstaben wird rotiert, und jeder Buchstabe rückt im Alphabet um eine Schrittweite vor, die immer größer wird.
 
-| Position | BAKSO zu CCNWT | MEJA zu NGME |
-| --- | --- | --- |
-| 1 | B zu C, vorwärts <InlineMath math="1" /> | M zu N, vorwärts <InlineMath math="1" /> |
-| 2 | A zu C, vorwärts <InlineMath math="2" /> | E zu G, vorwärts <InlineMath math="2" /> |
-| 3 | K zu N, vorwärts <InlineMath math="3" /> | J zu M, vorwärts <InlineMath math="3" /> |
-| 4 | S zu W, vorwärts <InlineMath math="4" /> | A zu E, vorwärts <InlineMath math="4" /> |
-| 5 | O zu T, vorwärts <InlineMath math="5" /> | keine |
+Beginne mit der Rotation. Schieb den ersten Buchstaben von DIMA ans Ende, dann erhältst du IMAD. Vergleiche IMAD jetzt mit JNBE: <InlineMath math="\mathrm{I}\to\mathrm{J}" />, <InlineMath math="\mathrm{M}\to\mathrm{N}" />, <InlineMath math="\mathrm{A}\to\mathrm{B}" />, <InlineMath math="\mathrm{D}\to\mathrm{E}" />. Jeder Buchstabe rückt <InlineMath math="1" /> Schritt vor.
 
-Die Regel: **Der <InlineMath math="n" />-te Buchstabe rückt <InlineMath math="n" /> Stellen vor** im Alphabet. Wende sie auf LAMPU an:
+Prüfe, ob die Regel weiterläuft. JNBE wird zu NBEJ rotiert, und der Vergleich mit PDGL ergibt <InlineMath math="\mathrm{N}\to\mathrm{P}" />, auch alle anderen Buchstaben rücken <InlineMath math="2" /> Schritte vor. PDGL wird zu DGLP rotiert, und der Vergleich mit GJOS zeigt, dass alle Buchstaben <InlineMath math="3" /> Schritte vorrücken. Die Rotation bleibt gleich, die Verschiebung wächst jedes Mal um eins.
 
-<BlockMath math="\text{L}+1=\text{M},\quad \text{A}+2=\text{C},\quad \text{M}+3=\text{P},\quad \text{P}+4=\text{T},\quad \text{U}+5=\text{Z}" />
+| Gruppe | Nach der Rotation | Verschiebung | Ergebnis |
+| --- | --- | --- | --- |
+| DIMA | IMAD | <InlineMath math="+1" /> | JNBE |
+| JNBE | NBEJ | <InlineMath math="+2" /> | PDGL |
+| PDGL | DGLP | <InlineMath math="+3" /> | GJOS |
+| GJOS | JOSG | <InlineMath math="+4" /> | NSWK |
 
-Das Ergebnis ist MCPTZ. U ist der <InlineMath math="21" />. Buchstabe, und <InlineMath math="21+5=26" /> landet genau auf Z, ein Sprung zurück an den Anfang des Alphabets ist also nicht nötig.
+Für die fünfte Gruppe rotierst du GJOS zu JOSG und schiebst dann jeden Buchstaben <InlineMath math="4" /> Schritte vor: <InlineMath math="\mathrm{J}\to\mathrm{N}" />, <InlineMath math="\mathrm{O}\to\mathrm{S}" />, <InlineMath math="\mathrm{S}\to\mathrm{W}" />, <InlineMath math="\mathrm{G}\to\mathrm{K}" />. Das ergibt NSWK.
 
-Die anderen Optionen entstehen aus falschen Regeln:
+Es gibt eine schnelle Probe. Vier Rotationen einer Gruppe aus vier Buchstaben stellen die ursprüngliche Reihenfolge wieder her, und die gesamte Verschiebung ist <InlineMath math="1+2+3+4=10" />. Die fünfte Gruppe muss also DIMA sein, jeder Buchstabe um <InlineMath math="10" /> Schritte verschoben: <InlineMath math="\mathrm{D}\to\mathrm{N}" />, <InlineMath math="\mathrm{I}\to\mathrm{S}" />, <InlineMath math="\mathrm{M}\to\mathrm{W}" />, <InlineMath math="\mathrm{A}\to\mathrm{K}" />. Wieder NSWK.
 
-- MBNQV rückt jeden Buchstaben nur <InlineMath math="1" /> Stelle vor.
-- KYJLP schiebt die Buchstaben zurück, die Beispiele schieben sie aber vor.
-- MCPTY rückt den fünften Buchstaben nur <InlineMath math="4" /> Stellen vor.
-- NDQUA beginnt mit <InlineMath math="2" /> Stellen statt mit <InlineMath math="1" />.
+Darum scheitern die anderen Optionen.
 
-Der Code für LAMPU ist also MCPTZ.
+- JOSG ist nur rotiert und nie verschoben.
+- KNSW ist um <InlineMath math="4" /> Schritte verschoben, aber nie rotiert.
+- WKNS ist in die falsche Richtung rotiert, mit dem letzten Buchstaben nach vorn, und dann um <InlineMath math="4" /> Schritte verschoben.
+- MRVJ ist richtig rotiert, aber wieder nur um <InlineMath math="3" /> Schritte verschoben, als bliebe die Verschiebung gleich.
+
+Die passende Gruppe für die Lücke ist also NSWK.

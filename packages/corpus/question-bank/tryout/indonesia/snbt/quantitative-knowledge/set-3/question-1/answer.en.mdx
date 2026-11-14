@@ -1,19 +1,37 @@
-One-digit, two-digit, and three-digit numbers contribute different numbers of digits. So **group the numbers by how many digits they have**, then count the numbers in each group carefully.
+The units digit of a sum **depends only on the units digits of its terms**. So you only need the units digit of each <InlineMath math="d^{2024}" />, add them up block by block over <InlineMath math="10" /> consecutive numbers, and then add the last block that isn't full.
 
-# Counting by group
+# Units digits of a power that is a multiple of four
 
-The number of integers from <InlineMath math="m" /> to <InlineMath math="n" /> is <InlineMath math="n-m+1" />, **not <InlineMath math="n-m" />**.
+The exponent is <InlineMath math="2024=4\cdot 506" />, so <InlineMath math="d^{2024}=\left(d^4\right)^{506}" />. The units digit of <InlineMath math="d^4" /> is always <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, or <InlineMath math="6" />, and a number ending in one of those four digits keeps that units digit at every power. That's why **the units digit of <InlineMath math="d^{2024}" /> equals the units digit of <InlineMath math="d^4" />**.
 
-| Group | Count of numbers | Digits per number | Digits |
-| :---: | :---: | :---: | :---: |
-| 1 to 9 | <InlineMath math="9-1+1=9" /> | 1 | 9 |
-| 10 to 99 | <InlineMath math="99-10+1=90" /> | 2 | 180 |
-| 100 to 250 | <InlineMath math="250-100+1=151" /> | 3 | 453 |
+| Units digit of <InlineMath math="d" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> | <InlineMath math="0" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Units digit of <InlineMath math="d^{2024}" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
 
-<BlockMath math="9+180+453=642" />
+A block of <InlineMath math="10" /> consecutive numbers contains every units digit exactly once, so one block contributes
+
+<BlockMath math="1+6+1+6+5+6+1+6+1+0=33." />
+
+Notice that **a power that is a multiple of four doesn't keep the units digit**, so one block does not add up to <InlineMath math="45" />.
+
+# Full blocks and the leftover terms
+
+The numbers <InlineMath math="1" /> to <InlineMath math="2040" /> form <InlineMath math="204" /> full blocks. What's left are **the last six terms** <InlineMath math="2041" /> to <InlineMath math="2046" />, whose units digits are <InlineMath math="1" /> to <InlineMath math="6" />.
+
+<BlockMath math="\begin{aligned}
+\text{full blocks}&: 204\cdot 33=6{,}732\\
+\text{leftover terms}&: 1+6+1+6+5+6=25\\
+\text{total}&: 6{,}732+25=6{,}757
+\end{aligned}" />
+
+The units digit of <InlineMath math="6{,}757" /> is <InlineMath math="7" />, so the units digit of <InlineMath math="S" /> is <InlineMath math="7" />.
+
+# Checking with remainders
+
+Try a check with two remainders. The term <InlineMath math="d^{2024}" /> is odd exactly when <InlineMath math="d" /> is odd, and there are <InlineMath math="1{,}023" /> odd numbers from <InlineMath math="1" /> to <InlineMath math="2046" />, so <InlineMath math="S" /> is odd. From the table, every <InlineMath math="d" /> that isn't divisible by <InlineMath math="5" /> gives units digit <InlineMath math="1" /> or <InlineMath math="6" />, which means it **leaves remainder <InlineMath math="1" /> when divided by <InlineMath math="5" />**. There are <InlineMath math="2046-409=1{,}637" /> such terms, and <InlineMath math="1{,}637" /> leaves remainder <InlineMath math="2" /> when divided by <InlineMath math="5" />. The only odd units digit that leaves remainder <InlineMath math="2" /> when divided by <InlineMath math="5" /> is <InlineMath math="7" />, which matches.
 
 # Checking the other options
 
-The value 639 counts 150 three-digit numbers, and the value 640 counts 89 two-digit numbers. Both use <InlineMath math="n-m" />, and the value 637 makes both mistakes at once. The value 750 treats every number as **having three digits**.
+The option <InlineMath math="2" /> comes from **forgetting the last six terms**, so only <InlineMath math="204\cdot 33=6{,}732" /> gets counted. The option <InlineMath math="5" /> comes from the shortcut "one block adds up to <InlineMath math="45" />", but that shortcut only works for exponents that aren't multiples of four. The option <InlineMath math="6" /> comes from treating every <InlineMath math="d^{2024}" /> as ending in <InlineMath math="1" />, like <InlineMath math="d^0" />, so the sum becomes <InlineMath math="2046" />. The option <InlineMath math="1" /> comes from treating <InlineMath math="d^{2024}" /> as ending in the same digit as <InlineMath math="d" />, which really computes <InlineMath math="1+2+\cdots+2046=2{,}094{,}081" />.
 
-So **642** digits are written.
+So the units digit of <InlineMath math="S" /> is <InlineMath math="7" />.

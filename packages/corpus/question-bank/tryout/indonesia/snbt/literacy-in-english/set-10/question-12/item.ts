@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "conclusion",
   },
-  stimulus: "app-reminders",
+  stimulus: "subscription-churn",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "On day 7, more than half of the reminder group were still using the app.",
+            "The price rise caused most of the extra cancellations in July to September.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "On day 90, the reminder group had twice as many active users as the other group.",
+            "Some $$90$$ thousand of the subscribers counted at the end of September had not yet paid anything.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Between day 30 and day 90, the no-reminder group lost more than half of the users it still had on day 30.",
+            "Most of the people who took the free trial in July to September had cancelled by the end of December.",
         },
         {
-          column: 1,
-          label: "People were placed in the two groups at random.",
+          correct: true,
+          label:
+            "The chief executive's figure of $$100{,}000$$ counts people on a free trial as well as paying customers.",
+        },
+        {
+          correct: false,
+          label:
+            "Without the free trial, Lumen would have lost subscribers in July to September.",
         },
       ],
     },

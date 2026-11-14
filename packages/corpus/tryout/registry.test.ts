@@ -25,11 +25,12 @@ function rehomeSource(
       id: { title: "Jerman" },
     },
     examKey: "abitur",
+    examName: "Abitur",
     examOrder: 1,
     examRouteSlugs: { en: "abitur", id: "abitur" },
     examTranslations: {
-      en: { title: "Abitur" },
-      id: { title: "Abitur" },
+      en: { description: "The German Abitur." },
+      id: { description: "Abitur Jerman." },
     },
   };
 }

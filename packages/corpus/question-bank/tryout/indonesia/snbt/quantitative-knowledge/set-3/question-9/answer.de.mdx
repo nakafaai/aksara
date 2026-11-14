@@ -1,15 +1,43 @@
-Gefragt ist der Wert des Terms <InlineMath math="2x-y" />, **nicht die Werte von <InlineMath math="x" /> und <InlineMath math="y" /> einzeln**. Eine Aussage kann ausreichen, auch wenn sie nicht beide Unbekannten festlegt.
+Gegeben ist das dritte Glied, nicht das erste. Der Plan: zeigen, dass sich die Regel alle vier Schritte wiederholt, <InlineMath math="a_1" /> und <InlineMath math="a_2" /> bestimmen, eine Periode aufsummieren und dann **die übrigen Glieder addieren**, die keine volle Periode bilden.
 
-# Erste Aussage allein
+# Eine Regel, die sich alle vier Schritte wiederholt
 
-Die linke Seite von Aussage (1) ist **das Doppelte des gefragten Terms**.
+Schreibe die Regel als Funktion <InlineMath math="f(x)=\tfrac{x-1}{x+1}" />. Wende <InlineMath math="f" /> zweimal an und vereinfache, indem du Zähler und Nenner mit <InlineMath math="x+1" /> multiplizierst.
 
-<BlockMath math="4x-2y=2(2x-y)=10\quad\Rightarrow\quad 2x-y=5" />
+<BlockMath math="\begin{aligned}
+f\big(f(x)\big)&=\frac{\frac{x-1}{x+1}-1}{\frac{x-1}{x+1}+1}=\frac{(x-1)-(x+1)}{(x-1)+(x+1)}=\frac{-2}{2x}=-\frac{1}{x}\\
+f\Big(f\big(f(f(x))\big)\Big)&=-\frac{1}{-\frac{1}{x}}=x
+\end{aligned}" />
 
-Der Wert von <InlineMath math="2x-y" /> ist eindeutig, Aussage (1) allein reicht also aus, obwohl <InlineMath math="x" /> und <InlineMath math="y" /> selbst noch unbekannt sind.
+Also gilt <InlineMath math="a_{n+4}=a_n" /> für jedes <InlineMath math="n" />. Das heißt, **die Folge wiederholt sich mit der Periode <InlineMath math="4" />**, und damit ist <InlineMath math="a_1=a_5" /> und <InlineMath math="a_2=a_6" />. Dieser Schritt ist gültig, solange kein Glied den Wert <InlineMath math="-1" /> oder <InlineMath math="0" /> hat, und das prüft der nächste Abschnitt.
 
-# Zweite Aussage allein
+# Das erste und das zweite Glied
 
-Die Paare <InlineMath math="(x,y)=(3,4)" /> und <InlineMath math="(4,3)" /> erfüllen beide <InlineMath math="x+y=7" />, liefern aber <InlineMath math="2x-y=2" /> und <InlineMath math="2x-y=5" />. Die Summe <InlineMath math="x+y" /> **legt die gewichtete Differenz** <InlineMath math="2x-y" /> **nicht fest**, Aussage (2) allein reicht also nicht aus.
+Rechne von <InlineMath math="a_3=-\tfrac{1}{2}" /> aus vorwärts.
 
-Zusammen ergeben beide Aussagen zwar <InlineMath math="x=4" /> und <InlineMath math="y=3" />, das ist aber nicht nötig. Die Antwort lautet: **Aussage (1) allein reicht aus**, Aussage (2) allein dagegen nicht.
+<BlockMath math="\begin{aligned}
+a_4&=\frac{-\frac{1}{2}-1}{-\frac{1}{2}+1}=\frac{-\frac{3}{2}}{\frac{1}{2}}=-3\\
+a_5&=\frac{-3-1}{-3+1}=\frac{-4}{-2}=2\\
+a_6&=\frac{2-1}{2+1}=\frac{1}{3}
+\end{aligned}" />
+
+Wegen der Periode <InlineMath math="4" /> ist <InlineMath math="a_1=2" /> und <InlineMath math="a_2=\tfrac{1}{3}" />. Vorwärts geprüft: <InlineMath math="f(2)=\tfrac{1}{3}" /> und <InlineMath math="f\left(\tfrac{1}{3}\right)=\tfrac{-2/3}{4/3}=-\tfrac{1}{2}" />, das passt zu <InlineMath math="a_3" />. Unter den vier Gliedern <InlineMath math="2" />, <InlineMath math="\tfrac{1}{3}" />, <InlineMath math="-\tfrac{1}{2}" />, <InlineMath math="-3" /> hat **keines den Wert <InlineMath math="-1" />**, also ist jedes Glied definiert.
+
+# Die Perioden und die übrigen Glieder
+
+Eine Periode ergibt <InlineMath math="2+\tfrac{1}{3}-\tfrac{1}{2}-3=-\tfrac{7}{6}" />. Wegen <InlineMath math="2026=4\cdot 506+2" /> gibt es <InlineMath math="506" /> volle Perioden von <InlineMath math="a_1" /> bis <InlineMath math="a_{2024}" /> und danach **zwei übrige Glieder** <InlineMath math="a_{2025}=a_1=2" /> und <InlineMath math="a_{2026}=a_2=\tfrac{1}{3}" />.
+
+<BlockMath math="\begin{aligned}
+a_1+\cdots+a_{2026}&=506\cdot\left(-\frac{7}{6}\right)+2+\frac{1}{3}\\
+&=-\frac{1771}{3}+\frac{7}{3}=-\frac{1764}{3}=-588
+\end{aligned}" />
+
+# Probe mit einer anderen Einteilung
+
+Nimm stattdessen <InlineMath math="507" /> volle Perioden bis <InlineMath math="a_{2028}" /> und ziehe die zwei überzähligen Glieder <InlineMath math="a_{2027}+a_{2028}=a_3+a_4=-\tfrac{7}{2}" /> ab. Das ergibt <InlineMath math="507\cdot\left(-\tfrac{7}{6}\right)+\tfrac{7}{2}=-\tfrac{1183}{2}+\tfrac{7}{2}=-588" />, **dasselbe wie bei der ersten Rechnung**.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="-\tfrac{1771}{3}" /> addiert nur die <InlineMath math="506" /> Perioden und **vergisst die zwei übrigen Glieder**. Die Antwort <InlineMath math="-590" /> addiert nur <InlineMath math="a_{2026}=\tfrac{1}{3}" /> und vergisst <InlineMath math="a_{2025}=2" />. Die Antwort <InlineMath math="-\tfrac{1183}{2}" /> rundet auf <InlineMath math="507" /> Perioden auf und zählt so auch <InlineMath math="a_{2027}" /> und <InlineMath math="a_{2028}" /> mit. Die Antwort <InlineMath math="\tfrac{1}{3}" /> ist nur das Glied <InlineMath math="a_{2026}" />, nicht die Summe bis zu diesem Glied.
+
+Also ist <InlineMath math="a_1+a_2+\cdots+a_{2026}=-588" />.

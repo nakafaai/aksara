@@ -1,9 +1,35 @@
-Kemiringan 1 : 12 berarti **panjang mendatar paling sedikit 12 kali kenaikannya**. Ramp harus naik 60 cm seluruhnya.
+Kamu mencari komponen baik pada hari Selasa saja. Bagian yang menjebak: **jam operasi mesin P terbawa dari hari Senin**, jadi jadwal perawatannya pada hari Selasa tidak sama dengan hari Senin. Rencananya: telusuri jadwal setiap mesin, hitung jam operasinya pada hari Selasa, lalu kalikan dengan banyak komponen baik per jam.
 
-# Panjang mendatar bagian miring
+# Komponen baik per jam
 
-<BlockMath math="60\cdot12=720\text{ cm}=7{,}2\text{ m}" />
+Komponen cacat dibuang, jadi **yang dihitung hanya komponen baik**. Mesin P membuat <InlineMath math="120" /> komponen per jam dan <InlineMath math="5\%" /> cacat, jadi yang baik <InlineMath math="95\%\times120=114" /> komponen per jam. Mesin Q membuat <InlineMath math="90" /> komponen per jam dan <InlineMath math="10\%" /> cacat, jadi yang baik <InlineMath math="90\%\times90=81" /> komponen per jam.
 
-Bordes datar tidak menambah ketinggian, jadi **seluruh kenaikan 60 cm harus ditempuh oleh ruas-ruas miring**, berapa pun banyak ruasnya.
+# Jadwal mesin P dari Senin
 
-Jadi, panjang mendatar paling pendek semua ruas miring adalah **7,2 m**.
+Mesin P beroperasi <InlineMath math="5" /> jam lalu dirawat <InlineMath math="1" /> jam. Pada hari Senin ia beroperasi pukul 07.00 sampai 12.00, dirawat, beroperasi 13.00 sampai 18.00, dirawat, lalu beroperasi 19.00 sampai 23.00. Itu <InlineMath math="14" /> jam operasi, dan **pada pukul 23.00 jam operasinya sudah terhitung <InlineMath math="4" /> jam**.
+
+Pada hari Selasa, mesin P hanya perlu <InlineMath math="1" /> jam lagi untuk mencapai batas. Jadwalnya menjadi sebagai berikut.
+
+| Hari Selasa | Beroperasi | Dirawat mulai |
+| :--- | :---: | :---: |
+| Mesin P | <InlineMath math="1+5+5+2=13" /> jam | 08.00, 14.00, 20.00 |
+| Mesin Q | <InlineMath math="7+7=14" /> jam | 14.00, 22.00 |
+
+Mesin Q lebih sederhana: dua blok <InlineMath math="7" /> jam operasi dan <InlineMath math="1" /> jam perawatan pas mengisi <InlineMath math="16" /> jam shift, jadi setiap hari ia mulai lagi dari nol dan beroperasi <InlineMath math="14" /> jam.
+
+# Komponen baik pada hari Selasa
+
+<BlockMath math="13\times114+14\times81=1{.}482+1{.}134=2{.}616" />
+
+Cek jumlah jam, karena **setiap mesin harus mengisi tepat <InlineMath math="16" /> jam shift**. Mesin P pada hari Selasa memakai <InlineMath math="13" /> jam operasi dan <InlineMath math="3" /> jam perawatan, total <InlineMath math="16" /> jam shift. Mesin Q memakai <InlineMath math="14+2=16" /> jam. Keduanya pas.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **melewatkan satu aturan dari pabrik itu**.
+
+- <InlineMath math="2{.}679" /> memakai cacat <InlineMath math="5\%" /> juga untuk mesin Q, sehingga Q dihitung <InlineMath math="85{,}5" /> per jam.
+- <InlineMath math="2{.}730" /> menganggap jam operasi P mulai dari nol setiap pagi, sehingga P beroperasi <InlineMath math="14" /> jam seperti hari Senin.
+- <InlineMath math="2{.}820" /> lupa membuang komponen cacat, <InlineMath math="13\times120+14\times90" />.
+- <InlineMath math="3{.}120" /> lupa waktu perawatan, <InlineMath math="16\times(114+81)" />.
+
+Jadi, pada hari Selasa kedua mesin menghasilkan <InlineMath math="2{.}616" /> komponen baik.

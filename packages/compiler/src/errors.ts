@@ -2,7 +2,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import { Schema } from "effect";
+import { Array as Arr, Schema } from "effect";
 import { StaticLiteralSyntaxReasonSchema } from "#compiler/ast/literal";
 
 /** The trusted MDX compiler rejected syntax or failed to emit JavaScript. */
@@ -152,6 +152,47 @@ export class MathVisualPolicyError extends Schema.TaggedError<
     Schema.check(Schema.isMinLength(1))
   ),
 }) {}
+
+/** One authored Mermaid diagram that Mermaid cannot parse, where its source starts in the file. */
+export const DiagramPolicyViolationSchema = Schema.Struct({
+  column: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+  line: Schema.Finite.pipe(
+    Schema.check(Schema.isInt()),
+    Schema.check(Schema.isGreaterThan(0))
+  ),
+  message: Schema.Trimmed.check(Schema.isNonEmpty()),
+});
+export type DiagramPolicyViolation = typeof DiagramPolicyViolationSchema.Type;
+
+/**
+ * Authored Mermaid diagrams that the Mermaid version Nakafa draws them with
+ * cannot parse, so the reader would see an error instead of the diagram.
+ */
+export class DiagramPolicyError extends Schema.TaggedError<
+  DiagramPolicyError,
+  { readonly brand: unique symbol }
+>()("DiagramPolicyError", {
+  contentKey: ContentKeySchema,
+  sourcePath: CorpusSourcePathSchema,
+  violations: Schema.Array(DiagramPolicyViolationSchema).pipe(
+    Schema.check(Schema.isMinLength(1))
+  ),
+}) {
+  /** Names the file, line, and Mermaid's message of every broken diagram. */
+  get message() {
+    return Arr.join(
+      Arr.map(
+        this.violations,
+        (violation) =>
+          `${this.sourcePath}:${violation.line}:${violation.column} ${violation.message}`
+      ),
+      "\n"
+    );
+  }
+}
 
 /** One UTF-8 content field exceeded its evidence-led byte ceiling. */
 export class ContentByteLimitExceededError extends Schema.TaggedError<

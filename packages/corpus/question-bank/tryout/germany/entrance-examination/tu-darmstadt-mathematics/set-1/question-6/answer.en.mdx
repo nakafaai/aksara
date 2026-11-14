@@ -1,15 +1,40 @@
-The path is a diagonal of the rectangle. It splits the rectangle into two right triangles whose legs are the sides <InlineMath math="21\text{ m}" /> and <InlineMath math="20\text{ m}" />. The diagonal is the **hypotenuse**, so the Pythagorean theorem applies.
+# Squaring both sides
+
+You don't know <InlineMath math="\sin x" /> and <InlineMath math="\cos x" /> one by one yet. **Square both sides**, because the result contains <InlineMath math="\sin^2x+\cos^2x" />, which is always <InlineMath math="1" />:
 
 <BlockMath math="\begin{aligned}
-d^2&=21^2+20^2=441+400=841 \\
-d&=\sqrt{841}=29\text{ m}
+(\sin x+\cos x)^2&=\frac{289}{169} \\
+\sin^2x+2\sin x\cos x+\cos^2x&=\frac{289}{169} \\
+1+2\sin x\cos x&=\frac{289}{169} \\
+\sin x\cos x&=\frac{60}{169}
 \end{aligned}" />
 
-As a check, <InlineMath math="29^2=841" />, and the hypotenuse is longer than each leg but shorter than their sum <InlineMath math="41\text{ m}" />.
+# Two numbers from their sum and product
 
-So the path is <InlineMath math="29\text{ m}" /> long.
+Now you know the sum <InlineMath math="\sin x+\cos x=\frac{17}{13}" /> and the product <InlineMath math="\sin x\cos x=\frac{60}{169}" />. **Two numbers with that sum and product are the roots of this quadratic**:
 
-- <InlineMath math="\sqrt{41}\text{ m}" /> comes from <InlineMath math="21^2-20^2=41" />. For the hypotenuse, the squares of the legs are added.
-- <InlineMath math="21\text{ m}" /> is only the longer side. A diagonal is always longer than each side.
-- <InlineMath math="25\text{ m}" /> and <InlineMath math="27\text{ m}" /> do not fit, because <InlineMath math="25^2=625" /> and <InlineMath math="27^2=729" /> are less than <InlineMath math="841" />.
-- <InlineMath math="41\text{ m}" /> is the sum of the sides, the way along two edges instead of straight across the plot.
+<BlockMath math="\begin{aligned}
+t^2-\frac{17}{13}t+\frac{60}{169}&=0 \\
+169t^2-221t+60&=0 \\
+(13t-5)(13t-12)&=0
+\end{aligned}" />
+
+So the two numbers are <InlineMath math="\frac{5}{13}" /> and <InlineMath math="\frac{12}{13}" />. All that's left is to decide which one is the sine and which is the cosine.
+
+# Using the angle range
+
+For <InlineMath math="0^\circ<x<45^\circ" />, the angle is closer to <InlineMath math="0^\circ" />, so **its sine is smaller than its cosine**. That means:
+
+<BlockMath math="\sin x=\frac{5}{13},\qquad\cos x=\frac{12}{13},\qquad\tan x=\frac{\sin x}{\cos x}=\frac{5}{12}" />
+
+Check: <InlineMath math="\frac{5}{13}+\frac{12}{13}=\frac{17}{13}" />, and <InlineMath math="\tan x=\frac{5}{12}<1" /> fits an angle below <InlineMath math="45^\circ" />.
+
+So <InlineMath math="\tan x=\frac{5}{12}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="\frac{12}{5}" /> **swaps the sine and the cosine**. A tangent above <InlineMath math="1" /> means an angle above <InlineMath math="45^\circ" />.
+- <InlineMath math="\frac{60}{169}" /> is <InlineMath math="\sin x\cos x" />, the middle step, not the tangent.
+- <InlineMath math="\frac{5}{12}" /> or <InlineMath math="\frac{12}{5}" /> ignores the angle range. Without it both values are possible, but here only one holds.
+- <InlineMath math="\frac{120}{169}" /> is <InlineMath math="2\sin x\cos x=\sin2x" />.
+- "No such angle" comes from squaring without the middle term. That gives <InlineMath math="1=\frac{289}{169}" />, which looks impossible, but only because <InlineMath math="2\sin x\cos x" /> went missing.

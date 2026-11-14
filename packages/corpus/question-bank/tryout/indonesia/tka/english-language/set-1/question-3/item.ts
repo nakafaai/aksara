@@ -3,36 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    contentDomain: "narrative",
+    topic: "character",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The roof is mainly organized to maximize the number of edible plants it produces.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "A rooftop garden uses different zones to respond to practical conditions.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "The garden is mainly designed to be seen from the street.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "Volunteers avoid recording experiments that fail.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "The hottest western zone is the central focus because it contains the water supply.",
+          label: "I, II, and IV only",
         },
       ],
     },

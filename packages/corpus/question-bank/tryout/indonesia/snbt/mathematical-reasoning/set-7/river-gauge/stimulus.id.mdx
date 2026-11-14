@@ -1,0 +1,17 @@
+Petugas memantau tinggi muka air sungai pada papan duga di Desa Hilir dari pukul 06.00 sampai 14.00. Pukul 06.00 tinggi muka air <InlineMath math="140\text{ cm}" />. Diagram berikut menunjukkan curah hujan di daerah hulu setiap jam, mulai pukul 04.00.
+
+<Chart
+  title={<>Curah Hujan di Hulu</>}
+  bars="apart"
+  categories={["04.00-05.00", "05.00-06.00", "06.00-07.00", "07.00-08.00", "08.00-09.00", "09.00-10.00", "10.00-11.00", "11.00-12.00"]}
+  series={[{ label: "Curah hujan (mm)", mark: "bar", values: [30, 25, 40, 55, 35, 20, 15, 5] }]}
+  valueLabel="Curah hujan (mm)"
+  description={<>Curah hujan di hulu setiap jam: <InlineMath math="30\text{ mm}" /> pada pukul 04.00-05.00, <InlineMath math="25\text{ mm}" /> pada pukul 05.00-06.00, <InlineMath math="40\text{ mm}" /> pada pukul 06.00-07.00, <InlineMath math="55\text{ mm}" /> pada pukul 07.00-08.00, <InlineMath math="35\text{ mm}" /> pada pukul 08.00-09.00, <InlineMath math="20\text{ mm}" /> pada pukul 09.00-10.00, <InlineMath math="15\text{ mm}" /> pada pukul 10.00-11.00, dan <InlineMath math="5\text{ mm}" /> pada pukul 11.00-12.00.</>}
+/>
+
+Tinggi muka air berubah menurut aturan berikut.
+
+- Air hujan dari hulu tiba di papan duga tepat <InlineMath math="2" /> jam kemudian. Jadi, hujan pada pukul 04.00-05.00 memengaruhi papan duga pada pukul 06.00-07.00, hujan pada pukul 05.00-06.00 memengaruhi papan duga pada pukul 07.00-08.00, dan seterusnya.
+- Jika curah hujan yang tiba dalam suatu jam adalah <InlineMath math="p\text{ mm}" />, tinggi muka air dalam jam itu berubah merata sebesar <InlineMath math="(2p-20)\text{ cm}" />. Nilai negatif berarti turun.
+- Pintu air pengendali terbuka otomatis selama tinggi muka air <InlineMath math="250\text{ cm}" /> atau lebih. Selama pintu air terbuka, perubahan tinggi muka air setiap jam berkurang <InlineMath math="30\text{ cm}" />, sehingga kenaikan menjadi lebih kecil atau penurunan menjadi lebih besar.
+- Status sungai adalah Normal jika tinggi muka air di bawah <InlineMath math="200\text{ cm}" />, Waspada jika <InlineMath math="200\text{ cm}" /> sampai di bawah <InlineMath math="250\text{ cm}" />, Siaga jika <InlineMath math="250\text{ cm}" /> sampai di bawah <InlineMath math="300\text{ cm}" />, dan Awas jika <InlineMath math="300\text{ cm}" /> atau lebih.

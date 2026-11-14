@@ -1,20 +1,37 @@
-The surface area of the pyramid is the base area plus the area of the four lateral faces. Each lateral face is a triangle with base 6 cm, and **the height of that triangle is the slant height**, not the height of the pyramid.
+The volume of a pyramid needs its height, but a net only shows flat faces. The plan: read the net to get **the height of each side triangle**, then fold the pyramid and turn that triangle height into the height of the pyramid.
 
-# The slant height
+# Reading the net
 
-Draw the line from the apex <InlineMath math="T" /> to the midpoint of one base edge. This line, the height of the pyramid, and half a base side form **a right triangle** with legs 4 cm and 3 cm.
+Let <InlineMath math="O" /> be the centre of the square base and let <InlineMath math="s" /> be the height of each side triangle, the distance from the triangle's tip to the base side it's attached to. In the flat net, each tip lies on the line through <InlineMath math="O" /> that's perpendicular to that side. So **the distance from a tip to <InlineMath math="O" /> is half the base side plus <InlineMath math="s" />**, which is <InlineMath math="3+s" />. The four tips are the same distance from <InlineMath math="O" /> in four perpendicular directions, so that distance is half the diagonal of the big square.
 
-<BlockMath math="t_{\text{slant}}=\sqrt{4^2+3^2}=5" />
+# The height of each side triangle
 
-# The surface area
-
-Add **the base area and the four lateral triangles**.
+A square's area is **half the square of its diagonal**. From the area <InlineMath math="128\text{ cm}^2" /> you can get the diagonal.
 
 <BlockMath math="\begin{aligned}
-A&=6^2+4\cdot\tfrac12\cdot6\cdot5\\
-&=36+60=96\text{ cm}^2
+\tfrac12 d^2&=128\\
+d^2&=256\\
+d&=16\\
+3+s&=\tfrac{16}{2}=8\\
+s&=5
 \end{aligned}" />
 
-The value 84 uses the pyramid height 4 cm as the slant height, which makes the lateral area 48. The value 60 is the lateral area without the base, and the value 48 is the lateral area with the wrong height and no base. The value 36 is only the base area.
+# The pyramid's height and volume
 
-So the surface area of the pyramid is **<InlineMath math="96\text{ cm}^2" />**.
+After folding, the apex <InlineMath math="T" /> sits right above <InlineMath math="O" />. Let <InlineMath math="M" /> be the midpoint of one base side. Triangle <InlineMath math="TOM" /> has its right angle at <InlineMath math="O" />, with <InlineMath math="OM=3" /> and <InlineMath math="TM=s=5" />. So **the height of a side triangle is the hypotenuse, not the pyramid's height**.
+
+<BlockMath math="\begin{aligned}
+TO&=\sqrt{5^2-3^2}=4\text{ cm}\\
+V&=\tfrac13\cdot6^2\cdot4=48\text{ cm}^3
+\end{aligned}" />
+
+Check the slant edge two ways. From a side triangle, the edge is <InlineMath math="\sqrt{5^2+3^2}=\sqrt{34}" />. From the pyramid's height and half the base diagonal <InlineMath math="3\sqrt2" />, the edge is <InlineMath math="\sqrt{4^2+18}=\sqrt{34}" />. They match, so the measurements fit together.
+
+# Why the other options are wrong
+
+- <InlineMath math="12\sqrt{55}\text{ cm}^3" /> comes from taking the distance <InlineMath math="8" /> as <InlineMath math="s" /> **without subtracting half the base side**.
+- <InlineMath math="60\text{ cm}^3" /> uses the side triangle's height <InlineMath math="5" /> as the pyramid's height.
+- <InlineMath math="144\text{ cm}^3" /> forgets the factor <InlineMath math="\tfrac13" /> in the pyramid volume formula.
+- <InlineMath math="12\sqrt7\text{ cm}^3" /> subtracts half the base diagonal from <InlineMath math="s" />, as if <InlineMath math="s" /> were the slant edge: <InlineMath math="\sqrt{25-18}=\sqrt7" />.
+
+So the volume of the pyramid is <InlineMath math="48\text{ cm}^3" />.

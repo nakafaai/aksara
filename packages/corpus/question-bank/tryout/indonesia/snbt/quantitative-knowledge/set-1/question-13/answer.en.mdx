@@ -1,21 +1,42 @@
-The volume of water does not change, but the cube takes up part of the space at the bottom of the tank. The first thing to decide is **whether the cube ends up fully under water**, because the formula for the water level differs in the two situations.
+What bag B holds at the second draw **depends on the colour of the ball that was moved**. So the plan: find what bag A holds from the given probability, split into two cases by the colour of the moved ball, compute the probability in each case, and combine them with their weights.
 
-# Testing the submerged assumption
+# Finding what bag A holds
 
-The water volume is <InlineMath math="30\times20\times8=4800\text{ cm}^3" />. If the cube were fully submerged, its whole volume would raise the water over the base of <InlineMath math="600\text{ cm}^2" />.
+Say bag A holds <InlineMath math="r" /> red balls. There are <InlineMath math="\binom52=10" /> ways to take two balls from <InlineMath math="5" />, and <InlineMath math="\binom r2" /> ways to take two red ones.
 
-<BlockMath math="h=\frac{4800+1000}{600}=\frac{29}{3}\approx9.67\text{ cm}" />
+<BlockMath math="\begin{aligned}
+\frac{\binom r2}{10}&=\frac{3}{10}\\
+\frac{r(r-1)}{2}&=3\\
+r^2-r-6&=0\\
+(r-3)(r+2)&=0
+\end{aligned}" />
 
-This level is **lower than the edge of the cube**, which is 10 cm. So the assumption is wrong, and the top of the cube stays above the water.
+A number of balls can't be negative, so <InlineMath math="r=3" />. Bag A holds **<InlineMath math="3" /> red balls and <InlineMath math="2" /> white balls**.
 
-# Computing the water level
+# Computing the probability in each case
 
-Because the cube sticks out of the surface, the water **fills only the space around the cube**. The base area available to the water is <InlineMath math="600-10\times10=500\text{ cm}^2" />, and the water volume is still <InlineMath math="4800\text{ cm}^3" />.
+The moved ball is red with probability <InlineMath math="\frac35" />. Bag B then holds **<InlineMath math="3" /> red and <InlineMath math="4" /> white**, <InlineMath math="7" /> balls in all. The moved ball is white with probability <InlineMath math="\frac25" />. Bag B then holds <InlineMath math="2" /> red and <InlineMath math="5" /> white. In both cases there are <InlineMath math="\binom72=21" /> ways to take two balls from <InlineMath math="7" />.
 
-<BlockMath math="500h=4800\quad\Rightarrow\quad h=9.6\text{ cm}" />
+<BlockMath math="\begin{aligned}
+P(\text{two red}\mid\text{red moved})&=\frac{\binom32}{21}=\frac{3}{21}=\frac17\\
+P(\text{two red}\mid\text{white moved})&=\frac{\binom22}{21}=\frac{1}{21}
+\end{aligned}" />
 
-Check: <InlineMath math="9.6<10" />, so the cube is indeed not fully submerged.
+# Combining the two cases
 
-The option <InlineMath math="\tfrac{29}{3}" /> cm assumes the cube is submerged. The option 10 cm assumes the water reaches exactly the top of the cube. The option 11.6 cm adds the cube's volume and also reduces the base area, which counts the cube's space twice. The option 18 cm adds the cube's edge to the water depth.
+Each case is **multiplied by the probability that the case happens**, and then the results are added.
 
-So the water level becomes **<InlineMath math="9.6\text{ cm}" />**.
+<BlockMath math="\begin{aligned}
+P(\text{two red})&=\frac35\cdot\frac17+\frac25\cdot\frac1{21}\\
+&=\frac{9}{105}+\frac{2}{105}=\frac{11}{105}
+\end{aligned}" />
+
+# Checking the result
+
+Count it directly as well. There are <InlineMath math="5" /> choices for the moved ball and <InlineMath math="21" /> choices for the pair from bag B, so there are <InlineMath math="5\cdot21=105" /> equally likely outcomes. The ones that work are <InlineMath math="3\cdot3=9" /> when a red ball is moved and <InlineMath math="2\cdot1=2" /> when a white ball is moved. **The result is the same, <InlineMath math="\frac{11}{105}" />**, and it lies between <InlineMath math="\frac1{21}" /> and <InlineMath math="\frac17" />.
+
+# The wrong options
+
+The option <InlineMath math="\frac1{15}" /> ignores the moved ball, so bag B seems to still hold <InlineMath math="6" /> balls. The option <InlineMath math="\frac3{35}" /> counts only the case where a red ball is moved and forgets to add the white case. The option <InlineMath math="\frac2{21}" /> is the plain average <InlineMath math="\frac12\left(\frac17+\frac1{21}\right)" />, which **ignores the weights <InlineMath math="\frac35" /> and <InlineMath math="\frac25" />**. The option <InlineMath math="\frac17" /> comes from drawing one ball at a time with replacement, which gives <InlineMath math="\frac35\left(\frac37\right)^2+\frac25\left(\frac27\right)^2=\frac{35}{245}" />.
+
+So the probability that both balls drawn from bag B are red is <InlineMath math="\frac{11}{105}" />.

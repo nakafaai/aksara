@@ -1,0 +1,250 @@
+export const metadata = {
+  title: "Transpos Matriks",
+  description: "Transposkan matriks dengan menukar baris dan lajurnya, kemudian sahkan sifat-sifat transpos dalam contoh yang lengkap.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-06",
+    dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Menukar Baris Matriks menjadi Lajur
+
+Transpos matriks <Highlight>dibentuk dengan menukar baris dan lajur</Highlight>. Kalau unsur <InlineMath math="a_{ij}" /> berada pada baris <InlineMath math="i" /> dan lajur <InlineMath math="j" /> bagi <InlineMath math="A" />, unsur yang sama berada pada baris <InlineMath math="j" /> dan lajur <InlineMath math="i" /> bagi <InlineMath math="A^T" />.
+
+Transpos bagi <InlineMath math="A" /> ditulis sebagai <InlineMath math="A^T" /> atau <InlineMath math="A'" />. Kalau <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" />, maka <InlineMath math="A^T" /> berperingkat <InlineMath math="n \times m" /> dan memenuhi <InlineMath math="(A^T)_{ji} = a_{ij}" />.
+
+## Cara Menentukan Transpos Matriks
+
+Untuk mendapatkan transpos matriks, ikut langkah berikut:
+
+1.  Tulis **baris pertama** matriks asal sebagai lajur pertama matriks transpos.
+2.  Tulis baris kedua matriks asal sebagai lajur kedua matriks transpos.
+3.  Teruskan proses ini untuk semua baris dalam matriks asal.
+### Matriks Am
+
+Katakan kita ada matriks <InlineMath math="A" />:
+
+<BlockMath math="A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}" />
+
+Maka transpos matriks <InlineMath math="A" /> ialah:
+
+<BlockMath math="A^T = \begin{bmatrix} a & c \\ b & d \end{bmatrix}" />
+
+Baris pertama <InlineMath math="\begin{bmatrix} a & b \end{bmatrix}" /> menjadi **lajur pertama**:
+
+<BlockMath math="\begin{bmatrix} a \\ b \end{bmatrix}" />
+
+Baris kedua <InlineMath math="\begin{bmatrix} c & d \end{bmatrix}" /> menjadi lajur kedua:
+
+<BlockMath math="\begin{bmatrix} c \\ d \end{bmatrix}" />
+### Matriks dengan Peringkat Berbeza
+
+Diberi matriks <InlineMath math="B" /> dengan **peringkat** <InlineMath math="2 \times 3" />:
+
+<BlockMath math="B = \begin{bmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{bmatrix}" />
+
+Transpos matriks <InlineMath math="B" />, ditanda <InlineMath math="B^T" />, akan berperingkat <InlineMath math="3 \times 2" />:
+
+<BlockMath math="B^T = \begin{bmatrix} 1 & 4 \\ 2 & 5 \\ 3 & 6 \end{bmatrix}" />
+
+- Baris pertama <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 1 & 2 & 3 \end{bmatrix}" />) menjadi lajur pertama <InlineMath math="B^T" />.
+- Baris kedua <InlineMath math="B" /> (<InlineMath math="\begin{bmatrix} 4 & 5 & 6 \end{bmatrix}" />) menjadi lajur kedua <InlineMath math="B^T" />.
+
+Letakkan setiap unsur di tempatnya pada halaman: nombor lajurnya ke kanan dan nombor barisnya ke bawah. Enam unsur <InlineMath math="B" /> memenuhi dua baris. Transpos memantulkan setiap unsur merentasi pepenjuru utama, iaitu garis melalui <InlineMath math="b_{11}" /> dan <InlineMath math="b_{22}" />. Nombor <InlineMath math="3" /> pada baris <InlineMath math="1" />, lajur <InlineMath math="3" /> bergerak ke baris <InlineMath math="3" />, lajur <InlineMath math="1" />. Nombor <InlineMath math="2" /> dan <InlineMath math="4" /> bertukar tempat. Nombor <InlineMath math="1" /> dan <InlineMath math="5" /> terletak pada pepenjuru, jadi kedua-duanya kekal di tempatnya.
+
+<MathVisual
+  title={<>Transpos <InlineMath math="B" /> memantulkannya merentasi pepenjuru utama</>}
+  description={<>Unsur <InlineMath math="B" /> berada di atas dan di kanan kedudukannya. Unsur <InlineMath math="B^T" /> yang berpindah berada di bawah dan di kiri. Setiap segmen menyambungkan kedudukan lama sesuatu unsur dengan kedudukan barunya.</>}
+  labels={{
+    diagonal: <>pepenjuru utama</>,
+    b11: <InlineMath math="1" />,
+    b12: <InlineMath math="2" />,
+    b13: <InlineMath math="3" />,
+    b21: <InlineMath math="4" />,
+    b22: <InlineMath math="5" />,
+    b23: <InlineMath math="6" />,
+    t12: <InlineMath math="4" />,
+    t21: <InlineMath math="2" />,
+    t31: <InlineMath math="3" />,
+    t32: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "swap24", kind: "segment", from: { x: 2, y: -1 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "swap3", kind: "segment", from: { x: 3, y: -1 }, to: { x: 1, y: -3 }, appearance: "construction" },
+      { id: "swap6", kind: "segment", from: { x: 3, y: -2 }, to: { x: 2, y: -3 }, appearance: "construction" },
+      { id: "b11", kind: "point", at: { x: 1, y: -1 }, appearance: "primary" },
+      { id: "b12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "b13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "b21", kind: "point", at: { x: 1, y: -2 }, appearance: "primary" },
+      { id: "b22", kind: "point", at: { x: 2, y: -2 }, appearance: "primary" },
+      { id: "b23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "t31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "t32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "diagonal", objectId: "diagonal", at: { x: 0.5, y: -0.5 }, placement: "above-right" },
+      { key: "b11", objectId: "b11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "b12", objectId: "b12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "b13", objectId: "b13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "b21", objectId: "b21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "b22", objectId: "b22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "b23", objectId: "b23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "t12", objectId: "swap24", at: { x: 2, y: -1 }, placement: "below-left" },
+      { key: "t21", objectId: "swap24", at: { x: 1, y: -2 }, placement: "below-left" },
+      { key: "t31", objectId: "t31", at: { x: 1, y: -3 }, placement: "below-left" },
+      { key: "t32", objectId: "t32", at: { x: 2, y: -3 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Seluruh blok juga terbalik. <InlineMath math="B" /> memenuhi <InlineMath math="2" /> baris dan <InlineMath math="3" /> lajur. Pantulkan blok itu merentasi pepenjuru utama dan blok itu menjadi <InlineMath math="3" /> baris tinggi dan <InlineMath math="2" /> lajur lebar, jadi <InlineMath math="B^T" /> berperingkat <InlineMath math="3 \times 2" />.
+
+<MathVisual
+  title={<>Peringkat <InlineMath math="B" /> bertukar daripada <InlineMath math="2 \times 3" /> kepada <InlineMath math="3 \times 2" /></>}
+  description={<>Blok <InlineMath math="B" />, <InlineMath math="3" /> lajur lebar dan <InlineMath math="2" /> baris tinggi, serta pantulannya <InlineMath math="B^T" />, <InlineMath math="2" /> lajur lebar dan <InlineMath math="3" /> baris tinggi.</>}
+  labels={{
+    b: <InlineMath math="B: 2 \times 3" />,
+    bt: <InlineMath math="B^T: 3 \times 2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diagonal", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: -2 }, { x: 0, y: -2 }], appearance: "primary" },
+      { id: "bt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: -3 }, { x: 0, y: -3 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "b", objectId: "b", at: { x: 3, y: -2 }, placement: "below-right" },
+      { key: "bt", objectId: "bt", at: { x: 2, y: -3 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Sesetengah matriks langsung tidak berubah apabila ditranspos. Dalam <InlineMath math="S = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 4 & 5 \\ 3 & 5 & 6 \end{bmatrix}" />, setiap unsur ada pasangan yang sama nilainya di seberang pepenjuru utama: dua nombor <InlineMath math="2" />, dua nombor <InlineMath math="3" /> dan dua nombor <InlineMath math="5" />. Pantulan menukar nilai-nilai yang sama, jadi <InlineMath math="S^T = S" />, dan <InlineMath math="S" /> ialah matriks simetri.
+
+<MathVisual
+  title={<>Matriks simetri ialah transposnya sendiri</>}
+  description={<>Unsur-unsur <InlineMath math="S" /> diletakkan mengikut lajur dan baris, dipantulkan pada pepenjuru utama kepada nilai-nilai yang sama.</>}
+  labels={{
+    s11: <InlineMath math="1" />,
+    s12: <InlineMath math="2" />,
+    s13: <InlineMath math="3" />,
+    s21: <InlineMath math="2" />,
+    s22: <InlineMath math="4" />,
+    s23: <InlineMath math="5" />,
+    s31: <InlineMath math="3" />,
+    s32: <InlineMath math="5" />,
+    s33: <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -4, max: 0 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "diag", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: -1 }], appearance: "reference" },
+      { id: "s11", kind: "point", at: { x: 1, y: -1 }, appearance: "answer" },
+      { id: "s12", kind: "point", at: { x: 2, y: -1 }, appearance: "primary" },
+      { id: "s13", kind: "point", at: { x: 3, y: -1 }, appearance: "primary" },
+      { id: "s21", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "s22", kind: "point", at: { x: 2, y: -2 }, appearance: "answer" },
+      { id: "s23", kind: "point", at: { x: 3, y: -2 }, appearance: "primary" },
+      { id: "s31", kind: "point", at: { x: 1, y: -3 }, appearance: "secondary" },
+      { id: "s32", kind: "point", at: { x: 2, y: -3 }, appearance: "secondary" },
+      { id: "s33", kind: "point", at: { x: 3, y: -3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s11", objectId: "s11", at: { x: 1, y: -1 }, placement: "above-right" },
+      { key: "s12", objectId: "s12", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "s13", objectId: "s13", at: { x: 3, y: -1 }, placement: "above-right" },
+      { key: "s21", objectId: "s21", at: { x: 1, y: -2 }, placement: "above-right" },
+      { key: "s22", objectId: "s22", at: { x: 2, y: -2 }, placement: "above-right" },
+      { key: "s23", objectId: "s23", at: { x: 3, y: -2 }, placement: "above-right" },
+      { key: "s31", objectId: "s31", at: { x: 1, y: -3 }, placement: "above-right" },
+      { key: "s32", objectId: "s32", at: { x: 2, y: -3 }, placement: "above-right" },
+      { key: "s33", objectId: "s33", at: { x: 3, y: -3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+### Matriks Lajur kepada Matriks Baris
+
+Kalau <InlineMath math="C" /> ialah matriks lajur:
+
+<BlockMath math="C = \begin{bmatrix} 2 \\ 3 \end{bmatrix}" />
+
+Maka transposnya, <InlineMath math="C^T" />, ialah **matriks baris**:
+
+<BlockMath math="C^T = \begin{bmatrix} 2 & 3 \end{bmatrix}" />
+### Transpos Matriks Segi Empat Sama
+
+Diberi **matriks segi empat sama** <InlineMath math="D" />:
+
+<BlockMath math="D = \begin{bmatrix} -7 & 8 & 1 & 3 \\ 5 & 9 & 7 & 2 \\ 2 & 2 & 1 & 3 \\ 1 & -6 & 0 & 1 \end{bmatrix}" />
+
+Maka transposnya, <InlineMath math="D^T" />, juga matriks segi empat sama:
+
+<BlockMath math="D^T = \begin{bmatrix} -7 & 5 & 2 & 1 \\ 8 & 9 & 2 & -6 \\ 1 & 7 & 1 & 0 \\ 3 & 2 & 3 & 1 \end{bmatrix}" />
+## Sifat-sifat Transpos Matriks
+
+Setiap identiti menganggap peringkatnya serasi untuk operasi yang dinyatakan. Bagi hasil darab, **tertib faktornya terbalik** selepas transpos.
+
+| Identiti | Maksud |
+| --- | --- |
+| <InlineMath math="(A^T)^T = A" /> | Transpos bagi matriks transpos ialah matriks itu sendiri |
+| <InlineMath math="(A + B)^T = A^T + B^T" /> | Transpos bagi hasil tambah dua matriks |
+| <InlineMath math="(A - B)^T = A^T - B^T" /> | Transpos bagi hasil tolak dua matriks |
+| <InlineMath math="(kA)^T = kA^T" /> | , dengan <InlineMath math="k" /> ialah skalar |
+| <InlineMath math="(AB)^T = B^T A^T" /> | Transpos bagi hasil darab dua matriks, perhatikan tertibnya terbalik |
+
+### Mengapa Tertib Faktor Terbalik
+
+Ambil matriks baris <InlineMath math="E=[1\;2]" /> dan matriks lajur <InlineMath math="F=[3\;4]^T" />. Hasil darab <InlineMath math="EF" /> **hanya ada satu unsur**. Transposnya juga mesti ada satu unsur.
+
+<MathContainer>
+  <BlockMath math="EF=[1(3)+2(4)]=[11]" />
+  <BlockMath math="F^TE^T=\begin{bmatrix}3&amp;4\end{bmatrix}\begin{bmatrix}1\\2\end{bmatrix}=[3(1)+4(2)]=[11]" />
+  <BlockMath math="E^TF^T=\begin{bmatrix}1\\2\end{bmatrix}\begin{bmatrix}3&amp;4\end{bmatrix}=\begin{bmatrix}3&amp;4\\6&amp;8\end{bmatrix}" />
+</MathContainer>
+
+Tanpa menterbalikkan tertib itu, kita akan dapat matriks <InlineMath math="2\times2" />, dan bukan transpos <InlineMath math="1\times1" /> bagi hasil darab itu.
+## Latihan
+
+Tentukan transpos matriks-matriks berikut dan nyatakan **jenis matriks yang terhasil** (contohnya matriks baris, matriks lajur, matriks segi empat sama).
+
+1.  Matriks <InlineMath math="A" />:
+
+    <BlockMath math="A = \begin{bmatrix} 1 & 3 & -5 \end{bmatrix}" />
+
+2.  Matriks <InlineMath math="B" />:
+
+    <BlockMath math="B = \begin{bmatrix} 9 & -1 \\ 3 & 0 \\ 1 & 5 \end{bmatrix}" />
+
+3.  Matriks <InlineMath math="C" />:
+
+    <BlockMath math="C = \begin{bmatrix} 2 & 3 & 1 \\ 1 & 6 & -2 \\ 4 & 5 & -7 \end{bmatrix}" />
+### Penyelesaian
+
+1.  Transpos bagi <InlineMath math="A" /> ialah:
+
+    <BlockMath math="A^T = \begin{bmatrix} 1 \\ 3 \\ -5 \end{bmatrix}" />
+
+    Baris tunggal <InlineMath math="A" /> menjadi **lajur tunggal**. Jadi, <InlineMath math="A^T" /> berperingkat <InlineMath math="3 \times 1" /> dan ialah matriks lajur.
+
+2.  Transpos bagi <InlineMath math="B" /> ialah:
+
+    <BlockMath math="B^T = \begin{bmatrix} 9 & 3 & 1 \\ -1 & 0 & 5 \end{bmatrix}" />
+
+    Setiap baris <InlineMath math="B" /> menjadi lajur <InlineMath math="B^T" />. Peringkatnya berubah daripada <InlineMath math="3 \times 2" /> kepada <InlineMath math="2 \times 3" />, jadi hasilnya ialah matriks segi empat tepat.
+
+3.  Transpos bagi <InlineMath math="C" /> ialah:
+
+    <BlockMath math="C^T = \begin{bmatrix} 2 & 1 & 4 \\ 3 & 6 & 5 \\ 1 & -2 & -7 \end{bmatrix}" />
+
+    Membaca lajur-lajur <InlineMath math="C" /> sebagai baris-baris <InlineMath math="C^T" /> memberikan matriks di atas. Peringkatnya kekal <InlineMath math="3 \times 3" />, jadi matriks itu masih matriks segi empat sama.

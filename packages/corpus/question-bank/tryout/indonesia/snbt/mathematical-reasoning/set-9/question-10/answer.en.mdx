@@ -1,15 +1,37 @@
-The first round must cut 40 players down to 32, so **8 players must be knocked out** in that round.
+You judge each statement on its own with two tools. First, **the matching fund is half the deposit but at most <InlineMath math="4" /> million rupiah per year**. Second, money paid in at the start of year <InlineMath math="k" /> grows to the end of year <InlineMath math="n" /> by the factor <InlineMath math="(1.1)^{n-k+1}" /> from the table. All amounts below are in millions of rupiah.
 
-# Players who play
+# The first statement about deposits every two years
 
-Each match knocks out one player, so **the first round needs 8 matches**. Eight matches are played by <InlineMath math="8\cdot2=16" /> players.
+The employee who pays every year would get a matching fund of <InlineMath math="5" />, but it's capped at <InlineMath math="4" />, so <InlineMath math="14" /> goes in each year. The employee who pays <InlineMath math="20" /> would get <InlineMath math="10" />, but **the cap applies per year**, so they only get <InlineMath math="4" /> and <InlineMath math="24" /> goes in.
 
-# Players with a bye
+<BlockMath math="\begin{aligned}
+\text{every year} &: 14\times(1.772+1.611+1.464+1.331+1.210+1.100)=14\times8.488=118.832 \\
+\text{every two years} &: 24\times(1.772+1.464+1.210)=24\times4.446=106.704
+\end{aligned}" />
 
-<BlockMath math="40-16=24" />
+The two-yearly deposits grow for <InlineMath math="6" />, <InlineMath math="4" />, and <InlineMath math="2" /> years. The balances differ, because the total matching fund is only <InlineMath math="12" />, not <InlineMath math="24" />. The first statement is false.
 
-Check: the 8 first-round winners plus 24 players with a bye make 32 players, **exactly as the rules say**.
+# The second statement about doubling the deposit
 
-The value 8 is the number of first-round matches, and 16 is the number of players who play. The value 20 assumes half the players get a bye, and 32 is the number of players in the second round.
+The balance equals the yearly money times the same sum of factors, so the ratio of balances equals the ratio of yearly money. A deposit of <InlineMath math="6" /> gets a match of <InlineMath math="3" />, so <InlineMath math="9" /> goes in. A deposit of <InlineMath math="12" /> should get <InlineMath math="6" />, but **the cap cuts it to <InlineMath math="4" />**, so <InlineMath math="16" /> goes in.
 
-So **24 players** get a bye.
+<BlockMath math="\frac{16}{9}\approx1.78\neq2" />
+
+The balance goes up, but not to double. The second statement is false.
+
+# The third statement about ten years and five years
+
+With the same deposit each year, the balance is the yearly money times the sum of factors, so you only need to compare those sums. **The factors of the last five years are much bigger** than those of the first five.
+
+<BlockMath math="\begin{aligned}
+S_5 &= 1.100+1.210+1.331+1.464+1.611=6.716 \\
+S_{10} &= 6.716+1.772+1.949+2.144+2.358+2.594=17.533
+\end{aligned}" />
+
+Compare with <InlineMath math="2.5\times6.716=16.79" />. Since <InlineMath math="17.533>16.79" />, the third statement is true.
+
+# The fourth statement about doubling
+
+The money paid in at the start of year <InlineMath math="1" /> has grown <InlineMath math="7" /> times by the end of year <InlineMath math="7" />, so its factor is <InlineMath math="(1.1)^7=1.949" />. That factor is **still below two**. The money only more than doubles by the end of year <InlineMath math="8" />, with factor <InlineMath math="2.144" />. A quick estimate like <InlineMath math="72\div10\approx7.2" /> years tempts you to say year <InlineMath math="7" />, but the table says not yet. The fourth statement is false.
+
+So the first statement is false, the second is false, the third is true, and the fourth is false.

@@ -1,17 +1,48 @@
-Dengan lima keping, gambar lebih banyak daripada angka berarti **paling sedikit tiga gambar**. Ada <InlineMath math="2^5=32" /> hasil yang sama mungkin karena kepingnya seimbang.
+Rumus <InlineMath math="S_n" /> memberi jumlah, bukan suku. Suku ke-<InlineMath math="n" /> adalah selisih dua jumlah yang berurutan, tetapi **selisih itu hanya berlaku mulai <InlineMath math="n=2" />**, karena suku pertama sama dengan <InlineMath math="S_1" /> itu sendiri. Rencananya, cari rumus semua suku dengan hati-hati, lalu nilai keempat pernyataan.
 
-# Menghitung hasil yang cocok
+# Menentukan setiap suku
 
-Banyak cara memperoleh tepat <InlineMath math="k" /> gambar adalah **banyak cara memilih keping yang bergambar**, yaitu <InlineMath math="\binom5k" />.
+Suku pertama langsung dari rumus jumlah: <InlineMath math="a_1=S_1=2-5+3=0" />. Untuk <InlineMath math="n\ge2" />, kurangkan jumlah <InlineMath math="n-1" /> suku dari jumlah <InlineMath math="n" /> suku.
 
-<BlockMath math="\binom53+\binom54+\binom55=10+5+1=16" />
+<BlockMath math="\begin{aligned}
+a_n&=S_n-S_{n-1}\\
+&=\left(2n^2-5n+3\right)-\left(2(n-1)^2-5(n-1)+3\right)\\
+&=2n^2-5n+3-2n^2+4n-2+5n-5-3\\
+&=4n-7
+\end{aligned}" />
 
-Peluangnya <InlineMath math="\frac{16}{32}=\frac12" />.
+Rumus <InlineMath math="4n-7" /> memberi <InlineMath math="-3" /> untuk <InlineMath math="n=1" />, padahal <InlineMath math="a_1=0" />. Perbedaan itu datang dari **konstanta <InlineMath math="3" /> di rumus <InlineMath math="S_n" />**. Jadi barisannya <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" />, dan seterusnya.
 
-# Alasan kesimetrian
+# Pernyataan pertama
 
-Lima keping tidak mungkin menghasilkan gambar dan angka sama banyak, karena 5 ganjil. Jadi setiap hasil memiliki gambar lebih banyak **atau** angka lebih banyak. Menukar gambar dan angka pada setiap keping memasangkan kedua kelompok satu-satu, sehingga **kedua kelompok sama besar**, masing-masing 16 hasil.
+Selisih dua suku pertama adalah <InlineMath math="a_2-a_1=1-0=1" />, sedangkan selisih berikutnya <InlineMath math="a_3-a_2=5-1=4" />. **Beda yang tidak tetap berarti bukan barisan aritmetika**, jadi pernyataan pertama salah.
 
-Nilai <InlineMath math="\tfrac5{16}" /> hanya menghitung tepat tiga gambar. Nilai <InlineMath math="\tfrac{15}{32}" /> melupakan hasil lima gambar. Nilai <InlineMath math="\tfrac{13}{16}" /> ikut menghitung dua gambar, dan nilai <InlineMath math="\tfrac{31}{32}" /> adalah peluang paling sedikit satu gambar.
+# Pernyataan kedua
 
-Jadi, peluang yang ditanyakan adalah <InlineMath math="\tfrac12" />.
+Suku ke-<InlineMath math="15" /> memakai rumus untuk <InlineMath math="n\ge2" />: <InlineMath math="a_{15}=4\cdot15-7=53" />. Cek dengan rumus jumlah: <InlineMath math="S_{15}-S_{14}=378-325=53" />. **Pernyataan kedua benar**.
+
+# Pernyataan ketiga
+
+Pasangan pertama memberi <InlineMath math="a_1+a_2=0+1=1" />. Untuk <InlineMath math="n\ge2" />, jumlah dua suku berurutan mengikuti rumus berikut.
+
+<BlockMath math="\begin{aligned}
+a_n+a_{n+1}&=(4n-7)+(4n-3)=8n-10\\
+8n-10&=2{.}026\\
+8n&=2{.}036\\
+n&=254{,}5
+\end{aligned}" />
+
+Nilai <InlineMath math="n" /> bukan bilangan asli, dan pasangan pertama hanya berjumlah <InlineMath math="1" />. Jadi **tidak ada dua suku berurutan yang jumlahnya <InlineMath math="2{.}026" />**, dan pernyataan ketiga salah.
+
+# Pernyataan keempat
+
+Suku berindeks ganjil dari <InlineMath math="a_3" /> sampai <InlineMath math="a_{19}" /> ada <InlineMath math="9" />, yaitu <InlineMath math="5" />, <InlineMath math="13" />, sampai <InlineMath math="69" />, dengan beda <InlineMath math="8" />. **Suku pertama ditambahkan terpisah**, karena nilainya <InlineMath math="a_1=0" /> tidak mengikuti rumus <InlineMath math="4n-7" />.
+
+<BlockMath math="\begin{aligned}
+a_3+a_5+\dots+a_{19}&=\frac{9}{2}(5+69)=333\\
+a_1+a_3+\dots+a_{19}&=0+333=333
+\end{aligned}" />
+
+Cek dengan jalan lain: <InlineMath math="S_{19}=630" />, dan suku berindeks genap <InlineMath math="a_2+a_4+\dots+a_{18}=\tfrac92(1+65)=297" />, jadi suku berindeks ganjil berjumlah <InlineMath math="630-297=333" />. Kalau <InlineMath math="a_1" /> dihitung dengan <InlineMath math="4n-7" />, hasilnya keliru menjadi <InlineMath math="330" />. Pernyataan keempat benar.
+
+Jadi, pernyataan pertama salah, pernyataan kedua benar, pernyataan ketiga salah, dan pernyataan keempat benar.

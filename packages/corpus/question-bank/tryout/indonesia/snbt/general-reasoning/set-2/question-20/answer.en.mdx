@@ -1,14 +1,31 @@
-There are four possible eaters. Test each possibility and **count how many statements are true**. The right possibility gives exactly one true statement.
+A statement that must be true has to hold in every arrival order that fits all four facts. So first you need to know which orders are possible.
 
-| Eater | Rafi | Sela | Tomi | Umar | Number true |
-| --- | --- | --- | --- | --- | --- |
-| Rafi | False | False | True | True | <InlineMath math="2" /> |
-| Sela | True | False | True | True | <InlineMath math="3" /> |
-| Tomi | False | False | False | True | <InlineMath math="1" /> |
-| Umar | False | True | True | False | <InlineMath math="2" /> |
+Facts 1 and 2 join into one chain, from earliest to latest.
 
-How to fill Umar's column: Umar's statement is true exactly when Sela's statement is false. Sela's statement is true only if Umar is the eater, so Umar's statement is true in every case except when Umar ate the cake.
+<BlockMath math="\text{Oki} \rightarrow \text{Rani} \rightarrow \text{Taufik} \rightarrow \text{Sinta}" />
 
-Only the case **Tomi ate the cake** gives exactly one true statement, Umar's. Since that case is unique, the eater can be determined, so "cannot be determined" is wrong too.
+Fact 4 is the key to this question, and you have to read it together with fact 3. Umar arrives before Vina. Suppose Vina is the one who arrives before Sinta. Umar arrives even earlier, so Umar is also before Sinta, and then two people from that pair beat Sinta. That breaks "exactly one". So **Umar arrives before Sinta**, and **Vina arrives after Sinta**.
 
-So the cake was eaten by Tomi.
+Now count the people ahead of Sinta. Oki, Rani and Taufik are ahead of her because of the chain, and Umar is ahead of her too. Only Vina comes after Sinta.
+
+<BlockMath math="\underbrace{4}_{\text{before Sinta}} + \underbrace{1}_{\text{Sinta}} + \underbrace{1}_{\text{after Sinta}} = 6" />
+
+So Sinta is always the fifth to arrive and Vina is always the sixth. The only thing still free is where Umar sits among Oki, Rani and Taufik, which gives four possible orders.
+
+| Possibility | 1st | 2nd | 3rd | 4th | 5th | 6th |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Umar | Oki | Rani | Taufik | Sinta | Vina |
+| 2 | Oki | Umar | Rani | Taufik | Sinta | Vina |
+| 3 | Oki | Rani | Umar | Taufik | Sinta | Vina |
+| 4 | Oki | Rani | Taufik | Umar | Sinta | Vina |
+
+Check fact 4 in every row: of Umar and Vina, only Umar arrives before Sinta. All four rows pass.
+
+The other options are true in only some rows, or never.
+
+- "Oki is the first to arrive" fails in possibility 1. Oki starts the chain, but Umar isn't tied to that chain and can come first.
+- "Umar arrives before Taufik" fails in possibility 4. The facts only guarantee that Umar comes before Sinta, not before Taufik.
+- "Vina arrives before Sinta" never happens. This option comes from reading fact 4 without fact 3 and picking Vina as the one who beats Sinta.
+- "Taufik is the fourth to arrive" fails in possibility 4, where Umar slips in between Taufik and Sinta and Taufik becomes third.
+
+So the statement that must be true is that Sinta is the fifth participant to arrive.

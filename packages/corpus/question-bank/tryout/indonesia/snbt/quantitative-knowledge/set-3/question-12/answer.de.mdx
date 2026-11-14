@@ -1,17 +1,35 @@
-Der Punkt <InlineMath math="M" /> liegt genau über <InlineMath math="A" />, 3 cm hoch. Die Strecke <InlineMath math="MC" /> ist die Hypotenuse des Dreiecks <InlineMath math="MAC" />, das **bei <InlineMath math="A" /> rechtwinklig ist**, weil die Kante <InlineMath math="AE" /> senkrecht auf der Grundfläche steht.
+Ein Boxplot zeigt nicht alle Werte, deshalb passen viele Datensätze dazu. Eine Aussage mit **sicher** muss für jeden passenden Datensatz gelten, eine Aussage mit **möglich** braucht nur einen passenden Datensatz. Fang mit den Werten an, die schon feststehen.
 
-# Diagonale der Grundfläche
+# Die festen Werte
 
-Die waagerechte Seite dieses Dreiecks ist **die Flächendiagonale** <InlineMath math="AC" />.
+Schreibe die sortierten Daten als <InlineMath math="x_1\le x_2\le\cdots\le x_{11}" />. Der Median ist der mittlere Wert <InlineMath math="x_6" />, das untere Quartil ist der Median von <InlineMath math="x_1" /> bis <InlineMath math="x_5" />, also <InlineMath math="x_3" />, und das obere Quartil ist der Median von <InlineMath math="x_7" /> bis <InlineMath math="x_{11}" />, also <InlineMath math="x_9" />. Damit **stehen fünf Werte fest**, die anderen sechs sind nur eingegrenzt.
 
-<BlockMath math="AC=\sqrt{6^2+6^2}=6\sqrt2" />
+<BlockMath math="\begin{aligned}
+x_1&=2,\quad x_3=5,\quad x_6=8,\quad x_9=10,\quad x_{11}=15\\
+2&\le x_2\le 5,\quad 5\le x_4\le x_5\le 8,\quad 8\le x_7\le x_8\le 10,\quad 10\le x_{10}\le 15
+\end{aligned}" />
 
-# Abstand von M zu C
+# Erste Aussage
 
-Wende **den Satz des Pythagoras** auf das Dreieck <InlineMath math="MAC" /> mit <InlineMath math="MA=3" /> an.
+Der Mittelwert ist am kleinsten, wenn jeder freie Wert so klein wie möglich ist.
 
-<BlockMath math="MC=\sqrt{MA^2+AC^2}=\sqrt{9+72}=\sqrt{81}=9" />
+<BlockMath math="\begin{aligned}
+\text{kleinste Summe}&=2+2+5+5+5+8+8+8+10+10+15=78\\
+\text{kleinster Mittelwert}&=\frac{78}{11}=7\tfrac{1}{11}>7
+\end{aligned}" />
 
-Der Wert <InlineMath math="6\sqrt2" /> ist die Grundflächendiagonale <InlineMath math="AC" /> und vergisst die Höhe von 3 cm. Der Wert <InlineMath math="6\sqrt3" /> ist die Raumdiagonale <InlineMath math="AG" />, als läge <InlineMath math="M" /> in <InlineMath math="E" />. Der Wert <InlineMath math="3\sqrt5" /> ist der Abstand von <InlineMath math="M" /> zur Ecke <InlineMath math="B" /> oder <InlineMath math="D" />, nicht zu <InlineMath math="C" />. Der Wert 15 addiert <InlineMath math="MA+AB+BC=3+6+6" /> entlang der Kanten, obwohl der Abstand geradlinig gemessen wird.
+**Selbst der kleinstmögliche Datensatz** hat einen Mittelwert über <InlineMath math="7" />, der Mittelwert ist also sicher größer als <InlineMath math="7" />. Die erste Aussage ist wahr.
 
-Der Abstand von <InlineMath math="M" /> zu <InlineMath math="C" /> beträgt also **<InlineMath math="9\text{ cm}" />**.
+# Zweite Aussage
+
+Der Wert <InlineMath math="15" /> kann höchstens zweimal vorkommen, als <InlineMath math="x_{10}" /> und <InlineMath math="x_{11}" />, denn <InlineMath math="x_9=10" />. Sieh dir jetzt die vier Werte <InlineMath math="x_6" />, <InlineMath math="x_7" />, <InlineMath math="x_8" />, <InlineMath math="x_9" /> an. Alle vier sind ganze Zahlen von <InlineMath math="8" /> bis <InlineMath math="10" />, es gibt aber nur drei solche Zahlen, also **kommt ein Wert sicher mindestens zweimal vor**. Dieser Wert ist mindestens so häufig wie <InlineMath math="15" />, deshalb kann <InlineMath math="15" /> nicht der einzige Modus sein. Die zweite Aussage ist falsch.
+
+# Dritte Aussage
+
+Ein Beispiel genügt. Nimm die Daten <InlineMath math="2,3,5,6,7,8,9,9,10,10,15" />. Der kleinste Wert ist <InlineMath math="2" />, dazu <InlineMath math="x_3=5" />, <InlineMath math="x_6=8" />, <InlineMath math="x_9=10" />, und der größte Wert ist <InlineMath math="15" />, die Zusammenfassung passt also. Hier ist **nur <InlineMath math="15" /> größer als <InlineMath math="10" />**, weil <InlineMath math="x_{10}=10" /> ist. Die dritte Aussage ist wahr.
+
+# Vierte Aussage
+
+Ein Mittelwert von <InlineMath math="8{,}5" /> bedeutet die Summe <InlineMath math="11\cdot 8{,}5=93{,}5" />. Eine Summe ganzer Zahlen ist aber immer ganzzahlig, also ist **die Summe <InlineMath math="93{,}5" /> unmöglich**. Der Wert <InlineMath math="8{,}5" /> liegt zwar zwischen dem kleinsten Mittelwert <InlineMath math="\tfrac{78}{11}" /> und dem größten Mittelwert <InlineMath math="\tfrac{96}{11}" /> (mit <InlineMath math="x_2=5" />, <InlineMath math="x_4=x_5=8" />, <InlineMath math="x_7=x_8=10" /> und <InlineMath math="x_{10}=15" />), aber das reicht nicht. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte wahr und die vierte falsch.

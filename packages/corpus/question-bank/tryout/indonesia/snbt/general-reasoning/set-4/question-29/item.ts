@@ -2,14 +2,15 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "combination",
+    topic: "counting",
   },
   versions: {
     id: {
       kind: "numericEntry",
-      value: "14",
+      unit: "susunan",
+      value: "144",
     },
   },
 };

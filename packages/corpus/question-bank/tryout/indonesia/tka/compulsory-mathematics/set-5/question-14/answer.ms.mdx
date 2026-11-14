@@ -1,0 +1,80 @@
+# Persamaan garis imej
+
+Soalan ini meminta luas segi tiga yang dibatasi oleh tiga garis: garis <InlineMath math="g" />, imejnya <InlineMath math="g'" />, dan paksi-<InlineMath math="y" />. Jadi kamu perlu cari persamaan <InlineMath math="g'" /> dahulu, kemudian ketiga-tiga bucu segi tiga itu.
+
+Putaran <InlineMath math="90^\circ" /> **ikut arah jam** pada pusat <InlineMath math="O" /> memindahkan titik <InlineMath math="(x,y)" /> ke <InlineMath math="(y,-x)" />. Contohnya, titik <InlineMath math="(1,0)" /> pada paksi-<InlineMath math="x" /> positif turun ke <InlineMath math="(0,-1)" />. Untuk mendapat persamaan imej, tulis koordinat lama dalam sebutan koordinat baharu, kemudian gantikan ke dalam persamaan <InlineMath math="g" />:
+
+<BlockMath math="\begin{aligned}
+x'=y,\quad y'=-x\quad&\Rightarrow\quad x=-y',\quad y=x' \\
+x+2y=10\quad&\Rightarrow\quad -y'+2x'=10 \\
+g'&: 2x-y=10
+\end{aligned}" />
+
+Semak dengan satu titik. Titik <InlineMath math="(10,0)" /> terletak pada <InlineMath math="g" />, dan imejnya <InlineMath math="(0,-10)" /> memenuhi <InlineMath math="2\cdot0-(-10)=10" />. Persamaan itu betul.
+
+# Tiga bucu segi tiga
+
+Dua bucu terletak pada paksi-<InlineMath math="y" />, iaitu tempat <InlineMath math="g" /> dan <InlineMath math="g'" /> memotong paksi itu. Bucu ketiga ialah **titik persilangan <InlineMath math="g" /> dan <InlineMath math="g'" />**, jadi kamu perlu selesaikan kedua-dua persamaan serentak.
+
+<BlockMath math="\begin{aligned}
+g\text{ dengan }x=0&: 2y=10\Rightarrow P(0,5) \\
+g'\text{ dengan }x=0&: -y=10\Rightarrow Q(0,-10) \\
+y=2x-10\text{ ke dalam }g&: x+2(2x-10)=10\Rightarrow x=6,\ y=2\Rightarrow R(6,2)
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga di antara <InlineMath math="g" />, <InlineMath math="g'" />, dan paksi-<InlineMath math="y" /></>}
+  description={<>Garis <InlineMath math="g" /> melalui <InlineMath math="(0,5)" /> dan <InlineMath math="(10,0)" />. Garis <InlineMath math="g'" /> melalui <InlineMath math="(0,-10)" /> dan <InlineMath math="(5,0)" />. Segi tiga berlorek <InlineMath math="PQR" /> mempunyai <InlineMath math="P(0,5)" /> dan <InlineMath math="Q(0,-10)" /> pada paksi-<InlineMath math="y" /> serta <InlineMath math="R(6,2)" /> di titik persilangan kedua-dua garis.</>}
+  labels={{
+    g: <InlineMath math="g" />,
+    "g-image": <InlineMath math="g'" />,
+    p: <InlineMath math="P(0,5)" />,
+    q: <InlineMath math="Q(0,-10)" />,
+    r: <InlineMath math="R(6,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 13 },
+      y: { min: -13, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 5 }, { x: 0, y: -10 }, { x: 6, y: 2 }] },
+      { id: "line-g", kind: "line", appearance: "primary", through: [{ x: 0, y: 5 }, { x: 10, y: 0 }] },
+      { id: "line-g-image", kind: "line", appearance: "secondary", through: [{ x: 0, y: -10 }, { x: 5, y: 0 }] },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 0, y: -10 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+    ],
+    labels: [
+      { key: "g", objectId: "line-g", at: { x: -2, y: 6 }, placement: "above" },
+      { key: "g-image", objectId: "line-g-image", at: { x: 8.5, y: 7 }, placement: "left" },
+      { key: "p", objectId: "point-p", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -10 }, placement: "right" },
+      { key: "r", objectId: "point-r", at: { x: 6, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Luas segi tiga
+
+Tapak segi tiga ialah <InlineMath math="PQ" /> yang terletak pada paksi-<InlineMath math="y" />. Oleh kerana tapaknya menegak, **tingginya ialah jarak mengufuk dari <InlineMath math="R" /> ke paksi-<InlineMath math="y" />**, iaitu koordinat-<InlineMath math="x" /> bagi <InlineMath math="R" />.
+
+<BlockMath math="\begin{aligned}
+PQ&=5-(-10)=15 \\
+\text{tinggi}&=6 \\
+\text{luas}&=\tfrac12\cdot15\cdot6=45
+\end{aligned}" />
+
+Ada cara semak yang mudah. Putaran <InlineMath math="90^\circ" /> menjadikan <InlineMath math="g'" /> berserenjang dengan <InlineMath math="g" /> (kecerunannya <InlineMath math="-\tfrac12" /> dan <InlineMath math="2" />), jadi sudut di <InlineMath math="R" /> ialah sudut tegak. Dengan <InlineMath math="RP=\sqrt{45}" /> dan <InlineMath math="RQ=\sqrt{180}" />, luasnya <InlineMath math="\tfrac12\sqrt{45\cdot180}=\tfrac12\cdot90=45" />. Hasilnya sama.
+
+Jadi, luas segi tiga yang dibatasi oleh <InlineMath math="g" />, <InlineMath math="g'" />, dan paksi-<InlineMath math="y" /> ialah <InlineMath math="45" /> unit persegi.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="5" /> muncul jika kamu guna petua putaran **lawan arah jam**, <InlineMath math="(x,y)\mapsto(-y,x)" />, atau terus menggantikan <InlineMath math="x" /> dengan <InlineMath math="y" /> dan <InlineMath math="y" /> dengan <InlineMath math="-x" /> dalam persamaan <InlineMath math="g" />. Imejnya menjadi <InlineMath math="-2x+y=10" />, titik persilangannya <InlineMath math="(-2,6)" />, tapaknya <InlineMath math="10-5=5" />, dan luasnya <InlineMath math="5" />.
+- <InlineMath math="15" /> menggunakan koordinat-<InlineMath math="y" /> bagi <InlineMath math="R" />, iaitu <InlineMath math="2" />, sebagai tinggi. Tapaknya menegak, jadi tingginya mesti mengufuk.
+- <InlineMath math="25" /> ialah luas segi tiga yang dibentuk oleh <InlineMath math="g'" /> dengan kedua-dua paksi, iaitu <InlineMath math="\tfrac12\cdot5\cdot10" />. Itu bukan segi tiga yang ditanya.
+- <InlineMath math="90" /> terlupa mendarab dengan <InlineMath math="\tfrac12" /> dalam rumus luas segi tiga.

@@ -1,17 +1,30 @@
-An jeder Partie sind **genau zwei Personen** beteiligt. Wenn du die Partien von jeder Person aus zählst, erfasst du jede Partie deshalb zweimal und musst am Ende halbieren.
+# Flächen ähnlicher Dreiecke
 
-Jede der <InlineMath math="8" /> Personen spielt gegen die <InlineMath math="7" /> anderen. So kommen <InlineMath math="8\cdot7=56" /> Zählungen zusammen, und jede Partie ist darin zweimal enthalten.
+Jede Parallele zu <InlineMath math="BC" /> schneidet an der Ecke <InlineMath math="A" /> ein kleines Dreieck ab, und dieses ist ähnlich zu <InlineMath math="ABC" />. **Sind seine Seiten <InlineMath math="k" />-mal so lang wie die von <InlineMath math="ABC" />, dann ist seine Fläche <InlineMath math="k^2" />-mal so groß**.
 
-<BlockMath math="\frac{8\cdot7}{2}=\frac{56}{2}=28" />
+Von der Fläche kommst du also mit einer Wurzel zurück zur Länge: <InlineMath math="k=\sqrt{\text{Flächenverhältnis}}" />.
 
-Zur Kontrolle zählst du nacheinander nur die neuen Partien. Die erste Person spielt <InlineMath math="7" /> Partien, die zweite noch <InlineMath math="6" /> neue, die dritte <InlineMath math="5" /> neue und so weiter.
+# Wo P und Q liegen
 
-<BlockMath math="7+6+5+4+3+2+1=28" />
+Das kleine Dreieck bis zur Parallelen durch <InlineMath math="P" /> enthält eine der drei gleich großen Teilflächen, seine Fläche ist also <InlineMath math="\frac13" /> von <InlineMath math="ABC" />. Das Dreieck bis zur Parallelen durch <InlineMath math="Q" /> enthält zwei Teilflächen, also <InlineMath math="\frac23" /> von <InlineMath math="ABC" />. **Zieh aus beiden Flächenverhältnissen die Wurzel**:
 
-Es werden also insgesamt <InlineMath math="28" /> Partien gespielt.
+<BlockMath math="\begin{aligned}
+AP&=6\sqrt{\frac13}=\frac{6}{\sqrt3}=2\sqrt3 \\
+AQ&=6\sqrt{\frac23}=\frac{6\sqrt2}{\sqrt3}=2\sqrt6
+\end{aligned}" />
 
-- <InlineMath math="7" /> ist die Zahl der Partien einer einzelnen Person.
-- <InlineMath math="21" /> passt zu einem Turnier mit nur <InlineMath math="7" /> Personen, denn <InlineMath math="\frac{7\cdot6}{2}=21" />.
-- <InlineMath math="36" /> passt zu einem Turnier mit <InlineMath math="9" /> Personen, denn <InlineMath math="\frac{9\cdot8}{2}=36" />.
-- <InlineMath math="56" /> zählt jede Partie zweimal, einmal für jede der beiden beteiligten Personen.
-- <InlineMath math="64" /> rechnet <InlineMath math="8\cdot8" /> und lässt damit jede Person auch gegen sich selbst spielen.
+# Die Länge von PQ
+
+<BlockMath math="PQ=AQ-AP=2\sqrt6-2\sqrt3\approx4{,}899-3{,}464=1{,}435" />
+
+Die drei Stücke auf <InlineMath math="AB" /> sind etwa <InlineMath math="3{,}464" />, <InlineMath math="1{,}435" /> und <InlineMath math="1{,}101" /> lang. **Je näher an <InlineMath math="BC" />, desto kürzer das Stück**, denn das Dreieck wird breiter, und ein schmalerer Streifen hat schon dieselbe Fläche.
+
+Also ist <InlineMath math="PQ=2\sqrt6-2\sqrt3" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2" /> teilt <InlineMath math="AB" /> in drei gleich lange Stücke, dabei **wächst die Fläche mit dem Quadrat der Länge**.
+- <InlineMath math="2\sqrt3" /> ist <InlineMath math="AP" />, das erste Stück ab <InlineMath math="A" />.
+- <InlineMath math="6-2\sqrt6" /> ist <InlineMath math="QB" />, das letzte Stück bei <InlineMath math="B" />.
+- <InlineMath math="2\sqrt6" /> ist <InlineMath math="AQ" />, der Abstand von <InlineMath math="A" /> bis zum zweiten Punkt.
+- <InlineMath math="6-2\sqrt3" /> ist <InlineMath math="PB" />, die Strecke von <InlineMath math="P" /> bis ganz zu <InlineMath math="B" />.

@@ -1,23 +1,38 @@
-Each percentage change is taken from the price **just before that change**, not from the original price. That is why successive changes are multiplied, not added.
+You're looking for how much water was added. The key is how the container stands: since the cone sits on its base, **the water fills the wide bottom part and forms a frustum**, while the empty space above the water is a small cone. Here's the plan: work with that empty cone, find the volume of the whole container, then find the water at the new level.
 
-# The factors of the successive changes
+# The volume of the whole container
 
-Let the original price be <InlineMath math="H" />. A 20% rise means **multiplying by 1.2**, and a 25% drop means multiplying by 0.75.
+The empty space above the water is a small cone with the same apex, so it's similar to the whole cone. If every length is multiplied by <InlineMath math="k" />, **the volume of a solid is multiplied by <InlineMath math="k^3" />**, because a cone's volume uses three lengths: the radius twice (through the base area) and the height once.
 
-<BlockMath math="H\times1.2\times0.75=0.9H" />
-
-The final price is 90% of the original price.
-
-# The increase needed
-
-An increase of <InlineMath math="k\%" /> must bring <InlineMath math="0.9H" /> back to <InlineMath math="H" />. This percentage is **taken from <InlineMath math="0.9H" />**, so the divisor is 0.9.
+At the start the water reaches half the height, so the empty part is also half the height. Let the volume of the whole container be <InlineMath math="V" /> liters. The empty part holds <InlineMath math="\left(\frac12\right)^3V=\frac18V" />, and the rest is water.
 
 <BlockMath math="\begin{aligned}
-0.9H\left(1+\frac{k}{100}\right)&=H\\
-1+\frac{k}{100}&=\frac{10}{9}\\
-k&=\frac{100}{9}=11\tfrac19
+V-\tfrac18V&=7\\
+\tfrac78V&=7\\
+V&=8
 \end{aligned}" />
 
-The value 10% assumes that a 10% increase cancels a 10% decrease, although 10% of the smaller price is not enough. The value 5% adds the percentages, <InlineMath math="20-25=-5" />. The value 25% only reverses the last decrease, and the value 20% only reverses the first increase.
+So the container holds <InlineMath math="8" /> liters.
 
-So the final price must be raised by <InlineMath math="11\tfrac19\%" />.
+# The water at the new level
+
+After filling, the water reaches <InlineMath math="\frac34" /> of the height. That means **the empty part is only <InlineMath math="\frac14" /> of the height**, and its volume is <InlineMath math="\left(\frac14\right)^3" /> of the container.
+
+<BlockMath math="\begin{aligned}
+\text{empty volume}&=\left(\tfrac14\right)^3\cdot8=\tfrac{8}{64}=\tfrac18\text{ liter}\\
+\text{water volume}&=8-\tfrac18=\tfrac{63}{8}\text{ liters}\\
+\text{water added}&=\tfrac{63}{8}-7=\tfrac{63}{8}-\tfrac{56}{8}=\tfrac78\text{ liter}
+\end{aligned}" />
+
+Check it through the empty space. At first it was <InlineMath math="8-7=1" /> liter, and at the end it's <InlineMath math="\frac18" /> liter. The empty space shrank by <InlineMath math="1-\frac18=\frac78" /> liter, which matches the water that went in. Such a small amount also makes sense, because the layer between half and <InlineMath math="\frac34" /> of the height sits where the cone is already narrow.
+
+# The tempting wrong options
+
+Almost every other option comes from **a volume ratio with the wrong power or the wrong direction**.
+
+- <InlineMath math="\frac{133}{8}" /> liters comes from treating the water as a small cone at the bottom, as if the apex pointed down. That gives <InlineMath math="V=56" /> and an increase of <InlineMath math="56\cdot\frac{27}{64}-7" />.
+- <InlineMath math="\frac72" /> liters comes from scaling straight with the height: <InlineMath math="7\cdot\frac{3/4}{1/2}-7" />.
+- <InlineMath math="\frac{35}{4}" /> liters comes from squaring the height ratio, but squares only work for areas: <InlineMath math="7\cdot\left(\frac32\right)^2-7" />.
+- <InlineMath math="\frac18" /> liter is the space still empty at the end, not the water added.
+
+So the volume of water added is <InlineMath math="\frac78" /> liter.

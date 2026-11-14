@@ -1,0 +1,153 @@
+
+export const metadata = {
+  title: "Pecutan",
+  description:
+    "Pecutan ialah perubahan halaju bagi setiap unit masa, dan kamu boleh melihatnya melalui jejak gerakan, graf halaju-masa dan pengiraan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Kinematik",
+};
+
+## Pecutan Mengukur Perubahan Halaju
+
+Apabila kereta mula bergerak, badan kamu mungkin terasa tertolak ke belakang. Apabila kereta membrek, badan kamu mungkin terasa tertolak ke hadapan. Dalam kedua-dua keadaan, halaju kereta itu berubah.
+
+Dalam fizik, pecutan purata menerangkan <Highlight>perubahan halaju</Highlight> dalam satu selang masa. Oleh sebab halaju mempunyai magnitud dan arah, pecutan juga mesti dibaca bersama arah positif yang kita pilih.
+
+> Kenderaan mengalami pecutan apabila ia semakin laju, semakin perlahan atau bertukar arah, kerana setiap keadaan itu mengubah halajunya.
+
+<BlockMath math="\begin{aligned}
+\vec{a}_{\text{purata}} &= \frac{\Delta \vec{v}}{\Delta t} \\
+&= \frac{\vec{v}_t-\vec{v}_0}{t_t-t_0}
+\end{aligned}" />
+
+Unit pecutan ialah <InlineMath math="\text{m/s}^2" />. Jika pecutan seragam pada <InlineMath math="a=2\text{ m/s}^2" />, halaju bertambah <InlineMath math="2\text{ m/s}" /> bagi setiap <InlineMath math="1\text{ s}" />. Dalam kes khas ini, pecutan purata bagi sebarang selang masa sama dengan pecutan pada setiap ketika.
+
+## Daripada Pita Detik kepada Kecerunan Graf
+
+Jangka masa detik menanda pita kertas pada **selang masa yang sama**. Bagi gerakan di sepanjang satu garis lurus tanpa berpatah balik, jarak antara titik yang semakin lebar bermaksud laju yang lebih besar, jarak yang sama bermaksud laju seragam, dan jarak yang semakin sempit bermaksud laju yang lebih kecil. Jarak antara titik itu sahaja tidak menunjukkan tanda halaju, jadi arah positif yang dipilih tetap penting.
+
+<AccelerationLab
+  title={<>Pecutan Roket di Angkasa</>}
+  description={
+    <>
+      Bandingkan jarak antara gerbang yang dilalui roket bagi setiap{" "}
+      <InlineMath math="1\text{ s}" />. Jarak itu melebar, kekal sama atau
+      menyempit mengikut gerakan yang kamu pilih.
+    </>
+  }
+  labels={{
+    chooseCase: "Pilih gerakan",
+    scenarioNames: {
+      "speed-up": <>Semakin Laju</>,
+      steady: <>Seragam</>,
+      "slow-down": <>Semakin Perlahan</>,
+    },
+    factLabels: {
+      initialVelocity: <>Halaju awal</>,
+      acceleration: <>Pecutan</>,
+      finalVelocity: <>Halaju akhir</>,
+      timeStep: <>Selang bayangan</>,
+    },
+    viewLabel: "Visual pecutan roket di angkasa",
+  }}
+/>
+
+Graf halaju-masa meletakkan halaju pada paksi menegak dan masa pada paksi mengufuk. Kecerunan segmennya, <InlineMath math="\Delta v/\Delta t" />, ialah pecutan purata dalam selang itu. Pada segmen yang lurus, kecerunannya tetap dan memberikan pecutan pada setiap ketika dalam segmen itu.
+
+Guna jejak itu untuk membandingkan halaju dari satu selang ke selang berikutnya. Kemudian, guna kecerunan graf untuk mengira perubahan itu bagi setiap saat.
+
+<AccelerationGraphCard
+  title={<>Graf Halaju-Masa</>}
+  description={
+    <>
+      Pilih satu segmen pada graf yang sama, kemudian baca kecerunan garisnya
+      sebagai perubahan halaju bagi setiap saat.
+    </>
+  }
+  labels={{
+    chooseCase: "Pilih Segmen",
+    contextLine: "Graf penuh",
+    scenarioNames: {
+      "speed-up": "Semakin Laju",
+      steady: "Seragam",
+      "slow-down": "Semakin Perlahan",
+    },
+    timeAxis: "Masa (s)",
+    velocityAxis: "Halaju (m/s)",
+  }}
+/>
+
+Pada graf itu, garis putus-putus menunjukkan keseluruhan graf yang bersambung. Garis tebal ialah segmen yang sedang dibaca. Jika garis itu naik, halaju bertambah. Jika garis itu mendatar, halaju tidak berubah. Jika garis itu menurun, halaju berkurang. Pecutan purata segmen itu ialah nisbah <InlineMath math="\Delta v" /> kepada <InlineMath math="\Delta t" />.
+
+## Membaca Tanda Pecutan
+
+Tanda pecutan tidak boleh dibaca secara berasingan. Tanda itu sentiasa bergantung pada arah positif yang kita pilih. Dalam contoh satu dimensi ini, kita anggap arah ke kanan sebagai positif.
+
+Jadual ini menganggap **pecutan seragam sepanjang selang yang diperhatikan**.
+
+| Tanda pecutan | Perubahan halaju | Bacaan dengan arah kanan sebagai positif |
+| --- | --- | --- |
+| <InlineMath math="a>0" /> | <InlineMath math="v_t>v_0" /> | Halaju bertambah ke arah positif |
+| <InlineMath math="a=0" /> | <InlineMath math="v_t=v_0" /> | Halaju kekal sama |
+| <InlineMath math="a<0" /> | <InlineMath math="v_t<v_0" /> | Halaju berkurang jika objek masih bergerak ke arah positif |
+
+Baris terakhir inilah yang selalu mengelirukan ramai pelajar. Pecutan negatif tidak semestinya bermaksud objek bergerak ke kiri. Pecutan negatif bermaksud <Highlight>perubahan halaju menghala ke sisi negatif</Highlight> paksi yang dipilih.
+
+Baca kedua-dua tanda bersama. Dengan <InlineMath math="v>0" />, pecutan yang sama tandanya menjadikan laju bertambah, pecutan yang berlawanan tandanya menjadikan laju berkurang, dan <InlineMath math="a=0" /> mengekalkan laju itu. Zum masuk pada tiga garis itu dan bandingkan kecerunannya.
+
+<MathVisual
+  title={<>Semakin Laju atau Semakin Perlahan</>}
+  description={<>Halaju melawan masa bagi <InlineMath math="a=+1" /> (hijau kebiruan), <InlineMath math="a=-1" /> (merah jambu) dan <InlineMath math="a=0" /> (kelabu), semuanya dengan halaju positif. Paksi mengufuk: saat. Paksi menegak: m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: 0, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "faster", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 4, y: 6 } },
+      { id: "slower", kind: "segment", appearance: "warning", from: { x: 0, y: 6 }, to: { x: 4, y: 2 } },
+      { id: "steady", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "faster-end", kind: "point", appearance: "construction", at: { x: 4, y: 6 } },
+      { id: "slower-end", kind: "point", appearance: "warning", at: { x: 4, y: 2 } },
+      { id: "steady-end", kind: "point", appearance: "reference", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "faster", objectId: "faster-end", at: { x: 4, y: 6 }, placement: "right" },
+      { key: "slower", objectId: "slower-end", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "steady", objectId: "steady-end", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    faster: <InlineMath math="a>0:\ \text{lebih laju}" />,
+    slower: <InlineMath math="a<0:\ \text{lebih perlahan}" />,
+    steady: <InlineMath math="a=0" />,
+  }}
+/>
+
+## Mengira Perubahan Halaju Setiap Saat
+
+Katakan halaju sebuah kereta berubah daripada <InlineMath math="2\text{ m/s}" /> kepada <InlineMath math="18\text{ m/s}" /> dalam masa <InlineMath math="4\text{ s}" />. Pecutan puratanya ialah:
+
+<BlockMath math="\begin{aligned}
+a_{\text{purata}} &= \frac{v_t-v_0}{\Delta t} \\
+&= \frac{18-2}{4} \\
+&= 4\text{ m/s}^2
+\end{aligned}" />
+
+Jika pecutan itu **seragam sepanjang empat saat itu**, halaju bertambah <InlineMath math="4\text{ m/s}" /> setiap saat. Jujukannya menjadi <InlineMath math="2\text{ m/s}" />, <InlineMath math="6\text{ m/s}" />, <InlineMath math="10\text{ m/s}" />, dan seterusnya selagi pecutan kekal seragam.
+
+Oleh sebab contoh ini menganggap pecutan seragam, nilai yang sama berlaku pada setiap ketika. Sekarang, bandingkan dengan sebuah kereta yang halajunya berubah daripada <InlineMath math="18\text{ m/s}" /> kepada <InlineMath math="2\text{ m/s}" /> dalam masa <InlineMath math="4\text{ s}" />.
+
+<BlockMath math="\begin{aligned}
+a_{\text{purata}} &= \frac{2-18}{4} \\
+&= -4\text{ m/s}^2
+\end{aligned}" />
+
+Nilai <InlineMath math="-4\text{ m/s}^2" /> bermaksud halaju berkurang <InlineMath math="4\text{ m/s}" /> setiap saat jika kereta itu masih bergerak ke arah positif.
+
+## Pecutan Sifar Masih Perlu Ditafsir
+
+Jika pecutan sifar **sepanjang selang yang diperhatikan**, halaju objek tidak berubah. Itu tidak semestinya bermaksud objek itu pegun. Objek itu mungkin masih bergerak dengan halaju seragam, contohnya <InlineMath math="10\text{ m/s}" /> ke kanan.
+
+Cara cepat untuk menyemaknya ialah melihat halaju dan pecutan sekali gus. Jika <InlineMath math="a=0" /> dan <InlineMath math="v=0" />, objek itu pegun. Jika <InlineMath math="a=0" /> tetapi <InlineMath math="v\neq 0" />, objek itu bergerak di sepanjang garis lurus dengan halaju seragam.

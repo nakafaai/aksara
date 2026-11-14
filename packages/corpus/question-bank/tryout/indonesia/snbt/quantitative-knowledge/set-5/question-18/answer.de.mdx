@@ -1,21 +1,46 @@
-Schreibe die Zahl als <InlineMath math="\overline{abc}" /> mit <InlineMath math="a" /> von 1 bis 9, <InlineMath math="b" /> von 0 bis 9 und geradem <InlineMath math="c" />, weil die Zahl gerade ist. Lege zuerst <InlineMath math="c" /> fest und **zähle dann die Paare <InlineMath math="(a,b)" /> mit der Summe <InlineMath math="10-c" />**.
+Jede Person im Raum kann höchstens <InlineMath math="6" /> anderen die Hand geben, also ist jede Antwort eine der Zahlen <InlineMath math="0" /> bis <InlineMath math="6" />. Der Plan: Bestimme zuerst, welche Antworten vorkommen können, und **stell dann die Person mit der größten Antwort der Person mit der kleinsten Antwort gegenüber**, bis Anis Handschläge sichtbar werden.
 
-# Nach der Einerziffer zählen
+# Die möglichen Antworten
 
-Für eine Summe <InlineMath math="a+b=s" /> mit <InlineMath math="1\le s\le10" /> darf <InlineMath math="a" /> von 1 bis <InlineMath math="s" /> laufen, solange <InlineMath math="b=s-a" /> **höchstens 9** ist. Bei <InlineMath math="s=10" /> ist <InlineMath math="a=10" /> unmöglich, es bleiben also 9 Paare.
+Es gibt <InlineMath math="7" /> Werte von <InlineMath math="0" /> bis <InlineMath math="6" /> und <InlineMath math="6" /> verschiedene Antworten. Die Antworten <InlineMath math="0" /> und <InlineMath math="6" /> können nicht zusammen vorkommen: Wer <InlineMath math="6" /> antwortet, hat allen die Hand gegeben, auch der Person, die behauptet, niemandem die Hand gegeben zu haben. Also **gibt es zwei Fälle**: Die Antworten sind <InlineMath math="0" /> bis <InlineMath math="5" /> oder <InlineMath math="1" /> bis <InlineMath math="6" />. Nenne die Person mit der Antwort <InlineMath math="k" /> einfach <InlineMath math="P_k" />.
 
-| Einerziffer <InlineMath math="c" /> | <InlineMath math="a+b" /> | Anzahl der Paare <InlineMath math="(a,b)" /> |
-| :---: | :---: | :---: |
-| 0 | 10 | 9 |
-| 2 | 8 | 8 |
-| 4 | 6 | 6 |
-| 6 | 4 | 4 |
-| 8 | 2 | 2 |
+# Der Fall mit den Antworten null bis fünf
 
-<BlockMath math="9+8+6+4+2=29" />
+Person <InlineMath math="P_5" /> hat <InlineMath math="P_0" /> nicht die Hand gegeben, also gehen alle <InlineMath math="5" /> Handschläge an alle anderen, Ani eingeschlossen. Damit ist <InlineMath math="P_1" /> mit <InlineMath math="P_5" /> schon voll. Person <InlineMath math="P_4" /> kann <InlineMath math="P_0" /> und <InlineMath math="P_1" /> nicht nutzen, also muss sie allen Übrigen die Hand geben. Derselbe Schritt wiederholt sich, bis jede Antwort erfüllt ist.
 
-# Andere Wahlmöglichkeiten prüfen
+| Person | Hat die Hand gegeben |
+| :---: | :---: |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_3" /> | Ani, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_5" /> |
+| <InlineMath math="P_0" /> | niemandem |
 
-Insgesamt gibt es 54 dreistellige Zahlen mit der Quersumme 10, davon sind 25 ungerade. **Gerade und ungerade Zahlen verteilen sich nicht gleichmäßig**, deshalb ist 27, die Hälfte von 54, falsch. Der Wert 54 zählt alle Zahlen ohne die Bedingung „gerade“, der Wert 25 die ungeraden. Der Wert 31 zählt im Fall <InlineMath math="c=0" /> 11 Paare, als wären <InlineMath math="a=0" /> oder <InlineMath math="a=10" /> erlaubt.
+**Jede Zeile ist durch die Zeilen davor erzwungen**, es gibt also keine andere Wahl. Ani hat <InlineMath math="P_5" />, <InlineMath math="P_4" /> und <InlineMath math="P_3" /> die Hand gegeben, also <InlineMath math="3" /> Personen.
 
-Es gibt also **29** solche Zahlen.
+# Der Fall mit den Antworten eins bis sechs
+
+Jetzt hat <InlineMath math="P_6" /> allen die Hand gegeben, Ani eingeschlossen, also ist <InlineMath math="P_1" /> mit <InlineMath math="P_6" /> schon voll. Person <InlineMath math="P_5" /> kann <InlineMath math="P_1" /> nicht nutzen und gibt deshalb allen Übrigen die Hand. Das Muster setzt sich fort.
+
+| Person | Hat die Hand gegeben |
+| :---: | :---: |
+| <InlineMath math="P_6" /> | Ani, <InlineMath math="P_1" />, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_5" /> |
+| <InlineMath math="P_5" /> | Ani, <InlineMath math="P_2" />, <InlineMath math="P_3" />, <InlineMath math="P_4" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_4" /> | Ani, <InlineMath math="P_3" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_3" /> | <InlineMath math="P_4" />, <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_2" /> | <InlineMath math="P_5" />, <InlineMath math="P_6" /> |
+| <InlineMath math="P_1" /> | <InlineMath math="P_6" /> |
+
+Ani hat <InlineMath math="P_6" />, <InlineMath math="P_5" /> und <InlineMath math="P_4" /> die Hand gegeben, wieder <InlineMath math="3" /> Personen. **Beide Fälle liefern dieselbe Antwort**, das Ergebnis steht also fest.
+
+# Probe mit der Parität
+
+Jeder Handschlag wird von <InlineMath math="2" /> Personen gezählt, also **muss die Summe aller Antworten gerade sein**. Der erste Fall ergibt <InlineMath math="0+1+2+3+4+5+3=18" />, der zweite <InlineMath math="1+2+3+4+5+6+3=24" />. Beide Summen sind gerade.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0" /> und <InlineMath math="6" /> entstehen, wenn du annimmst, dass Ani den einen Wert hat, den sonst niemand benutzt. Die Parität schließt sie aus: <InlineMath math="15+6=21" /> und <InlineMath math="21+0=21" /> sind beide ungerade.
+- <InlineMath math="1" /> und <InlineMath math="5" /> bestehen den Paritätstest, weil sie ungerade sind, aber die Tabellen oben erzwingen genau <InlineMath math="3" /> Handschläge mit Ani. **Beim Paritätstest stehen zu bleiben reicht nicht**, um eine Zahl auszuwählen.
+
+Ani hat also <InlineMath math="3" /> Personen die Hand gegeben.

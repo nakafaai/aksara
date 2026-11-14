@@ -3,13 +3,13 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "$${}^{2}\\log10=2p$$" },
-        { column: 1, label: "$${}^{4}\\log25=p$$" },
-        { column: 1, label: "$${}^{5}\\log2=\\dfrac{1}{p}$$" },
-        { column: 2, label: "$${}^{2}\\log40=3p$$" },
+      kind: "choice",
+      options: [
+        { correct: true, label: "$$\\dfrac{13}{2}$$" },
+        { correct: false, label: "$$6$$" },
+        { correct: false, label: "$$\\dfrac92$$" },
+        { correct: false, label: "$$\\dfrac72$$" },
+        { correct: false, label: "$$3$$" },
       ],
     },
   },

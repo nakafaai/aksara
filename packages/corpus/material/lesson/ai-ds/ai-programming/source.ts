@@ -13,6 +13,7 @@ export const lessonAiDsAiProgrammingMaterial = defineLessonMaterial({
     de: "ki-programmierung",
     en: "ai-programming",
     id: "pemrograman-ai",
+    ms: "pengaturcaraan-ai",
   },
   sections: [
     aiProgrammingSyntax.arithmeticOperator,
@@ -56,6 +57,10 @@ export const lessonAiDsAiProgrammingMaterial = defineLessonMaterial({
     id: {
       description: "Gunakan operator aritmatika Python dengan urutan tepat.",
       title: "Pemrograman AI",
+    },
+    ms: {
+      description: "Guna operator aritmetik Python dengan keutamaan betul.",
+      title: "Pengaturcaraan AI",
     },
   },
 });

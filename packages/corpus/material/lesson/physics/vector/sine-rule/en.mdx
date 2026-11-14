@@ -120,52 +120,32 @@ Let <InlineMath math="A=1\text{ N}" />, <InlineMath math="B=\sqrt3\text{ N}" />,
 The horizontal component is **negative** and the vertical component is **positive**. The resultant lies in the second quadrant.
 
 <ContentStack>
-  <LineEquation
-    cameraPosition={[0.15, 0.35, 3]}
-    cameraTarget={[0.15, 0.35, 0]}
-    title="A Resultant in the Second Quadrant"
-    description="The purple resultant points up and left. Compare that direction with the acute angle returned by inverse sine."
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((1) - (0)), y: (0) + 0.5 * ((0) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 1, y: 0, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{A}" />,
-        at: 1,
-        offset: [0, -0.3, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 1, y: 0, z: 0 }, { x: (1) + 0.5 * ((-0.5) - (1)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{B}" />,
-        at: 1,
-        offset: [0.2, 0.3, 0],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((-0.5) - (0)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="\vec{R}" />,
-        at: 1,
-        offset: [-0.4, 0, 0],
-        anchorX: "left",
-      }],
-    }
-    ]}
+  <MathVisual
+    title={<>A Resultant in the Second Quadrant</>}
+    description={<>The purple resultant points up and left. Compare that direction with the acute angle returned by inverse sine.</>}
+    labels={{
+      "l1": <InlineMath math="\vec{A}" />,
+      "l2": <InlineMath math="\vec{B}" />,
+      "l3": <InlineMath math="\vec{R}" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1, max: 1.5 }, y: { min: -0.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((1) - (0)), y: (0) + 0.5 * ((0) - (0)) }, { x: 1, y: 0 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 0.5, y: 0 }, to: { x: 1, y: 0 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: (1) + 0.5 * ((-0.5) - (1)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((-0.5) - (0)), y: (0) + 0.5 * ((Math.sqrt(3) / 2) - (0)) }, { x: -0.5, y: Math.sqrt(3) / 2 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: -0.25, y: 0.43 }, to: { x: -0.5, y: 0.87 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 0.5, y: 0 }, placement: "below" },
+        { key: "l2", objectId: "s2", at: { x: 0.25, y: 0.43 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: -0.25, y: 0.43 }, placement: "left" },
+      ],
+    }}
   />
 
 

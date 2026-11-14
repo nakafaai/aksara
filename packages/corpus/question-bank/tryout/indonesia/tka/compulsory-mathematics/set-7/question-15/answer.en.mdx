@@ -1,0 +1,26 @@
+Two transformations can be swapped when **they give the same result for every point**, whichever goes first. One point with different results is enough to reject a pair. On the other hand, one point that happens to agree proves nothing.
+
+# How to test each pair
+
+Write each transformation as a rule for a general point <InlineMath math="(x,y)" />, then work out both orders. The notation <InlineMath math="T_2\circ T_1" /> means you do <InlineMath math="T_1" /> first and then <InlineMath math="T_2" />. These are the rules you'll need:
+
+<BlockMath math="\begin{aligned}
+\text{rotation } 180^\circ \text{ about } (a,b)&:\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{rotation } 90^\circ \text{ about } O&:\ (x,y)\mapsto(-y,\ x) \\
+\text{reflection in } y=x&:\ (x,y)\mapsto(y,\ x) \\
+\text{reflection in } y=-x&:\ (x,y)\mapsto(-y,\ -x) \\
+\text{reflection in the } x\text{-axis}&:\ (x,y)\mapsto(x,\ -y) \\
+\text{dilation about } (a,b)\text{, factor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
+\end{aligned}" />
+
+If both orders give exactly the same rule, the pair can be swapped. **If the rules differ, name one point whose images differ**, so the conclusion is certain.
+
+# Judging each statement
+
+1. **False**. The rotation by <InlineMath math="180^\circ" /> about <InlineMath math="O" /> is <InlineMath math="(x,y)\mapsto(-x,-y)" />, and the one about <InlineMath math="(2,0)" /> is <InlineMath math="(x,y)\mapsto(4-x,-y)" />. Centre <InlineMath math="(2,0)" /> first and then centre <InlineMath math="O" /> gives <InlineMath math="(x-4,\,y)" />. The other order gives <InlineMath math="(x+4,\,y)" />. You get two translations in opposite directions, so for example <InlineMath math="O" /> goes to <InlineMath math="(-4,0)" /> or to <InlineMath math="(4,0)" />. Same angle, but different centres.
+2. **True**. Reflection first, then translation: <InlineMath math="(y,x)" /> becomes <InlineMath math="(y+2,\,x+2)" />. Translation first, then reflection: <InlineMath math="(x+2,\,y+2)" /> becomes <InlineMath math="(y+2,\,x+2)" />. Both orders agree for every point. That's because the vector <InlineMath math="(2,2)" /> runs along the mirror <InlineMath math="y=x" />, so a shift along the mirror isn't changed by the reflection.
+3. **False**. The dilation about <InlineMath math="O" /> with factor <InlineMath math="2" /> is <InlineMath math="(2x,\,2y)" />, and the one about <InlineMath math="(2,0)" /> with factor <InlineMath math="3" /> is <InlineMath math="(3x-4,\,3y)" />. Centre <InlineMath math="(2,0)" /> first gives <InlineMath math="(6x-8,\,6y)" />, while centre <InlineMath math="O" /> first gives <InlineMath math="(6x-4,\,6y)" />. Both orders have factor <InlineMath math="6" />, but the shifts differ. The point <InlineMath math="O" /> goes to <InlineMath math="(-8,0)" /> or to <InlineMath math="(-4,0)" />.
+4. **False**. Reflection first, then rotation: <InlineMath math="(x,-y)" /> becomes <InlineMath math="(y,\,x)" />. Rotation first, then reflection: <InlineMath math="(-y,x)" /> becomes <InlineMath math="(-y,\,-x)" />. For the point <InlineMath math="(1,0)" /> you get <InlineMath math="(0,1)" /> and <InlineMath math="(0,-1)" />. The two orders only agree at <InlineMath math="O" />, so testing <InlineMath math="O" /> alone would fool you.
+5. **True**. Reflection first, then rotation: <InlineMath math="(-y,-x)" /> becomes <InlineMath math="(y,\,x)" />. Rotation first, then reflection: <InlineMath math="(-x,-y)" /> becomes <InlineMath math="(y,\,x)" />. Both orders agree for every point. The rotation by <InlineMath math="180^\circ" /> about <InlineMath math="O" /> only flips the sign of both coordinates, and that sign flip doesn't care about the order.
+
+So the pairs that can be swapped are the reflection in <InlineMath math="y=x" /> with the translation by <InlineMath math="(2,2)" />, and the rotation by <InlineMath math="180^\circ" /> about <InlineMath math="O" /> with the reflection in <InlineMath math="y=-x" />.

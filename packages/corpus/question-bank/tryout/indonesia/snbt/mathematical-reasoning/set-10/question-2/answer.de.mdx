@@ -1,16 +1,49 @@
-Dreißig Käsebrötchen haben schon einen Teil **der Ofenkapazität und des Mehls** verbraucht. Prüfe, was von beidem übrig ist, und nimm die strengere Grenze.
+Du suchst die Ladung für eine Überfahrt mit den höchsten Fahrgeldeinnahmen. Die schweren Fahrzeuge (Lkw und Busse) verbrauchen die Massegrenze am schnellsten, also gehst du so vor: **Unterscheide Fälle danach, welche schweren Fahrzeuge mitfahren**, fülle den restlichen Platz möglichst gut mit kleinen Fahrzeugen und vergleiche dann alle Fälle.
 
-# Rest an Ofen und Mehl
+# Welche schweren Fahrzeuge zusammen fahren können
+
+In der Warteschlange stehen <InlineMath math="3" /> Lkw, <InlineMath math="2" /> Busse, <InlineMath math="5" /> Autos und nur <InlineMath math="1" /> Pick-up. Prüfe zuerst die Paare schwerer Fahrzeuge.
 
 <BlockMath math="\begin{aligned}
-\text{Ofen}&:\quad 100-30=70\text{ Brötchen}\\
-\text{Mehl}&:\quad 7\,000-30\cdot100=4\,000\text{ g},\quad \tfrac{4\,000}{50}=80\text{ Brötchen}
+\text{Bus und Bus} &= 16+16=32\text{ Tonnen}>30\text{ Tonnen}\\
+\text{Bus und Lkw} &= 16+15=31\text{ Tonnen}>30\text{ Tonnen}\\
+\text{Lkw und Lkw} &= 15+15=30\text{ Tonnen}\le30\text{ Tonnen}
 \end{aligned}" />
 
-# Die entscheidende Grenze
+Eine Fahrt hat also kein schweres Fahrzeug, einen Bus, einen Lkw oder zwei Lkw. Zwei Lkw bringen die Masse schon auf genau <InlineMath math="30\text{ Tonnen}" />, also **passt kein weiteres Fahrzeug dazu**, und die Tarife ergeben <InlineMath math="2\cdot850{.}000=1{.}700{.}000" />.
 
-Das Mehl reicht für 80 Schokobrötchen, der Ofen schafft aber nur noch 70. **Die kleinere Grenze entscheidet**, also höchstens 70 Schokobrötchen.
+# Den restlichen Platz füllen
 
-Der Wert 80 prüft nur das Mehl. Der Wert 110 vergisst, dass ein Käsebrötchen doppelt so viel Mehl braucht, und 140 übersieht die schon gebackenen Käsebrötchen. Der Wert 40 zieht <InlineMath math="2\cdot30" /> von 100 ab, als wäre der Ofen wie das Mehl begrenzt.
+Fünf Autos und ein Pick-up brauchen zusammen <InlineMath math="5\cdot5+6=31\text{ m}" /> und wiegen <InlineMath math="13\text{ Tonnen}" />. Ohne schweres Fahrzeug passen alle, und die Tarife ergeben <InlineMath math="5\cdot200{.}000+250{.}000=1{.}250{.}000" />.
 
-Bu Sari kann also höchstens noch **70 Schokobrötchen** backen.
+Mit einem Lkw bleiben <InlineMath math="30\text{ m}" /> und <InlineMath math="15\text{ Tonnen}" /> frei. Alle sechs kleinen Fahrzeuge bräuchten <InlineMath math="31\text{ m}" />, also muss ein Auto stehen bleiben. Tauschst du ein Auto gegen den Pick-up, kostet das nur <InlineMath math="1\text{ m}" /> mehr und bringt <InlineMath math="50{.}000" /> mehr ein, also **nimm den Pick-up und vier Autos**. Für einen Lkw, vier Autos und den Pick-up sieht die Rechnung so aus.
+
+<BlockMath math="\begin{aligned}
+\text{Länge} &= 10+4\cdot5+6=36\text{ m}\\
+\text{Masse} &= 15+4\cdot2+3=26\text{ Tonnen}\\
+\text{Tarife} &= 850{.}000+4\cdot200{.}000+250{.}000=1{.}900{.}000
+\end{aligned}" />
+
+Mit einem Bus bleiben <InlineMath math="28\text{ m}" /> und <InlineMath math="14\text{ Tonnen}" /> frei. Die beste kleine Ladung sind wieder vier Autos und der Pick-up (<InlineMath math="26\text{ m}" /> und <InlineMath math="11\text{ Tonnen}" />), also ergeben die Tarife <InlineMath math="750{.}000+1{.}050{.}000=1{.}800{.}000" />.
+
+# Alle Fälle vergleichen
+
+| Schwere Fahrzeuge | Höchste Tarife |
+| :---: | :---: |
+| keine | <InlineMath math="\text{Rp}1{.}250{.}000{,}00" /> |
+| zwei Lkw | <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> |
+| ein Bus | <InlineMath math="\text{Rp}1{.}800{.}000{,}00" /> |
+| ein Lkw | <InlineMath math="\text{Rp}1{.}900{.}000{,}00" /> |
+
+Der Fall mit einem Lkw gewinnt. Ein Lkw, vier Autos und der Pick-up brauchen <InlineMath math="36\text{ m}\le40\text{ m}" /> und wiegen <InlineMath math="26\text{ Tonnen}\le30\text{ Tonnen}" />, also **sind beide Grenzen wirklich eingehalten**.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **verletzt eine Grenze oder die vorhandene Fahrzeugzahl**.
+
+- <InlineMath math="\text{Rp}1{.}700{.}000{,}00" /> entsteht, wenn du zuerst den höchsten Tarif nimmst. Zwei Lkw füllen sofort die Massegrenze, also können weder Autos noch der Pick-up mit.
+- <InlineMath math="\text{Rp}1{.}800{.}000{,}00" /> wählt den Bus als schweres Fahrzeug, obwohl der Bus weniger zahlt als der Lkw.
+- <InlineMath math="\text{Rp}1{.}850{.}000{,}00" /> füllt die Lkw-Fahrt mit allen fünf Autos und übersieht, dass ein Auto gegen den Pick-up getauscht werden kann.
+- <InlineMath math="\text{Rp}2{.}100{.}000{,}00" /> vergisst, dass die Warteschlange nur einen Pick-up hat (ein Lkw und fünf Pick-ups). Derselbe Wert entsteht, wenn du die Länge ignorierst, denn ein Lkw, fünf Autos und der Pick-up bräuchten <InlineMath math="41\text{ m}" />.
+
+Die höchsten Fahrgeldeinnahmen einer Überfahrt betragen also <InlineMath math="\text{Rp}1{.}900{.}000{,}00" />, mit einem Lkw, vier Autos und einem Pick-up.

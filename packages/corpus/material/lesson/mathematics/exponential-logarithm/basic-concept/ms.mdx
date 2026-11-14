@@ -1,0 +1,167 @@
+export const metadata = {
+  title: "Memahami Indeks",
+  description:
+    "Bina tatatanda indeks daripada pendaraban berulang, kemudian kaitkan indeks sifar, negatif dan pecahan dengan pertumbuhan dan susutan eksponen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-01",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Daripada Lipatan Kertas kepada Model Pertumbuhan
+
+Katakan sehelai kertas pada mulanya setebal lebih kurang <InlineMath math="0.1\text{ mm}" />. Dalam model yang ideal, setiap lipatan menggandakan ketebalannya. Selepas <InlineMath math="42" /> lipatan, model ini memberikan:
+
+<BlockMath math="0.1\text{ mm}\times 2^{42}\approx 439{,}805\text{ km}" />
+
+Jarak itu lebih jauh daripada jarak purata dari Bumi ke Bulan. Kertas sebenar tidak boleh dilipat sebanyak itu, jadi ini hanya model yang ideal. Corak utamanya ialah setiap lipatan mendarabkan ketebalan dengan <InlineMath math="2" />. <Highlight>Pendaraban berulang dengan faktor yang sama</Highlight> menghasilkan **pertumbuhan eksponen**.
+
+Sekarang bayangkan bagaimana satu wabak mungkin bermula. Seorang dijangkiti, lalu menjangkiti dua orang lain. Pada peringkat seterusnya, setiap seorang daripada dua orang itu menjangkiti dua orang lagi. Kalau ini berterusan, bilangan jangkitan baharu pada setiap peringkat mengikut <InlineMath math="1,2,4,8,\ldots" />. Keadaan berubah-ubah, jadi bilangan jangkitan baharu tidak selalu berganda. Jujukan ini hanya menerangkan corak dalam contoh ringkas kita. Jujukan ini tidak boleh meramalkan berapa ramai orang yang akan dijangkiti semasa wabak sebenar.
+
+## Definisi Indeks
+
+Indeks ialah cara ringkas untuk menulis **pendaraban berulang**. Dalam model penggandaan, beberapa peringkat pertama ialah:
+
+<BlockMath math="\begin{aligned} &amp;1 = 2^0 \\ &amp;2 = 2^1 \\ &amp;4 = 2 \times 2 = 2^2 \\ &amp;8 = 2 \times 2 \times 2 = 2^3 \\ &amp;16 = 2 \times 2 \times 2 \times 2 = 2^4 \end{aligned}" />
+
+Pada peringkat <InlineMath math="n" />, model ini boleh ditulis sebagai <InlineMath math="m(n)=2^n" />. Contohnya:
+
+<InlineMath math="m(5)=2^5=32" />.
+
+Setiap kali indeks naik satu, palang menjadi dua kali ganda: <InlineMath math="2^0 = 1" />, <InlineMath math="2^1 = 2" />, <InlineMath math="2^2 = 4" /> dan seterusnya hingga <InlineMath math="2^5 = 32" />, iaitu nilai <InlineMath math="m(5)" /> dalam teks tadi.
+
+<BarChart
+  title={<>Kuasa bagi dua</>}
+  description={<>Palang <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Nilai"
+  data={[0, 1, 2, 3, 4, 5].map((x) => ({ name: String(x), value: 2 ** x }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Maksud Tatatanda Indeks
+
+Ungkapan seperti <InlineMath math="a^n" /> ada dua bahagian:
+
+<BlockMath math="a^n" />
+
+- <InlineMath math="a" /> ialah **asas**, iaitu nombor yang didarab
+- <InlineMath math="n" /> ialah **indeks**, iaitu bilangan faktor yang sama
+
+Jika <InlineMath math="a" /> ialah nombor nyata dan <InlineMath math="n" /> ialah integer positif, maka:
+
+<BlockMath math="a^n = \underbrace{a \times a \times a \times \ldots \times a}_{n \text{ faktor}}" />
+
+## Indeks Sifar Negatif dan Pecahan
+
+Untuk integer positif, indeks membilang faktor yang berulang. Kita **luaskan definisi kuasa** kepada sifar, nombor negatif dan pecahan sambil mengekalkan hukum pendaraban. Setiap peluasan juga mesti menyatakan asas yang dibenarkan.
+
+### Indeks Sifar
+
+Untuk setiap nombor nyata <InlineMath math="a" /> yang **bukan sifar**:
+
+<BlockMath math="a^0=1" />
+
+Hukum indeks sifar datang daripada pembahagian kuasa. Apabila <InlineMath math="a^n" /> dibahagi dengan dirinya sendiri, hasilnya <InlineMath math="1" />, manakala apabila indeksnya ditolak, hasilnya <InlineMath math="a^{n-n}=a^0" />. Oleh itu, <InlineMath math="a^0=1" />.
+
+<BlockMath math="\frac{a^n}{a^n}=a^{n-n}=a^0=1" />
+
+### Indeks Negatif
+
+Untuk setiap nombor nyata <InlineMath math="a" /> yang bukan sifar dan integer positif <InlineMath math="n" />:
+
+<BlockMath math="a^{-n}=\frac{1}{a^n}=\left(\frac{1}{a}\right)^n" />
+
+Sebabnya, <InlineMath math="a^n a^{-n}=a^0=1" />. Jadi indeks negatif mewakili **salingan bagi kuasa positif yang sepadan**. Contohnya:
+
+<InlineMath math="3^{-2}=\frac{1}{3^2}=\frac{1}{9}=0.111\ldots" />.
+
+Indeks negatif meneruskan corak ini ke kiri: setiap langkah membahagi dengan <InlineMath math="3" />, jadi <InlineMath math="3^0 = 1" />, <InlineMath math="3^{-1} = \tfrac13" /> dan <InlineMath math="3^{-2} = \tfrac19" />. Nilainya semakin kecil menghampiri <InlineMath math="0" /> tetapi kekal positif.
+
+<BarChart
+  title={<>Kuasa bagi <InlineMath math="3" /> dari <InlineMath math="3^{-2}" /> hingga <InlineMath math="3^2" /></>}
+  description={<>Palang <InlineMath math="3^n" /> untuk <InlineMath math="n = -2" /> hingga <InlineMath math="2" />.</>}
+  yAxisLabel="Nilai"
+  data={[-2, -1, 0, 1, 2].map((x) => ({ name: String(x), value: 3 ** x }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Indeks Pecahan
+
+Untuk punca yang bernilai nyata, katakan <InlineMath math="a>0" /> dan <InlineMath math="n" /> ialah integer positif. Maka:
+
+<BlockMath math="a^{\frac{1}{n}}=\sqrt[n]{a}=p" />
+
+Di sini, <InlineMath math="p" /> ialah satu-satunya nombor nyata **positif** yang memenuhi <InlineMath math="p^n=a" />. Contohnya, <InlineMath math="16^{\frac14}=2" /> kerana <InlineMath math="2^4=16" />.
+
+Punca kuasa ganjil juga menerima input nyata yang negatif, seperti <InlineMath math="(-8)^{\frac13}=-2" />. Punca kuasa genap bagi nombor negatif bukan nombor nyata. Nyatakan domainnya kerana tatatanda indeks yang sama boleh mewakili nilai nyata bagi satu asas tetapi tiada nilai nyata bagi asas yang lain.
+
+### Indeks Pecahan Am
+
+Jika <InlineMath math="a>0" /> dan <InlineMath math="m,n" /> ialah integer positif, maka:
+
+<BlockMath math="a^{\frac{m}{n}}=\left(a^{\frac{1}{n}}\right)^m=\left(\sqrt[n]{a}\right)^m" />
+
+**Ambil punca dahulu**, kemudian naikkan nilai itu kepada kuasanya. Penyebut <InlineMath math="n" /> menentukan indeks punca dan pengangka <InlineMath math="m" /> menentukan kuasa. Contohnya:
+
+<InlineMath math="8^{\frac23}=\left(8^{\frac13}\right)^2=2^2=4" />.
+
+## Fungsi Eksponen
+
+**Fungsi eksponen** berbentuk <InlineMath math="f(x)=a^x" /> dengan <InlineMath math="a>0" /> dan <InlineMath math="a\neq1" />:
+
+1. Jika <InlineMath math="a>1" />, fungsi itu menokok apabila nilai <InlineMath math="x" /> bertambah
+2. Jika <InlineMath math="0<a<1" />, fungsi itu menyusut apabila nilai <InlineMath math="x" /> bertambah
+
+Kes pertama memodelkan pertumbuhan. Kes kedua memodelkan susutan. Model ini berguna hanya selagi faktor dan selang masanya cukup sepadan dengan situasi yang dikaji.
+
+## Model Pertumbuhan untuk Bakteria Virus dan Populasi
+
+Model pertumbuhan mengulang satu pendaraban pada **selang yang tetap**, jadi satu faktor membawa nilai permulaan kepada nilai selepas setiap langkah. Bakteria, virus dan populasi menggunakan aritmetik yang sama dan hanya berbeza pada maksud faktor itu.
+
+### Pertumbuhan Bakteria
+
+Dalam model kultur yang ideal, katakan setiap bakteria membelah menjadi dua dalam **setiap selang tetap**, tanpa kematian atau kekangan sumber. Jika <InlineMath math="B_0" /> ialah bilangan awal, maka selepas <InlineMath math="t" /> selang:
+
+<BlockMath math="B(t)=B_0\times2^t" />
+
+Asas <InlineMath math="2" /> ialah faktor pertumbuhan. Jika kultur itu bermula dengan <InlineMath math="100" /> bakteria dan membelah setiap <InlineMath math="30\text{ minit}" />, maka <InlineMath math="2\text{ jam}" /> mengandungi <InlineMath math="4" /> selang:
+
+<ContentStack>
+  <BlockMath math="B(4)=100\times2^4=1{,}600" />
+  <BacterialGrowth
+    formulaType="exponential"
+    ratio={2}
+    initialCount={100}
+    maxGenerations={4}
+    timeInterval={30}
+    timeUnit="minit"
+    labels={{
+      title: "Pertumbuhan Bakteria yang Ideal",
+      bacterial: "Bakteria",
+    }}
+  />
+</ContentStack>
+
+### Penularan Virus
+
+Model penularan peringkat awal yang dipermudahkan menggunakan **faktor purata** <InlineMath math="R" />:
+
+<BlockMath math="C(n)=C_0\times R^n" />
+
+Di sini, <InlineMath math="C_0" /> ialah bilangan orang yang sudah dijangkiti pada titik permulaan, sebelum kitaran penularan pertama. Nilai <InlineMath math="n" /> membilang kitaran yang sudah berlalu, dan <InlineMath math="C(n)" /> ialah bilangan orang yang dijangkiti dalam kitaran <InlineMath math="n" />. Maksudnya, <InlineMath math="C(0)=C_0" />. Jika <InlineMath math="C_0=10" />, <InlineMath math="R=2.5" /> dan <InlineMath math="n=3" />, maka:
+
+<BlockMath math="C(3)=10\times2.5^3=156.25\approx156" />
+
+Pengiraan ini boleh menghasilkan perpuluhan kerana rumusnya menggunakan purata. Bilangan orang yang sebenar tetap nombor bulat. Nilai <InlineMath math="R" /> juga boleh berubah mengikut tingkah laku, imuniti, langkah pencegahan dan kaedah pengukuran. Pengiraan ini hanya menunjukkan corak di bawah syarat yang dinyatakan.
+
+### Pertumbuhan Populasi
+
+Jika satu populasi bertambah dengan **kadar relatif yang sama** <InlineMath math="r" /> dalam setiap selang, maka:
+
+<BlockMath math="P(t)=P_0(1+r)^t" />
+
+Faktor <InlineMath math="1+r" /> merangkumi populasi asal dan pertambahan baharu. Untuk populasi awal <InlineMath math="1{,}000{,}000" /> dan kadar pertumbuhan tahunan yang tetap <InlineMath math="2\%" />:
+
+<BlockMath math="\begin{aligned} P(10) &amp;=1{,}000{,}000(1.02)^{10} \\ &amp;\approx1{,}218{,}994 \end{aligned}" />
+
+Pengiraan ini mengenakan pertumbuhan <InlineMath math="2\%" /> sekali lagi setiap tahun. Kadar pertumbuhan populasi sebenar boleh berubah dari tahun ke tahun.

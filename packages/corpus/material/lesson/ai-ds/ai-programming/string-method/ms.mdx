@@ -1,0 +1,737 @@
+export const metadata = {
+    title: "Kaedah Rentetan",
+    description: "Kaedah rentetan Python untuk mengubah teks, mencari, mengesahkan aksara dan operasi rentetan lanjutan.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-17",
+    dateModified: "2026-09-19",
+    subject: "Pengaturcaraan AI",
+};
+
+## Rentetan Tidak Boleh Diubah
+
+<Highlight>Rentetan Python tidak boleh diubah (immutable)</Highlight>: nilai yang disimpan dalam objek rentetan tidak boleh disunting di tempatnya. Sesuatu operasi boleh mencipta rentetan lain, dan pemboleh ubah boleh diikat semula kepada objek baharu itu, tetapi objek rentetan yang asal kekal tidak berubah.
+
+Oleh itu, kalau kamu mengumpukkan nilai kepada sesuatu kedudukan aksara, Python akan menimbulkan `TypeError`. Senarai pula berbeza kerana unsur-unsurnya boleh diganti di tempatnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "immutable_string.py",
+      code: `# Demonstrasi sifat rentetan yang tidak boleh diubah
+s = "hello"
+print(f"Rentetan awal: {s}")
+
+# Cuba menukar aksara secara terus
+try:
+    s[1] = "a"  # Baris ini akan menyebabkan ralat
+except TypeError as e:
+    print(f"Ralat: {e}")
+
+# Cara yang betul: cipta rentetan baharu
+s_new = s[:1] + "a" + s[2:]
+print(f"Rentetan baharu: {s_new}")
+
+# Rentetan asal kekal tidak berubah
+print(f"Rentetan asal masih: {s}")`
+    }
+  ]}
+/>
+
+Penghirisan (slicing) dan penyambungan (concatenation) ialah dua cara untuk membina rentetan baharu daripada rentetan yang sedia ada. Operator `+` tidak menambah apa-apa pada objek asal.
+
+## Mengukur Panjang Rentetan
+
+Bagi rentetan Python, `len()` mengira **titik kod Unicode** (code point). Huruf Latin biasa, ruang atau tanda baca biasanya menyumbang satu, tetapi satu grafem yang kelihatan boleh mengandungi beberapa titik kod, seperti yang berlaku pada sesetengah emoji dan tanda gabungan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "string_length.py",
+      code: `# Mengukur panjang pelbagai jenis rentetan
+strings = [
+    "hello",
+    "Hello World!",
+    "Python programming",
+    "",  # rentetan kosong
+    "   ",  # rentetan yang mengandungi ruang
+    "123456"
+]
+
+for s in strings:
+    print(f"'{s}' mempunyai panjang: {len(s)}")
+
+# Panjang rentetan dengan aksara khas
+special = "Hello\\nWorld\\t!"
+print(f"Rentetan dengan jujukan lepas: {len(special)} aksara")
+print(f"Paparan rentetan: {repr(special)}")
+
+raw_newline = r"\\n"
+print(f"Ejaan mentah {raw_newline!r}: {len(raw_newline)} titik kod")`
+    }
+  ]}
+/>
+
+Dalam literal rentetan biasa, ejaan sumber `\n` dan `\t` masing-masing menjadi satu titik kod baris baharu atau tab. Dalam rentetan mentah seperti `r"\n"`, garis condong ke belakang dan `n` kekal sebagai dua titik kod yang berasingan.
+
+## Kaedah Transformasi Rentetan
+
+Kaedah-kaedah ini memulangkan rentetan baharu dan **membiarkan rentetan asal tidak berubah**. Ini berlaku kerana rentetan tidak boleh diubah, jadi setiap transformasi menghasilkan nilai kedua dan bukannya menyunting nilai pertama.
+
+### Menukar Huruf Besar dan Kecil
+
+Python menyediakan beberapa kaedah untuk menukar huruf besar dan kecil. Setiap kaedah memulangkan rentetan baharu dan menggunakan **peraturan huruf besar-kecil Unicode**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "case_transformation.py",
+      code: `# Contoh transformasi huruf besar-kecil pada rentetan
+text = "Python Programming Language"
+
+# Tukar semua huruf kepada huruf besar
+upper_text = text.upper()
+print(f"Huruf besar: {upper_text}")
+
+# Tukar semua huruf kepada huruf kecil
+lower_text = text.lower()
+print(f"Huruf kecil: {lower_text}")
+
+# Gaya tajuk: huruf pertama setiap perkataan menjadi huruf besar
+title_text = text.title()
+print(f"Gaya tajuk: {title_text}")
+
+# Contoh dengan rentetan bercampur
+mixed = "hELLo WoRLd PyThOn"
+print(f"Asal: {mixed}")
+print(f"Gaya tajuk: {mixed.title()}")
+
+# Gaya tajuk pada rentetan yang ada nombor dan simbol
+complex_text = "python3.9 is-awesome!"
+print(f"Gaya tajuk rentetan kompleks: {complex_text.title()}")`
+    }
+  ]}
+/>
+
+Kaedah `title()` mengikut peraturan huruf besar-kecil yang mekanikal. Kaedah ini mudah digunakan untuk label paparan, tetapi bukan alat pemformat yang boleh dipercayai untuk nama orang atau tajuk editorial. Untuk nilai-nilai seperti itu, kekalkan ejaan yang sahih atau gunakan peraturan khusus bagi domainnya.
+
+### Membuang Aksara di Awal dan Akhir
+
+Tanpa argumen, `strip()`, `lstrip()` dan `rstrip()` membuang ruang putih di sekeliling rentetan. Argumen `chars` memberi Python **set aksara individu**. Python membuang mana-mana aksara itu berulang kali dari hujung yang berkenaan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "strip_methods.py",
+      code: `# Demonstrasi pelbagai kaedah strip
+text = "   Hello World   "
+print(f"Asal: '{text}'")
+
+# Buang ruang di kedua-dua belah
+stripped = text.strip()
+print(f"Strip: '{stripped}'")
+
+# Buang ruang di sebelah kiri sahaja
+left_stripped = text.lstrip()
+print(f"Strip kiri: '{left_stripped}'")
+
+# Buang ruang di sebelah kanan sahaja
+right_stripped = text.rstrip()
+print(f"Strip kanan: '{right_stripped}'")
+
+# Strip dengan aksara khas
+special_text = "+++Hello World+++"
+custom_stripped = special_text.strip("+")
+print(f"Strip tersuai: '{custom_stripped}'")
+
+# Strip beberapa aksara
+messy_text = "---+++Hello World+++---"
+clean_text = messy_text.strip("-+")
+print(f"Strip beberapa aksara: '{clean_text}'")
+
+# Buang satu akhiran yang tepat
+filename = "report.txt"
+print(f"Buang akhiran yang tepat: '{filename.removesuffix('.txt')}'")`
+    }
+  ]}
+/>
+
+Guna `removeprefix()` atau `removesuffix()` apabila kamu perlu membuang satu token yang tepat. Perbezaan ini menghalang set aksara daripada membuang lebih banyak daripada yang dimaksudkan.
+
+Setiap kaedah transformasi memulangkan rentetan baharu, dan bilangan huruf besar menunjukkan apa yang dilakukannya. Bagi `'hello World'`, `upper()` menukar kesemua sepuluh huruf menjadi huruf besar, `swapcase()` menterbalikkan setiap huruf supaya sembilan menjadi huruf besar, dan `capitalize()` hanya mengekalkan huruf pertama sebagai huruf besar.
+
+<BarChart
+  title={<>Huruf besar selepas setiap kaedah pada <code>'hello World'</code></>}
+  description={<>Setiap palang ialah bilangan huruf besar dalam hasil kaedah yang dinamakan di bawahnya. Palang pertama ialah rentetan asal dengan satu huruf besar, <code>W</code>.</>}
+  yAxisLabel="Huruf besar"
+  data={[
+    { name: "asal", value: 1 },
+    { name: "upper", value: 10 },
+    { name: "lower", value: 0 },
+    { name: "title", value: 2 },
+    { name: "swapcase", value: 9 },
+    { name: "capitalize", value: 1 },
+  ]}
+  chartConfig={{ value: { label: "Huruf besar", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Kaedah Carian dan Pengesahan
+
+Satu kumpulan kaedah mencari kedudukan teks, dan satu kumpulan lagi menjawab soalan ya atau tidak tentang teks itu. Kaedah carian **memulangkan kedudukan**, manakala kaedah pengesahan memulangkan `True` atau `False`.
+
+### Mencari Kedudukan Subrentetan
+
+Kaedah `index()` dan `find()` digunakan untuk mencari kedudukan subrentetan dalam rentetan. Bezanya terletak pada cara kedua-duanya mengendalikan keadaan apabila **subrentetan tidak dijumpai**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "substring_search.py",
+      code: `# Carian subrentetan dengan pelbagai kaedah
+text = "Python is a powerful programming language"
+
+# Menggunakan index() - ralat jika tidak dijumpai
+try:
+    pos = text.index("powerful")
+    print(f"'powerful' dijumpai pada kedudukan: {pos}")
+
+    # Cari subrentetan yang tiada
+    pos_not_found = text.index("Java")
+except ValueError as e:
+    print(f"Ralat dengan index(): {e}")
+
+# Menggunakan find() - memulangkan -1 jika tidak dijumpai
+pos_find = text.find("powerful")
+print(f"find('powerful'): {pos_find}")
+
+pos_not_found = text.find("Java")
+print(f"find('Java'): {pos_not_found}")
+
+# Guna ujian keahlian apabila hanya kewujudan yang penting
+print(f"Mengandungi 'Python': {'Python' in text}")
+
+# Cari dengan parameter mula dan tamat
+substring = "programming"
+start_pos = text.find(substring, 20)  # mula dari kedudukan 20
+print(f"'{substring}' selepas kedudukan 20: {start_pos}")
+
+# Kira bilangan kemunculan subrentetan
+count = text.count("a")
+print(f"Huruf 'a' muncul {count} kali")`
+    }
+  ]}
+/>
+
+Pilih kaedah mengikut kontrak kegagalannya: `find()` memulangkan `-1`, manakala `index()` menimbulkan `ValueError`. Jika kamu hanya perlu jawapan ya atau tidak, operator `in` lebih jelas daripada kedua-dua kaedah kedudukan itu.
+
+### Pengesahan Aksara Rentetan
+
+Kaedah seperti `isalpha()` dan `isdigit()` memulangkan nilai Boolean selepas menyemak sama ada titik kod dalam rentetan itu memenuhi peraturan kategori tertentu. Kaedah-kaedah ini **hanya menyemak kategori aksara**. Nama pengguna, alamat e-mel atau nombor akaun memerlukan peraturan berasingan untuk format penuhnya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "character_validation.py",
+      code: `# Contoh mengesahkan pelbagai jenis aksara
+test_strings = [
+    "Python",
+    "Python3",
+    "12345",
+    "Hello World",
+    "hello123",
+    "UPPERCASE",
+    "lowercase",
+    "",
+    "   "
+]
+
+print("String\\t\\tAlpha\\tDigit\\tAlnum\\tUpper\\tLower")
+print("-" * 60)
+
+for s in test_strings:
+    alpha = s.isalpha()
+    digit = s.isdigit()
+    alnum = s.isalnum()
+    upper = s.isupper()
+    lower = s.islower()
+
+    print(f"'{s:<10}'\\t{alpha}\\t{digit}\\t{alnum}\\t{upper}\\t{lower}")
+
+# Contoh praktikal untuk pengesahan input
+def validate_username(username):
+    if not username:
+        return "Nama pengguna tidak boleh kosong"
+    if not username.isascii() or not username.isalnum():
+        return "Nama pengguna hanya boleh mengandungi huruf dan nombor ASCII"
+    if len(username) < 3:
+        return "Nama pengguna mesti sekurang-kurangnya 3 aksara"
+    return "Nama pengguna sah"
+
+# Uji pengesahan
+usernames = ["user123", "user@123", "ab", "ValidUser"]
+for username in usernames:
+    result = validate_username(username)
+    print(f"'{username}': {result}")`
+    }
+  ]}
+/>
+
+Kaedah seperti `isdigit()` dan `isalnum()` peka Unicode, dan rentetan kosong menyebabkan kaedah ini memulangkan `False`. Nombor telefon, poskod atau nama pengguna masih memerlukan peraturan yang jelas untuk abjad, panjang, pemisah, awalan dan sebarang kekangan domain yang lain.
+
+Cari `"an"` di dalam `"banana"` dengan gambar ini. Dua segmen hijau kebiruan menandakan kemunculan pada indeks <InlineMath math="1" /> dan <InlineMath math="3" />, jadi `"banana".count("an")` memberi `2`. `find` memulangkan indeks kemunculan pertama dari kiri, iaitu `1`, manakala `rfind` memulangkan indeks kemunculan terakhir, iaitu `3`. Jika subrentetan itu langsung tiada, kedua-duanya memulangkan `-1`.
+
+<MathVisual
+  title={<><code>find</code>, <code>rfind</code> dan <code>count</code> pada <code>'banana'</code></>}
+  description={<>Segmen hijau kebiruan menandakan setiap kemunculan <code>'an'</code>. Segmen ungu menunjuk kepada hasil <code>find</code>, dan segmen jingga kepada hasil <code>rfind</code>.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1.3, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "char-a", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "char-b", kind: "point", at: { x: 1, y: 0 }, appearance: "reference" },
+      { id: "char-c", kind: "point", at: { x: 2, y: 0 }, appearance: "reference" },
+      { id: "char-d", kind: "point", at: { x: 3, y: 0 }, appearance: "reference" },
+      { id: "char-e", kind: "point", at: { x: 4, y: 0 }, appearance: "reference" },
+      { id: "char-f", kind: "point", at: { x: 5, y: 0 }, appearance: "reference" },
+      { id: "index-a", kind: "point", at: { x: 0, y: -0.8 }, appearance: "reference" },
+      { id: "index-b", kind: "point", at: { x: 1, y: -0.8 }, appearance: "reference" },
+      { id: "index-c", kind: "point", at: { x: 2, y: -0.8 }, appearance: "reference" },
+      { id: "index-d", kind: "point", at: { x: 3, y: -0.8 }, appearance: "reference" },
+      { id: "index-e", kind: "point", at: { x: 4, y: -0.8 }, appearance: "reference" },
+      { id: "index-f", kind: "point", at: { x: 5, y: -0.8 }, appearance: "reference" },
+      { id: "hit-a", kind: "segment", from: { x: 1, y: -0.4 }, to: { x: 2, y: -0.4 }, appearance: "construction" },
+      { id: "hit-b", kind: "segment", from: { x: 3, y: -0.4 }, to: { x: 4, y: -0.4 }, appearance: "construction" },
+      { id: "find", kind: "segment", from: { x: 1, y: 1.5 }, to: { x: 1, y: 0.7 }, appearance: "secondary" },
+      { id: "rfind", kind: "segment", from: { x: 3, y: 1.5 }, to: { x: 3, y: 0.7 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "char-a", objectId: "char-a", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "char-b", objectId: "char-b", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "char-c", objectId: "char-c", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "char-d", objectId: "char-d", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "char-e", objectId: "char-e", at: { x: 4, y: 0 }, placement: "above" },
+      { key: "char-f", objectId: "char-f", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "index-a", objectId: "index-a", at: { x: 0, y: -0.8 }, placement: "below" },
+      { key: "index-b", objectId: "index-b", at: { x: 1, y: -0.8 }, placement: "below" },
+      { key: "index-c", objectId: "index-c", at: { x: 2, y: -0.8 }, placement: "below" },
+      { key: "index-d", objectId: "index-d", at: { x: 3, y: -0.8 }, placement: "below" },
+      { key: "index-e", objectId: "index-e", at: { x: 4, y: -0.8 }, placement: "below" },
+      { key: "index-f", objectId: "index-f", at: { x: 5, y: -0.8 }, placement: "below" },
+      { key: "find", objectId: "find", at: { x: 1, y: 1.5 }, placement: "above-left" },
+      { key: "rfind", objectId: "rfind", at: { x: 3, y: 1.5 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "char-a": "b",
+    "char-b": "a",
+    "char-c": "n",
+    "char-d": "a",
+    "char-e": "n",
+    "char-f": "a",
+    "index-a": "0",
+    "index-b": "1",
+    "index-c": "2",
+    "index-d": "3",
+    "index-e": "4",
+    "index-f": "5",
+    "find": 'find("an") = 1',
+    "rfind": 'rfind("an") = 3',
+  }}
+/>
+
+## Kaedah Carian Awalan dan Akhiran
+
+Kaedah `startswith()` dan `endswith()` memulangkan sama ada sesuatu rentetan **bermula atau berakhir** dengan subrentetan tertentu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "prefix_suffix.py",
+      code: `# Contoh penggunaan startswith dan endswith
+files = [
+    "document.pdf",
+    "image.jpg",
+    "script.py",
+    "data.csv",
+    "README.md",
+    "backup.zip"
+]
+
+# Semak sambungan fail
+print("Fail dengan sambungan tertentu:")
+for file in files:
+    if file.endswith(".py"):
+        print(f"Fail Python: {file}")
+    elif file.endswith((".jpg", ".png", ".gif")):
+        print(f"Fail imej: {file}")
+    elif file.endswith(".pdf"):
+        print(f"Fail PDF: {file}")
+
+# Semak awalan
+urls = [
+    "https://www.google.com",
+    "http://example.com",
+    "ftp://files.example.com",
+    "mailto:user@example.com"
+]
+
+print("\\nAnalisis URL:")
+for url in urls:
+    if url.startswith("https://"):
+        print(f"HTTPS: {url}")
+    elif url.startswith("http://"):
+        print(f"Web: {url}")
+    elif url.startswith("ftp://"):
+        print(f"FTP: {url}")
+    elif url.startswith("mailto:"):
+        print(f"E-mel: {url}")
+
+# Guna tuple untuk beberapa awalan/akhiran
+text = "Hello World"
+print(f"\\nBermula dengan ucapan salam: {text.startswith(('Hi', 'Hello', 'Hey'))}")`
+    }
+  ]}
+/>
+
+Kedua-dua kaedah menerima tuple, jadi satu panggilan boleh menguji beberapa awalan atau akhiran.
+
+Awalan `https://` mengelaskan teks itu mengikut skema URL. Awalan itu tidak membuktikan bahawa laman itu boleh dipercayai atau alamat itu sah.
+
+## Kaedah Replace dan Split
+
+Kedua-dua kaedah ini mengubah cara sesuatu rentetan dibahagikan kepada beberapa bahagian. `replace` **menukar satu subrentetan dengan subrentetan lain**, dan `split` memecahkan rentetan menjadi senarai pada sesuatu pemisah.
+
+### Menggantikan Subrentetan
+
+Kaedah `replace()` digunakan untuk menggantikan **semua kemunculan sesuatu subrentetan** dengan rentetan baharu.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "replace_method.py",
+      code: `# Contoh penggunaan kaedah replace
+text = "Python is great. Python is powerful. Python is easy."
+print(f"Asal: {text}")
+
+# Ganti semua kemunculan
+replaced = text.replace("Python", "Java")
+print(f"Ganti semua: {replaced}")
+
+# Ganti dengan had bilangan
+limited_replace = text.replace("Python", "Java", 2)
+print(f"Ganti 2 yang pertama: {limited_replace}")
+
+# Ganti dengan rentetan kosong (buang)
+no_dots = text.replace(".", "")
+print(f"Buang titik: {no_dots}")
+
+# Rantaian replace untuk beberapa penggantian
+sentence = "I love cats and dogs"
+animal_replace = sentence.replace("cats", "birds").replace("dogs", "fish")
+print(f"Rantaian replace: {animal_replace}")
+
+# replace peka huruf besar-kecil
+case_text = "Hello hello HELLO"
+case_replace = case_text.replace("hello", "hi")
+print(f"Peka huruf besar-kecil: {case_replace}")
+
+# Contoh praktikal: membersihkan nombor telefon
+phone = "+62-812-3456-7890"
+clean_phone = phone.replace("-", "").replace("+", "")
+print(f"Telefon bersih: {clean_phone}")`
+    }
+  ]}
+/>
+
+Kaedah `replace()` peka huruf besar-kecil dan menggantikan semua kemunculan, kecuali jika dihadkan oleh parameter ketiga.
+
+### Memisahkan Rentetan
+
+Kaedah `split()` memecahkan rentetan menjadi senarai di sekeliling pembatas yang ditetapkan. Tanpa pembatas, kaedah ini menganggap **ruang putih berturut-turut sebagai satu pemisah** dan mengabaikan medan kosong di awal atau di akhir.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "split_method.py",
+      code: `# Pelbagai cara menggunakan split
+text = "apple,banana,orange,grape"
+print(f"Asal: {text}")
+
+# Pisah dengan pembatas koma
+fruits = text.split(",")
+print(f"Pisah dengan koma: {fruits}")
+
+# Pisah tanpa parameter (lalai: ruang putih)
+sentence = "Python is a great language"
+words = sentence.split()
+print(f"Pisah dengan ruang: {words}")
+
+# Pisah dengan had
+limited_split = text.split(",", 2)
+print(f"Pisah maksimum 2: {limited_split}")
+
+# Pisah dengan ruang putih berganda
+messy_text = "word1    word2\\t\\tword3\\n\\nword4"
+clean_split = messy_text.split()
+print(f"Pisah bersih: {clean_split}")
+
+# Medan ringkas yang dipisahkan koma, tanpa tanda petik
+csv_line = "John,25,Engineer,New York"
+data = csv_line.split(",")
+name, age, job, city = data
+print(f"Nama: {name}, Umur: {age}, Pekerjaan: {job}, Bandar: {city}")
+
+# Pisah dengan aksara yang tiada dalam rentetan
+no_delimiter = "no-delimiter-here"
+result = no_delimiter.split(",")
+print(f"Pembatas tidak dijumpai: {result}")
+
+# Cantumkan semula dengan join
+joined = " | ".join(fruits)
+print(f"Dicantumkan dengan garis tegak: {joined}")`
+    }
+  ]}
+/>
+
+Guna `split()` hanya apabila peraturan pembatasnya benar-benar mudah. Kaedah ini tidak memahami medan CSV yang bertanda petik, jujukan lepas atau laluan yang khusus bagi sesuatu platform. Guna modul `csv` Python untuk CSV dan `pathlib` untuk laluan sistem fail.
+
+Tanpa argumen, `split()` memotong rentetan pada setiap ruang dan memulangkan senarai perkataan. `'the quick brown fox'.split()` memberi empat perkataan, dan jumlah nilai `len()` perkataan itu ialah <InlineMath math="16" />, iaitu <InlineMath math="19" /> aksara tolak tiga ruang.
+
+<BarChart
+  title={<>Panjang perkataan daripada <code>'the quick brown fox'.split()</code></>}
+  description={<>Setiap palang ialah <code>len()</code> bagi perkataan yang ditulis di bawahnya, mengikut susunan yang dipulangkan oleh <code>split()</code>.</>}
+  yAxisLabel="Panjang perkataan"
+  data={[
+    { name: "the", value: 3 },
+    { name: "quick", value: 5 },
+    { name: "brown", value: 5 },
+    { name: "fox", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Panjang perkataan", colors: { light: ["var(--chart-3)"], dark: ["var(--chart-3)"] } } }}
+/>
+
+## Merantaikan Kaedah Rentetan
+
+Kaedah transformasi yang **memulangkan rentetan** boleh dirantaikan. Kaedah seperti `split()` memulangkan senarai, jadi operasi seterusnya mesti sesuai dengan jenis hasil itu. Pastikan rantaian cukup pendek supaya setiap langkah tetap jelas. Guna pemboleh ubah perantaraan apabila satu langkah perlu disahkan atau diterangkan sebelum transformasi seterusnya.
+
+Selepas `.strip()` yang pertama, masih ada ruang di antara `+++` dan `Python`. Oleh itu, `.strip("+- ")` membuang **tanda tambah, tanda tolak dan ruang** dari kedua-dua hujung sebelum huruf ditukar.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "method_chaining.py",
+      code: `# Contoh rantaian kaedah pada rentetan
+messy_input = "   +++ Python Programming for Beginners ---   "
+print(f"Input: '{messy_input}'")
+
+# Merantaikan beberapa kaedah
+clean_result = (messy_input
+                .strip()  # buang ruang di awal/akhir
+                .strip("+- ")  # buang aksara + dan -
+                .lower()  # tukar kepada huruf kecil
+                .replace("beginners", "experts"))  # ganti perkataan
+
+print(f"Hasil bersih: '{clean_result}'")
+
+# Contoh rantaian untuk memformat label paparan
+labels = ["  GETTING STARTED  ", "  array BASICS  ", "  DATA cleaning  "]
+formatted_labels = []
+
+for label in labels:
+    formatted = label.strip().title()
+    formatted_labels.append(formatted)
+
+print("Label yang diformat:")
+for label in formatted_labels:
+    print(f"- {label}")
+
+# Rantaian dalam list comprehension
+sentences = [
+    "  hello WORLD  ",
+    "  PYTHON programming  ",
+    "  DATA science  "
+]
+
+processed = [s.strip().title() for s in sentences]
+print(f"Ayat yang diproses: {processed}")
+
+# Normalkan domain tanpa memadam ruang putih yang tidak sah secara senyap
+def normalize_email(email):
+    cleaned = email.strip()
+    if any(char.isspace() for char in cleaned) or cleaned.count("@") != 1:
+        raise ValueError("E-mel mesti mengandungi satu @ dan tiada ruang putih")
+
+    local, domain = cleaned.split("@", 1)
+    if not local or not domain:
+        raise ValueError("E-mel perlu ada bahagian setempat dan bahagian domain")
+
+    return f"{local}@{domain.lower()}"
+
+emails = ["  USER@EXAMPLE.COM  ", "Test.User@Gmail.com", "admin@site.org"]
+for email in emails:
+    processed = normalize_email(email)
+    print(f"'{email}' -> '{processed}'")`
+    }
+  ]}
+/>
+
+Rantaian kaedah sesuai untuk pembersihan linear yang pendek. Rantaian itu tidak semestinya lebih jelas daripada langkah-langkah yang diberi nama.
+
+## Aplikasi Praktikal Kaedah Rentetan
+
+Setiap contoh kecil mengasingkan kelakuan satu kaedah rentetan di bawah **andaian yang dinyatakan**. Pengesah dan penghurai untuk sistem sebenar memerlukan peraturan yang ditulis khusus untuk data sebenarnya.
+
+Fungsi telefon itu hanya memformat dua corak contoh. Nombor telefon Indonesia tidak terhad kepada panjang tersebut. Nama fail dianggap sebagai nama ringkas tanpa direktori. Penormalan e-mel di atas menunjukkan pemprosesan rentetan, bukan pengesahan alamat e-mel yang lengkap.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "practical_applications.py",
+      code: `# Aplikasi praktikal kaedah rentetan dalam pelbagai senario
+
+# 1. Pengesahan dan pemformatan nombor telefon
+def format_phone_number(phone):
+    # Terima digit ASCII dan pemisah yang disokong di sini sahaja
+    allowed_separators = {" ", "-", "(", ")", "+"}
+    if any(char not in "0123456789" and char not in allowed_separators for char in phone):
+        return "Aksara tidak sah dalam nombor telefon"
+
+    digits_only = "".join(char for char in phone if char in "0123456789")
+
+    # Dua corak contoh, bukan semua peraturan penomboran Indonesia
+    if len(digits_only) == 13 and digits_only.startswith("62"):
+        return f"+{digits_only[:2]}-{digits_only[2:5]}-{digits_only[5:9]}-{digits_only[9:]}"
+    elif len(digits_only) == 12 and digits_only.startswith("08"):
+        return f"{digits_only[:4]}-{digits_only[4:8]}-{digits_only[8:]}"
+    else:
+        return "Format nombor tidak sah"
+
+phone_numbers = ["081234567890", "+6281234567890", "0812-3456-7890"]
+for phone in phone_numbers:
+    formatted = format_phone_number(phone)
+    print(f"'{phone}' -> '{formatted}'")
+
+# 2. Ekstrak maklumat daripada nama fail
+def analyze_filename(filename):
+    # Asingkan nama dan sambungan
+    if "." in filename:
+        name, ext = filename.rsplit(".", 1)
+        ext = ext.lower()
+    else:
+        name, ext = filename, ""
+
+    # Analisis jenis fail
+    image_exts = ["jpg", "jpeg", "png", "gif", "bmp"]
+    doc_exts = ["pdf", "doc", "docx", "txt"]
+    code_exts = ["py", "js", "html", "css", "java"]
+
+    if ext in image_exts:
+        file_type = "Imej"
+    elif ext in doc_exts:
+        file_type = "Dokumen"
+    elif ext in code_exts:
+        file_type = "Kod"
+    else:
+        file_type = "Tidak diketahui"
+
+    return {
+        "name": name,
+        "extension": ext,
+        "type": file_type,
+        "length": len(filename)
+    }
+
+files = ["photo.jpg", "report.pdf", "script.py", "data", "image.PNG"]
+for file in files:
+    info = analyze_filename(file)
+    print(f"{file}: {info}")
+
+# 3. Penghurai fail log ringkas
+def parse_log_entry(log_line):
+    # Format: [CAP MASA] TAHAP: MESEJ
+    if not log_line.strip():
+        return None
+
+    # Ekstrak cap masa
+    if log_line.startswith("[") and "]" in log_line:
+        end_bracket = log_line.index("]")
+        timestamp = log_line[1:end_bracket]
+        rest = log_line[end_bracket + 1:].strip()
+    else:
+        timestamp = "Tidak diketahui"
+        rest = log_line.strip()
+
+    # Ekstrak tahap
+    if ":" in rest:
+        level, message = rest.split(":", 1)
+        level = level.strip()
+        message = message.strip()
+    else:
+        level = "INFO"
+        message = rest
+
+    return {
+        "timestamp": timestamp,
+        "level": level,
+        "message": message
+    }
+
+log_entries = [
+    "[2023-09-17 10:30:15] ERROR: Database connection failed",
+    "[2023-09-17 10:30:16] INFO: Retrying connection",
+    "WARNING: Low disk space",
+    ""
+]
+
+print("\\nHasil penghuraian log:")
+for entry in log_entries:
+    parsed = parse_log_entry(entry)
+    if parsed:
+        print(f"Masa: {parsed['timestamp']}, Tahap: {parsed['level']}, Mesej: {parsed['message']}")
+
+# 4. Penjana slug URL daripada tajuk
+def create_slug(title):
+    # Tukar kepada huruf kecil dan ganti ruang dengan sengkang
+    slug = title.lower()
+
+    # Ganti aksara yang bukan huruf atau digit dengan sengkang
+    clean_slug = ""
+    for char in slug:
+        if char.isalnum():
+            clean_slug += char
+        else:
+            if clean_slug and clean_slug[-1] != "-":
+                clean_slug += "-"
+
+    # Buang sengkang di awal dan akhir
+    return clean_slug.strip("-")
+
+titles = [
+    "Learn Python for Beginners",
+    "Tips & Tricks Programming",
+    "Data Science: Complete Guide",
+    "Machine Learning 101"
+]
+
+print("\\nPenjanaan slug:")
+for title in titles:
+    slug = create_slug(title)
+    print(f"'{title}' -> '{slug}'")`
+    }
+  ]}
+/>
+
+Keempat-empat contoh ini menggabungkan pengelasan, carian, pemisahan dan penggantian di bawah format kecil yang dinyatakan. Penghurai nombor telefon, penghurai nama fail, penghurai log atau penjana slug untuk sistem sebenar juga memerlukan kontrak domain, polisi ralat dan ujian untuk input yang taksa.
+
+Padankan setiap kaedah dengan kelakuannya yang tepat. Operasi rentetan yang mudah boleh meliputi satu langkah pengesahan, manakala semakan penuh mungkin memerlukan lebih banyak peraturan.

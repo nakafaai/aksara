@@ -42,38 +42,29 @@ Die Wahl der Stützstelle **ändert die Schätzung** und lässt den Grenzwert un
 
 **Aufgabe**: Bestimme die Riemannsumme für <InlineMath math="f(x) = x" /> auf <InlineMath math="[0, 7]" /> mit <InlineMath math="7" /> gleich breiten Teilintervallen und dem **linken Randpunkt** jedes Teilintervalls als Stützstelle.
 
-<LineEquation
-  showZAxis={false}
-  title="Visualisierung der Riemannsumme"
+<MathVisual
+  title={<>Visualisierung der Riemannsumme</>}
   description={<>Graph der Funktion <InlineMath math="f(x)=x" /> mit <InlineMath math="7" /> Rechtecken, deren Höhen am linken Randpunkt bestimmt werden.</>}
-  data={[
-    {
-      points: Array.from({ length: 8 }).map((_, i) => ({ x: i, y: i, z: 0 })),
-      smooth: false,
-      color: "#9333ea",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="f(x)=x" />, at: 4, offset: [-1.5, 0.8, 0] }],
-    },
-    ...Array.from({ length: 7 }).map((_, i) => {
-        const x_left = i;
-        const x_right = i + 1;
-        const y_height = x_left; // f(x) = x, daher stammt die Höhe vom linken Randpunkt
-        return {
-            points: [
-                {x: x_left, y: 0, z: 0},
-                {x: x_right, y: 0, z: 0},
-                {x: x_right, y: y_height, z: 0},
-                {x: x_left, y: y_height, z: 0},
-                {x: x_left, y: 0, z: 0},
-            ],
-            color: "#0284c7",
-            smooth: false,
-            showPoints: false,
-        }
-    })
-  ]}
-  cameraTarget={[3.5, 3.5, 0]}
-  cameraPosition={[3.5, 3.5, 10]}
+  labels={{
+    "l1": <InlineMath math="f(x)=x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "line", kind: "function", formula: "x", domain: { min: 0, max: 7 }, appearance: "primary" },
+      { id: "r1", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "r2", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "r3", kind: "polygon", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 3, y: 3 }], appearance: "secondary" },
+      { id: "r4", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 4 }, { x: 4, y: 4 }], appearance: "secondary" },
+      { id: "r5", kind: "polygon", vertices: [{ x: 5, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 5 }, { x: 5, y: 5 }], appearance: "secondary" },
+      { id: "r6", kind: "polygon", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6 }, { x: 6, y: 6 }], appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "line", at: { x: 4, y: 4 }, placement: "above-left" },
+    ],
+  }}
 />
 
 **Schritt 1**: Breite und Stützstellen bestimmen.
@@ -109,39 +100,31 @@ Die Breite ist <InlineMath math="\Delta x=\frac{4-0}{4}=1" />, also ist jede Sum
 
 Die exakte Fläche liefert der [Hauptsatz der Differential- und Integralrechnung](/de/faecher/mathematik/integralrechnung/hauptsatz-der-differential-und-integralrechnung): <InlineMath math="\int_0^4 \frac{x^2}{4}\,dx = \frac{4^3}{12} = \frac{16}{3} \approx 5{,}333" />. Die linke Summe liegt etwa <InlineMath math="1{,}83" /> daneben und die rechte etwa <InlineMath math="2{,}17" />, die Mittelpunktsumme aber nur <InlineMath math="0{,}083" />. In jedem Streifen ragt das Mittelpunktrechteck auf einer Seite über die Kurve hinaus und lässt auf der anderen eine Lücke, und beide heben sich fast auf.
 
-<LineEquation
-  showZAxis={false}
-  title="Mittelpunktrechtecke unter einer Parabel"
+<MathVisual
+  title={<>Mittelpunktrechtecke unter einer Parabel</>}
   description={<>Die Kurve <InlineMath math="f(x)=\frac{x^2}{4}" /> auf <InlineMath math="[0,4]" /> mit vier Rechtecken, deren Höhen an den Mittelpunkten abgelesen werden. Zusammen ergeben sie <InlineMath math="5{,}25" />, nahe an der exakten Fläche <InlineMath math="\frac{16}{3}" />.</>}
-  cameraPosition={[2, 2, 10]}
-  cameraTarget={[2, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 401 }, (_, index) => {
-        const x = (4 * index) / 400;
-        return { x, y: x ** 2 / 4, z: 0 };
-      }),
-      color: "#0d9488",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="f(x)=\frac{x^2}{4}" />, at: 340, offset: [-1.4, 0.6, 0] }],
-    },
-    ...Array.from({ length: 4 }, (_, i) => {
-      const height = (i + 0.5) ** 2 / 4;
-      return {
-        points: [
-          { x: i, y: 0, z: 0 },
-          { x: i + 1, y: 0, z: 0 },
-          { x: i + 1, y: height, z: 0 },
-          { x: i, y: height, z: 0 },
-          { x: i, y: 0, z: 0 },
-        ],
-        color: "#7c3aed",
-        showPoints: false,
-        smooth: false,
-      };
-    }),
-  ]}
+  labels={{
+    "l1": <InlineMath math="f(x)=\frac{x^2}{4}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((4 * t) / 400)", y: "((((4 * t) / 400))^(2) / 4)", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.06 }, { x: 0, y: 0.06 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 0.06 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 0.56 }, { x: 1, y: 0.56 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 0.56 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1.56 }, { x: 2, y: 1.56 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 1.56 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3.06 }, { x: 3, y: 3.06 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 3.06 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.4, y: 2.89 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Prüfe die beiden Randsummen gegeneinander. Sie teilen drei Höhen und unterscheiden sich nur an den Enden, also gilt <InlineMath math="R_4 - L_4 = \big(f(4)-f(0)\big)\Delta x = 4" />, und tatsächlich ist <InlineMath math="7{,}5 - 3{,}5 = 4" />.
@@ -229,42 +212,31 @@ Jede Aufgabe fragt nach Rechtecken unter einer Kurve. Lege deshalb zuerst die An
 
 1. Die Breite ist <InlineMath math="\Delta x = \frac{4-0}{4} = 1" />, und die **rechten Randpunkte** sind <InlineMath math="1, 2, 3, 4" />.
 
-<LineEquation
-  showZAxis={false}
-title="Visualisierung der Riemannsummenübung"
-description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
-cameraPosition={[2, 8.5, 21.5]}
-cameraTarget={[2, 8.5, 0]}
-data={[
-    {
-    smooth: false,
-    points: Array.from({ length: 41 }).map((_, i) => {
-        const x = i * 0.1;
-        const y = x * x + 1;
-        return { x, y, z: 0 };
-    }),
-    color: "#d97706",
-    showPoints: false,
-    labels: [{ text: <InlineMath math="f(x)=x^2+1" />, at: 20, offset: [-5.2, 6, 0] }],
-    },
-    ...Array.from({ length: 4 }).map((_, i) => {
-        const x_left = i;
-        const x_right = i + 1;
-        const y_height = x_right * x_right + 1; // f(x) = x² + 1, rechter Randpunkt
-        return {
-            points: [
-                {x: x_left, y: 0, z: 0},
-                {x: x_right, y: 0, z: 0},
-                {x: x_right, y: y_height, z: 0},
-                {x: x_left, y: y_height, z: 0},
-                {x: x_left, y: 0, z: 0},
-            ],
-            color: "#0891b2",
-            smooth: false,
-            showPoints: false,
-        }
-    })
-]}
+<MathVisual
+  title={<>Visualisierung der Riemannsummenübung</>}
+  description={<>Graph der Funktion <InlineMath math="f(x)=x^2+1" /> mit <InlineMath math="4" /> Rechtecken, deren Höhen am rechten Randpunkt bestimmt werden.</>}
+  labels={{
+    "l1": <InlineMath math="f(x)=x^2+1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2, max: 19 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t * 0.1)", y: "(((t * 0.1) * (t * 0.1)) + 1)", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 5 }, { x: 1, y: 5 }], appearance: "secondary" },
+      { id: "s3-close", kind: "segment", from: { x: 1, y: 5 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 10 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "s4-close", kind: "segment", from: { x: 2, y: 10 }, to: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 3, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 17 }, { x: 3, y: 17 }], appearance: "secondary" },
+      { id: "s5-close", kind: "segment", from: { x: 3, y: 17 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 5 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Die Höhen sind <InlineMath math="f(1)=2" />, <InlineMath math="f(2)=5" />, <InlineMath math="f(3)=10" /> und <InlineMath math="f(4)=17" />, also

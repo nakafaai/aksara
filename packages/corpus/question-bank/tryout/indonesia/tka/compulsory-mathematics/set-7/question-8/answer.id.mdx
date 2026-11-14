@@ -1,0 +1,43 @@
+# Baris pertama dan selisih antarbaris
+
+Soal ini menanyakan isi baris terakhir, padahal banyak barisnya belum diketahui. Jadi urutannya: cari baris pertama <InlineMath math="a" /> dan beda <InlineMath math="b" />, lalu banyak baris <InlineMath math="n" />, baru baris ke-<InlineMath math="n" />. **Setiap langkah memakai hasil langkah sebelumnya**.
+
+Rumus suku ke-<InlineMath math="k" /> barisan aritmetika adalah <InlineMath math="u_k=a+(k-1)b" />.
+
+<BlockMath math="\begin{aligned}
+u_{12}-u_5&=(a+11b)-(a+4b)=7b=40-26=14 \\
+b&=2 \\
+a&=26-4\cdot2=18
+\end{aligned}" />
+
+Baris pertama memuat <InlineMath math="18" /> kursi, dan setiap baris berikutnya bertambah <InlineMath math="2" /> kursi.
+
+# Banyak baris
+
+Jumlah <InlineMath math="n" /> suku pertama adalah <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)" />. Samakan dengan <InlineMath math="1{.}050" />.
+
+<BlockMath math="\begin{aligned}
+\frac n2\left(36+2(n-1)\right)&=1{.}050 \\
+n(n+17)&=1{.}050 \\
+n^2+17n-1{.}050&=0 \\
+(n-25)(n+42)&=0
+\end{aligned}" />
+
+Akarnya <InlineMath math="n=25" /> atau <InlineMath math="n=-42" />. **Banyak baris tidak mungkin negatif**, jadi <InlineMath math="n=25" />.
+
+# Isi baris terakhir
+
+Baris terakhir adalah baris ke-<InlineMath math="25" />. Pakai lagi rumus suku ke-<InlineMath math="k" /> dengan <InlineMath math="a=18" /> dan <InlineMath math="b=2" />.
+
+<BlockMath math="u_{25}=18+24\cdot2=66" />
+
+Sebagai pemeriksaan, <InlineMath math="S_{25}=\frac{25}{2}(18+66)=25\cdot42=1{.}050" />. **Jumlahnya cocok dengan soal**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="42" /> adalah rata-rata kursi per baris, <InlineMath math="1{.}050:25" />. Pada barisan aritmetika, rata-rata itu sama dengan isi baris tengah (baris ke-<InlineMath math="13" />), **bukan baris terakhir**.
+- <InlineMath math="68" /> memakai rumus yang salah, <InlineMath math="u_n=a+nb=18+25\cdot2" />. Baris pertama belum mendapat tambahan, jadi pengalinya <InlineMath math="n-1" />.
+- <InlineMath math="84" /> berasal dari <InlineMath math="S_n=\frac n2(a+u_n)" /> tetapi lupa mengurangkan <InlineMath math="a" />. Yang benar <InlineMath math="u_n=\frac{2S_n}{n}-a=84-18=66" />.
+- <InlineMath math="100" /> memakai <InlineMath math="n=42" />, yaitu akar <InlineMath math="-42" /> yang tandanya dibuang. Dengan <InlineMath math="42" /> baris, jumlah kursinya jauh melebihi <InlineMath math="1{.}050" />.
+
+Jadi, baris ke-<InlineMath math="n" /> memuat <InlineMath math="66" /> kursi.

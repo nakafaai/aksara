@@ -1,0 +1,37 @@
+# Guna peristiwa pelengkap
+
+Ruang sampelnya ialah semua pasangan dua kad, iaitu <InlineMath math="\binom{20}{2}=190" /> pasangan, dan semuanya sama mungkin. Peristiwa "hasil darab genap atau hasil tambah gandaan <InlineMath math="3" />" meliputi banyak pasangan, jadi lebih mudah mengira lawannya: **kedua-dua syarat gagal**.
+
+Hasil darab dua nombor ialah ganjil hanya jika kedua-dua nombor itu ganjil. Jadi pelengkapnya ialah pasangan yang kedua-dua nombornya ganjil dan hasil tambahnya bukan gandaan <InlineMath math="3" />. Ada <InlineMath math="10" /> nombor ganjil, iaitu <InlineMath math="1,3,5,\dots,19" />, jadi terdapat <InlineMath math="\binom{10}{2}=45" /> pasangan ganjil.
+
+# Pasangan ganjil yang hasil tambahnya gandaan tiga
+
+Sama ada hasil tambah itu gandaan <InlineMath math="3" /> bergantung pada baki apabila dibahagi dengan <InlineMath math="3" />. Kumpulkan sepuluh nombor ganjil itu mengikut bakinya:
+
+| Baki apabila dibahagi <InlineMath math="3" /> | Nombor ganjil | Bilangan |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3,\ 9,\ 15" /> | <InlineMath math="3" /> |
+| <InlineMath math="1" /> | <InlineMath math="1,\ 7,\ 13,\ 19" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="5,\ 11,\ 17" /> | <InlineMath math="3" /> |
+
+Hasil tambahnya gandaan <InlineMath math="3" /> jika kedua-dua bakinya <InlineMath math="0" />, atau jika **satu nombor berbaki <InlineMath math="1" /> dan satu lagi berbaki <InlineMath math="2" />**, contohnya <InlineMath math="1+5=6" />.
+
+<BlockMath math="\begin{aligned}
+\text{pasangan ganjil, hasil tambah gandaan }3&=\binom32+4\cdot3=3+12=15 \\
+\text{pasangan ganjil, hasil tambah bukan gandaan }3&=45-15=30
+\end{aligned}" />
+
+# Kebarangkalian kesatuan
+
+<BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />
+
+Semak dengan petua penambahan. Pasangan dengan hasil darab genap ada <InlineMath math="190-45=145" />. Daripada <InlineMath math="1" /> hingga <InlineMath math="20" />, nombor yang berbaki <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" /> masing-masing ada <InlineMath math="6" />, <InlineMath math="7" />, dan <InlineMath math="7" />, jadi pasangan yang hasil tambahnya gandaan <InlineMath math="3" /> ada <InlineMath math="\binom62+7\cdot7=64" />. **Persilangannya mesti ditolak sekali**: <InlineMath math="64-15=49" /> pasangan memenuhi kedua-dua syarat. Hasilnya <InlineMath math="145+64-49=160" />, sama dengan cara pelengkap.
+
+Jadi, kebarangkaliannya ialah <InlineMath math="\frac{16}{19}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{29}{38}" /> ialah <InlineMath math="\frac{145}{190}" />, iaitu kebarangkalian hasil darab genap sahaja. Syarat hasil tambah belum digunakan.
+- <InlineMath math="\frac56" /> menganggap kedua-dua peristiwa tak bersandar dengan kebarangkalian kasar <InlineMath math="\tfrac34" /> dan <InlineMath math="\tfrac13" />, iaitu <InlineMath math="\tfrac34+\tfrac13-\tfrac14" />. Sebenarnya kad diambil tanpa dikembalikan, dan bilangan nombor bagi setiap baki tidak sama.
+- <InlineMath math="\frac{169}{190}" /> **menganggap hasil tambah sama seperti hasil darab**, seolah-olah hasil tambah hanya gandaan <InlineMath math="3" /> jika salah satu nombornya gandaan <InlineMath math="3" />. Pelengkapnya lalu dikira sebagai pasangan daripada tujuh nombor ganjil yang bukan gandaan <InlineMath math="3" />, iaitu <InlineMath math="\binom72=21" />.
+- <InlineMath math="\frac{86}{95}" /> mengira pasangan berbaki <InlineMath math="1" /> dan berbaki <InlineMath math="2" /> dua kali, seolah-olah susunan penting, jadi pasangan ganjil dengan hasil tambah gandaan <InlineMath math="3" /> menjadi <InlineMath math="3+24=27" /> dan pelengkapnya <InlineMath math="18" />.

@@ -10,6 +10,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
       de: "datenanalyse-und-wahrscheinlichkeit",
       en: "data-analysis-probability",
       id: "analisis-data-dan-peluang",
+      ms: "analisis-data-dan-kebarangkalian",
     },
     sections: [
       {
@@ -17,6 +18,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           de: "binomialverteilung",
           en: "binomial-distribution-function",
           id: "fungsi-distribusi-binomial",
+          ms: "fungsi-taburan-binomial",
         },
         slug: "binomial-distribution-function",
       },
@@ -25,6 +27,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           de: "erwartungswert-der-binomialverteilung",
           en: "expected-value-of-binomial-distribution",
           id: "nilai-harapan-distribusi-binomial",
+          ms: "nilai-jangkaan-taburan-binomial",
         },
         slug: "expected-value-of-binomial-distribution",
       },
@@ -33,6 +36,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           de: "erwartungswert-der-normalverteilung",
           en: "expected-value-of-normal-distribution",
           id: "nilai-harapan-distribusi-normal",
+          ms: "nilai-jangkaan-taburan-normal",
         },
         slug: "expected-value-of-normal-distribution",
       },
@@ -41,6 +45,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           de: "normalverteilung",
           en: "normal-distribution-function",
           id: "fungsi-distribusi-normal",
+          ms: "taburan-normal-dan-skor-z",
         },
         slug: "normal-distribution-function",
       },
@@ -49,6 +54,7 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
           de: "gleichverteilung",
           en: "uniform-distribution",
           id: "distribusi-seragam",
+          ms: "taburan-seragam",
         },
         slug: "uniform-distribution",
       },
@@ -66,6 +72,10 @@ export const lessonMathematicsDataAnalysisProbabilityMaterial =
       id: {
         description: "Modelkan keberhasilan berulang dengan peluang binomial.",
         title: "Analisis Data dan Peluang",
+      },
+      ms: {
+        description: "Modelkan kejayaan berulang dengan taburan binomial.",
+        title: "Analisis Data dan Kebarangkalian",
       },
     },
   });

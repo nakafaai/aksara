@@ -1,19 +1,45 @@
-The area of the garden is <InlineMath math="L=x(44-2x)" />. The peak of this function may not be allowed, because **the side parallel to the wall is at most 20 m**.
+You need to track the gas left in that cylinder day by day, because **the daily use changes partway through**. Here's the plan: work out the daily use before and after <InlineMath math="12" /> July, subtract it from the gas left each day, then find the first morning when the gas left isn't enough for that day.
 
-# Limit on x
+# Daily use before and after the change
+
+The daily use is the gas of the big stove plus the gas of the small stove. From <InlineMath math="12" /> July, **the big stove runs five hours in total**, not five hours more. The small stove stays at seven hours.
 
 <BlockMath math="\begin{aligned}
-44-2x&\le20\\
-2x&\ge24\\
-x&\ge12
+\text{up to 11 July: } d&=0.3\cdot3+0.1\cdot7=0.9+0.7=1.6\text{ kg}\\
+\text{from 12 July: } d&=0.3\cdot5+0.1\cdot7=1.5+0.7=2.2\text{ kg}
 \end{aligned}" />
 
-# A peak that is not allowed
+# Tracking the gas left
 
-The function <InlineMath math="L=44x-2x^2" /> peaks at <InlineMath math="x=\tfrac{44}{4}=11" />. Then the parallel side is <InlineMath math="44-22=22" /> m, **longer than the wall**, so that size is impossible.
+Every morning, Bu Sari compares the gas left with that day's use. As long as there's enough, the cylinder stays, and the gas left drops by that day's use.
 
-To the right of the peak the area shrinks as <InlineMath math="x" /> grows. Since <InlineMath math="x" /> is at least 12, the largest area occurs exactly at <InlineMath math="x=12" />.
+| Date | Gas in the morning | Use | Gas at night |
+| --- | --- | --- | --- |
+| <InlineMath math="9" /> July | <InlineMath math="12\text{ kg}" /> | <InlineMath math="1.6\text{ kg}" /> | <InlineMath math="10.4\text{ kg}" /> |
+| <InlineMath math="10" /> July | <InlineMath math="10.4\text{ kg}" /> | <InlineMath math="1.6\text{ kg}" /> | <InlineMath math="8.8\text{ kg}" /> |
+| <InlineMath math="11" /> July | <InlineMath math="8.8\text{ kg}" /> | <InlineMath math="1.6\text{ kg}" /> | <InlineMath math="7.2\text{ kg}" /> |
+| <InlineMath math="12" /> July | <InlineMath math="7.2\text{ kg}" /> | <InlineMath math="2.2\text{ kg}" /> | <InlineMath math="5\text{ kg}" /> |
+| <InlineMath math="13" /> July | <InlineMath math="5\text{ kg}" /> | <InlineMath math="2.2\text{ kg}" /> | <InlineMath math="2.8\text{ kg}" /> |
+| <InlineMath math="14" /> July | <InlineMath math="2.8\text{ kg}" /> | <InlineMath math="2.2\text{ kg}" /> | <InlineMath math="0.6\text{ kg}" /> |
 
-<BlockMath math="L=12\cdot(44-24)=12\cdot20=240\text{ m}^2" />
+On the morning of <InlineMath math="15" /> July, the <InlineMath math="0.6\text{ kg}" /> left is less than that day's use of <InlineMath math="2.2\text{ kg}" />. By the rule, **the cylinder is swapped on the morning of <InlineMath math="15" /> July**, and the <InlineMath math="0.6\text{ kg}" /> left is lost.
 
-So the largest possible garden is **240 <InlineMath math="\text{m}^2" />**, with the parallel side using the whole wall.
+Check it with the totals. The cylinder served <InlineMath math="3" /> days at the old use and <InlineMath math="3" /> days at the new use:
+
+<BlockMath math="\begin{aligned}
+3\cdot1.6+3\cdot2.2&=4.8+6.6=11.4\text{ kg}\\
+12-11.4&=0.6\text{ kg}
+\end{aligned}" />
+
+The <InlineMath math="0.6\text{ kg}" /> left really isn't enough for a fourth day at the new use.
+
+# The wrong options
+
+Each other option comes from one wrong step.
+
+- <InlineMath math="14" /> July with <InlineMath math="0.6\text{ kg}" /> names the last day the cylinder is used. But **the last day of use isn't the day of the swap**: the cylinder is swapped the next morning.
+- <InlineMath math="14" /> July with <InlineMath math="1\text{ kg}" /> uses <InlineMath math="2.2\text{ kg}" /> a day from <InlineMath math="9" /> July, so <InlineMath math="12-5\cdot2.2=1" />.
+- <InlineMath math="15" /> July with <InlineMath math="1.2\text{ kg}" /> starts the change on <InlineMath math="13" /> July, so the rest is <InlineMath math="12-4\cdot1.6-2\cdot2.2=1.2" />.
+- <InlineMath math="16" /> July with <InlineMath math="0.8\text{ kg}" /> ignores the change, so the cylinder serves <InlineMath math="7" /> days and <InlineMath math="12-7\cdot1.6=0.8" />.
+
+So the cylinder installed on <InlineMath math="9" /> July is swapped on <InlineMath math="15" /> July, and the <InlineMath math="0.6\text{ kg}" /> of gas left in it is lost.

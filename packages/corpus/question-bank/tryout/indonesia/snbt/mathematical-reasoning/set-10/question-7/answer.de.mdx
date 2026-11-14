@@ -1,15 +1,51 @@
-Ein Zug fährt zu einer Uhrzeit ab, wenn **die Zeit seit 05.00 Uhr durch seinen Abstand teilbar ist**.
+Jede Aussage prüft eine andere Regel des Ratenkaufs: die Reihenfolge der Raten, **den Zinssprung** nach einer Laufzeit von <InlineMath math="12" /> Monaten, das Runden und die vorzeitige Ablösung. Der Plan: Schreib die Rate zuerst als allgemeine Formel und beurteile dann jede Aussage mit ihrem eigenen Beweis.
 
-# Linie A
+# Die Formel für die Rate
 
-06.00 Uhr liegt 60 Minuten nach 05.00 Uhr, und 60 ist nicht durch 16 teilbar. Die Vielfachen von 16 zwischen 60 und 120 sind 64, 80, 96 und 112, Linie A fährt also um 06.04, 06.20, 06.36 und 06.52 Uhr, **genau 4-mal**. Die erste Aussage ist wahr.
+Die Laufzeit sei <InlineMath math="n" /> Monate und der Zins <InlineMath math="r" /> pro Monat. Die Zinsen gesamt sind <InlineMath math="4{.}800{.}000\cdot r\cdot n" />, also hängen **die Zinsen pro Monat nicht von der Laufzeit ab**, sobald du durch <InlineMath math="n" /> teilst.
 
-21.00 Uhr liegt 960 Minuten nach 05.00 Uhr, und <InlineMath math="\tfrac{960}{16}=60" />, eine ganze Zahl. Die vierte Aussage ist wahr.
+<BlockMath math="\begin{aligned}
+\text{Rate vor dem Runden} &= \frac{4{.}800{.}000+4{.}800{.}000\cdot r\cdot n}{n}\\
+&= \frac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r
+\end{aligned}" />
 
-# Linien B und C
+Für <InlineMath math="r=1{,}5\%" /> ist der zweite Summand <InlineMath math="72{.}000" />. Für <InlineMath math="r=2{,}5\%" /> ist er <InlineMath math="120{.}000" />.
 
-07.15 Uhr liegt 135 Minuten nach 05.00 Uhr, und <InlineMath math="\tfrac{135}{24}=5{,}625" />, **keine ganze Zahl**. Die zweite Aussage ist falsch.
+# Laufzeiten bis zwölf Monate
 
-12.10 Uhr liegt 430 Minuten nach 05.00 Uhr, und 430 ist nicht durch 40 teilbar. Die dritte Aussage ist falsch.
+Bei <InlineMath math="3" /> bis <InlineMath math="12" /> Monaten bleiben die <InlineMath math="72{.}000" /> gleich, während <InlineMath math="\tfrac{4{.}800{.}000}{n}" /> kleiner wird, wenn <InlineMath math="n" /> wächst. Der kleinste Abstand zweier benachbarter Laufzeiten liegt zwischen <InlineMath math="11" /> und <InlineMath math="12" /> Monaten, nämlich <InlineMath math="\tfrac{4{.}800{.}000}{11}-\tfrac{4{.}800{.}000}{12}=36{.}363{,}63\ldots" />. Dieser Abstand liegt weit über <InlineMath math="1{.}000" />, also **kann das Aufrunden keine zwei Raten gleich machen**. Die erste Aussage ist wahr.
+
+# Der Zinssprung bei dreizehn Monaten
+
+Eine Laufzeit von <InlineMath math="13" /> Monaten hat schon <InlineMath math="2{,}5\%" /> Zinsen pro Monat.
+
+<BlockMath math="\begin{aligned}
+\text{Rate bei } 12 &= 400{.}000+72{.}000=472{.}000\\
+\text{Rate bei } 13 &= 369{.}230{,}76\ldots+120{.}000=489{.}230{,}76\ldots
+\end{aligned}" />
+
+Aufgerundet beträgt die Rate bei <InlineMath math="13" /> Monaten <InlineMath math="490{.}000" />. Die Laufzeit ist länger, aber **der Anstieg der Monatszinsen ist größer** als der Rückgang des Tilgungsanteils. Die zweite Aussage ist falsch.
+
+# Das Runden bei neun Monaten
+
+Die Rate bei <InlineMath math="9" /> Monaten ist vor dem Runden <InlineMath math="\tfrac{4{.}800{.}000}{9}+72{.}000=605{.}333{,}33\ldots" /> und wird auf <InlineMath math="606{.}000" /> aufgerundet.
+
+<BlockMath math="\begin{aligned}
+\text{Summe aller Raten} &= 9\cdot606{.}000=5{.}454{.}000\\
+\text{Kreditbetrag plus Zinsen} &= 4{.}800{.}000+648{.}000=5{.}448{.}000
+\end{aligned}" />
+
+Es bleibt ein Unterschied von <InlineMath math="6{.}000" />, weil **jede Rate aufgerundet wird**. Die dritte Aussage ist falsch.
+
+# Vorzeitige Ablösung
+
+Vergleiche einen Monat, der noch nicht gelaufen ist. Laufen die Raten weiter, kostet dieser Monat eine Rate, also mindestens <InlineMath math="\tfrac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r" />. Löst du vorzeitig ab, kostet dieser Monat nur seinen Tilgungsanteil plus Strafgebühr, also <InlineMath math="1{,}03\cdot\tfrac{4{.}800{.}000}{n}" />. Der Unterschied ist mindestens <InlineMath math="4{.}800{.}000\cdot r-0{,}03\cdot\tfrac{4{.}800{.}000}{n}" />.
+
+<BlockMath math="\begin{aligned}
+4{.}800{.}000\cdot r &\ge 4{.}800{.}000\cdot1{,}5\%=72{.}000\\
+0{,}03\cdot\frac{4{.}800{.}000}{n} &\le 0{,}03\cdot\frac{4{.}800{.}000}{3}=48{.}000
+\end{aligned}" />
+
+Jeder vorzeitig abgelöste Monat spart also mindestens <InlineMath math="72{.}000-48{.}000=24{.}000" />. Weil **die Ersparnis für jede Laufzeit und jeden Restmonat positiv ist**, ist die Gesamtzahlung immer kleiner. Die vierte Aussage ist wahr.
 
 Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.

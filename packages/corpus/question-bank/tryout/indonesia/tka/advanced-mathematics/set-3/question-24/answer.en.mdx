@@ -1,0 +1,15 @@
+Remove the absolute value first, and how you do it depends on **the sign of what is inside**. A left-hand limit only uses <InlineMath math="x<2" />, so <InlineMath math="x-2<0" /> and <InlineMath math="|x-2|=-(x-2)" />.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to2^-}\frac{x^2-4}{|x-2|}&=\lim_{x\to2^-}\frac{(x-2)(x+2)}{-(x-2)} \\
+&=\lim_{x\to2^-}\big(-(x+2)\big)=-4
+\end{aligned}" />
+
+Cancelling <InlineMath math="x-2" /> is allowed because <InlineMath math="x\ne2" />. Numerical check: for <InlineMath math="x=1.99" />, the value is <InlineMath math="\frac{3.9601-4}{0.01}=-3.99" />, close to <InlineMath math="-4" />.
+
+So the left-hand limit is <InlineMath math="-4" />.
+
+- <InlineMath math="4" /> treats <InlineMath math="|x-2|" /> as <InlineMath math="x-2" />, which only holds for <InlineMath math="x>2" />. That is the right-hand limit.
+- <InlineMath math="0" /> only looks at the numerator tending to zero.
+- <InlineMath math="-\infty" /> assumes a denominator tending to zero makes the limit infinite. The numerator also tends to zero, with the same factor.
+- <InlineMath math="-2" /> cancels correctly but then keeps only <InlineMath math="-x" /> from <InlineMath math="-(x+2)" />.

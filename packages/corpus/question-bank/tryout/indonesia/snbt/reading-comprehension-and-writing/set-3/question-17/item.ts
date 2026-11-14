@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "data-interpretation",
+    topic: "assumption",
   },
-  stimulus: "night-watch",
+  stimulus: "angkutan",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Laporan pencurian terus turun setiap bulan dari Januari sampai Mei.",
+            "Setiap siswa penerima uang transpor dapat mencapai halte bus yang menuju sekolahnya tanpa naik ojek.",
         },
         {
-          column: 1,
-          label: "Banyak warga yang ikut ronda paling tinggi pada bulan Mei.",
+          correct: false,
+          label:
+            "Setiap siswa penerima uang transpor tinggal tidak lebih dari $$1$$ kilometer dari halte bus.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Kenaikan banyak warga yang ikut ronda paling besar terjadi dari Februari ke Maret.",
+            "Semua siswa penerima uang transpor kini berangkat ke sekolah dengan bus setiap hari.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Pada bulan Januari, laporan pencurian lebih banyak daripada warga yang ikut ronda.",
+            "Tidak ada siswa penerima uang transpor yang mengikuti kegiatan ekstrakurikuler.",
+        },
+        {
+          correct: false,
+          label:
+            "Biaya menjalankan bus sekolah lebih kecil daripada jumlah uang transpor yang selama ini dibagikan.",
         },
       ],
     },

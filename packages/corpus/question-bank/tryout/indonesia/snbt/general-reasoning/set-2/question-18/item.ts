@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "rule-application",
+    topic: "truth-teller",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Gita",
+          label: "Raka jujur, Sekar jujur, dan Tegar pembohong.",
         },
         {
           correct: false,
-          label: "Hadi",
+          label: "Raka jujur, Sekar pembohong, dan Tegar jujur.",
+        },
+        {
+          correct: false,
+          label: "Raka pembohong, Sekar jujur, dan Tegar pembohong.",
         },
         {
           correct: true,
-          label: "Ilham",
+          label: "Raka pembohong, Sekar jujur, dan Tegar jujur.",
         },
         {
           correct: false,
-          label: "Jihan",
-        },
-        {
-          correct: false,
-          label: "Kurnia",
+          label: "Raka jujur, Sekar pembohong, dan Tegar pembohong.",
         },
       ],
     },

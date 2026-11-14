@@ -1,17 +1,39 @@
-Die Gesamtzeit besteht aus **Fahrzeit** und **Haltezeit**. Berechne beide getrennt und addiere sie.
+Du vergleichst die Einnahmen der Veranstalter bei zwei Aufteilungen der Preisstufen. Am sichersten ist es, **den Preis jeder Ticketnummer** in beiden Aufteilungen zu vergleichen, die Unterschiede zu addieren und zum Schluss den Anteil zu nehmen, den die Veranstalter wirklich erhalten.
 
-# Fahrzeit
+# Die Grenzen, die sich verschieben
 
-Von Etage 1 bis Etage 12 fährt der Aufzug <InlineMath math="12-1=11" /> Etagen, **egal wie oft er unterwegs hält**.
+In der neuen Aufteilung umfasst Early Bird die Nummern <InlineMath math="1" /> bis <InlineMath math="200" />. Presale hat weiterhin <InlineMath math="300" /> Tickets, beginnt aber jetzt bei Nummer <InlineMath math="201" /> und endet deshalb bei Nummer <InlineMath math="500" />. Normal umfasst die Nummern <InlineMath math="501" /> bis <InlineMath math="1{.}000" />. **Auch die zweite Grenze verschiebt sich** also, nicht nur die erste.
 
-<BlockMath math="11\cdot2=22\text{ Sekunden}" />
+| Ticketnummern | Preis jetzt | Neuer Preis | Änderung pro Ticket |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> bis <InlineMath math="150" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="0" /> |
+| <InlineMath math="151" /> bis <InlineMath math="200" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="\text{Rp}120{.}000" /> | <InlineMath math="-\text{Rp}30{.}000" /> |
+| <InlineMath math="201" /> bis <InlineMath math="450" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="0" /> |
+| <InlineMath math="451" /> bis <InlineMath math="500" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="\text{Rp}150{.}000" /> | <InlineMath math="-\text{Rp}50{.}000" /> |
+| <InlineMath math="501" /> bis <InlineMath math="1{.}000" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="\text{Rp}200{.}000" /> | <InlineMath math="0" /> |
 
-# Haltezeit
+# Die Änderung der Einnahmen
 
-Der Aufzug hält in Etage 4, 9 und 12. Der Halt in Etage 12 zählt auch, weil **die Zeit erst endet, wenn sich die Tür wieder schließt**.
+Nur zwei Gruppen ändern ihren Preis, und jede enthält <InlineMath math="50" /> Tickets. Die Summe der Ticketpreise sinkt um:
 
-<BlockMath math="3\cdot12=36\text{ Sekunden}" />
+<BlockMath math="\begin{aligned}
+50\cdot30{.}000+50\cdot50{.}000&=1{.}500{.}000+2{.}500{.}000\\
+&=4{.}000{.}000
+\end{aligned}" />
 
-Zusammen sind das <InlineMath math="22+36=58" /> Sekunden.
+Die Veranstalter erhalten nur <InlineMath math="90\%" /> jedes Ticketpreises, also **spüren sie auch nur neun Zehntel dieses Rückgangs**:
 
-Es dauert also **58 Sekunden**.
+<BlockMath math="90\%\cdot4{.}000{.}000=3{.}600{.}000" />
+
+Prüfe das mit der Summe aller Ticketpreise. Die jetzige Aufteilung ergibt <InlineMath math="150\cdot120{.}000+300\cdot150{.}000+550\cdot200{.}000=173{.}000{.}000" /> Rupiah. Die neue Aufteilung ergibt <InlineMath math="200\cdot120{.}000+300\cdot150{.}000+500\cdot200{.}000=169{.}000{.}000" /> Rupiah. Der Unterschied beträgt <InlineMath math="4{.}000{.}000" /> Rupiah, genau wie bei der Rechnung nach Gruppen.
+
+# Die falschen Antworten
+
+Jede andere Antwort lässt einen Teil der Rechnung weg.
+
+- Ein Rückgang um <InlineMath math="\text{Rp}1{.}350{.}000" /> zählt nur die Tickets <InlineMath math="151" /> bis <InlineMath math="200" /> und nimmt davon <InlineMath math="90\%" />. Dabei fehlt, dass sich **die Grenze zwischen Presale und Normal verschiebt**.
+- Ein Rückgang um <InlineMath math="\text{Rp}1{.}500{.}000" /> übersieht die zweite Grenze und auch den Anteil von <InlineMath math="90\%" /> für die Veranstalter.
+- Ein Rückgang um <InlineMath math="\text{Rp}2{.}250{.}000" /> zählt nur die Tickets <InlineMath math="451" /> bis <InlineMath math="500" /> und nimmt davon <InlineMath math="90\%" />.
+- Ein Rückgang um <InlineMath math="\text{Rp}4{.}000{.}000" /> ist der Rückgang der Ticketpreise, doch die Veranstalter erhalten davon nur <InlineMath math="90\%" />.
+
+Mit dieser Aufteilung sinken die Einnahmen der Veranstalter also um <InlineMath math="\text{Rp}3{.}600{.}000" />.

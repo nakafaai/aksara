@@ -1,27 +1,40 @@
-Gefragt ist **ein einziger Wert von <InlineMath math="x" />**. Eine Aussage reicht nur aus, wenn genau ein Wert übrig bleibt.
+Die Punkte <InlineMath math="D" /> und <InlineMath math="H" /> liegen beide auf <InlineMath math="AB" />, also ist <InlineMath math="DH" /> **die Differenz ihrer Abstände** von <InlineMath math="A" />. Der Plan: Bestimme alle drei Seiten über den Inkreis, dann <InlineMath math="AH" /> über ähnliche Dreiecke, und ziehe dann ab.
 
-# Erste Aussage allein
+# Tangentenabschnitte
 
-Bringe alle Terme auf eine Seite und klammere aus. Teile nicht durch <InlineMath math="x" />, denn dabei **geht die Lösung <InlineMath math="x=0" /> verloren**.
+Der Inkreis habe den Mittelpunkt <InlineMath math="O" /> und berühre <InlineMath math="BC" /> in <InlineMath math="E" /> und <InlineMath math="CA" /> in <InlineMath math="F" />. **Die beiden Tangentenabschnitte von einem Punkt an einen Kreis sind gleich lang**, also gilt <InlineMath math="AF=AD=6" /> und <InlineMath math="BE=BD" />. Setze <InlineMath math="BD=y" />.
 
-<BlockMath math="x^2-4x=x(x-4)=0\quad\Rightarrow\quad x=0\ \text{oder}\ x=4" />
+Der Winkel bei <InlineMath math="C" /> ist ein rechter, und die Radien <InlineMath math="OE" /> und <InlineMath math="OF" /> stehen senkrecht auf den berührten Seiten. Also ist <InlineMath math="CEOF" /> ein Quadrat mit Seitenlänge <InlineMath math="3" />, und es gilt <InlineMath math="CE=CF=3" />. Damit ist <InlineMath math="AC=6+3=9" />, <InlineMath math="BC=y+3" /> und <InlineMath math="AB=6+y" />.
 
-Es gibt zwei Werte, Aussage (1) allein reicht also nicht aus.
+# Die Seiten mit Pythagoras
 
-# Zweite Aussage allein
+Das Dreieck hat bei <InlineMath math="C" /> einen rechten Winkel, also ist <InlineMath math="AB" /> **die längste Seite, die Hypotenuse**.
 
-Genauso gilt:
+<BlockMath math="\begin{aligned}
+9^2+(y+3)^2&=(y+6)^2\\
+81+y^2+6y+9&=y^2+12y+36\\
+54&=6y\\
+y&=9
+\end{aligned}" />
 
-<BlockMath math="x^3-16x=x(x-4)(x+4)=0\quad\Rightarrow\quad x\in\{-4,0,4\}" />
+Also ist <InlineMath math="BC=12" /> und <InlineMath math="AB=15" />. Prüfe den Radius mit der Formel für rechtwinklige Dreiecke, <InlineMath math="r=\tfrac{AC+BC-AB}{2}=\tfrac{9+12-15}{2}=3" />. Das passt zur Aufgabe.
 
-Es gibt **drei Werte**, Aussage (2) allein reicht also nicht aus.
+# Die Lage des Höhenfußpunkts
 
-# Beide Aussagen zusammen
+Die Dreiecke <InlineMath math="ACH" /> und <InlineMath math="ABC" /> sind ähnlich, denn beide haben einen rechten Winkel und teilen den Winkel bei <InlineMath math="A" />. Entsprechende Seiten liefern <InlineMath math="\tfrac{AH}{AC}=\tfrac{AC}{AB}" />, also **ergibt sich <InlineMath math="AH" /> aus dem Quadrat der Seite <InlineMath math="AC" />**, nicht aus der Höhe <InlineMath math="CH" />.
 
-Die Werte, die beide Aussagen erfüllen, bilden **die Schnittmenge der beiden Lösungsmengen**.
+<BlockMath math="\begin{aligned}
+AH&=\frac{AC^2}{AB}=\frac{81}{15}=\frac{27}{5}\\
+DH&=AD-AH=6-\frac{27}{5}=\frac35
+\end{aligned}" />
 
-<BlockMath math="\{0,4\}\cap\{-4,0,4\}=\{0,4\}" />
+Die Subtraktion stimmt, weil <InlineMath math="\tfrac{27}{5}<6" /> ist und <InlineMath math="H" /> daher zwischen <InlineMath math="A" /> und <InlineMath math="D" /> liegt. Probe von <InlineMath math="B" /> aus: <InlineMath math="BH=\tfrac{BC^2}{AB}=\tfrac{144}{15}=\tfrac{48}{5}" /> und <InlineMath math="BD=9" />, also <InlineMath math="DH=\tfrac{48}{5}-9=\tfrac35" />. Dasselbe Ergebnis.
 
-Es bleiben zwei Werte, 0 und 4. Wer beide Gleichungen durch <InlineMath math="x" /> teilt, erhält nur <InlineMath math="x=4" /> und schließt fälschlich, dass beide Aussagen zusammen ausreichen.
+# Fallen in den anderen Antworten
 
-**Aussage (1) und Aussage (2) reichen also auch zusammen nicht aus**, um die Frage zu beantworten.
+- <InlineMath math="\tfrac65\text{ cm}" /> verwendet **die Höhe <InlineMath math="CH=\tfrac{9\cdot12}{15}=\tfrac{36}{5}" /> als <InlineMath math="AH" />** und rechnet dann <InlineMath math="\tfrac{36}{5}-6" />.
+- <InlineMath math="\tfrac32\text{ cm}" /> hält <InlineMath math="H" /> für den Mittelpunkt von <InlineMath math="AB" /> und rechnet <InlineMath math="\tfrac{15}{2}-6" />.
+- <InlineMath math="\tfrac{21}{10}\text{ cm}" /> hält <InlineMath math="D" /> für den Mittelpunkt von <InlineMath math="AB" /> und rechnet <InlineMath math="\tfrac{15}{2}-\tfrac{27}{5}" />.
+- <InlineMath math="\tfrac{18}{5}\text{ cm}" /> vertauscht die beiden Katheten, nimmt <InlineMath math="AH=\tfrac{BC^2}{AB}=\tfrac{48}{5}" /> und rechnet <InlineMath math="\tfrac{48}{5}-6" />.
+
+Die Länge von <InlineMath math="DH" /> ist also <InlineMath math="\tfrac35\text{ cm}" />.

@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "punctuation",
+    topic: "concision",
   },
-  stimulus: "salt-house",
+  stimulus: "resapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "kalimat (1)",
-        },
-        {
-          correct: false,
-          label: "kalimat (4)",
-        },
-        {
           correct: true,
-          label: "kalimat (5)",
+          label:
+            "Menurut catatan stasiun cuaca terdekat, curah hujan pada musim hujan itu hampir sama dengan curah hujan pada musim hujan tahun sebelumnya.",
         },
         {
           correct: false,
-          label: "kalimat (6)",
+          label:
+            "Menurut catatan stasiun cuaca terdekat, curah hujan pada musim hujan itu hampir sama dengan curah hujan pada musim sebelumnya.",
         },
         {
           correct: false,
-          label: "kalimat (8)",
+          label:
+            "Menurut catatan stasiun cuaca terdekat, curah hujan pada musim hujan itu sama dengan curah hujan pada musim hujan tahun sebelumnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Menurut catatan stasiun cuaca terdekat, jumlah curah hujan pada musim hujan itu hampir sama dengan jumlah curah hujan pada musim hujan tahun sebelumnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Menurut catatan stasiun cuaca, curah hujan pada musim hujan itu hampir sama dengan curah hujan pada musim hujan tahun sebelumnya.",
         },
       ],
     },

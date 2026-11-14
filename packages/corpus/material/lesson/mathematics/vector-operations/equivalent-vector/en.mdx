@@ -15,39 +15,26 @@ Two vectors are equal, or represented by equivalent directed segments, <Highligh
 
 Equivalent vectors can have different positions in a plane or space, but they maintain the same magnitude and direction.
 
-<LineEquation
-  cameraPosition={[7, 5, -6]}
-  cameraTarget={[2, 1.5, 1]}
-  title="Example of Equivalent Vectors"
-  description="The purple and orange vectors have the same magnitude and direction, making them equivalent despite their different positions."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 2, z: 1 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v_1" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 1 }, { x: 4, y: 3, z: 2 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="v_2" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Example of Equivalent Vectors</>}
+  description={<>The purple and orange vectors have the same magnitude and direction, making them equivalent despite their different positions.</>}
+  labels={{
+    "l1": <InlineMath math="v_1" />,
+    "l2": <InlineMath math="v_2" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 2, z: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 1, y: 1, z: 1 }, to: { x: 4, y: 3, z: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 2, z: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 3, z: 2 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Conditions for Equivalent Vectors
@@ -79,39 +66,26 @@ In three-dimensional space, vectors <InlineMath math="\vec{a}" /> and <InlineMat
 
 This equality holds exactly when <InlineMath math="a_1 = b_1" />, <InlineMath math="a_2 = b_2" />, and <InlineMath math="a_3 = b_3" />.
 
-<LineEquation
-  cameraPosition={[8, 5, -6]}
-  cameraTarget={[2.5, 1.5, 1.5]}
-  title="Equivalent Vectors in Component Form"
-  description="Two vectors with the same components are always equivalent, even if they have different positions in space."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 3, z: 1 }],
-      color: "#c026d3",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a=(2, 3, 1)" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 3, y: 0, z: 2 }, { x: 5, y: 3, z: 3 }],
-      color: "#0891b2",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b=(2, 3, 1)" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Equivalent Vectors in Component Form</>}
+  description={<>Two vectors with the same components are always equivalent, even if they have different positions in space.</>}
+  labels={{
+    "l1": <InlineMath math="a=(2, 3, 1)" />,
+    "l2": <InlineMath math="b=(2, 3, 1)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "camera", position: { x: 8, y: 5, z: -6 }, target: { x: 2.5, y: 1.5, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 3, z: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 3, y: 0, z: 2 }, to: { x: 5, y: 3, z: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 3, z: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 3, z: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### In Terms of Initial and Terminal Points
@@ -154,57 +128,34 @@ If vector <InlineMath math="\vec{a}" /> is equivalent to vector <InlineMath math
 
   <BlockMath math="\text{If } \vec{a} = \vec{b} \text{ and } \vec{b} = \vec{c} \text{, then } \vec{a} = \vec{c}" />
 
-  <LineEquation
-    cameraPosition={[7, 5, -6]}
-    cameraTarget={[2, 1.5, 1]}
-    title="Transitive Property of Equivalent Vectors"
+  <MathVisual
+    title={<>Transitive Property of Equivalent Vectors</>}
     description={
-      <>
-        Three equivalent vectors: if <InlineMath math="a = b" /> and{" "}
-        <InlineMath math="b = c" />, then <InlineMath math="a = c" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
-      color: "#d97706",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 1, y: 1, z: 2 }, { x: 3, y: 3, z: 2 }],
-      color: "#059669",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 2, y: 0, z: 1 }, { x: 4, y: 2, z: 1 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="c" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Three equivalent vectors: if <InlineMath math="a = b" /> and{" "}
+          <InlineMath math="b = c" />, then <InlineMath math="a = c" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="c" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 3.5 }, z: { min: -0.5, max: 2.5 } },
+      view: { kind: "camera", position: { x: 7, y: 5, z: -6 }, target: { x: 2, y: 1.5, z: 1 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 2, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 1, y: 1, z: 2 }, to: { x: 3, y: 3, z: 2 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 2, y: 0, z: 1 }, to: { x: 4, y: 2, z: 1 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 2, z: 0 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 3, y: 3, z: 2 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 4, y: 2, z: 1 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentStack>
 
@@ -225,9 +176,7 @@ Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, vector <InlineMath math="\overrightarrow{AB}" /> is equivalent to vector <InlineMath math="\overrightarrow{CD}" />.
 
-<LineEquation
-  cameraPosition={[3, 4, 10]}
-  cameraTarget={[3, 4, 0]}
+<MathVisual
   title={
     <>
       Vectors <InlineMath math="AB" /> and <InlineMath math="CD" />
@@ -239,34 +188,23 @@ Since <InlineMath math="\overrightarrow{AB} = \overrightarrow{CD} = (3, 4)" />, 
       <InlineMath math="CD(3,4,0)" /> which are equivalent in space.
     </>
   }
-  data={[
-    {
-      points: [{ x: 2, y: 3, z: 0 }, { x: 5, y: 7, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="AB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: 4, y: 5, z: 0 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="CD" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="AB" />,
+    "l2": <InlineMath math="CD" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 2, y: 3 }, to: { x: 5, y: 7 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 1, y: 1 }, to: { x: 4, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 5, y: 7 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Equivalent Vectors with Different Starting Points
@@ -282,9 +220,7 @@ Calculate **endpoint minus starting-point coordinates** for both arrows:
 
 Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, vector <InlineMath math="\overrightarrow{PQ}" /> is equivalent to vector <InlineMath math="\overrightarrow{RS}" />.
 
-<LineEquation
-  cameraPosition={[2.5, 1.5, 8]}
-  cameraTarget={[2.5, 1.5, 0]}
+<MathVisual
   title={
     <>
       Vectors <InlineMath math="PQ" /> and <InlineMath math="RS" />
@@ -296,34 +232,23 @@ Since <InlineMath math="\overrightarrow{PQ} = \overrightarrow{RS} = (2, 2)" />, 
       <InlineMath math="RS(2,2,0)" /> which are equivalent in space.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="PQ" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 3, y: 1, z: 0 }, { x: 5, y: 3, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="RS" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="PQ" />,
+    "l2": <InlineMath math="RS" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 3, y: 1 }, to: { x: 5, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Why Starting Points Can Differ

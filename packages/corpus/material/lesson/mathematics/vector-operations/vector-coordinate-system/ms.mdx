@@ -1,0 +1,171 @@
+
+
+export const metadata = {
+  title: "Vektor dan Sistem Koordinat",
+    description: "Tentukan kedudukan titik dalam dua dan tiga dimensi, kemudian kaitkan vektor kedudukan dan vektor sesarannya dengan koordinat pada peta.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-09",
+  dateModified: "2026-09-13",
+  subject: "Vektor dan Operasinya",
+};
+
+## Sistem Koordinat Cartesan
+
+Untuk menentukan kedudukan sesuatu objek, seperti sebuah pesawat yang sedang terbang, kita perlukan satu **kerangka rujukan** atau **sistem koordinat** terlebih dahulu. Satu sistem yang digunakan secara meluas ialah **sistem koordinat Cartesan**, yang dinamakan sempena René Descartes.
+
+Sistem koordinat Cartesan menggunakan paksi-paksi yang berserenjang untuk menentukan lokasi sesuatu titik.
+
+### Satah dua dimensi
+
+Dalam **dua dimensi**, kita menggunakan paksi <InlineMath math="x" /> (mengufuk) dan paksi <InlineMath math="y" /> (mencancang). Kedudukan sesuatu titik dinyatakan sebagai pasangan tertib <InlineMath math="(x, y)" />, contohnya titik <InlineMath math="P(3, 4)" />.
+
+Maksudnya, titik <InlineMath math="P" /> terletak <InlineMath math="3 \text{ unit}" /> ke kanan (paksi <InlineMath math="x" /> positif) dan <InlineMath math="4 \text{ unit}" /> ke atas (paksi <InlineMath math="y" /> positif) dari asalan <InlineMath math="O(0, 0)" />.
+
+<MathVisual
+  title={
+    <>
+      Vektor Kedudukan <InlineMath math="P(3, 4)" />
+    </>
+  }
+  description={
+    <>
+      Asalan <InlineMath math="O(0, 0)" /> ke titik{" "}
+      <InlineMath math="P(3, 4)" />.
+    </>
+  }
+  labels={{
+    op: <InlineMath math="OP" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "op", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "op-tip", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "op", objectId: "op", at: { x: 1.5, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+### Ruang tiga dimensi
+
+Dalam **tiga dimensi**, kita menambah paksi <InlineMath math="z" /> yang berserenjang dengan satah <InlineMath math="xy" />. Koordinat <InlineMath math="(x, y, z)" /> memberikan kedudukan sesuatu titik di sepanjang ketiga-tiga paksi. Contohnya, koordinat ini boleh menentukan kedudukan sebuah pesawat dalam ruang tiga dimensi.
+
+Dalam satu model ruang yang biasa digunakan, <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" /> boleh mewakili panjang, lebar dan tinggi. Model yang dipilih itulah yang memberikan maksud kepada setiap paksi.
+
+<MathVisual
+  title={
+    <>
+      Vektor Kedudukan <InlineMath math="P(3, 4, 5)" />
+    </>
+  }
+  description={
+    <>
+      Asalan <InlineMath math="O(0, 0, 0)" /> ke titik{" "}
+      <InlineMath math="P(3, 4, 5)" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="P(3, 4, 5)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 5.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -5 }, target: { x: 1.5, y: 2, z: 2.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 4, z: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4, z: 5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Perbezaan antara Vektor dan Koordinat
+
+Koordinat mengenal pasti _kedudukan_ sesuatu titik relatif kepada sistem koordinat. Sebaliknya, **vektor bukan sifar** mempunyai **magnitud** dan juga **arah**. Bayangkan seekor lalat bergerak dari titik <InlineMath math="P(3, 4)" /> ke titik <InlineMath math="Q(-2, -8)" />. Sesarannya boleh diwakili oleh satu vektor.
+
+### Vektor Kedudukan
+
+Vektor kedudukan ialah vektor yang **bermula dari asalan** <InlineMath math="O(0, 0)" /> dan berakhir pada satu titik <InlineMath math="P(x, y)" />. Vektor kedudukan bagi titik <InlineMath math="P" /> ditulis sebagai <InlineMath math="\overrightarrow{OP}" />.
+
+Contoh: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+
+<BlockMath math="\overrightarrow{OP}=P-O=(3-0,4-0)=(3,4)" />
+
+### Vektor Sesaran
+
+Vektor sesaran ialah vektor yang menyambungkan mana-mana dua titik, contohnya dari titik <InlineMath math="P(x_P, y_P)" /> ke titik <InlineMath math="Q(x_Q, y_Q)" />. Vektor ini ditulis sebagai <InlineMath math="\overrightarrow{PQ}" /> dan tidak semestinya bermula di asalan.
+
+Contoh: vektor sesaran dari <InlineMath math="P(3, 4)" /> ke <InlineMath math="Q(-2, -8)" /> atau dari <InlineMath math="Q(-2, -8)" /> ke <InlineMath math="R(1, 3)" />.
+
+<MathVisual
+  title={<>Vektor Sesaran</>}
+  description={
+    <>
+      Vektor sesaran dari <InlineMath math="P" /> ke{" "}
+      <InlineMath math="Q" /> atau dari <InlineMath math="Q" /> ke{" "}
+      <InlineMath math="R" />
+    </>
+  }
+  labels={{
+    qr: <InlineMath math="QR" />,
+    pq: <InlineMath math="PQ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -9.8, max: 5.8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "qr", kind: "segment", from: { x: -2, y: -8 }, to: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "qr-tip", kind: "point", at: { x: 1, y: 3 }, appearance: "primary" },
+      { id: "pq", kind: "segment", from: { x: 3, y: 4 }, to: { x: -2, y: -8 }, appearance: "secondary" },
+      { id: "pq-tip", kind: "point", at: { x: -2, y: -8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "qr", objectId: "qr", at: { x: -0.5, y: -2.5 }, placement: "above-left" },
+      { key: "pq", objectId: "pq", at: { x: 0.5, y: -2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Kira sesaran sebagai **koordinat akhir tolak koordinat awal**. Bagi dua anak panah dalam gambar rajah:
+
+<MathContainer>
+  <BlockMath math="\overrightarrow{PQ}=(-2-3,-8-4)=(-5,-12)" />
+  <BlockMath math="\overrightarrow{QR}=(1-(-2),3-(-8))=(3,11)" />
+</MathContainer>
+
+Anak panah pertama bergerak <InlineMath math="5" /> unit ke kiri dan <InlineMath math="12" /> unit ke bawah. Anak panah kedua bergerak <InlineMath math="3" /> unit ke kanan dan <InlineMath math="11" /> unit ke atas. Tanda pada setiap komponen menerangkan arah di sepanjang setiap paksi.
+
+## Tatatanda Vektor
+
+Vektor baris dan vektor lajur dibezakan oleh **susunan mengufuk atau mencancang** komponennya. Bentuk kurungan tidak menentukan perbezaan itu. Kita juga boleh menulis komponen sebagai gandaan vektor unit.
+
+**Vektor Baris**: Komponen disusun dalam satu baris.
+
+Contoh: <InlineMath math="\overrightarrow{OP} = (3, 4)" />.
+
+**Vektor Lajur**: Komponen disusun dalam satu lajur.
+
+Contohnya:
+
+<BlockMath math="\overrightarrow{OP} = \begin{pmatrix} 3 \\ 4 \end{pmatrix}" />
+
+**Tatatanda Vektor Unit untuk Tiga Dimensi**: Menggunakan gabungan vektor unit <InlineMath math="\mathbf{i}" />, <InlineMath math="\mathbf{j}" /> dan <InlineMath math="\mathbf{k}" /> yang sejajar dengan paksi <InlineMath math="x" />, <InlineMath math="y" /> dan <InlineMath math="z" />.
+
+Contoh: vektor <InlineMath math="\overrightarrow{AB}" /> boleh ditulis sebagai <InlineMath math="\mathbf{i} - 3\mathbf{j} - 4\mathbf{k}" />, maksudnya vektor <InlineMath math="\overrightarrow{AB}" /> mempunyai komponen <InlineMath math="1" /> dalam arah <InlineMath math="x" />, <InlineMath math="-3" /> dalam arah <InlineMath math="y" /> dan <InlineMath math="-4" /> dalam arah <InlineMath math="z" />.
+
+## Sistem Koordinat dalam Navigasi
+
+Bayangkan aplikasi peta dalam telefon kamu. Aplikasi itu menggunakan sistem koordinat untuk:
+
+1.  Menentukan lokasi semasa kamu.
+2.  Mencari destinasi kamu.
+3.  Mengaitkan kedudukan kamu dengan jalan raya dan laluan yang mungkin.
+4.  Memberikan panduan arah (belok kiri, belok kanan, terus ke hadapan).
+
+Koordinat memberikan lokasi, manakala data peta dan algoritma penghalaan menentukan laluan yang sesuai. Vektor pula membantu menerangkan <Highlight>perubahan kedudukan dan arah</Highlight>. Perbezaan yang sama penting apabila sebuah pesawat menukar ketinggian atau arah: koordinat menerangkan di mana pesawat itu berada, dan vektor sesaran menerangkan bagaimana kedudukannya berubah.

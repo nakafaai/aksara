@@ -1,0 +1,72 @@
+# Bentuk pepejal yang tinggal
+
+Bayangkan silinder itu dipotong tegak melalui paksinya. Di bahagian atas ada lekukan berbentuk hemisfera, dan di bahagian bawah ada lekukan berbentuk kon. Kedua-duanya mempunyai jejari yang sama dengan silinder, jadi **permukaan atas dan tapak silinder terbuang sepenuhnya**. Dari luar, hanya permukaan melengkung silinder yang tinggal.
+
+Ukuran yang digunakan: <InlineMath math="r=6" />, tinggi silinder <InlineMath math="18" />, dan tinggi kon <InlineMath math="6" />. Tinggi sendeng kon ialah <InlineMath math="s=\sqrt{6^2+6^2}=6\sqrt2" />.
+
+# Pernyataan pertama
+
+Kira luas permukaan silinder asal, kemudian luas permukaan pepejal yang tinggal.
+
+<BlockMath math="\begin{aligned}
+L_{\text{silinder}}&=2\pi r^2+2\pi rt=72\pi+216\pi=288\pi \\
+L_{\text{baki}}&=2\pi rt+2\pi r^2+\pi rs=216\pi+72\pi+36\sqrt2\,\pi=(288+36\sqrt2)\pi
+\end{aligned}" />
+
+Permukaan dalam hemisfera berluas <InlineMath math="2\pi r^2=72\pi" />, sama tepat dengan luas permukaan atas dan tapak yang hilang. Kemudian permukaan melengkung kon menambah <InlineMath math="36\sqrt2\,\pi" />. Jadi **membuang sebahagian pepejal sebenarnya menambah luas permukaan**. Pernyataan ini **Salah**.
+
+# Pernyataan kedua
+
+Isi padu yang dibuang ialah isi padu hemisfera ditambah isi padu kon.
+
+<BlockMath math="\begin{aligned}
+V_{\text{silinder}}&=\pi\cdot6^2\cdot18=648\pi \\
+V_{\text{dibuang}}&=\tfrac{2}{3}\pi\cdot6^3+\tfrac{1}{3}\pi\cdot6^2\cdot6=144\pi+72\pi=216\pi \\
+V_{\text{baki}}&=648\pi-216\pi=432\pi=\tfrac{2}{3}\cdot648\pi
+\end{aligned}" />
+
+Bahagian yang dibuang tepat <InlineMath math="\tfrac13" /> daripada silinder, jadi **bakinya <InlineMath math="\tfrac23" /> isi padu silinder**. Pernyataan ini **Betul**.
+
+# Pernyataan ketiga
+
+Ukur ketinggian dari tapak silinder. Puncak kon berada pada ketinggian <InlineMath math="6" />. Pusat hemisfera ialah pusat permukaan atas, iaitu pada ketinggian <InlineMath math="18" />, dan titik paling dalam lekukannya berada pada ketinggian <InlineMath math="18-6=12" />. Kedua-dua lekukan **tidak bersentuhan**, kerana <InlineMath math="12>6" />.
+
+Setiap titik pada permukaan melengkung hemisfera berjarak <InlineMath math="6" /> dari pusatnya. Puncak kon berjarak <InlineMath math="18-6=12" /> dari pusat itu. Titik pada permukaan sfera yang paling dekat dengan puncak terletak pada garis yang menyambungkan puncak dengan pusat sfera, iaitu titik paling dalam lekukan.
+
+<BlockMath math="\text{jarak terpendek}=12-6=6\text{ cm}" />
+
+<MathVisual
+  title={<>Keratan rentas pepejal melalui paksi</>}
+  description={<>Segi empat tepat selebar <InlineMath math="12" /> dan setinggi <InlineMath math="18" /> ialah keratan rentas silinder. Di atas, separuh bulatan berjejari <InlineMath math="6" /> melengkung ke bawah hingga titik <InlineMath math="U" /> pada ketinggian <InlineMath math="12" />. Di bawah, sebuah segi tiga mempunyai puncak <InlineMath math="T" /> pada ketinggian <InlineMath math="6" />. Tembereng <InlineMath math="TU" /> pada paksi panjangnya <InlineMath math="6" />.</>}
+  labels={{
+    apex: <InlineMath math="T" />,
+    low: <InlineMath math="U" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -9, max: 9 },
+      y: { min: -2, max: 20 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "side-left", kind: "segment", appearance: "primary", from: { x: -6, y: 0 }, to: { x: -6, y: 18 } },
+      { id: "side-right", kind: "segment", appearance: "primary", from: { x: 6, y: 0 }, to: { x: 6, y: 18 } },
+      { id: "bowl", kind: "arc", appearance: "primary", center: { x: 0, y: 18 }, radius: 6, startDegrees: 180, sweepDegrees: 180 },
+      { id: "cone-left", kind: "segment", appearance: "primary", from: { x: -6, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "cone-right", kind: "segment", appearance: "primary", from: { x: 0, y: 6 }, to: { x: 6, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 6 }, to: { x: 0, y: 12 } },
+      { id: "apex-point", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "low-point", kind: "point", appearance: "reference", at: { x: 0, y: 12 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "apex-point", at: { x: 0, y: 6 }, placement: "right" },
+      { key: "low", objectId: "low-point", at: { x: 0, y: 12 }, placement: "right" },
+    ],
+  }}
+/>
+
+Pernyataan ini **Betul**.
+
+Jadi, susunannya Salah, Betul, Betul.

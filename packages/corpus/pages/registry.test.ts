@@ -1,9 +1,19 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import {
   ActiveAppLocaleListSchema,
   ActiveAppLocaleSchema,
+  APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, Option, Record as Rec } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  Option,
+  Order,
+  Path,
+  Record as Rec,
+} from "effect";
 import { decodePageRegistry, validatePageRoutes } from "#corpus/pages/registry";
 import { pageSource } from "#corpus/test/page";
 
@@ -19,15 +29,15 @@ function rejectRegistry(input: unknown) {
 
 describe("public page registry", () => {
   it.effect(
-    "projects every active locale from the stable source identities",
+    "projects every active and carried locale from the stable source identities",
     () =>
       Effect.gen(function* () {
         const entries = yield* decodePageRegistry();
 
-        expect(entries).toHaveLength(18);
+        expect(entries).toHaveLength(24);
         expect(
           Rec.fromEntries(
-            Arr.map(["en", "id", "de"], (appLocale) => [
+            Arr.map(["en", "id", "de", "ms"], (appLocale) => [
               appLocale,
               Arr.filter(
                 entries,
@@ -35,7 +45,7 @@ describe("public page registry", () => {
               ).length,
             ])
           )
-        ).toEqual({ de: 6, en: 6, id: 6 });
+        ).toEqual({ de: 6, en: 6, id: 6, ms: 6 });
         const englishImprint = Option.getOrUndefined(
           Arr.findFirst(
             entries,
@@ -74,6 +84,42 @@ describe("public page registry", () => {
         }),
       ]);
     })
+  );
+
+  it.effect(
+    "publishes a declared locale that is not served yet once a page names its path",
+    () =>
+      Effect.gen(function* () {
+        const source = pageSource();
+        const entries = yield* decodePageRegistry(
+          [
+            {
+              ...source,
+              publicPaths: { ...source.publicPaths, ms: "dasar-privasi" },
+            },
+          ],
+          ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
+        );
+
+        expect(
+          Arr.map(entries, ({ route, sourcePath }) => [
+            route.appLocale,
+            route.publicPath,
+            sourcePath,
+          ])
+        ).toEqual([
+          [
+            "de",
+            "privacy-policy",
+            "packages/corpus/pages/privacy-policy/de.mdx",
+          ],
+          [
+            "ms",
+            "dasar-privasi",
+            "packages/corpus/pages/privacy-policy/ms.mdx",
+          ],
+        ]);
+      })
   );
 
   it.effect(
@@ -150,5 +196,31 @@ describe("public page registry", () => {
           []
         );
       })
+  );
+
+  it.effect("projects exactly the locale bodies checked in", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = path.resolve(import.meta.dirname, "..", "..", "..");
+      const files = yield* fileSystem.glob("packages/corpus/pages/**/*.mdx", {
+        root,
+      });
+      const entries = yield* decodePageRegistry();
+
+      expect(
+        Arr.sort(
+          Arr.map(entries, ({ sourcePath }) => sourcePath),
+          Order.String
+        )
+      ).toEqual(
+        Arr.sort(
+          Arr.filter(files, (file) =>
+            Arr.some(APP_LOCALE_CODES, (code) => file.endsWith(`/${code}.mdx`))
+          ),
+          Order.String
+        )
+      );
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

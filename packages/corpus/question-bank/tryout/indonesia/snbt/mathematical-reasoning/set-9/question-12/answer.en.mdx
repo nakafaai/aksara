@@ -1,22 +1,35 @@
-In one 45-minute session at most 4 matches can be played. Since rounds cannot overlap, **count the sessions for each round separately**.
+You're looking for the smallest yearly deposit, in steps of half a million rupiah, that makes the balance at the end of year <InlineMath math="6" /> at least <InlineMath math="150" /> million rupiah. The plan: add up the six factors, find the yearly money needed, then **decide whether the matching fund hits its cap** before you find the deposit. All amounts below are in millions of rupiah.
 
-# Sessions per round
+# The sum of six factors
 
-| Round | Matches | Sessions |
-| :--- | :---: | :---: |
-| First | 8 | 2 |
-| Second | 16 | 4 |
-| Third | 8 | 2 |
-| Quarter-final | 4 | 1 |
-| Semi-final | 2 | 1 |
-| Final | 1 | 1 |
+The year <InlineMath math="1" /> deposit grows <InlineMath math="6" /> times, the year <InlineMath math="2" /> deposit grows <InlineMath math="5" /> times, and so on, down to the year <InlineMath math="6" /> deposit, which grows <InlineMath math="1" /> time. So **the balance is the yearly money times the sum of the first six factors**.
 
-The semi-finals and the final use only some courts, but **each still needs a full session**.
+<BlockMath math="1.772+1.611+1.464+1.331+1.210+1.100=8.488" />
 
-# Total time
+Let <InlineMath math="T" /> be the money going in each year. The condition is <InlineMath math="8.488\,T\ge150" />. Since <InlineMath math="17\times8.488=144.296" /> is still short, the yearly money has to be more than <InlineMath math="17" />.
 
-<BlockMath math="11\cdot45=495\text{ min}=8\text{ h }15\text{ min}" />
+# Whether the matching fund hits its cap
 
-The value 7 hours 30 minutes spreads 39 matches evenly over 4 courts, as if rounds could overlap. The value 6 hours 45 minutes forgets the first round. The value 4 hours 30 minutes treats each round as one session, and 29 hours 15 minutes uses one court only.
+If the deposit <InlineMath math="d" /> is below <InlineMath math="8" />, the match is <InlineMath math="\tfrac12 d" /> and <InlineMath math="T=1.5d<12" />, which is too small. So the deposit is at least <InlineMath math="8" />, and **the match stays at <InlineMath math="4" />** for any deposit above that. The yearly money is <InlineMath math="T=d+4" />.
 
-So the shortest time is **8 hours 15 minutes**.
+# The smallest deposit
+
+Try the half-million steps around that bound.
+
+<BlockMath math="\begin{aligned}
+d=13.5 &: (13.5+4)\times8.488=17.5\times8.488=148.54<150 \\
+d=14 &: (14+4)\times8.488=18\times8.488=152.784\ge150
+\end{aligned}" />
+
+A deposit of <InlineMath math="13.5" /> million is still short, while <InlineMath math="14" /> million is enough. **A bigger deposit always gives a bigger balance**, so <InlineMath math="14" /> million is the smallest.
+
+# The wrong options
+
+Each other option **skips one condition in the rules**.
+
+- <InlineMath math="\text{Rp}12{,}000{,}000" /> forgets the cap on the matching fund and uses <InlineMath math="T=1.5d" />, so <InlineMath math="18\times8.488" /> seems to be reached with <InlineMath math="d=12" />.
+- <InlineMath math="\text{Rp}13{,}500{,}000" /> rounds <InlineMath math="d\approx13.67" /> down, but then the balance is only <InlineMath math="148.54" />.
+- <InlineMath math="\text{Rp}15{,}500{,}000" /> treats the deposits as made at the end of the year, so it uses the factor sum <InlineMath math="1+1.1+1.21+1.331+1.464+1.611=7.716" />.
+- <InlineMath math="\text{Rp}21{,}000{,}000" /> forgets the growth and asks for <InlineMath math="6(d+4)\ge150" />.
+
+So the smallest yearly deposit that meets the employee's goal is <InlineMath math="\text{Rp}14{,}000{,}000" />.

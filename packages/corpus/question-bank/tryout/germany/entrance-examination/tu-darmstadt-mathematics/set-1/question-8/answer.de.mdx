@@ -1,19 +1,63 @@
-Weder die größte Basis noch der größte Exponent entscheidet allein, wie groß eine Potenz ist. Ohne Taschenrechner ist es am sichersten, **jede Potenz als ganze Zahl auszurechnen** und dann zu vergleichen.
+# Zuerst die linke Seite zeichnen
 
-<BlockMath math="\begin{aligned}
-2^{10}&=1{.}024 \\
-3^6&=729 \\
-5^4&=625 \\
-10^3&=1{.}000 \\
-6^4&=36\cdot36=1{.}296 \\
-7^3&=343
-\end{aligned}" />
+Die Anzahl der Lösungen von <InlineMath math="|x^2-4x|=a" /> ist **die Anzahl der Schnittpunkte des Graphen von <InlineMath math="y=|x^2-4x|" /> mit der waagerechten Geraden <InlineMath math="y=a" />**. Zeichne also zuerst die linke Seite.
 
-Die Reihenfolge lautet <InlineMath math="7^3<5^4<3^6<10^3<2^{10}<6^4" />. Zur Kontrolle von <InlineMath math="6^4" />: <InlineMath math="6^2=36" /> und <InlineMath math="36^2=1{.}296" />. Es gilt sogar <InlineMath math="6^4>2^{10}" />, weil <InlineMath math="6^4=2^4\cdot3^4=16\cdot81" /> und <InlineMath math="2^{10}=16\cdot64" /> ist.
+Ohne Betrag ist <InlineMath math="x^2-4x=(x-2)^2-4" /> eine nach oben geöffnete Parabel mit dem Scheitelpunkt <InlineMath math="(2\mid-4)" /> und den Nullstellen <InlineMath math="x=0" /> und <InlineMath math="x=4" />. Der Betrag klappt den negativen Teil zwischen <InlineMath math="0" /> und <InlineMath math="4" /> über die <InlineMath math="x" />-Achse. Aus dem Scheitelpunkt <InlineMath math="(2\mid-4)" /> wird ein Hügel mit der Spitze <InlineMath math="(2\mid4)" />.
 
-Am größten ist also <InlineMath math="6^4" />.
+<MathVisual
+  title="Der Betrag einer Parabel"
+  description={<>Der Graph von <InlineMath math="y=|x^2-4x|" /> berührt die <InlineMath math="x" />-Achse bei <InlineMath math="x=0" /> und <InlineMath math="x=4" />. Dazwischen liegt ein Hügel mit der Spitze <InlineMath math="(2\mid4)" />, außerhalb steigt der Graph an. Die waagerechte Gerade <InlineMath math="y=4" /> berührt die Hügelspitze und schneidet beide äußeren Äste.</>}
+  labels={{
+    top: <InlineMath math="(2\mid4)" />,
+    line: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
+      { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
+      { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
+      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
+      { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
 
-- <InlineMath math="2^{10}" /> hat zwar den größten Exponenten, ist mit <InlineMath math="1{.}024" /> aber kleiner als <InlineMath math="6^4=1{.}296" />.
-- <InlineMath math="3^6=729" /> und <InlineMath math="5^4=625" /> sind kleiner als <InlineMath math="1{.}000" />.
-- <InlineMath math="10^3=1{.}000" /> wirkt wegen der Basis <InlineMath math="10" /> groß, liegt aber unter <InlineMath math="1{.}024" /> und <InlineMath math="1{.}296" />.
-- <InlineMath math="7^3" /> hat eine große Basis, aber nur den Exponenten <InlineMath math="3" /> und ist mit <InlineMath math="343" /> am kleinsten.
+# Schnittpunkte für jeden Wert von a zählen
+
+Schieb die Gerade <InlineMath math="y=a" /> von unten nach oben und zähl die Schnittpunkte:
+
+| Wert von <InlineMath math="a" /> | Schnittpunkte |
+| :---: | :---: |
+| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+
+**Genau drei Schnittpunkte gibt es nur, wenn die Gerade die Hügelspitze berührt**, also bei <InlineMath math="a=4" />.
+
+# Die drei Lösungen prüfen
+
+Für <InlineMath math="a=4" /> liefert der Hügel <InlineMath math="-(x^2-4x)=4" />, also <InlineMath math="(x-2)^2=0" /> und <InlineMath math="x=2" />. Die äußeren Äste liefern <InlineMath math="x^2-4x=4" />, also <InlineMath math="(x-2)^2=8" /> und <InlineMath math="x=2\pm2\sqrt2" />. **Es gibt genau drei verschiedene Lösungen**.
+
+Die Gleichung hat also genau für <InlineMath math="a=4" /> drei Lösungen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="a=0" /> liefert nur <InlineMath math="x=0" /> und <InlineMath math="x=4" />, also zwei Lösungen.
+- <InlineMath math="0<a<4" /> liefert vier Lösungen: zwei auf dem Hügel und zwei auf den äußeren Ästen. Ein Beispiel ist <InlineMath math="a=2" />.
+- <InlineMath math="a>4" /> liegt über dem Hügel, die Gerade schneidet also nur die beiden äußeren Äste.
+- <InlineMath math="a=-4" /> ist der Scheitelwert der Parabel ohne Betrag. **Ein Betrag ist nie negativ**, also gibt es keine Lösung.

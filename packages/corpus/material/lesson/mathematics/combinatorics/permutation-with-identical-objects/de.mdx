@@ -22,23 +22,23 @@ Zum Beispiel hat das Wort MAMA <InlineMath math="n = 4" /> Buchstaben mit zweima
 Versieh gleiche Buchstaben vorübergehend mit Nummern: <InlineMath math="M_1, M_2, A_1, A_2" />. Mit Nummern sind alle vier Buchstaben verschieden und lassen sich auf <InlineMath math="4! = 24" /> Arten anordnen. Ohne Nummern werden <InlineMath math="M_1 A_1 M_2 A_2" /> und <InlineMath math="M_2 A_1 M_1 A_2" /> zum selben Wort MAMA.
 
 <Mermaid
-  title={<>Von 24 nummerierten Anordnungen zu 6 Wörtern MAMA</>}
+  title={<>Von <InlineMath math="24" /> nummerierten Anordnungen zu <InlineMath math="6" /> Wörtern MAMA</>}
   description={<>Jedes Entfernen von Nummern legt Anordnungen zusammen, die sich nur in der Reihenfolge gleicher Buchstaben unterscheiden.</>}
   chart={`flowchart LR
   A["24 nummerierte Anordnungen"] -->|"Nummern der M entfernen, durch 2! teilen"| B["12 Anordnungen"]
   B -->|"Nummern der A entfernen, durch 2! teilen"| C["6 sichtbare Anordnungen"]`}
 />
 
-Jede sichtbare Anordnung kommt unter den 24 nummerierten genau <InlineMath math="2! \times 2! = 4" />-mal vor: <InlineMath math="2!" /> Arten, die beiden M zu tauschen, und <InlineMath math="2!" /> Arten, die beiden A zu tauschen. Also gibt es <InlineMath math="\frac{24}{4} = 6" /> sichtbare Anordnungen. Du kannst das prüfen, indem du alle Plätze für M aufschreibst:
+Jede sichtbare Anordnung kommt unter den <InlineMath math="24" /> nummerierten genau <InlineMath math="2! \times 2! = 4" />-mal vor: <InlineMath math="2!" /> Arten, die beiden M zu tauschen, und <InlineMath math="2!" /> Arten, die beiden A zu tauschen. Also gibt es <InlineMath math="\frac{24}{4} = 6" /> sichtbare Anordnungen. Du kannst das prüfen, indem du alle Plätze für M aufschreibst:
 
 | Plätze der M | Sichtbare Anordnung |
 | --- | --- |
-| 1 und 2 | MMAA |
-| 1 und 3 | MAMA |
-| 1 und 4 | MAAM |
-| 2 und 3 | AMMA |
-| 2 und 4 | AMAM |
-| 3 und 4 | AAMM |
+| <InlineMath math="1" /> und <InlineMath math="2" /> | MMAA |
+| <InlineMath math="1" /> und <InlineMath math="3" /> | MAMA |
+| <InlineMath math="1" /> und <InlineMath math="4" /> | MAAM |
+| <InlineMath math="2" /> und <InlineMath math="3" /> | AMMA |
+| <InlineMath math="2" /> und <InlineMath math="4" /> | AMAM |
+| <InlineMath math="3" /> und <InlineMath math="4" /> | AAMM |
 
 Das Aufschreiben der Plätze liefert **genau sechs Anordnungen**, so viele, wie die Formel angibt. Das Teilen durch <InlineMath math="r_i!" /> entfernt alle Vertauschungen innerhalb einer Gruppe, die man nicht sehen kann.
 
@@ -65,9 +65,9 @@ Das Wort BANANA hat <InlineMath math="n = 6" /> Buchstaben. Notiere zuerst die H
 
 | Buchstabe | Häufigkeit |
 | --- | --- |
-| B | 1 |
-| A | 3 |
-| N | 2 |
+| B | <InlineMath math="1" /> |
+| A | <InlineMath math="3" /> |
+| N | <InlineMath math="2" /> |
 
 Die Häufigkeiten ergeben <InlineMath math="1 + 3 + 2 = 6" />, also <InlineMath math="n" />. Ohne Bedingung gibt es <InlineMath math="\frac{6!}{1! \, 3! \, 2!} = \frac{720}{12} = 60" /> Anordnungen.
 
@@ -85,7 +85,7 @@ Bedingungen verkleinern die Anzahl. Alle Anordnungen von <InlineMath math="BANAN
 
 <BarChart
   title={<>Anordnungen von <InlineMath math="BANANA" /> mit und ohne Bedingung</>}
-  description={<>Balken von 60 Anordnungen ohne Bedingung, 10 mit B vorn und 20 mit den beiden N zusammen.</>}
+  description={<>Balken von <InlineMath math="60" /> Anordnungen ohne Bedingung, <InlineMath math="10" /> mit B vorn und <InlineMath math="20" /> mit den beiden N zusammen.</>}
   yAxisLabel="Anordnungen"
   data={[["ohne Bedingung", 720 / (1 * 6 * 2)], ["B vorn", 120 / (6 * 2)], ["NN zusammen", 120 / 6]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -100,7 +100,7 @@ Gibt es nur zwei Sorten von Objekten, **ist die Formel gleich einer** [Kombinati
 Zum Beispiel ist ein kürzester Weg, der <InlineMath math="3" /> Kästchen nach rechts und <InlineMath math="2" /> Kästchen nach oben führt, eine Anordnung der Schritte RRROO, wobei R einen Schritt nach rechts und O einen Schritt nach oben bedeutet. Es gibt also <InlineMath math="10" /> Wege.
 
 <MathVisual
-  title={<>Zwei kürzeste Wege über ein 3 mal 2 Gitter</>}
+  title={<>Zwei kürzeste Wege über ein <InlineMath math="3" /> mal <InlineMath math="2" /> Gitter</>}
   description={<>Jeder Weg von <InlineMath math="S" /> nach <InlineMath math="F" /> nutzt drei Schritte R und zwei Schritte O. Die Wege RRROO und RORRO unterscheiden sich nur in der Reihenfolge der Schritte.</>}
   scene={{
     space: "plane",
@@ -165,7 +165,7 @@ Jeder wiederholte Buchstabe teilt die Anzahl: <InlineMath math="ABCD" /> hat <In
 
 <BarChart
   title={<>Anordnungen von vier Buchstaben</>}
-  description={<>Balken der Anzahl der Anordnungen von <InlineMath math="ABCD" />, <InlineMath math="AABC" /> und <InlineMath math="AABB" />: 24, 12 und 6.</>}
+  description={<>Balken der Anzahl der Anordnungen von <InlineMath math="ABCD" />, <InlineMath math="AABC" /> und <InlineMath math="AABB" />: <InlineMath math="24" />, <InlineMath math="12" /> und <InlineMath math="6" />.</>}
   yAxisLabel="Anordnungen"
   data={[["ABCD", 24 / 1], ["AABC", 24 / 2], ["AABB", 24 / (2 * 2)]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Anordnungen", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -209,7 +209,7 @@ Probe durch Auswählen der Plätze: <InlineMath math="\binom{10}{3}\binom{7}{2}\
 
 Probe: Wähle <InlineMath math="3" /> rote Plätze aus <InlineMath math="8" />, dann <InlineMath math="3" /> weiße Plätze aus <InlineMath math="5" />, und der Rest ist gelb, also <InlineMath math="\binom{8}{3}\binom{5}{3} = 56 \times 10 = 560" />.
 
-**Aufgabe 3**. Die Ziffer 1 kommt zweimal vor, die 2 dreimal und die 3 einmal, also entstehen <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> Zahlen. Eine Zahl größer als <InlineMath math="300\,000" /> muss mit 3 beginnen, weil jede andere führende Ziffer eine Zahl unter <InlineMath math="300\,000" /> ergibt. Umgekehrt ist jede Zahl, die mit 3 beginnt, größer als <InlineMath math="300\,000" />, weil keine 0 vorkommt und die kleinste solche Zahl <InlineMath math="311\,222" /> ist. Der Rest, <InlineMath math="1, 1, 2, 2, 2" />, lässt sich auf <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> Arten anordnen. Probe: Die Ziffer 3 steht in <InlineMath math="\frac{1}{6}" /> aller Anordnungen vorne, und <InlineMath math="\frac{1}{6} \times 60 = 10" />.
+**Aufgabe 3**. Die Ziffer <InlineMath math="1" /> kommt zweimal vor, die <InlineMath math="2" /> dreimal und die <InlineMath math="3" /> einmal, also entstehen <InlineMath math="\frac{6!}{2! \, 3!} = \frac{720}{12} = 60" /> Zahlen. Eine Zahl größer als <InlineMath math="300\,000" /> muss mit <InlineMath math="3" /> beginnen, weil jede andere führende Ziffer eine Zahl unter <InlineMath math="300\,000" /> ergibt. Umgekehrt ist jede Zahl, die mit <InlineMath math="3" /> beginnt, größer als <InlineMath math="300\,000" />, weil keine <InlineMath math="0" /> vorkommt und die kleinste solche Zahl <InlineMath math="311\,222" /> ist. Der Rest, <InlineMath math="1, 1, 2, 2, 2" />, lässt sich auf <InlineMath math="\frac{5!}{2! \, 3!} = 10" /> Arten anordnen. Probe: Die Ziffer <InlineMath math="3" /> steht in <InlineMath math="\frac{1}{6}" /> aller Anordnungen vorne, und <InlineMath math="\frac{1}{6} \times 60 = 10" />.
 
 **Aufgabe 4**. INDONESIA hat <InlineMath math="9" /> Buchstaben: I zweimal, N zweimal und D, O, E, S, A je einmal.
 

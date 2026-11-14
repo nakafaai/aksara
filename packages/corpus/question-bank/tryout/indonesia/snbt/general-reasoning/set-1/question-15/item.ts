@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "arrangement",
   },
-  stimulus: "meja",
+  stimulus: "seminar",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "N duduk bersebelahan dengan K.",
+          label: "Bayu tampil pada giliran $$6$$.",
+        },
+        {
+          correct: false,
+          label: "Galih atau Hesti tampil pada giliran $$1$$.",
+        },
+        {
+          correct: false,
+          label: "Eka tampil pada giliran $$2$$ atau giliran $$3$$.",
+        },
+        {
+          correct: false,
+          label: "Fani tampil pada giliran bernomor ganjil.",
         },
         {
           correct: true,
-          label: "P duduk di kursi $$6$$.",
-        },
-        {
-          correct: false,
-          label: "L duduk di kursi $$2$$.",
-        },
-        {
-          correct: false,
-          label: "O duduk bersebelahan dengan P.",
-        },
-        {
-          correct: false,
-          label: "M duduk di kursi $$5$$.",
+          label: "Dimas tampil pada giliran $$7$$.",
         },
       ],
     },

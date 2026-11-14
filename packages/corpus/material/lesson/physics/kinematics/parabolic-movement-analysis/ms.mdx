@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Rumus Gerakan Projektil",
+  description: "Leraikan halaju awal kepada dua komponen, kemudian cari masa ke puncak, tinggi maksimum, jarak mengufuk dan halaju projektil pada bila-bila masa.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-11-08",
+  subject: "Kinematik",
+};
+
+## Rumus Projektil daripada Dua Komponen
+
+Analisis gerakan projektil bermula dengan **meleraikan halaju awal** <InlineMath math="v_0" />, yang dilancarkan pada sudut <InlineMath math="\theta" /> di atas garis mengufuk, kepada dua komponen. Bagi objek yang dilancarkan dari tanah dan mendarat semula di tanah, setiap kuantiti penting diperoleh daripada komponen-komponen itu:
+
+<MathContainer>
+  <BlockMath math="v_{0x}=v_0\cos\theta,\qquad v_{0y}=v_0\sin\theta" />
+  <BlockMath math="t_{\text{puncak}}=\frac{v_{0y}}{g},\qquad h_{\text{maks}}=\frac{v_{0y}^2}{2g}" />
+  <BlockMath math="T=2t_{\text{puncak}},\qquad R=v_{0x}T=\frac{v_0^2\sin 2\theta}{g}" />
+</MathContainer>
+
+Rintangan udara diabaikan dan graviti dianggap malar. Arah ke kanan dan ke atas ialah positif, dan contoh dalam halaman ini menggunakan <InlineMath math="g = 10\text{ m/s}^2" />. Simulasi bola meriam menunjukkan komponen mengufuk yang malar dan komponen menegak yang berubah bagi beberapa tembakan.
+
+<ParabolicMovementAnalysisLab
+  title={<>Analisis Komponen Bola Meriam</>}
+  description={
+    <>
+      Bola meriam merentasi air sementara penanda kedudukan yang pudar menunjukkan
+      lokasinya pada sela masa yang sama.
+    </>
+  }
+  labels={{
+    chooseScenario: "Pilih tembakan",
+    scenarioNames: {
+      "sixty-degree": <>Enam Puluh Darjah</>,
+      "long-drive": <>Tembakan Jauh</>,
+      "high-arc": <>Lengkung Tinggi</>,
+    },
+    factLabels: {
+      horizontalComponent: <>Komponen mengufuk</>,
+      verticalComponent: <>Komponen menegak</>,
+      peakTime: <>Masa ke puncak</>,
+      flightTime: <>Masa penerbangan</>,
+      range: <>Jarak mengufuk</>,
+      instantaneousVelocity: <>Halaju selepas dua saat</>,
+    },
+    viewLabel: "Visual analisis projektil bola meriam",
+  }}
+/>
+
+Bayang bola di permukaan air bergerak dengan laju malar, seperti objek dalam [gerakan linear seragam](/ms/subjek/fizik/kinematik/gerakan-linear-seragam), kerana bayang itu hanya mengikut komponen mengufuk. Bola itu sendiri naik dan turun, kerana komponen menegaknya <InlineMath math="v_y = v_{0y} - gt" /> terus berkurang.
+
+## Masa ke Puncak dan Tinggi Maksimum
+
+Di puncak lintasan, objek masih bergerak secara mengufuk, tetapi **halaju menegaknya sifar**. Dengan menetapkan <InlineMath math="v_y = v_{0y} - gt = 0" />, kita mendapat masa ke puncak, dan persamaan menegak yang ketiga memberikan tinggi maksimum:
+
+<MathContainer>
+  <BlockMath math="t_{\text{puncak}}=\frac{v_{0y}}{g}" />
+  <BlockMath math="0 = v_{0y}^2 - 2g\,h_{\text{maks}} \quad\Longrightarrow\quad h_{\text{maks}}=\frac{v_{0y}^2}{2g}" />
+</MathContainer>
+
+Kedua-dua rumus ini menggunakan komponen menegak sahaja. Komponen itu bergerak seperti objek yang dilontar ke atas pada <InlineMath math="v_{0y}" /> dalam [gerakan menegak](/ms/subjek/fizik/kinematik/gerakan-menegak).
+
+## Masa Penerbangan dan Jarak Mengufuk
+
+Jika objek mendarat pada **ketinggian yang sama** dengan tempat ia dilancarkan, masa turun sama dengan masa naik, jadi jumlah masa penerbangan ialah <InlineMath math="T = 2t_{\text{puncak}}" />. Jarak mengufuk ialah komponen mengufuk didarab dengan masa penerbangan:
+
+<BlockMath math="R = v_0\cos\theta \cdot \frac{2v_0\sin\theta}{g} = \frac{v_0^2 \cdot 2\sin\theta\cos\theta}{g} = \frac{v_0^2\sin 2\theta}{g}" />
+
+Langkah terakhir menggunakan identiti <InlineMath math="2\sin\theta\cos\theta = \sin 2\theta" />. Kerana nilai paling besar bagi <InlineMath math="\sin 2\theta" /> ialah <InlineMath math="1" />, jarak mengufuk paling jauh dicapai pada <InlineMath math="\theta = 45^\circ" />. Dua sudut yang jumlahnya <InlineMath math="90^\circ" />, seperti <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" />, memberikan jarak mengufuk yang sama kerana <InlineMath math="\sin 60^\circ = \sin 120^\circ" />. Dengan <InlineMath math="v_0 = 20\text{ m/s}" />, kedua-duanya mendarat <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" /> jauhnya, iaitu hasil yang sama yang diberikan oleh masa penerbangan dan halaju mengufuk dalam [gerakan projektil](/ms/subjek/fizik/kinematik/gerakan-projektil). Rumus ini tidak sah apabila titik mendarat lebih tinggi atau lebih rendah daripada titik pelancaran.
+
+<Mermaid
+  title="Urutan analisis projektil"
+  description="Setiap kuantiti diperoleh daripada dua komponen halaju awal."
+  chart={`flowchart TD
+  A["v₀ dan θ"] --> B["v₀x = v₀ cos θ dan v₀y = v₀ sin θ"]
+  B --> C["t_puncak = v₀y / g"]
+  C --> D["h_maks = v₀y² / 2g"]
+  C --> E["T = 2 t_puncak"]
+  E --> F["R = v₀x T"]
+  B --> G["Halaju pada masa t: v_y = v₀y - gt"]`}
+/>
+
+## Halaju Sepanjang Lintasan
+
+Untuk mencari halaju pada masa <InlineMath math="t" />, cari **kedua-dua komponen pada masa itu**, kemudian gabungkan kedua-duanya dengan teorem Pythagoras:
+
+<MathContainer>
+  <BlockMath math="v_x = v_{0x},\qquad v_y = v_{0y} - gt" />
+  <BlockMath math="v = \sqrt{v_x^2 + v_y^2}" />
+</MathContainer>
+
+Arah halaju di atas garis mengufuk ialah <InlineMath math="\alpha = \operatorname{atan2}(v_y, v_x)" />. Untuk <InlineMath math="v_x > 0" />, ini sama dengan <InlineMath math="\tan\alpha = \frac{v_y}{v_x}" />. Nilai <InlineMath math="v_y" /> yang positif bermaksud objek sedang bergerak naik secara condong, manakala nilai negatif bermaksud objek sedang bergerak turun.
+
+Gerakkan gelangsar masa dan ikuti bola meriam itu. Anak panah ungu ialah halaju pada saat itu: bahagian mengufuknya tidak pernah berubah, bahagian menegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap saat, dan di puncak, sekitar <InlineMath math="t\approx3.46\text{ s}" />, anak panah itu terletak mendatar.
+
+<MathVisual
+  title={<>Ikuti Halaju Mengikut Masa</>}
+  description={<>Bola meriam yang ditembak pada <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" />, dengan kedudukannya pada masa yang dipilih (merah jambu) dan jarak yang dilaluinya dalam satu saat berikutnya pada halaju itu (ungu). Satu langkah grid ialah 10 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "ball", kind: "marker", appearance: "answer", x: "2s", y: "2 sqrt(3) s - s^2/2" },
+      { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "2s", y: "2 sqrt(3) s - s^2/2" }, { x: "2s + 2", y: "2 sqrt(3) s - s^2/2 + 2 sqrt(3) - s" }] },
+    ],
+    labels: [
+      { key: "ball", objectId: "ball", at: { x: "2s", y: "2 sqrt(3) s - s^2/2" }, placement: "below" },
+    ],
+    parameters: [
+      { name: "s", min: 0, max: 4 * Math.sqrt(3), value: 2, step: 0.01, label: "time" },
+    ],
+    readouts: [
+      { key: "vx", formula: "20" },
+      { key: "vy", formula: "20 sqrt(3) - 10 s" },
+      { key: "speed", formula: "sqrt(400 + (20 sqrt(3) - 10 s)^2)" },
+    ],
+  }}
+  labels={{
+    time: <InlineMath math="t\ (\text{s})" />,
+    ball: <InlineMath math="(x,y)" />,
+    vx: <InlineMath math="v_x\ (\text{m/s})" />,
+    vy: <InlineMath math="v_y=v_0\sin60^\circ-gt\ (\text{m/s})" />,
+    speed: <InlineMath math="v=\sqrt{v_x^2+v_y^2}\ (\text{m/s})" />,
+  }}
+/>
+
+## Bola Meriam pada Sudut Enam Puluh Darjah
+
+Sebiji bola ditembak pada <InlineMath math="40\text{ m/s}" /> dengan sudut <InlineMath math="60^\circ" />. Kerana <InlineMath math="\sin 60^\circ" /> dan <InlineMath math="\cos 60^\circ" /> mempunyai **nilai tepat**, setiap hasil boleh ditulis tanpa pembundaran sehingga langkah terakhir.
+
+<MathContainer>
+  <BlockMath math="v_{0x}=40\cos60^\circ=20\text{ m/s},\qquad v_{0y}=40\sin60^\circ=20\sqrt{3}\text{ m/s}" />
+  <BlockMath math="t_{\text{puncak}}=\frac{20\sqrt{3}}{10}=2\sqrt{3}\approx 3.46\text{ s}" />
+  <BlockMath math="h_{\text{maks}}=\frac{(20\sqrt{3})^2}{2 \times 10}=\frac{1200}{20}=60\text{ m}" />
+  <BlockMath math="R=20 \times 4\sqrt{3}=80\sqrt{3}\approx 138.6\text{ m}" />
+</MathContainer>
+
+Semak jarak mengufuk dengan rumus terus: <InlineMath math="\frac{40^2\sin 120^\circ}{10} = \frac{1600 \times \frac{\sqrt{3}}{2}}{10} = 80\sqrt{3}" />.
+
+Halaju pada <InlineMath math="t = 2\text{ s}" /> menggunakan komponen menegak pada masa itu:
+
+<MathContainer>
+  <BlockMath math="v_y = 20\sqrt{3} - 10(2) = 20\sqrt{3} - 20 \approx 14.64\text{ m/s}" />
+  <BlockMath math="v = \sqrt{20^2 + (20\sqrt{3} - 20)^2} = \sqrt{2000 - 800\sqrt{3}} \approx 24.8\text{ m/s}" />
+  <BlockMath math="\alpha = \operatorname{atan2}(20\sqrt{3} - 20, 20) \approx 36.2^\circ" />
+</MathContainer>
+
+Semak laju: <InlineMath math="v^2 = 20^2 + 14.64^2 \approx 614.4" />, dan <InlineMath math="\sqrt{614.4} \approx 24.8" />.
+
+Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik kerana <InlineMath math="v_y" /> positif, dan masa itu memang lebih awal daripada masa ke puncak, iaitu <InlineMath math="3.46\text{ s}" />.
+
+<MathVisual
+  title={<>Halaju bola meriam sepanjang lintasannya</>}
+  description={<>Satu petak grid mewakili 10 m. Setiap anak panah menunjukkan jarak yang dilalui dalam satu saat pada halaju ketika itu. Bahagian mengufuknya sentiasa <InlineMath math="20\text{ m/s}" />, manakala bahagian menegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap saat.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "at-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "v0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
+      { id: "v0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },
+      { id: "at-1", kind: "point", appearance: "secondary", at: { x: 4, y: 4 * Math.sqrt(3) - 2 } },
+      { id: "v1", kind: "segment", appearance: "secondary", from: { x: 4, y: 4 * Math.sqrt(3) - 2 }, to: { x: 6, y: 6 * Math.sqrt(3) - 4 } },
+      { id: "v1-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 6 * Math.sqrt(3) - 4 }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) + ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }, { x: 6 - (0.25 * 2) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * -1.4641016151377553) / Math.hypot(2, 1.4641016151377553), y: 6 * Math.sqrt(3) - 4 - (0.25 * 1.4641016151377553) / Math.hypot(2, 1.4641016151377553) - ((0.25 / 2) * 2) / Math.hypot(2, 1.4641016151377553) }] },
+      { id: "at-2", kind: "point", appearance: "secondary", at: { x: 4 * Math.sqrt(3), y: 6 } },
+      { id: "v2", kind: "segment", appearance: "secondary", from: { x: 4 * Math.sqrt(3), y: 6 }, to: { x: 4 * Math.sqrt(3) + 2, y: 6 } },
+      { id: "v2-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 4 * Math.sqrt(3) + 2, y: 6 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 6.125 }, { x: 4 * Math.sqrt(3) + 2 + -0.25, y: 5.875 }] },
+      { id: "at-3", kind: "point", appearance: "secondary", at: { x: 8 * Math.sqrt(3), y: 0 } },
+      { id: "v3", kind: "segment", appearance: "secondary", from: { x: 8 * Math.sqrt(3), y: 0 }, to: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) } },
+      { id: "v3-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) + ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }, { x: 8 * Math.sqrt(3) + 2 - (0.25 * 2.0) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544), y: -2 * Math.sqrt(3) - (0.25 * -3.4641016151377544) / Math.hypot(2.0, -3.4641016151377544) - ((0.25 / 2) * 2.0) / Math.hypot(2.0, -3.4641016151377544) }] },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 2, y: 2 * Math.sqrt(3) }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 6, y: 6 * Math.sqrt(3) - 4 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 4 * Math.sqrt(3) + 2, y: 6 }, placement: "above" },
+      { key: "v3", objectId: "v3", at: { x: 8 * Math.sqrt(3) + 2, y: -2 * Math.sqrt(3) }, placement: "right" },
+    ],
+  }}
+  labels={{
+    v0: <InlineMath math="v=40\text{ m/s}" />,
+    v1: <InlineMath math="v\approx24.8\text{ m/s}" />,
+    v2: <InlineMath math="v=v_x=20\text{ m/s}" />,
+    v3: <InlineMath math="v=40\text{ m/s}" />,
+  }}
+/>
+
+## Tendangan pada Sudut Empat Puluh Lima Darjah
+
+Sebiji bola ditendang dari tanah pada <InlineMath math="20\text{ m/s}" /> dengan sudut <InlineMath math="45^\circ" />. Pada sudut ini, **kedua-dua komponen sama besar**, kerana <InlineMath math="\sin 45^\circ = \cos 45^\circ" />.
+
+<MathContainer>
+  <BlockMath math="v_{0x} = v_{0y} = 20 \times \frac{\sqrt{2}}{2} = 10\sqrt{2}\text{ m/s}" />
+  <BlockMath math="t_{\text{puncak}} = \frac{10\sqrt{2}}{10} = \sqrt{2} \approx 1.41\text{ s},\qquad h_{\text{maks}} = \frac{(10\sqrt{2})^2}{20} = 10\text{ m}" />
+  <BlockMath math="R = 10\sqrt{2} \times 2\sqrt{2} = 40\text{ m}" />
+</MathContainer>
+
+Semak dengan rumus terus: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Jarak mengufuk ini lebih jauh daripada lontaran <InlineMath math="30^\circ" /> atau <InlineMath math="60^\circ" /> dengan laju yang sama, yang kedua-duanya mendarat pada <InlineMath math="20\sqrt{3} \approx 34.6\text{ m}" />.
+
+## Kesilapan Lazim
+
+Sebelum menggunakan rumus ringkas, semak dahulu **sama ada titik mendarat setinggi titik pelancaran**.
+
+| Kesilapan | Mengapa salah | Cara menyemak |
+| --- | --- | --- |
+| Menggunakan seluruh <InlineMath math="v_0" /> untuk masa ke puncak | Masa ke puncak bergantung pada <InlineMath math="v_{0y}" /> sahaja | Rumus masa itu mesti mengandungi <InlineMath math="\sin\theta" /> |
+| Tertukar sinus dengan kosinus | Komponen mengufuk menggunakan kosinus, komponen menegak menggunakan sinus | Pada sudut yang kecil, <InlineMath math="v_{0x}" /> mesti lebih besar |
+| Menggunakan <InlineMath math="R = \frac{v_0^2\sin 2\theta}{g}" /> untuk tebing atau bumbung | Rumus itu sah hanya apabila titik mendarat setinggi titik pelancaran | Bandingkan ketinggian awal dengan ketinggian akhir |
+| Mencari arah dengan <InlineMath math="\tan^{-1}" /> tanpa mengambil kira tanda | Arah ke bawah memberikan sudut negatif | Tanda sudut mesti sepadan dengan tanda <InlineMath math="v_y" /> |
+
+Kesilapan sinus dan kosinus paling mudah dikesan dengan sudut <InlineMath math="30^\circ" />. Lontaran yang rendah mesti mempunyai komponen mengufuk yang lebih besar daripada komponen menegaknya.
+
+## Latihan
+
+Gunakan <InlineMath math="g = 10\text{ m/s}^2" />. Untuk setiap soalan, tulis dahulu **kedua-dua komponen halaju awal**.
+
+1. Sebiji bola dilancarkan dari tanah pada <InlineMath math="20\text{ m/s}" /> dengan sudut <InlineMath math="30^\circ" />. Cari masa ke puncak, tinggi maksimum, masa penerbangan dan jarak mengufuknya.
+
+2. Sebuah projektil ditembak dari tanah pada <InlineMath math="30\text{ m/s}" /> dengan sudut yang sinusnya <InlineMath math="0.8" /> dan kosinusnya <InlineMath math="0.6" />. Cari tinggi maksimum dan jarak mengufuknya.
+
+3. Bagi projektil dalam Soalan 2, cari laju dan arah halajunya pada <InlineMath math="t = 1\text{ s}" />.
+
+4. Sebiji bola ditendang pada <InlineMath math="45^\circ" /> dan mendarat <InlineMath math="40\text{ m}" /> jauhnya di atas tanah rata. Cari laju awalnya.
+
+### Penyelesaian
+
+**Soalan 1**. Komponennya ialah <InlineMath math="v_{0x} = 20\cos30^\circ = 10\sqrt{3}\text{ m/s}" /> dan **komponen menegak** <InlineMath math="v_{0y} = 20\sin30^\circ = 10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="t_{\text{puncak}} = \frac{10}{10} = 1\text{ s},\qquad h_{\text{maks}} = \frac{10^2}{20} = 5\text{ m}" />
+  <BlockMath math="T = 2\text{ s},\qquad R = 10\sqrt{3} \times 2 = 20\sqrt{3} \approx 34.6\text{ m}" />
+</MathContainer>
+
+Semak: <InlineMath math="\frac{20^2 \sin 60^\circ}{10} = 20\sqrt{3}" />.
+
+**Soalan 2**. Komponennya ialah <InlineMath math="v_{0x} = 30(0.6) = 18\text{ m/s}" /> dan <InlineMath math="v_{0y} = 30(0.8) = 24\text{ m/s}" />. Masa ke puncak ialah <InlineMath math="2.4\text{ s}" />, jadi **masa penerbangan** ialah <InlineMath math="4.8\text{ s}" />:
+
+<MathContainer>
+  <BlockMath math="h_{\text{maks}} = \frac{24^2}{20} = 28.8\text{ m}" />
+  <BlockMath math="R = 18 \times 4.8 = 86.4\text{ m}" />
+</MathContainer>
+
+Semak dengan rumus terus: <InlineMath math="\sin 2\theta = 2(0.8)(0.6) = 0.96" />, dan <InlineMath math="\frac{30^2 \times 0.96}{10} = 86.4\text{ m}" />.
+
+**Soalan 3**. Pada <InlineMath math="t = 1\text{ s}" />, komponen mengufuk tidak berubah dan **komponen menegak berkurang** sebanyak <InlineMath math="10\text{ m/s}" />:
+
+<MathContainer>
+  <BlockMath math="v_x = 18\text{ m/s},\qquad v_y = 24 - 10(1) = 14\text{ m/s}" />
+  <BlockMath math="v = \sqrt{18^2 + 14^2} = \sqrt{520} \approx 22.8\text{ m/s}" />
+  <BlockMath math="\alpha = \tan^{-1}\frac{14}{18} \approx 37.9^\circ" />
+</MathContainer>
+
+Sudut ini positif dan lebih kecil daripada sudut pelancaran, kerana projektil masih naik, tetapi <InlineMath math="v_y" /> semakin kecil sementara <InlineMath math="v_x" /> kekal sama, jadi lintasannya semakin mendatar.
+
+**Soalan 4**. Pada <InlineMath math="45^\circ" />, <InlineMath math="\sin 90^\circ = 1" />, jadi rumus jarak mengufuk menjadi **sangat mudah**:
+
+<BlockMath math="40 = \frac{v_0^2 \times 1}{10} \quad\Longrightarrow\quad v_0^2 = 400 \quad\Longrightarrow\quad v_0 = 20\text{ m/s}" />
+
+Laju tidak boleh negatif, jadi <InlineMath math="v_0 = -20" /> ditolak. Semak: <InlineMath math="\frac{20^2}{10} = 40\text{ m}" />.

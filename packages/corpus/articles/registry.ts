@@ -34,6 +34,7 @@ import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 import {
   appLocaleCode,
+  carriedAppLocales,
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
@@ -154,12 +155,19 @@ export const projectArticle = Effect.fn("AksaraCorpus.projectArticle")(
   }
 );
 
-/** Expands one reviewed source into its active locale-specific article bodies. */
+/**
+ * Expands one reviewed source into an article body for each active locale and
+ * for each declared locale that the source writes.
+ */
 const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
   source: ArticleSource,
   appLocales: ActiveAppLocaleList
 ) {
-  return yield* Effect.forEach(appLocales, (appLocale) =>
+  const carried = carriedAppLocales(
+    appLocales,
+    (code) => source.routeSlugs[code] !== undefined
+  );
+  return yield* Effect.forEach(carried, (appLocale) =>
     projectArticle(source, appLocale)
   );
 });

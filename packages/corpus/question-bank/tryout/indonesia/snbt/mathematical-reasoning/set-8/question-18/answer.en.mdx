@@ -1,16 +1,34 @@
-The safest way is to **convert each side to kilometres first**, then multiply. At this scale 1 cm on the map stands for 2.5 km.
+Blood can only be given when **the ABO rule and the rhesus rule both hold**. So for each patient group, find the donor groups that pass both rules, then add up those donors from the table. Once this matching table is complete, you can test the four statements one at a time.
 
-# Real sides of the lake
+# How many donors suit each patient
 
-<BlockMath math="\begin{aligned}
-2\cdot2.5&=5\text{ km}\\
-1.2\cdot2.5&=3\text{ km}
-\end{aligned}" />
+A rhesus negative patient **only takes blood from rhesus negative donors**. A rhesus positive patient takes blood from both. Combine that with the ABO rule:
 
-# Area of the lake
+| Patient | Suitable donors | Number of donors |
+| --- | --- | --- |
+| <InlineMath math="\mathrm{O}^-" /> | <InlineMath math="\mathrm{O}^-" /> | <InlineMath math="2" /> |
+| <InlineMath math="\mathrm{A}^-" /> | <InlineMath math="\mathrm{A}^-,\ \mathrm{O}^-" /> | <InlineMath math="1+2=3" /> |
+| <InlineMath math="\mathrm{B}^-" /> | <InlineMath math="\mathrm{B}^-,\ \mathrm{O}^-" /> | <InlineMath math="2+2=4" /> |
+| <InlineMath math="\mathrm{AB}^-" /> | every rhesus negative donor | <InlineMath math="6" /> |
+| <InlineMath math="\mathrm{O}^+" /> | <InlineMath math="\mathrm{O}^+,\ \mathrm{O}^-" /> | <InlineMath math="14+2=16" /> |
+| <InlineMath math="\mathrm{A}^+" /> | <InlineMath math="\mathrm{A}^+,\ \mathrm{A}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> | <InlineMath math="9+1+14+2=26" /> |
+| <InlineMath math="\mathrm{B}^+" /> | <InlineMath math="\mathrm{B}^+,\ \mathrm{B}^-,\ \mathrm{O}^+,\ \mathrm{O}^-" /> | <InlineMath math="8+2+14+2=26" /> |
+| <InlineMath math="\mathrm{AB}^+" /> | every donor | <InlineMath math="40" /> |
 
-<BlockMath math="5\cdot3=15\text{ km}^2" />
+# Negative donors for positive patients
 
-Note that the drawn area <InlineMath math="2.4\text{ cm}^2" /> times <InlineMath math="2.5" /> gives only 6, because **area changes by the square of the scale factor**, <InlineMath math="2.5^2=6.25" />. Indeed <InlineMath math="2.4\cdot6.25=15" />.
+The first statement says every, so one failing example is enough to refute it. An <InlineMath math="\mathrm{A}^-" /> donor passes the rhesus rule for a <InlineMath math="\mathrm{B}^+" /> patient but **fails the ABO rule**, because A donors only give to A and AB patients. The first statement is false.
 
-So the real area of the lake is **15 <InlineMath math="\text{km}^2" />**.
+# The A positive patient
+
+From the table, <InlineMath math="26" /> donors suit an <InlineMath math="\mathrm{A}^+" /> patient. Half of <InlineMath math="40" /> donors is <InlineMath math="20" />, and <InlineMath math="26" /> is **more than half**. The second statement is true.
+
+# The AB negative and O positive patients
+
+Group AB is often called the universal recipient, but that only covers the ABO rule. An <InlineMath math="\mathrm{AB}^-" /> patient **is still bound by the rhesus rule**, so only the <InlineMath math="6" /> rhesus negative donors suit. An <InlineMath math="\mathrm{O}^+" /> patient gets <InlineMath math="16" /> donors. Since <InlineMath math="6<16" />, the third statement is false.
+
+# Exactly four donors
+
+The matching table shows that a <InlineMath math="\mathrm{B}^-" /> patient suits <InlineMath math="\mathrm{B}^-" /> and <InlineMath math="\mathrm{O}^-" /> donors, that's <InlineMath math="2+2=4" /> donors. So **such a group really exists**, and the fourth statement is true.
+
+So the first statement is false, the second is true, the third is false, and the fourth is true.

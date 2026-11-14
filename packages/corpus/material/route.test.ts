@@ -1,5 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
-import { ActiveAppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import {
+  ActiveAppLocaleSchema,
+  AppLocaleSchema,
+} from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option } from "effect";
 
 import {
@@ -8,6 +11,8 @@ import {
 } from "#corpus/material/domain";
 import { materialLessonPath, materialTopicPath } from "#corpus/material/route";
 import { decodeMaterialSources } from "#corpus/material/source";
+import { PublicRouteSegmentSchema } from "#corpus/route/schema";
+import { lessonMaterialSource } from "#corpus/test/material";
 
 describe("material public routes", () => {
   it.effect(
@@ -63,6 +68,54 @@ describe("material public routes", () => {
         ).toBe(
           "subjects/mathematics/function-modeling/absolute-value-function"
         );
+      })
+  );
+
+  it.effect(
+    "derives the Malay path from Malay slugs and refuses a section without one",
+    () =>
+      Effect.gen(function* () {
+        const source = lessonMaterialSource();
+        const [section] = source.sections;
+        const descriptor = yield* requireMaterialDomain(
+          yield* decodeMaterialDomains(),
+          source.domain,
+          source.key
+        );
+        const malay = AppLocaleSchema.make("ms");
+        const written = {
+          ...source,
+          routeSlugs: {
+            ...source.routeSlugs,
+            ms: PublicRouteSegmentSchema.make("fungsi-gubahan"),
+          },
+        };
+        if (!section) {
+          return;
+        }
+
+        expect(
+          yield* materialLessonPath(
+            written,
+            {
+              ...section,
+              routeSlugs: {
+                ...section.routeSlugs,
+                ms: PublicRouteSegmentSchema.make("konsep-fungsi"),
+              },
+            },
+            descriptor,
+            malay
+          )
+        ).toBe("subjek/matematik/fungsi-gubahan/konsep-fungsi");
+        expect(
+          yield* Effect.flip(
+            materialLessonPath(written, section, descriptor, malay)
+          )
+        ).toMatchObject({
+          _tag: "SourceLocaleUnavailableError",
+          appLocale: "ms",
+        });
       })
   );
 });

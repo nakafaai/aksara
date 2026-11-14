@@ -1,17 +1,39 @@
-Gabungkan premis yang memuat kata **sebagian** dengan premis lain, karena dari situlah muncul anggota yang pasti ada.
+Kamu diminta mencari satu implikasi yang pasti mengikuti dari keempat premis. Supaya rantainya mudah dilihat, beri lambang pada setiap kalimat.
 
-Premis 2 menjamin ada anggota paduan suara yang mengikuti olimpiade matematika. Sebut saja siswa itu X.
+- <InlineMath math="L" />: tim lolos ke tingkat nasional.
+- <InlineMath math="W" />: robot menyelesaikan lintasan kurang dari <InlineMath math="90" /> detik.
+- <InlineMath math="B" />: baterai cadangan dipasang.
+- <InlineMath math="H" />: robot dijalankan dalam mode hemat daya.
+- <InlineMath math="S" />: sensor garis rusak.
 
-- Menurut premis 1, X adalah siswa kelas XI karena X anggota paduan suara.
-- Menurut premis 3, X dibebaskan dari piket hari Sabtu karena X peserta olimpiade.
+Premisnya menjadi seperti ini.
 
-Jadi, ada siswa kelas XI yang dibebaskan dari piket hari Sabtu. Artinya, **sebagian siswa kelas XI dibebaskan dari piket hari Sabtu**.
+<BlockMath math="\begin{aligned}
+&(1)\quad L \Leftrightarrow W \\
+&(2)\quad B \Rightarrow W \\
+&(3)\quad \neg B \Rightarrow H \\
+&(4)\quad S \Rightarrow \neg W
+\end{aligned}" />
 
-Pilihan lain tidak pasti benar:
+Premis 1 adalah biimplikasi. **"Jika dan hanya jika" berlaku dua arah**, yaitu <InlineMath math="L \Rightarrow W" /> dan juga <InlineMath math="W \Rightarrow L" />. Premis 2, 3, dan 4 hanya berlaku satu arah. Alat lain yang kamu perlukan adalah kontrapositif: <InlineMath math="P \Rightarrow Q" /> selalu setara dengan <InlineMath math="\neg Q \Rightarrow \neg P" />, sedangkan membalik menjadi <InlineMath math="Q \Rightarrow P" /> tidak sah.
 
-- "Semua siswa kelas XI adalah anggota paduan suara" membalik premis 1.
-- Premis 2 hanya menyebut **sebagian** anggota paduan suara ikut olimpiade, jadi anggota yang tidak ikut olimpiade belum tentu dibebaskan dari piket.
-- Peserta olimpiade bisa saja bukan anggota paduan suara. Premis hanya menyebut sebagian anggota paduan suara ikut olimpiade.
-- "Sebagian anggota paduan suara bukan siswa kelas XI" bertentangan dengan premis 1.
+Sekarang susun rantainya dari "robot tidak dalam mode hemat daya".
 
-Jadi, simpulan yang pasti benar adalah sebagian siswa kelas XI dibebaskan dari piket hari Sabtu.
+- Kontrapositif premis 3 adalah <InlineMath math="\neg H \Rightarrow B" />. Kalau robot tidak dalam mode hemat daya, baterai cadangan pasti dipasang.
+- Premis 2 meneruskan <InlineMath math="B \Rightarrow W" />. Robot menyelesaikan lintasan kurang dari <InlineMath math="90" /> detik.
+- Arah kedua premis 1 meneruskan <InlineMath math="W \Rightarrow L" />. Tim lolos ke tingkat nasional.
+
+<BlockMath math="\neg H \Rightarrow B \Rightarrow W \Rightarrow L" />
+
+Jadi, "jika robot tidak dijalankan dalam mode hemat daya, tim lolos ke tingkat nasional" sah. Langkah terakhir hanya bisa diambil karena premis 1 berbentuk "jika dan hanya jika". Kalau premis 1 hanya berbunyi "jika lolos, maka di bawah <InlineMath math="90" /> detik", rantainya putus di <InlineMath math="W" />.
+
+Cek dari arah sebaliknya. Bentuk kontrapositif simpulan itu adalah <InlineMath math="\neg L \Rightarrow H" />. Kalau tim tidak lolos, robot tidak di bawah <InlineMath math="90" /> detik (premis 1), jadi baterai cadangan tidak dipasang (kontrapositif premis 2), sehingga robot dalam mode hemat daya (premis 3). Hasilnya sama.
+
+Keempat pilihan lain masing-masing memakai satu langkah terbalik.
+
+- "Jika tim lolos, baterai cadangan dipasang" memakai <InlineMath math="W \Rightarrow B" />, kebalikan premis 2. Premis 2 hanya bilang baterai cadangan cukup untuk membuat robot cepat, bukan satu-satunya cara.
+- "Jika robot dalam mode hemat daya, tim tidak lolos" memakai <InlineMath math="H \Rightarrow \neg B" />, kebalikan premis 3. Robot bisa saja memakai baterai cadangan sekaligus mode hemat daya, tetap cepat, dan lolos.
+- "Jika sensor tidak rusak, tim lolos" menegasikan kedua sisi premis 4 tanpa menukar urutannya. Sensor yang baik tidak menjamin robot cepat, misalnya kalau baterai cadangan tidak dipasang.
+- "Jika tim tidak lolos, sensor rusak" benar sampai <InlineMath math="\neg L \Rightarrow \neg W" />, lalu memakai <InlineMath math="\neg W \Rightarrow S" />, kebalikan premis 4. Robot bisa lambat karena sebab lain.
+
+Jadi, simpulan yang sah adalah bahwa jika robot tidak dijalankan dalam mode hemat daya, tim robotik sekolah lolos ke tingkat nasional.

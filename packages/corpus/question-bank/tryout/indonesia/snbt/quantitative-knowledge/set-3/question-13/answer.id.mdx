@@ -1,20 +1,44 @@
-Semua titik yang berjarak sama dari <InlineMath math="A" /> dan <InlineMath math="B" /> terletak pada **sumbu ruas garis <InlineMath math="AB" />**, yaitu garis yang tegak lurus <InlineMath math="AB" /> dan melalui titik tengahnya. Titik <InlineMath math="P" /> adalah perpotongan garis itu dengan <InlineMath math="y=2x" />.
+Daerah dua lapis adalah tempat lipatan kertas menumpuk di atas sisa kertas. Rencananya: cari garis lipatan, cari bagian yang terlipat, lihat ke mana bagian itu jatuh setelah dilipat, lalu **ambil hanya bagian yang masih berada di atas kertas**.
 
-# Persamaan sumbu ruas garis
+# Persamaan garis lipatan
 
-Titik tengah <InlineMath math="AB" /> adalah <InlineMath math="\left(\frac{1+5}{2},\frac{3-1}{2}\right)=(3,1)" />. Gradien <InlineMath math="AB" /> adalah <InlineMath math="\frac{-1-3}{5-1}=-1" />, jadi **gradien sumbunya adalah kebalikan negatifnya**, yaitu 1.
-
-<BlockMath math="y-1=1(x-3)\quad\Rightarrow\quad y=x-2" />
-
-# Titik potong dengan garis
+Setiap titik pada garis lipatan tidak bergerak saat kertas dilipat, jadi jaraknya ke <InlineMath math="A" /> sama dengan jaraknya ke <InlineMath math="M" />. Pasang koordinat <InlineMath math="A(0,0)" />, <InlineMath math="B(16,0)" />, <InlineMath math="C(16,6)" />, dan <InlineMath math="D(0,6)" />, sehingga <InlineMath math="M(8,6)" />. Garis lipatan adalah **garis sumbu ruas <InlineMath math="AM" />**.
 
 <BlockMath math="\begin{aligned}
-2x&=x-2\\
-x&=-2,\qquad y=2(-2)=-4
+x^2+y^2&=(x-8)^2+(y-6)^2\\
+0&=-16x+64-12y+36\\
+4x+3y&=25
 \end{aligned}" />
 
-Jadi <InlineMath math="P(-2,-4)" /> dan <InlineMath math="a+b=-6" />. **Cek jaraknya**: <InlineMath math="PA^2=(-3)^2+(-7)^2=58" /> dan <InlineMath math="PB^2=(-7)^2+(-3)^2=58" />.
+Garis ini memotong sisi <InlineMath math="AB" /> di <InlineMath math="P\left(\tfrac{25}{4},0\right)" /> dan sisi <InlineMath math="CD" /> di <InlineMath math="Q\left(\tfrac{7}{4},6\right)" />. Pada sisi <InlineMath math="AD" />, garis itu butuh <InlineMath math="y=\tfrac{25}{3}>6" />, jadi titiknya di luar kertas.
 
-Nilai 4 muncul jika sumbu diberi gradien <InlineMath math="-1" />, sama dengan gradien <InlineMath math="AB" />, sehingga titik potongnya <InlineMath math="\left(\tfrac43,\tfrac83\right)" />. Nilai <InlineMath math="-2" /> dan <InlineMath math="-4" /> hanya memberi absis atau ordinat <InlineMath math="P" />. Nilai 6 adalah hasil yang benar dengan tanda terbalik.
+# Bagian yang terlipat
 
-Jadi, nilai <InlineMath math="a+b" /> adalah <InlineMath math="-6" />.
+Bagian yang terlipat adalah **bagian yang sepihak dengan <InlineMath math="A" /> terhadap garis lipatan**, yaitu segi empat <InlineMath math="APQD" />. Bentuknya trapesium dengan sisi sejajar <InlineMath math="AP=\tfrac{25}{4}" /> dan <InlineMath math="DQ=\tfrac{7}{4}" />, serta tinggi <InlineMath math="6" />.
+
+<BlockMath math="L_{APQD}=\tfrac{1}{2}\left(\tfrac{25}{4}+\tfrac{7}{4}\right)\cdot 6=24" />
+
+# Tempat jatuhnya lipatan
+
+Melipat sama dengan mencerminkan bagian itu terhadap garis lipatan. Titik <InlineMath math="P" /> dan <InlineMath math="Q" /> tetap di tempat, <InlineMath math="A" /> jatuh di <InlineMath math="M" />, dan <InlineMath math="D" /> jatuh di bayangannya <InlineMath math="D'" />.
+
+<BlockMath math="D'=\left(\tfrac{56}{25},\tfrac{192}{25}\right),\qquad \tfrac{192}{25}=7{,}68>6" />
+
+Jadi **sudut <InlineMath math="D'" /> menjorok keluar melewati sisi <InlineMath math="CD" />**. Lipatan yang jatuh berbentuk segi empat <InlineMath math="MPQD'" />, dan sisi <InlineMath math="QM" /> tepat berada di tepi <InlineMath math="CD" />. Bagian lipatan yang masih berada di atas kertas adalah segitiga <InlineMath math="PQM" />, sedangkan segitiga <InlineMath math="QD'M" /> menggantung di luar tepi.
+
+# Luas daerah dua lapis
+
+Segitiga <InlineMath math="PQM" /> beralas <InlineMath math="QM" /> pada sisi <InlineMath math="CD" />, dan tingginya adalah jarak <InlineMath math="P" /> ke sisi itu.
+
+<BlockMath math="\begin{aligned}
+QM&=8-\tfrac{7}{4}=\tfrac{25}{4}\\
+L_{PQM}&=\tfrac{1}{2}\cdot\tfrac{25}{4}\cdot 6=\tfrac{75}{4}
+\end{aligned}" />
+
+Cek: segitiga <InlineMath math="QD'M" /> yang menggantung beralas <InlineMath math="\tfrac{25}{4}" /> dan bertinggi <InlineMath math="\tfrac{192}{25}-6=\tfrac{42}{25}" />, jadi luasnya <InlineMath math="\tfrac{21}{4}" />. Lalu <InlineMath math="\tfrac{75}{4}+\tfrac{21}{4}=24" />, **tepat seluas seluruh lipatan**.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="24\text{ cm}^2" /> menghitung seluruh lipatan dan **lupa bahwa satu sudutnya menjorok keluar tepi**. Pilihan <InlineMath math="\tfrac{21}{4}\text{ cm}^2" /> adalah bagian yang menggantung, bukan bagian di atas kertas. Pilihan <InlineMath math="\tfrac{75}{2}\text{ cm}^2" /> lupa faktor <InlineMath math="\tfrac{1}{2}" /> pada luas segitiga. Pilihan <InlineMath math="\tfrac{15}{2}\text{ cm}^2" /> memakai panjang lipatan <InlineMath math="PQ=\tfrac{15}{2}" /> seolah-olah itu luas.
+
+Jadi, luas daerah kertas yang terdiri atas dua lapis adalah <InlineMath math="\tfrac{75}{4}\text{ cm}^2" />.

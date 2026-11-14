@@ -14,7 +14,7 @@ Die Produktfunktion multipliziert <InlineMath math="f(x)" /> und <InlineMath mat
 <ContentStack>
   <MathVisual
     title={<><InlineMath math="f(x) = x" />, <InlineMath math="g(x) = 2" /> und <InlineMath math="(f \cdot g)(x) = 2x" /></>}
-    description={<>An jeder Stelle ist die Produktgerade doppelt so hoch wie <InlineMath math="f" />, weil <InlineMath math="g(x) = 2" /> jeden Wert mit 2 multipliziert. Bei <InlineMath math="x = 2" />: <InlineMath math="2 \cdot 2 = 4" />.</>}
+    description={<>An jeder Stelle ist die Produktgerade doppelt so hoch wie <InlineMath math="f" />, weil <InlineMath math="g(x) = 2" /> jeden Wert mit <InlineMath math="2" /> multipliziert. Bei <InlineMath math="x = 2" />: <InlineMath math="2 \cdot 2 = 4" />.</>}
     labels={{
       f: <InlineMath math="f(x) = x" />,
       g: <InlineMath math="g(x) = 2" />,
@@ -76,11 +76,11 @@ Wir finden die **Schnittmenge** von <InlineMath math="D_f" /> und <InlineMath ma
 
 Die resultierende Funktion aus der Multiplikation ist also <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /> mit dem Definitionsbereich aller reellen Zahlen.
 
-Multiplizier die Werte Stelle für Stelle: bei <InlineMath math="x = 2" /> ist <InlineMath math="f(2) \cdot g(2) = 4 \cdot 1 = 4" />, bei <InlineMath math="x = 3" /> ist es <InlineMath math="9 \cdot 2 = 18" />. Das Produkt ist 0 bei <InlineMath math="x = 0" /> und <InlineMath math="x = 1" />, wo einer der Faktoren 0 ist.
+Multiplizier die Werte Stelle für Stelle: bei <InlineMath math="x = 2" /> ist <InlineMath math="f(2) \cdot g(2) = 4 \cdot 1 = 4" />, bei <InlineMath math="x = 3" /> ist es <InlineMath math="9 \cdot 2 = 18" />. Das Produkt ist <InlineMath math="0" /> bei <InlineMath math="x = 0" /> und <InlineMath math="x = 1" />, wo einer der Faktoren <InlineMath math="0" /> ist.
 
 <BarChart
   title={<>Werte von <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /></>}
-  description={<>Balken von <InlineMath math="(f \cdot g)(x) = x^2(x - 1)" /> für <InlineMath math="x = -1, 0, 1, 2, 3" />: <InlineMath math="-2" />, 0, 0, 4 und 18.</>}
+  description={<>Balken von <InlineMath math="(f \cdot g)(x) = x^2(x - 1)" /> für <InlineMath math="x = -1, 0, 1, 2, 3" />: <InlineMath math="-2" />, <InlineMath math="0" />, <InlineMath math="0" />, <InlineMath math="4" /> und <InlineMath math="18" />.</>}
   yAxisLabel="Produkt"
   data={[-1, 0, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 2 * (x - 1) }))}
   chartConfig={{ value: { label: "Produkt", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -143,7 +143,7 @@ Steht derselbe Faktor im Zähler und Nenner, dürfen wir ihn nur kürzen, wenn e
 
 Die vereinfachte Formel behält die **ursprüngliche Einschränkung des Definitionsbereichs**. Bei der Eingabe zwei ergeben sowohl der Bruch als auch der vereinfachte Ausdruck drei. Bei der Eingabe eins ist der ursprüngliche Bruch nicht definiert, obwohl der lineare Ausdruck zwei ergibt.
 
-<InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" /> hat als Graphen die Gerade <InlineMath math="y = x + 1" /> ohne einen Punkt. Bei <InlineMath math="x = 1" /> ist der Bruch nicht definiert, also hat die Gerade bei <InlineMath math="(1, 2)" /> ein Loch. Bei <InlineMath math="x = 2" /> liefern beide Formeln 3.
+<InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" /> hat als Graphen die Gerade <InlineMath math="y = x + 1" /> ohne einen Punkt. Bei <InlineMath math="x = 1" /> ist der Bruch nicht definiert, also hat die Gerade bei <InlineMath math="(1, 2)" /> ein Loch. Bei <InlineMath math="x = 2" /> liefern beide Formeln <InlineMath math="3" />.
 
 <MathVisual
   title={<>Die Gerade <InlineMath math="y = x + 1" /> mit einem Loch bei <InlineMath math="(1, 2)" /></>}

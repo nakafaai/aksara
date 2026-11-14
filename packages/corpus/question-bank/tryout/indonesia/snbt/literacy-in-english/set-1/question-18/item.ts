@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "argument-evaluation",
   },
-  stimulus: "shipping-container",
+  stimulus: "longitude-clock",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Before containers, a cargo ship could spend as much time in port as at sea.",
+            "It proves that the Board favoured astronomers over clockmakers, since an astronomer who backed lunar distances sat on it.",
         },
         {
-          column: 2,
-          label: "The *Ideal X* carried its containers from Houston to Newark.",
+          correct: false,
+          label:
+            "It was justified, because H4 had not reached the accuracy that the Act asked for.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "The passage links the decline of some old city-centre harbours to their lack of room to expand.",
+            "It can be defended as a demand for proof that the method would work again and in other makers' hands.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Containerisation increased the number of dock jobs in port cities.",
+            "Its demand for copies was linked to what a navy, rather than a single ship, would need.",
+        },
+        {
+          correct: false,
+          label:
+            "Asking for a second trial was sensible, but asking for copies by other makers went further than was reasonable.",
         },
       ],
     },

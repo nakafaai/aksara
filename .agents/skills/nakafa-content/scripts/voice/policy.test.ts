@@ -15,7 +15,6 @@ const blockingRules = [
   "duplicated-list-ordinal",
   "empty-example-preface",
   "evidence-carrying-metaphor",
-  "exact-line-smoothing",
   "external-link-invalid-placement",
   "forbidden-control-character",
   "german-formal-address",

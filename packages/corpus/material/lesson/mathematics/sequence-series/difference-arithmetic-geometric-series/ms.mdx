@@ -1,0 +1,141 @@
+export const metadata = {
+  title: "Beza antara Siri Aritmetik dan Siri Geometri",
+  description: "Bandingkan siri aritmetik dan siri geometri melalui sebutan yang ditambah, kemudian pilih dan guna rumus hasil tambah terhingga yang sesuai.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Siri Aritmetik
+
+Siri aritmetik ialah **hasil tambah** sebutan-sebutan bagi **janjang aritmetik**. Ingat, janjang aritmetik ialah jujukan yang mempunyai **beza (beza sepunya)** yang tetap antara sebutannya (<InlineMath math="b" />).
+
+Jadi, kita menambah sebutan yang mengikut corak: <InlineMath math="a, a+b, a+2b, a+3b, \dots" />.
+
+Hasil tambah <InlineMath math="n" /> sebutan pertama (<InlineMath math="S_n" />) bagi siri aritmetik boleh dikira menggunakan rumus:
+
+<BlockMath math="S_n = \frac{n}{2}(2a + (n-1)b)" />
+
+Rumus yang setara ialah:
+
+<BlockMath math="S_n = \frac{n}{2}(a + U_n)" />
+
+Di sini, <InlineMath math="a" /> ialah sebutan pertama dan <InlineMath math="U_n" /> ialah sebutan ke-<InlineMath math="n" />.
+
+Bayangkan kamu sedang menyusun batu bata. Lapisan pertama ada <InlineMath math="1" /> batu bata, lapisan kedua ada <InlineMath math="3" /> batu bata, lapisan ketiga ada <InlineMath math="5" /> batu bata, dan seterusnya (beza sepunya <InlineMath math="b=2" />). Siri aritmetik mewakili **jumlah** batu bata yang diperlukan untuk membina susunan setinggi <InlineMath math="n" /> lapisan.
+
+## Siri Geometri
+
+Siri geometri ialah **hasil tambah** sebutan-sebutan bagi **janjang geometri**. Ingat, janjang geometri ialah jujukan yang mempunyai **nisbah (nisbah sepunya)** yang tetap antara sebutannya (<InlineMath math="r" />).
+
+Jadi, kita menambah sebutan yang mengikut corak: <InlineMath math="a, ar, ar^2, ar^3, \dots" />.
+
+Hasil tambah <InlineMath math="n" /> sebutan pertama (<InlineMath math="S_n" />) bagi siri geometri boleh dikira menggunakan rumus:
+
+<BlockMath math="S_n = \frac{a(r^n - 1)}{r-1}" />
+
+Rumus ini digunakan apabila <InlineMath math="r \neq 1" />. Dalam rumus ini, <InlineMath math="a" /> ialah sebutan pertama dan <InlineMath math="r" /> ialah nisbah sepunya.
+
+Jika <InlineMath math="r=1" />, setiap sebutan sama dengan <InlineMath math="a" />, jadi hasil tambah bagi kes khas ini ialah:
+
+<BlockMath math="S_n=na" />
+
+Katakan sebuah bengkel menghasilkan <InlineMath math="1" />, kemudian <InlineMath math="2" />, kemudian <InlineMath math="4" /> komponen baharu dalam jam-jam yang berturutan. Pengeluaran setiap jam mempunyai nisbah <InlineMath math="r=2" />. Siri geometri memberikan bilangan **terkumpul** komponen baharu yang dihasilkan dalam tempoh <InlineMath math="n \text{ jam}" />. Dalam <InlineMath math="3 \text{ jam}" /> pertama, bengkel itu menghasilkan <InlineMath math="1+2+4=7 \text{ komponen}" /> kesemuanya.
+
+## Siri Aritmetik dan Siri Geometri
+
+Jadual ini meletakkan dua rumus hasil tambah itu bersebelahan, supaya sebutan yang ditambah dan rumus yang terhasil boleh dibandingkan baris demi baris.
+
+| Ciri | Siri Aritmetik | Siri Geometri |
+| ----------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| **Asas** | Hasil tambah sebutan dalam janjang aritmetik (beza sepunya <InlineMath math="b" />) | Hasil tambah sebutan dalam janjang geometri (nisbah sepunya <InlineMath math="r" />) |
+| **Rumus hasil tambah** <InlineMath math="S_n" /> | <InlineMath math="\frac{n}{2}(2a + (n-1)b)" /> | <InlineMath math="\frac{a(r^n - 1)}{r-1}" /> |
+| **Corak** | Penambahan/penolakan tetap | Pendaraban/pembahagian tetap |
+
+Sebelum menambah, lihat dahulu sebutan geometri itu sendiri: <InlineMath math="5, 10, 20, 40, 80" />. Setiap palang dua kali ganda palang sebelumnya, dan itulah sebabnya hasil tambah geometri cepat meninggalkan hasil tambah aritmetik jauh di belakang.
+
+<BarChart
+  title={<>Sebutan siri geometri</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan sebutan <InlineMath math="5 \cdot 2^{n-1}" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Sebutan"
+  data={[["1", 5 * 2 ** 0], ["2", 5 * 2 ** 1], ["3", 5 * 2 ** 2], ["4", 5 * 2 ** 3], ["5", 5 * 2 ** 4]].map(([name, value]) => ({ name, value }))}
+  chartConfig={{ value: { label: "Sebutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Mengira Hasil Tambah Aritmetik dan Geometri
+
+Untuk siri aritmetik:
+
+<BlockMath math="5+8+11+14+17" />
+
+Siri ini mempunyai **beza sepunya** <InlineMath math="b=3" />. Hasil tambah lima sebutan pertamanya ialah:
+
+<BlockMath math="S_5=\frac52(5+17)=55" />
+
+Untuk siri geometri:
+
+<BlockMath math="5+10+20+40+80" />
+
+Siri ini mempunyai nisbah sepunya <InlineMath math="r=2" />. Hasil tambah lima sebutan pertamanya ialah:
+
+<BlockMath math="S_5=5\frac{2^5-1}{2-1}=155" />
+
+Lihat bagaimana hasil tambah aritmetik bertambah. Setiap palang ialah jumlah selepas <InlineMath math="n" /> sebutan bagi <InlineMath math="5 + 8 + 11 + 14 + 17" />: <InlineMath math="5, 13, 24, 38, 55" />. Setiap palang baharu menambah satu sebutan yang <InlineMath math="3" /> lebih besar daripada sebutan yang ditambah sebelumnya.
+
+<BarChart
+  title={<>Hasil tambah separa siri aritmetik</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="S_n = \frac{n}{2}(2 \cdot 5 + (n-1)3)" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Hasil tambah"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (n / 2) * (2 * 5 + (n - 1) * 3) };
+  })}
+  chartConfig={{ value: { label: "Hasil tambah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Corak Sebutan dan Hasil Tambah Separa
+
+Sebutan aritmetik bergantung secara linear pada nombor sebutan, dan hasil tambah separanya berbentuk kuadratik apabila bezanya bukan sifar. Dalam janjang geometri, **setiap sebutan didarab dengan nisbah yang tetap**. Nisbah positif selain satu memberikan corak eksponen. Nisbah negatif menyebabkan tanda sebutan berselang-seli.
+
+Untuk dua contoh yang baru dikira, bandingkan hasil tambah terkumpul selepas setiap sebutan ditambah:
+
+| Bilangan sebutan | Hasil tambah aritmetik | Hasil tambah geometri |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="5" /> | <InlineMath math="5" /> |
+| <InlineMath math="2" /> | <InlineMath math="13" /> | <InlineMath math="15" /> |
+| <InlineMath math="3" /> | <InlineMath math="24" /> | <InlineMath math="35" /> |
+| <InlineMath math="4" /> | <InlineMath math="38" /> | <InlineMath math="75" /> |
+| <InlineMath math="5" /> | <InlineMath math="55" /> | <InlineMath math="155" /> |
+
+Nama sesuatu siri datang daripada jujukan sebutannya. Hasil tambah separa <InlineMath math="S_1,S_2,S_3,\ldots" /> boleh mengikut corak yang berbeza.
+
+Sekarang lihat hasil tambah geometri bagi <InlineMath math="5 + 10 + 20 + 40 + 80" />: <InlineMath math="5, 15, 35, 75, 155" />. Setiap sebutan baharu sama dengan hasil tambah semua sebutan sebelumnya ditambah <InlineMath math="5" />, jadi jumlahnya lebih kurang berganda dua pada setiap langkah. Bandingkan ketinggian palang dengan carta aritmetik tadi: sebutan pertamanya sama, tetapi pertumbuhannya sangat berbeza.
+
+<BarChart
+  title={<>Hasil tambah separa siri geometri</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="S_n = 5(2^n - 1)" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />.</>}
+  yAxisLabel="Hasil tambah"
+  data={Array.from({ length: 5 }, (_, i) => {
+    const n = i + 1;
+    return { name: `${n}`, value: (5 * (2 ** n - 1)) / (2 - 1) };
+  })}
+  chartConfig={{ value: { label: "Hasil tambah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Latihan
+
+Kelaskan setiap siri dan kira hasil tambahnya. <Highlight>Tentukan jenisnya daripada sebutan itu sendiri</Highlight>, kemudian guna rumus hasil tambah yang sepadan. Kedua-dua siri cukup pendek untuk kamu semak rumus itu dengan penambahan terus.
+
+1. <InlineMath math="30+25+20+15+10" />
+2. <InlineMath math="2+6+18+54+162" />
+
+### Penyelesaian
+
+**Soalan 1**. Siri pertama ialah siri **aritmetik** dengan <InlineMath math="b=-5" />. Guna sebutan pertama dan sebutan terakhirnya untuk mengira hasil tambah:
+
+<BlockMath math="S_5=\frac52(30+10)=100" />
+
+**Soalan 2**. Siri kedua ialah siri **geometri** dengan <InlineMath math="r=3" />. Guna nisbah itu untuk mengira hasil tambah:
+
+<BlockMath math="S_5=2\frac{3^5-1}{3-1}=242" />

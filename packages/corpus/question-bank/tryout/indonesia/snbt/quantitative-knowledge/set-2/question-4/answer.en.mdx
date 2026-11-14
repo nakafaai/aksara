@@ -1,22 +1,45 @@
-Both equations are symmetric in <InlineMath math="x" /> and <InlineMath math="y" />, so **let <InlineMath math="s=x+y" /> and <InlineMath math="p=xy" />**. The second equation factors as <InlineMath math="xy(x+y)" />.
+The expression <InlineMath math="S(x)=|x-2|+|x+7|" /> is **the sum of the distances** from <InlineMath math="x" /> to <InlineMath math="2" /> and to <InlineMath math="-7" /> on the number line. The plan: write <InlineMath math="S(x)" /> without absolute values, find the solution set for each <InlineMath math="k" />, count its integers, and then find the <InlineMath math="k" /> that give exactly <InlineMath math="20" />.
 
-<BlockMath math="s+p=11,\qquad sp=30" />
+# The shape of the distance function
 
-# Finding s and p
+The absolute values change form at <InlineMath math="x=-7" /> and <InlineMath math="x=2" />, so there are three regions.
 
-The numbers <InlineMath math="s" /> and <InlineMath math="p" /> add up to 11 and multiply to 30, so they are the roots of <InlineMath math="t^2-11t+30=0" />, namely 5 and 6. There are **two possibilities**: <InlineMath math="(s,p)=(5,6)" /> or <InlineMath math="(s,p)=(6,5)" />.
+<BlockMath math="\begin{aligned}
+x\le-7&:\quad S(x)=(2-x)+(-x-7)=-2x-5\\
+-7\le x\le2&:\quad S(x)=(2-x)+(x+7)=9\\
+x\ge2&:\quad S(x)=(x-2)+(x+7)=2x+5
+\end{aligned}" />
 
-Each possibility must give real values of <InlineMath math="x" /> and <InlineMath math="y" />. They are the roots of <InlineMath math="t^2-st+p=0" />.
+Between <InlineMath math="-7" /> and <InlineMath math="2" />, **the value of <InlineMath math="S(x)" /> stays at <InlineMath math="9" />**, because the two distances always add up to the length of that segment. So <InlineMath math="S(x)\ge9" /> for every <InlineMath math="x" />, and for <InlineMath math="k<9" /> there's no solution.
 
-| <InlineMath math="(s,p)" /> | Equation | <InlineMath math="(x,y)" /> | <InlineMath math="x^2+y^2=s^2-2p" /> |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="(5,6)" /> | <InlineMath math="t^2-5t+6=0" /> | 2 and 3 | <InlineMath math="25-12=13" /> |
-| <InlineMath math="(6,5)" /> | <InlineMath math="t^2-6t+5=0" /> | 1 and 5 | <InlineMath math="36-10=26" /> |
+# The solution set
 
-# Choosing the largest value
+For <InlineMath math="k\ge9" />, the whole middle region satisfies the inequality. On the right, <InlineMath math="2x+5\le k" /> gives <InlineMath math="x\le\tfrac{k-5}{2}" />. On the left, <InlineMath math="-2x-5\le k" /> gives <InlineMath math="x\ge-\tfrac{k+5}{2}" />. Together:
 
-Both pairs are real and satisfy the system. Check the second pair: <InlineMath math="1+5+5=11" /> and <InlineMath math="1^2(5)+1(5^2)=30" />. The **largest** value is 26.
+<BlockMath math="-\frac{k+5}{2}\le x\le\frac{k-5}{2}" />
 
-The value 13 uses only the first possibility. The values 25 and 36 are <InlineMath math="s^2" />, which forgets to subtract <InlineMath math="2p" />. The value 31 subtracts <InlineMath math="p" /> instead of <InlineMath math="2p" />.
+This interval is centered at <InlineMath math="-\tfrac52" /> and has length <InlineMath math="k" />. The integers in the middle region, <InlineMath math="-6" /> to <InlineMath math="1" />, **count as solutions too**.
 
-So the largest possible value of <InlineMath math="x^2+y^2" /> is **26**.
+# Counting by parity
+
+How many integers the interval holds depends on **whether its endpoints are integers**, and that's decided by the parity of <InlineMath math="k" />.
+
+<BlockMath math="\begin{aligned}
+k\ \text{odd}&:\quad \text{integers } -\tfrac{k+5}{2},\ \ldots,\ \tfrac{k-5}{2},\ \text{count } \tfrac{k-5}{2}+\tfrac{k+5}{2}+1=k+1\\
+k\ \text{even}&:\quad \text{integers } -\tfrac{k+4}{2},\ \ldots,\ \tfrac{k-6}{2},\ \text{count } \tfrac{k-6}{2}+\tfrac{k+4}{2}+1=k
+\end{aligned}" />
+
+For odd <InlineMath math="k" />, <InlineMath math="k+1=20" /> gives <InlineMath math="k=19" />, and <InlineMath math="19" /> is indeed odd. For even <InlineMath math="k" />, <InlineMath math="k=20" />, and <InlineMath math="20" /> is indeed even. So there are two values of <InlineMath math="k" />, and their sum is <InlineMath math="19+20=39" />.
+
+# Checking the result
+
+For <InlineMath math="k=19" />, the solutions are <InlineMath math="-12\le x\le7" />, which holds <InlineMath math="7-(-12)+1=20" /> integers. For <InlineMath math="k=20" />, the solutions are <InlineMath math="-12.5\le x\le7.5" />, which holds the integers <InlineMath math="-12" /> to <InlineMath math="7" />, again <InlineMath math="20" />. For <InlineMath math="k=21" />, the interval becomes <InlineMath math="-13\le x\le8" /> and holds <InlineMath math="22" /> integers, so **the count jumps from twenty straight to twenty-two**.
+
+# Traps in the other options
+
+- <InlineMath math="19" /> assumes the count is always <InlineMath math="k+1" />, so it misses the even case.
+- <InlineMath math="20" /> assumes the count is always <InlineMath math="k" />, so it misses the odd case.
+- <InlineMath math="55" /> only counts solutions from the two outer regions and **forgets the eight integers in the middle region**. Then exactly <InlineMath math="20" /> integers happen at <InlineMath math="k=27" /> and <InlineMath math="k=28" />.
+- <InlineMath math="60" /> takes <InlineMath math="19\le k\le21" />, but at <InlineMath math="k=21" /> the count is already <InlineMath math="22" />.
+
+So the sum of all possible values of <InlineMath math="k" /> is <InlineMath math="39" />.

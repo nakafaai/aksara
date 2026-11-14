@@ -1,24 +1,40 @@
-An equation with algebraic fractions has to be solved together with **the condition that no denominator is zero**. Since <InlineMath math="x^2-4=(x-2)(x+2)" />, the values <InlineMath math="x=2" /> and <InlineMath math="x=-2" /> are excluded from the start.
+Each of the four statements needs its own proof or counterexample. The main tool is the same every time: write <InlineMath math="x=n+f" />, with the **integer part** <InlineMath math="n=\lfloor x\rfloor" /> and the **fractional part** <InlineMath math="f" />, where <InlineMath math="0\le f<1" />.
 
-# Clearing the denominators
+# Statement one
 
-**Multiply both sides** by <InlineMath math="(x-2)(x+2)" />.
+Let <InlineMath math="n=\lfloor x\rfloor" />. The equation becomes <InlineMath math="x^2=4n-3" />. The left side isn't negative, so <InlineMath math="n\ge 1" />, which gives <InlineMath math="x\ge 1" /> and <InlineMath math="x=\sqrt{4n-3}" />. For <InlineMath math="\lfloor x\rfloor" /> to really equal <InlineMath math="n" />, you need <InlineMath math="n\le x<n+1" />. Every side is positive, so you may square.
 
 <BlockMath math="\begin{aligned}
-x(x+2)+4(x-2)&=8\\
-x^2+2x+4x-8&=8\\
-x^2+6x-16&=0\\
-(x+8)(x-2)&=0
+n^2\le 4n-3 &\iff (n-1)(n-3)\le 0 \iff 1\le n\le 3\\
+4n-3<(n+1)^2 &\iff (n-1)^2+3>0
 \end{aligned}" />
 
-The candidates are <InlineMath math="x=-8" /> and <InlineMath math="x=2" />.
+The second condition always holds, so <InlineMath math="n=1" />, <InlineMath math="n=2" />, or <InlineMath math="n=3" />, giving <InlineMath math="x=1" />, <InlineMath math="x=\sqrt{5}" />, and <InlineMath math="x=3" />. For <InlineMath math="\sqrt{5}" />, you have <InlineMath math="2<\sqrt{5}<3" />, so <InlineMath math="\lfloor\sqrt{5}\rfloor=2" /> and the equation holds. If you simply replace <InlineMath math="\lfloor x\rfloor" /> with <InlineMath math="x" />, you only get <InlineMath math="1" /> and <InlineMath math="3" /> and **lose the solution <InlineMath math="\sqrt{5}" />**. There are exactly <InlineMath math="3" /> solutions, so statement one is true.
 
-# Checking the condition
+# Statement two
 
-The value <InlineMath math="x=2" /> makes a denominator zero, so **<InlineMath math="x=2" /> is not a solution**. It appears because multiplying by <InlineMath math="(x-2)(x+2)" /> adds an extraneous root. Check <InlineMath math="x=-8" />: the left side is <InlineMath math="\frac{-8}{-10}+\frac{4}{-6}=\frac45-\frac23=\frac2{15}" /> and the right side is <InlineMath math="\frac8{60}=\frac2{15}" />.
+With <InlineMath math="x=n+f" />, you get <InlineMath math="\lfloor 2x\rfloor=2n+\lfloor 2f\rfloor" />. The value of <InlineMath math="\lfloor 2f\rfloor" /> is <InlineMath math="0" /> when <InlineMath math="f<\tfrac{1}{2}" /> and <InlineMath math="1" /> when <InlineMath math="f\ge\tfrac{1}{2}" />. So the left side **can only be <InlineMath math="3n" /> or <InlineMath math="3n+1" />**.
 
-The only solution is <InlineMath math="x=-8" />, so the sum is <InlineMath math="-8" />.
+<BlockMath math="\begin{aligned}
+3n=10 &\implies n=\tfrac{10}{3}\ \text{is not an integer}\\
+3n+1=10 &\implies n=3\ \text{and}\ f\ge\tfrac{1}{2}
+\end{aligned}" />
 
-The value <InlineMath math="-6" /> adds both candidates without checking the condition. The value 2 takes only the extraneous root. The values 6 and 8 come from sign slips when factoring.
+The second case gives <InlineMath math="3.5\le x<4" />. For example, <InlineMath math="x=3.5" /> gives <InlineMath math="\lfloor 3.5\rfloor+\lfloor 7\rfloor=3+7=10" />. The equation does have solutions, so statement two is false. The trap is trying only <InlineMath math="3n=10" />.
 
-So the sum of all solutions is <InlineMath math="-8" />.
+# Statement three
+
+Split into two cases by the fractional part <InlineMath math="f" />.
+
+<BlockMath math="\begin{aligned}
+0\le f<\tfrac{1}{2}&:\quad \lfloor x\rfloor+\left\lfloor x+\tfrac{1}{2}\right\rfloor=n+n=2n=\lfloor 2x\rfloor\\
+\tfrac{1}{2}\le f<1&:\quad \lfloor x\rfloor+\left\lfloor x+\tfrac{1}{2}\right\rfloor=n+(n+1)=2n+1=\lfloor 2x\rfloor
+\end{aligned}" />
+
+In the first case, <InlineMath math="x+\tfrac{1}{2}" /> is still below <InlineMath math="n+1" />. In the second case, <InlineMath math="x+\tfrac{1}{2}" /> has reached <InlineMath math="n+1" /> but not <InlineMath math="n+2" />. **The two cases cover every real number**, so the identity always holds and statement three is true.
+
+# Statement four
+
+Let <InlineMath math="m=\lfloor x\rfloor" />. The inequality is <InlineMath math="m^2-m-6=(m-3)(m+2)<0" />, so <InlineMath math="-2<m<3" />. Since <InlineMath math="m" /> is an integer, it's <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, or <InlineMath math="2" />. Now translate back to <InlineMath math="x" />: <InlineMath math="\lfloor x\rfloor\ge -1" /> means <InlineMath math="x\ge -1" />, and <InlineMath math="\lfloor x\rfloor\le 2" /> means <InlineMath math="x<3" />. The solution set is <InlineMath math="-1\le x<3" />, so statement four is true. The answer <InlineMath math="-2<x<3" /> treats <InlineMath math="\lfloor x\rfloor" /> as if it were <InlineMath math="x" />, but <InlineMath math="x=-1.5" /> gives <InlineMath math="m=-2" />, and **the value <InlineMath math="(-2)^2+2-6=0" /> isn't less than zero**.
+
+So statement one is true, statement two is false, statement three is true, and statement four is true.

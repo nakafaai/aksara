@@ -82,7 +82,7 @@ Perbandingan bergantung pada **arah grafik**. Basis lebih besar dari satu memper
 
 <MathVisual
   title={<>Urutan dengan dua basis</>}
-  description={<>Kurva <InlineMath math="y = \log_2 x" /> dan <InlineMath math="y = \log_{1/2} x" /> untuk <InlineMath math="\tfrac18 \le x \le 8" />. Pada input 2 dan 4, basis 2 memberi 1 dan 2, sedangkan basis <InlineMath math="\tfrac12" /> memberi <InlineMath math="-1" /> dan <InlineMath math="-2" />.</>}
+  description={<>Kurva <InlineMath math="y = \log_2 x" /> dan <InlineMath math="y = \log_{1/2} x" /> untuk <InlineMath math="\tfrac18 \le x \le 8" />. Pada input <InlineMath math="2" /> dan <InlineMath math="4" />, basis <InlineMath math="2" /> memberi <InlineMath math="1" /> dan <InlineMath math="2" />, sedangkan basis <InlineMath math="\tfrac12" /> memberi <InlineMath math="-1" /> dan <InlineMath math="-2" />.</>}
   labels={{
     up: <InlineMath math="\log_2 x" />,
     down: <InlineMath math="\log_{1/2} x" />,
@@ -233,11 +233,11 @@ Dalam model ini, **seratus persen didekati tanpa tercapai** pada waktu berhingga
 | <InlineMath math="90\%" /> | <InlineMath math="-50\ln(0{,}1)\approx115{,}13" /> |
 | <InlineMath math="99\%" /> | <InlineMath math="-50\ln(0{,}01)\approx230{,}26" /> |
 
-Waktu pengisian <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> tumbuh lebih cepat daripada targetnya: 50% butuh sekitar 34,66 menit, 90% sekitar 115,13, dan 99% sekitar 230,26, dua kali waktu 90% demi 9% terakhir.
+Waktu pengisian <InlineMath math="t = -50\ln\left(1 - \tfrac{C}{C_0}\right)" /> tumbuh lebih cepat daripada targetnya: <InlineMath math="50\%" /> butuh sekitar <InlineMath math="34{,}66" /> menit, <InlineMath math="90\%" /> sekitar <InlineMath math="115{,}13" />, dan <InlineMath math="99\%" /> sekitar <InlineMath math="230{,}26" />, dua kali waktu <InlineMath math="90\%" /> demi <InlineMath math="9\%" /> terakhir.
 
 <BarChart
   title={<>Waktu untuk mencapai setiap tingkat isi</>}
-  description={<>Batang <InlineMath math="-50\ln(1 - p)" /> dalam menit untuk target 50%, 90%, dan 99%.</>}
+  description={<>Batang <InlineMath math="-50\ln(1 - p)" /> dalam menit untuk target <InlineMath math="50\%" />, <InlineMath math="90\%" />, dan <InlineMath math="99\%" />.</>}
   yAxisLabel="Waktu (menit)"
   data={[0.5, 0.9, 0.99].map((p) => ({ name: Math.round(100 * p) + "% terisi", value: -50 * Math.log(1 - p) }))}
   chartConfig={{ value: { label: "Waktu (menit)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -278,10 +278,10 @@ Jadi, harga mobil setelah <InlineMath math="10 \text{ tahun}" /> digunakan adala
 
 <BlockMath math="\begin{aligned} H(10) &amp;= 200e^{2\ln(1/2)} \\ &amp;= 200\left(\frac{1}{2}\right)^2 \\ &amp;= 50 \text{ juta rupiah} \end{aligned}" />
 
-Menjadi setengah setiap 5 tahun: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> memberi 200, 100, 50, dan 25 juta rupiah setelah 0, 5, 10, dan 15 tahun, sesuai dengan <InlineMath math="H(10) = 50" />.
+Menjadi setengah setiap <InlineMath math="5" /> tahun: <InlineMath math="H(t) = 200\left(\tfrac12\right)^{t/5}" /> memberi <InlineMath math="200" />, <InlineMath math="100" />, <InlineMath math="50" />, dan <InlineMath math="25" /> juta rupiah setelah <InlineMath math="0" />, <InlineMath math="5" />, <InlineMath math="10" />, dan <InlineMath math="15" /> tahun, sesuai dengan <InlineMath math="H(10) = 50" />.
 
 <BarChart
-  title={<>Harga mobil setiap 5 tahun</>}
+  title={<>Harga mobil setiap <InlineMath math="5" /> tahun</>}
   description={<>Batang <InlineMath math="H(t) = 200e^{\frac{\ln(1/2)}{5}t}" /> dalam juta rupiah untuk <InlineMath math="t = 0, 5, 10, 15" />.</>}
   yAxisLabel="Harga (juta rupiah)"
   data={[0, 5, 10, 15].map((x) => ({ name: String(x), value: 200 * Math.exp((Math.log(1 / 2) / 5) * x) }))}

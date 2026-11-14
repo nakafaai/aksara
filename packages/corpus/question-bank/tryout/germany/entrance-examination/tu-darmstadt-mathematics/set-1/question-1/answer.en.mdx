@@ -1,20 +1,35 @@
-The task says *Vereinfachen Sie den Term* (simplify the expression). A product of fractions is simplified by **factoring every numerator and denominator** and then cancelling equal factors. Two binomial identities do the work here.
+# Three conditions at once
+
+"Two different real solutions that are both positive" is really three conditions. **You need all three, not just one**:
+
+- there are two different real solutions, so the discriminant is positive
+- the sum of the solutions is positive
+- the product of the solutions is positive
+
+Two real numbers are both positive exactly when their sum and their product are both positive. A positive product means they have the same sign, and a positive sum then makes that sign positive.
+
+# Working out each condition
+
+For <InlineMath math="x^2-2ax+(a+6)=0" />, **the sum and product rules** give <InlineMath math="x_1+x_2=2a" /> and <InlineMath math="x_1x_2=a+6" />.
 
 <BlockMath math="\begin{aligned}
-a^2-9&=(a-3)(a+3) \\
-a^2+6a+9&=(a+3)^2
+D=4a^2-4(a+6)=4(a-3)(a+2)>0\quad&\Rightarrow\quad a<-2\ \text{or}\ a>3 \\
+x_1+x_2=2a>0\quad&\Rightarrow\quad a>0 \\
+x_1x_2=a+6>0\quad&\Rightarrow\quad a>-6
 \end{aligned}" />
 
-Substitute the factors. Because <InlineMath math="a\ne3" /> and <InlineMath math="a\ne-3" />, the factors <InlineMath math="a-3" /> and <InlineMath math="a+3" /> are not zero and may be cancelled.
+# Where all three overlap
 
-<BlockMath math="\frac{(a-3)(a+3)}{(a+3)^2}\cdot\frac{a+3}{a-3}=\frac{(a-3)(a+3)(a+3)}{(a+3)^2(a-3)}=1" />
+<InlineMath math="a" /> has to satisfy all three. The part <InlineMath math="a<-2" /> fails <InlineMath math="a>0" />, so **only <InlineMath math="a>3" /> is left**.
 
-As a check, substitute an allowed value such as <InlineMath math="a=1" />: <InlineMath math="\frac{1-9}{1+6+9}\cdot\frac{4}{-2}=\frac{-8}{16}\cdot(-2)=1" />.
+Check two examples. For <InlineMath math="a=4" />: <InlineMath math="x^2-8x+10=0" /> has solutions <InlineMath math="4\pm\sqrt6" />, both positive. For <InlineMath math="a=-3" />: <InlineMath math="x^2+6x+3=0" /> has solutions adding up to <InlineMath math="-6" />, so both are negative.
 
-So the expression equals <InlineMath math="1" /> for every allowed value of <InlineMath math="a" />.
+So the equation has two different positive solutions exactly for <InlineMath math="a>3" />.
 
-- <InlineMath math="-1" /> comes from confusing <InlineMath math="a-3" /> with <InlineMath math="3-a" />. The expression contains the same factor <InlineMath math="a-3" /> twice.
-- <InlineMath math="0" /> cannot be right, because the expression would be zero only if a factor of its numerator were zero. That happens exactly at <InlineMath math="a=3" /> or <InlineMath math="a=-3" />, and both values are excluded.
-- <InlineMath math="\frac{a-3}{a+3}" /> is only the simplified first fraction. The second factor <InlineMath math="\frac{a+3}{a-3}" /> is missing.
-- <InlineMath math="\frac{a+3}{a-3}" /> is only the second fraction. The first fraction is not <InlineMath math="1" /> but <InlineMath math="\frac{a-3}{a+3}" />.
-- <InlineMath math="a+3" /> comes from factoring the denominator <InlineMath math="a^2+6a+9" /> as <InlineMath math="a+3" /> instead of <InlineMath math="(a+3)^2" />.
+# Why the other options are wrong
+
+- <InlineMath math="a<-2" /> or <InlineMath math="a>3" /> only uses the discriminant. For <InlineMath math="a<-2" /> both solutions are real but not positive.
+- <InlineMath math="a>0" /> only uses the sum. For <InlineMath math="a=1" />, the discriminant is <InlineMath math="4(-2)(3)<0" />, so there's no real solution.
+- <InlineMath math="-6<a<-2" /> or <InlineMath math="a>3" /> **forgets the sum condition**. The example <InlineMath math="a=-3" /> above gives two negative solutions.
+- <InlineMath math="a\ge3" /> includes <InlineMath math="a=3" />. There <InlineMath math="x^2-6x+9=0" /> has only one solution, <InlineMath math="x=3" />.
+- <InlineMath math="-2<a<3" /> is where the discriminant is negative, so its sign was read the wrong way round.

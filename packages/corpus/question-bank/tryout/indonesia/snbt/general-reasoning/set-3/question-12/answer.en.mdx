@@ -1,16 +1,26 @@
-Let <InlineMath math="p" />: the price of fresh chili rises, <InlineMath math="q" />: Bu Sari cuts her fresh chili purchases, and <InlineMath math="r" />: Bu Sari switches to dried chili. The first premise is <InlineMath math="p \Rightarrow (q \vee r)" />.
+This question asks what must be true about last night, using four rules and two facts: the pump wasn't switched on, and the west plot had already been fertilised that week. The key is **reading rules 1 and 4 correctly**, because they use *kecuali jika* ("unless") and *hanya jika* ("only if").
 
-The second premise says <InlineMath math="\neg q \wedge \neg r" />, which is equivalent to <InlineMath math="\neg(q \vee r)" />. So **the "then" part of the first premise is false**. By modus tollens:
+A sentence of the form "P unless Q" means "if not Q, then P". So rule 1 says: if the tank isn't full yet, the pump is switched on. Every if-then statement is equivalent to its contrapositive, the form that swaps the two parts and negates both. The contrapositive of rule 1 says: if the pump isn't switched on, the tank is full.
 
-<BlockMath math="p \Rightarrow (q \vee r),\quad \neg(q \vee r) \;\vdash\; \neg p" />
+Now chain the steps.
 
-So the price of fresh chili did not rise this week.
+1. The pump wasn't switched on, so by the contrapositive of rule 1, the tank was full.
+2. The tank was full, so by rule 2, the dividing sluice gate was opened.
+3. The gate was opened, so by rule 3, the east plot or the west plot was watered. At least one of them was watered.
+4. A sentence of the form "P only if Q" means "if P, then Q". So rule 4 says: if the west plot is watered, it hasn't been fertilised that week. Its contrapositive says: if the west plot was fertilised, it isn't watered. It was fertilised, so the west plot wasn't watered.
+5. From step 3, at least one plot was watered. The west plot wasn't, so the east plot was.
 
-The other options are wrong:
+Here's the whole chain at a glance.
 
-- "The price rose" contradicts the conclusion just derived.
-- Not cutting purchases does not mean buying more than usual. Bu Sari may buy the same amount.
-- Not cutting fresh chili purchases means Bu Sari still buys, so "buys no chili at all" contradicts the premise.
-- The premises say nothing about the price of dried chili.
+<BlockMath math="\text{pump off} \Rightarrow \text{tank full} \Rightarrow \text{gate open} \Rightarrow (\text{east} \vee \text{west})" />
 
-So the conclusion that must be true is that the price of fresh chili did not rise this week.
+Since rule 4 rules out the west plot, the east plot is what's left. Check it backwards: a full tank, an open gate, a watered east plot and a dry west plot satisfy all four rules at once.
+
+Each other conclusion fails because of one wrong step.
+
+- "The tank was full, but we can't tell which plot was watered" comes from reading *hanya jika* backwards, as "if the west plot isn't fertilised, it's watered". Read that way, rule 4 says nothing about a fertilised plot, so the reasoning stalls at step 3.
+- "The tank was full and the west plot was watered" contradicts rule 4, because the west plot had been fertilised.
+- "The tank wasn't full and no plot was watered" comes from reading rule 1 backwards, as if a full tank switched the pump on. It then reverses rule 2 as well, but a tank that isn't full tells you nothing about the gate.
+- "Both plots were watered" reads *atau* ("or") as *dan* ("and") and then ignores rule 4.
+
+So what must be true is that the tank was full and the east plot was watered last night.

@@ -1,11 +1,39 @@
-Teile die Schläge in zwei Arten: **Schläge zur vollen Stunde** und **Schläge zur halben Stunde**. Liste dann alle Zeitpunkte zwischen <InlineMath math="9{:}15" /> Uhr und <InlineMath math="13{:}15" /> Uhr auf.
+Diese Aufgabe hat zwei Verbote: Ein Team darf nicht nur aus Jungen oder nur aus Mädchen bestehen, und Dimas darf nicht mit Rafi im selben Team sein. Am saubersten zählst du alle Teams und entfernst dann die, die eine Regel verletzen. Pass auf: Manche Teams **verletzen beide Regeln zugleich**, und die darfst du nur einmal entfernen.
 
-Volle Stunden sind <InlineMath math="10{:}00" />, <InlineMath math="11{:}00" />, <InlineMath math="12{:}00" /> und <InlineMath math="13{:}00" /> Uhr. Auf einer Zwölfstundenuhr zeigt <InlineMath math="13{:}00" /> Uhr die Zahl <InlineMath math="1" />, also schlägt die Uhr einmal und nicht <InlineMath math="13" />-mal.
+Die Reihenfolge der Mitglieder spielt keine Rolle, also ist die Anzahl der Möglichkeiten, <InlineMath math="r" /> Personen aus <InlineMath math="n" /> auszuwählen, die Kombination <InlineMath math="C(n,r)" />. Beginne mit allen Teams ohne Verbote, also <InlineMath math="4" /> aus <InlineMath math="6+5=11" /> Schülerinnen und Schülern.
 
-<BlockMath math="10+11+12+1=34" />
+<BlockMath math="C(11,4) = \frac{11\times10\times9\times8}{4\times3\times2\times1} = 330" />
 
-Halbe Stunden sind <InlineMath math="9{:}30" />, <InlineMath math="10{:}30" />, <InlineMath math="11{:}30" /> und <InlineMath math="12{:}30" /> Uhr, mit je einem Schlag. <InlineMath math="13{:}30" /> Uhr liegt schon außerhalb des Zeitraums.
+Entferne die Teams, die nur aus Jungen oder nur aus Mädchen bestehen. Kein Team kann beides gleichzeitig sein, also ziehst du einfach beide Zahlen ab.
 
-<BlockMath math="34+4=38" />
+<BlockMath math="\begin{aligned}
+\text{nur Jungen} &= C(6,4) = 15 \\
+\text{nur Mädchen} &= C(5,4) = 5 \\
+\text{gemischte Teams} &= 330-15-5 = 310
+\end{aligned}" />
 
-Ein häufiger Fehler ist, um <InlineMath math="13" /> Uhr <InlineMath math="13" /> Schläge zu zählen, das ergibt <InlineMath math="50" />. Die Uhr schlägt also <InlineMath math="38" />-mal.
+Entferne jetzt die gemischten Teams, in denen Dimas und Rafi beide sind. Sind Dimas und Rafi schon drin, kommen die zwei übrigen Plätze aus den <InlineMath math="9" /> anderen, das sind <InlineMath math="C(9,2)=36" /> Teams. Ein Teil dieser <InlineMath math="36" /> Teams besteht aber nur aus Jungen: Dimas, Rafi und zwei der <InlineMath math="4" /> anderen Jungen. Diese Teams hast du im Schritt davor schon entfernt.
+
+<BlockMath math="\begin{aligned}
+\text{Dimas und Rafi, nur Jungen} &= C(4,2) = 6 \\
+\text{Dimas und Rafi, gemischt} &= 36-6 = 30 \\
+\text{gültige Teams} &= 310-30 = 280
+\end{aligned}" />
+
+Prüf das auf einem zweiten Weg, indem du nach der Zahl der Jungen im Team zählst. Mit einem Jungen können Dimas und Rafi nicht beide dabei sein. Mit zwei Jungen fällt genau das Paar Dimas und Rafi weg. Mit drei Jungen enthalten <InlineMath math="C(4,1)=4" /> Dreiergruppen sowohl Dimas als auch Rafi.
+
+<BlockMath math="\begin{aligned}
+1 \text{ Junge} &: C(6,1)\times C(5,3) = 6\times10 = 60 \\
+2 \text{ Jungen} &: \big(C(6,2)-1\big)\times C(5,2) = 14\times10 = 140 \\
+3 \text{ Jungen} &: \big(C(6,3)-4\big)\times C(5,1) = 16\times5 = 80
+\end{aligned}" />
+
+Zusammen sind das <InlineMath math="60+140+80=280" />, genau wie oben.
+
+Ein paar verlockende Ergebnisse, die falsch sind:
+
+- <InlineMath math="274" /> entsteht, wenn du alle <InlineMath math="36" /> Teams mit Dimas und Rafi von <InlineMath math="310" /> abziehst. Dann fallen die sechs reinen Jungenteams doppelt weg.
+- <InlineMath math="294" /> entsteht, wenn du nur das Verbot für Dimas und Rafi nutzt, also <InlineMath math="330-36" />, und die Regel zu Jungen und Mädchen vergisst.
+- <InlineMath math="310" /> entsteht, wenn du das Verbot für Dimas und Rafi vergisst.
+
+Es lassen sich also <InlineMath math="280" /> verschiedene Teams bilden.

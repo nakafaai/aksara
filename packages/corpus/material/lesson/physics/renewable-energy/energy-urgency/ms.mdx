@@ -1,0 +1,188 @@
+export const metadata = {
+  title: "Permintaan Tenaga dan Kebolehpercayaan Bekalan",
+  description:
+    "Penggunaan elektrik harian, akses tenaga yang tidak sama rata, beban puncak dan kegagalan bekalan menunjukkan sebab sistem tenaga mesti memberikan perkhidmatan yang boleh dipercayai.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-05-01",
+  dateModified: "2026-09-12",
+  subject: "Tenaga Boleh Baharu",
+};
+
+## Kesan Kegagalan Bekalan Tenaga
+
+Bekalan tenaga mesti <Highlight>ada apabila orang memerlukannya</Highlight> dan <Highlight>sampai ke tempat tenaga itu digunakan</Highlight>. Kos dan kesan terhadap alam sekitar juga penting. Jika bekalan gagal, lampu, pam air, peranti perubatan, penyejukan makanan dan rangkaian komunikasi boleh berhenti berfungsi.
+
+Elektrik membekalkan kuasa kepada banyak peranti yang kita gunakan setiap hari. Elektrik ialah [pembawa tenaga](https://www.eia.gov/energyexplained/electricity/) yang dihasilkan menggunakan bahan api, air, angin, cahaya matahari atau haba geoterma.
+
+Elektrik sampai kepada pengguna melalui beberapa peringkat yang saling berkait.
+
+Tenaga bermula di sesuatu sumber dan ditukarkan kepada elektrik. Grid kemudian membawanya kepada pengguna.
+
+Penjana mesti membekalkan kuasa yang cukup, dan grid mesti menghantarnya apabila permintaan meningkat.
+
+Grid membawa kuasa pada voltan tinggi kerana kehilangan kuasa dalam wayar ialah <InlineMath math="I^2R" /> dan <InlineMath math="I=P/V" />. Apabila <InlineMath math="100\text{ kW}" /> dihantar melalui <InlineMath math="1\ \Omega" />, kehilangannya ialah <InlineMath math="10\%" /> pada <InlineMath math="1\text{ kV}" />, tetapi hanya <InlineMath math="0.1\%" /> pada <InlineMath math="10\text{ kV}" />. Zum masuk dan lihat betapa cepatnya lengkung itu menurun.
+
+<MathVisual
+  title={<>Voltan Lebih Tinggi, Kehilangan Lebih Kecil</>}
+  description={<>Bahagian daripada 100 kW yang hilang dalam talian 1 ohm melawan voltan talian. Paksi mengufuk: kV. Paksi menegak: satu petak grid ialah 2 peratus.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "loss", kind: "polyline", appearance: "warning", vertices: [{ x: 1, y: 5 }, { x: 1.25, y: 10 / (5 / 4) ** 2 / 2 }, { x: 1.5, y: 10 / (6 / 4) ** 2 / 2 }, { x: 1.75, y: 10 / (7 / 4) ** 2 / 2 }, { x: 2, y: 10 / (8 / 4) ** 2 / 2 }, { x: 2.25, y: 10 / (9 / 4) ** 2 / 2 }, { x: 2.5, y: 10 / (10 / 4) ** 2 / 2 }, { x: 2.75, y: 10 / (11 / 4) ** 2 / 2 }, { x: 3, y: 10 / (12 / 4) ** 2 / 2 }, { x: 3.25, y: 10 / (13 / 4) ** 2 / 2 }, { x: 3.5, y: 10 / (14 / 4) ** 2 / 2 }, { x: 3.75, y: 10 / (15 / 4) ** 2 / 2 }, { x: 4, y: 10 / (16 / 4) ** 2 / 2 }, { x: 4.25, y: 10 / (17 / 4) ** 2 / 2 }, { x: 4.5, y: 10 / (18 / 4) ** 2 / 2 }, { x: 4.75, y: 10 / (19 / 4) ** 2 / 2 }, { x: 5, y: 10 / (20 / 4) ** 2 / 2 }, { x: 5.25, y: 10 / (21 / 4) ** 2 / 2 }, { x: 5.5, y: 10 / (22 / 4) ** 2 / 2 }, { x: 5.75, y: 10 / (23 / 4) ** 2 / 2 }, { x: 6, y: 10 / (24 / 4) ** 2 / 2 }, { x: 6.25, y: 10 / (25 / 4) ** 2 / 2 }, { x: 6.5, y: 10 / (26 / 4) ** 2 / 2 }, { x: 6.75, y: 10 / (27 / 4) ** 2 / 2 }, { x: 7, y: 10 / (28 / 4) ** 2 / 2 }, { x: 7.25, y: 10 / (29 / 4) ** 2 / 2 }, { x: 7.5, y: 10 / (30 / 4) ** 2 / 2 }, { x: 7.75, y: 10 / (31 / 4) ** 2 / 2 }, { x: 8, y: 10 / (32 / 4) ** 2 / 2 }, { x: 8.25, y: 10 / (33 / 4) ** 2 / 2 }, { x: 8.5, y: 10 / (34 / 4) ** 2 / 2 }, { x: 8.75, y: 10 / (35 / 4) ** 2 / 2 }, { x: 9, y: 10 / (36 / 4) ** 2 / 2 }, { x: 9.25, y: 10 / (37 / 4) ** 2 / 2 }, { x: 9.5, y: 10 / (38 / 4) ** 2 / 2 }, { x: 9.75, y: 10 / (39 / 4) ** 2 / 2 }, { x: 10, y: 10 / (40 / 4) ** 2 / 2 }] },
+      { id: "low", kind: "point", appearance: "warning", at: { x: 1, y: 5 } },
+      { id: "high", kind: "point", appearance: "construction", at: { x: 10, y: 10 / 10 ** 2 / 2 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 1, y: 5 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 10, y: 10 / 10 ** 2 / 2 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    low: <InlineMath math="1\text{ kV}:\ I=100\text{ A},\ 10\%" />,
+    high: <InlineMath math="10\text{ kV}:\ I=10\text{ A},\ 0.1\%" />,
+  }}
+/>
+
+## Permintaan Terkumpul daripada Banyak Peranti
+
+Satu lampu mungkin nampak remeh. Namun, permintaan tenaga menjadi besar apabila banyak peranti digunakan oleh ramai orang pada masa yang sama.
+
+Bagi sesuatu peranti elektrik, penggunaan tenaga dikira daripada kuasa dan masa penggunaan.
+
+<BlockMath math="E=P\times t" />
+
+Nota simbol:
+
+| Simbol | Maksud |
+| :----- | :------ |
+| <InlineMath math="E" /> | tenaga yang digunakan |
+| <InlineMath math="P" /> | kuasa peranti |
+| <InlineMath math="t" /> | masa penggunaan |
+
+Katakan <InlineMath math="5" /> biji lampu, setiap satu berkuasa <InlineMath math="10 \text{ W}" />, dihidupkan selama <InlineMath math="4 \text{ j}" />. Tenaga yang digunakan ialah:
+
+<BlockMath math="\begin{aligned}
+E
+&= 5 \times 10 \text{ W}\times 4 \text{ j} \\
+&= 200 \text{ Wj} \\
+&= 0.2 \text{ kWj}
+\end{aligned}" />
+
+Nilai <InlineMath math="0.2 \text{ kWj}" /> itu hanya untuk lima biji lampu. Corak yang sama di banyak rumah, sekolah, klinik dan perniagaan kecil menghasilkan jumlah permintaan yang jauh lebih besar.
+
+**Beban puncak** berlaku apabila banyak peranti menggunakan elektrik pada masa yang sama, jadi grid mesti membekalkan lebih banyak kuasa dalam tempoh itu.
+
+Bandingkan dua peranti yang masing-masing menarik kuasa tetap <InlineMath math="1 \text{ kW}" /> selama satu jam.
+
+| Jadual waktu | Kuasa serentak tertinggi | Jumlah tenaga |
+| :--- | :--- | :--- |
+| Kedua-dua peranti beroperasi dari 18:00 hingga 19:00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWj}" /> |
+| Peranti pertama beroperasi dari 18:00 hingga 19:00, peranti kedua dari 19:00 hingga 20:00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWj}" /> |
+
+Inilah kedua-dua jadual waktu itu dalam bentuk kuasa sepanjang petang. Jadual waktu jingga menjalankan kedua-dua peranti serentak dan melonjak ke puncak <InlineMath math="2\text{ kW}" />. Jadual waktu ungu menyebarkan kerja yang sama sepanjang dua jam dan tidak pernah melebihi <InlineMath math="1\text{ kW}" />. Kira luas di bawah setiap garis, iaitu kuasa darab masa: kedua-duanya memberi <InlineMath math="2\text{ kWj}" />. Tenaganya sama, dan yang berubah hanyalah puncak yang mesti dibekalkan oleh grid.
+
+<MathVisual
+  title={<>Tenaga Sama, Puncak Berbeza</>}
+  description={<>Kuasa yang ditarik oleh dua peranti 1 kW dari 17:00 hingga 21:00. Paksi mengufuk: waktu dalam jam. Paksi menegak: kuasa dalam kW.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "together", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 0 }] },
+      { id: "staggered", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 3, y: 1 }, { x: 3, y: 0 }, { x: 4, y: 0 }] },
+    ],
+    labels: [
+      { key: "two", objectId: "together", at: { x: 1.5, y: 2 }, placement: "above" },
+      { key: "one", objectId: "staggered", at: { x: 2.5, y: 1 }, placement: "above" },
+      { key: "h18", objectId: "together", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "h19", objectId: "together", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "h20", objectId: "staggered", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    two: <InlineMath math="2\text{ kW}" />,
+    one: <InlineMath math="1\text{ kW}" />,
+    h18: <>18:00</>,
+    h19: <>19:00</>,
+    h20: <>20:00</>,
+  }}
+/>
+
+## Kadar Nasional dan Jurang Akses Setempat
+
+**Nisbah Elektrifikasi** ialah peratusan isi rumah yang mempunyai akses kepada elektrik. **Nisbah Desa Berelektrik** ialah peratusan desa atau kampung bandar yang sudah mempunyai elektrik.
+
+Pada suku tahun keempat <InlineMath math="2024" />, [Nisbah Elektrifikasi Indonesia](https://gatrik.esdm.go.id/berita/?slug=ditjen-gatrik-dan-pln-tetapkan-rasio-desa-berlistrik-dan-rasio-elektrifikasi-triwulan-iv-2024) mencapai <InlineMath math="99.83\%" /> dan Nisbah Desa Berelektriknya mencapai <InlineMath math="99.92\%" />. Namun, <InlineMath math="5{,}821" /> desa atau kampung bandar masih belum mendapat akses elektrik daripada PT PLN (Persero).
+
+**Tidak mendapat bekalan PLN** tidak bermakna langsung tiada elektrik. Sesebuah desa mungkin menggunakan bekalan bukan daripada PLN, jadi bilangan desa tanpa perkhidmatan PLN bukanlah bilangan desa tanpa elektrik.
+
+Nisbah nasional memerlukan konteks setempat. Lokasi yang masih belum mendapat bekalan mungkin sukar dicapai, berselerak atau jauh dari grid utama, walaupun peratusan nasionalnya sangat tinggi.
+
+| Apa yang boleh ditunjukkan oleh angka yang besar | Apa yang masih perlu disemak di lapangan |
+| :--------------------------- | :------------------------------------------ |
+| Banyak isi rumah sudah mempunyai akses elektrik | Sama ada elektrik itu stabil apabila diperlukan |
+| Banyak desa sudah mempunyai elektrik | Sama ada semua petempatan kecil dan kemudahan penting mendapat bekalan |
+| Penggunaan elektrik semakin meningkat | Sama ada kapasiti penjanaan, grid dan simpanan mampu memenuhi permintaan |
+| Nisbah elektrifikasi nasional hampir <InlineMath math="100\%" /> | Sama ada kawasan pedalaman mempunyai penyelesaian yang sesuai dengan lokasinya |
+
+## Permintaan yang Meningkat Memerlukan Kapasiti Sistem yang Lebih Besar
+
+[Permintaan elektrik global](https://www.iea.org/reports/electricity-2026/executive-summary) diramalkan meningkat secara purata <InlineMath math="3.6\%" /> setahun dari <InlineMath math="2026" /> hingga <InlineMath math="2030" />. Pemacu utamanya ialah industri, kenderaan elektrik, penghawa dingin dan pusat data.
+
+Permintaan elektrik boleh meningkat kerana lebih banyak tenaga diperlukan untuk pendidikan, penjagaan kesihatan, pengeluaran makanan, pengangkutan dan perniagaan. Risikonya muncul apabila bekalan dan grid tidak dapat mengejar permintaan itu, kerana keadaan ini boleh menyebabkan bekalan elektrik terputus, kos meningkat atau penggunaan sumber tenaga yang lebih mencemar bertambah.
+
+Permintaan tenaga harian dan kuasa puncak ialah dua keperluan yang berbeza. Sesuatu sistem mungkin membekalkan tenaga yang cukup sepanjang hari tetapi masih gagal apabila banyak peranti berjalan pada masa yang sama. Oleh itu, penjanaan, grid atau simpanan mesti menampung jumlah penggunaan tenaga dan juga <Highlight>permintaan kuasa serentak yang tertinggi</Highlight>.
+
+Pertumbuhan <InlineMath math="3.6\%" /> setahun itu bertambah secara kompaun. Lengkung di bawah didarab dengan <InlineMath math="1.036" /> setiap tahun bermula 2026, jadi menjelang 2030 permintaan lebih kurang <InlineMath math="15.2\%" /> lebih tinggi, sedikit lebih daripada empat kali <InlineMath math="3.6\%" />.
+
+<MathVisual
+  title={<>Pertumbuhan Permintaan secara Kompaun</>}
+  description={<>Pertumbuhan permintaan elektrik pada kadar 3.6% setahun dari 2026 hingga 2030. Paksi mengufuk: tahun selepas 2026. Paksi menegak: pertumbuhan dalam unit 4%.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "growth", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: ((1.036 ** (0 / 5) - 1) * 100) / 4 }, { x: 1 / 5, y: ((1.036 ** (1 / 5) - 1) * 100) / 4 }, { x: 2 / 5, y: ((1.036 ** (2 / 5) - 1) * 100) / 4 }, { x: 3 / 5, y: ((1.036 ** (3 / 5) - 1) * 100) / 4 }, { x: 4 / 5, y: ((1.036 ** (4 / 5) - 1) * 100) / 4 }, { x: 1, y: ((1.036 ** (5 / 5) - 1) * 100) / 4 }, { x: 6 / 5, y: ((1.036 ** (6 / 5) - 1) * 100) / 4 }, { x: 7 / 5, y: ((1.036 ** (7 / 5) - 1) * 100) / 4 }, { x: 8 / 5, y: ((1.036 ** (8 / 5) - 1) * 100) / 4 }, { x: 9 / 5, y: ((1.036 ** (9 / 5) - 1) * 100) / 4 }, { x: 2, y: ((1.036 ** (10 / 5) - 1) * 100) / 4 }, { x: 11 / 5, y: ((1.036 ** (11 / 5) - 1) * 100) / 4 }, { x: 12 / 5, y: ((1.036 ** (12 / 5) - 1) * 100) / 4 }, { x: 13 / 5, y: ((1.036 ** (13 / 5) - 1) * 100) / 4 }, { x: 14 / 5, y: ((1.036 ** (14 / 5) - 1) * 100) / 4 }, { x: 3, y: ((1.036 ** (15 / 5) - 1) * 100) / 4 }, { x: 16 / 5, y: ((1.036 ** (16 / 5) - 1) * 100) / 4 }, { x: 17 / 5, y: ((1.036 ** (17 / 5) - 1) * 100) / 4 }, { x: 18 / 5, y: ((1.036 ** (18 / 5) - 1) * 100) / 4 }, { x: 19 / 5, y: ((1.036 ** (19 / 5) - 1) * 100) / 4 }, { x: 4, y: ((1.036 ** (20 / 5) - 1) * 100) / 4 }] },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 } },
+    ],
+    labels: [
+      { key: "end", objectId: "end", at: { x: 4, y: ((1.036 ** 4 - 1) * 100) / 4 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    end: <InlineMath math="2030:\ +15.2\%" />,
+  }}
+/>
+
+## Soalan untuk Menilai Keperluan Tenaga
+
+Jangan nilai angka permintaan tenaga secara berasingan. Semak juga siapa yang memerlukan tenaga itu, bila tenaga itu diperlukan, **berapa banyak tenaga dan kuasa yang diperlukan**, sumber mana yang digunakan, sama ada grid sudah bersedia, dan apa yang berlaku jika bekalan gagal.
+
+| Soalan | Akibat kepada perancangan |
+| :------- | :------------- |
+| Siapa yang memerlukan tenaga itu? | Rumah, sekolah, klinik, industri dan pengangkutan mempunyai corak permintaan yang berbeza |
+| Bilakah tenaga itu diperlukan? | Beban puncak boleh berlaku walaupun tenaga harian nampak mencukupi |
+| Berapa banyak tenaga dan kuasa yang diperlukan? | Tenaga menunjukkan jumlah yang digunakan, manakala kuasa menunjukkan berapa cepat tenaga itu digunakan |
+| Sumber tenaga mana yang digunakan? | Sumber itu mempengaruhi laluan penukaran, kos dan kesan terhadap alam sekitar |
+| Adakah grid atau simpanan sudah bersedia? | Tenaga yang ada di sumber mungkin tidak sampai kepada pengguna pada masa yang tepat |
+| Apa yang berlaku jika bekalan gagal? | Pembelajaran, kesihatan, aktiviti ekonomi dan keselamatan boleh terganggu |
+
+Jika bekalan harian terlalu kecil, jumlah tenaga itulah masalahnya. Jika banyak peranti berjalan serentak, kuasa puncak mungkin menjadi masalahnya. Soalan-soalan lain pula menyemak sama ada sumber, grid atau simpanan yang mengehadkan bekalan, dan apa yang akan berlaku jika bekalan gagal.
+
+## Padankan Sumber Boleh Baharu dengan Keadaan Tapak
+
+Sesuatu sumber tenaga boleh baharu sesuai untuk sesuatu lokasi apabila sumber setempat, teknologi, rangkaian, simpanan dan langkah perlindungan alam sekitar mampu **memenuhi keperluan setempat**. Jadual di bawah menyenaraikan semakan awal bagi beberapa sumber.
+
+| Keadaan tapak | Sumber tenaga yang berpotensi | Perkara yang masih perlu disemak |
+| :------------- | :------------------------- | :------------------------ |
+| Cahaya matahari yang kuat | tenaga suria | cuaca, keluasan bumbung atau tanah, bateri dan sambungan grid |
+| Aliran sungai dan beza ketinggian | kuasa hidro berskala kecil | aliran air, musim, ekosistem dan keselamatan |
+| Kawasan pantai yang berangin | tenaga angin | laju angin purata dan perubahan harian |
+| Banyak sisa organik | biogas atau biojisim | bekalan bahan mentah dan pengurusan sisa |
+| Berhampiran kawasan geoterma | tenaga geoterma | tinjauan geologi, penggerudian dan kesan terhadap alam sekitar |
+
+Oleh itu, sistem tenaga perlu sepadan dengan permintaan setempat, keadaan alam sekitar dan keperluan komuniti.

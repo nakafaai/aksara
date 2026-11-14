@@ -1,18 +1,29 @@
-A statement is Benar (true) only if it holds in **all four arrangements**. Otherwise it is Salah (false). For an "if" statement, check only the arrangements where the "if" part holds.
+The extra condition puts Hamid in chair 7. A statement is *Benar* ("true") only if it holds in **every arrangement that's still valid** after adding that condition. Otherwise it's *Salah*.
 
-| Arrangement | Top shelf | Middle shelf | Bottom shelf |
-| --- | --- | --- | --- |
-| I | K, L | M, O, P | N, Q |
-| II | K, L | N, O, P | M, Q |
-| III | M, P | K, L, O | N, Q |
-| IV | M, P | N, O, Q | K, L |
+First use the structure that holds in every arrangement.
 
-**Statement 1** is true. P is on the middle shelf in I and II and on the top shelf in III and IV. P is never at the bottom, because it must be higher than Q.
+- Rule 1 gives two cases: Asri in chair 1 and Bonar in chair 5, or Bonar in chair 1 and Asri in chair 5.
+- Dimas can't sit next to Asri (rule 3), and he can't sit in chair 3 or chair 7 either. If Dimas took one of those, Elok would face him from the other one, and Fajar would need a chair two away from Elok, which means chair 1 or chair 5. Those belong to Asri and Bonar. So Dimas sits next to Bonar.
+- Cahya takes Dimas's other neighbouring chair (rule 2), which is chair 3 or chair 7. Elok faces Dimas, so Elok sits next to Asri (rule 4). Fajar is two chairs from Elok (rule 5).
 
-**Statement 2** is false. In arrangement IV, the bottom shelf holds K and L, while Q is in the middle.
+Now put Hamid in chair 7. That chair is taken, so **Cahya must be in chair 3**. Hamid in chair 7 isn't next to Cahya, so rule 7 is safe. Two cases remain.
 
-**Statement 3** is false. N is on the middle shelf in II and IV. In II, Q is at the bottom, but in IV, Q is in the middle.
+- Asri in chair 1. Dimas is in chair 4, Bonar in chair 5 and Elok in chair 8. Fajar is two chairs from Elok, so in chair 2 or chair 6, and Galuh takes whichever is left. Galuh's number stays below Hamid's either way, so both ways are valid.
+- Asri in chair 5. Bonar is in chair 1, Dimas in chair 2 and Elok in chair 6. Fajar is in chair 4 or chair 8. The empty chairs left are 4 and 8, and Galuh needs a smaller number than Hamid in chair 7. So Galuh takes chair 4 and Fajar takes chair 8.
 
-**Statement 4** is true. K is on the top shelf in I and II, and in both P is on the middle shelf.
+That gives three arrangements. Columns 1 to 8 are chair numbers, and each person is written by the first letter of their name.
 
-So statements 1 and 4 are true, and statements 2 and 3 are false.
+| Arrangement | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| I | A | F | C | D | B | G | H | E |
+| II | A | G | C | D | B | F | H | E |
+| III | B | D | C | G | A | E | H | F |
+
+Now judge each statement.
+
+- Cahya in chair 3 is *Benar*. Cahya sits in chair 3 in all three arrangements, because Hamid already has chair 7.
+- Asri in chair 1 is *Salah*. It's true in arrangements I and II, but arrangement III puts Asri in chair 5. The case with Bonar in chair 1 is easy to miss, because there Galuh has to move to chair 4 to stay below Hamid.
+- Fajar next to Asri is *Salah*. Only arrangement I puts Fajar next to Asri. In arrangement II Fajar is in chair 6, and in arrangement III Fajar is in chair 8 while Asri is in chair 5.
+- Galuh facing Fajar is *Benar*. Their chair pairs are 6 and 2, 2 and 6, and 4 and 8. Each pair differs by <InlineMath math="4" />, so they always face each other.
+
+So the statements about Cahya in chair 3 and about Galuh facing Fajar are *Benar*, while the statements about Asri in chair 1 and about Fajar sitting next to Asri are *Salah*.

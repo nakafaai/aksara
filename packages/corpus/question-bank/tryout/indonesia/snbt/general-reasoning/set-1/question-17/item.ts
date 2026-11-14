@@ -4,34 +4,14 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "arrangement",
+    topic: "counting",
   },
-  stimulus: "meja",
+  stimulus: "seminar",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label: "$$2$$",
-        },
-        {
-          correct: false,
-          label: "$$3$$",
-        },
-        {
-          correct: true,
-          label: "$$4$$",
-        },
-        {
-          correct: false,
-          label: "$$6$$",
-        },
-        {
-          correct: false,
-          label: "$$8$$",
-        },
-      ],
+      kind: "numericEntry",
+      unit: "urutan",
+      value: "10",
     },
   },
 };

@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "dice-game",
+  stimulus: "profit-sharing",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{Rp}36{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}45{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}54{.}000{,}00$$" },
-        { correct: false, label: "$$\\text{Rp}72{.}000{,}00$$" },
-        { correct: true, label: "$$\\text{Rp}90{.}000{,}00$$" },
+        { correct: false, label: "$$\\text{Rp}144$$ juta" },
+        { correct: false, label: "$$\\text{Rp}160$$ juta" },
+        { correct: false, label: "$$\\text{Rp}162$$ juta" },
+        { correct: false, label: "$$\\text{Rp}170{,}4$$ juta" },
+        { correct: true, label: "$$\\text{Rp}172$$ juta" },
       ],
     },
   },

@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "structure",
+    topic: "inference",
   },
-  stimulus: "shipping-container",
+  stimulus: "longitude-clock",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "criticise historians for ignoring McLean's contribution to shipping.",
+            "A navigator using lunar distances still needed a clock that had kept home-port time since the voyage began.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "suggest that the first containers were poorly designed and built.",
+            "In the years after the Nautical Almanac appeared, most navigators stopped using lunar distances.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "sum up the contrast between a simple box and the complex system around it.",
+            "H4's loss on the voyage to Jamaica was less than a twentieth of the clock error that the Act allowed.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "introduce a new topic that the passage does not go on to discuss.",
-        },
-        {
-          correct: false,
-          label:
-            "praise McLean as the single inventor of modern container shipping.",
+            "The Act's half-degree limit allowed a ship near the equator a larger error in kilometres than a ship far to the north.",
         },
       ],
     },

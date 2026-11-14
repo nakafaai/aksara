@@ -9,6 +9,7 @@ export const dynasticPoliticsAsianValuesArticle = defineArticleSource({
     de: "politische-dynastien-und-asiatische-werte",
     en: "dynastic-politics-asian-values",
     id: "dynastic-politics-asian-values",
+    ms: "politik-dinasti-dan-nilai-asia",
   },
   slug: "dynastic-politics-asian-values",
   sourceRoot: "articles/politics/dynastic-politics/asian-values",

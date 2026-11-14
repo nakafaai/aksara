@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
     topic: "detail",
   },
-  stimulus: "lebah",
+  stimulus: "koperasi",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Serbuk sari jagung berpindah terutama karena tiupan angin.",
+          correct: false,
+          label:
+            "Bagian SHU anggota yang selalu membayar tepat waktu dapat mengecil karena pinjaman anggota lain macet.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Para peneliti menyatakan pestisida sebagai satu-satunya penyebab menurunnya populasi lebah.",
+            "Bunga yang dibayarkan kepada anggota atas simpanan sukarela merupakan bagian dari biaya koperasi.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Menyemprot pestisida di luar jam aktif lebah termasuk salah satu langkah melindungi lebah.",
+            "Anggota yang menyimpan kembali bagian SHU-nya ikut menambah dana yang dapat dipinjamkan kepada anggota yang membutuhkan.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Lebah memindahkan serbuk sari dengan sengaja untuk membantu petani.",
+            "Simpanan wajib seorang anggota ikut tumbuh dengan bunga majemuk karena simpanan itu tidak pernah diambil selama ia menjadi anggota.",
+        },
+        {
+          correct: false,
+          label:
+            "Pendapatan koperasi dapat turun walaupun jumlah anggota yang meminjam tidak berkurang.",
         },
       ],
     },

@@ -1,17 +1,48 @@
-Bei fünf Münzen bedeutet „mehr Kopf als Zahl“ **mindestens dreimal Kopf**. Es gibt <InlineMath math="2^5=32" /> gleich wahrscheinliche Ergebnisse, weil die Münzen fair sind.
+Die Formel <InlineMath math="S_n" /> liefert Summen, keine Glieder. Das Glied Nummer <InlineMath math="n" /> ist die Differenz zweier aufeinanderfolgender Summen, aber **diese Differenz gilt erst ab <InlineMath math="n=2" />**, denn das erste Glied ist einfach <InlineMath math="S_1" /> selbst. Der Plan: Bestimme sorgfältig die Formel für alle Glieder und prüfe dann die vier Aussagen.
 
-# Günstige Ergebnisse zählen
+# Alle Glieder bestimmen
 
-Die Anzahl der Möglichkeiten für genau <InlineMath math="k" /> mal Kopf ist **die Anzahl der Arten, die Kopf-Münzen auszuwählen**, also <InlineMath math="\binom5k" />.
+Das erste Glied kommt direkt aus der Summenformel: <InlineMath math="a_1=S_1=2-5+3=0" />. Für <InlineMath math="n\ge2" /> ziehst du die Summe von <InlineMath math="n-1" /> Gliedern von der Summe von <InlineMath math="n" /> Gliedern ab.
 
-<BlockMath math="\binom53+\binom54+\binom55=10+5+1=16" />
+<BlockMath math="\begin{aligned}
+a_n&=S_n-S_{n-1}\\
+&=\left(2n^2-5n+3\right)-\left(2(n-1)^2-5(n-1)+3\right)\\
+&=2n^2-5n+3-2n^2+4n-2+5n-5-3\\
+&=4n-7
+\end{aligned}" />
 
-Die Wahrscheinlichkeit ist <InlineMath math="\frac{16}{32}=\frac12" />.
+Die Formel <InlineMath math="4n-7" /> liefert für <InlineMath math="n=1" /> den Wert <InlineMath math="-3" />, aber es gilt <InlineMath math="a_1=0" />. Dieser Unterschied kommt von **der Konstanten <InlineMath math="3" /> in <InlineMath math="S_n" />**. Die Folge lautet also <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="9" />, <InlineMath math="13" /> und so weiter.
 
-# Das Symmetrieargument
+# Die erste Aussage
 
-Fünf Münzen können nicht gleich oft Kopf und Zahl zeigen, weil 5 ungerade ist. Jedes Ergebnis hat also mehr Kopf **oder** mehr Zahl. Vertauscht man auf jeder Münze Kopf und Zahl, werden die beiden Gruppen eins zu eins einander zugeordnet, **beide Gruppen sind also gleich groß**, jede mit 16 Ergebnissen.
+Die Differenz der ersten beiden Glieder ist <InlineMath math="a_2-a_1=1-0=1" />, die nächste aber <InlineMath math="a_3-a_2=5-1=4" />. **Eine nicht konstante Differenz heißt: keine arithmetische Folge**, die erste Aussage ist also falsch.
 
-Der Wert <InlineMath math="\tfrac5{16}" /> zählt nur genau dreimal Kopf. Der Wert <InlineMath math="\tfrac{15}{32}" /> vergisst das Ergebnis mit fünfmal Kopf. Der Wert <InlineMath math="\tfrac{13}{16}" /> zählt auch zweimal Kopf mit, und der Wert <InlineMath math="\tfrac{31}{32}" /> ist die Wahrscheinlichkeit für mindestens einmal Kopf.
+# Die zweite Aussage
 
-Die gesuchte Wahrscheinlichkeit ist also <InlineMath math="\tfrac12" />.
+Das Glied Nummer <InlineMath math="15" /> folgt aus der Formel für <InlineMath math="n\ge2" />: <InlineMath math="a_{15}=4\cdot15-7=53" />. Probe mit der Summenformel: <InlineMath math="S_{15}-S_{14}=378-325=53" />. **Die zweite Aussage ist wahr**.
+
+# Die dritte Aussage
+
+Das erste Paar ergibt <InlineMath math="a_1+a_2=0+1=1" />. Für <InlineMath math="n\ge2" /> folgt die Summe zweier aufeinanderfolgender Glieder dieser Formel.
+
+<BlockMath math="\begin{aligned}
+a_n+a_{n+1}&=(4n-7)+(4n-3)=8n-10\\
+8n-10&=2{.}026\\
+8n&=2{.}036\\
+n&=254{,}5
+\end{aligned}" />
+
+Dieser Wert von <InlineMath math="n" /> ist keine natürliche Zahl, und das erste Paar hat nur die Summe <InlineMath math="1" />. Also **haben keine zwei aufeinanderfolgenden Glieder die Summe <InlineMath math="2{.}026" />**, und die dritte Aussage ist falsch.
+
+# Die vierte Aussage
+
+Die Glieder mit ungerader Nummer von <InlineMath math="a_3" /> bis <InlineMath math="a_{19}" /> sind <InlineMath math="9" /> Stück, nämlich <InlineMath math="5" />, <InlineMath math="13" /> bis <InlineMath math="69" />, mit der Differenz <InlineMath math="8" />. **Das erste Glied addierst du getrennt**, weil sein Wert <InlineMath math="a_1=0" /> nicht der Formel <InlineMath math="4n-7" /> folgt.
+
+<BlockMath math="\begin{aligned}
+a_3+a_5+\dots+a_{19}&=\frac{9}{2}(5+69)=333\\
+a_1+a_3+\dots+a_{19}&=0+333=333
+\end{aligned}" />
+
+Probe auf einem zweiten Weg: <InlineMath math="S_{19}=630" />, und die Glieder mit gerader Nummer ergeben <InlineMath math="a_2+a_4+\dots+a_{18}=\tfrac92(1+65)=297" />, also ergeben die ungeraden <InlineMath math="630-297=333" />. Wenn du <InlineMath math="a_1" /> mit <InlineMath math="4n-7" /> berechnest, erhältst du fälschlich <InlineMath math="330" />. Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte wahr.

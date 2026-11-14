@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "paragraph-relation",
   },
-  stimulus: "leuit",
+  stimulus: "mikoriza",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Tiang yang menopang lantai bangunan agar tidak roboh.",
+          label:
+            "menolak simpulan itu dengan menunjukkan bahwa mikoriza dapat lebih banyak membebani daripada membantu tanaman",
         },
         {
           correct: true,
-          label: "Cadangan yang meredam akibat kekurangan pangan.",
+          label:
+            "membatasi simpulan itu dengan menunjukkan bahwa manfaat hifa hilang begitu fosfor tidak lagi sulit didapat, sementara gula tetap dibayarkan",
         },
         {
           correct: false,
-          label: "Alat yang menahan getaran pada bangunan panggung.",
+          label:
+            "membatasi simpulan itu dengan menunjukkan bahwa tanaman harus membayar gula jauh lebih banyak ketika tanahnya kaya fosfor",
         },
         {
           correct: false,
-          label: "Pihak yang menengahi perselisihan antarwarga.",
+          label:
+            "menggeser simpulan itu dari cara kerja mikoriza ke penggunaannya sebagai pupuk hayati di lahan pertanian",
         },
         {
           correct: false,
-          label: "Dinding yang memisahkan ruang penyimpanan padi.",
+          label:
+            "membatasi simpulan itu sehingga manfaat mikoriza hanya berlaku pada tanaman yang tanahnya belum pernah dipupuk",
         },
       ],
     },

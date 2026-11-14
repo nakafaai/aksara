@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "writing",
-    topic: "conjunction",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "referent",
   },
-  stimulus: "grain-barn",
+  stimulus: "kenikir",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "menyatakan pertentangan dengan kalimat sebelumnya",
+          label:
+            "penurunan kutu daun di bedeng yang dikelilingi kenikir dari bulan pertama sampai minggu kedua belas",
         },
         {
           correct: false,
-          label: "menambahkan contoh bagi kalimat sebelumnya",
+          label:
+            "selisih jumlah kepik antara bedeng yang dikelilingi kenikir dan bedeng lainnya",
         },
         {
           correct: true,
-          label: "menyatakan simpulan dari alasan pada kalimat sebelumnya",
+          label:
+            "selisih rata-rata kutu daun per tanaman antara bedeng yang dikelilingi kenikir dan bedeng lainnya pada minggu kedua belas",
         },
         {
           correct: false,
-          label: "menyatakan urutan waktu setelah kalimat sebelumnya",
+          label:
+            "selisih waktu antara kenikir mulai berbunga lebat dan kepik mulai ramai datang",
         },
         {
           correct: false,
-          label: "menyatakan syarat bagi kalimat sebelumnya",
+          label:
+            "perbedaan keadaan kebun sebelum dan sesudah pestisida kimia dihentikan",
         },
       ],
     },

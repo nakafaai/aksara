@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "punctuation",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "argument-evaluation",
   },
-  stimulus: "village-radio",
+  stimulus: "lumbung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "kalimat (1)",
-        },
-        {
-          correct: false,
-          label: "kalimat (5)",
-        },
-        {
           correct: true,
-          label: "kalimat (6)",
+          label:
+            "Di antara rumah tangga yang berhenti berutang kepada tengkulak, ada yang pernah meminjam gabah dari lumbung.",
         },
         {
           correct: false,
-          label: "kalimat (7)",
+          label:
+            "Rumah tangga yang pernah meminjam gabah dari lumbung tidak lagi berutang kepada tengkulak.",
         },
         {
           correct: false,
-          label: "kalimat (8)",
+          label:
+            "Di antara rumah tangga yang masih berutang kepada tengkulak, ada yang tidak pernah meminjam gabah dari lumbung.",
+        },
+        {
+          correct: false,
+          label:
+            "Harga beras selama dua tahun itu lebih mahal daripada harga sebelum lumbung dihidupkan kembali.",
+        },
+        {
+          correct: false,
+          label:
+            "Ada desa lain yang juga berhasil mengurangi rumah tangga yang berutang kepada tengkulak dengan menghidupkan lumbung.",
         },
       ],
     },

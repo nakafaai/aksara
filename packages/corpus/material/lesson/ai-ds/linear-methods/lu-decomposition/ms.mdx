@@ -1,0 +1,301 @@
+export const metadata = {
+  title: "Penguraian LU dengan Pemangsian Separa",
+  description: "Faktorkan matriks segi empat sama sebagai PA = LU, ikuti contoh penghapusan lengkap, selesaikan sistem linear berulang dan tulis algoritma NumPy yang selamat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-13",
+  dateModified: "2026-09-12",
+  subject: "Kaedah Linear AI",
+};
+
+## Pemfaktoran
+
+Penguraian <InlineMath math="\mathrm{LU}" /> menyimpan penghapusan Gauss sebagai dua matriks segi tiga. Dengan pemangsian separa (partial pivoting), matriks segi empat sama tak singular <InlineMath math="A \in \mathbb{R}^{n\times n}" /> difaktorkan sebagai
+
+<BlockMath math="PA=LU" />
+
+Setiap faktor ada peranannya sendiri:
+
+- <InlineMath math="P" /> ialah matriks pilih atur yang merekod pertukaran baris
+- <InlineMath math="L" /> ialah matriks segi tiga bawah unit
+- <InlineMath math="U" /> ialah matriks segi tiga atas
+
+Pada langkah penghapusan <InlineMath math="k" />, pemangsian separa memilih unsur yang magnitudnya paling besar dalam lajur <InlineMath math="k" />, pada pepenjuru atau di bawahnya. Cara ini <Highlight>mengelakkan pembahagian dengan pangsi sifar</Highlight> dan biasanya menghadkan pertumbuhan ralat berangka.
+
+Untuk matriks pilih atur, <InlineMath math="P^{-1}=P^{\mathsf T}" />. Kesamaan <InlineMath math="P^{-1}=P" /> hanya benar untuk pilih atur yang khas, contohnya satu pertukaran baris sahaja, dan tidak benar untuk setiap pilih atur yang terkumpul.
+
+## Cara Penghapusan Membina Faktor
+
+Selepas memilih pangsi dalam lajur <InlineMath math="k" />, hapuskan setiap unsur di bawahnya dengan pendarab
+
+<BlockMath math="\ell_{ik}=\frac{u_{ik}}{u_{kk}},\qquad i=k+1,\ldots,n" />
+
+Kemudian, lakukan kemas kini baris berikut.
+
+<BlockMath math="\begin{aligned} &amp;u_{ij}\leftarrow u_{ij}-\ell_{ik}u_{kj}, \\ &amp;j=k,\ldots,n \end{aligned}" />
+
+Pendarab ini disimpan di bawah pepenjuru <InlineMath math="L" />. Jika dua baris ditukar selepas beberapa langkah penghapusan, **lajur yang sudah diisi** dalam <InlineMath math="L" /> mesti ditukar juga. Kalau tidak, <InlineMath math="PA=LU" /> tidak lagi benar.
+
+Ambil sistem <InlineMath math="2x+y=3" /> dan <InlineMath math="4x+5y=9" />. Langkah <InlineMath math="R_2\leftarrow R_2-2R_1" /> menyimpan pendarab <InlineMath math="\ell_{21}=2" /> dalam <InlineMath math="L" /> dan meninggalkan <InlineMath math="3y=3" /> untuk <InlineMath math="U" />, jadi <InlineMath math="L=\begin{pmatrix}1&0\\2&1\end{pmatrix}" /> dan <InlineMath math="U=\begin{pmatrix}2&1\\0&3\end{pmatrix}" />. Garis kedua berubah menjadi garis mengufuk, tetapi garis itu masih melalui penyelesaian yang sama.
+
+<MathVisual
+  title={<>Penghapusan memutar garis kedua pada titik penyelesaian</>}
+  description={<>Garis ungu <InlineMath math="2x+y=3" /> dan garis hijau kebiruan <InlineMath math="4x+5y=9" /> bersilang di titik magenta <InlineMath math="(1,1)" />. Selepas penghapusan, baris kedua menjadi garis oren <InlineMath math="3y=3" />, yang melalui titik yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "line", through: [{ x: 0, y: 3 }, { x: 3 / 2, y: 0 }], appearance: "secondary" },
+      { id: "second", kind: "line", through: [{ x: 1, y: 1 }, { x: 9 / 4, y: 0 }], appearance: "construction" },
+      { id: "eliminated", kind: "line", through: [{ x: 0, y: 1 }, { x: 2, y: 1 }], appearance: "primary" },
+      { id: "solution", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "solution", objectId: "solution", at: { x: 1, y: 1 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "solution": <InlineMath math="(1,1)" />,
+  }}
+/>
+
+## Memfaktorkan Matriks dengan Pemangsian Separa
+
+Kita akan menjejak **kedua-dua pertukaran baris** supaya pilih atur akhir sepadan dengan faktor-faktornya.
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}0&2&1\\1&1&0\\2&1&1\end{pmatrix}" />
+<BlockMath math="b=\begin{pmatrix}7\\3\\7\end{pmatrix}" />
+</MathContainer>
+
+### Pangsi Pertama
+
+Unsur terbesar dalam lajur pertama mempunyai magnitud <InlineMath math="2" />. **Tukar baris satu dengan baris tiga**, kemudian hapuskan unsur dalam baris dua dengan pendarab <InlineMath math="\ell_{21}=1/2" />. Baris tiga sudah pun bermula dengan sifar.
+
+<BlockMath math="\begin{pmatrix}2&amp;1&amp;1\\1&amp;1&amp;0\\0&amp;2&amp;1\end{pmatrix}\longrightarrow\begin{pmatrix}2&amp;1&amp;1\\0&amp;1/2&amp;-1/2\\0&amp;2&amp;1\end{pmatrix}" />
+
+### Pangsi Kedua
+
+Pangsi seterusnya mempunyai magnitud <InlineMath math="2" /> dalam baris tiga, jadi **tukar baris dua dengan baris tiga**. Tukar juga pendarab lajur pertama yang sudah disimpan untuk kedua-dua baris itu dalam <InlineMath math="L" />. Selepas itu, pendarab untuk baris terakhir ialah <InlineMath math="\ell_{32}=(1/2)/2=1/4" />.
+
+<BlockMath math="u_{33}=-\frac12-\frac14\cdot1=-\frac34" />
+
+Faktor-faktor yang terhasil ialah
+
+<MathContainer>
+<BlockMath math="P=\begin{pmatrix}0&0&1\\1&0&0\\0&1&0\end{pmatrix}" />
+<BlockMath math="L=\begin{pmatrix}1&0&0\\0&1&0\\\frac12&\frac14&1\end{pmatrix}" />
+<BlockMath math="U=\begin{pmatrix}2&1&1\\0&2&1\\0&0&-\frac34\end{pmatrix}" />
+</MathContainer>
+
+Darabkan faktor-faktor ini untuk mengesahkan penguraiannya:
+
+<BlockMath math="LU=\begin{pmatrix}2&1&1\\0&2&1\\1&1&0\end{pmatrix}=PA" />
+
+## Menyelesaikan Sistem Linear
+
+Daripada <InlineMath math="PA=LU" />, persamaan <InlineMath math="Ax=b" /> menjadi
+
+<BlockMath math="LUx=Pb" />
+
+Kita selesaikan sistem ini dalam **dua peringkat** menggunakan matriks segi tiga.
+
+### Penggantian ke Hadapan
+
+Mula-mula, selesaikan <InlineMath math="Ly=Pb" />. Di sini,
+
+<MathContainer>
+<BlockMath math="Pb=\begin{pmatrix}7\\7\\3\end{pmatrix}" />
+<BlockMath math="y=\begin{pmatrix}7\\7\\-\frac94\end{pmatrix}" />
+</MathContainer>
+
+Untuk matriks segi tiga bawah yang umum,
+
+<BlockMath math="\begin{aligned} &amp;y_i=\frac{1}{\ell_{ii}}\left(c_i-\sum_{j=1}^{i-1}\ell_{ij}y_j\right), \\ &amp;c=Pb \end{aligned}" />
+
+Semua **unsur pepenjuru** bagi <InlineMath math="L" /> ini bernilai satu.
+
+### Penggantian ke Belakang
+
+Kemudian, selesaikan <InlineMath math="Ux=y" /> **dari baris terakhir ke atas**:
+
+<BlockMath math="x_i=\frac{1}{u_{ii}}\left(y_i-\sum_{j=i+1}^{n}u_{ij}x_j\right)" />
+
+Untuk contoh ini,
+
+<BlockMath math="x=\begin{pmatrix}1\\2\\3\end{pmatrix}" />
+
+Gantikan nilai ini terus ke dalam sistem asal, dan kamu akan dapati <InlineMath math="Ax=b" /> memang dipenuhi.
+
+Putar tiga satah bagi sistem segi tiga atas <InlineMath math="Ux=y" /> di bawah. Persamaan terakhir hanya mengandungi <InlineMath math="x_3" />, jadi satah ungunya terletak mendatar pada ketinggian <InlineMath math="x_3=3" />. Persamaan kedua tidak mengandungi <InlineMath math="x_1" />, jadi satah hijau kebiruannya selari dengan paksi <InlineMath math="x_1" />. Penggantian ke belakang mengikut urutan itu: ketinggian dahulu, kemudian <InlineMath math="x_2=2" />, kemudian <InlineMath math="x_1=1" /> daripada satah kuning ambar. Ketiga-tiga satah bertemu tepat di titik magenta <InlineMath math="x=(1,2,3)^T" />.
+
+<MathVisual
+  title={<>Tiga satah bagi <InlineMath math="Ux=y" /> bertemu di <InlineMath math="x=(1,2,3)^T" /></>}
+  description={<>Satah ungu <InlineMath math="x_3=3" />, satah hijau kebiruan <InlineMath math="2x_2+x_3=7" /> dan satah kuning ambar <InlineMath math="2x_1+x_2+x_3=7" />. Paksi <InlineMath math="x_3" /> menghala ke atas.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: 0.5, max: 5.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 3, z: 2 } },
+    objects: [
+      { id: "flat", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (0), z: 2 + (-1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (0), z: 2 + (1.5) * (0) + (-1.5) * (1) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (0), z: 2 + (-1.5) * (0) + (1.5) * (1) }], appearance: "secondary" },
+      { id: "middle", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1) + (-1.5) * (0), y: 3 + (-1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (-1.5) * (0), y: 3 + (1.5) * (0) + (-1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (-1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, { x: 1 + (-1.5) * (1) + (1.5) * (0), y: 3 + (-1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (-1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }], appearance: "construction" },
+      { id: "steep", kind: "polygon", vertices: [{ x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (-1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (-1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (-1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, { x: 1 + (-1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (-1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (-1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }], appearance: "highlight" },
+      { id: "solution", kind: "point", at: { x: 1, y: 3, z: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (0), z: 2 + (1.5) * (0) + (1.5) * (1) }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1 + (1.5) * (1) + (1.5) * (0), y: 3 + (1.5) * (0) + (1.5) * (-2 / Math.sqrt(5)), z: 2 + (1.5) * (0) + (1.5) * (1 / Math.sqrt(5)) }, placement: "right" },
+      { key: "steep", objectId: "steep", at: { x: 1 + (1.5) * (1 / Math.sqrt(5)) + (1.5) * (2 / Math.sqrt(30)), y: 3 + (1.5) * (0) + (1.5) * (-5 / Math.sqrt(30)), z: 2 + (1.5) * (-2 / Math.sqrt(5)) + (1.5) * (1 / Math.sqrt(30)) }, placement: "right" },
+      { key: "solution", objectId: "solution", at: { x: 1, y: 3, z: 2 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "flat": <InlineMath math="x_3=3" />,
+    "middle": <InlineMath math="2x_2+x_3=7" />,
+    "steep": <InlineMath math="2x_1+x_2+x_3=7" />,
+    "solution": <InlineMath math="x=(1,2,3)^T" />,
+  }}
+/>
+
+## Kos dan Penggunaan Semula
+
+Pemfaktoran <InlineMath math="\mathrm{LU}" /> bagi matriks padat memerlukan lebih kurang
+
+<BlockMath math="\frac{2}{3}n^3+O(n^2)" />
+
+Kiraan ini memberikan bilangan operasi titik apungan apabila pendaraban dan penolakan dikira secara berasingan. Sebaik sahaja faktor-faktor itu ada, setiap sisi kanan yang baharu hanya memerlukan kerja sebanyak <InlineMath math="O(n^2)" /> untuk dua penggantian tadi. Jadi, **dengan menggunakan semula** faktor <InlineMath math="\mathrm{LU}" /> yang sama, kamu tidak perlu mengulang pemfaktoran <InlineMath math="O(n^3)" /> untuk setiap sisi kanan.
+
+Penentu juga boleh diperoleh daripada faktor-faktor ini:
+
+<BlockMath math="\det(A)=\det(P)\prod_{i=1}^{n}u_{ii}" />
+
+Untuk <InlineMath math="n=100" />, pemfaktoran mengambil kira-kira <InlineMath math="\tfrac23n^3\approx666667" /> operasi, manakala dua penggantian untuk satu sisi kanan mengambil kira-kira <InlineMath math="2n^2=20000" />. Dengan menyimpan faktor <InlineMath math="\mathrm{LU}" />, setiap sisi kanan seterusnya hanya menambah kos penggantian.
+
+<ScatterDiagram
+  title={<>Kos untuk <InlineMath math="m" /> sisi kanan dengan <InlineMath math="n=100" /></>}
+  description={<>Siri pertama ialah <InlineMath math="\tfrac23n^3+2n^2m" /> apabila faktor digunakan semula, dan siri kedua ialah <InlineMath math="m\bigl(\tfrac23n^3+2n^2\bigr)" /> apabila pemfaktoran diulang, untuk <InlineMath math="m=1" /> hingga <InlineMath math="6" />.</>}
+  xAxisLabel="Bilangan sisi kanan"
+  yAxisLabel="Operasi titik apungan"
+  datasets={[
+    {
+      name: "Faktorkan sekali",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 2 / 3 * 100 ** 3 + 1 * 2 * 100 ** 2 },
+        { x: 2, y: 2 / 3 * 100 ** 3 + 2 * 2 * 100 ** 2 },
+        { x: 3, y: 2 / 3 * 100 ** 3 + 3 * 2 * 100 ** 2 },
+        { x: 4, y: 2 / 3 * 100 ** 3 + 4 * 2 * 100 ** 2 },
+        { x: 5, y: 2 / 3 * 100 ** 3 + 5 * 2 * 100 ** 2 },
+        { x: 6, y: 2 / 3 * 100 ** 3 + 6 * 2 * 100 ** 2 },
+      ],
+    },
+    {
+      name: "Faktorkan setiap kali",
+      color: "var(--chart-2)",
+      points: [
+        { x: 1, y: 1 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 2, y: 2 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 3, y: 3 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 4, y: 4 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 5, y: 5 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+        { x: 6, y: 6 * (2 / 3 * 100 ** 3 + 2 * 100 ** 2) },
+      ],
+    },
+  ]}
+/>
+
+## Pelaksanaan NumPy dengan Semakan Pangsi
+
+<CodeBlock data={[{
+  language: "python",
+  filename: "plu_solve.py",
+  code: `import numpy as np
+
+
+def plu_factor(matrix, tolerance=1e-12):
+    """Return P, L, U such that P @ matrix == L @ U."""
+    A = np.asarray(matrix)
+    if np.iscomplexobj(A):
+        raise ValueError("this example requires real entries")
+    A = A.astype(float)
+    if A.ndim != 2 or A.shape[0] != A.shape[1] or A.shape[0] == 0:
+        raise ValueError("PLU factorization requires a nonempty square matrix")
+    if not np.all(np.isfinite(A)):
+        raise ValueError("matrix entries must be finite")
+    if not np.isfinite(tolerance) or tolerance < 0:
+        raise ValueError("relative tolerance must be finite and nonnegative")
+    threshold = tolerance * np.linalg.norm(A, ord=np.inf)
+
+    n = A.shape[0]
+    U = A.copy()
+    L = np.eye(n)
+    P = np.eye(n)
+
+    for k in range(n - 1):
+        pivot = k + np.argmax(np.abs(U[k:, k]))
+        if abs(U[pivot, k]) <= threshold:
+            raise np.linalg.LinAlgError("matrix is singular to working precision")
+
+        if pivot != k:
+            U[[k, pivot]] = U[[pivot, k]]
+            P[[k, pivot]] = P[[pivot, k]]
+            L[[k, pivot], :k] = L[[pivot, k], :k]
+
+        for i in range(k + 1, n):
+            L[i, k] = U[i, k] / U[k, k]
+            U[i, k:] -= L[i, k] * U[k, k:]
+
+    if abs(U[-1, -1]) <= threshold:
+        raise np.linalg.LinAlgError("matrix is singular to working precision")
+
+    return P, L, U
+
+
+def forward_substitution(L, right_hand_side):
+    b = np.asarray(right_hand_side, dtype=float)
+    y = np.empty_like(b)
+    for i in range(len(b)):
+        y[i] = (b[i] - L[i, :i] @ y[:i]) / L[i, i]
+    return y
+
+
+def backward_substitution(U, right_hand_side, tolerance=1e-12):
+    y = np.asarray(right_hand_side, dtype=float)
+    x = np.empty_like(y)
+    threshold = tolerance * np.linalg.norm(U, ord=np.inf)
+    for i in range(len(y) - 1, -1, -1):
+        if abs(U[i, i]) <= threshold:
+            raise np.linalg.LinAlgError("singular triangular system")
+        x[i] = (y[i] - U[i, i + 1:] @ x[i + 1:]) / U[i, i]
+    return x
+
+
+def plu_solve(matrix, right_hand_side):
+    P, L, U = plu_factor(matrix)
+    b = np.asarray(right_hand_side)
+    if np.iscomplexobj(b):
+        raise ValueError("this example requires a real right-hand side")
+    b = b.astype(float)
+    if b.shape != (len(P),) or not np.all(np.isfinite(b)):
+        raise ValueError("right-hand side must be a finite vector of matching size")
+    y = forward_substitution(L, P @ b)
+    x = backward_substitution(U, y)
+    return x, P, L, U
+
+
+A = np.array([[0, 2, 1], [1, 1, 0], [2, 1, 1]], dtype=float)
+b = np.array([7, 3, 7], dtype=float)
+x, P, L, U = plu_solve(A, b)
+
+assert np.allclose(P @ A, L @ U)
+assert np.allclose(A @ x, b)
+assert np.allclose(x, np.array([1, 2, 3], dtype=float))`
+}]} />
+
+Semakan ini dimasukkan dalam contoh kerana **susunan faktor** dan rekod pertukaran baris ialah punca ralat yang lazim semasa menulis kod.
+
+Toleransi pangsi diukur secara relatif terhadap norma ketakterhinggaan matriks. Jadi, jika sistem yang berkeadaan baik (well-conditioned) diskalakan semula secara seragam, kod ini tidak akan gagal hanya kerana setiap unsurnya kecil. Ambang ini ialah keputusan berangka, bukan bukti bahawa matriks itu benar-benar singular.
+
+## Skop Kaedah Ini
+
+Pelaksanaan ini hanya menyelesaikan sistem untuk **matriks segi empat sama tak singular** dan menganggap pangsi berangka sifar sebagai kegagalan. Gunakan <InlineMath math="\mathrm{QR}" /> untuk masalah kuasa dua terkecil dengan matriks segi empat tepat, dan gunakan <InlineMath math="\mathrm{QR}" /> berpangsi lajur atau <InlineMath math="\mathrm{SVD}" /> untuk masalah yang kurang pangkat. Pemfaktoran <InlineMath math="\mathrm{PLU}" /> mungkin masih wujud untuk matriks segi empat sama yang singular, tetapi penyelesai ini tidak dapat menggunakannya untuk mendapatkan penyelesaian yang unik.

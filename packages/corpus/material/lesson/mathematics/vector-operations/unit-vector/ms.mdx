@@ -1,0 +1,169 @@
+
+
+export const metadata = {
+  title: "Vektor Unit daripada Suatu Vektor",
+  description: "Normalkan vektor bukan sifar untuk mendapat vektor unit, kemudian kaitkan magnitud 1 dengan arah dan vektor asas piawai Cartesan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-09-12",
+  subject: "Vektor dan Operasinya",
+};
+
+## Mengekalkan Arah dengan Vektor yang Panjangnya Satu
+
+Vektor unit mempunyai panjang atau magnitud <InlineMath math="1 \text{ unit}" />. Vektor ini mewakili arah tanpa membawa magnitud asalnya. Daripada sebarang vektor bukan sifar, kita boleh dapatkan vektor unit dalam arah yang sama dengan <Highlight>membahagi vektor itu dengan panjangnya</Highlight>.
+
+## Rumus Vektor Unit dan Arahnya
+
+Ambil vektor <InlineMath math="\overrightarrow{PQ}" /> dalam sistem koordinat Cartesan. Vektor unit bagi <InlineMath math="\overrightarrow{PQ}" /> ditakrifkan sebagai vektor <InlineMath math="\overrightarrow{PQ}" /> dibahagi dengan panjangnya.
+
+<BlockMath math="\mathbf{u}_{PQ} = \frac{\overrightarrow{PQ}}{|\overrightarrow{PQ}|}" />
+
+Penyebut <InlineMath math="|\overrightarrow{PQ}|" /> ialah magnitud <InlineMath math="\overrightarrow{PQ}" /> dan mesti **lebih besar daripada sifar**. Vektor sifar tidak mempunyai vektor unit yang sepadan kerana pembahagian dengan sifar tidak tertakrif.
+
+Vektor unit sentiasa menghala ke arah yang sama dengan vektor asal, tetapi panjangnya dinormalkan kepada <InlineMath math="1 \text{ unit}" />.
+
+<MathVisual
+  title={<>Vektor dan Vektor Unit</>}
+  description={<>Visualisasi vektor asal dan vektor unit yang mempunyai arah yang sama tetapi panjang yang berbeza.</>}
+  labels={{
+    "l1": <InlineMath math="v" />,
+    "l2": <InlineMath math="\hat{v}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0.6, y: 0.8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.6, y: 0.8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Mengira Vektor Unit
+
+Membahagi vektor bukan sifar dengan panjangnya mengekalkan **arahnya** dan memberikan panjang satu. Vektor yang asalnya lebih panjang daripada satu menjadi lebih pendek. Vektor yang asalnya lebih pendek daripada satu menjadi lebih panjang.
+
+1. Kenal pasti vektor asal
+2. Hitung panjang vektor itu
+3. Bahagikan vektor itu dengan panjangnya
+
+### Menormalkan Vektor Tiga Dimensi
+
+Ambil vektor <InlineMath math="\vec{v} = (3, 6, 4)" />.
+
+Mula-mula, hitung magnitudnya:
+
+<BlockMath math="\begin{aligned} |\vec{v}| &amp;= \sqrt{3^2 + 6^2 + 4^2} \\ &amp;= \sqrt{9 + 36 + 16} \\ &amp;= \sqrt{61} \end{aligned}" />
+
+Kemudian **bahagikan vektor itu dengan magnitud tersebut**:
+
+<BlockMath math="\hat{v} = \frac{\vec{v}}{|\vec{v}|} = \frac{(3, 6, 4)}{\sqrt{61}}" />
+
+Maka, vektor unitnya ialah:
+
+<BlockMath math="\hat{v} = \left(\frac{3}{\sqrt{61}}, \frac{6}{\sqrt{61}}, \frac{4}{\sqrt{61}}\right)" />
+
+<ContentBlock>
+  <MathVisual
+    title={<>Contoh Vektor Unit dalam Ruang 3D</>}
+    description={
+        <>
+          Visualisasi vektor <InlineMath math="v(3,6,4)" /> dan vektor unitnya{" "}
+          <InlineMath math="\hat{v}" /> yang menghala ke arah yang sama.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="v" />,
+      "l2": <InlineMath math="\hat{v}" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -1, max: 7 }, z: { min: -0.5, max: 4.5 } },
+      view: { kind: "camera", position: { x: 7.5, y: 6.5, z: -7 }, target: { x: 1.5, y: 2.9, z: 1.8 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 6, z: 4 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0.38, y: 0.77, z: 0.51 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 6, z: 4 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 0.38, y: 0.77, z: 0.51 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Panjang dan Komponen Vektor Unit
+
+Ciri yang menentukan vektor unit ialah panjangnya satu, dan ciri ini memaksa satu hubungan antara komponennya. **Jika setiap komponen dikuasaduakan lalu ditambah**, hasilnya ialah satu, dan persamaan itulah yang mengawal langkah daripada sebarang vektor bukan sifar kepada vektor unitnya.
+
+### Panjang Vektor Unit
+
+Vektor unit mempunyai panjang <InlineMath math="1" />. Untuk contoh ini, tambahkan kuasa dua ketiga-tiga koordinat dahulu. Panjang tidak pernah negatif, jadi ambil **punca kuasa dua positif** pada akhirnya.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;|\hat{v}|^2 \\ &amp;=\left(\frac{3}{\sqrt{61}}\right)^2+\left(\frac{6}{\sqrt{61}}\right)^2 \\ &amp;\quad+\left(\frac{4}{\sqrt{61}}\right)^2 \\ &amp;=\frac{9+36+16}{61} \\ &amp;=\frac{61}{61} \\ &amp;=1 \end{aligned}" />
+  <BlockMath math="|\hat{v}|=\sqrt{1}=1" />
+</MathContainer>
+
+### Vektor Unit pada Paksi Koordinat
+
+Dalam sistem koordinat tiga dimensi, terdapat tiga vektor unit piawai yang menghala di sepanjang **paksi koordinat positif**:
+
+- <InlineMath math="\hat{\imath}" /> ialah vektor unit dalam arah paksi-<InlineMath math="x" /> positif
+- <InlineMath math="\hat{\jmath}" /> ialah vektor unit dalam arah paksi-<InlineMath math="y" /> positif
+- <InlineMath math="\hat{k}" /> ialah vektor unit dalam arah paksi-<InlineMath math="z" /> positif
+
+Setiap vektor dalam <InlineMath math="\mathbb{R}^3" /> boleh dinyatakan sebagai gabungan linear ketiga-tiga vektor unit ini.
+
+<MathVisual
+  title={<>Vektor Unit Piawai</>}
+  description={<>Vektor unit piawai pada paksi koordinat.</>}
+  labels={{
+    "l1": <InlineMath math="\hat{\imath}" />,
+    "l2": <InlineMath math="\hat{\jmath}" />,
+    "l3": <InlineMath math="\hat{k}" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 1.5 }, y: { min: -0.5, max: 1.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "camera", position: { x: 2, y: 1.5, z: 2.2 }, target: { x: 0.3, y: 0.35, z: 0.3 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 1, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 1, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 1 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Mencatat Arah dengan Vektor Unit
+
+Vektor unit **memisahkan arah daripada magnitud**, jadi ia boleh menerangkan arah dengan sendirinya. Dua vektor yang menghala ke arah yang sama berkongsi satu vektor unit, dan ini menjadikan vektor unit cara yang ringkas untuk mencatat arah.
+
+### Menunjukkan Arah
+
+Vektor unit mencatat arah dengan magnitud <InlineMath math="1" />. Dalam fizik, vektor unit boleh digunakan untuk menentukan arah sesuatu daya, halaju atau pecutan **secara berasingan daripada magnitud kuantiti itu**.
+
+### Pengiraan dalam Fizik
+
+Katakan suatu daya mempunyai komponen <InlineMath math="3\text{ N}" /> di sepanjang paksi-<InlineMath math="x" /> positif dan komponen <InlineMath math="-4\text{ N}" /> di sepanjang paksi-<InlineMath math="y" />. Tanda negatif menunjukkan arah yang bertentangan dengan paksi positif. **Magnitud daya** diperoleh daripada dua komponen itu:
+
+<MathContainer>
+  <BlockMath math="\vec F=(3\hat\imath-4\hat\jmath)\text{ N}" />
+  <BlockMath math="|\vec F|=\sqrt{3^2+(-4)^2}\text{ N}=5\text{ N}" />
+  <BlockMath math="\hat F=\frac{\vec F}{|\vec F|}=\frac35\hat\imath-\frac45\hat\jmath" />
+</MathContainer>
+
+Vektor unit tidak mempunyai unit newton kerana unit pada pengangka dan penyebut saling membatalkan. Mendarab arah itu dengan magnitud daya mengembalikan komponen asal:
+
+<BlockMath math="5\text{ N}\left(\frac35\hat\imath-\frac45\hat\jmath\right)=(3\hat\imath-4\hat\jmath)\text{ N}" />

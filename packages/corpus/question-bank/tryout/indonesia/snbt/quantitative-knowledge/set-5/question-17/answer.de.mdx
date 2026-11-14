@@ -1,15 +1,36 @@
-Der Rest bei Division durch 6 steht fest, sobald man weiß, welcher der sechs möglichen Reste 0 bis 5 gilt. Prüfe, ob jede Aussage **die Möglichkeiten auf eine einzige einschränkt**.
+Die Frage vergleicht zwei Beträge, also formst du sie zuerst um. Der Plan: Quadriere beide Seiten, um eine einfache Bedingung für <InlineMath math="x" /> und <InlineMath math="y" /> zu bekommen, und prüfe dann jede Aussage mit **einem Beispiel für Ja und einem Beispiel für Nein**.
 
-# Erste Aussage allein
+# Die Frage umformen
 
-Zahlen mit dem Rest 2 bei Division durch 3 sind etwa 2, 5, 8 und 11. Ihre Reste bei Division durch 6 sind 2, 5, 2 und 5. Die Division durch 3 **unterscheidet gerade und ungerade Zahlen nicht**, also sind die Reste 2 und 5 beide möglich. Aussage (1) allein reicht nicht aus.
+Beide Seiten sind nicht negativ, und von zwei nicht negativen Zahlen hat die kleinere auch das kleinere Quadrat. Du darfst also die Quadrate vergleichen.
 
-# Zweite Aussage allein
+<BlockMath math="\begin{aligned}
+|x+y|<|x-y|\quad&\Longleftrightarrow\quad(x+y)^2<(x-y)^2\\
+&\Longleftrightarrow\quad x^2+2xy+y^2<x^2-2xy+y^2\\
+&\Longleftrightarrow\quad 4xy<0
+\end{aligned}" />
 
-Schreibe <InlineMath math="n=12k+5" /> mit einer ganzen Zahl <InlineMath math="k\ge0" />. Weil 12 ein Vielfaches von 6 ist, **ist der Teil <InlineMath math="12k" /> durch 6 teilbar**.
+Die Frage lautet also, **ob <InlineMath math="x" /> und <InlineMath math="y" /> verschiedene Vorzeichen haben**.
 
-<BlockMath math="n=12k+5=6(2k)+5" />
+# Die erste Aussage allein
 
-Der Rest ist immer 5, zum Beispiel lassen 5, 17 und 29 alle den Rest 5 bei Division durch 6. Aussage (2) allein reicht aus. Die beiden Aussagen passen auch zusammen, denn <InlineMath math="12k+5" /> lässt bei Division durch 3 tatsächlich den Rest 2.
+Aussage (1) vergleicht nur die Größe von <InlineMath math="x" /> und <InlineMath math="y" />, nicht ihre Vorzeichen. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=1" /> erfüllt (1) und hat gleiche Vorzeichen, also lautet die Antwort Nein. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=-1" /> erfüllt (1) ebenfalls, hat aber verschiedene Vorzeichen, also Ja. **Aussage (1) allein reicht nicht aus**.
 
-**Aussage (2) allein reicht also aus**, Aussage (1) allein dagegen nicht.
+# Die zweite Aussage allein
+
+Hoch drei zu nehmen erhält immer die Reihenfolge, also ist <InlineMath math="x^3>y^3" /> dasselbe wie <InlineMath math="x>y" />. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=1" /> liefert Nein, das Paar <InlineMath math="x=1" /> und <InlineMath math="y=-3" /> liefert Ja. **Aussage (2) allein reicht nicht aus**.
+
+# Beide Aussagen zusammen
+
+Jetzt gilt <InlineMath math="x>y" /> und <InlineMath math="|x|>|y|" />. Aus <InlineMath math="|x|>|y|" /> folgt <InlineMath math="x^2-y^2>0" />.
+
+<BlockMath math="\begin{aligned}
+(x-y)(x+y)&>0\\
+x-y>0\quad&\Rightarrow\quad x+y>0
+\end{aligned}" />
+
+Also gilt <InlineMath math="x>y" /> und <InlineMath math="x>-y" />, das heißt, <InlineMath math="x" /> ist größer als <InlineMath math="|y|" /> und sicher positiv. Aber **das Vorzeichen von <InlineMath math="y" /> bleibt unbekannt**. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=1" /> erfüllt beide Aussagen und liefert <InlineMath math="|4|<|2|" />, was falsch ist, also Nein. Das Paar <InlineMath math="x=3" /> und <InlineMath math="y=-1" /> erfüllt ebenfalls beide und liefert <InlineMath math="|2|<|4|" />, was stimmt, also Ja. Auch zusammen reichen die Aussagen nicht aus.
+
+Die Antwort, dass beide Aussagen zusammen ausreichen, ist eine Falle für alle, die aufhören, sobald sie wissen, dass <InlineMath math="x" /> positiv ist, und das Vorzeichen von <InlineMath math="y" /> nicht mehr prüfen.
+
+Aussage (1) und Aussage (2) reichen also weder allein noch zusammen aus, um die Frage zu beantworten.

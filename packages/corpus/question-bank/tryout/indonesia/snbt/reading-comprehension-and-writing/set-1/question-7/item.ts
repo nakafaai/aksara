@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "conjunction",
+    topic: "sentence-order",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "antrean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "(6), (9), (8), (5), (7)",
+        },
+        {
+          correct: false,
+          label: "(6), (8), (5), (9), (7)",
+        },
+        {
+          correct: false,
+          label: "(8), (6), (9), (5), (7)",
+        },
+        {
+          correct: false,
+          label: "(6), (8), (9), (7), (5)",
+        },
+        {
           correct: true,
-          label: "Meskipun demikian",
-        },
-        {
-          correct: false,
-          label: "Oleh karena itu",
-        },
-        {
-          correct: false,
-          label: "Dengan demikian",
-        },
-        {
-          correct: false,
-          label: "Selain itu",
-        },
-        {
-          correct: false,
-          label: "Akibatnya",
+          label: "(6), (8), (9), (5), (7)",
         },
       ],
     },

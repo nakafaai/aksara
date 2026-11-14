@@ -1,0 +1,148 @@
+export const metadata = {
+    title: "Teorem Asas Kalkulus",
+    description: "Hubungkan terbitan, fungsi pengumpulan dan kamiran tentu melalui kedua-dua bahagian Teorem Asas Kalkulus.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-05-26",
+    dateModified: "2026-11-08",
+    subject: "Pengamiran",
+};
+
+## Bagaimana Terbitan dan Kamiran Saling Berkait
+
+Teorem Asas Kalkulus menghubungkan **terbitan** dan **kamiran**. Teorem ini menerangkan mengapa pembezaan fungsi pengumpulan memberikan semula kadarnya, dan mengapa antiterbitan boleh menilai kamiran tentu tanpa perlu mengira semula [had hasil tambah Riemann](/ms/subjek/matematik/pengamiran/hasil-tambah-riemann).
+
+Andaikan <InlineMath math="f" /> selanjar pada selang yang sedang dikaji. Bahagian Pertama membezakan kamiran yang had atasnya berubah. Bahagian Kedua menilai kamiran yang hadnya tetap dengan menggunakan mana-mana antiterbitan bagi kamiranan. Keselanjaran ialah **hipotesis yang mencukupi** untuk menjamin bahawa kedua-dua pernyataan itu berlaku di sini.
+
+## Membezakan Fungsi Kamiran
+
+Bahagian Pertama menyatakan bahawa jika kita mengumpulkan suatu kadar yang selanjar, kemudian <Highlight>membezakannya, kita mendapat semula kadar asal</Highlight>:
+
+<BlockMath math="\begin{aligned} F(x) &amp;= \int_{a}^{x} f(t) \, dt \\ F'(x)&amp;= f(x) \end{aligned}" />
+
+Ini bermaksud terbitan bagi fungsi yang ditakrifkan sebagai kamiran ialah fungsi di dalam kamiran itu sendiri.
+
+> Jika <InlineMath math="f(t)" /> ialah kadar aliran masuk pada masa <InlineMath math="t" />, maka <InlineMath math="F(x)" /> ialah isi padu yang ditambah antara masa mula dengan masa <InlineMath math="x" />. Kadar perubahan seketikanya, <InlineMath math="F'(x)" />, sama dengan kadar aliran masuk <InlineMath math="f(x)" />.
+
+**Contoh**:
+
+Cari terbitan bagi <InlineMath math="F(x) = \int_{1}^{x} \sqrt{2+t} \, dt" />.
+
+**Penyelesaian**:
+
+Menurut Teorem Asas Kalkulus Bahagian Pertama, terbitan itu diperoleh dengan menilai kamiranan pada had atas yang berubah: gantikan <InlineMath math="t" /> dengan <InlineMath math="x" />.
+
+<BlockMath math="\frac{d}{dx} \left( \int_{1}^{x} \sqrt{2+t} \, dt \right) = \sqrt{2+x}" />
+
+Kamiranan punca kuasa dua ini tertakrif untuk <InlineMath math="t\ge-2" /> dan selanjar di situ. Rumus terbitan ini berlaku di **bahagian dalam domain**, iaitu apabila <InlineMath math="x>-2" />.
+
+### Apabila Had Atas Berupa Fungsi
+
+Jika had atasnya ialah <InlineMath math="x^2" />, kadar perubahan had itu juga mempengaruhi terbitan. Gunakan **petua rantai** selepas menilai kamiranan pada had atas:
+
+<BlockMath math="\begin{aligned}G(x)&=\int_1^{x^2}\sqrt{2+t}\,dt\\G'(x)&=\sqrt{2+x^2}\cdot\frac{d}{dx}(x^2)\\&=2x\sqrt{2+x^2}\end{aligned}" />
+
+Faktor <InlineMath math="2x" /> ialah terbitan bagi had atas <InlineMath math="x^2" />. Pada <InlineMath math="x=0" />, kadar perubahan had atas itu ialah sifar, jadi terbitan fungsi pengumpulan itu juga sifar walaupun kamiranannya positif.
+
+Nilaikan <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> pada lima input dari <InlineMath math="0" /> hingga <InlineMath math="2" /> dengan pertambahan <InlineMath math="0.5" />. Palang pertama ialah <InlineMath math="0" /> kerana had atas <InlineMath math="x^2" /> tidak bergerak pada <InlineMath math="x = 0" />. Selepas itu, faktor <InlineMath math="2x" /> dan punca kuasa dua itu sama-sama bertambah, jadi kadarnya naik dengan cepat hingga <InlineMath math="4\sqrt6 \approx 9.8" /> pada <InlineMath math="x = 2" />.
+
+<BarChart
+  title={<>Kadar <InlineMath math="G'(x)" /> pada lima input</>}
+  description={<>Palang <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> bagi <InlineMath math="x" /> dari <InlineMath math="0" /> hingga <InlineMath math="2" /> dengan pertambahan <InlineMath math="0.5" />, bermula pada <InlineMath math="0" />.</>}
+  yAxisLabel="Kadar"
+  data={[0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 2 * x * Math.sqrt(2 + x ** 2) }))}
+  chartConfig={{ value: { label: "Kadar", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Menilai Kamiran dengan Antiterbitan
+
+Jika <InlineMath math="F'(x)=f(x)" />, Bahagian Kedua Teorem Asas Kalkulus menilai kamiran tentu dengan menolak nilai <InlineMath math="F" /> pada kedua-dua titik hujung:
+
+<BlockMath math="\int_{a}^{b} f(x) \, dx = F(b) - F(a)" />
+
+Di sini, <InlineMath math="F(x)" /> ialah satu **antiterbitan** bagi <InlineMath math="f(x)" />. Beza nilainya pada kedua-dua titik hujung memberikan pengumpulan bertanda bagi <InlineMath math="f(x)" /> dari <InlineMath math="a" /> hingga <InlineMath math="b" />. Bagi kamiranan yang tidak negatif, nilai itu juga ialah luas geometri.
+
+Beza itu selalu ditulis dengan tatatanda kurungan <InlineMath math="[F(x)]_{a}^{b}" />, yang bermaksud <InlineMath math="F(b) - F(a)" />.
+
+**Contoh** <InlineMath math="1" />:
+
+Cari nilai <InlineMath math="\int_{1}^{3} x^2 \, dx" />.
+
+**Penyelesaian**:
+
+1.  **Cari antiterbitan**: Antiterbitan bagi <InlineMath math="f(x) = x^2" /> ialah <InlineMath math="F(x) = \frac{1}{3}x^3" />.
+2.  **Nilaikan pada had kamiran**: Kira <InlineMath math="F(3) - F(1)" />.
+
+    <MathContainer>
+    <BlockMath math="\int_{1}^{3} x^2 \, dx = \left[ \frac{1}{3}x^3 \right]_{1}^{3}" />
+    <BlockMath math="= \left( \frac{1}{3}(3)^3 \right) - \left( \frac{1}{3}(1)^3 \right)" />
+    <BlockMath math="= \frac{27}{3} - \frac{1}{3} = \frac{26}{3}" />
+    </MathContainer>
+
+**Contoh** <InlineMath math="2" />:
+
+Cari nilai <InlineMath math="\int_{1}^{5} (2x-1) \, dx" />.
+
+**Penyelesaian**:
+
+1.  **Cari antiterbitan**: Antiterbitan bagi <InlineMath math="f(x) = 2x - 1" /> ialah <InlineMath math="F(x) = x^2 - x" />.
+2.  **Nilaikan pada had kamiran**: Kira <InlineMath math="F(5) - F(1)" />.
+
+    <MathContainer>
+    <BlockMath math="\int_{1}^{5} (2x-1) \, dx = \left[ x^2 - x \right]_{1}^{5}" />
+    <BlockMath math="= (5^2 - 5) - (1^2 - 1)" />
+    <BlockMath math="= (25 - 5) - (1 - 1)" />
+    <BlockMath math="= 20 - 0 = 20" />
+    </MathContainer>
+
+Teorem Asas Kalkulus mengira kamiran tentu daripada antiterbitan. Cari antiterbitan, kemudian tolak nilainya pada had bawah daripada nilainya pada had atas.
+
+Semak contoh kedua dengan bentuk yang boleh kamu ukur. Di bawah <InlineMath math="y = 2x - 1" /> dari <InlineMath math="1" /> hingga <InlineMath math="5" />, terdapat sebuah trapezium dengan sisi selari <InlineMath math="1" /> dan <InlineMath math="9" /> serta lebar <InlineMath math="4" />: luasnya <InlineMath math="\tfrac{1 + 9}{2} \cdot 4 = 20" />. Antiterbitan memberikan nombor yang sama, iaitu <InlineMath math="F(5) - F(1) = 20 - 0 = 20" /> dengan <InlineMath math="F(x) = x^2 - x" />.
+
+<MathVisual
+  title={<><InlineMath math="F(5)" /> tolak <InlineMath math="F(1)" /> ialah luas trapezium</>}
+  description={<>Garis <InlineMath math="y = 2x - 1" /> dan trapezium di bawahnya dari <InlineMath math="1" /> hingga <InlineMath math="5" />, yang luasnya <InlineMath math="20" /> sama dengan <InlineMath math="F(5) - F(1)" />.</>}
+  labels={{
+    f: <InlineMath math="y = 2x - 1" />,
+    area: <InlineMath math="20" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: -1, max: 10 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "line", through: [{ x: 1, y: 1 }, { x: 5, y: 9 }], appearance: "reference" },
+      { id: "area", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 9 }, { x: 1, y: 1 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 5.5, y: 10 }, placement: "left" },
+      { key: "area", objectId: "area", at: { x: 3, y: 2.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+Contoh pertama berfungsi dengan cara yang sama di bawah lengkung. Rantau di bawah <InlineMath math="y = x^2" /> antara <InlineMath math="x = 1" /> dengan <InlineMath math="x = 3" /> mempunyai luas <InlineMath math="\left[\tfrac13 x^3\right]_1^3 = 9 - \tfrac13 = \tfrac{26}{3}" />. Kamu tidak perlukan segi empat tepat lagi apabila kamu sudah tahu satu antiterbitan.
+
+<MathVisual
+  title={<>Luas di bawah x kuasa dua dari <InlineMath math="1" /> hingga <InlineMath math="3" /></>}
+  description={<>Parabola <InlineMath math="y = x^2" /> dengan rantau antara <InlineMath math="x = 1" /> dengan <InlineMath math="x = 3" /> yang ditandakan sempadannya, dengan luas <InlineMath math="\tfrac{26}{3}" />.</>}
+  labels={{
+    f: <InlineMath math="y = x^2" />,
+    area: <InlineMath math="\tfrac{26}{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "f", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 0, max: 3.2 }, appearance: "reference" },
+      { id: "top", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 0 }, domain: { min: 1, max: 3 }, appearance: "primary" },
+      { id: "left", kind: "segment", from: { x: 1, y: 0 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "right", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 9 }, appearance: "primary" },
+      { id: "base", kind: "segment", from: { x: 1, y: 0 }, to: { x: 3, y: 0 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 3.2, y: 10.24 }, placement: "left" },
+      { key: "area", objectId: "base", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>

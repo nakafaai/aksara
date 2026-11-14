@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "reading",
-    topic: "inference",
+    topic: "weakening",
   },
-  stimulus: "salt-house",
+  stimulus: "resapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "garam mereka menjadi lebih putih karena tercuci air hujan",
-        },
-        {
           correct: true,
           label:
-            "garam yang belum dipanen larut kembali sehingga mereka bisa gagal panen",
+            "Beberapa pekan sebelum musim hujan itu, gorong-gorong di mulut jalan Blok C yang selama ini menyempit diganti dengan gorong-gorong yang dua kali lebih lebar.",
         },
         {
           correct: false,
           label:
-            "air laut di petak mereka menguap lebih cepat daripada biasanya",
+            "Beberapa pekan sebelum musim hujan itu, pengembang mengeruk lumpur dari selokan di semua blok perumahan.",
         },
         {
           correct: false,
-          label: "biaya membangun petak tanah mereka menjadi lebih besar",
+          label:
+            "Hujan di seluruh perumahan pada musim itu turun lebih merata sepanjang musim daripada hujan pada musim hujan tahun sebelumnya.",
         },
         {
           correct: false,
-          label: "hasil panen mereka naik hampir dua kali lipat",
+          label:
+            "Tanah di blok-blok lain lebih padat sehingga air hujan meresap lebih lambat daripada di Blok C.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada musim hujan itu, genangan tetap muncul di jalan Blok C setiap kali hujan deras turun.",
         },
       ],
     },

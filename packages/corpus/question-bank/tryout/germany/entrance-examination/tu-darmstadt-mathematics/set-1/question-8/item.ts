@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2^{10}$$",
+          label: "$$a=0$$",
         },
         {
           correct: false,
-          label: "$$3^6$$",
-        },
-        {
-          correct: false,
-          label: "$$5^4$$",
-        },
-        {
-          correct: false,
-          label: "$$10^3$$",
+          label: "$$0<a<4$$",
         },
         {
           correct: true,
-          label: "$$6^4$$",
+          label: "$$a=4$$",
         },
         {
           correct: false,
-          label: "$$7^3$$",
+          label: "$$a>4$$",
+        },
+        {
+          correct: false,
+          label: "$$a=2$$",
+        },
+        {
+          correct: false,
+          label: "$$a=-4$$",
         },
       ],
     },

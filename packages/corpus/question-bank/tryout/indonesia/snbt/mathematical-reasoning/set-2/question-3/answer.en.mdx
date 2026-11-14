@@ -1,18 +1,50 @@
-For each statement, round the distance up and compute the fare. In the Cepat app, **the minimum fare of Rp12,000 applies when the per-kilometre amount is smaller**.
+Each statement describes a different plan, so test them one at a time. Two rules carry everything: **the automatic refill only happens while energy is below <InlineMath math="60" />**, and the timer only restarts from zero when energy drops from <InlineMath math="60" /> or more. At 10:00 Nadia has <InlineMath math="38" />, so her timer is already running on the schedule 10:05, 10:10, and so on.
 
-# Cepat fares for short trips
+# The first statement
 
-The distance 3.2 km rounds up to 4 km, and <InlineMath math="4\cdot3{,}000=12{,}000" />. The first statement is true.
-
-A distance of 1 km gives <InlineMath math="3{,}000" />, but that is **below the minimum fare**, so the fare is still Rp12,000. The second statement is false.
-
-# Comparing the two apps
+A boss mission at 10:00 leaves <InlineMath math="38-20=18" />. The energy stays below <InlineMath math="60" />, so the refills keep the old schedule. From 10:05 to 12:00 there are <InlineMath math="120 \div 5=24" /> refills. At 12:00 the refill comes first, and then **the daily gift adds energy too**.
 
 <BlockMath math="\begin{aligned}
-6\text{ km}&:\quad \text{Jalan}=10{,}000+4\cdot2{,}500=20{,}000,\quad \text{Cepat}=6\cdot3{,}000=18{,}000\\
-12\text{ km}&:\quad \text{Jalan}=10{,}000+10\cdot2{,}500=35{,}000,\quad \text{Cepat}=12\cdot3{,}000=36{,}000
+18+24&=42 \\
+42+15&=57
 \end{aligned}" />
 
-At 6 km, Cepat is cheaper, so the third statement is false. At 12 km, **Jalan is cheaper by Rp1,000**, so the fourth statement is true.
+An energy of <InlineMath math="57" /> is still below <InlineMath math="60" />, so the refill continues. At 12:05 she has <InlineMath math="58" />, at 12:10 she has <InlineMath math="59" />, and at 12:15 she has <InlineMath math="60" />. So her energy first reaches <InlineMath math="60" /> at 12:15, and this statement is **true**. Without the gift you'd get 13:30, because <InlineMath math="18" /> needs <InlineMath math="42" /> refills to reach <InlineMath math="60" />.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+# The second statement
+
+One example with a different result is enough. From the first statement, a boss mission at 10:00 gives <InlineMath math="60" /> at 12:30, because the energy has been stuck at <InlineMath math="60" /> since 12:15.
+
+Now suppose the boss mission starts at 12:10. From <InlineMath math="38" />, the energy needs <InlineMath math="22" /> refills to reach <InlineMath math="60" />, which takes until 11:50. After that **the energy is full and the refill stops**, so the wait from 11:50 to 12:10 is wasted.
+
+<BlockMath math="\begin{aligned}
+60+15&=75 \\
+75-20&=55 \\
+55+4&=59
+\end{aligned}" />
+
+The 12:00 gift lifts the energy to <InlineMath math="75" />. The boss mission at 12:10 drops it to <InlineMath math="55" />, and the timer restarts from zero at 12:10. Refills come at 12:15, 12:20, 12:25 and 12:30, so at 12:30 she has <InlineMath math="59" />. Since <InlineMath math="59" /> isn't <InlineMath math="60" />, this statement is **false**.
+
+# The third statement
+
+Energy can only go above <InlineMath math="60" /> through the gift or the potion. So to end high, **let the automatic refill fill the energy up to <InlineMath math="60" /> first, and drink the potion last**.
+
+Follow the plan from the first statement: boss mission at 10:00, and the energy reaches <InlineMath math="60" /> at 12:15. Nadia drinks the potion at 12:15, so she has <InlineMath math="60+30=90" />. Nothing uses energy after that, so at 12:30 she has <InlineMath math="90" />. Since <InlineMath math="90>85" />, such a plan exists, and this statement is **true**.
+
+# The fourth statement
+
+A potion at 10:00 gives <InlineMath math="38+30=68" />, and the automatic refill stops. Check every possible time for the boss mission by **splitting into two cases by the time of the boss mission**.
+
+## Boss mission before the gift
+
+If the boss mission starts before 12:00, the energy becomes <InlineMath math="68-20=48" />. The automatic refill can take it **up to <InlineMath math="60" /> at most**, and then stops. So just before the gift she has at most <InlineMath math="60" />, and after the gift at most <InlineMath math="60+15=75" />. That's already above <InlineMath math="60" />, so it doesn't grow until 12:30. The value <InlineMath math="75" /> really happens if the boss mission starts at 10:00, because <InlineMath math="48" /> reaches <InlineMath math="60" /> at 11:00.
+
+## Boss mission at or after the gift
+
+If the boss mission starts at 12:00 or later, the energy stays at <InlineMath math="68" /> until 12:00 because the refill has stopped. The gift makes it <InlineMath math="83" />, and the boss mission makes it <InlineMath math="63" />. That's still above <InlineMath math="60" />, so it doesn't grow any more.
+
+In both cases she has at most <InlineMath math="75" /> at 12:30, so this statement is **true**.
+
+# Summary
+
+The first, third and fourth statements are true. The second is false, because **waiting while the energy is full throws refills away**.

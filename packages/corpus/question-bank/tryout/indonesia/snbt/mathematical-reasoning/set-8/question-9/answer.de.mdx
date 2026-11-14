@@ -1,9 +1,52 @@
-Die jährlichen Setzlingszahlen bilden **eine arithmetische Folge** mit erstem Glied 120 und Differenz 15.
+Für den Gewinn dieser Saison brauchst du die Zahl der Bäume in dieser Saison. Diese Zahl ist nicht gegeben, also bestimmst du zuerst die Zahl der Bäume der letzten Saison aus ihrer Ernte. Vorsicht: **Die Erntegleichung hat zwei Lösungen**, und erst die Angabe, dass die Ernte gesunken ist, wählt eine davon aus.
 
-# Das siebte Glied
+# Die Formel für die Ernte
 
-Vom ersten bis zum siebten Jahr gibt es 6 Erhöhungen, **nicht 7**.
+Bei <InlineMath math="n" /> Bäumen mit <InlineMath math="n" /> über <InlineMath math="40" /> gibt es <InlineMath math="n-40" /> zusätzliche Bäume. Jeder zusätzliche Baum senkt den Ertrag **jedes Baums im Garten** um <InlineMath math="2\text{ kg}" />, also:
 
-<BlockMath math="U_7=120+6\cdot15=120+90=210" />
+<BlockMath math="\begin{aligned}
+\text{Ertrag pro Baum}&=120-2(n-40)=200-2n\\
+\text{Gesamternte}&=n(200-2n)
+\end{aligned}" />
 
-Im siebten Jahr werden also **210 Setzlinge** gepflanzt.
+# Die Zahl der Bäume in der letzten Saison
+
+Die Gesamternte der letzten Saison war <InlineMath math="4{.}950\text{ kg}" />, also:
+
+<BlockMath math="\begin{aligned}
+n(200-2n)&=4{.}950\\
+n^2-100n+2{.}475&=0\\
+(n-45)(n-55)&=0
+\end{aligned}" />
+
+Beide Werte, <InlineMath math="45" /> und <InlineMath math="55" />, liegen über <InlineMath math="40" />. Deshalb **musst du beide mit der zweiten Angabe prüfen**: Nach <InlineMath math="3" /> zusätzlichen Bäumen ist die Gesamternte gesunken.
+
+<BlockMath math="\begin{aligned}
+45+3=48&: \ 48\cdot(200-96)=48\cdot104=4{.}992\text{ kg}\\
+55+3=58&: \ 58\cdot(200-116)=58\cdot84=4{.}872\text{ kg}
+\end{aligned}" />
+
+Ausgehend von <InlineMath math="45" /> Bäumen steigt die Ernte auf <InlineMath math="4{.}992\text{ kg}" />, dieser Fall scheidet also aus. Ausgehend von <InlineMath math="55" /> Bäumen sinkt sie auf <InlineMath math="4{.}872\text{ kg}" />. In der letzten Saison waren es also <InlineMath math="55" /> Bäume, in dieser Saison sind es <InlineMath math="58" />.
+
+# Der Gewinn dieser Saison
+
+Der Verkaufserlös kommt aus der Ernte dieser Saison, und **die Pflegekosten fallen für alle Bäume dieser Saison an**:
+
+<BlockMath math="\begin{aligned}
+\text{Gewinn}&=8{.}000\cdot4{.}872-96{.}000\cdot58\\
+&=38{.}976{.}000-5{.}568{.}000\\
+&=33{.}408{.}000
+\end{aligned}" />
+
+Prüfe das pro Baum. Jeder Baum trägt <InlineMath math="84\text{ kg}" />, bringt also <InlineMath math="84\cdot8{.}000-96{.}000=576{.}000" /> Rupiah ein, und <InlineMath math="58\cdot576{.}000=33{.}408{.}000" />. Dasselbe Ergebnis.
+
+# Die falschen Antworten
+
+Jede andere Antwort nutzt **eine richtige Zahl im falschen Schritt**.
+
+- <InlineMath math="\text{Rp}33{.}696{.}000" /> nimmt die Pflegekosten der <InlineMath math="55" /> Bäume der letzten Saison, obwohl es jetzt <InlineMath math="58" /> Bäume sind.
+- <InlineMath math="\text{Rp}34{.}320{.}000" /> ist der Gewinn der letzten Saison, <InlineMath math="8{.}000\cdot4{.}950-96{.}000\cdot55" />.
+- <InlineMath math="\text{Rp}35{.}328{.}000" /> wählt <InlineMath math="45" /> Bäume, sodass es jetzt <InlineMath math="48" /> Bäume wären, doch mit <InlineMath math="48" /> Bäumen steigt die Ernte.
+- <InlineMath math="\text{Rp}38{.}976{.}000" /> ist nur der Verkaufserlös, ohne die Pflegekosten abzuziehen.
+
+Pak Darmos Gewinn in dieser Saison beträgt also <InlineMath math="\text{Rp}33{.}408{.}000" />.

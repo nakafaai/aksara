@@ -4,32 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "figurative-language",
   },
-  stimulus: "octopus-arms",
+  stimulus: "mantis-shrimp",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "spoken aloud.",
+          column: 1,
+          label:
+            "Two lights of different wavelengths that set off exactly the same receptor types would look alike to the shrimp.",
         },
         {
-          correct: false,
-          label: "recorded.",
+          column: 2,
+          label:
+            "A brighter light within one receptor's band would be recognised as a different colour from a dimmer light in that band.",
         },
         {
-          correct: true,
-          label: "commanded.",
+          column: 1,
+          label:
+            "The comparison fits the shrimp's failure to separate two colours that both fall inside the band of a single receptor type.",
         },
         {
-          correct: false,
-          label: "predicted.",
+          column: 2,
+          label:
+            "The comparison suggests that each receptor type reacts to movement across the narrow strip of the eye.",
         },
         {
-          correct: false,
-          label: "interrupted.",
+          column: 1,
+          label:
+            "On this view, part of the shrimp's speed comes from not having to weigh one signal against another.",
         },
       ],
     },

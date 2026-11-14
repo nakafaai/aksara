@@ -1,19 +1,63 @@
-Neither the largest base nor the largest exponent alone decides how large a power is. Without a calculator, the safest way is to **write every power as a whole number** and then compare.
+# Draw the left side first
 
-<BlockMath math="\begin{aligned}
-2^{10}&=1{,}024 \\
-3^6&=729 \\
-5^4&=625 \\
-10^3&=1{,}000 \\
-6^4&=36\cdot36=1{,}296 \\
-7^3&=343
-\end{aligned}" />
+The number of solutions of <InlineMath math="|x^2-4x|=a" /> equals **the number of points where the graph of <InlineMath math="y=|x^2-4x|" /> meets the horizontal line <InlineMath math="y=a" />**. So draw the left side first.
 
-The order is <InlineMath math="7^3<5^4<3^6<10^3<2^{10}<6^4" />. To check <InlineMath math="6^4" />: <InlineMath math="6^2=36" /> and <InlineMath math="36^2=1{,}296" />. In fact <InlineMath math="6^4>2^{10}" />, because <InlineMath math="6^4=2^4\cdot3^4=16\cdot81" /> and <InlineMath math="2^{10}=16\cdot64" />.
+Without the absolute value, <InlineMath math="x^2-4x=(x-2)^2-4" /> is an upward parabola with vertex <InlineMath math="(2\mid-4)" /> and zeros at <InlineMath math="x=0" /> and <InlineMath math="x=4" />. The absolute value flips the negative part, between <InlineMath math="0" /> and <InlineMath math="4" />, above the <InlineMath math="x" />-axis. The vertex <InlineMath math="(2\mid-4)" /> becomes a hill with its top at <InlineMath math="(2\mid4)" />.
 
-So the largest number is <InlineMath math="6^4" />.
+<MathVisual
+  title="The absolute value of a parabola"
+  description={<>The graph of <InlineMath math="y=|x^2-4x|" /> touches the <InlineMath math="x" />-axis at <InlineMath math="x=0" /> and <InlineMath math="x=4" />. Between them there's a hill with its top at <InlineMath math="(2\mid4)" />, and outside them the graph rises. The horizontal line <InlineMath math="y=4" /> touches the top of the hill and crosses both outer arms.</>}
+  labels={{
+    top: <InlineMath math="(2\mid4)" />,
+    line: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
+      { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
+      { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
+      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
+      { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
 
-- <InlineMath math="2^{10}" /> has the largest exponent, but at <InlineMath math="1{,}024" /> it is smaller than <InlineMath math="6^4=1{,}296" />.
-- <InlineMath math="3^6=729" /> and <InlineMath math="5^4=625" /> are less than <InlineMath math="1{,}000" />.
-- <InlineMath math="10^3=1{,}000" /> looks large because of the base <InlineMath math="10" />, but it is below <InlineMath math="1{,}024" /> and <InlineMath math="1{,}296" />.
-- <InlineMath math="7^3" /> has a large base but only the exponent <InlineMath math="3" />, and at <InlineMath math="343" /> it is the smallest.
+# Counting meeting points for each value of a
+
+Slide the line <InlineMath math="y=a" /> from the bottom up and count where it meets the graph:
+
+| Value of <InlineMath math="a" /> | Meeting points |
+| :---: | :---: |
+| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+
+**Exactly three meeting points only happen when the line touches the top of the hill**, at <InlineMath math="a=4" />.
+
+# Checking the three solutions
+
+For <InlineMath math="a=4" />, the hill gives <InlineMath math="-(x^2-4x)=4" />, that is <InlineMath math="(x-2)^2=0" />, so <InlineMath math="x=2" />. The outer arms give <InlineMath math="x^2-4x=4" />, that is <InlineMath math="(x-2)^2=8" />, so <InlineMath math="x=2\pm2\sqrt2" />. **There are exactly three different solutions**.
+
+So the equation has exactly three solutions for <InlineMath math="a=4" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="a=0" /> only gives <InlineMath math="x=0" /> and <InlineMath math="x=4" />, two solutions.
+- <InlineMath math="0<a<4" /> gives four solutions: two on the hill and two on the outer arms. One example is <InlineMath math="a=2" />.
+- <InlineMath math="a>4" /> is above the hill, so the line only crosses the two outer arms.
+- <InlineMath math="a=-4" /> is the vertex value of the parabola without the absolute value. **An absolute value is never negative**, so there's no solution.

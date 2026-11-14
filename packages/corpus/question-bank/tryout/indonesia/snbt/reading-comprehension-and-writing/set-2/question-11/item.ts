@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "explicit-information",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "affix-meaning",
   },
-  stimulus: "medicine-delivery",
+  stimulus: "debat",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "relawan mengambil obat, dokter menulis resep, relawan menjelaskan aturan minum obat",
+            "*menyalahkan* diganti *mempersalahkan* karena yang dimaksud adalah pembicara melanggar aturan itu",
         },
         {
           correct: false,
           label:
-            "dokter memeriksa catatan, relawan menjelaskan aturan minum obat, relawan mengambil obat",
-        },
-        {
-          correct: false,
-          label:
-            "relawan dilatih, relawan mengantarkan obat, dokter memeriksa catatan",
+            "kalimat (5) tidak perlu diperbaiki karena *menyalahkan* sudah bermakna melanggar aturan",
         },
         {
           correct: true,
           label:
-            "dokter memeriksa catatan dan menulis resep, relawan mengambil obat, relawan menjelaskan aturan minum obat",
+            "*menyalahkan* diganti *menyalahi* karena yang dimaksud adalah pembicara melanggar aturan itu",
         },
         {
           correct: false,
           label:
-            "relawan menjelaskan aturan minum obat, dokter menulis resep, relawan mengambil obat",
+            "*menyalahkan* diganti *menyalahi* karena akhiran *-i* pada kata itu menyatakan perbuatan yang dilakukan berulang-ulang",
+        },
+        {
+          correct: false,
+          label:
+            "*menyalahkan* diganti *mempersalahkan* karena *menyalahkan* bukan bentuk baku",
         },
       ],
     },

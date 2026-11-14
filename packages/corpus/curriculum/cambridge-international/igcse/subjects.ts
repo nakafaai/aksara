@@ -23,6 +23,10 @@ export const igcseCourseNodes = [
         routeSlug: "mathematics-0580",
         title: "Mathematics 0580",
       },
+      ms: {
+        routeSlug: "matematik-0580",
+        title: "Matematik 0580",
+      },
     },
   }),
   courseNode({
@@ -40,6 +44,10 @@ export const igcseCourseNodes = [
       id: {
         routeSlug: "biology-0610",
         title: "Biology 0610",
+      },
+      ms: {
+        routeSlug: "biologi-0610",
+        title: "Biologi 0610",
       },
     },
   }),
@@ -59,6 +67,10 @@ export const igcseCourseNodes = [
         routeSlug: "chemistry-0620",
         title: "Chemistry 0620",
       },
+      ms: {
+        routeSlug: "kimia-0620",
+        title: "Kimia 0620",
+      },
     },
   }),
   courseNode({
@@ -76,6 +88,10 @@ export const igcseCourseNodes = [
       id: {
         routeSlug: "physics-0625",
         title: "Physics 0625",
+      },
+      ms: {
+        routeSlug: "fizik-0625",
+        title: "Fizik 0625",
       },
     },
   }),

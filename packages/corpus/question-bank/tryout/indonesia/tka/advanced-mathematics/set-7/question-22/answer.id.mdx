@@ -1,0 +1,16 @@
+Substitusi langsung memberi <InlineMath math="\frac00" />. Pembilangnya memuat selisih akar, jadi **kalikan dengan bentuk sekawannya**, <InlineMath math="\sqrt{x+4}+2" />.
+
+<BlockMath math="\frac{\sqrt{x+4}-2}{\sin\frac{x}{4}}\cdot\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}=\frac{x}{\sin\frac{x}{4}\,\left(\sqrt{x+4}+2\right)}" />
+
+Pisahkan menjadi limit sinus dasar dan sisa yang bisa disubstitusi langsung. Karena <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}=4" />, diperoleh hasil berikut.
+
+<BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
+
+Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="0{,}9994" />.
+
+Jadi, nilai limitnya <InlineMath math="1" />.
+
+- <InlineMath math="0" /> hanya melihat pembilang yang menuju <InlineMath math="0" />, padahal penyebutnya juga menuju <InlineMath math="0" />.
+- <InlineMath math="2" /> menganggap <InlineMath math="\sqrt{x+4}+2" /> bernilai <InlineMath math="2" /> di <InlineMath math="x=0" />, padahal nilainya <InlineMath math="4" />.
+- <InlineMath math="\frac14" /> memperlakukan <InlineMath math="\sin\frac{x}{4}" /> seperti <InlineMath math="\sin x" />, sehingga faktor <InlineMath math="4" /> dari limit sinus hilang.
+- <InlineMath math="\infty" /> hanya melihat penyebut yang menuju <InlineMath math="0" />.

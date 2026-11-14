@@ -162,7 +162,7 @@ function objectCoordinates(
       threshold
     );
   }
-  if (object.kind === "segment") {
+  if (object.kind === "segment" || object.kind === "vector") {
     return [
       ...pointCoordinates(object.from, [...root, "from"]),
       ...pointCoordinates(object.to, [...root, "to"]),

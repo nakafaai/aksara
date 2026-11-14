@@ -2,18 +2,18 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "spelling",
+    topic: "insertion",
   },
-  stimulus: "salt-house",
+  stimulus: "resapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "kalimat (2)",
+          label: "kalimat (1)",
         },
         {
           correct: false,
@@ -21,15 +21,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "kalimat (4)",
+          label: "kalimat (8)",
         },
         {
           correct: false,
-          label: "kalimat (6)",
+          label: "kalimat (9)",
         },
         {
           correct: true,
-          label: "kalimat (7)",
+          label: "kalimat (10)",
         },
       ],
     },

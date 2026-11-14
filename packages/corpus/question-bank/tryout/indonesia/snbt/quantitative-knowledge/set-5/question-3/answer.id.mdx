@@ -1,17 +1,55 @@
-Nilai <InlineMath math="a" /> dan <InlineMath math="b" /> tidak diketahui, jadi bandingkan kedua kuantitas lewat **tanda selisihnya** untuk semua pasangan yang memenuhi <InlineMath math="0<a<b" />.
+Fungsi <InlineMath math="h(x)=\sqrt{2-{}^{2}\log\left(x^2-2x\right)}" /> bernilai real kalau dua syarat terpenuhi: **bilangan di dalam logaritma positif**, dan **bilangan di dalam akar tidak negatif**. Rencananya, cari daerah asal <InlineMath math="h" /> lebih dulu, lalu nilai keempat pernyataan satu per satu. Supaya ringkas, tulis <InlineMath math="u=x^2-2x" />.
 
-# Menyederhanakan selisih
+# Daerah asal fungsi h
+
+Syarat logaritma memberi <InlineMath math="u>0" />. Syarat akar memberi <InlineMath math="{}^{2}\log u\le2" />, dan karena basis <InlineMath math="2" /> lebih dari <InlineMath math="1" />, logaritma itu naik, sehingga <InlineMath math="u\le2^2=4" />. Jadi kamu perlu <InlineMath math="0<x^2-2x\le4" />.
 
 <BlockMath math="\begin{aligned}
-Q-P&=\frac{a+1}{b+1}-\frac ab\\
-&=\frac{b(a+1)-a(b+1)}{b(b+1)}\\
-&=\frac{b-a}{b(b+1)}
+x^2-2x>0\quad&\Longleftrightarrow\quad x<0\ \text{atau}\ x>2\\
+x^2-2x-4\le0\quad&\Longleftrightarrow\quad 1-\sqrt5\le x\le1+\sqrt5
 \end{aligned}" />
 
-Pembilang <InlineMath math="b-a" /> positif karena <InlineMath math="a<b" />, dan penyebut <InlineMath math="b(b+1)" /> positif karena <InlineMath math="b>0" />. Jadi **selisih itu selalu positif**.
+Irisan kedua syarat adalah <InlineMath math="1-\sqrt5\le x<0" /> atau <InlineMath math="2<x\le1+\sqrt5" />. Jadi **daerah asal <InlineMath math="h" /> terdiri atas dua selang yang terpisah**, dan titik <InlineMath math="x=0" /> serta <InlineMath math="x=2" /> tidak termasuk karena di sana <InlineMath math="u=0" />.
 
-# Memeriksa dengan contoh
+# Pernyataan pertama
 
-Untuk <InlineMath math="a=1" /> dan <InlineMath math="b=3" />: <InlineMath math="P=\tfrac13" /> dan <InlineMath math="Q=\tfrac24=\tfrac12" />. Menambahkan bilangan yang sama ke pembilang dan penyebut pecahan yang kurang dari 1 **membuat pecahan itu lebih dekat ke 1**, sehingga nilainya naik.
+Karena <InlineMath math="2<\sqrt5<3" />, batas kiri <InlineMath math="1-\sqrt5" /> terletak di antara <InlineMath math="-2" /> dan <InlineMath math="-1" />, dan batas kanan <InlineMath math="1+\sqrt5" /> terletak di antara <InlineMath math="3" /> dan <InlineMath math="4" />. Bilangan bulat di selang kiri hanya <InlineMath math="-1" />, dan di selang kanan hanya <InlineMath math="3" />. Keduanya memberi <InlineMath math="u=3" />, yang memang terletak di antara <InlineMath math="0" /> dan <InlineMath math="4" />. Kalau kamu hanya memakai <InlineMath math="u\le4" />, kamu akan ikut menghitung <InlineMath math="0" />, <InlineMath math="1" />, dan <InlineMath math="2" />, padahal **logaritma dari bilangan nol atau negatif tidak terdefinisi**. Daerah asal memuat tepat <InlineMath math="2" /> bilangan bulat, jadi pernyataan pertama benar.
 
-Pilihan informasi tidak cukup muncul karena <InlineMath math="a" /> dan <InlineMath math="b" /> tidak tunggal, padahal tanda selisihnya sama untuk semua pasangan. Jadi hubungan yang benar adalah <InlineMath math="Q>P" />.
+# Pernyataan kedua
+
+Nilai <InlineMath math="h(x)=0" /> berarti <InlineMath math="{}^{2}\log u=2" />, yaitu <InlineMath math="u=4" />.
+
+<BlockMath math="\begin{aligned}
+x^2-2x&=4\\
+x^2-2x-4&=0\\
+x&=1-\sqrt5\ \text{atau}\ x=1+\sqrt5
+\end{aligned}" />
+
+Kedua nilai itu adalah ujung daerah asal, jadi keduanya sah. **Persamaan itu punya <InlineMath math="2" /> penyelesaian**, bukan <InlineMath math="1" />, jadi pernyataan kedua salah.
+
+# Pernyataan ketiga
+
+Banyak orang mengira <InlineMath math="2-{}^{2}\log u" /> paling besar <InlineMath math="2" />, sehingga <InlineMath math="h(x)\le\sqrt2" />. Itu keliru, karena **logaritma bernilai negatif ketika <InlineMath math="u" /> di antara <InlineMath math="0" /> dan <InlineMath math="1" />**. Coba cari <InlineMath math="x" /> dengan <InlineMath math="h(x)=3" />, memakai <InlineMath math="u=(x-1)^2-1" />.
+
+<BlockMath math="\begin{aligned}
+2-{}^{2}\log u&=9\\
+{}^{2}\log u&=-7\\
+u&=2^{-7}=\tfrac{1}{128}\\
+(x-1)^2-1&=\tfrac{1}{128}\\
+(x-1)^2&=\tfrac{129}{128}
+\end{aligned}" />
+
+Bilangan <InlineMath math="\tfrac{129}{128}" /> positif, jadi <InlineMath math="x=1\pm\sqrt{\tfrac{129}{128}}" /> adalah bilangan real, dan nilai <InlineMath math="u=\tfrac{1}{128}" /> memenuhi <InlineMath math="0<u\le4" />. Pernyataan ketiga benar.
+
+# Pernyataan keempat
+
+Ganti <InlineMath math="x" /> dengan <InlineMath math="2-x" /> di dalam <InlineMath math="u" />.
+
+<BlockMath math="\begin{aligned}
+(2-x)^2-2(2-x)&=4-4x+x^2-4+2x\\
+&=x^2-2x
+\end{aligned}" />
+
+Nilai <InlineMath math="u" /> tidak berubah, dan daerah asal hanya bergantung pada <InlineMath math="u" />. Jadi **daerah asal simetris terhadap <InlineMath math="x=1" />**: kalau <InlineMath math="x" /> masuk, <InlineMath math="2-x" /> juga masuk. Pasangan <InlineMath math="-1" /> dan <InlineMath math="3" />, juga <InlineMath math="1-\sqrt5" /> dan <InlineMath math="1+\sqrt5" />, cocok dengan sifat ini. Pernyataan keempat benar.
+
+Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga benar, dan pernyataan keempat benar.

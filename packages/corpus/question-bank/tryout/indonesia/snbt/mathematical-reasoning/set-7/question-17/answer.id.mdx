@@ -1,9 +1,31 @@
-Lama terbang ditentukan langsung oleh rumus <InlineMath math="T=30-4m" />. **Setiap kilogram beban mengurangi waktu terbang 4 menit**.
+Kamu mencari lama JP terpanjang yang membuat setiap hari Senin sampai Kamis tetap selesai paling lambat pukul 15.00. Rencananya: hitung waktu yang tersedia untuk JP pada setiap jenis hari, bagi dengan <InlineMath math="10" />, lalu **ambil batas yang paling ketat** dan bulatkan ke bawah.
 
-# Substitusi
+# Waktu yang tersedia untuk JP
 
-<BlockMath math="T=30-4\cdot1{,}5=30-6=24\text{ menit}" />
+Dari pukul 07.00 sampai 15.00 ada <InlineMath math="480" /> menit. **Kegiatan pembuka dan istirahat tidak termasuk waktu JP**, jadi keduanya dikurangkan. Istirahat tetap ada dua pada hari Senin sampai Kamis, setelah JP yang sama seperti sekarang, dan keduanya masih terjadi sebelum JP ke-<InlineMath math="10" />.
 
-Beban 1,5 kg berada dalam batas <InlineMath math="0\le m\le5" />, jadi rumus itu berlaku.
+<BlockMath math="\begin{aligned}
+\text{Senin} &: 480-40-15-30=395\text{ menit} \\
+\text{Selasa sampai Kamis} &: 480-15-15-30=420\text{ menit}
+\end{aligned}" />
 
-Jadi, drone dapat terbang selama **24 menit**.
+# Batas lama satu JP
+
+Sepuluh JP yang sama panjang harus muat dalam waktu itu.
+
+<BlockMath math="\begin{aligned}
+\text{Senin} &: 10t\le395 \Rightarrow t\le39{,}5 \\
+\text{Selasa sampai Kamis} &: 10t\le420 \Rightarrow t\le42
+\end{aligned}" />
+
+**Lama JP berlaku sama untuk keempat hari**, jadi harus memenuhi kedua batas sekaligus. Batas yang lebih ketat adalah hari Senin, karena upacaranya lebih lama. Lama JP berupa bilangan bulat, jadi <InlineMath math="t\le39{,}5" /> berarti **paling lama <InlineMath math="39" /> menit**.
+
+# Pemeriksaan
+
+Dengan JP <InlineMath math="39" /> menit, hari Senin selesai <InlineMath math="40+390+45=475" /> menit setelah pukul 07.00, yaitu pukul 14.55. Dengan JP <InlineMath math="40" /> menit, hari Senin selesai <InlineMath math="40+400+45=485" /> menit setelah pukul 07.00, yaitu pukul 15.05, **terlambat <InlineMath math="5" /> menit**. Hari Selasa sampai Kamis dengan JP <InlineMath math="39" /> menit selesai pukul 14.30, jadi aman.
+
+# Kesalahan yang sering terjadi
+
+Kalau **hanya baris Selasa sampai Kamis yang dihitung**, hasilnya <InlineMath math="42" /> menit, padahal hari Senin dengan JP <InlineMath math="42" /> menit baru selesai pukul 15.25. Kalau <InlineMath math="39{,}5" /> dibulatkan ke atas, hasilnya <InlineMath math="40" /> menit, yang membuat hari Senin terlambat.
+
+Jadi, lama satu JP paling lama <InlineMath math="39" /> menit.

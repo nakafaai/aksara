@@ -1,20 +1,49 @@
-Merasionalkan setiap pecahan secara terpisah bisa dilakukan, tetapi lebih ringkas jika kedua pecahan **disamakan penyebutnya** lebih dulu.
+Kamu mencari banyak bilangan bulat <InlineMath math="m" /> yang membuat persamaan punya dua akar real berbeda, <InlineMath math="x_1" /> dan <InlineMath math="x_2" />, yang keduanya lebih besar dari <InlineMath math="1" />. Persamaannya **harus benar-benar kuadrat**, jadi <InlineMath math="m\ne0" />. Rencananya: cek diskriminan, lalu geser kedua akar sejauh <InlineMath math="1" /> supaya syarat "lebih dari <InlineMath math="1" />" menjadi syarat "positif".
 
-<BlockMath math="\frac xy+\frac yx=\frac{x^2+y^2}{xy}" />
+# Syarat dua akar berbeda
 
-# Menghitung pembilang dan penyebut
-
-Penyebutnya adalah selisih kuadrat, sedangkan pembilangnya menjumlahkan dua kuadrat yang **suku tengahnya saling meniadakan**.
+Dua akar real berbeda muncul tepat ketika **diskriminan bernilai positif**, bukan sekadar tidak negatif.
 
 <BlockMath math="\begin{aligned}
-xy&=\left(\sqrt5+\sqrt3\right)\left(\sqrt5-\sqrt3\right)=5-3=2\\
-x^2+y^2&=\left(8+2\sqrt{15}\right)+\left(8-2\sqrt{15}\right)=16
+D&=(8-3m)^2-4m(3m-1)\\
+&=64-48m+9m^2-12m^2+4m\\
+&=-3m^2-44m+64\\
+&=-(3m-4)(m+16)
 \end{aligned}" />
 
-Jadi <InlineMath math="\frac{x^2+y^2}{xy}=\frac{16}{2}=8" />. Cek dengan pecahan terpisah: <InlineMath math="\frac xy=4+\sqrt{15}" /> dan <InlineMath math="\frac yx=4-\sqrt{15}" />, jumlahnya 8.
+Jadi <InlineMath math="D>0" /> berarti <InlineMath math="(3m-4)(m+16)<0" />, yaitu <InlineMath math="-16<m<\tfrac43" />. Pada <InlineMath math="m=-16" />, persamaannya menjadi <InlineMath math="-(4x-7)^2=0" />, dengan dua akar yang sama, <InlineMath math="\tfrac74" />.
 
-# Pilihan yang keliru
+# Menggeser akar
 
-Nilai 2 hanya hasil kali <InlineMath math="xy" />, yaitu penyebutnya. Nilai <InlineMath math="4+\sqrt{15}" /> hanya menghitung <InlineMath math="\frac xy" />. Nilai <InlineMath math="2\sqrt{15}" /> adalah **selisih**, bukan jumlah, kedua pecahan. Nilai 4 membagi pembilang dengan <InlineMath math="2xy" />.
+Misalkan <InlineMath math="y_1=x_1-1" /> dan <InlineMath math="y_2=x_2-1" />. Kedua akar lebih dari <InlineMath math="1" /> tepat ketika <InlineMath math="y_1" /> dan <InlineMath math="y_2" /> positif. Dua bilangan real **sama-sama positif tepat ketika hasil kalinya positif dan jumlahnya positif**: hasil kali positif membuat tandanya sama, lalu jumlah positif membuat tanda itu positif.
 
-Jadi, nilai <InlineMath math="\frac xy+\frac yx" /> adalah **8**.
+Dari rumus jumlah dan hasil kali akar, <InlineMath math="x_1+x_2=\tfrac{3m-8}{m}" /> dan <InlineMath math="x_1x_2=\tfrac{3m-1}{m}" />.
+
+<BlockMath math="\begin{aligned}
+y_1+y_2&=(x_1+x_2)-2=\frac{3m-8-2m}{m}=\frac{m-8}{m}\\
+y_1y_2&=x_1x_2-(x_1+x_2)+1=\frac{3m-1-3m+8+m}{m}=\frac{m+7}{m}
+\end{aligned}" />
+
+# Tanda koefisien utama
+
+Pecahan bernilai positif tepat ketika pembilang dan penyebutnya bertanda sama. Jadi **jangan mengalikan dengan <InlineMath math="m" /> sebelum tahu tandanya**.
+
+<BlockMath math="\begin{aligned}
+\frac{m-8}{m}>0&\iff m<0\ \text{atau}\ m>8\\
+\frac{m+7}{m}>0&\iff m<-7\ \text{atau}\ m>0
+\end{aligned}" />
+
+Syarat diskriminan memaksa <InlineMath math="m<\tfrac43" />, jadi <InlineMath math="m>8" /> tidak mungkin. Yang tersisa adalah <InlineMath math="m<0" /> dan <InlineMath math="m<-7" />, digabung dengan <InlineMath math="m>-16" />, sehingga <InlineMath math="-16<m<-7" />. Bilangan bulatnya <InlineMath math="-15" />, <InlineMath math="-14" />, sampai <InlineMath math="-8" />, yaitu <InlineMath math="8" /> nilai.
+
+# Memeriksa batas
+
+Cek kedua ujung. Untuk <InlineMath math="m=-7" />, persamaannya <InlineMath math="-7x^2+29x-22=-(x-1)(7x-22)=0" />, jadi salah satu akarnya tepat <InlineMath math="1" /> dan **ujung ini memang harus dibuang**. Untuk <InlineMath math="m=-8" />, persamaannya <InlineMath math="-8x^2+32x-25=0" /> dengan akar <InlineMath math="x=2\pm\tfrac{\sqrt{14}}{4}" />. Karena <InlineMath math="\sqrt{14}<4" />, kedua akar itu terletak di antara <InlineMath math="1" /> dan <InlineMath math="3" />, jadi <InlineMath math="m=-8" /> memenuhi.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="6" /> muncul jika kamu memakai syarat <InlineMath math="f(1)=m+7>0" />, yang hanya berlaku untuk parabola terbuka ke atas. Di sini <InlineMath math="m" /> negatif, jadi **syarat itu terbalik** dan hasilnya keliru menjadi <InlineMath math="-7<m<0" />.
+- <InlineMath math="9" /> memakai <InlineMath math="D\ge0" />, sehingga <InlineMath math="m=-16" /> ikut terhitung, padahal kedua akarnya sama.
+- <InlineMath math="15" /> memakai <InlineMath math="x_1+x_2>2" /> dan <InlineMath math="x_1x_2>1" />, yang tidak menjamin kedua akar lebih dari <InlineMath math="1" />. Contohnya, <InlineMath math="m=-3" /> memberi <InlineMath math="-3x^2+17x-10=0" /> dengan akar <InlineMath math="5" /> dan <InlineMath math="\tfrac23" />.
+- <InlineMath math="16" /> hanya memakai <InlineMath math="D>0" /> dan <InlineMath math="m\ne0" />, tanpa syarat letak akar.
+
+Jadi, banyak bilangan bulat <InlineMath math="m" /> yang memenuhi adalah <InlineMath math="8" />.

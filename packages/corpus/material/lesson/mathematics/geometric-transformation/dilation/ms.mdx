@@ -1,0 +1,251 @@
+
+export const metadata = {
+  title: "Pembesaran",
+  description: "Bina pembesaran daripada pusat dan faktor skala, kemudian sahkan pembesaran dan pengecilan dengan graf dan contoh lengkap.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-09-12",
+  subject: "Transformasi Geometri",
+};
+
+## Mengubah Saiz Rajah dari Satu Pusat
+
+Pembesaran ialah transformasi geometri yang mengubah saiz sesuatu objek (membesarkan atau mengecilkan) <Highlight>tanpa mengubah bentuknya</Highlight>. Setiap titik pada objek dipetakan ke kedudukan baharu berdasarkan pusat pembesaran dan faktor skala.
+
+### Takrif Formal Pembesaran
+
+Pusat pembesaran <InlineMath math="C" /> **kekal di tempatnya**. Bagi faktor <InlineMath math="k\ne0" />, vektor dari pusat menentukan setiap imej:
+
+<BlockMath math="\overrightarrow{CA'}=k\overrightarrow{CA},\qquad CA'=|k|\,CA" />
+
+**Nilai mutlak faktor** mengawal nisbah panjang, manakala tandanya mengawal arah dari pusat. Penerangan sisi dalam jadual berlaku bagi titik yang bukan pusat.
+
+| Faktor | Saiz | Kedudukan dari pusat |
+| --- | --- | --- |
+| <InlineMath math="k>1" /> | Dibesarkan | Sisi yang sama |
+| <InlineMath math="0<k<1" /> | Dikecilkan | Sisi yang sama |
+| <InlineMath math="k=1" /> | Saiz tidak berubah | Sisi yang sama |
+| <InlineMath math="-1<k<0" /> | Dikecilkan | Sisi bertentangan |
+| <InlineMath math="k=-1" /> | Saiz tidak berubah | Sisi bertentangan |
+| <InlineMath math="k<-1" /> | Dibesarkan | Sisi bertentangan |
+
+## Pembesaran pada Asalan
+
+Dengan asalan sebagai pusat, **darab kedua-dua koordinat dengan faktor skala**. Hal ini terus terhasil daripada hubungan vektor kerana koordinat pusatnya sifar:
+
+<MathContainer>
+  <BlockMath math="x' = kx" />
+  <BlockMath math="y' = ky" />
+</MathContainer>
+
+### Membesarkan Titik pada Asalan
+
+Kalau titik <InlineMath math="A(1,2)" /> dibesarkan pada asalan <InlineMath math="(0,0)" /> dengan faktor <InlineMath math="2" />, tentukan imej titik itu.
+
+Di sini, <InlineMath math="x=1" />, <InlineMath math="y=2" />, dan <InlineMath math="k=2" />.
+
+Pusatnya ialah <InlineMath math="O(0,0)" />. Faktor <InlineMath math="2" /> menjadikan **jarak dari pusat dua kali ganda**:
+
+<MathContainer>
+  <BlockMath math="x' = 2 \cdot 1 = 2" />
+  <BlockMath math="y' = 2 \cdot 2 = 4" />
+</MathContainer>
+
+Imejnya ialah <InlineMath math="A'(2,4)" />.
+
+<MathVisual
+  title={
+    <>
+      Pembesaran Titik <InlineMath math="A(1,2)" /> dari Asalan, Faktor{" "}
+      <InlineMath math="k=2" />
+    </>
+  }
+  description={
+    <>
+      Visualisasi pembesaran titik <InlineMath math="A(1,2)" /> ke{" "}
+      <InlineMath math="A'(2,4)" /> dengan pusat di <InlineMath math="O(0,0)" />{" "}
+      dan faktor skala <InlineMath math="2" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="A(1,2)" />,
+    "l3": <InlineMath math="A'(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Pembesaran pada Sebarang Titik
+
+Kalau pusat pembesaran ialah sebarang titik <InlineMath math="C(a,b)" /> dan faktor skalanya <InlineMath math="k" />, maka bagi titik <InlineMath math="A(x,y)" />, imejnya <InlineMath math="A'(x',y')" /> diberikan oleh:
+
+<MathContainer>
+  <BlockMath math="x' = a + k(x - a)" />
+  <BlockMath math="y' = b + k(y - b)" />
+</MathContainer>
+
+Rumus ini boleh digunakan dengan **mengalihkan koordinat** supaya <InlineMath math="C" /> menjadi asalan, melakukan pembesaran dengan faktor <InlineMath math="k" />, kemudian mengalihkan koordinat itu semula.
+
+### Membesarkan Titik pada Sebarang Titik
+
+Kalau titik <InlineMath math="C(5,2)" /> dibesarkan pada titik <InlineMath math="P(2,3)" /> dengan faktor <InlineMath math="2" />, tentukan imej titik itu.
+
+Di sini, titik yang hendak dibesarkan ialah <InlineMath math="C(5,2)" />, jadi <InlineMath math="x=5, y=2" />.
+
+**Pusat pembesaran** ialah <InlineMath math="P(2,3)" />, jadi <InlineMath math="a=2, b=3" />.
+
+Faktor skalanya ialah <InlineMath math="k=2" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2 + 2(5 - 2) \\ &amp;= 2 + 2(3) \\ &amp;= 2 + 6 \\ &amp;= 8 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 + 2(2 - 3) \\ &amp;= 3 + 2(-1) \\ &amp;= 3 - 2 \\ &amp;= 1 \end{aligned}" />
+</MathContainer>
+
+Imejnya ialah <InlineMath math="C'(8,1)" />.
+
+<MathVisual
+  title={
+    <>
+      Pembesaran Titik <InlineMath math="C(5,2)" /> dari{" "}
+      <InlineMath math="P(2,3)" />, Faktor <InlineMath math="k=2" />
+    </>
+  }
+  description={
+    <>
+      Visualisasi pembesaran titik <InlineMath math="C(5,2)" /> ke{" "}
+      <InlineMath math="C'(8,1)" /> dengan pusat di <InlineMath math="P(2,3)" />{" "}
+      dan faktor skala <InlineMath math="2" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="P(2,3)" />,
+    "l2": <InlineMath math="C(5,2)" />,
+    "l3": <InlineMath math="C'(8,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 9 }, y: { min: 0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 8, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 5, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 8, y: 1 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 8, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Dua soalan pertama membesarkan satu titik, mula-mula pada asalan dan kemudian pada pusat yang lain. Soalan ketiga membesarkan seluruh segi tiga dengan **faktor negatif**, jadi imejnya mendarat di sisi bertentangan pusat.
+
+1.  Tentukan imej bagi <InlineMath math="B(2,5)" /> di bawah pembesaran <InlineMath math="D_{(O,3)}" /> (pusat di <InlineMath math="O(0,0)" />, faktor <InlineMath math="3" />).
+2.  Tentukan imej bagi <InlineMath math="B(2,5)" /> di bawah pembesaran dengan pusat <InlineMath math="P(1,3)" /> dan faktor <InlineMath math="3" />.
+3.  Segi tiga dengan bucu <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, dan <InlineMath math="C(1,4)" /> dibesarkan pada asalan <InlineMath math="O(0,0)" /> dengan faktor skala <InlineMath math="k=-2" />. Tentukan koordinat segi tiga imej <InlineMath math="A'B'C'" />.
+
+### Penyelesaian
+
+Bezakan **pusat dengan titik yang dibesarkan**. Tolak koordinat pusat, darab dengan faktor, kemudian tambah semula koordinat pusat. Dengan asalan sebagai pusat, menolak dan menambah sifar tidak mengubah hasilnya.
+
+**Penyelesaian 1**
+
+Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=3" />.
+
+<MathContainer>
+  <BlockMath math="x' = 3 \cdot 2 = 6" />
+  <BlockMath math="y' = 3 \cdot 5 = 15" />
+</MathContainer>
+
+Jadi, imejnya ialah <InlineMath math="B'(6,15)" />.
+
+**Penyelesaian 2**
+
+Titik <InlineMath math="B(2,5)" />, pusat <InlineMath math="P(1,3)" />, <InlineMath math="k=3" />. (<InlineMath math="x=2, y=5, a=1, b=3" />)
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 1 + 3(2 - 1) \\ &amp;= 1 + 3(1) \\ &amp;= 1 + 3 \\ &amp;= 4 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 3 + 3(5 - 3) \\ &amp;= 3 + 3(2) \\ &amp;= 3 + 6 \\ &amp;= 9 \end{aligned}" />
+</MathContainer>
+
+Jadi, imejnya ialah <InlineMath math="B'(4,9)" />.
+
+**Penyelesaian 3**
+
+Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=-2" />.
+
+<MathContainer>
+  <BlockMath math="A'=(-2\cdot1,-2\cdot1)=(-2,-2)" />
+  <BlockMath math="B'=(-2\cdot3,-2\cdot1)=(-6,-2)" />
+  <BlockMath math="C'=(-2\cdot1,-2\cdot4)=(-2,-8)" />
+</MathContainer>
+
+Koordinat segi tiga imej ialah: <InlineMath math="A'(-2,-2)" />, <InlineMath math="B'(-6,-2)" />, <InlineMath math="C'(-2,-8)" />.
+
+Sisi asal yang berserenjang mempunyai panjang <InlineMath math="2" /> dan <InlineMath math="3" />. Panjang imejnya ialah <InlineMath math="4" /> dan <InlineMath math="6" />. Jadi **panjang menjadi dua kali ganda**, manakala luas menjadi empat kali ganda:
+
+<BlockMath math="L=\frac12\cdot2\cdot3=3,\qquad L'=\frac12\cdot4\cdot6=12=4L" />
+
+<MathVisual
+  title={<>Faktor negatif membesarkan rajah merentasi pusat</>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dan imejnya di bawah pembesaran dari <InlineMath math="O" /> dengan faktor <InlineMath math="-2" />.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="B'" />,
+    "l6": <InlineMath math="C'" />,
+    "l7": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 4 }, y: { min: -9.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }], appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 1, y: 4 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "s1-p3", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -6, y: -2 }, { x: -2, y: -8 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: -2, y: -8 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -6, y: -2 }, appearance: "secondary" },
+      { id: "s2-p2", kind: "point", at: { x: -2, y: -8 }, appearance: "secondary" },
+      { id: "s2-p3", kind: "point", at: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "l3", objectId: "s1", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -2, y: -2 }, placement: "above-right" },
+      { key: "l5", objectId: "s2", at: { x: -6, y: -2 }, placement: "left" },
+      { key: "l6", objectId: "s2", at: { x: -2, y: -8 }, placement: "below-right" },
+      { key: "l7", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>

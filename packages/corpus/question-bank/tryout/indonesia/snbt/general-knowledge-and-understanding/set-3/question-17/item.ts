@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "word-relation",
     topic: "synonym",
   },
-  stimulus: "lebah",
+  stimulus: "koperasi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "seragam",
+          label: "mencukupi dan pusingan",
         },
         {
           correct: false,
-          label: "sedikit",
+          label: "mengakhiri dan siklus",
         },
         {
           correct: true,
-          label: "bermacam-macam",
+          label: "mencukupi dan siklus",
         },
         {
           correct: false,
-          label: "tersembunyi dari pandangan",
+          label: "menyembunyikan dan kisaran",
         },
         {
           correct: false,
-          label: "sederhana",
+          label: "mengakhiri dan babak",
         },
       ],
     },

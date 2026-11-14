@@ -2,35 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "campus-commute",
+  stimulus: "wind-curtailment",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "More than half of the surveyed students travel mainly by public bus or by train.",
+            "Fellside lost a quarter of the energy it could have produced.",
         },
         {
-          column: 1,
-          label:
-            "Students who cycle have a shorter average trip than students who travel by car or motorbike.",
+          correct: false,
+          label: "Brackenmoor had more energy curtailed than any other farm.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The survey shows that secure bicycle parking would reduce lateness by 40 percent.",
+            "The North farms together lost a larger share of their potential energy than the South farms did.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "The lateness figures may not match the university's attendance records.",
+            "Saltmarsh lost only a twentieth of the energy it could have produced.",
+        },
+        {
+          correct: true,
+          label:
+            "Gullrock lost the same share of its potential energy as Fellside did.",
         },
       ],
     },

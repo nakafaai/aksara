@@ -1,20 +1,43 @@
-The rental cost is a linear function <InlineMath math="B(t)=a+bt" />, where <InlineMath math="a" /> is the fixed fee, <InlineMath math="b" /> the hourly rate, and <InlineMath math="t" /> the rental time in hours. **Two cost data points** are enough to find <InlineMath math="a" /> and <InlineMath math="b" /> (in thousands of rupiah).
+The plan: find <InlineMath math="{}^{a}\log b" /> from the first equation, use the condition <InlineMath math="1<b<a" /> to **throw out one possibility**, chain the bases to get <InlineMath math="{}^{a}\log c" />, and then change the base <InlineMath math="ab" /> to base <InlineMath math="a" />.
 
-# Finding the fixed fee and the hourly rate
+# Two possibilities for the first logarithm
+
+Let <InlineMath math="m={}^{a}\log b" />. Swapping the base and the argument **flips the logarithm upside down**, so <InlineMath math="{}^{b}\log a=\tfrac{1}{m}" />. Multiply the equation by <InlineMath math="2m" />.
 
 <BlockMath math="\begin{aligned}
-a+5b&=38\\
-a+3b&=26\\
-2b&=12\quad\Rightarrow\quad b=6\\
-a&=26-3(6)=8
+m+\frac{1}{m}&=\frac{5}{2}\\
+2m^2-5m+2&=0\\
+(2m-1)(m-2)&=0
 \end{aligned}" />
 
-The fixed fee is Rp8,000.00 and the hourly rate is Rp6,000.00. The first statement is **true**, and the third statement is false.
+So <InlineMath math="m=\tfrac{1}{2}" /> or <InlineMath math="m=2" />.
 
-# Checking the other two statements
+# The condition that removes one possibility
 
-Renting for 10 hours costs <InlineMath math="8+6(10)=68" /> thousand rupiah, while twice the 5-hour cost is <InlineMath math="2(38)=76" /> thousand rupiah. They differ because **the fixed fee is paid only once** and is not doubled. The second statement is false.
+The base <InlineMath math="a" /> is greater than <InlineMath math="1" />, so <InlineMath math="{}^{a}\log" /> is increasing. From <InlineMath math="1<b<a" /> you get <InlineMath math="{}^{a}\log 1<{}^{a}\log b<{}^{a}\log a" />, that is <InlineMath math="0<m<1" />. That's why **<InlineMath math="m=2" /> is thrown out** and <InlineMath math="m=\tfrac{1}{2}" />.
 
-With Rp50,000.00, the rental time must satisfy <InlineMath math="8+6t\le50" />, that is, <InlineMath math="t\le7" />. Exactly 7 hours cost <InlineMath math="8+42=50" /> thousand rupiah, and 8 hours cost 56 thousand rupiah. The fourth statement is true.
+# Chaining the bases
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The chain rule <InlineMath math="{}^{a}\log b\cdot{}^{b}\log c={}^{a}\log c" /> works because the middle base <InlineMath math="b" /> cancels. It gives **the logarithm of <InlineMath math="c" /> with base <InlineMath math="a" />**.
+
+<BlockMath math="{}^{a}\log c=\frac{1}{2}\cdot 4=2" />
+
+# Changing to base a
+
+By the change of base, <InlineMath math="{}^{ab}\log (bc)=\dfrac{{}^{a}\log (bc)}{{}^{a}\log (ab)}" />. The logarithm of a product is **the sum of the logarithms of its factors**, including <InlineMath math="{}^{a}\log a=1" /> in the denominator.
+
+<BlockMath math="\begin{aligned}
+{}^{a}\log (bc)&=\frac{1}{2}+2=\frac{5}{2}\\
+{}^{a}\log (ab)&=1+\frac{1}{2}=\frac{3}{2}\\
+{}^{ab}\log (bc)&=\frac{5/2}{3/2}=\frac{5}{3}
+\end{aligned}" />
+
+# Checking with powers of a
+
+From <InlineMath math="m=\tfrac{1}{2}" />, <InlineMath math="b=a^{1/2}" />, and from <InlineMath math="{}^{b}\log c=4" />, <InlineMath math="c=b^4=a^2" />. Then <InlineMath math="ab=a^{3/2}" /> and <InlineMath math="bc=a^{5/2}" />, so the logarithm is <InlineMath math="\tfrac{5/2}{3/2}=\tfrac{5}{3}" />. A real example: <InlineMath math="a=16" />, <InlineMath math="b=4" />, and <InlineMath math="c=256" /> meet every condition, and **the example agrees**, because <InlineMath math="64^{5/3}=1024=bc" />.
+
+# Checking the other options
+
+The option <InlineMath math="\tfrac{10}{3}" /> uses <InlineMath math="m=2" />, which **forgets the condition <InlineMath math="b<a" />**. The option <InlineMath math="3" /> skips the chain and uses <InlineMath math="{}^{a}\log c=4" />. The option <InlineMath math="\tfrac{5}{2}" /> stops at <InlineMath math="{}^{a}\log (bc)" /> without changing the base. The option <InlineMath math="5" /> divides by <InlineMath math="{}^{a}\log b" /> only, but the denominator is <InlineMath math="{}^{a}\log (ab)" />.
+
+So <InlineMath math="{}^{ab}\log (bc)=\tfrac{5}{3}" />.

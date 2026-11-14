@@ -1,19 +1,30 @@
-An applicant qualifies only if **all three conditions hold at the same time**. Check each applicant against each condition, and watch the exception in condition 2.
+The question hands you one strong rule: of the four statements, exactly one is true. You could try all four suspects one at a time, but Lutfi's statement gives a faster route.
 
-| Applicant | Condition 1 | Condition 2 | Condition 3 |
-| --- | --- | --- | --- |
-| Ani | Met, average <InlineMath math="86" /> | Not met | Met |
-| Budi | Met, average <InlineMath math="82" /> and national certificate | Met | Not met |
-| Cici | Not met | Met | Met |
-| Dedi | Met, average <InlineMath math="81" /> and national certificate | Met through the exception | Met |
-| Eka | Not met | Met | Met |
+Lutfi doesn't talk about the culprit. He talks about Kirana's statement. "Kirana is lying" is true exactly when Kirana's statement is false, and false exactly when Kirana's statement is true. So **of Kirana and Lutfi, exactly one is always telling the truth**. Since only one statement in total is true, that one true statement must belong to Kirana or Lutfi. That means Joko's statement and Maya's statement are both false.
 
-The reason for each applicant:
+Now put those two false statements to work.
 
-- Ani meets the grade condition, but the parents' income of <InlineMath math="\text{Rp}7{,}000{,}000" /> is over the limit. Ani's certificate is provincial, so the exception in condition 2 does not apply.
-- Budi already receives another scholarship and therefore fails condition 3.
-- Cici's average of <InlineMath math="84" /> is below <InlineMath math="85" />, and Cici has no certificate to use the <InlineMath math="80" /> route.
-- Dedi uses the route of an average of at least <InlineMath math="80" /> with a national certificate. The parents' income of <InlineMath math="\text{Rp}6{,}500{,}000" /> is over the limit, but **the national certificate exempts Dedi from condition 2**. Dedi receives no other scholarship.
-- Eka has a national certificate, but Eka's average of <InlineMath math="79" /> does not reach <InlineMath math="80" />.
+1. Joko said "the culprit is Lutfi or Maya". That's false, so the culprit is neither Lutfi nor Maya. Joko or Kirana is left.
+2. Maya said "the culprit is not me and not Kirana". A statement joined by "and" is false when at least one of its parts is false. So the culprit is Maya or Kirana.
 
-So the applicant who qualifies for the scholarship is Dedi.
+The only suspect who appears in both steps is Kirana. Kirana is the culprit. That makes Kirana's statement "the culprit is Joko" false, and Lutfi's statement "Kirana is lying" true.
+
+Check with a table for all four suspects. T means true and F means false.
+
+| If the culprit is | Joko | Kirana | Lutfi | Maya | Number of true statements |
+| --- | --- | --- | --- | --- | --- |
+| Joko | F | T | F | T | <InlineMath math="2" /> |
+| Kirana | F | F | T | F | <InlineMath math="1" /> |
+| Lutfi | T | F | T | T | <InlineMath math="3" /> |
+| Maya | T | F | T | F | <InlineMath math="2" /> |
+
+Only the Kirana row has exactly one true statement, and that statement is Lutfi's.
+
+The other options fail because of these slips.
+
+- Joko as culprit with Kirana truthful comes from trusting Kirana's accusation right away. In that case Maya's statement is true as well, so two statements are true.
+- Maya as culprit with Joko truthful forgets that Lutfi is automatically right whenever Kirana is wrong. In that case Joko and Lutfi are both true.
+- Kirana as culprit with Maya truthful checks only the "not me" part. Maya's statement uses "and", so the "not Kirana" part must hold too, and it doesn't when Kirana is the culprit.
+- Lutfi as culprit with Joko truthful stops once Joko's statement fits. In that case Lutfi and Maya are true as well, so three statements are true.
+
+So Kirana is the culprit, and the only true statement is Lutfi's.

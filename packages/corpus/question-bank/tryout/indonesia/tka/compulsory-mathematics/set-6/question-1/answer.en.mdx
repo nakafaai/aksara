@@ -1,0 +1,42 @@
+# Every rate in liters per minute
+
+The question asks what fraction of the tank is full at 6:30 (written 06.30 in the question). Tap Q and the leak are given as fractions of the capacity, while tap P is given in liters. So **turn everything into liters per minute first**, then you can add the rates.
+
+<BlockMath math="\begin{aligned}
+\text{rate of Q}&=\tfrac{1}{75}\cdot1{,}200=16\text{ liters per minute} \\
+\text{leak}&=\tfrac{1}{150}\cdot1{,}200=8\text{ liters per minute} \\
+\text{volume at the crack}&=\tfrac{2}{5}\cdot1{,}200=480\text{ liters}
+\end{aligned}" />
+
+You can work out the last line this way because the tank is an upright cylinder. In an upright cylinder the volume of water is proportional to its height, so a crack at <InlineMath math="\tfrac{2}{5}" /> of the height means water starts leaking once the tank holds more than <InlineMath math="480" /> liters.
+
+# Three filling stages
+
+The net rate changes whenever one of two things happens: the water reaches the crack, or tap Q opens. The leak only starts once the water passes the crack, so **find out first when the water reaches the crack**.
+
+<BlockMath math="\text{time to reach the crack}=\frac{480}{24}=20\text{ minutes}" />
+
+The water reaches the crack at 6:20, five minutes before tap Q opens. Now track the volume stage by stage.
+
+| Time interval | What is running | Net rate | Water added | Volume at the end |
+| --- | --- | --- | --- | --- |
+| 6:00 to 6:20 | tap P | <InlineMath math="24" /> liters per minute | <InlineMath math="480" /> liters | <InlineMath math="480" /> liters |
+| 6:20 to 6:25 | tap P and the leak | <InlineMath math="24-8=16" /> liters per minute | <InlineMath math="80" /> liters | <InlineMath math="560" /> liters |
+| 6:25 to 6:30 | tap P, tap Q and the leak | <InlineMath math="24+16-8=32" /> liters per minute | <InlineMath math="160" /> liters | <InlineMath math="720" /> liters |
+
+The fraction of the tank that's full is the volume divided by the capacity:
+
+<BlockMath math="\frac{720}{1{,}200}=\frac{3}{5}" />
+
+Quick check: <InlineMath math="720" /> liters is above <InlineMath math="480" /> liters, so the leak really is running, and it's below the capacity, so the tank isn't full yet.
+
+# Why the other options are wrong
+
+Each wrong option comes from **starting one of the rates at the wrong moment**.
+
+- <InlineMath math="\tfrac{22}{25}" /> comes from treating tap Q as open from 6:00. The water would then reach the crack after <InlineMath math="12" /> minutes and the volume would be <InlineMath math="480+32\cdot18=1{,}056" /> liters. Tap Q only opens at 6:25.
+- <InlineMath math="\tfrac{2}{3}" /> comes from forgetting the leak: <InlineMath math="24\cdot25+40\cdot5=800" /> liters.
+- <InlineMath math="\tfrac{19}{30}" /> comes from starting the leak when tap Q opens: <InlineMath math="24\cdot25+32\cdot5=760" /> liters. The water has been above the crack since 6:20.
+- <InlineMath math="\tfrac{7}{15}" /> comes from letting the tank leak from 6:00: <InlineMath math="16\cdot25+32\cdot5=560" /> liters. Nothing leaks while the water is still below the crack.
+
+So at 6:30 the tank is <InlineMath math="\tfrac{3}{5}" /> full.

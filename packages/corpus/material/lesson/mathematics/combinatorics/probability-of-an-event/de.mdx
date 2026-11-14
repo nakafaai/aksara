@@ -51,7 +51,7 @@ Ein Ereignis und sein Gegenereignis teilen sich die ganze Wahrscheinlichkeit. Be
 
 <BarChart
   title={<>Ein Ereignis und sein Gegenereignis</>}
-  description={<>Die Wahrscheinlichkeiten, dass zwei Würfel die Summe 9 ergeben und dass sie es nicht tun, zusammen 1.</>}
+  description={<>Die Wahrscheinlichkeiten, dass zwei Würfel die Summe <InlineMath math="9" /> ergeben und dass sie es nicht tun, zusammen <InlineMath math="1" />.</>}
   yAxisLabel="Wahrscheinlichkeit"
   data={[["Summe 9", 4 / 36], ["Summe nicht 9", 32 / 36]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -67,10 +67,10 @@ Liste die **geordneten Paare** mit Summe neun auf. Werden die Augenzahlen des er
 
 | Erster Würfel | Zweiter Würfel | Summe |
 | --- | --- | --- |
-| 3 | 6 | 9 |
-| 4 | 5 | 9 |
-| 5 | 4 | 9 |
-| 6 | 3 | 9 |
+| <InlineMath math="3" /> | <InlineMath math="6" /> | <InlineMath math="9" /> |
+| <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="9" /> |
+| <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="9" /> |
+| <InlineMath math="6" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
 Vier Paare erfüllen die Bedingung, also gilt <InlineMath math="n(A)=4" />.
 
@@ -79,8 +79,8 @@ Vier Paare erfüllen die Bedingung, also gilt <InlineMath math="n(A)=4" />.
 Jeder Punkt ist ein Ergebnis zweier Würfel: der erste Würfel nach rechts, der zweite nach oben, insgesamt <InlineMath math="36" /> Punkte. Die vier hervorgehobenen Punkte liegen auf der Geraden <InlineMath math="x + y = 9" />: <InlineMath math="(3, 6)" />, <InlineMath math="(4, 5)" />, <InlineMath math="(5, 4)" /> und <InlineMath math="(6, 3)" />. Also <InlineMath math="P(\text{Summe} = 9) = \frac{4}{36} = \frac19" />.
 
 <MathVisual
-  title={<>Vier von 36 Ergebnissen ergeben neun</>}
-  description={<>Die 36 Ergebnisse zweier Würfel als Raster 6 mal 6, die vier Ergebnisse auf <InlineMath math="x + y = 9" /> hervorgehoben.</>}
+  title={<>Vier von <InlineMath math="36" /> Ergebnissen ergeben neun</>}
+  description={<>Die <InlineMath math="36" /> Ergebnisse zweier Würfel als Raster <InlineMath math="6" /> mal <InlineMath math="6" />, die vier Ergebnisse auf <InlineMath math="x + y = 9" /> hervorgehoben.</>}
   labels={{
     nine: <InlineMath math="x + y = 9" />,
   }}

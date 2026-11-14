@@ -1,19 +1,45 @@
-Die Fläche des Gartens ist <InlineMath math="L=x(44-2x)" />. Der Scheitel dieser Funktion ist vielleicht nicht erlaubt, weil **die Seite parallel zur Mauer höchstens 20 m lang ist**.
+Du musst die Restmenge in dieser Flasche Tag für Tag verfolgen, weil sich **der Tagesverbrauch mittendrin ändert**. So gehst du vor: Berechne den Verbrauch vor und nach dem <InlineMath math="12" />. Juli, ziehe ihn jeden Tag vom Rest ab und suche den ersten Morgen, an dem der Rest für diesen Tag nicht mehr reicht.
 
-# Grenze für x
+# Verbrauch vor und nach der Änderung
+
+Der Tagesverbrauch ist das Gas des großen Kochers plus das Gas des kleinen Kochers. Ab dem <InlineMath math="12" />. Juli **läuft der große Kocher insgesamt fünf Stunden**, nicht fünf Stunden länger. Der kleine Kocher bleibt bei sieben Stunden.
 
 <BlockMath math="\begin{aligned}
-44-2x&\le20\\
-2x&\ge24\\
-x&\ge12
+\text{bis 11. Juli: } d&=0{,}3\cdot3+0{,}1\cdot7=0{,}9+0{,}7=1{,}6\text{ kg}\\
+\text{ab 12. Juli: } d&=0{,}3\cdot5+0{,}1\cdot7=1{,}5+0{,}7=2{,}2\text{ kg}
 \end{aligned}" />
 
-# Ein Scheitel, der nicht erlaubt ist
+# Den Gasrest verfolgen
 
-Die Funktion <InlineMath math="L=44x-2x^2" /> hat ihren Scheitel bei <InlineMath math="x=\tfrac{44}{4}=11" />. Dann wäre die parallele Seite <InlineMath math="44-22=22" /> m lang, **länger als die Mauer**, diese Größe ist also unmöglich.
+Jeden Morgen vergleicht Bu Sari den Rest mit dem Verbrauch dieses Tages. Solange er reicht, bleibt die Flasche angeschlossen, und der Rest sinkt um den Tagesverbrauch.
 
-Rechts vom Scheitel wird die Fläche kleiner, wenn <InlineMath math="x" /> wächst. Da <InlineMath math="x" /> mindestens 12 ist, liegt die größte Fläche genau bei <InlineMath math="x=12" />.
+| Datum | Rest am Morgen | Verbrauch | Rest am Abend |
+| --- | --- | --- | --- |
+| <InlineMath math="9" />. Juli | <InlineMath math="12\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="10{,}4\text{ kg}" /> |
+| <InlineMath math="10" />. Juli | <InlineMath math="10{,}4\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="8{,}8\text{ kg}" /> |
+| <InlineMath math="11" />. Juli | <InlineMath math="8{,}8\text{ kg}" /> | <InlineMath math="1{,}6\text{ kg}" /> | <InlineMath math="7{,}2\text{ kg}" /> |
+| <InlineMath math="12" />. Juli | <InlineMath math="7{,}2\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="5\text{ kg}" /> |
+| <InlineMath math="13" />. Juli | <InlineMath math="5\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="2{,}8\text{ kg}" /> |
+| <InlineMath math="14" />. Juli | <InlineMath math="2{,}8\text{ kg}" /> | <InlineMath math="2{,}2\text{ kg}" /> | <InlineMath math="0{,}6\text{ kg}" /> |
 
-<BlockMath math="L=12\cdot(44-24)=12\cdot20=240\text{ m}^2" />
+Am Morgen des <InlineMath math="15" />. Juli ist der Rest von <InlineMath math="0{,}6\text{ kg}" /> kleiner als der Verbrauch dieses Tages, <InlineMath math="2{,}2\text{ kg}" />. Nach der Regel **wird die Flasche am Morgen des <InlineMath math="15" />. Juli getauscht**, und die restlichen <InlineMath math="0{,}6\text{ kg}" /> gehen verloren.
 
-Der größte mögliche Garten hat also **240 <InlineMath math="\text{m}^2" />**, wobei die parallele Seite die ganze Mauer nutzt.
+Prüfe das mit den Summen. Die Flasche reichte <InlineMath math="3" /> Tage mit dem alten und <InlineMath math="3" /> Tage mit dem neuen Verbrauch:
+
+<BlockMath math="\begin{aligned}
+3\cdot1{,}6+3\cdot2{,}2&=4{,}8+6{,}6=11{,}4\text{ kg}\\
+12-11{,}4&=0{,}6\text{ kg}
+\end{aligned}" />
+
+Die restlichen <InlineMath math="0{,}6\text{ kg}" /> reichen tatsächlich nicht für einen vierten Tag mit dem neuen Verbrauch.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht durch einen falschen Schritt.
+
+- <InlineMath math="14" />. Juli mit <InlineMath math="0{,}6\text{ kg}" /> nennt den letzten Tag, an dem die Flasche benutzt wird. Aber **der letzte Nutzungstag ist nicht der Tauschtag**: Getauscht wird erst am nächsten Morgen.
+- <InlineMath math="14" />. Juli mit <InlineMath math="1\text{ kg}" /> rechnet schon ab dem <InlineMath math="9" />. Juli mit <InlineMath math="2{,}2\text{ kg}" /> pro Tag, also <InlineMath math="12-5\cdot2{,}2=1" />.
+- <InlineMath math="15" />. Juli mit <InlineMath math="1{,}2\text{ kg}" /> lässt die Änderung erst am <InlineMath math="13" />. Juli beginnen, also <InlineMath math="12-4\cdot1{,}6-2\cdot2{,}2=1{,}2" />.
+- <InlineMath math="16" />. Juli mit <InlineMath math="0{,}8\text{ kg}" /> übersieht die Änderung, die Flasche reicht dann <InlineMath math="7" /> Tage und <InlineMath math="12-7\cdot1{,}6=0{,}8" />.
+
+Die am <InlineMath math="9" />. Juli angeschlossene Flasche wird also am <InlineMath math="15" />. Juli getauscht, und die restlichen <InlineMath math="0{,}6\text{ kg}" /> Gas gehen verloren.

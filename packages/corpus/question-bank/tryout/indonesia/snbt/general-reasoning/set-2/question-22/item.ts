@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "number-pattern",
+    topic: "percentage",
   },
   versions: {
     id: {
@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Baris ke-$$13$$, urutan ke-$$9$$",
+          label: "$$7\\%$$",
         },
         {
           correct: false,
-          label: "Baris ke-$$14$$, urutan ke-$$5$$",
-        },
-        {
-          correct: false,
-          label: "Baris ke-$$14$$, urutan ke-$$10$$",
-        },
-        {
-          correct: false,
-          label: "Baris ke-$$10$$, urutan ke-$$10$$",
+          label: "$$17{,}5\\%$$",
         },
         {
           correct: true,
-          label: "Baris ke-$$14$$, urutan ke-$$9$$",
+          label: "$$35\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$55\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$65\\%$$",
         },
       ],
     },

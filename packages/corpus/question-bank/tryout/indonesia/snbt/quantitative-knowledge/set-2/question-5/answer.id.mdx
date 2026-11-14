@@ -1,26 +1,41 @@
-Tentukan dulu nilai <InlineMath math="a" /> dari <InlineMath math="f(3)=7" />, karena **semua pernyataan lain bergantung pada rumus lengkap** fungsi <InlineMath math="f" />.
+Kedua kuantitas ditentukan oleh <InlineMath math="u_1=4" /> dan rasio <InlineMath math="r" />. Rasionya tersembunyi di aturan <InlineMath math="u_{n+2}=u_{n+1}+u_n" />, dan **syarat konvergen** memilih salah satu dari dua calon rasio. Setelah itu, hitung <InlineMath math="P" /> dan <InlineMath math="Q" /> secara eksak lalu bandingkan.
 
-<BlockMath math="f(3)=\frac{3a+1}{3-2}=3a+1=7\quad\Rightarrow\quad a=2" />
+# Mencari rasio
 
-Pernyataan kedua benar, dan <InlineMath math="f(x)=\dfrac{2x+1}{x-2}" />.
-
-# Mencari fungsi invers
-
-Tulis <InlineMath math="y=f(x)" /> lalu nyatakan <InlineMath math="x" /> dalam <InlineMath math="y" />.
+Tulis <InlineMath math="u_n=4r^{n-1}" />. Rasio <InlineMath math="r" /> tidak mungkin <InlineMath math="0" />, karena <InlineMath math="r=0" /> memberi <InlineMath math="u_3=0" />, padahal <InlineMath math="u_2+u_1=4" />. Bagi aturan itu dengan <InlineMath math="u_n=4r^{n-1}" /> yang tidak nol.
 
 <BlockMath math="\begin{aligned}
-y(x-2)&=2x+1\\
-xy-2y&=2x+1\\
-x(y-2)&=2y+1\\
-x&=\frac{2y+1}{y-2}
+4r^{n+1}&=4r^{n}+4r^{n-1}\\
+r^2&=r+1\\
+r&=\frac{1+\sqrt5}{2}\ \text{atau}\ r=\frac{1-\sqrt5}{2}
 \end{aligned}" />
 
-Jadi <InlineMath math="f^{-1}(x)=\dfrac{2x+1}{x-2}" />, **persis sama dengan <InlineMath math="f(x)" />**, dan domainnya juga <InlineMath math="x\ne2" />. Pernyataan ketiga benar.
+Deret geometri tak hingga **hanya konvergen jika <InlineMath math="|r|<1" />**. Karena <InlineMath math="\sqrt5>2" />, calon pertama lebih dari <InlineMath math="\tfrac32" /> dan gugur. Calon kedua memenuhi <InlineMath math="-1<\tfrac{1-\sqrt5}{2}<0" /> karena <InlineMath math="2<\sqrt5<3" />. Jadi <InlineMath math="r=\tfrac{1-\sqrt5}{2}" />, dan rasionya negatif.
 
-# Akibat fungsi yang sama dengan inversnya
+# Menghitung kedua kuantitas
 
-Karena <InlineMath math="f^{-1}=f" />, penerapan <InlineMath math="f" /> dua kali **mengembalikan masukannya**. Cek langsung: <InlineMath math="f(5)=\frac{11}{3}" /> dan <InlineMath math="f\left(\frac{11}{3}\right)=\frac{25/3}{5/3}=5" />. Pernyataan keempat benar.
+Untuk <InlineMath math="P" />, pakai rumus jumlah tak hingga <InlineMath math="\tfrac{u_1}{1-r}" />. Untuk <InlineMath math="Q" />, **ganti <InlineMath math="r^2" /> dengan <InlineMath math="r+1" />** supaya kamu tidak perlu menguadratkan bentuk akar.
 
-Persamaan <InlineMath math="f(x)=2" /> berarti <InlineMath math="2x+1=2(x-2)=2x-4" />, yang memberi <InlineMath math="1=-4" />. Tidak ada <InlineMath math="x" /> yang memenuhi, sebab 2 adalah asimtot datar grafik <InlineMath math="f" />. Pernyataan pertama salah.
+<BlockMath math="\begin{aligned}
+P&=\frac{4}{1-r}=\frac{4}{\frac{1+\sqrt5}{2}}=\frac{8}{1+\sqrt5}=\frac{8(\sqrt5-1)}{4}=2\sqrt5-2\\
+Q&=4\left(1+r+r^2\right)=4\left(2+2r\right)=8(1+r)=8\cdot\frac{3-\sqrt5}{2}=12-4\sqrt5
+\end{aligned}" />
 
-Jadi, pernyataan pertama **salah**, sedangkan pernyataan kedua, ketiga, dan keempat **benar**.
+# Membandingkan dengan bentuk akar
+
+Hitung selisihnya, lalu bandingkan dua bilangan positif lewat kuadratnya.
+
+<BlockMath math="\begin{aligned}
+Q-P&=12-4\sqrt5-2\sqrt5+2=14-6\sqrt5\\
+14^2=196&>180=\left(6\sqrt5\right)^2
+\end{aligned}" />
+
+Jadi <InlineMath math="14>6\sqrt5" />, sehingga <InlineMath math="Q-P>0" />. Cek dengan jalur kedua. Karena <InlineMath math="r<0" />, **suku-suku barisan berganti tanda**, dan <InlineMath math="u_4=4r^3" /> negatif. Sisa deret setelah suku ketiga adalah <InlineMath math="\tfrac{u_4}{1-r}" />, yang juga negatif, jadi <InlineMath math="P=Q+\tfrac{u_4}{1-r}" /> lebih kecil daripada <InlineMath math="Q" />.
+
+# Jebakan pada pilihan lain
+
+- <InlineMath math="P>Q" /> muncul jika kamu menganggap jumlah tak hingga **selalu lebih besar daripada jumlah beberapa suku pertama**. Itu hanya benar jika semua sukunya positif.
+- <InlineMath math="P=Q" /> berarti sisa deret <InlineMath math="u_4+u_5+\cdots" /> bernilai nol, padahal sisa itu sama dengan <InlineMath math="\tfrac{u_4}{1-r}\ne0" />.
+- Pilihan informasi tidak cukup muncul jika kamu mengira kedua calon <InlineMath math="r" /> mungkin, padahal <InlineMath math="r=\tfrac{1+\sqrt5}{2}" /> membuat deretnya tidak konvergen.
+
+Jadi, kuantitas <InlineMath math="Q" /> lebih besar daripada kuantitas <InlineMath math="P" />.

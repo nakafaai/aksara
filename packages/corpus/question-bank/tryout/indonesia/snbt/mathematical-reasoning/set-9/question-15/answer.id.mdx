@@ -1,23 +1,43 @@
-Setiap pernyataan meminta **jenis pengolahan data yang berbeda**: jumlah, perbandingan, selisih berurutan, dan banyak data yang memenuhi syarat.
+Kamu mencari tidur efektif minimal pada Senin malam berikutnya. Malam itu harus memenuhi target <InlineMath math="480" /> menit **dan** melunasi utang yang tersisa dari pekan ini. Rencananya: hitung tidur efektif setiap malam, telusuri utang malam demi malam dengan aturan nol, lalu tambahkan target satu malam. Semua waktu dalam menit.
 
-# Jumlah dan perbandingan
+# Tidur efektif setiap malam
 
-Enam bulan pertama berjumlah <InlineMath math="310+280+250+190+120+80=1{.}230" /> mm, sedangkan enam bulan terakhir <InlineMath math="50+40+70+140+230+340=870" /> mm. **Keduanya tidak sama**, jadi pernyataan pertama salah.
+Waktu di tempat tidur dihitung dari jam mulai tidur sampai jam bangun. Jika mulai sebelum tengah malam, hitung dulu sampai pukul 24.00. Contohnya Selasa: <InlineMath math="30" /> menit sampai 24.00 ditambah <InlineMath math="360" /> menit sampai 06.00, jadi <InlineMath math="390" /> menit. **Rabu dimulai setelah tengah malam**, jadi langsung dari 00.20 sampai 06.50, yaitu <InlineMath math="390" /> menit. Setelah dikurangi waktu terjaga, hasilnya sebagai berikut.
 
-Perbandingan Desember dan Agustus adalah <InlineMath math="\tfrac{340}{40}=8{,}5" />, lebih dari 8. Pernyataan kedua benar.
+| Hari | Senin | Selasa | Rabu | Kamis | Jumat | Sabtu | Minggu |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Di tempat tidur | <InlineMath math="520" /> | <InlineMath math="390" /> | <InlineMath math="390" /> | <InlineMath math="540" /> | <InlineMath math="360" /> | <InlineMath math="630" /> | <InlineMath math="600" /> |
+| Tidur efektif | <InlineMath math="500" /> | <InlineMath math="375" /> | <InlineMath math="380" /> | <InlineMath math="515" /> | <InlineMath math="360" /> | <InlineMath math="600" /> | <InlineMath math="560" /> |
 
-# Penurunan berurutan
+# Utang tidur malam demi malam
 
-| Dari ke | Penurunan |
-| :--- | :---: |
-| Maret ke April | 60 mm |
-| April ke Mei | 70 mm |
-| Mei ke Juni | 40 mm |
+Setiap malam, utang baru sama dengan utang lama ditambah <InlineMath math="480" /> dikurangi tidur efektif. **Kalau hasilnya negatif, utangnya ditulis nol**, karena kelebihan tidur tidak disimpan.
 
-Penurunan lain dari Januari sampai Agustus paling besar 30 mm. **Penurunan terbesar terjadi dari April ke Mei**, jadi pernyataan ketiga salah.
+<BlockMath math="\begin{aligned}
+\text{Senin} &: 0+480-500=-20,\ \text{jadi }0 \\
+\text{Selasa} &: 0+480-375=105 \\
+\text{Rabu} &: 105+480-380=205 \\
+\text{Kamis} &: 205+480-515=170 \\
+\text{Jumat} &: 170+480-360=290 \\
+\text{Sabtu} &: 290+480-600=170 \\
+\text{Minggu} &: 170+480-560=90
+\end{aligned}" />
 
-# Bulan basah dan bulan kering
+Utang setelah Minggu malam adalah <InlineMath math="90" /> menit. Hanya Senin malam yang terkena aturan nol, sehingga kelebihan <InlineMath math="20" /> menit itu terbuang.
 
-Bulan basah adalah Januari, Februari, Maret, April, Mei, Oktober, November, dan Desember, yaitu 8 bulan. Bulan kering hanya Juli dan Agustus, yaitu 2 bulan. Karena 8 lebih dari <InlineMath math="2\cdot2=4" />, pernyataan keempat benar.
+# Tidur yang diperlukan pada Senin malam berikutnya
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Agar utang menjadi nol, tidur efektif harus menutup target malam itu dan seluruh utang lama.
+
+<BlockMath math="90+480-x\le0\ \Rightarrow\ x\ge570" />
+
+Cek: dengan <InlineMath math="570" /> menit, utangnya <InlineMath math="90+480-570=0" />. Dengan <InlineMath math="569" /> menit, utangnya masih <InlineMath math="1" /> menit. Jadi **paling sedikit <InlineMath math="570" /> menit**, yaitu <InlineMath math="9" /> jam <InlineMath math="30" /> menit.
+
+# Jebakan yang perlu dihindari
+
+Jawaban lain muncul kalau **utang dihitung dengan selisih total saja** atau targetnya terlupa.
+
+- Selisih total <InlineMath math="7\times480-3{.}290=70" /> mengabaikan aturan nol pada Senin malam, sehingga memberi <InlineMath math="480+70=550" /> menit.
+- Menjawab <InlineMath math="90" /> hanya melunasi utang lama dan lupa bahwa Senin malam itu sendiri juga punya target <InlineMath math="480" /> menit.
+
+Jadi, pengguna memerlukan tidur efektif paling sedikit <InlineMath math="570" /> menit pada Senin malam pekan berikutnya.

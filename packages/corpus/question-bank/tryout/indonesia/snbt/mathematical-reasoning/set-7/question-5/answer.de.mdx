@@ -1,19 +1,45 @@
-Zwei faire Würfel ergeben **36 gleich wahrscheinliche geordnete Paare**. Einen Preis gibt es bei der Summe 12, 11 oder 7.
+Gesucht ist alles Geld, das Ayu bekommt: ihr Gehalt als Geschäftsführerin plus ihr Anteil am verteilten Gewinn. Der Plan: Berechne die Kapitalmonate jeder Person, bestimme den verteilten Gewinn **mit den Abzügen in der richtigen Reihenfolge**, nimm dann Ayus Anteil und addiere ihr Gehalt.
 
-# Paare für jede Summe
+# Kapitalmonate für jede Person
 
-Zähle **die Würfelpaare für jede Gewinnsumme**.
+Kapitalmonate messen, wie viel Geld eingezahlt war und wie lange es gearbeitet hat. **Jedes Mal, wenn sich das Kapital ändert, rechnest du die Zeit davor und danach getrennt**.
 
-| Summe | Paare | Anzahl |
-| :---: | :---: | :---: |
-| 12 | <InlineMath math="(6,6)" /> | 1 |
-| 11 | <InlineMath math="(5,6),(6,5)" /> | 2 |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
+<BlockMath math="\begin{aligned}
+\text{Ayu} &= 40\cdot3+20\cdot9=120+180=300 \\
+\text{Bima} &= 30\cdot6+40\cdot6=180+240=420 \\
+\text{Citra} &= 90\cdot8=720
+\end{aligned}" />
 
-# Wahrscheinlichkeit für einen Preis
+Ayu hat von Januar bis März <InlineMath math="40" /> Millionen im Geschäft, von April bis Dezember <InlineMath math="20" /> Millionen. Citra steigt erst Anfang Mai ein, ihr Geld arbeitet also <InlineMath math="8" /> Monate, von Mai bis Dezember. Zusammen sind es <InlineMath math="1{.}440" /> Kapitalmonate, im Verhältnis <InlineMath math="300:420:720=5:7:12" />.
 
-Die drei Ereignisse schließen sich aus, also **werden ihre Paare addiert**.
+# Der verteilte Gewinn
 
-<BlockMath math="\frac{1+2+6}{36}=\frac{9}{36}=0{,}25" />
+Die Reihenfolge zählt: **Zuerst geht Ayus Gehalt ab, erst dann wird die Rücklage vom Rest berechnet**.
 
-Die Wahrscheinlichkeit für einen Preis beträgt also **0,25**.
+<BlockMath math="\begin{aligned}
+\text{Rest nach dem Gehalt} &= 252-12=240 \\
+\text{Rücklage} &= 10\%\cdot240=24 \\
+\text{verteilter Gewinn} &= 240-24=216
+\end{aligned}" />
+
+Alle Beträge sind hier in Millionen Rupiah.
+
+# Was Ayu bekommt
+
+Ayus Anteil ist <InlineMath math="\frac{5}{24}" /> des verteilten Gewinns. **Das Gehalt musst du trotzdem dazurechnen**, denn gefragt ist alles Geld, das Ayu bekommt.
+
+<BlockMath math="\begin{aligned}
+\text{Ayus Anteil} &= \frac{5}{24}\cdot216=45 \\
+\text{Ayus Geld insgesamt} &= 45+12=57
+\end{aligned}" />
+
+Zur Probe: Bima bekommt <InlineMath math="\frac{7}{24}\cdot216=63" /> und Citra <InlineMath math="\frac{12}{24}\cdot216=108" />. Zusammen sind das <InlineMath math="45+63+108=216" />, und <InlineMath math="216+12+24=252" /> ist genau der Nettogewinn.
+
+# Die falschen Antworten
+
+- <InlineMath math="\text{Rp}60" /> Millionen entstehen, wenn Citras Geld nur <InlineMath math="7" /> Monate zählt (Dezember minus Mai). Die Summe wird <InlineMath math="1{.}350" />, Ayus Anteil <InlineMath math="216\cdot\frac{300}{1{.}350}=48" />, dazu kommt das Gehalt.
+- <InlineMath math="\text{Rp}62" /> Millionen entstehen, wenn die Rücklage vergessen wird. Dann werden <InlineMath math="240" /> Millionen verteilt, und Ayus Anteil ist <InlineMath math="50" /> Millionen.
+- <InlineMath math="\text{Rp}76" /> Millionen entstehen, wenn Ayus Entnahme übersehen wird. Ihre Kapitalmonate werden <InlineMath math="480" />, die Summe <InlineMath math="1{.}620" />, und ihr Anteil <InlineMath math="216\cdot\frac{480}{1{.}620}=64" />.
+- <InlineMath math="\text{Rp}84" /> Millionen entstehen, wenn der verteilte Gewinn gleichmäßig durch drei geteilt wird, <InlineMath math="216:3=72" />, und dann das Gehalt dazukommt. Diese Teilung **übersieht die Kapitalmonate**.
+
+Ayu bekommt also insgesamt <InlineMath math="\text{Rp}57" /> Millionen.

@@ -1,11 +1,22 @@
-A statement is sufficient when it **forces one answer**, either definitely even or definitely odd. Check whether each statement really separates even <InlineMath math="n" /> from odd <InlineMath math="n" />.
+A statement is sufficient when it forces a definite yes or a definite no. The right angle could be at any vertex, so **check the angle opposite the longest side**. By the converse of Pythagoras' theorem, that angle is right when the square of the longest side equals the sum of the squares of the other two, and acute when it's smaller.
 
 # Statement one alone
 
-Factor <InlineMath math="n^2+3n=n(n+3)" />. If <InlineMath math="n" /> is even, the factor <InlineMath math="n" /> is even. If <InlineMath math="n" /> is odd, the factor <InlineMath math="n+3" /> is even. So <InlineMath math="n^2+3n" /> is **even for every integer**: for example <InlineMath math="n=2" /> gives 10 and <InlineMath math="n=1" /> gives 4. Statement (1) gives no new information, so it is not sufficient.
+Statement (1) gives <InlineMath math="a=3k" /> and <InlineMath math="b=4k" /> for some <InlineMath math="k>0" />, but <InlineMath math="c" /> **is still free**. With <InlineMath math="c=5k" />, you get <InlineMath math="9k^2+16k^2=25k^2" />, so the triangle has a right angle at <InlineMath math="C" />. With <InlineMath math="c=6k" />, the triangle exists because <InlineMath math="3k+4k>6k" />, but <InlineMath math="36k^2\ne 9k^2+16k^2" />, so the angle opposite the longest side isn't right. One case says yes and another says no, so statement (1) alone isn't sufficient.
 
 # Statement two alone
 
-The expression <InlineMath math="n^2+2n+1" /> is the perfect square <InlineMath math="(n+1)^2" />. The square of an integer is odd exactly when **the integer itself is odd**, so <InlineMath math="n+1" /> is odd and <InlineMath math="n" /> is even. The answer is a definite yes, so statement (2) alone is sufficient.
+From <InlineMath math="c^4=a^4+b^4" />, you get <InlineMath math="c^4>a^4" /> and <InlineMath math="c^4>b^4" />, so <InlineMath math="c" /> is **the longest side**. Only angle <InlineMath math="C" /> could be right, so compare <InlineMath math="c^2" /> with <InlineMath math="a^2+b^2" />.
 
-So **statement (2) alone is sufficient**, but statement (1) alone is not.
+<BlockMath math="\begin{aligned}
+\left(a^2+b^2\right)^2&=a^4+2a^2b^2+b^4\\
+&>a^4+b^4=c^4
+\end{aligned}" />
+
+Both sides are positive, so <InlineMath math="a^2+b^2>c^2" />. Angle <InlineMath math="C" /> is acute, and since <InlineMath math="C" /> is the largest angle, **every angle is acute**. The triangle is definitely not right-angled. Such triangles do exist, for example <InlineMath math="a=b=1" /> and <InlineMath math="c=\sqrt[4]{2}" />, which is less than <InlineMath math="2" />. Statement (2) alone is sufficient, and the answer is no.
+
+# The conclusion for both statements
+
+Since statement (2) alone is already sufficient, you don't need to combine it with statement (1). The choices "both statements together" or "not sufficient" usually come from <InlineMath math="a^4+b^4=c^4" /> **looking like Pythagoras' theorem**, so it seems the triangle could be right-angled. The choice "each alone is sufficient" comes from reading statement (1) straight away as the triangle <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />.
+
+So statement (2) alone is sufficient to answer that triangle <InlineMath math="ABC" /> is not right-angled, but statement (1) alone is not.

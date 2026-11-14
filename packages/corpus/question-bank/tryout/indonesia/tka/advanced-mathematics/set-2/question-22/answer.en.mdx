@@ -1,0 +1,21 @@
+At <InlineMath math="x=\pi" />, the numerator <InlineMath math="1+\cos\pi=0" /> and the denominator is <InlineMath math="0" /> too. To use the basic limits near zero, **shift the point to zero** with <InlineMath math="t=x-\pi" />. As <InlineMath math="x\to\pi" />, <InlineMath math="t\to0" />.
+
+The angle formulas for <InlineMath math="\pi+t" /> give <InlineMath math="\cos(\pi+t)=-\cos t" /> and <InlineMath math="\sin(\pi+t)=-\sin t" />.
+
+<BlockMath math="\begin{aligned}
+\lim_{x\to\pi}h(x)&=\lim_{t\to0}\frac{1-\cos t}{t\cdot(-\sin t)} \\
+&=-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}
+\end{aligned}" />
+
+The second line uses <InlineMath math="1-\cos t=2\sin^2\frac t2" />. Split it into basic limits.
+
+<BlockMath math="-\lim_{t\to0}\frac{2\sin^2\frac t2}{t\sin t}=-2\cdot\lim_{t\to0}\left(\frac{\sin\frac t2}{t}\right)^2\cdot\lim_{t\to0}\frac{t}{\sin t}=-2\cdot\left(\frac12\right)^2\cdot1=-\frac12" />
+
+Numerical check: for <InlineMath math="x=\pi+0.01" />, the value is about <InlineMath math="\frac{0.0000500}{0.01\cdot(-0.0099998)}\approx-0.50" />.
+
+So the limit is <InlineMath math="-\frac12" />.
+
+- <InlineMath math="\frac12" /> takes <InlineMath math="\sin(\pi+t)=\sin t" />, which loses the minus sign.
+- <InlineMath math="-1" /> uses <InlineMath math="1-\cos t\approx t^2" />, but the approximation is <InlineMath math="\frac{t^2}{2}" />.
+- <InlineMath math="0" /> only looks at the numerator tending to zero.
+- <InlineMath math="-2" /> turns the fraction <InlineMath math="\frac12" /> upside down at the end.

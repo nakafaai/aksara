@@ -1,13 +1,32 @@
-Jumlah delapan suku pertama barisan aritmetika adalah **banyak suku dikali rata-rata suku pertama dan suku terakhir**.
+Kamu perlu menyusun ulang rumus keuntungan dengan aturan pupuk, mencari titik puncaknya, lalu **memeriksa apakah titik puncak itu muat di kebun**. Kebun paling banyak berisi <InlineMath math="70" /> pohon, dan batas inilah yang mengubah jawabannya.
 
-# Suku pertama dan suku kedelapan
+# Rumus keuntungan dengan pupuk
 
-<BlockMath math="U_8=120+7\cdot15=225" />
+Untuk <InlineMath math="n" /> pohon dengan <InlineMath math="n" /> paling sedikit <InlineMath math="40" />, hasil per pohon menjadi <InlineMath math="120-(n-40)=160-n" /> kilogram. Biaya per pohon sekarang **perawatan ditambah pupuk**, <InlineMath math="96{.}000+24{.}000=120{.}000" /> rupiah. Jadi:
 
-# Jumlah delapan tahun
+<BlockMath math="\begin{aligned}
+\text{keuntungan}&=8{.}000\cdot n(160-n)-120{.}000n\\
+&=8{.}000n(160-n-15)\\
+&=8{.}000n(145-n)
+\end{aligned}" />
 
-<BlockMath math="S_8=\frac{8}{2}(120+225)=4\cdot345=1{.}380" />
+Untuk <InlineMath math="n" /> paling banyak <InlineMath math="40" />, setiap pohon menghasilkan <InlineMath math="120\text{ kg}" />, sehingga keuntungannya <InlineMath math="(960{.}000-120{.}000)n=840{.}000n" />. Nilai ini terus naik sampai <InlineMath math="n=40" />, jadi keuntungan terbesar pasti dicari di <InlineMath math="n" /> paling sedikit <InlineMath math="40" />.
 
-Nilai 960 menganggap setiap tahun ditanam 120 bibit. Nilai 1.065 menambahkan kenaikan <InlineMath math="7\cdot15" /> hanya satu kali. Nilai 1.155 adalah jumlah tujuh tahun. Nilai 1.320 mengalikan 8 dengan banyak bibit tahun keempat, padahal **delapan suku tidak memiliki satu suku tengah**.
+# Puncak dan batas kebun
 
-Jadi, selama delapan tahun ditanam **1.380 bibit**.
+Bentuk <InlineMath math="8{.}000n(145-n)" /> bernilai nol di <InlineMath math="n=0" /> dan <InlineMath math="n=145" />, jadi puncaknya tepat di tengah, <InlineMath math="n=72{,}5" />. Padahal kebun hanya memuat <InlineMath math="70" /> pohon, jadi **puncak itu berada di luar batas kebun**. Sebelum puncak, keuntungan terus naik ketika pohon ditambah. Karena itu, di antara <InlineMath math="40" /> sampai <InlineMath math="70" /> pohon, keuntungan terbesar ada di <InlineMath math="70" /> pohon:
+
+<BlockMath math="8{.}000\cdot70\cdot(145-70)=8{.}000\cdot70\cdot75=42{.}000{.}000" />
+
+Coba cek satu pohon sebelumnya: <InlineMath math="8{.}000\cdot69\cdot76=41{.}952{.}000" />, lebih kecil. Cek juga lewat hasil per pohon: dengan <InlineMath math="70" /> pohon, setiap pohon menghasilkan <InlineMath math="90\text{ kg}" />, jadi untung per pohon <InlineMath math="90\cdot8{.}000-120{.}000=600{.}000" /> rupiah, dan <InlineMath math="70\cdot600{.}000=42{.}000{.}000" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain melewatkan satu syarat.
+
+- <InlineMath math="80" /> pohon adalah puncak hasil panen <InlineMath math="n(160-n)" />. Pilihan ini mengabaikan biaya dan juga batas kebun.
+- <InlineMath math="72" /> pohon membulatkan puncak <InlineMath math="72{,}5" /> tanpa memeriksa bahwa **kebun hanya muat tujuh puluh pohon**.
+- <InlineMath math="70" /> pohon dengan <InlineMath math="\text{Rp}43{.}680{.}000" /> lupa biaya pupuk, sehingga keuntungannya <InlineMath math="8{.}000\cdot70\cdot78" />.
+- <InlineMath math="47" /> pohon adalah jawaban terbaik tanpa pupuk, yang tidak berlaku lagi setelah aturan penurunan berubah.
+
+Jadi, dengan pupuk khusus itu keuntungan terbesar didapat dengan <InlineMath math="70" /> pohon, yaitu <InlineMath math="\text{Rp}42{.}000{.}000" />.

@@ -1,0 +1,269 @@
+
+export const metadata = {
+  title: "Matriks Pembesaran",
+  description: "Terbitkan matriks pembesaran dan gunakannya untuk mengira imej dari asalan atau dari sebarang pusat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Memadankan Unsur Matriks dengan Koordinat yang Diskalakan
+
+Bagaimanakah kita mencari <Highlight>matriks yang sepadan dengan operasi pembesaran</Highlight>? Ingat semula bahawa titik <InlineMath math="(x,y)" /> dipetakan oleh pembesaran dengan faktor <InlineMath math="k \neq 0" /> dan pusat <InlineMath math="O" /> ke <InlineMath math="(kx,ky)" />.
+
+Katakan matriks yang kita cari ialah:
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix}" />
+
+Cari <InlineMath math="r, s, t, u" /> supaya matriks itu memenuhi
+
+<BlockMath math="\begin{pmatrix} r & s \\ t & u \end{pmatrix} \begin{pmatrix} x \\ y \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}" />
+
+Daripada pendaraban matriks di sebelah kiri, kita dapat:
+
+<BlockMath math="\begin{pmatrix} rx + sy \\ tx + uy \end{pmatrix} = \begin{pmatrix} kx \\ ky \end{pmatrix}" />
+
+Dengan menyamakan komponen yang sepadan:
+
+- **Baris pertama**: <InlineMath math="rx + sy = kx" />. Supaya persamaan ini benar bagi semua <InlineMath math="x" /> dan <InlineMath math="y" />, pekali <InlineMath math="x" /> mesti sama, dan pekali <InlineMath math="y" /> juga mesti sama. Jadi, <InlineMath math="r = k" /> dan <InlineMath math="s = 0" />.
+- **Baris kedua**: <InlineMath math="tx + uy = ky" />. Dengan cara yang sama, <InlineMath math="t = 0" /> dan <InlineMath math="u = k" />.
+
+## Matriks Pembesaran pada Asalan
+
+Matriks pembesaran yang berpusat di asalan ialah **gandaan matriks identiti**. Bagi <InlineMath math="k\ne0" />, pembesaran songsangnya mempunyai faktor <InlineMath math="1/k" />:
+
+<MathContainer>
+  <BlockMath math="D_k=kI=\begin{pmatrix}k&0\\0&k\end{pmatrix}" />
+  <BlockMath math="D_{1/k}D_k=\begin{pmatrix}1/k&0\\0&1/k\end{pmatrix}\begin{pmatrix}k&0\\0&k\end{pmatrix}=\begin{pmatrix}1&0\\0&1\end{pmatrix}" />
+</MathContainer>
+
+<InlineMath math="D_2" /> menggandakan setiap vektor kedudukan. Segi tiga dengan bucu <InlineMath math="(1, 1)" />, <InlineMath math="(3, 1)" /> dan <InlineMath math="(1, 2)" /> menjadi <InlineMath math="(2, 2)" />, <InlineMath math="(6, 2)" /> dan <InlineMath math="(2, 4)" />: setiap bucu imej terletak pada sinar dari <InlineMath math="O" /> yang melalui bucu asal, dua kali lebih jauh, dan setiap sisi menjadi dua kali lebih panjang.
+
+<MathVisual
+  title={<>Pembesaran dengan faktor <InlineMath math="2" /> pada asalan</>}
+  description={<>Sebuah segi tiga dan imejnya di bawah <InlineMath math="D_2" />, dengan sinar dari <InlineMath math="O" /> yang melalui setiap pasangan bucu sepadan.</>}
+  labels={{
+    tri: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+    o: <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ra", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+      { id: "rb", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 2 }, appearance: "construction" },
+      { id: "rc", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 4 }, appearance: "construction" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 6, y: 2 }, { x: 2, y: 4 }], appearance: "secondary" },
+      { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "tri", objectId: "tri", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "image", objectId: "image", at: { x: 6, y: 2 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+## Operasi Matriks bagi Pembesaran pada Sebarang Titik
+
+Titik <InlineMath math="(x,y)" /> yang dibesarkan dengan faktor <InlineMath math="k \neq 0" /> dan pusat <InlineMath math="(a,b)" /> akan dipetakan ke <InlineMath math="(k(x-a)+a,\, k(y-b)+b)" />.
+
+Selepas **menolak koordinat pusat**, vektor kedudukannya ialah:
+
+<BlockMath math="\begin{pmatrix} x-a \\ y-b \end{pmatrix}" />
+
+Cari operasi matriks yang mengubah vektor ini kepada imej yang dikehendaki:
+
+<BlockMath math="\begin{pmatrix} k(x-a)+a \\ k(y-b)+b \end{pmatrix}" />
+
+Operasi matriks bagi pembesaran dengan faktor <InlineMath math="k \neq 0" /> pada titik <InlineMath math="(a,b)" /> ialah
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} k & 0 \\ 0 & k \end{pmatrix} \begin{pmatrix} x-a \\ y-b \end{pmatrix} + \begin{pmatrix} a \\ b \end{pmatrix}" />
+
+Bentuk yang setara ialah:
+
+<BlockMath math="\begin{aligned} &amp;\begin{pmatrix} x' \\ y' \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \\ &amp;= \begin{pmatrix} k &amp; 0 \\ 0 &amp; k \end{pmatrix} \left( \begin{pmatrix} x \\ y \end{pmatrix} - \begin{pmatrix} a \\ b \end{pmatrix} \right) \end{aligned}" />
+
+Dengan <InlineMath math="k = \tfrac12" /> dan pusat <InlineMath math="(1, 1)" />, vektor dari pusat ke <InlineMath math="(5, 3)" /> ialah <InlineMath math="(4, 2)" />. Separuh daripadanya ialah <InlineMath math="(2, 1)" />, jadi imejnya ialah <InlineMath math="(1, 1) + (2, 1) = (3, 2)" />, tepat di tengah-tengah tembereng dari pusat ke titik itu.
+
+<MathVisual
+  title={<>Pembesaran dengan faktor <InlineMath math="\tfrac12" /> pada <InlineMath math="(1, 1)" /></>}
+  description={<>Titik <InlineMath math="(5, 3)" /> dan imejnya <InlineMath math="(3, 2)" />, di tengah-tengah antara pusat <InlineMath math="(1, 1)" /> dengan titik itu.</>}
+  labels={{
+    c: <InlineMath math="(1, 1)" />,
+    a: <InlineMath math="(5, 3)" />,
+    image: <InlineMath math="(3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 1, y: 1 }, to: { x: 5, y: 3 }, appearance: "construction" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 5, y: 3 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: 3, y: 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mencari Imej Pembesaran Menggunakan Matriks
+
+Tentukan imej bagi titik <InlineMath math="A(2,4)" /> yang ditransformasikan oleh pembesaran dengan faktor <InlineMath math="2" /> pada titik pusat <InlineMath math="P(1,1)" />.
+
+**Penyelesaian**:
+
+Gunakan **vektor dari pusat ke titik itu**, bukan koordinat titik itu sahaja. Diberi <InlineMath math="x=2, y=4, k=2, a=1, b=1" />.
+
+<MathContainer>
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 2-1 \\ 4-1 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix} \begin{pmatrix} 1 \\ 3 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} (2)(1) + (0)(3) \\ (0)(1) + (2)(3) \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 2 \\ 6 \end{pmatrix} + \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 3 \\ 7 \end{pmatrix}" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="A(2,4)" /> ialah <InlineMath math="A'(3,7)" />.
+
+<MathVisual
+  title={<>Pembesaran <InlineMath math="A(2, 4)" /> dengan faktor <InlineMath math="2" /> pada <InlineMath math="P(1, 1)" /></>}
+  description={<>Imej <InlineMath math="A'(3, 7)" /> terletak pada sinar dari <InlineMath math="P(1, 1)" /> yang melalui <InlineMath math="A(2, 4)" />, dua kali lebih jauh dari <InlineMath math="P" />.</>}
+  labels={{
+    p: <InlineMath math="P(1, 1)" />,
+    a: <InlineMath math="A(2, 4)" />,
+    image: <InlineMath math="A'(3, 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ray", kind: "segment", from: { x: 1, y: 1 }, to: { x: 3, y: 7 }, appearance: "construction" },
+      { id: "p", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "a", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "image", kind: "point", at: { x: 3, y: 7 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 3, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Setiap soalan sama ada membina matriks pembesaran atau menggunakannya. Soalan ketiga mengalihkan pusat dari asalan, jadi **langkah translasi** juga diperlukan.
+
+1.  Cari koordinat imej bagi titik <InlineMath math="(a,b)" /> di bawah pembesaran <InlineMath math="[O,3]" />.
+2.  Tentukan matriks yang sepadan dengan pembesaran berfaktor skala <InlineMath math="-2" /> dan berpusat di <InlineMath math="O(0,0)" />.
+3.  Titik <InlineMath math="B(-1, 5)" /> dibesarkan dengan pusat <InlineMath math="P(2, -3)" /> dan faktor skala <InlineMath math="k = \frac{1}{2}" />. Tentukan koordinat imej bagi titik <InlineMath math="B" />.
+4.  Segi tiga <InlineMath math="KLM" /> dengan bucu <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, dan <InlineMath math="M(3,4)" /> dibesarkan dengan pusat <InlineMath math="O(0,0)" /> dan faktor skala <InlineMath math="2" />. Lukis segi tiga asal dan imejnya, kemudian tentukan koordinat bucu imej.
+
+### Penyelesaian
+
+Dengan asalan sebagai pusat, darab setiap koordinat dengan faktor. Bagi pusat yang lain, **tolak pusat sebelum mendarab**, kemudian tambahkannya semula. Cara ini mengekalkan pusat pembesaran di tempatnya.
+
+**Penyelesaian 1**
+
+Pembesaran <InlineMath math="[O,3]" /> bermaksud pusat pembesaran ialah <InlineMath math="O(0,0)" /> dan faktor skalanya <InlineMath math="k=3" />.
+
+Biar titik itu ialah <InlineMath math="Q(a,b)" />.
+
+Maka <InlineMath math="x=a, y=b, k=3" />.
+
+<BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} 3 & 0 \\ 0 & 3 \end{pmatrix} \begin{pmatrix} a \\ b \end{pmatrix} = \begin{pmatrix} 3a \\ 3b \end{pmatrix}" />
+
+Jadi, koordinat imej bagi titik <InlineMath math="(a,b)" /> ialah <InlineMath math="(3a, 3b)" />.
+
+**Penyelesaian 2**
+
+Faktor skala <InlineMath math="k=-2" />, pusat <InlineMath math="O(0,0)" />.
+
+Matriks pembesarannya ialah:
+
+<BlockMath math="\begin{pmatrix} -2 & 0 \\ 0 & -2 \end{pmatrix}" />
+
+**Penyelesaian 3**
+
+Titik <InlineMath math="B(-1, 5)" />, pusat <InlineMath math="P(2, -3)" />, faktor skala <InlineMath math="k = \frac{1}{2}" />.
+
+<InlineMath math="x=-1, y=5, a=2, b=-3, k=\frac{1}{2}" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} \frac{1}{2} &amp; 0 \\ 0 &amp; \frac{1}{2} \end{pmatrix} \begin{pmatrix} -1-2 \\ 5-(-3) \end{pmatrix} \\ &amp;\quad{}+ \begin{pmatrix} 2 \\ -3 \end{pmatrix} \end{aligned}" />
+  <BlockMath math="\begin{pmatrix} x' \\ y' \end{pmatrix} = \begin{pmatrix} \frac{1}{2} & 0 \\ 0 & \frac{1}{2} \end{pmatrix} \begin{pmatrix} -3 \\ 8 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix}" />
+</MathContainer>
+Kira kedua-dua koordinat, termasuk vektor translasi:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;x'=(\frac12)(-3)+(0)(8)+2 \\ &amp;y'=(0)(-3)+(\frac12)(8)-3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x' \\ y' \end{pmatrix} &amp;= \begin{pmatrix} -\frac{3}{2} \\ 4 \end{pmatrix} + \begin{pmatrix} 2 \\ -3 \end{pmatrix} \\ &amp;= \begin{pmatrix} -\frac{3}{2} + \frac{4}{2} \\ 4 - 3 \end{pmatrix} \\ &amp;= \begin{pmatrix} \frac{1}{2} \\ 1 \end{pmatrix} \end{aligned}" />
+</MathContainer>
+
+Koordinat imej bagi titik <InlineMath math="B" /> ialah <InlineMath math="B'(\frac{1}{2}, 1)" />.
+
+**Penyelesaian 4**
+
+Segi tiga <InlineMath math="KLM" /> dengan <InlineMath math="K(1,1)" />, <InlineMath math="L(5,1)" />, <InlineMath math="M(3,4)" />.
+
+Pusat <InlineMath math="O(0,0)" />, <InlineMath math="k=2" />.
+
+Imej bagi titik <InlineMath math="K(1,1)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x_K' \\ y_K' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 1 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 2 \\ 2 \end{pmatrix} \\ &amp;\implies K'(2,2) \end{aligned}" />
+
+Imej bagi titik <InlineMath math="L(5,1)" />:
+
+<BlockMath math="\begin{aligned} \begin{pmatrix} x_L' \\ y_L' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 5 \\ 1 \end{pmatrix} \\ &amp;= \begin{pmatrix} 10 \\ 2 \end{pmatrix} \\ &amp;\implies L'(10,2) \end{aligned}" />
+
+Imej bagi titik <InlineMath math="M(3,4)" />:
+
+<ContentStack>
+
+  <BlockMath math="\begin{aligned} \begin{pmatrix} x_M' \\ y_M' \end{pmatrix} &amp;= \begin{pmatrix} 2 &amp; 0 \\ 0 &amp; 2 \end{pmatrix} \begin{pmatrix} 3 \\ 4 \end{pmatrix} \\ &amp;= \begin{pmatrix} 6 \\ 8 \end{pmatrix} \\ &amp;\implies M'(6,8) \end{aligned}" />
+
+  <MathVisual
+    title={<>Segi tiga <InlineMath math="KLM" /> dibesarkan dengan faktor <InlineMath math="2" /> pada <InlineMath math="O" /></>}
+    description={<>Segi tiga <InlineMath math="KLM" /> dengan <InlineMath math="K(1, 1)" />, <InlineMath math="L(5, 1)" />, <InlineMath math="M(3, 4)" /> dan imejnya <InlineMath math="K'(2, 2)" />, <InlineMath math="L'(10, 2)" />, <InlineMath math="M'(6, 8)" />, dengan setiap bucu imej pada sinar dari <InlineMath math="O" /> dan dua kali lebih jauh.</>}
+    labels={{
+      k: <InlineMath math="K" />,
+      l: <InlineMath math="L" />,
+      m: <InlineMath math="M" />,
+      "k-image": <InlineMath math="K'" />,
+      "l-image": <InlineMath math="L'" />,
+      "m-image": <InlineMath math="M'" />,
+      o: <InlineMath math="O" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 10.6 }, y: { min: -0.6, max: 8.6 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "rk", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 2 }, appearance: "construction" },
+        { id: "rl", kind: "segment", from: { x: 0, y: 0 }, to: { x: 10, y: 2 }, appearance: "construction" },
+        { id: "rm", kind: "segment", from: { x: 0, y: 0 }, to: { x: 6, y: 8 }, appearance: "construction" },
+        { id: "tri", kind: "polygon", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 3, y: 4 }], appearance: "primary" },
+        { id: "image", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 10, y: 2 }, { x: 6, y: 8 }], appearance: "secondary" },
+        { id: "o", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "k", objectId: "tri", at: { x: 1, y: 1 }, placement: "above-left" },
+        { key: "l", objectId: "tri", at: { x: 5, y: 1 }, placement: "below" },
+        { key: "m", objectId: "tri", at: { x: 3, y: 4 }, placement: "left" },
+        { key: "k-image", objectId: "image", at: { x: 2, y: 2 }, placement: "above-left" },
+        { key: "l-image", objectId: "image", at: { x: 10, y: 2 }, placement: "below" },
+        { key: "m-image", objectId: "image", at: { x: 6, y: 8 }, placement: "above" },
+        { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "below-left" },
+      ],
+    }}
+  />
+</ContentStack>

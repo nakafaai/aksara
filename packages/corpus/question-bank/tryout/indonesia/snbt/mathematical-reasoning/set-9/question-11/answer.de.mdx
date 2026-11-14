@@ -1,15 +1,49 @@
-Zähle **die Runden, die ein Spieler durchläuft**. Jede gespielte Runde bedeutet ein Spiel.
+Gesucht ist das erste Jahr, in dem der Kontostand <InlineMath math="135" /> Millionen Rupiah erreicht. Der Plan: Bestimm, was in jeder Phase eingezahlt wird, schreib den Stand am Jahresende mit den Faktoren aus der Tabelle und prüf dann Jahr für Jahr. Die Einzahlung ändert sich unterwegs, und **wegen der Grenze ändert sich auch der Zuschuss**. Alle Beträge unten sind in Millionen Rupiah.
 
-# Spiele eines Siegers
+# Was in jeder Phase eingezahlt wird
 
-Von der zweiten Runde bis zum Finale gibt es 5 Runden: 32 auf 16, 16 auf 8, 8 auf 4, 4 auf 2 und das Finale. Ein Sieger mit Freilos spielt nur **5 Spiele**, die erste Aussage ist also falsch.
+In den Jahren <InlineMath math="1" /> bis <InlineMath math="3" /> bekommt eine Einzahlung von <InlineMath math="6" /> einen Zuschuss von <InlineMath math="3" />, also kommen <InlineMath math="9" /> hinein. Ab Jahr <InlineMath math="4" /> sollte eine Einzahlung von <InlineMath math="12" /> genau <InlineMath math="6" /> bekommen, aber **die Grenze kappt den Zuschuss auf <InlineMath math="4" />**, also kommen <InlineMath math="16" /> hinein.
 
-Ein Sieger, der ab der ersten Runde spielt, bestreitet <InlineMath math="1+5=6" /> Spiele, und kein Sieger spielt mehr. Die zweite Aussage ist wahr.
+# Der Stand am Ende von Jahr sieben und acht
 
-# Spiele pro Runde
+Geld vom Anfang von Jahr <InlineMath math="k" /> wächst bis zum Ende von Jahr <InlineMath math="n" /> mit dem Faktor <InlineMath math="(1{,}1)^{n-k+1}" />. Am Ende von Jahr <InlineMath math="7" /> sind die ersten drei Einzahlungen <InlineMath math="7" />-, <InlineMath math="6" />- und <InlineMath math="5" />-mal gewachsen, die nächsten vier <InlineMath math="4" />-, <InlineMath math="3" />-, <InlineMath math="2" />- und <InlineMath math="1" />-mal.
 
-Im Viertelfinale stehen 8 Spieler, also gibt es <InlineMath math="\tfrac82=4" /> Spiele. Die dritte Aussage ist wahr.
+<BlockMath math="\begin{aligned}
+B_7 &= 9\times(1{,}949+1{,}772+1{,}611)+16\times(1{,}464+1{,}331+1{,}210+1{,}100) \\
+&= 9\times5{,}332+16\times5{,}105=47{,}988+81{,}68=129{,}668
+\end{aligned}" />
 
-Die zweite Runde hat 16 Spiele, alle späteren Runden zusammen <InlineMath math="8+4+2+1=15" />. **Der Unterschied beträgt eins**, die vierte Aussage ist also falsch.
+Das liegt noch unter <InlineMath math="135" />. Am Ende von Jahr <InlineMath math="8" /> rückt jeder Faktor eine Stufe weiter, und es kommt eine weitere Einzahlung von <InlineMath math="16" /> dazu.
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.
+<BlockMath math="\begin{aligned}
+B_8 &= 9\times(2{,}144+1{,}949+1{,}772)+16\times(1{,}611+1{,}464+1{,}331+1{,}210+1{,}100) \\
+&= 9\times5{,}865+16\times6{,}716=52{,}785+107{,}456=160{,}241
+\end{aligned}" />
+
+Der Stand in Jahr <InlineMath math="8" /> liegt über <InlineMath math="135" />. **Der Kontostand steigt von Jahr zu Jahr immer**, wegen der neuen Einzahlung und des Wachstums, also liegen auch alle Jahre vor Jahr <InlineMath math="7" /> unter <InlineMath math="135" />.
+
+# Kontrolle Jahr für Jahr
+
+Zweiter Weg: Addiere jedes Jahr das eingezahlte Geld und multipliziere dann mit <InlineMath math="1{,}1" />. Die Zahlen sind auf zwei Nachkommastellen gerundet.
+
+<BlockMath math="\begin{aligned}
+B_1 &= 9\times1{,}1=9{,}9 \\
+B_2 &= (9{,}9+9)\times1{,}1=20{,}79 \\
+B_3 &= (20{,}79+9)\times1{,}1\approx32{,}77 \\
+B_4 &\approx (32{,}77+16)\times1{,}1\approx53{,}65 \\
+B_5 &\approx (53{,}65+16)\times1{,}1\approx76{,}61 \\
+B_6 &\approx (76{,}61+16)\times1{,}1\approx101{,}87 \\
+B_7 &\approx (101{,}87+16)\times1{,}1\approx129{,}66 \\
+B_8 &\approx (129{,}66+16)\times1{,}1\approx160{,}22
+\end{aligned}" />
+
+Das Ergebnis ist dasselbe, **beide Wege stimmen überein**: Jahr <InlineMath math="7" /> reicht noch nicht, Jahr <InlineMath math="8" /> reicht.
+
+# Fallen, die du vermeiden solltest
+
+Andere Antworten entstehen, wenn **die Grenze oder das Wachstum vergessen wird**.
+
+- Ohne Grenze kämen ab Jahr <InlineMath math="4" /> jeweils <InlineMath math="18" /> hinein, dann wäre <InlineMath math="B_7=47{,}988+18\times5{,}105=139{,}878" />, und Jahr <InlineMath math="7" /> sähe wie die Antwort aus.
+- Ohne Wachstum ist der Stand nur die Summe der Einzahlungen, <InlineMath math="27+16(n-3)" />, und die erreicht <InlineMath math="135" /> erst in Jahr <InlineMath math="10" />.
+
+Der Kontostand erreicht also am Ende von Jahr <InlineMath math="8" /> zum ersten Mal mindestens <InlineMath math="\text{Rp}135{.}000{.}000{,}00" />.

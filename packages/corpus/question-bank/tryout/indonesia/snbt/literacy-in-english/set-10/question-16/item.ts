@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "golden-record",
+  stimulus: "river-ferry",
   versions: {
     en: {
       kind: "choice",
@@ -14,24 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "No one could assume the finders would know English or our numbers.",
-        },
-        {
-          correct: false,
-          label: "Diagrams were cheaper to engrave on gold than written words.",
+            "He marks the occasion in his own quiet ways rather than in the words that others use for it.",
         },
         {
           correct: false,
           label:
-            "The committee had far too little time to write out the instructions in full.",
+            "He openly resents the people who rode the ferry only because it was the last day.",
         },
         {
           correct: false,
-          label: "Diagrams could show where the spacecraft would travel next.",
+          label:
+            "He has been looking forward to retiring and is relieved that the bridge is finished.",
+        },
+        {
+          correct: true,
+          label: "He is more moved by the ending than his manner lets on.",
         },
         {
           correct: false,
-          label: "The record already held spoken greetings in many languages.",
+          label:
+            "He believes the new bridge will be unsafe whenever the river is high.",
         },
       ],
     },

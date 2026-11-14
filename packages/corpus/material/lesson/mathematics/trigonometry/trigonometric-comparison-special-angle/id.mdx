@@ -14,8 +14,8 @@ Sudut istimewa adalah sudut yang <Highlight>nilai trigonometrinya dapat ditulis 
 
 Sudut-sudut istimewa yang paling umum adalah <InlineMath math="0^\circ" />, <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, <InlineMath math="60^\circ" />, dan <InlineMath math="90^\circ" />.
 
-<UnitCircle
-  title="Visualisasi Sudut Istimewa pada Lingkaran Satuan"
+<MathVisual
+  title={<>Visualisasi Sudut Istimewa pada Lingkaran Satuan</>}
   description={
     <>
       Masukkan sudut <InlineMath math="0^\circ" />, <InlineMath math="30^\circ" />,{" "}
@@ -23,7 +23,32 @@ Sudut-sudut istimewa yang paling umum adalah <InlineMath math="0^\circ" />, <Inl
       <InlineMath math="90^\circ" /> untuk melihat posisi sudut istimewa.
     </>
   }
-  angle={45}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 45, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 ## Asal Nilai Eksak
@@ -35,15 +60,39 @@ Nilai eksak untuk <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />
 Sebuah persegi yang dipotong sepanjang diagonal menghasilkan **segitiga siku-siku sama kaki**. Jika kedua kaki panjangnya <InlineMath math="1" />, teorema Pythagoras memberikan sisi miring <InlineMath math="\sqrt{2}" />:
 
 <ContentBlock>
-  <Triangle
-    title="Segitiga Siku-Siku Sama Kaki"
-    description="Kedua kaki sama panjang pada sudut awal. Ubah sudut dan amati kapan kesamaan kedua kaki hilang."
-    angle={45}
-    size={Math.sqrt(2)}
+  <MathVisual
+    title={<>Segitiga Siku-Siku Sama Kaki</>}
+    description={<>Kedua kaki sama panjang pada sudut awal. Ubah sudut dan amati kapan kesamaan kedua kaki hilang.</>}
     labels={{
-      opposite: "Sisi depan",
-      adjacent: "Sisi samping",
-      hypotenuse: "Sisi miring",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi depan</>,
+      adjacent: <>Sisi samping</>,
+      hypotenuse: <>Sisi miring</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.424264, max: 1.83848 }, y: { min: -0.424264, max: 1.69706 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 45, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "1.41421 cos(a pi / 180)", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "1.41421 cos(a pi / 180)", y: "1.41421 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "0.707107 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "1.41421 cos(a pi / 180)", y: "0.707107 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "0.707107 cos(a pi / 180)", y: "0.707107 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>
@@ -59,15 +108,39 @@ Sebuah persegi yang dipotong sepanjang diagonal menghasilkan **segitiga siku-sik
 **Segitiga sama sisi** dengan panjang sisi <InlineMath math="2" /> yang dibagi dua menghasilkan dua segitiga siku-siku. Panjang sisi di depan <InlineMath math="30^\circ" />, di depan <InlineMath math="60^\circ" />, dan sisi miringnya berturut-turut adalah <InlineMath math="1" />, <InlineMath math="\sqrt{3}" />, dan <InlineMath math="2" />:
 
 <ContentBlock>
-  <Triangle
-    title="Separuh Segitiga Sama Sisi"
-    description="Segitiga awal adalah separuh segitiga sama sisi. Sisi di depan sudut terkecil panjangnya separuh sisi miring."
-    angle={30}
-    size={2}
+  <MathVisual
+    title={<>Separuh Segitiga Sama Sisi</>}
+    description={<>Segitiga awal adalah separuh segitiga sama sisi. Sisi di depan sudut terkecil panjangnya separuh sisi miring.</>}
     labels={{
-      opposite: "Sisi depan",
-      adjacent: "Sisi samping",
-      hypotenuse: "Sisi miring",
+      angle: <InlineMath math="\theta" />,
+      opposite: <>Sisi depan</>,
+      adjacent: <>Sisi samping</>,
+      hypotenuse: <>Sisi miring</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
     }}
   />
 </ContentBlock>

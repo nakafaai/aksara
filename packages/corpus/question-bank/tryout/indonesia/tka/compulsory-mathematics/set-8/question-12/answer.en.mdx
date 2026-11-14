@@ -1,0 +1,26 @@
+# The possible values of c
+
+All three statements talk about every possible triangle, so you need to **check every allowed value of <InlineMath math="c" />**, not just one example.
+
+The triangle rule: each side must be shorter than the sum of the other two. With sides <InlineMath math="6" /> and <InlineMath math="10" />, this becomes <InlineMath math="10-6<c<10+6" />, that is <InlineMath math="4<c<16" />.
+
+<BlockMath math="c\in\{5,6,7,\dots,15\}" />
+
+To find the type of the largest angle, compare the square of the longest side with the sum of the squares of the other two. The longest side can be <InlineMath math="10" /> or <InlineMath math="c" />, depending on how big <InlineMath math="c" /> is.
+
+| <InlineMath math="c" /> | Longest side | Test | Type |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="5,6,7" /> | <InlineMath math="10" /> | <InlineMath math="100>36+c^2" /> | obtuse |
+| <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="100=36+64" /> | right |
+| <InlineMath math="9,10,11" /> | <InlineMath math="10" /> or <InlineMath math="c" /> | largest square is less than the sum of the other two | acute |
+| <InlineMath math="12" /> to <InlineMath math="15" /> | <InlineMath math="c" /> | <InlineMath math="c^2>136" /> | obtuse |
+
+# Judging each statement
+
+First statement: the allowed values of <InlineMath math="c" /> are <InlineMath math="5" /> to <InlineMath math="15" />, so there are <InlineMath math="15-5+1=11" /> values. This statement is **True**.
+
+Second statement: the triangle is obtuse for <InlineMath math="c=5,6,7" /> and for <InlineMath math="c=12,13,14,15" />, so for <InlineMath math="7" /> values. You only get <InlineMath math="4" /> if you **forget that the obtuse angle can also sit opposite the side <InlineMath math="10" />**. This statement is **False**.
+
+Third statement: the perimeter <InlineMath math="16+c" /> is even exactly when <InlineMath math="c" /> is even, that is <InlineMath math="c=6,8,10,12,14" />. Among these, <InlineMath math="c=6" /> gives an obtuse triangle and <InlineMath math="c=8" /> a right triangle. One counterexample is enough, so this statement is **False**.
+
+So the answers are True, False, False.

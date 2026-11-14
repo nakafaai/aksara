@@ -1,23 +1,38 @@
-Jede prozentuale Änderung bezieht sich auf den Preis **unmittelbar vor dieser Änderung**, nicht auf den ursprünglichen Preis. Deshalb werden aufeinanderfolgende Änderungen multipliziert und nicht addiert.
+Du suchst die Wassermenge, die nachgefüllt wurde. Entscheidend ist, wie das Gefäß steht: Weil der Kegel auf seiner Grundfläche steht, **füllt das Wasser den breiten unteren Teil und bildet einen Kegelstumpf**, während der leere Raum darüber ein kleiner Kegel ist. Der Plan: Rechne mit diesem leeren Kegel, bestimm das Volumen des ganzen Gefäßes und danach das Wasser bei der neuen Höhe.
 
-# Faktoren der aufeinanderfolgenden Änderungen
+# Das Volumen des ganzen Gefäßes
 
-Der ursprüngliche Preis sei <InlineMath math="H" />. Eine Erhöhung um 20 % bedeutet **Multiplikation mit 1,2**, eine Senkung um 25 % Multiplikation mit 0,75.
+Der leere Raum über dem Wasser ist ein kleiner Kegel mit derselben Spitze, also ähnlich zum ganzen Kegel. Wenn jede Länge mit <InlineMath math="k" /> multipliziert wird, **wird das Volumen eines Körpers mit <InlineMath math="k^3" /> multipliziert**, denn im Kegelvolumen stecken drei Längen: der Radius zweimal (über die Grundfläche) und die Höhe einmal.
 
-<BlockMath math="H\times1{,}2\times0{,}75=0{,}9H" />
-
-Der letzte Preis beträgt 90 % des ursprünglichen Preises.
-
-# Nötige Erhöhung
-
-Eine Erhöhung um <InlineMath math="k\%" /> muss <InlineMath math="0{,}9H" /> wieder auf <InlineMath math="H" /> bringen. Dieser Prozentsatz **bezieht sich auf <InlineMath math="0{,}9H" />**, geteilt wird also durch 0,9.
+Am Anfang steht das Wasser auf halber Höhe, also ist auch der leere Teil halb so hoch wie der Kegel. Das Volumen des ganzen Gefäßes sei <InlineMath math="V" /> Liter. Der leere Teil fasst <InlineMath math="\left(\frac12\right)^3V=\frac18V" />, der Rest ist Wasser.
 
 <BlockMath math="\begin{aligned}
-0{,}9H\left(1+\frac{k}{100}\right)&=H\\
-1+\frac{k}{100}&=\frac{10}{9}\\
-k&=\frac{100}{9}=11\tfrac19
+V-\tfrac18V&=7\\
+\tfrac78V&=7\\
+V&=8
 \end{aligned}" />
 
-Der Wert 10 % nimmt an, dass eine Erhöhung um 10 % eine Senkung um 10 % aufhebt, obwohl 10 % des kleineren Preises nicht genügen. Der Wert 5 % addiert die Prozentsätze, <InlineMath math="20-25=-5" />. Der Wert 25 % macht nur die letzte Senkung rückgängig, der Wert 20 % nur die erste Erhöhung.
+Das Gefäß fasst also <InlineMath math="8" /> Liter.
 
-Der letzte Preis muss also um <InlineMath math="11\tfrac19\%" /> erhöht werden.
+# Das Wasser bei der neuen Höhe
+
+Nach dem Nachfüllen steht das Wasser auf <InlineMath math="\frac34" /> der Höhe. Dann **ist der leere Teil nur noch <InlineMath math="\frac14" /> der Höhe hoch**, und sein Volumen beträgt <InlineMath math="\left(\frac14\right)^3" /> des Gefäßes.
+
+<BlockMath math="\begin{aligned}
+\text{leeres Volumen}&=\left(\tfrac14\right)^3\cdot8=\tfrac{8}{64}=\tfrac18\text{ Liter}\\
+\text{Wasservolumen}&=8-\tfrac18=\tfrac{63}{8}\text{ Liter}\\
+\text{nachgefülltes Wasser}&=\tfrac{63}{8}-7=\tfrac{63}{8}-\tfrac{56}{8}=\tfrac78\text{ Liter}
+\end{aligned}" />
+
+Prüf das über den leeren Raum. Am Anfang war er <InlineMath math="8-7=1" /> Liter groß, am Ende <InlineMath math="\frac18" /> Liter. Er ist um <InlineMath math="1-\frac18=\frac78" /> Liter geschrumpft, genau so viel Wasser ist hineingeflossen. Dass die Menge so klein ist, passt auch: Die Schicht zwischen halber Höhe und <InlineMath math="\frac34" /> der Höhe liegt dort, wo der Kegel schon schmal ist.
+
+# Die verlockenden falschen Optionen
+
+Fast jede andere Option entsteht aus **einem Volumenverhältnis mit falscher Potenz oder falscher Richtung**.
+
+- <InlineMath math="\frac{133}{8}" /> Liter entsteht, wenn du das Wasser als kleinen Kegel unten ansiehst, als ob die Spitze nach unten zeigte. Dann ist <InlineMath math="V=56" />, und der Zuwachs wäre <InlineMath math="56\cdot\frac{27}{64}-7" />.
+- <InlineMath math="\frac72" /> Liter entsteht, wenn du einfach proportional zur Höhe rechnest: <InlineMath math="7\cdot\frac{3/4}{1/2}-7" />.
+- <InlineMath math="\frac{35}{4}" /> Liter entsteht, wenn du das Höhenverhältnis quadrierst, doch das Quadrat gilt nur für Flächen: <InlineMath math="7\cdot\left(\frac32\right)^2-7" />.
+- <InlineMath math="\frac18" /> Liter ist der Raum, der am Ende noch leer ist, nicht das nachgefüllte Wasser.
+
+Nachgefüllt wurden also <InlineMath math="\frac78" /> Liter Wasser.

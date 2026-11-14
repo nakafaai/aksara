@@ -1,17 +1,30 @@
-Every game involves **exactly two people**. If you count the games from each person's side, you therefore count every game twice and have to halve at the end.
+# Areas of similar triangles
 
-Each of the <InlineMath math="8" /> people plays the <InlineMath math="7" /> others. That makes <InlineMath math="8\cdot7=56" /> counts, and every game appears in them twice.
+Every line parallel to <InlineMath math="BC" /> cuts off a small triangle at corner <InlineMath math="A" />, and that small triangle is similar to <InlineMath math="ABC" />. **If its sides are <InlineMath math="k" /> times the sides of <InlineMath math="ABC" />, its area is <InlineMath math="k^2" /> times the area of <InlineMath math="ABC" />**.
 
-<BlockMath math="\frac{8\cdot7}{2}=\frac{56}{2}=28" />
+So you get back from area to length with a square root: <InlineMath math="k=\sqrt{\text{area ratio}}" />.
 
-As a check, count only the new games one person after another. The first person plays <InlineMath math="7" /> games, the second <InlineMath math="6" /> new ones, the third <InlineMath math="5" /> new ones, and so on.
+# Where P and Q lie
 
-<BlockMath math="7+6+5+4+3+2+1=28" />
+The small triangle that ends at the line through <InlineMath math="P" /> holds one of the three equal parts, so its area is <InlineMath math="\frac13" /> of <InlineMath math="ABC" />. The triangle that ends at the line through <InlineMath math="Q" /> holds two parts, so its area is <InlineMath math="\frac23" /> of <InlineMath math="ABC" />. **Take the square root of both area ratios**:
 
-So <InlineMath math="28" /> games are played in total.
+<BlockMath math="\begin{aligned}
+AP&=6\sqrt{\frac13}=\frac{6}{\sqrt3}=2\sqrt3 \\
+AQ&=6\sqrt{\frac23}=\frac{6\sqrt2}{\sqrt3}=2\sqrt6
+\end{aligned}" />
 
-- <InlineMath math="7" /> is the number of games played by one person.
-- <InlineMath math="21" /> fits a tournament with only <InlineMath math="7" /> people, because <InlineMath math="\frac{7\cdot6}{2}=21" />.
-- <InlineMath math="36" /> fits a tournament with <InlineMath math="9" /> people, because <InlineMath math="\frac{9\cdot8}{2}=36" />.
-- <InlineMath math="56" /> counts every game twice, once for each of the two players.
-- <InlineMath math="64" /> computes <InlineMath math="8\cdot8" />, which would let every person also play against themselves.
+# The length of PQ
+
+<BlockMath math="PQ=AQ-AP=2\sqrt6-2\sqrt3\approx4.899-3.464=1.435" />
+
+The three pieces on <InlineMath math="AB" /> are about <InlineMath math="3.464" />, <InlineMath math="1.435" /> and <InlineMath math="1.101" />. **The closer to <InlineMath math="BC" />, the shorter the piece**, because the triangle gets wider, so a thinner strip already holds the same area.
+
+So <InlineMath math="PQ=2\sqrt6-2\sqrt3" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="2" /> splits <InlineMath math="AB" /> into three equal pieces, but **area grows with the square of the length**.
+- <InlineMath math="2\sqrt3" /> is <InlineMath math="AP" />, the first piece from <InlineMath math="A" />.
+- <InlineMath math="6-2\sqrt6" /> is <InlineMath math="QB" />, the last piece next to <InlineMath math="B" />.
+- <InlineMath math="2\sqrt6" /> is <InlineMath math="AQ" />, the distance from <InlineMath math="A" /> to the second point.
+- <InlineMath math="6-2\sqrt3" /> is <InlineMath math="PB" />, the distance from <InlineMath math="P" /> all the way to <InlineMath math="B" />.

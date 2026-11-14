@@ -1,21 +1,37 @@
-Hubungkan pusat segi enam ke keenam titik sudutnya. Terbentuk **enam segitiga sama sisi bersisi 4 cm**, dan semua ukuran yang ditanyakan dapat dibaca dari segitiga-segitiga ini.
+Soal ini meminta taksiran modus dengan rumus data berkelompok, jadi hasilnya boleh berupa desimal walaupun setiap skor bulat. Taksiran itu dihitung dari kelas yang frekuensinya paling besar, tetapi satu frekuensi belum diketahui. Rencananya, cari <InlineMath math="x" /> dari rata-rata, **tentukan kelas modus setelah <InlineMath math="x" /> diketahui**, lalu pakai rumus modus.
 
-# Diagonal
+# Mencari frekuensi yang hilang
 
-Diagonal terpanjang melalui pusat dan terdiri atas dua jari-jari lingkaran luar, jadi panjangnya <InlineMath math="4+4=8" /> cm. Pernyataan kedua benar.
+Titik tengah kelas-kelasnya adalah <InlineMath math="3" />, <InlineMath math="8" />, <InlineMath math="13" />, <InlineMath math="18" />, dan <InlineMath math="23" />. Rata-rata sama dengan **jumlah frekuensi kali titik tengah dibagi jumlah frekuensi**.
 
-Diagonal terpendek menghubungkan dua titik sudut yang mengapit satu titik sudut lain. Sudut dalam segi enam beraturan <InlineMath math="120^\circ" />, jadi menurut aturan kosinus:
+<BlockMath math="\begin{aligned}
+\frac{3\cdot3+2\cdot8+7\cdot13+18x+5\cdot23}{3+2+7+x+5}&=15\\
+\frac{231+18x}{17+x}&=15\\
+231+18x&=255+15x\\
+3x&=24\\
+x&=8
+\end{aligned}" />
 
-<BlockMath math="d^2=4^2+4^2-2\cdot4\cdot4\cos120^\circ=16+16+16=48" />
+# Menentukan kelas modus
 
-Hasilnya <InlineMath math="d=4\sqrt3" />, **bukan <InlineMath math="4\sqrt2" />**. Pernyataan pertama salah.
+Frekuensinya sekarang <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="7" />, <InlineMath math="8" />, dan <InlineMath math="5" />. Frekuensi terbesar adalah <InlineMath math="8" />, milik kelas <InlineMath math="16" /> sampai <InlineMath math="20" />. Jadi **kelas modus bukan kelas dengan frekuensi <InlineMath math="7" />** yang tampak terbesar sebelum <InlineMath math="x" /> dihitung.
 
-# Lingkaran dalam dan luas
+# Menghitung modus
 
-Jari-jari lingkaran dalam adalah tinggi salah satu segitiga sama sisi, yaitu <InlineMath math="\frac{\sqrt3}{2}\cdot4=2\sqrt3" />. Nilai 4 cm adalah jari-jari **lingkaran luar**, jadi pernyataan ketiga salah.
+Rumus modus data berkelompok adalah <InlineMath math="Mo=L+\tfrac{d_1}{d_1+d_2}\cdot p" />. Di sini <InlineMath math="L" /> adalah tepi bawah kelas modus, <InlineMath math="d_1" /> selisih frekuensi kelas modus dengan kelas sebelumnya, <InlineMath math="d_2" /> selisih dengan kelas sesudahnya, dan <InlineMath math="p" /> panjang kelas. Skornya bilangan bulat, jadi **tepi bawah kelas <InlineMath math="16" /> sampai <InlineMath math="20" /> adalah <InlineMath math="15{,}5" />**, bukan <InlineMath math="16" />.
 
-<BlockMath math="L=6\cdot\frac{\sqrt3}{4}\cdot4^2=24\sqrt3" />
+<BlockMath math="\begin{aligned}
+d_1&=8-7=1,\qquad d_2=8-5=3\\
+Mo&=15{,}5+\frac{1}{1+3}\cdot5=15{,}5+1{,}25=16{,}75
+\end{aligned}" />
 
-Pernyataan keempat benar.
+Cek kewajarannya: modus terletak di dalam kelas <InlineMath math="15{,}5" /> sampai <InlineMath math="20{,}5" />, dan lebih dekat ke tepi bawah. Itu cocok karena kelas sebelumnya (frekuensi <InlineMath math="7" />) lebih padat daripada kelas sesudahnya (frekuensi <InlineMath math="5" />).
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+# Mengapa pilihan lain salah
+
+- <InlineMath math="19{,}25" /> menukar <InlineMath math="d_1" /> dan <InlineMath math="d_2" />, sehingga mendapat <InlineMath math="15{,}5+\tfrac34\cdot5" />.
+- <InlineMath math="18" /> hanya mengambil titik tengah kelas modus, tanpa rumus modus.
+- <InlineMath math="17{,}25" /> memakai batas bawah <InlineMath math="16" /> sebagai pengganti tepi bawah <InlineMath math="15{,}5" />.
+- <InlineMath math="15" /> adalah **rata-rata yang diberikan, bukan modus**.
+
+Jadi, modus skor kuis itu adalah <InlineMath math="16{,}75" />.

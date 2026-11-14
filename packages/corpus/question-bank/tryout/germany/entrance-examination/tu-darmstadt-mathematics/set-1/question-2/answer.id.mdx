@@ -1,21 +1,35 @@
-Soal meminta *Lösungsmenge* (himpunan penyelesaian) dari pertidaksamaan linear. Selesaikan seperti persamaan, dengan satu pengecualian: mengalikan atau membagi dengan bilangan negatif **membalik tanda pertidaksamaan**. Pindahkan dulu semua suku yang memuat <InlineMath math="x" /> ke ruas kiri dan semua bilangan ke ruas kanan.
+# Tiga faktor dengan sifat berbeda
 
-<BlockMath math="\begin{aligned}
-3-2x&>7+3x \\
--2x-3x&>7-3 \\
--5x&>4
-\end{aligned}" />
+Pecahan ini punya tiga bagian, dan **setiap bagian berperilaku berbeda terhadap tanda**:
 
-Sekarang bagi dengan <InlineMath math="-5" />. Karena <InlineMath math="-5" /> negatif, tanda <InlineMath math=">" /> berubah menjadi <InlineMath math="<" />.
+- <InlineMath math="x" /> berganti tanda di <InlineMath math="x=0" />.
+- <InlineMath math="(x-3)^2" /> adalah kuadrat, jadi tidak pernah negatif. Nilainya nol hanya di <InlineMath math="x=3" />.
+- <InlineMath math="x+2" /> berganti tanda di <InlineMath math="x=-2" />, dan di titik itu pecahannya tidak terdefinisi.
 
-<BlockMath math="x<-\frac45" />
+# Bagian yang bernilai nol
 
-Sebagai pemeriksaan, uji satu nilai di setiap sisi batas. Untuk <InlineMath math="x=-1" />, berlaku <InlineMath math="3+2=5>7-3=4" />, jadi pertidaksamaan terpenuhi. Untuk <InlineMath math="x=0" />, pernyataan <InlineMath math="3>7" /> salah.
+Pecahan bernilai nol tepat saat pembilangnya nol dan penyebutnya tidak: di <InlineMath math="x=0" /> dan di <InlineMath math="x=3" />. Karena tandanya <InlineMath math="\le" />, **kedua titik ini termasuk penyelesaian**.
 
-Jadi, himpunan penyelesaiannya adalah semua <InlineMath math="x" /> dengan <InlineMath math="x<-\frac45" />.
+# Bagian yang bernilai negatif
 
-- <InlineMath math="x>-\frac45" /> muncul jika tanda tidak dibalik ketika membagi dengan <InlineMath math="-5" />. Uji dengan <InlineMath math="x=0" /> menunjukkan bahwa himpunan ini memuat nilai yang salah.
-- <InlineMath math="x<\frac45" /> muncul jika tanda bilangan hilang saat memindahkan suku, sehingga yang dihitung adalah <InlineMath math="-5x>-4" />.
-- <InlineMath math="x>\frac45" /> menggabungkan kesalahan tanda bilangan itu dengan tanda pertidaksamaan yang tidak dibalik.
-- <InlineMath math="x<-2" /> muncul jika <InlineMath math="3" /> ditambahkan, bukan dikurangkan, saat memindahkan suku, sehingga diperoleh <InlineMath math="-5x>10" />.
-- <InlineMath math="x>2" /> berasal dari <InlineMath math="-5x>-7-3=-10" />, jika <InlineMath math="7" /> diambil dengan tanda yang salah dan tanda pertidaksamaan juga tidak dibalik.
+Untuk <InlineMath math="x\ne3" />, faktor <InlineMath math="(x-3)^2" /> positif, jadi tanda pecahan sama dengan tanda <InlineMath math="\frac{x}{x+2}" />:
+
+| Bagian | <InlineMath math="x" /> | <InlineMath math="x+2" /> | Pecahan |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-2" /> | negatif | negatif | positif |
+| <InlineMath math="-2<x<0" /> | negatif | positif | negatif |
+| <InlineMath math="x>0" /> | positif | positif | positif |
+
+Pecahannya **negatif hanya pada <InlineMath math="-2<x<0" />**. Titik <InlineMath math="x=3" /> tidak mengubah tanda, jadi di sekitar <InlineMath math="3" /> pecahannya tetap positif, kecuali tepat di <InlineMath math="3" /> yang bernilai nol.
+
+Cek: <InlineMath math="x=-1" /> memberi <InlineMath math="\frac{-1\cdot16}{1}=-16\le0" />, <InlineMath math="x=2" /> memberi <InlineMath math="\frac{2\cdot1}{4}>0" />, dan <InlineMath math="x=-3" /> memberi <InlineMath math="\frac{-3\cdot36}{-1}=108>0" />.
+
+Jadi, penyelesaiannya adalah <InlineMath math="-2<x\le0" /> atau <InlineMath math="x=3" />.
+
+# Kenapa pilihan lain salah
+
+- Hanya <InlineMath math="-2<x\le0" /> **melupakan titik <InlineMath math="x=3" />**, tempat pembilangnya nol.
+- <InlineMath math="-2\le x\le0" /> atau <InlineMath math="x=3" /> memasukkan <InlineMath math="x=-2" />, padahal di sana penyebutnya nol.
+- <InlineMath math="x\le0" /> atau <InlineMath math="x=3" /> mengalikan dengan <InlineMath math="x+2" /> seolah-olah selalu positif. Untuk <InlineMath math="x=-3" /> hasilnya justru positif.
+- <InlineMath math="-2<x\le0" /> atau <InlineMath math="x\ge3" /> memakai pergantian tanda di <InlineMath math="x=3" />, padahal faktor kuadrat tidak berganti tanda. Untuk <InlineMath math="x=4" />, pecahannya <InlineMath math="\frac{4}{6}>0" />.
+- <InlineMath math="x<-2" /> atau <InlineMath math="x\ge0" /> adalah daerah tempat pecahannya tidak negatif, jadi tandanya terbaca terbalik.

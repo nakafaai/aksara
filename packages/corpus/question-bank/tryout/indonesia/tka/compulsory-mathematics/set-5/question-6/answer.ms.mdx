@@ -1,0 +1,36 @@
+# Cara membaca songsang fungsi bercabang
+
+Soalan ini menggunakan fungsi songsang sebanyak dua kali. Maksud <InlineMath math="f^{-1}(k)" /> mudah sahaja: cari <InlineMath math="x" /> yang menjadikan <InlineMath math="f(x)=k" />. Oleh sebab <InlineMath math="f" /> ada dua rumus, setiap calon <InlineMath math="x" /> **mesti disemak dengan syarat cabangnya sendiri**. Rumus pertama hanya sah bagi <InlineMath math="x<2" />, rumus kedua hanya bagi <InlineMath math="x\ge2" />.
+
+Ada cara semakan pantas. Cabang pertama memberi nilai di bawah <InlineMath math="\frac22+4=5" />, manakala cabang kedua memberi nilai dari <InlineMath math="3\cdot2-1=5" /> ke atas. Jadi nilai fungsi <InlineMath math="5" /> atau lebih datang daripada cabang kedua, dan nilai di bawah <InlineMath math="5" /> datang daripada cabang pertama.
+
+# Langkah pertama
+
+Cari <InlineMath math="x" /> yang memberi <InlineMath math="f(x)=11" />. Cuba kedua-dua rumus:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=11\ &\Rightarrow\ x=14,\ \text{tetapi }14\not<2\ \text{(ditolak)} \\
+3x-1=11\ &\Rightarrow\ x=4,\ \text{dan }4\ge2\ \text{(diterima)}
+\end{aligned}" />
+
+Jadi <InlineMath math="f^{-1}(11)=4" />. Semak: <InlineMath math="f(4)=3\cdot4-1=11" />. **Nilai <InlineMath math="4" /> ini menjadi input langkah kedua**.
+
+# Langkah kedua
+
+Sekarang cari <InlineMath math="x" /> yang memberi <InlineMath math="f(x)=4" />:
+
+<BlockMath math="\begin{aligned}
+\tfrac{x}{2}+4=4\ &\Rightarrow\ x=0,\ \text{dan }0<2\ \text{(diterima)} \\
+3x-1=4\ &\Rightarrow\ x=\tfrac53,\ \text{tetapi }\tfrac53\not\ge2\ \text{(ditolak)}
+\end{aligned}" />
+
+Jadi <InlineMath math="f^{-1}(4)=0" />. Semak: <InlineMath math="f(0)=\frac02+4=4" />. Kali ini **cabang kedua pula yang ditolak**, bertentangan dengan langkah pertama.
+
+Jadi, nilai <InlineMath math="f^{-1}\left(f^{-1}(11)\right)" /> ialah <InlineMath math="0" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac53" /> menggunakan rumus cabang kedua pada langkah kedua tanpa semakan. Sedangkan <InlineMath math="\frac53<2" />, jadi rumus itu **tidak sah** di situ.
+- <InlineMath math="4" /> berhenti selepas satu songsangan. Itu baru <InlineMath math="f^{-1}(11)" />, belum lagi <InlineMath math="f^{-1}" /> bagi hasilnya.
+- <InlineMath math="20" /> sentiasa menggunakan cabang pertama: <InlineMath math="11\to14\to20" />. Kedua-dua nilai itu tidak memenuhi <InlineMath math="x<2" />.
+- <InlineMath math="95" /> mengira <InlineMath math="f\left(f(11)\right)=f(32)=95" />. Itu fungsi gubahan <InlineMath math="f" /> dengan dirinya sendiri, bukan fungsi songsang.

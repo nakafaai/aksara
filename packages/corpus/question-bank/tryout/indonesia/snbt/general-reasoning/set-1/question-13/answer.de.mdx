@@ -1,22 +1,26 @@
-Schreib die Aussage in Symbolen, damit ihre Form sichtbar wird. Sei <InlineMath math="p" />: Die Zugtickets sind ausverkauft, <InlineMath math="q" />: Rani fährt mit dem Bus, und <InlineMath math="r" />: Rani verschiebt die Reise. Die Aussage lautet <InlineMath math="p \Rightarrow (q \vee r)" />.
+Die Verneinung (*ingkaran*) ist die Aussage, die genau dann wahr ist, wenn die ursprüngliche Aussage falsch ist. Frag also zuerst: Wann ist die ursprüngliche Aussage falsch?
 
-Eine Implikation ist nur falsch, wenn der Wenn-Teil wahr und der Dann-Teil falsch ist. Diese Aussage wird also **nur verletzt, wenn die Tickets ausverkauft sind, Rani nicht mit dem Bus fährt und die Reise nicht verschiebt**. Eine gleichwertige Aussage muss genau in derselben Situation verletzt werden.
+Die ursprüngliche Aussage spricht über eine Gruppe: Sportlerinnen und Sportler, die die regionale Auswahl bestanden haben und nie schwer verletzt waren. Für diese Gruppe verlangt sie, dass jede Person mindestens eines von zwei Dingen erfüllt: Mitglied im Kernteam der Provinz sein oder ein Sportstipendium haben.
 
-Forme sie algebraisch um:
+Die ursprüngliche Aussage ist falsch, wenn mindestens eine Person aus dieser Gruppe die Forderung nicht erfüllt. "A oder B" nicht zu erfüllen heißt: nicht A und auch nicht B. Diese Regel heißt De-Morgan-Gesetz: Die Verneinung von "oder" wird zu "und", und jeder Teil wird verneint.
 
-<BlockMath math="\begin{aligned}
-p \Rightarrow (q \vee r) &\equiv \neg p \vee q \vee r \\
-&\equiv \neg(p \wedge \neg q) \vee r \\
-&\equiv (p \wedge \neg q) \Rightarrow r
-\end{aligned}" />
+Mit Symbolen: Sei <InlineMath math="K(x)" />: Person <InlineMath math="x" /> hat die regionale Auswahl bestanden und war nie schwer verletzt, <InlineMath math="T(x)" />: Mitglied im Kernteam der Provinz, und <InlineMath math="B(x)" />: hat ein Sportstipendium.
 
-Die letzte Form lautet: Wenn die Zugtickets ausverkauft sind und Rani nicht mit dem Bus fährt, verschiebt Rani die Reise. Auch sie wird nur verletzt, wenn die Tickets ausverkauft sind, Rani nicht mit dem Bus fährt und die Reise nicht verschiebt.
+<BlockMath math="\neg\,\forall x\,\big(K(x) \Rightarrow (T(x) \vee B(x))\big) \;\equiv\; \exists x\,\big(K(x) \wedge \neg T(x) \wedge \neg B(x)\big)" />
 
-Die anderen Optionen sind nicht gleichwertig:
+Es gibt drei Schritte, und nur diese drei.
 
-- "Wenn Rani mit dem Bus fährt oder verschiebt, sind die Tickets ausverkauft" ist die Umkehrung. Sie wird verletzt, wenn Rani mit dem Bus fährt, obwohl es noch Tickets gibt, und diese Situation verletzt die ursprüngliche Aussage nicht.
-- "Wenn die Tickets nicht ausverkauft sind, fährt Rani weder mit dem Bus, noch wird die Reise verschoben" ist die Inversion und ebenfalls nicht gleichwertig.
-- "Wenn Rani nicht mit dem Bus fährt oder nicht verschiebt, sind die Tickets nicht ausverkauft" verneint <InlineMath math="q \vee r" /> falsch. Richtig wäre "fährt nicht mit dem Bus **und** verschiebt nicht".
-- "Die Tickets sind ausverkauft, aber Rani fährt weder mit dem Bus, noch wird die Reise verschoben" ist die Verneinung der ursprünglichen Aussage.
+1. "Alle" (*semua*) wird zu "es gibt" (*ada*).
+2. Die Gruppenbeschreibung, also regionale Auswahl bestanden und nie schwer verletzt, **bleibt vollständig und wird nicht verneint**. Sie zeigt nur, über welche Personen gesprochen wird.
+3. Die Forderung "Kernteam oder Stipendium" wird zu "nicht im Kernteam und kein Stipendium" verneint.
 
-Gleichwertig ist also "Wenn die Zugtickets ausverkauft sind und Rani nicht mit dem Bus fährt, verschiebt Rani die Reise".
+Das Ergebnis lautet: Es gibt eine Person, die die regionale Auswahl bestanden hat und nie schwer verletzt war, aber weder im Kernteam der Provinz ist noch ein Sportstipendium hat.
+
+Die anderen Auswahlen scheitern an diesen Fehlern.
+
+- Die Version mit "nicht im Kernteam oder kein Stipendium" vergisst, "oder" in "und" zu verwandeln. Eine Person aus der Gruppe mit Stipendium, aber ohne Kernteam passt dazu, widerlegt die ursprüngliche Aussage aber nicht.
+- Die Version mit "alle" ist keine Verneinung, sondern eine viel stärkere Behauptung. Wenn die Gruppe eine Person aus dem Kernteam und eine Person ohne beides enthält, ist die ursprüngliche Aussage falsch und diese Version ebenfalls. Eine Verneinung darf nicht zusammen mit der ursprünglichen Aussage falsch sein.
+- Die Version mit "die regionale Auswahl nicht bestanden oder schon schwer verletzt" verneint die Gruppenbeschreibung. Solche Personen gehören nicht zur Gruppe, also können sie die ursprüngliche Aussage nicht widerlegen, egal welchen Status sie haben.
+- Die Version "es gibt eine Person, die weder im Kernteam ist noch ein Stipendium hat" lässt die Gruppenbeschreibung weg. Eine Person, die die regionale Auswahl nie bestanden hat, kann dazu passen, ohne die ursprüngliche Aussage zu widerlegen.
+
+Die Verneinung lautet also: Es gibt eine Person, die die regionale Auswahl bestanden hat und nie schwer verletzt war, aber weder im Kernteam der Provinz ist noch ein Sportstipendium hat.

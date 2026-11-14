@@ -1,17 +1,55 @@
-The values of <InlineMath math="a" /> and <InlineMath math="b" /> are not known, so compare the two quantities through **the sign of their difference** for every pair with <InlineMath math="0<a<b" />.
+The function <InlineMath math="h(x)=\sqrt{2-{}^{2}\log\left(x^2-2x\right)}" /> is real when two conditions hold: **the number inside the logarithm is positive**, and **the number under the square root isn't negative**. The plan: find the domain of <InlineMath math="h" /> first, then judge the four statements one at a time. To keep things short, write <InlineMath math="u=x^2-2x" />.
 
-# Simplifying the difference
+# The domain of h
+
+The logarithm needs <InlineMath math="u>0" />. The square root needs <InlineMath math="{}^{2}\log u\le2" />, and since the base <InlineMath math="2" /> is greater than <InlineMath math="1" />, the logarithm is increasing, so <InlineMath math="u\le2^2=4" />. So you need <InlineMath math="0<x^2-2x\le4" />.
 
 <BlockMath math="\begin{aligned}
-Q-P&=\frac{a+1}{b+1}-\frac ab\\
-&=\frac{b(a+1)-a(b+1)}{b(b+1)}\\
-&=\frac{b-a}{b(b+1)}
+x^2-2x>0\quad&\Longleftrightarrow\quad x<0\ \text{or}\ x>2\\
+x^2-2x-4\le0\quad&\Longleftrightarrow\quad 1-\sqrt5\le x\le1+\sqrt5
 \end{aligned}" />
 
-The numerator <InlineMath math="b-a" /> is positive because <InlineMath math="a<b" />, and the denominator <InlineMath math="b(b+1)" /> is positive because <InlineMath math="b>0" />. So **the difference is always positive**.
+Both conditions together give <InlineMath math="1-\sqrt5\le x<0" /> or <InlineMath math="2<x\le1+\sqrt5" />. So **the domain of <InlineMath math="h" /> is made of two separate intervals**, and <InlineMath math="x=0" /> and <InlineMath math="x=2" /> are left out because they give <InlineMath math="u=0" />.
 
-# Checking with an example
+# The first statement
 
-For <InlineMath math="a=1" /> and <InlineMath math="b=3" />: <InlineMath math="P=\tfrac13" /> and <InlineMath math="Q=\tfrac24=\tfrac12" />. Adding the same number to the numerator and denominator of a fraction below 1 **moves the fraction closer to 1**, so its value rises.
+Since <InlineMath math="2<\sqrt5<3" />, the left end <InlineMath math="1-\sqrt5" /> lies between <InlineMath math="-2" /> and <InlineMath math="-1" />, and the right end <InlineMath math="1+\sqrt5" /> lies between <InlineMath math="3" /> and <InlineMath math="4" />. The only integer in the left interval is <InlineMath math="-1" />, and the only one in the right interval is <InlineMath math="3" />. Both give <InlineMath math="u=3" />, which really is between <InlineMath math="0" /> and <InlineMath math="4" />. If you only use <InlineMath math="u\le4" />, you'll also count <InlineMath math="0" />, <InlineMath math="1" />, and <InlineMath math="2" />, but **the logarithm of zero or a negative number isn't defined**. The domain holds exactly <InlineMath math="2" /> integers, so the first statement is true.
 
-The option saying the information is not enough comes from <InlineMath math="a" /> and <InlineMath math="b" /> not being unique, although the sign of the difference is the same for every pair. So the correct relation is <InlineMath math="Q>P" />.
+# The second statement
+
+The value <InlineMath math="h(x)=0" /> means <InlineMath math="{}^{2}\log u=2" />, that is, <InlineMath math="u=4" />.
+
+<BlockMath math="\begin{aligned}
+x^2-2x&=4\\
+x^2-2x-4&=0\\
+x&=1-\sqrt5\ \text{or}\ x=1+\sqrt5
+\end{aligned}" />
+
+Both values are endpoints of the domain, so both count. **The equation has <InlineMath math="2" /> solutions**, not <InlineMath math="1" />, so the second statement is false.
+
+# The third statement
+
+Many people think <InlineMath math="2-{}^{2}\log u" /> is at most <InlineMath math="2" />, which would give <InlineMath math="h(x)\le\sqrt2" />. That's wrong, because **the logarithm is negative when <InlineMath math="u" /> is between <InlineMath math="0" /> and <InlineMath math="1" />**. Try to find an <InlineMath math="x" /> with <InlineMath math="h(x)=3" />, using <InlineMath math="u=(x-1)^2-1" />.
+
+<BlockMath math="\begin{aligned}
+2-{}^{2}\log u&=9\\
+{}^{2}\log u&=-7\\
+u&=2^{-7}=\tfrac{1}{128}\\
+(x-1)^2-1&=\tfrac{1}{128}\\
+(x-1)^2&=\tfrac{129}{128}
+\end{aligned}" />
+
+The number <InlineMath math="\tfrac{129}{128}" /> is positive, so <InlineMath math="x=1\pm\sqrt{\tfrac{129}{128}}" /> are real numbers, and <InlineMath math="u=\tfrac{1}{128}" /> satisfies <InlineMath math="0<u\le4" />. The third statement is true.
+
+# The fourth statement
+
+Replace <InlineMath math="x" /> with <InlineMath math="2-x" /> inside <InlineMath math="u" />.
+
+<BlockMath math="\begin{aligned}
+(2-x)^2-2(2-x)&=4-4x+x^2-4+2x\\
+&=x^2-2x
+\end{aligned}" />
+
+The value of <InlineMath math="u" /> doesn't change, and the domain depends only on <InlineMath math="u" />. So **the domain is symmetric about <InlineMath math="x=1" />**: if <InlineMath math="x" /> is in it, so is <InlineMath math="2-x" />. The pairs <InlineMath math="-1" /> and <InlineMath math="3" />, and <InlineMath math="1-\sqrt5" /> and <InlineMath math="1+\sqrt5" />, fit this pattern. The fourth statement is true.
+
+So the first statement is true, the second is false, the third is true, and the fourth is true.

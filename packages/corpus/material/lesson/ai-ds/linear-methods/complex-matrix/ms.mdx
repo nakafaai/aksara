@@ -1,0 +1,189 @@
+export const metadata = {
+    title: "Matriks Kompleks",
+    description: "Kendalikan matriks kompleks, kira transpos konjugat dan gunakan hasil darab dalam Hermitian untuk mengukur vektor kompleks dengan betul.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Bahagian Nyata dan Khayalan dalam Unsur Matriks
+
+Matriks kompleks menggunakan peraturan baris, lajur, penambahan dan pendaraban yang sama seperti matriks nyata. Bezanya, setiap unsur boleh mempunyai bahagian nyata dan juga bahagian khayalan.
+
+Matriks kompleks dengan <InlineMath math="m \in \mathbb{N}" /> baris dan <InlineMath math="n \in \mathbb{N}" /> lajur boleh ditulis sebagai
+
+<BlockMath math="\begin{aligned} A &amp;= \begin{pmatrix} a_{11} &amp; \cdots &amp; a_{1n} \\ \vdots &amp; &amp; \vdots \\ a_{m1} &amp; \cdots &amp; a_{mn} \end{pmatrix} \\ &amp;= (a_{ij})_{\substack{i=1,\ldots,m \\ j=1,\ldots,n}} \end{aligned}" />
+
+Setiap **pekali** <InlineMath math="a_{ij} \in \mathbb{C}" /> mempunyai indeks <InlineMath math="i = 1, \ldots, m" /> dan <InlineMath math="j = 1, \ldots, n" />. Set semua matriks kompleks <InlineMath math="m \times n" /> ditulis sebagai <InlineMath math="\mathbb{C}^{m \times n}" />.
+
+Contohnya, unsur seperti <InlineMath math="2+3i" /> dan <InlineMath math="-1-4i" /> tergolong dalam <InlineMath math="\mathbb C" />. Oleh sebab konjugasi penting untuk panjang dan sudut, transpos biasa tidak lagi menjadi operasi yang betul bagi setiap pengiraan geometri.
+
+## Matriks Adjoin
+
+Bagi matriks kompleks, padanan geometri bagi transpos ialah **adjoin**, yang juga dipanggil transpos konjugat. Adjoin <Highlight>mentranspos matriks dan mengambil konjugat setiap unsur</Highlight>.
+
+Katakan <InlineMath math="A \in \mathbb{C}^{m \times n}" /> ialah matriks kompleks <InlineMath math="m \times n" />. **Matriks adjoin** (matriks transpos konjugat kompleks) <InlineMath math="A^H" /> bagi <InlineMath math="A" /> ialah matriks kompleks <InlineMath math="n \times m" /> yang diperoleh dengan menukar baris dan lajur <InlineMath math="A" /> serta mengambil konjugat kompleks setiap unsur:
+
+<BlockMath math="\begin{aligned} A^H &amp;= \overline{A^T} \\ &amp;= \overline{A}^T \\ &amp;= \begin{pmatrix} \overline{a_{11}} &amp; \cdots &amp; \overline{a_{m1}} \\ \vdots &amp; &amp; \vdots \\ \overline{a_{1n}} &amp; \cdots &amp; \overline{a_{mn}} \end{pmatrix} \in \mathbb{C}^{n \times m} \end{aligned}" />
+
+Contohnya,
+
+<MathContainer>
+<BlockMath math="A=\begin{pmatrix}1+i&2\\-i&3-2i\end{pmatrix}" />
+<BlockMath math="A^H=\begin{pmatrix}1-i&i\\2&3+2i\end{pmatrix}" />
+</MathContainer>
+
+Jadi, unsur pada baris <InlineMath math="j" /> dan lajur <InlineMath math="i" /> bagi <InlineMath math="A^H" /> ialah <InlineMath math="\overline{a_{ij}}" />.
+
+Ambil <InlineMath math="A=\begin{pmatrix}1+2i&3-i\\-2+i&2i\end{pmatrix}" />. Konjugasi mencerminkan setiap unsur merentasi paksi nyata, kemudian transpos menukar kedudukan <InlineMath math="a_{12}" /> dan <InlineMath math="a_{21}" />, jadi <InlineMath math="A^H=\begin{pmatrix}1-2i&-2-i\\3+i&-2i\end{pmatrix}" />.
+
+<MathVisual
+  title={<>Konjugasi mencerminkan setiap unsur <InlineMath math="A" /></>}
+  description={<>Titik ungu ialah empat unsur <InlineMath math="A" /> dalam satah kompleks. Titik magenta ialah konjugatnya, dan setiap segmen kelabu berserenjang dengan paksi nyata serta dibahagi dua sama panjang oleh paksi itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 4 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pair-one", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "reference" },
+      { id: "pair-two", kind: "segment", from: { x: 3, y: -1 }, to: { x: 3, y: 1 }, appearance: "reference" },
+      { id: "pair-three", kind: "segment", from: { x: -2, y: 1 }, to: { x: -2, y: -1 }, appearance: "reference" },
+      { id: "pair-four", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: -2 }, appearance: "reference" },
+      { id: "a11", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "a12", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "a21", kind: "point", at: { x: -2, y: 1 }, appearance: "secondary" },
+      { id: "a22", kind: "point", at: { x: 0, y: 2 }, appearance: "secondary" },
+      { id: "c11", kind: "point", at: { x: 1, y: -2 }, appearance: "answer" },
+      { id: "c12", kind: "point", at: { x: 3, y: 1 }, appearance: "answer" },
+      { id: "c21", kind: "point", at: { x: -2, y: -1 }, appearance: "answer" },
+      { id: "c22", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "a11", objectId: "a11", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "a12", objectId: "a12", at: { x: 3, y: -1 }, placement: "right" },
+      { key: "a21", objectId: "a21", at: { x: -2, y: 1 }, placement: "left" },
+      { key: "a22", objectId: "a22", at: { x: 0, y: 2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "a11": <InlineMath math="1+2i" />,
+    "a12": <InlineMath math="3-i" />,
+    "a21": <InlineMath math="-2+i" />,
+    "a22": <InlineMath math="2i" />,
+  }}
+/>
+
+## Sifat Matriks Adjoin
+
+Adjoin **menterbalikkan susunan hasil darab** dan mengambil konjugat skalar. Bagi hasil tambah dan hasil darab di bawah, dimensi matriks mesti serasi.
+
+| Peraturan | Identiti | Sebabnya |
+| --- | --- | --- |
+| Unsur nyata | <InlineMath math="A^H=A^T" /> | Konjugasi tidak mengubah unsur nyata. |
+| Mengambil adjoin dua kali | <InlineMath math="(A^H)^H=A" /> | Transpos dan konjugasi kedua-duanya terbatal. |
+| Penambahan | <InlineMath math="(A+B)^H=A^H+B^H" /> | Konjugasi boleh diagihkan ke atas penambahan. |
+| Pendaraban skalar | <InlineMath math="(\lambda A)^H=\overline\lambda A^H" /> | Skalar itu turut dikonjugatkan bersama setiap unsur. |
+| Hasil darab | <InlineMath math="(AB)^H=B^HA^H" /> | Transpos menukar susunan padanan baris dengan lajur. |
+
+Bagi matriks satu unsur <InlineMath math="A=(1+i)" />, bandingkan konjugat <InlineMath math="iA" /> dengan hasil darab konjugat <InlineMath math="A" /> dan <InlineMath math="i" />:
+
+<MathContainer>
+<BlockMath math="(iA)^H=\overline{-1+i}=-1-i" />
+<BlockMath math="\overline i A^H=(-i)(1-i)=-1-i" />
+<BlockMath math="iA^H=i(1-i)=1+i\ne(iA)^H" />
+</MathContainer>
+
+Matriks <InlineMath math="1\times1" /> <InlineMath math="A=(z)" /> mempunyai <InlineMath math="A^HA=(\bar zz)=(|z|^2)" />. Bagi <InlineMath math="z=1+2i" />, sudut <InlineMath math="\bar z" /> ialah negatif sudut <InlineMath math="z" />, jadi hasil darabnya jatuh pada paksi nyata positif: <InlineMath math="\bar zz=(1-2i)(1+2i)=1+4=5" />. Itulah sebabnya pepenjuru <InlineMath math="A^HA" /> sentiasa nyata dan bukan negatif.
+
+<MathVisual
+  title={<><InlineMath math="\bar zz=|z|^2" /> bagi <InlineMath math="z=1+2i" /></>}
+  description={<>Segmen ungu <InlineMath math="z" /> dan segmen hijau kebiruan <InlineMath math="\bar z" /> membuat sudut yang bertentangan dengan paksi nyata. Hasil darabnya ialah segmen magenta <InlineMath math="\bar zz=5" /> pada paksi nyata positif.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "number", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "conjugate", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: -2 }, appearance: "construction" },
+      { id: "product", kind: "segment", from: { x: 0, y: 0 }, to: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "number", objectId: "number", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "conjugate", objectId: "conjugate", at: { x: 1, y: -2 }, placement: "right" },
+      { key: "product", objectId: "product", at: { x: 5, y: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "number": <InlineMath math="z=1+2i" />,
+    "conjugate": <InlineMath math="\bar z=1-2i" />,
+    "product": <InlineMath math="\bar zz=5" />,
+  }}
+/>
+
+## Norma Euclidean pada Ruang Kompleks
+
+Bagi <InlineMath math="v,w\in\mathbb C^n" />, hasil darab dalam Hermitian yang piawai ialah
+
+<BlockMath math="\langle v,w\rangle=v^Hw=\sum_{i=1}^n\overline{v_i}w_i" />
+
+Konjugat pada argumen pertama memastikan hasil darab dalam sesuatu vektor dengan dirinya sendiri bernilai nyata dan bukan negatif.
+
+Bagi <InlineMath math="v \in \mathbb{C}^n" />, kita takrifkan:
+
+<BlockMath math="v^H v = \sum_{i=1}^n \overline{v_i} v_i = \sum_{i=1}^n |v_i|^2 \in \mathbb{R}_{\geq0}" />
+
+**Norma Euclidean** dikira seperti berikut:
+
+<BlockMath math="\|v\|_2 = \sqrt{v^H v}" />
+
+Bagi <InlineMath math="v=(1+i,2-i)^T" />, pengiraannya seperti ini:
+
+<MathContainer>
+<BlockMath math="\begin{aligned} v^Hv &amp;=|1+i|^2+|2-i|^2 \\ &amp;=2+5 \\ &amp;=7 \end{aligned}" />
+<BlockMath math="\|v\|_2=\sqrt7" />
+</MathContainer>
+
+Inilah sebabnya <InlineMath math="v^Tv" /> salah digunakan dalam ruang kompleks: tanpa konjugasi, hasilnya tidak semestinya nyata atau positif.
+
+### Sifat Norma Euclidean
+
+**Kehomogenan**: <InlineMath math="\|\alpha v\|_2 = |\alpha| \|v\|_2" />
+
+**Tentu positif**: <InlineMath math="\|v\|_2 \geq 0" /> dan <InlineMath math="\|v\|_2 = 0 \Leftrightarrow v = 0" />
+
+**Ketaksamaan segi tiga**: <InlineMath math="\|v + w\|_2 \leq \|v\|_2 + \|w\|_2" />
+
+Sifat ini menunjukkan bahawa <InlineMath math="\|\cdot\|_2" /> memenuhi definisi norma. Dengan menggunakan adjoin dalam hasil darab dalam Hermitian, panjang, keortogonan dan unjuran dalam ruang kompleks kekal konsisten dengan padanannya dalam ruang nyata.
+
+Lukis setiap unsur <InlineMath math="v" /> sebagai satu titik dalam satah kompleks, seperti dalam rajah ini. Konjugat <InlineMath math="\overline{v_i}" /> ialah titik itu yang dicerminkan merentasi paksi nyata, dan <InlineMath math="\overline{v_i}v_i=|v_i|^2" /> ialah kuasa dua jejari bulatannya. Jadi <InlineMath math="v^Hv=2+5=7" /> menambah dua kuasa dua jejari, bukan unsur kompleksnya. Tanpa konjugat, <InlineMath math="v^Tv=(1+i)^2+(2-i)^2=3-2i" /> langsung bukan nombor nyata.
+
+<MathVisual
+  title={<>Panjang vektor kompleks <InlineMath math="v=(1+i,2-i)^T" /></>}
+  description={<>Setiap unsur dilukis dalam satah kompleks. Bulatan ungu berjejari <InlineMath math="|v_1|=\sqrt2" />, bulatan hijau kebiruan berjejari <InlineMath math="|v_2|=\sqrt5" />, dan titik kecil ialah konjugatnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.SQRT2, appearance: "secondary" },
+      { id: "second-circle", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "construction" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 1 }, appearance: "secondary" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "first-bar", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "second-bar", kind: "point", at: { x: 2, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "second", objectId: "second", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "first-bar", objectId: "first-bar", at: { x: 1, y: -1 }, placement: "below-left" },
+      { key: "second-bar", objectId: "second-bar", at: { x: 2, y: 1 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "first": <InlineMath math="v_1=1+i" />,
+    "second": <InlineMath math="v_2=2-i" />,
+    "first-bar": <InlineMath math="\overline{v_1}" />,
+    "second-bar": <InlineMath math="\overline{v_2}" />,
+  }}
+/>

@@ -1,0 +1,14 @@
+Berechne zuerst beide Determinanten, denn zwei Aussagen brauchen sie: <InlineMath math="\det C=2\cdot(-1)-0\cdot1=-2" /> und <InlineMath math="\det D=1\cdot2-3\cdot0=2" />.
+
+1. Die Aussage <InlineMath math="(CD)^T=C^TD^T" /> ist falsch. Die richtige Regel lautet <InlineMath math="(CD)^T=D^TC^T" />, **die Reihenfolge des Produkts kehrt sich also um**. Die Rechnung zeigt den Unterschied.
+
+<BlockMath math="\begin{aligned}
+CD&=\begin{pmatrix} 2 & 6 \\ 1 & 3-2 \end{pmatrix}=\begin{pmatrix} 2 & 6 \\ 1 & 1 \end{pmatrix},\qquad (CD)^T=\begin{pmatrix} 2 & 1 \\ 6 & 1 \end{pmatrix} \\
+C^TD^T&=\begin{pmatrix} 2 & 1 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 3 & 2 \end{pmatrix}=\begin{pmatrix} 5 & 2 \\ -3 & -2 \end{pmatrix}
+\end{aligned}" />
+
+2. Die Aussage, dass <InlineMath math="C+D" /> keine Inverse hat, ist richtig. <InlineMath math="C+D=\begin{pmatrix} 3 & 3 \\ 1 & 1 \end{pmatrix}" /> hat die Determinante <InlineMath math="3-3=0" />. Eine Matrix mit Determinante null hat keine Inverse.
+3. Die Aussage <InlineMath math="\det\left(C^3\right)=8" /> ist falsch. Die Determinante eines Produkts ist das Produkt der Determinanten, also <InlineMath math="\det\left(C^3\right)=(\det C)^3=(-2)^3=-8" />.
+4. Die Aussage über <InlineMath math="D^{-1}" /> ist richtig. Vertausche die Einträge der Hauptdiagonale, ändere die Vorzeichen der beiden anderen und teile durch <InlineMath math="\det D=2" />. Probe: <InlineMath math="D\cdot\frac12\begin{pmatrix} 2 & -3 \\ 0 & 1 \end{pmatrix}=\frac12\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}=I" />.
+
+Richtig sind also die Aussagen über <InlineMath math="C+D" /> und <InlineMath math="D^{-1}" />, falsch sind die Aussagen über <InlineMath math="(CD)^T" /> und <InlineMath math="\det\left(C^3\right)" />.

@@ -1,20 +1,30 @@
-The sum of the squared roots can be written with **the sum and product of the roots**, which come straight from the coefficients: <InlineMath math="p+q=7" /> and <InlineMath math="pq=c" />.
+Both regions being compared lose the same rectangle, with area <InlineMath math="s\cdot 2s=2s^2" />. So you just compare **the full circle with the semicircle**. Careful: here the side on the diameter is **the short side** <InlineMath math="AB=s" />, while the long side <InlineMath math="BC=2s" /> stands upright.
 
-# Setting up an equation for c
+# Area of the full circle
 
-The square of the sum contains the middle term <InlineMath math="2pq" />, so that term **must be removed as twice the product**.
+All four corners lie on <InlineMath math="L_2" />, so the diagonal of the rectangle is **a diameter of <InlineMath math="L_2" />**, because a right angle always faces a diameter.
 
 <BlockMath math="\begin{aligned}
-p^2+q^2&=(p+q)^2-2pq\\
-29&=49-2c\\
-2c&=20\\
-c&=10
+(2R_2)^2&=s^2+(2s)^2=5s^2\\
+R_2^2&=\tfrac{5}{4}s^2\\
+P&=\pi R_2^2-2s^2=\tfrac{5}{4}\pi s^2-2s^2
 \end{aligned}" />
 
-# Checking for real roots
+# Radius of the semicircle
 
-With <InlineMath math="c=10" />, the equation is <InlineMath math="x^2-7x+10=(x-2)(x-5)=0" />. The roots 2 and 5 are real, and <InlineMath math="2^2+5^2=29" />.
+Points <InlineMath math="C" /> and <InlineMath math="D" /> are at the same height above the diameter, and points of the arc at the same height are symmetric about the center <InlineMath math="O" />. So **the rectangle sits exactly in the middle of the diameter**: point <InlineMath math="B" /> is <InlineMath math="\tfrac{s}{2}" /> from <InlineMath math="O" />, and <InlineMath math="C" /> is <InlineMath math="2s" /> straight above <InlineMath math="B" />. Triangle <InlineMath math="OBC" /> has a right angle at <InlineMath math="B" />, and its hypotenuse is the radius <InlineMath math="R_1" />.
 
-The value 20 forgets the factor 2 in <InlineMath math="2pq" />, giving <InlineMath math="49-c=29" />. The value 39 adds <InlineMath math="49+29" /> and halves it because of a sign error. The value 29 takes <InlineMath math="p^2+q^2" /> to be <InlineMath math="c" />, and the value 49 is <InlineMath math="(p+q)^2" />.
+<BlockMath math="\begin{aligned}
+R_1^2&=\left(\tfrac{s}{2}\right)^2+(2s)^2=\tfrac{17}{4}s^2\\
+Q&=\tfrac{1}{2}\pi R_1^2-2s^2=\tfrac{17}{8}\pi s^2-2s^2
+\end{aligned}" />
 
-So the value of <InlineMath math="c" /> is **10**.
+# Comparing
+
+The <InlineMath math="-2s^2" /> part is the same on both sides, so compare <InlineMath math="\tfrac{17}{8}\pi s^2" /> with <InlineMath math="\tfrac{5}{4}\pi s^2=\tfrac{10}{8}\pi s^2" />. Since <InlineMath math="17>10" /> and <InlineMath math="s>0" />, **<InlineMath math="Q" /> is bigger than <InlineMath math="P" />**. With <InlineMath math="\pi\approx3.14" />, that's roughly <InlineMath math="Q\approx4.68s^2" /> and <InlineMath math="P\approx1.93s^2" />.
+
+# Checking the other options
+
+The option <InlineMath math="P>Q" /> comes from putting **the long side on the diameter**, the picture most people imagine first. That way <InlineMath math="R_1^2=s^2+s^2=2s^2" />, so the semicircle leaves only <InlineMath math="\pi s^2-2s^2\approx1.14s^2" />, which is smaller than <InlineMath math="P" />. The option <InlineMath math="P=Q" /> never happens, because <InlineMath math="\tfrac{17}{8}\ne\tfrac{5}{4}" />. The option "not enough information" is wrong, because you don't need the value of <InlineMath math="s" />: both areas are multiples of <InlineMath math="s^2" />.
+
+So <InlineMath math="Q>P" />.

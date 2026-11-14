@@ -1,26 +1,26 @@
-For a three-term arithmetic sequence, the quickest approach is to write the terms **symmetrically around the middle term**: <InlineMath math="u-b" />, <InlineMath math="u" />, and <InlineMath math="u+b" /> with common difference <InlineMath math="b>0" />.
-
-# The middle term from the sum
-
-<BlockMath math="(u-b)+u+(u+b)=3u=18\quad\Rightarrow\quad u=6" />
-
-The original sequence is <InlineMath math="6-b" />, 6, and <InlineMath math="6+b" />. After the changes, **the new sequence** is <InlineMath math="7-b" />, 6, and <InlineMath math="13+b" />.
-
-# The geometric condition
-
-In a geometric sequence, **the square of the middle term equals the product of the first and third terms**.
+You can turn the question into a question about a sign. Write the distance from each data value to the median: <InlineMath math="a=x_3-x_1" />, <InlineMath math="b=x_3-x_2" />, <InlineMath math="c=x_4-x_3" />, and <InlineMath math="d=x_5-x_3" />. All four are non-negative because the data are sorted. **The mean minus the median equals the mean deviation from the median**, so
 
 <BlockMath math="\begin{aligned}
-6^2&=(7-b)(13+b)\\
-36&=91-6b-b^2\\
-b^2+6b-55&=0\\
-(b+11)(b-5)&=0
+\bar x-x_3&=\frac{(x_1-x_3)+(x_2-x_3)+(x_4-x_3)+(x_5-x_3)}{5}\\
+&=\frac{(c-b)+(d-a)}{5}
 \end{aligned}" />
 
-Because the difference is positive, <InlineMath math="b=5" />. The original sequence is 1, 6, and 11. Check: the new sequence 2, 6, and 18 is indeed geometric with ratio 3.
+So the mean is bigger than the median exactly when <InlineMath math="(c-b)+(d-a)>0" />. Statement (1) means <InlineMath math="c=b" />, and statement (2) means <InlineMath math="d>a" />.
 
-<BlockMath math="1\times6\times11=66" />
+# Statement one alone
 
-The value <InlineMath math="-510" /> comes from <InlineMath math="b=-11" />, which gives 17, 6, and <InlineMath math="-5" /> with a negative difference. The value 216 is the product of the new geometric sequence, <InlineMath math="2\times6\times18" />. The value 108 mixes the two sequences, as in <InlineMath math="1\times6\times18" />.
+From <InlineMath math="c=b" />, the difference becomes <InlineMath math="\tfrac{d-a}{5}" />, and **the sign of <InlineMath math="d-a" /> is still unknown**. The data <InlineMath math="2,\ 9,\ 10,\ 11,\ 19" /> satisfy statement (1) with mean <InlineMath math="\tfrac{51}{5}>10" />, so the answer is yes. The data <InlineMath math="1,\ 9,\ 10,\ 11,\ 12" /> also satisfy statement (1), but their mean is <InlineMath math="\tfrac{43}{5}<10" />, so the answer is no. Statement (1) alone isn't enough.
 
-So the product of the three original numbers is **66**.
+# Statement two alone
+
+From <InlineMath math="d>a" />, the term <InlineMath math="d-a" /> is positive, but <InlineMath math="c-b" /> can be negative and pull the mean down. So **a top end that reaches farther doesn't guarantee a mean above the median**. The data <InlineMath math="2,\ 10,\ 10,\ 10,\ 19" /> satisfy statement (2), since <InlineMath math="19-10=9>8=10-2" />, and their mean is <InlineMath math="\tfrac{51}{5}>10" />. The data <InlineMath math="2,\ 8,\ 10,\ 10,\ 19" /> also satisfy statement (2), but their mean is <InlineMath math="\tfrac{49}{5}<10" />. Statement (2) alone isn't enough.
+
+# Both statements together
+
+Combine <InlineMath math="c=b" /> and <InlineMath math="d>a" />. The term <InlineMath math="c-b" /> **drops out because it's zero**, and the remaining term is positive.
+
+<BlockMath math="\bar x-x_3=\frac{0+(d-a)}{5}>0" />
+
+For every data set that satisfies both statements, the mean is definitely bigger than the median. The answer is always yes.
+
+So **both statements together are enough**, but neither statement alone is enough to answer the question.

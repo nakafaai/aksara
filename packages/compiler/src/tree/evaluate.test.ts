@@ -8,10 +8,11 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { canonicalizeContentTree } from "@nakafa/aksara-contracts/tree";
-import { Effect, FileSystem, Path, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 import {
   COMPILE_OPTIONS,
   componentNamesOf,
+  computesData,
   dataComputingDocuments,
   referenceTree,
 } from "#compiler/test/reference";
@@ -168,17 +169,42 @@ describe("evaluateContentTree", () => {
   );
 });
 
+/** Reads the committed baseline manifest. */
+const baselineManifest = Effect.gen(function* () {
+  const fs = yield* FileSystem.FileSystem;
+  return yield* Effect.flatMap(
+    fs.readFileString(BASELINE_MANIFEST_PATH),
+    Schema.decodeUnknownEffect(Schema.fromJsonString(BaselineManifestSchema))
+  );
+});
+
+/**
+ * Every document whose props compute data: the corpus's, and the frozen baseline
+ * fixtures', which keep computed props covered now that lessons draw their
+ * curves as MathVisual formula objects.
+ */
+const computingDocuments = Effect.gen(function* () {
+  const fs = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const manifest = yield* baselineManifest;
+  const fixtures = yield* Effect.forEach(manifest.documents, (entry) =>
+    Effect.map(
+      fs.readFileString(path.join(BASELINE_FIXTURE_ROOT, entry.fixture)),
+      (rawMdx) => ({ rawMdx, sourcePath: entry.sourcePath })
+    )
+  );
+  return [
+    ...(yield* dataComputingDocuments),
+    ...Arr.filter(fixtures, ({ rawMdx }) => computesData(rawMdx)),
+  ];
+});
+
 layer(NodeServices.layer)("content tree equivalence", (test) => {
   test.effect("pins the signed tree of every baseline document", () =>
     Effect.gen(function* () {
       const fs = yield* FileSystem.FileSystem;
       const path = yield* Path.Path;
-      const manifest = yield* Effect.flatMap(
-        fs.readFileString(BASELINE_MANIFEST_PATH),
-        Schema.decodeUnknownEffect(
-          Schema.fromJsonString(BaselineManifestSchema)
-        )
-      );
+      const manifest = yield* baselineManifest;
       for (const entry of manifest.documents) {
         const rawMdx = yield* fs.readFileString(
           path.join(BASELINE_FIXTURE_ROOT, entry.fixture)
@@ -205,8 +231,8 @@ layer(NodeServices.layer)("content tree equivalence", (test) => {
     "matches the React element model for every data-computing corpus document",
     () =>
       Effect.gen(function* () {
-        const documents = yield* dataComputingDocuments;
-        assert.isAtLeast(documents.length, 30);
+        const documents = yield* computingDocuments;
+        assert.isAtLeast(documents.length, 2);
         for (const entry of documents) {
           const sourcePath = CorpusSourcePathSchema.make(entry.sourcePath);
           const compiledCode = String(

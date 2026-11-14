@@ -6,10 +6,26 @@ const item: ItemSource = {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
-        { column: 1, label: "$$k=7$$" },
-        { column: 1, label: "$$p^2+q^2=22$$" },
-        { column: 2, label: "$$\\dfrac{1}{p}+\\dfrac{1}{q}=\\dfrac{7}{6}$$" },
-        { column: 2, label: "$$p^3+q^3=132$$" },
+        {
+          column: 2,
+          label:
+            "$$f(f(x))=\\dfrac{2x-1}{x}$$ untuk setiap bilangan real $$x\\neq0$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Daerah hasil fungsi $$f\\circ f$$ adalah himpunan semua bilangan real kecuali $$2$$ dan $$3$$.",
+        },
+        {
+          column: 1,
+          label:
+            "Grafik $$y=f(x)$$ dan grafik $$y=f^{-1}(x)$$ berpotongan di tepat satu titik.",
+        },
+        {
+          column: 2,
+          label:
+            "Daerah asal fungsi $$f^{-1}$$ adalah himpunan semua bilangan real kecuali $$-1$$.",
+        },
       ],
     },
   },

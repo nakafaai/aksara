@@ -126,6 +126,7 @@ const catalogRows = Effect.fn("AksaraContracts.testCatalogRows")(
             ...set,
             internalEntrySectionKey: "test-section",
             kind: "set",
+            level: "medium",
             paper,
             publicPath:
               "try-out/test-country/test-exam/test-group/test-track/test-set",

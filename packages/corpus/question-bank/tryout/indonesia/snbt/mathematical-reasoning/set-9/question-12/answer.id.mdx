@@ -1,22 +1,35 @@
-Dalam satu sesi 45 menit, paling banyak 4 pertandingan dapat dimainkan. Karena babak tidak boleh tumpang tindih, **hitung banyak sesi setiap babak secara terpisah**.
+Kamu mencari setoran tahunan paling kecil, dalam kelipatan setengah juta rupiah, yang membuat saldo akhir tahun ke-<InlineMath math="6" /> paling sedikit <InlineMath math="150" /> juta rupiah. Rencananya: jumlahkan faktor enam tahun, cari dana tahunan yang dibutuhkan, lalu **tentukan apakah dana pendamping terkena batas** sebelum mencari setorannya. Semua angka di bawah ini dalam juta rupiah.
 
-# Sesi setiap babak
+# Jumlah faktor enam tahun
 
-| Babak | Pertandingan | Sesi |
-| :--- | :---: | :---: |
-| Pertama | 8 | 2 |
-| Kedua | 16 | 4 |
-| Ketiga | 8 | 2 |
-| Perempat final | 4 | 1 |
-| Semifinal | 2 | 1 |
-| Final | 1 | 1 |
+Setoran tahun ke-<InlineMath math="1" /> tumbuh <InlineMath math="6" /> kali, setoran tahun ke-<InlineMath math="2" /> tumbuh <InlineMath math="5" /> kali, dan seterusnya sampai setoran tahun ke-<InlineMath math="6" /> yang tumbuh <InlineMath math="1" /> kali. Jadi **saldo sama dengan dana tahunan dikali jumlah enam faktor pertama**.
 
-Semifinal dan final hanya memakai sebagian lapangan, tetapi **tetap memerlukan satu sesi penuh**.
+<BlockMath math="1{,}772+1{,}611+1{,}464+1{,}331+1{,}210+1{,}100=8{,}488" />
 
-# Waktu total
+Misalkan dana yang masuk setiap tahun adalah <InlineMath math="T" />. Syaratnya <InlineMath math="8{,}488\,T\ge150" />. Karena <InlineMath math="17\times8{,}488=144{,}296" /> masih kurang, dana tahunan harus lebih dari <InlineMath math="17" />.
 
-<BlockMath math="11\cdot45=495\text{ menit}=8\text{ jam }15\text{ menit}" />
+# Dana pendamping kena batas atau tidak
 
-Nilai 7 jam 30 menit membagi 39 pertandingan rata ke 4 lapangan, seolah babak boleh tumpang tindih. Nilai 6 jam 45 menit lupa babak pertama. Nilai 4 jam 30 menit menganggap setiap babak hanya satu sesi, dan 29 jam 15 menit memakai satu lapangan saja.
+Kalau setoran <InlineMath math="d" /> kurang dari <InlineMath math="8" />, dana pendampingnya <InlineMath math="\tfrac12 d" /> dan <InlineMath math="T=1{,}5d<12" />, terlalu kecil. Jadi setorannya pasti paling sedikit <InlineMath math="8" />, dan **dana pendampingnya tetap <InlineMath math="4" />** berapa pun setoran di atas itu. Dana tahunan menjadi <InlineMath math="T=d+4" />.
 
-Jadi, waktu tersingkatnya adalah **8 jam 15 menit**.
+# Setoran paling kecil
+
+Coba kelipatan setengah juta di sekitar batas itu.
+
+<BlockMath math="\begin{aligned}
+d=13{,}5 &: (13{,}5+4)\times8{,}488=17{,}5\times8{,}488=148{,}54<150 \\
+d=14 &: (14+4)\times8{,}488=18\times8{,}488=152{,}784\ge150
+\end{aligned}" />
+
+Setoran <InlineMath math="13{,}5" /> juta masih kurang, sedangkan <InlineMath math="14" /> juta sudah cukup. **Setoran yang lebih besar selalu memberi saldo lebih besar**, jadi <InlineMath math="14" /> juta adalah yang paling kecil.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain **melewatkan satu syarat dari aturan**.
+
+- <InlineMath math="\text{Rp}12{.}000{.}000{,}00" /> lupa batas dana pendamping dan memakai <InlineMath math="T=1{,}5d" />, sehingga <InlineMath math="18\times8{,}488" /> tampak tercapai dengan <InlineMath math="d=12" />.
+- <InlineMath math="\text{Rp}13{.}500{.}000{,}00" /> membulatkan <InlineMath math="d\approx13{,}67" /> ke bawah, padahal saldonya hanya <InlineMath math="148{,}54" />.
+- <InlineMath math="\text{Rp}15{.}500{.}000{,}00" /> menganggap setoran masuk akhir tahun, jadi memakai jumlah faktor <InlineMath math="1+1{,}1+1{,}21+1{,}331+1{,}464+1{,}611=7{,}716" />.
+- <InlineMath math="\text{Rp}21{.}000{.}000{,}00" /> lupa pertumbuhan dan meminta <InlineMath math="6(d+4)\ge150" />.
+
+Jadi, setoran tahunan paling kecil yang memenuhi keinginan pegawai itu adalah <InlineMath math="\text{Rp}14{.}000{.}000{,}00" />.

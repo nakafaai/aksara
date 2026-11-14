@@ -1,23 +1,29 @@
-Find every possible arrangement. Start from the tightest condition: **Ana and Doni fill one whole column**, Ana on top and Doni below.
+Each option lists only two posts. The third one, the logistics post, holds the three volunteers who aren't named. So your first move is to **fill in the logistics post first**, and only then check the six rules. Many violations hide in the post nobody wrote down.
 
-Caca is in column 1, so Ana and Doni cannot use column 1. Their column is column 2 or column 3. After that, one column is still completely empty, and column 1 still has one free locker next to Caca.
+The routine is the same for all five options. Write out all three posts, then test rules 1 to 6 one by one. A single broken rule is enough to throw an arrangement out.
 
-Beni and Eli must share a row, with Eli to the right of Beni. Fajar cannot be in column 1. So the free locker in column 1 must go to Beni, and Eli and Fajar fill the empty column.
+| Registration | Medical | Logistics (the rest) | Result of the check |
+| --- | --- | --- | --- |
+| Indra, Kurnia, Putri | Jihan, Nanda | Fikri, Galih, Hana | Breaks rule 6 |
+| Fikri, Galih, Indra | Hana, Jihan | Kurnia, Nanda, Putri | Breaks rule 3 |
+| Hana, Kurnia, Putri | Indra, Jihan | Fikri, Galih, Nanda | Breaks rule 5 |
+| Indra, Nanda, Putri | Hana, Jihan | Fikri, Galih, Kurnia | Meets every rule |
+| Fikri, Indra, Putri | Jihan, Kurnia | Galih, Hana, Nanda | Breaks rule 1 |
 
-| Arrangement | Top row (columns 1, 2, 3) | Bottom row (columns 1, 2, 3) |
-| --- | --- | --- |
-| I | Beni, Ana, Eli | Caca, Doni, Fajar |
-| II | Caca, Ana, Fajar | Beni, Doni, Eli |
-| III | Beni, Eli, Ana | Caca, Fajar, Doni |
-| IV | Caca, Fajar, Ana | Beni, Eli, Doni |
+Now check the surviving arrangement carefully. Registration has Indra, Nanda and Putri, medical has Hana and Jihan, and logistics has Fikri, Galih and Kurnia.
 
-In all four arrangements, **Beni is always in column 1**. This statement must be true.
+- Rule 1: Fikri and Galih are both in logistics.
+- Rule 2: Hana is in medical and Indra is in registration, so they're apart.
+- Rule 3: Putri is in registration with Indra.
+- Rule 4: Jihan is in medical.
+- Rule 5: Nanda is in registration, while Fikri is in logistics.
+- Rule 6: Kurnia is in logistics, not registration. The "if" part doesn't happen, so this rule demands nothing.
 
-The other statements hold only in some arrangements:
+The other four arrangements fail, and each one sets a different trap.
 
-- Eli is in the top row in I and III but in the bottom row in II and IV.
-- Fajar is in column 3 in I and II but in column 2 in III and IV.
-- Ana is in column 2 in I and II but in column 3 in III and IV.
-- Caca is in the bottom row in I and III but in the top row in II and IV.
+- Indra, Kurnia, Putri in registration with Jihan, Nanda in medical looks tidy if you only check the "together" and "apart" rules. But Kurnia is in registration, so rule 6 forces Nanda into logistics, and Nanda is in medical instead.
+- Fikri, Galih, Indra in registration with Hana, Jihan in medical looks safe in the two posts you can see. Logistics turns out to hold Kurnia, Nanda and Putri, so Putri is with neither Hana nor Indra.
+- Hana, Kurnia, Putri in registration with Indra, Jihan in medical does satisfy rule 6, because Nanda really is in logistics. But that same logistics post also holds Fikri and Galih, so Nanda ends up with Fikri. The trap is **stopping once the conditional rule is satisfied**.
+- Fikri, Indra, Putri in registration with Jihan, Kurnia in medical forgets that Galih, who isn't named, automatically lands in logistics. That splits Fikri from Galih.
 
-So the statement that must be true is that Beni's locker is in column 1.
+So the possible arrangement has Indra, Nanda and Putri at the registration post, Hana and Jihan at the medical post, and Fikri, Galih and Kurnia at the logistics post.

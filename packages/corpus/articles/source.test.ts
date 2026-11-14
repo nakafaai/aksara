@@ -102,14 +102,14 @@ layer(NodeServices.layer)("article source", (it) => {
     })
   );
 
-  it.effect("reads all twenty-one locale bodies byte-exactly", () =>
+  it.effect("reads all twenty-eight locale bodies byte-exactly", () =>
     Effect.gen(function* () {
       const path = yield* Path.Path;
       const corpusRoot = yield* resolveCorpusRoot;
       const { entries, sourceByPath } = yield* loadArticleFixtures();
       const documents = yield* readSources(entries, sourceByPath);
 
-      expect(documents).toHaveLength(21);
+      expect(documents).toHaveLength(28);
       expect(Arr.map(documents, ({ sourcePath }) => sourcePath)).toEqual(
         Arr.map(entries, ({ sourcePath }) => sourcePath)
       );

@@ -1,68 +1,37 @@
-Die Diagonalen teilen das Trapez in vier Dreiecke: <InlineMath math="ABE" />, <InlineMath math="BCE" />, <InlineMath math="CDE" /> und <InlineMath math="DAE" />. Der Flächeninhalt des Trapezes ist ihre Summe, und **das Verhältnis der parallelen Seiten** legt alle vier über den Inhalt von <InlineMath math="CDE" /> fest.
+Den Radius bekommst du über die Sehne <InlineMath math="TB" />, denn sie geht durch den Mittelpunkt und ist deshalb ein **Durchmesser**. Der Plan: Mit dem Zusammenhang von Tangente und Sekante bestimmst du <InlineMath math="PB" />, erkennst das rechtwinklige Dreieck <InlineMath math="PTB" />, berechnest <InlineMath math="TB" /> und halbierst.
 
-<MathVisual
-  title={<>Trapez <InlineMath math="ABCD" /></>}
-  description={<>Die Seite <InlineMath math="AB" /> ist parallel zur Seite <InlineMath math="DC" />. Die Diagonalen <InlineMath math="AC" /> und <InlineMath math="BD" /> schneiden sich in <InlineMath math="E" /> und teilen das Trapez in vier Dreiecke.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "trapezoid",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 12, y: 0 },
-          { x: 8, y: 6 },
-          { x: 4, y: 6 },
-        ],
-      },
-      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
-      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 12, y: 0 }, to: { x: 4, y: 6 } },
-      { id: "point-e", kind: "point", appearance: "highlight", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 } },
-    ],
-    labels: [
-      { key: "a", objectId: "trapezoid", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "trapezoid", at: { x: 12, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "trapezoid", at: { x: 8, y: 6 }, placement: "above-right" },
-      { key: "d", objectId: "trapezoid", at: { x: 4, y: 6 }, placement: "above-left" },
-      { key: "e", objectId: "point-e", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
-    e: <InlineMath math="E" />,
-  }}
-/>
+# Die Länge der Sekante bestimmen
 
+Für eine Tangente und eine Sekante von einem Punkt außerhalb des Kreises gilt nach **dem Sekanten-Tangenten-Satz** <InlineMath math="PT^2=PA\cdot PB" />. Setze <InlineMath math="PA=x" />, dann ist <InlineMath math="PB=x+7" />.
 
-# Die ähnlichen Dreiecke
+<BlockMath math="\begin{aligned}
+x(x+7)&=12^2\\
+x^2+7x-144&=0\\
+(x-9)(x+16)&=0
+\end{aligned}" />
 
-Wegen <InlineMath math="AB\parallel DC" /> ist der Winkel <InlineMath math="EAB" /> gleich dem Winkel <InlineMath math="ECD" /> und der Winkel <InlineMath math="EBA" /> gleich dem Winkel <InlineMath math="EDC" /> (Wechselwinkel). Das Dreieck <InlineMath math="ABE" /> ist also **ähnlich** zum Dreieck <InlineMath math="CDE" />, mit dem Streckfaktor <InlineMath math="AB:DC=12:4=3:1" />.
+Die Kandidaten sind <InlineMath math="x=9" /> oder <InlineMath math="x=-16" />. Eine Länge kann nicht negativ sein, also fällt <InlineMath math="x=-16" /> weg. Damit ist <InlineMath math="PA=9\text{ cm}" /> und <InlineMath math="PB=16\text{ cm}" />.
 
-Daraus folgen <InlineMath math="AE:EC=3:1" /> und <InlineMath math="BE:ED=3:1" />. Die Flächeninhalte ähnlicher Figuren verhalten sich wie das Quadrat des Streckfaktors.
+# Das rechtwinklige Dreieck erkennen
 
-<BlockMath math="[ABE]=3^2\times[CDE]=9\times3=27\text{ cm}^2" />
+Eine Tangente steht immer **senkrecht auf dem Radius im Berührpunkt**, also gilt <InlineMath math="PT\perp OT" />. Die Sehne <InlineMath math="TB" /> geht durch <InlineMath math="O" />, also ist die Gerade <InlineMath math="TB" /> dieselbe wie die Gerade <InlineMath math="TO" />. Deshalb ist der Winkel <InlineMath math="PTB" /> ein rechter Winkel, und die Hypotenuse des Dreiecks <InlineMath math="PTB" /> ist <InlineMath math="PB" />.
 
-# Die beiden seitlichen Dreiecke
+# Den Radius berechnen
 
-Die Dreiecke <InlineMath math="DAE" /> und <InlineMath math="DCE" /> haben die gemeinsame Spitze <InlineMath math="D" />, und ihre Grundseiten liegen auf der Geraden <InlineMath math="AC" />. Sie **haben dieselbe Höhe**, also verhalten sich ihre Flächeninhalte wie die Grundseiten, <InlineMath math="AE:EC=3:1" />. Dieselbe Überlegung auf der Geraden <InlineMath math="BD" /> liefert <InlineMath math="[BCE]:[DCE]=BE:ED=3:1" />.
+Wende den Satz des Pythagoras im Dreieck <InlineMath math="PTB" /> an und denk daran, dass <InlineMath math="TB" /> ein Durchmesser ist. Der Radius ist also **die Hälfte von <InlineMath math="TB" />**.
 
-<BlockMath math="[DAE]=[BCE]=3\times3=9\text{ cm}^2" />
+<BlockMath math="\begin{aligned}
+TB^2&=PB^2-PT^2=256-144=112\\
+TB&=\sqrt{112}=4\sqrt7\\
+r&=\frac{TB}{2}=2\sqrt7
+\end{aligned}" />
 
-Der Flächeninhalt des Trapezes ist die Summe der vier Dreiecke.
+# Das Ergebnis prüfen
 
-<BlockMath math="[ABCD]=27+9+9+3=48\text{ cm}^2" />
+Lege den Mittelpunkt <InlineMath math="O" /> in den Ursprung mit <InlineMath math="r^2=28" />, <InlineMath math="T=(0,2\sqrt7)" />, <InlineMath math="B=(0,-2\sqrt7)" /> und <InlineMath math="P=(12,2\sqrt7)" />. Für den Abstand <InlineMath math="PB" /> gilt <InlineMath math="PB^2=12^2+(4\sqrt7)^2=144+112=256" />, also <InlineMath math="PB=16" />. Dann ist <InlineMath math="PA=\frac{PT^2}{PB}=\frac{144}{16}=9" /> und damit <InlineMath math="AB=16-9=7" />. Alle Angaben der Aufgabe **passen zu diesem Radius**.
 
-Der Wert 30 nimmt das Flächenverhältnis als <InlineMath math="3:1" /> statt <InlineMath math="9:1" />. Der Wert 39 vergisst ein seitliches Dreieck. Der Wert 36 gibt jedem seitlichen Dreieck den Inhalt von <InlineMath math="CDE" />. Der Wert 54 verdoppelt den Inhalt von <InlineMath math="ABE" />.
+# Die falschen Antworten
 
-Der Flächeninhalt des Trapezes <InlineMath math="ABCD" /> beträgt also **<InlineMath math="48\text{ cm}^2" />**.
+Die Antwort <InlineMath math="2\text{ cm}" /> entsteht, wenn du die Längen direkt subtrahierst, <InlineMath math="TB=16-12=4" />, obwohl der Satz des Pythagoras mit Quadraten arbeitet. Die Antwort <InlineMath math="\frac72\text{ cm}" /> entsteht, wenn du <InlineMath math="AB" /> für einen Durchmesser hältst. Die Antwort <InlineMath math="10\text{ cm}" /> entsteht, wenn du die Quadrate addierst, <InlineMath math="TB^2=256+144=400" />, als wäre <InlineMath math="PB" /> eine Kathete. Die Antwort <InlineMath math="4\sqrt7\text{ cm}" /> ist der Durchmesser <InlineMath math="TB" /> selbst, du hast also **das Halbieren vergessen**.
+
+Der Radius des Kreises ist also <InlineMath math="2\sqrt7\text{ cm}" />.

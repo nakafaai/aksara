@@ -1,0 +1,134 @@
+
+export const metadata = {
+  title: "Halaju dan Laju Seketika",
+  description:
+    "Laju seketika ialah bacaan meter laju pada satu ketika, manakala halaju seketika turut mengambil kira arah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-06-06",
+  dateModified: "2026-09-12",
+  subject: "Kinematik",
+};
+
+## Mengukur Laju dalam Selang Masa yang Semakin Pendek
+
+Laju seketika ialah laju objek pada satu masa tertentu atau pada satu titik tertentu di sepanjang laluannya. Contoh yang biasa ialah nombor yang dipaparkan oleh meter laju kenderaan ketika pemandu melihatnya.
+
+Halaju seketika juga diukur pada satu masa tertentu, tetapi halaju seketika mengambil kira arah. Apabila **arah ke kanan dipilih sebagai positif**, gerakan ke kanan memberikan halaju positif dan gerakan ke kiri memberikan halaju negatif.
+
+> Nilai seketika menjawab soalan, "Berapa laju sekarang?" Nilai purata pula meliputi bahagian perjalanan yang lebih panjang.
+
+<BlockMath math="\begin{aligned} &amp;\text{laju seketika}=\lvert\vec{v}_{\text{seketika}}\rvert \end{aligned}" />
+
+Laju seketika ialah magnitud bagi halaju seketika.
+
+Jika kedudukan ialah fungsi masa yang boleh dibezakan, halaju seketika ialah <Highlight>had bagi halaju purata</Highlight> apabila selang pensampelan mengecil menghampiri sifar.
+
+<BlockMath math="v_x(t)=\lim_{\Delta t\to 0}\frac{\Delta x}{\Delta t}=\frac{dx}{dt}" />
+
+Alat sebenar menganggarkan nilai ini dalam selang pensampelan yang pendek tetapi terhingga. Selang yang lebih pendek boleh menghampiri nilai pada ketika itu dengan lebih baik apabila gerakannya berubah secara licin.
+
+<InstantaneousVelocitySpeedLab
+  title={<>Pengukuran pada Satu Titik</>}
+  description={
+    <>
+      Pilih masa pengukuran, kemudian bandingkan laju seketika dengan halaju
+      seketika kereta itu semasa kereta melalui titik pengukuran.
+    </>
+  }
+  labels={{
+    chooseMoment: "Pilih masa pengukuran",
+    factLabels: {
+      time: <>Masa pengukuran</>,
+      speed: <>Laju seketika</>,
+      velocity: <>Halaju seketika</>,
+    },
+    viewLabel: "Kereta melalui titik pengukuran",
+  }}
+/>
+
+Perhatikan bagaimana had itu terbentuk pada satu contoh gerakan, <InlineMath math="x=t^2" />. Setiap garis berwarna ialah halaju purata yang bermula pada <InlineMath math="t=3\text{ s}" />, dalam selang <InlineMath math="2" />, <InlineMath math="1" /> dan <InlineMath math="0.5\text{ s}" />. Apabila selang itu mengecil, kecerunannya turun daripada <InlineMath math="8" /> kepada <InlineMath math="7" /> dan kemudian <InlineMath math="6.5\text{ m/s}" />, semakin hampir kepada halaju seketika <InlineMath math="6\text{ m/s}" />.
+
+<MathVisual
+  title={<>Mengecilkan Selang Masa</>}
+  description={<>Garis sekan bagi <InlineMath math="x=t^2" /> dari <InlineMath math="t=3\text{ s}" /> dalam selang 2 s, 1 s dan 0.5 s. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 4 m.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "position", kind: "quadratic", appearance: "reference", coefficients: { a: 0.25, b: 0, c: 0 }, domain: { min: 0, max: 5 }, inputAxis: "x" },
+      { id: "step-2", kind: "segment", appearance: "warning", from: { x: 3, y: 2.25 }, to: { x: 5, y: 6.25 } },
+      { id: "step-1", kind: "segment", appearance: "primary", from: { x: 3, y: 2.25 }, to: { x: 4, y: 4 } },
+      { id: "step-half", kind: "segment", appearance: "secondary", from: { x: 3, y: 2.25 }, to: { x: 3.5, y: 3.5 ** 2 / 4 } },
+      { id: "now", kind: "point", appearance: "answer", at: { x: 3, y: 2.25 } },
+    ],
+    labels: [
+      { key: "s2", objectId: "step-2", at: { x: 5, y: 6.25 }, placement: "right" },
+      { key: "s1", objectId: "step-1", at: { x: 4, y: 4 }, placement: "right" },
+      { key: "sh", objectId: "step-half", at: { x: 3.5, y: 3.5 ** 2 / 4 }, placement: "right" },
+      { key: "now", objectId: "now", at: { x: 3, y: 2.25 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    s2: <InlineMath math="\frac{\Delta x}{\Delta t}=8\text{ m/s}" />,
+    s1: <InlineMath math="\frac{\Delta x}{\Delta t}=7\text{ m/s}" />,
+    sh: <InlineMath math="\frac{\Delta x}{\Delta t}=6.5\text{ m/s}" />,
+    now: <InlineMath math="t=3\text{ s}:\ v=6\text{ m/s}" />,
+  }}
+/>
+
+## Arah Menentukan Tanda Halaju Seketika
+
+Titik pengukuran dalam simulasi merekod kereta itu pada satu ketika. Laju memberikan magnitud gerakannya. **Arah gerakan** pula menentukan tanda halajunya.
+
+Pada <InlineMath math="t=6 \text{ s}" />, kereta bergerak ke kanan dengan laju seketika <InlineMath math="20 \text{ m/s}" />. Oleh sebab arah ke kanan dipilih sebagai arah positif, halaju seketikanya ialah <InlineMath math="+20 \text{ m/s}" />.
+
+Pada <InlineMath math="t=9 \text{ s}" />, kereta bergerak ke kiri dengan laju seketika <InlineMath math="8 \text{ m/s}" />. Oleh sebab arah ke kiri bertentangan dengan arah positif, halaju seketikanya ialah <InlineMath math="-8 \text{ m/s}" />.
+
+| Masa | Bacaan laju | Arah gerakan | Halaju seketika |
+| :--- | :------------ | :------------------ | :--------------------- |
+| <InlineMath math="6 \text{ s}" /> | <InlineMath math="20 \text{ m/s}" /> | ke kanan | <InlineMath math="+20 \text{ m/s}" /> |
+| <InlineMath math="9 \text{ s}" /> | <InlineMath math="8 \text{ m/s}" /> | ke kiri | <InlineMath math="-8 \text{ m/s}" /> |
+
+Laju seketika tidak mempunyai tanda arah. Halaju seketika menggunakan tanda positif atau negatif untuk menunjukkan arah di sepanjang paksi yang dipilih.
+
+Meter laju hanya memberikan saiz. Tambahkan arah sebagai tanda, iaitu ke kanan positif dan ke kiri negatif, jadi bacaan yang serupa menjadi dua halaju yang berbeza. Zum masuk pada kedua-dua bacaan itu.
+
+<MathVisual
+  title={<>Daripada Bacaan Laju kepada Halaju</>}
+  description={<>Halaju pada 6 s (hijau kebiruan, ke kanan) dan pada 9 s (ungu, ke kiri). Paksi menegak: satu petak grid mewakili 5 m/s.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "zero", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "six", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "nine", kind: "segment", appearance: "secondary", from: { x: 9, y: 0 }, to: { x: 9, y: -1.6 } },
+      { id: "six-top", kind: "point", appearance: "construction", at: { x: 6, y: 4 } },
+      { id: "nine-end", kind: "point", appearance: "secondary", at: { x: 9, y: -1.6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six-top", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "nine", objectId: "nine-end", at: { x: 9, y: -1.6 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    six: <InlineMath math="6\text{ s}:\ +20\text{ m/s}" />,
+    nine: <InlineMath math="9\text{ s}:\ -8\text{ m/s}" />,
+  }}
+/>
+
+## Perbezaan dengan Laju Purata
+
+Laju purata merumuskan seluruh perjalanan dengan membahagikan jumlah jarak dengan jumlah masa. Laju seketika pula memberikan laju pada **satu masa yang dipilih**.
+
+Jika meter laju menunjukkan <InlineMath math="15 \text{ m/s}" /> sekarang, itu tidak bermaksud kenderaan itu bergerak pada <InlineMath math="15 \text{ m/s}" /> sepanjang perjalanan.
+
+Contohnya, kenderaan mungkin berhenti di lampu merah, kemudian bergerak laju selepas itu. Laju puratanya boleh jadi kecil kerana seluruh masa perjalanan dikira, manakala laju seketikanya semasa bergerak boleh jauh lebih besar.
+
+## Meter Laju Mengukur Laju Semasa
+
+Had laju <InlineMath math="80 \text{ km/j}" /> yang tertera pada papan tanda berlaku pada kenderaan itu pada **setiap ketika**. Oleh itu, alat pengesan di tepi jalan membaca laju seketika ketika kenderaan itu lalu.
+
+Kenderaan yang lalu pada <InlineMath math="90 \text{ km/j}" /> melebihi had itu walaupun laju puratanya bagi seluruh perjalanan hanya <InlineMath math="60 \text{ km/j}" />. Masa yang dihabiskan semasa berhenti di lampu merah menurunkan laju purata perjalanan, tetapi tidak mengubah bacaan pada alat pengesan.

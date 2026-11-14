@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "sentence-meaning",
-    topic: "sentence-relation",
+    topic: "referent",
   },
-  stimulus: "batik",
+  stimulus: "kabin",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kalimat (7) menjelaskan penyebab batik cap menjadi murah.",
-        },
-        {
-          correct: false,
-          label: "Kalimat (7) memberikan contoh lain keunggulan batik cap.",
+          label:
+            "hasil bahwa penutup kaca membuat kotaknya jauh lebih panas daripada penutup garam batu",
         },
         {
           correct: false,
           label:
-            "Kalimat (7) mengulang isi kalimat (6) dengan kata-kata lain agar keunggulan batik cap lebih mudah dipahami.",
+            "hasil bahwa garam batu ternyata menahan inframerah sebanyak kaca",
         },
         {
           correct: true,
           label:
-            "Kalimat (7) menyampaikan kekurangan batik cap setelah kalimat (6) menyebut kelebihannya.",
+            "hasil bahwa menahan atau meloloskan inframerah hampir tidak mengubah suhu kotak yang tertutup",
         },
         {
           correct: false,
-          label: "Kalimat (7) menyimpulkan seluruh isi paragraf pertama.",
+          label:
+            "hasil bahwa sifat kaca sama sekali tidak berpengaruh terhadap suhu kotak",
+        },
+        {
+          correct: false,
+          label:
+            "hasil bahwa kedua kotak tidak menjadi lebih panas daripada udara di luarnya",
         },
       ],
     },

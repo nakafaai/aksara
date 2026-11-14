@@ -4,35 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "categorical-syllogism",
+    topic: "quantifiers",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Pasti benar", "Tidak pasti benar"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Toni tidak bekerja dari rumah.",
+          column: 2,
+          label: "Sebagian lapak yang buka malam ini menjual minuman dingin.",
         },
         {
           column: 1,
-          label: "Toni tidak mengikuti rapat daring pukul $$09.00$$.",
+          label:
+            "Tidak ada lapak milik paguyuban pedagang yang menjual minuman dingin.",
+        },
+        {
+          column: 1,
+          label:
+            "Sebagian lapak yang memakai lampu tenaga surya tidak berada di lorong utara.",
         },
         {
           column: 2,
           label:
-            "Semua pegawai bagian pemasaran melakukan kunjungan klien pada pagi hari.",
-        },
-        {
-          column: 1,
-          label:
-            "Sebagian pegawai bagian pemasaran tidak melakukan kunjungan klien pada pagi hari.",
-        },
-        {
-          column: 2,
-          label:
-            "Pegawai yang tidak bekerja dari rumah tidak mengikuti rapat daring pukul $$09.00$$.",
+            "Sebagian lapak yang buka malam ini tidak berada di lorong utara.",
         },
       ],
     },

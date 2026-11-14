@@ -5,14 +5,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\{x\\mid x\\ge3\\}$$" },
-        { correct: false, label: "$$\\{x\\mid 1<x<6\\}$$" },
-        { correct: false, label: "$$\\{x\\mid x<1\\ \\text{atau}\\ x>6\\}$$" },
-        {
-          correct: false,
-          label: "$$\\{x\\mid -3\\le x<1\\ \\text{atau}\\ x>6\\}$$",
-        },
-        { correct: true, label: "$$\\{x\\mid x>6\\}$$" },
+        { correct: false, label: "$$-18$$" },
+        { correct: false, label: "$$-15$$" },
+        { correct: true, label: "$$-12$$" },
+        { correct: false, label: "$$-9$$" },
+        { correct: false, label: "$$2$$" },
       ],
     },
   },

@@ -1,13 +1,33 @@
-What you compare is **price divided by the amount of juice**, not price divided by the amount of syrup.
+You're looking for the least stock A that brings a full tank into the suitable range. Here's the plan: turn concentration into an amount of stock A, find the stock already in the tank, find the stock needed for **the lower end of the range**, then subtract.
 
-# Juice in one litre of syrup B
+# Turning ppm into an amount of stock
 
-<BlockMath math="20\%\cdot1{,}000\text{ mL}=200\text{ mL}" />
+By rule one, <InlineMath math="1\text{ ml}" /> of stock A in every litre gives <InlineMath math="200\text{ ppm}" />. So **the stock A per litre equals the concentration divided by** <InlineMath math="200" />, and the stock A in the whole tank is that value times the volume.
 
-# Price per mL of juice
+<BlockMath math="\begin{aligned}
+\text{stock A already there} &= \frac{700}{200}\cdot120=3.5\cdot120=420\text{ ml}
+\end{aligned}" />
 
-<BlockMath math="\frac{24{,}000}{200}=120\text{ rupiah}" />
+# The lower bound for week five
 
-For comparison, syrup A gives 600 mL of juice for Rp60,000, which is Rp100 per mL. So **syrup B is dearer** measured by its juice, even though it is cheaper per litre.
+The week-five target is <InlineMath math="1{,}200\text{ ppm}" />, so the solution is suitable from <InlineMath math="1{,}150\text{ ppm}" /> to <InlineMath math="1{,}250\text{ ppm}" />. The question asks for the **least** stock, so reaching the lower bound of <InlineMath math="1{,}150\text{ ppm}" /> is enough, because that bound counts. After adding water, the volume is <InlineMath math="200" /> litres.
 
-So the juice in syrup B costs **Rp120** per mL.
+<BlockMath math="\begin{aligned}
+\text{stock A needed} &= \frac{1{,}150}{200}\cdot200=1{,}150\text{ ml}\\
+\text{stock A to add} &= 1{,}150-420=730\text{ ml}
+\end{aligned}" />
+
+# Checking
+
+After the top-up, the tank holds <InlineMath math="420+730=1{,}150\text{ ml}" /> of stock A in <InlineMath math="200" /> litres, so the concentration is <InlineMath math="\tfrac{1{,}150}{200}\cdot200=1{,}150\text{ ppm}" />. That's **right on the lower bound and still suitable**. With only <InlineMath math="729\text{ ml}" />, the concentration would be <InlineMath math="1{,}149\text{ ppm}" />, already outside the range.
+
+# The wrong options
+
+Each wrong option **picks the wrong target or miscounts the stock**.
+
+- <InlineMath math="780\text{ ml}" /> aims for exactly <InlineMath math="1{,}200\text{ ppm}" />. That's suitable too, but it isn't the least.
+- <InlineMath math="1{,}150\text{ ml}" /> forgets that the tank already holds <InlineMath math="420\text{ ml}" /> of stock A.
+- <InlineMath math="460\text{ ml}" /> only counts stock for the <InlineMath math="80" /> litres of new water, <InlineMath math="\tfrac{1{,}150}{200}\cdot80" />, as if the old solution were already at <InlineMath math="1{,}150\text{ ppm}" />.
+- <InlineMath math="450\text{ ml}" /> raises <InlineMath math="700" /> to <InlineMath math="1{,}150\text{ ppm}" /> for <InlineMath math="200" /> litres, as if the <InlineMath math="80" /> litres of new water were already at <InlineMath math="700\text{ ppm}" />.
+
+So Pak Darto has to add at least <InlineMath math="730\text{ ml}" /> of stock A (and <InlineMath math="730\text{ ml}" /> of stock B).

@@ -1,17 +1,39 @@
-For a quadratic inequality, find the **zeros** first. The opening of the parabola then decides where the expression is negative. The expression factors, because <InlineMath math="-3\cdot2=-6" /> and <InlineMath math="-3+2=-1" />.
+# Only part of the parabola counts
 
-<BlockMath math="x^2-x-6=(x-3)(x+2)" />
+The left side is an upward parabola with its vertex at <InlineMath math="x=-\frac a2" />. The inequality only has to hold for <InlineMath math="x\ge1" />, so **what matters is the parabola's smallest value on that region**, not on the whole <InlineMath math="x" />-axis. Where the vertex sits decides where that smallest value is.
 
-The zeros are <InlineMath math="x=-2" /> and <InlineMath math="x=3" />. The parabola <InlineMath math="y=x^2-x-6" /> opens upward, because the coefficient of <InlineMath math="x^2" /> is positive. So it lies below the <InlineMath math="x" />-axis **between** the zeros and above it outside them. Since <InlineMath math="=0" /> is also allowed, the zeros themselves belong to the solution.
+# Vertex left of the region
 
-<BlockMath math="-2\le x\le3" />
+If <InlineMath math="-\frac a2\le1" />, that is <InlineMath math="a\ge-2" />, the parabola is already rising on <InlineMath math="x\ge1" />. **Its smallest value is at the end <InlineMath math="x=1" />**:
 
-As a check, <InlineMath math="x=0" /> gives <InlineMath math="-6\le0" />, which holds, while <InlineMath math="x=4" /> gives <InlineMath math="16-4-6=6" />, which is not <InlineMath math="\le0" />.
+<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
 
-So the solution set is <InlineMath math="-2\le x\le3" />.
+Every <InlineMath math="a\ge-2" /> meets this, so this whole case works.
 
-- <InlineMath math="-3\le x\le2" /> comes from reversing the signs of the zeros, that is, from <InlineMath math="(x+3)(x-2)" />. That product equals <InlineMath math="x^2+x-6" /> instead.
-- <InlineMath math="x\le-2" /> or <InlineMath math="x\ge3" /> describes where the expression is greater than or equal to zero, the solution of <InlineMath math="x^2-x-6\ge0" />.
-- <InlineMath math="-2<x<3" /> drops the endpoints, although <InlineMath math="\le" /> allows the expression to equal zero.
-- <InlineMath math="x\le3" /> forgets the second condition <InlineMath math="x\ge-2" />. For example, <InlineMath math="x=-5" /> satisfies <InlineMath math="x\le3" />, but <InlineMath math="25+5-6=24" /> is not <InlineMath math="\le0" />.
-- <InlineMath math="x\ge-2" /> forgets the second condition <InlineMath math="x\le3" />. For example, <InlineMath math="x=4" /> satisfies <InlineMath math="x\ge-2" />, but <InlineMath math="16-4-6=6" /> is not <InlineMath math="\le0" />.
+# Vertex inside the region
+
+If <InlineMath math="a<-2" />, the vertex is at <InlineMath math="x=-\frac a2>1" />. **The smallest value is the value at the vertex**:
+
+<BlockMath math="\begin{aligned}
+\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
+4-\frac{a^2}4&>0 \\
+-4<a&<4
+\end{aligned}" />
+
+Together with <InlineMath math="a<-2" />, this case gives <InlineMath math="-4<a<-2" />.
+
+# Putting both cases together
+
+<InlineMath math="-4<a<-2" /> and <InlineMath math="a\ge-2" /> **join up into <InlineMath math="a>-4" />**.
+
+Check at the edge: for <InlineMath math="a=-4" />, <InlineMath math="x^2-4x+4=(x-2)^2" /> is <InlineMath math="0" /> at <InlineMath math="x=2\ge1" />, so <InlineMath math="a=-4" /> is out.
+
+So the inequality holds for all <InlineMath math="x\ge1" /> exactly when <InlineMath math="a>-4" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="-4<a<4" /> **checks the whole <InlineMath math="x" />-axis** with the discriminant. For <InlineMath math="a=10" />, the parabola does cross the <InlineMath math="x" />-axis, but only at <InlineMath math="x<0" />.
+- <InlineMath math="a>-5" /> only checks <InlineMath math="x=1" />. For <InlineMath math="a=-4.5" />, the value at the vertex <InlineMath math="x=2.25" /> is negative.
+- <InlineMath math="a\ge-4" /> includes <InlineMath math="a=-4" />, where the left side is zero at <InlineMath math="x=2" />.
+- <InlineMath math="a\ge-2" /> only uses the case with the vertex left of the region and drops <InlineMath math="-4<a<-2" />.
+- <InlineMath math="a<4" /> puts the vertex at <InlineMath math="x=\frac a2" />, with the wrong sign, so every case comes out mirrored.

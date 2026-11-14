@@ -1,15 +1,43 @@
-Addiert werden **die Raten**, also der Teil des Beckens, der pro Stunde gefüllt wird, nicht die Zeiten.
+Gesucht ist der günstigste Fahrplan für <InlineMath math="100" /> Teilnehmende. Zwei Dinge sind begrenzt: **es muss genug Sitzplätze geben**, und **jede Fahrt muss spätestens um 08.30 Uhr ankommen**. Der Plan: Zähl zuerst, wie viele Fahrten noch rechtzeitig ankommen, und such dann unter diesen Fahrten die günstigste Kombination.
 
-# Rate jeder Pumpe
+# Fahrten, die noch rechtzeitig ankommen
 
-Pumpe A füllt <InlineMath math="\tfrac16" /> **des Beckens pro Stunde**, Pumpe B <InlineMath math="\tfrac19" />.
+Ein Fahrzeug fährt hin und zurück, also liegt zwischen zwei Abfahrten die doppelte Fahrzeit. Der Bus fährt alle <InlineMath math="50" /> Minuten los, jeder Kleinbus alle <InlineMath math="40" /> Minuten.
 
-<BlockMath math="\frac16+\frac19=\frac{3}{18}+\frac{2}{18}=\frac{5}{18}" />
+| Fahrzeug | Abfahrt | Ankunft am Saal | Rechtzeitig? |
+| :--- | :---: | :---: | :---: |
+| Bus | 07.00 | 07.25 | ja |
+| Bus | 07.50 | 08.15 | ja |
+| Bus | 08.40 | 09.05 | nein |
+| Kleinbus | 07.00 | 07.20 | ja |
+| Kleinbus | 07.40 | 08.00 | ja |
+| Kleinbus | 08.20 | 08.40 | nein |
 
-# Füllzeit
+Also **schafft der Bus höchstens zwei Fahrten**, und jeder Kleinbus ebenfalls höchstens zwei. Bei zwei Kleinbussen sind das höchstens <InlineMath math="4" /> Kleinbusfahrten.
 
-<BlockMath math="1:\frac{5}{18}=\frac{18}{5}=3{,}6\text{ Stunden}" />
+# Die günstigste Kombination
 
-Das ist **kürzer als 6 Stunden**, die Zeit der schnelleren Pumpe, wie erwartet, weil sich die Pumpen helfen.
+Angenommen, es gibt <InlineMath math="b" /> Busfahrten und <InlineMath math="m" /> Kleinbusfahrten mit <InlineMath math="b\le2" /> und <InlineMath math="m\le4" />. Die Plätze müssen reichen: <InlineMath math="30b+14m\ge100" />. Probier jeden Wert von <InlineMath math="b" /> aus.
 
-Das Becken ist also nach **3,6 Stunden** voll, das sind 3 Stunden 36 Minuten.
+<BlockMath math="\begin{aligned}
+b=0 &: 14m\ge100 \Rightarrow m\ge 8, \text{ aber } m\le4 \\
+b=1 &: 14m\ge70 \Rightarrow m\ge 5, \text{ aber } m\le4 \\
+b=2 &: 14m\ge40 \Rightarrow m\ge 3
+\end{aligned}" />
+
+Nur <InlineMath math="b=2" /> ist möglich, also **sind beide Busfahrten Pflicht**, und <InlineMath math="m=3" /> ist am günstigsten. Das sind <InlineMath math="60+42=102" /> Plätze, genug für <InlineMath math="100" /> Personen.
+
+<BlockMath math="\text{Kosten}=2\times150{.}000+3\times65{.}000=300{.}000+195{.}000=495{.}000" />
+
+Prüf die Zeiten: Die zwei Busfahrten kommen um 07.25 Uhr und 08.15 Uhr an, die drei Kleinbusfahrten nutzen die zwei Abfahrten um 07.00 Uhr und eine um 07.40 Uhr. Alle kommen vor 08.30 Uhr an.
+
+# Die falschen Antworten
+
+Die anderen Antworten **vergessen die Zeitgrenze oder suchen nicht nach der günstigsten Kombination**.
+
+- <InlineMath math="\text{Rp}475{.}000{,}00" /> nimmt <InlineMath math="1" /> Busfahrt und <InlineMath math="5" /> Kleinbusfahrten. Ohne Zeitgrenze wäre das am günstigsten, aber die Kleinbusse schaffen nur <InlineMath math="4" /> Fahrten.
+- <InlineMath math="\text{Rp}515{.}000{,}00" /> setzt so viel Bus wie möglich ein, <InlineMath math="3" /> Busfahrten und <InlineMath math="1" /> Kleinbusfahrt, aber der Bus schafft nur <InlineMath math="2" /> Fahrten.
+- <InlineMath math="\text{Rp}520{.}000{,}00" /> nimmt <InlineMath math="8" /> Kleinbusfahrten, weil ein Kleinbusplatz billiger ist, aber das ist weder rechtzeitig noch am günstigsten.
+- <InlineMath math="\text{Rp}560{.}000{,}00" /> nutzt alle rechtzeitigen Fahrten, obwohl eine Kleinbusfahrt überflüssig ist.
+
+Am günstigsten kommen die <InlineMath math="100" /> Teilnehmenden also für <InlineMath math="\text{Rp}495{.}000{,}00" /> bis 08.30 Uhr an.

@@ -1,12 +1,24 @@
-Combine the first two premises. Every dictionary is a reference book, and **no reference book may be taken home**. So no dictionary may be taken home.
+The question asks for the conclusion that **must be true** from four rules and two facts about last Thursday: the head barista came in, and the promo board wasn't put up. The key is to work backward from the fact about the promo board.
 
-<BlockMath math="\text{dictionary} \Rightarrow \text{reference} \Rightarrow \text{cannot be taken home}" />
+The right tool is the contrapositive. From a rule "if P, then Q", you may conclude "if not Q, then not P". Follow the steps one at a time.
 
-The other options are not certain:
+1. Rule 2 says "if *kopi susu* (milk coffee) is on sale, the promo board is put up". The board wasn't put up, so milk coffee wasn't on sale.
+2. Rule 1 has a double condition: the head barista comes in and the espresso machine is not broken. Milk coffee wasn't on sale, so the double condition failed. That means at least one of its parts is false.
+3. The first part is true, because the head barista came in. So the second part is the false one. The opposite of "the espresso machine is not broken" is "the espresso machine is broken".
+4. Rule 3: the espresso machine is broken, so the technician is called.
+5. Rule 4 has the form "P only if Q", which means "if P, then Q". So it only says that paying the service fee requires the technician to be called. A called technician doesn't force the shop to pay, and it doesn't stop it either.
 
-- The third premise says only **some** history books may be taken home, not all.
-- The premises do not link dictionaries with history books.
-- The first premise cannot be reversed. A book that cannot be taken home may be some other reference book, not a dictionary.
-- The history books that can be taken home are indeed not reference books, but other history books may be. So "none" is too strong.
+Here are steps 1 to 4 in short form.
 
-So the conclusion that must be true is that no dictionary in that library may be taken home.
+<BlockMath math="\begin{aligned} \neg\text{promo} &\Rightarrow \neg\text{milk coffee} \\ \text{barista in} \wedge \neg\text{milk coffee} &\Rightarrow \text{machine broken} \\ \text{machine broken} &\Rightarrow \text{technician called} \end{aligned}" />
+
+To check, build that Thursday: barista in, machine broken, no milk coffee, no promo board, technician called. All four rules hold **whether or not the shop pays the service fee**. So the service fee really can't be decided.
+
+The other options fall because of one wrong step.
+
+- The machine not broken and the technician not called comes from losing the double negative in step 3. The part that failed is "the machine is not broken", so the machine is in fact broken, and the technician must be called.
+- The machine broken and the shop paying the service fee comes from reading "only if" in rule 4 backward, as "if the technician is called, the shop pays the service fee".
+- The head barista not coming in or the machine not broken is a negation of the double condition that forgot to flip "not broken". The correct negation is "the barista didn't come in or the machine is broken". On that Thursday both parts of this option are false, so the whole option is false.
+- The technician called but the shop not paying the service fee treats something that can't be decided as something that surely didn't happen.
+
+So the conclusion that must be true is that the espresso machine is broken and the technician is called.

@@ -38,3 +38,7 @@ export const MATH_RAY_MESSAGE =
 
 /** Message for a segment whose two ends coincide. */
 export const MATH_SEGMENT_MESSAGE = "Expected a segment with distinct ends.";
+
+/** Message for a vector whose tail and head coincide. */
+export const MATH_VECTOR_MESSAGE =
+  "Expected a vector with distinct tail and head.";

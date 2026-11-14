@@ -47,7 +47,7 @@ Berechne <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> an fünf Stellen von <In
 
 <BarChart
   title={<>Die Rate <InlineMath math="G'(x)" /> an fünf Stellen</>}
-  description={<>Balken von <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> für <InlineMath math="x" /> von 0 bis 2 in Schritten von <InlineMath math="0{,}5" />, beginnend bei 0.</>}
+  description={<>Balken von <InlineMath math="G'(x) = 2x\sqrt{2 + x^2}" /> für <InlineMath math="x" /> von <InlineMath math="0" /> bis <InlineMath math="2" /> in Schritten von <InlineMath math="0{,}5" />, beginnend bei <InlineMath math="0" />.</>}
   yAxisLabel="Rate"
   data={[0, 0.5, 1, 1.5, 2].map((x) => ({ name: String(x), value: 2 * x * Math.sqrt(2 + x ** 2) }))}
   chartConfig={{ value: { label: "Rate", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -63,7 +63,7 @@ Dabei ist <InlineMath math="F(x)" /> eine **Stammfunktion** von <InlineMath math
 
 Diese Differenz schreiben wir oft mit der Klammerschreibweise <InlineMath math="[F(x)]_{a}^{b}" />, die <InlineMath math="F(b) - F(a)" /> bedeutet.
 
-**Beispiel** 1:
+**Beispiel 1**:
 
 Bestimme den Wert von <InlineMath math="\int_{1}^{3} x^2 \, dx" />.
 
@@ -78,7 +78,7 @@ Bestimme den Wert von <InlineMath math="\int_{1}^{3} x^2 \, dx" />.
     <BlockMath math="= \frac{27}{3} - \frac{1}{3} = \frac{26}{3}" />
     </MathContainer>
 
-**Beispiel** 2:
+**Beispiel 2**:
 
 Bestimme den Wert von <InlineMath math="\int_{1}^{5} (2x-1) \, dx" />.
 
@@ -99,8 +99,8 @@ Mit dem Fundamentalsatz der Infinitesimalrechnung berechnen wir ein bestimmtes I
 Prüf das zweite Beispiel an einer Figur, die du messen kannst. Unter <InlineMath math="y = 2x - 1" /> von <InlineMath math="1" /> bis <InlineMath math="5" /> liegt ein Trapez mit den parallelen Seiten <InlineMath math="1" /> und <InlineMath math="9" /> und der Breite <InlineMath math="4" />: Fläche <InlineMath math="\tfrac{1 + 9}{2} \cdot 4 = 20" />. Die Stammfunktion liefert dieselbe Zahl, <InlineMath math="F(5) - F(1) = 20 - 0 = 20" /> mit <InlineMath math="F(x) = x^2 - x" />.
 
 <MathVisual
-  title={<>F(5) minus F(1) ist die Trapezfläche</>}
-  description={<>Die Gerade <InlineMath math="y = 2x - 1" /> und das Trapez darunter von 1 bis 5, dessen Fläche 20 gleich <InlineMath math="F(5) - F(1)" /> ist.</>}
+  title={<><InlineMath math="F(5)" /> minus <InlineMath math="F(1)" /> ist die Trapezfläche</>}
+  description={<>Die Gerade <InlineMath math="y = 2x - 1" /> und das Trapez darunter von <InlineMath math="1" /> bis <InlineMath math="5" />, dessen Fläche <InlineMath math="20" /> gleich <InlineMath math="F(5) - F(1)" /> ist.</>}
   labels={{
     f: <InlineMath math="y = 2x - 1" />,
     area: <InlineMath math="20" />,
@@ -123,7 +123,7 @@ Prüf das zweite Beispiel an einer Figur, die du messen kannst. Unter <InlineMat
 Das erste Beispiel funktioniert unter einer Kurve genauso. Die Fläche unter <InlineMath math="y = x^2" /> zwischen <InlineMath math="x = 1" /> und <InlineMath math="x = 3" /> ist <InlineMath math="\left[\tfrac13 x^3\right]_1^3 = 9 - \tfrac13 = \tfrac{26}{3}" />. Sobald du eine Stammfunktion kennst, brauchst du keine Rechtecke mehr.
 
 <MathVisual
-  title={<>Die Fläche unter x Quadrat von 1 bis 3</>}
+  title={<>Die Fläche unter x Quadrat von <InlineMath math="1" /> bis <InlineMath math="3" /></>}
   description={<>Die Parabel <InlineMath math="y = x^2" /> mit der umrandeten Fläche zwischen <InlineMath math="x = 1" /> und <InlineMath math="x = 3" />, Inhalt <InlineMath math="\tfrac{26}{3}" />.</>}
   labels={{
     f: <InlineMath math="y = x^2" />,

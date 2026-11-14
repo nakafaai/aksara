@@ -1,19 +1,40 @@
-Kenaikan bibit **selalu 15 batang**, dan setiap kelompok bibit hanya <InlineMath math="80\%" /> yang tumbuh, sehingga <InlineMath math="20\%" /> mati.
+Kebun ini punya **dua aturan hasil panen**: sampai <InlineMath math="40" /> pohon, setiap pohon menghasilkan <InlineMath math="120\text{ kg}" />. Di atas <InlineMath math="40" /> pohon, hasil per pohon menjadi <InlineMath math="120-2(n-40)=200-2n" /> kilogram. Setiap pernyataan harus diuji dengan aturan yang sesuai untuk banyak pohonnya.
 
-# Kenaikan tetap dan persentase kenaikan
+# Hasil panen enam puluh dan empat puluh pohon
 
-Dari 120 ke 135 naik <InlineMath math="\tfrac{15}{120}=12{,}5\%" />, sedangkan dari 135 ke 150 naik sekitar <InlineMath math="11{,}1\%" />. Kenaikannya tetap dalam banyak batang, tetapi **persentasenya makin kecil**. Pernyataan pertama salah.
+Dengan <InlineMath math="60" /> pohon, hasil per pohon <InlineMath math="200-120=80\text{ kg}" />. Dengan <InlineMath math="40" /> pohon, berlaku aturan pertama, yaitu <InlineMath math="120\text{ kg}" /> per pohon.
 
-# Pohon yang tumbuh dan bibit yang mati
+<BlockMath math="\begin{aligned}
+60\cdot80&=4{.}800\text{ kg}\\
+40\cdot120&=4{.}800\text{ kg}
+\end{aligned}" />
 
-Tahun kelima ditanam <InlineMath math="120+4\cdot15=180" /> bibit, dan <InlineMath math="80\%\cdot180=144" /> tumbuh. Pernyataan kedua benar.
+Hasil totalnya **sama persis**, jadi pernyataan pertama benar. Dua puluh pohon tambahan itu tidak menambah panen sama sekali.
 
-Tiga tahun pertama menanam <InlineMath math="120+135+150=405" /> bibit, dan **yang mati** <InlineMath math="20\%\cdot405=81" />. Pernyataan ketiga benar.
+# Titik terbaik ketika harga naik
 
-# Tahun kesebelas
+Untuk <InlineMath math="n" /> paling sedikit <InlineMath math="40" />, keuntungan dengan harga <InlineMath math="p" /> rupiah per kilogram adalah <InlineMath math="p\cdot n(200-2n)-96{.}000n" />. Bandingkan kedua harga:
 
-<BlockMath math="U_{11}=120+10\cdot15=270" />
+<BlockMath math="\begin{aligned}
+p=8{.}000: \ 16{.}000n(100-n)-96{.}000n&=16{.}000n(94-n)\\
+p=12{.}000: \ 24{.}000n(100-n)-96{.}000n&=24{.}000n(96-n)
+\end{aligned}" />
 
-Dua kali bibit tahun pertama adalah 240, **bukan 270**. Pernyataan keempat salah.
+Puncak setiap bentuk ada di tengah kedua titik nolnya. Dengan harga lama puncaknya <InlineMath math="\tfrac{94}{2}=47" /> pohon. Dengan harga baru puncaknya <InlineMath math="\tfrac{96}{2}=48" /> pohon. **Harga yang naik menggeser titik terbaik**, karena biaya perawatan menjadi bagian yang lebih kecil dari hasil penjualan. Pernyataan kedua salah.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+# Tujuh puluh pohon dan tiga puluh pohon
+
+Untuk <InlineMath math="70" /> pohon, hasil per pohon <InlineMath math="200-140=60\text{ kg}" />. Untuk <InlineMath math="30" /> pohon, **rumus penurunan tidak berlaku**, karena <InlineMath math="30" /> belum melewati <InlineMath math="40" />.
+
+<BlockMath math="\begin{aligned}
+70\text{ pohon}: \ 8{.}000\cdot70\cdot60-96{.}000\cdot70&=33{.}600{.}000-6{.}720{.}000=26{.}880{.}000\\
+30\text{ pohon}: \ 8{.}000\cdot30\cdot120-96{.}000\cdot30&=28{.}800{.}000-2{.}880{.}000=25{.}920{.}000
+\end{aligned}" />
+
+Keuntungan <InlineMath math="70" /> pohon lebih besar, jadi pernyataan ketiga salah. Kalau rumus <InlineMath math="16{.}000n(94-n)" /> dipakai untuk <InlineMath math="30" /> pohon, hasilnya <InlineMath math="30{.}720{.}000" />, dan pernyataan ini akan tampak benar.
+
+# Hasil per pohon di batas enam puluh lima
+
+Dengan tepat <InlineMath math="65" /> pohon, hasil per pohon adalah <InlineMath math="200-130=70\text{ kg}" />. Nilai ini tidak kurang dari <InlineMath math="70\text{ kg}" />. Kata **paling sedikit enam puluh lima** mencakup <InlineMath math="65" /> itu sendiri, jadi pernyataan keempat salah. Hasil per pohon baru kurang dari <InlineMath math="70\text{ kg}" /> mulai <InlineMath math="66" /> pohon.
+
+Jadi, pernyataan pertama benar, sedangkan pernyataan kedua, ketiga, dan keempat salah.

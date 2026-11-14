@@ -1,18 +1,48 @@
-The speed needed is **the file size in megabits divided by the time in seconds**. Both units must be matched first.
+You're looking for the latest moment Bayu can plug in the charger and still have <InlineMath math="55\%" /> at 16.00. The plan: list every rate that applies, then **count backwards from 16.00**, because the later the charger goes in, the lower the final battery.
 
-# Size and time in suitable units
+# The rates that apply
+
+Without the charger, video drains <InlineMath math="20\%" /> per hour. At <InlineMath math="20\%" /> or less, **power saving mode makes video drain only <InlineMath math="10\%" /> per hour**. While charging and watching, the battery changes by the charger's gain minus the video drain.
 
 <BlockMath math="\begin{aligned}
-1.5\text{ GB}&=1{,}500\text{ MB}=1{,}500\cdot8=12{,}000\text{ megabits}\\
-4\text{ minutes}&=240\text{ seconds}
+\text{above } 20\% &: 40\%-20\%=20\%\text{ per hour} \\
+\text{at } 20\% \text{ or less} &: 40\%-10\%=30\%\text{ per hour}
 \end{aligned}" />
 
-# Minimum speed
+The target of <InlineMath math="55\%" /> is below <InlineMath math="80\%" />, so the slower charging above <InlineMath math="80\%" /> plays no part.
 
-<BlockMath math="\frac{12{,}000}{240}=50\text{ Mbps}" />
+# When the battery must be back at twenty percent
 
-A lower speed makes the download **take longer than 4 minutes**, so 50 Mbps is the lowest speed that works. The home's 40 Mbps is not enough, since it needs 300 seconds.
+Above <InlineMath math="20\%" />, the battery rises <InlineMath math="20\%" /> per hour. Climbing from <InlineMath math="20\%" /> to <InlineMath math="55\%" /> takes this long.
 
-The value 6.25 Mbps forgets to multiply by 8. The value 375 Mbps divides by 4 minutes instead of 240 seconds while still using megabits.
+<BlockMath math="\frac{55-20}{20}\text{ h}=\frac{35}{20}\text{ h}=1\text{ h }45\text{ min}" />
 
-So the lowest speed needed is **50 Mbps**.
+So **by 14.15 the battery must already be back at <InlineMath math="20\%" />** while charging.
+
+# Falling and climbing back in saving mode
+
+Without the charger, the battery drops from <InlineMath math="25\%" /> to <InlineMath math="20\%" /> in <InlineMath math="\frac{5}{20}" /> of an hour, which is <InlineMath math="15" /> minutes. So at 13.15 the battery is at <InlineMath math="20\%" />, and there are <InlineMath math="60" /> minutes from 13.15 to 14.15.
+
+Say the charger goes in <InlineMath math="d" /> minutes after 13.15. During those <InlineMath math="d" /> minutes, **the battery falls at the saving rate of <InlineMath math="10\%" /> per hour**, and then it has to climb back to <InlineMath math="20\%" /> at <InlineMath math="30\%" /> per hour. The climb is three times as fast as the fall, so it takes a third of the time.
+
+<BlockMath math="\begin{aligned}
+d+\frac{d}{3} &= 60 \\
+\frac{4d}{3} &= 60 \\
+d &= 45
+\end{aligned}" />
+
+The charger has to go in at most <InlineMath math="45" /> minutes after 13.15, which is 14.00, or <InlineMath math="15+45=60" /> minutes after 13.00.
+
+# Checking by counting forwards
+
+Plug in at exactly 14.00. From 13.15 to 14.00 the battery loses <InlineMath math="10\%\cdot\frac{45}{60}=7.5\%" />, leaving <InlineMath math="12.5\%" />. It then climbs back to <InlineMath math="20\%" /> in <InlineMath math="\frac{7.5}{30}" /> of an hour, which is <InlineMath math="15" /> minutes, so it's at <InlineMath math="20\%" /> at exactly 14.15. From 14.15 to 16.00 there are <InlineMath math="105" /> minutes.
+
+<BlockMath math="20\%+20\%\cdot\frac{105}{60}=20\%+35\%=55\%" />
+
+If you plug in later, the battery falls for longer and climbs for less time, so **the final battery has to end below <InlineMath math="55\%" />**. The phone doesn't die before charging either, since its lowest level is <InlineMath math="12.5\%" />.
+
+# Common slips
+
+If you **ignore power saving mode**, the battery seems to fall and rise at <InlineMath math="20\%" /> per hour. Then the charger seems to be needed by 13.45, which is <InlineMath math="45" /> minutes, even though saving mode buys extra time. If you forget to subtract the video drain while charging, the battery seems to rise <InlineMath math="40\%" /> per hour and you allow far too much time.
+
+So the charger has to be plugged in at most <InlineMath math="60" /> minutes after 13.00.

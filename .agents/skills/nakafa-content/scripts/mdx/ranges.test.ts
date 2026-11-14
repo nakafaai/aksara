@@ -1,5 +1,7 @@
 import { assert, it } from "@effect/vitest";
 
+import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import { addressAttributeRanges } from "#nakafa-content/mdx/ranges";
 import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 
 it("checks learner-visible component copy", () => {
@@ -259,4 +261,28 @@ it("checks standalone rendered JSX fragment expressions", () => {
       rule: "german-formal-address",
     },
   ]);
+});
+
+/** Reads the address ranges of the one `data` attribute of a chart line. */
+function dataRanges(source: string) {
+  let ranges: ReturnType<typeof addressAttributeRanges> = [];
+  visitMdxNodes(parseLessonMdx(source), (node) => {
+    for (const attribute of node.attributes ?? []) {
+      if (attribute.name === "data") {
+        ranges = addressAttributeRanges(attribute, source);
+      }
+    }
+  });
+  return ranges;
+}
+
+it("reads JSX text only in the nested fields that render learner copy", () => {
+  const rendered = "<Chart data={{ name: <>Kamu coba ini.</> }} />";
+  const technical = "<Chart data={{ title: <>Kamu coba ini.</> }} />";
+
+  assert.deepEqual(
+    dataRanges(rendered).map((range) => range.start?.offset),
+    [rendered.indexOf("Kamu")]
+  );
+  assert.deepEqual(dataRanges(technical), []);
 });

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
     topic: "data-interpretation",
   },
-  stimulus: "pinjam",
+  stimulus: "gudang",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -15,22 +15,22 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Persentase kenaikan peminjaman buku sejarah lebih besar daripada persentase kenaikan peminjaman buku fiksi.",
+            "Ada akhir minggu ketika stok dua gudang tepat sama besar dan pada saat itu stok ketiga gudang tidak ada yang kurang dari stok aman.",
         },
         {
           column: 2,
           label:
-            "Pada semester II, peminjaman buku fiksi lebih dari dua kali peminjaman buku sains.",
+            "Jika sejak minggu pertama Gudang Cempaka mengambil alih pengiriman $$4$$ ton beras per minggu dari Gudang Anggrek, tidak ada gudang yang stoknya kurang dari stok aman sampai akhir minggu ke-$$8$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada akhir minggu ke-$$8$$, jika susut mingguan dibandingkan dengan stok gudang pada saat itu, persentase susut Gudang Cempaka lebih besar daripada persentase susut Gudang Anggrek.",
         },
         {
           column: 1,
           label:
-            "Jika peminjaman buku bahasa pada semester III naik dengan persentase yang sama seperti dari semester I ke semester II, peminjaman buku bahasa pada semester III lebih dari $$660$$.",
-        },
-        {
-          column: 2,
-          label:
-            "Proporsi buku sejarah terhadap total peminjaman naik lebih dari $$3$$ poin persen dari semester I ke semester II.",
+            "Setiap minggu, susut ketiga gudang menyumbang lebih dari $$10\\%$$ penurunan jumlah stok ketiga gudang.",
         },
       ],
     },

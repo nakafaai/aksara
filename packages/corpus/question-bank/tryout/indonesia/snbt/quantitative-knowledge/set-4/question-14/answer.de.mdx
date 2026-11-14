@@ -1,20 +1,44 @@
-Alle Aussagen verwenden die Grundformeln des Zylinders mit <InlineMath math="r=3" /> und <InlineMath math="t=8" />. Achte darauf, **welche Größe in jeder Formel quadriert wird**.
+Du vergleichst zwei riesige Zahlen ohne Taschenrechner. Der Plan: Schreib <InlineMath math="P" /> als Potenz von <InlineMath math="2" /> und <InlineMath math="Q" /> als Potenz von <InlineMath math="3" />. Die Exponenten lassen sich nicht angleichen, also musst du **über zwei kleine, fast gleiche Potenzen vergleichen** und dann mit dem binomischen Lehrsatz abschätzen.
 
-# Volumen und Mantelfläche
+# Beide Zahlen vereinfachen
+
+Vier gleiche Summanden zu addieren heißt, den Summanden mit <InlineMath math="4" /> zu multiplizieren. Vorsicht: **Addieren addiert keine Exponenten**.
 
 <BlockMath math="\begin{aligned}
-V&=\pi r^2t=\pi\cdot9\cdot8=72\pi\\
-A_{\text{Mantel}}&=2\pi rt=2\pi\cdot3\cdot8=48\pi
+P&=4\cdot8^{29}=2^2\cdot\left(2^3\right)^{29}=2^2\cdot2^{87}=2^{89}\\
+Q&=9\cdot27^{18}=3^2\cdot\left(3^3\right)^{18}=3^2\cdot3^{54}=3^{56}
 \end{aligned}" />
 
-Die erste Aussage ist **wahr**. Die Mantelfläche beträgt <InlineMath math="48\pi" /> und nicht <InlineMath math="24\pi" />, die dritte Aussage ist also falsch. Der Wert <InlineMath math="24\pi" /> entsteht, wenn der Faktor 2 im Umfang der Grundfläche fehlt.
+# Warum gleiche Exponenten nicht reichen
 
-# Größter Abstand und Änderung der Höhe
+Die Zahl <InlineMath math="89" /> ist eine Primzahl, also lassen sich <InlineMath math="2^{89}" /> und <InlineMath math="3^{56}" /> nicht mit demselben Exponenten schreiben. Die verlockende Abkürzung ist, einen Faktor <InlineMath math="2" /> wegzulassen: <InlineMath math="2^{88}=\left(2^{11}\right)^8=2048^8" /> ist kleiner als <InlineMath math="3^{56}=2187^8" />. Das zeigt aber nur, dass <InlineMath math="Q" /> größer als <InlineMath math="\frac P2" /> ist. **Der weggelassene Faktor <InlineMath math="2" /> kann das Ergebnis umdrehen**, dieser Vergleich entscheidet also nichts.
 
-Die beiden am weitesten entfernten Punkte des Zylinders liegen auf dem Rand der Grundfläche und dem Rand der Deckfläche, auf entgegengesetzten Seiten der Achse. Sie bilden die Diagonale eines Rechtecks aus dem Durchmesser 6 cm und der Höhe 8 cm, also **des Achsenschnitts**.
+# Zwei fast gleiche Potenzen nutzen
 
-<BlockMath math="d=\sqrt{6^2+8^2}=\sqrt{100}=10" />
+Beachte, dass <InlineMath math="2^8=256" /> und <InlineMath math="3^5=243" /> fast gleich sind. Schreib beide Zahlen mit ihren <InlineMath math="11" />. Potenzen.
 
-Die zweite Aussage ist wahr. Das Volumen <InlineMath math="\pi r^2t" /> ist proportional zu <InlineMath math="t" /> in der ersten Potenz, doppelte Höhe ergibt also doppeltes und nicht vierfaches Volumen. Die vierte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+P&=2\cdot2^{88}=2\cdot256^{11}\\
+Q&=3\cdot3^{55}=3\cdot243^{11}\\
+\frac PQ&=\frac23\left(\frac{256}{243}\right)^{11}=\frac23\left(1+\frac{13}{243}\right)^{11}
+\end{aligned}" />
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+Also gilt <InlineMath math="P>Q" /> genau dann, wenn <InlineMath math="\left(1+\frac{13}{243}\right)^{11}>\frac32" /> ist. Nach dem binomischen Lehrsatz ist <InlineMath math="(1+x)^{11}=1+11x+\ldots" />, und für <InlineMath math="x>0" /> sind alle weiteren Summanden positiv. Also **liefern schon die ersten beiden Summanden eine untere Schranke**.
+
+<BlockMath math="\begin{aligned}
+\left(1+\frac{13}{243}\right)^{11}&>1+11\cdot\frac{13}{243}=1+\frac{143}{243}\\
+\frac{143}{243}&>\frac12\quad\text{weil}\quad2\cdot143=286>243\\
+\frac PQ&>\frac23\cdot\frac32=1
+\end{aligned}" />
+
+Also ist <InlineMath math="P>Q" />. Prüf beide Schranken zusammen. Der vorige Abschnitt lieferte <InlineMath math="Q>\frac P2" />, dieser liefert <InlineMath math="Q<P" />. Damit liegt <InlineMath math="Q" /> zwischen <InlineMath math="\frac P2" /> und <InlineMath math="P" />, die beiden Ergebnisse widersprechen sich also nicht.
+
+# Die verlockenden falschen Optionen
+
+Die anderen Optionen entstehen, wenn **der Vergleich zu früh abgebrochen wird**.
+
+- <InlineMath math="Q>P" /> entsteht, wenn du den Faktor <InlineMath math="2" /> weglässt und <InlineMath math="2048^8" /> mit <InlineMath math="2187^8" /> vergleichst, oder wenn du annimmst, die Basis <InlineMath math="3" /> müsse gewinnen.
+- <InlineMath math="P=Q" /> ist unmöglich, denn <InlineMath math="P=2^{89}" /> ist gerade und <InlineMath math="Q=3^{56}" /> ungerade.
+- Die Option mit zu wenig Information entsteht, wenn du nach <InlineMath math="2^8>3^5" /> aufhörst. Das liefert nur <InlineMath math="2^{88}>3^{55}" />, verglichen werden aber <InlineMath math="2\cdot2^{88}" /> und <InlineMath math="3\cdot3^{55}" />. Die binomische Abschätzung oben entscheidet das.
+
+Die Größe <InlineMath math="P" /> ist also größer als die Größe <InlineMath math="Q" />, es gilt <InlineMath math="P>Q" />.

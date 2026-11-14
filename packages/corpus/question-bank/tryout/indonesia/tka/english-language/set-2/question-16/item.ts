@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "procedure",
-    topic: "cause-effect",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "narrative",
+    topic: "realism-fantasy",
   },
-  stimulus: "emergency-plan",
+  stimulus: "umbrella",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Use the second meeting place because it is outside the immediate neighborhood.",
+            "The bent rib is straight again when Pak Darmo opens the umbrella, although nobody has touched it.",
         },
         {
           correct: false,
           label:
-            "Remain at the first meeting place because one safe point should replace every other route.",
+            "The umbrella is hooked over Bu Sari's cart, although she is sure it was not there when she set out.",
         },
         {
           correct: false,
           label:
-            "Choose any distant place because greater distance automatically makes it safe for everyone.",
+            "Raka finds the umbrella already open at the shelter, with nobody standing near it.",
         },
         {
           correct: false,
           label:
-            "Discard the paper cards because they can be used only inside the neighborhood.",
+            "A gust of wind on the bridge bends one rib of the umbrella backwards.",
         },
         {
           correct: false,
           label:
-            "Wait for the out-of-area contact to select a new meeting place without consulting the household.",
+            "Wulan's own umbrella blows inside out in the heaviest rain of the week.",
         },
       ],
     },

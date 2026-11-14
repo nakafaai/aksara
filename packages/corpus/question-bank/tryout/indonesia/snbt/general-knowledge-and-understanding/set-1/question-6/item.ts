@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "inference",
   },
-  stimulus: "elektronik",
+  stimulus: "cabai",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Pembeli akhir yang memakai barang hingga habis.",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "Orang yang mengumpulkan barang dari banyak sumber untuk dijual kembali.",
+            "Karena bobot cabai dalam indeks kecil, lonjakan harga cabai hanya sedikit menggerakkan indeks harga konsumen.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Petugas kebersihan yang digaji pemerintah daerah untuk mengangkut sampah rumah tangga.",
+            "Harga cabai dapat melonjak tajam walaupun permintaan cabai tidak bertambah.",
         },
         {
-          correct: false,
-          label: "Pemilik pabrik daur ulang berskala besar.",
+          column: 1,
+          label:
+            "Gejolak harga cabai tetap dapat terjadi walaupun pemerintah daerah sudah memperlancar distribusi antardaerah.",
         },
         {
-          correct: false,
-          label: "Perajin yang memperbaiki perangkat rusak.",
+          column: 2,
+          label:
+            "Kenaikan suku bunga dapat meredam lonjakan harga cabai dalam jangka pendek asalkan kenaikannya cukup besar.",
         },
       ],
     },

@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "procedure",
-    topic: "classification",
+    cognitiveLevel: "inferential",
+    contentDomain: "descriptive",
+    topic: "comparison",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Choose a quiet period.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: true,
-          label: "Check whether essential equipment uses water.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "Start the irrigation once before the reading to verify that its timer works.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "Break a wall to find the pipe.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
         },
       ],
     },

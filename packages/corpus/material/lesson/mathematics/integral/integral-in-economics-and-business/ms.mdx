@@ -1,0 +1,207 @@
+export const metadata = {
+   title: "Kamiran dalam Ekonomi dan Perniagaan",
+   description: "Gunakan kamiran pada contoh model perniagaan untuk mengira jumlah jualan, perubahan kos, pertumbuhan hasil dan lebihan pengguna.",
+   authors: [{ name: "Nabil Akbarazzima Fatih" }],
+   datePublished: "2025-05-26",
+   dateModified: "2026-11-08",
+   subject: "Pengamiran",
+};
+
+## Mengumpulkan Jualan dan Kos daripada Kadarnya
+
+Data ekonomi selalunya menerangkan suatu kadar, seperti bilangan unit yang dijual sebulan atau kos tambahan bagi setiap unit yang dihasilkan. <Highlight>Kamiran menjumlahkan perubahan ini sepanjang suatu tempoh</Highlight> masa atau suatu julat pengeluaran.
+
+Sebagai contoh, apabila kita kamirkan kadar jualan sepanjang tiga bulan, kita mendapat jumlah unit yang dijual dalam tiga bulan itu.
+
+Paksi mengufuk mengikut pemboleh ubah pengamiran: masa bagi kadar jualan, atau kuantiti pengeluaran bagi kos marginal. **Unit kamiran** ialah hasil darab unit pada kedua-dua paksi.
+
+| Kuantiti yang dikamirkan | Pemboleh ubah pengamiran | Hasil kamiran |
+| --- | --- | --- |
+| Unit sebulan | Bulan | Unit yang dijual |
+| Ribu rupiah seunit | Unit yang dihasilkan | Ribu rupiah |
+| Ribu rupiah sebulan | Bulan | Ribu rupiah |
+
+## Analisis Jualan Menggunakan Kamiran
+
+Katakan sebuah syarikat teknologi melancarkan telefon pintar baharu. Kadar jualan bulanannya dimodelkan oleh <InlineMath math="f(t) = 2000\sqrt{t + 1} + 800 \text{ unit}" /> sebulan, dengan <InlineMath math="t" /> ialah masa dalam bulan selepas pelancaran.
+
+Untuk mencari **jumlah jualan** dalam <InlineMath math="3 \text{ bulan}" /> pertama, kamirkan fungsi kadar jualan:
+
+<BlockMath math="S = \int_{0}^{3} (2000\sqrt{t + 1} + 800) \, dt" />
+
+Selesaikannya dengan memisahkan kamiran itu dahulu:
+
+<MathContainer>
+<BlockMath math="S = \int_{0}^{3} 2000\sqrt{t + 1} \, dt + \int_{0}^{3} 800 \, dt" />
+<BlockMath math="S = 2000 \int_{0}^{3} (t + 1)^{1/2} \, dt + 800t \Big|_{0}^{3}" />
+</MathContainer>
+
+Bagi kamiran yang mengandungi punca kuasa dua, kita boleh gunakan kaedah penggantian. Katakan <InlineMath math="u = t + 1" />, maka <InlineMath math="du = dt" />. Jangan lupa tukar had kamiran juga!
+
+<MathContainer>
+<BlockMath math="S = 2000 \int_{1}^{4} u^{1/2} \, du + 2400" />
+<BlockMath math="S = 2000 \left[\frac{2}{3}u^{3/2}\right]_{1}^{4} + 2400" />
+<BlockMath math="\begin{aligned} S &amp;= \frac{4000}{3}(8 - 1) + 2400 \\ &amp;= \frac{28000}{3} + \frac{7200}{3} \\ &amp;= \frac{35200}{3} \end{aligned}" />
+</MathContainer>
+
+Model selanjar ini meramalkan <InlineMath math="S = \frac{35200}{3} \approx 11733.33" /> unit telefon pintar dalam <InlineMath math="3 \text{ bulan}" /> pertama. Jika ditafsirkan sebagai bilangan peranti yang lengkap, nilai itu ialah lebih kurang <InlineMath math="11733" /> buah telefon pintar.
+
+Kamiran menjumlahkan suatu kadar. Dengan kadar jualan <InlineMath math="2000\sqrt{t + 1} + 800" /> unit sebulan, palang menunjukkan jumlah yang dijual selepas <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="3" /> bulan, setiap satu dikira sebagai <InlineMath math="\int_0^t (2000\sqrt{u + 1} + 800)\,du" />. Palang terakhir ialah lebih kurang <InlineMath math="11733" /> unit, sama dengan jawapan di atas.
+
+<BarChart
+  title={<>Jumlah jualan yang terkumpul daripada suatu kadar</>}
+  description={<>Jumlah jualan selepas <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="3" /> bulan, setiap satu ialah kamiran kadar jualan dari <InlineMath math="0" /> hingga bulan itu.</>}
+  yAxisLabel="Unit yang dijual"
+  data={[1, 2, 3].map((t) => ({ name: `${t}`, value: (4000 / 3) * ((t + 1) ** 1.5 - 1) + 800 * t }))}
+  chartConfig={{ value: { label: "Unit yang dijual", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Analisis Pertumbuhan Hasil
+
+Model kedua memberikan kadar pertumbuhan hasil sebuah syarikat pemula teknologi sebagai <InlineMath math="R'(t) = 5000e^{0.1t}" /> ribu rupiah sebulan, dengan <InlineMath math="t" /> diukur dalam bulan.
+
+Untuk mengira **jumlah peningkatan hasil** dalam <InlineMath math="6 \text{ bulan}" /> pertama, kita kamirkan fungsi kadar pertumbuhan:
+
+Tulis peningkatan itu sebagai <InlineMath math="\Delta R=R(6)-R(0)" />. Hasil awal tidak diperlukan untuk mengira **perubahannya**.
+
+<MathContainer>
+<BlockMath math="\Delta R = \int_{0}^{6} 5000e^{0.1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \int_{0}^{6} e^{0.1t} \, dt" />
+<BlockMath math="\Delta R = 5000 \left[\frac{e^{0.1t}}{0.1}\right]_{0}^{6}" />
+<BlockMath math="\Delta R = 50000(e^{0.6} - 1)" />
+</MathContainer>
+
+Dengan <InlineMath math="e^{0.6} \approx 1.822" />, jumlah peningkatan hasil ialah lebih kurang <InlineMath math="50000 \times 0.822 = 41100" /> ribu rupiah atau <InlineMath math="41.1 \text{ juta}" /> rupiah.
+
+## Jumlah Kos Pengeluaran
+
+Dalam perniagaan, syarikat selalu perlu menganggarkan kos pengeluaran. Katakan kos marginal untuk menghasilkan suatu barang ialah <InlineMath math="MC(x) = 0.3x^2 - 12x + 200" /> ribu rupiah seunit, dengan <InlineMath math="x" /> ialah bilangan unit yang dihasilkan.
+
+Sekarang, jika syarikat itu mahu tahu **jumlah kos berubah** untuk menghasilkan <InlineMath math="20 \text{ unit}" /> pertama, syarikat itu hanya perlu mengamirkan fungsi kos marginal:
+
+<BlockMath math="VC = \int_{0}^{20} (0.3x^2 - 12x + 200) \, dx" />
+
+Selepas kita kamirkan dan nilaikan, kita peroleh:
+
+<MathContainer>
+<BlockMath math="VC = \left[0.1x^3 - 6x^2 + 200x\right]_{0}^{20}" />
+<BlockMath math="VC = 800 - 2400 + 4000 = 2400" />
+</MathContainer>
+
+Dengan andaian <InlineMath math="VC(0)=0" />, jumlah kos berubah untuk menghasilkan <InlineMath math="20 \text{ unit}" /> ialah <InlineMath math="2.4 \text{ juta}" /> rupiah. Sebarang kos tetap diasingkan dan tidak termasuk dalam kamiran ini.
+
+> Dalam aplikasi ekonomi, kamiran menukar kuantiti marginal atau kadar perubahan kepada jumlah terkumpul. Sebagai contoh, mengamirkan kos marginal memberikan perubahan dalam jumlah kos.
+
+Perhatikan bagaimana kos berubah itu terkumpul. Nilai <InlineMath math="VC(x) = 0.1x^3 - 6x^2 + 200x" /> selepas <InlineMath math="5" />, <InlineMath math="10" />, <InlineMath math="15" /> dan <InlineMath math="20" /> unit ialah <InlineMath math="862.5" />, <InlineMath math="1500" />, <InlineMath math="1987.5" /> dan <InlineMath math="2400" /> ribu rupiah. Setiap blok <InlineMath math="5" /> unit menambah kurang daripada blok sebelumnya, iaitu <InlineMath math="862.5" />, <InlineMath math="637.5" />, <InlineMath math="487.5" /> dan <InlineMath math="412.5" />, kerana kos marginal menurun ke arah nilai minimumnya pada <InlineMath math="x = 20" />.
+
+<BarChart
+  title={<>Kos berubah yang terkumpul bagi <InlineMath math="20" /> unit pertama</>}
+  description={<>Palang <InlineMath math="VC(x) = 0.1x^3 - 6x^2 + 200x" /> ribu rupiah pada <InlineMath math="x = 0, 5, 10, 15, 20" /> unit, berakhir pada <InlineMath math="2400" />.</>}
+  yAxisLabel="Kos berubah (ribu rupiah)"
+  data={[0, 5, 10, 15, 20].map((x) => ({ name: String(x), value: 0.1 * x ** 3 - 6 * x ** 2 + 200 * x }))}
+  chartConfig={{ value: { label: "Kos berubah (ribu rupiah)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Analisis Lebihan Pengguna
+
+Lebihan pengguna juga boleh dikira dengan kamiran. Perhatikan suatu pasaran dengan fungsi permintaan <InlineMath math="P = 100 - 0.5Q" /> dan harga keseimbangan <InlineMath math="60 \text{ rupiah seunit}" />. Kuantiti keseimbangan pada keluk permintaan ini diperoleh daripada:
+
+<BlockMath math="\begin{aligned} &amp;60=100-0.5Q \\ &amp;\Longrightarrow \\ &amp;Q=80 \end{aligned}" />
+
+Lebihan pengguna menjumlahkan, merentasi <InlineMath math="80" /> unit yang didagangkan, beza antara kesanggupan pembeli untuk membayar, yang diberikan oleh keluk permintaan, dengan harga pasaran yang sebenarnya mereka bayar:
+
+<BlockMath math="\begin{aligned} CS &amp;= \int_{0}^{80} (100 - 0.5Q - 60) \, dQ \\ &amp;= \int_{0}^{80} (40 - 0.5Q) \, dQ \end{aligned}" />
+
+Selepas dinilai:
+
+<MathContainer>
+<BlockMath math="CS = \left[40Q - 0.25Q^2\right]_{0}^{80}" />
+<BlockMath math="CS = 3200 - 1600 = 1600" />
+</MathContainer>
+
+Lebihan pengguna sebanyak <InlineMath math="1600 \text{ rupiah}" /> mengukur jumlah manfaat kewangan yang diterima oleh pengguna melebihi harga keseimbangan.
+
+Beza harga itu membentuk sebuah **segi tiga**: tingginya <InlineMath math="40" /> rupiah seunit pada <InlineMath math="Q=0" /> dan menurun kepada sifar pada <InlineMath math="Q=80" />. Semak kamiran itu menggunakan luas segi tiga:
+
+<BlockMath math="CS=\frac12(80)(100-60)=1600" />
+
+Lebihan pengguna ialah luas sebuah segi tiga. Pembeli sanggup membayar sehingga garis permintaan <InlineMath math="P = 100 - 0.5Q" />, tetapi semua orang membayar harga pasaran <InlineMath math="60" />. Jurang antara kedua-duanya bagi <InlineMath math="80" /> unit pertama ialah segi tiga dengan tapak <InlineMath math="80" /> dan tinggi <InlineMath math="40" />: <InlineMath math="\tfrac12 \cdot 80 \cdot 40 = 1600" />, sama dengan nilai kamiran.
+
+<MathVisual
+  title={<>Lebihan pengguna sebagai segi tiga</>}
+  description={<>Garis permintaan <InlineMath math="P = 100 - 0.5Q" />, garis harga <InlineMath math="60" /> dan segi tiga di antara kedua-duanya hingga <InlineMath math="Q = 80" />, dengan luas 1600.</>}
+  labels={{
+    demand: <InlineMath math="P = 100 - 0.5Q" />,
+    price: <InlineMath math="P = 60" />,
+    surplus: <InlineMath math="1600" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 5 },
+    objects: [
+      { id: "demand", kind: "line", through: [{ x: 0, y: 100 }, { x: 200, y: 0 }], appearance: "reference" },
+      { id: "price", kind: "line", through: [{ x: 0, y: 60 }, { x: 200, y: 60 }], appearance: "secondary" },
+      { id: "surplus", kind: "polygon", vertices: [{ x: 0, y: 100 }, { x: 0, y: 60 }, { x: 80, y: 60 }], appearance: "primary" },
+      { id: "market", kind: "point", at: { x: 80, y: 60 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "demand", objectId: "demand", at: { x: 140, y: 30 }, placement: "above-right" },
+      { key: "price", objectId: "price", at: { x: 170, y: 60 }, placement: "above" },
+      { key: "surplus", objectId: "surplus", at: { x: 80 / 3, y: 220 / 3 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Setiap soalan memberikan suatu kadar seperti kos marginal atau hasil marginal dan meminta jumlah terkumpulnya. Jadi, **kamirkan kadar itu** sepanjang selang yang dinyatakan, kemudian baca jawapannya dalam unit asal.
+
+1. Sebuah syarikat mempunyai kadar jualan <InlineMath math="f(t) = 1000 + 500t \text{ unit}" /> sebulan. Kira jumlah jualan dalam <InlineMath math="6 \text{ bulan}" /> pertama.
+
+2. Jika kos marginal suatu produk ialah <InlineMath math="MC(x) = 2x + 50" /> ribu rupiah seunit, berapakah jumlah kos berubah untuk menghasilkan <InlineMath math="25 \text{ unit}" />?
+
+3. Fungsi kadar pertumbuhan pelaburan ialah <InlineMath math="I'(t) = 2000e^{0.05t}\text{ juta}" /> rupiah setahun. Kira jumlah pertumbuhan pelaburan dalam <InlineMath math="4 \text{ tahun}" />.
+
+### Jalan Kerja
+
+**Soalan 1**. Kamirkan **fungsi kadar jualan** dari bulan sifar hingga bulan keenam. Apabila kadar dalam unit sebulan didarab dengan selang masa dalam bulan, kita mendapat bilangan unit yang dijual.
+
+<BlockMath math="S = \int_{0}^{6} (1000 + 500t) \, dt" />
+
+Kita peroleh:
+
+<MathContainer>
+<BlockMath math="S = \left[1000t + 250t^2\right]_{0}^{6}" />
+<BlockMath math="S = 6000 + 9000 = 15000" />
+</MathContainer>
+
+Jumlah jualan dalam <InlineMath math="6 \text{ bulan}" /> ialah <InlineMath math="15{,}000 \text{ unit}" />.
+
+**Soalan 2**. Kamirkan **fungsi kos marginal** dari sifar hingga <InlineMath math="25" /> unit output. Oleh sebab kos marginal diukur dalam ribu rupiah seunit, kamiran itu diukur dalam ribu rupiah.
+
+<BlockMath math="VC = \int_{0}^{25} (2x + 50) \, dx" />
+
+Selepas dinilai:
+
+<MathContainer>
+<BlockMath math="VC = \left[x^2 + 50x\right]_{0}^{25}" />
+<BlockMath math="VC = 625 + 1250 = 1875" />
+</MathContainer>
+
+Jumlah kos berubah ialah <InlineMath math="1{,}875" /> ribu rupiah atau <InlineMath math="1.875 \text{ juta}" /> rupiah.
+
+Dengan <InlineMath math="VC(0)=0" />, jawapan ini ialah kos berubah. Tambahkan sebarang kos tetap secara berasingan.
+
+**Soalan 3**. Kumpulkan kadar pelaburan sepanjang empat tahun. Antiterbitan fungsi eksponen ini memerlukan pembahagian dengan pekali masa, iaitu <InlineMath math="0.05" />.
+
+<BlockMath math="\Delta I = \int_{0}^{4} 2000e^{0.05t} \, dt" />
+
+Kita peroleh:
+
+<MathContainer>
+<BlockMath math="\Delta I = 2000 \left[\frac{e^{0.05t}}{0.05}\right]_{0}^{4}" />
+<BlockMath math="\begin{aligned} \Delta I &amp;= 40000(e^{0.2} - 1) \\ &amp;\approx 40000(0.2214) \\ &amp;\approx 8856 \end{aligned}" />
+</MathContainer>
+
+Jumlah **pertumbuhan pelaburan** dalam <InlineMath math="4 \text{ tahun}" /> ialah lebih kurang <InlineMath math="8.86 \text{ bilion rupiah}" />.

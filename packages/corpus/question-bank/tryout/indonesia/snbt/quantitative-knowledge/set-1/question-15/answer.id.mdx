@@ -1,50 +1,37 @@
-Titik <InlineMath math="A" /> dan <InlineMath math="B" /> sama-sama berada di atas sumbu <InlineMath math="x" />, jadi lintasan <InlineMath math="A\to P\to B" /> harus menyentuh sumbu lalu kembali naik. Trik yang tepat adalah **mencerminkan salah satu titik terhadap sumbu <InlineMath math="x" />** agar lintasan itu berubah menjadi garis lurus.
+Soal hanya menyebut dua panjang sisi, jadi segitiga sama kakinya **bisa dibentuk dengan dua cara**. Rencananya: tentukan kedua kemungkinan sisi ketiga, periksa apakah keduanya benar-benar membentuk segitiga, hitung luas masing-masing, lalu bandingkan dengan <InlineMath math="7" />.
 
-<MathVisual
-  title={<>Lintasan terpendek melalui sumbu <InlineMath math="x" /></>}
-  description={<>Bayangan <InlineMath math="B" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="B'" />. Ruas <InlineMath math="PB" /> sama panjang dengan <InlineMath math="PB'" />, jadi lintasan terpendek mengikuti garis lurus dari <InlineMath math="A" /> ke <InlineMath math="B'" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -5, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      { id: "path-ap", kind: "segment", appearance: "answer", from: { x: 1, y: 2 }, to: { x: 3, y: 0 } },
-      { id: "path-pb", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 7, y: 4 } },
-      { id: "mirror-pb", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 7, y: -4 } },
-      { id: "point-a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
-      { id: "point-b", kind: "point", appearance: "primary", at: { x: 7, y: 4 } },
-      { id: "point-b-image", kind: "point", appearance: "construction", at: { x: 7, y: -4 } },
-      { id: "point-p", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
-    ],
-    labels: [
-      { key: "a", objectId: "point-a", at: { x: 1, y: 2 }, placement: "above-left" },
-      { key: "b", objectId: "point-b", at: { x: 7, y: 4 }, placement: "above-right" },
-      { key: "image", objectId: "point-b-image", at: { x: 7, y: -4 }, placement: "below-right" },
-      { key: "p", objectId: "point-p", at: { x: 3, y: 0 }, placement: "below-left" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(1,2)" />,
-    b: <InlineMath math="B(7,4)" />,
-    image: <InlineMath math="B'(7,-4)" />,
-    p: <InlineMath math="P(3,0)" />,
-  }}
-/>
+# Menentukan kemungkinan sisi
 
-# Mencerminkan titik B
+Pada segitiga sama kaki, sisi ketiga sama dengan salah satu sisi yang diketahui. Jadi sisi-sisinya <InlineMath math="4, 4, 7" /> atau <InlineMath math="4, 7, 7" />. Sebuah segitiga ada jika **jumlah dua sisi yang lebih pendek lebih besar daripada sisi terpanjang**. Untuk <InlineMath math="4, 4, 7" />, berlaku <InlineMath math="4+4=8>7" />. Untuk <InlineMath math="4, 7, 7" />, berlaku <InlineMath math="4+7=11>7" />. Kedua segitiga ada.
 
-Bayangan <InlineMath math="B(7,4)" /> terhadap sumbu <InlineMath math="x" /> adalah <InlineMath math="B'(7,-4)" />. Setiap titik <InlineMath math="P" /> pada sumbu <InlineMath math="x" /> berjarak sama ke <InlineMath math="B" /> dan ke <InlineMath math="B'" />, jadi <InlineMath math="AP+PB=AP+PB'" />. Panjang lintasan dari <InlineMath math="A" /> ke <InlineMath math="B'" /> **paling pendek jika lurus**, dan garis lurus itu memang memotong sumbu <InlineMath math="x" /> karena <InlineMath math="A" /> di atas dan <InlineMath math="B'" /> di bawah sumbu.
+# Menghitung luas kasus pertama
 
-<BlockMath math="AP+PB\ge AB'=\sqrt{(7-1)^2+(-4-2)^2}=\sqrt{72}=6\sqrt2" />
+Pada segitiga <InlineMath math="4, 4, 7" />, alasnya <InlineMath math="7" /> dan kedua kakinya <InlineMath math="4" />. Garis tinggi dari puncak **membagi alas menjadi dua bagian sama panjang**, masing-masing <InlineMath math="\frac72" />. Sebut tinggi itu <InlineMath math="t" /> dan luas segitiganya <InlineMath math="L_1" />.
 
-# Menemukan titik P
+<BlockMath math="\begin{aligned}
+t^2&=4^2-\left(\tfrac72\right)^2=16-\tfrac{49}{4}=\tfrac{15}{4}\\
+t&=\tfrac{\sqrt{15}}{2}\\
+L_1&=\tfrac12\cdot7\cdot\tfrac{\sqrt{15}}{2}=\tfrac{7\sqrt{15}}{4}
+\end{aligned}" />
 
-Garis <InlineMath math="AB'" /> bergradien <InlineMath math="\frac{-4-2}{7-1}=-1" />, jadi persamaannya <InlineMath math="y-2=-(x-1)" />. Titik potongnya dengan sumbu <InlineMath math="x" /> adalah <InlineMath math="P(3,0)" />. **Cek nilainya**: <InlineMath math="AP=\sqrt{4+4}=2\sqrt2" /> dan <InlineMath math="PB=\sqrt{16+16}=4\sqrt2" />, jumlahnya <InlineMath math="6\sqrt2" />.
+Bandingkan dengan <InlineMath math="7" />: <InlineMath math="\frac{7\sqrt{15}}{4}<7" /> sama artinya dengan <InlineMath math="\sqrt{15}<4" />, dan itu benar karena <InlineMath math="15<16" />. Pada kasus ini <InlineMath math="P<Q" />.
 
-Nilai <InlineMath math="2\sqrt{10}" /> adalah jarak langsung <InlineMath math="AB" />, yang tidak menyentuh sumbu <InlineMath math="x" />. Nilai <InlineMath math="5+\sqrt{13}" /> memilih <InlineMath math="P(4,0)" /> di bawah titik tengah absis. Nilai <InlineMath math="2+2\sqrt{13}" /> memilih <InlineMath math="P" /> tepat di bawah <InlineMath math="A" />, dan <InlineMath math="4+2\sqrt{10}" /> memilih <InlineMath math="P" /> tepat di bawah <InlineMath math="B" />. Ketiganya lebih panjang daripada <InlineMath math="6\sqrt2" />.
+# Menghitung luas kasus kedua
 
-Jadi, nilai terkecil <InlineMath math="AP+PB" /> adalah <InlineMath math="6\sqrt2" />.
+Pada segitiga <InlineMath math="4, 7, 7" />, alasnya <InlineMath math="4" /> dan kedua kakinya <InlineMath math="7" />. Garis tinggi membagi alas menjadi <InlineMath math="2" /> dan <InlineMath math="2" />. Sebut luasnya <InlineMath math="L_2" />.
+
+<BlockMath math="\begin{aligned}
+t^2&=7^2-2^2=45\\
+t&=3\sqrt5\\
+L_2&=\tfrac12\cdot4\cdot3\sqrt5=6\sqrt5
+\end{aligned}" />
+
+Karena <InlineMath math="(6\sqrt5)^2=180>49=7^2" />, **pada kasus ini <InlineMath math="P>Q" />**.
+
+# Menarik kesimpulan
+
+Kedua segitiga memenuhi semua informasi soal, tetapi yang satu memberi <InlineMath math="P<Q" /> dan yang lain memberi <InlineMath math="P>Q" />. Jadi **hubungan <InlineMath math="P" /> dan <InlineMath math="Q" /> tidak bisa dipastikan**.
+
+Pilihan <InlineMath math="P>Q" /> muncul jika hanya segitiga <InlineMath math="4, 7, 7" /> yang dipakai, misalnya karena segitiga <InlineMath math="4, 4, 7" /> dikira tidak ada. Pilihan <InlineMath math="Q>P" /> muncul jika hanya segitiga <InlineMath math="4, 4, 7" /> yang dipakai. Pilihan <InlineMath math="P=Q" /> tidak terjadi pada kasus mana pun, karena <InlineMath math="\left(\frac{7\sqrt{15}}{4}\right)^2=\frac{735}{16}" /> dan <InlineMath math="180" /> keduanya tidak sama dengan <InlineMath math="49" />.
+
+Jadi, informasi yang diberikan tidak cukup untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.

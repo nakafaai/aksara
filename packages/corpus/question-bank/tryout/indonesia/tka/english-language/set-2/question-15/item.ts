@@ -2,39 +2,32 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "narrative",
-    topic: "realism-fantasy",
+    cognitiveLevel: "textual",
+    contentDomain: "procedure",
+    topic: "classification",
   },
-  stimulus: "last-bus",
+  stimulus: "sprout",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Counts as germinated", "Does not count as germinated"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "The story is realistic mainly because every problem is resolved by one official website.",
+          column: 2,
+          label: "A packet B seed whose root first appeared on day 8",
         },
         {
-          correct: false,
-          label:
-            "The story becomes unrealistic when Niko keeps the timetable after the disruption.",
+          column: 1,
+          label: "A packet A seed with a root of $$3$$ mm on day 4",
         },
         {
-          correct: true,
-          label:
-            "Each source provides only information it could realistically know, so the characters combine them.",
+          column: 2,
+          label: "A seed with a root of $$1$$ mm on day 7",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The exact time and named location make every event a verified historical report.",
-        },
-        {
-          correct: false,
-          label:
-            "The story becomes fantasy when Niko reads the timetable as if its numbers could explain the delay.",
+            "A seed that swelled and split its coat but showed no root by day 7",
         },
       ],
     },

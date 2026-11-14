@@ -1,17 +1,54 @@
-Die Gesamtfläche ist **die Fläche des äußeren Rechtecks**, die Fläche des Fotos <InlineMath math="24\cdot36=864" /> <InlineMath math="\text{cm}^2" />. Stell die Gleichung auf und löse die quadratische Gleichung.
+Du suchst den ersten Tag, an dem der aufsummierte Reingewinn <InlineMath math="1{.}500{.}000" /> erreicht. Die Miete wird jeden Montag auf einmal bezahlt, also **ist der tägliche Reingewinn nicht jeden Tag gleich**. Der Plan: Berechne den Rohgewinn jedes Tages aus dem Diagramm, ziehe Lohn und Miete an den richtigen Tagen ab und addiere Tag für Tag, bis die Summe das Startkapital erreicht.
 
-# Die Gleichung aufstellen
+# Rohgewinn an jedem Tag
+
+Der Gewinn pro Portion beträgt <InlineMath math="4{.}000" /> für Hähnchenreis, <InlineMath math="3{.}000" /> für gebratene Nudeln und <InlineMath math="2{.}000" /> für Orangeneis. Multipliziere mit den Portionen im Diagramm und addiere **alle drei Gerichte desselben Tages**.
 
 <BlockMath math="\begin{aligned}
-(24+2x)(36+2x)&=2\cdot864\\
-864+120x+4x^2&=1\,728\\
-x^2+30x-216&=0
+\text{Montag} &= 40\cdot4{.}000+30\cdot3{.}000+40\cdot2{.}000=330{.}000\\
+\text{Dienstag} &= 30\cdot4{.}000+25\cdot3{.}000+65\cdot2{.}000=325{.}000\\
+\text{Mittwoch} &= 20\cdot4{.}000+10\cdot3{.}000+40\cdot2{.}000=190{.}000\\
+\text{Donnerstag} &= 35\cdot4{.}000+20\cdot3{.}000+45\cdot2{.}000=290{.}000\\
+\text{Freitag} &= 25\cdot4{.}000+15\cdot3{.}000+60\cdot2{.}000=265{.}000
 \end{aligned}" />
 
-# Die Gleichung lösen
+# Reingewinn an jedem Tag
 
-<BlockMath math="(x+36)(x-6)=0" />
+Jeden Tag geht der Lohn von <InlineMath math="70{.}000" /> ab, und **nur am Montag zusätzlich die Miete** von <InlineMath math="350{.}000" />.
 
-Ein Rahmen kann nicht negativ breit sein, **nur x = 6 passt**. Die Außenmaße sind <InlineMath math="36\times48" />, und <InlineMath math="36\cdot48=1\,728=2\cdot864" />.
+<BlockMath math="\begin{aligned}
+\text{Montag} &= 330{.}000-70{.}000-350{.}000=-90{.}000\\
+\text{Dienstag} &= 325{.}000-70{.}000=255{.}000\\
+\text{Mittwoch} &= 190{.}000-70{.}000=120{.}000\\
+\text{Donnerstag} &= 290{.}000-70{.}000=220{.}000\\
+\text{Freitag} &= 265{.}000-70{.}000=195{.}000
+\end{aligned}" />
 
-Der Rahmen muss also **6 cm** breit sein.
+Eine Woche bringt einen Reingewinn von <InlineMath math="-90{.}000+255{.}000+120{.}000+220{.}000+195{.}000=700{.}000" />.
+
+# Die Summe Tag für Tag
+
+| Tag | Erste Woche | Zweite Woche | Dritte Woche |
+| :---: | :---: | :---: | :---: |
+| Montag | <InlineMath math="-90{.}000" /> | <InlineMath math="610{.}000" /> | <InlineMath math="1{.}310{.}000" /> |
+| Dienstag | <InlineMath math="165{.}000" /> | <InlineMath math="865{.}000" /> | <InlineMath math="1{.}565{.}000" /> |
+| Mittwoch | <InlineMath math="285{.}000" /> | <InlineMath math="985{.}000" /> | |
+| Donnerstag | <InlineMath math="505{.}000" /> | <InlineMath math="1{.}205{.}000" /> | |
+| Freitag | <InlineMath math="700{.}000" /> | <InlineMath math="1{.}400{.}000" /> | |
+
+Am Montag der dritten Woche **sinkt die Summe durch die Miete** von <InlineMath math="1{.}400{.}000" /> auf <InlineMath math="1{.}310{.}000" />, also noch unter das Startkapital. Am Dienstag der dritten Woche beträgt sie <InlineMath math="1{.}565{.}000\ge1{.}500{.}000" />.
+
+# Kontrolle
+
+Jede Freitagssumme ist ein Vielfaches von <InlineMath math="700{.}000" />, dem Reingewinn einer Woche. Nach zwei Wochen sind es <InlineMath math="1{.}400{.}000" />, also **kommt das Kapital sicher in der dritten Woche zurück**, und die Tabelle zeigt, dass es am Dienstag passiert.
+
+# Die falschen Antworten
+
+Jede falsche Antwort **behandelt Miete oder Lohn in der Summe falsch**.
+
+- Montag der zweiten Woche ignoriert Miete und Lohn und addiert nur den Rohgewinn.
+- Dienstag der zweiten Woche vergisst die Wochenmiete.
+- Mittwoch der zweiten Woche vergisst den Tageslohn.
+- Montag der dritten Woche verteilt die Miete gleichmäßig auf die Tage oder nimmt den Durchschnitt von <InlineMath math="140{.}000" /> pro Tag. Die volle Miete wird aber jeden Montag bezahlt, also beträgt die Summe an diesem Montag erst <InlineMath math="1{.}310{.}000" />.
+
+Der aufsummierte Reingewinn erreicht das Startkapital also zum ersten Mal am Dienstag der dritten Woche.

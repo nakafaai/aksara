@@ -1,20 +1,42 @@
-Ein Abschnitt ist waagerecht höchstens 6 m lang. Bestimme zuerst **den größten Anstieg, den ein Abschnitt noch schafft**, und vergleiche ihn mit 60 cm.
+Du vergleichst die Betriebsstunden von Maschine P am Montag und Dienstag unter zwei Wartungsregeln. Beide Regeln geben <InlineMath math="1" /> Wartungsstunde auf je <InlineMath math="5" /> Betriebsstunden, aber **die Tagesgrenze entscheidet, wie viele Wartungsstunden in diese zwei Tage fallen**. Der Plan: Verfolge beide Pläne Stunde für Stunde und rechne den Unterschied in Stunden in gute Teile um.
 
-# Größter Anstieg eines Abschnitts
+# Der Plan nach der alten Regel
 
-<BlockMath math="\frac{600}{12}=50\text{ cm}" />
+Nach der alten Regel läuft P <InlineMath math="5" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet, und **die Stundenzählung geht in den nächsten Tag über**.
 
-# Den Hof anheben
+| Tag | Wartung ab | Betriebsstunden | Übernommen um 23.00 |
+| :--- | :---: | :---: | :---: |
+| Montag | 12.00, 18.00 | <InlineMath math="5+5+4=14" /> | <InlineMath math="4" /> |
+| Dienstag | 08.00, 14.00, 20.00 | <InlineMath math="1+5+5+2=13" /> | <InlineMath math="2" /> |
 
-Wird der Hof um <InlineMath math="h" /> cm angehoben, muss die Rampe noch <InlineMath math="60-h" /> cm steigen.
+Die alte Regel ergibt zusammen <InlineMath math="14+13=27" /> Betriebsstunden.
 
-<BlockMath math="\begin{aligned}
-60-h&\le50\\
-h&\ge10
-\end{aligned}" />
+# Der Plan nach der neuen Regel
 
-Der Hof **muss also um mindestens 10 cm angehoben werden**.
+Nach der neuen Regel läuft P <InlineMath math="10" /> Stunden und wird dann <InlineMath math="2" /> Stunden gewartet.
 
-Der Wert 50 cm ist der größte Anstieg eines Abschnitts, nicht die Anhebung des Hofs. Der Wert 60 cm hebt den Hof bis auf Türhöhe an, sodass gar keine Rampe mehr nötig ist. Die Werte 20 cm und 30 cm reichen ebenfalls für einen Abschnitt, sind aber nicht die kleinsten.
+| Tag | Wartung | Betriebsstunden | Übernommen um 23.00 |
+| :--- | :---: | :---: | :---: |
+| Montag | 17.00 bis 19.00 | <InlineMath math="10+4=14" /> | <InlineMath math="4" /> |
+| Dienstag | 13.00 bis 15.00 | <InlineMath math="6+8=14" /> | <InlineMath math="8" /> |
 
-Der Hof muss also um mindestens **10 cm** angehoben werden.
+Die neue Regel ergibt zusammen <InlineMath math="14+14=28" /> Betriebsstunden. Am Dienstag **braucht die neue Regel nur <InlineMath math="2" /> Wartungsstunden**, die alte dagegen <InlineMath math="3" />.
+
+# Der Unterschied bei den guten Teilen
+
+Jede Betriebsstunde von P liefert <InlineMath math="95\%\times120=114" /> gute Teile.
+
+<BlockMath math="(28-27)\times114=114" />
+
+Prüf das mit dem Mittwoch. Die alte Regel ergibt <InlineMath math="13" /> Stunden, die neue <InlineMath math="2+10=12" /> Stunden, weil ihre Wartung um 09.00 und 21.00 Uhr liegt. Über drei Tage ergeben beide <InlineMath math="40" /> Stunden. Also **entsteht der Unterschied von <InlineMath math="114" /> durch die Lage der Wartung zur Tagesgrenze**, nicht dadurch, dass die neue Regel auf Dauer weniger wartet.
+
+# Die falschen Antworten
+
+Jede andere Antwort **nimmt eine Abkürzung, die den echten Plan übersieht**.
+
+- Keine Änderung rechnet nur mit dem Verhältnis: Beide Regeln verlieren ein Sechstel der Zeit, aber in diesen zwei Tagen liegen die Wartungen an anderen Stellen.
+- Ein Plus von <InlineMath math="120" /> vergisst, die fehlerhaften Teile auszusortieren.
+- Ein Plus von <InlineMath math="228" /> nimmt an, dass die alte Regel jeden Tag <InlineMath math="3" /> Wartungsstunden braucht, am Montag sind es aber nur <InlineMath math="2" />.
+- Ein Plus von <InlineMath math="342" /> zählt Wartungsereignisse (<InlineMath math="5" /> und <InlineMath math="2" />), als ob jedes nur <InlineMath math="1" /> Stunde dauerte.
+
+Mit der neuen Regel liefert Maschine P am Montag und Dienstag also <InlineMath math="114" /> gute Teile mehr.

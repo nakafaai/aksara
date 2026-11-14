@@ -1,0 +1,630 @@
+export const metadata = {
+    title: "Operasi Tatasusunan dengan NumPy",
+  description: "Gunakan broadcasting, aritmetik tervektor, operasi penurunan, paksi, pembentukan semula dan pemiawaian skor-z NumPy dalam contoh kod.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-09-20",
+    dateModified: "2026-09-12",
+    subject: "Pengaturcaraan AI",
+};
+
+## Broadcasting dalam NumPy
+
+[Broadcasting](https://numpy.org/doc/stable/user/basics.broadcasting.html) (penyiaran) ialah peraturan NumPy untuk menggabungkan tatasusunan yang mempunyai **bentuk berbeza tetapi serasi**. Dimensi bersaiz satu dianggap seolah-olah saiznya sama dengan dimensi sepadan pada tatasusunan yang satu lagi, tanpa menyalin data ke dalam tatasusunan yang lebih besar.
+
+Pemvektoran (vectorization) membolehkan satu ungkapan bertindak ke atas seluruh tatasusunan. NumPy menjalankan gelung di sebaliknya dalam kod terkompil yang dioptimumkan, dan cara ini selalunya lebih pantas daripada gelung Python yang ditulis secara jelas.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "vectorization_example.py",
+      code: `import numpy as np
+
+# Cipta dua tatasusunan
+a = np.array([0, 1, 2])
+b = np.array([2, 2, 2])
+
+# Operasi pemvektoran (unsur demi unsur)
+result = a + b
+print(result)
+# Output: [2 3 4]`
+    }
+  ]}
+/>
+
+Dalam contoh di atas, NumPy menambah unsur pada kedudukan yang sepadan. Kita huraikan operasi itu sekali sahaja, dan NumPy uruskan kedudukan setiap unsur untuk kita.
+
+### Peraturan Broadcasting
+
+Dua tatasusunan boleh digabungkan tanpa gelung eksplisit apabila NumPy dapat <Highlight>menyejajarkan dimensinya</Highlight> dengan sendiri. Untuk menentukan sama ada dua bentuk itu serasi, NumPy membandingkan dimensinya dari kanan ke kiri dan berhenti pada pasangan pertama yang tidak dapat disejajarkan.
+
+Tiga peraturan meliputi semua kes. Jadual di bawah menyatakan syarat yang disemak oleh setiap peraturan dan hasil yang NumPy keluarkan untuk syarat itu.
+
+| Peraturan | Syarat pada bentuk | Apa yang NumPy lakukan |
+| --- | --- | --- |
+| Peraturan <InlineMath math="1" /> | Kedua-dua bentuk mempunyai bilangan dimensi yang berbeza | NumPy menambah dimensi bersaiz <InlineMath math="1" /> di sebelah kiri bentuk yang lebih pendek |
+| Peraturan <InlineMath math="2" /> | Sesuatu pasangan yang sejajar mempunyai saiz yang sama, atau salah satunya bersaiz <InlineMath math="1" /> | Saiz yang sama memang sudah sepadan. Dimensi bersaiz satu digunakan semula secara konsep tanpa membina salinan berulang |
+| Peraturan <InlineMath math="3" /> | Sesuatu pasangan yang sejajar mempunyai saiz berbeza dan tiada satu pun yang bersaiz <InlineMath math="1" /> | NumPy menimbulkan `ValueError` |
+
+### Tatasusunan dengan Skalar
+
+Broadcasting juga berlaku antara **tatasusunan dengan satu nombor**. NumPy meregangkan skalar itu ke setiap unsur, jadi kamu tidak perlukan gelung eksplisit.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "broadcasting_1d_scalar.py",
+      code: `import numpy as np
+
+# Tatasusunan 1D dengan skalar
+a = np.arange(3)  # [0, 1, 2]
+b = 5
+
+result = a + b
+print(f"Tatasusunan a: {a}")
+print(f"Skalar b: {b}")
+print(f"Hasil a + b: {result}")
+
+# Penerangan bentuk:
+# a mempunyai bentuk (3,)
+# b mempunyai bentuk () - skalar
+# Selepas broadcasting: b menjadi [5, 5, 5]
+# Output: [5 6 7]`
+    }
+  ]}
+/>
+
+### Tatasusunan Dua Dimensi dengan Tatasusunan Satu Dimensi
+
+Apabila tatasusunan mempunyai **bentuk yang serasi tetapi berbeza**, NumPy boleh melaraskannya secara automatik melalui broadcasting. Dengan cara ini, satu operasi dikenakan pada setiap baris atau lajur tanpa perlu menyalin nilai secara manual.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "broadcasting_2d_1d.py",
+      code: `import numpy as np
+
+# Tatasusunan 2D dengan tatasusunan 1D
+a = np.ones((3, 3))  # matriks 3x3 yang diisi dengan 1
+b = np.arange(3)     # [0, 1, 2]
+
+result = a + b
+print("Tatasusunan a (3x3):")
+print(a)
+print(f"Tatasusunan b (1D): {b}")
+print("Hasil a + b:")
+print(result)
+
+# Broadcasting berlaku:
+# a: bentuk (3, 3)
+# b: bentuk (3,) -> dikembangkan kepada (1, 3) -> (3, 3)
+# b ditambah kepada setiap baris a`
+    }
+  ]}
+/>
+
+### Kes Broadcasting yang Gagal
+
+Untuk bentuk `(2, 3)` dan `(2,)`, **dimensi terakhirnya tidak sepadan**: saiznya `3` dan `2`, dan tiada satu pun yang bernilai `1`. NumPy menimbulkan `ValueError` sebelum penambahan itu dilakukan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "broadcasting_error.py",
+      code: `import numpy as np
+
+try:
+    # Tatasusunan dengan bentuk yang tidak serasi
+    a = np.arange(6).reshape(2, 3)  # bentuk (2, 3)
+    b = np.arange(2)                # bentuk (2,)
+
+    print(f"Bentuk tatasusunan a: {a.shape}")
+    print(f"Bentuk tatasusunan b: {b.shape}")
+
+    # Baris ini akan menghasilkan ralat
+    result = a + b
+except ValueError as e:
+    print(f"Ralat: {e}")
+    print("Bentuk tatasusunan tidak serasi untuk broadcasting")`
+    }
+  ]}
+/>
+
+Ambil `a` berbentuk `(3, 1)` yang mengandungi <InlineMath math="0" />, <InlineMath math="10" />, <InlineMath math="20" /> dan `b` berbentuk `(1, 4)` yang mengandungi <InlineMath math="0" /> hingga <InlineMath math="3" />. Setiap paksi yang panjangnya <InlineMath math="1" /> diregangkan, jadi `a + b` berbentuk `(3, 4)` dan unsur pada baris <InlineMath math="i" /> dan lajur <InlineMath math="j" /> ialah <InlineMath math="10i+j" />.
+
+<MathVisual
+  title={<>Broadcasting <code>(3, 1)</code> dengan <code>(1, 4)</code></>}
+  description={<>Titik hijau kebiruan di sebelah kiri ialah lajur <code>a</code>, titik jingga di bahagian atas ialah baris <code>b</code>. Grid ungu ialah <code>a + b</code>, iaitu dua belas unsur yang setiap satunya menambah nilai baris dan nilai lajurnya.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.8, max: 3.6 }, y: { min: -2.8, max: 1.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "column-0", kind: "point", at: { x: -1.2, y: 0 }, appearance: "construction" },
+      { id: "column-1", kind: "point", at: { x: -1.2, y: -1 }, appearance: "construction" },
+      { id: "column-2", kind: "point", at: { x: -1.2, y: -2 }, appearance: "construction" },
+      { id: "row-0", kind: "point", at: { x: 0, y: 1.2 }, appearance: "primary" },
+      { id: "row-1", kind: "point", at: { x: 1, y: 1.2 }, appearance: "primary" },
+      { id: "row-2", kind: "point", at: { x: 2, y: 1.2 }, appearance: "primary" },
+      { id: "row-3", kind: "point", at: { x: 3, y: 1.2 }, appearance: "primary" },
+      { id: "sum-0-0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-1", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-2", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "sum-0-3", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "sum-1-0", kind: "point", at: { x: 0, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-1", kind: "point", at: { x: 1, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-2", kind: "point", at: { x: 2, y: -1 }, appearance: "secondary" },
+      { id: "sum-1-3", kind: "point", at: { x: 3, y: -1 }, appearance: "secondary" },
+      { id: "sum-2-0", kind: "point", at: { x: 0, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-1", kind: "point", at: { x: 1, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-2", kind: "point", at: { x: 2, y: -2 }, appearance: "secondary" },
+      { id: "sum-2-3", kind: "point", at: { x: 3, y: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "column-0", objectId: "column-0", at: { x: -1.2, y: 0 }, placement: "left" },
+      { key: "column-1", objectId: "column-1", at: { x: -1.2, y: -1 }, placement: "left" },
+      { key: "column-2", objectId: "column-2", at: { x: -1.2, y: -2 }, placement: "left" },
+      { key: "row-0", objectId: "row-0", at: { x: 0, y: 1.2 }, placement: "above" },
+      { key: "row-1", objectId: "row-1", at: { x: 1, y: 1.2 }, placement: "above" },
+      { key: "row-2", objectId: "row-2", at: { x: 2, y: 1.2 }, placement: "above" },
+      { key: "row-3", objectId: "row-3", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "sum-0-0", objectId: "sum-0-0", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "sum-0-1", objectId: "sum-0-1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "sum-0-2", objectId: "sum-0-2", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "sum-0-3", objectId: "sum-0-3", at: { x: 3, y: 0 }, placement: "below-right" },
+      { key: "sum-1-0", objectId: "sum-1-0", at: { x: 0, y: -1 }, placement: "below-right" },
+      { key: "sum-1-1", objectId: "sum-1-1", at: { x: 1, y: -1 }, placement: "below-right" },
+      { key: "sum-1-2", objectId: "sum-1-2", at: { x: 2, y: -1 }, placement: "below-right" },
+      { key: "sum-1-3", objectId: "sum-1-3", at: { x: 3, y: -1 }, placement: "below-right" },
+      { key: "sum-2-0", objectId: "sum-2-0", at: { x: 0, y: -2 }, placement: "below-right" },
+      { key: "sum-2-1", objectId: "sum-2-1", at: { x: 1, y: -2 }, placement: "below-right" },
+      { key: "sum-2-2", objectId: "sum-2-2", at: { x: 2, y: -2 }, placement: "below-right" },
+      { key: "sum-2-3", objectId: "sum-2-3", at: { x: 3, y: -2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "column-0": <InlineMath math="0" />,
+    "column-1": <InlineMath math="10" />,
+    "column-2": <InlineMath math="20" />,
+    "row-0": <InlineMath math="0" />,
+    "row-1": <InlineMath math="1" />,
+    "row-2": <InlineMath math="2" />,
+    "row-3": <InlineMath math="3" />,
+    "sum-0-0": <InlineMath math="0" />,
+    "sum-0-1": <InlineMath math="1" />,
+    "sum-0-2": <InlineMath math="2" />,
+    "sum-0-3": <InlineMath math="3" />,
+    "sum-1-0": <InlineMath math="10" />,
+    "sum-1-1": <InlineMath math="11" />,
+    "sum-1-2": <InlineMath math="12" />,
+    "sum-1-3": <InlineMath math="13" />,
+    "sum-2-0": <InlineMath math="20" />,
+    "sum-2-1": <InlineMath math="21" />,
+    "sum-2-2": <InlineMath math="22" />,
+    "sum-2-3": <InlineMath math="23" />,
+  }}
+/>
+
+## Operasi Aritmetik Tatasusunan
+
+Operator aritmetik NumPy berfungsi **unsur demi unsur**, kecuali jika sesuatu operasi memang mempunyai semantik yang berbeza, contohnya pendaraban matriks.
+
+Apabila tatasusunan digabungkan dengan skalar, broadcasting mengenakan skalar itu pada setiap unsur. Kamu tidak perlu menulis gelung pengindeksan secara manual.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "arithmetic_scalar.py",
+      code: `import numpy as np
+
+a = np.array([0, 1, 2, 3, 4])
+
+# Penambahan dengan skalar
+print("Penambahan:")
+print(f"a + 1 = {a + 1}")
+# Output: [1 2 3 4 5]
+
+# Pendaraban dengan skalar
+print("Pendaraban:")
+a *= 2
+print(f"a *= 2: {a}")
+# Output: [0 2 4 6 8]
+
+# Kuasa
+print("Kuasa:")
+print(f"2**a = {2**a}")
+# Output: [  1   4  16  64 256]`
+    }
+  ]}
+/>
+
+### Operasi antara Tatasusunan
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "arithmetic_arrays.py",
+      code: `import numpy as np
+
+a = np.array([0, 1, 2, 3, 4])
+b = np.array([4, 3, 2, 1, 0])
+
+# Penolakan unsur demi unsur
+print("Penolakan:")
+print(f"a - b = {a - b}")
+# Output: [-4 -2  0  2  4]
+
+# Pendaraban unsur demi unsur
+print("Pendaraban unsur demi unsur:")
+print(f"a * b = {a * b}")
+# Output: [0 3 4 3 0]
+
+# Pendaraban matriks (hasil darab skalar)
+print("Pendaraban matriks:")
+print(f"a @ b = {a @ b}")
+# Output: 10`
+    }
+  ]}
+/>
+
+Operator `*` mendarab **entri pada kedudukan yang sama**. Untuk dua tatasusunan satu dimensi di atas, `@` memulangkan hasil darab skalar (dot product) kedua-duanya: `0 + 3 + 4 + 3 + 0` sama dengan `10`. Untuk dua matriks, `@` mengikut peraturan baris darab lajur. Jangan anggap `np.dot()` setara dengan `@` untuk semua bentuk tatasusunan. Peraturan kedua-duanya berbeza dalam dimensi yang lebih tinggi.
+
+### Perbandingan dan Logik
+
+Operasi perbandingan NumPy menghasilkan **tatasusunan boolean**. Gunakan tatasusunan itu untuk menapis data atau menggabungkan beberapa syarat.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "comparison_logical.py",
+      code: `import numpy as np
+
+a = np.array([0, 1, 2, 3, 4])
+b = np.array([0, 0, 2, 4, 4])
+
+# Operasi perbandingan
+print("Perbandingan lebih besar daripada:")
+print(f"a > 2: {a > 2}")
+# Output: [False False False  True  True]
+
+print("Perbandingan sama dengan:")
+print(f"a == b: {a == b}")
+# Output: [ True False  True False  True]
+
+# Operasi logik
+print("Operasi logik OR:")
+print(f"(a > 2) | (a == b): {(a > 2) | (a == b)}")
+# Output: [ True False  True  True  True]`
+    }
+  ]}
+/>
+
+Untuk logik boolean unsur demi unsur, gunakan `~` untuk NOT, `&` untuk AND, dan `|` untuk OR, atau gunakan fungsi `np.logical_*` yang sepadan. Letakkan setiap perbandingan dalam tanda kurung kerana keutamaan operator ini berbeza daripada operator perbandingan. Operator skalar Python `not`, `and` dan `or` tidak menjalankan logik tatasusunan unsur demi unsur.
+
+## Fungsi Statistik dan Penurunan
+
+Fungsi penurunan (reduction) menggabungkan **banyak unsur menjadi lebih sedikit nilai**. Tanpa `axis`, penurunan menggabungkan semua unsur menjadi satu nilai. Dengan `axis`, ia menggabungkan nilai sepanjang paksi itu dan membiarkan paksi lain di tempatnya. Untuk jadual markah peperiksaan, cara ini boleh menghasilkan purata bagi setiap subjek atau setiap murid.
+
+NumPy menyediakan fungsi statistik untuk ringkasan seperti jumlah, min dan sisihan piawai. Setiap fungsi boleh memproses seluruh tatasusunan atau paksi yang dipilih.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "basic_statistics.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 2D sebagai contoh
+data = np.array([[3, 0, -1, 1],
+                 [2, -1, -2, 4],
+                 [1, 7, 0, 4]])
+
+print("Tatasusunan data:")
+print(data)
+
+# Statistik bagi seluruh tatasusunan
+print(f"Jumlah keseluruhan: {np.sum(data)}")
+print(f"Min: {np.mean(data):.2f}")
+print(f"Nilai minimum: {np.min(data)}")
+print(f"Nilai maksimum: {np.max(data)}")
+print(f"Sisihan piawai: {np.std(data):.2f}")
+# Output:
+# Jumlah keseluruhan: 18
+# Min: 1.50
+# Nilai minimum: -2
+# Nilai maksimum: 7
+# Sisihan piawai: 2.50`
+    }
+  ]}
+/>
+
+### Operasi dengan Paksi
+
+Untuk tatasusunan dua dimensi, `axis=0` memampatkan dimensi baris dan menghasilkan **satu nilai bagi setiap lajur**. `axis=1` pula memampatkan dimensi lajur dan menghasilkan satu nilai bagi setiap baris.
+
+Paksi yang dipilih menentukan dimensi mana yang diturunkan oleh fungsi statistik. Untuk data jualan bulanan bagi beberapa produk, satu paksi boleh menghasilkan jumlah bagi setiap produk, dan paksi yang satu lagi menghasilkan jumlah bagi setiap bulan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "axis_operations.py",
+      code: `import numpy as np
+
+data = np.array([[3, 0, -1, 1],
+                 [2, -1, -2, 4],
+                 [1, 7, 0, 4]])
+
+# Operasi sepanjang axis=0 (untuk setiap lajur)
+print("Maksimum setiap lajur (axis=0):")
+print(f"max(axis=0): {np.max(data, axis=0)}")
+# Output: [3 7 0 4]
+
+print("Indeks nilai maksimum dalam setiap lajur:")
+print(f"argmax(axis=0): {np.argmax(data, axis=0)}")
+# Output: [0 2 2 1]
+
+# Operasi sepanjang axis=1 (untuk setiap baris)
+print("Maksimum setiap baris (axis=1):")
+print(f"max(axis=1): {np.max(data, axis=1)}")
+# Output: [3 4 7]
+
+print("Indeks nilai maksimum dalam setiap baris:")
+print(f"argmax(axis=1): {np.argmax(data, axis=1)}")
+# Output: [0 3 1]`
+    }
+  ]}
+/>
+
+Penurunan meringkaskan seluruh tatasusunan dalam satu nombor. Untuk `data = np.array([1, 3, 5, 7, 9])`, `np.sum` memberi <InlineMath math="25" />, `np.mean` memberi <InlineMath math="5" />, dan `np.std` memberi <InlineMath math="\sqrt{(16+4+0+4+16)/5}=\sqrt8\approx2.83" />, kerana secara lalai ia membahagi dengan <InlineMath math="n" />.
+
+<BarChart
+  title={<>Lima penurunan pada <code>[1, 3, 5, 7, 9]</code></>}
+  description={<>Setiap bar ialah hasil fungsi NumPy yang dinamakan di bawahnya untuk data yang sama: hasil tambah, min, sisihan piawai, minimum dan maksimum.</>}
+  yAxisLabel="Hasil"
+  data={[
+    { name: "sum", value: 1 + 3 + 5 + 7 + 9 },
+    { name: "mean", value: (1 + 3 + 5 + 7 + 9) / 5 },
+    { name: "std", value: Math.sqrt(((1 - 5) ** 2 + (3 - 5) ** 2 + (5 - 5) ** 2 + (7 - 5) ** 2 + (9 - 5) ** 2) / 5) },
+    { name: "min", value: 1 },
+    { name: "max", value: 9 },
+  ]}
+  chartConfig={{ value: { label: "Hasil", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Manipulasi Bentuk Tatasusunan
+
+Operasi bentuk menyusun semula cara unsur yang sama diindeks. Reshape memastikan **bilangan unsur tidak berubah** sambil meletakkan unsur itu ke dalam dimensi yang berbeza.
+
+Tatasusunan NumPy yang baharu biasanya bersifat C-contiguous, iaitu indeks terakhir berubah paling pantas dalam memori. Pandangan (view) yang dicipta melalui penghirisan atau transpos boleh mempunyai langkah (stride) yang berbeza, jadi tatasusunan tidak selalu disimpan dalam satu susun atur baris-major yang ringkas. Peraturan `order` dan stride penting apabila kamu membentuk semula atau meratakan tatasusunan.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "internal_storage.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 2D
+a = np.array([[0, 1], [2, 3]])
+print("Tatasusunan 2D:")
+print(a)
+print(f"Bentuk: {a.shape}")
+
+# Lihat cara ia disimpan dalam memori
+print(f"Disimpan dalam memori sebagai: {a.ravel()}")
+# Output: [0 1 2 3]`
+    }
+  ]}
+/>
+
+### Flatten dan Ravel
+
+Kedua-dua `flatten()` dan `ravel()` memulangkan tatasusunan satu dimensi. `flatten()` **sentiasa mencipta salinan**, manakala `ravel()` memulangkan pandangan apabila boleh, dan memulangkan salinan apabila susun atur memori memerlukannya.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "flatten_ravel.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan pepenjuru
+a = np.diag([1, 2, 3])
+print("Tatasusunan pepenjuru:")
+print(a)
+
+# Flatten - mencipta salinan yang bebas
+b_flatten = a.flatten()
+print(f"Hasil flatten: {b_flatten}")
+
+# Mengubah nilai hasil flatten tidak menjejaskan tatasusunan asal
+b_flatten[0] = 9
+print(f"Selepas mengubah flatten: {b_flatten}")
+print("Tatasusunan asal kekal sama:")
+print(a)
+
+print()
+
+# Ravel - cuba mencipta pandangan dan tidak sentiasa menyalin data
+b_ravel = a.ravel()
+print(f"Hasil ravel: {b_ravel}")
+
+# Mengubah nilai hasil ravel menjejaskan tatasusunan asal
+b_ravel[0] = 9
+print(f"Selepas mengubah ravel: {b_ravel}")
+print("Tatasusunan asal berubah:")
+print(a)`
+    }
+  ]}
+/>
+
+### Reshape dan Resize
+
+`reshape()` mengubah bentuk selagi bilangan unsur kekal sama, dan memulangkan pandangan apabila boleh. Kaedah `ndarray.resize()` yang digunakan di bawah **mengubah tatasusunan asal secara langsung (in place)**.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "reshape_resize.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan pepenjuru dan ratakan
+a = np.diag([1, 2, 3])
+a_flat = a.flatten()
+print(f"Tatasusunan rata: {a_flat}")
+
+# Reshape - ubah bentuk dengan bilangan unsur yang sama
+b = a_flat.reshape(3, 3)
+print("Hasil reshape kepada (3,3):")
+print(b)
+
+# Mengubah nilai dalam hasil reshape
+b[0, 0] = 9
+print("Selepas mengubah nilai:")
+print(b)
+print(f"Tatasusunan rata asal: {a_flat}")  # Turut berubah kerana reshape mencipta pandangan
+
+# Resize - ubah bentuk secara langsung (tiada nilai pulangan)
+a_flat.resize(3, 3)
+print("Selepas resize:")
+print(a_flat)  # Kini a_flat ialah tatasusunan 2D`
+    }
+  ]}
+/>
+
+### Transpos
+
+Transpos menukar susunan paksi sesuatu tatasusunan. Untuk tatasusunan dua dimensi, transpos **menukar tempat baris dengan lajur**. NumPy menyediakan kaedah `transpose()` dan atribut `.T` yang lebih ringkas.
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "transpose.py",
+      code: `import numpy as np
+
+# Cipta tatasusunan 2x4
+a = np.linspace(1, 8, 8).reshape(2, 4)
+print("Tatasusunan asal (2x4):")
+print(a)
+
+# Transpos menggunakan kaedah
+b = a.transpose()
+print("Hasil transpos (4x2):")
+print(b)
+
+# Transpos menggunakan atribut .T (lebih ringkas)
+c = a.T
+print("Menggunakan .T:")
+print(c)
+
+# Sahkan bahawa transpos ialah pandangan
+print("Adakah transpos ialah pandangan?", np.shares_memory(a, b))`
+    }
+  ]}
+/>
+
+## Pemiawaian Data dengan Skor Z
+
+Pemiawaian skor-z memusatkan setiap ciri pada min <InlineMath math="0" /> dan menskalakannya kepada sisihan piawai <InlineMath math="1" />. Pemiawaian ini hanya ditakrifkan untuk ciri yang mempunyai **sisihan piawai bukan sifar**, dan ia meletakkan ciri-ciri pada skala berangka yang setanding.
+
+Formula skor-z ialah <InlineMath math="Z = \frac{X - \mu}{\sigma}" />, dengan:
+- <InlineMath math="X" /> ialah matriks ciri bersaiz <InlineMath math="n \times k" />
+- <InlineMath math="n" /> ialah bilangan cerapan (baris)
+- <InlineMath math="k" /> ialah bilangan ciri (lajur)
+- <InlineMath math="\mu" /> ialah vektor min bagi setiap lajur
+- <InlineMath math="\sigma" /> ialah vektor sisihan piawai bagi setiap lajur
+
+<CodeBlock
+  data={[
+    {
+      language: "python",
+      filename: "z_score.py",
+      code: `import numpy as np
+
+# Cipta data sampel (5 cerapan, 3 ciri)
+rng = np.random.default_rng(42)
+X = rng.standard_normal((5, 3)) * 10 + 50  # Sampel daripada taburan normal dengan min 50 dan sisihan piawai 10
+
+print("Data asal:")
+print(X)
+print(f"Bentuk data: {X.shape}")
+
+# Kira min dan sisihan piawai bagi setiap lajur
+mu = np.mean(X, axis=0)  # Min setiap lajur
+sigma = np.std(X, axis=0)  # Sisihan piawai setiap lajur
+
+print(f"Min setiap ciri: {mu}")
+print(f"Sisihan piawai setiap ciri: {sigma}")
+
+# Jalankan pemiawaian skor-z
+Z = (X - mu) / sigma
+
+print("Data selepas pemiawaian skor-z:")
+print(Z)
+
+# Sahkan hasil pemiawaian
+print("Pengesahan pemiawaian:")
+print(f"Min baharu: {np.mean(Z, axis=0)}")  # Sepatutnya hampir dengan 0
+print(f"Sisihan piawai baharu: {np.std(Z, axis=0)}")  # Sepatutnya hampir dengan 1
+# Output sisihan piawai baharu: [1. 1. 1.]`
+    }
+  ]}
+/>
+
+Pemiawaian menghalang unit semata-mata daripada mewujudkan perbezaan skala yang besar. Ia tidak menjamin kepentingan atau pengaruh yang sama: model dan data masih menentukan perkara itu. Contohnya, tinggi dalam sentimeter dan berat dalam kilogram menjadi setanding dari segi nombor selepas pemiawaian.
+
+Ambil `data = np.array([1, 3, 5, 7, 9])`. Minnya ialah `5` dan sisihan piawainya, `np.std(data)`, sama dengan `np.sqrt(8)`. Garis kelabu dalam gambar menunjukkan dua perkara serentak: menolak min mengalihkan pusat ke `0`, dan membahagi dengan sisihan piawai menarik titik-titik itu lebih rapat. Hasilnya, nilai `5` jatuh tepat pada `0`, dan nilai paling luar menjadi lebih kurang `-1.41` dan `1.41`.
+
+<MathVisual
+  title={<>Pemiawaian skor-z bagi data <code>[1, 3, 5, 7, 9]</code></>}
+  description={<>Titik ungu ialah data asal, titik magenta ialah <code>(data - mean) / std</code>, dan garis kelabu menunjukkan ke mana setiap nilai bergerak.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 9.6 }, y: { min: -0.5, max: 2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "move-a", kind: "segment", from: { x: 1, y: 1.5 }, to: { x: -Math.SQRT2, y: 0 }, appearance: "reference" },
+      { id: "move-b", kind: "segment", from: { x: 3, y: 1.5 }, to: { x: -Math.SQRT1_2, y: 0 }, appearance: "reference" },
+      { id: "move-c", kind: "segment", from: { x: 5, y: 1.5 }, to: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "move-d", kind: "segment", from: { x: 7, y: 1.5 }, to: { x: Math.SQRT1_2, y: 0 }, appearance: "reference" },
+      { id: "move-e", kind: "segment", from: { x: 9, y: 1.5 }, to: { x: Math.SQRT2, y: 0 }, appearance: "reference" },
+      { id: "data-a", kind: "point", at: { x: 1, y: 1.5 }, appearance: "secondary" },
+      { id: "data-b", kind: "point", at: { x: 3, y: 1.5 }, appearance: "secondary" },
+      { id: "data-c", kind: "point", at: { x: 5, y: 1.5 }, appearance: "secondary" },
+      { id: "data-d", kind: "point", at: { x: 7, y: 1.5 }, appearance: "secondary" },
+      { id: "data-e", kind: "point", at: { x: 9, y: 1.5 }, appearance: "secondary" },
+      { id: "score-a", kind: "point", at: { x: -Math.SQRT2, y: 0 }, appearance: "answer" },
+      { id: "score-b", kind: "point", at: { x: -Math.SQRT1_2, y: 0 }, appearance: "answer" },
+      { id: "score-c", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "score-d", kind: "point", at: { x: Math.SQRT1_2, y: 0 }, appearance: "answer" },
+      { id: "score-e", kind: "point", at: { x: Math.SQRT2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "data-a", objectId: "data-a", at: { x: 1, y: 1.5 }, placement: "above" },
+      { key: "data-b", objectId: "data-b", at: { x: 3, y: 1.5 }, placement: "above" },
+      { key: "data-c", objectId: "data-c", at: { x: 5, y: 1.5 }, placement: "above" },
+      { key: "data-d", objectId: "data-d", at: { x: 7, y: 1.5 }, placement: "above" },
+      { key: "data-e", objectId: "data-e", at: { x: 9, y: 1.5 }, placement: "above" },
+      { key: "data-row", objectId: "data-e", at: { x: 9, y: 1.5 }, placement: "right" },
+      { key: "score-row", objectId: "score-e", at: { x: Math.SQRT2, y: 0 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "data-a": "1",
+    "data-b": "3",
+    "data-c": "5",
+    "data-d": "7",
+    "data-e": "9",
+    "data-row": "data",
+    "score-row": "(data - mean) / std",
+  }}
+/>

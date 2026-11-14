@@ -1,23 +1,38 @@
-Eine quadratische Gleichung bringst du zuerst in die **Normalform mit null auf einer Seite**. Erst dann kannst du faktorisieren oder eine Lösungsformel verwenden.
+# Drei mögliche Stellen für den rechten Winkel
 
-<BlockMath math="2x^2-3x-2=0" />
+Die Aufgabe sagt nicht, an welcher Ecke der rechte Winkel liegt. **Es gibt also drei Fälle: rechter Winkel bei <InlineMath math="A" />, bei <InlineMath math="B" /> oder bei <InlineMath math="P" />**. Zwei Strecken stehen genau dann senkrecht, wenn das Skalarprodukt ihrer Richtungsvektoren null ist.
 
-Für die Faktorisierung suchst du zwei Zahlen mit dem Produkt <InlineMath math="2\cdot(-2)=-4" /> und der Summe <InlineMath math="-3" />. Das sind <InlineMath math="-4" /> und <InlineMath math="1" />. Damit zerlegst du den mittleren Term.
+Für <InlineMath math="P(x\mid0)" /> gilt:
+
+<BlockMath math="\overrightarrow{AB}=\begin{pmatrix}6\\-2\end{pmatrix},\quad\overrightarrow{AP}=\begin{pmatrix}x-1\\-3\end{pmatrix},\quad\overrightarrow{BP}=\begin{pmatrix}x-7\\-1\end{pmatrix}" />
+
+# Rechter Winkel bei A oder bei B
 
 <BlockMath math="\begin{aligned}
-2x^2-4x+x-2&=0 \\
-2x(x-2)+1\cdot(x-2)&=0 \\
-(2x+1)(x-2)&=0
+\text{bei }A:&\quad\overrightarrow{AB}\cdot\overrightarrow{AP}=6(x-1)+(-2)(-3)=6x=0\quad\Rightarrow\quad x=0 \\
+\text{bei }B:&\quad\overrightarrow{BA}\cdot\overrightarrow{BP}=-6(x-7)+2\cdot(-1)=40-6x=0\quad\Rightarrow\quad x=\frac{20}{3}
 \end{aligned}" />
 
-Ein Produkt ist null, wenn ein Faktor null ist. Aus <InlineMath math="2x+1=0" /> folgt <InlineMath math="x=-\frac12" />, aus <InlineMath math="x-2=0" /> folgt <InlineMath math="x=2" />. Die Diskriminante <InlineMath math="(-3)^2-4\cdot2\cdot(-2)=25" /> ist positiv und bestätigt zwei verschiedene Lösungen.
+**Jeder dieser Fälle liefert genau einen Punkt**, weil die Gleichung linear ist.
 
-Zur Kontrolle: Für <InlineMath math="x=-\frac12" /> ist <InlineMath math="2\cdot\frac14=\frac12" /> und <InlineMath math="3\cdot\left(-\frac12\right)+2=\frac12" />. Für <InlineMath math="x=2" /> ist <InlineMath math="8=6+2" />.
+# Rechter Winkel bei P
 
-Die Lösungen sind also <InlineMath math="x=-\frac12" /> und <InlineMath math="x=2" />.
+<BlockMath math="\begin{aligned}
+\overrightarrow{PA}\cdot\overrightarrow{PB}=(1-x)(7-x)+3\cdot1&=0 \\
+x^2-8x+10&=0 \\
+x&=4\pm\sqrt6
+\end{aligned}" />
 
-- Nur <InlineMath math="x=2" /> lässt die zweite Lösung weg. Eine quadratische Gleichung mit positiver Diskriminante hat zwei Lösungen.
-- <InlineMath math="x=\frac12" /> und <InlineMath math="x=-2" /> gehören zu <InlineMath math="(2x-1)(x+2)=2x^2+3x-2" />. Das Vorzeichen des mittleren Terms ist hier vertauscht.
-- <InlineMath math="x=-1" /> und <InlineMath math="x=2" /> entstehen aus der richtigen Zerlegung <InlineMath math="(2x+1)(x-2)=0" />, wenn bei <InlineMath math="2x+1=0" /> nicht durch <InlineMath math="2" /> geteilt wird.
-- <InlineMath math="x=1" /> und <InlineMath math="x=-2" /> entstehen aus der falschen Zerlegung <InlineMath math="(2x-1)(x+2)" />, wenn zusätzlich bei <InlineMath math="2x-1=0" /> nicht durch <InlineMath math="2" /> geteilt wird.
-- Keine reelle Lösung ist falsch, denn die Diskriminante <InlineMath math="25" /> ist positiv.
+Das ist dasselbe, wie die <InlineMath math="x" />-Achse mit dem Thaleskreis über <InlineMath math="AB" /> zu schneiden, der den Mittelpunkt <InlineMath math="(4\mid2)" /> und den Radius <InlineMath math="\sqrt{10}" /> hat. **Der Kreis schneidet die Achse zweimal**.
+
+Keiner der vier Punkte liegt mit <InlineMath math="A" /> und <InlineMath math="B" /> auf einer Geraden, denn die Gerade <InlineMath math="AB" /> trifft die <InlineMath math="x" />-Achse erst bei <InlineMath math="x=10" />. Jeder liefert also ein echtes Dreieck.
+
+Also ist <InlineMath math="x=0" />, <InlineMath math="x=4-\sqrt6" />, <InlineMath math="x=4+\sqrt6" /> oder <InlineMath math="x=\frac{20}{3}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur <InlineMath math="4\pm\sqrt6" /> **denkt nur an den rechten Winkel bei <InlineMath math="P" />**. Die Aufgabe nennt die Ecke nicht.
+- Nur <InlineMath math="x=0" /> oder <InlineMath math="x=\frac{20}{3}" /> vergisst den Fall mit dem rechten Winkel bei <InlineMath math="P" />.
+- <InlineMath math="\frac{22}{3}" /> hat im Fall <InlineMath math="B" /> ein falsches Vorzeichen, also <InlineMath math="-6(x-7)+2=0" />.
+- <InlineMath math="x=10" /> ist der Punkt auf der Geraden <InlineMath math="AB" />. Dort liegen <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="P" /> auf einer Geraden, es gibt kein Dreieck.
+- <InlineMath math="x=2" /> hat im Fall <InlineMath math="A" /> ein falsches Vorzeichen, also <InlineMath math="6(x-1)-6=0" />.

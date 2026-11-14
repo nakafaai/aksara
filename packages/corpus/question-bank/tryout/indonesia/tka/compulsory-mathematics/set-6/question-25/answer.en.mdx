@@ -1,0 +1,23 @@
+# The sample space of triangles
+
+The words **given that they form a triangle** mean the sample space isn't every set of three points, only the sets that aren't collinear.
+
+There are <InlineMath math="\binom93=84" /> ways to choose three of the nine points. On this grid, three points in a line sit on <InlineMath math="3" /> rows, <InlineMath math="3" /> columns and <InlineMath math="2" /> diagonals, so <InlineMath math="8" /> sets are collinear.
+
+<BlockMath math="\text{triangles}=84-8=76" />
+
+# Triangles that use the centre
+
+If <InlineMath math="(1,1)" /> is chosen, the other two points come from the remaining eight, in <InlineMath math="\binom82=28" /> ways. But some pairs are in line with <InlineMath math="(1,1)" />: one on the middle row, one on the middle column and one on each diagonal. So **<InlineMath math="4" /> pairs have to be thrown out**.
+
+<BlockMath math="\begin{aligned}
+\text{triangles with } (1,1)&=28-4=24 \\
+P&=\frac{24}{76}=\frac{6}{19}
+\end{aligned}" />
+
+So the probability is <InlineMath math="\tfrac{6}{19}" />.
+
+- <InlineMath math="\tfrac13" /> doesn't remove collinear sets at all, <InlineMath math="\tfrac{28}{84}" />.
+- <InlineMath math="\tfrac{7}{19}" /> removes the collinear sets from the denominator but forgets the <InlineMath math="4" /> collinear pairs in the numerator, <InlineMath math="\tfrac{28}{76}" />.
+- <InlineMath math="\tfrac{13}{19}" /> is the opposite event: <InlineMath math="(1,1)" /> is **not** a vertex.
+- <InlineMath math="\tfrac{19}{21}" /> stops at the probability of getting a triangle, <InlineMath math="\tfrac{76}{84}" />.

@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "writing",
-    topic: "spelling",
+    topic: "effective-sentence",
   },
-  stimulus: "night-watch",
+  stimulus: "angkutan",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Tepat", "Tidak tepat"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "kalimat (1)",
+          column: 2,
+          label:
+            "Kata *mengindahkan* pada kalimat (5) diganti dengan *menghiraukan*.",
         },
         {
-          correct: false,
-          label: "kalimat (2)",
+          column: 1,
+          label:
+            "Kalimat (4) diubah menjadi *Setiap hari sekolah, delapan bus yang berangkat dari terminal kecamatan pukul 06.00 menjemput siswa di tiga puluh halte dan mengantar mereka pulang pukul 14.00.*",
         },
         {
-          correct: false,
-          label: "kalimat (3)",
+          column: 1,
+          label:
+            "Kata *mengindahkan* pada kalimat (5) diganti dengan *mengabaikan*.",
         },
         {
-          correct: false,
-          label: "kalimat (6)",
-        },
-        {
-          correct: true,
-          label: "kalimat (7)",
+          column: 2,
+          label:
+            "Kalimat (4) diubah menjadi *Setiap hari sekolah, delapan bus menjemput siswa yang berangkat dari terminal kecamatan pukul 06.00 di tiga puluh halte dan mengantar mereka pulang pukul 14.00.*",
         },
       ],
     },

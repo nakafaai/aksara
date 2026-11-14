@@ -2,33 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
     topic: "detail",
   },
-  stimulus: "karang",
+  stimulus: "litium",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Sesuai", "Tidak sesuai"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Warna putih pada karang yang memutih berasal dari kerangka kapurnya.",
-        },
-        {
           column: 2,
-          label: "Karang yang memutih pasti mati.",
+          label:
+            "Litium yang bereaksi dengan elektrolit pada pengisian pertama terbuang tanpa memberi manfaat apa pun bagi baterai.",
         },
         {
           column: 1,
-          label: "Alga memperoleh tempat berlindung dari karang.",
+          label:
+            "Selaput pemisah mencegah kedua elektrode tersambung secara langsung, tetapi tetap memungkinkan ion berpindah di antara keduanya.",
+        },
+        {
+          column: 1,
+          label:
+            "Pada baterai yang jarang panas, lapisan tipis di permukaan anode tetap dapat menebal.",
         },
         {
           column: 2,
           label:
-            "Pemutihan karang terjadi ketika suhu air laut naik selama satu hari.",
+            "Sistem pengisian pada ponsel menurunkan arus sejak awal pengisian agar litium tidak mengendap di permukaan anode.",
         },
       ],
     },

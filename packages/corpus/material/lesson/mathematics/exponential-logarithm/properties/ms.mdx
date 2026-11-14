@@ -1,0 +1,185 @@
+export const metadata = {
+  title: "Hukum Indeks",
+  description:
+    "Gunakan tujuh hukum indeks dengan syarat domain yang betul, jadual corak asas dua, serta contoh indeks integer dan nisbah berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-01",
+  dateModified: "2026-11-08",
+  subject: "Indeks dan Logaritma",
+};
+
+## Membaca Kuasa bagi Dua
+
+Jadual ini menunjukkan satu corak yang berulang. Setiap kali kamu turun satu baris, **indeks bertambah satu** dan nilainya didarab dengan <InlineMath math="2" />.
+
+| <InlineMath math="2^n" /> | Nilai |
+| ------------------------- | ----- |
+| <InlineMath math="2^1" /> | <InlineMath math="2" /> |
+| <InlineMath math="2^2" /> | <InlineMath math="4" /> |
+| <InlineMath math="2^3" /> | <InlineMath math="8" /> |
+| <InlineMath math="2^4" /> | <InlineMath math="16" /> |
+| <InlineMath math="2^5" /> | <InlineMath math="32" /> |
+| <InlineMath math="2^6" /> | <InlineMath math="64" /> |
+| <InlineMath math="2^7" /> | <InlineMath math="128" /> |
+| <InlineMath math="2^8" /> | <InlineMath math="256" /> |
+| <InlineMath math="2^9" /> | <InlineMath math="512" /> |
+| <InlineMath math="2^{10}" /> | <InlineMath math="1024" /> |
+
+Contohnya, <InlineMath math="2^5\cdot2^3" /> menggabungkan lima faktor dua dengan tiga faktor lagi. Hasilnya ada lapan faktor dua, jadi <InlineMath math="2^5\cdot2^3=2^8" />.
+
+Setiap langkah ke atas senarai ini mendarab dengan <InlineMath math="2" />, jadi palangnya menjadi dua kali ganda: <InlineMath math="1, 2, 4, 8, 16, 32, 64" />. Indeks membilang berapa banyak faktor <InlineMath math="2" /> yang telah didarab, dan sebab itulah <InlineMath math="2^0 = 1" /> memulakan senarai ini tanpa sebarang faktor.
+
+<BarChart
+  title={<>Kuasa bagi dua</>}
+  description={<>Palang <InlineMath math="n" /> menunjukkan <InlineMath math="2^n" /> untuk <InlineMath math="n = 0" /> hingga <InlineMath math="6" />.</>}
+  yAxisLabel="Nilai"
+  data={Array.from({ length: 7 }, (_, n) => ({ name: `${n}`, value: 2 ** n }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Tujuh Hukum Indeks
+
+| Situasi | Hukum | Syarat yang digunakan di sini |
+| --------- | -------- | -------------------- |
+| Darabkan asas yang sama | <InlineMath math="a^m a^n=a^{m+n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Bahagikan asas yang sama | <InlineMath math="\frac{a^m}{a^n}=a^{m-n}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Kuasakan satu kuasa | <InlineMath math="(a^m)^n=a^{mn}" /> | <InlineMath math="a\neq0" />, <InlineMath math="m,n\in\mathbb{Z}" /> |
+| Kuasakan hasil darab | <InlineMath math="(ab)^m=a^m b^m" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Kuasakan hasil bahagi | <InlineMath math="\left(\frac ab\right)^m=\frac{a^m}{b^m}" /> | <InlineMath math="a,b\neq0" />, <InlineMath math="m\in\mathbb{Z}" /> |
+| Darabkan kuasa nisbah dengan penyebut sama | <InlineMath math="a^{m/n}a^{p/n}=a^{(m+p)/n}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p\in\mathbb{Z}" />, <InlineMath math="n\neq0" /> |
+| Darabkan kuasa nisbah am | <InlineMath math="a^{m/n}a^{p/q}=a^{(mq+pn)/(nq)}" /> | <InlineMath math="a>0" />, <InlineMath math="m,n,p,q\in\mathbb{Z}" />, <InlineMath math="n,q\neq0" /> |
+
+**Asas kekal sama** apabila kuasa dengan asas yang sama didarab atau dibahagi. Hanya indeksnya yang digabungkan. Sebaliknya, kuasa di luar kurungan bertindak ke atas seluruh ungkapan di dalam kurungan.
+
+Apabila kuasa dengan asas yang sama didarab, indeksnya ditambah. Pada garis indeks, <InlineMath math="2^3" /> ialah langkah sepanjang <InlineMath math="3" /> dan <InlineMath math="2^2" /> ialah langkah sepanjang <InlineMath math="2" />. Sambungkan kedua-duanya hujung ke hujung, dan kamu sampai di indeks <InlineMath math="5" />: <InlineMath math="2^3 \cdot 2^2 = 2^5 = 32" />.
+
+<MathVisual
+  title={<>Indeks ditambah apabila kuasa didarab</>}
+  description={<>Dua langkah pada garis indeks, sepanjang <InlineMath math="3" /> dan <InlineMath math="2" />, berakhir di indeks <InlineMath math="5" /> bagi <InlineMath math="2^3 \cdot 2^2 = 2^5" />.</>}
+  labels={{
+    s0: <InlineMath math="\times 2^3" />,
+    s1: <InlineMath math="\times 2^2" />,
+    end: <InlineMath math="2^5 = 32" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 7.5 }, y: { min: -0.8, max: 1.2 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis", kind: "segment", from: { x: -0.5, y: 0 }, to: { x: 7.5, y: 0 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 0.3 }, to: { x: 3, y: 0.3 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 0.6 }, to: { x: 5, y: 0.6 }, appearance: "secondary" },
+      { id: "end", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "s0", objectId: "s0", at: { x: 0 + 3 / 2, y: 0.3 }, placement: "above" },
+      { key: "s1", objectId: "s1", at: { x: 3 + 2 / 2, y: 0.6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+## Syarat bagi Hukum Indeks
+
+- Asas sifar boleh digunakan untuk sesetengah indeks positif, tetapi tidak untuk indeks negatif kerana <InlineMath math="0^{-1}" /> memerlukan pembahagian dengan sifar. Jadi hukum untuk indeks integer menggunakan <InlineMath math="a\neq0" /> sebagai satu syarat yang konsisten.
+- Hasil bahagi juga memerlukan penyebut yang bukan sifar.
+- Untuk indeks nisbah, syarat <InlineMath math="a>0" /> memastikan setiap punca dan kuasa bernilai nyata dan hanya ada satu makna. Sesetengah contoh asas negatif secara individu memang bernilai nyata, tetapi satu hukum tanpa sekatan tidak akan merangkumi semua indeks nisbah.
+
+Semak **syarat pada asas dan indeks** sebelum menggunakan sesuatu hukum.
+
+Indeks sifar dan indeks negatif meneruskan corak yang sama. Setiap langkah ke kiri menjadikan nilainya separuh, jadi <InlineMath math="2^0 = 1" />, <InlineMath math="2^{-1} = \frac12" /> dan <InlineMath math="2^{-3} = \frac18" />. Nilainya semakin kecil tetapi kekal positif, kerana setiap nilai ialah <InlineMath math="1" /> dibahagi dengan kuasa positif bagi <InlineMath math="2" />: <InlineMath math="2^{-n} = \frac{1}{2^n}" />.
+
+<BarChart
+  title={<>Kuasa bagi dua dari <InlineMath math="2^{-3}" /> hingga <InlineMath math="2^3" /></>}
+  description={<>Palang <InlineMath math="2^k" /> untuk <InlineMath math="k = -3" /> hingga <InlineMath math="3" />: setiap langkah ke kanan menggandakan nilainya, dan <InlineMath math="2^0 = 1" />.</>}
+  yAxisLabel="Nilai"
+  data={[-3, -2, -1, 0, 1, 2, 3].map((k) => ({ name: String(k), value: 2 ** k }))}
+  chartConfig={{ value: { label: "Nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Operasi Menentukan Hukum Indeks
+
+Jadual ini mengaitkan setiap operasi dalam ungkapan dengan **langkah pertama untuk mempermudahkannya**. Cari operasinya, kemudian ikut baris yang sepadan.
+
+| Corak dalam ungkapan | Langkah pertama |
+| ------------------------- | ---------- |
+| Asas sama didarab | Tambah indeksnya |
+| Asas sama dibahagi | Tolak indeks penyebut |
+| Kuasa di luar kuasa | Darab indeksnya |
+| Hasil darab atau hasil bahagi dalam kurungan | Agihkan indeks luar |
+| Indeks nisbah dengan penyebut berbeza | Tulis semula dengan penyebut sepunya |
+
+## Mempermudahkan Hasil Darab Hasil Bahagi dan Kuasa
+
+Contoh di bawah menggabungkan beberapa hukum dalam satu ungkapan. Gunakan **satu hukum bagi setiap langkah** dan kekalkan asasnya. Tulis baris perantaraan setiap kali, kerana baris itu menunjukkan hukum mana yang kamu gunakan.
+
+### Menggabungkan Hasil Darab dan Hasil Bahagi
+
+Setiap soalan di bawah menggabungkan pendaraban dan pembahagian kuasa dengan asas yang sama. **Tambahkan indeks** faktor dalam pengangka, kemudian **tolak indeks** faktor dalam penyebut, dan kekalkan asasnya.
+
+1. Permudahkan <InlineMath math="\frac{2^5\cdot2^3}{2^2}" />.
+
+    <MathContainer>
+      <BlockMath math="\frac{2^5\cdot2^3}{2^2}=2^{5+3-2}" />
+      <BlockMath math="2^{5+3-2}=2^6=64" />
+    </MathContainer>
+
+2. Permudahkan <InlineMath math="2^2\cdot2^3" />.
+
+    <BlockMath math="2^2\cdot2^3=2^{2+3}=2^5=32" />
+
+3. Permudahkan <InlineMath math="2^5\cdot2^2" />.
+
+    <BlockMath math="2^5\cdot2^2=2^{5+2}=2^7=128" />
+
+4. Permudahkan <InlineMath math="2^3\cdot2^7" />.
+
+    <BlockMath math="2^3\cdot2^7=2^{3+7}=2^{10}=1024" />
+
+5. Permudahkan <InlineMath math="\frac{2^8}{2^6}" />.
+
+    <BlockMath math="\frac{2^8}{2^6}=2^{8-6}=2^2=4" />
+
+6. Permudahkan <InlineMath math="\frac{2^{10}}{2^3}" />.
+
+    <BlockMath math="\frac{2^{10}}{2^3}=2^{10-3}=2^7=128" />
+
+7. Permudahkan <InlineMath math="\frac{2^6}{2^4}" />.
+
+    <BlockMath math="\frac{2^6}{2^4}=2^{6-4}=2^2=4" />
+
+### Kuasa bagi Kuasa
+
+Setiap ungkapan di bawah menguasakan satu kuasa dengan kuasa yang lain. **Darabkan kedua-dua indeks** dan kekalkan asasnya, kemudian semak hasil kamu dengan nilai berangka dalam jawapan.
+
+8. Permudahkan <InlineMath math="(2^3)^3" />.
+
+    <BlockMath math="(2^3)^3=2^{3\cdot3}=2^9=512" />
+
+9. Permudahkan <InlineMath math="(2^4)^2" />.
+
+    <BlockMath math="(2^4)^2=2^{4\cdot2}=2^8=256" />
+
+10. Permudahkan <InlineMath math="(2^2)^5" />.
+
+    <BlockMath math="(2^2)^5=2^{2\cdot5}=2^{10}=1024" />
+
+### Indeks Nisbah
+
+Untuk asas yang sama, tambahkan indeks pecahan itu. Gunakan **penyebut sepunya** supaya pengangka membilang bahagian yang sama saiz. Dalam contoh kedua, satu perdua sama dengan tiga perenam dan satu pertiga sama dengan dua perenam.
+
+11. Permudahkan <InlineMath math="2^{1/3}2^{2/3}" />.
+
+    <MathContainer>
+      <BlockMath math="2^{1/3}2^{2/3}=2^{(1+2)/3}" />
+      <BlockMath math="2^{3/3}=2" />
+    </MathContainer>
+
+12. Permudahkan <InlineMath math="3^{1/2}3^{1/3}" />.
+
+    <MathContainer>
+      <BlockMath math="3^{1/2}3^{1/3}=3^{3/6+2/6}" />
+      <BlockMath math="3^{1/2}3^{1/3}=3^{5/6}" />
+    </MathContainer>
+
+Dalam setiap contoh, operasi dan susunan asas menentukan hukum mana yang terpakai. Membaca struktur itu dahulu lebih boleh dipercayai daripada cuba mengingat semula rumus.

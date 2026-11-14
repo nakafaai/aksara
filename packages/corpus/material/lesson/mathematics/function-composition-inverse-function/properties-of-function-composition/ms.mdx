@@ -1,0 +1,224 @@
+export const metadata = {
+  title: "Sifat Fungsi Gubahan",
+  description: "Tunjukkan bahawa gubahan fungsi biasanya bergantung pada tertib, kemudian buktikan sifat kalis sekutuan dan sifat identitinya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Menukar Tertib dan Pengumpulan Fungsi
+
+Gubahan mengenakan fungsi satu demi satu mengikut **tertib yang ditetapkan**. Gunakan tiga petua fungsi di bawah untuk membandingkan apa yang berlaku apabila tertib ditukar dengan apa yang berlaku apabila pengumpulan ditukar:
+
+<MathContainer>
+  <BlockMath math="f(x) = 2x + 1" />
+  <BlockMath math="g(x) = x^2 + 4" />
+  <BlockMath math="h(x) = \frac{1}{x+1}" />
+</MathContainer>
+
+Domain bagi ketiga-tiga fungsi itu ialah:
+
+<BlockMath math="D_f=D_g=\mathbb{R}\qquad D_h=\mathbb{R}\setminus\{-1\}" />
+
+### Gubahan Tidak Kalis Tukar Tertib
+
+Dalam gubahan, setiap fungsi menerima output daripada fungsi di sebelah kanannya. Jadi, menterbalikkan tertib biasanya menghasilkan fungsi gubahan yang berbeza.
+
+Secara umumnya, <InlineMath math="(f \circ g)(x)" /> **tidak sama dengan** <InlineMath math="(g \circ f)(x)" />.
+
+**Contoh**:
+
+Bandingkan <InlineMath math="(g \circ f)(x)" /> dan <InlineMath math="(f \circ g)(x)" />.
+
+**Mengira <InlineMath math="(g \circ f)(x)" />**:
+
+<MathContainer>
+  <BlockMath math="(g \circ f)(x) = g(f(x)) = g(2x+1)" />
+  <BlockMath math="\begin{aligned} g(2x+1) &amp;= (2x+1)^2 + 4 \\ &amp;= (4x^2 + 4x + 1) + 4 \\ &amp;= 4x^2 + 4x + 5 \end{aligned}" />
+</MathContainer>
+
+**Mengira <InlineMath math="(f \circ g)(x)" />**:
+
+<MathContainer>
+  <BlockMath math="(f \circ g)(x) = f(g(x)) = f(x^2+4)" />
+  <BlockMath math="\begin{aligned} f(x^2+4) &amp;= 2(x^2+4) + 1 \\ &amp;= (2x^2 + 8) + 1 \\ &amp;= 2x^2 + 9 \end{aligned}" />
+</MathContainer>
+
+Kedua-dua ungkapan polinomial itu ada pekali yang berbeza, jadi kedua-duanya bukan fungsi yang sama. Satu input sahaja juga sudah memberikan contoh penyangkal secara terus:
+
+<BlockMath math="(g\circ f)(0)=5\neq9=(f\circ g)(0)" />
+
+Contoh penyangkal ini membuktikan bahawa <InlineMath math="g\circ f\neq f\circ g" /> sebagai fungsi. Pasangan fungsi yang lain mesti disemak dengan cara yang sama. <Highlight>Gubahan secara umumnya tidak kalis tukar tertib</Highlight>.
+
+Hantar <InlineMath math="x = 1" /> melalui kedua-dua tertib. Melalui <InlineMath math="g" /> dahulu: <InlineMath math="g(1) = 5" />, kemudian <InlineMath math="f(5) = 11" />. Melalui <InlineMath math="f" /> dahulu: <InlineMath math="f(1) = 3" />, kemudian <InlineMath math="g(3) = 13" />. Kedua-dua laluan bermula bersama tetapi berakhir di tempat yang berbeza, jadi <InlineMath math="f \circ g \ne g \circ f" />.
+
+<MathVisual
+  title={<>Dua tertib, dua output yang berbeza</>}
+  description={<>Input <InlineMath math="1" /> dihantar melalui <InlineMath math="g" /> kemudian <InlineMath math="f" /> (berakhir pada <InlineMath math="11" />), dan melalui <InlineMath math="f" /> kemudian <InlineMath math="g" /> (berakhir pada <InlineMath math="13" />).</>}
+  labels={{
+    x: <InlineMath math="x = 1" />,
+    mid: <>selepas fungsi pertama</>,
+    out: <>selepas fungsi kedua</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -0.5, max: 15.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "axis0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 14 }, appearance: "reference" },
+      { id: "axis1", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 14 }, appearance: "reference" },
+      { id: "axis2", kind: "segment", from: { x: 8, y: 0 }, to: { x: 8, y: 14 }, appearance: "reference" },
+      { id: "p0s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 5 }, appearance: "primary" },
+      { id: "p0s1", kind: "segment", from: { x: 4, y: 5 }, to: { x: 8, y: 11 }, appearance: "primary" },
+      { id: "p0v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "p0v1", kind: "point", at: { x: 4, y: 5 }, appearance: "primary" },
+      { id: "p0v2", kind: "point", at: { x: 8, y: 11 }, appearance: "primary" },
+      { id: "p1s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "p1s1", kind: "segment", from: { x: 4, y: 3 }, to: { x: 8, y: 13 }, appearance: "secondary" },
+      { id: "p1v0", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
+      { id: "p1v1", kind: "point", at: { x: 4, y: 3 }, appearance: "secondary" },
+      { id: "p1v2", kind: "point", at: { x: 8, y: 13 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "x", objectId: "axis0", at: { x: 0, y: 14 }, placement: "above" },
+      { key: "mid", objectId: "axis1", at: { x: 4, y: 14 }, placement: "above" },
+      { key: "out", objectId: "axis2", at: { x: 8, y: 14 }, placement: "above" },
+    ],
+  }}
+/>
+
+### Sifat Kalis Sekutuan
+
+Jika tiga fungsi ada domain dan kodomain yang serasi, menukar pengumpulan sahaja tidak mengubah hasilnya. Tertib **fungsi** itu mesti kekal sama, dan kedua-dua belah dibandingkan pada input yang menjadikan gubahan itu tertakrif.
+
+Secara matematik, bagi fungsi <InlineMath math="f" />, <InlineMath math="g" /> dan <InlineMath math="h" />, persamaan berikut benar:
+
+<BlockMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />
+
+Kita boleh membentuk <InlineMath math="f\circ g" /> dahulu, kemudian menggubah fungsi itu dengan <InlineMath math="h" />, atau membentuk <InlineMath math="g\circ h" /> dahulu, kemudian menggubah <InlineMath math="f" /> dengan hasilnya. Pada sebarang input yang menjadikan kedua-dua belah tertakrif, kedua-dua ungkapan mengenakan <InlineMath math="h" />, kemudian <InlineMath math="g" />, kemudian <InlineMath math="f" />.
+
+**Contoh**:
+
+Semak sama ada <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+
+**Mengira <InlineMath math="((f \circ g) \circ h)(x)" />**:
+
+Kita sudah tahu <InlineMath math="(f \circ g)(x) = 2x^2 + 9" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} ((f \circ g) \circ h)(x) &amp;= (f \circ g)(h(x)) \\ &amp;= (f \circ g)(\frac{1}{x+1}) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;(f \circ g)(\frac{1}{x+1}) \\ &amp;= 2\left(\frac{1}{x+1}\right)^2 + 9 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
+
+**Mengira <InlineMath math="(f \circ (g \circ h))(x)" />**:
+
+Pertama, cari <InlineMath math="(g \circ h)(x)" />:
+
+<MathContainer>
+  <BlockMath math="(g \circ h)(x) = g(h(x)) = g(\frac{1}{x+1})" />
+  <BlockMath math="\begin{aligned} g(\frac{1}{x+1}) &amp;= \left(\frac{1}{x+1}\right)^2 + 4 \\ &amp;= \frac{1}{(x+1)^2} + 4 \end{aligned}" />
+</MathContainer>
+
+Sekarang, gubah <InlineMath math="f" /> dengan hasil ini:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;(f \circ (g \circ h))(x) \\ &amp;= f((g \circ h)(x)) \\ &amp;= f\left(\frac{1}{(x+1)^2} + 4\right) \end{aligned}" />
+  <BlockMath math="\begin{aligned} &amp;f\left(\frac{1}{(x+1)^2} + 4\right) \\ &amp;= 2\left(\frac{1}{(x+1)^2} + 4\right) + 1 \\ &amp;= \frac{2}{(x+1)^2} + 8 + 1 \\ &amp;= \frac{2}{(x+1)^2} + 9 \end{aligned}" />
+</MathContainer>
+
+Oleh sebab kedua-dua hasil itu sama (<InlineMath math="\frac{2}{(x+1)^2} + 9" />) untuk <InlineMath math="x\neq-1" />, sifat kalis sekutuan berlaku pada domain sepunya kedua-duanya: <InlineMath math="((f \circ g) \circ h)(x) = (f \circ (g \circ h))(x)" />.
+
+Sifat kalis sekutuan ini juga berlaku untuk gabungan tertib fungsi yang lain, seperti <InlineMath math="((h \circ f) \circ g)(x) = (h \circ (f \circ g))(x)" /> dan <InlineMath math="((g \circ f) \circ h)(x) = (g \circ (f \circ h))(x)" />.
+
+Pada <InlineMath math="x=0" />, kedua-dua cara pengumpulan mengikut **laluan pengiraan yang sama**. Mengumpulkan dua petua tidak mengubah tertib petua-petua itu dikenakan:
+
+<Mermaid
+  title={<>Tertib Tetap dalam Gubahan Kalis Sekutuan</>}
+  description={<>Input sifar melalui h, kemudian g, kemudian f, dan menghasilkan sebelas.</>}
+  chart={`flowchart LR
+    X["0"] -->|"h"| H["1"]
+    H -->|"g"| G["5"]
+    G -->|"f"| F["11"]`}
+/>
+
+Ikut <InlineMath math="x = 1" /> melalui <InlineMath math="h(x) = \frac{1}{x + 1}" />, kemudian <InlineMath math="g(x) = x^2 + 4" />, kemudian <InlineMath math="f(x) = 2x + 1" />: <InlineMath math="1 \to \frac12 \to \frac{17}{4} \to \frac{19}{2}" />. Sama ada kamu kumpulkan <InlineMath math="(f \circ g) \circ h" /> atau <InlineMath math="f \circ (g \circ h)" />, input itu melalui tiga langkah yang sama, jadi kedua-duanya memberikan <InlineMath math="\frac{19}{2}" />.
+
+<MathVisual
+  title={<>Satu input melalui tiga fungsi</>}
+  description={<>Empat paksi mencancang untuk <InlineMath math="x" />, <InlineMath math="h(x)" />, <InlineMath math="g(h(x))" /> dan <InlineMath math="f(g(h(x)))" />, dengan laluan input <InlineMath math="1" />.</>}
+  labels={{
+    v0: <InlineMath math="1" />,
+    v1: <InlineMath math="\tfrac12" />,
+    v2: <InlineMath math="\tfrac{17}{4}" />,
+    v3: <InlineMath math="\tfrac{19}{2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ax0", kind: "segment", from: { x: 0, y: 0 }, to: { x: 0, y: 10 }, appearance: "reference" },
+      { id: "ax1", kind: "segment", from: { x: 3, y: 0 }, to: { x: 3, y: 10 }, appearance: "reference" },
+      { id: "ax2", kind: "segment", from: { x: 6, y: 0 }, to: { x: 6, y: 10 }, appearance: "reference" },
+      { id: "ax3", kind: "segment", from: { x: 9, y: 0 }, to: { x: 9, y: 10 }, appearance: "reference" },
+      { id: "s0", kind: "segment", from: { x: 0, y: 1 }, to: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "s1", kind: "segment", from: { x: 3, y: 1 / 2 }, to: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "s2", kind: "segment", from: { x: 6, y: 17 / 4 }, to: { x: 9, y: 19 / 2 }, appearance: "primary" },
+      { id: "v0", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "point", at: { x: 3, y: 1 / 2 }, appearance: "primary" },
+      { id: "v2", kind: "point", at: { x: 6, y: 17 / 4 }, appearance: "primary" },
+      { id: "v3", kind: "point", at: { x: 9, y: 19 / 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "v0", objectId: "v0", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "v1", objectId: "v1", at: { x: 3, y: 1 / 2 }, placement: "below-right" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 17 / 4 }, placement: "right" },
+      { key: "v3", objectId: "v3", at: { x: 9, y: 19 / 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+### Unsur Identiti
+
+**Fungsi identiti** memetakan setiap unsur sesuatu set kepada dirinya sendiri. Untuk <InlineMath math="f:A\to B" />, katakan <InlineMath math="I_A" /> ialah fungsi identiti pada <InlineMath math="A" /> dan <InlineMath math="I_B" /> ialah fungsi identiti pada <InlineMath math="B" />.
+
+Menggubah dengan fungsi identiti bagi set yang sepadan tidak mengubah <InlineMath math="f" />:
+
+<MathContainer>
+  <BlockMath math="(f\circ I_A)(x)=f(I_A(x))=f(x)" />
+  <BlockMath math="(I_B\circ f)(x)=I_B(f(x))=f(x)" />
+</MathContainer>
+
+**Contoh**:
+
+Dengan <InlineMath math="f:\mathbb{R}\to\mathbb{R}" /> dan <InlineMath math="f(x) = 2x + 1" />:
+
+- <InlineMath math="(f\circ I_{\mathbb{R}})(x)=f(I_{\mathbb{R}}(x))=2x+1" />
+- <InlineMath math="(I_{\mathbb{R}}\circ f)(x)=I_{\mathbb{R}}(f(x))=2x+1" />
+
+Kedua-duanya menghasilkan fungsi <InlineMath math="f(x)" /> semula.
+
+Fungsi identiti <InlineMath math="I(x) = x" /> tidak mengubah apa-apa, jadi menggubah dengannya membiarkan <InlineMath math="f" /> seperti asal. Garis <InlineMath math="f(x) = 2x + 1" /> dan garis <InlineMath math="(f \circ I)(x) = f(x)" /> ialah garis yang sama, manakala <InlineMath math="I" /> sendiri ialah garis pepenjuru <InlineMath math="y = x" />.
+
+<MathVisual
+  title={<>Menggubah dengan fungsi identiti tidak mengubah apa-apa</>}
+  description={<>Garis <InlineMath math="y = x" /> bagi fungsi identiti dan garis <InlineMath math="y = 2x + 1" />, iaitu <InlineMath math="f" /> dan juga <InlineMath math="f \circ I" />.</>}
+  labels={{
+    i: <InlineMath math="I(x) = x" />,
+    f: <InlineMath math="f = f \circ I" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "i", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
+      { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 1, y: 3 }], appearance: "primary" },
+    ],
+    labels: [
+      { key: "i", objectId: "i", at: { x: 2.5, y: 2.5 }, placement: "below-right" },
+      { key: "f", objectId: "f", at: { x: 1.2, y: 3.4 }, placement: "left" },
+    ],
+  }}
+/>

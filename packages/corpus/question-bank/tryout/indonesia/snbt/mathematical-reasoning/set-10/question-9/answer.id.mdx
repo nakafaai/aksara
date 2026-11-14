@@ -1,9 +1,44 @@
-Isi posisi dari kiri ke kanan. Setiap posisi yang sudah terisi **mengurangi satu pilihan** untuk posisi berikutnya.
+Kamu mencari banyak dus gelas untuk kelima pos. Kuncinya ada di aturan kedua: **setiap pos menerima dus utuh sendiri**. Jadi rencananya begini: hitung gelas rencana setiap pos, bulatkan ke atas menjadi dus per pos, lalu jumlahkan dus kelima pos.
 
-# Aturan perkalian
+# Gelas rencana setiap pos
 
-Posisi pertama dapat diisi 5 siswa, posisi kedua 4 siswa yang tersisa, dan seterusnya.
+Di pos <InlineMath math="1" /> dan pos <InlineMath math="2" /> setiap pelari mengambil <InlineMath math="1" /> gelas, sedangkan di pos <InlineMath math="3" /> sampai pos <InlineMath math="5" /> **setiap pelari mengambil dua gelas**. Cadangan <InlineMath math="10\%" /> membuat gelas rencana sama dengan <InlineMath math="110\%" /> dari perkiraan pemakaian.
 
-<BlockMath math="5\cdot4\cdot3\cdot2\cdot1=5!=120" />
+<BlockMath math="\begin{aligned}
+\text{pos 1} &= 1{,}1\cdot1{.}200=1{.}320\\
+\text{pos 2} &= 1{,}1\cdot1{.}180=1{.}298\\
+\text{pos 3} &= 1{,}1\cdot(2\cdot1{.}140)=1{,}1\cdot2{.}280=2{.}508\\
+\text{pos 4} &= 1{,}1\cdot(2\cdot1{.}100)=1{,}1\cdot2{.}200=2{.}420\\
+\text{pos 5} &= 1{,}1\cdot(2\cdot1{.}050)=1{,}1\cdot2{.}100=2{.}310
+\end{aligned}" />
 
-Jadi, ada **120 susunan** berbeda.
+# Dus utuh untuk setiap pos
+
+Satu dus berisi <InlineMath math="100" /> gelas, dan isinya tidak boleh dibagi ke pos lain. Jadi setiap pos memerlukan dus sebanyak gelas rencananya dibagi <InlineMath math="100" />, lalu **dibulatkan ke atas**, walaupun kelebihannya hanya sedikit.
+
+| Pos | Gelas rencana | Gelas rencana dibagi seratus | Dus |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="1{.}320" /> | <InlineMath math="13{,}2" /> | <InlineMath math="14" /> |
+| <InlineMath math="2" /> | <InlineMath math="1{.}298" /> | <InlineMath math="12{,}98" /> | <InlineMath math="13" /> |
+| <InlineMath math="3" /> | <InlineMath math="2{.}508" /> | <InlineMath math="25{,}08" /> | <InlineMath math="26" /> |
+| <InlineMath math="4" /> | <InlineMath math="2{.}420" /> | <InlineMath math="24{,}2" /> | <InlineMath math="25" /> |
+| <InlineMath math="5" /> | <InlineMath math="2{.}310" /> | <InlineMath math="23{,}1" /> | <InlineMath math="24" /> |
+
+<BlockMath math="\begin{aligned}
+\text{total dus} &= 14+13+26+25+24=102
+\end{aligned}" />
+
+# Pemeriksaan sisa gelas
+
+Banyak dus di setiap pos memang paling sedikit jika sisa gelasnya kurang dari satu dus. Sisanya adalah <InlineMath math="80" />, <InlineMath math="2" />, <InlineMath math="92" />, <InlineMath math="80" />, dan <InlineMath math="90" /> gelas. Semuanya kurang dari <InlineMath math="100" />, jadi **tidak ada pos yang bisa dikurangi satu dus**.
+
+# Pilihan yang keliru
+
+Setiap pilihan yang keliru **melanggar satu aturan pengemasan atau pemakaian gelas**.
+
+- <InlineMath math="99" /> dus membagi jumlah gelas rencana kelima pos, <InlineMath math="9{.}856" />, dengan <InlineMath math="100" /> sekaligus. Cara itu menganggap satu dus boleh dibagi ke beberapa pos.
+- <InlineMath math="98" /> dus membulatkan ke bilangan terdekat, sehingga pos <InlineMath math="3" /> hanya mendapat <InlineMath math="25" /> dus untuk <InlineMath math="2{.}508" /> gelas.
+- <InlineMath math="90" /> dus lupa cadangan <InlineMath math="10\%" />.
+- <InlineMath math="65" /> dus lupa bahwa pelari di pos <InlineMath math="3" /> sampai pos <InlineMath math="5" /> mengambil <InlineMath math="2" /> gelas.
+
+Jadi, panitia harus menyediakan <InlineMath math="102" /> dus gelas untuk kelima pos.

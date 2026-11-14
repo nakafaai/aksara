@@ -17,6 +17,7 @@ import {
   PublicRouteSegmentSchema,
   PublicRouteSlugMapSchema,
 } from "#corpus/route/schema";
+import { SetRatingSchema } from "#corpus/tryout/level";
 
 const PositiveIntSchema = Schema.Int.check(Schema.isGreaterThan(0));
 
@@ -25,6 +26,18 @@ const TranslationMapSchema = localizedSourceMapSchema(
     description: Schema.optional(Schema.String),
     title: Schema.String,
   })
+);
+
+/**
+ * An exam's official name is a proper noun: SNBT, TKA, Aufnahmeprüfung, and
+ * Feststellungsprüfung read the same in every locale, so an exam names itself
+ * once and only its description is translated.
+ */
+const ExamNameSchema = Schema.Trimmed.check(Schema.isNonEmpty());
+
+/** The localized description of one exam page. */
+const ExamTranslationMapSchema = localizedSourceMapSchema(
+  Schema.Struct({ description: Schema.String })
 );
 
 /**
@@ -80,10 +93,14 @@ export const ProfileSourceSchema = Schema.Struct({
 });
 export type ProfileSource = typeof ProfileSourceSchema.Type;
 
-/** One set of a track: its names and routes. Its paper sits the track's sections. */
+/**
+ * One set of a track: its names, routes, and the difficulty panel's rating of
+ * it. Its paper sits the track's sections.
+ */
 export const SetSourceSchema = Schema.Struct({
   key: KebabKeySchema,
   order: PositiveIntSchema,
+  rating: SetRatingSchema,
   routeSlugs: PublicRouteSlugMapSchema,
   translations: TranslationMapSchema,
 });
@@ -139,9 +156,10 @@ const GroupingSourceSchema = Schema.Struct({
 export const ExamSourceSchema = Schema.Struct({
   ...CountrySourceSchema.fields,
   examKey: KebabKeySchema,
+  examName: ExamNameSchema,
   examOrder: PositiveIntSchema,
   examRouteSlugs: PublicRouteSlugMapSchema,
-  examTranslations: TranslationMapSchema,
+  examTranslations: ExamTranslationMapSchema,
   grouping: GroupingSourceSchema,
   sourceRevision: PublicRouteSegmentSchema,
   tracks: Schema.Array(TrackSourceSchema),

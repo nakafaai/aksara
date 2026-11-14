@@ -4,34 +4,31 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "biconditional",
+    topic: "quantifiers",
   },
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Pasti benar", "Tidak pasti benar"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "Rara membayar dengan kartu anggota.",
-        },
-        {
-          column: 1,
-          label: "Rara sudah mendaftar di aplikasi kafe.",
-        },
-        {
-          column: 1,
-          label: "Dimas tidak mendapat poin bonus.",
+          label:
+            "Pendaftar yang fasih berbahasa Inggris tidak ada yang terlambat menyerahkan berkas.",
         },
         {
           column: 2,
           label:
-            "Semua pelanggan yang sudah mendaftar di aplikasi kafe mendapat poin bonus.",
+            "Pendaftar yang pernah menjadi relawan museum tidak ada yang terlambat menyerahkan berkas.",
         },
         {
           column: 2,
+          label: "Semua pendaftar yang lulus tes sejarah dipanggil wawancara.",
+        },
+        {
+          column: 1,
           label:
-            "Dimas membayar tanpa kartu anggota, tetapi tetap mendapat poin bonus.",
+            "Sebagian pendaftar yang lulus tes sejarah pernah menjadi relawan museum.",
         },
       ],
     },

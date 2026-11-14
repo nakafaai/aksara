@@ -1,28 +1,33 @@
-Tanda <InlineMath math="x+1" /> belum diketahui, jadi kedua ruas **tidak boleh langsung dikalikan dengan <InlineMath math="x+1" />**. Pindahkan semua suku ke satu ruas, lalu periksa tanda pecahan yang terbentuk.
+Nilai <InlineMath math="P" /> dan <InlineMath math="Q" /> sama-sama mengecil ketika <InlineMath math="n" /> membesar, dan untuk <InlineMath math="n=1" /> keduanya sangat dekat. Jadi menaksir dengan beberapa contoh tidak cukup: kamu perlu **perbandingan yang berlaku untuk setiap <InlineMath math="n" />**. Rencananya, ubah <InlineMath math="P" /> menjadi pecahan berpembilang <InlineMath math="1" />, lalu bandingkan penyebutnya.
 
-# Menyusun satu pecahan
+# Merasionalkan kuantitas pertama
+
+Kalikan <InlineMath math="P" /> dengan bentuk sekawannya, <InlineMath math="\sqrt{n+1}+\sqrt{n}" />, di pembilang dan penyebut.
 
 <BlockMath math="\begin{aligned}
-\frac{x-3}{x+1}-2&\ge0\\
-\frac{x-3-2(x+1)}{x+1}&\ge0\\
-\frac{-x-5}{x+1}&\ge0\\
-\frac{x+5}{x+1}&\le0
+P&=\frac{\left(\sqrt{n+1}-\sqrt{n}\right)\left(\sqrt{n+1}+\sqrt{n}\right)}{\sqrt{n+1}+\sqrt{n}}\\
+&=\frac{(n+1)-n}{\sqrt{n+1}+\sqrt{n}}=\frac{1}{\sqrt{n+1}+\sqrt{n}}
 \end{aligned}" />
 
-Baris terakhir dikalikan dengan <InlineMath math="-1" />, sehingga **tanda pertidaksamaan berbalik**.
+Sekarang <InlineMath math="P" /> dan <InlineMath math="Q" /> sama-sama berpembilang <InlineMath math="1" /> dengan penyebut positif. Untuk pecahan seperti itu, **penyebut yang lebih kecil memberi nilai yang lebih besar**. Jadi cukup bandingkan <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> dengan <InlineMath math="\sqrt{4n+2}" />.
 
-# Memeriksa tanda
+# Membandingkan kedua penyebut
 
-Pembuat nol pembilang adalah <InlineMath math="x=-5" />, dan pembuat nol penyebut adalah <InlineMath math="x=-1" />.
+Kedua penyebut positif, jadi urutannya sama dengan urutan kuadratnya. Kuadrat penyebut <InlineMath math="P" /> memuat <InlineMath math="2\sqrt{n^2+n}" />, dan bentuk itu **selalu lebih kecil dari <InlineMath math="2n+1" />** karena kuadratnya lebih kecil.
 
-| Selang | Tanda <InlineMath math="x+5" /> | Tanda <InlineMath math="x+1" /> | Tanda pecahan |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-5" /> | negatif | negatif | positif |
-| <InlineMath math="-5<x<-1" /> | positif | negatif | negatif |
-| <InlineMath math="x>-1" /> | positif | positif | positif |
+<BlockMath math="\begin{aligned}
+\left(2\sqrt{n^2+n}\right)^2=4n^2+4n&<4n^2+4n+1=(2n+1)^2\\
+\left(\sqrt{n+1}+\sqrt{n}\right)^2=2n+1+2\sqrt{n^2+n}&<2n+1+(2n+1)=4n+2
+\end{aligned}" />
 
-Pecahan bernilai negatif pada <InlineMath math="-5<x<-1" /> dan bernilai nol di <InlineMath math="x=-5" />. Titik <InlineMath math="x=-1" /> **tidak termasuk** karena penyebutnya nol. Cek <InlineMath math="x=-3" />: <InlineMath math="\frac{-6}{-2}=3\ge2" />.
+Jadi <InlineMath math="\sqrt{n+1}+\sqrt{n}<\sqrt{4n+2}" />. Penyebut <InlineMath math="P" /> lebih kecil, sehingga <InlineMath math="P>Q" /> untuk setiap bilangan bulat positif <InlineMath math="n" />.
 
-Himpunan <InlineMath math="x\le-5" /> muncul jika kedua ruas langsung dikalikan dengan <InlineMath math="x+1" /> seolah-olah positif. Himpunan yang memakai <InlineMath math="-5<x" /> membuang <InlineMath math="x=-5" />, padahal di titik itu ruas kiri tepat 2. Himpunan yang memakai <InlineMath math="x\le-1" /> memasukkan titik yang membuat penyebut nol. Himpunan <InlineMath math="x\le-5" /> atau <InlineMath math="x>-1" /> adalah daerah dengan tanda yang terbalik.
+# Memeriksa dengan contoh
 
-Jadi, himpunan penyelesaiannya adalah <InlineMath math="\{x\mid -5\le x<-1\}" />.
+Untuk <InlineMath math="n=1" />, <InlineMath math="P=\sqrt{2}-1\approx 0{,}414" /> dan <InlineMath math="Q=\tfrac{1}{\sqrt{6}}\approx 0{,}408" />. Memang <InlineMath math="P>Q" />, tetapi selisihnya hanya sekitar <InlineMath math="0{,}006" />, jadi **taksiran kasar mudah menyesatkan** dan pembuktian aljabar di atas yang memutuskan.
+
+# Memeriksa pilihan lain
+
+Pilihan <InlineMath math="Q>P" /> muncul kalau <InlineMath math="Q" /> **dianggap sama dengan batas atas** <InlineMath math="\tfrac{1}{2\sqrt{n}}" />, yaitu batas atas yang terkenal untuk <InlineMath math="\sqrt{n+1}-\sqrt{n}" />, padahal <InlineMath math="Q=\tfrac{1}{2\sqrt{n+\frac{1}{2}}}" /> lebih kecil dari batas itu. Pilihan <InlineMath math="P=Q" /> muncul kalau <InlineMath math="\sqrt{n+1}+\sqrt{n}" /> dianggap sama dengan <InlineMath math="2\sqrt{n+\tfrac{1}{2}}" />, seolah akar dari rata-rata sama dengan rata-rata akar. Pilihan informasi tidak cukup muncul kalau kamu mengira urutannya bisa berubah untuk <InlineMath math="n" /> besar, padahal ketidaksamaan di atas berlaku untuk setiap <InlineMath math="n" />.
+
+Jadi, untuk setiap bilangan bulat positif <InlineMath math="n" />, kuantitas <InlineMath math="P" /> lebih besar daripada <InlineMath math="Q" />.

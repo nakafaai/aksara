@@ -31,10 +31,10 @@ Tabel berikut memuat semua kombinasi yang mungkin:
 <BlockMath math="\begin{aligned} \text{Total kombinasi} &amp;= 3 \times 4 \\ &amp;= 12 \text{ cara} \end{aligned}" />
 </MathContainer>
 
-Setiap paket adalah satu pasangan (platform, mata pelajaran), jadi kamu bisa menatanya sebagai kisi: 3 baris untuk platform dan 4 kolom untuk mata pelajaran. Setiap titik adalah satu paket, dan kisinya berisi <InlineMath math="3 \times 4 = 12" /> titik. Itulah aturan perkalian dalam satu gambar.
+Setiap paket adalah satu pasangan (platform, mata pelajaran), jadi kamu bisa menatanya sebagai kisi: <InlineMath math="3" /> baris untuk platform dan <InlineMath math="4" /> kolom untuk mata pelajaran. Setiap titik adalah satu paket, dan kisinya berisi <InlineMath math="3 \times 4 = 12" /> titik. Itulah aturan perkalian dalam satu gambar.
 
 <MathVisual
-  title={<>Dua belas paket sebagai kisi 3 kali 4</>}
+  title={<>Dua belas paket sebagai kisi <InlineMath math="3" /> kali <InlineMath math="4" /></>}
   description={<>Tiga baris platform dikali empat kolom mata pelajaran memberi dua belas titik, satu untuk setiap paket.</>}
   labels={{
     g34: <InlineMath math="3 \times 4 = 12" />,
@@ -122,7 +122,7 @@ Setiap tempat pada kode punya banyak pilihannya sendiri: <InlineMath math="3" />
 
 <BarChart
   title={<>Pilihan di setiap tempat kode</>}
-  description={<>Banyak pilihan di tempat huruf, angka, dan warna, yang hasil kalinya 30.</>}
+  description={<>Banyak pilihan di tempat huruf, angka, dan warna, yang hasil kalinya <InlineMath math="30" />.</>}
   yAxisLabel="Pilihan"
   data={[["huruf", 3], ["angka", 5], ["warna", 2]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Pilihan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -152,11 +152,11 @@ Untuk kasus yang sama dengan pengulangan diperbolehkan:
 <BlockMath math="\begin{aligned} \text{Total bilangan} &amp;= 5 \times 5 \times 5 \\ &amp;= 125 \text{ bilangan} \end{aligned}" />
 </MathContainer>
 
-Bandingkan dua kasus untuk bilangan tiga angka dari angka <InlineMath math="1" /> sampai <InlineMath math="5" />. Tanpa pengulangan, tempatnya memberi <InlineMath math="5 \times 4 \times 3 = 60" /> bilangan, dan dengan pengulangan <InlineMath math="5 \times 5 \times 5 = 125" />. Pengulangan membuat setiap tempat tetap punya 5 pilihan, jadi banyaknya lebih dari dua kali lipat.
+Bandingkan dua kasus untuk bilangan tiga angka dari angka <InlineMath math="1" /> sampai <InlineMath math="5" />. Tanpa pengulangan, tempatnya memberi <InlineMath math="5 \times 4 \times 3 = 60" /> bilangan, dan dengan pengulangan <InlineMath math="5 \times 5 \times 5 = 125" />. Pengulangan membuat setiap tempat tetap punya <InlineMath math="5" /> pilihan, jadi banyaknya lebih dari dua kali lipat.
 
 <BarChart
   title={<>Dengan dan tanpa pengulangan</>}
-  description={<>Banyak bilangan tiga angka dari angka 1 sampai 5, tanpa dan dengan pengulangan.</>}
+  description={<>Banyak bilangan tiga angka dari angka <InlineMath math="1" /> sampai <InlineMath math="5" />, tanpa dan dengan pengulangan.</>}
   yAxisLabel="Bilangan"
   data={[["tanpa pengulangan", 5 * 4 * 3], ["dengan pengulangan", 5 * 5 * 5]].map(([name, value]) => ({ name, value }))}
   chartConfig={{ value: { label: "Bilangan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

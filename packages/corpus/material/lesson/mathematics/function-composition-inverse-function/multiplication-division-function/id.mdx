@@ -14,7 +14,7 @@ Fungsi hasil kali mengalikan <InlineMath math="f(x)" /> dan <InlineMath math="g(
 <ContentStack>
   <MathVisual
     title={<><InlineMath math="f(x) = x" />, <InlineMath math="g(x) = 2" />, dan <InlineMath math="(f \cdot g)(x) = 2x" /></>}
-    description={<>Pada setiap input, garis hasil kali dua kali lebih tinggi daripada <InlineMath math="f" />, karena <InlineMath math="g(x) = 2" /> mengalikan setiap output dengan 2. Di <InlineMath math="x = 2" />: <InlineMath math="2 \cdot 2 = 4" />.</>}
+    description={<>Pada setiap input, garis hasil kali dua kali lebih tinggi daripada <InlineMath math="f" />, karena <InlineMath math="g(x) = 2" /> mengalikan setiap output dengan <InlineMath math="2" />. Di <InlineMath math="x = 2" />: <InlineMath math="2 \cdot 2 = 4" />.</>}
     labels={{
       f: <InlineMath math="f(x) = x" />,
       g: <InlineMath math="g(x) = 2" />,
@@ -76,11 +76,11 @@ Kita cari **irisan** dari <InlineMath math="D_f" /> dan <InlineMath math="D_g" /
 
 Jadi, fungsi hasil perkaliannya adalah <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /> dengan domain semua bilangan real.
 
-Kalikan output input demi input: di <InlineMath math="x = 2" />, <InlineMath math="f(2) \cdot g(2) = 4 \cdot 1 = 4" />, dan di <InlineMath math="x = 3" />, <InlineMath math="9 \cdot 2 = 18" />. Hasil kalinya 0 di <InlineMath math="x = 0" /> dan <InlineMath math="x = 1" />, tempat salah satu faktornya 0.
+Kalikan output input demi input: di <InlineMath math="x = 2" />, <InlineMath math="f(2) \cdot g(2) = 4 \cdot 1 = 4" />, dan di <InlineMath math="x = 3" />, <InlineMath math="9 \cdot 2 = 18" />. Hasil kalinya <InlineMath math="0" /> di <InlineMath math="x = 0" /> dan <InlineMath math="x = 1" />, tempat salah satu faktornya <InlineMath math="0" />.
 
 <BarChart
   title={<>Nilai <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /></>}
-  description={<>Batang <InlineMath math="(f \cdot g)(x) = x^2(x - 1)" /> untuk <InlineMath math="x = -1, 0, 1, 2, 3" />: <InlineMath math="-2" />, 0, 0, 4, dan 18.</>}
+  description={<>Batang <InlineMath math="(f \cdot g)(x) = x^2(x - 1)" /> untuk <InlineMath math="x = -1, 0, 1, 2, 3" />: <InlineMath math="-2" />, <InlineMath math="0" />, <InlineMath math="0" />, <InlineMath math="4" />, dan <InlineMath math="18" />.</>}
   yAxisLabel="Hasil kali"
   data={[-1, 0, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 2 * (x - 1) }))}
   chartConfig={{ value: { label: "Hasil kali", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
@@ -143,7 +143,7 @@ Jika faktor yang sama muncul pada pembilang dan penyebut, kita boleh mencoret fa
 
 Rumus sederhana tetap memiliki **batasan domain awal**. Pada masukan dua, pecahan dan bentuk sederhana sama-sama bernilai tiga. Pada masukan satu, pecahan awal tidak terdefinisi meskipun bentuk linear bernilai dua.
 
-<InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" /> memiliki grafik <InlineMath math="y = x + 1" /> dengan satu titik dihapus. Di <InlineMath math="x = 1" /> pecahannya tidak terdefinisi, jadi garisnya berlubang di <InlineMath math="(1, 2)" />. Di <InlineMath math="x = 2" /> kedua rumus memberi 3.
+<InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" /> memiliki grafik <InlineMath math="y = x + 1" /> dengan satu titik dihapus. Di <InlineMath math="x = 1" /> pecahannya tidak terdefinisi, jadi garisnya berlubang di <InlineMath math="(1, 2)" />. Di <InlineMath math="x = 2" /> kedua rumus memberi <InlineMath math="3" />.
 
 <MathVisual
   title={<>Garis <InlineMath math="y = x + 1" /> dengan lubang di <InlineMath math="(1, 2)" /></>}

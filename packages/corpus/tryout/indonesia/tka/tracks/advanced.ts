@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { advancedRatings } from "#corpus/tryout/indonesia/tka/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Advanced Mathematics sets, an elective subject. */
@@ -34,21 +35,26 @@ export const tkaAdvancedMathematicsTrack = {
     de: "fortgeschrittene-mathematik",
     en: "advanced-mathematics",
     id: "matematika-tingkat-lanjut",
+    ms: "matematik-lanjutan",
   },
-  sets: Arr.map([1], (setNumber) => {
+  sets: Arr.map(advancedRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,
         id: setKey,
+        ms: setKey,
       },
       translations: {
         de: { title: `Aufgabensatz ${setNumber}` },
         en: { title: `Set ${setNumber}` },
         id: { title: `Set ${setNumber}` },
+        ms: { title: `Set ${setNumber}` },
       },
     };
   }),
@@ -56,5 +62,6 @@ export const tkaAdvancedMathematicsTrack = {
     de: { title: "Fortgeschrittene Mathematik" },
     en: { title: "Advanced Mathematics" },
     id: { title: "Matematika Tingkat Lanjut" },
+    ms: { title: "Matematik Lanjutan" },
   },
 } satisfies TrackSourceInput;

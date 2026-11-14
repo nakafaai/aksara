@@ -1,0 +1,241 @@
+export const metadata = {
+  title: "Pendaraban dan Pembahagian Fungsi",
+    description: "Bentuk hasil darab dan hasil bahagi fungsi, tentukan domainnya, dan kecualikan nilai yang menjadikan penyebut sifar.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-27",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Gubahan dan Fungsi Songsang",
+};
+
+## Pendaraban Dua Fungsi
+
+Fungsi hasil darab mendarabkan <InlineMath math="f(x)" /> dengan <InlineMath math="g(x)" /> pada input <InlineMath math="x" /> yang sama. Hasilnya ialah fungsi baharu <InlineMath math="(f\cdot g)" />.
+
+<ContentStack>
+  <MathVisual
+    title={<><InlineMath math="f(x) = x" />, <InlineMath math="g(x) = 2" /> dan <InlineMath math="(f \cdot g)(x) = 2x" /></>}
+    description={<>Pada setiap input, garis hasil darab dua kali lebih tinggi daripada <InlineMath math="f" />, kerana <InlineMath math="g(x) = 2" /> mendarabkan setiap output dengan <InlineMath math="2" />. Pada <InlineMath math="x = 2" />: <InlineMath math="2 \cdot 2 = 4" />.</>}
+    labels={{
+      f: <InlineMath math="f(x) = x" />,
+      g: <InlineMath math="g(x) = 2" />,
+      prod: <InlineMath math="(f \cdot g)(x) = 2x" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -6.5, max: 6.5 } },
+      view: { kind: "fit", padding: 0.3 },
+      objects: [
+        { id: "f", kind: "segment", from: { x: -3, y: -3 }, to: { x: 3, y: 3 }, appearance: "primary" },
+        { id: "g", kind: "segment", from: { x: -3, y: 2 }, to: { x: 3, y: 2 }, appearance: "construction" },
+        { id: "prod", kind: "segment", from: { x: -3, y: -6 }, to: { x: 3, y: 6 }, appearance: "secondary" },
+        { id: "f2", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+        { id: "prod2", kind: "point", at: { x: 2, y: 4 }, appearance: "secondary" },
+      ],
+      labels: [
+        { key: "f", objectId: "f", at: { x: 3, y: 3 }, placement: "right" },
+        { key: "g", objectId: "g", at: { x: -3, y: 2 }, placement: "above" },
+        { key: "prod", objectId: "prod", at: { x: 3, y: 6 }, placement: "left" },
+      ],
+    }}
+  />
+
+  <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
+
+</ContentStack>
+
+Hasil darab memerlukan <Highlight>input yang sah bagi kedua-dua fungsi</Highlight>. Domainnya ialah persilangan domain kedua-dua fungsi itu.
+
+<BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
+
+### Contoh Pendaraban
+
+Kali ini, kita gunakan fungsi yang sedikit berbeza:
+
+1.  <InlineMath math="f(x) = x^2" />, dengan domain <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" /> (semua
+    nombor nyata).
+2.  <InlineMath math="g(x) = x - 1" />, dengan domain <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" /> (semua
+    nombor nyata).
+
+**Langkah 1**: Tentukan fungsi yang terhasil daripada pendaraban
+
+<MathContainer>
+  <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
+  <BlockMath math="(f \cdot g)(x) = (x^2) \cdot (x - 1)" />
+  <BlockMath math="(f \cdot g)(x) = x^3 - x^2" />
+</MathContainer>
+
+**Langkah 2**: Tentukan domain fungsi yang terhasil
+
+Kita cari **persilangan** <InlineMath math="D_f" /> dan <InlineMath math="D_g" />:
+
+<MathContainer>
+  <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \in \mathbb{R}\}" />
+</MathContainer>
+
+Jadi, fungsi yang terhasil daripada pendaraban ialah <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /> dengan domain semua nombor nyata.
+
+Darabkan outputnya input demi input: pada <InlineMath math="x = 2" />, <InlineMath math="f(2) \cdot g(2) = 4 \cdot 1 = 4" />, dan pada <InlineMath math="x = 3" />, <InlineMath math="9 \cdot 2 = 18" />. Hasil darabnya <InlineMath math="0" /> pada <InlineMath math="x = 0" /> dan <InlineMath math="x = 1" />, iaitu apabila salah satu faktornya <InlineMath math="0" />.
+
+<BarChart
+  title={<>Nilai <InlineMath math="(f \cdot g)(x) = x^3 - x^2" /></>}
+  description={<>Palang <InlineMath math="(f \cdot g)(x) = x^2(x - 1)" /> untuk <InlineMath math="x = -1, 0, 1, 2, 3" />: <InlineMath math="-2" />, <InlineMath math="0" />, <InlineMath math="0" />, <InlineMath math="4" /> dan <InlineMath math="18" />.</>}
+  yAxisLabel="Hasil darab"
+  data={[-1, 0, 1, 2, 3].map((x) => ({ name: String(x), value: x ** 2 * (x - 1) }))}
+  chartConfig={{ value: { label: "Hasil darab", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Pembahagian Dua Fungsi
+
+Membahagikan fungsi <InlineMath math="f" /> dengan fungsi <InlineMath math="g" /> juga serupa: kita bahagikan hasil <InlineMath math="f(x)" /> dengan <InlineMath math="g(x)" />. Hasilnya ialah fungsi baharu <InlineMath math="(\frac{f}{g})" />.
+
+<BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)}" />
+
+Pembahagian ada satu syarat tambahan. Selain berada dalam domain <InlineMath math="f" /> dan <InlineMath math="g" />, input <InlineMath math="x" /> mesti memenuhi <InlineMath math="g(x)\neq0" /> <Highlight>supaya penyebutnya bukan sifar</Highlight>.
+
+Domain fungsi pembahagian <InlineMath math="(\frac{f}{g})" /> ialah persilangan domain <InlineMath math="D_f" /> dan <InlineMath math="D_g" />, tetapi kita mesti _mengecualikan_ semua nilai <InlineMath math="x" /> yang menyebabkan <InlineMath math="g(x) = 0" />.
+
+<BlockMath math="D_{\frac{f}{g}}=(D_f\cap D_g)\setminus\{x\mid g(x)=0\}" />
+
+Simbol <InlineMath math="\setminus" /> menandakan beza set: buang input yang disenaraikan daripada persilangan domain.
+
+### Contoh Pembahagian
+
+Kita gunakan fungsi yang sama seperti dalam contoh pendaraban:
+
+1.  <InlineMath math="f(x) = x^2" />, <InlineMath math="D_f = \{x | x \in \mathbb{R}\}" />
+2.  <InlineMath math="g(x) = x - 1" />, <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />
+
+**Langkah 1**: Tentukan fungsi yang terhasil daripada pembahagian
+
+<BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{x^2}{x-1}" />
+
+**Langkah 2**: Tentukan domain fungsi yang terhasil
+
+Pertama, cari persilangan <InlineMath math="D_f" /> dan <InlineMath math="D_g" />:
+
+<BlockMath math="D_f \cap D_g = \{x | x \in \mathbb{R}\}" />
+
+Kedua, cari nilai <InlineMath math="x" /> yang menjadikan <InlineMath math="g(x) = 0" />:
+
+<MathContainer>
+  <BlockMath math="g(x) = 0" />
+  <BlockMath math="x - 1 = 0" />
+  <BlockMath math="x = 1" />
+</MathContainer>
+
+Ketiga, **kecualikan nilai** <InlineMath math="x=1" /> daripada persilangan domain itu:
+
+<BlockMath math="D_{\frac{f}{g}}=\{x\mid x\in\mathbb{R}\}\setminus\{1\}" />
+
+Atau, domain ini juga boleh ditulis sebagai:
+
+<BlockMath math="D_{\frac{f}{g}} = \{x | x \in \mathbb{R}, x \neq 1\}" />
+
+Jadi, fungsi yang terhasil daripada pembahagian ialah <InlineMath math="(\frac{f}{g})(x) = \frac{x^2}{x-1}" /> dengan domain semua nombor nyata kecuali <InlineMath math="x=1" />.
+
+### Pemudahan tidak membesarkan domain
+
+Jika pengangka dan penyebut ada faktor sepunya, kita boleh membatalkan faktor itu hanya apabila faktor itu bukan sifar.
+
+<BlockMath math="h(x)=\frac{x^2-1}{x-1}=\frac{(x-1)(x+1)}{x-1}=x+1,\quad x\neq1" />
+
+Rumus yang dipermudahkan tetap membawa **sekatan domain asal**. Pada input dua, pecahan itu dan ungkapan yang dipermudahkan kedua-duanya bernilai tiga. Pada input satu, pecahan asal tidak tertakrif walaupun ungkapan linear itu bernilai dua.
+
+<InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" /> ada graf <InlineMath math="y = x + 1" /> dengan satu titik dibuang. Pada <InlineMath math="x = 1" />, pecahan itu tidak tertakrif, jadi garis itu ada lubang pada <InlineMath math="(1, 2)" />. Pada <InlineMath math="x = 2" />, kedua-dua rumus memberikan <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="y = x + 1" /> dengan lubang pada <InlineMath math="(1, 2)" /></>}
+  description={<>Graf <InlineMath math="h(x) = \frac{x^2 - 1}{x - 1}" />: garis <InlineMath math="y = x + 1" /> dengan bulatan kosong pada <InlineMath math="(1, 2)" /> dan titik <InlineMath math="(2, 3)" />.</>}
+  labels={{
+    hole: <InlineMath math="(1, 2)" />,
+    value: <InlineMath math="(2, 3)" />,
+    line: <InlineMath math="y = x + 1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -1.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "line", kind: "segment", from: { x: -2, y: -1 }, to: { x: 1 - 0.12 / Math.sqrt(2), y: 2 - 0.12 / Math.sqrt(2) }, appearance: "primary" },
+      { id: "rest", kind: "segment", from: { x: 1 + 0.12 / Math.sqrt(2), y: 2 + 0.12 / Math.sqrt(2) }, to: { x: 4, y: 5 }, appearance: "primary" },
+      { id: "hole", kind: "circle", center: { x: 1, y: 2 }, radius: 3 / 25, appearance: "warning" },
+      { id: "value", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "line", objectId: "rest", at: { x: 4, y: 5 }, placement: "left" },
+      { key: "hole", objectId: "hole", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "value", objectId: "value", at: { x: 2, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Soalan Latihan
+
+Diberi fungsi <InlineMath math="f(x) = \sqrt{x+4}" /> dengan domain <InlineMath math="D_f = \{x | x \ge -4, x \in \mathbb{R}\}" /> dan fungsi <InlineMath math="g(x) = x^2 - 9" /> dengan domain <InlineMath math="D_g = \{x | x \in \mathbb{R}\}" />.
+
+1.  Tentukan <InlineMath math="(f \cdot g)(x)" /> dan **domainnya**, <InlineMath math="D_{f \cdot g}" />.
+2.  Tentukan <InlineMath math="(\frac{f}{g})(x)" /> dan domainnya, <InlineMath math="D_{\frac{f}{g}}" />.
+3.  Kira nilai bagi <InlineMath math="(f \cdot g)(5)" />.
+4.  Adakah <InlineMath math="(\frac{f}{g})(3)" /> tertakrif? Terangkan jawapan kamu.
+
+### Jalan Kerja
+
+**Soalan 1**. Darabkan kedua-dua nilai fungsi pada input yang sama, kemudian semak kedua-dua sekatan domain.
+
+<MathContainer>
+  <BlockMath math="(f \cdot g)(x) = f(x) \cdot g(x)" />
+  <BlockMath math="(f \cdot g)(x) = (\sqrt{x+4}) \cdot (x^2 - 9)" />
+  <BlockMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />
+</MathContainer>
+
+Mencari **Domain** <InlineMath math="D_{f \cdot g}" />:
+
+<MathContainer>
+  <BlockMath math="D_{f \cdot g} = D_f \cap D_g" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\} \cap \{x | x \in \mathbb{R}\}" />
+  <BlockMath math="D_{f \cdot g} = \{x | x \ge -4, x \in \mathbb{R}\}" />
+</MathContainer>
+
+Jadi, <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \in \mathbb{R}\}" />.
+
+**Soalan 2**. Bahagikan nilai fungsi pertama dengan nilai fungsi kedua. Penyebutnya mesti bukan sifar.
+
+<BlockMath math="\left(\frac{f}{g}\right)(x) = \frac{f(x)}{g(x)} = \frac{\sqrt{x+4}}{x^2 - 9}" />
+
+Mencari Domain <InlineMath math="D_{\frac{f}{g}}" />:
+
+Persilangan domain: <InlineMath math="D_f \cap D_g = \{x | x \ge -4, x \in \mathbb{R}\}" />.
+
+Cari <InlineMath math="x" /> yang menjadikan <InlineMath math="g(x)=0" />:
+
+<MathContainer>
+  <BlockMath math="g(x) = 0" />
+  <BlockMath math="x^2 - 9 = 0" />
+  <BlockMath math="(x-3)(x+3) = 0" />
+  <BlockMath math="x = 3 \text{ atau } x = -3" />
+</MathContainer>
+
+Kecualikan <InlineMath math="x=3" /> dan <InlineMath math="x=-3" /> daripada **persilangan domain**:
+
+<BlockMath math="D_{\frac fg}=\{x\in\mathbb R\mid x\geq-4\}\setminus\{-3,3\}" />
+
+Atau, domain ini boleh ditulis sebagai:
+
+<BlockMath math="D_{\frac fg}=[-4,\infty)\setminus\{-3,3\}" />
+
+Jadi, <InlineMath math="(\frac{f}{g})(x) = \frac{\sqrt{x+4}}{x^2 - 9}" /> dengan domain <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />.
+
+**Soalan 3**. Gantikan input yang diminta ke dalam **hasil darab yang sudah dikira**: <InlineMath math="(f \cdot g)(x) = (x^2 - 9)\sqrt{x+4}" />.
+
+Oleh sebab <InlineMath math="5 \ge -4" />, <InlineMath math="x=5" /> berada dalam domain <InlineMath math="D_{f \cdot g}" />.
+
+<MathContainer>
+  <BlockMath math="(f \cdot g)(5) = (5^2 - 9)\sqrt{5+4}" />
+  <BlockMath math="(f \cdot g)(5) = (25 - 9)\sqrt{9}" />
+  <BlockMath math="(f \cdot g)(5) = (16)(3)" />
+  <BlockMath math="(f \cdot g)(5) = 48" />
+</MathContainer>
+
+**Soalan 4**. Tidak tertakrif. Kita lihat domain <InlineMath math="(\frac{f}{g})(x)" /> daripada soalan 2, iaitu <InlineMath math="\{x | x \ge -4, x \neq -3, x \neq 3\}" />. Nilai <InlineMath math="x=3" /> dikecualikan secara jelas daripada domain kerana nilai itu akan menjadikan penyebut <InlineMath math="g(x) = x^2 - 9" /> sifar (<InlineMath math="3^2 - 9 = 0" />). **Pembahagian dengan sifar** tidak dibenarkan dalam matematik.

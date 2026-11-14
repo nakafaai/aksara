@@ -1,20 +1,37 @@
-From the given information, the total score of class A is <InlineMath math="30\times72=2160" />. The question asks for **the number of students in class B**, say <InlineMath math="n" />. A statement is sufficient when it leads to exactly one value of <InlineMath math="n" />.
+A statement is enough when **every triangle that satisfies it has the same area**. The main tool is the median length formula, which links the three sides to <InlineMath math="AM" />. Check statement (1) on its own, then statement (2) on its own.
+
+# Deriving the median formula
+
+In triangles <InlineMath math="ABM" /> and <InlineMath math="ACM" />, the angles at <InlineMath math="M" /> add up to a straight angle, so **their cosines have opposite signs**. Write the law of cosines for both triangles, with <InlineMath math="BM=CM=\frac{BC}{2}" /> and <InlineMath math="\theta=\angle AMB" />.
+
+<BlockMath math="\begin{aligned}
+AB^2&=AM^2+BM^2-2\cdot AM\cdot BM\cos\theta\\
+AC^2&=AM^2+CM^2+2\cdot AM\cdot CM\cos\theta\\
+AB^2+AC^2&=2AM^2+\frac{BC^2}{2}
+\end{aligned}" />
+
+The third line is the sum of the first two. The cosine terms cancel because <InlineMath math="BM=CM" />.
 
 # Statement one alone
 
-The total score of class B is <InlineMath math="77n" />, and the combined mean is the total of all scores divided by the total number of students. This equation **contains only one unknown**.
+Put <InlineMath math="AB=6" />, <InlineMath math="AC=8" />, and <InlineMath math="AM=5" /> into the median formula.
 
 <BlockMath math="\begin{aligned}
-\frac{2160+77n}{30+n}&=74\\
-2160+77n&=2220+74n\\
-3n&=60\\
-n&=20
+36+64&=2\cdot25+\frac{BC^2}{2}\\
+BC^2&=100\\
+BC&=10
 \end{aligned}" />
 
-Check: <InlineMath math="\frac{2160+1540}{50}=\frac{3700}{50}=74" />. Statement (1) alone is sufficient.
+All three sides are now fixed at <InlineMath math="6" />, <InlineMath math="8" />, and <InlineMath math="10" />, so **the triangle is unique** and so is its area. Since <InlineMath math="6^2+8^2=10^2" />, angle <InlineMath math="A" /> is a right angle and the area is <InlineMath math="\frac12\cdot6\cdot8=24\text{ cm}^2" />. Statement (1) alone is enough.
 
 # Statement two alone
 
-Statement (2) gives the total score of class B, but **no mean and no number of students**. Class B could have 20 students with mean 77 or 22 students with mean 70, and both give a total of 1,540. Statement (2) alone is not sufficient.
+From <InlineMath math="BC=10" /> you get <InlineMath math="BM=MC=5=AM" />. Point <InlineMath math="A" /> is <InlineMath math="5" /> away from the midpoint of <InlineMath math="BC" />, so <InlineMath math="A" /> lies on the circle with diameter <InlineMath math="BC" />, and angle <InlineMath math="A" /> is a right angle. But **the two legs aren't fixed**, only <InlineMath math="AB^2+AC^2=100" />.
 
-Since statement (1) alone is sufficient and statement (2) alone is not, the answer is that **statement (1) alone is sufficient**, but statement (2) alone is not.
+The first example, <InlineMath math="AB=6" /> and <InlineMath math="AC=8" />, gives an area of <InlineMath math="24\text{ cm}^2" />. The second example, <InlineMath math="AB=AC=5\sqrt2" />, also satisfies (2), since <InlineMath math="50+50=2\cdot25+\frac{100}{2}" />, but its area is <InlineMath math="\frac12\cdot5\sqrt2\cdot5\sqrt2=25\text{ cm}^2" />. Two different areas mean statement (2) alone isn't enough.
+
+# Why the other options are tempting
+
+The options that need both statements, or that say neither is enough, come from thinking statement (1) **still needs the angle between <InlineMath math="AB" /> and <InlineMath math="AC" />**, when the median already fixes the third side. The option that each statement alone is enough comes from thinking the right angle in statement (2) already fixes the area.
+
+So statement (1) alone is enough to answer the question, but statement (2) alone isn't.

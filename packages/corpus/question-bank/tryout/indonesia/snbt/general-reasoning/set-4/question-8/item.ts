@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "strengthening",
+    topic: "flaw",
   },
-  stimulus: "kantor",
+  stimulus: "surya",
   versions: {
     id: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karyawan yang merasa lebih nyaman bekerja cenderung lebih jarang datang terlambat ke kantor setiap pagi.",
+            "Ia tidak memperhitungkan kemungkinan bahwa angka 2024 di kelima desa sedang tinggi secara kebetulan sehingga akan turun dengan sendirinya.",
         },
         {
           correct: false,
-          label: "Tanaman hias yang dipakai mudah dirawat dan jarang layu.",
+          label:
+            "Ia menyatakan penurunan dalam persentase, padahal banyaknya pencurian pada 2024 di kedua puluh desa itu tidak sama dengan di kelima desa.",
         },
         {
           correct: false,
-          label: "Survei kenyamanan dilakukan secara daring.",
+          label:
+            "Ia hanya memperkirakan pencurian pada malam hari, padahal pencurian sepeda motor juga terjadi pada siang hari.",
         },
         {
           correct: false,
-          label: "Sebagian karyawan membawa tanaman sendiri ke rumah.",
+          label:
+            "Ia tidak menyebutkan berapa biaya yang dibutuhkan untuk memasang lampu di kedua puluh desa itu.",
         },
         {
           correct: true,
           label:
-            "Di kantor cabang yang tidak diberi tanaman hias, jumlah izin sakit pada periode yang sama tidak berubah.",
+            "Ia mengambil angka $$60\\%$$ hanya dari desa yang lampunya berfungsi baik, padahal di tiga dari delapan desa penerima lampu banyak lampu padam lewat tengah malam.",
         },
       ],
     },

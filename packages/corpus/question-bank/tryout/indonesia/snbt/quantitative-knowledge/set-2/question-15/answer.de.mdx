@@ -1,68 +1,36 @@
-Jede Aussage lässt sich direkt an den Koordinaten prüfen. Die Seite <InlineMath math="AB" /> liegt auf der <InlineMath math="x" />-Achse, deshalb **ist die Höhe auf <InlineMath math="AB" /> die <InlineMath math="y" />-Koordinate von <InlineMath math="C" />**, also 4.
+Die Varianz ist der Mittelwert der quadrierten Abweichungen, du brauchst also **die Summe der quadrierten Abweichungen** und die Anzahl der Werte. Der Plan: Bestimme <InlineMath math="x" /> aus der Bedingung an den Mittelwert, mache aus der Standardabweichung eine Varianz, bestimme dann die Summe der quadrierten Abweichungen der alten Daten, addiere die Abweichungen der beiden neuen Werte und teile durch die neue Anzahl.
 
-# Flächeninhalt und Seitenlänge
+# Den Wert von x bestimmen
+
+Die alten Daten haben die Summe <InlineMath math="10\times15=150" />. Die neuen Daten enthalten <InlineMath math="12" /> Zahlen mit Mittelwert <InlineMath math="15" />, also die Summe <InlineMath math="12\times15=180" />. **Die beiden neuen Werte müssen also zusammen <InlineMath math="2\times15=30" /> ergeben**.
 
 <BlockMath math="\begin{aligned}
-A&=\tfrac12\cdot AB\cdot h=\tfrac12\cdot6\cdot4=12\\
-AC&=\sqrt{(2-0)^2+(4-0)^2}=\sqrt{20}=2\sqrt5
+x+2x&=180-150=30\\
+x&=10
 \end{aligned}" />
 
-Die erste und die dritte Aussage sind **wahr**.
+Die beiden neuen Werte sind <InlineMath math="10" /> und <InlineMath math="20" />.
 
-# Winkel bei C
+# Abweichungen der alten Daten
 
-Der Winkel bei <InlineMath math="C" /> ist ein rechter Winkel, wenn die Vektoren <InlineMath math="\overrightarrow{CA}" /> und <InlineMath math="\overrightarrow{CB}" /> senkrecht stehen, also wenn **ihr Skalarprodukt null ist**.
+Gegeben ist die Standardabweichung <InlineMath math="2" />, also ist **die alte Varianz <InlineMath math="2^2=4" />**, nicht <InlineMath math="2" />. Der Mittelwert bleibt <InlineMath math="15" />, also ändert sich die Abweichung keines alten Werts. Die Summe der quadrierten Abweichungen der alten Daten ist Varianz mal Anzahl: <InlineMath math="10\times4=40" />.
 
-<BlockMath math="\overrightarrow{CA}\cdot\overrightarrow{CB}=(-2,-4)\cdot(4,-4)=-8+16=8\ne0" />
+# Die neue Varianz
 
-Der Winkel bei <InlineMath math="C" /> ist kein rechter Winkel, die zweite Aussage ist also falsch.
+Addiere die quadrierten Abweichungen der beiden neuen Werte und **teile durch die neue Anzahl**, also durch <InlineMath math="12" />.
 
-# Umkreismittelpunkt
+<BlockMath math="\begin{aligned}
+(10-15)^2+(20-15)^2&=25+25=50\\
+\text{neue Varianz}&=\frac{40+50}{12}=\frac{90}{12}=\frac{15}{2}
+\end{aligned}" />
 
-Der Umkreismittelpunkt ist der Schnittpunkt der Mittelsenkrechten. Die Mittelsenkrechte von <InlineMath math="AB" /> ist die Gerade <InlineMath math="x=3" />. Die Mittelsenkrechte von <InlineMath math="AC" /> geht durch den Mittelpunkt <InlineMath math="(1,2)" /> und steht senkrecht auf <InlineMath math="AC" />, das die Steigung 2 hat, ihre Steigung ist also <InlineMath math="-\tfrac12" />. Setze <InlineMath math="x=3" /> in diese Mittelsenkrechte ein.
+Probe mit echten Daten. Fünfmal <InlineMath math="13" /> und fünfmal <InlineMath math="17" /> haben den Mittelwert <InlineMath math="15" /> und die Varianz <InlineMath math="4" />, also die Standardabweichung <InlineMath math="2" />. Nach dem Hinzufügen von <InlineMath math="10" /> und <InlineMath math="20" /> ist die Summe der quadrierten Abweichungen <InlineMath math="10\times4+25+25=90" />, und die Varianz ist <InlineMath math="\tfrac{90}{12}=\tfrac{15}{2}" />.
 
-<BlockMath math="y-2=-\tfrac12(3-1)\quad\Rightarrow\quad y=1" />
+# Fallen in den anderen Antworten
 
-Der Umkreismittelpunkt ist <InlineMath math="(3,1)" />. **Prüfe die Abstände**: <InlineMath math="OA^2=9+1" />, <InlineMath math="OB^2=9+1" /> und <InlineMath math="OC^2=1+9" /> sind alle 10. Der Punkt <InlineMath math="(3,2)" /> ist von <InlineMath math="A" /> <InlineMath math="\sqrt{13}" />, von <InlineMath math="C" /> aber <InlineMath math="\sqrt5" /> entfernt, die vierte Aussage ist also falsch.
+- <InlineMath math="\tfrac{55}{4}" /> setzt <InlineMath math="x+2x=15" />, also <InlineMath math="x=5" /> mit den neuen Werten <InlineMath math="5" /> und <InlineMath math="10" />. Das ergibt <InlineMath math="\tfrac{40+100+25}{12}" />, aber mit diesen Werten ist der Mittelwert gar nicht mehr <InlineMath math="15" />.
+- <InlineMath math="9" /> teilt <InlineMath math="90" /> durch <InlineMath math="10" />, **die alte Anzahl**, statt durch <InlineMath math="12" />.
+- <InlineMath math="\tfrac{49}{6}" /> addiert <InlineMath math="\tfrac{50}{12}" /> zur alten Varianz <InlineMath math="4" />, ohne <InlineMath math="40" /> neu durch <InlineMath math="12" /> zu teilen.
+- <InlineMath math="\tfrac{35}{6}" /> verwendet die Standardabweichung <InlineMath math="2" /> als Varianz, sodass die alte Summe der quadrierten Abweichungen fälschlich <InlineMath math="20" /> wird und das Ergebnis <InlineMath math="\tfrac{20+50}{12}" /> lautet.
 
-<MathVisual
-  title={<>Dreieck <InlineMath math="ABC" /> und sein Umkreis</>}
-  description={<>Der Umkreismittelpunkt <InlineMath math="O(3,1)" /> ist von allen drei Ecken gleich weit entfernt, nämlich <InlineMath math="\sqrt{10}" />.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 9 },
-      y: { min: -3, max: 6 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "triangle",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 6, y: 0 },
-          { x: 2, y: 4 },
-        ],
-      },
-      { id: "circumcircle", kind: "circle", appearance: "secondary", center: { x: 3, y: 1 }, radius: Math.sqrt(10) },
-      { id: "center", kind: "point", appearance: "highlight", at: { x: 3, y: 1 } },
-    ],
-    labels: [
-      { key: "a", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "triangle", at: { x: 2, y: 4 }, placement: "above" },
-      { key: "o", objectId: "center", at: { x: 3, y: 1 }, placement: "right" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A(0,0)" />,
-    b: <InlineMath math="B(6,0)" />,
-    c: <InlineMath math="C(2,4)" />,
-    o: <InlineMath math="O(3,1)" />,
-  }}
-/>
-
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+Die Varianz der neuen Daten ist also <InlineMath math="\tfrac{15}{2}" />.

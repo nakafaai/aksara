@@ -1,17 +1,59 @@
-Untuk peserta yang menjawab semua soal, skor ditentukan sepenuhnya oleh banyak jawaban benar <InlineMath math="b" />, yaitu <InlineMath math="5b-40" />, sehingga **skor hanya bergantung pada banyak jawaban benar**.
+Kita menghitung untuk berapa banyak nilai <InlineMath math="m" /> total biaya Rencana Menurun lebih kecil. Rencananya, tulis total biaya kedua rencana sebagai rumus dalam <InlineMath math="m" />, isi tabel untuk semua <InlineMath math="12" /> nilai, lalu hitung barisnya. **Semua nilai harus diperiksa**, karena hasilnya bisa berganti lebih dari sekali.
 
-# Nilai yang mungkin untuk b
+# Total biaya Rencana Tetap
 
-Banyak jawaban benar dapat berupa bilangan bulat dari 0 sampai 40, jadi ada **41 kemungkinan**, termasuk <InlineMath math="b=0" />.
+Bunganya <InlineMath math="120{.}000" /> setiap bulan, administrasinya <InlineMath math="2\%\cdot 12{.}000{.}000=240{.}000" />, dan dendanya <InlineMath math="250{.}000" />. **Denda hanya ada jika pinjaman dilunasi lebih cepat**, yaitu untuk <InlineMath math="m\le 11" />.
 
-# Setiap b memberi skor berbeda
+<BlockMath math="\begin{aligned}
+T(m)&=120{.}000\,m+240{.}000+250{.}000=120{.}000\,m+490{.}000 \quad\text{untuk } m\le 11 \\
+T(12)&=12\cdot 120{.}000+240{.}000=1{.}680{.}000
+\end{aligned}" />
 
-Fungsi <InlineMath math="5b-40" /> naik 5 setiap kali <InlineMath math="b" /> bertambah 1, jadi dua nilai <InlineMath math="b" /> yang berbeda tidak pernah memberi skor yang sama. Skornya adalah
+# Total biaya Rencana Menurun
 
-<BlockMath math="-40,\,-35,\,-30,\,\dots,\,155,\,160" />
+Bunga bulan ke-<InlineMath math="k" /> adalah <InlineMath math="2\%" /> dari sisa pokok <InlineMath math="13-k" /> juta, yaitu <InlineMath math="20{.}000\,(13-k)" />. Bunga ini membentuk barisan aritmetika <InlineMath math="240{.}000" />, <InlineMath math="220{.}000" />, dan seterusnya, jadi **jumlah bunga sampai bulan ke-<InlineMath math="m" /> dihitung dengan rumus deret**. Tidak ada denda, dan administrasinya <InlineMath math="100{.}000" />.
 
-Semuanya ada 41 nilai berbeda.
+<BlockMath math="M(m)=\frac{m}{2}\,\bigl(240{.}000+20{.}000\,(13-m)\bigr)+100{.}000=10{.}000\,m\,(25-m)+100{.}000" />
 
-Nilai 40 melupakan kemungkinan <InlineMath math="b=0" />. Nilai 201 menghitung semua bilangan bulat dari <InlineMath math="-40" /> sampai 160, padahal hanya kelipatan 5 yang mungkin. Nilai 160 adalah skor tertinggi, bukan banyak nilai skor.
+# Tabel semua kemungkinan
 
-Jadi, banyak nilai skor berbeda yang mungkin adalah **41**.
+Isi kedua rumus untuk setiap <InlineMath math="m" />. Semua angka di tabel dalam ribu rupiah.
+
+| Bulan lunas | Rencana Tetap | Rencana Menurun | Lebih murah |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="610" /> | <InlineMath math="340" /> | Menurun |
+| <InlineMath math="2" /> | <InlineMath math="730" /> | <InlineMath math="560" /> | Menurun |
+| <InlineMath math="3" /> | <InlineMath math="850" /> | <InlineMath math="760" /> | Menurun |
+| <InlineMath math="4" /> | <InlineMath math="970" /> | <InlineMath math="940" /> | Menurun |
+| <InlineMath math="5" /> | <InlineMath math="1{.}090" /> | <InlineMath math="1{.}100" /> | Tetap |
+| <InlineMath math="6" /> | <InlineMath math="1{.}210" /> | <InlineMath math="1{.}240" /> | Tetap |
+| <InlineMath math="7" /> | <InlineMath math="1{.}330" /> | <InlineMath math="1{.}360" /> | Tetap |
+| <InlineMath math="8" /> | <InlineMath math="1{.}450" /> | <InlineMath math="1{.}460" /> | Tetap |
+| <InlineMath math="9" /> | <InlineMath math="1{.}570" /> | <InlineMath math="1{.}540" /> | Menurun |
+| <InlineMath math="10" /> | <InlineMath math="1{.}690" /> | <InlineMath math="1{.}600" /> | Menurun |
+| <InlineMath math="11" /> | <InlineMath math="1{.}810" /> | <InlineMath math="1{.}640" /> | Menurun |
+| <InlineMath math="12" /> | <InlineMath math="1{.}680" /> | <InlineMath math="1{.}660" /> | Menurun |
+
+Rencana Menurun lebih murah untuk <InlineMath math="m=1, 2, 3, 4" /> dan <InlineMath math="m=9, 10, 11, 12" />, jadi **ada dua kelompok bulan**. Di awal, bunga besar Rencana Menurun baru berjalan sebentar. Di tengah, bunga awalnya yang besar sudah menumpuk. Di akhir, denda dan administrasi Rencana Tetap yang lebih mahal kembali menentukan. Tidak ada baris yang sama besar, jadi banyaknya tepat <InlineMath math="8" />.
+
+# Pemeriksaan dengan selisih
+
+Untuk <InlineMath math="m\le 11" />, selisih <InlineMath math="T(m)-M(m)" /> dapat ditulis sebagai satu rumus kuadrat. **Selisih ini negatif hanya di antara kedua akarnya**.
+
+<BlockMath math="\begin{aligned}
+T(m)-M(m)&=120{.}000\,m+490{.}000-10{.}000\,m\,(25-m)-100{.}000 \\
+&=10{.}000\,(m^2-13m+39)
+\end{aligned}" />
+
+Akar dari <InlineMath math="m^2-13m+39=0" /> adalah <InlineMath math="\tfrac{13\pm\sqrt{13}}{2}" />, kira-kira <InlineMath math="4{,}7" /> dan <InlineMath math="8{,}3" />. Jadi selisihnya negatif hanya untuk <InlineMath math="m=5, 6, 7, 8" />, cocok dengan tabel. Untuk <InlineMath math="m=12" /> rumus ini tidak berlaku karena tidak ada denda, dan tabel memberi selisih <InlineMath math="20{.}000" /> yang positif.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul karena **satu komponen biaya atau satu kelompok bulan terlewat**.
+
+- <InlineMath math="2" /> muncul jika denda Rencana Tetap dilupakan.
+- <InlineMath math="3" /> muncul jika biaya administrasi kedua rencana dilupakan.
+- <InlineMath math="4" /> muncul jika pemeriksaan berhenti setelah Rencana Tetap pertama kali lebih murah, sehingga kelompok bulan kedua tidak terlihat.
+- <InlineMath math="7" /> muncul jika kemungkinan <InlineMath math="m=12" />, yaitu membayar sampai bulan terakhir, tidak ikut dihitung.
+
+Jadi, ada <InlineMath math="8" /> nilai <InlineMath math="m" /> yang membuat total biaya Rencana Menurun lebih kecil.

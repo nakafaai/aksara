@@ -101,7 +101,7 @@ Keterangan rumus:
 Rumus ini menentukan satu garis kuadrat terkecil yang unik selama nilai <InlineMath math="x" /> yang diamati tidak semuanya sama. Jika semua nilai <InlineMath math="x" /> identik, penyebut rumus kemiringan bernilai nol dan data tidak menentukan satu kemiringan regresi yang unik.
 
 
-Pertahankan garis melalui titik rata-rata dan ubah gradiennya <InlineMath math="b" />. Untuk data belajar, jumlah kuadrat residu <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> paling kecil di <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" />, sekitar 94,45, dan lebih besar untuk setiap gradien lain.
+Pertahankan garis melalui titik rata-rata dan ubah gradiennya <InlineMath math="b" />. Untuk data belajar, jumlah kuadrat residu <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> paling kecil di <InlineMath math="b = \tfrac{9184}{1331} \approx 6{,}900" />, sekitar <InlineMath math="94{,}45" />, dan lebih besar untuk setiap gradien lain.
 
 <BarChart
   title={<>Jumlah kuadrat residu terhadap gradien</>}
@@ -152,11 +152,11 @@ Pada <InlineMath math="7\text{ jam}" />, perhitungan yang sama memberi:
 
 Waktu belajar yang diamati hanya <InlineMath math="1" /> sampai <InlineMath math="6\text{ jam}" />. Prediksi kedua adalah **ekstrapolasi**. Data yang tersedia tidak memeriksa apakah tren linear tetap berlaku di luar rentang itu. Jika skor ujian dibatasi sampai <InlineMath math="100" />, hasil prediksi kedua bahkan melampaui batas skor. Garis regresi perlu diperiksa terhadap rentang data dan batas besaran yang diprediksi.
 
-Taksiran nilai dari <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> untuk 1 sampai 7 jam. Di dalam rentang teramati 1 sampai 6 jam taksirannya tetap masuk akal, tetapi pada 7 jam garis itu menaksir sekitar 103,2, lebih dari nilai maksimum 100.
+Taksiran nilai dari <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> untuk <InlineMath math="1" /> sampai <InlineMath math="7" /> jam. Di dalam rentang teramati <InlineMath math="1" /> sampai <InlineMath math="6" /> jam taksirannya tetap masuk akal, tetapi pada <InlineMath math="7" /> jam garis itu menaksir sekitar <InlineMath math="103{,}2" />, lebih dari nilai maksimum <InlineMath math="100" />.
 
 <BarChart
   title={<>Taksiran di dalam dan di luar data</>}
-  description={<>Batang taksiran nilai <InlineMath math="\hat y" /> untuk <InlineMath math="x = 1" /> sampai 7 jam belajar.</>}
+  description={<>Batang taksiran nilai <InlineMath math="\hat y" /> untuk <InlineMath math="x = 1" /> sampai <InlineMath math="7" /> jam belajar.</>}
   yAxisLabel="Taksiran nilai"
   data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
   chartConfig={{ value: { label: "Taksiran nilai", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}

@@ -1,23 +1,26 @@
-Eine prozentuale Änderung bezieht sich immer **auf den Ausgangswert**, hier also auf den Vormonat. Lies den Wert jedes Balkens ab und prüfe die Aussagen der Reihe nach.
+Die linke Seite ist eine Differenz zweier Quadrate, also **schreibst du die Gleichung als Produkt zweier Faktoren**: <InlineMath math="(x-y)(x+y)=144" />. Setze <InlineMath math="d=x-y" /> und <InlineMath math="e=x+y" />. Dann ist <InlineMath math="x=\tfrac{d+e}{2}" /> und <InlineMath math="y=\tfrac{e-d}{2}" />, also liefert jedes geordnete Paar <InlineMath math="(d,e)" /> mit <InlineMath math="de=144" /> genau ein Paar <InlineMath math="(x,y)" />, sofern die Ergebnisse ganzzahlig sind. Der Plan: Bestimme diese Ganzzahligkeitsbedingung und zähle dann die Faktorpaare, auch die negativen.
 
-# Prozentuale Änderungen
+# Die Paritätsbedingung
 
-<BlockMath math="\begin{aligned}
-\text{Produkt } A\text{, Februar zu März}&=\frac{60-50}{50}\times100\%=20\%\\
-\text{Produkt } B\text{, Januar zu Februar}&=\frac{45-60}{60}\times100\%=-25\%
-\end{aligned}" />
+Der Wert <InlineMath math="x=\tfrac{d+e}{2}" /> ist nur ganzzahlig, wenn <InlineMath math="d+e" /> gerade ist, also wenn <InlineMath math="d" /> und <InlineMath math="e" /> **beide gerade oder beide ungerade** sind. Beide ungerade geht nicht, denn das Produkt zweier ungerader Zahlen ist ungerade, aber <InlineMath math="144" /> ist gerade. Also sind beide gerade: <InlineMath math="d=2m" /> und <InlineMath math="e=2n" /> mit
 
-Die erste Aussage ist **wahr**. Produkt <InlineMath math="B" /> ist um 25 % gefallen und nicht um 15 %, die dritte Aussage ist also falsch. Die Zahl 15 ist der Unterschied in Stück, noch nicht durch den Ausgangswert geteilt.
+<BlockMath math="(2m)(2n)=144\ \Rightarrow\ mn=36,\quad x=m+n,\quad y=n-m" />
 
-# Summen und Mittelwerte
+# Die Faktorpaare zählen
 
-Im Januar wurden <InlineMath math="40+60=100" /> Stück verkauft, im Februar <InlineMath math="50+45=95" /> Stück. **Die Februarsumme ist niedriger**, die zweite Aussage ist also falsch.
+Die positiven Teiler von <InlineMath math="36" /> sind <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="12" />, <InlineMath math="18" /> und <InlineMath math="36" />, also gibt es <InlineMath math="9" /> geordnete Paare <InlineMath math="(m,n)" /> mit zwei positiven Zahlen. **Negative Faktoren sind ebenfalls erlaubt**: <InlineMath math="(-m)(-n)=36" /> liefert <InlineMath math="9" /> weitere Paare.
 
-<BlockMath math="\begin{aligned}
-\bar x_A&=\frac{40+50+60}{3}=50\\
-\bar x_B&=\frac{60+45+54}{3}=53
-\end{aligned}" />
+<BlockMath math="9+9=18" />
 
-Der Mittelwert von Produkt <InlineMath math="B" /> ist größer, die vierte Aussage ist also wahr.
+# Probe mit einer Lösungsliste
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Die positiven Paare <InlineMath math="(m,n)" /> mit <InlineMath math="m<n" /> liefern für <InlineMath math="(x,y)" /> die Paare <InlineMath math="(37,35)" />, <InlineMath math="(20,16)" />, <InlineMath math="(15,9)" /> und <InlineMath math="(13,5)" />. Jedes davon ergibt vier Paare, weil die Vorzeichen von <InlineMath math="x" /> und <InlineMath math="y" /> frei sind, also <InlineMath math="4\times4=16" />. Das Paar <InlineMath math="m=n=6" /> liefert <InlineMath math="y=0" />, und hier gibt es **nur zwei Paare**, <InlineMath math="(12,0)" /> und <InlineMath math="(-12,0)" />, weil <InlineMath math="0" /> und <InlineMath math="-0" /> gleich sind. Insgesamt sind es <InlineMath math="16+2=18" />, das passt.
+
+# Häufige Fehler
+
+- Das Ergebnis <InlineMath math="16" /> vergisst die Lösungen mit <InlineMath math="y=0" />.
+- Das Ergebnis <InlineMath math="20" /> zählt <InlineMath math="(\pm12,0)" /> als vier Paare.
+- Das Ergebnis <InlineMath math="30" /> nimmt alle <InlineMath math="15" /> Teiler von <InlineMath math="144" /> **ohne Paritätsbedingung**, aber ein Paar wie <InlineMath math="d=1" /> und <InlineMath math="e=144" /> liefert <InlineMath math="x=\tfrac{145}{2}" />, keine ganze Zahl.
+- Das Ergebnis <InlineMath math="9" /> vergisst, dass beide Faktoren negativ sein dürfen.
+
+Es gibt also <InlineMath math="18" /> ganzzahlige Paare <InlineMath math="(x,y)" />, die die Gleichung erfüllen.

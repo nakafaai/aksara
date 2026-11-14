@@ -1,15 +1,51 @@
-Suatu kereta berangkat pada waktu tertentu jika **selisih waktu itu dengan pukul 05.00 habis dibagi selangnya**.
+Setiap pernyataan menguji satu aturan kredit yang berbeda: urutan cicilan, **lompatan bunga** setelah tenor <InlineMath math="12" /> bulan, pembulatan, dan pelunasan dipercepat. Rencananya begini: tulis dulu rumus cicilan secara umum, lalu nilai setiap pernyataan dengan buktinya sendiri.
 
-# Kereta jurusan A
+# Rumus cicilan
 
-Pukul 06.00 adalah 60 menit setelah 05.00, dan 60 tidak habis dibagi 16. Kelipatan 16 antara 60 dan 120 adalah 64, 80, 96, dan 112, jadi kereta A berangkat pukul 06.04, 06.20, 06.36, dan 06.52, **tepat 4 kali**. Pernyataan pertama benar.
+Misalkan tenornya <InlineMath math="n" /> bulan dan bunganya <InlineMath math="r" /> per bulan. Total bunga adalah <InlineMath math="4{.}800{.}000\cdot r\cdot n" />, jadi saat dibagi <InlineMath math="n" />, **bunga per bulan tidak bergantung pada tenor**.
 
-Pukul 21.00 adalah 960 menit setelah 05.00, dan <InlineMath math="\tfrac{960}{16}=60" />, bilangan bulat. Pernyataan keempat benar.
+<BlockMath math="\begin{aligned}
+\text{cicilan sebelum dibulatkan} &= \frac{4{.}800{.}000+4{.}800{.}000\cdot r\cdot n}{n}\\
+&= \frac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r
+\end{aligned}" />
 
-# Kereta jurusan B dan C
+Untuk <InlineMath math="r=1{,}5\%" />, suku kedua bernilai <InlineMath math="72{.}000" />. Untuk <InlineMath math="r=2{,}5\%" />, suku kedua bernilai <InlineMath math="120{.}000" />.
 
-Pukul 07.15 adalah 135 menit setelah 05.00, dan <InlineMath math="\tfrac{135}{24}=5{,}625" />, **bukan bilangan bulat**. Pernyataan kedua salah.
+# Tenor sampai dua belas bulan
 
-Pukul 12.10 adalah 430 menit setelah 05.00, dan 430 tidak habis dibagi 40. Pernyataan ketiga salah.
+Untuk tenor <InlineMath math="3" /> sampai <InlineMath math="12" /> bulan, suku <InlineMath math="72{.}000" /> tetap, sedangkan <InlineMath math="\tfrac{4{.}800{.}000}{n}" /> mengecil saat <InlineMath math="n" /> membesar. Selisih terkecil antara dua tenor berurutan terjadi pada tenor <InlineMath math="11" /> dan <InlineMath math="12" />, yaitu <InlineMath math="\tfrac{4{.}800{.}000}{11}-\tfrac{4{.}800{.}000}{12}=36{.}363{,}63\ldots" />. Selisih ini jauh di atas <InlineMath math="1{.}000" />, jadi **pembulatan ke atas tidak bisa membuat dua cicilan sama**. Pernyataan pertama benar.
+
+# Lompatan bunga di tenor tiga belas bulan
+
+Tenor <InlineMath math="13" /> bulan sudah memakai bunga <InlineMath math="2{,}5\%" /> per bulan.
+
+<BlockMath math="\begin{aligned}
+\text{cicilan tenor } 12 &= 400{.}000+72{.}000=472{.}000\\
+\text{cicilan tenor } 13 &= 369{.}230{,}76\ldots+120{.}000=489{.}230{,}76\ldots
+\end{aligned}" />
+
+Setelah dibulatkan, cicilan tenor <InlineMath math="13" /> bulan menjadi <InlineMath math="490{.}000" />. Tenornya lebih panjang, tetapi **kenaikan bunga per bulan lebih besar** daripada penurunan bagian pokoknya. Pernyataan kedua salah.
+
+# Pembulatan pada tenor sembilan bulan
+
+Cicilan tenor <InlineMath math="9" /> bulan sebelum dibulatkan adalah <InlineMath math="\tfrac{4{.}800{.}000}{9}+72{.}000=605{.}333{,}33\ldots" />, lalu dibulatkan menjadi <InlineMath math="606{.}000" />.
+
+<BlockMath math="\begin{aligned}
+\text{jumlah semua cicilan} &= 9\cdot606{.}000=5{.}454{.}000\\
+\text{pokok ditambah bunga} &= 4{.}800{.}000+648{.}000=5{.}448{.}000
+\end{aligned}" />
+
+Ada selisih <InlineMath math="6{.}000" /> karena **setiap cicilan dibulatkan ke atas**. Pernyataan ketiga salah.
+
+# Pelunasan dipercepat
+
+Bandingkan satu bulan yang belum dijalani. Jika cicilan tetap dibayar, bulan itu menelan satu cicilan, yaitu paling sedikit <InlineMath math="\tfrac{4{.}800{.}000}{n}+4{.}800{.}000\cdot r" />. Jika dilunasi lebih cepat, bulan itu hanya menelan bagian pokoknya ditambah denda, yaitu <InlineMath math="1{,}03\cdot\tfrac{4{.}800{.}000}{n}" />. Selisihnya paling sedikit <InlineMath math="4{.}800{.}000\cdot r-0{,}03\cdot\tfrac{4{.}800{.}000}{n}" />.
+
+<BlockMath math="\begin{aligned}
+4{.}800{.}000\cdot r &\ge 4{.}800{.}000\cdot1{,}5\%=72{.}000\\
+0{,}03\cdot\frac{4{.}800{.}000}{n} &\le 0{,}03\cdot\frac{4{.}800{.}000}{3}=48{.}000
+\end{aligned}" />
+
+Jadi setiap bulan yang dilunasi lebih cepat menghemat paling sedikit <InlineMath math="72{.}000-48{.}000=24{.}000" />. Karena **penghematan itu positif untuk setiap tenor dan setiap bulan sisa**, seluruh pembayaran selalu lebih kecil. Pernyataan keempat benar.
 
 Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.

@@ -1,21 +1,35 @@
-Check each statement with **the two rates in the information**: 2 seconds for each floor passed and 12 seconds for each stop.
+The price of every ticket is fixed, because its number is fixed. The only thing the friends can choose is **how to split the nine tickets into purchases**, and that split decides the discount and the service fees. Here's the plan: find the price of each number, find the best number of purchases and discounts, then set the order of the purchases.
 
-# Stopping time
+# The price of each ticket number
 
-One stop, 12 seconds, equals the time to move <InlineMath math="\tfrac{12}{2}=6" /> floors. The first statement is true.
+They get tickets <InlineMath math="148" /> to <InlineMath math="156" />. The first three, numbers <InlineMath math="148" />, <InlineMath math="149" /> and <InlineMath math="150" />, are **still early bird**. The other six, numbers <InlineMath math="151" /> to <InlineMath math="156" />, are presale.
 
-Two stops add <InlineMath math="2\cdot12=24" /> seconds, **not 12 seconds**. The second statement is false.
+<BlockMath math="3\cdot120{,}000+6\cdot150{,}000=360{,}000+900{,}000=1{,}260{,}000" />
 
-# Going up then down
+# Number of purchases and discounts
 
-From floor 3 to 11 the lift rises 8 floors, then from 11 to 6 it drops 5 floors. **The distances up and down add up**:
+One purchase holds at most four tickets, so nine tickets need at least <InlineMath math="3" /> purchases. The discount only applies to purchases of exactly four tickets, and with nine tickets **there can be at most two purchases of four**. So at most eight tickets get the discount, and the best split is <InlineMath math="4" />, <InlineMath math="4" /> and <InlineMath math="1" /> tickets. A fourth purchase would only add a service fee without adding any discount.
 
-<BlockMath math="(8+5)\cdot2=26\text{ seconds}" />
+# The order of the purchases
 
-So the third statement is false.
+One ticket can't get the discount. The discount is ten percent of the ticket price, so **the cheapest ticket is the one that should miss out**. The cheapest tickets come first, so that's number <InlineMath math="148" />. The first purchase holds one ticket, followed by two purchases of four:
 
-# Load
+<BlockMath math="\begin{aligned}
+\text{number 148: }&120{,}000\\
+\text{numbers 149 to 152: }&90\%\cdot(120{,}000+120{,}000+150{,}000+150{,}000)=486{,}000\\
+\text{numbers 153 to 156: }&90\%\cdot(4\cdot150{,}000)=540{,}000\\
+\text{total: }&120{,}000+486{,}000+540{,}000+3\cdot5{,}000=1{,}161{,}000
+\end{aligned}" />
 
-Eleven people averaging 62 kg weigh <InlineMath math="11\cdot62=682" /> kg, **not more than 700 kg**. The fourth statement is true.
+Check it another way. The discount is ten percent of every ticket except number <InlineMath math="148" />, which is <InlineMath math="10\%\cdot(1{,}260{,}000-120{,}000)=114{,}000" />. The total is then <InlineMath math="1{,}260{,}000-114{,}000+15{,}000=1{,}161{,}000" />, the same.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+# The wrong options
+
+Each other option comes from **one easy mistake**.
+
+- <InlineMath math="\text{Rp}1{,}146{,}000" /> forgets the service fees of the three purchases.
+- <InlineMath math="\text{Rp}1{,}164{,}000" /> uses the order <InlineMath math="4" />, <InlineMath math="4" />, <InlineMath math="1" />. The ticket without a discount becomes number <InlineMath math="156" /> at <InlineMath math="\text{Rp}150{,}000" />, so the discount is <InlineMath math="\text{Rp}3{,}000" /> smaller.
+- <InlineMath math="\text{Rp}1{,}191{,}000" /> charges the service fee per ticket, <InlineMath math="9\cdot5{,}000=45{,}000" />, but the fee is per purchase.
+- <InlineMath math="\text{Rp}1{,}275{,}000" /> splits the tickets into three purchases of three, so there's no discount at all.
+
+So the least the friends can pay is <InlineMath math="\text{Rp}1{,}161{,}000" />.

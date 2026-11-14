@@ -1,23 +1,26 @@
-A percentage change is always computed **relative to the starting value**, which here is the previous month. Read the value of each bar, then check the statements one by one.
+The left side is a difference of two squares, so **turn the equation into a product of two factors**: <InlineMath math="(x-y)(x+y)=144" />. Let <InlineMath math="d=x-y" /> and <InlineMath math="e=x+y" />. Then <InlineMath math="x=\tfrac{d+e}{2}" /> and <InlineMath math="y=\tfrac{e-d}{2}" />, so every ordered pair <InlineMath math="(d,e)" /> with <InlineMath math="de=144" /> gives exactly one pair <InlineMath math="(x,y)" />, as long as the results are integers. The plan: find that integer condition, then count the factor pairs, including the negative ones.
 
-# Percentage changes
+# The parity condition
 
-<BlockMath math="\begin{aligned}
-\text{product } A\text{, February to March}&=\frac{60-50}{50}\times100\%=20\%\\
-\text{product } B\text{, January to February}&=\frac{45-60}{60}\times100\%=-25\%
-\end{aligned}" />
+The value <InlineMath math="x=\tfrac{d+e}{2}" /> is an integer only when <InlineMath math="d+e" /> is even, which means <InlineMath math="d" /> and <InlineMath math="e" /> are **both even or both odd**. They can't both be odd, because the product of two odd numbers is odd, but <InlineMath math="144" /> is even. So both are even: <InlineMath math="d=2m" /> and <InlineMath math="e=2n" /> with
 
-The first statement is **true**. Product <InlineMath math="B" /> fell by 25%, not 15%, so the third statement is false. The number 15 is the difference in units, not yet divided by the starting value.
+<BlockMath math="(2m)(2n)=144\ \Rightarrow\ mn=36,\quad x=m+n,\quad y=n-m" />
 
-# Totals and means
+# Counting the factor pairs
 
-The January total is <InlineMath math="40+60=100" /> units, while the February total is <InlineMath math="50+45=95" /> units. **The February total is lower**, so the second statement is false.
+The positive divisors of <InlineMath math="36" /> are <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="9" />, <InlineMath math="12" />, <InlineMath math="18" />, and <InlineMath math="36" />, so there are <InlineMath math="9" /> ordered pairs <InlineMath math="(m,n)" /> with both positive. **Negative factors are allowed too**: <InlineMath math="(-m)(-n)=36" />, which gives <InlineMath math="9" /> more pairs.
 
-<BlockMath math="\begin{aligned}
-\bar x_A&=\frac{40+50+60}{3}=50\\
-\bar x_B&=\frac{60+45+54}{3}=53
-\end{aligned}" />
+<BlockMath math="9+9=18" />
 
-The mean for product <InlineMath math="B" /> is larger, so the fourth statement is true.
+# Checking with a list of solutions
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The positive pairs <InlineMath math="(m,n)" /> with <InlineMath math="m<n" /> give <InlineMath math="(x,y)" /> equal to <InlineMath math="(37,35)" />, <InlineMath math="(20,16)" />, <InlineMath math="(15,9)" />, and <InlineMath math="(13,5)" />. Each of these gives four pairs because the signs of <InlineMath math="x" /> and <InlineMath math="y" /> are free, so there are <InlineMath math="4\times4=16" />. The pair <InlineMath math="m=n=6" /> gives <InlineMath math="y=0" />, and here there are **only two pairs**, <InlineMath math="(12,0)" /> and <InlineMath math="(-12,0)" />, because <InlineMath math="0" /> and <InlineMath math="-0" /> are the same. The total is <InlineMath math="16+2=18" />, which matches.
+
+# Common mistakes
+
+- The result <InlineMath math="16" /> forgets the solutions with <InlineMath math="y=0" />.
+- The result <InlineMath math="20" /> counts <InlineMath math="(\pm12,0)" /> as four pairs.
+- The result <InlineMath math="30" /> uses all <InlineMath math="15" /> divisors of <InlineMath math="144" /> **without the parity condition**, but a pair like <InlineMath math="d=1" /> and <InlineMath math="e=144" /> gives <InlineMath math="x=\tfrac{145}{2}" />, which isn't an integer.
+- The result <InlineMath math="9" /> forgets that both factors can be negative.
+
+So <InlineMath math="18" /> pairs of integers <InlineMath math="(x,y)" /> satisfy the equation.

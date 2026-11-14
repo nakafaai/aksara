@@ -9,13 +9,19 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
     de: "messen-im-naturwissenschaftlichen-arbeiten",
     en: "measurement",
     id: "pengukuran-dalam-kerja-ilmiah",
+    ms: "pengukuran",
   },
   sections: [
     {
       evidenceUrls: [
         "https://openstax.org/books/university-physics-volume-1/pages/1-4-dimensional-analysis",
       ],
-      routeSlugs: { de: "dimension", en: "dimension", id: "dimensi" },
+      routeSlugs: {
+        de: "dimension",
+        en: "dimension",
+        id: "dimensi",
+        ms: "dimensi",
+      },
       slug: "dimension",
     },
     {
@@ -24,7 +30,12 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors",
         "https://openstax.org/books/university-physics-volume-1/pages/1-6-significant-figures",
       ],
-      routeSlugs: { de: "schreibweise", en: "notation", id: "notasi-ilmiah" },
+      routeSlugs: {
+        de: "schreibweise",
+        en: "notation",
+        id: "notasi-ilmiah",
+        ms: "bentuk-piawai",
+      },
       slug: "notation",
     },
     {
@@ -33,6 +44,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         de: "physikalische-groesse",
         en: "quantity",
         id: "besaran",
+        ms: "kuantiti-fizik",
       },
       slug: "quantity",
     },
@@ -45,6 +57,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         de: "signifikante-stellen",
         en: "significant-figures",
         id: "aturan-angka-penting",
+        ms: "angka-bererti",
       },
       slug: "significant-figures",
     },
@@ -57,6 +70,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         de: "messgeraete",
         en: "tools",
         id: "macam-macam-alat-ukur",
+        ms: "alat-pengukur",
       },
       slug: "tools",
     },
@@ -69,6 +83,7 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         de: "messunsicherheit",
         en: "uncertainty",
         id: "nilai-ketidakpastian-pada-pengukuran-berulang",
+        ms: "ketidakpastian-pengukuran-berulang",
       },
       slug: "uncertainty",
     },
@@ -77,7 +92,12 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
         "https://www.bipm.org/en/measurement-units",
         "https://www.bipm.org/en/measurement-units/si-prefixes",
       ],
-      routeSlugs: { de: "einheit", en: "unit", id: "sistem-satuan" },
+      routeSlugs: {
+        de: "einheit",
+        en: "unit",
+        id: "sistem-satuan",
+        ms: "sistem-unit",
+      },
       slug: "unit",
     },
   ],
@@ -94,6 +114,10 @@ export const lessonPhysicsMeasurementMaterial = defineLessonMaterial({
     id: {
       description: "Gunakan dimensi untuk mengecek besaran dan rumus.",
       title: "Pengukuran dalam Kerja Ilmiah",
+    },
+    ms: {
+      description: "Guna dimensi untuk menyemak kuantiti dan rumus.",
+      title: "Pengukuran dalam Kerja Saintifik",
     },
   },
 });

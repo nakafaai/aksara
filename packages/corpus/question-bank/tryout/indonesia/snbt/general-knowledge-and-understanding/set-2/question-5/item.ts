@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "inference",
+    topic: "detail",
   },
-  stimulus: "gamelan",
+  stimulus: "delta",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Saron itu akan menyesuaikan nadanya sendiri dengan perangkat B.",
+            "Pasir dan lumpur yang dibawa oleh sungai yang sama dapat mengendap di tempat yang berbeda.",
         },
         {
           correct: false,
           label:
-            "Perangkat B akan berubah dari laras slendro menjadi laras pelog.",
-        },
-        {
-          correct: false,
-          label:
-            "Gending sama sekali tidak dapat dimainkan oleh perangkat B karena jumlah nada pada saron itu berbeda.",
-        },
-        {
-          correct: false,
-          label:
-            "Saron itu akan rusak karena dimainkan bersama perangkat lain.",
+            "Membongkar bendungan di hulu tidak akan menghentikan pemadatan endapan lama di delta.",
         },
         {
           correct: true,
           label:
-            "Nada saron itu kemungkinan terdengar kurang selaras dengan instrumen lain dalam perangkat B.",
+            "Rupa sebuah delta terutama ditentukan oleh banyaknya endapan yang dibawa sungai ke muara.",
+        },
+        {
+          correct: false,
+          label: "Endapan yang sudah mengendap masih dapat berpindah tempat.",
+        },
+        {
+          correct: false,
+          label:
+            "Endapan di muara dapat mengubah jalur aliran sungai yang membawanya.",
         },
       ],
     },

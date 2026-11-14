@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "reading",
-    topic: "main-idea",
+    cognitiveLevel: "reasoning",
+    contentDomain: "writing",
+    topic: "insertion",
   },
-  stimulus: "village-radio",
+  stimulus: "lumbung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "di antara kalimat (2) dan (3)",
+        },
+        {
+          correct: false,
+          label: "di antara kalimat (3) dan (4)",
+        },
+        {
+          correct: false,
+          label: "di antara kalimat (6) dan (7)",
+        },
+        {
           correct: true,
-          label:
-            "Radio komunitas di Desa Wangun berperan penting dalam kehidupan warganya.",
+          label: "di antara kalimat (7) dan (8)",
         },
         {
           correct: false,
-          label:
-            "Warga Desa Wangun berkumpul di balai desa setiap malam Jumat.",
-        },
-        {
-          correct: false,
-          label:
-            "Para pemuda Desa Wangun belajar mengoperasikan pemancar sendiri.",
-        },
-        {
-          correct: false,
-          label:
-            "Banjir di desa tetangga memerlukan saluran informasi yang cepat.",
-        },
-        {
-          correct: false,
-          label:
-            "Radio komunitas memerlukan izin siaran resmi untuk memperluas jangkauan.",
+          label: "di antara kalimat (10) dan (11)",
         },
       ],
     },

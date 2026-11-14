@@ -1,0 +1,68 @@
+# Jejari sfera pertama
+
+Soalan ini ada dua peringkat: jejari sfera pertama dahulu, kemudian sfera kedua. Potong kon tepat melalui paksinya. Keratan rentasnya ialah segi tiga sama kaki dengan tapak <InlineMath math="12" />, tinggi <InlineMath math="8" />, dan sisi condong <InlineMath math="\sqrt{6^2+8^2}=10" />. Kedua-dua sfera kelihatan sebagai bulatan yang pusatnya pada paksi.
+
+Katakan bucu kon <InlineMath math="T" />, pusat tapak <InlineMath math="C" />, satu hujung tapak <InlineMath math="D" />, pusat sfera pertama <InlineMath math="M" />, dan titik sentuhan sfera dengan sisi condong <InlineMath math="K" />. Sfera menyentuh tapak, jadi <InlineMath math="MC=r" /> dan <InlineMath math="TM=8-r" />. Segi tiga <InlineMath math="TKM" /> dan <InlineMath math="TCD" /> kedua-duanya bersudut tegak dan berkongsi sudut di <InlineMath math="T" />, jadi **kedua-duanya serupa**.
+
+<BlockMath math="\begin{aligned}
+\frac{MK}{TM}&=\frac{CD}{TD} \\
+\frac{r}{8-r}&=\frac{6}{10} \\
+10r&=48-6r \\
+r&=3\text{ cm}
+\end{aligned}" />
+
+# Kon kecil di atas sfera pertama
+
+Titik tertinggi sfera pertama berada pada ketinggian <InlineMath math="2r=6\text{ cm}" /> dari tapak. Bayangkan satah mengufuk yang menyentuh sfera pertama di titik tertingginya. Sfera kedua menyentuh sfera pertama tepat di titik itu, kerana kedua-dua pusatnya terletak pada paksi. Jadi, sfera kedua menyentuh satah itu dan permukaan sisi kon.
+
+Maksudnya, sfera kedua memainkan peranan sfera pertama bagi **kon kecil di atas satah itu**. Kon kecil ini serupa dengan kon besar:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi kon kecil}&=8-6=2\text{ cm} \\
+\text{faktor skala}&=\frac{2}{8}=\frac14 \\
+r_2&=\frac14\cdot3=\frac34\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Keratan rentas kon dan kedua-dua sfera</>}
+  description={<>Segi tiga sama kaki dengan tapak dari <InlineMath math="(-6,0)" /> hingga <InlineMath math="(6,0)" /> dan bucu <InlineMath math="(0,8)" />. Sfera pertama kelihatan sebagai bulatan berpusat <InlineMath math="(0,3)" /> dengan jejari <InlineMath math="3" />. Garis mengufuk pada ketinggian <InlineMath math="6" /> menyentuh bahagian atas sfera pertama dan memotong kon kecil setinggi <InlineMath math="2" />. Sfera kedua kelihatan sebagai bulatan kecil yang pusatnya pada paksi di ketinggian <InlineMath math="6.75" />, dengan jejari <InlineMath math="0.75" />.</>}
+  labels={{
+    apex: <InlineMath math="T" />,
+    first: <InlineMath math="r=3" />,
+    second: <InlineMath math="r_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "reference", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 8 }] },
+      { id: "first-ball", kind: "circle", appearance: "primary", center: { x: 0, y: 3 }, radius: 3 },
+      { id: "second-ball", kind: "circle", appearance: "answer", center: { x: 0, y: 6.75 }, radius: 0.75 },
+      { id: "tangent-plane", kind: "segment", appearance: "secondary", from: { x: -1.5, y: 6 }, to: { x: 1.5, y: 6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "apex-point", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "first-radius", kind: "segment", appearance: "highlight", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "apex-point", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "first", objectId: "first-radius", at: { x: 0, y: 1.5 }, placement: "right" },
+      { key: "second", objectId: "second-ball", at: { x: 0.75, y: 6.75 }, placement: "right" },
+    ],
+  }}
+/>
+
+Untuk semakan, pusat sfera kedua berada <InlineMath math="8-6.75=1.25\text{ cm}" /> dari bucu. Jaraknya ke sisi condong ialah <InlineMath math="1.25\cdot\frac{6}{10}=0.75\text{ cm}" />, tepat sama dengan jejarinya. **Sfera kedua memang menyentuh permukaan sisi kon**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{3}{16}\text{ cm}" /> mendarab dengan <InlineMath math="\left(\tfrac14\right)^2" />. Kuasa dua faktor skala digunakan untuk luas. **Jejari ialah panjang**, jadi faktornya cukup <InlineMath math="\tfrac14" />.
+- <InlineMath math="\frac{3}{5}\text{ cm}" /> membahagi tinggi kon kecil dengan sisi condong kon besar, <InlineMath math="\tfrac{2}{10}" />. Faktor skala mesti membandingkan panjang yang sepadan, tinggi dengan tinggi.
+- <InlineMath math="1\text{ cm}" /> menganggap sfera kedua mengisi ruang setinggi <InlineMath math="2\text{ cm}" /> sehingga ke bucu, jadi diameternya <InlineMath math="2" />. Kon semakin sempit dekat bucu, jadi sfera itu tersekat oleh sisi kon sebelum sampai ke bucu.
+- <InlineMath math="\frac{3}{2}\text{ cm}" /> ialah jejari tapak kon kecil, <InlineMath math="\tfrac14\cdot6" />, bukan jejari sfera di dalamnya.
+
+Jadi, jejari sfera kedua ialah <InlineMath math="\frac34\text{ cm}" />.

@@ -1,0 +1,73 @@
+# Kedalaman saluran
+
+Soalan ini bertanya kadar alir terbesar apabila permukaan air dikekalkan **sekurang-kurangnya <InlineMath math="20\text{ cm}" /> di bawah bibir saluran**. Kadar alir (debit) ialah luas keratan rentas air didarab dengan laju, jadi kamu perlukan luas itu pada aras air tertinggi yang dibenarkan.
+
+Petikan tidak memberi kedalaman saluran, cuma panjang dinding condong. Setiap dinding beranjak ke tepi sejauh separuh beza dua lebar itu, kemudian kedalaman diperoleh dengan teorem Pythagoras pada segi tiga bersudut tegak di bawah dinding:
+
+<BlockMath math="\begin{aligned}
+\text{anjakan mengufuk setiap sisi}&=\frac{180-60}{2}=60\text{ cm} \\
+\text{kedalaman saluran}&=\sqrt{100^2-60^2}=\sqrt{6{,}400}=80\text{ cm}
+\end{aligned}" />
+
+# Lebar permukaan air
+
+Air paling tinggi boleh sampai <InlineMath math="80-20=60\text{ cm}" /> dari dasar. Dinding itu lurus, jadi anjakan mengufuknya berkadar dengan ketinggian (segi tiga serupa). Setiap dinding beranjak <InlineMath math="60\text{ cm}" /> sepanjang ketinggian <InlineMath math="80\text{ cm}" />, maka pada ketinggian air <InlineMath math="60\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+\text{anjakan setiap sisi}&=\frac{60}{80}\cdot60=45\text{ cm} \\
+\text{lebar permukaan air}&=60+2\cdot45=150\text{ cm}
+\end{aligned}" />
+
+Perhatikan bahawa **permukaan air lebih sempit daripada bibir saluran**, kerana air tidak sampai ke bibir.
+
+# Luas keratan rentas dan kadar alir
+
+Keratan rentas air ialah trapezium dengan sisi selari <InlineMath math="60\text{ cm}" /> dan <InlineMath math="150\text{ cm}" />, serta tinggi <InlineMath math="60\text{ cm}" />. Tukar kepada meter persegi, darab dengan laju, kemudian tukar kepada liter dengan <InlineMath math="1\text{ m}^3=1{,}000" /> liter:
+
+<BlockMath math="\begin{aligned}
+L&=\frac{60+150}{2}\cdot60=6{,}300\text{ cm}^2=0.63\text{ m}^2 \\
+Q&=0.63\cdot0.5=0.315\text{ m}^3\text{/s}=315\text{ liter sesaat}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Keratan rentas saluran dengan air setinggi <InlineMath math="60\text{ cm}" /></>}
+  description={<>Trapezium sama kaki dengan dasar <InlineMath math="60\text{ cm}" />, bibir atas <InlineMath math="180\text{ cm}" />, dinding condong <InlineMath math="100\text{ cm}" /> dan kedalaman <InlineMath math="80\text{ cm}" />. Air memenuhi bahagian bawah hingga ketinggian <InlineMath math="60\text{ cm}" />, dengan lebar permukaan air <InlineMath math="150\text{ cm}" />. Di atas air masih ada <InlineMath math="20\text{ cm}" /> hingga ke bibir.</>}
+  labels={{
+    bottom: <InlineMath math="60\text{ cm}" />,
+    rim: <InlineMath math="180\text{ cm}" />,
+    wall: <InlineMath math="100\text{ cm}" />,
+    surface: <InlineMath math="150\text{ cm}" />,
+    depth: <InlineMath math="60\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 200 },
+      y: { min: -20, max: 100 },
+    },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 60, y: 0 }, { x: 120, y: 0 }, { x: 165, y: 60 }, { x: 15, y: 60 }] },
+      { id: "channel", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 80 }, { x: 60, y: 0 }, { x: 120, y: 0 }, { x: 180, y: 80 }] },
+      { id: "rim", kind: "segment", appearance: "reference", from: { x: 0, y: 80 }, to: { x: 180, y: 80 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 90, y: 0 }, to: { x: 90, y: 60 } },
+    ],
+    labels: [
+      { key: "bottom", objectId: "channel", at: { x: 90, y: 0 }, placement: "below" },
+      { key: "rim", objectId: "rim", at: { x: 90, y: 80 }, placement: "above" },
+      { key: "wall", objectId: "channel", at: { x: 30, y: 40 }, placement: "left" },
+      { key: "surface", objectId: "water", at: { x: 130, y: 60 }, placement: "above" },
+      { key: "depth", objectId: "depth", at: { x: 90, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, **kadar alir terbesar yang masih dibenarkan ialah <InlineMath math="315" /> liter sesaat**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="360" /> liter sesaat muncul jika lebar permukaan air disamakan dengan lebar bibir <InlineMath math="180\text{ cm}" />. Air hanya setinggi <InlineMath math="60\text{ cm}" />, jadi **permukaannya baru selebar <InlineMath math="150\text{ cm}" />**.
+- <InlineMath math="432" /> liter sesaat muncul jika dinding condong <InlineMath math="100\text{ cm}" /> dianggap sebagai kedalaman saluran. Dinding itu ialah sisi condong segi tiga, manakala kedalamannya <InlineMath math="80\text{ cm}" />.
+- <InlineMath math="450" /> liter sesaat muncul jika keratan rentas dikira sebagai segi empat tepat <InlineMath math="150\cdot60" />. Bahagian bawah keratan rentas hanya selebar <InlineMath math="60\text{ cm}" />, jadi bentuknya trapezium.
+- <InlineMath math="480" /> liter sesaat ialah kadar alir apabila saluran penuh hingga ke bibir. Itu melanggar peraturan jarak <InlineMath math="20\text{ cm}" /> dari bibir.

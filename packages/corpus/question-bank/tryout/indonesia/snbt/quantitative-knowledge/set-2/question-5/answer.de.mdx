@@ -1,26 +1,41 @@
-Bestimme zuerst <InlineMath math="a" /> aus <InlineMath math="f(3)=7" />, denn **alle anderen Aussagen hängen von der vollständigen Vorschrift** von <InlineMath math="f" /> ab.
+Beide Größen sind durch <InlineMath math="u_1=4" /> und den Quotienten <InlineMath math="r" /> festgelegt. Der Quotient steckt in der Regel <InlineMath math="u_{n+2}=u_{n+1}+u_n" />, und **die Konvergenzbedingung** wählt einen von zwei möglichen Quotienten aus. Danach berechnest du <InlineMath math="P" /> und <InlineMath math="Q" /> exakt und vergleichst sie.
 
-<BlockMath math="f(3)=\frac{3a+1}{3-2}=3a+1=7\quad\Rightarrow\quad a=2" />
+# Den Quotienten finden
 
-Die zweite Aussage ist wahr, und es gilt <InlineMath math="f(x)=\dfrac{2x+1}{x-2}" />.
-
-# Umkehrfunktion bestimmen
-
-Schreibe <InlineMath math="y=f(x)" /> und löse nach <InlineMath math="x" /> auf.
+Schreibe <InlineMath math="u_n=4r^{n-1}" />. Der Quotient <InlineMath math="r" /> kann nicht <InlineMath math="0" /> sein, denn <InlineMath math="r=0" /> liefert <InlineMath math="u_3=0" />, obwohl <InlineMath math="u_2+u_1=4" /> ist. Teile die Regel durch <InlineMath math="u_n=4r^{n-1}" />, das nicht null ist.
 
 <BlockMath math="\begin{aligned}
-y(x-2)&=2x+1\\
-xy-2y&=2x+1\\
-x(y-2)&=2y+1\\
-x&=\frac{2y+1}{y-2}
+4r^{n+1}&=4r^{n}+4r^{n-1}\\
+r^2&=r+1\\
+r&=\frac{1+\sqrt5}{2}\ \text{oder}\ r=\frac{1-\sqrt5}{2}
 \end{aligned}" />
 
-Also ist <InlineMath math="f^{-1}(x)=\dfrac{2x+1}{x-2}" />, **genau dieselbe Vorschrift wie <InlineMath math="f(x)" />**, und auch der Definitionsbereich ist <InlineMath math="x\ne2" />. Die dritte Aussage ist wahr.
+Eine unendliche geometrische Reihe **konvergiert nur für <InlineMath math="|r|<1" />**. Wegen <InlineMath math="\sqrt5>2" /> ist der erste Kandidat größer als <InlineMath math="\tfrac32" /> und fällt weg. Der zweite erfüllt <InlineMath math="-1<\tfrac{1-\sqrt5}{2}<0" />, weil <InlineMath math="2<\sqrt5<3" /> ist. Also gilt <InlineMath math="r=\tfrac{1-\sqrt5}{2}" />, und der Quotient ist negativ.
 
-# Folgen einer selbstinversen Funktion
+# Beide Größen berechnen
 
-Wegen <InlineMath math="f^{-1}=f" /> **liefert zweimaliges Anwenden von <InlineMath math="f" /> die Eingabe zurück**. Direkte Probe: <InlineMath math="f(5)=\frac{11}{3}" /> und <InlineMath math="f\left(\frac{11}{3}\right)=\frac{25/3}{5/3}=5" />. Die vierte Aussage ist wahr.
+Für <InlineMath math="P" /> nimmst du die Formel für die unendliche Summe, <InlineMath math="\tfrac{u_1}{1-r}" />. Für <InlineMath math="Q" /> **ersetzt du <InlineMath math="r^2" /> durch <InlineMath math="r+1" />**, dann musst du keine Wurzel quadrieren.
 
-Die Gleichung <InlineMath math="f(x)=2" /> bedeutet <InlineMath math="2x+1=2(x-2)=2x-4" />, also <InlineMath math="1=-4" />. Kein <InlineMath math="x" /> erfüllt sie, denn 2 ist die waagerechte Asymptote des Graphen von <InlineMath math="f" />. Die erste Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+P&=\frac{4}{1-r}=\frac{4}{\frac{1+\sqrt5}{2}}=\frac{8}{1+\sqrt5}=\frac{8(\sqrt5-1)}{4}=2\sqrt5-2\\
+Q&=4\left(1+r+r^2\right)=4\left(2+2r\right)=8(1+r)=8\cdot\frac{3-\sqrt5}{2}=12-4\sqrt5
+\end{aligned}" />
 
-Die erste Aussage ist also **falsch**, die zweite, dritte und vierte Aussage sind **wahr**.
+# Wurzelausdrücke vergleichen
+
+Bilde die Differenz und vergleiche dann zwei positive Zahlen über ihre Quadrate.
+
+<BlockMath math="\begin{aligned}
+Q-P&=12-4\sqrt5-2\sqrt5+2=14-6\sqrt5\\
+14^2=196&>180=\left(6\sqrt5\right)^2
+\end{aligned}" />
+
+Also ist <InlineMath math="14>6\sqrt5" /> und damit <InlineMath math="Q-P>0" />. Prüfe das auf einem zweiten Weg. Wegen <InlineMath math="r<0" /> **wechseln die Glieder ihr Vorzeichen**, und <InlineMath math="u_4=4r^3" /> ist negativ. Der Rest der Reihe nach dem dritten Glied ist <InlineMath math="\tfrac{u_4}{1-r}" />, also ebenfalls negativ, und damit ist <InlineMath math="P=Q+\tfrac{u_4}{1-r}" /> kleiner als <InlineMath math="Q" />.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="P>Q" /> entsteht, wenn du annimmst, eine unendliche Summe sei **immer größer als die Summe der ersten Glieder**. Das stimmt nur, wenn alle Glieder positiv sind.
+- <InlineMath math="P=Q" /> würde bedeuten, dass der Rest <InlineMath math="u_4+u_5+\cdots" /> null ist, aber dieser Rest ist <InlineMath math="\tfrac{u_4}{1-r}\ne0" />.
+- Die Antwort, die Angaben reichten nicht, entsteht, wenn du beide Kandidaten für <InlineMath math="r" /> für möglich hältst. Mit <InlineMath math="r=\tfrac{1+\sqrt5}{2}" /> divergiert die Reihe aber.
+
+Die Größe <InlineMath math="Q" /> ist also größer als die Größe <InlineMath math="P" />.

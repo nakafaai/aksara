@@ -42,6 +42,10 @@ export const igcseMathematicsUnitNodes = [
         description: "Bangun persamaan, grafik, barisan, dan fungsi.",
         title: "Aljabar dan grafik",
       },
+      ms: {
+        description: "Bina persamaan, graf, jujukan dan fungsi.",
+        title: "Algebra dan graf",
+      },
     },
     order: 20,
     translations: {
@@ -53,6 +57,10 @@ export const igcseMathematicsUnitNodes = [
       id: {
         routeSlug: "aljabar-dan-grafik",
         title: "Aljabar dan grafik",
+      },
+      ms: {
+        routeSlug: "algebra-dan-graf",
+        title: "Algebra dan graf",
       },
     },
   }),
@@ -97,6 +105,10 @@ export const igcseMathematicsUnitNodes = [
         description: "Latih lingkaran, koordinat, dan trigonometri.",
         title: "Geometri, pengukuran, dan trigonometri",
       },
+      ms: {
+        description: "Guna bulatan, koordinat dan trigonometri.",
+        title: "Geometri, pengukuran dan trigonometri",
+      },
     },
     order: 30,
     translations: {
@@ -111,6 +123,10 @@ export const igcseMathematicsUnitNodes = [
       id: {
         routeSlug: "geometri-pengukuran-dan-trigonometri",
         title: "Geometri, pengukuran, dan trigonometri",
+      },
+      ms: {
+        routeSlug: "geometri-pengukuran-dan-trigonometri",
+        title: "Geometri, pengukuran dan trigonometri",
       },
     },
   }),
@@ -143,6 +159,10 @@ export const igcseMathematicsUnitNodes = [
         description: "Gunakan transformasi dan vektor dalam geometri.",
         title: "Transformasi dan vektor",
       },
+      ms: {
+        description: "Guna transformasi dan vektor dalam geometri.",
+        title: "Transformasi dan vektor",
+      },
     },
     order: 40,
     translations: {
@@ -155,6 +175,10 @@ export const igcseMathematicsUnitNodes = [
         title: "Transformations and vectors",
       },
       id: {
+        routeSlug: "transformasi-dan-vektor",
+        title: "Transformasi dan vektor",
+      },
+      ms: {
         routeSlug: "transformasi-dan-vektor",
         title: "Transformasi dan vektor",
       },
@@ -189,6 +213,10 @@ export const igcseMathematicsUnitNodes = [
         description: "Baca peluang dan data lewat perhitungan.",
         title: "Peluang dan statistika",
       },
+      ms: {
+        description: "Tafsir kebarangkalian dan data dengan pengiraan jelas.",
+        title: "Kebarangkalian dan statistik",
+      },
     },
     order: 50,
     translations: {
@@ -203,6 +231,10 @@ export const igcseMathematicsUnitNodes = [
       id: {
         routeSlug: "peluang-dan-statistika",
         title: "Peluang dan statistika",
+      },
+      ms: {
+        routeSlug: "kebarangkalian-dan-statistik",
+        title: "Kebarangkalian dan statistik",
       },
     },
   }),

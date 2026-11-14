@@ -1,0 +1,179 @@
+export const metadata = {
+  title: "Definisi Bulatan",
+  description: "Terbitkan persamaan piawai bulatan daripada pusat dan jejarinya, kemudian semak persamaan itu dalam contoh berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-09-08",
+  subject: "Geometri Analitik",
+};
+
+
+
+## Titik-Titik pada Jarak Tetap dari Pusat
+
+Bulatan ialah kumpulan semua titik pada satu satah yang mempunyai <Highlight>jarak yang sama dari satu titik tetap</Highlight>. Titik tetap ini dipanggil **pusat bulatan**, manakala jarak yang sama dari pusat ke setiap titik pada bulatan dipanggil **jejari**.
+
+Bayangkan kamu mengikat seutas tali pada sebatang paku, kemudian tarik tali itu sampai tegang dan lukis satu lengkung lengkap di sekeliling paku itu. Lengkung yang terbentuk itulah yang kita panggil bulatan, paku itu ialah pusatnya, dan panjang tali itu ialah jejarinya.
+
+<MathVisual
+  title={<>Bulatan dengan Pusat dan Jejari</>}
+  description={<>Semua titik pada bulatan mempunyai jarak yang sama dari pusat.</>}
+  labels={{
+    "l1": <InlineMath math="P" />,
+    "l2": <InlineMath math="r" />,
+    "l3": <InlineMath math="r" />,
+    "l4": <InlineMath math="r" />,
+    "l5": <InlineMath math="A" />,
+    "l6": <InlineMath math="B" />,
+    "l7": <InlineMath math="C" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + ((t * 3) * cos(0)))", y: "(0 + ((t * 3) * sin(0)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(0 + ((t * 3) * cos((pi / 4))))", y: "(0 + ((t * 3) * sin((pi / 4))))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(0 + ((t * 3) * cos(pi)))", y: "(0 + ((t * 3) * sin(pi)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s5", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "s6", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "answer" },
+      { id: "s7", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: -3, y: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "l6", objectId: "s6", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l7", objectId: "s7", at: { x: -3, y: 0 }, placement: "left" },
+    ],
+  }}
+/>
+
+Dalam gambar rajah ini, <InlineMath math="P" /> ialah pusat, manakala <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> terletak pada bulatan. Ketiga-tiga jarak <InlineMath math="PA" />, <InlineMath math="PB" />, dan <InlineMath math="PC" /> semuanya sama dengan <InlineMath math="r" />. Jarak yang sama itulah yang meletakkan ketiga-tiga titik itu pada satu bulatan.
+
+## Bulatan sebagai Titik-Titik pada Jarak Tetap
+
+Sekarang kita boleh nyatakan idea ini dengan tepat. Bulatan yang berpusat di <InlineMath math="P(a, b)" /> dengan jejari <InlineMath math="r>0" /> ialah set semua titik <InlineMath math="(x, y)" /> yang memenuhi:
+
+<BlockMath math="d(P, (x,y)) = r" />
+
+Di sini, <InlineMath math="d(P, (x,y))" /> ialah jarak dari pusat <InlineMath math="P" /> ke titik <InlineMath math="(x, y)" />.
+
+Kalau kita gunakan **rumus jarak** dalam sistem koordinat Cartes, kita boleh tulis seperti ini:
+
+<BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
+
+## Persamaan Bulatan
+
+Daripada definisi matematik di atas, kita boleh terbitkan **persamaan bulatan** dengan mengkuasaduakan kedua-dua belah:
+
+<MathContainer>
+  <BlockMath math="\sqrt{(x-a)^2 + (y-b)^2} = r" />
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+</MathContainer>
+
+Inilah **persamaan piawai bulatan** yang berpusat di <InlineMath math="(a, b)" /> dengan jejari <InlineMath math="r" />. Untuk satu titik <InlineMath math="(x,y)" />, bandingkan <InlineMath math="(x-a)^2+(y-b)^2" /> dengan <InlineMath math="r^2" />. Kalau nilai pertama lebih kecil, titik itu berada di dalam bulatan. Kalau kedua-dua nilai sama, titik itu berada pada bulatan, manakala nilai pertama yang lebih besar meletakkan titik itu di luar bulatan.
+
+<MathVisual
+  title={<>Bulatan dalam Sistem Koordinat</>}
+  description={<>Bulatan berpusat di <InlineMath math="(2, 1)" /> dengan jejari <InlineMath math="2" />.</>}
+  labels={{
+    "l1": <InlineMath math="(2,1)" />,
+    "l2": <InlineMath math="r=2" />,
+    "l3": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 + (2 * cos(((t * pi) / 180))))", y: "(1 + (2 * sin(((t * pi) / 180))))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + ((t * 2) * cos(0)))", y: "(1 + ((t * 2) * sin(0)))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-1) + (t * (5 - (-1))))", y: "0", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "0", y: "((-2) + (t * (4 - (-2))))", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 1 }, placement: "below" },
+      { key: "l3", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Bagi bulatan dalam gambar rajah di atas, persamaannya ialah:
+
+<BlockMath math="(x-2)^2 + (y-1)^2 = 4" />
+
+### Bentuk Khas Persamaan Bulatan
+
+Apabila pusatnya ialah **asalan** <InlineMath math="(0, 0)" />, kedua-dua sebutan anjakan hilang dan persamaannya menjadi:
+
+<BlockMath math="x^2 + y^2 = r^2" />
+
+Bentuk yang lebih pendek ini berguna setiap kali kita sudah tahu bahawa pusatnya ialah asalan.
+
+## Unsur Asas Bulatan
+
+Tiga unsur geometri ini selalu muncul dalam masalah bulatan:
+
+1. **Pusat bulatan** ialah titik rujukan tetap bagi semua titik pada bulatan. Setiap titik pada bulatan mempunyai jarak yang sama ke pusat ini.
+
+2. **Jejari** ialah jarak dari pusat bulatan ke mana-mana titik pada bulatan. Dalam satu bulatan, semua jejari sama panjang.
+
+3. **Diameter** ialah tembereng garis yang menyambungkan dua titik pada bulatan dan melalui pusat. Panjangnya dua kali jejari, iaitu <InlineMath math="d = 2r" />.
+
+Gambar rajah ini menunjukkan bagaimana jejari dan diameter berkongsi pusat yang sama:
+
+<MathVisual
+  title={<>Unsur Bulatan</>}
+  description={<>Gambar rajah yang menunjukkan pusat, jejari, dan diameter.</>}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <>jejari</>,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+    "l5": <>diameter</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((t * pi) / 180)))", y: "(3 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(0 + ((t * 3) * cos((pi / 4))))", y: "(0 + ((t * 3) * sin((pi / 4))))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: 2.12, y: 2.12 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: 0 }, placement: "left" },
+      { key: "l4", objectId: "s3", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "l5", objectId: "s3", at: { x: 3, y: 0 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mencari Persamaan daripada Pusat dan Jejari
+
+Gantikan pusat dan jejari yang diberi ke dalam bentuk piawai.
+
+**Contoh**: Tentukan persamaan bulatan yang berpusat di <InlineMath math="(3, -2)" /> dengan jejari <InlineMath math="5" />.
+
+**Penyelesaian**:
+Gantikan pusat dan jejari yang diberi ke dalam persamaan piawai:
+
+<MathContainer>
+  <BlockMath math="(x-a)^2 + (y-b)^2 = r^2" />
+  <BlockMath math="(x-3)^2 + (y-(-2))^2 = 5^2" />
+  <BlockMath math="(x-3)^2 + (y+2)^2 = 25" />
+</MathContainer>
+
+Jadi persamaan bulatan itu ialah <InlineMath math="(x-3)^2 + (y+2)^2 = 25" />.
+
+Semak titik <InlineMath math="(8,-2)" />, yang terletak <InlineMath math="5" /> unit di sebelah kanan pusat. Kalau kamu **gantikan koordinatnya**, hasilnya mesti sama dengan kuasa dua jejari:
+
+<BlockMath math="(8-3)^2+(-2+2)^2=5^2+0^2=25" />

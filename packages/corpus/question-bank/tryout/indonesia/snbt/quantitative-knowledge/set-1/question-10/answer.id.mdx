@@ -1,68 +1,37 @@
-Diagonal membagi trapesium menjadi empat segitiga: <InlineMath math="ABE" />, <InlineMath math="BCE" />, <InlineMath math="CDE" />, dan <InlineMath math="DAE" />. Luas trapesium adalah jumlah keempatnya, dan **perbandingan sisi sejajar** menentukan semuanya dari luas <InlineMath math="CDE" />.
+Jari-jari bisa dicari dari tali busur <InlineMath math="TB" />, karena tali busur itu melalui pusat sehingga merupakan **diameter**. Rencananya: pakai hubungan garis singgung dan garis potong untuk mencari <InlineMath math="PB" />, kenali segitiga siku-siku <InlineMath math="PTB" />, lalu hitung <InlineMath math="TB" /> dan bagi dua.
 
-<MathVisual
-  title={<>Trapesium <InlineMath math="ABCD" /></>}
-  description={<>Sisi <InlineMath math="AB" /> sejajar sisi <InlineMath math="DC" />. Diagonal <InlineMath math="AC" /> dan <InlineMath math="BD" /> berpotongan di <InlineMath math="E" />, membagi trapesium menjadi empat segitiga.</>}
-  scene={{
-    space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.12 },
-    objects: [
-      {
-        id: "trapezoid",
-        kind: "polygon",
-        appearance: "primary",
-        vertices: [
-          { x: 0, y: 0 },
-          { x: 12, y: 0 },
-          { x: 8, y: 6 },
-          { x: 4, y: 6 },
-        ],
-      },
-      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 8, y: 6 } },
-      { id: "diagonal-bd", kind: "segment", appearance: "secondary", from: { x: 12, y: 0 }, to: { x: 4, y: 6 } },
-      { id: "point-e", kind: "point", appearance: "highlight", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 } },
-    ],
-    labels: [
-      { key: "a", objectId: "trapezoid", at: { x: 0, y: 0 }, placement: "below-left" },
-      { key: "b", objectId: "trapezoid", at: { x: 12, y: 0 }, placement: "below-right" },
-      { key: "c", objectId: "trapezoid", at: { x: 8, y: 6 }, placement: "above-right" },
-      { key: "d", objectId: "trapezoid", at: { x: 4, y: 6 }, placement: "above-left" },
-      { key: "e", objectId: "point-e", at: { x: (3 / 4) * 8, y: (3 / 4) * 6 }, placement: "below" },
-    ],
-  }}
-  labels={{
-    a: <InlineMath math="A" />,
-    b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
-    d: <InlineMath math="D" />,
-    e: <InlineMath math="E" />,
-  }}
-/>
+# Mencari panjang garis potong
 
+Untuk garis singgung dan garis potong dari satu titik di luar lingkaran berlaku **hubungan kuasa titik**, yaitu <InlineMath math="PT^2=PA\cdot PB" />. Misalkan <InlineMath math="PA=x" />, maka <InlineMath math="PB=x+7" />.
 
-# Segitiga yang sebangun
+<BlockMath math="\begin{aligned}
+x(x+7)&=12^2\\
+x^2+7x-144&=0\\
+(x-9)(x+16)&=0
+\end{aligned}" />
 
-Karena <InlineMath math="AB\parallel DC" />, sudut <InlineMath math="EAB" /> sama dengan sudut <InlineMath math="ECD" /> dan sudut <InlineMath math="EBA" /> sama dengan sudut <InlineMath math="EDC" /> (sudut dalam berseberangan). Jadi segitiga <InlineMath math="ABE" /> **sebangun** dengan segitiga <InlineMath math="CDE" /> dengan faktor skala <InlineMath math="AB:DC=12:4=3:1" />.
+Calonnya <InlineMath math="x=9" /> atau <InlineMath math="x=-16" />. Panjang ruas garis tidak mungkin negatif, jadi <InlineMath math="x=-16" /> ditolak. Jadi <InlineMath math="PA=9\text{ cm}" /> dan <InlineMath math="PB=16\text{ cm}" />.
 
-Akibatnya <InlineMath math="AE:EC=3:1" /> dan <InlineMath math="BE:ED=3:1" />. Perbandingan luas dua bangun sebangun adalah kuadrat faktor skalanya.
+# Mengenali segitiga siku-siku
 
-<BlockMath math="[ABE]=3^2\times[CDE]=9\times3=27\text{ cm}^2" />
+Garis singgung selalu **tegak lurus jari-jari di titik singgungnya**, jadi <InlineMath math="PT\perp OT" />. Tali busur <InlineMath math="TB" /> melalui <InlineMath math="O" />, sehingga garis <InlineMath math="TB" /> sama dengan garis <InlineMath math="TO" />. Akibatnya sudut <InlineMath math="PTB" /> siku-siku, dan sisi miring segitiga <InlineMath math="PTB" /> adalah <InlineMath math="PB" />.
 
-# Dua segitiga di samping
+# Menghitung jari-jari
 
-Segitiga <InlineMath math="DAE" /> dan <InlineMath math="DCE" /> memiliki puncak yang sama, yaitu <InlineMath math="D" />, dan alasnya terletak pada garis <InlineMath math="AC" />. Keduanya **memiliki tinggi yang sama**, jadi perbandingan luasnya sama dengan perbandingan alas <InlineMath math="AE:EC=3:1" />. Dengan alasan serupa pada garis <InlineMath math="BD" />, perbandingan <InlineMath math="[BCE]:[DCE]=BE:ED=3:1" />.
+Pakai teorema Pythagoras pada segitiga <InlineMath math="PTB" />, lalu ingat bahwa <InlineMath math="TB" /> adalah diameter, jadi **jari-jarinya setengah dari <InlineMath math="TB" />**.
 
-<BlockMath math="[DAE]=[BCE]=3\times3=9\text{ cm}^2" />
+<BlockMath math="\begin{aligned}
+TB^2&=PB^2-PT^2=256-144=112\\
+TB&=\sqrt{112}=4\sqrt7\\
+r&=\frac{TB}{2}=2\sqrt7
+\end{aligned}" />
 
-Luas trapesium adalah jumlah keempat segitiga.
+# Memeriksa hasil
 
-<BlockMath math="[ABCD]=27+9+9+3=48\text{ cm}^2" />
+Letakkan pusat <InlineMath math="O" /> di titik asal dengan <InlineMath math="r^2=28" />, <InlineMath math="T=(0,2\sqrt7)" />, <InlineMath math="B=(0,-2\sqrt7)" />, dan <InlineMath math="P=(12,2\sqrt7)" />. Jarak <InlineMath math="PB" /> memenuhi <InlineMath math="PB^2=12^2+(4\sqrt7)^2=144+112=256" />, jadi <InlineMath math="PB=16" />. Lalu <InlineMath math="PA=\frac{PT^2}{PB}=\frac{144}{16}=9" />, sehingga <InlineMath math="AB=16-9=7" />. Semua data soal **terpenuhi oleh jari-jari ini**.
 
-Nilai 30 muncul jika perbandingan luas dianggap <InlineMath math="3:1" />, bukan <InlineMath math="9:1" />. Nilai 39 lupa salah satu segitiga samping. Nilai 36 menganggap segitiga samping seluas <InlineMath math="CDE" />. Nilai 54 menggandakan luas <InlineMath math="ABE" />.
+# Pilihan yang keliru
 
-Jadi, luas trapesium <InlineMath math="ABCD" /> adalah **<InlineMath math="48\text{ cm}^2" />**.
+Pilihan <InlineMath math="2\text{ cm}" /> muncul jika panjang sisi dikurangkan langsung, <InlineMath math="TB=16-12=4" />, padahal Pythagoras bekerja dengan kuadrat. Pilihan <InlineMath math="\frac72\text{ cm}" /> muncul jika <InlineMath math="AB" /> dianggap diameter. Pilihan <InlineMath math="10\text{ cm}" /> muncul jika kuadratnya dijumlahkan, <InlineMath math="TB^2=256+144=400" />, seolah-olah <InlineMath math="PB" /> adalah sisi siku-siku. Pilihan <InlineMath math="4\sqrt7\text{ cm}" /> adalah panjang diameter <InlineMath math="TB" />, yaitu **lupa membagi dua**.
+
+Jadi, panjang jari-jari lingkaran itu adalah <InlineMath math="2\sqrt7\text{ cm}" />.

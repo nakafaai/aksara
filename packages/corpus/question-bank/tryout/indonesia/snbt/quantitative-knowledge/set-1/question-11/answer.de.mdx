@@ -1,23 +1,44 @@
-Zwei Sehnen, die sich im Inneren eines Kreises schneiden, erfüllen **den Sehnensatz**: Das Produkt der beiden Abschnitte der einen Sehne ist gleich dem Produkt der beiden Abschnitte der anderen.
+Du sollst nur die Glieder addieren, die durch <InlineMath math="3" /> teilbar sind. Der Plan: Bestimme aus den beiden Bedingungen das erste Glied und die Differenz, finde **das Muster, an welchen Stellen die Vielfachen von <InlineMath math="3" /> stehen**, zähle, wie viele davon unter den <InlineMath math="50" /> Gliedern liegen, und addiere sie dann.
 
-<BlockMath math="AE\cdot EB=CE\cdot ED" />
+# Erstes Glied und Differenz bestimmen
 
-# Warum die Produkte gleich sind
-
-Die Dreiecke <InlineMath math="AEC" /> und <InlineMath math="DEB" /> sind ähnlich. Die Winkel <InlineMath math="AEC" /> und <InlineMath math="DEB" /> sind Scheitelwinkel, und die Winkel <InlineMath math="CAB" /> und <InlineMath math="CDB" /> stehen über demselben Bogen <InlineMath math="CB" />. Aus der Ähnlichkeit folgt <InlineMath math="\frac{AE}{DE}=\frac{CE}{BE}" />, und das **ist gleichwertig mit <InlineMath math="AE\cdot EB=CE\cdot ED" />**.
-
-# Länge von CD berechnen
-
-Schreibe <InlineMath math="CE=3k" /> und <InlineMath math="ED=2k" /> entsprechend dem Verhältnis <InlineMath math="3:2" />.
+Sei das erste Glied <InlineMath math="a" /> und die Differenz <InlineMath math="b" />, also ist das <InlineMath math="n" />-te Glied <InlineMath math="u_n=a+(n-1)b" />. Schreibe <InlineMath math="S_{10}" /> für die Summe der ersten <InlineMath math="10" /> Glieder. Die beiden Bedingungen liefern **zwei Gleichungen**.
 
 <BlockMath math="\begin{aligned}
-8\cdot3&=3k\cdot2k\\
-24&=6k^2\\
-k&=2
+S_{10}=\frac{10}{2}(2a+9b)=250\quad&\Rightarrow\quad 2a+9b=50\\
+a+7b=5a\quad&\Rightarrow\quad 7b=4a
 \end{aligned}" />
 
-Also gilt <InlineMath math="CE=6" />, <InlineMath math="ED=4" /> und <InlineMath math="CD=6+4=10\text{ cm}" />. **Prüfe die Produkte**: <InlineMath math="6\cdot4=24=8\cdot3" />.
+Aus der zweiten Gleichung folgt <InlineMath math="a=\frac{7b}{4}" />. Setze das in die erste ein.
 
-Die Werte 6 und 4 sind nur die Abschnitte <InlineMath math="CE" /> und <InlineMath math="ED" />. Der Wert 5 bleibt bei <InlineMath math="5k" /> mit <InlineMath math="k=1" /> stehen und verwendet den Satz nicht. Der Wert 11 nimmt an, dass beide Sehnen gleich lang sind, obwohl <InlineMath math="AB=11" /> ist und <InlineMath math="CD" /> davon abweichen kann.
+<BlockMath math="\begin{aligned}
+\frac{7b}{2}+9b&=50\\
+\frac{25b}{2}&=50\\
+b&=4,\qquad a=7
+\end{aligned}" />
 
-Die Sehne <InlineMath math="CD" /> ist also **<InlineMath math="10\text{ cm}" />** lang.
+Also gilt <InlineMath math="u_n=7+4(n-1)=4n+3" />.
+
+# Die durch drei teilbaren Glieder finden
+
+Schreibe <InlineMath math="4n+3=3(n+1)+n" />. Der Teil <InlineMath math="3(n+1)" /> ist immer durch <InlineMath math="3" /> teilbar, also ist **<InlineMath math="4n+3" /> genau dann durch <InlineMath math="3" /> teilbar, wenn <InlineMath math="n" /> es ist**. Gesucht sind also das <InlineMath math="3" />., das <InlineMath math="6" />. und so weiter bis zum <InlineMath math="48" />. Glied, denn <InlineMath math="51" /> liegt schon über <InlineMath math="50" />.
+
+<BlockMath math="\text{Anzahl der Glieder}=\frac{48-3}{3}+1=16" />
+
+Diese Glieder beginnen bei <InlineMath math="u_3=15" />, enden bei <InlineMath math="u_{48}=195" /> und bilden eine neue arithmetische Folge mit der Differenz <InlineMath math="3\cdot4=12" />.
+
+# Die ausgewählten Glieder addieren
+
+Die Summe einer arithmetischen Folge ist **die Anzahl der Glieder mal dem Mittelwert aus erstem und letztem Glied**.
+
+<BlockMath math="\frac{16}{2}(15+195)=8\cdot210=1{.}680" />
+
+# Das Ergebnis prüfen
+
+Die ersten Glieder der Folge sind <InlineMath math="7, 11, 15, 19, 23, 27, \ldots" />. Ein Vielfaches von <InlineMath math="3" /> taucht bei jedem dritten Glied auf, nämlich <InlineMath math="15" /> und <InlineMath math="27" />, mit dem Abstand <InlineMath math="12" />. Auch die Bedingungen stimmen: <InlineMath math="u_8=35=5\cdot7" /> und <InlineMath math="S_{10}=5(7+43)=250" />. Das letzte Glied <InlineMath math="u_{50}=203" /> **ist nicht durch <InlineMath math="3" /> teilbar**, also ist das letzte ausgewählte Glied wirklich <InlineMath math="195" />.
+
+# Die falschen Antworten
+
+Die Antwort <InlineMath math="720" /> entsteht, wenn du den ausgewählten Gliedern die Differenz <InlineMath math="4" /> gibst, obwohl ihre Differenz <InlineMath math="12" /> ist. Die Antwort <InlineMath math="1{.}485" /> entsteht, wenn du <InlineMath math="15" /> Glieder zählst, also **vergisst, <InlineMath math="1" /> dazuzuzählen**, wenn du vom <InlineMath math="3" />. bis zum <InlineMath math="48" />. Glied zählst. Die Antwort <InlineMath math="1{.}632" /> entsteht, wenn du die Summe mit der Formel <InlineMath math="4n+3" /> als <InlineMath math="4(3+6+\cdots+48)" /> berechnest und den Zusatz <InlineMath math="3" /> in jedem Glied vergisst, also <InlineMath math="16\cdot3=48" />. Die Antwort <InlineMath math="1{.}887" /> entsteht, wenn du <InlineMath math="17" /> Glieder addierst, darunter <InlineMath math="u_{51}=207" />, das gar nicht zur Folge gehört.
+
+Die Summe aller durch <InlineMath math="3" /> teilbaren Glieder ist also <InlineMath math="1{.}680" />.

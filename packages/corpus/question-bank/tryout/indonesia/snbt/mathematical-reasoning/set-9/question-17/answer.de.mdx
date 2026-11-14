@@ -1,9 +1,35 @@
-Eine Neigung von 1 : 12 bedeutet: **Die waagerechte Länge ist mindestens 12-mal so groß wie der Anstieg**. Die Rampe muss insgesamt 60 cm hoch.
+Gesucht sind die guten Teile vom Dienstag allein. Die Falle: **die Betriebsstunden von Maschine P werden vom Montag übernommen**, deshalb liegen ihre Wartungen am Dienstag anders als am Montag. Der Plan: Verfolge den Plan jeder Maschine, bestimm ihre Betriebsstunden am Dienstag und multipliziere mit den guten Teilen pro Stunde.
 
-# Waagerechte Länge der geneigten Teile
+# Gute Teile pro Stunde
 
-<BlockMath math="60\cdot12=720\text{ cm}=7{,}2\text{ m}" />
+Fehlerhafte Teile werden aussortiert, also **zählen nur gute Teile**. Maschine P macht <InlineMath math="120" /> Teile pro Stunde, davon sind <InlineMath math="5\%" /> fehlerhaft, also <InlineMath math="95\%\times120=114" /> gute Teile pro Stunde. Maschine Q macht <InlineMath math="90" /> Teile pro Stunde, davon <InlineMath math="10\%" /> fehlerhaft, also <InlineMath math="90\%\times90=81" /> gute Teile pro Stunde.
 
-Ein flaches Podest bringt keine Höhe, **der ganze Anstieg von 60 cm muss also aus den geneigten Abschnitten kommen**, egal wie viele es sind.
+# Der Plan von Maschine P ab Montag
 
-Die kürzeste waagerechte Gesamtlänge der geneigten Abschnitte beträgt also **7,2 m**.
+Maschine P läuft <InlineMath math="5" /> Stunden und wird dann <InlineMath math="1" /> Stunde gewartet. Am Montag läuft sie von 07.00 bis 12.00 Uhr, wird gewartet, läuft von 13.00 bis 18.00 Uhr, wird gewartet und läuft dann von 19.00 bis 23.00 Uhr. Das sind <InlineMath math="14" /> Betriebsstunden, und **um 23.00 Uhr hat sie schon <InlineMath math="4" /> Stunden auf die nächste Wartung angesammelt**.
+
+Am Dienstag fehlt Maschine P also nur noch <InlineMath math="1" /> Stunde bis zur Grenze. Ihr Plan sieht so aus.
+
+| Dienstag | Laufzeit | Wartung ab |
+| :--- | :---: | :---: |
+| Maschine P | <InlineMath math="1+5+5+2=13" /> Stunden | 08.00, 14.00, 20.00 |
+| Maschine Q | <InlineMath math="7+7=14" /> Stunden | 14.00, 22.00 |
+
+Maschine Q ist einfacher: Zwei Blöcke aus <InlineMath math="7" /> Betriebsstunden und <InlineMath math="1" /> Wartungsstunde füllen die <InlineMath math="16" /> Schichtstunden genau, also beginnt sie jeden Tag bei null und läuft <InlineMath math="14" /> Stunden.
+
+# Gute Teile am Dienstag
+
+<BlockMath math="13\times114+14\times81=1{.}482+1{.}134=2{.}616" />
+
+Prüf die Stunden, denn **jede Maschine muss genau <InlineMath math="16" /> Schichtstunden füllen**. Maschine P nutzt am Dienstag <InlineMath math="13" /> Betriebsstunden und <InlineMath math="3" /> Wartungsstunden, zusammen <InlineMath math="16" /> Schichtstunden. Maschine Q nutzt <InlineMath math="14+2=16" /> Stunden. Beides passt.
+
+# Die falschen Antworten
+
+Jede andere Antwort **übergeht eine Regel der Fabrik**.
+
+- <InlineMath math="2{.}679" /> nimmt auch für Maschine Q nur <InlineMath math="5\%" /> Ausschuss an, rechnet also mit <InlineMath math="85{,}5" /> pro Stunde.
+- <InlineMath math="2{.}730" /> setzt die Betriebsstunden von P jeden Morgen auf null, sodass P wie am Montag <InlineMath math="14" /> Stunden läuft.
+- <InlineMath math="2{.}820" /> vergisst, die fehlerhaften Teile auszusortieren, <InlineMath math="13\times120+14\times90" />.
+- <InlineMath math="3{.}120" /> vergisst die Wartungszeit, <InlineMath math="16\times(114+81)" />.
+
+Am Dienstag stellen die beiden Maschinen also <InlineMath math="2{.}616" /> gute Teile her.

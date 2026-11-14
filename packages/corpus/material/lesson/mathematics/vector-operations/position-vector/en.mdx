@@ -13,44 +13,31 @@ export const metadata = {
 
 A position vector <Highlight>starts at the origin</Highlight> <InlineMath math="O" /> and ends at a point in the coordinate system. Its components are the coordinates of that endpoint, so it records the point's location relative to the origin.
 
-<LineEquation
-  cameraPosition={[2, 2.5, 15]}
-  cameraTarget={[2, 2.5, 0]}
-  title="Position Vector Visualization"
+<MathVisual
+  title={<>Position Vector Visualization</>}
   description={
     <>
       Examples of position vectors from origin <InlineMath math="O" /> to points{" "}
       <InlineMath math="A" /> and <InlineMath math="B" />.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ### Characteristics of Position Vectors
@@ -69,65 +56,32 @@ In three-dimensional space, if point <InlineMath math="P" /> has coordinates <In
 
 In the visualization below, we use the notation <InlineMath math="OA" />, <InlineMath math="OB" />, <InlineMath math="OC" />, and <InlineMath math="OD" /> to indicate position vectors from point <InlineMath math="O" /> to specific points (<InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, or <InlineMath math="D" />).
 
-<LineEquation
-  cameraPosition={[7, 6, -7]}
-  cameraTarget={[1.5, 1.7, 1.5]}
-  title="Position Vectors in Three-Dimensional Space"
-  description="Examples of several position vectors in three-dimensional space."
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: 0, z: 0 }],
-      color: "#e11d48",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 4, z: 0 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 0, y: 0, z: 4 }],
-      color: "#ea580c",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OC" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 3, z: 3 }],
-      color: "#ca8a04",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OD" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+<MathVisual
+  title={<>Position Vectors in Three-Dimensional Space</>}
+  description={<>Examples of several position vectors in three-dimensional space.</>}
+  labels={{
+    "l1": <InlineMath math="OA" />,
+    "l2": <InlineMath math="OB" />,
+    "l3": <InlineMath math="OC" />,
+    "l4": <InlineMath math="OD" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 7, y: 6, z: -7 }, target: { x: 1.5, y: 1.7, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 0, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 4, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 3, z: 3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 0, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 0, y: 4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 0, z: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 3, y: 3, z: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Examples of Position Vectors
@@ -158,58 +112,36 @@ Displacement vectors can be obtained from the **difference between two position 
 <BlockMath math="\overrightarrow{AB} = \overrightarrow{OB} - \overrightarrow{OA}" />
 
 <ContentBlock>
-  <LineEquation
-    cameraPosition={[2, 2.5, 15]}
-    cameraTarget={[2, 2.5, 0]}
-    title="Relationship Between Position Vectors and Displacement Vector"
+  <MathVisual
+    title={<>Relationship Between Position Vectors and Displacement Vector</>}
     description={
-      <>
-        Displacement vector <InlineMath math="AB" /> is obtained from the
-        difference between position vectors <InlineMath math="OB" /> and{" "}
-        <InlineMath math="OA" />.
-      </>
-    }
-    data={[
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: 2, z: 0 }],
-      color: "#db2777",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OA" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 7, y: 5, z: 0 }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="OB" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-      {
-      points: [{ x: -3, y: 2, z: 0 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)), z: (0) + 0.5 * ((0) - (0)) }, { x: 7, y: 5, z: 0 }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="AB" />,
-        at: 1,
-        offset: [0, 0, 0],
-        anchorX: "left",
-      }],
-    },
-    ]}
+        <>
+          Displacement vector <InlineMath math="AB" /> is obtained from the
+          difference between position vectors <InlineMath math="OB" /> and{" "}
+          <InlineMath math="OA" />.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="OA" />,
+      "l2": <InlineMath math="OB" />,
+      "l3": <InlineMath math="AB" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 5 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: -3, y: 2 }, { x: (-3) + 0.5 * ((7) - (-3)), y: (2) + 0.5 * ((5) - (2)) }, { x: 7, y: 5 }], appearance: "answer" },
+        { id: "s3-head", kind: "vector", from: { x: 2, y: 3.5 }, to: { x: 7, y: 5 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: -3, y: 2 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 7, y: 5 }, placement: "above-right" },
+        { key: "l3", objectId: "s3", at: { x: 2, y: 3.5 }, placement: "above-right" },
+      ],
+    }}
   />
 </ContentBlock>
 

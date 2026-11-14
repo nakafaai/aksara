@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "procedure",
-    topic: "prediction",
+    cognitiveLevel: "textual",
+    contentDomain: "narrative",
+    topic: "explicit-information",
   },
-  stimulus: "emergency-plan",
+  stimulus: "umbrella",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Keep the existing wording and ask the child to memorise it more carefully.",
-        },
-        {
           correct: true,
-          label:
-            "Clarify how the meeting places are described, then practise that part again.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "Wait for a real emergency to determine which meeting-place description was confusing.",
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "Remove the second meeting place because the contact information was remembered correctly.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Ask the out-of-area contact to choose both places without reviewing household needs.",
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

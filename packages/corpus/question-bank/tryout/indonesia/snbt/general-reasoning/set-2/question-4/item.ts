@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-inference",
+    topic: "assumption",
   },
-  stimulus: "museum",
+  stimulus: "bakau",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kebijakan tiket gratis menarik $$320$$ pengunjung baru setiap minggu.",
+            "Lontar sanggup menanam sedikitnya $$20{.}000$$ bibit baru agar bibit hidupnya mencapai $$2{.}000$$ batang per kilometer pantai.",
         },
         {
           correct: false,
           label:
-            "Kebijakan tiket gratis meningkatkan pendapatan tiket mingguan museum.",
+            "Persentase bibit yang hidup pada penanaman ulang di Lontar akan setinggi persentase bibit hidup di Muarabaru.",
         },
         {
           correct: false,
           label:
-            "Pengunjung pada akhir pekan tidak terpengaruh oleh kebijakan tiket gratis.",
+            "Muarabaru dan Pasirkuning tidak membangun pemecah ombak atau tanggul apa pun selama 2022 sampai 2025.",
+        },
+        {
+          correct: false,
+          label:
+            "Kerapatan $$2{.}000$$ bibit hidup per kilometer adalah kerapatan terendah yang masih mampu memperlambat mundurnya pantai.",
         },
         {
           correct: true,
           label:
-            "Kebijakan tiket gratis menambah pengunjung mingguan, tetapi sebagian pengunjung tampaknya hanya memindahkan hari kunjungannya ke hari Rabu.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengunjung hari Selasa berkurang karena museum menaikkan harga tiket pada hari itu selama bulan kedua untuk menutup biaya tiket gratis hari Rabu.",
+            "Rapatnya bakau di Muarabaru dan Pasirkuning ikut menurunkan laju mundur pantai di sana, bukan sekadar akibat pantai yang lebih dulu tenang sehingga bibit mudah hidup.",
         },
       ],
     },

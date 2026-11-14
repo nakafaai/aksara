@@ -1,0 +1,221 @@
+export const metadata = {
+  title: "Matriks Ortogon dan Uniter",
+    description: "Bandingkan matriks ortogon dan uniter melalui pengekalan hasil darab dalam, struktur penentu dan nilai eigen, putaran serta pantulan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-07-12",
+  dateModified: "2026-09-12",
+  subject: "Kaedah Linear AI",
+};
+
+## Apa yang Menjadikan Matriks Ortogon atau Uniter
+
+Matriks segi empat sama nyata <InlineMath math="Q\in\mathbb{R}^{n\times n}" /> dikatakan ortogon apabila
+
+<MathContainer>
+<BlockMath math="Q^TQ=QQ^T=I" />
+<BlockMath math="Q^{-1}=Q^T" />
+</MathContainer>
+
+Matriks segi empat sama kompleks <InlineMath math="U\in\mathbb{C}^{n\times n}" /> dikatakan uniter apabila
+
+<MathContainer>
+<BlockMath math="U^HU=UU^H=I" />
+<BlockMath math="U^{-1}=U^H" />
+</MathContainer>
+
+Di sini, <InlineMath math="U^H=\overline{U}^{T}" /> ialah transpos konjugat. Matriks ortogon nyata ialah **matriks uniter dengan unsur nyata**.
+
+Persamaan takrifan ini setara dengan mengatakan bahawa lajur-lajurnya membentuk asas ortonormal. Baris-barisnya juga ortonormal.
+
+## Apa yang Dikekalkan oleh Transformasi Ortogon dan Uniter
+
+Untuk vektor nyata <InlineMath math="x,y" /> dan matriks ortogon <InlineMath math="Q" />,
+
+<MathContainer>
+<BlockMath math="\begin{aligned} \langle Qx,Qy\rangle &amp;=(Qx)^T(Qy) \\ &amp;=x^TQ^TQy \\ &amp;=x^Ty \end{aligned}" />
+<BlockMath math="\|Qx\|_2=\|x\|_2" />
+<BlockMath math="\|Qx-Qy\|_2=\|x-y\|_2" />
+</MathContainer>
+
+Pernyataan yang sama berlaku atas <InlineMath math="\mathbb{C}" /> dengan hasil darab dalam konjugat dan <InlineMath math="U^H" />. Akibatnya, transformasi ortogon dan uniter <Highlight>mengekalkan panjang, jarak, sudut dan keortogonan</Highlight>.
+
+Semua nilai singularnya sama dengan <InlineMath math="1" />, jadi
+
+<BlockMath math="\|Q\|_2=1,\qquad\kappa_2(Q)=1" />
+
+Pendaraban dengan matriks seperti ini tidak membesarkan ralat relatif dalam norma Euclidean. Sebab itulah pemfaktoran <InlineMath math="\mathrm{QR}" /> bergantung pada pemantul Householder dan putaran Givens.
+
+## Penentu dan Orientasi
+
+Untuk matriks uniter,
+
+<MathContainer>
+<BlockMath math="\begin{aligned} 1 &amp;=\det(U^HU) \\ &amp;=\overline{\det U}\det U \\ &amp;=|\det U|^2 \end{aligned}" />
+<BlockMath math="|\det U|=1" />
+</MathContainer>
+
+Untuk matriks ortogon nyata, penentunya ialah nombor nyata, jadi
+
+<BlockMath math="\det Q\in\{-1,1\}" />
+
+Kes <InlineMath math="\det Q=1" /> **mengekalkan orientasi**. Kes <InlineMath math="\det Q=-1" /> membalikkan orientasi dan mengandungi komponen pantulan.
+
+## Nilai Eigen dan Struktur Spektrum
+
+Jika <InlineMath math="Uv=\lambda v" /> dengan <InlineMath math="v\ne0" />, maka
+
+<MathContainer>
+<BlockMath math="\|v\|_2=\|Uv\|_2=\|\lambda v\|_2=|\lambda|\|v\|_2" />
+<BlockMath math="|\lambda|=1" />
+</MathContainer>
+
+Oleh itu, setiap nilai eigen terletak pada **bulatan unit kompleks**. Nilai eigen bukan nyata bagi matriks ortogon nyata muncul dalam pasangan konjugat. Matriks uniter ialah matriks normal, jadi teorem spektrum kompleks memberi
+
+<BlockMath math="U=V\operatorname{diag}(e^{i\theta_1},\ldots,e^{i\theta_n})V^H" />
+
+Dalam penguraian ini, <InlineMath math="V" /> ialah matriks uniter. Atas nombor nyata pula, matriks ortogon boleh diturunkan kepada blok yang terdiri daripada <InlineMath math="1" />, <InlineMath math="-1" /> dan putaran satah.
+
+Plotkan nilai eigen bagi dua contoh di bawah sebagai nombor kompleks. Putaran <InlineMath math="R(60^\circ)" /> mempunyai pasangan konjugat <InlineMath math="e^{\pm i\pi/3}" />, dan pantulan Householder mempunyai <InlineMath math="1" /> dan <InlineMath math="-1" />. Semuanya mempunyai modulus <InlineMath math="1" />.
+
+<MathVisual
+  title={<>Nilai eigen pada bulatan unit</>}
+  description={<>Bulatan unit kelabu dalam satah kompleks. Titik magenta <InlineMath math="e^{\pm i\pi/3}=\tfrac12\pm\tfrac{\sqrt3}2i" /> ialah nilai eigen bagi putaran <InlineMath math="R(60^\circ)" />, dan lengkok ambar menandakan sudut <InlineMath math="60^\circ" />. Titik hijau kebiruan <InlineMath math="1" /> dan <InlineMath math="-1" /> ialah nilai eigen bagi pantulan <InlineMath math="H" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 1.5 }, y: { min: -1.5, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "angle", kind: "arc", center: { x: 0, y: 0 }, radius: 0.4, startDegrees: 0, sweepDegrees: 60, appearance: "highlight" },
+      { id: "upper", kind: "point", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "lower", kind: "point", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, appearance: "answer" },
+      { id: "plus", kind: "point", at: { x: 1, y: 0 }, appearance: "construction" },
+      { id: "minus", kind: "point", at: { x: -1, y: 0 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: 1 / 2, y: Math.sqrt(3) / 2 }, placement: "above-right" },
+      { key: "lower", objectId: "lower", at: { x: 1 / 2, y: -Math.sqrt(3) / 2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "upper": <InlineMath math="e^{i\pi/3}" />,
+    "lower": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>
+
+## Contoh Putaran
+
+Putaran satah lawan arah jam sebanyak <InlineMath math="\alpha" /> ialah
+
+<BlockMath math="R(\alpha)=\begin{pmatrix}\cos\alpha&-\sin\alpha\\\sin\alpha&\cos\alpha\end{pmatrix}" />
+
+Lajur-lajurnya ortonormal, dan pendaraban terus memberi
+
+<BlockMath math="R(\alpha)^TR(\alpha)=I" />
+
+Polinomial cirinya ialah
+
+<MathContainer>
+<BlockMath math="\chi_R(t)=t^2-2t\cos\alpha+1" />
+<BlockMath math="\lambda_{1,2}=\cos\alpha\pm i\sin\alpha=e^{\pm i\alpha}" />
+</MathContainer>
+
+Kecuali jika <InlineMath math="\alpha" /> ialah gandaan <InlineMath math="\pi" />, putaran ini **tiada vektor eigen nyata**. Hal ini memang dijangka: dalam putaran satah yang sebenar, tiada arah nyata bukan sifar yang kekal tetap atau sekadar bertukar tanda.
+
+Putar rajah ini dan semak apa yang dikekalkan oleh putaran. Hujung <InlineMath math="x" />, <InlineMath math="y" />, <InlineMath math="R(\alpha)x" /> dan <InlineMath math="R(\alpha)y" /> semuanya terletak pada bulatan kelabu yang sama, jadi setiap panjang kekal <InlineMath math="\sqrt5" />. Sudut tegak antara <InlineMath math="x" /> dan <InlineMath math="y" /> juga kekal, kerana <InlineMath math="R(\alpha)^TR(\alpha)=I" /> mengekalkan setiap hasil darab dalam. Hanya arahnya yang berubah, sebanyak sudut ambar <InlineMath math="\alpha=60^\circ" />, sebab itulah tiada vektor nyata yang mengekalkan arahnya di sini.
+
+<MathVisual
+  title={<>Putaran <InlineMath math="R(60^\circ)" /> mengekalkan panjang dan sudut</>}
+  description={<>Vektor <InlineMath math="x=(2,1)^T" /> dan <InlineMath math="y=(-1,2)^T" /> diputar sebanyak <InlineMath math="\alpha=60^\circ" />. Keempat-empat hujung segmen terletak pada bulatan berjejari <InlineMath math="\sqrt5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 2.6 }, y: { min: -2.6, max: 2.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "radius", kind: "circle", center: { x: 0, y: 0 }, radius: Math.sqrt(5), appearance: "reference" },
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: 1 }, appearance: "secondary" },
+      { id: "y", kind: "segment", from: { x: 0, y: 0 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "rx", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, appearance: "answer" },
+      { id: "ry", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, appearance: "primary" },
+      { id: "alpha", kind: "arc", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: Math.atan2(1, 2) * 180 / Math.PI, sweepDegrees: 60, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "radius", objectId: "radius", at: { x: -Math.sqrt(5) * Math.SQRT1_2, y: -Math.sqrt(5) * Math.SQRT1_2 }, placement: "below-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "y", objectId: "y", at: { x: -1, y: 2 }, placement: "above-left" },
+      { key: "rx", objectId: "rx", at: { x: 2 * Math.cos(Math.PI / 3) - Math.sin(Math.PI / 3), y: 2 * Math.sin(Math.PI / 3) + Math.cos(Math.PI / 3) }, placement: "above-right" },
+      { key: "ry", objectId: "ry", at: { x: -Math.cos(Math.PI / 3) - 2 * Math.sin(Math.PI / 3), y: -Math.sin(Math.PI / 3) + 2 * Math.cos(Math.PI / 3) }, placement: "below-left" },
+      { key: "alpha", objectId: "alpha", at: { x: 0.9 * Math.cos(Math.atan2(1, 2) + Math.PI / 6), y: 0.9 * Math.sin(Math.atan2(1, 2) + Math.PI / 6) }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    "radius": <InlineMath math="\|v\|=\sqrt5" />,
+    "x": <InlineMath math="x" />,
+    "y": <InlineMath math="y" />,
+    "rx": <InlineMath math="R(\alpha)x" />,
+    "ry": <InlineMath math="R(\alpha)y" />,
+    "alpha": <InlineMath math="\alpha=60^\circ" />,
+  }}
+/>
+
+## Contoh Pantulan
+
+Untuk vektor unit <InlineMath math="u\in\mathbb{R}^n" />, matriks Householder ialah
+
+<BlockMath math="H=I-2uu^T" />
+
+Matriks <InlineMath math="H" /> memantulkan vektor merentasi **hipersatah yang berserenjang** dengan <InlineMath math="u" />. Keortogonannya boleh disemak daripada
+
+<MathContainer>
+<BlockMath math="H^T=H" />
+<BlockMath math="\begin{aligned} H^2 &amp;= I-4uu^T+4u(u^Tu)u^T \\ &amp;= I-4uu^T+4uu^T=I \end{aligned}" />
+</MathContainer>
+
+Dua identiti di atas memberi <InlineMath math="H^TH=I" />. Nilai eigennya dalam arah <InlineMath math="u" /> ialah <InlineMath math="-1" />, manakala setiap vektor yang berserenjang dengan <InlineMath math="u" /> mempunyai nilai eigen <InlineMath math="1" />. Oleh itu, <InlineMath math="\det H=-1" />.
+
+Dalam satah, ambil <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" />. Maka <InlineMath math="uu^T=\tfrac12\begin{pmatrix}1&1\\1&1\end{pmatrix}" />, jadi <InlineMath math="H=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> menghantar <InlineMath math="(x,y)" /> kepada <InlineMath math="(-y,-x)" />. Garis cermin <InlineMath math="y=-x" /> berserenjang dengan <InlineMath math="u" />, dan segi tiga itu kembali dengan orientasi yang terbalik.
+
+<MathVisual
+  title={<>Pantulan Householder untuk <InlineMath math="u=\tfrac1{\sqrt2}(1,1)" /></>}
+  description={<><InlineMath math="H=I-2uu^T=\begin{pmatrix}0&-1\\-1&0\end{pmatrix}" /> mencerminkan segi tiga ungu merentasi garis kelabu <InlineMath math="y=-x" /> menjadi segi tiga magenta. Vektor hijau kebiruan <InlineMath math="u" /> menjadi vektor jingga <InlineMath math="Hu=-u" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "line", through: [{ x: -3, y: 3 }, { x: 3, y: -3 }], appearance: "reference" },
+      { id: "triangle", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 3, y: 1 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "image", kind: "polygon", vertices: [{ x: -1, y: -2 }, { x: -1, y: -3 }, { x: -2, y: -2 }], appearance: "answer" },
+      { id: "normal", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "flipped", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "normal", objectId: "normal", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "above-left" },
+      { key: "flipped", objectId: "flipped", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "normal": <InlineMath math="u" />,
+    "flipped": <InlineMath math="Hu=-u" />,
+  }}
+/>
+
+## Semakan Setara dan Akibatnya
+
+| Pernyataan | Kes ortogon | Kes uniter |
+| --- | --- | --- |
+| Songsangan | <InlineMath math="Q^{-1}=Q^T" /> | <InlineMath math="U^{-1}=U^H" /> |
+| Lajur | asas ortonormal nyata | asas ortonormal kompleks |
+| Penentu | <InlineMath math="\pm1" /> | modulus <InlineMath math="1" /> |
+| Nilai eigen | bulatan unit, pasangan konjugat jika bukan nyata | bulatan unit |
+| Nilai singular | semuanya <InlineMath math="1" /> | semuanya <InlineMath math="1" /> |
+| Nombor syarat norma dua | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+**Hasil darab dan songsangan** kekal dalam kelas yang sama:
+
+<MathContainer>
+<BlockMath math="(Q_1Q_2)^T(Q_1Q_2)=I" />
+<BlockMath math="Q^{-1}=Q^T" />
+</MathContainer>
+
+Oleh sebab matriks ortogon dan uniter mengekalkan norma, transformasi ortogon yang digunakan dalam pengiraan <InlineMath math="\mathrm{QR}" /> dan kuasa dua terkecil tidak mengubah panjang vektor. Jelmaan Fourier, mekanik kuantum dan pemprosesan geometri menggunakan sifat yang sama untuk mengekalkan hasil darab dalam dan norma.

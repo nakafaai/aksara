@@ -1,0 +1,20 @@
+A divisor of degree two always leaves a remainder of degree at most one, so write the remainder you want as <InlineMath math="ax+b" />. To find <InlineMath math="a" /> and <InlineMath math="b" /> you need <InlineMath math="P(1)" /> and <InlineMath math="P(3)" />. The key is that **each value must come from the division that contains that factor**.
+
+From <InlineMath math="P(x)=(x-1)(x-2)H_1(x)+4x-1" />, substituting <InlineMath math="x=1" /> makes the first term zero. From <InlineMath math="P(x)=(x-2)(x-3)H_2(x)+7x-7" />, substituting <InlineMath math="x=3" /> also makes the first term zero.
+
+<BlockMath math="P(1)=4(1)-1=3,\qquad P(3)=7(3)-7=14" />
+
+Both divisions also give <InlineMath math="P(2)=7" />, so the data are consistent. Now <InlineMath math="P(x)=(x-1)(x-3)H_3(x)+ax+b" />, so <InlineMath math="P(1)=a+b" /> and <InlineMath math="P(3)=3a+b" />.
+
+<BlockMath math="\begin{aligned}
+a+b&=3 \\
+3a+b&=14 \\
+2a&=11\ \Rightarrow\ a=\frac{11}{2},\quad b=3-\frac{11}{2}=-\frac52
+\end{aligned}" />
+
+So the remainder is <InlineMath math="\frac{11}{2}x-\frac52=\frac{11x-5}{2}" />.
+
+- <InlineMath math="11x-5" /> forgets to divide by <InlineMath math="2" /> when solving <InlineMath math="2a=11" />.
+- <InlineMath math="4x-1" /> takes <InlineMath math="P(3)" /> from the first remainder, <InlineMath math="4(3)-1=11" />. That remainder only holds at <InlineMath math="x=1" /> and <InlineMath math="x=2" />.
+- <InlineMath math="7x-7" /> takes <InlineMath math="P(1)" /> from the second remainder, <InlineMath math="7(1)-7=0" />. That remainder only holds at <InlineMath math="x=2" /> and <InlineMath math="x=3" />.
+- <InlineMath math="\frac{11x+5}{2}" /> slips a sign when computing <InlineMath math="b=3-\frac{11}{2}" />.

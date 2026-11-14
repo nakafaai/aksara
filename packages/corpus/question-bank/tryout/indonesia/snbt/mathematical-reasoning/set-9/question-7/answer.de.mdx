@@ -1,15 +1,38 @@
-Vergleiche Pumpen und Abfluss über **ihre Raten**: A <InlineMath math="\tfrac16" />, B <InlineMath math="\tfrac19" /> und der Abfluss <InlineMath math="\tfrac{1}{18}" /> des Beckens pro Stunde.
+Gesucht ist, wann die letzte Person ankommt, nicht wann sie losfährt. Der Plan: Stell für jedes Fahrzeug den Abfahrtsplan auf, zähl die beförderten Personen bis <InlineMath math="150" /> und addiere dann die Fahrzeit des Fahrzeugs mit der letzten Gruppe. **Rechne die Zeit in Minuten nach 07.00 Uhr**, dann lässt sie sich leicht addieren.
 
-# Raten vergleichen
+# Die Abfahrten jedes Fahrzeugs
 
-<InlineMath math="\tfrac16:\tfrac19=\tfrac96=1{,}5" />, Pumpe A ist also 1,5-mal so schnell. Die erste Aussage ist wahr.
+Ein Fahrzeug fährt hin und zurück, also kommt die nächste Abfahrt zwei Fahrzeiten später. Der Bus fährt in Minute <InlineMath math="0" />, <InlineMath math="50" />, <InlineMath math="100" /> und so weiter. Die beiden Kleinbusse fahren gemeinsam in Minute <InlineMath math="0" />, <InlineMath math="40" />, <InlineMath math="80" />, <InlineMath math="120" /> und so weiter. **Ordne alle Abfahrten nach der Zeit**, denn die Leute steigen in das Fahrzeug, das zuerst losfährt.
 
-<InlineMath math="\tfrac{1}{18}" /> ist die Hälfte von <InlineMath math="\tfrac19" />, **die Rate des Abflusses ist also halb so groß wie die von Pumpe B**. Die zweite Aussage ist wahr.
+# Bisher beförderte Personen
 
-# Verlockende, aber falsche Ideen
+Jede Abfahrt ist voll besetzt, außer der letzten Gruppe, die nur den Rest mitnimmt.
 
-Eine doppelt so schnelle Pumpe wie A füllt <InlineMath math="\tfrac13" /> des Beckens pro Stunde. Mit B ist die Rate <InlineMath math="\tfrac13+\tfrac19=\tfrac49" />, die Zeit also 2,25 Stunden. Die Hälfte von 3,6 Stunden wären 1,8 Stunden, **die Zeit halbiert sich also nicht**, weil Pumpe B nicht schneller wird. Die dritte Aussage ist falsch.
+| Abfahrt in Minute | Fahrzeug | Befördert | Insgesamt befördert | Ankunft in Minute |
+| :---: | :--- | :---: | :---: | :---: |
+| <InlineMath math="0" /> | Bus | <InlineMath math="30" /> | <InlineMath math="30" /> | <InlineMath math="25" /> |
+| <InlineMath math="0" /> | zwei Kleinbusse | <InlineMath math="28" /> | <InlineMath math="58" /> | <InlineMath math="20" /> |
+| <InlineMath math="40" /> | zwei Kleinbusse | <InlineMath math="28" /> | <InlineMath math="86" /> | <InlineMath math="60" /> |
+| <InlineMath math="50" /> | Bus | <InlineMath math="30" /> | <InlineMath math="116" /> | <InlineMath math="75" /> |
+| <InlineMath math="80" /> | zwei Kleinbusse | <InlineMath math="28" /> | <InlineMath math="144" /> | <InlineMath math="100" /> |
+| <InlineMath math="100" /> | Bus | <InlineMath math="6" /> | <InlineMath math="150" /> | <InlineMath math="125" /> |
 
-Die Hälfte des Mittelwerts der zwei Zeiten ist <InlineMath math="\tfrac12\cdot\tfrac{6+9}{2}=3{,}75" /> Stunden, die wahre Zeit aber 3,6 Stunden. Die vierte Aussage ist falsch.
+Bis Minute <InlineMath math="80" /> sind <InlineMath math="144" /> Personen losgefahren, es warten also noch <InlineMath math="150-144=6" />. Das erste Fahrzeug, das danach wieder am Bahnhof ist, ist **der Bus, zurück in Minute** <InlineMath math="100" />, denn die Kleinbusse kommen erst in Minute <InlineMath math="120" /> zurück.
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+# Wann die letzte Person ankommt
+
+Der Bus nimmt die letzten <InlineMath math="6" /> Personen mit und kommt <InlineMath math="25" /> Minuten später an.
+
+<BlockMath math="t_{\text{letzte}}=100+25=125\text{ Minuten}" />
+
+Prüf, dass niemand später ankommt: Alle früheren Gruppen sind spätestens in Minute <InlineMath math="100" /> da. Also **kommt die letzte Person um 09.05 Uhr an**, das sind <InlineMath math="125" /> Minuten nach 07.00 Uhr.
+
+# Fallen, die du vermeiden solltest
+
+Andere Antworten entstehen, wenn du **Abfahrtszeit und Ankunftszeit verwechselst** oder den Fahrplan durch einen Durchschnitt ersetzt.
+
+- Die Antwort <InlineMath math="100" /> nimmt die Abfahrtsminute der letzten Gruppe, nicht ihre Ankunftsminute.
+- Wer mittlere Raten addiert, <InlineMath math="\tfrac{30}{50}+\tfrac{28}{40}=1{,}3" /> Personen pro Minute, kommt auf <InlineMath math="150:1{,}3\approx115" /> Minuten. Die Fahrzeuge befördern aber nicht nach und nach einzelne Personen, also ist dieser Weg falsch.
+- Wer auf einen Kleinbus in Minute <InlineMath math="120" /> wartet, kommt auf <InlineMath math="140" /> Minuten, obwohl der Bus früher bereit ist.
+
+Die letzte Person kommt also <InlineMath math="125" /> Minuten nach 07.00 Uhr am Saal an.

@@ -1,0 +1,150 @@
+export const metadata = {
+  title: "Aplikasi Pembezaan",
+  description: "Gunakan terbitan untuk mengira halaju, pecutan dan tinggi maksimum dalam masalah fizik dengan jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-26",
+  dateModified: "2026-11-08",
+  subject: "Pembezaan",
+};
+
+## Menggunakan Terbitan untuk Menganalisis Gerakan
+
+Terbitan memberikan <Highlight>kadar perubahan sesuatu kuantiti</Highlight> terhadap pemboleh ubah rujukannya. Bermula daripada kedudukan sebagai fungsi masa, pembezaan berturut-turut memberikan halaju seketika dan pecutan. Halaju mengukur perubahan kedudukan per unit masa, manakala pecutan mengukur perubahan halaju per unit masa.
+
+## Halaju Seketika daripada Kedudukan
+
+Apabila sebuah kereta bergerak, kedudukannya berubah mengikut masa. **Halaju** ialah kadar perubahan kedudukan itu. Jika <InlineMath math="s(t)" /> menerangkan kedudukan, maka halaju seketika <InlineMath math="v(t)" /> pada masa <InlineMath math="t" /> ialah terbitan pertama bagi fungsi kedudukan.
+
+<BlockMath math="v(t) = s'(t) = \frac{ds}{dt}" />
+
+Pada setiap masa yang <InlineMath math="s" /> boleh dibezakan, terbitan ini memberikan halaju tepat pada saat itu. Halaju purata pula menggunakan satu selang masa.
+
+### Menentukan Fungsi Halaju
+
+Contohnya, gerakan satu zarah ditentukan oleh fungsi kedudukan <InlineMath math="s(t) = t^3 - 6t^2 + 9t" />, dengan <InlineMath math="s" /> dalam meter dan <InlineMath math="t" /> dalam saat. Untuk mencari fungsi halajunya, kita hanya perlu membezakan fungsi <InlineMath math="s(t)" /> terhadap <InlineMath math="t" />.
+
+<MathContainer>
+  <BlockMath math="v(t) = \frac{d}{dt}(t^3 - 6t^2 + 9t)" />
+  <BlockMath math="v(t) = 3t^2 - 12t + 9" />
+</MathContainer>
+
+Pada <InlineMath math="t = 1 \text{ saat}" />, halajunya ialah <InlineMath math="v(1) = 3(1)^2 - 12(1) + 9 = 0 \text{ m/s}" />. Halaju sifar bermaksud zarah itu pegun seketika, tetapi itu sahaja tidak membuktikan ada perubahan arah. Faktorkan halaju itu untuk melihat tandanya di kedua-dua belah <InlineMath math="t=1" />:
+
+<BlockMath math="v(t)=3(t-1)(t-3)" />
+
+Untuk <InlineMath math="0<t<1" />, kedua-dua faktor negatif, jadi <InlineMath math="v(t)>0" />. Untuk <InlineMath math="1<t<3" />, faktor-faktornya berlainan tanda, jadi <InlineMath math="v(t)<0" />. Jadi halaju bertukar tanda pada <InlineMath math="t=1" />, dan ini membuktikan zarah itu berpatah balik di situ.
+
+Graf halaju menunjukkan **perubahan arah** di tempat graf itu menyilang paksi masa. Pada selang yang dipaparkan, lengkung itu menyilang pada <InlineMath math="t=1" /> dan <InlineMath math="t=3" />. Bandingkan tanda halaju sebelum dan selepas setiap persilangan.
+
+<MathVisual
+  title={<>Tanda halaju dan arah gerakan</>}
+  description={<>Halaju <InlineMath math="v(t) = 3t^2 - 12t + 9" /> dalam meter per saat melawan masa dalam saat. Nilainya <InlineMath math="0" /> pada <InlineMath math="t = 1" /> dan <InlineMath math="t = 3" />, dan negatif di antaranya, dengan <InlineMath math="v(2) = -3" />. Di bawah paksi masa, kedudukan menyusut.</>}
+  labels={{
+    t1: <InlineMath math="t = 1" />,
+    t3: <InlineMath math="t = 3" />,
+    low: <InlineMath math="v(2) = -3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.4 }, y: { min: -3.6, max: 9.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "v", kind: "quadratic", inputAxis: "x", coefficients: { a: 3, b: -12, c: 9 }, domain: { min: 0, max: 4 }, appearance: "secondary" },
+      { id: "t1", kind: "point", at: { x: 1, y: 0 }, appearance: "answer" },
+      { id: "t3", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+      { id: "low", kind: "point", at: { x: 2, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "t1", objectId: "t1", at: { x: 1, y: 0 }, placement: "above-left" },
+      { key: "t3", objectId: "t3", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "low", objectId: "low", at: { x: 2, y: -3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Kedudukan <InlineMath math="s(t) = t^3 - 6t^2 + 9t" /> naik kepada <InlineMath math="4\text{ m}" /> pada <InlineMath math="t = 1" />, turun semula kepada <InlineMath math="0" /> pada <InlineMath math="t = 3" /> dan naik lagi. Titik-titik pusingan itu berada tepat di tempat halaju bertukar tanda.
+
+<MathVisual
+  title={<>Kedudukan melawan masa</>}
+  description={<>Lengkung <InlineMath math="s(t) = t^3 - 6t^2 + 9t" /> untuk <InlineMath math="0 \le t \le 4" /> dengan titik pusingannya, <InlineMath math="(1, 4)" /> dan <InlineMath math="(3, 0)" />.</>}
+  labels={{
+    top: <InlineMath math="(1, 4)" />,
+    bottom: <InlineMath math="(3, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 4.4 }, y: { min: -0.6, max: 4.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "s", kind: "polyline", vertices: [{ x: 0, y: (0) ** 3 - 6 * (0) ** 2 + 9 * (0) }, { x: 1 / 20, y: (1 / 20) ** 3 - 6 * (1 / 20) ** 2 + 9 * (1 / 20) }, { x: 1 / 10, y: (1 / 10) ** 3 - 6 * (1 / 10) ** 2 + 9 * (1 / 10) }, { x: 3 / 20, y: (3 / 20) ** 3 - 6 * (3 / 20) ** 2 + 9 * (3 / 20) }, { x: 1 / 5, y: (1 / 5) ** 3 - 6 * (1 / 5) ** 2 + 9 * (1 / 5) }, { x: 1 / 4, y: (1 / 4) ** 3 - 6 * (1 / 4) ** 2 + 9 * (1 / 4) }, { x: 3 / 10, y: (3 / 10) ** 3 - 6 * (3 / 10) ** 2 + 9 * (3 / 10) }, { x: 7 / 20, y: (7 / 20) ** 3 - 6 * (7 / 20) ** 2 + 9 * (7 / 20) }, { x: 2 / 5, y: (2 / 5) ** 3 - 6 * (2 / 5) ** 2 + 9 * (2 / 5) }, { x: 9 / 20, y: (9 / 20) ** 3 - 6 * (9 / 20) ** 2 + 9 * (9 / 20) }, { x: 1 / 2, y: (1 / 2) ** 3 - 6 * (1 / 2) ** 2 + 9 * (1 / 2) }, { x: 11 / 20, y: (11 / 20) ** 3 - 6 * (11 / 20) ** 2 + 9 * (11 / 20) }, { x: 3 / 5, y: (3 / 5) ** 3 - 6 * (3 / 5) ** 2 + 9 * (3 / 5) }, { x: 13 / 20, y: (13 / 20) ** 3 - 6 * (13 / 20) ** 2 + 9 * (13 / 20) }, { x: 7 / 10, y: (7 / 10) ** 3 - 6 * (7 / 10) ** 2 + 9 * (7 / 10) }, { x: 3 / 4, y: (3 / 4) ** 3 - 6 * (3 / 4) ** 2 + 9 * (3 / 4) }, { x: 4 / 5, y: (4 / 5) ** 3 - 6 * (4 / 5) ** 2 + 9 * (4 / 5) }, { x: 17 / 20, y: (17 / 20) ** 3 - 6 * (17 / 20) ** 2 + 9 * (17 / 20) }, { x: 9 / 10, y: (9 / 10) ** 3 - 6 * (9 / 10) ** 2 + 9 * (9 / 10) }, { x: 19 / 20, y: (19 / 20) ** 3 - 6 * (19 / 20) ** 2 + 9 * (19 / 20) }, { x: 1, y: (1) ** 3 - 6 * (1) ** 2 + 9 * (1) }, { x: 21 / 20, y: (21 / 20) ** 3 - 6 * (21 / 20) ** 2 + 9 * (21 / 20) }, { x: 11 / 10, y: (11 / 10) ** 3 - 6 * (11 / 10) ** 2 + 9 * (11 / 10) }, { x: 23 / 20, y: (23 / 20) ** 3 - 6 * (23 / 20) ** 2 + 9 * (23 / 20) }, { x: 6 / 5, y: (6 / 5) ** 3 - 6 * (6 / 5) ** 2 + 9 * (6 / 5) }, { x: 5 / 4, y: (5 / 4) ** 3 - 6 * (5 / 4) ** 2 + 9 * (5 / 4) }, { x: 13 / 10, y: (13 / 10) ** 3 - 6 * (13 / 10) ** 2 + 9 * (13 / 10) }, { x: 27 / 20, y: (27 / 20) ** 3 - 6 * (27 / 20) ** 2 + 9 * (27 / 20) }, { x: 7 / 5, y: (7 / 5) ** 3 - 6 * (7 / 5) ** 2 + 9 * (7 / 5) }, { x: 29 / 20, y: (29 / 20) ** 3 - 6 * (29 / 20) ** 2 + 9 * (29 / 20) }, { x: 3 / 2, y: (3 / 2) ** 3 - 6 * (3 / 2) ** 2 + 9 * (3 / 2) }, { x: 31 / 20, y: (31 / 20) ** 3 - 6 * (31 / 20) ** 2 + 9 * (31 / 20) }, { x: 8 / 5, y: (8 / 5) ** 3 - 6 * (8 / 5) ** 2 + 9 * (8 / 5) }, { x: 33 / 20, y: (33 / 20) ** 3 - 6 * (33 / 20) ** 2 + 9 * (33 / 20) }, { x: 17 / 10, y: (17 / 10) ** 3 - 6 * (17 / 10) ** 2 + 9 * (17 / 10) }, { x: 7 / 4, y: (7 / 4) ** 3 - 6 * (7 / 4) ** 2 + 9 * (7 / 4) }, { x: 9 / 5, y: (9 / 5) ** 3 - 6 * (9 / 5) ** 2 + 9 * (9 / 5) }, { x: 37 / 20, y: (37 / 20) ** 3 - 6 * (37 / 20) ** 2 + 9 * (37 / 20) }, { x: 19 / 10, y: (19 / 10) ** 3 - 6 * (19 / 10) ** 2 + 9 * (19 / 10) }, { x: 39 / 20, y: (39 / 20) ** 3 - 6 * (39 / 20) ** 2 + 9 * (39 / 20) }, { x: 2, y: (2) ** 3 - 6 * (2) ** 2 + 9 * (2) }, { x: 41 / 20, y: (41 / 20) ** 3 - 6 * (41 / 20) ** 2 + 9 * (41 / 20) }, { x: 21 / 10, y: (21 / 10) ** 3 - 6 * (21 / 10) ** 2 + 9 * (21 / 10) }, { x: 43 / 20, y: (43 / 20) ** 3 - 6 * (43 / 20) ** 2 + 9 * (43 / 20) }, { x: 11 / 5, y: (11 / 5) ** 3 - 6 * (11 / 5) ** 2 + 9 * (11 / 5) }, { x: 9 / 4, y: (9 / 4) ** 3 - 6 * (9 / 4) ** 2 + 9 * (9 / 4) }, { x: 23 / 10, y: (23 / 10) ** 3 - 6 * (23 / 10) ** 2 + 9 * (23 / 10) }, { x: 47 / 20, y: (47 / 20) ** 3 - 6 * (47 / 20) ** 2 + 9 * (47 / 20) }, { x: 12 / 5, y: (12 / 5) ** 3 - 6 * (12 / 5) ** 2 + 9 * (12 / 5) }, { x: 49 / 20, y: (49 / 20) ** 3 - 6 * (49 / 20) ** 2 + 9 * (49 / 20) }, { x: 5 / 2, y: (5 / 2) ** 3 - 6 * (5 / 2) ** 2 + 9 * (5 / 2) }, { x: 51 / 20, y: (51 / 20) ** 3 - 6 * (51 / 20) ** 2 + 9 * (51 / 20) }, { x: 13 / 5, y: (13 / 5) ** 3 - 6 * (13 / 5) ** 2 + 9 * (13 / 5) }, { x: 53 / 20, y: (53 / 20) ** 3 - 6 * (53 / 20) ** 2 + 9 * (53 / 20) }, { x: 27 / 10, y: (27 / 10) ** 3 - 6 * (27 / 10) ** 2 + 9 * (27 / 10) }, { x: 11 / 4, y: (11 / 4) ** 3 - 6 * (11 / 4) ** 2 + 9 * (11 / 4) }, { x: 14 / 5, y: (14 / 5) ** 3 - 6 * (14 / 5) ** 2 + 9 * (14 / 5) }, { x: 57 / 20, y: (57 / 20) ** 3 - 6 * (57 / 20) ** 2 + 9 * (57 / 20) }, { x: 29 / 10, y: (29 / 10) ** 3 - 6 * (29 / 10) ** 2 + 9 * (29 / 10) }, { x: 59 / 20, y: (59 / 20) ** 3 - 6 * (59 / 20) ** 2 + 9 * (59 / 20) }, { x: 3, y: (3) ** 3 - 6 * (3) ** 2 + 9 * (3) }, { x: 61 / 20, y: (61 / 20) ** 3 - 6 * (61 / 20) ** 2 + 9 * (61 / 20) }, { x: 31 / 10, y: (31 / 10) ** 3 - 6 * (31 / 10) ** 2 + 9 * (31 / 10) }, { x: 63 / 20, y: (63 / 20) ** 3 - 6 * (63 / 20) ** 2 + 9 * (63 / 20) }, { x: 16 / 5, y: (16 / 5) ** 3 - 6 * (16 / 5) ** 2 + 9 * (16 / 5) }, { x: 13 / 4, y: (13 / 4) ** 3 - 6 * (13 / 4) ** 2 + 9 * (13 / 4) }, { x: 33 / 10, y: (33 / 10) ** 3 - 6 * (33 / 10) ** 2 + 9 * (33 / 10) }, { x: 67 / 20, y: (67 / 20) ** 3 - 6 * (67 / 20) ** 2 + 9 * (67 / 20) }, { x: 17 / 5, y: (17 / 5) ** 3 - 6 * (17 / 5) ** 2 + 9 * (17 / 5) }, { x: 69 / 20, y: (69 / 20) ** 3 - 6 * (69 / 20) ** 2 + 9 * (69 / 20) }, { x: 7 / 2, y: (7 / 2) ** 3 - 6 * (7 / 2) ** 2 + 9 * (7 / 2) }, { x: 71 / 20, y: (71 / 20) ** 3 - 6 * (71 / 20) ** 2 + 9 * (71 / 20) }, { x: 18 / 5, y: (18 / 5) ** 3 - 6 * (18 / 5) ** 2 + 9 * (18 / 5) }, { x: 73 / 20, y: (73 / 20) ** 3 - 6 * (73 / 20) ** 2 + 9 * (73 / 20) }, { x: 37 / 10, y: (37 / 10) ** 3 - 6 * (37 / 10) ** 2 + 9 * (37 / 10) }, { x: 15 / 4, y: (15 / 4) ** 3 - 6 * (15 / 4) ** 2 + 9 * (15 / 4) }, { x: 19 / 5, y: (19 / 5) ** 3 - 6 * (19 / 5) ** 2 + 9 * (19 / 5) }, { x: 77 / 20, y: (77 / 20) ** 3 - 6 * (77 / 20) ** 2 + 9 * (77 / 20) }, { x: 39 / 10, y: (39 / 10) ** 3 - 6 * (39 / 10) ** 2 + 9 * (39 / 10) }, { x: 79 / 20, y: (79 / 20) ** 3 - 6 * (79 / 20) ** 2 + 9 * (79 / 20) }, { x: 4, y: (4) ** 3 - 6 * (4) ** 2 + 9 * (4) }], appearance: "primary" },
+      { id: "top", kind: "point", at: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "bottom", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "top", objectId: "top", at: { x: 1, y: 4 }, placement: "above" },
+      { key: "bottom", objectId: "bottom", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Pecutan daripada Halaju
+
+Halaju sendiri pun boleh berubah, contohnya apabila kereta bertambah laju atau membrek. Kadar perubahannya dinamakan **pecutan**. Pecutan <InlineMath math="a(t)" /> ialah <Highlight>terbitan pertama bagi halaju</Highlight>, jadi pecutan juga ialah terbitan kedua bagi kedudukan.
+
+<BlockMath math="a(t) = v'(t) = s''(t) = \frac{dv}{dt} = \frac{d^2s}{dt^2}" />
+
+### Menentukan Fungsi Pecutan
+
+Menyambung contoh zarah tadi, kita sudah ada fungsi halaju <InlineMath math="v(t) = 3t^2 - 12t + 9" />. Kita boleh cari fungsi pecutannya dengan **membezakan fungsi** <InlineMath math="v(t)" />.
+
+<MathContainer>
+  <BlockMath math="a(t) = \frac{d}{dt}(3t^2 - 12t + 9)" />
+  <BlockMath math="a(t) = 6t - 12" />
+</MathContainer>
+
+Daripada sini, kita boleh cari pecutan zarah itu pada bila-bila masa. Contohnya, pada <InlineMath math="t = 3 \text{ saat}" />, pecutannya ialah <InlineMath math="a(3) = 6(3) - 12 = 6 \text{ meter/saat}^2" />.
+
+## Mencari Tinggi Maksimum dalam Gerakan Mencancang
+
+Sebiji bola dilambung tegak ke atas. Tingginya, <InlineMath math="h(t)" /> dalam meter, selepas <InlineMath math="t \text{ saat}" /> diberikan oleh persamaan <InlineMath math="h(t) = 50t - 5t^2" />.
+
+Mula-mula, kita boleh cari fungsi halaju dan fungsi pecutannya.
+
+Fungsi halaju:
+
+<BlockMath math="v(t) = h'(t) = 50 - 10t" />
+
+Fungsi pecutan:
+
+<BlockMath math="a(t) = v'(t) = -10" />
+
+> Dalam model ringkas ini, arah ke atas ditetapkan sebagai arah positif dan rintangan udara diabaikan. Pecutan graviti berhampiran permukaan Bumi dibundarkan daripada <InlineMath math="-9.8 \text{ m/s}^2" /> kepada <InlineMath math="-10 \text{ m/s}^2" />. Tanda negatif menunjukkan pecutan itu menghala ke bawah.
+
+Oleh sebab <InlineMath math="h(0)=0" /> dan <InlineMath math="h(10)=0" />, penerbangan dalam model ini bermula ketika bola dilambung pada <InlineMath math="t=0" /> sehingga bola kembali ke tinggi asalnya pada <InlineMath math="t=10" />.
+
+Sekarang kita tentukan **bila bola itu mencapai tinggi maksimumnya**.
+
+Pada titik tertinggi, halaju mencancang bola bertukar daripada positif kepada negatif. Jadi kita selesaikan <InlineMath math="v(t)=0" /> dalam selang penerbangan model itu.
+
+<MathContainer>
+    <BlockMath math="v(t) = 0" />
+    <BlockMath math="50 - 10t = 0" />
+    <BlockMath math="10t = 50" />
+    <BlockMath math="t = 5" />
+</MathContainer>
+
+Jadi, bola itu mencapai puncaknya pada <InlineMath math="5 \text{ saat}" />. Untuk mengetahui tinggi maksimumnya, kita gantikan <InlineMath math="t=5" /> semula ke dalam fungsi tinggi asal.
+
+<BlockMath math="\begin{aligned} h(5) &amp;= 50(5) - 5(5)^2 \\ &amp;= 250 - 125 \\ &amp;= 125 \end{aligned}" />
+
+**Tinggi maksimum** bola itu ialah <InlineMath math="125 \text{ meter}" />. Dalam <InlineMath math="0<t<10" />, halaju positif sebelum <InlineMath math="t=5" /> dan negatif selepas itu. Jadi tinggi bola menokok sehingga puncak, kemudian menyusut. Perubahan tanda ini mengesahkan bahawa titik pegun itu ialah titik maksimum.
+
+Tinggi pada setiap saat penuh bersimetri pada <InlineMath math="t = 5" />: <InlineMath math="45\text{ m}" /> pada <InlineMath math="1\text{ s}" /> dan <InlineMath math="9\text{ s}" />, <InlineMath math="80\text{ m}" /> pada <InlineMath math="2\text{ s}" /> dan <InlineMath math="8\text{ s}" />, dan seterusnya hingga <InlineMath math="125\text{ m}" /> pada <InlineMath math="5\text{ s}" />, iaitu ketika <InlineMath math="v(5) = 0" />.
+
+<BarChart
+  title={<>Tinggi saat demi saat</>}
+  description={<>Palang <InlineMath math="h(t) = 50t - 5t^2" /> dalam meter untuk <InlineMath math="t = 0" /> hingga <InlineMath math="10" /> saat.</>}
+  yAxisLabel="Tinggi (m)"
+  data={[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((x) => ({ name: String(x), value: 50 * x - 5 * x ** 2 }))}
+  chartConfig={{ value: { label: "Tinggi (m)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>

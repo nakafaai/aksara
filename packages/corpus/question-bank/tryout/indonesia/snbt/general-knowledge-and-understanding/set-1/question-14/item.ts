@@ -2,34 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "application",
     contentDomain: "vocabulary",
-    topic: "polysemy",
+    topic: "word-meaning",
   },
-  stimulus: "bahasa",
+  stimulus: "serapan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Jenis kayu yang keras dan awet.",
+          label: "lembut dan enak didengar bunyinya",
+        },
+        {
+          correct: false,
+          label:
+            "dipakai untuk memperhalus pokok pembicaraan yang kasar atau tabu",
+        },
+        {
+          correct: false,
+          label: "tinggi mutunya sehingga lazim dipakai dalam karya sastra",
+        },
+        {
+          correct: false,
+          label: "baku dan sesuai dengan kaidah tata bahasa",
         },
         {
           correct: true,
-          label: "Asli atau sejati.",
-        },
-        {
-          correct: false,
-          label: "Berusia lanjut dan berpengalaman.",
-        },
-        {
-          correct: false,
-          label: "Terlatih mengajar di kelas.",
-        },
-        {
-          correct: false,
-          label: "Terkenal di kalangan masyarakatnya.",
+          label:
+            "sopan dan dipakai untuk menunjukkan hormat kepada lawan bicara",
         },
       ],
     },

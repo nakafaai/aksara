@@ -1,0 +1,204 @@
+export const metadata = {
+    title: "Sistem Linear Terlebih Tentu",
+    description: "Bina sistem linear terlebih tentu daripada data dan fahami kenapa kuasa dua terkecil memberi polinomial paling padan apabila tiada penyelesaian tepat.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-15",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Lebih Banyak Persamaan daripada Anu
+
+Katakan kita mahu menyuaikan satu lengkung pada data ukuran. Selalunya kita ada lebih banyak cerapan daripada parameter model. Jika kita tulis **satu persamaan** untuk setiap cerapan, kita akan dapat **sistem linear terlebih tentu**.
+
+Sesuatu sistem dikatakan terlebih tentu apabila bilangan persamaan <InlineMath math="m" /> lebih besar daripada bilangan anu <InlineMath math="n" />, iaitu <InlineMath math="m > n" />. Sistem seperti ini masih boleh mempunyai penyelesaian tepat. Namun, data ukuran biasanya mengandungi titik yang tidak terletak tepat pada model yang dipilih.
+
+## Penyuaian Kuadratik untuk Tujuh Cerapan
+
+Lihat <InlineMath math="7" /> titik data yang kita mahu suaikan dengan **polinomial kuadratik**.
+
+Cerapannya ialah:
+
+| <InlineMath math="i" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> |
+|---|---|---|---|---|---|---|---|
+| <InlineMath math="t_i" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | <InlineMath math="-1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| <InlineMath math="y_i" /> | <InlineMath math="-2.2" /> | <InlineMath math="-4.2" /> | <InlineMath math="-4.2" /> | <InlineMath math="-1.8" /> | <InlineMath math="1.8" /> | <InlineMath math="8.2" /> | <InlineMath math="15.8" /> |
+
+Kita mencari parabola yang berbentuk:
+
+<BlockMath math="y = a_2 \cdot t^2 + a_1 \cdot t + a_0" />
+
+Anu di sini ialah <InlineMath math="3" /> parameter, iaitu <InlineMath math="a_2" /> (pekali kuadratik), <InlineMath math="a_1" /> (pekali linear) dan <InlineMath math="a_0" /> (sebutan pemalar).
+
+## Membina Sistem Persamaan
+
+Gantikan setiap pasangan <InlineMath math="(t_i,y_i)" /> ke dalam polinomial, dan kamu dapat satu persamaan. Jadi, <InlineMath math="7" /> cerapan memberi <InlineMath math="7" /> persamaan untuk hanya <InlineMath math="3" /> **pekali yang tidak diketahui**.
+
+<MathContainer>
+<BlockMath math="a_2 \cdot (-3)^2 + a_1 \cdot (-3) + a_0 = -2.2" />
+<BlockMath math="a_2 \cdot (-2)^2 + a_1 \cdot (-2) + a_0 = -4.2" />
+<BlockMath math="a_2 \cdot (-1)^2 + a_1 \cdot (-1) + a_0 = -4.2" />
+<BlockMath math="a_2 \cdot 0^2 + a_1 \cdot 0 + a_0 = -1.8" />
+<BlockMath math="a_2 \cdot 1^2 + a_1 \cdot 1 + a_0 = 1.8" />
+<BlockMath math="a_2 \cdot 2^2 + a_1 \cdot 2 + a_0 = 8.2" />
+<BlockMath math="a_2 \cdot 3^2 + a_1 \cdot 3 + a_0 = 15.8" />
+</MathContainer>
+
+Kira kuasa bagi setiap <InlineMath math="t_i" />, dan sistem itu menjadi:
+
+<MathContainer>
+<BlockMath math="9a_2 - 3a_1 + a_0 = -2.2" />
+<BlockMath math="4a_2 - 2a_1 + a_0 = -4.2" />
+<BlockMath math="1a_2 - 1a_1 + a_0 = -4.2" />
+<BlockMath math="0a_2 + 0a_1 + a_0 = -1.8" />
+<BlockMath math="1a_2 + 1a_1 + a_0 = 1.8" />
+<BlockMath math="4a_2 + 2a_1 + a_0 = 8.2" />
+<BlockMath math="9a_2 + 3a_1 + a_0 = 15.8" />
+</MathContainer>
+
+## Bentuk Matriks
+
+Sistem persamaan di atas boleh ditulis dalam **bentuk matriks** <InlineMath math="A \cdot x = b" />.
+
+<BlockMath math="\begin{pmatrix} 9 & -3 & 1 \\ 4 & -2 & 1 \\ 1 & -1 & 1 \\ 0 & 0 & 1 \\ 1 & 1 & 1 \\ 4 & 2 & 1 \\ 9 & 3 & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} -2.2 \\ -4.2 \\ -4.2 \\ -1.8 \\ 1.8 \\ 8.2 \\ 15.8 \end{pmatrix}" />
+
+Untuk model kuadratik yang disuaikan pada <InlineMath math="m" /> titik data, binaan yang sama mempunyai bentuk umum:
+
+<BlockMath math="\begin{pmatrix} t_1^2 & t_1 & 1 \\ \vdots & \vdots & \vdots \\ t_m^2 & t_m & 1 \end{pmatrix} \begin{pmatrix} a_2 \\ a_1 \\ a_0 \end{pmatrix} = \begin{pmatrix} y_1 \\ \vdots \\ y_m \end{pmatrix}" />
+
+## Kenapa Tiada Penyelesaian Tepat
+
+Dalam contoh ini, matriks <InlineMath math="A" /> bersaiz <InlineMath math="7 \times 3" /> dan vektor pekali <InlineMath math="x" /> bersaiz <InlineMath math="3 \times 1" />. Jadi, kita ada <InlineMath math="7" /> persamaan untuk <InlineMath math="3" /> anu.
+
+Penyelesaian tepat wujud jika dan hanya jika <InlineMath math="\operatorname{rank}(A)=\operatorname{rank}(A\mid b)" />. Dimensi matriks sahaja tidak menentukan perkara ini.
+
+Ketiga-tiga lajur <InlineMath math="A" /> tak bersandar linear. Memang begitu: polinomial <InlineMath math="c_2t^2+c_1t+c_0" /> berdarjah paling tinggi <InlineMath math="2" /> yang bernilai sifar pada ketujuh-tujuh nilai <InlineMath math="t_i" /> yang berbeza mestilah polinomial sifar. Oleh itu, <InlineMath math="\operatorname{rank}(A)=3" />.
+
+Tambahkan <InlineMath math="b" /> untuk membentuk matriks imbuhan <InlineMath math="(A\mid b)" />. Empat baris pertama sudah memberi minor bukan sifar
+
+<BlockMath math="\det\begin{pmatrix}9&-3&1&-2.2\\4&-2&1&-4.2\\1&-1&1&-4.2\\0&0&1&-1.8\end{pmatrix}=-\frac45" />
+
+Minor bukan sifar ini menunjukkan bahawa <InlineMath math="\operatorname{rank}(A\mid b)=4" />.
+
+Oleh sebab <InlineMath math="\operatorname{rank}(A) \ne \operatorname{rank}(A\mid b)" />, sistem ini **tiada penyelesaian tepat**. Tiada satu pun polinomial kuadratik yang melalui kesemua <InlineMath math="7" /> cerapan.
+
+Parabola yang melalui tiga daripada titik itu masih boleh terlepas titik yang lain. Parabola yang melalui <InlineMath math="t=-3" />, <InlineMath math="-2" /> dan <InlineMath math="-1" /> ialah <InlineMath math="y=t^2+3t-2.2" />, dan kebetulan ia juga melalui <InlineMath math="t=1" /> dan <InlineMath math="t=3" />. Pada <InlineMath math="t=0" /> ia memberi <InlineMath math="-2.2" />, bukan <InlineMath math="-1.8" />, dan pada <InlineMath math="t=2" /> ia memberi <InlineMath math="7.8" />, bukan <InlineMath math="8.2" />. Jadi, tiada satu parabola pun yang padan dengan ketujuh-tujuh titik.
+
+<MathVisual
+  title={<>Parabola <InlineMath math="y=t^2+3t-2.2" /> terlepas dua cerapan</>}
+  description={<>Lengkung ungu melalui lima titik kelabu. Dua titik magenta pada <InlineMath math="t=0" /> dan <InlineMath math="t=2" /> terletak sejauh <InlineMath math="0.4" /> dari lengkung.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "through", kind: "function", formula: "x^2 + 3*x - 2.2", domain: { min: -3, max: 3 }, appearance: "secondary" },
+      { id: "hit-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "reference" },
+      { id: "hit-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "reference" },
+      { id: "hit-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "reference" },
+      { id: "hit-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "reference" },
+      { id: "hit-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "reference" },
+      { id: "miss-zero", kind: "point", at: { x: 0, y: -1.8 }, appearance: "answer" },
+      { id: "miss-two", kind: "point", at: { x: 2, y: 8.2 }, appearance: "answer" },
+    ],
+  }}
+/>
+
+## Penyelesaian dengan Kuasa Dua Terkecil
+
+Apabila sistem terlebih tentu tiada penyelesaian tepat, kita boleh mencari polinomial yang paling hampir dengan cerapan dalam erti **kuasa dua terkecil**.
+
+Untuk cerapan <InlineMath math="i" />, reja menegaknya ialah <InlineMath math="r_i = y_i-(a_2t_i^2+a_1t_i+a_0)" />. Kaedah kuasa dua terkecil memilih pekali yang <Highlight>meminimumkan hasil tambah kuasa dua reja</Highlight>:
+
+<BlockMath math="\min_{a_2,a_1,a_0}\sum_{i=1}^{7}\left[y_i-(a_2t_i^2+a_1t_i+a_0)\right]^2" />
+
+Kriteria ini memberi penalti yang lebih berat kepada sisihan yang besar, dan menghasilkan satu sahaja parabola paling padan kerana <InlineMath math="A" /> mempunyai pangkat lajur penuh. Persamaan normalnya ialah
+
+<MathContainer>
+<BlockMath math="A^TA=\begin{pmatrix}196&0&28\\0&28&0\\28&0&7\end{pmatrix}" />
+<BlockMath math="A^Tb=\begin{pmatrix}136\\\frac{424}{5}\\\frac{67}{5}\end{pmatrix}" />
+</MathContainer>
+
+Persamaan tengah terus memberi pekali linear. Gunakan persamaan terakhir untuk menyatakan pemalar dalam sebutan pekali kuadratik, kemudian gantikan ke dalam persamaan pertama.
+
+<MathContainer>
+<BlockMath math="28a_1=\frac{424}{5}\quad\Rightarrow\quad a_1=\frac{106}{35}" />
+<BlockMath math="28a_2+7a_0=\frac{67}{5}\quad\Rightarrow\quad a_0=\frac{67}{35}-4a_2" />
+<BlockMath math="196a_2+28\left(\frac{67}{35}-4a_2\right)=136" />
+<BlockMath math="84a_2=\frac{412}{5}\quad\Rightarrow\quad a_2=\frac{103}{105},\quad a_0=-\frac{211}{105}" />
+</MathContainer>
+
+Selesaikan persamaan-persamaan ini dan kamu dapat
+
+<MathContainer>
+<BlockMath math="\hat x=\begin{pmatrix}\hat a_2\\\hat a_1\\\hat a_0\end{pmatrix}=\begin{pmatrix}\frac{103}{105}\\\frac{106}{35}\\-\frac{211}{105}\end{pmatrix}" />
+<BlockMath math="\hat y(t)=\frac{103}{105}t^2+\frac{106}{35}t-\frac{211}{105}" />
+</MathContainer>
+
+Nilai yang disuaikan tidak sama dengan setiap cerapan, dan itu memang dijangka. Vektor rejanya ialah
+
+<BlockMath math="r=b-A\hat x=\begin{pmatrix}\frac1{15}\\-\frac2{35}\\-\frac17\\\frac{22}{105}\\-\frac15\\\frac8{35}\\-\frac{11}{105}\end{pmatrix}" />
+
+Vektor reja <InlineMath math="r" /> memenuhi
+
+<MathContainer>
+<BlockMath math="A^Tr=0" />
+<BlockMath math="\lVert r\rVert_2^2=\frac{92}{525}\approx0.17524" />
+</MathContainer>
+
+Persamaan <InlineMath math="A^Tr=0" /> bermaksud ralat yang tinggal ortogon kepada setiap lajur <InlineMath math="A" />. Secara geometri, <InlineMath math="A\hat x" /> ialah unjuran ortogon <InlineMath math="b" /> ke atas ruang lajur <InlineMath math="A" />.
+
+Sistem terlebih tentu biasa ditemui dalam kejuruteraan dan sains, kerana eksperimen sering memberi banyak ukuran untuk model yang parameternya agak sedikit. Kuasa dua terkecil menggunakan semua ukuran itu tanpa berpura-pura bahawa data yang hingar padan tepat dengan model.
+
+Lengkung menunjukkan model yang disuaikan, manakala titik menandakan cerapan. Bandingkan setiap titik dengan lengkung: beza menegaknya ialah reja pada nilai masa yang sama.
+
+<MathVisual
+  title={<>Parabola kuasa dua terkecil dan rejanya</>}
+  description={<>Lengkung hijau kebiruan ialah <InlineMath math="\hat y(t)" />, titik jingga ialah tujuh cerapan, dan setiap segmen magenta ialah reja, iaitu jurang menegak pada <InlineMath math="t" /> yang sama.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 3.5 }, y: { min: -5.5, max: 17 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "fit", kind: "function", formula: "103/105*x^2 + 106/35*x - 211/105", domain: { min: -3, max: 3 }, appearance: "construction" },
+      { id: "gap-0", kind: "segment", from: { x: -3, y: -2.2 }, to: { x: -3, y: 103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-1", kind: "segment", from: { x: -2, y: -4.2 }, to: { x: -2, y: 103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-2", kind: "segment", from: { x: -1, y: -4.2 }, to: { x: -1, y: 103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-3", kind: "segment", from: { x: 0, y: -1.8 }, to: { x: 0, y: 103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-4", kind: "segment", from: { x: 1, y: 1.8 }, to: { x: 1, y: 103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-5", kind: "segment", from: { x: 2, y: 8.2 }, to: { x: 2, y: 103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105 }, appearance: "answer" },
+      { id: "gap-6", kind: "segment", from: { x: 3, y: 15.8 }, to: { x: 3, y: 103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105 }, appearance: "answer" },
+      { id: "obs-0", kind: "point", at: { x: -3, y: -2.2 }, appearance: "primary" },
+      { id: "obs-1", kind: "point", at: { x: -2, y: -4.2 }, appearance: "primary" },
+      { id: "obs-2", kind: "point", at: { x: -1, y: -4.2 }, appearance: "primary" },
+      { id: "obs-3", kind: "point", at: { x: 0, y: -1.8 }, appearance: "primary" },
+      { id: "obs-4", kind: "point", at: { x: 1, y: 1.8 }, appearance: "primary" },
+      { id: "obs-5", kind: "point", at: { x: 2, y: 8.2 }, appearance: "primary" },
+      { id: "obs-6", kind: "point", at: { x: 3, y: 15.8 }, appearance: "primary" },
+    ],
+  }}
+/>
+
+Reja bagi penyuaian kuasa dua terkecil bernilai kecil dan bertukar-tukar tanda: <InlineMath math="\tfrac1{15}" />, <InlineMath math="-\tfrac2{35}" />, <InlineMath math="-\tfrac17" />, <InlineMath math="\tfrac{22}{105}" />, <InlineMath math="-\tfrac15" />, <InlineMath math="\tfrac8{35}" /> dan <InlineMath math="-\tfrac{11}{105}" />. Hasil tambahnya ialah <InlineMath math="0" />, kerana model ini mengandungi sebutan pemalar dan reja ortogon kepada setiap lajur <InlineMath math="A" />.
+
+<ScatterDiagram
+  title={<>Reja <InlineMath math="b_i-\hat y(t_i)" /> bagi penyuaian</>}
+  description={<>Setiap titik ialah reja bagi satu cerapan, dengan <InlineMath math="t" /> pada paksi mendatar. Reja positif dan negatif saling mengimbangi sehingga jumlahnya <InlineMath math="0" />.</>}
+  xAxisLabel="Masa"
+  yAxisLabel="Reja"
+  datasets={[
+    {
+      name: "Reja",
+      color: "var(--chart-4)",
+      points: [
+        { x: -3, y: -2.2 - (103 / 105 * (-3) ** 2 + 106 / 35 * (-3) - 211 / 105) },
+        { x: -2, y: -4.2 - (103 / 105 * (-2) ** 2 + 106 / 35 * (-2) - 211 / 105) },
+        { x: -1, y: -4.2 - (103 / 105 * (-1) ** 2 + 106 / 35 * (-1) - 211 / 105) },
+        { x: 0, y: -1.8 - (103 / 105 * (0) ** 2 + 106 / 35 * (0) - 211 / 105) },
+        { x: 1, y: 1.8 - (103 / 105 * (1) ** 2 + 106 / 35 * (1) - 211 / 105) },
+        { x: 2, y: 8.2 - (103 / 105 * (2) ** 2 + 106 / 35 * (2) - 211 / 105) },
+        { x: 3, y: 15.8 - (103 / 105 * (3) ** 2 + 106 / 35 * (3) - 211 / 105) },
+      ],
+    },
+  ]}
+/>

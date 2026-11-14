@@ -1,0 +1,168 @@
+export const metadata = {
+    title: "Teorem Spektrum",
+    description: "Tentukan bila matriks normal, Hermitian dan uniter mempunyai asas eigen ortonormal, kemudian gunakan pempenjuruan yang terhasil.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-16",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Matriks Normal
+
+Teorem spektrum kompleks menyatakan bahawa sesuatu matriks boleh dipepenjurukan menggunakan asas ortonormal yang terdiri daripada vektor eigen <Highlight>tepat apabila matriks itu normal</Highlight>. Dalam bentuk matriks,
+
+<InlineMath math="A" /> normal jika dan hanya jika ia mempunyai penguraian ini dengan <InlineMath math="U" /> uniter dan <InlineMath math="\Lambda" /> pepenjuru:
+
+<BlockMath math="A=U\Lambda U^H" />
+
+Dalam bentuk ini, <InlineMath math="U" /> uniter dan <InlineMath math="\Lambda" /> pepenjuru. Lajur <InlineMath math="U" /> membentuk asas ortonormal yang terdiri daripada vektor eigen. Oleh sebab <InlineMath math="U" /> uniter, perubahan asas ini mengekalkan panjang dan sudut. Dalam kes simetri nyata, <InlineMath math="U" /> boleh dipilih supaya nyata dan ortogon, jadi <InlineMath math="U^{-1}=U^T" />.
+
+Matriks kompleks <InlineMath math="A \in \mathbb{C}^{n \times n}" /> dipanggil normal jika ia memenuhi syarat kalis tukar tertib dengan transpos konjugatnya:
+
+<BlockMath math="A \cdot A^H = A^H \cdot A" />
+
+Syarat algebra ini menjadikan ruang eigen bagi nilai eigen yang berbeza saling ortogon. Atas <InlineMath math="\mathbb{C}" />, syarat ini juga membolehkan pempenjuruan uniter.
+
+Uji kenormalan dengan mengira <InlineMath math="\|A^HA-AA^H\|_F" />. Matriks simetri <InlineMath math="\begin{pmatrix}2&1\\1&2\end{pmatrix}" /> dan putaran <InlineMath math="\begin{pmatrix}0&-1\\1&0\end{pmatrix}" /> memberikan <InlineMath math="0" />. Ricih <InlineMath math="\begin{pmatrix}1&1\\0&1\end{pmatrix}" /> pula memberikan <InlineMath math="A^TA-AA^T=\begin{pmatrix}-1&0\\0&1\end{pmatrix}" />, jadi jurangnya ialah <InlineMath math="\sqrt2" /> dan matriks itu tidak normal.
+
+<BarChart
+  title={<>Sejauh mana <InlineMath math="A^HA" /> berbeza daripada <InlineMath math="AA^H" /></>}
+  description={<>Setiap bar ialah <InlineMath math="\|A^HA-AA^H\|_F" /> untuk matriks yang dinamakan di bawahnya. Hanya ricih yang mempunyai bar, dengan tinggi <InlineMath math="\sqrt2" />.</>}
+  yAxisLabel="Jurang norma Frobenius"
+  data={[
+    { name: "simetri", value: 0 },
+    { name: "putaran", value: 0 },
+    { name: "ricih", value: Math.sqrt(2) },
+  ]}
+  chartConfig={{ value: { label: "Jurang norma Frobenius", colors: { light: ["var(--chart-4)"], dark: ["var(--chart-4)"] } } }}
+/>
+
+## Sifat Istimewa Ruang Eigen Matriks Normal
+
+Untuk matriks normal, ruang nol matriks itu sama dengan ruang nol transpos konjugatnya.
+
+Ruang nol (kernel) ialah set semua vektor <InlineMath math="x" /> yang memenuhi <InlineMath math="Ax=0" />. Kenormalan memberikan **identiti norma** berikut untuk setiap <InlineMath math="x" />:
+
+<MathContainer>
+<BlockMath math="\lVert Ax\rVert_2^2=x^HA^HAx" />
+<BlockMath math="=x^HAA^Hx=\lVert A^Hx\rVert_2^2" />
+</MathContainer>
+
+<InlineMath math="Ax=0" /> jika dan hanya jika <InlineMath math="A^Hx=0" />, jadi
+
+<BlockMath math="\ker A=\ker A^H" />
+
+Gunakan identiti ruang nol yang sama pada matriks normal <InlineMath math="A-\lambda I" />. Untuk setiap nilai eigen <InlineMath math="\lambda \in \mathbb{C}" />, kamu dapat hubungan ruang eigen yang sepadan:
+
+<BlockMath math="E_A(\lambda)=E_{A^H}(\overline{\lambda})" />
+
+Jika <InlineMath math="Av=\lambda v" />, maka <InlineMath math="A^H v=\overline{\lambda}v" />. Vektor eigennya dikongsi, manakala nilai eigennya bertukar menjadi konjugat kompleksnya.
+
+Identiti ini juga membuktikan keortogonan. Jika <InlineMath math="Av=\lambda v" /> dan <InlineMath math="Aw=\mu w" /> dengan <InlineMath math="\lambda\neq\mu" />, maka
+
+<MathContainer>
+<BlockMath math="\overline{\lambda}v^Hw=(Av)^Hw=v^HA^Hw" />
+<BlockMath math="=\overline{\mu}v^Hw\qquad\Longrightarrow\qquad v^Hw=0" />
+</MathContainer>
+
+Matriks simetri <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" /> ini normal. Nilai eigen <InlineMath math="4" /> dan <InlineMath math="2" /> berbeza, jadi ruang eigennya mesti berserenjang: <InlineMath math="u_1=\tfrac1{\sqrt2}(1,1)" /> dan <InlineMath math="u_2=\tfrac1{\sqrt2}(-1,1)" /> memenuhi <InlineMath math="u_1^Tu_2=0" />. Selepas dinormalkan, kedua-duanya sudah pun membentuk asas ortonormal.
+
+<MathVisual
+  title={<>Ruang eigen bagi <InlineMath math="4" /> dan <InlineMath math="2" /> saling berserenjang</>}
+  description={<>Vektor unit hijau kebiruan <InlineMath math="u_1" /> meregang menjadi segmen ungu <InlineMath math="4u_1" />, dan vektor unit jingga <InlineMath math="u_2" /> menjadi segmen magenta <InlineMath math="2u_2" />. Segi empat sama kecil berwarna kelabu menandakan sudut tegak antara dua arah itu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -2, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "corner", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }, { x: 0, y: 0.6 * Math.SQRT1_2 }, { x: -0.3 * Math.SQRT1_2, y: 0.3 * Math.SQRT1_2 }], appearance: "reference" },
+      { id: "first-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "first", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "construction" },
+      { id: "second-image", kind: "segment", from: { x: 0, y: 0 }, to: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, appearance: "answer" },
+      { id: "second", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "first-image", objectId: "first-image", at: { x: 4 * Math.SQRT1_2, y: 4 * Math.SQRT1_2 }, placement: "right" },
+      { key: "second-image", objectId: "second-image", at: { x: -2 * Math.SQRT1_2, y: 2 * Math.SQRT1_2 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "first-image": <InlineMath math="Au_1=4u_1" />,
+    "second-image": <InlineMath math="Au_2=2u_2" />,
+  }}
+/>
+
+## Matriks Hermitian dan Uniter sebagai Contoh Matriks Normal
+
+Matriks Hermitian sama dengan adjoinnya sendiri, dan matriks uniter mempunyai songsangan yang sama dengan adjoinnya, jadi dalam kedua-dua kes, dua belah syarat kenormalan menjadi **hasil darab yang sama**.
+
+### Matriks Hermitian dan Nilai Eigen Nyata
+
+Untuk matriks Hermitian, <InlineMath math="A^H=A" />, jadi kedua-dua belah syarat kenormalan sama dengan <InlineMath math="A^2" />.
+
+Nilai eigen matriks Hermitian <Highlight>sentiasa nyata</Highlight>. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, maka kesimetrian Hermitian memberikan:
+
+<BlockMath math="\begin{aligned} \lambda v^H v &amp;= v^HAv \\ &amp;= v^HA^Hv \\ &amp;= (Av)^Hv \\ &amp;= \overline{\lambda}v^Hv \\ &amp;\Rightarrow \lambda \\ &amp;=\overline{\lambda} \end{aligned}" />
+
+Kesamaan <InlineMath math="\lambda=\overline{\lambda}" /> menyatakan dengan tepat bahawa <InlineMath math="\lambda" /> ialah nombor nyata.
+
+### Contoh Lengkap Matriks Hermitian
+
+Pertimbangkan
+
+<BlockMath math="H=\begin{pmatrix}2&i\\-i&2\end{pmatrix}" />
+
+Transpos konjugat memberikan semula matriks yang sama, jadi <InlineMath math="H^H=H" />. Polinomial cirinya ialah <InlineMath math="(2-\lambda)^2-1" />, dan polinomial ini memberikan nilai eigen nyata <InlineMath math="1" /> dan <InlineMath math="3" />. Vektor eigen ternormal yang sepadan ialah
+
+<MathContainer>
+<BlockMath math="\begin{aligned} &amp;u_1=\frac1{\sqrt2}\begin{pmatrix}-i\\1\end{pmatrix}, \\ &amp;u_3=\frac1{\sqrt2}\begin{pmatrix}i\\1\end{pmatrix} \end{aligned}" />
+<BlockMath math="\begin{aligned} &amp;U=(u_1\quad u_3), \\ &amp;U^HHU=\operatorname{diag}(1,3) \end{aligned}" />
+</MathContainer>
+
+Vektor-vektor ini **ortonormal kerana** <InlineMath math="u_1^Hu_3=0" /> dan kedua-duanya mempunyai norma <InlineMath math="1" />. Inilah teorem spektrum dalam satu kes <InlineMath math="2\times2" /> yang konkrit.
+
+<BlockMath math="u_1^Hu_3=\frac{(i)(i)+1}{2}=0,\qquad Hu_1=\frac1{\sqrt2}\begin{pmatrix}-2i+i\\(-i)(-i)+2\end{pmatrix}=u_1" />
+
+### Matriks Uniter dan Nilai Eigen pada Bulatan Unit
+
+Matriks uniter mempunyai sifat <InlineMath math="A^H = A^{-1}" />. Untuk membuktikan bahawa matriks uniter juga normal, kita gantikan sifat ini ke dalam definisi dan dapat <InlineMath math="A \cdot A^H = A \cdot A^{-1} = I = A^{-1} \cdot A = A^H \cdot A" />.
+
+Nilai eigen matriks uniter mempunyai magnitud <InlineMath math="1" />, jadi nilai-nilai itu terletak pada **bulatan unit** dalam satah kompleks. Jika <InlineMath math="Av=\lambda v" /> dengan <InlineMath math="v\neq0" />, keuniteran mengekalkan norma:
+
+<MathContainer>
+<BlockMath math="\lVert v\rVert^2 = \lVert Av\rVert^2 = \lVert \lambda v\rVert^2 = |\lambda|^2\lVert v\rVert^2" />
+<BlockMath math="\begin{aligned} v\neq0 &amp;\Rightarrow \lVert v\rVert^2>0 \\ &amp;\Rightarrow |\lambda|^2 \\ &amp;=1 \\ &amp;\Rightarrow |\lambda| \\ &amp;=1 \end{aligned}" />
+</MathContainer>
+
+Setiap nilai eigen matriks uniter mempunyai modulus <InlineMath math="1" />. Dari segi geometri, transformasi uniter mengekalkan panjang vektor, dan nilai eigennya terletak pada bulatan unit.
+
+Satah kompleks di bawah menunjukkan kedudukan nilai eigen bagi dua keluarga matriks normal. Matriks Hermitian <InlineMath math="H" /> di atas mempunyai nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" />, kedua-duanya pada paksi nyata. Putaran <InlineMath math="R(60^\circ)" /> ialah matriks uniter, dan nilai eigennya <InlineMath math="e^{\pm i\pi/3}" /> terletak pada bulatan unit kerana <InlineMath math="|\lambda|=1" />. Zum dan semak sendiri: tiada titik ungu yang meninggalkan paksi nyata, dan tiada titik jingga yang meninggalkan bulatan.
+
+<MathVisual
+  title={<>Kedudukan nilai eigen Hermitian dan uniter</>}
+  description={<>Titik ungu ialah nilai eigen <InlineMath math="1" /> dan <InlineMath math="3" /> bagi <InlineMath math="H" />. Titik jingga ialah nilai eigen <InlineMath math="e^{\pm i\pi/3}" /> bagi putaran <InlineMath math="R(60^\circ)" />, dan titik-titik itu terletak pada bulatan unit kelabu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 3.4 }, y: { min: -1.3, max: 1.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "one", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "three", kind: "point", at: { x: 3, y: 0 }, appearance: "secondary" },
+      { id: "up", kind: "point", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, appearance: "primary" },
+      { id: "down", kind: "point", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "three", objectId: "three", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: Math.cos(Math.PI / 3), y: Math.sin(Math.PI / 3) }, placement: "above-right" },
+      { key: "down", objectId: "down", at: { x: Math.cos(Math.PI / 3), y: -Math.sin(Math.PI / 3) }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    "one": <InlineMath math="1" />,
+    "three": <InlineMath math="3" />,
+    "up": <InlineMath math="e^{i\pi/3}" />,
+    "down": <InlineMath math="e^{-i\pi/3}" />,
+  }}
+/>

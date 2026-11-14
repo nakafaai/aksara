@@ -2,33 +2,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "deductive-reasoning",
-    topic: "rule-application",
+    topic: "truth-teller",
   },
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$\\text{Rp}58{.}500$$",
-        },
-        {
           correct: true,
-          label: "$$\\text{Rp}66{.}000$$",
+          label: "Jam dinding, termos, kamus, payung",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}72{.}000$$",
+          label: "Payung, jam dinding, kamus, termos",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}76{.}000$$",
+          label: "Jam dinding, termos, payung, kamus",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}82{.}000$$",
+          label: "Termos, jam dinding, kamus, payung",
+        },
+        {
+          correct: false,
+          label: "Payung, termos, kamus, jam dinding",
         },
       ],
     },

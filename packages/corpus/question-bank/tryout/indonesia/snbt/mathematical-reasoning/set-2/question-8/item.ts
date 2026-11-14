@@ -1,16 +1,16 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
-  stimulus: "street-lamp",
+  stimulus: "paint-mixing",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "6 detik" },
-        { correct: false, label: "9 detik" },
-        { correct: false, label: "12 detik" },
-        { correct: false, label: "13,5 detik" },
-        { correct: true, label: "15 detik" },
+        { correct: false, label: "$$0\\text{ liter}$$" },
+        { correct: false, label: "$$1\\text{ liter}$$" },
+        { correct: false, label: "$$1{,}5\\text{ liter}$$" },
+        { correct: true, label: "$$2\\text{ liter}$$" },
+        { correct: false, label: "$$4\\text{ liter}$$" },
       ],
     },
   },

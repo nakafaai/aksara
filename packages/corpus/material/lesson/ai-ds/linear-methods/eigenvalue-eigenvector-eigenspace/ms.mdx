@@ -1,0 +1,237 @@
+export const metadata = {
+    title: "Nilai Eigen dan Vektor Eigen serta Ruang Eigen",
+   description: "Huraikan cara matriks menjelmakan vektor eigennya, kira vektor itu dan tentukan ruang eigennya.",
+    authors: [{ name: "Nabil Akbarazzima Fatih" }],
+    datePublished: "2025-07-12",
+    dateModified: "2026-09-19",
+    subject: "Kaedah Linear AI",
+};
+
+## Nilai Eigen dan Vektor Eigen
+
+Kebanyakan vektor berubah panjang dan arah apabila dijelmakan oleh matriks. Bagi vektor eigen, hasilnya kekal pada garis yang sama. Bagi nilai eigen nyata, nilai positif mengekalkan orientasinya, nilai eigen negatif membalikkannya, dan nilai sifar menghantarnya ke vektor sifar.
+
+Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> ialah matriks segi empat sama. **Vektor eigen** <InlineMath math="v \in \mathbb{K}^n" /> bagi **nilai eigen** <InlineMath math="\lambda \in \mathbb{K}" /> ialah vektor bukan sifar <InlineMath math="v \neq 0" /> yang memenuhi:
+
+<BlockMath math="A \cdot v = \lambda \cdot v" />
+
+Bagi nilai eigen nyata, mendarab <InlineMath math="v" /> dengan <InlineMath math="A" /> mengubah skala atau orientasinya di sepanjang satu garis nyata. Nilai eigen kompleks pula menggambarkan pendaraban dengan skalar kompleks pada subruang kompleks satu dimensi.
+
+> Mengikut definisi, nilai eigen boleh sama dengan <InlineMath math="0" />, tetapi <Highlight>vektor eigen sentiasa bukan sifar</Highlight>.
+
+## Sifat Asas Vektor Eigen
+
+**Pendaraban Skalar**: Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="v \in \mathbb{K}^n" /> dengan <InlineMath math="v \neq 0" /> ialah vektor eigen bagi <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />. Maka semua gandaan <InlineMath math="t \cdot v" /> dengan <InlineMath math="t \neq 0" /> juga vektor eigen bagi <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda" /> yang sama.
+
+Hal ini terus terhasil daripada sifat kelinearan:
+
+<BlockMath math="\begin{aligned} A \cdot (t \cdot v) &amp;= t \cdot (A \cdot v) \\ &amp;= t \cdot (\lambda \cdot v) \\ &amp;= \lambda \cdot (t \cdot v) \end{aligned}" />
+
+Oleh sebab <InlineMath math="t\neq0" />, vektor <InlineMath math="tv" /> bukan sifar dan memenuhi definisi vektor eigen untuk nilai eigen yang sama.
+
+## Contoh Pengiraan Vektor Eigen
+
+Contoh di sini **mengesahkan persamaan** <InlineMath math="Av=\lambda v" /> secara terus, sekali dengan matriks pepenjuru dan sekali dengan matriks simetri. Apabila kamu teliti kedua-duanya, kamu nampak dari mana nilai eigen datang dan cara vektor eigen ditemui. Prosedur yang sama juga kamu perlukan untuk matriks yang bukan pepenjuru dan bukan simetri.
+
+### Matriks Pepenjuru
+
+Perhatikan matriks berikut:
+
+<BlockMath math="A = \begin{pmatrix} 1 & 0 \\ 0 & 2 \end{pmatrix}" />
+
+Vektor <InlineMath math="v_1" /> di bawah ialah vektor eigen bagi <InlineMath math="\lambda_1 = 1" />. **Pendaraban dengan** <InlineMath math="A" /> mengesahkannya:
+
+<MathContainer>
+<BlockMath math="v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}" />
+<BlockMath math="A \cdot v_1 = \begin{pmatrix} 1 \\ 0 \end{pmatrix} = 1 \cdot v_1" />
+</MathContainer>
+
+Vektor <InlineMath math="v_2" /> di bawah ialah vektor eigen bagi <InlineMath math="\lambda_2 = 2" />. **Pendaraban dengan** <InlineMath math="A" /> mengesahkannya:
+
+<MathContainer>
+<BlockMath math="v_2 = \begin{pmatrix} 0 \\ 1 \end{pmatrix}" />
+<BlockMath math="A \cdot v_2 = \begin{pmatrix} 0 \\ 2 \end{pmatrix} = 2 \cdot v_2" />
+</MathContainer>
+
+Vektor yang terletak di luar paksi koordinat ini biasanya **berubah arah**. Bagi matriks pepenjuru di atas:
+
+<BlockMath math="A\begin{pmatrix}1\\1\end{pmatrix}=\begin{pmatrix}1\\2\end{pmatrix}\neq\lambda\begin{pmatrix}1\\1\end{pmatrix}\quad\text{bagi setiap }\lambda" />
+
+### Matriks Simetri
+
+Perhatikan matriks berikut:
+
+<BlockMath math="A = \begin{pmatrix} 3 & 1 \\ 1 & 3 \end{pmatrix}" />
+
+Vektor <InlineMath math="v_1" /> di bawah ialah vektor eigen bagi <InlineMath math="\lambda_1 = 2" />. **Pendaraban** dengan <InlineMath math="A" /> mengesahkannya:
+
+<MathContainer>
+<BlockMath math="v_1 = \begin{pmatrix} -1 \\ 1 \end{pmatrix}" />
+<BlockMath math="A \cdot v_1 = \begin{pmatrix} -2 \\ 2 \end{pmatrix} = 2 \cdot v_1" />
+</MathContainer>
+
+Vektor <InlineMath math="v_2" /> di bawah ialah vektor eigen bagi <InlineMath math="\lambda_2 = 4" />. Pendaraban dengan <InlineMath math="A" /> mengesahkannya:
+
+<MathContainer>
+<BlockMath math="v_2 = \begin{pmatrix} 1 \\ 1 \end{pmatrix}" />
+<BlockMath math="A \cdot v_2 = \begin{pmatrix} 4 \\ 4 \end{pmatrix} = 4 \cdot v_2" />
+</MathContainer>
+
+Putar atau zum rajah ini untuk membandingkan setiap segmen dengan imejnya di bawah matriks simetri di atas. Vektor unit ungu <InlineMath math="v_1" /> dan <InlineMath math="v_2" /> hanya menjadi lebih panjang: imej jingganya kekal pada garis yang sama, diskalakan dengan <InlineMath math="\lambda_1=2" /> dan <InlineMath math="\lambda_2=4" />. Vektor <InlineMath math="e_1" /> pula tidak begitu, kerana <InlineMath math="Ae_1=(3,1)^T" /> berpusing menjauhi paksi <InlineMath math="x" />. Hanya arah eigen yang kekal, dan panjang setiap imej terus menunjukkan nilai eigennya.
+
+<MathVisual
+  title={<>Vektor eigen kekal pada garisnya</>}
+  description={<>Segmen ungu ialah vektor unit, manakala segmen jingga ialah imejnya di bawah <InlineMath math="A=\begin{pmatrix}3&1\\1&3\end{pmatrix}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 3.4 }, y: { min: -1.6, max: 3.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "av1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT2, y: Math.SQRT2 }, appearance: "primary" },
+      { id: "av2", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, appearance: "primary" },
+      { id: "ae1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "v1", kind: "segment", from: { x: 0, y: 0 }, to: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "v2", kind: "segment", from: { x: 0, y: 0 }, to: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, appearance: "secondary" },
+      { id: "e1", kind: "segment", from: { x: 0, y: 0 }, to: { x: 1, y: 0 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "unit", objectId: "unit", at: { x: -Math.SQRT1_2, y: -Math.SQRT1_2 }, placement: "below-left" },
+      { key: "av1", objectId: "av1", at: { x: -Math.SQRT2, y: Math.SQRT2 }, placement: "above-left" },
+      { key: "av2", objectId: "av2", at: { x: 2 * Math.SQRT2, y: 2 * Math.SQRT2 }, placement: "above-right" },
+      { key: "ae1", objectId: "ae1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "v1", objectId: "v1", at: { x: -Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-left" },
+      { key: "v2", objectId: "v2", at: { x: Math.SQRT1_2, y: Math.SQRT1_2 }, placement: "below-right" },
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    "unit": <InlineMath math="\|v\|=1" />,
+    "av1": <InlineMath math="Av_1=2v_1" />,
+    "av2": <InlineMath math="Av_2=4v_2" />,
+    "ae1": <InlineMath math="Ae_1" />,
+    "v1": <InlineMath math="v_1" />,
+    "v2": <InlineMath math="v_2" />,
+    "e1": <InlineMath math="e_1" />,
+  }}
+/>
+
+## Ketakbersandaran Linear Vektor Eigen
+
+Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda_1, \ldots, \lambda_k \in \mathbb{K}" /> ialah **nilai eigen yang berbeza secara berpasangan** bagi <InlineMath math="A" />, iaitu <InlineMath math="\lambda_i \neq \lambda_j" /> apabila <InlineMath math="i \neq j" />. Maka vektor eigen yang sepadan, <InlineMath math="v_1, \ldots, v_k \in \mathbb{K}^n" />, adalah tak bersandar linear.
+
+Melalui aruhan matematik, teorem ini membawa kepada kesimpulan bahawa matriks <InlineMath math="n \times n" /> mempunyai paling banyak <InlineMath math="n" /> nilai eigen yang berbeza.
+
+## Ruang Eigen dan Kegandaan Geometri
+
+Bagi setiap nilai eigen, kita takrifkan satu ruang vektor yang mengandungi setiap penyelesaian <InlineMath math="Av=\lambda v" />, termasuk vektor sifar.
+
+Katakan <InlineMath math="A \in \mathbb{K}^{n \times n}" /> dan <InlineMath math="\lambda \in \mathbb{K}" />. Set berikut kita panggil **ruang eigen** bagi matriks <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda" />.
+
+<BlockMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : A \cdot v = \lambda \cdot v\}" />
+
+Dimensi sesuatu ruang eigen dipanggil **kegandaan geometri**. Kita menulisnya sebagai
+
+<BlockMath math="\dim E_A(\lambda)" />
+
+Jadi, nilai <InlineMath math="\dim E_A(\lambda)" /> memberikan kegandaan geometri bagi nilai eigen <InlineMath math="\lambda" /> untuk matriks <InlineMath math="A" />.
+
+### Sifat Ruang Eigen
+
+Setiap ruang eigen memenuhi sifat berikut:
+
+1. **Vektor sifar bukan vektor eigen**: Ruang eigen <InlineMath math="E_A(\lambda)" /> mengandungi vektor sifar bersama semua vektor eigen bagi <InlineMath math="\lambda" />.
+
+2. **Set vektor eigen**: <InlineMath math="E_A(\lambda) \setminus \{0\}" /> ialah set semua vektor eigen bagi <InlineMath math="A" /> yang sepadan dengan <InlineMath math="\lambda" />.
+
+3. **Syarat nilai eigen**: <InlineMath math="\lambda" /> ialah nilai eigen bagi <InlineMath math="A" /> jika dan hanya jika <InlineMath math="E_A(\lambda) \neq \{0\}" />.
+
+4. **Batas dimensi**: <InlineMath math="0 \leq \dim E_A(\lambda) \leq n" />. Jika <InlineMath math="\lambda" /> ialah nilai eigen, batas bawahnya naik menjadi <InlineMath math="1" />.
+
+5. **Hubungan dengan ruang nol**: <InlineMath math="E_A(0) = \{v \in \mathbb{K}^n : A \cdot v = 0\} = \ker A" />.
+
+6. **Ruang eigen secara am**: <InlineMath math="E_A(\lambda) = \{v \in \mathbb{K}^n : (A - \lambda \cdot I) \cdot v = 0\} = \ker(A - \lambda \cdot I)" />.
+
+7. **Persilangan ruang eigen**: Jika <InlineMath math="\lambda_1 \neq \lambda_2" />, maka <InlineMath math="E_A(\lambda_1) \cap E_A(\lambda_2) = \{0\}" />.
+
+Dengan <InlineMath math="A=\operatorname{diag}(2,2,1)" />, setiap vektor berbentuk <InlineMath math="(a,b,0)" /> memenuhi <InlineMath math="Av=2v" />. Jadi <InlineMath math="E_A(2)" /> ialah satu satah penuh dengan kegandaan geometri <InlineMath math="2" />, manakala <InlineMath math="E_A(1)" /> ialah garis yang direntang oleh <InlineMath math="e_3" />.
+
+<MathVisual
+  title={<>Ruang eigen <InlineMath math="E_A(2)" /> ialah satu satah</>}
+  description={<>Bagi <InlineMath math="A=\operatorname{diag}(2,2,1)" />, segi empat sama ungu terletak dalam <InlineMath math="E_A(2)" />, iaitu satah <InlineMath math="z=0" />. Vektor hijau kebiruan <InlineMath math="v=(1,1,0)" /> dipetakan kepada vektor magenta <InlineMath math="Av=(2,2,0)" /> di dalam satah itu. Segmen jingga merentang <InlineMath math="E_A(1)" />, iaitu garis yang melalui <InlineMath math="e_3" />.</>}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 2.5 }, z: { min: -0.5, max: 1.5 } },
+    view: { kind: "isometric", target: { x: 1, y: 1, z: 0.5 } },
+    objects: [
+      { id: "plane", kind: "polygon", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2, y: 0, z: 0 }, { x: 2, y: 2, z: 0 }, { x: 0, y: 2, z: 0 }], appearance: "secondary" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 2, z: 0 }, appearance: "answer" },
+      { id: "vector", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 1, y: 1, z: 0 }, appearance: "construction" },
+      { id: "axis", kind: "segment", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "vector", objectId: "vector", at: { x: 1, y: 1, z: 0 }, placement: "below-right" },
+      { key: "image", objectId: "image", at: { x: 2, y: 2, z: 0 }, placement: "right" },
+      { key: "axis", objectId: "axis", at: { x: 0, y: 0, z: 1 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    "vector": <InlineMath math="v" />,
+    "image": <InlineMath math="Av" />,
+    "axis": <InlineMath math="e_3" />,
+  }}
+/>
+
+## Hubungan dengan Kebolehsongsangan
+
+Matriks <InlineMath math="A \in \mathbb{K}^{n \times n}" /> boleh disongsangkan jika dan hanya jika **sifar bukan salah satu** nilai eigennya.
+
+Sebabnya, <InlineMath math="A" /> boleh disongsangkan jika dan hanya jika <InlineMath math="\operatorname{rank} A = n" />, atau setara dengannya <InlineMath math="E_A(0) = \ker A = \{0\}" />. Jadi nilai eigen sifar bermaksud matriks itu menghantar suatu vektor bukan sifar kepada sifar, dan itulah yang menghalang matriks itu daripada boleh disongsangkan.
+
+### Nilai Eigen Matriks Songsang
+
+Jika matriks <InlineMath math="A" /> boleh disongsangkan dan <InlineMath math="v \neq 0" /> ialah vektor eigen bagi <InlineMath math="A" /> untuk nilai eigen <InlineMath math="\lambda \in \mathbb{K}" />, maka <InlineMath math="v" /> juga vektor eigen bagi <InlineMath math="A^{-1}" /> untuk nilai eigen <InlineMath math="\frac{1}{\lambda}" />.
+
+**Kenakan** <InlineMath math="A^{-1}" /> pada <InlineMath math="A \cdot v = \lambda \cdot v" />, dan kita dapat:
+
+<BlockMath math="v = \lambda A^{-1}v \quad \Longrightarrow \quad A^{-1}v = \frac{1}{\lambda}v" />
+
+Bagi <InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" />, vektor <InlineMath math="v=(2,-1)" /> memberikan <InlineMath math="Av=(2-2,4-4)=(0,0)=0\cdot v" />. Nilai eigen <InlineMath math="0" /> bermaksud <InlineMath math="A" /> memampatkan satu arah penuh ke titik asalan, jadi tiada songsangan yang dapat membawanya kembali.
+
+<MathVisual
+  title={<>Nilai eigen sifar meratakan satah</>}
+  description={<><InlineMath math="A=\begin{pmatrix}1&2\\2&4\end{pmatrix}" /> menghantar segi empat sama unit kelabu ke segmen ungu dari <InlineMath math="(0,0)" /> ke <InlineMath math="(3,6)" />. Vektor eigen hijau kebiruan <InlineMath math="v=(2,-1)" /> dipetakan kepada titik magenta <InlineMath math="Av=0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "image", kind: "segment", from: { x: 0, y: 0 }, to: { x: 3, y: 6 }, appearance: "secondary" },
+      { id: "kernel", kind: "segment", from: { x: 0, y: 0 }, to: { x: 2, y: -1 }, appearance: "construction" },
+      { id: "zero", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "kernel", objectId: "kernel", at: { x: 2, y: -1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 0 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    "kernel": <InlineMath math="v" />,
+    "zero": <InlineMath math="Av=0" />,
+  }}
+/>
+
+## Kriteria Kebolehsongsangan
+
+Bagi matriks segi empat sama <InlineMath math="A \in \mathbb{K}^{n \times n}" />, pernyataan berikut adalah setara:
+
+1. <InlineMath math="A" /> boleh disongsangkan
+2. Wujud matriks <InlineMath math="A^{-1} \in \mathbb{K}^{n \times n}" /> dengan <InlineMath math="A \cdot A^{-1} = I = A^{-1} \cdot A" />
+3. <InlineMath math="A" /> mempunyai pangkat penuh, <InlineMath math="\operatorname{rank} A = n" />, atau setara dengannya <InlineMath math="\ker A = \{0\}" />
+4. Lajur-lajur <InlineMath math="A" /> tak bersandar linear
+5. Baris-baris <InlineMath math="A" /> tak bersandar linear
+6. <InlineMath math="\det A \neq 0" />
+7. <InlineMath math="0" /> bukan nilai eigen bagi <InlineMath math="A" />
+
+**Mana-mana satu syarat ini** sudah cukup untuk membuktikan bahawa matriks itu boleh disongsangkan.

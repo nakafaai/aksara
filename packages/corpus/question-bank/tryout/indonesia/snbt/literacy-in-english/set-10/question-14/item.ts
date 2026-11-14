@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "research-design",
   },
-  stimulus: "app-reminders",
+  stimulus: "subscription-churn",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The reminder group had more people in it than the no-reminder group.",
+            "Lumen's total revenue in July to September compared with its revenue in April to June",
         },
         {
           correct: false,
           label:
-            "The table gives no figures for the share of users still active on day 7.",
+            "The number of July to September sign-ups who joined through the company's advertising",
+        },
+        {
+          correct: false,
+          label:
+            "The churn rates of rival streaming services that did not raise their prices in July",
         },
         {
           correct: true,
           label:
-            "By day 90, the reminder group was only one point ahead of the other.",
+            "How many of the July to September cancellations came from trial accounts and how many from subscribers who had paid before July",
         },
         {
           correct: false,
           label:
-            "The people who received reminders were chosen because they were keener.",
-        },
-        {
-          correct: false,
-          label:
-            "More people in the reminder group than in the other had left by day 7.",
+            "The number of subscribers who were still on a free trial at the end of December",
         },
       ],
     },

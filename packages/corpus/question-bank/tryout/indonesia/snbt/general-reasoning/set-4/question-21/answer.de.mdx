@@ -1,9 +1,37 @@
-Die Differenzen <InlineMath math="3, 2, 5, 7, 12" /> zeigen kein festes Muster. Prüfe daher, **wie jedes Glied mit den beiden vorigen zusammenhängt**:
+Die Aufgabe nennt nur drei Glieder, und die liegen weit auseinander: <InlineMath math="U_1=6" />, <InlineMath math="U_4=22" /> und <InlineMath math="U_6=52" />. Zwei Werte fehlen noch, nämlich das zweite Glied und die Zahl <InlineMath math="k" />, die abgezogen wird. Für zwei Unbekannte brauchst du **zwei Gleichungen**, eine aus <InlineMath math="U_4" /> und eine aus <InlineMath math="U_6" />.
 
-<BlockMath math="2+5=7,\quad 5+7=12,\quad 7+12=19,\quad 12+19=31" />
+Nenn das zweite Glied <InlineMath math="U_2=x" />. Bau die ersten Glieder mit der Regel <InlineMath math="U_n=U_{n-1}+U_{n-2}-k" /> auf. Denk daran, dass <InlineMath math="k" /> bei jedem Schritt erneut abgezogen wird:
 
-Ab dem dritten Glied ist jedes Glied die Summe der beiden vorigen. Das nächste Glied ist:
+<BlockMath math="\begin{aligned}
+U_3 &= U_2+U_1-k = x+6-k \\
+U_4 &= U_3+U_2-k = (x+6-k)+x-k = 2x+6-2k
+\end{aligned}" />
 
-<BlockMath math="19+31=50" />
+Wegen <InlineMath math="U_4=22" /> gilt <InlineMath math="2x+6-2k=22" />, also <InlineMath math="x-k=8" />. Damit kennst du sofort das dritte Glied, denn <InlineMath math="U_3=6+(x-k)=6+8=14" />.
 
-Ab der zweiten Differenz wiederholen die Differenzen <InlineMath math="2, 5, 7, 12" /> die Folge selbst, was zur Summenregel passt. Die nächste Zahl ist also <InlineMath math="50" />.
+Rechne jetzt mit dem noch unbekannten <InlineMath math="k" /> bis zum fünften und sechsten Glied weiter:
+
+<BlockMath math="\begin{aligned}
+U_5 &= U_4+U_3-k = 22+14-k = 36-k \\
+U_6 &= U_5+U_4-k = (36-k)+22-k = 58-2k
+\end{aligned}" />
+
+Wegen <InlineMath math="U_6=52" /> gilt <InlineMath math="58-2k=52" />, also <InlineMath math="k=3" />. Aus <InlineMath math="x-k=8" /> folgt für das zweite Glied <InlineMath math="x=11" />.
+
+Sobald du <InlineMath math="k" /> kennst, rechnest du bis zum achten Glied vorwärts:
+
+<BlockMath math="\begin{aligned}
+U_5 &= 36-3 = 33 \\
+U_7 &= U_6+U_5-3 = 52+33-3 = 82 \\
+U_8 &= U_7+U_6-3 = 82+52-3 = 131
+\end{aligned}" />
+
+Prüf die ganze Folge von vorn: <InlineMath math="6, 11, 14, 22, 33, 52, 82, 131" />. Jedes Glied ist tatsächlich die Summe der beiden vorherigen minus <InlineMath math="3" />, zum Beispiel <InlineMath math="14+22-3=33" />. Auch das erste, vierte und sechste Glied passen zu den gegebenen Werten.
+
+Ein paar falsche Antworten tauchen oft auf:
+
+- <InlineMath math="82" /> ist das siebte Glied. Da hast du einen Schritt zu früh aufgehört.
+- <InlineMath math="134" /> entsteht, wenn du im letzten Schritt vergisst, <InlineMath math="k" /> abzuziehen, also <InlineMath math="82+52=134" />.
+- Wenn du <InlineMath math="k" /> als null behandelst, wie bei einer gewöhnlichen Fibonacci-Folge, liefert das vierte Glied <InlineMath math="22" /> den Wert <InlineMath math="x=8" />. Mit <InlineMath math="x=8" /> wäre das sechste Glied <InlineMath math="58" /> statt <InlineMath math="52" />. Also kann <InlineMath math="k" /> nicht null sein.
+
+Das achte Glied der Folge ist also <InlineMath math="131" />.

@@ -1,0 +1,42 @@
+You need to judge five statements about fixed points and lines that are mapped onto themselves. The safest route is to **write down the image formula of** <InlineMath math="T" /> **first**, then test every statement with it.
+
+# The image formula
+
+A rotation of <InlineMath math="180^\circ" /> about <InlineMath math="O" /> flips the sign of both coordinates. A reflection in the line <InlineMath math="x=3" /> keeps <InlineMath math="y" /> and turns <InlineMath math="x" /> into <InlineMath math="6-x" />, because <InlineMath math="3" /> is halfway between <InlineMath math="x" /> and <InlineMath math="6-x" />. The rotation comes first, then the reflection:
+
+<BlockMath math="\begin{aligned}
+(x,y)&\xrightarrow{\text{rotation }180^\circ}(-x,-y) \\
+&\xrightarrow{\text{reflect in }x=3}\bigl(6-(-x),\,-y\bigr)=(x+6,\,-y)
+\end{aligned}" />
+
+So <InlineMath math="T(x,y)=(x+6,\,-y)" />. In words, **every point is flipped over the horizontal axis and then slid to the right** by <InlineMath math="6" /> units.
+
+# Judging each statement
+
+**Statement 1**. A fixed point would need <InlineMath math="(x+6,-y)=(x,y)" />. The equation <InlineMath math="x+6=x" /> means <InlineMath math="6=0" />, which is impossible. Not a single point stays put. **True**.
+
+**Statement 2**. Take any point on that line, <InlineMath math="(3,t)" />:
+
+<BlockMath math="T(3,t)=(3+6,\,-t)=(9,\,-t)" />
+
+All the images lie on the line <InlineMath math="x=9" />, not on <InlineMath math="x=3" />. A mirror line doesn't move under the reflection alone, but here the rotation first carries <InlineMath math="(3,t)" /> to <InlineMath math="(-3,-t)" />, far from the mirror. **False**.
+
+**Statement 3**. A point on the <InlineMath math="x" />-axis looks like <InlineMath math="(t,0)" />, and its image <InlineMath math="(t+6,0)" /> is still on the <InlineMath math="x" />-axis. Going the other way, every point <InlineMath math="(s,0)" /> is the image of <InlineMath math="(s-6,0)" />, so the image covers the whole <InlineMath math="x" />-axis. The points move, but the line stays. **True**.
+
+**Statement 4**. A point on the line <InlineMath math="y=x" /> looks like <InlineMath math="(t,t)" />:
+
+<BlockMath math="\begin{aligned}
+T(t,t)&=(t+6,\,-t) \\
+X=t+6,\quad Y&=-t \\
+Y&=-(X-6)=-X+6
+\end{aligned}" />
+
+Check with two points: <InlineMath math="(0,0)" /> goes to <InlineMath math="(6,0)" /> and <InlineMath math="(1,1)" /> goes to <InlineMath math="(7,-1)" />. Both satisfy <InlineMath math="y=-x+6" />. **True**.
+
+**Statement 5**. Apply the formula for <InlineMath math="T" /> twice:
+
+<BlockMath math="T\bigl(T(x,y)\bigr)=T(x+6,\,-y)=\bigl((x+6)+6,\,-(-y)\bigr)=(x+12,\,y)" />
+
+The flip over the <InlineMath math="x" />-axis happens twice and cancels out, while the slides add up. Every point moves <InlineMath math="12" /> units to the right. **True**.
+
+So the true statements are statements 1, 3, 4, and 5.

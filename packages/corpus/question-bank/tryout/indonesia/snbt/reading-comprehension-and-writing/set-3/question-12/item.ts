@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "word-choice",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "inference",
   },
-  stimulus: "suspension-bridge",
+  stimulus: "lapak",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "_membawa_ diganti _membawakan_",
+          label:
+            "Sekitar dua pertiga dari seluruh pembeli harian pasar pada bulan Juli adalah warga yang sebelumnya membeli ikan dari pedagang keliling.",
+        },
+        {
+          correct: false,
+          label:
+            "Pedagang keliling kehilangan sekitar dua ratus pembeli harian setelah pasar dibenahi.",
+        },
+        {
+          correct: false,
+          label:
+            "Sepertiga dari pembeli tambahan pada bulan Juli sebelumnya tidak pernah membeli ikan.",
         },
         {
           correct: true,
-          label: "_seluas_ diganti _sejauh_",
+          label:
+            "Pada bulan Juli, lebih dari seratus pembeli harian pasar adalah warga yang sebelumnya membeli ikan dari pedagang keliling.",
         },
         {
           correct: false,
-          label: "_memutar_ diganti _berputar_",
-        },
-        {
-          correct: false,
-          label: "_tanpa_ diganti _dengan_",
-        },
-        {
-          correct: false,
-          label: "_ke pasar_ diganti _di pasar_",
+          label:
+            "Kenaikan jumlah pembeli harian terutama disebabkan oleh pedagang keliling yang pindah berjualan ke dalam pasar.",
         },
       ],
     },

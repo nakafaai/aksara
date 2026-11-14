@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
-    contentDomain: "writing",
-    topic: "conjunction",
+    cognitiveLevel: "reasoning",
+    contentDomain: "reading",
+    topic: "main-idea",
   },
-  stimulus: "weaving-class",
+  stimulus: "perahu",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "sehingga",
+          label:
+            "Catatan peminjaman memperlihatkan bahwa orang dewasa di hilir dan anak-anak di hulu menyukai jenis buku yang berbeda.",
         },
         {
           correct: false,
-          label: "karena",
-        },
-        {
-          correct: false,
-          label: "bahkan",
+          label:
+            "Pita berwarna membuat peti buku untuk hilir dan hulu tidak tertukar ketika dinaikkan ke perahu.",
         },
         {
           correct: true,
-          label: "tetapi",
+          label:
+            "Relawan menyiasati muatan perahu yang terbatas dengan menyesuaikan isi peti dengan minat pembaca di tiap wilayah sehingga makin sedikit buku yang terbawa tanpa dipinjam.",
         },
         {
           correct: false,
-          label: "lalu",
+          label:
+            "Bagian muatan yang tidak pernah dipinjam selama sebulan turun dari sekitar sepertiga menjadi kurang dari sepersepuluh.",
+        },
+        {
+          correct: false,
+          label:
+            "Muatan perahu yang terbatas membuat relawan hanya membawa buku yang paling disukai anak-anak.",
         },
       ],
     },

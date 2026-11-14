@@ -1,0 +1,209 @@
+
+export const metadata = {
+  title: "Pantulan pada Titik",
+  description: "Anggap pantulan pada titik sebagai setengah pusingan dan kira titik serta garis imej dengan rumus koordinat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-10",
+  dateModified: "2026-11-08",
+  subject: "Transformasi Geometri",
+};
+
+## Pusat sebagai Titik Tengah antara Titik dan Imejnya
+
+Pantulan pada titik, yang sering dipanggil putaran setengah pusingan (<InlineMath math="180^\circ" />), ialah transformasi geometri yang memetakan setiap titik pada objek ke kedudukan baharu supaya <Highlight>pusat pantulan menjadi titik tengah</Highlight> antara titik asal dengan imejnya.
+
+Katakan pusat pantulan ialah <InlineMath math="P(a,b)" />. Kalau titik <InlineMath math="Q(x,y)" /> dipantulkan pada titik <InlineMath math="P" />, imejnya <InlineMath math="Q'(x',y')" /> terletak pada garis yang melalui <InlineMath math="Q" /> dan <InlineMath math="P" />, dengan <InlineMath math="P" /> sebagai titik tengah tembereng <InlineMath math="QQ'" />.
+
+### Petua Pantulan pada Titik
+
+Pusat pantulan ialah **titik tengah** tembereng yang menyambungkan kedua-dua titik. Oleh itu, purata setiap pasangan koordinat sama dengan koordinat pusat yang sepadan:
+
+<MathContainer>
+  <BlockMath math="\frac{x+x'}{2}=a\quad\Longrightarrow\quad x'=2a-x" />
+  <BlockMath math="\frac{y+y'}{2}=b\quad\Longrightarrow\quad y'=2b-y" />
+</MathContainer>
+
+Titik pada pusat kekal di tempatnya. Contohnya, <InlineMath math="Q(a,b)" /> memberikan <InlineMath math="Q'(2a-a,2b-b)=(a,b)" />.
+
+Setengah pusingan pada satu pusat memusingkan seluruh rajah. Pantulkan segi tiga <InlineMath math="ABC" /> dengan <InlineMath math="A(2, 1)" />, <InlineMath math="B(4, 2)" /> dan <InlineMath math="C(3, 4)" /> pada <InlineMath math="(1, 1)" />: setiap bucu imej ialah <InlineMath math="(2 - x, 2 - y)" />, jadi <InlineMath math="A'(0, 1)" />, <InlineMath math="B'(-2, 0)" /> dan <InlineMath math="C'(-1, -2)" />. Setiap tembereng dari bucu ke imejnya melalui pusat dan dibahagi dua sama panjang di situ.
+
+<MathVisual
+  title={<>Segi tiga yang dipantulkan pada <InlineMath math="(1, 1)" /></>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dan imejnya <InlineMath math="A'B'C'" /> selepas pantulan pada titik <InlineMath math="(1, 1)" />, dengan setiap bucu disambungkan ke imejnya melalui pusat.</>}
+  labels={{
+    tri: <InlineMath math="ABC" />,
+    image: <InlineMath math="A'B'C'" />,
+    c: <InlineMath math="(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 4.6 }, y: { min: -2.6, max: 4.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "ja", kind: "segment", from: { x: 2, y: 1 }, to: { x: 0, y: 1 }, appearance: "construction" },
+      { id: "jb", kind: "segment", from: { x: 4, y: 2 }, to: { x: -2, y: 0 }, appearance: "construction" },
+      { id: "jc", kind: "segment", from: { x: 3, y: 4 }, to: { x: -1, y: -2 }, appearance: "construction" },
+      { id: "tri", kind: "polygon", vertices: [{ x: 2, y: 1 }, { x: 4, y: 2 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "image", kind: "polygon", vertices: [{ x: 0, y: 1 }, { x: -2, y: 0 }, { x: -1, y: -2 }], appearance: "secondary" },
+      { id: "c", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "tri", objectId: "tri", at: { x: 3, y: 4 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: -2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+## Memantulkan Titik pada Titik Lain
+
+Tentukan imej setengah pusingan <InlineMath math="\sigma_{(2,3)}" /> bagi titik <InlineMath math="(5, 4)" />.
+
+Maksudnya, kita memantulkan titik <InlineMath math="Q(5,4)" /> pada titik pusat <InlineMath math="P(2,3)" />.
+
+Di sini, <InlineMath math="x=5" />, <InlineMath math="y=4" />, <InlineMath math="a=2" />, dan <InlineMath math="b=3" />.
+
+Kira **dua kali setiap koordinat pusat**, kemudian tolak koordinat titik asal:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(2) - 5 \\ &amp;= 4 - 5 \\ &amp;= -1 \end{aligned}" />
+  <BlockMath math="y' = 2b - y = 2(3) - 4 = 6 - 4 = 2" />
+</MathContainer>
+
+Imej bagi titik <InlineMath math="(5,4)" /> ialah <InlineMath math="(-1,2)" />.
+
+<MathVisual
+  title={<>Setengah pusingan <InlineMath math="Q(5, 4)" /> pada <InlineMath math="P(2, 3)" /></>}
+  description={<>Pusat <InlineMath math="P(2, 3)" /> ialah titik tengah antara <InlineMath math="Q(5, 4)" /> dengan imejnya <InlineMath math="Q'(-1, 2)" />.</>}
+  labels={{
+    q: <InlineMath math="Q(5, 4)" />,
+    c: <InlineMath math="P(2, 3)" />,
+    image: <InlineMath math="Q'(-1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 5.6 }, y: { min: 1, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "join", kind: "segment", from: { x: 5, y: 4 }, to: { x: -1, y: 2 }, appearance: "construction" },
+      { id: "q", kind: "point", at: { x: 5, y: 4 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: -1, y: 2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "q", objectId: "q", at: { x: 5, y: 4 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "image", objectId: "image", at: { x: -1, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
+## Memantulkan Garis pada Titik
+
+Tentukan imej setengah pusingan <InlineMath math="\sigma_{(1,3)}" /> bagi garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x - y + 3 = 0" />.
+
+Ambil sebarang titik <InlineMath math="(x,y)" /> pada garis <InlineMath math="l" />. Imejnya, <InlineMath math="(x',y')" />, selepas pantulan pada titik <InlineMath math="P(1,3)" /> ialah:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(3) - y \\ &amp;= 6 - y \\ &amp;\implies y = 6 - y' \end{aligned}" />
+</MathContainer>
+
+Gantikan <InlineMath math="x = 2 - x'" /> dan <InlineMath math="y = 6 - y'" /> ke dalam **persamaan asal** garis <InlineMath math="l" />:
+
+<MathContainer>
+  <BlockMath math="2(2 - x') - (6 - y') + 3 = 0" />
+  <BlockMath math="4 - 2x' - 6 + y' + 3 = 0" />
+  <BlockMath math="-2x' + y' + 1 = 0" />
+</MathContainer>
+
+Dengan menukar <InlineMath math="x'" /> dan <InlineMath math="y'" /> kembali kepada <InlineMath math="x" /> dan <InlineMath math="y" />, persamaan garis imej <InlineMath math="l'" /> ialah:
+
+<BlockMath math="-2x + y + 1 = 0" />
+
+Persamaan itu juga boleh ditulis sebagai <InlineMath math="2x - y - 1 = 0" />.
+
+<MathVisual
+  title={<>Garis <InlineMath math="l" /> dan imejnya <InlineMath math="l'" /></>}
+  description={<>Garis <InlineMath math="l: 2x - y + 3 = 0" />, imej setengah pusingannya <InlineMath math="l': 2x - y - 1 = 0" /> pada <InlineMath math="(1, 3)" />, serta titik <InlineMath math="(0, 3)" /> pada <InlineMath math="l" /> dengan imejnya <InlineMath math="(2, 3)" /> pada <InlineMath math="l'" />.</>}
+  labels={{
+    l: <InlineMath math="l: 2x - y + 3 = 0" />,
+    "image-line": <InlineMath math="l': 2x - y - 1 = 0" />,
+    c: <InlineMath math="(1, 3)" />,
+    a: <InlineMath math="(0, 3)" />,
+    image: <InlineMath math="(2, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "l", kind: "line", through: [{ x: 0, y: 3 }, { x: 1, y: 5 }], appearance: "primary" },
+      { id: "image-line", kind: "line", through: [{ x: 0, y: -1 }, { x: 1, y: 1 }], appearance: "secondary" },
+      { id: "join", kind: "segment", from: { x: 0, y: 3 }, to: { x: 2, y: 3 }, appearance: "construction" },
+      { id: "a", kind: "point", at: { x: 0, y: 3 }, appearance: "primary" },
+      { id: "c", kind: "point", at: { x: 1, y: 3 }, appearance: "answer" },
+      { id: "image", kind: "point", at: { x: 2, y: 3 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l", objectId: "l", at: { x: 3 / 2, y: 6 }, placement: "left" },
+      { key: "image-line", objectId: "image-line", at: { x: 3, y: 5 }, placement: "right" },
+      { key: "c", objectId: "c", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "a", objectId: "a", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "image", objectId: "image", at: { x: 2, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+## Latihan
+
+Soalan-soalan ini menggunakan **setengah pusingan** pada pusat yang diberi. Soalan ketiga memantulkan garis, jadi persamaannya ditransformasikan.
+
+1.  Tentukan imej setengah pusingan <InlineMath math="\sigma_{(-2,3)}" /> bagi titik <InlineMath math="(3, -4)" />.
+2.  Titik <InlineMath math="K(-5, 1)" /> dipantulkan pada asalan <InlineMath math="O(0,0)" />. Tentukan koordinat imejnya.
+3.  Tentukan imej setengah pusingan <InlineMath math="\sigma_{(1,-3)}" /> bagi garis <InlineMath math="l" /> dengan persamaan <InlineMath math="2x + 5y + 6 = 0" />.
+
+### Penyelesaian
+
+Bagi titik, semak bahawa **pusat ialah titik tengah** antara titik asal dengan imejnya. Bagi garis, nyatakan koordinat asal dalam sebutan koordinat imej sebelum menggantikannya.
+
+**Penyelesaian 1**
+
+Pusat <InlineMath math="P(-2,3)" />, titik <InlineMath math="Q(3,-4)" />. Jadi <InlineMath math="a=-2, b=3, x=3, y=-4" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2a - x \\ &amp;= 2(-2) - 3 \\ &amp;= -4 - 3 \\ &amp;= -7 \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2b - y \\ &amp;= 2(3) - (-4) \\ &amp;= 6 + 4 \\ &amp;= 10 \end{aligned}" />
+</MathContainer>
+
+Jadi, imej bagi titik <InlineMath math="Q(3,-4)" /> ialah <InlineMath math="(-7,10)" />.
+
+**Penyelesaian 2**
+
+Pusat <InlineMath math="O(0,0)" />, titik <InlineMath math="K(-5,1)" />. Jadi <InlineMath math="a=0, b=0, x=-5, y=1" />.
+
+<MathContainer>
+  <BlockMath math="x' = 2(0) - (-5) = 0 + 5 = 5" />
+  <BlockMath math="y' = 2(0) - 1 = 0 - 1 = -1" />
+</MathContainer>
+
+Jadi, imej bagi titik <InlineMath math="K(-5,1)" /> ialah <InlineMath math="K'(5,-1)" />.
+
+**Penyelesaian 3**
+
+Pusat <InlineMath math="P(1,-3)" />. Garis <InlineMath math="2x + 5y + 6 = 0" />.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} x' &amp;= 2(1) - x \\ &amp;= 2 - x \\ &amp;\implies x = 2 - x' \end{aligned}" />
+  <BlockMath math="\begin{aligned} y' &amp;= 2(-3) - y \\ &amp;= -6 - y \\ &amp;\implies y = -6 - y' \end{aligned}" />
+</MathContainer>
+
+Gantikan ke dalam persamaan garis:
+
+<MathContainer>
+  <BlockMath math="2(2 - x') + 5(-6 - y') + 6 = 0" />
+  <BlockMath math="4 - 2x' - 30 - 5y' + 6 = 0" />
+  <BlockMath math="-2x' - 5y' - 20 = 0" />
+</MathContainer>
+
+Persamaan garis imej: <InlineMath math="-2x - 5y - 20 = 0" /> atau <InlineMath math="2x + 5y + 20 = 0" />.

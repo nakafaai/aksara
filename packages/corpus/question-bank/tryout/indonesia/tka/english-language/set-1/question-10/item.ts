@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "recount",
-    topic: "reader-response",
+    contentDomain: "procedure",
+    topic: "information-validity",
   },
-  stimulus: "repair-workshop",
+  stimulus: "gauge",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Speed should take priority when a repair initially appears routine.",
-        },
-        {
-          correct: false,
-          label: "Service notes make practical work less reliable.",
+            "$$7.5$$ mm of rain fell between Monday's and Tuesday's readings.",
         },
         {
           correct: false,
           label:
-            "A mentor best protects safety by giving the solution before the learner tests an idea.",
+            "$$9$$ mm of rain fell between Monday's and Tuesday's readings.",
+        },
+        {
+          correct: false,
+          label:
+            "The rain fell harder on Monday night than it did before Monday's reading.",
+        },
+        {
+          correct: false,
+          label:
+            "Tuesday's reading would have been the same if the gauge had been emptied on Monday.",
         },
         {
           correct: true,
           label:
-            "Patience can prevent unnecessary repairs and repeated mistakes.",
-        },
-        {
-          correct: false,
-          label:
-            "Measurements are unnecessary when replacement parts look identical.",
+            "$$4.5$$ mm of rain fell between Monday's and Tuesday's readings.",
         },
       ],
     },

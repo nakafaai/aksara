@@ -1,9 +1,31 @@
-Die Flugzeit folgt direkt aus der Formel <InlineMath math="T=30-4m" />. **Jedes Kilogramm Last verkürzt die Flugzeit um 4 Minuten**.
+Gesucht ist die längste Unterrichtsstunde, bei der jeder Tag von Montag bis Donnerstag spätestens um 15.00 Uhr endet. Der Plan: Bestimme für jede Art von Tag die Zeit, die für Unterrichtsstunden bleibt, teile durch <InlineMath math="10" />, nimm dann **die strengste Grenze** und runde ab.
 
-# Einsetzen
+# Die Zeit für Unterrichtsstunden
 
-<BlockMath math="T=30-4\cdot1{,}5=30-6=24\text{ Minuten}" />
+Von 07.00 Uhr bis 15.00 Uhr sind es <InlineMath math="480" /> Minuten. **Der Tagesbeginn und die Pausen zählen nicht als Unterrichtszeit**, also ziehst du sie ab. Montag bis Donnerstag behalten zwei Pausen nach denselben Stunden wie bisher, und beide liegen noch vor der Stunde <InlineMath math="10" />.
 
-Eine Last von 1,5 kg liegt im Bereich <InlineMath math="0\le m\le5" />, die Formel gilt also.
+<BlockMath math="\begin{aligned}
+\text{Montag} &: 480-40-15-30=395\text{ min} \\
+\text{Dienstag bis Donnerstag} &: 480-15-15-30=420\text{ min}
+\end{aligned}" />
 
-Die Drohne kann also **24 Minuten** fliegen.
+# Die Grenze für eine Stunde
+
+Zehn gleich lange Stunden müssen in diese Zeit passen.
+
+<BlockMath math="\begin{aligned}
+\text{Montag} &: 10t\le395 \Rightarrow t\le39{,}5 \\
+\text{Dienstag bis Donnerstag} &: 10t\le420 \Rightarrow t\le42
+\end{aligned}" />
+
+**Die Stundenlänge ist an allen vier Tagen gleich**, sie muss also beide Grenzen zugleich erfüllen. Die strengere Grenze ist die vom Montag, weil der Fahnenappell länger dauert. Die Länge ist eine ganze Zahl von Minuten, also bedeutet <InlineMath math="t\le39{,}5" /> **höchstens <InlineMath math="39" /> Minuten**.
+
+# Probe
+
+Mit Stunden von <InlineMath math="39" /> Minuten endet der Montag <InlineMath math="40+390+45=475" /> Minuten nach 07.00 Uhr, also um 14.55 Uhr. Mit Stunden von <InlineMath math="40" /> Minuten endet er <InlineMath math="40+400+45=485" /> Minuten nach 07.00 Uhr, also um 15.05 Uhr, **<InlineMath math="5" /> Minuten zu spät**. Dienstag bis Donnerstag enden mit <InlineMath math="39" /> Minuten um 14.30 Uhr, das passt.
+
+# Typische Fehler
+
+Wenn du **nur die Zeile für Dienstag bis Donnerstag nimmst**, kommst du auf <InlineMath math="42" /> Minuten, aber der Montag würde mit <InlineMath math="42" /> Minuten erst um 15.25 Uhr enden. Rundest du <InlineMath math="39{,}5" /> auf, bekommst du <InlineMath math="40" /> Minuten, und der Montag wird zu lang.
+
+Eine Unterrichtsstunde darf also höchstens <InlineMath math="39" /> Minuten dauern.

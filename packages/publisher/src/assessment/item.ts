@@ -28,10 +28,7 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  ACTIVE_APP_LOCALE_CODES,
-  ContentLanguageSchema,
-} from "@nakafa/aksara-contracts/locale";
+import { ContentLanguageSchema } from "@nakafa/aksara-contracts/locale";
 import { itemVersions } from "@nakafa/aksara-corpus/question-bank/item";
 import { QuestionSourceSchema } from "@nakafa/aksara-corpus/question-bank/source";
 import {
@@ -150,7 +147,7 @@ export const assembleItem: (
     }),
   });
   const explanations = yield* Effect.forEach(
-    ACTIVE_APP_LOCALE_CODES,
+    input.question.explanations,
     (locale) =>
       Effect.flatMap(
         readAssessmentSource(

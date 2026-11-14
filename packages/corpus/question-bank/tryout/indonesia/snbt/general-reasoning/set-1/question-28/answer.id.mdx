@@ -1,22 +1,30 @@
-Tuliskan biaya setiap paket sebagai fungsi pemakaian <InlineMath math="u" /> GB. Biaya tambahan baru muncul **setelah kuota yang sudah termasuk habis**.
+Dua aturan membuat soal ini menjebak. Pertama, **lama pemakaian dibulatkan ke atas ke jam penuh**, jadi <InlineMath math="3" /> jam <InlineMath math="30" /> menit dihitung <InlineMath math="4" /> jam. Kedua, biaya Ruang Q punya batas atas <InlineMath math="\text{Rp}72{.}000" />. Karena itu, ubah dulu setiap lama pemakaian menjadi jam yang ditagih, baru bandingkan biayanya.
 
-<BlockMath math="\begin{aligned}
-A(u) &= 50{.}000+6{.}000(u-10) &&\text{untuk } u>10 \\
-B(u) &= 80{.}000 &&\text{untuk } u\le 20 \\
-B(u) &= 80{.}000+4{.}000(u-20) &&\text{untuk } u>20
-\end{aligned}" />
+Misalkan <InlineMath math="c" /> adalah lama pemakaian setelah dibulatkan ke atas. Dalam ribu rupiah, biaya kedua ruang adalah
 
-**Pernyataan 1** bernilai Salah. Untuk <InlineMath math="15" /> GB, <InlineMath math="A(15)=50{.}000+5\times6{.}000=80{.}000" /> dan <InlineMath math="B(15)=80{.}000" />. Biayanya sama, jadi Paket A tidak lebih murah.
+<BlockMath math="P=\begin{cases} 40, & c\le4 \\ 40+8(c-4), & c>4 \end{cases} \qquad Q=\min(10c,\ 72)" />
 
-**Pernyataan 2** bernilai Benar. <InlineMath math="A(12)=50{.}000+2\times6{.}000=62{.}000" />, lebih murah daripada <InlineMath math="80{.}000" />.
+Lambang <InlineMath math="\min" /> berarti nilai yang lebih kecil di antara keduanya. Tabel berikut memuat semua nilai yang dibutuhkan (dalam ribu rupiah):
 
-**Pernyataan 3** bernilai Salah. <InlineMath math="A(25)=50{.}000+15\times6{.}000=140{.}000" /> dan <InlineMath math="B(25)=80{.}000+5\times4{.}000=100{.}000" />. Selisihnya <InlineMath math="\text{Rp}40{.}000" />.
+| <InlineMath math="c" /> (jam) | Ruang P | Ruang Q |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="40" /> | <InlineMath math="10" /> |
+| <InlineMath math="2" /> | <InlineMath math="40" /> | <InlineMath math="20" /> |
+| <InlineMath math="3" /> | <InlineMath math="40" /> | <InlineMath math="30" /> |
+| <InlineMath math="4" /> | <InlineMath math="40" /> | <InlineMath math="40" /> |
+| <InlineMath math="5" /> | <InlineMath math="48" /> | <InlineMath math="50" /> |
+| <InlineMath math="6" /> | <InlineMath math="56" /> | <InlineMath math="60" /> |
+| <InlineMath math="7" /> | <InlineMath math="64" /> | <InlineMath math="70" /> |
+| <InlineMath math="8" /> | <InlineMath math="72" /> | <InlineMath math="72" /> |
+| <InlineMath math="9" /> | <InlineMath math="80" /> | <InlineMath math="72" /> |
+| <InlineMath math="10" /> | <InlineMath math="88" /> | <InlineMath math="72" /> |
 
-**Pernyataan 4** bernilai Benar. Periksa dua rentang pemakaian:
+**Pernyataan 1** bernilai Benar. Pemakaian lebih dari <InlineMath math="8" /> jam dihitung paling sedikit <InlineMath math="9" /> jam. Biaya P paling sedikit <InlineMath math="40+8\times5=80" /> ribu dan terus naik, sedangkan biaya Q tertahan di <InlineMath math="72" /> ribu. Jika batas atas Q dilupakan, biaya Q seolah-olah <InlineMath math="90" /> ribu atau lebih, dan pernyataannya keliru dinilai salah.
 
-- Untuk <InlineMath math="16\le u\le 20" />, <InlineMath math="A(u)" /> paling kecil <InlineMath math="A(16)=86{.}000" />, sedangkan <InlineMath math="B(u)=80{.}000" />.
-- Untuk <InlineMath math="u>20" />, selisihnya <InlineMath math="A(u)-B(u)=(6{.}000u-10{.}000)-4{.}000u=2{.}000u-10{.}000" />, yang positif karena <InlineMath math="u>5" />.
+**Pernyataan 2** bernilai Salah. Lama <InlineMath math="5" /> jam <InlineMath math="10" /> menit dihitung <InlineMath math="6" /> jam, jadi biayanya <InlineMath math="40+8\times2=56" /> ribu, tidak kurang dari <InlineMath math="50" /> ribu. Tanpa pembulatan, biaya itu seolah-olah hanya <InlineMath math="48" /> ribu ditambah sedikit, lalu tampak benar.
 
-Pada kedua rentang, Paket B lebih murah.
+**Pernyataan 3** bernilai Salah. Satu contoh tandingan sudah cukup. Pemakaian <InlineMath math="3" /> jam <InlineMath math="30" /> menit kurang dari <InlineMath math="4" /> jam, tetapi dihitung <InlineMath math="4" /> jam. Biaya Q menjadi <InlineMath math="40" /> ribu, sama dengan biaya P, jadi Q tidak lebih kecil. Q memang lebih murah untuk pemakaian paling lama <InlineMath math="3" /> jam, tetapi tidak untuk setiap pemakaian di bawah <InlineMath math="4" /> jam.
 
-Jadi, pernyataan 2 dan 4 benar, sedangkan pernyataan 1 dan 3 salah.
+**Pernyataan 4** bernilai Benar. Pemakaian antara <InlineMath math="7" /> jam dan <InlineMath math="8" /> jam, misalnya <InlineMath math="7" /> jam <InlineMath math="30" /> menit, dihitung <InlineMath math="8" /> jam. Biaya P adalah <InlineMath math="40+8\times4=72" /> ribu, dan biaya Q adalah <InlineMath math="80" /> ribu yang dipotong batas atas menjadi <InlineMath math="72" /> ribu. Keduanya sama. Tanpa pembulatan dan batas atas, kedua biaya hanya sama pada <InlineMath math="4" /> jam, sehingga pernyataan ini tampak salah.
+
+Jadi, pernyataan 1 dan 4 bernilai Benar, sedangkan pernyataan 2 dan 3 bernilai Salah.

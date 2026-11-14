@@ -1,0 +1,28 @@
+# Faktor sisa untuk satu jarak dosis
+
+Soal ini menanyakan sisa obat tepat sebelum dosis ke-<InlineMath math="5" />, yaitu saat kadar paling rendah. Hati-hati dengan satuan waktunya: obat berkurang setengah **setiap <InlineMath math="6" /> jam**, tetapi jarak antardosis <InlineMath math="12" /> jam. Dalam <InlineMath math="12" /> jam, obat mengalami dua kali penyusutan setengah.
+
+<BlockMath math="r=\tfrac{1}{2}\cdot\tfrac{1}{2}=\tfrac{1}{4}" />
+
+Jadi setiap <InlineMath math="12" /> jam, hanya <InlineMath math="\tfrac{1}{4}" /> obat yang tersisa.
+
+# Menjumlahkan sisa setiap dosis
+
+Tepat sebelum dosis ke-<InlineMath math="5" />, sudah lewat <InlineMath math="48" /> jam sejak dosis pertama. Dosis pertama sudah menyusut empat kali faktor <InlineMath math="\tfrac{1}{4}" />, dosis kedua tiga kali, dosis ketiga dua kali, dan dosis keempat satu kali. **Setiap dosis menyusut sendiri-sendiri, lalu sisanya dijumlahkan**.
+
+<BlockMath math="\begin{aligned}
+\text{sisa}&=256\left(\tfrac14\right)^4+256\left(\tfrac14\right)^3+256\left(\tfrac14\right)^2+256\left(\tfrac14\right) \\
+&=1+4+16+64 \\
+&=85\text{ mg}
+\end{aligned}" />
+
+Ini deret geometri dengan suku pertama <InlineMath math="1" /> dan rasio <InlineMath math="4" />. Cek dengan cara lain: tepat setelah dosis ke-<InlineMath math="4" /> isinya <InlineMath math="256+64+16+4=340\text{ mg}" />, lalu <InlineMath math="12" /> jam kemudian tinggal <InlineMath math="\tfrac14\cdot340=85\text{ mg}" />.
+
+Jadi, banyak obat tepat sebelum dosis ke-<InlineMath math="5" /> adalah <InlineMath math="85\text{ mg}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="240\text{ mg}" /> muncul kalau kamu memakai faktor <InlineMath math="\tfrac12" /> untuk setiap <InlineMath math="12" /> jam. Penyusutan setengah terjadi tiap <InlineMath math="6" /> jam, jadi dalam <InlineMath math="12" /> jam faktornya <InlineMath math="\tfrac14" />.
+- <InlineMath math="340\text{ mg}" /> adalah isi **tepat setelah dosis ke-<InlineMath math="4" />**, saat kadar paling tinggi. Soal menanyakan saat sebelum dosis ke-<InlineMath math="5" />.
+- <InlineMath math="480\text{ mg}" /> menggabungkan dua kesalahan: faktor <InlineMath math="\tfrac12" /> per <InlineMath math="12" /> jam dan isi setelah dosis ke-<InlineMath math="4" />.
+- <InlineMath math="1{.}024\text{ mg}" /> adalah empat dosis dijumlahkan tanpa penyusutan sama sekali.

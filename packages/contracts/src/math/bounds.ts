@@ -134,7 +134,7 @@ function planeObjectContained(
   if (object.kind === "point") {
     return planeContains(frame, object.at);
   }
-  if (object.kind === "segment") {
+  if (object.kind === "segment" || object.kind === "vector") {
     return Arr.every([object.from, object.to], (point) =>
       planeContains(frame, point)
     );
@@ -183,7 +183,7 @@ function spaceObjectContained(
   if (object.kind === "point") {
     return spaceContains(frame, object.at);
   }
-  if (object.kind === "segment") {
+  if (object.kind === "segment" || object.kind === "vector") {
     return Arr.every([object.from, object.to], (point) =>
       spaceContains(frame, point)
     );

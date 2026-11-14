@@ -1,19 +1,35 @@
-Hitung dulu jumlah setiap baris dan kolom. Setiap pernyataan memakai **pembanding yang berbeda**, jadi perhatikan kelompok mana yang menjadi keseluruhan.
+Kamu menghitung bilangan tiga angka dengan dua syarat: jumlah angkanya <InlineMath math="15" />, dan angka ratusan lebih besar dari angka satuan. Rencananya: hitung semua susunan angka yang jumlahnya <InlineMath math="15" />, lalu pakai **pertukaran angka ratusan dan satuan** untuk membagi hasilnya menjadi dua kelompok yang sama besar.
 
-| Jenis kelamin | Pramuka | Basket | Jumlah |
-| :--- | :---: | :---: | :---: |
-| Laki-laki | 12 | 18 | 30 |
-| Perempuan | 20 | 10 | 30 |
-| Jumlah | 32 | 28 | 60 |
+# Semua susunan angka berjumlah lima belas
 
-# Peluang bersyarat dan banyak siswa
+Tulis angka ratusan, puluhan, dan satuan sebagai <InlineMath math="a" />, <InlineMath math="b" />, <InlineMath math="c" />. Untuk sementara, izinkan <InlineMath math="a=0" />, jadi setiap angka boleh <InlineMath math="0" /> sampai <InlineMath math="9" />. Tanpa batas atas, banyak penyelesaian <InlineMath math="a+b+c=15" /> dengan bilangan cacah adalah <InlineMath math="\binom{17}{2}" /> (cara bintang dan sekat). Lalu **buang susunan yang memuat angka <InlineMath math="10" /> atau lebih**, karena itu bukan angka.
 
-Pernyataan pertama memilih siswa **hanya dari peserta Pramuka**, jadi ruang sampelnya 32 siswa, bukan 60. Peluangnya <InlineMath math="\frac{20}{32}=\frac58" />, sehingga pernyataan pertama benar. Banyak laki-laki dan perempuan sama-sama 30, jadi pernyataan keempat juga benar.
+Jika <InlineMath math="a\ge10" />, tulis <InlineMath math="a=10+a'" />, sehingga <InlineMath math="a'+b+c=5" /> dengan <InlineMath math="\binom{7}{2}=21" /> penyelesaian. Hal yang sama berlaku untuk <InlineMath math="b" /> dan <InlineMath math="c" />. Dua angka tidak mungkin sama-sama paling sedikit <InlineMath math="10" />, karena jumlahnya hanya <InlineMath math="15" />.
 
-# Dua pernyataan persentase
+<BlockMath math="\binom{17}{2}-3\binom{7}{2}=136-63=73" />
 
-Peserta Basket ada 28 dari 60 siswa, yaitu <InlineMath math="\frac{28}{60}\approx46{,}7\%" />, kurang dari setengah. Pernyataan kedua salah.
+# Memakai pertukaran ratusan dan satuan
 
-Di antara 30 siswa laki-laki, 18 mengikuti Basket, yaitu <InlineMath math="\frac{18}{30}=60\%" />. Nilai ini **tidak lebih dari 65%**, jadi pernyataan ketiga salah. Perhatikan bahwa pembaginya 30 siswa laki-laki, bukan 28 peserta Basket.
+Menukar <InlineMath math="a" /> dan <InlineMath math="c" /> tidak mengubah jumlah angka. Pertukaran ini memasangkan setiap susunan dengan <InlineMath math="a>c" /> dengan tepat satu susunan dengan <InlineMath math="a<c" />, jadi **kedua kelompok itu sama banyak**. Yang tidak punya pasangan hanyalah susunan dengan <InlineMath math="a=c" />.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Untuk <InlineMath math="a=c" />, berlaku <InlineMath math="2a+b=15" />, jadi <InlineMath math="b=15-2a" /> harus berada di antara <InlineMath math="0" /> dan <InlineMath math="9" />. Itu terjadi untuk <InlineMath math="a=3, 4, 5, 6, 7" />, yaitu <InlineMath math="5" /> susunan.
+
+<BlockMath math="\text{banyak susunan dengan }a>c=\frac{73-5}{2}=34" />
+
+Syarat <InlineMath math="a>c\ge0" /> otomatis membuat <InlineMath math="a\ge1" />, jadi semua susunan ini memang bilangan tiga angka.
+
+# Pemeriksaan dengan cara lain
+
+Hitung **langsung menurut angka satuan** <InlineMath math="c" />. Untuk setiap <InlineMath math="c" />, pilih <InlineMath math="a>c" /> dengan <InlineMath math="b=15-a-c" /> di antara <InlineMath math="0" /> dan <InlineMath math="9" />.
+
+| <InlineMath math="c" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Banyak <InlineMath math="a" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="6" /> | <InlineMath math="5" /> | <InlineMath math="4" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+
+Jumlahnya <InlineMath math="4+5+6+6+5+4+3+1=34" />, sama dengan hasil tadi.
+
+# Jebakan yang perlu dihindari
+
+**Kesalahan yang paling licin** adalah mulai dari <InlineMath math="69" /> bilangan tiga angka berjumlah angka <InlineMath math="15" />, lalu menghitung <InlineMath math="\frac{69-5}{2}=32" />. Cara itu keliru, karena <InlineMath math="4" /> susunan dengan <InlineMath math="a=0" /> sudah dibuang dari kelompok <InlineMath math="a<c" /> saja, sehingga kedua kelompok tidak lagi sama banyak. Kesalahan lain adalah lupa membuang angka <InlineMath math="10" /> atau lebih, sehingga mulai dari <InlineMath math="136" />.
+
+Jadi, banyak bilangan tiga angka yang memenuhi kedua syarat adalah <InlineMath math="34" />.

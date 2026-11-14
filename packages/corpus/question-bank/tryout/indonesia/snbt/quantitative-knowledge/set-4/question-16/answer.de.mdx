@@ -1,18 +1,38 @@
-Das Diagramm zeigt die Häufigkeit jedes Werts. Der Mittelwert muss **die Häufigkeiten als Gewichte verwenden**, der Median wird an den Plätzen der geordneten Daten abgelesen.
+Du sollst entscheiden, ob die Angaben immer dieselbe Antwort liefern, ja oder nein. Wenn es noch eine Gerade gibt, die den Kreis in zwei Punkten schneidet, und eine andere, die das nicht tut, reichen die Angaben nicht. Der Plan: Bestimm Mittelpunkt und Radius, prüf die Lage des Punktes <InlineMath math="(5,1)" /> und **schau dir die Tangente in diesem Punkt an**.
 
-# Mittelwert berechnen
+# Mittelpunkt und Radius des Kreises
+
+Ergänz quadratisch in <InlineMath math="x" /> und in <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{4(60)+7(70)+6(80)+3(90)}{20}\\
-&=\frac{240+490+480+270}{20}=\frac{1480}{20}=74
+x^2-4x+y^2+6y&=12\\
+(x-2)^2+(y+3)^2&=12+4+9=25
 \end{aligned}" />
 
-# Median bestimmen
+Der Mittelpunkt ist <InlineMath math="M(2,-3)" />, der Radius <InlineMath math="5" />. Der Punkt <InlineMath math="(5,1)" /> liefert <InlineMath math="(5-2)^2+(1+3)^2=9+16=25" />, also **liegt dieser Punkt genau auf dem Kreis**.
 
-Ordne die zwanzig Werte der Größe nach. Der Median ist der Mittelwert aus dem 10. und dem 11. Wert. Die kumulierte Häufigkeit ist 4 beim Wert 60 und 11 beim Wert 70, also **sind die Werte auf den Plätzen 5 bis 11 alle 70**. Der Median ist 70.
+# Die Tangente in diesem Punkt
 
-Der Unterschied beträgt <InlineMath math="74-70=4" />.
+Eine Gerade durch einen Punkt des Kreises schneidet den Kreis in zwei Punkten, außer der Tangente in diesem Punkt, die ihn nur einmal berührt. Die Tangente **steht senkrecht auf dem Radius** zum Berührpunkt. Der Radius von <InlineMath math="M(2,-3)" /> nach <InlineMath math="(5,1)" /> hat die Steigung <InlineMath math="\frac{1-(-3)}{5-2}=\frac43" />. Also hat die Tangente die Steigung <InlineMath math="-\frac34" />, denn senkrechte Steigungen ergeben multipliziert <InlineMath math="-1" />.
 
-Der Wert 5 entsteht, wenn der Mittelwert ungewichtet aus den vier Werten gebildet wird, <InlineMath math="\tfrac{60+70+80+90}{4}=75" />. Der Wert 1 verwendet den Median 75, den Mittelwert der beiden mittleren Kategorien statt der beiden mittleren Daten. Der Wert 6 verwendet den Median 80, der Wert 10 den Mittelwert 80.
+<BlockMath math="\begin{aligned}
+y-1&=-\tfrac34(x-5)\\
+3x+4y-19&=0\\
+\text{Abstand von }M&=\frac{|3(2)+4(-3)-19|}{\sqrt{3^2+4^2}}=\frac{25}{5}=5
+\end{aligned}" />
 
-Der Unterschied zwischen Mittelwert und Median ist also **4**.
+Der Abstand ist gleich dem Radius, diese Gerade berührt den Kreis also wirklich nur.
+
+# Jede Aussage allein
+
+Aussage (1) allein reicht nicht. Die Tangente <InlineMath math="3x+4y-19=0" /> geht durch <InlineMath math="(5,1)" />, berührt den Kreis aber nur in einem Punkt, die Antwort ist also nein. Die Gerade <InlineMath math="y=1" /> geht ebenfalls durch <InlineMath math="(5,1)" /> und schneidet den Kreis in <InlineMath math="(5,1)" /> und <InlineMath math="(-1,1)" />, die Antwort ist also ja. Ein Punkt auf dem Kreis **garantiert noch keine zwei Schnittpunkte**.
+
+Auch Aussage (2) allein reicht nicht. Die Gerade <InlineMath math="x+y-20=0" /> hat die Steigung <InlineMath math="-1" /> und ist <InlineMath math="\frac{21}{\sqrt2}" /> vom Mittelpunkt entfernt, also mehr als <InlineMath math="5" />. Diese Gerade trifft den Kreis nicht. Eine Gerade mit Steigung <InlineMath math="-1" /> durch den Mittelpunkt <InlineMath math="M" /> schneidet ihn dagegen sicher in zwei Punkten.
+
+# Beide Aussagen zusammen
+
+Die Steigung der Tangente ist <InlineMath math="-\frac34" />, also **ebenfalls negativ**. Die Tangente erfüllt damit beide Aussagen, und für sie lautet die Antwort nein. Die Gerade durch <InlineMath math="(5,1)" /> und <InlineMath math="(2,2)" /> hat die Steigung <InlineMath math="\frac{2-1}{2-5}=-\frac13" />, auch negativ. Der Punkt <InlineMath math="(2,2)" /> liegt auf dem Kreis, denn <InlineMath math="0^2+5^2=25" />. Diese Gerade schneidet den Kreis also in zwei verschiedenen Punkten, und die Antwort lautet ja.
+
+Beide Geraden erfüllen die Aussagen (1) und (2), liefern aber verschiedene Antworten. Wer annimmt, ein Punkt auf dem Kreis bedeute zwei Schnittpunkte, hält Aussage (1) für ausreichend. Wer die Steigung der Tangente nicht ausrechnet, glaubt, eine negative Steigung schließe das Berühren aus.
+
+Also **reichen die Aussagen (1) und (2) nicht aus**, auch nicht zusammen.

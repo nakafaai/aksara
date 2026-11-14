@@ -45,6 +45,22 @@ it("allows required Indonesian reduplication hyphens only", () => {
   );
 });
 
+it("allows required Malay reduplication hyphens only", () => {
+  const source = [
+    "## Ciri-ciri Fungsi Kuadratik",
+    "## Kanak-kanak dan Remaja",
+    "## Istilah Satu-ke-Satu",
+  ].join("\n");
+
+  assert.deepEqual(
+    findLessonVoiceIssues("ms", source).map(({ line, rule }) => ({
+      line,
+      rule,
+    })),
+    [{ line: 3, rule: "heading-symbol" }]
+  );
+});
+
 it("allows the hyphen that joins one letter to a word in German and English", () => {
   const cases = [
     {

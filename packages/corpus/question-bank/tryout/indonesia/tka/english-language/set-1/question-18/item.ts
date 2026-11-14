@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "procedure",
-    topic: "cause-effect",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "descriptive",
+    topic: "text-fit",
   },
-  stimulus: "leak-test",
+  stimulus: "boardwalk",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "To make the meter move faster so the second test can locate a hidden pipe",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "To separate evidence of ongoing flow from the one known accidental use",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "To prove that any second movement must come from the exact pipe behind the wall",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "To reset the irrigation timer after the test, regardless of whether it was scheduled to run",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "To stop the first recorded number from mathematically influencing the later reading",
+          label: "I, III, and IV only",
         },
       ],
     },
