@@ -1,23 +1,59 @@
-The mean changes because the total changes. Work with **the total of the data**, not directly with the mean.
+You need the sum of the first ten terms, but the second term isn't given. The plan is to find <InlineMath math="a_2" /> from <InlineMath math="a_3" />, turn the rule of the sequence into a rule about **the difference between neighbouring terms**, build a formula for the <InlineMath math="n" />th term, and then add.
 
-# Totals before and after
+# The second term
 
-<BlockMath math="\begin{aligned}
-\text{total of 8 numbers}&=8\cdot15=120\\
-\text{total of 10 numbers}&=10\cdot18=180
-\end{aligned}" />
-
-# The value of x
-
-The difference between the totals is **the sum of the two new numbers**, <InlineMath math="x+2x=3x" />.
+The rule for <InlineMath math="n=3" /> links <InlineMath math="a_3" />, <InlineMath math="a_2" /> and <InlineMath math="a_1" />. **The second term isn't given directly**, so solve that equation for <InlineMath math="a_2" />.
 
 <BlockMath math="\begin{aligned}
-3x&=180-120=60\\
-x&=20
+a_3 &= 3a_2-2a_1 \\
+11 &= 3a_2-4 \\
+a_2 &= 5
 \end{aligned}" />
 
-Check: <InlineMath math="\tfrac{120+20+40}{10}=\tfrac{180}{10}=18" />.
+# The pattern in the differences
 
-The value 40 is the second new number, <InlineMath math="2x" />. The value 60 is the sum of the two new numbers, <InlineMath math="3x" />, and 30 is the mean of those two numbers.
+Subtract <InlineMath math="a_{n-1}" /> from both sides of the rule.
 
-So the value of <InlineMath math="x" /> is **20**.
+<BlockMath math="\begin{aligned}
+a_n-a_{n-1} &= 2a_{n-1}-2a_{n-2} \\
+&= 2\left(a_{n-1}-a_{n-2}\right)
+\end{aligned}" />
+
+That means **each difference is twice the one before it**. The first difference is <InlineMath math="a_2-a_1=3" />, so the differences are <InlineMath math="3,6,12,24,\ldots" />, a geometric sequence with ratio <InlineMath math="2" />.
+
+# A formula for every term
+
+The <InlineMath math="n" />th term is <InlineMath math="a_1" /> plus the first <InlineMath math="n-1" /> differences. The geometric sum <InlineMath math="1+2+\cdots+2^{m-1}" /> equals <InlineMath math="2^m-1" />.
+
+<BlockMath math="\begin{aligned}
+a_n &= 2+3\left(1+2+\cdots+2^{n-2}\right) \\
+&= 2+3\left(2^{n-1}-1\right) \\
+&= 3\cdot 2^{n-1}-1
+\end{aligned}" />
+
+Quick check: the formula gives <InlineMath math="a_1=2" />, <InlineMath math="a_2=5" /> and <InlineMath math="a_3=11" />, which matches the data.
+
+# The sum of ten terms
+
+Each term has a part <InlineMath math="3\cdot 2^{n-1}" /> and **a part <InlineMath math="-1" /> that shows up ten times**.
+
+<BlockMath math="\begin{aligned}
+\sum_{n=1}^{10}a_n &= 3\left(1+2+\cdots+2^{9}\right)-10 \\
+&= 3\left(2^{10}-1\right)-10 \\
+&= 3{,}069-10=3{,}059
+\end{aligned}" />
+
+# Checking
+
+Write out the ten terms with the original rule: <InlineMath math="2,5,11,23,47,95,191,383,767,1{,}535" />. The running totals are <InlineMath math="2,7,18,41,88,183,374,757,1{,}524,3{,}059" />, so the result matches.
+
+# The wrong options
+
+Each other option comes from **a misread pattern or a skipped last step**.
+
+- <InlineMath math="155" /> treats the sequence as arithmetic with a constant difference of <InlineMath math="3" />, so <InlineMath math="2,5,8,\ldots" />, even though <InlineMath math="a_3=11" /> already rules that out.
+- <InlineMath math="1{,}535" /> is the <InlineMath math="10" />th term, not the sum of ten terms.
+- <InlineMath math="3{,}069" /> forgets the part <InlineMath math="-1" /> in every term.
+- <InlineMath math="6{,}131" /> uses <InlineMath math="2^{11}-1" /> in the geometric sum, as if there were eleven terms.
+
+So the sum of the first ten terms of the sequence is <InlineMath math="3{,}059" />.

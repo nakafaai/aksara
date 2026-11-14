@@ -1,22 +1,45 @@
-First count the numbers divisible by 4 or 6, then remove those that are also divisible by 9. The first step uses **the inclusion-exclusion principle**, because multiples of 12 are counted twice.
+There are two conditions: every student gets a book, and the dictionary stays apart from the atlas. A clean way is to **count every distribution that meets the first condition, then subtract the ones that break the second**. Both counts use the inclusion-exclusion principle.
 
-# Divisible by 4 or 6
+# All fair distributions
 
-The common multiples of 4 and 6 are **the multiples of their least common multiple**, 12.
+With no conditions at all, each book can go to any of the <InlineMath math="3" /> students, so there are <InlineMath math="3^5=243" /> ways. From that, remove the distributions that leave someone empty-handed. There are <InlineMath math="2^5" /> ways that leave one particular student empty, and <InlineMath math="3" /> choices for that student. Distributions that leave two students empty got removed twice, so **add them back once**.
 
 <BlockMath math="\begin{aligned}
-\left\lfloor\tfrac{300}{4}\right\rfloor+\left\lfloor\tfrac{300}{6}\right\rfloor-\left\lfloor\tfrac{300}{12}\right\rfloor&=75+50-25\\
-&=100
+3^5-3\cdot2^5+3\cdot1^5 &= 243-96+3 \\
+&= 150
 \end{aligned}" />
 
-# Those also divisible by 9
+# Distributions that keep the dictionary and atlas together
 
-A number from that group that is divisible by 9 is a multiple of <InlineMath math="\text{lcm}(4,9)=36" /> or of <InlineMath math="\text{lcm}(6,9)=18" />. Every multiple of 36 is also a multiple of 18, so **counting the multiples of 18 is enough**.
+If the dictionary and the atlas go to the same student, **treat them as one bundle**. Now there are <InlineMath math="4" /> different items, the bundle and the other <InlineMath math="3" /> books, handed out so that every student gets something.
 
-<BlockMath math="\left\lfloor\tfrac{300}{18}\right\rfloor=16" />
+<BlockMath math="\begin{aligned}
+3^4-3\cdot2^4+3\cdot1^4 &= 81-48+3 \\
+&= 36
+\end{aligned}" />
 
-The numbers that remain number <InlineMath math="100-16=84" />.
+# Subtracting the forbidden distributions
 
-The value 100 forgets to remove the multiples of 9. The value 92 removes only the 8 multiples of 36. The value 76 removes the 8 multiples of 36 and the 16 multiples of 18 together, although the multiples of 36 are already among the multiples of 18. The value 67 removes all 33 multiples of 9 from 1 to 300, including those that were never in the first group.
+The distributions you want are the fair ones that don't put the dictionary and atlas together.
 
-So the number of such integers is **84**.
+<BlockMath math="150-36=114" />
+
+Check it by a direct route. The dictionary has <InlineMath math="3" /> possible receivers and the atlas has <InlineMath math="2" />, giving <InlineMath math="6" /> ways. The remaining three books are free, as long as **the third student, who has no book yet, gets at least one**.
+
+<BlockMath math="\begin{aligned}
+6\times\left(3^3-2^3\right) &= 6\times(27-8) \\
+&= 6\times19=114
+\end{aligned}" />
+
+Both routes give the same result.
+
+# Why the other options fail
+
+Each wrong option **ignores one of the conditions** or counts the wrong part.
+
+- <InlineMath math="72=6\times3\times2^2" /> comes from making the third student get exactly one book, when the condition is at least one.
+- <InlineMath math="162=6\times27" /> keeps the dictionary and atlas apart but forgets to make sure the third student gets a book.
+- <InlineMath math="150" /> makes sure everyone gets a book but forgets the dictionary and atlas condition.
+- <InlineMath math="36" /> is the number of forbidden distributions, the ones that put the dictionary and atlas together.
+
+So the number of ways to hand out the books is <InlineMath math="114" />.

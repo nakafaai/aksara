@@ -1,19 +1,42 @@
-Faktorkan ruas kiri menjadi <InlineMath math="(a-b)(a+b)=45" />. Soalnya berubah menjadi **mencari pasangan faktor 45** yang dapat menjadi <InlineMath math="a-b" /> dan <InlineMath math="a+b" />.
+Kamu mencari sisa pembagian <InlineMath math="2^{2026}+11^{2027}" /> oleh <InlineMath math="13" />. Pangkatnya terlalu besar untuk dihitung langsung, jadi rencananya begini: cari **pola sisa yang berulang** pada perpangkatan <InlineMath math="2" />, ubah <InlineMath math="11" /> menjadi bilangan negatif yang sisanya sama, lalu jumlahkan kedua sisa.
 
-# Syarat pasangan faktor
+# Pola sisa perpangkatan dua
 
-Karena <InlineMath math="a" /> dan <InlineMath math="b" /> positif, <InlineMath math="a-b<a+b" />, jadi faktor yang lebih kecil adalah <InlineMath math="a-b" />. Selain itu, <InlineMath math="a=\tfrac{(a+b)+(a-b)}{2}" />, sehingga **kedua faktor harus sama-sama ganjil atau sama-sama genap**. Semua faktor 45 ganjil, jadi syarat ini selalu terpenuhi.
+Sisa sebuah hasil kali hanya bergantung pada sisa faktor-faktornya. Jadi, sisa <InlineMath math="2^{k+1}" /> didapat dengan mengalikan sisa <InlineMath math="2^{k}" /> dengan <InlineMath math="2" />, lalu mengambil sisanya lagi. Tanda <InlineMath math="a\equiv b\pmod{13}" /> artinya <InlineMath math="a" /> dan <InlineMath math="b" /> bersisa sama jika dibagi <InlineMath math="13" />. Sisa <InlineMath math="2^{1}" /> sampai <InlineMath math="2^{12}" /> berturut-turut adalah
 
-# Daftar pasangan
+<BlockMath math="2,\ 4,\ 8,\ 3,\ 6,\ 12,\ 11,\ 9,\ 5,\ 10,\ 7,\ 1" />
 
-| <InlineMath math="a-b" /> | <InlineMath math="a+b" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
-| :---: | :---: | :---: | :---: |
-| 1 | 45 | 23 | 22 |
-| 3 | 15 | 9 | 6 |
-| 5 | 9 | 7 | 2 |
+Karena <InlineMath math="2^{12}" /> bersisa <InlineMath math="1" />, **pola sisa berulang setiap <InlineMath math="12" /> pangkat**. Jadi, kamu cukup melihat sisa pembagian pangkatnya oleh <InlineMath math="12" />.
 
-Pasangan faktor <InlineMath math="(9,5)" /> dan seterusnya hanya membalik urutan dan memberi <InlineMath math="b" /> negatif. Pemeriksaan: <InlineMath math="23^2-22^2=45" />, <InlineMath math="81-36=45" />, dan <InlineMath math="49-4=45" />.
+<BlockMath math="\begin{aligned}
+2026&=12\cdot168+10\\
+2^{2026}&=\left(2^{12}\right)^{168}\cdot2^{10}\equiv1\cdot10=10\pmod{13}
+\end{aligned}" />
 
-Nilai 6 menghitung keenam faktor 45 seolah-olah masing-masing memberi satu pasangan. Nilai 2 biasanya melewatkan pasangan faktor <InlineMath math="1\times45" />.
+# Mengubah sebelas menjadi bilangan negatif
 
-Jadi, banyak pasangan yang memenuhi adalah **3**.
+Bilangan <InlineMath math="11" /> sama dengan <InlineMath math="13-2" />, jadi <InlineMath math="11\equiv-2\pmod{13}" />. Mengganti bilangan pokok dengan bilangan yang sisanya sama tidak mengubah sisa perpangkatannya. Pangkat <InlineMath math="2027" /> ganjil, dan **pangkat ganjil mempertahankan tanda negatif**.
+
+<BlockMath math="\begin{aligned}
+11^{2027}&\equiv(-2)^{2027}=-2^{2027}\pmod{13}\\
+2027&=12\cdot168+11\\
+2^{2027}&\equiv2^{11}\equiv7\pmod{13}\\
+11^{2027}&\equiv-7\equiv-7+13=6\pmod{13}
+\end{aligned}" />
+
+# Menjumlahkan dan memeriksa
+
+Jumlahkan kedua sisa, lalu kurangi dengan <InlineMath math="13" /> karena **sisa pembagian oleh <InlineMath math="13" /> harus di antara <InlineMath math="0" /> dan <InlineMath math="12" />**.
+
+<BlockMath math="2^{2026}+11^{2027}\equiv10+6=16\equiv16-13=3\pmod{13}" />
+
+Periksa sisa <InlineMath math="11^{2027}" /> lewat jalan lain. Karena <InlineMath math="11^{12}\equiv(-2)^{12}=2^{12}\equiv1" />, kamu dapat <InlineMath math="11^{2027}\equiv11^{11}" />. Lalu <InlineMath math="11^{11}\cdot11=11^{12}\equiv1" />, dan <InlineMath math="6\cdot11=66=5\cdot13+1" />. Jadi, <InlineMath math="11^{11}" /> memang bersisa <InlineMath math="6" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="4" /> muncul jika **tanda negatif hilang**, yaitu <InlineMath math="11" /> dianggap bersisa sama dengan <InlineMath math="2" />: <InlineMath math="10+7=17\equiv4" />.
+- <InlineMath math="6" /> muncul jika pola dibaca satu langkah terlalu jauh, yaitu memakai <InlineMath math="2^{11}\equiv7" /> dan <InlineMath math="2^{12}\equiv1" />: <InlineMath math="7-1=6" />.
+- <InlineMath math="8" /> muncul jika pola dibaca satu langkah terlalu awal, yaitu memakai <InlineMath math="2^{9}\equiv5" /> dan <InlineMath math="2^{10}\equiv10" />: <InlineMath math="5-10=-5\equiv8" />.
+- <InlineMath math="10" /> muncul jika pola dikira berulang setiap <InlineMath math="6" /> pangkat, padahal <InlineMath math="2^{6}" /> bersisa <InlineMath math="12" />, bukan <InlineMath math="1" />: <InlineMath math="2^{4}-2^{5}\equiv3-6=-3\equiv10" />.
+
+Jadi, sisa pembagian <InlineMath math="2^{2026}+11^{2027}" /> oleh <InlineMath math="13" /> adalah <InlineMath math="3" />.

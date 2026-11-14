@@ -1,19 +1,64 @@
-Der Bruch lässt sich leichter prüfen, wenn du den Zähler **so umschreibst, dass er den Nenner enthält**. Dann hängt die Ganzzahligkeit nur noch an einem einfachen Bruch.
+Gesucht ist der Scheitelpunkt einer Parabel mit der Symmetrieachse <InlineMath math="x=1" />. Der Plan: Schreibe <InlineMath math="f" /> in Scheitelpunktform, setze die drei Punkte ein, bestimme <InlineMath math="k" /> und **prüfe, ob jeder Wert von <InlineMath math="k" /> wirklich eine quadratische Funktion liefert**.
 
-# Bruch umschreiben
+# Die Funktion aus der Symmetrieachse
 
-<BlockMath math="\frac{n+6}{n-2}=\frac{(n-2)+8}{n-2}=1+\frac{8}{n-2}" />
+Der Scheitelpunkt liegt immer auf der Symmetrieachse, seine <InlineMath math="x" />-Koordinate ist also <InlineMath math="1" />. Deshalb kannst du <InlineMath math="f" /> in **Scheitelpunktform** schreiben, mit <InlineMath math="(1,q)" /> als Scheitelpunkt.
 
-Das ist genau dann ganzzahlig, wenn <InlineMath math="n-2" /> **ein Teiler von 8 ist**. Zu den Teilern von 8 gehören auch negative Zahlen.
+<BlockMath math="f(x)=a(x-1)^2+q,\qquad a\ne0" />
 
-<BlockMath math="n-2\in\{-8,-4,-2,-1,1,2,4,8\}" />
+Die Bedingung <InlineMath math="a\ne0" /> steckt im Wort quadratische Funktion: Ohne den Term mit <InlineMath math="x^2" /> ist der Graph keine Parabel.
 
-# Werte von n addieren
+# Drei Gleichungen aufstellen
 
-Jeder Teiler <InlineMath math="d" /> liefert <InlineMath math="n=d+2" />, also <InlineMath math="-6,-2,0,1,3,4,6,10" />. Positive und negative Teiler heben sich auf, die Summe ist also <InlineMath math="8\times2=16" />.
+Setze die drei Punkte ein. Ihre Abstände von der Achse sind <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="5" />, die Quadrate also <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="25" />.
 
-<BlockMath math="-6-2+0+1+3+4+6+10=16" />
+<BlockMath math="\begin{aligned}
+f(2) &= a+q=1 \\
+f(3) &= 4a+q=k \\
+f(6) &= 25a+q=k^2
+\end{aligned}" />
 
-Der Wert 23 verwendet nur die positiven Teiler. Der Wert 8 ist die Anzahl der Werte von <InlineMath math="n" /> und nicht ihre Summe. Der Wert 15 addiert die positiven Teiler von 8, also Werte von <InlineMath math="n-2" /> statt von <InlineMath math="n" />. Der Wert 12 entsteht aus dem Fehler <InlineMath math="1+\frac{4}{n-2}" />.
+**Ziehe die erste Gleichung von den beiden anderen ab**, damit <InlineMath math="q" /> wegfällt.
 
-Die Summe aller Werte von <InlineMath math="n" /> ist also **16**.
+<BlockMath math="\begin{aligned}
+3a &= k-1 \\
+24a &= k^2-1
+\end{aligned}" />
+
+# Den Parameter bestimmen
+
+Die linke Seite der zweiten Gleichung ist das Achtfache der linken Seite der ersten, also **müssen auch die rechten Seiten im Verhältnis acht zu eins stehen**: <InlineMath math="24a=8\cdot3a=8(k-1)" />.
+
+<BlockMath math="\begin{aligned}
+k^2-1 &= 8(k-1) \\
+k^2-8k+7 &= 0 \\
+(k-1)(k-7) &= 0
+\end{aligned}" />
+
+Es gibt zwei Kandidaten, <InlineMath math="k=1" /> und <InlineMath math="k=7" />.
+
+# Den ungültigen Kandidaten streichen
+
+Für <InlineMath math="k=1" /> liefert <InlineMath math="3a=k-1" /> den Wert <InlineMath math="a=0" />. Die Funktion wird zu <InlineMath math="f(x)=1" />, einer waagrechten Geraden durch die drei Punkte <InlineMath math="(2,1)" />, <InlineMath math="(3,1)" /> und <InlineMath math="(6,1)" />. **Eine waagrechte Gerade ist keine quadratische Funktion und hat keinen Scheitelpunkt**, also fällt <InlineMath math="k=1" /> weg.
+
+Für <InlineMath math="k=7" /> erhältst du <InlineMath math="a=2" /> und <InlineMath math="q=1-a=-1" />.
+
+<BlockMath math="\begin{aligned}
+f(x) &= 2(x-1)^2-1 \\
+f(2) &= 2-1=1 \\
+f(3) &= 8-1=7 \\
+f(6) &= 50-1=49=7^2
+\end{aligned}" />
+
+Alle drei Punkte passen, und der Scheitelpunkt ist <InlineMath math="(1,-1)" />.
+
+# Warum die anderen Antworten nicht passen
+
+Die falschen Antworten entstehen aus **einem ungeprüften Kandidaten** oder aus einem falsch abgelesenen Wert.
+
+- <InlineMath math="(1,1)" /> entsteht, wenn du <InlineMath math="k=1" /> nimmst, aber dann ist der Graph die Gerade <InlineMath math="y=1" />.
+- <InlineMath math="(1,-1)" /> oder <InlineMath math="(1,1)" /> entsteht, wenn du beide Lösungen behältst, ohne die Bedingung <InlineMath math="a\ne0" /> zu prüfen.
+- <InlineMath math="(1,2)" /> entsteht, wenn du den Koeffizienten <InlineMath math="a=2" /> für die <InlineMath math="y" />-Koordinate des Scheitelpunkts hältst, die in Wahrheit <InlineMath math="q" /> ist.
+- <InlineMath math="(1,7)" /> entsteht, wenn du <InlineMath math="k=7" /> für die <InlineMath math="y" />-Koordinate des Scheitelpunkts hältst, dabei ist <InlineMath math="7" /> der Wert <InlineMath math="f(3)" />.
+
+Der Scheitelpunkt des Graphen von <InlineMath math="f" /> ist also <InlineMath math="(1,-1)" />.

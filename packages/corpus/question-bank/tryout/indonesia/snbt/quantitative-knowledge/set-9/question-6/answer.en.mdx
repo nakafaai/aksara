@@ -1,24 +1,31 @@
-Let the smallest number be <InlineMath math="a" />. The seven numbers are <InlineMath math="a,a+1,\dots,a+6" />, so **their sum can be written in terms of <InlineMath math="a" />**.
+You're counting the numbers from <InlineMath math="1" /> to <InlineMath math="100" /> that can't be written as <InlineMath math="10a+14b" />, where <InlineMath math="a" /> and <InlineMath math="b" /> are whole numbers. The key is that <InlineMath math="10" /> and <InlineMath math="14" /> are **both even**. The plan: split odd and even scores, then turn the even scores into a smaller problem with <InlineMath math="5" /> and <InlineMath math="7" />.
 
-# Setting up the equation
+# Odd scores
 
-<BlockMath math="\begin{aligned}
-a+(a+1)+\cdots+(a+6)&=7a+(0+1+\cdots+6)\\
-&=7a+21
-\end{aligned}" />
+Every score has the form <InlineMath math="10a+14b=2(5a+7b)" />, so **every score is even**. That means none of the odd numbers from <InlineMath math="1" /> to <InlineMath math="100" /> can be a score. There are <InlineMath math="50" /> of them.
 
-The sum **equals four times the smallest number**.
+# Even scores
 
-<BlockMath math="\begin{aligned}
-7a+21&=4a\\
-3a&=-21\\
-a&=-7
-\end{aligned}" />
+An even number <InlineMath math="2m" />, with <InlineMath math="1\le m\le50" />, is a score exactly when <InlineMath math="m=5a+7b" />. So you only need the values of <InlineMath math="m" /> that **can't be made from <InlineMath math="5" /> and <InlineMath math="7" />**.
 
-# Check
+Group the values of <InlineMath math="m" /> by their remainder when divided by <InlineMath math="5" />. Adding <InlineMath math="5" /> doesn't change the remainder, so in each group you only need the smallest number that can be made, which is the first multiple of <InlineMath math="7" /> that lands in that group. Every positive number below it in the same group can't be made.
 
-The numbers are <InlineMath math="-7,-6,-5,-4,-3,-2,-1" />. Their sum is <InlineMath math="-28" />, and <InlineMath math="4\cdot(-7)=-28" />. A negative answer makes sense, because **the sum of seven positive numbers is always more than four times the smallest one**.
+| Remainder after dividing by <InlineMath math="5" /> | Smallest you can make | Can't be made |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | none |
+| <InlineMath math="1" /> | <InlineMath math="21" /> | <InlineMath math="1,\ 6,\ 11,\ 16" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="28" /> | <InlineMath math="3,\ 8,\ 13,\ 18,\ 23" /> |
+| <InlineMath math="4" /> | <InlineMath math="14" /> | <InlineMath math="4,\ 9" /> |
 
-The value <InlineMath math="-1" /> is the largest number, and <InlineMath math="-4" /> is the middle one. The values 7 and 3 come from a sign error when moving the 21.
+That's <InlineMath math="4+1+5+2=12" /> values of <InlineMath math="m" /> that fail. The largest is <InlineMath math="23" />, which is still at most <InlineMath math="50" />, so **all twelve fall inside the range**. They match the even scores <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
 
-So the smallest number is **<InlineMath math="-7" />**.
+# Adding up and checking
+
+<BlockMath math="50+12=62" />
+
+Check the score <InlineMath math="46" />. Subtract <InlineMath math="14b" /> for <InlineMath math="b=0,1,2,3" />: what's left is <InlineMath math="46" />, <InlineMath math="32" />, <InlineMath math="18" />, and <InlineMath math="4" />, and none is a multiple of <InlineMath math="10" />. So <InlineMath math="46" /> really fails. On the other hand, <InlineMath math="48=2\cdot10+2\cdot14" /> works. The count of failing values of <InlineMath math="m" /> also matches the formula for two coprime numbers, <InlineMath math="\frac{(5-1)(7-1)}{2}=12" />.
+
+The answer <InlineMath math="12" /> comes from **forgetting all the odd scores**. The answer <InlineMath math="50" /> comes from counting only the odd scores and assuming every even score is reachable.
+
+So there are <InlineMath math="62" /> whole numbers from <InlineMath math="1" /> to <InlineMath math="100" /> that can't be a score.

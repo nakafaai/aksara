@@ -1,22 +1,63 @@
-Karena FPB-nya 12, kedua bilangan dapat ditulis <InlineMath math="a=12m" /> dan <InlineMath math="b=12n" /> dengan <InlineMath math="m" /> dan <InlineMath math="n" /> **tidak memiliki faktor persekutuan selain 1**. Dalam bentuk ini, KPK-nya adalah <InlineMath math="12mn" />.
+Kita cari selisih terbesar dua desimal berulang. Rencananya: ubah setiap desimal berulang menjadi pecahan, pakai persamaan jumlahnya untuk mendapatkan <InlineMath math="a+b" />, lalu pilih pasangan angka yang membuat selisihnya paling besar. Di langkah terakhir ada syarat yang mudah terlewat: **<InlineMath math="a" /> dan <InlineMath math="b" /> masing-masing hanya satu angka**, jadi nilainya paling besar <InlineMath math="9" />.
 
-# Mencari pasangan yang mungkin
+# Mengubah desimal berulang menjadi pecahan
 
-<BlockMath math="12mn=180\quad\Rightarrow\quad mn=15" />
+Misalkan <InlineMath math="x=0{,}\overline{ab}" />. Blok yang berulang panjangnya dua angka, jadi kalikan <InlineMath math="x" /> dengan <InlineMath math="100" />. Perkalian ini menggeser satu blok ke kiri koma, sedangkan ekor di belakang koma tetap sama. Karena ekornya sama, **ekor itu hilang saat kamu mengurangkan <InlineMath math="x" /> dari <InlineMath math="100x" />**.
 
-Pasangan <InlineMath math="(m,n)" /> yang hasil kalinya 15 dan relatif prima adalah <InlineMath math="(1,15)" /> dan <InlineMath math="(3,5)" />. **Syarat jumlah memilih salah satunya**.
+<BlockMath math="\begin{aligned}
+100x &= (10a+b)+0{,}\overline{ab} \\
+100x-x &= 10a+b \\
+x &= \dfrac{10a+b}{99}
+\end{aligned}" />
 
-| <InlineMath math="(m,n)" /> | Bilangan | Jumlah |
-| :---: | :---: | :---: |
-| <InlineMath math="(1,15)" /> | 12 dan 180 | 192 |
-| <InlineMath math="(3,5)" /> | 36 dan 60 | 96 |
+Di sini <InlineMath math="10a+b" /> adalah bilangan dua angka dengan puluhan <InlineMath math="a" /> dan satuan <InlineMath math="b" />. Dengan cara yang sama, <InlineMath math="0{,}\overline{ba}=\dfrac{10b+a}{99}" />. Bilangan <InlineMath math="1{,}\overline{3}" /> hanya mengulang satu angka, jadi cukup dikalikan <InlineMath math="10" />.
 
-# Menghitung selisih
+<BlockMath math="\begin{aligned}
+y &= 1{,}\overline{3} \\
+10y &= 13{,}\overline{3} \\
+10y-y &= 12 \\
+y &= \dfrac{12}{9}=\dfrac{4}{3}
+\end{aligned}" />
 
-Bilangannya 36 dan 60. Cek: FPB keduanya 12, KPK keduanya 180, dan jumlahnya 96.
+# Mencari jumlah kedua angka
 
-<BlockMath math="60-36=24" />
+Sekarang jumlahkan kedua pecahan. Pembilangnya bisa difaktorkan, karena <InlineMath math="10a+b+10b+a=11a+11b" />.
 
-Nilai 168 adalah selisih pasangan lain, 12 dan 180, yang jumlahnya bukan 96. Nilai 12 adalah FPB, nilai 15 adalah hasil kali <InlineMath math="mn" />, dan nilai 36 adalah bilangan yang lebih kecil.
+<BlockMath math="\begin{aligned}
+\dfrac{10a+b}{99}+\dfrac{10b+a}{99} &= \dfrac{11(a+b)}{99}=\dfrac{a+b}{9} \\
+\dfrac{a+b}{9} &= \dfrac{12}{9} \\
+a+b &= 12
+\end{aligned}" />
 
-Jadi, selisih kedua bilangan adalah **24**.
+Jadi **jumlah kedua angka harus <InlineMath math="12" />**.
+
+# Membuat selisihnya paling besar
+
+Selisihnya dihitung dengan cara yang sama. Kali ini pembilangnya <InlineMath math="10a+b-10b-a=9a-9b" />.
+
+<BlockMath math="\begin{aligned}
+0{,}\overline{ab}-0{,}\overline{ba} &= \dfrac{9(a-b)}{99} \\
+&= \dfrac{a-b}{11}
+\end{aligned}" />
+
+Selisih ini makin besar kalau <InlineMath math="a-b" /> makin besar. Dari <InlineMath math="a+b=12" /> kamu dapat <InlineMath math="a-b=12-2b" />, jadi <InlineMath math="b" /> harus sekecil mungkin. Tapi **<InlineMath math="a=12-b" /> tidak boleh lebih dari <InlineMath math="9" />**, sehingga <InlineMath math="b\ge3" />. Pasangan yang mungkin hanya <InlineMath math="(9,3)" />, <InlineMath math="(8,4)" />, dan <InlineMath math="(7,5)" />. Selisih <InlineMath math="a-b" /> terbesar adalah <InlineMath math="9-3=6" />, jadi nilai terbesarnya <InlineMath math="\dfrac{6}{11}" />.
+
+Coba cek dengan <InlineMath math="a=9" /> dan <InlineMath math="b=3" />.
+
+<BlockMath math="\begin{aligned}
+0{,}\overline{93}+0{,}\overline{39} &= \dfrac{93+39}{99}=\dfrac{132}{99}=\dfrac{4}{3} \\
+0{,}\overline{93}-0{,}\overline{39} &= \dfrac{93-39}{99}=\dfrac{54}{99}=\dfrac{6}{11}
+\end{aligned}" />
+
+Jumlahnya memang <InlineMath math="1{,}\overline{3}" />, dan selisihnya <InlineMath math="\dfrac{6}{11}=0{,}\overline{54}" />.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan yang salah muncul dari **satu langkah yang terlewat atau tertukar**.
+
+- <InlineMath math="\dfrac{10}{11}" /> muncul kalau kamu mengambil <InlineMath math="a=11" /> dan <InlineMath math="b=1" /> supaya selisihnya besar, padahal <InlineMath math="11" /> bukan satu angka.
+- <InlineMath math="\dfrac{2}{3}" /> muncul kalau selisihnya ditulis <InlineMath math="\dfrac{a-b}{9}" />, seolah-olah blok berulangnya hanya satu angka.
+- <InlineMath math="\dfrac{2}{33}" /> muncul kalau pembilang selisihnya ditulis <InlineMath math="a-b" />, padahal <InlineMath math="(10a+b)-(10b+a)=9(a-b)" />.
+- <InlineMath math="\dfrac{31}{33}" /> adalah nilai <InlineMath math="0{,}\overline{93}" /> saja, jadi kamu berhenti sebelum mengurangkan <InlineMath math="0{,}\overline{39}" />.
+
+Jadi, nilai terbesar yang mungkin dari <InlineMath math="0{,}\overline{ab}-0{,}\overline{ba}" /> adalah <InlineMath math="\dfrac{6}{11}" />.

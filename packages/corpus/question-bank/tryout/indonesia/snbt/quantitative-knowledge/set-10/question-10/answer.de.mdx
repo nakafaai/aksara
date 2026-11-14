@@ -1,20 +1,38 @@
-Bestimme zuerst die Art des Dreiecks. Wegen <InlineMath math="20^2+21^2=400+441=841=29^2" /> ist es **rechtwinklig mit Hypotenuse 29**. Der Inkreisradius hängt über <InlineMath math="L=r\cdot s" /> mit der Fläche zusammen, wobei <InlineMath math="s" /> der halbe Umfang ist.
+Der Ergebnisraum besteht aus allen positiven Teilern von <InlineMath math="2160" />, und alle sind gleich wahrscheinlich. Die Wahrscheinlichkeit ist also die Anzahl der passenden Teiler geteilt durch die Anzahl aller Teiler. Der Knackpunkt: Die Bedingung an <InlineMath math="\tfrac{2160}{d}" /> **begrenzt die Exponenten von <InlineMath math="d" /> nach oben**.
 
-# Fläche und halber Umfang
+# Die Anzahl aller Teiler
+
+Zerlege zuerst: <InlineMath math="2160=216\cdot 10=2^3\cdot 3^3\cdot 2\cdot 5=2^4\cdot 3^3\cdot 5" />. Jeder Teiler hat die Form <InlineMath math="d=2^x3^y5^z" /> mit <InlineMath math="x" /> von <InlineMath math="0" /> bis <InlineMath math="4" />, <InlineMath math="y" /> von <InlineMath math="0" /> bis <InlineMath math="3" /> und <InlineMath math="z" /> von <InlineMath math="0" /> bis <InlineMath math="1" />. Jede Wahl der Exponenten ergibt **einen anderen Teiler**, also zählst du mit der Produktregel.
+
+<BlockMath math="5\cdot 4\cdot 2=40" />
+
+# Die Bedingung an beide Zahlen
+
+Der Partner von <InlineMath math="d" /> ist <InlineMath math="\tfrac{2160}{d}=2^{4-x}3^{3-y}5^{1-z}" />. Eine Zahl ist genau dann durch <InlineMath math="6=2\cdot 3" /> teilbar, wenn ihre Exponenten von <InlineMath math="2" /> und <InlineMath math="3" /> beide mindestens <InlineMath math="1" /> sind.
 
 <BlockMath math="\begin{aligned}
-L&=\tfrac12\cdot20\cdot21=210\\
-s&=\tfrac12(20+21+29)=35
+6\mid d &\;\Longleftrightarrow\; x\ge 1 \text{ und } y\ge 1 \\
+6\mid \tfrac{2160}{d} &\;\Longleftrightarrow\; 4-x\ge 1 \text{ und } 3-y\ge 1 \;\Longleftrightarrow\; x\le 3 \text{ und } y\le 2
 \end{aligned}" />
 
-# Der Inkreisradius
+Also liefert <InlineMath math="x\in\{1,2,3\}" /> genau <InlineMath math="3" /> Möglichkeiten, <InlineMath math="y\in\{1,2\}" /> genau <InlineMath math="2" />, und <InlineMath math="z" /> ist frei mit <InlineMath math="2" /> Möglichkeiten. **Beide Bedingungen gelten gleichzeitig** für jeden Exponenten.
 
-Die Formel <InlineMath math="L=r\cdot s" /> entsteht, wenn man **das Dreieck in drei kleine Dreiecke zerlegt**, deren Spitze im Inkreismittelpunkt liegt und deren Höhe <InlineMath math="r" /> ist.
+<BlockMath math="\begin{aligned}
+\text{Anzahl passender Teiler} &= 3\cdot 2\cdot 2=12 \\
+\text{Wahrscheinlichkeit} &= \frac{12}{40}=\frac{3}{10}
+\end{aligned}" />
 
-<BlockMath math="r=\frac{L}{s}=\frac{210}{35}=6" />
+# Probe auf einem zweiten Weg
 
-Bei einem rechtwinkligen Dreieck liefert auch <InlineMath math="r=\tfrac{a+b-c}{2}=\tfrac{20+21-29}{2}=6" /> dasselbe Ergebnis.
+Ist <InlineMath math="d=6e" /> und <InlineMath math="\tfrac{2160}{d}=6f" />, dann gilt <InlineMath math="36ef=2160" />, also <InlineMath math="ef=60" />. Jeder Teiler <InlineMath math="e" /> von <InlineMath math="60=2^2\cdot 3\cdot 5" /> liefert genau ein passendes <InlineMath math="d" />, und **<InlineMath math="60" /> hat <InlineMath math="3\cdot 2\cdot 2=12" /> Teiler**. Du bekommst wieder <InlineMath math="12" /> von <InlineMath math="40" />.
 
-Der Wert 3 teilt die Fläche durch den ganzen Umfang statt durch den halben. Der Wert 12 ist der Durchmesser des Inkreises, und 14,5 ist der Umkreisradius, also die halbe Hypotenuse.
+# Die falschen Antworten
 
-Der Inkreisradius des Dreiecks beträgt also **<InlineMath math="6\text{ cm}" />**.
+Jede andere Antwort entsteht aus **einer nur halb angewendeten Bedingung** oder einem falschen Ergebnisraum.
+
+- <InlineMath math="\tfrac{3}{5}" /> verlangt nur <InlineMath math="6\mid d" /> und zählt damit <InlineMath math="4\cdot 3\cdot 2=24" /> von <InlineMath math="40" /> Teilern.
+- <InlineMath math="\tfrac{9}{25}" /> quadriert <InlineMath math="\tfrac{3}{5}" />, als wären die beiden Ereignisse unabhängig. Dabei legt <InlineMath math="d" /> seinen Partner vollständig fest.
+- <InlineMath math="\tfrac{9}{20}" /> begrenzt den Exponenten von <InlineMath math="2" />, vergisst aber die Grenze für den Exponenten von <InlineMath math="3" /> und zählt so <InlineMath math="3\cdot 3\cdot 2=18" /> Teiler.
+- <InlineMath math="\tfrac{1}{2}" /> teilt <InlineMath math="12" /> durch <InlineMath math="24" />, nimmt also die durch <InlineMath math="6" /> teilbaren Teiler als Ergebnisraum.
+
+Die Wahrscheinlichkeit, dass <InlineMath math="d" /> und <InlineMath math="\tfrac{2160}{d}" /> beide durch <InlineMath math="6" /> teilbar sind, ist also <InlineMath math="\tfrac{3}{10}" />.

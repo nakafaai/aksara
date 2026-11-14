@@ -1,21 +1,45 @@
-Bevor du Summe und Produkt der Lösungen verwendest, prüfe, ob sich die Gleichung faktorisieren lässt. Das geht: **die Form passt zu <InlineMath math="(x-3)(x-k)" />**, denn <InlineMath math="3+k" /> ist die Summe und <InlineMath math="3k" /> das Produkt.
+Der Wert von <InlineMath math="n" /> ist unbekannt. Du musst also <InlineMath math="P" /> und <InlineMath math="Q" /> als Formeln in <InlineMath math="n" /> schreiben und das Vorzeichen ihrer Differenz für **alle <InlineMath math="n" /> gleichzeitig** prüfen. Ist das Vorzeichen für jedes <InlineMath math="n" /> gleich, steht die Beziehung fest. Kann es wechseln, reichen die Angaben nicht.
 
-# Die Lösungen
+# Mittelwert und Mittelwert der Quadrate
 
-<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
+Nutze zwei bekannte Summenformeln: die Summe <InlineMath math="1+2+\cdots+n" /> und die Summe <InlineMath math="1^2+2^2+\cdots+n^2" />. Ein Mittelwert ist **die Summe geteilt durch die Anzahl der Werte**, du teilst also durch <InlineMath math="n" />.
 
-Die Lösungen sind 3 und <InlineMath math="k" />, **egal welchen Wert k hat**.
+<BlockMath math="\begin{aligned}
+\bar{x} &= \frac{1}{n}\cdot\frac{n(n+1)}{2}=\frac{n+1}{2} \\
+P &= \frac{1}{n}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{(n+1)(2n+1)}{6}
+\end{aligned}" />
 
-# Die Bedingung an die Differenz
+Daraus folgt <InlineMath math="Q=\left(\dfrac{n+1}{2}\right)^2+\dfrac{n^2}{12}" />.
 
-Die Lösungen unterscheiden sich um 5, also **liegt <InlineMath math="k" /> im Abstand 5 von 3**.
+# Vergleich mit gleichem Nenner
 
-<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{oder}\;k=-2" />
+Multipliziere beide Größen mit <InlineMath math="12" />, damit die Brüche verschwinden. Das Multiplizieren mit einer positiven Zahl **ändert die Richtung eines Vergleichs nicht**.
 
-Kontrolle: Für <InlineMath math="k=8" /> sind die Lösungen 3 und 8, für <InlineMath math="k=-2" /> sind es 3 und <InlineMath math="-2" />. Beide Paare unterscheiden sich um 5.
+<BlockMath math="\begin{aligned}
+12P &= 2(n+1)(2n+1)=4n^2+6n+2 \\
+12Q &= 3(n+1)^2+n^2=4n^2+6n+3
+\end{aligned}" />
 
-<BlockMath math="8+(-2)=6" />
+Die Differenz ist <InlineMath math="12Q-12P=1" />, also <InlineMath math="Q-P=\dfrac{1}{12}" />. **Diese Differenz hängt nicht von <InlineMath math="n" /> ab** und ist immer positiv, also gilt <InlineMath math="Q>P" /> für jede positive ganze Zahl <InlineMath math="n" />.
 
-Der Wert 8 verwendet nur eine Möglichkeit. Der Wert 10 ist die Differenz der beiden Werte von <InlineMath math="k" />, nicht ihre Summe. Der Wert 3 ist die feste Lösung, und 5 ist die gegebene Differenz.
+# Probe mit einem Beispiel
 
-Die Summe aller Werte von <InlineMath math="k" /> ist also **6**.
+Für <InlineMath math="n=3" /> lauten die Daten <InlineMath math="1,2,3" />.
+
+<BlockMath math="\begin{aligned}
+P &= \frac{1+4+9}{3}=\frac{14}{3} \\
+Q &= 2^2+\frac{9}{12}=\frac{19}{4} \\
+Q-P &= \frac{57-56}{12}=\frac{1}{12}
+\end{aligned}" />
+
+Das Beispiel passt zur allgemeinen Formel. Auch <InlineMath math="n=1" /> liefert dasselbe Bild: <InlineMath math="P=1" /> und <InlineMath math="Q=1+\tfrac{1}{12}" />.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer Formel, die nicht bis zum Ende gerechnet wurde**.
+
+- <InlineMath math="P=Q" /> entsteht, wenn du glaubst, dass <InlineMath math="P" /> minus das Quadrat des Mittelwerts genau <InlineMath math="\tfrac{n^2}{12}" /> ist. Diese Differenz ist in Wahrheit <InlineMath math="\tfrac{n^2-1}{12}" />, also etwas kleiner.
+- <InlineMath math="P>Q" /> entsteht, wenn du dich nur daran erinnerst, dass der Mittelwert der Quadrate größer ist als das Quadrat des Mittelwerts, und vergisst, dass zu <InlineMath math="Q" /> noch <InlineMath math="\tfrac{n^2}{12}" /> addiert wird.
+- Die Antwort „Angaben reichen nicht“ entsteht, wenn du meinst, die Beziehung ändere sich mit <InlineMath math="n" />. Die Differenz bleibt aber <InlineMath math="\tfrac{1}{12}" />.
+
+Die Größe <InlineMath math="Q" /> ist also immer größer als <InlineMath math="P" />.

@@ -1,15 +1,58 @@
-Die Wahrscheinlichkeit für eine rote Kugel ist **Anzahl roter Kugeln geteilt durch Anzahl aller Kugeln**. Um die Anzahl roter Kugeln zu kennen, brauchst du also diese Wahrscheinlichkeit und die Gesamtzahl oder eine gleichwertige Angabe.
+Du suchst die Länge der Winkelhalbierenden <InlineMath math="AD" />, aber die Seiten <InlineMath math="AB" /> und <InlineMath math="AC" /> sind nicht gegeben. Der Plan hat vier Schritte: Nutze den **Satz über die Winkelhalbierende** für das Seitenverhältnis, den Umfang für die Seitenlängen, berechne <InlineMath math="\cos B" /> im großen Dreieck und setze diesen Wert dann im Dreieck <InlineMath math="ABD" /> ein.
 
-# Nur Aussage (1)
+# Das Verhältnis aus der Winkelhalbierenden
 
-<BlockMath math="\frac{m}{12}=\frac13\;\Longrightarrow\;m=4" />
+Der Satz über die Winkelhalbierende besagt: Die Winkelhalbierende von <InlineMath math="A" /> teilt die gegenüberliegende Seite **im selben Verhältnis wie die beiden Seiten, die den Winkel bilden**.
 
-Die Anzahl roter Kugeln ist **eindeutig, nämlich 4**. Aussage (1) allein reicht.
+<BlockMath math="\frac{AB}{AC}=\frac{BD}{DC}=\frac{3}{4}" />
 
-# Nur Aussage (2)
+# Seitenlängen aus dem Umfang
 
-Aussage (2) liefert nur das Verhältnis Rot zu Weiß, <InlineMath math="1:2" />. Im Beutel könnten 1 rote und 2 weiße, 4 rote und 8 weiße oder 10 rote und 20 weiße Kugeln sein. **Die Gesamtzahl ist unbekannt**, also reicht Aussage (2) allein nicht.
+Der Umfang ist die Summe aller drei Seiten, und **die Seite <InlineMath math="BC" /> zählt mit**. Es gilt <InlineMath math="BC=3+4=7\text{ cm}" />, der Rest verteilt sich also auf <InlineMath math="AB" /> und <InlineMath math="AC" />.
 
-Beide Aussagen passen zusammen, denn 4 rote und 8 weiße Kugeln erfüllen beide.
+<BlockMath math="\begin{aligned}
+AB+AC &= 21-7=14 \\
+AB &= \tfrac{3}{7}\cdot 14=6\text{ cm} \\
+AC &= \tfrac{4}{7}\cdot 14=8\text{ cm}
+\end{aligned}" />
 
-Also **reicht Aussage (1) allein**, Aussage (2) allein aber nicht.
+# Der gemeinsame Winkel
+
+Der Winkel <InlineMath math="B" /> gehört zum Dreieck <InlineMath math="ABC" /> und zum Dreieck <InlineMath math="ABD" />. Berechne seinen Kosinus im Dreieck <InlineMath math="ABC" />, denn dort **sind alle drei Seiten bekannt**. Der Kosinussatz verbindet die Seite gegenüber einem Winkel mit den beiden anderen Seiten.
+
+<BlockMath math="\begin{aligned}
+AC^2 &= AB^2+BC^2-2\cdot AB\cdot BC\cos B \\
+64 &= 36+49-84\cos B \\
+\cos B &= \frac{21}{84}=\frac{1}{4}
+\end{aligned}" />
+
+# Die Länge der Winkelhalbierenden
+
+Wende jetzt den Kosinussatz im Dreieck <InlineMath math="ABD" /> an, mit den Seiten <InlineMath math="AB=6" /> und <InlineMath math="BD=3" /> und **demselben Winkel <InlineMath math="B" />**.
+
+<BlockMath math="\begin{aligned}
+AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
+&= 36+9-2\cdot 6\cdot 3\cdot\tfrac{1}{4} \\
+&= 45-9=36
+\end{aligned}" />
+
+Eine Länge ist nie negativ, also ist <InlineMath math="AD=6\text{ cm}" />.
+
+# Probe über den anderen Winkel
+
+Rechne noch einmal von der anderen Seite. Im Dreieck <InlineMath math="ABC" /> ist der Kosinus des Winkels <InlineMath math="C" /> gleich <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. Im Dreieck <InlineMath math="ADC" /> mit <InlineMath math="AC=8" /> und <InlineMath math="DC=4" /> bekommst du dasselbe Ergebnis.
+
+<BlockMath math="AD^2=64+16-2\cdot 8\cdot 4\cdot\tfrac{11}{16}=80-44=36" />
+
+Beide Wege liefern **dieselbe Länge**, das Ergebnis ist also sicher.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einem vertauschten oder ausgelassenen Schritt**.
+
+- <InlineMath math="2\sqrt{10}\text{ cm}" /> entsteht, wenn das Verhältnis umgedreht wird, also <InlineMath math="AB=8" /> und <InlineMath math="AC=6" />. Das ergibt <InlineMath math="AD^2=40" />.
+- <InlineMath math="4\sqrt{3}\text{ cm}" /> entsteht aus der Kurzformel <InlineMath math="AD^2=AB\cdot AC-BD\cdot DC" />, wenn der Term <InlineMath math="BD\cdot DC" /> vergessen wird, also <InlineMath math="AD^2=48" />.
+- <InlineMath math="2\sqrt{15}\text{ cm}" /> entsteht aus derselben Kurzformel mit falschem Vorzeichen, also <InlineMath math="AD^2=48+12=60" />.
+- <InlineMath math="4\sqrt{6}\text{ cm}" /> entsteht, wenn der ganze Umfang <InlineMath math="21" /> auf <InlineMath math="AB" /> und <InlineMath math="AC" /> verteilt wird, also <InlineMath math="AB=9" />, <InlineMath math="AC=12" /> und <InlineMath math="AD^2=96" />.
+
+Die Länge von <InlineMath math="AD" /> ist also <InlineMath math="6\text{ cm}" />.

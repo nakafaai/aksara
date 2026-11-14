@@ -1,22 +1,43 @@
-Es gibt zwei Wege: die neuen Daten neu durchrechnen oder nutzen, **wie die Standardabweichung auf Multiplizieren und Addieren reagiert**. Der zweite Weg ist schneller, aber zuerst brauchst du die Standardabweichung der ursprünglichen Daten.
+Du brauchst drei Dinge nacheinander: die Formel für <InlineMath math="f^{-1}" />, die Formel der Verkettung und die Lösung der Ungleichung. Am häufigsten wird **die Bedingung, unter der ein Logarithmus existiert**, übersehen, deshalb notierst du sie, sobald du die Verkettung aufstellst, und nimmst sie bis zum Schluss mit. Die Schreibweise <InlineMath math="{}^{a}\log x" /> bedeutet den Logarithmus von <InlineMath math="x" /> zur Basis <InlineMath math="a" />.
 
-# Standardabweichung der ursprünglichen Daten
+# Die Umkehrfunktion bestimmen
 
-Der Mittelwert der ursprünglichen Daten ist 6. **Die Abweichungen vom Mittelwert** sind <InlineMath math="-4,-2,0,2,4" />.
+Die Funktion <InlineMath math="f" /> potenziert <InlineMath math="2" /> und zieht dann <InlineMath math="1" /> ab. **Die Umkehrfunktion macht diese Schritte in umgekehrter Reihenfolge rückgängig**: zuerst <InlineMath math="1" /> addieren, dann den Logarithmus zur Basis <InlineMath math="2" /> nehmen.
 
 <BlockMath math="\begin{aligned}
-s^2&=\frac{16+4+0+4+16}{5}=\frac{40}{5}=8\\
-s&=\sqrt8=2\sqrt2
+y&=2^x-1\\
+2^x&=y+1\\
+x&={}^{2}\log(y+1)
 \end{aligned}" />
 
-# Wirkung der Umformung
+Also ist <InlineMath math="f^{-1}(x)={}^{2}\log(x+1)" />, und das existiert nur für <InlineMath math="x+1>0" />.
 
-Das Addieren von 5 verschiebt jeden Wert und den Mittelwert um 5, also **bleiben die Abweichungen vom Mittelwert gleich**. Das Multiplizieren mit 3 macht jede Abweichung dreimal so groß, also wird auch die Standardabweichung mit 3 multipliziert.
+# Die Verkettung und ihre Bedingung aufstellen
 
-<BlockMath math="s_{\text{neu}}=3\cdot2\sqrt2=6\sqrt2" />
+Die Verkettung <InlineMath math="f^{-1}\circ g" /> bedeutet, dass zuerst <InlineMath math="g" /> angewendet wird und das Ergebnis dann in <InlineMath math="f^{-1}" /> eingesetzt wird.
 
-Kontrolle: Die neuen Daten 11, 17, 23, 29, 35 haben den Mittelwert 23 und die Abweichungen <InlineMath math="-12,-6,0,6,12" />, also die Varianz <InlineMath math="\tfrac{360}{5}=72" /> und die Standardabweichung <InlineMath math="\sqrt{72}=6\sqrt2" />.
+<BlockMath math="(f^{-1}\circ g)(x)=f^{-1}\big(g(x)\big)={}^{2}\log\left({}^{3}\log x+1\right)" />
 
-Der Wert <InlineMath math="6\sqrt2+5" /> addiert die 5 mit, obwohl eine Verschiebung die Streuung nicht ändert. Der Wert <InlineMath math="2\sqrt2" /> übersieht die Multiplikation, <InlineMath math="18\sqrt2" /> multipliziert mit 9, und 72 ist die Varianz, nicht die Standardabweichung.
+Es gibt zwei Bedingungen. Die Funktion <InlineMath math="g" /> braucht <InlineMath math="x>0" />, und der Logarithmus zur Basis <InlineMath math="2" /> braucht <InlineMath math="{}^{3}\log x+1>0" />, also <InlineMath math="{}^{3}\log x>-1" /> oder <InlineMath math="x>\frac13" />. **Die zweite Bedingung ist strenger**, also ist die Definitionsmenge der Verkettung <InlineMath math="x>\frac13" />.
 
-Die Standardabweichung der neuen Daten ist also **<InlineMath math="6\sqrt2" />**.
+# Die Ungleichung lösen
+
+Schreib <InlineMath math="1={}^{2}\log2" />. Die Basis <InlineMath math="2" /> ist größer als <InlineMath math="1" />, also ist der Logarithmus zur Basis <InlineMath math="2" /> steigend und **das Ungleichheitszeichen dreht sich nicht um**. Kombiniere das mit der Bedingung, dass das Argument des Logarithmus positiv ist.
+
+<BlockMath math="\begin{aligned}
+{}^{2}\log\left({}^{3}\log x+1\right)&\le{}^{2}\log2\\
+0<{}^{3}\log x+1&\le2\\
+-1<{}^{3}\log x&\le1\\
+\tfrac13<x&\le3
+\end{aligned}" />
+
+Prüfung der Ränder: Für <InlineMath math="x=3" /> ist der Wert <InlineMath math="{}^{2}\log(1+1)=1" />, also gehört <InlineMath math="x=3" /> dazu. Für <InlineMath math="x=\frac13" /> ist das Argument <InlineMath math="-1+1=0" />, und <InlineMath math="{}^{2}\log0" /> existiert nicht, also gehört <InlineMath math="x=\frac13" /> nicht dazu. Für <InlineMath math="x=1" /> in der Mitte ist der Wert <InlineMath math="{}^{2}\log1=0\le1" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="\frac13\le x\le3" /> nimmt <InlineMath math="x=\frac13" /> mit, obwohl der Logarithmus dort nicht existiert.
+- <InlineMath math="0<x\le3" /> verwendet nur die Bedingung <InlineMath math="x>0" /> aus <InlineMath math="g" /> und **vergisst die Bedingung des äußeren Logarithmus**.
+- <InlineMath math="0<x\le7" /> entsteht, wenn du die Reihenfolge der Verkettung umdrehst, <InlineMath math="g\big(f^{-1}(x)\big)={}^{3}\log\left({}^{2}\log(x+1)\right)\le1" />.
+- <InlineMath math="1<x\le81" /> entsteht, wenn du die Umkehrfunktion falsch als <InlineMath math="{}^{2}\log x-1" /> schreibst, dann wird die Ungleichung zu <InlineMath math="{}^{2}\log\left({}^{3}\log x\right)\le2" />.
+
+Die Lösungsmenge besteht also aus allen <InlineMath math="x" /> mit <InlineMath math="\frac13<x\le3" />.

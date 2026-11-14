@@ -1,20 +1,53 @@
-Bola dikembalikan sebelum pengambilan kedua, jadi **isi kantong sama pada kedua pengambilan** dan kedua kejadian saling bebas. Berbeda warna dapat terjadi dalam dua urutan.
+Keempat pernyataan bertumpu pada titik-titik sudut daerah <InlineMath math="D" />. Rencananya, cari dulu titik sudutnya, lalu pakai sifat utama program linear: **nilai maksimum fungsi linear pada daerah segi banyak selalu tercapai di titik sudut**. Setelah itu, periksa hal yang tidak tertangkap oleh sifat itu: syarat bilangan cacah, sisi yang sejajar dengan fungsi, dan kendala yang berubah.
 
-# Dua urutan yang mungkin
+# Titik sudut daerah
+
+Titik potong kedua garis miring didapat dengan eliminasi. Kalikan <InlineMath math="2x+y=10" /> dengan <InlineMath math="3" />, lalu kurangi dengan <InlineMath math="x+3y=14" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{merah lalu biru})&=\tfrac35\cdot\tfrac25=\tfrac{6}{25}\\
-P(\text{biru lalu merah})&=\tfrac25\cdot\tfrac35=\tfrac{6}{25}
+6x+3y-(x+3y) &= 30-14 \\
+5x &= 16 \\
+x=\tfrac{16}{5},\quad y &= 10-\tfrac{32}{5}=\tfrac{18}{5}
 \end{aligned}" />
 
-# Menjumlahkan kedua urutan
+Garis <InlineMath math="2x+y=10" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="(5,0)" />, dan garis <InlineMath math="x+3y=14" /> memotong sumbu <InlineMath math="y" /> di <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. Titik potong lainnya, <InlineMath math="(0,10)" /> dan <InlineMath math="(14,0)" />, melanggar pertidaksamaan yang lain. Jadi titik sudut <InlineMath math="D" /> adalah <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, dan <InlineMath math="\left(0,\tfrac{14}{3}\right)" />.
 
-Kedua urutan tidak mungkin terjadi bersamaan, jadi **peluangnya dijumlahkan**.
+# Pernyataan pertama
 
-<BlockMath math="P=\tfrac{6}{25}+\tfrac{6}{25}=\tfrac{12}{25}" />
+Hitung <InlineMath math="3x+4y" /> di setiap titik sudut.
 
-Pemeriksaan: peluang kedua bola sewarna adalah <InlineMath math="\tfrac{9}{25}+\tfrac{4}{25}=\tfrac{13}{25}" />, dan <InlineMath math="\tfrac{12}{25}+\tfrac{13}{25}=1" />.
+<BlockMath math="\begin{aligned}
+(0,0)&:\ 0, \qquad (5,0):\ 15 \\
+\left(\tfrac{16}{5},\tfrac{18}{5}\right)&:\ \tfrac{48}{5}+\tfrac{72}{5}=24, \qquad \left(0,\tfrac{14}{3}\right):\ \tfrac{56}{3}
+\end{aligned}" />
 
-Nilai <InlineMath math="\tfrac{13}{25}" /> adalah peluang sewarna. Nilai <InlineMath math="\tfrac35" /> muncul jika bola tidak dikembalikan, <InlineMath math="2\cdot\tfrac35\cdot\tfrac24" />. Nilai <InlineMath math="\tfrac{21}{25}" /> adalah peluang paling sedikit satu bola merah.
+Nilai terbesarnya <InlineMath math="24" />, dan **titik sudut itu boleh dipakai** karena di sini <InlineMath math="x" /> dan <InlineMath math="y" /> bilangan real. Pernyataan ini benar.
 
-Jadi, peluang kedua bola berbeda warna adalah **<InlineMath math="\tfrac{12}{25}" />**.
+# Pernyataan kedua
+
+Nilai <InlineMath math="24" /> tercapai di titik yang koordinatnya pecahan. Untuk bilangan cacah, nilainya paling besar <InlineMath math="24" />, jadi cukup periksa semua titik cacah yang memberi <InlineMath math="24" /> atau <InlineMath math="23" />.
+
+<BlockMath math="\begin{aligned}
+3x+4y=24&:\ (0,6),\ (4,3),\ (8,0) \\
+3x+4y=23&:\ (1,5),\ (5,2)
+\end{aligned}" />
+
+Semuanya melanggar kendala: <InlineMath math="(0,6)" /> dan <InlineMath math="(1,5)" /> membuat <InlineMath math="x+3y" /> lebih dari <InlineMath math="14" />, sedangkan <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" />, dan <InlineMath math="(5,2)" /> membuat <InlineMath math="2x+y" /> lebih dari <InlineMath math="10" />. Titik <InlineMath math="(2,4)" /> memenuhi <InlineMath math="2\cdot 2+4=8\le 10" /> dan <InlineMath math="2+12=14\le 14" />, dengan nilai <InlineMath math="6+16=22" />. Jadi **maksimum untuk bilangan cacah adalah <InlineMath math="22" />**, bukan <InlineMath math="23" />. Membulatkan titik sudut ke <InlineMath math="(3,4)" /> juga gagal, karena <InlineMath math="3+12=15>14" />. Pernyataan ini salah.
+
+# Pernyataan ketiga
+
+Kendala <InlineMath math="2x+y\le 10" /> sudah memastikan <InlineMath math="2x+y" /> paling besar <InlineMath math="10" />. Nilai <InlineMath math="10" /> tercapai di seluruh sisi dari <InlineMath math="(5,0)" /> sampai <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, misalnya di <InlineMath math="(5,0)" /> dan di <InlineMath math="(4,2)" />. Karena **fungsinya sejajar dengan satu sisi daerah**, maksimumnya tercapai di tak hingga banyak titik. Pernyataan ini salah.
+
+# Pernyataan keempat
+
+Kendala baru menggeser titik potong kedua garis miring.
+
+<BlockMath math="\begin{aligned}
+6x+3y-(x+3y) &= 30-17 \\
+x=\tfrac{13}{5},\quad y &= 10-\tfrac{26}{5}=\tfrac{24}{5} \\
+3x+4y &= \tfrac{39}{5}+\tfrac{96}{5}=27
+\end{aligned}" />
+
+Titik sudut lainnya memberi <InlineMath math="15" /> di <InlineMath math="(5,0)" /> dan <InlineMath math="\tfrac{68}{3}" /> di <InlineMath math="\left(0,\tfrac{17}{3}\right)" />, keduanya kurang dari <InlineMath math="27" />. Jadi maksimum naik dari <InlineMath math="24" /> ke <InlineMath math="27" />, yaitu sebesar <InlineMath math="3" />. Angka <InlineMath math="4" /> muncul kalau kamu mengira <InlineMath math="y" /> naik <InlineMath math="1" /> sementara <InlineMath math="x" /> tetap, padahal **titik sudutnya bergeser sepanjang garis <InlineMath math="2x+y=10" />**: <InlineMath math="x" /> turun <InlineMath math="\tfrac{3}{5}" /> dan <InlineMath math="y" /> naik <InlineMath math="\tfrac{6}{5}" />. Pernyataan ini salah.
+
+Jadi, hanya pernyataan pertama yang benar, sedangkan pernyataan kedua, ketiga, dan keempat salah.

@@ -1,15 +1,48 @@
-Der Ergebnisraum besteht aus 30 gleich wahrscheinlichen Karten, jede Wahrscheinlichkeit ist also **die Anzahl passender Nummern geteilt durch 30**. Liste die Nummern einzeln auf, damit keine fehlt.
+Du weißt noch nicht, wo <InlineMath math="t" /> in den geordneten Daten steht, aber genau diese Stelle entscheidet, welche Werte die Perzentilregel benutzt. Der Plan: Bestimme zuerst die Position des Perzentils, **unterscheide dann Fälle danach, wo <InlineMath math="t" /> steht**, und streiche jeden Fall, dessen Ergebnis seine eigene Bedingung verletzt.
 
-# Primzahlen und Quadratzahlen
+# Die Position des Perzentils
 
-Die Primzahlen von 1 bis 30 sind 2, 3, 5, 7, 11, 13, 17, 19, 23 und 29, insgesamt 10. **Die Zahl 1 ist keine Primzahl**. Die Wahrscheinlichkeit ist <InlineMath math="\tfrac{10}{30}=\tfrac13" />, also ist die erste Aussage wahr.
+Jetzt gibt es <InlineMath math="n=11" /> Werte, für <InlineMath math="k=40" /> bekommst du also diese Position.
 
-Die Quadratzahlen sind 1, 4, 9, 16 und 25, insgesamt 5. Die Wahrscheinlichkeit ist <InlineMath math="\tfrac{5}{30}=\tfrac16" />, nicht <InlineMath math="\tfrac15" />. Die zweite Aussage ist falsch.
+<BlockMath math="L=\frac{40\cdot 12}{100}=4{,}8,\qquad i=4,\quad f=0{,}8" />
 
-# Zwei Bedingungen zugleich
+Also gilt <InlineMath math="P_{40}=y_{(4)}+0{,}8\left(y_{(5)}-y_{(4)}\right)" />. Du brauchst **den <InlineMath math="4" />. und den <InlineMath math="5" />. Wert, nachdem <InlineMath math="t" /> einsortiert ist**.
 
-Eine gerade Zahl, die auch ein Vielfaches von 5 ist, ist **ein Vielfaches von 10**: 10, 20 und 30. Die Wahrscheinlichkeit ist <InlineMath math="\tfrac{3}{30}=\tfrac{1}{10}" />, also ist die dritte Aussage wahr.
+# Fälle nach der Stelle des fehlenden Werts
 
-Die ungeraden Zahlen größer als 20 sind 21, 23, 25, 27 und 29, insgesamt 5. Die Wahrscheinlichkeit ist <InlineMath math="\tfrac{5}{30}=\tfrac16" />, nicht <InlineMath math="\tfrac15" />. Die vierte Aussage ist falsch.
+Ohne <InlineMath math="t" /> sind die vier kleinsten Werte <InlineMath math="10,14,17,20" />, und der nächste ist <InlineMath math="26" />. Wo <InlineMath math="t" /> landet, verändert den <InlineMath math="4" />. und den <InlineMath math="5" />. Wert.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+<BlockMath math="\begin{aligned}
+t\le 17:&\quad y_{(4)}=17,\ y_{(5)}=20,\ P_{40}=17+0{,}8\cdot 3=19{,}4 \\
+17\le t\le 20:&\quad y_{(4)}=t,\ y_{(5)}=20,\ P_{40}=t+0{,}8(20-t)=0{,}2t+16 \\
+20\le t\le 26:&\quad y_{(4)}=20,\ y_{(5)}=t,\ P_{40}=20+0{,}8(t-20)=0{,}8t+4 \\
+t\ge 26:&\quad y_{(4)}=20,\ y_{(5)}=26,\ P_{40}=20+0{,}8\cdot 6=24{,}8
+\end{aligned}" />
+
+Der erste und der vierte Fall liefern feste Werte, die nicht <InlineMath math="23{,}2" /> sind, also fallen beide weg.
+
+# Die beiden übrigen Fälle prüfen
+
+Löse jede Gleichung und **prüf dann, ob das Ergebnis die Bedingung seines eigenen Falls erfüllt**.
+
+<BlockMath math="\begin{aligned}
+0{,}2t+16=23{,}2 &\;\Longrightarrow\; t=36 \\
+0{,}8t+4=23{,}2 &\;\Longrightarrow\; t=24
+\end{aligned}" />
+
+Der Wert <InlineMath math="t=36" /> erfüllt <InlineMath math="17\le t\le 20" /> nicht, also fällt er weg. Der Wert <InlineMath math="t=24" /> erfüllt <InlineMath math="20\le t\le 26" />, das ist also die Lösung.
+
+# Probe
+
+Mit <InlineMath math="t=24" /> lauten die geordneten Daten <InlineMath math="10,14,17,20,24,26,29,33,38,41,45" />. Der <InlineMath math="4" />. Wert ist <InlineMath math="20" />, der <InlineMath math="5" />. Wert ist <InlineMath math="24" />, also gilt <InlineMath math="P_{40}=20+0{,}8\cdot 4=23{,}2" />. Das passt.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer vertauschten Positionsregel oder einem ungeprüften Fall**.
+
+- <InlineMath math="23{,}2" /> benutzt eine andere Positionsregel, <InlineMath math="L=1+\tfrac{k(n-1)}{100}=5" />, und hält das Perzentil deshalb für den <InlineMath math="5" />. Wert, also für <InlineMath math="t" /> selbst.
+- <InlineMath math="24{,}75" /> verzählt sich bei der Reihenfolge und hält <InlineMath math="17" /> für den <InlineMath math="4" />. Wert und <InlineMath math="t" /> für den <InlineMath math="5" />. Wert.
+- <InlineMath math="28" /> benutzt die Position <InlineMath math="L=\tfrac{kn}{100}=4{,}4" /> statt <InlineMath math="\tfrac{k(n+1)}{100}" />.
+- <InlineMath math="36" /> stammt aus dem Fall <InlineMath math="17\le t\le 20" />, ohne zu prüfen, dass <InlineMath math="36" /> gar nicht in diesem Intervall liegt.
+
+Der Wert von <InlineMath math="t" /> ist also <InlineMath math="24" />.

@@ -1,26 +1,43 @@
-Eine Gerade ist durch **einen Punkt und ihre Steigung** festgelegt. Der Punkt ist der Schnittpunkt der ersten beiden Geraden, die Steigung folgt aus der Orthogonalität.
+Die Größe <InlineMath math="P" /> ist eine gewöhnliche Wahrscheinlichkeit, <InlineMath math="Q" /> dagegen **eine bedingte Wahrscheinlichkeit mit einem kleineren Ergebnisraum**. Du gehst so vor: Berechne <InlineMath math="P" /> aus allen Ergebnissen, <InlineMath math="Q" /> nur aus den Ergebnissen mit einer <InlineMath math="6" />, und vergleiche dann beide Brüche exakt.
 
-# Der Schnittpunkt
+# Der Ergebnisraum
 
-Addiere die beiden Gleichungen, damit **die Variable y wegfällt**.
+Die drei Würfel haben verschiedene Farben, jedes Ergebnis ist also ein geordnetes Tripel (rot, blau, grün). Es gibt <InlineMath math="6\cdot6\cdot4=144" /> Ergebnisse, und weil alle Würfel fair sind, **ist jedes Tripel gleich wahrscheinlich**.
 
-<BlockMath math="\begin{aligned}
-(x+y)+(2x-y)&=5+1\\
-3x=6\;\Longrightarrow\;x&=2,\quad y=3
-\end{aligned}" />
+# Die erste Wahrscheinlichkeit
 
-# Steigung der Geraden g
-
-Die Gerade <InlineMath math="3x+2y=6" /> lässt sich als <InlineMath math="y=-\tfrac32x+3" /> schreiben, ihre Steigung ist also <InlineMath math="-\tfrac32" />. Zwei Geraden sind orthogonal, wenn **das Produkt ihrer Steigungen <InlineMath math="-1" /> ist**, also hat <InlineMath math="g" /> die Steigung <InlineMath math="\tfrac23" />.
+Halte die grüne Zahl <InlineMath math="h" /> fest. Dann müssen Rot und Blau zusammen <InlineMath math="9-h" /> ergeben. Zwei Würfel mit den Zahlen <InlineMath math="1" /> bis <InlineMath math="6" /> erreichen die Summe <InlineMath math="k" /> auf <InlineMath math="k-1" /> Arten für <InlineMath math="k\le7" /> und auf <InlineMath math="13-k" /> Arten für <InlineMath math="k\ge7" />. Also **ist jeder Wert von <InlineMath math="h" /> ein eigener Fall**.
 
 <BlockMath math="\begin{aligned}
-y-3&=\tfrac23(x-2)\\
-3y-9&=2x-4\\
-2x-3y+5&=0
+h=1,2,3,4&:\quad \text{rot}+\text{blau}=8,\ 7,\ 6,\ 5\\
+\text{Anzahl der Tripel}&=5+6+5+4=20\\
+P&=\frac{20}{144}=\frac{5}{36}
 \end{aligned}" />
 
-Kontrolle: <InlineMath math="2(2)-3(3)+5=0" />, also liegt der Punkt <InlineMath math="(2,3)" /> auf der Geraden.
+# Die bedingte Wahrscheinlichkeit
 
-Die Gerade <InlineMath math="3x+2y-12=0" /> geht durch den richtigen Punkt, ist aber parallel statt orthogonal. Die Gerade <InlineMath math="3x-2y=0" /> dreht nur das Vorzeichen der Steigung um, und <InlineMath math="2x+3y-13=0" /> nur den Bruch. Die Gerade <InlineMath math="2x-3y-5=0" /> hat die richtige Steigung, geht aber nicht durch <InlineMath math="(2,3)" />.
+Der grüne Würfel geht nur bis <InlineMath math="4" />, also **kann eine <InlineMath math="6" /> nur auf dem roten oder blauen Würfel liegen**. Ohne <InlineMath math="6" /> auf diesen beiden Würfeln gibt es <InlineMath math="5\cdot5\cdot4=100" /> Tripel, also erfüllen <InlineMath math="144-100=44" /> Tripel die Bedingung. Diese <InlineMath math="44" /> Tripel bilden den neuen Ergebnisraum für <InlineMath math="Q" />.
 
-Die Gleichung der Geraden <InlineMath math="g" /> ist also **<InlineMath math="2x-3y+5=0" />**.
+Suche darunter die Tripel mit der Summe <InlineMath math="10" />.
+
+- Rot zeigt <InlineMath math="6" />: Blau und Grün ergeben zusammen <InlineMath math="4" />, also <InlineMath math="(1,3)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,1)" />, das sind <InlineMath math="3" /> Tripel.
+- Blau zeigt <InlineMath math="6" />: aus demselben Grund <InlineMath math="3" /> Tripel.
+- Rot und Blau zeigen beide <InlineMath math="6" />: Die Summe ist mindestens <InlineMath math="13" />, also keines.
+
+<BlockMath math="Q=\frac{6}{44}=\frac{3}{22}" />
+
+# Die beiden Brüche vergleichen
+
+Die Brüche liegen nah beieinander, also vergleichst du sie über Kreuz.
+
+<BlockMath math="\frac{5}{36}\ \text{und}\ \frac{3}{22}:\qquad 5\cdot22=110>108=3\cdot36" />
+
+Also gilt <InlineMath math="P>Q" />. Als Dezimalzahlen ist <InlineMath math="P\approx0{,}1389" /> und <InlineMath math="Q\approx0{,}1364" />. Beide runden auf <InlineMath math="0{,}14" />, deshalb **reicht eine grobe Schätzung nicht**.
+
+# Die falschen Antworten
+
+- <InlineMath math="Q>P" /> entsteht, wenn der bedingte Ergebnisraum wie bei zwei Würfeln mit <InlineMath math="11" /> gezählt wird. Dann fehlt der grüne Würfel, und es ergibt sich <InlineMath math="Q=\tfrac{6}{11}" />. Diese Antwort entsteht auch, wenn bei <InlineMath math="P" /> ein Fall fehlt, zum Beispiel mit <InlineMath math="\tfrac{18}{144}=\tfrac18" />, was kleiner als <InlineMath math="\tfrac{3}{22}" /> ist.
+- <InlineMath math="P=Q" /> entsteht, wenn beide Wahrscheinlichkeiten **erst nach dem Runden verglichen werden**, hier auf <InlineMath math="0{,}14" />.
+- Die Antwort, die Angaben reichten nicht, ist falsch, weil faire Würfel beide Wahrscheinlichkeiten zu festen, berechenbaren Zahlen machen.
+
+Die richtige Beziehung ist also <InlineMath math="P>Q" />.

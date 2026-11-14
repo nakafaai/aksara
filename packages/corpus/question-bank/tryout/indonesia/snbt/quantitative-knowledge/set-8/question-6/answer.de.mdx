@@ -1,25 +1,34 @@
-Quadriere beide Seiten, um die Wurzel zu entfernen. Dabei können Scheinlösungen entstehen, also **muss jedes Ergebnis in der ursprünglichen Gleichung geprüft werden**.
+Du zählst die Möglichkeiten, das Brett <InlineMath math="2\times10" /> so zu belegen, dass es mehr senkrechte als waagrechte Dominosteine gibt. Du gehst so vor: Zuerst zeigst du, dass **waagrechte Steine immer paarweise auftreten**, dann schreibst du jede Belegung als Reihe von Blöcken und zählst die passenden Fälle.
 
-# Beide Seiten quadrieren
+# Waagrechte Steine kommen immer paarweise
+
+Sieh dir die am weitesten links liegende Spalte an, die noch nicht ganz bedeckt ist. Angenommen, ihr oberes Feld ist von einem waagrechten Stein bedeckt, der in diese und die rechte Nachbarspalte reicht. Das untere Feld dieser Spalte kann keinen senkrechten Stein bekommen, weil das obere Feld schon belegt ist. Es kann auch keinen waagrechten Stein bekommen, der nach links reicht, weil die Spalten links schon voll sind. Also ist das untere Feld **von einem waagrechten Stein auf denselben zwei Spalten bedeckt**.
+
+Jede Belegung ist deshalb eine Reihe aus zwei Blockarten, von links nach rechts:
+
+- ein senkrechter Stein, <InlineMath math="1" /> Spalte breit,
+- zwei übereinanderliegende waagrechte Steine, <InlineMath math="2" /> Spalten breit.
+
+# Die passenden Fälle zählen
+
+Es seien <InlineMath math="k" /> senkrechte Steine und <InlineMath math="m" /> waagrechte Blöcke vorhanden, also <InlineMath math="2m" /> waagrechte Steine. Die Blöcke füllen die Breite <InlineMath math="10" />, also gilt <InlineMath math="k+2m=10" />. Die Bedingung lautet <InlineMath math="k>2m=10-k" />, also <InlineMath math="k>5" />. Weil <InlineMath math="2m=10-k" /> gerade ist, **muss auch die Anzahl der senkrechten Steine gerade sein**. Für <InlineMath math="k" /> bleiben nur <InlineMath math="6" />, <InlineMath math="8" /> oder <InlineMath math="10" />.
+
+In jedem Fall stehen <InlineMath math="k+m" /> Blöcke in einer Reihe, und du wählst nur die Plätze der <InlineMath math="m" /> waagrechten Blöcke.
 
 <BlockMath math="\begin{aligned}
-x+10&=(x-2)^2\\
-x+10&=x^2-4x+4\\
-x^2-5x-6&=0\\
-(x-6)(x+1)&=0
+k=6,\ m=2&:\quad \binom{8}{2}=28\\
+k=8,\ m=1&:\quad \binom{9}{1}=9\\
+k=10,\ m=0&:\quad \binom{10}{0}=1
 \end{aligned}" />
 
-# Beide Kandidaten prüfen
+Zusammen sind das <InlineMath math="28+9+1=38" /> Möglichkeiten.
 
-Die linke Seite ist eine Quadratwurzel und nie negativ. Deshalb **muss auch die rechte Seite nicht negativ sein**, also <InlineMath math="x\ge2" />.
+# Kontrolle mit allen Fällen
 
-<BlockMath math="\begin{aligned}
-x=6&:\quad \sqrt{16}=4=6-2\\
-x=-1&:\quad \sqrt{9}=3\ne-1-2
-\end{aligned}" />
+Zähle auch die Fälle, die die Bedingung nicht erfüllen: <InlineMath math="k=0" /> liefert <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> liefert <InlineMath math="\binom{6}{4}=15" /> und <InlineMath math="k=4" /> liefert <InlineMath math="\binom{7}{3}=35" />. Alle Fälle zusammen ergeben <InlineMath math="1+15+35+28+9+1=89" />. Die Anzahl der Belegungen eines Bretts <InlineMath math="2\times n" /> erfüllt <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, weil die erste Spalte entweder ein senkrechter Stein oder ein waagrechter Block bedeckt. Diese Folge lautet <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> für <InlineMath math="n=1" /> bis <InlineMath math="n=10" />. **Die Gesamtzahl <InlineMath math="89" /> stimmt überein**, die Fallunterscheidung ist also vollständig.
 
-Nur <InlineMath math="x=6" /> passt. Der Kandidat <InlineMath math="x=-1" /> entsteht, weil <InlineMath math="3^2" /> und <InlineMath math="(-3)^2" /> beide 9 sind.
+# Häufige Fehler
 
-Der Wert 5 addiert beide Kandidaten ohne Probe. Der Wert <InlineMath math="-1" /> ist die Scheinlösung, 4 ist der Wert von <InlineMath math="\sqrt{x+10}" />, und 1 entsteht durch einen Vorzeichenfehler beim Faktorisieren.
+Wenn du waagrechte Steine für frei platzierbar hältst, wählst du vielleicht die Plätze der <InlineMath math="6" /> senkrechten Steine unter <InlineMath math="10" /> Spalten und kommst auf <InlineMath math="\binom{10}{6}=210" />. Doch **die übrigen Spalten müssen sich zu Blöcken der Breite <InlineMath math="2" /> zusammenfassen lassen**. Wenn du vergisst, dass <InlineMath math="k" /> gerade ist, suchst du vielleicht die unmöglichen Fälle <InlineMath math="k=7" /> oder <InlineMath math="k=9" />. Mit der Antwort <InlineMath math="89" /> ist die Bedingung über mehr senkrechte Steine noch nicht berücksichtigt.
 
-Die Summe aller Lösungen ist also **6**.
+Es gibt also <InlineMath math="38" /> Möglichkeiten, das Brett mit mehr senkrechten als waagrechten Steinen zu belegen.

@@ -1,15 +1,39 @@
-Die Volumenformel des Kegels braucht den Grundkreisradius und **die senkrechte Höhe**, die Aufgabe nennt aber den Umfang der Grundfläche und die Mantellinie. Rechne diese Angaben also zuerst um.
+Die Gerade <InlineMath math="AG" /> ist eine Raumdiagonale und <InlineMath math="BD" /> eine Diagonale der Grundfläche. Beide **schneiden sich nicht und sind nicht parallel**, also kannst du den Winkel nicht direkt aus einem Dreieck im Quader ablesen. Sauber geht es mit Koordinaten: Der Winkel zwischen zwei Geraden ist der spitze Winkel zwischen ihren Richtungsvektoren.
 
-# Radius und Höhe
+# Koordinaten festlegen
 
-Aus dem Umfang <InlineMath math="2\pi r=12\pi" /> folgt <InlineMath math="r=6" />. Radius, Höhe und Mantellinie bilden ein rechtwinkliges Dreieck mit **der Mantellinie als Hypotenuse**.
+Lege <InlineMath math="A" /> in den Ursprung, die <InlineMath math="x" />-Achse entlang <InlineMath math="AB" />, die <InlineMath math="y" />-Achse entlang <InlineMath math="AD" /> und die <InlineMath math="z" />-Achse entlang <InlineMath math="AE" />. Weil <InlineMath math="AD=BC=4" /> gilt, **kannst du jede Ecke direkt aus den Maßen des Quaders angeben**.
 
-<BlockMath math="t=\sqrt{10^2-6^2}=\sqrt{64}=8" />
+<BlockMath math="A(0,0,0),\quad B(2,0,0),\quad D(0,4,0),\quad G(2,4,4)" />
 
-# Volumen
+# Die Richtungsvektoren berechnen
 
-<BlockMath math="V=\tfrac13\pi r^2t=\tfrac13\pi(36)(8)=96\pi\text{ cm}^3" />
+Der Richtungsvektor einer Geraden ist Endpunkt minus Anfangspunkt. Danach berechnest du die Längen beider Vektoren und **ihr Skalarprodukt**.
 
-Der Wert <InlineMath math="120\pi" /> **verwendet die Mantellinie 10 als Höhe**. Der Wert <InlineMath math="288\pi" /> vergisst den Faktor <InlineMath math="\tfrac13" />, und der Wert <InlineMath math="360\pi" /> macht beide Fehler. Der Wert <InlineMath math="32\pi" /> setzt den Umfang <InlineMath math="12\pi" /> statt der Grundfläche ein, also <InlineMath math="\tfrac13\cdot12\pi\cdot8" />.
+<BlockMath math="\begin{aligned}
+\overrightarrow{AG} &= (2,4,4), & \lvert\overrightarrow{AG}\rvert &= \sqrt{4+16+16}=6 \\
+\overrightarrow{BD} &= (-2,4,0), & \lvert\overrightarrow{BD}\rvert &= \sqrt{4+16}=2\sqrt5 \\
+\overrightarrow{AG}\cdot\overrightarrow{BD} &= 2(-2)+4(4)+4(0)=12
+\end{aligned}" />
 
-Das Volumen des Kegels beträgt also **<InlineMath math="96\pi\text{ cm}^3" />**.
+# Den spitzen Winkel nehmen
+
+Eine Gerade hat kein Vorne und Hinten. Nimmst du <InlineMath math="\overrightarrow{DB}=(2,-4,0)" />, wird das Skalarprodukt <InlineMath math="-12" /> und der Winkel stumpf, obwohl es dieselbe Gerade ist. Deshalb ist **der Winkel zwischen zwei Geraden immer der spitze**, und du nimmst den Betrag des Skalarprodukts.
+
+<BlockMath math="\begin{aligned}
+\cos\theta &= \frac{\lvert\overrightarrow{AG}\cdot\overrightarrow{BD}\rvert}{\lvert\overrightarrow{AG}\rvert\,\lvert\overrightarrow{BD}\rvert} \\
+&= \frac{12}{6\cdot2\sqrt5}=\frac{1}{\sqrt5}=\frac{\sqrt5}{5}
+\end{aligned}" />
+
+Zur Plausibilität: Der Wert liegt zwischen <InlineMath math="0" /> und <InlineMath math="1" />, wie es für einen spitzen Winkel sein muss. Wäre die Grundfläche ein Quadrat (<InlineMath math="AB=AD" />), wäre das Skalarprodukt <InlineMath math="-AB^2+AD^2=0" /> und die Geraden stünden senkrecht. Hier ist <InlineMath math="AB\ne AD" />, also ist der Winkel kein rechter.
+
+# Warum die anderen Antworten nicht passen
+
+Die falschen Antworten entstehen, wenn du **eine Gerade durch eine andere ersetzt**.
+
+- <InlineMath math="\tfrac35" /> ist der Kosinus des Winkels zwischen <InlineMath math="AC" /> und <InlineMath math="BD" />, also <InlineMath math="\tfrac{12}{2\sqrt5\cdot2\sqrt5}=\tfrac{12}{20}" />. Er entsteht, wenn du <InlineMath math="AG" /> durch seine Projektion auf die Grundfläche ersetzt, aber der Winkel zur Projektion ist nicht der Winkel zur ursprünglichen Geraden.
+- <InlineMath math="0" /> stammt aus der Gewohnheit beim Würfel, wo <InlineMath math="AG" /> senkrecht auf <InlineMath math="BD" /> steht. Das gilt nur für <InlineMath math="AB=AD" />.
+- <InlineMath math="\tfrac23" /> ist der Kosinus des Winkels zwischen <InlineMath math="AG" /> und der senkrechten Kante <InlineMath math="AE" />, also <InlineMath math="\tfrac{4}{6}" />.
+- <InlineMath math="\tfrac{\sqrt5}{3}" /> ist der Kosinus des Winkels zwischen <InlineMath math="AG" /> und der Grundflächendiagonale <InlineMath math="AC" />, also <InlineMath math="\tfrac{2\sqrt5}{6}" />. Gefragt ist aber die Diagonale <InlineMath math="BD" />, nicht <InlineMath math="AC" />.
+
+Der Kosinus des Winkels zwischen der Geraden <InlineMath math="AG" /> und der Geraden <InlineMath math="BD" /> ist also <InlineMath math="\tfrac{\sqrt5}{5}" />.

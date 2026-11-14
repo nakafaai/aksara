@@ -1,22 +1,42 @@
-Fasse die beiden Logarithmen mit der Regel **Summe der Logarithmen gleich Logarithmus des Produkts** zusammen und denke daran, dass jedes Argument eines Logarithmus positiv sein muss.
+Jeder Weg des Roboters von <InlineMath math="O" /> nach <InlineMath math="T" /> besteht aus genau <InlineMath math="3" /> Schritten in <InlineMath math="x" />, <InlineMath math="3" /> Schritten in <InlineMath math="y" /> und <InlineMath math="2" /> Schritten in <InlineMath math="z" />, weil die Koordinaten nur wachsen können. Der Plan: Schneide jeden Weg am Pflichtpunkt <InlineMath math="A" />, finde heraus, **welcher verbotene Punkt welchen Teil stören kann**, entferne in jedem Teil die verbotenen Wege und multipliziere dann.
 
-# Bedingung an die Argumente
+# Wege als Anordnungen von Buchstaben zählen
 
-Damit beide Logarithmen definiert sind, muss <InlineMath math="x+2>0" /> und <InlineMath math="x-4>0" /> gelten. Beides gilt zusammen genau für <InlineMath math="x>4" />, also **muss jede Lösung größer als 4 sein**.
-
-# Die Gleichung lösen
+Ein Weg von einem Punkt zu einem anderen ist dasselbe wie eine Anordnung von Buchstaben. Von <InlineMath math="O" /> nach <InlineMath math="A(1,2,1)" /> braucht der Roboter zum Beispiel einen Buchstaben <InlineMath math="x" />, zwei Buchstaben <InlineMath math="y" /> und einen Buchstaben <InlineMath math="z" />. Die Anzahl der Wege ist **die Anzahl der Anordnungen von Buchstaben mit Wiederholung**.
 
 <BlockMath math="\begin{aligned}
-{}^{2}\log\big[(x+2)(x-4)\big]&=4\\
-(x+2)(x-4)&=2^4=16\\
-x^2-2x-24&=0\\
-(x-6)(x+4)&=0
+O\to A&: \frac{4!}{1!\,2!\,1!}=12\\
+A\to T&: \frac{4!}{2!\,1!\,1!}=12
 \end{aligned}" />
 
-Die Lösung <InlineMath math="x=-4" /> **fällt weg**, weil sie <InlineMath math="x>4" /> verletzt, denn <InlineMath math="{}^{2}\log(-2)" /> ist nicht definiert. Übrig bleibt nur <InlineMath math="x=6" />.
+Von <InlineMath math="A" /> nach <InlineMath math="T(3,3,2)" /> braucht der Roboter zweimal <InlineMath math="x" />, einmal <InlineMath math="y" /> und einmal <InlineMath math="z" />. Ohne Verbote gibt es <InlineMath math="12\times12=144" /> Wege durch <InlineMath math="A" />.
 
-Kontrolle: <InlineMath math="{}^{2}\log8+{}^{2}\log2=3+1=4" />.
+# Die verbotenen Punkte einordnen
 
-Der Wert 2 addiert beide Lösungen, ohne die Bedingung zu prüfen. Der Wert <InlineMath math="-4" /> ist die verworfene Lösung, und <InlineMath math="-6" /> entsteht durch einen Vorzeichenfehler beim Faktorisieren. Der Wert 9 entsteht, wenn man die Summe der Logarithmen als Logarithmus der Summe liest, also <InlineMath math="(x+2)+(x-4)=16" />.
+Entscheidend ist, dass **die Koordinaten des Roboters nie kleiner werden**. Bevor er <InlineMath math="A" /> erreicht, ist also jede Koordinate höchstens so groß wie die passende Koordinate von <InlineMath math="A" />, und nach <InlineMath math="A" /> ist jede Koordinate mindestens so groß.
 
-Die Summe aller Lösungen ist also **6**.
+- Der Punkt <InlineMath math="B(0,1,1)" /> hat lauter Koordinaten, die nicht größer sind als die von <InlineMath math="A" />, also kann <InlineMath math="B" /> nur vor <InlineMath math="A" /> besucht werden.
+- Der Punkt <InlineMath math="C(2,3,1)" /> hat lauter Koordinaten, die nicht kleiner sind als die von <InlineMath math="A" />, also kann <InlineMath math="C" /> nur nach <InlineMath math="A" /> besucht werden.
+
+# Verbotene Wege in jedem Teil entfernen
+
+Jeder Teil muss nur von einem verbotenen Punkt befreit werden, also **ziehst du die Wege durch diesen Punkt von seinem eigenen Teil ab**. Ein Weg <InlineMath math="O\to A" /> über <InlineMath math="B" /> besteht aus <InlineMath math="O\to B" /> (einmal <InlineMath math="y" /> und einmal <InlineMath math="z" />) und danach <InlineMath math="B\to A" /> (einmal <InlineMath math="x" /> und einmal <InlineMath math="y" />). Ein Weg <InlineMath math="A\to T" /> über <InlineMath math="C" /> besteht aus <InlineMath math="A\to C" /> (einmal <InlineMath math="x" /> und einmal <InlineMath math="y" />) und danach <InlineMath math="C\to T" /> (einmal <InlineMath math="x" /> und einmal <InlineMath math="z" />).
+
+<BlockMath math="\begin{aligned}
+O\to A \text{ ohne } B&: 12-(2\times2)=8\\
+A\to T \text{ ohne } C&: 12-(2\times2)=8
+\end{aligned}" />
+
+# Die beiden Teile verbinden
+
+Jeder sichere erste Teil lässt sich mit jedem sicheren zweiten Teil kombinieren, also nimmst du **die Produktregel**.
+
+<BlockMath math="8\times8=64" />
+
+Eine Probe mit Inklusion und Exklusion über alle <InlineMath math="144" /> Wege liefert dasselbe. Durch <InlineMath math="A" /> und <InlineMath math="B" /> führen <InlineMath math="4\times12=48" /> Wege, durch <InlineMath math="A" /> und <InlineMath math="C" /> ebenfalls <InlineMath math="12\times4=48" /> und durch alle drei <InlineMath math="4\times4=16" />.
+
+<BlockMath math="144-48-48+16=64" />
+
+Wenn du vergisst, die <InlineMath math="16" /> Wege durch <InlineMath math="B" /> und <InlineMath math="C" /> wieder dazuzuzählen, erhältst du <InlineMath math="48" />, weil diese Wege doppelt abgezogen wurden.
+
+Der Roboter kann also <InlineMath math="64" /> verschiedene Wege nehmen.

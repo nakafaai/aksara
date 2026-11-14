@@ -1,22 +1,36 @@
-Die beiden Geraden sind parallel, weil die Koeffizienten von <InlineMath math="x" /> und <InlineMath math="y" /> proportional sind, <InlineMath math="3:4=6:8" />. Die Abstandsformel für parallele Geraden gilt nur, wenn **beide Gleichungen genau dieselben Koeffizienten haben**.
+Am sichersten vergleichst du zwei Größen, indem du **das Vorzeichen ihrer Differenz anschaust**, also <InlineMath math="P-Q" />. Der Plan: Forme diese Differenz mit dem Satz von Vieta in einen Ausdruck in <InlineMath math="k" /> um und nutze dann die Bedingung "zwei verschiedene reelle Lösungen", um das Vorzeichen festzulegen.
 
-# Koeffizienten angleichen
+# Die Differenz der beiden Größen
 
-Multipliziere die erste Gleichung mit 2, **auch ihre rechte Seite**.
+Fasse <InlineMath math="a^2+b^2-2ab" /> zu einem vollständigen Quadrat zusammen.
+
+<BlockMath math="P-Q=a^2+b^2-2ab-c=(a-b)^2-c" />
+
+Für <InlineMath math="x^2-2x+k=0" /> liefert der **Satz von Vieta** <InlineMath math="a+b=2" /> und <InlineMath math="ab=k" />. Das Quadrat der Differenz der Lösungen lässt sich mit Summe und Produkt schreiben.
 
 <BlockMath math="\begin{aligned}
-6x+8y-24&=0\\
-6x+8y+1&=0
+(a-b)^2&=(a+b)^2-4ab=4-4k\\
+P-Q&=(4-4k)-(5-5k)=k-1
 \end{aligned}" />
 
-# Die Abstandsformel
+# Die Bedingung zweier verschiedener reeller Lösungen
 
-Für die Geraden <InlineMath math="ax+by+c_1=0" /> und <InlineMath math="ax+by+c_2=0" /> ist der Abstand **die Differenz der Konstanten geteilt durch die Länge des Normalenvektors**.
+An dieser Stelle sieht <InlineMath math="k-1" /> so aus, als könnte es positiv oder negativ sein, und viele hören mit "die Angaben reichen nicht" auf. Die Aufgabe sagt aber, dass die Lösungen reell und verschieden sind, also **muss die Diskriminante positiv sein**.
 
-<BlockMath math="d=\frac{\lvert c_1-c_2\rvert}{\sqrt{a^2+b^2}}=\frac{\lvert-24-1\rvert}{\sqrt{6^2+8^2}}=\frac{25}{10}=2{,}5" />
+<BlockMath math="\begin{aligned}
+D=(-2)^2-4(1)(k)&>0\\
+4-4k&>0\\
+k&<1
+\end{aligned}" />
 
-Kontrolle: Der Punkt <InlineMath math="(4,0)" /> liegt auf der ersten Geraden, und sein Abstand zur zweiten ist <InlineMath math="\tfrac{\lvert6\cdot4+8\cdot0+1\rvert}{10}=\tfrac{25}{10}=2{,}5" />.
+Wegen <InlineMath math="k<1" /> ist die Differenz <InlineMath math="P-Q=k-1" /> immer negativ, also gilt <InlineMath math="Q>P" />.
 
-Der Wert 1,3 verdoppelt die Koeffizienten, aber nicht die Konstante 12. Der Wert 2,3 verwendet wegen eines Vorzeichenfehlers <InlineMath math="\lvert-24+1\rvert" />. Der Wert 2,4 ist der Abstand des Ursprungs zur ersten Geraden. Der Wert 2,2 teilt <InlineMath math="\lvert12-1\rvert" /> durch 5, ohne die Koeffizienten anzugleichen.
+# Probe mit Beispielen und einem zweiten Weg
 
-Der Abstand der beiden Geraden beträgt also **2,5 Einheiten**.
+Für <InlineMath math="k=0" /> sind die Lösungen <InlineMath math="0" /> und <InlineMath math="2" />, also <InlineMath math="P=4" /> und <InlineMath math="Q=0+5=5" />. Für <InlineMath math="k=-3" /> sind die Lösungen <InlineMath math="3" /> und <InlineMath math="-1" />, also <InlineMath math="P=10" /> und <InlineMath math="Q=-6+20=14" />. Beide Beispiele ergeben <InlineMath math="Q>P" />.
+
+Ein zweiter Weg: <InlineMath math="c=5-5k=\tfrac54(4-4k)=\tfrac54(a-b)^2" />, also <InlineMath math="P-Q=(a-b)^2-\tfrac54(a-b)^2=-\tfrac14(a-b)^2" />. **Verschiedene Lösungen machen <InlineMath math="(a-b)^2>0" />**, also ist die Differenz negativ.
+
+Die Antwort <InlineMath math="P>Q" /> kommt von der Annahme, eine Quadratsumme müsse groß sein, <InlineMath math="P=Q" /> würde <InlineMath math="a=b" /> verlangen, was die Aufgabe ausschließt, und "die Angaben reichen nicht" entsteht, wenn du die Bedingung an die Diskriminante weglässt.
+
+Die richtige Beziehung ist also <InlineMath math="Q>P" />.

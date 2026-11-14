@@ -1,22 +1,36 @@
-An angle bisector divides the opposite side in **the ratio of the two sides that form the angle**. This is the angle bisector theorem.
+The question hands you extra information, so what you need is a **conditional probability**: the chance of one event when another event is known to have happened. Call <InlineMath math="G" /> the event "the numbers on the first two cards add up to an even number" and <InlineMath math="E" /> the event "the first even card shows up on the third draw". Here's the plan: find <InlineMath math="P(G)" />, find the chance that <InlineMath math="E" /> and <InlineMath math="G" /> both happen, then divide.
 
-# The ratio from the angle bisector theorem
+<BlockMath math="P(E\mid G)=\frac{P(E\cap G)}{P(G)}" />
 
-The bisector from <InlineMath math="A" /> meets <InlineMath math="BC" />, so <InlineMath math="D" /> divides <InlineMath math="BC" /> in the ratio <InlineMath math="AB:AC" />. The segment <InlineMath math="DC" /> **pairs with <InlineMath math="AC" />**, because both meet at <InlineMath math="C" />.
+# When the first two cards add up to an even number
 
-<BlockMath math="\frac{BD}{DC}=\frac{AB}{AC}=\frac69=\frac23" />
-
-# Dividing BC
-
-The side <InlineMath math="BC=10" /> splits into <InlineMath math="2+3=5" /> equal parts, and **<InlineMath math="DC" /> takes three of them**.
+There are <InlineMath math="5" /> odd cards and <InlineMath math="5" /> even cards. The sum of two whole numbers is even **exactly when both are odd or both are even**. Without replacement, the second card comes from the <InlineMath math="9" /> cards that are left.
 
 <BlockMath math="\begin{aligned}
-BD&=\tfrac25\cdot10=4\\
-DC&=\tfrac35\cdot10=6
+P(\text{odd, odd})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(\text{even, even})&=\tfrac{5}{10}\cdot\tfrac49=\tfrac29\\
+P(G)&=\tfrac29+\tfrac29=\tfrac49
 \end{aligned}" />
 
-Check: <InlineMath math="4+6=10" /> and <InlineMath math="4:6=2:3" />.
+# The event you're asked about
 
-The length 4 cm is <InlineMath math="BD" />, the result of swapping the paired sides. The length 5 cm splits <InlineMath math="BC" /> in half, as a median would, not a bisector. The length 4.5 cm is half of <InlineMath math="AC" /> and 3 cm is half of <InlineMath math="AB" />.
+The first even card shows up on the third draw means the order is odd, odd, even. Two odd cards first give an even sum, so **the event <InlineMath math="E" /> already sits inside <InlineMath math="G" />** and <InlineMath math="E\cap G=E" />. After two odd cards are gone, <InlineMath math="8" /> cards are left, and <InlineMath math="5" /> of them are even.
 
-So the length of <InlineMath math="DC" /> is **<InlineMath math="6\text{ cm}" />**.
+<BlockMath math="P(E\cap G)=\tfrac{5}{10}\cdot\tfrac49\cdot\tfrac58=\tfrac{100}{720}=\tfrac{5}{36}" />
+
+# Computing the conditional probability
+
+**Divide the joint probability by the probability of the condition**, because the condition becomes the new sample space.
+
+<BlockMath math="P(E\mid G)=\frac{5/36}{4/9}=\frac{5}{36}\cdot\frac94=\frac{45}{144}=\frac{5}{16}" />
+
+A check by another route: once <InlineMath math="G" /> has happened, odd-odd and even-even are equally likely (each <InlineMath math="\tfrac29" />), so each has chance <InlineMath math="\tfrac12" />. In the odd-odd case, the third card is even with chance <InlineMath math="\tfrac58" />, while in the even-even case the first even card has already appeared earlier. That gives <InlineMath math="\tfrac12\cdot\tfrac58=\tfrac{5}{16}" />.
+
+# The wrong options
+
+- <InlineMath math="\frac{13}{16}" /> comes from reading "exactly on the third draw" as "by the third draw at the latest", which also counts the even-even case: <InlineMath math="\tfrac12+\tfrac{5}{16}=\tfrac{13}{16}" />.
+- <InlineMath math="\frac58" /> comes from assuming the first two cards must be odd, which forgets the even-even case.
+- <InlineMath math="\frac12" /> is the chance that the third card is even when **the word "first" is ignored**: <InlineMath math="\tfrac12\cdot\tfrac58+\tfrac12\cdot\tfrac38=\tfrac12" />.
+- <InlineMath math="\frac14" /> comes from treating the draws as with replacement, so every draw is even with chance <InlineMath math="\tfrac12" />: <InlineMath math="\frac{(1/2)^3}{1/2}=\frac14" />.
+
+So the probability that the first even card shows up exactly on the third draw is <InlineMath math="\frac{5}{16}" />.

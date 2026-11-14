@@ -1,22 +1,44 @@
-Tentukan dulu suku pertama dan beda dari dua suku yang diketahui. Setelah itu, **hitung banyak suku dengan teliti**: dari suku kelima sampai suku kedua belas ada <InlineMath math="12-5+1=8" /> suku.
+Nilai <InlineMath math="x" /> tidak disebutkan, jadi hubungan <InlineMath math="P" /> dan <InlineMath math="Q" /> harus diperiksa untuk **semua bilangan bulat positif**. Kalau hubungannya berubah untuk nilai <InlineMath math="x" /> yang berbeda, informasinya tidak cukup. Caranya: kuadratkan dua kali sampai akarnya hilang, lalu lihat tanda selisihnya.
 
-# Suku pertama dan beda
+# Membandingkan kuadratnya
+
+Kedua kuantitas positif. Untuk dua bilangan positif, yang lebih besar juga punya kuadrat yang lebih besar, jadi **cukup membandingkan <InlineMath math="P^2" /> dan <InlineMath math="Q^2" />**.
 
 <BlockMath math="\begin{aligned}
-u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
-a&=u_3-2b=11-8=3
+P^2 &= x+2\sqrt{x}\sqrt{x+8}+(x+8)=2x+8+2\sqrt{x^2+8x} \\
+Q^2 &= 4(x+3)=4x+12 \\
+P^2-Q^2 &= 2\left(\sqrt{x^2+8x}-(x+2)\right)
 \end{aligned}" />
 
-**Rumus suku umumnya** <InlineMath math="u_n=3+4(n-1)=4n-1" />, sehingga <InlineMath math="u_5=19" /> dan <InlineMath math="u_{12}=47" />.
+# Mengkuadratkan sekali lagi
 
-# Jumlah delapan suku
+Tanda <InlineMath math="P^2-Q^2" /> sama dengan tanda <InlineMath math="\sqrt{x^2+8x}-(x+2)" />. Kedua suku ini juga positif, jadi **bandingkan lagi kuadratnya**.
 
-Suku kelima sampai kedua belas membentuk barisan aritmetika juga, jadi jumlahnya **banyak suku kali rata-rata suku pertama dan terakhir**.
+<BlockMath math="\begin{aligned}
+(x^2+8x)-(x+2)^2 &= x^2+8x-x^2-4x-4 \\
+&= 4x-4 \\
+&= 4(x-1)
+\end{aligned}" />
 
-<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+Jadi <InlineMath math="P>Q" /> tepat ketika <InlineMath math="x>1" />, <InlineMath math="P=Q" /> tepat ketika <InlineMath math="x=1" />, dan <InlineMath math="P<Q" /> hanya kalau <InlineMath math="x<1" />.
 
-Cek dengan selisih jumlah: <InlineMath math="S_{12}-S_4=300-36=264" />.
+# Menguji semua bilangan bulat positif
 
-Nilai 300 adalah jumlah dua belas suku pertama tanpa dikurangi. Nilai 245 adalah <InlineMath math="S_{12}-S_5" />, yang ikut membuang suku kelima. Nilai 297 menghitung sembilan suku, dan nilai 330 menghitung sepuluh suku.
+Bilangan bulat positif terkecil adalah <InlineMath math="1" />, dan **di situ kedua kuantitas sama besar**.
 
-Jadi, jumlah suku kelima sampai kedua belas adalah **264**.
+<BlockMath math="\begin{aligned}
+x=1:\quad P &= \sqrt1+\sqrt9=1+3=4 \\
+Q &= 2\sqrt4=4
+\end{aligned}" />
+
+Untuk <InlineMath math="x=2" />, selisih kuadratnya <InlineMath math="4(2-1)=4" /> bernilai positif, jadi <InlineMath math="P>Q" />. Hal yang sama berlaku untuk setiap <InlineMath math="x\ge2" />. Karena <InlineMath math="x=1" /> memberi <InlineMath math="P=Q" /> dan <InlineMath math="x=2" /> memberi <InlineMath math="P>Q" />, **satu hubungan pasti tidak bisa dipilih**.
+
+# Mengapa pilihan lain keliru
+
+Ketiga pilihan lain hanya benar untuk **sebagian nilai <InlineMath math="x" />**.
+
+- <InlineMath math="P>Q" /> muncul kalau kamu hanya mencoba bilangan yang lebih besar dari <InlineMath math="1" />, sehingga kasus <InlineMath math="x=1" /> terlewat.
+- <InlineMath math="P=Q" /> muncul kalau kamu hanya mencoba <InlineMath math="x=1" />.
+- <InlineMath math="Q>P" /> muncul kalau kamu mencoba <InlineMath math="x=0" />, misalnya <InlineMath math="\sqrt8<2\sqrt3" />, padahal <InlineMath math="0" /> bukan bilangan bulat positif.
+
+Jadi, informasi yang diberikan tidak cukup untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.

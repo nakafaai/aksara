@@ -1,23 +1,36 @@
-The area of the first triangle is fixed because all three sides are known. The area of the second triangle **depends on the angle between the two known sides**, so check whether it can be smaller and larger than <InlineMath math="P" />.
+Each statement changes the data in a different way, so each one needs its own recount. Here's the plan: compute the mean, median, and mode of the original data first, then **track the position of the middle value after every change**, because the median depends on positions, not on how big the values are.
 
-# Area of the first triangle
+# Statistics of the original data
 
-Draw the altitude to the side 14. It splits that side into parts 5 and 9, because <InlineMath math="13^2-5^2=15^2-9^2=144" />. So **the altitude is 12 cm**.
+The sum of all scores is <InlineMath math="3(5)+5(6)+6(7)+4(8)+2(9)=15+30+42+32+18=137" />, so the mean is <InlineMath math="\frac{137}{20}=6.85" />. The cumulative frequencies show which positions each score occupies.
 
-<BlockMath math="P=\tfrac12\cdot14\cdot12=84" />
+| Score | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Positions | <InlineMath math="1" /> to <InlineMath math="3" /> | <InlineMath math="4" /> to <InlineMath math="8" /> | <InlineMath math="9" /> to <InlineMath math="14" /> | <InlineMath math="15" /> to <InlineMath math="18" /> | <InlineMath math="19" /> to <InlineMath math="20" /> |
 
-# Range of the second area
+There are <InlineMath math="20" /> values, so **the median is the average of the <InlineMath math="10" />th and <InlineMath math="11" />th values**. Both are <InlineMath math="7" />, so the median is <InlineMath math="7" />. The mode is also <InlineMath math="7" />, because its frequency <InlineMath math="6" /> is the largest.
 
-If the angle between the sides 13 and 15 is <InlineMath math="\theta" />, then
+# Correcting a nine to a five
 
-<BlockMath math="Q=\tfrac12\cdot13\cdot15\cdot\sin\theta=97.5\sin\theta" />
+The sum drops by <InlineMath math="9-5=4" /> while the number of values stays <InlineMath math="20" />, so **the mean drops by <InlineMath math="\frac{4}{20}=0.2" />**, from <InlineMath math="6.85" /> to <InlineMath math="6.65" />. The frequency of <InlineMath math="5" /> becomes <InlineMath math="4" /> and that of <InlineMath math="9" /> becomes <InlineMath math="1" />, so the score <InlineMath math="7" /> now fills positions <InlineMath math="10" /> to <InlineMath math="15" />. The <InlineMath math="10" />th and <InlineMath math="11" />th values are still <InlineMath math="7" />, so the median doesn't change. The first statement is **true**.
 
-The angle satisfies <InlineMath math="0^\circ<\theta<180^\circ" />. The value of <InlineMath math="Q" /> **can be any positive number up to 97.5**.
+# One extra student
 
-- If the third side is 14, the second triangle equals the first and <InlineMath math="Q=84=P" />.
-- If <InlineMath math="\theta=90^\circ" />, then <InlineMath math="Q=97.5>P" />.
-- If <InlineMath math="\theta=30^\circ" />, then <InlineMath math="Q=48.75<P" />.
+With one extra student there are <InlineMath math="21" /> values, an odd number. **When the number of values is odd, the median is the single value right in the middle**, here the <InlineMath math="11" />th value. That value is one student's score, so it's a whole number and can't be <InlineMath math="6.5" />. The second statement is **false**.
 
-All three relations are possible, so the relation between <InlineMath math="P" /> and <InlineMath math="Q" /> **cannot be determined**.
+# Two new students scoring six
 
-So the information given is **not sufficient** to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.
+The frequency of <InlineMath math="6" /> rises to <InlineMath math="7" />, which beats the frequency of <InlineMath math="7" />, still <InlineMath math="6" />, so the mode changes to <InlineMath math="6" />. But now there are <InlineMath math="22" /> values, the score <InlineMath math="6" /> ends at position <InlineMath math="10" />, and the score <InlineMath math="7" /> fills positions <InlineMath math="11" /> to <InlineMath math="16" />. The median is the average of the <InlineMath math="11" />th and <InlineMath math="12" />th values, still <InlineMath math="7" />. **Only the mode changes**, so the third statement is **false**.
+
+# New students scoring eight
+
+Adding scores of <InlineMath math="8" /> doesn't shift the positions of the score <InlineMath math="7" />, which still fills positions <InlineMath math="9" /> to <InlineMath math="14" />. The median stays <InlineMath math="7" /> as long as the middle position doesn't go past position <InlineMath math="14" />. There are <InlineMath math="n=20+k" /> values, and **the middle position depends on whether <InlineMath math="n" /> is even or odd**.
+
+<BlockMath math="\begin{aligned}
+n \text{ even}&: \ \tfrac n2+1\le14 \;\Longrightarrow\; n\le26 \;\Longrightarrow\; k\le6\\
+n \text{ odd}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longrightarrow\; k\le7
+\end{aligned}" />
+
+For <InlineMath math="k=7" /> there are <InlineMath math="27" /> values, and the median is the <InlineMath math="14" />th value, which is still <InlineMath math="7" />. For <InlineMath math="k=8" /> there are <InlineMath math="28" /> values, and the median becomes <InlineMath math="\frac{7+8}{2}=7.5" />. So the median stays <InlineMath math="7" /> for <InlineMath math="k\le7" />, not only for <InlineMath math="k\le6" />. The fourth statement is **false**.
+
+So the first statement is true, while the second, third, and fourth are false.

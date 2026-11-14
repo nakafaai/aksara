@@ -1,20 +1,35 @@
-Der andere Körper ist der Würfel ohne die Pyramide <InlineMath math="E.ABD" />. Berechne also **das Würfelvolumen minus das Pyramidenvolumen**.
+Gesucht ist der Abstand von der Ecke <InlineMath math="A" /> zum Berührpunkt <InlineMath math="T" />. Du gehst so vor: Bestimme beide Diagonalen aus ihrer Summe und der Seitenlänge, finde den Mittelpunkt des Inkreises und **nutze das rechtwinklige Dreieck, das der Radius zum Berührpunkt bildet**.
 
-# Volumen der abgeschnittenen Pyramide
+# Die Längen beider Diagonalen
 
-Die Grundfläche der Pyramide ist das Dreieck <InlineMath math="ABD" />, die Hälfte des Quadrats <InlineMath math="ABCD" />. Ihre Höhe ist die Kante <InlineMath math="AE" />, weil <InlineMath math="AE" /> **senkrecht auf der Grundfläche steht**.
+Die Diagonalen schneiden sich in <InlineMath math="O" />. In einer Raute halbieren sich die Diagonalen und stehen senkrecht aufeinander, also ist das Dreieck <InlineMath math="AOB" /> rechtwinklig in <InlineMath math="O" />, mit <InlineMath math="AO=\tfrac12AC" /> und <InlineMath math="BO=\tfrac12BD" />. Der Satz des Pythagoras liefert <InlineMath math="AC^2+BD^2=4\cdot15^2=900" />. Kombiniere das mit der Summe der Diagonalen.
 
 <BlockMath math="\begin{aligned}
-L_{ABD}&=\tfrac12\cdot6\cdot6=18\\
-V_{\text{Pyramide}}&=\tfrac13\cdot18\cdot6=36
+(AC+BD)^2&=AC^2+BD^2+2\,AC\cdot BD\\
+42^2&=900+2\,AC\cdot BD\\
+AC\cdot BD&=\tfrac{1764-900}{2}=432
 \end{aligned}" />
 
-# Volumen des Restkörpers
+Zwei Zahlen mit Summe <InlineMath math="42" /> und Produkt <InlineMath math="432" /> sind die Lösungen von <InlineMath math="t^2-42t+432=0" />, also <InlineMath math="(t-24)(t-18)=0" />. Weil **<InlineMath math="AC" /> die längere Diagonale ist**, gilt <InlineMath math="AC=24\text{ cm}" /> und <InlineMath math="BD=18\text{ cm}" />. Damit ist <InlineMath math="AO=12\text{ cm}" /> und <InlineMath math="BO=9\text{ cm}" />. Probe: <InlineMath math="12^2+9^2=225=15^2" />.
 
-<BlockMath math="V_{\text{Rest}}=6^3-36=216-36=180" />
+# Der Berührpunkt auf der Seite
 
-Die Pyramide **nimmt ein Sechstel des Würfels ein**, also <InlineMath math="\tfrac{36}{216}=\tfrac16" />, der Restkörper also <InlineMath math="\tfrac56" />.
+Eine Raute ist symmetrisch zu beiden Diagonalen, also hat <InlineMath math="O" /> von allen vier Seiten denselben Abstand und ist der Mittelpunkt des Inkreises. Der Radius zum Berührpunkt steht immer senkrecht auf der Tangente, also ist **<InlineMath math="OT" /> die Höhe vom rechten Winkel bei <InlineMath math="O" /> auf die Hypotenuse <InlineMath math="AB" />**.
 
-Der Wert 36 ist das Volumen der Pyramide, nicht des Rests. Der Wert 144 entsteht, wenn man als Grundfläche das ganze Quadrat nimmt und die Pyramide damit 72 hätte. Der Wert 108 nimmt an, dass der Schnitt den Würfel halbiert.
+Die Dreiecke <InlineMath math="ATO" /> und <InlineMath math="AOB" /> sind ähnlich, weil beide rechtwinklig sind und den Winkel bei <InlineMath math="A" /> gemeinsam haben. Das Verhältnis entsprechender Seiten liefert <InlineMath math="AT" />.
 
-Das Volumen des anderen Körpers beträgt also **<InlineMath math="180\text{ cm}^3" />**.
+<BlockMath math="\begin{aligned}
+\frac{AT}{AO}&=\frac{AO}{AB}\\
+AT&=\frac{AO^2}{AB}=\frac{144}{15}=9{,}6\text{ cm}
+\end{aligned}" />
+
+Genauso ist <InlineMath math="BT=\tfrac{BO^2}{AB}=\tfrac{81}{15}=5{,}4\text{ cm}" />, und der Radius ist <InlineMath math="OT=\tfrac{AO\cdot BO}{AB}=\tfrac{108}{15}=7{,}2\text{ cm}" />. Probe: <InlineMath math="AT+BT=9{,}6+5{,}4=15" /> ist die Seitenlänge, und <InlineMath math="AT^2+OT^2=92{,}16+51{,}84=144=AO^2" />.
+
+# Die falschen Antworten
+
+- <InlineMath math="5{,}4\text{ cm}" /> ist <InlineMath math="BT" /> und entsteht, wenn **die Ecke auf der kürzeren Diagonale** als <InlineMath math="A" /> genommen wird.
+- <InlineMath math="7{,}2\text{ cm}" /> ist der Radius <InlineMath math="OT" /> und entsteht, wenn du einen Schritt zu früh aufhörst.
+- <InlineMath math="8\text{ cm}" /> entsteht, wenn <InlineMath math="AO^2" /> durch die Diagonale <InlineMath math="BD" /> statt durch die Seite <InlineMath math="AB" /> geteilt wird: <InlineMath math="\tfrac{144}{18}" />.
+- <InlineMath math="9\text{ cm}" /> entsteht, wenn **der Inkreis des Dreiecks <InlineMath math="AOB" />** statt des Inkreises der Raute genommen wird: Sein Tangentenabschnitt ab <InlineMath math="A" /> ist <InlineMath math="\tfrac{12+15+9}{2}-9=9" />.
+
+Die Länge von <InlineMath math="AT" /> beträgt also <InlineMath math="9{,}6\text{ cm}" />.

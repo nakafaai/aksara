@@ -1,19 +1,43 @@
-Hitung dulu tiga ukuran dasar data, lalu periksa bagaimana setiap ukuran **bereaksi terhadap perubahan data**.
+Untuk rata-rata baru kelompok B, kamu perlu **banyak anggota kelompok B** dan jumlah nilainya. Soal tidak menyebut banyak anggota sama sekali, jadi angka itu harus dicari. Rencananya: cari banyak anggota semua dari peristiwa keluarnya satu anggota, bagi menjadi kelompok A dan B dengan rata-rata gabungan, lalu hitung rata-rata baru kelompok B.
 
-# Rata-rata, median, dan jangkauan
+# Banyak anggota semula
+
+Misalkan banyak anggota semula <InlineMath math="n" />. **Jumlah nilai sama dengan rata-rata dikali banyak anggota**. Sebelum keluar jumlahnya <InlineMath math="71n" />. Setelah anggota bernilai <InlineMath math="98" /> keluar, sisa <InlineMath math="n-1" /> anggota punya rata-rata <InlineMath math="68" />.
 
 <BlockMath math="\begin{aligned}
-\bar x&=\frac{70+75+80+80+85+90}{6}=\frac{480}{6}=80\\
-\text{median}&=\frac{80+80}{2}=80\\
-\text{jangkauan}&=90-70=20
+71n-98&=68(n-1)\\
+71n-98&=68n-68\\
+3n&=30\\
+n&=10
 \end{aligned}" />
 
-Pernyataan kedua benar. Jangkauan adalah **selisih nilai terbesar dan terkecil**, yaitu 20, jadi pernyataan ketiga salah.
+# Banyak anggota kelompok B
 
-# Pengaruh perubahan data
+Misalkan kelompok B punya <InlineMath math="b" /> anggota, jadi kelompok A punya <InlineMath math="10-b" /> anggota. Jumlah nilai gabungan <InlineMath math="71\cdot10=710" />.
 
-Mengganti 90 dengan 100 tidak mengubah urutan data, dan dua nilai tengah tetap 80 dan 80. **Median tidak bergantung pada besar nilai ekstrem**, jadi median tetap 80 dan pernyataan pertama salah. Perubahan itu hanya menaikkan rata-rata.
+<BlockMath math="\begin{aligned}
+65(10-b)+80b&=710\\
+650+15b&=710\\
+b&=4
+\end{aligned}" />
 
-Menambah 5 pada setiap nilai menggeser seluruh data sejauh 5, sehingga kedua nilai tengah menjadi 85 dan 85. Median menjadi 85, jadi pernyataan keempat benar.
+Jadi kelompok B punya <InlineMath math="4" /> anggota dan kelompok A punya <InlineMath math="6" />. Ini cocok dengan aturan perbandingan: jarak rata-rata A ke gabungan <InlineMath math="71-65=6" /> dan jarak B ke gabungan <InlineMath math="80-71=9" />, sehingga <InlineMath math="n_A:n_B=9:6=3:2" />. **Kelompok yang rata-ratanya lebih dekat ke rata-rata gabungan punya anggota lebih banyak**. Perbandingan <InlineMath math="3:2" /> belum memberi banyak anggota yang sebenarnya, itulah gunanya langkah pertama.
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+# Rata-rata baru kelompok B
+
+Jumlah nilai kelompok B semula <InlineMath math="80\cdot4=320" />. Anggota yang keluar berasal dari kelompok B, jadi **jumlah nilai dan banyak anggota kelompok B sama-sama berkurang**.
+
+<BlockMath math="\bar{x}_B=\frac{320-98}{4-1}=\frac{222}{3}=74" />
+
+# Memeriksa hasilnya
+
+**Kelompok A tidak berubah**, jumlah nilainya <InlineMath math="6\cdot65=390" />. Gabungan yang tersisa punya jumlah <InlineMath math="390+222=612" /> untuk <InlineMath math="9" /> anggota, dan <InlineMath math="\frac{612}{9}=68" />, sesuai soal.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="77" /> menganggap rata-rata kelompok B **turun sama banyak dengan rata-rata gabungan**, yaitu <InlineMath math="3" />.
+- <InlineMath math="55{,}5" /> membagi <InlineMath math="222" /> dengan <InlineMath math="4" />, lupa bahwa kelompok B tinggal <InlineMath math="3" /> anggota.
+- <InlineMath math="62" /> memakai perbandingan <InlineMath math="3:2" /> sebagai banyak anggota, sehingga kelompok B dianggap beranggota <InlineMath math="2" /> dan <InlineMath math="\frac{160-98}{1}=62" />.
+- <InlineMath math="76{,}4" /> membalik perbandingan, sehingga kelompok B dianggap beranggota <InlineMath math="6" /> dan <InlineMath math="\frac{480-98}{5}=76{,}4" />.
+
+Jadi, rata-rata nilai kelompok B setelah anggota itu keluar adalah <InlineMath math="74" />.

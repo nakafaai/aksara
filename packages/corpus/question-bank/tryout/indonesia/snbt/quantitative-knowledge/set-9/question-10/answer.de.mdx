@@ -1,23 +1,33 @@
-Da <InlineMath math="DE" /> parallel zu <InlineMath math="BC" /> ist, ist das Dreieck <InlineMath math="ADE" /> ähnlich zum Dreieck <InlineMath math="ABC" />. Bei ähnlichen Figuren ist **das Flächenverhältnis das Quadrat des Seitenverhältnisses**.
+Das gefragte Ereignis hat zwei Bedingungen zugleich: **drei verschiedene Stockwerke** und **Ani steigt als Erste aus**. Der Plan: Wähle einen Ergebnisraum, dessen Ergebnisse gleich wahrscheinlich sind, zähle die Ergebnisse, die beide Bedingungen erfüllen, und prüf das dann auf einem zweiten Weg.
 
-# Seiten- und Flächenverhältnis
+# Der Ergebnisraum
 
-**Einander entsprechende Seiten** sind <InlineMath math="AD" /> und <InlineMath math="AB=4+6=10" />.
+Jede Person wählt eines von <InlineMath math="8" /> Stockwerken, und die Wahlen sind unabhängig. Notiere das Ergebnis geordnet: Anis Stockwerk, Budis Stockwerk, Cicis Stockwerk. **Genau diese geordneten Ergebnisse sind gleich wahrscheinlich**. Ungeordnete Mengen von Stockwerken sind es nicht, weil eine Menge aus vielen verschiedenen Zuordnungen der Personen entstehen kann.
+
+<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+
+# Die günstigen Ergebnisse
+
+Wähle zuerst drei verschiedene Stockwerke, das geht auf <InlineMath math="\binom{8}{3}=56" /> Arten. Der Aufzug fährt nur nach oben, also steigt die Person im niedrigsten Stockwerk zuerst aus. Damit Ani zuerst aussteigt, **muss Ani das niedrigste der drei Stockwerke bekommen**, dafür gibt es eine Möglichkeit. Budi und Cici verteilen sich auf <InlineMath math="2" /> Arten auf die beiden anderen.
 
 <BlockMath math="\begin{aligned}
-\frac{AD}{AB}&=\frac{4}{10}=\frac25\\
-\frac{L_{ADE}}{L_{ABC}}&=\left(\frac25\right)^2=\frac{4}{25}
+n(A)&=56\cdot1\cdot2=112\\
+P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
-# Fläche des Vierecks DBCE
+# Probe auf einem zweiten Weg
 
-<BlockMath math="\begin{aligned}
-L_{ABC}&=8\cdot\frac{25}{4}=50\\
-L_{DBCE}&=L_{ABC}-L_{ADE}=50-8=42
-\end{aligned}" />
+Die Wahrscheinlichkeit für drei verschiedene Stockwerke ist <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Sind die drei Stockwerke verschieden, hat **jede Person dieselbe Chance** auf das niedrigste, also ist die Chance für Ani <InlineMath math="\frac{1}{3}" />.
 
-Das Viereck <InlineMath math="DBCE" /> ist **der Rest des großen Dreiecks ohne das kleine**, seine Fläche ist also 42.
+<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
 
-Der Wert 50 ist die Fläche des ganzen Dreiecks <InlineMath math="ABC" />. Die Werte 20 und 12 verwenden das Seitenverhältnis direkt ohne Quadrieren, also <InlineMath math="8\cdot\tfrac{10}{4}" /> und <InlineMath math="8\cdot\tfrac64" />.
+Das Ergebnis stimmt überein.
 
-Die Fläche des Vierecks <InlineMath math="DBCE" /> beträgt also **<InlineMath math="42\text{ cm}^2" />**.
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="\frac{21}{32}" /> verwendet nur die Bedingung der drei verschiedenen Stockwerke und **vergisst, dass Ani zuerst aussteigen muss**.
+- <InlineMath math="\frac{1}{3}" /> ist die Chance, dass Ani zuerst aussteigt, wenn drei verschiedene Stockwerke schon sicher sind. Die drei verschiedenen Stockwerke gehören aber zum Ereignis und haben die Wahrscheinlichkeit <InlineMath math="\frac{21}{32}" />.
+- <InlineMath math="\frac{35}{128}" /> erlaubt, dass Budi und Cici im selben Stockwerk aussteigen, und zählt <InlineMath math="7^2+6^2+\dots+1^2=140" /> Ergebnisse, in denen Ani am niedrigsten ist. Das verletzt die Bedingung der drei verschiedenen Stockwerke.
+- <InlineMath math="\frac{1}{4}" /> rechnet die Wahrscheinlichkeit für drei verschiedene Stockwerke als <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, als könnte ein gewähltes Stockwerk nicht noch einmal gewählt werden. Cici wählt weiterhin aus <InlineMath math="8" /> Stockwerken, der zweite Faktor ist also <InlineMath math="\frac{6}{8}" />.
+
+Die Wahrscheinlichkeit, dass die drei in drei verschiedenen Stockwerken aussteigen und Ani als Erste aussteigt, ist also <InlineMath math="\frac{7}{32}" />.

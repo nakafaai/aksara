@@ -1,17 +1,48 @@
-First find the number of sides. The quickest way uses **exterior angles**, because the exterior angles of any polygon add up to <InlineMath math="360^\circ" />.
+You need **every** value of <InlineMath math="x" /> that makes <InlineMath math="f" /> smallest, not just one. The plan is to write <InlineMath math="f" /> as a sum of distances from <InlineMath math="x" /> to a few points, check the slope of the graph on each piece, and then add up the integers on the lowest piece.
 
-# Number of sides
+# Rewriting as distances
 
-An exterior angle and an interior angle **sit next to each other on a straight line**, so the exterior angle is <InlineMath math="180^\circ-156^\circ=24^\circ" />.
+Pull the coefficient of <InlineMath math="x" /> out of each absolute value, since <InlineMath math="\lvert cu\rvert=c\lvert u\rvert" /> for <InlineMath math="c>0" />.
 
-<BlockMath math="n=\frac{360^\circ}{24^\circ}=15" />
+<BlockMath math="f(x)=\lvert x-1\rvert+2\lvert x-4\rvert+3\lvert x-13\rvert" />
 
-# Number of diagonals
+The expression <InlineMath math="\lvert x-a\rvert" /> is the distance from <InlineMath math="x" /> to the point <InlineMath math="a" />. So <InlineMath math="f(x)" /> is the sum of the distances from <InlineMath math="x" /> to six points: the point <InlineMath math="1" /> once, the point <InlineMath math="4" /> twice and the point <InlineMath math="13" /> three times. The coefficient means the point **gets counted several times**.
 
-Each vertex joins every vertex that is **neither itself nor one of its two neighbours**, that is <InlineMath math="15-3=12" /> vertices. Each diagonal is counted twice, once from each end.
+# The slope on each piece
 
-<BlockMath math="\frac{15\cdot12}{2}=90" />
+Each distance <InlineMath math="\lvert x-a\rvert" /> drops by <InlineMath math="1" /> per unit while <InlineMath math="x" /> is left of <InlineMath math="a" />, and grows by <InlineMath math="1" /> per unit while <InlineMath math="x" /> is right of <InlineMath math="a" />. The slope of <InlineMath math="f" /> is the sum of all those changes.
 
-The value 105 is <InlineMath math="\binom{15}{2}" />, which also counts the 15 sides. The value 15 is the number of sides, and 75 subtracts the sides twice from 105.
+<BlockMath math="\begin{aligned}
+x<1:&\quad -1-2-3=-6 \\
+1<x<4:&\quad +1-2-3=-4 \\
+4<x<13:&\quad +1+2-3=0 \\
+x>13:&\quad +1+2+3=+6
+\end{aligned}" />
 
-So the polygon has **90** diagonals.
+The graph of <InlineMath math="f" /> falls until <InlineMath math="x=4" />, then **stays flat along <InlineMath math="4\le x\le 13" />**, then rises. So the minimum is reached on that whole interval, not at a single point.
+
+<BlockMath math="\begin{aligned}
+f(4) &= 3+0+27=30 \\
+f(13) &= 12+18+0=30
+\end{aligned}" />
+
+# Adding up the integers
+
+The integers in <InlineMath math="[4,13]" /> are <InlineMath math="4,5,\ldots,13" />, which is <InlineMath math="10" /> numbers. **Both ends count**, because the value there is <InlineMath math="30" /> too.
+
+<BlockMath math="4+5+\cdots+13=\frac{(4+13)\cdot 10}{2}=85" />
+
+# Checking
+
+Sort the six points: <InlineMath math="1,4,4,13,13,13" />. With an even number of points, the total distance is smallest at **every point between the two middle points**, here the third point <InlineMath math="4" /> and the fourth point <InlineMath math="13" />. That matches. Try a few values too: <InlineMath math="f(8)=7+8+15=30" />, while <InlineMath math="f(3)=34" /> and <InlineMath math="f(14)=36" /> are bigger.
+
+# The wrong options
+
+Each other option comes from **points counted without their weights** or an interval that got cut short.
+
+- <InlineMath math="4" /> takes the median of the three points <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="13" /> without noticing that they're counted several times.
+- <InlineMath math="13" /> treats the point with the largest weight as the only place where the minimum happens.
+- <InlineMath math="17" /> only checks the corner points <InlineMath math="4" /> and <InlineMath math="13" /> and misses that the graph is flat between them.
+- <InlineMath math="68" /> is <InlineMath math="5+6+\cdots+12" />, which drops both ends of the interval.
+
+So the sum of all integers <InlineMath math="x" /> where <InlineMath math="f(x)" /> is smallest is <InlineMath math="85" />.

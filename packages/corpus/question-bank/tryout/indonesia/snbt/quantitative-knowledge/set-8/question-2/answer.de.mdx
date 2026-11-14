@@ -1,21 +1,46 @@
-Der Term <InlineMath math="x^3+y^3" /> lässt sich mit Summe und Produkt schreiben, also genügt es, **zuerst <InlineMath math="xy" /> zu bestimmen**, ohne <InlineMath math="x" /> und <InlineMath math="y" /> einzeln zu suchen.
+Gesucht ist <InlineMath math="x^4+y^4" /> für reelle Zahlen <InlineMath math="x" /> und <InlineMath math="y" />. Beide Gleichungen ändern sich nicht, wenn du <InlineMath math="x" /> und <InlineMath math="y" /> vertauschst. Deshalb schreibst du alles mit Summe und Produkt, suchst die möglichen Paare, streichst **jedes Paar, das keine reellen Zahlen liefert**, und berechnest dann die vierten Potenzen.
 
-# Das Produkt aus der Quadratsumme
+# Mit Summe und Produkt umschreiben
+
+Setze <InlineMath math="s=x+y" /> und <InlineMath math="p=xy" />. Wegen <InlineMath math="(x+y)^2=x^2+2xy+y^2" /> gilt <InlineMath math="x^2+y^2=s^2-2p" />. Die zweite Gleichung lautet <InlineMath math="p-s=2" />, also <InlineMath math="p=s+2" />. **Setze <InlineMath math="p" /> in die erste Gleichung ein**, damit nur noch ein Buchstabe übrig bleibt.
 
 <BlockMath math="\begin{aligned}
-(x+y)^2&=x^2+y^2+2xy\\
-49&=29+2xy\\
-xy&=10
+s^2-2p&=11\\
+s^2-2(s+2)&=11\\
+s^2-2s-15&=0\\
+(s-5)(s+3)&=0
 \end{aligned}" />
 
-# Die Summe der Kuben
+Es gibt zwei Kandidaten: <InlineMath math="s=5" /> mit <InlineMath math="p=7" /> oder <InlineMath math="s=-3" /> mit <InlineMath math="p=-1" />.
 
-Nutze **die Zerlegung einer Summe von Kuben**, <InlineMath math="x^3+y^3=(x+y)(x^2-xy+y^2)" />.
+# Die Bedingung für reelle Zahlen
 
-<BlockMath math="x^3+y^3=7\,(29-10)=7\cdot19=133" />
+Die Zahlen <InlineMath math="x" /> und <InlineMath math="y" /> sind die Lösungen von <InlineMath math="t^2-st+p=0" />, weil ihre Summe <InlineMath math="s" /> und ihr Produkt <InlineMath math="p" /> ist. Beide Lösungen sind reell, **wenn die Diskriminante <InlineMath math="s^2-4p" /> nicht negativ ist**. Prüfe beide Kandidaten.
 
-Kontrolle: Die beiden Zahlen sind 2 und 5, und <InlineMath math="8+125=133" />.
+<BlockMath math="\begin{aligned}
+s=5,\ p=7&:\quad s^2-4p=25-28=-3\\
+s=-3,\ p=-1&:\quad s^2-4p=9+4=13
+\end{aligned}" />
 
-Der Wert 203 vergisst, <InlineMath math="xy" /> abzuziehen, also <InlineMath math="7\cdot29" />. Der Wert 63 verwendet <InlineMath math="xy=20" />, weil das Halbieren vergessen wurde.
+Der erste Kandidat hat eine negative Diskriminante. Seine Werte <InlineMath math="x" /> und <InlineMath math="y" /> sind also nicht reell, und er fällt weg. Übrig bleiben nur <InlineMath math="s=-3" /> und <InlineMath math="p=-1" />.
 
-Der Wert von <InlineMath math="x^3+y^3" /> ist also **133**.
+# Die vierten Potenzen berechnen
+
+Quadrierst du <InlineMath math="x^2+y^2" />, erhältst du <InlineMath math="x^4+2x^2y^2+y^4" />. Ziehe also **das Doppelte vom Quadrat des Produkts** ab, um <InlineMath math="x^4+y^4" /> zu bekommen.
+
+<BlockMath math="\begin{aligned}
+x^4+y^4&=\left(x^2+y^2\right)^2-2(xy)^2\\
+&=11^2-2(-1)^2\\
+&=121-2=119
+\end{aligned}" />
+
+Prüfe mit den echten Werten <InlineMath math="x,y=\tfrac{-3\pm\sqrt{13}}{2}" />. Ihre Quadrate sind <InlineMath math="\tfrac{11\mp3\sqrt{13}}{2}" /> und ergeben zusammen <InlineMath math="11" />. Ihre vierten Potenzen ergeben zusammen <InlineMath math="\tfrac{(11-3\sqrt{13})^2+(11+3\sqrt{13})^2}{4}=\tfrac{242+234}{4}=119" />. Das passt.
+
+# Die falschen Antworten
+
+- <InlineMath math="23" /> entsteht, wenn **der nicht reelle Kandidat trotzdem verwendet wird**: <InlineMath math="121-2\cdot7^2=23" />.
+- <InlineMath math="107" /> entsteht, wenn der gestrichene Kandidat verwendet und <InlineMath math="2xy" /> statt <InlineMath math="2(xy)^2" /> abgezogen wird: <InlineMath math="121-2\cdot7=107" />.
+- <InlineMath math="117" /> entsteht aus der Form <InlineMath math="x^4+y^4=s^4-4s^2p+2p^2" />, wenn der Term <InlineMath math="2p^2" /> fehlt: <InlineMath math="81+36=117" />.
+- <InlineMath math="121" /> entsteht, wenn der Term <InlineMath math="2x^2y^2" /> fehlt, als wäre <InlineMath math="x^4+y^4=\left(x^2+y^2\right)^2" />.
+
+Der Wert von <InlineMath math="x^4+y^4" /> ist also <InlineMath math="119" />.

@@ -1,15 +1,48 @@
-Sebuah pernyataan cukup jika **semua pasangan bilangan bulat positif yang memenuhinya memberi nilai <InlineMath math="a+b" /> yang sama**. Daftarkan pasangan yang mungkin.
+Kamu mencari luas segi empat yang dibatasi empat garis. Rencananya begini: cari semua titik potong, kenali pasangan garis yang sejajar, **tentukan titik potong mana yang benar-benar menjadi titik sudut**, lalu hitung luasnya dengan rumus koordinat.
 
-# Pernyataan pertama saja
+# Titik potong keempat garis
 
-Pasangan dengan <InlineMath math="ab=12" /> antara lain <InlineMath math="(1,12)" />, <InlineMath math="(2,6)" />, dan <InlineMath math="(3,4)" />, beserta kebalikannya. Jumlahnya berturut-turut 13, 8, dan 7, jadi **jumlahnya tidak tunggal**. Pernyataan (1) saja tidak cukup.
+Garis <InlineMath math="x-4y=-3" /> dan <InlineMath math="x-4y=-18" /> punya ruas kiri yang sama tetapi ruas kanan berbeda, jadi keduanya **sejajar dan tidak pernah berpotongan**. Adapun <InlineMath math="5" /> pasangan lainnya berpotongan. Selesaikan setiap pasangan dengan eliminasi.
 
-# Pernyataan kedua saja
+<BlockMath math="\begin{aligned}
+x-4y=-3\ \text{dan}\ 4x-y=3&\ \Longrightarrow\ (1,1)\\
+x-4y=-3\ \text{dan}\ x+y=12&\ \Longrightarrow\ (9,3)\\
+x-4y=-18\ \text{dan}\ 4x-y=3&\ \Longrightarrow\ (2,5)\\
+x-4y=-18\ \text{dan}\ x+y=12&\ \Longrightarrow\ (6,6)\\
+4x-y=3\ \text{dan}\ x+y=12&\ \Longrightarrow\ (3,9)
+\end{aligned}" />
 
-Faktorkan menjadi <InlineMath math="(a-b)(a+b)=7" />. Karena 7 prima dan <InlineMath math="a+b" /> lebih besar daripada <InlineMath math="a-b" />, **satu-satunya pasangan faktor** adalah <InlineMath math="a-b=1" /> dan <InlineMath math="a+b=7" />.
+Kamu bisa memeriksa setiap titik dengan memasukkannya ke kedua garisnya, misalnya <InlineMath math="(6,6)" /> memberi <InlineMath math="6-24=-18" /> dan <InlineMath math="6+6=12" />.
 
-<BlockMath math="a=4,\quad b=3,\quad a+b=7" />
+# Memilih titik sudut yang benar
 
-Pemeriksaan: <InlineMath math="16-9=7" />. Pernyataan (2) saja cukup.
+Ada <InlineMath math="5" /> titik potong, padahal segi empat hanya punya <InlineMath math="4" /> titik sudut. Hitung nilai <InlineMath math="x-4y" /> di setiap titik untuk melihat letaknya terhadap kedua garis sejajar.
 
-Jadi, **pernyataan (2) saja cukup**, tetapi pernyataan (1) saja tidak cukup.
+<BlockMath math="\begin{aligned}
+(1,1)\ \text{dan}\ (9,3)&:\quad x-4y=-3\\
+(2,5)\ \text{dan}\ (6,6)&:\quad x-4y=-18\\
+(3,9)&:\quad x-4y=3-36=-33
+\end{aligned}" />
+
+Nilai <InlineMath math="-33" /> lebih kecil daripada <InlineMath math="-18" />, jadi **titik <InlineMath math="(3,9)" /> berada di luar jalur antara kedua garis sejajar**. Keempat garis membatasi dua daerah tertutup: trapesium dengan titik sudut <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" />, dan segitiga kecil <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. Segi empat yang dimaksud adalah trapesium itu.
+
+# Luas dengan rumus koordinat
+
+Rumus koordinat (sering disebut rumus tali sepatu) menghitung luas segi banyak dari titik sudutnya. Syaratnya, **titik sudut ditulis berurutan mengelilingi batas daerah**: <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.
+
+<BlockMath math="\begin{aligned}
+L&=\tfrac12\left|(1\cdot3-9\cdot1)+(9\cdot6-6\cdot3)+(6\cdot5-2\cdot6)+(2\cdot1-1\cdot5)\right|\\
+&=\tfrac12\left|-6+36+18-3\right|\\
+&=\tfrac12\cdot45=22{,}5
+\end{aligned}" />
+
+Periksa dengan jalan lain. Segitiga besar <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(3,9)" /> luasnya <InlineMath math="\tfrac12\left|8\cdot8-2\cdot2\right|=30" />. Segitiga kecil <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> luasnya <InlineMath math="\tfrac12\left|4\cdot4-1\cdot1\right|=7{,}5" />. Selisihnya <InlineMath math="30-7{,}5=22{,}5" />, sama dengan hasil tadi.
+
+# Pilihan yang keliru
+
+- <InlineMath math="30" /> satuan luas muncul jika <InlineMath math="(3,9)" /> dipakai sebagai titik sudut, sehingga **garis <InlineMath math="x-4y=-18" /> terlupakan** dan yang terhitung adalah segitiga besar.
+- <InlineMath math="37{,}5" /> satuan luas muncul jika segitiga kecil ditambahkan, bukan dikurangkan: <InlineMath math="30+7{,}5" />.
+- <InlineMath math="45" /> satuan luas muncul jika faktor <InlineMath math="\tfrac12" /> pada rumus koordinat terlupa.
+- <InlineMath math="60" /> satuan luas muncul jika segitiga besar dihitung tanpa faktor <InlineMath math="\tfrac12" />.
+
+Jadi, luas daerah segi empat itu adalah <InlineMath math="22{,}5" /> satuan luas.

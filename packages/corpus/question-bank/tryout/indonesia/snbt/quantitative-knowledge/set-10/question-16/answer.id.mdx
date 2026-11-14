@@ -1,23 +1,59 @@
-Rata-rata berubah karena jumlahnya berubah. Bekerjalah dengan **jumlah data**, bukan langsung dengan rata-rata.
+Kamu perlu jumlah sepuluh suku pertama, padahal suku kedua belum diketahui. Rencananya, cari <InlineMath math="a_2" /> dari <InlineMath math="a_3" />, ubah aturan barisan menjadi aturan tentang **selisih dua suku berurutan**, susun rumus suku ke-<InlineMath math="n" />, lalu jumlahkan.
 
-# Jumlah sebelum dan sesudah
+# Suku kedua
 
-<BlockMath math="\begin{aligned}
-\text{jumlah 8 bilangan}&=8\cdot15=120\\
-\text{jumlah 10 bilangan}&=10\cdot18=180
-\end{aligned}" />
-
-# Nilai x
-
-Selisih kedua jumlah adalah **jumlah dua bilangan baru**, yaitu <InlineMath math="x+2x=3x" />.
+Aturan barisan untuk <InlineMath math="n=3" /> menghubungkan <InlineMath math="a_3" />, <InlineMath math="a_2" />, dan <InlineMath math="a_1" />. **Suku kedua tidak diberikan langsung**, jadi selesaikan persamaan itu untuk <InlineMath math="a_2" />.
 
 <BlockMath math="\begin{aligned}
-3x&=180-120=60\\
-x&=20
+a_3 &= 3a_2-2a_1 \\
+11 &= 3a_2-4 \\
+a_2 &= 5
 \end{aligned}" />
 
-Pemeriksaan: <InlineMath math="\tfrac{120+20+40}{10}=\tfrac{180}{10}=18" />.
+# Pola selisih
 
-Nilai 40 adalah bilangan baru yang kedua, <InlineMath math="2x" />. Nilai 60 adalah jumlah kedua bilangan baru, <InlineMath math="3x" />, dan nilai 30 adalah rata-rata kedua bilangan baru itu.
+Kurangi kedua ruas aturan barisan dengan <InlineMath math="a_{n-1}" />.
 
-Jadi, nilai <InlineMath math="x" /> adalah **20**.
+<BlockMath math="\begin{aligned}
+a_n-a_{n-1} &= 2a_{n-1}-2a_{n-2} \\
+&= 2\left(a_{n-1}-a_{n-2}\right)
+\end{aligned}" />
+
+Artinya **setiap selisih dua kali selisih sebelumnya**. Selisih pertama adalah <InlineMath math="a_2-a_1=3" />, jadi selisih-selisihnya <InlineMath math="3,6,12,24,\ldots" />, yaitu barisan geometri dengan rasio <InlineMath math="2" />.
+
+# Rumus suku umum
+
+Suku ke-<InlineMath math="n" /> sama dengan <InlineMath math="a_1" /> ditambah <InlineMath math="n-1" /> selisih pertama. Jumlah barisan geometri <InlineMath math="1+2+\cdots+2^{m-1}" /> adalah <InlineMath math="2^m-1" />.
+
+<BlockMath math="\begin{aligned}
+a_n &= 2+3\left(1+2+\cdots+2^{n-2}\right) \\
+&= 2+3\left(2^{n-1}-1\right) \\
+&= 3\cdot 2^{n-1}-1
+\end{aligned}" />
+
+Cek cepat: rumus ini memberi <InlineMath math="a_1=2" />, <InlineMath math="a_2=5" />, dan <InlineMath math="a_3=11" />, sesuai data.
+
+# Jumlah sepuluh suku
+
+Setiap suku terdiri atas bagian <InlineMath math="3\cdot 2^{n-1}" /> dan **bagian <InlineMath math="-1" /> yang muncul sepuluh kali**.
+
+<BlockMath math="\begin{aligned}
+\sum_{n=1}^{10}a_n &= 3\left(1+2+\cdots+2^{9}\right)-10 \\
+&= 3\left(2^{10}-1\right)-10 \\
+&= 3{.}069-10=3{.}059
+\end{aligned}" />
+
+# Pemeriksaan
+
+Tulis kesepuluh suku dengan aturan aslinya: <InlineMath math="2,5,11,23,47,95,191,383,767,1{.}535" />. Jumlah berjalannya <InlineMath math="2,7,18,41,88,183,374,757,1{.}524,3{.}059" />, jadi hasilnya cocok.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **pola yang salah dikenali atau langkah terakhir yang terlewat**.
+
+- <InlineMath math="155" /> menganggap barisannya aritmetika dengan beda tetap <InlineMath math="3" />, yaitu <InlineMath math="2,5,8,\ldots" />, padahal <InlineMath math="a_3=11" /> sudah menolak pola itu.
+- <InlineMath math="1{.}535" /> adalah suku ke-<InlineMath math="10" />, bukan jumlah sepuluh suku.
+- <InlineMath math="3{.}069" /> lupa bagian <InlineMath math="-1" /> pada setiap suku.
+- <InlineMath math="6{.}131" /> memakai <InlineMath math="2^{11}-1" /> pada jumlah geometri, seolah-olah ada sebelas suku.
+
+Jadi, jumlah sepuluh suku pertama barisan itu adalah <InlineMath math="3{.}059" />.

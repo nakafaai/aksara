@@ -1,25 +1,60 @@
-The number of positive divisors depends on the exponents in the prime factorisation. If <InlineMath math="n=p^{a}q^{b}\cdots" />, then **the number of divisors is <InlineMath math="(a+1)(b+1)\cdots" />**.
+You're looking for the largest power of <InlineMath math="8" /> that divides <InlineMath math="P" />. Since <InlineMath math="8=2^3" />, here's the plan: **count the factors <InlineMath math="2" /> inside <InlineMath math="P" /> first**, then divide that count by <InlineMath math="3" /> and keep the whole-number part.
 
-# Forms that give 10 divisors
+# Pulling one factor two out of every term
 
-The product <InlineMath math="(a+1)(b+1)\cdots" /> must be 10. The number 10 can only be written as <InlineMath math="10" /> or <InlineMath math="2\times5" />, so there are **two possible factorisation forms**.
-
-<BlockMath math="\begin{aligned}
-n&=p^{9}\\
-n&=p^{4}q^{1}
-\end{aligned}" />
-
-# The smallest value of each form
-
-The smallest number comes from giving **the largest exponent to the smallest prime**.
+Every term of <InlineMath math="P" /> is even, so **each term can be written as two times a whole number**: <InlineMath math="22=2\times11" />, <InlineMath math="24=2\times12" />, and so on up to <InlineMath math="60=2\times30" />. The number of terms from <InlineMath math="22" /> to <InlineMath math="60" /> in steps of <InlineMath math="2" /> is <InlineMath math="\frac{60-22}{2}+1=20" />.
 
 <BlockMath math="\begin{aligned}
-p^{9}&:\quad 2^{9}=512\\
-p^{4}q&:\quad 2^{4}\cdot3=48
+P&=(2\times11)(2\times12)\cdots(2\times30)\\
+&=2^{20}\times(11\times12\times\cdots\times30)\\
+&=2^{20}\times\frac{30!}{10!}
 \end{aligned}" />
 
-Check: the positive divisors of 48 are 1, 2, 3, 4, 6, 8, 12, 16, 24 and 48, exactly 10 of them.
+This form shows that the factors <InlineMath math="2" /> come from two places: the <InlineMath math="20" /> factors you just pulled out, and the factors <InlineMath math="2" /> still hidden inside <InlineMath math="\frac{30!}{10!}" />.
 
-The numbers 80 and 162 also have 10 divisors, but they are larger than 48 because they use the prime 5 or give the exponent 4 to the prime 3. The number 36 has 9 divisors and the number 24 has 8.
+# Counting the factors two inside the factorials
 
-So the smallest positive integer with exactly 10 positive divisors is **48**.
+Write <InlineMath math="v_2(N)" /> for the number of factors <InlineMath math="2" /> in a number <InlineMath math="N" />. For a factorial, use **Legendre's formula**: add the number of multiples of <InlineMath math="2" />, of <InlineMath math="4" />, of <InlineMath math="8" />, and so on. It works because every multiple of <InlineMath math="2" /> gives one factor <InlineMath math="2" />, every multiple of <InlineMath math="4" /> gives one more, and so on.
+
+<BlockMath math="\begin{aligned}
+v_2(30!)&=15+7+3+1=26\\
+v_2(10!)&=5+2+1=8\\
+v_2(P)&=20+(26-8)=38
+\end{aligned}" />
+
+Dividing by <InlineMath math="10!" /> removes <InlineMath math="8" /> factors <InlineMath math="2" />, because the numbers <InlineMath math="1" /> to <InlineMath math="10" /> aren't part of <InlineMath math="11\times12\times\cdots\times30" />.
+
+# Checking by counting directly
+
+Now count again straight from the terms of <InlineMath math="P" />. A term that is a multiple of <InlineMath math="2^j" /> **gives one extra factor** for each level <InlineMath math="2, 4, 8, \ldots, 2^j" /> that divides it.
+
+| Terms that are multiples of | The terms | Count |
+| :---: | :---: | :---: |
+| <InlineMath math="2" /> | every term | <InlineMath math="20" /> |
+| <InlineMath math="4" /> | <InlineMath math="24, 28, \ldots, 60" /> | <InlineMath math="10" /> |
+| <InlineMath math="8" /> | <InlineMath math="24, 32, 40, 48, 56" /> | <InlineMath math="5" /> |
+| <InlineMath math="16" /> | <InlineMath math="32, 48" /> | <InlineMath math="2" /> |
+| <InlineMath math="32" /> | <InlineMath math="32" /> | <InlineMath math="1" /> |
+
+The total is <InlineMath math="20+10+5+2+1=38" />, the same as Legendre's formula gave.
+
+# Turning it into a power of eight
+
+Since <InlineMath math="8^n=2^{3n}" />, <InlineMath math="P" /> is divisible by <InlineMath math="8^n" /> exactly when <InlineMath math="3n\le38" />. **The value of <InlineMath math="n" /> has to be a whole number, so you drop the fraction** instead of rounding up.
+
+<BlockMath math="\begin{aligned}
+3n&\le38\\
+n&\le12\tfrac23\\
+n_{\text{max}}&=12
+\end{aligned}" />
+
+Check: <InlineMath math="8^{12}=2^{36}" /> divides <InlineMath math="P" /> because <InlineMath math="36\le38" />, while <InlineMath math="8^{13}=2^{39}" /> doesn't because <InlineMath math="39>38" />.
+
+# The wrong options
+
+- <InlineMath math="6" /> comes from **forgetting the factors pulled out of the terms**, those <InlineMath math="20" /> factors <InlineMath math="2" />, so only <InlineMath math="18" /> factors are used.
+- <InlineMath math="10" /> comes from counting only the multiples of <InlineMath math="2" /> and of <InlineMath math="4" />, which gives <InlineMath math="30" /> factors.
+- <InlineMath math="15" /> comes from forgetting to divide by <InlineMath math="10!" />, which gives <InlineMath math="20+26=46" /> factors.
+- <InlineMath math="38" /> is the largest power of <InlineMath math="2" />, not yet turned into a power of <InlineMath math="8" />.
+
+So the largest positive integer <InlineMath math="n" /> for which <InlineMath math="8^n" /> divides <InlineMath math="P" /> is <InlineMath math="12" />.

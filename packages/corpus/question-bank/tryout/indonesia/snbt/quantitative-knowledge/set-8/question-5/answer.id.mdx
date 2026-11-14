@@ -1,24 +1,33 @@
-Misalkan akar-akarnya <InlineMath math="t" /> dan <InlineMath math="t^2" />. Jumlah akar diketahui, jadi **rumus jumlah akar menentukan <InlineMath math="t" />**, lalu hasil kali akar menentukan <InlineMath math="q" />.
+Nilai <InlineMath math="P" /> dan <InlineMath math="Q" /> sama-sama sekitar <InlineMath math="1{,}44" />, jadi taksiran kasar tidak cukup untuk memutuskan. Rencananya begini: **pangkatkan keduanya dengan <InlineMath math="6" />** supaya akar pangkat tiga dan akar kuadrat hilang bersamaan, lalu bandingkan sebuah pangkat dari <InlineMath math="\tfrac{49}{48}" /> dengan <InlineMath math="\tfrac98" />.
 
-# Mencari akar dari jumlah akar
+# Menghilangkan kedua akar
+
+Bilangan <InlineMath math="6" /> adalah kelipatan persekutuan terkecil dari <InlineMath math="2" /> dan <InlineMath math="3" />, jadi pangkat <InlineMath math="6" /> menghapus kedua akar. Untuk dua bilangan positif, **memangkatkan dengan bilangan positif tidak mengubah urutan**, jadi membandingkan <InlineMath math="P^6" /> dan <InlineMath math="Q^6" /> sama saja dengan membandingkan <InlineMath math="P" /> dan <InlineMath math="Q" />.
 
 <BlockMath math="\begin{aligned}
-t+t^2&=12\\
-t^2+t-12&=0\\
-(t+4)(t-3)&=0
+P^6&=\left(3^{1/3}\right)^6=3^2=9\\
+Q^6&=\left(\tfrac{49}{48}\right)^6\left(\sqrt2\right)^6=8\left(\tfrac{49}{48}\right)^6
 \end{aligned}" />
 
-Ada **dua kemungkinan**, <InlineMath math="t=3" /> atau <InlineMath math="t=-4" />.
+Bagi keduanya dengan <InlineMath math="8" />. Sekarang kamu tinggal membandingkan <InlineMath math="\tfrac98" /> dengan <InlineMath math="\left(\tfrac{49}{48}\right)^6" />.
 
-# Nilai q dari hasil kali akar
+# Membandingkan dengan binomial
 
-| <InlineMath math="t" /> | Akar-akar | <InlineMath math="q=t\cdot t^2" /> |
-| :---: | :---: | :---: |
-| 3 | 3 dan 9 | 27 |
-| <InlineMath math="-4" /> | <InlineMath math="-4" /> dan 16 | <InlineMath math="-64" /> |
+Tulis <InlineMath math="\tfrac{49}{48}=1+\tfrac{1}{48}" />, lalu jabarkan pangkat <InlineMath math="6" /> itu dengan binomial Newton. Semua sukunya positif, dan dua suku pertamanya sudah menghasilkan <InlineMath math="\tfrac98" />.
 
-Kedua pasangan memang berjumlah 12, jadi **keduanya sah**. Jumlah semua nilai <InlineMath math="q" /> adalah <InlineMath math="27+(-64)=-37" />.
+<BlockMath math="\begin{aligned}
+\left(1+\tfrac{1}{48}\right)^6&=1+6\cdot\tfrac{1}{48}+15\cdot\tfrac{1}{48^2}+\dots+\tfrac{1}{48^6}\\
+&>1+\tfrac{6}{48}=\tfrac98
+\end{aligned}" />
 
-Nilai 27 dan <InlineMath math="-64" /> hanya memakai satu kemungkinan. Nilai 37 salah tanda, dan nilai <InlineMath math="-91" /> menjumlahkan kedua nilai mutlak dengan tanda negatif.
+Karena **suku-suku sisanya positif**, pangkat <InlineMath math="6" /> itu benar-benar lebih besar daripada <InlineMath math="\tfrac98" />. Jadi, <InlineMath math="Q^6>P^6" />, sehingga <InlineMath math="Q>P" />.
 
-Jadi, jumlah semua nilai <InlineMath math="q" /> yang mungkin adalah **<InlineMath math="-37" />**.
+Sebagai pemeriksaan, <InlineMath math="\sqrt[3]{3}\approx1{,}4422" /> dan <InlineMath math="\tfrac{49}{48}\sqrt2\approx1{,}4437" />. Selisihnya hanya sekitar <InlineMath math="0{,}0014" />, itulah sebabnya taksiran <InlineMath math="2" /> angka desimal tidak bisa memutuskan.
+
+# Pilihan yang keliru
+
+- <InlineMath math="P>Q" /> muncul jika hanya <InlineMath math="\sqrt[3]{3}>\sqrt2" /> yang dibandingkan dan **faktor <InlineMath math="\tfrac{49}{48}" /> diabaikan**.
+- <InlineMath math="P=Q" /> muncul jika hanya dua suku pertama binomial yang dipakai, sehingga <InlineMath math="\left(\tfrac{49}{48}\right)^6" /> dianggap sama dengan <InlineMath math="\tfrac98" />.
+- Pilihan bahwa informasinya tidak cukup keliru karena <InlineMath math="P" /> dan <InlineMath math="Q" /> adalah dua bilangan tetap, jadi tepat satu hubungan pasti berlaku.
+
+Jadi, hubungan yang benar adalah <InlineMath math="Q>P" />.

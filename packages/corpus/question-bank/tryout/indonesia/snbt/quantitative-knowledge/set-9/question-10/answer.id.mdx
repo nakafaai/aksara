@@ -1,23 +1,33 @@
-Karena <InlineMath math="DE" /> sejajar <InlineMath math="BC" />, segitiga <InlineMath math="ADE" /> sebangun dengan segitiga <InlineMath math="ABC" />. Untuk bangun yang sebangun, **perbandingan luas sama dengan kuadrat perbandingan sisi**.
+Kejadian yang ditanyakan punya dua syarat sekaligus: **tiga lantai berbeda** dan **Ani turun paling dulu**. Rencananya: tentukan ruang sampel yang setiap hasilnya berpeluang sama, hitung hasil yang memenuhi kedua syarat, lalu cek dengan jalan lain.
 
-# Perbandingan sisi dan luas
+# Ruang sampel
 
-**Sisi yang bersesuaian** adalah <InlineMath math="AD" /> dan <InlineMath math="AB=4+6=10" />.
+Setiap orang memilih satu dari <InlineMath math="8" /> lantai, dan pilihan mereka saling bebas. Hasilnya dicatat berurutan sebagai lantai Ani, lantai Budi, dan lantai Cici. **Hasil yang dicatat berurutan inilah yang berpeluang sama**. Kumpulan lantai tanpa urutan tidak berpeluang sama, karena satu kumpulan bisa muncul dari banyak susunan orang.
+
+<BlockMath math="n(S)=8\cdot8\cdot8=512" />
+
+# Hasil yang memenuhi
+
+Pilih dulu tiga lantai berbeda, ada <InlineMath math="\binom{8}{3}=56" /> cara. Lift bergerak naik, jadi orang di lantai terendah turun paling dulu. Supaya Ani turun paling dulu, **Ani harus mendapat lantai terendah** dari ketiganya, hanya satu cara. Budi dan Cici mengisi dua lantai sisanya dalam <InlineMath math="2" /> cara.
 
 <BlockMath math="\begin{aligned}
-\frac{AD}{AB}&=\frac{4}{10}=\frac25\\
-\frac{L_{ADE}}{L_{ABC}}&=\left(\frac25\right)^2=\frac{4}{25}
+n(A)&=56\cdot1\cdot2=112\\
+P(A)&=\frac{112}{512}=\frac{7}{32}
 \end{aligned}" />
 
-# Luas segi empat DBCE
+# Memeriksa dengan jalan lain
 
-<BlockMath math="\begin{aligned}
-L_{ABC}&=8\cdot\frac{25}{4}=50\\
-L_{DBCE}&=L_{ABC}-L_{ADE}=50-8=42
-\end{aligned}" />
+Peluang ketiga lantai berbeda adalah <InlineMath math="\frac{8\cdot7\cdot6}{512}=\frac{21}{32}" />. Kalau ketiga lantai sudah berbeda, **setiap orang punya kesempatan yang sama** untuk berada di lantai terendah, jadi peluang Ani yang terendah adalah <InlineMath math="\frac{1}{3}" />.
 
-Segi empat <InlineMath math="DBCE" /> adalah **sisa segitiga besar setelah segitiga kecil dibuang**, jadi luasnya 42.
+<BlockMath math="\frac{21}{32}\cdot\frac{1}{3}=\frac{7}{32}" />
 
-Nilai 50 adalah luas seluruh segitiga <InlineMath math="ABC" />. Nilai 20 dan 12 memakai perbandingan sisi secara langsung tanpa dikuadratkan, yaitu <InlineMath math="8\cdot\tfrac{10}{4}" /> dan <InlineMath math="8\cdot\tfrac64" />.
+Hasilnya sama.
 
-Jadi, luas segi empat <InlineMath math="DBCE" /> adalah **<InlineMath math="42\text{ cm}^2" />**.
+# Pilihan yang menjebak
+
+- <InlineMath math="\frac{21}{32}" /> hanya memakai syarat tiga lantai berbeda dan **melupakan syarat Ani turun paling dulu**.
+- <InlineMath math="\frac{1}{3}" /> adalah peluang Ani turun paling dulu jika tiga lantai berbeda sudah pasti. Padahal tiga lantai berbeda adalah bagian dari kejadian, dengan peluang <InlineMath math="\frac{21}{32}" />.
+- <InlineMath math="\frac{35}{128}" /> membolehkan Budi dan Cici turun di lantai yang sama, yaitu menghitung <InlineMath math="7^2+6^2+\dots+1^2=140" /> hasil di mana Ani paling rendah. Ini melanggar syarat tiga lantai berbeda.
+- <InlineMath math="\frac{1}{4}" /> menghitung peluang tiga lantai berbeda sebagai <InlineMath math="\frac{7}{8}\cdot\frac{6}{7}=\frac{3}{4}" />, seolah lantai yang sudah dipilih tidak bisa dipilih lagi. Cici tetap memilih dari <InlineMath math="8" /> lantai, jadi faktor keduanya <InlineMath math="\frac{6}{8}" />.
+
+Jadi, peluang ketiga orang turun di tiga lantai berbeda dan Ani turun paling dulu adalah <InlineMath math="\frac{7}{32}" />.

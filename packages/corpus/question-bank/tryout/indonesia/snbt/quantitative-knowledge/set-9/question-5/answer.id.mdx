@@ -1,21 +1,39 @@
-Menghitung akar <InlineMath math="x=\tfrac{-1\pm\sqrt5}{2}" /> lalu memangkatkannya empat sangat panjang. Lebih cepat **mencari bentuk <InlineMath math="x^2+x" /> di dalam ungkapan**, karena persamaannya memberi <InlineMath math="x^2+x=1" />.
+Kamu perlu menghitung kedua kuantitas. Kuantitas <InlineMath math="Q" /> datang dari segitiga <InlineMath math="ABC" /> yang sudah lengkap. Kuantitas <InlineMath math="P" /> datang dari syarat luas yang sama, dan di sinilah jebakannya: **ada dua segitiga sama kaki berkaki <InlineMath math="17\text{ cm}" /> dengan luas itu**, dan syarat tidak kongruen memilih salah satunya.
 
-# Memfaktorkan ungkapan
+# Tinggi dan luas segitiga ABC
+
+Pada segitiga sama kaki, garis tinggi dari puncak <InlineMath math="A" /> jatuh tepat di tengah alas <InlineMath math="BC" />. Jadi garis tinggi itu, setengah alas, dan kaki <InlineMath math="AB" /> membentuk **segitiga siku-siku**, dan teorema Pythagoras berlaku.
 
 <BlockMath math="\begin{aligned}
-x^4+2x^3+x^2&=x^2\left(x^2+2x+1\right)\\
-&=x^2(x+1)^2\\
-&=\left(x^2+x\right)^2
+t_{ABC}&=\sqrt{17^2-8^2}=\sqrt{289-64}=\sqrt{225}=15\\
+L_{ABC}&=\tfrac{1}{2}\cdot16\cdot15=120
 \end{aligned}" />
 
-# Substitusi
+Jadi <InlineMath math="Q=2\cdot15=30" />.
 
-Dari persamaan, **<InlineMath math="x^2+x=1" />**.
+# Dua kemungkinan segitiga DEF
 
-<BlockMath math="\left(x^2+x\right)^2=1^2=1" />
+Misalkan setengah alas <InlineMath math="EF" /> adalah <InlineMath math="u" /> dan tinggi dari <InlineMath math="D" /> adalah <InlineMath math="t" />. Teorema Pythagoras memberi <InlineMath math="u^2+t^2=17^2=289" />. Luasnya <InlineMath math="\frac{1}{2}\cdot2u\cdot t=ut" />, jadi <InlineMath math="ut=120" />. **Tambahkan dan kurangkan <InlineMath math="2ut" />** supaya muncul bentuk kuadrat sempurna.
 
-Hasil ini berlaku untuk kedua akar sekaligus, sehingga tidak perlu memilih salah satunya.
+<BlockMath math="\begin{aligned}
+(u+t)^2&=u^2+t^2+2ut=289+240=529\\
+(u-t)^2&=u^2+t^2-2ut=289-240=49
+\end{aligned}" />
 
-Nilai 0 muncul jika <InlineMath math="x^2+x" /> dianggap 0, seolah-olah konstanta <InlineMath math="-1" /> diabaikan. Nilai <InlineMath math="-1" /> lupa bahwa bentuknya dikuadratkan.
+Karena <InlineMath math="u" /> dan <InlineMath math="t" /> positif, <InlineMath math="u+t=23" /> dan selisihnya <InlineMath math="7" />. Pasangan yang mungkin hanya <InlineMath math="u=8,\ t=15" /> atau <InlineMath math="u=15,\ t=8" />, sehingga <InlineMath math="EF=16" /> atau <InlineMath math="EF=30" />.
 
-Jadi, nilai <InlineMath math="x^4+2x^3+x^2" /> adalah **1**.
+# Syarat tidak kongruen
+
+Kalau <InlineMath math="EF=16" />, sisi-sisi segitiga <InlineMath math="DEF" /> adalah <InlineMath math="17" />, <InlineMath math="17" />, dan <InlineMath math="16" />, sama persis dengan segitiga <InlineMath math="ABC" />. Dua segitiga dengan tiga sisi yang sama **pasti kongruen**, jadi kemungkinan ini dibuang. Yang tersisa adalah <InlineMath math="EF=30" />, sehingga <InlineMath math="P=30" />.
+
+Cek segitiga ini: alas <InlineMath math="30" /> dan tinggi <InlineMath math="8" /> memberi luas <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, dan kakinya <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Keduanya cocok.
+
+# Membandingkan dan pilihan yang menjebak
+
+Kedua kuantitas sama, <InlineMath math="P=Q=30" />. Hasil ini bukan kebetulan: pada segitiga <InlineMath math="DEF" />, setengah alas dan tinggi bertukar peran dengan milik segitiga <InlineMath math="ABC" />, jadi **setengah dari <InlineMath math="EF" /> sama dengan tinggi segitiga <InlineMath math="ABC" />**.
+
+- <InlineMath math="Q>P" /> muncul kalau kamu memakai <InlineMath math="EF=16" />, yaitu segitiga yang kongruen dengan <InlineMath math="ABC" />.
+- Pilihan informasi tidak cukup muncul kalau kamu menemukan dua kemungkinan <InlineMath math="EF" /> tetapi lupa memakai syarat tidak kongruen.
+- <InlineMath math="P>Q" /> muncul kalau <InlineMath math="Q" /> dihitung dengan tinggi segitiga <InlineMath math="DEF" />, yaitu <InlineMath math="2\cdot8=16" />, padahal <InlineMath math="Q" /> memakai tinggi segitiga <InlineMath math="ABC" />.
+
+Jadi, hubungan yang benar adalah <InlineMath math="P=Q" />, karena keduanya bernilai <InlineMath math="30\text{ cm}" />.

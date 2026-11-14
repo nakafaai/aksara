@@ -1,21 +1,43 @@
-Auf jedem Abschnitt gilt Zeit gleich Strecke durch Geschwindigkeit. Die Durchschnittsgeschwindigkeit der ganzen Fahrt ist **Gesamtstrecke durch Gesamtzeit**, nicht der Mittelwert der beiden Geschwindigkeiten.
+Du zählst Punkte mit ganzzahligen Koordinaten, die die Ungleichung erfüllen. Du gehst so vor: Ergänze quadratisch, damit ein Kreis sichtbar wird, verschiebe seinen Mittelpunkt in den Ursprung, zähle Zeile für Zeile und **denk daran, dass das echte Kleinerzeichen die Punkte genau auf dem Kreis ausschließt**.
 
-# Zeit für jeden Abschnitt
+# Quadratische Ergänzung
+
+Bringe alle Terme mit <InlineMath math="x" /> und <InlineMath math="y" /> auf die linke Seite und ergänze dann quadratisch. Jedes Quadrat, das du bildest, fügt eine Konstante hinzu, also **muss dieselbe Konstante auch rechts addiert werden**.
 
 <BlockMath math="\begin{aligned}
-t_1&=\frac{120}{60}=2\text{ h}\\
-t_2&=\frac{180-120}{40}=\frac{60}{40}=1{,}5\text{ h}\\
-t&=2+1{,}5=3{,}5\text{ h}
+x^2-2x+y^2-4y&<20\\
+(x-1)^2-1+(y-2)^2-4&<20\\
+(x-1)^2+(y-2)^2&<25
 \end{aligned}" />
 
-Die erste Aussage ist wahr. Der erste Abschnitt dauert **genau 2 Stunden**, nicht 2 Stunden 30 Minuten, also ist die vierte Aussage falsch.
+Das ist das Innere des Kreises mit Mittelpunkt <InlineMath math="(1,2)" /> und Radius <InlineMath math="5" />. Setze <InlineMath math="u=x-1" /> und <InlineMath math="v=y-2" />. Jedes ganzzahlige Paar <InlineMath math="(x,y)" /> gehört zu genau einem ganzzahligen Paar <InlineMath math="(u,v)" />, also zählst du einfach die ganzzahligen Paare mit <InlineMath math="u^2+v^2<25" />.
 
-# Durchschnittsgeschwindigkeit und Zeitvergleich
+# Zeile für Zeile zählen
 
-<BlockMath math="\bar v=\frac{180}{3{,}5}=\frac{360}{7}\approx51{,}4\text{ km/h}" />
+Suche zu jedem Wert von <InlineMath math="u" /> die ganzen Zahlen <InlineMath math="v" /> mit <InlineMath math="v^2<25-u^2" />.
 
-Der Wert 50 ist der einfache Mittelwert von 60 und 40. Das Auto **ist länger auf dem schnellen Abschnitt unterwegs**, deshalb wiegt die 60 stärker, und der Durchschnitt liegt über 50. Die zweite Aussage ist falsch.
+| Wert von <InlineMath math="u" /> | Bedingung | Werte von <InlineMath math="v" /> | Anzahl der Punkte |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="v^2<25" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> |
+| <InlineMath math="\pm1" /> | <InlineMath math="v^2<24" /> | <InlineMath math="-4\le v\le4" /> | je <InlineMath math="9" /> |
+| <InlineMath math="\pm2" /> | <InlineMath math="v^2<21" /> | <InlineMath math="-4\le v\le4" /> | je <InlineMath math="9" /> |
+| <InlineMath math="\pm3" /> | <InlineMath math="v^2<16" /> | <InlineMath math="-3\le v\le3" /> | je <InlineMath math="7" /> |
+| <InlineMath math="\pm4" /> | <InlineMath math="v^2<9" /> | <InlineMath math="-2\le v\le2" /> | je <InlineMath math="5" /> |
+| <InlineMath math="\pm5" /> | <InlineMath math="v^2<0" /> | keine | <InlineMath math="0" /> |
 
-Würden alle 180 km mit 60 gefahren, dauerte es <InlineMath math="\tfrac{180}{60}=3" /> Stunden. Der Unterschied zu 3,5 Stunden beträgt 0,5 Stunden, also 30 Minuten. Die dritte Aussage ist wahr.
+Sieh dir die Zeile <InlineMath math="u=\pm3" /> an: Die Werte <InlineMath math="v=\pm4" /> liefern <InlineMath math="9+16=25" />, und das **erfüllt das echte Kleinerzeichen nicht**. Diese Punkte zählen also nicht mit.
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **wahr** und die vierte **falsch**.
+<BlockMath math="9+2\cdot9+2\cdot9+2\cdot7+2\cdot5=9+18+18+14+10=69" />
+
+# Kontrolle mit den Punkten auf dem Kreis
+
+Zähle auch die Punkte mit <InlineMath math="u^2+v^2\le25" />. Die Zeilen liefern <InlineMath math="11" /> für <InlineMath math="u=0" />, je <InlineMath math="9" /> für <InlineMath math="u=\pm1,\pm2,\pm3" />, je <InlineMath math="7" /> für <InlineMath math="u=\pm4" /> und je <InlineMath math="1" /> für <InlineMath math="u=\pm5" />, zusammen <InlineMath math="81" />. Genau <InlineMath math="12" /> Punkte **liegen auf dem Kreis**: <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" /> und <InlineMath math="(\pm4,\pm3)" />. Die Differenz <InlineMath math="81-12=69" /> bestätigt die Zählung.
+
+# Die falschen Antworten
+
+- <InlineMath math="61" /> entsteht, wenn **die Konstanten aus der quadratischen Ergänzung rechts nicht addiert werden** und du <InlineMath math="u^2+v^2<20" /> zählst.
+- <InlineMath math="73" /> entsteht, wenn nur die <InlineMath math="8" /> Punkte wie <InlineMath math="(3,4)" /> entfernt werden, während <InlineMath math="(\pm5,0)" /> und <InlineMath math="(0,\pm5)" /> mitgezählt bleiben.
+- <InlineMath math="77" /> entsteht, wenn nur die <InlineMath math="4" /> Punkte auf den Achsen entfernt und Punkte wie <InlineMath math="(3,4)" /> vergessen werden.
+- <InlineMath math="81" /> entsteht, wenn das echte Kleinerzeichen als kleiner oder gleich gelesen wird.
+
+Die Anzahl der ganzzahligen Paare <InlineMath math="(x,y)" />, die die Ungleichung erfüllen, ist also <InlineMath math="69" />.

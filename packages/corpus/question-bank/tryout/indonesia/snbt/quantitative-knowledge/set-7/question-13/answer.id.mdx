@@ -1,22 +1,39 @@
-Kedua bola dikaitkan lewat panjang rusuk kubus. Misalkan rusuknya <InlineMath math="s" />. Volume bola sebanding dengan pangkat tiga jari-jarinya, jadi cukup **membandingkan jari-jari lalu memangkatkannya tiga**.
+Volume benda bergantung pada jari-jari lubang, dan jari-jari itu tersembunyi di dalam informasi luas permukaan. Rencananya: tulis perubahan luas permukaan sebagai persamaan dalam <InlineMath math="r" />, selesaikan, **buang jari-jari yang membuat lubang tidak muat di dalam kubus**, lalu hitung volumenya.
 
-# Jari-jari kedua bola
+# Perubahan luas permukaan
 
-Bola kecil menyinggung dua sisi kubus yang berhadapan, jadi **diameternya sama dengan rusuk** dan <InlineMath math="r=\tfrac{s}{2}" />.
-
-Bola besar melalui dua titik sudut kubus yang berhadapan, jadi **diameternya sama dengan diagonal ruang** kubus.
+Misalkan jari-jari lubang <InlineMath math="r" /> sentimeter. Pengeboran mengubah permukaan dengan dua cara. **Dua lingkaran hilang** dari dua sisi kubus, masing-masing seluas <InlineMath math="\pi r^2" />, dan **dinding lubang muncul**, yaitu selimut tabung setinggi rusuk kubus dengan luas <InlineMath math="2\pi r\times9" />.
 
 <BlockMath math="\begin{aligned}
-\text{diagonal ruang}&=\sqrt{s^2+s^2+s^2}=s\sqrt3\\
-R&=\tfrac{s\sqrt3}{2}
+-2\pi r^2+18\pi r&=40\pi\\
+r^2-9r+20&=0\\
+(r-4)(r-5)&=0
 \end{aligned}" />
 
-# Perbandingan volume
+Baris kedua didapat dengan membagi kedua ruas dengan <InlineMath math="-2\pi" />. Jadi <InlineMath math="r=4" /> atau <InlineMath math="r=5" />.
 
-Perbandingan volume adalah **pangkat tiga dari perbandingan jari-jari**.
+# Memilih jari-jari yang mungkin
 
-<BlockMath math="\frac{V_{\text{besar}}}{V_{\text{kecil}}}=\left(\frac Rr\right)^3=\left(\sqrt3\right)^3=3\sqrt3" />
+Lubang harus muat di dalam sisi kubus yang berbentuk persegi <InlineMath math="9\text{ cm}" /> kali <InlineMath math="9\text{ cm}" />, jadi **diameter lubang harus kurang dari <InlineMath math="9\text{ cm}" />**, yaitu <InlineMath math="r<4{,}5" />. Jari-jari <InlineMath math="r=5" /> memberi diameter <InlineMath math="10\text{ cm}" />, lebih lebar dari kubusnya, jadi ditolak. Yang tersisa hanya <InlineMath math="r=4" />.
 
-Perbandingan <InlineMath math="\sqrt3:1" /> adalah perbandingan jari-jari, dan <InlineMath math="3:1" /> adalah perbandingan luas permukaan. Perbandingan <InlineMath math="27:1" /> dan <InlineMath math="9:1" /> muncul jika perbandingan jari-jari dianggap 3, atau perbandingan 3 dikuadratkan.
+Perhatikan bahwa jari-jari yang ditolak tidak memberi volume negatif: <InlineMath math="729-225\pi" /> masih positif karena <InlineMath math="225\pi<225\times3{,}2=720" />. Jadi kesalahan ini **hanya terlihat jika kamu memeriksa apakah lubangnya muat**.
 
-Jadi, perbandingan volume bola besar terhadap bola kecil adalah **<InlineMath math="3\sqrt3:1" />**.
+# Menghitung volume
+
+Volume benda adalah **volume kubus dikurangi volume tabung yang dibuang**. Tinggi tabung sama dengan rusuk kubus, <InlineMath math="9\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+V&=9^3-\pi(4)^2(9)\\
+&=729-144\pi
+\end{aligned}" />
+
+Pemeriksaan: untuk <InlineMath math="r=4" />, perubahan luasnya <InlineMath math="-2\pi(16)+18\pi(4)=-32\pi+72\pi=40\pi" />, sesuai soal.
+
+# Pilihan yang keliru
+
+- <InlineMath math="(729-16\pi)\text{ cm}^3" /> muncul jika volume tabung ditulis <InlineMath math="\pi r^2" /> saja, **lupa dikalikan tinggi** <InlineMath math="9\text{ cm}" />.
+- <InlineMath math="(729-36\pi)\text{ cm}^3" /> muncul jika <InlineMath math="4" /> dianggap diameter, sehingga jari-jarinya <InlineMath math="2" /> dan volume tabungnya <InlineMath math="\pi(2)^2(9)" />.
+- <InlineMath math="(729-72\pi)\text{ cm}^3" /> muncul jika yang dikurangkan adalah luas dinding lubang <InlineMath math="2\pi(4)(9)" />, bukan volume tabung.
+- <InlineMath math="(729-225\pi)\text{ cm}^3" /> memakai <InlineMath math="r=5" />, padahal lubang selebar <InlineMath math="10\text{ cm}" /> tidak muat di dalam kubus.
+
+Jadi, volume benda setelah dilubangi adalah <InlineMath math="(729-144\pi)\text{ cm}^3" />.

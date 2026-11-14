@@ -1,15 +1,39 @@
-The cone volume formula needs the base radius and **the perpendicular height**, while the question gives the base circumference and the slant height. So convert those data first.
+The line <InlineMath math="AG" /> is a space diagonal and <InlineMath math="BD" /> is a diagonal of the base. They **don't meet and aren't parallel**, so you can't read the angle straight off one triangle in the box. A clean way is to use coordinates: the angle between two lines is the acute angle between their direction vectors.
 
-# Radius and height
+# Setting up coordinates
 
-The circumference <InlineMath math="2\pi r=12\pi" /> gives <InlineMath math="r=6" />. The radius, the height, and the slant height form a right triangle with **the slant height as the hypotenuse**.
+Put <InlineMath math="A" /> at the origin, the <InlineMath math="x" />-axis along <InlineMath math="AB" />, the <InlineMath math="y" />-axis along <InlineMath math="AD" />, and the <InlineMath math="z" />-axis along <InlineMath math="AE" />. Since <InlineMath math="AD=BC=4" />, **every corner can be written straight from the box's measurements**.
 
-<BlockMath math="t=\sqrt{10^2-6^2}=\sqrt{64}=8" />
+<BlockMath math="A(0,0,0),\quad B(2,0,0),\quad D(0,4,0),\quad G(2,4,4)" />
 
-# Volume
+# Finding the direction vectors
 
-<BlockMath math="V=\tfrac13\pi r^2t=\tfrac13\pi(36)(8)=96\pi\text{ cm}^3" />
+A line's direction vector is its end point minus its start point. Then find the lengths of both vectors and **their dot product**.
 
-The value <InlineMath math="120\pi" /> **uses the slant height 10 as the height**. The value <InlineMath math="288\pi" /> forgets the factor <InlineMath math="\tfrac13" />, and the value <InlineMath math="360\pi" /> makes both mistakes. The value <InlineMath math="32\pi" /> uses the circumference <InlineMath math="12\pi" /> in place of the base area, as in <InlineMath math="\tfrac13\cdot12\pi\cdot8" />.
+<BlockMath math="\begin{aligned}
+\overrightarrow{AG} &= (2,4,4), & \lvert\overrightarrow{AG}\rvert &= \sqrt{4+16+16}=6 \\
+\overrightarrow{BD} &= (-2,4,0), & \lvert\overrightarrow{BD}\rvert &= \sqrt{4+16}=2\sqrt5 \\
+\overrightarrow{AG}\cdot\overrightarrow{BD} &= 2(-2)+4(4)+4(0)=12
+\end{aligned}" />
 
-So the volume of the cone is **<InlineMath math="96\pi\text{ cm}^3" />**.
+# Taking the acute angle
+
+A line has no front or back. If you use <InlineMath math="\overrightarrow{DB}=(2,-4,0)" />, the dot product becomes <InlineMath math="-12" /> and the angle turns obtuse, even though the line is the same. That's why **the angle between two lines is always the acute one**, so you use the absolute value of the dot product.
+
+<BlockMath math="\begin{aligned}
+\cos\theta &= \frac{\lvert\overrightarrow{AG}\cdot\overrightarrow{BD}\rvert}{\lvert\overrightarrow{AG}\rvert\,\lvert\overrightarrow{BD}\rvert} \\
+&= \frac{12}{6\cdot2\sqrt5}=\frac{1}{\sqrt5}=\frac{\sqrt5}{5}
+\end{aligned}" />
+
+Sanity check: the value lies between <InlineMath math="0" /> and <InlineMath math="1" />, as it should for an acute angle. If the base were a square (<InlineMath math="AB=AD" />), the dot product would be <InlineMath math="-AB^2+AD^2=0" /> and the lines would be perpendicular. Here <InlineMath math="AB\ne AD" />, so the angle isn't a right angle.
+
+# Why the other options fail
+
+The wrong options come from **swapping a line for a different one**.
+
+- <InlineMath math="\tfrac35" /> is the cosine of the angle between <InlineMath math="AC" /> and <InlineMath math="BD" />, which is <InlineMath math="\tfrac{12}{2\sqrt5\cdot2\sqrt5}=\tfrac{12}{20}" />. It comes from replacing <InlineMath math="AG" /> with its projection on the base, but the angle with a projection isn't the angle with the original line.
+- <InlineMath math="0" /> comes from the cube habit, where <InlineMath math="AG" /> is perpendicular to <InlineMath math="BD" />. That only works when <InlineMath math="AB=AD" />.
+- <InlineMath math="\tfrac23" /> is the cosine of the angle between <InlineMath math="AG" /> and the vertical edge <InlineMath math="AE" />, which is <InlineMath math="\tfrac{4}{6}" />.
+- <InlineMath math="\tfrac{\sqrt5}{3}" /> is the cosine of the angle between <InlineMath math="AG" /> and the base diagonal <InlineMath math="AC" />, which is <InlineMath math="\tfrac{2\sqrt5}{6}" />. The question asks about the base diagonal <InlineMath math="BD" />, not <InlineMath math="AC" />.
+
+So the cosine of the angle between line <InlineMath math="AG" /> and line <InlineMath math="BD" /> is <InlineMath math="\tfrac{\sqrt5}{5}" />.

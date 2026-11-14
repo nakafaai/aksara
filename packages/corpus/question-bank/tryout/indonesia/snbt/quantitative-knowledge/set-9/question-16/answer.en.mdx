@@ -1,23 +1,44 @@
-The mean of grouped data is **the total of all scores divided by the number of students**, and the number of students also contains <InlineMath math="x" />.
+The words "all possible values" signal that **more than one function** might satisfy the condition. The plan: write <InlineMath math="f(x)=ax+b" />, build the composition, match coefficients, find every possible function, then add up the values of <InlineMath math="f(3)" /> from all of them.
 
-# Setting up the equation
+# Building the composition
 
-<BlockMath math="\begin{aligned}
-\text{total score}&=3\cdot60+70x+5\cdot80+2\cdot90=760+70x\\
-\text{number of students}&=3+x+5+2=10+x
-\end{aligned}" />
+This composition means **feeding the output <InlineMath math="f(x)" /> back into <InlineMath math="f" />**.
 
 <BlockMath math="\begin{aligned}
-\frac{760+70x}{10+x}&=73\\
-760+70x&=730+73x\\
-30&=3x\\
-x&=10
+f\big(f(x)\big)&=a(ax+b)+b\\
+&=a^2x+ab+b
 \end{aligned}" />
 
-# Check
+# Matching coefficients
 
-With <InlineMath math="x=10" />, the total score is 1,460 and there are 20 students, so the mean is <InlineMath math="1{,}460:20=73" />. This makes sense: a mean of 73 is close to 70, so **the score 70 must occur most often**.
+Two linear expressions are equal for every <InlineMath math="x" /> **only if their <InlineMath math="x" /> coefficients and their constants match**. So <InlineMath math="a^2=4" /> and <InlineMath math="ab+b=b(a+1)=9" />. The equation <InlineMath math="a^2=4" /> has two solutions, <InlineMath math="a=2" /> and <InlineMath math="a=-2" />, and **you have to check both**.
 
-A common mistake is dividing by 10 only, as if the students who scored 70 were not counted.
+<BlockMath math="\begin{aligned}
+a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
+a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
+\end{aligned}" />
 
-So the value of <InlineMath math="x" /> is **10**.
+# Checking both functions
+
+<BlockMath math="\begin{aligned}
+2(2x+3)+3&=4x+9\\
+-2(-2x-9)-9&=4x+18-9=4x+9
+\end{aligned}" />
+
+**Both work**, so both count.
+
+# Adding the values of f at three
+
+<BlockMath math="\begin{aligned}
+f(3)&=2\cdot3+3=9\quad\text{or}\quad f(3)=-2\cdot3-9=-15\\
+9+(-15)&=-6
+\end{aligned}" />
+
+# The tempting wrong options
+
+- <InlineMath math="9" /> uses only <InlineMath math="a=2" /> and **loses the case <InlineMath math="a=-2" />**.
+- <InlineMath math="6" /> reuses <InlineMath math="b=3" /> for <InlineMath math="a=-2" />, so <InlineMath math="f(3)=-3" />. But <InlineMath math="-2(-2x+3)+3=4x-3" />, not <InlineMath math="4x+9" />.
+- <InlineMath math="12" /> has a sign error in <InlineMath math="b" /> and uses <InlineMath math="f(x)=-2x+9" /> with <InlineMath math="f(3)=3" />. That function gives <InlineMath math="-2(-2x+9)+9=4x-9" />.
+- <InlineMath math="21" /> computes <InlineMath math="f\big(f(3)\big)=4\cdot3+9" />, not <InlineMath math="f(3)" />.
+
+So the sum of all possible values of <InlineMath math="f(3)" /> is <InlineMath math="-6" />.

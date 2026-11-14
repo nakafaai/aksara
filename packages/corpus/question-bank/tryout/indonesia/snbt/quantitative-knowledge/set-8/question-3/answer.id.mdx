@@ -1,20 +1,56 @@
-Kedua bangun memiliki luas yang sama, jadi soal ini membandingkan **keliling dua bangun yang luasnya sama**. Hitung keduanya dalam bentuk eksak, lalu bandingkan.
+Ketiga sifat itu menentukan <InlineMath math="f" /> di seluruh garis bilangan. Rencananya begini: pakai sifat ganjil untuk mendapat rumus pada <InlineMath math="-2\le x\le0" />, geser rumus itu sejauh <InlineMath math="4" /> dengan sifat periodik, lalu **nilai setiap pernyataan dengan rumus yang benar untuk potongannya**.
 
-# Kedua keliling
+# Rumus fungsi pada satu periode
+
+Untuk <InlineMath math="-2\le x\le0" />, bilangan <InlineMath math="-x" /> ada di <InlineMath math="0\le -x\le2" />, jadi sifat ganjil memberi <InlineMath math="f(x)=-f(-x)=-(-x)(2+x)=x(2+x)" />. Untuk <InlineMath math="2\le x\le4" />, bilangan <InlineMath math="x-4" /> ada di <InlineMath math="-2\le x-4\le0" />, jadi sifat periodik memberi rumus berikut.
 
 <BlockMath math="\begin{aligned}
-P&=2\pi\cdot7=14\pi\\
-\text{luas persegi}&=\pi\cdot7^2=49\pi\\
-\text{sisi persegi}&=\sqrt{49\pi}=7\sqrt\pi\\
-Q&=4\cdot7\sqrt\pi=28\sqrt\pi
+f(x)&=x(2-x)&&\text{untuk } 0\le x\le2\\
+f(x)&=f(x-4)=(x-4)(x-2)&&\text{untuk } 2\le x\le4
 \end{aligned}" />
 
-# Perbandingan
+Pada <InlineMath math="0\le x\le2" /> kedua faktor <InlineMath math="x" /> dan <InlineMath math="2-x" /> tidak negatif. Pada <InlineMath math="2\le x\le4" /> faktor <InlineMath math="x-4" /> tidak positif dan <InlineMath math="x-2" /> tidak negatif. Jadi, **<InlineMath math="f" /> tidak negatif pada setengah periode pertama dan tidak positif pada setengah periode kedua**.
 
-Bagi kedua kuantitas dengan <InlineMath math="14\sqrt\pi" /> agar mudah dibandingkan.
+# Pernyataan pertama
 
-<BlockMath math="P:Q=14\pi:28\sqrt\pi=\sqrt\pi:2" />
+Bagi <InlineMath math="2027" /> dengan periode <InlineMath math="4" />, lalu pakai rumus pada <InlineMath math="2\le x\le4" />.
 
-Karena <InlineMath math="\pi<4" />, maka <InlineMath math="\sqrt\pi<2" />, sehingga <InlineMath math="Q>P" />. Secara desimal, <InlineMath math="P\approx44" /> dan <InlineMath math="Q\approx49{,}6" />. Hasil ini sesuai dengan sifat bahwa di antara bangun-bangun berluas sama, **lingkaran memiliki keliling terkecil**.
+<BlockMath math="\begin{aligned}
+2027&=4\cdot506+3\\
+f(2027)&=f(3)=(3-4)(3-2)=-1
+\end{aligned}" />
 
-Jadi, hubungan yang benar adalah **<InlineMath math="Q>P" />**.
+Jalan lain memberi hasil sama: <InlineMath math="f(3)=f(-1)=-f(1)=-1" />. Nilai <InlineMath math="1" /> muncul jika **sifat ganjil dilupakan**, yaitu menganggap <InlineMath math="f(-1)=f(1)" />. Pernyataan pertama salah.
+
+# Pernyataan kedua
+
+Pada <InlineMath math="0\le x\le2" />, selesaikan <InlineMath math="x(2-x)=\tfrac12" />.
+
+<BlockMath math="\begin{aligned}
+x(2-x)&=\tfrac12\\
+2x^2-4x+1&=0\\
+x&=1\pm\tfrac{\sqrt2}{2}
+\end{aligned}" />
+
+Karena <InlineMath math="\tfrac{\sqrt2}{2}" /> kurang dari <InlineMath math="1" />, kedua penyelesaian ada di dalam <InlineMath math="0\le x\le2" />. Sifat periodik menyalinnya ke <InlineMath math="x=5\pm\tfrac{\sqrt2}{2}" /> di <InlineMath math="4\le x\le6" />. Pada <InlineMath math="2\le x\le4" /> dan <InlineMath math="6\le x\le8" />, nilai <InlineMath math="f" /> tidak positif, jadi tidak ada penyelesaian. Hati-hati, **rumus suatu potongan hanya berlaku di potongannya sendiri**. Persamaan <InlineMath math="(x-4)(x-2)=\tfrac12" /> memang punya akar <InlineMath math="x=3\pm\tfrac{\sqrt6}{2}" />, tetapi <InlineMath math="\tfrac{\sqrt6}{2}" /> lebih dari <InlineMath math="1" />, jadi kedua akar itu jatuh di luar <InlineMath math="2\le x\le4" /> dan harus dibuang. Totalnya tepat <InlineMath math="4" /> penyelesaian, jadi pernyataan kedua benar.
+
+# Pernyataan ketiga
+
+Periksa satu periode penuh. Kedua ruas berulang setiap <InlineMath math="4" />, jadi **cukup memeriksa <InlineMath math="0\le x\le4" />**.
+
+<BlockMath math="\begin{aligned}
+0\le x\le2:&\quad f(x+2)=(x-2)x=-x(2-x)=-f(x)\\
+2\le x\le4:&\quad f(x+2)=f(x-2)=(x-2)(4-x)=-(x-4)(x-2)=-f(x)
+\end{aligned}" />
+
+Pada baris kedua, <InlineMath math="x+2" /> diganti <InlineMath math="x-2" /> karena periodenya <InlineMath math="4" />, dan <InlineMath math="x-2" /> ada di <InlineMath math="0\le x-2\le2" />. Jadi, <InlineMath math="f(x)+f(x+2)=0" /> untuk setiap bilangan real <InlineMath math="x" />. Pernyataan ketiga benar.
+
+# Pernyataan keempat
+
+Fungsi ganjil <InlineMath math="g" /> harus memenuhi <InlineMath math="g(0)=-g(0)" />, jadi **fungsi ganjil wajib bernilai nol di titik nol**. Di sini <InlineMath math="g(0)=f(1)=1(2-1)=1" />, bukan <InlineMath math="0" />. Jadi, <InlineMath math="g" /> bukan fungsi ganjil. Sebenarnya <InlineMath math="g" /> fungsi genap. Pakai sifat ganjil, lalu hasil pernyataan ketiga dengan <InlineMath math="x=t-1" />.
+
+<BlockMath math="g(-t)=f(1-t)=-f(t-1)=f(t+1)=g(t)" />
+
+Pernyataan keempat salah.
+
+Jadi, pernyataan pertama **salah**, pernyataan kedua **benar**, pernyataan ketiga **benar**, dan pernyataan keempat **salah**.

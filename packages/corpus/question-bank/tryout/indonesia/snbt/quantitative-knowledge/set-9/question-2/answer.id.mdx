@@ -1,20 +1,59 @@
-Tulis setiap bilangan sebagai **pangkat dari basis yang sama**, 2 untuk persamaan pertama dan 3 untuk persamaan kedua. Setelah itu kedua persamaan berubah menjadi persamaan linear.
+Untuk menyusun persamaan kuadrat baru, kamu perlu **jumlah dan hasil kali akar-akarnya**. Hasil kalinya sudah diketahui, tetapi jumlahnya bergantung pada <InlineMath math="k" />. Rencananya: tulis hasil kali akar baru dalam <InlineMath math="k" />, cari <InlineMath math="k" />, buang nilai <InlineMath math="k" /> yang melanggar syarat akar real, lalu hitung jumlah akar baru.
 
-# Menyamakan basis
+# Hasil kali akar baru
+
+Menurut rumus Vieta untuk <InlineMath math="x^2-3x+k=0" />, jumlah akarnya <InlineMath math="\alpha+\beta=3" /> dan hasil kalinya <InlineMath math="\alpha\beta=k" />. Kalikan kedua akar baru suku demi suku. **Dua suku tengahnya selalu bernilai <InlineMath math="1" />**, karena <InlineMath math="\alpha\cdot\frac{1}{\alpha}=1" /> dan <InlineMath math="\frac{1}{\beta}\cdot\beta=1" />.
 
 <BlockMath math="\begin{aligned}
-2^x\cdot2^{2y}=2^5&\;\Longrightarrow\;x+2y=5\\
-\frac{3^x}{3^{2y}}=3^{-1}&\;\Longrightarrow\;x-2y=-1
+\left(\alpha+\frac{1}{\beta}\right)\left(\beta+\frac{1}{\alpha}\right)&=\alpha\beta+1+1+\frac{1}{\alpha\beta}\\
+&=k+2+\frac{1}{k}
 \end{aligned}" />
 
-# Menyelesaikan sistem
+Hasil kali ini sama dengan <InlineMath math="\frac{16}{3}" />. Kalikan kedua ruas dengan <InlineMath math="3k" /> supaya pecahannya hilang.
 
-Jumlahkan kedua persamaan untuk mendapatkan <InlineMath math="2x=4" />, jadi <InlineMath math="x=2" />. Substitusi ke persamaan pertama memberi <InlineMath math="2y=3" />, sehingga **<InlineMath math="y=\tfrac32" />**.
+<BlockMath math="\begin{aligned}
+k+2+\frac{1}{k}&=\frac{16}{3}\\
+3k^2+6k+3&=16k\\
+3k^2-10k+3&=0\\
+(3k-1)(k-3)&=0
+\end{aligned}" />
 
-<BlockMath math="xy=2\cdot\tfrac32=3" />
+Jadi <InlineMath math="k=\frac{1}{3}" /> atau <InlineMath math="k=3" />.
 
-Pemeriksaan: <InlineMath math="2^2\cdot4^{3/2}=4\cdot8=32" /> dan <InlineMath math="\tfrac{3^2}{9^{3/2}}=\tfrac{9}{27}=\tfrac13" />.
+# Syarat akar real berbeda
 
-Nilai 2 dan <InlineMath math="\tfrac32" /> masing-masing adalah <InlineMath math="x" /> dan <InlineMath math="y" />, bukan hasil kalinya. Nilai <InlineMath math="\tfrac72" /> adalah <InlineMath math="x+y" />.
+Soal menyebut <InlineMath math="\alpha" /> dan <InlineMath math="\beta" /> adalah dua akar real berbeda. Itu berarti **diskriminannya harus positif**.
 
-Jadi, nilai <InlineMath math="xy" /> adalah **3**.
+<BlockMath math="\begin{aligned}
+k=3&\;\Longrightarrow\;D=9-4\cdot3=-3<0\\
+k=\tfrac{1}{3}&\;\Longrightarrow\;D=9-\tfrac{4}{3}=\tfrac{23}{3}>0
+\end{aligned}" />
+
+Untuk <InlineMath math="k=3" />, akar-akarnya tidak real, jadi nilai itu dibuang. Yang tersisa hanya <InlineMath math="k=\frac{1}{3}" />.
+
+# Jumlah akar baru
+
+Kedua pecahan bisa disatukan karena <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{\alpha+\beta}{\alpha\beta}" />. Jadi **jumlah akar baru sama dengan jumlah akar lama ditambah jumlah akar lama dibagi hasil kalinya**.
+
+<BlockMath math="\begin{aligned}
+\left(\alpha+\frac{1}{\beta}\right)+\left(\beta+\frac{1}{\alpha}\right)&=(\alpha+\beta)+\frac{\alpha+\beta}{\alpha\beta}\\
+&=3+\frac{3}{1/3}\\
+&=12
+\end{aligned}" />
+
+# Menyusun persamaannya
+
+Persamaan kuadrat dengan jumlah akar <InlineMath math="12" /> dan hasil kali akar <InlineMath math="\frac{16}{3}" /> adalah <InlineMath math="x^2-12x+\frac{16}{3}=0" />. **Kalikan dengan <InlineMath math="3" />** supaya semua koefisiennya bulat.
+
+<BlockMath math="3x^2-36x+16=0" />
+
+Cek dengan jalan lain. Karena <InlineMath math="\alpha\beta=\frac{1}{3}" />, berlaku <InlineMath math="\frac{1}{\beta}=\frac{\alpha}{\alpha\beta}=3\alpha" />, sehingga akar baru pertama adalah <InlineMath math="\alpha+3\alpha=4\alpha" />. Dengan cara yang sama, akar baru kedua adalah <InlineMath math="4\beta" />. Jumlahnya <InlineMath math="4\cdot3=12" /> dan hasil kalinya <InlineMath math="16\cdot\frac{1}{3}=\frac{16}{3}" />, sama dengan hasil di atas.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="3x^2-12x+16=0" /> memakai <InlineMath math="k=3" />, yang memberi jumlah <InlineMath math="3+\frac{3}{3}=4" />. Nilai itu **melanggar syarat akar real**.
+- <InlineMath math="3x^2-18x+16=0" /> menganggap <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{1}{\alpha\beta}=3" />, sehingga jumlahnya <InlineMath math="6" />.
+- <InlineMath math="3x^2-27x+16=0" /> hanya menjumlahkan <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{3}{1/3}=9" /> dan lupa menambahkan <InlineMath math="\alpha+\beta=3" />.
+- <InlineMath math="3x^2+36x+16=0" /> salah tanda. Persamaan dengan jumlah akar <InlineMath math="S" /> ditulis <InlineMath math="x^2-Sx+P=0" />, jadi koefisien <InlineMath math="x" /> harus negatif.
+
+Jadi, persamaan kuadrat lain itu adalah <InlineMath math="3x^2-36x+16=0" />.

@@ -1,17 +1,35 @@
-Biaya parkir terdiri atas **biaya tetap untuk 2 jam pertama** dan biaya per jam setelahnya. Misalkan ada <InlineMath math="k" /> jam setelah 2 jam pertama.
+Kamu perlu menghitung pasangan <InlineMath math="(a,b)" /> dengan <InlineMath math="\text{KPK}(a,b)=360" />, tetapi hanya yang <InlineMath math="a<b" />. Rencananya, hitung dulu **semua pasangan berurutan** tanpa syarat <InlineMath math="a<b" />, lalu pakai kesimetrisan untuk mengambil separuhnya dengan benar.
 
-# Membentuk pertidaksamaan
+# Menguraikan KPK per faktor prima
+
+Faktorkan <InlineMath math="360=2^3\cdot 3^2\cdot 5" />. Karena <InlineMath math="360" /> adalah kelipatan <InlineMath math="a" /> dan <InlineMath math="b" />, keduanya pembagi <InlineMath math="360" />. Tulis keduanya dalam faktor prima.
+
+<BlockMath math="a=2^{x_1}3^{y_1}5^{z_1},\qquad b=2^{x_2}3^{y_2}5^{z_2}" />
+
+KPK mengambil **pangkat terbesar dari setiap faktor prima**. Jadi syarat <InlineMath math="\text{KPK}(a,b)=360" /> sama dengan tiga syarat yang terpisah: <InlineMath math="\max(x_1,x_2)=3" />, <InlineMath math="\max(y_1,y_2)=2" />, dan <InlineMath math="\max(z_1,z_2)=1" />.
+
+# Menghitung pasangan pangkat
+
+Untuk faktor <InlineMath math="2" />, setiap pangkat boleh <InlineMath math="0" /> sampai <InlineMath math="3" />, jadi ada <InlineMath math="4\cdot 4=16" /> pasangan. Buang yang pangkat terbesarnya belum mencapai <InlineMath math="3" />, yaitu yang keduanya paling besar <InlineMath math="2" />: ada <InlineMath math="3\cdot 3=9" />. Cara yang sama berlaku untuk faktor <InlineMath math="3" /> dan <InlineMath math="5" />.
 
 <BlockMath math="\begin{aligned}
-5{.}000+3{.}000k&\le20{.}000\\
-3{.}000k&\le15{.}000\\
-k&\le5
+\text{faktor } 2 &: 16-9=7 \\
+\text{faktor } 3 &: 9-4=5 \\
+\text{faktor } 5 &: 4-1=3
 \end{aligned}" />
 
-# Lama parkir
+Ketiga pilihan itu bebas satu sama lain, jadi **aturan perkalian** memberi <InlineMath math="7\cdot 5\cdot 3=105" /> pasangan berurutan <InlineMath math="(a,b)" />. Angka ini masih memuat <InlineMath math="(a,b)" /> dan <InlineMath math="(b,a)" /> sebagai dua pasangan, juga pasangan dengan <InlineMath math="a=b" />.
 
-Nilai terbesar <InlineMath math="k=5" />, sehingga lama parkir paling lama adalah **2 jam pertama ditambah 5 jam**, yaitu 7 jam. Biayanya tepat <InlineMath math="5{.}000+5\cdot3{.}000=20{.}000" />. Parkir lebih dari 7 jam, walaupun hanya beberapa menit, dihitung 8 jam dan berbiaya 23.000 rupiah.
+# Syarat urutan pasangan
 
-Jawaban 5 jam lupa menambahkan 2 jam pertama. Jawaban 6 jam membagi seluruh uang dengan 3.000 dan membulatkan ke bawah, seolah-olah tidak ada tarif 2 jam pertama.
+Pasangan dengan <InlineMath math="a=b" /> hanya mungkin kalau <InlineMath math="\text{KPK}(a,a)=a=360" />, jadi **hanya ada satu pasangan kembar**, yaitu <InlineMath math="(360,360)" />. Sisanya <InlineMath math="104" /> pasangan dengan <InlineMath math="a\ne b" />. Pasangan itu datang berdua-dua, <InlineMath math="(a,b)" /> dan <InlineMath math="(b,a)" />, dan tepat satu dari setiap dua memenuhi <InlineMath math="a<b" />.
 
-Jadi, lama parkir paling lama adalah **7 jam**.
+<BlockMath math="\frac{105-1}{2}=52" />
+
+# Pemeriksaan dengan contoh kecil
+
+Coba cara yang sama untuk <InlineMath math="\text{KPK}(a,b)=12=2^2\cdot 3" />. Rumusnya memberi <InlineMath math="5\cdot 3=15" /> pasangan berurutan, jadi <InlineMath math="\tfrac{15-1}{2}=7" /> pasangan dengan <InlineMath math="a<b" />. Daftarnya memang tujuh: <InlineMath math="(1,12)" />, <InlineMath math="(2,12)" />, <InlineMath math="(3,12)" />, <InlineMath math="(4,12)" />, <InlineMath math="(6,12)" />, <InlineMath math="(3,4)" />, dan <InlineMath math="(4,6)" />. Jadi **cara menghitungnya terbukti cocok**.
+
+Kesalahan yang sering muncul adalah menjawab <InlineMath math="105" /> karena lupa syarat <InlineMath math="a<b" />, atau membagi <InlineMath math="105" /> dengan <InlineMath math="2" /> tanpa membuang pasangan kembar lebih dulu.
+
+Jadi, ada <InlineMath math="52" /> pasangan <InlineMath math="(a,b)" /> dengan <InlineMath math="a<b" /> dan <InlineMath math="\text{KPK}(a,b)=360" />.

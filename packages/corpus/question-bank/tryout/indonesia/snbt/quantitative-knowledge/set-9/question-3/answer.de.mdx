@@ -1,15 +1,55 @@
-Quadriere <InlineMath math="x" />, damit sich die Wurzel vereinfacht, und vergleiche dann **den verbleibenden Wurzelterm** mit seinem Abstand zu 9,8.
+Alle vier Aussagen hängen davon ab, was in der Menge <InlineMath math="S" /> liegt, also **bestimme zuerst genau, was in ihr liegt**. Danach bekommt jede Aussage ihren eigenen Beweis: Für eine Aussage mit "es gibt" reicht ein Beispiel, eine Aussage mit "jedes" braucht einen Grund, der für alle Elemente gilt.
 
-# x zum Quadrat
+# Die Menge S bestimmen
 
-<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
+Multipliziere nicht sofort beide Seiten mit <InlineMath math="x" />. **Das Vorzeichen von <InlineMath math="x" /> ist noch unbekannt**, und eine Multiplikation mit einer negativen Zahl dreht das Ungleichheitszeichen um. Bring alles auf eine Seite und schreib es als einen Bruch.
 
-# Vergleich mit 9,8
+<BlockMath math="\begin{aligned}
+\frac{1}{x}<x
+&\iff x-\frac{1}{x}>0\\
+&\iff \frac{x^2-1}{x}>0\\
+&\iff \frac{(x+1)(x-1)}{x}>0
+\end{aligned}" />
 
-Vergleiche <InlineMath math="5+2\sqrt6" /> mit <InlineMath math="9{,}8" />, also gleichwertig <InlineMath math="2\sqrt6" /> mit <InlineMath math="4{,}8" />. Beide Zahlen sind positiv, also bleibt beim **Vergleich der Quadrate** die Richtung erhalten.
+Dieser Bruch kann sein Vorzeichen nur bei <InlineMath math="x=-1" />, <InlineMath math="x=0" /> und <InlineMath math="x=1" /> wechseln. Teste in jedem Intervall eine Zahl.
 
-<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{und}\qquad4{,}8^2=23{,}04" />
+| Intervall | Testwert | Vorzeichen des Bruchs |
+| :---: | :---: | :---: |
+| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | negativ |
+| <InlineMath math="-1<x<0" /> | <InlineMath math="x=-\frac{1}{2}" /> | positiv |
+| <InlineMath math="0<x<1" /> | <InlineMath math="x=\frac{1}{2}" /> | negativ |
+| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | positiv |
 
-Wegen <InlineMath math="24>23{,}04" /> gilt <InlineMath math="2\sqrt6>4{,}8" /> und <InlineMath math="x^2>9{,}8" />. Die Schätzung <InlineMath math="\sqrt6\approx2{,}45" /> liefert <InlineMath math="x^2\approx9{,}90" />, was dazu passt.
+Also besteht <InlineMath math="S" /> aus **den Zahlen zwischen <InlineMath math="-1" /> und <InlineMath math="0" /> und den Zahlen größer als <InlineMath math="1" />**.
 
-Die richtige Beziehung ist also **<InlineMath math="P>Q" />**.
+<BlockMath math="S=\{x\mid -1<x<0\ \text{oder}\ x>1\}" />
+
+# Die erste Aussage
+
+Keine Zahl unter <InlineMath math="-1" /> liegt in <InlineMath math="S" />. Nimm <InlineMath math="x=-2" />: Der Wert <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> ist sogar **größer** als <InlineMath math="-2" />. Die Aussage ist **falsch**. Die Falle entsteht, wenn du mit <InlineMath math="x" /> multiplizierst, ohne auf das Vorzeichen zu achten. Dann erhältst du <InlineMath math="x^2>1" />, und das lässt fälschlich <InlineMath math="x<-1" /> zu.
+
+# Die zweite Aussage
+
+Für <InlineMath math="x\ne0" /> ist <InlineMath math="x^2" /> immer positiv. **Eine Multiplikation beider Seiten mit einer positiven Zahl erhält die Richtung der Ungleichung**.
+
+<BlockMath math="\frac{1}{x}<x\;\Longrightarrow\;\frac{1}{x}\cdot x^2<x\cdot x^2\;\Longrightarrow\;x<x^3" />
+
+Dieser Schritt gilt für jedes Element von <InlineMath math="S" />, also ist die Aussage **wahr**. Probe mit <InlineMath math="x=-\frac{1}{2}" />: <InlineMath math="x^3=-\frac{1}{8}" /> ist tatsächlich größer als <InlineMath math="-\frac{1}{2}" />.
+
+# Die dritte Aussage
+
+Für eine Aussage mit "es gibt" reicht **ein passendes Element**. Nimm <InlineMath math="x=-\frac{1}{2}" />. Es liegt in <InlineMath math="S" />, denn <InlineMath math="\frac{1}{x}=-2<-\frac{1}{2}" />, und sein Quadrat ist <InlineMath math="\frac{1}{4}<1" />. Die Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Setze <InlineMath math="y=-\frac{1}{x}" />. Dann ist <InlineMath math="\frac{1}{y}=-x" />. Schreib die Bedingung für <InlineMath math="y" /> auf und multipliziere beide Seiten mit <InlineMath math="-1" />, was das Zeichen umdreht.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{y}<y
+&\iff -x<-\frac{1}{x}\\
+&\iff x>\frac{1}{x}
+\end{aligned}" />
+
+Die letzte Zeile ist genau die Bedingung für <InlineMath math="x" /> selbst. Also **liegt <InlineMath math="y" /> genau dann in <InlineMath math="S" />, wenn <InlineMath math="x" /> in <InlineMath math="S" /> liegt**, und die Aussage ist **wahr**. Probe mit Beispielen: <InlineMath math="x=2" /> liefert <InlineMath math="y=-\frac{1}{2}" />, und <InlineMath math="x=-\frac{1}{2}" /> liefert <InlineMath math="y=2" />. Beide liegen in <InlineMath math="S" />.
+
+Die erste Aussage ist also falsch, die zweite, dritte und vierte sind wahr.

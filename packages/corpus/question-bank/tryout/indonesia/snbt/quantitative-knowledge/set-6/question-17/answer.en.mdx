@@ -1,18 +1,31 @@
-The question asks for a definite yes or a definite no. Since <InlineMath math="12=2^2\cdot3" />, we need to know whether **the prime factorisation of <InlineMath math="n" /> contains at least two factors of 2 and one factor of 3**.
+A statement is sufficient when **every choice of <InlineMath math="x" />, <InlineMath math="y" />, and <InlineMath math="k" /> that satisfies it gives the same single value of <InlineMath math="x+y" />**. Notice that the question only asks for the sum, not for <InlineMath math="x" /> and <InlineMath math="y" /> separately. That small difference decides the answer.
 
-# Statement (1) alone
+# Statement one alone
 
-Write <InlineMath math="72=2^3\cdot3^2" />. If <InlineMath math="n" /> contains the factor 2 exactly <InlineMath math="a" /> times and the factor 3 exactly <InlineMath math="b" /> times, then <InlineMath math="n^2" /> contains 2 exactly <InlineMath math="2a" /> times and 3 exactly <InlineMath math="2b" /> times. **The exponents of a square are always even**.
+The value of <InlineMath math="k" /> isn't known yet, so try two different values of <InlineMath math="k" />. **If the results differ, this statement isn't sufficient**.
 
 <BlockMath math="\begin{aligned}
-2a\ge3&\;\Longrightarrow\; a\ge2\\
-2b\ge2&\;\Longrightarrow\; b\ge1
+k=0:\quad & x=4,\ y=4,\ x+y=8 \\
+k=3:\quad & x+3y=4,\ 3x+y=4\ \Rightarrow\ x=y=1,\ x+y=2
 \end{aligned}" />
 
-So <InlineMath math="n" /> has <InlineMath math="2^2\cdot3=12" /> as a factor, and the answer is definitely yes. For example, <InlineMath math="n=12" /> gives <InlineMath math="n^2=144=2\cdot72" />. Statement (1) alone is sufficient.
+For <InlineMath math="k=3" />, subtract the two equations: <InlineMath math="-2x+2y=0" />, so <InlineMath math="x=y" />, and then <InlineMath math="4y=4" />. There are two different values of <InlineMath math="x+y" />, so statement (1) alone isn't sufficient.
 
-# Statement (2) alone
+# Statement two alone
 
-The number <InlineMath math="n=6" /> is divisible by 6 but **not divisible by 12**, while <InlineMath math="n=12" /> is divisible by both. The answer can be yes or no, so statement (2) alone is not sufficient.
+Statement (2) only mentions <InlineMath math="k" /> and **puts no limit on <InlineMath math="x" /> or <InlineMath math="y" />**. The pair <InlineMath math="x=y=0" /> gives <InlineMath math="x+y=0" />, while <InlineMath math="x=y=1" /> gives <InlineMath math="x+y=2" />. Statement (2) alone isn't sufficient.
 
-So **statement (1) alone is sufficient**, but statement (2) alone is not.
+# Both statements together
+
+Put <InlineMath math="k=1" /> into both equations of statement (1).
+
+<BlockMath math="\begin{aligned}
+x+1\cdot y &= 4 \\
+1\cdot x+y &= 4
+\end{aligned}" />
+
+The two equations are exactly the same, <InlineMath math="x+y=4" />. The system is **dependent**, which means it has infinitely many solutions, such as <InlineMath math="(0,4)" />, <InlineMath math="(1,3)" />, and <InlineMath math="(4,0)" />. The values of <InlineMath math="x" /> and <InlineMath math="y" /> really aren't unique, but **every solution has <InlineMath math="x+y=4" />**. The question only asks for <InlineMath math="x+y" />, so both statements together are sufficient.
+
+Here's the trap: if you see a dependent system and jump to not sufficient, you're answering a different question, the one about the values of <InlineMath math="x" /> and <InlineMath math="y" />.
+
+So both statements together are sufficient to answer the question, but neither statement alone is.

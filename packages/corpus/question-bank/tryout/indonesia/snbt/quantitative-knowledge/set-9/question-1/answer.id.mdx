@@ -1,20 +1,49 @@
-Mencoba bilangan prima satu per satu tidak pernah selesai. Cara yang tuntas adalah **memeriksa sisa pembagian <InlineMath math="p" /> oleh 3**, karena 10 dan 14 memberi sisa yang berbeda.
+Kita mencari ongkos terbesar yang **tidak bisa dibayar tepat** walaupun perangkonya tidak terbatas. Supaya angkanya ringkas, semua nilai di bawah ini ditulis dalam ribu rupiah. Rencananya: ubah dulu aturan perangko wajib menjadi soal tanpa aturan, cari ongkos terbesar yang tidak bisa dibentuk dari <InlineMath math="7" /> dan <InlineMath math="9" />, lalu kembalikan aturannya.
 
-# Prima kecil
+# Aturan wajib sebagai pergeseran
 
-Untuk <InlineMath math="p=2" />, <InlineMath math="p+10=12" /> bukan prima. Untuk <InlineMath math="p=3" />, diperoleh <InlineMath math="13" /> dan <InlineMath math="17" />, **keduanya prima**. Jadi <InlineMath math="p=3" /> memenuhi.
+Setiap paket kilat sudah pasti memakai satu perangko <InlineMath math="9" />. Sisa ongkosnya boleh dibayar dengan perangko <InlineMath math="7" /> dan <InlineMath math="9" /> berapa pun banyaknya, termasuk tidak ada sama sekali. Jadi ongkos <InlineMath math="M" /> bisa dibayar tepat **jika dan hanya jika <InlineMath math="M-9" /> bisa dibentuk tanpa aturan**. Artinya, aturan itu menggeser semua ongkos sejauh <InlineMath math="9" />.
 
-# Prima yang lebih besar dari 3
+# Ongkos yang bisa dibentuk tanpa aturan
 
-Setiap prima <InlineMath math="p>3" /> tidak habis dibagi 3, jadi sisanya 1 atau 2.
+Kelompokkan ongkos menurut sisa pembagiannya oleh <InlineMath math="7" />. Menambah satu perangko <InlineMath math="7" /> tidak mengubah sisa itu. Jadi begitu satu ongkos dalam sebuah kelompok bisa dibentuk, **semua ongkos yang lebih besar dalam kelompok yang sama juga bisa dibentuk**. Kamu cukup mencari ongkos terkecil di setiap kelompok, dan ongkos terkecil itu dibentuk dari perangko <InlineMath math="9" /> saja.
+
+| Banyak perangko <InlineMath math="9" /> | Ongkos | Sisa bagi <InlineMath math="7" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="9" /> | <InlineMath math="2" /> |
+| <InlineMath math="2" /> | <InlineMath math="18" /> | <InlineMath math="4" /> |
+| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="6" /> |
+| <InlineMath math="4" /> | <InlineMath math="36" /> | <InlineMath math="1" /> |
+| <InlineMath math="5" /> | <InlineMath math="45" /> | <InlineMath math="3" /> |
+| <InlineMath math="6" /> | <InlineMath math="54" /> | <InlineMath math="5" /> |
+
+Ketujuh sisa muncul tepat sekali, jadi tabel ini memberi ongkos terkecil di setiap kelompok. Ongkos terkecil yang paling besar adalah <InlineMath math="54" />, di kelompok sisa <InlineMath math="5" />. Ongkos <InlineMath math="54-7=47" /> ada di kelompok yang sama tetapi lebih kecil, jadi tidak bisa dibentuk. Di kelompok lain, ongkos terkecilnya paling besar <InlineMath math="45" />, sehingga semua ongkos di atas <InlineMath math="47" /> di kelompok itu bisa dibentuk. Di kelompok sisa <InlineMath math="5" />, ongkos berikutnya setelah <InlineMath math="47" /> adalah <InlineMath math="54" />, yang juga bisa dibentuk. Jadi tanpa aturan, ongkos terbesar yang tidak bisa dibentuk adalah <InlineMath math="47" />.
+
+# Mengembalikan aturan wajib
+
+Ongkos <InlineMath math="M" /> bisa dibayar jika dan hanya jika <InlineMath math="M-9" /> bisa dibentuk. Ongkos terbesar yang gagal didapat saat <InlineMath math="M-9" /> sama dengan ongkos terbesar yang tidak bisa dibentuk.
 
 <BlockMath math="\begin{aligned}
-p=3k+1&:\quad p+14=3k+15=3(k+5)\\
-p=3k+2&:\quad p+10=3k+12=3(k+4)
+M-9&=47\\
+M&=56
 \end{aligned}" />
 
-Pada kedua kasus, salah satu bilangan **habis dibagi 3 dan lebih besar dari 3**, jadi bukan prima. Tidak ada prima lain yang memenuhi.
+Untuk setiap <InlineMath math="M>56" />, nilai <InlineMath math="M-9" /> lebih dari <InlineMath math="47" />, jadi bisa dibentuk, dan **ongkos <InlineMath math="M" /> bisa dibayar**.
 
-Pilihan tak hingga banyaknya muncul dari anggapan bahwa banyaknya bilangan prima yang tak hingga menjamin hal ini. Nilai 0 melewatkan <InlineMath math="p=3" />, dan nilai 2 atau 3 biasanya salah mengira 7 atau 13 memenuhi, padahal <InlineMath math="7+14=21" /> dan <InlineMath math="13+14=27" />.
+# Memeriksa hasilnya
 
-Jadi, banyak bilangan prima yang memenuhi adalah **1**.
+Ongkos <InlineMath math="56=7\cdot8" /> adalah kelipatan <InlineMath math="7" />. Kalau <InlineMath math="56=7a+9b" />, maka <InlineMath math="9b" /> juga harus kelipatan <InlineMath math="7" />, jadi **banyak perangko <InlineMath math="9" /> harus kelipatan <InlineMath math="7" />**. Aturan meminta <InlineMath math="b\ge1" />, sehingga <InlineMath math="b\ge7" /> dan <InlineMath math="9b\ge63>56" />. Itu mustahil, jadi <InlineMath math="56" /> memang tidak bisa dibayar. Ongkos berikutnya bisa:
+
+<BlockMath math="57=4\cdot9+3\cdot7=36+21" />
+
+# Pilihan yang menjebak
+
+Kelima pilihan memang ongkos yang tidak bisa dibayar, jadi mencoba membayar setiap pilihan belum cukup. Yang menentukan adalah **ongkos mana yang terbesar**.
+
+- <InlineMath math="\text{Rp}47{.}000" /> adalah jawaban **tanpa aturan perangko wajib**. Dengan aturan itu, ongkos <InlineMath math="47" /> pun tidak bisa dibayar, karena <InlineMath math="47-9=38" /> tidak bisa dibentuk, tetapi masih ada ongkos lebih besar yang gagal.
+- <InlineMath math="\text{Rp}33{.}000" /> menggeser angka <InlineMath math="24" /> sejauh <InlineMath math="9" />. Angka <InlineMath math="24" /> adalah banyaknya ongkos yang gagal tanpa aturan, bukan ongkos terbesarnya.
+- <InlineMath math="\text{Rp}38{.}000" /> menggeser ke arah yang salah, yaitu <InlineMath math="47-9" />. Aturan wajib justru menambah ongkos.
+- <InlineMath math="\text{Rp}24{.}000" /> adalah banyaknya ongkos yang tidak bisa dibentuk tanpa aturan, bukan ongkos terbesarnya.
+
+Jadi, ongkos kirim paket kilat terbesar yang tidak dapat dibayar tepat adalah <InlineMath math="\text{Rp}56{.}000" />.

@@ -1,25 +1,34 @@
-Kuadratkan kedua ruas untuk menghilangkan akar. Langkah ini bisa memunculkan akar palsu, jadi **setiap hasil harus diperiksa pada persamaan awal**.
+Kamu menghitung cara menutup papan <InlineMath math="2\times10" /> yang domino tegaknya lebih banyak daripada domino mendatarnya. Rencananya begini: tunjukkan dulu bahwa **domino mendatar selalu datang berpasangan**, ubah setiap cara menutup menjadi deretan blok, lalu hitung kasus yang memenuhi syarat.
 
-# Mengkuadratkan kedua ruas
+# Domino mendatar selalu berpasangan
+
+Lihat kolom paling kiri yang belum tertutup penuh. Misalkan petak atasnya ditutup domino mendatar, yang menjangkau kolom ini dan kolom sebelah kanannya. Petak bawah kolom itu tidak bisa ditutup domino tegak, karena petak atasnya sudah terpakai. Petak bawah itu juga tidak bisa ditutup domino mendatar yang menjangkau ke kiri, karena kolom di kirinya sudah penuh. Jadi, petak bawah itu **pasti ditutup domino mendatar pada dua kolom yang sama**.
+
+Akibatnya, setiap cara menutup adalah deretan dua jenis blok dari kiri ke kanan:
+
+- satu domino tegak, lebarnya <InlineMath math="1" /> kolom,
+- dua domino mendatar yang bertumpuk, lebarnya <InlineMath math="2" /> kolom.
+
+# Menghitung kasus yang memenuhi
+
+Misalkan ada <InlineMath math="k" /> domino tegak dan <InlineMath math="m" /> blok mendatar, jadi ada <InlineMath math="2m" /> domino mendatar. Lebar total blok harus <InlineMath math="10" />, sehingga <InlineMath math="k+2m=10" />. Syarat soal adalah <InlineMath math="k>2m=10-k" />, artinya <InlineMath math="k>5" />. Karena <InlineMath math="2m=10-k" /> genap, **banyak domino tegak juga harus genap**, jadi <InlineMath math="k" /> hanya bisa <InlineMath math="6" />, <InlineMath math="8" />, atau <InlineMath math="10" />.
+
+Untuk setiap kasus, ada <InlineMath math="k+m" /> blok berderet, dan kamu cukup memilih posisi <InlineMath math="m" /> blok mendatar di antaranya.
 
 <BlockMath math="\begin{aligned}
-x+10&=(x-2)^2\\
-x+10&=x^2-4x+4\\
-x^2-5x-6&=0\\
-(x-6)(x+1)&=0
+k=6,\ m=2&:\quad \binom{8}{2}=28\\
+k=8,\ m=1&:\quad \binom{9}{1}=9\\
+k=10,\ m=0&:\quad \binom{10}{0}=1
 \end{aligned}" />
 
-# Memeriksa kedua calon
+Jumlahnya <InlineMath math="28+9+1=38" /> cara.
 
-Ruas kiri adalah akar kuadrat, jadi nilainya tidak pernah negatif. Akibatnya **ruas kanan juga harus tidak negatif**, yaitu <InlineMath math="x\ge2" />.
+# Pemeriksaan dengan seluruh kasus
 
-<BlockMath math="\begin{aligned}
-x=6&:\quad \sqrt{16}=4=6-2\\
-x=-1&:\quad \sqrt{9}=3\ne-1-2
-\end{aligned}" />
+Hitung juga kasus yang tidak memenuhi syarat: <InlineMath math="k=0" /> memberi <InlineMath math="\binom{5}{5}=1" />, <InlineMath math="k=2" /> memberi <InlineMath math="\binom{6}{4}=15" />, dan <InlineMath math="k=4" /> memberi <InlineMath math="\binom{7}{3}=35" />. Semua kasus berjumlah <InlineMath math="1+15+35+28+9+1=89" />. Banyak cara menutup papan <InlineMath math="2\times n" /> memenuhi <InlineMath math="T_n=T_{n-1}+T_{n-2}" />, karena kolom pertama ditutup satu domino tegak atau satu blok mendatar. Barisan itu adalah <InlineMath math="1,2,3,5,8,13,21,34,55,89" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="n=10" />. **Total <InlineMath math="89" /> cocok**, jadi pembagian kasusnya lengkap.
 
-Hanya <InlineMath math="x=6" /> yang memenuhi. Calon <InlineMath math="x=-1" /> muncul karena <InlineMath math="3^2" /> dan <InlineMath math="(-3)^2" /> sama-sama 9.
+# Kesalahan yang sering terjadi
 
-Nilai 5 menjumlahkan kedua calon tanpa pemeriksaan. Nilai <InlineMath math="-1" /> adalah akar palsu, nilai 4 adalah nilai <InlineMath math="\sqrt{x+10}" />, dan nilai 1 muncul dari salah tanda saat memfaktorkan.
+Jika domino mendatar dianggap bisa diletakkan bebas, kamu mungkin memilih posisi <InlineMath math="6" /> domino tegak di antara <InlineMath math="10" /> kolom dan mendapat <InlineMath math="\binom{10}{6}=210" />, padahal **sisa kolomnya harus bisa dipasangkan menjadi blok selebar <InlineMath math="2" />**. Jika lupa bahwa <InlineMath math="k" /> genap, kamu bisa mencari kasus <InlineMath math="k=7" /> atau <InlineMath math="k=9" /> yang tidak mungkin terjadi. Jika menjawab <InlineMath math="89" />, syarat lebih banyak domino tegak belum dipakai.
 
-Jadi, jumlah semua penyelesaiannya adalah **6**.
+Jadi, ada <InlineMath math="38" /> cara menutup papan itu dengan domino tegak lebih banyak daripada domino mendatar.

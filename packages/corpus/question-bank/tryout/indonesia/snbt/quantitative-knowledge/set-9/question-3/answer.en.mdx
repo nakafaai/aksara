@@ -1,15 +1,55 @@
-Square <InlineMath math="x" /> to simplify the root, then compare **the remaining root term** with its distance to 9.8.
+All four statements depend on what's inside the set <InlineMath math="S" />, so **pin down exactly what's in it** first. Then judge each statement with its own proof: a "there is" statement needs just one example, while an "every" statement needs a reason that works for all members.
 
-# Computing x squared
+# Finding the set S
 
-<BlockMath math="x^2=(\sqrt2+\sqrt3)^2=2+2\sqrt6+3=5+2\sqrt6" />
+Don't multiply both sides by <InlineMath math="x" /> right away. **The sign of <InlineMath math="x" /> isn't known yet**, and multiplying by a negative number flips the inequality. Move everything to one side and write it as one fraction.
 
-# Comparing with 9.8
+<BlockMath math="\begin{aligned}
+\frac{1}{x}<x
+&\iff x-\frac{1}{x}>0\\
+&\iff \frac{x^2-1}{x}>0\\
+&\iff \frac{(x+1)(x-1)}{x}>0
+\end{aligned}" />
 
-Compare <InlineMath math="5+2\sqrt6" /> with <InlineMath math="9.8" />, or equivalently <InlineMath math="2\sqrt6" /> with <InlineMath math="4.8" />. Both numbers are positive, so **comparing their squares** keeps the direction of the inequality.
+This fraction can only change sign at <InlineMath math="x=-1" />, <InlineMath math="x=0" />, and <InlineMath math="x=1" />. Test one number in each interval.
 
-<BlockMath math="\left(2\sqrt6\right)^2=24\qquad\text{and}\qquad4.8^2=23.04" />
+| Interval | Test value | Sign of the fraction |
+| :---: | :---: | :---: |
+| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | negative |
+| <InlineMath math="-1<x<0" /> | <InlineMath math="x=-\frac{1}{2}" /> | positive |
+| <InlineMath math="0<x<1" /> | <InlineMath math="x=\frac{1}{2}" /> | negative |
+| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | positive |
 
-Since <InlineMath math="24>23.04" />, we have <InlineMath math="2\sqrt6>4.8" /> and <InlineMath math="x^2>9.8" />. The estimate <InlineMath math="\sqrt6\approx2.45" /> gives <InlineMath math="x^2\approx9.90" />, which agrees.
+So <InlineMath math="S" /> is made of **the numbers between <InlineMath math="-1" /> and <InlineMath math="0" />, plus the numbers greater than <InlineMath math="1" />**.
 
-So the correct relation is **<InlineMath math="P>Q" />**.
+<BlockMath math="S=\{x\mid -1<x<0\ \text{or}\ x>1\}" />
+
+# Statement one
+
+No number below <InlineMath math="-1" /> is in <InlineMath math="S" />. Take <InlineMath math="x=-2" />: the value <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> is actually **greater** than <InlineMath math="-2" />. This statement is **false**. The trap appears if you multiply by <InlineMath math="x" /> without watching the sign, which gives <InlineMath math="x^2>1" /> and wrongly lets in <InlineMath math="x<-1" />.
+
+# Statement two
+
+For <InlineMath math="x\ne0" />, the number <InlineMath math="x^2" /> is always positive. **Multiplying both sides by a positive number keeps the inequality's direction**.
+
+<BlockMath math="\frac{1}{x}<x\;\Longrightarrow\;\frac{1}{x}\cdot x^2<x\cdot x^2\;\Longrightarrow\;x<x^3" />
+
+This step works for every member of <InlineMath math="S" />, so the statement is **true**. Check with <InlineMath math="x=-\frac{1}{2}" />: <InlineMath math="x^3=-\frac{1}{8}" /> is indeed greater than <InlineMath math="-\frac{1}{2}" />.
+
+# Statement three
+
+A "there is" statement only needs **one member that fits**. Take <InlineMath math="x=-\frac{1}{2}" />. It's in <InlineMath math="S" />, since <InlineMath math="\frac{1}{x}=-2<-\frac{1}{2}" />, and its square is <InlineMath math="\frac{1}{4}<1" />. This statement is **true**.
+
+# Statement four
+
+Let <InlineMath math="y=-\frac{1}{x}" />. Then <InlineMath math="\frac{1}{y}=-x" />. Write the membership condition for <InlineMath math="y" />, then multiply both sides by <InlineMath math="-1" />, which flips the sign.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{y}<y
+&\iff -x<-\frac{1}{x}\\
+&\iff x>\frac{1}{x}
+\end{aligned}" />
+
+The last line is exactly the membership condition for <InlineMath math="x" />. So **<InlineMath math="y" /> is in <InlineMath math="S" /> exactly when <InlineMath math="x" /> is in <InlineMath math="S" />**, and the statement is **true**. Check with examples: <InlineMath math="x=2" /> gives <InlineMath math="y=-\frac{1}{2}" />, and <InlineMath math="x=-\frac{1}{2}" /> gives <InlineMath math="y=2" />. Both are in <InlineMath math="S" />.
+
+So statement one is false, while statements two, three, and four are true.

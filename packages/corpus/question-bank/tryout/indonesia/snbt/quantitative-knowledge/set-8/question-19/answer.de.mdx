@@ -1,27 +1,43 @@
-Ob die Summe zweier Zahlen durch 3 teilbar ist, hängt vom **Rest jeder Zahl bei Division durch 3** ab. Ordne die Zahlen 1 bis 20 nach ihrem Rest.
+Die beiden Bedingungen legen nicht unbedingt nur eine Folge fest. Du gehst so vor: Schreibe <InlineMath math="u_2" /> und <InlineMath math="u_4" /> mit <InlineMath math="u_3" /> und dem Quotienten <InlineMath math="r" />, bestimme alle möglichen Quotienten und **prüfe jede Aussage an jeder passenden Folge**.
 
-# Drei Restklassen
+# Den Quotienten bestimmen
 
-| Rest | Zahlen | Anzahl |
-| :---: | :---: | :---: |
-| 0 | 3, 6, 9, 12, 15, 18 | 6 |
-| 1 | 1, 4, 7, 10, 13, 16, 19 | 7 |
-| 2 | 2, 5, 8, 11, 14, 17, 20 | 7 |
-
-Die Klassen sind **nicht gleich groß**, weil 20 kein Vielfaches von 3 ist.
-
-# Paare mit durch 3 teilbarer Summe
-
-Die Summe ist durch 3 teilbar, wenn **beide Zahlen den Rest 0 haben** oder **eine den Rest 1 und die andere den Rest 2 hat**.
+In einer geometrischen Folge entsteht das nächste Glied durch Multiplizieren mit dem Quotienten. Also ist <InlineMath math="u_4=u_3r=-6r" /> und <InlineMath math="u_2=\tfrac{u_3}{r}=-\tfrac6r" />, wobei <InlineMath math="r\ne0" /> gilt, weil <InlineMath math="u_3\ne0" /> ist.
 
 <BlockMath math="\begin{aligned}
-\text{Reste 0 und 0}&:\quad \binom62=15\\
-\text{Reste 1 und 2}&:\quad 7\cdot7=49\\
-n(A)&=15+49=64,\qquad n(S)=\binom{20}{2}=190
+-\tfrac6r-6r&=15\\
+r+\tfrac1r&=-\tfrac52\\
+2r^2+5r+2&=0\\
+(2r+1)(r+2)&=0
 \end{aligned}" />
 
-<BlockMath math="P(A)=\frac{64}{190}=\frac{32}{95}" />
+Es gibt **zwei Quotienten, die beide passen**: <InlineMath math="r=-2" /> und <InlineMath math="r=-\tfrac12" />. Das Anfangsglied ist <InlineMath math="u_1=\tfrac{u_3}{r^2}" />, also erhältst du zwei Folgen.
 
-Der Wert <InlineMath math="\tfrac13" /> nimmt gleich große Klassen an. Der Wert <InlineMath math="\tfrac{3}{38}=\tfrac{15}{190}" /> zählt nur die Paare aus Vielfachen von 3, und <InlineMath math="\tfrac{49}{190}" /> nur die Paare mit den Resten 1 und 2.
+<BlockMath math="\begin{aligned}
+r=-2&:\quad -\tfrac32,\ 3,\ -6,\ 12,\ -24,\ 48,\ -96,\ \dots\\
+r=-\tfrac12&:\quad -24,\ 12,\ -6,\ 3,\ -\tfrac32,\ \tfrac34,\ -\tfrac38,\ \dots
+\end{aligned}" />
 
-Die Wahrscheinlichkeit, dass die Summe durch 3 teilbar ist, beträgt also **<InlineMath math="\tfrac{32}{95}" />**.
+Probe: <InlineMath math="3+12=15" /> und <InlineMath math="12+3=15" />.
+
+# Die erste Aussage
+
+Beachte, dass **die ersten <InlineMath math="5" /> Glieder beider Folgen dieselben Zahlen in umgekehrter Reihenfolge sind**. Ihre Summen müssen also gleich sein.
+
+<BlockMath math="-\tfrac32+3-6+12-24=-\tfrac{33}{2}" />
+
+Die erste Aussage gilt für beide Folgen, sie ist also wahr.
+
+# Die zweite Aussage
+
+Eine geometrische Reihe hat nur dann einen unendlichen Summenwert, wenn <InlineMath math="|r|<1" /> ist. Die Folge mit <InlineMath math="r=-\tfrac12" /> hat tatsächlich den Wert <InlineMath math="\tfrac{-24}{1+\frac12}=-16" />. Aber auch die Folge mit <InlineMath math="r=-2" /> erfüllt beide Bedingungen, und ihre Glieder wachsen ohne Grenze. Weil **eine sichere Aussage für alle passenden Folgen gelten muss**, ist die zweite Aussage falsch.
+
+# Die dritte Aussage
+
+Für <InlineMath math="r>0" /> gilt <InlineMath math="r+\tfrac1r\ge2" />, denn <InlineMath math="(r-1)^2\ge0" /> ist gleichbedeutend mit <InlineMath math="r^2+1\ge2r" />, und dann teilst du durch das positive <InlineMath math="r" />. Also **kann <InlineMath math="r+\tfrac1r" /> für positives <InlineMath math="r" /> nicht <InlineMath math="-\tfrac52" /> sein**. Keine Folge hat einen positiven Quotienten, die dritte Aussage ist falsch.
+
+# Die vierte Aussage
+
+Das siebte Glied ist <InlineMath math="u_7=u_3r^4=-6r^4" />. Eine gerade Potenz einer reellen Zahl ungleich null ist immer positiv, also **ist <InlineMath math="u_7" /> immer negativ**, egal welches Vorzeichen der Quotient hat. Es ist <InlineMath math="-96" /> für <InlineMath math="r=-2" /> und <InlineMath math="-\tfrac38" /> für <InlineMath math="r=-\tfrac12" />. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also **wahr**, die zweite, dritte und vierte sind **falsch**.

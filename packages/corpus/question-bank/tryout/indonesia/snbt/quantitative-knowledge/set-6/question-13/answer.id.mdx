@@ -1,15 +1,39 @@
-Rumus volume kerucut memerlukan jari-jari alas dan **tinggi tegak**, sedangkan soal memberi keliling alas dan garis pelukis. Jadi ubah dulu kedua data itu.
+Garis <InlineMath math="AG" /> adalah diagonal ruang dan <InlineMath math="BD" /> adalah diagonal sisi alas. Keduanya **tidak berpotongan dan tidak sejajar**, jadi sudutnya tidak bisa dibaca langsung dari satu segitiga di balok. Cara yang rapi adalah memakai koordinat: sudut antara dua garis sama dengan sudut lancip antara vektor arahnya.
 
-# Jari-jari dan tinggi
+# Memasang sumbu koordinat
 
-Dari keliling <InlineMath math="2\pi r=12\pi" /> diperoleh <InlineMath math="r=6" />. Jari-jari, tinggi, dan garis pelukis membentuk segitiga siku-siku dengan **garis pelukis sebagai sisi miring**.
+Letakkan <InlineMath math="A" /> di titik asal, sumbu <InlineMath math="x" /> sepanjang <InlineMath math="AB" />, sumbu <InlineMath math="y" /> sepanjang <InlineMath math="AD" />, dan sumbu <InlineMath math="z" /> sepanjang <InlineMath math="AE" />. Karena <InlineMath math="AD=BC=4" />, **setiap titik sudut bisa ditulis langsung dari ukuran balok**.
 
-<BlockMath math="t=\sqrt{10^2-6^2}=\sqrt{64}=8" />
+<BlockMath math="A(0,0,0),\quad B(2,0,0),\quad D(0,4,0),\quad G(2,4,4)" />
 
-# Volume
+# Menghitung vektor arah
 
-<BlockMath math="V=\tfrac13\pi r^2t=\tfrac13\pi(36)(8)=96\pi\text{ cm}^3" />
+Vektor arah sebuah garis adalah titik ujung dikurangi titik pangkal. Lalu hitung panjang kedua vektor dan **hasil kali skalarnya**.
 
-Nilai <InlineMath math="120\pi" /> **memakai garis pelukis 10 sebagai tinggi**. Nilai <InlineMath math="288\pi" /> lupa faktor <InlineMath math="\tfrac13" />, dan nilai <InlineMath math="360\pi" /> melakukan kedua kesalahan itu. Nilai <InlineMath math="32\pi" /> memakai keliling <InlineMath math="12\pi" /> sebagai pengganti luas alas, yaitu <InlineMath math="\tfrac13\cdot12\pi\cdot8" />.
+<BlockMath math="\begin{aligned}
+\overrightarrow{AG} &= (2,4,4), & \lvert\overrightarrow{AG}\rvert &= \sqrt{4+16+16}=6 \\
+\overrightarrow{BD} &= (-2,4,0), & \lvert\overrightarrow{BD}\rvert &= \sqrt{4+16}=2\sqrt5 \\
+\overrightarrow{AG}\cdot\overrightarrow{BD} &= 2(-2)+4(4)+4(0)=12
+\end{aligned}" />
 
-Jadi, volume kerucut adalah **<InlineMath math="96\pi\text{ cm}^3" />**.
+# Mengambil sudut lancip
+
+Sebuah garis tidak punya arah depan atau belakang. Kalau kamu memakai <InlineMath math="\overrightarrow{DB}=(2,-4,0)" />, hasil kali skalarnya menjadi <InlineMath math="-12" /> dan sudutnya tumpul, padahal garisnya sama. Karena itu **sudut antara dua garis selalu diambil yang lancip**, sehingga hasil kali skalarnya dipakai dalam nilai mutlak.
+
+<BlockMath math="\begin{aligned}
+\cos\theta &= \frac{\lvert\overrightarrow{AG}\cdot\overrightarrow{BD}\rvert}{\lvert\overrightarrow{AG}\rvert\,\lvert\overrightarrow{BD}\rvert} \\
+&= \frac{12}{6\cdot2\sqrt5}=\frac{1}{\sqrt5}=\frac{\sqrt5}{5}
+\end{aligned}" />
+
+Cek kewajarannya: nilainya di antara <InlineMath math="0" /> dan <InlineMath math="1" />, sesuai sudut lancip. Kalau alasnya persegi (<InlineMath math="AB=AD" />), hasil kali skalarnya <InlineMath math="-AB^2+AD^2=0" /> dan kedua garis tegak lurus. Di sini <InlineMath math="AB\ne AD" />, jadi sudutnya bukan siku-siku.
+
+# Mengapa pilihan lain keliru
+
+Pilihan yang salah muncul dari **garis yang tertukar atau diganti garis lain**.
+
+- <InlineMath math="\tfrac35" /> adalah kosinus sudut antara <InlineMath math="AC" /> dan <InlineMath math="BD" />, yaitu <InlineMath math="\tfrac{12}{2\sqrt5\cdot2\sqrt5}=\tfrac{12}{20}" />. Nilai ini muncul kalau <InlineMath math="AG" /> diganti proyeksinya pada alas, padahal sudut terhadap proyeksi tidak sama dengan sudut terhadap garis aslinya.
+- <InlineMath math="0" /> muncul dari kebiasaan pada kubus, tempat <InlineMath math="AG" /> tegak lurus <InlineMath math="BD" />. Itu hanya berlaku kalau <InlineMath math="AB=AD" />.
+- <InlineMath math="\tfrac23" /> adalah kosinus sudut antara <InlineMath math="AG" /> dan rusuk tegak <InlineMath math="AE" />, yaitu <InlineMath math="\tfrac{4}{6}" />.
+- <InlineMath math="\tfrac{\sqrt5}{3}" /> adalah kosinus sudut antara <InlineMath math="AG" /> dan diagonal alas <InlineMath math="AC" />, yaitu <InlineMath math="\tfrac{2\sqrt5}{6}" />. Diagonal alas yang ditanyakan adalah <InlineMath math="BD" />, bukan <InlineMath math="AC" />.
+
+Jadi, nilai kosinus sudut antara garis <InlineMath math="AG" /> dan garis <InlineMath math="BD" /> adalah <InlineMath math="\tfrac{\sqrt5}{5}" />.

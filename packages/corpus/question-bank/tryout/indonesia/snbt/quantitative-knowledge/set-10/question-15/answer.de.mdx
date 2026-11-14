@@ -1,18 +1,37 @@
-Der Schwerpunkt eines Dreiecks ist **der Mittelwert der Koordinaten seiner drei Ecken**. Das Dreifache der Koordinaten von <InlineMath math="G" /> ist also die Summe der Koordinaten von <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />.
+Ein Körper, der untertaucht, drückt das Wasser nach oben. **Das Volumen des gestiegenen Wassers ist gleich dem Volumen des Körpers**, weil das Wasser dem Körper Platz machen muss. Der Plan: Berechne das Volumen des Körpers und teile es durch die Grundfläche des Zylinders, dann hast du den Anstieg.
 
-# x- und y-Koordinate
+# Das Volumen des Körpers
 
-Sei <InlineMath math="C(p,q)" />. Löse **jede Koordinate einzeln**.
+Der Körper besteht aus einem Kegel und einer Halbkugel. Das Volumen eines Kegels ist ein Drittel von Grundfläche mal Höhe, und das Volumen einer Halbkugel ist die Hälfte des Kugelvolumens <InlineMath math="\tfrac{4}{3}\pi r^3" />.
 
 <BlockMath math="\begin{aligned}
-\frac{-1+5+p}{3}&=2\;\Longrightarrow\;4+p=6\;\Longrightarrow\;p=2\\
-\frac{4+(-2)+q}{3}&=3\;\Longrightarrow\;2+q=9\;\Longrightarrow\;q=7
+V_{\text{Kegel}} &= \tfrac{1}{3}\pi r^2\cdot r=\tfrac{1}{3}\pi r^3 \\
+V_{\text{Halbkugel}} &= \tfrac{1}{2}\cdot\tfrac{4}{3}\pi r^3=\tfrac{2}{3}\pi r^3 \\
+V_{\text{Körper}} &= \tfrac{1}{3}\pi r^3+\tfrac{2}{3}\pi r^3=\pi r^3
 \end{aligned}" />
 
-# Kontrolle
+# Der Anstieg des Wassers
 
-Der Mittelwert der Koordinaten von <InlineMath math="A(-1,4)" />, <InlineMath math="B(5,-2)" /> und <InlineMath math="C(2,7)" /> ist <InlineMath math="\left(\tfrac{6}{3},\tfrac{9}{3}\right)=(2,3)" />, also **genau der Punkt <InlineMath math="G" />**.
+Das gestiegene Wasser bildet eine zylinderförmige Schicht mit Radius <InlineMath math="2r" /> und Höhe <InlineMath math="h" />, dem gesuchten Anstieg. Achte darauf, dass **der Radius des Zylinders <InlineMath math="2r" /> ist, nicht <InlineMath math="r" />**, seine Grundfläche ist also <InlineMath math="4\pi r^2" />.
 
-Der Punkt <InlineMath math="(2,1)" /> ist der Mittelpunkt von <InlineMath math="AB" />, nicht die dritte Ecke. Der Punkt <InlineMath math="(6,9)" /> ist das Dreifache von <InlineMath math="G" />, ohne die Koordinaten von <InlineMath math="A" /> und <InlineMath math="B" /> abzuziehen. Die Punkte <InlineMath math="(-2,7)" /> und <InlineMath math="(2,-7)" /> entstehen durch einen Vorzeichenfehler in einer Koordinate.
+<BlockMath math="\begin{aligned}
+\pi(2r)^2\cdot h &= \pi r^3 \\
+4\pi r^2 h &= \pi r^3 \\
+h &= \frac{r}{4}
+\end{aligned}" />
 
-Der Punkt <InlineMath math="C" /> hat also die Koordinaten **<InlineMath math="(2,7)" />**.
+Also ist <InlineMath math="P=\tfrac{r}{4}" />, genau gleich <InlineMath math="Q" />.
+
+# Probe mit Zahlen
+
+Nimm <InlineMath math="r=4\text{ cm}" />. Das Volumen des Körpers ist <InlineMath math="\pi\cdot 64=64\pi\text{ cm}^3" />, die Grundfläche des Zylinders <InlineMath math="\pi\cdot 8^2=64\pi\text{ cm}^2" />. Der Anstieg ist <InlineMath math="\tfrac{64\pi}{64\pi}=1\text{ cm}" />, und tatsächlich ist <InlineMath math="\tfrac{4}{4}=1" />. Die Beziehung gilt **für jedes <InlineMath math="r" />**, weil beide Größen proportional zu <InlineMath math="r" /> sind.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer verwechselten Volumenformel oder einem falschen Radius**.
+
+- <InlineMath math="P>Q" /> entsteht, wenn die Halbkugel als ganze Kugel gezählt wird. Dann ist das Volumen <InlineMath math="\tfrac{5}{3}\pi r^3" /> und der Anstieg <InlineMath math="\tfrac{5r}{12}" />. Dorthin kommst du auch, wenn du den Radius des Zylinders als <InlineMath math="r" /> nimmst.
+- <InlineMath math="Q>P" /> entsteht, wenn der Kegel vergessen wird. Dann zählt nur die Halbkugel, und der Anstieg ist <InlineMath math="\tfrac{r}{6}" />.
+- Die Antwort „Angaben reichen nicht“ entsteht, wenn du meinst, den Wert von <InlineMath math="r" /> zu brauchen. Aber <InlineMath math="P" /> und <InlineMath math="Q" /> sind für jedes <InlineMath math="r" /> beide gleich <InlineMath math="\tfrac{r}{4}" />.
+
+Der Anstieg des Wassers <InlineMath math="P" /> ist also gleich <InlineMath math="Q=\tfrac{r}{4}" />.

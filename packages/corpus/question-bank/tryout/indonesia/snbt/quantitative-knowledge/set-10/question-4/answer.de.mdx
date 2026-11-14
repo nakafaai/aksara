@@ -1,22 +1,50 @@
-Die Anzahl der Lösungen zweier linearer Gleichungen hängt davon ab, **ob sich die beiden Geraden schneiden, parallel sind oder zusammenfallen**. Vergleiche die Koeffizienten.
+Du musst <InlineMath math="a" /> loswerden und eine Beziehung zwischen <InlineMath math="b" />, <InlineMath math="c" /> und <InlineMath math="d" /> übrig behalten. Der Plan: Nenn den gemeinsamen Wert der vier Potenzen <InlineMath math="k" />, schreib jeden Exponenten als Logarithmus zur Basis <InlineMath math="k" /> und nutze dann, dass **<InlineMath math="6" /> und <InlineMath math="12" /> aus den Faktoren <InlineMath math="2" /> und <InlineMath math="3" /> bestehen**.
 
-# Der Fall a gleich eins
+# Exponenten als Logarithmen schreiben
 
-Für <InlineMath math="a=1" /> multiplizierst du die erste Gleichung mit 3.
+Setze <InlineMath math="2^a=3^b=6^c=12^d=k" />. Die Zahl <InlineMath math="k" /> ist positiv, weil jede Potenz einer positiven Zahl positiv ist. Außerdem gilt <InlineMath math="k\ne 1" />, denn <InlineMath math="2^a=1" /> gilt nur für <InlineMath math="a=0" />, und <InlineMath math="a" /> ist nicht null. Deshalb **darfst du Logarithmen zur Basis <InlineMath math="k" /> benutzen**.
 
-<BlockMath math="3x+6y=12" />
-
-Die linke Seite stimmt mit der zweiten Gleichung überein. Für <InlineMath math="b=12" /> **beschreiben beide Gleichungen dieselbe Gerade**, es gibt also unendlich viele Lösungen. Die erste Aussage ist wahr. Für <InlineMath math="b=10" /> müsste dieselbe linke Seite zugleich 12 und 10 sein, was unmöglich ist. Die Geraden sind parallel ohne Lösung, also ist die zweite Aussage falsch.
-
-# Der Fall a gleich zwei
-
-Die Koeffizientenverhältnisse <InlineMath math="2:3" /> und <InlineMath math="2:6" /> sind verschieden, also **schneiden sich die Geraden in genau einem Punkt**. Die vierte Aussage ist wahr. Bestimme diesen Punkt.
+Aus <InlineMath math="2^a=k" /> folgt <InlineMath math="a=\log_2 k" />. Die Regel <InlineMath math="\log_p q\cdot\log_q p=1" /> dreht die Basis um.
 
 <BlockMath math="\begin{aligned}
-2x+2y=4&\;\Longrightarrow\;x=2-y\\
-3(2-y)+6y=12&\;\Longrightarrow\;y=2,\quad x=0
+\frac{1}{a} &= \log_k 2, & \frac{1}{b} &= \log_k 3, \\
+\frac{1}{c} &= \log_k 6, & \frac{1}{d} &= \log_k 12
 \end{aligned}" />
 
-Die Lösung ist <InlineMath math="x=0" /> und <InlineMath math="y=2" />. Das Paar <InlineMath math="x=2" />, <InlineMath math="y=0" /> erfüllt die erste Gleichung, liefert aber <InlineMath math="3\cdot2+0=6\ne12" />. Die dritte Aussage ist falsch.
+# Zwei neue Gleichungen
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Der Logarithmus eines Produkts ist die Summe der Logarithmen. Nutze <InlineMath math="6=2\cdot 3" /> und <InlineMath math="12=2\cdot 2\cdot 3" />. Achte darauf, dass **der Faktor <InlineMath math="2" /> in <InlineMath math="12" /> zweimal vorkommt**.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{c} &= \log_k 2+\log_k 3=\frac{1}{a}+\frac{1}{b} \\
+\frac{1}{d} &= 2\log_k 2+\log_k 3=\frac{2}{a}+\frac{1}{b}
+\end{aligned}" />
+
+# Eine Variable entfernen
+
+Multipliziere die erste Gleichung mit <InlineMath math="2" /> und zieh dann die zweite Gleichung ab. So **heben sich die Terme <InlineMath math="\tfrac{2}{a}" /> auf**.
+
+<BlockMath math="\begin{aligned}
+\frac{2}{c}-\frac{1}{d} &= \left(\frac{2}{a}+\frac{2}{b}\right)-\left(\frac{2}{a}+\frac{1}{b}\right)=\frac{1}{b} \\
+\frac{1}{b} &= \frac{2d-c}{cd} \\
+b &= \frac{cd}{2d-c}
+\end{aligned}" />
+
+# Probe
+
+Rechne die linke Seite noch einmal direkt mit Logarithmen aus. Es kommt tatsächlich <InlineMath math="\log_k 3" /> heraus, also <InlineMath math="\tfrac{1}{b}" />.
+
+<BlockMath math="\frac{2}{c}-\frac{1}{d}=2\log_k 6-\log_k 12=\log_k\frac{36}{12}=\log_k 3" />
+
+Der Nenner <InlineMath math="2d-c" /> kann auch nicht null sein, weil **<InlineMath math="\tfrac{1}{b}=\log_k 3" /> nicht null ist**, solange <InlineMath math="k\ne 1" /> gilt.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einem Eliminationsschritt in die falsche Richtung**.
+
+- <InlineMath math="\dfrac{cd}{c-d}" /> ist der Wert von <InlineMath math="a" />. Er entsteht, wenn du die beiden Gleichungen direkt voneinander abziehst und damit <InlineMath math="b" /> entfernst.
+- <InlineMath math="\dfrac{cd}{d-c}" /> stammt aus derselben Subtraktion mit vertauschtem Vorzeichen.
+- <InlineMath math="\dfrac{cd}{2c-d}" /> vertauscht die Rollen von <InlineMath math="c" /> und <InlineMath math="d" />, als ob <InlineMath math="\tfrac{1}{b}=\tfrac{2}{d}-\tfrac{1}{c}" /> gälte.
+- <InlineMath math="\dfrac{cd}{c+d}" /> überträgt das Muster <InlineMath math="\tfrac{1}{c}=\tfrac{1}{a}+\tfrac{1}{b}" /> auf <InlineMath math="b" />, <InlineMath math="c" /> und <InlineMath math="d" />, obwohl dieses Muster nur wegen <InlineMath math="6=2\cdot 3" /> gilt.
+
+Also ist <InlineMath math="b=\dfrac{cd}{2d-c}" />.

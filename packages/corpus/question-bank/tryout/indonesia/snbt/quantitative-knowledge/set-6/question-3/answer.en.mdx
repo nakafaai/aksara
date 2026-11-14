@@ -1,18 +1,48 @@
-Both quantities contain square roots, so rewrite them in **simplest radical form** before comparing.
+All four statements need the exact solution set, endpoints included. So solve the inequality first, then judge each statement with its own proof or counterexample. The key points are **endpoints that do satisfy the inequality** and **a peak value that isn't at an integer**.
 
-# Expanding P
+# Solving the inequality
+
+Both sides are non-negative. For two non-negative numbers, the larger one also has the larger square, so **you can square both sides without flipping the sign**. Then factor the difference of two squares.
 
 <BlockMath math="\begin{aligned}
-P&=\left(\sqrt7\right)^2+2\sqrt7\sqrt3+\left(\sqrt3\right)^2\\
-&=7+2\sqrt{21}+3=10+2\sqrt{21}
+(x-4)^2-(2x+1)^2 &\ge 0 \\
+\big((x-4)-(2x+1)\big)\big((x-4)+(2x+1)\big) &\ge 0 \\
+(-x-5)(3x-3) &\ge 0 \\
+-3(x+5)(x-1) &\ge 0 \\
+(x+5)(x-1) &\le 0
 \end{aligned}" />
 
-# Simplifying Q
+This product isn't positive exactly when <InlineMath math="x" /> lies between the two roots, roots included. The solution set is <InlineMath math="-5\le x\le1" />.
 
-Factor 84 so that the perfect square 4 appears.
+# Statement one
 
-<BlockMath math="Q=10+\sqrt{4\cdot21}=10+2\sqrt{21}" />
+The integers from <InlineMath math="-5" /> to <InlineMath math="1" /> are <InlineMath math="-5,-4,-3,-2,-1,0,1" />, so there are <InlineMath math="7" /> of them. Both endpoints count because the sign is **greater than or equal to**. For example, at <InlineMath math="x=-5" /> both sides equal <InlineMath math="9" />. Statement one is **true**.
 
-The two quantities are **exactly equal**, so <InlineMath math="P=Q" />. The tempting mistake is to take <InlineMath math="\left(\sqrt7+\sqrt3\right)^2=7+3=10" />, which forgets the middle term <InlineMath math="2\sqrt{21}" /> and makes <InlineMath math="Q" /> look larger.
+# Statement two
 
-So the correct relation is <InlineMath math="P=Q" />.
+The inequality <InlineMath math="\lvert x+2\rvert<3" /> means <InlineMath math="-3<x+2<3" />, that is, <InlineMath math="-5<x<1" />. The endpoints are left out. But <InlineMath math="x=1" /> satisfies the original inequality, since <InlineMath math="\lvert 1-4\rvert=3" /> and <InlineMath math="\lvert 2+1\rvert=3" />, while <InlineMath math="\lvert 1+2\rvert=3" /> is **not less than** <InlineMath math="3" />. One counterexample is enough, so statement two is **false**.
+
+# Statement three
+
+Write <InlineMath math="g(x)=\lvert x-4\rvert-\lvert 2x+1\rvert" />. The signs inside the absolute values change at <InlineMath math="x=-\tfrac12" /> and <InlineMath math="x=4" />, so work out <InlineMath math="g" /> on each piece.
+
+<BlockMath math="\begin{aligned}
+x\le-\tfrac12:\quad g(x) &= (4-x)+(2x+1)=x+5 \\
+-\tfrac12\le x\le4:\quad g(x) &= (4-x)-(2x+1)=3-3x \\
+x\ge4:\quad g(x) &= (x-4)-(2x+1)=-x-5
+\end{aligned}" />
+
+On the left <InlineMath math="g" /> goes up, and in the middle and on the right it goes down. So **the largest value sits at the corner** <InlineMath math="x=-\tfrac12" />, where <InlineMath math="g\left(-\tfrac12\right)=\tfrac92" />. Since <InlineMath math="\tfrac92" /> is more than <InlineMath math="4" />, statement three is **false**. If you only try integers, the largest value really is <InlineMath math="g(-1)=5-1=4" />, and that's the trap.
+
+# Statement four
+
+Try <InlineMath math="x_0=-(a+b)" />. Both sides become the absolute value of the same number.
+
+<BlockMath math="\begin{aligned}
+x_0-a &= -2a-b \\
+2x_0+b &= -2a-2b+b=-2a-b
+\end{aligned}" />
+
+So <InlineMath math="\lvert x_0-a\rvert=\lvert 2x_0+b\rvert" />, and **equality already satisfies greater than or equal to**. Every pair <InlineMath math="a" /> and <InlineMath math="b" /> has at least one solution, namely <InlineMath math="x_0" />. Statement four is **true**. Check it against this question: <InlineMath math="a=4" /> and <InlineMath math="b=1" /> give <InlineMath math="x_0=-5" />, the left endpoint of the solution set above.
+
+So statement one is true, statement two is false, statement three is false, and statement four is true.

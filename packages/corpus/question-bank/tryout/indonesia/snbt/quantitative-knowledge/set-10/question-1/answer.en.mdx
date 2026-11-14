@@ -1,17 +1,47 @@
-Every positive divisor of <InlineMath math="N" /> has the form <InlineMath math="2^a\cdot5^b" /> with <InlineMath math="0\le a\le12" /> and <InlineMath math="0\le b\le8" />. It is a perfect square exactly when **every exponent in its prime factorisation is even**.
+You're looking for the number of values of <InlineMath math="k" /> that meet **two conditions at once**: the fraction <InlineMath math="\dfrac{k}{84}" /> can be simplified, and the new denominator is even. The plan is to turn the even-denominator condition into a condition on <InlineMath math="k" />, count those values, and then remove the fractions that don't change at all.
 
-# Choices of even exponents
+# The denominator after simplifying
 
-The even values of <InlineMath math="a" /> are 0, 2, 4, 6, 8, 10, 12, which is 7 choices. The even values of <InlineMath math="b" /> are 0, 2, 4, 6, 8, which is 5 choices. **The exponent 0 counts too**, because <InlineMath math="2^0=1" /> is also a perfect square.
+Simplifying <InlineMath math="\dfrac{k}{84}" /> means dividing the top and the bottom by <InlineMath math="\gcd(k,84)" />, the greatest common divisor of <InlineMath math="k" /> and <InlineMath math="84" />. So the new denominator is <InlineMath math="\dfrac{84}{\gcd(k,84)}" />.
 
-# The multiplication rule
+First factor <InlineMath math="84=2^2\cdot 3\cdot 7" />. The new denominator stays even as long as **the factor <InlineMath math="2" /> in the denominator isn't used up**. It's used up only when the gcd contains <InlineMath math="2^2=4" />, which means <InlineMath math="k" /> is a multiple of <InlineMath math="4" />. So the new denominator is even exactly when <InlineMath math="k" /> is not a multiple of <InlineMath math="4" />.
 
-The choices of <InlineMath math="a" /> and <InlineMath math="b" /> are independent, so the counts multiply.
+The multiples of <InlineMath math="4" /> from <InlineMath math="1" /> to <InlineMath math="83" /> are <InlineMath math="4,8,\ldots,80" />, which is <InlineMath math="20" /> numbers.
 
-<BlockMath math="7\cdot5=35" />
+<BlockMath math="\begin{aligned}
+\text{number of } k \text{ with an even new denominator} &= 83-20 \\
+&= 63
+\end{aligned}" />
 
-For example, <InlineMath math="2^4\cdot5^2=400=20^2" /> is one of them.
+# Fractions that don't change
 
-The value 117 counts all divisors, <InlineMath math="13\cdot9" />. The value 30 forgets the exponent 0 for one prime, and 63 uses every power of 5 without the even condition, <InlineMath math="7\cdot9" />.
+A fraction doesn't change exactly when <InlineMath math="\gcd(k,84)=1" />, so <InlineMath math="k" /> is divisible by none of <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="7" />. Count them with the **inclusion and exclusion principle**: subtract the multiples of each factor, add back the multiples of two factors that you subtracted twice, then subtract the multiples of all three again. The number <InlineMath math="84" /> itself isn't one of them, so counting from <InlineMath math="1" /> to <InlineMath math="84" /> gives the same result.
 
-So the number of divisors that are perfect squares is **35**.
+<BlockMath math="\begin{aligned}
+\text{number of coprime } k &= 84-(42+28+12)+(14+6+4)-2 \\
+&= 84-82+24-2 \\
+&= 24
+\end{aligned}" />
+
+All <InlineMath math="24" /> of those numbers are odd, so none of them is a multiple of <InlineMath math="4" />. That means they're included in the <InlineMath math="63" /> from before, even though their fractions don't change. Remove them.
+
+<BlockMath math="63-24=39" />
+
+# Checking another way
+
+Split the <InlineMath math="39" /> fractions by the type of <InlineMath math="k" />. First, <InlineMath math="k" /> is even but not a multiple of <InlineMath math="4" />: <InlineMath math="2,6,10,\ldots,82" />. That's <InlineMath math="21" /> numbers, and each one can be divided by <InlineMath math="2" /> without using up the factor <InlineMath math="2" /> in the denominator. Second, <InlineMath math="k" /> is odd and **shares the factor <InlineMath math="3" /> or <InlineMath math="7" /> with <InlineMath math="84" />**. There are <InlineMath math="42" /> odd numbers from <InlineMath math="1" /> to <InlineMath math="83" />, and <InlineMath math="24" /> of them are coprime to <InlineMath math="84" />, which leaves <InlineMath math="18" />.
+
+<BlockMath math="21+18=39" />
+
+It matches the first count.
+
+# The wrong options
+
+Each other option comes from **one condition that got skipped**.
+
+- <InlineMath math="18" /> counts only the odd <InlineMath math="k" /> that share the factor <InlineMath math="3" /> or <InlineMath math="7" />, and forgets the even <InlineMath math="k" /> that aren't multiples of <InlineMath math="4" />.
+- <InlineMath math="21" /> counts only the even <InlineMath math="k" /> that aren't multiples of <InlineMath math="4" />, and forgets that a factor <InlineMath math="3" /> or <InlineMath math="7" /> can also be cancelled.
+- <InlineMath math="24" /> is the number of fractions that don't change at all.
+- <InlineMath math="59" /> is every fraction that changes, without checking whether its denominator is still even.
+
+So <InlineMath math="39" /> fractions change when simplified and still have an even denominator.

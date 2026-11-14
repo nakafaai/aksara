@@ -1,20 +1,32 @@
-Der Punkt wird nach Fläche gewählt, die Wahrscheinlichkeit ist also **die günstige Fläche geteilt durch die Fläche des ganzen Dreiecks**.
+Jede Aussage fragt, wie oft die Kurve eine Gerade trifft, also wie viele Lösungen die Gleichung hat, die <InlineMath math="2^x" /> mit dem Term der Geraden gleichsetzt. Du brauchst drei Eigenschaften der Kurve <InlineMath math="y=2^x" />: Ihre Werte sind **immer positiv**, sie **steigt immer**, und sie ist **nach oben gekrümmt**. Nach oben gekrümmt heißt: Die Strecke zwischen zwei Kurvenpunkten liegt zwischen diesen Punkten über der Kurve, außerhalb davon liegt die Kurve über der Geraden. Deshalb schneidet eine Gerade diese Kurve höchstens zweimal.
 
-# Der günstige Bereich
+# Die erste Aussage
 
-Die Gerade <InlineMath math="x+y=2" /> schneidet die beiden Katheten in <InlineMath math="(2,0)" /> und <InlineMath math="(0,2)" />. Die Punkte mit <InlineMath math="x+y<2" /> bilden **ein kleines Dreieck am Ursprung** mit den Ecken <InlineMath math="(0,0)" />, <InlineMath math="(2,0)" /> und <InlineMath math="(0,2)" />.
+Setz <InlineMath math="x=1" /> und <InlineMath math="x=2" /> in <InlineMath math="2^x=2x" /> ein: <InlineMath math="2^1=2=2\cdot1" /> und <InlineMath math="2^2=4=2\cdot2" />. Die Punkte <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" /> liegen also auf Kurve und Gerade. Weil eine Gerade die Kurve **höchstens zweimal** schneidet, gibt es keinen weiteren Schnittpunkt.
+
+<BlockMath math="\text{Abstand}=\sqrt{(2-1)^2+(4-2)^2}=\sqrt{1+4}=\sqrt5" />
+
+Die Aussage ist **wahr**.
+
+# Die zweite Aussage
+
+Eine waagerechte Gerade hat die Form <InlineMath math="y=c" />. Für <InlineMath math="c\le0" />, etwa <InlineMath math="y=-1" />, hat die Gleichung <InlineMath math="2^x=-1" /> keine Lösung, denn **<InlineMath math="2^x" /> ist immer positiv**. Diese Gerade trifft die Kurve nie. Die Behauptung über "jede waagerechte Gerade" scheitert an diesem einen Beispiel, also ist die Aussage **falsch**. Die Behauptung gilt nur für <InlineMath math="c>0" />.
+
+# Die dritte Aussage
+
+Die Gerade <InlineMath math="y=-x+k" /> fällt immer, die Kurve steigt immer. Die Differenz <InlineMath math="2^x-(-x+k)=2^x+x-k" /> ist eine Summe zweier steigender Teile, also **steigt die Differenz immer** und kann höchstens einmal null sein.
+
+Die Differenz muss auch ihr Vorzeichen wechseln. Bei <InlineMath math="x=k" /> ist die Gerade <InlineMath math="0" /> und die Kurve <InlineMath math="2^k>0" />, die Kurve liegt also über der Geraden. Nimm nun ein <InlineMath math="x" /> mit <InlineMath math="x\le-1" /> und <InlineMath math="x\le k-1" />. Dort ist die Kurve höchstens <InlineMath math="2^{-1}=\frac{1}{2}" />, die Gerade aber mindestens <InlineMath math="-(k-1)+k=1" />, die Gerade liegt also über der Kurve. Die beiden tauschen genau einmal die Lage, also gibt es für jedes <InlineMath math="k" /> genau einen Schnittpunkt. Die Aussage ist **wahr**.
+
+# Die vierte Aussage
+
+Zeig, dass <InlineMath math="2^x>x" /> für jedes <InlineMath math="x" /> gilt. Die Gerade <InlineMath math="y=x+1" /> schneidet die Kurve in <InlineMath math="(0,1)" /> und <InlineMath math="(1,2)" />. Weil die Kurve nach oben gekrümmt ist, **liegt sie außerhalb des Intervalls von <InlineMath math="0" /> bis <InlineMath math="1" /> über dieser Geraden**.
 
 <BlockMath math="\begin{aligned}
-L_{\text{klein}}&=\tfrac12\cdot2\cdot2=2\\
-L_{\text{groß}}&=\tfrac12\cdot4\cdot4=8
+x\le0\ \text{oder}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
+0<x<1&\;\Longrightarrow\;2^x>2^0=1>x
 \end{aligned}" />
 
-# Wahrscheinlichkeit
+Die Kurve liegt immer über der Geraden <InlineMath math="y=x" />, also treffen sie sich nie. Die Aussage ist **falsch**.
 
-<BlockMath math="P=\frac{2}{8}=\frac14" />
-
-Das kleine Dreieck ist zum großen ähnlich mit dem Seitenverhältnis <InlineMath math="1:2" />, also ist **ihr Flächenverhältnis <InlineMath math="1:4" />**.
-
-Der Wert <InlineMath math="\tfrac12" /> verwendet das Seitenverhältnis statt des Flächenverhältnisses. Der Wert <InlineMath math="\tfrac34" /> ist die Wahrscheinlichkeit des Gegenereignisses, und <InlineMath math="\tfrac18" /> teilt durch die Fläche eines Quadrats von 4 mal 4.
-
-Die Wahrscheinlichkeit für <InlineMath math="x+y<2" /> ist also **<InlineMath math="\tfrac14" />**.
+Die erste und die dritte Aussage sind also wahr, die zweite und die vierte falsch.

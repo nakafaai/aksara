@@ -3,15 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "Ada anggota $$S$$ yang kurang dari $$-1$$." },
+        { column: 1, label: "Setiap anggota $$S$$ memenuhi $$x^3>x$$." },
         {
-          correct: false,
+          column: 1,
+          label: "Ada anggota $$S$$ yang kuadratnya kurang dari $$1$$.",
+        },
+        {
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Jika $$x$$ anggota $$S$$, maka $$-\\dfrac{1}{x}$$ juga anggota $$S$$.",
         },
       ],
     },

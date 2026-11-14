@@ -1,15 +1,55 @@
-The question asks for a definite yes or a definite no. A statement is sufficient when **every triangle that satisfies it gives the same answer**.
+You're looking for <InlineMath math="AD" />, the piece of the hypotenuse next to <InlineMath math="A" />. None of the sides are given yet, so here's the plan: use the area to link the two legs with the hypotenuse, use the perimeter and the Pythagorean theorem to get the hypotenuse, then find the legs and <InlineMath math="AD" />. The condition <InlineMath math="AC<BC" /> **decides which piece is <InlineMath math="AD" />**.
 
-# Statement one alone
+# Two ways to find the area
 
-A triangle with longest side <InlineMath math="c" /> is right-angled exactly when <InlineMath math="a^2+b^2=c^2" />, which is **the converse of the Pythagorean theorem**.
+Let <InlineMath math="p=AC" />, <InlineMath math="q=BC" />, and <InlineMath math="c=AB" />. You can find the area of a right triangle from its two legs, or from the hypotenuse as the base and <InlineMath math="CD" /> as the height. **Both ways measure the same area**, so the results must match.
 
-<BlockMath math="9^2+12^2=81+144=225=15^2" />
+<BlockMath math="\begin{aligned}
+\tfrac12pq &= \tfrac12\cdot c\cdot24 \\
+pq &= 24c
+\end{aligned}" />
 
-The equality holds, so the triangle is certainly right-angled. Statement (1) alone is sufficient.
+# Finding the hypotenuse
 
-# Statement two alone
+From the perimeter, <InlineMath math="p+q=120-c" />. The Pythagorean theorem gives <InlineMath math="p^2+q^2=c^2" />. Square <InlineMath math="p+q" />, because **the square of a sum contains both <InlineMath math="p^2+q^2" /> and <InlineMath math="pq" />**.
 
-An angle of <InlineMath math="30^\circ" /> can appear in a right triangle with angles <InlineMath math="30^\circ" />, <InlineMath math="60^\circ" />, and <InlineMath math="90^\circ" />. It can also appear in a triangle with angles <InlineMath math="30^\circ" />, <InlineMath math="70^\circ" />, and <InlineMath math="80^\circ" />, which **is not right-angled**. Statement (2) alone is not sufficient.
+<BlockMath math="\begin{aligned}
+(p+q)^2 &= p^2+q^2+2pq \\
+(120-c)^2 &= c^2+48c \\
+14{,}400-240c+c^2 &= c^2+48c \\
+14{,}400 &= 288c \\
+c &= 50
+\end{aligned}" />
 
-So **statement (1) alone is sufficient**, but statement (2) alone is not.
+# Finding the two legs
+
+Now <InlineMath math="p+q=70" /> and <InlineMath math="pq=24\cdot50=1{,}200" />. So <InlineMath math="p" /> and <InlineMath math="q" /> are the roots of the quadratic whose roots add to <InlineMath math="70" /> and multiply to <InlineMath math="1{,}200" />.
+
+<BlockMath math="\begin{aligned}
+t^2-70t+1{,}200 &= 0 \\
+(t-30)(t-40) &= 0
+\end{aligned}" />
+
+Since **<InlineMath math="AC" /> is shorter than <InlineMath math="BC" />**, you get <InlineMath math="AC=30\text{ cm}" /> and <InlineMath math="BC=40\text{ cm}" />. Check: <InlineMath math="30^2+40^2=900+1{,}600=2{,}500=50^2" />, and the perimeter is <InlineMath math="30+40+50=120" />.
+
+# Finding the piece of the hypotenuse
+
+Triangles <InlineMath math="ADC" /> and <InlineMath math="ACB" /> are similar, because both are right triangles (at <InlineMath math="D" /> and at <InlineMath math="C" />) and they share angle <InlineMath math="A" />. From that similarity, **the leg <InlineMath math="AC" /> is the geometric mean of <InlineMath math="AD" /> and <InlineMath math="AB" />**.
+
+<BlockMath math="\begin{aligned}
+\frac{AD}{AC} &= \frac{AC}{AB} \\
+AD &= \frac{AC^2}{AB}=\frac{900}{50}=18
+\end{aligned}" />
+
+Check with the other piece: <InlineMath math="DB=\tfrac{BC^2}{AB}=\tfrac{1{,}600}{50}=32" />. They add up to <InlineMath math="18+32=50=AB" />, and their product is <InlineMath math="18\cdot32=576=24^2=CD^2" />, which matches the rule for the altitude to the hypotenuse.
+
+# Why the other options fail
+
+Each wrong option **picks the wrong segment** or stops too early.
+
+- <InlineMath math="32\text{ cm}" /> is <InlineMath math="DB" />, the piece next to <InlineMath math="B" />. It comes from reversing the condition <InlineMath math="AC<BC" />.
+- <InlineMath math="30\text{ cm}" /> is <InlineMath math="AC" />, so it stops before splitting the hypotenuse.
+- <InlineMath math="25\text{ cm}" /> is half of <InlineMath math="AB" />, as if <InlineMath math="D" /> were the midpoint. That's only true when <InlineMath math="AC=BC" />.
+- <InlineMath math="14.4\text{ cm}" /> comes from <InlineMath math="\tfrac{CD^2}{BC}=\tfrac{576}{40}" />, which treats <InlineMath math="BC" /> as if it were <InlineMath math="DB" />.
+
+So the length of <InlineMath math="AD" /> is <InlineMath math="18\text{ cm}" />.

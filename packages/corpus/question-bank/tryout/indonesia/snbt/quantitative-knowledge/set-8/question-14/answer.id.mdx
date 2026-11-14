@@ -1,30 +1,32 @@
-Kedua dadu dibedakan warnanya, jadi ruang sampelnya terdiri atas **36 pasangan berurutan yang sama mungkin**, dari <InlineMath math="(1,1)" /> sampai <InlineMath math="(6,6)" />.
+Kamu mencari nilai akhir untuk nilai mentah <InlineMath math="26" />. Rencananya begini: pakai aturan perubahan rata-rata dan simpangan baku untuk mendapat besar <InlineMath math="a" />, pakai syarat urutan untuk **menentukan tanda <InlineMath math="a" />**, cari <InlineMath math="b" /> dari rata-rata, lalu hitung nilainya.
 
-# Paling sedikit satu mata 6
+# Aturan perubahan rata-rata dan simpangan baku
 
-Lebih mudah menghitung **kejadian sebaliknya**, yaitu tidak ada mata 6 sama sekali. Setiap dadu punya 5 kemungkinan selain 6.
+Setiap nilai diubah dengan rumus yang sama, jadi rata-ratanya ikut berubah dengan rumus itu: <InlineMath math="\bar y=a\bar x+b" />. Simpangan baku mengukur jarak nilai-nilai ke rata-ratanya. Menambah <InlineMath math="b" /> menggeser semua nilai sama jauh, jadi jaraknya tidak berubah. Mengalikan dengan <InlineMath math="a" /> meregangkan setiap jarak menjadi <InlineMath math="|a|" /> kali, karena jarak tidak pernah negatif. Jadi, **simpangan baku hanya melihat nilai mutlak <InlineMath math="a" />**.
 
-<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
+<BlockMath math="\begin{aligned}
+s_y&=|a|\,s_x\\
+10&=|a|\cdot4\\
+|a|&=\tfrac52
+\end{aligned}" />
 
-Nilai <InlineMath math="\tfrac{11}{36}" /> lebih kecil daripada <InlineMath math="\tfrac{12}{36}=\tfrac13" />, karena pasangan <InlineMath math="(6,6)" /> hanya dihitung sekali. Pernyataan pertama salah.
+# Menentukan tanda dan konstanta
 
-# Jumlah 7 dan jumlah 8
+Peserta dengan lebih sedikit kesalahan, yaitu <InlineMath math="x" /> lebih kecil, harus mendapat <InlineMath math="y" /> lebih besar. Artinya <InlineMath math="y" /> turun ketika <InlineMath math="x" /> naik, jadi **syarat urutan itu memaksa <InlineMath math="a" /> negatif**: <InlineMath math="a=-\tfrac52" />. Cari <InlineMath math="b" /> dari rata-rata, lalu hitung nilai akhir untuk <InlineMath math="x=26" />.
 
-Daftarkan pasangan untuk setiap jumlah.
+<BlockMath math="\begin{aligned}
+60&=-\tfrac52\cdot20+b\\
+b&=60+50=110\\
+y&=-\tfrac52\cdot26+110=-65+110=45
+\end{aligned}" />
 
-| Jumlah | Pasangan (merah, biru) | Banyak |
-| :---: | :---: | :---: |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
-| 8 | <InlineMath math="(2,6),(3,5),(4,4),(5,3),(6,2)" /> | 5 |
+Periksa dengan cara lain. Nilai mentah <InlineMath math="26" /> berada <InlineMath math="6" /> di atas rata-rata, yaitu <InlineMath math="1{,}5" /> simpangan baku. Karena arahnya dibalik, nilai akhirnya berada <InlineMath math="1{,}5\cdot10=15" /> di bawah <InlineMath math="60" />, yaitu <InlineMath math="45" />.
 
-Peluang jumlah 7 adalah <InlineMath math="\tfrac{6}{36}=\tfrac16" />, jadi pernyataan kedua benar. Peluang jumlah 8 adalah <InlineMath math="\tfrac{5}{36}" />, karena **pasangan <InlineMath math="(4,4)" /> tidak punya kembaran**. Pernyataan ketiga salah.
+# Pilihan yang keliru
 
-# Hasil kali ganjil
+- <InlineMath math="22{,}5" /> muncul jika perbandingan ragam <InlineMath math="\tfrac{100}{16}" /> dipakai sebagai <InlineMath math="|a|" />: <InlineMath math="60-\tfrac{25}{4}\cdot6" />.
+- <InlineMath math="54" /> muncul jika arahnya dibalik tetapi jaraknya tidak diregangkan: <InlineMath math="60-6" />.
+- <InlineMath math="57{,}6" /> muncul jika perbandingannya terbalik, <InlineMath math="|a|=\tfrac{4}{10}" />: <InlineMath math="60-0{,}4\cdot6" />.
+- <InlineMath math="75" /> muncul jika **<InlineMath math="a" /> diambil positif**, sehingga syarat urutan terlanggar: <InlineMath math="60+15" />.
 
-Hasil kali ganjil hanya jika **kedua mata dadu ganjil**. Setiap dadu punya 3 mata ganjil.
-
-<BlockMath math="P=\frac{3\cdot3}{36}=\frac14" />
-
-Pernyataan keempat benar.
-
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Jadi, nilai akhir peserta dengan nilai mentah <InlineMath math="26" /> adalah <InlineMath math="45" />.

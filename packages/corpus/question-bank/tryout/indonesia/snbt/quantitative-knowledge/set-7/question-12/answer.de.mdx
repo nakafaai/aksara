@@ -1,23 +1,36 @@
-Die Fläche des ersten Dreiecks steht fest, weil alle drei Seiten bekannt sind. Die Fläche des zweiten Dreiecks **hängt vom Winkel zwischen den beiden bekannten Seiten ab**, also prüfe, ob sie kleiner und größer als <InlineMath math="P" /> sein kann.
+Jede Aussage verändert die Daten auf eine andere Weise, also musst du jede Aussage einzeln nachrechnen. Der Plan: Berechne zuerst Mittelwert, Median und Modus der ursprünglichen Daten und **verfolge dann nach jeder Änderung die Position des mittleren Werts**, denn der Median hängt von Positionen ab, nicht davon, wie groß die Werte sind.
 
-# Fläche des ersten Dreiecks
+# Kennwerte der ursprünglichen Daten
 
-Zeichne die Höhe auf die Seite 14. Sie teilt diese Seite in die Teile 5 und 9, denn <InlineMath math="13^2-5^2=15^2-9^2=144" />. Also ist **die Höhe 12 cm**.
+Die Summe aller Noten ist <InlineMath math="3(5)+5(6)+6(7)+4(8)+2(9)=15+30+42+32+18=137" />, also ist der Mittelwert <InlineMath math="\frac{137}{20}=6{,}85" />. Die kumulierten Häufigkeiten zeigen, welche Positionen jede Note belegt.
 
-<BlockMath math="P=\tfrac12\cdot14\cdot12=84" />
+| Note | <InlineMath math="5" /> | <InlineMath math="6" /> | <InlineMath math="7" /> | <InlineMath math="8" /> | <InlineMath math="9" /> |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Positionen | <InlineMath math="1" /> bis <InlineMath math="3" /> | <InlineMath math="4" /> bis <InlineMath math="8" /> | <InlineMath math="9" /> bis <InlineMath math="14" /> | <InlineMath math="15" /> bis <InlineMath math="18" /> | <InlineMath math="19" /> bis <InlineMath math="20" /> |
 
-# Bereich der zweiten Fläche
+Es gibt <InlineMath math="20" /> Werte, also ist **der Median der Mittelwert aus dem <InlineMath math="10" />. und dem <InlineMath math="11" />. Wert**. Beide sind <InlineMath math="7" />, der Median ist also <InlineMath math="7" />. Auch der Modus ist <InlineMath math="7" />, weil seine Häufigkeit <InlineMath math="6" /> am größten ist.
 
-Ist der Winkel zwischen den Seiten 13 und 15 gleich <InlineMath math="\theta" />, dann gilt
+# Korrektur einer Neun zu einer Fünf
 
-<BlockMath math="Q=\tfrac12\cdot13\cdot15\cdot\sin\theta=97{,}5\sin\theta" />
+Die Summe sinkt um <InlineMath math="9-5=4" />, während die Anzahl der Werte bei <InlineMath math="20" /> bleibt, also **sinkt der Mittelwert um <InlineMath math="\frac{4}{20}=0{,}2" />**, von <InlineMath math="6{,}85" /> auf <InlineMath math="6{,}65" />. Die Häufigkeit der <InlineMath math="5" /> wird <InlineMath math="4" /> und die der <InlineMath math="9" /> wird <InlineMath math="1" />, sodass die Note <InlineMath math="7" /> jetzt die Positionen <InlineMath math="10" /> bis <InlineMath math="15" /> belegt. Der <InlineMath math="10" />. und der <InlineMath math="11" />. Wert sind weiterhin <InlineMath math="7" />, also ändert sich der Median nicht. Die erste Aussage ist **wahr**.
 
-Der Winkel erfüllt <InlineMath math="0^\circ<\theta<180^\circ" />. Der Wert <InlineMath math="Q" /> **kann jede positive Zahl bis 97,5 sein**.
+# Ein zusätzlicher Schüler
 
-- Ist die dritte Seite 14, ist das zweite Dreieck gleich dem ersten und <InlineMath math="Q=84=P" />.
-- Für <InlineMath math="\theta=90^\circ" /> gilt <InlineMath math="Q=97{,}5>P" />.
-- Für <InlineMath math="\theta=30^\circ" /> gilt <InlineMath math="Q=48{,}75<P" />.
+Mit einem zusätzlichen Schüler gibt es <InlineMath math="21" /> Werte, eine ungerade Anzahl. **Bei einer ungeraden Anzahl ist der Median der eine Wert genau in der Mitte**, hier der <InlineMath math="11" />. Wert. Dieser Wert ist die Note eines Schülers, also eine ganze Zahl, und kann nicht <InlineMath math="6{,}5" /> sein. Die zweite Aussage ist **falsch**.
 
-Alle drei Beziehungen sind möglich, die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> ist also **nicht bestimmbar**.
+# Zwei neue Schüler mit der Note sechs
 
-Die gegebenen Informationen **reichen also nicht**, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> zu entscheiden.
+Die Häufigkeit der <InlineMath math="6" /> steigt auf <InlineMath math="7" /> und übertrifft damit die Häufigkeit der <InlineMath math="7" />, die bei <InlineMath math="6" /> bleibt, also wird der Modus <InlineMath math="6" />. Jetzt gibt es aber <InlineMath math="22" /> Werte, die Note <InlineMath math="6" /> endet auf Position <InlineMath math="10" />, und die Note <InlineMath math="7" /> belegt die Positionen <InlineMath math="11" /> bis <InlineMath math="16" />. Der Median ist der Mittelwert aus dem <InlineMath math="11" />. und dem <InlineMath math="12" />. Wert, also weiterhin <InlineMath math="7" />. **Nur der Modus ändert sich**, also ist die dritte Aussage **falsch**.
+
+# Neue Schüler mit der Note acht
+
+Zusätzliche Noten <InlineMath math="8" /> verschieben die Positionen der Note <InlineMath math="7" /> nicht, sie belegt weiterhin die Positionen <InlineMath math="9" /> bis <InlineMath math="14" />. Der Median bleibt <InlineMath math="7" />, solange die mittlere Position nicht über Position <InlineMath math="14" /> hinausgeht. Es gibt <InlineMath math="n=20+k" /> Werte, und **die mittlere Position hängt davon ab, ob <InlineMath math="n" /> gerade oder ungerade ist**.
+
+<BlockMath math="\begin{aligned}
+n \text{ gerade}&: \ \tfrac n2+1\le14 \;\Longrightarrow\; n\le26 \;\Longrightarrow\; k\le6\\
+n \text{ ungerade}&: \ \tfrac{n+1}{2}\le14 \;\Longrightarrow\; n\le27 \;\Longrightarrow\; k\le7
+\end{aligned}" />
+
+Für <InlineMath math="k=7" /> gibt es <InlineMath math="27" /> Werte, und der Median ist der <InlineMath math="14" />. Wert, der immer noch <InlineMath math="7" /> ist. Für <InlineMath math="k=8" /> gibt es <InlineMath math="28" /> Werte, und der Median wird <InlineMath math="\frac{7+8}{2}=7{,}5" />. Der Median bleibt also für <InlineMath math="k\le7" /> bei <InlineMath math="7" />, nicht nur für <InlineMath math="k\le6" />. Die vierte Aussage ist **falsch**.
+
+Die erste Aussage ist also wahr, die zweite, dritte und vierte sind falsch.

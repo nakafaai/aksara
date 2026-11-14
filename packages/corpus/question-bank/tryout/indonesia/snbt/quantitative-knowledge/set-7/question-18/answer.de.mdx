@@ -1,19 +1,33 @@
-Sind vier verschiedene Ziffern gewählt, **gibt es genau eine aufsteigende und genau eine absteigende Anordnung**. Jede Art wird also durch die Wahl einer Menge von vier Ziffern gezählt, mit besonderer Vorsicht bei der Ziffer 0.
+Hier beeinflussen sich zwei Bedingungen gegenseitig. Die Tausenderziffer wird durch <InlineMath math="3{.}400" /> begrenzt, und die Einerziffer muss gerade sein und darf noch nicht verwendet worden sein. Der Plan: Teile in Fälle nach der Tausenderziffer auf (und nach der Hunderterziffer, wenn die Tausenderziffer <InlineMath math="3" /> ist), und **besetze zuerst die am stärksten eingeschränkte Stelle**, also die Einerziffer, danach den Rest.
 
-# Aufsteigende Anordnungen
+# Tausenderziffer drei
 
-Bei einer aufsteigenden Anordnung steht die kleinste Ziffer vorn. Wäre 0 gewählt, begänne die Zahl mit 0 und wäre **keine vierstellige Zahl**. Die vier Ziffern stammen also aus 1 bis 9.
+Eine Zahl, die mit <InlineMath math="3" /> beginnt, muss größer als <InlineMath math="3{.}400" /> sein, also **muss ihre Hunderterziffer <InlineMath math="4" /> oder <InlineMath math="5" /> sein**. Jede Zahl, die mit <InlineMath math="34" /> beginnt, ist schon größer als <InlineMath math="3{.}400" />, denn <InlineMath math="3{.}400" /> selbst verwendet die Ziffer <InlineMath math="0" /> zweimal.
 
-<BlockMath math="\binom94=\frac{9\cdot8\cdot7\cdot6}{4\cdot3\cdot2\cdot1}=126" />
+- Beginnt sie mit <InlineMath math="34" />, sind die einzigen freien geraden Einerziffern <InlineMath math="0" /> oder <InlineMath math="2" />, also <InlineMath math="2" /> Möglichkeiten. Die Zehnerziffer kommt aus den <InlineMath math="3" /> übrigen Ziffern. Das sind <InlineMath math="2\times3=6" /> Zahlen.
+- Beginnt sie mit <InlineMath math="35" />, kann die Einerziffer <InlineMath math="0" />, <InlineMath math="2" /> oder <InlineMath math="4" /> sein, also <InlineMath math="3" /> Möglichkeiten. Die Zehnerziffer kommt aus den <InlineMath math="3" /> übrigen Ziffern. Das sind <InlineMath math="3\times3=9" /> Zahlen.
 
-# Absteigende Anordnungen
+# Tausenderziffer vier oder fünf
 
-Bei einer absteigenden Anordnung steht die größte Ziffer vorn, also landet eine gewählte 0 immer hinten. **Die Ziffer 0 ist erlaubt**, die vier Ziffern stammen also aus 0 bis 9.
+Ist die Tausenderziffer <InlineMath math="4" />, ist die Ziffer <InlineMath math="4" /> schon verbraucht, also **bleibt als gerade Einerziffer nur <InlineMath math="0" /> oder <InlineMath math="2" />**. Ist die Tausenderziffer <InlineMath math="5" />, kann die Einerziffer <InlineMath math="0" />, <InlineMath math="2" /> oder <InlineMath math="4" /> sein. In beiden Fällen werden Hunderter- und Zehnerziffer der Reihe nach aus den <InlineMath math="4" /> übrigen Ziffern besetzt, auf <InlineMath math="4\times3=12" /> Arten.
 
-<BlockMath math="\binom{10}{4}=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+<BlockMath math="\begin{aligned}
+\text{Tausender } 4&: 2\times12=24\\
+\text{Tausender } 5&: 3\times12=36\\
+\text{insgesamt}&: 6+9+24+36=75
+\end{aligned}" />
 
-Keine Zahl ist zugleich aufsteigend und absteigend, also werden beide Anzahlen addiert: <InlineMath math="126+210=336" />.
+# Probe über das Gegenereignis
 
-Die Werte 126 und 210 zählen jeweils nur eine Art. Der Wert 252 verbietet die 0 bei beiden Arten, und 420 erlaubt sie bei beiden.
+Ein zweiter Weg: Zähl zuerst alle geraden Zahlen über <InlineMath math="3{.}000" /> und **streich dann die unterhalb der Grenze**, also die zwischen <InlineMath math="3{.}000" /> und <InlineMath math="3{.}400" />. Zahlen, die mit <InlineMath math="3" /> beginnen, haben <InlineMath math="3" /> mögliche Einerziffern und <InlineMath math="4\times3=12" /> Arten für die Mitte, also gibt es <InlineMath math="36" />. Zusammen mit <InlineMath math="24+36" /> sind das <InlineMath math="96" />.
 
-Es gibt also **336** solche vierstelligen Zahlen.
+Gestrichen werden die Zahlen, die mit <InlineMath math="30" />, <InlineMath math="31" /> oder <InlineMath math="32" /> beginnen. Mit <InlineMath math="30" /> gibt es <InlineMath math="2\times3=6" /> (Einer <InlineMath math="2" /> oder <InlineMath math="4" />), mit <InlineMath math="31" /> gibt es <InlineMath math="3\times3=9" />, und mit <InlineMath math="32" /> gibt es <InlineMath math="2\times3=6" /> (Einer <InlineMath math="0" /> oder <InlineMath math="4" />). Das ergibt <InlineMath math="96-(6+9+6)=75" />, dasselbe.
+
+# Die falschen Antworten
+
+- <InlineMath math="69" /> entsteht, wenn du die Zahlen mit Anfang <InlineMath math="34" /> auch streichst, als müsste die Hunderterziffer größer als <InlineMath math="4" /> sein.
+- <InlineMath math="90" /> entsteht, wenn du der Einerziffer immer <InlineMath math="3" /> Möglichkeiten gibst und **vergisst, dass die Ziffer <InlineMath math="4" /> schon verbraucht sein kann**.
+- <InlineMath math="96" /> zählt alle geraden Zahlen über <InlineMath math="3{.}000" />, nicht über <InlineMath math="3{.}400" />.
+- <InlineMath math="108" /> verbindet beide Fehler, also <InlineMath math="3\times3\times4\times3" />.
+
+Die Anzahl der geraden Zahlen, die sich bilden lassen und größer als <InlineMath math="3{.}400" /> sind, ist also <InlineMath math="75" />.

@@ -1,17 +1,35 @@
-Es zählt nur, **wer mit wem ein Paar bildet**. Da die Paare keine Namen haben, darf die Reihenfolge der Paare die Anzahl nicht erhöhen.
+Es gibt zwei Bedingungen: Alle Vokale stehen zusammen, und der erste und der letzte Buchstabe sind Konsonanten. Der Plan: Bündle alle Vokale zu einem **Block**, ordne das Innere des Blocks, bestimme, wo der Block stehen darf, und ordne dann die Konsonanten auf den übrigen Plätzen an. Denk daran, dass das Wort **mehrfach vorkommende Buchstaben** hat. Das Vertauschen zweier gleicher Buchstaben ergibt keine neue Anordnung.
 
-# Die Paare nacheinander bilden
+# Die Buchstaben des Worts
 
-Nimm einen beliebigen Schüler, etwa den ersten auf der Liste. Er kann mit 5 anderen ein Paar bilden. Von den 4 übrigen nimmst du den ersten auf der Liste, und er kann mit 3 anderen ein Paar bilden. Die letzten beiden **bilden automatisch ein Paar**.
+Das Wort STATISTIKA hat <InlineMath math="10" /> Buchstaben. Die Vokale sind A, A, I, I, also <InlineMath math="4" /> Buchstaben. Die Konsonanten sind S, S, T, T, T, K, also <InlineMath math="6" /> Buchstaben. S kommt also <InlineMath math="2" />-mal vor, T <InlineMath math="3" />-mal, A <InlineMath math="2" />-mal und I <InlineMath math="2" />-mal.
 
-<BlockMath math="5\cdot3\cdot1=15" />
+# Anordnungen im Block
 
-# Kontrolle mit Kombinationen
+Die vier Vokale werden im Block angeordnet. Weil A doppelt und I doppelt vorkommt, teilst du durch die Anzahl der Vertauschungen gleicher Buchstaben.
 
-Wären die Paare mit 1, 2 und 3 nummeriert, gäbe es <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" /> Möglichkeiten. Jede Einteilung ohne Nummern taucht darin **<InlineMath math="3!=6" />-mal auf**, einmal für jede Reihenfolge der Nummern.
+<BlockMath math="\frac{4!}{2!\,2!}=\frac{24}{4}=6" />
 
-<BlockMath math="\frac{90}{3!}=15" />
+# Platz für Block und Konsonanten
 
-Der Wert 90 behandelt die Paare als nummeriert, und 45 teilt 90 nur durch 2. Die Werte 6 und 10 zählen nicht alle Möglichkeiten, die übrigen Schüler zu paaren.
+Behandle den Block wie ein einziges Objekt. Dann stehen <InlineMath math="7" /> Objekte in einer Reihe: der Block und sechs Konsonanten. Der erste und der letzte Buchstabe müssen Konsonanten sein, also **darf der Block weder auf dem ersten noch auf dem letzten Platz stehen**. Er darf nur auf den Plätzen zwei bis sechs stehen, das sind <InlineMath math="5" /> Möglichkeiten. Die sechs Konsonanten füllen die übrigen sechs Plätze, mit S zweimal und T dreimal.
 
-Es gibt also **15** Möglichkeiten, die sechs Schüler einzuteilen.
+<BlockMath math="\begin{aligned}
+\text{Anordnungen der Konsonanten} &= \frac{6!}{2!\,3!}=\frac{720}{12}=60 \\
+\text{Anzahl der Anordnungen} &= 5\cdot 60\cdot 6=1{.}800
+\end{aligned}" />
+
+# Probe
+
+Ohne die Bedingung an den ersten und letzten Buchstaben lassen sich die sieben Objekte auf <InlineMath math="\tfrac{7!}{2!\,3!}=420" /> Arten anordnen. Der Block steht auf jedem der sieben Plätze gleich oft, also halten **genau <InlineMath math="5" /> von <InlineMath math="7" /> Teilen** den Block von den Enden fern. Das ergibt <InlineMath math="420\cdot\tfrac{5}{7}\cdot 6=300\cdot 6=1{.}800" />, dasselbe Ergebnis.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer übersehenen Bedingung oder einem nicht berücksichtigten doppelten Buchstaben**.
+
+- <InlineMath math="2{.}520" /> lässt die Bedingung an den ersten und letzten Buchstaben weg, also <InlineMath math="420\cdot 6" />.
+- <InlineMath math="3{.}600" /> vergisst, für das doppelte S durch <InlineMath math="2!" /> zu teilen.
+- <InlineMath math="7{.}200" /> ordnet die Vokale auf <InlineMath math="4!=24" /> Arten an und übersieht das doppelte A und das doppelte I.
+- <InlineMath math="10{.}800" /> vergisst, für das dreifache T durch <InlineMath math="3!" /> zu teilen.
+
+Es gibt also <InlineMath math="1{.}800" /> Anordnungen, die beide Bedingungen erfüllen.

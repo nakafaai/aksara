@@ -1,15 +1,48 @@
-Ruang sampelnya 30 kartu yang sama mungkin, jadi setiap peluang adalah **banyak nomor yang memenuhi dibagi 30**. Daftarkan nomornya satu per satu agar tidak ada yang terlewat.
+Kamu belum tahu letak <InlineMath math="t" /> di antara data yang terurut, padahal letak itu menentukan data ke berapa yang dipakai rumus persentil. Rencananya, cari dulu posisi persentilnya, lalu **pecah menjadi kasus menurut letak <InlineMath math="t" />**, dan buang kasus yang hasilnya tidak cocok dengan syaratnya sendiri.
 
-# Bilangan prima dan kuadrat sempurna
+# Posisi persentil
 
-Bilangan prima dari 1 sampai 30 adalah 2, 3, 5, 7, 11, 13, 17, 19, 23, dan 29, sebanyak 10. **Angka 1 bukan bilangan prima**. Peluangnya <InlineMath math="\tfrac{10}{30}=\tfrac13" />, jadi pernyataan pertama benar.
+Sekarang ada <InlineMath math="n=11" /> data, jadi untuk <InlineMath math="k=40" /> kamu dapat posisi berikut.
 
-Bilangan kuadrat sempurna adalah 1, 4, 9, 16, dan 25, sebanyak 5. Peluangnya <InlineMath math="\tfrac{5}{30}=\tfrac16" />, bukan <InlineMath math="\tfrac15" />. Pernyataan kedua salah.
+<BlockMath math="L=\frac{40\cdot 12}{100}=4{,}8,\qquad i=4,\quad f=0{,}8" />
 
-# Dua syarat sekaligus
+Jadi <InlineMath math="P_{40}=y_{(4)}+0{,}8\left(y_{(5)}-y_{(4)}\right)" />. Kamu butuh **data ke-<InlineMath math="4" /> dan ke-<InlineMath math="5" /> setelah <InlineMath math="t" /> ikut diurutkan**.
 
-Bilangan genap yang juga kelipatan 5 adalah **kelipatan 10**, yaitu 10, 20, dan 30. Peluangnya <InlineMath math="\tfrac{3}{30}=\tfrac{1}{10}" />, jadi pernyataan ketiga benar.
+# Kasus menurut letak nilai yang hilang
 
-Bilangan ganjil yang lebih dari 20 adalah 21, 23, 25, 27, dan 29, sebanyak 5. Peluangnya <InlineMath math="\tfrac{5}{30}=\tfrac16" />, bukan <InlineMath math="\tfrac15" />. Pernyataan keempat salah.
+Tanpa <InlineMath math="t" />, empat data terkecil adalah <InlineMath math="10,14,17,20" /> dan data berikutnya <InlineMath math="26" />. Letak <InlineMath math="t" /> mengubah data ke-<InlineMath math="4" /> dan ke-<InlineMath math="5" />.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+<BlockMath math="\begin{aligned}
+t\le 17:&\quad y_{(4)}=17,\ y_{(5)}=20,\ P_{40}=17+0{,}8\cdot 3=19{,}4 \\
+17\le t\le 20:&\quad y_{(4)}=t,\ y_{(5)}=20,\ P_{40}=t+0{,}8(20-t)=0{,}2t+16 \\
+20\le t\le 26:&\quad y_{(4)}=20,\ y_{(5)}=t,\ P_{40}=20+0{,}8(t-20)=0{,}8t+4 \\
+t\ge 26:&\quad y_{(4)}=20,\ y_{(5)}=26,\ P_{40}=20+0{,}8\cdot 6=24{,}8
+\end{aligned}" />
+
+Kasus pertama dan keempat memberi nilai tetap yang bukan <InlineMath math="23{,}2" />, jadi keduanya gugur.
+
+# Memeriksa dua kasus sisanya
+
+Selesaikan setiap persamaan, lalu **periksa apakah hasilnya memenuhi syarat kasusnya sendiri**.
+
+<BlockMath math="\begin{aligned}
+0{,}2t+16=23{,}2 &\;\Longrightarrow\; t=36 \\
+0{,}8t+4=23{,}2 &\;\Longrightarrow\; t=24
+\end{aligned}" />
+
+Nilai <InlineMath math="t=36" /> tidak memenuhi <InlineMath math="17\le t\le 20" />, jadi dibuang. Nilai <InlineMath math="t=24" /> memenuhi <InlineMath math="20\le t\le 26" />, jadi inilah jawabannya.
+
+# Pemeriksaan
+
+Dengan <InlineMath math="t=24" />, data terurutnya <InlineMath math="10,14,17,20,24,26,29,33,38,41,45" />. Data ke-<InlineMath math="4" /> adalah <InlineMath math="20" /> dan data ke-<InlineMath math="5" /> adalah <InlineMath math="24" />, jadi <InlineMath math="P_{40}=20+0{,}8\cdot 4=23{,}2" />. Hasilnya cocok.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **aturan posisi yang diganti atau kasus yang tidak diperiksa**.
+
+- <InlineMath math="23{,}2" /> memakai aturan posisi lain, <InlineMath math="L=1+\tfrac{k(n-1)}{100}=5" />, sehingga persentilnya dianggap sama dengan data ke-<InlineMath math="5" />, yaitu <InlineMath math="t" /> sendiri.
+- <InlineMath math="24{,}75" /> salah menghitung urutan, menganggap <InlineMath math="17" /> sebagai data ke-<InlineMath math="4" /> dan <InlineMath math="t" /> sebagai data ke-<InlineMath math="5" />.
+- <InlineMath math="28" /> memakai posisi <InlineMath math="L=\tfrac{kn}{100}=4{,}4" /> alih-alih <InlineMath math="\tfrac{k(n+1)}{100}" />.
+- <InlineMath math="36" /> berasal dari kasus <InlineMath math="17\le t\le 20" /> tanpa memeriksa bahwa <InlineMath math="36" /> tidak ada di interval itu.
+
+Jadi, nilai <InlineMath math="t" /> adalah <InlineMath math="24" />.

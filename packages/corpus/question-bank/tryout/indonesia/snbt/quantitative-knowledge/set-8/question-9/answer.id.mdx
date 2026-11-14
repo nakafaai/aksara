@@ -1,21 +1,43 @@
-Pada setiap bagian perjalanan, waktu sama dengan jarak dibagi kecepatan. Kecepatan rata-rata seluruh perjalanan adalah **jarak total dibagi waktu total**, bukan rata-rata kedua kecepatan.
+Kamu menghitung titik dengan koordinat bulat yang memenuhi pertidaksamaan itu. Rencananya begini: lengkapkan kuadrat supaya terlihat bentuk lingkaran, geser titik pusatnya ke asal, hitung baris demi baris, dan **ingat bahwa tanda kurang dari membuang titik yang tepat berada pada lingkaran**.
 
-# Waktu setiap bagian
+# Melengkapkan kuadrat
+
+Pindahkan semua suku <InlineMath math="x" /> dan <InlineMath math="y" /> ke ruas kiri, lalu lengkapkan kuadrat. Setiap kuadrat yang kamu bentuk menambah sebuah konstanta, jadi **konstanta yang sama harus ditambahkan ke ruas kanan**.
 
 <BlockMath math="\begin{aligned}
-t_1&=\frac{120}{60}=2\text{ jam}\\
-t_2&=\frac{180-120}{40}=\frac{60}{40}=1{,}5\text{ jam}\\
-t&=2+1{,}5=3{,}5\text{ jam}
+x^2-2x+y^2-4y&<20\\
+(x-1)^2-1+(y-2)^2-4&<20\\
+(x-1)^2+(y-2)^2&<25
 \end{aligned}" />
 
-Pernyataan pertama benar. Bagian pertama memerlukan **tepat 2 jam**, bukan 2 jam 30 menit, jadi pernyataan keempat salah.
+Ini adalah bagian dalam lingkaran berpusat <InlineMath math="(1,2)" /> dengan jari-jari <InlineMath math="5" />. Misalkan <InlineMath math="u=x-1" /> dan <InlineMath math="v=y-2" />. Setiap pasangan bulat <InlineMath math="(x,y)" /> berpasangan tepat dengan satu pasangan bulat <InlineMath math="(u,v)" />, jadi kamu cukup menghitung pasangan bulat dengan <InlineMath math="u^2+v^2<25" />.
 
-# Kecepatan rata-rata dan perbandingan waktu
+# Menghitung baris demi baris
 
-<BlockMath math="\bar v=\frac{180}{3{,}5}=\frac{360}{7}\approx51{,}4\text{ km/jam}" />
+Untuk setiap nilai <InlineMath math="u" />, cari nilai bulat <InlineMath math="v" /> yang memenuhi <InlineMath math="v^2<25-u^2" />.
 
-Nilai 50 adalah rata-rata biasa dari 60 dan 40. Mobil **lebih lama berada pada bagian yang cepat**, jadi kecepatan 60 lebih berbobot dan rata-ratanya lebih dari 50. Pernyataan kedua salah.
+| Nilai <InlineMath math="u" /> | Syarat | Nilai <InlineMath math="v" /> | Banyak titik |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="v^2<25" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> |
+| <InlineMath math="\pm1" /> | <InlineMath math="v^2<24" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> untuk masing-masing |
+| <InlineMath math="\pm2" /> | <InlineMath math="v^2<21" /> | <InlineMath math="-4\le v\le4" /> | <InlineMath math="9" /> untuk masing-masing |
+| <InlineMath math="\pm3" /> | <InlineMath math="v^2<16" /> | <InlineMath math="-3\le v\le3" /> | <InlineMath math="7" /> untuk masing-masing |
+| <InlineMath math="\pm4" /> | <InlineMath math="v^2<9" /> | <InlineMath math="-2\le v\le2" /> | <InlineMath math="5" /> untuk masing-masing |
+| <InlineMath math="\pm5" /> | <InlineMath math="v^2<0" /> | tidak ada | <InlineMath math="0" /> |
 
-Jika seluruh 180 km ditempuh dengan kecepatan 60, waktunya <InlineMath math="\tfrac{180}{60}=3" /> jam. Selisihnya dengan 3,5 jam adalah 0,5 jam atau 30 menit. Pernyataan ketiga benar.
+Perhatikan baris <InlineMath math="u=\pm3" />: nilai <InlineMath math="v=\pm4" /> memberi <InlineMath math="9+16=25" />, yang **tidak memenuhi tanda kurang dari**, jadi tidak ikut dihitung.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+<BlockMath math="9+2\cdot9+2\cdot9+2\cdot7+2\cdot5=9+18+18+14+10=69" />
+
+# Pemeriksaan dengan titik pada lingkaran
+
+Hitung juga titik yang memenuhi <InlineMath math="u^2+v^2\le25" />. Barisnya memberi <InlineMath math="11" /> untuk <InlineMath math="u=0" />, <InlineMath math="9" /> untuk setiap <InlineMath math="u=\pm1,\pm2,\pm3" />, <InlineMath math="7" /> untuk setiap <InlineMath math="u=\pm4" />, dan <InlineMath math="1" /> untuk setiap <InlineMath math="u=\pm5" />, totalnya <InlineMath math="81" />. Titik yang **tepat berada pada lingkaran** ada <InlineMath math="12" />, yaitu <InlineMath math="(\pm5,0)" />, <InlineMath math="(0,\pm5)" />, <InlineMath math="(\pm3,\pm4)" />, dan <InlineMath math="(\pm4,\pm3)" />. Selisihnya <InlineMath math="81-12=69" />, sama dengan hitungan tadi.
+
+# Pilihan yang keliru
+
+- <InlineMath math="61" /> muncul jika **konstanta dari melengkapkan kuadrat tidak ditambahkan ke ruas kanan**, sehingga yang dihitung adalah <InlineMath math="u^2+v^2<20" />.
+- <InlineMath math="73" /> muncul jika yang dibuang hanya <InlineMath math="8" /> titik seperti <InlineMath math="(3,4)" />, sedangkan titik <InlineMath math="(\pm5,0)" /> dan <InlineMath math="(0,\pm5)" /> tetap dihitung.
+- <InlineMath math="77" /> muncul jika yang dibuang hanya <InlineMath math="4" /> titik pada sumbu, sedangkan titik seperti <InlineMath math="(3,4)" /> terlupakan.
+- <InlineMath math="81" /> muncul jika tanda kurang dari dibaca sebagai kurang dari atau sama dengan.
+
+Jadi, banyak pasangan bilangan bulat <InlineMath math="(x,y)" /> yang memenuhi pertidaksamaan itu adalah <InlineMath math="69" />.

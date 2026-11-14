@@ -1,25 +1,43 @@
-Dividing both sides by <InlineMath math="x" /> is risky because the sign of <InlineMath math="x" /> is unknown. The safe way is **moving everything to one side and factorising**.
+Every statement uses the circle's centre and radius, so find both in terms of <InlineMath math="c" /> first. After that, each statement **fixes its own value of <InlineMath math="c" />**, and you test what follows with a different reason each time.
 
-# Solving the inequality
+# Centre and radius
+
+Complete the square for <InlineMath math="x" /> and for <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-x^3-4x&>0\\
-x(x-2)(x+2)&>0
+x^2-6x+y^2+8y+c&=0\\
+(x-3)^2-9+(y+4)^2-16+c&=0\\
+(x-3)^2+(y+4)^2&=25-c
 \end{aligned}" />
 
-The zeros are <InlineMath math="-2" />, <InlineMath math="0" /> and <InlineMath math="2" />. Check **the sign of the product on each interval**.
+The centre is <InlineMath math="(3,-4)" /> and the squared radius is <InlineMath math="r^2=25-c" />. This equation describes a real circle **only if <InlineMath math="25-c>0" />**, that is <InlineMath math="c<25" />.
 
-| Interval | Sign of <InlineMath math="x(x-2)(x+2)" /> |
-| :---: | :---: |
-| <InlineMath math="x<-2" /> | negative |
-| <InlineMath math="-2<x<0" /> | positive |
-| <InlineMath math="0<x<2" /> | negative |
-| <InlineMath math="x>2" /> | positive |
+# Statement one
 
-The solution is <InlineMath math="-2<x<0" /> or <InlineMath math="x>2" />.
+For <InlineMath math="c=25" />, the right side becomes <InlineMath math="0" />. A sum of two squares is zero only when both are zero, so the curve is **just the point <InlineMath math="(3,-4)" />**, not a circle with positive radius. This statement is **false**.
 
-# Comparing x with 2
+# Statement two
 
-For <InlineMath math="x=3" />, <InlineMath math="P>Q" />. For <InlineMath math="x=-1" />, which also works because <InlineMath math="-1>-4" />, we get <InlineMath math="P<Q" />. **Both relations are possible**, so no single relation is certain. Dividing by <InlineMath math="x" /> without checking the sign gives <InlineMath math="x^2>4" /> and then <InlineMath math="x>2" />, and the negative interval is lost.
+A circle touches the <InlineMath math="x" />-axis when the distance from the centre to the <InlineMath math="x" />-axis equals the radius. That distance is <InlineMath math="|-4|=4" />, so <InlineMath math="r=4" /> and <InlineMath math="25-c=16" />, or <InlineMath math="c=9" />. The distance from the centre to the <InlineMath math="y" />-axis is only <InlineMath math="3" />, **less than the radius** <InlineMath math="4" />, so the <InlineMath math="y" />-axis cuts the circle at two points. Check by substituting <InlineMath math="x=0" />.
 
-So the information given is **not sufficient** to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.
+<BlockMath math="\begin{aligned}
+(0-3)^2+(y+4)^2&=16\\
+(y+4)^2&=7\\
+y&=-4\pm\sqrt7
+\end{aligned}" />
+
+There are two values of <InlineMath math="y" />, so this statement is **true**.
+
+# Statement three
+
+The circle passes through the origin when <InlineMath math="0+0-0+0+c=0" />, so <InlineMath math="c=0" /> and <InlineMath math="r=5" />. The line <InlineMath math="4x-3y=0" /> does pass through the origin, which is on the circle, but **passing through one point of a circle doesn't make a line tangent**. A line is tangent when its distance from the centre equals the radius.
+
+<BlockMath math="d=\frac{|4\cdot3-3\cdot(-4)|}{\sqrt{4^2+3^2}}=\frac{24}{5}<5" />
+
+The distance is less than the radius, so the line cuts the circle at two points: the origin and <InlineMath math="\left(-\frac{42}{25},-\frac{56}{25}\right)" />. The tangent at the origin has to be perpendicular to the radius pointing toward <InlineMath math="(3,-4)" />, which gives <InlineMath math="3x-4y=0" />. This statement is **false**.
+
+# Statement four
+
+The circle touches the <InlineMath math="y" />-axis when <InlineMath math="r=|3|=3" />, so <InlineMath math="25-c=9" /> and <InlineMath math="c=16" />. The distance from the origin to the centre is <InlineMath math="\sqrt{3^2+4^2}=5" />, **greater than the radius** <InlineMath math="3" />. Another way: substituting the origin into the left side gives <InlineMath math="c=16>0" />, which signals a point outside the circle. This statement is **false**.
+
+So statement two is true, while statements one, three, and four are false.

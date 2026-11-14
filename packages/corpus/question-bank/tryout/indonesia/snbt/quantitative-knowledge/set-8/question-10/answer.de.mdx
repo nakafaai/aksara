@@ -1,19 +1,42 @@
-Die Ameise kann nicht durch den Quader gehen, die Raumdiagonale ist also nicht ihr Weg. Der Trick ist, **zwei Seitenflächen in eine Ebene aufzuklappen**, denn dort ist der kürzeste Weg eine Strecke.
+Gesucht ist die Wahrscheinlichkeit, dass der Abstand zweier Gitterpunkte ganzzahlig ist. Du gehst so vor: Bestimme den Ergebnisraum, finde heraus, **welche Koordinatendifferenzen einen ganzzahligen Abstand liefern**, und zähle dann die Punktpaare zu jeder dieser Differenzen.
 
-# Drei Arten des Aufklappens
+# Der Ergebnisraum
 
-Ein Weg von <InlineMath math="A" /> nach <InlineMath math="G" /> läuft über zwei benachbarte Flächen. Beim Aufklappen bleibt eine Kante ganz, und **die beiden anderen Kanten fügen sich zu einer Strecke zusammen**. Für die ganze Kante gibt es drei Möglichkeiten.
+Die zwei Punkte werden gleichzeitig gewählt, die Reihenfolge spielt also keine Rolle. Aus <InlineMath math="25" /> Punkten gibt es <InlineMath math="\binom{25}{2}=\tfrac{25\cdot24}{2}=300" /> Paare, und **jedes Paar ist gleich wahrscheinlich**.
+
+# Wann der Abstand ganzzahlig ist
+
+Die Beträge der Koordinatendifferenzen seien <InlineMath math="a=|x_1-x_2|" /> und <InlineMath math="b=|y_1-y_2|" />, jeweils von <InlineMath math="0" /> bis <InlineMath math="4" />. Nach dem Satz des Pythagoras ist der Abstand <InlineMath math="\sqrt{a^2+b^2}" />. Er ist genau dann ganzzahlig, wenn <InlineMath math="a^2+b^2" /> eine Quadratzahl ist.
+
+Ist eine der Differenzen null, so ist der Abstand gleich der anderen Differenz und damit ganzzahlig. Sind beide positiv, prüfe alle Quadratsummen.
 
 <BlockMath math="\begin{aligned}
-\text{Kante 12 ganz}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
-\text{Kante 4 ganz}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
-\text{Kante 3 ganz}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+1+1&=2, & 1+4&=5, & 1+9&=10, & 1+16&=17, & 4+4&=8,\\
+4+9&=13, & 4+16&=20, & 9+9&=18, & 9+16&=25, & 16+16&=32
 \end{aligned}" />
 
-# Den kürzesten wählen
+Nur <InlineMath math="9+16=25" /> ist eine Quadratzahl. Neben Paaren in derselben Zeile oder Spalte haben also **auch Paare mit den Differenzen <InlineMath math="3" /> und <InlineMath math="4" /> einen ganzzahligen Abstand**, nämlich <InlineMath math="5" />.
 
-Der kleinste Wert ist <InlineMath math="\sqrt{193}\approx13{,}9" />. Der kürzeste Weg entsteht, wenn **die längste Kante ganz bleibt** und die beiden kurzen zusammengefügt werden.
+# Die günstigen Paare zählen
 
-Die Länge 13 cm ist die Raumdiagonale <InlineMath math="\sqrt{144+16+9}" />, die durch das Innere geht. Die Länge 19 cm läuft entlang der Kanten <InlineMath math="12+4+3" />. Die Werte <InlineMath math="\sqrt{241}" /> und <InlineMath math="\sqrt{265}" /> gehören zu den anderen Netzen.
+Jede Zeile enthält <InlineMath math="5" /> Punkte, und **jedes Paar in derselben Zeile hat einen ganzzahligen Abstand**. Das ergibt <InlineMath math="\binom52=10" /> Paare, alle Zeilen zusammen also <InlineMath math="5\cdot10=50" />. Genauso gibt es <InlineMath math="50" /> Paare in derselben Spalte.
 
-Der kürzeste Weg ist also **<InlineMath math="\sqrt{193}\text{ cm}" />** lang.
+Bei waagrechter Differenz <InlineMath math="3" /> und senkrechter Differenz <InlineMath math="4" /> sind die <InlineMath math="x" />-Koordinaten der beiden Punkte <InlineMath math="\{0,3\}" /> oder <InlineMath math="\{1,4\}" />, die <InlineMath math="y" />-Koordinaten müssen <InlineMath math="\{0,4\}" /> sein, und die Verbindungsstrecke kann steigen oder fallen. Das ergibt <InlineMath math="2\cdot1\cdot2=4" /> Paare. Waagrechte Differenz <InlineMath math="4" /> und senkrechte Differenz <InlineMath math="3" /> liefern ebenfalls <InlineMath math="4" /> Paare.
+
+<BlockMath math="\begin{aligned}
+\text{günstige Paare}&=50+50+4+4=108\\
+P&=\frac{108}{300}=\frac{9}{25}
+\end{aligned}" />
+
+# Kontrolle über alle Paare
+
+Die Anzahl der Paare mit den Differenzen <InlineMath math="a>0" /> und <InlineMath math="b>0" /> ist <InlineMath math="2(5-a)(5-b)" />, denn es gibt <InlineMath math="5-a" /> waagrechte Lagen, <InlineMath math="5-b" /> senkrechte Lagen und <InlineMath math="2" /> Richtungen. Für die Differenzen <InlineMath math="3" /> und <InlineMath math="4" /> ergibt das <InlineMath math="2\cdot2\cdot1=4" />, passend zur Zählung oben. Über alle positiven <InlineMath math="a,b" /> summiert ergibt sich <InlineMath math="2(4+3+2+1)^2=200" />. Mit den <InlineMath math="100" /> Paaren in einer Zeile oder Spalte ist **die Gesamtzahl <InlineMath math="300" />**, genau der Ergebnisraum.
+
+# Die falschen Antworten
+
+- <InlineMath math="\tfrac{9}{50}" /> entsteht, wenn im Nenner geordnete Paare <InlineMath math="25\cdot24=600" /> stehen, im Zähler aber ungeordnete.
+- <InlineMath math="\tfrac13" /> entsteht, wenn **die Paare mit Abstand <InlineMath math="5" /> vergessen werden**: <InlineMath math="\tfrac{100}{300}" />.
+- <InlineMath math="\tfrac{26}{75}" /> entsteht, wenn die Paare mit Abstand <InlineMath math="5" /> nur in einer Richtung gezählt werden: <InlineMath math="\tfrac{104}{300}" />.
+- <InlineMath math="\tfrac{29}{75}" /> entsteht, wenn jedes Paar mit Abstand <InlineMath math="5" /> doppelt gezählt wird: <InlineMath math="\tfrac{116}{300}" />.
+
+Die Wahrscheinlichkeit, dass der Abstand der beiden Punkte ganzzahlig ist, beträgt also <InlineMath math="\tfrac{9}{25}" />.

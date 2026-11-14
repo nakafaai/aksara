@@ -1,22 +1,47 @@
-Samakan dulu **basis kedua ruas**. Karena <InlineMath math="\tfrac{1}{27}=\left(\tfrac13\right)^3" />, pertidaksamaan menjadi perbandingan dua pangkat dari <InlineMath math="\tfrac13" />.
+Syarat <InlineMath math="\alpha=3\beta" /> saja ternyata dipenuhi oleh dua nilai <InlineMath math="m" />, dan **syarat <InlineMath math="\alpha>\beta" /> yang memilih salah satunya**. Rencananya: tulis kedua akar dengan satu huruf, pakai jumlah dan hasil kali akar, cari semua kemungkinan, lalu buang kemungkinan yang melanggar urutan.
 
-# Arah tanda untuk basis kurang dari satu
+# Menyatakan kedua akar dengan satu huruf
 
-Fungsi <InlineMath math="\left(\tfrac13\right)^t" /> turun, jadi pangkat yang lebih kecil memberi nilai yang lebih besar. Karena itu **tanda pertidaksamaan berbalik** ketika kita membandingkan pangkatnya.
+Misalkan <InlineMath math="\beta=r" />, jadi <InlineMath math="\alpha=3r" />. Untuk persamaan <InlineMath math="x^2+px+q=0" />, **rumus Vieta** berkata jumlah akarnya <InlineMath math="-p" /> dan hasil kali akarnya <InlineMath math="q" />. Di sini jumlah akarnya <InlineMath math="m+1" /> dan hasil kalinya <InlineMath math="12-3m" />.
 
 <BlockMath math="\begin{aligned}
-\left(\tfrac13\right)^{x^2-2x}&>\left(\tfrac13\right)^{3}\\
-x^2-2x&<3\\
-x^2-2x-3&<0\\
-(x-3)(x+1)&<0
+\alpha+\beta&=r+3r=4r=m+1\\
+\alpha\beta&=r\times3r=3r^2=12-3m
 \end{aligned}" />
 
-# Selang penyelesaian
+# Mencari semua kemungkinan
 
-Hasil kali <InlineMath math="(x-3)(x+1)" /> negatif **di antara kedua pembuat nol**, yaitu <InlineMath math="-1<x<3" />. Titik <InlineMath math="-1" /> dan <InlineMath math="3" /> tidak termasuk karena tandanya kurang dari, bukan kurang dari atau sama dengan.
+Persamaan pertama memberi <InlineMath math="m=4r-1" />. Substitusikan ke persamaan kedua supaya hanya tersisa huruf <InlineMath math="r" />.
 
-Bilangan bulat di selang itu adalah 0, 1, dan 2. Pemeriksaan dengan <InlineMath math="x=1" />: pangkatnya <InlineMath math="-1" />, sehingga ruas kiri bernilai 3, dan <InlineMath math="3>\tfrac{1}{27}" />.
+<BlockMath math="\begin{aligned}
+3r^2&=12-3(4r-1)\\
+3r^2&=15-12r\\
+r^2+4r-5&=0\\
+(r+5)(r-1)&=0
+\end{aligned}" />
 
-Nilai 5 ikut menghitung kedua titik batas. Jika tanda tidak dibalik, penyelesaiannya menjadi <InlineMath math="x<-1" /> atau <InlineMath math="x>3" />, yang memuat tak hingga banyak bilangan bulat.
+Jadi <InlineMath math="r=1" /> atau <InlineMath math="r=-5" />. **Kedua nilai itu sama-sama memenuhi <InlineMath math="\alpha=3\beta" />**, seperti terlihat pada tabel berikut.
 
-Jadi, banyak bilangan bulat yang memenuhi adalah **3**.
+| <InlineMath math="r" /> | <InlineMath math="m" /> | Persamaan | Akar-akar |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="x^2-4x+3=0" /> | <InlineMath math="\alpha=3,\ \beta=1" /> |
+| <InlineMath math="-5" /> | <InlineMath math="-21" /> | <InlineMath math="x^2+20x+75=0" /> | <InlineMath math="\alpha=-15,\ \beta=-5" /> |
+
+# Menerapkan syarat urutan
+
+Perhatikan baris kedua. Mengalikan bilangan negatif dengan <InlineMath math="3" /> membuatnya **lebih kecil**, jadi <InlineMath math="-15<-5" />, artinya <InlineMath math="\alpha<\beta" />. Secara umum <InlineMath math="\alpha-\beta=3\beta-\beta=2\beta" />, sehingga **syarat <InlineMath math="\alpha>\beta" /> memaksa <InlineMath math="\beta" /> positif**. Hanya <InlineMath math="r=1" /> yang lolos, yaitu <InlineMath math="m=3" />, <InlineMath math="\alpha=3" />, dan <InlineMath math="\beta=1" />.
+
+<BlockMath math="\alpha^2+\beta^2=3^2+1^2=10" />
+
+Pemeriksaan dengan identitas jumlah kuadrat memberi hasil yang sama.
+
+<BlockMath math="\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta=4^2-2(3)=10" />
+
+# Pilihan yang keliru
+
+- <InlineMath math="13" /> muncul dari <InlineMath math="(\alpha+\beta)^2-\alpha\beta" />, yaitu lupa faktor <InlineMath math="2" /> pada <InlineMath math="2\alpha\beta" />.
+- <InlineMath math="16" /> adalah <InlineMath math="(\alpha+\beta)^2" />, berhenti sebelum mengurangi <InlineMath math="2\alpha\beta" />.
+- <InlineMath math="250" /> berasal dari kasus <InlineMath math="m=-21" />, yaitu <InlineMath math="(-15)^2+(-5)^2" />, padahal **kasus itu melanggar urutan** yang diminta, yaitu <InlineMath math="\alpha>\beta" />.
+- <InlineMath math="260" /> adalah jumlah hasil kedua kasus, seolah-olah keduanya berlaku.
+
+Jadi, nilai <InlineMath math="\alpha^2+\beta^2" /> adalah <InlineMath math="10" />.

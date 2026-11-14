@@ -1,17 +1,35 @@
-Die Parkgebühr besteht aus **einem festen Betrag für die ersten 2 Stunden** und einem Stundenpreis danach. Es seien <InlineMath math="k" /> Stunden nach den ersten 2 Stunden.
+Du sollst die Paare <InlineMath math="(a,b)" /> mit <InlineMath math="\operatorname{kgV}(a,b)=360" /> zählen, aber nur die mit <InlineMath math="a<b" />. Der Plan: Zähl zuerst **alle geordneten Paare** ohne die Bedingung <InlineMath math="a<b" /> und nimm dann mit Hilfe der Symmetrie richtig die Hälfte.
 
-# Die Ungleichung aufstellen
+# Das kgV nach Primfaktoren zerlegen
+
+Zerlege <InlineMath math="360=2^3\cdot 3^2\cdot 5" />. Weil <InlineMath math="360" /> ein Vielfaches von <InlineMath math="a" /> und von <InlineMath math="b" /> ist, sind beide Teiler von <InlineMath math="360" />. Schreib beide als Produkt von Primfaktoren.
+
+<BlockMath math="a=2^{x_1}3^{y_1}5^{z_1},\qquad b=2^{x_2}3^{y_2}5^{z_2}" />
+
+Das kgV nimmt **von jedem Primfaktor die größte Potenz**. Die Bedingung <InlineMath math="\operatorname{kgV}(a,b)=360" /> zerfällt also in drei getrennte Bedingungen: <InlineMath math="\max(x_1,x_2)=3" />, <InlineMath math="\max(y_1,y_2)=2" /> und <InlineMath math="\max(z_1,z_2)=1" />.
+
+# Paare von Exponenten zählen
+
+Für den Faktor <InlineMath math="2" /> darf jeder Exponent <InlineMath math="0" /> bis <InlineMath math="3" /> sein, das ergibt <InlineMath math="4\cdot 4=16" /> Paare. Streich die Paare, deren größerer Exponent <InlineMath math="3" /> nicht erreicht, bei denen also beide höchstens <InlineMath math="2" /> sind: Das sind <InlineMath math="3\cdot 3=9" />. Für die Faktoren <InlineMath math="3" /> und <InlineMath math="5" /> geht es genauso.
 
 <BlockMath math="\begin{aligned}
-5\,000+3\,000k&\le20\,000\\
-3\,000k&\le15\,000\\
-k&\le5
+\text{Faktor } 2 &: 16-9=7 \\
+\text{Faktor } 3 &: 9-4=5 \\
+\text{Faktor } 5 &: 4-1=3
 \end{aligned}" />
 
-# Parkdauer
+Die drei Wahlen beeinflussen sich nicht, also liefert die **Produktregel** <InlineMath math="7\cdot 5\cdot 3=105" /> geordnete Paare <InlineMath math="(a,b)" />. Diese Zahl zählt <InlineMath math="(a,b)" /> und <InlineMath math="(b,a)" /> noch als zwei Paare und enthält auch Paare mit <InlineMath math="a=b" />.
 
-Der größte Wert ist <InlineMath math="k=5" />, die längste Parkdauer ist also **die ersten 2 Stunden plus 5 Stunden**, zusammen 7 Stunden. Die Gebühr beträgt genau <InlineMath math="5\,000+5\cdot3\,000=20\,000" />. Wer länger als 7 Stunden parkt, auch nur einige Minuten, zahlt 8 Stunden und damit 23 000 Rupiah.
+# Die Bedingung an die Reihenfolge
 
-Die Antwort 5 Stunden vergisst die ersten 2 Stunden. Die Antwort 6 Stunden teilt das ganze Geld durch 3 000 und rundet ab, als gäbe es keinen besonderen Preis für die ersten 2 Stunden.
+Ein Paar mit <InlineMath math="a=b" /> klappt nur, wenn <InlineMath math="\operatorname{kgV}(a,a)=a=360" /> ist, also **gibt es genau ein Zwillingspaar**, nämlich <InlineMath math="(360,360)" />. Übrig bleiben <InlineMath math="104" /> Paare mit <InlineMath math="a\ne b" />. Sie treten paarweise auf, als <InlineMath math="(a,b)" /> und <InlineMath math="(b,a)" />, und von jedem solchen Doppel erfüllt genau eines <InlineMath math="a<b" />.
 
-Die längste Parkdauer beträgt also **7 Stunden**.
+<BlockMath math="\frac{105-1}{2}=52" />
+
+# Probe an einem kleinen Fall
+
+Probier dieselbe Methode für <InlineMath math="\operatorname{kgV}(a,b)=12=2^2\cdot 3" />. Sie liefert <InlineMath math="5\cdot 3=15" /> geordnete Paare, also <InlineMath math="\tfrac{15-1}{2}=7" /> Paare mit <InlineMath math="a<b" />. Die Liste hat tatsächlich sieben: <InlineMath math="(1,12)" />, <InlineMath math="(2,12)" />, <InlineMath math="(3,12)" />, <InlineMath math="(4,12)" />, <InlineMath math="(6,12)" />, <InlineMath math="(3,4)" /> und <InlineMath math="(4,6)" />. **Die Zählmethode stimmt** also.
+
+Typische Fehler sind die Antwort <InlineMath math="105" />, weil die Bedingung <InlineMath math="a<b" /> vergessen wurde, oder die Division von <InlineMath math="105" /> durch <InlineMath math="2" />, ohne vorher das Zwillingspaar zu entfernen.
+
+Es gibt also <InlineMath math="52" /> Paare <InlineMath math="(a,b)" /> mit <InlineMath math="a<b" /> und <InlineMath math="\operatorname{kgV}(a,b)=360" />.

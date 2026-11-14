@@ -1,20 +1,50 @@
-Each new square is attached to the previous one and shares one side, so **each pattern adds exactly 3 matches**. The numbers of matches form the arithmetic sequence 4, 7, 10 and so on.
+You need the numerator of <InlineMath math="P_n" /> **after the fraction is simplified**, for every <InlineMath math="n" /> from <InlineMath math="2" /> to <InlineMath math="100" />. The plan is to turn the long product into one short fraction, simplify that fraction according to the type of <InlineMath math="n" />, and then count.
 
-# Formula for the nth term
+# A short form of the product
 
-<BlockMath math="U_n=4+(n-1)\cdot3=3n+1" />
+Each factor splits into two fractions, using the difference of squares <InlineMath math="k^2-1=(k-1)(k+1)" />.
 
-The formula <InlineMath math="4n" /> only fits the first pattern, because **a shared side is not counted twice**. For example, pattern 2 needs 7 matches, not 8. The first statement is false.
+<BlockMath math="1-\frac{1}{k^2}=\frac{k^2-1}{k^2}=\frac{k-1}{k}\cdot\frac{k+1}{k}" />
 
-# Using the formula
+Collect all fractions of the first kind and all fractions of the second kind. In each group, **the denominator of one fraction cancels with the numerator of the next one**, so only the ends survive.
 
 <BlockMath math="\begin{aligned}
-U_{10}&=3\cdot10+1=31\\
-U_{20}-U_{10}&=61-31=30
+\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{n-1}{n} &= \frac{1}{n} \\
+\frac{3}{2}\cdot\frac{4}{3}\cdot\frac{5}{4}\cdots\frac{n+1}{n} &= \frac{n+1}{2} \\
+P_n &= \frac{1}{n}\cdot\frac{n+1}{2}=\frac{n+1}{2n}
 \end{aligned}" />
 
-The second statement is true. The difference is 30, that is **10 extra patterns times 3 matches**, not 31. The third statement is false.
+# Simplifying the fraction
 
-For 100 matches, solve <InlineMath math="3n+1=100" />, which gives <InlineMath math="n=33" />. Since 33 is a whole number, pattern 33 uses exactly 100 matches. The fourth statement is true.
+The numbers <InlineMath math="n" /> and <InlineMath math="n+1" /> are consecutive, so their greatest common divisor is <InlineMath math="1" />. That means the only factor that can cancel in <InlineMath math="\tfrac{n+1}{2n}" /> is a factor <InlineMath math="2" />. So **whether <InlineMath math="n" /> is even or odd decides the simplest form**.
 
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+- If <InlineMath math="n" /> is even, <InlineMath math="n+1" /> is odd, so nothing cancels. The numerator is <InlineMath math="n+1" />, which is odd.
+- If <InlineMath math="n" /> is odd, <InlineMath math="n+1" /> is even, so you divide the top and the bottom by <InlineMath math="2" />. You get <InlineMath math="P_n=\dfrac{(n+1)/2}{n}" />, with numerator <InlineMath math="\tfrac{n+1}{2}" />.
+
+# When the numerator is even
+
+Only odd <InlineMath math="n" /> can work, and the numerator <InlineMath math="\tfrac{n+1}{2}" /> has to be even. That means **<InlineMath math="n+1" /> is a multiple of <InlineMath math="4" />**, so <InlineMath math="n=3,7,11,\ldots,99" />.
+
+<BlockMath math="\frac{99-3}{4}+1=25" />
+
+# Checking a few values
+
+Work out the first few values directly.
+
+<BlockMath math="\begin{aligned}
+P_2 &= \tfrac{3}{4}, & P_3 &= \tfrac{3}{4}\cdot\tfrac{8}{9}=\tfrac{2}{3}, & P_4 &= \tfrac{2}{3}\cdot\tfrac{15}{16}=\tfrac{5}{8}, \\
+P_5 &= \tfrac{3}{5}, & P_6 &= \tfrac{7}{12}, & P_7 &= \tfrac{4}{7}
+\end{aligned}" />
+
+Even numerators show up exactly at <InlineMath math="n=3" /> and <InlineMath math="n=7" />, which fits the pattern **<InlineMath math="n" /> leaves remainder <InlineMath math="3" /> when divided by <InlineMath math="4" />**.
+
+# The wrong options
+
+Each other option comes from **a case that was read the wrong way**.
+
+- <InlineMath math="24" /> counts <InlineMath math="n=5,9,\ldots,97" />, choosing <InlineMath math="n-1" /> as the multiple of <InlineMath math="4" /> instead of <InlineMath math="n+1" />.
+- <InlineMath math="49" /> counts every odd <InlineMath math="n" /> because <InlineMath math="n+1" /> is even, without simplifying the fraction first.
+- <InlineMath math="50" /> is the number of <InlineMath math="P_n" /> with an even denominator, which is every even <InlineMath math="n" />. Here the numerator and the denominator got swapped.
+- <InlineMath math="74" /> is the number of <InlineMath math="P_n" /> whose numerator is odd, <InlineMath math="99-25" />.
+
+So <InlineMath math="25" /> of the values <InlineMath math="P_n" /> have an even numerator.

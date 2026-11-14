@@ -1,17 +1,35 @@
-All that counts is **who is paired with whom**. Since the pairs have no names, the order in which the pairs appear must not add to the count.
+There are two conditions: all vowels stay together, and the first and last letters are consonants. The plan is to tie all the vowels into one **block**, arrange the inside of the block, decide where the block may go, and then arrange the consonants in the remaining places. Keep in mind that the word has **repeated letters**, so swapping two equal letters doesn't create a new arrangement.
 
-# Forming the pairs one at a time
+# The letters of the word
 
-Take any student, for example the first on the list. They can be paired with 5 others. Of the 4 students left, take the first on the list, who can be paired with 3 others. The last two students **automatically form a pair**.
+The word STATISTIKA has <InlineMath math="10" /> letters. Its vowels are A, A, I, I, which is <InlineMath math="4" /> letters. Its consonants are S, S, T, T, T, K, which is <InlineMath math="6" /> letters. So S appears <InlineMath math="2" /> times, T appears <InlineMath math="3" /> times, A appears <InlineMath math="2" /> times and I appears <InlineMath math="2" /> times.
 
-<BlockMath math="5\cdot3\cdot1=15" />
+# Arrangements inside the block
 
-# Check with combinations
+The four vowels are arranged inside the block. Since the A's repeat and the I's repeat, divide by the number of ways to swap equal letters.
 
-If the pairs were numbered 1, 2 and 3, the count would be <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Each unnumbered division appears **<InlineMath math="3!=6" /> times** in that count, once for each order of the numbers.
+<BlockMath math="\frac{4!}{2!\,2!}=\frac{24}{4}=6" />
 
-<BlockMath math="\frac{90}{3!}=15" />
+# Where the block and the consonants go
 
-The value 90 treats the pairs as numbered, and 45 only divides 90 by 2. The values 6 and 10 do not count every way of pairing the remaining students.
+Treat the block as one object. Now there are <InlineMath math="7" /> objects in a row: the block and six consonants. The first and last letters must be consonants, so **the block can't sit in the first or last place**. It can only go in places two to six, which gives <InlineMath math="5" /> choices. The six consonants fill the other six places, with S repeated twice and T repeated three times.
 
-So the number of ways to divide the six students is **15**.
+<BlockMath math="\begin{aligned}
+\text{consonant arrangements} &= \frac{6!}{2!\,3!}=\frac{720}{12}=60 \\
+\text{number of arrangements} &= 5\cdot 60\cdot 6=1{,}800
+\end{aligned}" />
+
+# Checking
+
+Without the condition on the first and last letters, the seven objects can be arranged in <InlineMath math="\tfrac{7!}{2!\,3!}=420" /> ways. The block is equally likely to sit in each of the seven places, so **exactly <InlineMath math="5" /> out of <InlineMath math="7" /> parts** keep the block away from the ends. That gives <InlineMath math="420\cdot\tfrac{5}{7}\cdot 6=300\cdot 6=1{,}800" />, the same as before.
+
+# The wrong options
+
+Each other option comes from **one skipped condition or one repeated letter that wasn't handled**.
+
+- <InlineMath math="2{,}520" /> ignores the condition on the first and last letters, giving <InlineMath math="420\cdot 6" />.
+- <InlineMath math="3{,}600" /> forgets to divide by <InlineMath math="2!" /> for the repeated S.
+- <InlineMath math="7{,}200" /> arranges the vowels in <InlineMath math="4!=24" /> ways, without accounting for the repeated A and I.
+- <InlineMath math="10{,}800" /> forgets to divide by <InlineMath math="3!" /> for the three T's.
+
+So <InlineMath math="1{,}800" /> arrangements meet both conditions.

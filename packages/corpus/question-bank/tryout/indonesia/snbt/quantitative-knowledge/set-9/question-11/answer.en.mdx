@@ -1,20 +1,45 @@
-The angle between a tangent and a chord subtends the same arc as the inscribed angle on the other side. This is **the tangent-chord theorem**: the two angles are equal.
+Without the "different" condition, the largest product comes from as many <InlineMath math="3" />s as possible, <InlineMath math="3^8=6{,}561" />. But here **every term has to be different**, so that's not allowed. The plan: get rid of the term <InlineMath math="1" />, find the largest possible number of terms, then compare every arrangement that's left.
 
-# The arc being subtended
+# A term of one never helps
 
-The <InlineMath math="35^\circ" /> angle between <InlineMath math="\ell" /> and <InlineMath math="AB" /> subtends the minor arc <InlineMath math="AB" />. Angle <InlineMath math="ACB" />, with <InlineMath math="C" /> on the major arc, **also subtends the minor arc <InlineMath math="AB" />**.
+Suppose there's a term <InlineMath math="1" />. Add that <InlineMath math="1" /> to the largest term <InlineMath math="a" />. The sum stays <InlineMath math="24" />, the term <InlineMath math="a+1" /> is still different from the others because it's bigger than all of them, and the product goes up because <InlineMath math="a\cdot1<a+1" />. So **the best arrangement has no term <InlineMath math="1" />**.
 
-# Computing through the central angle
+# The largest number of terms
 
-Let the centre be <InlineMath math="O" />. The radius <InlineMath math="OA" /> is perpendicular to the tangent, so <InlineMath math="\angle OAB=90^\circ-35^\circ=55^\circ" />. Triangle <InlineMath math="OAB" /> is isosceles because <InlineMath math="OA=OB" />.
+The smallest different terms starting from <InlineMath math="2" /> are <InlineMath math="2,3,4,\dots" />. Add them until the sum passes <InlineMath math="24" />.
 
 <BlockMath math="\begin{aligned}
-\angle AOB&=180^\circ-2\cdot55^\circ=70^\circ\\
-\angle ACB&=\tfrac12\angle AOB=35^\circ
+2+3+4+5+6&=20\le24\\
+2+3+4+5+6+7&=27>24
 \end{aligned}" />
 
-An inscribed angle is **half the central angle** on the same arc, and the result agrees with the tangent-chord theorem.
+So there are at most **five terms**. If you use five terms, the smallest must be <InlineMath math="2" />, because five different numbers that are all at least <InlineMath math="3" /> add up to at least <InlineMath math="3+4+5+6+7=25" />.
 
-The value <InlineMath math="70^\circ" /> is the central angle <InlineMath math="AOB" />, and <InlineMath math="55^\circ" /> is angle <InlineMath math="OAB" />. The value <InlineMath math="145^\circ" /> is the supplement of <InlineMath math="35^\circ" />, the inscribed angle if <InlineMath math="C" /> were on the minor arc.
+# Comparing the five term arrangements
 
-So angle <InlineMath math="ACB" /> measures **<InlineMath math="35^\circ" />**.
+Starting from <InlineMath math="2,3,4,5,6" />, there's <InlineMath math="24-20=4" /> left to hand out without making two terms equal. There are only five arrangements.
+
+| Arrangement | Product |
+| :---: | :---: |
+| <InlineMath math="2,3,4,5,10" /> | <InlineMath math="1{,}200" /> |
+| <InlineMath math="2,3,4,6,9" /> | <InlineMath math="1{,}296" /> |
+| <InlineMath math="2,3,4,7,8" /> | <InlineMath math="1{,}344" /> |
+| <InlineMath math="2,3,5,6,8" /> | <InlineMath math="1{,}440" /> |
+| <InlineMath math="2,4,5,6,7" /> | <InlineMath math="1{,}680" /> |
+
+The largest product appears when **the terms are as close to each other as possible**, which is <InlineMath math="2,4,5,6,7" />.
+
+<BlockMath math="2\cdot4\cdot5\cdot6\cdot7=1{,}680" />
+
+# Checking arrangements with fewer terms
+
+With four terms, the best arrangement is <InlineMath math="4,5,7,8" /> with product <InlineMath math="1{,}120" />, and with three terms it's <InlineMath math="7,8,9" /> with product <InlineMath math="504" />. **Both are smaller**, so <InlineMath math="1{,}680" /> really is the largest.
+
+# The tempting wrong options
+
+- <InlineMath math="2{,}160" /> hands the leftover <InlineMath math="4" /> to the four smallest terms and gets <InlineMath math="3,4,5,6,6" />. The product is big, but **the <InlineMath math="6" /> appears twice**, which breaks the "different" condition.
+- <InlineMath math="1{,}200" /> puts the whole leftover <InlineMath math="4" /> on the largest term, which spreads the terms apart.
+- <InlineMath math="1{,}120" /> uses only four terms, even though five still fit.
+- <InlineMath math="1{,}080" /> uses a term <InlineMath math="1" /> to get six terms, <InlineMath math="1,2,3,4,5,9" />. The term <InlineMath math="1" /> adds nothing to the product.
+
+So the largest possible product is <InlineMath math="1{,}680" />.

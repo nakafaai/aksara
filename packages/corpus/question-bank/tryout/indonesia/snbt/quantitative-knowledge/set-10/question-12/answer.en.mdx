@@ -1,19 +1,51 @@
-From each area, first find **the side length of each shape**, then compute the perimeters.
+The four statements need four measures: the number of students, the total score, the mean and the median of each class. The plan is to read those measures off the chart and then judge each statement with **a calculation or every possible case**, never with a single example.
 
-# Side and perimeter of the equilateral triangle
+# Summarising the chart
 
-**The area of an equilateral triangle** with side <InlineMath math="s" /> is <InlineMath math="\tfrac{\sqrt3}{4}s^2" />.
+The total score of a class is the sum of each score times the number of students who got it.
 
 <BlockMath math="\begin{aligned}
-\frac{\sqrt3}{4}s^2&=9\sqrt3\\
-s^2&=36,\quad s=6\\
-P&=3\cdot6=18
+n_A &= 3+3+5+2+2=15, & \text{total}_A &= 15+18+35+16+18=102 \\
+n_B &= 3+5+3+2+7=20, & \text{total}_B &= 15+30+21+16+63=145
 \end{aligned}" />
 
-# Side and perimeter of the square
+The means are <InlineMath math="\bar{x}_A=\tfrac{102}{15}=6.8" /> and <InlineMath math="\bar{x}_B=\tfrac{145}{20}=7.25" />.
 
-The side of the square is <InlineMath math="\sqrt{25}=5" />, so <InlineMath math="Q=4\cdot5=20" />.
+The median is the middle value of the sorted data. Class A has <InlineMath math="15" /> students, so its median is the <InlineMath math="8" />th value. The scores <InlineMath math="5" /> and <InlineMath math="6" /> fill places <InlineMath math="1" /> to <InlineMath math="6" />, and the score <InlineMath math="7" /> fills places <InlineMath math="7" /> to <InlineMath math="11" />. So the median of class A is <InlineMath math="7" />. Class B has <InlineMath math="20" /> students, so its median is the mean of the <InlineMath math="10" />th and <InlineMath math="11" />th values. The scores <InlineMath math="5" /> and <InlineMath math="6" /> fill places <InlineMath math="1" /> to <InlineMath math="8" />, and the score <InlineMath math="7" /> fills places <InlineMath math="9" /> to <InlineMath math="11" />. So **the median of class B is <InlineMath math="7" /> too**.
 
-Although the triangle's area, <InlineMath math="9\sqrt3\approx15.6" />, is smaller than the square's, **perimeter and area do not always come in the same order**, so both still have to be computed. Here <InlineMath math="20>18" />.
+# The first statement
 
-So the correct relation is **<InlineMath math="Q>P" />**.
+The mean of class B, <InlineMath math="7.25" />, is higher than the mean of class A, <InlineMath math="6.8" />. Both medians are equal to <InlineMath math="7" />. The mean of class B gets pulled up by **the seven students who scored <InlineMath math="9" />**, while the median only looks at the middle position. This statement is true.
+
+# The second statement
+
+The combined mean is the total of all scores divided by the number of all students.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_{\text{combined}} &= \frac{102+145}{15+20}=\frac{247}{35}=7+\frac{2}{35} \\
+\frac{\bar{x}_A+\bar{x}_B}{2} &= \frac{6.8+7.25}{2}=7.025=7+\frac{1}{40}
+\end{aligned}" />
+
+The two results differ, because <InlineMath math="\tfrac{2}{35}\ne\tfrac{1}{40}" />. A plain average of two means only works when **both classes are the same size**, and here <InlineMath math="15\ne 20" />. This statement is false.
+
+# The third statement
+
+The student with score <InlineMath math="7" /> leaves class B and joins class A.
+
+<BlockMath math="\begin{aligned}
+\bar{x}_A^{\text{new}} &= \frac{102+7}{16}=\frac{109}{16}=6.8125 \\
+\bar{x}_B^{\text{new}} &= \frac{145-7}{19}=\frac{138}{19}\approx 7.26
+\end{aligned}" />
+
+The mean of class A rises from <InlineMath math="6.8" />, and the mean of class B rises from <InlineMath math="7.25" />. That makes sense: the score <InlineMath math="7" /> is **above the mean of class A but below the mean of class B**. Adding a value above the mean raises the mean, and removing a value below the mean raises the mean too. To be sure that <InlineMath math="\tfrac{138}{19}>7.25" />, compare <InlineMath math="138\cdot 4=552" /> with <InlineMath math="29\cdot 19=551" />. This statement is true.
+
+# The fourth statement
+
+After the new student joins, class A has <InlineMath math="16" /> students, so its median is the mean of the <InlineMath math="8" />th and <InlineMath math="9" />th values. Check **both possibilities for the new score**.
+
+- If the new score is at most <InlineMath math="7" />, at most <InlineMath math="7" /> values sit below <InlineMath math="7" />, and the score <InlineMath math="7" /> fills at least places <InlineMath math="8" /> to <InlineMath math="12" />.
+- If the new score is at least <InlineMath math="8" />, there are still <InlineMath math="6" /> values below <InlineMath math="7" />, and the five scores of <InlineMath math="7" /> fill places <InlineMath math="7" /> to <InlineMath math="11" />.
+
+In both cases the <InlineMath math="8" />th and <InlineMath math="9" />th values are both <InlineMath math="7" />, so the median stays <InlineMath math="7" />. This statement is true.
+
+So the first, third and fourth statements are true, and the second statement is false.

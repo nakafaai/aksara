@@ -1,14 +1,34 @@
-Banyak faktor positif bilangan <InlineMath math="p_1^{e_1}p_2^{e_2}" /> adalah <InlineMath math="(e_1+1)(e_2+1)" />, karena **setiap pangkat dipilih bebas** dari 0 sampai pangkat tertingginya.
+Tulis kata sandi sebagai <InlineMath math="d_1d_2d_3d_4" />. Aturannya: <InlineMath math="d_1\ne d_2" />, <InlineMath math="d_2\ne d_3" />, <InlineMath math="d_3\ne d_4" />, dan <InlineMath math="d_4\ne d_1" />. Bayangkan keempat angka itu duduk melingkar, karena **angka terakhir juga bertetangga dengan angka pertama**. Setiap pernyataan dihitung sendiri, lalu hasilnya dicek silang.
 
-# Menghitung kedua kuantitas
+# Pernyataan pertama
+
+Angka <InlineMath math="d_1" /> punya <InlineMath math="10" /> pilihan, <InlineMath math="d_2" /> punya <InlineMath math="9" />, dan <InlineMath math="d_3" /> punya <InlineMath math="9" />. Banyak pilihan <InlineMath math="d_4" /> **bergantung pada apakah <InlineMath math="d_3" /> sama dengan <InlineMath math="d_1" />**, jadi pisahkan dua kasus.
 
 <BlockMath math="\begin{aligned}
-P&=(4+1)(2+1)=5\cdot3=15\\
-Q&=(3+1)(3+1)=4\cdot4=16
+d_3=d_1:\quad & 10\times9\times1\times9=810 \\
+d_3\ne d_1:\quad & 10\times9\times8\times8=5{.}760 \\
+\text{total}:\quad & 810+5{.}760=6{.}570
 \end{aligned}" />
 
-# Membandingkan
+Pada kasus pertama, <InlineMath math="d_4" /> hanya dilarang sama dengan satu angka, jadi pilihannya <InlineMath math="9" />. Pada kasus kedua, <InlineMath math="d_3" /> harus beda dari <InlineMath math="d_1" /> dan <InlineMath math="d_2" /> (<InlineMath math="8" /> pilihan), lalu <InlineMath math="d_4" /> dilarang sama dengan dua angka berbeda (<InlineMath math="8" /> pilihan). Angka <InlineMath math="6{.}480=10\times9\times9\times8" /> muncul kalau <InlineMath math="d_4" /> selalu dianggap punya <InlineMath math="8" /> pilihan. Pernyataan pertama **salah**.
 
-Karena <InlineMath math="16>15" />, berlaku **<InlineMath math="Q" /> lebih besar daripada <InlineMath math="P" />**, dan perbandingan ini tidak ditentukan oleh besar bilangannya, <InlineMath math="M=144" /> dan <InlineMath math="N=216" />. Jumlah pangkat kedua bilangan sama-sama 6, tetapi hasil kali <InlineMath math="(e_1+1)(e_2+1)" /> lebih besar jika pangkatnya lebih merata.
+# Pernyataan kedua
 
-Pilihan <InlineMath math="P=Q" /> muncul jika banyak faktor dianggap bergantung pada jumlah pangkat saja. Jadi hubungan yang benar adalah <InlineMath math="Q>P" />.
+Kalau hanya ada dua angka berbeda dan tetangga harus berbeda, **angkanya harus berselang-seling**, yaitu berbentuk <InlineMath math="abab" />. Angka <InlineMath math="a" /> punya <InlineMath math="10" /> pilihan dan <InlineMath math="b" /> punya <InlineMath math="9" />, jadi ada <InlineMath math="10\times9=90" /> kata sandi. Angka pertama <InlineMath math="a" /> dan angka terakhir <InlineMath math="b" /> berbeda, jadi semuanya aman. Pernyataan kedua **benar**.
+
+# Pernyataan ketiga
+
+Kalau keempat angka berbeda, tidak ada dua angka sama di mana pun, jadi **semua kata sandi seperti ini otomatis aman**. Banyaknya <InlineMath math="10\times9\times8\times7=5{.}040" />. Pernyataan ketiga **benar**.
+
+# Pernyataan keempat
+
+Dengan tepat tiga angka berbeda, ada satu angka yang muncul dua kali. Keduanya tidak boleh bertetangga dalam lingkaran, jadi **angka kembar itu harus menempati posisi pertama dan ketiga, atau posisi kedua dan keempat**.
+
+<BlockMath math="\begin{aligned}
+\text{banyaknya} &= \underbrace{2}_{\text{pasangan posisi}}\times\underbrace{10}_{\text{angka kembar}}\times\underbrace{9\times8}_{\text{dua angka lain}} \\
+&= 1{.}440
+\end{aligned}" />
+
+Cek silang dengan tiga pernyataan sebelumnya. Kata sandi aman tidak mungkin memuat hanya satu angka, jadi setiap kata sandi aman memuat dua, tiga, atau empat angka berbeda: <InlineMath math="90+1{.}440+5{.}040=6{.}570" />, tepat sama dengan total tadi. Pernyataan keempat **benar**.
+
+Jadi, pernyataan pertama salah, sedangkan pernyataan kedua, ketiga, dan keempat benar.

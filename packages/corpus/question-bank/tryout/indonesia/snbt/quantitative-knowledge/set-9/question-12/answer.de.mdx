@@ -1,25 +1,43 @@
-Beide Seiten durch <InlineMath math="x" /> zu teilen ist riskant, weil das Vorzeichen von <InlineMath math="x" /> unbekannt ist. Sicher ist es, **alles auf eine Seite zu bringen und zu faktorisieren**.
+Jede Aussage verwendet Mittelpunkt und Radius des Kreises, also bestimme beide zuerst in Abhängigkeit von <InlineMath math="c" />. Danach **legt jede Aussage ihr eigenes <InlineMath math="c" /> fest**, und du prüfst die Folgerung jedes Mal mit einem anderen Argument.
 
-# Die Ungleichung lösen
+# Mittelpunkt und Radius
+
+Ergänze quadratisch für <InlineMath math="x" /> und für <InlineMath math="y" />.
 
 <BlockMath math="\begin{aligned}
-x^3-4x&>0\\
-x(x-2)(x+2)&>0
+x^2-6x+y^2+8y+c&=0\\
+(x-3)^2-9+(y+4)^2-16+c&=0\\
+(x-3)^2+(y+4)^2&=25-c
 \end{aligned}" />
 
-Die Nullstellen sind <InlineMath math="-2" />, <InlineMath math="0" /> und <InlineMath math="2" />. Prüfe **das Vorzeichen des Produkts in jedem Intervall**.
+Der Mittelpunkt ist <InlineMath math="(3,-4)" />, und das Quadrat des Radius ist <InlineMath math="r^2=25-c" />. Die Gleichung beschreibt einen echten Kreis **nur für <InlineMath math="25-c>0" />**, also für <InlineMath math="c<25" />.
 
-| Intervall | Vorzeichen von <InlineMath math="x(x-2)(x+2)" /> |
-| :---: | :---: |
-| <InlineMath math="x<-2" /> | negativ |
-| <InlineMath math="-2<x<0" /> | positiv |
-| <InlineMath math="0<x<2" /> | negativ |
-| <InlineMath math="x>2" /> | positiv |
+# Die erste Aussage
 
-Die Lösung ist <InlineMath math="-2<x<0" /> oder <InlineMath math="x>2" />.
+Für <InlineMath math="c=25" /> wird die rechte Seite <InlineMath math="0" />. Eine Summe zweier Quadrate ist nur dann null, wenn beide null sind, also ist die Kurve **nur der Punkt <InlineMath math="(3,-4)" />** und kein Kreis mit positivem Radius. Die Aussage ist **falsch**.
 
-# x mit 2 vergleichen
+# Die zweite Aussage
 
-Für <InlineMath math="x=3" /> gilt <InlineMath math="P>Q" />. Für <InlineMath math="x=-1" />, das wegen <InlineMath math="-1>-4" /> ebenfalls passt, gilt <InlineMath math="P<Q" />. **Beide Beziehungen sind möglich**, keine ist also sicher. Wer ohne Vorzeichenprüfung durch <InlineMath math="x" /> teilt, erhält <InlineMath math="x^2>4" /> und dann <InlineMath math="x>2" />, und das negative Intervall geht verloren.
+Ein Kreis berührt die <InlineMath math="x" />-Achse, wenn der Abstand des Mittelpunkts zur <InlineMath math="x" />-Achse gleich dem Radius ist. Dieser Abstand ist <InlineMath math="|-4|=4" />, also <InlineMath math="r=4" /> und <InlineMath math="25-c=16" />, das heißt <InlineMath math="c=9" />. Der Abstand des Mittelpunkts zur <InlineMath math="y" />-Achse ist nur <InlineMath math="3" />, **kleiner als der Radius** <InlineMath math="4" />, also schneidet die <InlineMath math="y" />-Achse den Kreis in zwei Punkten. Prüf das, indem du <InlineMath math="x=0" /> einsetzt.
 
-Die gegebenen Informationen **reichen also nicht**, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> zu entscheiden.
+<BlockMath math="\begin{aligned}
+(0-3)^2+(y+4)^2&=16\\
+(y+4)^2&=7\\
+y&=-4\pm\sqrt7
+\end{aligned}" />
+
+Es gibt zwei Werte für <InlineMath math="y" />, die Aussage ist also **wahr**.
+
+# Die dritte Aussage
+
+Der Kreis geht durch den Ursprung, wenn <InlineMath math="0+0-0+0+c=0" /> gilt, also <InlineMath math="c=0" /> und <InlineMath math="r=5" />. Die Gerade <InlineMath math="4x-3y=0" /> geht zwar durch den Ursprung, der auf dem Kreis liegt, aber **ein gemeinsamer Punkt macht eine Gerade noch nicht zur Tangente**. Eine Gerade ist Tangente, wenn ihr Abstand zum Mittelpunkt gleich dem Radius ist.
+
+<BlockMath math="d=\frac{|4\cdot3-3\cdot(-4)|}{\sqrt{4^2+3^2}}=\frac{24}{5}<5" />
+
+Der Abstand ist kleiner als der Radius, also schneidet die Gerade den Kreis in zwei Punkten: im Ursprung und in <InlineMath math="\left(-\frac{42}{25},-\frac{56}{25}\right)" />. Die Tangente im Ursprung muss senkrecht auf dem Radius in Richtung <InlineMath math="(3,-4)" /> stehen, das ergibt <InlineMath math="3x-4y=0" />. Die Aussage ist **falsch**.
+
+# Die vierte Aussage
+
+Der Kreis berührt die <InlineMath math="y" />-Achse, wenn <InlineMath math="r=|3|=3" /> gilt, also <InlineMath math="25-c=9" /> und <InlineMath math="c=16" />. Der Abstand des Ursprungs zum Mittelpunkt ist <InlineMath math="\sqrt{3^2+4^2}=5" />, **größer als der Radius** <InlineMath math="3" />. Andersherum: Setzt du den Ursprung in die linke Seite ein, erhältst du <InlineMath math="c=16>0" />, ein Zeichen für einen Punkt außerhalb des Kreises. Die Aussage ist **falsch**.
+
+Die zweite Aussage ist also wahr, die erste, dritte und vierte sind falsch.

@@ -1,26 +1,43 @@
-A line is fixed by **one point and its slope**. The point is the intersection of the first two lines, and the slope comes from the perpendicular condition.
+The quantity <InlineMath math="P" /> is an ordinary probability, while <InlineMath math="Q" /> is **a conditional probability that uses a smaller sample space**. Here's the plan: work out <InlineMath math="P" /> from all outcomes, work out <InlineMath math="Q" /> only from the outcomes that contain a <InlineMath math="6" />, then compare the two fractions exactly.
 
-# The intersection point
+# The sample space
 
-Add the two equations so that **the variable y cancels**.
+The three dice have different colours, so each outcome is an ordered triple (red, blue, green). There are <InlineMath math="6\cdot6\cdot4=144" /> outcomes, and since every die is fair, **every triple is equally likely**.
 
-<BlockMath math="\begin{aligned}
-(x+y)+(2x-y)&=5+1\\
-3x=6\;\Longrightarrow\;x&=2,\quad y=3
-\end{aligned}" />
+# Working out the first probability
 
-# Slope of line g
-
-The line <InlineMath math="3x+2y=6" /> can be written <InlineMath math="y=-\tfrac32x+3" />, so its slope is <InlineMath math="-\tfrac32" />. Two lines are perpendicular when **the product of their slopes is <InlineMath math="-1" />**, so the slope of <InlineMath math="g" /> is <InlineMath math="\tfrac23" />.
+Fix the green value <InlineMath math="h" />. Then red and blue must add up to <InlineMath math="9-h" />. Two dice showing <InlineMath math="1" /> to <InlineMath math="6" /> make the sum <InlineMath math="k" /> in <InlineMath math="k-1" /> ways for <InlineMath math="k\le7" />, and in <InlineMath math="13-k" /> ways for <InlineMath math="k\ge7" />. So **each value of <InlineMath math="h" /> is its own case**.
 
 <BlockMath math="\begin{aligned}
-y-3&=\tfrac23(x-2)\\
-3y-9&=2x-4\\
-2x-3y+5&=0
+h=1,2,3,4&:\quad \text{red}+\text{blue}=8,\ 7,\ 6,\ 5\\
+\text{number of triples}&=5+6+5+4=20\\
+P&=\frac{20}{144}=\frac{5}{36}
 \end{aligned}" />
 
-Check: <InlineMath math="2(2)-3(3)+5=0" />, so the point <InlineMath math="(2,3)" /> lies on the line.
+# Working out the conditional probability
 
-The line <InlineMath math="3x+2y-12=0" /> passes through the right point but is parallel, not perpendicular. The line <InlineMath math="3x-2y=0" /> only flips the sign of the slope, and <InlineMath math="2x+3y-13=0" /> only flips the fraction. The line <InlineMath math="2x-3y-5=0" /> has the right slope but does not pass through <InlineMath math="(2,3)" />.
+The green die goes up to <InlineMath math="4" /> only, so **a <InlineMath math="6" /> can only show on the red or the blue die**. There are <InlineMath math="5\cdot5\cdot4=100" /> triples with no <InlineMath math="6" /> on those two dice, so <InlineMath math="144-100=44" /> triples meet the condition. These <InlineMath math="44" /> triples are the new sample space for <InlineMath math="Q" />.
 
-So the equation of line <InlineMath math="g" /> is **<InlineMath math="2x-3y+5=0" />**.
+Among them, find the ones with sum <InlineMath math="10" />.
+
+- Red shows <InlineMath math="6" />: blue and green add up to <InlineMath math="4" />, which gives <InlineMath math="(1,3)" />, <InlineMath math="(2,2)" />, <InlineMath math="(3,1)" />, so <InlineMath math="3" /> triples.
+- Blue shows <InlineMath math="6" />: by the same reasoning, <InlineMath math="3" /> triples.
+- Red and blue both show <InlineMath math="6" />: the sum is at least <InlineMath math="13" />, so there are none.
+
+<BlockMath math="Q=\frac{6}{44}=\frac{3}{22}" />
+
+# Comparing the two fractions
+
+The fractions are close, so compare them by cross-multiplying.
+
+<BlockMath math="\frac{5}{36}\ \text{and}\ \frac{3}{22}:\qquad 5\cdot22=110>108=3\cdot36" />
+
+So <InlineMath math="P>Q" />. As decimals, <InlineMath math="P\approx0.1389" /> and <InlineMath math="Q\approx0.1364" />. Both round to <InlineMath math="0.14" />, which is why **a rough estimate isn't enough**.
+
+# The wrong options
+
+- <InlineMath math="Q>P" /> comes from counting the conditional sample space as <InlineMath math="11" />, as with two dice, so the green die is forgotten and <InlineMath math="Q=\tfrac{6}{11}" />. It also comes from missing a case for <InlineMath math="P" />, for example getting <InlineMath math="\tfrac{18}{144}=\tfrac18" />, which is smaller than <InlineMath math="\tfrac{3}{22}" />.
+- <InlineMath math="P=Q" /> comes from **comparing the two probabilities only after rounding** them to <InlineMath math="0.14" />.
+- The option saying the information isn't enough is wrong, because fair dice make both probabilities fixed numbers that you can compute.
+
+So the correct relation is <InlineMath math="P>Q" />.

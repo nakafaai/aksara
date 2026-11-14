@@ -1,22 +1,44 @@
-First find the first term and the common difference from the two given terms. Then **count the terms carefully**: from the fifth term to the twelfth there are <InlineMath math="12-5+1=8" /> terms.
+The value of <InlineMath math="x" /> isn't given, so you have to check the relation between <InlineMath math="P" /> and <InlineMath math="Q" /> for **every positive integer**. If the relation changes from one value of <InlineMath math="x" /> to another, the information isn't enough. The method: square twice until the roots disappear, then look at the sign of the difference.
 
-# The first term and the common difference
+# Comparing the squares
+
+Both quantities are positive. For two positive numbers, the larger one also has the larger square, so **it's enough to compare <InlineMath math="P^2" /> and <InlineMath math="Q^2" />**.
 
 <BlockMath math="\begin{aligned}
-u_8-u_3&=5b=31-11=20\quad\Rightarrow\quad b=4\\
-a&=u_3-2b=11-8=3
+P^2 &= x+2\sqrt{x}\sqrt{x+8}+(x+8)=2x+8+2\sqrt{x^2+8x} \\
+Q^2 &= 4(x+3)=4x+12 \\
+P^2-Q^2 &= 2\left(\sqrt{x^2+8x}-(x+2)\right)
 \end{aligned}" />
 
-**The general term** is <InlineMath math="u_n=3+4(n-1)=4n-1" />, so <InlineMath math="u_5=19" /> and <InlineMath math="u_{12}=47" />.
+# Squaring once more
 
-# The sum of eight terms
+The sign of <InlineMath math="P^2-Q^2" /> matches the sign of <InlineMath math="\sqrt{x^2+8x}-(x+2)" />. Both of those terms are positive too, so **compare their squares again**.
 
-The fifth to twelfth terms also form an arithmetic sequence, so their sum is **the number of terms times the mean of the first and last**.
+<BlockMath math="\begin{aligned}
+(x^2+8x)-(x+2)^2 &= x^2+8x-x^2-4x-4 \\
+&= 4x-4 \\
+&= 4(x-1)
+\end{aligned}" />
 
-<BlockMath math="S=\frac{8}{2}\left(19+47\right)=4\cdot66=264" />
+So <InlineMath math="P>Q" /> exactly when <InlineMath math="x>1" />, <InlineMath math="P=Q" /> exactly when <InlineMath math="x=1" />, and <InlineMath math="P<Q" /> only when <InlineMath math="x<1" />.
 
-A check with a difference of sums: <InlineMath math="S_{12}-S_4=300-36=264" />.
+# Testing every positive integer
 
-The value 300 is the sum of the first twelve terms without subtracting anything. The value 245 is <InlineMath math="S_{12}-S_5" />, which also removes the fifth term. The value 297 counts nine terms, and the value 330 counts ten.
+The smallest positive integer is <InlineMath math="1" />, and **there the two quantities are equal**.
 
-So the sum of the fifth to twelfth terms is **264**.
+<BlockMath math="\begin{aligned}
+x=1:\quad P &= \sqrt1+\sqrt9=1+3=4 \\
+Q &= 2\sqrt4=4
+\end{aligned}" />
+
+At <InlineMath math="x=2" /> the difference of squares is <InlineMath math="4(2-1)=4" />, which is positive, so <InlineMath math="P>Q" />. The same holds for every <InlineMath math="x\ge2" />. Because <InlineMath math="x=1" /> gives <InlineMath math="P=Q" /> and <InlineMath math="x=2" /> gives <InlineMath math="P>Q" />, **no single relation can be picked**.
+
+# Why the other options fail
+
+Each of the other three options is only true for **some values of <InlineMath math="x" />**.
+
+- <InlineMath math="P>Q" /> comes from only trying numbers above <InlineMath math="1" />, which misses the case <InlineMath math="x=1" />.
+- <InlineMath math="P=Q" /> comes from only trying <InlineMath math="x=1" />.
+- <InlineMath math="Q>P" /> comes from trying <InlineMath math="x=0" />, where <InlineMath math="\sqrt8<2\sqrt3" />, but <InlineMath math="0" /> isn't a positive integer.
+
+So the information given isn't enough to decide the relation between <InlineMath math="P" /> and <InlineMath math="Q" />.

@@ -1,18 +1,48 @@
-Beide Größen enthalten Wurzeln. Bringe sie deshalb vor dem Vergleich in **die einfachste Wurzelform**.
+Alle vier Aussagen brauchen die genaue Lösungsmenge samt Randpunkten. Löse also zuerst die Ungleichung und beurteile dann jede Aussage mit einem eigenen Beweis oder Gegenbeispiel. Entscheidend sind **Randpunkte, die die Ungleichung erfüllen**, und **ein Höchstwert, der nicht bei einer ganzen Zahl liegt**.
 
-# P ausmultiplizieren
+# Die Ungleichung lösen
+
+Beide Seiten sind nicht negativ. Von zwei nicht negativen Zahlen hat die größere auch das größere Quadrat, deshalb **darfst du beide Seiten quadrieren, ohne das Zeichen umzudrehen**. Danach zerlegst du die Differenz zweier Quadrate.
 
 <BlockMath math="\begin{aligned}
-P&=\left(\sqrt7\right)^2+2\sqrt7\sqrt3+\left(\sqrt3\right)^2\\
-&=7+2\sqrt{21}+3=10+2\sqrt{21}
+(x-4)^2-(2x+1)^2 &\ge 0 \\
+\big((x-4)-(2x+1)\big)\big((x-4)+(2x+1)\big) &\ge 0 \\
+(-x-5)(3x-3) &\ge 0 \\
+-3(x+5)(x-1) &\ge 0 \\
+(x+5)(x-1) &\le 0
 \end{aligned}" />
 
-# Q vereinfachen
+Dieses Produkt ist genau dann nicht positiv, wenn <InlineMath math="x" /> zwischen den beiden Nullstellen liegt, die Nullstellen eingeschlossen. Die Lösungsmenge ist <InlineMath math="-5\le x\le1" />.
 
-Zerlege 84 so, dass die Quadratzahl 4 sichtbar wird.
+# Erste Aussage
 
-<BlockMath math="Q=10+\sqrt{4\cdot21}=10+2\sqrt{21}" />
+Die ganzen Zahlen von <InlineMath math="-5" /> bis <InlineMath math="1" /> sind <InlineMath math="-5,-4,-3,-2,-1,0,1" />, also <InlineMath math="7" /> Stück. Beide Randpunkte zählen mit, weil das Zeichen **größer oder gleich** lautet. Bei <InlineMath math="x=-5" /> sind zum Beispiel beide Seiten gleich <InlineMath math="9" />. Die erste Aussage ist **wahr**.
 
-Die beiden Größen sind **genau gleich**, also gilt <InlineMath math="P=Q" />. Der verlockende Fehler ist <InlineMath math="\left(\sqrt7+\sqrt3\right)^2=7+3=10" />, der das gemischte Glied <InlineMath math="2\sqrt{21}" /> vergisst und <InlineMath math="Q" /> größer erscheinen lässt.
+# Zweite Aussage
 
-Die richtige Beziehung ist also <InlineMath math="P=Q" />.
+Die Ungleichung <InlineMath math="\lvert x+2\rvert<3" /> bedeutet <InlineMath math="-3<x+2<3" />, also <InlineMath math="-5<x<1" />. Die Randpunkte fehlen hier. Dabei erfüllt <InlineMath math="x=1" /> die ursprüngliche Ungleichung, denn <InlineMath math="\lvert 1-4\rvert=3" /> und <InlineMath math="\lvert 2+1\rvert=3" />, aber <InlineMath math="\lvert 1+2\rvert=3" /> ist **nicht kleiner als** <InlineMath math="3" />. Ein Gegenbeispiel reicht, die zweite Aussage ist also **falsch**.
+
+# Dritte Aussage
+
+Schreibe <InlineMath math="g(x)=\lvert x-4\rvert-\lvert 2x+1\rvert" />. Die Vorzeichen in den Beträgen wechseln bei <InlineMath math="x=-\tfrac12" /> und <InlineMath math="x=4" />, also rechnest du <InlineMath math="g" /> auf jedem Abschnitt aus.
+
+<BlockMath math="\begin{aligned}
+x\le-\tfrac12:\quad g(x) &= (4-x)+(2x+1)=x+5 \\
+-\tfrac12\le x\le4:\quad g(x) &= (4-x)-(2x+1)=3-3x \\
+x\ge4:\quad g(x) &= (x-4)-(2x+1)=-x-5
+\end{aligned}" />
+
+Links steigt <InlineMath math="g" />, in der Mitte und rechts fällt <InlineMath math="g" />. Also liegt **der größte Wert an der Knickstelle** <InlineMath math="x=-\tfrac12" />, dort ist <InlineMath math="g\left(-\tfrac12\right)=\tfrac92" />. Weil <InlineMath math="\tfrac92" /> größer als <InlineMath math="4" /> ist, ist die dritte Aussage **falsch**. Wenn du nur ganze Zahlen ausprobierst, ist der größte Wert tatsächlich <InlineMath math="g(-1)=5-1=4" />, und genau das ist die Falle.
+
+# Vierte Aussage
+
+Probiere <InlineMath math="x_0=-(a+b)" />. Dann stehen auf beiden Seiten Beträge derselben Zahl.
+
+<BlockMath math="\begin{aligned}
+x_0-a &= -2a-b \\
+2x_0+b &= -2a-2b+b=-2a-b
+\end{aligned}" />
+
+Also gilt <InlineMath math="\lvert x_0-a\rvert=\lvert 2x_0+b\rvert" />, und **Gleichheit erfüllt größer oder gleich bereits**. Jedes Paar <InlineMath math="a" /> und <InlineMath math="b" /> hat also mindestens eine Lösung, nämlich <InlineMath math="x_0" />. Die vierte Aussage ist **wahr**. Zur Probe an dieser Aufgabe: <InlineMath math="a=4" /> und <InlineMath math="b=1" /> ergeben <InlineMath math="x_0=-5" />, den linken Randpunkt der Lösungsmenge von oben.
+
+Die erste Aussage ist also wahr, die zweite falsch, die dritte falsch und die vierte wahr.

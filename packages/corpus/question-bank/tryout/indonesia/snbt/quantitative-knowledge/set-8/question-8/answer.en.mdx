@@ -1,18 +1,40 @@
-Measure each hand's position as an angle from 12, clockwise. What is often forgotten is that **the hour hand also moves** during those 40 minutes.
+Write the current ages of Ani, Budi, and Cici as <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" />. A piece of information is enough if **every situation it allows gives the same yes or no**. Here's the plan: test statement (1) alone, statement (2) alone, then both together, and watch what statement (2) quietly says about the ages.
 
-# Positions of the two hands
+# Statement one alone
 
-The minute hand moves <InlineMath math="\tfrac{360^\circ}{60}=6^\circ" /> per minute. The hour hand moves <InlineMath math="\tfrac{360^\circ}{12}=30^\circ" /> per hour, or **<InlineMath math="0.5^\circ" /> per minute**.
+Statement (1) means <InlineMath math="A+B=2C" />, so <InlineMath math="C" /> is the average of <InlineMath math="A" /> and <InlineMath math="B" />. The average of two numbers lies between them, so **Ani is older than Cici exactly when Ani is older than Budi**, and that isn't fixed.
+
+- Answer yes: <InlineMath math="A=10" />, <InlineMath math="B=6" />, <InlineMath math="C=8" />.
+- Answer no: <InlineMath math="A=6" />, <InlineMath math="B=10" />, <InlineMath math="C=8" />.
+
+Statement (1) alone isn't enough.
+
+# Statement two alone
+
+Statement (2) means <InlineMath math="B-6=3(C-6)" />, that is, <InlineMath math="B=3C-12" />. This equation **doesn't mention Ani's age at all**.
+
+- Answer yes: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=20" />.
+- Answer no: <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=5" />.
+
+Statement (2) alone isn't enough.
+
+# Both statements together
+
+Substitute <InlineMath math="B=3C-12" /> into <InlineMath math="A=2C-B" />.
 
 <BlockMath math="\begin{aligned}
-\text{minute hand}&:\quad 40\cdot6^\circ=240^\circ\\
-\text{hour hand}&:\quad 4\cdot30^\circ+40\cdot0.5^\circ=140^\circ
+A&=2C-(3C-12)=12-C\\
+A>C&\iff12-C>C\iff C<6
 \end{aligned}" />
 
-# The smaller angle
+Now look at the hidden condition. Statement (2) talks about Cici's age <InlineMath math="6" /> years ago, so **Cici had already been born then**, which means <InlineMath math="C-6\ge0" />, or <InlineMath math="C\ge6" />. So <InlineMath math="C<6" /> is impossible, and Ani is never older than Cici. The answer is always no.
 
-The difference of the positions is <InlineMath math="240^\circ-140^\circ=100^\circ" />. The angle on the other side is <InlineMath math="360^\circ-100^\circ=260^\circ" />, so **the smaller angle is <InlineMath math="100^\circ" />**.
+An example that fits both is <InlineMath math="C=8" />, <InlineMath math="B=12" />, <InlineMath math="A=4" />. Check: <InlineMath math="4+12=16=2\cdot8" /> and <InlineMath math="12-6=6=3(8-6)" />. Ani really is younger than Cici.
 
-The angle <InlineMath math="120^\circ" /> keeps the hour hand fixed at 4. The angle <InlineMath math="110^\circ" /> uses an hour hand speed of <InlineMath math="0.25^\circ" /> per minute. The angle <InlineMath math="140^\circ" /> is the position of the hour hand, not the difference, and <InlineMath math="260^\circ" /> is the larger angle.
+If you only ask for positive current ages, you might pick <InlineMath math="C=5" />, <InlineMath math="B=3" />, <InlineMath math="A=7" />, which makes Ani older. But <InlineMath math="6" /> years ago Budi and Cici would have been <InlineMath math="-3" /> and <InlineMath math="-1" />, so neither had been born. That situation isn't allowed, so it can't be a yes example.
 
-So the smaller angle between the hands is **<InlineMath math="100^\circ" />**.
+# The verdict on each option
+
+Statement (1) alone and statement (2) alone each fall short, because each has a yes example and a no example. **Together they're enough**, because the condition <InlineMath math="C\ge6" /> forces the answer no. The option saying neither is enough comes from missing that hidden condition.
+
+So both statements together are enough to answer the question, but neither statement alone is.

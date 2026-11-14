@@ -1,15 +1,35 @@
-Permennya identik, jadi yang membedakan satu cara dengan cara lain hanyalah **banyak permen yang diterima setiap anak**. Hitung susunan bilangan <InlineMath math="(a,b,c)" /> dengan <InlineMath math="a+b+c=8" /> dan setiap bilangan paling sedikit 1.
+Kamu mencari peluang bilangan pertama, kedua, dan ketiga yang terambil membentuk barisan aritmetika **dalam urutan pengambilan**. Rencananya begini: hitung ruang sampel berurutan, hitung barisan aritmetika yang naik, tambahkan yang turun, lalu bagi.
 
-# Memakai sekat di antara permen
+# Ruang sampel berurutan
 
-Jajarkan 8 permen. Di antaranya ada 7 celah. Memilih **2 celah sebagai sekat** membagi barisan menjadi 3 kelompok yang masing-masing tidak kosong, dan setiap pilihan memberi satu cara pembagian.
+Urutan pengambilan dicatat, jadi **urutan ikut dihitung** dan setiap hasil adalah susunan berurutan dari <InlineMath math="3" /> bilangan berbeda. Pengambilan pertama punya <InlineMath math="20" /> kemungkinan, kedua <InlineMath math="19" />, dan ketiga <InlineMath math="18" />.
 
-<BlockMath math="\binom72=\frac{7\cdot6}{2}=21" />
+<BlockMath math="n(S)=20\cdot19\cdot18=6840" />
 
-# Pemeriksaan dengan cara lain
+Semua susunan berpeluang sama, karena setiap pengambilan acak.
 
-Berikan dulu satu permen kepada setiap anak. Sisa 5 permen dibagikan bebas, termasuk boleh nol, dan banyak caranya adalah <InlineMath math="\binom{5+2}{2}=\binom72=21" />.
+# Menghitung barisan yang naik
 
-Nilai 45 adalah <InlineMath math="\binom{10}{2}" />, yaitu banyak cara jika seorang anak boleh tidak mendapat permen. Nilai 28 memilih 2 dari 8 permen sebagai sekat, padahal sekat diletakkan di celah. Nilai 56 adalah <InlineMath math="\binom83" />.
+Barisan naik berbentuk <InlineMath math="(a,\,a+d,\,a+2d)" /> dengan beda <InlineMath math="d\ge1" />. Beda tidak boleh nol karena ketiga bilangan berbeda. Suku terakhir paling besar <InlineMath math="20" />, jadi <InlineMath math="a" /> bisa <InlineMath math="1" /> sampai <InlineMath math="20-2d" />, yaitu <InlineMath math="20-2d" /> pilihan, dan <InlineMath math="d" /> paling besar <InlineMath math="9" />.
 
-Jadi, banyak cara membagikan permen adalah **21**.
+<BlockMath math="\sum_{d=1}^{9}(20-2d)=18+16+14+\dots+2=90" />
+
+Periksa dengan jalan lain. Suku tengah adalah rata-rata suku pertama dan ketiga, jadi **suku pertama dan ketiga harus sama paritasnya**, yaitu sama-sama ganjil atau sama-sama genap. Ada <InlineMath math="10" /> bilangan ganjil dan <InlineMath math="10" /> bilangan genap, jadi banyak pasangan ujungnya <InlineMath math="2\binom{10}{2}=90" />. Hasilnya sama.
+
+# Menambahkan barisan yang turun
+
+Jika urutan barisan naik dibalik, hasilnya barisan aritmetika dengan beda negatif, dan **barisan turun juga barisan aritmetika**. Jadi, ada <InlineMath math="90" /> barisan turun lagi.
+
+<BlockMath math="\begin{aligned}
+n(A)&=90+90=180\\
+P(A)&=\frac{180}{6840}=\frac{1}{38}
+\end{aligned}" />
+
+# Pilihan yang keliru
+
+- <InlineMath math="\tfrac{1}{76}" /> muncul jika **barisan yang turun terlupakan**: <InlineMath math="\tfrac{90}{6840}" />.
+- <InlineMath math="\tfrac{11}{380}" /> muncul jika banyak pilihan <InlineMath math="a" /> dihitung <InlineMath math="21-2d" />, lebih satu, sehingga setiap arah memberi <InlineMath math="99" />: <InlineMath math="\tfrac{198}{6840}" />.
+- <InlineMath math="\tfrac{3}{38}" /> adalah peluang ketiga bilangan dapat disusun menjadi barisan aritmetika tanpa memperhatikan urutan: <InlineMath math="\tfrac{90}{1140}" /> dengan <InlineMath math="\binom{20}{3}=1140" />.
+- <InlineMath math="\tfrac{3}{19}" /> muncul jika pembilangnya berurutan tetapi penyebutnya tidak berurutan: <InlineMath math="\tfrac{180}{1140}" />.
+
+Jadi, peluang ketiga bilangan dalam urutan pengambilannya membentuk barisan aritmetika adalah <InlineMath math="\tfrac{1}{38}" />.

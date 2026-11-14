@@ -1,19 +1,35 @@
-Kerjakan kedua transformasi **sesuai urutannya**: rotasi lebih dulu, lalu dilatasi terhadap hasil rotasi.
+Kuantitas <InlineMath math="P" /> dan <InlineMath math="Q" /> bergantung pada <InlineMath math="n" />, jadi cari dulu **semua bilangan bulat <InlineMath math="n" /> yang diizinkan**. Setelah itu bandingkan <InlineMath math="P" /> dan <InlineMath math="Q" /> untuk setiap nilai itu. Kalau hubungannya berbeda untuk nilai <InlineMath math="n" /> yang berbeda, informasinya tidak cukup.
 
-# Rotasi 90 derajat
+# Syarat numerus
 
-Rotasi <InlineMath math="90^\circ" /> berlawanan arah jarum jam terhadap <InlineMath math="O" /> memetakan <InlineMath math="(x,y)" /> ke <InlineMath math="(-y,x)" />. Cara cepat memeriksanya: titik <InlineMath math="(1,0)" /> di sumbu <InlineMath math="x" /> positif **berpindah ke <InlineMath math="(0,1)" />** di sumbu <InlineMath math="y" /> positif.
+Logaritma hanya terdefinisi untuk bilangan positif. Jadi <InlineMath math="n>0" /> dan <InlineMath math="n-2>0" />, yang bersama-sama memberi <InlineMath math="n>2" />. **Syarat numerus ini berlaku sebelum pertidaksamaan diselesaikan**.
 
-<BlockMath math="P(3,-1)\;\longmapsto\;P'(1,3)" />
+# Menyelesaikan pertidaksamaan
 
-# Dilatasi dengan faktor 2
+Jumlah dua logaritma berbasis sama adalah logaritma dari hasil kalinya, dan <InlineMath math="3={}^{2}\log8" />. Basis <InlineMath math="2" /> lebih dari <InlineMath math="1" />, jadi **arah tanda tidak berubah** saat logaritma dilepas.
 
-Dilatasi terhadap <InlineMath math="O" /> dengan faktor 2 **mengalikan kedua koordinat dengan 2**.
+<BlockMath math="\begin{aligned}
+{}^{2}\log\big(n(n-2)\big)&\le{}^{2}\log8\\
+n^2-2n-8&\le0\\
+(n-4)(n+2)&\le0\\
+-2\le n&\le4
+\end{aligned}" />
 
-<BlockMath math="P'(1,3)\;\longmapsto\;P''(2,6)" />
+Digabung dengan <InlineMath math="n>2" />, bilangan bulat yang tersisa hanya <InlineMath math="n=3" /> dan <InlineMath math="n=4" />. Cek batasnya: untuk <InlineMath math="n=4" />, ruas kiri <InlineMath math="{}^{2}\log4+{}^{2}\log2=3" />, memenuhi. Untuk <InlineMath math="n=5" />, ruas kiri <InlineMath math="{}^{2}\log15>{}^{2}\log8=3" />, tidak memenuhi.
 
-Pemeriksaan: jarak <InlineMath math="P" /> ke <InlineMath math="O" /> adalah <InlineMath math="\sqrt{10}" />, dan jarak bayangan akhirnya <InlineMath math="\sqrt{40}=2\sqrt{10}" />, sesuai dengan faktor skala 2.
+# Membandingkan P dan Q
 
-Titik <InlineMath math="(-2,-6)" /> memakai rotasi searah jarum jam. Titik <InlineMath math="(-2,6)" /> mencerminkan terhadap garis <InlineMath math="y=x" />, dan <InlineMath math="(-6,2)" /> memakai rotasi <InlineMath math="180^\circ" />. Titik <InlineMath math="(6,2)" /> mengabaikan tanda negatif pada koordinat <InlineMath math="y" />.
+<BlockMath math="\begin{aligned}
+n=3&\;\Longrightarrow\;P=2^3=8,\quad Q=3^2=9\\
+n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
+\end{aligned}" />
 
-Jadi, bayangan akhir titik <InlineMath math="P" /> adalah **<InlineMath math="(2,6)" />**.
+Untuk <InlineMath math="n=3" /> berlaku <InlineMath math="Q>P" />, sedangkan untuk <InlineMath math="n=4" /> berlaku <InlineMath math="P=Q" />. Kedua nilai sama-sama sah, jadi **tidak ada satu hubungan yang selalu benar**.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="Q>P" /> **hanya memeriksa <InlineMath math="n=3" />**. Memang <InlineMath math="Q" /> tidak pernah kalah dari <InlineMath math="P" /> di sini, tetapi untuk <InlineMath math="n=4" /> keduanya sama.
+- <InlineMath math="P=Q" /> hanya memeriksa <InlineMath math="n=4" /> dan melupakan <InlineMath math="n=3" />.
+- <InlineMath math="P>Q" /> mengabaikan pertidaksamaan dan memakai fakta umum bahwa <InlineMath math="2^n>n^2" /> untuk <InlineMath math="n\ge5" />, padahal <InlineMath math="n" /> paling besar <InlineMath math="4" />.
+
+Jadi, informasi yang diberikan tidak cukup untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.

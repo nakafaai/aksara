@@ -1,20 +1,53 @@
-Die Kugel wird vor dem zweiten Zug zurückgelegt, also **ist der Beutel bei beiden Zügen gleich**, und die Ereignisse sind unabhängig. Verschiedene Farben sind in zwei Reihenfolgen möglich.
+Alle vier Aussagen hängen an den Eckpunkten des Bereichs <InlineMath math="D" />. Der Plan: Bestimme zuerst die Ecken und nutze dann die Grundtatsache der linearen Optimierung: **Das Maximum einer linearen Funktion auf einem Vieleck wird immer in einer Ecke erreicht**. Danach prüfst du, was diese Tatsache nicht abdeckt: die Bedingung ganzer Zahlen, eine Kante parallel zur Funktion und eine veränderte Nebenbedingung.
 
-# Die zwei Reihenfolgen
+# Die Ecken des Bereichs
+
+Den Schnittpunkt der beiden schrägen Geraden findest du durch Elimination. Multipliziere <InlineMath math="2x+y=10" /> mit <InlineMath math="3" /> und zieh dann <InlineMath math="x+3y=14" /> ab.
 
 <BlockMath math="\begin{aligned}
-P(\text{rot, dann blau})&=\tfrac35\cdot\tfrac25=\tfrac{6}{25}\\
-P(\text{blau, dann rot})&=\tfrac25\cdot\tfrac35=\tfrac{6}{25}
+6x+3y-(x+3y) &= 30-14 \\
+5x &= 16 \\
+x=\tfrac{16}{5},\quad y &= 10-\tfrac{32}{5}=\tfrac{18}{5}
 \end{aligned}" />
 
-# Beide Reihenfolgen addieren
+Die Gerade <InlineMath math="2x+y=10" /> schneidet die <InlineMath math="x" />-Achse in <InlineMath math="(5,0)" />, und die Gerade <InlineMath math="x+3y=14" /> schneidet die <InlineMath math="y" />-Achse in <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. Die anderen Achsenschnittpunkte, <InlineMath math="(0,10)" /> und <InlineMath math="(14,0)" />, verletzen die jeweils andere Ungleichung. Die Ecken von <InlineMath math="D" /> sind also <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" /> und <InlineMath math="\left(0,\tfrac{14}{3}\right)" />.
 
-Die beiden Reihenfolgen schließen sich aus, also **werden ihre Wahrscheinlichkeiten addiert**.
+# Die erste Aussage
 
-<BlockMath math="P=\tfrac{6}{25}+\tfrac{6}{25}=\tfrac{12}{25}" />
+Berechne <InlineMath math="3x+4y" /> in jeder Ecke.
 
-Kontrolle: Die Wahrscheinlichkeit für gleiche Farben ist <InlineMath math="\tfrac{9}{25}+\tfrac{4}{25}=\tfrac{13}{25}" />, und <InlineMath math="\tfrac{12}{25}+\tfrac{13}{25}=1" />.
+<BlockMath math="\begin{aligned}
+(0,0)&:\ 0, \qquad (5,0):\ 15 \\
+\left(\tfrac{16}{5},\tfrac{18}{5}\right)&:\ \tfrac{48}{5}+\tfrac{72}{5}=24, \qquad \left(0,\tfrac{14}{3}\right):\ \tfrac{56}{3}
+\end{aligned}" />
 
-Der Wert <InlineMath math="\tfrac{13}{25}" /> ist die Wahrscheinlichkeit für gleiche Farben. Der Wert <InlineMath math="\tfrac35" /> entsteht ohne Zurücklegen, <InlineMath math="2\cdot\tfrac35\cdot\tfrac24" />. Der Wert <InlineMath math="\tfrac{21}{25}" /> ist die Wahrscheinlichkeit für mindestens eine rote Kugel.
+Der größte Wert ist <InlineMath math="24" />, und **diese Ecke zählt**, weil <InlineMath math="x" /> und <InlineMath math="y" /> hier reelle Zahlen sind. Diese Aussage ist wahr.
 
-Die Wahrscheinlichkeit für verschiedene Farben ist also **<InlineMath math="\tfrac{12}{25}" />**.
+# Die zweite Aussage
+
+Der Wert <InlineMath math="24" /> wird in einem Punkt mit Bruchkoordinaten erreicht. Für natürliche Zahlen ist der Wert höchstens <InlineMath math="24" />, also prüfst du alle ganzzahligen Punkte, die <InlineMath math="24" /> oder <InlineMath math="23" /> liefern.
+
+<BlockMath math="\begin{aligned}
+3x+4y=24&:\ (0,6),\ (4,3),\ (8,0) \\
+3x+4y=23&:\ (1,5),\ (5,2)
+\end{aligned}" />
+
+Jeder davon verletzt eine Nebenbedingung: Bei <InlineMath math="(0,6)" /> und <InlineMath math="(1,5)" /> wird <InlineMath math="x+3y" /> größer als <InlineMath math="14" />, bei <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" /> und <InlineMath math="(5,2)" /> wird <InlineMath math="2x+y" /> größer als <InlineMath math="10" />. Der Punkt <InlineMath math="(2,4)" /> erfüllt <InlineMath math="2\cdot 2+4=8\le 10" /> und <InlineMath math="2+12=14\le 14" /> mit dem Wert <InlineMath math="6+16=22" />. Also ist **das ganzzahlige Maximum <InlineMath math="22" />**, nicht <InlineMath math="23" />. Auch das Runden der Ecke auf <InlineMath math="(3,4)" /> scheitert, weil <InlineMath math="3+12=15>14" /> ist. Diese Aussage ist falsch.
+
+# Die dritte Aussage
+
+Die Nebenbedingung <InlineMath math="2x+y\le 10" /> sorgt schon dafür, dass <InlineMath math="2x+y" /> höchstens <InlineMath math="10" /> ist. Der Wert <InlineMath math="10" /> wird auf der ganzen Kante von <InlineMath math="(5,0)" /> bis <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" /> erreicht, zum Beispiel in <InlineMath math="(5,0)" /> und in <InlineMath math="(4,2)" />. Weil **die Funktion parallel zu einer Kante des Bereichs verläuft**, wird das Maximum in unendlich vielen Punkten erreicht. Diese Aussage ist falsch.
+
+# Die vierte Aussage
+
+Die neue Nebenbedingung verschiebt den Schnittpunkt der beiden schrägen Geraden.
+
+<BlockMath math="\begin{aligned}
+6x+3y-(x+3y) &= 30-17 \\
+x=\tfrac{13}{5},\quad y &= 10-\tfrac{26}{5}=\tfrac{24}{5} \\
+3x+4y &= \tfrac{39}{5}+\tfrac{96}{5}=27
+\end{aligned}" />
+
+Die anderen Ecken liefern <InlineMath math="15" /> in <InlineMath math="(5,0)" /> und <InlineMath math="\tfrac{68}{3}" /> in <InlineMath math="\left(0,\tfrac{17}{3}\right)" />, beide kleiner als <InlineMath math="27" />. Das Maximum steigt also von <InlineMath math="24" /> auf <InlineMath math="27" />, also um <InlineMath math="3" />. Die Zahl <InlineMath math="4" /> entsteht, wenn du glaubst, <InlineMath math="y" /> steige um <InlineMath math="1" />, während <InlineMath math="x" /> gleich bleibt. Aber **die Ecke rutscht entlang der Geraden <InlineMath math="2x+y=10" />**: <InlineMath math="x" /> sinkt um <InlineMath math="\tfrac{3}{5}" />, und <InlineMath math="y" /> steigt um <InlineMath math="\tfrac{6}{5}" />. Diese Aussage ist falsch.
+
+Nur die erste Aussage ist also wahr, die zweite, dritte und vierte Aussage sind falsch.

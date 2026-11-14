@@ -1,28 +1,46 @@
-Jede Aussage verwendet **ein anderes Maß**: eine Anzahl von Familien, eine prozentuale Änderung, einen Mittelwert und einen Median. Berechne jedes aus der Tabelle.
+Das Vorzeichen eines Produkts hängt vom Vorzeichen jedes Faktors ab, also faktorisierst du zuerst alles. Der Plan: Faktorisieren, auf **den Faktor achten, der ein Quadrat ist**, eine Vorzeichentabelle aufstellen und dann die ganzen Zahlen zwischen <InlineMath math="-10" /> und <InlineMath math="10" /> zählen, die passen.
 
-# Richtung und prozentuale Änderung
+# Jeden Teil faktorisieren
 
-Der Verbrauch sank bei Familie B (25 auf 20) und Familie D (30 auf 27). Die anderen stiegen, also **sank er nur bei zwei Familien**. Die erste Aussage ist falsch.
-
-Eine prozentuale Zunahme bezieht sich auf den Verbrauch im Juli.
+Der erste Teil hat die Nullstellen <InlineMath math="1" /> und <InlineMath math="4" />, und **der zweite Teil ist ein vollständiges Quadrat**.
 
 <BlockMath math="\begin{aligned}
-\text{A}&:\quad \tfrac{6}{18}\approx33\%\\
-\text{C}&:\quad \tfrac{3}{12}=25\%\\
-\text{E}&:\quad \tfrac{9}{15}=60\%
+x^2-5x+4&=(x-1)(x-4)\\
+x^2-14x+49&=(x-7)^2
 \end{aligned}" />
 
-Die größte prozentuale Zunahme hat Familie E, nicht A. Familie E stieg um 9 Kubikmeter von **einem kleineren Ausgangswert**, nämlich 15, deshalb ist ihr Prozentsatz am größten. Die zweite Aussage ist falsch.
+Die Ungleichung wird also zu <InlineMath math="(x-1)(x-4)(x-7)^2(x+3)\le0" />.
 
-# Mittelwert und Median
+# Was der quadratische Faktor bewirkt
+
+Der Faktor <InlineMath math="(x-7)^2" /> ist nie negativ. Für <InlineMath math="x\ne7" /> ist er positiv, **ändert also das Vorzeichen des Produkts nicht**, und die Ungleichung ist gleichwertig mit <InlineMath math="(x-1)(x-4)(x+3)\le0" />. Bei <InlineMath math="x=7" /> ist dieser Faktor null, also ist das ganze Produkt <InlineMath math="0" />, und <InlineMath math="x=7" /> **zählt als Lösung**, weil das Zeichen <InlineMath math="\le" /> ist.
+
+# Eine Vorzeichentabelle für drei Faktoren
+
+Die drei Faktoren werden bei <InlineMath math="-3" />, <InlineMath math="1" /> und <InlineMath math="4" /> null. **Ein Vorzeichen kann nur an einer Nullstelle wechseln**, also reicht ein Testpunkt in jedem Intervall, um die Vorzeichen zu bestimmen.
+
+| Intervall | <InlineMath math="x+3" /> | <InlineMath math="x-1" /> | <InlineMath math="x-4" /> | Produkt |
+| :--- | :---: | :---: | :---: | :---: |
+| <InlineMath math="x<-3" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="-3<x<1" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> | <InlineMath math="+" /> |
+| <InlineMath math="1<x<4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="-" /> | <InlineMath math="-" /> |
+| <InlineMath math="x>4" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> | <InlineMath math="+" /> |
+
+Das Produkt ist negativ oder null für <InlineMath math="x\le-3" /> und für <InlineMath math="1\le x\le4" />. Dazu kommt der isolierte Punkt <InlineMath math="x=7" />, also ist die Lösungsmenge <InlineMath math="x\le-3" />, <InlineMath math="1\le x\le4" /> oder <InlineMath math="x=7" />.
+
+# Die ganzen Zahlen zählen
+
+Schränk auf <InlineMath math="-10\le x\le10" /> ein und zähl jeden Teil, **beide Randpunkte eingeschlossen**, weil das Zeichen <InlineMath math="\le" /> ist.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{Juli}}&=\frac{18+25+12+30+15}{5}=\frac{100}{5}=20\\
-\bar x_{\text{August}}&=\frac{24+20+15+27+24}{5}=\frac{110}{5}=22
+-10\le x\le-3&: \ 8 \text{ Zahlen}\\
+1\le x\le4&: \ 4 \text{ Zahlen}\\
+x=7&: \ 1 \text{ Zahl}\\
+\text{insgesamt}&: \ 8+4+1=13
 \end{aligned}" />
 
-Der Unterschied beträgt 2 Kubikmeter, also ist die dritte Aussage wahr.
+Probe an einigen Stellen in der ursprünglichen Form: Bei <InlineMath math="x=7" /> ist der Wert <InlineMath math="(18)(0)(10)=0" />, das passt. Bei <InlineMath math="x=6" /> ist er <InlineMath math="(10)(1)(9)=90>0" />, und bei <InlineMath math="x=0" /> ist er <InlineMath math="(4)(49)(3)=588>0" />, beide passen also nicht.
 
-Die geordneten Juli-Werte sind 12, 15, 18, 25, 30. **Der mittlere Wert ist 18**, also ist die vierte Aussage wahr.
+Wenn du beide Seiten durch <InlineMath math="(x-7)^2" /> teilst, ohne <InlineMath math="x=7" /> zu prüfen, verlierst du eine Lösung und erhältst <InlineMath math="12" />. Wenn du <InlineMath math="(x-7)^2" /> wie einen gewöhnlichen Faktor behandelst, der das Vorzeichen wechselt, erhältst du <InlineMath math="-3\le x\le1" /> oder <InlineMath math="4\le x\le7" />, also <InlineMath math="9" /> Zahlen.
 
-Die erste Aussage ist also **falsch**, die zweite **falsch**, die dritte **wahr** und die vierte **wahr**.
+Die Anzahl der ganzen Zahlen <InlineMath math="x" /> mit <InlineMath math="-10\le x\le10" />, die die Ungleichung erfüllen, ist also <InlineMath math="13" />.

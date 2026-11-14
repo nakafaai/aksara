@@ -1,17 +1,35 @@
-Yang dihitung hanyalah **siapa berpasangan dengan siapa**. Karena pasangan tidak diberi nama, urutan munculnya pasangan tidak boleh menambah hitungan.
+Ada dua syarat: semua vokal berkumpul, dan huruf pertama serta terakhir konsonan. Rencananya, ikat semua vokal menjadi satu **blok**, atur isi blok, tentukan tempat blok yang masih boleh, lalu atur konsonan di tempat sisanya. Ingat juga bahwa kata ini punya **huruf kembar**, jadi menukar dua huruf yang sama tidak menghasilkan susunan baru.
 
-# Membentuk pasangan satu per satu
+# Huruf pada kata itu
 
-Pilih siswa mana pun, misalnya siswa pertama dalam daftar. Ia dapat dipasangkan dengan 5 siswa lain. Dari 4 siswa yang tersisa, ambil yang pertama dalam daftar, dan ia dapat dipasangkan dengan 3 siswa. Dua siswa terakhir **otomatis menjadi satu pasangan**.
+Kata STATISTIKA punya <InlineMath math="10" /> huruf. Vokalnya A, A, I, I, yaitu <InlineMath math="4" /> huruf. Konsonannya S, S, T, T, T, K, yaitu <InlineMath math="6" /> huruf. Jadi huruf S muncul <InlineMath math="2" /> kali, T muncul <InlineMath math="3" /> kali, A muncul <InlineMath math="2" /> kali, dan I muncul <InlineMath math="2" /> kali.
 
-<BlockMath math="5\cdot3\cdot1=15" />
+# Susunan di dalam blok
 
-# Pemeriksaan dengan kombinasi
+Keempat vokal disusun di dalam blok. Karena A kembar dan I kembar, bagi dengan banyak cara menukar huruf yang sama.
 
-Jika pasangan diberi nomor 1, 2, dan 3, banyak caranya <InlineMath math="\binom62\binom42\binom22=15\cdot6\cdot1=90" />. Setiap pembagian tanpa nomor muncul **sebanyak <InlineMath math="3!=6" /> kali** dalam hitungan itu, satu kali untuk setiap urutan nomor.
+<BlockMath math="\frac{4!}{2!\,2!}=\frac{24}{4}=6" />
 
-<BlockMath math="\frac{90}{3!}=15" />
+# Letak blok dan konsonan
 
-Nilai 90 memperlakukan pasangan seolah-olah bernomor, dan nilai 45 hanya membagi 90 dengan 2. Nilai 6 dan 10 tidak menghitung semua cara memasangkan siswa yang tersisa.
+Anggap blok sebagai satu benda. Sekarang ada <InlineMath math="7" /> benda dalam satu baris: blok dan enam konsonan. Huruf pertama dan terakhir harus konsonan, jadi **blok tidak boleh berada di tempat pertama atau terakhir**. Blok hanya boleh di tempat kedua sampai keenam, jadi ada <InlineMath math="5" /> pilihan. Keenam konsonan mengisi enam tempat sisanya, dengan S kembar dua dan T kembar tiga.
 
-Jadi, banyak cara membagi keenam siswa adalah **15**.
+<BlockMath math="\begin{aligned}
+\text{susunan konsonan} &= \frac{6!}{2!\,3!}=\frac{720}{12}=60 \\
+\text{banyak susunan} &= 5\cdot 60\cdot 6=1{.}800
+\end{aligned}" />
+
+# Pemeriksaan
+
+Tanpa syarat huruf awal dan akhir, ketujuh benda bisa disusun dengan <InlineMath math="\tfrac{7!}{2!\,3!}=420" /> cara. Blok bisa berada di setiap tempat dengan banyak susunan yang sama, jadi **tepat <InlineMath math="5" /> dari <InlineMath math="7" /> bagian** membuat blok tidak di ujung. Hasilnya <InlineMath math="420\cdot\tfrac{5}{7}\cdot 6=300\cdot 6=1{.}800" />, sama dengan hitungan tadi.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **satu syarat atau satu huruf kembar yang terlewat**.
+
+- <InlineMath math="2{.}520" /> mengabaikan syarat huruf awal dan akhir, yaitu <InlineMath math="420\cdot 6" />.
+- <InlineMath math="3{.}600" /> lupa membagi dengan <InlineMath math="2!" /> untuk huruf S yang kembar.
+- <InlineMath math="7{.}200" /> menyusun vokal dengan <InlineMath math="4!=24" /> cara, tanpa memperhitungkan A dan I yang kembar.
+- <InlineMath math="10{.}800" /> lupa membagi dengan <InlineMath math="3!" /> untuk huruf T yang kembar tiga.
+
+Jadi, ada <InlineMath math="1{.}800" /> susunan yang memenuhi kedua syarat itu.

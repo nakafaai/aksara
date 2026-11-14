@@ -1,19 +1,35 @@
-The base of triangle <InlineMath math="CDP" /> is the side <InlineMath math="CD=10" />. Its height is the distance from <InlineMath math="P" /> to <InlineMath math="CD" />, which is **the side of the square minus the height of the equilateral triangle**.
+You need the ratio of the sum of terms <InlineMath math="21" /> to <InlineMath math="30" /> to the sum of the first <InlineMath math="10" /> terms. Here's the plan: turn the condition into a link between the first term <InlineMath math="a" /> and the common difference <InlineMath math="b" />, write every term using <InlineMath math="b" /> only, then **add up each group as the number of terms times the average of its first and last term**.
 
-# Height of the equilateral triangle
+# Linking the first term and the difference
 
-The altitude from <InlineMath math="P" /> to <InlineMath math="AB" /> bisects <InlineMath math="AB" />, giving a right triangle with hypotenuse 10 and base 5.
+The <InlineMath math="n" />th term is <InlineMath math="u_n=a+(n-1)b" />. In an arithmetic sequence, a run of consecutive terms adds up to the number of terms times the average of the first and last, because the terms are equally spaced.
 
-<BlockMath math="t_{ABP}=\sqrt{10^2-5^2}=\sqrt{75}=5\sqrt3\approx8.66" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}\big(a+(a+9b)\big)=10a+45b\\
+u_{11}+\dots+u_{15}&=\tfrac{5}{2}\big((a+10b)+(a+14b)\big)=5a+60b\\
+10a+45b&=5a+60b\\
+a&=3b
+\end{aligned}" />
 
-This is less than 10, so **<InlineMath math="P" /> does lie inside the square**.
+Since <InlineMath math="a\ne0" />, **the difference <InlineMath math="b" /> isn't zero either**. So the terms aren't all zero and the fraction in the question is defined. Every term can now be written with <InlineMath math="b" /> only: <InlineMath math="u_n=3b+(n-1)b=(n+2)b" />.
 
-# Area of triangle CDP
+# The sums of the two groups
 
-The sides <InlineMath math="AB" /> and <InlineMath math="CD" /> are parallel and 10 apart, so **the distance from point P to side CD** is <InlineMath math="10-5\sqrt3" />.
+Use <InlineMath math="u_n=(n+2)b" /> for the first and last term of each group.
 
-<BlockMath math="L_{CDP}=\tfrac12\cdot10\cdot\left(10-5\sqrt3\right)=50-25\sqrt3\approx6.7" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}(3b+12b)=75b\\
+u_{21}+\dots+u_{30}&=\tfrac{10}{2}(23b+32b)=275b\\
+\frac{275b}{75b}&=\frac{11}{3}
+\end{aligned}" />
 
-The value <InlineMath math="100-50\sqrt3" /> forgets the factor <InlineMath math="\tfrac12" />. The value <InlineMath math="25\sqrt3" /> is the area of triangle <InlineMath math="ABP" />. The value 25 is a quarter of the square, which is only right if <InlineMath math="P" /> is at the centre.
+Check the condition: terms <InlineMath math="11" /> to <InlineMath math="15" /> are <InlineMath math="13b" /> to <InlineMath math="17b" />, and they add up to <InlineMath math="\tfrac52(13b+17b)=75b" />. That's **the same as the sum of the first <InlineMath math="10" /> terms**, so <InlineMath math="a=3b" /> is right.
 
-So the area of triangle <InlineMath math="CDP" /> is **<InlineMath math="\left(50-25\sqrt3\right)\text{ cm}^2" />**.
+# The wrong options
+
+- <InlineMath math="-\tfrac53" /> comes from reading the condition as the sum of the first <InlineMath math="10" /> terms equalling the sum of the first <InlineMath math="15" /> terms, which gives <InlineMath math="a=-12b" />.
+- <InlineMath math="\tfrac73" /> comes from adding terms <InlineMath math="11" /> to <InlineMath math="20" /> instead: <InlineMath math="\tfrac{175b}{75b}" />.
+- <InlineMath math="\tfrac83" /> comes from assuming the ratio of the sums equals the ratio of their last terms: <InlineMath math="\tfrac{u_{30}}{u_{10}}=\tfrac{32b}{12b}" />.
+- <InlineMath math="\tfrac{18}{5}" /> comes from using <InlineMath math="u_{25}=27b" /> as the average of terms <InlineMath math="21" /> to <InlineMath math="30" />, but **the average of those <InlineMath math="10" /> terms is <InlineMath math="27.5b" />**: <InlineMath math="\tfrac{270b}{75b}" />.
+
+So the value of the ratio is <InlineMath math="\tfrac{11}{3}" />.

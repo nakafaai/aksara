@@ -1,17 +1,30 @@
-A statement is sufficient if **only one positive integer** satisfies it.
+A statement is sufficient when **the number of students who passed both exams has only one possible value**. The key is the base of each percentage: a percent of all students, or a percent of only some of them.
 
-# Statement (1) alone
+# Statement one alone
 
-Factorials keep increasing as <InlineMath math="n" /> grows, so **each factorial value is reached by only one positive <InlineMath math="n" />**, except the value 1.
+The number who passed Mathematics is <InlineMath math="60\%\cdot200=120" />. The second percentage **is taken of the students who passed Mathematics**, not of all students. Students who passed Mathematics and also passed Physics are exactly the students who passed both exams.
 
-<BlockMath math="5!=120,\qquad 6!=720,\qquad 7!=5{,}040" />
+<BlockMath math="75\%\cdot120=\frac{3}{4}\cdot120=90" />
 
-Only <InlineMath math="n=6" /> works. Statement (1) alone is sufficient.
+There's only one value, so statement (1) alone is sufficient.
 
-# Statement (2) alone
+# Statement two alone
 
-<BlockMath math="n^2-5n-6=(n-6)(n+1)=0" />
+The number who passed Physics is <InlineMath math="70\%\cdot200=140" />, and the number who passed neither is <InlineMath math="15\%\cdot200=30" />. So <InlineMath math="200-30=170" /> students passed at least one exam. If <InlineMath math="M" /> students passed Mathematics, **the inclusion-exclusion principle** gives
 
-The roots are <InlineMath math="n=6" /> and <InlineMath math="n=-1" />. The condition **<InlineMath math="n" /> is a positive integer** rejects <InlineMath math="-1" />, so <InlineMath math="n=6" />. Statement (2) alone is also sufficient, and it gives the same result as statement (1).
+<BlockMath math="\text{passed both}=M+140-170=M-30." />
 
-So **statement (1) alone is sufficient, and statement (2) alone is also sufficient**.
+The value of <InlineMath math="M" /> is unknown. The two situations below both satisfy statement (2), but they give different answers.
+
+| Situation | Mathematics only | Physics only | Both | Neither | Total |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="M=120" /> | <InlineMath math="30" /> | <InlineMath math="50" /> | <InlineMath math="90" /> | <InlineMath math="30" /> | <InlineMath math="200" /> |
+| <InlineMath math="M=100" /> | <InlineMath math="30" /> | <InlineMath math="70" /> | <InlineMath math="70" /> | <InlineMath math="30" /> | <InlineMath math="200" /> |
+
+Statement (2) alone isn't sufficient.
+
+# Both statements together
+
+The two statements don't contradict each other: the first situation in the table satisfies both. But statement (1) **is already sufficient on its own**, so statement (2) isn't needed. The trap appears if you read <InlineMath math="75\%" /> as a percent of all students. With that reading, statement (1) only tells you how many passed each exam, and you'd think the two statements must be combined.
+
+So statement (1) alone is sufficient to answer the question, but statement (2) alone isn't.

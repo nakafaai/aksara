@@ -1,22 +1,50 @@
-The number of solutions of two linear equations depends on **whether the two lines intersect, are parallel, or coincide**. Compare the coefficients of the two equations.
+You need to get rid of <InlineMath math="a" /> and keep a relation between <InlineMath math="b" />, <InlineMath math="c" /> and <InlineMath math="d" />. The plan is to call the common value of the four powers <InlineMath math="k" />, turn each exponent into a logarithm with base <InlineMath math="k" />, and then use the fact that **<InlineMath math="6" /> and <InlineMath math="12" /> are built from the factors <InlineMath math="2" /> and <InlineMath math="3" />**.
 
-# The case a equals one
+# Turning exponents into logarithms
 
-For <InlineMath math="a=1" />, multiply the first equation by 3.
+Let <InlineMath math="2^a=3^b=6^c=12^d=k" />. The number <InlineMath math="k" /> is positive, because every power of a positive number is positive. Also <InlineMath math="k\ne 1" />, since <InlineMath math="2^a=1" /> only happens when <InlineMath math="a=0" />, and <InlineMath math="a" /> isn't zero. So **you're allowed to use logarithms with base <InlineMath math="k" />**.
 
-<BlockMath math="3x+6y=12" />
-
-Its left side matches the second equation. If <InlineMath math="b=12" />, both equations **describe the same line**, so there are infinitely many solutions. The first statement is true. If <InlineMath math="b=10" />, the same left side would have to equal both 12 and 10, which is impossible. The lines are parallel with no solution, so the second statement is false.
-
-# The case a equals two
-
-The coefficient ratios <InlineMath math="2:3" /> and <InlineMath math="2:6" /> differ, so the lines **intersect at exactly one point**. The fourth statement is true. Find that point.
+From <InlineMath math="2^a=k" /> you get <InlineMath math="a=\log_2 k" />. The rule <InlineMath math="\log_p q\cdot\log_q p=1" /> flips the base.
 
 <BlockMath math="\begin{aligned}
-2x+2y=4&\;\Longrightarrow\;x=2-y\\
-3(2-y)+6y=12&\;\Longrightarrow\;y=2,\quad x=0
+\frac{1}{a} &= \log_k 2, & \frac{1}{b} &= \log_k 3, \\
+\frac{1}{c} &= \log_k 6, & \frac{1}{d} &= \log_k 12
 \end{aligned}" />
 
-The solution is <InlineMath math="x=0" /> and <InlineMath math="y=2" />. The pair <InlineMath math="x=2" />, <InlineMath math="y=0" /> satisfies the first equation but gives <InlineMath math="3\cdot2+0=6\ne12" />. The third statement is false.
+# Two new equations
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+The logarithm of a product is the sum of the logarithms. Use <InlineMath math="6=2\cdot 3" /> and <InlineMath math="12=2\cdot 2\cdot 3" />. Notice that **the factor <InlineMath math="2" /> appears twice in <InlineMath math="12" />**.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{c} &= \log_k 2+\log_k 3=\frac{1}{a}+\frac{1}{b} \\
+\frac{1}{d} &= 2\log_k 2+\log_k 3=\frac{2}{a}+\frac{1}{b}
+\end{aligned}" />
+
+# Removing one variable
+
+Multiply the first equation by <InlineMath math="2" />, then subtract the second equation. That way **the terms <InlineMath math="\tfrac{2}{a}" /> cancel**.
+
+<BlockMath math="\begin{aligned}
+\frac{2}{c}-\frac{1}{d} &= \left(\frac{2}{a}+\frac{2}{b}\right)-\left(\frac{2}{a}+\frac{1}{b}\right)=\frac{1}{b} \\
+\frac{1}{b} &= \frac{2d-c}{cd} \\
+b &= \frac{cd}{2d-c}
+\end{aligned}" />
+
+# Checking
+
+Work out the left side again directly with logarithms. It really is <InlineMath math="\log_k 3" />, which is <InlineMath math="\tfrac{1}{b}" />.
+
+<BlockMath math="\frac{2}{c}-\frac{1}{d}=2\log_k 6-\log_k 12=\log_k\frac{36}{12}=\log_k 3" />
+
+The denominator <InlineMath math="2d-c" /> can't be zero either, because **<InlineMath math="\tfrac{1}{b}=\log_k 3" /> isn't zero** when <InlineMath math="k\ne 1" />.
+
+# The wrong options
+
+Each other option comes from **an elimination step that went the wrong way**.
+
+- <InlineMath math="\dfrac{cd}{c-d}" /> is the value of <InlineMath math="a" />. It shows up when you subtract the two equations directly, which removes <InlineMath math="b" /> instead.
+- <InlineMath math="\dfrac{cd}{d-c}" /> comes from that same subtraction with the sign flipped.
+- <InlineMath math="\dfrac{cd}{2c-d}" /> swaps the roles of <InlineMath math="c" /> and <InlineMath math="d" />, as if <InlineMath math="\tfrac{1}{b}=\tfrac{2}{d}-\tfrac{1}{c}" />.
+- <InlineMath math="\dfrac{cd}{c+d}" /> copies the pattern <InlineMath math="\tfrac{1}{c}=\tfrac{1}{a}+\tfrac{1}{b}" /> onto <InlineMath math="b" />, <InlineMath math="c" /> and <InlineMath math="d" />, but that pattern only holds because <InlineMath math="6=2\cdot 3" />.
+
+So <InlineMath math="b=\dfrac{cd}{2d-c}" />.

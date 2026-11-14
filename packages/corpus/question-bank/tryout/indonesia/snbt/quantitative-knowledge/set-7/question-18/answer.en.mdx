@@ -1,19 +1,33 @@
-Once four different digits are chosen, **there is exactly one increasing arrangement and exactly one decreasing arrangement**. So each kind is counted by choosing a set of four digits, with special care for the digit 0.
+Two conditions affect each other here. The thousands digit is limited by <InlineMath math="3{,}400" />, and the units digit has to be even and not already used somewhere else. Here's the plan: split into cases by the thousands digit (and by the hundreds digit when the thousands digit is <InlineMath math="3" />), then **fill the most restricted place first**, which is the units digit, and the rest after.
 
-# Increasing arrangements
+# Thousands digit three
 
-In an increasing arrangement, the smallest digit comes first. If 0 were chosen, the number would start with 0 and **would not be a four-digit number**. So the four digits come from 1 to 9.
+A number starting with <InlineMath math="3" /> has to be more than <InlineMath math="3{,}400" />, so **its hundreds digit has to be <InlineMath math="4" /> or <InlineMath math="5" />**. Every number starting with <InlineMath math="34" /> is already more than <InlineMath math="3{,}400" />, because <InlineMath math="3{,}400" /> itself uses the digit <InlineMath math="0" /> twice.
 
-<BlockMath math="\binom94=\frac{9\cdot8\cdot7\cdot6}{4\cdot3\cdot2\cdot1}=126" />
+- Starting with <InlineMath math="34" />: the only unused even units digits are <InlineMath math="0" /> or <InlineMath math="2" />, so there are <InlineMath math="2" /> choices. The tens digit comes from the <InlineMath math="3" /> digits left. That's <InlineMath math="2\times3=6" /> numbers.
+- Starting with <InlineMath math="35" />: the units digit can be <InlineMath math="0" />, <InlineMath math="2" />, or <InlineMath math="4" />, so there are <InlineMath math="3" /> choices. The tens digit comes from the <InlineMath math="3" /> digits left. That's <InlineMath math="3\times3=9" /> numbers.
 
-# Decreasing arrangements
+# Thousands digit four or five
 
-In a decreasing arrangement, the largest digit comes first, so 0 always ends up last when it is chosen. **The digit 0 is allowed**, so the four digits come from 0 to 9.
+If the thousands digit is <InlineMath math="4" />, the digit <InlineMath math="4" /> is already used, so **the even units digit can only be <InlineMath math="0" /> or <InlineMath math="2" />**. If the thousands digit is <InlineMath math="5" />, the units digit can be <InlineMath math="0" />, <InlineMath math="2" />, or <InlineMath math="4" />. In both cases the hundreds and tens digits are filled in order from the <InlineMath math="4" /> digits left, in <InlineMath math="4\times3=12" /> ways.
 
-<BlockMath math="\binom{10}{4}=\frac{10\cdot9\cdot8\cdot7}{4\cdot3\cdot2\cdot1}=210" />
+<BlockMath math="\begin{aligned}
+\text{thousands } 4&: 2\times12=24\\
+\text{thousands } 5&: 3\times12=36\\
+\text{total}&: 6+9+24+36=75
+\end{aligned}" />
 
-No number is both increasing and decreasing, so the two counts are added: <InlineMath math="126+210=336" />.
+# Checking with the complement
 
-The values 126 and 210 each count only one kind of arrangement. The value 252 forbids 0 in both kinds, and 420 allows 0 in both kinds.
+A second route: first count every even number above <InlineMath math="3{,}000" />, then **throw out the ones below the limit**, that is the ones between <InlineMath math="3{,}000" /> and <InlineMath math="3{,}400" />. Numbers starting with <InlineMath math="3" /> have <InlineMath math="3" /> units choices and <InlineMath math="4\times3=12" /> ways to fill the middle, so there are <InlineMath math="36" />. Adding <InlineMath math="24+36" /> gives <InlineMath math="96" /> in total.
 
-So the number of interesting four-digit numbers is **336**.
+The ones to throw out start with <InlineMath math="30" />, <InlineMath math="31" />, or <InlineMath math="32" />. Starting with <InlineMath math="30" /> there are <InlineMath math="2\times3=6" /> (units <InlineMath math="2" /> or <InlineMath math="4" />), starting with <InlineMath math="31" /> there are <InlineMath math="3\times3=9" />, and starting with <InlineMath math="32" /> there are <InlineMath math="2\times3=6" /> (units <InlineMath math="0" /> or <InlineMath math="4" />). The result is <InlineMath math="96-(6+9+6)=75" />, the same.
+
+# The wrong options
+
+- <InlineMath math="69" /> comes from also throwing out the numbers starting with <InlineMath math="34" />, as if the hundreds digit had to be more than <InlineMath math="4" />.
+- <InlineMath math="90" /> comes from always giving the units digit <InlineMath math="3" /> choices, **forgetting that the digit <InlineMath math="4" /> may already be used**.
+- <InlineMath math="96" /> counts every even number above <InlineMath math="3{,}000" />, not above <InlineMath math="3{,}400" />.
+- <InlineMath math="108" /> combines both mistakes, that is <InlineMath math="3\times3\times4\times3" />.
+
+So the number of even numbers you can form that are greater than <InlineMath math="3{,}400" /> is <InlineMath math="75" />.

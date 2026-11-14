@@ -1,19 +1,45 @@
-The radii are not known separately, but the area of the ring needs only **the difference of the squared radii**, <InlineMath math="\pi(R^2-r^2)" />.
+The pond's area depends on its two sides, but those sides are tied together by the hypotenuse of the triangle. Here's the plan: write one side in terms of the other, find the largest area without the extra condition, then **check whether the rule "at least <InlineMath math="6\text{ m}" />" moves the answer**.
 
-# A right triangle at the point of tangency
+# How the two sides are linked
 
-Let the centre be <InlineMath math="O" />, the chord <InlineMath math="AB" />, and the point of tangency <InlineMath math="T" />. The radius <InlineMath math="OT" /> of the small circle is **perpendicular to the chord at the point of tangency**. A line from the centre perpendicular to a chord bisects it, so <InlineMath math="AT=8" />.
+Let the side of the pond on the <InlineMath math="12\text{ m}" /> leg be <InlineMath math="x" /> metres and the side on the <InlineMath math="9\text{ m}" /> leg be <InlineMath math="y" /> metres. Above the pond there's a small right triangle with base <InlineMath math="x" /> and height <InlineMath math="9-y" />. That small triangle is **similar to the garden triangle**, because its hypotenuse lies on the same line and both have a right angle, so the ratio of height to base is the same.
 
-Triangle <InlineMath math="OTA" /> is right-angled at <InlineMath math="T" />, with <InlineMath math="OA=R" /> and <InlineMath math="OT=r" />.
+<BlockMath math="\begin{aligned}
+\frac{9-y}{x}&=\frac{9}{12}\\
+y&=9-\tfrac34x
+\end{aligned}" />
 
-<BlockMath math="R^2=r^2+8^2\;\Longrightarrow\;R^2-r^2=64" />
+# The area without the extra condition
 
-# Area of the ring
+The pond's area is <InlineMath math="L(x)=x\left(9-\tfrac34x\right)=9x-\tfrac34x^2" />. This is a downward parabola, so its largest value is at the vertex.
 
-<BlockMath math="L=\pi R^2-\pi r^2=\pi(R^2-r^2)=64\pi" />
+<BlockMath math="\begin{aligned}
+x_{\text{vertex}}&=\frac{-9}{2\left(-\tfrac34\right)}=6\\
+y&=9-\tfrac34(6)=4.5\\
+L&=6\times4.5=27
+\end{aligned}" />
 
-The result **does not depend on the size of either circle**, as long as a 16 cm chord touches the small circle.
+But the side <InlineMath math="y=4.5\text{ m}" /> is shorter than <InlineMath math="6\text{ m}" />, so **the pond at the vertex breaks the rule**.
 
-The value <InlineMath math="256\pi" /> uses the whole chord 16 instead of its half. The value <InlineMath math="32\pi" /> takes half of <InlineMath math="64\pi" />, as if computing a triangle area. The value <InlineMath math="128\pi" /> computes <InlineMath math="\pi\cdot16\cdot8" />, and <InlineMath math="192\pi" /> subtracts <InlineMath math="64\pi" /> from <InlineMath math="256\pi" />.
+# Applying the side condition
 
-So the area between the two circles is **<InlineMath math="64\pi\text{ cm}^2" />**.
+The condition <InlineMath math="y\ge6" /> limits <InlineMath math="x" />.
+
+<BlockMath math="\begin{aligned}
+9-\tfrac34x&\ge6\\
+\tfrac34x&\le3\\
+x&\le4
+\end{aligned}" />
+
+On <InlineMath math="0<x\le4" />, every value of <InlineMath math="x" /> is to the left of the vertex <InlineMath math="x=6" />, where the parabola is still rising. So **the largest area happens at the boundary <InlineMath math="x=4" />**, with <InlineMath math="y=9-3=6" /> and <InlineMath math="L=4\times6=24" />.
+
+Check: the link between the sides can also be written as <InlineMath math="\frac{x}{12}+\frac{y}{9}=1" />, and the pair <InlineMath math="x=4" />, <InlineMath math="y=6" /> fits it because <InlineMath math="\frac{4}{12}+\frac{6}{9}=\frac13+\frac23=1" />. A smaller value, say <InlineMath math="x=3" />, gives <InlineMath math="y=6.75" /> and an area of <InlineMath math="20.25" />, which is less than <InlineMath math="24" />.
+
+# The wrong options
+
+- <InlineMath math="27\text{ m}^2" /> is the area at the vertex, which **ignores the rule of at least <InlineMath math="6\text{ m}" />**.
+- <InlineMath math="20.25\text{ m}^2" /> comes from computing the bound wrongly as <InlineMath math="x\le9-6=3" />, subtracting on the wrong leg, and then finding <InlineMath math="y=6.75" /> correctly.
+- <InlineMath math="18\text{ m}^2" /> comes from the same mistake, <InlineMath math="x=3" />, but taking the other side as <InlineMath math="6" /> straight away.
+- <InlineMath math="13.5\text{ m}^2" /> comes from swapping the legs in the ratio, <InlineMath math="\frac{9-y}{12}=\frac{x}{9}" />, which gives <InlineMath math="x=2.25" />.
+
+So the largest possible area of the pond is <InlineMath math="24\text{ m}^2" />.

@@ -1,21 +1,39 @@
-Computing the roots <InlineMath math="x=\tfrac{-1\pm\sqrt5}{2}" /> and raising them to the fourth power takes long. It is faster to **look for <InlineMath math="x^2+x" /> inside the expression**, because the equation gives <InlineMath math="x^2+x=1" />.
+You need to compute both quantities. <InlineMath math="Q" /> comes from triangle <InlineMath math="ABC" />, which is fully given. <InlineMath math="P" /> comes from the equal-area condition, and that's where the trap is: **two different isosceles triangles with legs <InlineMath math="17\text{ cm}" /> have that area**, and the non-congruence condition picks one of them.
 
-# Factorising the expression
+# The height and area of triangle ABC
+
+In an isosceles triangle, the height from the apex <InlineMath math="A" /> lands exactly at the midpoint of the base <InlineMath math="BC" />. So that height, half the base, and the leg <InlineMath math="AB" /> form **a right triangle**, and Pythagoras applies.
 
 <BlockMath math="\begin{aligned}
-x^4+2x^3+x^2&=x^2\left(x^2+2x+1\right)\\
-&=x^2(x+1)^2\\
-&=\left(x^2+x\right)^2
+h_{ABC}&=\sqrt{17^2-8^2}=\sqrt{289-64}=\sqrt{225}=15\\
+A_{ABC}&=\tfrac{1}{2}\cdot16\cdot15=120
 \end{aligned}" />
 
-# Substitution
+So <InlineMath math="Q=2\cdot15=30" />.
 
-From the equation, **<InlineMath math="x^2+x=1" />**.
+# Two possible triangles DEF
 
-<BlockMath math="\left(x^2+x\right)^2=1^2=1" />
+Let half of the base <InlineMath math="EF" /> be <InlineMath math="u" /> and the height from <InlineMath math="D" /> be <InlineMath math="h" />. Pythagoras gives <InlineMath math="u^2+h^2=17^2=289" />. The area is <InlineMath math="\frac{1}{2}\cdot2u\cdot h=uh" />, so <InlineMath math="uh=120" />. **Add and subtract <InlineMath math="2uh" />** to get perfect squares.
 
-This holds for both roots at once, so there is no need to choose one.
+<BlockMath math="\begin{aligned}
+(u+h)^2&=u^2+h^2+2uh=289+240=529\\
+(u-h)^2&=u^2+h^2-2uh=289-240=49
+\end{aligned}" />
 
-The value 0 appears if <InlineMath math="x^2+x" /> is taken as 0, ignoring the constant <InlineMath math="-1" />. The value <InlineMath math="-1" /> forgets that the expression is squared.
+Since <InlineMath math="u" /> and <InlineMath math="h" /> are positive, <InlineMath math="u+h=23" /> and they differ by <InlineMath math="7" />. The only pairs are <InlineMath math="u=8,\ h=15" /> or <InlineMath math="u=15,\ h=8" />, so <InlineMath math="EF=16" /> or <InlineMath math="EF=30" />.
 
-So the value of <InlineMath math="x^4+2x^3+x^2" /> is **1**.
+# The non-congruence condition
+
+If <InlineMath math="EF=16" />, triangle <InlineMath math="DEF" /> has sides <InlineMath math="17" />, <InlineMath math="17" />, and <InlineMath math="16" />, exactly like triangle <InlineMath math="ABC" />. Two triangles with the same three sides **are always congruent**, so this case is out. What's left is <InlineMath math="EF=30" />, so <InlineMath math="P=30" />.
+
+Check this triangle: base <InlineMath math="30" /> and height <InlineMath math="8" /> give area <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, and the leg is <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Both fit.
+
+# Comparing and the tempting wrong options
+
+The two quantities are equal, <InlineMath math="P=Q=30" />. That's no accident: in triangle <InlineMath math="DEF" />, half the base and the height swap roles with those of triangle <InlineMath math="ABC" />, so **half of <InlineMath math="EF" /> equals the height of triangle <InlineMath math="ABC" />**.
+
+- <InlineMath math="Q>P" /> comes from using <InlineMath math="EF=16" />, the triangle that's congruent to <InlineMath math="ABC" />.
+- The "not enough information" option comes from finding both values of <InlineMath math="EF" /> but forgetting the non-congruence condition.
+- <InlineMath math="P>Q" /> comes from computing <InlineMath math="Q" /> with the height of triangle <InlineMath math="DEF" />, <InlineMath math="2\cdot8=16" />, but <InlineMath math="Q" /> uses the height of triangle <InlineMath math="ABC" />.
+
+So the correct relationship is <InlineMath math="P=Q" />, since both equal <InlineMath math="30\text{ cm}" />.

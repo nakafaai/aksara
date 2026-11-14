@@ -1,22 +1,47 @@
-Bringe zuerst beide Seiten auf **dieselbe Basis**. Wegen <InlineMath math="\tfrac{1}{27}=\left(\tfrac13\right)^3" /> wird die Ungleichung zu einem Vergleich zweier Potenzen von <InlineMath math="\tfrac13" />.
+Die Bedingung <InlineMath math="\alpha=3\beta" /> allein passt zu zwei Werten von <InlineMath math="m" />, und **erst die Bedingung <InlineMath math="\alpha>\beta" /> wählt einen davon aus**. Der Plan: Schreib beide Lösungen mit einem Buchstaben, nutze Summe und Produkt der Lösungen, finde alle Möglichkeiten und streich dann die, die gegen die Reihenfolge verstößt.
 
-# Richtung bei einer Basis kleiner als eins
+# Beide Lösungen mit einem Buchstaben schreiben
 
-Die Funktion <InlineMath math="\left(\tfrac13\right)^t" /> ist fallend, also liefert ein kleinerer Exponent einen größeren Wert. Deshalb **dreht sich das Ungleichheitszeichen um**, wenn du die Exponenten vergleichst.
+Setze <InlineMath math="\beta=r" />, also <InlineMath math="\alpha=3r" />. Für eine Gleichung <InlineMath math="x^2+px+q=0" /> besagt der **Satz von Vieta**, dass die Summe der Lösungen <InlineMath math="-p" /> und ihr Produkt <InlineMath math="q" /> ist. Hier ist die Summe <InlineMath math="m+1" /> und das Produkt <InlineMath math="12-3m" />.
 
 <BlockMath math="\begin{aligned}
-\left(\tfrac13\right)^{x^2-2x}&>\left(\tfrac13\right)^{3}\\
-x^2-2x&<3\\
-x^2-2x-3&<0\\
-(x-3)(x+1)&<0
+\alpha+\beta&=r+3r=4r=m+1\\
+\alpha\beta&=r\times3r=3r^2=12-3m
 \end{aligned}" />
 
-# Das Lösungsintervall
+# Alle Möglichkeiten finden
 
-Das Produkt <InlineMath math="(x-3)(x+1)" /> ist **zwischen seinen beiden Nullstellen negativ**, also gilt <InlineMath math="-1<x<3" />. Die Stellen <InlineMath math="-1" /> und <InlineMath math="3" /> gehören nicht dazu, weil das Zeichen streng ist.
+Aus der ersten Gleichung folgt <InlineMath math="m=4r-1" />. Setz das in die zweite Gleichung ein, damit nur noch der Buchstabe <InlineMath math="r" /> übrig bleibt.
 
-Die ganzen Zahlen in diesem Intervall sind 0, 1 und 2. Kontrolle mit <InlineMath math="x=1" />: Der Exponent ist <InlineMath math="-1" />, die linke Seite also 3, und <InlineMath math="3>\tfrac{1}{27}" />.
+<BlockMath math="\begin{aligned}
+3r^2&=12-3(4r-1)\\
+3r^2&=15-12r\\
+r^2+4r-5&=0\\
+(r+5)(r-1)&=0
+\end{aligned}" />
 
-Der Wert 5 zählt die beiden Randstellen mit. Ohne Umdrehen des Zeichens wäre die Lösung <InlineMath math="x<-1" /> oder <InlineMath math="x>3" />, und das sind unendlich viele ganze Zahlen.
+Also ist <InlineMath math="r=1" /> oder <InlineMath math="r=-5" />. **Beide Werte erfüllen tatsächlich <InlineMath math="\alpha=3\beta" />**, wie die Tabelle zeigt.
 
-Es gibt also **3** ganze Zahlen, die die Ungleichung erfüllen.
+| <InlineMath math="r" /> | <InlineMath math="m" /> | Gleichung | Lösungen |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="x^2-4x+3=0" /> | <InlineMath math="\alpha=3,\ \beta=1" /> |
+| <InlineMath math="-5" /> | <InlineMath math="-21" /> | <InlineMath math="x^2+20x+75=0" /> | <InlineMath math="\alpha=-15,\ \beta=-5" /> |
+
+# Die Bedingung an die Reihenfolge anwenden
+
+Schau dir die zweite Zeile an. Wenn du eine negative Zahl mit <InlineMath math="3" /> multiplizierst, wird sie **kleiner**, also gilt <InlineMath math="-15<-5" /> und damit <InlineMath math="\alpha<\beta" />. Allgemein ist <InlineMath math="\alpha-\beta=3\beta-\beta=2\beta" />, deshalb **zwingt die Bedingung <InlineMath math="\alpha>\beta" /> die Lösung <InlineMath math="\beta" /> ins Positive**. Nur <InlineMath math="r=1" /> bleibt übrig, also <InlineMath math="m=3" />, <InlineMath math="\alpha=3" /> und <InlineMath math="\beta=1" />.
+
+<BlockMath math="\alpha^2+\beta^2=3^2+1^2=10" />
+
+Eine Probe mit der Identität für die Quadratsumme liefert dasselbe Ergebnis.
+
+<BlockMath math="\alpha^2+\beta^2=(\alpha+\beta)^2-2\alpha\beta=4^2-2(3)=10" />
+
+# Die falschen Antworten
+
+- <InlineMath math="13" /> kommt von <InlineMath math="(\alpha+\beta)^2-\alpha\beta" />, wobei der Faktor <InlineMath math="2" /> in <InlineMath math="2\alpha\beta" /> verloren geht.
+- <InlineMath math="16" /> ist <InlineMath math="(\alpha+\beta)^2" />, du hörst also auf, bevor du <InlineMath math="2\alpha\beta" /> abziehst.
+- <InlineMath math="250" /> stammt aus dem Fall <InlineMath math="m=-21" />, also <InlineMath math="(-15)^2+(-5)^2" />, aber **dieser Fall verletzt die geforderte Reihenfolge** <InlineMath math="\alpha>\beta" />.
+- <InlineMath math="260" /> addiert die Ergebnisse beider Fälle, als wären beide erlaubt.
+
+Der Wert von <InlineMath math="\alpha^2+\beta^2" /> ist also <InlineMath math="10" />.

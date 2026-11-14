@@ -1,24 +1,46 @@
-Baca kedelapan nilai dari grafik: Taman Kota 80, 96, 72, 112 dan Pantai 60, 90, 108, 102. Setiap pernyataan **membandingkan besaran yang berbeda**, jadi hitung besaran itu satu per satu.
+Kita hitung suku-suku yang memenuhi tiga syarat sekaligus: berada di antara <InlineMath math="100" /> dan <InlineMath math="1{.}000" />, kelipatan <InlineMath math="4" />, dan bukan kelipatan <InlineMath math="3" />. Rencananya: cari rumus suku ke-<InlineMath math="n" />, ubah setiap syarat menjadi **syarat pada nomor suku <InlineMath math="n" />**, lalu hitung kelipatan <InlineMath math="4" /> dikurangi kelipatan <InlineMath math="12" />.
 
-# Rata-rata dan jumlah mingguan
+# Menentukan rumus suku
+
+Dari suku ketiga ke suku kedelapan ada <InlineMath math="5" /> langkah beda <InlineMath math="b" />. Setelah <InlineMath math="b" /> diketahui, mundur dua langkah dari suku ketiga untuk **mendapatkan suku pertama**.
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{Taman}}&=\frac{80+96+72+112}{4}=\frac{360}{4}=90\\
-\bar x_{\text{Pantai}}&=\frac{60+90+108+102}{4}=\frac{360}{4}=90
+5b &= 59-24=35 \\
+b &= 7 \\
+u_1 &= 24-2\cdot7=10 \\
+u_n &= 10+7(n-1)=7n+3
 \end{aligned}" />
 
-Kedua rata-rata **sama besar**, jadi pernyataan pertama salah.
+# Menentukan batas nomor suku
 
-Jumlah kedua lokasi per minggu adalah 140, 186, 180, dan 214. Nilai terbesar ada pada minggu keempat, jadi pernyataan kedua benar.
+Syarat <InlineMath math="100<u_n<1{.}000" /> berlaku untuk nomor suku <InlineMath math="n" /> yang bulat, jadi **ambil bilangan bulat di dalam batas itu**.
 
-# Perubahan dan perbandingan
+<BlockMath math="\begin{aligned}
+100<7n+3<1{.}000 \\
+97<7n<997 \\
+14\le n\le142
+\end{aligned}" />
 
-Persentase penurunan dihitung terhadap **nilai awal, yaitu minggu kedua**.
+Cek ujungnya: <InlineMath math="u_{13}=94" /> terlalu kecil, <InlineMath math="u_{14}=101" /> masuk, <InlineMath math="u_{142}=997" /> masuk, dan <InlineMath math="u_{143}=1{.}004" /> terlalu besar.
 
-<BlockMath math="\frac{96-72}{96}\times100\%=\frac{24}{96}\times100\%=25\%" />
+# Mencari kelipatan empat
 
-Angka 24 adalah selisih banyak sepeda, bukan persentasenya. Pernyataan ketiga salah.
+Tulis <InlineMath math="7n+3=8n+4-(n+1)" />. Bagian <InlineMath math="8n+4" /> selalu habis dibagi <InlineMath math="4" />, jadi **<InlineMath math="u_n" /> habis dibagi <InlineMath math="4" /> tepat ketika <InlineMath math="n+1" /> habis dibagi <InlineMath math="4" />**, yaitu <InlineMath math="n=3,7,11,\dots" />. Di antara <InlineMath math="14" /> dan <InlineMath math="142" />, nomor seperti itu adalah <InlineMath math="15,19,\dots,139" />.
 
-Pada minggu ketiga, <InlineMath math="\tfrac{108}{72}=1{,}5" />, jadi pernyataan keempat benar.
+<BlockMath math="\text{banyaknya}=\frac{139-15}{4}+1=32" />
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **salah**, dan keempat **benar**.
+Contohnya <InlineMath math="u_{15}=108=4\cdot27" />.
+
+# Membuang kelipatan tiga
+
+Suku yang habis dibagi <InlineMath math="4" /> dan <InlineMath math="3" /> adalah kelipatan <InlineMath math="12" />. Untuk syarat kelipatan <InlineMath math="3" />, tulis <InlineMath math="7n+3=6n+3+n" />. Bagian <InlineMath math="6n+3" /> selalu kelipatan <InlineMath math="3" />, jadi <InlineMath math="u_n" /> kelipatan <InlineMath math="3" /> tepat ketika <InlineMath math="n" /> kelipatan <InlineMath math="3" />. Dari nomor <InlineMath math="15,19,23,27,\dots" />, **setiap nomor ketiga adalah kelipatan <InlineMath math="3" />**, dimulai dari <InlineMath math="15" />: yaitu <InlineMath math="15,27,39,\dots,135" />.
+
+<BlockMath math="\text{banyaknya}=\frac{135-15}{12}+1=11" />
+
+Contohnya <InlineMath math="u_{15}=108=12\cdot9" /> dan <InlineMath math="u_{135}=948=12\cdot79" />.
+
+<BlockMath math="\text{jawaban}=32-11=21" />
+
+Cek dengan pola: kelompokkan <InlineMath math="32" /> nomor tadi per tiga, dan nomor pertama setiap kelompok adalah kelipatan tiga. Ada <InlineMath math="10" /> kelompok penuh dan dua nomor sisa, yaitu <InlineMath math="135" /> dan <InlineMath math="139" />. Dari sisa itu hanya <InlineMath math="135" /> kelipatan tiga, jadi banyaknya <InlineMath math="10+1=11" />, sesuai hitungan tadi. Kesalahan yang sering terjadi adalah lupa membuang kelipatan <InlineMath math="12" />, sehingga menjawab <InlineMath math="32" />.
+
+Jadi, banyak suku yang memenuhi semua syarat itu adalah <InlineMath math="21" />.

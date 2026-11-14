@@ -1,20 +1,45 @@
-Sudut antara garis singgung dan tali busur menghadap busur yang sama dengan sudut keliling di seberangnya. Inilah **teorema sudut singgung tali busur**: kedua sudut itu sama besar.
+Tanpa syarat berbeda, hasil kali terbesar didapat dari angka <InlineMath math="3" /> sebanyak mungkin, yaitu <InlineMath math="3^8=6{.}561" />. Tetapi di soal ini **semua suku harus berbeda**, jadi cara itu tidak boleh. Rencananya: buang suku <InlineMath math="1" />, cari banyak suku paling banyak, lalu bandingkan semua susunan yang mungkin.
 
-# Busur yang dihadap
+# Suku satu tidak berguna
 
-Sudut <InlineMath math="35^\circ" /> antara <InlineMath math="\ell" /> dan <InlineMath math="AB" /> menghadap busur kecil <InlineMath math="AB" />. Sudut <InlineMath math="ACB" />, dengan <InlineMath math="C" /> di busur besar, **juga menghadap busur kecil <InlineMath math="AB" />**.
+Misalkan ada suku <InlineMath math="1" />. Tambahkan <InlineMath math="1" /> itu ke suku terbesar <InlineMath math="a" />. Jumlahnya tetap <InlineMath math="24" />, suku <InlineMath math="a+1" /> tetap berbeda dari suku lain karena lebih besar dari semuanya, dan hasil kalinya naik karena <InlineMath math="a\cdot1<a+1" />. Jadi **susunan terbaik tidak memuat suku <InlineMath math="1" />**.
 
-# Menghitung lewat sudut pusat
+# Banyak suku paling banyak
 
-Misalkan pusat lingkaran <InlineMath math="O" />. Jari-jari <InlineMath math="OA" /> tegak lurus garis singgung, jadi <InlineMath math="\angle OAB=90^\circ-35^\circ=55^\circ" />. Segitiga <InlineMath math="OAB" /> sama kaki karena <InlineMath math="OA=OB" />.
+Suku-suku berbeda yang paling kecil, mulai dari <InlineMath math="2" />, adalah <InlineMath math="2,3,4,\dots" />. Jumlahkan sampai jumlahnya melewati <InlineMath math="24" />.
 
 <BlockMath math="\begin{aligned}
-\angle AOB&=180^\circ-2\cdot55^\circ=70^\circ\\
-\angle ACB&=\tfrac12\angle AOB=35^\circ
+2+3+4+5+6&=20\le24\\
+2+3+4+5+6+7&=27>24
 \end{aligned}" />
 
-Sudut keliling **besarnya setengah sudut pusat** yang menghadap busur yang sama, dan hasilnya cocok dengan teorema sudut singgung tali busur.
+Jadi paling banyak ada **lima suku**. Kalau lima suku dipakai, suku terkecilnya harus <InlineMath math="2" />, karena lima bilangan berbeda yang paling kecil <InlineMath math="3" /> jumlahnya minimal <InlineMath math="3+4+5+6+7=25" />.
 
-Nilai <InlineMath math="70^\circ" /> adalah sudut pusat <InlineMath math="AOB" />, dan <InlineMath math="55^\circ" /> adalah sudut <InlineMath math="OAB" />. Nilai <InlineMath math="145^\circ" /> adalah pelurus <InlineMath math="35^\circ" />, yaitu besar sudut keliling jika <InlineMath math="C" /> berada di busur kecil.
+# Membandingkan susunan lima suku
 
-Jadi, besar sudut <InlineMath math="ACB" /> adalah **<InlineMath math="35^\circ" />**.
+Mulai dari <InlineMath math="2,3,4,5,6" />, masih ada sisa <InlineMath math="24-20=4" /> untuk dibagikan tanpa membuat dua suku sama. Hanya ada lima susunan.
+
+| Susunan | Hasil kali |
+| :---: | :---: |
+| <InlineMath math="2,3,4,5,10" /> | <InlineMath math="1{.}200" /> |
+| <InlineMath math="2,3,4,6,9" /> | <InlineMath math="1{.}296" /> |
+| <InlineMath math="2,3,4,7,8" /> | <InlineMath math="1{.}344" /> |
+| <InlineMath math="2,3,5,6,8" /> | <InlineMath math="1{.}440" /> |
+| <InlineMath math="2,4,5,6,7" /> | <InlineMath math="1{.}680" /> |
+
+Hasil kali terbesar muncul ketika **suku-sukunya sedekat mungkin satu sama lain**, yaitu <InlineMath math="2,4,5,6,7" />.
+
+<BlockMath math="2\cdot4\cdot5\cdot6\cdot7=1{.}680" />
+
+# Memeriksa susunan dengan suku lebih sedikit
+
+Dengan empat suku, susunan terbaik adalah <InlineMath math="4,5,7,8" /> dengan hasil kali <InlineMath math="1{.}120" />, dan dengan tiga suku <InlineMath math="7,8,9" /> dengan hasil kali <InlineMath math="504" />. **Keduanya lebih kecil**, jadi <InlineMath math="1{.}680" /> memang yang terbesar.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="2{.}160" /> membagikan sisa <InlineMath math="4" /> ke empat suku terkecil, sehingga didapat <InlineMath math="3,4,5,6,6" />. Hasil kalinya besar, tetapi **angka <InlineMath math="6" /> muncul dua kali**, jadi melanggar syarat berbeda.
+- <InlineMath math="1{.}200" /> menaruh seluruh sisa <InlineMath math="4" /> di suku terbesar, sehingga suku-sukunya berjauhan.
+- <InlineMath math="1{.}120" /> hanya memakai empat suku, padahal lima suku masih muat.
+- <InlineMath math="1{.}080" /> memakai suku <InlineMath math="1" /> demi enam suku, yaitu <InlineMath math="1,2,3,4,5,9" />. Suku <InlineMath math="1" /> tidak menambah hasil kali.
+
+Jadi, hasil kali terbesar yang mungkin adalah <InlineMath math="1{.}680" />.

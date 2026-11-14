@@ -6,7 +6,7 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
             "Pernyataan (1) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (2) saja tidak cukup.",
         },
@@ -16,7 +16,7 @@ const item: ItemSource = {
             "Pernyataan (2) saja cukup untuk menjawab pertanyaan, tetapi pernyataan (1) saja tidak cukup.",
         },
         {
-          correct: true,
+          correct: false,
           label:
             "Dua pernyataan bersama-sama cukup untuk menjawab pertanyaan, tetapi satu pernyataan saja tidak cukup.",
         },

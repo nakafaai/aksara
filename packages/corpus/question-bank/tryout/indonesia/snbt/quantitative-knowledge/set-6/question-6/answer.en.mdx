@@ -1,26 +1,53 @@
-Factor the left side into linear factors, then **check the sign of the product on each interval** between its zeros.
+Counting the rectangles that avoid both squares directly is hard, because there are so many shapes. It's easier through the **complement**: count every rectangle, then subtract those that contain at least one shaded square. That last part uses the **inclusion-exclusion principle**, so rectangles containing both shaded squares don't get subtracted twice.
 
-<BlockMath math="\left(x^2-9\right)(x-5)=(x+3)(x-3)(x-5)" />
+# Counting every rectangle
 
-# The sign on each interval
+Number the horizontal lines <InlineMath math="0" /> to <InlineMath math="4" /> from the top, so row <InlineMath math="i" /> sits between line <InlineMath math="i-1" /> and line <InlineMath math="i" />. Number the vertical lines <InlineMath math="0" /> to <InlineMath math="6" /> from the left the same way. **Every rectangle is fixed by exactly two horizontal lines and two vertical lines**, so you just choose two of the <InlineMath math="5" /> horizontal lines and two of the <InlineMath math="7" /> vertical lines.
 
-The zeros are <InlineMath math="-3" />, 3, and 5. The sign of the product changes each time it passes one zero.
+<BlockMath math="\begin{aligned}
+\binom{5}{2}\times\binom{7}{2} &= 10\times21 \\
+&= 210
+\end{aligned}" />
 
-| Interval | <InlineMath math="x+3" /> | <InlineMath math="x-3" /> | <InlineMath math="x-5" /> | Product |
-| :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-3" /> | negative | negative | negative | negative |
-| <InlineMath math="-3<x<3" /> | positive | negative | negative | positive |
-| <InlineMath math="3<x<5" /> | positive | positive | negative | negative |
-| <InlineMath math="x>5" /> | positive | positive | positive | positive |
+# Containing the first shaded square
 
-Because the sign is less than or equal to, **the zeros are included**. The solution is <InlineMath math="x\le-3" /> or <InlineMath math="3\le x\le5" />.
+The square in row <InlineMath math="1" />, column <InlineMath math="2" /> lies between horizontal lines <InlineMath math="0" /> and <InlineMath math="1" /> and between vertical lines <InlineMath math="1" /> and <InlineMath math="2" />. A rectangle contains it exactly when **its top line isn't below the square and its bottom line isn't above it**, and the same goes for left and right.
 
-# Counting the integers
+<BlockMath math="\begin{aligned}
+\text{top} &\in\{0\}, & \text{bottom} &\in\{1,2,3,4\} \\
+\text{left} &\in\{0,1\}, & \text{right} &\in\{2,3,4,5,6\} \\
+\text{count} &= 1\times4\times2\times5=40
+\end{aligned}" />
 
-On <InlineMath math="-10\le x\le-3" /> there are 8 integers, and on <InlineMath math="3\le x\le5" /> there are 3, namely 3, 4, and 5.
+# Containing the second shaded square
 
-<BlockMath math="8+3=11" />
+The square in row <InlineMath math="3" />, column <InlineMath math="5" /> lies between horizontal lines <InlineMath math="2" /> and <InlineMath math="3" /> and between vertical lines <InlineMath math="4" /> and <InlineMath math="5" />. Use **the same rule for choosing lines**.
 
-The value 8 uses strictly less than and so drops <InlineMath math="-3" />, 3, and 5. The value 13 uses the positive region. The value 3 counts only the part <InlineMath math="3\le x\le5" />, and the value 7 counts the left part without <InlineMath math="-3" />.
+<BlockMath math="\begin{aligned}
+\text{top} &\in\{0,1,2\}, & \text{bottom} &\in\{3,4\} \\
+\text{left} &\in\{0,1,2,3,4\}, & \text{right} &\in\{5,6\} \\
+\text{count} &= 3\times2\times5\times2=60
+\end{aligned}" />
 
-So **11** integers satisfy the inequality.
+# Containing both squares at once
+
+Now the top line has to be above both squares, the bottom line below both, and so on. So **each line has to meet the stricter of the two conditions**.
+
+<BlockMath math="\begin{aligned}
+\text{top} &\in\{0\}, & \text{bottom} &\in\{3,4\} \\
+\text{left} &\in\{0,1\}, & \text{right} &\in\{5,6\} \\
+\text{count} &= 1\times2\times2\times2=8
+\end{aligned}" />
+
+# Putting it together with inclusion-exclusion
+
+The rectangles containing both squares were counted in the <InlineMath math="40" /> and again in the <InlineMath math="60" />, so **subtract that double count once**.
+
+<BlockMath math="\begin{aligned}
+\text{containing at least one square} &= 40+60-8=92 \\
+\text{containing no shaded square} &= 210-92=118
+\end{aligned}" />
+
+Sanity check: <InlineMath math="92" /> is less than <InlineMath math="40+60=100" />, and the gap is exactly the <InlineMath math="8" /> rectangles that contain both squares. A common slip is stopping at <InlineMath math="210-40-60=110" />, which subtracts those eight rectangles twice.
+
+So the number of rectangles that contain no shaded square is <InlineMath math="118" />.

@@ -1,19 +1,42 @@
-Factor the left side as <InlineMath math="(a-b)(a+b)=45" />. The task becomes **finding factor pairs of 45** that can be <InlineMath math="a-b" /> and <InlineMath math="a+b" />.
+You're looking for the remainder when <InlineMath math="2^{2026}+11^{2027}" /> is divided by <InlineMath math="13" />. The powers are far too big to compute directly, so here's the plan: find **the repeating pattern of remainders** of powers of <InlineMath math="2" />, rewrite <InlineMath math="11" /> as a negative number with the same remainder, then add the two remainders.
 
-# Conditions on the factor pair
+# The remainder pattern of powers of two
 
-Since <InlineMath math="a" /> and <InlineMath math="b" /> are positive, <InlineMath math="a-b<a+b" />, so the smaller factor is <InlineMath math="a-b" />. Also <InlineMath math="a=\tfrac{(a+b)+(a-b)}{2}" />, so **both factors must be odd or both even**. Every factor of 45 is odd, so this always holds.
+The remainder of a product depends only on the remainders of its factors. So you get the remainder of <InlineMath math="2^{k+1}" /> by multiplying the remainder of <InlineMath math="2^{k}" /> by <InlineMath math="2" /> and taking the remainder again. The sign <InlineMath math="a\equiv b\pmod{13}" /> means that <InlineMath math="a" /> and <InlineMath math="b" /> leave the same remainder when divided by <InlineMath math="13" />. The remainders of <InlineMath math="2^{1}" /> up to <InlineMath math="2^{12}" /> are, in order,
 
-# List of pairs
+<BlockMath math="2,\ 4,\ 8,\ 3,\ 6,\ 12,\ 11,\ 9,\ 5,\ 10,\ 7,\ 1" />
 
-| <InlineMath math="a-b" /> | <InlineMath math="a+b" /> | <InlineMath math="a" /> | <InlineMath math="b" /> |
-| :---: | :---: | :---: | :---: |
-| 1 | 45 | 23 | 22 |
-| 3 | 15 | 9 | 6 |
-| 5 | 9 | 7 | 2 |
+Since <InlineMath math="2^{12}" /> leaves remainder <InlineMath math="1" />, **the pattern repeats every <InlineMath math="12" /> powers**. So you only need the remainder of the exponent when it's divided by <InlineMath math="12" />.
 
-The pair <InlineMath math="(9,5)" /> and the rest only reverse the order and give a negative <InlineMath math="b" />. Check: <InlineMath math="23^2-22^2=45" />, <InlineMath math="81-36=45" /> and <InlineMath math="49-4=45" />.
+<BlockMath math="\begin{aligned}
+2026&=12\cdot168+10\\
+2^{2026}&=\left(2^{12}\right)^{168}\cdot2^{10}\equiv1\cdot10=10\pmod{13}
+\end{aligned}" />
 
-The value 6 counts all six divisors of 45 as if each gave a pair. The value 2 usually misses the factor pair <InlineMath math="1\times45" />.
+# Turning eleven into a negative number
 
-So the number of pairs is **3**.
+The number <InlineMath math="11" /> equals <InlineMath math="13-2" />, so <InlineMath math="11\equiv-2\pmod{13}" />. Swapping the base for a number with the same remainder doesn't change the remainder of the power. The exponent <InlineMath math="2027" /> is odd, and **an odd exponent keeps the minus sign**.
+
+<BlockMath math="\begin{aligned}
+11^{2027}&\equiv(-2)^{2027}=-2^{2027}\pmod{13}\\
+2027&=12\cdot168+11\\
+2^{2027}&\equiv2^{11}\equiv7\pmod{13}\\
+11^{2027}&\equiv-7\equiv-7+13=6\pmod{13}
+\end{aligned}" />
+
+# Adding and checking
+
+Add the two remainders, then subtract <InlineMath math="13" />, because **a remainder on division by <InlineMath math="13" /> must lie between <InlineMath math="0" /> and <InlineMath math="12" />**.
+
+<BlockMath math="2^{2026}+11^{2027}\equiv10+6=16\equiv16-13=3\pmod{13}" />
+
+Check the remainder of <InlineMath math="11^{2027}" /> another way. Since <InlineMath math="11^{12}\equiv(-2)^{12}=2^{12}\equiv1" />, you get <InlineMath math="11^{2027}\equiv11^{11}" />. Then <InlineMath math="11^{11}\cdot11=11^{12}\equiv1" />, and <InlineMath math="6\cdot11=66=5\cdot13+1" />. So <InlineMath math="11^{11}" /> really leaves remainder <InlineMath math="6" />.
+
+# The wrong options
+
+- <InlineMath math="4" /> comes from **losing the minus sign**, treating <InlineMath math="11" /> as if it had the same remainder as <InlineMath math="2" />: <InlineMath math="10+7=17\equiv4" />.
+- <InlineMath math="6" /> comes from reading the pattern one step too far, using <InlineMath math="2^{11}\equiv7" /> and <InlineMath math="2^{12}\equiv1" />: <InlineMath math="7-1=6" />.
+- <InlineMath math="8" /> comes from reading the pattern one step too early, using <InlineMath math="2^{9}\equiv5" /> and <InlineMath math="2^{10}\equiv10" />: <InlineMath math="5-10=-5\equiv8" />.
+- <InlineMath math="10" /> comes from thinking the pattern repeats every <InlineMath math="6" /> powers, but <InlineMath math="2^{6}" /> leaves remainder <InlineMath math="12" />, not <InlineMath math="1" />: <InlineMath math="2^{4}-2^{5}\equiv3-6=-3\equiv10" />.
+
+So the remainder when <InlineMath math="2^{2026}+11^{2027}" /> is divided by <InlineMath math="13" /> is <InlineMath math="3" />.

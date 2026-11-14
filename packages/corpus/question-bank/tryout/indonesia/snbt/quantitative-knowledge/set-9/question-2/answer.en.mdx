@@ -1,20 +1,59 @@
-Write every number as **a power of the same base**, 2 for the first equation and 3 for the second. Then both equations become linear.
+To build the new quadratic equation, you need **the sum and the product of its roots**. The product is given, but the sum depends on <InlineMath math="k" />. The plan: write the product of the new roots in terms of <InlineMath math="k" />, find <InlineMath math="k" />, throw out any value that breaks the real-roots condition, then find the sum of the new roots.
 
-# Matching the bases
+# The product of the new roots
+
+By Vieta's formulas for <InlineMath math="x^2-3x+k=0" />, the sum of the roots is <InlineMath math="\alpha+\beta=3" /> and the product is <InlineMath math="\alpha\beta=k" />. Multiply the two new roots term by term. **The two middle terms are always <InlineMath math="1" />**, because <InlineMath math="\alpha\cdot\frac{1}{\alpha}=1" /> and <InlineMath math="\frac{1}{\beta}\cdot\beta=1" />.
 
 <BlockMath math="\begin{aligned}
-2^x\cdot2^{2y}=2^5&\;\Longrightarrow\;x+2y=5\\
-\frac{3^x}{3^{2y}}=3^{-1}&\;\Longrightarrow\;x-2y=-1
+\left(\alpha+\frac{1}{\beta}\right)\left(\beta+\frac{1}{\alpha}\right)&=\alpha\beta+1+1+\frac{1}{\alpha\beta}\\
+&=k+2+\frac{1}{k}
 \end{aligned}" />
 
-# Solving the system
+This product equals <InlineMath math="\frac{16}{3}" />. Multiply both sides by <InlineMath math="3k" /> to clear the fractions.
 
-Add the two equations to get <InlineMath math="2x=4" />, so <InlineMath math="x=2" />. Substituting into the first equation gives <InlineMath math="2y=3" />, so **<InlineMath math="y=\tfrac32" />**.
+<BlockMath math="\begin{aligned}
+k+2+\frac{1}{k}&=\frac{16}{3}\\
+3k^2+6k+3&=16k\\
+3k^2-10k+3&=0\\
+(3k-1)(k-3)&=0
+\end{aligned}" />
 
-<BlockMath math="xy=2\cdot\tfrac32=3" />
+So <InlineMath math="k=\frac{1}{3}" /> or <InlineMath math="k=3" />.
 
-Check: <InlineMath math="2^2\cdot4^{3/2}=4\cdot8=32" /> and <InlineMath math="\tfrac{3^2}{9^{3/2}}=\tfrac{9}{27}=\tfrac13" />.
+# The real distinct roots condition
 
-The values 2 and <InlineMath math="\tfrac32" /> are <InlineMath math="x" /> and <InlineMath math="y" />, not their product. The value <InlineMath math="\tfrac72" /> is <InlineMath math="x+y" />.
+The question says <InlineMath math="\alpha" /> and <InlineMath math="\beta" /> are two distinct real roots. That means **the discriminant must be positive**.
 
-So the value of <InlineMath math="xy" /> is **3**.
+<BlockMath math="\begin{aligned}
+k=3&\;\Longrightarrow\;D=9-4\cdot3=-3<0\\
+k=\tfrac{1}{3}&\;\Longrightarrow\;D=9-\tfrac{4}{3}=\tfrac{23}{3}>0
+\end{aligned}" />
+
+For <InlineMath math="k=3" /> the roots aren't real, so that value goes. Only <InlineMath math="k=\frac{1}{3}" /> is left.
+
+# The sum of the new roots
+
+You can join the two fractions because <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{\alpha+\beta}{\alpha\beta}" />. So **the new sum is the old sum plus the old sum divided by the old product**.
+
+<BlockMath math="\begin{aligned}
+\left(\alpha+\frac{1}{\beta}\right)+\left(\beta+\frac{1}{\alpha}\right)&=(\alpha+\beta)+\frac{\alpha+\beta}{\alpha\beta}\\
+&=3+\frac{3}{1/3}\\
+&=12
+\end{aligned}" />
+
+# Building the equation
+
+The quadratic with root sum <InlineMath math="12" /> and root product <InlineMath math="\frac{16}{3}" /> is <InlineMath math="x^2-12x+\frac{16}{3}=0" />. **Multiply by <InlineMath math="3" />** so every coefficient is a whole number.
+
+<BlockMath math="3x^2-36x+16=0" />
+
+Check it another way. Since <InlineMath math="\alpha\beta=\frac{1}{3}" />, you get <InlineMath math="\frac{1}{\beta}=\frac{\alpha}{\alpha\beta}=3\alpha" />, so the first new root is <InlineMath math="\alpha+3\alpha=4\alpha" />. In the same way, the second new root is <InlineMath math="4\beta" />. Their sum is <InlineMath math="4\cdot3=12" /> and their product is <InlineMath math="16\cdot\frac{1}{3}=\frac{16}{3}" />, matching the result above.
+
+# The tempting wrong options
+
+- <InlineMath math="3x^2-12x+16=0" /> uses <InlineMath math="k=3" />, which gives the sum <InlineMath math="3+\frac{3}{3}=4" />. That value **breaks the real-roots condition**.
+- <InlineMath math="3x^2-18x+16=0" /> assumes <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{1}{\alpha\beta}=3" />, so the sum comes out as <InlineMath math="6" />.
+- <InlineMath math="3x^2-27x+16=0" /> only adds <InlineMath math="\frac{1}{\alpha}+\frac{1}{\beta}=\frac{3}{1/3}=9" /> and forgets to add <InlineMath math="\alpha+\beta=3" />.
+- <InlineMath math="3x^2+36x+16=0" /> has the wrong sign. An equation with root sum <InlineMath math="S" /> is written <InlineMath math="x^2-Sx+P=0" />, so the <InlineMath math="x" /> coefficient must be negative.
+
+So the other quadratic equation is <InlineMath math="3x^2-36x+16=0" />.

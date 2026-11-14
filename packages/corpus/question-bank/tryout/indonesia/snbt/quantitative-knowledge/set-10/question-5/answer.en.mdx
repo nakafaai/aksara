@@ -1,21 +1,45 @@
-Before using the sum and product of roots, check whether the equation factorises. It does: **the form fits <InlineMath math="(x-3)(x-k)" />**, because <InlineMath math="3+k" /> is the sum and <InlineMath math="3k" /> is the product.
+The value of <InlineMath math="n" /> isn't known, so you need to write <InlineMath math="P" /> and <InlineMath math="Q" /> as formulas in <InlineMath math="n" /> and look at the sign of their difference for **every <InlineMath math="n" /> at once**. If the sign is the same for every <InlineMath math="n" />, the relation is certain. If the sign can change, the information isn't enough.
 
-# The roots
+# The mean and the mean of the squares
 
-<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
+Use two well-known sum formulas: the sum <InlineMath math="1+2+\cdots+n" /> and the sum <InlineMath math="1^2+2^2+\cdots+n^2" />. A mean is **the sum divided by the number of values**, so you divide by <InlineMath math="n" />.
 
-The roots are 3 and <InlineMath math="k" />, **whatever k is**.
+<BlockMath math="\begin{aligned}
+\bar{x} &= \frac{1}{n}\cdot\frac{n(n+1)}{2}=\frac{n+1}{2} \\
+P &= \frac{1}{n}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{(n+1)(2n+1)}{6}
+\end{aligned}" />
 
-# The difference condition
+That gives <InlineMath math="Q=\left(\dfrac{n+1}{2}\right)^2+\dfrac{n^2}{12}" />.
 
-The roots differ by 5, so <InlineMath math="k" /> **lies 5 away from 3**.
+# Comparing over the same denominator
 
-<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{or}\;k=-2" />
+Multiply both quantities by <InlineMath math="12" /> to clear the fractions. Multiplying by a positive number **doesn't change the direction of a comparison**.
 
-Check: for <InlineMath math="k=8" /> the roots are 3 and 8, and for <InlineMath math="k=-2" /> they are 3 and <InlineMath math="-2" />. Both differ by 5.
+<BlockMath math="\begin{aligned}
+12P &= 2(n+1)(2n+1)=4n^2+6n+2 \\
+12Q &= 3(n+1)^2+n^2=4n^2+6n+3
+\end{aligned}" />
 
-<BlockMath math="8+(-2)=6" />
+The difference is <InlineMath math="12Q-12P=1" />, so <InlineMath math="Q-P=\dfrac{1}{12}" />. **This difference doesn't depend on <InlineMath math="n" />** and it's always positive, so <InlineMath math="Q>P" /> for every positive integer <InlineMath math="n" />.
 
-The value 8 uses only one possibility. The value 10 is the difference of the two values of <InlineMath math="k" />, not their sum. The value 3 is the fixed root, and 5 is the given difference.
+# Checking with an example
 
-So the sum of all values of <InlineMath math="k" /> is **6**.
+For <InlineMath math="n=3" />, the data are <InlineMath math="1,2,3" />.
+
+<BlockMath math="\begin{aligned}
+P &= \frac{1+4+9}{3}=\frac{14}{3} \\
+Q &= 2^2+\frac{9}{12}=\frac{19}{4} \\
+Q-P &= \frac{57-56}{12}=\frac{1}{12}
+\end{aligned}" />
+
+The example matches the general formula. Even <InlineMath math="n=1" /> gives the same picture: <InlineMath math="P=1" /> and <InlineMath math="Q=1+\tfrac{1}{12}" />.
+
+# The wrong options
+
+Each other option comes from **a formula you didn't work all the way through**.
+
+- <InlineMath math="P=Q" /> shows up if you think <InlineMath math="P" /> minus the squared mean equals <InlineMath math="\tfrac{n^2}{12}" />. That difference is really <InlineMath math="\tfrac{n^2-1}{12}" />, a little smaller.
+- <InlineMath math="P>Q" /> shows up if you only remember that the mean of the squares beats the square of the mean, and forget that <InlineMath math="Q" /> also gets <InlineMath math="\tfrac{n^2}{12}" /> added.
+- The not-enough-information option shows up if you think the relation changes with <InlineMath math="n" />, but the difference stays <InlineMath math="\tfrac{1}{12}" />.
+
+So the quantity <InlineMath math="Q" /> is always greater than <InlineMath math="P" />.

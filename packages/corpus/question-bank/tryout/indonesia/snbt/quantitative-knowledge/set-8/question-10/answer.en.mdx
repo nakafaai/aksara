@@ -1,19 +1,42 @@
-The ant cannot go through the box, so the space diagonal is not its path. The method is **unfolding two faces of the box into one flat plane**, and then the shortest path on that plane is a straight line.
+You need the probability that the distance between two lattice points is a whole number. Here's the plan: count the sample space, find **which coordinate differences give a whole-number distance**, then count the pairs of points for each of those differences.
 
-# Three ways to unfold
+# The sample space
 
-A path from <InlineMath math="A" /> to <InlineMath math="G" /> crosses two neighbouring faces. When the two faces are unfolded, one edge stays whole and **the other two edges join into one segment**. There are three choices for the edge that stays whole.
+The two points are chosen together, so order doesn't matter. The number of pairs from <InlineMath math="25" /> points is <InlineMath math="\binom{25}{2}=\tfrac{25\cdot24}{2}=300" />, and **every pair is equally likely**.
+
+# When the distance is a whole number
+
+Let the absolute differences of the coordinates be <InlineMath math="a=|x_1-x_2|" /> and <InlineMath math="b=|y_1-y_2|" />, each from <InlineMath math="0" /> to <InlineMath math="4" />. By Pythagoras, the distance is <InlineMath math="\sqrt{a^2+b^2}" />. It's a whole number exactly when <InlineMath math="a^2+b^2" /> is a perfect square.
+
+If one difference is zero, the distance equals the other difference, so it's a whole number. If both are positive, check every sum of squares.
 
 <BlockMath math="\begin{aligned}
-\text{edge 12 whole}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
-\text{edge 4 whole}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
-\text{edge 3 whole}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+1+1&=2, & 1+4&=5, & 1+9&=10, & 1+16&=17, & 4+4&=8,\\
+4+9&=13, & 4+16&=20, & 9+9&=18, & 9+16&=25, & 16+16&=32
 \end{aligned}" />
 
-# Choosing the shortest
+Only <InlineMath math="9+16=25" /> is a square. So besides pairs in the same row or column, **pairs with differences <InlineMath math="3" /> and <InlineMath math="4" /> also have a whole-number distance**, namely <InlineMath math="5" />.
 
-The smallest value is <InlineMath math="\sqrt{193}\approx13.9" />. The shortest path comes when **the longest edge stays whole** and the two short edges are joined.
+# Counting the good pairs
 
-The length 13 cm is the space diagonal <InlineMath math="\sqrt{144+16+9}" />, which goes through the inside of the box. The length 19 cm walks along the edges <InlineMath math="12+4+3" />. The values <InlineMath math="\sqrt{241}" /> and <InlineMath math="\sqrt{265}" /> come from the other unfoldings.
+Each row holds <InlineMath math="5" /> points, and **every pair in the same row has a whole-number distance**, so each row has <InlineMath math="\binom52=10" /> pairs, and all rows together have <InlineMath math="5\cdot10=50" />. By the same reasoning there are <InlineMath math="50" /> pairs in the same column.
 
-So the shortest path has length **<InlineMath math="\sqrt{193}\text{ cm}" />**.
+For a horizontal difference of <InlineMath math="3" /> and a vertical difference of <InlineMath math="4" />, the <InlineMath math="x" />-coordinates of the two points are <InlineMath math="\{0,3\}" /> or <InlineMath math="\{1,4\}" />, the <InlineMath math="y" />-coordinates must be <InlineMath math="\{0,4\}" />, and the segment joining them can go up or down. That gives <InlineMath math="2\cdot1\cdot2=4" /> pairs. A horizontal difference of <InlineMath math="4" /> and a vertical one of <InlineMath math="3" /> also gives <InlineMath math="4" /> pairs.
+
+<BlockMath math="\begin{aligned}
+\text{good pairs}&=50+50+4+4=108\\
+P&=\frac{108}{300}=\frac{9}{25}
+\end{aligned}" />
+
+# Checking the total of all pairs
+
+The number of pairs with differences <InlineMath math="a>0" /> and <InlineMath math="b>0" /> is <InlineMath math="2(5-a)(5-b)" />, since there are <InlineMath math="5-a" /> horizontal positions, <InlineMath math="5-b" /> vertical positions, and <InlineMath math="2" /> directions. This gives <InlineMath math="2\cdot2\cdot1=4" /> for differences <InlineMath math="3" /> and <InlineMath math="4" />, matching the count above. Over all positive <InlineMath math="a,b" /> it adds up to <InlineMath math="2(4+3+2+1)^2=200" />. With the <InlineMath math="100" /> same-row or same-column pairs, **the total is <InlineMath math="300" />**, the size of the sample space.
+
+# The wrong options
+
+- <InlineMath math="\tfrac{9}{50}" /> comes from using ordered pairs <InlineMath math="25\cdot24=600" /> in the denominator while the numerator still counts unordered pairs.
+- <InlineMath math="\tfrac13" /> comes from **forgetting the pairs at distance <InlineMath math="5" />**: <InlineMath math="\tfrac{100}{300}" />.
+- <InlineMath math="\tfrac{26}{75}" /> comes from counting the distance-<InlineMath math="5" /> pairs in one direction only: <InlineMath math="\tfrac{104}{300}" />.
+- <InlineMath math="\tfrac{29}{75}" /> comes from counting each distance-<InlineMath math="5" /> pair twice: <InlineMath math="\tfrac{116}{300}" />.
+
+So the probability that the distance between the two points is a whole number is <InlineMath math="\tfrac{9}{25}" />.

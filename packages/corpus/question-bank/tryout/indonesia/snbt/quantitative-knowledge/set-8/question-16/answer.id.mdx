@@ -1,18 +1,43 @@
-Jangkauan antarkuartil adalah **selisih kuartil atas dan kuartil bawah**, <InlineMath math="Q_3-Q_1" />. Kuartil hanya dapat dibaca setelah data diurutkan.
+Kamu menghitung banyak bilangan real <InlineMath math="x" /> dengan <InlineMath math="f\big(f(x)\big)=0" />. Rencananya begini: **selesaikan dulu lapisan luar**, yaitu nilai <InlineMath math="y" /> yang membuat <InlineMath math="f(y)=0" />, lalu selesaikan <InlineMath math="f(x)=y" /> untuk setiap nilai itu. Karena <InlineMath math="x^2=|x|^2" />, setiap persamaan bisa ditulis dengan <InlineMath math="t=|x|" />, asalkan <InlineMath math="t\ge0" />.
 
-# Mengurutkan dan mencari kuartil
+# Akar fungsi luar
 
-<BlockMath math="4,\;7,\;9,\;10,\;13,\;15,\;20" />
+Tulis <InlineMath math="f(y)" /> dengan <InlineMath math="|y|" />, lalu faktorkan.
 
-Ada 7 data, jadi letak kuartil ke-<InlineMath math="i" /> adalah data ke-<InlineMath math="\tfrac{i(7+1)}{4}=2i" />. **Kuartil bawah adalah data ke-2** dan kuartil atas adalah data ke-6.
+<BlockMath math="f(y)=|y|^2-2|y|-3=\big(|y|-3\big)\big(|y|+1\big)=0" />
+
+Faktor <InlineMath math="|y|+1" /> tidak pernah nol, jadi <InlineMath math="|y|=3" />, yaitu <InlineMath math="y=3" /> atau <InlineMath math="y=-3" />. Kedua tanda harus dipakai, karena **nilai <InlineMath math="f(x)" /> bisa negatif**, misalnya <InlineMath math="f(0)=-3" />. Jadi, kamu perlu menyelesaikan <InlineMath math="f(x)=3" /> dan <InlineMath math="f(x)=-3" />.
+
+# Menyelesaikan persamaan pertama
+
+Untuk <InlineMath math="f(x)=3" />, misalkan <InlineMath math="t=|x|" />.
 
 <BlockMath math="\begin{aligned}
-Q_1&=7,\quad Q_2=10,\quad Q_3=15\\
-Q_3-Q_1&=15-7=8
+t^2-2t-3&=3\\
+t^2-2t-6&=0\\
+t&=1\pm\sqrt7
 \end{aligned}" />
 
-Hasil yang sama didapat dengan mengambil median dari tiga data terbawah (4, 7, 9) dan median dari tiga data teratas (13, 15, 20).
+Karena <InlineMath math="\sqrt7>1" />, nilai <InlineMath math="t=1-\sqrt7" /> negatif dan **harus dibuang, sebab nilai mutlak tidak pernah negatif**. Nilai <InlineMath math="t=1+\sqrt7" /> memberi <InlineMath math="x=1+\sqrt7" /> atau <InlineMath math="x=-(1+\sqrt7)" />, yaitu <InlineMath math="2" /> penyelesaian.
 
-Nilai 4 adalah simpangan kuartil, yaitu setengah dari jangkauan antarkuartil. Nilai 16 adalah jangkauan seluruh data, <InlineMath math="20-4" />. Nilai 3 adalah selisih median dan kuartil bawah, dan nilai 7 adalah kuartil bawah itu sendiri.
+# Menyelesaikan persamaan kedua
 
-Jadi, jangkauan antarkuartil data itu adalah **8**.
+Untuk <InlineMath math="f(x)=-3" />, pakai lagi <InlineMath math="t=|x|" />.
+
+<BlockMath math="\begin{aligned}
+t^2-2t-3&=-3\\
+t(t-2)&=0
+\end{aligned}" />
+
+Jadi, <InlineMath math="t=0" /> atau <InlineMath math="t=2" />. Nilai <InlineMath math="t=2" /> memberi <InlineMath math="x=2" /> dan <InlineMath math="x=-2" />. Nilai <InlineMath math="t=0" /> hanya memberi **satu bilangan, yaitu <InlineMath math="x=0" />**, karena <InlineMath math="0" /> dan <InlineMath math="-0" /> adalah bilangan yang sama. Persamaan kedua memberi <InlineMath math="3" /> penyelesaian.
+
+Totalnya <InlineMath math="2+3=5" />. Periksa beberapa nilai: <InlineMath math="f(2)=4-4-3=-3" /> lalu <InlineMath math="f(-3)=9-6-3=0" />, dan <InlineMath math="f(1+\sqrt7)=8+2\sqrt7-2-2\sqrt7-3=3" /> lalu <InlineMath math="f(3)=0" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="2" /> muncul jika hanya <InlineMath math="y=3" /> yang dipakai dan <InlineMath math="y=-3" /> terlupakan.
+- <InlineMath math="4" /> muncul jika <InlineMath math="t^2-2t=0" /> dibagi <InlineMath math="t" />, sehingga **akar <InlineMath math="t=0" /> hilang**.
+- <InlineMath math="6" /> muncul jika <InlineMath math="x=0" /> dihitung dua kali, sebagai <InlineMath math="+0" /> dan <InlineMath math="-0" />.
+- <InlineMath math="7" /> muncul jika <InlineMath math="t=1-\sqrt7" /> tidak dibuang, sehingga <InlineMath math="2" /> nilai palsu ikut terhitung.
+
+Jadi, ada <InlineMath math="5" /> bilangan real <InlineMath math="x" /> yang memenuhi <InlineMath math="f\big(f(x)\big)=0" />.

@@ -1,32 +1,31 @@
-Write the three terms as <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" /> and <InlineMath math="ar" />. The key is **dividing the sum of squares by the sum of the terms**, because the quotient is an expression very close to the sum of the terms.
+The number of zeros at the right end of a number equals the number of factors <InlineMath math="10" /> in it. Each factor <InlineMath math="10" /> needs a pair made of a factor <InlineMath math="2" /> and a factor <InlineMath math="5" />, so **the trailing zeros count is the smaller of the number of factors <InlineMath math="2" /> and the number of factors <InlineMath math="5" />**. Adding and subtracting change those factors, so you need to factor both numbers first.
 
-# The sum of squares identity
+# Factoring both numbers
 
-For three geometric terms,
-
-<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
-
-You can check the right side by multiplying out: the cross terms cancel. So **the sum of squares divided by the sum** equals <InlineMath math="\tfrac ar-a+ar" />.
+Pull out the smaller factorial as a common factor. That's allowed because <InlineMath math="26!=26\times25!" /> and <InlineMath math="35!=35\times34!" />.
 
 <BlockMath math="\begin{aligned}
-\frac ar+a+ar&=38\\
-\frac ar-a+ar&=\frac{532}{38}=14
+26!-25!&=25!\,(26-1)=25!\times25\\
+34!+35!&=34!\,(1+35)=34!\times36
 \end{aligned}" />
 
-# Finding the terms
+**The factor <InlineMath math="25=5^2" /> adds two factors <InlineMath math="5" />**, while <InlineMath math="36=2^2\times3^2" /> adds no factor <InlineMath math="5" /> at all.
 
-Subtract the two equations: <InlineMath math="2a=24" />, so <InlineMath math="a=12" /> and **the sum of the two outer terms** is <InlineMath math="\tfrac{12}{r}+12r=26" />.
+# Counting the factors five and two
+
+The number of factors <InlineMath math="5" /> in <InlineMath math="n!" /> comes from **Legendre's formula**: the number of multiples of <InlineMath math="5" />, plus the number of multiples of <InlineMath math="25" />, and so on. The same method works for factors <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-12r^2-26r+12&=0\\
-6r^2-13r+6&=0\\
-(3r-2)(2r-3)&=0
+\text{factors 5 in } 25!\times25&=(5+1)+2=8\\
+\text{factors 2 in } 25!\times25&=12+6+3+1=22\\
+\text{factors 5 in } 34!\times36&=6+1=7\\
+\text{factors 2 in } 34!\times36&=(17+8+4+2+1)+2=34
 \end{aligned}" />
 
-The value <InlineMath math="r=\tfrac32" /> gives 8, 12, 18, and <InlineMath math="r=\tfrac23" /> gives the same numbers in reverse order. Check: <InlineMath math="8+12+18=38" /> and <InlineMath math="64+144+324=532" />.
+In both numbers there are far more factors <InlineMath math="2" />, so the factors <InlineMath math="5" /> decide. That gives <InlineMath math="P=8" /> and <InlineMath math="Q=7" />, so <InlineMath math="P>Q" />.
 
-The difference between the largest and the smallest number is <InlineMath math="18-8=10" />.
+# The quick estimate trap
 
-The value 12 is the middle term, 14 is the quotient <InlineMath math="532:38" />, 18 is the largest term, and 26 is the sum of the two outer terms.
+A quick estimate often looks only at the largest factorial. The factorial <InlineMath math="26!" /> ends in <InlineMath math="5+1=6" /> zeros and <InlineMath math="35!" /> ends in <InlineMath math="7+1=8" /> zeros, which makes it look like <InlineMath math="Q>P" />. If you factor only <InlineMath math="P" /> correctly, you get <InlineMath math="8" /> against <InlineMath math="8" /> and you're tempted to pick <InlineMath math="P=Q" />. **Both numbers have to be factored**, and each has a single fixed value, so the information is enough.
 
-So the difference between the largest and the smallest number is **10**.
+So the correct relationship is <InlineMath math="P>Q" />, because <InlineMath math="P=8" /> and <InlineMath math="Q=7" />.

@@ -1,20 +1,38 @@
-Periksa dulu jenis segitiganya. Karena <InlineMath math="20^2+21^2=400+441=841=29^2" />, segitiga ini **siku-siku dengan sisi miring 29**. Jari-jari lingkaran dalam dihubungkan dengan luas lewat <InlineMath math="L=r\cdot s" />, dengan <InlineMath math="s" /> setengah keliling.
+Ruang sampelnya adalah semua pembagi positif <InlineMath math="2160" />, dan semuanya berpeluang sama. Jadi peluangnya adalah banyak pembagi yang cocok dibagi banyak semua pembagi. Kuncinya, syarat untuk <InlineMath math="\tfrac{2160}{d}" /> juga **membatasi pangkat pada <InlineMath math="d" /> dari atas**.
 
-# Luas dan setengah keliling
+# Banyak semua pembagi
+
+Faktorkan dulu: <InlineMath math="2160=216\cdot 10=2^3\cdot 3^3\cdot 2\cdot 5=2^4\cdot 3^3\cdot 5" />. Setiap pembagi berbentuk <InlineMath math="d=2^x3^y5^z" />, dengan <InlineMath math="x" /> dari <InlineMath math="0" /> sampai <InlineMath math="4" />, <InlineMath math="y" /> dari <InlineMath math="0" /> sampai <InlineMath math="3" />, dan <InlineMath math="z" /> dari <InlineMath math="0" /> sampai <InlineMath math="1" />. Setiap pilihan pangkat memberi **pembagi yang berbeda**, jadi banyaknya dihitung dengan aturan perkalian.
+
+<BlockMath math="5\cdot 4\cdot 2=40" />
+
+# Syarat untuk kedua bilangan
+
+Pasangan dari <InlineMath math="d" /> adalah <InlineMath math="\tfrac{2160}{d}=2^{4-x}3^{3-y}5^{1-z}" />. Sebuah bilangan habis dibagi <InlineMath math="6=2\cdot 3" /> tepat ketika pangkat <InlineMath math="2" /> dan pangkat <InlineMath math="3" />-nya paling sedikit <InlineMath math="1" />.
 
 <BlockMath math="\begin{aligned}
-L&=\tfrac12\cdot20\cdot21=210\\
-s&=\tfrac12(20+21+29)=35
+6\mid d &\;\Longleftrightarrow\; x\ge 1 \text{ dan } y\ge 1 \\
+6\mid \tfrac{2160}{d} &\;\Longleftrightarrow\; 4-x\ge 1 \text{ dan } 3-y\ge 1 \;\Longleftrightarrow\; x\le 3 \text{ dan } y\le 2
 \end{aligned}" />
 
-# Jari-jari lingkaran dalam
+Jadi <InlineMath math="x\in\{1,2,3\}" /> memberi <InlineMath math="3" /> pilihan, <InlineMath math="y\in\{1,2\}" /> memberi <InlineMath math="2" /> pilihan, dan <InlineMath math="z" /> bebas dengan <InlineMath math="2" /> pilihan. **Kedua syarat dipakai bersamaan** pada setiap pangkat.
 
-Rumus <InlineMath math="L=r\cdot s" /> berasal dari **membagi segitiga menjadi tiga segitiga kecil** yang puncaknya di pusat lingkaran dalam dan tingginya <InlineMath math="r" />.
+<BlockMath math="\begin{aligned}
+\text{banyak pembagi yang cocok} &= 3\cdot 2\cdot 2=12 \\
+\text{peluang} &= \frac{12}{40}=\frac{3}{10}
+\end{aligned}" />
 
-<BlockMath math="r=\frac{L}{s}=\frac{210}{35}=6" />
+# Pemeriksaan dengan cara lain
 
-Untuk segitiga siku-siku, hasil yang sama juga didapat dari <InlineMath math="r=\tfrac{a+b-c}{2}=\tfrac{20+21-29}{2}=6" />.
+Kalau <InlineMath math="d=6e" /> dan <InlineMath math="\tfrac{2160}{d}=6f" />, maka <InlineMath math="36ef=2160" />, jadi <InlineMath math="ef=60" />. Setiap pembagi <InlineMath math="e" /> dari <InlineMath math="60=2^2\cdot 3\cdot 5" /> memberi tepat satu <InlineMath math="d" /> yang cocok, dan **<InlineMath math="60" /> punya <InlineMath math="3\cdot 2\cdot 2=12" /> pembagi**. Hasilnya sama, yaitu <InlineMath math="12" /> dari <InlineMath math="40" />.
 
-Nilai 3 membagi luas dengan seluruh keliling, bukan setengahnya. Nilai 12 adalah diameter lingkaran dalam, dan nilai 14,5 adalah jari-jari lingkaran luar, yaitu setengah sisi miring.
+# Pilihan yang keliru
 
-Jadi, jari-jari lingkaran dalam segitiga itu adalah **<InlineMath math="6\text{ cm}" />**.
+Setiap pilihan lain muncul dari **syarat yang dipakai setengah jalan** atau ruang sampel yang salah.
+
+- <InlineMath math="\tfrac{3}{5}" /> hanya mensyaratkan <InlineMath math="6\mid d" />, sehingga ada <InlineMath math="4\cdot 3\cdot 2=24" /> pembagi dari <InlineMath math="40" />.
+- <InlineMath math="\tfrac{9}{25}" /> mengkuadratkan <InlineMath math="\tfrac{3}{5}" />, seolah-olah kedua kejadian saling bebas. Padahal <InlineMath math="d" /> menentukan pasangannya.
+- <InlineMath math="\tfrac{9}{20}" /> memotong pangkat <InlineMath math="2" /> dari atas tetapi lupa memotong pangkat <InlineMath math="3" />, sehingga terhitung <InlineMath math="3\cdot 3\cdot 2=18" /> pembagi.
+- <InlineMath math="\tfrac{1}{2}" /> membagi <InlineMath math="12" /> dengan <InlineMath math="24" />, yaitu memakai pembagi yang habis dibagi <InlineMath math="6" /> sebagai ruang sampel.
+
+Jadi, peluang bahwa <InlineMath math="d" /> dan <InlineMath math="\tfrac{2160}{d}" /> keduanya habis dibagi <InlineMath math="6" /> adalah <InlineMath math="\tfrac{3}{10}" />.

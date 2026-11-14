@@ -1,22 +1,33 @@
-The area of a circle is fixed by its radius. So a statement is sufficient if **the radius can be determined uniquely** from it.
+This is a yes-or-no question, so a piece of information is sufficient when the answer is **definitely "yes" or definitely "no"**. Here's the plan: write the final price as a multiple of the starting price, find the condition for the final price to be higher, then test each statement with examples.
 
-# Statement (1) alone
+# When the final price is higher
 
-An arc with central angle <InlineMath math="60^\circ" /> is <InlineMath math="\tfrac{60}{360}=\tfrac16" /> of the circumference. The arc length is **proportional to its central angle**.
+A rise of <InlineMath math="a\%" /> multiplies the price by <InlineMath math="1+\frac{a}{100}" />, and the drop of <InlineMath math="b\%" /> is taken from the new price, so it multiplies by <InlineMath math="1-\frac{b}{100}" />. Remember, **percentage changes multiply, they don't add**.
+
+<BlockMath math="\left(1+\tfrac{a}{100}\right)\left(1-\tfrac{b}{100}\right)=1+\frac{a-b}{100}-\frac{ab}{10{,}000}" />
+
+The final price is higher exactly when that factor is more than <InlineMath math="1" />, that is when <InlineMath math="100(a-b)>ab" />.
+
+# Statement one alone
+
+If <InlineMath math="a=b+5" />, the condition becomes <InlineMath math="500>ab" />, and you don't know <InlineMath math="ab" /> yet. For <InlineMath math="a=15" /> and <InlineMath math="b=10" />, the factor is <InlineMath math="1.15\times0.9=1.035" />, so the price goes up. For <InlineMath math="a=35" /> and <InlineMath math="b=30" />, the factor is <InlineMath math="1.35\times0.7=0.945" />, so the price goes down. **A positive gap between the percentages doesn't guarantee a rise**, so statement (1) alone isn't sufficient.
+
+# Statement two alone
+
+If <InlineMath math="ab=500" />, the condition becomes <InlineMath math="100(a-b)>500" />, that is <InlineMath math="a-b>5" />, and you don't know that gap yet. For <InlineMath math="a=50" /> and <InlineMath math="b=10" />, the factor is <InlineMath math="1.5\times0.9=1.35" />, so the price goes up. For <InlineMath math="a=10" /> and <InlineMath math="b=50" />, the factor is <InlineMath math="1.1\times0.5=0.55" />, so the price goes down. **A fixed product of the percentages doesn't fix the direction either**, so statement (2) alone isn't sufficient.
+
+# Both statements together
+
+Substitute <InlineMath math="a=b+5" /> into <InlineMath math="ab=500" />.
 
 <BlockMath math="\begin{aligned}
-\tfrac16\cdot2\pi r&=2\pi\\
-r&=6,\quad \text{area}=36\pi
+(b+5)b&=500\\
+b^2+5b-500&=0\\
+(b+25)(b-20)&=0
 \end{aligned}" />
 
-Statement (1) alone is sufficient.
+Since <InlineMath math="b>0" />, the value <InlineMath math="b=-25" /> is rejected, so <InlineMath math="b=20" /> and <InlineMath math="a=25" />. The factor is <InlineMath math="1.25\times0.8=1" />, which matches the formula: <InlineMath math="100(a-b)=500=ab" />. The final price is **exactly equal to the starting price**, so it isn't higher. The answer is definitely "no", and a definite answer means the information is sufficient.
 
-# Statement (2) alone
+There are two traps here. Seeing <InlineMath math="a>b" /> and concluding the price went up is wrong, and treating "the price stayed the same" as something that doesn't answer the question is wrong too.
 
-All four vertices of the square lie on the circle, so **the diagonal of the square is a diameter of the circle**. It passes through the centre and joins two opposite points of the circle.
-
-<BlockMath math="2r=12\;\Longrightarrow\;r=6,\quad \text{area}=36\pi" />
-
-Statement (2) alone is also sufficient, and both statements give the same area.
-
-So **statement (1) alone is sufficient, and statement (2) alone is also sufficient**.
+So both statements together are sufficient to answer the question, but neither statement alone is.

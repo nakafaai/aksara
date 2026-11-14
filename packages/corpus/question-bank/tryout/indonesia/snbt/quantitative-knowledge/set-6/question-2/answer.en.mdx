@@ -1,19 +1,64 @@
-The fraction is easier to check once the numerator is **rewritten to contain the denominator**. Then the integer condition depends on one simple fraction.
+You're looking for the vertex of a parabola whose axis of symmetry is <InlineMath math="x=1" />. The plan: write <InlineMath math="f" /> in vertex form, plug in the three points, find <InlineMath math="k" />, and then **check that each value of <InlineMath math="k" /> really gives a quadratic function**.
 
-# Rewriting the fraction
+# Writing the function from its axis
 
-<BlockMath math="\frac{n+6}{n-2}=\frac{(n-2)+8}{n-2}=1+\frac{8}{n-2}" />
+The vertex always lies on the axis of symmetry, so its <InlineMath math="x" />-coordinate is <InlineMath math="1" />. That lets you write <InlineMath math="f" /> in **vertex form**, with <InlineMath math="(1,q)" /> as the vertex.
 
-This is an integer exactly when <InlineMath math="n-2" /> **divides 8**. The divisors of 8 include negative numbers.
+<BlockMath math="f(x)=a(x-1)^2+q,\qquad a\ne0" />
 
-<BlockMath math="n-2\in\{-8,-4,-2,-1,1,2,4,8\}" />
+The condition <InlineMath math="a\ne0" /> comes from the words quadratic function: without an <InlineMath math="x^2" /> term, the graph isn't a parabola.
 
-# Adding the values of n
+# Setting up three equations
 
-Each divisor <InlineMath math="d" /> gives <InlineMath math="n=d+2" />, namely <InlineMath math="-6,-2,0,1,3,4,6,10" />. The positive and negative divisors cancel, so the sum is <InlineMath math="8\times2=16" />.
+Plug in the three points. Their distances from the axis are <InlineMath math="1" />, <InlineMath math="2" />, and <InlineMath math="5" />, so the squares are <InlineMath math="1" />, <InlineMath math="4" />, and <InlineMath math="25" />.
 
-<BlockMath math="-6-2+0+1+3+4+6+10=16" />
+<BlockMath math="\begin{aligned}
+f(2) &= a+q=1 \\
+f(3) &= 4a+q=k \\
+f(6) &= 25a+q=k^2
+\end{aligned}" />
 
-The value 23 uses only the positive divisors. The value 8 is the number of values of <InlineMath math="n" />, not their sum. The value 15 adds the positive divisors of 8, which are values of <InlineMath math="n-2" />, not of <InlineMath math="n" />. The value 12 comes from the slip <InlineMath math="1+\frac{4}{n-2}" />.
+**Subtract the first equation from the other two** so that <InlineMath math="q" /> drops out.
 
-So the sum of all values of <InlineMath math="n" /> is **16**.
+<BlockMath math="\begin{aligned}
+3a &= k-1 \\
+24a &= k^2-1
+\end{aligned}" />
+
+# Finding the parameter
+
+The left side of the second equation is eight times the left side of the first, so **the right sides must match the same factor of eight**: <InlineMath math="24a=8\cdot3a=8(k-1)" />.
+
+<BlockMath math="\begin{aligned}
+k^2-1 &= 8(k-1) \\
+k^2-8k+7 &= 0 \\
+(k-1)(k-7) &= 0
+\end{aligned}" />
+
+There are two candidates, <InlineMath math="k=1" /> and <InlineMath math="k=7" />.
+
+# Throwing out the invalid candidate
+
+For <InlineMath math="k=1" />, the equation <InlineMath math="3a=k-1" /> gives <InlineMath math="a=0" />. The function becomes <InlineMath math="f(x)=1" />, a horizontal line through all three points <InlineMath math="(2,1)" />, <InlineMath math="(3,1)" />, and <InlineMath math="(6,1)" />. **A horizontal line isn't a quadratic function and has no vertex**, so <InlineMath math="k=1" /> is out.
+
+For <InlineMath math="k=7" /> you get <InlineMath math="a=2" /> and <InlineMath math="q=1-a=-1" />.
+
+<BlockMath math="\begin{aligned}
+f(x) &= 2(x-1)^2-1 \\
+f(2) &= 2-1=1 \\
+f(3) &= 8-1=7 \\
+f(6) &= 50-1=49=7^2
+\end{aligned}" />
+
+All three points fit, and the vertex is <InlineMath math="(1,-1)" />.
+
+# Why the other options fail
+
+The wrong options come from **a candidate nobody checked** or from reading the wrong value.
+
+- <InlineMath math="(1,1)" /> comes from using <InlineMath math="k=1" />, but then the graph is the line <InlineMath math="y=1" />.
+- <InlineMath math="(1,-1)" /> or <InlineMath math="(1,1)" /> comes from keeping both roots without checking the condition <InlineMath math="a\ne0" />.
+- <InlineMath math="(1,2)" /> comes from taking the coefficient <InlineMath math="a=2" /> as the vertex's <InlineMath math="y" />-coordinate, which is really <InlineMath math="q" />.
+- <InlineMath math="(1,7)" /> comes from taking <InlineMath math="k=7" /> as the vertex's <InlineMath math="y" />-coordinate, but <InlineMath math="7" /> is the value <InlineMath math="f(3)" />.
+
+So the vertex of the graph of <InlineMath math="f" /> is <InlineMath math="(1,-1)" />.

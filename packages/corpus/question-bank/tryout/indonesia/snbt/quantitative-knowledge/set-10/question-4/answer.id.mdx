@@ -1,22 +1,50 @@
-Banyak penyelesaian sistem dua persamaan linear ditentukan oleh **apakah kedua garis berpotongan, sejajar, atau berimpit**. Bandingkan koefisien kedua persamaan.
+Kamu perlu membuang <InlineMath math="a" /> dan menyisakan hubungan antara <InlineMath math="b" />, <InlineMath math="c" />, dan <InlineMath math="d" />. Rencananya, sebut nilai bersama keempat pangkat itu <InlineMath math="k" />, ubah setiap eksponen menjadi logaritma basis <InlineMath math="k" />, lalu pakai fakta bahwa **<InlineMath math="6" /> dan <InlineMath math="12" /> tersusun dari faktor <InlineMath math="2" /> dan <InlineMath math="3" />**.
 
-# Kasus a sama dengan satu
+# Mengubah eksponen menjadi logaritma
 
-Untuk <InlineMath math="a=1" />, kalikan persamaan pertama dengan 3.
+Misalkan <InlineMath math="2^a=3^b=6^c=12^d=k" />. Bilangan <InlineMath math="k" /> positif karena setiap pangkat dari bilangan positif bernilai positif. Selain itu <InlineMath math="k\ne 1" />, sebab <InlineMath math="2^a=1" /> hanya terjadi kalau <InlineMath math="a=0" />, padahal <InlineMath math="a" /> tidak nol. Jadi **logaritma basis <InlineMath math="k" /> boleh dipakai**.
 
-<BlockMath math="3x+6y=12" />
-
-Ruas kirinya sama dengan persamaan kedua. Jika <InlineMath math="b=12" />, kedua persamaan **menggambarkan garis yang sama**, jadi penyelesaiannya tak hingga banyak. Pernyataan pertama benar. Jika <InlineMath math="b=10" />, ruas kiri yang sama harus bernilai 12 dan 10 sekaligus, yang mustahil. Garisnya sejajar dan tidak ada penyelesaian, jadi pernyataan kedua salah.
-
-# Kasus a sama dengan dua
-
-Perbandingan koefisien <InlineMath math="2:3" /> dan <InlineMath math="2:6" /> berbeda, jadi kedua garis **berpotongan di tepat satu titik**. Pernyataan keempat benar. Cari titik itu.
+Dari <InlineMath math="2^a=k" /> kamu dapat <InlineMath math="a=\log_2 k" />. Aturan <InlineMath math="\log_p q\cdot\log_q p=1" /> membalik basisnya.
 
 <BlockMath math="\begin{aligned}
-2x+2y=4&\;\Longrightarrow\;x=2-y\\
-3(2-y)+6y=12&\;\Longrightarrow\;y=2,\quad x=0
+\frac{1}{a} &= \log_k 2, & \frac{1}{b} &= \log_k 3, \\
+\frac{1}{c} &= \log_k 6, & \frac{1}{d} &= \log_k 12
 \end{aligned}" />
 
-Penyelesaiannya <InlineMath math="x=0" /> dan <InlineMath math="y=2" />. Pasangan <InlineMath math="x=2" />, <InlineMath math="y=0" /> memenuhi persamaan pertama tetapi memberi <InlineMath math="3\cdot2+0=6\ne12" />. Pernyataan ketiga salah.
+# Dua persamaan baru
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Logaritma dari hasil kali sama dengan jumlah logaritmanya. Pakai <InlineMath math="6=2\cdot 3" /> dan <InlineMath math="12=2\cdot 2\cdot 3" />. Perhatikan bahwa **faktor <InlineMath math="2" /> pada <InlineMath math="12" /> muncul dua kali**.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{c} &= \log_k 2+\log_k 3=\frac{1}{a}+\frac{1}{b} \\
+\frac{1}{d} &= 2\log_k 2+\log_k 3=\frac{2}{a}+\frac{1}{b}
+\end{aligned}" />
+
+# Menghapus satu variabel
+
+Kalikan persamaan pertama dengan <InlineMath math="2" />, lalu kurangi dengan persamaan kedua. Dengan begitu **suku <InlineMath math="\tfrac{2}{a}" /> saling menghapus**.
+
+<BlockMath math="\begin{aligned}
+\frac{2}{c}-\frac{1}{d} &= \left(\frac{2}{a}+\frac{2}{b}\right)-\left(\frac{2}{a}+\frac{1}{b}\right)=\frac{1}{b} \\
+\frac{1}{b} &= \frac{2d-c}{cd} \\
+b &= \frac{cd}{2d-c}
+\end{aligned}" />
+
+# Pemeriksaan
+
+Hitung ulang ruas kiri langsung dengan logaritma. Hasilnya memang <InlineMath math="\log_k 3" />, yaitu <InlineMath math="\tfrac{1}{b}" />.
+
+<BlockMath math="\frac{2}{c}-\frac{1}{d}=2\log_k 6-\log_k 12=\log_k\frac{36}{12}=\log_k 3" />
+
+Penyebut <InlineMath math="2d-c" /> juga tidak mungkin nol, karena **<InlineMath math="\tfrac{1}{b}=\log_k 3" /> tidak nol** ketika <InlineMath math="k\ne 1" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain berasal dari **langkah eliminasi yang salah arah**.
+
+- <InlineMath math="\dfrac{cd}{c-d}" /> adalah nilai <InlineMath math="a" />, yang muncul kalau kedua persamaan langsung dikurangkan sehingga yang terhapus justru <InlineMath math="b" />.
+- <InlineMath math="\dfrac{cd}{d-c}" /> berasal dari pengurangan yang sama dengan tanda terbalik.
+- <InlineMath math="\dfrac{cd}{2c-d}" /> menukar peran <InlineMath math="c" /> dan <InlineMath math="d" />, seolah-olah <InlineMath math="\tfrac{1}{b}=\tfrac{2}{d}-\tfrac{1}{c}" />.
+- <InlineMath math="\dfrac{cd}{c+d}" /> meniru pola <InlineMath math="\tfrac{1}{c}=\tfrac{1}{a}+\tfrac{1}{b}" /> untuk <InlineMath math="b" />, <InlineMath math="c" />, dan <InlineMath math="d" />, padahal pola itu hanya berlaku karena <InlineMath math="6=2\cdot 3" />.
+
+Jadi, <InlineMath math="b=\dfrac{cd}{2d-c}" />.

@@ -1,19 +1,44 @@
-Sudut terbesar sebuah segitiga **berhadapan dengan sisi terpanjang**, yaitu sisi 19 cm. Tiga sisi diketahui, jadi sudut itu dihitung dengan aturan kosinus.
+Pertanyaannya meminta jawaban pasti ya atau pasti tidak. Sebuah pernyataan cukup kalau **setiap kelompok yang memenuhinya memberi jawaban yang sama**. Urutkan usia sebagai <InlineMath math="a_1\le a_2\le\dots\le a_6" />. Rata-rata lebih dari <InlineMath math="25" /> sama artinya dengan jumlah usia lebih dari <InlineMath math="6\times25=150" />.
 
-# Aturan kosinus
+# Pernyataan pertama saja
 
-Misalkan <InlineMath math="\theta" /> **sudut di hadapan sisi 19**.
+Pernyataan (1) berarti <InlineMath math="a_1+a_2+a_3=60" />, tetapi tiga usia lainnya **bebas asalkan tidak lebih muda dari <InlineMath math="a_3" />**.
 
 <BlockMath math="\begin{aligned}
-19^2&=5^2+16^2-2\cdot5\cdot16\cos\theta\\
-361&=281-160\cos\theta\\
-\cos\theta&=\frac{281-361}{160}=-\frac12
+20,20,20,40,40,40:\quad \text{jumlah} &= 180>150 \\
+20,20,20,20,20,20:\quad \text{jumlah} &= 120<150
 \end{aligned}" />
 
-# Menentukan sudut
+Kelompok pertama menjawab ya, kelompok kedua menjawab tidak. Pernyataan (1) saja tidak cukup.
 
-Kosinus negatif berarti **sudutnya tumpul**. Sudut tumpul dengan kosinus <InlineMath math="-\tfrac12" /> adalah <InlineMath math="120^\circ" />.
+# Pernyataan kedua saja
 
-Nilai <InlineMath math="60^\circ" /> muncul jika tanda kosinus terbalik menjadi <InlineMath math="\tfrac12" />. Nilai <InlineMath math="90^\circ" /> menganggap segitiga itu siku-siku, padahal <InlineMath math="5^2+16^2=281\ne361" />. Nilai <InlineMath math="135^\circ" /> dan <InlineMath math="150^\circ" /> memakai kosinus <InlineMath math="-\tfrac12\sqrt2" /> dan <InlineMath math="-\tfrac12\sqrt3" />, yang tidak sesuai dengan hasil hitungan.
+Untuk enam data, median adalah rata-rata data ketiga dan keempat, jadi pernyataan (2) berarti <InlineMath math="a_3+a_4=60" />. **Usia termuda bisa sangat kecil**.
 
-Jadi, sudut terbesar segitiga itu adalah <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+30,30,30,30,30,30:\quad \text{jumlah} &= 180>150 \\
+1,1,30,30,30,30:\quad \text{jumlah} &= 122<150
+\end{aligned}" />
+
+Ada jawaban ya dan ada jawaban tidak. Pernyataan (2) saja tidak cukup.
+
+# Kedua pernyataan bersama
+
+Sekarang <InlineMath math="a_1+a_2+a_3=60" /> dan <InlineMath math="a_4=60-a_3" />. Usia <InlineMath math="a_4" /> tidak boleh lebih kecil dari <InlineMath math="a_3" />, jadi <InlineMath math="60-a_3\ge a_3" />, yaitu <InlineMath math="a_3\le30" />. Usia <InlineMath math="a_5" /> dan <InlineMath math="a_6" /> paling sedikit <InlineMath math="a_4" />. Dari situ kamu dapat batas bawah jumlahnya.
+
+<BlockMath math="\begin{aligned}
+\text{jumlah} &= 60+a_4+a_5+a_6 \\
+&\ge 60+3a_4=60+3(60-a_3) \\
+&= 240-3a_3\ge240-90=150
+\end{aligned}" />
+
+Jadi rata-ratanya **paling sedikit <InlineMath math="25" />**, tetapi pertanyaannya meminta **lebih dari <InlineMath math="25" />**. Batas <InlineMath math="150" /> benar-benar bisa dicapai, yaitu saat <InlineMath math="a_3=30" /> dan <InlineMath math="a_4=a_5=a_6=30" />.
+
+<BlockMath math="\begin{aligned}
+15,15,30,30,30,30:\quad \text{jumlah} &= 150,\ \text{rata-rata }25 \\
+20,20,20,40,40,40:\quad \text{jumlah} &= 180,\ \text{rata-rata }30
+\end{aligned}" />
+
+Kelompok pertama memenuhi kedua pernyataan: tiga termuda <InlineMath math="15+15+30=60" /> dan median <InlineMath math="\tfrac{30+30}{2}=30" />, tetapi rata-ratanya tepat <InlineMath math="25" />, jadi jawabannya tidak. Kelompok kedua juga memenuhi keduanya, dengan median <InlineMath math="\tfrac{20+40}{2}=30" />, dan jawabannya ya. Kedua pernyataan bersama pun tidak cukup. Jebakannya adalah membaca batas paling sedikit <InlineMath math="25" /> sebagai lebih dari <InlineMath math="25" />.
+
+Jadi, pernyataan (1) dan pernyataan (2) tidak cukup untuk menjawab pertanyaan.

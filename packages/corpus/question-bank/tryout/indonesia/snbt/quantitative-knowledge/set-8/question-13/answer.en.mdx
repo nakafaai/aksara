@@ -1,20 +1,35 @@
-The other solid is the cube without the pyramid <InlineMath math="E.ABD" />. So compute **the volume of the cube minus the volume of the pyramid**.
+You need the distance from the vertex <InlineMath math="A" /> to the point of tangency <InlineMath math="T" />. Here's the plan: find both diagonals from their sum and the side length, locate the centre of the inscribed circle, then **use the right triangle formed by the radius to the point of tangency**.
 
-# Volume of the cut-off pyramid
+# The lengths of both diagonals
 
-The base of the pyramid is triangle <InlineMath math="ABD" />, half of the square <InlineMath math="ABCD" />. Its height is the edge <InlineMath math="AE" />, because <InlineMath math="AE" /> **is perpendicular to the base plane**.
+Let the diagonals meet at <InlineMath math="O" />. The diagonals of a rhombus bisect each other at right angles, so triangle <InlineMath math="AOB" /> has a right angle at <InlineMath math="O" />, with <InlineMath math="AO=\tfrac12AC" /> and <InlineMath math="BO=\tfrac12BD" />. Pythagoras gives <InlineMath math="AC^2+BD^2=4\cdot15^2=900" />. Combine this with the sum of the diagonals.
 
 <BlockMath math="\begin{aligned}
-L_{ABD}&=\tfrac12\cdot6\cdot6=18\\
-V_{\text{pyramid}}&=\tfrac13\cdot18\cdot6=36
+(AC+BD)^2&=AC^2+BD^2+2\,AC\cdot BD\\
+42^2&=900+2\,AC\cdot BD\\
+AC\cdot BD&=\tfrac{1764-900}{2}=432
 \end{aligned}" />
 
-# Volume of the remaining solid
+Two numbers with sum <InlineMath math="42" /> and product <InlineMath math="432" /> are the roots of <InlineMath math="t^2-42t+432=0" />, that is, <InlineMath math="(t-24)(t-18)=0" />. Since **<InlineMath math="AC" /> is the longer diagonal**, you get <InlineMath math="AC=24\text{ cm}" /> and <InlineMath math="BD=18\text{ cm}" />. So <InlineMath math="AO=12\text{ cm}" /> and <InlineMath math="BO=9\text{ cm}" />. Check: <InlineMath math="12^2+9^2=225=15^2" />.
 
-<BlockMath math="V_{\text{rest}}=6^3-36=216-36=180" />
+# The point of tangency on the side
 
-The pyramid **takes one sixth of the cube**, that is <InlineMath math="\tfrac{36}{216}=\tfrac16" />, so the remaining solid is <InlineMath math="\tfrac56" /> of the cube.
+A rhombus is symmetric about both diagonals, so <InlineMath math="O" /> is the same distance from all four sides and is the centre of the inscribed circle. A radius to a point of tangency is always perpendicular to the tangent line, so **<InlineMath math="OT" /> is the altitude from the right angle at <InlineMath math="O" /> to the hypotenuse <InlineMath math="AB" />**.
 
-The value 36 is the volume of the pyramid, not of the rest. The value 144 appears if the base of the pyramid is taken as the full square, which gives a pyramid of 72. The value 108 assumes the cut splits the cube into two equal halves.
+Triangles <InlineMath math="ATO" /> and <InlineMath math="AOB" /> are similar, because both have a right angle and both contain the angle at <InlineMath math="A" />. The ratio of matching sides gives <InlineMath math="AT" />.
 
-So the volume of the other solid is **<InlineMath math="180\text{ cm}^3" />**.
+<BlockMath math="\begin{aligned}
+\frac{AT}{AO}&=\frac{AO}{AB}\\
+AT&=\frac{AO^2}{AB}=\frac{144}{15}=9.6\text{ cm}
+\end{aligned}" />
+
+In the same way, <InlineMath math="BT=\tfrac{BO^2}{AB}=\tfrac{81}{15}=5.4\text{ cm}" /> and the radius is <InlineMath math="OT=\tfrac{AO\cdot BO}{AB}=\tfrac{108}{15}=7.2\text{ cm}" />. Check: <InlineMath math="AT+BT=9.6+5.4=15" />, the side length, and <InlineMath math="AT^2+OT^2=92.16+51.84=144=AO^2" />.
+
+# The wrong options
+
+- <InlineMath math="5.4\text{ cm}" /> is <InlineMath math="BT" />, which comes from **using the vertex on the shorter diagonal** as <InlineMath math="A" />.
+- <InlineMath math="7.2\text{ cm}" /> is the radius <InlineMath math="OT" />, which comes from stopping one step too early.
+- <InlineMath math="8\text{ cm}" /> comes from dividing <InlineMath math="AO^2" /> by the diagonal <InlineMath math="BD" /> instead of the side <InlineMath math="AB" />: <InlineMath math="\tfrac{144}{18}" />.
+- <InlineMath math="9\text{ cm}" /> comes from using **the inscribed circle of triangle <InlineMath math="AOB" />** instead of the inscribed circle of the rhombus: its tangent length from <InlineMath math="A" /> is <InlineMath math="\tfrac{12+15+9}{2}-9=9" />.
+
+So the length of <InlineMath math="AT" /> is <InlineMath math="9.6\text{ cm}" />.

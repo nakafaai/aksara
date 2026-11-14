@@ -1,15 +1,36 @@
-A statement is sufficient if **angle <InlineMath math="BAC" /> is unique** for every triangle that satisfies it.
+Angle <InlineMath math="OBC" /> sits in triangle <InlineMath math="OBC" />, whose two sides are radii. So you only need **the central angle <InlineMath math="BOC" />**. The plan: turn the tangent angle into an arc measure, use <InlineMath math="AC=AB" /> to find arc <InlineMath math="BC" />, then finish triangle <InlineMath math="OBC" />.
 
-# Statement (1) alone
+# The arc from the tangent angle
 
-Let <InlineMath math="\angle ACB=t" />, so <InlineMath math="\angle ABC=2t" /> and <InlineMath math="\angle BAC=180^\circ-3t" />. The value of <InlineMath math="t" /> **is still unknown**. For <InlineMath math="t=30^\circ" />, angle <InlineMath math="BAC" /> is <InlineMath math="90^\circ" />. For <InlineMath math="t=40^\circ" />, it is <InlineMath math="60^\circ" />. Statement (1) alone is not sufficient.
+The angle between a tangent and a chord **is half the arc it encloses**. The acute angle <InlineMath math="70^\circ" /> encloses the minor arc <InlineMath math="AB" />.
 
-# Statement (2) alone
+<BlockMath math="\text{arc }AB=2\cdot70^\circ=140^\circ" />
 
-The sides <InlineMath math="AB" /> and <InlineMath math="BC" /> are equal, so the triangle is isosceles with apex <InlineMath math="B" />. **Angles opposite equal sides are equal**: the angle opposite <InlineMath math="BC" /> is <InlineMath math="\angle BAC" />, and the angle opposite <InlineMath math="AB" /> is <InlineMath math="\angle ACB" />.
+# The arc from equal chords
 
-<BlockMath math="\angle BAC=\angle ACB=40^\circ" />
+Equal chords cut off equal arcs. Since <InlineMath math="AC=AB" />, the minor arc <InlineMath math="AC" /> is also <InlineMath math="140^\circ" />. Point <InlineMath math="C" /> isn't <InlineMath math="B" />, so **arc <InlineMath math="AC" /> lies on the other side of <InlineMath math="A" />**. The arc <InlineMath math="BC" /> that doesn't contain <InlineMath math="A" /> is what's left of the circle.
 
-Statement (2) alone is sufficient.
+<BlockMath math="\text{arc }BC=360^\circ-140^\circ-140^\circ=80^\circ" />
 
-So **statement (2) alone is sufficient**, but statement (1) alone is not.
+# The central angle and triangle OBC
+
+A central angle equals the arc it faces, so <InlineMath math="\angle BOC=80^\circ" />. The sides <InlineMath math="OB" /> and <InlineMath math="OC" /> are both radii, so triangle <InlineMath math="OBC" /> is isosceles and **its two base angles are equal**.
+
+<BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
+
+# Checking another way
+
+The inscribed angle <InlineMath math="BAC" /> faces arc <InlineMath math="BC" />, so it's <InlineMath math="40^\circ" />. Triangle <InlineMath math="ABC" /> is isosceles with <InlineMath math="AB=AC" />, so <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. In triangle <InlineMath math="OAB" />, the central angle <InlineMath math="AOB" /> is <InlineMath math="140^\circ" />, so <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. All three angles of triangle <InlineMath math="ABC" /> are acute, so **<InlineMath math="O" /> lies inside it** and the ray <InlineMath math="BO" /> splits angle <InlineMath math="ABC" />.
+
+<BlockMath math="\angle OBC=\angle ABC-\angle OBA=70^\circ-20^\circ=50^\circ" />
+
+The result matches.
+
+# The tempting wrong options
+
+- <InlineMath math="20^\circ" /> is <InlineMath math="\angle OBA" />, **the angle toward <InlineMath math="A" />**, not toward <InlineMath math="C" />.
+- <InlineMath math="40^\circ" /> is the inscribed angle <InlineMath math="BAC" />, whose vertex is <InlineMath math="A" />.
+- <InlineMath math="70^\circ" /> is the whole angle <InlineMath math="ABC" />, without taking away the part <InlineMath math="\angle OBA" />.
+- <InlineMath math="80^\circ" /> is the central angle <InlineMath math="BOC" />, which stops before using the isosceles triangle <InlineMath math="OBC" />.
+
+So angle <InlineMath math="OBC" /> measures <InlineMath math="50^\circ" />.

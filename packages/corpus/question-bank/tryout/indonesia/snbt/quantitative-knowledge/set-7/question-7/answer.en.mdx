@@ -1,17 +1,46 @@
-Let one pencil cost <InlineMath math="p" /> rupiah and one exercise book <InlineMath math="b" /> rupiah. There are two unknowns, so we need **two genuinely different equations**.
+You can only find the radius once you know where the centre is, and the centre depends on all four pieces of the diagonals. Here's the plan: **complete the diagonal pieces with the intersecting chords theorem**, find the centre with the perpendicular bisectors of the chords, then measure its distance to one vertex.
 
-# Each statement alone
+# Completing the diagonal pieces
 
-Statement (1) gives <InlineMath math="2p+3b=27{,}000" />. One equation in two unknowns has many solutions, for example <InlineMath math="p=3{,}000" /> with <InlineMath math="b=7{,}000" />, or <InlineMath math="p=6{,}000" /> with <InlineMath math="b=5{,}000" />. The price of a book is **not yet unique**, so statement (1) alone is not sufficient.
+From <InlineMath math="AC=11\text{ cm}" /> and <InlineMath math="AP=3\text{ cm}" /> you get <InlineMath math="PC=8\text{ cm}" />. For <InlineMath math="PD" />, use **the intersecting chords theorem**: the product of the two pieces of one chord equals the product of the two pieces of the other chord. It holds because triangles <InlineMath math="APB" /> and <InlineMath math="DPC" /> are similar, since inscribed angles that stand on the same arc are equal.
 
-Statement (2) gives <InlineMath math="4p+6b=54{,}000" />, and the same reason makes it insufficient.
+<BlockMath math="\begin{aligned}
+AP\cdot PC&=BP\cdot PD\\
+3\cdot8&=4\cdot PD\\
+PD&=6\text{ cm}
+\end{aligned}" />
 
-# Both statements together
+So <InlineMath math="BD=4+6=10\text{ cm}" />.
 
-Divide the second equation by 2.
+# Locating the centre of the circle
 
-<BlockMath math="4p+6b=54{,}000\;\Longleftrightarrow\;2p+3b=27{,}000" />
+Set up axes with <InlineMath math="P" /> at the origin, <InlineMath math="AC" /> on the <InlineMath math="x" />-axis, and <InlineMath math="BD" /> on the <InlineMath math="y" />-axis. That's allowed because the diagonals are perpendicular. The points become <InlineMath math="A(-3,0)" />, <InlineMath math="C(8,0)" />, <InlineMath math="B(0,4)" />, and <InlineMath math="D(0,-6)" />.
 
-The second equation is **exactly the first equation**, only multiplied by 2. Both example pairs above still satisfy both statements, so the book can still cost Rp7,000 or Rp5,000.
+**The centre of a circle always lies on the perpendicular bisector of every chord**, which is the line through the chord's midpoint at right angles to it. The bisector of <InlineMath math="AC" /> is the vertical line through the midpoint of <InlineMath math="AC" />, and the bisector of <InlineMath math="BD" /> is the horizontal line through the midpoint of <InlineMath math="BD" />.
 
-So **statements (1) and (2) together are not sufficient** to answer the question.
+<BlockMath math="\begin{aligned}
+x_O&=\frac{-3+8}{2}=\frac52\\
+y_O&=\frac{4+(-6)}{2}=-1
+\end{aligned}" />
+
+The centre is <InlineMath math="O\left(\tfrac52,-1\right)" />. Notice that it's <InlineMath math="1\text{ cm}" /> away from the line <InlineMath math="AC" />, so <InlineMath math="AC" /> isn't a diameter.
+
+# Computing the radius
+
+The radius is **the distance from the centre to any vertex**, because every vertex lies on the circle. Use Pythagoras for <InlineMath math="OA" />.
+
+<BlockMath math="\begin{aligned}
+R^2&=\left(\tfrac52+3\right)^2+(-1-0)^2=\tfrac{121}{4}+\tfrac44=\tfrac{125}{4}\\
+R&=\frac{\sqrt{125}}{2}=\frac{5\sqrt5}{2}
+\end{aligned}" />
+
+Check: the distance to <InlineMath math="B" /> is the same, since <InlineMath math="OB^2=\left(\tfrac52\right)^2+(-1-4)^2=\tfrac{25}{4}+25=\tfrac{125}{4}" />. The special rule for perpendicular diagonals agrees too: <InlineMath math="AP^2+BP^2+CP^2+DP^2=9+16+64+36=125=4R^2" />.
+
+# The wrong options
+
+- <InlineMath math="\frac{11}{2}\text{ cm}" /> comes from **treating the diagonal <InlineMath math="AC" /> as a diameter**, but the centre is <InlineMath math="1\text{ cm}" /> away from the line <InlineMath math="AC" />.
+- <InlineMath math="\frac{\sqrt{221}}{2}\text{ cm}" /> comes from treating the two diagonals as the legs of a right triangle whose hypotenuse is a diameter, that is <InlineMath math="(2R)^2=11^2+10^2" />.
+- <InlineMath math="\frac{5\sqrt{10}}{2}\text{ cm}" /> comes from setting the sum of the four squared pieces equal to <InlineMath math="2R^2" /> instead of <InlineMath math="4R^2" />.
+- <InlineMath math="5\sqrt5\text{ cm}" /> comes from taking the sum of the four squared pieces, <InlineMath math="125" />, as <InlineMath math="R^2" /> itself.
+
+So the radius of the circle is <InlineMath math="\frac{5\sqrt5}{2}\text{ cm}" />.

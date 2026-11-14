@@ -1,15 +1,55 @@
-Pertanyaannya meminta jawaban pasti ya atau pasti tidak. Sebuah pernyataan cukup jika **setiap segitiga yang memenuhinya memberi jawaban yang sama**.
+Kita cari <InlineMath math="AD" />, potongan sisi miring di dekat titik <InlineMath math="A" />. Sisi-sisi segitiganya belum diketahui, jadi rencananya begini: pakai luas untuk mengaitkan kedua sisi siku dengan sisi miring, pakai keliling dan teorema Pythagoras untuk mendapatkan sisi miring, lalu tentukan sisi siku dan <InlineMath math="AD" />. Syarat <InlineMath math="AC<BC" /> **menentukan potongan mana yang menjadi <InlineMath math="AD" />**.
 
-# Pernyataan pertama saja
+# Dua cara menghitung luas
 
-Segitiga dengan sisi terpanjang <InlineMath math="c" /> siku-siku tepat ketika <InlineMath math="a^2+b^2=c^2" />, yaitu **kebalikan teorema Pythagoras**.
+Misalkan <InlineMath math="p=AC" />, <InlineMath math="q=BC" />, dan <InlineMath math="c=AB" />. Luas segitiga siku-siku bisa dihitung dari kedua sisi siku, atau dari sisi miring sebagai alas dan <InlineMath math="CD" /> sebagai tinggi. **Kedua cara itu menghitung luas yang sama**, jadi hasilnya harus sama.
 
-<BlockMath math="9^2+12^2=81+144=225=15^2" />
+<BlockMath math="\begin{aligned}
+\tfrac12pq &= \tfrac12\cdot c\cdot24 \\
+pq &= 24c
+\end{aligned}" />
 
-Kesamaannya berlaku, jadi segitiga itu pasti siku-siku. Pernyataan (1) saja cukup.
+# Mencari panjang sisi miring
 
-# Pernyataan kedua saja
+Dari keliling, <InlineMath math="p+q=120-c" />. Teorema Pythagoras memberi <InlineMath math="p^2+q^2=c^2" />. Kuadratkan <InlineMath math="p+q" />, karena **kuadrat jumlah memuat <InlineMath math="p^2+q^2" /> dan <InlineMath math="pq" /> sekaligus**.
 
-Sudut <InlineMath math="30^\circ" /> bisa muncul di segitiga siku-siku dengan sudut <InlineMath math="30^\circ" />, <InlineMath math="60^\circ" />, dan <InlineMath math="90^\circ" />. Sudut itu juga bisa muncul di segitiga dengan sudut <InlineMath math="30^\circ" />, <InlineMath math="70^\circ" />, dan <InlineMath math="80^\circ" />, yang **tidak siku-siku**. Pernyataan (2) saja tidak cukup.
+<BlockMath math="\begin{aligned}
+(p+q)^2 &= p^2+q^2+2pq \\
+(120-c)^2 &= c^2+48c \\
+14{.}400-240c+c^2 &= c^2+48c \\
+14{.}400 &= 288c \\
+c &= 50
+\end{aligned}" />
 
-Jadi, **pernyataan (1) saja cukup**, tetapi pernyataan (2) saja tidak cukup.
+# Mencari kedua sisi siku
+
+Sekarang <InlineMath math="p+q=70" /> dan <InlineMath math="pq=24\cdot50=1{.}200" />. Bilangan <InlineMath math="p" /> dan <InlineMath math="q" /> adalah akar persamaan kuadrat yang jumlah akarnya <InlineMath math="70" /> dan hasil kalinya <InlineMath math="1{.}200" />.
+
+<BlockMath math="\begin{aligned}
+t^2-70t+1{.}200 &= 0 \\
+(t-30)(t-40) &= 0
+\end{aligned}" />
+
+Karena **<InlineMath math="AC" /> lebih pendek dari <InlineMath math="BC" />**, kamu dapat <InlineMath math="AC=30\text{ cm}" /> dan <InlineMath math="BC=40\text{ cm}" />. Cek: <InlineMath math="30^2+40^2=900+1{.}600=2{.}500=50^2" />, dan kelilingnya <InlineMath math="30+40+50=120" />.
+
+# Mencari potongan sisi miring
+
+Segitiga <InlineMath math="ADC" /> dan segitiga <InlineMath math="ACB" /> sebangun, karena keduanya siku-siku (di <InlineMath math="D" /> dan di <InlineMath math="C" />) dan berbagi sudut <InlineMath math="A" />. Dari kesebangunan itu, **sisi siku <InlineMath math="AC" /> adalah rata-rata ukur dari <InlineMath math="AD" /> dan <InlineMath math="AB" />**.
+
+<BlockMath math="\begin{aligned}
+\frac{AD}{AC} &= \frac{AC}{AB} \\
+AD &= \frac{AC^2}{AB}=\frac{900}{50}=18
+\end{aligned}" />
+
+Cek dengan potongan lainnya: <InlineMath math="DB=\tfrac{BC^2}{AB}=\tfrac{1{.}600}{50}=32" />. Jumlahnya <InlineMath math="18+32=50=AB" />, dan hasil kalinya <InlineMath math="18\cdot32=576=24^2=CD^2" />, sesuai sifat garis tinggi ke sisi miring.
+
+# Mengapa pilihan lain keliru
+
+Setiap pilihan yang salah **mengambil ruas yang salah** atau berhenti terlalu cepat.
+
+- <InlineMath math="32\text{ cm}" /> adalah <InlineMath math="DB" />, potongan di dekat <InlineMath math="B" />. Angka ini muncul kalau syarat <InlineMath math="AC<BC" /> dibalik.
+- <InlineMath math="30\text{ cm}" /> adalah <InlineMath math="AC" />, jadi kamu berhenti sebelum memotong sisi miring.
+- <InlineMath math="25\text{ cm}" /> adalah setengah <InlineMath math="AB" />, seolah-olah <InlineMath math="D" /> titik tengah. Itu hanya benar kalau <InlineMath math="AC=BC" />.
+- <InlineMath math="14{,}4\text{ cm}" /> muncul dari <InlineMath math="\tfrac{CD^2}{BC}=\tfrac{576}{40}" />, yaitu kalau <InlineMath math="BC" /> dikira sama dengan <InlineMath math="DB" />.
+
+Jadi, panjang <InlineMath math="AD" /> adalah <InlineMath math="18\text{ cm}" />.

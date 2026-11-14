@@ -1,22 +1,33 @@
-Der Flächeninhalt eines Kreises ist durch seinen Radius festgelegt. Eine Aussage reicht also, wenn **sich der Radius eindeutig bestimmen lässt**.
+Das ist eine Ja-Nein-Frage, also reicht eine Information, wenn die Antwort **sicher "ja" oder sicher "nein"** lautet. Der Plan: Schreib den Endpreis als Vielfaches des Anfangspreises, finde die Bedingung dafür, dass der Endpreis höher ist, und teste dann jede Aussage mit Beispielen.
 
-# Nur Aussage (1)
+# Wann der Endpreis höher ist
 
-Ein Bogen zum Mittelpunktswinkel <InlineMath math="60^\circ" /> ist <InlineMath math="\tfrac{60}{360}=\tfrac16" /> des Umfangs. Die Bogenlänge ist **proportional zum Mittelpunktswinkel**.
+Eine Erhöhung um <InlineMath math="a\%" /> multipliziert den Preis mit <InlineMath math="1+\frac{a}{100}" />, und die Senkung um <InlineMath math="b\%" /> bezieht sich auf den neuen Preis, multipliziert also mit <InlineMath math="1-\frac{b}{100}" />. Merk dir, **prozentuale Änderungen werden multipliziert, nicht addiert**.
+
+<BlockMath math="\left(1+\tfrac{a}{100}\right)\left(1-\tfrac{b}{100}\right)=1+\frac{a-b}{100}-\frac{ab}{10{.}000}" />
+
+Der Endpreis ist genau dann höher, wenn dieser Faktor größer als <InlineMath math="1" /> ist, also wenn <InlineMath math="100(a-b)>ab" /> gilt.
+
+# Nur die erste Aussage
+
+Aus <InlineMath math="a=b+5" /> wird die Bedingung <InlineMath math="500>ab" />, und <InlineMath math="ab" /> kennst du noch nicht. Für <InlineMath math="a=15" /> und <InlineMath math="b=10" /> ist der Faktor <InlineMath math="1{,}15\times0{,}9=1{,}035" />, der Preis steigt also. Für <InlineMath math="a=35" /> und <InlineMath math="b=30" /> ist der Faktor <InlineMath math="1{,}35\times0{,}7=0{,}945" />, der Preis sinkt also. **Ein positiver Abstand zwischen den Prozentsätzen garantiert keinen Anstieg**, also reicht Aussage (1) allein nicht.
+
+# Nur die zweite Aussage
+
+Aus <InlineMath math="ab=500" /> wird die Bedingung <InlineMath math="100(a-b)>500" />, also <InlineMath math="a-b>5" />, und diesen Abstand kennst du noch nicht. Für <InlineMath math="a=50" /> und <InlineMath math="b=10" /> ist der Faktor <InlineMath math="1{,}5\times0{,}9=1{,}35" />, der Preis steigt also. Für <InlineMath math="a=10" /> und <InlineMath math="b=50" /> ist der Faktor <InlineMath math="1{,}1\times0{,}5=0{,}55" />, der Preis sinkt also. **Auch ein festes Produkt der Prozentsätze legt die Richtung nicht fest**, also reicht Aussage (2) allein nicht.
+
+# Beide Aussagen zusammen
+
+Setz <InlineMath math="a=b+5" /> in <InlineMath math="ab=500" /> ein.
 
 <BlockMath math="\begin{aligned}
-\tfrac16\cdot2\pi r&=2\pi\\
-r&=6,\quad \text{Fläche}=36\pi
+(b+5)b&=500\\
+b^2+5b-500&=0\\
+(b+25)(b-20)&=0
 \end{aligned}" />
 
-Aussage (1) allein reicht.
+Wegen <InlineMath math="b>0" /> fällt <InlineMath math="b=-25" /> weg, also ist <InlineMath math="b=20" /> und <InlineMath math="a=25" />. Der Faktor ist <InlineMath math="1{,}25\times0{,}8=1" />, passend zur Formel: <InlineMath math="100(a-b)=500=ab" />. Der Endpreis ist **genau gleich dem Anfangspreis**, also nicht höher. Die Antwort ist sicher "nein", und eine sichere Antwort bedeutet, dass die Angaben reichen.
 
-# Nur Aussage (2)
+Hier lauern zwei Fallen. Aus <InlineMath math="a>b" /> auf einen Preisanstieg zu schließen ist falsch, und "der Preis bleibt gleich" als Fall zu sehen, der die Frage nicht beantwortet, ist ebenfalls falsch.
 
-Alle vier Ecken des Quadrats liegen auf dem Kreis, also ist **die Diagonale des Quadrats ein Durchmesser des Kreises**. Sie geht durch den Mittelpunkt und verbindet zwei gegenüberliegende Kreispunkte.
-
-<BlockMath math="2r=12\;\Longrightarrow\;r=6,\quad \text{Fläche}=36\pi" />
-
-Auch Aussage (2) allein reicht, und beide Aussagen liefern denselben Flächeninhalt.
-
-Also **reicht Aussage (1) allein, und Aussage (2) allein reicht ebenfalls**.
+Beide Aussagen zusammen reichen also aus, um die Frage zu beantworten, aber keine Aussage allein reicht.

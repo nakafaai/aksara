@@ -1,19 +1,42 @@
-Semut tidak dapat menembus balok, jadi diagonal ruang bukan lintasannya. Caranya adalah **membuka dua sisi balok menjadi satu bidang datar**, lalu lintasan terpendek pada bidang itu adalah garis lurus.
+Kamu mencari peluang jarak dua titik kisi merupakan bilangan bulat. Rencananya begini: hitung ruang sampel, cari **selisih koordinat mana saja yang menghasilkan jarak bulat**, lalu hitung pasangan titik untuk setiap selisih itu.
 
-# Tiga cara membuka balok
+# Ruang sampel
 
-Lintasan dari <InlineMath math="A" /> ke <InlineMath math="G" /> melewati dua sisi yang bertetangga. Saat kedua sisi dibuka, salah satu rusuk tetap utuh dan **dua rusuk lainnya tersambung menjadi satu ruas**. Ada tiga pilihan rusuk yang tetap utuh.
+Dua titik dipilih sekaligus, jadi urutannya tidak penting. Banyak pasangan dari <InlineMath math="25" /> titik adalah <InlineMath math="\binom{25}{2}=\tfrac{25\cdot24}{2}=300" />, dan **semua pasangan berpeluang sama**.
+
+# Kapan jaraknya bulat
+
+Misalkan selisih mutlak koordinat kedua titik adalah <InlineMath math="a=|x_1-x_2|" /> dan <InlineMath math="b=|y_1-y_2|" />, dengan <InlineMath math="a" /> dan <InlineMath math="b" /> masing-masing dari <InlineMath math="0" /> sampai <InlineMath math="4" />. Menurut teorema Pythagoras, jaraknya <InlineMath math="\sqrt{a^2+b^2}" />. Jarak itu bulat tepat ketika <InlineMath math="a^2+b^2" /> adalah bilangan kuadrat.
+
+Jika salah satu selisih nol, jaraknya sama dengan selisih yang lain, jadi pasti bulat. Jika keduanya positif, periksa semua jumlah kuadratnya.
 
 <BlockMath math="\begin{aligned}
-\text{rusuk 12 utuh}&:\quad \sqrt{12^2+(4+3)^2}=\sqrt{144+49}=\sqrt{193}\\
-\text{rusuk 4 utuh}&:\quad \sqrt{4^2+(12+3)^2}=\sqrt{16+225}=\sqrt{241}\\
-\text{rusuk 3 utuh}&:\quad \sqrt{3^2+(12+4)^2}=\sqrt{9+256}=\sqrt{265}
+1+1&=2, & 1+4&=5, & 1+9&=10, & 1+16&=17, & 4+4&=8,\\
+4+9&=13, & 4+16&=20, & 9+9&=18, & 9+16&=25, & 16+16&=32
 \end{aligned}" />
 
-# Memilih yang terpendek
+Hanya <InlineMath math="9+16=25" /> yang kuadrat. Jadi, selain pasangan sebaris atau sekolom, **pasangan dengan selisih <InlineMath math="3" /> dan <InlineMath math="4" /> juga berjarak bulat**, yaitu <InlineMath math="5" />.
 
-Nilai terkecil adalah <InlineMath math="\sqrt{193}\approx13{,}9" />. Lintasan terpendek didapat saat **rusuk terpanjang tetap utuh** dan dua rusuk pendek disambung.
+# Menghitung pasangan yang baik
 
-Panjang 13 cm adalah diagonal ruang <InlineMath math="\sqrt{144+16+9}" />, yang menembus bagian dalam balok. Panjang 19 cm berjalan di sepanjang rusuk <InlineMath math="12+4+3" />. Nilai <InlineMath math="\sqrt{241}" /> dan <InlineMath math="\sqrt{265}" /> berasal dari cara membuka yang lain.
+Setiap baris memuat <InlineMath math="5" /> titik, dan **setiap pasangan sebaris pasti berjarak bulat**, jadi ada <InlineMath math="\binom52=10" /> pasangan sebaris per baris dan <InlineMath math="5\cdot10=50" /> pasangan sebaris seluruhnya. Dengan alasan yang sama ada <InlineMath math="50" /> pasangan sekolom.
 
-Jadi, panjang lintasan terpendek adalah **<InlineMath math="\sqrt{193}\text{ cm}" />**.
+Untuk selisih mendatar <InlineMath math="3" /> dan selisih tegak <InlineMath math="4" />, koordinat <InlineMath math="x" /> kedua titik adalah <InlineMath math="\{0,3\}" /> atau <InlineMath math="\{1,4\}" />, koordinat <InlineMath math="y" /> harus <InlineMath math="\{0,4\}" />, dan ruas penghubungnya bisa naik atau turun. Itu memberi <InlineMath math="2\cdot1\cdot2=4" /> pasangan. Selisih mendatar <InlineMath math="4" /> dan tegak <InlineMath math="3" /> juga memberi <InlineMath math="4" /> pasangan.
+
+<BlockMath math="\begin{aligned}
+\text{pasangan baik}&=50+50+4+4=108\\
+P&=\frac{108}{300}=\frac{9}{25}
+\end{aligned}" />
+
+# Pemeriksaan jumlah semua pasangan
+
+Banyak pasangan dengan selisih <InlineMath math="a>0" /> dan <InlineMath math="b>0" /> adalah <InlineMath math="2(5-a)(5-b)" />, karena ada <InlineMath math="5-a" /> posisi mendatar, <InlineMath math="5-b" /> posisi tegak, dan <InlineMath math="2" /> arah. Rumus ini memberi <InlineMath math="2\cdot2\cdot1=4" /> untuk selisih <InlineMath math="3" /> dan <InlineMath math="4" />, sesuai hitungan tadi. Jumlahnya untuk semua <InlineMath math="a,b" /> positif adalah <InlineMath math="2(4+3+2+1)^2=200" />. Ditambah <InlineMath math="100" /> pasangan sebaris atau sekolom, **totalnya <InlineMath math="300" />**, sama dengan ruang sampel.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\tfrac{9}{50}" /> muncul jika penyebutnya pasangan berurutan <InlineMath math="25\cdot24=600" />, sedangkan pembilangnya tetap pasangan tak berurutan.
+- <InlineMath math="\tfrac13" /> muncul jika **pasangan berjarak <InlineMath math="5" /> terlupakan**: <InlineMath math="\tfrac{100}{300}" />.
+- <InlineMath math="\tfrac{26}{75}" /> muncul jika pasangan berjarak <InlineMath math="5" /> hanya dihitung untuk satu arah: <InlineMath math="\tfrac{104}{300}" />.
+- <InlineMath math="\tfrac{29}{75}" /> muncul jika setiap pasangan berjarak <InlineMath math="5" /> dihitung dua kali: <InlineMath math="\tfrac{116}{300}" />.
+
+Jadi, peluang jarak kedua titik merupakan bilangan bulat adalah <InlineMath math="\tfrac{9}{25}" />.

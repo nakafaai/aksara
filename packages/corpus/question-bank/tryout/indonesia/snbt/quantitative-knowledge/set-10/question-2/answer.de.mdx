@@ -1,16 +1,48 @@
-Das Verhältnis <InlineMath math="a:b=3:4" /> bedeutet **<InlineMath math="a=3k" /> und <InlineMath math="b=4k" />** mit einer Zahl <InlineMath math="k\ne0" />. Der Term hängt nur vom Verhältnis ab, also fällt <InlineMath math="k" /> weg.
+Du musst zuerst alle reellen Lösungen finden und sie erst dann multiplizieren. Der Term <InlineMath math="x^2-6x" /> sieht fast aus wie das Quadrat von <InlineMath math="x-3" />, deshalb ersetzt du <InlineMath math="\lvert x-3\rvert" /> durch eine neue Variable, die **nicht negativ sein darf**.
 
-# Einsetzen
+# Den Betrag ersetzen
+
+Das Quadrat einer Zahl ist gleich dem Quadrat ihres Betrags, also <InlineMath math="(x-3)^2=\lvert x-3\rvert^2" />. Wegen <InlineMath math="(x-3)^2=x^2-6x+9" /> bekommst du <InlineMath math="x^2-6x=\lvert x-3\rvert^2-9" />.
+
+Setze <InlineMath math="t=\lvert x-3\rvert" />. Ein Betrag ist nie negativ, also gilt **die Bedingung <InlineMath math="t\ge 0" />**. Jetzt wird die linke Seite zu einem quadratischen Term in <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-\frac{2a+b}{a-3b}&=\frac{2(3k)+4k}{3k-3(4k)}\\
-&=\frac{10k}{-9k}=-\frac{10}{9}
+x^2-6x-4\lvert x-3\rvert-3 &= (t^2-9)-4t-3 \\
+&= t^2-4t-12 \\
+&= (t-6)(t+2)
 \end{aligned}" />
 
-# Vorzeichen prüfen
+Die Gleichung lautet <InlineMath math="(t-6)(t+2)=0" />, also <InlineMath math="t=6" /> oder <InlineMath math="t=-2" />. Den Wert <InlineMath math="t=-2" /> streichst du, weil er die Bedingung <InlineMath math="t\ge 0" /> verletzt. Kein <InlineMath math="x" /> erfüllt <InlineMath math="\lvert x-3\rvert=-2" />.
 
-Der Nenner <InlineMath math="a-3b" /> ist negativ, weil <InlineMath math="3b" /> **viel größer als <InlineMath math="a" /> ist**, während der Zähler für <InlineMath math="k>0" /> positiv ist. Das Ergebnis muss also negativ sein. Für <InlineMath math="k<0" /> wechseln Zähler und Nenner beide das Vorzeichen, und das Ergebnis bleibt <InlineMath math="-\tfrac{10}{9}" />.
+# Zurück zur ursprünglichen Variablen
 
-Der Wert <InlineMath math="\tfrac{10}{9}" /> übersieht das negative Vorzeichen des Nenners. Der Wert <InlineMath math="-\tfrac{9}{10}" /> stellt den Bruch auf den Kopf.
+Übrig bleibt nur <InlineMath math="\lvert x-3\rvert=6" />. Der Abstand von <InlineMath math="x" /> zu <InlineMath math="3" /> ist <InlineMath math="6" />, also **gibt es zwei Punkte, einen rechts und einen links**.
 
-Der Wert des Terms ist also **<InlineMath math="-\tfrac{10}{9}" />**.
+<BlockMath math="\begin{aligned}
+x-3=6 &\;\Longrightarrow\; x=9 \\
+x-3=-6 &\;\Longrightarrow\; x=-3
+\end{aligned}" />
+
+Das Produkt der beiden Lösungen ist <InlineMath math="9\cdot(-3)=-27" />.
+
+# Probe
+
+Setz beide Lösungen in die ursprüngliche Gleichung ein.
+
+<BlockMath math="\begin{aligned}
+x=9:&\quad 81-54-4\cdot 6-3=0 \\
+x=-3:&\quad 9+18-4\cdot 6-3=0
+\end{aligned}" />
+
+Ein zweiter Weg ist die Fallunterscheidung. Für <InlineMath math="x\ge 3" /> lautet die Gleichung <InlineMath math="x^2-10x+9=0" /> mit den Lösungen <InlineMath math="1" /> und <InlineMath math="9" />. Die <InlineMath math="1" /> fällt weg, weil sie **die Bedingung ihres Falls nicht erfüllt**, nämlich <InlineMath math="x\ge 3" />. Für <InlineMath math="x<3" /> lautet die Gleichung <InlineMath math="x^2-2x-15=0" /> mit den Lösungen <InlineMath math="5" /> und <InlineMath math="-3" />. Die <InlineMath math="5" /> fällt weg, weil sie <InlineMath math="x<3" /> nicht erfüllt. Übrig bleiben wieder <InlineMath math="9" /> und <InlineMath math="-3" />.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einer ungeprüften Lösung** oder einer verwechselten Größe.
+
+- <InlineMath math="-135" /> multipliziert alle vier Kandidaten <InlineMath math="1" />, <InlineMath math="9" />, <InlineMath math="5" /> und <InlineMath math="-3" />, ohne die Bedingung des jeweiligen Falls zu prüfen.
+- <InlineMath math="-15" /> benutzt nur die Gleichung des Falls <InlineMath math="x<3" />, als ob <InlineMath math="\lvert x-3\rvert=3-x" /> für jedes <InlineMath math="x" /> gälte.
+- <InlineMath math="-12" /> ist das Produkt der beiden Werte von <InlineMath math="t" />, nicht der Lösungen <InlineMath math="x" />.
+- <InlineMath math="9" /> entsteht, wenn du die Betragsstriche einfach weglässt und nur <InlineMath math="x^2-10x+9=0" /> löst.
+
+Das Produkt aller reellen Lösungen der Gleichung ist also <InlineMath math="-27" />.

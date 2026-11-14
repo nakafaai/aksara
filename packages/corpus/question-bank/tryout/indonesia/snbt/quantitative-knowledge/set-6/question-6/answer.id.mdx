@@ -1,26 +1,53 @@
-Faktorkan ruas kiri menjadi faktor linear, lalu **periksa tanda hasil kali di setiap selang** di antara pembuat nolnya.
+Menghitung langsung persegi panjang yang menghindari kedua petak itu sulit, karena bentuknya banyak sekali. Lebih mudah lewat **komplemen**: hitung semua persegi panjang, lalu kurangi yang memuat paling sedikit satu petak arsiran. Bagian terakhir itu dihitung dengan **prinsip inklusi dan eksklusi**, supaya persegi panjang yang memuat kedua petak tidak terkurangi dua kali.
 
-<BlockMath math="\left(x^2-9\right)(x-5)=(x+3)(x-3)(x-5)" />
+# Menghitung semua persegi panjang
 
-# Tanda di setiap selang
+Beri nomor garis mendatar <InlineMath math="0" /> sampai <InlineMath math="4" /> dari atas, sehingga baris ke-<InlineMath math="i" /> berada di antara garis <InlineMath math="i-1" /> dan garis <InlineMath math="i" />. Beri nomor garis tegak <InlineMath math="0" /> sampai <InlineMath math="6" /> dari kiri dengan cara yang sama. **Setiap persegi panjang ditentukan tepat oleh dua garis mendatar dan dua garis tegak**, jadi kamu cukup memilih dua dari <InlineMath math="5" /> garis mendatar dan dua dari <InlineMath math="7" /> garis tegak.
 
-Pembuat nolnya <InlineMath math="-3" />, 3, dan 5. Tanda hasil kali berganti setiap kali melewati satu pembuat nol.
+<BlockMath math="\begin{aligned}
+\binom{5}{2}\times\binom{7}{2} &= 10\times21 \\
+&= 210
+\end{aligned}" />
 
-| Selang | <InlineMath math="x+3" /> | <InlineMath math="x-3" /> | <InlineMath math="x-5" /> | Hasil kali |
-| :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x<-3" /> | negatif | negatif | negatif | negatif |
-| <InlineMath math="-3<x<3" /> | positif | negatif | negatif | positif |
-| <InlineMath math="3<x<5" /> | positif | positif | negatif | negatif |
-| <InlineMath math="x>5" /> | positif | positif | positif | positif |
+# Memuat petak arsiran pertama
 
-Karena tandanya kurang dari atau sama dengan, **pembuat nol ikut masuk**. Penyelesaiannya <InlineMath math="x\le-3" /> atau <InlineMath math="3\le x\le5" />.
+Petak pada baris <InlineMath math="1" /> kolom <InlineMath math="2" /> berada di antara garis mendatar <InlineMath math="0" /> dan <InlineMath math="1" />, serta di antara garis tegak <InlineMath math="1" /> dan <InlineMath math="2" />. Persegi panjang memuat petak itu tepat ketika **garis atasnya tidak di bawah petak dan garis bawahnya tidak di atas petak**, begitu juga untuk kiri dan kanan.
 
-# Menghitung bilangan bulat
+<BlockMath math="\begin{aligned}
+\text{atas} &\in\{0\}, & \text{bawah} &\in\{1,2,3,4\} \\
+\text{kiri} &\in\{0,1\}, & \text{kanan} &\in\{2,3,4,5,6\} \\
+\text{banyaknya} &= 1\times4\times2\times5=40
+\end{aligned}" />
 
-Pada <InlineMath math="-10\le x\le-3" /> ada 8 bilangan bulat, dan pada <InlineMath math="3\le x\le5" /> ada 3 bilangan bulat, yaitu 3, 4, dan 5.
+# Memuat petak arsiran kedua
 
-<BlockMath math="8+3=11" />
+Petak pada baris <InlineMath math="3" /> kolom <InlineMath math="5" /> berada di antara garis mendatar <InlineMath math="2" /> dan <InlineMath math="3" />, serta di antara garis tegak <InlineMath math="4" /> dan <InlineMath math="5" />. Pakai **aturan pilihan garis yang sama**.
 
-Nilai 8 memakai tanda kurang dari sehingga membuang <InlineMath math="-3" />, 3, dan 5. Nilai 13 memakai daerah bertanda positif. Nilai 3 hanya menghitung bagian <InlineMath math="3\le x\le5" />, dan nilai 7 menghitung bagian kiri tanpa <InlineMath math="-3" />.
+<BlockMath math="\begin{aligned}
+\text{atas} &\in\{0,1,2\}, & \text{bawah} &\in\{3,4\} \\
+\text{kiri} &\in\{0,1,2,3,4\}, & \text{kanan} &\in\{5,6\} \\
+\text{banyaknya} &= 3\times2\times5\times2=60
+\end{aligned}" />
 
-Jadi, banyak bilangan bulat yang memenuhi adalah **11**.
+# Memuat kedua petak sekaligus
+
+Sekarang garis atas harus di atas kedua petak, garis bawah di bawah kedua petak, dan seterusnya. Jadi **setiap garis harus memenuhi syarat yang lebih ketat dari dua petak itu**.
+
+<BlockMath math="\begin{aligned}
+\text{atas} &\in\{0\}, & \text{bawah} &\in\{3,4\} \\
+\text{kiri} &\in\{0,1\}, & \text{kanan} &\in\{5,6\} \\
+\text{banyaknya} &= 1\times2\times2\times2=8
+\end{aligned}" />
+
+# Menggabungkan dengan inklusi dan eksklusi
+
+Persegi panjang yang memuat kedua petak ikut terhitung di <InlineMath math="40" /> dan juga di <InlineMath math="60" />, jadi **kurangi satu kali hitungan gandanya**.
+
+<BlockMath math="\begin{aligned}
+\text{memuat paling sedikit satu petak} &= 40+60-8=92 \\
+\text{tidak memuat petak arsiran} &= 210-92=118
+\end{aligned}" />
+
+Cek kewajarannya: <InlineMath math="92" /> lebih kecil dari <InlineMath math="40+60=100" />, dan selisihnya tepat <InlineMath math="8" /> persegi panjang yang memuat kedua petak. Kesalahan yang sering terjadi adalah berhenti di <InlineMath math="210-40-60=110" />, yang mengurangi kedelapan persegi panjang itu dua kali.
+
+Jadi, banyak persegi panjang yang tidak memuat satu pun petak yang diarsir adalah <InlineMath math="118" />.

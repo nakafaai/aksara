@@ -1,24 +1,31 @@
-Misalkan bilangan terkecilnya <InlineMath math="a" />. Ketujuh bilangan itu adalah <InlineMath math="a,a+1,\dots,a+6" />, jadi **jumlahnya dapat ditulis dalam <InlineMath math="a" />**.
+Kita menghitung bilangan dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang tidak bisa ditulis sebagai <InlineMath math="10a+14b" />, dengan <InlineMath math="a" /> dan <InlineMath math="b" /> bilangan cacah. Kuncinya, <InlineMath math="10" /> dan <InlineMath math="14" /> **sama-sama genap**. Rencananya: pisahkan skor ganjil dan genap, lalu ubah skor genap menjadi soal yang lebih kecil dengan <InlineMath math="5" /> dan <InlineMath math="7" />.
 
-# Membentuk persamaan
+# Skor ganjil
 
-<BlockMath math="\begin{aligned}
-a+(a+1)+\cdots+(a+6)&=7a+(0+1+\cdots+6)\\
-&=7a+21
-\end{aligned}" />
+Setiap skor berbentuk <InlineMath math="10a+14b=2(5a+7b)" />, jadi **setiap skor pasti genap**. Akibatnya, semua bilangan ganjil dari <InlineMath math="1" /> sampai <InlineMath math="100" /> tidak mungkin menjadi skor. Banyaknya ada <InlineMath math="50" />.
 
-Jumlah itu **sama dengan empat kali bilangan terkecil**.
+# Skor genap
 
-<BlockMath math="\begin{aligned}
-7a+21&=4a\\
-3a&=-21\\
-a&=-7
-\end{aligned}" />
+Bilangan genap <InlineMath math="2m" />, dengan <InlineMath math="1\le m\le50" />, bisa menjadi skor tepat ketika <InlineMath math="m=5a+7b" />. Jadi kamu tinggal mencari nilai <InlineMath math="m" /> yang **tidak bisa dibentuk dari <InlineMath math="5" /> dan <InlineMath math="7" />**.
 
-# Pemeriksaan
+Kelompokkan <InlineMath math="m" /> menurut sisa pembagiannya oleh <InlineMath math="5" />. Menambah <InlineMath math="5" /> tidak mengubah sisa, jadi di setiap kelompok cukup cari bilangan terkecil yang bisa dibentuk, yaitu kelipatan <InlineMath math="7" /> yang pertama kali jatuh di kelompok itu. Semua bilangan positif di bawahnya dalam kelompok yang sama tidak bisa dibentuk.
 
-Bilangannya adalah <InlineMath math="-7,-6,-5,-4,-3,-2,-1" />. Jumlahnya <InlineMath math="-28" />, dan <InlineMath math="4\cdot(-7)=-28" />. Hasil negatif ini wajar, karena **jumlah tujuh bilangan positif selalu lebih dari empat kali bilangan terkecilnya**.
+| Sisa bagi <InlineMath math="5" /> | Terkecil yang bisa dibentuk | Tidak bisa dibentuk |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | tidak ada |
+| <InlineMath math="1" /> | <InlineMath math="21" /> | <InlineMath math="1,\ 6,\ 11,\ 16" /> |
+| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="28" /> | <InlineMath math="3,\ 8,\ 13,\ 18,\ 23" /> |
+| <InlineMath math="4" /> | <InlineMath math="14" /> | <InlineMath math="4,\ 9" /> |
 
-Nilai <InlineMath math="-1" /> adalah bilangan terbesar, dan <InlineMath math="-4" /> adalah bilangan tengah. Nilai 7 dan 3 muncul dari salah tanda saat memindahkan <InlineMath math="21" />.
+Ada <InlineMath math="4+1+5+2=12" /> nilai <InlineMath math="m" /> yang gagal. Nilai terbesarnya <InlineMath math="23" />, masih tidak lebih dari <InlineMath math="50" />, jadi **kedua belas nilai itu masuk rentang soal**. Mereka sesuai dengan skor genap <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
 
-Jadi, bilangan terkecilnya adalah **<InlineMath math="-7" />**.
+# Menjumlahkan dan memeriksa
+
+<BlockMath math="50+12=62" />
+
+Cek skor <InlineMath math="46" />. Kurangkan <InlineMath math="14b" /> untuk <InlineMath math="b=0,1,2,3" />: sisanya <InlineMath math="46" />, <InlineMath math="32" />, <InlineMath math="18" />, dan <InlineMath math="4" />, tidak ada yang kelipatan <InlineMath math="10" />. Jadi <InlineMath math="46" /> memang gagal. Sebaliknya <InlineMath math="48=2\cdot10+2\cdot14" /> berhasil. Banyaknya nilai <InlineMath math="m" /> yang gagal juga cocok dengan rumus untuk dua bilangan yang saling prima, <InlineMath math="\frac{(5-1)(7-1)}{2}=12" />.
+
+Jawaban <InlineMath math="12" /> muncul kalau kamu **lupa semua skor ganjil**. Jawaban <InlineMath math="50" /> muncul kalau kamu hanya menghitung skor ganjil dan menganggap semua skor genap pasti tercapai.
+
+Jadi, ada <InlineMath math="62" /> bilangan bulat dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang tidak mungkin menjadi skor.

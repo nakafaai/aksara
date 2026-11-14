@@ -1,23 +1,46 @@
-Informasi bahwa bola yang terambil merah sudah diketahui, jadi yang ditanyakan adalah **peluang bersyarat kotak I jika diketahui bola merah**. Ruang sampelnya menyempit menjadi semua cara mendapat bola merah.
+Keempat pernyataan menguji hal yang sama dari sisi berbeda: **akar pangkat genap tidak pernah menghasilkan bilangan negatif**, sedangkan akar pangkat ganjil mempertahankan tanda. Setiap pernyataan dinilai dengan bukti atau satu contoh penyangkal.
 
-# Peluang setiap jalur merah
+# Dua aturan dasar
 
-Bola merah bisa didapat lewat dua jalur. Kalikan peluang memilih kotak dengan **peluang mengambil merah dari kotak itu**.
+Untuk setiap bilangan real <InlineMath math="t" />, kuadrat <InlineMath math="t^2" /> tidak negatif, dan akar kuadratnya harus tidak negatif juga. Jadi <InlineMath math="\sqrt{t^2}" /> sama dengan <InlineMath math="t" /> kalau <InlineMath math="t\ge0" />, dan sama dengan <InlineMath math="-t" /> kalau <InlineMath math="t<0" />. Itulah **nilai mutlak**, <InlineMath math="\lvert t\rvert" />. Akar pangkat tiga tidak punya batasan ini, karena pangkat tiga bilangan negatif tetap negatif.
 
 <BlockMath math="\begin{aligned}
-P(\text{I dan merah})&=\tfrac12\cdot\tfrac35=\tfrac{3}{10}\\
-P(\text{II dan merah})&=\tfrac12\cdot\tfrac15=\tfrac{1}{10}\\
-P(\text{merah})&=\tfrac{3}{10}+\tfrac{1}{10}=\tfrac{4}{10}
+\sqrt{t^2} &= \lvert t\rvert, & \sqrt{(-3)^2} &= \sqrt9=3 \\
+\sqrt[3]{t^3} &= t, & \sqrt[3]{(-2)^3} &= \sqrt[3]{-8}=-2
 \end{aligned}" />
 
-# Peluang bersyarat
+# Pernyataan pertama
 
-Bagi peluang jalur kotak I dengan **peluang seluruh kejadian merah**.
+Misalkan <InlineMath math="t=1-\sqrt3" />. Karena <InlineMath math="\sqrt3>1" />, **bilangan <InlineMath math="t" /> negatif**, jadi <InlineMath math="\lvert t\rvert=\sqrt3-1" />.
 
-<BlockMath math="P(\text{I}\mid\text{merah})=\frac{3/10}{4/10}=\frac34" />
+<BlockMath math="\begin{aligned}
+\sqrt{t^2}+\sqrt[3]{t^3} &= \lvert t\rvert+t \\
+&= \left(\sqrt3-1\right)+\left(1-\sqrt3\right)=0
+\end{aligned}" />
 
-Hasil ini masuk akal, karena dari 4 bola merah yang ada, 3 berada di kotak I dan kedua kotak berisi 5 bola.
+Pernyataan pertama **benar**. Kalau kamu langsung mencoret akar dan kuadratnya, kamu mendapat <InlineMath math="2-2\sqrt3" />, yang salah karena bagian pertama tidak boleh negatif.
 
-Nilai <InlineMath math="\tfrac{3}{10}" /> adalah peluang memilih kotak I dan mendapat merah, belum dibagi peluang merah. Nilai <InlineMath math="\tfrac25" /> adalah peluang mendapat merah. Nilai <InlineMath math="\tfrac35" /> adalah peluang merah jika kotak I sudah terpilih, yaitu arah syarat yang terbalik. Nilai <InlineMath math="\tfrac12" /> mengabaikan informasi warna bola.
+# Pernyataan kedua
 
-Jadi, peluang bola merah itu berasal dari kotak I adalah **<InlineMath math="\tfrac34" />**.
+Pisahkan faktor kuadratnya: <InlineMath math="\sqrt{a^2b}=\sqrt{a^2}\cdot\sqrt b=\lvert a\rvert\sqrt b" />. Untuk <InlineMath math="a<0" />, nilai <InlineMath math="\lvert a\rvert=-a" />, jadi hasilnya <InlineMath math="-a\sqrt b" />, **bukan <InlineMath math="a\sqrt b" />**. Contoh penyangkalnya <InlineMath math="a=-1" /> dan <InlineMath math="b=1" />: ruas kiri <InlineMath math="\sqrt1=1" />, ruas kanan <InlineMath math="-1" />. Pernyataan kedua **salah**.
+
+# Pernyataan ketiga
+
+Ruas kiri adalah <InlineMath math="\sqrt{(x+1)^2}=\lvert x+1\rvert" />, yang tidak negatif. Jadi ruas kanan juga harus tidak negatif: <InlineMath math="2x-1\ge0" />, yaitu <InlineMath math="x\ge\tfrac12" />. Untuk <InlineMath math="x\ge\tfrac12" />, bilangan <InlineMath math="x+1" /> positif, sehingga <InlineMath math="\lvert x+1\rvert=x+1" />.
+
+<BlockMath math="\begin{aligned}
+x+1 &= 2x-1 \\
+x &= 2
+\end{aligned}" />
+
+Hanya ada satu penyelesaian. Angka dua penyelesaian muncul kalau kamu mengkuadratkan kedua ruas tanpa syarat: <InlineMath math="(x+1)^2=(2x-1)^2" /> memberi <InlineMath math="3x^2-6x=0" />, yaitu <InlineMath math="x=0" /> atau <InlineMath math="x=2" />. Untuk <InlineMath math="x=0" />, ruas kiri <InlineMath math="\sqrt1=1" /> sedangkan ruas kanan <InlineMath math="-1" />, jadi **<InlineMath math="x=0" /> adalah akar palsu** dari pengkuadratan. Pernyataan ketiga **salah**.
+
+# Pernyataan keempat
+
+Untuk <InlineMath math="a\le0" />, bilangan <InlineMath math="-a" /> tidak negatif, jadi <InlineMath math="\sqrt{-a}" /> terdefinisi. Menurut arti akar kuadrat, **akar kuadrat dikali dirinya sendiri kembali ke bilangan di dalam akar**, yaitu <InlineMath math="-a" />, bukan <InlineMath math="a" />. Contoh penyangkalnya <InlineMath math="a=-4" />.
+
+<BlockMath math="\sqrt{4}\cdot\sqrt{4}=2\cdot2=4\ne-4" />
+
+Kesamaan hanya berlaku untuk <InlineMath math="a=0" />, jadi tidak berlaku untuk setiap <InlineMath math="a\le0" />. Pernyataan keempat **salah**.
+
+Jadi, pernyataan pertama benar, sedangkan pernyataan kedua, ketiga, dan keempat salah.

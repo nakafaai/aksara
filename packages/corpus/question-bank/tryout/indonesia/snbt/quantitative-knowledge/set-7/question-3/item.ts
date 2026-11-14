@@ -3,15 +3,26 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: false, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
+          label: "Banyak siswa yang hanya mengikuti Pramuka pasti $$5$$.",
+        },
+        {
+          column: 2,
+          label: "Pasti ada siswa yang mengikuti Musik dan Pramuka sekaligus.",
+        },
+        {
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Banyak siswa yang mengikuti tepat dua ekstrakurikuler pasti bilangan genap.",
+        },
+        {
+          column: 2,
+          label:
+            "Mungkin terdapat tepat $$9$$ siswa yang mengikuti ketiga ekstrakurikuler.",
         },
       ],
     },

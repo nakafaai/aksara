@@ -1,20 +1,38 @@
-First identify the triangle. Since <InlineMath math="20^2+21^2=400+441=841=29^2" />, it is **right-angled with hypotenuse 29**. The inradius is linked to the area by <InlineMath math="L=r\cdot s" />, where <InlineMath math="s" /> is the semi-perimeter.
+The sample space is every positive divisor of <InlineMath math="2160" />, and they're all equally likely. So the probability is the number of suitable divisors divided by the number of all divisors. The key point is that the condition on <InlineMath math="\tfrac{2160}{d}" /> also **caps the exponents of <InlineMath math="d" /> from above**.
 
-# Area and semi-perimeter
+# The number of all divisors
+
+Factor first: <InlineMath math="2160=216\cdot 10=2^3\cdot 3^3\cdot 2\cdot 5=2^4\cdot 3^3\cdot 5" />. Every divisor has the form <InlineMath math="d=2^x3^y5^z" />, with <InlineMath math="x" /> from <InlineMath math="0" /> to <InlineMath math="4" />, <InlineMath math="y" /> from <InlineMath math="0" /> to <InlineMath math="3" /> and <InlineMath math="z" /> from <InlineMath math="0" /> to <InlineMath math="1" />. Each choice of exponents gives **a different divisor**, so you count them with the multiplication rule.
+
+<BlockMath math="5\cdot 4\cdot 2=40" />
+
+# The condition on both numbers
+
+The partner of <InlineMath math="d" /> is <InlineMath math="\tfrac{2160}{d}=2^{4-x}3^{3-y}5^{1-z}" />. A number is divisible by <InlineMath math="6=2\cdot 3" /> exactly when its exponents of <InlineMath math="2" /> and <InlineMath math="3" /> are both at least <InlineMath math="1" />.
 
 <BlockMath math="\begin{aligned}
-L&=\tfrac12\cdot20\cdot21=210\\
-s&=\tfrac12(20+21+29)=35
+6\mid d &\;\Longleftrightarrow\; x\ge 1 \text{ and } y\ge 1 \\
+6\mid \tfrac{2160}{d} &\;\Longleftrightarrow\; 4-x\ge 1 \text{ and } 3-y\ge 1 \;\Longleftrightarrow\; x\le 3 \text{ and } y\le 2
 \end{aligned}" />
 
-# The inradius
+So <InlineMath math="x\in\{1,2,3\}" /> gives <InlineMath math="3" /> choices, <InlineMath math="y\in\{1,2\}" /> gives <InlineMath math="2" /> choices, and <InlineMath math="z" /> is free with <InlineMath math="2" /> choices. **Both conditions apply at the same time** to each exponent.
 
-The formula <InlineMath math="L=r\cdot s" /> comes from **splitting the triangle into three small triangles** with apex at the incentre and height <InlineMath math="r" />.
+<BlockMath math="\begin{aligned}
+\text{number of suitable divisors} &= 3\cdot 2\cdot 2=12 \\
+\text{probability} &= \frac{12}{40}=\frac{3}{10}
+\end{aligned}" />
 
-<BlockMath math="r=\frac{L}{s}=\frac{210}{35}=6" />
+# Checking another way
 
-For a right triangle, the same result also comes from <InlineMath math="r=\tfrac{a+b-c}{2}=\tfrac{20+21-29}{2}=6" />.
+If <InlineMath math="d=6e" /> and <InlineMath math="\tfrac{2160}{d}=6f" />, then <InlineMath math="36ef=2160" />, so <InlineMath math="ef=60" />. Each divisor <InlineMath math="e" /> of <InlineMath math="60=2^2\cdot 3\cdot 5" /> gives exactly one suitable <InlineMath math="d" />, and **<InlineMath math="60" /> has <InlineMath math="3\cdot 2\cdot 2=12" /> divisors**. You get the same <InlineMath math="12" /> out of <InlineMath math="40" />.
 
-The value 3 divides the area by the whole perimeter instead of half of it. The value 12 is the diameter of the incircle, and 14.5 is the circumradius, half the hypotenuse.
+# The wrong options
 
-So the inradius of the triangle is **<InlineMath math="6\text{ cm}" />**.
+Each other option comes from **a condition used only halfway** or the wrong sample space.
+
+- <InlineMath math="\tfrac{3}{5}" /> only requires <InlineMath math="6\mid d" />, which gives <InlineMath math="4\cdot 3\cdot 2=24" /> divisors out of <InlineMath math="40" />.
+- <InlineMath math="\tfrac{9}{25}" /> squares <InlineMath math="\tfrac{3}{5}" /> as if the two events were independent. But <InlineMath math="d" /> fixes its partner completely.
+- <InlineMath math="\tfrac{9}{20}" /> caps the exponent of <InlineMath math="2" /> but forgets to cap the exponent of <InlineMath math="3" />, which counts <InlineMath math="3\cdot 3\cdot 2=18" /> divisors.
+- <InlineMath math="\tfrac{1}{2}" /> divides <InlineMath math="12" /> by <InlineMath math="24" />, using the divisors that are multiples of <InlineMath math="6" /> as the sample space.
+
+So the probability that <InlineMath math="d" /> and <InlineMath math="\tfrac{2160}{d}" /> are both divisible by <InlineMath math="6" /> is <InlineMath math="\tfrac{3}{10}" />.

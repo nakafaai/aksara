@@ -1,30 +1,32 @@
-The dice have different colours, so the sample space consists of **36 equally likely ordered pairs**, from <InlineMath math="(1,1)" /> to <InlineMath math="(6,6)" />.
+You need the final score for a raw score of <InlineMath math="26" />. Here's the plan: use the rules for how the mean and the standard deviation change to get the size of <InlineMath math="a" />, use the ordering condition to **decide the sign of <InlineMath math="a" />**, find <InlineMath math="b" /> from the mean, then compute the score.
 
-# At least one six
+# How the mean and the standard deviation change
 
-It is easier to count **the opposite event**, no six at all. Each die has 5 outcomes other than 6.
+Every value goes through the same formula, so the mean goes through it too: <InlineMath math="\bar y=a\bar x+b" />. The standard deviation measures how far the values sit from their mean. Adding <InlineMath math="b" /> shifts every value by the same amount, so those distances don't change. Multiplying by <InlineMath math="a" /> stretches every distance to <InlineMath math="|a|" /> times as much, because a distance is never negative. So **the standard deviation only sees the absolute value of <InlineMath math="a" />**.
 
-<BlockMath math="P=1-\frac{5\cdot5}{36}=\frac{11}{36}" />
+<BlockMath math="\begin{aligned}
+s_y&=|a|\,s_x\\
+10&=|a|\cdot4\\
+|a|&=\tfrac52
+\end{aligned}" />
 
-The value <InlineMath math="\tfrac{11}{36}" /> is less than <InlineMath math="\tfrac{12}{36}=\tfrac13" />, because the pair <InlineMath math="(6,6)" /> is counted only once. The first statement is false.
+# Fixing the sign and the constant
 
-# Sum 7 and sum 8
+A participant with fewer errors, meaning a smaller <InlineMath math="x" />, must get a bigger <InlineMath math="y" />. So <InlineMath math="y" /> goes down when <InlineMath math="x" /> goes up, and **the ordering condition forces <InlineMath math="a" /> to be negative**: <InlineMath math="a=-\tfrac52" />. Find <InlineMath math="b" /> from the mean, then compute the final score for <InlineMath math="x=26" />.
 
-List the pairs for each sum.
+<BlockMath math="\begin{aligned}
+60&=-\tfrac52\cdot20+b\\
+b&=60+50=110\\
+y&=-\tfrac52\cdot26+110=-65+110=45
+\end{aligned}" />
 
-| Sum | Pairs (red, blue) | Count |
-| :---: | :---: | :---: |
-| 7 | <InlineMath math="(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)" /> | 6 |
-| 8 | <InlineMath math="(2,6),(3,5),(4,4),(5,3),(6,2)" /> | 5 |
+Check it another way. The raw score <InlineMath math="26" /> is <InlineMath math="6" /> above the mean, which is <InlineMath math="1.5" /> standard deviations. Because the direction is reversed, the final score sits <InlineMath math="1.5\cdot10=15" /> below <InlineMath math="60" />, which is <InlineMath math="45" />.
 
-The probability of sum 7 is <InlineMath math="\tfrac{6}{36}=\tfrac16" />, so the second statement is true. The probability of sum 8 is <InlineMath math="\tfrac{5}{36}" />, because **the pair <InlineMath math="(4,4)" /> has no mirror pair**. The third statement is false.
+# The wrong options
 
-# Odd product
+- <InlineMath math="22.5" /> comes from using the ratio of variances <InlineMath math="\tfrac{100}{16}" /> as <InlineMath math="|a|" />: <InlineMath math="60-\tfrac{25}{4}\cdot6" />.
+- <InlineMath math="54" /> comes from reversing the direction without stretching the distance: <InlineMath math="60-6" />.
+- <InlineMath math="57.6" /> comes from turning the ratio upside down, <InlineMath math="|a|=\tfrac{4}{10}" />: <InlineMath math="60-0.4\cdot6" />.
+- <InlineMath math="75" /> comes from **taking <InlineMath math="a" /> positive**, which breaks the ordering condition: <InlineMath math="60+15" />.
 
-The product is odd only when **both dice show odd numbers**. Each die has 3 odd faces.
-
-<BlockMath math="P=\frac{3\cdot3}{36}=\frac14" />
-
-The fourth statement is true.
-
-So the first statement is **false**, the second is **true**, the third is **false**, and the fourth is **true**.
+So the final score of a participant with a raw score of <InlineMath math="26" /> is <InlineMath math="45" />.

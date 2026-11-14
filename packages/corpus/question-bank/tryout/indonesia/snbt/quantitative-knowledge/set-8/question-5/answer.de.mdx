@@ -1,24 +1,33 @@
-Die Lösungen seien <InlineMath math="t" /> und <InlineMath math="t^2" />. Die Summe der Lösungen ist bekannt, also **legt der Satz von Vieta für die Summe <InlineMath math="t" /> fest**, und das Produkt liefert dann <InlineMath math="q" />.
+<InlineMath math="P" /> und <InlineMath math="Q" /> liegen beide bei etwa <InlineMath math="1{,}44" />, eine grobe Schätzung entscheidet also nichts. Du gehst so vor: **Nimm beide hoch <InlineMath math="6" />**, damit Kubikwurzel und Quadratwurzel gleichzeitig verschwinden, und vergleiche dann eine Potenz von <InlineMath math="\tfrac{49}{48}" /> mit <InlineMath math="\tfrac98" />.
 
-# Die Lösung aus der Summe
+# Beide Wurzeln entfernen
+
+Die Zahl <InlineMath math="6" /> ist das kleinste gemeinsame Vielfache von <InlineMath math="2" /> und <InlineMath math="3" />, die sechste Potenz beseitigt also beide Wurzeln. Bei zwei positiven Zahlen **ändert das Potenzieren mit einem positiven Exponenten die Reihenfolge nicht**. Der Vergleich von <InlineMath math="P^6" /> und <InlineMath math="Q^6" /> ist also derselbe wie der von <InlineMath math="P" /> und <InlineMath math="Q" />.
 
 <BlockMath math="\begin{aligned}
-t+t^2&=12\\
-t^2+t-12&=0\\
-(t+4)(t-3)&=0
+P^6&=\left(3^{1/3}\right)^6=3^2=9\\
+Q^6&=\left(\tfrac{49}{48}\right)^6\left(\sqrt2\right)^6=8\left(\tfrac{49}{48}\right)^6
 \end{aligned}" />
 
-Es gibt **zwei Möglichkeiten**, <InlineMath math="t=3" /> oder <InlineMath math="t=-4" />.
+Teile beide durch <InlineMath math="8" />. Jetzt musst du nur noch <InlineMath math="\tfrac98" /> mit <InlineMath math="\left(\tfrac{49}{48}\right)^6" /> vergleichen.
 
-# Der Wert von q aus dem Produkt
+# Vergleich mit dem binomischen Lehrsatz
 
-| <InlineMath math="t" /> | Lösungen | <InlineMath math="q=t\cdot t^2" /> |
-| :---: | :---: | :---: |
-| 3 | 3 und 9 | 27 |
-| <InlineMath math="-4" /> | <InlineMath math="-4" /> und 16 | <InlineMath math="-64" /> |
+Schreibe <InlineMath math="\tfrac{49}{48}=1+\tfrac{1}{48}" /> und multipliziere die sechste Potenz mit dem binomischen Lehrsatz aus. Alle Summanden sind positiv, und die ersten beiden ergeben schon <InlineMath math="\tfrac98" />.
 
-Beide Paare ergeben tatsächlich die Summe 12, **beide sind also gültig**. Die Summe aller Werte von <InlineMath math="q" /> ist <InlineMath math="27+(-64)=-37" />.
+<BlockMath math="\begin{aligned}
+\left(1+\tfrac{1}{48}\right)^6&=1+6\cdot\tfrac{1}{48}+15\cdot\tfrac{1}{48^2}+\dots+\tfrac{1}{48^6}\\
+&>1+\tfrac{6}{48}=\tfrac98
+\end{aligned}" />
 
-Die Werte 27 und <InlineMath math="-64" /> verwenden nur eine Möglichkeit. Der Wert 37 hat das falsche Vorzeichen, und <InlineMath math="-91" /> addiert beide Beträge mit Minuszeichen.
+Weil **die restlichen Summanden positiv sind**, ist die sechste Potenz echt größer als <InlineMath math="\tfrac98" />. Also gilt <InlineMath math="Q^6>P^6" /> und damit <InlineMath math="Q>P" />.
 
-Die Summe aller möglichen Werte von <InlineMath math="q" /> ist also **<InlineMath math="-37" />**.
+Zur Kontrolle: <InlineMath math="\sqrt[3]{3}\approx1{,}4422" /> und <InlineMath math="\tfrac{49}{48}\sqrt2\approx1{,}4437" />. Der Unterschied beträgt nur etwa <InlineMath math="0{,}0014" />, deshalb reicht eine Schätzung mit <InlineMath math="2" /> Nachkommastellen nicht.
+
+# Die falschen Antworten
+
+- <InlineMath math="P>Q" /> entsteht, wenn du nur <InlineMath math="\sqrt[3]{3}>\sqrt2" /> vergleichst und **den Faktor <InlineMath math="\tfrac{49}{48}" /> übersiehst**.
+- <InlineMath math="P=Q" /> entsteht, wenn nur die ersten beiden Summanden behalten werden und <InlineMath math="\left(\tfrac{49}{48}\right)^6" /> als gleich <InlineMath math="\tfrac98" /> gilt.
+- Die Antwort, die Angaben reichten nicht, ist falsch, weil <InlineMath math="P" /> und <InlineMath math="Q" /> zwei feste Zahlen sind und deshalb genau eine Beziehung gelten muss.
+
+Die richtige Beziehung ist also <InlineMath math="Q>P" />.

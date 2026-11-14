@@ -1,17 +1,48 @@
-Bestimme zuerst die Seitenzahl. Am schnellsten geht es mit **den Außenwinkeln**, denn die Außenwinkel jedes Vielecks ergeben zusammen <InlineMath math="360^\circ" />.
+Du brauchst **alle** Werte <InlineMath math="x" />, an denen <InlineMath math="f" /> am kleinsten ist, nicht nur einen. Der Plan: Schreib <InlineMath math="f" /> als Summe von Abständen von <InlineMath math="x" /> zu einigen Punkten, prüf die Steigung des Graphen auf jedem Abschnitt und addiere dann die ganzen Zahlen auf dem tiefsten Abschnitt.
 
-# Anzahl der Seiten
+# Als Abstände schreiben
 
-Außen- und Innenwinkel **liegen auf einer Geraden nebeneinander**, also ist der Außenwinkel <InlineMath math="180^\circ-156^\circ=24^\circ" />.
+Zieh den Koeffizienten von <InlineMath math="x" /> aus jedem Betrag heraus, denn <InlineMath math="\lvert cu\rvert=c\lvert u\rvert" /> für <InlineMath math="c>0" />.
 
-<BlockMath math="n=\frac{360^\circ}{24^\circ}=15" />
+<BlockMath math="f(x)=\lvert x-1\rvert+2\lvert x-4\rvert+3\lvert x-13\rvert" />
 
-# Anzahl der Diagonalen
+Der Term <InlineMath math="\lvert x-a\rvert" /> ist der Abstand von <InlineMath math="x" /> zum Punkt <InlineMath math="a" />. Also ist <InlineMath math="f(x)" /> die Summe der Abstände von <InlineMath math="x" /> zu sechs Punkten: zum Punkt <InlineMath math="1" /> einmal, zum Punkt <InlineMath math="4" /> zweimal und zum Punkt <InlineMath math="13" /> dreimal. Der Koeffizient bedeutet, dass der Punkt **mehrfach gezählt wird**.
 
-Jede Ecke wird mit allen Ecken verbunden, die **weder sie selbst noch einer ihrer zwei Nachbarn sind**, also mit <InlineMath math="15-3=12" /> Ecken. Jede Diagonale wird doppelt gezählt, einmal von jedem Ende.
+# Die Steigung auf jedem Abschnitt
 
-<BlockMath math="\frac{15\cdot12}{2}=90" />
+Jeder Abstand <InlineMath math="\lvert x-a\rvert" /> nimmt pro Einheit um <InlineMath math="1" /> ab, solange <InlineMath math="x" /> links von <InlineMath math="a" /> liegt, und nimmt um <InlineMath math="1" /> zu, sobald <InlineMath math="x" /> rechts von <InlineMath math="a" /> liegt. Die Steigung von <InlineMath math="f" /> ist die Summe dieser Änderungen.
 
-Der Wert 105 ist <InlineMath math="\binom{15}{2}" /> und zählt die 15 Seiten mit. Der Wert 15 ist die Seitenzahl, und 75 zieht die Seiten zweimal von 105 ab.
+<BlockMath math="\begin{aligned}
+x<1:&\quad -1-2-3=-6 \\
+1<x<4:&\quad +1-2-3=-4 \\
+4<x<13:&\quad +1+2-3=0 \\
+x>13:&\quad +1+2+3=+6
+\end{aligned}" />
 
-Das Vieleck hat also **90** Diagonalen.
+Der Graph von <InlineMath math="f" /> fällt bis <InlineMath math="x=4" />, **verläuft dann waagerecht auf <InlineMath math="4\le x\le 13" />** und steigt danach. Das Minimum wird also auf dem ganzen Intervall erreicht, nicht an einer einzigen Stelle.
+
+<BlockMath math="\begin{aligned}
+f(4) &= 3+0+27=30 \\
+f(13) &= 12+18+0=30
+\end{aligned}" />
+
+# Die ganzen Zahlen addieren
+
+Die ganzen Zahlen in <InlineMath math="[4,13]" /> sind <InlineMath math="4,5,\ldots,13" />, das sind <InlineMath math="10" /> Zahlen. **Beide Enden zählen mit**, weil der Wert dort ebenfalls <InlineMath math="30" /> ist.
+
+<BlockMath math="4+5+\cdots+13=\frac{(4+13)\cdot 10}{2}=85" />
+
+# Probe
+
+Ordne die sechs Punkte: <InlineMath math="1,4,4,13,13,13" />. Bei einer geraden Anzahl von Punkten ist die Abstandssumme an **jeder Stelle zwischen den beiden mittleren Punkten** am kleinsten, hier zwischen dem dritten Punkt <InlineMath math="4" /> und dem vierten Punkt <InlineMath math="13" />. Das passt. Probier auch ein paar Werte: <InlineMath math="f(8)=7+8+15=30" />, während <InlineMath math="f(3)=34" /> und <InlineMath math="f(14)=36" /> größer sind.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **Punkten ohne ihr Gewicht** oder einem abgeschnittenen Intervall.
+
+- <InlineMath math="4" /> nimmt den Median der drei Punkte <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="13" />, ohne zu beachten, dass sie mehrfach zählen.
+- <InlineMath math="13" /> hält den Punkt mit dem größten Gewicht für die einzige Minimalstelle.
+- <InlineMath math="17" /> prüft nur die Knickstellen <InlineMath math="4" /> und <InlineMath math="13" /> und übersieht, dass der Graph dazwischen waagerecht ist.
+- <InlineMath math="68" /> ist <InlineMath math="5+6+\cdots+12" /> und lässt beide Enden des Intervalls weg.
+
+Die Summe aller ganzen Zahlen <InlineMath math="x" />, an denen <InlineMath math="f(x)" /> am kleinsten ist, beträgt also <InlineMath math="85" />.

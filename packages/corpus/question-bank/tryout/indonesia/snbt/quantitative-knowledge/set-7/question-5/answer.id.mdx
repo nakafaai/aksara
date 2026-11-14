@@ -1,32 +1,31 @@
-Tulis ketiga suku sebagai <InlineMath math="\tfrac{a}{r}" />, <InlineMath math="a" />, dan <InlineMath math="ar" />. Kuncinya adalah **membagi jumlah kuadrat dengan jumlah suku**, karena hasil baginya menyisakan bentuk yang sangat mirip dengan jumlah suku.
+Banyak angka <InlineMath math="0" /> di ujung kanan sebuah bilangan sama dengan banyak faktor <InlineMath math="10" /> di dalamnya. Satu faktor <InlineMath math="10" /> butuh sepasang faktor <InlineMath math="2" /> dan <InlineMath math="5" />, jadi **banyak nol di ujung adalah yang lebih sedikit di antara banyak faktor <InlineMath math="2" /> dan banyak faktor <InlineMath math="5" />**. Penjumlahan dan pengurangan mengubah faktor-faktor itu, jadi kedua bilangan perlu difaktorkan dulu.
 
-# Identitas jumlah kuadrat
+# Memfaktorkan kedua bilangan
 
-Untuk tiga suku geometri berlaku
-
-<BlockMath math="\frac{a^2}{r^2}+a^2+a^2r^2=\left(\frac ar+a+ar\right)\left(\frac ar-a+ar\right)" />
-
-Ruas kanan dapat diperiksa dengan mengalikan: suku-suku silangnya saling menghapus. Jadi **hasil bagi jumlah kuadrat oleh jumlah suku** adalah <InlineMath math="\tfrac ar-a+ar" />.
+Keluarkan faktorial yang lebih kecil sebagai faktor persekutuan. Ini boleh karena <InlineMath math="26!=26\times25!" /> dan <InlineMath math="35!=35\times34!" />.
 
 <BlockMath math="\begin{aligned}
-\frac ar+a+ar&=38\\
-\frac ar-a+ar&=\frac{532}{38}=14
+26!-25!&=25!\,(26-1)=25!\times25\\
+34!+35!&=34!\,(1+35)=34!\times36
 \end{aligned}" />
 
-# Mencari suku-suku
+**Faktor <InlineMath math="25=5^2" /> menambah dua faktor <InlineMath math="5" />**, sedangkan <InlineMath math="36=2^2\times3^2" /> tidak menambah faktor <InlineMath math="5" /> sama sekali.
 
-Kurangkan kedua persamaan: <InlineMath math="2a=24" />, jadi <InlineMath math="a=12" /> dan **jumlah kedua suku luar** adalah <InlineMath math="\tfrac{12}{r}+12r=26" />.
+# Menghitung faktor lima dan faktor dua
+
+Banyak faktor <InlineMath math="5" /> dalam <InlineMath math="n!" /> dihitung dengan **rumus Legendre**: banyak kelipatan <InlineMath math="5" /> ditambah banyak kelipatan <InlineMath math="25" />, dan seterusnya. Cara yang sama berlaku untuk faktor <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-12r^2-26r+12&=0\\
-6r^2-13r+6&=0\\
-(3r-2)(2r-3)&=0
+\text{faktor 5 dalam } 25!\times25&=(5+1)+2=8\\
+\text{faktor 2 dalam } 25!\times25&=12+6+3+1=22\\
+\text{faktor 5 dalam } 34!\times36&=6+1=7\\
+\text{faktor 2 dalam } 34!\times36&=(17+8+4+2+1)+2=34
 \end{aligned}" />
 
-Nilai <InlineMath math="r=\tfrac32" /> memberi 8, 12, 18, dan <InlineMath math="r=\tfrac23" /> memberi bilangan yang sama dalam urutan terbalik. Pemeriksaan: <InlineMath math="8+12+18=38" /> dan <InlineMath math="64+144+324=532" />.
+Di kedua bilangan, faktor <InlineMath math="2" /> jauh lebih banyak, jadi faktor <InlineMath math="5" /> yang menentukan. Hasilnya <InlineMath math="P=8" /> dan <InlineMath math="Q=7" />, sehingga <InlineMath math="P>Q" />.
 
-Selisih bilangan terbesar dan terkecil adalah <InlineMath math="18-8=10" />.
+# Jebakan perkiraan cepat
 
-Nilai 12 adalah suku tengah, nilai 14 adalah hasil bagi <InlineMath math="532:38" />, nilai 18 adalah suku terbesar, dan nilai 26 adalah jumlah kedua suku luar.
+Perkiraan cepat sering memakai faktorial terbesar saja. Faktorial <InlineMath math="26!" /> punya <InlineMath math="5+1=6" /> nol di ujung dan <InlineMath math="35!" /> punya <InlineMath math="7+1=8" /> nol di ujung, sehingga seolah-olah <InlineMath math="Q>P" />. Jika hanya <InlineMath math="P" /> yang difaktorkan dengan benar, kamu mendapat <InlineMath math="8" /> lawan <InlineMath math="8" /> dan tergoda memilih <InlineMath math="P=Q" />. **Kedua bilangan harus difaktorkan**, dan keduanya punya nilai tunggal, jadi informasinya juga cukup.
 
-Jadi, selisih bilangan terbesar dan terkecil adalah **10**.
+Jadi, hubungan yang benar adalah <InlineMath math="P>Q" />, karena <InlineMath math="P=8" /> dan <InlineMath math="Q=7" />.

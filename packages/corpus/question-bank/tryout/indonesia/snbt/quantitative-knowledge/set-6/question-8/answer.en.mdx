@@ -1,19 +1,44 @@
-The largest angle of a triangle **lies opposite the longest side**, here the 19 cm side. All three sides are known, so the angle comes from the cosine rule.
+The question asks for a definite yes or a definite no. A statement is sufficient when **every group that satisfies it gives the same answer**. Order the ages as <InlineMath math="a_1\le a_2\le\dots\le a_6" />. A mean above <InlineMath math="25" /> means the ages add up to more than <InlineMath math="6\times25=150" />.
 
-# The cosine rule
+# Statement one alone
 
-Let <InlineMath math="\theta" /> be **the angle opposite the side 19**.
+Statement (1) says <InlineMath math="a_1+a_2+a_3=60" />, but the other three ages are **free as long as they aren't younger than <InlineMath math="a_3" />**.
 
 <BlockMath math="\begin{aligned}
-19^2&=5^2+16^2-2\cdot5\cdot16\cos\theta\\
-361&=281-160\cos\theta\\
-\cos\theta&=\frac{281-361}{160}=-\frac12
+20,20,20,40,40,40:\quad \text{sum} &= 180>150 \\
+20,20,20,20,20,20:\quad \text{sum} &= 120<150
 \end{aligned}" />
 
-# Finding the angle
+The first group answers yes and the second answers no. Statement (1) alone isn't sufficient.
 
-A negative cosine means **the angle is obtuse**. The obtuse angle with cosine <InlineMath math="-\tfrac12" /> is <InlineMath math="120^\circ" />.
+# Statement two alone
 
-The value <InlineMath math="60^\circ" /> appears when the sign of the cosine flips to <InlineMath math="\tfrac12" />. The value <InlineMath math="90^\circ" /> assumes a right triangle, although <InlineMath math="5^2+16^2=281\ne361" />. The values <InlineMath math="135^\circ" /> and <InlineMath math="150^\circ" /> use the cosines <InlineMath math="-\tfrac12\sqrt2" /> and <InlineMath math="-\tfrac12\sqrt3" />, which do not match the computed value.
+With six values, the median is the mean of the third and fourth values, so statement (2) says <InlineMath math="a_3+a_4=60" />. **The youngest ages can be very small**.
 
-So the largest angle of the triangle is <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+30,30,30,30,30,30:\quad \text{sum} &= 180>150 \\
+1,1,30,30,30,30:\quad \text{sum} &= 122<150
+\end{aligned}" />
+
+There's a yes and a no. Statement (2) alone isn't sufficient.
+
+# Both statements together
+
+Now <InlineMath math="a_1+a_2+a_3=60" /> and <InlineMath math="a_4=60-a_3" />. The age <InlineMath math="a_4" /> can't be smaller than <InlineMath math="a_3" />, so <InlineMath math="60-a_3\ge a_3" />, which means <InlineMath math="a_3\le30" />. The ages <InlineMath math="a_5" /> and <InlineMath math="a_6" /> are at least <InlineMath math="a_4" />. That gives a lower bound for the sum.
+
+<BlockMath math="\begin{aligned}
+\text{sum} &= 60+a_4+a_5+a_6 \\
+&\ge 60+3a_4=60+3(60-a_3) \\
+&= 240-3a_3\ge240-90=150
+\end{aligned}" />
+
+So the mean is **at least <InlineMath math="25" />**, but the question asks for **more than <InlineMath math="25" />**. The bound <InlineMath math="150" /> really can be reached, when <InlineMath math="a_3=30" /> and <InlineMath math="a_4=a_5=a_6=30" />.
+
+<BlockMath math="\begin{aligned}
+15,15,30,30,30,30:\quad \text{sum} &= 150,\ \text{mean }25 \\
+20,20,20,40,40,40:\quad \text{sum} &= 180,\ \text{mean }30
+\end{aligned}" />
+
+The first group satisfies both statements: the three youngest give <InlineMath math="15+15+30=60" /> and the median is <InlineMath math="\tfrac{30+30}{2}=30" />, but the mean is exactly <InlineMath math="25" />, so the answer is no. The second group satisfies both too, with median <InlineMath math="\tfrac{20+40}{2}=30" />, and the answer is yes. Even both statements together aren't sufficient. The trap is reading the bound at least <InlineMath math="25" /> as more than <InlineMath math="25" />.
+
+So statement (1) and statement (2) are not sufficient to answer the question.

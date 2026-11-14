@@ -1,23 +1,44 @@
-Rata-rata data berkelompok adalah **jumlah semua nilai dibagi banyak siswa**, dan banyak siswa juga memuat <InlineMath math="x" />.
+Kata "semua nilai yang mungkin" memberi tanda bahwa **lebih dari satu fungsi** bisa memenuhi syarat itu. Rencananya: tulis <InlineMath math="f(x)=ax+b" />, susun komposisinya, cocokkan koefisien, temukan setiap fungsi yang mungkin, lalu jumlahkan nilai <InlineMath math="f(3)" /> dari semuanya.
 
-# Membentuk persamaan
+# Menyusun komposisi
 
-<BlockMath math="\begin{aligned}
-\text{jumlah nilai}&=3\cdot60+70x+5\cdot80+2\cdot90=760+70x\\
-\text{banyak siswa}&=3+x+5+2=10+x
-\end{aligned}" />
+Komposisi ini artinya **hasil <InlineMath math="f(x)" /> dimasukkan lagi ke dalam <InlineMath math="f" />**.
 
 <BlockMath math="\begin{aligned}
-\frac{760+70x}{10+x}&=73\\
-760+70x&=730+73x\\
-30&=3x\\
-x&=10
+f\big(f(x)\big)&=a(ax+b)+b\\
+&=a^2x+ab+b
 \end{aligned}" />
 
-# Pemeriksaan
+# Mencocokkan koefisien
 
-Dengan <InlineMath math="x=10" />, jumlah nilai 1.460 dan banyak siswa 20, sehingga rata-ratanya <InlineMath math="1{.}460:20=73" />. Hasil ini masuk akal: rata-rata 73 dekat dengan 70, jadi **nilai 70 harus paling banyak muncul**.
+Dua bentuk linear sama untuk setiap <InlineMath math="x" /> **hanya jika koefisien <InlineMath math="x" /> dan konstantanya sama**. Jadi <InlineMath math="a^2=4" /> dan <InlineMath math="ab+b=b(a+1)=9" />. Persamaan <InlineMath math="a^2=4" /> punya dua penyelesaian, <InlineMath math="a=2" /> dan <InlineMath math="a=-2" />, dan **keduanya harus diperiksa**.
 
-Kesalahan yang sering terjadi adalah membagi dengan 10 saja, seolah-olah siswa bernilai 70 tidak ikut dihitung sebagai banyak siswa.
+<BlockMath math="\begin{aligned}
+a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
+a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
+\end{aligned}" />
 
-Jadi, nilai <InlineMath math="x" /> adalah **10**.
+# Memeriksa kedua fungsi
+
+<BlockMath math="\begin{aligned}
+2(2x+3)+3&=4x+9\\
+-2(-2x-9)-9&=4x+18-9=4x+9
+\end{aligned}" />
+
+**Keduanya memenuhi**, jadi keduanya dihitung.
+
+# Menjumlahkan nilai f di tiga
+
+<BlockMath math="\begin{aligned}
+f(3)&=2\cdot3+3=9\quad\text{atau}\quad f(3)=-2\cdot3-9=-15\\
+9+(-15)&=-6
+\end{aligned}" />
+
+# Pilihan yang menjebak
+
+- <InlineMath math="9" /> hanya memakai <InlineMath math="a=2" /> dan **kehilangan kasus <InlineMath math="a=-2" />**.
+- <InlineMath math="6" /> memakai lagi <InlineMath math="b=3" /> untuk <InlineMath math="a=-2" />, sehingga <InlineMath math="f(3)=-3" />. Padahal <InlineMath math="-2(-2x+3)+3=4x-3" />, bukan <InlineMath math="4x+9" />.
+- <InlineMath math="12" /> salah tanda pada <InlineMath math="b" />, memakai <InlineMath math="f(x)=-2x+9" /> dengan <InlineMath math="f(3)=3" />. Fungsi itu memberi <InlineMath math="-2(-2x+9)+9=4x-9" />.
+- <InlineMath math="21" /> menghitung <InlineMath math="f\big(f(3)\big)=4\cdot3+9" />, bukan <InlineMath math="f(3)" />.
+
+Jadi, jumlah semua nilai <InlineMath math="f(3)" /> yang mungkin adalah <InlineMath math="-6" />.

@@ -1,18 +1,44 @@
-The percentages 40% and 25% are taken from groups of different sizes. So the two percentages **cannot simply be averaged**: each must be weighted by the share of its group.
+You're looking for the one statement that's impossible for every polynomial with integer coefficients, <InlineMath math="P(1)=6" />, and <InlineMath math="P(4)=12" />. The plan: use a property that every integer-coefficient polynomial has to test each option, and then **prove that the options that pass really can happen** by showing an actual polynomial.
 
-# The share of each group
+# The difference property
 
-Take **100 students**, so there are 60 girls and 40 boys.
+For integers <InlineMath math="a\ne b" />, <InlineMath math="a-b" /> divides <InlineMath math="P(a)-P(b)" />. Here's why: <InlineMath math="P(a)-P(b)" /> is a sum of terms <InlineMath math="c_k\left(a^k-b^k\right)" /> with integer <InlineMath math="c_k" />, and each <InlineMath math="a^k-b^k" /> factors.
+
+<BlockMath math="a^k-b^k=(a-b)\left(a^{k-1}+a^{k-2}b+\dots+b^{k-1}\right)" />
+
+The second factor is an integer, so **every term is divisible by <InlineMath math="a-b" />**, and so is the sum. The given data pass this test: <InlineMath math="4-1=3" /> divides <InlineMath math="12-6=6" />.
+
+# Testing each option
+
+Each option has to pass the test against **both known values**, not just the nearest one.
+
+| Option | Test with <InlineMath math="P(1)=6" /> | Test with <InlineMath math="P(4)=12" /> |
+| :---: | :---: | :---: |
+| <InlineMath math="P(-1)=7" /> | <InlineMath math="\tfrac{7-6}{-1-1}=-\tfrac12" /> | <InlineMath math="\tfrac{7-12}{-1-4}=1" /> |
+| <InlineMath math="P(0)=0" /> | <InlineMath math="\tfrac{0-6}{0-1}=6" /> | <InlineMath math="\tfrac{0-12}{0-4}=3" /> |
+| <InlineMath math="P(5)=14" /> | <InlineMath math="\tfrac{14-6}{5-1}=2" /> | <InlineMath math="\tfrac{14-12}{5-4}=2" /> |
+| <InlineMath math="P(6)=6" /> | <InlineMath math="\tfrac{6-6}{6-1}=0" /> | <InlineMath math="\tfrac{6-12}{6-4}=-3" /> |
+| <InlineMath math="P(7)=0" /> | <InlineMath math="\tfrac{0-6}{7-1}=-1" /> | <InlineMath math="\tfrac{0-12}{7-4}=-4" /> |
+
+Only <InlineMath math="P(-1)=7" /> fails, because <InlineMath math="-1-1=-2" /> doesn't divide <InlineMath math="7-6=1" />. In other words, **<InlineMath math="P(-1)" /> and <InlineMath math="P(1)" /> must be both even or both odd**, but <InlineMath math="7" /> is odd and <InlineMath math="6" /> is even. Testing against <InlineMath math="P(4)" /> alone won't catch it, since <InlineMath math="-1-4=-5" /> really does divide <InlineMath math="7-12=-5" />.
+
+# Making sure the other options can happen
+
+Passing the test doesn't prove an option is possible yet, so **show an integer-coefficient polynomial that actually fits it**.
 
 <BlockMath math="\begin{aligned}
-\text{girls with glasses}&=40\%\times60=24\\
-\text{boys with glasses}&=25\%\times40=10
+P(x)=2x+4:\quad & P(1)=6,\ P(4)=12,\ P(5)=14 \\
+P(x)=7x-x^2:\quad & P(1)=6,\ P(4)=12,\ P(0)=0,\ P(6)=6,\ P(7)=0
 \end{aligned}" />
 
-# The overall percentage
+Check the second polynomial: <InlineMath math="P(0)=0" />, <InlineMath math="P(4)=28-16=12" />, <InlineMath math="P(6)=42-36=6" />, and <InlineMath math="P(7)=49-49=0" />. So the other four statements can all be true.
 
-The number of students with glasses is **the two groups combined**, <InlineMath math="24+10=34" /> out of 100 students, which is 34%.
+# Why the other options fail
 
-The value 32.5% is the plain average of 40% and 25%, which treats the groups as equal in size. The value 31% swaps the percentages of the two groups. The values 24% and 10% each count only one group.
+The other options only look impossible if you **assume the polynomial must be linear** or pair the values wrongly.
 
-So **34%** of the students wear glasses.
+- <InlineMath math="P(0)=0" /> and <InlineMath math="P(7)=0" /> look impossible if you think this polynomial can't have an integer root. The polynomial <InlineMath math="7x-x^2=x(7-x)" /> shows that roots at <InlineMath math="0" /> and <InlineMath math="7" /> are both possible.
+- <InlineMath math="P(6)=6" /> looks impossible if you think <InlineMath math="P" /> must keep rising because <InlineMath math="P(1)<P(4)" />. The polynomial <InlineMath math="7x-x^2" /> rises and then falls.
+- <InlineMath math="P(5)=14" /> looks impossible if you pair <InlineMath math="5-1=4" /> with <InlineMath math="14-12=2" />, but the difference of values has to use the same pair of points.
+
+So the statement that can't be true is <InlineMath math="P(-1)=7" />.

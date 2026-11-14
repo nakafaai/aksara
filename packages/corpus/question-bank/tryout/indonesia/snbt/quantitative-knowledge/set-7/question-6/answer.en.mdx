@@ -1,22 +1,42 @@
-Combine the two logarithms with the rule **a sum of logarithms is the logarithm of the product**, and remember that every argument of a logarithm must be positive.
+Every path of the robot from <InlineMath math="O" /> to <InlineMath math="T" /> is made of exactly <InlineMath math="3" /> steps in <InlineMath math="x" />, <InlineMath math="3" /> steps in <InlineMath math="y" />, and <InlineMath math="2" /> steps in <InlineMath math="z" />, because the coordinates can only go up. Here's the plan: cut each path at the required point <InlineMath math="A" />, work out **which forbidden point can spoil which part**, remove the forbidden paths in each part, then multiply.
 
-# Condition on the arguments
+# Counting paths as arrangements of letters
 
-For both logarithms to be defined, <InlineMath math="x+2>0" /> and <InlineMath math="x-4>0" />. Both hold together exactly when <InlineMath math="x>4" />, so **every solution must be greater than 4**.
-
-# Solving the equation
+A path from one point to another is the same as an arrangement of letters. For example, from <InlineMath math="O" /> to <InlineMath math="A(1,2,1)" /> the robot needs one letter <InlineMath math="x" />, two letters <InlineMath math="y" />, and one letter <InlineMath math="z" />. The number of paths is **the number of arrangements of letters with repeats**.
 
 <BlockMath math="\begin{aligned}
-{}^{2}\log\big[(x+2)(x-4)\big]&=4\\
-(x+2)(x-4)&=2^4=16\\
-x^2-2x-24&=0\\
-(x-6)(x+4)&=0
+O\to A&: \frac{4!}{1!\,2!\,1!}=12\\
+A\to T&: \frac{4!}{2!\,1!\,1!}=12
 \end{aligned}" />
 
-The root <InlineMath math="x=-4" /> **is rejected** because it fails <InlineMath math="x>4" />, since <InlineMath math="{}^{2}\log(-2)" /> is undefined. Only <InlineMath math="x=6" /> remains.
+From <InlineMath math="A" /> to <InlineMath math="T(3,3,2)" /> the robot needs two <InlineMath math="x" />, one <InlineMath math="y" />, and one <InlineMath math="z" />. Without any ban, there are <InlineMath math="12\times12=144" /> paths through <InlineMath math="A" />.
 
-Check: <InlineMath math="{}^{2}\log8+{}^{2}\log2=3+1=4" />.
+# Placing the forbidden points
 
-The value 2 adds both roots without checking the condition. The value <InlineMath math="-4" /> is the rejected root, and <InlineMath math="-6" /> comes from a sign error in the factorisation. The value 9 appears if the sum of logarithms is turned into the logarithm of a sum, <InlineMath math="(x+2)+(x-4)=16" />.
+The key fact is that **the robot's coordinates never go down**. So before it reaches <InlineMath math="A" />, every coordinate is at most the matching coordinate of <InlineMath math="A" />, and after <InlineMath math="A" />, every coordinate is at least the matching coordinate of <InlineMath math="A" />.
 
-So the sum of all solutions is **6**.
+- The point <InlineMath math="B(0,1,1)" /> has every coordinate no bigger than those of <InlineMath math="A" />, so <InlineMath math="B" /> can only be visited before <InlineMath math="A" />.
+- The point <InlineMath math="C(2,3,1)" /> has every coordinate no smaller than those of <InlineMath math="A" />, so <InlineMath math="C" /> can only be visited after <InlineMath math="A" />.
+
+# Removing the forbidden paths in each part
+
+Each part only has to be cleaned of one forbidden point, so **you subtract the paths through that point from its own part**. A path <InlineMath math="O\to A" /> through <InlineMath math="B" /> is made of <InlineMath math="O\to B" /> (one <InlineMath math="y" /> and one <InlineMath math="z" />) and then <InlineMath math="B\to A" /> (one <InlineMath math="x" /> and one <InlineMath math="y" />). A path <InlineMath math="A\to T" /> through <InlineMath math="C" /> is made of <InlineMath math="A\to C" /> (one <InlineMath math="x" /> and one <InlineMath math="y" />) and then <InlineMath math="C\to T" /> (one <InlineMath math="x" /> and one <InlineMath math="z" />).
+
+<BlockMath math="\begin{aligned}
+O\to A \text{ avoiding } B&: 12-(2\times2)=8\\
+A\to T \text{ avoiding } C&: 12-(2\times2)=8
+\end{aligned}" />
+
+# Joining the two parts
+
+Every safe first part can be paired with every safe second part, so use **the multiplication rule**.
+
+<BlockMath math="8\times8=64" />
+
+A check with inclusion-exclusion on all <InlineMath math="144" /> paths gives the same result. There are <InlineMath math="4\times12=48" /> paths through <InlineMath math="A" /> and <InlineMath math="B" />, <InlineMath math="12\times4=48" /> through <InlineMath math="A" /> and <InlineMath math="C" />, and <InlineMath math="4\times4=16" /> through all three.
+
+<BlockMath math="144-48-48+16=64" />
+
+If you forget to add back the <InlineMath math="16" /> paths that pass both <InlineMath math="B" /> and <InlineMath math="C" />, you get <InlineMath math="48" />, because those paths were thrown out twice.
+
+So the robot can take <InlineMath math="64" /> different paths.

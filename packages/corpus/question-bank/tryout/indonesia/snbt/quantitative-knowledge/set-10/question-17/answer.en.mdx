@@ -1,19 +1,50 @@
-A statement is sufficient if **only one real number** satisfies it. Solve each statement, then compare the solution sets.
+A statement is sufficient when **every polynomial that satisfies it gives the same value of <InlineMath math="P(2)" />**. The plan is to turn each statement into a general form of <InlineMath math="P(x)" />, find two examples with different values of <InlineMath math="P(2)" /> when a statement isn't enough, and then combine the two.
 
-# Each statement alone
+# Statement one alone
 
-Statement (1) means <InlineMath math="x" /> is 3 away from 2.
+Polynomial division can always be written as divisor times quotient, plus remainder.
 
-<BlockMath math="x-2=3\;\text{or}\;x-2=-3\;\Longrightarrow\;x=5\;\text{or}\;x=-1" />
+<BlockMath math="P(x)=(x-1)(x-3)\,H(x)+2x+1" />
 
-Statement (2) factorises.
+Plug in <InlineMath math="x=1" /> and <InlineMath math="x=3" />, because the first part is zero there. You get <InlineMath math="P(1)=3" /> and <InlineMath math="P(3)=7" />. But <InlineMath math="x=2" /> **isn't a root of the divisor**, so <InlineMath math="P(2)=-H(2)+5" /> still depends on <InlineMath math="H" />.
 
-<BlockMath math="x^2-4x-5=(x-5)(x+1)=0\;\Longrightarrow\;x=5\;\text{or}\;x=-1" />
+- If <InlineMath math="H(x)=0" />, then <InlineMath math="P(x)=2x+1" /> and <InlineMath math="P(2)=5" />.
+- If <InlineMath math="H(x)=1" />, then <InlineMath math="P(x)=x^2-2x+4" /> and <InlineMath math="P(2)=4" />.
 
-Each gives **two values**, so neither is sufficient alone.
+Two different answers, so statement (1) alone isn't sufficient.
+
+# Statement two alone
+
+A parabola that's symmetric about the line <InlineMath math="x=1" /> has its vertex at <InlineMath math="x=1" />, so it has the form <InlineMath math="P(x)=a(x-1)^2+c" /> with <InlineMath math="a\ne 0" />. That gives <InlineMath math="P(2)=a+c" />, and **the values of <InlineMath math="a" /> and <InlineMath math="c" /> are still unknown**.
+
+- If <InlineMath math="a=1" /> and <InlineMath math="c=0" />, then <InlineMath math="P(2)=1" />.
+- If <InlineMath math="a=1" /> and <InlineMath math="c=1" />, then <InlineMath math="P(2)=2" />.
+
+Two different answers, so statement (2) alone isn't sufficient either.
 
 # Both statements together
 
-The two statements have **exactly the same solution set**, <InlineMath math="\{-1,5\}" />. Combining them removes no value, so <InlineMath math="x" /> can still be 5 or <InlineMath math="-1" />. This is no accident: squaring <InlineMath math="\lvert x-2\rvert=3" /> gives <InlineMath math="x^2-4x+4=9" />, which is equation (2).
+Use the form from statement (2), then plug in the two values from statement (1). **Two conditions are enough for two unknowns**, <InlineMath math="a" /> and <InlineMath math="c" />.
 
-So **statements (1) and (2) together are not sufficient** to answer the question.
+<BlockMath math="\begin{aligned}
+P(1) &= a\cdot 0+c=3 &&\Longrightarrow\; c=3 \\
+P(3) &= 4a+c=7 &&\Longrightarrow\; a=1 \\
+P(2) &= a+c=1+3=4
+\end{aligned}" />
+
+The polynomial must be <InlineMath math="P(x)=(x-1)^2+3=x^2-2x+4" />, so <InlineMath math="P(2)=4" />.
+
+# Checking
+
+Divide <InlineMath math="x^2-2x+4" /> by <InlineMath math="(x-1)(x-3)=x^2-4x+3" />. The quotient is <InlineMath math="1" /> and the remainder is <InlineMath math="(x^2-2x+4)-(x^2-4x+3)=2x+1" />, as statement (1) says. The graph has its vertex at <InlineMath math="x=1" />, as statement (2) says. So **this polynomial meets both conditions**.
+
+# The wrong options
+
+Each other option comes from **a shortcut that isn't allowed** or from counting too few conditions.
+
+- The option "statement (1) alone is sufficient" usually comes from plugging <InlineMath math="x=2" /> into the remainder <InlineMath math="2x+1" /> to get <InlineMath math="5" />. That shortcut only works at the roots of the divisor, <InlineMath math="1" /> and <InlineMath math="3" />.
+- The option "statement (2) alone is sufficient" assumes the symmetry fixes the parabola, but the symmetry only gives <InlineMath math="P(2)=P(0)" />.
+- The option "each alone is sufficient" combines both of those mistakes.
+- The option "not sufficient" forgets that degree <InlineMath math="2" /> plus the symmetry leaves only two unknowns, and statement (1) gives exactly two conditions.
+
+So the two statements together are sufficient, with <InlineMath math="P(2)=4" />, while neither statement alone is.

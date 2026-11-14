@@ -1,19 +1,37 @@
-Ordne die vier Zahlen als <InlineMath math="a\le b\le c\le d" />. Drei Bedingungen legen alle vier fest: die Summe <InlineMath math="4\times15=60" />, der Median <InlineMath math="\frac{b+c}{2}=14" /> und, dass **12 am häufigsten vorkommt**.
+Gesucht ist, welcher Punktwert falsch notiert wurde und wie sein richtiger Wert lautet. Der Anstieg des Mittelwerts liefert **die Größe der Korrektur**, und dann filtern die Bedingungen für Median und Modus, welcher Wert es sein kann. Du brauchst beide Bedingungen, denn jede allein lässt noch mehr als einen Kandidaten übrig.
 
-# Die vier Zahlen bestimmen
+# Die Größe der Korrektur bestimmen
 
-Damit 12 der Modalwert ist, muss 12 mindestens zweimal vorkommen. Weder <InlineMath math="c" /> noch <InlineMath math="d" /> kann 12 sein, denn <InlineMath math="b+c=28" /> erzwingt <InlineMath math="c\ge14" />. Also **muss 12 die Plätze <InlineMath math="a" /> und <InlineMath math="b" /> einnehmen**.
+Die ursprünglichen Daten haben die Summe <InlineMath math="2+5+6+7+9+10+10=49" />, der Mittelwert ist also <InlineMath math="\tfrac{49}{7}=7" />. Der Median ist der vierte Wert der geordneten Liste, also <InlineMath math="7" />, und der Modus ist <InlineMath math="10" />. Steigt der Mittelwert von sieben Werten um <InlineMath math="1" />, dann **steigt die Summe um <InlineMath math="7\times1=7" />**.
+
+<BlockMath math="\text{richtiger Wert}=\text{notierter Wert}+7" />
+
+# Die Bedingung für den Median prüfen
+
+Der Median bleibt der vierte Wert. Wird <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="6" /> oder <InlineMath math="7" /> korrigiert, springt dieser Wert über <InlineMath math="7" />, und **der neue vierte Wert wird <InlineMath math="9" />**. Hier das Beispiel, in dem <InlineMath math="7" /> zu <InlineMath math="14" /> korrigiert wird.
+
+<BlockMath math="2,\ 5,\ 6,\ 9,\ 10,\ 10,\ 14\quad\Rightarrow\quad\text{Median}=9" />
+
+Der falsche Wert muss also über dem Median liegen, also <InlineMath math="9" /> oder <InlineMath math="10" /> sein.
+
+# Die Bedingung für den Modus prüfen
+
+Wird ein Wert <InlineMath math="10" /> zu <InlineMath math="17" /> korrigiert, kommt <InlineMath math="10" /> nur noch einmal vor. Dann kommt jeder Wert genau einmal vor, und **der Modus <InlineMath math="10" /> verschwindet**. Übrig bleibt der Wert <InlineMath math="9" />, korrigiert zu <InlineMath math="16" />.
 
 <BlockMath math="\begin{aligned}
-a=b&=12\\
-c&=28-12=16\\
-d&=60-12-12-16=20
+\text{neue Daten} &: 2,\ 5,\ 6,\ 7,\ 10,\ 10,\ 16 \\
+\text{Mittelwert} &= \tfrac{56}{7}=8=7+1 \\
+\text{Median} &= 7,\quad \text{Modus}=10
 \end{aligned}" />
 
-Die Daten sind 12, 12, 16, 20. Probe: Der Mittelwert ist <InlineMath math="\tfrac{60}{4}=15" />, der Median <InlineMath math="\tfrac{12+16}{2}=14" />, und 12 ist der einzige Modalwert.
+Alle drei Bedingungen sind erfüllt, der richtige Wert ist also <InlineMath math="16" />.
 
-# Aussagen prüfen
+# Warum die anderen Antworten nicht passen
 
-Die größte Zahl ist 20 und die Spannweite <InlineMath math="20-12=8" />, die erste und die zweite Aussage sind also **wahr**. Die dritte Zahl ist 16 und nicht 14, denn 14 ist der Mittelwert der beiden mittleren Zahlen. Die dritte Aussage ist falsch. Die beiden größten Zahlen ergeben zusammen <InlineMath math="16+20=36" />, die vierte Aussage ist also falsch.
+Jede falsche Antwort ist ein Kandidat, der **eine Bedingung erfüllt, aber an einer anderen scheitert**.
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+- <InlineMath math="17" /> stammt vom Wert <InlineMath math="10" />. Der Median bleibt <InlineMath math="7" />, aber der Modus <InlineMath math="10" /> verschwindet.
+- <InlineMath math="14" /> stammt vom Wert <InlineMath math="7" /> und <InlineMath math="12" /> vom Wert <InlineMath math="5" />. Der Modus bleibt <InlineMath math="10" />, aber der Median wird <InlineMath math="9" />.
+- <InlineMath math="9" /> stammt vom Wert <InlineMath math="2" />. Der Median wird <InlineMath math="9" />, und es gibt nun zwei Modi, <InlineMath math="9" /> und <InlineMath math="10" />.
+
+Der richtige Wert des falsch notierten Punktwerts ist also <InlineMath math="16" />.

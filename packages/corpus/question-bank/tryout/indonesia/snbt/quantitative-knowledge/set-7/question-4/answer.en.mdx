@@ -1,30 +1,46 @@
-The two x-intercepts give **the factored form <InlineMath math="f(x)=a(x+1)(x-5)" />**. The y-intercept fixes the value of <InlineMath math="a" />.
+The two sides have different bases, so first turn the equation into a single power, <InlineMath math="\left(\tfrac32\right)^x=6" />. The options sit close together, so rough log values can mislead you. That's why **you place <InlineMath math="x" /> by comparing whole numbers exactly**.
 
-# Finding the function
+# Getting a single base
+
+The rule <InlineMath math="a^{m+n}=a^m\cdot a^n" /> splits both sides: <InlineMath math="2^{x+1}=2\cdot2^x" /> and <InlineMath math="3^{x-1}=\frac{3^x}{3}" />. Collect the powers of <InlineMath math="x" /> on one side.
 
 <BlockMath math="\begin{aligned}
-f(0)=a(1)(-5)&=10\;\Longrightarrow\; a=-2\\
-f(x)&=-2(x+1)(x-5)=-2x^2+8x+10
+2\cdot2^x&=\frac{3^x}{3}\\
+6&=\frac{3^x}{2^x}\\
+\left(\tfrac32\right)^x&=6
 \end{aligned}" />
 
-Since <InlineMath math="a<0" />, the graph **opens downward** and has a maximum value.
+So <InlineMath math="x=\log_{3/2}6" />. The base <InlineMath math="\tfrac32" /> is bigger than <InlineMath math="1" />, so **the bigger <InlineMath math="x" /> is, the bigger <InlineMath math="\left(\tfrac32\right)^x" /> gets**. To locate <InlineMath math="x" />, compare a few powers of <InlineMath math="\tfrac32" /> with <InlineMath math="6" />.
 
-# Axis of symmetry and maximum value
+# Whole number bounds
 
-The axis of symmetry lies **midway between the two roots**, at <InlineMath math="x=\tfrac{-1+5}{2}=2" />, not at <InlineMath math="x=3" />. The second statement is false.
+Work out the fourth and fifth powers, then compare each fraction with <InlineMath math="6" /> by cross-multiplying.
 
-<BlockMath math="f(2)=-2(3)(-3)=18" />
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^4&=\tfrac{81}{16}<6 &&\text{because } 81<96\\
+\left(\tfrac32\right)^5&=\tfrac{243}{32}>6 &&\text{because } 243>192
+\end{aligned}" />
 
-The maximum value is 18, so the first statement is true.
+The fourth power is still below <InlineMath math="6" /> and the fifth is already above it, so **<InlineMath math="x" /> lies between <InlineMath math="4" /> and <InlineMath math="5" />**.
 
-# Sign of the function and the value at one
+# Comparing with four and a half
 
-A downward parabola is positive **only between its two roots**, on <InlineMath math="-1<x<5" />. For <InlineMath math="5<x<6" /> it is negative, for example <InlineMath math="f(5.5)=-2(6.5)(0.5)=-6.5" />. The third statement is false.
+Now test <InlineMath math="x=4.5" />. A half power is hard to compute directly, so **square both numbers you're comparing**. Both are positive, so the order doesn't change: comparing <InlineMath math="\left(\tfrac32\right)^{4.5}" /> with <InlineMath math="6" /> is the same as comparing <InlineMath math="\left(\tfrac32\right)^{9}" /> with <InlineMath math="36" />.
 
-The sum <InlineMath math="a+b+c" /> equals <InlineMath math="f(1)" />.
+<BlockMath math="\begin{aligned}
+\left(\tfrac32\right)^9&=\tfrac{19{,}683}{512}\\
+36\times512&=18{,}432<19{,}683
+\end{aligned}" />
 
-<BlockMath math="a+b+c=-2+8+10=16" />
+So <InlineMath math="\left(\tfrac32\right)^9>36" />, which means <InlineMath math="\left(\tfrac32\right)^{4.5}>6" />. The power <InlineMath math="4.5" /> already overshoots <InlineMath math="6" />, so <InlineMath math="x<4.5" />. Together with the previous step, <InlineMath math="4<x<4.5" />.
 
-The fourth statement is true.
+A check with accurate logs, <InlineMath math="\log2\approx0.3010" /> and <InlineMath math="\log3\approx0.4771" />, gives <InlineMath math="x=\frac{\log3+\log2}{\log3-\log2}\approx\frac{0.7781}{0.1761}\approx4.42" />, which fits that interval.
 
-So the first statement is **true**, the second is **false**, the third is **false**, and the fourth is **true**.
+# The wrong options
+
+- <InlineMath math="x<0" /> comes from a sign slip when moving <InlineMath math="\log3" />: from <InlineMath math="(x+1)\log2=(x-1)\log3" /> you write <InlineMath math="x(\log3-\log2)=\log2-\log3" />, so <InlineMath math="x=-1" />. Writing <InlineMath math="3^{x-1}" /> as <InlineMath math="3\cdot3^x" /> also gives <InlineMath math="x=-1" />.
+- <InlineMath math="0<x<4" /> comes from a sign slip when moving <InlineMath math="\log2" />, which gives <InlineMath math="x(\log3-\log2)=\log3-\log2" />, so <InlineMath math="x=1" />.
+- <InlineMath math="4.5<x<5" /> comes from rounding to <InlineMath math="\log3\approx0.47" />, which gives <InlineMath math="\frac{0.77}{0.17}\approx4.53" />. **The difference <InlineMath math="\log3-\log2" /> is small**, so even a small rounding error gets blown up.
+- <InlineMath math="x\ge5" /> comes from setting <InlineMath math="\frac{x+1}{x-1}" /> equal to <InlineMath math="\frac32" />, which gives <InlineMath math="x=5" />, when the correct ratio is <InlineMath math="\frac{x+1}{x-1}=\frac{\log3}{\log2}" />.
+
+So the value of <InlineMath math="x" /> that satisfies <InlineMath math="2^{x+1}=3^{x-1}" /> lies in <InlineMath math="4<x<4.5" />.

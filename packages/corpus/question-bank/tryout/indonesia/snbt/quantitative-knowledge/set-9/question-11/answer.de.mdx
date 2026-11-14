@@ -1,20 +1,45 @@
-Der Winkel zwischen Tangente und Sehne gehört zum selben Bogen wie der Umfangswinkel auf der anderen Seite. Das ist **der Sehnen-Tangenten-Winkelsatz**: Beide Winkel sind gleich groß.
+Ohne die Bedingung "verschieden" kommt das größte Produkt von möglichst vielen Dreien, nämlich <InlineMath math="3^8=6{.}561" />. Hier müssen aber **alle Summanden verschieden sein**, das ist also nicht erlaubt. Der Plan: Wirf den Summanden <InlineMath math="1" /> hinaus, bestimme die größtmögliche Anzahl an Summanden und vergleiche dann alle übrigen Zerlegungen.
 
-# Der zugehörige Bogen
+# Ein Summand Eins hilft nie
 
-Der Winkel von <InlineMath math="35^\circ" /> zwischen <InlineMath math="\ell" /> und <InlineMath math="AB" /> gehört zum kleinen Bogen <InlineMath math="AB" />. Der Winkel <InlineMath math="ACB" /> mit <InlineMath math="C" /> auf dem großen Bogen **gehört ebenfalls zum kleinen Bogen <InlineMath math="AB" />**.
+Angenommen, es gibt einen Summanden <InlineMath math="1" />. Addiere diese <InlineMath math="1" /> zum größten Summanden <InlineMath math="a" />. Die Summe bleibt <InlineMath math="24" />, der Summand <InlineMath math="a+1" /> ist weiterhin von allen anderen verschieden, weil er größer als alle ist, und das Produkt steigt wegen <InlineMath math="a\cdot1<a+1" />. Also **enthält die beste Zerlegung keinen Summanden <InlineMath math="1" />**.
 
-# Rechnung über den Mittelpunktswinkel
+# Die größte Anzahl an Summanden
 
-Der Mittelpunkt sei <InlineMath math="O" />. Der Radius <InlineMath math="OA" /> steht senkrecht auf der Tangente, also ist <InlineMath math="\angle OAB=90^\circ-35^\circ=55^\circ" />. Das Dreieck <InlineMath math="OAB" /> ist gleichschenklig, weil <InlineMath math="OA=OB" /> ist.
+Die kleinsten verschiedenen Summanden ab <InlineMath math="2" /> sind <InlineMath math="2,3,4,\dots" />. Addiere sie, bis die Summe <InlineMath math="24" /> überschreitet.
 
 <BlockMath math="\begin{aligned}
-\angle AOB&=180^\circ-2\cdot55^\circ=70^\circ\\
-\angle ACB&=\tfrac12\angle AOB=35^\circ
+2+3+4+5+6&=20\le24\\
+2+3+4+5+6+7&=27>24
 \end{aligned}" />
 
-Ein Umfangswinkel ist **halb so groß wie der Mittelpunktswinkel** über demselben Bogen, und das Ergebnis passt zum Sehnen-Tangenten-Winkelsatz.
+Es gibt also höchstens **fünf Summanden**. Bei fünf Summanden muss der kleinste <InlineMath math="2" /> sein, denn fünf verschiedene Zahlen, die alle mindestens <InlineMath math="3" /> sind, ergeben mindestens <InlineMath math="3+4+5+6+7=25" />.
 
-Der Wert <InlineMath math="70^\circ" /> ist der Mittelpunktswinkel <InlineMath math="AOB" />, und <InlineMath math="55^\circ" /> ist der Winkel <InlineMath math="OAB" />. Der Wert <InlineMath math="145^\circ" /> ist der Nebenwinkel von <InlineMath math="35^\circ" />, also der Umfangswinkel, wenn <InlineMath math="C" /> auf dem kleinen Bogen läge.
+# Die Zerlegungen mit fünf Summanden vergleichen
 
-Der Winkel <InlineMath math="ACB" /> beträgt also **<InlineMath math="35^\circ" />**.
+Ausgehend von <InlineMath math="2,3,4,5,6" /> bleiben <InlineMath math="24-20=4" /> zu verteilen, ohne dass zwei Summanden gleich werden. Es gibt nur fünf Zerlegungen.
+
+| Zerlegung | Produkt |
+| :---: | :---: |
+| <InlineMath math="2,3,4,5,10" /> | <InlineMath math="1{.}200" /> |
+| <InlineMath math="2,3,4,6,9" /> | <InlineMath math="1{.}296" /> |
+| <InlineMath math="2,3,4,7,8" /> | <InlineMath math="1{.}344" /> |
+| <InlineMath math="2,3,5,6,8" /> | <InlineMath math="1{.}440" /> |
+| <InlineMath math="2,4,5,6,7" /> | <InlineMath math="1{.}680" /> |
+
+Das größte Produkt entsteht, wenn **die Summanden möglichst nah beieinander liegen**, also bei <InlineMath math="2,4,5,6,7" />.
+
+<BlockMath math="2\cdot4\cdot5\cdot6\cdot7=1{.}680" />
+
+# Zerlegungen mit weniger Summanden prüfen
+
+Mit vier Summanden ist <InlineMath math="4,5,7,8" /> am besten, mit dem Produkt <InlineMath math="1{.}120" />, und mit drei Summanden <InlineMath math="7,8,9" /> mit dem Produkt <InlineMath math="504" />. **Beide sind kleiner**, also ist <InlineMath math="1{.}680" /> wirklich das größte Produkt.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="2{.}160" /> verteilt den Rest <InlineMath math="4" /> auf die vier kleinsten Summanden und erhält <InlineMath math="3,4,5,6,6" />. Das Produkt ist groß, aber **die <InlineMath math="6" /> kommt zweimal vor**, und das verletzt die Bedingung "verschieden".
+- <InlineMath math="1{.}200" /> legt den ganzen Rest <InlineMath math="4" /> auf den größten Summanden, sodass die Summanden weit auseinanderliegen.
+- <InlineMath math="1{.}120" /> verwendet nur vier Summanden, obwohl fünf noch passen.
+- <InlineMath math="1{.}080" /> nimmt einen Summanden <InlineMath math="1" />, um auf sechs Summanden zu kommen, nämlich <InlineMath math="1,2,3,4,5,9" />. Die <InlineMath math="1" /> trägt nichts zum Produkt bei.
+
+Das größtmögliche Produkt ist also <InlineMath math="1{.}680" />.

@@ -1,19 +1,46 @@
-Beide Größen sind Anzahlen aus verschiedenen Zusammenhängen. Berechne jede mit **der passenden Zählregel** und vergleiche dann.
+Die Ausgangsmaße sind unbekannt. Du schreibst deshalb das neue Volumen und den neuen Oberflächeninhalt mit den alten Maßen und vergleichst dann. Behalte den Unterschied im Kopf: **Eine Aussage über alle Maße muss für jedes Maß gelten, eine Aussage, dass es ein Maß gibt, braucht nur ein Beispiel**.
 
-# Anzahl der Diagonalen eines Achtecks
+# Das Volumen des Quaders
 
-Je zwei Ecken sind durch eine Strecke verbunden, das sind <InlineMath math="\binom82" /> Strecken. **Acht davon sind Seiten** und keine Diagonalen.
+Das Volumen eines Quaders ist das Produkt seiner drei Maße, also **multiplizieren sich auch die Faktoren**.
 
-<BlockMath math="P=\binom82-8=28-8=20" />
+<BlockMath math="V_{\text{neu}}=(2p)(2\ell)\left(\tfrac14t\right)=\left(2\cdot2\cdot\tfrac14\right)p\ell t=p\ell t" />
 
-Anders gezählt: Jede Ecke ist mit 5 nicht benachbarten Ecken verbunden, und jede Diagonale wird doppelt gezählt, also <InlineMath math="P=\tfrac{8\cdot5}{2}=20" />.
+Das Volumen ändert sich bei keinen Ausgangsmaßen. Die erste Aussage ist wahr.
 
-# Anzahl der Möglichkeiten für das Komitee
+# Der Oberflächeninhalt des Quaders
 
-Die Reihenfolge der Mitglieder spielt keine Rolle, also ist das **eine Kombination von 3 aus 6**.
+Der Oberflächeninhalt eines Quaders ist die Summe seiner <InlineMath math="6" /> Seitenflächen, also <InlineMath math="2(p\ell+pt+\ell t)" />. Jedes Flächenpaar ändert sich mit einem anderen Faktor.
 
-<BlockMath math="Q=\binom63=\frac{6\cdot5\cdot4}{3\cdot2\cdot1}=20" />
+<BlockMath math="\begin{aligned}
+O_{\text{alt}}&=2(p\ell+pt+\ell t)\\
+O_{\text{neu}}&=2\left((2p)(2\ell)+(2p)\left(\tfrac14t\right)+(2\ell)\left(\tfrac14t\right)\right)=2\left(4p\ell+\tfrac12pt+\tfrac12\ell t\right)
+\end{aligned}" />
 
-Beide Größen sind 20.
+Grund- und Deckfläche werden <InlineMath math="4" />-mal so groß, die <InlineMath math="4" /> Seitenflächen aber nur halb so groß. Also **hängt das Ergebnis von der Form des ursprünglichen Quaders ab**.
 
-Die richtige Beziehung ist also **<InlineMath math="P=Q" />**.
+Für einen Würfel mit Kante <InlineMath math="s" /> gilt <InlineMath math="O_{\text{alt}}=6s^2" /> und <InlineMath math="O_{\text{neu}}=2\left(4s^2+\tfrac12s^2+\tfrac12s^2\right)=10s^2" />. Wegen <InlineMath math="10s^2>6s^2" /> ist die zweite Aussage wahr.
+
+Die dritte Aussage spricht von allen Maßen, ein Gegenbeispiel genügt also, um sie zu widerlegen. Nimm einen hohen Quader mit <InlineMath math="p=\ell=1" /> und <InlineMath math="t=100" />.
+
+<BlockMath math="\begin{aligned}
+O_{\text{alt}}&=2(1+100+100)=402\\
+O_{\text{neu}}&=2(4+50+50)=208
+\end{aligned}" />
+
+Der Oberflächeninhalt wird sogar kleiner, die dritte Aussage ist falsch.
+
+# Der Oberflächeninhalt des Zylinders
+
+Der Oberflächeninhalt eines geschlossenen Zylinders besteht aus <InlineMath math="2" /> Grundflächen und dem Mantel, also <InlineMath math="2\pi r^2+2\pi rh" />. Die Grundflächen werden <InlineMath math="4" />-mal so groß, der Mantel bleibt gleich, denn <InlineMath math="2\pi(2r)\left(\tfrac12h\right)=2\pi rh" />.
+
+<BlockMath math="\begin{aligned}
+O_{\text{neu}}&=8\pi r^2+2\pi rh\\
+O_{\text{neu}}=2O_{\text{alt}}&\iff8\pi r^2+2\pi rh=4\pi r^2+4\pi rh\\
+&\iff4\pi r^2=2\pi rh\\
+&\iff h=2r
+\end{aligned}" />
+
+Die vierte Aussage verlangt nur **ein Ausgangsmaß, das funktioniert**. Ein Zylinder mit <InlineMath math="r=1" /> und <InlineMath math="h=2" /> liefert <InlineMath math="O_{\text{alt}}=2\pi+4\pi=6\pi" /> und <InlineMath math="O_{\text{neu}}=8\pi+4\pi=12\pi" />, also genau das <InlineMath math="2" />-Fache. Die vierte Aussage ist wahr.
+
+Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **wahr**.

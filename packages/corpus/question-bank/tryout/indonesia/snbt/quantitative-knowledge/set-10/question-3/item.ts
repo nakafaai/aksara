@@ -3,15 +3,26 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "$$P>Q$$" },
-        { correct: false, label: "$$Q>P$$" },
-        { correct: true, label: "$$P=Q$$" },
+      columns: ["Benar", "Salah"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
+          label: "Daerah asal $$g$$ adalah interval $$[-3,3]$$.",
+        },
+        {
+          column: 1,
+          label: "Daerah hasil $$g$$ adalah interval $$[-3,13]$$.",
+        },
+        {
+          column: 1,
           label:
-            "Informasi yang diberikan tidak cukup untuk memutuskan salah satu dari tiga pilihan di atas",
+            "Persamaan $$g(x)=7$$ mempunyai tepat $$2$$ penyelesaian real.",
+        },
+        {
+          column: 2,
+          label:
+            "Persamaan $$g(x)=4$$ mempunyai tepat $$2$$ penyelesaian real.",
         },
       ],
     },

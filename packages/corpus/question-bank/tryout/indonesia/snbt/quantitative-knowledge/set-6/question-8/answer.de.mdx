@@ -1,19 +1,44 @@
-Der größte Winkel eines Dreiecks **liegt der längsten Seite gegenüber**, hier der Seite von 19 cm. Alle drei Seiten sind bekannt, also liefert der Kosinussatz den Winkel.
+Gefragt ist ein sicheres Ja oder ein sicheres Nein. Eine Aussage reicht aus, wenn **jede Gruppe, die sie erfüllt, dieselbe Antwort liefert**. Ordne die Alter als <InlineMath math="a_1\le a_2\le\dots\le a_6" />. Ein Mittelwert über <InlineMath math="25" /> bedeutet, dass die Summe der Alter größer als <InlineMath math="6\times25=150" /> ist.
 
-# Kosinussatz
+# Erste Aussage allein
 
-Sei <InlineMath math="\theta" /> **der Winkel gegenüber der Seite 19**.
+Aussage (1) bedeutet <InlineMath math="a_1+a_2+a_3=60" />, aber die anderen drei Alter sind **frei, solange sie nicht jünger als <InlineMath math="a_3" /> sind**.
 
 <BlockMath math="\begin{aligned}
-19^2&=5^2+16^2-2\cdot5\cdot16\cos\theta\\
-361&=281-160\cos\theta\\
-\cos\theta&=\frac{281-361}{160}=-\frac12
+20,20,20,40,40,40:\quad \text{Summe} &= 180>150 \\
+20,20,20,20,20,20:\quad \text{Summe} &= 120<150
 \end{aligned}" />
 
-# Winkel bestimmen
+Die erste Gruppe liefert Ja, die zweite Nein. Aussage (1) allein reicht nicht aus.
 
-Ein negativer Kosinus bedeutet, dass **der Winkel stumpf ist**. Der stumpfe Winkel mit dem Kosinus <InlineMath math="-\tfrac12" /> ist <InlineMath math="120^\circ" />.
+# Zweite Aussage allein
 
-Der Wert <InlineMath math="60^\circ" /> entsteht, wenn das Vorzeichen des Kosinus zu <InlineMath math="\tfrac12" /> kippt. Der Wert <InlineMath math="90^\circ" /> nimmt ein rechtwinkliges Dreieck an, obwohl <InlineMath math="5^2+16^2=281\ne361" /> ist. Die Werte <InlineMath math="135^\circ" /> und <InlineMath math="150^\circ" /> gehören zu den Kosinuswerten <InlineMath math="-\tfrac12\sqrt2" /> und <InlineMath math="-\tfrac12\sqrt3" />, die nicht zum berechneten Wert passen.
+Bei sechs Werten ist der Median der Mittelwert des dritten und vierten Werts, Aussage (2) bedeutet also <InlineMath math="a_3+a_4=60" />. **Die jüngsten Alter können sehr klein sein**.
 
-Der größte Winkel des Dreiecks beträgt also <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+30,30,30,30,30,30:\quad \text{Summe} &= 180>150 \\
+1,1,30,30,30,30:\quad \text{Summe} &= 122<150
+\end{aligned}" />
+
+Es gibt ein Ja und ein Nein. Aussage (2) allein reicht nicht aus.
+
+# Beide Aussagen zusammen
+
+Jetzt gilt <InlineMath math="a_1+a_2+a_3=60" /> und <InlineMath math="a_4=60-a_3" />. Das Alter <InlineMath math="a_4" /> darf nicht kleiner als <InlineMath math="a_3" /> sein, also <InlineMath math="60-a_3\ge a_3" />, das heißt <InlineMath math="a_3\le30" />. Die Alter <InlineMath math="a_5" /> und <InlineMath math="a_6" /> sind mindestens <InlineMath math="a_4" />. Daraus folgt eine untere Schranke für die Summe.
+
+<BlockMath math="\begin{aligned}
+\text{Summe} &= 60+a_4+a_5+a_6 \\
+&\ge 60+3a_4=60+3(60-a_3) \\
+&= 240-3a_3\ge240-90=150
+\end{aligned}" />
+
+Der Mittelwert ist also **mindestens <InlineMath math="25" />**, gefragt ist aber **mehr als <InlineMath math="25" />**. Die Schranke <InlineMath math="150" /> wird tatsächlich erreicht, nämlich bei <InlineMath math="a_3=30" /> und <InlineMath math="a_4=a_5=a_6=30" />.
+
+<BlockMath math="\begin{aligned}
+15,15,30,30,30,30:\quad \text{Summe} &= 150,\ \text{Mittelwert }25 \\
+20,20,20,40,40,40:\quad \text{Summe} &= 180,\ \text{Mittelwert }30
+\end{aligned}" />
+
+Die erste Gruppe erfüllt beide Aussagen: Die drei Jüngsten ergeben <InlineMath math="15+15+30=60" />, und der Median ist <InlineMath math="\tfrac{30+30}{2}=30" />, doch der Mittelwert ist genau <InlineMath math="25" />, die Antwort also Nein. Die zweite Gruppe erfüllt ebenfalls beide, mit dem Median <InlineMath math="\tfrac{20+40}{2}=30" />, und liefert Ja. Selbst beide Aussagen zusammen reichen nicht aus. Die Falle ist, die Schranke mindestens <InlineMath math="25" /> als mehr als <InlineMath math="25" /> zu lesen.
+
+Aussage (1) und Aussage (2) reichen also nicht aus, um die Frage zu beantworten.

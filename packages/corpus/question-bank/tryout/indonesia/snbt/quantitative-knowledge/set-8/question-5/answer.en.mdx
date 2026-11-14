@@ -1,24 +1,33 @@
-Let the roots be <InlineMath math="t" /> and <InlineMath math="t^2" />. The sum of the roots is known, so **the sum formula fixes <InlineMath math="t" />**, and then the product of the roots gives <InlineMath math="q" />.
+Both <InlineMath math="P" /> and <InlineMath math="Q" /> are about <InlineMath math="1.44" />, so a rough estimate can't decide. Here's the plan: **raise both to the power <InlineMath math="6" />** so the cube root and the square root disappear together, then compare a power of <InlineMath math="\tfrac{49}{48}" /> with <InlineMath math="\tfrac98" />.
 
-# The root from the sum of roots
+# Getting rid of both roots
+
+The number <InlineMath math="6" /> is the least common multiple of <InlineMath math="2" /> and <InlineMath math="3" />, so the sixth power clears both roots. For two positive numbers, **raising to a positive power doesn't change their order**, so comparing <InlineMath math="P^6" /> and <InlineMath math="Q^6" /> is the same as comparing <InlineMath math="P" /> and <InlineMath math="Q" />.
 
 <BlockMath math="\begin{aligned}
-t+t^2&=12\\
-t^2+t-12&=0\\
-(t+4)(t-3)&=0
+P^6&=\left(3^{1/3}\right)^6=3^2=9\\
+Q^6&=\left(\tfrac{49}{48}\right)^6\left(\sqrt2\right)^6=8\left(\tfrac{49}{48}\right)^6
 \end{aligned}" />
 
-There are **two possibilities**, <InlineMath math="t=3" /> or <InlineMath math="t=-4" />.
+Divide both by <InlineMath math="8" />. Now you only need to compare <InlineMath math="\tfrac98" /> with <InlineMath math="\left(\tfrac{49}{48}\right)^6" />.
 
-# The value of q from the product
+# Comparing with the binomial theorem
 
-| <InlineMath math="t" /> | Roots | <InlineMath math="q=t\cdot t^2" /> |
-| :---: | :---: | :---: |
-| 3 | 3 and 9 | 27 |
-| <InlineMath math="-4" /> | <InlineMath math="-4" /> and 16 | <InlineMath math="-64" /> |
+Write <InlineMath math="\tfrac{49}{48}=1+\tfrac{1}{48}" /> and expand the sixth power with the binomial theorem. Every term is positive, and the first two terms already make <InlineMath math="\tfrac98" />.
 
-Both pairs do add up to 12, so **both are valid**. The sum of all values of <InlineMath math="q" /> is <InlineMath math="27+(-64)=-37" />.
+<BlockMath math="\begin{aligned}
+\left(1+\tfrac{1}{48}\right)^6&=1+6\cdot\tfrac{1}{48}+15\cdot\tfrac{1}{48^2}+\dots+\tfrac{1}{48^6}\\
+&>1+\tfrac{6}{48}=\tfrac98
+\end{aligned}" />
 
-The values 27 and <InlineMath math="-64" /> use only one possibility. The value 37 has the wrong sign, and <InlineMath math="-91" /> adds the two absolute values with a minus sign.
+Since **the remaining terms are positive**, the sixth power is strictly bigger than <InlineMath math="\tfrac98" />. So <InlineMath math="Q^6>P^6" />, which gives <InlineMath math="Q>P" />.
 
-So the sum of all possible values of <InlineMath math="q" /> is **<InlineMath math="-37" />**.
+As a check, <InlineMath math="\sqrt[3]{3}\approx1.4422" /> and <InlineMath math="\tfrac{49}{48}\sqrt2\approx1.4437" />. They differ by only about <InlineMath math="0.0014" />, which is why an estimate to <InlineMath math="2" /> decimal places can't settle it.
+
+# The wrong options
+
+- <InlineMath math="P>Q" /> comes from comparing only <InlineMath math="\sqrt[3]{3}>\sqrt2" /> and **ignoring the factor <InlineMath math="\tfrac{49}{48}" />**.
+- <InlineMath math="P=Q" /> comes from keeping only the first two binomial terms, so <InlineMath math="\left(\tfrac{49}{48}\right)^6" /> is treated as equal to <InlineMath math="\tfrac98" />.
+- The option saying the information isn't enough is wrong because <InlineMath math="P" /> and <InlineMath math="Q" /> are two fixed numbers, so exactly one relation must hold.
+
+So the correct relation is <InlineMath math="Q>P" />.

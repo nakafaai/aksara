@@ -1,21 +1,46 @@
-Fungsi ini memiliki dua syarat. Bilangan di bawah akar **tidak boleh negatif**, dan penyebutnya **tidak boleh nol**.
+Bilangan <InlineMath math="N" /> punya puluhan angka, jadi tidak mungkin dihitung langsung. Rencananya: jabarkan kuadratnya, tulis setiap bagian sebagai deretan angka, lalu gabungkan bagian-bagian itu dengan memperhatikan **apakah ada pinjaman atau simpanan** antarangka.
 
-# Syarat akar
+# Menjabarkan kuadratnya
 
-<BlockMath math="x^2-5x+6=(x-2)(x-3)\ge0" />
+Pakai bentuk <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> dengan <InlineMath math="a=10^{20}" /> dan <InlineMath math="b=9" />. **Suku tengah <InlineMath math="-2ab" /> tidak boleh hilang**, karena kuadrat selisih bukan selisih kuadrat.
 
-Hasil kali dua faktor tidak negatif **di luar kedua pembuat nol atau tepat pada pembuat nol**, yaitu <InlineMath math="x\le2" /> atau <InlineMath math="x\ge3" />. Bilangan di antara 2 dan 3 membuat isi akar negatif.
+<BlockMath math="\begin{aligned}
+N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
+&=10^{40}-18\cdot10^{20}+81
+\end{aligned}" />
 
-# Syarat penyebut dan daerah asal
+# Menulis dua suku pertama
 
-Penyebut nol saat <InlineMath math="x=4" />, jadi nilai itu dikeluarkan. Daerah asalnya adalah **<InlineMath math="x\le2" /> atau <InlineMath math="x\ge3" />, dengan <InlineMath math="x\ne4" />**.
+Keluarkan faktor <InlineMath math="10^{20}" /> dari dua suku pertama: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. Bilangan <InlineMath math="10^{20}" /> adalah angka <InlineMath math="1" /> diikuti <InlineMath math="20" /> angka nol. Kalau dikurangi <InlineMath math="18" />, hasilnya punya <InlineMath math="20" /> angka: **<InlineMath math="18" /> angka sembilan, lalu angka delapan dan dua**. Contoh kecilnya <InlineMath math="10^4-18=9982" />, yaitu dua angka sembilan lalu delapan dan dua.
 
-| Nilai | Isi akar | Penyebut | Termasuk daerah asal? |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x=3" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | ya |
-| <InlineMath math="x=2{,}5" /> | <InlineMath math="-0{,}25" /> | <InlineMath math="-1{,}5" /> | tidak |
-| <InlineMath math="x=4" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | tidak |
+Mengalikan dengan <InlineMath math="10^{20}" /> hanya menambahkan <InlineMath math="20" /> angka nol di belakang. Jadi <InlineMath math="10^{40}-18\cdot10^{20}" /> terdiri atas <InlineMath math="18" /> angka sembilan, angka delapan, angka dua, lalu <InlineMath math="20" /> angka nol.
 
-Untuk setiap <InlineMath math="x<0" />, kedua faktor <InlineMath math="x-2" /> dan <InlineMath math="x-3" /> negatif sehingga hasil kalinya positif, dan penyebutnya tidak nol. Pernyataan keempat benar.
+# Menambahkan suku terakhir
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **salah**, dan keempat **benar**.
+Dua angka terakhir bilangan tadi adalah nol, jadi menambah <InlineMath math="81" /> hanya mengganti kedua nol itu menjadi delapan dan satu. **Tidak ada simpanan** ke angka lain. Hasilnya: <InlineMath math="18" /> angka sembilan, angka delapan dan dua, <InlineMath math="18" /> angka nol, lalu angka delapan dan satu.
+
+Cek pola ini dengan bilangan kecil yang bentuknya sama.
+
+<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+
+Polanya cocok: satu angka sembilan, delapan dan dua, satu angka nol, lalu delapan dan satu.
+
+# Menjumlahkan angkanya
+
+**Angka nol tidak menambah apa pun**, jadi cukup jumlahkan angka selain nol.
+
+<BlockMath math="\begin{aligned}
+18\cdot9+8+2+8+1&=162+19\\
+&=181
+\end{aligned}" />
+
+Cek cepat: jumlah angka sebuah bilangan bersisa sama dengan bilangan itu jika dibagi <InlineMath math="9" />. Karena <InlineMath math="10^{20}" /> bersisa <InlineMath math="1" />, bilangan <InlineMath math="N" /> bersisa <InlineMath math="(1-0)^2=1" />, dan <InlineMath math="181" /> juga bersisa <InlineMath math="1" />. Kelima pilihan lolos cek ini, jadi cek ini tidak bisa menggantikan perhitungan di atas.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="172" /> **lupa menambahkan suku <InlineMath math="81" />** di akhir, jadi hanya menghitung <InlineMath math="162+8+2" />.
+- <InlineMath math="190" /> menganggap <InlineMath math="10^{20}-18" /> punya <InlineMath math="19" /> angka sembilan, padahal dua tempat terakhirnya diisi delapan dan dua.
+- <InlineMath math="343" /> salah tanda, memakai <InlineMath math="10^{40}-18\cdot10^{20}-81" />. Pengurangan itu meminjam dari angka dua, sehingga muncul <InlineMath math="18" /> angka sembilan baru dan jumlahnya membengkak.
+- <InlineMath math="352" /> memakai <InlineMath math="(a-b)^2=a^2-b^2" />, yaitu <InlineMath math="10^{40}-81" />, yang terdiri atas <InlineMath math="38" /> angka sembilan lalu satu dan sembilan.
+
+Jadi, jumlah semua angka pada penulisan <InlineMath math="N" /> adalah <InlineMath math="181" />.

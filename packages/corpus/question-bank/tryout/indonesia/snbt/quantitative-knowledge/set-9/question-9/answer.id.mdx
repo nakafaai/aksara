@@ -1,23 +1,47 @@
-Tulis <InlineMath math="a=2m" /> dan <InlineMath math="b=2n+1" /> untuk suatu bilangan bulat <InlineMath math="m" /> dan <InlineMath math="n" />. Dengan bentuk ini, setiap pernyataan dapat diperiksa untuk **semua pasangan sekaligus**, bukan hanya untuk satu contoh.
+Pangkat <InlineMath math="x^2-2x" /> muncul dua kali, jadi pertidaksamaan ini sebenarnya **pertidaksamaan kuadrat yang menyamar**. Rencananya: ganti <InlineMath math="3^{x^2-2x}" /> dengan satu huruf, selesaikan pertidaksamaan kuadratnya, kembalikan ke pangkat, lalu selesaikan dua syarat untuk <InlineMath math="x" />.
 
-# Jumlah dan hasil kali
+# Mengubah menjadi pertidaksamaan kuadrat
 
-<BlockMath math="\begin{aligned}
-a+b&=2(m+n)+1\\
-ab&=2m(2n+1)
-\end{aligned}" />
-
-Jumlahnya selalu berbentuk genap ditambah 1, jadi **selalu ganjil**. Pernyataan pertama benar. Hasil kalinya memuat faktor 2, jadi selalu genap. Pernyataan kedua salah.
-
-# Selisih dan jumlah kuadrat
-
-Kuadrat bilangan genap habis dibagi 4, sedangkan **kuadrat bilangan ganjil bersisa 1 jika dibagi 4**.
+Misalkan <InlineMath math="y=x^2-2x" /> dan <InlineMath math="t=3^y" />, dengan <InlineMath math="t>0" />. Karena <InlineMath math="9=3^2" />, berlaku <InlineMath math="9^y=\left(3^y\right)^2=t^2" />.
 
 <BlockMath math="\begin{aligned}
-a^2&=4m^2\\
-b^2&=4n^2+4n+1=4(n^2+n)+1
+t^2-28t+27&\le0\\
+(t-1)(t-27)&\le0\\
+1\le t&\le27
 \end{aligned}" />
 
-Jadi <InlineMath math="a^2-b^2=4(m^2-n^2-n)-1" /> selalu ganjil, dan pernyataan ketiga benar. Sementara itu <InlineMath math="a^2+b^2=4(m^2+n^2+n)+1" /> selalu bersisa 1 jika dibagi 4. Contohnya <InlineMath math="a=2" /> dan <InlineMath math="b=1" /> memberi 5. Pernyataan keempat salah.
+Hasil kali dua faktor bernilai nol atau negatif hanya ketika <InlineMath math="t" /> ada **di antara kedua pembuat nolnya**, termasuk ujung-ujungnya.
 
-Jadi, pernyataan pertama **benar**, kedua **salah**, ketiga **benar**, dan keempat **salah**.
+# Kembali ke pangkat
+
+Fungsi <InlineMath math="3^y" /> selalu naik, jadi urutan nilai <InlineMath math="t" /> sama dengan urutan nilai <InlineMath math="y" />. Tulis kedua batas sebagai pangkat tiga dulu: <InlineMath math="1=3^0" /> dan <InlineMath math="27=3^3" />. **Batasnya berlaku untuk pangkat, bukan untuk angka <InlineMath math="1" /> dan <InlineMath math="27" /> itu sendiri**.
+
+<BlockMath math="3^0\le3^{x^2-2x}\le3^3\iff0\le x^2-2x\le3" />
+
+# Dua syarat untuk x
+
+Ketaksamaan ganda ini berisi dua syarat, dan keduanya harus dipenuhi sekaligus.
+
+<BlockMath math="\begin{aligned}
+x^2-2x\le3&\iff(x-3)(x+1)\le0\iff-1\le x\le3\\
+x^2-2x\ge0&\iff x(x-2)\ge0\iff x\le0\ \text{atau}\ x\ge2
+\end{aligned}" />
+
+Syarat kedua **membuang bilangan di antara <InlineMath math="0" /> dan <InlineMath math="2" />**. Irisan keduanya adalah <InlineMath math="-1\le x\le0" /> atau <InlineMath math="2\le x\le3" />. Bilangan bulatnya <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" />, jadi ada <InlineMath math="4" /> bilangan.
+
+# Memeriksa hasilnya
+
+Untuk <InlineMath math="x=3" /> dan <InlineMath math="x=-1" />, pangkatnya <InlineMath math="3" /> dan <InlineMath math="t=27" />: <InlineMath math="729-756+27=0" />, memenuhi. Untuk <InlineMath math="x=0" />, pangkatnya <InlineMath math="0" /> dan <InlineMath math="t=1" />: <InlineMath math="1-28+27=0" />, memenuhi. Untuk <InlineMath math="x=1" />, pangkatnya <InlineMath math="-1" /> dan <InlineMath math="t=\frac{1}{3}" />:
+
+<BlockMath math="\frac{1}{9}-\frac{28}{3}+27=\frac{1-84+243}{9}=\frac{160}{9}>0" />
+
+Jadi **<InlineMath math="x=1" /> memang tidak memenuhi**.
+
+# Pilihan yang menjebak
+
+- <InlineMath math="5" /> **lupa syarat <InlineMath math="x^2-2x\ge0" />**, sehingga <InlineMath math="x=1" /> ikut terhitung.
+- <InlineMath math="10" /> mengubah batas bawah dengan benar, tetapi memakai <InlineMath math="27" /> langsung sebagai batas atas pangkat, yaitu <InlineMath math="0\le x^2-2x\le27" />. Bilangan bulatnya <InlineMath math="-4" /> sampai <InlineMath math="0" /> dan <InlineMath math="2" /> sampai <InlineMath math="6" />.
+- <InlineMath math="8" /> memakai batas <InlineMath math="t" /> langsung sebagai batas pangkat, yaitu <InlineMath math="1\le x^2-2x\le27" />. Bilangan bulatnya <InlineMath math="-4,-3,-2,-1,3,4,5,6" />.
+- <InlineMath math="11" /> membuat kesalahan yang sama dan juga melupakan batas bawah, sehingga menghitung semua bilangan bulat dari <InlineMath math="-4" /> sampai <InlineMath math="6" />.
+
+Jadi, ada <InlineMath math="4" /> bilangan bulat <InlineMath math="x" /> yang memenuhi pertidaksamaan itu.

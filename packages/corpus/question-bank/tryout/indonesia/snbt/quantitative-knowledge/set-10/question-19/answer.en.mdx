@@ -1,20 +1,53 @@
-The ball is returned before the second draw, so **the bag is the same for both draws** and the two events are independent. Different colours can happen in two orders.
+All four statements rest on the corner points of region <InlineMath math="D" />. The plan is to find the corners first and then use the main fact of linear programming: **the maximum of a linear function on a polygon region is always reached at a corner**. After that, check what this fact doesn't cover: whole-number conditions, an edge parallel to the function, and a constraint that changes.
 
-# The two possible orders
+# The corners of the region
+
+Find where the two slanted lines meet by elimination. Multiply <InlineMath math="2x+y=10" /> by <InlineMath math="3" />, then subtract <InlineMath math="x+3y=14" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{red then blue})&=\tfrac35\cdot\tfrac25=\tfrac{6}{25}\\
-P(\text{blue then red})&=\tfrac25\cdot\tfrac35=\tfrac{6}{25}
+6x+3y-(x+3y) &= 30-14 \\
+5x &= 16 \\
+x=\tfrac{16}{5},\quad y &= 10-\tfrac{32}{5}=\tfrac{18}{5}
 \end{aligned}" />
 
-# Adding the two orders
+The line <InlineMath math="2x+y=10" /> meets the <InlineMath math="x" />-axis at <InlineMath math="(5,0)" />, and the line <InlineMath math="x+3y=14" /> meets the <InlineMath math="y" />-axis at <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. The other intercepts, <InlineMath math="(0,10)" /> and <InlineMath math="(14,0)" />, break the other inequality. So the corners of <InlineMath math="D" /> are <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" /> and <InlineMath math="\left(0,\tfrac{14}{3}\right)" />.
 
-The two orders cannot happen together, so **their probabilities are added**.
+# The first statement
 
-<BlockMath math="P=\tfrac{6}{25}+\tfrac{6}{25}=\tfrac{12}{25}" />
+Work out <InlineMath math="3x+4y" /> at every corner.
 
-Check: the probability of the same colour is <InlineMath math="\tfrac{9}{25}+\tfrac{4}{25}=\tfrac{13}{25}" />, and <InlineMath math="\tfrac{12}{25}+\tfrac{13}{25}=1" />.
+<BlockMath math="\begin{aligned}
+(0,0)&:\ 0, \qquad (5,0):\ 15 \\
+\left(\tfrac{16}{5},\tfrac{18}{5}\right)&:\ \tfrac{48}{5}+\tfrac{72}{5}=24, \qquad \left(0,\tfrac{14}{3}\right):\ \tfrac{56}{3}
+\end{aligned}" />
 
-The value <InlineMath math="\tfrac{13}{25}" /> is the probability of the same colour. The value <InlineMath math="\tfrac35" /> appears if the ball is not returned, <InlineMath math="2\cdot\tfrac35\cdot\tfrac24" />. The value <InlineMath math="\tfrac{21}{25}" /> is the probability of at least one red ball.
+The largest value is <InlineMath math="24" />, and **that corner counts** because <InlineMath math="x" /> and <InlineMath math="y" /> are real numbers here. This statement is true.
 
-So the probability that the two balls have different colours is **<InlineMath math="\tfrac{12}{25}" />**.
+# The second statement
+
+The value <InlineMath math="24" /> happens at a point with fractional coordinates. For whole numbers the value is at most <InlineMath math="24" />, so you only need to check every whole-number point that gives <InlineMath math="24" /> or <InlineMath math="23" />.
+
+<BlockMath math="\begin{aligned}
+3x+4y=24&:\ (0,6),\ (4,3),\ (8,0) \\
+3x+4y=23&:\ (1,5),\ (5,2)
+\end{aligned}" />
+
+Every one of them breaks a constraint: <InlineMath math="(0,6)" /> and <InlineMath math="(1,5)" /> push <InlineMath math="x+3y" /> above <InlineMath math="14" />, while <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" /> and <InlineMath math="(5,2)" /> push <InlineMath math="2x+y" /> above <InlineMath math="10" />. The point <InlineMath math="(2,4)" /> meets <InlineMath math="2\cdot 2+4=8\le 10" /> and <InlineMath math="2+12=14\le 14" />, with value <InlineMath math="6+16=22" />. So **the whole-number maximum is <InlineMath math="22" />**, not <InlineMath math="23" />. Rounding the corner to <InlineMath math="(3,4)" /> fails too, because <InlineMath math="3+12=15>14" />. This statement is false.
+
+# The third statement
+
+The constraint <InlineMath math="2x+y\le 10" /> already makes sure <InlineMath math="2x+y" /> is at most <InlineMath math="10" />. The value <InlineMath math="10" /> is reached along the whole edge from <InlineMath math="(5,0)" /> to <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />, for example at <InlineMath math="(5,0)" /> and at <InlineMath math="(4,2)" />. Because **the function runs parallel to one edge of the region**, the maximum is reached at infinitely many points. This statement is false.
+
+# The fourth statement
+
+The new constraint moves the meeting point of the two slanted lines.
+
+<BlockMath math="\begin{aligned}
+6x+3y-(x+3y) &= 30-17 \\
+x=\tfrac{13}{5},\quad y &= 10-\tfrac{26}{5}=\tfrac{24}{5} \\
+3x+4y &= \tfrac{39}{5}+\tfrac{96}{5}=27
+\end{aligned}" />
+
+The other corners give <InlineMath math="15" /> at <InlineMath math="(5,0)" /> and <InlineMath math="\tfrac{68}{3}" /> at <InlineMath math="\left(0,\tfrac{17}{3}\right)" />, both less than <InlineMath math="27" />. So the maximum rises from <InlineMath math="24" /> to <InlineMath math="27" />, which is <InlineMath math="3" />. The number <InlineMath math="4" /> shows up if you think <InlineMath math="y" /> rises by <InlineMath math="1" /> while <InlineMath math="x" /> stays put, but **the corner slides along the line <InlineMath math="2x+y=10" />**: <InlineMath math="x" /> drops by <InlineMath math="\tfrac{3}{5}" /> and <InlineMath math="y" /> rises by <InlineMath math="\tfrac{6}{5}" />. This statement is false.
+
+So only the first statement is true, and the second, third and fourth statements are false.

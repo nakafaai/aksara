@@ -1,17 +1,46 @@
-Misalkan harga satu pensil <InlineMath math="p" /> rupiah dan harga satu buku <InlineMath math="b" /> rupiah. Ada dua besaran yang belum diketahui, jadi kita perlu **dua persamaan yang benar-benar berbeda**.
+Jari-jari baru bisa dihitung setelah kamu tahu letak pusat lingkaran, dan letak pusat bergantung pada keempat potongan diagonal. Rencananya: **lengkapi potongan diagonal dengan teorema tali busur berpotongan**, cari pusat lingkaran dengan garis sumbu tali busur, lalu hitung jaraknya ke salah satu titik sudut.
 
-# Setiap pernyataan saja
+# Melengkapi potongan diagonal
 
-Pernyataan (1) memberi <InlineMath math="2p+3b=27{.}000" />. Satu persamaan dengan dua variabel memiliki banyak penyelesaian, misalnya <InlineMath math="p=3{.}000" /> dengan <InlineMath math="b=7{.}000" />, atau <InlineMath math="p=6{.}000" /> dengan <InlineMath math="b=5{.}000" />. Harga buku **belum tunggal**, jadi pernyataan (1) saja tidak cukup.
+Dari <InlineMath math="AC=11\text{ cm}" /> dan <InlineMath math="AP=3\text{ cm}" /> diperoleh <InlineMath math="PC=8\text{ cm}" />. Untuk <InlineMath math="PD" />, pakai **teorema dua tali busur yang berpotongan**: hasil kali potongan pada satu tali busur sama dengan hasil kali potongan pada tali busur lainnya. Teorema ini berlaku karena segitiga <InlineMath math="APB" /> dan <InlineMath math="DPC" /> sebangun, sebab sudut keliling yang menghadap busur yang sama besarnya sama.
 
-Pernyataan (2) memberi <InlineMath math="4p+6b=54{.}000" />, dan alasan yang sama membuatnya tidak cukup.
+<BlockMath math="\begin{aligned}
+AP\cdot PC&=BP\cdot PD\\
+3\cdot8&=4\cdot PD\\
+PD&=6\text{ cm}
+\end{aligned}" />
 
-# Kedua pernyataan bersama
+Jadi <InlineMath math="BD=4+6=10\text{ cm}" />.
 
-Bagi persamaan kedua dengan 2.
+# Menentukan letak pusat lingkaran
 
-<BlockMath math="4p+6b=54{.}000\;\Longleftrightarrow\;2p+3b=27{.}000" />
+Pasang sumbu koordinat dengan <InlineMath math="P" /> sebagai titik asal, <InlineMath math="AC" /> pada sumbu <InlineMath math="x" />, dan <InlineMath math="BD" /> pada sumbu <InlineMath math="y" />. Ini boleh karena kedua diagonal saling tegak lurus. Titik-titiknya menjadi <InlineMath math="A(-3,0)" />, <InlineMath math="C(8,0)" />, <InlineMath math="B(0,4)" />, dan <InlineMath math="D(0,-6)" />.
 
-Persamaan kedua **sama persis dengan persamaan pertama**, hanya dikalikan 2. Kedua pasangan contoh di atas tetap memenuhi keduanya, jadi harga buku masih bisa <InlineMath math="\text{Rp}7{.}000{,}00" /> atau <InlineMath math="\text{Rp}5{.}000{,}00" />.
+**Pusat lingkaran selalu terletak pada garis sumbu setiap tali busur**, yaitu garis yang tegak lurus tali busur dan melalui titik tengahnya. Garis sumbu <InlineMath math="AC" /> adalah garis tegak melalui titik tengah <InlineMath math="AC" />, dan garis sumbu <InlineMath math="BD" /> adalah garis mendatar melalui titik tengah <InlineMath math="BD" />.
 
-Jadi, **pernyataan (1) dan pernyataan (2) tidak cukup** untuk menjawab pertanyaan.
+<BlockMath math="\begin{aligned}
+x_O&=\frac{-3+8}{2}=\frac52\\
+y_O&=\frac{4+(-6)}{2}=-1
+\end{aligned}" />
+
+Pusatnya <InlineMath math="O\left(\tfrac52,-1\right)" />. Perhatikan bahwa pusat itu berjarak <InlineMath math="1\text{ cm}" /> dari garis <InlineMath math="AC" />, jadi <InlineMath math="AC" /> bukan diameter.
+
+# Menghitung jari-jari
+
+Jari-jari adalah **jarak dari pusat ke titik sudut mana pun**, karena semua titik sudut terletak pada lingkaran. Pakai teorema Pythagoras untuk <InlineMath math="OA" />.
+
+<BlockMath math="\begin{aligned}
+R^2&=\left(\tfrac52+3\right)^2+(-1-0)^2=\tfrac{121}{4}+\tfrac44=\tfrac{125}{4}\\
+R&=\frac{\sqrt{125}}{2}=\frac{5\sqrt5}{2}
+\end{aligned}" />
+
+Pemeriksaan: jarak ke <InlineMath math="B" /> juga sama, karena <InlineMath math="OB^2=\left(\tfrac52\right)^2+(-1-4)^2=\tfrac{25}{4}+25=\tfrac{125}{4}" />. Rumus khusus untuk diagonal yang tegak lurus juga cocok: <InlineMath math="AP^2+BP^2+CP^2+DP^2=9+16+64+36=125=4R^2" />.
+
+# Pilihan yang keliru
+
+- <InlineMath math="\frac{11}{2}\text{ cm}" /> muncul jika diagonal <InlineMath math="AC" /> **dianggap diameter**, padahal pusatnya berjarak <InlineMath math="1\text{ cm}" /> dari garis <InlineMath math="AC" />.
+- <InlineMath math="\frac{\sqrt{221}}{2}\text{ cm}" /> muncul jika kedua diagonal dianggap sisi siku-siku sebuah segitiga yang sisi miringnya diameter, yaitu <InlineMath math="(2R)^2=11^2+10^2" />.
+- <InlineMath math="\frac{5\sqrt{10}}{2}\text{ cm}" /> muncul jika jumlah keempat kuadrat potongan disamakan dengan <InlineMath math="2R^2" />, bukan <InlineMath math="4R^2" />.
+- <InlineMath math="5\sqrt5\text{ cm}" /> muncul jika jumlah keempat kuadrat potongan, yaitu <InlineMath math="125" />, langsung dianggap <InlineMath math="R^2" />.
+
+Jadi, panjang jari-jari lingkaran itu adalah <InlineMath math="\frac{5\sqrt5}{2}\text{ cm}" />.

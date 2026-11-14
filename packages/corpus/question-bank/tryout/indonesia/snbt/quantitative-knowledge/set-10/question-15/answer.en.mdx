@@ -1,18 +1,37 @@
-The centroid of a triangle is **the mean of the coordinates of its three vertices**. So three times the coordinates of <InlineMath math="G" /> equal the sum of the coordinates of <InlineMath math="A" />, <InlineMath math="B" /> and <InlineMath math="C" />.
+A solid that sinks pushes the water up. **The volume of water that rises equals the volume of the solid**, because the water has to make room for the solid. The plan is to find the volume of the solid and divide it by the base area of the tube to get the rise in height.
 
-# The x and y coordinates
+# The volume of the solid
 
-Let <InlineMath math="C(p,q)" />. Solve **each coordinate separately**.
+The solid is a cone joined to a hemisphere. A cone's volume is one third of base area times height, and a hemisphere's volume is half the volume of a sphere, <InlineMath math="\tfrac{4}{3}\pi r^3" />.
 
 <BlockMath math="\begin{aligned}
-\frac{-1+5+p}{3}&=2\;\Longrightarrow\;4+p=6\;\Longrightarrow\;p=2\\
-\frac{4+(-2)+q}{3}&=3\;\Longrightarrow\;2+q=9\;\Longrightarrow\;q=7
+V_{\text{cone}} &= \tfrac{1}{3}\pi r^2\cdot r=\tfrac{1}{3}\pi r^3 \\
+V_{\text{hemisphere}} &= \tfrac{1}{2}\cdot\tfrac{4}{3}\pi r^3=\tfrac{2}{3}\pi r^3 \\
+V_{\text{solid}} &= \tfrac{1}{3}\pi r^3+\tfrac{2}{3}\pi r^3=\pi r^3
 \end{aligned}" />
 
-# Check
+# The rise of the water
 
-The mean of the coordinates of <InlineMath math="A(-1,4)" />, <InlineMath math="B(5,-2)" /> and <InlineMath math="C(2,7)" /> is <InlineMath math="\left(\tfrac{6}{3},\tfrac{9}{3}\right)=(2,3)" />, which is **exactly the point <InlineMath math="G" />**.
+The water that rises forms a cylinder-shaped layer with radius <InlineMath math="2r" /> and height <InlineMath math="h" />, the rise you're looking for. Notice that **the tube's radius is <InlineMath math="2r" />, not <InlineMath math="r" />**, so its base area is <InlineMath math="4\pi r^2" />.
 
-The point <InlineMath math="(2,1)" /> is the midpoint of <InlineMath math="AB" />, not the third vertex. The point <InlineMath math="(6,9)" /> is three times <InlineMath math="G" /> without subtracting the coordinates of <InlineMath math="A" /> and <InlineMath math="B" />. The points <InlineMath math="(-2,7)" /> and <InlineMath math="(2,-7)" /> come from a sign error in one coordinate.
+<BlockMath math="\begin{aligned}
+\pi(2r)^2\cdot h &= \pi r^3 \\
+4\pi r^2 h &= \pi r^3 \\
+h &= \frac{r}{4}
+\end{aligned}" />
 
-So the coordinates of <InlineMath math="C" /> are **<InlineMath math="(2,7)" />**.
+So <InlineMath math="P=\tfrac{r}{4}" />, exactly the same as <InlineMath math="Q" />.
+
+# Checking with numbers
+
+Take <InlineMath math="r=4\text{ cm}" />. The solid's volume is <InlineMath math="\pi\cdot 64=64\pi\text{ cm}^3" />, and the tube's base area is <InlineMath math="\pi\cdot 8^2=64\pi\text{ cm}^2" />. The rise is <InlineMath math="\tfrac{64\pi}{64\pi}=1\text{ cm}" />, and indeed <InlineMath math="\tfrac{4}{4}=1" />. The relation holds **for every <InlineMath math="r" />**, because both quantities are proportional to <InlineMath math="r" />.
+
+# The wrong options
+
+Each other option comes from **a mixed-up volume formula or radius**.
+
+- <InlineMath math="P>Q" /> shows up if the hemisphere is counted as a full sphere, which gives a volume of <InlineMath math="\tfrac{5}{3}\pi r^3" /> and a rise of <InlineMath math="\tfrac{5r}{12}" />. You also land there if you take the tube's radius to be <InlineMath math="r" />.
+- <InlineMath math="Q>P" /> shows up if the cone gets forgotten, so only the hemisphere counts and the rise is <InlineMath math="\tfrac{r}{6}" />.
+- The not-enough-information option shows up if you think you need the value of <InlineMath math="r" />. But <InlineMath math="P" /> and <InlineMath math="Q" /> both equal <InlineMath math="\tfrac{r}{4}" /> for every <InlineMath math="r" />.
+
+So the rise of the water <InlineMath math="P" /> equals <InlineMath math="Q=\tfrac{r}{4}" />.

@@ -1,21 +1,46 @@
-Diese Funktion hat zwei Bedingungen. Die Zahl unter der Wurzel **darf nicht negativ sein**, und der Nenner **darf nicht null sein**.
+Die Zahl <InlineMath math="N" /> hat Dutzende Ziffern, also kannst du sie nicht direkt ausrechnen. Der Plan: Multipliziere das Quadrat aus, schreib jeden Teil als Ziffernfolge und setz die Teile zusammen. Achte dabei darauf, **ob zwischen den Ziffern geborgt oder übertragen wird**.
 
-# Die Wurzelbedingung
+# Das Quadrat ausmultiplizieren
 
-<BlockMath math="x^2-5x+6=(x-2)(x-3)\ge0" />
+Verwende <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> mit <InlineMath math="a=10^{20}" /> und <InlineMath math="b=9" />. **Das mittlere Glied <InlineMath math="-2ab" /> darf nicht fehlen**, denn das Quadrat einer Differenz ist nicht die Differenz der Quadrate.
 
-Ein Produkt zweier Faktoren ist **außerhalb seiner beiden Nullstellen oder genau dort** nicht negativ, also für <InlineMath math="x\le2" /> oder <InlineMath math="x\ge3" />. Zahlen zwischen 2 und 3 machen den Radikanden negativ.
+<BlockMath math="\begin{aligned}
+N&=\left(10^{20}\right)^2-2\cdot9\cdot10^{20}+9^2\\
+&=10^{40}-18\cdot10^{20}+81
+\end{aligned}" />
 
-# Nenner und Definitionsbereich
+# Die ersten beiden Glieder schreiben
 
-Der Nenner ist bei <InlineMath math="x=4" /> null, dieser Wert fällt also weg. Der Definitionsbereich ist **<InlineMath math="x\le2" /> oder <InlineMath math="x\ge3" />, mit <InlineMath math="x\ne4" />**.
+Klammere <InlineMath math="10^{20}" /> aus den ersten beiden Gliedern aus: <InlineMath math="10^{40}-18\cdot10^{20}=10^{20}\left(10^{20}-18\right)" />. Die Zahl <InlineMath math="10^{20}" /> ist eine <InlineMath math="1" /> mit <InlineMath math="20" /> Nullen dahinter. Ziehst du <InlineMath math="18" /> ab, entsteht eine Zahl mit <InlineMath math="20" /> Ziffern: **<InlineMath math="18" /> Neunen und danach eine Acht und eine Zwei**. Ein kleines Beispiel ist <InlineMath math="10^4-18=9982" />, also zwei Neunen, dann eine Acht und eine Zwei.
 
-| Wert | Radikand | Nenner | Im Definitionsbereich? |
-| :---: | :---: | :---: | :---: |
-| <InlineMath math="x=3" /> | <InlineMath math="0" /> | <InlineMath math="-1" /> | ja |
-| <InlineMath math="x=2{,}5" /> | <InlineMath math="-0{,}25" /> | <InlineMath math="-1{,}5" /> | nein |
-| <InlineMath math="x=4" /> | <InlineMath math="2" /> | <InlineMath math="0" /> | nein |
+Die Multiplikation mit <InlineMath math="10^{20}" /> hängt nur <InlineMath math="20" /> Nullen an. Also besteht <InlineMath math="10^{40}-18\cdot10^{20}" /> aus <InlineMath math="18" /> Neunen, einer Acht, einer Zwei und dann <InlineMath math="20" /> Nullen.
 
-Für jedes <InlineMath math="x<0" /> sind beide Faktoren <InlineMath math="x-2" /> und <InlineMath math="x-3" /> negativ, ihr Produkt also positiv, und der Nenner ist nicht null. Die vierte Aussage ist wahr.
+# Das letzte Glied addieren
 
-Die erste Aussage ist also **wahr**, die zweite **falsch**, die dritte **falsch** und die vierte **wahr**.
+Die letzten beiden Ziffern dieser Zahl sind Nullen, also macht die Addition von <InlineMath math="81" /> nur aus diesen beiden Nullen eine Acht und eine Eins. **Es gibt keinen Übertrag** auf andere Ziffern. Das Ergebnis lautet: <InlineMath math="18" /> Neunen, eine Acht und eine Zwei, <InlineMath math="18" /> Nullen, dann eine Acht und eine Eins.
+
+Prüf das Muster an einer kleinen Zahl gleicher Bauart.
+
+<BlockMath math="\left(10^{3}-9\right)^2=991^2=982081" />
+
+Das Muster passt: eine Neun, eine Acht und eine Zwei, eine Null, dann eine Acht und eine Eins.
+
+# Die Ziffern addieren
+
+**Nullen tragen nichts bei**, also reichen die Ziffern ungleich null.
+
+<BlockMath math="\begin{aligned}
+18\cdot9+8+2+8+1&=162+19\\
+&=181
+\end{aligned}" />
+
+Eine schnelle Probe: Eine Zahl und ihre Quersumme lassen beim Teilen durch <InlineMath math="9" /> denselben Rest. Weil <InlineMath math="10^{20}" /> den Rest <InlineMath math="1" /> lässt, lässt <InlineMath math="N" /> den Rest <InlineMath math="(1-0)^2=1" />, und auch <InlineMath math="181" /> lässt den Rest <InlineMath math="1" />. Alle fünf Antworten bestehen diese Probe, sie ersetzt also die Rechnung oben nicht.
+
+# Die verlockenden falschen Antworten
+
+- <InlineMath math="172" /> **vergisst das Glied <InlineMath math="81" />** am Ende und zählt nur <InlineMath math="162+8+2" />.
+- <InlineMath math="190" /> glaubt, <InlineMath math="10^{20}-18" /> habe <InlineMath math="19" /> Neunen, aber die letzten beiden Stellen tragen die Acht und die Zwei.
+- <InlineMath math="343" /> hat einen Vorzeichenfehler und rechnet mit <InlineMath math="10^{40}-18\cdot10^{20}-81" />. Diese Subtraktion borgt bei der Zwei, dadurch entstehen <InlineMath math="18" /> neue Neunen, und die Summe wird viel zu groß.
+- <InlineMath math="352" /> verwendet <InlineMath math="(a-b)^2=a^2-b^2" />, also <InlineMath math="10^{40}-81" />, und das sind <InlineMath math="38" /> Neunen, gefolgt von einer Eins und einer Neun.
+
+Die Summe aller Ziffern von <InlineMath math="N" /> ist also <InlineMath math="181" />.

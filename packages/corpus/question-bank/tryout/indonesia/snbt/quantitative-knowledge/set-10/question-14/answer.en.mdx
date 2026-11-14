@@ -1,15 +1,48 @@
-The sample space is 30 equally likely cards, so every probability is **the number of suitable numbers divided by 30**. List the numbers one by one so that none is missed.
+You don't know where <InlineMath math="t" /> sits in the sorted data yet, but that position decides which data values the percentile rule uses. The plan is to find the percentile position first, then **split into cases by where <InlineMath math="t" /> sits**, and throw out any case whose result breaks its own condition.
 
-# Primes and perfect squares
+# The percentile position
 
-The primes from 1 to 30 are 2, 3, 5, 7, 11, 13, 17, 19, 23 and 29, ten in all. **The number 1 is not prime**. The probability is <InlineMath math="\tfrac{10}{30}=\tfrac13" />, so the first statement is true.
+There are now <InlineMath math="n=11" /> values, so for <InlineMath math="k=40" /> you get this position.
 
-The perfect squares are 1, 4, 9, 16 and 25, five in all. The probability is <InlineMath math="\tfrac{5}{30}=\tfrac16" />, not <InlineMath math="\tfrac15" />. The second statement is false.
+<BlockMath math="L=\frac{40\cdot 12}{100}=4.8,\qquad i=4,\quad f=0.8" />
 
-# Two conditions at once
+So <InlineMath math="P_{40}=y_{(4)}+0.8\left(y_{(5)}-y_{(4)}\right)" />. You need **the <InlineMath math="4" />th and <InlineMath math="5" />th values after <InlineMath math="t" /> is sorted in**.
 
-An even number that is also a multiple of 5 is **a multiple of 10**: 10, 20 and 30. The probability is <InlineMath math="\tfrac{3}{30}=\tfrac{1}{10}" />, so the third statement is true.
+# Cases by where the missing value sits
 
-The odd numbers greater than 20 are 21, 23, 25, 27 and 29, five in all. The probability is <InlineMath math="\tfrac{5}{30}=\tfrac16" />, not <InlineMath math="\tfrac15" />. The fourth statement is false.
+Without <InlineMath math="t" />, the four smallest values are <InlineMath math="10,14,17,20" /> and the next one is <InlineMath math="26" />. Where <InlineMath math="t" /> lands changes the <InlineMath math="4" />th and <InlineMath math="5" />th values.
 
-So the first statement is **true**, the second is **false**, the third is **true**, and the fourth is **false**.
+<BlockMath math="\begin{aligned}
+t\le 17:&\quad y_{(4)}=17,\ y_{(5)}=20,\ P_{40}=17+0.8\cdot 3=19.4 \\
+17\le t\le 20:&\quad y_{(4)}=t,\ y_{(5)}=20,\ P_{40}=t+0.8(20-t)=0.2t+16 \\
+20\le t\le 26:&\quad y_{(4)}=20,\ y_{(5)}=t,\ P_{40}=20+0.8(t-20)=0.8t+4 \\
+t\ge 26:&\quad y_{(4)}=20,\ y_{(5)}=26,\ P_{40}=20+0.8\cdot 6=24.8
+\end{aligned}" />
+
+The first and fourth cases give fixed values that aren't <InlineMath math="23.2" />, so both are out.
+
+# Checking the two remaining cases
+
+Solve each equation, then **check that the result meets the condition of its own case**.
+
+<BlockMath math="\begin{aligned}
+0.2t+16=23.2 &\;\Longrightarrow\; t=36 \\
+0.8t+4=23.2 &\;\Longrightarrow\; t=24
+\end{aligned}" />
+
+The value <InlineMath math="t=36" /> doesn't meet <InlineMath math="17\le t\le 20" />, so you drop it. The value <InlineMath math="t=24" /> meets <InlineMath math="20\le t\le 26" />, so that's the answer.
+
+# Checking
+
+With <InlineMath math="t=24" />, the sorted data are <InlineMath math="10,14,17,20,24,26,29,33,38,41,45" />. The <InlineMath math="4" />th value is <InlineMath math="20" /> and the <InlineMath math="5" />th value is <InlineMath math="24" />, so <InlineMath math="P_{40}=20+0.8\cdot 4=23.2" />. It matches.
+
+# The wrong options
+
+Each other option comes from **a swapped position rule or a case that wasn't checked**.
+
+- <InlineMath math="23.2" /> uses a different position rule, <InlineMath math="L=1+\tfrac{k(n-1)}{100}=5" />, so the percentile is taken to be the <InlineMath math="5" />th value, which is <InlineMath math="t" /> itself.
+- <InlineMath math="24.75" /> miscounts the order, treating <InlineMath math="17" /> as the <InlineMath math="4" />th value and <InlineMath math="t" /> as the <InlineMath math="5" />th value.
+- <InlineMath math="28" /> uses the position <InlineMath math="L=\tfrac{kn}{100}=4.4" /> instead of <InlineMath math="\tfrac{k(n+1)}{100}" />.
+- <InlineMath math="36" /> comes from the case <InlineMath math="17\le t\le 20" /> without checking that <InlineMath math="36" /> isn't in that interval.
+
+So the value of <InlineMath math="t" /> is <InlineMath math="24" />.

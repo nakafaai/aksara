@@ -1,23 +1,46 @@
-We already know that the ball drawn is red, so the question asks for **the conditional probability of box I given a red ball**. The sample space shrinks to all the ways of getting a red ball.
+All four statements test the same idea from different sides: **an even root never gives a negative number**, while an odd root keeps the sign. Judge each statement with a proof or one counterexample.
 
-# Probability of each red path
+# Two basic rules
 
-A red ball can come from two paths. Multiply the probability of choosing a box by **the probability of drawing red from that box**.
+For every real number <InlineMath math="t" />, the square <InlineMath math="t^2" /> is non-negative, and its square root has to be non-negative too. So <InlineMath math="\sqrt{t^2}" /> equals <InlineMath math="t" /> when <InlineMath math="t\ge0" />, and equals <InlineMath math="-t" /> when <InlineMath math="t<0" />. That's the **absolute value**, <InlineMath math="\lvert t\rvert" />. The cube root has no such limit, because the cube of a negative number is still negative.
 
 <BlockMath math="\begin{aligned}
-P(\text{I and red})&=\tfrac12\cdot\tfrac35=\tfrac{3}{10}\\
-P(\text{II and red})&=\tfrac12\cdot\tfrac15=\tfrac{1}{10}\\
-P(\text{red})&=\tfrac{3}{10}+\tfrac{1}{10}=\tfrac{4}{10}
+\sqrt{t^2} &= \lvert t\rvert, & \sqrt{(-3)^2} &= \sqrt9=3 \\
+\sqrt[3]{t^3} &= t, & \sqrt[3]{(-2)^3} &= \sqrt[3]{-8}=-2
 \end{aligned}" />
 
-# Conditional probability
+# Statement one
 
-Divide the probability of the box I path by **the probability of the whole red event**.
+Let <InlineMath math="t=1-\sqrt3" />. Since <InlineMath math="\sqrt3>1" />, **the number <InlineMath math="t" /> is negative**, so <InlineMath math="\lvert t\rvert=\sqrt3-1" />.
 
-<BlockMath math="P(\text{I}\mid\text{red})=\frac{3/10}{4/10}=\frac34" />
+<BlockMath math="\begin{aligned}
+\sqrt{t^2}+\sqrt[3]{t^3} &= \lvert t\rvert+t \\
+&= \left(\sqrt3-1\right)+\left(1-\sqrt3\right)=0
+\end{aligned}" />
 
-The result makes sense: of the 4 red balls, 3 are in box I, and both boxes hold 5 balls.
+Statement one is **true**. If you cancel the root against the square straight away, you get <InlineMath math="2-2\sqrt3" />, which is wrong because the first part can't be negative.
 
-The value <InlineMath math="\tfrac{3}{10}" /> is the probability of choosing box I and drawing red, before dividing by the probability of red. The value <InlineMath math="\tfrac25" /> is the probability of drawing red. The value <InlineMath math="\tfrac35" /> is the probability of red once box I is chosen, which reverses the condition. The value <InlineMath math="\tfrac12" /> ignores the colour of the ball.
+# Statement two
 
-So the probability that the red ball came from box I is **<InlineMath math="\tfrac34" />**.
+Split off the square factor: <InlineMath math="\sqrt{a^2b}=\sqrt{a^2}\cdot\sqrt b=\lvert a\rvert\sqrt b" />. For <InlineMath math="a<0" />, <InlineMath math="\lvert a\rvert=-a" />, so the result is <InlineMath math="-a\sqrt b" />, **not <InlineMath math="a\sqrt b" />**. A counterexample is <InlineMath math="a=-1" /> and <InlineMath math="b=1" />: the left side is <InlineMath math="\sqrt1=1" />, and the right side is <InlineMath math="-1" />. Statement two is **false**.
+
+# Statement three
+
+The left side is <InlineMath math="\sqrt{(x+1)^2}=\lvert x+1\rvert" />, which is non-negative. So the right side must be non-negative too: <InlineMath math="2x-1\ge0" />, that is, <InlineMath math="x\ge\tfrac12" />. For <InlineMath math="x\ge\tfrac12" />, the number <InlineMath math="x+1" /> is positive, so <InlineMath math="\lvert x+1\rvert=x+1" />.
+
+<BlockMath math="\begin{aligned}
+x+1 &= 2x-1 \\
+x &= 2
+\end{aligned}" />
+
+There's only one solution. Two solutions show up if you square both sides without the condition: <InlineMath math="(x+1)^2=(2x-1)^2" /> gives <InlineMath math="3x^2-6x=0" />, so <InlineMath math="x=0" /> or <InlineMath math="x=2" />. At <InlineMath math="x=0" /> the left side is <InlineMath math="\sqrt1=1" /> while the right side is <InlineMath math="-1" />, so **<InlineMath math="x=0" /> is an extraneous root** created by squaring. Statement three is **false**.
+
+# Statement four
+
+For <InlineMath math="a\le0" />, the number <InlineMath math="-a" /> is non-negative, so <InlineMath math="\sqrt{-a}" /> is defined. By the meaning of a square root, **a square root times itself gives back the number under the root**, which is <InlineMath math="-a" />, not <InlineMath math="a" />. A counterexample is <InlineMath math="a=-4" />.
+
+<BlockMath math="\sqrt{4}\cdot\sqrt{4}=2\cdot2=4\ne-4" />
+
+The equation only holds for <InlineMath math="a=0" />, so it doesn't hold for every <InlineMath math="a\le0" />. Statement four is **false**.
+
+So statement one is true, and statements two, three, and four are false.

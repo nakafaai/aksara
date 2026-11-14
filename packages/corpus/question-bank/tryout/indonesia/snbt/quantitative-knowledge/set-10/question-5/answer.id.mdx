@@ -1,21 +1,45 @@
-Sebelum memakai rumus jumlah dan hasil kali akar, periksa apakah persamaannya dapat difaktorkan. Ternyata **bentuknya pas dengan <InlineMath math="(x-3)(x-k)" />**, karena <InlineMath math="3+k" /> adalah jumlah dan <InlineMath math="3k" /> adalah hasil kali.
+Nilai <InlineMath math="n" /> tidak diketahui, jadi kamu perlu menulis <InlineMath math="P" /> dan <InlineMath math="Q" /> sebagai rumus dalam <InlineMath math="n" />, lalu melihat tanda selisihnya untuk **semua <InlineMath math="n" /> sekaligus**. Kalau tandanya sama untuk setiap <InlineMath math="n" />, hubungannya pasti. Kalau tandanya bisa berganti, informasinya tidak cukup.
 
-# Akar-akar persamaan
+# Rata-rata dan rata-rata kuadrat
 
-<BlockMath math="x^2-(k+3)x+3k=(x-3)(x-k)=0" />
+Pakai dua rumus jumlah yang sudah dikenal: jumlah <InlineMath math="1+2+\cdots+n" /> dan jumlah <InlineMath math="1^2+2^2+\cdots+n^2" />. Rata-rata adalah **jumlah dibagi banyak data**, yaitu dibagi <InlineMath math="n" />.
 
-Akar-akarnya adalah 3 dan <InlineMath math="k" />, **apa pun nilai k**.
+<BlockMath math="\begin{aligned}
+\bar{x} &= \frac{1}{n}\cdot\frac{n(n+1)}{2}=\frac{n+1}{2} \\
+P &= \frac{1}{n}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{(n+1)(2n+1)}{6}
+\end{aligned}" />
 
-# Syarat selisih akar
+Dari sini <InlineMath math="Q=\left(\dfrac{n+1}{2}\right)^2+\dfrac{n^2}{12}" />.
 
-Selisih kedua akar adalah 5, jadi <InlineMath math="k" /> **berjarak 5 dari 3**.
+# Membandingkan dengan penyebut yang sama
 
-<BlockMath math="\lvert k-3\rvert=5\;\Longrightarrow\;k=8\;\text{atau}\;k=-2" />
+Kalikan kedua kuantitas dengan <InlineMath math="12" /> supaya pecahannya hilang. Mengalikan dengan bilangan positif **tidak mengubah arah perbandingan**.
 
-Pemeriksaan: untuk <InlineMath math="k=8" /> akarnya 3 dan 8, dan untuk <InlineMath math="k=-2" /> akarnya 3 dan <InlineMath math="-2" />. Selisih keduanya 5.
+<BlockMath math="\begin{aligned}
+12P &= 2(n+1)(2n+1)=4n^2+6n+2 \\
+12Q &= 3(n+1)^2+n^2=4n^2+6n+3
+\end{aligned}" />
 
-<BlockMath math="8+(-2)=6" />
+Selisihnya <InlineMath math="12Q-12P=1" />, jadi <InlineMath math="Q-P=\dfrac{1}{12}" />. **Selisih ini tidak bergantung pada <InlineMath math="n" />** dan selalu positif, sehingga <InlineMath math="Q>P" /> untuk setiap bilangan bulat positif <InlineMath math="n" />.
 
-Nilai 8 hanya memakai satu kemungkinan. Nilai 10 adalah selisih kedua nilai <InlineMath math="k" />, bukan jumlahnya. Nilai 3 adalah akar yang tetap, dan nilai 5 adalah selisih akar yang diketahui.
+# Pemeriksaan dengan contoh
 
-Jadi, jumlah semua nilai <InlineMath math="k" /> adalah **6**.
+Untuk <InlineMath math="n=3" />, datanya <InlineMath math="1,2,3" />.
+
+<BlockMath math="\begin{aligned}
+P &= \frac{1+4+9}{3}=\frac{14}{3} \\
+Q &= 2^2+\frac{9}{12}=\frac{19}{4} \\
+Q-P &= \frac{57-56}{12}=\frac{1}{12}
+\end{aligned}" />
+
+Contoh ini cocok dengan rumus umum. Untuk <InlineMath math="n=1" /> pun hasilnya sama: <InlineMath math="P=1" /> dan <InlineMath math="Q=1+\tfrac{1}{12}" />.
+
+# Pilihan yang keliru
+
+Setiap pilihan lain muncul dari **rumus yang dipakai tanpa dihitung tuntas**.
+
+- <InlineMath math="P=Q" /> muncul kalau kamu mengira <InlineMath math="P" /> dikurangi kuadrat rata-rata sama dengan <InlineMath math="\tfrac{n^2}{12}" />. Selisih itu sebenarnya <InlineMath math="\tfrac{n^2-1}{12}" />, sedikit lebih kecil.
+- <InlineMath math="P>Q" /> muncul kalau kamu hanya ingat bahwa rata-rata kuadrat lebih besar daripada kuadrat rata-rata, lalu lupa bahwa <InlineMath math="Q" /> masih ditambah <InlineMath math="\tfrac{n^2}{12}" />.
+- Pilihan informasi tidak cukup muncul kalau kamu mengira hubungannya berubah-ubah menurut <InlineMath math="n" />, padahal selisihnya tetap <InlineMath math="\tfrac{1}{12}" />.
+
+Jadi, kuantitas <InlineMath math="Q" /> selalu lebih besar daripada <InlineMath math="P" />.

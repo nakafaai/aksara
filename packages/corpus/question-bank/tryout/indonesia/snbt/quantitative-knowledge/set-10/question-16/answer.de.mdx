@@ -1,23 +1,59 @@
-Der Mittelwert ändert sich, weil sich die Summe ändert. Arbeite mit **der Summe der Daten**, nicht direkt mit dem Mittelwert.
+Du brauchst die Summe der ersten zehn Glieder, aber das zweite Glied ist nicht gegeben. Der Plan: Bestimme <InlineMath math="a_2" /> aus <InlineMath math="a_3" />, mach aus der Regel der Folge eine Regel für **die Differenz benachbarter Glieder**, stell eine Formel für das <InlineMath math="n" />-te Glied auf und addiere dann.
 
-# Summen vorher und nachher
+# Das zweite Glied
 
-<BlockMath math="\begin{aligned}
-\text{Summe von 8 Zahlen}&=8\cdot15=120\\
-\text{Summe von 10 Zahlen}&=10\cdot18=180
-\end{aligned}" />
-
-# Der Wert von x
-
-Die Differenz der Summen ist **die Summe der beiden neuen Zahlen**, also <InlineMath math="x+2x=3x" />.
+Die Regel für <InlineMath math="n=3" /> verbindet <InlineMath math="a_3" />, <InlineMath math="a_2" /> und <InlineMath math="a_1" />. **Das zweite Glied ist nicht direkt gegeben**, also löst du diese Gleichung nach <InlineMath math="a_2" /> auf.
 
 <BlockMath math="\begin{aligned}
-3x&=180-120=60\\
-x&=20
+a_3 &= 3a_2-2a_1 \\
+11 &= 3a_2-4 \\
+a_2 &= 5
 \end{aligned}" />
 
-Kontrolle: <InlineMath math="\tfrac{120+20+40}{10}=\tfrac{180}{10}=18" />.
+# Das Muster der Differenzen
 
-Der Wert 40 ist die zweite neue Zahl, <InlineMath math="2x" />. Der Wert 60 ist die Summe der beiden neuen Zahlen, <InlineMath math="3x" />, und 30 ist ihr Mittelwert.
+Zieh auf beiden Seiten der Regel <InlineMath math="a_{n-1}" /> ab.
 
-Der Wert von <InlineMath math="x" /> ist also **20**.
+<BlockMath math="\begin{aligned}
+a_n-a_{n-1} &= 2a_{n-1}-2a_{n-2} \\
+&= 2\left(a_{n-1}-a_{n-2}\right)
+\end{aligned}" />
+
+Das heißt: **Jede Differenz ist doppelt so groß wie die vorige**. Die erste Differenz ist <InlineMath math="a_2-a_1=3" />, die Differenzen sind also <InlineMath math="3,6,12,24,\ldots" />, eine geometrische Folge mit dem Quotienten <InlineMath math="2" />.
+
+# Eine Formel für jedes Glied
+
+Das <InlineMath math="n" />-te Glied ist <InlineMath math="a_1" /> plus die ersten <InlineMath math="n-1" /> Differenzen. Die geometrische Summe <InlineMath math="1+2+\cdots+2^{m-1}" /> ist <InlineMath math="2^m-1" />.
+
+<BlockMath math="\begin{aligned}
+a_n &= 2+3\left(1+2+\cdots+2^{n-2}\right) \\
+&= 2+3\left(2^{n-1}-1\right) \\
+&= 3\cdot 2^{n-1}-1
+\end{aligned}" />
+
+Kurze Kontrolle: Die Formel liefert <InlineMath math="a_1=2" />, <InlineMath math="a_2=5" /> und <InlineMath math="a_3=11" />, passend zu den Angaben.
+
+# Die Summe von zehn Gliedern
+
+Jedes Glied besteht aus einem Teil <InlineMath math="3\cdot 2^{n-1}" /> und **einem Teil <InlineMath math="-1" />, der zehnmal vorkommt**.
+
+<BlockMath math="\begin{aligned}
+\sum_{n=1}^{10}a_n &= 3\left(1+2+\cdots+2^{9}\right)-10 \\
+&= 3\left(2^{10}-1\right)-10 \\
+&= 3{.}069-10=3{.}059
+\end{aligned}" />
+
+# Probe
+
+Schreib die zehn Glieder mit der ursprünglichen Regel auf: <InlineMath math="2,5,11,23,47,95,191,383,767,1{.}535" />. Die laufenden Summen sind <InlineMath math="2,7,18,41,88,183,374,757,1{.}524,3{.}059" />, das Ergebnis passt also.
+
+# Die falschen Antworten
+
+Jede andere Antwort entsteht aus **einem falsch erkannten Muster oder einem vergessenen letzten Schritt**.
+
+- <InlineMath math="155" /> hält die Folge für arithmetisch mit der festen Differenz <InlineMath math="3" />, also <InlineMath math="2,5,8,\ldots" />, obwohl <InlineMath math="a_3=11" /> dieses Muster schon ausschließt.
+- <InlineMath math="1{.}535" /> ist das <InlineMath math="10" />. Glied, nicht die Summe der zehn Glieder.
+- <InlineMath math="3{.}069" /> vergisst den Teil <InlineMath math="-1" /> in jedem Glied.
+- <InlineMath math="6{.}131" /> benutzt <InlineMath math="2^{11}-1" /> in der geometrischen Summe, als gäbe es elf Glieder.
+
+Die Summe der ersten zehn Glieder der Folge ist also <InlineMath math="3{.}059" />.

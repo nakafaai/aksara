@@ -1,19 +1,35 @@
-Die Grundseite des Dreiecks <InlineMath math="CDP" /> ist <InlineMath math="CD=10" />. Seine Höhe ist der Abstand von <InlineMath math="P" /> zu <InlineMath math="CD" />, also **die Quadratseite minus die Höhe des gleichseitigen Dreiecks**.
+Gesucht ist das Verhältnis der Summe der Glieder <InlineMath math="21" /> bis <InlineMath math="30" /> zur Summe der ersten <InlineMath math="10" /> Glieder. Du gehst so vor: Übersetze die Bedingung in einen Zusammenhang zwischen dem Anfangsglied <InlineMath math="a" /> und der Differenz <InlineMath math="b" />, schreibe jedes Glied nur mit <InlineMath math="b" /> und **addiere jede Gruppe als Gliederzahl mal Mittelwert aus erstem und letztem Glied**.
 
-# Höhe des gleichseitigen Dreiecks
+# Anfangsglied und Differenz verknüpfen
 
-Die Höhe von <InlineMath math="P" /> auf <InlineMath math="AB" /> halbiert <InlineMath math="AB" />, es entsteht ein rechtwinkliges Dreieck mit Hypotenuse 10 und Kathete 5.
+Das <InlineMath math="n" />-te Glied ist <InlineMath math="u_n=a+(n-1)b" />. Bei einer arithmetischen Folge ist die Summe aufeinanderfolgender Glieder gleich ihrer Anzahl mal dem Mittelwert aus erstem und letztem Glied, weil die Glieder gleichmäßig verteilt sind.
 
-<BlockMath math="t_{ABP}=\sqrt{10^2-5^2}=\sqrt{75}=5\sqrt3\approx8{,}66" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}\big(a+(a+9b)\big)=10a+45b\\
+u_{11}+\dots+u_{15}&=\tfrac{5}{2}\big((a+10b)+(a+14b)\big)=5a+60b\\
+10a+45b&=5a+60b\\
+a&=3b
+\end{aligned}" />
 
-Das ist kleiner als 10, also **liegt <InlineMath math="P" /> tatsächlich im Quadrat**.
+Wegen <InlineMath math="a\ne0" /> ist **auch die Differenz <InlineMath math="b" /> nicht null**. Die Glieder sind also nicht alle null, und der gefragte Bruch ist definiert. Jedes Glied lässt sich jetzt nur mit <InlineMath math="b" /> schreiben: <InlineMath math="u_n=3b+(n-1)b=(n+2)b" />.
 
-# Fläche des Dreiecks CDP
+# Die Summen der beiden Gruppen
 
-Die Seiten <InlineMath math="AB" /> und <InlineMath math="CD" /> sind parallel und 10 voneinander entfernt, also ist **der Abstand von Punkt P zur Seite CD** gleich <InlineMath math="10-5\sqrt3" />.
+Nutze <InlineMath math="u_n=(n+2)b" /> für das erste und letzte Glied jeder Gruppe.
 
-<BlockMath math="L_{CDP}=\tfrac12\cdot10\cdot\left(10-5\sqrt3\right)=50-25\sqrt3\approx6{,}7" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}(3b+12b)=75b\\
+u_{21}+\dots+u_{30}&=\tfrac{10}{2}(23b+32b)=275b\\
+\frac{275b}{75b}&=\frac{11}{3}
+\end{aligned}" />
 
-Der Wert <InlineMath math="100-50\sqrt3" /> vergisst den Faktor <InlineMath math="\tfrac12" />. Der Wert <InlineMath math="25\sqrt3" /> ist die Fläche des Dreiecks <InlineMath math="ABP" />. Der Wert 25 ist ein Viertel des Quadrats, was nur stimmt, wenn <InlineMath math="P" /> im Mittelpunkt liegt.
+Prüfe die Bedingung: Die Glieder <InlineMath math="11" /> bis <InlineMath math="15" /> sind <InlineMath math="13b" /> bis <InlineMath math="17b" /> und ergeben <InlineMath math="\tfrac52(13b+17b)=75b" />. Das ist **dieselbe Summe wie die der ersten <InlineMath math="10" /> Glieder**, also stimmt <InlineMath math="a=3b" />.
 
-Die Fläche des Dreiecks <InlineMath math="CDP" /> beträgt also **<InlineMath math="\left(50-25\sqrt3\right)\text{ cm}^2" />**.
+# Die falschen Antworten
+
+- <InlineMath math="-\tfrac53" /> entsteht, wenn die Bedingung so gelesen wird, dass die Summe der ersten <InlineMath math="10" /> Glieder gleich der Summe der ersten <InlineMath math="15" /> Glieder ist. Das liefert <InlineMath math="a=-12b" />.
+- <InlineMath math="\tfrac73" /> entsteht, wenn stattdessen die Glieder <InlineMath math="11" /> bis <InlineMath math="20" /> addiert werden: <InlineMath math="\tfrac{175b}{75b}" />.
+- <InlineMath math="\tfrac83" /> entsteht, wenn das Verhältnis der Summen mit dem Verhältnis der letzten Glieder gleichgesetzt wird: <InlineMath math="\tfrac{u_{30}}{u_{10}}=\tfrac{32b}{12b}" />.
+- <InlineMath math="\tfrac{18}{5}" /> entsteht, wenn <InlineMath math="u_{25}=27b" /> als Mittelwert der Glieder <InlineMath math="21" /> bis <InlineMath math="30" /> gilt. **Der Mittelwert dieser <InlineMath math="10" /> Glieder ist aber <InlineMath math="27{,}5b" />**: <InlineMath math="\tfrac{270b}{75b}" />.
+
+Der Wert des Verhältnisses ist also <InlineMath math="\tfrac{11}{3}" />.

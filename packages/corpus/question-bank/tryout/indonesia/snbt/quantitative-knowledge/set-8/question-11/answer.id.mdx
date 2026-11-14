@@ -1,19 +1,35 @@
-Alas segitiga <InlineMath math="CDP" /> adalah sisi <InlineMath math="CD=10" />. Tingginya adalah jarak <InlineMath math="P" /> ke <InlineMath math="CD" />, yang didapat dari **sisi persegi dikurangi tinggi segitiga sama sisi**.
+Kamu mencari perbandingan jumlah suku ke-<InlineMath math="21" /> sampai ke-<InlineMath math="30" /> dengan jumlah <InlineMath math="10" /> suku pertama. Rencananya begini: ubah syarat soal menjadi hubungan antara suku pertama <InlineMath math="a" /> dan beda <InlineMath math="b" />, tulis setiap suku dengan <InlineMath math="b" /> saja, lalu **jumlahkan setiap kelompok dengan rata-rata suku pertama dan suku terakhirnya**.
 
-# Tinggi segitiga sama sisi
+# Hubungan suku pertama dan beda
 
-Garis tinggi dari <InlineMath math="P" /> ke <InlineMath math="AB" /> membagi <InlineMath math="AB" /> sama panjang, jadi terbentuk segitiga siku-siku dengan sisi miring 10 dan alas 5.
+Suku ke-<InlineMath math="n" /> adalah <InlineMath math="u_n=a+(n-1)b" />. Pada barisan aritmetika, jumlah beberapa suku berurutan sama dengan banyak suku dikali rata-rata suku pertama dan suku terakhirnya, karena suku-sukunya berjarak sama.
 
-<BlockMath math="t_{ABP}=\sqrt{10^2-5^2}=\sqrt{75}=5\sqrt3\approx8{,}66" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}\big(a+(a+9b)\big)=10a+45b\\
+u_{11}+\dots+u_{15}&=\tfrac{5}{2}\big((a+10b)+(a+14b)\big)=5a+60b\\
+10a+45b&=5a+60b\\
+a&=3b
+\end{aligned}" />
 
-Nilai ini kurang dari 10, sehingga **<InlineMath math="P" /> memang berada di dalam persegi**.
+Karena <InlineMath math="a\ne0" />, **beda <InlineMath math="b" /> juga tidak nol**. Jadi, suku-sukunya tidak semuanya nol dan pecahan yang ditanyakan terdefinisi. Setiap suku sekarang bisa ditulis dengan <InlineMath math="b" /> saja: <InlineMath math="u_n=3b+(n-1)b=(n+2)b" />.
 
-# Luas segitiga CDP
+# Jumlah kedua kelompok suku
 
-Sisi <InlineMath math="AB" /> dan <InlineMath math="CD" /> sejajar dan berjarak 10, jadi **jarak titik P ke sisi CD** adalah <InlineMath math="10-5\sqrt3" />.
+Pakai rumus <InlineMath math="u_n=(n+2)b" /> untuk suku pertama dan terakhir setiap kelompok.
 
-<BlockMath math="L_{CDP}=\tfrac12\cdot10\cdot\left(10-5\sqrt3\right)=50-25\sqrt3\approx6{,}7" />
+<BlockMath math="\begin{aligned}
+u_1+\dots+u_{10}&=\tfrac{10}{2}(3b+12b)=75b\\
+u_{21}+\dots+u_{30}&=\tfrac{10}{2}(23b+32b)=275b\\
+\frac{275b}{75b}&=\frac{11}{3}
+\end{aligned}" />
 
-Nilai <InlineMath math="100-50\sqrt3" /> lupa mengalikan dengan <InlineMath math="\tfrac12" />. Nilai <InlineMath math="25\sqrt3" /> adalah luas segitiga <InlineMath math="ABP" />. Nilai 25 adalah seperempat luas persegi, yang hanya benar jika <InlineMath math="P" /> di pusat persegi.
+Periksa syarat soal: suku ke-<InlineMath math="11" /> sampai ke-<InlineMath math="15" /> adalah <InlineMath math="13b" /> sampai <InlineMath math="17b" />, jumlahnya <InlineMath math="\tfrac52(13b+17b)=75b" />. Hasil ini **sama dengan jumlah <InlineMath math="10" /> suku pertama**, jadi hubungan <InlineMath math="a=3b" /> benar.
 
-Jadi, luas segitiga <InlineMath math="CDP" /> adalah **<InlineMath math="\left(50-25\sqrt3\right)\text{ cm}^2" />**.
+# Pilihan yang keliru
+
+- <InlineMath math="-\tfrac53" /> muncul jika syaratnya dibaca sebagai jumlah <InlineMath math="10" /> suku pertama sama dengan jumlah <InlineMath math="15" /> suku pertama, yang memberi <InlineMath math="a=-12b" />.
+- <InlineMath math="\tfrac73" /> muncul jika yang dijumlahkan suku ke-<InlineMath math="11" /> sampai ke-<InlineMath math="20" />: <InlineMath math="\tfrac{175b}{75b}" />.
+- <InlineMath math="\tfrac83" /> muncul jika perbandingan jumlah dianggap sama dengan perbandingan suku terakhirnya: <InlineMath math="\tfrac{u_{30}}{u_{10}}=\tfrac{32b}{12b}" />.
+- <InlineMath math="\tfrac{18}{5}" /> muncul jika <InlineMath math="u_{25}=27b" /> dipakai sebagai rata-rata suku ke-<InlineMath math="21" /> sampai ke-<InlineMath math="30" />, padahal **rata-rata <InlineMath math="10" /> suku itu <InlineMath math="27{,}5b" />**: <InlineMath math="\tfrac{270b}{75b}" />.
+
+Jadi, nilai perbandingan itu adalah <InlineMath math="\tfrac{11}{3}" />.

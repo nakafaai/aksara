@@ -1,15 +1,48 @@
-Eine Aussage reicht, wenn **jedes passende Paar positiver ganzer Zahlen denselben Wert von <InlineMath math="a+b" /> liefert**. Liste die möglichen Paare auf.
+Gesucht ist der Flächeninhalt des Vierecks, das von vier Geraden begrenzt wird. Du gehst so vor: Bestimme alle Schnittpunkte, erkenne das parallele Paar, **entscheide, welche Schnittpunkte wirklich Ecken sind**, und berechne dann den Flächeninhalt mit der Koordinatenformel.
 
-# Nur Aussage (1)
+# Die Schnittpunkte der vier Geraden
 
-Paare mit <InlineMath math="ab=12" /> sind unter anderem <InlineMath math="(1,12)" />, <InlineMath math="(2,6)" /> und <InlineMath math="(3,4)" /> sowie ihre Umkehrungen. Ihre Summen sind 13, 8 und 7, also **ist die Summe nicht eindeutig**. Aussage (1) allein reicht nicht.
+Die Geraden <InlineMath math="x-4y=-3" /> und <InlineMath math="x-4y=-18" /> haben dieselbe linke Seite, aber verschiedene rechte Seiten. Die beiden Geraden sind also **parallel und schneiden sich nie**. Die übrigen <InlineMath math="5" /> Paare schneiden sich. Löse jedes Paar mit dem Additionsverfahren.
 
-# Nur Aussage (2)
+<BlockMath math="\begin{aligned}
+x-4y=-3\ \text{und}\ 4x-y=3&\ \Longrightarrow\ (1,1)\\
+x-4y=-3\ \text{und}\ x+y=12&\ \Longrightarrow\ (9,3)\\
+x-4y=-18\ \text{und}\ 4x-y=3&\ \Longrightarrow\ (2,5)\\
+x-4y=-18\ \text{und}\ x+y=12&\ \Longrightarrow\ (6,6)\\
+4x-y=3\ \text{und}\ x+y=12&\ \Longrightarrow\ (3,9)
+\end{aligned}" />
 
-Faktorisiere zu <InlineMath math="(a-b)(a+b)=7" />. Da 7 eine Primzahl ist und <InlineMath math="a+b" /> größer als <InlineMath math="a-b" /> ist, **gibt es nur ein Faktorpaar**: <InlineMath math="a-b=1" /> und <InlineMath math="a+b=7" />.
+Jeden Punkt kannst du prüfen, indem du ihn in seine beiden Geraden einsetzt. Zum Beispiel liefert <InlineMath math="(6,6)" /> die Werte <InlineMath math="6-24=-18" /> und <InlineMath math="6+6=12" />.
 
-<BlockMath math="a=4,\quad b=3,\quad a+b=7" />
+# Die richtigen Ecken auswählen
 
-Kontrolle: <InlineMath math="16-9=7" />. Aussage (2) allein reicht.
+Es gibt <InlineMath math="5" /> Schnittpunkte, aber ein Viereck hat nur <InlineMath math="4" /> Ecken. Berechne <InlineMath math="x-4y" /> in jedem Punkt, um zu sehen, wo er relativ zu den beiden Parallelen liegt.
 
-Also **reicht Aussage (2) allein**, Aussage (1) allein aber nicht.
+<BlockMath math="\begin{aligned}
+(1,1)\ \text{und}\ (9,3)&:\quad x-4y=-3\\
+(2,5)\ \text{und}\ (6,6)&:\quad x-4y=-18\\
+(3,9)&:\quad x-4y=3-36=-33
+\end{aligned}" />
+
+Der Wert <InlineMath math="-33" /> ist kleiner als <InlineMath math="-18" />, also **liegt der Punkt <InlineMath math="(3,9)" /> außerhalb des Streifens zwischen den Parallelen**. Die vier Geraden begrenzen zwei geschlossene Gebiete: ein Trapez mit den Ecken <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(6,6)" />, <InlineMath math="(2,5)" /> und ein kleines Dreieck <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" />. Das gesuchte Viereck ist das Trapez.
+
+# Der Flächeninhalt aus den Koordinaten
+
+Die Koordinatenformel, oft Gaußsche Trapezformel oder Schnürsenkelformel genannt, liefert den Flächeninhalt eines Vielecks aus seinen Ecken. Die eine Bedingung lautet: **Die Ecken stehen der Reihe nach entlang des Randes**, also <InlineMath math="(1,1)\to(9,3)\to(6,6)\to(2,5)" />.
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\left|(1\cdot3-9\cdot1)+(9\cdot6-6\cdot3)+(6\cdot5-2\cdot6)+(2\cdot1-1\cdot5)\right|\\
+&=\tfrac12\left|-6+36+18-3\right|\\
+&=\tfrac12\cdot45=22{,}5
+\end{aligned}" />
+
+Prüfe auf einem zweiten Weg. Das große Dreieck <InlineMath math="(1,1)" />, <InlineMath math="(9,3)" />, <InlineMath math="(3,9)" /> hat den Flächeninhalt <InlineMath math="\tfrac12\left|8\cdot8-2\cdot2\right|=30" />. Das kleine Dreieck <InlineMath math="(2,5)" />, <InlineMath math="(6,6)" />, <InlineMath math="(3,9)" /> hat den Flächeninhalt <InlineMath math="\tfrac12\left|4\cdot4-1\cdot1\right|=7{,}5" />. Die Differenz <InlineMath math="30-7{,}5=22{,}5" /> bestätigt das Ergebnis.
+
+# Die falschen Antworten
+
+- <InlineMath math="30" /> Flächeneinheiten entstehen, wenn <InlineMath math="(3,9)" /> als Ecke genommen wird. Dann ist **die Gerade <InlineMath math="x-4y=-18" /> vergessen**, und du berechnest das große Dreieck.
+- <InlineMath math="37{,}5" /> Flächeneinheiten entstehen, wenn das kleine Dreieck addiert statt abgezogen wird: <InlineMath math="30+7{,}5" />.
+- <InlineMath math="45" /> Flächeneinheiten entstehen, wenn der Faktor <InlineMath math="\tfrac12" /> in der Koordinatenformel fehlt.
+- <InlineMath math="60" /> Flächeneinheiten entstehen, wenn das große Dreieck ohne den Faktor <InlineMath math="\tfrac12" /> berechnet wird.
+
+Der Flächeninhalt des Vierecks beträgt also <InlineMath math="22{,}5" /> Flächeneinheiten.
