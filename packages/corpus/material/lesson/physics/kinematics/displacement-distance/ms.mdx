@@ -62,6 +62,34 @@ Bandingkan satu objek yang bergerak dari titik mula yang sama ke titik akhir yan
 
 Dalam simulasi, pilih laluan membelok, kemudian laluan kembali. Bandingkan **panjang laluan** dengan **magnitud sesaran**. Apabila kereta kembali ke titik mula, laluannya masih mempunyai panjang, manakala segmen yang menyambungkan kedudukan awal dan kedudukan akhirnya mempunyai panjang sifar.
 
+### Jalan Memutar di Pekan
+
+Besarkan contoh pelajaran ini kepada saiz sebuah pekan dan **bandingkan laluan dengan anak panah**: berjalan <InlineMath math="400\text{ m}" /> ke timur di sepanjang jalan, kemudian <InlineMath math="300\text{ m}" /> ke selatan, pada <InlineMath math="1.25\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: -300 },
+  ]}
+  pace={1.25}
+  title={<>Jalan Memutar di Pekan</>}
+  description={
+    <>
+      Laluan kuning ialah jarak yang kamu jalan. Anak panah ungu ialah sesaran, lurus dari titik mula ke tempat kamu berdiri.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Laju purata</>,
+    averageVelocity: <>Magnitud halaju purata</>,
+    displacement: <>Magnitud sesaran</>,
+    distance: <>Jarak berjalan</>,
+    time: <>Masa</>,
+    viewLabel: "Berjalan melalui pekan dilihat dari atas",
+  }}
+/>
+
+Panjang laluan ialah <InlineMath math="700\text{ m}" />, tetapi anak panahnya hanya <InlineMath math="500\text{ m}" />, segi tiga <InlineMath math="3:4:5" /> yang sama seperti tadi. Dalam <InlineMath math="560\text{ s}" />, laju puratanya <InlineMath math="1.25\text{ m/s}" /> dan halaju puratanya hanya kira-kira <InlineMath math="0.89\text{ m/s}" />.
+
 ## Jarak Menerangkan Panjang Laluan
 
 Jarak sentiasa sifar atau positif. Jarak menjawab soalan, "berapa panjang laluan yang dilalui?" Jadi, jarak **tidak mengambil kira arah**.
@@ -71,6 +99,30 @@ Jika objek bergerak <InlineMath math="4 \text{ m}" /> ke timur, kemudian <Inline
 <BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
 
 Simbol <InlineMath math="s" /> selalu digunakan untuk jarak yang dilalui.
+
+### Jarak Hanya Bertambah
+
+Jarak **hanya boleh bertambah** selagi kamu bergerak. Di trek larian <InlineMath math="400\text{ m}" />, setiap <InlineMath math="100\text{ m}" /> larian tambahan menambah <InlineMath math="100\text{ m}" /> jarak, walau ke arah mana pun selekoh itu membelok.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Jarak di Trek Larian</>}
+  description={
+    <>
+      Pelari di lorong <InlineMath math="1" /> berlari seragam pada <InlineMath math="8\text{ m/s}" />. Hentikan larian pada setiap tanda dan perhatikan jarak terus naik, sedangkan sesaran tidak.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Magnitud halaju purata</>,
+    chooseDistance: "Pilih jarak larian",
+    displacement: <>Magnitud sesaran</>,
+    distance: <>Jarak larian</>,
+    time: <>Masa</>,
+    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+  }}
+/>
+
+Bacaan jarak ialah <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" /> dan <InlineMath math="400\text{ m}" />. Sesarannya berubah daripada kira-kira <InlineMath math="72\text{ m}" /> kepada <InlineMath math="112\text{ m}" />, turun semula kepada kira-kira <InlineMath math="100\text{ m}" />, dan akhirnya <InlineMath math="0" />.
 
 ## Sesaran Mempunyai Magnitud dan Arah
 
@@ -83,6 +135,33 @@ Sesaran ialah kuantiti vektor. Maksudnya, sesaran mempunyai magnitud dan arah. B
 \end{aligned}" />
 
 Arah sesaran <Highlight>menghala terus dari titik mula ke titik akhir</Highlight>.
+
+### Sesaran Sama dari Setiap Mercu Tanda
+
+Sesaran **tidak bergantung pada tempat kamu meletakkan sifar**. Seorang penunggang basikal bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> di sebelah timur sebuah kedai dan kembali ke <InlineMath math="35\text{ m}" />. Ukur dari kedai, dari rumah Rani atau dari tiang bendera.
+
+<StreetOriginPositionLab
+  title={<>Satu Perjalanan, Tiga Asalan</>}
+  description={
+    <>
+      Arah timur ialah positif. Anak panah kuning bermula dari asalan yang dipilih ke penunggang basikal, dan graf menunjukkan kedudukan melawan masa.
+    </>
+  }
+  labels={{
+    change: <>Perubahan kedudukan</>,
+    chooseOrigin: "Pilih asalan",
+    end: <>Kedudukan akhir</>,
+    origins: {
+      store: <>Kedai</>,
+      house: <>Rumah Rani</>,
+      pole: <>Tiang bendera</>,
+    },
+    start: <>Kedudukan awal</>,
+    viewLabel: "Penunggang basikal di jalan dengan tiga mercu tanda",
+  }}
+/>
+
+Kedudukan awal dan akhir berubah mengikut asalan, tetapi perubahan kedudukan sentiasa <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> ke arah timur, sedangkan panjang laluan yang ditunggang ialah <InlineMath math="45\text{ m}" />.
 
 ## Kembali ke Titik Mula
 
@@ -128,6 +207,29 @@ Tiga perjalanan bermula dari titik yang sama. Perjalanan lurus mempunyai jarak y
   }}
 />
 
+### Pergi dan Balik pada Graf
+
+Sebuah kereta yang mula mendaki cerun landai pada <InlineMath math="6\text{ m/s}" /> bergerak ke hadapan, berhenti selepas <InlineMath math="5\text{ s}" />, lalu bergolek kembali ke titik mulanya. Graf kedudukan-masanya **naik lalu turun semula ke sifar**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Pergi dan Balik</>}
+  description={
+    <>
+      Pilih selang masa. Bendera menandakan dua kedudukan kereta, dan sekan menyambungkan kedua-duanya pada graf.
+    </>
+  }
+  labels={{
+    change: <>Sesaran</>,
+    chooseInterval: "Pilih selang masa",
+    elapsed: <>Selang masa</>,
+    rate: <>Halaju purata</>,
+    viewLabel: "Perjalanan kereta dengan graf kedudukan-masa",
+  }}
+/>
+
+Dari <InlineMath math="0" /> hingga <InlineMath math="10\text{ s}" />, kereta bergerak <InlineMath math="15\text{ m}" /> ke hadapan dan <InlineMath math="15\text{ m}" /> kembali, iaitu jarak <InlineMath math="30\text{ m}" />, tetapi sesarannya <InlineMath math="0" /> dan garis sekannya mendatar.
+
 ## Jarak dan Sesaran pada Laluan yang Membelok
 
 Seorang pelajar berjalan <InlineMath math="8 \text{ m}" /> ke timur, kemudian <InlineMath math="6 \text{ m}" /> ke utara. Jarak yang dilalui ialah:
@@ -148,7 +250,7 @@ Putar perjalanan di bawah. Anak panah jingga dan ungu ialah laluannya, iaitu jar
 
 <MathVisual
   title={<>Jarak dan Sesaran pada Selekoh</>}
-  description={<>8 m ke timur, kemudian 6 m ke utara, dilihat dari atas. Satu petak grid mewakili 2 m.</>}
+  description={<><InlineMath math="8\text{ m}" /> ke timur, kemudian <InlineMath math="6\text{ m}" /> ke utara, dilihat dari atas. Satu petak grid mewakili <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },

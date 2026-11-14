@@ -70,6 +70,32 @@ Pada ketiganya, percepatan tetap <InlineMath math="-g" /> sepanjang gerak, terma
   D --> E`}
 />
 
+### Bulu dan Koin di Ruang Hampa
+
+Jatuh bebas berarti hanya gravitasi yang bekerja. Di udara, hambatan udara menahan bulu, jadi saat udaranya dipompa keluar, **setiap benda jatuh dengan percepatan yang sama**, seperti yang ditunjukkan awak Apollo <InlineMath math="15" /> dengan palu dan bulu di Bulan.
+
+<FeatherCoinVacuumLab
+  title={<>Bulu dan Koin di Ruang Hampa</>}
+  description={
+    <>
+      Tabung kacanya setinggi <InlineMath math="1{,}1\text{ m}" />. Selama masih ada udara, bulu tertinggal di belakang, jadi pompa keluar udaranya dan bandingkan dua waktu mendaratnya.
+    </>
+  }
+  labels={{
+    airs: {
+      air: <>Berisi udara</>,
+      vacuum: <>Hampa udara</>,
+    },
+    chooseAir: "Pilih isi tabung",
+    coinTime: <>Koin sampai setelah</>,
+    drop: <>Tinggi jatuh</>,
+    featherTime: <>Bulu sampai setelah</>,
+    viewLabel: "Koin dan bulu jatuh di dalam tabung kaca",
+  }}
+/>
+
+Di ruang hampa, keduanya jatuh <InlineMath math="1{,}1\text{ m}" /> dalam <InlineMath math="\sqrt{\frac{2(1{,}1)}{10}}\approx0{,}47\text{ s}" /> dan sampai bersamaan. Dengan udara, koin tetap sampai setelah sekitar <InlineMath math="0{,}47\text{ s}" />, tetapi bulu melayang turun selama sekitar <InlineMath math="2{,}25\text{ s}" />.
+
 ## Benda Dilempar ke Atas
 
 Saat benda dilempar ke atas, kecepatannya positif lalu **berkurang terus karena gravitasi** sampai nol di titik tertinggi. Dari <InlineMath math="v_y = 0" />, waktu naik dan tinggi maksimum terhadap titik lempar adalah:
@@ -93,13 +119,13 @@ Di titik tertinggi, kecepatan bola nol sesaat, tetapi percepatannya tetap <Inlin
 | <InlineMath math="3\text{ s}" /> | <InlineMath math="15\text{ m}" /> | <InlineMath math="-10\text{ m/s}" /> | Turun |
 | <InlineMath math="4\text{ s}" /> | <InlineMath math="0\text{ m}" /> | <InlineMath math="-20\text{ m/s}" /> | Kembali ke titik lempar |
 
-Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-1 dan ke-3, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
+Gerak ini simetris. Bola berada di tinggi <InlineMath math="15\text{ m}" /> pada detik ke-<InlineMath math="1" /> dan ke-<InlineMath math="3" />, dengan kelajuan yang sama tetapi arah berlawanan, dan kembali ke titik lempar dengan kelajuan awalnya.
 
 Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" />. Panah ungu adalah kecepatannya, digambar sebagai jarak yang ditempuh dalam satu sekon: panahnya memendek saat naik, hilang pada <InlineMath math="t=2\text{ s}" /> di puncak, dan menunjuk ke bawah saat kembali.
 
 <MathVisual
   title={<>Lihat Kecepatan Berbalik Arah</>}
-  description={<>Bola yang dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti 5 m.</>}
+  description={<>Bola yang dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />, posisinya pada waktu yang dipilih (fuchsia), dan kecepatannya (ungu). Satu kotak grid berarti <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -4.5, max: 8.5 } },
@@ -128,6 +154,29 @@ Geser waktu untuk bola yang dilempar ke atas dengan <InlineMath math="20\text{ m
   }}
 />
 
+### Lemparan ke Atas dalam Foto Stroboskop
+
+Foto stroboskop menampilkan satu lemparan dalam satu gambar. Bola yang dilempar ke atas dengan <InlineMath math="5\text{ m/s}" /> **kehilangan <InlineMath math="1\text{ m/s}" /> kecepatan ke atas setiap sepersepuluh detik**, jadi gambarnya merapat di dekat puncak.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>Bola Dilempar ke Atas, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" />. Perhatikan jaraknya menyempit saat naik dan melebar saat turun.
+    </>
+  }
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Tinggi puncak</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+Bola berhenti naik setelah <InlineMath math="\frac{5}{10}=0{,}5\text{ s}" /> pada ketinggian <InlineMath math="\frac{5^2}{2(10)}=1{,}25\text{ m}" />, dan kembali ke tangan setelah <InlineMath math="1\text{ s}" />, bergerak turun dengan <InlineMath math="5\text{ m/s}" />.
+
 ## Benda Jatuh Bebas
 
 Dalam pelajaran fisika sekolah, jatuh bebas berarti benda dilepas **tanpa kecepatan awal**, jadi <InlineMath math="v_0 = 0" />. Sebagian buku menyebut semua gerak di bawah gravitasi saja sebagai jatuh bebas, termasuk lemparan, tetapi halaman ini memakai arti yang pertama. Untuk benda yang jatuh setinggi <InlineMath math="h" />, waktu jatuh dan kelajuan saat menyentuh tanah adalah:
@@ -142,6 +191,29 @@ Bola yang dijatuhkan dari ketinggian <InlineMath math="20\text{ m}" /> mencapai 
 <BlockMath math="v_y = 0 - 10(2) = -20\text{ m/s}" />
 
 Tanda negatif berarti bola bergerak ke bawah. Periksa kelajuannya dengan rumus kedua: <InlineMath math="v = \sqrt{2 \times 10 \times 20} = 20\text{ m/s}" />. Kelajuan ini sama dengan kelajuan bola yang dilempar ke atas dengan <InlineMath math="20\text{ m/s}" /> saat kembali ke titik lemparnya, karena keduanya menempuh <InlineMath math="20\text{ m}" /> turun dari keadaan diam sesaat.
+
+### Jatuh Bebas Kilatan demi Kilatan
+
+Dijatuhkan dari diam, bola turun <InlineMath math="5\text{ cm}" /> pada sepersepuluh detik pertama dan **makin jauh pada setiap sepersepuluh detik berikutnya**, karena kelajuannya bertambah <InlineMath math="1\text{ m/s}" /> setiap kali.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Bola Jatuh, Kilatan demi Kilatan</>}
+  description={
+    <>
+      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" /> sementara rana tetap terbuka. Bandingkan jaraknya dari atas ke bawah.
+    </>
+  }
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Kelajuan saat menyentuh lantai</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+Dari <InlineMath math="1{,}8\text{ m}" />, bola sampai di lantai setelah <InlineMath math="\sqrt{\frac{2(1{,}8)}{10}}=0{,}6\text{ s}" /> dengan <InlineMath math="10(0{,}6)=6\text{ m/s}" />. Jaraknya bertambah <InlineMath math="5" />, <InlineMath math="15" />, <InlineMath math="25" />, dan seterusnya sampai <InlineMath math="55\text{ cm}" />.
 
 ## Benda Dilempar ke Bawah
 
@@ -165,7 +237,7 @@ Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vert
 
 <MathVisual
   title={<>Dua bola dengan kecepatan awal tegak yang sama</>}
-  description={<>Satu kotak grid mewakili 5 m. Bola teal ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oranye dilempar lurus ke atas dengan 20 m/s. Garis abu-abu menghubungkan posisi keduanya pada saat yang sama, dan tingginya selalu sama.</>}
+  description={<>Satu kotak grid mewakili <InlineMath math="5\text{ m}" />. Bola teal ditendang dengan <InlineMath math="v_x=10\text{ m/s}" /> dan <InlineMath math="v_{0y}=20\text{ m/s}" />, dan bola oranye dilempar lurus ke atas dengan <InlineMath math="20\text{ m/s}" />. Garis abu-abu menghubungkan posisi keduanya pada saat yang sama, dan tingginya selalu sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2.5, max: 9 }, y: { min: -0.5, max: 5 } },
@@ -195,6 +267,30 @@ Karena itu, waktu benda di udara pada gerak parabola dihitung dari komponen vert
     t3: <InlineMath math="t=3\text{ s}" />,
   }}
 />
+
+### Semburan Tegak di Samping Semburan Miring
+
+Selang taman yang diarahkan lurus ke atas adalah gerak vertikal yang bisa kamu lihat sekaligus. **Setiap tetes naik lalu jatuh kembali ke nosel**, dan kelajuan yang sama jika dimiringkan membentuk parabola.
+
+<HoseJetProjectileLab
+  angle={90}
+  speed={8}
+  title={<>Selang Taman pada Enam Sudut</>}
+  description={
+    <>
+      Air keluar dengan <InlineMath math="8\text{ m/s}" />. Mulai dari lurus ke atas, lalu miringkan noselnya.
+    </>
+  }
+  labels={{
+    chooseAngle: "Pilih sudut nosel",
+    flight: <>Waktu di udara</>,
+    range: <>Jangkauan</>,
+    top: <>Tinggi puncak</>,
+    viewLabel: "Semburan air dari selang taman",
+  }}
+/>
+
+Lurus ke atas, air naik <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" /> dan kembali setelah <InlineMath math="\frac{2(8)}{10}=1{,}6\text{ s}" />. Pada <InlineMath math="60^\circ" />, komponen vertikalnya hanya <InlineMath math="8\sin60^\circ\approx6{,}9\text{ m/s}" />, jadi semburannya naik sampai <InlineMath math="2{,}4\text{ m}" />.
 
 ## Kesalahan yang Sering Terjadi
 

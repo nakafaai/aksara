@@ -25,6 +25,28 @@ Jika mobil awalnya <InlineMath math="0\text{ m/s}" /> lalu kecepatannya bertamba
 
 Di sini, <InlineMath math="v_0" /> adalah kecepatan awal, <InlineMath math="v_t" /> kecepatan setelah waktu <InlineMath math="t" />, <InlineMath math="a" /> percepatan, dan <InlineMath math="\Delta x" /> perpindahan.
 
+### Galileo Mengukurnya dengan Bel
+
+Galileo menguji gerak dengan percepatan tetap dengan menggelindingkan bola di lintasan yang sedikit miring. **Kecepatannya bertambah dengan jumlah yang sama setiap detik**, jadi pada <InlineMath math="3^\circ" /> bola bergerak sekitar <InlineMath math="0{,}374" />, <InlineMath math="0{,}748" />, <InlineMath math="1{,}12" />, dan <InlineMath math="1{,}50\text{ m/s}" /> setelah setiap detik.
+
+<GalileoInclineBellsLab
+  title={<>Lintasan Miring dan Bel Galileo</>}
+  description={
+    <>
+      Empat bel dipasang di posisi bola setelah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4\text{ s}" />. Bel berbunyi dengan ketukan rata walaupun jarak antarbelnya makin besar.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan menuruni lintasan</>,
+    chooseAngle: "Pilih sudut kemiringan",
+    firstSecond: <>Jarak pada detik pertama</>,
+    gaps: <>Jarak antarbel</>,
+    viewLabel: "Bola baja menggelinding di lintasan miring Galileo melewati empat bel",
+  }}
+/>
+
+Bel berada sekitar <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" />, dan <InlineMath math="2{,}99\text{ m}" /> dari titik awal, jadi jarak antarbelnya berbanding <InlineMath math="1:3:5:7" />. Perubahan kecepatan yang sama dalam waktu yang sama selalu memberi pola itu jika benda mulai dari diam.
+
 ## Jejak Benda Tidak Lagi Berjarak Sama
 
 Pada GLB, jejak posisi tiap detik berjarak sama. Pada GLBB, jaraknya dapat berubah. Selama **benda terus bergerak searah**, jarak antartitik membesar ketika kelajuannya bertambah dan mengecil ketika kelajuannya berkurang. Jika benda berbalik arah, urutan dan sisi setiap tanda juga harus diperiksa.
@@ -60,7 +82,7 @@ Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath
 
 <MathVisual
   title={<>Tanda Posisi Makin Renggang</>}
-  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama 5 s. Mendatar: waktu dalam s. Tegak: posisi dalam satuan 5 m.</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> dengan <InlineMath math="a=2\text{ m/s}^2" /> selama <InlineMath math="5\text{ s}" />. Mendatar: waktu dalam s. Tegak: posisi dalam satuan <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
@@ -81,6 +103,35 @@ Untuk mobil mainan yang mulai dari diam, tanda setiap sekon jatuh di <InlineMath
     marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
   }}
 />
+
+### Potongan Pita yang Bertambah Satu Sentimeter
+
+Pita ticker timer mengubah gagasan yang sama menjadi kertas. Troli bertambah cepat dengan <InlineMath math="1\text{ m/s}^2" />, dan **setiap potongan sepersepuluh detik lebih panjang <InlineMath math="1\text{ cm}" /> dari potongan sebelumnya**.
+
+<TickerTapeMotionLab
+  motion="speeding"
+  title={<>Pita Ticker Timer Troli yang Makin Cepat</>}
+  description={
+    <>
+      Ticker timer mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />. Saat disusun berdampingan, potongan pita membentuk diagram kecepatan terhadap waktu yang puncaknya naik lurus.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan dari potongan pita</>,
+    chooseMotion: "Pilih gerak troli",
+    firstStrip: <>Potongan pertama</>,
+    interval: <>Selang waktu antartitik</>,
+    lastStrip: <>Potongan terakhir</>,
+    motions: {
+      uniform: <>Tetap</>,
+      speeding: <>Makin cepat</>,
+      slowing: <>Melambat</>,
+    },
+    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+  }}
+/>
+
+Potongan pitanya bertambah dari <InlineMath math="2{,}5\text{ cm}" /> ke <InlineMath math="9{,}5\text{ cm}" />. Satu potongan berlangsung <InlineMath math="0{,}1\text{ s}" />, jadi <InlineMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />, dan jumlah panjang semua potongan adalah <InlineMath math="48\text{ cm}" /> yang ditempuh troli.
 
 ## Menghitung Perpindahan dari Luas Grafik
 
@@ -141,6 +192,29 @@ Kedua hasil itu menjawab pertanyaan yang berbeda. Kecepatan akhir memberi besar 
 Kamu juga bisa memeriksa perpindahan melalui **luas segitiga di bawah grafik kecepatan-waktu**. Alasnya adalah selang waktu dan tingginya adalah kecepatan akhir.
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
+
+### Mulai dari Diam dalam Foto Stroboskop
+
+Bola yang dijatuhkan adalah contoh paling murni gerak dari diam: kecepatannya bertambah <InlineMath math="10\text{ m/s}" /> setiap detik. **Dari diam, jarak jatuhnya sebanding dengan kuadrat waktu**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Bola Dijatuhkan dari Diam</>}
+  description={
+    <>
+      Lampu berkedip setiap <InlineMath math="0{,}1\text{ s}" /> sementara rana tetap terbuka, jadi setiap gambar adalah satu kilatan.
+    </>
+  }
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Kelajuan saat menyentuh lantai</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+Setelah <InlineMath math="0{,}1" />, <InlineMath math="0{,}2" />, dan <InlineMath math="0{,}3\text{ s}" />, bola sudah jatuh <InlineMath math="5" />, <InlineMath math="20" />, dan <InlineMath math="45\text{ cm}" />, pola <InlineMath math="1:4:9" /> yang sama seperti mobil yang mulai dari diam. Bola menyentuh lantai <InlineMath math="1{,}8\text{ m}" /> di bawahnya setelah <InlineMath math="0{,}6\text{ s}" />.
 
 ## Tanda Percepatan Bergantung pada Arah Positif
 

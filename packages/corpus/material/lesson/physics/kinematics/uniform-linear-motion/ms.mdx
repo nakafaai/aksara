@@ -24,6 +24,37 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Simbol <InlineMath math="x(t_0)" /> dan <InlineMath math="x(t)" /> ialah kedudukan pada masa awal dan masa akhir, <InlineMath math="v" /> ialah halaju malar, <InlineMath math="\Delta t=t-t_0" /> ialah masa yang berlalu, dan <InlineMath math="\Delta x" /> ialah sesaran.
 
+### Kereta Api pada Halaju Malar
+
+Kereta api komuter di landasan lurus pada <InlineMath math="20\text{ m/s}" /> ialah gerakan linear seragam yang boleh kamu perhatikan dari dekat. Ia melalui **<InlineMath math="20\text{ m}" /> setiap saat dalam arah yang sama**.
+
+<TrainPassengerRelativeLab
+  title={<>Kereta Api Melepasi Platform</>}
+  description={
+    <>
+      Perhatikan dari platform dahulu. Anak panah merah jambu ialah halaju malar kereta api, dan anak panah hijau kebiruan ialah halaju penumpang yang berjalan di dalamnya.
+    </>
+  }
+  labels={{
+    chooseObserver: "Pilih pemerhati",
+    chooseWay: "Pilih arah berjalan",
+    observers: {
+      platform: <>Dari platform</>,
+      train: <>Dari tempat duduk</>,
+    },
+    passenger: <>Halaju penumpang</>,
+    train: <>Halaju kereta api</>,
+    viewLabel: "Penumpang berjalan dalam kereta api yang bergerak",
+    walk: <>Halaju berjalan dalam gerabak</>,
+    ways: {
+      forward: <>Berjalan ke hadapan</>,
+      backward: <>Berjalan ke belakang</>,
+    },
+  }}
+/>
+
+Dilihat dari platform, anak panah kereta api tidak pernah berubah, dan itulah maksud halaju malar. Dilihat dari tempat duduk, kereta api itu pegun, jadi gerakan yang sama boleh seragam bagi seorang pemerhati dan tidak bergerak langsung bagi pemerhati lain.
+
 ## Tanda Kedudukan dengan Jarak yang Sama
 
 Jika kedudukan objek direkodkan pada **selang masa yang sama**, gerakan linear seragam menghasilkan tanda-tanda yang sama jaraknya. Ini seperti pita detik: tanda dibuat secara tetap, jadi jarak antara tanda menunjukkan berapa jauh objek bergerak dalam setiap selang masa.
@@ -59,6 +90,35 @@ Nilai kedudukan berubah, manakala beza antara dua kedudukan berturutan kekal sam
   }}
 />
 
+### Jalur Sama Panjang pada Pita Detik
+
+Pita detik ialah versi makmal bagi tanda kedudukan yang sama jarak. Jangka masa detik mencetak satu titik setiap <InlineMath math="0.02\text{ s}" />, dan pada halaju malar **setiap jalur sepersepuluh saat mempunyai panjang yang sama**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Pita Detik bagi Troli Seragam</>}
+  description={
+    <>
+      Susun jalur-jalur itu bersebelahan: jalur yang sama panjang menghasilkan carta halaju-masa yang mendatar.
+    </>
+  }
+  labels={{
+    acceleration: <>Pecutan daripada jalur pita</>,
+    chooseMotion: "Pilih gerakan troli",
+    firstStrip: <>Jalur pertama</>,
+    interval: <>Masa antara titik</>,
+    lastStrip: <>Jalur terakhir</>,
+    motions: {
+      uniform: <>Seragam</>,
+      speeding: <>Semakin laju</>,
+      slowing: <>Semakin perlahan</>,
+    },
+    viewLabel: "Troli menarik pita kertas melalui jangka masa detik",
+  }}
+/>
+
+Setiap jalur panjangnya <InlineMath math="6\text{ cm}" />, jadi troli bergerak pada <InlineMath math="\frac{0.06\text{ m}}{0.1\text{ s}}=0.6\text{ m/s}" />, dan pecutan daripada jalur ialah <InlineMath math="0" />.
+
 ## Mengira Kedudukan Akhir
 
 Katakan sebuah objek bermula dari <InlineMath math="x_0=1\text{ m}" /> dan bergerak ke kanan dengan halaju malar <InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Sesarannya ialah:
@@ -83,7 +143,7 @@ Titik-titik di bawah ialah tanda kedudukan, satu bagi setiap saat. Titik itu nai
 
 <MathVisual
   title={<>Langkah yang Sama Menghasilkan Garis Lurus</>}
-  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama 5 s. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 2 m.</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
@@ -106,6 +166,29 @@ Titik-titik di bawah ialah tanda kedudukan, satu bagi setiap saat. Titik itu nai
   }}
 />
 
+### Setiap Selang Memberikan Kecerunan yang Sama
+
+Pada graf kedudukan-masa bagi gerakan seragam, **setiap sekan mempunyai kecerunan yang sama**, kerana graf itu satu garis lurus. Kereta yang bergerak seragam pada <InlineMath math="8\text{ m/s}" /> mengikut <InlineMath math="x=8t" />.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Kereta Bergerak pada Halaju Malar</>}
+  description={
+    <>
+      Pilih mana-mana selang masa. Sekan sentiasa terletak di sepanjang graf itu sendiri.
+    </>
+  }
+  labels={{
+    change: <>Sesaran</>,
+    chooseInterval: "Pilih selang masa",
+    elapsed: <>Selang masa</>,
+    rate: <>Halaju purata</>,
+    viewLabel: "Perjalanan kereta dengan graf kedudukan-masa",
+  }}
+/>
+
+Dari <InlineMath math="0" /> hingga <InlineMath math="2\text{ s}" />, kereta melalui <InlineMath math="16\text{ m}" />, dari <InlineMath math="4" /> hingga <InlineMath math="10\text{ s}" /> ia melalui <InlineMath math="48\text{ m}" />, dan kedua-duanya memberikan <InlineMath math="\bar{v}=8\text{ m/s}" />. Selepas <InlineMath math="10\text{ s}" />, kedudukan akhirnya ialah <InlineMath math="x=8(10)=80\text{ m}" />.
+
 ## Mengenal Pasti Gerakan Seragam pada Graf
 
 Dua graf boleh mengenal pasti gerakan linear seragam. Graf halaju-masa mesti mendatar, manakala graf kedudukan-masa mesti satu garis lurus dengan **kecerunan malar**.
@@ -123,7 +206,7 @@ Pada graf halaju-masa, gerakan yang sama ialah garis mendatar pada <InlineMath m
 
 <MathVisual
   title={<>Halaju Malar dan Luasnya</>}
-  description={<><InlineMath math="v=2\text{ m/s}" /> selama 5 s. Paksi mengufuk: masa dalam s. Paksi menegak: halaju dalam m/s.</>}
+  description={<><InlineMath math="v=2\text{ m/s}" /> selama <InlineMath math="5\text{ s}" />. Paksi mengufuk: masa dalam s. Paksi menegak: halaju dalam m/s.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
@@ -145,3 +228,27 @@ Pada graf halaju-masa, gerakan yang sama ialah garis mendatar pada <InlineMath m
 Gerakan linear seragam memerlukan halaju malar. Saiz dan arah gerakan kedua-duanya mesti kekal tetap. Laju malar hanya menetapkan saiznya.
 
 Sebuah kereta yang bergerak dengan laju malar di jalan yang membulat tidak berada dalam gerakan linear seragam, <Highlight>kerana arah halajunya sentiasa berubah</Highlight>. Sebuah troli kecil yang bergerak lurus dengan laju dan arah yang tetap berada dalam gerakan linear seragam.
+
+### Laju Malar di Trek Melengkung
+
+Pelari yang mengekalkan <InlineMath math="8\text{ m/s}" /> di sekeliling trek olahraga mempunyai laju malar, tetapi **arah halajunya berubah di setiap selekoh**, jadi gerakan itu bukan gerakan linear seragam.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Laju Malar Bukan Halaju Malar</>}
+  description={
+    <>
+      Seorang pelari mengekalkan <InlineMath math="8\text{ m/s}" /> di lorong <InlineMath math="1" />. Hentikan larian pada setiap tanda, kemudian bandingkan anak panah hijau kebiruan dari satu tanda ke tanda yang berikutnya.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Magnitud halaju purata</>,
+    chooseDistance: "Pilih jarak larian",
+    displacement: <>Magnitud sesaran</>,
+    distance: <>Jarak larian</>,
+    time: <>Masa</>,
+    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+  }}
+/>
+
+Hanya di bahagian lurus anak panah mengekalkan panjang dan arahnya. Satu pusingan mengambil masa <InlineMath math="\frac{400}{8}=50\text{ s}" /> pada laju malar, tetapi pelari berakhir di titik mula, dengan halaju purata <InlineMath math="0" />.

@@ -62,6 +62,34 @@ Vergleiche zwei Wege, auf denen ein Objekt vom selben Startpunkt zum selben Ziel
 
 Wähle in der Simulation zuerst die Route mit Kurve und dann die Rückkehr zum Start. Vergleiche **Wegstrecke** und **Verschiebungsbetrag**. Bei der Rückkehr hat der zurückgelegte Weg weiterhin eine Länge, während die Verbindung zwischen Anfangs- und Endposition die Länge null hat.
 
+### Ein Umweg durch die Stadt
+
+Vergrößere das Beispiel auf eine Stadt und **vergleiche den Weg mit dem Pfeil**: Du gehst <InlineMath math="400\text{ m}" /> nach Osten eine Straße entlang und dann <InlineMath math="300\text{ m}" /> nach Süden, mit <InlineMath math="1{,}25\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: -300 },
+  ]}
+  pace={1.25}
+  title={<>Ein Umweg durch die Stadt</>}
+  description={
+    <>
+      Der gelbe Weg ist die Strecke, die du gehst. Der violette Pfeil ist die Verschiebung, gerade vom Start bis zu deinem Standort.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Mittlere Schnelligkeit</>,
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gegangene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+  }}
+/>
+
+Der Weg ist <InlineMath math="700\text{ m}" /> lang, der Pfeil aber nur <InlineMath math="500\text{ m}" />, dasselbe <InlineMath math="3:4:5" />-Dreieck wie vorher. In <InlineMath math="560\text{ s}" /> ergibt das eine mittlere Schnelligkeit von <InlineMath math="1{,}25\text{ m/s}" /> und eine mittlere Geschwindigkeit von nur etwa <InlineMath math="0{,}89\text{ m/s}" />.
+
 ## Die Wegstrecke beschreibt die Länge des Weges
 
 Die Wegstrecke ist **immer null oder positiv**. Sie beantwortet die Frage: „Wie lang ist der zurückgelegte Weg?“ Eine Richtung gehört daher nicht zu ihr.
@@ -71,6 +99,30 @@ Wenn sich ein Objekt um <InlineMath math="4 \text{ m}" /> nach Osten und dann um
 <BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
 
 Das Symbol <InlineMath math="s" /> wird häufig für die zurückgelegte Strecke verwendet.
+
+### Die Wegstrecke wächst nur
+
+Die Wegstrecke **kann nur wachsen**, solange du dich bewegst. Auf einer <InlineMath math="400\text{ m}" />-Laufbahn kommen mit jeden weiteren <InlineMath math="100\text{ m}" /> Lauf genau <InlineMath math="100\text{ m}" /> Strecke dazu, egal wohin die Kurve führt.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Wegstrecke auf der Laufbahn</>}
+  description={
+    <>
+      Ein Läufer auf Bahn <InlineMath math="1" /> hält <InlineMath math="8\text{ m/s}" />. Halte den Lauf an jeder Marke an: Die Wegstrecke steigt, die Verschiebung nicht.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    chooseDistance: "Laufstrecke wählen",
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gelaufene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+  }}
+/>
+
+Die Wegstrecke zeigt <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" /> und <InlineMath math="400\text{ m}" />. Die Verschiebung geht von etwa <InlineMath math="72\text{ m}" /> auf <InlineMath math="112\text{ m}" />, zurück auf etwa <InlineMath math="100\text{ m}" /> und schließlich auf <InlineMath math="0" />.
 
 ## Die Verschiebung hat Betrag und Richtung
 
@@ -83,6 +135,33 @@ Verschiebung ist eine Vektorgröße. Das bedeutet, dass die Verschiebung Betrag 
 \end{aligned}" />
 
 Die Richtung der Verschiebung <Highlight>zeigt geradlinig vom Startpunkt zum Endpunkt</Highlight>.
+
+### Dieselbe Verschiebung von jedem Ort aus
+
+Die Verschiebung **hängt nicht davon ab, wo die Null liegt**. Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> östlich eines Ladens und zurück bis <InlineMath math="35\text{ m}" />. Miss vom Laden, von Ranis Haus oder vom Fahnenmast aus.
+
+<StreetOriginPositionLab
+  title={<>Eine Fahrt, drei Bezugspunkte</>}
+  description={
+    <>
+      Osten ist positiv. Der gelbe Pfeil führt vom gewählten Bezugspunkt zum Fahrrad, und das Diagramm zeigt die Position über der Zeit.
+    </>
+  }
+  labels={{
+    change: <>Positionsänderung</>,
+    chooseOrigin: "Bezugspunkt wählen",
+    end: <>Endposition</>,
+    origins: {
+      store: <>Laden</>,
+      house: <>Ranis Haus</>,
+      pole: <>Fahnenmast</>,
+    },
+    start: <>Anfangsposition</>,
+    viewLabel: "Person auf einem Fahrrad in einer Straße mit drei Orten",
+  }}
+/>
+
+Anfangs- und Endposition ändern sich mit dem Bezugspunkt, die Positionsänderung bleibt aber immer <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> nach Osten, während der gefahrene Weg <InlineMath math="45\text{ m}" /> lang ist.
 
 ## Rückkehr zum Ausgangspunkt
 
@@ -128,6 +207,29 @@ Drei Fahrten starten am selben Punkt. Bei der geraden ist die Strecke so groß w
   }}
 />
 
+### Hin und zurück im Diagramm
+
+Ein Auto, das mit <InlineMath math="6\text{ m/s}" /> eine leichte Steigung hinaufrollt, rollt los, steht nach <InlineMath math="5\text{ s}" /> still und rollt zurück zu seinem Start. Sein Ort-Zeit-Diagramm **steigt und fällt wieder auf null**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Hin und zurück</>}
+  description={
+    <>
+      Wähle ein Intervall. Die Fahnen markieren die beiden Positionen des Autos, und die Sekante verbindet sie im Diagramm.
+    </>
+  }
+  labels={{
+    change: <>Verschiebung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Geschwindigkeit</>,
+    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+  }}
+/>
+
+Von <InlineMath math="0" /> bis <InlineMath math="10\text{ s}" /> fährt das Auto <InlineMath math="15\text{ m}" /> hin und <InlineMath math="15\text{ m}" /> zurück, also eine Wegstrecke von <InlineMath math="30\text{ m}" />, doch die Verschiebung ist <InlineMath math="0" /> und die Sekante liegt waagerecht.
+
 ## Wegstrecke und Verschiebung auf einer abgewinkelten Route
 
 Ein Schüler geht <InlineMath math="8 \text{ m}" /> nach Osten und dann <InlineMath math="6 \text{ m}" /> nach Norden. Die zurückgelegte Strecke beträgt:
@@ -148,7 +250,7 @@ Dreh den Weg unten. Der orange und der violette Pfeil sind die Strecke, <InlineM
 
 <MathVisual
   title={<>Strecke und Verschiebung mit Abbiegen</>}
-  description={<>8 m nach Osten, dann 6 m nach Norden, von oben gesehen. Ein Gitterschritt entspricht 2 m.</>}
+  description={<><InlineMath math="8\text{ m}" /> nach Osten, dann <InlineMath math="6\text{ m}" /> nach Norden, von oben gesehen. Ein Gitterschritt entspricht <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },

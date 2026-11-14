@@ -49,6 +49,29 @@ Der Luftwiderstand wird vernachlässigt, und die Schwerkraft ist konstant. Recht
 
 Der Schatten der Kugel auf dem Wasser bewegt sich mit konstanter Schnelligkeit wie bei einer [gleichförmigen geradlinigen Bewegung](/de/faecher/physik/kinematik/gleichfoermige-geradlinige-bewegung), weil er nur der waagerechten Komponente folgt. Die Kugel selbst steigt und fällt, weil ihre senkrechte Komponente <InlineMath math="v_y = v_{0y} - gt" /> ständig abnimmt.
 
+### Ziel auf eine fallende Dose
+
+Ein klassischer Versuch beweist die Aufteilung in zwei Komponenten. Ein Rohr zielt genau auf eine Dose, und die Dose fällt in dem Moment, in dem die Kugel das Rohr verlässt. **Die Schwerkraft zieht beide in gleicher Zeit gleich weit nach unten**, also trifft die Kugel die Dose.
+
+<FallingTargetAimLab
+  speed={12}
+  title={<>Ziel auf eine fallende Dose</>}
+  description={
+    <>
+      Die Dose hängt <InlineMath math="4\text{ m}" /> entfernt und <InlineMath math="2\text{ m}" /> hoch. Schattenbilder alle <InlineMath math="0{,}05\text{ s}" /> zeigen beide Bahnen. Ändere die Abschussschnelligkeit und versuch, daneben zu schießen.
+    </>
+  }
+  labels={{
+    drop: <>Fallhöhe der Dose beim Treffen</>,
+    meetTime: <>Zeit bis zum Treffen</>,
+    speed: <>Abschussschnelligkeit</>,
+    speedName: "Abschussschnelligkeit",
+    viewLabel: "Abschussrohr zielt auf eine fallende Dose",
+  }}
+/>
+
+Bei <InlineMath math="12\text{ m/s}" /> treffen sie sich nach <InlineMath math="0{,}37\text{ s}" />, wenn beide <InlineMath math="0{,}69\text{ m}" /> unter ihre geraden Linien gefallen sind. Jede Schnelligkeit über etwa <InlineMath math="7{,}1\text{ m/s}" /> trifft, denn die waagerechte Bewegung entscheidet nur, wann die Kugel ankommt.
+
 ## Steigzeit und Wurfhöhe
 
 Im Scheitelpunkt bewegt sich der Körper noch waagerecht, aber **seine senkrechte Geschwindigkeit ist null**. Aus <InlineMath math="v_y = v_{0y} - gt = 0" /> folgt die Steigzeit, aus der dritten Gleichung der senkrechten Bewegung die Wurfhöhe:
@@ -59,6 +82,32 @@ Im Scheitelpunkt bewegt sich der Körper noch waagerecht, aber **seine senkrecht
 </MathContainer>
 
 Beide Formeln nutzen nur die senkrechte Komponente. Diese Komponente bewegt sich wie ein Körper beim [senkrechten Wurf](/de/faecher/physik/kinematik/vertikale-bewegung) nach oben mit <InlineMath math="v_{0y}" />.
+
+### Gleiche Schnelligkeit bei anderen Winkeln
+
+Lass die Abwurfschnelligkeit gleich und ändere nur den Winkel. **Ein steilerer Wurf steigt länger und deshalb höher**, weil die senkrechte Komponente <InlineMath math="v_0\sin\theta" /> wächst.
+
+<ParabolicMovementLab
+  decimalSeparator="comma"
+  title={<>Gipfelhöhe bei verschiedenen Winkeln</>}
+  description={
+    <>
+      Jeder Wurf startet hier mit <InlineMath math="22\text{ m/s}" />, also ändert sich von Winkel zu Winkel nur die senkrechte Komponente.
+    </>
+  }
+  labels={{
+    chooseLaunch: "Abwurfwinkel wählen",
+    factLabels: {
+      initialSpeed: <>Anfangsgeschwindigkeitsbetrag</>,
+      flightTime: <>Zeit in der Luft</>,
+      range: <>Wurfweite</>,
+      peakHeight: <>Maximale Höhe</>,
+    },
+    viewLabel: "Visualisierung der Flugbahn eines geworfenen Balls",
+  }}
+/>
+
+Die Steigzeit ist <InlineMath math="t_{\text{Gipfel}}=\frac{v_0\sin\theta}{g}" /> und die Gipfelhöhe <InlineMath math="h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />, also steigt der steilste Wurf am höchsten und bleibt am längsten oben.
 
 ## Flugzeit und Wurfweite
 
@@ -80,6 +129,29 @@ Der letzte Schritt nutzt die Identität <InlineMath math="2\sin\theta\cos\theta 
   B --> G["Geschwindigkeit zur Zeit t: v_y = v₀y - gt"]`}
 />
 
+### Ein Schuss in Komponenten zerlegt
+
+Ein Stroboskopfoto zeigt die beiden Komponenten als zwei Muster. Ein Ball, geschossen mit <InlineMath math="v_x=6\text{ m/s}" /> und <InlineMath math="v_{0y}=8\text{ m/s}" />, wird alle <InlineMath math="0{,}2\text{ s}" /> fotografiert. **Die waagerechten Pfeile ändern sich nie**, während die senkrechten schrumpfen, umklappen und wieder wachsen.
+
+<StrobePhotoMotionLab
+  shot="components"
+  title={<>Ein Schuss in Komponenten</>}
+  description={
+    <>
+      Türkise Pfeile sind die waagerechte, violette Pfeile die senkrechte Komponente bei jedem Blitz.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Reichweite</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Der Ball erreicht nach <InlineMath math="0{,}8\text{ s}" /> seine Gipfelhöhe <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" />, landet nach <InlineMath math="1{,}6\text{ s}" /> und kommt <InlineMath math="6(1{,}6)=9{,}6\text{ m}" /> weit. Die gleichen waagerechten Abstände sind das konstante <InlineMath math="v_x" />.
+
 ## Die Geschwindigkeit entlang der Bahn
 
 Für die Geschwindigkeit zur Zeit <InlineMath math="t" /> bestimmst du **beide Komponenten zu diesem Zeitpunkt** und verbindest sie mit dem Satz des Pythagoras:
@@ -95,7 +167,7 @@ Verschieb die Zeit und folge der Kanonenkugel. Der violette Pfeil ist die Geschw
 
 <MathVisual
   title={<>Folge der Geschwindigkeit durch die Zeit</>}
-  description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel, ihre Position zur gewählten Zeit (fuchsia) und die Strecke, die sie in der nächsten Sekunde mit dieser Geschwindigkeit zurücklegt (violett). Ein Gitterschritt entspricht 10 m.</>}
+  description={<>Die mit <InlineMath math="40\text{ m/s}" /> unter <InlineMath math="60^\circ" /> abgeschossene Kanonenkugel, ihre Position zur gewählten Zeit (fuchsia) und die Strecke, die sie in der nächsten Sekunde mit dieser Geschwindigkeit zurücklegt (violett). Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
@@ -153,7 +225,7 @@ Bei <InlineMath math="t = 2\text{ s}" /> steigt die Kugel noch, weil <InlineMath
 
 <MathVisual
   title={<>Die Geschwindigkeit der Kanonenkugel entlang ihrer Bahn</>}
-  description={<>Ein Gitterkästchen steht für 10 m. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Sein waagerechter Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, sein senkrechter Anteil sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
+  description={<>Ein Gitterkästchen steht für <InlineMath math="10\text{ m}" />. Jeder Pfeil zeigt die Strecke, die in einer Sekunde mit der Geschwindigkeit dieses Moments zurückgelegt wird. Sein waagerechter Anteil bleibt immer <InlineMath math="20\text{ m/s}" />, sein senkrechter Anteil sinkt jede Sekunde um <InlineMath math="10\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
@@ -199,6 +271,30 @@ Ein Ball wird mit <InlineMath math="20\text{ m/s}" /> unter einem Winkel von <In
 </MathContainer>
 
 Probe mit der direkten Formel: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Diese Wurfweite ist größer als bei einem Wurf unter <InlineMath math="30^\circ" /> oder <InlineMath math="60^\circ" /> mit derselben Anfangsgeschwindigkeit, die beide bei <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" /> landen.
+
+### Fünfundvierzig Grad mit dem Gartenschlauch
+
+Ein Gartenschlauch zeigt den besten Winkel auf einen Blick, denn jeder Tropfen folgt derselben Parabel. **Auf ebenem Boden ist die Wurfweite bei <InlineMath math="45^\circ" /> am größten**, wo <InlineMath math="\sin2\theta=1" /> ist.
+
+<HoseJetProjectileLab
+  angle={45}
+  speed={8}
+  title={<>Ein Gartenschlauch bei sechs Winkeln</>}
+  description={
+    <>
+      Das Wasser verlässt die Düse mit <InlineMath math="8\text{ m/s}" />. Die gestrichelte Linie ist der Strahl bei <InlineMath math="45^\circ" />. Neige den Schlauch und vergleiche.
+    </>
+  }
+  labels={{
+    chooseAngle: "Winkel der Düse wählen",
+    flight: <>Zeit in der Luft</>,
+    range: <>Reichweite</>,
+    top: <>Gipfelhöhe</>,
+    viewLabel: "Wasserstrahl aus einem Gartenschlauch",
+  }}
+/>
+
+Bei <InlineMath math="45^\circ" /> landet das Wasser nach <InlineMath math="1{,}13\text{ s}" /> in <InlineMath math="\frac{8^2}{10}=6{,}4\text{ m}" /> Entfernung. Bei <InlineMath math="30^\circ" /> und <InlineMath math="60^\circ" /> landet es an derselben Stelle, <InlineMath math="5{,}54\text{ m}" />, weil sich diese Winkel zu <InlineMath math="90^\circ" /> ergänzen.
 
 ## Häufige Fehler
 

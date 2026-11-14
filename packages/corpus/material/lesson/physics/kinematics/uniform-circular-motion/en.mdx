@@ -36,6 +36,30 @@ Speed describes how fast the object moves along the path. Velocity describes bot
   }}
 />
 
+### A Runner on the Bend
+
+Every bend of an athletics track is half a circle. A runner who keeps <InlineMath math="8\text{ m/s}" /> around it has **a constant speed but a turning velocity**, so the runner is accelerating.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Around the Bend</>}
+  description={
+    <>
+      The runner keeps <InlineMath math="8\text{ m/s}" /> on lane <InlineMath math="1" />. Watch the teal arrow keep its length while it turns, and stop the run at <InlineMath math="100\text{ m}" /> to see it halfway.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Size of the average velocity</>,
+    chooseDistance: "Choose how far the runner goes",
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance run</>,
+    time: <>Time</>,
+    viewLabel: "Runner on a 400 m athletics track seen from above",
+  }}
+/>
+
+On lane <InlineMath math="1" /> the bend has a radius of about <InlineMath math="36.8\text{ m}" />, so the runner's centripetal acceleration there is <InlineMath math="\frac{8^2}{36.8}\approx1.74\text{ m/s}^2" />. On the straights the arrow stops turning and the acceleration is zero.
+
 ## Angular Position and Displacement
 
 In straight-line motion, a coordinate gives the position relative to zero. In circular motion, an angle gives the position relative to a reference line. The change in that angle is called **angular displacement**.
@@ -45,6 +69,29 @@ If an object moves from a reference line and sweeps a signed angle <InlineMath m
 <BlockMath math="\omega_{\text{avg}}=\frac{\Delta\theta}{\Delta t}" />
 
 The symbol <InlineMath math="\omega" /> is called omega. In uniform circular motion, angular velocity is constant, so its value equals the average over every interval. Its unit is radians per second, written <InlineMath math="\text{rad/s}" />. Radians are used because one full turn equals <InlineMath math="2\pi" /> radians.
+
+### One Angle for the Whole Wheel
+
+On a spinning wheel, **every point sweeps the same angle in the same time**, so the whole wheel has one angular velocity. A valve on the rim and a reflector halfway out make that easy to compare.
+
+<BicycleWheelSpeedLab
+  title={<>One Wheel, Two Speeds</>}
+  description={
+    <>
+      Choose the time for one turn. Both marks turn through the same angle, but their velocity arrows differ.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Angular speed</>,
+    choosePeriod: "Choose the time for one turn",
+    reflectorSpeed: <>Speed of the reflector</>,
+    valveAcceleration: <>Centripetal acceleration of the valve</>,
+    valveSpeed: <>Speed of the valve</>,
+    viewLabel: "Bicycle wheel spinning on a stand",
+  }}
+/>
+
+At one turn per second both marks sweep <InlineMath math="2\pi\text{ rad}" /> each second, so <InlineMath math="\omega\approx6.28\text{ rad/s}" /> for the valve and the reflector alike. Their speeds differ, about <InlineMath math="1.95" /> and <InlineMath math="0.97\text{ m/s}" />, because they sit at different radii.
 
 ## Period and Frequency Describe One Revolution
 
@@ -69,7 +116,7 @@ Here is the small car from the example at four moments, one quarter turn apart. 
 
 <MathVisual
   title={<>Velocity and Acceleration around the Track</>}
-  description={<>Radius 4 m and period 6 s. Teal arrows are velocity at half scale, pink arrows centripetal acceleration at half scale.</>}
+  description={<>Radius <InlineMath math="4\text{ m}" /> and period <InlineMath math="6\text{ s}" />. Teal arrows are velocity at half scale, pink arrows centripetal acceleration at half scale.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -5.5, max: 5.5 } },
@@ -118,6 +165,37 @@ Tangential speed is the magnitude of the object's velocity **along the circular 
 
 The formula <InlineMath math="v=\lvert\omega\rvert r" /> means two objects with the same angular speed do not always have the same tangential speed. The object farther from the center travels a longer path, so its tangential speed is larger.
 
+### Let Go and the Ball Flies Straight
+
+A ball whirled on a string shows why velocity is tangent. While the string pulls, **the ball keeps turning**, and the moment you let go it flies straight along the tangent.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Let Go of the String</>}
+  description={
+    <>
+      The string is <InlineMath math="0.8\text{ m}" /> long and one turn takes <InlineMath math="0.8\text{ s}" />. Pick the point where you let go.
+    </>
+  }
+  labels={{
+    acceleration: <>Centripetal acceleration</>,
+    chooseRelease: "Choose where to let go",
+    period: <>Time for one turn</>,
+    radius: <>String length</>,
+    releases: {
+      east: <>East</>,
+      north: <>North</>,
+      west: <>West</>,
+      south: <>South</>,
+    },
+    speed: <>Speed</>,
+    viewLabel: "Ball whirled on a string seen from above",
+  }}
+/>
+
+Here <InlineMath math="\omega=\frac{2\pi}{0.8}\approx7.85\text{ rad/s}" />, so <InlineMath math="v=\omega r\approx6.28\text{ m/s}" />. Let go at the east point and the ball heads north, perpendicular to the string it just left.
+
 ## Centripetal Acceleration Always Points Inward
 
 Even though speed is constant, the velocity direction keeps turning. Changing the direction of velocity requires acceleration. In uniform circular motion, this acceleration is called centripetal acceleration.
@@ -128,6 +206,34 @@ Even though speed is constant, the velocity direction keeps turning. Changing th
 </MathContainer>
 
 Centripetal acceleration always points **toward the center of the circle**. So do not think of this acceleration as pointing along the object's motion. Velocity is tangent to the path, while centripetal acceleration points inward.
+
+### Gravity as the Centripetal Pull
+
+For a satellite in a circular orbit, gravity supplies the centripetal acceleration. **Gravity points at the Earth's centre**, exactly where <InlineMath math="a_c" /> must point.
+
+<SatelliteOrbitCircularLab
+  title={<>Satellites in Circular Orbit</>}
+  description={
+    <>
+      Pick a satellite. The teal arrow is its velocity and the fuchsia arrow its acceleration toward the Earth's centre.
+    </>
+  }
+  labels={{
+    acceleration: <>Centripetal acceleration</>,
+    chooseOrbit: "Choose the satellite",
+    orbits: {
+      station: <>Space station</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostationary</>,
+    },
+    period: <>Time for one orbit</>,
+    radius: <>Orbit radius</>,
+    speed: <>Speed</>,
+    viewLabel: "Satellites orbiting the Earth",
+  }}
+/>
+
+The space station circles at about <InlineMath math="7.67\text{ km/s}" /> once every <InlineMath math="92.4\text{ min}" />, so <InlineMath math="a_c=\frac{v^2}{r}\approx8.69\text{ m/s}^2" />. A geostationary satellite takes about <InlineMath math="23.93\text{ h}" />, the time the Earth needs to turn once.
 
 ## One Full Turn of a Small Car
 
@@ -151,7 +257,7 @@ Follow the chain from the period. In one second the radius turns <InlineMath mat
 
 <MathVisual
   title={<>From Period to Centripetal Acceleration</>}
-  description={<>The angle (violet radii) and the arc (orange) covered in 1 s on a circle of radius 4 m with period 6 s.</>}
+  description={<>The angle (violet radii) and the arc (orange) covered in <InlineMath math="1\text{ s}" /> on a circle of radius <InlineMath math="4\text{ m}" /> with period <InlineMath math="6\text{ s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },

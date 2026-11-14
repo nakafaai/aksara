@@ -50,7 +50,7 @@ Watch the limit happen on an illustrative motion, <InlineMath math="x=t^2" />. E
 
 <MathVisual
   title={<>Shrinking the Time Interval</>}
-  description={<>Secant lines of <InlineMath math="x=t^2" /> from <InlineMath math="t=3\text{ s}" /> over 2 s, 1 s and 0.5 s. Horizontal: time in s. Vertical: position in units of 4 m.</>}
+  description={<>Secant lines of <InlineMath math="x=t^2" /> from <InlineMath math="t=3\text{ s}" /> over <InlineMath math="2\text{ s}" />, <InlineMath math="1\text{ s}" /> and <InlineMath math="0.5\text{ s}" />. Horizontal: time in s. Vertical: position in units of <InlineMath math="4\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: -0.5, max: 7 } },
@@ -77,6 +77,29 @@ Watch the limit happen on an illustrative motion, <InlineMath math="x=t^2" />. E
   }}
 />
 
+### A Speed Trap with a Shrinking Gap
+
+A speed trap measures time over a gap, so it always reports an average. Shrink the gap, and **the average closes in on the speed at the centre**. The car speeds up from rest at <InlineMath math="4\text{ m/s}^2" /> and passes the centre at <InlineMath math="20\text{ m/s}" />.
+
+<SpeedTrapInstantSpeedLab
+  title={<>A Speed Trap That Shrinks</>}
+  description={
+    <>
+      Two light gates sit around the <InlineMath math="50\text{ m}" /> mark. Pick the gap and watch the secant on the graph turn into the tangent at the centre.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Trap reading</>,
+    chooseGap: "Choose the gap between the gates",
+    elapsed: <>Time between the beams</>,
+    gap: <>Gap between the gates</>,
+    instantSpeed: <>Speed at the centre</>,
+    viewLabel: "Car crossing two light gates on a test track",
+  }}
+/>
+
+The reading climbs from <InlineMath math="19.58\text{ m/s}" /> with a <InlineMath math="40\text{ m}" /> gap to <InlineMath math="19.9" /> and <InlineMath math="19.97\text{ m/s}" />, and with a <InlineMath math="2\text{ m}" /> gap it shows <InlineMath math="20\text{ m/s}" /> to two decimals. That limit is the instantaneous speed.
+
 ## Direction Sets the Sign of Instantaneous Velocity
 
 The measuring point in the simulation records the car at one instant. Speed gives the magnitude of its motion. The **direction of travel** sets the sign of its velocity.
@@ -96,7 +119,7 @@ A speedometer gives only the size. Add the direction as a sign: rightward is pos
 
 <MathVisual
   title={<>From Speed Reading to Velocity</>}
-  description={<>Velocity at 6 s (teal, rightward) and at 9 s (violet, leftward). Vertical: one grid step is 5 m/s.</>}
+  description={<>Velocity at <InlineMath math="6\text{ s}" /> (teal, rightward) and at <InlineMath math="9\text{ s}" /> (violet, leftward). Vertical: one grid step is <InlineMath math="5\text{ m/s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10.5 }, y: { min: -2.5, max: 5 } },
@@ -119,6 +142,37 @@ A speedometer gives only the size. Add the direction as a sign: rightward is pos
   }}
 />
 
+### Same Speed but Changing Velocity
+
+Whirl a ball on a string <InlineMath math="0.8\text{ m}" /> long once every <InlineMath math="0.8\text{ s}" />. Its speed stays <InlineMath math="6.28\text{ m/s}" />, but **its instantaneous velocity always points along the circle at that moment**, so the direction keeps turning.
+
+<StringWhirlReleaseLab
+  period={0.8}
+  radius={0.8}
+  title={<>Let Go of the String</>}
+  description={
+    <>
+      The teal arrow is the ball's velocity right now. Pick where to let go: the ball leaves along that arrow.
+    </>
+  }
+  labels={{
+    acceleration: <>Centripetal acceleration</>,
+    chooseRelease: "Choose where to let go",
+    period: <>Time for one turn</>,
+    radius: <>String length</>,
+    releases: {
+      east: <>East</>,
+      north: <>North</>,
+      west: <>West</>,
+      south: <>South</>,
+    },
+    speed: <>Speed</>,
+    viewLabel: "Ball whirled on a string seen from above",
+  }}
+/>
+
+Let go at the north point and the ball flies west, the direction its velocity had at that instant. Two moments with the same speed can still have different velocities, and the sign or direction you read depends on the moment.
+
 ## Difference from Average Speed
 
 Average speed summarizes the whole trip by dividing total distance by total time. Instantaneous speed gives the speed at **one chosen time**.
@@ -127,8 +181,54 @@ If a speedometer shows <InlineMath math="15 \text{ m/s}" /> right now, it does n
 
 For example, a vehicle may stop at a red light and then move quickly afterward. Its average speed can be small because the whole trip time is counted, while its instantaneous speed while moving can be much larger.
 
+### A Falling Ball Never Keeps One Speed
+
+A ball dropped from <InlineMath math="1.8\text{ m}" /> falls for <InlineMath math="0.6\text{ s}" />, so its average speed is <InlineMath math="\frac{1.8}{0.6}=3\text{ m/s}" />. Its **instantaneous speed never stays at that average**, because it grows by <InlineMath math="1\text{ m/s}" /> at every flash.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>A Dropped Ball, Flash by Flash</>}
+  description={
+    <>
+      A lamp flashes every <InlineMath math="0.1\text{ s}" /> in a dark room while the camera shutter stays open. Each image of the ball is one flash.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Speed at the floor</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+The gaps grow from <InlineMath math="5\text{ cm}" /> to <InlineMath math="55\text{ cm}" />, and the ball reaches the floor at <InlineMath math="6\text{ m/s}" />, twice its average speed. At one instant, halfway through the fall at <InlineMath math="0.3\text{ s}" />, the instantaneous speed equals the average.
+
 ## A Speedometer Measures the Current Speed
 
 A posted limit of <InlineMath math="80 \text{ km/h}" /> applies to the vehicle at **every moment**. A roadside detector therefore reads the instantaneous speed as the vehicle passes.
 
 A vehicle passing at <InlineMath math="90 \text{ km/h}" /> exceeds that limit even if its average speed for the whole trip is only <InlineMath math="60 \text{ km/h}" />. Time spent stopped at a red light lowers the trip average but does not change the reading at the detector.
+
+### How a Bike Computer Reads Speed
+
+A bike computer counts how often a magnet on the wheel passes a sensor. The speed of a point on the wheel is **its circle divided by the time for one turn**. The valve sits on the rim, <InlineMath math="0.311\text{ m}" /> from the axle.
+
+<BicycleWheelSpeedLab
+  title={<>One Wheel, Two Speeds</>}
+  description={
+    <>
+      The valve and a reflector halfway out turn through the same angle each second. Compare the lengths of their velocity arrows.
+    </>
+  }
+  labels={{
+    angularSpeed: <>Angular speed</>,
+    choosePeriod: "Choose the time for one turn",
+    reflectorSpeed: <>Speed of the reflector</>,
+    valveAcceleration: <>Centripetal acceleration of the valve</>,
+    valveSpeed: <>Speed of the valve</>,
+    viewLabel: "Bicycle wheel spinning on a stand",
+  }}
+/>
+
+At one turn per second the valve moves at <InlineMath math="2\pi(0.311)\approx1.95\text{ m/s}" />, and the reflector at about <InlineMath math="0.97\text{ m/s}" />. Choose <InlineMath math="T=0.5\text{ s}" /> and both speeds double, while each arrow stays tangent to its circle.

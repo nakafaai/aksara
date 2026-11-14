@@ -62,6 +62,34 @@ Compare an object that travels from the same start point to the same end point i
 
 In the simulation, choose the turning route and then the return route. Compare **path length** with **displacement magnitude**. When the car returns to the start, its path still has length, while the segment connecting its initial and final positions has zero length.
 
+### A Detour through Town
+
+Scale the lesson's example up to a town and **compare the path with the arrow**: walk <InlineMath math="400\text{ m}" /> east along a street, then <InlineMath math="300\text{ m}" /> south, at <InlineMath math="1.25\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: -300 },
+  ]}
+  pace={1.25}
+  title={<>A Detour through Town</>}
+  description={
+    <>
+      The amber path is the distance you walk. The violet arrow is the displacement, straight from the start to where you stand.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Size of the average velocity</>,
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
+  }}
+/>
+
+The path is <InlineMath math="700\text{ m}" /> long, but the arrow is only <InlineMath math="500\text{ m}" />, the same <InlineMath math="3:4:5" /> triangle as before. In <InlineMath math="560\text{ s}" /> that gives an average speed of <InlineMath math="1.25\text{ m/s}" /> and an average velocity of only about <InlineMath math="0.89\text{ m/s}" />.
+
 ## Distance Describes Path Length
 
 Distance is always zero or positive. It answers the question, "how long is the path traveled?" So distance **does not include direction**.
@@ -71,6 +99,30 @@ If an object moves <InlineMath math="4 \text{ m}" /> east and then <InlineMath m
 <BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
 
 The symbol <InlineMath math="s" /> is often used for distance traveled.
+
+### Distance Only Grows
+
+Distance **can only grow** while you move. On a <InlineMath math="400\text{ m}" /> running track, every extra <InlineMath math="100\text{ m}" /> of running adds <InlineMath math="100\text{ m}" /> of distance, whichever way the bend turns.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Distance on a Running Track</>}
+  description={
+    <>
+      A runner on lane <InlineMath math="1" /> keeps <InlineMath math="8\text{ m/s}" />. Stop the run at each mark and watch the distance climb while the displacement does not.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Size of the average velocity</>,
+    chooseDistance: "Choose how far the runner goes",
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance run</>,
+    time: <>Time</>,
+    viewLabel: "Runner on a 400 m athletics track seen from above",
+  }}
+/>
+
+The distance reads <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, and <InlineMath math="400\text{ m}" />. The displacement goes from about <InlineMath math="72\text{ m}" /> to <InlineMath math="112\text{ m}" />, back to about <InlineMath math="100\text{ m}" />, and finally to <InlineMath math="0" />.
 
 ## Displacement Has Magnitude and Direction
 
@@ -83,6 +135,33 @@ Displacement is a vector quantity. That means displacement has magnitude and dir
 \end{aligned}" />
 
 The direction of displacement <Highlight>points straight from the starting point to the ending point</Highlight>.
+
+### The Same Displacement from Every Landmark
+
+Displacement **does not depend on where you put zero**. A cyclist rides from <InlineMath math="20\text{ m}" /> to <InlineMath math="50\text{ m}" /> east of a store and back to <InlineMath math="35\text{ m}" />. Measure from the store, from Rani's house, or from the flagpole.
+
+<StreetOriginPositionLab
+  title={<>One Ride, Three Origins</>}
+  description={
+    <>
+      East is positive. The amber arrow runs from the chosen origin to the cyclist, and the graph shows the position over time.
+    </>
+  }
+  labels={{
+    change: <>Change of position</>,
+    chooseOrigin: "Choose the origin",
+    end: <>Final position</>,
+    origins: {
+      store: <>Store</>,
+      house: <>Rani's house</>,
+      pole: <>Flagpole</>,
+    },
+    start: <>Initial position</>,
+    viewLabel: "Cyclist on a street with three landmarks",
+  }}
+/>
+
+The initial and final positions change with the origin, but the change of position is always <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> toward the east, while the path ridden is <InlineMath math="45\text{ m}" />.
 
 ## Returning to the Starting Point
 
@@ -128,6 +207,29 @@ Three trips leave the same start. The straight one has distance equal to the siz
   }}
 />
 
+### Out and Back on a Graph
+
+A car that starts up a gentle slope at <InlineMath math="6\text{ m/s}" /> rolls out, stops after <InlineMath math="5\text{ s}" />, and rolls back to where it started. Its position-time graph **rises and falls back to zero**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Out and Back</>}
+  description={
+    <>
+      Pick an interval. The flags mark the car's two positions, and the secant joins them on the graph.
+    </>
+  }
+  labels={{
+    change: <>Displacement</>,
+    chooseInterval: "Choose a time interval",
+    elapsed: <>Time interval</>,
+    rate: <>Average velocity</>,
+    viewLabel: "Car trip with its position-time graph",
+  }}
+/>
+
+From <InlineMath math="0" /> to <InlineMath math="10\text{ s}" /> the car travels <InlineMath math="15\text{ m}" /> out and <InlineMath math="15\text{ m}" /> back, a distance of <InlineMath math="30\text{ m}" />, yet the displacement is <InlineMath math="0" /> and the secant is flat.
+
 ## Distance and Displacement on a Turning Path
 
 A student walks <InlineMath math="8 \text{ m}" /> east, then <InlineMath math="6 \text{ m}" /> north. The distance traveled is:
@@ -148,7 +250,7 @@ Rotate the walk below. The orange and violet arrows are the path, <InlineMath ma
 
 <MathVisual
   title={<>Distance and Displacement on a Turn</>}
-  description={<>8 m east, then 6 m north, seen from above. One grid step is 2 m.</>}
+  description={<><InlineMath math="8\text{ m}" /> east, then <InlineMath math="6\text{ m}" /> north, seen from above. One grid step is <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },

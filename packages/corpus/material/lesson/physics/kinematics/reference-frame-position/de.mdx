@@ -22,6 +22,37 @@ Wenn die Bewegung entlang einer geraden Linie erfolgt, können wir eine Richtung
 
 Diese Gleichung lässt das Objekt unverändert und verschiebt den Koordinatenursprung, während die Achse und ihre positive Richtung gleich bleiben.
 
+### Bewegung hängt vom Bezugssystem ab
+
+Ein Bezugssystem legt auch fest, **was als bewegt gilt**. Eine Person geht durch einen Wagen, während der Zug mit <InlineMath math="20\text{ m/s}" /> fährt, und zwei Leute schauen zu.
+
+<TrainPassengerRelativeLab
+  title={<>Gehen in einem fahrenden Zug</>}
+  description={
+    <>
+      Schau vom Bahnsteig aus zu und dann von einem Sitzplatz im Zug. Die Pfeile zeigen die Geschwindigkeiten, die jeder Beobachter misst, in Fahrtrichtung positiv.
+    </>
+  }
+  labels={{
+    chooseObserver: "Beobachter wählen",
+    chooseWay: "Gehrichtung wählen",
+    observers: {
+      platform: <>Vom Bahnsteig</>,
+      train: <>Von einem Sitzplatz</>,
+    },
+    passenger: <>Geschwindigkeit der Person</>,
+    train: <>Geschwindigkeit des Zuges</>,
+    viewLabel: "Person geht durch einen fahrenden Zug",
+    walk: <>Gehgeschwindigkeit im Wagen</>,
+    ways: {
+      forward: <>Nach vorn gehen</>,
+      backward: <>Nach hinten gehen</>,
+    },
+  }}
+/>
+
+Vom Bahnsteig aus bewegt sich die Person mit <InlineMath math="+21{,}5\text{ m/s}" />. Von einem Sitzplatz aus bewegt sich dieselbe Person nur mit <InlineMath math="+1{,}5\text{ m/s}" />, und der Bahnsteig gleitet nach hinten.
+
 ## Position bei verschiedenen Ursprüngen
 
 Ein Objekt liegt bei der Koordinate <InlineMath math="30 \text{ m}" />, wenn das Geschäft als Nullpunkt dient. Wird der Ursprung zu Ranis Haus bei <InlineMath math="20 \text{ m}" /> verschoben, lautet die neue Koordinate des Objekts <InlineMath math="+10 \text{ m}" />.
@@ -32,7 +63,7 @@ Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt
 
 <MathVisual
   title={<>Ein Objekt, drei Ursprünge</>}
-  description={<>Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt entspricht 10 m.</>}
+  description={<>Jede Zeile misst dasselbe Objekt von einem anderen Ursprung aus, Osten liegt rechts. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 3 } },
@@ -67,6 +98,33 @@ Schau dir die Szene unten an. Die graue Linie ist das Objekt, und sie verschiebt
   }}
 />
 
+### Drei Ursprünge an einer Straße
+
+Hier ist die Formel <InlineMath math="x'=x_{\text{Objekt}}-x_{\text{Ursprung}}" /> im Einsatz. Ein Laden steht bei null, Ranis Haus bei <InlineMath math="20\text{ m}" /> und ein Fahnenmast bei <InlineMath math="50\text{ m}" />, Osten positiv. Ein anderer Ursprung **verschiebt jede Position um die Koordinate dieses Ursprungs**.
+
+<StreetOriginPositionLab
+  title={<>Eine Fahrt, drei Bezugspunkte</>}
+  description={
+    <>
+      Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> und zurück bis <InlineMath math="35\text{ m}" />. Wähle den Ursprung und lies die Positionen ab.
+    </>
+  }
+  labels={{
+    change: <>Positionsänderung</>,
+    chooseOrigin: "Bezugspunkt wählen",
+    end: <>Endposition</>,
+    origins: {
+      store: <>Laden</>,
+      house: <>Ranis Haus</>,
+      pole: <>Fahnenmast</>,
+    },
+    start: <>Anfangsposition</>,
+    viewLabel: "Person auf einem Fahrrad in einer Straße mit drei Orten",
+  }}
+/>
+
+Von Ranis Haus aus gemessen beginnt die Fahrt bei <InlineMath math="0" /> und endet bei <InlineMath math="+15\text{ m}" />. Vom Fahnenmast aus beginnt sie bei <InlineMath math="-30\text{ m}" /> und endet bei <InlineMath math="-15\text{ m}" />, westlich der neuen Null.
+
 ## Vorzeichen und Richtung lesen
 
 Das Vorzeichen einer Position sagt uns, <Highlight>auf welcher Seite des Bezugspunkts</Highlight> sich das Objekt befindet. Im Straßenbeispiel wird Osten positiv gewählt. Ein positiver Wert bedeutet also, dass sich das Objekt östlich des Bezugspunkts befindet, während ein negativer Wert bedeutet, dass sich das Objekt westlich davon befindet.
@@ -78,6 +136,34 @@ Das Vorzeichen einer Position sagt uns, <Highlight>auf welcher Seite des Bezugsp
 | Nayas Haus bei <InlineMath math="50 \text{ m}" /> | Objekt bei <InlineMath math="30 \text{ m}" /> | <InlineMath math="-20 \text{ m}" /> oder <InlineMath math="20 \text{ m}" /> westlich |
 
 Der Wert <InlineMath math="-20 \text{ m}" /> bedeutet nicht, dass der Abstand negativ ist. Das negative Vorzeichen gibt nur die Richtung relativ zum Bezugspunkt an.
+
+### Zwei Richtungen auf der Karte
+
+Auf einem Stadtplan braucht eine Position **zwei Zahlen mit Vorzeichen**, eine für jede Richtung. Nimm Osten und Norden als positiv und geh <InlineMath math="150\text{ m}" /> nach Westen und dann <InlineMath math="200\text{ m}" /> nach Norden.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -150, north: 0 },
+    { east: 0, north: 200 },
+  ]}
+  pace={1.25}
+  title={<>Ein Weg auf zwei Achsen</>}
+  description={
+    <>
+      Der violette Pfeil zeigt vom Zuhause zu deinem Standort. Sein Ostanteil ist negativ, sein Nordanteil positiv.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Mittlere Schnelligkeit</>,
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gegangene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+  }}
+/>
+
+Du landest bei <InlineMath math="x=-150\text{ m}" /> und <InlineMath math="y=+200\text{ m}" /> vom Zuhause, also <InlineMath math="\sqrt{150^2+200^2}=250\text{ m}" /> Luftlinie entfernt, obwohl du <InlineMath math="350\text{ m}" /> gegangen bist.
 
 ## Eine vollständige Positionsangabe
 
@@ -133,6 +219,34 @@ In zwei Dimensionen braucht eine Ortsangabe einen Ursprung und zwei Zahlen. Von 
   }}
 />
 
+### Höhe von zwei Ursprüngen aus
+
+Auch die Position eines Satelliten braucht ihren Bezug. Die Raumstation kreist etwa <InlineMath math="400\text{ km}" /> über dem Boden, das sind <InlineMath math="6771\text{ km}" /> vom Erdmittelpunkt. Beide Zahlen stimmen, weil **sie von verschiedenen Ursprüngen aus gemessen sind**.
+
+<SatelliteOrbitCircularLab
+  title={<>Satelliten um die Erde</>}
+  description={
+    <>
+      Wähle einen Satelliten. Der Bahnradius wird vom Erdmittelpunkt aus gemessen, nicht vom Boden.
+    </>
+  }
+  labels={{
+    acceleration: <>Zentripetalbeschleunigung</>,
+    chooseOrbit: "Satellit wählen",
+    orbits: {
+      station: <>Raumstation</>,
+      gps: <>GPS</>,
+      geostationary: <>Geostationär</>,
+    },
+    period: <>Zeit für einen Umlauf</>,
+    radius: <>Bahnradius</>,
+    speed: <>Schnelligkeit</>,
+    viewLabel: "Satelliten umkreisen die Erde",
+  }}
+/>
+
+Addiere den mittleren Erdradius, <InlineMath math="6371\text{ km}" />, zur Höhe über dem Boden, dann erhältst du den Radius vom Mittelpunkt: <InlineMath math="6371+400=6771\text{ km}" />. Eine vollständige Angabe nennt, welcher gemeint ist.
+
 ## Eine Positionsangabe relativ zum Geschäft
 
 Mit dem Geschäft als Ursprung befindet sich eine Markierung an der Koordinate <InlineMath math="40 \text{ m}" />. Dimas' Haus liegt im selben Bezugssystem bei <InlineMath math="30 \text{ m}" />. Wird der **Ursprung zu Dimas' Haus verschoben**, lautet die Koordinate der Markierung:
@@ -150,7 +264,7 @@ Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Urspru
 
 <MathVisual
   title={<>Eine Markierung, zwei Ursprünge</>}
-  description={<>Die Markierung bei 40 m vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei 30 m. Ein Gitterschritt entspricht 10 m.</>}
+  description={<>Die Markierung bei <InlineMath math="40\text{ m}" /> vom Geschäft, gemessen vom Geschäft und von Dimas' Haus bei <InlineMath math="30\text{ m}" />. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -1, max: 2 } },
@@ -178,3 +292,31 @@ Beide Pfeile unten enden an derselben Markierung. Nur ihr Startpunkt, der Urspru
     coord1: <InlineMath math="+10\text{ m}" />,
   }}
 />
+
+### Der Landepunkt eines Boots
+
+Ein Boot, das einen Fluss überquert, zeigt eine Positionsangabe mit zwei Bezügen zugleich. Der Landepunkt wird **entlang des Ufers vom Punkt genau gegenüber gemessen**. Das Boot steuert mit <InlineMath math="4\text{ m/s}" /> um <InlineMath math="30^\circ" /> flussaufwärts, während der Fluss mit <InlineMath math="3\text{ m/s}" /> strömt.
+
+<RiverBoatCrossingLab
+  boatSpeed={4}
+  current={3}
+  heading={-30}
+  width={60}
+  title={<>Über einen strömenden Fluss</>}
+  description={
+    <>
+      Dreh den Kurs und achte darauf, wo das Boot am <InlineMath math="60\text{ m}" /> entfernten Ufer landet.
+    </>
+  }
+  labels={{
+    angle: <>Winkel zur direkten Querung</>,
+    drift: <>Abdrift flussabwärts</>,
+    groundSpeed: <>Schnelligkeit über Grund</>,
+    heading: <>Kurs</>,
+    headingName: "Kurs des Boots",
+    time: <>Zeit für die Querung</>,
+    viewLabel: "Boot überquert einen Fluss, von oben gesehen",
+  }}
+/>
+
+Mit diesem Kurs landet das Boot etwa <InlineMath math="17{,}3\text{ m}" /> flussabwärts vom Punkt genau gegenüber. Eine vollständige Antwort nennt diesen Punkt, die Entfernung und die Richtung flussabwärts.

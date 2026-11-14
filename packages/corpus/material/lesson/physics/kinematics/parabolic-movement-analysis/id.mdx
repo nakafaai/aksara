@@ -49,6 +49,29 @@ Hambatan udara diabaikan dan gravitasi dianggap tetap. Arah ke kanan dan ke atas
 
 Bayangan bola di permukaan air bergerak dengan kelajuan tetap seperti benda pada [gerak lurus beraturan](/id/materi/fisika/kinematika/gerak-lurus-beraturan), karena hanya mengikuti komponen mendatar. Bola sendiri naik lalu turun, karena komponen vertikalnya <InlineMath math="v_y = v_{0y} - gt" /> terus berkurang.
 
+### Membidik Kaleng yang Jatuh
+
+Sebuah demonstrasi klasik membuktikan pemisahan menjadi dua komponen. Peluncur dibidikkan lurus ke kaleng, dan kaleng dilepas tepat saat bola keluar. **Gravitasi menurunkan keduanya sejauh yang sama dalam waktu yang sama**, jadi bola bertemu kaleng.
+
+<FallingTargetAimLab
+  speed={12}
+  title={<>Membidik Kaleng yang Jatuh</>}
+  description={
+    <>
+      Kaleng tergantung <InlineMath math="4\text{ m}" /> jauhnya dan <InlineMath math="2\text{ m}" /> tingginya. Bayangan setiap <InlineMath math="0{,}05\text{ s}" /> menunjukkan kedua lintasan. Ubah kelajuan awalnya dan coba buat bola meleset.
+    </>
+  }
+  labels={{
+    drop: <>Turunnya kaleng saat bertemu</>,
+    meetTime: <>Waktu bertemu</>,
+    speed: <>Kelajuan awal</>,
+    speedName: "Kelajuan awal",
+    viewLabel: "Peluncur dibidikkan ke kaleng yang jatuh",
+  }}
+/>
+
+Pada <InlineMath math="12\text{ m/s}" />, keduanya bertemu setelah <InlineMath math="0{,}37\text{ s}" />, saat keduanya sudah turun <InlineMath math="0{,}69\text{ m}" /> di bawah garis lurusnya. Kelajuan berapa pun di atas sekitar <InlineMath math="7{,}1\text{ m/s}" /> pasti kena, karena gerak mendatar hanya menentukan kapan bola tiba.
+
 ## Waktu Puncak dan Tinggi Maksimum
 
 Di titik puncak, benda masih bergerak mendatar, tetapi **kecepatan vertikalnya nol**. Dari <InlineMath math="v_y = v_{0y} - gt = 0" /> diperoleh waktu puncak, lalu tinggi maksimum dari persamaan ketiga gerak vertikal:
@@ -59,6 +82,32 @@ Di titik puncak, benda masih bergerak mendatar, tetapi **kecepatan vertikalnya n
 </MathContainer>
 
 Kedua rumus hanya memakai komponen vertikal. Komponen vertikal ini bergerak seperti benda pada [gerak vertikal](/id/materi/fisika/kinematika/gerak-vertikal) yang dilempar ke atas dengan kecepatan <InlineMath math="v_{0y}" />.
+
+### Kelajuan Sama dengan Sudut Berbeda
+
+Pertahankan kelajuan awalnya dan ubah sudutnya saja. **Lontaran yang lebih curam lebih lama naik, jadi puncaknya lebih tinggi**, karena komponen vertikal <InlineMath math="v_0\sin\theta" /> makin besar.
+
+<ParabolicMovementLab
+  decimalSeparator="comma"
+  title={<>Tinggi Puncak pada Sudut Berbeda</>}
+  description={
+    <>
+      Setiap lemparan di sini berangkat dengan <InlineMath math="22\text{ m/s}" />, jadi hanya komponen vertikalnya yang berubah dari satu sudut ke sudut lain.
+    </>
+  }
+  labels={{
+    chooseLaunch: "Pilih sudut lontar",
+    factLabels: {
+      initialSpeed: <>Kelajuan awal</>,
+      flightTime: <>Waktu di udara</>,
+      range: <>Jangkauan</>,
+      peakHeight: <>Tinggi puncak</>,
+    },
+    viewLabel: "Visual lintasan bola lontar",
+  }}
+/>
+
+Waktu ke puncak adalah <InlineMath math="t_{\text{puncak}}=\frac{v_0\sin\theta}{g}" /> dan tinggi puncaknya <InlineMath math="h_{\max}=\frac{(v_0\sin\theta)^2}{2g}" />, jadi lontaran paling curam naik paling tinggi dan paling lama di udara.
 
 ## Waktu Terbang dan Jangkauan
 
@@ -80,6 +129,29 @@ Langkah terakhir memakai identitas <InlineMath math="2\sin\theta\cos\theta = \si
   B --> G["Kecepatan pada waktu t: v_y = v₀y - gt"]`}
 />
 
+### Tendangan yang Dipecah Menjadi Komponen
+
+Foto stroboskop menunjukkan kedua komponen sebagai dua pola. Bola yang ditendang dengan <InlineMath math="v_x=6\text{ m/s}" /> dan <InlineMath math="v_{0y}=8\text{ m/s}" /> dipotret setiap <InlineMath math="0{,}2\text{ s}" />. **Panah mendatarnya tidak pernah berubah**, sedangkan panah tegaknya memendek, berbalik, lalu memanjang lagi.
+
+<StrobePhotoMotionLab
+  shot="components"
+  title={<>Tendangan Bola dalam Komponen</>}
+  description={
+    <>
+      Panah hijau toska adalah komponen mendatar dan panah ungu komponen tegak pada setiap kilatan.
+    </>
+  }
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Jangkauan</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+Bola mencapai puncak <InlineMath math="\frac{8^2}{2(10)}=3{,}2\text{ m}" /> setelah <InlineMath math="0{,}8\text{ s}" />, mendarat setelah <InlineMath math="1{,}6\text{ s}" />, dan menempuh <InlineMath math="6(1{,}6)=9{,}6\text{ m}" />. Jarak mendatar yang sama antargambar adalah <InlineMath math="v_x" /> yang tetap.
+
 ## Kecepatan Sesaat di Sepanjang Lintasan
 
 Untuk kecepatan pada waktu <InlineMath math="t" />, hitung **kedua komponen pada waktu itu**, lalu gabungkan dengan teorema Pythagoras:
@@ -95,7 +167,7 @@ Geser waktunya dan ikuti peluru meriamnya. Panah ungu adalah kecepatan pada saat
 
 <MathVisual
   title={<>Ikuti Kecepatan dari Waktu ke Waktu</>}
-  description={<>Peluru meriam yang ditembakkan dengan <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" />, dengan posisinya pada waktu yang dipilih (fuchsia) dan jarak yang ditempuh dalam sekon berikutnya dengan kecepatan itu (ungu). Satu kotak grid berarti 10 m.</>}
+  description={<>Peluru meriam yang ditembakkan dengan <InlineMath math="40\text{ m/s}" /> dan <InlineMath math="60^\circ" />, dengan posisinya pada waktu yang dipilih (fuchsia) dan jarak yang ditempuh dalam sekon berikutnya dengan kecepatan itu (ungu). Satu kotak grid berarti <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
@@ -153,7 +225,7 @@ Pada <InlineMath math="t = 2\text{ s}" />, bola masih naik karena <InlineMath ma
 
 <MathVisual
   title={<>Kecepatan peluru meriam di sepanjang lintasannya</>}
-  description={<>Satu kotak grid mewakili 10 m. Setiap panah menunjukkan jarak yang ditempuh dalam satu sekon dengan kecepatan pada saat itu. Bagian mendatarnya selalu <InlineMath math="20\text{ m/s}" />, sedangkan bagian tegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap sekon.</>}
+  description={<>Satu kotak grid mewakili <InlineMath math="10\text{ m}" />. Setiap panah menunjukkan jarak yang ditempuh dalam satu sekon dengan kecepatan pada saat itu. Bagian mendatarnya selalu <InlineMath math="20\text{ m/s}" />, sedangkan bagian tegaknya berkurang <InlineMath math="10\text{ m/s}" /> setiap sekon.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
@@ -199,6 +271,30 @@ Sebuah bola ditendang dari tanah dengan kelajuan <InlineMath math="20\text{ m/s}
 </MathContainer>
 
 Periksa dengan rumus langsung: <InlineMath math="\frac{20^2 \sin 90^\circ}{10} = 40\text{ m}" />. Jangkauan ini lebih jauh daripada lemparan <InlineMath math="30^\circ" /> atau <InlineMath math="60^\circ" /> dengan kelajuan yang sama, yang sama-sama mendarat di <InlineMath math="20\sqrt{3} \approx 34{,}6\text{ m}" />.
+
+### Empat Puluh Lima Derajat dengan Selang Taman
+
+Selang taman menunjukkan sudut terbaik dalam sekali lihat, karena setiap tetes air mengikuti parabola yang sama. **Di tanah datar, jangkauan paling jauh pada <InlineMath math="45^\circ" />**, saat <InlineMath math="\sin2\theta=1" />.
+
+<HoseJetProjectileLab
+  angle={45}
+  speed={8}
+  title={<>Selang Taman pada Enam Sudut</>}
+  description={
+    <>
+      Air keluar dari nosel dengan <InlineMath math="8\text{ m/s}" />. Garis putus-putus adalah semburan pada <InlineMath math="45^\circ" />. Miringkan selangnya dan bandingkan.
+    </>
+  }
+  labels={{
+    chooseAngle: "Pilih sudut nosel",
+    flight: <>Waktu di udara</>,
+    range: <>Jangkauan</>,
+    top: <>Tinggi puncak</>,
+    viewLabel: "Semburan air dari selang taman",
+  }}
+/>
+
+Pada <InlineMath math="45^\circ" />, air jatuh <InlineMath math="\frac{8^2}{10}=6{,}4\text{ m}" /> jauhnya setelah <InlineMath math="1{,}13\text{ s}" />. Pada <InlineMath math="30^\circ" /> dan <InlineMath math="60^\circ" />, air jatuh di titik yang sama, <InlineMath math="5{,}54\text{ m}" />, karena kedua sudut itu berjumlah <InlineMath math="90^\circ" />.
 
 ## Kesalahan yang Sering Terjadi
 

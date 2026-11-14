@@ -81,6 +81,31 @@ Gunakan jejak gerak untuk membandingkan kecepatan dari satu selang ke selang ber
 
 Pada grafik, garis putus-putus menunjukkan grafik lengkap yang saling tersambung. Garis tebal adalah segmen yang sedang dibaca. Jika garisnya naik, kecepatannya bertambah. Jika datar, kecepatannya tetap. Jika turun, kecepatannya berkurang. Percepatan rata-rata pada segmen itu adalah perbandingan <InlineMath math="\Delta v" /> terhadap <InlineMath math="\Delta t" />.
 
+### Bel di Lintasan Miring Galileo
+
+Galileo memperlambat gerak jatuh dengan menggelindingkan bola di lintasan yang sedikit miring. Bola mendapat **tambahan kecepatan yang sama setiap detik**, jadi jarak tempuhnya tumbuh sebanding dengan kuadrat waktu. Bel yang dipasang di satu, empat, sembilan, dan enam belas kali jarak detik pertama berbunyi dengan ketukan yang rata.
+
+<GalileoInclineBellsLab
+  title={<>Lintasan Miring dan Bel Galileo</>}
+  description={
+    <>
+      Bola baja menggelinding dari diam melewati empat bel yang dipasang di
+      posisinya setelah <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="3" />, dan <InlineMath math="4\text{ s}" />. Ubah
+      kemiringannya, lalu bandingkan jarak antarbel.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan menuruni lintasan</>,
+    chooseAngle: "Pilih sudut kemiringan",
+    firstSecond: <>Jarak pada detik pertama</>,
+    gaps: <>Jarak antarbel</>,
+    viewLabel: "Bola baja menggelinding di lintasan miring Galileo melewati empat bel",
+  }}
+/>
+
+Pada <InlineMath math="3^\circ" />, kecepatan bola bertambah sekitar <InlineMath math="0{,}374\text{ m/s}^2" />, jadi pada detik pertama bola menempuh <InlineMath math="18{,}7\text{ cm}" />. Di sudut mana pun, jarak antarbel tetap berbanding <InlineMath math="1:3:5:7" />, karena percepatan yang tetap menambah kecepatan yang sama setiap detik.
+
 ## Cara Membaca Tanda Percepatan
 
 Tanda positif, nol, atau negatif tidak boleh dibaca sendirian. Tanda itu selalu bergantung pada arah positif yang dipilih. Pada contoh satu dimensi, kita anggap arah ke kanan sebagai positif.
@@ -125,6 +150,37 @@ Baca kedua tandanya bersama-sama. Dengan <InlineMath math="v>0" />, percepatan b
   }}
 />
 
+### Potongan Pita yang Makin Pendek
+
+Pita ticker timer menunjukkan hal yang sama di laboratorium. Saat troli bergerak ke kanan sambil melambat, setiap potongan pita sepersepuluh detik **lebih pendek dari potongan sebelumnya** dengan selisih yang sama, jadi perubahan kecepatannya mengarah ke sisi negatif.
+
+<TickerTapeMotionLab
+  motion="slowing"
+  title={<>Pita Ticker Timer Troli yang Melambat</>}
+  description={
+    <>
+      Ticker timer mencetak titik setiap <InlineMath math="0{,}02\text{ s}" />.
+      Setiap potongan berisi <InlineMath math="0{,}1\text{ s}" /> pita dan
+      berdiri di diagram seperti satu batang grafik kecepatan terhadap waktu.
+    </>
+  }
+  labels={{
+    acceleration: <>Percepatan dari potongan pita</>,
+    chooseMotion: "Pilih gerak troli",
+    firstStrip: <>Potongan pertama</>,
+    interval: <>Selang waktu antartitik</>,
+    lastStrip: <>Potongan terakhir</>,
+    motions: {
+      uniform: <>Tetap</>,
+      speeding: <>Makin cepat</>,
+      slowing: <>Melambat</>,
+    },
+    viewLabel: "Troli menarik pita kertas melewati ticker timer",
+  }}
+/>
+
+Panjang potongan turun dari <InlineMath math="9{,}5\text{ cm}" /> ke <InlineMath math="2{,}5\text{ cm}" />, berkurang <InlineMath math="1\text{ cm}" /> setiap kali. Satu potongan berlangsung <InlineMath math="0{,}1\text{ s}" />, jadi percepatannya <InlineMath math="\frac{-0{,}01\text{ m}}{(0{,}1\text{ s})^2}=-1\text{ m/s}^2" />, padahal troli masih bergerak ke kanan.
+
 ## Menghitung Perubahan Kecepatan Setiap Detik
 
 Misalkan kecepatan mobil berubah dari <InlineMath math="2\text{ m/s}" /> menjadi <InlineMath math="18\text{ m/s}" /> dalam <InlineMath math="4\text{ s}" />. Percepatan rata-ratanya:
@@ -145,6 +201,32 @@ a_{\text{rata-rata}} &= \frac{2-18}{4} \\
 \end{aligned}" />
 
 Nilai <InlineMath math="-4\text{ m/s}^2" /> berarti kecepatan berkurang <InlineMath math="4\text{ m/s}" /> setiap detik jika mobil masih bergerak ke arah positif.
+
+### Percepatan Rata-Rata dalam Perjalanan
+
+Perjalanan nyata jarang punya satu percepatan saja. Pada grafik kecepatan terhadap waktu, percepatan rata-rata pada suatu selang adalah **kemiringan garis yang menghubungkan kedua titiknya**.
+
+<CarTripSecantSlopeLab
+  graph="velocity"
+  trip="commute"
+  title={<>Percepatan Rata-Rata dalam Perjalanan</>}
+  description={
+    <>
+      Mobil bertambah cepat, melaju tetap, mengerem di lampu merah, menunggu,
+      lalu jalan lagi. Pilih selang waktu untuk menggambar garis potongnya pada
+      grafik kecepatan terhadap waktu.
+    </>
+  }
+  labels={{
+    change: <>Perubahan kecepatan</>,
+    chooseInterval: "Pilih selang waktu",
+    elapsed: <>Selang waktu</>,
+    rate: <>Percepatan rata-rata</>,
+    viewLabel: "Mobil dalam perjalanan dengan grafik kecepatan terhadap waktu",
+  }}
+/>
+
+Dari <InlineMath math="0" /> sampai <InlineMath math="4\text{ s}" />, kecepatan naik dari <InlineMath math="0" /> ke <InlineMath math="10\text{ m/s}" />, jadi <InlineMath math="\bar{a}=2{,}5\text{ m/s}^2" />. Selama <InlineMath math="20\text{ s}" /> penuh, mobil berakhir di <InlineMath math="10\text{ m/s}" />, jadi <InlineMath math="\bar{a}=0{,}5\text{ m/s}^2" />, walaupun di tengah jalan mobil sempat mengerem keras.
 
 ## Percepatan Nol dan Kecepatan Konstan
 

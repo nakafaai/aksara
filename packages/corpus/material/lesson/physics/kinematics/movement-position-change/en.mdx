@@ -20,6 +20,35 @@ The symbol <InlineMath math="\Delta x" /> is read as "delta x" and means displac
 
 > Motion is identified from position changing with time. Displacement compares only the two chosen endpoints.
 
+### Positions Printed on a Tape
+
+A ticker timer turns positions at different times into dots. It prints one dot every <InlineMath math="0.02\text{ s}" /> on a tape pulled by a trolley, so **each dot is the trolley's position at one moment**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Positions on a Ticker Tape</>}
+  description={
+    <>
+      The trolley pulls the tape through the timer. Count the dots: equal time passes between neighbours.
+    </>
+  }
+  labels={{
+    acceleration: <>Acceleration from the strips</>,
+    chooseMotion: "Choose the trolley's motion",
+    firstStrip: <>First strip</>,
+    interval: <>Time between dots</>,
+    lastStrip: <>Last strip</>,
+    motions: {
+      uniform: <>Steady</>,
+      speeding: <>Speeding up</>,
+      slowing: <>Slowing down</>,
+    },
+    viewLabel: "Trolley pulling paper tape through a ticker timer",
+  }}
+/>
+
+With steady motion every tenth-of-a-second strip is <InlineMath math="6\text{ cm}" /> long. Comparing two dots tells you how far the trolley moved between those two moments, which is exactly a position change.
+
 ## Position Difference on a Straight Track
 
 On a straight track with a fixed zero point, position change depends only on **final position minus initial position**. For example, if an object starts at <InlineMath math="20 \text{ m}" /> and ends at <InlineMath math="50 \text{ m}" />, the change in position is <InlineMath math="+30 \text{ m}" />.
@@ -40,7 +69,7 @@ Draw both cases as position against time, then follow each line from left to rig
 
 <MathVisual
   title={<>Same Endpoints, Different Motion</>}
-  description={<>Time in seconds runs to the right. Position goes up in units of 10 m, so 5 means 50 m. Compare where A and B are at 3 s.</>}
+  description={<>Time in seconds runs to the right. Position goes up in units of <InlineMath math="10\text{ m}" />, so <InlineMath math="5" /> means <InlineMath math="50\text{ m}" />. Compare where A and B are at <InlineMath math="3\text{ s}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
@@ -68,6 +97,29 @@ Draw both cases as position against time, then follow each line from left to rig
   }}
 />
 
+### Position Changes Read from a Graph
+
+On a position-time graph, **the position change over an interval is the rise between its two points**. A car cruising at a steady <InlineMath math="8\text{ m/s}" /> shows it cleanly.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Position Changes of a Cruising Car</>}
+  description={
+    <>
+      Pick an interval. The flags mark the two positions on the road, and the vertical step on the graph is the position change.
+    </>
+  }
+  labels={{
+    change: <>Displacement</>,
+    chooseInterval: "Choose a time interval",
+    elapsed: <>Time interval</>,
+    rate: <>Average velocity</>,
+    viewLabel: "Car trip with its position-time graph",
+  }}
+/>
+
+From <InlineMath math="2" /> to <InlineMath math="6\text{ s}" /> the car moves from <InlineMath math="16\text{ m}" /> to <InlineMath math="48\text{ m}" />, so <InlineMath math="\Delta x=48-16=32\text{ m}" />. Over the full <InlineMath math="10\text{ s}" /> the change is <InlineMath math="80\text{ m}" />.
+
 ## Keep the Reference Consistent
 
 When calculating a change in position, the initial and final positions must be read from the **same reference point**. Do not take the initial position from the store and the final position from another house, because that no longer describes the same motion in one reference frame.
@@ -79,6 +131,33 @@ When calculating a change in position, the initial and final positions must be r
 | Naya's house at <InlineMath math="50 \text{ m}" /> | <InlineMath math="-30 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
 
 The three rows have different initial and final position numbers, but the same change in position. The reference point shifts the coordinate numbers. The final-minus-initial difference still describes the motion from start to finish.
+
+### Changing the Origin Changes Every Position
+
+Take a street with a store at zero, Rani's house <InlineMath math="20\text{ m}" /> east, and a flagpole at <InlineMath math="50\text{ m}" />. Moving the origin shifts every position by the same amount, so **the change of position stays the same**.
+
+<StreetOriginPositionLab
+  title={<>One Ride, Three Origins</>}
+  description={
+    <>
+      A cyclist rides from <InlineMath math="20\text{ m}" /> out to <InlineMath math="50\text{ m}" /> and back to <InlineMath math="35\text{ m}" />, east positive. Switch the origin and watch the graph move as a whole.
+    </>
+  }
+  labels={{
+    change: <>Change of position</>,
+    chooseOrigin: "Choose the origin",
+    end: <>Final position</>,
+    origins: {
+      store: <>Store</>,
+      house: <>Rani's house</>,
+      pole: <>Flagpole</>,
+    },
+    start: <>Initial position</>,
+    viewLabel: "Cyclist on a street with three landmarks",
+  }}
+/>
+
+From the store the ride goes from <InlineMath math="+20\text{ m}" /> to <InlineMath math="+35\text{ m}" />. From the flagpole it goes from <InlineMath math="-30\text{ m}" /> to <InlineMath math="-15\text{ m}" />. Both give <InlineMath math="\Delta x=+15\text{ m}" />, as long as you keep one origin for both positions.
 
 ## Reading the Sign of Position Change
 
@@ -94,7 +173,7 @@ Take both positions from the same reference, subtract <InlineMath math="\Delta x
 
 <MathVisual
   title={<>Four Steps to a Displacement</>}
-  description={<>Two moves between 20 m and 50 m on one axis. One grid step is 10 m.</>}
+  description={<>Two moves between <InlineMath math="20\text{ m}" /> and <InlineMath math="50\text{ m}" /> on one axis. One grid step is <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.8 } },
@@ -120,6 +199,34 @@ Take both positions from the same reference, subtract <InlineMath math="\Delta x
   }}
 />
 
+### A Walk That Ends West of the Start
+
+Take east as positive and walk <InlineMath math="250\text{ m}" /> west, then <InlineMath math="100\text{ m}" /> back east. The final position lies west of the start, so **the position change is negative**.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -250, north: 0 },
+    { east: 100, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>A Walk That Ends West</>}
+  description={
+    <>
+      The violet arrow joins the start to where you stand. Its length is the size of the position change, and its direction gives the sign.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Size of the average velocity</>,
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
+  }}
+/>
+
+You walk <InlineMath math="350\text{ m}" /> in <InlineMath math="280\text{ s}" />, but you end up only <InlineMath math="150\text{ m}" /> from the start. With east positive, <InlineMath math="\Delta x=-250+100=-150\text{ m}" />.
+
 ## Subtract the Final and Initial Positions
 
 A student starts <InlineMath math="10 \text{ m}" /> east of a gate. A few seconds later, the student is <InlineMath math="40 \text{ m}" /> east of the gate. The change in position is:
@@ -139,7 +246,7 @@ The arrow below starts at the initial position and ends at the final one. Its le
 
 <MathVisual
   title={<>The Student's Displacement</>}
-  description={<>Positions east of the gate, one grid step per 10 m. The arrow runs from 10 m to 40 m.</>}
+  description={<>Positions east of the gate, one grid step per <InlineMath math="10\text{ m}" />. The arrow runs from <InlineMath math="10\text{ m}" /> to <InlineMath math="40\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.5 } },
@@ -160,3 +267,26 @@ The arrow below starts at the initial position and ends at the final one. Its le
     change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
   }}
 />
+
+### Up and Back to the Hand
+
+Positions work the same way upward. Toss a ball straight up at <InlineMath math="5\text{ m/s}" /> and catch it at the height it left your hand. It moved, yet **its final position equals its initial position**.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>A Tossed Ball, Flash by Flash</>}
+  description={
+    <>
+      A lamp flashes every <InlineMath math="0.1\text{ s}" />. Up is positive, and the hand is zero.
+    </>
+  }
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Top height</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+The ball climbs <InlineMath math="1.25\text{ m}" /> in <InlineMath math="0.5\text{ s}" /> and is back in your hand after <InlineMath math="1\text{ s}" />. Its position change over the whole toss is <InlineMath math="\Delta y=0-0=0" />, even though it travelled <InlineMath math="2.5\text{ m}" />.

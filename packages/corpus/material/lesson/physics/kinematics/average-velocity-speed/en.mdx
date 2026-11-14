@@ -66,6 +66,31 @@ In the Smooth Bend case, the ball follows the curve, so its total distance is ab
 
 <BlockMath math="\begin{aligned} &amp;s_{\text{total}}\approx 16.7\text{ m} \\ &amp;|\Delta \vec r|=14\text{ m} \\ &amp;\Delta t=5\text{ s} \\ &amp;\text{average speed}&amp;\approx \frac{16.7}{5} \\ &amp;\approx3.3\text{ m/s} \\ &amp;|\bar{\vec v}| =\frac{14}{5} \\ &amp;=2.8\text{ m/s} \end{aligned}" />
 
+### A Speed Trap Reports an Average
+
+A speed trap on a road never sees one instant. It times the car between two light beams a gap apart and divides the gap by that time, so its reading is **an average over the gap**.
+
+<SpeedTrapInstantSpeedLab
+  title={<>A Speed Trap on a Test Track</>}
+  description={
+    <>
+      A car speeds up from rest at <InlineMath math="4\text{ m/s}^2" /> through
+      two light gates centred on the <InlineMath math="50\text{ m}" /> mark.
+      Change the gap and compare the trap's reading.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Trap reading</>,
+    chooseGap: "Choose the gap between the gates",
+    elapsed: <>Time between the beams</>,
+    gap: <>Gap between the gates</>,
+    instantSpeed: <>Speed at the centre</>,
+    viewLabel: "Car crossing two light gates on a test track",
+  }}
+/>
+
+With the gates <InlineMath math="40\text{ m}" /> apart, the car takes <InlineMath math="2.043\text{ s}" />, so the trap reads <InlineMath math="19.58\text{ m/s}" />, a little below the <InlineMath math="20\text{ m/s}" /> the car has at the centre. The reading covers the whole gap, not one moment.
+
 ## The Same Time Interval Can Describe Different Trips
 
 Suppose two trips both take <InlineMath math="3 \text{ s}" />. The first trip goes straight <InlineMath math="6 \text{ m}" /> to the right. The second trip goes <InlineMath math="6 \text{ m}" /> to the right and then <InlineMath math="3 \text{ m}" /> back to the left. The time is the same, but the **distance and displacement are different**.
@@ -76,6 +101,30 @@ Suppose two trips both take <InlineMath math="3 \text{ s}" />. The first trip go
 | Right then back | <InlineMath math="9 \text{ m}" /> | <InlineMath math="3 \text{ m}" /> to the right | Average speed is larger than average velocity magnitude |
 
 Both calculations use the same elapsed time, but average speed divides total distance by that time and average velocity divides displacement by it.
+
+### Average Velocity as a Slope
+
+On a position-time graph, the average velocity over an interval is **the slope of the straight line joining its two points**. A car's commute shows why different intervals of one trip give different averages.
+
+<CarTripSecantSlopeLab
+  trip="commute"
+  title={<>Average Velocity on a Commute</>}
+  description={
+    <>
+      The car speeds up, cruises, brakes for a red light, waits, and drives
+      on. Pick an interval: the flags mark where the car was at its two ends.
+    </>
+  }
+  labels={{
+    change: <>Displacement</>,
+    chooseInterval: "Choose a time interval",
+    elapsed: <>Time interval</>,
+    rate: <>Average velocity</>,
+    viewLabel: "Car on a commute with its position-time graph",
+  }}
+/>
+
+Over the whole trip the car covers <InlineMath math="110\text{ m}" /> in <InlineMath math="20\text{ s}" />, so <InlineMath math="\bar{v}=5.5\text{ m/s}" />. Between <InlineMath math="4" /> and <InlineMath math="10\text{ s}" /> it cruises at <InlineMath math="10\text{ m/s}" />, and between <InlineMath math="10" /> and <InlineMath math="16\text{ s}" /> it averages only about <InlineMath math="1.67\text{ m/s}" />, because it waits at the light.
 
 ## Average Speed and Average Velocity on a Return Route
 
@@ -94,7 +143,7 @@ Here are both trips as position against time, with A moving at a steady <InlineM
 
 <MathVisual
   title={<>Average Velocity Is the Slope from Start to End</>}
-  description={<>Trip A goes 6 m right, trip B goes 6 m right and 3 m back, each in 3 s. Horizontal: time in s. Vertical: position in units of 2 m.</>}
+  description={<>Trip A goes <InlineMath math="6\text{ m}" /> right, trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{ m}" /> back, each in <InlineMath math="3\text{ s}" />. Horizontal: time in s. Vertical: position in units of <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.8, max: 3.8 } },
@@ -133,6 +182,35 @@ For example, an object starts at <InlineMath math="x=8 \text{ m}" /> and ends at
 </MathContainer>
 
 A negative value does not mean the motion is "slower than zero." It means the average velocity points to the left relative to the axis we chose.
+
+### Walking Out and Partly Back
+
+A stroll along one street shows **where the sign comes from**. Take east as positive: walk <InlineMath math="300\text{ m}" /> east, then <InlineMath math="100\text{ m}" /> back west, at <InlineMath math="1\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 300, north: 0 },
+    { east: -100, north: 0 },
+  ]}
+  pace={1}
+  title={<>A Stroll Out and Partly Back</>}
+  description={
+    <>
+      The amber path is everything you walked. The violet arrow joins the start
+      to where you stand, and it still points east.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Size of the average velocity</>,
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk along a town street seen from above",
+  }}
+/>
+
+You walk <InlineMath math="400\text{ m}" /> in <InlineMath math="400\text{ s}" />, so the average speed is <InlineMath math="1\text{ m/s}" />. The displacement is <InlineMath math="+200\text{ m}" />, so the average velocity is <InlineMath math="+0.5\text{ m/s}" />: positive, because you end up east of the start.
 
 ## A Loop Can Have Zero Average Velocity
 
@@ -174,3 +252,30 @@ Trip B goes <InlineMath math="6\text{ m}" /> right and <InlineMath math="3\text{
     net: <InlineMath math="\frac{3\text{ m}}{3\text{ s}}=1\text{ m/s}" />,
   }}
 />
+
+### One Lap of a Running Track
+
+A full lap is **a loop that ends exactly at its start**. A runner on lane <InlineMath math="1" /> of a <InlineMath math="400\text{ m}" /> track keeps a steady <InlineMath math="8\text{ m/s}" />, and the displacement from the start line grows, shrinks, and vanishes.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>One Lap of the Track</>}
+  description={
+    <>
+      Stop the runner after <InlineMath math="100" />,{" "}
+      <InlineMath math="200" />, <InlineMath math="300" />, or{" "}
+      <InlineMath math="400\text{ m}" /> and compare the violet displacement
+      with the amber path.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Size of the average velocity</>,
+    chooseDistance: "Choose how far the runner goes",
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance run</>,
+    time: <>Time</>,
+    viewLabel: "Runner on a 400 m athletics track seen from above",
+  }}
+/>
+
+After <InlineMath math="200\text{ m}" /> the runner is <InlineMath math="112\text{ m}" /> from the start, so the average velocity has size <InlineMath math="4.48\text{ m/s}" />. After the full lap the displacement is zero, so the average velocity is zero, while the average speed is still <InlineMath math="8\text{ m/s}" />.

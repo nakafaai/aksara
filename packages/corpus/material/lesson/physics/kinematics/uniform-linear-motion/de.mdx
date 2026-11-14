@@ -24,6 +24,37 @@ x(t) &= x(t_0)+v(t-t_0)
 
 Die Symbole <InlineMath math="x(t_0)" /> und <InlineMath math="x(t)" /> bezeichnen die Positionen zum Anfangs- und Endzeitpunkt, <InlineMath math="v" /> die konstante Geschwindigkeit, <InlineMath math="\Delta t=t-t_0" /> die verstrichene Zeit und <InlineMath math="\Delta x" /> die Verschiebung.
 
+### Ein Zug mit konstanter Geschwindigkeit
+
+Ein Pendlerzug, der auf gerader Strecke mit <InlineMath math="20\text{ m/s}" /> fährt, ist eine gleichförmige Bewegung, neben der du stehen kannst. Er legt **jede Sekunde <InlineMath math="20\text{ m}" /> in dieselbe Richtung** zurück.
+
+<TrainPassengerRelativeLab
+  title={<>Ein Zug fährt am Bahnsteig vorbei</>}
+  description={
+    <>
+      Schau zuerst vom Bahnsteig aus. Der pinke Pfeil ist die konstante Geschwindigkeit des Zuges, der türkise gehört zu einer Person, die darin geht.
+    </>
+  }
+  labels={{
+    chooseObserver: "Beobachter wählen",
+    chooseWay: "Gehrichtung wählen",
+    observers: {
+      platform: <>Vom Bahnsteig</>,
+      train: <>Von einem Sitzplatz</>,
+    },
+    passenger: <>Geschwindigkeit der Person</>,
+    train: <>Geschwindigkeit des Zuges</>,
+    viewLabel: "Person geht durch einen fahrenden Zug",
+    walk: <>Gehgeschwindigkeit im Wagen</>,
+    ways: {
+      forward: <>Nach vorn gehen</>,
+      backward: <>Nach hinten gehen</>,
+    },
+  }}
+/>
+
+Vom Bahnsteig aus ändert sich der Pfeil des Zuges nie, und genau das bedeutet konstante Geschwindigkeit. Von einem Sitzplatz aus steht der Zug still, also kann dieselbe Bewegung für einen Beobachter gleichförmig und für einen anderen gar nicht vorhanden sein.
+
 ## Positionsmarkierungen mit gleichem Abstand
 
 Wird die Position eines Objekts in **gleichen Zeitabständen** aufgezeichnet, entstehen bei gleichförmiger geradliniger Bewegung gleichmäßig verteilte Marken. Ihre Abstände zeigen unmittelbar, wie weit sich das Objekt in jedem Zeitintervall bewegt.
@@ -59,6 +90,35 @@ Der Positionswert ändert sich, während die Differenz zwischen aufeinanderfolge
   }}
 />
 
+### Gleich lange Streifen auf dem Tickerband
+
+Ein Tickerband ist die Laborversion gleich weit verteilter Positionsmarken. Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt, und bei konstanter Geschwindigkeit **ist jeder Streifen von einer Zehntelsekunde gleich lang**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Tickerband eines gleichmäßigen Wagens</>}
+  description={
+    <>
+      Stell die Streifen nebeneinander: Gleich lange Streifen ergeben ein flaches Geschwindigkeitsdiagramm.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung aus den Streifen</>,
+    chooseMotion: "Bewegung des Wagens wählen",
+    firstStrip: <>Erster Streifen</>,
+    interval: <>Zeit zwischen zwei Punkten</>,
+    lastStrip: <>Letzter Streifen</>,
+    motions: {
+      uniform: <>Gleichmäßig</>,
+      speeding: <>Schneller werdend</>,
+      slowing: <>Langsamer werdend</>,
+    },
+    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+  }}
+/>
+
+Jeder Streifen ist <InlineMath math="6\text{ cm}" /> lang, also fährt der Wagen mit <InlineMath math="\frac{0{,}06\text{ m}}{0{,}1\text{ s}}=0{,}6\text{ m/s}" />, und die Beschleunigung aus den Streifen ist <InlineMath math="0" />.
+
 ## Die Endposition berechnen
 
 Angenommen, ein Objekt startet bei <InlineMath math="x_0=1\text{ m}" /> und bewegt sich mit konstanter Geschwindigkeit <InlineMath math="v=2\text{ m/s}" /> für <InlineMath math="5\text{ s}" /> nach rechts. Seine Verschiebung beträgt:
@@ -83,7 +143,7 @@ Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Se
 
 <MathVisual
   title={<>Gleiche Schritte ergeben eine Gerade</>}
-  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 2 m.</>}
+  description={<><InlineMath math="x=1\text{ m}+(2\text{ m/s})\,t" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.5, max: 6.5 } },
@@ -106,6 +166,29 @@ Die Punkte unten sind die Positionsmarken, eine pro Sekunde. Sie steigen jede Se
   }}
 />
 
+### Jedes Intervall liefert dieselbe Steigung
+
+Im Ort-Zeit-Diagramm einer gleichförmigen Bewegung **hat jede Sekante dieselbe Steigung**, weil das Diagramm eine einzige Gerade ist. Ein Auto, das gleichmäßig mit <InlineMath math="8\text{ m/s}" /> fährt, folgt <InlineMath math="x=8t" />.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Ein Auto mit konstanter Geschwindigkeit</>}
+  description={
+    <>
+      Wähle ein beliebiges Intervall. Die Sekante liegt immer auf dem Diagramm selbst.
+    </>
+  }
+  labels={{
+    change: <>Verschiebung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Geschwindigkeit</>,
+    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+  }}
+/>
+
+Von <InlineMath math="0" /> bis <InlineMath math="2\text{ s}" /> legt das Auto <InlineMath math="16\text{ m}" /> zurück, von <InlineMath math="4" /> bis <InlineMath math="10\text{ s}" /> <InlineMath math="48\text{ m}" />, und beides ergibt <InlineMath math="\bar{v}=8\text{ m/s}" />. Nach <InlineMath math="10\text{ s}" /> ist seine Endposition <InlineMath math="x=8(10)=80\text{ m}" />.
+
 ## Gleichförmige Bewegung in Diagrammen erkennen
 
 Eine gleichförmige geradlinige Bewegung lässt sich in zwei grundlegenden Diagrammen erkennen. Das **Geschwindigkeits-Zeit-Diagramm** zeigt, ob sich die Geschwindigkeit ändert. Das Positions-Zeit-Diagramm zeigt, wie sich die Position mit der Zeit entwickelt.
@@ -123,7 +206,7 @@ Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <In
 
 <MathVisual
   title={<>Konstante Geschwindigkeit und ihre Fläche</>}
-  description={<><InlineMath math="v=2\text{ m/s}" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s.</>}
+  description={<><InlineMath math="v=2\text{ m/s}" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Geschwindigkeit in m/s.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 3 } },
@@ -145,3 +228,27 @@ Im Geschwindigkeit-Zeit-Diagramm ist dieselbe Bewegung eine flache Linie bei <In
 Eine gleichförmige geradlinige Bewegung verlangt eine konstante Geschwindigkeit. Betrag und Richtung müssen gleich bleiben. Ein konstanter Geschwindigkeitsbetrag legt nur das Tempo fest.
 
 Ein Auto, das mit konstantem Geschwindigkeitsbetrag auf einer Kreisstraße fährt, führt keine gleichförmige geradlinige Bewegung aus, <Highlight>denn die Richtung seiner Geschwindigkeit ändert sich fortlaufend</Highlight>. Ein Schienenwagen, der sich mit konstantem Betrag und konstanter Richtung geradeaus bewegt, erfüllt beide Bedingungen.
+
+### Konstante Schnelligkeit auf einer Kurvenbahn
+
+Ein Läufer, der auf einer Laufbahn <InlineMath math="8\text{ m/s}" /> hält, hat eine konstante Schnelligkeit, doch **die Geschwindigkeit ändert in jeder Kurve ihre Richtung**, also ist das keine gleichförmige geradlinige Bewegung.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Konstante Schnelligkeit ist keine konstante Geschwindigkeit</>}
+  description={
+    <>
+      Ein Läufer hält <InlineMath math="8\text{ m/s}" /> auf Bahn <InlineMath math="1" />. Halte den Lauf an jeder Marke an und vergleiche den türkisen Pfeil von Marke zu Marke.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    chooseDistance: "Laufstrecke wählen",
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gelaufene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Läufer auf einer 400-m-Leichtathletikbahn von oben gesehen",
+  }}
+/>
+
+Nur auf den Geraden behält der Pfeil Länge und Richtung. Eine Runde dauert bei gleichmäßiger Schnelligkeit <InlineMath math="\frac{400}{8}=50\text{ s}" />, doch der Läufer endet am Start, mit einer mittleren Geschwindigkeit von <InlineMath math="0" />.

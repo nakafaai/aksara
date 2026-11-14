@@ -25,6 +25,28 @@ Startet ein Auto mit <InlineMath math="0\text{ m/s}" /> und nimmt seine Geschwin
 
 Hier ist <InlineMath math="v_0" /> die Anfangsgeschwindigkeit, <InlineMath math="v_t" /> die Geschwindigkeit nach der Zeit <InlineMath math="t" />, <InlineMath math="a" /> die Beschleunigung und <InlineMath math="\Delta x" /> die Verschiebung.
 
+### Galilei hat es mit Glocken gemessen
+
+Galilei hat gleichmäßig beschleunigte Bewegung geprüft, indem er eine Kugel eine flache Rampe hinabrollen ließ. **Die Geschwindigkeit wächst jede Sekunde um denselben Betrag**, also bewegt sich die Kugel bei <InlineMath math="3^\circ" /> nach jeder Sekunde mit etwa <InlineMath math="0{,}374" />, <InlineMath math="0{,}748" />, <InlineMath math="1{,}12" /> und <InlineMath math="1{,}50\text{ m/s}" />.
+
+<GalileoInclineBellsLab
+  title={<>Galileis Rampe und ihre Glocken</>}
+  description={
+    <>
+      Vier Glocken stehen dort, wo die Kugel nach <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4\text{ s}" /> ist. Sie läuten im gleichen Takt, obwohl ihre Abstände wachsen.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung die Rampe hinab</>,
+    chooseAngle: "Neigungswinkel wählen",
+    firstSecond: <>Weg in der ersten Sekunde</>,
+    gaps: <>Abstände der Glocken</>,
+    viewLabel: "Stahlkugel rollt an vier Glocken vorbei Galileis Rampe hinab",
+  }}
+/>
+
+Die Glocken stehen etwa bei <InlineMath math="0{,}19" />, <InlineMath math="0{,}75" />, <InlineMath math="1{,}68" /> und <InlineMath math="2{,}99\text{ m}" /> auf der Rampe, also wachsen die Abstände wie <InlineMath math="1:3:5:7" />. Gleiche Geschwindigkeitsänderungen in gleichen Zeiten ergeben aus der Ruhe immer dieses Muster.
+
 ## Positionsmarkierungen bleiben nicht mehr gleichmäßig verteilt
 
 Bei einer gleichförmigen geradlinigen Bewegung haben die Positionsmarken für jede Sekunde denselben Abstand. Bei gleichmäßig beschleunigter Bewegung können sich diese Abstände verändern. Solange sich das Objekt in **dieselbe Richtung** bewegt, wachsen die Abstände bei zunehmendem Geschwindigkeitsbetrag und schrumpfen bei abnehmendem Betrag. Bei einer Richtungsumkehr müssen zusätzlich die Reihenfolge und die Seite der Marken betrachtet werden.
@@ -60,7 +82,7 @@ Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde be
 
 <MathVisual
   title={<>Positionsmarken rücken auseinander</>}
-  description={<><InlineMath math="x=\tfrac12at^2" /> mit <InlineMath math="a=2\text{ m/s}^2" /> für 5 s. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von 5 m.</>}
+  description={<><InlineMath math="x=\tfrac12at^2" /> mit <InlineMath math="a=2\text{ m/s}^2" /> für <InlineMath math="5\text{ s}" />. Waagrecht: Zeit in s. Senkrecht: Position in Einheiten von <InlineMath math="5\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6 }, y: { min: -0.5, max: 5.5 } },
@@ -81,6 +103,35 @@ Beim Spielzeugauto, das aus dem Stand startet, liegen die Marken jede Sekunde be
     marks: <InlineMath math="1,\ 4,\ 9,\ 16,\ 25\text{ m}" />,
   }}
 />
+
+### Streifen wachsen um einen Zentimeter
+
+Ein Tickerband bringt dieselbe Idee aufs Papier. Der Wagen beschleunigt mit <InlineMath math="1\text{ m/s}^2" />, und **jeder Streifen von einer Zehntelsekunde ist <InlineMath math="1\text{ cm}" /> länger als der davor**.
+
+<TickerTapeMotionLab
+  motion="speeding"
+  title={<>Tickerband eines schneller werdenden Wagens</>}
+  description={
+    <>
+      Der Ticker druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt. Nebeneinander gestellt bilden die Streifen ein Geschwindigkeit-Zeit-Diagramm, dessen Oberkanten gerade ansteigen.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung aus den Streifen</>,
+    chooseMotion: "Bewegung des Wagens wählen",
+    firstStrip: <>Erster Streifen</>,
+    interval: <>Zeit zwischen zwei Punkten</>,
+    lastStrip: <>Letzter Streifen</>,
+    motions: {
+      uniform: <>Gleichmäßig</>,
+      speeding: <>Schneller werdend</>,
+      slowing: <>Langsamer werdend</>,
+    },
+    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+  }}
+/>
+
+Die Streifen wachsen von <InlineMath math="2{,}5\text{ cm}" /> auf <InlineMath math="9{,}5\text{ cm}" />. Ein Streifen dauert <InlineMath math="0{,}1\text{ s}" />, also ist <InlineMath math="a=\frac{0{,}01\text{ m}}{(0{,}1\text{ s})^2}=1\text{ m/s}^2" />, und alle Streifen zusammen sind die <InlineMath math="48\text{ cm}" />, die der Wagen gefahren ist.
 
 ## Verschiebung aus der Diagrammfläche berechnen
 
@@ -141,6 +192,29 @@ Die beiden Ergebnisse beantworten unterschiedliche Fragen. Die Endgeschwindigkei
 Du kannst die Verschiebung über die **Dreiecksfläche unter dem Geschwindigkeits-Zeit-Diagramm** überprüfen. Die Grundseite ist das Zeitintervall, die Höhe die Endgeschwindigkeit.
 
 <BlockMath math="\Delta x=\frac{1}{2}(5\text{ s})(10\text{ m/s})=25\text{ m}" />
+
+### Start aus der Ruhe im Stroboskopfoto
+
+Eine fallengelassene Kugel ist der reinste Start aus der Ruhe: Sie gewinnt jede Sekunde <InlineMath math="10\text{ m/s}" /> dazu. **Aus der Ruhe wächst die Fallstrecke mit dem Quadrat der Zeit**, <InlineMath math="h=\frac{1}{2}gt^2" />.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Eine Kugel fällt aus der Ruhe</>}
+  description={
+    <>
+      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />, während der Verschluss offen bleibt, also ist jedes Bild ein Blitz.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Schnelligkeit am Boden</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Nach <InlineMath math="0{,}1" />, <InlineMath math="0{,}2" /> und <InlineMath math="0{,}3\text{ s}" /> ist die Kugel <InlineMath math="5" />, <InlineMath math="20" /> und <InlineMath math="45\text{ cm}" /> gefallen, dasselbe <InlineMath math="1:4:9" />-Muster wie beim Auto, das aus dem Stand anfährt. Den Boden <InlineMath math="1{,}8\text{ m}" /> tiefer erreicht sie nach <InlineMath math="0{,}6\text{ s}" />.
 
 ## Das Beschleunigungsvorzeichen hängt von der positiven Richtung ab
 

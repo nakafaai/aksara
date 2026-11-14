@@ -62,6 +62,34 @@ Bandingkan benda yang bergerak dari titik awal ke titik akhir lewat dua rute. Pa
 
 Pada simulasi, pilih rute berbelok lalu rute kembali. Bandingkan **panjang lintasan** dengan **besar perpindahan**. Saat mobil kembali ke awal, lintasan tetap mempunyai panjang, sedangkan garis penghubung awal dan akhir mempunyai panjang nol.
 
+### Jalan Memutar di Kota
+
+Perbesar contoh pelajaran ini ke ukuran kota, lalu **bandingkan jalur dengan panahnya**: kamu berjalan <InlineMath math="400\text{ m}" /> ke timur di sepanjang jalan, lalu <InlineMath math="300\text{ m}" /> ke selatan, dengan kelajuan <InlineMath math="1{,}25\text{ m/s}" />.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 400, north: 0 },
+    { east: 0, north: -300 },
+  ]}
+  pace={1.25}
+  title={<>Jalan Memutar di Kota</>}
+  description={
+    <>
+      Jalur kuning adalah jarak yang kamu tempuh. Panah ungu adalah perpindahan, lurus dari titik awal ke posisimu sekarang.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Kelajuan rata-rata</>,
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    time: <>Waktu</>,
+    viewLabel: "Jalan kaki di kota dilihat dari atas",
+  }}
+/>
+
+Panjang jalurnya <InlineMath math="700\text{ m}" />, tetapi panahnya hanya <InlineMath math="500\text{ m}" />, segitiga <InlineMath math="3:4:5" /> yang sama seperti tadi. Dalam <InlineMath math="560\text{ s}" />, kelajuan rata-ratanya <InlineMath math="1{,}25\text{ m/s}" />, sedangkan besar kecepatan rata-ratanya hanya sekitar <InlineMath math="0{,}89\text{ m/s}" />.
+
 ## Jarak Menyatakan Panjang Lintasan
 
 Jarak selalu bernilai nol atau positif. Jarak menjawab pertanyaan, "berapa panjang lintasan yang ditempuh?" Karena itu, <Highlight>jarak tidak menyebut arah</Highlight>.
@@ -71,6 +99,30 @@ Jika benda berjalan <InlineMath math="4 \text{ m}" /> ke timur lalu <InlineMath 
 <BlockMath math="s=4 \text{ m}+3 \text{ m}=7 \text{ m}" />
 
 Simbol <InlineMath math="s" /> sering digunakan untuk menyatakan jarak tempuh.
+
+### Jarak Hanya Bertambah
+
+Jarak **hanya bisa bertambah** selama kamu bergerak. Di lintasan lari <InlineMath math="400\text{ m}" />, setiap tambahan lari <InlineMath math="100\text{ m}" /> menambah jarak <InlineMath math="100\text{ m}" />, ke mana pun tikungannya berbelok.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Jarak di Lintasan Lari</>}
+  description={
+    <>
+      Pelari di lajur <InlineMath math="1" /> berlari tetap <InlineMath math="8\text{ m/s}" />. Hentikan larinya di setiap tanda dan perhatikan jarak yang terus naik, sementara perpindahannya tidak.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Besar kecepatan rata-rata</>,
+    chooseDistance: "Pilih jarak lari",
+    displacement: <>Besar perpindahan</>,
+    distance: <>Jarak lari</>,
+    time: <>Waktu</>,
+    viewLabel: "Pelari di lintasan atletik 400 m dilihat dari atas",
+  }}
+/>
+
+Jaraknya terbaca <InlineMath math="100" />, <InlineMath math="200" />, <InlineMath math="300" />, dan <InlineMath math="400\text{ m}" />. Perpindahannya berubah dari sekitar <InlineMath math="72\text{ m}" /> ke <InlineMath math="112\text{ m}" />, turun lagi ke sekitar <InlineMath math="100\text{ m}" />, lalu akhirnya <InlineMath math="0" />.
 
 ## Perpindahan Memiliki Besar dan Arah
 
@@ -83,6 +135,33 @@ Perpindahan adalah besaran vektor. Artinya, perpindahan memiliki **besar dan ara
 \end{aligned}" />
 
 Arah perpindahan mengikuti garis lurus dari titik awal ke titik akhir.
+
+### Perpindahan Sama dari Patokan Mana Pun
+
+Perpindahan **tidak bergantung pada letak titik nol**. Pesepeda bergerak dari <InlineMath math="20\text{ m}" /> ke <InlineMath math="50\text{ m}" /> di timur toko, lalu kembali ke <InlineMath math="35\text{ m}" />. Ukur dari toko, dari rumah Rani, atau dari tiang bendera.
+
+<StreetOriginPositionLab
+  title={<>Satu Perjalanan, Tiga Titik Acuan</>}
+  description={
+    <>
+      Timur bernilai positif. Panah kuning berawal dari titik acuan yang dipilih dan berakhir di pesepeda, dan grafiknya menunjukkan posisi terhadap waktu.
+    </>
+  }
+  labels={{
+    change: <>Perubahan posisi</>,
+    chooseOrigin: "Pilih titik acuan",
+    end: <>Posisi akhir</>,
+    origins: {
+      store: <>Toko</>,
+      house: <>Rumah Rani</>,
+      pole: <>Tiang bendera</>,
+    },
+    start: <>Posisi awal</>,
+    viewLabel: "Pesepeda di jalan dengan tiga tempat",
+  }}
+/>
+
+Posisi awal dan akhirnya berubah mengikuti titik acuan, tetapi perubahan posisinya selalu <InlineMath math="+15\text{ m}" />: <InlineMath math="15\text{ m}" /> ke arah timur, sementara panjang jalur yang ditempuh <InlineMath math="45\text{ m}" />.
 
 ## Saat Kembali ke Titik Awal
 
@@ -128,6 +207,29 @@ Tiga perjalanan berangkat dari titik awal yang sama. Yang lurus punya jarak sama
   }}
 />
 
+### Pergi dan Kembali pada Grafik
+
+Mobil yang mulai menanjak di jalan landai dengan kecepatan <InlineMath math="6\text{ m/s}" /> meluncur maju, berhenti setelah <InlineMath math="5\text{ s}" />, lalu meluncur kembali ke titik awalnya. Grafik posisi terhadap waktunya **naik, lalu turun lagi ke nol**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Pergi dan Kembali</>}
+  description={
+    <>
+      Pilih selang waktu. Bendera menandai dua posisi mobil, dan garis potong menghubungkan keduanya pada grafik.
+    </>
+  }
+  labels={{
+    change: <>Perpindahan</>,
+    chooseInterval: "Pilih selang waktu",
+    elapsed: <>Selang waktu</>,
+    rate: <>Kecepatan rata-rata</>,
+    viewLabel: "Perjalanan mobil dengan grafik posisi terhadap waktu",
+  }}
+/>
+
+Dari <InlineMath math="0" /> sampai <InlineMath math="10\text{ s}" />, mobil menempuh <InlineMath math="15\text{ m}" /> maju dan <InlineMath math="15\text{ m}" /> kembali, jadi jaraknya <InlineMath math="30\text{ m}" />, tetapi perpindahannya <InlineMath math="0" /> dan garis potongnya datar.
+
 ## Jarak dan Perpindahan pada Lintasan Berbelok
 
 Seorang siswa berjalan <InlineMath math="8 \text{ m}" /> ke timur, lalu <InlineMath math="6 \text{ m}" /> ke utara. Jarak tempuhnya adalah:
@@ -148,7 +250,7 @@ Putar perjalanan di bawah. Panah oranye dan ungu adalah lintasannya, jaraknya <I
 
 <MathVisual
   title={<>Jarak dan Perpindahan pada Belokan</>}
-  description={<>8 m ke timur, lalu 6 m ke utara, dilihat dari atas. Satu kotak grid sama dengan 2 m.</>}
+  description={<><InlineMath math="8\text{ m}" /> ke timur, lalu <InlineMath math="6\text{ m}" /> ke utara, dilihat dari atas. Satu kotak grid sama dengan <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "space",
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: 0, max: 1 }, z: { min: -3.5, max: 0.5 } },

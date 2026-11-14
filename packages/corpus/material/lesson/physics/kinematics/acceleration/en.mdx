@@ -81,6 +81,31 @@ Use the trace to compare velocity from one interval to the next. Then use the gr
 
 On the graph, the dashed line shows the full connected graph. The thick line is the segment being read. If the line rises, velocity increases. If it stays flat, velocity is constant. If it slopes downward, velocity decreases. The segment's average acceleration is the ratio of <InlineMath math="\Delta v" /> to <InlineMath math="\Delta t" />.
 
+### A Ramp That Keeps the Beat
+
+Galileo slowed falling down by letting a ball roll down a gentle ramp. The ball gains **the same velocity every second**, so the distance it covers grows with the square of the time. Bells placed at one, four, nine, and sixteen times the first second's distance ring at an even beat.
+
+<GalileoInclineBellsLab
+  title={<>Galileo's Ramp and Bells</>}
+  description={
+    <>
+      A steel ball rolls from rest past four bells placed where it will be
+      after <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="3" />, and <InlineMath math="4\text{ s}" />. Tilt
+      the ramp and compare the gaps.
+    </>
+  }
+  labels={{
+    acceleration: <>Acceleration down the ramp</>,
+    chooseAngle: "Choose the ramp angle",
+    firstSecond: <>Distance in the first second</>,
+    gaps: <>Gaps between bells</>,
+    viewLabel: "Steel ball rolling down Galileo's ramp past four bells",
+  }}
+/>
+
+At <InlineMath math="3^\circ" /> the ball speeds up by about <InlineMath math="0.374\text{ m/s}^2" />, so it rolls <InlineMath math="18.7\text{ cm}" /> in the first second. At every angle the gaps keep the ratio <InlineMath math="1:3:5:7" />, because a constant acceleration adds the same velocity each second.
+
 ## Reading the Sign of Acceleration
 
 The sign of acceleration cannot be read by itself. It always depends on the positive direction we choose. In this one-dimensional example, let the rightward direction be positive.
@@ -125,6 +150,37 @@ Read the signs together. With <InlineMath math="v>0" />, an acceleration of the 
   }}
 />
 
+### Strips That Shrink
+
+A ticker tape shows the same reading in the lab. When a trolley rolls to the right and slows down, every tenth-of-a-second strip is **shorter than the one before** by the same amount, so the velocity change points to the negative side.
+
+<TickerTapeMotionLab
+  motion="slowing"
+  title={<>Ticker Tape of a Slowing Trolley</>}
+  description={
+    <>
+      The timer prints a dot every <InlineMath math="0.02\text{ s}" />. Each
+      strip holds <InlineMath math="0.1\text{ s}" /> of tape and stands on
+      the chart like one bar of a velocity-time graph.
+    </>
+  }
+  labels={{
+    acceleration: <>Acceleration from the strips</>,
+    chooseMotion: "Choose the trolley's motion",
+    firstStrip: <>First strip</>,
+    interval: <>Time between dots</>,
+    lastStrip: <>Last strip</>,
+    motions: {
+      uniform: <>Steady</>,
+      speeding: <>Speeding up</>,
+      slowing: <>Slowing down</>,
+    },
+    viewLabel: "Trolley pulling paper tape through a ticker timer",
+  }}
+/>
+
+The strips fall from <InlineMath math="9.5\text{ cm}" /> to <InlineMath math="2.5\text{ cm}" />, losing <InlineMath math="1\text{ cm}" /> each time. One strip lasts <InlineMath math="0.1\text{ s}" />, so the acceleration is <InlineMath math="\frac{-0.01\text{ m}}{(0.1\text{ s})^2}=-1\text{ m/s}^2" /> while the trolley is still moving to the right.
+
 ## Calculating Velocity Change Each Second
 
 Suppose a car changes velocity from <InlineMath math="2\text{ m/s}" /> to <InlineMath math="18\text{ m/s}" /> in <InlineMath math="4\text{ s}" />. Its average acceleration is:
@@ -145,6 +201,31 @@ a_{\text{avg}} &= \frac{2-18}{4} \\
 \end{aligned}" />
 
 The value <InlineMath math="-4\text{ m/s}^2" /> means the velocity decreases by <InlineMath math="4\text{ m/s}" /> each second if the car is still moving in the positive direction.
+
+### Average Acceleration on a Commute
+
+A real trip rarely keeps one acceleration. On the velocity-time graph of a commute, the average acceleration over any interval is **the slope of the line joining its two points**.
+
+<CarTripSecantSlopeLab
+  graph="velocity"
+  trip="commute"
+  title={<>Average Acceleration on a Commute</>}
+  description={
+    <>
+      The car speeds up, cruises, brakes for a red light, waits, and drives
+      on. Pick an interval to draw its secant on the velocity-time graph.
+    </>
+  }
+  labels={{
+    change: <>Change in velocity</>,
+    chooseInterval: "Choose a time interval",
+    elapsed: <>Time interval</>,
+    rate: <>Average acceleration</>,
+    viewLabel: "Car on a commute with its velocity-time graph",
+  }}
+/>
+
+From <InlineMath math="0" /> to <InlineMath math="4\text{ s}" /> the velocity grows from <InlineMath math="0" /> to <InlineMath math="10\text{ m/s}" />, so <InlineMath math="\bar{a}=2.5\text{ m/s}^2" />. Over the whole <InlineMath math="20\text{ s}" /> the car ends at <InlineMath math="10\text{ m/s}" />, so <InlineMath math="\bar{a}=0.5\text{ m/s}^2" />, even though it braked hard in between.
 
 ## Zero Acceleration Still Needs Interpretation
 

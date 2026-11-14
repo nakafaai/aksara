@@ -65,6 +65,34 @@ In the table below, rightward is positive.
 
 Notice the last row. The object clearly moves because its distance is <InlineMath math="16 \text{ m}" />, but its final position change is zero because it returns to the starting point.
 
+### Two Averages from One Walk
+
+Walk <InlineMath math="300\text{ m}" /> north and then <InlineMath math="400\text{ m}" /> east at <InlineMath math="1.25\text{ m/s}" />. **The same walk gives two different averages**, one from the path and one from the arrow.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 0, north: 300 },
+    { east: 400, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>Two Averages from One Walk</>}
+  description={
+    <>
+      The amber path is the distance and the violet arrow the displacement. Both are divided by the same time.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Average speed</>,
+    averageVelocity: <>Size of the average velocity</>,
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance walked</>,
+    time: <>Time</>,
+    viewLabel: "Walk through a town seen from above",
+  }}
+/>
+
+The walk takes <InlineMath math="\frac{700}{1.25}=560\text{ s}" />. Average speed is <InlineMath math="\frac{700}{560}=1.25\text{ m/s}" />, while the average velocity has size <InlineMath math="\frac{500}{560}\approx0.89\text{ m/s}" />, pointing from the start to the end.
+
 ## Average Speed Uses Path Length
 
 Suppose an object moves from position <InlineMath math="0 \text{ m}" /> to <InlineMath math="8 \text{ m}" />, then returns to position <InlineMath math="4 \text{ m}" />. The entire journey takes <InlineMath math="4 \text{ s}" />.
@@ -80,6 +108,30 @@ The average speed is:
 This value only tells how fast the object moved along the path. It does not describe the net direction.
 
 Average speed is therefore **always nonnegative**. As long as the object keeps moving along a path, the accumulated path length increases.
+
+### Speed Counts Every Metre of the Lap
+
+A runner keeps <InlineMath math="8\text{ m/s}" /> around a <InlineMath math="400\text{ m}" /> track. **Average speed uses every metre run**, so it stays <InlineMath math="8\text{ m/s}" /> wherever you stop the runner.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Speed and Velocity on a Lap</>}
+  description={
+    <>
+      A runner keeps <InlineMath math="8\text{ m/s}" /> on lane <InlineMath math="1" /> of a <InlineMath math="400\text{ m}" /> track. Stop the run at each mark and read the two averages under the scene.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Size of the average velocity</>,
+    chooseDistance: "Choose how far the runner goes",
+    displacement: <>Size of the displacement</>,
+    distance: <>Distance run</>,
+    time: <>Time</>,
+    viewLabel: "Runner on a 400 m athletics track seen from above",
+  }}
+/>
+
+After a full lap of <InlineMath math="50\text{ s}" /> the average speed is <InlineMath math="\frac{400}{50}=8\text{ m/s}" />. The displacement is zero, so the average velocity is <InlineMath math="0" />, the clearest case where the two values differ.
 
 ## Average Velocity Uses Displacement
 
@@ -99,7 +151,7 @@ Both trips below take <InlineMath math="4\text{ s}" /> and both reach <InlineMat
 
 <MathVisual
   title={<>Two Trips, Two Speeds, Two Velocities</>}
-  description={<>Out to 8 m and back to 4 m or to 0 m, each in 4 s at constant speed. Horizontal: time in s. Vertical: position in units of 2 m.</>}
+  description={<>Out to <InlineMath math="8\text{ m}" /> and back to <InlineMath math="4\text{ m}" /> or to <InlineMath math="0\text{ m}" />, each in <InlineMath math="4\text{ s}" /> at constant speed. Horizontal: time in s. Vertical: position in units of <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
@@ -136,6 +188,29 @@ The displacement is <InlineMath math="0 \text{ m}" />, so the velocity is:
 
 So average speed can be nonzero while average velocity over the trip is zero. <Highlight>Speed uses path length</Highlight>, while velocity uses the change in position from start to finish.
 
+### Out and Back on One Line
+
+A car rolls up a gentle slope at <InlineMath math="6\text{ m/s}" />, stops after <InlineMath math="5\text{ s}" />, and rolls back to its start. On the way back **its velocity is negative while its speed stays positive**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Rolling Out and Back</>}
+  description={
+    <>
+      Pick an interval and read the average velocity. The flags mark the car's two positions.
+    </>
+  }
+  labels={{
+    change: <>Displacement</>,
+    chooseInterval: "Choose a time interval",
+    elapsed: <>Time interval</>,
+    rate: <>Average velocity</>,
+    viewLabel: "Car trip with its position-time graph",
+  }}
+/>
+
+From <InlineMath math="5" /> to <InlineMath math="10\text{ s}" /> the average velocity is <InlineMath math="-3\text{ m/s}" />, but the average speed is <InlineMath math="\frac{15}{5}=3\text{ m/s}" />. Over the whole <InlineMath math="10\text{ s}" /> the speed averages <InlineMath math="3\text{ m/s}" /> and the velocity averages <InlineMath math="0" />.
+
 ## Choosing the Right Formula
 
 | Quantity | Based on | Has direction? | Example unit |
@@ -149,7 +224,7 @@ Run around a track and the two averages split. After a full lap your distance is
 
 <MathVisual
   title={<>Distance Gives Speed, Displacement Gives Velocity</>}
-  description={<>A circular track of radius 3 m with the start (fuchsia) and the half-lap displacement (orange).</>}
+  description={<>A circular track of radius <InlineMath math="3\text{ m}" /> with the start (fuchsia) and the half-lap displacement (orange).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 9 }, y: { min: -4, max: 4 } },
@@ -170,3 +245,26 @@ Run around a track and the two averages split. After a full lap your distance is
     half: <InlineMath math="\text{half: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
   }}
 />
+
+### A Speed Trap Measures Speed
+
+A road speed trap reports a speed, not a velocity. **It divides the gap between two beams by the time between them**, whichever way the car drives.
+
+<SpeedTrapInstantSpeedLab
+  title={<>A Speed Trap on a Test Track</>}
+  description={
+    <>
+      A car speeds up from rest through two gates around the <InlineMath math="50\text{ m}" /> mark. Shrink the gap and compare the reading.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Trap reading</>,
+    chooseGap: "Choose the gap between the gates",
+    elapsed: <>Time between the beams</>,
+    gap: <>Gap between the gates</>,
+    instantSpeed: <>Speed at the centre</>,
+    viewLabel: "Car crossing two light gates on a test track",
+  }}
+/>
+
+With a <InlineMath math="40\text{ m}" /> gap the trap reads <InlineMath math="19.58\text{ m/s}" />. Turn the car around and the reading stays the same, while the velocity would change sign.

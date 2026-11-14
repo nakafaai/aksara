@@ -65,6 +65,34 @@ Dalam jadual di bawah, arah ke kanan ialah arah positif.
 
 Perhatikan baris terakhir. Objek itu jelas bergerak kerana jaraknya <InlineMath math="16 \text{ m}" />, tetapi perubahan kedudukan akhirnya sifar kerana ia kembali ke titik mula.
 
+### Dua Purata daripada Satu Perjalanan Kaki
+
+Berjalan <InlineMath math="300\text{ m}" /> ke utara dan kemudian <InlineMath math="400\text{ m}" /> ke timur pada <InlineMath math="1.25\text{ m/s}" />. **Perjalanan yang sama memberikan dua purata yang berbeza**, satu daripada laluan dan satu daripada anak panah.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: 0, north: 300 },
+    { east: 400, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>Dua Purata daripada Satu Perjalanan Kaki</>}
+  description={
+    <>
+      Laluan kuning ialah jarak dan anak panah ungu ialah sesaran. Kedua-duanya dibahagi dengan masa yang sama.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Laju purata</>,
+    averageVelocity: <>Magnitud halaju purata</>,
+    displacement: <>Magnitud sesaran</>,
+    distance: <>Jarak berjalan</>,
+    time: <>Masa</>,
+    viewLabel: "Berjalan melalui pekan dilihat dari atas",
+  }}
+/>
+
+Perjalanan itu mengambil masa <InlineMath math="\frac{700}{1.25}=560\text{ s}" />. Laju puratanya <InlineMath math="\frac{700}{560}=1.25\text{ m/s}" />, manakala magnitud halaju puratanya <InlineMath math="\frac{500}{560}\approx0.89\text{ m/s}" />, menghala dari titik mula ke titik akhir.
+
 ## Laju Purata Menggunakan Panjang Lintasan
 
 Katakan sebuah objek bergerak dari kedudukan <InlineMath math="0 \text{ m}" /> ke <InlineMath math="8 \text{ m}" />, kemudian kembali ke kedudukan <InlineMath math="4 \text{ m}" />. Seluruh perjalanan mengambil masa <InlineMath math="4 \text{ s}" />.
@@ -80,6 +108,30 @@ Laju puratanya ialah:
 Nilai ini hanya memberitahu berapa pantas objek bergerak di sepanjang lintasan. Ia tidak menerangkan arah bersih.
 
 Oleh itu, laju purata **sentiasa bukan negatif**. Selagi objek terus bergerak di sepanjang lintasan, jumlah panjang lintasan yang terkumpul akan bertambah.
+
+### Laju Mengira Setiap Meter Pusingan
+
+Seorang pelari mengekalkan <InlineMath math="8\text{ m/s}" /> di sekeliling trek <InlineMath math="400\text{ m}" />. **Laju purata menggunakan setiap meter larian**, jadi ia kekal <InlineMath math="8\text{ m/s}" /> di mana-mana pun kamu menghentikan pelari itu.
+
+<RunningTrackDisplacementLab
+  speed={8}
+  title={<>Laju dan Halaju dalam Satu Pusingan</>}
+  description={
+    <>
+      Seorang pelari mengekalkan <InlineMath math="8\text{ m/s}" /> di lorong <InlineMath math="1" /> pada trek <InlineMath math="400\text{ m}" />. Hentikan larian pada setiap tanda dan baca dua nilai purata di bawah gambar.
+    </>
+  }
+  labels={{
+    averageVelocity: <>Magnitud halaju purata</>,
+    chooseDistance: "Pilih jarak larian",
+    displacement: <>Magnitud sesaran</>,
+    distance: <>Jarak larian</>,
+    time: <>Masa</>,
+    viewLabel: "Pelari di trek olahraga 400 m dilihat dari atas",
+  }}
+/>
+
+Selepas satu pusingan penuh selama <InlineMath math="50\text{ s}" />, laju puratanya <InlineMath math="\frac{400}{50}=8\text{ m/s}" />. Sesarannya sifar, jadi halaju puratanya <InlineMath math="0" />, iaitu contoh paling jelas apabila kedua-dua nilai itu berbeza.
 
 ## Halaju Purata Menggunakan Sesaran
 
@@ -99,7 +151,7 @@ Kedua-dua perjalanan di bawah mengambil masa <InlineMath math="4\text{ s}" /> da
 
 <MathVisual
   title={<>Dua Perjalanan dengan Laju dan Halaju yang Berbeza</>}
-  description={<>Pergi ke 8 m dan kembali ke 4 m atau ke 0 m, setiap satu dalam 4 s pada laju malar. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit 2 m.</>}
+  description={<>Pergi ke <InlineMath math="8\text{ m}" /> dan kembali ke <InlineMath math="4\text{ m}" /> atau ke <InlineMath math="0\text{ m}" />, setiap satu dalam <InlineMath math="4\text{ s}" /> pada laju malar. Paksi mengufuk: masa dalam s. Paksi menegak: kedudukan dalam unit <InlineMath math="2\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5 } },
@@ -136,6 +188,29 @@ Sesarannya ialah <InlineMath math="0 \text{ m}" />, jadi halajunya ialah:
 
 Jadi, laju purata boleh mempunyai nilai bukan sifar walaupun halaju purata bagi perjalanan itu sifar. <Highlight>Laju menggunakan panjang lintasan</Highlight>, manakala halaju menggunakan perubahan kedudukan dari awal hingga akhir.
 
+### Pergi dan Balik pada Satu Garis
+
+Sebuah kereta mendaki cerun landai pada <InlineMath math="6\text{ m/s}" />, berhenti selepas <InlineMath math="5\text{ s}" />, lalu bergolek kembali ke titik mulanya. Dalam perjalanan pulang, **halajunya negatif sedangkan lajunya kekal positif**.
+
+<CarTripSecantSlopeLab
+  trip="return"
+  title={<>Bergolek Pergi dan Balik</>}
+  description={
+    <>
+      Pilih selang masa dan baca halaju purata. Bendera menandakan dua kedudukan kereta.
+    </>
+  }
+  labels={{
+    change: <>Sesaran</>,
+    chooseInterval: "Pilih selang masa",
+    elapsed: <>Selang masa</>,
+    rate: <>Halaju purata</>,
+    viewLabel: "Perjalanan kereta dengan graf kedudukan-masa",
+  }}
+/>
+
+Dari <InlineMath math="5" /> hingga <InlineMath math="10\text{ s}" />, halaju puratanya <InlineMath math="-3\text{ m/s}" />, tetapi laju puratanya <InlineMath math="\frac{15}{5}=3\text{ m/s}" />. Sepanjang <InlineMath math="10\text{ s}" />, laju puratanya <InlineMath math="3\text{ m/s}" /> dan halaju puratanya <InlineMath math="0" />.
+
 ## Memilih Rumus yang Betul
 
 | Kuantiti | Berdasarkan | Ada arah? | Contoh unit |
@@ -149,7 +224,7 @@ Kalau kamu berlari mengelilingi trek, kedua-dua purata itu akan berbeza. Selepas
 
 <MathVisual
   title={<>Jarak Memberi Laju dan Sesaran Memberi Halaju</>}
-  description={<>Trek bulat berjejari 3 m dengan titik mula (magenta) dan sesaran separuh pusingan (oren).</>}
+  description={<>Trek bulat berjejari <InlineMath math="3\text{ m}" /> dengan titik mula (magenta) dan sesaran separuh pusingan (oren).</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -5, max: 9 }, y: { min: -4, max: 4 } },
@@ -170,3 +245,26 @@ Kalau kamu berlari mengelilingi trek, kedua-dua purata itu akan berbeza. Selepas
     half: <InlineMath math="\text{separuh: } s=\pi r,\ \lvert\Delta x\rvert=2r=6\text{ m}" />,
   }}
 />
+
+### Perangkap Laju Mengukur Laju
+
+Perangkap laju di jalan raya melaporkan laju, bukan halaju. **Ia membahagikan jarak antara dua pancaran cahaya dengan masa di antaranya**, walau ke arah mana pun kereta itu dipandu.
+
+<SpeedTrapInstantSpeedLab
+  title={<>Perangkap Laju di Trek Ujian</>}
+  description={
+    <>
+      Sebuah kereta memecut dari keadaan pegun melalui dua get di sekitar tanda <InlineMath math="50\text{ m}" />. Kecilkan jarak antara get dan bandingkan bacaannya.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Bacaan perangkap</>,
+    chooseGap: "Pilih jarak antara get",
+    elapsed: <>Masa antara dua pancaran cahaya</>,
+    gap: <>Jarak antara get</>,
+    instantSpeed: <>Laju di titik tengah</>,
+    viewLabel: "Kereta melalui dua get cahaya di trek ujian",
+  }}
+/>
+
+Dengan jarak <InlineMath math="40\text{ m}" />, perangkap membaca <InlineMath math="19.58\text{ m/s}" />. Pusingkan arah kereta dan bacaannya kekal sama, sedangkan halaju akan bertukar tanda.

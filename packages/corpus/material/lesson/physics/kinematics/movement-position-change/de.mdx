@@ -20,6 +20,35 @@ Das Symbol <InlineMath math="\Delta x" /> wird als „Delta x“ gelesen und bez
 
 > Bewegung erkennt man daran, dass sich die Position mit der Zeit ändert. Die Verschiebung vergleicht nur zwei ausgewählte Endpunkte.
 
+### Positionen auf einem Papierband
+
+Ein Ticker verwandelt Positionen zu verschiedenen Zeiten in Punkte. Er druckt alle <InlineMath math="0{,}02\text{ s}" /> einen Punkt auf ein Band, das ein Wagen zieht, also ist **jeder Punkt die Position des Wagens zu einem Zeitpunkt**.
+
+<TickerTapeMotionLab
+  motion="uniform"
+  title={<>Positionen auf einem Tickerband</>}
+  description={
+    <>
+      Der Wagen zieht das Band durch den Ticker. Zähle die Punkte: Zwischen zwei Nachbarn vergeht immer dieselbe Zeit.
+    </>
+  }
+  labels={{
+    acceleration: <>Beschleunigung aus den Streifen</>,
+    chooseMotion: "Bewegung des Wagens wählen",
+    firstStrip: <>Erster Streifen</>,
+    interval: <>Zeit zwischen zwei Punkten</>,
+    lastStrip: <>Letzter Streifen</>,
+    motions: {
+      uniform: <>Gleichmäßig</>,
+      speeding: <>Schneller werdend</>,
+      slowing: <>Langsamer werdend</>,
+    },
+    viewLabel: "Wagen zieht ein Papierband durch einen Ticker",
+  }}
+/>
+
+Bei gleichmäßiger Bewegung ist jeder Streifen von einer Zehntelsekunde <InlineMath math="6\text{ cm}" /> lang. Vergleichst du zwei Punkte, weißt du, wie weit der Wagen zwischen diesen beiden Zeitpunkten gekommen ist, und genau das ist eine Positionsänderung.
+
 ## Positionsunterschied auf einer geraden Strecke
 
 Auf einer geraden Strecke mit festem Nullpunkt hängt die Positionsänderung nur von der **Endposition minus der Anfangsposition** ab. Wenn ein Objekt beispielsweise bei <InlineMath math="20 \text{ m}" /> beginnt und bei <InlineMath math="50 \text{ m}" /> endet, beträgt die Positionsänderung <InlineMath math="+30 \text{ m}" />.
@@ -40,7 +69,7 @@ Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links
 
 <MathVisual
   title={<>Gleiche Endpunkte, andere Bewegung</>}
-  description={<>Die Zeit in Sekunden läuft nach rechts. Die Position steigt in Einheiten von 10 m, also bedeutet 5 genau 50 m. Vergleiche, wo A und B bei 3 s sind.</>}
+  description={<>Die Zeit in Sekunden läuft nach rechts. Die Position steigt in Einheiten von <InlineMath math="10\text{ m}" />, also bedeutet <InlineMath math="5" /> genau <InlineMath math="50\text{ m}" />. Vergleiche, wo A und B bei <InlineMath math="3\text{ s}" /> sind.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 7 }, y: { min: 0, max: 6 } },
@@ -68,6 +97,29 @@ Zeichne beide Fälle als Position über der Zeit und folge jeder Linie von links
   }}
 />
 
+### Positionsänderungen im Diagramm ablesen
+
+Im Ort-Zeit-Diagramm ist **die Positionsänderung über ein Intervall der Anstieg zwischen seinen beiden Punkten**. Ein Auto, das gleichmäßig mit <InlineMath math="8\text{ m/s}" /> fährt, zeigt das sauber.
+
+<CarTripSecantSlopeLab
+  trip="cruise"
+  title={<>Positionsänderungen eines gleichmäßig fahrenden Autos</>}
+  description={
+    <>
+      Wähle ein Intervall. Die Fahnen markieren die beiden Positionen auf der Straße, und die senkrechte Stufe im Diagramm ist die Positionsänderung.
+    </>
+  }
+  labels={{
+    change: <>Verschiebung</>,
+    chooseInterval: "Zeitintervall wählen",
+    elapsed: <>Zeitintervall</>,
+    rate: <>Mittlere Geschwindigkeit</>,
+    viewLabel: "Autofahrt mit ihrem Ort-Zeit-Diagramm",
+  }}
+/>
+
+Von <InlineMath math="2" /> bis <InlineMath math="6\text{ s}" /> fährt das Auto von <InlineMath math="16\text{ m}" /> nach <InlineMath math="48\text{ m}" />, also ist <InlineMath math="\Delta x=48-16=32\text{ m}" />. Über die vollen <InlineMath math="10\text{ s}" /> beträgt die Änderung <InlineMath math="80\text{ m}" />.
+
 ## Der Bezugspunkt muss derselbe bleiben
 
 Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezugspunkt** aus gemessen werden. Eine Anfangsposition relativ zum Geschäft darf nicht mit einer Endposition relativ zu einem anderen Haus verrechnet werden. Sonst stammen beide Werte aus verschiedenen Bezugssystemen.
@@ -79,6 +131,33 @@ Für eine Positionsänderung müssen Anfangs- und Endposition **vom selben Bezug
 | Nayas Haus bei <InlineMath math="50 \text{ m}" /> | <InlineMath math="-30 \text{ m}" /> | <InlineMath math="0 \text{ m}" /> | <InlineMath math="+30 \text{ m}" /> |
 
 Die drei Zeilen enthalten unterschiedliche Koordinaten für Anfang und Ende, aber dieselbe Verschiebung. Der Bezugspunkt verschiebt die Koordinatenwerte. Die Differenz aus End- und Anfangsposition beschreibt weiterhin die gesamte Ortsänderung.
+
+### Ein neuer Bezugspunkt verschiebt jede Position
+
+Nimm eine Straße mit einem Laden bei null, Ranis Haus <InlineMath math="20\text{ m}" /> östlich davon und einem Fahnenmast bei <InlineMath math="50\text{ m}" />. Ein anderer Bezugspunkt verschiebt jede Position um denselben Betrag, also **bleibt die Positionsänderung gleich**.
+
+<StreetOriginPositionLab
+  title={<>Eine Fahrt, drei Bezugspunkte</>}
+  description={
+    <>
+      Eine Person fährt mit dem Rad von <InlineMath math="20\text{ m}" /> bis <InlineMath math="50\text{ m}" /> und zurück bis <InlineMath math="35\text{ m}" />, Osten positiv. Wechsle den Bezugspunkt und sieh, wie sich das ganze Diagramm verschiebt.
+    </>
+  }
+  labels={{
+    change: <>Positionsänderung</>,
+    chooseOrigin: "Bezugspunkt wählen",
+    end: <>Endposition</>,
+    origins: {
+      store: <>Laden</>,
+      house: <>Ranis Haus</>,
+      pole: <>Fahnenmast</>,
+    },
+    start: <>Anfangsposition</>,
+    viewLabel: "Person auf einem Fahrrad in einer Straße mit drei Orten",
+  }}
+/>
+
+Vom Laden aus geht die Fahrt von <InlineMath math="+20\text{ m}" /> nach <InlineMath math="+35\text{ m}" />. Vom Fahnenmast aus geht sie von <InlineMath math="-30\text{ m}" /> nach <InlineMath math="-15\text{ m}" />. Beides ergibt <InlineMath math="\Delta x=+15\text{ m}" />, solange du für beide Positionen denselben Bezugspunkt nimmst.
 
 ## Lesen des Vorzeichens einer Positionsänderung
 
@@ -94,7 +173,7 @@ Nimm beide Positionen vom selben Bezugspunkt, rechne <InlineMath math="\Delta x=
 
 <MathVisual
   title={<>Vier Schritte zur Verschiebung</>}
-  description={<>Zwei Bewegungen zwischen 20 m und 50 m auf einer Achse. Ein Gitterschritt entspricht 10 m.</>}
+  description={<>Zwei Bewegungen zwischen <InlineMath math="20\text{ m}" /> und <InlineMath math="50\text{ m}" /> auf einer Achse. Ein Gitterschritt entspricht <InlineMath math="10\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 1.8 } },
@@ -120,6 +199,34 @@ Nimm beide Positionen vom selben Bezugspunkt, rechne <InlineMath math="\Delta x=
   }}
 />
 
+### Ein Spaziergang mit Ende im Westen
+
+Nimm Osten als positiv und geh <InlineMath math="250\text{ m}" /> nach Westen und dann <InlineMath math="100\text{ m}" /> zurück nach Osten. Deine Endposition liegt westlich vom Start, also ist **die Positionsänderung negativ**.
+
+<CityWalkDisplacementLab
+  legs={[
+    { east: -250, north: 0 },
+    { east: 100, north: 0 },
+  ]}
+  pace={1.25}
+  title={<>Ein Spaziergang, der im Westen endet</>}
+  description={
+    <>
+      Der violette Pfeil verbindet den Start mit deinem Standort. Seine Länge ist der Betrag der Positionsänderung, seine Richtung gibt das Vorzeichen.
+    </>
+  }
+  labels={{
+    averageSpeed: <>Mittlere Schnelligkeit</>,
+    averageVelocity: <>Betrag der mittleren Geschwindigkeit</>,
+    displacement: <>Betrag der Verschiebung</>,
+    distance: <>Gegangene Strecke</>,
+    time: <>Zeit</>,
+    viewLabel: "Spaziergang durch eine Stadt von oben gesehen",
+  }}
+/>
+
+Du gehst <InlineMath math="350\text{ m}" /> in <InlineMath math="280\text{ s}" />, landest aber nur <InlineMath math="150\text{ m}" /> vom Start entfernt. Mit Osten positiv ist <InlineMath math="\Delta x=-250+100=-150\text{ m}" />.
+
 ## Endposition minus Anfangsposition
 
 Eine Person beginnt <InlineMath math="10 \text{ m}" /> östlich eines Tores. Einige Sekunden später befindet sie sich <InlineMath math="40 \text{ m}" /> östlich des Tores. Die Positionsänderung beträgt:
@@ -139,7 +246,7 @@ Der Pfeil unten beginnt bei der Anfangsposition und endet bei der Endposition. S
 
 <MathVisual
   title={<>Die Verschiebung der Schülerin</>}
-  description={<>Positionen östlich des Tors, ein Gitterschritt pro 10 m. Der Pfeil läuft von 10 m bis 40 m.</>}
+  description={<>Positionen östlich des Tors, ein Gitterschritt pro <InlineMath math="10\text{ m}" />. Der Pfeil läuft von <InlineMath math="10\text{ m}" /> bis <InlineMath math="40\text{ m}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.8, max: 1.5 } },
@@ -160,3 +267,26 @@ Der Pfeil unten beginnt bei der Anfangsposition und endet bei der Endposition. S
     change: <InlineMath math="\Delta x=40-10=+30\text{ m}" />,
   }}
 />
+
+### Hoch und zurück in die Hand
+
+Nach oben funktionieren Positionen genauso. Wirf eine Kugel mit <InlineMath math="5\text{ m/s}" /> senkrecht hoch und fang sie in der Höhe, in der sie deine Hand verlassen hat. Sie hat sich bewegt, doch **ihre Endposition ist gleich ihrer Anfangsposition**.
+
+<StrobePhotoMotionLab
+  shot="toss"
+  title={<>Eine hochgeworfene Kugel, Blitz für Blitz</>}
+  description={
+    <>
+      Eine Lampe blitzt alle <InlineMath math="0{,}1\text{ s}" />. Oben ist positiv, und die Hand ist null.
+    </>
+  }
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Gipfelhöhe</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+Die Kugel steigt in <InlineMath math="0{,}5\text{ s}" /> um <InlineMath math="1{,}25\text{ m}" /> und ist nach <InlineMath math="1\text{ s}" /> wieder in deiner Hand. Ihre Positionsänderung über den ganzen Wurf ist <InlineMath math="\Delta y=0-0=0" />, obwohl sie <InlineMath math="2{,}5\text{ m}" /> zurückgelegt hat.
