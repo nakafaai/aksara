@@ -1,0 +1,328 @@
+export const metadata = {
+  title: "Pendaraban Matriks",
+  description: "Darab matriks dengan petua baris darab lajur, semak peringkat yang serasi, dan gunakan sifat utama operasi ini.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-05-06",
+  dateModified: "2026-11-08",
+  subject: "Matriks",
+};
+
+## Menggabungkan Baris dan Lajur untuk Membentuk Hasil Darab
+
+Pendaraban matriks <Highlight>menggabungkan setiap baris matriks pertama</Highlight> dengan setiap lajur matriks kedua, iaitu dengan mendarab **setiap pasangan unsur** lalu menjumlahkan hasil darabnya. Tidak seperti [penambahan matriks](/ms/subjek/matematik/matriks/penambahan-matriks), operasi ini tidak bekerja pada unsur di kedudukan yang sepadan.
+
+### Syarat Pendaraban Matriks
+
+Dua matriks, katakan matriks <InlineMath math="A" /> dan matriks <InlineMath math="B" />, boleh didarab (<InlineMath math="A \times B" />) hanya kalau **bilangan lajur matriks <InlineMath math="A" /> sama dengan bilangan baris matriks <InlineMath math="B" />**.
+
+Katakan matriks <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" /> (iaitu <InlineMath math="m" /> baris dan <InlineMath math="n" /> lajur) dan matriks <InlineMath math="B" /> berperingkat <InlineMath math="n \times p" /> (iaitu <InlineMath math="n" /> baris dan <InlineMath math="p" /> lajur).
+
+Oleh sebab bilangan lajur matriks <InlineMath math="A" /> (<InlineMath math="n" />) sama dengan bilangan baris matriks <InlineMath math="B" /> (<InlineMath math="n" />), matriks <InlineMath math="A" /> dan <InlineMath math="B" /> boleh didarab.
+
+Hasil pendaraban itu, kita namakan matriks <InlineMath math="C = AB" />, akan berperingkat <InlineMath math="m \times p" />.
+
+Semakan saiz ini boleh ditulis dalam satu ayat: <InlineMath math="A\in\mathbb{R}^{m\times n}" /> dan <InlineMath math="B\in\mathbb{R}^{n\times p}" /> memberikan <InlineMath math="AB\in\mathbb{R}^{m\times p}" />. Saiz dalam yang dikongsi, <InlineMath math="n" />, habis digunakan oleh setiap hasil darab titik, manakala saiz luar <InlineMath math="m" /> dan <InlineMath math="p" /> menentukan saiz hasilnya.
+
+### Cara Mengira Unsur Matriks Hasil
+
+Unsur <InlineMath math="c_{ij}" /> dalam matriks <InlineMath math="C" /> (iaitu unsur pada baris ke-<InlineMath math="i" /> dan lajur ke-<InlineMath math="j" />) dikira dengan mendarab setiap unsur pada baris ke-<InlineMath math="i" /> matriks <InlineMath math="A" /> dengan unsur sepadan pada lajur ke-<InlineMath math="j" /> matriks <InlineMath math="B" />, kemudian **menjumlahkan semua hasil darab itu**.
+
+Secara matematik, kalau <InlineMath math="A = [a_{ik}]" /> dan <InlineMath math="B = [b_{kj}]" />, maka unsur <InlineMath math="c_{ij}" /> bagi matriks <InlineMath math="C = AB" /> ialah:
+
+<BlockMath math="\begin{aligned} c_{ij} &amp;= \sum_{k=1}^{n} a_{ik}b_{kj} \\ &amp;= a_{i1}b_{1j} + a_{i2}b_{2j} + \dots + a_{in}b_{nj} \end{aligned}" />
+
+Tatatanda <InlineMath math="\sum" /> (sigma) bermaksud hasil tambah.
+
+Dalam rumus di atas, kita menjumlahkan hasil darab <InlineMath math="a_{ik}b_{kj}" /> untuk semua nilai <InlineMath math="k" /> dari <InlineMath math="1" /> hingga <InlineMath math="n" />.
+## Langkah Mendarab Matriks
+
+Dalam contoh berikut, setiap unsur matriks <InlineMath math="R" /> ialah **hasil darab titik** satu baris matriks <InlineMath math="P" /> dengan satu lajur matriks <InlineMath math="Q" />.
+
+Dua matriks itu ialah:
+
+<MathContainer>
+  <BlockMath math="P = \begin{bmatrix} p_{11} & p_{12} \\ p_{21} & p_{22} \end{bmatrix}" />
+  <BlockMath math="Q = \begin{bmatrix} q_{11} & q_{12} \\ q_{21} & q_{22} \end{bmatrix}" />
+</MathContainer>
+
+Matriks <InlineMath math="P" /> berperingkat <InlineMath math="2 \times 2" /> dan matriks <InlineMath math="Q" /> juga berperingkat <InlineMath math="2 \times 2" />. Bilangan lajur <InlineMath math="P" /> (iaitu <InlineMath math="2" />) sama dengan bilangan baris <InlineMath math="Q" /> (iaitu <InlineMath math="2" />), jadi kita boleh mendarabkannya. Hasilnya, <InlineMath math="R = PQ" />, akan berperingkat <InlineMath math="2 \times 2" />.
+
+<BlockMath math="R = \begin{bmatrix} r_{11} & r_{12} \\ r_{21} & r_{22} \end{bmatrix}" />
+
+Unsur matriks <InlineMath math="R" /> dikira seperti berikut:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} r_{11} &amp;= (\text{baris 1 bagi } P) \\ &amp;\quad\cdot (\text{lajur 1 bagi } Q) \\ &amp;= p_{11}q_{11} + p_{12}q_{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r_{12} &amp;= (\text{baris 1 bagi } P) \\ &amp;\quad\cdot (\text{lajur 2 bagi } Q) \\ &amp;= p_{11}q_{12} + p_{12}q_{22} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r_{21} &amp;= (\text{baris 2 bagi } P) \\ &amp;\quad\cdot (\text{lajur 1 bagi } Q) \\ &amp;= p_{21}q_{11} + p_{22}q_{21} \end{aligned}" />
+  <BlockMath math="\begin{aligned} r_{22} &amp;= (\text{baris 2 bagi } P) \\ &amp;\quad\cdot (\text{lajur 2 bagi } Q) \\ &amp;= p_{21}q_{12} + p_{22}q_{22} \end{aligned}" />
+</MathContainer>
+## Contoh Mendarab Dua Matriks
+
+Diberi dua matriks:
+
+<MathContainer>
+  <BlockMath math="A = \begin{bmatrix} -7 & 2 & -2 \\ 1 & 0 & -1 \\ 2 & 3 & -1 \end{bmatrix}" />
+  <BlockMath math="B = \begin{bmatrix} 1 & 2 \\ -1 & 3 \\ 2 & 0 \end{bmatrix}" />
+</MathContainer>
+
+Matriks <InlineMath math="A" /> berperingkat <InlineMath math="3 \times 3" /> dan matriks <InlineMath math="B" /> berperingkat <InlineMath math="3 \times 2" />.
+
+Bilangan lajur matriks <InlineMath math="A" /> (iaitu <InlineMath math="3" />) sama dengan bilangan baris matriks <InlineMath math="B" /> (iaitu <InlineMath math="3" />).
+
+Jadi, <InlineMath math="AB" /> boleh dikira dan hasilnya ialah matriks berperingkat <InlineMath math="3 \times 2" />.
+
+Kira <InlineMath math="C = AB" />:
+
+<MathContainer>
+  <BlockMath math="C = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \\ c_{31} & c_{32} \end{bmatrix}" />
+  <BlockMath math="\begin{aligned} c_{11} &amp;= (-7)(1) + (2)(-1) + (-2)(2) \\ &amp;= -7 - 2 - 4 \\ &amp;= -13 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{12} &amp;= (-7)(2) + (2)(3) + (-2)(0) \\ &amp;= -14 + 6 + 0 \\ &amp;= -8 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{21} &amp;= (1)(1) + (0)(-1) + (-1)(2) \\ &amp;= 1 + 0 - 2 \\ &amp;= -1 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{22} &amp;= (1)(2) + (0)(3) + (-1)(0) \\ &amp;= 2 + 0 + 0 \\ &amp;= 2 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{31} &amp;= (2)(1) + (3)(-1) + (-1)(2) \\ &amp;= 2 - 3 - 2 \\ &amp;= -3 \end{aligned}" />
+  <BlockMath math="\begin{aligned} c_{32} &amp;= (2)(2) + (3)(3) + (-1)(0) \\ &amp;= 4 + 9 + 0 \\ &amp;= 13 \end{aligned}" />
+</MathContainer>
+
+Jadi, hasil pendaraban matriks <InlineMath math="AB" /> ialah:
+
+<BlockMath math="AB = \begin{bmatrix} -13 & -8 \\ -1 & 2 \\ -3 & 13 \end{bmatrix}" />
+
+Sekarang, bagaimana pula dengan <InlineMath math="BA" />?
+
+Matriks <InlineMath math="B" /> berperingkat <InlineMath math="3 \times 2" /> dan matriks <InlineMath math="A" /> berperingkat <InlineMath math="3 \times 3" />.
+
+Bilangan lajur matriks <InlineMath math="B" /> (iaitu <InlineMath math="2" />) **tidak sama** dengan bilangan baris matriks <InlineMath math="A" /> (iaitu <InlineMath math="3" />).
+
+<InlineMath math="BA" /> **tidak tertakrif**. Wujud atau tidaknya hasil darab matriks boleh berubah apabila tertib faktornya diterbalikkan.
+
+Hasil darab matriks boleh menggerakkan seluruh bentuk sekali gus. Tulis bucu sebuah segi tiga sebagai lajur bagi <InlineMath math="T = \begin{bmatrix} 0 & 2 & 1 \\ 0 & 0 & 2 \end{bmatrix}" /> dan darabkan dengan <InlineMath math="M = \begin{bmatrix} 2 & -1 \\ 1 & 1 \end{bmatrix}" />. Setiap unsur <InlineMath math="MT" /> masih satu baris <InlineMath math="M" /> didarab dengan satu lajur <InlineMath math="T" />. Baris pertama didarab dengan lajur kedua memberikan <InlineMath math="2(2) + (-1)(0) = 4" />, dan baris kedua didarab dengan lajur kedua memberikan <InlineMath math="1(2) + 1(0) = 2" />, jadi bucu <InlineMath math="(2, 0)" /> bergerak ke <InlineMath math="(4, 2)" />. Dengan cara yang sama, bucu <InlineMath math="(1, 2)" /> bergerak ke <InlineMath math="(0, 3)" />.
+
+<MathVisual
+  title={<><InlineMath math="MT" /> menggerakkan setiap bucu yang disimpan dalam <InlineMath math="T" /></>}
+  description={<>Lajur <InlineMath math="T" /> ialah bucu sebuah segi tiga. Setiap lajur <InlineMath math="MT" /> ialah bucu yang sepadan selepas didarab dengan <InlineMath math="M" />.</>}
+  labels={{
+    t2: <InlineMath math="T: (2, 0)" />,
+    t3: <InlineMath math="T: (1, 2)" />,
+    m2: <InlineMath math="MT: (4, 2)" />,
+    m3: <InlineMath math="MT: (0, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "t", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 1, y: 2 }], appearance: "primary" },
+      { id: "mt", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 4, y: 2 }, { x: 0, y: 3 }], appearance: "secondary" },
+      { id: "move2", kind: "segment", from: { x: 2, y: 0 }, to: { x: 4, y: 2 }, appearance: "construction" },
+      { id: "move3", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "t2", objectId: "t", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "t3", objectId: "t", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "m2", objectId: "mt", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "m3", objectId: "mt", at: { x: 0, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+Tertib faktor itu penting. Ambil <InlineMath math="N = \begin{bmatrix} 1 & 0 \\ 0 & 2 \end{bmatrix}" /> dan titik <InlineMath math="(1, 1)" />. Kebetulan, <InlineMath math="N" /> menghantar titik itu ke <InlineMath math="(1, 2)" />, dan begitu juga <InlineMath math="M" />. <InlineMath math="MN" /> menggunakan <InlineMath math="N" /> dahulu, kemudian <InlineMath math="M" />, jadi titik itu mendarat di <InlineMath math="(0, 3)" />. <InlineMath math="NM" /> menggunakan <InlineMath math="M" /> dahulu, kemudian <InlineMath math="N" />, jadi titik itu mendarat di <InlineMath math="(1, 4)" />. Titiknya berbeza, jadi <InlineMath math="MN \neq NM" />.
+
+<MathVisual
+  title={<><InlineMath math="MN" /> dan <InlineMath math="NM" /> menghantar <InlineMath math="(1, 1)" /> ke titik yang berbeza</>}
+  description={<>Dari <InlineMath math="(1, 1)" />, setiap tertib melalui <InlineMath math="(1, 2)" /> dahulu, kemudian <InlineMath math="MN" /> berakhir di <InlineMath math="(0, 3)" /> dan <InlineMath math="NM" /> di <InlineMath math="(1, 4)" />.</>}
+  labels={{
+    start: <InlineMath math="(1, 1)" />,
+    middle: <InlineMath math="(1, 2)" />,
+    mn: <InlineMath math="MN: (0, 3)" />,
+    nm: <InlineMath math="NM: (1, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "first", kind: "segment", from: { x: 1, y: 1 }, to: { x: 1, y: 2 }, appearance: "construction" },
+      { id: "mn", kind: "segment", from: { x: 1, y: 2 }, to: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "nm", kind: "segment", from: { x: 1, y: 2 }, to: { x: 1, y: 4 }, appearance: "answer" },
+      { id: "start", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "middle", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "middle", objectId: "middle", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "mn", objectId: "mn", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "nm", objectId: "nm", at: { x: 1, y: 4 }, placement: "right" },
+    ],
+  }}
+/>
+
+Saiz matriks menentukan sama ada hasil darab wujud. Dalam contoh tadi, <InlineMath math="A" /> ialah <InlineMath math="3 \times 3" /> dan <InlineMath math="B" /> ialah <InlineMath math="3 \times 2" />: saiz dalam, iaitu <InlineMath math="3" /> lajur <InlineMath math="A" /> dan <InlineMath math="3" /> baris <InlineMath math="B" />, sepadan. Hasil darab mengekalkan saiz luar, jadi <InlineMath math="AB" /> ialah <InlineMath math="3 \times 2" />, satu unsur bagi setiap baris <InlineMath math="A" /> dan setiap lajur <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Saiz dalam sepadan, saiz luar kekal</>}
+  description={<>Blok untuk <InlineMath math="A" /> bersaiz <InlineMath math="3 \times 3" />, <InlineMath math="B" /> bersaiz <InlineMath math="3 \times 2" />, dan hasil darab <InlineMath math="AB" /> bersaiz <InlineMath math="3 \times 2" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    ab: <InlineMath math="AB" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.8, max: 3.5 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 3 }, { x: 4, y: 3 }], appearance: "secondary" },
+      { id: "ab", kind: "polygon", vertices: [{ x: 7.5, y: 0 }, { x: 9.5, y: 0 }, { x: 9.5, y: 3 }, { x: 7.5, y: 3 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "b", objectId: "b", at: { x: 5, y: 1.5 }, placement: "center" },
+      { key: "ab", objectId: "ab", at: { x: 8.5, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+## Sifat Pendaraban Matriks
+
+Pendaraban matriks mematuhi petua berikut:
+
+1.  **Secara Umumnya Tidak Kalis Tukar Tertib**:
+
+    Maksudnya, <InlineMath math="AB \neq BA" />. Kita sudah melihat contoh di atas, iaitu <InlineMath math="AB" /> tertakrif tetapi <InlineMath math="BA" /> tidak. Walaupun <InlineMath math="AB" /> dan <InlineMath math="BA" /> tertakrif, hasilnya belum tentu sama.
+
+2.  **Kalis Sekutuan**:
+
+    Kalau semua hasil darab yang terlibat tertakrif, maka <InlineMath math="(AB)C = A(BC)" /> berlaku. Maksudnya, cara kita mengumpulkan pendaraban tidak mengubah hasil akhir.
+
+3.  **Kalis Agihan**:
+
+    Pendaraban matriks kalis agihan terhadap penambahan atau penolakan matriks:
+
+    <MathContainer>
+      <BlockMath math="A(B + C) = AB + AC" />
+      <BlockMath math="(A + B)C = AC + BC" />
+    </MathContainer>
+
+    Sifat ini berlaku kalau semua operasi penambahan dan pendaraban yang terlibat tertakrif.
+
+4.  **Pendaraban dengan Matriks Identiti (<InlineMath math="I" />)**:
+
+    Kalau <InlineMath math="A" /> berperingkat <InlineMath math="m \times n" />, maka identiti kiri <InlineMath math="I_m" /> berperingkat <InlineMath math="m \times m" /> dan identiti kanan <InlineMath math="I_n" /> berperingkat <InlineMath math="n \times n" />:
+
+    <BlockMath math="I_mA=A=AI_n" />
+
+    Matriks identiti bertindak seperti nombor <InlineMath math="1" /> dalam pendaraban nombor biasa.
+
+5.  **Pendaraban dengan Skalar (<InlineMath math="k" />)**:
+
+    Kalau <InlineMath math="k" /> ialah skalar (nombor nyata), maka:
+
+    <BlockMath math="k(AB) = (kA)B = A(kB)" />
+
+## Mengira Hasil Jualan
+
+Pendaraban matriks boleh menggabungkan jadual kuantiti dengan jadual harga yang serasi. **Label baris dan lajur** menentukan kuantiti mana yang didarab dan ditambah, jadi peringkat yang sepadan sahaja belum cukup.
+
+Katakan sebuah perniagaan kecil dari rumah menjual kerepek tempe, kerepek pisang, dan kerepek kentang di Lokasi A, Lokasi B, dan Lokasi C.
+
+Matriks jualan <InlineMath math="P" /> menggunakan jenis produk sebagai baris dan lokasi sebagai lajur. Dengan kata lain, setiap unsur <InlineMath math="P" /> merekodkan berapa balang satu produk terjual di satu lokasi.
+
+Dari atas ke bawah, baris itu mewakili kerepek tempe, kerepek pisang, dan kerepek kentang:
+
+<BlockMath math="P = \begin{bmatrix} 15 &amp; 12 &amp; 20 \\ 25 &amp; 10 &amp; 15 \\ 15 &amp; 15 &amp; 20 \end{bmatrix}" />
+
+Baris pertama (<InlineMath math="\begin{bmatrix} 15 & 12 & 20 \end{bmatrix}" />) bermaksud <InlineMath math="15" /> balang kerepek tempe terjual di Lokasi A, <InlineMath math="12" /> di Lokasi B, dan <InlineMath math="20" /> di Lokasi C.
+
+Harga sebalang, dalam rupiah, disimpan dalam matriks lajur <InlineMath math="Q" /> dengan tertib produk yang sama:
+
+<BlockMath math="Q = \begin{bmatrix} 20{,}000 \\ 15{,}000 \\ 30{,}000 \end{bmatrix}" />
+
+Dari atas ke bawah, unsurnya memberikan harga kerepek tempe, kerepek pisang, dan kerepek kentang.
+
+Hasil darab <InlineMath math="PQ" /> tertakrif secara berangka kerana saiz dalamnya ialah <InlineMath math="3" />, tetapi hasil darab itu tidak bermakna di sini. Lajur <InlineMath math="P" /> mewakili lokasi, manakala baris <InlineMath math="Q" /> mewakili produk. Label itu tidak sepadan.
+
+### Hasil Jualan Mengikut Lokasi
+
+Untuk mengira hasil jualan mengikut lokasi, transposkan vektor harga dan darabkan <InlineMath math="Q^T" /> dengan <InlineMath math="P" />. Hasil darab <InlineMath math="S = Q^T P" /> memasangkan setiap harga produk dengan jualan **produk yang sama itu**.
+
+Matriks <InlineMath math="Q^T" /> berperingkat <InlineMath math="1 \times 3" />, dan <InlineMath math="P" /> berperingkat <InlineMath math="3 \times 3" />. Oleh itu <InlineMath math="S" /> berperingkat <InlineMath math="1 \times 3" />, dengan satu unsur bagi setiap lokasi.
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} S &amp;= \begin{bmatrix} 20{,}000 &amp; 15{,}000 &amp; 30{,}000 \end{bmatrix} \\ &amp;\quad{}\cdot\begin{bmatrix} 15 &amp; 12 &amp; 20 \\ 25 &amp; 10 &amp; 15 \\ 15 &amp; 15 &amp; 20 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_{11} &amp;= (20{,}000)(15) + (15{,}000)(25) \\ &amp;\quad{}+ (30{,}000)(15) \\ &amp;= 300{,}000 + 375{,}000 + 450{,}000 \\ &amp;= 1{,}125{,}000 \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_{12} &amp;= (20{,}000)(12) + (15{,}000)(10) \\ &amp;\quad{}+ (30{,}000)(15) \\ &amp;= 240{,}000 + 150{,}000 + 450{,}000 \\ &amp;= 840{,}000 \end{aligned}" />
+  <BlockMath math="\begin{aligned} s_{13} &amp;= (20{,}000)(20) + (15{,}000)(15) \\ &amp;\quad{}+ (30{,}000)(20) \\ &amp;= 400{,}000 + 225{,}000 + 600{,}000 \\ &amp;= 1{,}225{,}000 \end{aligned}" />
+</MathContainer>
+
+<InlineMath math="S = \begin{bmatrix} 1{,}125{,}000 & 840{,}000 & 1{,}225{,}000 \end{bmatrix}" />.
+
+Maksudnya, jumlah hasil jualan di Lokasi A ialah <InlineMath math="\text{Rp}1{,}125{,}000" />, di Lokasi B ialah <InlineMath math="\text{Rp}840{,}000" />, dan di Lokasi C ialah <InlineMath math="\text{Rp}1{,}225{,}000" />.
+### Hasil Jualan Mengikut Produk
+
+Hasil jualan mengikut produk memerlukan pendaraban yang lain. Pertama sekali, gunakan vektor satu <InlineMath math="U" /> untuk menjumlahkan setiap baris <InlineMath math="P" />, kemudian darabkan jumlah itu dengan matriks harga pepenjuru yang dibina daripada <InlineMath math="Q" />.
+
+<MathContainer>
+  <BlockMath math="U = \begin{bmatrix} 1 \\ 1 \\ 1 \end{bmatrix}" />
+  <BlockMath math="T = PU = \begin{bmatrix} 15+12+20 \\ 25+10+15 \\ 15+15+20 \end{bmatrix}" />
+  <BlockMath math="T = \begin{bmatrix} 47 \\ 50 \\ 50 \end{bmatrix} \begin{matrix} \text{Balang Tempe} \\ \text{Balang Pisang} \\ \text{Balang Kentang} \end{matrix}" />
+  <BlockMath math="\begin{aligned} D &amp;= \operatorname{diag}(Q) \\ &amp;= \begin{bmatrix} 20{,}000 &amp; 0 &amp; 0 \\ 0 &amp; 15{,}000 &amp; 0 \\ 0 &amp; 0 &amp; 30{,}000 \end{bmatrix} \end{aligned}" />
+  <BlockMath math="R = DT = \begin{bmatrix} 940{,}000 \\ 750{,}000 \\ 1{,}500{,}000 \end{bmatrix}" />
+</MathContainer>
+
+Jadi, matriks <InlineMath math="R" /> memberikan hasil jualan setiap produk: <InlineMath math="\text{Rp}940{,}000" /> untuk kerepek tempe, <InlineMath math="\text{Rp}750{,}000" /> untuk kerepek pisang, dan <InlineMath math="\text{Rp}1{,}500{,}000" /> untuk kerepek kentang.
+
+Hasil darab matriks yang bermakna memerlukan peringkat yang sepadan dan mesti memasangkan kuantiti yang menerangkan **kategori yang sama dalam tertib yang sama**.
+
+Di sini, <InlineMath math="Q^T" /> dan <InlineMath math="P" /> menghasilkan hasil jualan mengikut lokasi dalam <InlineMath math="S" />, manakala matriks harga pepenjuru dan jumlah setiap produk menghasilkan hasil jualan mengikut produk dalam <InlineMath math="R" />. Itu dua soalan yang berbeza, jadi setiap satu memerlukan hasil darab yang berlainan.
+
+## Latihan
+
+Diberi matriks berikut:
+
+<MathContainer>
+  <BlockMath math="C = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+  <BlockMath math="D = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+</MathContainer>
+
+**Tentukan matriks** <InlineMath math="CD" /> dan <InlineMath math="DC" />.
+
+Adakah <InlineMath math="CD = DC" />?
+### Penyelesaian
+
+**Hasil darab pertama**
+
+Mengira <InlineMath math="CD" />:
+
+Matriks <InlineMath math="C" /> berperingkat <InlineMath math="2 \times 2" /> dan <InlineMath math="D" /> berperingkat <InlineMath math="2 \times 2" />. Hasilnya akan berperingkat <InlineMath math="2 \times 2" />.
+
+<BlockMath math="CD = \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix} \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix}" />
+Kira setiap unsur dengan mendarab satu baris dengan satu lajur:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-3)(8) \\ &amp;m_{12}=(1)(-4) + (-3)(2) \\ &amp;m_{21}=(1)(1) + (2)(8) \\ &amp;m_{22}=(1)(-4) + (2)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;CD \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="CD = \begin{bmatrix} 1 - 24 & -4 - 6 \\ 1 + 16 & -4 + 4 \end{bmatrix}" />
+  <BlockMath math="CD = \begin{bmatrix} -23 & -10 \\ 17 & 0 \end{bmatrix}" />
+</MathContainer>
+
+**Hasil darab kedua**
+
+Mengira <InlineMath math="DC" />:
+
+Matriks <InlineMath math="D" /> berperingkat <InlineMath math="2 \times 2" /> dan <InlineMath math="C" /> berperingkat <InlineMath math="2 \times 2" />. Hasilnya akan berperingkat <InlineMath math="2 \times 2" />.
+
+<BlockMath math="DC = \begin{bmatrix} 1 & -4 \\ 8 & 2 \end{bmatrix} \begin{bmatrix} 1 & -3 \\ 1 & 2 \end{bmatrix}" />
+Kira setiap unsur dengan mendarab satu baris dengan satu lajur:
+
+<MathContainer>
+  <BlockMath math="\begin{aligned} &amp;m_{11}=(1)(1) + (-4)(1) \\ &amp;m_{12}=(1)(-3) + (-4)(2) \\ &amp;m_{21}=(8)(1) + (2)(1) \\ &amp;m_{22}=(8)(-3) + (2)(2) \end{aligned}" />
+
+  <BlockMath math="\begin{aligned} &amp;DC \\ &amp;=\begin{bmatrix}m_{11}&amp;m_{12}\\m_{21}&amp;m_{22}\end{bmatrix} \end{aligned}" />
+  <BlockMath math="DC = \begin{bmatrix} 1 - 4 & -3 - 8 \\ 8 + 2 & -24 + 4 \end{bmatrix}" />
+  <BlockMath math="DC = \begin{bmatrix} -3 & -11 \\ 10 & -20 \end{bmatrix}" />
+</MathContainer>
+
+Dua hasil darab itu berbeza, jadi <InlineMath math="CD \neq DC" />. Dalam contoh ini, pendaraban matriks tidak kalis tukar tertib.

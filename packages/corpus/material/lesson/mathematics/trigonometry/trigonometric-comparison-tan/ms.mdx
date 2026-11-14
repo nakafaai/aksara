@@ -1,0 +1,199 @@
+
+export const metadata = {
+  title: "Nisbah Tangen",
+  description: "Kira nisbah tangen dengan sisi bertentangan dan sisi bersebelahan. Selesaikan masalah tinggi, kecerunan, dan sudut dengan contoh lengkap dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-14",
+  dateModified: "2026-09-12",
+  subject: "Trigonometri",
+};
+
+## Membandingkan Sisi Bertentangan dan Sisi Bersebelahan
+
+Nisbah tangen, ditulis sebagai <InlineMath math="\tan" />, membandingkan sisi yang bertentangan dengan satu sudut dengan sisi bersebelahan dalam segi tiga bersudut tegak. Kedua-dua sisi dikenal pasti berdasarkan **sudut tirus yang sama**. Oleh sebab hanya nisbahnya yang digunakan, segi tiga yang lebih besar dengan sudut yang sama memberikan nilai tangen yang sama.
+
+### Tangen
+
+Tangen ialah <Highlight>nisbah antara panjang sisi bertentangan</Highlight> (sisi yang bertentangan dengan sudut yang diketahui) dengan sisi bersebelahan (sisi yang bersebelahan dengan sudut itu) dalam segi tiga bersudut tegak.
+
+<BlockMath math="\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}}" />
+
+<ContentBlock>
+  <MathVisual
+    title={<>Visualisasi Tangen dalam Segi Tiga</>}
+    description={<>Nisbah <InlineMath math="\tan" /> membandingkan sisi bertentangan dengan sisi bersebelahan.</>}
+    labels={{
+      angle: <InlineMath math="\theta" />,
+      opposite: <>sisi bertentangan</>,
+      adjacent: <>sisi bersebelahan</>,
+      hypotenuse: <>hipotenus</>,
+      sine: <InlineMath math="\sin\theta" />,
+      cosine: <InlineMath math="\cos\theta" />,
+      tangent: <InlineMath math="\tan\theta" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.6, max: 2.6 }, y: { min: -0.6, max: 2.4 } },
+      view: { kind: "fit", padding: 0.2 },
+      parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+      objects: [
+        { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+        { id: "opposite", kind: "path", points: [{ x: "2 cos(a pi / 180)", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "answer" },
+        { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)" }], appearance: "primary" },
+        { id: "vertex", kind: "marker", x: "2 cos(a pi / 180)", y: "2 sin(a pi / 180)", appearance: "primary" },
+      ],
+      labels: [
+        { key: "adjacent", objectId: "adjacent", at: { x: "1 cos(a pi / 180)", y: "0" }, placement: "below" },
+        { key: "opposite", objectId: "opposite", at: { x: "2 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "right" },
+        { key: "hypotenuse", objectId: "hypotenuse", at: { x: "1 cos(a pi / 180)", y: "1 sin(a pi / 180)" }, placement: "above-left" },
+      ],
+      readouts: [
+        { key: "sine", formula: "sin(a pi / 180)" },
+        { key: "cosine", formula: "cos(a pi / 180)" },
+        { key: "tangent", formula: "tan(a pi / 180)" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Untuk sudut <InlineMath math="\theta" /> dalam segi tiga bersudut tegak:
+
+- Sisi bertentangan ialah sisi yang menghadap sudut <InlineMath math="\theta" />.
+- Sisi bersebelahan ialah sisi di sebelah sudut <InlineMath math="\theta" /> selain hipotenus.
+- Tangen dikira dengan membahagikan panjang sisi bertentangan dengan sisi bersebelahan
+
+### Contoh Nilai Tangen
+
+Nilai tangen bagi sudut khas boleh ditulis dengan tepat, dan nilai perpuluhan hanya ditunjukkan sebagai anggaran:
+
+- <InlineMath math="\tan 30^\circ = \frac{1}{\sqrt{3}} \approx 0.577" />
+- <InlineMath math="\tan 45^\circ = 1" />
+- <InlineMath math="\tan 60^\circ = \sqrt{3} \approx 1.732" />
+
+**Nilai tepat** ini datang daripada nisbah sisi dalam segi tiga bersudut tegak dengan sudut <InlineMath math="30^\circ" />, <InlineMath math="45^\circ" />, atau <InlineMath math="60^\circ" />.
+
+## Mengira Nilai Tangen
+
+Nilai tangen datang daripada dua kaki segi tiga bersudut tegak, jadi contoh di bawah membaca **sisi bertentangan dan sisi bersebelahan** daripada lukisan dan kemudian membahagikannya.
+
+### Contoh Mengira Tangen
+
+Pertimbangkan segi tiga bersudut tegak dengan sudut <InlineMath math="30^\circ" />, **sisi bertentangan** <InlineMath math="15 \text{ cm}" />, sisi bersebelahan <InlineMath math="15\sqrt{3} \text{ cm}" />, dan hipotenus <InlineMath math="30 \text{ cm}" />.
+
+<MathVisual
+  title={
+    <>
+      Contoh Segi Tiga dengan Sudut <InlineMath math="30^\circ" />
+    </>
+  }
+  description={
+    <>
+      Nisbah sisi bertentangan (<InlineMath math="15 \text{ cm}" />) kepada sisi
+      bersebelahan (<InlineMath math="15\sqrt{3} \text{ cm}" />).
+    </>
+  }
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>sisi bertentangan</>,
+    adjacent: <>sisi bersebelahan</>,
+    hypotenuse: <>hipotenus</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 39 }, y: { min: -9, max: 36 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: 30, label: "angle" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "30 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "30 cos(a pi / 180)", y: "0" }, { x: "30 cos(a pi / 180)", y: "30 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "30 cos(a pi / 180)", y: "30 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "30 cos(a pi / 180)", y: "30 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "15 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "30 cos(a pi / 180)", y: "15 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "15 cos(a pi / 180)", y: "15 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Nilai tangen bagi sudut ini ialah:
+
+<BlockMath math="\begin{aligned}\tan 30^\circ &= \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}} \\ &= \frac{15}{15\sqrt{3}} \\ &= \frac{1}{\sqrt{3}} \\ &= \frac{\sqrt{3}}{3} \approx 0.577\end{aligned}" />
+
+### Mengukur Kecerunan dan Tinggi
+
+Tangen mengaitkan sudut kecondongan dengan **perubahan mencancang dan mengufuk** dalam segi tiga bersudut tegak. Hubungan ini boleh digunakan untuk:
+
+1. Mengira tinggi objek daripada sudut dongak dan jarak mengufuknya
+2. Mengira kecerunan jalan atau tangga daripada naikan mencancang dan larian mengufuknya
+3. Mengira sudut bumbung daripada tinggi dan lebar keratan rentasnya
+
+## Latihan
+
+Pertimbangkan segi tiga bersudut tegak berikut. Sudut tirusnya ialah <InlineMath math="\theta" />, sisi bertentangan <InlineMath math="15 \text{ cm}" />, dan sisi bersebelahan <InlineMath math="7 \text{ cm}" />.
+
+<MathVisual
+  title={
+    <>
+      Segi Tiga dengan Sudut <InlineMath math="\theta" />
+    </>
+  }
+  description={
+    <>
+      Segi tiga dengan sisi bertentangan <InlineMath math="15 \text{ cm}" /> dan
+      sisi bersebelahan <InlineMath math="7 \text{ cm}" />.
+    </>
+  }
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    opposite: <>sisi bertentangan</>,
+    adjacent: <>sisi bersebelahan</>,
+    hypotenuse: <>hipotenus</>,
+    sine: <InlineMath math="\sin\theta" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.96588, max: 21.5188 }, y: { min: -4.96588, max: 19.8635 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 5, max: 85, step: 1, value: Math.atan(15 / 7) * 180 / Math.PI, label: "angle" }],
+    objects: [
+      { id: "adjacent", kind: "path", points: [{ x: "0", y: "0" }, { x: "16.5529 cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "opposite", kind: "path", points: [{ x: "16.5529 cos(a pi / 180)", y: "0" }, { x: "16.5529 cos(a pi / 180)", y: "16.5529 sin(a pi / 180)" }], appearance: "answer" },
+      { id: "hypotenuse", kind: "path", points: [{ x: "0", y: "0" }, { x: "16.5529 cos(a pi / 180)", y: "16.5529 sin(a pi / 180)" }], appearance: "primary" },
+      { id: "vertex", kind: "marker", x: "16.5529 cos(a pi / 180)", y: "16.5529 sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [
+      { key: "adjacent", objectId: "adjacent", at: { x: "8.27647 cos(a pi / 180)", y: "0" }, placement: "below" },
+      { key: "opposite", objectId: "opposite", at: { x: "16.5529 cos(a pi / 180)", y: "8.27647 sin(a pi / 180)" }, placement: "right" },
+      { key: "hypotenuse", objectId: "hypotenuse", at: { x: "8.27647 cos(a pi / 180)", y: "8.27647 sin(a pi / 180)" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
+/>
+
+Cari <InlineMath math="\tan \theta" /> dan terangkan **dua sisi mana** yang menentukan nisbah itu.
+
+### Penyelesaian
+
+Berdasarkan <InlineMath math="\theta" />, sisi sepanjang <InlineMath math="15 \text{ cm}" /> ialah sisi bertentangan dan sisi sepanjang <InlineMath math="7 \text{ cm}" /> ialah sisi bersebelahan. Tangen membandingkan **sisi bertentangan dengan sisi bersebelahan**:
+
+<BlockMath math="\begin{aligned} &amp;\tan \theta = \frac{\text{sisi bertentangan}}{\text{sisi bersebelahan}} \\ &amp;= \frac{15 \text{ cm}}{7 \text{ cm}} \\ &amp;= \frac{15}{7} \approx 2.14 \end{aligned}" />
+
+Unit sentimeter saling membatalkan kerana ini satu nisbah. Jadi, <InlineMath math="\tan \theta \approx 2.14" />. Nilainya lebih besar daripada <InlineMath math="1" />, dan ini munasabah kerana sisi bertentangan lebih panjang daripada sisi bersebelahan.
+
+Sebagai semakan konsistensi, <InlineMath math="\theta=\arctan(15/7)\approx65.0^\circ" />, sepadan dengan sudut tirus yang ditunjukkan dalam rajah.

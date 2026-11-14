@@ -16,97 +16,45 @@ Ein Mittelpunktswinkel hat seinen Scheitel im Mittelpunkt des Kreises. Ein Umfan
 
 Im Diagramm zum Zusammenhang enden die Schenkel des Mittelpunktswinkels <InlineMath math="\angle AOB" /> und die Schenkel des Umfangswinkels <InlineMath math="\angle ACB" /> in denselben Punkten <InlineMath math="A" /> und <InlineMath math="B" />. Diese beiden Punkte begrenzen den Bogen <InlineMath math="AB" />. Folge jedem Schenkel bis zum Ende des Bogens und vergleiche dann die beiden Winkel.
 
-<LineEquation
-  title="Mittelpunktswinkel und Umfangswinkel"
+<MathVisual
+  title={<>Mittelpunktswinkel und Umfangswinkel</>}
   description={<>Der Mittelpunktswinkel von <InlineMath math="45^\circ" /> und <InlineMath math="\angle ACB" /> stehen über dem Bogen <InlineMath math="AB" />, also gilt <InlineMath math="\angle ACB = 22{,}5^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <>Bogen <InlineMath math="AB" /></>,
+    "l6": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.71, y: 1.5 }, placement: "above" },
+      { key: "l6", objectId: "s7", at: { x: 1.11, y: 0.45 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Der Mittelpunktswinkel in diesem Diagramm misst <InlineMath math="45^\circ" />. Der Umfangswinkel über dem kleinen Bogen <InlineMath math="AB" /> ist halb so groß:
@@ -121,63 +69,36 @@ Du unterscheidest die beiden Winkel an der **Lage des Scheitels** und an den Str
 
 Ein Mittelpunktswinkel wird von zwei Radien gebildet, sein Scheitel liegt also **genau im Mittelpunkt**. Im Diagramm zum Mittelpunktswinkel ist <InlineMath math="O" /> der Mittelpunkt, die Strecken <InlineMath math="OA" /> und <InlineMath math="OB" /> sind Radien, und <InlineMath math="\angle AOB" /> ist der Mittelpunktswinkel mit dem Maß <InlineMath math="\alpha" />.
 
-<LineEquation
-  title="Mittelpunktswinkel"
+<MathVisual
+  title={<>Mittelpunktswinkel</>}
   description={<>Die Schenkel <InlineMath math="OA" /> und <InlineMath math="OB" /> sind Radien, der Scheitel von <InlineMath math="\angle AOB" /> liegt also im Mittelpunkt <InlineMath math="O" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="\alpha" />, at: 110, offset: [0.3, 0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "parametric", x: "(1.2 * cos((((t / 5) * pi) / 180)))", y: "(1.2 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 1.11, y: 0.45 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Der Mittelpunktswinkel <InlineMath math="\angle AOB" /> steht über dem Bogen <InlineMath math="AB" />, der zwischen seinen Schenkeln liegt. Je größer der Mittelpunktswinkel, desto länger ist dieser Bogen.
@@ -186,54 +107,36 @@ Der Mittelpunktswinkel <InlineMath math="\angle AOB" /> steht über dem Bogen <I
 
 Ein Umfangswinkel wird von zwei [Sehnen](/de/faecher/mathematik/kreisgeometrie/kreis-und-sehne) gebildet, die sich in einem Punkt **auf dem Kreis** treffen. Im Diagramm zum Umfangswinkel liegt der Punkt <InlineMath math="C" /> auf dem Kreis, die Strecken <InlineMath math="CA" /> und <InlineMath math="CB" /> sind Sehnen, und <InlineMath math="\angle ACB" /> ist der Umfangswinkel.
 
-<LineEquation
-  title="Umfangswinkel"
+<MathVisual
+  title={<>Umfangswinkel</>}
   description={<>Die Schenkel <InlineMath math="CA" /> und <InlineMath math="CB" /> sind Sehnen, die sich im Punkt <InlineMath math="C" /> auf dem Kreis treffen.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="C" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 Der Mittelpunkt <InlineMath math="O" /> ist nicht der Scheitel von <InlineMath math="\angle ACB" />. Dieser Umfangswinkel steht über dem Bogen <InlineMath math="AB" /> auf der Seite des Kreises, die dem Punkt <InlineMath math="C" /> gegenüberliegt.
@@ -242,81 +145,48 @@ Der Mittelpunkt <InlineMath math="O" /> ist nicht der Scheitel von <InlineMath m
 
 Der Beweis braucht eine einzige Hilfslinie: den Durchmesser durch den Punkt <InlineMath math="C" /> und den Mittelpunkt <InlineMath math="O" />. Er teilt die Figur in zwei **gleichschenklige Dreiecke**, weil jeweils zwei Seiten Radien sind.
 
-<LineEquation
-  title="Beweis mit Hilfslinien"
+<MathVisual
+  title={<>Beweis mit Hilfslinien</>}
   description={
     <>
       Der Durchmesser durch <InlineMath math="C" /> und <InlineMath math="O" /> teilt die Figur in zwei gleichschenklige Dreiecke.
     </>
   }
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 2), y: 4 * Math.sin(Math.PI / 2), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [0.8, 0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="D" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 0, y: 4 * Math.sin(Math.PI / 2) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 4 * Math.sin(Math.PI / 2) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "highlight" },
+      { id: "s6-p0", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "highlight" },
+      { id: "s6-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Im ersten Fall liegt der Mittelpunkt <InlineMath math="O" /> innerhalb von <InlineMath math="\angle ACB" />, wie im Diagramm mit der Hilfslinie.
@@ -330,77 +200,44 @@ Im ersten Fall liegt der Mittelpunkt <InlineMath math="O" /> innerhalb von <Inli
 
 Der zweite Fall tritt ein, wenn der Durchmesser <InlineMath math="CD" /> **außerhalb des Umfangswinkels** liegt. Dann ist <InlineMath math="\angle ACB" /> die Differenz zweier Winkel und nicht ihre Summe.
 
-<LineEquation
-  title="Mittelpunkt außerhalb des Umfangswinkels"
+<MathVisual
+  title={<>Mittelpunkt außerhalb des Umfangswinkels</>}
   description={<>Der Durchmesser <InlineMath math="CD" /> liegt außerhalb von <InlineMath math="\angle ACB" />, also ist <InlineMath math="\angle ACB" /> die Differenz von <InlineMath math="\angle DCB" /> und <InlineMath math="\angle DCA" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
-        { x: 4 * Math.cos((340 * Math.PI) / 180), y: 4 * Math.sin((340 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="C" />, at: 0, offset: [-0.5, 0.3, 0] },
-        { text: <InlineMath math="D" />, at: 1, offset: [0.5, -0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
-        { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos((160 * Math.PI) / 180), y: 4 * Math.sin((160 * Math.PI) / 180), z: 0 },
-        { x: 4 * Math.cos((70 * Math.PI) / 180), y: 4 * Math.sin((70 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0.2, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.4, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos((70 * Math.PI) / 180), y: 4 * Math.sin((70 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="C" />,
+    "l2": <InlineMath math="D" />,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+    "l5": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.cos((340 * Math.PI) / 180), y: -(4 * Math.sin((20 * Math.PI) / 180)) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 3.76, y: -1.37 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -(4 * Math.cos((20 * Math.PI) / 180)), y: 4 * Math.sin((20 * Math.PI) / 180) }, { x: 4 * Math.sin((20 * Math.PI) / 180), y: 4 * Math.cos((20 * Math.PI) / 180) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: -3.76, y: 1.37 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: 1.37, y: 3.76 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((20 * Math.PI) / 180), y: 4 * Math.sin((20 * Math.PI) / 180) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3.76, y: 1.37 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.sin((20 * Math.PI) / 180), y: 4 * Math.cos((20 * Math.PI) / 180) }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -3.76, y: 1.37 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.76, y: -1.37 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.76, y: 1.37 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 1.37, y: 3.76 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Mit denselben Bezeichnungen gilt <InlineMath math="\angle ACB = y - x" />. Die Außenwinkel sind weiterhin <InlineMath math="\angle AOD = 2x" /> und <InlineMath math="\angle BOD = 2y" />, diesmal ziehst du sie aber voneinander ab:
@@ -413,89 +250,40 @@ Im Diagramm zum zweiten Fall gilt <InlineMath math="x = 20^\circ" /> und <Inline
 
 Ein Durchmesser teilt den Kreis in zwei Halbkreise, und der Mittelpunktswinkel über einem Halbkreis ist ein gestreckter Winkel von <InlineMath math="180^\circ" />. Deshalb misst jeder Umfangswinkel **über einem Durchmesser** genau <InlineMath math="90^\circ" />. Diese Aussage heißt Satz des Thales.
 
-<LineEquation
-  title="Umfangswinkel über einem Durchmesser"
+<MathVisual
+  title={<>Umfangswinkel über einem Durchmesser</>}
   description={<>Der Durchmesser <InlineMath math="AB" /> ergibt einen Mittelpunktswinkel von <InlineMath math="180^\circ" />, also gilt <InlineMath math="\angle ACB = 90^\circ" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [-0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 0, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#d97706",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [0, -0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const C = { x: 0, y: 4 };
-        const A = { x: -4, y: 0 };
-        const B = { x: 4, y: 0 };
-
-        // Winkel ACB am Punkt C berechnen (should be 90°)
-        const angleCA = Math.atan2(A.y - C.y, A.x - C.x);
-        const angleCB = Math.atan2(B.y - C.y, B.x - C.x);
-
-        return Array.from({ length: 211 }, (_, sampleIndex) => {
-          const i = sampleIndex / 14;
-          const t = i / 15;
-          const angle = angleCA + t * (angleCB - angleCA);
-          return {
-            x: C.x + 0.8 * Math.cos(angle),
-            y: C.y + 0.8 * Math.sin(angle),
-            z: 0,
-          };
-        });
-      })(),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="90^\circ" />, at: 98, offset: [0.5, -0.5, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="O" />,
+    "l5": <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: 0, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 0, y: 4 }], appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "parametric", x: "(0 + (0.8 * cos(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", y: "(4 + (0.8 * sin(((2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0))))) + (((t / 14) / 15) * ((2 * atan(((0 - 4)) / (sqrt(((4 - 0))^2 + ((0 - 4))^2) + ((4 - 0))))) - (2 * atan(((0 - 4)) / (sqrt((((-4) - 0))^2 + ((0 - 4))^2) + (((-4) - 0)))))))))))", parameter: { min: 0, max: 210 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: -4, y: 0 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "l5", objectId: "s6", at: { x: -0.04, y: 3.2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Im Diagramm zum Durchmesser ist die Strecke <InlineMath math="AB" /> ein Durchmesser, und der Punkt <InlineMath math="C" /> liegt auf dem Kreis. Die Rechnung folgt direkt aus dem Zusammenhang der beiden Winkel:
@@ -508,91 +296,43 @@ Das Ergebnis hängt nicht davon ab, wo <InlineMath math="C" /> liegt. Solange <I
 
 Ein Umfangswinkel hängt von seinem Bogen ab, nicht von der Lage seines Scheitels. Deshalb sind Umfangswinkel über demselben Bogen **immer gleich groß**. Im Diagramm zum gleichen Bogen verschiebst du den Punkt <InlineMath math="C" /> entlang des großen Bogens nach <InlineMath math="D" />, und der Winkel ändert sich nicht.
 
-<LineEquation
-  title="Umfangswinkel über demselben Bogen"
+<MathVisual
+  title={<>Umfangswinkel über demselben Bogen</>}
   description={<>Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf demselben großen Bogen, also gilt <InlineMath math="\angle ACB = \angle ADB" />.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A" />, at: 0, offset: [0.5, 0, 0] },
-        { text: <InlineMath math="B" />, at: 1, offset: [0.3, 0.3, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 1, offset: [-0.5, 0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 4 * Math.cos((3 * Math.PI) / 4), y: 4 * Math.sin((3 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 226 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#d97706",
-      showPoints: false,
-      labels: [{ text: <>Bogen <InlineMath math="AB" /></>, at: 110, offset: [0, 2.8, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="D" />,
+    "l5": <>Bogen <InlineMath math="AB" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2.83, y: 2.83 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s3-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: -2.83, y: 2.83 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.cos(Math.PI / 4) }, { x: -(4 * Math.cos(Math.PI / 4)), y: 4 * Math.sin((3 * Math.PI) / 4) }], appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(4 * cos((((t / 5) * pi) / 180)))", y: "(4 * sin((((t / 5) * pi) / 180)))", parameter: { min: 0, max: 225 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.83, y: 2.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: -2.83, y: 2.83 }, placement: "above-left" },
+      { key: "l5", objectId: "s7", at: { x: 3.71, y: 1.5 }, placement: "above" },
+    ],
+  }}
 />
 
 Die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen beide auf dem großen Bogen. Beide Winkel stehen also über dem kleinen Bogen <InlineMath math="AB" />, dessen Mittelpunktswinkel <InlineMath math="45^\circ" /> misst:
@@ -607,82 +347,42 @@ Jedes Beispiel beginnt damit, **den gemeinsamen Bogen** der beiden Winkel zu bes
 
 **Beispiel 1**. Der Mittelpunktswinkel ist <InlineMath math="\angle AOB = 80^\circ" />. Der Punkt <InlineMath math="C" /> liegt auf dem großen Bogen, also steht <InlineMath math="\angle ACB" /> über demselben kleinen Bogen <InlineMath math="AB" /> wie der Mittelpunktswinkel. Bestimme <InlineMath math="\angle ACB" />.
 
-<LineEquation
+<MathVisual
   title={<>Mittelpunktswinkel von <InlineMath math="80^\circ" /></>}
   description={<>Der Punkt <InlineMath math="C" /> liegt auf dem großen Bogen, also steht <InlineMath math="\angle ACB" /> über demselben Bogen <InlineMath math="AB" /> wie der Mittelpunktswinkel.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 361 }, (_, i) => {
-        const angle = (i * Math.PI) / 180;
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4, y: 0, z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="O" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="A" />, at: 1, offset: [0.5, 0, 0] },
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 1, offset: [0, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4, y: 0, z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 1, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180), z: 0 },
-        { x: 4 * Math.cos((5 * Math.PI) / 4), y: 4 * Math.sin((5 * Math.PI) / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#0891b2",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 205 }, (_, sampleIndex) => {
-        const i = sampleIndex / 12;
-        const angle = ((i * 80) / 17) * Math.PI / 180;
-        return {
-          x: 1.2 * Math.cos(angle),
-          y: 1.2 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="80^\circ" />, at: 120, offset: [0.5, 0.3, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O" />,
+    "l2": <InlineMath math="A" />,
+    "l3": <InlineMath math="B" />,
+    "l4": <InlineMath math="C" />,
+    "l5": <InlineMath math="80^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos(((t * pi) / 180)))", y: "(4 * sin(((t * pi) / 180)))", parameter: { min: 0, max: 360 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }], appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 4, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180) }], appearance: "secondary" },
+      { id: "s3-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s3-p1", kind: "point", at: { x: 0.69, y: 3.94 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 4, y: 0 }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 4, y: 0 }, appearance: "answer" },
+      { id: "s4-p1", kind: "point", at: { x: -2.83, y: -2.83 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 4 * Math.cos((80 * Math.PI) / 180), y: 4 * Math.sin((80 * Math.PI) / 180) }, { x: -(4 * Math.cos(Math.PI / 4)), y: -(4 * Math.cos(Math.PI / 4)) }], appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "(1.2 * cos((((((t / 12) * 80) / 17) * pi) / 180)))", y: "(1.2 * sin((((((t / 12) * 80) / 17) * pi) / 180)))", parameter: { min: 0, max: 204 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 0.69, y: 3.94 }, placement: "above" },
+      { key: "l4", objectId: "s4", at: { x: -2.83, y: -2.83 }, placement: "below-left" },
+      { key: "l5", objectId: "s6", at: { x: 0.82, y: 0.88 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Der Umfangswinkel ist halb so groß wie der Mittelpunktswinkel über demselben Bogen:

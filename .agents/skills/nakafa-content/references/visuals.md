@@ -171,8 +171,8 @@ graph teaches the wrong mathematics on an education platform.
   what the lesson teaches, and the renderer samples it: at least two hundred
   samples per visible branch, exact samples at the domain ends and at every
   label, a split at every break and asymptote, and only the part inside the
-  frame. It replaces a `LineEquation` series built with `Array.from`, which
-  no new lesson writes. A formula is text that the contract parses without running code: numbers,
+  frame. A scene never builds points with `Array.from`: the compiler reads it
+  without running code. A formula is text that the contract parses without running code: numbers,
   `+ - * / ^`, implied multiplication (`2x`, `a sin(t)`), parentheses, the
   constants `pi` and `e`, and the functions `abs acos asin atan cbrt ceil cos
   cosh cot csc exp floor ln log sec sign sin sinh sqrt tan tanh`, plus `min`,

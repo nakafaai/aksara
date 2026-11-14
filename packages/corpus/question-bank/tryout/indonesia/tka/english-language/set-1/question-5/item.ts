@@ -2,38 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "descriptive",
-    topic: "text-fit",
+    cognitiveLevel: "textual",
+    contentDomain: "narrative",
+    topic: "explicit-information",
   },
-  stimulus: "rooftop-garden",
+  stimulus: "reservoir",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Grandmother was $$12$$ when the valley filled with water.",
+        },
+        {
+          correct: false,
+          label:
+            "The steps were counted about two years before Grandmother's family was moved out.",
+        },
+        {
+          correct: false,
+          label:
+            "The tamarind seed had been in Grandmother's keeping since the year she started school.",
+        },
+        {
+          correct: false,
+          label:
+            "Grandmother started school in the same year that the dam gates were closed.",
+        },
+        {
           correct: true,
-          label: "New volunteers read the notebook before changing a zone.",
-        },
-        {
-          correct: false,
           label:
-            "The center replaces the zone labels with one roof map because the notebook already records details.",
-        },
-        {
-          correct: false,
-          label:
-            "The garden's arrangement becomes fixed after the four zones are first labeled.",
-        },
-        {
-          correct: false,
-          label:
-            "Failed experiments are moved to a separate notebook before new volunteers use the zone.",
-        },
-        {
-          correct: false,
-          label:
-            "Volunteers tie the tomato frames to the roof railing so the planters remain stable.",
+            "Grandmother was at least $$14$$ when the valley filled, and the steps had been counted about five years before her family moved.",
         },
       ],
     },

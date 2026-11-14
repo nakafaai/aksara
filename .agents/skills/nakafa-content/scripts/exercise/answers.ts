@@ -17,8 +17,8 @@ import type {
 } from "#nakafa-content/voice/types";
 
 const REFERENCE =
-  /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung)\s+(?<number>\d+)\b/iu;
-const NUMBER_COLUMN = /^(?:Soal|Problem|Question|Aufgabe)$/iu;
+  /^(?:Soalan|Soal|Jawapan|Jawaban|Penyelesaian|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung)\s+(?<number>\d+)\b/iu;
+const NUMBER_COLUMN = /^(?:Soalan|Soal|Problem|Question|Aufgabe)$/iu;
 const NUMBER = /^\d+$/u;
 const HTML_HEADING = /^h[1-6]$/u;
 const WHITESPACE = /\s+/gu;

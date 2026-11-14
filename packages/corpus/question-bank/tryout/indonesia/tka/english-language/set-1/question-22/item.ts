@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "fact-opinion",
   },
-  stimulus: "later-start",
+  stimulus: "weekend",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Use several outcome measures.",
-        },
-        {
-          correct: true,
-          label: "Look for effects hidden by an average.",
+          correct: false,
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "Treat a higher overall mean as enough to justify permanent adoption.",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
         },
         {
           correct: true,
-          label: "Keep the change reversible.",
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
       ],
     },

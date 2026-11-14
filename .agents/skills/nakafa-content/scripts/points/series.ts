@@ -1,14 +1,14 @@
 import {
-  isArrayExpressionNode,
-  isCallExpressionNode,
-} from "#nakafa-content/line/ast";
-import {
   asEstreeNode,
   type EstreeNode,
   estreeChildren,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import {
+  isArrayExpressionNode,
+  isCallExpressionNode,
+} from "#nakafa-content/points/ast";
 import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
 import { isLiteralPoint } from "#nakafa-content/points/numeric";
 

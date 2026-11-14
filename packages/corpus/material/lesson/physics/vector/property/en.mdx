@@ -14,9 +14,7 @@ export const metadata = {
 
 Two vectors are equal if they have the <Highlight>same magnitude and direction</Highlight>. Their positions in a diagram may be different. This equality compares the vectors themselves. For a force, its point of application can still change the physical turning effect even when the force vector is unchanged.
 
-<LineEquation
-  cameraPosition={[3.5, 4.5, 8]}
-  cameraTarget={[1, 0, 0]}
+<MathVisual
   title={<>Equal and Opposite Vectors</>}
   description={
     <>
@@ -25,57 +23,29 @@ Two vectors are equal if they have the <Highlight>same magnitude and direction</
       length. Vector <InlineMath math="-\vec{a}" /> points the opposite way.
     </>
   }
-  data={(() => {
-    const a = [4, 2, 0];
-    const bShift = [0, 0, 2];
-    const negativeShift = [0, 0, -2];
-    const b = a.map((component, index) => component + bShift.at(index));
-    const negativeA = a.map(
-      (component, index) => -component + negativeShift.at(index)
-    );
-
-    return [
-      {
-      points: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.6 * (((a)[0]) - (0)), y: (0) + 0.6 * (((a)[1]) - (0)), z: (0) + 0.6 * (((a)[2]) - (0)) }, { x: (a)[0], y: (a)[1], z: (a)[2] }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="a" />,
-        at: 1,
-        offset: [0.15, 0.45, 0],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (bShift)[0], y: (bShift)[1], z: (bShift)[2] }, { x: ((bShift)[0]) + 0.6 * (((b)[0]) - ((bShift)[0])), y: ((bShift)[1]) + 0.6 * (((b)[1]) - ((bShift)[1])), z: ((bShift)[2]) + 0.6 * (((b)[2]) - ((bShift)[2])) }, { x: (b)[0], y: (b)[1], z: (b)[2] }],
-      color: "#0d9488",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="b" />,
-        at: 1,
-        offset: [0.15, 0.45, 0.15],
-        anchorX: "center",
-      }],
-    },
-      {
-      points: [{ x: (negativeShift)[0], y: (negativeShift)[1], z: (negativeShift)[2] }, { x: ((negativeShift)[0]) + 0.5 * (((negativeA)[0]) - ((negativeShift)[0])), y: ((negativeShift)[1]) + 0.5 * (((negativeA)[1]) - ((negativeShift)[1])), z: ((negativeShift)[2]) + 0.5 * (((negativeA)[2]) - ((negativeShift)[2])) }, { x: (negativeA)[0], y: (negativeA)[1], z: (negativeA)[2] }],
-      color: "#7c3aed",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="-a" />,
-        at: 1,
-        offset: [0.1, -0.55, 0],
-        anchorX: "center",
-      }],
-    },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="-a" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -2.5, max: 2.5 }, z: { min: -2.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 3.5, y: 4.5, z: 8 }, target: { x: 1, y: 0, z: 0 } },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: 2.4, y: 1.2, z: 0 }, { x: 4, y: 2, z: 0 }], appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 0 }, to: { x: 4, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0, z: 2 }, { x: 2.4, y: 1.2, z: 2 }, { x: 4, y: 2, z: 2 }], appearance: "primary" },
+      { id: "s2-head", kind: "vector", from: { x: 2.4, y: 1.2, z: 2 }, to: { x: 4, y: 2, z: 2 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 0, y: 0, z: -2 }, { x: -2, y: -1, z: -2 }, { x: -4, y: -2, z: -2 }], appearance: "secondary" },
+      { id: "s3-head", kind: "vector", from: { x: -2, y: -1, z: -2 }, to: { x: -4, y: -2, z: -2 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.2, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 2.4, y: 1.2, z: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2, y: -1, z: -2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 In the visual, <InlineMath math="\vec{a}" /> and <InlineMath math="\vec{b}" /> appear at different positions. They are still equal because both have the same magnitude and direction.

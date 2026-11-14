@@ -15,44 +15,31 @@ A **vertical shift** by <InlineMath math="k" /> turns <InlineMath math="y = f(x)
 
 Adding <InlineMath math="k" /> changes every height by the same amount, including the heights of points on the x-axis. That is why zeros do not simply move by <InlineMath math="k" />. A zero of <InlineMath math="f" /> solves <InlineMath math="f(x) = 0" />, but a zero of <InlineMath math="f(x) + k" /> solves <InlineMath math="f(x) = -k" />, which is a different equation.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = x^2 - 4x + 3" /> and <InlineMath math="g(x) = f(x) + 5" /></>}
   description={<>Each vertical arrow adds five to the height. The zeros of <InlineMath math="f" /> at <InlineMath math="1" /> and <InlineMath math="3" /> rise to height <InlineMath math="5" /> on <InlineMath math="g" />, and the vertex rises from <InlineMath math="(2, -1)" /> to <InlineMath math="(2, 4)" />.</>}
-  cameraPosition={[2, 3, 14]}
-  cameraTarget={[2, 3, 0]}
-  data={(() => {
-    // Both curves use the same inputs, so every arrow starts on f and ends on g at the same x.
-    const f = (x) => x * x - 4 * x + 3;
-    const g = (x) => f(x) + 5;
-    const xs = Array.from({ length: 241 }, (_, i) => -1 + i / 40);
-    const index = (x) => Math.round((x + 1) * 40);
-    // A vertical shift by 5 keeps the x-coordinate: (x0, f(x0)) goes to (x0, f(x0) + 5).
-    const lift = (x0) => [
-      { x: x0, y: f(x0), z: 0 },
-      { x: x0, y: g(x0), z: 0 },
-    ];
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(1), index(3)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-0.5), offset: [-0.3, 0, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(-0.5), offset: [-0.3, 0.4, 0], anchorX: "right" }],
-      },
-      { points: lift(2), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: lift(1), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-      { points: lift(3), smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -2.5, max: 14.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1) + (t / 40))", y: "(((((-1) + (t / 40)) * ((-1) + (t / 40))) - (4 * ((-1) + (t / 40)))) + 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p80", kind: "point", at: { x: 1, y: 0 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-1) + (t / 40))", y: "((((((-1) + (t / 40)) * ((-1) + (t / 40))) - (4 * ((-1) + (t / 40)))) + 3) + 5)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 2, y: -1 }, to: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 1, y: 0 }, to: { x: 1, y: 5 }, appearance: "answer" },
+      { id: "s5", kind: "vector", from: { x: 3, y: 0 }, to: { x: 3, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -0.5, y: 5.25 }, placement: "left" },
+      { key: "l2", objectId: "s2", at: { x: -0.5, y: 10.25 }, placement: "above-left" },
+    ],
+  }}
 />
 
 The graph shows that the vertex rises and that the two zeros leave the x-axis. Each arrow at a zero ends at height <InlineMath math="5" />, and <InlineMath math="g" /> has no zeros at all, because its lowest point stays above the x-axis.
@@ -61,50 +48,37 @@ The graph shows that the vertex rises and that the two zeros leave the x-axis. E
 
 To find the zeros after a shift, **solve the new equation for zero**. Take the family <InlineMath math="f(x) = x^2 - 4" /> and add a constant <InlineMath math="k" />. The zeros satisfy <InlineMath math="x^2 - 4 + k = 0" />, or <InlineMath math="x^2 = 4 - k" />. The number of solutions depends on <InlineMath math="k" />. For <InlineMath math="k = 0" /> there are two zeros, <InlineMath math="\pm 2" />. For <InlineMath math="k = 3" /> they are <InlineMath math="\pm 1" />, and for <InlineMath math="k = 4" /> the only zero is <InlineMath math="0" />, where the parabola touches the x-axis. For <InlineMath math="k = 5" /> the equation <InlineMath math="x^2 = -1" /> has no real solution.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>The family <InlineMath math="x^2 - 4 + k" /> for four values of <InlineMath math="k" /></>}
   description={<>Two zeros become one when the vertex reaches the x-axis at <InlineMath math="k = 4" />, and no zero remains once the vertex lies above it at <InlineMath math="k = 5" />. The dots mark each zero that exists.</>}
-  cameraPosition={[0, 4, 13]}
-  cameraTarget={[0, 4, 0]}
-  data={(() => {
-    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
-    const index = (x) => Math.round((x + 3) * 40);
-    const family = (k) => (x) => x * x - 4 + k;
-    return [
-      {
-        points: xs.map((x) => ({ x, y: family(0)(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(-2), index(2)],
-        labels: [{ text: <InlineMath math="k = 0" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(3)(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(-1), index(1)],
-        labels: [{ text: <InlineMath math="k = 3" />, at: index(2.5), offset: [0.3, 0, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(4)(x), z: 0 })),
-        smooth: false,
-        color: "#7c3aed",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="k = 4" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: family(5)(x), z: 0 })),
-        smooth: false,
-        color: "#db2777",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="k = 5" />, at: index(2.5), offset: [0.3, 0.2, 0], anchorX: "left" }],
-      },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="k = 0" />,
+    "l2": <InlineMath math="k = 3" />,
+    "l3": <InlineMath math="k = 4" />,
+    "l4": <InlineMath math="k = 5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -5.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 0)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p80", kind: "point", at: { x: -1, y: 0 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 4)", parameter: { min: 0, max: 240 }, appearance: "answer" },
+      { id: "s3-p120", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "((-3) + (t / 40))", y: "(((((-3) + (t / 40)) * ((-3) + (t / 40))) - 4) + 5)", parameter: { min: 0, max: 240 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.5, y: 2.25 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: 2.5, y: 5.25 }, placement: "right" },
+      { key: "l3", objectId: "s3", at: { x: 2.5, y: 6.25 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: 7.25 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Apply the same test to the first example. The graph of <InlineMath math="g(x) = x^2 - 4x + 8" /> has discriminant <InlineMath math="(-4)^2 - 4(1)(8) = 16 - 32 = -16" />, which is negative. So <InlineMath math="g" /> has no real zeros, and its lowest point, the vertex <InlineMath math="(2, 4)" />, lies above the x-axis.
@@ -115,51 +89,34 @@ The exponential function <InlineMath math="f(x) = 2^x" /> has **the horizontal a
 
 The graph of <InlineMath math="g" /> crosses the x-axis where <InlineMath math="2^x = 3" />, so <InlineMath math="x = \log_2 3 \approx 1.585" />. Check it with <InlineMath math="g(\log_2 3) = 3 - 3 = 0" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = 2^x" /> and <InlineMath math="g(x) = 2^x - 3" /></>}
   description={<>The arrow takes the intercept <InlineMath math="(0, 1)" /> of <InlineMath math="f" /> down to <InlineMath math="(0, -2)" /> on <InlineMath math="g" />. The dashed asymptote is the line <InlineMath math="y = -3" />, and the dot marks the zero of <InlineMath math="g" />.</>}
-  cameraPosition={[0, 2.5, 13]}
-  cameraTarget={[0, 2.5, 0]}
-  data={(() => {
-    const f = (x) => 2 ** x;
-    const g = (x) => 2 ** x - 3;
-    const xs = Array.from({ length: 241 }, (_, i) => -3 + i / 40);
-    const index = (x) => Math.round((x + 3) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(0)],
-        labels: [{ text: <InlineMath math="f" />, at: index(2), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(2), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: -3, y: -3, z: 0 }, { x: 3, y: -3, z: 0 }],
-        smooth: false,
-        color: "#475569",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="y = -3" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      {
-        points: [{ x: Math.log2(3), y: 0, z: 0 }],
-        smooth: false,
-        color: "#db2777",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="x = \log_2 3" />, at: 0, offset: [0.3, 0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 0, y: 1, z: 0 }, { x: 0, y: -2, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="y = -3" />,
+    "l4": <InlineMath math="x = \log_2 3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 9.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "(2)^(((-3) + (t / 40)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "((2)^(((-3) + (t / 40))) - 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -3 }, { x: 3, y: -3 }], appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 1.58, y: 0 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 1 }, to: { x: 0, y: -2 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 4 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: -3, y: -3 }, placement: "below" },
+      { key: "l4", objectId: "s4", at: { x: 1.58, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## The Range Seen From the Side
@@ -168,110 +125,92 @@ Two graphs in two parallel planes show **the range directly**. Put <InlineMath m
 
 From above, both parabolas spread over the same domain bar <InlineMath math="[-2, 2]" />, because a vertical shift keeps every x-coordinate. The side view therefore shows the change, and the top view shows what stays the same.
 
-<LineEquation
-  showZAxis={true}
+<MathVisual
   title={<>Two shifted parabolas seen from the side</>}
   description={<>From this side, the curve of <InlineMath math="f" /> lies on the range bar from <InlineMath math="-1" /> to <InlineMath math="3" />, and the curve of <InlineMath math="g" /> lies on the bar from <InlineMath math="1" /> to <InlineMath math="5" />. The bars are two units apart in height.</>}
-  cameraPosition={[12, 2, 0.75]}
-  cameraTarget={[0, 2, 0.75]}
-  data={(() => {
-    // The parabolas are sampled on -2 <= x <= 2; the range and domain bars are exact straight lines.
-    const xs = Array.from({ length: 161 }, (_, i) => -2 + i / 40);
-    const index = (x) => Math.round((x + 2) * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: x * x - 1, z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="f" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: x * x + 1, z: 1.5 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: false,
-        labels: [{ text: <InlineMath math="g" />, at: index(-1), offset: [0, -0.4, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 2.6, y: -1, z: 0 }, { x: 2.6, y: 3, z: 0 }], smooth: false, color: "#ea580c", showPoints: false, labels: [{ text: <InlineMath math="[-1, 3]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
-      { points: [{ x: 2.6, y: 1, z: 1.5 }, { x: 2.6, y: 5, z: 1.5 }], smooth: false, color: "#0d9488", showPoints: false, labels: [{ text: <InlineMath math="[1, 5]" />, at: 0, offset: [0.3, 0, 0], anchorX: "left" }] },
-      { points: [{ x: -2, y: -2.5, z: 0 }, { x: 2, y: -2.5, z: 0 }], smooth: false, color: "#475569", showPoints: false, labels: [{ text: <InlineMath math="[-2, 2]" />, at: 0, offset: [0, -0.4, 0], anchorX: "left" }] },
-      { points: [{ x: -2, y: -2.5, z: 1.5 }, { x: 2, y: -2.5, z: 1.5 }], smooth: false, color: "#475569", showPoints: false },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+    "l3": <InlineMath math="[-1, 3]" />,
+    "l4": <InlineMath math="[1, 5]" />,
+    "l5": <InlineMath math="[-2, 2]" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 3.5 }, y: { min: -3.5, max: 6 }, z: { min: -0.5, max: 2 } },
+    view: { kind: "camera", position: { x: 12, y: 2, z: 0.75 }, target: { x: 0, y: 2, z: 0.75 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - 1)", z: "0", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) + 1)", z: "1.5", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2.6, y: -1, z: 0 }, { x: 2.6, y: 3, z: 0 }], appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2.6, y: 1, z: 1.5 }, { x: 2.6, y: 5, z: 1.5 }], appearance: "secondary" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -2, y: -2.5, z: 0 }, { x: 2, y: -2.5, z: 0 }], appearance: "answer" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -2, y: -2.5, z: 1.5 }, { x: 2, y: -2.5, z: 1.5 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1, y: 0, z: 0 }, placement: "below" },
+      { key: "l2", objectId: "s2", at: { x: -1, y: 2, z: 1.5 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 2.6, y: -1, z: 0 }, placement: "right" },
+      { key: "l4", objectId: "s4", at: { x: 2.6, y: 1, z: 1.5 }, placement: "right" },
+      { key: "l5", objectId: "s5", at: { x: -2, y: -2.5, z: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Square Roots and Lines After a Shift
 
 The square root function <InlineMath math="f(x) = \sqrt{x}" /> **moved up by three units** gives <InlineMath math="g(x) = \sqrt{x} + 3" />. The starting point <InlineMath math="(0, 0)" /> moves to <InlineMath math="(0, 3)" />, and <InlineMath math="(4, 2)" /> moves to <InlineMath math="(4, 5)" />. The domain stays <InlineMath math="[0, \infty)" />, while the range changes from <InlineMath math="[0, \infty)" /> to <InlineMath math="[3, \infty)" />.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>Graphs of <InlineMath math="f(x) = \sqrt{x}" /> and <InlineMath math="g(x) = \sqrt{x} + 3" /></>}
   description={<>The arrow lifts the point <InlineMath math="(4, 2)" /> to <InlineMath math="(4, 5)" />. The domain starts at zero on both graphs, and the range of <InlineMath math="g" /> starts at height three.</>}
-  cameraPosition={[3, 3, 12]}
-  cameraTarget={[3, 3, 0]}
-  data={(() => {
-    const f = (x) => Math.sqrt(x);
-    const g = (x) => Math.sqrt(x) + 3;
-    const xs = Array.from({ length: 321 }, (_, i) => i / 40);
-    const index = (x) => Math.round(x * 40);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="f" />, at: index(6), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [0],
-        labels: [{ text: <InlineMath math="g" />, at: index(7), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      { points: [{ x: 4, y: 2, z: 0 }, { x: 4, y: 5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(t / 40)", y: "sqrt((t / 40))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(t / 40)", y: "(sqrt((t / 40)) + 3)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: 0, y: 3 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 4, y: 2 }, to: { x: 4, y: 5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 6, y: 2.45 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 7, y: 5.65 }, placement: "above-left" },
+    ],
+  }}
 />
 
 The same rule applies to a straight line. Take <InlineMath math="f(x) = 3x + 2" /> and shift it down by seven units to get <InlineMath math="g(x) = 3x - 5" />. The y-intercept moves from <InlineMath math="(0, 2)" /> to <InlineMath math="(0, -5)" />, and the zero moves from <InlineMath math="x = -\frac{2}{3}" /> to <InlineMath math="x = \frac{5}{3}" />. Here the zero does move, because a line's zero depends on the constant term.
 
-<LineEquation
-  showZAxis={false}
+<MathVisual
   title={<>The line <InlineMath math="f(x) = 3x + 2" /> and its shifted copy <InlineMath math="g(x) = 3x - 5" /></>}
   description={<>The arrow takes the intercept <InlineMath math="(0, 2)" /> of <InlineMath math="f" /> down to <InlineMath math="(0, -5)" /> on <InlineMath math="g" />. The dots mark the two zeros, which lie at different places.</>}
-  cameraPosition={[1, 0, 14]}
-  cameraTarget={[1, 0, 0]}
-  data={(() => {
-    const f = (x) => 3 * x + 2;
-    const g = (x) => 3 * x - 5;
-    // The step 1/30 puts both zeros, -2/3 and 5/3, exactly on the sample grid.
-    const xs = Array.from({ length: 181 }, (_, i) => -2 + i / 30);
-    const index = (x) => Math.round((x + 2) * 30);
-    return [
-      {
-        points: xs.map((x) => ({ x, y: f(x), z: 0 })),
-        smooth: false,
-        color: "#ea580c",
-        showPoints: true,
-        pointIndices: [index(-2 / 3)],
-        labels: [{ text: <InlineMath math="f" />, at: index(-1.5), offset: [-0.3, 0.3, 0], anchorX: "right" }],
-      },
-      {
-        points: xs.map((x) => ({ x, y: g(x), z: 0 })),
-        smooth: false,
-        color: "#0d9488",
-        showPoints: true,
-        pointIndices: [index(5 / 3)],
-        labels: [{ text: <InlineMath math="g" />, at: index(3), offset: [0.3, -0.3, 0], anchorX: "left" }],
-      },
-      { points: [{ x: 0, y: 2, z: 0 }, { x: 0, y: -5, z: 0 }], smooth: false, color: "#d97706", showPoints: false, cone: { position: "end", size: 0.3 } },
-    ];
-  })()}
+  labels={{
+    "l1": <InlineMath math="f" />,
+    "l2": <InlineMath math="g" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -14, max: 17 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-2) + (t / 30))", y: "((3 * ((-2) + (t / 30))) + 2)", parameter: { min: 0, max: 180 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -0.67, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-2) + (t / 30))", y: "((3 * ((-2) + (t / 30))) - 5)", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s2-p110", kind: "point", at: { x: 1.67, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 2 }, to: { x: 0, y: -5 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -1.5, y: -2.5 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 ## Mistakes When Adding a Constant

@@ -56,9 +56,7 @@ Pada **tiga dimensi**, kita menambahkan sumbu <InlineMath math="z" /> yang tegak
 
 Dalam salah satu model ruang yang umum, <InlineMath math="x" />, <InlineMath math="y" />, dan <InlineMath math="z" /> dapat menyatakan panjang, lebar, dan tinggi. Model yang dipilih menentukan makna setiap sumbu.
 
-<LineEquation
-  cameraPosition={[7, 5, -5]}
-  cameraTarget={[1.5, 2, 2.5]}
+<MathVisual
   title={
     <>
       Vektor Posisi <InlineMath math="P(3, 4, 5)" />
@@ -70,21 +68,20 @@ Dalam salah satu model ruang yang umum, <InlineMath math="x" />, <InlineMath mat
       <InlineMath math="P(3, 4, 5)" />.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 5 }],
-      color: "#9333ea",
-      cone: { position: "end", size: 0.25 },
-      showPoints: false,
-      smooth: false,
-      labels: [{
-        text: <InlineMath math="P(3, 4, 5)" />,
-        at: 1,
-        offset: [0.2, 0.2, 0.2],
-        anchorX: "left",
-      }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="P(3, 4, 5)" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 5.5 } },
+    view: { kind: "camera", position: { x: 7, y: 5, z: -5 }, target: { x: 1.5, y: 2, z: 2.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 4, z: 5 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 4, z: 5 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Beda Vektor dan Koordinat

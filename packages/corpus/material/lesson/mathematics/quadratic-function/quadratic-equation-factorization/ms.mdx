@@ -1,0 +1,488 @@
+export const metadata = {
+  title: "Pemfaktoran Persamaan Kuadratik",
+  description: "Faktorkan persamaan kuadratik dengan sifat hasil darab sifar, pengumpulan sebutan, dan pola khas, kemudian darab semula faktornya untuk mendapatkan persamaan asal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-19",
+  dateModified: "2026-11-08",
+  subject: "Fungsi Kuadratik",
+};
+
+## Mencari Punca daripada Faktor Linear
+
+Pemfaktoran menulis semula persamaan kuadratik daripada <InlineMath math="ax^2 + bx + c = 0" /> sebagai hasil darab. Apabila ia boleh ditulis sebagai <InlineMath math="a(x - p)(x - q) = 0" />, nombor <InlineMath math="p" /> dan <InlineMath math="q" /> ialah puncanya.
+
+Punca ialah nilai <InlineMath math="x" /> yang menjadikan persamaan itu sama dengan sifar. Dalam bentuk hasil darab, cari punca dengan <Highlight>menyamakan setiap faktor dengan sifar</Highlight>.
+
+## Prinsip Asas Pemfaktoran
+
+Persamaan kuadratik dalam bentuk am ditulis sebagai:
+
+<BlockMath math="ax^2 + bx + c = 0" />
+
+Dalam bentuk am ini, <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> ialah pemalar dan <InlineMath math="a \neq 0" />.
+
+Pemfaktoran menggunakan sifat hasil darab sifar: kalau satu hasil darab sama dengan sifar, <Highlight>sekurang-kurangnya satu faktor mesti sama dengan sifar</Highlight>.
+
+Maksudnya, kalau <InlineMath math="(x - p)(x - q) = 0" />, maka:
+
+- <InlineMath math="x - p = 0" /> atau <InlineMath math="x - q = 0" />
+- Jadi <InlineMath math="x = p" /> atau <InlineMath math="x = q" />
+
+### Membaca faktor sebagai luas
+
+Untuk <InlineMath math="x>0" />, sisi <InlineMath math="x+3" /> dan <InlineMath math="x+2" /> membentuk sebuah segi empat tepat. Dua kepingan di tengah ada jumlah luas <InlineMath math="3x+2x=5x" />, jadi hasil tambah keempat-empat luas sama dengan hasil darab dua panjang sisi itu.
+
+<BlockMath math="x^2+3x+2x+6=(x+3)(x+2)" />
+
+<MathVisual
+  title={<>Empat kepingan satu segi empat tepat</>}
+  description={<>Rajah ini menggunakan <InlineMath math="x = 2" />. Segi empat tepat <InlineMath math="5" /> kali <InlineMath math="4" /> dibahagikan kepada kepingan dengan luas <InlineMath math="x^2" />, <InlineMath math="3x" />, <InlineMath math="2x" />, dan <InlineMath math="6" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }], appearance: "primary" },
+      { id: "wide", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 2 }, { x: 2, y: 2 }], appearance: "secondary" },
+      { id: "tall", kind: "polygon", vertices: [{ x: 0, y: 2 }, { x: 2, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 4 }], appearance: "construction" },
+      { id: "corner", kind: "polygon", vertices: [{ x: 2, y: 2 }, { x: 5, y: 2 }, { x: 5, y: 4 }, { x: 2, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "wide", objectId: "wide", at: { x: 3.5, y: 1 }, placement: "above" },
+      { key: "tall", objectId: "tall", at: { x: 1, y: 3 }, placement: "above" },
+      { key: "corner", objectId: "corner", at: { x: 3.5, y: 3 }, placement: "above" },
+    ],
+  }}
+  labels={{ square: <InlineMath math="x^2" />, wide: <InlineMath math="3x" />, tall: <InlineMath math="2x" />, corner: <InlineMath math="6" /> }}
+/>
+
+Rajah ini menggunakan <InlineMath math="x=2" />, jadi jumlah luasnya <InlineMath math="4+6+4+6=20=5\times4" />. Identiti algebra itu benar untuk setiap nombor nyata, tetapi <Highlight>model panjang sisi menggunakan nilai positif</Highlight>. Punca negatif bagi persamaan itu bukan panjang fizikal yang negatif.
+
+## Langkah Memfaktorkan Persamaan Kuadratik
+
+Untuk pekali integer, cari **dua integer** yang hasil darabnya <InlineMath math="ac" /> dan hasil tambahnya <InlineMath math="b" />. Kalau pasangan itu wujud, empat langkah berikut memberikan pemfaktoran secara pengumpulan sebutan.
+
+1. Pastikan persamaan dalam bentuk am dengan sebelah kanan sama dengan sifar
+2. Cari dua nombor yang apabila didarab memberikan <InlineMath math="ac" /> dan apabila ditambah memberikan <InlineMath math="b" />
+3. Pecahkan sebutan tengah dengan dua nombor itu, kemudian faktorkan secara pengumpulan sebutan
+4. Tentukan punca persamaan daripada faktor-faktor itu
+
+### Contoh memfaktorkan persamaan kuadratik
+
+Tiga contoh ini menggunakan pasangan yang hasil darabnya <InlineMath math="ac" /> dan hasil tambahnya <InlineMath math="b" />. Pekali utama dan tanda pemalar berubah, tetapi sebab kita **mengumpulkan sebutan** tetap sama.
+
+**Contoh 1**
+
+<BlockMath math="x^2 + 5x + 6 = 0" />
+
+Dalam persamaan ini, <InlineMath math="a = 1" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = 6" />.
+
+**Langkah 1**: Persamaan ini sudah dalam bentuk am dengan sebelah kanan sama dengan sifar.
+
+**Langkah 2**: Kita perlu cari dua nombor yang:
+
+- Apabila didarab memberikan <InlineMath math="ac = 1 \times 6 = 6" />
+- Apabila ditambah memberikan <InlineMath math="b = 5" />
+
+Faktor bagi <InlineMath math="6" /> ialah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="6" />.
+**Pasangan faktor** yang mungkin ialah <InlineMath math="(1, 6)" /> dan <InlineMath math="(2, 3)" />.
+Pasangan <InlineMath math="(2, 3)" /> memberikan hasil tambah <InlineMath math="5" />, sama dengan nilai <InlineMath math="b" />.
+
+**Langkah 3**: Kita boleh tulis persamaan itu sebagai:
+
+<MathContainer>
+  <BlockMath math="x^2 + 2x + 3x + 6 = 0" />
+  <BlockMath math="x(x + 2) + 3(x + 2) = 0" />
+  <BlockMath math="(x + 3)(x + 2) = 0" />
+</MathContainer>
+
+**Langkah 4**: Daripada bentuk faktor di atas, kita dapat:
+
+- <InlineMath math="x + 3 = 0 \Rightarrow x = -3" />
+- <InlineMath math="x + 2 = 0 \Rightarrow x = -2" />
+
+Jadi punca persamaan itu ialah <InlineMath math="x = -3" /> dan <InlineMath math="x = -2" />.
+
+**Contoh 2**
+
+<BlockMath math="3x^2 + 13x - 10 = 0" />
+
+Dalam persamaan ini, <InlineMath math="a = 3" />, <InlineMath math="b = 13" />, dan <InlineMath math="c = -10" />.
+
+**Langkah 1**: Persamaan ini sudah dalam bentuk am dengan sebelah kanan sama dengan sifar.
+
+**Langkah 2**: Kita perlu cari dua nombor yang:
+
+- Apabila didarab memberikan <InlineMath math="ac = 3 \times (-10) = -30" />
+- Apabila ditambah memberikan <InlineMath math="b = 13" />
+
+Faktor bagi <InlineMath math="-30" /> ialah pasangan nombor dengan **tanda yang berlawanan**:
+
+<BlockMath math="\begin{aligned} &amp;(1, -30), \; (-1, 30), \; (2, -15), \\ &amp;\; (-2, 15), \\ &amp;(3, -10), \; (-3, 10), \; (5, -6), \\ &amp;\; (-5, 6) \end{aligned}" />
+
+Pasangan <InlineMath math="(15, -2)" /> memberikan hasil tambah <InlineMath math="13" />, sama dengan nilai <InlineMath math="b" />.
+
+**Langkah 3**: Kita boleh tulis persamaan itu sebagai:
+
+<BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+
+Kita boleh kumpulkan sebutannya:
+
+<MathContainer>
+  <BlockMath math="3x^2 + 15x - 2x - 10 = 0" />
+  <BlockMath math="3x(x + 5) - 2(x + 5) = 0" />
+  <BlockMath math="(3x - 2)(x + 5) = 0" />
+</MathContainer>
+
+**Langkah 4**: Daripada bentuk faktor di atas, kita dapat:
+
+- <InlineMath math="3x - 2 = 0 \Rightarrow x = \frac{2}{3}" />
+- <InlineMath math="x + 5 = 0 \Rightarrow x = -5" />
+
+Jadi punca persamaan itu ialah <InlineMath math="x = \frac{2}{3}" /> dan <InlineMath math="x = -5" />.
+
+**Contoh 3**
+
+<BlockMath math="2x^2 + 5x - 3 = 0" />
+
+Dalam persamaan ini, <InlineMath math="a = 2" />, <InlineMath math="b = 5" />, dan <InlineMath math="c = -3" />.
+
+**Langkah 1**: Kira <InlineMath math="ac = 2 \times (-3) = -6" />
+
+**Langkah 2**: Cari pasangan faktor bagi <InlineMath math="-6" /> yang apabila ditambah memberikan <InlineMath math="5" />:
+
+Faktor bagi <InlineMath math="-6" />: <InlineMath math="(1, -6), (-1, 6), (2, -3), (-2, 3)" />
+
+Pasangan <InlineMath math="(6, -1)" /> memberikan hasil tambah <InlineMath math="5" />, sama dengan nilai <InlineMath math="b" />.
+
+**Langkah 3**: Pecahkan sebutan <InlineMath math="5x" /> kepada <InlineMath math="6x - x" />:
+
+<BlockMath math="2x^2 + 6x - x - 3 = 0" />
+
+**Langkah 4**: Faktorkan secara **pengumpulan sebutan**:
+
+<MathContainer>
+  <BlockMath math="2x^2 + 6x - x - 3 = 0" />
+  <BlockMath math="2x(x + 3) - 1(x + 3) = 0" />
+  <BlockMath math="(2x - 1)(x + 3) = 0" />
+</MathContainer>
+
+**Langkah 5**: Tentukan punca persamaan:
+
+- <InlineMath math="2x - 1 = 0 \Rightarrow x = \frac{1}{2}" />
+- <InlineMath math="x + 3 = 0 \Rightarrow x = -3" />
+
+Punca persamaan itu ialah <InlineMath math="x = \frac{1}{2}" /> dan <InlineMath math="x = -3" />.
+
+Setiap faktor linear memberikan satu titik persilangan. Untuk <InlineMath math="2x^2 + 5x - 3 = (2x - 1)(x + 3)" />, parabola bertemu paksi-x apabila <InlineMath math="2x - 1 = 0" /> dan apabila <InlineMath math="x + 3 = 0" />: pada <InlineMath math="x = \tfrac12" /> dan <InlineMath math="x = -3" />.
+
+<MathVisual
+  title={<>Faktor <InlineMath math="2x^2 + 5x - 3" /> sebagai titik persilangan</>}
+  description={<>Parabola <InlineMath math="y = 2x^2 + 5x - 3" />, yang memotong paksi-x pada <InlineMath math="-3" /> dan <InlineMath math="\tfrac12" />.</>}
+  labels={{
+    curve: <InlineMath math="y = 2x^2 + 5x - 3" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 1.6 }, y: { min: -6.6, max: 5.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "curve", kind: "quadratic", inputAxis: "x", coefficients: { a: 2, b: 5, c: -3 }, domain: { min: -18 / 5, max: 11 / 10 }, appearance: "primary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 1 / 2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 11 / 10, y: 123 / 25 }, placement: "left" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 1 / 2, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Memfaktorkan Apabila Satu Punca Diketahui
+
+Kalau kita tahu salah satu punca persamaan kuadratik, kita boleh gunakan maklumat itu untuk mencari pemfaktoran yang lengkap.
+
+**Contoh**: Salah satu punca persamaan <InlineMath math="2x^2 - bx - 6 = 0" /> ialah <InlineMath math="6" />
+
+Kalau <InlineMath math="x = 6" /> ialah punca persamaan itu, maka <InlineMath math="(x - 6)" /> ialah salah satu faktornya.
+
+Kita boleh gantikan <InlineMath math="x = 6" /> ke dalam persamaan asal:
+
+<MathContainer>
+  <BlockMath math="2(6)^2 - b(6) - 6 = 0" />
+  <BlockMath math="2 \times 36 - 6b - 6 = 0" />
+  <BlockMath math="72 - 6b - 6 = 0" />
+  <BlockMath math="66 = 6b" />
+  <BlockMath math="b = 11" />
+</MathContainer>
+
+Sekarang kita boleh tulis persamaan itu sebagai <InlineMath math="2x^2 - 11x - 6 = 0" />.
+
+Dengan kaedah pemfaktoran, kita faktorkannya sebagai:
+
+<MathContainer>
+  <BlockMath math="2x^2 - 11x - 6 = 0" />
+  <BlockMath math="2x^2 - 12x + x - 6 = 0" />
+  <BlockMath math="2x(x - 6) + 1(x - 6) = 0" />
+  <BlockMath math="(2x + 1)(x - 6) = 0" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMath math="x = 6" />.
+
+## Kes Khas Pemfaktoran
+
+**Contoh 1**
+
+Bentuk <InlineMath math="ax^2 + bx = 0" />
+
+Untuk persamaan tanpa sebutan pemalar, kita boleh terus faktorkan <InlineMath math="x" /> keluar:
+
+<MathContainer>
+  <BlockMath math="ax^2 + bx = 0" />
+  <BlockMath math="x(ax + b) = 0" />
+</MathContainer>
+
+Puncanya ialah <InlineMath math="x = 0" /> dan <InlineMath math="x = -\frac{b}{a}" />.
+
+**Contoh**: <InlineMath math="2x^2 - 18x = 0" />
+
+<MathContainer>
+  <BlockMath math="2x^2 - 18x = 0" />
+  <BlockMath math="2x(x - 9) = 0" />
+</MathContainer>
+
+Puncanya ialah <InlineMath math="x = 0" /> dan <InlineMath math="x = 9" />.
+
+**Contoh 2**
+
+Bentuk <InlineMath math="ax^2 - c = 0" />
+
+Untuk persamaan tanpa sebutan <InlineMath math="x" />, asingkan <InlineMath math="x^2" /> dahulu. Dalam nombor nyata, langkah punca kuasa dua memerlukan <InlineMath math="\frac{c}{a}\ge0" />:
+
+<MathContainer>
+  <BlockMath math="ax^2 - c = 0" />
+  <BlockMath math="ax^2 = c" />
+  <BlockMath math="x^2 = \frac{c}{a}" />
+  <BlockMath math="x = \pm \sqrt{\frac{c}{a}}" />
+</MathContainer>
+
+- Kalau <InlineMath math="\frac{c}{a}>0" />, ada dua punca nyata yang berbeza dan ungkapan itu boleh difaktorkan kepada faktor linear nyata.
+- Kalau <InlineMath math="\frac{c}{a}=0" />, <InlineMath math="x=0" /> ialah punca berulang.
+- Kalau <InlineMath math="\frac{c}{a}<0" />, tiada punca nyata dan tiada pemfaktoran kepada faktor linear nyata. Dalam nombor kompleks, puncanya ialah <InlineMath math="x=\pm i\sqrt{-\frac{c}{a}}" />.
+
+**Contoh**: <InlineMath math="2x^2 - 18 = 0" />
+
+<MathContainer>
+  <BlockMath math="2x^2 - 18 = 0" />
+  <BlockMath math="2x^2 = 18" />
+  <BlockMath math="x^2 = 9" />
+  <BlockMath math="x = \pm 3" />
+</MathContainer>
+
+ Puncanya ialah <InlineMath math="x = 3" /> dan <InlineMath math="x = -3" />.
+
+ **Contoh dengan punca kompleks**: <InlineMath math="2x^2 + 18 = 0" />
+
+ <MathContainer>
+   <BlockMath math="2x^2 + 18 = 0" />
+   <BlockMath math="2x^2 = -18" />
+   <BlockMath math="x^2 = -9" />
+ </MathContainer>
+
+ Puncanya ialah <InlineMath math="x = 3i" /> dan <InlineMath math="x = -3i" />. Semak dengan rumus di atas: <InlineMath math="c/a = -9" />, jadi <InlineMath math="x = \pm i\sqrt{9} = \pm 3i" />.
+
+Bahagikan dengan <InlineMath math="2" /> dan bandingkan <InlineMath math="x^2 - 9" /> dengan <InlineMath math="x^2 + 9" />. Parabola pertama turun di bawah paksi dan memotongnya pada <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />. Parabola kedua sentiasa sekurang-kurangnya <InlineMath math="9" /> di atas paksi, jadi <InlineMath math="x^2 + 9 = 0" />, sama seperti <InlineMath math="2x^2 + 18 = 0" />, tiada punca nyata, hanya <InlineMath math="3i" /> dan <InlineMath math="-3i" />.
+
+<MathVisual
+  title={<>Punca nyata dan tiada punca nyata</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 9" />, yang memotong paksi pada <InlineMath math="-3" /> dan <InlineMath math="3" />, dan <InlineMath math="y = x^2 + 9" />, yang tidak pernah sampai ke paksi-x.</>}
+  labels={{
+    low: <InlineMath math="y = x^2 - 9" />,
+    high: <InlineMath math="y = x^2 + 9" />,
+    r1: <InlineMath math="-3" />,
+    r2: <InlineMath math="3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -9.6, max: 21.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "low", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: -9 }, domain: { min: -7 / 2, max: 7 / 2 }, appearance: "primary" },
+      { id: "high", kind: "quadratic", inputAxis: "x", coefficients: { a: 1, b: 0, c: 9 }, domain: { min: -7 / 2, max: 7 / 2 }, appearance: "secondary" },
+      { id: "r1", kind: "point", at: { x: -3, y: 0 }, appearance: "answer" },
+      { id: "r2", kind: "point", at: { x: 3, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 7 / 2, y: 13 / 4 }, placement: "right" },
+      { key: "high", objectId: "high", at: { x: 7 / 2, y: 85 / 4 }, placement: "right" },
+      { key: "r1", objectId: "r1", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "r2", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+## Apabila Pasangan Faktor Integer Tidak Berjaya
+
+Bukan semua persamaan kuadratik ada faktor nisbah. Apabila tiada pasangan faktor yang sesuai, gunakan kaedah lain seperti [rumus kuadratik](/ms/subjek/matematik/fungsi-kuadratik/rumus-kuadratik):
+
+<BlockMath math="x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}" />
+
+Untuk pekali integer, persamaan kuadratik ada punca nisbah tepat apabila pembezalayan <InlineMath math="b^2 - 4ac" /> ialah **kuasa dua sempurna yang tidak negatif**.
+
+## Soalan Latihan
+
+Cari dua nombor dengan **hasil darab** <InlineMath math="ac" /> dan **hasil tambah** <InlineMath math="b" />, bukan hasil darab yang sama dengan pemalar sahaja. Untuk soalan kelima, terus gunakan beza dua kuasa dua. Kemudian samakan setiap faktor dengan sifar.
+
+Faktorkan persamaan kuadratik berikut:
+
+1. <InlineMath math="x^2 + 6x + 5 = 0" />
+2. <InlineMath math="2x^2 + 5x + 2 = 0" />
+3. <InlineMath math="3x^2 - x - 2 = 0" />
+4. <InlineMath math="2x^2 - 8x + 6 = 0" />
+5. <InlineMath math="x^2 - 9 = 0" />
+
+### Jalan Kerja
+
+**Soalan 1**. Selesaikan persamaan <InlineMath math="x^2 + 6x + 5 = 0" />.
+
+**Langkah 1**: Kenal pasti pekali
+
+<BlockMath math="a = 1, b = 6, c = 5" />
+
+**Langkah 2**: Cari **pasangan faktor** yang hasil darabnya <InlineMath math="ac = 5" /> dan hasil tambahnya <InlineMath math="b = 6" />.
+
+Pilih faktor bagi <InlineMath math="5" /> dengan hasil tambah yang diperlukan:
+
+<BlockMath math="\begin{aligned} &amp;1\times5=5 \\ &amp;1+5=6 \end{aligned}" />
+
+**Langkah 3**: Pemfaktoran
+
+<MathContainer>
+  <BlockMath math="x^2 + 6x + 5 = 0" />
+  <BlockMath math="x^2 + x + 5x + 5 = 0" />
+  <BlockMath math="x(x + 1) + 5(x + 1) = 0" />
+  <BlockMath math="(x + 5)(x + 1) = 0" />
+</MathContainer>
+
+**Langkah 4**: Tentukan punca persamaan
+
+<MathContainer>
+  <BlockMath math="x + 5 = 0 \Rightarrow x = -5" />
+  <BlockMath math="x + 1 = 0 \Rightarrow x = -1" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = -5" /> dan <InlineMath math="x = -1" />.
+
+**Soalan 2**. Selesaikan persamaan <InlineMath math="2x^2 + 5x + 2 = 0" />.
+
+**Langkah 1**: Kenal pasti pekali
+
+<BlockMath math="a = 2, b = 5, c = 2" />
+
+**Langkah 2**: Cari **pasangan faktor** yang hasil darabnya <InlineMath math="ac = 2 \times 2 = 4" /> dan hasil tambahnya <InlineMath math="b = 5" />.
+
+Pilih faktor bagi <InlineMath math="4" /> dengan hasil tambah yang diperlukan:
+
+<BlockMath math="\begin{aligned} &amp;1\times4=4 \\ &amp;1+4=5 \end{aligned}" />
+
+**Langkah 3**: Pemfaktoran
+
+<MathContainer>
+  <BlockMath math="2x^2 + 5x + 2 = 0" />
+  <BlockMath math="2x^2 + x + 4x + 2 = 0" />
+  <BlockMath math="x(2x + 1) + 2(2x + 1) = 0" />
+  <BlockMath math="(2x + 1)(x + 2) = 0" />
+</MathContainer>
+
+**Langkah 4**: Tentukan punca persamaan
+
+<MathContainer>
+  <BlockMath math="2x + 1 = 0 \Rightarrow x = -\frac{1}{2}" />
+  <BlockMath math="x + 2 = 0 \Rightarrow x = -2" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = -\frac{1}{2}" /> dan <InlineMath math="x = -2" />.
+
+**Soalan 3**. Selesaikan persamaan <InlineMath math="3x^2 - x - 2 = 0" />.
+
+**Langkah 1**: Kenal pasti pekali
+
+<BlockMath math="a = 3, b = -1, c = -2" />
+
+**Langkah 2**: Cari **pasangan faktor** yang hasil darabnya <InlineMath math="ac = 3 \times (-2) = -6" /> dan hasil tambahnya <InlineMath math="b = -1" />.
+
+Pilih faktor bagi <InlineMath math="-6" /> dengan hasil tambah yang diperlukan:
+
+<BlockMath math="\begin{aligned} &amp;(-3)\times2=-6 \\ &amp;(-3)+2=-1 \end{aligned}" />
+
+**Langkah 3**: Pemfaktoran
+
+<MathContainer>
+  <BlockMath math="3x^2 - x - 2 = 0" />
+  <BlockMath math="3x^2 - 3x + 2x - 2 = 0" />
+  <BlockMath math="3x(x - 1) + 2(x - 1) = 0" />
+  <BlockMath math="(3x + 2)(x - 1) = 0" />
+</MathContainer>
+
+**Langkah 4**: Tentukan punca persamaan
+
+<MathContainer>
+  <BlockMath math="3x + 2 = 0 \Rightarrow x = -\frac{2}{3}" />
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = -\frac{2}{3}" /> dan <InlineMath math="x = 1" />.
+
+**Soalan 4**. Selesaikan persamaan <InlineMath math="2x^2 - 8x + 6 = 0" />.
+
+**Langkah 1**: Kenal pasti pekali
+
+<BlockMath math="a = 2, b = -8, c = 6" />
+
+**Langkah 2**: Cari **pasangan faktor** yang hasil darabnya <InlineMath math="ac = 2 \times 6 = 12" /> dan hasil tambahnya <InlineMath math="b = -8" />.
+
+Pilih faktor bagi <InlineMath math="12" /> dengan hasil tambah yang diperlukan:
+
+<BlockMath math="\begin{aligned} &amp;(-6)\times(-2)=12 \\ &amp;(-6)+(-2)=-8 \end{aligned}" />
+
+**Langkah 3**: Pemfaktoran
+
+<MathContainer>
+  <BlockMath math="2x^2 - 8x + 6 = 0" />
+  <BlockMath math="2x^2 - 6x - 2x + 6 = 0" />
+  <BlockMath math="2x(x - 3) - 2(x - 3) = 0" />
+  <BlockMath math="(2x - 2)(x - 3) = 0" />
+  <BlockMath math="2(x - 1)(x - 3) = 0" />
+</MathContainer>
+
+**Langkah 4**: Tentukan punca persamaan
+
+<MathContainer>
+  <BlockMath math="x - 1 = 0 \Rightarrow x = 1" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = 1" /> dan <InlineMath math="x = 3" />.
+
+**Soalan 5**. Selesaikan persamaan <InlineMath math="x^2 - 9 = 0" />.
+
+**Langkah 1**: Kenal pasti sebagai **beza dua kuasa dua**
+
+<BlockMath math="x^2 - 9 = x^2 - 3^2" />
+
+**Langkah 2**: Gunakan rumus **beza dua kuasa dua** <InlineMath math="a^2 - b^2 = (a+b)(a-b)" />
+
+<BlockMath math="x^2 - 3^2 = (x + 3)(x - 3) = 0" />
+
+**Langkah 3**: Tentukan punca persamaan
+
+<MathContainer>
+  <BlockMath math="x + 3 = 0 \Rightarrow x = -3" />
+  <BlockMath math="x - 3 = 0 \Rightarrow x = 3" />
+</MathContainer>
+
+Punca persamaan itu ialah <InlineMath math="x = -3" /> dan <InlineMath math="x = 3" />.
