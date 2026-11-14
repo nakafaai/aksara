@@ -24,7 +24,7 @@ Angin menunjukkan betapa besarnya tenaga "yang ada sekarang" boleh berubah-ubah.
 
 <MathVisual
   title={<>Kuasa Angin Bergantung pada Laju Angin</>}
-  description={<>Kuasa dalam angin yang melalui rotor berjejari 1 m dengan ketumpatan udara <InlineMath math="1.2\text{ kg/m}^3" />. Paksi mengufuk: laju angin dalam unit 2 m/s. Paksi menegak: kuasa dalam unit 500 W.</>}
+  description={<>Kuasa dalam angin yang melalui rotor berjejari <InlineMath math="1\text{ m}" /> dengan ketumpatan udara <InlineMath math="1.2\text{ kg/m}^3" />. Mengufuk: laju angin dalam unit <InlineMath math="2\text{ m/s}" />. Menegak: kuasa dalam unit <InlineMath math="500\text{ W}" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 5.5 }, y: { min: -0.3, max: 4.2 } },
@@ -65,7 +65,7 @@ Panel yang sama mengumpul kurang tenaga apabila matahari rendah, kerana cahayany
 
 <MathVisual
   title={<>Matahari Rendah, Kuasa Berkurang</>}
-  description={<>Anggaran kuasa cahaya matahari pada panel mendatar melawan ketinggian matahari di atas ufuk. Paksi mengufuk: satu petak grid ialah 10 darjah. Paksi menegak: satu petak grid ialah 200 W per meter persegi.</>}
+  description={<>Anggaran kuasa cahaya matahari pada panel rata melawan ketinggian matahari di atas ufuk. Mengufuk: satu petak grid ialah <InlineMath math="10" /> darjah. Menegak: satu petak grid ialah <InlineMath math="200\text{ W}" /> per meter persegi.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 10 }, y: { min: -0.5, max: 5.8 } },
@@ -103,6 +103,26 @@ Bandingkan sesuatu sumber tenaga dengan menjejaki bentuk tenaga awalnya, alat pe
 
 [Arang batu, petroleum dan gas asli](https://www.eia.gov/energyexplained/what-is-energy/sources-of-energy.php) terbentuk daripada sisa hidupan purba dalam tempoh yang sangat panjang.
 
+Ombak laut menunjukkan betapa kuatnya sesuatu sumber bergantung pada keadaannya. Ombak sekata dengan tinggi <InlineMath math="H" /> dan tempoh <InlineMath math="T" /> membawa <InlineMath math="P=\frac{\rho g^2H^2T}{64\pi}" /> merentasi setiap meter puncaknya, jadi tinggi yang dua kali ganda membawa kuasa empat kali ganda. Alun tenang setinggi <InlineMath math="1\text{ m}" /> membawa kira-kira <InlineMath math="2.9\text{ kW}" /> setiap meter, manakala laut bergelora setinggi <InlineMath math="3\text{ m}" /> membawa kira-kira <InlineMath math="44.2\text{ kW}" />. Boya itu turun naik mengikut ombak, dan penjananya di dasar laut menukarkan gerakan itu kepada elektrik.
+
+<WaveBuoyPowerLab
+  title={<>Berapa Banyak Kuasa yang Dibawa Ombak</>}
+  description={<>Boya tenaga ombak turun naik di atas ombak laut dalam, dilukis dengan tingginya diregangkan empat kali. Pilih keadaan laut dan bandingkan tinggi, tempoh dan panjang ombak dengan kuasa yang dibawa oleh setiap meter puncaknya.</>}
+  labels={{
+    chooseSea: "Keadaan laut",
+    height: <>Tinggi ombak</>,
+    length: <>Panjang gelombang</>,
+    period: <>Tempoh ombak</>,
+    power: <>Kuasa setiap meter puncak</>,
+    seas: {
+      calm: <>Tenang</>,
+      moderate: <>Sederhana</>,
+      rough: <>Bergelora</>,
+    },
+    viewLabel: "Boya tenaga ombak di atas ombak laut, ditambat pada penjana di dasar laut",
+  }}
+/>
+
 ## Membezakan Istilah Tenaga yang Hampir Sama
 
 **Biogas** terhasil daripada biojisim yang diuraikan oleh mikroorganisma tanpa oksigen. Proses ini dipanggil [*pencernaan anaerobik*](https://www.epa.gov/anaerobic-digestion/basic-information-about-anaerobic-digestion). Biogas terdiri terutamanya daripada metana, <InlineMath math="\text{CH}_4" />, dan karbon dioksida, <InlineMath math="\text{CO}_2" />.
@@ -112,6 +132,21 @@ Bandingkan sesuatu sumber tenaga dengan menjejaki bentuk tenaga awalnya, alat pe
 [**Tenaga marin**](https://www.energy.gov/cmei/water/marine-energy-basics) merangkumi ombak, pasang surut, arus laut dan perbezaan suhu dalam air laut. Sesetengah teknologi menggunakan tenaga kinetik ombak, arus dan pasang surut. Penukaran tenaga terma lautan pula menggunakan perbezaan suhu antara air permukaan yang suam dengan air di bahagian dalam yang lebih sejuk.
 
 [**Tenaga geoterma**](https://www.energy.gov/hgeo/geothermal/geothermal-basics) ialah haba dari dalam Bumi. Sumber geoterma boleh membekalkan elektrik, pemanasan, penyejukan dan haba secara terus.
+
+Beginilah pencernaan anaerob berlaku di dalam pencerna biogas di rumah. Tahi lembu segar dimasukkan, mikroorganisma menguraikannya tanpa oksigen, dan biogas terkumpul di bawah kubah. Dengan hasil yang lazim, <InlineMath math="25\text{ kg}" /> tahi lembu sehari memberikan kira-kira <InlineMath math="1\text{ m}^3" /> biogas, dan <InlineMath math="0.6\text{ m}^3" /> daripadanya ialah metana yang menyimpan <InlineMath math="21.6\text{ MJ}" />, cukup untuk menyalakan satu penunu dapur selama <InlineMath math="2.5\text{ j}" />. Tambah suapannya dan perhatikan nyalaannya membesar.
+
+<BiogasDigesterLab
+  title={<>Pencerna Biogas yang Disuap Setiap Hari</>}
+  description={<>Keratan rentas sebuah pencerna biogas di rumah. Ubah tahi lembu yang disuap setiap hari dan ikuti biogas, metana di dalamnya, tenaga kimianya dan masa memasak yang diberikannya.</>}
+  labels={{
+    cooking: <>Masa memasak</>,
+    dungControl: "Tahi lembu yang disuap setiap hari",
+    energy: <>Tenaga dalam metana</>,
+    gas: <>Biogas sehari</>,
+    methane: <>Metana sehari</>,
+    viewLabel: "Pencerna biogas di bawah tanah dengan paip ke dapur",
+  }}
+/>
 
 ## Bandingkan Sumber Tenaga di Indonesia
 
@@ -127,7 +162,7 @@ Setiap stesen janakuasa stim menukarkan haba kepada kerja, dan bukan semua haba 
 
 <MathVisual
   title={<>Had Atas bagi Stesen Janakuasa Stim</>}
-  description={<>Had kecekapan unggul melawan suhu stim, dengan penyejukan pada 300 K. Paksi mengufuk: satu petak grid ialah 100 K. Paksi menegak: satu petak grid ialah 10 peratus.</>}
+  description={<>Had kecekapan unggul melawan suhu stim dengan penyejukan pada <InlineMath math="300\text{ K}" />. Mengufuk: satu petak grid ialah <InlineMath math="100\text{ K}" />. Menegak: satu petak grid ialah <InlineMath math="10" /> peratus.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 2.5, max: 9.5 }, y: { min: -0.5, max: 7.5 } },

@@ -24,7 +24,7 @@ Grid membawa kuasa pada voltan tinggi kerana kehilangan kuasa dalam wayar ialah 
 
 <MathVisual
   title={<>Voltan Lebih Tinggi, Kehilangan Lebih Kecil</>}
-  description={<>Bahagian daripada 100 kW yang hilang dalam talian 1 ohm melawan voltan talian. Paksi mengufuk: kV. Paksi menegak: satu petak grid ialah 2 peratus.</>}
+  description={<>Bahagian daripada <InlineMath math="100\text{ kW}" /> yang hilang dalam talian <InlineMath math="1" /> ohm melawan voltan talian. Paksi mengufuk: kV. Paksi menegak: satu petak grid ialah <InlineMath math="2" /> peratus.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0.5, max: 10.5 }, y: { min: -0.5, max: 5.5 } },
@@ -78,14 +78,14 @@ Bandingkan dua peranti yang masing-masing menarik kuasa tetap <InlineMath math="
 
 | Jadual waktu | Kuasa serentak tertinggi | Jumlah tenaga |
 | :--- | :--- | :--- |
-| Kedua-dua peranti beroperasi dari 18:00 hingga 19:00 | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWj}" /> |
-| Peranti pertama beroperasi dari 18:00 hingga 19:00, peranti kedua dari 19:00 hingga 20:00 | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWj}" /> |
+| Kedua-dua peranti beroperasi dari <InlineMath math="18{:}00" /> hingga <InlineMath math="19{:}00" /> | <InlineMath math="1+1=2 \text{ kW}" /> | <InlineMath math="2 \times 1=2 \text{ kWj}" /> |
+| Peranti pertama beroperasi dari <InlineMath math="18{:}00" /> hingga <InlineMath math="19{:}00" />, peranti kedua dari <InlineMath math="19{:}00" /> hingga <InlineMath math="20{:}00" /> | <InlineMath math="1 \text{ kW}" /> | <InlineMath math="1 \times 1+1 \times 1=2 \text{ kWj}" /> |
 
 Inilah kedua-dua jadual waktu itu dalam bentuk kuasa sepanjang petang. Jadual waktu jingga menjalankan kedua-dua peranti serentak dan melonjak ke puncak <InlineMath math="2\text{ kW}" />. Jadual waktu ungu menyebarkan kerja yang sama sepanjang dua jam dan tidak pernah melebihi <InlineMath math="1\text{ kW}" />. Kira luas di bawah setiap garis, iaitu kuasa darab masa: kedua-duanya memberi <InlineMath math="2\text{ kWj}" />. Tenaganya sama, dan yang berubah hanyalah puncak yang mesti dibekalkan oleh grid.
 
 <MathVisual
   title={<>Tenaga Sama, Puncak Berbeza</>}
-  description={<>Kuasa yang ditarik oleh dua peranti 1 kW dari 17:00 hingga 21:00. Paksi mengufuk: waktu dalam jam. Paksi menegak: kuasa dalam kW.</>}
+  description={<>Kuasa yang ditarik oleh dua peranti <InlineMath math="1\text{ kW}" /> dari <InlineMath math="17{:}00" /> hingga <InlineMath math="21{:}00" />. Paksi mengufuk: waktu dalam jam. Paksi menegak: kuasa dalam kW.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.3 }, y: { min: -0.6, max: 2.6 } },
@@ -140,7 +140,7 @@ Pertumbuhan <InlineMath math="3.6\%" /> setahun itu bertambah secara kompaun. Le
 
 <MathVisual
   title={<>Pertumbuhan Permintaan secara Kompaun</>}
-  description={<>Pertumbuhan permintaan elektrik pada kadar 3.6% setahun dari 2026 hingga 2030. Paksi mengufuk: tahun selepas 2026. Paksi menegak: pertumbuhan dalam unit 4%.</>}
+  description={<>Pertumbuhan permintaan elektrik pada kadar <InlineMath math="3.6\%" /> setahun dari 2026 hingga 2030. Paksi mengufuk: tahun selepas 2026. Paksi menegak: pertumbuhan dalam unit <InlineMath math="4\%" />.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 4.6 }, y: { min: -0.3, max: 4.6 } },
@@ -173,6 +173,25 @@ Jangan nilai angka permintaan tenaga secara berasingan. Semak juga siapa yang me
 
 Jika bekalan harian terlalu kecil, jumlah tenaga itulah masalahnya. Jika banyak peranti berjalan serentak, kuasa puncak mungkin menjadi masalahnya. Soalan-soalan lain pula menyemak sama ada sumber, grid atau simpanan yang mengehadkan bekalan, dan apa yang akan berlaku jika bekalan gagal.
 
+Inilah soalan kuasa puncak di sebuah kampung sebenar. Seratus buah rumah pada grid mini <InlineMath math="50\text{ kW}" /> menggunakan <InlineMath math="330\text{ kWj}" /> sehari, dan setiap rumah menghidupkan periuk nasi <InlineMath math="0.4\text{ kW}" /> selama satu jam. Jika semua orang memasak pada <InlineMath math="18{:}00" />, permintaan melonjak kepada <InlineMath math="65\text{ kW}" /> dan bekalan terputus sepanjang jam itu. Selerakkan masa memasak dari <InlineMath math="16{:}00" /> hingga <InlineMath math="20{:}00" />, dan puncaknya turun kepada <InlineMath math="35\text{ kW}" />, dengan tenaga harian yang sama.
+
+<GridLoadCurveLab
+  title={<>Puncak Waktu Petang Sebuah Kampung</>}
+  description={<>Seratus buah rumah pada grid mini <InlineMath math="50\text{ kW}" /> sepanjang satu hari. Pilih waktu kampung itu memasak dan bandingkan permintaan puncak dengan kuasa yang boleh dibekalkan oleh grid.</>}
+  labels={{
+    capacity: <>Kapasiti grid</>,
+    chooseSchedule: "Waktu kampung memasak",
+    energy: <>Tenaga yang digunakan sehari</>,
+    hours: <>Jam melebihi kapasiti</>,
+    peak: <>Permintaan puncak</>,
+    schedules: {
+      spread: <>Berselerak dari 16:00 hingga 20:00</>,
+      together: <>Semua pada 18:00</>,
+    },
+    viewLabel: "Kampung sepanjang satu hari di atas carta permintaan setiap jam",
+  }}
+/>
+
 ## Padankan Sumber Boleh Baharu dengan Keadaan Tapak
 
 Sesuatu sumber tenaga boleh baharu sesuai untuk sesuatu lokasi apabila sumber setempat, teknologi, rangkaian, simpanan dan langkah perlindungan alam sekitar mampu **memenuhi keperluan setempat**. Jadual di bawah menyenaraikan semakan awal bagi beberapa sumber.
@@ -186,3 +205,23 @@ Sesuatu sumber tenaga boleh baharu sesuai untuk sesuatu lokasi apabila sumber se
 | Berhampiran kawasan geoterma | tenaga geoterma | tinjauan geologi, penggerudian dan kesan terhadap alam sekitar |
 
 Oleh itu, sistem tenaga perlu sepadan dengan permintaan setempat, keadaan alam sekitar dan keperluan komuniti.
+
+Angin menunjukkan betapa pentingnya tapak. Kuasa dalam angin yang melalui rotor ialah <InlineMath math="P=\tfrac12\rho Av^3" />, jadi turbin yang sama, dengan rotor berjejari <InlineMath math="40\text{ m}" />, menghasilkan kira-kira <InlineMath math="79\text{ kW}" /> dalam angin lembah <InlineMath math="4\text{ m/s}" /> tetapi kira-kira <InlineMath math="631\text{ kW}" /> dalam angin pantai <InlineMath math="8\text{ m/s}" />: lapan kali ganda bagi laju yang dua kali ganda. Laju angin ini ialah contoh purata yang mantap. Tapak sebenar memerlukan ukuran angin selama setahun.
+
+<WindRotorLab
+  title={<>Satu Turbin di Tiga Tapak</>}
+  description={<>Turbin angin yang sama berdiri di lembah, di atas bukit dan di pantai. Pilih tapak dan bandingkan laju angin dengan kuasa dalam angin dan elektrik yang dihasilkan oleh turbin.</>}
+  labels={{
+    chooseSite: "Tapak",
+    daily: <>Tenaga dalam sehari angin yang mantap</>,
+    electric: <>Elektrik</>,
+    sites: {
+      coast: <>Pantai</>,
+      hill: <>Bukit</>,
+      valley: <>Lembah</>,
+    },
+    speed: <>Purata laju angin</>,
+    viewLabel: "Turbin angin berputar di tapak lembah, bukit atau pantai",
+    wind: <>Kuasa dalam angin yang melalui rotor</>,
+  }}
+/>
