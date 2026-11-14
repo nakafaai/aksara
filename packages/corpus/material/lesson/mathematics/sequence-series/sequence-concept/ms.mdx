@@ -1,0 +1,230 @@
+export const metadata = {
+  title: "Konsep Jujukan",
+  description: "Kenal pasti janjang aritmetik dan janjang geometri daripada corak meja dan kerusi, kemudian selesaikan masalah corak sebutan demi sebutan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-05",
+  dateModified: "2026-11-08",
+  subject: "Jujukan dan Siri",
+};
+
+## Nombor yang Diberikan kepada Kedudukan yang Tersusun
+
+Jujukan nombor ialah senarai nombor yang tersusun. Setiap nombor dipanggil **sebutan**. Kita gunakan tatatanda ini:
+
+- Sebutan pada indeks <InlineMath math="1" /> ditulis sebagai <InlineMath math="U_1" />
+- Sebutan pada indeks <InlineMath math="2" /> ditulis sebagai <InlineMath math="U_2" />
+- Sebutan pada indeks <InlineMath math="3" /> ditulis sebagai <InlineMath math="U_3" />
+- Sebutan am ditulis sebagai <InlineMath math="U_n" />
+
+Petua sesuatu jujukan menentukan sebutan-sebutan yang seterusnya, dan petua itu juga mungkin memberikan rumus bagi sebutan am.
+
+Lebih tepat lagi, jujukan memberikan satu nilai kepada setiap indeks yang dibenarkan:
+
+<BlockMath math="U:\{1,2,3,\ldots\}\to\mathbb{R},\qquad n\mapsto U_n" />
+
+**Susunan** ialah sebahagian daripada takrif jujukan. Jujukan <InlineMath math="1,2,3,\ldots" /> dan <InlineMath math="3,2,1,\ldots" /> mungkin mengandungi beberapa nombor yang sama, tetapi kedua-duanya bukan jujukan yang sama.
+
+## Petua Eksplisit dan Petua Rekursif
+
+**Petua eksplisit** mengira sesuatu sebutan terus daripada indeksnya. Contohnya:
+
+<BlockMath math="U_n=2n+1" />
+
+Petua ini memberikan <InlineMath math="3,5,7,9,\ldots" />. **Petua rekursif** pula menyatakan satu sebutan permulaan dan menerangkan cara untuk mendapatkan sebutan seterusnya:
+
+<MathContainer>
+  <BlockMath math="U_1=3" />
+  <BlockMath math="U_{n+1}=U_n+2" />
+</MathContainer>
+
+Kedua-dua petua ini menerangkan jujukan yang sama. Bentuk eksplisit mengira mana-mana sebutan terus daripada indeksnya. Bentuk rekursif pula mengira setiap sebutan baharu daripada sebutan sebelumnya.
+
+Plotkan enam sebutan pertama <InlineMath math="U_n = 2n + 1" />. Setiap palang lebih tinggi sebanyak <InlineMath math="2" /> daripada palang sebelumnya: petua eksplisit memberikan setiap tinggi daripada kedudukannya <InlineMath math="n" />, dan petua rekursif <InlineMath math="U_{n+1} = U_n + 2" /> membinanya daripada palang sebelumnya.
+
+<BarChart
+  title={<>Enam sebutan pertama <InlineMath math="U_n = 2n + 1" /></>}
+  description={<>Palang <InlineMath math="U_n = 2n + 1" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="6" />: <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="7" />, <InlineMath math="9" />, <InlineMath math="11" /> dan <InlineMath math="13" />.</>}
+  yAxisLabel="Sebutan"
+  data={[1, 2, 3, 4, 5, 6].map((n) => ({ name: String(n), value: 2 * n + 1 }))}
+  chartConfig={{ value: { label: "Sebutan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Corak Nombor daripada Meja dan Kerusi
+
+Sebaris meja segi empat sama dan kerusi memberikan satu corak nombor yang mudah:
+
+<SequenceConceptTableChairsAnimation
+  labels={{
+    title: "Corak Jujukan Meja dan Kerusi",
+    table: "Meja",
+    chair: "Kerusi",
+    reset: "Set semula",
+    pause: "Jeda",
+    play: "Main",
+    setSpeed: "Tetapkan kelajuan kepada",
+    setTableCount: "Tetapkan bilangan meja kepada",
+  }}
+/>
+
+Apabila ada <InlineMath math="1 \text{ meja}" /> yang permukaannya segi empat sama, <InlineMath math="4" /> kerusi boleh diletakkan di sekelilingnya.
+
+Kalau <InlineMath math="2 \text{ meja}" /> dicantumkan, <InlineMath math="6" /> kerusi boleh diletakkan di sekeliling meja yang sudah bercantum itu.
+
+Kita boleh bina jadual untuk melihat coraknya:
+
+| Bilangan meja | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| ---------------- | --- | --- | --- | --- | --- | --- |
+| Bilangan kerusi | <InlineMath math="4" /> | <InlineMath math="6" /> | <InlineMath math="8" /> | <InlineMath math="10" /> | <InlineMath math="12" /> | <InlineMath math="14" /> |
+
+Dalam satu baris lurus, setiap meja menyediakan **dua kerusi di sepanjang sisi panjang**. Dua kerusi lagi diletakkan di kedua-dua hujung baris. Jadi, <InlineMath math="n" /> meja memberikan <InlineMath math="2n" /> kerusi di sepanjang sisi dan <InlineMath math="2" /> kerusi di hujung.
+
+Setiap tambahan <InlineMath math="1 \text{ meja}" /> menambah <InlineMath math="2" /> kerusi. Hubungan antara bilangan meja dan bilangan kerusi mengikut rumus:
+
+<BlockMath math="U_n = 2n + 2" />
+
+Di sini:
+
+- <InlineMath math="U_n" /> ialah bilangan kerusi
+- <InlineMath math="n" /> ialah bilangan meja
+
+Corak yang sama boleh ditulis secara rekursif:
+
+<MathContainer>
+  <BlockMath math="U_1=4" />
+  <BlockMath math="U_{n+1}=U_n+2" />
+</MathContainer>
+
+## Menggunakan Petua untuk Menjawab Soalan Tempat Duduk
+
+Petua jujukan boleh menjawab soalan membilang secara terus, tanpa perlu mengira satu demi satu. Dalam contoh di bawah, petua itu menukar **bilangan orang kepada bilangan meja** yang perlu dicantumkan.
+
+### Menentukan Bilangan Kerusi dan Meja
+
+Petua jujukan boleh menjawab soalan seperti ini:
+
+Kalau <InlineMath math="20 \text{ orang}" /> masing-masing memerlukan sebuah kerusi, **berapa banyak meja** yang mesti dicantumkan?
+
+Kita boleh gunakan rumus <InlineMath math="U_n = 2n + 2" /> dengan <InlineMath math="U_n = 20" />, jadi:
+
+<MathContainer>
+  <BlockMath math="20 = 2n + 2" />
+  <BlockMath math="18 = 2n" />
+  <BlockMath math="n = 9" />
+</MathContainer>
+
+Sebanyak <InlineMath math="9 \text{ meja}" /> perlu dicantumkan untuk memuatkan <InlineMath math="20 \text{ orang}" />.
+
+## Jenis Jujukan
+
+Berdasarkan coraknya, jujukan nombor terbahagi kepada beberapa jenis. Dua jenis yang paling kerap muncul ialah jujukan yang menambah **beza yang tetap** atau mendarab dengan nisbah yang tetap, dan setiap satunya ada rumus tersendiri.
+
+### Janjang Aritmetik
+
+Janjang aritmetik ialah jujukan nombor yang beza antara dua sebutan berturutannya sentiasa tetap. Beza ini dipanggil **beza sepunya** (<InlineMath math="b" />).
+
+<MathContainer>
+  <BlockMath math="U_{n+1}=U_n+b" />
+  <BlockMath math="U_n=U_1+(n-1)b" />
+</MathContainer>
+
+Contoh: <InlineMath math="2, 4, 6, 8, 10, \ldots" /> Beza sepunya <InlineMath math="(b) = 2" />
+
+### Janjang Geometri
+
+Janjang geometri ialah jujukan nombor yang nisbah antara dua sebutan berturutannya sentiasa tetap. Nisbah ini dipanggil **nisbah sepunya** (<InlineMath math="r" />).
+
+<MathContainer>
+  <BlockMath math="U_{n+1}=rU_n" />
+  <BlockMath math="U_n=U_1r^{n-1}" />
+</MathContainer>
+
+Contoh: <InlineMath math="2, 6, 18, 54, \ldots" /> Nisbah sepunya <InlineMath math="(r) = 3" />
+
+### Jujukan Lain
+
+Selain janjang aritmetik dan janjang geometri, ada banyak lagi jenis jujukan seperti jujukan Fibonacci, jujukan kuadratik, jujukan kubik dan sebagainya.
+
+Contoh jujukan Fibonacci: <InlineMath math="0, 1, 1, 2, 3, 5, 8, 13, \ldots" />
+
+Untuk indeks <InlineMath math="n\geq1" />, **hasil tambah dua sebutan sebelumnya** memberikan rekursi Fibonacci:
+
+<BlockMath math="F_1=0,\quad F_2=1,\quad F_{n+2}=F_{n+1}+F_n" />
+
+## Sebutan Awal yang Terhingga Tidak Menentukan Satu Petua yang Unik
+
+Senarai sebutan yang pendek boleh mencadangkan satu corak yang munasabah, tetapi dari segi logik, senarai itu **tidak memaksa satu sambungan sahaja**. Sebutan awal <InlineMath math="1,2,4" /> mungkin bersambung sebagai <InlineMath math="8,16,\ldots" /> kalau setiap sebutan digandakan. Petua lain boleh sepadan dengan tiga sebutan pertama itu dan berubah mulai sebutan keempat.
+
+Dua petua yang sepadan pada tiga kedudukan pertama ialah <InlineMath math="A_n=2^{n-1}" /> dan <InlineMath math="B_n=1+\frac{n(n-1)}2" />. Kedua-duanya mula berbeza pada kedudukan keempat:
+
+| Kedudukan | Petua gandaan dua | Petua kuadratik |
+| --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="2" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="4" /> |
+| <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="7" /> |
+| <InlineMath math="5" /> | <InlineMath math="16" /> | <InlineMath math="11" /> |
+
+Jujukan yang tertakrif sepenuhnya memerlukan petua yang tidak kabur atau syarat yang cukup untuk mengenal pastinya. Meneka corak menghasilkan satu konjektur. Bukti pula memerlukan petua yang menentukan setiap sebutan.
+
+Tiga sebutan pertama <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="4" /> tidak menentukan jujukan itu. Petua gandaan dua <InlineMath math="A_n = 2^{n-1}" /> bersambung dengan <InlineMath math="8" /> dan <InlineMath math="16" />, petua kuadratik <InlineMath math="B_n = 1 + \frac{n(n-1)}{2}" /> pula dengan <InlineMath math="7" /> dan <InlineMath math="11" />, dan kedua-duanya sepadan dengan setiap sebutan yang diberikan.
+
+<MathVisual
+  title={<>Dua petua melalui tiga sebutan yang sama</>}
+  description={<>Titik <InlineMath math="A_n = 2^{n-1}" /> dan <InlineMath math="B_n = 1 + \frac{n(n-1)}{2}" /> untuk <InlineMath math="n = 1" /> hingga <InlineMath math="5" />. Kedua-duanya berkongsi sebutan <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="4" />, kemudian berpisah.</>}
+  labels={{
+    a: <InlineMath math="A_n = 2^{n-1}" />,
+    b: <InlineMath math="B_n" />,
+    shared: <InlineMath math="1, 2, 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.4, max: 5.8 }, y: { min: -0.6, max: 17.4 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "p1", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+      { id: "p2", kind: "point", at: { x: 2, y: 2 }, appearance: "answer" },
+      { id: "p3", kind: "point", at: { x: 3, y: 4 }, appearance: "answer" },
+      { id: "a4", kind: "point", at: { x: 4, y: 8 }, appearance: "primary" },
+      { id: "a5", kind: "point", at: { x: 5, y: 16 }, appearance: "primary" },
+      { id: "b4", kind: "point", at: { x: 4, y: 7 }, appearance: "secondary" },
+      { id: "b5", kind: "point", at: { x: 5, y: 11 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a5", at: { x: 5, y: 16 }, placement: "left" },
+      { key: "b", objectId: "b5", at: { x: 5, y: 11 }, placement: "right" },
+      { key: "shared", objectId: "p3", at: { x: 3, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+## Mencari Corak
+
+Untuk menentukan corak sesuatu jujukan:
+
+1. Perhatikan **beza antara sebutan berturutan**
+2. Semak sama ada beza itu tetap (janjang aritmetik)
+3. Kalau tidak, semak sama ada nisbahnya tetap (janjang geometri)
+4. Kalau kedua-duanya tidak tetap, semak corak lain yang mungkin
+
+Jujukan memberikan satu sebutan kepada setiap indeks. Petuanya mungkin eksplisit, rekursif atau ditakrifkan dengan cara lain.
+
+## Latihan
+
+Perhatikan jujukan <InlineMath math="V_n=n^2-n" /> untuk integer positif <InlineMath math="n" />. Rumus eksplisit mengira sesuatu sebutan daripada kedudukannya. Petua rekursif pula memerlukan **nilai awal** dan hubungan antara sebutan yang berturutan.
+
+1. Cari **lima sebutan pertama**.
+2. Berikan petua rekursif bagi jujukan itu.
+
+### Jalan Kerja
+
+**Soalan 1**. Gantikan <InlineMath math="n=1,2,3,4,5" /> ke dalam **rumus sebutan** yang diberikan.
+
+<BlockMath math="V_1,V_2,V_3,V_4,V_5=0,2,6,12,20" />
+
+**Soalan 2**. Petua rekursif menyatakan sebutan seterusnya menggunakan sebutan sebelumnya:
+
+<BlockMath math="V_1=0,\qquad V_{n+1}=V_n+2n" />
+
+Pertambahan rekursifnya ialah <InlineMath math="2n" /> kerana:
+
+<BlockMath math="\begin{aligned} V_{n+1}-V_n &=((n+1)^2-(n+1))-(n^2-n) \\ &=n^2+2n+1-n-1-n^2+n \\ &=2n \end{aligned}" />

@@ -1,0 +1,160 @@
+
+export const metadata = {
+  title: "Konsep Regresi Linear",
+  description: "Garis regresi kuasa dua terkecil meringkaskan trend linear dalam data, membantu kita membuat ramalan, dan ditentukan daripada cerapan berpasangan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-30",
+  dateModified: "2026-11-08",
+  subject: "Statistik",
+};
+
+## Meringkaskan Trend Lurus dalam Data Berpasangan
+
+[Gambar rajah serakan](/ms/subjek/matematik/regresi-dan-korelasi/gambar-rajah-serakan) menunjukkan sama ada nilai berpasangan bagi dua pemboleh ubah, <InlineMath math="X" /> dan <InlineMath math="Y" />, membentuk satu corak bersama.
+
+Apabila kelompok titik itu lebih kurang mengikut trend garis lurus yang menaik atau menurun, kita boleh <Highlight>meringkaskan trend itu dengan satu garis yang disuaikan</Highlight>. Garis ini ialah **garis regresi linear**, dan prosedur yang digunakan untuk menentukannya ialah **regresi linear**.
+
+## Garis Penyuaian Terbaik
+
+Garis regresi linear sering dipanggil garis _penyuaian terbaik_. Berdasarkan kriteria kuasa dua terkecil, garis ini dipilih kerana hasil tambah kuasa dua reja mencancangnya paling kecil. Titik data boleh terletak di atas atau di bawah garis itu. Garis regresi meringkaskan trend linear dalam data.
+
+Bagi setiap cerapan, **reja** ialah nilai cerapan tolak nilai ramalan. Titik di atas garis ada reja positif, manakala titik di bawah garis ada reja negatif.
+
+<BlockMath math="e_i=y_i-\hat y_i" />
+
+## Contoh Garis Regresi
+
+Bandingkan masa belajar dan markah peperiksaan dalam setiap pasangan di bawah. Apabila masa belajar bertambah, titik-titik itu cenderung naik. Corak itu memberikan kelompok titik tersebut satu trend linear yang positif.
+
+<ScatterDiagram
+  title={<>Garis Regresi bagi Hubungan antara Masa Belajar dan Markah Peperiksaan</>}
+  description={<>Garis itu menunjukkan trend linear (garis regresi) bagi data.</>}
+  xAxisLabel="Masa Belajar (Jam)"
+  yAxisLabel="Markah Peperiksaan"
+  datasets={[
+    {
+      name: "Murid",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 60 },
+        { x: 1.5, y: 68 },
+        { x: 2, y: 65 },
+        { x: 2.5, y: 75 },
+        { x: 3, y: 72 },
+        { x: 3.5, y: 80 },
+        { x: 4, y: 85 },
+        { x: 4, y: 82 },
+        { x: 4.5, y: 90 },
+        { x: 5, y: 88 },
+        { x: 5.5, y: 95 },
+        { x: 6, y: 92 },
+      ],
+    },
+  ]}
+  calculateRegressionLine
+  regressionLineStyle={{
+    color: "var(--chart-3)",
+  }}
+/>
+
+Garis regresi yang diplot menunjukkan **trend umum**: apabila masa belajar bertambah, markah peperiksaan yang diramalkan cenderung bertambah. Markah individu masih boleh terletak di atas atau di bawah garis itu.
+
+## Kaedah Kuasa Dua Terkecil
+
+Garis regresi linear (garis _penyuaian terbaik_) dicari menggunakan kaedah yang dipanggil **Kaedah Kuasa Dua Terkecil**. Ideanya ialah mencari garis lurus yang **meminimumkan hasil tambah kuasa dua jarak mencancang** dari setiap titik data ke garis itu.
+
+Secara matematik, garis regresi linear berbentuk:
+
+<BlockMath math="\hat{y} = a + bx" />
+
+Dalam rumus ini:
+
+- <InlineMath math="\hat{y}" /> (dibaca: <InlineMath math="y" /> topi) ialah **nilai ramalan bagi <InlineMath math="y" />** oleh
+  garis regresi.
+- <InlineMath math="x" /> ialah nilai pemboleh ubah tak bersandar.
+- <InlineMath math="b" /> ialah **kecerunan** garis, yang menunjukkan berapa banyak <InlineMath math="\hat{y}" /> berubah
+  bagi setiap perubahan satu unit dalam <InlineMath math="x" />.
+- <InlineMath math="a" /> ialah **pintasan-<InlineMath math="y" />**, iaitu nilai ramalan bagi <InlineMath math="y" /> apabila <InlineMath math="x = 0" />. Tafsiran ini hanya berguna apabila <InlineMath math="x = 0" /> bermakna dalam konteks itu.
+
+Nilai <InlineMath math="b" /> dan <InlineMath math="a" /> dikira daripada data <InlineMath math="(x, y)" /> yang kita ada menggunakan rumus berikut:
+
+<MathContainer>
+  <BlockMath math="b = \frac{n(\sum xy) - (\sum x)(\sum y)}{n(\sum x^2) - (\sum x)^2}" />
+  <BlockMath math="a = \bar{y} - b\bar{x}" />
+</MathContainer>
+
+Keterangan rumus:
+
+- <InlineMath math="n" /> ialah bilangan pasangan data.
+- <InlineMath math="\sum x" /> ialah hasil tambah semua nilai <InlineMath math="x" />.
+- <InlineMath math="\sum y" /> ialah hasil tambah semua nilai <InlineMath math="y" />.
+- <InlineMath math="\sum xy" /> ialah hasil tambah hasil darab setiap pasangan <InlineMath math="x" /> dan <InlineMath math="y" />.
+- <InlineMath math="\sum x^2" /> ialah hasil tambah kuasa dua setiap nilai <InlineMath math="x" />.
+- <InlineMath math="\bar{x}" /> ialah min bagi nilai-nilai <InlineMath math="x" /> (<InlineMath math="\frac{\sum x}{n}" />
+  ).
+- <InlineMath math="\bar{y}" /> ialah min bagi nilai-nilai <InlineMath math="y" /> (<InlineMath math="\frac{\sum y}{n}" />
+  ).
+
+Rumus ini menentukan garis kuasa dua terkecil yang unik apabila nilai-nilai <InlineMath math="x" /> yang dicerap tidak semuanya sama. Kalau setiap nilai <InlineMath math="x" /> sama, penyebut rumus kecerunan itu menjadi sifar dan data tidak menentukan satu kecerunan regresi yang unik.
+
+
+Kekalkan garis itu melalui titik min dan ubah kecerunannya <InlineMath math="b" />. Bagi data masa belajar itu, hasil tambah kuasa dua reja <InlineMath math="S_{yy} - 2bS_{xy} + b^2S_{xx}" /> mencapai nilai paling kecil, kira-kira <InlineMath math="94.45" />, pada <InlineMath math="b = \tfrac{9184}{1331} \approx 6.900" />, dan lebih besar bagi setiap kecerunan yang lain.
+
+<BarChart
+  title={<>Hasil tambah kuasa dua reja melawan kecerunan</>}
+  description={<>Palang hasil tambah kuasa dua reja bagi kecerunan <InlineMath math="b = 5, 6, 6.900, 8, 9" />, dengan setiap garis melalui titik min.</>}
+  yAxisLabel="Hasil tambah kuasa dua reja"
+  data={[5, 6, 9184 / 1331, 8, 9].map((b) => ({ name: b === 9184 / 1331 ? "6.900" : String(b), value: 4244 / 3 - 2 * b * (574 / 3) + b ** 2 * (1331 / 48) }))}
+  chartConfig={{ value: { label: "Hasil tambah kuasa dua reja", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Mengira Pekali daripada Data
+
+Gunakan setiap pasangan dalam plot itu. Lajur hasil darab dan lajur kuasa dua memastikan setiap cerapan masuk ke dalam pengiraan tepat sekali. Kemudian **hasil tambah setiap lajur** dimasukkan ke dalam rumus kecerunan.
+
+| <InlineMath math="x" /> | <InlineMath math="y" /> | <InlineMath math="xy" /> | <InlineMath math="x^2" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="60" /> | <InlineMath math="60" /> | <InlineMath math="1" /> |
+| <InlineMath math="1.5" /> | <InlineMath math="68" /> | <InlineMath math="102" /> | <InlineMath math="2.25" /> |
+| <InlineMath math="2" /> | <InlineMath math="65" /> | <InlineMath math="130" /> | <InlineMath math="4" /> |
+| <InlineMath math="2.5" /> | <InlineMath math="75" /> | <InlineMath math="187.5" /> | <InlineMath math="6.25" /> |
+| <InlineMath math="3" /> | <InlineMath math="72" /> | <InlineMath math="216" /> | <InlineMath math="9" /> |
+| <InlineMath math="3.5" /> | <InlineMath math="80" /> | <InlineMath math="280" /> | <InlineMath math="12.25" /> |
+| <InlineMath math="4" /> | <InlineMath math="85" /> | <InlineMath math="340" /> | <InlineMath math="16" /> |
+| <InlineMath math="4" /> | <InlineMath math="82" /> | <InlineMath math="328" /> | <InlineMath math="16" /> |
+| <InlineMath math="4.5" /> | <InlineMath math="90" /> | <InlineMath math="405" /> | <InlineMath math="20.25" /> |
+| <InlineMath math="5" /> | <InlineMath math="88" /> | <InlineMath math="440" /> | <InlineMath math="25" /> |
+| <InlineMath math="5.5" /> | <InlineMath math="95" /> | <InlineMath math="522.5" /> | <InlineMath math="30.25" /> |
+| <InlineMath math="6" /> | <InlineMath math="92" /> | <InlineMath math="552" /> | <InlineMath math="36" /> |
+| <InlineMath math="\sum x=42.5" /> | <InlineMath math="\sum y=952" /> | <InlineMath math="\sum xy=3563" /> | <InlineMath math="\sum x^2=178.25" /> |
+
+<MathContainer>
+  <BlockMath math="\begin{aligned}b&=\frac{12(3563)-(42.5)(952)}{12(178.25)-(42.5)^2} \\ &=\frac{2296}{332.75} \\ &=\frac{9184}{1331}\approx6.900\end{aligned}" />
+  <BlockMath math="a=\frac{952}{12}-\frac{9184}{1331}\cdot\frac{42.5}{12}=\frac{73066}{1331}\approx54.896" />
+</MathContainer>
+
+Gunakan pekali yang belum dibundarkan semasa mengira ramalan. Kalau kita bundarkan pekali yang dipaparkan sahaja, kita dapat:
+
+<BlockMath math="\hat y\approx54.896+6.900x" />
+
+## Ramalan di Dalam dan di Luar Julat Cerapan
+
+Untuk masa belajar <InlineMath math="4\text{ jam}" />, gantikan <InlineMath math="x=4" /> ke dalam garis yang disuaikan. Nilai ini berada dalam julat cerapan, jadi ramalan itu ialah **interpolasi**.
+
+<BlockMath math="\hat y(4)=\frac{73066+9184(4)}{1331}=\frac{109802}{1331}\approx82.50" />
+
+Untuk <InlineMath math="7\text{ jam}" />, pengiraan yang sama memberikan:
+
+<BlockMath math="\hat y(7)=\frac{73066+9184(7)}{1331}=\frac{137354}{1331}\approx103.20" />
+
+Masa belajar yang dicerap hanya dari <InlineMath math="1" /> hingga <InlineMath math="6\text{ jam}" />. Ramalan kedua ialah **ekstrapolasi**. Data yang ada tidak dapat menyemak sama ada trend linear itu berterusan di luar julat tersebut. Kalau markah peperiksaan paling tinggi ialah <InlineMath math="100" />, ramalan kedua malah melebihi markah maksimum itu. Semak garis regresi dengan julat cerapan dan juga batasan kuantiti yang diramalkan.
+
+Markah ramalan daripada <InlineMath math="\hat y = \frac{73066 + 9184x}{1331}" /> bagi <InlineMath math="1" /> hingga <InlineMath math="7" /> jam. Dalam julat cerapan <InlineMath math="1" /> hingga <InlineMath math="6" /> jam, ramalannya kekal realistik, tetapi pada <InlineMath math="7" /> jam garis itu meramalkan kira-kira <InlineMath math="103.2" />, lebih daripada markah maksimum <InlineMath math="100" />.
+
+<BarChart
+  title={<>Ramalan di dalam dan di luar data</>}
+  description={<>Palang markah ramalan <InlineMath math="\hat y" /> bagi <InlineMath math="x = 1" /> hingga <InlineMath math="7" /> jam belajar.</>}
+  yAxisLabel="Markah ramalan"
+  data={[1, 2, 3, 4, 5, 6, 7].map((x) => ({ name: String(x), value: (73066 + 9184 * x) / 1331 }))}
+  chartConfig={{ value: { label: "Markah ramalan", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
