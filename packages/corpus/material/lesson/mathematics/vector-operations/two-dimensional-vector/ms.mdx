@@ -1,0 +1,151 @@
+
+
+export const metadata = {
+  title: "Vektor dalam Dua Dimensi",
+  description: "Wakilkan vektor dua dimensi dengan komponennya, kemudian hitung magnitud dan vektor unitnya pada satah koordinat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-11",
+  dateModified: "2026-11-08",
+  subject: "Vektor dan Operasinya",
+};
+
+## Menerangkan Vektor dengan Langkah Mengufuk dan Mencancang
+
+Dalam sistem koordinat Cartesan, setiap titik pada satah boleh diwakili oleh sepasang nombor <InlineMath math="(x, y)" />, dengan <InlineMath math="x" /> ialah kedudukan mengufuk dan <InlineMath math="y" /> ialah kedudukan mencancang. Titik asalannya ialah <InlineMath math="O(0, 0)" />.
+
+Jika kita lukis tembereng garis berarah dari asalan <InlineMath math="O" /> ke titik lain, contohnya <InlineMath math="Q(x, y)" />, kita dapat satu **vektor**. Vektor ini ditulis sebagai <InlineMath math="\overrightarrow{OQ}" />. Panjang tembereng itu ialah **magnitud** vektor, dan **arah** vektor itu bermula dari titik awal menuju ke kepala anak panah.
+
+Dua **vektor unit** menerangkan arah koordinat. Setiap satu mempunyai panjang <InlineMath math="1 \text{ unit}" />.
+
+- <InlineMath math="\mathbf{i}" /> ialah vektor unit di sepanjang paksi-<InlineMath math="x" /> positif (mengufuk).
+- <InlineMath math="\mathbf{j}" /> ialah vektor unit di sepanjang paksi-<InlineMath math="y" /> positif (mencancang).
+
+Vektor <InlineMath math="\overrightarrow{OQ}" /> boleh dinyatakan sebagai gabungan gerakan mengufuk sejauh <InlineMath math="x" /> dan gerakan mencancang sejauh <InlineMath math="y" />. Dalam bentuk vektor unit, kita tulis:
+
+<BlockMath math="\overrightarrow{OQ} = x\mathbf{i} + y\mathbf{j}" />
+
+## Komponen dan Magnitud Vektor
+
+Nilai <InlineMath math="x" /> dan <InlineMath math="y" /> dalam vektor <InlineMath math="\overrightarrow{OQ} = x\mathbf{i} + y\mathbf{j}" /> dipanggil **komponen** vektor itu.
+
+- <InlineMath math="x" /> ialah **komponen skalar mengufuk**. Unjuran vektor yang sepadan pada paksi-<InlineMath math="x" /> ialah <InlineMath math="x\mathbf{i}" />.
+- <InlineMath math="y" /> ialah **komponen skalar mencancang**. Unjuran vektor yang sepadan pada paksi-<InlineMath math="y" /> ialah <InlineMath math="y\mathbf{j}" />.
+
+Vektor yang mempunyai dua komponen ini dipanggil **vektor dua dimensi**.
+
+**Panjang** atau **magnitud** vektor <InlineMath math="\overrightarrow{OQ}" />, yang ditulis sebagai <InlineMath math="|\overrightarrow{OQ}|" />, ialah jarak dari asalan <InlineMath math="O" /> ke titik akhir <InlineMath math="Q" />. Jika <InlineMath math="Q(x,y)" /> ialah titik akhir dan <InlineMath math="R(x,0)" /> ialah unjuran <InlineMath math="Q" /> pada paksi-<InlineMath math="x" />, segi tiga bersudut tegak <InlineMath math="ORQ" /> memberikan magnitudnya <Highlight>melalui teorem Pythagoras</Highlight>:
+
+<BlockMath math="|\overrightarrow{OQ}| = \sqrt{x^2 + y^2}" />
+
+Komponen boleh bernilai negatif. Untuk <InlineMath math="\overrightarrow{OR} = -3\mathbf{i} + 2\mathbf{j}" />, komponen mengufuk menghala ke kiri, iaitu di sepanjang <InlineMath math="-\mathbf{i}" />, dan komponen mencancang menghala ke atas. Magnitud menggunakan kuasa dua, jadi tanda komponen tidak mengubah nilainya: <InlineMath math="|\overrightarrow{OR}| = \sqrt{(-3)^2 + 2^2} = \sqrt{13}" />.
+
+<MathVisual
+  title={<>Vektor dengan komponen negatif</>}
+  description={<>Vektor dari <InlineMath math="O(0, 0)" /> ke <InlineMath math="R(-3, 2)" />, dengan komponen mengufuk <InlineMath math="-3\mathbf{i}" /> dan komponen mencancang <InlineMath math="2\mathbf{j}" />, yang panjangnya <InlineMath math="\sqrt{13}" />.</>}
+  labels={{
+    or: <InlineMath math="\overrightarrow{OR}" />,
+    x: <InlineMath math="-3\mathbf{i}" />,
+    y: <InlineMath math="2\mathbf{j}" />,
+    r: <InlineMath math="R(-3, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 0.8 }, y: { min: -0.6, max: 2.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: -3, y: 0 }, to: { x: -3, y: 2 }, appearance: "highlight" },
+      { id: "or", kind: "segment", from: { x: 0, y: 0 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "or-head", kind: "polygon", vertices: [{ x: -3, y: 2 }, { x: (-3) + (3 / 4 / Math.sqrt(13)) + (-1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (-3 / 10 / Math.sqrt(13)) }, { x: (-3) + (3 / 4 / Math.sqrt(13)) + (1 / 5 / Math.sqrt(13)), y: (2) + (-1 / 2 / Math.sqrt(13)) + (3 / 10 / Math.sqrt(13)) }], appearance: "primary" },
+      { id: "r", kind: "point", at: { x: -3, y: 2 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "or", objectId: "or", at: { x: -3 / 2, y: 1 }, placement: "above-right" },
+      { key: "x", objectId: "x", at: { x: -3 / 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: -3, y: 1 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+## Visualisasi Vektor Dua Dimensi
+
+Visualisasi di bawah mengaitkan vektor, komponennya dan magnitudnya pada satah Cartesan:
+
+<MathVisual
+  title={<><InlineMath math="\overrightarrow{OQ} = 4\mathbf{i} + 3\mathbf{j}" /> dan komponennya</>}
+  description={<>Vektor dari <InlineMath math="O(0, 0)" /> ke <InlineMath math="Q(4, 3)" /> bersama komponen mengufuknya <InlineMath math="4\mathbf{i}" /> dan komponen mencancangnya <InlineMath math="3\mathbf{j}" />.</>}
+  labels={{
+    oq: <InlineMath math="\overrightarrow{OQ}" />,
+    x: <InlineMath math="4\mathbf{i}" />,
+    y: <InlineMath math="3\mathbf{j}" />,
+    q: <InlineMath math="Q(4, 3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5 }, y: { min: -0.6, max: 3.8 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "x", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 0 }, appearance: "construction" },
+      { id: "y", kind: "segment", from: { x: 4, y: 0 }, to: { x: 4, y: 3 }, appearance: "highlight" },
+      { id: "oq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "oq-head", kind: "polygon", vertices: [{ x: 4, y: 3 }, { x: 461 / 125, y: 729 / 250 }, { x: 479 / 125, y: 681 / 250 }], appearance: "primary" },
+      { id: "q", kind: "point", at: { x: 4, y: 3 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "oq", objectId: "oq", at: { x: 2, y: 3 / 2 }, placement: "above-left" },
+      { key: "x", objectId: "x", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "y", objectId: "y", at: { x: 4, y: 3 / 2 }, placement: "right" },
+      { key: "q", objectId: "q", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Vektor ini terletak pada satah <InlineMath math="xy" />, jadi komponen <InlineMath math="z" /> bagi vektor itu ialah <InlineMath math="0" />.
+
+Dalam visualisasi di atas:
+
+- Vektor <InlineMath math="\overrightarrow{OQ}" /> (jingga) mempunyai titik awal <InlineMath math="O(0,0)" /> dan titik akhir <InlineMath math="Q(4,3)" />
+- Komponen <InlineMath math="x" /> (hijau kebiruan) ialah unjuran vektor <InlineMath math="\overrightarrow{OQ}" /> pada paksi-<InlineMath math="x" />, iaitu <InlineMath math="4\mathbf{i}" />
+- Komponen <InlineMath math="y" /> (kuning) ialah unjuran vektor <InlineMath math="\overrightarrow{OQ}" /> pada paksi-<InlineMath math="y" />, iaitu <InlineMath math="3\mathbf{j}" />
+
+Hitung **magnitud vektor** daripada dua komponen yang ditunjukkan dalam gambar rajah:
+
+<BlockMath math="\begin{aligned}|\overrightarrow{OQ}|&amp;=\sqrt{4^2+3^2}\\&amp;=\sqrt{16+9}\\&amp;=5\end{aligned}" />
+
+### Vektor unit dalam arah yang sama
+
+Untuk mendapat **panjang unit**, bahagikan setiap komponen dengan magnitud vektor. Arahnya kekal sama kerana pembahaginya positif:
+
+<BlockMath math="\hat{u}=\frac{\overrightarrow{OQ}}{|\overrightarrow{OQ}|}=\frac{4\mathbf{i}+3\mathbf{j}}{5}=\frac45\mathbf{i}+\frac35\mathbf{j}" />
+
+Komponen baharu mempunyai nisbah yang sama dengan komponen asal. Semak magnitud vektor unit itu dengan teorem Pythagoras:
+
+<BlockMath math="|\hat{u}|=\sqrt{\left(\frac45\right)^2+\left(\frac35\right)^2}=\sqrt{\frac{16}{25}+\frac9{25}}=\sqrt1=1" />
+
+Membahagi dengan <InlineMath math="5" /> mengecilkan <InlineMath math="\overrightarrow{OQ}" /> kepada panjang <InlineMath math="1" /> tanpa memutarkannya. Vektor unit <InlineMath math="\hat{u} = \tfrac45\mathbf{i} + \tfrac35\mathbf{j}" /> berakhir pada bulatan berjejari <InlineMath math="1" />, iaitu pada sinar dari <InlineMath math="O" /> yang juga melalui <InlineMath math="Q(4, 3)" />.
+
+<MathVisual
+  title={<>Vektor unit <InlineMath math="\hat{u}" /> di sepanjang <InlineMath math="\overrightarrow{OQ}" /></>}
+  description={<>Vektor <InlineMath math="\overrightarrow{OQ}" /> ke <InlineMath math="Q(4, 3)" /> dan vektor unit <InlineMath math="\hat{u} = \left(\tfrac45, \tfrac35\right)" /> di sepanjangnya, yang berakhir pada bulatan berjejari <InlineMath math="1" />.</>}
+  labels={{
+    oq: <InlineMath math="\overrightarrow{OQ}" />,
+    u: <InlineMath math="\hat{u}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.3, max: 4.6 }, y: { min: -1.3, max: 3.6 } },
+    view: { kind: "fit", padding: 0.3 },
+    objects: [
+      { id: "unit", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "reference" },
+      { id: "oq", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4, y: 3 }, appearance: "primary" },
+      { id: "oq-head", kind: "polygon", vertices: [{ x: 4, y: 3 }, { x: 461 / 125, y: 729 / 250 }, { x: 479 / 125, y: 681 / 250 }], appearance: "primary" },
+      { id: "u", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 / 5, y: 3 / 5 }, appearance: "answer" },
+      { id: "u-head", kind: "polygon", vertices: [{ x: 4 / 5, y: 3 / 5 }, { x: 47 / 75, y: 83 / 150 }, { x: 53 / 75, y: 67 / 150 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "oq", objectId: "oq", at: { x: 3, y: 9 / 4 }, placement: "above-left" },
+      { key: "u", objectId: "u", at: { x: 4 / 5, y: 3 / 5 }, placement: "below-right" },
+    ],
+  }}
+/>

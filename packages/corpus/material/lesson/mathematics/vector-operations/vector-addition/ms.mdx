@@ -1,0 +1,323 @@
+
+
+export const metadata = {
+  title: "Penambahan Vektor",
+    description: "Tambahkan vektor dengan kaedah segi tiga, segi empat selari, poligon dan komponen, kemudian tafsirkan vektor paduan dalam situasi fizikal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-12",
+  dateModified: "2026-09-12",
+  subject: "Vektor dan Operasinya",
+};
+
+## Bagaimana Arah Mempengaruhi Hasil Tambah Sesaran
+
+Penambahan vektor berbeza daripada penambahan skalar. Dalam penambahan skalar, kita hanya menambah magnitud tanpa mengambil kira arah. Contohnya, <InlineMath math="2 \text{ kg}" /> gula ditambah <InlineMath math="3 \text{ kg}" /> gula sama dengan <InlineMath math="5 \text{ kg}" /> gula. Tetapi dalam penambahan vektor, kita mesti mengambil kira magnitud dan juga arah.
+
+Contohnya, jika seseorang berjalan <InlineMath math="2 \text{ m}" /> ke timur kemudian <InlineMath math="3 \text{ m}" /> ke barat, hasilnya berbeza daripada berjalan <InlineMath math="2 \text{ m}" /> ke timur kemudian <InlineMath math="3 \text{ m}" /> ke timur lagi. Hasil penambahan vektor dipanggil **vektor paduan**.
+
+## Penambahan Vektor Menggunakan Kaedah Segi Tiga
+
+1. Lukis vektor pertama <InlineMath math="\vec{a}" />
+2. Translasikan vektor kedua <InlineMath math="\vec{b}" /> sehingga pangkalnya berada di hujung vektor pertama
+3. Lukis vektor paduan dari pangkal vektor pertama ke hujung vektor kedua
+
+<ContentBlock>
+  <MathVisual
+    title={<>Penambahan Vektor Menggunakan Kaedah Segi Tiga</>}
+    description={<>Kaedah segi tiga untuk menambah vektor <InlineMath math="\vec{a}" /> dan vektor <InlineMath math="\vec{b}" />.</>}
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="a+b" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1, max: 7 }, y: { min: -0.5, max: 4.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 4, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 1 }, { x: (4) + 0.5 * ((6) - (4)), y: (1) + 0.5 * ((4) - (1)) }, { x: 6, y: 4 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 5, y: 2.5 }, to: { x: 6, y: 4 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 6, y: 4 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 4, y: 1 }, placement: "below-right" },
+        { key: "l2", objectId: "s2", at: { x: 5, y: 2.5 }, placement: "below-right" },
+        { key: "l3", objectId: "s3", at: { x: 6, y: 4 }, placement: "above" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Secara matematik, jika <InlineMath math="\overrightarrow{AB}" /> dan <InlineMath math="\overrightarrow{BC}" /> ialah dua vektor, maka:
+
+<BlockMath math="\overrightarrow{AB} + \overrightarrow{BC} = \overrightarrow{AC} = \vec{a} + \vec{b}" />
+
+Penambahan vektor memenuhi **sifat kalis tukar tertib**:
+
+<BlockMath math="\vec{a} + \vec{b} = \vec{b} + \vec{a}" />
+
+## Penambahan Vektor Menggunakan Kaedah Segi Empat Selari
+
+Satu lagi kaedah untuk menambah vektor ialah kaedah segi empat selari. Langkah-langkahnya ialah:
+
+1. Lukis kedua-dua vektor supaya pangkalnya bertemu pada titik yang sama
+2. Bina segi empat selari dengan dua vektor itu sebagai sisinya
+3. Vektor paduan ialah pepenjuru segi empat selari yang melalui pangkal sepunya bagi kedua-dua vektor
+
+<ContentBlock>
+  <MathVisual
+    title={<>Penambahan Vektor Menggunakan Kaedah Segi Empat Selari</>}
+    description={<>Kaedah segi empat selari untuk menambah vektor <InlineMath math="\vec{a}" /> dan vektor <InlineMath math="\vec{b}" />.</>}
+    labels={{
+      "l1": <InlineMath math="a" />,
+      "l2": <InlineMath math="b" />,
+      "l3": <InlineMath math="b" />,
+      "l4": <InlineMath math="a" />,
+      "l5": <InlineMath math="a+b" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 7 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0 }, to: { x: 5, y: 1 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((2) - (0)), y: (0) + 0.5 * ((5) - (0)) }, { x: 2, y: 5 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 1, y: 2.5 }, to: { x: 2, y: 5 }, appearance: "secondary" },
+        { id: "s3", kind: "polyline", vertices: [{ x: 5, y: 1 }, { x: (5) + 0.5 * ((7) - (5)), y: (1) + 0.5 * ((6) - (1)) }, { x: 7, y: 6 }], appearance: "secondary" },
+        { id: "s3-head", kind: "vector", from: { x: 6, y: 3.5 }, to: { x: 7, y: 6 }, appearance: "secondary" },
+        { id: "s4", kind: "vector", from: { x: 2, y: 5 }, to: { x: 7, y: 6 }, appearance: "primary" },
+        { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 7, y: 6 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 5, y: 1 }, placement: "below-right" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: 2.5 }, placement: "above-left" },
+        { key: "l3", objectId: "s3", at: { x: 6, y: 3.5 }, placement: "below-right" },
+        { key: "l4", objectId: "s4", at: { x: 2, y: 5 }, placement: "above" },
+        { key: "l5", objectId: "s5", at: { x: 7, y: 6 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Kaedah ini juga memenuhi **sifat kalis tukar tertib**, jadi tertib penambahan tidak mempengaruhi hasilnya.
+
+## Penambahan Menggunakan Kaedah Poligon
+
+Untuk menambah lebih daripada dua vektor, kita boleh menggunakan kaedah poligon. Prinsipnya, hujung vektor sebelumnya <Highlight>bertemu dengan pangkal vektor seterusnya</Highlight>. Vektor paduan menyambungkan pangkal vektor pertama ke hujung vektor terakhir.
+
+<MathVisual
+  title={<>Menambah Tiga Vektor Menggunakan Kaedah Poligon</>}
+  description={
+    <>
+      Penambahan vektor <InlineMath math="a + b + c" /> menggunakan kaedah
+      poligon.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="b" />,
+    "l3": <InlineMath math="c" />,
+    "l4": <InlineMath math="a+b+c" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -0.5, max: 4.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 10, y: 6, z: -8 }, target: { x: 3.5, y: 1.8, z: 1 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 0 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 1, z: 0 }, { x: (3) + 0.5 * ((5) - (3)), y: (1) + 0.5 * ((4) - (1)), z: (0) + 0.5 * ((0) - (0)) }, { x: 5, y: 4, z: 0 }], appearance: "secondary" },
+      { id: "s2-head", kind: "vector", from: { x: 4, y: 2.5, z: 0 }, to: { x: 5, y: 4, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 5, y: 4, z: 0 }, { x: (5) + 0.5 * ((7) - (5)), y: (4) + 0.5 * ((3) - (4)), z: (0) + 0.5 * ((2) - (0)) }, { x: 7, y: 3, z: 2 }], appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: 6, y: 3.5, z: 1 }, to: { x: 7, y: 3, z: 2 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 7, y: 3, z: 2 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 1, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 4, y: 2.5, z: 0 }, placement: "above" },
+      { key: "l3", objectId: "s3", at: { x: 6, y: 3.5, z: 1 }, placement: "below" },
+      { key: "l4", objectId: "s4", at: { x: 7, y: 3, z: 2 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Penambahan vektor menggunakan kaedah poligon juga memenuhi sifat kalis sekutuan:
+
+<BlockMath math="\vec{A} + (\vec{B} + \vec{C}) = (\vec{A} + \vec{B}) + \vec{C}" />
+
+Untuk menambah tiga vektor menggunakan kaedah segi empat selari, kita boleh:
+
+1. Tambahkan dua vektor dahulu untuk mendapat vektor paduan <InlineMath math="R_1" />
+2. Tambahkan <InlineMath math="R_1" /> kepada vektor ketiga untuk mendapat vektor paduan akhir <InlineMath math="R_2" />
+
+Dalam dua gambar rajah berikut, <InlineMath math="A=(3,1,0)" />, <InlineMath math="B=(1,3,0)" /> dan <InlineMath math="C=(0,1,3)" />. Hasil tambah perantaraannya ialah <InlineMath math="B+C=(1,4,3)" /> dan <InlineMath math="A+B=(4,4,0)" />. Kedua-dua cara pengumpulan memberikan <InlineMath math="A+B+C=(4,5,3)" />.
+
+<ContentBlock>
+  <MathVisual
+    title={<>Tambah <InlineMath math="B" /> dan <InlineMath math="C" /> Dahulu</>}
+    description={<>Vektor <InlineMath math="B+C" /> bermula di hujung A dan sampai ke titik akhir keseluruhan.</>}
+    labels={{
+      "l1": <InlineMath math="A" />,
+      "l2": <InlineMath math="B+C" />,
+      "l3": <InlineMath math="A+B+C" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 }, z: { min: -0.5, max: 3.5 } },
+      view: { kind: "camera", position: { x: 9, y: 7, z: -8 }, target: { x: 2, y: 2.5, z: 1.5 } },
+      objects: [
+        { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 1, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 3, y: 1, z: 0 }, { x: (3) + 0.5 * ((4) - (3)), y: (1) + 0.5 * ((5) - (1)), z: (0) + 0.5 * ((3) - (0)) }, { x: 4, y: 5, z: 3 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 3.5, y: 3, z: 1.5 }, to: { x: 4, y: 5, z: 3 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 5, z: 3 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 1, z: 0 }, placement: "below-right" },
+        { key: "l2", objectId: "s2", at: { x: 3.5, y: 3, z: 1.5 }, placement: "below" },
+        { key: "l3", objectId: "s3", at: { x: 4, y: 5, z: 3 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+<ContentBlock>
+  <MathVisual
+    title={<>Tambah A dan <InlineMath math="B" /> Dahulu</>}
+    description={<>Vektor <InlineMath math="C" /> bermula di hujung <InlineMath math="A+B" /> dan sampai ke titik akhir yang sama.</>}
+    labels={{
+      "l1": <InlineMath math="A+B" />,
+      "l2": <InlineMath math="C" />,
+      "l3": <InlineMath math="A+B+C" />,
+    }}
+    scene={{
+      space: "space",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 5.5 }, z: { min: -0.5, max: 3.5 } },
+      view: { kind: "camera", position: { x: 9, y: 7, z: -8 }, target: { x: 2, y: 2.5, z: 1.5 } },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0, z: 0 }, { x: (0) + 0.5 * ((4) - (0)), y: (0) + 0.5 * ((4) - (0)), z: (0) + 0.5 * ((0) - (0)) }, { x: 4, y: 4, z: 0 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 2, y: 2, z: 0 }, to: { x: 4, y: 4, z: 0 }, appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: 4, y: 4, z: 0 }, { x: (4) + 0.5 * ((4) - (4)), y: (4) + 0.5 * ((5) - (4)), z: (0) + 0.5 * ((3) - (0)) }, { x: 4, y: 5, z: 3 }], appearance: "secondary" },
+        { id: "s2-head", kind: "vector", from: { x: 4, y: 4.5, z: 1.5 }, to: { x: 4, y: 5, z: 3 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 4, y: 5, z: 3 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: 2, z: 0 }, placement: "below" },
+        { key: "l2", objectId: "s2", at: { x: 4, y: 4.5, z: 1.5 }, placement: "above" },
+        { key: "l3", objectId: "s3", at: { x: 4, y: 5, z: 3 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+## Penambahan Vektor Mengikut Komponen
+
+Tambahkan **komponen pada paksi yang sama**. Gabungkan komponen mengufuk dengan komponen mengufuk, dan komponen mencancang dengan komponen mencancang.
+
+<MathVisual
+  title={<>Penambahan Vektor Mengikut Komponen</>}
+  description={
+    <>
+      Komponen vektor pada paksi <InlineMath math="x" />, <InlineMath math="y" />{" "}
+      dan <InlineMath math="z" />.
+    </>
+  }
+  labels={{
+    "l1": <InlineMath math="a" />,
+    "l2": <InlineMath math="a_x" />,
+    "l3": <InlineMath math="a_y" />,
+    "l4": <InlineMath math="a_z" />,
+    "l5": <InlineMath math="b" />,
+    "l6": <InlineMath math="a+b" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -1, max: 7 }, z: { min: -0.5, max: 3.5 } },
+    view: { kind: "camera", position: { x: 10, y: 8, z: -8 }, target: { x: 2.5, y: 2.8, z: 1.5 } },
+    objects: [
+      { id: "s1", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 2, z: 1 }, appearance: "primary" },
+      { id: "s2", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 3, y: 0, z: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 2, z: 0 }, appearance: "answer" },
+      { id: "s4", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 0, y: 0, z: 1 }, appearance: "highlight" },
+      { id: "s5", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 2, y: 4, z: 2 }, appearance: "reference" },
+      { id: "s6", kind: "vector", from: { x: 0, y: 0, z: 0 }, to: { x: 5, y: 6, z: 3 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 2, z: 1 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3, y: 0, z: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 0, y: 2, z: 0 }, placement: "above-right" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: 0, z: 1 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 2, y: 4, z: 2 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: 5, y: 6, z: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Jika <InlineMath math="\vec{a} = (a_x, a_y)" /> dan <InlineMath math="\vec{b} = (b_x, b_y)" />, maka:
+
+<BlockMath math="\vec{a} + \vec{b} = (a_x + b_x, a_y + b_y)" />
+
+Contoh:
+
+<BlockMath math="\vec{a} + \vec{b} = (-3, 3) + (4, 2) = (1, 5)" />
+
+Penambahan mengikut komponen memberikan hasil yang sama dengan penambahan secara grafik.
+
+## Halaju Bot di Sungai
+
+Penambahan vektor boleh digunakan untuk menentukan halaju bot yang menyeberangi sungai:
+
+1. Jika halaju arus sungai ialah sifar, halaju bot relatif kepada tebing sama dengan halaju bot relatif kepada air
+2. Jika halaju arus sungai bukan sifar, halaju bot relatif kepada tebing ialah hasil tambah vektor bagi halajunya relatif kepada air dan halaju arus. Sama ada arahnya, magnitudnya atau kedua-duanya berubah bergantung pada arah arus
+
+<ContentBlock>
+  <MathVisual
+    title={<>Aplikasi Penambahan Vektor: Bot Menyeberangi Sungai</>}
+    description={<>Vektor paduan <InlineMath math="v_R" /> bagi halaju bot <InlineMath math="v_B" /> dan arus sungai <InlineMath math="v_F" />.</>}
+    labels={{
+      "l1": <InlineMath math="v_B" />,
+      "l2": <InlineMath math="v_F" />,
+      "l3": <InlineMath math="v_R" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -0.5, max: 3.5 }, y: { min: -0.5, max: 4.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: (0) + 0.5 * ((0) - (0)), y: (0) + 0.5 * ((4) - (0)) }, { x: 0, y: 4 }], appearance: "primary" },
+        { id: "s1-head", kind: "vector", from: { x: 0, y: 2 }, to: { x: 0, y: 4 }, appearance: "primary" },
+        { id: "s2", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "secondary" },
+        { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 4 }, appearance: "answer" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 0, y: 2 }, placement: "above-left" },
+        { key: "l2", objectId: "s2", at: { x: 3, y: 0 }, placement: "below-right" },
+        { key: "l3", objectId: "s3", at: { x: 3, y: 4 }, placement: "above-right" },
+      ],
+    }}
+  />
+</ContentBlock>
+
+Dalam gambar rajah ini, ambil paksi mengufuk mengikut arah arus dan paksi mencancang merentasi sungai. Katakan halaju bot relatif kepada air ialah <InlineMath math="(0,4)\,\text{m/s}" /> dan halaju arus ialah <InlineMath math="(3,0)\,\text{m/s}" />. Tambahkan komponennya untuk mencari **halaju relatif kepada tebing**:
+
+<MathContainer>
+  <BlockMath math="\vec v_R=(0+3,4+0)\,\text{m/s}=(3,4)\,\text{m/s}" />
+  <BlockMath math="|\vec v_R|=\sqrt{3^2+4^2}\,\text{m/s}=\sqrt{25}\,\text{m/s}=5\,\text{m/s}" />
+</MathContainer>
+
+Bot itu bergerak merentasi sungai sambil hanyut mengikut arus. Lajunya relatif kepada tebing ialah <InlineMath math="5\,\text{m/s}" />, bukan <InlineMath math="4+3=7\,\text{m/s}" />, kerana kedua-dua halaju itu berserenjang.
+
+Beberapa vektor sesaran berturut-turut juga boleh ditambah dengan cara yang sama. Vektor paduannya memberikan sesaran bersih. Panjang laluan dan laluan terpendek pula mesti ditentukan berdasarkan jalan sebenar yang dilalui.
+
+## Perbezaan antara Penambahan Skalar dan Vektor
+
+Penambahan skalar dan penambahan vektor kedua-duanya memberikan hasil yang unik bagi input yang tetap. Bezanya, skalar diterangkan oleh satu nilai, manakala vektor bukan sifar juga membawa arah. Oleh itu, menukar arah vektor bermakna menukar input, dan ini boleh mengubah vektor paduan.
+
+**Contoh penambahan skalar**:
+
+Untuk gula, <InlineMath math="3 \text{ kg} + 4 \text{ kg} = 7 \text{ kg}" />.
+
+**Contoh penambahan vektor**:
+
+Untuk sesaran dalam arah yang sama, <InlineMath math="3 \text{ m timur} + 4 \text{ m timur} = 7 \text{ m timur}" />. Dalam arah yang bertentangan, <InlineMath math="3 \text{ m timur} + 4 \text{ m barat} = 1 \text{ m barat}" />.
+
+Penambahan vektor digunakan untuk mengira paduan bagi sesaran, halaju, pecutan dan daya.

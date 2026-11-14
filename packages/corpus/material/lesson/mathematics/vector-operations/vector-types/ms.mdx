@@ -1,0 +1,222 @@
+
+export const metadata = {
+  title: "Jenis Vektor",
+  description: "Bandingkan magnitud dan arah, kemudian kaji vektor bertentangan, vektor sifar dan vektor setara melalui gambar rajah dan satu latihan berserta jalan kerja.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-08",
+  dateModified: "2026-09-24",
+  subject: "Vektor dan Operasinya",
+};
+
+## Magnitud dan Arah Vektor
+
+Setiap vektor bukan sifar <Highlight>mempunyai dua ciri penentu</Highlight>: **magnitud** dan **arah**. Vektor sifar ialah kes khas yang akan kita bincangkan kemudian.
+
+Pada vektor <InlineMath math="\overrightarrow{CD}" />, kedua-dua ciri penentu itu boleh dilihat terus:
+
+<MathVisual
+  title={
+    <>
+      Vektor <InlineMath math="CD" />
+    </>
+  }
+  description={
+    <>
+      Vektor <InlineMath math="CD" /> dengan panjang <InlineMath math="4 \text{ cm}" /> dan arah{" "}
+      <InlineMath math="45^\circ" /> relatif kepada garis mengufuk.
+    </>
+  }
+  labels={{
+    cd: <InlineMath math="CD" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3.83 }, y: { min: -1, max: 3.83 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 0, y: 0 }, to: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 4 * Math.cos(Math.PI / 4), y: 4 * Math.sin(Math.PI / 4) }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: (4 * Math.cos(Math.PI / 4)) / 2, y: (4 * Math.sin(Math.PI / 4)) / 2 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+- **Magnitud vektor** <InlineMath math="\overrightarrow{CD}" /> ialah <InlineMath math="4 \text{ cm}" />. Magnitud memberitahu kita _saiz_ vektor itu. Magnitud sesuatu vektor <InlineMath math="\vec{v}" /> dilambangkan dengan <InlineMath math="|\vec{v}|" />. Oleh itu, <InlineMath math="|\overrightarrow{CD}| = 4 \text{ cm}" />.
+- **Arah vektor** <InlineMath math="\overrightarrow{CD}" /> ialah <InlineMath math="45^\circ" /> relatif kepada garis mengufuk. Arah inilah yang membezakan vektor daripada kuantiti skalar, yang hanya mempunyai magnitud. Arah boleh dinyatakan menggunakan sudut, arah mata angin seperti timur laut, atau rujukan lain.
+
+## Vektor Negatif atau Vektor Bertentangan
+
+Bagi vektor bukan sifar, vektor negatif atau vektor bertentangannya mempunyai **magnitud yang sama** tetapi **arah yang bertentangan**.
+
+Bayangkan Andi berjalan sejauh <InlineMath math="100 \text{ m}" /> pada sudut <InlineMath math="30^\circ" />. Namakan sesaran ini <InlineMath math="\vec{A}" />. Jika Andi kemudian berjalan terus balik melalui laluan yang sama, sesaran pulangnya ialah vektor bertentangan bagi <InlineMath math="\vec{A}" />, yang ditulis sebagai <InlineMath math="-\vec{A}" />.
+
+<MathVisual
+  title={<>Vektor dan Vektor Bertentangan</>}
+  description={
+    <>
+      Vektor <InlineMath math="A" /> dan vektor <InlineMath math="-A" /> mempunyai
+      magnitud yang sama tetapi arah yang bertentangan.
+    </>
+  }
+  labels={{
+    a: <InlineMath math="A" />,
+    "minus-a": <InlineMath math="-A" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12.99, max: 99.59 }, y: { min: -9, max: 69 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 0, y: 0 }, to: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 50 * Math.sqrt(3), y: 50 }, appearance: "primary" },
+      { id: "minus-a", kind: "segment", from: { x: 50 * Math.sqrt(3), y: 60 }, to: { x: 0, y: 10 }, appearance: "secondary" },
+      { id: "minus-a-tip", kind: "point", at: { x: 0, y: 10 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: (50 * Math.sqrt(3)) / 2, y: 25 }, placement: "above-left" },
+      { key: "minus-a", objectId: "minus-a", at: { x: (50 * Math.sqrt(3)) / 2, y: 35 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Titik awal kedua-dua anak panah dipisahkan supaya kedua-duanya mudah dilihat. Mentranslasikan anak panah tidak mengubah magnitud atau arahnya. Sesaran pergi mempunyai komponen <InlineMath math="(50\sqrt3,50)\,\text{m}" />, dan komponen sesaran pulang ialah negatif bagi komponen tersebut.
+
+- Vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="-\vec{A}" /> mempunyai magnitud yang sama (<InlineMath math="|\vec{A}| = |-\vec{A}|" />).
+- Arah vektor <InlineMath math="-\vec{A}" /> betul-betul bertentangan dengan arah vektor <InlineMath math="\vec{A}" />. Jika <InlineMath math="\vec{A}" /> menghala ke satu arah, <InlineMath math="-\vec{A}" /> menghala ke arah yang bertentangan (beza <InlineMath math="180^\circ" />).
+
+## Vektor Sifar
+
+Vektor sifar ialah vektor istimewa kerana vektor ini mempunyai **magnitud sifar**. Oleh sebab panjangnya sifar, vektor ini **tidak mempunyai arah yang tertentu**.
+
+Vektor sifar boleh digambarkan sebagai satu titik, iaitu titik awal dan titik akhirnya bertindih. Vektor sifar biasanya dilambangkan dengan <InlineMath math="\vec{0}" />.
+
+**Contoh**:
+
+Jika Andi berjalan <InlineMath math="100 \text{ m}" /> ke timur, kemudian berjalan balik <InlineMath math="100 \text{ m}" /> ke barat, jumlah sesaran Andi ialah sifar. Jumlah sesaran ini boleh diwakili sebagai vektor sifar (<InlineMath math="\vec{0}" />).
+
+<BlockMath math="\Delta x=100\,\text{m}+(-100\,\text{m})=0\,\text{m}" />
+
+## Vektor Setara atau Vektor Sama
+
+Dua vektor dikatakan **setara** atau **sama** apabila komponen yang sepadan bernilai sama, walaupun titik awalnya berbeza. Bagi vektor bukan sifar, syarat ini sama dengan mempunyai **magnitud dan arah** yang sama. Definisi berdasarkan komponen ini juga meliputi vektor sifar, yang arahnya tidak tertakrif.
+
+Perhatikan graf di bawah yang menunjukkan tiga vektor setara: <InlineMath math="\overrightarrow{CD}" />, <InlineMath math="\overrightarrow{EF}" /> dan <InlineMath math="\overrightarrow{KL}" />.
+
+<MathVisual
+  title={<>Vektor Setara</>}
+  description={
+    <>
+      Vektor <InlineMath math="CD" />, <InlineMath math="EF" /> dan{" "}
+      <InlineMath math="KL" /> mempunyai magnitud dan arah yang sama.
+    </>
+  }
+  labels={{
+    cd: <InlineMath math="CD" />,
+    ef: <InlineMath math="EF" />,
+    kl: <InlineMath math="KL" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.05, max: 8.05 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "cd", kind: "segment", from: { x: 2, y: 1 }, to: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "cd-tip", kind: "point", at: { x: 5, y: 3 }, appearance: "primary" },
+      { id: "ef", kind: "segment", from: { x: 4, y: 2 }, to: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "ef-tip", kind: "point", at: { x: 7, y: 4 }, appearance: "secondary" },
+      { id: "kl", kind: "segment", from: { x: 3, y: 0 }, to: { x: 6, y: 2 }, appearance: "answer" },
+      { id: "kl-tip", kind: "point", at: { x: 6, y: 2 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "cd", objectId: "cd", at: { x: 3.5, y: 2 }, placement: "above-left" },
+      { key: "ef", objectId: "ef", at: { x: 5.5, y: 3 }, placement: "above-left" },
+      { key: "kl", objectId: "kl", at: { x: 4.5, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Ketiga-tiga vektor di atas mempunyai magnitud dan arah yang sama, jadi ketiga-tiganya setara. Kita boleh menulisnya sebagai:
+
+<BlockMath math="\overrightarrow{CD} = \overrightarrow{EF} = \overrightarrow{KL}" />
+
+Titik awalnya berbeza, tetapi setiap anak panah bergerak tiga unit ke kanan dan dua unit ke atas. Oleh itu, ketiga-tiganya mempunyai vektor komponen yang sama, iaitu <InlineMath math="(3, 2)" />.
+
+## Latihan
+
+<MathVisual
+  title={
+    <>
+      Perbandingan Vektor <InlineMath math="A" /> dan Vektor{" "}
+      <InlineMath math="B" />
+    </>
+  }
+  description={<>Bandingkan panjang dan arah kedua-dua anak panah ini.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 5, y: 5 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 5, y: 5 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 4.5 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Adakah vektor <InlineMath math="\vec{A}" /> merupakan vektor bertentangan bagi <InlineMath math="\vec{B}" />?
+
+**Jawapan**:
+
+Vektor <InlineMath math="\vec{A}" /> **bukan** vektor bertentangan bagi <InlineMath math="\vec{B}" />. Semak dua syarat yang diperlukan:
+
+1.  **Kedua-duanya mesti mempunyai magnitud yang sama**: Gambar rajah memberikan <InlineMath math="\vec{A} = (-1, -4)" /> dan <InlineMath math="\vec{B} = (4, 1)" />, jadi <InlineMath math="|\vec{A}| = |\vec{B}| = \sqrt{17}" />. Syarat ini dipenuhi.
+2.  **Arahnya mesti betul-betul bertentangan (berbeza <InlineMath math="180^\circ" />)**: Menukar tanda kedua-dua komponen memberikan <InlineMath math="-\vec{A} = (1, 4)" />. Vektor <InlineMath math="\vec{B} = (4, 1)" /> mempunyai kedudukan komponen yang berbeza, jadi syarat ini tidak dipenuhi.
+
+Oleh sebab syarat kedua tidak dipenuhi, <InlineMath math="\vec{A}" /> bukan vektor bertentangan bagi <InlineMath math="\vec{B}" />.
+
+Bagaimanakah caranya untuk menjadikan vektor <InlineMath math="\vec{A}" /> dan <InlineMath math="\vec{B}" /> bertentangan?
+
+Dengan mengekalkan <InlineMath math="\vec{A}" />, kita boleh menjadikan <InlineMath math="\vec{B}" /> vektor bertentangannya dengan menukar titik akhir <InlineMath math="\vec{B}" />:
+
+<MathVisual
+  title={
+    <>
+      Vektor Bertentangan <InlineMath math="A" /> dan <InlineMath math="B" />
+    </>
+  }
+  description={<>Kedua-dua vektor mempunyai magnitud yang sama dan menghala ke arah yang bertentangan.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 3 }, y: { min: -1.2, max: 9.2 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "a", kind: "segment", from: { x: 1, y: 4 }, to: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "a-tip", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "b", kind: "segment", from: { x: 1, y: 4 }, to: { x: 2, y: 8 }, appearance: "secondary" },
+      { id: "b-tip", kind: "point", at: { x: 2, y: 8 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.5, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 1.5, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Dengan pangkal yang tetap di <InlineMath math="(1,4)" /> dan komponen yang diperlukan <InlineMath math="-\vec A=(1,4)" />, kira titik akhir yang baharu seperti berikut:
+
+<BlockMath math="(1,4)+(1,4)=(2,8)" />
