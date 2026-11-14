@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\sqrt{41}\\text{ m}$$",
+          label: "$$\\frac{12}{5}$$",
         },
         {
           correct: false,
-          label: "$$21\\text{ m}$$",
+          label: "$$\\frac{60}{169}$$",
         },
         {
           correct: false,
-          label: "$$25\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$27\\text{ m}$$",
+          label: "$$\\frac{5}{12}$$ oder $$\\frac{12}{5}$$",
         },
         {
           correct: true,
-          label: "$$29\\text{ m}$$",
+          label: "$$\\frac{5}{12}$$",
         },
         {
           correct: false,
-          label: "$$41\\text{ m}$$",
+          label: "$$\\frac{120}{169}$$",
+        },
+        {
+          correct: false,
+          label: "Einen solchen Winkel gibt es nicht.",
         },
       ],
     },

@@ -1,19 +1,63 @@
-Bilangan pokok terbesar maupun pangkat terbesar saja tidak menentukan besar suatu perpangkatan. Tanpa kalkulator, cara paling aman adalah **menghitung setiap perpangkatan sebagai bilangan bulat**, lalu membandingkannya.
+# Gambar ruas kirinya dulu
 
-<BlockMath math="\begin{aligned}
-2^{10}&=1{.}024 \\
-3^6&=729 \\
-5^4&=625 \\
-10^3&=1{.}000 \\
-6^4&=36\cdot36=1{.}296 \\
-7^3&=343
-\end{aligned}" />
+Banyak penyelesaian <InlineMath math="|x^2-4x|=a" /> sama dengan **banyak titik potong grafik <InlineMath math="y=|x^2-4x|" /> dengan garis mendatar <InlineMath math="y=a" />**. Jadi gambar dulu grafik ruas kirinya.
 
-Urutannya adalah <InlineMath math="7^3<5^4<3^6<10^3<2^{10}<6^4" />. Untuk memeriksa <InlineMath math="6^4" />: <InlineMath math="6^2=36" /> dan <InlineMath math="36^2=1{.}296" />. Bahkan <InlineMath math="6^4>2^{10}" />, karena <InlineMath math="6^4=2^4\cdot3^4=16\cdot81" /> dan <InlineMath math="2^{10}=16\cdot64" />.
+Tanpa tanda mutlak, <InlineMath math="x^2-4x=(x-2)^2-4" /> adalah parabola terbuka ke atas dengan puncak <InlineMath math="(2\mid-4)" /> dan titik nol <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Tanda mutlak membalik bagian yang negatif, yaitu bagian di antara <InlineMath math="0" /> dan <InlineMath math="4" />, ke atas sumbu <InlineMath math="x" />. Puncak <InlineMath math="(2\mid-4)" /> menjadi bukit dengan titik tertinggi <InlineMath math="(2\mid4)" />.
 
-Jadi, bilangan terbesar adalah <InlineMath math="6^4" />.
+<MathVisual
+  title="Grafik nilai mutlak dari parabola"
+  description={<>Grafik <InlineMath math="y=|x^2-4x|" /> menyentuh sumbu <InlineMath math="x" /> di <InlineMath math="x=0" /> dan <InlineMath math="x=4" />. Di antara keduanya ada bukit dengan puncak <InlineMath math="(2\mid4)" />, dan di luar keduanya grafiknya naik. Garis mendatar <InlineMath math="y=4" /> menyentuh puncak bukit dan memotong kedua lengan luar.</>}
+  labels={{
+    top: <InlineMath math="(2\mid4)" />,
+    line: <InlineMath math="y=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5.5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: -1, max: 0 }, inputAxis: "x" },
+      { id: "bump", kind: "quadratic", appearance: "primary", coefficients: { a: -1, b: 4, c: 0 }, domain: { min: 0, max: 4 }, inputAxis: "x" },
+      { id: "right-arm", kind: "quadratic", appearance: "primary", coefficients: { a: 1, b: -4, c: 0 }, domain: { min: 4, max: 5 }, inputAxis: "x" },
+      { id: "level", kind: "line", appearance: "highlight", through: [{ x: -1, y: 4 }, { x: 5, y: 4 }] },
+      { id: "point-top", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "point-left", kind: "point", appearance: "answer", at: { x: 2 - 2 * Math.sqrt(2), y: 4 } },
+      { id: "point-right", kind: "point", appearance: "answer", at: { x: 2 + 2 * Math.sqrt(2), y: 4 } },
+    ],
+    labels: [
+      { key: "top", objectId: "point-top", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "line", objectId: "level", at: { x: 5, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
 
-- <InlineMath math="2^{10}" /> memang berpangkat terbesar, tetapi nilainya <InlineMath math="1{.}024" />, lebih kecil dari <InlineMath math="6^4=1{.}296" />.
-- <InlineMath math="3^6=729" /> dan <InlineMath math="5^4=625" /> kurang dari <InlineMath math="1{.}000" />.
-- <InlineMath math="10^3=1{.}000" /> tampak besar karena bilangan pokoknya <InlineMath math="10" />, tetapi masih di bawah <InlineMath math="1{.}024" /> dan <InlineMath math="1{.}296" />.
-- <InlineMath math="7^3" /> memiliki bilangan pokok yang besar, tetapi pangkatnya hanya <InlineMath math="3" />, sehingga nilainya <InlineMath math="343" /> dan paling kecil.
+# Menghitung titik potong untuk setiap nilai a
+
+Geser garis <InlineMath math="y=a" /> dari bawah ke atas dan hitung titik potongnya:
+
+| Nilai <InlineMath math="a" /> | Titik potong |
+| :---: | :---: |
+| <InlineMath math="a<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="a=0" /> | <InlineMath math="2" /> |
+| <InlineMath math="0<a<4" /> | <InlineMath math="4" /> |
+| <InlineMath math="a=4" /> | <InlineMath math="3" /> |
+| <InlineMath math="a>4" /> | <InlineMath math="2" /> |
+
+**Tepat tiga titik potong hanya terjadi saat garis menyinggung puncak bukit**, yaitu <InlineMath math="a=4" />.
+
+# Cek ketiga penyelesaiannya
+
+Untuk <InlineMath math="a=4" />, bagian bukit memberi <InlineMath math="-(x^2-4x)=4" />, yaitu <InlineMath math="(x-2)^2=0" />, jadi <InlineMath math="x=2" />. Kedua lengan luar memberi <InlineMath math="x^2-4x=4" />, yaitu <InlineMath math="(x-2)^2=8" />, jadi <InlineMath math="x=2\pm2\sqrt2" />. **Ada tepat tiga penyelesaian yang berbeda**.
+
+Jadi, persamaan itu punya tepat tiga penyelesaian untuk <InlineMath math="a=4" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="a=0" /> hanya memberi <InlineMath math="x=0" /> dan <InlineMath math="x=4" />, dua penyelesaian.
+- <InlineMath math="0<a<4" /> memberi empat penyelesaian: dua di bukit dan dua di lengan luar. Contohnya <InlineMath math="a=2" />.
+- <InlineMath math="a>4" /> berada di atas bukit, jadi hanya memotong kedua lengan luar.
+- <InlineMath math="a=-4" /> adalah nilai puncak parabola tanpa tanda mutlak. **Nilai mutlak tidak pernah negatif**, jadi tidak ada penyelesaian.
