@@ -1,0 +1,26 @@
+Dua transformasi boleh ditukar susunannya apabila **hasilnya sama bagi setiap titik**, tidak kira yang mana dilakukan dahulu. Satu titik yang memberikan hasil berbeza sudah cukup untuk menolak sesuatu pasangan. Sebaliknya, satu titik yang kebetulan sama belum membuktikan apa-apa.
+
+# Cara menguji setiap pasangan
+
+Tulis setiap transformasi sebagai petua bagi titik am <InlineMath math="(x,y)" />, kemudian kira kedua-dua susunan. Tatatanda <InlineMath math="T_2\circ T_1" /> bermaksud <InlineMath math="T_1" /> dilakukan dahulu, barulah <InlineMath math="T_2" />. Petua yang kamu perlukan:
+
+<BlockMath math="\begin{aligned}
+\text{putaran } 180^\circ \text{ pusat } (a,b)&:\ (x,y)\mapsto(2a-x,\ 2b-y) \\
+\text{putaran } 90^\circ \text{ pusat } O&:\ (x,y)\mapsto(-y,\ x) \\
+\text{pantulan pada } y=x&:\ (x,y)\mapsto(y,\ x) \\
+\text{pantulan pada } y=-x&:\ (x,y)\mapsto(-y,\ -x) \\
+\text{pantulan pada paksi-}x&:\ (x,y)\mapsto(x,\ -y) \\
+\text{pembesaran pusat } (a,b)\text{, faktor } k&:\ (x,y)\mapsto\big(a+k(x-a),\ b+k(y-b)\big)
+\end{aligned}" />
+
+Jika kedua-dua susunan memberikan petua yang sama, pasangan itu boleh ditukar susunannya. **Jika petuanya berbeza, tunjukkan satu titik yang imejnya berbeza** supaya kesimpulannya pasti.
+
+# Menilai setiap pernyataan
+
+1. **Salah**. Putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="O" /> ialah <InlineMath math="(x,y)\mapsto(-x,-y)" />, manakala putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="(2,0)" /> ialah <InlineMath math="(x,y)\mapsto(4-x,-y)" />. Pusat <InlineMath math="(2,0)" /> dahulu, kemudian pusat <InlineMath math="O" />, memberikan <InlineMath math="(x-4,\,y)" />. Susunan sebaliknya memberikan <InlineMath math="(x+4,\,y)" />. Hasilnya dua translasi yang berlawanan arah, contohnya titik <InlineMath math="O" /> dibawa ke <InlineMath math="(-4,0)" /> atau ke <InlineMath math="(4,0)" />. Sudutnya sama, tetapi pusatnya berbeza.
+2. **Betul**. Pantulan dahulu, kemudian translasi: <InlineMath math="(y,x)" /> menjadi <InlineMath math="(y+2,\,x+2)" />. Translasi dahulu, kemudian pantulan: <InlineMath math="(x+2,\,y+2)" /> menjadi <InlineMath math="(y+2,\,x+2)" />. Kedua-dua susunan sama bagi setiap titik. Ini berlaku kerana vektor <InlineMath math="(2,2)" /> selari dengan paksi pantulan <InlineMath math="y=x" />, jadi anjakan di sepanjang paksi itu tidak diubah oleh pantulan.
+3. **Salah**. Pembesaran pada pusat <InlineMath math="O" /> dengan faktor <InlineMath math="2" /> ialah <InlineMath math="(2x,\,2y)" />, dan pembesaran pada pusat <InlineMath math="(2,0)" /> dengan faktor <InlineMath math="3" /> ialah <InlineMath math="(3x-4,\,3y)" />. Pusat <InlineMath math="(2,0)" /> dahulu memberikan <InlineMath math="(6x-8,\,6y)" />, manakala pusat <InlineMath math="O" /> dahulu memberikan <InlineMath math="(6x-4,\,6y)" />. Faktornya sama-sama menjadi <InlineMath math="6" />, tetapi anjakannya berbeza. Titik <InlineMath math="O" /> dibawa ke <InlineMath math="(-8,0)" /> atau ke <InlineMath math="(-4,0)" />.
+4. **Salah**. Pantulan dahulu, kemudian putaran: <InlineMath math="(x,-y)" /> menjadi <InlineMath math="(y,\,x)" />. Putaran dahulu, kemudian pantulan: <InlineMath math="(-y,x)" /> menjadi <InlineMath math="(-y,\,-x)" />. Bagi titik <InlineMath math="(1,0)" />, hasilnya <InlineMath math="(0,1)" /> dan <InlineMath math="(0,-1)" />. Kedua-dua susunan hanya sepadan pada titik <InlineMath math="O" />, jadi menguji titik <InlineMath math="O" /> sahaja akan mengelirukan kamu.
+5. **Betul**. Pantulan dahulu, kemudian putaran: <InlineMath math="(-y,-x)" /> menjadi <InlineMath math="(y,\,x)" />. Putaran dahulu, kemudian pantulan: <InlineMath math="(-x,-y)" /> menjadi <InlineMath math="(y,\,x)" />. Kedua-dua susunan sama bagi setiap titik. Putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="O" /> hanya menukar tanda kedua-dua koordinat, dan pertukaran tanda itu tidak bergantung pada susunan.
+
+Jadi, pasangan yang boleh ditukar susunannya ialah pantulan pada <InlineMath math="y=x" /> dengan translasi <InlineMath math="(2,2)" />, serta putaran <InlineMath math="180^\circ" /> pada pusat <InlineMath math="O" /> dengan pantulan pada <InlineMath math="y=-x" />.

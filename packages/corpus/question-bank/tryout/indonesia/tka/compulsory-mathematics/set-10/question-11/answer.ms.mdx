@@ -1,0 +1,81 @@
+# Garis serenjang dari pusat
+
+Bahagian taman di luar kolam berbentuk gelang, dan luasnya <InlineMath math="\pi R^2-\pi r^2=\pi(R^2-r^2)" />, dengan <InlineMath math="R" /> jejari taman dan <InlineMath math="r" /> jejari kolam. Kamu **tidak perlu tahu <InlineMath math="R" /> dan <InlineMath math="r" /> secara berasingan**, cukup beza kuasa duanya.
+
+Lukis garis dari pusat <InlineMath math="O" /> yang berserenjang dengan laluan, dan namakan kakinya <InlineMath math="M" />. Garis serenjang dari pusat ke suatu perentas sentiasa membahagi dua sama perentas itu. <InlineMath math="AB" /> ialah perentas taman dan <InlineMath math="CD" /> ialah perentas kolam, dan kedua-duanya terletak pada garis yang sama, jadi <InlineMath math="M" /> ialah titik tengah bagi kedua-duanya.
+
+<BlockMath math="\begin{aligned}
+CM&=MD=\tfrac{1}{2}\cdot6=3 \\
+AM&=MB \;\Rightarrow\; DB=AC=5 \\
+AM&=AC+CM=5+3=8
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga bersudut tegak dengan sisi sepunya <InlineMath math="OM" /></>}
+  description={<>Rajah daripada soalan dengan tambahan titik <InlineMath math="M" />, iaitu kaki garis serenjang dari <InlineMath math="O" /> ke <InlineMath math="AB" />. Ruas <InlineMath math="OA" /> ialah jejari taman <InlineMath math="R" /> dan <InlineMath math="OC" /> ialah jejari kolam <InlineMath math="r" />. Segi tiga <InlineMath math="OMA" /> dan <InlineMath math="OMC" /> bersudut tegak di <InlineMath math="M" />, dengan <InlineMath math="AM=8" /> dan <InlineMath math="CM=3" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    m: <InlineMath math="M" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "radius-r": <InlineMath math="R" />,
+    "radius-small": <InlineMath math="r" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "park", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(80) },
+      { id: "pond", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "path", kind: "segment", appearance: "highlight", from: { x: -8, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "perpendicular", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: -4 } },
+      { id: "radius-oa", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -8, y: -4 } },
+      { id: "radius-oc", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -3, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: -4 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -8, y: -4 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: -4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: -3, y: -4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: -4 }, placement: "below" },
+      { key: "a", objectId: "point-a", at: { x: -8, y: -4 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "radius-r", objectId: "radius-oa", at: { x: -4, y: -2 }, placement: "above-left" },
+      { key: "radius-small", objectId: "radius-oc", at: { x: -1.5, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Beza kuasa dua jejari
+
+Segi tiga <InlineMath math="OMA" /> dan <InlineMath math="OMC" /> kedua-duanya bersudut tegak di <InlineMath math="M" /> dan berkongsi sisi <InlineMath math="OM" />. Tulis teorem Pythagoras untuk kedua-duanya, kemudian tolak. **Sisi <InlineMath math="OM" /> yang tidak diketahui turut hilang**.
+
+<BlockMath math="\begin{aligned}
+R^2&=OM^2+AM^2=OM^2+64 \\
+r^2&=OM^2+CM^2=OM^2+9 \\
+R^2-r^2&=64-9=55 \\
+\text{luas gelang}&=\pi(R^2-r^2)=55\pi\text{ m}^2
+\end{aligned}" />
+
+Semak dengan cara lain: <InlineMath math="AC\cdot AD=5\cdot11=55" />, sama dengan <InlineMath math="R^2-r^2" />. Hasilnya tidak bergantung pada jarak pusat ke laluan.
+
+Jadi, luas kawasan taman di luar kolam ialah <InlineMath math="55\pi\text{ m}^2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="110\pi\text{ m}^2" /> mengira <InlineMath math="\frac{AB^2-CD^2}{2}=\frac{256-36}{2}" />. Separuh panjang yang dikuasaduakan memberi pembahagi <InlineMath math="4" />, bukan <InlineMath math="2" />.
+- <InlineMath math="80\pi\text{ m}^2" /> menggunakan <InlineMath math="AC\cdot AB=5\cdot16" />. Hasil darab yang betul ialah <InlineMath math="AC\cdot AD" />, iaitu dua jarak dari <InlineMath math="A" /> ke titik-titik persilangan dengan kolam.
+- <InlineMath math="73\pi\text{ m}^2" /> menambah <InlineMath math="AM^2+CM^2=64+9" />. Kedua-dua persamaan Pythagoras mesti ditolak supaya <InlineMath math="OM^2" /> hilang.
+- <InlineMath math="64\pi\text{ m}^2" /> menggunakan <InlineMath math="\pi\cdot AM^2" />, rumus untuk perentas yang hanya **menyentuh** kolam. Laluan ini memotong kolam, jadi <InlineMath math="CM^2" /> masih perlu ditolak.

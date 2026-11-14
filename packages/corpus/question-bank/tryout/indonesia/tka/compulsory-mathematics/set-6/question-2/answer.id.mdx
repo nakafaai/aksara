@@ -1,17 +1,39 @@
-Kurangi sisa memori dengan **memori untuk video 4K selama <InlineMath math="60" /> menit**, lalu bagi sisanya dengan ukuran video HD per menit.
+# Menyiapkan data dalam liter per menit
+
+Soal ini menanyakan jam paling lambat keran Q boleh dibuka supaya tandon tetap penuh pukul 06.48. Ubah dulu semua data ke liter: keran Q mengalirkan <InlineMath math="\tfrac{1}{75}\cdot1{.}200=16" /> liter per menit, kebocoran <InlineMath math="\tfrac{1}{150}\cdot1{.}200=8" /> liter per menit, dan karena tandonnya tabung tegak, lubang berada pada isi <InlineMath math="\tfrac{2}{5}\cdot1{.}200=480" /> liter.
+
+Makin lambat keran Q dibuka, makin sedikit air yang masuk sebelum pukul 06.48. Jadi jam paling lambat adalah jam yang membuat **tandon penuh tepat pukul 06.48**.
+
+# Air yang harus disumbang keran Q
+
+Kebocoran bergantung pada kapan air melewati lubang, jadi tentukan itu dulu. Keran P sendirian mencapai lubang setelah <InlineMath math="480:24=20" /> menit, yaitu pukul 06.20. Kalau keran Q dibuka sesudah pukul 06.20, kebocoran berjalan terus dari 06.20 sampai 06.48, yaitu <InlineMath math="28" /> menit, apa pun jam buka keran Q.
+
+Sekarang hitung isi yang dicapai keran P bersama kebocoran saja, lalu **kekurangannya harus diisi keran Q**:
 
 <BlockMath math="\begin{aligned}
-\text{sisa memori}&=(128-83{,}5)\cdot1{.}000=44{.}500\text{ MB} \\
-\text{video 4K}&=60\cdot375=22{.}500\text{ MB} \\
-\text{untuk video HD}&=44{.}500-22{.}500=22{.}000\text{ MB} \\
-\frac{22{.}000}{90}&=244{,}4\ldots
+\text{dari keran P dan kebocoran}&=480+(24-8)\cdot28=928\text{ liter} \\
+\text{kekurangan}&=1{.}200-928=272\text{ liter} \\
+\text{lama keran Q menyala}&=\frac{272}{16}=17\text{ menit}
 \end{aligned}" />
 
-Menit ke-<InlineMath math="245" /> sudah tidak muat, karena <InlineMath math="245\cdot90=22{.}050" /> MB. Jadi lama video HD dibulatkan ke bawah.
+Keran Q harus menyala <InlineMath math="17" /> menit sebelum pukul 06.48, jadi harus dibuka pukul 06.31. Jam ini memang sesudah 06.20, jadi anggapan bahwa kebocoran sudah mulai sebelum keran Q dibuka terbukti cocok.
 
-Jadi, Lala masih dapat merekam video HD paling lama <InlineMath math="244" /> menit.
+# Cek dengan menelusuri ulang
 
-- <InlineMath math="245" /> menit membulatkan ke atas, padahal menit terakhir itu melebihi memori.
-- <InlineMath math="256" /> menit memakai <InlineMath math="1\text{ GB}=1{.}024\text{ MB}" />, padahal soal menetapkan <InlineMath math="1\text{ GB}=1{.}000\text{ MB}" />.
-- <InlineMath math="490" /> menit hanya mengurangkan <InlineMath math="375" /> MB untuk video 4K, yaitu ukuran satu menit, bukan satu jam.
-- <InlineMath math="494" /> menit lupa mengurangkan memori untuk video 4K.
+<BlockMath math="\begin{aligned}
+\text{pukul 06.31}&:\ 480+16\cdot11=656\text{ liter} \\
+\text{pukul 06.48}&:\ 656+(24+16-8)\cdot17=656+544=1{.}200\text{ liter}
+\end{aligned}" />
+
+Tandon penuh tepat pukul 06.48. Kalau keran Q dibuka semenit lebih lambat, isi pukul 06.48 kurang <InlineMath math="16" /> liter, jadi tandon belum penuh. Inilah alasan 06.31 adalah **batas paling lambat**.
+
+# Kenapa pilihan lain salah
+
+Pilihan yang salah muncul dari **cara menghitung kebocoran atau dari berhenti terlalu cepat**.
+
+- Pukul 06.17 muncul kalau lama keran Q menyala, yaitu <InlineMath math="17" /> menit, langsung ditulis sebagai jam. Angka itu masih harus dikurangkan dari 06.48.
+- Pukul 06.21 muncul kalau kebocoran dihitung sejak pukul 06.00: keran P dan kebocoran memberi <InlineMath math="16\cdot48=768" /> liter, kekurangannya <InlineMath math="432" /> liter, dan <InlineMath math="432:16=27" /> menit. Padahal sebelum pukul 06.20 tidak ada air yang bocor.
+- Pukul 06.28 muncul dari pergeseran lurus: pada bacaan keran Q dibuka 06.25 dan tandon penuh 06.45, lalu kedua jam digeser <InlineMath math="3" /> menit. Padahal menunda keran Q semenit hanya kehilangan <InlineMath math="16" /> liter, yang tertutup dalam setengah menit oleh debit bersih <InlineMath math="32" /> liter per menit. Jadi keran Q boleh ditunda <InlineMath math="6" /> menit, bukan <InlineMath math="3" />.
+- Pukul 06.45 muncul kalau kebocoran dilupakan: keran P saja memberi <InlineMath math="24\cdot48=1{.}152" /> liter, sehingga keran Q hanya perlu <InlineMath math="3" /> menit.
+
+Jadi, keran Q harus dibuka paling lambat pukul 06.31.

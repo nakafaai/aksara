@@ -1,10 +1,37 @@
-Jede Münze hat <InlineMath math="2" /> Seiten, der Ergebnisraum hat also <InlineMath math="2^3=8" /> gleich wahrscheinliche Ergebnisse. **Mindestens einmal Zahl** ist das Gegenereignis zu keinmal Zahl, also dreimal Kopf. Dieses Gegenereignis ist ein einziges Ergebnis.
+Hier gelten zwei Bedingungen gleichzeitig: Der Kurier **muss über <InlineMath math="C" />** fahren und **darf nicht über <InlineMath math="X" />**. Am saubersten schneidest du jede Route bei <InlineMath math="C" /> durch, zählst beide Teile und multiplizierst.
 
-<BlockMath math="P(\text{mindestens einmal Zahl})=1-P(\text{KKK})=1-\frac18=\frac78" />
+# Wege im Gitter zählen
 
-Die Wahrscheinlichkeit für mindestens einmal Zahl ist also <InlineMath math="\frac78" />.
+Eine Route, die nur nach Osten und Norden geht, ist eine Folge von Schritten. Von <InlineMath math="(0,0)" /> nach <InlineMath math="(4,2)" /> brauchst du zum Beispiel <InlineMath math="4" /> Schritte nach Osten und <InlineMath math="2" /> nach Norden, zusammen <InlineMath math="6" /> Schritte. **Eine Route ist festgelegt, sobald du weißt, welche der sechs Schritte nach Norden gehen**, es gibt also <InlineMath math="\binom{6}{2}" /> Routen.
 
-- <InlineMath math="\frac18" /> ist die Wahrscheinlichkeit für dreimal Kopf oder dreimal Zahl.
-- <InlineMath math="\frac38" /> ist die Wahrscheinlichkeit für genau einmal Zahl.
-- <InlineMath math="\frac12" /> ist die Wahrscheinlichkeit für Zahl bei nur einer Münze.
-- <InlineMath math="\frac34" /> nimmt nur <InlineMath math="4" /> Fälle an, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" /> oder <InlineMath math="3" />-mal Zahl, und streicht einen davon.
+Jede Route von <InlineMath math="A" /> nach <InlineMath math="B" /> über <InlineMath math="C" /> besteht aus einem Teil <InlineMath math="A\to C" /> und danach einem Teil <InlineMath math="C\to B" />. Jeder erste Teil passt zu jedem zweiten Teil, also werden die Anzahlen multipliziert.
+
+# Von A nach C ohne X
+
+Von <InlineMath math="A" /> nach <InlineMath math="C" /> gibt es <InlineMath math="\binom{6}{2}" /> Routen. Zieh die Routen über <InlineMath math="X" /> ab, also die Routen <InlineMath math="A\to X" /> mal die Routen <InlineMath math="X\to C" />. Die Kreuzung <InlineMath math="X" /> liegt nur in diesem Teil, deshalb **wird nur im ersten Teil abgezogen**.
+
+<BlockMath math="\begin{aligned}
+A\to C&:\ \binom{6}{2}=15 \\
+A\to X\to C&:\ \binom{3}{1}\cdot\binom{3}{1}=3\cdot3=9 \\
+A\to C \text{ ohne } X&:\ 15-9=6
+\end{aligned}" />
+
+Prüf es anders. Eine Route, die <InlineMath math="X" /> meidet, kreuzt die Gerade <InlineMath math="x=2" /> nur bei <InlineMath math="y=0" /> oder nur bei <InlineMath math="y=2" />. Unten herum geht sie nach <InlineMath math="(3,0)" /> und dann nach <InlineMath math="C" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen. Oben herum geht sie zuerst nach <InlineMath math="(1,2)" />, das sind <InlineMath math="\binom{3}{1}=3" /> Routen, und dann geradeaus nach <InlineMath math="C" />. Zusammen <InlineMath math="3+3=6" />, passt.
+
+# Von C nach B und die Gesamtzahl
+
+Von <InlineMath math="C(4,2)" /> nach <InlineMath math="B(6,4)" /> brauchst du <InlineMath math="2" /> Schritte nach Osten und <InlineMath math="2" /> nach Norden. Die Kreuzung <InlineMath math="X" /> liegt außerhalb dieses Teils, also wird nichts abgezogen. **Jeder erste Teil lässt sich mit jedem zweiten Teil verbinden**, deshalb wird multipliziert.
+
+<BlockMath math="\begin{aligned}
+C\to B&:\ \binom{4}{2}=6 \\
+\text{Anzahl der Routen}&=6\cdot6=36
+\end{aligned}" />
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="105" /> meidet <InlineMath math="X" />, vergisst aber den Halt bei <InlineMath math="C" />: <InlineMath math="\binom{10}{4}-\binom{3}{1}\binom{7}{3}=210-105=105" />.
+- <InlineMath math="90" /> hält bei <InlineMath math="C" />, vergisst aber die gesperrte Kreuzung: <InlineMath math="15\cdot6" />.
+- <InlineMath math="72" /> zieht nur die <InlineMath math="3" /> Routen <InlineMath math="A\to X" /> ab, obwohl sich jede davon noch auf <InlineMath math="3" /> Arten nach <InlineMath math="C" /> verzweigt: <InlineMath math="(15-3)\cdot6" />.
+- <InlineMath math="54" /> ist die Anzahl der Routen, die **gerade über** <InlineMath math="X" /> führen: <InlineMath math="9\cdot6" />. Das sind die, die wegfallen, nicht die gesuchten.
+
+Der Kurier hat also <InlineMath math="36" /> verschiedene Routen.

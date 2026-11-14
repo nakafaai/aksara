@@ -1,14 +1,41 @@
-Setiap lingkaran pita adalah **keliling sebuah penampang kotak**. Lingkaran searah panjang melewati panjang <InlineMath math="30\text{ cm}" /> dan tinggi <InlineMath math="10\text{ cm}" /> masing-masing dua kali. Lingkaran searah lebar melewati lebar <InlineMath math="20\text{ cm}" /> dan tinggi <InlineMath math="10\text{ cm}" /> masing-masing dua kali.
+Soal ini menanyakan banyak kardus paling sedikit untuk <InlineMath math="1{.}000" /> bola. Jalurnya tiga langkah: ubah bola menjadi tabung, cari **arah tabung yang memuat paling banyak tabung dalam satu kardus**, lalu bagi dan bulatkan ke atas.
+
+# Banyak tabung
+
+Satu tabung berisi paling banyak <InlineMath math="3" /> bola. Tabung yang hanya berisi sebagian tetap memakai tempat penuh di kardus, jadi **hasil bagi dibulatkan ke atas**. Di sini tabung terakhir hanya berisi satu bola:
+
+<BlockMath math="\frac{1{.}000}{3}=333{,}3\ldots\quad\Rightarrow\quad334\text{ tabung}" />
+
+# Kapasitas satu kardus
+
+Ukuran tabung mengikuti bola: diameternya <InlineMath math="6{,}5\text{ cm}" /> dan panjangnya <InlineMath math="3\cdot6{,}5=19{,}5\text{ cm}" />. Pada setiap rusuk kardus, banyak tabung yang muat adalah panjang rusuk dibagi ukuran tabung pada arah itu, **dibulatkan ke bawah**, karena tabung tidak boleh menonjol. Contohnya, <InlineMath math="7\cdot6{,}5=45{,}5\le50" /> tetapi <InlineMath math="8\cdot6{,}5=52>50" />, jadi rusuk <InlineMath math="50\text{ cm}" /> memuat <InlineMath math="7" /> diameter. Ada tiga kemungkinan arah sumbu tabung:
+
+| Sumbu tabung sejajar rusuk | Searah sumbu | Dua arah lainnya | Isi satu kardus |
+| :---: | :---: | :---: | :---: |
+| tinggi <InlineMath math="30" /> (berdiri) | <InlineMath math="1" /> | <InlineMath math="7" /> dan <InlineMath math="6" /> | <InlineMath math="42" /> |
+| panjang <InlineMath math="50" /> | <InlineMath math="2" /> | <InlineMath math="6" /> dan <InlineMath math="4" /> | <InlineMath math="48" /> |
+| lebar <InlineMath math="40" /> | <InlineMath math="2" /> | <InlineMath math="7" /> dan <InlineMath math="4" /> | <InlineMath math="56" /> |
+
+Baris terakhir menang. Tabung direbahkan sejajar rusuk <InlineMath math="40\text{ cm}" />: dua tabung bersambung memakai <InlineMath math="39\text{ cm}" />, tujuh deret memakai <InlineMath math="45{,}5\text{ cm}" /> dari rusuk <InlineMath math="50\text{ cm}" />, dan empat lapis memakai <InlineMath math="26\text{ cm}" /> dari tinggi <InlineMath math="30\text{ cm}" />.
+
+<BlockMath math="2\cdot7\cdot4=56\text{ tabung per kardus}" />
+
+# Banyak kardus
+
+Bagi banyak tabung dengan kapasitas terbesar, lalu bulatkan ke atas karena kardus terakhir tetap dipakai walaupun tidak penuh:
 
 <BlockMath math="\begin{aligned}
-\text{lingkaran searah panjang}&=2(30+10)=80 \\
-\text{lingkaran searah lebar}&=2(20+10)=60 \\
-\text{panjang pita}&=80+60+40=180
+\frac{334}{56}&=5{,}96\ldots\quad\Rightarrow\quad6\text{ kardus} \\
+5\cdot56&=280<334,\qquad 6\cdot56=336\ge334
 \end{aligned}" />
 
-Jadi, panjang pita yang diperlukan <InlineMath math="180\text{ cm}" />.
+Lima kardus memang belum cukup, dan enam kardus sudah cukup. Volume kardus tidak boleh dipakai untuk membagi langsung, karena **ruang di ujung rusuk yang terlalu pendek untuk satu tabung tidak bisa diisi**.
 
-- <InlineMath math="140\text{ cm}" /> lupa menambahkan <InlineMath math="40\text{ cm}" /> untuk simpul.
-- <InlineMath math="200\text{ cm}" /> memakai keliling tutup, <InlineMath math="2(30+20)=100" />, sebagai lingkaran searah panjang, padahal pita itu melingkar tegak melewati tinggi kotak.
-- <InlineMath math="220\text{ cm}" /> memakai keliling tutup dan lingkaran searah panjang, sehingga lingkaran searah lebar tidak terhitung.
-- <InlineMath math="280\text{ cm}" /> menganggap setiap lingkaran melewati panjang, lebar, dan tinggi, yaitu <InlineMath math="2(30+20+10)" /> untuk setiap lingkaran.
+# Kenapa pilihan lain salah
+
+- <InlineMath math="7" /> muncul kalau tabung direbahkan sejajar rusuk terpanjang <InlineMath math="50\text{ cm}" />. **Rusuk terpanjang belum tentu arah terbaik**: isinya hanya <InlineMath math="48" />, dan <InlineMath math="334:48=6{,}96\ldots" /> dibulatkan menjadi <InlineMath math="7" />.
+- <InlineMath math="8" /> muncul kalau tabung hanya dicoba berdiri tegak. Isinya <InlineMath math="42" />, dan <InlineMath math="334:42=7{,}95\ldots" /> dibulatkan menjadi <InlineMath math="8" />.
+- <InlineMath math="18" /> muncul kalau <InlineMath math="1{.}000" /> bola langsung dibagi <InlineMath math="56" />, seolah-olah setiap bola butuh satu tabung.
+- <InlineMath math="24" /> muncul kalau tabung yang direbahkan hanya disusun satu lapis, yaitu <InlineMath math="2\cdot7=14" /> tabung per kardus, sehingga <InlineMath math="334:14=23{,}86\ldots" /> dibulatkan menjadi <InlineMath math="24" />.
+
+Jadi, banyak kardus paling sedikit yang diperlukan adalah <InlineMath math="6" />.

@@ -1,17 +1,37 @@
-Let the number of pencils be <InlineMath math="x" /> and erasers <InlineMath math="y" />, whole numbers with <InlineMath math="x\ge1" /> and <InlineMath math="y\ge1" />. In thousands of rupiah the condition is <InlineMath math="2x+3y\le12" />. **Count the pairs systematically for each value of <InlineMath math="y" />**.
+# The inequality as a straight line
 
-| <InlineMath math="y" /> | Condition on <InlineMath math="x" /> | Values of <InlineMath math="x" /> | Count |
-| --- | --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="2x\le9" /> | <InlineMath math="1,2,3,4" /> | <InlineMath math="4" /> |
-| <InlineMath math="2" /> | <InlineMath math="2x\le6" /> | <InlineMath math="1,2,3" /> | <InlineMath math="3" /> |
-| <InlineMath math="3" /> | <InlineMath math="2x\le3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
-| <InlineMath math="4" /> | <InlineMath math="2x\le0" /> | none | <InlineMath math="0" /> |
+The question asks for the values of <InlineMath math="a" /> that make the inequality true on the whole interval <InlineMath math="-1\le x\le4" /> and false at <InlineMath math="x=6" />. Move every term to the left side.
 
-That makes <InlineMath math="4+3+1=8" /> pairs in total.
+<BlockMath math="2x+a-ax+3>0 \quad\Longleftrightarrow\quad f(x)=(2-a)x+a+3>0" />
 
-So there are <InlineMath math="8" /> possible pairs.
+For a fixed <InlineMath math="a" />, <InlineMath math="f" /> is a linear function of <InlineMath math="x" />, so its graph is a straight line. On an interval, a straight line always takes its smallest value at one of the endpoints. That's why **<InlineMath math="f(x)>0" /> for every <InlineMath math="x" /> in the interval exactly when both endpoints give positive values**. You don't need to split cases on the sign of <InlineMath math="2-a" />, and the case <InlineMath math="a=2" /> is covered too.
 
-- <InlineMath math="7" /> misses the pair for <InlineMath math="y=3" />, <InlineMath math="1" /> pencil and <InlineMath math="3" /> erasers.
-- <InlineMath math="12" /> also counts buying no pencils.
-- <InlineMath math="14" /> also counts buying no erasers.
-- <InlineMath math="19" /> also counts buying no pencils, no erasers, or neither.
+# Three conditions
+
+The first two conditions come from the endpoints.
+
+<BlockMath math="\begin{aligned}
+f(-1)&=-(2-a)+a+3=2a+1>0 &&\Rightarrow\; a>-\tfrac{1}{2} \\
+f(4)&=4(2-a)+a+3=11-3a>0 &&\Rightarrow\; a<\tfrac{11}{3}
+\end{aligned}" />
+
+The third condition: the inequality does **not** hold at <InlineMath math="x=6" />. The opposite of "greater than" is "less than or equal to", so the sign becomes <InlineMath math="\le" />. When you divide by a negative number, the sign flips.
+
+<BlockMath math="\begin{aligned}
+f(6)=6(2-a)+a+3=15-5a&\le0 \\
+-5a&\le-15 \\
+a&\ge3
+\end{aligned}" />
+
+All three together give <InlineMath math="3\le a<\frac{11}{3}" />. The condition <InlineMath math="a>-\frac{1}{2}" /> is automatically met when <InlineMath math="a\ge3" />.
+
+Check both ends. For <InlineMath math="a=3" />, <InlineMath math="f(x)=-x+6" /> runs from <InlineMath math="7" /> down to <InlineMath math="2" /> on the interval, so it's positive, and <InlineMath math="f(6)=0" /> makes <InlineMath math="0>0" /> false. So <InlineMath math="a=3" /> is in. For <InlineMath math="a=\frac{11}{3}" />, <InlineMath math="f(4)=0" />, so the inequality fails at <InlineMath math="x=4" /> and this value is out.
+
+So all values of <InlineMath math="a" /> that work are <InlineMath math="3\le a<\frac{11}{3}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="-\frac{1}{2}<a<\frac{11}{3}" /> forgets the condition at <InlineMath math="x=6" />. For example, <InlineMath math="a=0" /> gives <InlineMath math="f(6)=15>0" />, so the inequality still holds there.
+- <InlineMath math="a\ge3" /> only checks the endpoint <InlineMath math="x=-1" />. **The endpoint <InlineMath math="x=4" /> has to be checked too**: for <InlineMath math="a=4" />, <InlineMath math="f(4)=-1" />.
+- <InlineMath math="3<a<\frac{11}{3}" /> turns "doesn't hold" into <InlineMath math="f(6)<0" />. The opposite of <InlineMath math=">" /> is <InlineMath math="\le" />, so <InlineMath math="a=3" /> gets lost.
+- <InlineMath math="-\frac{1}{2}<a\le3" /> forgets to flip the sign when dividing by <InlineMath math="-5" />, which gives <InlineMath math="a\le3" />.

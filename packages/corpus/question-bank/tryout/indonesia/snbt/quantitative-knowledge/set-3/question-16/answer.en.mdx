@@ -1,21 +1,47 @@
-Let the largest number be <InlineMath math="L" /> and the smallest <InlineMath math="K" />. The change in the mean gives **the sum of these two numbers**, and their difference is already known.
+The remainder on division by <InlineMath math="x^2-1=(x-1)(x+1)" /> is fixed by the polynomial's values at <InlineMath math="x=1" /> and <InlineMath math="x=-1" />. The plan: from the remainder of <InlineMath math="\left(P(x)\right)^2" />, find the squares of <InlineMath math="P(1)" /> and <InlineMath math="P(-1)" />, check **every possible sign**, use the condition <InlineMath math="0<a<b" /> to keep one case, and then find the remainder of <InlineMath math="(x+2)\cdot P(x)" />.
 
-# The sum of the largest and smallest
+# The values of P at one and minus one
 
-The ten numbers add up to <InlineMath math="10\times20=200" />. The remaining eight add up to <InlineMath math="8\times19=152" />. **The difference of the two totals** is the sum of the two numbers removed.
-
-<BlockMath math="L+K=200-152=48" />
-
-# Solving the system
+Write <InlineMath math="\left(P(x)\right)^2=\left(x^2-1\right)K(x)+12x+13" />. At <InlineMath math="x=\pm 1" /> the factor <InlineMath math="x^2-1" /> is zero, so **only the value of the remainder is left**.
 
 <BlockMath math="\begin{aligned}
-L+K&=48\\
-L-K&=30\\
-2L&=78\quad\Rightarrow\quad L=39,\ K=9
+\left(P(1)\right)^2&=12+13=25\\
+\left(P(-1)\right)^2&=-12+13=1
 \end{aligned}" />
 
-Check: <InlineMath math="39-9=30" />, and the remaining eight numbers add up to 152 with mean 19, which sits sensibly between 9 and 39.
+So <InlineMath math="P(1)=5" /> or <InlineMath math="P(1)=-5" />, and <InlineMath math="P(-1)=1" /> or <InlineMath math="P(-1)=-1" />.
 
-The value 48 is the sum <InlineMath math="L+K" /> before it is split. The value 30 is the difference, and the value 9 is the smallest number. The value 35 computes the total of the eight numbers with mean 20, which gives <InlineMath math="L+K=40" />.
+# Four possible remainders
 
-So the largest number is **39**.
+From <InlineMath math="P(x)=\left(x^2-1\right)H(x)+ax+b" /> you get <InlineMath math="P(1)=a+b" /> and <InlineMath math="P(-1)=-a+b" />, so <InlineMath math="a=\tfrac{P(1)-P(-1)}{2}" /> and <InlineMath math="b=\tfrac{P(1)+P(-1)}{2}" />.
+
+| <InlineMath math="P(1)" /> | <InlineMath math="P(-1)" /> | <InlineMath math="a" /> | <InlineMath math="b" /> | Satisfies <InlineMath math="0<a<b" />? |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="5" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | yes |
+| <InlineMath math="5" /> | <InlineMath math="-1" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | no, <InlineMath math="a>b" /> |
+| <InlineMath math="-5" /> | <InlineMath math="1" /> | <InlineMath math="-3" /> | <InlineMath math="-2" /> | no, negative |
+| <InlineMath math="-5" /> | <InlineMath math="-1" /> | <InlineMath math="-2" /> | <InlineMath math="-3" /> | no, negative |
+
+**Only one case survives**: <InlineMath math="P(1)=5" /> and <InlineMath math="P(-1)=1" />, with remainder <InlineMath math="2x+3" />.
+
+# The remainder of the product
+
+Let <InlineMath math="G(x)=(x+2)\cdot P(x)" /> with remainder <InlineMath math="cx+d" />. For the same reason, **the remainder of <InlineMath math="G" /> is fixed by <InlineMath math="G(1)" /> and <InlineMath math="G(-1)" />**.
+
+<BlockMath math="\begin{aligned}
+G(1)&=3\cdot P(1)=15=c+d\\
+G(-1)&=1\cdot P(-1)=1=-c+d\\
+d&=\tfrac{15+1}{2}=8,\quad c=15-8=7
+\end{aligned}" />
+
+The remainder is <InlineMath math="7x+8" />.
+
+# Checking another way
+
+Multiply <InlineMath math="(x+2)" /> by the remainder <InlineMath math="2x+3" />, then write the <InlineMath math="x^2" /> part as <InlineMath math="\left(x^2-1\right)+1" />: <InlineMath math="(x+2)(2x+3)=2x^2+7x+6=2\left(x^2-1\right)+7x+8" />. The result matches. A real example exists too: **<InlineMath math="P(x)=2x+3" /> meets every condition**, because <InlineMath math="(2x+3)^2=4\left(x^2-1\right)+12x+13" />.
+
+# Checking the other options
+
+The option <InlineMath math="8x+7" /> uses the case <InlineMath math="a=3" /> and <InlineMath math="b=2" />, which **forgets the condition <InlineMath math="a<b" />**. The option <InlineMath math="7x+7" /> turns <InlineMath math="2x^2" /> into <InlineMath math="1" />, which **forgets the coefficient**: <InlineMath math="2x^2" /> leaves <InlineMath math="2" />, not <InlineMath math="1" />. The option <InlineMath math="7x+6" /> simply drops the <InlineMath math="2x^2" /> term, but <InlineMath math="2x^2" /> leaves <InlineMath math="2" /> behind. The option <InlineMath math="15x+1" /> writes the values <InlineMath math="G(1)=15" /> and <InlineMath math="G(-1)=1" /> straight in as coefficients.
+
+So the remainder when <InlineMath math="(x+2)\cdot P(x)" /> is divided by <InlineMath math="x^2-1" /> is <InlineMath math="7x+8" />.

@@ -1,19 +1,38 @@
-The ladder, the wall, and the floor always form a right triangle with hypotenuse 13 m. **The length of the ladder does not change**, so the Pythagorean theorem holds before and after the move.
+The value of <InlineMath math="S(n)" /> only grows when <InlineMath math="n" /> reaches a new number that leaves remainder <InlineMath math="3" /> when divided by <InlineMath math="7" />. The plan: write those numbers as an arithmetic sequence, find **how many terms it takes for the sum to pass <InlineMath math="1{,}000" />**, then turn that number of terms into a value of <InlineMath math="n" />.
 
-# The starting position
+# The numbers that leave remainder three
 
-<BlockMath math="t_{\text{start}}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+The smallest positive number that leaves remainder <InlineMath math="3" /> when divided by <InlineMath math="7" /> is <InlineMath math="3" /> itself, since <InlineMath math="3=7\cdot0+3" />. So **the first term is <InlineMath math="3" />, not <InlineMath math="10" />**. Each next number is <InlineMath math="7" /> bigger, so the sequence is <InlineMath math="3" />, <InlineMath math="10" />, <InlineMath math="17" />, and so on.
 
-The top of the ladder starts **12 m above the floor**.
+<BlockMath math="\begin{aligned}
+u_k&=3+7(k-1)=7k-4\\
+S_k&=\frac{k}{2}\left(3+7k-4\right)=\frac{k(7k-1)}{2}
+\end{aligned}" />
 
-# The position after the move
+# How many terms you need
 
-The top drops 1 m, so it is now 11 m high. The distance from the foot to the wall becomes
+You need <InlineMath math="\tfrac{k(7k-1)}{2}>1{,}000" />, that is, <InlineMath math="k(7k-1)>2{,}000" />. A rough estimate is <InlineMath math="7k^2\approx2{,}000" />, so <InlineMath math="k" /> is about <InlineMath math="17" />. Test the two numbers around that estimate.
 
-<BlockMath math="d=\sqrt{13^2-11^2}=\sqrt{48}=4\sqrt3" />
+<BlockMath math="\begin{aligned}
+k=16:&\quad S_{16}=\frac{16\cdot111}{2}=888\\
+k=17:&\quad S_{17}=\frac{17\cdot118}{2}=1{,}003
+\end{aligned}" />
 
-The foot moves by **the difference between the new and old distances**, <InlineMath math="4\sqrt3-5\approx1.93" /> m.
+With <InlineMath math="16" /> terms it isn't enough yet, and <InlineMath math="17" /> terms pass <InlineMath math="1{,}000" />. So **the number of terms has to be rounded up to <InlineMath math="17" />**.
 
-The value 1 m assumes the foot moves as far as the top drops, although the relation between them is not linear. The value <InlineMath math="4\sqrt3" /> is the new distance to the wall, not yet reduced by 5. The value <InlineMath math="\sqrt{23}" /> applies Pythagoras to the sides 12 and 11, which do not form the right triangle in the problem. The value <InlineMath math="\tfrac{12}{5}" /> scales the 1 m drop by the ratio <InlineMath math="12:5" />.
+# From the number of terms to n
 
-So the foot of the ladder moves <InlineMath math="\left(4\sqrt3-5\right)" /> m.
+The sum <InlineMath math="S(n)" /> only includes term number <InlineMath math="17" /> once <InlineMath math="n" /> is at least that term.
+
+<BlockMath math="u_{17}=7\cdot17-4=115" />
+
+For <InlineMath math="n=114" />, only <InlineMath math="16" /> terms count, so <InlineMath math="S(114)=888" />. For <InlineMath math="n=115" />, the sum is <InlineMath math="S(115)=1{,}003>1{,}000" />. **The question asks for <InlineMath math="n" />, not the number of terms**, so the answer is <InlineMath math="115" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="17" /> is **the number of terms**, not the value of <InlineMath math="n" />.
+- <InlineMath math="87" /> comes from dropping the <InlineMath math="\tfrac12" /> in the sum formula: <InlineMath math="k(7k-1)>1{,}000" /> gives <InlineMath math="k=13" /> and <InlineMath math="u_{13}=87" />.
+- <InlineMath math="108" /> is term number <InlineMath math="16" />, from rounding <InlineMath math="k" /> down, but <InlineMath math="S(108)=888" />.
+- <InlineMath math="122" /> comes from starting the sequence at <InlineMath math="10" />, which makes term number <InlineMath math="17" /> equal to <InlineMath math="10+7\cdot16=122" />.
+
+So the smallest positive integer <InlineMath math="n" /> with <InlineMath math="S(n)>1{,}000" /> is <InlineMath math="115" />.

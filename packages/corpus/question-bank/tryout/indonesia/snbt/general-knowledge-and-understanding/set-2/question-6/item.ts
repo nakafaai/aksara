@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
-    contentDomain: "vocabulary",
-    topic: "word-meaning",
+    cognitiveLevel: "reasoning",
+    contentDomain: "paragraph-meaning",
+    topic: "main-idea",
   },
-  stimulus: "bakau",
+  stimulus: "antibiotik",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "Mengurangi kekuatan",
+          label:
+            "Resistansi tumbuh lewat seleksi yang terjadi pada setiap pemakaian antibiotik, termasuk yang sesuai resep, lalu sifat tahannya dapat diwariskan dan berpindah.",
         },
         {
           correct: false,
-          label: "Memantulkan kembali",
+          label:
+            "Resistansi antibiotik terutama muncul karena di banyak tempat antibiotik masih dibeli dan dipakai tanpa resep dokter.",
         },
         {
           correct: false,
-          label: "Menambah kecepatan",
+          label:
+            "Antibiotik mengubah bakteri yang semula dapat dihambat menjadi kebal, lalu sifat kebal itu diwariskan dan berpindah ke bakteri lain.",
         },
         {
           correct: false,
-          label: "Menyimpan di dalam tanah",
+          label:
+            "Sifat kebal terhadap antibiotik melekat pada bakteri, bukan pada tubuh orang yang meminum obat itu.",
         },
         {
           correct: false,
-          label: "Mengalihkan ke arah lain",
+          label:
+            "Bakteri usus menjadi sumber utama resistansi karena obat yang diminum juga mengenai bakteri di sana.",
         },
       ],
     },

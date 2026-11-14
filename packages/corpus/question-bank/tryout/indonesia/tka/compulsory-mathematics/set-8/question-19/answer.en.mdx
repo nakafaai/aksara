@@ -1,15 +1,47 @@
-A semicircle is **half the circumference of a circle**, <InlineMath math="\tfrac12\pi d" />. Compare both paths with that formula.
+The question asks for the largest planting area. Three conditions work together: the perimeter is fixed at <InlineMath math="50\text{ m}" />, the sides are whole numbers, and the garden's area is **less than** <InlineMath math="150\text{ m}^2" />, so exactly <InlineMath math="150" /> isn't allowed.
+
+# Length and width
+
+Call the garden's length <InlineMath math="p" /> and its width <InlineMath math="l" />, with <InlineMath math="p\ge l" />. **The whole fence goes around the perimeter**, so
+
+<BlockMath math="2(p+l)=50\quad\Rightarrow\quad p+l=25" />
+
+So every choice of length fixes the width, and all you need is a pair of whole numbers that add up to <InlineMath math="25" />.
+
+# The planting area
+
+The <InlineMath math="1\text{ m}" /> path runs along all four sides, so the planting part loses <InlineMath math="1" /> metre at the left end and <InlineMath math="1" /> metre at the right end, and its width loses two metres the same way. The planting part is a <InlineMath math="(p-2)\times(l-2)" /> rectangle:
 
 <BlockMath math="\begin{aligned}
-\text{path I}&=\tfrac12\cdot\tfrac{22}{7}\cdot28=44 \\
-\text{path II}&=2\cdot\tfrac12\cdot\tfrac{22}{7}\cdot14=44
+A_\text{plant}&=(p-2)(l-2)=pl-2(p+l)+4 \\
+&=pl-2\cdot25+4=pl-46
 \end{aligned}" />
 
-This isn't a coincidence. Each semicircle in path II has only half the diameter, but there are two of them, so together they still make <InlineMath math="\tfrac12\pi\cdot28" />. However many equal semicircles make up <InlineMath math="AB" />, the path has the same length.
+So for this perimeter, **the planting area is always the garden's area minus** <InlineMath math="46" />. The largest planting area comes from the largest garden area that's still allowed.
 
-So both paths are the same length, <InlineMath math="44\text{ m}" />.
+# The largest allowed garden
 
-- Path I isn't longer, because both paths are <InlineMath math="44\text{ m}" />.
-- The wiggly path II isn't longer either, because each of its semicircles is only <InlineMath math="22\text{ m}" />.
-- <InlineMath math="88\text{ m}" /> is the circumference of a full circle, not a semicircle.
-- Path II isn't half of path I, because the halved diameter is balanced by twice as many semicircles.
+With <InlineMath math="p+l" /> fixed, **the garden's area grows as the length and width get closer**. List the whole-number pairs that add up to <InlineMath math="25" />, starting with the closest:
+
+| <InlineMath math="p" /> | <InlineMath math="l" /> | Garden area | Less than <InlineMath math="150" />? |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="13" /> | <InlineMath math="12" /> | <InlineMath math="156" /> | no |
+| <InlineMath math="14" /> | <InlineMath math="11" /> | <InlineMath math="154" /> | no |
+| <InlineMath math="15" /> | <InlineMath math="10" /> | <InlineMath math="150" /> | no, it equals the limit |
+| <InlineMath math="16" /> | <InlineMath math="9" /> | <InlineMath math="144" /> | yes |
+| <InlineMath math="17" /> | <InlineMath math="8" /> | <InlineMath math="136" /> | yes |
+
+The pairs after that have even smaller areas, so the largest allowed garden area is <InlineMath math="144\text{ m}^2" />, from a <InlineMath math="16\text{ m}\times9\text{ m}" /> garden.
+
+<BlockMath math="A_\text{plant}=(16-2)(9-2)=14\cdot7=98\text{ m}^2" />
+
+Check with the formula from before: <InlineMath math="144-46=98" />. It matches.
+
+# Why the other options are wrong
+
+- <InlineMath math="104\text{ m}^2" /> comes from the <InlineMath math="15\times10" /> garden. Its area is exactly <InlineMath math="150" />, but **the rule says less than** <InlineMath math="150" />.
+- <InlineMath math="110\text{ m}^2" /> comes from the <InlineMath math="13\times12" /> garden, whose area is <InlineMath math="156" />. That ignores the village rule.
+- <InlineMath math="120\text{ m}^2" /> comes from taking the path off each measurement only once, giving <InlineMath math="15\times8" />. The path is at both ends, so each measurement loses <InlineMath math="2" /> metres.
+- <InlineMath math="144\text{ m}^2" /> is the area of the whole garden, path included.
+
+So the largest area that can be planted with vegetables is <InlineMath math="98\text{ m}^2" />.

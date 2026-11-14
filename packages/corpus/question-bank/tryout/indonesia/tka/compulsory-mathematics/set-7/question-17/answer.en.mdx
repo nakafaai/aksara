@@ -1,17 +1,68 @@
-One complete cone needs **the ice cream in the cone plus the hemisphere on top**. Both have radius <InlineMath math="3\text{ cm}" />, and <InlineMath math="1" /> litre is <InlineMath math="1{,}000\text{ cm}^3" />.
+This question has two parts that get multiplied at the end: **how many pipes are in one bundle** and how heavy one pipe is. The first part is counting, the second is volume and density.
+
+# Number of pipes in a bundle
+
+Picture the end of the bundle as horizontal rows of circles. The top side holds <InlineMath math="3" /> pipes. Each row below gets one more pipe until the middle row, then it shrinks again, so the rows hold <InlineMath math="3,4,5,4,3" /> pipes.
+
+<BlockMath math="3+4+5+4+3=19\text{ pipes}" />
+
+You can also count ring by ring. The centre pipe is <InlineMath math="1" />, the first ring is <InlineMath math="6" />, and the outer ring is <InlineMath math="6\cdot3-6=12" />. **Each corner pipe belongs to two sides at once**, so the six corner pipes are taken off once. You get the same total, <InlineMath math="1+6+12=19" />.
+
+<MathVisual
+  title={<>End view of one bundle</>}
+  description={<>Nineteen equal circles, each touching its neighbours, form a regular hexagon. The rows hold <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="4" />, and <InlineMath math="3" /> circles. There is one circle in the centre, <InlineMath math="6" /> in the first ring, and <InlineMath math="12" /> in the outer ring, with <InlineMath math="3" /> circles on each outer side.</>}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -5, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pipe-center", kind: "circle", appearance: "highlight", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "pipe-inner-1", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-2", kind: "circle", appearance: "primary", center: { x: -2, y: 0 }, radius: 1 },
+      { id: "pipe-inner-3", kind: "circle", appearance: "primary", center: { x: 1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-4", kind: "circle", appearance: "primary", center: { x: -1, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-5", kind: "circle", appearance: "primary", center: { x: 1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-inner-6", kind: "circle", appearance: "primary", center: { x: -1, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-1", kind: "circle", appearance: "secondary", center: { x: 4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-2", kind: "circle", appearance: "secondary", center: { x: -4, y: 0 }, radius: 1 },
+      { id: "pipe-outer-3", kind: "circle", appearance: "secondary", center: { x: 3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-4", kind: "circle", appearance: "secondary", center: { x: -3, y: Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-5", kind: "circle", appearance: "secondary", center: { x: 3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-6", kind: "circle", appearance: "secondary", center: { x: -3, y: -Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-7", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-8", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-9", kind: "circle", appearance: "secondary", center: { x: -2, y: 2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-10", kind: "circle", appearance: "secondary", center: { x: 2, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-11", kind: "circle", appearance: "secondary", center: { x: 0, y: -2 * Math.sqrt(3) }, radius: 1 },
+      { id: "pipe-outer-12", kind: "circle", appearance: "secondary", center: { x: -2, y: -2 * Math.sqrt(3) }, radius: 1 },
+    ],
+  }}
+/>
+
+# Mass of one pipe
+
+The outer radius is <InlineMath math="R=5\text{ cm}" />. The <InlineMath math="1\text{ cm}" /> wall is on both sides of the hollow, so the inner radius is <InlineMath math="r=4\text{ cm}" />. The length is <InlineMath math="5\text{ m}=500\text{ cm}" />. The iron volume is the ring area times the length, and then **mass equals density times volume**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{cone}}&=\tfrac13\cdot3.14\cdot3^2\cdot12=113.04 \\
-V_{\text{hemisphere}}&=\tfrac23\cdot3.14\cdot3^3=56.52 \\
-V_{\text{one serving}}&=113.04+56.52=169.56\text{ cm}^3 \\
-\frac{1{,}000}{169.56}&\approx5.9
+V&=\frac{22}{7}\,(5^2-4^2)\cdot500=\frac{22}{7}\cdot9\cdot500=\frac{99{,}000}{7}\text{ cm}^3 \\
+m&=7\cdot\frac{99{,}000}{7}=99{,}000\text{ g}=99\text{ kg}
 \end{aligned}" />
 
-A sixth complete cone can't be made, because <InlineMath math="6\cdot169.56=1{,}017.36\text{ cm}^3" />, more than <InlineMath math="1{,}000\text{ cm}^3" />. So the result is **rounded down**.
+# Mass of one bundle
 
-So at most <InlineMath math="5" /> complete cones can be made.
+One bundle holds <InlineMath math="19" /> identical pipes, and the strapping is ignored. Since every pipe is the same size, **the bundle's mass is the number of pipes times the mass of one pipe**.
 
-- <InlineMath math="4" /> puts a full ball on top of the cone instead of a hemisphere.
-- <InlineMath math="6" /> rounds <InlineMath math="5.9" /> up, but there isn't enough ice cream for a sixth cone.
-- <InlineMath math="8" /> counts only the ice cream inside the cone.
-- <InlineMath math="17" /> counts only the hemisphere.
+<BlockMath math="19\cdot99\text{ kg}=1{,}881\text{ kg}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="2{,}475\text{ kg}" /> is <InlineMath math="25\cdot99" />. The outer ring was counted as <InlineMath math="6\cdot3=18" /> without removing the corner pipes that were counted twice.
+- <InlineMath math="3{,}663\text{ kg}" /> is <InlineMath math="37\cdot99" />. The phrase about <InlineMath math="3" /> pipes on each side was read as three rings around the centre pipe, <InlineMath math="1+6+12+18=37" />.
+- <InlineMath math="5{,}225\text{ kg}" /> is <InlineMath math="19\cdot275" />. Here the pipes were treated as solid, but **the hollow inside a pipe holds no iron**.
+- <InlineMath math="7{,}524\text{ kg}" /> is <InlineMath math="19\cdot396" />. The diameters <InlineMath math="10" /> and <InlineMath math="8" /> were used as radii, which makes the ring area four times too big.
+
+So one bundle of pipes has a mass of <InlineMath math="1{,}881\text{ kg}" />.

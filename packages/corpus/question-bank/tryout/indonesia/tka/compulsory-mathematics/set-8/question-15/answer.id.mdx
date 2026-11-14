@@ -1,14 +1,42 @@
-Dilatasi dengan pusat <InlineMath math="P" /> dan faktor <InlineMath math="k" /> memetakan titik <InlineMath math="X" /> ke <InlineMath math="X'" /> sehingga **vektor dari <InlineMath math="P" /> ke bayangan sama dengan <InlineMath math="k" /> kali vektor dari <InlineMath math="P" /> ke titik semula**, yaitu <InlineMath math="\overrightarrow{PX'}=k\cdot\overrightarrow{PX}" />. Semua pernyataan diperiksa dengan aturan ini.
+Soal ini meminta kamu menilai lima pernyataan tentang titik tetap dan garis yang dipetakan ke dirinya sendiri. Cara paling aman adalah **menulis rumus bayangan** <InlineMath math="T" /> **lebih dulu**, lalu menguji setiap pernyataan dengan rumus itu.
+
+# Rumus bayangan transformasi
+
+Rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="O" /> mengubah tanda kedua koordinat. Pencerminan terhadap garis <InlineMath math="x=3" /> menjaga <InlineMath math="y" /> dan mengubah <InlineMath math="x" /> menjadi <InlineMath math="6-x" />, karena <InlineMath math="3" /> adalah titik tengah antara <InlineMath math="x" /> dan <InlineMath math="6-x" />. Urutannya rotasi dulu, baru pencerminan:
 
 <BlockMath math="\begin{aligned}
-X'&=P+k(X-P) \\
-(3,2)\ \text{dengan}\ k=3&:\ (1,2)+3\big((3,2)-(1,2)\big)=(1,2)+(6,0)=(7,2)
+(x,y)&\xrightarrow{\text{rotasi }180^\circ}(-x,-y) \\
+&\xrightarrow{\text{cermin }x=3}\bigl(6-(-x),\,-y\bigr)=(x+6,\,-y)
 \end{aligned}" />
 
-- Bayangan <InlineMath math="(3,2)" /> adalah <InlineMath math="(7,2)" />. Nilai <InlineMath math="(9,6)" /> didapat jika pusatnya dianggap <InlineMath math="O(0,0)" />. Pernyataan ini salah.
-- Untuk <InlineMath math="X=P" />, <InlineMath math="\overrightarrow{PX}" /> adalah vektor nol, jadi <InlineMath math="P'=P" /> untuk setiap <InlineMath math="k" />. Pernyataan ini benar.
-- Untuk <InlineMath math="k=-1" />, setiap titik dipindah ke sisi seberang <InlineMath math="P" /> dengan jarak yang sama, persis seperti rotasi <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="P" />. Pernyataan ini benar.
-- Jarak ke <InlineMath math="P" /> dikali <InlineMath math="|k|=2" />, bukan <InlineMath math="4" />. Yang dikali <InlineMath math="4" /> adalah luas. Pernyataan ini salah.
-- Dilatasi mempertahankan arah garis, jadi bayangan sebuah garis sejajar dengan garis semula. Garis yang tidak melalui <InlineMath math="P" /> berjarak <InlineMath math="d" /> dari <InlineMath math="P" />, dan bayangannya berjarak <InlineMath math="2d" /> dari <InlineMath math="P" />, jadi garisnya berbeda. Pernyataan ini benar.
+Jadi <InlineMath math="T(x,y)=(x+6,\,-y)" />. Dalam kata-kata, **setiap titik dibalik terhadap sumbu mendatar, lalu digeser ke kanan** sejauh <InlineMath math="6" /> satuan.
 
-Jadi, pernyataan yang benar adalah pernyataan tentang titik <InlineMath math="P" /> yang tetap, tentang <InlineMath math="k=-1" /> sebagai rotasi <InlineMath math="180^\circ" />, dan tentang bayangan garis yang sejajar untuk <InlineMath math="k=2" />.
+# Menilai setiap pernyataan
+
+**Pernyataan 1**. Titik tetap harus memenuhi <InlineMath math="(x+6,-y)=(x,y)" />. Persamaan <InlineMath math="x+6=x" /> berarti <InlineMath math="6=0" />, yang mustahil. Tidak ada satu titik pun yang tetap. **Benar**.
+
+**Pernyataan 2**. Ambil titik sembarang pada garis itu, <InlineMath math="(3,t)" />:
+
+<BlockMath math="T(3,t)=(3+6,\,-t)=(9,\,-t)" />
+
+Semua bayangannya berada pada garis <InlineMath math="x=9" />, bukan <InlineMath math="x=3" />. Garis cermin memang tidak bergerak oleh pencerminan saja, tetapi di sini rotasi lebih dulu memindahkan <InlineMath math="(3,t)" /> ke <InlineMath math="(-3,-t)" />, jauh dari cermin. **Salah**.
+
+**Pernyataan 3**. Titik pada sumbu <InlineMath math="x" /> berbentuk <InlineMath math="(t,0)" />, dan bayangannya <InlineMath math="(t+6,0)" /> tetap pada sumbu <InlineMath math="x" />. Sebaliknya, setiap titik <InlineMath math="(s,0)" /> adalah bayangan dari <InlineMath math="(s-6,0)" />, jadi bayangannya mencakup seluruh sumbu <InlineMath math="x" />. Titik-titiknya bergeser, tetapi garisnya tetap. **Benar**.
+
+**Pernyataan 4**. Titik pada garis <InlineMath math="y=x" /> berbentuk <InlineMath math="(t,t)" />:
+
+<BlockMath math="\begin{aligned}
+T(t,t)&=(t+6,\,-t) \\
+X=t+6,\quad Y&=-t \\
+Y&=-(X-6)=-X+6
+\end{aligned}" />
+
+Cek dengan dua titik: <InlineMath math="(0,0)" /> menjadi <InlineMath math="(6,0)" /> dan <InlineMath math="(1,1)" /> menjadi <InlineMath math="(7,-1)" />. Keduanya memenuhi <InlineMath math="y=-x+6" />. **Benar**.
+
+**Pernyataan 5**. Terapkan rumus <InlineMath math="T" /> dua kali:
+
+<BlockMath math="T\bigl(T(x,y)\bigr)=T(x+6,\,-y)=\bigl((x+6)+6,\,-(-y)\bigr)=(x+12,\,y)" />
+
+Pembalikan terhadap sumbu <InlineMath math="x" /> terjadi dua kali sehingga saling menghapus, sedangkan geserannya bertambah. Setiap titik bergeser <InlineMath math="12" /> satuan ke kanan. **Benar**.
+
+Jadi, pernyataan yang benar adalah pernyataan 1, 3, 4, dan 5.

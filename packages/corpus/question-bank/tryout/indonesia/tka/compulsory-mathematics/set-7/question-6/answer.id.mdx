@@ -1,16 +1,37 @@
-<InlineMath math="(f\circ g)(x)" /> berarti <InlineMath math="f" /> bekerja **pada hasil <InlineMath math="g(x)" />**. Jadi masukkan <InlineMath math="g(x)" /> ke rumus <InlineMath math="f" />, lalu selesaikan untuk <InlineMath math="g(x)" />.
+# Langkah pertama di titik batas
+
+Soal ini meminta kamu menerapkan <InlineMath math="f" /> sebanyak <InlineMath math="2026" /> kali, mulai dari <InlineMath math="2" />. Tentu tidak dihitung satu per satu. Hitung beberapa langkah pertama sampai **nilainya mulai berulang**, lalu pakai pola itu.
+
+Hati-hati di titik batas. Nilai <InlineMath math="x=2" /> masuk ke cabang <InlineMath math="x\ge2" />, bukan ke cabang tengah, karena cabang tengah hanya sampai <InlineMath math="x<2" />. Nilai <InlineMath math="x=0" /> masuk ke cabang tengah <InlineMath math="0\le x<2" />, bukan ke cabang <InlineMath math="x<0" />.
+
+| <InlineMath math="n" /> | Masukan | Cabang yang dipakai | <InlineMath math="f^{(n)}(2)" /> |
+| :---: | :---: | :---: | :---: |
+| <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="x\ge2" /> | <InlineMath math="2-4=-2" /> |
+| <InlineMath math="2" /> | <InlineMath math="-2" /> | <InlineMath math="x<0" /> | <InlineMath math="-2+1=-1" /> |
+| <InlineMath math="3" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="-1+1=0" /> |
+| <InlineMath math="4" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3-0=3" /> |
+| <InlineMath math="5" /> | <InlineMath math="3" /> | <InlineMath math="x\ge2" /> | <InlineMath math="3-4=-1" /> |
+| <InlineMath math="6" /> | <InlineMath math="-1" /> | <InlineMath math="x<0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="0" /> | <InlineMath math="0\le x<2" /> | <InlineMath math="3" /> |
+
+# Pola yang berulang
+
+Mulai dari <InlineMath math="n=2" />, nilainya berputar <InlineMath math="-1,\ 0,\ 3,\ -1,\ 0,\ 3,\ \dots" /> dengan periode <InlineMath math="3" />. **Nilai <InlineMath math="-2" /> hanya muncul sekali di awal** dan tidak termasuk putaran.
+
+Nilai <InlineMath math="3" /> muncul di <InlineMath math="n=4,7,10,\dots" />, yaitu saat <InlineMath math="n" /> bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="3" /> dan <InlineMath math="n\ge4" />. Sekarang periksa <InlineMath math="2026" />:
 
 <BlockMath math="\begin{aligned}
-f(g(x))&=2g(x)-3=4x^2+6x-1 \\
-2g(x)&=4x^2+6x+2 \\
-g(x)&=2x^2+3x+1
+2026&=3\cdot675+1 \\
+2026&=4+3\cdot674
 \end{aligned}" />
 
-Cek: <InlineMath math="f(2x^2+3x+1)=4x^2+6x+2-3=4x^2+6x-1" />.
+Jadi, <InlineMath math="n=2026" /> berada di posisi yang sama dengan <InlineMath math="n=4" />, sehingga <InlineMath math="f^{(2026)}(2)=3" />.
 
-Jadi, <InlineMath math="g(x)=2x^2+3x+1" />.
+# Kenapa pilihan lain salah
 
-- <InlineMath math="8x^2+12x-5" /> adalah <InlineMath math="f(4x^2+6x-1)" />, yaitu memasukkan hasil komposisi ke <InlineMath math="f" /> sekali lagi.
-- <InlineMath math="4x^2+6x+2" /> lupa membagi kedua ruas dengan <InlineMath math="2" />.
-- <InlineMath math="2x^2+3x-2" /> mengurangkan <InlineMath math="3" />, padahal <InlineMath math="3" /> harus dipindahkan ke ruas kanan sebagai <InlineMath math="+3" />.
-- <InlineMath math="2x^2+3x-1" /> hanya membagi suku yang memuat <InlineMath math="x" /> dengan <InlineMath math="2" /> dan lupa menambahkan <InlineMath math="3" />.
+- <InlineMath math="-2" /> muncul kalau <InlineMath math="x=0" /> dimasukkan ke cabang <InlineMath math="x+1" />. Urutannya menjadi <InlineMath math="-2,-1,0,1,2" /> lalu berulang dengan periode <InlineMath math="5" />, dan <InlineMath math="2026" /> bersisa <InlineMath math="1" /> jika dibagi <InlineMath math="5" />.
+- <InlineMath math="-1" /> muncul kalau putaran <InlineMath math="-1,0,3" /> dianggap dimulai sejak <InlineMath math="n=1" />. **Suku awal <InlineMath math="-2" /> menggeser urutan satu langkah**.
+- <InlineMath math="0" /> muncul kalau nilai awal <InlineMath math="2" /> ikut dihitung sebagai langkah pertama. Itu sama dengan menghitung <InlineMath math="f^{(2025)}(2)" />.
+- <InlineMath math="2" /> muncul kalau <InlineMath math="x=2" /> dimasukkan ke cabang tengah. Hasilnya bergantian <InlineMath math="1,2,1,2,\dots" /> dan untuk <InlineMath math="n" /> genap nilainya <InlineMath math="2" />.
+
+Jadi, nilai <InlineMath math="f^{(2026)}(2)" /> adalah <InlineMath math="3" />.

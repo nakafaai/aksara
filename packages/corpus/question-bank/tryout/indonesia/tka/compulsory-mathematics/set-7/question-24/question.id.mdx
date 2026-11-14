@@ -1,3 +1,47 @@
-Tiga keping uang logam yang seimbang dilempar bersamaan satu kali.
+Jalan-jalan di sebuah kompleks perumahan membentuk petak-petak persegi seperti pada gambar. Setiap persimpangan dinyatakan dengan titik berkoordinat bilangan bulat. Seorang kurir berangkat dari <InlineMath math="A(0,0)" /> menuju <InlineMath math="B(6,4)" /> dan **harus singgah** di <InlineMath math="C(4,2)" /> untuk mengambil paket. Persimpangan <InlineMath math="X(2,1)" /> sedang ditutup sehingga **tidak boleh dilewati**. Kurir hanya bergerak di sepanjang jalan ke timur (koordinat <InlineMath math="x" /> bertambah <InlineMath math="1" />) atau ke utara (koordinat <InlineMath math="y" /> bertambah <InlineMath math="1" />).
 
-Peluang muncul paling sedikit satu sisi angka adalah ....
+<MathVisual
+  title={<>Peta jalan kompleks perumahan</>}
+  description={<>Jaringan jalan berbentuk petak persegi dengan garis tegak <InlineMath math="x=0" /> sampai <InlineMath math="x=6" /> dan garis mendatar <InlineMath math="y=0" /> sampai <InlineMath math="y=4" />. Titik <InlineMath math="A(0,0)" /> di pojok kiri bawah, <InlineMath math="B(6,4)" /> di pojok kanan atas, <InlineMath math="C(4,2)" /> tempat singgah, dan <InlineMath math="X(2,1)" /> persimpangan yang ditutup.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    x: <InlineMath math="X" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "street-x0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "street-x1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "street-x2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "street-x3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "street-x4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "street-x5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 4 } },
+      { id: "street-x6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "street-y0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "street-y1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "street-y2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 6, y: 2 } },
+      { id: "street-y3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "street-y4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "point-a", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "primary", at: { x: 6, y: 4 } },
+      { id: "point-c", kind: "point", appearance: "highlight", at: { x: 4, y: 2 } },
+      { id: "point-x", kind: "point", appearance: "warning", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "c", objectId: "point-c", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "x", objectId: "point-x", at: { x: 2, y: 1 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Banyak rute berbeda yang dapat ditempuh kurir dari <InlineMath math="A" /> ke <InlineMath math="B" /> adalah ....

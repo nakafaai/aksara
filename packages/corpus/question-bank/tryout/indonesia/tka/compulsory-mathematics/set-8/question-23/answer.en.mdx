@@ -1,11 +1,37 @@
-The quartiles split <InlineMath math="32" /> different scores into **four groups of <InlineMath math="8" /> scores each**. So <InlineMath math="8" /> students score below the lower quartile, and <InlineMath math="8" /> score above the upper quartile.
+All three statements are about the real data, but the table only tells you how many students are in each class. A statement is **certainly true only if it holds for every way the students could be spread inside their classes**. To show a statement is false, one set of data that fits the table but breaks the statement is enough.
+
+# Frequency of each class
+
+Each class frequency is the difference between neighbouring cumulative rows:
+
+| Class | <InlineMath math="0\text{ to }10" /> | <InlineMath math="10\text{ to }20" /> | <InlineMath math="20\text{ to }30" /> | <InlineMath math="30\text{ to }40" /> | <InlineMath math="40\text{ to }50" /> | <InlineMath math="50\text{ to }60" /> | <InlineMath math="60\text{ to }70" /> |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| Frequency | <InlineMath math="2" /> | <InlineMath math="6" /> | <InlineMath math="24" /> | <InlineMath math="20" /> | <InlineMath math="16" /> | <InlineMath math="6" /> | <InlineMath math="6" /> |
+
+Each class includes its lower boundary but not its upper one. So a student in the class <InlineMath math="30\le t<40" /> can read exactly <InlineMath math="30" /> minutes, but **always less than** <InlineMath math="40" /> minutes.
+
+# Judging each statement
+
+**Statement 1**. The real mean is largest when every student reads as close as possible to the upper boundary of their class. Work out the total if every student sat exactly on the upper boundary:
 
 <BlockMath math="\begin{aligned}
-\text{above }Q_1\text{ in XI-2}&=32-8=24=75\,\%\cdot32 \\
-Q_3-Q_1\ \text{XI-1}&=82-62=20,\qquad Q_3-Q_1\ \text{XI-2}=78-64=14
+&2\cdot10+6\cdot20+24\cdot30+20\cdot40+16\cdot50+6\cdot60+6\cdot70 \\
+&=20+120+720+800+800+360+420=3{,}240 \\
+&\frac{3{,}240}{80}=40.5
 \end{aligned}" />
 
-- Exactly <InlineMath math="24" /> students in XI-2, that is <InlineMath math="75\,\%" />, score above the lower quartile of <InlineMath math="64" />. So at least <InlineMath math="75\,\%" /> holds. This statement is true.
-- The top score in XI-1 is <InlineMath math="96" />, higher than the <InlineMath math="90" /> in XI-2. This statement is false.
-- A score of <InlineMath math="80" /> is above XI-2's upper quartile of <InlineMath math="78" />, and only <InlineMath math="8" /> students score above <InlineMath math="78" />. That student is in the top <InlineMath math="8" />. This statement is true.
-- XI-2's interquartile range is <InlineMath math="14" />, smaller than XI-1's <InlineMath math="20" />, so the middle half of XI-2 is actually more tightly packed. This statement is false.
+Every student reads less than the upper boundary of their class, so the real total is less than <InlineMath math="3{,}240" /> and the mean is less than <InlineMath math="40.5" />. That's always less than <InlineMath math="41" />, however the students are spread. **True**.
+
+**Statement 2**. Up to the class <InlineMath math="20\le t<30" /> there are <InlineMath math="32" /> students, and up to the class <InlineMath math="30\le t<40" /> there are <InlineMath math="52" />. So the <InlineMath math="40" />th and <InlineMath math="41" />st values are surely in the class <InlineMath math="30\le t<40" />, and the real median is only certain to lie between <InlineMath math="30" /> and <InlineMath math="40" />. A breaking example: all twenty students in that class read exactly <InlineMath math="30" /> minutes. This fits the table, and
+
+<BlockMath math="\text{median}=\frac{30+30}{2}=30\le32" />
+
+The estimated median is <InlineMath math="34" />, but an estimate isn't a certainty. **False**.
+
+**Statement 3**. The only students certain to read at least <InlineMath math="45" /> minutes are those in the classes <InlineMath math="50\le t<60" /> and <InlineMath math="60\le t<70" />, which is <InlineMath math="6+6=12" /> students. The sixteen students in the class <InlineMath math="40\le t<50" /> could all read exactly <InlineMath math="40" /> minutes, and the data would still fit the table. In that example, the number of students who read <InlineMath math="45" /> minutes or more is only
+
+<BlockMath math="6+6=12<20" />
+
+The number <InlineMath math="20" /> comes from the estimate <InlineMath math="\tfrac12\cdot16+12=20" />, which assumes the class <InlineMath math="40\le t<50" /> splits evenly in half. **False**.
+
+So the verdicts are True, False, False.

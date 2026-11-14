@@ -1,17 +1,45 @@
-Rollt man den Mantel ab, wird die Mantellinie zum Radius des Kreisausschnitts und der Umfang der Grundfläche zum Bogen des Ausschnitts. Deshalb **ist die Bogenlänge des Ausschnitts gleich dem Umfang der Grundfläche**.
+Du suchst das kleinste <InlineMath math="n" />, bei dem die Summe <InlineMath math="S_n" /> über <InlineMath math="0{,}245" /> steigt. Die Glieder einzeln zu addieren dauert zu lange. Der Plan: **Zerleg jedes Glied in eine Differenz zweier Brüche**, damit sich die Summe selbst weghebt, stell eine Formel für <InlineMath math="S_n" /> auf und lös dann die Ungleichung.
 
-# Bogenlängen gleichsetzen
+# Jedes Glied zerlegen
 
-Ein Ausschnitt mit dem Radius 9 cm und dem Mittelpunktswinkel <InlineMath math="\theta" /> hat die Bogenlänge <InlineMath math="\frac{\theta}{360^\circ}\cdot2\pi\cdot9" />. Der Umfang der Grundfläche ist <InlineMath math="2\pi\cdot3" />, und **beide Längen werden gleichgesetzt**.
+Zieh zwei Brüche voneinander ab, deren Nenner benachbart sind.
+
+<BlockMath math="\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}=\frac{(k+2)-k}{k(k+1)(k+2)}=\frac{2}{k(k+1)(k+2)}" />
+
+Das ist das Doppelte des Glieds, das wir brauchen. Also **ist jedes Glied die Hälfte dieser Differenz**.
+
+<BlockMath math="\frac{1}{k(k+1)(k+2)}=\frac12\left(\frac{1}{k(k+1)}-\frac{1}{(k+1)(k+2)}\right)" />
+
+# Eine Formel für die Summe
+
+Wenn du die Glieder addierst, hebt sich der zweite Teil jedes Glieds **mit dem ersten Teil des nächsten** weg. Übrig bleiben nur der erste Teil des ersten Glieds und der zweite Teil des letzten Glieds.
 
 <BlockMath math="\begin{aligned}
-\frac{\theta}{360^\circ}\cdot2\pi\cdot9&=2\pi\cdot3\\
-\frac{\theta}{360^\circ}&=\frac39=\frac13\\
-\theta&=120^\circ
+S_n&=\frac12\left(\frac{1}{1\cdot2}-\frac{1}{(n+1)(n+2)}\right)\\
+&=\frac14-\frac{1}{2(n+1)(n+2)}
 \end{aligned}" />
 
-# Andere Wahlmöglichkeiten prüfen
+# Die Ungleichung lösen
 
-Der Mittelpunktswinkel ist <InlineMath math="360^\circ" /> mal **das Verhältnis von Grundkreisradius zu Mantellinie**. Der Wert <InlineMath math="240^\circ" /> setzt den Durchmesser, 6 cm, in den Zähler. Der Wert <InlineMath math="60^\circ" /> verwendet <InlineMath math="180^\circ" /> als Faktor. Der Wert <InlineMath math="180^\circ" /> nimmt an, dass der Mantel immer ein Halbkreis ist, und <InlineMath math="90^\circ" /> hält ihn für einen Viertelkreis.
+Weil <InlineMath math="0{,}245=\frac14-0{,}005" /> ist, heißt die Bedingung: **Der abgezogene Rest muss kleiner als <InlineMath math="0{,}005" /> sein**.
 
-Der Mittelpunktswinkel des Ausschnitts beträgt also <InlineMath math="120^\circ" />.
+<BlockMath math="\begin{aligned}
+\frac{1}{2(n+1)(n+2)}&<0{,}005=\frac{1}{200}\\
+2(n+1)(n+2)&>200\\
+(n+1)(n+2)&>100
+\end{aligned}" />
+
+Für <InlineMath math="n=8" /> reicht <InlineMath math="9\cdot10=90" /> noch nicht. Für <InlineMath math="n=9" /> ist <InlineMath math="10\cdot11=110>100" />. Das kleinste <InlineMath math="n" /> ist also <InlineMath math="9" />.
+
+Prüf das mit gewöhnlichen Brüchen. <InlineMath math="S_8=\frac14-\frac{1}{180}=\frac{11}{45}" /> und <InlineMath math="S_9=\frac14-\frac{1}{220}=\frac{27}{110}" />, während <InlineMath math="0{,}245=\frac{49}{200}" /> ist. Über Kreuz multipliziert: <InlineMath math="11\cdot200=2200<2205=49\cdot45" />, also liegt <InlineMath math="S_8" /> noch darunter. Dagegen ist <InlineMath math="27\cdot200=5400>5390=49\cdot110" />, also liegt <InlineMath math="S_9" /> darüber.
+
+# Die verlockenden falschen Optionen
+
+Die anderen Optionen kommen von **einem verrutschten Faktor ein halb, einem verschobenen Index oder einer groben Abschätzung** beim Zerlegen und beim Lösen der Ungleichung.
+
+- <InlineMath math="13" /> entsteht, wenn du den Rest als <InlineMath math="\frac{1}{(n+1)(n+2)}" /> ohne die Hälfte schreibst. Dann lautet die Bedingung <InlineMath math="(n+1)(n+2)>200" />.
+- <InlineMath math="11" /> entsteht, wenn du <InlineMath math="(n+1)(n+2)" /> durch <InlineMath math="n^2" /> abschätzt. Dann lautet die Bedingung <InlineMath math="n^2>100" />, und das kleinste <InlineMath math="n" /> scheint <InlineMath math="11" /> zu sein.
+- <InlineMath math="10" /> entsteht, wenn du das letzte Glied um einen Index nach hinten verschiebst, zu <InlineMath math="\frac{1}{2n(n+1)}" />. Dann lautet die Bedingung <InlineMath math="n(n+1)>100" />.
+- <InlineMath math="6" /> entsteht, wenn du die Hälfte beim Rest zweimal verwendest. Dann lautet die Bedingung <InlineMath math="(n+1)(n+2)>50" />.
+
+Die kleinste natürliche Zahl <InlineMath math="n" /> mit <InlineMath math="S_n>0{,}245" /> ist also <InlineMath math="9" />.

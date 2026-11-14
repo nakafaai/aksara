@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "ice-cream",
+  stimulus: "pipa",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$4$$",
-        },
-        {
           correct: true,
-          label: "$$5$$",
+          label: "$$1{.}881\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "$$6$$",
+          label: "$$2{.}475\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$3{.}663\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "$$17$$",
+          label: "$$5{.}225\\text{ kg}$$",
+        },
+        {
+          correct: false,
+          label: "$$7{.}524\\text{ kg}$$",
         },
       ],
     },

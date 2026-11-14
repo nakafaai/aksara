@@ -1,20 +1,30 @@
-Baca kelima nilai dari grafik: 120, 150, 135, 180, dan 165. Setiap pernyataan menguji ukuran yang berbeda, jadi **hitung ukuran yang diminta satu per satu**.
+Persamaan pecahan ini sulit dihitung langsung, jadi rencananya ubah dulu menjadi **perkalian dua faktor yang hasilnya tetap**. Setelah itu, setiap pasangan faktor memberi satu penyelesaian, dan kamu tinggal menghitung pasangan yang memenuhi <InlineMath math="x<y" />.
 
-# Rata-rata dan median
+# Mengubah menjadi perkalian
 
-<BlockMath math="\bar x=\frac{120+150+135+180+165}{5}=\frac{750}{5}=150" />
+Kalikan kedua ruas dengan <InlineMath math="24xy" />, lalu **tambahkan <InlineMath math="576=24^2" /> di kedua ruas** supaya ruas kiri bisa difaktorkan.
 
-Setelah diurutkan, datanya 120, 135, 150, 165, 180, sehingga mediannya 150. **Median sama dengan rata-rata**, tidak lebih besar. Pernyataan pertama benar, sedangkan pernyataan ketiga salah.
+<BlockMath math="\begin{aligned}
+24y+24x&=xy\\
+xy-24x-24y&=0\\
+xy-24x-24y+576&=576\\
+(x-24)(y-24)&=576
+\end{aligned}" />
 
-# Perubahan harian
+# Kedua faktor positif
 
-| Perubahan | Selisih | Persentase |
-| :---: | :---: | :---: |
-| Senin ke Selasa | <InlineMath math="+30" /> | <InlineMath math="\frac{30}{120}=25\%" /> |
-| Selasa ke Rabu | <InlineMath math="-15" /> | <InlineMath math="-10\%" /> |
-| Rabu ke Kamis | <InlineMath math="+45" /> | <InlineMath math="\frac{45}{135}\approx33{,}3\%" /> |
-| Kamis ke Jumat | <InlineMath math="-15" /> | <InlineMath math="\approx-8{,}3\%" /> |
+Karena <InlineMath math="\tfrac1y" /> positif, <InlineMath math="\tfrac1x" /> lebih kecil daripada <InlineMath math="\tfrac{1}{24}" />, jadi <InlineMath math="x>24" />. Dengan alasan yang sama, <InlineMath math="y>24" />. Jadi **kedua faktor <InlineMath math="x-24" /> dan <InlineMath math="y-24" /> positif**, dan kamu tidak perlu memeriksa pasangan faktor negatif.
 
-Kenaikan terbesar, 45 pengunjung, terjadi dari Rabu ke Kamis, jadi pernyataan kedua benar. Kenaikan Senin ke Selasa adalah 25%, karena persentase dihitung **terhadap nilai awal 120**. Angka 30 adalah selisih pengunjung, bukan persentase, jadi pernyataan keempat salah.
+# Menghitung pasangan
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+Faktorisasi prima <InlineMath math="576=2^6\cdot3^2" />, jadi banyak faktor positifnya <InlineMath math="(6+1)(2+1)=21" />. Setiap faktor <InlineMath math="d" /> memberi satu pasangan terurut <InlineMath math="(x,y)=\left(24+d,\ 24+\tfrac{576}{d}\right)" />. Faktor <InlineMath math="d=24" /> memberi <InlineMath math="x=y=48" />, yang tidak memenuhi <InlineMath math="x<y" />. Sisanya <InlineMath math="20" /> pasangan terurut yang saling bertukar tempat, dan **tepat setengahnya** punya <InlineMath math="x<y" />.
+
+<BlockMath math="\frac{21-1}{2}=10" />
+
+Cek dengan daftarnya: <InlineMath math="x<y" /> terjadi tepat ketika <InlineMath math="d<24" />, yaitu <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, ada <InlineMath math="10" /> nilai. Contohnya, <InlineMath math="d=1" /> memberi <InlineMath math="(25,600)" />, dan <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
+
+# Kesalahan yang sering terjadi
+
+**Pasangan dengan <InlineMath math="x=y" /> harus dibuang sebelum membagi dua**. Kalau tidak, hasilnya <InlineMath math="11" />. Jawaban <InlineMath math="21" /> menghitung pasangan terurut tanpa syarat <InlineMath math="x<y" />, dan jawaban <InlineMath math="4" /> muncul kalau yang dihitung faktor <InlineMath math="24" />, bukan faktor <InlineMath math="24^2" />.
+
+Jadi, banyak pasangan bilangan bulat positif <InlineMath math="(x,y)" /> dengan <InlineMath math="x<y" /> yang memenuhi persamaan itu adalah <InlineMath math="10" />.

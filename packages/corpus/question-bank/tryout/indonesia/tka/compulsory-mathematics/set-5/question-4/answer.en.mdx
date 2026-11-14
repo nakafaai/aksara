@@ -1,17 +1,44 @@
-Let the amount of jasmine tea be <InlineMath math="m" /> kg. The whole blend is <InlineMath math="30" /> kg, so there are <InlineMath math="30-m" /> kg of green tea. **The value of the blend equals the total value of the two teas**, so in thousands of rupiah
+# The fraction inequality
+
+The question asks how many integers satisfy two conditions at once. So solve each inequality on its own, then take the overlap.
+
+Multiply both sides of the first inequality by <InlineMath math="12" />, the least common multiple of <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="6" />. Since <InlineMath math="12" /> is positive, the sign stays the same:
 
 <BlockMath math="\begin{aligned}
-150m+90(30-m)&=114\cdot30 \\
-150m+2{,}700-90m&=3{,}420 \\
-60m&=720 \\
-m&=12
+4(2x+5)-3(2x-3)&>2(4x-5) \\
+8x+20-6x+9&>8x-10 \\
+2x+29&>8x-10 \\
+-6x&>-39
 \end{aligned}" />
 
-Check: <InlineMath math="12" /> kg of jasmine tea and <InlineMath math="18" /> kg of green tea are worth <InlineMath math="1{,}800+1{,}620=3{,}420" /> thousand rupiah, the same as <InlineMath math="30\cdot114" />.
+Now divide both sides by <InlineMath math="-6" />. **Dividing by a negative number flips the sign** from <InlineMath math=">" /> to <InlineMath math="<" />:
 
-So the blend contains <InlineMath math="12" /> kg of jasmine tea.
+<BlockMath math="x<\frac{-39}{-6}=\frac{13}{2}=6.5" />
 
-- <InlineMath math="11.25" /> kg sets the jasmine value equal to the green tea value, but the blend's value is what must equal the sum of both.
-- <InlineMath math="15" /> kg assumes equal amounts of both teas, but the blend price is not halfway between the two prices.
-- <InlineMath math="18" /> kg is the amount of green tea, not jasmine tea.
-- <InlineMath math="22.8" /> kg divides the blend's whole value by the jasmine price alone.
+# The absolute value inequality
+
+The form <InlineMath math="|u|\le v" /> means <InlineMath math="-v\le u\le v" />. Here <InlineMath math="u=3x-4" /> and <InlineMath math="v=x+12" />, so there are **two conditions that must hold together**:
+
+<BlockMath math="\begin{aligned}
+-(x+12)\le3x-4\ &\Rightarrow\ -x-12\le3x-4\ \Rightarrow\ -8\le4x\ \Rightarrow\ x\ge-2 \\
+3x-4\le x+12\ &\Rightarrow\ 2x\le16\ \Rightarrow\ x\le8
+\end{aligned}" />
+
+That gives <InlineMath math="-2\le x\le8" />. If you prefer cases, the case <InlineMath math="x\ge\frac43" /> gives the bound <InlineMath math="x\le8" />, and the case <InlineMath math="x<\frac43" /> gives <InlineMath math="4-3x\le x+12" />, that is <InlineMath math="x\ge-2" />. You need both cases. Check the left end: for <InlineMath math="x=-2" />, <InlineMath math="|{-10}|=10" /> and <InlineMath math="x+12=10" />, so <InlineMath math="x=-2" /> counts because the sign is <InlineMath math="\le" />.
+
+# The overlap and its integers
+
+Put both results together:
+
+<BlockMath math="-2\le x<6.5" />
+
+The integers are <InlineMath math="-2,-1,0,1,2,3,4,5,6" />, which is **nine numbers**. Check the right end in the first inequality: for <InlineMath math="x=6" /> the left side is <InlineMath math="\frac{17}{3}-\frac94=\frac{41}{12}" /> and the right side is <InlineMath math="\frac{19}{6}=\frac{38}{12}" />, so it works. For <InlineMath math="x=7" /> the left side is <InlineMath math="\frac{43}{12}" /> and the right side is <InlineMath math="\frac{46}{12}" />, so it fails.
+
+So <InlineMath math="9" /> integers satisfy both inequalities.
+
+# Why the other options are wrong
+
+- <InlineMath math="8" /> drops <InlineMath math="x=-2" />. The sign <InlineMath math="\le" /> means the boundary <InlineMath math="-2" /> **is included**.
+- <InlineMath math="5" /> only uses the case <InlineMath math="3x-4\ge0" />, so it starts at <InlineMath math="x\ge\frac43" /> and loses <InlineMath math="-2,-1,0,1" />.
+- <InlineMath math="3" /> writes <InlineMath math="-(x+12)" /> as <InlineMath math="-x+12" />, which turns the left bound into <InlineMath math="x\ge4" />.
+- <InlineMath math="2" /> forgets to flip the sign when dividing by <InlineMath math="-6" />, gets <InlineMath math="x>6.5" />, and keeps only <InlineMath math="7" /> and <InlineMath math="8" />.

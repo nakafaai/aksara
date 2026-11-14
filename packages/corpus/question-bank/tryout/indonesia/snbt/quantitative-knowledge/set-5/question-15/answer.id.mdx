@@ -1,17 +1,27 @@
-Dua transformasi dilakukan berurutan, jadi **urutannya harus dijaga**: cerminkan dulu, baru geser.
+Kedua kuantitas adalah banyak susunan huruf dengan syarat, jadi hitung masing-masing sampai tuntas, lalu bandingkan. Kuncinya ada di **cara setiap syarat mengubah huruf yang bebas disusun**, dan setiap kuantitas punya satu syarat yang mudah terlewat.
 
-# Pencerminan terhadap garis y sama dengan x
+# Menghitung P
 
-Pencerminan terhadap garis <InlineMath math="y=x" /> **menukar absis dan ordinat**, <InlineMath math="(x,y)\mapsto(y,x)" />.
+Kata SEPATU punya <InlineMath math="6" /> huruf yang semuanya berbeda: vokal A, E, U dan konsonan S, P, T. Huruf pertama harus konsonan, jadi ada <InlineMath math="3" /> pilihan. Di <InlineMath math="5" /> posisi sisanya ada <InlineMath math="2" /> konsonan dan <InlineMath math="3" /> vokal. Pilih <InlineMath math="3" /> posisi untuk vokal, isi dengan urutan A, E, U yang hanya <InlineMath math="1" /> cara, lalu atur <InlineMath math="2" /> konsonan sisanya.
 
-<BlockMath math="A(4,-2)\ \mapsto\ A'(-2,4)" />
+<BlockMath math="P=3\times\binom{5}{3}\times1\times2!=3\times10\times2=60" />
 
-# Translasi
+Cek dengan jalan lain. Tanpa syarat konsonan di depan, **mengunci urutan vokal sama seperti menganggap ketiga vokal kembar**, jadi ada <InlineMath math="\tfrac{6!}{3!}=120" /> susunan. Huruf pertama hanya bisa vokal kalau huruf itu A, karena A harus mendahului E dan U. Susunan yang diawali A ada <InlineMath math="\tfrac{5!}{2!}=60" />, jadi yang diawali konsonan ada <InlineMath math="120-60=60" />.
 
-Translasi <InlineMath math="\begin{pmatrix}-3\\5\end{pmatrix}" /> menambahkan <InlineMath math="-3" /> pada absis dan 5 pada ordinat, sesuai **komponen atas dan komponen bawahnya**.
+# Menghitung Q
 
-<BlockMath math="A'(-2,4)\ \mapsto\ A''(-2-3,\ 4+5)=A''(-5,9)" />
+Kata PERMATA terdiri atas P, E, R, M, A, T, A. Huruf pertama dan huruf terakhir hanya bisa sama kalau huruf itu muncul paling sedikit <InlineMath math="2" /> kali. **Hanya huruf A yang muncul lebih dari sekali**, jadi kedua ujung harus A. Huruf tengahnya ada <InlineMath math="5" />, yaitu P, E, R, M, T, dan semuanya berbeda.
 
-Pilihan <InlineMath math="(3,1)" /> menggeser lebih dulu lalu mencerminkan. Pilihan <InlineMath math="(1,-1)" /> membalik tanda translasi. Pilihan <InlineMath math="(1,7)" /> mencerminkan terhadap sumbu <InlineMath math="x" />, dan pilihan <InlineMath math="(-1,1)" /> mencerminkan terhadap garis <InlineMath math="y=-x" />.
+<BlockMath math="Q=1\times5!\times1=120" />
 
-Jadi, bayangan akhir titik <InlineMath math="A" /> adalah <InlineMath math="(-5,9)" />.
+# Membandingkan
+
+Nilai <InlineMath math="Q=120" /> dan <InlineMath math="P=60" />, jadi **<InlineMath math="Q" /> dua kali <InlineMath math="P" />**, dan hubungan yang benar adalah <InlineMath math="Q>P" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="P=Q" /> muncul kalau syarat konsonan di depan pada <InlineMath math="P" /> terlupa sehingga <InlineMath math="P=120" />, atau kalau <InlineMath math="Q" /> masih dibagi <InlineMath math="2!" /> sehingga <InlineMath math="Q=60" />, padahal kedua huruf A sudah dipakai di ujung.
+- <InlineMath math="P>Q" /> muncul kalau urutan vokal pada <InlineMath math="P" /> diabaikan, sehingga <InlineMath math="P=3\times5!=360" />.
+- Pilihan informasi tidak cukup keliru karena kedua kuantitas adalah **bilangan tertentu yang bisa dihitung penuh**.
+
+Jadi, banyak susunan pada kuantitas <InlineMath math="Q" /> lebih besar, yaitu <InlineMath math="Q=120" /> dan <InlineMath math="P=60" />, sehingga <InlineMath math="Q>P" />.

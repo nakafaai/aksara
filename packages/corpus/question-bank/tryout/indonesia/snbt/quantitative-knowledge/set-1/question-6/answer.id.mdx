@@ -1,26 +1,44 @@
-Pertidaksamaan <InlineMath math="\lvert A\rvert<B" /> setara dengan <InlineMath math="-B<A<B" />. Bentuk ini sekaligus memaksa <InlineMath math="B>0" />, jadi **kedua batas harus dipenuhi bersamaan**.
+Kamu menghitung tripel terurut, jadi urutan bilangan diperhitungkan. Hitung dalam tiga lapis: **semua tripel positif dengan jumlah <InlineMath math="30" />**, lalu buang yang melewati batas <InlineMath math="15" />, lalu buang yang memuat bilangan kembar.
 
-# Menyelesaikan kedua batas
+# Menghitung semua tripel positif
 
-Dengan <InlineMath math="A=2x-5" /> dan <InlineMath math="B=x+1" />, pertidaksamaannya menjadi
+Bayangkan <InlineMath math="30" /> satuan berjajar. Di antara satuan-satuan itu ada <InlineMath math="29" /> celah. Memilih <InlineMath math="2" /> celah sebagai tempat memotong membagi jajaran itu menjadi tiga bagian positif, yaitu <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Setiap pilihan celah memberi **tepat satu tripel terurut**, dan sebaliknya.
 
-<BlockMath math="-(x+1)<2x-5<x+1" />
+<BlockMath math="\binom{29}{2}=\frac{29\cdot28}{2}=406" />
 
-Selesaikan batas kanan dan batas kiri secara terpisah.
+# Membuang tripel yang melewati batas
+
+Hitung tripel dengan <InlineMath math="a\ge16" />. Tulis <InlineMath math="a=a'+15" /> dengan <InlineMath math="a'\ge1" />, sehingga syaratnya menjadi <InlineMath math="a'+b+c=15" /> dengan ketiganya positif.
+
+<BlockMath math="\binom{14}{2}=\frac{14\cdot13}{2}=91" />
+
+Hal yang sama berlaku untuk <InlineMath math="b\ge16" /> dan <InlineMath math="c\ge16" />. Dua bilangan tidak mungkin sama-sama paling sedikit <InlineMath math="16" />, karena jumlahnya saja sudah <InlineMath math="32>30" />. Jadi **ketiga kelompok itu tidak beririsan**, dan kamu cukup mengurangkan semuanya.
+
+<BlockMath math="406-3\cdot91=406-273=133" />
+
+# Membuang tripel dengan bilangan kembar
+
+Hitung tripel dengan <InlineMath math="a=b" />. Syaratnya menjadi <InlineMath math="2a+c=30" />, dengan <InlineMath math="1\le c\le15" />.
 
 <BlockMath math="\begin{aligned}
-2x-5&<x+1 &&\Rightarrow\quad x<6\\
-2x-5&>-x-1 &&\Rightarrow\quad 3x>4 \quad\Rightarrow\quad x>\tfrac43
+1\le 30-2a&\le15\\
+15\le 2a&\le29\\
+8\le a&\le14
 \end{aligned}" />
 
-**Irisan kedua batas** adalah <InlineMath math="\tfrac43<x<6" />. Pada selang ini <InlineMath math="x+1>0" />, jadi syarat <InlineMath math="B>0" /> otomatis terpenuhi.
+Ada <InlineMath math="7" /> tripel dengan <InlineMath math="a=b" />. Begitu juga ada <InlineMath math="7" /> tripel dengan <InlineMath math="b=c" /> dan <InlineMath math="7" /> tripel dengan <InlineMath math="a=c" />. Tripel <InlineMath math="(10,10,10)" /> **masuk ke ketiga kelompok sekaligus**, dan hanya tripel itu yang ada di dua kelompok mana pun. Pakai inklusi-eksklusi agar tripel itu terhitung tepat satu kali.
 
-# Menjumlahkan bilangan bulat
+<BlockMath math="\begin{aligned}
+\text{banyak tripel kembar}&=7+7+7-1-1-1+1=19\\
+\text{banyak tripel yang dicari}&=133-19=114
+\end{aligned}" />
 
-Bilangan bulat pada selang <InlineMath math="\tfrac43<x<6" /> adalah 2, 3, 4, dan 5. **Cek batasnya**: <InlineMath math="x=5" /> memberi <InlineMath math="5<6" />, sedangkan <InlineMath math="x=6" /> memberi <InlineMath math="7<7" /> yang salah, dan <InlineMath math="x=1" /> memberi <InlineMath math="3<2" /> yang juga salah.
+# Memeriksa hasil
 
-<BlockMath math="2+3+4+5=14" />
+Tiga bilangan yang berbeda bisa diurutkan dengan <InlineMath math="3!=6" /> cara. Jadi banyak tripel terurut yang dicari harus kelipatan <InlineMath math="6" />. Hasilnya <InlineMath math="114=6\cdot19" />, jadi **ada <InlineMath math="19" /> himpunan tiga bilangan berbeda** yang memenuhi syarat, misalnya <InlineMath math="\{1,14,15\}" /> dan <InlineMath math="\{9,10,11\}" />.
 
-Nilai 12 hanya memakai kasus <InlineMath math="2x-5\ge0" />, sehingga kehilangan <InlineMath math="x=2" />. Nilai 15 membulatkan batas <InlineMath math="\tfrac43" /> ke bawah sehingga ikut memasukkan <InlineMath math="x=1" />. Nilai 20 memasukkan <InlineMath math="x=6" />, padahal tandanya kurang dari, bukan kurang dari atau sama dengan. Nilai 21 melakukan kedua kesalahan itu.
+# Kesalahan yang sering terjadi
 
-Jadi, jumlah semua bilangan bulat yang memenuhi adalah **14**.
+Jawaban <InlineMath math="406" /> muncul jika batas <InlineMath math="15" /> dilupakan. Jawaban <InlineMath math="133" /> muncul jika syarat berbeda dilupakan. Jawaban <InlineMath math="112" /> muncul jika <InlineMath math="3\cdot7=21" /> tripel kembar langsung dikurangkan, sehingga **<InlineMath math="(10,10,10)" /> terbuang tiga kali**. Jawaban ini juga gagal karena <InlineMath math="112" /> bukan kelipatan <InlineMath math="6" />.
+
+Jadi, banyak tripel terurut yang memenuhi ketiga syarat adalah <InlineMath math="114" />.

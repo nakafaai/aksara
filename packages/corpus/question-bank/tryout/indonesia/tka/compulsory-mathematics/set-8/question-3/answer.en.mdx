@@ -1,12 +1,43 @@
-All pay is built from the regular rate of <InlineMath math="\text{Rp}25{,}000" /> an hour, and **the overtime rate is always <InlineMath math="1.5" /> times the regular rate**. Work out the quantity each statement compares.
+# The first statement
+
+You need to compare every basket that holds at least <InlineMath math="35" /> bottles. First, a carton gives <InlineMath math="12" /> bottles for <InlineMath math="\text{Rp}168{,}000" />, while <InlineMath math="12" /> loose bottles are paid as <InlineMath math="9" />, which is <InlineMath math="\text{Rp}180{,}000" />. Now check each number of cartons <InlineMath math="d" />, with just enough loose bottles to reach <InlineMath math="35" />.
 
 <BlockMath math="\begin{aligned}
-1.5\cdot25{,}000&=37{,}500 \\
-\frac{1{,}000{,}000+8\cdot37{,}500}{1{,}000{,}000}&=\frac{1{,}300{,}000}{1{,}000{,}000}=1.3 \\
-2\,\%\cdot(1{,}000{,}000+10\cdot37{,}500)&=0.02\cdot1{,}375{,}000=27{,}500
+d=3&:\quad 3(168{,}000)=504{,}000 \\
+d=2&:\quad \text{at least } 11 \text{ loose, paid } 9 \Rightarrow 336{,}000+180{,}000=516{,}000 \\
+d=1&:\quad \text{at least } 23 \text{ loose, paid } 18 \Rightarrow 168{,}000+360{,}000=528{,}000 \\
+d=0&:\quad \text{at least } 35 \text{ loose, paid } 27 \Rightarrow 540{,}000
 \end{aligned}" />
 
-- One overtime hour pays <InlineMath math="\text{Rp}37{,}500" />, the same as <InlineMath math="1.5" /> hours, or <InlineMath math="1" /> hour <InlineMath math="30" /> minutes, of regular work. This statement is true.
-- The gross pay for <InlineMath math="48" /> hours is <InlineMath math="1.3" /> times the pay for <InlineMath math="40" /> hours, more than <InlineMath math="1.2" />. This statement is true.
-- Regular and overtime pay both rise by <InlineMath math="10\,\%" />, because the overtime rate is always <InlineMath math="1.5" /> times the regular rate. The whole gross pay rises by exactly <InlineMath math="10\,\%" />, not more. This statement is false.
-- The deduction for <InlineMath math="50" /> hours is <InlineMath math="\text{Rp}27{,}500" />, not more than <InlineMath math="\text{Rp}30{,}000" />. This statement is false.
+Adding more bottles or cartons only raises the total. So for a non-member, **buying <InlineMath math="3" /> cartons is the cheapest**, even though that's <InlineMath math="36" /> bottles. For a member, every total above is at least <InlineMath math="\text{Rp}400{,}000" />, so each one gets <InlineMath math="5\%" /> off and the order stays the same. The cheapest bill is <InlineMath math="0.95(504{,}000)=478{,}800" />, again from <InlineMath math="3" /> cartons.
+
+This statement is **True**.
+
+# The second statement
+
+If a member buys <InlineMath math="N" /> loose bottles, there are at most <InlineMath math="\tfrac{N}{4}" /> complete groups. So at least <InlineMath math="N-\tfrac{N}{4}=\tfrac{3N}{4}" /> bottles are paid. The member discount is at most <InlineMath math="5\%" />. **The two savings multiply, they don't add**.
+
+<BlockMath math="\begin{aligned}
+\text{bill}&\ge0.95\cdot20{,}000\cdot\tfrac{3N}{4} \\
+&=14{,}250\,N \\
+\frac{\text{bill}}{N}&\ge14{,}250
+\end{aligned}" />
+
+The bound is actually reached, for example with <InlineMath math="28" /> bottles: <InlineMath math="21" /> are paid, the total is <InlineMath math="\text{Rp}420{,}000" />, the bill is <InlineMath math="\text{Rp}399{,}000" />, and <InlineMath math="399{,}000\div28=14{,}250" />. If you add <InlineMath math="25\%" /> and <InlineMath math="5\%" /> to get <InlineMath math="30\%" />, you'd get <InlineMath math="\text{Rp}14{,}000" /> and think a cheaper average is possible. It never happens.
+
+This statement is **True**.
+
+# The third statement
+
+One extra loose bottle raises the total after the promo by <InlineMath math="0" /> or by <InlineMath math="\text{Rp}20{,}000" />. The catch is that the rise can push the total past <InlineMath math="\text{Rp}400{,}000" />. Take a basket of <InlineMath math="2" /> cartons and <InlineMath math="4" /> loose bottles, then add one loose bottle.
+
+<BlockMath math="\begin{aligned}
+2\text{ cartons}+4\text{ loose}&:\quad 336{,}000+3(20{,}000)=396{,}000 \Rightarrow \text{bill } 396{,}000 \\
+2\text{ cartons}+5\text{ loose}&:\quad 336{,}000+4(20{,}000)=416{,}000 \Rightarrow \text{bill } 0.95(416{,}000)=395{,}200
+\end{aligned}" />
+
+The bill drops by <InlineMath math="\text{Rp}800" /> even though there's one more bottle. If you only try baskets of loose bottles, you won't find this example, because their totals are always multiples of <InlineMath math="\text{Rp}20{,}000" /> and the jump from <InlineMath math="380{,}000" /> to <InlineMath math="400{,}000" /> gives the same bill. **One counterexample is enough**.
+
+This statement is **False**.
+
+So the answers are True, True, False.

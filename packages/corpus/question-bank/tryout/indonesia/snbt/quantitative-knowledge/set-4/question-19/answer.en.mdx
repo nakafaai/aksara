@@ -1,21 +1,52 @@
-"At least two" means **exactly two or exactly three** shots hit the target. The two events are mutually exclusive, so their probabilities add. The shots are independent, so the probability of one sequence of results is the product of the probabilities of each shot.
+You're looking for every <InlineMath math="m" /> that makes <InlineMath math="f" /> return to <InlineMath math="x" /> after being applied twice. Here's the plan: write <InlineMath math="f(x)=ax+b" />, work out <InlineMath math="f\bigl(f(x)\bigr)" />, match its coefficients with <InlineMath math="x" />, then **check both resulting cases against their own conditions**.
 
-# Exactly two hits
+# Composing a linear function
 
-The one miss can be the first, second, or third shot, so there are **three sequences** with equal probability.
+Let <InlineMath math="a=m^2-8m+13" /> and <InlineMath math="b=m-6" />.
 
-<BlockMath math="P(\text{exactly }2)=3\cdot(0.6)^2(0.4)=3\cdot0.144=0.432" />
+<BlockMath math="f\bigl(f(x)\bigr)=a(ax+b)+b=a^2x+(a+1)b" />
 
-# Exactly three hits
+For this to equal <InlineMath math="x" /> for every <InlineMath math="x" />, **the coefficient of <InlineMath math="x" /> must be <InlineMath math="1" /> and the constant term must be <InlineMath math="0" />**: <InlineMath math="a^2=1" /> and <InlineMath math="(a+1)b=0" />. From <InlineMath math="a^2=1" /> there are two cases, <InlineMath math="a=1" /> or <InlineMath math="a=-1" />.
 
-There is **only one sequence**, with all three shots hitting.
+# The case with coefficient one
 
-<BlockMath math="P(\text{exactly }3)=(0.6)^3=0.216" />
+If <InlineMath math="a=1" />, the second condition becomes <InlineMath math="2b=0" />, so **<InlineMath math="b" /> must be <InlineMath math="0" /> as well**. The function has to be <InlineMath math="f(x)=x" />.
 
-Add the two cases.
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=1\\
+m^2-8m+12&=0\\
+(m-2)(m-6)&=0
+\end{aligned}" />
 
-<BlockMath math="P(\text{at least }2)=0.432+0.216=0.648" />
+For <InlineMath math="m=6" />, <InlineMath math="b=0" />, so it's valid. For <InlineMath math="m=2" />, <InlineMath math="b=-4" />, which gives <InlineMath math="f(x)=x-4" /> and <InlineMath math="f\bigl(f(x)\bigr)=x-8" />. The value <InlineMath math="m=2" /> has to go.
 
-The value 0.432 counts only exactly two, and the value 0.216 only exactly three. The value 0.36 is <InlineMath math="(0.6)^2" />, which ignores the third shot and the number of sequences. The value 0.784 is <InlineMath math="1-0.216" />, the probability of at most two hits.
+# The case with coefficient negative one
 
-So the probability that at least two shots hit the target is <InlineMath math="0.648" />.
+If <InlineMath math="a=-1" />, the second condition <InlineMath math="(a+1)b=0\cdot b=0" /> **always holds**, whatever <InlineMath math="b" /> is. For example, <InlineMath math="f(x)=-x+b" /> gives <InlineMath math="f\bigl(f(x)\bigr)=-(-x+b)+b=x" />.
+
+<BlockMath math="\begin{aligned}
+m^2-8m+13&=-1\\
+m^2-8m+14&=0\\
+m&=\frac{8\pm\sqrt{64-56}}{2}=4\pm\sqrt2
+\end{aligned}" />
+
+Both values are valid.
+
+# The product of all values
+
+**All the values of <InlineMath math="m" /> that survive** are <InlineMath math="6" />, <InlineMath math="4+\sqrt2" />, and <InlineMath math="4-\sqrt2" />.
+
+<BlockMath math="6\cdot\left(4+\sqrt2\right)\left(4-\sqrt2\right)=6\cdot(16-2)=6\cdot14=84" />
+
+Check the product of the two roots from the second case with Vieta: the roots of <InlineMath math="m^2-8m+14=0" /> multiply to <InlineMath math="14" />, which matches.
+
+# The tempting wrong options
+
+Each other option comes from **a skipped case or an untested candidate**.
+
+- <InlineMath math="14" /> comes from skipping the case <InlineMath math="a=1" />, for example by thinking only <InlineMath math="f(x)=-x+b" /> can bring you back to <InlineMath math="x" />.
+- <InlineMath math="168" /> comes from keeping <InlineMath math="m=2" /> without checking <InlineMath math="b=0" />.
+- <InlineMath math="6" /> comes from skipping the case <InlineMath math="a=-1" />.
+- <InlineMath math="12" /> comes from skipping the case <InlineMath math="a=-1" /> and also keeping <InlineMath math="m=2" />.
+
+So the product of all possible values of <InlineMath math="m" /> is <InlineMath math="84" />.

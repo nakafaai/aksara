@@ -1,0 +1,89 @@
+# Hasil pembesaran
+
+Soalan ini bertanya luas bahagian segi tiga akhir yang tidak ditutup oleh segi tiga asal. Jadi kamu perlu tahu dua perkara: **luas segi tiga akhir**, dan **kedudukan segi tiga asal** berbanding segi tiga akhir.
+
+Pembesaran dengan pusat <InlineMath math="A" /> dan faktor skala <InlineMath math="-3" /> mendarab setiap vektor dari <InlineMath math="A" /> dengan <InlineMath math="-3" />. Titik <InlineMath math="A" /> sendiri tidak bergerak:
+
+<BlockMath math="\begin{aligned}
+\vec{AB}=(2,0)&\ \Rightarrow\ -3(2,0)=(-6,0),\quad B'=(-5,1) \\
+\vec{AC}=(0,3)&\ \Rightarrow\ -3(0,3)=(0,-9),\quad C'=(1,-8)
+\end{aligned}" />
+
+Tanda negatif meletakkan segi tiga <InlineMath math="AB'C'" /> di seberang <InlineMath math="A" />. Pada peringkat ini, segi tiga itu hanya bersentuhan dengan <InlineMath math="ABC" /> di titik <InlineMath math="A" />.
+
+# Hasil putaran
+
+Putaran <InlineMath math="180^\circ" /> dengan pusat <InlineMath math="A" /> menterbalikkan setiap vektor dari <InlineMath math="A" />:
+
+<BlockMath math="\begin{aligned}
+(-6,0)&\ \Rightarrow\ (6,0),\quad B''=(7,1) \\
+(0,-9)&\ \Rightarrow\ (0,9),\quad C''=(1,10)
+\end{aligned}" />
+
+Putaran ini **menterbalikkan semula arah yang diterbalikkan oleh faktor negatif**. Hasil akhirnya sama dengan pembesaran berpusat <InlineMath math="A" /> dengan faktor <InlineMath math="+3" />, jadi segi tiga akhir kembali ke sebelah yang sama dengan <InlineMath math="ABC" />.
+
+<MathVisual
+  title={<>Segi tiga asal, hasil pembesaran dan hasil akhir</>}
+  description={<>Segi tiga asal <InlineMath math="ABC" /> dengan <InlineMath math="A(1,1)" />, <InlineMath math="B(3,1)" />, <InlineMath math="C(1,4)" />. Hasil pembesaran <InlineMath math="AB'C'" /> dengan <InlineMath math="B'(-5,1)" /> dan <InlineMath math="C'(1,-8)" /> berada di seberang <InlineMath math="A" />. Hasil akhir <InlineMath math="AB''C''" /> dengan <InlineMath math="B''(7,1)" /> dan <InlineMath math="C''(1,10)" /> memuatkan seluruh segi tiga <InlineMath math="ABC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    "b-first": <InlineMath math="B'" />,
+    "c-first": <InlineMath math="C'" />,
+    "b-final": <InlineMath math="B''" />,
+    "c-final": <InlineMath math="C''" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 9 },
+      y: { min: -10, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "final", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 1 }, { x: 7, y: 1 }, { x: 1, y: 10 }] },
+      { id: "first", kind: "polygon", appearance: "construction", vertices: [{ x: 1, y: 1 }, { x: -5, y: 1 }, { x: 1, y: -8 }] },
+      { id: "original", kind: "polygon", appearance: "highlight", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }] },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 1, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 3, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 1, y: 4 } },
+      { id: "point-b-first", kind: "point", appearance: "reference", at: { x: -5, y: 1 } },
+      { id: "point-c-first", kind: "point", appearance: "reference", at: { x: 1, y: -8 } },
+      { id: "point-b-final", kind: "point", appearance: "reference", at: { x: 7, y: 1 } },
+      { id: "point-c-final", kind: "point", appearance: "reference", at: { x: 1, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "c", objectId: "point-c", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "b-first", objectId: "point-b-first", at: { x: -5, y: 1 }, placement: "above" },
+      { key: "c-first", objectId: "point-c-first", at: { x: 1, y: -8 }, placement: "right" },
+      { key: "b-final", objectId: "point-b-final", at: { x: 7, y: 1 }, placement: "below" },
+      { key: "c-final", objectId: "point-c-final", at: { x: 1, y: 10 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Luas yang ditanya
+
+Segi tiga <InlineMath math="ABC" /> bersudut tegak di <InlineMath math="A" /> dengan dua sisi tegak <InlineMath math="2" /> dan <InlineMath math="3" />. Setiap sisi didarab dengan <InlineMath math="3" />, jadi **luas didarab dengan <InlineMath math="3^2=9" />**:
+
+<BlockMath math="\begin{aligned}
+\text{luas }ABC&=\tfrac12\cdot2\cdot3=3 \\
+\text{luas }A''B''C''&=\tfrac12\cdot6\cdot9=27=9\cdot3
+\end{aligned}" />
+
+Kedua-dua segi tiga berkongsi sudut tegak di <InlineMath math="A" /> dengan sisi yang sehala, dan <InlineMath math="ABC" /> lebih kecil. Semak dengan hipotenus segi tiga akhir, iaitu garis <InlineMath math="3x+2y=23" />: titik <InlineMath math="B" /> dan <InlineMath math="C" /> kedua-duanya memberi <InlineMath math="11\le23" />, jadi kedua-duanya berada di dalam. Seluruh <InlineMath math="ABC" /> ditutup oleh segi tiga akhir:
+
+<BlockMath math="27-3=24" />
+
+Jadi, luas kawasan di dalam segi tiga <InlineMath math="A''B''C''" /> yang tidak ditutup oleh segi tiga <InlineMath math="ABC" /> ialah <InlineMath math="24" /> unit persegi.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="27" /> ialah seluruh luas segi tiga akhir. Jawapan ini muncul jika kamu menyangka faktor <InlineMath math="-3" /> meletakkan segi tiga akhir **di seberang** <InlineMath math="ABC" />, sedangkan putaran <InlineMath math="180^\circ" /> membawanya kembali sehingga <InlineMath math="ABC" /> tertutup.
+- <InlineMath math="6" /> mendarab luas dengan <InlineMath math="3" />, lalu mendapat <InlineMath math="9-3" />. Luas berubah mengikut kuasa dua faktor skala.
+- <InlineMath math="48" /> terlupa <InlineMath math="\frac12" /> dalam luas segi tiga: <InlineMath math="6\cdot9-2\cdot3" />.
+- <InlineMath math="78" /> mendarab luas dengan <InlineMath math="3^3=27" />, lalu mendapat <InlineMath math="81-3" />. Kuasa tiga digunakan untuk isi padu, bukan luas.

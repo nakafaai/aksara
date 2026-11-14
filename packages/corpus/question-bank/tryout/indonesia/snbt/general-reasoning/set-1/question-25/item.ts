@@ -4,13 +4,14 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "quantitative-reasoning",
-    topic: "proportion",
+    topic: "optimization",
   },
-  stimulus: "pinjam",
+  stimulus: "gudang",
   versions: {
     id: {
       kind: "numericEntry",
-      value: "920",
+      unit: "truk",
+      value: "8",
     },
   },
 };

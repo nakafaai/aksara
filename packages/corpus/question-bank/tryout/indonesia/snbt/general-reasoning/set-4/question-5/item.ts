@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "application",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "data-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "cabai",
+  stimulus: "dompet",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "Harga rata-rata pada minggu ke-$$3$$ sepertiga lebih tinggi daripada harga pada minggu ke-$$1$$.",
-        },
-        {
-          column: 1,
-          label:
-            "Pasokan pada minggu ke-$$6$$ lebih dari $$1{,}5$$ kali pasokan pada minggu ke-$$3$$.",
+            "Pada April, rata-rata omzet harian seluruh $$120$$ pedagang adalah $$\\text{Rp}1{,}6$$ juta.",
         },
         {
           column: 2,
           label:
-            "Rata-rata harga selama enam minggu lebih dari $$\\text{Rp}33{.}000$$ per kg.",
+            "Total omzet harian seluruh pedagang pada Juli lebih rendah daripada total omzet harian seluruh pedagang pada April.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Penurunan harga terbesar dari satu minggu ke minggu berikutnya terjadi antara minggu ke-$$3$$ dan minggu ke-$$4$$.",
+            "Omzet harian gabungan semua pengguna dompet digital pada Juli lebih dari $$1{,}5$$ kali omzet harian gabungan semua pengguna pada April.",
+        },
+        {
+          column: 1,
+          label:
+            "Pada April, pedagang bukan pengguna menyumbang lebih dari $$60\\%$$ total omzet harian seluruh pasar.",
         },
       ],
     },

@@ -1,16 +1,35 @@
-Gunakan dua kelompok jadwal yang mungkin. Untuk pernyataan "jika", periksa **hanya jadwal yang memenuhi bagian "jika"**.
+Syarat tambahannya adalah gamelan di sesi pagi. Sebuah pernyataan bernilai Benar hanya jika berlaku di **semua jadwal sah yang menaruh gamelan di sesi pagi**. Satu jadwal sah yang membuatnya salah sudah cukup untuk memberi nilai Salah.
 
-| Kelompok | Jumat | Sabtu | Minggu |
-| --- | --- | --- | --- |
-| A | Q dan R | P dan T | U sore, S malam |
-| B | T sore, S malam | P dan U | Q dan R |
+Mulai dari syarat 1. Gamelan tidak bisa di Senin pagi, karena tidak ada sesi sebelum Senin pagi untuk batik. Jadi gamelan di Selasa pagi atau Rabu pagi. Sesi yang persis sebelum sebuah sesi pagi selalu sesi siang pada hari sebelumnya, jadi batik selalu di sesi siang. Sekarang pecah menjadi dua kasus.
 
-**Pernyataan 1** bernilai Benar. U harus tampil pada hari yang lebih akhir daripada T, jadi U tidak mungkin tampil pada hari pertama, yaitu Jumat.
+Kasus gamelan di Selasa pagi:
 
-**Pernyataan 2** bernilai Salah. Pada kelompok A, T tampil Sabtu bersama P dan dapat mengisi sesi malam.
+- Batik di Senin siang.
+- Wayang tidak boleh di Selasa (syarat 2) dan tidak boleh di Rabu, karena hari wayang harus lebih awal daripada hari dongeng (syarat 3). Jadi wayang di Senin pagi.
+- Dongeng harus di sesi pagi, dan Selasa pagi sudah terisi, jadi dongeng di Rabu pagi.
+- Angklung dan kuliner mengisi Selasa siang dan Rabu siang dengan urutan mana pun. Keduanya sah, karena kuliner tetap di sesi siang dan hari batik tetap lebih awal daripada hari kuliner.
 
-**Pernyataan 3** bernilai Salah. Pada kelompok B, S tampil pada hari Jumat.
+Kasus gamelan di Rabu pagi:
 
-**Pernyataan 4** bernilai Benar. Q tampil Jumat hanya pada kelompok A, dan pada kelompok itu U selalu tampil Minggu.
+- Batik di Selasa siang.
+- Dongeng harus di sesi pagi, dan Rabu pagi sudah terisi. Dongeng juga tidak bisa di Senin, karena hari wayang harus lebih awal daripada hari dongeng. Jadi dongeng di Selasa pagi, dan wayang di Senin.
+- Kuliner harus pada hari setelah hari batik (syarat 6), jadi kuliner di Rabu siang.
+- Angklung mengisi sesi Senin yang tersisa. Wayang dan angklung boleh bertukar sesi di hari Senin.
 
-Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.
+Hasilnya empat jadwal.
+
+| Jadwal | Senin pagi | Senin siang | Selasa pagi | Selasa siang | Rabu pagi | Rabu siang |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | wayang | batik | gamelan | angklung | dongeng | kuliner |
+| II | wayang | batik | gamelan | kuliner | dongeng | angklung |
+| III | wayang | angklung | dongeng | batik | gamelan | kuliner |
+| IV | angklung | wayang | dongeng | batik | gamelan | kuliner |
+
+Sekarang nilai setiap pernyataan.
+
+- Angklung diadakan pada hari Senin bernilai Salah. Ini hanya terjadi pada jadwal III dan IV. Pada jadwal I dan II, angklung ada di Selasa siang atau Rabu siang. Pernyataan ini mudah dianggap benar jika hanya kasus gamelan di Rabu pagi yang diperiksa.
+- Wayang diadakan pada hari Senin bernilai Benar. Pada kedua kasus, Selasa dan Rabu tertutup untuk wayang, jadi wayang selalu di Senin.
+- Batik diadakan pada sesi siang bernilai Benar. Batik tepat sebelum gamelan yang ada di sesi pagi, jadi batik selalu di sesi siang pada hari sebelumnya.
+- Wayang diadakan pada sesi pagi bernilai Salah. Jadwal IV menaruh angklung di Senin pagi dan wayang di Senin siang, dan jadwal itu memenuhi semua syarat.
+
+Jadi, pernyataan tentang wayang pada hari Senin dan batik pada sesi siang bernilai Benar, sedangkan pernyataan tentang angklung pada hari Senin dan wayang pada sesi pagi bernilai Salah.

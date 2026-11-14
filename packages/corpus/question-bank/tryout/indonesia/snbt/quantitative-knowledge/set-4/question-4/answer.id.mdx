@@ -1,19 +1,44 @@
-Misalkan <InlineMath math="t=2^x" />, sehingga <InlineMath math="t>0" /> dan <InlineMath math="2^{-x}=\frac1t" />. Fungsi ini menjadi <InlineMath math="f(x)=t+\frac1t" />, yaitu **jumlah bilangan positif dengan kebalikannya**.
+Kamu mencari peluang hasil kali habis dibagi <InlineMath math="4" /> tetapi tidak habis dibagi <InlineMath math="8" />. Syarat itu sama dengan **hasil kali memuat tepat dua faktor <InlineMath math="2" />**. Rencananya: kelompokkan bilangan menurut banyak faktor <InlineMath math="2" />-nya, cari pasangan yang jumlah faktornya tepat dua, lalu bagi dengan banyak semua pasangan.
 
-# Nilai minimum fungsi
+# Ruang sampel
 
-Selisih <InlineMath math="f(x)-2" /> dapat ditulis sebagai kuadrat.
+Dua bilangan diambil sekaligus, jadi urutan tidak penting dan **ruang sampelnya berupa kombinasi**.
 
-<BlockMath math="t+\frac1t-2=\frac{t^2-2t+1}{t}=\frac{(t-1)^2}{t}\ge0" />
+<BlockMath math="n(S)=\binom{20}{2}=\frac{20\cdot19}{2}=190" />
 
-Pembilang adalah kuadrat dan penyebut positif, jadi **<InlineMath math="f(x)\ge2" /> untuk setiap <InlineMath math="x" />**. Pernyataan kedua benar. Kesamaan hanya terjadi jika <InlineMath math="t=1" />, yaitu <InlineMath math="x=0" />. Jadi persamaan <InlineMath math="f(x)=2" /> hanya punya satu penyelesaian, dan pernyataan pertama salah.
+# Mengelompokkan menurut faktor dua
 
-# Dua pernyataan lain
+Banyak faktor <InlineMath math="2" /> pada hasil kali sama dengan jumlah faktor <InlineMath math="2" /> pada kedua bilangan. Jadi setiap bilangan cukup dicatat berapa kali ia bisa dibagi <InlineMath math="2" />.
 
-Kuadratkan <InlineMath math="f(1)" />. Suku tengahnya <InlineMath math="2\cdot2^1\cdot2^{-1}=2" />, sehingga **mengurangkan 2 menyisakan <InlineMath math="f(2)" />**.
+| Kelompok | Anggota | Banyak faktor dua | Banyak anggota |
+| :---: | :---: | :---: | :---: |
+| ganjil | <InlineMath math="1, 3, 5, \ldots, 19" /> | <InlineMath math="0" /> | <InlineMath math="10" /> |
+| genap biasa | <InlineMath math="2, 6, 10, 14, 18" /> | <InlineMath math="1" /> | <InlineMath math="5" /> |
+| kelipatan empat saja | <InlineMath math="4, 12, 20" /> | <InlineMath math="2" /> | <InlineMath math="3" /> |
+| kelipatan delapan | <InlineMath math="8, 16" /> | <InlineMath math="3" /> atau lebih | <InlineMath math="2" /> |
 
-<BlockMath math="\bigl(f(1)\bigr)^2-2=\left(2+\tfrac12\right)^2-2=4+2+\tfrac14-2=4\tfrac14=f(2)" />
+Perhatikan bahwa <InlineMath math="8" /> dan <InlineMath math="16" /> **tidak masuk kelompok kelipatan empat saja**, karena keduanya sudah memuat tiga faktor <InlineMath math="2" /> atau lebih.
 
-Pernyataan ketiga benar. Untuk pernyataan keempat, cukup satu contoh penyangkal: <InlineMath math="f(1)=2{,}5" />, sedangkan <InlineMath math="2f(0)=2\cdot2=4" />. Faktor 2 hanya mengalikan suku <InlineMath math="2^x" />, sedangkan suku <InlineMath math="2^{-x}" /> justru menjadi setengahnya. Pernyataan keempat salah.
+# Menghitung pasangan yang tepat
 
-Jadi, pernyataan pertama **salah**, kedua **benar**, ketiga **benar**, dan keempat **salah**.
+Jumlah faktor <InlineMath math="2" /> sama dengan dua hanya terjadi dengan dua cara: satu bilangan ganjil dan satu bilangan dari kelompok kelipatan empat saja, atau **dua bilangan dari kelompok genap biasa**, misalnya <InlineMath math="2\cdot6=12" />.
+
+<BlockMath math="\begin{aligned}
+\text{ganjil dan kelipatan empat saja}&=10\cdot3=30\\
+\text{dua genap biasa}&=\binom{5}{2}=10\\
+n(A)&=30+10=40\\
+P(A)&=\frac{40}{190}=\frac{4}{19}
+\end{aligned}" />
+
+Coba cek dengan cara lain. Banyak pasangan yang hasil kalinya habis dibagi <InlineMath math="4" /> ada <InlineMath math="95" />, dan yang habis dibagi <InlineMath math="8" /> ada <InlineMath math="55" />. Selisihnya <InlineMath math="95-55=40" />, sama dengan hitungan tadi.
+
+# Pilihan yang menjebak
+
+Setiap pilihan lain berasal dari **kelompok yang terlupa atau urutan yang tercampur**.
+
+- <InlineMath math="\frac{3}{19}" /> muncul jika pasangan dua bilangan genap biasa, seperti <InlineMath math="2" /> dan <InlineMath math="6" />, terlupa, sehingga hanya <InlineMath math="30" /> pasangan yang dihitung.
+- <InlineMath math="\frac{5}{19}" /> muncul jika pasangan dua genap biasa dihitung berurutan, <InlineMath math="5\cdot4=20" />, padahal pengambilan sekaligus tidak memperhatikan urutan.
+- <InlineMath math="\frac{6}{19}" /> muncul jika <InlineMath math="8" /> dan <InlineMath math="16" /> dianggap hanya memuat dua faktor <InlineMath math="2" />, sehingga pasangan ganjil dan kelipatan empat menjadi <InlineMath math="10\cdot5=50" />.
+- <InlineMath math="\frac{8}{19}" /> muncul jika pasangan yang menguntungkan dihitung berurutan, <InlineMath math="80" />, tetapi ruang sampelnya tetap <InlineMath math="190" />.
+
+Jadi, peluang hasil kali kedua bilangan habis dibagi <InlineMath math="4" /> tetapi tidak habis dibagi <InlineMath math="8" /> adalah <InlineMath math="\frac{4}{19}" />.

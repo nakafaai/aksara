@@ -1,15 +1,43 @@
-**Mindestens einmal** berechnest du am leichtesten über das Gegenereignis, in keinem Wurf eine <InlineMath math="6" />. Die beiden Würfe sind unabhängig.
+# Die Wahrscheinlichkeit für eine leuchtende Lampe
+
+Die Aufgabe gibt dir eine Zusatzinformation: Die Lampe **leuchtet bekanntlich**. Gefragt ist also eine bedingte Wahrscheinlichkeit, nämlich wie wahrscheinlich <InlineMath math="C" /> unter allen Fällen, in denen die Lampe leuchtet, defekt ist:
+
+<BlockMath math="P(C\text{ defekt}\mid\text{an})=\frac{P(C\text{ defekt und an})}{P(\text{an})}" />
+
+Fang mit dem Nenner an. Der parallele Teil aus <InlineMath math="B" /> und <InlineMath math="C" /> fällt nur aus, wenn beide defekt sind, also rechnest du mit dem Gegenereignis. Danach multiplizierst du mit der Wahrscheinlichkeit, dass <InlineMath math="A" /> funktioniert, weil <InlineMath math="A" /> in Reihe liegt:
 
 <BlockMath math="\begin{aligned}
-P(\text{keine }6)&=\frac56\cdot\frac56=\frac{25}{36} \\
-P(\text{mindestens eine }6)&=1-\frac{25}{36}=\frac{11}{36}
+P(B\text{ oder }C\text{ funktioniert})&=1-(1-0{,}6)(1-0{,}5)=1-0{,}2=0{,}8 \\
+P(\text{an})&=0{,}9\cdot0{,}8=0{,}72
 \end{aligned}" />
 
-Probe durch Zählen: Genau eine <InlineMath math="6" /> ergibt <InlineMath math="5+5=10" /> Ergebnisse, zwei Sechsen <InlineMath math="1" /> Ergebnis, zusammen <InlineMath math="\frac{11}{36}" />.
+# Lampe an und ein Schalter defekt
 
-Die Wahrscheinlichkeit ist also <InlineMath math="\frac{11}{36}" />.
+Ist <InlineMath math="C" /> defekt, fließt der Strom nur noch über <InlineMath math="B" />. Lampe an bei defektem <InlineMath math="C" /> heißt also: **<InlineMath math="A" /> funktioniert, <InlineMath math="B" /> funktioniert und <InlineMath math="C" /> ist defekt**:
 
-- <InlineMath math="\frac{1}{36}" /> ist die Wahrscheinlichkeit für zwei Sechsen.
-- <InlineMath math="\frac16" /> ist die Wahrscheinlichkeit für eine <InlineMath math="6" /> in einem einzigen Wurf.
-- <InlineMath math="\frac{5}{18}" /> ist die Wahrscheinlichkeit für genau eine <InlineMath math="6" />, ohne <InlineMath math="(6,6)" />.
-- <InlineMath math="\frac13" /> addiert <InlineMath math="\frac16+\frac16" />, sodass <InlineMath math="(6,6)" /> doppelt zählt.
+<BlockMath math="P(C\text{ defekt und an})=0{,}9\cdot0{,}6\cdot0{,}5=0{,}27" />
+
+# Die bedingte Wahrscheinlichkeit
+
+Teil die beiden Werte:
+
+<BlockMath math="P(C\text{ defekt}\mid\text{an})=\frac{0{,}27}{0{,}72}=\frac{3}{8}" />
+
+Beachte: Die <InlineMath math="0{,}9" /> von <InlineMath math="A" /> steht im Zähler und im Nenner und kürzt sich weg. Eine leuchtende Lampe garantiert schon, dass <InlineMath math="A" /> funktioniert, also bleiben nur drei Fälle für <InlineMath math="B" /> und <InlineMath math="C" />. **Diese drei Fälle sind nicht gleich wahrscheinlich**:
+
+| <InlineMath math="B" /> und <InlineMath math="C" /> | Wahrscheinlichkeit |
+| :--- | :---: |
+| <InlineMath math="B" /> funktioniert, <InlineMath math="C" /> funktioniert | <InlineMath math="0{,}6\cdot0{,}5=0{,}3" /> |
+| <InlineMath math="B" /> funktioniert, <InlineMath math="C" /> defekt | <InlineMath math="0{,}6\cdot0{,}5=0{,}3" /> |
+| <InlineMath math="B" /> defekt, <InlineMath math="C" /> funktioniert | <InlineMath math="0{,}4\cdot0{,}5=0{,}2" /> |
+
+Der Anteil mit defektem <InlineMath math="C" /> ist <InlineMath math="\frac{0{,}3}{0{,}3+0{,}3+0{,}2}=\frac{0{,}3}{0{,}8}=\frac38" />, wie oben.
+
+Die Wahrscheinlichkeit, dass Schalter <InlineMath math="C" /> bei leuchtender Lampe defekt ist, beträgt also <InlineMath math="\frac{3}{8}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{27}{100}" /> ist die Wahrscheinlichkeit, dass die Lampe leuchtet **und** <InlineMath math="C" /> defekt ist. Hier fehlt noch die Division durch die Wahrscheinlichkeit, dass die Lampe leuchtet, obwohl das schon bekannt ist.
+- <InlineMath math="\frac{1}{3}" /> entsteht, wenn du die drei Fälle für <InlineMath math="B" /> und <InlineMath math="C" /> als gleich wahrscheinlich ansiehst. Die Tabelle zeigt <InlineMath math="0{,}3" />, <InlineMath math="0{,}3" /> und <InlineMath math="0{,}2" />.
+- <InlineMath math="\frac{5}{12}" /> ist <InlineMath math="\frac{0{,}3}{0{,}72}" />. Die Wahrscheinlichkeit für <InlineMath math="A" /> fehlt im Zähler, steht aber noch im Nenner.
+- <InlineMath math="\frac{1}{2}" /> ist die Ausgangswahrscheinlichkeit, dass <InlineMath math="C" /> defekt ist. Die Information, dass die Lampe leuchtet, bleibt dabei ungenutzt.

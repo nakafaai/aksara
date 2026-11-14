@@ -1,15 +1,39 @@
-Der Maßstab <InlineMath math="1:50{.}000" /> gilt für **Längen**: <InlineMath math="1\text{ cm}" /> auf der Karte steht für <InlineMath math="50{.}000\text{ cm}=0{,}5\text{ km}" />. Fläche ist Länge mal Länge, also steht <InlineMath math="1\text{ cm}^2" /> auf der Karte für ein Quadrat von <InlineMath math="0{,}5\text{ km}\times0{,}5\text{ km}" />.
+# Die Länge hängt von der Breite ab
+
+Gesucht ist der größtmögliche Umfang, obwohl nur die Breite gemessen wurde. Entscheidend ist: **Die Länge ist nicht frei, weil der Flächeninhalt auf <InlineMath math="63\text{ m}^2" /> festgelegt ist**. Ist die Breite <InlineMath math="w" />, dann ist die Länge <InlineMath math="\frac{63}{w}" />, und der Umfang hängt nur noch von einer Größe ab:
+
+<BlockMath math="K(w)=2\left(w+\frac{63}{w}\right),\qquad 3{,}5\le w<4{,}5" />
+
+Eine kleinere Breite macht die Länge größer. Greif also nicht sofort zur oberen Grenze der Breite. Du musst zuerst wissen, in welche Richtung sich der Umfang ändert.
+
+# In welche Richtung sich der Umfang ändert
+
+Nimm zwei Breiten <InlineMath math="w_1<w_2" /> aus dem Intervall und vergleiche ihre Umfänge:
 
 <BlockMath math="\begin{aligned}
-1\text{ cm}^2\ \text{auf der Karte}&\ \to\ 0{,}5^2=0{,}25\text{ km}^2 \\
-6\text{ cm}^2\ \text{auf der Karte}&\ \to\ 6\cdot0{,}25=1{,}5\text{ km}^2
+K(w_1)-K(w_2)&=2(w_1-w_2)+2\cdot63\left(\frac{1}{w_1}-\frac{1}{w_2}\right) \\
+&=2(w_2-w_1)\left(\frac{63}{w_1w_2}-1\right)
 \end{aligned}" />
 
-In Zentimetern kommt dasselbe heraus: <InlineMath math="6\cdot50{.}000^2=1{,}5\cdot10^{10}\text{ cm}^2" />, und <InlineMath math="1\text{ km}^2=10^{10}\text{ cm}^2" />.
+Der Faktor <InlineMath math="w_2-w_1" /> ist positiv. Beide Breiten sind kleiner als <InlineMath math="4{,}5" />, also ist ihr Produkt <InlineMath math="w_1w_2<20{,}25" />, weit unter <InlineMath math="63" />. Damit ist auch der zweite Faktor positiv, und <InlineMath math="K(w_1)>K(w_2)" />. Das heißt: **Je kleiner die Breite, desto größer der Umfang**, und zwar im ganzen Intervall.
 
-Der See hat also in Wirklichkeit <InlineMath math="1{,}5\text{ km}^2" />.
+# Der Wert am Rand des Intervalls
 
-- <InlineMath math="30\text{ m}^2" /> multipliziert die Fläche nur mit <InlineMath math="50{.}000" />, ohne den Maßstab zu quadrieren.
-- <InlineMath math="0{,}015\text{ km}^2" /> liest <InlineMath math="1\text{ cm}" /> auf der Karte als <InlineMath math="0{,}05\text{ km}" />.
-- <InlineMath math="0{,}15\text{ km}^2" /> rechnet die Einheit falsch um, mit <InlineMath math="1\text{ km}^2=10^{11}\text{ cm}^2" />.
-- <InlineMath math="3\text{ km}^2" /> multipliziert <InlineMath math="6" /> mit <InlineMath math="0{,}5" /> und vergisst, dass der Flächenmaßstab das Quadrat des Längenmaßstabs ist.
+Der größte Umfang liegt bei der kleinsten Breite, <InlineMath math="w=3{,}5" />. Dieser Wert **ist erlaubt**, wegen des Zeichens <InlineMath math="\le" /> in <InlineMath math="3{,}5\le w" />.
+
+| Breite <InlineMath math="w" /> (m) | Länge <InlineMath math="\frac{63}{w}" /> (m) | Umfang (m) |
+| :---: | :---: | :---: |
+| <InlineMath math="3{,}5" /> | <InlineMath math="18" /> | <InlineMath math="43" /> |
+| <InlineMath math="4" /> | <InlineMath math="15{,}75" /> | <InlineMath math="39{,}5" /> |
+| nahe <InlineMath math="4{,}5" /> | nahe <InlineMath math="14" /> | nahe <InlineMath math="37" /> |
+
+Probe für die erste Zeile: <InlineMath math="3{,}5\cdot18=63" />, und <InlineMath math="2(3{,}5+18)=43" />.
+
+Der größtmögliche Umfang des Grundstücks beträgt also <InlineMath math="43\text{ m}" />.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="37\text{ m}" /> nimmt die obere Grenze der Breite, <InlineMath math="4{,}5\text{ m}" />. Dort ist die Länge am kürzesten, der Umfang also am kleinsten. Außerdem **gehört <InlineMath math="w=4{,}5" /> nicht dazu**, weil dort das Zeichen <InlineMath math="<" /> steht.
+- <InlineMath math="39{,}5\text{ m}" /> übernimmt den Messwert <InlineMath math="4\text{ m}" /> unverändert und übersieht die Rundung.
+- <InlineMath math="41{,}5\text{ m}" /> addiert <InlineMath math="0{,}5" /> zu allen vier Seiten des Rechtecks <InlineMath math="4\times15{,}75" />, als wäre auch die Länge gemessen und könnte sich unabhängig ändern.
+- <InlineMath math="45\text{ m}" /> kombiniert die Länge <InlineMath math="18\text{ m}" /> aus <InlineMath math="w=3{,}5" /> mit der Breite <InlineMath math="4{,}5\text{ m}" />. Beides kann nicht gleichzeitig gelten, weil Länge und Breite vom selben <InlineMath math="w" /> kommen.

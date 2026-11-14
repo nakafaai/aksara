@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "grain-silo",
+  stimulus: "saluran",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$28{,}26\\text{ m}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$37{,}68\\text{ m}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$94{,}2\\text{ m}^3$$",
-        },
-        {
-          correct: false,
-          label: "$$188{,}4\\text{ m}^3$$",
-        },
-        {
           correct: true,
-          label: "$$282{,}6\\text{ m}^3$$",
+          label: "$$315$$ liter per detik",
+        },
+        {
+          correct: false,
+          label: "$$360$$ liter per detik",
+        },
+        {
+          correct: false,
+          label: "$$432$$ liter per detik",
+        },
+        {
+          correct: false,
+          label: "$$450$$ liter per detik",
+        },
+        {
+          correct: false,
+          label: "$$480$$ liter per detik",
         },
       ],
     },

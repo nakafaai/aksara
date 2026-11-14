@@ -1,13 +1,44 @@
-Der Rand eines Kreisausschnitts besteht aus **einem Bogen und zwei Radien**. Der Bogen ist der Anteil des Kreisumfangs, den der Mittelpunktswinkel vorgibt, <InlineMath math="\frac{120^\circ}{360^\circ}=\frac13" />.
+Gefragt ist die Anzahl der Dosen unverdünnter Farbe. Die Kette ist lang: Mantelfläche, minus Tür und Fenster, mal zwei Anstriche, dann Liter verdünnter Farbe, dann Liter reiner Farbe und erst dann Dosen. Die tückischste Stelle ist, dass **das Wasser <InlineMath math="25\%" /> des Farbvolumens ausmacht, nicht des Mischungsvolumens**.
+
+# Die gestrichene Fläche
+
+Der Mantel eines Zylinders ist Umfang der Grundfläche mal Höhe, also <InlineMath math="\pi d h" />. Der Durchmesser ist <InlineMath math="3{,}5\text{ m}" />, der Radius also <InlineMath math="1{,}75\text{ m}" />. Pass auf: **<InlineMath math="3{,}5" /> ist der Durchmesser, nicht der Radius**.
 
 <BlockMath math="\begin{aligned}
-\text{Bogen}&=\frac13\cdot2\cdot\frac{22}{7}\cdot21=44\text{ m} \\
-\text{Zaun}&=44+21+21=86\text{ m}
+\text{Mantelfläche}&=\frac{22}{7}\cdot3{,}5\cdot6=66\text{ m}^2 \\
+\text{Tür und Fenster}&=1\cdot2+4\cdot(1\cdot1)=6\text{ m}^2 \\
+\text{gestrichene Fläche}&=66-6=60\text{ m}^2 \\
+\text{für zwei Anstriche}&=2\cdot60=120\text{ m}^2
 \end{aligned}" />
 
-Der Zaun muss also <InlineMath math="86\text{ m}" /> lang sein.
+# Von verdünnter zu reiner Farbe
 
-- <InlineMath math="44\text{ m}" /> ist nur der Bogen, ohne die beiden Radien.
-- <InlineMath math="65\text{ m}" /> addiert nur einen Radius zum Bogen.
-- <InlineMath math="132\text{ m}" /> ist der Umfang des ganzen Kreises.
-- <InlineMath math="462" /> ist der Flächeninhalt des Ausschnitts in <InlineMath math="\text{m}^2" />, nicht die Zaunlänge.
+Ein Liter verdünnte Farbe reicht für <InlineMath math="6\text{ m}^2" />, also brauchst du an verdünnter Farbe
+
+<BlockMath math="\frac{120}{6}=20\text{ Liter verdünnte Farbe}" />
+
+Die reine Farbe sei <InlineMath math="c" /> Liter. Das zugegebene Wasser beträgt <InlineMath math="25\%" /> **des Farbvolumens**, also <InlineMath math="0{,}25c" />. Die Mischung ist <InlineMath math="c+0{,}25c=1{,}25c" />:
+
+<BlockMath math="\begin{aligned}
+1{,}25c&=20 \\
+c&=\frac{20}{1{,}25}=16\text{ Liter}
+\end{aligned}" />
+
+Probe: <InlineMath math="16" /> Liter Farbe plus <InlineMath math="25\%\cdot16=4" /> Liter Wasser ergeben <InlineMath math="20" /> Liter Mischung. Passt.
+
+# Anzahl der Dosen
+
+Jede Dose enthält <InlineMath math="2{,}5" /> Liter reine Farbe:
+
+<BlockMath math="\frac{16}{2{,}5}=6{,}4" />
+
+Sechs Dosen enthalten nur <InlineMath math="15" /> Liter, weniger als <InlineMath math="16" /> Liter. Also **rundest du auf** auf <InlineMath math="7" /> Dosen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6" /> Dosen entstehen, wenn **das Wasser als <InlineMath math="25\%" /> der Mischung gilt**, die reine Farbe also <InlineMath math="75\%\cdot20=15" /> Liter wäre. Dieselbe Zahl kommt heraus, wenn du <InlineMath math="6{,}4" /> abrundest.
+- <InlineMath math="8" /> Dosen entstehen, wenn du alle <InlineMath math="20" /> Liter Mischung als Farbe kaufst und vergisst, dass <InlineMath math="4" /> Liter davon Wasser sind. Auch wer Tür und Fenster nicht abzieht, kommt auf <InlineMath math="8" /> Dosen.
+- <InlineMath math="10" /> Dosen entstehen, wenn du <InlineMath math="20" /> Liter mit <InlineMath math="1{,}25" /> multiplizierst statt zu dividieren. Das Verhältnis ist dann verkehrt herum angewendet.
+- <InlineMath math="14" /> Dosen entstehen, wenn <InlineMath math="3{,}5\text{ m}" /> als Radius benutzt wird. Die Mantelfläche verdoppelt sich dann auf <InlineMath math="132\text{ m}^2" />.
+
+Man muss also mindestens <InlineMath math="7" /> Dosen Farbe kaufen.

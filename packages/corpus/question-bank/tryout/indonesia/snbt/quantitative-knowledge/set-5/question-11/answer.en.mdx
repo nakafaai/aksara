@@ -1,20 +1,46 @@
-The new square cuts off four right triangles at the corners of the large square. Because every side is divided in the same way, the four triangles are **congruent**, each with legs 3 and 1.
+You're looking for the smallest value of <InlineMath math="2x+y" /> under two conditions. The AM-GM inequality (the arithmetic mean is at least the geometric mean) gives a lower bound, but **that bound is only the minimum if its equality case is allowed**. The plan: check the equality case, then turn the problem into a one-variable function on the allowed range.
 
-# The area of the new square
+# A lower bound from AM-GM
 
-Two routes give the same result. The side of the new square is the hypotenuse of a corner triangle, or its area is the large square minus **the four corner triangles**.
+For the two positive numbers <InlineMath math="2x" /> and <InlineMath math="y" />, AM-GM gives the bound below. Equality happens when <InlineMath math="2x=y" />.
 
 <BlockMath math="\begin{aligned}
-s^2&=3^2+1^2=10\\
-16-4\cdot\tfrac12\cdot3\cdot1&=16-6=10
+2x+y&\ge2\sqrt{2x\cdot y}=2\sqrt{24}=4\sqrt6\\
+2x=y\ \text{and}\ xy=12\quad&\Rightarrow\quad x=\sqrt6,\ y=2\sqrt6
 \end{aligned}" />
 
-# The ratio of the areas
+That point gives <InlineMath math="3y=6\sqrt6" />, which is far bigger than <InlineMath math="x=\sqrt6" />, so the condition <InlineMath math="x\ge3y" /> fails. **The AM-GM equality can't happen here**, so <InlineMath math="4\sqrt6" /> isn't the minimum.
 
-Divide **the area of the new square by the area of the large square**.
+# The allowed values of x
 
-<BlockMath math="\frac{10}{16}=\frac58" />
+From <InlineMath math="xy=12" /> you get <InlineMath math="y=\tfrac{12}{x}" />. Substitute it into the second condition. Since <InlineMath math="x" /> is positive, **you can multiply both sides by <InlineMath math="x" /> without flipping the sign**.
 
-The value <InlineMath math="\tfrac12" /> holds when the points are midpoints of the sides, not a <InlineMath math="3:1" /> division. The value <InlineMath math="\tfrac9{16}" /> uses only <InlineMath math="3^2" /> as the area of the new square. The value <InlineMath math="\tfrac34" /> uses the length ratio <InlineMath math="3:4" /> as the area ratio. The value <InlineMath math="\tfrac14" /> forgets the factor <InlineMath math="\tfrac12" /> in the triangle area and so subtracts 12.
+<BlockMath math="\begin{aligned}
+x&\ge3\cdot\frac{12}{x}\\
+x^2&\ge36\\
+x&\ge6
+\end{aligned}" />
 
-So the ratio of the areas is <InlineMath math="\tfrac58" />.
+So you need the smallest value of <InlineMath math="f(x)=2x+\tfrac{12}{x}" /> for <InlineMath math="x\ge6" />.
+
+# The smallest value on that range
+
+Compare <InlineMath math="f(x)" /> with its value at the end of the range, <InlineMath math="f(6)=12+2=14" />.
+
+<BlockMath math="\begin{aligned}
+f(x)-14&=\frac{2x^2-14x+12}{x}\\
+&=\frac{2(x-1)(x-6)}{x}
+\end{aligned}" />
+
+For <InlineMath math="x\ge6" />, the factor <InlineMath math="x-1" /> is positive, the factor <InlineMath math="x-6" /> isn't negative, and <InlineMath math="x" /> is positive. So <InlineMath math="f(x)-14\ge0" />, with equality exactly at <InlineMath math="x=6" />. **The minimum sits at the end of the range**, at <InlineMath math="x=6" /> and <InlineMath math="y=2" />, and that pair satisfies <InlineMath math="6\ge3\cdot2" />.
+
+Check with another value in the range: <InlineMath math="x=12" /> and <InlineMath math="y=1" /> give <InlineMath math="2x+y=25" />, which is bigger than <InlineMath math="14" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="4\sqrt6" /> is the AM-GM bound whose **equality case breaks the condition <InlineMath math="x\ge3y" />**.
+- <InlineMath math="4\sqrt3" /> comes from a wrong AM-GM, <InlineMath math="2x+y\ge2\sqrt{xy}" />, where the coefficient <InlineMath math="2" /> went missing from inside the root.
+- <InlineMath math="8" /> is the value of <InlineMath math="x+y" /> at the point <InlineMath math="(6,2)" />, not the value of <InlineMath math="2x+y" />.
+- <InlineMath math="10" /> comes from flipping the condition to <InlineMath math="y\ge3x" />, which moves the best point to <InlineMath math="x=2" /> and <InlineMath math="y=6" />.
+
+So the minimum value of <InlineMath math="2x+y" /> is <InlineMath math="14" />.

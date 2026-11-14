@@ -1,12 +1,27 @@
-The value removed is **the largest one, far from the others**. Recalculate the measures for <InlineMath math="11" /> values.
+# The range of Gita's score
+
+Gita's score isn't known, so the word **"pasti"** (surely) in each statement means it has to hold for every score Gita could have. The first step is to find all those scores from the condition on the mean.
+
+Call Gita's score <InlineMath math="x" />. The eight original scores add up to <InlineMath math="560" />, and the mean of the nine students must be more than <InlineMath math="71" />:
 
 <BlockMath math="\begin{aligned}
-\bar x_{\text{new}}&=\frac{96-34}{11}=\frac{62}{11}\approx5.64 \\
-\text{drop in mean}&\approx8-5.64=2.36 \\
-\text{new median}&=x_6=5,\qquad\text{drop in median}=5.5-5=0.5
+\frac{560+x}{9}&>71 \\
+560+x&>639 \\
+x&>79
 \end{aligned}" />
 
-- The mean drops by about <InlineMath math="2.36" /> minutes, more than <InlineMath math="2" /> minutes. This statement is true.
-- With <InlineMath math="11" /> values the median is the <InlineMath math="6" />th of <InlineMath math="3,\ 4,\ 4,\ 5,\ 5,\ 5,\ 6,\ 6,\ 7,\ 8,\ 9" />, which is <InlineMath math="5" />. This statement is true.
-- The median drops only <InlineMath math="0.5" /> minutes, while the mean drops about <InlineMath math="2.36" /> minutes. The mean is far more sensitive to an extreme value. This statement is false.
-- The value <InlineMath math="5" /> still appears <InlineMath math="3" /> times and is still the most frequent. This statement is false.
+Scores also go up to <InlineMath math="100" /> at most, so Gita's possible scores are <InlineMath math="79<x\le100" />.
+
+# Checking each statement
+
+**Statement 1**. There are <InlineMath math="9" /> values, an odd number, so the median is the <InlineMath math="5" />th value in order, with no averaging. The original scores in order are <InlineMath math="56,\ 58,\ 66,\ 68,\ 70,\ 72,\ 82,\ 88" />. Since <InlineMath math="x>79" />, Gita's score always lands above <InlineMath math="70" />. The five smallest values stay <InlineMath math="56,\ 58,\ 66,\ 68,\ 70" />, so the <InlineMath math="5" />th value is always <InlineMath math="70" />, whatever <InlineMath math="x" /> is. **True**.
+
+**Statement 2**. The students who study more than Gita are Bima (<InlineMath math="11" /> hours, score <InlineMath math="88" />) and Fajar (<InlineMath math="17" /> hours, score <InlineMath math="82" />). For the statement to be sure, <InlineMath math="x" /> would always have to be above <InlineMath math="88" />. Try <InlineMath math="x=80" />, which fits the condition because <InlineMath math="\frac{640}{9}\approx71.1>71" />. A score of <InlineMath math="80" /> is lower than Fajar's <InlineMath math="82" />, so **there's a counterexample**. **False**.
+
+**Statement 3**. The students with at least <InlineMath math="8" /> study hours are Gita, Bima, and Fajar. Their mean score is:
+
+<BlockMath math="\frac{x+88+82}{3}=\frac{170+x}{3}>\frac{170+79}{3}=83" />
+
+The sign stays strict because <InlineMath math="x" /> is **more than** <InlineMath math="79" />, not equal to it. So their mean is always more than <InlineMath math="83" /> for every possible score of Gita. **True**.
+
+So the answers are True, False, True.

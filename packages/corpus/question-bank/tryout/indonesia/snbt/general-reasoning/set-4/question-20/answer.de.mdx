@@ -1,26 +1,31 @@
-Beginne mit **der Zahl der Spiele und der Gesamtpunktzahl**. Vier Teams, die je einmal gegeneinander spielen, bestreiten <InlineMath math="6" /> Spiele. Ein Spiel mit Sieger bringt insgesamt <InlineMath math="3" /> Punkte, ein Unentschieden <InlineMath math="2" />. Die Gesamtpunktzahl ist <InlineMath math="7+5+3+1=16" />.
+Gesucht ist eine Aussage, die in **jeder Reihenfolge gilt, die alle vier Angaben erfüllt**. Der Schlüssel ist Angabe 4, ein „wenn ..., dann ...“-Satz, dessen „dann“-Teil sich als unmöglich herausstellt. *Lompatan* bedeutet hier den besten Sprung jeder Person.
 
-<BlockMath math="\begin{aligned}
-m+s &= 6 \\
-3m+2s &= 16
-\end{aligned}" />
+Verbinde zuerst die Angaben 1, 2 und 3. Die Schreibweise <InlineMath math="A > B" /> bedeutet, dass <InlineMath math="A" /> weiter gesprungen ist als <InlineMath math="B" />.
 
-Dabei steht <InlineMath math="m" /> für die entschiedenen Spiele und <InlineMath math="s" /> für die Unentschieden. Daraus folgt <InlineMath math="m=4" /> und <InlineMath math="s=2" />.
+<BlockMath math="\begin{aligned} \text{Nadia} &> \text{Jihan} > \text{Gilang} > \text{Hesti} \\ \text{Irfan} &> \text{Gilang} \\ \text{Lukas} &> \text{Gilang} \end{aligned}" />
 
-Jedes Team spielt <InlineMath math="3" />-mal. Zerlege die Punkte jedes Teams:
+Die erste Zeile zeigt, dass Hestis Sprung kürzer ist als Nadias. Der „dann“-Teil von Angabe 4, „Hesti ist weiter gesprungen als Nadia“, kann also nicht eintreten.
 
-- A: <InlineMath math="7=3+3+1" />, also <InlineMath math="2" /> Siege und <InlineMath math="1" /> Unentschieden.
-- B: <InlineMath math="5=3+1+1" />, also <InlineMath math="1" /> Sieg und <InlineMath math="2" /> Unentschieden.
-- C: <InlineMath math="3" /> Punkte. Drei Unentschieden sind unmöglich, weil es nur <InlineMath math="2" /> gibt, also hat C <InlineMath math="1" /> Sieg und <InlineMath math="2" /> Niederlagen.
-- D: <InlineMath math="1" /> Unentschieden und <InlineMath math="2" /> Niederlagen.
+Ein wahrer Satz „wenn P, dann Q“ hat nie den Fall, dass P eintritt und Q nicht. Hier tritt Q sicher nicht ein, also darf auch P nicht eintreten. Lukas ist also nicht weiter gesprungen als Irfan. Anders gesagt: Irfan ist weiter gesprungen als Lukas.
 
-B spielte zweimal unentschieden, C nie, also spielte B gegen A und D unentschieden. Damit sind beide Unentschieden vergeben: A gegen B und B gegen D. A verlor nie, also schlug A die Teams C und D. Der Sieg von B war gegen C. Der Sieg von C muss gegen D gewesen sein, weil C gegen A und B verlor. Also **schlug C das Team D**.
+Zähl jetzt, wer sicher unter Irfan liegt: Gilang und Hesti (Angabe 1) und Lukas (der Schritt eben). Mindestens drei Personen sind kürzer gesprungen als Irfan, also liegt Irfan schlechtestens auf Platz 3.
 
-Die anderen Optionen widersprechen dieser Zerlegung:
+Zur Kontrolle listest du alle Reihenfolgen auf. Gilang und Hesti belegen immer die Plätze 5 und 6, weil die anderen vier alle weiter gesprungen sind als Gilang. Die Plätze 1 bis 4 gehen an Irfan, Lukas, Nadia und Jihan, mit Irfan über Lukas und Nadia über Jihan. Das ergibt sechs Reihenfolgen, beginnend mit dem weitesten Sprung.
 
-- A spielte nicht unentschieden gegen C, sondern gewann.
-- B spielte gegen D unentschieden und gewann nicht.
-- D verlor gegen A und spielte nicht unentschieden.
-- A spielte gegen B unentschieden und verlor nicht.
+| Reihenfolge | 1 | 2 | 3 | 4 | 5 | 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | Irfan | Lukas | Nadia | Jihan | Gilang | Hesti |
+| II | Irfan | Nadia | Lukas | Jihan | Gilang | Hesti |
+| III | Irfan | Nadia | Jihan | Lukas | Gilang | Hesti |
+| IV | Nadia | Irfan | Lukas | Jihan | Gilang | Hesti |
+| V | Nadia | Irfan | Jihan | Lukas | Gilang | Hesti |
+| VI | Nadia | Jihan | Irfan | Lukas | Gilang | Hesti |
 
-Sicher wahr ist also, dass C das Team D besiegt hat.
+Irfan liegt tatsächlich in allen sechs Reihenfolgen auf Platz 1, 2 oder 3. Die anderen Aussagen gelten nur in manchen Reihenfolgen.
+
+- Irfan springt am weitesten ist in den Reihenfolgen IV, V und VI falsch. Der Schritt eben setzt Irfan nur über Lukas, nicht über Nadia.
+- Lukas springt kürzer als Nadia ist in Reihenfolge I falsch. Angabe 4 bindet Lukas nur an Irfan, nicht an Nadia.
+- Nadia springt am weitesten ist in den Reihenfolgen I, II und III falsch. Nadias Kette ist zwar die längste, aber Irfan wird nie direkt mit Nadia verglichen.
+- Jihan unter den drei weitesten ist in den Reihenfolgen I, II und IV falsch. Sicher ist nur, dass Jihan unter Nadia liegt, aber auch Irfan und Lukas können vor ihr liegen.
+
+Sicher richtig ist also, dass Irfans Sprung zu den drei weitesten gehört.

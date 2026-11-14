@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "inductive-reasoning",
     topic: "conclusion",
   },
-  stimulus: "atap",
+  stimulus: "tambak",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengecatan atap putih membuat tagihan listrik bulanan rumah di kelurahan itu turun secara nyata.",
+            "Kincir membuat kematian udang lebih tinggi, karena pada siklus terakhir rata-rata kematian seluruh petak berkincir lebih tinggi daripada rata-rata kematian seluruh petak tanpa kincir.",
+        },
+        {
+          correct: false,
+          label:
+            "Kincir tidak berpengaruh terhadap kematian udang, karena rata-rata kematian kedua kelompok sama-sama naik $$7$$ poin persen.",
         },
         {
           correct: true,
           label:
-            "Plafon meredam sebagian pengaruh warna atap terhadap suhu ruang utama pada siang hari.",
+            "Pada padat tebar tinggi, kematian petak berkincir naik $$8$$ poin persen lebih sedikit daripada kematian petak tanpa kincir, sedangkan pada padat tebar rendah kenaikan kedua kelompok sama.",
         },
         {
           correct: false,
           label:
-            "Rumah tanpa plafon di kelurahan itu lebih panas daripada rumah berplafon.",
+            "Pada padat tebar tinggi, kincir menurunkan kematian sebesar $$12$$ poin persen, karena pada siklus terakhir petak berkincir mencatat $$30\\%$$, sedangkan petak tanpa kincir mencatat $$42\\%$$.",
         },
         {
           correct: false,
           label:
-            "Selisih suhu yang sama akan terjadi jika atap genting tanah liat dicat putih.",
-        },
-        {
-          correct: false,
-          label:
-            "Kipas angin memakai sebagian besar listrik rumah tangga di kelurahan itu.",
+            "Kincir menahan kenaikan kematian pada kedua padat tebar, karena kematian petak berkincir berpadat tebar rendah hanya naik $$4$$ poin persen.",
         },
       ],
     },

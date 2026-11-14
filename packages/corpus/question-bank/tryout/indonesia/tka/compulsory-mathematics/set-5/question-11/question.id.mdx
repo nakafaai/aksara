@@ -1,3 +1,43 @@
-Titik <InlineMath math="P" /> terletak di luar lingkaran yang berpusat di <InlineMath math="O" /> dan berjari-jari <InlineMath math="9\text{ cm}" />. Dari <InlineMath math="P" /> ditarik dua garis singgung yang menyinggung lingkaran di titik <InlineMath math="A" /> dan titik <InlineMath math="B" />. Jarak <InlineMath math="OP=15\text{ cm}" />.
+Tiga puli berbentuk lingkaran dipasang dengan pusat-pusatnya pada satu garis lurus. Puli <InlineMath math="P" /> dan puli <InlineMath math="Q" /> masing-masing berjari-jari <InlineMath math="8\text{ cm}" />, sedangkan puli <InlineMath math="S" /> berjari-jari <InlineMath math="2\text{ cm}" />. Puli <InlineMath math="Q" /> terletak di antara <InlineMath math="P" /> dan <InlineMath math="S" />, jarak pusat <InlineMath math="P" /> ke pusat <InlineMath math="Q" /> adalah <InlineMath math="20\text{ cm}" />, dan jarak pusat <InlineMath math="Q" /> ke pusat <InlineMath math="S" /> adalah <InlineMath math="12\text{ cm}" />. Sebuah sabuk dipasang mengelilingi ketiga puli dari luar dan teregang kencang, seperti pada gambar. Ketebalan sabuk diabaikan.
 
-Luas segi empat <InlineMath math="OAPB" /> adalah ....
+<MathVisual
+  title={<>Sabuk pada tiga puli</>}
+  description={<>Tiga lingkaran berpusat pada satu garis mendatar. Lingkaran <InlineMath math="P" /> dan <InlineMath math="Q" /> berjari-jari <InlineMath math="8\text{ cm}" /> dengan jarak pusat <InlineMath math="20\text{ cm}" />. Lingkaran <InlineMath math="S" /> berjari-jari <InlineMath math="2\text{ cm}" /> berada di kanan <InlineMath math="Q" /> dengan jarak pusat <InlineMath math="12\text{ cm}" />. Sabuk terdiri atas ruas garis yang menyinggung puli dan busur yang menempel pada puli: ruas mendatar di atas dan di bawah dari <InlineMath math="P" /> ke <InlineMath math="Q" />, ruas miring di atas dan di bawah dari <InlineMath math="Q" /> ke <InlineMath math="S" />, serta busur pada ketiga puli.</>}
+  labels={{
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    s: <InlineMath math="S" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 36 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pulley-p", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 8 },
+      { id: "pulley-q", kind: "circle", appearance: "reference", center: { x: 20, y: 0 }, radius: 8 },
+      { id: "pulley-s", kind: "circle", appearance: "reference", center: { x: 32, y: 0 }, radius: 2 },
+      { id: "belt-top", kind: "segment", appearance: "primary", from: { x: 0, y: 8 }, to: { x: 20, y: 8 } },
+      { id: "belt-q-top", kind: "arc", appearance: "primary", center: { x: 20, y: 0 }, radius: 8, startDegrees: 60, sweepDegrees: 30 },
+      { id: "belt-slant-top", kind: "segment", appearance: "primary", from: { x: 24, y: 4 * Math.sqrt(3) }, to: { x: 33, y: Math.sqrt(3) } },
+      { id: "belt-s", kind: "arc", appearance: "primary", center: { x: 32, y: 0 }, radius: 2, startDegrees: 300, sweepDegrees: 120 },
+      { id: "belt-slant-bottom", kind: "segment", appearance: "primary", from: { x: 33, y: -Math.sqrt(3) }, to: { x: 24, y: -4 * Math.sqrt(3) } },
+      { id: "belt-q-bottom", kind: "arc", appearance: "primary", center: { x: 20, y: 0 }, radius: 8, startDegrees: 270, sweepDegrees: 30 },
+      { id: "belt-bottom", kind: "segment", appearance: "primary", from: { x: 20, y: -8 }, to: { x: 0, y: -8 } },
+      { id: "belt-p", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 8, startDegrees: 90, sweepDegrees: 180 },
+      { id: "center-p", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "center-q", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "center-s", kind: "point", appearance: "reference", at: { x: 32, y: 0 } },
+    ],
+    labels: [
+      { key: "p", objectId: "center-p", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "q", objectId: "center-q", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "s", objectId: "center-s", at: { x: 32, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Panjang sabuk tersebut adalah ....

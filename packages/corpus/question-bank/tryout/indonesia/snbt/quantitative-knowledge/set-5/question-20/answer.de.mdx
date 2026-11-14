@@ -1,20 +1,30 @@
-Lies die fünf Werte aus dem Graphen ab: 120, 150, 135, 180 und 165. Jede Aussage prüft einen anderen Kennwert, **berechne die nötigen Kennwerte also einzeln**.
+Diese Bruchgleichung lässt sich direkt schwer abzählen, also lautet der Plan: Mach daraus **ein Produkt aus zwei Faktoren mit festem Wert**. Danach liefert jedes Faktorpaar eine Lösung, und du zählst nur noch die Paare mit <InlineMath math="x<y" />.
 
-# Mittelwert und Median
+# Umformen zu einem Produkt
 
-<BlockMath math="\bar x=\frac{120+150+135+180+165}{5}=\frac{750}{5}=150" />
+Multipliziere beide Seiten mit <InlineMath math="24xy" /> und **addiere dann auf beiden Seiten <InlineMath math="576=24^2" />**, damit sich die linke Seite faktorisieren lässt.
 
-Geordnet lauten die Daten 120, 135, 150, 165, 180, der Median ist also 150. **Der Median ist gleich dem Mittelwert** und nicht größer. Die erste Aussage ist wahr, die dritte Aussage ist falsch.
+<BlockMath math="\begin{aligned}
+24y+24x&=xy\\
+xy-24x-24y&=0\\
+xy-24x-24y+576&=576\\
+(x-24)(y-24)&=576
+\end{aligned}" />
 
-# Tägliche Änderungen
+# Beide Faktoren sind positiv
 
-| Änderung | Differenz | Prozent |
-| :---: | :---: | :---: |
-| Montag zu Dienstag | <InlineMath math="+30" /> | <InlineMath math="\frac{30}{120}=25\%" /> |
-| Dienstag zu Mittwoch | <InlineMath math="-15" /> | <InlineMath math="-10\%" /> |
-| Mittwoch zu Donnerstag | <InlineMath math="+45" /> | <InlineMath math="\frac{45}{135}\approx33{,}3\%" /> |
-| Donnerstag zu Freitag | <InlineMath math="-15" /> | <InlineMath math="\approx-8{,}3\%" /> |
+Weil <InlineMath math="\tfrac1y" /> positiv ist, ist <InlineMath math="\tfrac1x" /> kleiner als <InlineMath math="\tfrac{1}{24}" />, also gilt <InlineMath math="x>24" />. Aus demselben Grund gilt <InlineMath math="y>24" />. Also **sind beide Faktoren <InlineMath math="x-24" /> und <InlineMath math="y-24" /> positiv**, und negative Faktorpaare musst du nicht prüfen.
 
-Der größte Anstieg, 45 Besucher, liegt zwischen Mittwoch und Donnerstag, die zweite Aussage ist also wahr. Der Anstieg von Montag zu Dienstag beträgt 25 %, weil sich Prozent **auf den Ausgangswert 120 bezieht**. Die Zahl 30 ist die Differenz der Besucherzahlen und kein Prozentsatz, die vierte Aussage ist also falsch.
+# Die Paare zählen
 
-Die erste Aussage ist also **wahr**, die zweite **wahr**, die dritte **falsch** und die vierte **falsch**.
+Die Primfaktorzerlegung ist <InlineMath math="576=2^6\cdot3^2" />, also hat <InlineMath math="576" /> genau <InlineMath math="(6+1)(2+1)=21" /> positive Teiler. Jeder Teiler <InlineMath math="d" /> liefert ein geordnetes Paar <InlineMath math="(x,y)=\left(24+d,\ 24+\tfrac{576}{d}\right)" />. Der Teiler <InlineMath math="d=24" /> liefert <InlineMath math="x=y=48" />, und das erfüllt <InlineMath math="x<y" /> nicht. Die übrigen <InlineMath math="20" /> geordneten Paare treten als vertauschte Zwillinge auf, und **genau die Hälfte davon** hat <InlineMath math="x<y" />.
+
+<BlockMath math="\frac{21-1}{2}=10" />
+
+Probe mit der Liste: <InlineMath math="x<y" /> gilt genau für <InlineMath math="d<24" />, also für <InlineMath math="d=1,2,3,4,6,8,9,12,16,18" />, das sind <InlineMath math="10" /> Werte. Zum Beispiel liefert <InlineMath math="d=1" /> das Paar <InlineMath math="(25,600)" />, und es gilt <InlineMath math="\tfrac{1}{25}+\tfrac{1}{600}=\tfrac{24+1}{600}=\tfrac{1}{24}" />.
+
+# Typische Fehler
+
+**Das Paar mit <InlineMath math="x=y" /> musst du vor dem Halbieren entfernen**. Sonst erhältst du <InlineMath math="11" />. Die Antwort <InlineMath math="21" /> zählt geordnete Paare ohne die Bedingung <InlineMath math="x<y" />, und die Antwort <InlineMath math="4" /> entsteht, wenn du die Teiler von <InlineMath math="24" /> statt die Teiler von <InlineMath math="24^2" /> zählst.
+
+Es gibt also <InlineMath math="10" /> Paare positiver ganzer Zahlen <InlineMath math="(x,y)" /> mit <InlineMath math="x<y" />, die die Gleichung erfüllen.

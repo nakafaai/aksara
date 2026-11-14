@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "deductive-reasoning",
     topic: "arrangement",
   },
-  stimulus: "meja",
+  stimulus: "seminar",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
@@ -14,20 +14,20 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "N duduk di kursi $$3$$ atau kursi $$4$$.",
+          label: "Bayu tampil pada giliran $$6$$.",
+        },
+        {
+          column: 2,
+          label: "Galih tampil pada giliran bernomor genap.",
+        },
+        {
+          column: 2,
+          label: "Eka tampil tepat setelah Fani.",
         },
         {
           column: 1,
           label:
-            "Salah satu dari L dan M duduk di kursi bernomor genap, sedangkan yang lain duduk di kursi bernomor ganjil.",
-        },
-        {
-          column: 2,
-          label: "O duduk di kursi bernomor ganjil.",
-        },
-        {
-          column: 2,
-          label: "P duduk berhadapan dengan L atau dengan M.",
+            "Jika Hesti tampil pada giliran $$1$$, Eka tampil pada giliran $$4$$.",
         },
       ],
     },

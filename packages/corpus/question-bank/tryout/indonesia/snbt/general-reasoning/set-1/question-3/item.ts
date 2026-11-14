@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "understanding",
+    cognitiveLevel: "reasoning",
     contentDomain: "inductive-reasoning",
-    topic: "inference",
+    topic: "data-inference",
   },
-  stimulus: "atap",
+  stimulus: "tambak",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Dapat disimpulkan", "Tidak dapat disimpulkan"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Selisih suhu pada rumah tanpa plafon lebih dari tiga kali selisih suhu pada rumah berplafon.",
+            "Pada siklus lalu, ketika belum ada kincir, rata-rata kematian seluruh petak yang kemudian dipasangi kincir lebih tinggi daripada rata-rata kematian seluruh petak yang tetap tanpa kincir.",
         },
         {
           column: 2,
           label:
-            "Data penelitian menunjukkan bahwa cat putih membuat suhu ruang utama lebih rendah sepanjang hari.",
+            "Seandainya kelima petak tanpa kincir berpadat tebar tinggi juga dipasangi kincir pada siklus terakhir, rata-rata kematiannya akan berada di bawah $$40\\%$$.",
         },
         {
           column: 2,
           label:
-            "Tagihan listrik yang hampir sama menunjukkan bahwa penghuni rumah beratap putih tetap sering menyalakan kipas angin.",
+            "Kenaikan rata-rata kematian petak berpadat tebar rendah dari siklus lalu ke siklus terakhir disebabkan oleh musim kemarau.",
         },
         {
           column: 1,
           label:
-            "Sebagian rumah yang diteliti memiliki plafon, sedangkan sebagian lainnya tidak.",
+            "Di antara keempat kelompok petak pada tabel, hanya kelompok tanpa kincir berpadat tebar tinggi yang kenaikan rata-rata kematiannya lebih dari dua kali kenaikan rata-rata kematian kelompok berpadat tebar rendah.",
         },
       ],
     },

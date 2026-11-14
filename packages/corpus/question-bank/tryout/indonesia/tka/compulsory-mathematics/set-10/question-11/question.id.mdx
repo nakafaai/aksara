@@ -1,3 +1,47 @@
-Dua kapal berangkat bersamaan dari pelabuhan yang sama. Kapal A berlayar lurus ke arah timur sejauh <InlineMath math="24" /> km, dan kapal B berlayar lurus ke arah utara sejauh <InlineMath math="18" /> km.
+Sebuah taman berbentuk lingkaran mempunyai kolam berbentuk lingkaran yang **sepusat** dengan taman. Jalan setapak lurus menghubungkan titik <InlineMath math="A" /> dan <InlineMath math="B" /> pada tepi taman dan melintasi kolam lewat jembatan <InlineMath math="CD" />, dengan <InlineMath math="C" /> dan <InlineMath math="D" /> pada tepi kolam. Panjang <InlineMath math="AC=5\text{ m}" /> dan <InlineMath math="CD=6\text{ m}" />. Jarak pusat ke jalan setapak tidak diketahui.
 
-Jarak kedua kapal sekarang adalah ....
+<MathVisual
+  title={<>Taman dan kolam sepusat</>}
+  description={<>Dua lingkaran sepusat di titik <InlineMath math="O" />. Ruas lurus <InlineMath math="AB" /> menghubungkan dua titik pada lingkaran besar dan memotong lingkaran kecil di <InlineMath math="C" /> dan <InlineMath math="D" />, berurutan <InlineMath math="A" />, <InlineMath math="C" />, <InlineMath math="D" />, <InlineMath math="B" />. Panjang <InlineMath math="AC=5\text{ m}" /> dan <InlineMath math="CD=6\text{ m}" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    "length-ac": <InlineMath math="5" />,
+    "length-cd": <InlineMath math="6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 10 },
+      y: { min: -10, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "park", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: Math.sqrt(80) },
+      { id: "pond", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "path-ac", kind: "segment", appearance: "highlight", from: { x: -8, y: -4 }, to: { x: -3, y: -4 } },
+      { id: "bridge", kind: "segment", appearance: "highlight", from: { x: -3, y: -4 }, to: { x: 3, y: -4 } },
+      { id: "path-db", kind: "segment", appearance: "highlight", from: { x: 3, y: -4 }, to: { x: 8, y: -4 } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -8, y: -4 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 8, y: -4 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: -3, y: -4 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "a", objectId: "point-a", at: { x: -8, y: -4 }, placement: "left" },
+      { key: "b", objectId: "point-b", at: { x: 8, y: -4 }, placement: "right" },
+      { key: "c", objectId: "point-c", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: -4 }, placement: "below-right" },
+      { key: "length-ac", objectId: "path-ac", at: { x: -5.5, y: -4 }, placement: "above" },
+      { key: "length-cd", objectId: "bridge", at: { x: 0, y: -4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Luas daerah taman di luar kolam adalah ....

@@ -1,15 +1,100 @@
-Lintasan eskalator, jarak mendatar, dan beda tinggi membentuk segitiga siku-siku dengan **lintasan sebagai sisi miring**. Beda tinggi adalah sisi di depan sudut <InlineMath math="\alpha" />, jadi yang diperlukan <InlineMath math="\sin\alpha" />. Dari <InlineMath math="\cos\alpha=0{,}8=\frac45" />, sisi samping <InlineMath math="4" /> dan sisi miring <InlineMath math="5" />, sehingga sisi depan <InlineMath math="3" />.
+Soal ini menanyakan luas lantai yang **atapnya paling sedikit** <InlineMath math="1{,}5\text{ m}" /> **di atas kepala**, bukan luas seluruh lantai. Jadi kamu perlu dua hal: ukuran penampang segitiga, lalu titik-titik lantai tempat tinggi atap tepat <InlineMath math="1{,}5\text{ m}" />.
+
+# Tinggi dan alas penampang
+
+Tarik garis tinggi dari <InlineMath math="A" /> ke alas dan sebut kakinya <InlineMath math="M" />. Karena segitiganya sama kaki, <InlineMath math="M" /> adalah titik tengah <InlineMath math="BC" />. Pada segitiga siku-siku <InlineMath math="ABM" />, sisi miringnya <InlineMath math="AB=6" /> dan sudut di <InlineMath math="B" /> adalah <InlineMath math="30^\circ" />:
 
 <BlockMath math="\begin{aligned}
-\sin\alpha&=\frac35=0{,}6 \\
-h&=15\cdot0{,}6=9\text{ m}
+AM&=AB\sin30^\circ=6\cdot\tfrac12=3\text{ m} \\
+BM&=AB\cos30^\circ=6\cdot\tfrac12\sqrt3=3\sqrt3\text{ m} \\
+BC&=2\cdot BM=6\sqrt3\text{ m}
 \end{aligned}" />
 
-Cek: jarak mendatar <InlineMath math="15\cdot0{,}8=12" /> m, dan <InlineMath math="9^2+12^2=225=15^2" />.
+Sinus dipakai untuk tinggi karena tinggi berhadapan dengan sudut <InlineMath math="30^\circ" />, sedangkan **kosinus dipakai untuk setengah alas** karena setengah alas berada di samping sudut itu.
 
-Jadi, beda tinggi kedua lantai adalah <InlineMath math="9" /> m.
+# Batas tempat berdiri
 
-- <InlineMath math="11{,}25" /> m mengalikan panjang lintasan dengan <InlineMath math="\tan\alpha=0{,}75" />.
-- <InlineMath math="12" /> m adalah jarak mendatar, yaitu panjang lintasan dikali <InlineMath math="\cos\alpha" />.
-- <InlineMath math="18{,}75" /> m membagi panjang lintasan dengan <InlineMath math="\cos\alpha" />, seolah <InlineMath math="15" /> m adalah jarak mendatar.
-- <InlineMath math="25" /> m membagi panjang lintasan dengan <InlineMath math="\sin\alpha" />, padahal hasilnya lebih panjang daripada lintasan itu sendiri.
+Ambil titik lantai <InlineMath math="P" /> yang jaraknya <InlineMath math="x" /> meter dari <InlineMath math="B" />, dengan <InlineMath math="x\le3\sqrt3" />. Garis tegak dari <InlineMath math="P" /> ke atap, ruas <InlineMath math="BP" />, dan atap <InlineMath math="AB" /> membentuk segitiga siku-siku dengan sudut <InlineMath math="30^\circ" /> di <InlineMath math="B" />. Tinggi atap di atas <InlineMath math="P" /> berhadapan dengan sudut itu, dan <InlineMath math="BP" /> berada di sampingnya, jadi dipakai tangen:
+
+<BlockMath math="\begin{aligned}
+\text{tinggi atap di atas }P&=x\tan30^\circ=\frac{x}{\sqrt3} \\
+\frac{x}{\sqrt3}\ge1{,}5\quad&\Leftrightarrow\quad x\ge1{,}5\sqrt3
+\end{aligned}" />
+
+Hal yang sama berlaku dari sisi <InlineMath math="C" />. Jadi **pita selebar** <InlineMath math="1{,}5\sqrt3" /> **meter di dekat setiap ujung tidak bisa dipakai berdiri**, dan lebar bagian yang bisa dipakai adalah
+
+<BlockMath math="6\sqrt3-2\cdot1{,}5\sqrt3=3\sqrt3\text{ m}" />
+
+Cek dengan kesebangunan: bagian segitiga di atas ketinggian <InlineMath math="1{,}5" /> sebangun dengan segitiga <InlineMath math="ABC" />, dan tingginya <InlineMath math="3-1{,}5=1{,}5" />, setengah dari <InlineMath math="3" />. Alasnya juga setengah, yaitu <InlineMath math="\tfrac12\cdot6\sqrt3=3\sqrt3" />. Cocok.
+
+<MathVisual
+  title={<>Penampang loteng</>}
+  description={<>Segitiga sama kaki <InlineMath math="ABC" /> dengan alas <InlineMath math="BC=6\sqrt3" /> di lantai, kaki <InlineMath math="AB=AC=6" />, dan tinggi <InlineMath math="AM=3" />. Ruas mendatar pada ketinggian <InlineMath math="1{,}5" /> memotong kedua kaki di titik tengahnya. Bagian lantai tepat di bawah ruas itu, selebar <InlineMath math="3\sqrt3" />, adalah tempat berdiri.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    m: <InlineMath math="M" />,
+    side: <InlineMath math="6" />,
+    height: <InlineMath math="3" />,
+    cut: <InlineMath math="1{,}5" />,
+    floor: <InlineMath math="3\sqrt{3}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -2, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "roof",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: -3 * Math.sqrt(3), y: 0 },
+          { x: 3 * Math.sqrt(3), y: 0 },
+          { x: 0, y: 3 },
+        ],
+      },
+      { id: "altitude", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 0, y: 0 } },
+      { id: "cut-line", kind: "segment", appearance: "reference", from: { x: -1.5 * Math.sqrt(3), y: 1.5 }, to: { x: 1.5 * Math.sqrt(3), y: 1.5 } },
+      { id: "left-wall", kind: "segment", appearance: "construction", from: { x: -1.5 * Math.sqrt(3), y: 1.5 }, to: { x: -1.5 * Math.sqrt(3), y: 0 } },
+      { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 1.5 * Math.sqrt(3), y: 1.5 }, to: { x: 1.5 * Math.sqrt(3), y: 0 } },
+      { id: "usable", kind: "segment", appearance: "answer", from: { x: -1.5 * Math.sqrt(3), y: 0 }, to: { x: 1.5 * Math.sqrt(3), y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 3 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -3 * Math.sqrt(3), y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 3 * Math.sqrt(3), y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: -3 * Math.sqrt(3), y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "point-c", at: { x: 3 * Math.sqrt(3), y: 0 }, placement: "below-right" },
+      { key: "m", objectId: "point-m", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "side", objectId: "roof", at: { x: -2.25 * Math.sqrt(3), y: 0.75 }, placement: "above-left" },
+      { key: "height", objectId: "altitude", at: { x: 0, y: 2.25 }, placement: "right" },
+      { key: "cut", objectId: "right-wall", at: { x: 1.5 * Math.sqrt(3), y: 0.75 }, placement: "right" },
+      { key: "floor", objectId: "usable", at: { x: 1.3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Luas bagian lantai
+
+Bagian lantai yang bisa dipakai berupa persegi panjang selebar <InlineMath math="3\sqrt3\text{ m}" /> sepanjang loteng <InlineMath math="10\text{ m}" />. **Luasnya adalah lebar kali panjang loteng**:
+
+<BlockMath math="3\sqrt3\cdot10=30\sqrt3\approx51{,}96\text{ m}^2" />
+
+Hasil ini tepat setengah luas seluruh lantai, cocok dengan lebar tempat berdiri yang juga setengah dari alas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="60\sqrt3\text{ m}^2" /> adalah luas seluruh lantai, <InlineMath math="6\sqrt3\cdot10" />. **Syarat tinggi** <InlineMath math="1{,}5\text{ m}" /> **diabaikan**.
+- <InlineMath math="50\sqrt3\text{ m}^2" /> muncul kalau tangen dibalik: <InlineMath math="x=1{,}5\tan30^\circ=\tfrac12\sqrt3" />, padahal seharusnya <InlineMath math="x=1{,}5:\tan30^\circ=1{,}5\sqrt3" />.
+- <InlineMath math="\left(60\sqrt3-60\right)\text{ m}^2" /> muncul kalau yang dikurangkan adalah panjang kaki atap sampai ketinggian <InlineMath math="1{,}5" />, yaitu <InlineMath math="1{,}5:\sin30^\circ=3\text{ m}" />. Jarak itu diukur miring sepanjang atap, bukan mendatar di lantai.
+- <InlineMath math="\left(60-10\sqrt3\right)\text{ m}^2" /> muncul kalau sinus dan kosinus tertukar, sehingga tingginya <InlineMath math="3\sqrt3" /> dan alasnya <InlineMath math="6" />. Atapnya jadi seolah-olah miring <InlineMath math="60^\circ" />.
+
+Jadi, luas bagian lantai loteng yang dapat dipakai untuk berdiri adalah <InlineMath math="30\sqrt3\text{ m}^2" />.

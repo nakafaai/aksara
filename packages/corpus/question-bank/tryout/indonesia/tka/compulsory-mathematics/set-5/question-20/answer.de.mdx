@@ -1,15 +1,81 @@
-Zieh die Höhe von der Spitze des Dachstuhls zur Mitte der Grundseite. Sie teilt ihn in zwei rechtwinklige Dreiecke mit einer **waagerechten Seite von <InlineMath math="4\text{ m}" />**, der halben Grundseite. In jedem Dreieck ist <InlineMath math="\cos\alpha" /> die waagerechte Seite geteilt durch die schräge Seite.
+# Zwei Winkel an der Höhe
+
+Die Höhe <InlineMath math="CD" /> teilt das Dreieck <InlineMath math="ABC" /> in zwei rechtwinklige Dreiecke, <InlineMath math="ACD" /> und <InlineMath math="BCD" />, beide mit dem rechten Winkel bei <InlineMath math="D" />. Du drückst <InlineMath math="AD" /> und <InlineMath math="DB" /> durch <InlineMath math="CD" /> aus und benutzt dann den Mittelpunkt <InlineMath math="M" />, um die echten Längen zu finden.
+
+Im Dreieck <InlineMath math="ACD" /> liegt dem Winkel <InlineMath math="ACD" /> die Seite <InlineMath math="AD" /> gegenüber, und <InlineMath math="CD" /> liegt am Winkel an. Also ist <InlineMath math="\tan\angle ACD=\frac{AD}{CD}=2" />, das heißt <InlineMath math="AD=2\,CD" />.
+
+Die Winkel <InlineMath math="ACD" /> und <InlineMath math="BCD" /> bilden zusammen den rechten Winkel bei <InlineMath math="C" />. Deshalb gilt **<InlineMath math="\angle BCD=90^\circ-\angle ACD" />, und sein Tangens ist der Kehrwert von <InlineMath math="2" />**. Im Dreieck <InlineMath math="BCD" /> liegt dem Winkel <InlineMath math="BCD" /> die Seite <InlineMath math="DB" /> gegenüber:
 
 <BlockMath math="\begin{aligned}
-\cos\alpha=\frac{4}{s}=\frac45\ &\Rightarrow\ s=5\text{ m} \\
-L&=2\cdot(5\cdot10)=100\text{ m}^2
+\tan\angle BCD&=\frac{DB}{CD}=\frac12\quad\Rightarrow\quad CD=2\,DB \\
+AD&=2\,CD=4\,DB
 \end{aligned}" />
 
-Probe: Die Höhe des Dachstuhls ist <InlineMath math="\sqrt{5^2-4^2}=3\text{ m}" />, das rechtwinklige Dreieck hat also die Seiten <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" />.
+# Den Mittelpunkt nutzen
 
-Die ganze Dachfläche beträgt also <InlineMath math="100\text{ m}^2" />.
+Setz <InlineMath math="DB=k" />. Dann ist <InlineMath math="CD=2k" />, <InlineMath math="AD=4k" /> und <InlineMath math="AB=5k" />. Der Mittelpunkt <InlineMath math="M" /> liegt <InlineMath math="AM=2{,}5k" /> von <InlineMath math="A" /> entfernt. Weil <InlineMath math="AD=4k" /> länger ist als <InlineMath math="AM" />, **liegt <InlineMath math="D" /> zwischen <InlineMath math="M" /> und <InlineMath math="B" />**.
 
-- <InlineMath math="30\text{ m}^2" /> multipliziert die Höhe <InlineMath math="3\text{ m}" /> mit der Hauslänge und nur für eine Seite.
-- <InlineMath math="50\text{ m}^2" /> zählt nur eine Dachfläche.
-- <InlineMath math="60\text{ m}^2" /> nimmt die Höhe <InlineMath math="3\text{ m}" /> statt der schrägen Seite <InlineMath math="5\text{ m}" /> als Breite.
-- <InlineMath math="80\text{ m}^2" /> nimmt die halbe Grundseite, <InlineMath math="4\text{ m}" />, als Breite.
+<BlockMath math="\begin{aligned}
+DM&=AD-AM=4k-2{,}5k=1{,}5k \\
+1{,}5k&=6\quad\Rightarrow\quad k=4
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dreieck <InlineMath math="ABC" /> mit Höhe und Mittelpunkt</>}
+  description={<>Dreieck <InlineMath math="ABC" /> mit rechtem Winkel bei <InlineMath math="C" /> und waagerechter Seite <InlineMath math="AB" /> der Länge <InlineMath math="20" />. <InlineMath math="M" /> ist der Mittelpunkt von <InlineMath math="AB" />, <InlineMath math="D" /> der Fußpunkt der Höhe von <InlineMath math="C" />. Auf <InlineMath math="AB" /> liegen die Punkte in der Reihenfolge <InlineMath math="A" />, <InlineMath math="M" />, <InlineMath math="D" />, <InlineMath math="B" /> mit <InlineMath math="AM=10" />, <InlineMath math="MD=6" /> und <InlineMath math="DB=4" />. Die Höhe ist <InlineMath math="CD=8" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    m: <InlineMath math="M" />,
+    cd: <InlineMath math="8" />,
+    dm: <InlineMath math="6" />,
+    db: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 23 },
+      y: { min: -4, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 16, y: 8 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 16, y: 8 }, to: { x: 16, y: 0 } },
+      { id: "piece-dm", kind: "segment", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "piece-db", kind: "segment", appearance: "answer", from: { x: 16, y: 0 }, to: { x: 20, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 16, y: 8 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 20, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 16, y: 8 }, placement: "above" },
+      { key: "d", objectId: "point-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "m", objectId: "point-m", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "cd", objectId: "altitude", at: { x: 16, y: 4 }, placement: "left" },
+      { key: "dm", objectId: "piece-dm", at: { x: 13, y: 0 }, placement: "above" },
+      { key: "db", objectId: "piece-db", at: { x: 18, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Die Längen prüfen
+
+Mit <InlineMath math="k=4" /> erhältst du <InlineMath math="DB=4" />, <InlineMath math="CD=8" />, <InlineMath math="AD=16" /> und <InlineMath math="AB=20" />. Prüf das auf zwei Arten. Erstens ist <InlineMath math="MB=10" /> und <InlineMath math="DM=MB-DB=10-4=6" />, wie angegeben. Zweitens **hat das Dreieck wirklich einen rechten Winkel bei <InlineMath math="C" />**:
+
+<BlockMath math="AC^2+BC^2=(16^2+8^2)+(4^2+8^2)=320+80=400=20^2=AB^2" />
+
+Die Länge von <InlineMath math="DB" /> beträgt also <InlineMath math="4\text{ cm}" />.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="8\text{ cm}" /> ist die Höhe <InlineMath math="CD" />, nicht <InlineMath math="DB" />.
+- <InlineMath math="10\text{ cm}" /> ist <InlineMath math="MB" />, die Hälfte von <InlineMath math="AB" />. Der Punkt <InlineMath math="D" /> ist aber nicht der Mittelpunkt von <InlineMath math="AB" />.
+- <InlineMath math="12\text{ cm}" /> benutzt das Verhältnis <InlineMath math="AD:DB=2:1" />, als würde der Tangens nur einmal wirken. Tatsächlich **taucht das Verhältnis <InlineMath math="2" /> zweimal auf**, in <InlineMath math="AD:CD" /> und in <InlineMath math="CD:DB" />, also ist <InlineMath math="AD:DB=4:1" />.
+- <InlineMath math="16\text{ cm}" /> vertauscht Gegenkathete und Ankathete des Winkels <InlineMath math="ACD" /> und kommt so auf <InlineMath math="CD=2\,AD" />. Das lange Stück rutscht dann neben <InlineMath math="B" />, und die berechnete Länge ist in Wahrheit <InlineMath math="AD" />.

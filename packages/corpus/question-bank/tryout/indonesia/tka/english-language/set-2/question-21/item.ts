@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    cognitiveLevel: "textual",
+    contentDomain: "descriptive",
+    topic: "classification",
   },
-  stimulus: "source-checking",
+  stimulus: "observatory",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Still does the job it was built for",
+        "Has been given a new job",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "To require a full investigation even when a claim has little consequence",
+          column: 2,
+          label: "The ground-floor workshop",
         },
         {
-          correct: true,
-          label:
-            "To argue that source checking should be taught repeatedly across subjects",
+          column: 2,
+          label: "The stone pier in the middle of the dome",
         },
         {
-          correct: false,
-          label:
-            "To limit source checking to web pages rather than graphs and quotations",
+          column: 1,
+          label: "The windowless room on the second floor",
         },
         {
-          correct: false,
-          label:
-            "To teach students to suspend acceptance until several experts agree",
-        },
-        {
-          correct: false,
-          label:
-            "To concentrate source-checking instruction in a separate annual workshop",
+          column: 2,
+          label: "The long tables on the first floor",
         },
       ],
     },

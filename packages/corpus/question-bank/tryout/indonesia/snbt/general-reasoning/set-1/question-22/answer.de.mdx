@@ -1,17 +1,34 @@
-Die richtige Regel muss zu **allen drei vollständigen Zeilen** passen, nicht nur zu den ersten beiden. Die ersten beiden Zeilen führen in die Irre, weil "Spalte 2 plus 1" oder pythagoreische Tripel zu passen scheinen.
+Der neue Durchschnitt des Teams Biru (blau) hängt davon ab, wie viele Leute dazugehören, aber **die Teamgrößen stehen nicht in der Aufgabe**. Du musst sie also zuerst aus den beiden bekannten Gesamtdurchschnitten bestimmen. Das wichtigste Werkzeug ist <InlineMath math="\text{Summe}=\text{Durchschnitt}\times\text{Anzahl der Personen}" />.
 
-Prüfe mehrere mögliche Regeln, mit der Zahl aus Spalte 1 als <InlineMath math="a" /> und der Zahl aus Spalte 2 als <InlineMath math="b" />:
+Schritt eins: Bestimme die Größe des Teams Merah (rot) vor dem Wechsel. Nenn sie <InlineMath math="m" />. Nachdem <InlineMath math="4" /> Schneiderinnen und Schneider mit einem Durchschnitt von <InlineMath math="32" /> dazukommen, liegt der Durchschnitt von Merah bei <InlineMath math="20" />:
 
-| Vermutete Regel | Zeile 1 | Zeile 2 | Zeile 3 |
-| --- | --- | --- | --- |
-| <InlineMath math="b+1" /> | <InlineMath math="5" /> passt | <InlineMath math="13" /> passt | <InlineMath math="10" /> passt nicht |
-| <InlineMath math="a+b-2" /> | <InlineMath math="5" /> passt | <InlineMath math="15" /> passt nicht | <InlineMath math="11" /> passt nicht |
-| <InlineMath math="a^2-b" /> | <InlineMath math="9-4=5" /> passt | <InlineMath math="25-12=13" /> passt | <InlineMath math="16-9=7" /> passt |
+<BlockMath math="\begin{aligned}
+\frac{14m+4\times32}{m+4} &= 20 \\
+14m+128 &= 20m+80 \\
+48 &= 6m \\
+m &= 8
+\end{aligned}" />
 
-Nur die Regel **Quadrat der ersten Zahl minus die zweite Zahl** passt zu jeder Zeile. Wende sie auf die letzte Zeile an:
+Schritt zwei: Bestimme die Größe des Teams Biru vor dem Wechsel. Nenn sie <InlineMath math="b" />. Der Durchschnitt aller Beschäftigten ist <InlineMath math="24" />:
 
-<BlockMath math="6^2-20=36-20=16" />
+<BlockMath math="\begin{aligned}
+\frac{14\times8+29b}{8+b} &= 24 \\
+112+29b &= 192+24b \\
+5b &= 80 \\
+b &= 16
+\end{aligned}" />
 
-Die anderen Optionen stammen aus Regeln, die scheitern. Die Zahl <InlineMath math="21" /> kommt aus <InlineMath math="b+1" />, <InlineMath math="24" /> aus <InlineMath math="a+b-2" />, <InlineMath math="26" /> aus <InlineMath math="a+b" /> und <InlineMath math="14" /> aus <InlineMath math="b-a" />. Die dritte Zeile widerlegt sie alle.
+Schritt drei: Berechne den neuen Durchschnitt von Biru. Die ursprüngliche Summe des Teams ist <InlineMath math="29\times16=464" /> Stück. Die vier Wechselnden nehmen <InlineMath math="4\times32=128" /> Stück mit, und es bleiben <InlineMath math="16-4=12" /> Personen:
 
-Die gesuchte Zahl ist also <InlineMath math="16" />.
+<BlockMath math="\frac{464-128}{12} = \frac{336}{12} = 28" />
+
+Prüf das Ergebnis mit dem Gesamtdurchschnitt. Durch den Wechsel kommt niemand hinzu und niemand geht, also muss der Gesamtdurchschnitt <InlineMath math="24" /> bleiben. Tatsächlich ist <InlineMath math="\dfrac{20\times12+28\times12}{24}=\dfrac{576}{24}=24" />.
+
+Die anderen Optionen entstehen aus einem übersprungenen Schritt:
+
+- <InlineMath math="29" /> Stück nimmt an, dass sich der Durchschnitt von Biru nicht ändert. Gewechselt haben aber Leute über dem Durchschnitt von Biru, also muss der Durchschnitt der Verbleibenden sinken.
+- <InlineMath math="21" /> Stück entsteht, wenn du <InlineMath math="336" /> weiter durch <InlineMath math="16" /> teilst, als wären die vier noch im Team Biru.
+- <InlineMath math="23" /> Stück entsteht, wenn du annimmst, dass Biru um so viel sinkt, wie Merah gestiegen ist, also <InlineMath math="29-6" />. Die Teams sind nicht gleich groß, also sind auch die Änderungen nicht gleich.
+- <InlineMath math="26" /> Stück entsteht, wenn du beide Teams mit je <InlineMath math="8" /> Personen ansetzt und damit den Gesamtdurchschnitt <InlineMath math="24" /> nicht nutzt.
+
+Nach dem Wechsel liegt der Durchschnitt des Teams Biru also bei <InlineMath math="28" /> Stück pro Person und Tag.

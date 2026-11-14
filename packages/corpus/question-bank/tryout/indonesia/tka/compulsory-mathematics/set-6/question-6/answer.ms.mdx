@@ -1,0 +1,38 @@
+# Membaca titik pada graf songsang
+
+Soalan ini meminta <InlineMath math="f\left(\tfrac{5}{2}\right)" />, tetapi titik yang diberi terletak pada graf <InlineMath math="f^{-1}" />, bukan pada graf <InlineMath math="f" />. Fungsi songsang menukar peranan input dan output, jadi **koordinat setiap titik mesti diterbalikkan**:
+
+<BlockMath math="\begin{aligned}
+f^{-1}(6)=1 \;&\Rightarrow\; f(1)=6 \\
+f^{-1}(54)=3 \;&\Rightarrow\; f(3)=54
+\end{aligned}" />
+
+# Mencari a dan b
+
+Tulis kedua-dua maklumat itu dengan petua <InlineMath math="f(x)=a\cdot b^{x}" />, kemudian bahagikan persamaan kedua dengan persamaan pertama supaya <InlineMath math="a" /> terhapus:
+
+<BlockMath math="\begin{aligned}
+a\cdot b=6, \qquad a\cdot b^{3}&=54 \\
+\frac{a\cdot b^{3}}{a\cdot b}=b^{2}&=\frac{54}{6}=9
+\end{aligned}" />
+
+Persamaan <InlineMath math="b^{2}=9" /> mempunyai dua penyelesaian, <InlineMath math="b=3" /> dan <InlineMath math="b=-3" />. **Syarat <InlineMath math="b>0" /> menolak <InlineMath math="b=-3" />**, jadi <InlineMath math="b=3" /> dan <InlineMath math="a=6\div3=2" />. Fungsinya ialah <InlineMath math="f(x)=2\cdot3^{x}" />.
+
+# Mengira dengan indeks pecahan
+
+Pecahkan indeks <InlineMath math="\tfrac{5}{2}" /> kepada bahagian nombor bulat dan bahagian setengah, kerana **kuasa setengah sama dengan punca kuasa dua**:
+
+<BlockMath math="f\left(\tfrac{5}{2}\right)=2\cdot3^{\frac{5}{2}}=2\cdot3^{2}\cdot3^{\frac{1}{2}}=2\cdot9\cdot\sqrt{3}=18\sqrt{3}" />
+
+Semak: <InlineMath math="f(1)=2\cdot3=6" /> dan <InlineMath math="f(3)=2\cdot27=54" />, sepadan dengan dua titik yang sudah diterbalikkan. Nilai <InlineMath math="18\sqrt{3}\approx31.2" /> juga munasabah kerana terletak antara <InlineMath math="f(2)=18" /> dan <InlineMath math="f(3)=54" />.
+
+# Kenapa pilihan lain salah
+
+Fungsi eksponen bertambah dengan **pendaraban faktor yang sama**, bukan dengan penambahan nilai yang sama, dan kebanyakan pilihan yang salah terlupa hal ini.
+
+- <InlineMath math="162" /> muncul jika <InlineMath math="b^{2}=9" /> dibaca sebagai <InlineMath math="b=9" />. Maka <InlineMath math="a=\tfrac{2}{3}" /> dan <InlineMath math="\tfrac{2}{3}\cdot9^{\frac{5}{2}}=\tfrac{2}{3}\cdot243=162" />.
+- <InlineMath math="54\sqrt{3}" /> muncul jika <InlineMath math="a" /> dianggap sama dengan <InlineMath math="f(1)=6" />. Sebenarnya <InlineMath math="a=f(0)" />.
+- <InlineMath math="42" /> muncul daripada interpolasi linear antara <InlineMath math="(1,6)" /> dan <InlineMath math="(3,54)" />: <InlineMath math="6+\tfrac{3}{2}\cdot24=42" />. Graf eksponen bukan garis lurus.
+- <InlineMath math="36" /> muncul jika <InlineMath math="f(2)=18" /> sudah betul, tetapi titik tengah antara <InlineMath math="x=2" /> dan <InlineMath math="x=3" /> dikira secara linear. Setengah langkah pada indeks mendarab nilai dengan <InlineMath math="\sqrt{3}" />, bukan menambah separuh beza.
+
+Jadi, nilai <InlineMath math="f\left(\tfrac{5}{2}\right)" /> ialah <InlineMath math="18\sqrt{3}" />.

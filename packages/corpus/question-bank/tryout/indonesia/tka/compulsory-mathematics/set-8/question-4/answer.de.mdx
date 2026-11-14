@@ -1,16 +1,37 @@
-Sei <InlineMath math="b" /> die Zahl der richtigen und <InlineMath math="s" /> die der falschen Antworten. Rani hat <InlineMath math="35" /> Fragen beantwortet, also **teilen sich nur diese <InlineMath math="35" /> in richtig und falsch**, die übrigen <InlineMath math="5" /> zählen <InlineMath math="0" />.
+# Die Gleichungen aufstellen
+
+Nenne die Hunderter-, Zehner- und Einerziffer <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />. Die ursprüngliche Zahl ist <InlineMath math="100a+10b+c" />, die umgedrehte Zahl <InlineMath math="100c+10b+a" />. Das Wort **Differenz** sagt nicht, welche Zahl größer ist, also kennst du das Vorzeichen noch nicht.
 
 <BlockMath math="\begin{aligned}
-b+s&=35 \\
-4b-s&=105 \\
-5b&=140\ \Rightarrow\ b=28,\ s=7
+(100a+10b+c)-(100c+10b+a)&=99(a-c) \\
+|99(a-c)|=396 \Rightarrow |a-c|&=4
 \end{aligned}" />
 
-Probe: <InlineMath math="4\cdot28-7=105" />.
+Jetzt kombinierst du die beiden anderen Bedingungen. Die Zehnerziffer ist <InlineMath math="b=2a+1" />, das setzt du in die Ziffernsumme ein.
 
-Rani hat also <InlineMath math="28" /> Fragen richtig beantwortet.
+<BlockMath math="\begin{aligned}
+a+(2a+1)+c&=13 \\
+3a+c&=12
+\end{aligned}" />
 
-- <InlineMath math="7" /> ist die Zahl der falschen Antworten.
-- <InlineMath math="26" /> teilt die Punktzahl <InlineMath math="105" /> durch <InlineMath math="4" /> und übersieht den Abzug für falsche Antworten.
-- <InlineMath math="29" /> zählt die <InlineMath math="5" /> unbeantworteten Fragen als falsch, also <InlineMath math="4b-(40-b)=105" />.
-- <InlineMath math="35" /> nimmt an, alle beantworteten Fragen seien richtig, das ergäbe aber <InlineMath math="140" /> Punkte.
+# Beide Fälle prüfen
+
+Löse für jedes Vorzeichen der Differenz.
+
+<BlockMath math="\begin{aligned}
+a-c=4&:\quad c=a-4,\ 4a-4=12 \Rightarrow a=4,\ c=0,\ b=9 \\
+c-a=4&:\quad c=a+4,\ 4a+4=12 \Rightarrow a=2,\ c=6,\ b=5
+\end{aligned}" />
+
+Der erste Fall liefert <InlineMath math="490" />. Umgedreht wird daraus <InlineMath math="094" />, also <InlineMath math="94" />, und das ist **keine dreistellige Zahl**. Die Aufgabe schließt diesen Fall aus. Der zweite Fall liefert <InlineMath math="256" /> mit der Umkehrung <InlineMath math="652" />.
+
+Probe für <InlineMath math="256" />: <InlineMath math="2+5+6=13" />, <InlineMath math="5=2(2)+1" /> und <InlineMath math="652-256=396" />. Alle Bedingungen stimmen.
+
+Das Produkt aus Hunderterziffer und Zehnerziffer ist also <InlineMath math="2\cdot5=10" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="36" /> kommt von <InlineMath math="490" />. Das passiert, wenn du **einfach annimmst, dass die ursprüngliche Zahl größer ist**, und nicht prüfst, ob die Umkehrung dreistellig bleibt.
+- <InlineMath math="21" /> kommt von <InlineMath math="733" />. Dort ist der Satz mit "doppelt" umgedreht, also <InlineMath math="a=2b+1" />.
+- <InlineMath math="30" /> kommt von <InlineMath math="652" />. Dort wird die Zehnerziffer an die Einerziffer gekoppelt, <InlineMath math="b=2c+1" />. Diese Zahl ist die Umkehrung, nicht die ursprüngliche Zahl.
+- <InlineMath math="9" /> kommt von <InlineMath math="337" />. Dort steht die Bedingung bei der Einerziffer, <InlineMath math="c=2a+1" />, obwohl sie von der Zehnerziffer handelt.

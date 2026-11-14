@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "geometry-measurement",
     topic: "measurement",
   },
-  stimulus: "gift-box",
+  stimulus: "tabung",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$140\\text{ cm}$$",
-        },
-        {
           correct: true,
-          label: "$$180\\text{ cm}$$",
+          label: "$$6$$",
         },
         {
           correct: false,
-          label: "$$200\\text{ cm}$$",
+          label: "$$7$$",
         },
         {
           correct: false,
-          label: "$$220\\text{ cm}$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "$$280\\text{ cm}$$",
+          label: "$$18$$",
+        },
+        {
+          correct: false,
+          label: "$$24$$",
         },
       ],
     },

@@ -1,18 +1,32 @@
-Pernyataan bernilai Benar hanya jika **berlaku pada keempat susunan** yang memenuhi syarat:
+Syarat tambahan "Fani sebelum Eka" mempersempit pilihan. Cara paling aman adalah mendaftar semua urutan yang masih mungkin, lalu menilai keempat pernyataan pada daftar itu. Pernyataan bernilai Benar hanya kalau berlaku di semua urutan pada daftar.
 
-| Susunan | Kursi 1 | Kursi 2 | Kursi 3 | Kursi 4 | Kursi 5 | Kursi 6 |
-| --- | --- | --- | --- | --- | --- | --- |
-| I | K | L | N | O | M | P |
-| II | K | M | N | O | L | P |
-| III | K | P | L | N | O | M |
-| IV | K | P | M | N | O | L |
+Pertama, cari posisi Citra. Sekarang Fani sebelum Eka, dan Eka sebelum Citra (syarat 3). Eka juga tidak boleh di giliran <InlineMath math="1" /> (syarat 4), jadi Citra paling awal di giliran <InlineMath math="3" />. Dimas tepat dua giliran setelah Citra (syarat 2), jadi Citra paling jauh di giliran <InlineMath math="5" />.
 
-**Pernyataan 1** bernilai Benar. N duduk di kursi 3 pada susunan I dan II, serta di kursi 4 pada susunan III dan IV. Kursi 5 tidak mungkin karena O lalu harus duduk di kursi 6, sedangkan kursi 6 selalu sudah terisi.
+- Citra di giliran <InlineMath math="3" /> memaksa Fani di giliran <InlineMath math="1" />, Eka di giliran <InlineMath math="2" />, dan Dimas di giliran <InlineMath math="5" />. Bayu, Galih, dan Hesti tinggal mendapat giliran <InlineMath math="4" />, <InlineMath math="6" />, dan <InlineMath math="7" />. Pasangan berurutan satu-satunya adalah <InlineMath math="6" /> dan <InlineMath math="7" />, padahal Galih dan Hesti dilarang di giliran <InlineMath math="7" /> (syarat 5). Gugur.
+- Citra di giliran <InlineMath math="4" /> memaksa Dimas di giliran <InlineMath math="6" />. Fani dan Eka sama-sama berada di giliran <InlineMath math="1" /> sampai <InlineMath math="3" />, jadi di depan Citra hanya tersisa satu giliran kosong. Giliran kosong lainnya adalah <InlineMath math="5" /> dan <InlineMath math="7" />. Tidak ada dua giliran kosong yang berurutan, jadi Galih dan Hesti tidak mendapat tempat. Gugur.
 
-**Pernyataan 2** bernilai Benar. Dua kursi yang berhadapan nomornya berselisih <InlineMath math="3" />, bilangan ganjil. Menambah atau mengurangi bilangan ganjil selalu mengubah genap menjadi ganjil atau sebaliknya. Karena L dan M berhadapan, satu duduk di kursi genap dan yang lain di kursi ganjil. Ini terlihat pada pasangan kursi 2 dan 5 serta kursi 3 dan 6.
+Jadi, Citra di giliran <InlineMath math="5" /> dan Dimas di giliran <InlineMath math="7" />.
 
-**Pernyataan 3** bernilai Salah. Pada susunan I dan II, O duduk di kursi 4, kursi genap.
+Kedua, tentukan siapa di giliran <InlineMath math="6" />. Galih atau Hesti tidak bisa, karena tetangganya, yaitu giliran <InlineMath math="5" /> dan <InlineMath math="7" />, sudah terisi. Eka tidak bisa, karena Eka harus sebelum Citra. Fani juga tidak bisa, karena Fani sebelum Eka. Jadi, **Bayu pasti tampil di giliran keenam**. Giliran itu genap, jadi syarat 6 tidak menuntut apa pun.
 
-**Pernyataan 4** bernilai Salah. Pada susunan I dan II, P di kursi 6 berhadapan dengan N di kursi 3, bukan dengan L atau M.
+Ketiga, isi giliran <InlineMath math="1" /> sampai <InlineMath math="4" /> dengan Eka, Fani, Galih, dan Hesti. Galih dan Hesti harus berdampingan, Fani sebelum Eka, dan Eka tidak di giliran <InlineMath math="1" />.
 
-Jadi, pernyataan 1 dan 2 benar, sedangkan pernyataan 3 dan 4 salah.
+| Galih dan Hesti di giliran | Fani | Eka |
+| --- | --- | --- |
+| <InlineMath math="1" /> dan <InlineMath math="2" /> | giliran <InlineMath math="3" /> | giliran <InlineMath math="4" /> |
+| <InlineMath math="2" /> dan <InlineMath math="3" /> | giliran <InlineMath math="1" /> | giliran <InlineMath math="4" /> |
+| <InlineMath math="3" /> dan <InlineMath math="4" /> | giliran <InlineMath math="1" /> | giliran <InlineMath math="2" /> |
+
+Setiap baris punya dua urutan karena Galih dan Hesti boleh bertukar tempat, jadi ada enam urutan sah.
+
+Sekarang nilai keempat pernyataan.
+
+Pernyataan 1 bernilai Benar. Langkah kedua menunjukkan Bayu selalu di giliran <InlineMath math="6" />.
+
+Pernyataan 2 bernilai Salah. Pada urutan Fani, Eka, Galih, Hesti, Citra, Bayu, Dimas, Galih berada di giliran <InlineMath math="3" />, yang ganjil.
+
+Pernyataan 3 bernilai Salah. Pada urutan Fani, Galih, Hesti, Eka, Citra, Bayu, Dimas, Fani di giliran <InlineMath math="1" /> dan Eka di giliran <InlineMath math="4" />. Fani memang sebelum Eka, tetapi tidak tepat sebelumnya.
+
+Pernyataan 4 bernilai Benar. Pernyataan ini berbentuk syarat, jadi kamu cukup memeriksa urutan yang menaruh Hesti di giliran <InlineMath math="1" />. Hesti di giliran <InlineMath math="1" /> berarti pasangan Galih dan Hesti menempati giliran <InlineMath math="1" /> dan <InlineMath math="2" />. Pada tabel, baris itu hanya mengizinkan Fani di giliran <InlineMath math="3" /> dan Eka di giliran <InlineMath math="4" />, jadi Eka memang selalu di giliran <InlineMath math="4" />.
+
+Jadi, pernyataan 1 dan 4 benar, sedangkan pernyataan 2 dan 3 salah.

@@ -1,20 +1,33 @@
-"The second red ball comes on the third draw" means two things happen together: **exactly one red ball appears in the first two draws**, and the third draw is red.
+First find the complete solution set, then judge each statement. You may square both sides **only when both are non-negative**, so you need to split into cases by the sign of <InlineMath math="x-3" />.
 
-# The two possible orders
+# The condition for the square root
 
-The first red ball can come on the first or the second draw. Since there is no replacement, each probability uses what is left in the bag.
+The expression <InlineMath math="\sqrt{x+3}" /> is only defined when <InlineMath math="x+3\ge0" />, that is, <InlineMath math="x\ge-3" />. Its value is **always non-negative**.
+
+# The case with a negative right side
+
+If <InlineMath math="-3\le x<3" />, the right side <InlineMath math="x-3" /> is negative. A non-negative number is always bigger than a negative number, so **every <InlineMath math="x" /> in this interval works** without any more computing.
+
+# The case with a non-negative right side
+
+If <InlineMath math="x\ge3" />, both sides are non-negative, so **squaring doesn't change the direction of the sign**.
 
 <BlockMath math="\begin{aligned}
-P(\text{R, W, R})&=\frac4{10}\cdot\frac69\cdot\frac38=\frac{72}{720}\\
-P(\text{W, R, R})&=\frac6{10}\cdot\frac49\cdot\frac38=\frac{72}{720}
+x+3&>(x-3)^2=x^2-6x+9\\
+0&>x^2-7x+6=(x-1)(x-6)\\
+1&<x<6
 \end{aligned}" />
 
-The two orders are **mutually exclusive**, so their probabilities add.
+Together with <InlineMath math="x\ge3" />, this case gives <InlineMath math="3\le x<6" />. The complete solution set is <InlineMath math="-3\le x<6" />. The end <InlineMath math="6" /> isn't included, because <InlineMath math="\sqrt9=3" /> isn't bigger than <InlineMath math="3" />.
 
-<BlockMath math="P=\frac{72+72}{720}=\frac{144}{720}=\frac15" />
+# Judging the four statements
 
-# The wrong options
+**Statement 1**. The number <InlineMath math="x=0" /> works, since <InlineMath math="\sqrt3>-3" />, but <InlineMath math="0" /> isn't more than <InlineMath math="1" />. The condition <InlineMath math="x>1" /> comes from **squaring without splitting into cases**, which loses the whole interval <InlineMath math="-3\le x\le1" />. This statement is **false**.
 
-The value <InlineMath math="\tfrac1{10}" /> counts only one order. The value <InlineMath math="\tfrac3{10}" /> is the probability of exactly two reds in three draws, without requiring the second red to be third. The value <InlineMath math="\tfrac25" /> is only the probability that the third draw is red. The value <InlineMath math="\tfrac8{15}" /> stops at the probability of **exactly one red in the first two draws**.
+**Statement 2**. The integers in <InlineMath math="-3\le x<6" /> are <InlineMath math="-3" />, <InlineMath math="-2" />, up to <InlineMath math="5" />. There are <InlineMath math="5-(-3)+1=9" /> of them, with <InlineMath math="-3" /> in and <InlineMath math="6" /> out. This statement is **true**.
 
-So the required probability is <InlineMath math="\tfrac15" />.
+**Statement 3**. Take <InlineMath math="x=0" /> again. The new inequality needs <InlineMath math="\sqrt3>3" />, but <InlineMath math="3<9" /> means <InlineMath math="\sqrt3<3" />. So there's a solution of the original inequality that fails the new one, and this statement is **false**.
+
+**Statement 4**. One example is enough to prove "there is". Take <InlineMath math="x=\tfrac{11}{2}" />, so <InlineMath math="x-3=\tfrac52>2" />. This number lies in <InlineMath math="-3\le x<6" />, and a direct check gives <InlineMath math="x+3=\tfrac{17}{2}=\tfrac{34}{4}>\tfrac{25}{4}=\left(\tfrac52\right)^2" />, so <InlineMath math="\sqrt{x+3}>x-3" />. This statement is **true**.
+
+So the first statement is false, the second is true, the third is false, and the fourth is true.

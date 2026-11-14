@@ -1,15 +1,101 @@
-Das endgültige Bild ist bekannt, also **machst du beide Abbildungen in umgekehrter Reihenfolge rückgängig**: zuerst die Verschiebung, dann die Spiegelung.
+Gefragt ist **die Ecke, die nach Drehung** <InlineMath math="2026" /> **ganz oben steht**. Das ist nicht dasselbe wie die Frage, wohin <InlineMath math="A" /> wandert. Verfolge also zuerst, wie weit sich die Scheibe insgesamt dreht, und suche dann die Ecke, die oben landet.
+
+# Nettodrehung je zwei Schritte
+
+Alle Drehungen haben denselben Mittelpunkt, also darfst du die Winkel addieren. Zähle Drehungen gegen den Uhrzeigersinn positiv und Drehungen im Uhrzeigersinn negativ. Eine ungerade Drehung, direkt gefolgt von einer geraden, ergibt
+
+<BlockMath math="(+72^\circ)+(-144^\circ)=-72^\circ" />
+
+Also wirkt **jedes Paar von Drehungen wie eine Drehung im Uhrzeigersinn um** <InlineMath math="72^\circ" />. Drehung <InlineMath math="2026" /> ist gerade, also zerfallen die <InlineMath math="2026" /> Drehungen genau in Paare:
 
 <BlockMath math="\begin{aligned}
-(5,2)-(3,-1)&=(2,3) \\
-(2,3)&\xrightarrow{\ y=x\ }(3,2)
+\text{Anzahl der Paare}&=\frac{2026}{2}=1013 \\
+\text{Gesamtdrehung}&=1013\cdot(-72^\circ)
 \end{aligned}" />
 
-Die Spiegelung an <InlineMath math="y=x" /> vertauscht die Koordinaten, und erneutes Vertauschen macht sie rückgängig. Probe vorwärts: <InlineMath math="(3,2)" /> wird zu <InlineMath math="(2,3)" /> gespiegelt und dann nach <InlineMath math="(5,2)" /> verschoben.
+# Volle Umdrehungen streichen
 
-Der Punkt <InlineMath math="A" /> ist also <InlineMath math="(3,2)" />.
+Fünf Paare ergeben <InlineMath math="5\cdot(-72^\circ)=-360^\circ" />, also eine volle Umdrehung, und die Scheibe sieht genau wie vorher aus. Es zählt deshalb nur der Rest von <InlineMath math="1013" /> beim Teilen durch <InlineMath math="5" />:
 
-- <InlineMath math="(2,3)" /> macht nur die Verschiebung rückgängig, nicht die Spiegelung.
-- <InlineMath math="(8,1)" /> addiert den Verschiebungsvektor noch einmal, statt ihn abzuziehen, und macht die Spiegelung nicht rückgängig.
-- <InlineMath math="(1,8)" /> addiert den Verschiebungsvektor noch einmal und vertauscht dann die Koordinaten.
-- <InlineMath math="(-1,6)" /> macht zuerst die Spiegelung rückgängig und zieht dann den Vektor ab, also in falscher Reihenfolge.
+<BlockMath math="\begin{aligned}
+1013&=5\cdot202+3 \\
+1013\cdot(-72^\circ)&=202\cdot(-360^\circ)+3\cdot(-72^\circ) \\
+3\cdot(-72^\circ)&=-216^\circ
+\end{aligned}" />
+
+Eine Drehung um <InlineMath math="216^\circ" /> im Uhrzeigersinn führt zur selben Lage wie eine Drehung um <InlineMath math="360^\circ-216^\circ=144^\circ" /> gegen den Uhrzeigersinn. **Am Ende steht also eine Drehung gegen den Uhrzeigersinn um** <InlineMath math="144^\circ" />, und jede Ecke rückt zwei Plätze in diese Richtung weiter.
+
+# Die Ecke ganz oben
+
+Miss die Lage jeder Ecke als Winkel von oben aus gegen den Uhrzeigersinn. Am Anfang liegt <InlineMath math="A" /> bei <InlineMath math="0^\circ" />, <InlineMath math="B" /> bei <InlineMath math="72^\circ" /> und so weiter. Addiere zu jeder Lage <InlineMath math="144^\circ" /> und streiche Vielfache von <InlineMath math="360^\circ" />.
+
+| Ecke | Anfangslage | Endlage |
+| :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="0^\circ" /> | <InlineMath math="144^\circ" /> |
+| <InlineMath math="B" /> | <InlineMath math="72^\circ" /> | <InlineMath math="216^\circ" /> |
+| <InlineMath math="C" /> | <InlineMath math="144^\circ" /> | <InlineMath math="288^\circ" /> |
+| <InlineMath math="D" /> | <InlineMath math="216^\circ" /> | <InlineMath math="360^\circ=0^\circ" /> |
+| <InlineMath math="E" /> | <InlineMath math="288^\circ" /> | <InlineMath math="432^\circ=72^\circ" /> |
+
+Nur <InlineMath math="D" /> endet bei <InlineMath math="0^\circ" />, also **ganz oben**. Die Abbildung zeigt, wo jede Beschriftung nach der letzten Drehung steht.
+
+<MathVisual
+  title={<>Beschriftungen nach der letzten Drehung</>}
+  description={<>Ein regelmäßiges Fünfeck mit Mittelpunkt im Ursprung. Die Ecke <InlineMath math="D" /> steht oben, wo der Pfeil hinzeigt. Gegen den Uhrzeigersinn folgen auf <InlineMath math="D" /> die Ecken <InlineMath math="E" />, <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />. Die Ecke <InlineMath math="A" /> steht jetzt dort, wo <InlineMath math="C" /> begonnen hat.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    top: "ganz oben",
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      {
+        id: "pentagon",
+        kind: "polygon",
+        appearance: "primary",
+        vertices: [
+          { x: 0, y: 4 },
+          { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+          { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) },
+          { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) },
+          { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) },
+        ],
+      },
+      { id: "point-d", kind: "point", appearance: "answer", at: { x: 0, y: 4 } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) } },
+      { id: "pointer", kind: "vector", appearance: "highlight", from: { x: 0, y: 6 }, to: { x: 0, y: 4.5 } },
+    ],
+    labels: [
+      { key: "d", objectId: "point-d", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: -4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "left" },
+      { key: "a", objectId: "point-a", at: { x: -4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "b", objectId: "point-b", at: { x: 4 * Math.cos((54 * Math.PI) / 180), y: -4 * Math.sin((54 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "c", objectId: "point-c", at: { x: 4 * Math.cos((18 * Math.PI) / 180), y: 4 * Math.sin((18 * Math.PI) / 180) }, placement: "right" },
+      { key: "top", objectId: "pointer", at: { x: 0, y: 6 }, placement: "right" },
+    ],
+  }}
+/>
+
+Kurze Probe: Gehst du von <InlineMath math="A" /> aus im Uhrzeigersinn, triffst du zuerst <InlineMath math="E" /> und dann <InlineMath math="D" />. Also lag <InlineMath math="D" /> anfangs zwei Plätze im Uhrzeigersinn von oben entfernt, und zwei Plätze gegen den Uhrzeigersinn bringen sie genau nach oben.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="C" /> ist der Startplatz, auf dem jetzt <InlineMath math="A" /> steht. Das beantwortet, wohin <InlineMath math="A" /> gewandert ist, **aber nicht, welche Ecke oben steht**.
+- <InlineMath math="E" /> entsteht, wenn du jede Drehung als <InlineMath math="72^\circ" /> gegen den Uhrzeigersinn nimmst. Insgesamt sind das <InlineMath math="2026\cdot72^\circ" />, und wegen <InlineMath math="2026=5\cdot405+1" /> bleiben nur <InlineMath math="72^\circ" /> übrig, also kommt <InlineMath math="E" /> nach oben.
+- <InlineMath math="B" /> entsteht, wenn du auch die Drehungen um <InlineMath math="144^\circ" /> gegen den Uhrzeigersinn zählst. Dann bringt jedes Paar <InlineMath math="216^\circ" />, der Rest ist <InlineMath math="3\cdot216^\circ=648^\circ" />, also <InlineMath math="288^\circ" />, und <InlineMath math="B" /> kommt nach oben.
+- <InlineMath math="A" /> entsteht, wenn du glaubst, die Beschriftungen bleiben stehen, weil jedes Vielfache von <InlineMath math="72^\circ" /> das Fünfeck auf sich selbst abbildet. Die Form bedeckt zwar dieselbe Fläche, aber die Beschriftungen wandern.
+
+Nach Drehung <InlineMath math="2026" /> steht also die Ecke <InlineMath math="D" /> ganz oben.

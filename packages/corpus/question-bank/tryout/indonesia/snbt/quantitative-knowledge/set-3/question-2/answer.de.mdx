@@ -1,18 +1,42 @@
-Weder <InlineMath math="a" /> noch <InlineMath math="b" /> ist ganzzahlig, ihr Produkt lässt sich aber exakt bestimmen. Schreibe beide als Logarithmen und nutze die Eigenschaft **zueinander reziproker Logarithmen**, <InlineMath math="\log_p q\cdot\log_q p=1" />.
+Beide Gleichungen ändern sich nicht, wenn du <InlineMath math="x" /> und <InlineMath math="y" /> vertauschst. Deshalb rechnest du leichter mit **Summe und Produkt**, also mit <InlineMath math="s=x+y" /> und <InlineMath math="p=xy" />. Der Plan: die Paare <InlineMath math="(s,p)" /> bestimmen, jedes Paar streichen, bei dem <InlineMath math="x" /> und <InlineMath math="y" /> nicht reell sind, und dann <InlineMath math="x^3+y^3" /> aus <InlineMath math="s" /> und <InlineMath math="p" /> berechnen.
 
-# Als Logarithmen schreiben
+# Mit Summe und Produkt umschreiben
+
+Klammere in der ersten Gleichung aus: <InlineMath math="x^2y+xy^2=xy(x+y)=ps" />. Die zweite Gleichung lautet <InlineMath math="p+s=12" />. Zwei Zahlen mit Summe <InlineMath math="12" /> und Produkt <InlineMath math="35" /> sind **die Lösungen einer quadratischen Gleichung** <InlineMath math="t^2-12t+35=0" />.
 
 <BlockMath math="\begin{aligned}
-a&=\log_2 9=\log_2 3^2=2\log_2 3\\
-b&=\log_3 16=\log_3 2^4=4\log_3 2
+t^2-12t+35&=0\\
+(t-5)(t-7)&=0\\
+t=5 \quad&\text{oder}\quad t=7
 \end{aligned}" />
 
-# Beide multiplizieren
+Es gibt also zwei Möglichkeiten: <InlineMath math="s=5" /> mit <InlineMath math="p=7" /> oder <InlineMath math="s=7" /> mit <InlineMath math="p=5" />.
 
-Die Faktoren <InlineMath math="\log_2 3" /> und <InlineMath math="\log_3 2" /> sind **Kehrwerte voneinander**, denn <InlineMath math="\log_2 3=\frac{\log3}{\log2}" /> und <InlineMath math="\log_3 2=\frac{\log2}{\log3}" />.
+# Die Bedingung für reelle Lösungen
 
-<BlockMath math="ab=2\cdot4\cdot\log_2 3\cdot\log_3 2=8\cdot1=8" />
+Die Zahlen <InlineMath math="x" /> und <InlineMath math="y" /> sind die Lösungen von <InlineMath math="z^2-sz+p=0" />. Beide sind nur dann reell, wenn **die Diskriminante nicht negativ ist**, also <InlineMath math="s^2-4p\ge 0" />.
 
-Der Wert 1 multipliziert nur die beiden Logarithmen und vergisst die Koeffizienten 2 und 4. Der Wert 6 addiert die Koeffizienten, obwohl sie multipliziert werden. Der Wert 24 setzt <InlineMath math="a=\tfrac92" /> und <InlineMath math="b=\tfrac{16}3" />, als wäre eine Potenz eine Division. Der Wert 12 schätzt <InlineMath math="a\approx3" /> und <InlineMath math="b\approx4" />, das ist für ein exaktes Ergebnis zu grob.
+<BlockMath math="\begin{aligned}
+s=5,\ p=7&:\quad 5^2-4\cdot 7=-3<0\\
+s=7,\ p=5&:\quad 7^2-4\cdot 5=29\ge 0
+\end{aligned}" />
 
-Der Wert von <InlineMath math="ab" /> ist also **8**.
+Beim ersten Paar sind <InlineMath math="x" /> und <InlineMath math="y" /> nicht reell, also streichst du es. Übrig bleibt nur <InlineMath math="s=7" /> und <InlineMath math="p=5" />.
+
+# Die Summe der dritten Potenzen
+
+Multipliziere aus: <InlineMath math="(x+y)^3=x^3+3x^2y+3xy^2+y^3=x^3+y^3+3xy(x+y)" />. Daraus folgt, dass **<InlineMath math="x^3+y^3" /> gleich <InlineMath math="s^3-3ps" /> ist**.
+
+<BlockMath math="\begin{aligned}
+x^3+y^3&=s^3-3ps\\
+&=7^3-3\cdot 5\cdot 7\\
+&=343-105=238
+\end{aligned}" />
+
+Zur Probe: Die Lösungen sind <InlineMath math="x,y=\tfrac{7\pm\sqrt{29}}{2}" />. Ihre Summe ist <InlineMath math="7" /> und ihr Produkt <InlineMath math="\tfrac{49-29}{4}=5" />, das passt. Ein zweiter Weg liefert dasselbe: <InlineMath math="x^3+y^3=s\left(s^2-3p\right)=7\cdot 34=238" />.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="20" /> stammt **vom gestrichenen Paar**, denn <InlineMath math="5^3-3\cdot 7\cdot 5=20" />, aber dieses Paar liefert keine reellen Zahlen <InlineMath math="x" /> und <InlineMath math="y" />. Die Antwort <InlineMath math="258" /> addiert die Ergebnisse beider Paare, <InlineMath math="20+238" />. Die Antwort <InlineMath math="273" /> rechnet <InlineMath math="x^3+y^3=(x+y)\left(x^2+y^2\right)=7\cdot 39" /> und vergisst, den Term mit <InlineMath math="xy" /> abzuziehen. Die Antwort <InlineMath math="448" /> hat einen Vorzeichenfehler: <InlineMath math="s^3+3ps" />.
+
+Der Wert von <InlineMath math="x^3+y^3" /> ist also <InlineMath math="238" />.

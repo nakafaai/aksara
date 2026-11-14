@@ -1,19 +1,37 @@
-Menghitung <InlineMath math="N" /> secara langsung tidak perlu. Setiap pasangan faktor 2 dan 5 menghasilkan faktor 10, jadi **pasangkan faktor 2 dengan faktor 5** sebanyak mungkin.
+Kamu menghitung bilangan dengan <InlineMath math="4" /> angka yang memenuhi dua syarat sekaligus: jumlah angkanya <InlineMath math="18" /> dan bilangan itu habis dibagi <InlineMath math="44" />. Karena <InlineMath math="44=4\times11" /> dan <InlineMath math="4" /> serta <InlineMath math="11" /> tidak punya faktor persekutuan selain <InlineMath math="1" />, **habis dibagi <InlineMath math="44" /> berarti habis dibagi <InlineMath math="4" /> dan habis dibagi <InlineMath math="11" />**. Rencananya, ciri habis dibagi <InlineMath math="11" /> mengikat pasangan angka, ciri habis dibagi <InlineMath math="4" /> membatasi dua angka terakhir, lalu semua pilihan dihitung.
 
-# Membentuk pangkat sepuluh
+# Syarat habis dibagi sebelas
 
-Ada **tujuh faktor 5**, sehingga tujuh faktor 2 dapat dipasangkan dengannya. Tiga faktor 2 tersisa.
+Tulis bilangannya sebagai <InlineMath math="\overline{abcd}" /> dengan <InlineMath math="a\ne0" />. Ciri habis dibagi <InlineMath math="11" /> membandingkan jumlah angka di posisi ganjil dari kanan, <InlineMath math="u=b+d" />, dengan jumlah angka di posisi genap, <InlineMath math="v=a+c" />. Bilangan itu habis dibagi <InlineMath math="11" /> tepat ketika <InlineMath math="u-v" /> kelipatan <InlineMath math="11" />.
 
 <BlockMath math="\begin{aligned}
-N&=2^{3}\times\left(2^{7}\times5^{7}\right)\times3\\
-&=2^3\times3\times10^7\\
-&=24\times10^7=240{.}000{.}000
+u+v&=18\\
+u-v&=18-2v
 \end{aligned}" />
 
-# Menghitung angka
+Bentuk <InlineMath math="18-2v" /> selalu genap, dan karena <InlineMath math="u" /> serta <InlineMath math="v" /> tidak negatif, <InlineMath math="-18\le u-v\le18" />. Kelipatan <InlineMath math="11" /> di rentang itu hanya <InlineMath math="-11" />, <InlineMath math="0" />, dan <InlineMath math="11" />, dan yang genap hanya <InlineMath math="0" />. Jadi **selisih kedua jumlah harus nol**, sehingga <InlineMath math="a+c=9" /> dan <InlineMath math="b+d=9" />.
 
-Bilangan <InlineMath math="24\times10^7" /> terdiri atas angka 2 dan 4 yang diikuti **tujuh angka nol**, jadi banyak angkanya <InlineMath math="2+7=9" />.
+# Syarat habis dibagi empat
 
-Nilai 7 hanya menghitung angka nol di akhir. Nilai 8 menganggap <InlineMath math="2^3\times3" /> hanya satu angka. Nilai 10 adalah pangkat dari 2, dan nilai 17 menjumlahkan kedua pangkat <InlineMath math="10+7" />.
+Bilangan habis dibagi <InlineMath math="4" /> tepat ketika dua angka terakhirnya, <InlineMath math="\overline{cd}=10c+d" />, habis dibagi <InlineMath math="4" />. Bagian <InlineMath math="8c" /> selalu habis dibagi <InlineMath math="4" />, jadi cukup periksa sisanya.
 
-Jadi, bilangan <InlineMath math="N" /> tersusun atas **9 angka**.
+<BlockMath math="10c+d=8c+(2c+d)" />
+
+Akibatnya **angka satuan yang boleh dipakai bergantung pada angka puluhan**. Kalau <InlineMath math="c" /> genap, <InlineMath math="2c" /> habis dibagi <InlineMath math="4" />, jadi <InlineMath math="d" /> harus <InlineMath math="0" />, <InlineMath math="4" />, atau <InlineMath math="8" />. Kalau <InlineMath math="c" /> ganjil, <InlineMath math="2c" /> bersisa <InlineMath math="2" />, jadi <InlineMath math="d" /> harus <InlineMath math="2" /> atau <InlineMath math="6" />.
+
+# Menghitung semua pilihan
+
+Setelah <InlineMath math="c" /> dan <InlineMath math="d" /> dipilih, angka <InlineMath math="a=9-c" /> dan <InlineMath math="b=9-d" /> **sudah pasti**, jadi cukup hitung pasangan <InlineMath math="(c,d)" />. Syarat <InlineMath math="a\ge1" /> memberi <InlineMath math="c\le8" />, jadi <InlineMath math="c" /> bernilai <InlineMath math="0" /> sampai <InlineMath math="8" />. Ada <InlineMath math="5" /> nilai <InlineMath math="c" /> genap (<InlineMath math="0,2,4,6,8" />) dan <InlineMath math="4" /> nilai ganjil (<InlineMath math="1,3,5,7" />).
+
+<BlockMath math="5\times3+4\times2=15+8=23" />
+
+Cek satu contoh: untuk <InlineMath math="c=8" /> dan <InlineMath math="d=8" />, bilangannya <InlineMath math="1{.}188" />. Jumlah angkanya <InlineMath math="1+1+8+8=18" /> dan <InlineMath math="1{.}188=44\times27" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="90" /> hanya memakai syarat sebelas: <InlineMath math="9" /> pilihan <InlineMath math="c" /> dikali <InlineMath math="10" /> pilihan <InlineMath math="d" />, tanpa syarat habis dibagi <InlineMath math="4" />.
+- <InlineMath math="27" /> muncul kalau **hanya angka satuan yang diperiksa**, sehingga <InlineMath math="d" /> selalu <InlineMath math="0" />, <InlineMath math="4" />, atau <InlineMath math="8" />. Padahal <InlineMath math="2{.}574" /> berakhiran <InlineMath math="74" /> yang tidak habis dibagi <InlineMath math="4" />.
+- <InlineMath math="25" /> ikut menghitung <InlineMath math="a=0" />, yaitu bilangan <InlineMath math="396" /> dan <InlineMath math="792" /> yang hanya punya <InlineMath math="3" /> angka.
+- <InlineMath math="18" /> lupa bahwa <InlineMath math="0" /> juga kelipatan <InlineMath math="4" />, sehingga pilihan <InlineMath math="d=0" /> terbuang.
+
+Jadi, banyak bilangan dari <InlineMath math="1{.}000" /> sampai <InlineMath math="9{.}999" /> yang jumlah angkanya <InlineMath math="18" /> dan habis dibagi <InlineMath math="44" /> adalah <InlineMath math="23" />.

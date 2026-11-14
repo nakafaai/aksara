@@ -12,23 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$44\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$65\\text{ m}$$",
+          label: "$$6$$ kaleng",
         },
         {
           correct: true,
-          label: "$$86\\text{ m}$$",
+          label: "$$7$$ kaleng",
         },
         {
           correct: false,
-          label: "$$132\\text{ m}$$",
+          label: "$$8$$ kaleng",
         },
         {
           correct: false,
-          label: "$$462\\text{ m}$$",
+          label: "$$10$$ kaleng",
+        },
+        {
+          correct: false,
+          label: "$$14$$ kaleng",
         },
       ],
     },

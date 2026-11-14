@@ -1,22 +1,39 @@
-Fälle das Lot von <InlineMath math="O" /> auf die Sehne und nenne den Fußpunkt <InlineMath math="M" />. Das Lot vom Mittelpunkt auf eine Sehne **halbiert die Sehne**, also gilt <InlineMath math="AM=MB=8" />.
+Beide Größen fragen nach demselben Ereignis bei zwei Arten des Ziehens. Der Plan: den Inhalt der Kiste aus der gegebenen Wahrscheinlichkeit bestimmen, <InlineMath math="P" /> und <InlineMath math="Q" /> berechnen und vergleichen. Vorsicht: **Die Richtung des Vergleichs hängt vom Inhalt der Kiste ab**, die Bedingung, welche Farbe häufiger ist, entscheidet also mit.
 
-# Abstand vom Mittelpunkt und Dreiecksfläche
+# Der Inhalt der Kiste
 
-Das Dreieck <InlineMath math="OMA" /> ist rechtwinklig bei <InlineMath math="M" /> und hat die Hypotenuse <InlineMath math="OA=10" />.
+Es seien <InlineMath math="r" /> rote und <InlineMath math="10-r" /> weiße Kugeln. Zwei Kugeln haben verschiedene Farben, wenn eine rot und eine weiß ist, und es gibt <InlineMath math="\binom{10}{2}=45" /> gleich wahrscheinliche Paare.
 
 <BlockMath math="\begin{aligned}
-OM&=\sqrt{10^2-8^2}=\sqrt{36}=6\\
-[AOB]&=\tfrac12\cdot AB\cdot OM=\tfrac12\cdot16\cdot6=48
+\frac{r(10-r)}{45}&=\frac{7}{15}\\
+r^2-10r+21&=0\\
+(r-3)(r-7)&=0
 \end{aligned}" />
 
-Die zweite und die dritte Aussage sind **wahr**.
+Beide Lösungen sind als Anzahl von Kugeln sinnvoll, also **entscheidet die Bedingung, dass es mehr rote Kugeln gibt**: <InlineMath math="r=7" />. In der Kiste liegen <InlineMath math="7" /> rote und <InlineMath math="3" /> weiße Kugeln.
 
-# Der Mittelpunktswinkel
+# Die Wahrscheinlichkeit mit Zurücklegen
 
-Im Dreieck <InlineMath math="OMA" /> ist die Seite <InlineMath math="AM=8" /> länger als <InlineMath math="OM=6" />. **Der längeren Seite liegt der größere Winkel gegenüber**, also ist der Winkel <InlineMath math="AOM" /> größer als der Winkel <InlineMath math="OAM" />. Beide ergeben zusammen <InlineMath math="90^\circ" />, daher gilt <InlineMath math="\angle AOM>45^\circ" /> und <InlineMath math="\angle AOB=2\angle AOM>90^\circ" />. Der Winkel <InlineMath math="AOB" /> ist stumpf, die erste Aussage ist also falsch.
+Jeder Zug nutzt dieselbe Kiste, Rot hat also immer die Wahrscheinlichkeit <InlineMath math="\tfrac{7}{10}" /> und Weiß <InlineMath math="\tfrac{3}{10}" />. Die eine weiße Kugel kann **an jeder der drei Stellen** kommen.
 
-# Bogen und Sehne
+<BlockMath math="P=3\cdot\left(\frac{7}{10}\right)^2\cdot\frac{3}{10}=\frac{441}{1000}" />
 
-Die Sehne ist die gerade Strecke zwischen <InlineMath math="A" /> und <InlineMath math="B" />, der Bogen dagegen die Krümmung zwischen diesen Punkten. **Die gerade Strecke ist der kürzeste Weg** zwischen zwei Punkten, deshalb ist der kleine Bogen sicher länger als 16 cm. Die vierte Aussage ist falsch.
+# Die Wahrscheinlichkeit ohne Zurücklegen
 
-Die erste Aussage ist also **falsch**, die zweite **wahr**, die dritte **wahr** und die vierte **falsch**.
+Ohne Zurücklegen ändert die Reihenfolge nichts daran, welche Kugeln am Ende gezogen sind. Du kannst also **so rechnen, als ziehst du drei Kugeln auf einmal**: <InlineMath math="2" /> der <InlineMath math="7" /> roten und <InlineMath math="1" /> der <InlineMath math="3" /> weißen Kugeln.
+
+<BlockMath math="Q=\frac{\binom{7}{2}\binom{3}{1}}{\binom{10}{3}}=\frac{21\cdot 3}{120}=\frac{21}{40}" />
+
+Probe mit einem Baum: Jede Reihenfolge RRW, RWR und WRR (R für rot, W für weiß) hat die Wahrscheinlichkeit <InlineMath math="\tfrac{7\cdot 6\cdot 3}{720}=\tfrac{126}{720}" />, zusammen also <InlineMath math="\tfrac{378}{720}=\tfrac{21}{40}" />.
+
+# Die beiden Wahrscheinlichkeiten vergleichen
+
+Bringe beide auf denselben Nenner: <InlineMath math="Q=\tfrac{21}{40}=\tfrac{525}{1000}" /> und <InlineMath math="P=\tfrac{441}{1000}" />. Also ist **<InlineMath math="Q" /> größer als <InlineMath math="P" />**.
+
+Jetzt siehst du, warum die Farbbedingung zählt. Für <InlineMath math="r=3" /> ergäbe sich <InlineMath math="P=3\cdot\left(\tfrac{3}{10}\right)^2\cdot\tfrac{7}{10}=\tfrac{189}{1000}" /> und <InlineMath math="Q=\tfrac{\binom{3}{2}\binom{7}{1}}{120}=\tfrac{175}{1000}" />, also <InlineMath math="P>Q" />. Ohne die Bedingung, dass es mehr rote Kugeln gibt, ließe sich die Frage nicht entscheiden.
+
+# Die anderen Antworten prüfen
+
+Die Antwort <InlineMath math="P>Q" /> entsteht, wenn du <InlineMath math="r=3" /> nimmst oder vermutest, dass Ziehen ohne Zurücklegen **die Wahrscheinlichkeit immer senkt**. Die Antwort <InlineMath math="P=Q" /> entsteht, weil ein einzelner Zug bei beiden Arten mit der Wahrscheinlichkeit <InlineMath math="\tfrac{7}{10}" /> rot ist und du diese Gleichheit auf das gemeinsame Ereignis aus drei Zügen überträgst. Die Antwort, die Angaben reichten nicht aus, entsteht, wenn du die Bedingung mit den roten Kugeln nicht nutzt, um <InlineMath math="r=3" /> zu streichen.
+
+Es gilt also <InlineMath math="Q>P" />, weil <InlineMath math="\tfrac{21}{40}" /> größer ist als <InlineMath math="\tfrac{441}{1000}" />.

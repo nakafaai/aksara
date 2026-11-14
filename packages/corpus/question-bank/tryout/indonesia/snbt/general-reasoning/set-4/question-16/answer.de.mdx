@@ -1,16 +1,35 @@
-Eine Aussage ist Benar (richtig) nur, wenn sie in jedem gültigen Plan gilt, sonst ist sie Salah (falsch). Nutze die zwei Gruppen möglicher Pläne und prüfe bei einer Wenn-Aussage **nur die Pläne, in denen der Wenn-Teil zutrifft**.
+Ordne jede Aussage als Benar (richtig, sie gilt sicher) oder Salah (falsch, sie gilt nicht sicher) ein. Die Zusatzbedingung lautet, dass Gamelan vormittags stattfindet. Eine Aussage ist nur dann Benar, wenn sie in **jedem gültigen Plan mit Gamelan am Vormittag** gilt. Ein einziger gültiger Plan, in dem sie falsch ist, reicht für Salah.
 
-| Gruppe | Freitag | Samstag | Sonntag |
-| --- | --- | --- | --- |
-| A | Q und R | P und T | U nachmittags, S abends |
-| B | T nachmittags, S abends | P und U | Q und R |
+Fang mit Bedingung 1 an. Gamelan kann nicht am Montagvormittag liegen, weil vor dem Montagvormittag keine Sitzung für Batik übrig ist. Also liegt Gamelan am Dienstagvormittag oder am Mittwochvormittag. Direkt vor einer Vormittagssitzung liegt immer die Nachmittagssitzung des Vortags, also liegt Batik immer nachmittags. Teil die Lösung jetzt in zwei Fälle.
 
-**Aussage 1** ist richtig. U muss an einem späteren Tag als T auftreten und kann daher nicht am ersten Tag, dem Freitag, auftreten.
+Fall Gamelan am Dienstagvormittag:
 
-**Aussage 2** ist falsch. In Gruppe A tritt T am Samstag mit P auf und kann die Abendsitzung übernehmen.
+- Batik liegt am Montagnachmittag.
+- Wayang darf nicht auf den Dienstag (Bedingung 2) und nicht auf den Mittwoch, weil der Wayang-Tag vor dem Dongeng-Tag liegen muss (Bedingung 3). Also liegt Wayang am Montagvormittag.
+- Dongeng muss vormittags liegen, und der Dienstagvormittag ist belegt, also liegt Dongeng am Mittwochvormittag.
+- Angklung und Kuliner füllen Dienstagnachmittag und Mittwochnachmittag in beliebiger Reihenfolge. Beide Reihenfolgen sind gültig, weil Kuliner nachmittags bleibt und der Batik-Tag weiterhin vor dem Kuliner-Tag liegt.
 
-**Aussage 3** ist falsch. In Gruppe B tritt S am Freitag auf.
+Fall Gamelan am Mittwochvormittag:
 
-**Aussage 4** ist richtig. Q tritt nur in Gruppe A am Freitag auf, und dort tritt U immer am Sonntag auf.
+- Batik liegt am Dienstagnachmittag.
+- Dongeng muss vormittags liegen, und der Mittwochvormittag ist belegt. Am Montag geht Dongeng auch nicht, weil der Wayang-Tag früher sein muss. Also liegt Dongeng am Dienstagvormittag und Wayang am Montag.
+- Kuliner muss an einem Tag nach dem Batik-Tag liegen (Bedingung 6), also liegt Kuliner am Mittwochnachmittag.
+- Angklung füllt die übrige Montagssitzung. Wayang und Angklung dürfen am Montag die Sitzungen tauschen.
 
-Die Aussagen 1 und 4 sind also richtig, die Aussagen 2 und 3 falsch.
+So entstehen vier Pläne.
+
+| Plan | Montag vormittags | Montag nachmittags | Dienstag vormittags | Dienstag nachmittags | Mittwoch vormittags | Mittwoch nachmittags |
+| --- | --- | --- | --- | --- | --- | --- |
+| I | Wayang | Batik | Gamelan | Angklung | Dongeng | Kuliner |
+| II | Wayang | Batik | Gamelan | Kuliner | Dongeng | Angklung |
+| III | Wayang | Angklung | Dongeng | Batik | Gamelan | Kuliner |
+| IV | Angklung | Wayang | Dongeng | Batik | Gamelan | Kuliner |
+
+Jetzt bewertest du jede Aussage.
+
+- Angklung am Montag ist Salah. Das passiert nur in den Plänen III und IV. In den Plänen I und II liegt Angklung am Dienstagnachmittag oder am Mittwochnachmittag. Die Aussage wirkt richtig, wenn du nur den Fall mit Gamelan am Mittwochvormittag prüfst.
+- Wayang am Montag ist Benar. In beiden Fällen sind Dienstag und Mittwoch für Wayang gesperrt, also liegt Wayang immer am Montag.
+- Batik am Nachmittag ist Benar. Batik liegt direkt vor Gamelan, und Gamelan liegt vormittags, also liegt Batik immer am Nachmittag des Vortags.
+- Wayang am Vormittag ist Salah. Plan IV setzt Angklung auf den Montagvormittag und Wayang auf den Montagnachmittag, und dieser Plan erfüllt alle Bedingungen.
+
+Die Aussagen über Wayang am Montag und Batik am Nachmittag sind also Benar, die Aussagen über Angklung am Montag und Wayang am Vormittag sind Salah.

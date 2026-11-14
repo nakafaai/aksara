@@ -2,27 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "analytical-exposition",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "descriptive",
+    topic: "main-idea-purpose",
   },
-  stimulus: "source-checking",
+  stimulus: "observatory",
   versions: {
     en: {
-      columns: ["Identifying", "Tracing", "Comparing"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Writing the exact claim in one sentence",
+          correct: false,
+          label: "I only",
         },
         {
-          column: 2,
-          label: "Finding the original report behind a screenshot",
+          correct: false,
+          label: "I, II, and III only",
         },
         {
-          column: 3,
-          label: "Checking another source with independent evidence",
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
+        },
+        {
+          correct: true,
+          label: "I and III only",
         },
       ],
     },

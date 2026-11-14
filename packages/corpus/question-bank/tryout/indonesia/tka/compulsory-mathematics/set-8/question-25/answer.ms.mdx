@@ -1,0 +1,43 @@
+Soalan ini memberi keputusan akhirnya, iaitu dua biji bola merah, kemudian bertanya **dari beg mana bola itu berkemungkinan besar datang**. Itu kebarangkalian bersyarat yang arahnya diterbalikkan: daripada keputusan kembali kepada punca. Jalannya tiga langkah: kebarangkalian setiap beg dipilih, kebarangkalian dua merah daripada setiap beg, kemudian membandingkan kedua-duanya.
+
+# Kebarangkalian setiap beg dipilih
+
+Gandaan <InlineMath math="3" /> pada dadu hanyalah <InlineMath math="3" /> dan <InlineMath math="6" />, jadi **beg I dipilih dengan kebarangkalian** <InlineMath math="\tfrac26" />:
+
+<BlockMath math="P(\text{I})=\frac26=\frac13,\qquad P(\text{II})=1-\frac13=\frac23" />
+
+Beg II lebih kerap dipilih, jadi sebelum warna bola dilihat, beg II sebenarnya lebih mungkin. Maklumat warna itulah yang mengubah perbandingan ini.
+
+# Kebarangkalian dua merah daripada setiap beg
+
+Dua biji bola diambil serentak, jadi **bola pertama tidak dikembalikan**. Gunakan gabungan: bilangan cara memilih dua bola merah dibahagi dengan bilangan cara memilih sebarang dua bola. Setiap beg mengandungi <InlineMath math="5" /> biji bola, jadi <InlineMath math="C(5,2)=10" />.
+
+<BlockMath math="\begin{aligned}
+P(\text{MM}\mid\text{I})&=\frac{C(3,2)}{C(5,2)}=\frac{3}{10} \\
+P(\text{MM}\mid\text{II})&=\frac{C(2,2)}{C(5,2)}=\frac{1}{10}
+\end{aligned}" />
+
+# Menterbalikkan arah syarat
+
+Kira kebarangkalian setiap laluan yang berakhir dengan dua bola merah, kemudian jumlahkan:
+
+<BlockMath math="\begin{aligned}
+P(\text{I dan MM})&=\frac13\cdot\frac{3}{10}=\frac{1}{10}=\frac{3}{30} \\
+P(\text{II dan MM})&=\frac23\cdot\frac{1}{10}=\frac{2}{30} \\
+P(\text{MM})&=\frac{3}{30}+\frac{2}{30}=\frac{5}{30}
+\end{aligned}" />
+
+Daripada semua kesudahan dua merah, **bahagian yang melalui beg I** ialah
+
+<BlockMath math="P(\text{I}\mid\text{MM})=\frac{3/30}{5/30}=\frac35" />
+
+Semak dengan membayangkan eksperimen diulang <InlineMath math="30" /> kali. Lebih kurang <InlineMath math="10" /> kali beg I dipilih, dan <InlineMath math="3" /> daripadanya memberi dua merah. Lebih kurang <InlineMath math="20" /> kali beg II dipilih, dan <InlineMath math="2" /> daripadanya memberi dua merah. Daripada <InlineMath math="5" /> kesudahan dua merah, <InlineMath math="3" /> datang daripada beg I.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{1}{10}" /> ialah kebarangkalian beg I dipilih **dan** dua bola merah. Nilai itu belum dibahagi dengan kebarangkalian dua merah.
+- <InlineMath math="\frac{3}{10}" /> ialah kebarangkalian dua merah apabila sudah diketahui beg I. Arah syaratnya terbalik.
+- <InlineMath math="\frac13" /> hanyalah kebarangkalian awal beg I dipilih. Maklumat bahawa kedua-dua bola merah belum digunakan.
+- <InlineMath math="\frac{9}{17}" /> muncul jika pengambilan dianggap dengan pengembalian, iaitu <InlineMath math="\left(\frac35\right)^2" /> dan <InlineMath math="\left(\frac25\right)^2" />. Bola diambil serentak, jadi bola pertama tidak kembali ke dalam beg.
+
+Jadi, kebarangkalian bahawa kedua-dua bola merah itu datang daripada beg I ialah <InlineMath math="\frac35" />.

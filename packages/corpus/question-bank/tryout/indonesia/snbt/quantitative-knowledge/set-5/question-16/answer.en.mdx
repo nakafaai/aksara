@@ -1,21 +1,48 @@
-Means cannot be subtracted directly. Turn each mean into **a total score**, then subtract the totals.
+Both expressions under the square roots are perfect squares, so this is really an absolute value equation. The plan: turn the roots into absolute values, use the condition of **infinitely many solutions to find <InlineMath math="a" />**, then find every integer that works and add them up.
 
-# The total of each group
+# Square roots hiding absolute values
+
+The expressions under the roots factor: <InlineMath math="x^2-2ax+a^2=(x-a)^2" /> and <InlineMath math="x^2+2x+1=(x+1)^2" />. A square root is never negative, so **<InlineMath math="\sqrt{t^2}" /> equals <InlineMath math="|t|" />, not <InlineMath math="t" />**.
+
+<BlockMath math="|x-a|+|x+1|=6" />
+
+# When there are infinitely many solutions
+
+The expression <InlineMath math="|x-a|" /> is the distance from <InlineMath math="x" /> to <InlineMath math="a" /> on the number line, and <InlineMath math="|x+1|" /> is the distance from <InlineMath math="x" /> to <InlineMath math="-1" />. **The sum of those two distances is at least the distance from <InlineMath math="a" /> to <InlineMath math="-1" />**, which is <InlineMath math="|a+1|" />, and every <InlineMath math="x" /> between the two points reaches that smallest value. So there are three possibilities. If <InlineMath math="|a+1|=6" />, every point between them works, so there are infinitely many solutions. If <InlineMath math="|a+1|<6" />, there are only <InlineMath math="2" /> points, one on each side. For example, with <InlineMath math="a=3" /> the only solutions are <InlineMath math="x=-2" /> and <InlineMath math="x=4" />. If <InlineMath math="|a+1|>6" />, there are no solutions.
 
 <BlockMath math="\begin{aligned}
-\text{total for the whole class}&=25\times70=1750\\
-\text{total for the five students}&=5\times86=430\\
-\text{total for the other 20 students}&=1750-430=1320
+|a+1|&=6\\
+a+1=6\quad&\text{or}\quad a+1=-6\\
+a=5\quad&\text{or}\quad a=-7
 \end{aligned}" />
 
-# The mean of the other group
+The number <InlineMath math="a" /> is a natural number, so **the natural-number condition rules out <InlineMath math="a=-7" />**, which leaves <InlineMath math="a=5" />.
 
-Divide that total by **the number of students in that group**, which is 20.
+# Solving the equation
 
-<BlockMath math="\bar x=\frac{1320}{20}=66" />
+For <InlineMath math="a=5" />, the equation is <InlineMath math="|x-5|+|x+1|=6" />. Check the three parts of the number line split at <InlineMath math="-1" /> and <InlineMath math="5" />.
 
-A check with deviations: the five students are on average 16 above 70, an excess of 80 in total. The other 20 students must balance it, on average 4 below 70 each, which gives 66.
+<BlockMath math="\begin{aligned}
+x<-1:&\quad(5-x)+(-x-1)=6\ \Rightarrow\ x=-1\ \text{(not in this case)}\\
+-1\le x\le5:&\quad(5-x)+(x+1)=6\ \Rightarrow\ 6=6\ \text{(always true)}\\
+x>5:&\quad(x-5)+(x+1)=6\ \Rightarrow\ x=5\ \text{(not in this case)}
+\end{aligned}" />
 
-The value 52.8 divides 1320 by 25 instead of 20. The value 74 adds 4 instead of subtracting it. The value 70 assumes the mean of the other group does not change. The value 83.2 subtracts 86, not 430, from the class total.
+The solution set is <InlineMath math="-1\le x\le5" />, and **both ends count**.
 
-So the mean score of the other 20 students is **66**.
+# Adding the integers
+
+The integers in that interval, **including both ends**, are <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, <InlineMath math="4" />, and <InlineMath math="5" />.
+
+<BlockMath math="-1+0+1+2+3+4+5=14" />
+
+Check two values. For <InlineMath math="x=2" />, the left side is <InlineMath math="\sqrt{9}+\sqrt{9}=6" />, which works. For <InlineMath math="x=6" />, outside the interval, the left side is <InlineMath math="\sqrt1+\sqrt{49}=8" />, which doesn't.
+
+# Why the other options are wrong
+
+- <InlineMath math="10" /> drops both ends, <InlineMath math="-1" /> and <InlineMath math="5" />, even though both satisfy the equation.
+- <InlineMath math="9" /> drops only the end <InlineMath math="5" />, so it adds <InlineMath math="-1" /> through <InlineMath math="4" />.
+- <InlineMath math="4" /> only adds <InlineMath math="-1" /> and <InlineMath math="5" />, treating the always-true middle case as if it had no solutions.
+- <InlineMath math="-28" /> uses <InlineMath math="a=-7" />, which gives the interval <InlineMath math="-7\le x\le-1" />. This option **ignores the natural-number condition**.
+
+So the sum of all integers <InlineMath math="x" /> that satisfy the equation is <InlineMath math="14" />.

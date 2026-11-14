@@ -1,17 +1,37 @@
-Sei <InlineMath math="x" /> die Zahl der Stifte und <InlineMath math="y" /> die der Radiergummis, ganze Zahlen mit <InlineMath math="x\ge1" /> und <InlineMath math="y\ge1" />. In Tausend Rupiah lautet die Bedingung <InlineMath math="2x+3y\le12" />. **Zähle die Paare geordnet für jeden Wert von <InlineMath math="y" />**.
+# Die Ungleichung als Gerade
 
-| <InlineMath math="y" /> | Bedingung für <InlineMath math="x" /> | Werte von <InlineMath math="x" /> | Anzahl |
-| --- | --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="2x\le9" /> | <InlineMath math="1,2,3,4" /> | <InlineMath math="4" /> |
-| <InlineMath math="2" /> | <InlineMath math="2x\le6" /> | <InlineMath math="1,2,3" /> | <InlineMath math="3" /> |
-| <InlineMath math="3" /> | <InlineMath math="2x\le3" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
-| <InlineMath math="4" /> | <InlineMath math="2x\le0" /> | keine | <InlineMath math="0" /> |
+Gesucht sind die Werte von <InlineMath math="a" />, für die die Ungleichung auf dem ganzen Intervall <InlineMath math="-1\le x\le4" /> gilt und bei <InlineMath math="x=6" /> nicht gilt. Bring alle Terme auf die linke Seite.
 
-Insgesamt sind es <InlineMath math="4+3+1=8" /> Paare.
+<BlockMath math="2x+a-ax+3>0 \quad\Longleftrightarrow\quad f(x)=(2-a)x+a+3>0" />
 
-Es gibt also <InlineMath math="8" /> mögliche Paare.
+Für ein festes <InlineMath math="a" /> ist <InlineMath math="f" /> eine lineare Funktion von <InlineMath math="x" />, ihr Graph ist also eine Gerade. Auf einem Intervall hat eine Gerade ihren kleinsten Wert immer an einem der Randpunkte. Deshalb gilt **<InlineMath math="f(x)>0" /> für jedes <InlineMath math="x" /> im Intervall genau dann, wenn beide Randwerte positiv sind**. Eine Fallunterscheidung nach dem Vorzeichen von <InlineMath math="2-a" /> brauchst du nicht, und der Fall <InlineMath math="a=2" /> ist auch schon erfasst.
 
-- <InlineMath math="7" /> übersieht das Paar für <InlineMath math="y=3" />, <InlineMath math="1" /> Stift und <InlineMath math="3" /> Radiergummis.
-- <InlineMath math="12" /> zählt auch Käufe ohne Stift mit.
-- <InlineMath math="14" /> zählt auch Käufe ohne Radiergummi mit.
-- <InlineMath math="19" /> zählt auch Käufe ohne Stift, ohne Radiergummi oder ohne beides mit.
+# Drei Bedingungen
+
+Die ersten beiden Bedingungen kommen von den Randpunkten.
+
+<BlockMath math="\begin{aligned}
+f(-1)&=-(2-a)+a+3=2a+1>0 &&\Rightarrow\; a>-\tfrac{1}{2} \\
+f(4)&=4(2-a)+a+3=11-3a>0 &&\Rightarrow\; a<\tfrac{11}{3}
+\end{aligned}" />
+
+Die dritte Bedingung: Die Ungleichung gilt bei <InlineMath math="x=6" /> **nicht**. Das Gegenteil von "größer als" ist "kleiner oder gleich", also wird das Zeichen zu <InlineMath math="\le" />. Beim Teilen durch eine negative Zahl dreht sich das Zeichen um.
+
+<BlockMath math="\begin{aligned}
+f(6)=6(2-a)+a+3=15-5a&\le0 \\
+-5a&\le-15 \\
+a&\ge3
+\end{aligned}" />
+
+Alle drei zusammen ergeben <InlineMath math="3\le a<\frac{11}{3}" />. Die Bedingung <InlineMath math="a>-\frac{1}{2}" /> ist bei <InlineMath math="a\ge3" /> automatisch erfüllt.
+
+Prüf beide Grenzen. Für <InlineMath math="a=3" /> läuft <InlineMath math="f(x)=-x+6" /> auf dem Intervall von <InlineMath math="7" /> bis <InlineMath math="2" />, ist also positiv, und <InlineMath math="f(6)=0" /> macht <InlineMath math="0>0" /> falsch. Also gehört <InlineMath math="a=3" /> dazu. Für <InlineMath math="a=\frac{11}{3}" /> ist <InlineMath math="f(4)=0" />, die Ungleichung scheitert also bei <InlineMath math="x=4" />, und dieser Wert gehört nicht dazu.
+
+Alle passenden Werte sind also <InlineMath math="3\le a<\frac{11}{3}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-\frac{1}{2}<a<\frac{11}{3}" /> vergisst die Bedingung bei <InlineMath math="x=6" />. Zum Beispiel ergibt <InlineMath math="a=0" /> den Wert <InlineMath math="f(6)=15>0" />, die Ungleichung gilt dort also noch.
+- <InlineMath math="a\ge3" /> prüft nur den Randpunkt <InlineMath math="x=-1" />. **Auch der Randpunkt <InlineMath math="x=4" /> muss geprüft werden**: Für <InlineMath math="a=4" /> ist <InlineMath math="f(4)=-1" />.
+- <InlineMath math="3<a<\frac{11}{3}" /> macht aus "gilt nicht" die Bedingung <InlineMath math="f(6)<0" />. Das Gegenteil von <InlineMath math=">" /> ist aber <InlineMath math="\le" />, deshalb geht <InlineMath math="a=3" /> verloren.
+- <InlineMath math="-\frac{1}{2}<a\le3" /> vergisst, beim Teilen durch <InlineMath math="-5" /> das Zeichen umzudrehen, und erhält so <InlineMath math="a\le3" />.

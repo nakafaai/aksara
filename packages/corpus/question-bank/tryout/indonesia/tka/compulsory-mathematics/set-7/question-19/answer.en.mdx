@@ -1,16 +1,76 @@
-Equal volumes **don't guarantee equal surface areas**, so work out each design's surface area with <InlineMath math="L=2(pl+pt+lt)" />.
+The question asks for a ratio of **areas**, not a ratio of sides. Square <InlineMath math="PQRS" /> has only two vertices on the circle, so it isn't the usual square drawn inside a circle. You need the radius of the circle first, then the side of <InlineMath math="PQRS" /> from Pythagoras' theorem.
+
+# Radius of the circle
+
+Circle <InlineMath math="L" /> touches all four sides of square <InlineMath math="ABCD" />, so **its diameter equals the side of the square**, <InlineMath math="20\text{ cm}" />. The two touching points on opposite sides sit exactly at the two ends of one diameter. The radius is <InlineMath math="r=10\text{ cm}" />, and line <InlineMath math="g" /> is one of the circle's diameters.
+
+# Side of square PQRS
+
+Call the side of <InlineMath math="PQRS" /> <InlineMath math="s" />. Points <InlineMath math="R" /> and <InlineMath math="S" /> lie on the circle, and <InlineMath math="SR" /> is parallel to <InlineMath math="g" />. The perpendicular from the centre <InlineMath math="O" /> to the chord <InlineMath math="SR" /> always cuts that chord in half. The same perpendicular also cuts <InlineMath math="PQ" /> in half, because <InlineMath math="PS" /> and <InlineMath math="QR" /> are both perpendicular to <InlineMath math="g" />. So **<InlineMath math="O" /> is exactly the midpoint of <InlineMath math="PQ" />**, and <InlineMath math="OQ=\tfrac{s}{2}" />.
+
+<MathVisual
+  title={<>Right triangle <InlineMath math="OQR" /></>}
+  description={<>The figure from the question with segment <InlineMath math="OR" /> drawn in. Triangle <InlineMath math="OQR" /> has its right angle at <InlineMath math="Q" />, with <InlineMath math="OQ" /> half a side of the square, <InlineMath math="QR" /> one full side, and <InlineMath math="OR" /> the radius <InlineMath math="10" />.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    r: <InlineMath math="R" />,
+    s: <InlineMath math="S" />,
+    radius: <InlineMath math="10" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -12, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "outer", kind: "polygon", appearance: "primary", vertices: [{ x: -10, y: -10 }, { x: 10, y: -10 }, { x: 10, y: 10 }, { x: -10, y: 10 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 10 },
+      { id: "line-g", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "inner", kind: "polygon", appearance: "highlight", vertices: [{ x: -2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 0 }, { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }] },
+      { id: "radius-r", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-o", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 0 } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 0 } },
+      { id: "point-r", kind: "point", appearance: "reference", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) } },
+    ],
+    labels: [
+      { key: "o", objectId: "point-o", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "p", objectId: "point-p", at: { x: -2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "q", objectId: "point-q", at: { x: 2 * Math.sqrt(5), y: 0 }, placement: "below" },
+      { key: "r", objectId: "point-r", at: { x: 2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-right" },
+      { key: "s", objectId: "point-s", at: { x: -2 * Math.sqrt(5), y: 4 * Math.sqrt(5) }, placement: "above-left" },
+      { key: "radius", objectId: "radius-r", at: { x: Math.sqrt(5), y: 2 * Math.sqrt(5) }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Triangle <InlineMath math="OQR" /> has its right angle at <InlineMath math="Q" />, with <InlineMath math="OQ=\tfrac{s}{2}" />, <InlineMath math="QR=s" />, and hypotenuse <InlineMath math="OR=10" /> because <InlineMath math="R" /> is on the circle.
 
 <BlockMath math="\begin{aligned}
-L_P&=2(200+100+50)=700\text{ cm}^2 \\
-L_Q&=2(200+125+40)=730\text{ cm}^2 \\
-L_R&=2(100+100+100)=600\text{ cm}^2
+\left(\frac{s}{2}\right)^2+s^2&=10^2 \\
+\frac{5s^2}{4}&=100 \\
+s^2&=80
 \end{aligned}" />
 
-Design R, the cube, has the smallest surface area. The closer a box is to a cube, the less material it needs for the same volume.
+# Ratio of the areas
 
-So design R needs the least material.
+The area of <InlineMath math="PQRS" /> is <InlineMath math="s^2=80\text{ cm}^2" />, and the area of <InlineMath math="ABCD" /> is <InlineMath math="20^2=400\text{ cm}^2" />. Divide the small area by the big one to get the ratio.
 
-- All three have the same volume, but their surface areas are <InlineMath math="700" />, <InlineMath math="730" />, and <InlineMath math="600\text{ cm}^2" />.
-- Design Q actually needs the most material.
-- Design P needs <InlineMath math="100\text{ cm}^2" /> **more** than R, not less.
-- Design Q needs <InlineMath math="30\text{ cm}^2" /> **more** than P.
+<BlockMath math="\frac{A_{PQRS}}{A_{ABCD}}=\frac{80}{400}=\frac{1}{5}" />
+
+The sides themselves are in the ratio <InlineMath math="\sqrt{80}:20=1:\sqrt{5}" />. **The ratio of areas is the square of the ratio of sides**, so <InlineMath math="\left(1:\sqrt{5}\right)^2=1:5" />, which matches the calculation above.
+
+# Why the other options are wrong
+
+- <InlineMath math="1:8" /> comes from putting <InlineMath math="O" /> at the point <InlineMath math="P" />. Then <InlineMath math="OR" /> would be a diagonal, <InlineMath math="s\sqrt{2}=10" />, and <InlineMath math="s^2=50" />.
+- <InlineMath math="1:4" /> comes from assuming, with no reason, that the side of the square equals the radius, <InlineMath math="s=10" />.
+- <InlineMath math="1:\sqrt{5}" /> is the ratio of the sides. **The question asks for the ratio of areas**, so the side ratio still has to be squared.
+- <InlineMath math="1:2" /> belongs to a square with all four vertices on the circle, whose diagonal is <InlineMath math="20" /> and area <InlineMath math="200" />. Here <InlineMath math="P" /> and <InlineMath math="Q" /> lie on a diameter, not on the circle.
+
+So the area of square <InlineMath math="PQRS" /> to the area of square <InlineMath math="ABCD" /> is <InlineMath math="1:5" />.

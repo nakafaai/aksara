@@ -1,0 +1,83 @@
+Soalan ini hanya meminta luas sebahagian imej, iaitu bahagian yang berada di atas paksi-<InlineMath math="x" />. Luas seluruh imej belum mencukupi, kerana paksi itu memotong imej tersebut. Kamu perlukan **kedudukan sebenar bucu-bucu imej**.
+
+# Imej setiap bucu
+
+Pembesaran dengan pusat <InlineMath math="P" /> dan faktor skala <InlineMath math="k" /> membawa titik <InlineMath math="X" /> ke <InlineMath math="P+k(X-P)" />. Maksudnya, ambil langkah dari <InlineMath math="P" /> ke titik itu, darabkan langkah itu dengan <InlineMath math="k" />, kemudian mula semula dari <InlineMath math="P" />. Faktor negatif menterbalikkan arah langkah, jadi imejnya berada di seberang <InlineMath math="P" />. **Translasi dibuat selepas pembesaran**, mengikut susunan dalam soalan.
+
+| Titik | <InlineMath math="X-P" /> | <InlineMath math="-\frac12(X-P)" /> | Selepas pembesaran | Selepas translasi |
+| :---: | :---: | :---: | :---: | :---: |
+| <InlineMath math="A" /> | <InlineMath math="(-6,-4)" /> | <InlineMath math="(3,2)" /> | <InlineMath math="(5,4)" /> | <InlineMath math="A''(4,1)" /> |
+| <InlineMath math="B" /> | <InlineMath math="(6,-4)" /> | <InlineMath math="(-3,2)" /> | <InlineMath math="(-1,4)" /> | <InlineMath math="B''(-2,1)" /> |
+| <InlineMath math="C" /> | <InlineMath math="(2,4)" /> | <InlineMath math="(-1,-2)" /> | <InlineMath math="(1,0)" /> | <InlineMath math="C''(0,-3)" /> |
+| <InlineMath math="D" /> | <InlineMath math="(-2,4)" /> | <InlineMath math="(1,-2)" /> | <InlineMath math="(3,0)" /> | <InlineMath math="D''(2,-3)" /> |
+
+Lihat sisi <InlineMath math="AB" />. Sisi panjang itu asalnya di bawah, tetapi kini <InlineMath math="A''B''" /> berada di atas, pada garis <InlineMath math="y=1" />. **Faktor negatif menterbalikkan bentuk dari atas ke bawah dan dari kiri ke kanan**. Imejnya ialah trapezium dengan sisi selari <InlineMath math="A''B''=6" /> pada <InlineMath math="y=1" /> dan <InlineMath math="C''D''=2" /> pada <InlineMath math="y=-3" />, dan tingginya <InlineMath math="4" />.
+
+<BlockMath math="\begin{aligned}
+\text{luas trapezium asal}&=\frac{12+4}{2}\cdot8=64 \\
+\text{luas imej}&=\frac{6+2}{2}\cdot4=16=\left(-\tfrac12\right)^2\cdot64
+\end{aligned}" />
+
+# Bahagian di atas paksi-x
+
+Paksi-<InlineMath math="x" /> terletak <InlineMath math="1" /> unit di bawah sisi <InlineMath math="A''B''" />. Cari titik persilangan kedua-dua kaki trapezium dengan paksi itu. Kaki <InlineMath math="B''C''" /> turun <InlineMath math="4" /> unit sambil bergerak <InlineMath math="2" /> unit ke kanan, jadi bagi setiap unit turun, ia bergerak <InlineMath math="\frac12" /> ke kanan. Kaki <InlineMath math="A''D''" /> pula bergerak <InlineMath math="\frac12" /> ke kiri bagi setiap unit turun.
+
+<BlockMath math="\begin{aligned}
+B''C''\text{ memotong paksi-}x&\text{ di }\left(-2+\tfrac12,\,0\right)=\left(-\tfrac32,\,0\right) \\
+A''D''\text{ memotong paksi-}x&\text{ di }\left(4-\tfrac12,\,0\right)=\left(\tfrac72,\,0\right) \\
+\text{panjang potongan}&=\tfrac72-\left(-\tfrac32\right)=5
+\end{aligned}" />
+
+Bahagian di atas paksi-<InlineMath math="x" /> ialah trapezium kecil dengan sisi selari <InlineMath math="6" /> dan <InlineMath math="5" />, dan tingginya <InlineMath math="1" />:
+
+<BlockMath math="\text{luas bahagian atas}=\frac{6+5}{2}\cdot1=5.5" />
+
+<MathVisual
+  title={<>Imej akhir dan paksi-<InlineMath math="x" /></>}
+  description={<>Imej akhir ialah trapezium <InlineMath math="A''B''C''D''" /> dengan <InlineMath math="A''(4,1)" />, <InlineMath math="B''(-2,1)" />, <InlineMath math="C''(0,-3)" />, dan <InlineMath math="D''(2,-3)" />. Paksi-<InlineMath math="x" /> memotongnya dari <InlineMath math="\left(-\tfrac32,0\right)" /> hingga <InlineMath math="\left(\tfrac72,0\right)" />, sepanjang <InlineMath math="5" />. Bahagian di atas paksi-<InlineMath math="x" /> ditandakan: sisi atasnya <InlineMath math="6" /> dan tingginya <InlineMath math="1" />.</>}
+  labels={{
+    a: <InlineMath math="A''" />,
+    b: <InlineMath math="B''" />,
+    c: <InlineMath math="C''" />,
+    d: <InlineMath math="D''" />,
+    top: <InlineMath math="6" />,
+    cut: <InlineMath math="5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 6 },
+      y: { min: -5, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "image", kind: "polygon", appearance: "primary", vertices: [{ x: 4, y: 1 }, { x: -2, y: 1 }, { x: 0, y: -3 }, { x: 2, y: -3 }] },
+      { id: "upper-part", kind: "polygon", appearance: "highlight", vertices: [{ x: -2, y: 1 }, { x: 4, y: 1 }, { x: 3.5, y: 0 }, { x: -1.5, y: 0 }] },
+      { id: "cut", kind: "segment", appearance: "answer", from: { x: -1.5, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 4, y: 1 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: -2, y: 1 } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 0, y: -3 } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "b", objectId: "point-b", at: { x: -2, y: 1 }, placement: "above-left" },
+      { key: "c", objectId: "point-c", at: { x: 0, y: -3 }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 2, y: -3 }, placement: "below-right" },
+      { key: "top", objectId: "image", at: { x: 1, y: 1 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 1, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Semak: bahagian di bawah paksi-<InlineMath math="x" /> mempunyai luas <InlineMath math="\frac{5+2}{2}\cdot3=10.5" />, dan <InlineMath math="5.5+10.5=16" />, **sama dengan luas seluruh imej**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2.5" /> terhasil jika faktornya diambil sebagai <InlineMath math="+\frac12" />. Imejnya tidak terbalik, sisi panjang kekal di bawah, dan bahagian di atas paksi hanya <InlineMath math="\frac{3+2}{2}\cdot1" />.
+- <InlineMath math="4" /> terhasil jika luas <InlineMath math="16" /> dibahagikan mengikut tinggi sahaja, iaitu <InlineMath math="1" /> daripada <InlineMath math="4" />. Trapezium itu paling lebar di bahagian atas, jadi **jalur atasnya lebih daripada suku luas**.
+- <InlineMath math="10.5" /> terhasil jika trapezium asal yang dipotong pada paksi-<InlineMath math="x" />, kemudian luasnya didarab dengan <InlineMath math="\frac14" />. Oleh sebab bentuknya terbalik, bahagian asal di atas paksi menjadi bahagian imej di bawah paksi.
+- <InlineMath math="16" /> ialah luas seluruh imej tanpa dipotong. Nilai ini juga muncul jika translasi dibuat dahulu, kerana seluruh imej kemudiannya berada di atas paksi-<InlineMath math="x" />.
+
+Jadi, luas bahagian imej akhir yang terletak di atas paksi-<InlineMath math="x" /> ialah <InlineMath math="5.5" /> unit persegi.

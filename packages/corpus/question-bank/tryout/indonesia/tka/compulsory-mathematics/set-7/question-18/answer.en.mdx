@@ -1,15 +1,85 @@
-Take the garden's area minus the paths. The two paths **overlap in a <InlineMath math="1\text{ m}\times1\text{ m}" /> square** that belongs to both paths, so that square may be subtracted only once.
+The question asks for the area of lawn that gets wet. Without the wall, that's a circle of radius <InlineMath math="6\text{ m}" />. The wall cuts through the circle, so **the part of the circle behind the wall has to go**. That part is a circular segment, the region between a chord and its arc.
+
+# Central angle of the segment
+
+Draw the perpendicular from <InlineMath math="S" /> to the wall and call its foot <InlineMath math="M" />, so <InlineMath math="SM=3" />. The wall meets the circle at <InlineMath math="P" /> and <InlineMath math="Q" />, and both are <InlineMath math="6" /> away from <InlineMath math="S" /> because they lie on the circle. Triangle <InlineMath math="SMP" /> has its right angle at <InlineMath math="M" />.
+
+<MathVisual
+  title={<>Spray circle cut by the wall</>}
+  description={<>A circle with centre <InlineMath math="S" /> and radius <InlineMath math="6" />. The wall is a vertical line <InlineMath math="3" /> away from <InlineMath math="S" />, with perpendicular foot <InlineMath math="M" />. The wall cuts the circle at <InlineMath math="P" /> and <InlineMath math="Q" />, and the radii <InlineMath math="SP" /> and <InlineMath math="SQ" /> form triangle <InlineMath math="SPQ" />.</>}
+  labels={{
+    s: <InlineMath math="S" />,
+    m: <InlineMath math="M" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    radius: <InlineMath math="6" />,
+    distance: <InlineMath math="3" />,
+    wall: <>wall</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "spray", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "wall-line", kind: "line", appearance: "warning", through: [{ x: 3, y: -7 }, { x: 3, y: 7 }] },
+      { id: "radius-p", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "radius-q", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: -3 * Math.sqrt(3) } },
+      { id: "foot", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-m", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 3, y: 3 * Math.sqrt(3) } },
+      { id: "point-q", kind: "point", appearance: "reference", at: { x: 3, y: -3 * Math.sqrt(3) } },
+    ],
+    labels: [
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m", objectId: "point-m", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "p", objectId: "point-p", at: { x: 3, y: 3 * Math.sqrt(3) }, placement: "right" },
+      { key: "q", objectId: "point-q", at: { x: 3, y: -3 * Math.sqrt(3) }, placement: "right" },
+      { key: "radius", objectId: "radius-p", at: { x: 1.5, y: 1.5 * Math.sqrt(3) }, placement: "above-left" },
+      { key: "distance", objectId: "foot", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "wall", objectId: "wall-line", at: { x: 3, y: 6.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Use the cosine ratio in that right triangle.
 
 <BlockMath math="\begin{aligned}
-L_{\text{paths}}&=20\cdot1+15\cdot1-1\cdot1=34\text{ m}^2 \\
-L_{\text{vegetables}}&=20\cdot15-34=300-34=266\text{ m}^2
+\cos\angle PSM&=\frac{SM}{SP}=\frac{3}{6}=\frac{1}{2} \\
+\angle PSM&=60^\circ \\
+\angle PSQ&=2\cdot60^\circ=120^\circ
 \end{aligned}" />
 
-Check by sliding both paths to the edges of the garden: what's left is one rectangle of <InlineMath math="19\text{ m}\times14\text{ m}" />, and <InlineMath math="19\cdot14=266" />.
+Triangle <InlineMath math="SMQ" /> is an exact mirror image of triangle <InlineMath math="SMP" /> in the line <InlineMath math="SM" />. That's why **the central angle of the segment is twice <InlineMath math="60^\circ" />**.
 
-So the vegetable area is <InlineMath math="266\text{ m}^2" />.
+# Area of the segment
 
-- <InlineMath math="265\text{ m}^2" /> subtracts both full paths, so the overlap square is subtracted twice.
-- <InlineMath math="267\text{ m}^2" /> removes the overlap square from both paths, so it isn't subtracted at all.
-- <InlineMath math="280\text{ m}^2" /> subtracts only the path parallel to the long side.
-- <InlineMath math="285\text{ m}^2" /> subtracts only the path parallel to the short side.
+A sector is the region bounded by two radii and the arc between them. The segment is the <InlineMath math="120^\circ" /> sector minus triangle <InlineMath math="SPQ" />. The triangle sits on the side of <InlineMath math="S" />, so **the triangle still gets wet**, and only the segment is lost.
+
+<BlockMath math="\begin{aligned}
+A_{\text{sector}}&=\frac{120^\circ}{360^\circ}\cdot\pi\cdot6^2=12\pi \\
+A_{\triangle SPQ}&=\frac{1}{2}\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt{3}}{2}=9\sqrt{3} \\
+A_{\text{segment}}&=12\pi-9\sqrt{3}
+\end{aligned}" />
+
+# Area that gets wet
+
+Take the segment away from the full circle, <InlineMath math="\pi\cdot6^2=36\pi" />. Watch the brackets, because **subtracting a difference adds the triangle back**.
+
+<BlockMath math="36\pi-\left(12\pi-9\sqrt{3}\right)=24\pi+9\sqrt{3}\approx75.4+15.6=91.0\text{ m}^2" />
+
+Sense check: the wall is beyond the centre <InlineMath math="S" />, so the wet area must be more than half the circle, <InlineMath math="18\pi\approx56.5" />, and less than the full circle, <InlineMath math="36\pi\approx113.1" />. The result <InlineMath math="91.0" /> sits right in between.
+
+# Why the other options are wrong
+
+- <InlineMath math="\left(30\pi+9\sqrt{3}\right)\text{ m}^2" /> uses <InlineMath math="60^\circ" /> as the central angle of the segment. That <InlineMath math="60^\circ" /> is only half of it, the angle <InlineMath math="PSM" />.
+- <InlineMath math="24\pi\text{ m}^2" /> throws away the whole <InlineMath math="120^\circ" /> sector. **Triangle <InlineMath math="SPQ" /> is in front of the wall**, so it gets wet too.
+- <InlineMath math="\left(24\pi-9\sqrt{3}\right)\text{ m}^2" /> is a sign slip when subtracting the segment, so both the sector and the triangle get thrown away.
+- <InlineMath math="\left(12\pi-9\sqrt{3}\right)\text{ m}^2" /> is the area of the segment behind the wall. That's the dry part, not the one the question asks for.
+
+So the area of lawn that gets wet is <InlineMath math="\left(24\pi+9\sqrt{3}\right)\text{ m}^2" />.

@@ -1,21 +1,41 @@
-Schreibe <InlineMath math="n^2+n=n(n+1)" />. Das ist **ein Produkt zweier aufeinanderfolgender ganzer Zahlen**, also ist ein Faktor immer gerade. Wegen <InlineMath math="6=2\times3" /> hängt die Teilbarkeit durch 6 nur noch vom Faktor 3 ab.
+Die letzten beiden Ziffern einer Zahl sind **ihr Rest bei Division durch <InlineMath math="100" />**. Wegen <InlineMath math="100=4\times25" /> und weil <InlineMath math="4" /> und <InlineMath math="25" /> außer <InlineMath math="1" /> keinen gemeinsamen Teiler haben, kannst du die Reste bei Division durch <InlineMath math="4" /> und durch <InlineMath math="25" /> getrennt bestimmen und dann zusammensetzen. Die Schreibweise <InlineMath math="a\equiv b\pmod{25}" /> bedeutet, dass <InlineMath math="a" /> und <InlineMath math="b" /> bei Division durch <InlineMath math="25" /> denselben Rest lassen.
 
-# Bedingung für den Faktor drei
+# Den Exponenten verkleinern
 
-Die Primzahl 3 teilt <InlineMath math="n(n+1)" /> genau dann, wenn 3 die Zahl <InlineMath math="n" /> oder die Zahl <InlineMath math="n+1" /> teilt. Die zweite Bedingung bedeutet, dass <InlineMath math="n" /> **bei Division durch 3 den Rest 2 lässt**.
+Beginne mit einer Zweierpotenz, deren Rest leicht zu finden ist. Wegen <InlineMath math="2^{10}=1{.}024=41\times25-1" /> gilt <InlineMath math="2^{10}\equiv-1\pmod{25}" />, also <InlineMath math="2^{20}\equiv1\pmod{25}" />. Die Reste der Zweierpotenzen bei Division durch <InlineMath math="25" /> **wiederholen sich also alle <InlineMath math="20" /> Exponentenschritte**, und du brauchst nur den Rest des Exponenten bei Division durch <InlineMath math="20" />.
 
-| Rest von <InlineMath math="n" /> bei Division durch 3 | Beispiel | Ist <InlineMath math="n(n+1)" /> durch 3 teilbar? |
-| :---: | :---: | :---: |
-| 0 | <InlineMath math="3\times4=12" /> | Ja |
-| 1 | <InlineMath math="1\times2=2" /> | Nein |
-| 2 | <InlineMath math="2\times3=6" /> | Ja |
+Bestimme den Rest von <InlineMath math="4^{2026}" /> bei Division durch <InlineMath math="20" /> über die Teiler <InlineMath math="4" /> und <InlineMath math="5" />. Die Zahl <InlineMath math="4^{2026}" /> ist offensichtlich ein Vielfaches von <InlineMath math="4" />. Für den Teiler <InlineMath math="5" /> nutzt du <InlineMath math="4\equiv-1\pmod 5" />, und der gerade Exponent lässt das Minuszeichen verschwinden.
 
-# Zahlen zählen
+<BlockMath math="\begin{aligned}
+4^{2026}&\equiv(-1)^{2026}=1\pmod 5\\
+4^{2026}&\equiv0\pmod 4
+\end{aligned}" />
 
-Die Vielfachen von 3 zwischen 1 und 100 sind 3, 6 bis 99, also 33 Zahlen. Die Zahlen mit Rest 2 sind 2, 5 bis 98, also <InlineMath math="\frac{98-2}{3}+1=33" /> Zahlen.
+Von <InlineMath math="0" /> bis <InlineMath math="19" /> ist nur <InlineMath math="16" /> ein Vielfaches von <InlineMath math="4" /> mit Rest <InlineMath math="1" /> bei Division durch <InlineMath math="5" />. Also gilt <InlineMath math="4^{2026}=20k+16" /> für eine ganze Zahl <InlineMath math="k\ge0" />. **Ein gerader Exponent liefert den Rest <InlineMath math="16" />**, nicht die <InlineMath math="4" /> der ungeraden Exponenten.
 
-<BlockMath math="33+33=66" />
+# Reste bei Division durch fünfundzwanzig und vier
 
-Der Wert 33 zählt nur die Vielfachen von 3. Der Wert 67 verwendet den Rest 1, obwohl die Teilbarkeit von <InlineMath math="n+1" /> durch 3 den Rest 2 für <InlineMath math="n" /> bedeutet. Der Wert 50 zählt nur die geraden Zahlen, obwohl der Faktor 2 ohnehin immer vorhanden ist. Der Wert 100 nimmt an, dass ein Produkt zweier aufeinanderfolgender Zahlen immer durch 6 teilbar ist. Das gilt aber erst für das Produkt dreier aufeinanderfolgender Zahlen.
+Setze jetzt diese Form des Exponenten ein. Der Faktor <InlineMath math="2^{20}" /> lässt den Rest <InlineMath math="1" />, er **ändert den Rest also nicht**.
 
-Es gibt also **66** solche Zahlen <InlineMath math="n" />.
+<BlockMath math="\begin{aligned}
+N=2^{20k+16}&=\left(2^{20}\right)^{k}\times2^{16}\\
+&\equiv1^{k}\times65{.}536\\
+&\equiv11\pmod{25}
+\end{aligned}" />
+
+Die letzte Zeile stimmt, weil <InlineMath math="65{.}536=2{.}621\times25+11" /> ist. Für den Teiler <InlineMath math="4" /> ist der Exponent von <InlineMath math="N" /> viel größer als <InlineMath math="2" />, also enthält <InlineMath math="N" /> den Faktor <InlineMath math="2^2=4" />, und der Rest ist <InlineMath math="0" />.
+
+# Die beiden Reste zusammensetzen
+
+Von <InlineMath math="0" /> bis <InlineMath math="99" /> lassen nur <InlineMath math="11" />, <InlineMath math="36" />, <InlineMath math="61" /> und <InlineMath math="86" /> bei Division durch <InlineMath math="25" /> den Rest <InlineMath math="11" />. Davon ist nur <InlineMath math="36" /> durch <InlineMath math="4" /> teilbar. Die Bedingung lautet **ein Vielfaches von vier, nicht bloß gerade**, denn <InlineMath math="86" /> ist gerade, aber <InlineMath math="86=4\times21+2" />.
+
+Prüfe das auf einem zweiten Weg. Die Reste der Zweierpotenzen bei Division durch <InlineMath math="100" /> wiederholen sich ab <InlineMath math="2^2" /> alle <InlineMath math="20" /> Schritte, denn <InlineMath math="2^{22}=4{.}194{.}304" /> endet wie <InlineMath math="2^2" /> auf <InlineMath math="04" />. Der Exponent <InlineMath math="20k+16" /> ist mindestens <InlineMath math="16" />, also endet <InlineMath math="N" /> wie <InlineMath math="2^{16}=65{.}536" />, nämlich auf <InlineMath math="36" />. Beide Wege stimmen überein.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="16" /> entsteht, wenn du das Muster ungerader Exponenten nimmst, <InlineMath math="4^{2026}\equiv4\pmod{20}" />, und dann <InlineMath math="2^4=16" /> rechnest.
+- <InlineMath math="64" /> entsteht, wenn du den Exponenten mit der Endziffer von <InlineMath math="4^{2026}" /> verkleinerst, also mit <InlineMath math="6" />, als hätte der Zyklus die Länge <InlineMath math="10" />, und dann <InlineMath math="2^6=64" /> rechnest.
+- <InlineMath math="76" /> entsteht, wenn du <InlineMath math="4^{2026}" /> für ein Vielfaches von <InlineMath math="20" /> hältst, nur weil es ein Vielfaches von <InlineMath math="4" /> ist. Aber <InlineMath math="4^{2026}" /> lässt bei Division durch <InlineMath math="5" /> den Rest <InlineMath math="1" />, also ist **der Exponent kein Vielfaches von zwanzig**, und die Form <InlineMath math="2^{20k}" /> mit der Endung <InlineMath math="76" /> passt nicht.
+- <InlineMath math="96" /> entsteht, wenn du <InlineMath math="4^{2026}=2^{4052}" /> schreibst und dann <InlineMath math="4052" /> durch seinen Rest bei Division durch <InlineMath math="20" /> ersetzt, also durch <InlineMath math="12" />. So erhältst du <InlineMath math="2^{12}=4{.}096" />. Gebraucht wird aber der Rest von <InlineMath math="2^{4052}" /> bei Division durch <InlineMath math="20" />, nicht der Rest von <InlineMath math="4052" />.
+
+Die letzten beiden Ziffern von <InlineMath math="N=2^{4^{2026}}" /> sind also <InlineMath math="36" />.

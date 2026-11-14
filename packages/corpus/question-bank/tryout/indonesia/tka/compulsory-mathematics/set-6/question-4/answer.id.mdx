@@ -1,16 +1,47 @@
-Rata-rata empat ulangan <InlineMath math="78" /> berarti **jumlah nilainya <InlineMath math="4\cdot78=312" />**. Misalkan nilai ulangan kelima <InlineMath math="x" />. Syarat rata-rata lima ulangan paling sedikit <InlineMath math="80" /> menjadi pertidaksamaan linear.
+# Kecepatan kerja setiap pompa
+
+Soal ini menanyakan jam paling awal pompa A boleh dimatikan supaya kolam tetap kosong paling lambat pukul 17.00. Yang boleh dijumlahkan adalah **bagian kolam yang dikuras per jam**, bukan lama waktunya.
+
+Misalkan pompa A menguras <InlineMath math="u" /> bagian kolam per jam dan pompa B menguras <InlineMath math="v" /> bagian per jam. Dua keadaan pada soal memberi dua persamaan:
 
 <BlockMath math="\begin{aligned}
-\frac{312+x}{5}&\ge80 \\
-312+x&\ge400 \\
-x&\ge88
+8u+8v&=1 \quad\Rightarrow\quad u+v=\tfrac{1}{8} \\
+4u+16v&=1
 \end{aligned}" />
 
-Cek: dengan <InlineMath math="x=88" />, rata-ratanya <InlineMath math="\frac{400}{5}=80" />, tepat memenuhi syarat.
+Kalikan persamaan pertama dengan <InlineMath math="4" /> menjadi <InlineMath math="4u+4v=\tfrac{1}{2}" />, lalu kurangkan dari persamaan kedua:
 
-Jadi, nilai ulangan kelima paling kecil adalah <InlineMath math="88" />.
+<BlockMath math="\begin{aligned}
+12v&=1-\tfrac{1}{2}=\tfrac{1}{2} \\
+v&=\tfrac{1}{24} \\
+u&=\tfrac{1}{8}-\tfrac{1}{24}=\tfrac{1}{12}
+\end{aligned}" />
 
-- <InlineMath math="80" /> hanya menyalin target rata-rata, padahal keempat nilai sebelumnya masih kurang dari <InlineMath math="80" />.
-- <InlineMath math="82" /> menambahkan kekurangan satu ulangan saja, yaitu <InlineMath math="80-78=2" />.
-- <InlineMath math="84" /> menambahkan <InlineMath math="1" /> poin untuk setiap ulangan sebelumnya.
-- <InlineMath math="90" /> menghitung kekurangan <InlineMath math="2" /> poin untuk lima ulangan, padahal yang kurang hanya empat ulangan sebelumnya.
+Jadi pompa A sendirian butuh <InlineMath math="12" /> jam dan pompa B sendirian butuh <InlineMath math="24" /> jam.
+
+# Syarat kolam kosong tepat waktu
+
+Dari pukul 06.00 sampai 17.00 ada <InlineMath math="11" /> jam. Pompa B bekerja selama seluruh <InlineMath math="11" /> jam itu, sedangkan pompa A bekerja <InlineMath math="k" /> jam lalu dimatikan. Kolam kosong tepat waktu kalau **jumlah bagian yang dikuras paling sedikit satu kolam**:
+
+<BlockMath math="\begin{aligned}
+\frac{k}{12}+\frac{11}{24}&\ge1 \\
+\frac{k}{12}&\ge\frac{13}{24} \\
+k&\ge6{,}5
+\end{aligned}" />
+
+Pompa A hanya bisa dimatikan tepat pada jam bulat, jadi <InlineMath math="k" /> harus bilangan bulat. Bilangan bulat terkecil yang memenuhi <InlineMath math="k\ge6{,}5" /> adalah <InlineMath math="k=7" />, yaitu pukul 13.00.
+
+# Cek kedua sisi batas
+
+Kalau A dimatikan pukul 13.00, kedua pompa sudah menguras <InlineMath math="\tfrac{7}{8}" /> kolam. Sisanya <InlineMath math="\tfrac{1}{8}" /> dikuras B dalam <InlineMath math="\tfrac{1}{8}:\tfrac{1}{24}=3" /> jam, jadi kolam kosong pukul 16.00, masih sebelum 17.00. Kalau A dimatikan pukul 12.00, sisanya <InlineMath math="\tfrac{1}{4}" /> kolam dan B butuh <InlineMath math="6" /> jam, jadi kolam baru kosong pukul 18.00. **Pukul 13.00 memang jam bulat paling awal yang cukup**.
+
+# Kenapa pilihan lain salah
+
+Setiap pilihan yang salah berasal dari **satu langkah yang tertukar atau terlewat**.
+
+- Pukul 08.00 muncul kalau kecepatan A dan B tertukar, yaitu A dianggap butuh <InlineMath math="24" /> jam dan B <InlineMath math="12" /> jam. Dari <InlineMath math="\tfrac{k}{24}+\tfrac{11}{12}\ge1" /> kamu mendapat <InlineMath math="k\ge2" />.
+- Pukul 11.00 muncul kalau B dihitung bekerja <InlineMath math="11" /> jam lagi sesudah masa kerja bersama: <InlineMath math="\tfrac{k}{8}+\tfrac{11}{24}\ge1" /> memberi <InlineMath math="k\ge4\tfrac{1}{3}" />. Kerja B selama masa bersama jadi terhitung dua kali.
+- Pukul 12.00 muncul kalau <InlineMath math="6{,}5" /> dibulatkan ke bawah. Dengan <InlineMath math="k=6" />, kolam baru kosong pukul 18.00.
+- Pukul 12.30 adalah hasil tanpa syarat jam bulat. Pompa A tidak bisa dimatikan pada pukul 12.30.
+
+Jadi, pompa A paling cepat dapat dimatikan pukul 13.00.

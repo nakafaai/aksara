@@ -1,20 +1,42 @@
-Hitung dulu **banyak pupuk yang diperlukan**, lalu pilih gabungan kemasan utuh yang cukup dan termurah.
+# Batas dalam bentuk intensitas
 
-<BlockMath math="\frac{2{.}600}{4}\cdot10=650\cdot10=6{.}500\text{ mL}=6{,}5\text{ liter}" />
+Soal ini mencari banyak bedug besar paling banyak supaya garis depan penonton tidak terlalu bising. Batasnya ditulis dalam desibel, padahal yang bisa dijumlahkan adalah intensitas. Jadi, **ubah dulu batas <InlineMath math="90\text{ dB}" /> menjadi batas intensitas**.
 
-Kemasan besar lebih murah per mL, yaitu <InlineMath math="\text{Rp}84" /> per mL, dibandingkan <InlineMath math="\text{Rp}96" /> per mL untuk kemasan kecil. Jadi pakai sebanyak mungkin kemasan besar, lalu tutup kekurangannya dengan cara termurah.
+<BlockMath math="\begin{aligned}
+10\log\frac{I}{10^{-12}}&<90 \\
+\frac{I}{10^{-12}}&<10^{9} \\
+I&<10^{-3}\ \text{W/m}^2
+\end{aligned}" />
 
-| Pilihan | Isi | Biaya |
-| --- | --- | --- |
-| <InlineMath math="6" /> besar | <InlineMath math="6" /> liter | kurang |
-| <InlineMath math="6" /> besar dan <InlineMath math="1" /> kecil | <InlineMath math="6{,}25" /> liter | kurang |
-| <InlineMath math="6" /> besar dan <InlineMath math="2" /> kecil | <InlineMath math="6{,}5" /> liter | <InlineMath math="504{.}000+48{.}000=552{.}000" /> |
-| <InlineMath math="7" /> besar | <InlineMath math="7" /> liter | <InlineMath math="588{.}000" /> |
-| <InlineMath math="5" /> besar dan <InlineMath math="6" /> kecil | <InlineMath math="6{,}5" /> liter | <InlineMath math="420{.}000+144{.}000=564{.}000" /> |
+# Sumbangan setiap bedug
 
-Jadi, biaya termurah yang mencukupi adalah <InlineMath math="\text{Rp}552{.}000" />.
+Dari bacaan, satu bedug besar pada jarak <InlineMath math="1\text{ m}" /> punya intensitas <InlineMath math="10^{-2}\ \text{W/m}^2" />, karena <InlineMath math="10\log(10^{-2}/10^{-12})=100" />. Satu bedug kecil punya seperempatnya. Sekarang bagi dengan kuadrat jarak ke garis depan penonton.
 
-- <InlineMath math="\text{Rp}504{.}000" /> hanya membeli <InlineMath math="6" /> liter, kurang <InlineMath math="0{,}5" /> liter.
-- <InlineMath math="\text{Rp}528{.}000" /> membeli <InlineMath math="6{,}25" /> liter, masih kurang <InlineMath math="0{,}25" /> liter.
-- <InlineMath math="\text{Rp}546{.}000" /> menghitung <InlineMath math="6{,}5\cdot84{.}000" />, seolah setengah kemasan besar bisa dibeli.
-- <InlineMath math="\text{Rp}588{.}000" /> cukup, tetapi <InlineMath math="\text{Rp}36{.}000" /> lebih mahal daripada <InlineMath math="6" /> besar dan <InlineMath math="2" /> kecil.
+<BlockMath math="\begin{aligned}
+\text{satu bedug besar di }20\text{ m}&:\ \frac{10^{-2}}{20^2}=2{,}5\cdot10^{-5}\ \text{W/m}^2 \\
+\text{satu bedug kecil di }40\text{ m}&:\ \frac{\tfrac14\cdot10^{-2}}{40^2}=1{,}5625\cdot10^{-6}\ \text{W/m}^2 \\
+\text{32 bedug kecil}&:\ 32\cdot1{,}5625\cdot10^{-6}=5\cdot10^{-5}\ \text{W/m}^2
+\end{aligned}" />
+
+Ada cara singkat untuk melihatnya. Satu bedug kecil seperempat bedug besar, dan jaraknya dua kali lebih jauh sehingga intensitasnya dibagi <InlineMath math="2^2=4" /> lagi. Jadi, **satu bedug kecil di panggung B setara <InlineMath math="\tfrac1{16}" /> bedug besar di panggung A**, dan <InlineMath math="32" /> bedug kecil setara <InlineMath math="2" /> bedug besar.
+
+# Banyak bedug besar paling banyak
+
+Jumlahkan intensitas kedua panggung, lalu pakai batas yang ketat.
+
+<BlockMath math="\begin{aligned}
+n\cdot2{,}5\cdot10^{-5}+5\cdot10^{-5}&<10^{-3} \\
+2{,}5n+5&<100 \\
+n&<38
+\end{aligned}" />
+
+Karena tandanya **kurang dari**, nilai <InlineMath math="n=38" /> tidak boleh. Dengan <InlineMath math="n=38" />, intensitasnya tepat <InlineMath math="40\cdot2{,}5\cdot10^{-5}=10^{-3}" />, yaitu tepat <InlineMath math="90\text{ dB}" />. Dengan <InlineMath math="n=37" />, intensitasnya <InlineMath math="39\cdot2{,}5\cdot10^{-5}=9{,}75\cdot10^{-4}" />, masih di bawah batas.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="31" /> muncul kalau bedug kecil dihitung seolah-olah juga berjarak <InlineMath math="20\text{ m}" />, atau kalau faktor <InlineMath math="\tfrac14" /> terlupa. Keduanya membuat <InlineMath math="32" /> bedug kecil setara <InlineMath math="8" /> bedug besar.
+- <InlineMath math="35" /> muncul kalau perbandingan jarak <InlineMath math="\tfrac{20}{40}" /> tidak dikuadratkan. **Intensitas mengikuti kuadrat jarak**, jadi faktornya <InlineMath math="\tfrac14\cdot\tfrac14" />, bukan <InlineMath math="\tfrac14\cdot\tfrac12" />.
+- <InlineMath math="38" /> memakai tanda kurang dari atau sama dengan. Pada <InlineMath math="n=38" /> tarafnya tepat <InlineMath math="90\text{ dB}" />, dan itu belum kurang dari <InlineMath math="90\text{ dB}" />.
+- <InlineMath math="39" /> melupakan <InlineMath math="32" /> bedug kecil yang juga sedang dipukul.
+
+Jadi, nilai <InlineMath math="n" /> terbesar adalah <InlineMath math="37" />.

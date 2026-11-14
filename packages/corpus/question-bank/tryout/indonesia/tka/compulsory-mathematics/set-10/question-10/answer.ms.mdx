@@ -1,0 +1,84 @@
+# Sudut peluaran sisi empat kitaran
+
+Soalan ini meminta sudut antara pepenjuru <InlineMath math="CA" /> dengan sambungan <InlineMath math="CE" />. Kamu perlukan tiga fakta bulatan yang digunakan berturut-turut, dan langkah pertama memindahkan sudut <InlineMath math="64^\circ" /> ke titik <InlineMath math="A" />.
+
+Dalam sisi empat kitaran, sudut yang bertentangan berjumlah <InlineMath math="180^\circ" />. Titik <InlineMath math="B" />, <InlineMath math="C" /> dan <InlineMath math="E" /> segaris, jadi <InlineMath math="\angle BCD" /> dan <InlineMath math="\angle DCE" /> juga berjumlah <InlineMath math="180^\circ" />.
+
+<BlockMath math="\begin{aligned}
+\angle BAD&=180^\circ-\angle BCD \\
+\angle DCE&=180^\circ-\angle BCD \\
+\angle BAD&=\angle DCE=64^\circ
+\end{aligned}" />
+
+Jadi **sudut peluaran di <InlineMath math="C" /> sama dengan sudut pedalaman bertentangan di <InlineMath math="A" />**, bukan sudut penggenapnya kepada <InlineMath math="180^\circ" />.
+
+# Segi tiga sama kaki dan sudut di lilitan
+
+Oleh sebab <InlineMath math="AB=AD" />, segi tiga <InlineMath math="ABD" /> ialah segi tiga sama kaki, jadi dua sudut tapaknya sama besar.
+
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-64^\circ}{2}=58^\circ" />
+
+Sudut di lilitan <InlineMath math="\angle ACB" /> dan <InlineMath math="\angle ADB" /> **dicangkum oleh lengkok yang sama**, iaitu lengkok <InlineMath math="AB" />, jadi <InlineMath math="\angle ACB=\angle ADB=58^\circ" />. Dengan cara yang sama, <InlineMath math="\angle ACD=\angle ABD=58^\circ" /> kerana kedua-duanya dicangkum oleh lengkok <InlineMath math="AD" />.
+
+<BlockMath math="\begin{aligned}
+\angle ACE&=180^\circ-\angle ACB=180^\circ-58^\circ=122^\circ \\
+\text{semak: }\angle ACD+\angle DCE&=58^\circ+64^\circ=122^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>Sudut-sudut dalam sisi empat <InlineMath math="ABCD" /></>}
+  description={<>Rajah daripada soalan dengan tambahan pepenjuru <InlineMath math="BD" />. Lengkok di <InlineMath math="A" /> menandakan <InlineMath math="\angle BAD=64^\circ" />. Di <InlineMath math="C" />, satu lengkok menandakan <InlineMath math="\angle ACD=58^\circ" /> dan satu lagi menandakan <InlineMath math="\angle DCE=64^\circ" />, jadi <InlineMath math="\angle ACE=122^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    "angle-bad": <InlineMath math="64^\circ" />,
+    "angle-acd": <InlineMath math="58^\circ" />,
+    "angle-dce": <InlineMath math="64^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -8, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quadrilateral", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "diagonal-bd", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, to: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "extension-ce", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, to: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "arc-bad", kind: "arc", appearance: "highlight", center: { x: 0, y: 5 }, radius: 0.8, startDegrees: 238, sweepDegrees: 64 },
+      { id: "arc-acd", kind: "arc", appearance: "answer", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 1.1, startDegrees: 22, sweepDegrees: 58 },
+      { id: "arc-dce", kind: "arc", appearance: "highlight", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 0.8, startDegrees: 318, sweepDegrees: 64 },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, placement: "left" },
+      { key: "c", objectId: "point-c", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "angle-bad", objectId: "arc-bad", at: { x: 0, y: 3.6 }, placement: "below" },
+      { key: "angle-acd", objectId: "arc-acd", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.6 * Math.cos((51 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.6 * Math.sin((51 * Math.PI) / 180) }, placement: "right" },
+      { key: "angle-dce", objectId: "arc-dce", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.5 * Math.cos((350 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.5 * Math.sin((350 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+/>
+
+Jadi, saiz <InlineMath math="\angle ACE" /> ialah <InlineMath math="122^\circ" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="58^\circ" /> berhenti pada <InlineMath math="\angle ACB" /> atau <InlineMath math="\angle ACD" />. Itu sudut di lilitan, bukan sudut antara <InlineMath math="CA" /> dengan sambungan <InlineMath math="CE" />.
+- <InlineMath math="116^\circ" /> menganggap <InlineMath math="\angle ACE" /> dan <InlineMath math="\angle BAD" /> sebagai sudut bertentangan yang berjumlah <InlineMath math="180^\circ" />. Nilai <InlineMath math="116^\circ" /> sebenarnya ialah <InlineMath math="\angle BCD" />.
+- <InlineMath math="128^\circ" /> menganggap <InlineMath math="CD" /> membahagi dua sama <InlineMath math="\angle ACE" />, iaitu <InlineMath math="\angle ACD=\angle DCE=64^\circ" />. Sedangkan <InlineMath math="\angle ACD=58^\circ" />.
+- <InlineMath math="148^\circ" /> menggunakan <InlineMath math="\angle BAD=180^\circ-64^\circ=116^\circ" />. **Sudut peluaran sama dengan sudut pedalaman bertentangan, bukan sudut penggenapnya**. Akibat kesilapan itu, sudut tapaknya menjadi <InlineMath math="32^\circ" /> dan <InlineMath math="\angle ACE" /> menjadi <InlineMath math="148^\circ" />.

@@ -1,13 +1,49 @@
-**Eine Tangente steht im Berührpunkt senkrecht auf dem Radius**, also gilt <InlineMath math="\angle OAP=\angle OBP=90^\circ" />. Die Strecke <InlineMath math="OP" /> teilt <InlineMath math="OAPB" /> in zwei kongruente rechtwinklige Dreiecke, <InlineMath math="OAP" /> und <InlineMath math="OBP" />.
+# Die Teile des Riemens
+
+Gesucht ist die Länge eines Riemens um drei Riemenscheiben. Der Riemen besteht aus **geraden Stücken**, die die Scheiben berühren, und **gebogenen Stücken**, die auf den Scheiben aufliegen. Berechne jedes Stück und addiere dann.
+
+Laut Abbildung gibt es vier gerade Stücke: zwei waagerechte von <InlineMath math="P" /> nach <InlineMath math="Q" /> und zwei schräge von <InlineMath math="Q" /> nach <InlineMath math="S" />. Gebogene Stücke liegen auf allen drei Scheiben.
+
+Die Scheiben <InlineMath math="P" /> und <InlineMath math="Q" /> sind gleich groß, ihre obere und untere Tangente verlaufen also parallel zur Mittelpunktslinie. Jedes waagerechte Stück ist so lang wie der Mittelpunktsabstand, <InlineMath math="20\text{ cm}" />.
+
+# Die schrägen geraden Stücke
+
+Ein Radius zum Berührpunkt steht immer senkrecht auf der Tangente, also sind der Radius <InlineMath math="8" /> bei <InlineMath math="Q" /> und der Radius <InlineMath math="2" /> bei <InlineMath math="S" /> parallel. Verschiebe die Tangente um <InlineMath math="2" /> zu den Mittelpunkten hin. Es entsteht ein rechtwinkliges Dreieck mit der Hypotenuse <InlineMath math="QS=12" /> und einer Kathete <InlineMath math="8-2=6" />:
 
 <BlockMath math="\begin{aligned}
-PA&=\sqrt{OP^2-OA^2}=\sqrt{15^2-9^2}=\sqrt{144}=12 \\
-L_{OAPB}&=2\cdot\tfrac12\cdot OA\cdot PA=2\cdot\tfrac12\cdot9\cdot12=108
+\text{schräges Stück}&=\sqrt{12^2-6^2}=\sqrt{108}=6\sqrt3 \\
+\sin\theta&=\frac{6}{12}=\frac12\ \Rightarrow\ \theta=30^\circ
 \end{aligned}" />
 
-Das Viereck <InlineMath math="OAPB" /> hat also den Flächeninhalt <InlineMath math="108\text{ cm}^2" />.
+Der Winkel <InlineMath math="\theta" /> ist **die Neigung dieses Stücks gegen die Mittelpunktslinie**. Er bestimmt, wie lang die Bögen auf <InlineMath math="Q" /> und <InlineMath math="S" /> sind.
 
-- <InlineMath math="135\text{ cm}^2" /> multipliziert <InlineMath math="OA" /> mit <InlineMath math="OP" />, doch <InlineMath math="OP" /> ist die Hypotenuse, keine Grundseite oder Höhe.
-- <InlineMath math="180\text{ cm}^2" /> multipliziert <InlineMath math="PA" /> mit <InlineMath math="OP" />.
-- <InlineMath math="216\text{ cm}^2" /> vergisst den Faktor <InlineMath math="\tfrac12" /> beim Dreieck.
-- <InlineMath math="270\text{ cm}^2" /> vergisst den Faktor <InlineMath math="\tfrac12" /> und nimmt <InlineMath math="OP" /> als Höhe.
+# Der Bogen auf jeder Scheibe
+
+Bei <InlineMath math="Q" /> kommt der Riemen waagerecht an und läuft um <InlineMath math="30^\circ" /> geneigt weiter. Der Radius zum Berührpunkt dreht sich ebenfalls um <InlineMath math="30^\circ" />, der Riemen liegt also oben <InlineMath math="30^\circ" /> und unten <InlineMath math="30^\circ" /> auf. Bei <InlineMath math="S" /> liegt er auf der rechten Seite über <InlineMath math="180^\circ-2\cdot30^\circ=120^\circ" /> auf. Bei <InlineMath math="P" /> liegt er auf einem Halbkreis:
+
+<BlockMath math="\begin{aligned}
+\text{Bogen auf }P&=\tfrac{180}{360}\cdot2\pi\cdot8=8\pi \\
+\text{Bogen auf }Q&=\tfrac{60}{360}\cdot2\pi\cdot8=\tfrac{8\pi}{3} \\
+\text{Bogen auf }S&=\tfrac{120}{360}\cdot2\pi\cdot2=\tfrac{4\pi}{3} \\
+\text{alle Bögen}&=8\pi+\tfrac{8\pi}{3}+\tfrac{4\pi}{3}=12\pi
+\end{aligned}" />
+
+Prüfe die Winkel: <InlineMath math="180^\circ+60^\circ+120^\circ=360^\circ" />. Der Riemen dreht sich **genau einmal ganz herum**, wie es bei einem geschlossenen Riemen sein muss.
+
+# Der ganze Riemen
+
+Addiere **die vier geraden Stücke und alle Bögen**:
+
+<BlockMath math="\begin{aligned}
+L&=2\cdot20+2\cdot6\sqrt3+12\pi \\
+&=\left(40+12\sqrt3+12\pi\right)\text{ cm}
+\end{aligned}" />
+
+Der Riemen ist also <InlineMath math="\left(40+12\sqrt3+12\pi\right)\text{ cm}" /> lang.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40+12\sqrt3+10\pi" /> setzt Halbkreise auf <InlineMath math="P" /> und <InlineMath math="S" /> und **lässt den Bogen auf <InlineMath math="Q" /> weg**. Weil die Stücke schräg sind, liegt der Riemen auch auf <InlineMath math="Q" /> auf, und der Bogen auf <InlineMath math="S" /> ist kleiner als ein Halbkreis.
+- <InlineMath math="64+10\pi" /> nimmt die Formel für zwei gleiche Scheiben: gerade Stücke gleich den Mittelpunktsabständen, <InlineMath math="2(20+12)" />, plus Halbkreise an beiden Enden. Für verschieden große Scheiben gilt diese Formel nicht.
+- <InlineMath math="64+12\pi" /> hat die Bögen richtig, nimmt aber <InlineMath math="12" /> als Länge des schrägen Stücks. Es ist <InlineMath math="6\sqrt3" /> lang, also kürzer als der Mittelpunktsabstand.
+- <InlineMath math="40+12\sqrt3+14\pi" /> nimmt eine Neigung von <InlineMath math="60^\circ" />, etwa aus <InlineMath math="\cos\theta=\frac12" />. Die Seite <InlineMath math="6" /> liegt dem Neigungswinkel gegenüber, richtig ist also <InlineMath math="\sin\theta=\frac12" />.

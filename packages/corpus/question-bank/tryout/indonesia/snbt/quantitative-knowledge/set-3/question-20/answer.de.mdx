@@ -1,22 +1,37 @@
-Berechne für jede Klasse drei Kennwerte: Mittelwert, Median und Spannweite. Beide Datenreihen sind **bereits geordnet**, der Median ist also der dritte von fünf Werten.
+Der Teiler setzt sich aus wenigen Primzahlen zusammen, also zerlegst du ihn zuerst in Primzahlpotenzen. Dann zählst du, wie oft jede Primzahl in <InlineMath math="n!" /> vorkommt. Entscheidend ist **die Primzahl, deren Bedingung zuletzt erfüllt wird**, und das ist nicht unbedingt die größte.
 
-# Kennwerte jeder Klasse
+# Die Primfaktorzerlegung des Teilers
 
-| Kennwert | Klasse A | Klasse B |
-| :--- | :---: | :---: |
-| Summe | 375 | 375 |
-| Mittelwert | <InlineMath math="\tfrac{375}{5}=75" /> | <InlineMath math="\tfrac{375}{5}=75" /> |
-| Median | 70 | 75 |
-| Spannweite | <InlineMath math="95-60=35" /> | <InlineMath math="90-65=25" /> |
+Nutze <InlineMath math="6=2\cdot 3" /> und <InlineMath math="10=2\cdot 5" />.
 
-Die beiden Mittelwerte sind **gleich**, die erste Aussage ist also falsch. Der Median der Klasse A ist kleiner, die zweite Aussage ist also falsch. Die Spannweite der Klasse A ist größer, die dritte Aussage ist also wahr.
+<BlockMath math="6^{12}\cdot 10^{6}=2^{12}\cdot 3^{12}\cdot 2^{6}\cdot 5^{6}=2^{18}\cdot 3^{12}\cdot 5^{6}" />
 
-# Einen Wert ersetzen
+<InlineMath math="n!" /> braucht also **mindestens <InlineMath math="18" /> Faktoren <InlineMath math="2" />, <InlineMath math="12" /> Faktoren <InlineMath math="3" /> und <InlineMath math="6" /> Faktoren <InlineMath math="5" />**.
 
-Wird 95 durch 85 ersetzt, **sinkt die Summe der Klasse A um 10**.
+# Primfaktoren in einer Fakultät zählen
 
-<BlockMath math="\bar x_A=\frac{375-10}{5}=\frac{365}{5}=73<75" />
+Jedes Vielfache von <InlineMath math="p" /> zwischen <InlineMath math="1" /> und <InlineMath math="n" /> liefert einen Faktor <InlineMath math="p" />. Jedes Vielfache von <InlineMath math="p^2" /> liefert einen zusätzlichen Faktor, jedes Vielfache von <InlineMath math="p^3" /> noch einen, und so weiter. Das Zeichen <InlineMath math="\lfloor y\rfloor" /> steht für die größte ganze Zahl, die <InlineMath math="y" /> nicht übersteigt. Damit ist die Anzahl der Faktoren <InlineMath math="p" /> in <InlineMath math="n!" />
 
-Der neue Mittelwert der Klasse A ist kleiner als der Mittelwert der Klasse B, die vierte Aussage ist also wahr.
+<BlockMath math="\left\lfloor\frac{n}{p}\right\rfloor+\left\lfloor\frac{n}{p^2}\right\rfloor+\left\lfloor\frac{n}{p^3}\right\rfloor+\cdots" />
 
-Die erste Aussage ist also **falsch**, die zweite **falsch**, die dritte **wahr** und die vierte **wahr**.
+Daran siehst du, dass Zahlen wie <InlineMath math="9" /> oder <InlineMath math="27" /> **mehr als einen Faktor <InlineMath math="3" /> liefern**.
+
+# Die Bedingung für jede Primzahl
+
+Suche für jede Primzahl einzeln das kleinste passende <InlineMath math="n" />.
+
+<BlockMath math="\begin{aligned}
+\text{Primzahl } 5&:\quad 24!\ \text{enthält } 4,\quad 25!\ \text{enthält } 5+1=6\\
+\text{Primzahl } 3&:\quad 26!\ \text{enthält } 8+2=10,\quad 27!\ \text{enthält } 9+3+1=13\\
+\text{Primzahl } 2&:\quad 19!\ \text{enthält } 9+4+2+1=16,\quad 20!\ \text{enthält } 10+5+2+1=18
+\end{aligned}" />
+
+Die Primzahl <InlineMath math="5" /> braucht also <InlineMath math="n\ge 25" />, die Primzahl <InlineMath math="3" /> braucht <InlineMath math="n\ge 27" />, und die Primzahl <InlineMath math="2" /> braucht <InlineMath math="n\ge 20" />. Die Anzahl der Faktoren <InlineMath math="3" /> **springt bei <InlineMath math="n=27" /> von <InlineMath math="10" /> auf <InlineMath math="13" />**, weil <InlineMath math="27=3^3" /> drei Faktoren auf einmal liefert. Alle drei Bedingungen gelten zusammen genau für <InlineMath math="n\ge 27" />.
+
+# Das Ergebnis prüfen
+
+Für <InlineMath math="n=27" /> gibt es <InlineMath math="13+6+3+1=23\ge 18" /> Faktoren <InlineMath math="2" />, <InlineMath math="13\ge 12" /> Faktoren <InlineMath math="3" /> und <InlineMath math="5+1=6" /> Faktoren <InlineMath math="5" />. Für <InlineMath math="n=26" /> gibt es **nur <InlineMath math="10" /> Faktoren <InlineMath math="3" />**, also ist <InlineMath math="26!" /> noch nicht teilbar.
+
+Typische Fallen: <InlineMath math="25" />, weil die größte Primzahl <InlineMath math="5" /> zu entscheiden scheint, <InlineMath math="20" />, weil <InlineMath math="2^{18}" /> den größten Exponenten hat, oder <InlineMath math="36" />, weil du glaubst, <InlineMath math="12" /> Vielfache von <InlineMath math="3" /> zu brauchen, und vergisst, dass <InlineMath math="9" />, <InlineMath math="18" /> und <InlineMath math="27" /> zusätzliche Faktoren liefern.
+
+Die kleinste natürliche Zahl ist also <InlineMath math="n=27" />.

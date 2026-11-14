@@ -1,20 +1,49 @@
-Misalkan banyak tiket dewasa <InlineMath math="a" /> dan tiket anak <InlineMath math="c" />, keduanya bilangan bulat positif. Dalam ribu rupiah, <InlineMath math="35a+20c=235" />, atau setelah dibagi <InlineMath math="5" />:
+# Persamaan ketiga tidak membawa informasi baru
 
-<BlockMath math="7a+4c=47" />
+Soal ini tidak menanyakan satu penyelesaian, tetapi pernyataan yang benar untuk **setiap** penyelesaian. Jadi, langkah pertama adalah mencari tahu apakah penyelesaiannya tunggal. Coba kalikan persamaan pertama dengan <InlineMath math="3" />, lalu kurangi persamaan kedua:
 
-Karena <InlineMath math="4c" /> genap dan <InlineMath math="47" /> ganjil, <InlineMath math="7a" /> harus ganjil, jadi **<InlineMath math="a" /> ganjil**. Selain itu <InlineMath math="7a<47" />, sehingga <InlineMath math="a\le6" />. Periksa setiap nilai ganjil <InlineMath math="a" />:
+<BlockMath math="\begin{aligned}
+3(x+y+2z)-(2x-y+z)&=3\cdot9-3 \\
+x+4y+5z&=24
+\end{aligned}" />
 
-| <InlineMath math="a" /> | <InlineMath math="4c=47-7a" /> | <InlineMath math="c" /> |
-| --- | --- | --- |
-| <InlineMath math="1" /> | <InlineMath math="40" /> | <InlineMath math="10" /> |
-| <InlineMath math="3" /> | <InlineMath math="26" /> | bukan bilangan bulat |
-| <InlineMath math="5" /> | <InlineMath math="12" /> | <InlineMath math="3" /> |
+Hasilnya tepat persamaan ketiga. Artinya, **persamaan ketiga hanyalah gabungan dua persamaan pertama**. Kamu hanya punya dua persamaan yang benar-benar berbeda untuk tiga variabel, sehingga penyelesaiannya tak hingga banyak.
 
-Ada dua kemungkinan pembelian, yaitu <InlineMath math="1" /> dewasa dan <InlineMath math="10" /> anak, atau <InlineMath math="5" /> dewasa dan <InlineMath math="3" /> anak. Sebuah pernyataan **pasti benar** hanya jika benar untuk keduanya.
+# Bentuk umum penyelesaian
 
-Jadi, yang pasti benar adalah banyak tiket dewasa yang dibeli bilangan ganjil.
+Jumlahkan dua persamaan pertama supaya <InlineMath math="y" /> hilang, lalu nyatakan semuanya dalam <InlineMath math="z" />.
 
-- Tiket anak lebih banyak hanya pada pembelian pertama. Pada pembelian kedua, tiket dewasa <InlineMath math="5" /> dan tiket anak <InlineMath math="3" />.
-- Seluruhnya <InlineMath math="8" /> tiket hanya pada pembelian kedua. Pembelian pertama berisi <InlineMath math="11" /> tiket.
-- Tiket dewasa lebih dari <InlineMath math="2" /> hanya pada pembelian kedua.
-- Tiket anak genap hanya pada pembelian pertama.
+<BlockMath math="\begin{aligned}
+(x+y+2z)+(2x-y+z)&=9+3 \\
+3x+3z&=12 \\
+x&=4-z \\
+y&=9-x-2z=9-(4-z)-2z=5-z
+\end{aligned}" />
+
+**Setiap penyelesaian berbentuk <InlineMath math="(4-z,\ 5-z,\ z)" />** dengan <InlineMath math="z" /> bilangan real apa saja. Contohnya, <InlineMath math="z=0" /> memberi <InlineMath math="(4,5,0)" /> dan <InlineMath math="z=1" /> memberi <InlineMath math="(3,4,1)" />. Keduanya memenuhi ketiga persamaan.
+
+# Menguji setiap pilihan
+
+Masukkan bentuk umum ke setiap pilihan. Sebuah pernyataan pasti benar hanya kalau **hasilnya tidak bergantung pada <InlineMath math="z" />** dan sama dengan nilai di ruas kanan.
+
+| Pilihan | Nilai ruas kiri untuk <InlineMath math="(4-z,\ 5-z,\ z)" /> | Pasti benar? |
+| :---: | :---: | :---: |
+| <InlineMath math="z=1" /> | <InlineMath math="z" /> | hanya jika <InlineMath math="z=1" /> |
+| <InlineMath math="x-y=1" /> | <InlineMath math="-1" /> | tidak pernah |
+| <InlineMath math="x+y=7" /> | <InlineMath math="9-2z" /> | hanya jika <InlineMath math="z=1" /> |
+| <InlineMath math="2x+y+3z=13" /> | <InlineMath math="13" /> | selalu |
+| <InlineMath math="x+y+z=8" /> | <InlineMath math="9-z" /> | hanya jika <InlineMath math="z=1" /> |
+
+Baris keempat dihitung seperti ini:
+
+<BlockMath math="2x+y+3z=2(4-z)+(5-z)+3z=8-2z+5-z+3z=13" />
+
+Suku <InlineMath math="z" /> saling menghapus, jadi nilainya <InlineMath math="13" /> untuk setiap penyelesaian.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="z=1" /> benar untuk penyelesaian <InlineMath math="(3,4,1)" />, tetapi <InlineMath math="(4,5,0)" /> juga penyelesaian dan di sana <InlineMath math="z=0" />.
+- <InlineMath math="x-y=1" /> salah tanda. Untuk setiap penyelesaian, <InlineMath math="x-y=(4-z)-(5-z)=-1" />. Nilai <InlineMath math="1" /> muncul kalau kamu menghitung <InlineMath math="y-x" />.
+- <InlineMath math="x+y=7" /> dan <InlineMath math="x+y+z=8" /> **cocok untuk <InlineMath math="(3,4,1)" /> saja**. Kalau kamu hanya menemukan penyelesaian <InlineMath math="(3,4,1)" /> lalu memeriksa pilihan dengannya, kedua pilihan ini dan <InlineMath math="z=1" /> tampak benar. Dengan <InlineMath math="(4,5,0)" /> nilainya menjadi <InlineMath math="9" /> dan <InlineMath math="9" />.
+
+Jadi, pernyataan yang pasti benar untuk setiap penyelesaian adalah <InlineMath math="2x+y+3z=13" />.

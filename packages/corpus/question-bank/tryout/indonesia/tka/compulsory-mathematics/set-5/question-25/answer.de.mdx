@@ -1,16 +1,37 @@
-**Genau eine Maschine fällt aus** in zwei Fällen, die sich ausschließen: A fällt aus und B nicht, oder A nicht und B schon. Die Maschinen sind unabhängig, also ist die Wahrscheinlichkeit jedes Falls das Produkt der einzelnen Wahrscheinlichkeiten.
+# Über das Gegenereignis
+
+Der Ergebnisraum besteht aus allen Paaren von zwei Karten, <InlineMath math="\binom{20}{2}=190" /> Paare, alle gleich wahrscheinlich. Das Ereignis "Produkt gerade oder Summe ein Vielfaches von <InlineMath math="3" />" umfasst viele Paare, deshalb zählst du leichter das Gegenteil: **Beide Bedingungen sind verletzt**.
+
+Das Produkt zweier Zahlen ist nur dann ungerade, wenn beide Zahlen ungerade sind. Das Gegenereignis sind also die Paare, bei denen beide Zahlen ungerade sind und die Summe kein Vielfaches von <InlineMath math="3" /> ist. Es gibt <InlineMath math="10" /> ungerade Zahlen, <InlineMath math="1,3,5,\dots,19" />, also <InlineMath math="\binom{10}{2}=45" /> ungerade Paare.
+
+# Ungerade Paare mit einer Summe durch drei teilbar
+
+Ob eine Summe ein Vielfaches von <InlineMath math="3" /> ist, hängt von den Resten beim Teilen durch <InlineMath math="3" /> ab. Ordne die zehn ungeraden Zahlen nach ihrem Rest:
+
+| Rest beim Teilen durch <InlineMath math="3" /> | Ungerade Zahlen | Anzahl |
+| :---: | :---: | :---: |
+| <InlineMath math="0" /> | <InlineMath math="3,\ 9,\ 15" /> | <InlineMath math="3" /> |
+| <InlineMath math="1" /> | <InlineMath math="1,\ 7,\ 13,\ 19" /> | <InlineMath math="4" /> |
+| <InlineMath math="2" /> | <InlineMath math="5,\ 11,\ 17" /> | <InlineMath math="3" /> |
+
+Die Summe ist ein Vielfaches von <InlineMath math="3" />, wenn beide Reste <InlineMath math="0" /> sind oder wenn **eine Zahl den Rest <InlineMath math="1" /> und die andere den Rest <InlineMath math="2" /> hat**, etwa <InlineMath math="1+5=6" />.
 
 <BlockMath math="\begin{aligned}
-P(\text{A fällt aus, B nicht})&=0{,}1\cdot0{,}8=0{,}08 \\
-P(\text{A nicht, B fällt aus})&=0{,}9\cdot0{,}2=0{,}18 \\
-P(\text{genau eine fällt aus})&=0{,}08+0{,}18=0{,}26
+\text{ungerade Paare, Summe Vielfaches von }3&=\binom32+4\cdot3=3+12=15 \\
+\text{ungerade Paare, Summe kein Vielfaches von }3&=45-15=30
 \end{aligned}" />
 
-Probe: Beide fallen mit <InlineMath math="0{,}02" /> aus, keine mit <InlineMath math="0{,}72" />, und <InlineMath math="0{,}26+0{,}02+0{,}72=1" />.
+# Die Wahrscheinlichkeit der Vereinigung
 
-Die Wahrscheinlichkeit, dass genau eine Maschine ausfällt, ist also <InlineMath math="0{,}26" />.
+<BlockMath math="P=1-\frac{30}{190}=\frac{160}{190}=\frac{16}{19}" />
 
-- <InlineMath math="0{,}02" /> ist die Wahrscheinlichkeit, dass beide ausfallen.
-- <InlineMath math="0{,}28" /> ist die Wahrscheinlichkeit, dass mindestens eine ausfällt, und zählt den Fall mit, dass beide ausfallen.
-- <InlineMath math="0{,}30" /> addiert einfach <InlineMath math="0{,}1" /> und <InlineMath math="0{,}2" />, sodass der Fall, dass beide ausfallen, doppelt zählt.
-- <InlineMath math="0{,}72" /> ist die Wahrscheinlichkeit, dass keine Maschine ausfällt.
+Prüf das mit dem Additionssatz. Paare mit geradem Produkt gibt es <InlineMath math="190-45=145" />. Von <InlineMath math="1" /> bis <InlineMath math="20" /> haben <InlineMath math="6" />, <InlineMath math="7" /> und <InlineMath math="7" /> Zahlen den Rest <InlineMath math="0" />, <InlineMath math="1" /> und <InlineMath math="2" />, also gibt es <InlineMath math="\binom62+7\cdot7=64" /> Paare mit einer Summe, die ein Vielfaches von <InlineMath math="3" /> ist. **Die Schnittmenge muss einmal abgezogen werden**: <InlineMath math="64-15=49" /> Paare erfüllen beides. Das ergibt <InlineMath math="145+64-49=160" />, genau wie beim Gegenereignis.
+
+Die Wahrscheinlichkeit beträgt also <InlineMath math="\frac{16}{19}" />.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="\frac{29}{38}" /> ist <InlineMath math="\frac{145}{190}" />, nur die Wahrscheinlichkeit für ein gerades Produkt. Die Bedingung an die Summe fehlt.
+- <InlineMath math="\frac56" /> behandelt die beiden Ereignisse als unabhängig mit den groben Wahrscheinlichkeiten <InlineMath math="\tfrac34" /> und <InlineMath math="\tfrac13" />, also <InlineMath math="\tfrac34+\tfrac13-\tfrac14" />. Die Karten werden aber ohne Zurücklegen gezogen, und die Restgruppen sind nicht gleich groß.
+- <InlineMath math="\frac{169}{190}" /> **behandelt eine Summe wie ein Produkt**, als wäre eine Summe nur dann ein Vielfaches von <InlineMath math="3" />, wenn eine der Zahlen es ist. Das Gegenereignis wird dann zu den Paaren aus den sieben ungeraden Zahlen, die keine Vielfachen von <InlineMath math="3" /> sind, <InlineMath math="\binom72=21" />.
+- <InlineMath math="\frac{86}{95}" /> zählt die Paare mit Rest <InlineMath math="1" /> und Rest <InlineMath math="2" /> doppelt, als käme es auf die Reihenfolge an. Dann werden es <InlineMath math="3+24=27" /> ungerade Paare mit passender Summe, und das Gegenereignis hat nur <InlineMath math="18" />.

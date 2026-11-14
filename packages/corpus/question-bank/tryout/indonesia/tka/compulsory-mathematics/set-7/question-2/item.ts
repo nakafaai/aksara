@@ -6,30 +6,30 @@ const item: ItemSource = {
     contentDomain: "numbers",
     topic: "real-numbers",
   },
-  stimulus: "liquid-fertilizer",
+  stimulus: "bunyi",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "$$\\text{Rp}504{.}000$$",
+          label: "$$31$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}528{.}000$$",
-        },
-        {
-          correct: false,
-          label: "$$\\text{Rp}546{.}000$$",
+          label: "$$35$$",
         },
         {
           correct: true,
-          label: "$$\\text{Rp}552{.}000$$",
+          label: "$$37$$",
         },
         {
           correct: false,
-          label: "$$\\text{Rp}588{.}000$$",
+          label: "$$38$$",
+        },
+        {
+          correct: false,
+          label: "$$39$$",
         },
       ],
     },

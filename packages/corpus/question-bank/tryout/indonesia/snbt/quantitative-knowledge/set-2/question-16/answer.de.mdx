@@ -1,19 +1,35 @@
-Der Mittelwert hängt direkt von <InlineMath math="x" /> ab: Er beträgt <InlineMath math="\frac{505+x}{8}" />, weil die übrigen sieben Werte zusammen 505 ergeben. Der Median ist der Mittelwert aus dem 4. und dem 5. Wert der geordneten Liste, und **diese mittleren Werte hängen davon ab, wo <InlineMath math="x" /> liegt**. Die Aufgabe muss deshalb nach Fällen gelöst werden.
+Es gibt zwei Schritte. Bestimme zuerst <InlineMath math="x" /> aus den gegenüberliegenden Winkeln, damit du <InlineMath math="Q" /> kennst. Bestimme dann <InlineMath math="\angle ACB" /> über das gleichschenklige Dreieck und Umfangswinkel. Die genaue Lage von <InlineMath math="C" /> ist nicht gegeben, aber sie **ändert die Größe von <InlineMath math="\angle ACB" /> nicht**, wie du gleich siehst.
 
-# Drei Fälle für die Lage von x
+# Gegenüberliegende Winkel
 
-| Lage von <InlineMath math="x" /> | 4. und 5. Wert | Median | Gleichung | <InlineMath math="x" /> | Passt zum Fall? |
-| :---: | :---: | :---: | :---: | :---: | :---: |
-| <InlineMath math="x\le70" /> | 70 und 70 | 70 | <InlineMath math="505+x=560" /> | 55 | Ja |
-| <InlineMath math="70<x<75" /> | 70 und <InlineMath math="x" /> | <InlineMath math="\frac{70+x}{2}" /> | <InlineMath math="4(70+x)=505+x" /> | 75 | Nein |
-| <InlineMath math="x\ge75" /> | 70 und 75 | 72,5 | <InlineMath math="505+x=580" /> | 75 | Ja |
+In einem Sehnenviereck **ergeben zwei gegenüberliegende Winkel zusammen <InlineMath math="180^\circ" />**. Die Winkel bei <InlineMath math="A" /> und <InlineMath math="C" /> liegen einander gegenüber.
 
-Im mittleren Fall **erfüllt <InlineMath math="x=75" /> die Bedingung** <InlineMath math="70<x<75" /> **nicht**, dieser Fall liefert also keine neue Lösung.
+<BlockMath math="\begin{aligned}
+(2x+12)+(3x+18)&=180\\
+5x&=150\\
+x&=30
+\end{aligned}" />
 
-# Beide Lösungen prüfen
+Also ist <InlineMath math="\angle BAD=72^\circ" />, <InlineMath math="\angle BCD=108^\circ" /> und <InlineMath math="Q=(2\times30-7)^\circ=53^\circ" />.
 
-Für <InlineMath math="x=55" /> ist der Mittelwert <InlineMath math="\frac{560}{8}=70" /> und der Median 70. Für <InlineMath math="x=75" /> ist der Mittelwert <InlineMath math="\frac{580}{8}=72{,}5" /> und der Median <InlineMath math="\frac{70+75}{2}=72{,}5" />. **Beide sind gültig**, ihre Summe ist also <InlineMath math="55+75=130" />.
+# Umfangswinkel über demselben Bogen
 
-Die Werte 55 und 75 sind jeweils nur eine der Lösungen. Der Wert 72,5 ist der Median im dritten Fall und kein Wert von <InlineMath math="x" />. Der Wert 205 zählt 75 doppelt, obwohl der mittlere Fall nicht gültig ist.
+Das Dreieck <InlineMath math="ABD" /> ist gleichschenklig, weil <InlineMath math="AB=AD" /> gilt, also sind seine beiden Basiswinkel gleich.
 
-Die Summe aller möglichen Werte von <InlineMath math="x" /> ist also **130**.
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-72^\circ}{2}=54^\circ" />
+
+Die Winkel <InlineMath math="ACB" /> und <InlineMath math="ADB" /> stehen beide über der Sehne <InlineMath math="AB" />, und die Punkte <InlineMath math="C" /> und <InlineMath math="D" /> liegen auf demselben Bogen. **Umfangswinkel über demselben Bogen sind gleich groß**, also gilt <InlineMath math="\angle ACB=54^\circ" />, egal wo <InlineMath math="C" /> auf dem Bogen <InlineMath math="BD" /> liegt.
+
+Prüfe das mit dem Winkel bei <InlineMath math="C" />. Aus demselben Grund gilt <InlineMath math="\angle ACD=\angle ABD=54^\circ" />, und <InlineMath math="54^\circ+54^\circ=108^\circ=\angle BCD" />. Das passt.
+
+# Die beiden Größen vergleichen
+
+Du erhältst <InlineMath math="P=54^\circ" /> und <InlineMath math="Q=53^\circ" />, also <InlineMath math="P>Q" />. Der Unterschied ist klein, aber **beide Werte stehen exakt fest**, also ist der Vergleich sicher.
+
+# Fallen in den anderen Antworten
+
+- <InlineMath math="Q>P" /> entsteht, wenn du <InlineMath math="\angle ACB" /> für die Hälfte von <InlineMath math="\angle BAD" /> hältst, also <InlineMath math="36^\circ" />. Diese Halbierungsregel **gilt für einen Mittelpunktswinkel**, nicht für zwei Umfangswinkel.
+- <InlineMath math="P=Q" /> würde <InlineMath math="\angle ACB=53^\circ" /> verlangen, aber das gleichschenklige Dreieck erzwingt <InlineMath math="54^\circ" />.
+- Die Antwort, die Angaben reichten nicht, entsteht, wenn du glaubst, <InlineMath math="\angle ACB" /> ändere sich, wenn <InlineMath math="C" /> wandert. Umfangswinkel über der Sehne <InlineMath math="AB" /> sind immer gleich groß.
+
+Die Größe <InlineMath math="P" /> ist also größer als die Größe <InlineMath math="Q" />.

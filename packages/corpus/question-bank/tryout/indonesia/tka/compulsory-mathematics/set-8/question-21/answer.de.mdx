@@ -1,10 +1,35 @@
-**Der Quartilsabstand ist das obere Quartil minus das untere Quartil**. Er misst, wie weit die mittlere Hälfte der Daten streut.
+Gefragt ist die geschätzte Anzahl der Schüler mit <InlineMath math="15\le t<35" />. Die Tabelle nennt nur Zahlen an den Grenzen <InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" /> und so weiter, aber <InlineMath math="15" /> und <InlineMath math="35" /> liegen **mitten in einer Klasse**. Du brauchst also zuerst die Häufigkeit jeder Klasse und schneidest dann Klassen mit der Annahme der gleichmäßigen Verteilung.
 
-<BlockMath math="Q_3-Q_1=82-62=20" />
+# Häufigkeit jeder Klasse
 
-Der Quartilsabstand der Klasse XI-1 beträgt also <InlineMath math="20" />.
+Eine kumulierte Häufigkeit ist eine laufende Summe. Die Häufigkeit einer Klasse ist der Unterschied zweier benachbarter Zeilen, **nicht die kumulierte Zahl selbst**:
 
-- <InlineMath math="22" /> ist die höchste Note minus Median, <InlineMath math="96-74" />.
-- <InlineMath math="34" /> ist die höchste Note minus unteres Quartil, <InlineMath math="96-62" />.
-- <InlineMath math="37" /> ist das obere Quartil minus niedrigste Note, <InlineMath math="82-45" />.
-- <InlineMath math="51" /> ist die Spannweite aller Daten, <InlineMath math="96-45" />.
+| Klasse | Rechnung | Häufigkeit |
+| :---: | :---: | :---: |
+| <InlineMath math="10\le t<20" /> | <InlineMath math="8-2" /> | <InlineMath math="6" /> |
+| <InlineMath math="20\le t<30" /> | <InlineMath math="32-8" /> | <InlineMath math="24" /> |
+| <InlineMath math="30\le t<40" /> | <InlineMath math="52-32" /> | <InlineMath math="20" /> |
+
+Nur diese drei Klassen berühren den gefragten Bereich, die anderen Klassen spielen hier keine Rolle.
+
+# Klassen an den Rändern schneiden
+
+Weil die Schüler als gleichmäßig verteilt gelten, **ist die Anzahl in einem Stück einer Klasse proportional zur Breite dieses Stücks**. Der Bereich <InlineMath math="15\le t<35" /> besteht aus drei Stücken. Das Stück <InlineMath math="15\le t<20" /> ist halb so breit wie die Klasse <InlineMath math="10\le t<20" /> und bekommt daher die Hälfte ihrer Häufigkeit. Die Klasse <InlineMath math="20\le t<30" /> liegt ganz drin. Das Stück <InlineMath math="30\le t<35" /> ist halb so breit wie die Klasse <InlineMath math="30\le t<40" />.
+
+<BlockMath math="\begin{aligned}
+15\le t<20&:\quad\tfrac{5}{10}\cdot6=3 \\
+20\le t<30&:\quad24 \\
+30\le t<35&:\quad\tfrac{5}{10}\cdot20=10 \\
+\text{Summe}&=3+24+10=37
+\end{aligned}" />
+
+Probe über die kumulierten Häufigkeiten: Für <InlineMath math="t<35" /> ergibt die Schätzung <InlineMath math="32+10=42" />, für <InlineMath math="t<15" /> ergibt sie <InlineMath math="2+3=5" />. Der Unterschied ist <InlineMath math="42-5=37" />. Passt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40" /> entsteht, wenn du die Klasse <InlineMath math="10\le t<20" /> ganz nimmst, <InlineMath math="6+24+10" />. Dann zählen Schüler mit <InlineMath math="t<15" /> mit.
+- <InlineMath math="42" /> ist die Schätzung für <InlineMath math="t<35" />. **Die Schüler, die weniger als** <InlineMath math="15" /> **Minuten lesen, sind noch nicht abgezogen**.
+- <InlineMath math="44" /> entsteht, wenn du <InlineMath math="35" /> und <InlineMath math="15" /> durch die nächsten Tabellenzeilen ersetzt, <InlineMath math="52-8" />. Das zählt den Bereich <InlineMath math="20\le t<40" />.
+- <InlineMath math="50" /> entsteht, wenn du beide Randklassen ganz nimmst, <InlineMath math="52-2" />, also den Bereich <InlineMath math="10\le t<40" />.
+
+Geschätzt lesen also <InlineMath math="37" /> Schüler mindestens <InlineMath math="15" /> und weniger als <InlineMath math="35" /> Minuten.

@@ -1,20 +1,44 @@
-Semua pernyataan memakai rumus dasar tabung dengan <InlineMath math="r=3" /> dan <InlineMath math="t=8" />. Yang perlu diperhatikan adalah **besaran mana yang dikuadratkan** di setiap rumus.
+Kamu membandingkan dua bilangan yang sangat besar tanpa kalkulator. Rencananya: ubah <InlineMath math="P" /> menjadi pangkat dari <InlineMath math="2" /> dan <InlineMath math="Q" /> menjadi pangkat dari <InlineMath math="3" />. Pangkat keduanya ternyata tidak bisa disamakan, jadi kamu perlu **membandingkan lewat dua pangkat kecil yang hampir sama**, lalu menaksir dengan binomial.
 
-# Volume dan luas selimut
+# Menyederhanakan kedua bilangan
+
+Empat suku yang sama dijumlahkan berarti suku itu dikali <InlineMath math="4" />. Hati-hati, **menjumlahkan tidak menambah pangkat**.
 
 <BlockMath math="\begin{aligned}
-V&=\pi r^2t=\pi\cdot9\cdot8=72\pi\\
-L_{\text{selimut}}&=2\pi rt=2\pi\cdot3\cdot8=48\pi
+P&=4\cdot8^{29}=2^2\cdot\left(2^3\right)^{29}=2^2\cdot2^{87}=2^{89}\\
+Q&=9\cdot27^{18}=3^2\cdot\left(3^3\right)^{18}=3^2\cdot3^{54}=3^{56}
 \end{aligned}" />
 
-Pernyataan pertama **benar**. Luas selimut <InlineMath math="48\pi" />, bukan <InlineMath math="24\pi" />, jadi pernyataan ketiga salah. Angka <InlineMath math="24\pi" /> muncul jika faktor 2 pada keliling alas terlupa.
+# Mengapa cara pangkat sama belum cukup
 
-# Jarak terjauh dan perubahan tinggi
+Bilangan <InlineMath math="89" /> prima, jadi <InlineMath math="2^{89}" /> dan <InlineMath math="3^{56}" /> tidak bisa ditulis dengan pangkat yang sama. Jalan pintas yang menggoda adalah membuang satu faktor <InlineMath math="2" />: <InlineMath math="2^{88}=\left(2^{11}\right)^8=2048^8" /> lebih kecil dari <InlineMath math="3^{56}=2187^8" />. Namun itu hanya menunjukkan <InlineMath math="Q" /> lebih besar dari <InlineMath math="\frac P2" />. **Faktor <InlineMath math="2" /> yang dibuang bisa membalik hasilnya**, jadi perbandingan ini belum memutuskan.
 
-Dua titik terjauh pada tabung terletak di tepi alas dan tepi tutup, berseberangan melalui sumbu. Keduanya membentuk diagonal persegi panjang berukuran diameter 6 cm kali tinggi 8 cm, yaitu **penampang yang melalui sumbu**.
+# Memakai dua pangkat yang hampir sama
 
-<BlockMath math="d=\sqrt{6^2+8^2}=\sqrt{100}=10" />
+Perhatikan bahwa <InlineMath math="2^8=256" /> dan <InlineMath math="3^5=243" /> hampir sama. Tulis kedua bilangan dengan pangkat <InlineMath math="11" /> dari keduanya.
 
-Pernyataan kedua benar. Volume <InlineMath math="\pi r^2t" /> sebanding dengan <InlineMath math="t" /> pangkat satu, jadi tinggi dua kali membuat volume dua kali, bukan empat kali. Pernyataan keempat salah.
+<BlockMath math="\begin{aligned}
+P&=2\cdot2^{88}=2\cdot256^{11}\\
+Q&=3\cdot3^{55}=3\cdot243^{11}\\
+\frac PQ&=\frac23\left(\frac{256}{243}\right)^{11}=\frac23\left(1+\frac{13}{243}\right)^{11}
+\end{aligned}" />
 
-Jadi, pernyataan pertama **benar**, kedua **benar**, ketiga **salah**, dan keempat **salah**.
+Jadi <InlineMath math="P>Q" /> tepat jika <InlineMath math="\left(1+\frac{13}{243}\right)^{11}>\frac32" />. Menurut ekspansi binomial, <InlineMath math="(1+x)^{11}=1+11x+\ldots" /> dengan semua suku sisanya positif saat <InlineMath math="x>0" />. Jadi **dua suku pertamanya saja sudah menjadi batas bawah**.
+
+<BlockMath math="\begin{aligned}
+\left(1+\frac{13}{243}\right)^{11}&>1+11\cdot\frac{13}{243}=1+\frac{143}{243}\\
+\frac{143}{243}&>\frac12\quad\text{karena}\quad2\cdot143=286>243\\
+\frac PQ&>\frac23\cdot\frac32=1
+\end{aligned}" />
+
+Jadi <InlineMath math="P>Q" />. Coba cek kedua batas bersama. Dari bagian sebelumnya, <InlineMath math="Q>\frac P2" />, dan dari bagian ini, <InlineMath math="Q<P" />. Artinya <InlineMath math="Q" /> terletak di antara <InlineMath math="\frac P2" /> dan <InlineMath math="P" />, jadi kedua hasil tidak saling bertentangan.
+
+# Pilihan yang menjebak
+
+Pilihan lain muncul karena **perbandingan dihentikan terlalu cepat**.
+
+- <InlineMath math="Q>P" /> muncul jika faktor <InlineMath math="2" /> dibuang lalu <InlineMath math="2048^8" /> dibandingkan dengan <InlineMath math="2187^8" />, atau jika kamu mengira bilangan pokok <InlineMath math="3" /> pasti menang.
+- <InlineMath math="P=Q" /> tidak mungkin, karena <InlineMath math="P=2^{89}" /> genap sedangkan <InlineMath math="Q=3^{56}" /> ganjil.
+- Pilihan informasi tidak cukup muncul jika kamu berhenti setelah melihat <InlineMath math="2^8>3^5" />. Fakta itu hanya memberi <InlineMath math="2^{88}>3^{55}" />, padahal yang dibandingkan <InlineMath math="2\cdot2^{88}" /> dengan <InlineMath math="3\cdot3^{55}" />. Taksiran binomial di atas memutuskannya.
+
+Jadi, kuantitas <InlineMath math="P" /> lebih besar daripada kuantitas <InlineMath math="Q" />, yaitu <InlineMath math="P>Q" />.

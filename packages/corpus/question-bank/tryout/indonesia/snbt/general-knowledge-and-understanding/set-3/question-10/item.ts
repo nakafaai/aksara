@@ -4,30 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "reasoning",
     contentDomain: "paragraph-meaning",
-    topic: "cause-and-sign",
+    topic: "inference",
   },
-  stimulus: "tsunami",
+  stimulus: "kedelai",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
+      columns: ["Sesuai", "Tidak sesuai"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label: "Gempa yang membuat dasar laut terangkat secara tiba-tiba",
-        },
-        {
-          column: 1,
-          label: "Longsoran besar di bawah laut",
-        },
-        {
           column: 2,
-          label: "Surutnya air laut sebelum gelombang tiba",
+          label:
+            "Pergiliran jagung dan kedelai ikut menekan hama yang dapat hidup, baik pada jagung maupun pada kedelai.",
+        },
+        {
+          column: 1,
+          label:
+            "Kedelai dapat membuat lahan kehilangan nitrogen walaupun bakteri di bintil akarnya tetap menambat nitrogen dari udara.",
+        },
+        {
+          column: 1,
+          label:
+            "Memupuk lahan dengan urea secara berlebihan sebelum kedelai ditanam dapat membuat petani justru memperoleh lebih sedikit nitrogen dari kedelai.",
         },
         {
           column: 2,
           label:
-            "Gempa sangat dalam yang hampir tidak mengubah bentuk dasar laut",
+            "Sebagian besar nitrogen yang dikumpulkan tanaman kedelai kembali ke tanah melalui akar, batang, dan daun yang dibenamkan.",
         },
       ],
     },

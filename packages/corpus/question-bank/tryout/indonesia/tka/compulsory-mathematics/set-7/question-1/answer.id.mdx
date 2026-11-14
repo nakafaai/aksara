@@ -1,13 +1,42 @@
-Petunjuknya adalah perbandingan tetap: **setiap <InlineMath math="10" /> mL pupuk untuk <InlineMath math="4" /> liter air**. Hitung dulu berapa kali takaran <InlineMath math="10" /> mL termuat dalam <InlineMath math="250" /> mL.
+# Intensitas dari setiap panggung
+
+Soal ini menanyakan taraf intensitas di tenda tamu saat dua kelompok bedug berbunyi bersamaan. Menurut ketentuan pertama, **yang dijumlahkan adalah intensitas, bukan desibel**. Jadi, ubah dulu desibel menjadi intensitas, hitung tiap panggung, baru jumlahkan.
+
+Satu bedug besar pada jarak <InlineMath math="1\text{ m}" /> punya taraf <InlineMath math="100\text{ dB}" />. Dari rumus di bacaan, intensitasnya:
 
 <BlockMath math="\begin{aligned}
-\frac{250}{10}&=25\ \text{takaran} \\
-25\cdot4&=100\ \text{liter air}
+10\log\frac{I}{10^{-12}}&=100 \\
+\frac{I}{10^{-12}}&=10^{10} \\
+I_{\text{besar}}&=10^{-2}\ \text{W/m}^2 \\
+I_{\text{kecil}}&=\tfrac14\cdot10^{-2}=2{,}5\cdot10^{-3}\ \text{W/m}^2
 \end{aligned}" />
 
-Jadi, satu kemasan kecil cukup untuk <InlineMath math="100" /> liter air.
+Itu intensitas pada jarak <InlineMath math="1\text{ m}" />. Menurut ketentuan kedua, pada jarak <InlineMath math="r" /> intensitasnya dibagi <InlineMath math="r^2" />. Tenda berjarak <InlineMath math="20\text{ m}" /> dari panggung A, jadi bagi dengan <InlineMath math="400" />. Tenda berjarak <InlineMath math="5\text{ m}" /> dari panggung B, jadi bagi dengan <InlineMath math="25" />.
 
-- <InlineMath math="25" /> liter adalah banyak takaran, belum dikalikan <InlineMath math="4" /> liter.
-- <InlineMath math="62{,}5" /> liter membagi <InlineMath math="250" /> dengan <InlineMath math="4" />, sehingga satuan mL dan liter tercampur.
-- <InlineMath math="400" /> liter adalah hasil untuk kemasan besar, <InlineMath math="1{.}000" /> mL.
-- <InlineMath math="1{.}000" /> liter mengalikan <InlineMath math="250" /> dengan <InlineMath math="4" /> tanpa membagi dengan <InlineMath math="10" /> mL lebih dahulu.
+<BlockMath math="\begin{aligned}
+I_A&=8\cdot\frac{10^{-2}}{400}=2\cdot10^{-4}\ \text{W/m}^2 \\
+I_B&=4\cdot\frac{2{,}5\cdot10^{-3}}{25}=4\cdot10^{-4}\ \text{W/m}^2
+\end{aligned}" />
+
+Perhatikan bahwa panggung B menyumbang dua kali panggung A. Bedugnya lebih kecil dan lebih sedikit, tetapi jauh lebih dekat ke tenda.
+
+# Taraf intensitas total
+
+Jumlahkan kedua intensitas, lalu ubah kembali ke desibel dengan <InlineMath math="\log6=\log2+\log3=0{,}78" />.
+
+<BlockMath math="\begin{aligned}
+I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
+\mathrm{TI}&=10\log\frac{6\cdot10^{-4}}{10^{-12}}=10\log\left(6\cdot10^{8}\right) \\
+&=10\,(0{,}78+8)=87{,}8\text{ dB}
+\end{aligned}" />
+
+Sebagai pemeriksaan, panggung B sendirian memberi <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Tambahan dari panggung A hanya setengah intensitas B, jadi **hasilnya harus di atas <InlineMath math="86\text{ dB}" /> tetapi di bawah <InlineMath math="89\text{ dB}" />**. Nilai <InlineMath math="87{,}8\text{ dB}" /> cocok.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="83\text{ dB}" /> adalah taraf panggung A saja, <InlineMath math="10\log(2\cdot10^8)" />. Ini terjadi kalau kamu mengira bedug besar pasti yang paling menentukan dan melupakan panggung B.
+- <InlineMath math="84{,}5\text{ dB}" /> adalah rata-rata <InlineMath math="83" /> dan <InlineMath math="86" />. **Desibel tidak boleh dirata-rata atau dijumlah langsung**, karena skalanya logaritma.
+- <InlineMath math="86\text{ dB}" /> adalah taraf panggung B saja. Panggung A tetap menambah intensitas, sekecil apa pun.
+- <InlineMath math="89\text{ dB}" /> menambah <InlineMath math="3\text{ dB}" /> seolah kedua panggung sama kuat. Tambahan <InlineMath math="3\text{ dB}" /> hanya berlaku kalau intensitasnya menjadi dua kali, sedangkan di sini intensitasnya hanya menjadi <InlineMath math="1{,}5" /> kali.
+
+Jadi, taraf intensitas bunyi di tenda tamu adalah <InlineMath math="87{,}8\text{ dB}" />.

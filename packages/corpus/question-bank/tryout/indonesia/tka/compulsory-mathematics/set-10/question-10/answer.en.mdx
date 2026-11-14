@@ -1,13 +1,84 @@
-The area gives **the radius** first, and the radius then gives the circumference.
+# The exterior angle of a cyclic quadrilateral
+
+The question asks for the angle between the diagonal <InlineMath math="CA" /> and the extension <InlineMath math="CE" />. You need three circle facts used one after another, and the first step moves the <InlineMath math="64^\circ" /> angle over to the point <InlineMath math="A" />.
+
+In a cyclic quadrilateral, opposite angles add up to <InlineMath math="180^\circ" />. The points <InlineMath math="B" />, <InlineMath math="C" />, and <InlineMath math="E" /> lie on one line, so <InlineMath math="\angle BCD" /> and <InlineMath math="\angle DCE" /> also add up to <InlineMath math="180^\circ" />.
 
 <BlockMath math="\begin{aligned}
-\frac{22}{7}r^2&=154\ \Rightarrow\ r^2=49\ \Rightarrow\ r=7 \\
-K&=2\pi r=2\cdot\frac{22}{7}\cdot7=44
+\angle BAD&=180^\circ-\angle BCD \\
+\angle DCE&=180^\circ-\angle BCD \\
+\angle BAD&=\angle DCE=64^\circ
 \end{aligned}" />
 
-So the circumference is <InlineMath math="44\text{ cm}" />.
+So **the exterior angle at <InlineMath math="C" /> equals the opposite interior angle at <InlineMath math="A" />**, not its supplement.
 
-- <InlineMath math="14\text{ cm}" /> is the diameter.
-- <InlineMath math="22\text{ cm}" /> uses <InlineMath math="\pi r" />, half the circumference.
-- <InlineMath math="49" /> is <InlineMath math="r^2" />, not a length.
-- <InlineMath math="88\text{ cm}" /> uses <InlineMath math="2\pi d" />, twice the circumference.
+# An isosceles triangle and inscribed angles
+
+Since <InlineMath math="AB=AD" />, triangle <InlineMath math="ABD" /> is isosceles, so its two base angles are equal.
+
+<BlockMath math="\angle ABD=\angle ADB=\frac{180^\circ-64^\circ}{2}=58^\circ" />
+
+The inscribed angles <InlineMath math="\angle ACB" /> and <InlineMath math="\angle ADB" /> **stand on the same arc**, arc <InlineMath math="AB" />, so <InlineMath math="\angle ACB=\angle ADB=58^\circ" />. In the same way, <InlineMath math="\angle ACD=\angle ABD=58^\circ" />, because both stand on arc <InlineMath math="AD" />.
+
+<BlockMath math="\begin{aligned}
+\angle ACE&=180^\circ-\angle ACB=180^\circ-58^\circ=122^\circ \\
+\text{check: }\angle ACD+\angle DCE&=58^\circ+64^\circ=122^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>The angles in quadrilateral <InlineMath math="ABCD" /></>}
+  description={<>The figure from the question with the diagonal <InlineMath math="BD" /> added. The arc at <InlineMath math="A" /> marks <InlineMath math="\angle BAD=64^\circ" />. At <InlineMath math="C" />, one arc marks <InlineMath math="\angle ACD=58^\circ" /> and the other marks <InlineMath math="\angle DCE=64^\circ" />, so <InlineMath math="\angle ACE=122^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    "angle-bad": <InlineMath math="64^\circ" />,
+    "angle-acd": <InlineMath math="58^\circ" />,
+    "angle-dce": <InlineMath math="64^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -8, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quadrilateral", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "diagonal-bd", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, to: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "extension-ce", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, to: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "arc-bad", kind: "arc", appearance: "highlight", center: { x: 0, y: 5 }, radius: 0.8, startDegrees: 238, sweepDegrees: 64 },
+      { id: "arc-acd", kind: "arc", appearance: "answer", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 1.1, startDegrees: 22, sweepDegrees: 58 },
+      { id: "arc-dce", kind: "arc", appearance: "highlight", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 0.8, startDegrees: 318, sweepDegrees: 64 },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, placement: "left" },
+      { key: "c", objectId: "point-c", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "angle-bad", objectId: "arc-bad", at: { x: 0, y: 3.6 }, placement: "below" },
+      { key: "angle-acd", objectId: "arc-acd", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.6 * Math.cos((51 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.6 * Math.sin((51 * Math.PI) / 180) }, placement: "right" },
+      { key: "angle-dce", objectId: "arc-dce", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.5 * Math.cos((350 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.5 * Math.sin((350 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+/>
+
+So <InlineMath math="\angle ACE" /> measures <InlineMath math="122^\circ" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="58^\circ" /> stops at <InlineMath math="\angle ACB" /> or <InlineMath math="\angle ACD" />. That's an inscribed angle, not the angle between <InlineMath math="CA" /> and the extension <InlineMath math="CE" />.
+- <InlineMath math="116^\circ" /> treats <InlineMath math="\angle ACE" /> and <InlineMath math="\angle BAD" /> as opposite angles that add up to <InlineMath math="180^\circ" />. The value <InlineMath math="116^\circ" /> is really <InlineMath math="\angle BCD" />.
+- <InlineMath math="128^\circ" /> assumes <InlineMath math="CD" /> cuts <InlineMath math="\angle ACE" /> in half, so <InlineMath math="\angle ACD=\angle DCE=64^\circ" />. But <InlineMath math="\angle ACD=58^\circ" />.
+- <InlineMath math="148^\circ" /> uses <InlineMath math="\angle BAD=180^\circ-64^\circ=116^\circ" />. **The exterior angle equals the opposite interior angle, not its supplement**. With that mistake the base angles become <InlineMath math="32^\circ" /> and <InlineMath math="\angle ACE" /> becomes <InlineMath math="148^\circ" />.

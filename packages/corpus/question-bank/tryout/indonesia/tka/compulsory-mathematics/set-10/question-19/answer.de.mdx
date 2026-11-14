@@ -1,16 +1,47 @@
-Jede Zeigerspitze läuft auf einem Kreisbogen. **Seine Länge hängt von zwei Dingen zugleich ab**: wie weit der Zeiger sich dreht und wie lang er ist. In <InlineMath math="1" /> Stunde macht der Minutenzeiger eine ganze Umdrehung, der Stundenzeiger nur <InlineMath math="\frac{1}{12}" />.
+# Anfangswasser und Fassungsvermögen
+
+Gefragt ist der Wasserstand nach zwei Mal Eingießen, einem möglichen Überlaufen und dem Herausheben des Betonquaders. Entscheidend ist: **Solange der Quader im Becken steht, steht dem Wasser nur die Grundfläche des Beckens minus die Grundfläche des Quaders zur Verfügung**. Der Quader ist höher als das Becken, er ragt also immer aus dem Wasser.
+
+Berechne die Grundfläche des Beckens, die des Quaders und die Fläche, die für das Wasser bleibt:
 
 <BlockMath math="\begin{aligned}
-\text{Minutenzeiger}&=2\pi\cdot10=20\pi \\
-\text{Stundenzeiger}&=\frac{1}{12}\cdot2\pi\cdot6=\pi \\
-\frac{20\pi}{\pi}&=20
+\text{Grundfläche Becken}&=70\cdot44=3{.}080\text{ cm}^2 \\
+\text{Grundfläche Quader}&=35\cdot22=770\text{ cm}^2 \\
+\text{Fläche für das Wasser}&=3{.}080-770=2{.}310\text{ cm}^2
 \end{aligned}" />
 
-Die Drehungen verhalten sich wie <InlineMath math="12" /> und die Längen wie <InlineMath math="\frac{10}{6}" />, zusammen also <InlineMath math="12\cdot\frac{10}{6}=20" />.
+Damit bekommst du das Anfangsvolumen des Wassers und die größte Wassermenge, die bei eingestelltem Quader hineinpasst:
 
-Die Spitze des Minutenzeigers legt also den <InlineMath math="20" />-fachen Weg zurück.
+<BlockMath math="\begin{aligned}
+\text{Anfangswasser}&=2{.}310\cdot32=73{.}920\text{ cm}^3 \\
+\text{Fassungsvermögen bis zum Rand}&=2{.}310\cdot40=92{.}400\text{ cm}^3
+\end{aligned}" />
 
-- <InlineMath math="\frac53" /> vergleicht nur die Zeigerlängen.
-- <InlineMath math="7{,}2" /> dreht das Längenverhältnis um und rechnet <InlineMath math="12\cdot\frac{6}{10}" />.
-- <InlineMath math="12" /> vergleicht nur, wie weit sich die Zeiger drehen.
-- <InlineMath math="60" /> vergleicht die Minuten einer Stunde, nicht die Wege der Spitzen.
+# Eingegossenes und übergelaufenes Wasser
+
+Der Eimer ist ein Zylinder, und die Flasche enthält <InlineMath math="1{,}54" /> Liter, also <InlineMath math="1{.}540\text{ cm}^3" />, weil <InlineMath math="1" /> Liter <InlineMath math="=1{.}000\text{ cm}^3" /> ist:
+
+<BlockMath math="\begin{aligned}
+\text{Eimer}&=\frac{22}{7}\cdot14^2\cdot35=21{.}560\text{ cm}^3 \\
+\text{insgesamt eingegossen}&=21{.}560+1{.}540=23{.}100\text{ cm}^3 \\
+\text{Anfangswasser}+\text{eingegossen}&=73{.}920+23{.}100=97{.}020\text{ cm}^3
+\end{aligned}" />
+
+<InlineMath math="97{.}020" /> ist mehr als das Fassungsvermögen von <InlineMath math="92{.}400" />, also **läuft Wasser über**, und zwar <InlineMath math="97{.}020-92{.}400=4{.}620\text{ cm}^3" />. Das Becken läuft sogar schon beim Eimer über, denn <InlineMath math="73{.}920+21{.}560=95{.}480" /> liegt bereits über <InlineMath math="92{.}400" />. Im Becken bleiben genau <InlineMath math="92{.}400\text{ cm}^3" /> Wasser.
+
+# Nach dem Herausheben
+
+Sobald der Quader draußen ist, verteilt sich das restliche Wasser über die ganze Grundfläche:
+
+<BlockMath math="\text{Wasserstand}=\frac{92{.}400}{3{.}080}=30\text{ cm}" />
+
+Prüf das auf einem zweiten Weg. Vor dem Herausheben stand der Quader <InlineMath math="40\text{ cm}" /> tief im Wasser, dieser Teil hat das Volumen <InlineMath math="770\cdot40=30{.}800\text{ cm}^3" />. **Der Platz, den der Quader frei macht**, lässt das Wasser um <InlineMath math="\frac{30{.}800}{3{.}080}=10\text{ cm}" /> sinken, von <InlineMath math="40" /> auf <InlineMath math="30\text{ cm}" />.
+
+Der Wasserstand im Becken beträgt jetzt also <InlineMath math="30\text{ cm}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40" /> cm entstehen, wenn du annimmst, dass das Becken nach dem Herausheben voll bleibt. Aber **der eingetauchte Teil des Quaders kommt mit heraus**, also sinkt der Wasserspiegel.
+- <InlineMath math="39{,}5" /> cm entstehen, wenn du den Quader ganz vergisst. Dann ist das Anfangswasser <InlineMath math="3{.}080\cdot32=98{.}560" />, plus <InlineMath math="23{.}100" /> ergibt <InlineMath math="121{.}660" />, immer noch unter <InlineMath math="3{.}080\cdot40=123{.}200" />, und es sieht so aus, als liefe nichts über.
+- <InlineMath math="32" /> cm entstehen, wenn du das Absinken nur mit den <InlineMath math="32\text{ cm}" /> des Quaders rechnest, die am Anfang im Wasser standen: <InlineMath math="\frac{770\cdot32}{3{.}080}=8\text{ cm}" />. Beim Herausheben steht das Wasser bis zum Rand, also sind <InlineMath math="40\text{ cm}" /> des Quaders eingetaucht.
+- <InlineMath math="31{,}5" /> cm entstehen, wenn du den Quader beim Prüfen auf Überlaufen vergisst. Dann hältst du <InlineMath math="123{.}200\text{ cm}^3" /> für das Fassungsvermögen, die <InlineMath math="97{.}020\text{ cm}^3" /> scheinen nicht überzulaufen, und <InlineMath math="\frac{97{.}020}{3{.}080}=31{,}5" />.

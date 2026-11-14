@@ -1,10 +1,33 @@
-Jede Karte ist gleich wahrscheinlich, also **ist die Wahrscheinlichkeit die Zahl der Asse geteilt durch die Zahl aller Karten**.
+# Der eigentliche Ergebnisraum
 
-<BlockMath math="P(\text{Ass})=\frac{4}{52}=\frac{1}{13}" />
+Der letzte Wurf zeigt immer zwei verschiedene Augenzahlen, weil jeder Pasch neu geworfen wird. Also gilt: **Neu werfen ist dasselbe wie die Pasche aus dem Ergebnisraum streichen**. Der neue Ergebnisraum enthält alle geordneten Paare mit verschiedenen Augenzahlen:
 
-Die Wahrscheinlichkeit, ein Ass zu ziehen, ist also <InlineMath math="\frac{1}{13}" />.
+<BlockMath math="n(S)=6\cdot6-6=30" />
 
-- <InlineMath math="\frac{1}{52}" /> ist die Wahrscheinlichkeit für ein bestimmtes Ass, etwa Herz-Ass.
-- <InlineMath math="\frac{1}{26}" /> zählt nur <InlineMath math="2" /> Asse.
-- <InlineMath math="\frac14" /> ist die Wahrscheinlichkeit für eine bestimmte Farbe, etwa Herz.
-- <InlineMath math="\frac{4}{13}" /> teilt die <InlineMath math="4" /> Asse durch die <InlineMath math="13" /> Karten einer Farbe, doch der Ergebnisraum sind alle <InlineMath math="52" /> Karten.
+Diese <InlineMath math="30" /> Ergebnisse sind gleich wahrscheinlich. Bei jedem Wurf hat jedes von ihnen die Wahrscheinlichkeit <InlineMath math="\frac{1}{36}" />, und das Wiederholen bevorzugt keines. Du kannst das auch mit einer Reihe prüfen: Das Werfen endet beim <InlineMath math="k" />-ten Wurf, wenn die ersten <InlineMath math="k-1" /> Würfe Pasche sind (jeder mit Wahrscheinlichkeit <InlineMath math="\frac16" />).
+
+<BlockMath math="P=\frac{14}{36}\left(1+\frac16+\frac1{36}+\cdots\right)=\frac{14}{36}\cdot\frac{1}{1-\frac16}=\frac{14}{30}" />
+
+Die <InlineMath math="14" /> in dieser Reihe ist die Anzahl der Ergebnisse mit verschiedenen Augenzahlen und einer Primzahlsumme. Der nächste Teil zählt sie.
+
+# Ergebnisse mit Primzahlsumme
+
+Die Augensumme zweier Würfel liegt zwischen <InlineMath math="2" /> und <InlineMath math="12" />, die Primzahlen darin sind <InlineMath math="2,\ 3,\ 5,\ 7,\ 11" />. Die Summe <InlineMath math="2" /> entsteht nur aus <InlineMath math="(1,1)" />, einem Pasch, also **kann die Summe <InlineMath math="2" /> beim letzten Wurf nie vorkommen**. Zähl die geordneten Paare (erster Würfel, zweiter Würfel):
+
+| Summe | Paare | Anzahl |
+| :---: | :--- | :---: |
+| <InlineMath math="3" /> | <InlineMath math="(1,2),\ (2,1)" /> | <InlineMath math="2" /> |
+| <InlineMath math="5" /> | <InlineMath math="(1,4),\ (4,1),\ (2,3),\ (3,2)" /> | <InlineMath math="4" /> |
+| <InlineMath math="7" /> | <InlineMath math="(1,6),\ (6,1),\ (2,5),\ (5,2),\ (3,4),\ (4,3)" /> | <InlineMath math="6" /> |
+| <InlineMath math="11" /> | <InlineMath math="(5,6),\ (6,5)" /> | <InlineMath math="2" /> |
+
+<BlockMath math="P=\frac{2+4+6+2}{30}=\frac{14}{30}=\frac{7}{15}" />
+
+Die Wahrscheinlichkeit, dass die Augensumme beim letzten Wurf eine Primzahl ist, beträgt also <InlineMath math="\frac{7}{15}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{5}{12}" /> ist <InlineMath math="\frac{15}{36}" />, die Wahrscheinlichkeit einer Primzahlsumme bei einem gewöhnlichen Wurf. Das ignoriert die Regel zum Neuwerfen und zählt <InlineMath math="(1,1)" /> noch mit.
+- <InlineMath math="\frac{7}{18}" /> ist <InlineMath math="\frac{14}{36}" />. Die Pasche sind aus dem Zähler verschwunden, aber **im Nenner stehen noch <InlineMath math="36" />**, obwohl ein Pasch nie der letzte Wurf ist.
+- <InlineMath math="\frac{7}{30}" /> entsteht, wenn du die Paare ohne Reihenfolge zählst, also <InlineMath math="\{1,2\}" /> nur einmal, sodass es <InlineMath math="7" /> Paare sind, im Nenner aber die <InlineMath math="30" /> geordneten Ergebnisse stehen.
+- <InlineMath math="\frac{7}{36}" /> vereint zwei Fehler: ungeordnete Paare im Zähler und <InlineMath math="36" /> Ergebnisse im Nenner.

@@ -1,20 +1,33 @@
-Die Aufgabe braucht **den Wochentag des ersten Februartags**, denn er legt fest, welche Daten auf einen Sonntag fallen. Danach prüfst du, ob ein Sonntag zugleich ein Vielfaches von <InlineMath math="5" /> ist, damit kein Ruhetag doppelt gezählt wird.
+Hier laufen zwei Zyklen nebeneinander: Der Wochentag wiederholt sich alle <InlineMath math="7" /> Tage, der Markttag (*pasaran*) alle <InlineMath math="5" /> Tage. Du brauchst also nur, **wie viele Tage zwischen dem 20. Juli und dem 1. Dezember liegen**, und dann den Rest dieser Zahl bei Division durch <InlineMath math="7" /> und getrennt davon durch <InlineMath math="5" />. Die Optionen nennen die indonesischen Wochentage: *Senin* ist Montag, *Selasa* Dienstag, *Rabu* Mittwoch und *Kamis* Donnerstag.
 
-Der Januar hat <InlineMath math="31" /> Tage, also liegt der 1. Februar <InlineMath math="31" /> Tage nach dem 1. Januar. Eine Woche hat <InlineMath math="7" /> Tage, entscheidend ist also der Rest:
+Zähl den Abstand Monat für Monat. Denk an die Monatslängen: Juli hat <InlineMath math="31" /> Tage, August <InlineMath math="31" />, September <InlineMath math="30" />, Oktober <InlineMath math="31" /> und November <InlineMath math="30" />.
 
-<BlockMath math="31=4\times7+3" />
+| Abschnitt | Tage |
+| --- | --- |
+| 21. bis 31. Juli | <InlineMath math="11" /> |
+| August | <InlineMath math="31" /> |
+| September | <InlineMath math="30" /> |
+| Oktober | <InlineMath math="31" /> |
+| November | <InlineMath math="30" /> |
+| 1. Dezember | <InlineMath math="1" /> |
+| Summe | <InlineMath math="134" /> |
 
-Vom Freitag aus geht es <InlineMath math="3" /> Tage weiter bis Montag. Der 1. Februar <InlineMath math="2027" /> ist also ein Montag.
+Der 1. Dezember liegt also <InlineMath math="134" /> Tage nach dem 20. Juli. Teil diesen Abstand jetzt durch die Länge jedes Zyklus:
 
-Der Februar <InlineMath math="2027" /> hat <InlineMath math="28" /> Tage. Die Sonntage sind der 7., 14., 21. und 28. Die Vielfachen von <InlineMath math="5" /> sind der 5., 10., 15., 20. und 25. Kein Datum steht in beiden Listen, also **wird kein Ruhetag doppelt gezählt**.
+<BlockMath math="\begin{aligned}
+134 &= 7\times19+1 \\
+134 &= 5\times26+4
+\end{aligned}" />
 
-<BlockMath math="\text{Öffnungstage}=28-4-5=19" />
+Der Rest <InlineMath math="1" /> im Siebentageszyklus schiebt den Wochentag einen Schritt weiter von Montag auf Dienstag (*Selasa*). Der Rest <InlineMath math="4" /> im Fünftageszyklus schiebt den Markttag vier Schritte weiter von Pahing: Pon, Wage, Kliwon, Legi. Der 1. Dezember fällt also auf Selasa Legi.
 
-Die anderen Optionen entstehen aus diesen Fehlern:
+Prüf es auf einem zweiten Weg. Dasselbe Paar aus Wochentag und Markttag kehrt alle <InlineMath math="7\times5=35" /> Tage zurück. Nach <InlineMath math="3\times35=105" /> Tagen, am 2. November, ist wieder Senin Pahing. Vom 2. November bis zum 1. Dezember sind es <InlineMath math="29" /> Tage, mit <InlineMath math="29=7\times4+1" /> und <InlineMath math="29=5\times5+4" />. Gleiches Ergebnis: Selasa Legi.
 
-- <InlineMath math="24" /> entsteht, wenn nur die Sonntage abgezogen werden.
-- <InlineMath math="23" /> entsteht, wenn nur die Vielfachen von <InlineMath math="5" /> abgezogen werden.
-- <InlineMath math="20" /> entsteht, wenn der 1. Februar ein Freitag bleibt. Dann wären die Sonntage der 3., 10., 17. und 24., der 10. zählte nur einmal, und es wären nur <InlineMath math="8" /> Ruhetage.
-- <InlineMath math="18" /> entsteht, wenn man fünf Sonntage annimmt.
+Die anderen Optionen entstehen aus verschiedenen Zählfehlern:
 
-Die Bäckerei hat im Februar <InlineMath math="2027" /> also an <InlineMath math="19" /> Tagen geöffnet.
+- Selasa Pon entsteht, wenn du den Rest <InlineMath math="1" /> aus dem Siebentageszyklus auch für den Markttag nimmst. Für den Markttag brauchst du den Rest bei Division durch <InlineMath math="5" />, also <InlineMath math="4" />.
+- Rabu Pahing entsteht bei einem Abstand von <InlineMath math="135" /> Tagen, weil der 20. Juli mitgezählt wurde. Der Abstand von einem Datum zählt den Starttag nicht mit.
+- Kamis Pon entsteht, wenn September und November je <InlineMath math="31" /> Tage bekommen. Dann ist der Abstand <InlineMath math="136" /> Tage.
+- Senin Kliwon entsteht, wenn du beim 30. November mit <InlineMath math="133" /> Tagen aufhörst und den letzten Tag bis zum 1. Dezember vergisst.
+
+Der 1. Dezember fällt in diesem Jahr also auf Selasa Legi, einen Dienstag mit dem Markttag Legi.

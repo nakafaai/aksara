@@ -1,17 +1,39 @@
-Subtract **the memory for <InlineMath math="60" /> minutes of 4K video** from the free memory, then divide what is left by the size of one minute of HD video.
+# Setting up the data in liters per minute
+
+The question asks for the latest time tap Q can be opened so that the tank is still full by 6:48 (written 06.48 in the question). First put everything in liters: tap Q delivers <InlineMath math="\tfrac{1}{75}\cdot1{,}200=16" /> liters per minute, the leak loses <InlineMath math="\tfrac{1}{150}\cdot1{,}200=8" /> liters per minute, and since the tank is an upright cylinder, the crack sits at a volume of <InlineMath math="\tfrac{2}{5}\cdot1{,}200=480" /> liters.
+
+The later tap Q opens, the less water gets in before 6:48. So the latest opening time is the one that makes **the tank full at exactly 6:48**.
+
+# The water tap Q has to supply
+
+The leak depends on when the water passes the crack, so pin that down first. Tap P alone reaches the crack after <InlineMath math="480\div24=20" /> minutes, at 6:20. If tap Q opens after 6:20, the leak runs nonstop from 6:20 to 6:48, which is <InlineMath math="28" /> minutes, whatever time tap Q opens.
+
+Now work out how much tap P and the leak manage on their own, and then **tap Q has to cover the shortfall**:
 
 <BlockMath math="\begin{aligned}
-\text{free memory}&=(128-83.5)\cdot1{,}000=44{,}500\text{ MB} \\
-\text{4K video}&=60\cdot375=22{,}500\text{ MB} \\
-\text{left for HD}&=44{,}500-22{,}500=22{,}000\text{ MB} \\
-\frac{22{,}000}{90}&=244.4\ldots
+\text{from tap P and the leak}&=480+(24-8)\cdot28=928\text{ liters} \\
+\text{shortfall}&=1{,}200-928=272\text{ liters} \\
+\text{running time of Q}&=\frac{272}{16}=17\text{ minutes}
 \end{aligned}" />
 
-Minute <InlineMath math="245" /> no longer fits, because <InlineMath math="245\cdot90=22{,}050" /> MB. So the HD time is rounded down.
+Tap Q has to run for <InlineMath math="17" /> minutes before 6:48, so it has to open at 6:31. That's after 6:20, so the assumption that the leak had already started before tap Q opened holds.
 
-So Lala can still record at most <InlineMath math="244" /> minutes of HD video.
+# Check by tracing it again
 
-- <InlineMath math="245" /> minutes rounds up, but that last minute would go past the memory.
-- <InlineMath math="256" /> minutes uses <InlineMath math="1\text{ GB}=1{,}024\text{ MB}" />, but the question sets <InlineMath math="1\text{ GB}=1{,}000\text{ MB}" />.
-- <InlineMath math="490" /> minutes subtracts only <InlineMath math="375" /> MB for the 4K video, the size of one minute, not one hour.
-- <InlineMath math="494" /> minutes forgets to subtract the memory for the 4K video.
+<BlockMath math="\begin{aligned}
+\text{at 6:31}&:\ 480+16\cdot11=656\text{ liters} \\
+\text{at 6:48}&:\ 656+(24+16-8)\cdot17=656+544=1{,}200\text{ liters}
+\end{aligned}" />
+
+The tank is full at exactly 6:48. If tap Q opened one minute later, the tank would be <InlineMath math="16" /> liters short at 6:48. That's why 6:31 is **the latest possible time**.
+
+# Why the other options are wrong
+
+The wrong options come from **mishandling the leak or stopping too early**.
+
+- 6:17 comes from writing the running time of tap Q, <InlineMath math="17" /> minutes, as a clock time. You still have to subtract it from 6:48.
+- 6:21 comes from counting the leak from 6:00: tap P and the leak give <InlineMath math="16\cdot48=768" /> liters, the shortfall is <InlineMath math="432" /> liters, and <InlineMath math="432\div16=27" /> minutes. Nothing leaks before 6:20, though.
+- 6:28 comes from a straight shift: in the reading tap Q opens at 6:25 and the tank is full at 6:45, and both times get moved by <InlineMath math="3" /> minutes. But delaying tap Q by one minute only loses <InlineMath math="16" /> liters, which the net rate of <InlineMath math="32" /> liters per minute makes up in half a minute. So tap Q can be delayed by <InlineMath math="6" /> minutes, not <InlineMath math="3" />.
+- 6:45 comes from forgetting the leak: tap P alone gives <InlineMath math="24\cdot48=1{,}152" /> liters, so tap Q would only need <InlineMath math="3" /> minutes.
+
+So tap Q has to be opened by 6:31 at the latest.

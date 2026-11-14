@@ -1,14 +1,33 @@
-Rechne zuerst das Volumen in Liter um. Das volle Becken fasst <InlineMath math="\frac{1+2}{2}\cdot25\cdot10=375\text{ m}^3" />, und <InlineMath math="1\text{ m}^3=1{.}000" /> Liter. **Die Förderleistungen beider Pumpen addieren sich**, weil sie gleichzeitig laufen.
+# Das Volumen beim Abfließen und Auffüllen
 
-<BlockMath math="\begin{aligned}
-V&=375\cdot1{.}000=375{.}000\text{ Liter} \\
-Q&=2\cdot125=250\text{ Liter pro Minute} \\
-t&=\frac{375{.}000}{250}=1{.}500\text{ Minuten}=\frac{1{.}500}{60}\text{ Stunden}=25\text{ Stunden}
-\end{aligned}" />
+Die Aufgabe hat zwei Phasen. Zuerst fließt nur Wasser ab, dann schaltet sich die Pumpe ein, und Wasser fließt zu, während weiter Wasser abfließt. Du brauchst für jede Phase das Volumen und die Nettorate.
 
-Das Becken ist also nach <InlineMath math="25" /> Stunden leer.
+Das Wasser sinkt von der Sicherheitslinie bis zur Grenze zwischen Kegel und Zylinder und steigt dann wieder bis zur Sicherheitslinie. **Beide Phasen haben also dasselbe Volumen, nämlich den Teil des Zylinders unter der Sicherheitslinie**. Der Kegel bleibt die ganze Zeit voll und zählt deshalb nicht mit. In Dezimetern ist die Grundfläche des Zylinders <InlineMath math="\tfrac{22}{7}\cdot7^2=154\text{ dm}^2" />, und dieser Teil ist <InlineMath math="15-3=12\text{ dm}" /> hoch:
 
-- <InlineMath math="33" /> Stunden <InlineMath math="20" /> Minuten nimmt das ganze Becken als <InlineMath math="2\text{ m}" /> tief an, also <InlineMath math="500\text{ m}^3" />.
-- <InlineMath math="50" /> Stunden rechnet nur mit einer Pumpe.
-- <InlineMath math="66" /> Stunden <InlineMath math="40" /> Minuten rechnet mit einer Pumpe und überall <InlineMath math="2\text{ m}" /> Tiefe.
-- <InlineMath math="100" /> Stunden rechnet mit einer Pumpe und addiert beide Tiefen, ohne sie zu halbieren.
+<BlockMath math="V=154\cdot12=1{.}848\text{ dm}^3=1{.}848\text{ Liter}" />
+
+# Die Pumpenleistung in Litern pro Minute
+
+Die Pumpenleistung ist in Kubikmetern pro Stunde angegeben, der Abfluss in Litern pro Minute. **Bring beide zuerst auf dieselbe Einheit**, bevor du subtrahierst.
+
+<BlockMath math="3{,}96\ \frac{\text{m}^3}{\text{Stunde}}=\frac{3{.}960\text{ Liter}}{60\text{ Minuten}}=66\text{ Liter pro Minute}" />
+
+# Die zwei Zeitabschnitte
+
+In der ersten Phase fließt nur Wasser ab. In der zweiten Phase pumpt die Pumpe <InlineMath math="66" /> Liter pro Minute hinein, aber das Rohr lässt weiterhin <InlineMath math="22" /> Liter pro Minute heraus. **Der Wasserspiegel steigt also nur mit der Nettorate <InlineMath math="66-22=44" /> Liter pro Minute**.
+
+| Phase | Rate, die das Volumen ändert | Zeit |
+| :---: | :---: | :---: |
+| Spiegel sinkt, Pumpe aus | <InlineMath math="22" /> Liter pro Minute hinaus | <InlineMath math="\frac{1{.}848}{22}=84" /> Minuten |
+| Spiegel steigt, Pumpe an | <InlineMath math="44" /> Liter pro Minute hinein | <InlineMath math="\frac{1{.}848}{44}=42" /> Minuten |
+
+Die Pumpe schaltet sich <InlineMath math="84" /> Minuten nach <InlineMath math="16{:}00" /> Uhr ein, also um <InlineMath math="17{:}24" /> Uhr. Sie schaltet sich <InlineMath math="42" /> Minuten später aus, also um <InlineMath math="18{:}06" /> Uhr. Das Abflussrohr bleibt bis <InlineMath math="20{:}00" /> Uhr offen, die Nettorate von <InlineMath math="44" /> Litern pro Minute gilt also wirklich während der ganzen zweiten Phase.
+
+Die Pumpe schaltet sich also um <InlineMath math="18{:}06" /> Uhr wieder aus.
+
+# Warum die anderen Optionen falsch sind
+
+- <InlineMath math="16{:}42" /> Uhr zählt nur die Auffüllphase, <InlineMath math="42" /> Minuten, direkt ab <InlineMath math="16{:}00" /> Uhr. Die <InlineMath math="84" /> Minuten, in denen der Spiegel sinkt, fehlen.
+- <InlineMath math="17{:}24" /> Uhr ist der Zeitpunkt, an dem sich die Pumpe **einschaltet**, nicht der, an dem sie sich wieder ausschaltet. Hier wird eine Phase zu früh aufgehört.
+- <InlineMath math="17{:}45" /> Uhr addiert die Raten, <InlineMath math="66+22=88" /> Liter pro Minute, sodass die zweite Phase nur <InlineMath math="21" /> Minuten dauert. Das Wasser, das durch das Rohr abfließt, nimmt dem Tank aber Wasser weg.
+- <InlineMath math="17{:}52" /> Uhr übersieht, dass das Rohr offen bleibt, während die Pumpe läuft. Dann dauert die zweite Phase <InlineMath math="\frac{1{.}848}{66}=28" /> Minuten.

@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "descriptive",
-    topic: "text-fit",
+    cognitiveLevel: "inferential",
+    contentDomain: "recount",
+    topic: "sequence",
   },
-  stimulus: "library-boat",
+  stimulus: "estuary",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
           correct: true,
-          label:
-            "A handrail beside the bench gives standing visitors a steady grip when the boat moves.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "A river library is more accessible than a building library because it reaches several villages.",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label:
-            "The crew should move the inspection tray away from the entrance during busy stops.",
-        },
-        {
-          correct: false,
-          label:
-            "A stronger internet connection would make the boat's physical adaptations less important to users.",
-        },
-        {
-          correct: false,
-          label:
-            "The cabin aisle is wide enough that an additional handrail would add little value.",
+          label: "I, III, and IV only",
         },
       ],
     },

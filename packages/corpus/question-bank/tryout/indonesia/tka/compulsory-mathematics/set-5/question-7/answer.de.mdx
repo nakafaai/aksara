@@ -1,15 +1,39 @@
-Zwei Rabatte nacheinander bedeuten, **zwei Funktionen zu verketten**. Erst Rabatt, dann Gutschein ist <InlineMath math="(g\circ f)(x)" />. Erst Gutschein, dann Rabatt ist <InlineMath math="(f\circ g)(x)" />.
+# Die Verkettung aufstellen
+
+Gesucht ist die Summe **aller** möglichen Werte von <InlineMath math="f(1)" />. Das Wort alle ist ein Hinweis, dass mehr als eine Funktion <InlineMath math="f" /> passen könnte.
+
+Setze <InlineMath math="f(x)" /> in <InlineMath math="f" /> selbst ein. Jedes <InlineMath math="x" /> in der Vorschrift <InlineMath math="ax+b" /> wird durch <InlineMath math="ax+b" /> ersetzt:
 
 <BlockMath math="\begin{aligned}
-(g\circ f)(400{.}000)&=g(320{.}000)=320{.}000-50{.}000=270{.}000 \\
-(f\circ g)(400{.}000)&=f(350{.}000)=0{,}8\cdot350{.}000=280{.}000
+(f\circ f)(x)&=a(ax+b)+b \\
+&=a^2x+ab+b
 \end{aligned}" />
 
-Der Unterschied beträgt <InlineMath math="\text{Rp}10{.}000" />. Die allgemeinen Formen zeigen den Grund: <InlineMath math="(g\circ f)(x)=0{,}8x-50{.}000" /> und <InlineMath math="(f\circ g)(x)=0{,}8x-40{.}000" />. Kommt der Gutschein zuerst, wird auch er rabattiert und ist nur noch <InlineMath math="\text{Rp}40{.}000" /> wert.
+Das muss für jedes <InlineMath math="x" /> gleich <InlineMath math="4x+9" /> sein, also müssen der Koeffizient von <InlineMath math="x" /> und die Konstante übereinstimmen:
 
-Erst den Rabatt zu nutzen ist also um <InlineMath math="\text{Rp}10{.}000" /> günstiger.
+<BlockMath math="\begin{aligned}
+a^2&=4 \\
+ab+b=b(a+1)&=9
+\end{aligned}" />
 
-- Erst der Gutschein ist sogar <InlineMath math="\text{Rp}10{.}000" /> teurer.
-- <InlineMath math="\text{Rp}40{.}000" /> ist der Wert des Gutscheins nach dem Rabatt, nicht der Preisunterschied.
-- <InlineMath math="\text{Rp}50{.}000" /> ist der Nennwert des Gutscheins, nicht der Unterschied der beiden Reihenfolgen.
-- Die Reihenfolge zählt, weil der Prozentrabatt auf verschiedene Preise wirkt.
+# Zwei mögliche Funktionen
+
+Die Gleichung <InlineMath math="a^2=4" /> hat **zwei Lösungen**, <InlineMath math="a=2" /> und <InlineMath math="a=-2" />. Für jede musst du <InlineMath math="b" /> neu bestimmen:
+
+<BlockMath math="\begin{aligned}
+a=2&:\ 3b=9\ \Rightarrow\ b=3,\quad f(x)=2x+3,\quad f(1)=5 \\
+a=-2&:\ -b=9\ \Rightarrow\ b=-9,\quad f(x)=-2x-9,\quad f(1)=-11
+\end{aligned}" />
+
+Prüfe beide. <InlineMath math="2(2x+3)+3=4x+9" /> und <InlineMath math="-2(-2x-9)-9=4x+18-9=4x+9" />. Beide Funktionen erfüllen die Bedingung.
+
+<BlockMath math="5+(-11)=-6" />
+
+Die Summe aller möglichen Werte von <InlineMath math="f(1)" /> ist also <InlineMath math="-6" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="5" /> nimmt nur <InlineMath math="a=2" />. Die Lösung <InlineMath math="a=-2" /> **erfüllt <InlineMath math="a^2=4" /> ebenfalls** und liefert eine gültige Funktion.
+- <InlineMath math="-11" /> nimmt nur <InlineMath math="a=-2" /> und lässt <InlineMath math="a=2" /> weg.
+- <InlineMath math="9" /> schreibt die Verkettung als <InlineMath math="a^2x+2b" /> und vergisst, dass das innere <InlineMath math="b" /> auch mit <InlineMath math="a" /> multipliziert wird. So entsteht <InlineMath math="b=\frac92" /> für beide Funktionen.
+- <InlineMath math="12" /> macht im Fall <InlineMath math="a=-2" /> einen Vorzeichenfehler: Aus <InlineMath math="-2b+b=9" /> wird <InlineMath math="b=9" />. Die Funktion <InlineMath math="-2x+9" /> liefert <InlineMath math="f(f(x))=4x-9" />, nicht <InlineMath math="4x+9" />.

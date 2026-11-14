@@ -75,7 +75,7 @@ layer(NodeServices.layer)("article registry", (it) => {
           Order.String
         );
 
-        expect(entries).toHaveLength(21);
+        expect(entries).toHaveLength(28);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)

@@ -1,17 +1,39 @@
-Zieh vom freien Speicher **den Speicher für <InlineMath math="60" /> Minuten 4K-Video** ab und teile den Rest durch die Größe einer Minute HD-Video.
+# Die Daten in Litern pro Minute
+
+Gesucht ist die späteste Uhrzeit, zu der Hahn Q öffnen darf, damit der Tank um 6:48 Uhr (in der Aufgabe 06.48) trotzdem voll ist. Rechne zuerst alles in Liter um: Hahn Q liefert <InlineMath math="\tfrac{1}{75}\cdot1{.}200=16" /> Liter pro Minute, das Leck verliert <InlineMath math="\tfrac{1}{150}\cdot1{.}200=8" /> Liter pro Minute, und weil der Tank ein senkrechter Zylinder ist, liegt der Riss bei einem Inhalt von <InlineMath math="\tfrac{2}{5}\cdot1{.}200=480" /> Litern.
+
+Je später Hahn Q öffnet, desto weniger Wasser ist um 6:48 Uhr im Tank. Die späteste Uhrzeit ist also die, bei der **der Tank genau um 6:48 Uhr voll ist**.
+
+# Der Beitrag von Hahn Q
+
+Das Leck hängt davon ab, wann das Wasser den Riss überschreitet, also klär das zuerst. Hahn P allein erreicht den Riss nach <InlineMath math="480:24=20" /> Minuten, um 6:20 Uhr. Öffnet Hahn Q nach 6:20 Uhr, läuft das Leck ohne Pause von 6:20 bis 6:48 Uhr, also <InlineMath math="28" /> Minuten, egal wann Hahn Q öffnet.
+
+Rechne jetzt aus, was Hahn P zusammen mit dem Leck allein schafft. **Die Lücke muss Hahn Q füllen**:
 
 <BlockMath math="\begin{aligned}
-\text{freier Speicher}&=(128-83{,}5)\cdot1{.}000=44{.}500\text{ MB} \\
-\text{4K-Video}&=60\cdot375=22{.}500\text{ MB} \\
-\text{für HD}&=44{.}500-22{.}500=22{.}000\text{ MB} \\
-\frac{22{.}000}{90}&=244{,}4\ldots
+\text{von Hahn P und Leck}&=480+(24-8)\cdot28=928\text{ Liter} \\
+\text{Lücke}&=1{.}200-928=272\text{ Liter} \\
+\text{Laufzeit von Q}&=\frac{272}{16}=17\text{ Minuten}
 \end{aligned}" />
 
-Die <InlineMath math="245" />. Minute passt nicht mehr, denn <InlineMath math="245\cdot90=22{.}050" /> MB. Die HD-Dauer wird also abgerundet.
+Hahn Q muss <InlineMath math="17" /> Minuten vor 6:48 Uhr laufen, also um 6:31 Uhr öffnen. Das liegt nach 6:20 Uhr, die Annahme, dass das Leck schon vor dem Öffnen von Hahn Q begonnen hat, stimmt also.
 
-Lala kann also noch höchstens <InlineMath math="244" /> Minuten HD-Video aufnehmen.
+# Kontrolle durch Nachverfolgen
 
-- <InlineMath math="245" /> Minuten rundet auf, doch diese letzte Minute passt nicht mehr hinein.
-- <InlineMath math="256" /> Minuten nimmt <InlineMath math="1\text{ GB}=1{.}024\text{ MB}" />, die Aufgabe legt aber <InlineMath math="1\text{ GB}=1{.}000\text{ MB}" /> fest.
-- <InlineMath math="490" /> Minuten zieht für das 4K-Video nur <InlineMath math="375" /> MB ab, also eine Minute statt einer Stunde.
-- <InlineMath math="494" /> Minuten vergisst, den Speicher für das 4K-Video abzuziehen.
+<BlockMath math="\begin{aligned}
+\text{um 6:31 Uhr}&:\ 480+16\cdot11=656\text{ Liter} \\
+\text{um 6:48 Uhr}&:\ 656+(24+16-8)\cdot17=656+544=1{.}200\text{ Liter}
+\end{aligned}" />
+
+Der Tank ist genau um 6:48 Uhr voll. Öffnet Hahn Q eine Minute später, fehlen um 6:48 Uhr <InlineMath math="16" /> Liter. Deshalb ist 6:31 Uhr **die späteste mögliche Uhrzeit**.
+
+# Warum die anderen Antworten falsch sind
+
+Die falschen Antworten entstehen, wenn **das Leck falsch behandelt wird oder die Rechnung zu früh endet**.
+
+- 6:17 Uhr entsteht, wenn die Laufzeit von Hahn Q, <InlineMath math="17" /> Minuten, als Uhrzeit hingeschrieben wird. Sie muss noch von 6:48 Uhr abgezogen werden.
+- 6:21 Uhr entsteht, wenn das Leck ab 6:00 Uhr zählt: Hahn P und Leck liefern <InlineMath math="16\cdot48=768" /> Liter, die Lücke ist <InlineMath math="432" /> Liter, und <InlineMath math="432:16=27" /> Minuten. Vor 6:20 Uhr läuft aber nichts aus.
+- 6:28 Uhr entsteht durch einfaches Verschieben: In der Lesepassage öffnet Hahn Q um 6:25 Uhr und der Tank ist um 6:45 Uhr voll, und beide Zeiten werden um <InlineMath math="3" /> Minuten verschoben. Eine Minute Verzögerung kostet aber nur <InlineMath math="16" /> Liter, und die holt die Nettorate von <InlineMath math="32" /> Litern pro Minute in einer halben Minute auf. Hahn Q darf also <InlineMath math="6" /> Minuten später öffnen, nicht <InlineMath math="3" />.
+- 6:45 Uhr entsteht, wenn du das Leck vergisst: Hahn P allein liefert <InlineMath math="24\cdot48=1{.}152" /> Liter, und Hahn Q bräuchte nur <InlineMath math="3" /> Minuten.
+
+Hahn Q muss also spätestens um 6:31 Uhr geöffnet werden.

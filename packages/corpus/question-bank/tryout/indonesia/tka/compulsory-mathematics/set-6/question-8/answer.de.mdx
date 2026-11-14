@@ -1,12 +1,43 @@
-Die Reihe hat das erste Glied <InlineMath math="a=3" /> und **den Quotienten <InlineMath math="r=\frac63=2" />**. Weil <InlineMath math="r>1" /> ist, nimmst du die Summenformel <InlineMath math="S_n=\frac{a(r^n-1)}{r-1}" />.
+# Rückprallverhältnis und Starthöhe
 
-<BlockMath math="S_6=\frac{3(2^6-1)}{2-1}=3\cdot63=189" />
+Gesucht ist die gesamte Strecke, die der Ball auf und ab zurücklegt, vom Fallenlassen bis zum Fangen. Die Starthöhe ist nicht gegeben, also bestimm sie zuerst aus den Rückprallhöhen. Diese bilden eine **geometrische Folge**, denn jede Höhe ist die vorige mal einer festen Zahl <InlineMath math="r" />.
 
-Probe durch direktes Addieren: <InlineMath math="3+6+12+24+48+96=189" />.
+<BlockMath math="\begin{aligned}
+162\cdot r^{2}&=72 \\
+r^{2}&=\frac{72}{162}=\frac{4}{9}
+\end{aligned}" />
 
-Die Summe der ersten sechs Glieder ist also <InlineMath math="189" />.
+Höhen sind immer positiv, also fällt <InlineMath math="r=-\tfrac{2}{3}" /> weg und <InlineMath math="r=\tfrac{2}{3}" />. Der erste Rückprall ist <InlineMath math="\tfrac{2}{3}" /> der Starthöhe <InlineMath math="h" />:
 
-- <InlineMath math="93" /> ist die Summe der ersten fünf Glieder.
-- <InlineMath math="96" /> ist das <InlineMath math="6" />. Glied, nicht die Summe von sechs Gliedern.
-- <InlineMath math="192" /> rechnet <InlineMath math="3\cdot2^6" /> und vergisst, <InlineMath math="1" /> abzuziehen.
-- <InlineMath math="381" /> ist die Summe der ersten sieben Glieder.
+<BlockMath math="\tfrac{2}{3}\,h=162 \quad\Rightarrow\quad h=243\text{ cm}" />
+
+# Welcher Rückprall gefangen wird
+
+Schreib die Rückprallhöhen mit dem Verhältnis <InlineMath math="\tfrac{2}{3}" /> auf:
+
+<BlockMath math="162,\ 108,\ 72,\ 48,\ 32,\ \ldots" />
+
+Der vierte Rückprall ist genau <InlineMath math="48\text{ cm}" /> hoch, und **genau <InlineMath math="48\text{ cm}" /> ist nicht weniger als <InlineMath math="48\text{ cm}" />**. Dort wird der Ball also noch nicht gefangen. Der erste Rückprall unter <InlineMath math="48\text{ cm}" /> ist der fünfte, <InlineMath math="32\text{ cm}" /> hoch.
+
+# Die Strecke addieren
+
+Es gibt drei Arten von Teilstrecken. Der erste Fall geht nur nach unten. Die Rückpralle eins bis vier gehen jeweils hoch und wieder runter, sie **zählen also doppelt**. Der fünfte Rückprall geht nur hoch, weil der Ball oben gefangen wird.
+
+<BlockMath math="\begin{aligned}
+\text{Weglänge}&=243+2\,(162+108+72+48)+32 \\
+&=243+2\cdot390+32 \\
+&=1{.}055\text{ cm}
+\end{aligned}" />
+
+Die Summe <InlineMath math="162+108+72+48=390" /> kannst du auch mit der Formel für die geometrische Reihe prüfen: <InlineMath math="\frac{162\left(1-\left(\frac{2}{3}\right)^{4}\right)}{1-\frac{2}{3}}=162\cdot\frac{65}{81}\cdot3=390" />.
+
+# Warum die anderen Antworten falsch sind
+
+Jede falsche Antwort **verrechnet sich bei einer Teilstrecke**.
+
+- <InlineMath math="812\text{ cm}" /> vergisst den ersten Fall von <InlineMath math="243\text{ cm}" />: <InlineMath math="780+32=812" />.
+- <InlineMath math="975\text{ cm}" /> fängt den Ball beim Rückprall von <InlineMath math="48\text{ cm}" />, als hieße die Regel höchstens <InlineMath math="48\text{ cm}" />: <InlineMath math="243+2\cdot342+48=975" />.
+- <InlineMath math="1{.}023\text{ cm}" /> vergisst den letzten Anstieg von <InlineMath math="32\text{ cm}" />: <InlineMath math="243+780=1{.}023" />.
+- <InlineMath math="1{.}298\text{ cm}" /> zählt den ersten Fall doppelt, als wäre der Ball auch zur Starthöhe hochgestiegen: <InlineMath math="2\cdot243+780+32=1{.}298" />.
+
+Der Ball legt also insgesamt <InlineMath math="1{.}055\text{ cm}" /> zurück.

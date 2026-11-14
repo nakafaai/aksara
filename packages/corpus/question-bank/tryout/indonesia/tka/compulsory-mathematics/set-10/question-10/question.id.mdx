@@ -1,3 +1,45 @@
-Sebuah lingkaran mempunyai luas <InlineMath math="154\text{ cm}^2" />. Gunakan <InlineMath math="\pi=\frac{22}{7}" />.
+Segi empat <InlineMath math="ABCD" /> terletak pada sebuah lingkaran dengan <InlineMath math="AB=AD" />. Sisi <InlineMath math="BC" /> diperpanjang melalui <InlineMath math="C" /> sampai titik <InlineMath math="E" /> sehingga <InlineMath math="\angle DCE=64^\circ" />, seperti pada gambar.
 
-Keliling lingkaran itu adalah ....
+<MathVisual
+  title={<>Segi empat tali busur <InlineMath math="ABCD" /></>}
+  description={<>Titik <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" />, dan <InlineMath math="D" /> terletak berurutan pada lingkaran, dengan <InlineMath math="AB=AD" />. Diagonal <InlineMath math="AC" /> digambar. Sisi <InlineMath math="BC" /> diperpanjang melewati <InlineMath math="C" /> sampai <InlineMath math="E" />, dan sudut antara <InlineMath math="CD" /> dan <InlineMath math="CE" /> adalah <InlineMath math="64^\circ" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    e: <InlineMath math="E" />,
+    "angle-dce": <InlineMath math="64^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -8, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "quadrilateral", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 5 }, { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }] },
+      { id: "diagonal-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "extension-ce", kind: "segment", appearance: "secondary", from: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, to: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "arc-dce", kind: "arc", appearance: "highlight", center: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, radius: 0.8, startDegrees: 318, sweepDegrees: 64 },
+      { id: "point-a", kind: "point", appearance: "reference", at: { x: 0, y: 5 } },
+      { id: "point-b", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) } },
+      { id: "point-c", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) } },
+      { id: "point-d", kind: "point", appearance: "reference", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) } },
+      { id: "point-e", kind: "point", appearance: "reference", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) } },
+    ],
+    labels: [
+      { key: "a", objectId: "point-a", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "point-b", at: { x: 5 * Math.cos((206 * Math.PI) / 180), y: 5 * Math.sin((206 * Math.PI) / 180) }, placement: "left" },
+      { key: "c", objectId: "point-c", at: { x: 5 * Math.cos((250 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) }, placement: "below-left" },
+      { key: "d", objectId: "point-d", at: { x: 5 * Math.cos((334 * Math.PI) / 180), y: 5 * Math.sin((334 * Math.PI) / 180) }, placement: "right" },
+      { key: "e", objectId: "point-e", at: { x: 1.9 * 5 * Math.cos((250 * Math.PI) / 180) - 0.9 * 5 * Math.cos((206 * Math.PI) / 180), y: 1.9 * 5 * Math.sin((250 * Math.PI) / 180) - 0.9 * 5 * Math.sin((206 * Math.PI) / 180) }, placement: "below-right" },
+      { key: "angle-dce", objectId: "arc-dce", at: { x: 5 * Math.cos((250 * Math.PI) / 180) + 1.5 * Math.cos((350 * Math.PI) / 180), y: 5 * Math.sin((250 * Math.PI) / 180) + 1.5 * Math.sin((350 * Math.PI) / 180) }, placement: "right" },
+    ],
+  }}
+/>
+
+Besar <InlineMath math="\angle ACE" /> adalah ....

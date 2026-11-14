@@ -11,27 +11,25 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Untuk $$k=3$$, bayangan titik $$(3,2)$$ adalah $$(9,6)$$.",
-        },
-        {
           correct: true,
-          label: "Untuk setiap nilai $$k$$, titik $$P$$ tidak berpindah.",
-        },
-        {
-          correct: true,
-          label:
-            "Untuk $$k=-1$$, dilatasi $$D$$ sama dengan rotasi $$180^\\circ$$ dengan pusat $$P$$.",
+          label: "Tidak ada satu titik pun yang merupakan titik tetap $$T$$.",
         },
         {
           correct: false,
-          label:
-            "Untuk $$k=2$$, jarak setiap titik ke $$P$$ menjadi $$4$$ kali jarak semula.",
+          label: "Garis $$x=3$$ dipetakan oleh $$T$$ ke dirinya sendiri.",
+        },
+        {
+          correct: true,
+          label: "Sumbu $$x$$ dipetakan oleh $$T$$ ke dirinya sendiri.",
+        },
+        {
+          correct: true,
+          label: "Bayangan garis $$y=x$$ oleh $$T$$ adalah garis $$y=-x+6$$.",
         },
         {
           correct: true,
           label:
-            "Untuk $$k=2$$, bayangan setiap garis yang tidak melalui $$P$$ adalah garis lain yang sejajar dengan garis semula.",
+            "Oleh $$T\\circ T$$, setiap titik bergeser sejauh $$12$$ satuan ke kanan.",
         },
       ],
     },

@@ -1,20 +1,34 @@
-Ein Produkt ist gerade, wenn **mindestens eine Zahl gerade ist**. Dieses Ereignis umfasst zwei Fälle, deshalb zählst du schneller das Gegenereignis: Das Produkt ist nur dann ungerade, wenn beide Zahlen ungerade sind.
+Jeder Term hier enthält <InlineMath math="2^x" />, also setzt du <InlineMath math="t=2^x" />. Die Bedingung, die oft vergessen wird: **<InlineMath math="t" /> ist immer positiv**, denn <InlineMath math="2^x>0" /> für jedes <InlineMath math="x" />. Mit <InlineMath math="4^x=t^2" /> und <InlineMath math="2^{x+1}=2t" /> wird die Funktion zu <InlineMath math="f=t^2-6t+8" />.
 
-# Ergebnisraum und Gegenereignis
+# Erste Aussage
 
-Es gibt 9 Zahlen, davon 5 ungerade (1, 3, 5, 7, 9) und 4 gerade. Zwei Zahlen werden gleichzeitig gezogen, die Reihenfolge spielt also keine Rolle, und jedes Paar **ist gleich wahrscheinlich**.
+Faktorisiere und übersetze dann zurück in <InlineMath math="x" />. Die Funktion <InlineMath math="2^x" /> ist steigend, das Ungleichheitszeichen bleibt also erhalten.
 
 <BlockMath math="\begin{aligned}
-n(S)&=\binom92=36\\
-n(\text{beide ungerade})&=\binom52=10
+t^2-6t+8<0 &\iff (t-2)(t-4)<0\\
+&\iff 2<2^x<4\\
+&\iff 1<x<2
 \end{aligned}" />
 
-# Wahrscheinlichkeit berechnen
+**Es gibt keine ganze Zahl** echt zwischen <InlineMath math="1" /> und <InlineMath math="2" />. Die Falle besteht darin, die ganze Zahl <InlineMath math="t=3" /> zu zählen, gefragt ist aber nach <InlineMath math="x" />. Die erste Aussage ist falsch.
 
-<BlockMath math="P(\text{gerades Produkt})=1-\frac{10}{36}=\frac{26}{36}=\frac{13}{18}" />
+# Zweite Aussage
 
-**Direktes Abzählen** liefert dasselbe: Es gibt <InlineMath math="4\times5=20" /> Paare gerade-ungerade und <InlineMath math="\binom42=6" /> Paare gerade-gerade, zusammen 26.
+Ergänze quadratisch: <InlineMath math="f=(t-3)^2-1\ge -1" />. Der Wert <InlineMath math="-1" /> wird bei <InlineMath math="t=3" /> erreicht, und **<InlineMath math="t=3" /> ist wirklich möglich**, weil <InlineMath math="2^x=3" /> für <InlineMath math="x={}^{2}\log 3" /> gilt. Das Minimum von <InlineMath math="f" /> ist also <InlineMath math="-1" />, und die zweite Aussage ist wahr.
 
-Der Wert <InlineMath math="\tfrac5{18}" /> ist die Wahrscheinlichkeit des Gegenereignisses, noch nicht von 1 abgezogen. Der Wert <InlineMath math="\tfrac59" /> zählt nur die 20 Paare gerade-ungerade und vergisst die 6 Paare gerade-gerade. Der Wert <InlineMath math="\tfrac16" /> zählt nur die Paare gerade-gerade. Der Wert <InlineMath math="\tfrac{56}{81}" /> lässt zu, dass eine Zahl zweimal gezogen wird, <InlineMath math="1-\left(\tfrac59\right)^2" />.
+# Dritte Aussage
 
-Die Wahrscheinlichkeit für ein gerades Produkt ist also <InlineMath math="\tfrac{13}{18}" />.
+<BlockMath math="\begin{aligned}
+t^2-6t+8&=8\\
+t(t-6)&=0
+\end{aligned}" />
+
+Es gibt zwei Werte von <InlineMath math="t" />, nämlich <InlineMath math="0" /> und <InlineMath math="6" />, aber **<InlineMath math="t=0" /> ist unmöglich**, weil <InlineMath math="2^x" /> nie null ist. Übrig bleibt nur <InlineMath math="2^x=6" />, also <InlineMath math="x={}^{2}\log 6" />. Die Gleichung hat nur eine Lösung, die dritte Aussage ist also falsch.
+
+# Vierte Aussage
+
+<BlockMath math="4^x+2^{x+1}-8=t^2+2t-8=(t+4)(t-2)" />
+
+Wegen <InlineMath math="t>0" /> ist der Faktor <InlineMath math="t+4" /> **immer positiv**, das Vorzeichen des Produkts hängt also nur von <InlineMath math="t-2" /> ab. Die Ungleichung gilt genau für <InlineMath math="t>2" />, also für <InlineMath math="x>1" />. Der Teil <InlineMath math="x<-2" /> entsteht, wenn du die Bedingung <InlineMath math="t<-4" /> einfach auf <InlineMath math="x" /> überträgst, dabei kommt <InlineMath math="t<-4" /> nie vor. Die vierte Aussage ist falsch.
+
+Die erste Aussage ist also falsch, die zweite wahr, die dritte falsch und die vierte falsch.

@@ -1,46 +1,31 @@
-The graph of <InlineMath math="y=\lvert x-2\rvert" /> is V-shaped with its vertex at <InlineMath math="(2,0)" />. The line <InlineMath math="y=4" /> cuts both arms, so **the bounded region is a triangle**.
+You're counting the ways to share identical candies under three conditions at once. The eldest's condition depends on the youngest's share, so here's the plan: **split into cases by the youngest's share**, count each case with stars and bars, then add.
 
-<MathVisual
-  title={<>Region between <InlineMath math="y=\lvert x-2\rvert" /> and <InlineMath math="y=4" /></>}
-  description={<>The V-shaped graph with vertex <InlineMath math="(2,0)" /> meets the line <InlineMath math="y=4" /> at <InlineMath math="(-2,4)" /> and <InlineMath math="(6,4)" />. The region between them is a triangle.</>}
-  labels={{
-    "l1": <InlineMath math="(-2,4)" />,
-    "l2": <InlineMath math="(2,0)" />,
-    "l3": <InlineMath math="(6,4)" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -0.5, max: 5.5 } },
-    view: { kind: "fit", padding: 0.2 },
-    objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 10))", y: "abs((((-3) + (t / 10)) - 2))", parameter: { min: 0, max: 100 }, appearance: "primary" },
-      { id: "s1-p10", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
-      { id: "s1-p50", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
-      { id: "s1-p90", kind: "point", at: { x: 6, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-3) + (10 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "secondary" },
-    ],
-    labels: [
-      { key: "l1", objectId: "s1", at: { x: -2, y: 4 }, placement: "above-left" },
-      { key: "l2", objectId: "s1", at: { x: 2, y: 0 }, placement: "below" },
-      { key: "l3", objectId: "s1", at: { x: 6, y: 4 }, placement: "above-right" },
-    ],
-  }}
-/>
+# Stars and bars
 
-# The intersection points
+Sharing <InlineMath math="N" /> identical candies among <InlineMath math="3" /> children, with no minimum, is the same as lining up <InlineMath math="N" /> stars and <InlineMath math="2" /> bars. Stars before the first bar go to the first child, stars between the bars to the second, and stars after the second bar to the third. The number of arrangements is **choosing the positions of <InlineMath math="2" /> bars out of <InlineMath math="N+2" /> spots**, which is <InlineMath math="\binom{N+2}{2}" />.
 
-Solve <InlineMath math="\lvert x-2\rvert=4" />.
+If there's a minimum share, hand out the minimums first, then share the rest freely.
 
-<BlockMath math="x-2=4\ \ \text{or}\ \ x-2=-4\quad\Rightarrow\quad x=6\ \ \text{or}\ \ x=-2" />
+# Cases by the youngest's share
 
-The vertices of the triangle are <InlineMath math="(-2,4)" />, <InlineMath math="(6,4)" />, and the vertex of the V at <InlineMath math="(2,0)" />. The <InlineMath math="y" />-axis **does not bound the region**, because the question does not mention it.
+The youngest gets <InlineMath math="y" /> candies with <InlineMath math="2\le y\le4" />. The eldest has to get **more than <InlineMath math="y" />**, so at least <InlineMath math="y+1" />. The second and third children get at least <InlineMath math="2" /> each. After the minimums, the candies left for those three children number <InlineMath math="N=17-y-(y+1)-2-2=12-2y" />.
 
-# Computing the area
+<BlockMath math="\begin{aligned}
+y=2:\quad N=8,&\quad\binom{10}{2}=45\\
+y=3:\quad N=6,&\quad\binom{8}{2}=28\\
+y=4:\quad N=4,&\quad\binom{6}{2}=15\\
+\text{total}&=45+28+15=88
+\end{aligned}" />
 
-The base of the triangle lies on the line <InlineMath math="y=4" /> with length <InlineMath math="6-(-2)=8" />. The height is the distance from <InlineMath math="(2,0)" /> to that line, which is 4.
+Check the case <InlineMath math="y=4" /> another way. The eldest gets at least <InlineMath math="5" />, the two middle children at least <InlineMath math="2" />, and those three share <InlineMath math="13" />. The <InlineMath math="4" /> leftover candies shared freely among <InlineMath math="3" /> children give <InlineMath math="15" /> ways, matching the count above. Without the eldest's condition, the three cases total <InlineMath math="55+45+36=136" />, so <InlineMath math="88" /> is smaller, just as it should be.
 
-<BlockMath math="A=\tfrac12\cdot8\cdot4=16" />
+# The tempting wrong options
 
-The value 32 forgets the factor <InlineMath math="\tfrac12" />. The value 8 counts only the half of the triangle on one side of the vertex. The values 14 and 6 cut the region with the <InlineMath math="y" />-axis, which is not part of the boundary.
+Each other option comes from **reading one condition too loosely or too strictly**.
 
-So the area of the region is **16 square units**.
+- <InlineMath math="136" /> comes from ignoring the condition that the eldest gets more than the youngest.
+- <InlineMath math="112" /> comes from reading more than as at least as many, so the eldest could also get <InlineMath math="y" /> candies.
+- <InlineMath math="95" /> comes from ignoring the youngest's limit of at most <InlineMath math="4" />, which adds the cases <InlineMath math="y=5" /> and <InlineMath math="y=6" />.
+- <InlineMath math="73" /> comes from reading at most <InlineMath math="4" /> as fewer than <InlineMath math="4" />, which loses the case <InlineMath math="y=4" />.
+
+So there are <InlineMath math="88" /> ways to share the candies.
