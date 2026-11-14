@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { advancedRatings } from "#corpus/tryout/indonesia/tka/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA Advanced Mathematics sets, an elective subject. */
@@ -36,11 +37,13 @@ export const tkaAdvancedMathematicsTrack = {
     id: "matematika-tingkat-lanjut",
     ms: "matematik-lanjutan",
   },
-  sets: Arr.map([1], (setNumber) => {
+  sets: Arr.map(advancedRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,

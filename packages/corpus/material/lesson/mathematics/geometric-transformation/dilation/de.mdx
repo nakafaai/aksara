@@ -53,7 +53,7 @@ Das Zentrum liegt bei <InlineMath math="O(0,0)" />. Der Faktor zwei **verdoppelt
 
 Somit ist das Bild <InlineMath math="A'(2,4)" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Streckung von <InlineMath math="A(1,2)" /> vom Ursprung aus mit{" "}
@@ -67,44 +67,28 @@ Somit ist das Bild <InlineMath math="A'(2,4)" />.
       <InlineMath math="A'(2,4)" /> ab.
     </>
   }
-  data={[
-    {
-      points: [{ x: 0, y: 0, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [0.3, -0.3, 0] }],
-    }, // Streckzentrum
-    {
-      points: [{ x: 1, y: 2, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A(1,2)" />, at: 0, offset: [1, 0.2, 0] }],
-    }, // Ausgangspunkt
-    {
-      points: [{ x: 2, y: 4, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'(2,4)" />, at: 0, offset: [0.3, 0.3, 0] }],
-    }, // Bildpunkt
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Strecke OA
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 2, y: 4, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Strecke OA'
-  ]}
-  cameraPosition={[1, 2, 8]}
-  cameraTarget={[1, 2, 0]}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="A(1,2)" />,
+    "l3": <InlineMath math="A'(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 1, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 4 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 1, y: 2 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 4 }, placement: "above-right" },
+    ],
+  }}
 />
 
 ## Zentrische Streckung mit einem beliebigen Zentrum
@@ -135,7 +119,7 @@ Der Streckfaktor ist <InlineMath math="k=2" />.
 
 Somit ist das Bild <InlineMath math="C'(8,1)" />.
 
-<LineEquation
+<MathVisual
   title={
     <>
       Streckung von <InlineMath math="C(5,2)" /> mit dem Zentrum{" "}
@@ -149,44 +133,28 @@ Somit ist das Bild <InlineMath math="C'(8,1)" />.
       <InlineMath math="C'(8,1)" /> ab.
     </>
   }
-  data={[
-    {
-      points: [{ x: 2, y: 3, z: 0 }],
-      color: "#e11d48",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P(2,3)" />, at: 0, offset: [0, 0.7, 0] }],
-    }, // Streckzentrum
-    {
-      points: [{ x: 5, y: 2, z: 0 }],
-      color: "#0284c7",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(5,2)" />, at: 0, offset: [0, -0.65, 0] }],
-    }, // Ausgangspunkt
-    {
-      points: [{ x: 8, y: 1, z: 0 }],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C'(8,1)" />, at: 0, offset: [0, -0.7, 0] }],
-    }, // Bildpunkt
-    {
-      points: [
-        { x: 2, y: 3, z: 0 },
-        { x: 5, y: 2, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Strecke PC
-    {
-      points: [
-        { x: 2, y: 3, z: 0 },
-        { x: 8, y: 1, z: 0 },
-      ],
-      smooth: false,
-      color: "#4f46e5",
-    }, // Strecke PC'
-  ]}
-  cameraTarget={[5, 2, 0]}
-  cameraPosition={[5, 2, 10]}
+  labels={{
+    "l1": <InlineMath math="P(2,3)" />,
+    "l2": <InlineMath math="C(5,2)" />,
+    "l3": <InlineMath math="C'(8,1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 1, max: 9 }, y: { min: 0.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "point", at: { x: 2, y: 3 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 5, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 8, y: 1 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 5, y: 2 }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 2, y: 3 }, { x: 8, y: 1 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "l3", objectId: "s3", at: { x: 8, y: 1 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Übungen
@@ -239,12 +207,45 @@ Die ursprünglichen Katheten sind <InlineMath math="2" /> und <InlineMath math="
 
 <BlockMath math="L=\frac12\cdot2\cdot3=3,\qquad L'=\frac12\cdot4\cdot6=12=4L" />
 
-<LineEquation title="Ein negativer Faktor vergrößert auf die andere Seite" description={<>Dreieck <InlineMath math="ABC" /> und sein Bild bei einer zentrischen Streckung um <InlineMath math="O" /> mit dem Faktor minus zwei.</>}
-  data={[
-    { points: [{ x: 1, y: 1, z: 0 }, { x: 3, y: 1, z: 0 }, { x: 1, y: 4, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, showPoints: true, color: "#d97706", labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.4, -0.3, 0] }, { text: <InlineMath math="B" />, at: 1, offset: [0.4, 0, 0] }, { text: <InlineMath math="C" />, at: 2, offset: [0.3, 0.3, 0] }] },
-    { points: [{ x: -2, y: -2, z: 0 }, { x: -6, y: -2, z: 0 }, { x: -2, y: -8, z: 0 }, { x: -2, y: -2, z: 0 }], smooth: false, showPoints: true, color: "#059669", labels: [{ text: <InlineMath math="A'" />, at: 0, offset: [0.4, 0.3, 0] }, { text: <InlineMath math="B'" />, at: 1, offset: [-0.4, 0, 0] }, { text: <InlineMath math="C'" />, at: 2, offset: [0.3, -0.3, 0] }] },
-    { points: [{ x: -2, y: -2, z: 0 }, { x: 0, y: 0, z: 0 }, { x: 1, y: 1, z: 0 }], smooth: false, color: "#4f46e5", labels: [{ text: <InlineMath math="O" />, at: 1, offset: [0.5, -0.3, 0] }] },
-  ]}
-  cameraTarget={[-1.5, -2, 0]}
-  cameraPosition={[-1.5, -2, 18]}
+<MathVisual
+  title={<>Ein negativer Faktor vergrößert auf die andere Seite</>}
+  description={<>Dreieck <InlineMath math="ABC" /> und sein Bild bei einer zentrischen Streckung um <InlineMath math="O" /> mit dem Faktor minus zwei.</>}
+  labels={{
+    "l1": <InlineMath math="A" />,
+    "l2": <InlineMath math="B" />,
+    "l3": <InlineMath math="C" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="B'" />,
+    "l6": <InlineMath math="C'" />,
+    "l7": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7, max: 4 }, y: { min: -9.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 3, y: 1 }, { x: 1, y: 4 }], appearance: "primary" },
+      { id: "s1-close", kind: "segment", from: { x: 1, y: 4 }, to: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s1-p0", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s1-p1", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "s1-p2", kind: "point", at: { x: 1, y: 4 }, appearance: "primary" },
+      { id: "s1-p3", kind: "point", at: { x: 1, y: 1 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: -6, y: -2 }, { x: -2, y: -8 }], appearance: "secondary" },
+      { id: "s2-close", kind: "segment", from: { x: -2, y: -8 }, to: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s2-p0", kind: "point", at: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: -6, y: -2 }, appearance: "secondary" },
+      { id: "s2-p2", kind: "point", at: { x: -2, y: -8 }, appearance: "secondary" },
+      { id: "s2-p3", kind: "point", at: { x: -2, y: -2 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -2, y: -2 }, { x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s1", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "l3", objectId: "s1", at: { x: 1, y: 4 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -2, y: -2 }, placement: "above-right" },
+      { key: "l5", objectId: "s2", at: { x: -6, y: -2 }, placement: "left" },
+      { key: "l6", objectId: "s2", at: { x: -2, y: -8 }, placement: "below-right" },
+      { key: "l7", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-right" },
+    ],
+  }}
 />

@@ -1,5 +1,5 @@
-import { isArrayExpressionNode } from "#nakafa-content/line/ast";
 import type { EstreeNode } from "#nakafa-content/mdx/parse";
+import { isArrayExpressionNode } from "#nakafa-content/points/ast";
 import {
   propertyFindings,
   tupleFindings,

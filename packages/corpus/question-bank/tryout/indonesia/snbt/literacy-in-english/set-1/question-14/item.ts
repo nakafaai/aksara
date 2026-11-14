@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "argument-evaluation",
   },
-  stimulus: "campus-commute",
+  stimulus: "wind-curtailment",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "the average trip time of students who walk to campus.",
+          column: 2,
+          label:
+            "It will bring the North farms' curtailment down to about the share that Saltmarsh lost.",
         },
         {
-          correct: false,
-          label: "the cost of running the station shuttle for one year.",
+          column: 2,
+          label:
+            "It will add about $$210$$ GWh a year to the energy that the North farms deliver.",
         },
         {
-          correct: false,
-          label: "how many bus routes currently serve the campus.",
+          column: 2,
+          label: "It will remove the North farms' losses on windy evenings.",
         },
         {
-          correct: false,
-          label: "whether train users would prefer a shuttle to walking.",
+          column: 1,
+          label:
+            "Its likely gain cannot be read straight off the North farms' 2025 figures.",
         },
         {
-          correct: true,
-          label: "how many non-cyclists live close enough to ride to campus.",
+          column: 1,
+          label:
+            "It will not reduce losses on nights when demand across the whole region is too low.",
         },
       ],
     },

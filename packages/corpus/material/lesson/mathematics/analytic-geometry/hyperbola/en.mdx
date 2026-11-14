@@ -17,140 +17,41 @@ Geometrically, a hyperbola appears when a plane cuts both halves of a double con
 
 Mathematically, a hyperbola is defined as the locus of points where the <Highlight>absolute difference of distances to two fixed points</Highlight> is always constant. These two fixed points are called the **foci** of the hyperbola. For every point <InlineMath math="P" /> on the hyperbola, the difference <InlineMath math="|PF_1 - PF_2| = 2a" /> (constant), whereas in an [ellipse](/en/subjects/mathematics/analytic-geometry/ellipse) the sum of distances is constant: <InlineMath math="PF_1 + PF_2 = 2a" />.
 
-<LineEquation
-  title="Basic Concept of Hyperbola"
-  description="Hyperbola with two foci showing constant difference in distances"
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-
-        // Right branch of hyperbola
-        for (let t = -2; t <= 2; t += 0.1) {
-          const x = a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-
-        // Left branch of hyperbola
-        for (let t = -2; t <= 2; t += 0.1) {
-          const x = -a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#9333ea",
-      showPoints: false,
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, -0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, -0.5, 0] }
-      ],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const t = 0.7;
-        return [{
-          x: a * Math.cosh(t),
-          y: b * Math.sinh(t),
-          z: 0,
-        }];
-      })(),
-      color: "#65a30d",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.5, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-        const t = 0.7;
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_1" />, at: 1, offset: [-1, 0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-        const t = 0.7;
-        return [
-          { x: c, y: 0, z: 0 },
-          { x: a * Math.cosh(t), y: b * Math.sinh(t), z: 0 }
-        ];
-      })(),
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: <InlineMath math="r_2" />, at: 0, offset: [0.5, 1, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 0, z: 0 },
-        { x: 6, y: 0, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: 0, y: -4, z: 0 },
-        { x: 0, y: 4, z: 0 }
-      ],
-      color: "#e11d48",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Basic Concept of Hyperbola</>}
+  description={<>Hyperbola with two foci showing constant difference in distances</>}
+  labels={{
+    "l1": <InlineMath math="F_1" />,
+    "l2": <InlineMath math="F_2" />,
+    "l3": <InlineMath math="P" />,
+    "l4": <InlineMath math="r_1" />,
+    "l5": <InlineMath math="r_2" />,
+    "l6": <InlineMath math="O" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -9, max: 8 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-2 + (t * 0.1))))", y: "(2 * sinh((-2 + (t * 0.1))))", parameter: { min: 0, max: 39 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-2 + (t * 0.1))))", y: "(2 * sinh((-2 + (t * 0.1))))", parameter: { min: 0, max: 39 }, appearance: "primary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.61, y: 0 }], appearance: "secondary" },
+      { id: "s4", kind: "point", at: { x: 3.77, y: 1.52 }, appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.77, y: 1.52 }], appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 3.61, y: 0 }, { x: 3.77, y: 1.52 }], appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
+      { id: "s8", kind: "polyline", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }], appearance: "warning" },
+      { id: "s9", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: -3.61, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s3", at: { x: 3.61, y: 0 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 3.77, y: 1.52 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 3.77, y: 1.52 }, placement: "above-left" },
+      { key: "l5", objectId: "s6", at: { x: 3.61, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s7", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 The visualization shows both branches, the two foci, and one point <InlineMath math="P" /> on the curve. The two segments have lengths <InlineMath math="r_1=PF_1" /> and <InlineMath math="r_2=PF_2" />. Moving <InlineMath math="P" /> along either branch changes both lengths, but their absolute difference remains <InlineMath math="|r_1-r_2|=2a" />.
@@ -159,107 +60,43 @@ The visualization shows both branches, the two foci, and one point <InlineMath m
 
 Before using the formulas, identify the parts that control the shape and position of the curve.
 
-<LineEquation
-  title="Parts of a Hyperbola"
-  description="Components of a hyperbola with a horizontal transverse axis."
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2.5;
-
-        // Right branch
-        for (let t = -1.5; t <= 1.5; t += 0.1) {
-          const x = a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2.5;
-
-        // Left branch
-        for (let t = -1.5; t <= 1.5; t += 0.1) {
-          const x = -a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#4f46e5",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: "Center", at: 0, offset: [-0.5, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2.5;
-        const c = Math.sqrt(a * a + b * b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.6, -0.9, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.6, -0.9, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -6, y: -5, z: 0 },
-        { x: 6, y: 5, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Asymptote", at: 1, offset: [-2, -0.2, 0] }],
-    },
-    {
-      points: [
-        { x: -6, y: 5, z: 0 },
-        { x: 6, y: -5, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-      labels: [{ text: "Asymptote", at: 0, offset: [2, -0.2, 0] }],
-    },
-  ]}
-  cameraPosition={[0, 0, 15]}
+<MathVisual
+  title={<>Parts of a Hyperbola</>}
+  description={<>Components of a hyperbola with a horizontal transverse axis.</>}
+  labels={{
+    "l1": <>Center</>,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+    "l6": <>Asymptote</>,
+    "l7": <>Asymptote</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -6.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-1.5 + (t * 0.1))))", y: "(2.5 * sinh((-1.5 + (t * 0.1))))", parameter: { min: 0, max: 29 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-1.5 + (t * 0.1))))", y: "(2.5 * sinh((-1.5 + (t * 0.1))))", parameter: { min: 0, max: 29 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.91, y: 0 }, { x: 3.91, y: 0 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -5 }, { x: 6, y: 5 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 5 }, { x: 6, y: -5 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: -3.91, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s4", at: { x: 3.91, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s6", at: { x: 6, y: 5 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: -6, y: 5 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Read the graph through these five features:
@@ -284,105 +121,39 @@ Take <InlineMath math="a > 0" /> and <InlineMath math="b > 0" />. The constant i
 
 If the center of the hyperbola is at <InlineMath math="O(0,0)" />, there are two possible orientations:
 
-<LineEquation
-  title="Horizontal Transverse Axis"
+<MathVisual
+  title={<>Horizontal Transverse Axis</>}
   description={<>Hyperbola <InlineMath math="\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1" /> with a horizontal transverse axis.</>}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-
-        // Right branch
-        for (let t = -1.8; t <= 1.8; t += 0.1) {
-          const x = a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-
-        // Left branch
-        for (let t = -1.8; t <= 1.8; t += 0.1) {
-          const x = -a * Math.cosh(t);
-          const y = b * Math.sinh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-        return [
-          { x: -c, y: 0, z: 0 },
-          { x: c, y: 0, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -3, y: 0, z: 0 },
-        { x: 3, y: 0, z: 0 }
-      ],
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A_1" />, at: 0, offset: [-0.5, 0.5, 0] },
-        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -6, y: -4, z: 0 },
-        { x: 6, y: 4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -6, y: 4, z: 0 },
-        { x: 6, y: -4, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11.5, max: 11.5 }, y: { min: -7.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cosh((-1.8 + (t * 0.1))))", y: "(2 * sinh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3) * cosh((-1.8 + (t * 0.1))))", y: "(2 * sinh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: -3.61, y: 0 }, { x: 3.61, y: 0 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: -3, y: 0 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 0 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -6, y: -4 }, { x: 6, y: 4 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -6, y: 4 }, { x: 6, y: -4 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: -3.61, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: 3.61, y: 0 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: -3, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 3, y: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 When the **transverse axis is parallel** to the <InlineMath math="x" /> axis, the equation of the hyperbola is:
@@ -391,105 +162,39 @@ When the **transverse axis is parallel** to the <InlineMath math="x" /> axis, th
 
 The corresponding vertical graph is shown below:
 
-<LineEquation
-  title="Vertical Transverse Axis"
+<MathVisual
+  title={<>Vertical Transverse Axis</>}
   description={<>Hyperbola <InlineMath math="\frac{y^2}{a^2} - \frac{x^2}{b^2} = 1" /> with a vertical transverse axis.</>}
-  data={[
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-
-        // Top branch
-        for (let t = -1.8; t <= 1.8; t += 0.1) {
-          const x = b * Math.sinh(t);
-          const y = a * Math.cosh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      smooth: false,
-      points: (() => {
-        const points = [];
-        const a = 3;
-        const b = 2;
-
-        // Bottom branch
-        for (let t = -1.8; t <= 1.8; t += 0.1) {
-          const x = b * Math.sinh(t);
-          const y = -a * Math.cosh(t);
-          points.push({ x, y, z: 0 });
-        }
-        return points;
-      })(),
-      color: "#0d9488",
-      showPoints: false,
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 }
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O(0,0)" />, at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: (() => {
-        const a = 3;
-        const b = 2;
-        const c = Math.sqrt(a * a + b * b);
-        return [
-          { x: 0, y: -c, z: 0 },
-          { x: 0, y: c, z: 0 }
-        ];
-      })(),
-      smooth: false,
-      color: "#0891b2",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="F_1" />, at: 0, offset: [0.5, -0.5, 0] },
-        { text: <InlineMath math="F_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: 0, y: -3, z: 0 },
-        { x: 0, y: 3, z: 0 }
-      ],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A_1" />, at: 0, offset: [0.5, -0.5, 0] },
-        { text: <InlineMath math="A_2" />, at: 1, offset: [0.5, 0.5, 0] }
-      ],
-    },
-    {
-      points: [
-        { x: -4, y: -6, z: 0 },
-        { x: 4, y: 6, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-    {
-      points: [
-        { x: -4, y: 6, z: 0 },
-        { x: 4, y: -6, z: 0 }
-      ],
-      color: "#d97706",
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+  labels={{
+    "l1": <InlineMath math="O(0,0)" />,
+    "l2": <InlineMath math="F_1" />,
+    "l3": <InlineMath math="F_2" />,
+    "l4": <InlineMath math="A_1" />,
+    "l5": <InlineMath math="A_2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.5, max: 6.5 }, y: { min: -11.5, max: 11.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 * sinh((-1.8 + (t * 0.1))))", y: "(3 * cosh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 * sinh((-1.8 + (t * 0.1))))", y: "((-3) * cosh((-1.8 + (t * 0.1))))", parameter: { min: 0, max: 35 }, appearance: "primary" },
+      { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: -3.61 }, { x: 0, y: 3.61 }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 0, y: -3 }, appearance: "highlight" },
+      { id: "s5-p1", kind: "point", at: { x: 0, y: 3 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -4, y: -6 }, { x: 4, y: 6 }], appearance: "reference" },
+      { id: "s7", kind: "polyline", vertices: [{ x: -4, y: 6 }, { x: 4, y: -6 }], appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s3", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l2", objectId: "s4", at: { x: 0, y: -3.61 }, placement: "below-right" },
+      { key: "l3", objectId: "s4", at: { x: 0, y: 3.61 }, placement: "above-right" },
+      { key: "l4", objectId: "s5", at: { x: 0, y: -3 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 3 }, placement: "above-right" },
+    ],
+  }}
 />
 
 When the transverse axis is parallel to the <InlineMath math="y" /> axis, the equation of the hyperbola is:

@@ -1,0 +1,16 @@
+Direct substitution gives <InlineMath math="\frac00" />. The numerator is a difference involving a root, so **multiply by its conjugate**, <InlineMath math="\sqrt{x+4}+2" />.
+
+<BlockMath math="\frac{\sqrt{x+4}-2}{\sin\frac{x}{4}}\cdot\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2}=\frac{x}{\sin\frac{x}{4}\,\left(\sqrt{x+4}+2\right)}" />
+
+Split it into a standard sine limit and a part you can substitute into directly. Since <InlineMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}=4" />, you get the following.
+
+<BlockMath math="\lim_{x\to0}\frac{x}{\sin\frac{x}{4}}\cdot\lim_{x\to0}\frac{1}{\sqrt{x+4}+2}=4\cdot\frac14=1" />
+
+Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMath math="0.9994" />.
+
+So the limit is <InlineMath math="1" />.
+
+- <InlineMath math="0" /> only looks at the numerator tending to <InlineMath math="0" />, but the denominator tends to <InlineMath math="0" /> as well.
+- <InlineMath math="2" /> takes <InlineMath math="\sqrt{x+4}+2" /> to be <InlineMath math="2" /> at <InlineMath math="x=0" />, but it is <InlineMath math="4" />.
+- <InlineMath math="\frac14" /> treats <InlineMath math="\sin\frac{x}{4}" /> like <InlineMath math="\sin x" />, losing the factor <InlineMath math="4" /> from the sine limit.
+- <InlineMath math="\infty" /> only looks at the denominator tending to <InlineMath math="0" />.

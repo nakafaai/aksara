@@ -1,5 +1,6 @@
 import { Array as Arr, Effect } from "effect";
 import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
+import { snbtRatings } from "#corpus/tryout/indonesia/snbt/ratings";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import {
@@ -203,11 +204,13 @@ const snbtTryoutCatalog = defineExamSource({
         sections: snbtSections,
       },
       routeSlugs: { de: "utbk", en: "utbk", id: "utbk", ms: "utbk" },
-      sets: Arr.map([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], (setNumber) => {
+      sets: Arr.map(snbtRatings, (rating, index) => {
+        const setNumber = index + 1;
         const setKey = `set-${setNumber}`;
         return {
           key: setKey,
           order: setNumber,
+          rating,
           routeSlugs: {
             de: `aufgabensatz-${setNumber}`,
             en: setKey,

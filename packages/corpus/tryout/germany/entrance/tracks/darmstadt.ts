@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { darmstadtRatings } from "#corpus/tryout/germany/entrance/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /**
@@ -43,11 +44,13 @@ export const tuDarmstadtEntranceTrack = {
     id: "matematika",
     ms: "matematik",
   },
-  sets: Arr.map([1, 2, 3], (setNumber) => {
+  sets: Arr.map(darmstadtRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,

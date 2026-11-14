@@ -113,7 +113,7 @@ describe("figureNode", () => {
         "props"
       );
       assert.strictEqual(
-        yield* reason('<Mermaid title="Flow" description="A to B." />'),
+        yield* reason('<Mermaid title="Flow" chart="pie title Share" />'),
         "props"
       );
       assert.strictEqual(

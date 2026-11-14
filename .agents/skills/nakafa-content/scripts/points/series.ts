@@ -1,14 +1,14 @@
 import {
-  isArrayExpressionNode,
-  isCallExpressionNode,
-} from "#nakafa-content/line/ast";
-import {
   asEstreeNode,
   type EstreeNode,
   estreeChildren,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import {
+  isArrayExpressionNode,
+  isCallExpressionNode,
+} from "#nakafa-content/points/ast";
 import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
 import { isLiteralPoint } from "#nakafa-content/points/numeric";
 
@@ -24,8 +24,9 @@ const MAX_LITERAL_POINTS = 8;
 
 /**
  * The one component whose scene the compiler reads without running code. It
- * folds constant expressions such as Math.sqrt(3) but rejects Array.from, so a
- * sampled curve cannot be built there and belongs to LineEquation.
+ * folds constant expressions such as Math.sqrt(3) but rejects Array.from and
+ * variables, so a curve there is the formula object that names it, which the
+ * renderer samples.
  */
 const SCENE_COMPONENT = "MathVisual";
 
@@ -97,7 +98,7 @@ export function seriesFindings(
   }
   const advice =
     component === SCENE_COMPONENT
-      ? `${component} folds only constant expressions, so draw a sampled curve with LineEquation and Array.from, and keep only named exact points here`
+      ? `${component} folds only constant expressions, so draw each curve as the formula object that names it, such as { kind: "function", formula: "x^3 - 3x", domain: { min: -2, max: 2 } }, and keep only named exact points as literals`
       : "build the series with Array.from from its formula, and keep only named exact points as literals";
   return [
     findingAt(

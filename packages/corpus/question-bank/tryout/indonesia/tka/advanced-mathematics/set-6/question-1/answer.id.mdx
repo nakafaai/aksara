@@ -1,0 +1,15 @@
+Hitung invers <InlineMath math="A" /> lebih dulu, lalu jumlahkan dengan <InlineMath math="A" />. Determinannya <InlineMath math="2\cdot2-1\cdot3=1" />, jadi invers hanya perlu **menukar diagonal utama dan mengubah tanda diagonal lainnya**.
+
+<BlockMath math="\begin{aligned}
+A^{-1}&=\frac11\begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix}=\begin{pmatrix} 2 & -1 \\ -3 & 2 \end{pmatrix} \\
+A+A^{-1}&=\begin{pmatrix} 2+2 & 1-1 \\ 3-3 & 2+2 \end{pmatrix}=\begin{pmatrix} 4 & 0 \\ 0 & 4 \end{pmatrix}=4I
+\end{aligned}" />
+
+Entri di luar diagonal saling meniadakan, dan entri diagonal sama-sama <InlineMath math="4" />, jadi hasilnya memang kelipatan <InlineMath math="I" />. Pemeriksaan: <InlineMath math="AA^{-1}=\begin{pmatrix} 4-3 & -2+2 \\ 6-6 & -3+4 \end{pmatrix}=I" />.
+
+Jadi, <InlineMath math="k=4" />.
+
+- <InlineMath math="2" /> hanya membaca entri diagonal <InlineMath math="A" />, tanpa menambahkan invers.
+- <InlineMath math="0" /> adalah jumlah entri di luar diagonal, bukan entri diagonal.
+- <InlineMath math="5" /> menambahkan determinan <InlineMath math="1" /> pada <InlineMath math="4" />, padahal determinan hanya dipakai sebagai pembagi adjoin.
+- <InlineMath math="1" /> adalah determinan <InlineMath math="A" />.

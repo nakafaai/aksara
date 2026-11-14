@@ -23,9 +23,8 @@ export function shortRevision(revision: string): string {
 }
 
 /**
- * Lists the lessons below the visual bar, with their count. The list reports
- * and does not fail, until the change that lifts the last lesson over the bar
- * turns it into a finding.
+ * Lists the lessons below the visual bar, with their count. Every lesson is at
+ * the bar, so one that falls below it fails the check.
  */
 const printBelowBar = Effect.fn("PointsCheck.printBelowBar")(function* (
   belowBar: readonly string[]
@@ -33,11 +32,11 @@ const printBelowBar = Effect.fn("PointsCheck.printBelowBar")(function* (
   if (belowBar.length === 0) {
     return;
   }
-  yield* Console.log(
+  yield* Console.error(
     `${belowBar.length} lesson(s) below the visual bar, which needs at least 3 interactive visual cards:`
   );
   for (const folder of belowBar) {
-    yield* Console.log(`  ${folder}`);
+    yield* Console.error(`  ${folder}`);
   }
 });
 
@@ -50,15 +49,25 @@ export const printReport = Effect.fn("PointsCheck.printReport")(function* (
   }
   yield* printBelowBar(report.belowBar);
   const revision = shortRevision(report.base);
-  if (report.findings.length === 0) {
+  if (report.findings.length === 0 && report.belowBar.length === 0) {
     yield* Console.log(
       `Points check passed for ${report.files} files and compared ${report.compared} changed files with ${revision}.`
     );
     return 0;
   }
   const affected = new Set(report.findings.map(({ file }) => file)).size;
+  const found = [
+    ...(report.findings.length === 0
+      ? []
+      : [
+          `${report.findings.length} finding(s) in ${affected} of ${report.files} files`,
+        ]),
+    ...(report.belowBar.length === 0
+      ? []
+      : [`${report.belowBar.length} lesson(s) below the visual bar`]),
+  ];
   yield* Console.error(
-    `Points check found ${report.findings.length} finding(s) in ${affected} of ${report.files} files, compared with ${revision}.`
+    `Points check found ${found.join(" and ")}, compared with ${revision}.`
   );
   return 1;
 });

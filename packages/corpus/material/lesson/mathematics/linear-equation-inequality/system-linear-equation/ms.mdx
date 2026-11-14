@@ -1,0 +1,269 @@
+export const metadata = {
+  title: "Sistem Persamaan Linear",
+  description: "Selesaikan sistem persamaan linear dengan kaedah penggantian dan penghapusan, kemudian tafsirkan contoh yang lengkap dan model visualnya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2025-04-18",
+  dateModified: "2026-09-23",
+  subject: "Sistem Persamaan dan Ketaksamaan Linear",
+};
+
+## Nilai yang Memenuhi Beberapa Persamaan Serentak
+
+Satu jumlah harga boleh terhasil daripada banyak gabungan barang yang berbeza. Maklumat tambahan, seperti jumlah bilangan barang, menyempitkan kemungkinan itu. Sistem persamaan linear menulis setiap maklumat sebagai satu persamaan. Penyelesaiannya <Highlight>mesti memenuhi setiap persamaan serentak</Highlight>.
+
+### Sistem Persamaan Linear
+
+Sistem persamaan linear ialah kumpulan dua atau lebih persamaan linear yang mesti **dipenuhi serentak**. Setiap persamaan linear berbentuk:
+
+<BlockMath math="a_1x_1 + a_2x_2 + \ldots + a_nx_n = b" />
+
+Di sini <InlineMath math="a_1, a_2, \ldots, a_n" /> ialah pekali, <InlineMath math="x_1, x_2, \ldots, x_n" /> ialah pemboleh ubah, dan <InlineMath math="b" /> ialah pemalar.
+
+### Sistem Persamaan Linear Dua Pemboleh Ubah
+
+Sistem dengan dua pemboleh ubah, biasanya <InlineMath math="x" /> dan <InlineMath math="y" />, boleh mengandungi sebarang bilangan persamaan. Sistem dengan dua persamaan berbentuk:
+
+<BlockMath math="\begin{cases} a_1x + b_1y = c_1 \\ a_2x + b_2y = c_2 \end{cases}" />
+
+**Contoh**:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+Penyelesaian sistem ini ialah pasangan nilai <InlineMath math="(x,y)" /> yang memenuhi kedua-dua persamaan.
+
+### Sistem Persamaan Linear Tiga Pemboleh Ubah
+
+Sistem boleh mengandungi sebarang bilangan persamaan. Tetapi untuk menentukan nilai unik bagi <InlineMath math="x,y,z" />, persamaan-persamaan itu mesti memberikan tiga kekangan yang tidak bersandar. Bentuk yang biasa ialah sistem yang bilangan persamaannya sama dengan bilangan pemboleh ubahnya:
+
+<BlockMath math="\begin{cases} a_1x + b_1y + c_1z = d_1 \\ a_2x + b_2y + c_2z = d_2 \\ a_3x + b_3y + c_3z = d_3 \end{cases}" />
+
+**Contoh**:
+
+<BlockMath math="\begin{cases} x + 2y + 3z = 27 \\ x + y + z = 16 \\ x = 6 \end{cases}" />
+
+## Menyelesaikan Sistem Persamaan Linear
+
+Sistem persamaan linear diselesaikan dengan **menghapuskan satu pemboleh ubah** pada satu masa sehingga tinggal satu nilai. Kaedah penggantian dan kaedah penghapusan masing-masing menghapuskan satu pemboleh ubah, dan kedua-dua cara berfungsi pada jenis sistem yang sama. Bandingkan pada akhirnya bila setiap cara menjadi jalan yang lebih pendek.
+
+### Kaedah Penggantian
+
+Dalam kaedah penggantian, ungkapkan **satu pemboleh ubah dalam sebutan pemboleh ubah yang lain**, kemudian masukkan ungkapan itu ke dalam persamaan yang satu lagi. Contoh berikut menunjukkan setiap langkahnya.
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+**Langkah 1**: Ungkapkan satu pemboleh ubah daripada persamaan yang lebih mudah.
+
+Daripada persamaan (2): <InlineMath math="x + y = 10" />, kita ungkapkan <InlineMath math="x" /> dalam sebutan <InlineMath math="y" />:
+
+<BlockMath math="x = 10 - y \ldots (3)" />
+
+**Langkah 2**: Gantikan ke dalam persamaan yang satu lagi.
+
+Masukkan persamaan (3) ke dalam persamaan (1):
+
+<BlockMath math="2(10 - y) + 3y = 21" />
+
+**Langkah 3**: Selesaikan persamaan yang terhasil.
+
+<MathContainer>
+  <BlockMath math="20 - 2y + 3y = 21" />
+  <BlockMath math="20 + y = 21" />
+  <BlockMath math="y = 1 \ldots (4)" />
+</MathContainer>
+
+**Langkah 4**: Gantikan nilai yang diperoleh untuk mencari pemboleh ubah yang satu lagi.
+
+Gantikan nilai <InlineMath math="y = 1" /> daripada persamaan (4) ke dalam persamaan (3):
+
+<BlockMath math="x = 10 - y = 10 - 1 = 9" />
+
+Penyelesaiannya ialah <InlineMath math="x = 9" /> dan <InlineMath math="y = 1" />.
+
+### Kaedah Penghapusan
+
+Dalam kaedah penghapusan, tambah atau tolak dua persamaan untuk **menghapuskan satu pemboleh ubah**. Pengiraan berikut menyelesaikan contoh yang sama.
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ x + y = 10 & \ldots (2) \end{cases}" />
+
+**Langkah 1**: **Samakan pekali** satu pemboleh ubah.
+
+Darab persamaan (2) dengan <InlineMath math="2" /> untuk menyamakan pekali <InlineMath math="x" />:
+
+<BlockMath math="\begin{cases} 2x + 3y = 21 & \ldots (1) \\ 2x + 2y = 20 & \ldots (3) \end{cases}" />
+
+**Langkah 2**: Hapuskan pemboleh ubah itu dengan menolak persamaan.
+
+Tolak persamaan (3) daripada persamaan (1):
+
+<MathContainer>
+  <BlockMath math="(2x + 3y) - (2x + 2y) = 21 - 20" />
+  <BlockMath math="y = 1 \ldots (4)" />
+</MathContainer>
+
+**Langkah 3**: Gunakan nilai <InlineMath math="y" /> untuk mencari <InlineMath math="x" />.
+
+Gantikan nilai <InlineMath math="y = 1" /> daripada persamaan (4) ke dalam persamaan (2):
+
+<MathContainer>
+  <BlockMath math="x + 1 = 10" />
+  <BlockMath math="x = 9" />
+</MathContainer>
+
+Penyelesaiannya ialah <InlineMath math="x = 9" /> dan <InlineMath math="y = 1" />.
+
+Sahkan:
+
+- Persamaan (1): <InlineMath math="2(9) + 3(1) = 18 + 3 = 21" /> ✓
+- Persamaan (2): <InlineMath math="9 + 1 = 10" /> ✓
+
+## Semak Kefahaman
+
+Cari **pasangan yang memenuhi kedua-dua persamaan**:
+
+<BlockMath math="\begin{cases} 3x+2y=16 \\ x-y=2 \end{cases}" />
+
+### Penyelesaian
+
+Persamaan kedua memberikan <InlineMath math="x=y+2" />. **Gantikan ungkapan ini** ke dalam persamaan pertama:
+
+<MathContainer>
+  <BlockMath math="3(y+2)+2y=16" />
+  <BlockMath math="5y+6=16" />
+  <BlockMath math="5y=10" />
+  <BlockMath math="y=2" />
+</MathContainer>
+
+Gantikan semula ke dalam <InlineMath math="x=y+2" />:
+
+<BlockMath math="x=2+2=4" />
+
+Kedua-dua persamaan asal mengesahkan jawapannya:
+
+<MathContainer>
+  <BlockMath math="3(4)+2(2)=16" />
+  <BlockMath math="4-2=2" />
+</MathContainer>
+
+Penyelesaiannya ialah <InlineMath math="(x,y)=(4,2)" />.
+
+## Sistem Persamaan Linear dalam Konteks
+
+Sistem gunaan bermula daripada masalah berayat. Huraiannya perlu **diterjemahkan kepada persamaan** sebelum mana-mana kaedah digunakan, dan penyelesaiannya perlu disemak semula dengan soalan asal. Setiap pemboleh ubah juga perlu diberi maksud yang jelas, seperti bilangan balingan yang berjaya.
+
+### Mata dalam Bola Keranjang
+
+Dalam bola keranjang lima lawan lima, balingan percuma yang berjaya memberikan satu mata. Balingan yang berjaya dari kawasan dua mata memberikan dua mata, dan dari kawasan tiga mata memberikan tiga mata.
+
+Wijaya mengumpul <InlineMath math="27" /> mata daripada **<InlineMath math="16" /> balingan yang berjaya**, termasuk enam balingan percuma. Balingan yang tersasar tidak dikira dalam masalah ini. Biar <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" /> masing-masing ialah bilangan balingan satu, dua, dan tiga mata yang berjaya. Setiap pemboleh ubah ialah integer tidak negatif.
+
+Terjemahkan **jumlah mata**, **balingan yang berjaya**, dan **balingan percuma yang berjaya** kepada tiga persamaan:
+
+<BlockMath math="\begin{cases}a+2b+3c=27\\a+b+c=16\\a=6\end{cases}" />
+
+Gantikan <InlineMath math="a = 6" /> ke dalam persamaan kedua:
+
+<MathContainer>
+  <BlockMath math="6 + b + c = 16" />
+  <BlockMath math="b + c = 10" />
+</MathContainer>
+
+Gantikan <InlineMath math="a = 6" /> ke dalam persamaan pertama:
+
+<MathContainer>
+  <BlockMath math="6 + 2b + 3c = 27" />
+  <BlockMath math="2b + 3c = 21" />
+</MathContainer>
+
+Daripada dua persamaan ini:
+
+<BlockMath math="\begin{cases} 2b + 3c = 21 \\ b + c = 10 \end{cases}" />
+
+Darab persamaan kedua dengan dua, kemudian tolak daripada persamaan pertama untuk **menghapuskan bilangan balingan dua mata**:
+
+<BlockMath math="\begin{aligned}(2b+3c)-2(b+c)&amp;=21-20\\c&amp;=1\\b&amp;=10-1=9\end{aligned}" />
+
+Wijaya membuat <InlineMath math="6" /> balingan percuma, <InlineMath math="9" /> balingan <InlineMath math="2" /> mata, dan <InlineMath math="1" /> balingan <InlineMath math="3" /> mata.
+
+## Mentafsir Penyelesaian
+
+Untuk dua persamaan yang masing-masing mewakili satu garis, ada tiga kemungkinan. Garis yang bersilang ada **satu penyelesaian**, garis selari yang berbeza tiada penyelesaian, dan garis yang bertindih ada **penyelesaian yang tak terhingga banyaknya**.
+
+Dalam tiga dimensi, persamaan linear dengan sekurang-kurangnya satu pekali pemboleh ubah yang bukan sifar mewakili satu satah. Set penyelesaiannya ialah **persilangan sepunya semua satah**. Persilangan dua satah tidak semestinya memenuhi satah ketiga. Contohnya, <InlineMath math="x=0" /> dan <InlineMath math="y=0" /> bersilang di sepanjang paksi-z, tetapi tiada titik pada paksi itu yang memenuhi <InlineMath math="x+y=1" />.
+
+Untuk tiga atau lebih satah, persilangan sepunyanya boleh jadi satu titik, satu garis, satu satah, atau kosong.
+
+### Menggambarkan Sistem Persamaan Linear
+
+Paparan di bawah menunjukkan tiga susunan garis dan bagaimana bilangan **titik sepunya** menentukan bilangan penyelesaian.
+
+<ContentStack>
+  <MathVisual
+    title={<>Sistem Persamaan Linear dengan Satu Penyelesaian</>}
+    description={<>Dua garis yang bersilang pada satu titik.</>}
+    labels={{
+      "l1": <InlineMath math="2x+3y=21" />,
+      "l2": <InlineMath math="x+y=10" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -7, max: 17 }, y: { min: -7, max: 17 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -3, y: 9 }, { x: 3, y: 5 }, { x: 9, y: 1 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -5, y: 15 }, { x: 5, y: 5 }, { x: 15, y: -5 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 3, y: 5 }, placement: "above-right" },
+        { key: "l2", objectId: "s2", at: { x: 5, y: 5 }, placement: "right" },
+      ],
+    }}
+  />
+  <MathVisual
+    title={<>Sistem Persamaan Linear tanpa Penyelesaian</>}
+    description={<>Dua garis selari (tiada persilangan).</>}
+    labels={{
+      "l1": <InlineMath math="3x-2y=-1" />,
+      "l2": <InlineMath math="6x-4y=2" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6.5, max: 9.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -3, y: -4 }, { x: 1, y: 2 }, { x: 5, y: 8 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -3, y: -5 }, { x: 1, y: 1 }, { x: 5, y: 7 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "left" },
+        { key: "l2", objectId: "s2", at: { x: 1, y: 1 }, placement: "right" },
+      ],
+    }}
+  />
+  <MathVisual
+    title={<>Sistem Persamaan Linear dengan Penyelesaian Tak Terhingga</>}
+    description={
+        <>
+          Persamaan kedua ialah <InlineMath math="2" /> kali persamaan pertama, jadi
+          kedua-dua graf bertindih dan kelihatan sebagai satu garis. Garis bagi persamaan
+          pertama dilukis lebih tebal supaya kedua-dua persamaan tetap kelihatan pada laluan yang sama.
+        </>
+      }
+    labels={{
+      "l1": <InlineMath math="2x+3y=1" />,
+      "l2": <InlineMath math="4x+6y=2" />,
+    }}
+    scene={{
+      space: "plane",
+      frame: { kind: "cartesian", x: { min: -2, max: 6 }, y: { min: -3.5, max: 1.5 } },
+      view: { kind: "fit", padding: 0.2 },
+      objects: [
+        { id: "s1", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 2, y: -1 }, { x: 5, y: -3 }], appearance: "primary" },
+        { id: "s2", kind: "polyline", vertices: [{ x: -1, y: 1 }, { x: 2, y: -1 }, { x: 5, y: -3 }], appearance: "secondary" },
+      ],
+      labels: [
+        { key: "l1", objectId: "s1", at: { x: 2, y: -1 }, placement: "below-left" },
+        { key: "l2", objectId: "s2", at: { x: -1, y: 1 }, placement: "right" },
+      ],
+    }}
+  />
+</ContentStack>

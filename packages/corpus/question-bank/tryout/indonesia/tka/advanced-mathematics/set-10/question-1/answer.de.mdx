@@ -1,0 +1,17 @@
+Eine quadratische Matrix ist genau dann nicht invertierbar, wenn **ihre Determinante null ist**. Berechne <InlineMath math="\det M" /> mit der Regel von Sarrus: Summe der drei Produkte nach rechts unten minus Summe der drei Produkte nach links unten.
+
+<BlockMath math="\begin{aligned}
+\det M&=(1\cdot k\cdot1+2\cdot2\cdot3+1\cdot0\cdot1)-(1\cdot k\cdot3+1\cdot2\cdot1+2\cdot0\cdot1) \\
+&=(k+12)-(3k+2)=10-2k
+\end{aligned}" />
+
+<BlockMath math="10-2k=0\ \Rightarrow\ k=5" />
+
+Probe mit der Entwicklung nach der ersten Zeile: <InlineMath math="1(k-2)-2(0-6)+1(0-3k)=10-2k" />, dasselbe Ergebnis. Für <InlineMath math="k=5" /> ist die dritte Zeile das Dreifache der ersten minus die zweite: <InlineMath math="3(1,2,1)-(0,5,2)=(3,1,1)" />, die Zeilen sind also tatsächlich linear abhängig.
+
+Also ist <InlineMath math="k=5" />.
+
+- <InlineMath math="-7" /> hat beim mittleren Kofaktor der Entwicklung nach der ersten Zeile das falsche Vorzeichen und erhält <InlineMath math="-2k-14" />.
+- <InlineMath math="-\frac52" /> hat beim letzten Term das falsche Vorzeichen und erhält <InlineMath math="4k+10" />.
+- <InlineMath math="-1" /> vergisst das Diagonalprodukt <InlineMath math="2\cdot2\cdot3=12" /> und erhält <InlineMath math="-2k-2" />.
+- <InlineMath math="2" /> setzt nur den ersten Minor, <InlineMath math="k-2" />, gleich null.

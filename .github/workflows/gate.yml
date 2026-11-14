@@ -1,0 +1,135 @@
+# Runs the local quality gate of README.md on one exact head, on demand, on
+# GitHub's free public-repository runners, so content sessions stop running it on
+# the shared Mac. Dispatch: `gh workflow run gate.yml --repo nakafaai/aksara -f sha=<head>`.
+# It reads no secret, publishes nothing, and no ruleset names it: the statuses it
+# posts on the head are evidence for the merge, never a required check.
+#
+# It is ONE job. Every `needs` stage of a workflow waits in the account's free
+# runner queue again from the back (on 13 November a gate's Report job waited 20
+# minutes after its parts had finished), so the head installs once and runs every
+# part on the machine it already holds. Each part runs whatever the others did, so
+# one failure never hides another, and the job posts `gate/<part>` and `gate`
+# itself when the parts end.
+name: Gate
+run-name: Gate ${{ inputs.sha }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      sha:
+        description: The exact 40-character head to gate
+        required: true
+        type: string
+
+permissions: {}
+
+concurrency:
+  group: gate-${{ inputs.sha }}
+  cancel-in-progress: true
+
+jobs:
+  gate:
+    name: Gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    permissions:
+      contents: read
+      statuses: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SHA: ${{ inputs.sha }}
+      URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - name: Mark the head pending
+        run: |
+          [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "sha must be a full lower-case commit SHA." >&2; exit 1; }
+          for context in gate gate/policies gate/typecheck gate/test gate/build gate/audit; do
+            gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+              -f state=pending -f context="$context" -f target_url="$URL" -f description="Gating"
+          done
+
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version-file: package.json
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+        with:
+          bun-version-file: package.json
+
+      - name: Install dependencies
+        id: install
+        run: bun install --frozen-lockfile
+
+      - name: Policies
+        id: policies
+        if: always() && steps.install.outcome == 'success'
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          failed=0
+          bun run lint || failed=1
+          bun run deprecations || failed=1
+          bun run names || failed=1
+          bun run jsdocs || failed=1
+          bun run lines || failed=1
+          bun run boundaries || failed=1
+          bun run locales || failed=1
+          bun run points || failed=1
+          bun run workflows || failed=1
+          bun run native || failed=1
+          exit "$failed"
+
+      - name: Typecheck
+        id: typecheck
+        if: always() && steps.install.outcome == 'success'
+        run: bun run typecheck
+
+      - name: Test
+        id: test
+        if: always() && steps.install.outcome == 'success'
+        run: bun run test
+
+      - name: Build
+        id: build
+        if: always() && steps.install.outcome == 'success'
+        run: |
+          bun run build
+          bun run verify:consumer
+
+      - name: Audit
+        id: audit
+        if: always() && steps.install.outcome == 'success'
+        run: bun run security:audit
+
+      - name: Post the statuses
+        if: always()
+        env:
+          POLICIES: ${{ steps.policies.outcome }}
+          TYPECHECK: ${{ steps.typecheck.outcome }}
+          TEST: ${{ steps.test.outcome }}
+          BUILD: ${{ steps.build.outcome }}
+          AUDIT: ${{ steps.audit.outcome }}
+        run: |
+          [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || exit 1
+          all=success
+          for part in policies typecheck test build audit; do
+            name=${part^^}
+            outcome=${!name}
+            state=failure
+            [ "$outcome" = success ] && state=success
+            [ "$state" = success ] || all=failure
+            gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+              -f state="$state" -f context="gate/$part" -f target_url="$URL" -f description="${outcome:-did not run}"
+            echo "| $part | $state |" >> "$GITHUB_STEP_SUMMARY"
+          done
+          gh api --silent "repos/$GITHUB_REPOSITORY/statuses/$SHA" \
+            -f state="$all" -f context=gate -f target_url="$URL" -f description="README quality gate: $all"

@@ -15,121 +15,48 @@ Every circle arc has a close relationship with the chord that connects its two e
 
 For minor arcs in the same circle, a larger central angle produces both a longer arc and a longer chord, but <Highlight>chord length is not directly proportional to arc length</Highlight>. Beyond <InlineMath math="180^\circ" />, the major arc keeps getting longer while its chord becomes shorter, because the chord is shared with the complementary minor arc.
 
-<LineEquation
-  title="Arc and Chord Relationship"
-  description="Comparison of arc with chord at various central angles."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 101 }, (_, sampleIndex) => {
-        const i = sampleIndex / 5;
-        const angle = i * (Math.PI / 3) / 20;
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 50, offset: [0.1, 1.4, 0] }],
-    },
-    {
-      points: [
-        { x: 5, y: 0, z: 0 },
-        { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2, z: 0 },
-        { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 3,
-      showPoints: false,
-      labels: [{ text: <>Chord <InlineMath math="60^\circ" /></>, at: 1, offset: [-1.3, -1.2, 0] }],
-    },
-    {
-      points: [
-        { x: 5, y: 0, z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 5 * Math.cos(Math.PI / 3), y: 5 * Math.sin(Math.PI / 3), z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="B" />, at: 0, offset: [0.3, 0.5, 0] }],
-    },
-    {
-      smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = Math.PI + (i * (2 * Math.PI / 3) / 30);
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#e11d48",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="120^\circ" /></>, at: 15, offset: [-1.5, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-        { x: (-5 + 5 * Math.cos(5 * Math.PI / 3)) / 2, y: (5 * Math.sin(5 * Math.PI / 3)) / 2, z: 0 },
-        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
-      ],
-      smooth: false,
-      color: "#d97706",
-      lineWidth: 3,
-      showPoints: false,
-      labels: [{ text: <>Chord <InlineMath math="120^\circ" /></>, at: 1, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: -5, y: 0, z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C" />, at: 0, offset: [-0.5, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 5 * Math.cos(5 * Math.PI / 3), y: 5 * Math.sin(5 * Math.PI / 3), z: 0 },
-      ],
-      color: "#9333ea",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="D" />, at: 0, offset: [-0.3, 0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <><InlineMath math="O" /> (Center)</>, at: 0, offset: [0, -0.8, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 5 * Math.cos(angle),
-          y: 5 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 14]}
+<MathVisual
+  title={<>Arc and Chord Relationship</>}
+  description={<>Comparison of arc with chord at various central angles.</>}
+  labels={{
+    "l1": <>Arc <InlineMath math="60^\circ" /></>,
+    "l2": <>Chord <InlineMath math="60^\circ" /></>,
+    "l3": <InlineMath math="A" />,
+    "l4": <InlineMath math="B" />,
+    "l5": <>Arc <InlineMath math="120^\circ" /></>,
+    "l6": <>Chord <InlineMath math="120^\circ" /></>,
+    "l7": <InlineMath math="C" />,
+    "l8": <InlineMath math="D" />,
+    "l9": <><InlineMath math="O" /> (Center)</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(5 * cos((((t / 5) * (pi / 3)) / 20)))", y: "(5 * sin((((t / 5) * (pi / 3)) / 20)))", parameter: { min: 0, max: 100 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 5, y: 0 }, { x: (5 + 5 * Math.cos(Math.PI / 3)) / 2, y: (5 * Math.sin(Math.PI / 3)) / 2 }, { x: 2.5, y: 5 * Math.sin(Math.PI / 3) }], appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 5, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "point", at: { x: 2.5, y: 4.33 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(5 * cos((pi + ((t * ((2 * pi) / 3)) / 30))))", y: "(5 * sin((pi + ((t * ((2 * pi) / 3)) / 30))))", parameter: { min: 0, max: 30 }, appearance: "highlight" },
+      { id: "s6", kind: "polyline", vertices: [{ x: -5, y: 0 }, { x: -1.25, y: (5 * Math.sin(5 * Math.PI / 3)) / 2 }, { x: 2.5, y: 5 * Math.sin(5 * Math.PI / 3) }], appearance: "reference" },
+      { id: "s7", kind: "point", at: { x: -5, y: 0 }, appearance: "answer" },
+      { id: "s8", kind: "point", at: { x: 2.5, y: -4.33 }, appearance: "answer" },
+      { id: "s9", kind: "point", at: { x: 0, y: 0 }, appearance: "warning" },
+      { id: "s10", kind: "parametric", x: "(5 * cos((t * ((2 * pi) / 100))))", y: "(5 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4.33, y: 2.5 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.75, y: 2.17 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 2.5, y: 4.33 }, placement: "above-right" },
+      { key: "l5", objectId: "s5", at: { x: -2.5, y: -4.33 }, placement: "below-left" },
+      { key: "l6", objectId: "s6", at: { x: -1.25, y: -2.17 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: -5, y: 0 }, placement: "below-left" },
+      { key: "l8", objectId: "s8", at: { x: 2.5, y: -4.33 }, placement: "above-left" },
+      { key: "l9", objectId: "s9", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
 />
 
 ## Chord Length Formula
@@ -162,119 +89,48 @@ The variables in this formula are:
 
 The diagram marks the chord, its midpoint, and the perpendicular segment whose length is the sagitta.
 
-<LineEquation
-  title="Sagitta of a 60-Degree Arc"
+<MathVisual
+  title={<>Sagitta of a 60-Degree Arc</>}
   description={<>Midpoint <InlineMath math="M" /> bisects chord <InlineMath math="PQ" />. The radius minus distance <InlineMath math="OM" /> equals the sagitta.</>}
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 31 }, (_, i) => {
-        const angle = (-Math.PI / 6) + (i * (Math.PI / 3) / 30);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Arc <InlineMath math="60^\circ" /></>, at: 15, offset: [-1.1, 2.65, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
-        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
-      ],
-      smooth: false,
-      color: "#ea580c",
-      lineWidth: 3,
-      showPoints: false,
-      labels: [{ text: "Chord", at: 1, offset: [-1.064102, 1.1, 0] }],
-    },
-    {
-      points: [
-        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <><InlineMath math="M" /> (Midpoint)</>, at: 0, offset: [-1.364102, -0.4, 0] }],
-    },
-    {
-      points: [
-        { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2, z: 0 },
-        { x: 4 * Math.cos(0), y: 4 * Math.sin(0), z: 0 },
-      ],
-      smooth: false,
-      color: "#e11d48",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: <>Arc Height <InlineMath math="(h)" /></>, offset: [-2.2, 0.45, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: "Radius", offset: [-2.064102, 0.55, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: "Radius", offset: [-2.064102, -0.55, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="O" />, at: 0, offset: [-0.3, -0.5, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(-Math.PI / 6), y: 4 * Math.sin(-Math.PI / 6), z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="P" />, at: 0, offset: [0.685898, -0.05, 0] }],
-    },
-    {
-      points: [
-        { x: 4 * Math.cos(Math.PI / 6), y: 4 * Math.sin(Math.PI / 6), z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="Q" />, at: 0, offset: [0.685898, 0.05, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 4 * Math.cos(angle),
-          y: 4 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[1.8, 0, 6.4]}
-  cameraTarget={[1.8, 0, 0]}
+  labels={{
+    "l1": <>Arc <InlineMath math="60^\circ" /></>,
+    "l2": <>Chord</>,
+    "l3": <><InlineMath math="M" /> (Midpoint)</>,
+    "l4": <>Arc Height <InlineMath math="(h)" /></>,
+    "l5": <>Radius</>,
+    "l6": <>Radius</>,
+    "l7": <InlineMath math="O" />,
+    "l8": <InlineMath math="P" />,
+    "l9": <InlineMath math="Q" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -5, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(4 * cos((((-pi) / 6) + ((t * (pi / 3)) / 30))))", y: "(4 * sin((((-pi) / 6) + ((t * (pi / 3)) / 30))))", parameter: { min: 0, max: 30 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 4 * Math.cos(-Math.PI / 6), y: -2 }, { x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2 }, { x: 4 * Math.cos(Math.PI / 6), y: 2 }], appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: 3.46, y: 0 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: (4 * Math.cos(-Math.PI / 6) + 4 * Math.cos(Math.PI / 6)) / 2, y: (4 * Math.sin(-Math.PI / 6) + 4 * Math.sin(Math.PI / 6)) / 2 }, { x: 4 * Math.cos(0), y: 4 * Math.sin(0) }], appearance: "highlight" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(-Math.PI / 6), y: -2 }], appearance: "reference" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4 * Math.cos(Math.PI / 6), y: 2 }], appearance: "reference" },
+      { id: "s7", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
+      { id: "s8", kind: "point", at: { x: 3.46, y: -2 }, appearance: "answer" },
+      { id: "s9", kind: "point", at: { x: 3.46, y: 2 }, appearance: "answer" },
+      { id: "s10", kind: "parametric", x: "(4 * cos((t * ((2 * pi) / 100))))", y: "(4 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "warning" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 4, y: 0 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: 3.46, y: 0 }, placement: "above-left" },
+      { key: "l3", objectId: "s3", at: { x: 3.46, y: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 3.46, y: 0 }, placement: "above-left" },
+      { key: "l5", objectId: "s5", at: { x: 0, y: 0 }, placement: "above-left" },
+      { key: "l6", objectId: "s6", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l7", objectId: "s7", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "l8", objectId: "s8", at: { x: 3.46, y: -2 }, placement: "right" },
+      { key: "l9", objectId: "s9", at: { x: 3.46, y: 2 }, placement: "right" },
+    ],
+  }}
 />
 
 ## Arc in Coordinate System
@@ -294,89 +150,39 @@ The parameter <InlineMath math="t" /> runs from the initial angle to the final a
 | <InlineMath math="\pi/2" /> | <InlineMath math="(0,3)" /> |
 | <InlineMath math="3\pi/4" /> | <InlineMath math="(-3\sqrt2/2,3\sqrt2/2)" /> |
 
-<LineEquation
-  title="Arc in Cartesian Coordinates"
-  description="Arc representation using parametric equations."
-  data={[
-    {
-      smooth: false,
-      points: Array.from({ length: 41 }, (_, i) => {
-        const t = (Math.PI / 4) + (i * (Math.PI / 2) / 40);
-        return {
-          x: 3 * Math.cos(t),
-          y: 3 * Math.sin(t),
-          z: 0,
-        };
-      }),
-      color: "#7c3aed",
-      lineWidth: 4,
-      showPoints: false,
-      labels: [{ text: "Parametric Arc", at: 20, offset: [0, 1.7, 0] }],
-    },
-    {
-      points: [
-        { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />, at: 0, offset: [0.5, 1.2, 0] }],
-    },
-    {
-      points: [
-        { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
-      ],
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />, at: 0, offset: [-0.5, 1.2, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.sin(Math.PI / 4), z: 0 },
-        { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.sin(Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [0.3, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-        { x: 1.5 * Math.cos(3 * Math.PI / 4), y: 1.5 * Math.sin(3 * Math.PI / 4), z: 0 },
-        { x: 3 * Math.cos(3 * Math.PI / 4), y: 3 * Math.sin(3 * Math.PI / 4), z: 0 },
-      ],
-      smooth: false,
-      color: "#9333ea",
-      lineWidth: 2,
-      showPoints: false,
-      labels: [{ text: <InlineMath math="r=3" />, at: 1, offset: [-0.3, -0.3, 0] }],
-    },
-    {
-      points: [
-        { x: 0, y: 0, z: 0 },
-      ],
-      color: "#059669",
-      showPoints: true,
-      labels: [{ text: <>Origin <InlineMath math="(0,0)" /></>, at: 0, offset: [-0.8, -0.5, 0] }],
-    },
-    {
-      points: Array.from({ length: 101 }, (_, i) => {
-        const angle = i * (2 * Math.PI / 100);
-        return {
-          x: 3 * Math.cos(angle),
-          y: 3 * Math.sin(angle),
-          z: 0,
-        };
-      }),
-      color: "#0891b2",
-      lineWidth: 1,
-      showPoints: false,
-      smooth: false,
-    },
-  ]}
-  cameraPosition={[0, 0, 12]}
+<MathVisual
+  title={<>Arc in Cartesian Coordinates</>}
+  description={<>Arc representation using parametric equations.</>}
+  labels={{
+    "l1": <>Parametric Arc</>,
+    "l2": <InlineMath math="t_1=\frac{\pi}{4} (45^\circ)" />,
+    "l3": <InlineMath math="t_2=\frac{3\pi}{4} (135^\circ)" />,
+    "l4": <InlineMath math="r=3" />,
+    "l5": <InlineMath math="r=3" />,
+    "l6": <>Origin <InlineMath math="(0,0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(3 * cos(((pi / 4) + ((t * (pi / 2)) / 40))))", y: "(3 * sin(((pi / 4) + ((t * (pi / 2)) / 40))))", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s2", kind: "point", at: { x: 2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s3", kind: "point", at: { x: -2.12, y: 2.12 }, appearance: "secondary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1.5 * Math.cos(Math.PI / 4), y: 1.5 * Math.cos(Math.PI / 4) }, { x: 3 * Math.cos(Math.PI / 4), y: 3 * Math.cos(Math.PI / 4) }], appearance: "answer" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -(1.5 * Math.cos(Math.PI / 4)), y: 1.5 * Math.sin(3 * Math.PI / 4) }, { x: -(3 * Math.cos(Math.PI / 4)), y: 3 * Math.sin(3 * Math.PI / 4) }], appearance: "answer" },
+      { id: "s6", kind: "point", at: { x: 0, y: 0 }, appearance: "highlight" },
+      { id: "s7", kind: "parametric", x: "(3 * cos((t * ((2 * pi) / 100))))", y: "(3 * sin((t * ((2 * pi) / 100))))", parameter: { min: 0, max: 100 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0, y: 3 }, placement: "above" },
+      { key: "l2", objectId: "s2", at: { x: 2.12, y: 2.12 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -2.12, y: 2.12 }, placement: "above-left" },
+      { key: "l4", objectId: "s4", at: { x: 1.06, y: 1.06 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -1.06, y: 1.06 }, placement: "below-left" },
+      { key: "l6", objectId: "s6", at: { x: 0, y: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 ## Idealized Circular Arch Example

@@ -1,4 +1,5 @@
 import { Array as Arr } from "effect";
+import { englishRatings } from "#corpus/tryout/indonesia/tka/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
 
 /** Active official-format TKA English sets. */
@@ -36,11 +37,13 @@ export const tkaEnglishTrack = {
     id: "bahasa-inggris",
     ms: "bahasa-inggeris",
   },
-  sets: Arr.map([1, 2, 3, 4], (setNumber) => {
+  sets: Arr.map(englishRatings, (rating, index) => {
+    const setNumber = index + 1;
     const setKey = `set-${setNumber}`;
     return {
       key: setKey,
       order: setNumber,
+      rating,
       routeSlugs: {
         de: `aufgabensatz-${setNumber}`,
         en: setKey,

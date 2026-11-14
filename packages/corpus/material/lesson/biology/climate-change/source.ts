@@ -9,6 +9,7 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
     de: "klimawandel",
     en: "climate-change",
     id: "perubahan-iklim",
+    ms: "perubahan-iklim",
   },
   sections: [
     {
@@ -21,6 +22,7 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
         de: "ursachen",
         en: "causes",
         id: "penyebab-perubahan-iklim",
+        ms: "punca-perubahan-iklim",
       },
       slug: "causes",
     },
@@ -35,6 +37,7 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
         de: "internationale-zusammenarbeit",
         en: "global-cooperation",
         id: "kerja-sama-global-untuk-mengatasi-perubahan-iklim",
+        ms: "kerjasama-global-menangani-perubahan-iklim",
       },
       slug: "global-cooperation",
     },
@@ -45,7 +48,12 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
         "https://oceanservice.noaa.gov/facts/coral_bleach.html",
         "https://www.who.int/news-room/fact-sheets/detail/climate-change-and-health",
       ],
-      routeSlugs: { de: "folgen", en: "impact", id: "dampak-perubahan-iklim" },
+      routeSlugs: {
+        de: "folgen",
+        en: "impact",
+        id: "dampak-perubahan-iklim",
+        ms: "kesan-perubahan-iklim",
+      },
       slug: "impact",
     },
     {
@@ -57,6 +65,7 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
         de: "klimaschutz-und-anpassung",
         en: "mitigation-adaptation",
         id: "upaya-mitigasi-dan-adaptasi-terhadap-perubahan-iklim",
+        ms: "mitigasi-dan-adaptasi-perubahan-iklim",
       },
       slug: "mitigation-adaptation",
     },
@@ -70,6 +79,7 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
         de: "anzeichen",
         en: "symptoms",
         id: "gejala-perubahan-iklim",
+        ms: "tanda-perubahan-iklim",
       },
       slug: "symptoms",
     },
@@ -86,6 +96,10 @@ export const lessonBiologyClimateChangeMaterial = defineLessonMaterial({
     },
     id: {
       description: "Telusuri aktivitas manusia yang memerangkap panas bumi.",
+      title: "Perubahan Iklim",
+    },
+    ms: {
+      description: "Jejaki cara aktiviti manusia memerangkap haba di Bumi.",
       title: "Perubahan Iklim",
     },
   },

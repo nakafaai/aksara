@@ -21,10 +21,35 @@ Bei einem Funktionsgraphen ändert die Drehung auch die Gleichung. Die Gleichung
 
 Beginne mit dem Punkt <InlineMath math="(1, 0)" />, der vom Ursprung den Abstand <InlineMath math="1" /> hat. Weil **eine Drehung den Abstand zum Zentrum nicht ändert**, bleibt sein Bildpunkt auf dem Kreis mit Radius <InlineMath math="1" />, genau am Ende des Radius, der mit der positiven <InlineMath math="x" />-Achse den Winkel <InlineMath math="\theta" /> bildet. Am Einheitskreis hat der Punkt am Ende des Radius zum Winkel <InlineMath math="\theta" /> die Koordinaten <InlineMath math="(\cos\theta, \sin\theta)" />. So sind Kosinus und Sinus für jeden Winkel definiert.
 
-<UnitCircle
+<MathVisual
   title={<>Bildpunkt von <InlineMath math="(1, 0)" /> nach einer Drehung um <InlineMath math="\theta" /></>}
   description={<>Ändere <InlineMath math="\theta" /> im Winkelfeld. Das Ende des Radius ist der Bildpunkt von <InlineMath math="(1, 0)" />, seine Koordinaten sind also immer <InlineMath math="(\cos\theta, \sin\theta)" />, und sein Abstand zum Ursprung bleibt <InlineMath math="1" />.</>}
-  angle={60}
+  labels={{
+    angle: <InlineMath math="\theta" />,
+    point: <InlineMath math="P" />,
+    cosine: <InlineMath math="\cos\theta" />,
+    sine: <InlineMath math="\sin\theta" />,
+    tangent: <InlineMath math="\tan\theta" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.4, max: 1.4 }, y: { min: -1.4, max: 1.4 } },
+    view: { kind: "fit", padding: 0.2 },
+    parameters: [{ name: "a", min: 0, max: 720, step: 1, value: 60, label: "angle" }],
+    objects: [
+      { id: "circle", kind: "circle", center: { x: 0, y: 0 }, radius: 1, appearance: "construction" },
+      { id: "cosine", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "0" }], appearance: "secondary" },
+      { id: "sine", kind: "path", points: [{ x: "cos(a pi / 180)", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "answer" },
+      { id: "radius", kind: "path", points: [{ x: "0", y: "0" }, { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }], appearance: "primary" },
+      { id: "point", kind: "marker", x: "cos(a pi / 180)", y: "sin(a pi / 180)", appearance: "primary" },
+    ],
+    labels: [{ key: "point", objectId: "point", at: { x: "cos(a pi / 180)", y: "sin(a pi / 180)" }, placement: "above-right" }],
+    readouts: [
+      { key: "cosine", formula: "cos(a pi / 180)" },
+      { key: "sine", formula: "sin(a pi / 180)" },
+      { key: "tangent", formula: "tan(a pi / 180)" },
+    ],
+  }}
 />
 
 Das Winkelfeld startet bei <InlineMath math="60" />, also liegt das Ende des Radius bei <InlineMath math="\left(\tfrac{1}{2}, \tfrac{\sqrt{3}}{2}\right)" />, passend zu den Werten <InlineMath math="\cos 60^\circ = \tfrac{1}{2}" /> und <InlineMath math="\sin 60^\circ = \tfrac{\sqrt{3}}{2}" /> unter dem Kreis.
@@ -51,74 +76,40 @@ Der Bildpunkt ist <InlineMath math="P'(1 - 2\sqrt{3}, \sqrt{3} + 2)" /> mit <Inl
 
 Auch die Richtung stimmt. Weil für <InlineMath math="P" /> die Ungleichung <InlineMath math="y > x > 0" /> gilt, liegt der Winkel von <InlineMath math="OP" /> zur positiven <InlineMath math="x" />-Achse zwischen <InlineMath math="45^\circ" /> und <InlineMath math="90^\circ" />. Nach der Drehung um <InlineMath math="60^\circ" /> liegt dieser Winkel zwischen <InlineMath math="105^\circ" /> und <InlineMath math="150^\circ" />, also im zweiten Quadranten, und tatsächlich gilt für <InlineMath math="P'" /> sowohl <InlineMath math="x' < 0" /> als auch <InlineMath math="y' > 0" />.
 
-<LineEquation
+<MathVisual
   title={<>Der Punkt <InlineMath math="P(2, 4)" /> und die Parabel <InlineMath math="y = x^2" />, gedreht um <InlineMath math="60^\circ" /></>}
   description={<>Vom Ursprung aus erreichst du <InlineMath math="P" /> über <InlineMath math="A(2, 0)" />: <InlineMath math="2" /> Schritte waagerecht, dann <InlineMath math="4" /> Schritte senkrecht. Nach der Drehung um <InlineMath math="60^\circ" /> ist der Schritt <InlineMath math="OA'" /> weiterhin <InlineMath math="2" /> lang und der Schritt <InlineMath math="A'P'" /> weiterhin <InlineMath math="4" /> lang, und beide stehen weiterhin senkrecht aufeinander. Der Bogen zeigt den Weg von <InlineMath math="P" /> nach <InlineMath math="P'" />.</>}
-  showZAxis={false}
-  cameraPosition={[-0.7, 2, 10]}
-  cameraTarget={[-0.7, 2, 0]}
-  data={[
-    {
-      points: Array.from({ length: 211 }, (_, j) => {
-        const x = (2 * j - 210) / 100;
-        return { x, y: x * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 196, offset: [0.44, 1.06, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 211 }, (_, j) => {
-        const t = (2 * j - 210) / 100;
-        const cos = 1 / 2;
-        const sin = Math.sqrt(3) / 2;
-        return { x: t * cos - t * t * sin, y: t * sin + t * t * cos, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-    },
-    {
-      points: [{ x: 2, y: 0, z: 0 }, { x: 2, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [
-        { text: <InlineMath math="A(2, 0)" />, at: 0, offset: [-0.09, -0.44, 0], anchorX: "right" },
-        { text: <InlineMath math="P(2, 4)" />, at: 1, offset: [0.19, -0.46, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: (() => {
-        const cos = 1 / 2;
-        const sin = Math.sqrt(3) / 2;
-        return [
-          { x: 0, y: 0, z: 0 },
-          { x: 2 * cos, y: 2 * sin, z: 0 },
-          { x: 2 * cos - 4 * sin, y: 2 * sin + 4 * cos, z: 0 },
-        ];
-      })(),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1, 2],
-      labels: [
-        { text: <InlineMath math="A'" />, at: 1, offset: [0.0, 0.65, 0] },
-        { text: <InlineMath math="P'" />, at: 2, offset: [-0.22, -0.33, 0], anchorX: "right" },
-      ],
-    },
-    {
-      points: Array.from({ length: 61 }, (_, i) => {
-        const angle = (Math.PI / 3) * (i / 60);
-        return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="A(2, 0)" />,
+    "l3": <InlineMath math="P(2, 4)" />,
+    "l4": <InlineMath math="A'" />,
+    "l5": <InlineMath math="P'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 3 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((2 * t) - 210) / 100)", y: "((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100))", parameter: { min: 0, max: 210 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(((((2 * t) - 210) / 100) * (1 / 2)) - (((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100)) * (sqrt(3) / 2)))", y: "(((((2 * t) - 210) / 100) * (sqrt(3) / 2)) + (((((2 * t) - 210) / 100) * (((2 * t) - 210) / 100)) * (1 / 2)))", parameter: { min: 0, max: 210 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 2, y: 0 }, { x: 2, y: 4 }], appearance: "primary" },
+      { id: "s3-p0", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s3-p1", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 1.73 }, { x: -2.46, y: 3.73 }], appearance: "secondary" },
+      { id: "s4-p1", kind: "point", at: { x: 1, y: 1.73 }, appearance: "secondary" },
+      { id: "s4-p2", kind: "point", at: { x: -2.46, y: 3.73 }, appearance: "secondary" },
+      { id: "s5", kind: "parametric", x: "((2 * cos(((pi / 3) * (t / 60)))) - (4 * sin(((pi / 3) * (t / 60)))))", y: "((2 * sin(((pi / 3) * (t / 60)))) + (4 * cos(((pi / 3) * (t / 60)))))", parameter: { min: 0, max: 60 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2.4, y: 3.77 }, to: { x: -2.46, y: 3.73 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.82, y: 3.31 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: 2, y: 4 }, placement: "below-right" },
+      { key: "l4", objectId: "s4", at: { x: 1, y: 1.73 }, placement: "above" },
+      { key: "l5", objectId: "s4", at: { x: -2.46, y: 3.73 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Die Schritte der Längen <InlineMath math="2" /> und <InlineMath math="4" /> in diesem Graphen sind die Schritte der Drehformel, <InlineMath math="P' = 2(\cos 60^\circ, \sin 60^\circ) + 4(-\sin 60^\circ, \cos 60^\circ)" />. Der Punkt <InlineMath math="P'" /> liegt außerdem auf der gedrehten Parabel, weil sich jeder Punkt der Parabel zusammen mit <InlineMath math="P" /> um <InlineMath math="60^\circ" /> dreht.
@@ -143,56 +134,40 @@ Zum Beispiel wird der Punkt <InlineMath math="P(3, 4)" /> um <InlineMath math="9
 
 Prüfe Abstand und Winkel. Beide Punkte haben denselben Abstand zu <InlineMath math="O" />, denn <InlineMath math="3^2 + 4^2 = (-4)^2 + 3^2 = 25" />. Die Steigung von <InlineMath math="OP" /> ist <InlineMath math="\tfrac{4}{3}" />, die Steigung von <InlineMath math="OP'" /> ist <InlineMath math="-\tfrac{3}{4}" />. Ihr Produkt ist <InlineMath math="-1" />, also steht <InlineMath math="OP" /> senkrecht auf <InlineMath math="OP'" />. Der Bildpunkt <InlineMath math="P'" /> liegt außerdem im zweiten Quadranten, einen Quadranten gegen den Uhrzeigersinn von <InlineMath math="P" /> entfernt.
 
-<LineEquation
+<MathVisual
   title={<>Der Punkt <InlineMath math="P(3, 4)" /> nach einer, zwei und drei Vierteldrehungen</>}
   description={<>Die Punkte <InlineMath math="P'" />, <InlineMath math="P''" /> und <InlineMath math="P'''" /> sind die Bildpunkte von <InlineMath math="P" /> bei Drehungen um <InlineMath math="90^\circ" />, <InlineMath math="180^\circ" /> und <InlineMath math="270^\circ" />. Alle vier Radien sind gleich lang, nämlich <InlineMath math="5" />, und aufeinanderfolgende Radien stehen senkrecht aufeinander.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 20]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    ...Array.from({ length: 4 }, (_, quarter) => ({
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (quarter + i / 90);
-        return { x: 3 * Math.cos(angle) - 4 * Math.sin(angle), y: 3 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    })),
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 3, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P(3, 4)" />, at: 1, offset: [0.33, 0.79, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -4, y: 3, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'(-4, 3)" />, at: 1, offset: [-0.31, 0.74, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: -3, y: -4, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P''(-3, -4)" />, at: 1, offset: [-0.33, -0.79, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 0, y: 0, z: 0 }, { x: 4, y: -3, z: 0 }],
-      smooth: false,
-      color: "#d97706",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'''(4, -3)" />, at: 1, offset: [0.31, -0.74, 0], anchorX: "left" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="P(3, 4)" />,
+    "l2": <InlineMath math="P'(-4, 3)" />,
+    "l3": <InlineMath math="P''(-3, -4)" />,
+    "l4": <InlineMath math="P'''(4, -3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 0, max: 1 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s2", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: Math.PI / 2, max: Math.PI }, appearance: "construction" },
+      { id: "s3", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 2 * Math.PI / 2, max: 3 * Math.PI / 2 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "3 cos(t) - 4 sin(t)", y: "3 sin(t) + 4 cos(t)", parameter: { min: 3 * Math.PI / 2, max: 2 * Math.PI }, appearance: "construction" },
+      { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 3, y: 4 }], appearance: "primary" },
+      { id: "s5-p1", kind: "point", at: { x: 3, y: 4 }, appearance: "primary" },
+      { id: "s6", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -4, y: 3 }], appearance: "secondary" },
+      { id: "s6-p1", kind: "point", at: { x: -4, y: 3 }, appearance: "secondary" },
+      { id: "s7", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: -3, y: -4 }], appearance: "answer" },
+      { id: "s7-p1", kind: "point", at: { x: -3, y: -4 }, appearance: "answer" },
+      { id: "s8", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 4, y: -3 }], appearance: "highlight" },
+      { id: "s8-p1", kind: "point", at: { x: 4, y: -3 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s5", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "l2", objectId: "s6", at: { x: -4, y: 3 }, placement: "above-left" },
+      { key: "l3", objectId: "s7", at: { x: -3, y: -4 }, placement: "below-left" },
+      { key: "l4", objectId: "s8", at: { x: 4, y: -3 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Jede Vierteldrehung vertauscht die beiden Koordinaten und wechselt ein Vorzeichen, also wandert <InlineMath math="(3, 4)" /> nach <InlineMath math="(-4, 3)" />, dann nach <InlineMath math="(-3, -4)" /> und dann nach <InlineMath math="(4, -3)" />. Eine vierte Vierteldrehung bringt den Punkt zurück nach <InlineMath math="P" />, weil vier Drehungen um <InlineMath math="90^\circ" /> eine volle Drehung ergeben.
@@ -203,94 +178,44 @@ Jede dieser Spiegelungen hat dieselbe Wirkung wie **ein Umklappen der Ebene**: D
 
 Nimm <InlineMath math="f(x) = (x - 2)^2 + 2" />, die Parabel mit dem Scheitelpunkt <InlineMath math="V(2, 2)" />. Das Umklappen an der <InlineMath math="x" />-Achse hebt <InlineMath math="V" /> aus der Ebene und setzt ihn bei <InlineMath math="(2, -2)" /> ab. Danach bringt das Umklappen an der <InlineMath math="y" />-Achse diesen Punkt nach <InlineMath math="(-2, -2)" />.
 
-<LineEquation
+<MathVisual
   title={<>Zweimal Umklappen und eine halbe Drehung für <InlineMath math="f(x) = (x - 2)^2 + 2" /></>}
   description={<>Der Weg von <InlineMath math="V" /> verlässt die Ebene zweimal. Der erste Halbkreis überquert die <InlineMath math="x" />-Achse und landet in <InlineMath math="(2, -2)" />, der zweite Halbkreis überquert die <InlineMath math="y" />-Achse und landet in <InlineMath math="V'(-2, -2)" />, am Ende des Bogens in der Ebene, der <InlineMath math="V" /> um <InlineMath math="180^\circ" /> um <InlineMath math="O" /> dreht.</>}
-  cameraPosition={[3, -9, 11]}
-  cameraTarget={[0, 0, 1]}
-  data={[
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
-        const s = -1.5 + (3 * j) / 200;
-        return { x: 2 + s, y: s * s + 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = f(x)" />, at: 182, offset: [0.48, 0.57, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
-        const s = -1.5 + (3 * j) / 200;
-        return { x: 2 + s, y: -(s * s + 2), z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(x)" />, at: 198, offset: [-0.21, -0.56, 0] }],
-    },
-    {
-      points: Array.from({ length: 201 }, (_, j) => {
-        const s = -1.5 + (3 * j) / 200;
-        return { x: -(2 + s), y: -(s * s + 2), z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -f(-x)" />, at: 4, offset: [-1.07, -0.9, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const turn = Math.PI * (i / 180);
-        return { x: 2, y: 2 * Math.cos(turn), z: 2 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const turn = Math.PI * (i / 180);
-        return { x: 2 * Math.cos(turn), y: -2, z: 2 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const angle = Math.PI * (i / 180);
-        return { x: 2 * Math.cos(angle) - 2 * Math.sin(angle), y: 2 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 2, y: 2, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V" />, at: 0, offset: [0.34, -0.94, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 2, y: -2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(2, -2)" />, at: 0, offset: [0.48, 0.57, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -2, y: -2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="V'" />, at: 0, offset: [0.57, 0.48, 0], anchorX: "left" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = f(x)" />,
+    "l2": <InlineMath math="y = -f(x)" />,
+    "l3": <InlineMath math="y = -f(-x)" />,
+    "l4": <InlineMath math="V" />,
+    "l5": <InlineMath math="(2, -2)" />,
+    "l6": <InlineMath math="V'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -5.5, max: 5.5 }, z: { min: -0.5, max: 2.5 } },
+    view: { kind: "camera", position: { x: 3, y: -9, z: 11 }, target: { x: 0, y: 0, z: 1 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(2 + ((-1.5) + ((3 * t) / 200)))", y: "((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2)", z: "0", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 + ((-1.5) + ((3 * t) / 200)))", y: "(-((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2))", z: "0", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-(2 + ((-1.5) + ((3 * t) / 200))))", y: "(-((((-1.5) + ((3 * t) / 200)) * ((-1.5) + ((3 * t) / 200))) + 2))", z: "0", parameter: { min: 0, max: 200 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "2", y: "(2 * cos((pi * (t / 180))))", z: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -2, z: 0.03 }, to: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s5", kind: "parametric", x: "(2 * cos((pi * (t / 180))))", y: "(-2)", z: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -2, y: -2, z: 0.03 }, to: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+      { id: "s6", kind: "parametric", x: "((2 * cos((pi * (t / 180)))) - (2 * sin((pi * (t / 180)))))", y: "((2 * sin((pi * (t / 180)))) + (2 * cos((pi * (t / 180)))))", z: "0", parameter: { min: 0, max: 180 }, appearance: "highlight" },
+      { id: "s6-head", kind: "vector", from: { x: -2.03, y: -1.96, z: 0 }, to: { x: -2, y: -2, z: 0 }, appearance: "highlight" },
+      { id: "s7", kind: "point", at: { x: 2, y: 2, z: 0 }, appearance: "primary" },
+      { id: "s8", kind: "point", at: { x: 2, y: -2, z: 0 }, appearance: "secondary" },
+      { id: "s9", kind: "point", at: { x: -2, y: -2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3.23, y: 3.51, z: 0 }, placement: "above-right" },
+      { key: "l2", objectId: "s2", at: { x: 3.47, y: -4.16, z: 0 }, placement: "below-left" },
+      { key: "l3", objectId: "s3", at: { x: -0.56, y: -4.07, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s7", at: { x: 2, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: -2, z: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s9", at: { x: -2, y: -2, z: 0 }, placement: "above-right" },
+    ],
+  }}
 />
 
 Drehe die Ansicht, bis du frontal auf die Ebene schaust. Der Weg von <InlineMath math="V" /> über beide Umklappungen endet im selben Punkt wie der Bogen der halben Drehung, in <InlineMath math="V'(-2, -2)" />, und die letzte Parabel ist <InlineMath math="y = -f(-x) = -(x + 2)^2 - 2" />. Prüfe ihren Scheitelpunkt: <InlineMath math="-(-2 + 2)^2 - 2 = -2" />.
@@ -317,55 +242,37 @@ Für einen Winkel, der kein Vielfaches von <InlineMath math="90^\circ" /> ist, b
 
 <BlockMath math="\begin{aligned} x' &= 1 + 1 \cdot \tfrac{1}{2} - 4 \cdot \tfrac{\sqrt{3}}{2} = \tfrac{3}{2} - 2\sqrt{3} \\ y' &= 1 + 1 \cdot \tfrac{\sqrt{3}}{2} + 4 \cdot \tfrac{1}{2} = 3 + \tfrac{\sqrt{3}}{2} \end{aligned}" />
 
-<LineEquation
+<MathVisual
   title={<>Der Punkt <InlineMath math="P(2, 5)" />, gedreht um <InlineMath math="C(1, 1)" /></>}
   description={<>Der Bogen ist der Weg von <InlineMath math="P" /> auf dem Kreis um <InlineMath math="C" /> mit dem Radius <InlineMath math="\sqrt{17}" />. Er geht durch <InlineMath math="Q" />, den Bildpunkt bei einer Drehung um <InlineMath math="60^\circ" />, und endet in <InlineMath math="P'(-3, 2)" />, dem Bildpunkt bei einer Drehung um <InlineMath math="90^\circ" />. Die Strecken <InlineMath math="CP" /> und <InlineMath math="CP'" /> stehen senkrecht aufeinander.</>}
-  showZAxis={false}
-  cameraPosition={[-0.5, 3, 10]}
-  cameraTarget={[-0.5, 3, 0]}
-  data={[
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: 1 + Math.cos(angle) - 4 * Math.sin(angle), y: 1 + Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: 2, y: 5, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P(2, 5)" />, at: 1, offset: [0.17, 0.11, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="Q" />, at: 1, offset: [-0.22, 0.33, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }, { x: -3, y: 2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [1],
-      labels: [{ text: <InlineMath math="P'(-3, 2)" />, at: 1, offset: [-0.83, -0.56, 0] }],
-    },
-    {
-      points: [{ x: 1, y: 1, z: 0 }],
-      smooth: false,
-      color: "#64748b",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(1, 1)" />, at: 0, offset: [0.29, -0.19, 0], anchorX: "left" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="P(2, 5)" />,
+    "l2": <InlineMath math="Q" />,
+    "l3": <InlineMath math="P'(-3, 2)" />,
+    "l4": <InlineMath math="C(1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 2.5 }, y: { min: 0.5, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((1 + cos(((pi / 2) * (t / 90)))) - (4 * sin(((pi / 2) * (t / 90)))))", y: "((1 + sin(((pi / 2) * (t / 90)))) + (4 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "primary" },
+      { id: "s1-head", kind: "vector", from: { x: -2.98, y: 2.07 }, to: { x: -3, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 2, y: 5 }], appearance: "secondary" },
+      { id: "s2-p1", kind: "point", at: { x: 2, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: 3 / 2 - 2 * Math.sqrt(3), y: 3 + Math.sqrt(3) / 2 }], appearance: "answer" },
+      { id: "s3-p1", kind: "point", at: { x: -1.96, y: 3.87 }, appearance: "answer" },
+      { id: "s4", kind: "polyline", vertices: [{ x: 1, y: 1 }, { x: -3, y: 2 }], appearance: "highlight" },
+      { id: "s4-p1", kind: "point", at: { x: -3, y: 2 }, appearance: "highlight" },
+      { id: "s5", kind: "point", at: { x: 1, y: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s2", at: { x: 2, y: 5 }, placement: "above-right" },
+      { key: "l2", objectId: "s3", at: { x: -1.96, y: 3.87 }, placement: "above-left" },
+      { key: "l3", objectId: "s4", at: { x: -3, y: 2 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 1 }, placement: "below-right" },
+    ],
+  }}
 />
 
 </ContentStack>
@@ -396,70 +303,41 @@ Bei <InlineMath math="45^\circ" /> liefern <InlineMath math="\cos 45^\circ = \si
 
 <BlockMath math="\begin{aligned} \tfrac{\sqrt{2}}{2}(y' - x') &= \sqrt{2}(x' + y') + 1 \\ y' - x' &= 2x' + 2y' + \sqrt{2} \\ y' &= -3x' - \sqrt{2} \end{aligned}" />
 
-<LineEquation
+<MathVisual
   title={<>Die Gerade <InlineMath math="y = 2x + 1" />, gedreht um <InlineMath math="45^\circ" /> und um <InlineMath math="90^\circ" /></>}
   description={<>Die Bögen bringen <InlineMath math="(0, 1)" /> und <InlineMath math="(1, 3)" /> über ihre Bildpunkte bei <InlineMath math="45^\circ" /> in der Mitte jedes Bogens zu ihren Bildpunkten bei <InlineMath math="90^\circ" /> an den Enden. Beide Bilder bleiben Geraden, und jeder Punkt dreht sich um denselben Winkel.</>}
-  showZAxis={false}
-  cameraPosition={[-0.75, 1, 9.5]}
-  cameraTarget={[-0.75, 1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = -1.75 + 3.5 * i;
-        return { x, y: 2 * x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 2x + 1" />, at: 1, offset: [-3.65, -7.08, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const y = 4.5 - 7 * i;
-        return { x: -(y + Math.sqrt(2)) / 3, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -3x - \sqrt{2}" />, at: 0, offset: [0.14, -1.19, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = -4 + 6.5 * i;
-        return { x, y: -(x + 1) / 2, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />, at: 1, offset: [-0.5, -0.44, 0] }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: -Math.sin(angle), y: Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 45, 90],
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: Math.cos(angle) - 3 * Math.sin(angle), y: Math.sin(angle) + 3 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 45, 90],
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(1, 3)" />, at: 0, offset: [0.21, -0.21, 0], anchorX: "left" },
-        { text: <InlineMath math="(-3, 1)" />, at: 90, offset: [-0.09, -0.44, 0], anchorX: "right" },
-      ],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = 2x + 1" />,
+    "l2": <InlineMath math="y = -3x - \sqrt{2}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{2}x - \tfrac{1}{2}" />,
+    "l4": <InlineMath math="(1, 3)" />,
+    "l5": <InlineMath math="(-3, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 3.5 }, y: { min: -3.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-1.75) + (3.5 * t))", y: "((2 * ((-1.75) + (3.5 * t))) + 1)", parameter: { min: 0, max: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-((4.5 - (7 * t)) + sqrt(2))) / 3)", y: "(4.5 - (7 * t))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-4) + (6.5 * t))", y: "((-(((-4) + (6.5 * t)) + 1)) / 2)", parameter: { min: 0, max: 1 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(-sin(((pi / 2) * (t / 90))))", y: "cos(((pi / 2) * (t / 90)))", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s4-head", kind: "vector", from: { x: -1, y: 0.02 }, to: { x: -1, y: 0 }, appearance: "highlight" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: 1 }, appearance: "highlight" },
+      { id: "s4-p45", kind: "point", at: { x: -0.71, y: 0.71 }, appearance: "highlight" },
+      { id: "s5", kind: "parametric", x: "(cos(((pi / 2) * (t / 90))) - (3 * sin(((pi / 2) * (t / 90)))))", y: "(sin(((pi / 2) * (t / 90))) + (3 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s5-head", kind: "vector", from: { x: -2.98, y: 1.05 }, to: { x: -3, y: 1 }, appearance: "highlight" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 3 }, appearance: "highlight" },
+      { id: "s5-p45", kind: "point", at: { x: -1.41, y: 2.83 }, appearance: "highlight" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.75, y: 4.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.97, y: 4.5 }, placement: "below-right" },
+      { key: "l3", objectId: "s3", at: { x: 2.5, y: -1.75 }, placement: "below-left" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 3 }, placement: "below-right" },
+      { key: "l5", objectId: "s5", at: { x: -3, y: 1 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Die Bildgerade bei <InlineMath math="45^\circ" /> ist <InlineMath math="y = -3x - \sqrt{2}" />. Prüfe mit dem Punkt <InlineMath math="(0, 1)" />, der nach <InlineMath math="\left(-\tfrac{\sqrt{2}}{2}, \tfrac{\sqrt{2}}{2}\right)" /> wandert: <InlineMath math="-3\left(-\tfrac{\sqrt{2}}{2}\right) - \sqrt{2} = \tfrac{\sqrt{2}}{2}" />. Nur eine Drehung um <InlineMath math="90^\circ" /> macht aus der Steigung den negativen Kehrwert. Eine Drehung um <InlineMath math="45^\circ" /> macht aus der Steigung <InlineMath math="2" /> die Steigung <InlineMath math="-3" />.
@@ -468,54 +346,40 @@ Die Bildgerade bei <InlineMath math="45^\circ" /> ist <InlineMath math="y = -3x 
 
 Eine Kurve ist der Graph einer Funktion, wenn jede senkrechte Gerade die Kurve höchstens einmal schneidet. Diese Prüfung heißt [Senkrechtentest](/de/faecher/mathematik/funktionskomposition-und-umkehrfunktion/funktion-und-nichtfunktion). Die Parabel <InlineMath math="x = -y^2" />, also die gedrehte Parabel <InlineMath math="y = x^2" />, **besteht den Senkrechtentest nicht**, denn die Gerade <InlineMath math="x = -4" /> schneidet diese Parabel in <InlineMath math="(-4, 2)" /> und <InlineMath math="(-4, -2)" />.
 
-<LineEquation
+<MathVisual
   title={<>Die Parabel <InlineMath math="y = x^2" /> und ihr Bild nach einer Drehung um <InlineMath math="90^\circ" /></>}
   description={<>Die senkrechte Gerade <InlineMath math="x = -4" /> schneidet die Kurve <InlineMath math="x = -y^2" /> in <InlineMath math="(-4, 2)" /> und <InlineMath math="(-4, -2)" />, den Bildpunkten von <InlineMath math="(2, 4)" /> und <InlineMath math="(-2, 4)" />, die beide auf der Geraden <InlineMath math="y = 4" /> liegen.</>}
-  showZAxis={false}
-  cameraPosition={[-1.05, 1.1, 10]}
-  cameraTarget={[-1.05, 1.1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 231 }, (_, j) => {
-        const t = (2 * j - 230) / 100;
-        return { x: t, y: t * t, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [15, 215],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 14, offset: [-0.44, 1.06, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 231 }, (_, j) => {
-        const t = (2 * j - 230) / 100;
-        return { x: -t * t, y: t, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [15, 215],
-      labels: [
-        { text: <InlineMath math="x = -y^2" />, at: 53, offset: [-0.25, 0.37, 0], anchorX: "right" },
-        { text: <InlineMath math="(-4, 2)" />, at: 215, offset: [0.19, 0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(-4, -2)" />, at: 15, offset: [0.19, -0.46, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: -4, y: -2.6 + 5.2 * i, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x = -4" />, at: 1, offset: [0.17, -1.62, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: -2.6 + 5.2 * i, y: 4, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 4" />, at: 1, offset: [-5.36, 0.0, 0], anchorX: "right" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = x^2" />,
+    "l2": <InlineMath math="x = -y^2" />,
+    "l3": <InlineMath math="(-4, 2)" />,
+    "l4": <InlineMath math="(-4, -2)" />,
+    "l5": <InlineMath math="x = -4" />,
+    "l6": <InlineMath math="y = 4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 3.5 }, y: { min: -3.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(((2 * t) - 230) / 100)", y: "((((2 * t) - 230) / 100) * (((2 * t) - 230) / 100))", parameter: { min: 0, max: 230 }, appearance: "primary" },
+      { id: "s1-p15", kind: "point", at: { x: -2, y: 4 }, appearance: "primary" },
+      { id: "s1-p215", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-(((2 * t) - 230) / 100)) * (((2 * t) - 230) / 100))", y: "(((2 * t) - 230) / 100)", parameter: { min: 0, max: 230 }, appearance: "secondary" },
+      { id: "s2-p15", kind: "point", at: { x: -4, y: -2 }, appearance: "secondary" },
+      { id: "s2-p215", kind: "point", at: { x: -4, y: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-4)", y: "((-2.6) + (5.2 * t))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "((-2.6) + (5.2 * t))", y: "4", parameter: { min: 0, max: 1 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.02, y: 4.08 }, placement: "above-left" },
+      { key: "l2", objectId: "s2", at: { x: -1.54, y: -1.24 }, placement: "above-left" },
+      { key: "l3", objectId: "s2", at: { x: -4, y: 2 }, placement: "above-right" },
+      { key: "l4", objectId: "s2", at: { x: -4, y: -2 }, placement: "below-right" },
+      { key: "l5", objectId: "s3", at: { x: -4, y: 2.6 }, placement: "below-right" },
+      { key: "l6", objectId: "s4", at: { x: 2.6, y: 4 }, placement: "left" },
+    ],
+  }}
 />
 
 Die Kurve <InlineMath math="x = -y^2" /> ist weiterhin eine **Relation**, also eine Menge geordneter Paare <InlineMath math="(x, y)" />. Auf dieser Kurve gehört zu jedem <InlineMath math="y" />-Wert genau ein <InlineMath math="x" />-Wert. Das Problem liegt in der anderen Richtung. Ein <InlineMath math="x" />-Wert links vom Ursprung gehört zu zwei <InlineMath math="y" />-Werten, deshalb lässt sich die Kurve nicht als eine einzige Funktion <InlineMath math="y = g(x)" /> schreiben.
@@ -530,104 +394,47 @@ Die waagerechte Asymptote <InlineMath math="y = 0" /> des ursprünglichen Graphe
 
 Wie die halbe Drehung lässt sich auch eine Drehung um <InlineMath math="90^\circ" /> in zwei Umklappungen zerlegen: einen Tausch von <InlineMath math="x" /> und <InlineMath math="y" /> und danach einen Vorzeichenwechsel. Das Umklappen an der Geraden <InlineMath math="y = x" /> vertauscht die beiden Koordinaten, also wird aus <InlineMath math="y = 2^x" /> der Graph der Umkehrfunktion, <InlineMath math="y = \log_2 x" />. Danach wechselt das Umklappen an der <InlineMath math="y" />-Achse das Vorzeichen von <InlineMath math="x" /> und liefert <InlineMath math="y = \log_2(-x)" />.
 
-<LineEquation
+<MathVisual
   title={<>Drehung um <InlineMath math="90^\circ" /> als Umklappen an <InlineMath math="y = x" /> und danach an der <InlineMath math="y" />-Achse</>}
   description={<>Das erste Umklappen bringt den Punkt <InlineMath math="A(2, 4)" /> auf <InlineMath math="y = 2^x" /> aus der Ebene heraus nach <InlineMath math="(4, 2)" /> auf <InlineMath math="y = \log_2 x" />. Das zweite Umklappen bringt ihn nach <InlineMath math="A'(-4, 2)" /> auf <InlineMath math="y = \log_2(-x)" />, ans Ende des Bogens der Vierteldrehung in der Ebene.</>}
-  cameraPosition={[2, -11, 9]}
-  cameraTarget={[0, 1, 1]}
-  data={[
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
-        const s = -3 + j / 50;
-        return { x: s, y: 2 ** s, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 2^x" />, at: 27, offset: [0.24, -1.38, 0] }],
-    },
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
-        const s = -3 + j / 50;
-        return { x: 2 ** s, y: s, z: 0 };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2 x" />, at: 30, offset: [0.45, 0.78, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 263 }, (_, j) => {
-        const s = -3 + j / 50;
-        return { x: -(2 ** s), y: s, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = \log_2(-x)" />, at: 3, offset: [-0.16, -0.19, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = 4.75 * i;
-        return { x, y: x, z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = x" />, at: 1, offset: [0.17, -0.19, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const turn = Math.PI * (i / 180);
-        return { x: 3 - Math.cos(turn), y: 3 + Math.cos(turn), z: Math.sqrt(2) * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#db2777",
-      showPoints: false,
-      cone: { position: "end", size: 0.2 },
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const turn = Math.PI * (i / 180);
-        return { x: 4 * Math.cos(turn), y: 2, z: 4 * Math.sin(turn) };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: 2 * Math.cos(angle) - 4 * Math.sin(angle), y: 2 * Math.sin(angle) + 4 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 2, y: 4, z: 0 }],
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A" />, at: 0, offset: [-0.3, 1.67, 0], anchorX: "right" }],
-    },
-    {
-      points: [{ x: 4, y: 2, z: 0 }],
-      smooth: false,
-      color: "#db2777",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.74, -0.42, 0], anchorX: "left" }],
-    },
-    {
-      points: [{ x: -4, y: 2, z: 0 }],
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="A'" />, at: 0, offset: [-0.34, -0.94, 0], anchorX: "right" }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = 2^x" />,
+    "l2": <InlineMath math="y = \log_2 x" />,
+    "l3": <InlineMath math="y = \log_2(-x)" />,
+    "l4": <InlineMath math="y = x" />,
+    "l5": <InlineMath math="A" />,
+    "l6": <InlineMath math="(4, 2)" />,
+    "l7": <InlineMath math="A'" />,
+  }}
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -4, max: 6 }, z: { min: -0.5, max: 4.5 } },
+    view: { kind: "camera", position: { x: 2, y: -11, z: 9 }, target: { x: 0, y: 1, z: 1 } },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((-3) + (t / 50))", y: "(2)^(((-3) + (t / 50)))", z: "0", parameter: { min: 0, max: 262 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2)^(((-3) + (t / 50)))", y: "((-3) + (t / 50))", z: "0", parameter: { min: 0, max: 262 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(-(2)^(((-3) + (t / 50))))", y: "((-3) + (t / 50))", z: "0", parameter: { min: 0, max: 262 }, appearance: "answer" },
+      { id: "s4", kind: "parametric", x: "(4.75 * t)", y: "(4.75 * t)", z: "0", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s5", kind: "parametric", x: "(3 - cos((pi * (t / 180))))", y: "(3 + cos((pi * (t / 180))))", z: "(sqrt(2) * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "secondary" },
+      { id: "s5-head", kind: "vector", from: { x: 4, y: 2, z: 0.02 }, to: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s6", kind: "parametric", x: "(4 * cos((pi * (t / 180))))", y: "2", z: "(4 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s6-head", kind: "vector", from: { x: -4, y: 2, z: 0.07 }, to: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+      { id: "s7", kind: "parametric", x: "((2 * cos(((pi / 2) * (t / 90)))) - (4 * sin(((pi / 2) * (t / 90)))))", y: "((2 * sin(((pi / 2) * (t / 90)))) + (4 * cos(((pi / 2) * (t / 90)))))", z: "0", parameter: { min: 0, max: 90 }, appearance: "highlight" },
+      { id: "s7-head", kind: "vector", from: { x: -3.96, y: 2.07, z: 0 }, to: { x: -4, y: 2, z: 0 }, appearance: "highlight" },
+      { id: "s8", kind: "point", at: { x: 2, y: 4, z: 0 }, appearance: "primary" },
+      { id: "s9", kind: "point", at: { x: 4, y: 2, z: 0 }, appearance: "secondary" },
+      { id: "s10", kind: "point", at: { x: -4, y: 2, z: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: -2.46, y: 0.18, z: 0 }, placement: "below-right" },
+      { key: "l2", objectId: "s2", at: { x: 0.19, y: -2.4, z: 0 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: -0.13, y: -2.94, z: 0 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 4.75, y: 4.75, z: 0 }, placement: "below-right" },
+      { key: "l5", objectId: "s8", at: { x: 2, y: 4, z: 0 }, placement: "above-left" },
+      { key: "l6", objectId: "s9", at: { x: 4, y: 2, z: 0 }, placement: "below-right" },
+      { key: "l7", objectId: "s10", at: { x: -4, y: 2, z: 0 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Zwischen den beiden Umklappungen ist die Kurve <InlineMath math="y = \log_2 x" /> bereits ein Funktionsgraph, weil jede senkrechte Gerade sie höchstens einmal schneidet.
@@ -636,50 +443,34 @@ Die Spiegelung an <InlineMath math="y = x" /> macht aus dem Graphen von <InlineM
 
 Auch der Graph von <InlineMath math="y = \sqrt{x}" /> erfüllt diese Bedingung, denn jede Gerade <InlineMath math="y = c" /> mit <InlineMath math="c \ge 0" /> schneidet ihn genau einmal. Eine Drehung um <InlineMath math="90^\circ" /> bringt <InlineMath math="(t^2, t)" /> mit <InlineMath math="t \ge 0" /> nach <InlineMath math="(-t, t^2)" />. Mit <InlineMath math="x = -t" /> ergibt sich <InlineMath math="y = t^2 = x^2" /> für <InlineMath math="x \le 0" />, die gedrehte Kurve ist also **die linke Hälfte der Parabel <InlineMath math="y = x^2" />**.
 
-<LineEquation
+<MathVisual
   title={<>Der Graph von <InlineMath math="y = \sqrt{x}" />, gedreht um <InlineMath math="90^\circ" /></>}
   description={<>Der Graph wird zu <InlineMath math="y = x^2" /> für <InlineMath math="x \le 0" />. Der Bogen bringt <InlineMath math="(4, 2)" /> nach <InlineMath math="(-2, 4)" />, und jede senkrechte Gerade links der <InlineMath math="y" />-Achse schneidet das Bild genau einmal.</>}
-  showZAxis={false}
-  cameraPosition={[1.2, 2.1, 9.5]}
-  cameraTarget={[1.2, 2.1, 0]}
-  data={[
-    {
-      points: Array.from({ length: 221 }, (_, j) => {
-        const t = j / 100;
-        return { x: t * t, y: t, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [200],
-      labels: [{ text: <InlineMath math="y = \sqrt{x}" />, at: 42, offset: [0.6, 0.0, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 221 }, (_, j) => {
-        const t = j / 100;
-        return { x: -t, y: t * t, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [200],
-      labels: [{ text: <InlineMath math="y = x^2" />, at: 217, offset: [0.17, 0.25, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: 4 * Math.cos(angle) - 2 * Math.sin(angle), y: 4 * Math.sin(angle) + 2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(4, 2)" />, at: 0, offset: [0.09, -0.44, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 4)" />, at: 90, offset: [0.32, -0.32, 0], anchorX: "left" },
-      ],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = \sqrt{x}" />,
+    "l2": <InlineMath math="y = x^2" />,
+    "l3": <InlineMath math="(4, 2)" />,
+    "l4": <InlineMath math="(-2, 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t / 100) * (t / 100))", y: "(t / 100)", parameter: { min: 0, max: 220 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(-(t / 100))", y: "((t / 100) * (t / 100))", parameter: { min: 0, max: 220 }, appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: -2, y: 4 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((4 * cos(((pi / 2) * (t / 90)))) - (2 * sin(((pi / 2) * (t / 90)))))", y: "((4 * sin(((pi / 2) * (t / 90)))) + (2 * cos(((pi / 2) * (t / 90)))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -1.93, y: 4.03 }, to: { x: -2, y: 4 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 0.18, y: 0.42 }, placement: "right" },
+      { key: "l2", objectId: "s2", at: { x: -2.17, y: 4.71 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 4, y: 2 }, placement: "below-right" },
+      { key: "l4", objectId: "s3", at: { x: -2, y: 4 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Der Graph von <InlineMath math="y = \sqrt{x}" /> hat den Definitionsbereich <InlineMath math="x \ge 0" /> und den Wertebereich <InlineMath math="y \ge 0" />. Beim Bild ist der Definitionsbereich <InlineMath math="x \le 0" />, der Wertebereich bleibt <InlineMath math="y \ge 0" />. Prüfe den Punkt <InlineMath math="(4, 2)" />: Sein Bildpunkt ist <InlineMath math="(-2, 4)" />, und <InlineMath math="(-2)^2 = 4" />.
@@ -724,74 +515,43 @@ Der Abstand zum Ursprung bleibt gleich, denn <InlineMath math="(-2)^2 + 5^2 = 5^
 
 Prüfe mit zwei Punkten der ursprünglichen Geraden. Der Punkt <InlineMath math="(0, -2)" /> geht in <InlineMath math="(2, 0)" /> über, und <InlineMath math="-\tfrac{2}{3} + \tfrac{2}{3} = 0" />. Aus <InlineMath math="(1, 1)" /> wird <InlineMath math="(-1, 1)" />, und <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />. Die Bildgerade ist also <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />.
 
-<LineEquation
+<MathVisual
   title={<>Die Gerade <InlineMath math="y = 3x - 2" /> und ihre Bilder bei Drehungen um <InlineMath math="90^\circ" /> und <InlineMath math="270^\circ" /></>}
   description={<>Die Bögen bringen <InlineMath math="(0, -2)" /> nach <InlineMath math="(2, 0)" /> und <InlineMath math="(1, 1)" /> nach <InlineMath math="(-1, 1)" />, zwei Punkte der Lösung <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />. Die parallele Gerade <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> ist das Bild bei einer Drehung um <InlineMath math="270^\circ" />.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 9]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const y = -3.5 + 7 * i;
-        return { x: (y + 2) / 3, y, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = 3x - 2" />, at: 1, offset: [-2.48, -7.1, 0], anchorX: "right" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = -3.5 + 7 * i;
-        return { x, y: -x / 3 + 2 / 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />, at: 0, offset: [0.32, 0.32, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => {
-        const x = -3.5 + 7 * i;
-        return { x, y: -x / 3 - 2 / 3, z: 0 };
-      }),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />, at: 1, offset: [-0.79, -0.42, 0] }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: 2 * Math.sin(angle), y: -2 * Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 90],
-      cone: { position: "end", size: 0.25 },
-      labels: [
-        { text: <InlineMath math="(0, -2)" />, at: 0, offset: [-0.17, 0.25, 0], anchorX: "right" },
-        { text: <InlineMath math="(2, 0)" />, at: 90, offset: [0.09, 0.44, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: Math.cos(angle) - Math.sin(angle), y: Math.sin(angle) + Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: true,
-      pointIndices: [0, 90],
-      cone: { position: "end", size: 0.25 },
-      labels: [
-        { text: <InlineMath math="(1, 1)" />, at: 0, offset: [0.33, 0.22, 0], anchorX: "left" },
-        { text: <InlineMath math="(-1, 1)" />, at: 90, offset: [-0.67, -0.44, 0] },
-      ],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = 3x - 2" />,
+    "l2": <InlineMath math="y = -\tfrac{1}{3}x + \tfrac{2}{3}" />,
+    "l3": <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" />,
+    "l4": <InlineMath math="(0, -2)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(1, 1)" />,
+    "l7": <InlineMath math="(-1, 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((((-3.5) + (7 * t)) + 2) / 3)", y: "((-3.5) + (7 * t))", parameter: { min: 0, max: 1 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((-3.5) + (7 * t))", y: "(((-((-3.5) + (7 * t))) / 3) + (2 / 3))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "((-3.5) + (7 * t))", y: "(((-((-3.5) + (7 * t))) / 3) - (2 / 3))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "(2 * sin(((pi / 2) * (t / 90))))", y: "((-2) * cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2, y: -0.03 }, to: { x: 2, y: 0 }, appearance: "answer" },
+      { id: "s4-p0", kind: "point", at: { x: 0, y: -2 }, appearance: "answer" },
+      { id: "s5", kind: "parametric", x: "(cos(((pi / 2) * (t / 90))) - sin(((pi / 2) * (t / 90))))", y: "(sin(((pi / 2) * (t / 90))) + cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s5-head", kind: "vector", from: { x: -0.98, y: 1.02 }, to: { x: -1, y: 1 }, appearance: "answer" },
+      { id: "s5-p0", kind: "point", at: { x: 1, y: 1 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 1.83, y: 3.5 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: -3.5, y: 1.83 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 3.5, y: -1.83 }, placement: "below-left" },
+      { key: "l4", objectId: "s4", at: { x: 0, y: -2 }, placement: "above-left" },
+      { key: "l5", objectId: "s4", at: { x: 2, y: 0 }, placement: "above-right" },
+      { key: "l6", objectId: "s5", at: { x: 1, y: 1 }, placement: "above-right" },
+      { key: "l7", objectId: "s5", at: { x: -1, y: 1 }, placement: "below-left" },
+    ],
+  }}
 />
 
 Die Gerade <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> entsteht, wenn du für eine Drehung um <InlineMath math="90^\circ" /> die Regel <InlineMath math="(y, -x)" /> verwendest. Sie ist parallel zur Lösung, liegt aber auf der anderen Seite des Ursprungs, weil sich Drehungen um <InlineMath math="90^\circ" /> und <InlineMath math="270^\circ" /> um eine halbe Drehung unterscheiden.
@@ -802,56 +562,42 @@ Die Gerade <InlineMath math="y = -\tfrac{1}{3}x - \tfrac{2}{3}" /> entsteht, wen
 
 Die gedrehte Kurve ist <InlineMath math="y = 4 - x^2" />, passend zu <InlineMath math="y = -f(-x)" />. Der Scheitelpunkt <InlineMath math="(0, -4)" /> geht in <InlineMath math="(0, 4)" /> über, und <InlineMath math="4 - 0^2 = 4" />. Der Schnittpunkt <InlineMath math="(2, 0)" /> mit der <InlineMath math="x" />-Achse geht in <InlineMath math="(-2, 0)" /> über, und <InlineMath math="4 - (-2)^2 = 0" />. Die Parabel <InlineMath math="y = 4 - x^2" /> ist nach unten geöffnet, und jede senkrechte Gerade schneidet sie genau einmal, also ist die gedrehte Kurve **weiterhin der Graph einer Funktion**.
 
-<LineEquation
+<MathVisual
   title={<>Die Parabel <InlineMath math="y = x^2 - 4" /> und ihr Bild bei einer halben Drehung</>}
   description={<>Der Scheitelpunkt <InlineMath math="(0, -4)" /> geht in <InlineMath math="(0, 4)" /> über. Beide Parabeln gehen durch <InlineMath math="(-2, 0)" /> und <InlineMath math="(2, 0)" />, und der Bogen der halben Drehung bringt den einen dieser Punkte zum anderen.</>}
-  showZAxis={false}
-  cameraPosition={[0, 0, 12.5]}
-  cameraTarget={[0, 0, 0]}
-  data={[
-    {
-      points: Array.from({ length: 241 }, (_, j) => {
-        const x = (j - 120) / 40;
-        return { x, y: x * x - 4, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [40, 120, 200],
-      labels: [
-        { text: <InlineMath math="y = x^2 - 4" />, at: 216, offset: [0.19, -0.46, 0], anchorX: "left" },
-        { text: <InlineMath math="(0, -4)" />, at: 120, offset: [0.23, -0.55, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 241 }, (_, j) => {
-        const x = (j - 120) / 40;
-        return { x, y: 4 - x * x, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [40, 120, 200],
-      labels: [
-        { text: <InlineMath math="y = 4 - x^2" />, at: 24, offset: [-0.19, 0.46, 0], anchorX: "right" },
-        { text: <InlineMath math="(0, 4)" />, at: 120, offset: [-0.23, 0.55, 0], anchorX: "right" },
-      ],
-    },
-    {
-      points: Array.from({ length: 181 }, (_, i) => {
-        const angle = Math.PI * (i / 180);
-        return { x: 2 * Math.cos(angle), y: 2 * Math.sin(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.3 },
-      labels: [
-        { text: <InlineMath math="(2, 0)" />, at: 0, offset: [0.57, -0.57, 0], anchorX: "left" },
-        { text: <InlineMath math="(-2, 0)" />, at: 180, offset: [-0.57, 0.57, 0], anchorX: "right" },
-      ],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="y = x^2 - 4" />,
+    "l2": <InlineMath math="(0, -4)" />,
+    "l3": <InlineMath math="y = 4 - x^2" />,
+    "l4": <InlineMath math="(0, 4)" />,
+    "l5": <InlineMath math="(2, 0)" />,
+    "l6": <InlineMath math="(-2, 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "((t - 120) / 40)", y: "((((t - 120) / 40) * ((t - 120) / 40)) - 4)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "primary" },
+      { id: "s1-p120", kind: "point", at: { x: 0, y: -4 }, appearance: "primary" },
+      { id: "s1-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "((t - 120) / 40)", y: "(4 - (((t - 120) / 40) * ((t - 120) / 40)))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2-p40", kind: "point", at: { x: -2, y: 0 }, appearance: "secondary" },
+      { id: "s2-p120", kind: "point", at: { x: 0, y: 4 }, appearance: "secondary" },
+      { id: "s2-p200", kind: "point", at: { x: 2, y: 0 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "(2 * cos((pi * (t / 180))))", y: "(2 * sin((pi * (t / 180))))", parameter: { min: 0, max: 180 }, appearance: "answer" },
+      { id: "s3-head", kind: "vector", from: { x: -2, y: 0.03 }, to: { x: -2, y: 0 }, appearance: "answer" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 2.4, y: 1.76 }, placement: "below-right" },
+      { key: "l2", objectId: "s1", at: { x: 0, y: -4 }, placement: "below-right" },
+      { key: "l3", objectId: "s2", at: { x: -2.4, y: -1.76 }, placement: "above-left" },
+      { key: "l4", objectId: "s2", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "l5", objectId: "s3", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "l6", objectId: "s3", at: { x: -2, y: 0 }, placement: "above-left" },
+    ],
+  }}
 />
 
 Beide Parabeln schneiden die <InlineMath math="x" />-Achse in denselben Punkten. Die halbe Drehung bringt <InlineMath math="(2, 0)" /> nach <InlineMath math="(-2, 0)" /> und <InlineMath math="(-2, 0)" /> nach <InlineMath math="(2, 0)" />, und beide Punkte sind Schnittpunkte von <InlineMath math="y = x^2 - 4" /> mit der <InlineMath math="x" />-Achse.
@@ -866,64 +612,40 @@ Der Abstand zum Zentrum bleibt gleich, denn <InlineMath math="|CV|^2 = 2^2 + (-1
 
 Ohne Striche lautet die gedrehte Kurve <InlineMath math="x = 2 - (y - 4)^2" />, eine nach links geöffnete Parabel mit dem Scheitelpunkt <InlineMath math="(2, 4)" />, passend zu <InlineMath math="V'" />. Diese Kurve ist **kein Graph einer Funktion**. Die Punkte <InlineMath math="(2, 2)" /> und <InlineMath math="(4, 2)" /> der ursprünglichen Parabel gehen in <InlineMath math="(1, 3)" /> und <InlineMath math="(1, 5)" /> über, zwei Punkte auf der senkrechten Geraden <InlineMath math="x = 1" />. Beide erfüllen die neue Gleichung, denn <InlineMath math="2 - (3 - 4)^2 = 1" /> und <InlineMath math="2 - (5 - 4)^2 = 1" />.
 
-<LineEquation
+<MathVisual
   title={<>Die Parabel <InlineMath math="y = (x - 3)^2 + 1" />, gedreht um <InlineMath math="90^\circ" /> um <InlineMath math="C(1, 2)" /></>}
   description={<>Die nach oben geöffnete Parabel ist <InlineMath math="y = (x - 3)^2 + 1" />, die nach links geöffnete Parabel ist ihr Bild <InlineMath math="x = 2 - (y - 4)^2" />. Der Bogen bringt <InlineMath math="V(3, 1)" /> im festen Abstand <InlineMath math="\sqrt{5}" /> von <InlineMath math="C" /> nach <InlineMath math="V'(2, 4)" />, und die Gerade <InlineMath math="x = 1" /> schneidet das Bild in <InlineMath math="(1, 3)" /> und <InlineMath math="(1, 5)" />.</>}
-  showZAxis={false}
-  cameraPosition={[1.5, 3.4, 10]}
-  cameraTarget={[1.5, 3.4, 0]}
-  data={[
-    {
-      points: Array.from({ length: 321 }, (_, i) => {
-        const x = 1.4 + i / 100;
-        return { x, y: (x - 3) ** 2 + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#ea580c",
-      showPoints: true,
-      pointIndices: [60, 160, 260],
-      labels: [
-        { text: <InlineMath math="V(3, 1)" />, at: 160, offset: [-0.19, -0.46, 0] },
-      ],
-    },
-    {
-      points: Array.from({ length: 321 }, (_, i) => {
-        const x = 1.4 + i / 100;
-        return { x: 2 - (x - 3) ** 2, y: x + 1, z: 0 };
-      }),
-      smooth: false,
-      color: "#7c3aed",
-      showPoints: true,
-      pointIndices: [60, 160, 260],
-      labels: [
-        { text: <InlineMath math="V'(2, 4)" />, at: 160, offset: [0.17, 0.42, 0], anchorX: "left" },
-      ],
-    },
-    {
-      points: Array.from({ length: 2 }, (_, i) => ({ x: 1, y: 2.5 + 4.2 * i, z: 0 })),
-      smooth: false,
-      color: "#64748b",
-      showPoints: false,
-      labels: [{ text: <InlineMath math="x = 1" />, at: 1, offset: [0.17, -0.29, 0], anchorX: "left" }],
-    },
-    {
-      points: Array.from({ length: 91 }, (_, i) => {
-        const angle = (Math.PI / 2) * (i / 90);
-        return { x: 1 + 2 * Math.cos(angle) + Math.sin(angle), y: 2 + 2 * Math.sin(angle) - Math.cos(angle), z: 0 };
-      }),
-      smooth: false,
-      color: "#0d9488",
-      showPoints: false,
-      cone: { position: "end", size: 0.25 },
-    },
-    {
-      points: [{ x: 1, y: 2, z: 0 }],
-      smooth: false,
-      color: "#64748b",
-      showPoints: true,
-      labels: [{ text: <InlineMath math="C(1, 2)" />, at: 0, offset: [0.12, -0.59, 0] }],
-    },
-  ]}
+  labels={{
+    "l1": <InlineMath math="V(3, 1)" />,
+    "l2": <InlineMath math="V'(2, 4)" />,
+    "l3": <InlineMath math="x = 1" />,
+    "l4": <InlineMath math="C(1, 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 5.5 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.2 },
+    objects: [
+      { id: "s1", kind: "parametric", x: "(1.4 + (t / 100))", y: "((((1.4 + (t / 100)) - 3))^(2) + 1)", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1-p60", kind: "point", at: { x: 2, y: 2 }, appearance: "primary" },
+      { id: "s1-p160", kind: "point", at: { x: 3, y: 1 }, appearance: "primary" },
+      { id: "s1-p260", kind: "point", at: { x: 4, y: 2 }, appearance: "primary" },
+      { id: "s2", kind: "parametric", x: "(2 - (((1.4 + (t / 100)) - 3))^(2))", y: "((1.4 + (t / 100)) + 1)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2-p60", kind: "point", at: { x: 1, y: 3 }, appearance: "secondary" },
+      { id: "s2-p160", kind: "point", at: { x: 2, y: 4 }, appearance: "secondary" },
+      { id: "s2-p260", kind: "point", at: { x: 1, y: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "parametric", x: "1", y: "(2.5 + (4.2 * t))", parameter: { min: 0, max: 1 }, appearance: "construction" },
+      { id: "s4", kind: "parametric", x: "((1 + (2 * cos(((pi / 2) * (t / 90))))) + sin(((pi / 2) * (t / 90))))", y: "((2 + (2 * sin(((pi / 2) * (t / 90))))) - cos(((pi / 2) * (t / 90))))", parameter: { min: 0, max: 90 }, appearance: "answer" },
+      { id: "s4-head", kind: "vector", from: { x: 2.03, y: 3.98 }, to: { x: 2, y: 4 }, appearance: "answer" },
+      { id: "s5", kind: "point", at: { x: 1, y: 2 }, appearance: "construction" },
+    ],
+    labels: [
+      { key: "l1", objectId: "s1", at: { x: 3, y: 1 }, placement: "below-left" },
+      { key: "l2", objectId: "s2", at: { x: 2, y: 4 }, placement: "above-right" },
+      { key: "l3", objectId: "s3", at: { x: 1, y: 6.7 }, placement: "below-right" },
+      { key: "l4", objectId: "s5", at: { x: 1, y: 2 }, placement: "below-right" },
+    ],
+  }}
 />
 
 Die senkrechte Gerade <InlineMath math="x = 1" /> schneidet die gedrehte Kurve zweimal, die Kurve besteht den Senkrechtentest also nicht. Die ursprüngliche Parabel scheitert auf dieselbe Weise am Test mit waagerechten Geraden, denn die Gerade <InlineMath math="y = 2" /> schneidet sie in <InlineMath math="(2, 2)" /> und <InlineMath math="(4, 2)" />.
