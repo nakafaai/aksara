@@ -180,6 +180,15 @@ it("keeps a primed equation label as text", () => {
   );
 });
 
+it("keeps a clock time as text and a measurement that looks like one as a quantity", () => {
+  assert.deepEqual(
+    quantities(
+      "Pukul 08.00 ada 10 orang, bus berangkat 12.30 dan 13:05, | 10.00-10.20 | lalu 12.30 kg dan 2.50."
+    ),
+    ["10", "12.30 kg", "2.50"]
+  );
+});
+
 it("still reads a number as a quantity when a sentence only mentions a label word", () => {
   assert.deepEqual(
     quantities("Soal ini punya 4 pilihan dan kelas itu berisi 30 siswa."),

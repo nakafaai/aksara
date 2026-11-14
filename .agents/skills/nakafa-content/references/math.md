@@ -31,7 +31,8 @@ strings with their own [math syntax](questions.md#response-items).
   after the math. Indonesian and German write `2{,}5` and `5{.}000`; English
   and Malay write `2.5` and `5{,}000`. These stay text: a year (`2024`,
   `1998-2024`, `SNBT 2027`, `tahun ajaran 2025/26`), a date (`13 November
-  2026`, `13.11.2026`), an era or century (`300 SM`, `abad ke-19`), a document,
+  2026`, `13.11.2026`), a clock time with a two-digit hour (`08.00`,
+  `12:30`), an era or century (`300 SM`, `abad ke-19`), a document,
   exam, course, or legal label (`Soal 3`, `Kelas 10`, `Langkah 1 dan 2`,
   `Bab 4.1`, `Pasal 1(2)`, `UU 12/2011`), an item title whose label word
   carries a qualifier before its number (`Soal identifikasi 4`,
