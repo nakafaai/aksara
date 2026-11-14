@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "procedure",
-    topic: "information-validity",
+    cognitiveLevel: "inferential",
+    contentDomain: "narrative",
+    topic: "character",
   },
-  stimulus: "emergency-plan",
+  stimulus: "umbrella",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The document uses the longest possible wording.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The plan is usable when its organizer can quickly find the cards during practice.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label:
-            "The practice checks the route but leaves the accessibility of alerts untested.",
+          label: "I, II, III, and IV",
         },
         {
           correct: true,
-          label:
-            "Household members can reach the meeting point and state the contact during practice.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The plan has not changed for many years.",
+          label: "II, III, and IV only",
         },
       ],
     },
