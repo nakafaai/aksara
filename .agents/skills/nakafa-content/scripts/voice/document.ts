@@ -5,6 +5,7 @@ import {
 } from "#nakafa-content/emphasis/check";
 import { findExerciseAnswerIssues } from "#nakafa-content/exercise/answers";
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
+import { findOutlineIssues } from "#nakafa-content/heading/outline";
 import { findHighlightNestingIssues } from "#nakafa-content/highlight/nesting";
 import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
 import { findHighlightVariantIssues } from "#nakafa-content/highlight/variant";
@@ -96,6 +97,7 @@ export function findDocumentIssues(
       : [
           ...findOpeningHighlightIssues(source, tree),
           ...findExerciseAnswerIssues(source, tree, locale),
+          ...findOutlineIssues(source, tree, locale),
         ]),
   ];
 }

@@ -89,8 +89,6 @@ Senarai dan tuple menyusun item mengikut kedudukan, manakala kamus menyusun entr
 
 Kamus boleh diubah, **kuncinya unik dan boleh dicincang**, dan susunan lelarannya mengikut susunan kunci dimasukkan. Tiga sifat ini menerangkan kebanyakan tingkah laku yang kamu akan lihat nanti: kenapa kamu boleh menambah atau membuang entri selepas kamus dibina, kenapa umpukan kepada kunci yang sudah ada menulis ganti nilainya dan bukan menduplikasikannya, dan kenapa lelaran ke atas kamus memberi susunan yang stabil dan boleh dijangka.
 
-### Susunan Kemasukan dan Kunci Unik
-
 Spesifikasi bahasa Python menjamin susunan kemasukan kamus mulai Python `3.7`. Apabila kamu mengumpukkan nilai baharu kepada kunci yang sudah ada, entri itu dikemas kini **tanpa mengalihkan kunci itu**. Kalau kamu memadam kunci itu lalu memasukkannya semula, kunci itu akan berada di hujung.
 
 <CodeBlock
@@ -126,8 +124,6 @@ Kunci dalam kamus sentiasa unik. Dalam `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `'a
 ## Mengakses Kamus
 
 Untuk mendapatkan nilai daripada kamus, **berikan kuncinya**. Kunci yang bermakna seperti nama atau tarikh mengambil tempat indeks nombor yang berturutan, jadi kamu tidak perlu mengingati kedudukan setiap nilai.
-
-### Pengindeksan dengan Kunci
 
 <CodeBlock
   data={[
@@ -224,8 +220,6 @@ Pandangan `items()` menghasilkan **setiap kunci dan nilai bersama-sama**, jadi p
 ## Tiga Jenis Pandangan Kamus
 
 Kamus menyediakan **pandangan dinamik** (dynamic view) bagi kunci, nilai dan pasangan kunci-nilainya. Pandangan bukan salinan: ia membaca isi semasa kamus setiap kali kamu melelarnya, jadi perubahan yang dibuat selepas pandangan itu dibina terus kelihatan dalam gelung yang berikutnya.
-
-### Membina Pandangan Kamus
 
 <CodeBlock
   data={[

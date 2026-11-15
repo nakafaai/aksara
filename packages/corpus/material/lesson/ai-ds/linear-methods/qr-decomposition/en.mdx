@@ -17,8 +17,6 @@ Let <InlineMath math="A \in \mathbb{R}^{m \times n}" /> satisfy <InlineMath math
 
 This factorization is the <InlineMath math="\mathrm{QR}" /> decomposition of <InlineMath math="A" />.
 
-### Proof with Gram Schmidt Orthogonalization
-
 Let <InlineMath math="a_j" /> denote column <InlineMath math="j" /> of <InlineMath math="A" />. Gram-Schmidt **removes the components** in the directions already found, then normalizes what remains:
 
 <MathContainer>
@@ -166,8 +164,6 @@ Rotate this three-dimensional scene to see the example from every side. The ambe
 
 Classical Gram-Schmidt gives a direct derivation, but **nearly dependent columns** can lose orthogonality in floating-point arithmetic. Modified Gram-Schmidt reduces that error. Dense numerical software commonly uses Householder reflectors, while Givens rotations are useful when only selected entries need to be eliminated.
 
-### Householder Transformation
-
 For a unit vector <InlineMath math="v\in\mathbb{R}^m" />, define the Householder matrix
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
@@ -228,8 +224,6 @@ Start with <InlineMath math="A_1=A" />. Reflect its first column onto a multiple
 </MathContainer>
 
 <BlockMath math="u_1 = \tilde{a}_1 \mp \|\tilde{a}_1\|_2 \cdot e_1" />
-
-### Iterative Transformation Process
 
 With <InlineMath math="S_1=I_m-2v_1v_1^T" />, the first column below the diagonal becomes zero:
 

@@ -2,6 +2,7 @@ import { assert, it } from "@effect/vitest";
 
 import { findSectionBodyIssues } from "#nakafa-content/body/section";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
+import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 
 const LONG_BODY =
   "This paragraph carries enough ordinary prose words to clear the thin section limit for the nested heading above it and it also states the shared purpose of the parts that follow.";
@@ -55,11 +56,15 @@ it("flags a section whose whole body is one component", () => {
   ]);
 });
 
-it("flags a short body that carries no representation", () => {
+it("blocks a short body that carries no representation", () => {
+  const issues = findSectionBodyIssues(
+    lesson("## Alpha\n\nOnly nine short words sit here now.\n")
+  );
   assert.deepEqual(
-    rulesOf("## Alpha\n\nOnly nine short words sit here now.\n"),
+    issues.map(({ rule }) => rule),
     ["thin-section-body"]
   );
+  assert.ok(issues.every(isBlockingLessonVoiceIssue));
 });
 
 it("accepts a short lead once a table carries the comparison", () => {

@@ -10,10 +10,10 @@ const EXERCISE_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
 };
 
 const SOLUTION_HEADING_PATTERNS: Record<LessonVoiceLocale, RegExp> = {
-  de: /^(?:Lösung(?:en)?|Ausführliche Lösung(?:en)?|Ausgearbeitete Lösungen|Lösungen zum Rationalisieren von Nennern|Lösung zur (?:ersten|zweiten) Übung)$/iu,
-  en: /^(?:Solutions for Rationalizing Denominators|Answer Key|Worked Solutions?|Solutions?|Solution to (?:First|Second) Exercise)$/iu,
-  id: /^(?:Penyelesaian|Pembahasan(?: Lengkap| Terperinci| Rasionalisasi Penyebut)?|Kunci Jawaban(?: Latihan (?:Pertama|Kedua))?)$/iu,
-  ms: /^(?:Penyelesaian(?: Lengkap| Terperinci)?|Jalan Kerja|Skema Jawapan(?: Latihan (?:Pertama|Kedua))?)$/iu,
+  de: /^(?:Lösung(?:en)?|Ausführliche Lösung(?:en)?|Ausgearbeitete Lösungen|Durchgerechnete Lösung(?:en)?|Lösungen zum (?:Rationalisieren von Nennern|Vereinfachen von Wurzelausdrücken)|Lösung zur (?:ersten|zweiten) Übung)$/iu,
+  en: /^(?:Solutions for (?:Rationalizing Denominators|Simplifying Radicals)|Answer Key|Answers|Worked Solutions?|Solutions?|Solution to (?:First|Second) Exercise)$/iu,
+  id: /^(?:Penyelesaian|Pembahasan(?: Lengkap| Terperinci| Rasionalisasi Penyebut| Penyederhanaan Bentuk Akar)?|Kunci Jawaban(?: Latihan (?:Pertama|Kedua))?)$/iu,
+  ms: /^(?:Penyelesaian(?: Lengkap| Terperinci| Latihan (?:Pertama|Kedua)| untuk (?:Merasionalkan Penyebut|Mempermudahkan Surd))?|Jalan Kerja|(?:(?:Skema|Kunci) )?Jawapan(?: Latihan (?:Pertama|Kedua))?)$/iu,
 };
 
 /** Recognizes an explicit exercise title without matching conceptual headings. */

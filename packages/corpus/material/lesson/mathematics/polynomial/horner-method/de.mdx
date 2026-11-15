@@ -11,8 +11,6 @@ export const metadata = {
 
 Das Horner-Schema verkürzt die Polynomdivision, <Highlight>wenn der Divisor linear ist</Highlight>, etwa <InlineMath math="(x-c)" />. Du arbeitest nur mit der geordneten Koeffizientenfolge sowie wiederholten Multiplikationen und Additionen. Die letzte Zahl des Schemas ist **der Rest**, der gleich <InlineMath math="P(c)" /> ist, und die Zahlen davor sind die Koeffizienten des Quotienten.
 
-### Vergleich mit der Polynomdivision
-
 Um zu sehen, wie Horners Methode den Prozess vereinfacht, vergleichen wir die Division von <InlineMath math="P(x) = x^3 - 7x + 8" /> (oder <InlineMath math="x^3 + 0x^2 - 7x + 8" />) durch <InlineMath math="x-2" /> unter Verwendung beider Methoden:
 
 **Polynomdivision**:
@@ -145,8 +143,6 @@ Prüfe den Rest, indem du das Polynom direkt auswertest: <InlineMath math="P(-3)
   data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
-
-### Ein Divisor mit einem Leitkoeffizienten ungleich eins
 
 Bei einem Divisor <InlineMath math="ax-b" /> mit <InlineMath math="a\ne0" /> verwendest du <InlineMath math="c=b/a" /> im Schema. Danach **teilst du den erhaltenen Quotienten durch den Leitkoeffizienten des Divisors**. Der Rest bleibt unverändert.
 

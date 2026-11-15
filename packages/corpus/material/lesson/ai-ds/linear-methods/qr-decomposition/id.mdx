@@ -17,8 +17,6 @@ Misalkan <InlineMath math="A\in\mathbb{R}^{m\times n}" /> memenuhi <InlineMath m
 
 Faktorisasi ini disebut dekomposisi <InlineMath math="\mathrm{QR}" /> dari <InlineMath math="A" />.
 
-### Pembuktian dengan Gram Schmidt
-
 Misalkan <InlineMath math="a_j" /> adalah kolom ke-<InlineMath math="j" /> dari <InlineMath math="A" />. Proses Gram-Schmidt **menghilangkan komponen** pada arah yang sudah diperoleh, lalu menormalkan sisanya:
 
 <MathContainer>
@@ -165,8 +163,6 @@ Putar adegan tiga dimensi ini untuk melihat contoh tadi dari segala arah. Proyek
 
 Gram-Schmidt klasik mudah diturunkan, tetapi kolom yang **hampir bergantung linear** dapat kehilangan ortogonalitas dalam aritmetika titik mengambang. Gram-Schmidt termodifikasi mengurangi galat tersebut. Perangkat lunak numerik untuk matriks padat umumnya memakai reflektor Householder, sedangkan rotasi Givens berguna ketika hanya elemen tertentu yang perlu dibuat nol.
 
-### Transformasi Householder
-
 Untuk vektor satuan <InlineMath math="v\in\mathbb{R}^m" />, matriks Householder didefinisikan sebagai
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
@@ -227,8 +223,6 @@ Mulai dengan <InlineMath math="A_1=A" />. Pantulkan kolom pertamanya ke kelipata
 </MathContainer>
 
 <BlockMath math="u_1 = \tilde{a}_1 \mp \|\tilde{a}_1\|_2 \cdot e_1" />
-
-### Proses Iteratif Transformasi
 
 Dengan <InlineMath math="S_1=I_m-2v_1v_1^T" />, seluruh elemen kolom pertama di bawah diagonal menjadi nol:
 

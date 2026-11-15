@@ -13,8 +13,6 @@ Pengindeksan memilih **satu unsur mengikut kedudukannya** daripada rentetan atau
 
 Python memulakan nombor indeksnya pada <InlineMath math="0" />. Unsur pertama ada indeks <InlineMath math="0" />, unsur kedua ada indeks <InlineMath math="1" />, dan begitulah seterusnya. Python juga menyokong indeks negatif yang mengira ke belakang dari hujung.
 
-### Indeks Positif dan Negatif
-
 Dalam rentetan atau senarai, setiap aksara atau unsur ada dua jenis indeks. Indeks positif bermula dari <InlineMath math="0" /> di awal, manakala indeks negatif bermula dari <InlineMath math="-1" /> di hujung.
 
 Jadual ini meletakkan **dua indeks pada unsur yang sama**. Kedua-dua `1` dan `-4` memilih `e`. Kod di bawah menggunakan `repr()` supaya tanda petikan dan rentetan kosong tetap kelihatan dalam output.
@@ -117,8 +115,6 @@ Langkah negatif membalikkan arah pemilihan. Bentuk `s[::-1]` meninggalkan kedua-
 ## Peraturan Hirisan
 
 Hirisan ditulis sebagai `start:stop:step`. Indeks mula termasuk, **indeks henti tidak termasuk**, dan langkah negatif melalui jujukan dari kanan ke kiri. Bila kamu ragu, semak tiga peraturan ini satu per satu sebelum menjalankan kod.
-
-### Mengira Unsur yang Dipilih
 
 Katakan <InlineMath math="n" /> ialah panjang `s`. Untuk kes mudah <InlineMath math="0 \le i \le j \le n" /> dengan langkah positif lalai, panjang `s[i:j]` ialah <InlineMath math="j-i" />. Hirisan umum mungkin ada had yang ditinggalkan, negatif, atau di luar julat, serta langkah yang berbeza. Python terlebih dahulu **menormalkan had itu berdasarkan panjang jujukan**. Bilangan tepatnya ialah `len(range(*slice(i, j, step).indices(len(s))))`.
 
@@ -309,8 +305,6 @@ Hirisan memilih indeks daripada `range(start, stop, step)`. Untuk `s = 'Python'`
 ## Bentuk Ringkas Hirisan
 
 Had yang ditinggalkan mengikut **arah langkah**. Langkah positif secara lalai bermula di awal dan berhenti selepas unsur terakhir. Langkah negatif secara lalai bermula pada unsur terakhir dan berhenti selepas melepasi unsur pertama.
-
-### Dari Awal atau hingga Hujung
 
 Dengan **langkah positif lalai**, `s[:3]` memilih bahagian awal dan `s[3:]` memilih bahagian hujung. Dalam `s[::-1]`, kedua-dua had yang ditinggalkan mengikut arah negatif, jadi jujukan itu terbalik.
 

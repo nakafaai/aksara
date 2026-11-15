@@ -55,8 +55,6 @@ Alternativ können wir nach einer beliebigen festen Spalte <InlineMath math="j" 
 
 Der Term <InlineMath math="(-1)^{i+j}\det A_{ij}" /> ist der **Kofaktor** von <InlineMath math="a_{ij}" />. Der Faktor <InlineMath math="(-1)^{i+j}" /> erzeugt das abwechselnde Schachbrettmuster der Vorzeichen. Eine Zeile oder Spalte mit vielen Nullen verringert die Anzahl der zu berechnenden Minoren.
 
-### Kofaktorentwicklung für eine Matrix dritter Ordnung
-
 Für eine <InlineMath math="3 \times 3" />-Matrix sieht die Kofaktorentwicklung beispielsweise so aus:
 
 <BlockMath math="A = \begin{pmatrix} 2 & 1 & 3 \\ 0 & 4 & 1 \\ 1 & 2 & 0 \end{pmatrix}" />
@@ -185,8 +183,6 @@ Deshalb:
 </MathContainer>
 
 Falls ein Algorithmus während der Elimination eine Zeile skaliert, muss dieser Skalierungsfaktor ebenfalls erfasst und aus dem Endergebnis herausgerechnet werden. In numerischen Berechnungen verwendet man üblicherweise partielle Pivotisierung, um einen Nullpivot zu vermeiden und den Einfluss von Rundungsfehlern zu verringern.
-
-### Anzahl der Operationen
 
 Für eine dichte <InlineMath math="n \times n" />-Matrix benötigt die Elimination oder <InlineMath math="\mathrm{LU}" />-Zerlegung ungefähr <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> Gleitkommaoperationen. Das anschließende Multiplizieren der Diagonaleinträge erfordert nur <InlineMath math="O(n)" /> zusätzliche Arbeit. Eine naive rekursive Kofaktorentwicklung kann dagegen wie <InlineMath math="O(n!)" /> wachsen.
 

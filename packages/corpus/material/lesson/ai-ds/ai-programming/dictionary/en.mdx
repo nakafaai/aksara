@@ -89,8 +89,6 @@ Lists and tuples organize items by position, while dictionaries organize entries
 
 A dictionary is mutable, its **keys are unique and hashable**, and its iteration order follows key insertion order. Those three properties explain most of the behavior you observe later: why you can add or remove entries after creation, why assigning to an existing key overwrites instead of duplicating, and why iterating over a dictionary gives a stable, predictable order.
 
-### Insertion Order and Unique Keys
-
 Python's language specification guarantees dictionary insertion order from Python `3.7` onward. Assigning a new value to an existing key updates that entry **without moving the key**. Deleting the key and inserting it again places it at the end.
 
 <CodeBlock
@@ -126,8 +124,6 @@ Keys in a dictionary are always unique. In `d = {'a': 1, 'b': 2, 'a': 3}`, the k
 ## Accessing Dictionaries
 
 To retrieve a value from a dictionary, **provide its key**. A meaningful key such as a name or date takes the place of a sequential numeric index.
-
-### Indexing with Keys
 
 <CodeBlock
   data={[
@@ -224,8 +220,6 @@ The `items()` view yields **each key and value together**, so tuple unpacking ca
 ## Three Types of Dictionary Views
 
 A dictionary exposes **dynamic views** of its keys, values, and key-value pairs. A view is not a copy: it reads the current contents of the dictionary every time you iterate it, so a change after the view was created shows up in the very next loop.
-
-### Creating Dictionary Views
 
 <CodeBlock
   data={[

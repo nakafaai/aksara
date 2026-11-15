@@ -62,8 +62,8 @@
   explanation of what the learner should notice, or one representation that
   carries the teaching. A heading with no body, a heading whose body is only a
   component, and a heading whose body is only a short list are blocking
-  defects. A heading whose whole body stays under twenty-five prose words with
-  no table, blockquote, code block, or component is a review candidate. Words
+  defects. So is a heading whose whole body stays under twenty-five prose words
+  with no table, blockquote, code block, or component. Words
   inside list items count as prose, so a worked-solution list can stand alone
   while a bare bullet list cannot. A heading that opens nested subsections keeps
   the bridge paragraph the previous bullet requires.
@@ -114,6 +114,16 @@ contains. Its structural parts are enforced here:
   context.
 - A lesson usually has five to nine H2 sections. Fewer often means missing
   examples or practice; more often means thin sections that should merge.
+  The gate holds the outline to the shape the 383 lessons of 15 November 2026
+  measured: `flat-outline` blocks fewer than three H2 sections (the 5th
+  percentile) and `crowded-outline` more than ten (the largest lesson), and
+  `heading-order` keeps every heading at H2 or H3.
+- Give an H2 no subsections or at least two. `lone-subsection` blocks an H2
+  that opens a single H3, because one subsection splits one teaching job across
+  two headings: merge it into its section when the two together stay a short
+  section, or make it a section of its own when each part carries its own job.
+  A worked-solution H3 stays alone, since an exercise keeps its solutions one
+  level below it.
 - Keep paragraphs to about seventy words. A paragraph near a hundred words
   usually hides a derivation, comparison, or process that a math block, table,
   diagram, or interactive visual would show better.
