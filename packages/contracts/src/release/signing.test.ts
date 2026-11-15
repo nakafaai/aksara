@@ -154,7 +154,7 @@ describe("release signing", () => {
         ).toBe(
           `nakafa.aksara.localized-content-release\n${manifestHash}\n${canonical}`
         );
-        expect(canonical).toContain('"activeAppLocales":["en","id","de"]');
+        expect(canonical).toContain('"activeAppLocales":["en","id","de","ms"]');
       })
   );
 

@@ -44,8 +44,9 @@ describe("readQuestionSets", () => {
         expect(Arr.map(set.questions, ({ number }) => number)).toEqual([
           1, 2, 3,
         ]);
+        expect(set.explanations).toEqual(["en", "id", "de", "ms"]);
         expect(set.questions[0]).toEqual({
-          explanations: ["en", "id", "de"],
+          explanations: ["en", "id", "de", "ms"],
           item: onReading,
           number: 1,
           set: TEST_SET,
@@ -101,12 +102,13 @@ describe("readQuestionSets", () => {
         const withoutItem = yield* reject(
           Arr.filter(questionFiles(1), ([path]) => !path.endsWith("/item.ts"))
         );
-        const withoutAnswer = yield* reject(
-          Arr.filter(
+        const withoutAnswer = yield* reject([
+          ...Arr.filter(
             questionFiles(1),
             ([path]) => !path.endsWith("answer.de.mdx")
-          )
-        );
+          ),
+          ...questionFiles(2),
+        ]);
         const extraPrompt = yield* reject([
           ...questionFiles(1),
           [setSourcePath(TEST_SET, "question-1", "question.en.mdx"), "Extra."],
@@ -122,36 +124,38 @@ describe("readQuestionSets", () => {
   );
 
   it.effect(
-    "carries a declared locale that is not served yet when every question of the set explains in it",
+    "publishes a set in exactly the locales every question explains it in",
     () =>
       Effect.gen(function* () {
-        /** The Malay explanation of one question. */
-        const malay = (number: number) =>
-          [
-            setSourcePath(TEST_SET, `question-${number}`, "answer.ms.mdx"),
-            "Penjelasan.",
-          ] as const;
-        const [set] = yield* read([
-          ...questionFiles(1),
-          malay(1),
-          ...questionFiles(2),
-          malay(2),
-        ]);
-        const partial = yield* reject([
-          ...questionFiles(1),
-          malay(1),
-          ...questionFiles(2),
-        ]);
+        /** The files of one question without its explanations in German and Malay. */
+        const unwritten = (number: number) =>
+          Arr.filter(
+            questionFiles(number),
+            ([path]) =>
+              !(
+                path.endsWith("answer.de.mdx") || path.endsWith("answer.ms.mdx")
+              )
+          );
+        const [set] = yield* read([...unwritten(1), ...unwritten(2)]);
+        const partial = yield* reject([...questionFiles(1), ...unwritten(2)]);
+        const none = yield* reject(
+          Arr.filter(questionFiles(1), ([path]) => !path.includes("/answer."))
+        );
 
+        expect(set?.explanations).toEqual(["en", "id"]);
         expect(
           Arr.map(set?.questions ?? [], ({ explanations }) => explanations)
         ).toEqual([
-          ["en", "id", "de", "ms"],
-          ["en", "id", "de", "ms"],
+          ["en", "id"],
+          ["en", "id"],
         ]);
         expect(partial).toMatchObject({
           _tag: "QuestionFileSetError",
           sourcePath: setSourcePath(TEST_SET, "question-2"),
+        });
+        expect(none).toMatchObject({
+          _tag: "QuestionExplanationError",
+          set: TEST_SET,
         });
       })
   );

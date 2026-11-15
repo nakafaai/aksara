@@ -4,9 +4,9 @@ import { hasCanonicalOrder } from "#contracts/canonical";
 
 /**
  * Every locale code the contract declares, in canonical order: the active
- * locales first, then a declared locale whose corpus is still being written.
- * Malay (`ms`) is declared so its copy and content can be written completely
- * before one release makes it active; an active locale never falls back.
+ * locales first, then any declared locale whose corpus is still being written.
+ * A declared locale becomes active in one release, and an active locale never
+ * falls back to another language.
  */
 export const AppLocaleCodeSchema = Schema.Literals(["en", "id", "de", "ms"]);
 export type AppLocaleCode = typeof AppLocaleCodeSchema.Type;
@@ -94,6 +94,7 @@ export const ActiveAppLocaleCodeSchema = AppLocaleCodeSchema.pick([
   ENGLISH_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 ]);
 export type ActiveAppLocaleCode = typeof ActiveAppLocaleCodeSchema.Type;
 

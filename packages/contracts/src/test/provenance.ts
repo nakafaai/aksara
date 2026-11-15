@@ -155,7 +155,9 @@ export function record(
     version: "test-source-version",
   };
   const attribution =
-    source === "mokhtasar-english" || source === "mokhtasar-german"
+    source === "mokhtasar-english" ||
+    source === "mokhtasar-german" ||
+    source === "mokhtasar-indonesian"
       ? {
           ...common,
           id: source,

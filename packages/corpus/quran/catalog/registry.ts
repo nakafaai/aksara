@@ -2,6 +2,7 @@ import {
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
   makeAppLocale,
 } from "@nakafa/aksara-contracts/locale";
 import { QURAN_SOURCE_IDS } from "@nakafa/aksara-contracts/quran/identity";
@@ -20,15 +21,19 @@ import {
   mokhtasarEnglishEdition,
   mokhtasarGermanAttribution,
   mokhtasarGermanEdition,
+  mokhtasarIndonesianAttribution,
+  mokhtasarIndonesianEdition,
 } from "#corpus/quran/catalog/mokhtasar";
 import {
   bubenheimNamesAttribution,
   kemenagNamesAttribution,
+  nakafaMalayNamesAttribution,
 } from "#corpus/quran/catalog/names";
 import {
   quranencEnglishAttribution,
   quranencGermanAttribution,
   quranencIndonesianAttribution,
+  quranencMalayAttribution,
   quranencTafsirAttribution,
 } from "#corpus/quran/catalog/quranenc";
 import {
@@ -116,6 +121,14 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
         status: "approved",
       },
     ]),
+    catalogEntry(nakafaMalayNamesAttribution, [
+      {
+        evidence:
+          "No official Malaysian edition lists all 114 surah-name meanings, so Nakafa wrote them from the Arabic names and reviewed each against the pinned Tanzil English and LPMQ Indonesian meanings. The pinned review record lists every value beside both references.",
+        scope: "ms-surah-name",
+        status: "approved",
+      },
+    ]),
     catalogEntry(quranencEnglishAttribution, [
       {
         evidence:
@@ -137,6 +150,14 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
         evidence:
           "The exact Bubenheim XML transcript, named translators, v1.1.4-xml.1 identifier, QuranEnc republication terms and update endpoint, and the official IslamHouse publication record are pinned. Content bytes remain unmodified.",
         scope: "de-translation",
+        status: "approved",
+      },
+    ]),
+    catalogEntry(quranencMalayAttribution, [
+      {
+        evidence:
+          "The 114 official QuranEnc API responses for malay_basumayyah v1.0.0, the translator, and the republication terms are pinned without modifying content. QuranEnc publishes no XML transcript for this translation.",
+        scope: "ms-translation",
         status: "approved",
       },
     ]),
@@ -190,6 +211,23 @@ export const quranCatalog = Schema.NonEmptyArray(QuranCatalogEntrySchema)
         notice:
           "Lies die offizielle deutsche Al-Mukhtasar-Ausgabe auf der Website des Herausgebers. Nakafa verlinkt sie und übersetzt oder veröffentlicht den Tafsir nicht maschinell neu.",
         sourceId: "mokhtasar-german",
+      })
+    ),
+    catalogEntry(
+      mokhtasarIndonesianAttribution,
+      [
+        {
+          evidence: `The official public book page identifies Indonesian book ${mokhtasarIndonesianEdition.bookId} as complete catalog version ${mokhtasarIndonesianEdition.version}, and the publisher lists no Malay edition among its Al-Mukhtasar translations. ${mokhtasarCatalog.terms.reason}`,
+          scope: "ms-tafsir-access",
+          status: "approved",
+        },
+      ],
+      QuranTafsirAccessSchema.make({
+        appLocale: makeAppLocale(MALAY_APP_LOCALE_CODE),
+        kind: "external",
+        notice:
+          "Baca edisi rasmi Al-Mukhtasar dalam bahasa Indonesia di laman web penerbit. Tiada edisi bahasa Melayu lagi. Nakafa memautkannya dan tidak menterjemah atau menerbitkan semula tafsir itu secara mesin.",
+        sourceId: "mokhtasar-indonesian",
       })
     ),
   ]);

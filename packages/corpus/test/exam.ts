@@ -10,17 +10,22 @@ import {
 
 /** One title in every app locale, so each route spells it in each locale. */
 export function titled(title: string) {
-  return { de: { title }, en: { title }, id: { title } };
+  return { de: { title }, en: { title }, id: { title }, ms: { title } };
 }
 
 /** One description in every app locale, as an exam translates only its description. */
 export function described(description: string) {
-  return { de: { description }, en: { description }, id: { description } };
+  return {
+    de: { description },
+    en: { description },
+    id: { description },
+    ms: { description },
+  };
 }
 
 /** One route slug in every app locale. */
 export function slugged(slug: string) {
-  return { de: slug, en: slug, id: slug };
+  return { de: slug, en: slug, id: slug, ms: slug };
 }
 
 /** One set of a test track, named and routed as `Set <n>`. */

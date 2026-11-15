@@ -25,6 +25,8 @@ import {
 import { StimulusVersionSchema } from "@nakafa/aksara-contracts/assessment/stimulus";
 import {
   ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+  activeAppLocaleCode,
   ContentLanguageSchema,
 } from "@nakafa/aksara-contracts/locale";
 import type {
@@ -122,7 +124,8 @@ const assembleSet = Effect.fn("AksaraPublisher.assembleSet")(function* (
 /**
  * Freezes the paper of one plan: each section places the version of each of
  * its questions in the section's language, and the paper lists the readings
- * those versions use, checked before the paper is hashed.
+ * those versions use, checked before the paper is hashed. The paper serves the
+ * locales every one of its sets is explained in.
  */
 const freezePaper = Effect.fn("AksaraPublisher.freezePaper")(function* (
   checkoutRoot: string,
@@ -158,7 +161,17 @@ const freezePaper = Effect.fn("AksaraPublisher.freezePaper")(function* (
     ),
   });
   yield* verifyPaperStimuli(paper, versions);
+  const appLocales = yield* Schema.decodeUnknownEffect(
+    ActiveAppLocaleListSchema
+  )(
+    Arr.filter(ACTIVE_APP_LOCALES, (appLocale) =>
+      Arr.every(plan.sections, ({ set }) =>
+        Arr.contains(set.explanations, activeAppLocaleCode(appLocale))
+      )
+    )
+  );
   return {
+    appLocales,
     assembled: Arr.map(sections, ({ assembled }) => assembled),
     hash: yield* hashPaper(paper),
     paper,
@@ -246,7 +259,7 @@ export const prepareAssessmentSnapshot: (
   const catalog = yield* projectTryoutCatalog(input.content.exams, (id) =>
     Option.map(
       Arr.findFirst(papers, ({ paper }) => paper.id === id),
-      ({ hash, paper }) => ({ hash, id: paper.id })
+      ({ appLocales, hash, paper }) => ({ appLocales, hash, id: paper.id })
     )
   );
   const sets = Arr.flatMap(papers, ({ assembled }) => assembled);

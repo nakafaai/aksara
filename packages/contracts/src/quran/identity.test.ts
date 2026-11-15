@@ -23,27 +23,49 @@ describe("Quran source mapping golden identities", () => {
       "tanzil-metadata",
       "kemenag-names",
       "bubenheim-names",
+      "nakafa-malay-names",
     ]);
     expect(Arr.map(ACTIVE_APP_LOCALES, quranNameProvenanceScope)).toEqual([
       "en-surah-name",
       "id-surah-name",
       "de-surah-name",
+      "ms-surah-name",
     ]);
   });
 
   it("pins the translation and surah-name source of each provenance scope", () => {
     expect(
       Arr.map(
-        ["en-translation", "id-translation", "de-translation"] as const,
+        [
+          "en-translation",
+          "id-translation",
+          "de-translation",
+          "ms-translation",
+        ] as const,
         quranTranslationSourceForScope
       )
-    ).toEqual(["quranenc-english", "quranenc-indonesian", "quranenc-german"]);
+    ).toEqual([
+      "quranenc-english",
+      "quranenc-indonesian",
+      "quranenc-german",
+      "quranenc-malay",
+    ]);
     expect(
       Arr.map(
-        ["en-surah-name", "id-surah-name", "de-surah-name"] as const,
+        [
+          "en-surah-name",
+          "id-surah-name",
+          "de-surah-name",
+          "ms-surah-name",
+        ] as const,
         quranNameSourceForScope
       )
-    ).toEqual(["tanzil-metadata", "kemenag-names", "bubenheim-names"]);
+    ).toEqual([
+      "tanzil-metadata",
+      "kemenag-names",
+      "bubenheim-names",
+      "nakafa-malay-names",
+    ]);
   });
 
   it("pins the reading sources of each active locale", () => {
@@ -51,6 +73,7 @@ describe("Quran source mapping golden identities", () => {
       ["tanzil-text", "quranenc-english"],
       ["tanzil-text", "quranenc-indonesian"],
       ["tanzil-text", "quranenc-german"],
+      ["tanzil-text", "quranenc-malay"],
     ]);
   });
 });
@@ -66,6 +89,7 @@ describe("Quran source identity", () => {
       { scope: "en-translation", sourceId: "quranenc-english" },
       { scope: "id-translation", sourceId: "quranenc-indonesian" },
       { scope: "de-translation", sourceId: "quranenc-german" },
+      { scope: "ms-translation", sourceId: "quranenc-malay" },
     ]);
     expect(
       quranReadingSourceIds(makeAppLocale(INDONESIAN_APP_LOCALE_CODE))
@@ -76,11 +100,17 @@ describe("Quran source identity", () => {
           quranTranslationProvenanceScope(appLocale)
         )
       )
-    ).toEqual(["quranenc-english", "quranenc-indonesian", "quranenc-german"]);
+    ).toEqual([
+      "quranenc-english",
+      "quranenc-indonesian",
+      "quranenc-german",
+      "quranenc-malay",
+    ]);
     expect(Arr.map(ACTIVE_APP_LOCALES, quranTafsirSourceId)).toEqual([
       "mokhtasar-english",
       "quranenc-tafsir",
       "mokhtasar-german",
+      "mokhtasar-indonesian",
     ]);
   });
 });

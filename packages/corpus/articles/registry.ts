@@ -34,7 +34,6 @@ import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 import {
   appLocaleCode,
-  carriedAppLocales,
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
@@ -163,11 +162,7 @@ const expandArticle = Effect.fn("AksaraCorpus.expandArticle")(function* (
   source: ArticleSource,
   appLocales: ActiveAppLocaleList
 ) {
-  const carried = carriedAppLocales(
-    appLocales,
-    (code) => source.routeSlugs[code] !== undefined
-  );
-  return yield* Effect.forEach(carried, (appLocale) =>
+  return yield* Effect.forEach(appLocales, (appLocale) =>
     projectArticle(source, appLocale)
   );
 });

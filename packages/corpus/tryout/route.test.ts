@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option } from "effect";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { decodeTryoutRegistry } from "#corpus/tryout/registry";
@@ -13,7 +14,9 @@ const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
 /** Projects the complete authored catalog into its localized rows, every set with a test paper. */
 const catalogRows = Effect.flatMap(decodeTryoutRegistry(), (sources) =>
-  projectTryoutCatalog(sources, (id) => Option.some({ hash, id }))
+  projectTryoutCatalog(sources, (id) =>
+    Option.some({ appLocales: ACTIVE_APP_LOCALES, hash, id })
+  )
 );
 
 describe("tryout routes", () => {

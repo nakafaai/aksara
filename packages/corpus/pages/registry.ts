@@ -24,7 +24,6 @@ import {
 } from "effect";
 import {
   appLocaleCode,
-  carriedAppLocales,
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
@@ -103,11 +102,7 @@ const expandPage = Effect.fn("AksaraCorpus.expandPage")(function* (
   source: PageSource,
   appLocales: ActiveAppLocaleList
 ) {
-  const carried = carriedAppLocales(
-    appLocales,
-    (code) => source.publicPaths[code] !== undefined
-  );
-  return yield* Effect.forEach(carried, (appLocale) =>
+  return yield* Effect.forEach(appLocales, (appLocale) =>
     projectPage(source, appLocale)
   );
 });

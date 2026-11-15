@@ -22,13 +22,13 @@ describe("locale", () => {
     expect(artifactLocaleCode(ArtifactLocaleSchema.make("de"))).toBe("de");
   });
 
-  it("declares Malay while only English, Indonesian, and German are active", () => {
+  it("serves Malay after English, Indonesian, and German", () => {
     expect(Schema.is(AppLocaleCodeSchema)("ms")).toBe(true);
-    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(false);
-    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
-    expect(
-      Exit.isFailure(Schema.decodeUnknownExit(ActiveAppLocaleSchema)("ms"))
-    ).toBe(true);
+    expect(Schema.is(ActiveAppLocaleCodeSchema)("ms")).toBe(true);
+    expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de", "ms"]);
+    expect(Exit.isSuccess(Schema.decodeExit(ActiveAppLocaleSchema)("ms"))).toBe(
+      true
+    );
   });
 
   it("accepts a well-formed canonical tag of any language as a content language", () => {
@@ -78,13 +78,14 @@ describe("locale", () => {
     }
   });
 
-  it("rejects empty, duplicate, unordered, and not yet active locale lists", () => {
+  it("rejects empty, duplicate, unordered, and unknown locale lists", () => {
     for (const locales of [
       [],
       ["en", "en"],
       ["id", "en"],
       ["de", "id"],
-      ["en", "id", "de", "ms"],
+      ["en", "id", "ms", "de"],
+      ["en", "id", "de", "ms", "fr"],
     ] as const) {
       const result = Schema.decodeUnknownExit(ActiveAppLocaleListSchema)(
         locales
@@ -94,7 +95,7 @@ describe("locale", () => {
     expect(
       String(Schema.decodeExit(ActiveAppLocaleListSchema)(["en", "en"]))
     ).toContain(
-      "Active app locales must be unique and follow en, id, de order."
+      "Active app locales must be unique and follow en, id, de, ms order."
     );
   });
 });

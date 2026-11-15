@@ -29,7 +29,7 @@ const programManifest = ProgramSnapshotSchema.make({
   rowCount: 591,
   rowDigest: hash,
   sitemapCount: 78,
-  slugCount: 18,
+  slugCount: 24,
   snapshotId: hash,
 });
 const quranManifest = QuranSnapshotSchema.make({

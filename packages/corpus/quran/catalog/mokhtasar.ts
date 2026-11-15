@@ -1,10 +1,11 @@
 import {
   ACTIVE_APP_LOCALE_CODES,
+  ActiveAppLocaleCodeSchema,
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { QuranExternalSourceAttributionSchema } from "@nakafa/aksara-contracts/quran/source";
-import { Array as Arr, Schema } from "effect";
+import { Array as Arr, HashSet, Schema } from "effect";
 
 const MokhtasarEditionSchema = Schema.Struct({
   appLocale: AppLocaleCodeSchema,
@@ -16,25 +17,28 @@ const MokhtasarEditionSchema = Schema.Struct({
   version: Schema.Int.pipe(Schema.check(Schema.isGreaterThan(0))),
 });
 
-/** Checks that the official catalog covers every active application locale once. */
-function hasCompleteLocaleCoverage(
+const MokhtasarBookIdSchema = Schema.Int.pipe(
+  Schema.check(Schema.isGreaterThan(0))
+);
+
+/** Checks that each official edition is listed once, for its own language. */
+function hasDistinctEditions(
   editions: readonly (typeof MokhtasarEditionSchema.Type)[]
 ) {
   return (
-    editions.length === ACTIVE_APP_LOCALE_CODES.length &&
-    Arr.every(
-      editions,
-      ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALE_CODES[index]
-    )
+    HashSet.size(
+      HashSet.fromIterable(Arr.map(editions, ({ appLocale }) => appLocale))
+    ) === editions.length
   );
 }
 
-const MokhtasarCatalogSchema = Schema.Struct({
+const MokhtasarCatalogFieldsSchema = Schema.Struct({
+  /** The listed edition that readers of each active locale are linked to. */
+  access: Schema.Record(ActiveAppLocaleCodeSchema, MokhtasarBookIdSchema),
   editions: Schema.NonEmptyArray(MokhtasarEditionSchema).pipe(
     Schema.check(
-      Schema.makeFilter(hasCompleteLocaleCoverage, {
-        message:
-          "Expected one official Mokhtasar edition for every active app locale.",
+      Schema.makeFilter(hasDistinctEditions, {
+        message: "Expected each official Mokhtasar edition once.",
       })
     )
   ),
@@ -49,6 +53,24 @@ const MokhtasarCatalogSchema = Schema.Struct({
   }),
 });
 
+/** Checks that every active locale links to one listed official edition. */
+function hasEditionForEveryLocale(
+  catalog: typeof MokhtasarCatalogFieldsSchema.Type
+) {
+  return Arr.every(ACTIVE_APP_LOCALE_CODES, (code) =>
+    Arr.some(catalog.editions, ({ bookId }) => bookId === catalog.access[code])
+  );
+}
+
+const MokhtasarCatalogSchema = MokhtasarCatalogFieldsSchema.pipe(
+  Schema.check(
+    Schema.makeFilter(hasEditionForEveryLocale, {
+      message:
+        "Expected every active app locale to link one listed Mokhtasar edition.",
+    })
+  )
+);
+
 export const mokhtasarEnglishEdition = MokhtasarEditionSchema.make({
   appLocale: "en",
   bookId: 319,
@@ -59,7 +81,7 @@ export const mokhtasarEnglishEdition = MokhtasarEditionSchema.make({
   version: 7,
 });
 
-const mokhtasarIndonesianEdition = MokhtasarEditionSchema.make({
+export const mokhtasarIndonesianEdition = MokhtasarEditionSchema.make({
   appLocale: "id",
   bookId: 219,
   completed: true,
@@ -81,6 +103,13 @@ export const mokhtasarGermanEdition = MokhtasarEditionSchema.make({
 
 /** Reviewed official catalog metadata without copied Tafsir content. */
 export const mokhtasarCatalog = MokhtasarCatalogSchema.make({
+  access: {
+    de: mokhtasarGermanEdition.bookId,
+    en: mokhtasarEnglishEdition.bookId,
+    id: mokhtasarIndonesianEdition.bookId,
+    // No Malay edition exists; Malay readers are linked to the Indonesian one.
+    ms: mokhtasarIndonesianEdition.bookId,
+  },
   editions: [
     mokhtasarEnglishEdition,
     mokhtasarIndonesianEdition,
@@ -115,6 +144,11 @@ export const mokhtasarEnglishAttribution =
         notice: `Offizielle englische Al-Mukhtasar-Ausgabe, Buch ${mokhtasarEnglishEdition.bookId}, Katalogversion ${mokhtasarEnglishEdition.version}. Nakafa verlinkt den Herausgeber und veröffentlicht den Text nicht erneut.`,
         title: "Offizieller englischer Al-Mukhtasar-Tafsir",
       },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice: `Edisi rasmi Al-Mukhtasar dalam bahasa Inggeris, buku ${mokhtasarEnglishEdition.bookId}, versi katalog ${mokhtasarEnglishEdition.version}. Nakafa memautkan penerbit dan tidak menerbitkan semula teksnya.`,
+        title: "Tafsir Al-Mukhtasar Inggeris Rasmi",
+      },
     ],
     id: "mokhtasar-english",
     kind: "external",
@@ -148,6 +182,11 @@ export const mokhtasarGermanAttribution =
         notice: `Offizielle deutsche Al-Mukhtasar-Ausgabe, Buch ${mokhtasarGermanEdition.bookId}, Katalogversion ${mokhtasarGermanEdition.version}. Nakafa verlinkt den Herausgeber und veröffentlicht den Text nicht erneut.`,
         title: "Offizieller deutscher Al-Mukhtasar-Tafsir",
       },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice: `Edisi rasmi Al-Mukhtasar dalam bahasa Jerman, buku ${mokhtasarGermanEdition.bookId}, versi katalog ${mokhtasarGermanEdition.version}. Nakafa memautkan penerbit dan tidak menerbitkan semula teksnya.`,
+        title: "Tafsir Al-Mukhtasar Jerman Rasmi",
+      },
     ],
     id: "mokhtasar-german",
     kind: "external",
@@ -160,4 +199,42 @@ export const mokhtasarGermanAttribution =
     },
     updateUrl: mokhtasarGermanEdition.officialUrl,
     version: `catalog-v${mokhtasarGermanEdition.version}`,
+  });
+
+/** Official external Indonesian attribution, the Tafsir access for Malay readers. */
+export const mokhtasarIndonesianAttribution =
+  QuranExternalSourceAttributionSchema.make({
+    copy: [
+      {
+        appLocale: AppLocaleSchema.make("en"),
+        notice: `Official Indonesian Al-Mukhtasar edition, book ${mokhtasarIndonesianEdition.bookId}, catalog version ${mokhtasarIndonesianEdition.version}. No Malay edition exists, so Malay readers are linked to the Indonesian one. Nakafa links to the publisher and does not republish its text.`,
+        title: "Official Indonesian Al-Mukhtasar Tafsir",
+      },
+      {
+        appLocale: AppLocaleSchema.make("id"),
+        notice: `Edisi resmi Al-Mukhtasar berbahasa Indonesia, buku ${mokhtasarIndonesianEdition.bookId}, versi katalog ${mokhtasarIndonesianEdition.version}. Belum ada edisi bahasa Melayu, jadi pembaca bahasa Melayu ditautkan ke edisi Indonesia. Nakafa menautkan penerbit dan tidak menerbitkan ulang teksnya.`,
+        title: "Tafsir Al-Mukhtasar Indonesia Resmi",
+      },
+      {
+        appLocale: AppLocaleSchema.make("de"),
+        notice: `Offizielle indonesische Al-Mukhtasar-Ausgabe, Buch ${mokhtasarIndonesianEdition.bookId}, Katalogversion ${mokhtasarIndonesianEdition.version}. Eine malaiische Ausgabe gibt es nicht, daher verlinkt Nakafa malaiische Leser auf die indonesische. Nakafa verlinkt den Herausgeber und veröffentlicht den Text nicht erneut.`,
+        title: "Offizieller indonesischer Al-Mukhtasar-Tafsir",
+      },
+      {
+        appLocale: AppLocaleSchema.make("ms"),
+        notice: `Edisi rasmi Al-Mukhtasar dalam bahasa Indonesia, buku ${mokhtasarIndonesianEdition.bookId}, versi katalog ${mokhtasarIndonesianEdition.version}. Tiada edisi bahasa Melayu, jadi pembaca bahasa Melayu dipautkan kepada edisi bahasa Indonesia. Nakafa memautkan penerbit dan tidak menerbitkan semula teksnya.`,
+        title: "Tafsir Al-Mukhtasar Indonesia Rasmi",
+      },
+    ],
+    id: "mokhtasar-indonesian",
+    kind: "external",
+    publisher: mokhtasarCatalog.publisher,
+    retrievedAt: mokhtasarCatalog.observedAt,
+    sourceUrl: mokhtasarIndonesianEdition.officialUrl,
+    terms: {
+      access: mokhtasarCatalog.terms.access,
+      url: mokhtasarCatalog.terms.url,
+    },
+    updateUrl: mokhtasarIndonesianEdition.officialUrl,
+    version: `catalog-v${mokhtasarIndonesianEdition.version}`,
   });

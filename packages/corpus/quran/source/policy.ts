@@ -9,8 +9,8 @@ import { localizedSourceMapSchema } from "#corpus/locale/source";
 /** Domain that authenticates the complete ordered official data bundle. */
 export const QURAN_SOURCE_BUNDLE_DOMAIN = "aksara.quran.source-bundle";
 
-/** Domain that authenticates the 114 ordered QuranEnc Tafsir responses. */
-export const QURAN_TAFSIR_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle";
+/** Domain that authenticates each bundle of 114 ordered QuranEnc API responses. */
+export const QURANENC_BUNDLE_DOMAIN = "aksara.quranenc.api-bundle";
 
 /** Returns one lowercase SHA-256 digest without a wire prefix for exact official bytes. */
 export const sha256Hex = Effect.fn("AksaraCorpus.sha256Hex")(function* (
@@ -36,6 +36,14 @@ const PinnedQuranFileSchema = Schema.Struct({
 });
 export type PinnedQuranFile = typeof PinnedQuranFileSchema.Type;
 
+/** 114 ordered QuranEnc API responses, one per surah, pinned as one bundle. */
+const QuranApiBundleSchema = Schema.Struct({
+  artifact: QuranSourceArtifactSchema,
+  directory: Schema.String,
+  name: Schema.String,
+});
+export type QuranApiBundle = typeof QuranApiBundleSchema.Type;
+
 const QuranSourcePolicySchema = Schema.Struct({
   data: Schema.Struct({
     arabic: PinnedQuranFileSchema,
@@ -47,14 +55,12 @@ const QuranSourcePolicySchema = Schema.Struct({
     germanPublication: PinnedQuranFileSchema,
     kemenagPublication: PinnedQuranFileSchema,
   }),
-  tafsir: Schema.Struct({
-    artifact: QuranSourceArtifactSchema,
-    directory: Schema.String,
-    name: Schema.String,
-  }),
+  malayTranslation: QuranApiBundleSchema,
+  tafsir: QuranApiBundleSchema,
   terms: Schema.Struct({
     islamhouse: PinnedQuranFileSchema,
     kemenag: PinnedQuranFileSchema,
+    nakafa: PinnedQuranFileSchema,
     quranenc: PinnedQuranFileSchema,
     tanzil: PinnedQuranFileSchema,
   }),
@@ -96,6 +102,14 @@ export const QURAN_SOURCE_POLICY = {
         ),
         name: "kemenag-translation.rar",
         path: "kemenag/translation.rar",
+      },
+      ms: {
+        artifact: artifact(
+          7823,
+          "63e4e1c845ed0462651ab13161b11e74fe7d9aca0196091326e6861f26662da7"
+        ),
+        name: "nakafa-names.md",
+        path: "nakafa/names.md",
       },
     },
     translations: {
@@ -143,6 +157,15 @@ export const QURAN_SOURCE_POLICY = {
       path: "kemenag/publication.html",
     },
   },
+  malayTranslation: {
+    artifact: artifact(
+      5_854_178,
+      "170d4a6b19ea897fe3ef3e046bee8f51ca776fe51c016ddfe74b6aae4ecfb757",
+      114
+    ),
+    directory: "quranenc/ms",
+    name: "quranenc-ms",
+  },
   tafsir: {
     artifact: artifact(
       6_584_353,
@@ -168,6 +191,14 @@ export const QURAN_SOURCE_POLICY = {
       ),
       name: "kemenag-rights.html",
       path: "kemenag/rights.html",
+    },
+    nakafa: {
+      artifact: artifact(
+        7823,
+        "63e4e1c845ed0462651ab13161b11e74fe7d9aca0196091326e6861f26662da7"
+      ),
+      name: "nakafa-names.md",
+      path: "nakafa/names.md",
     },
     quranenc: {
       artifact: artifact(

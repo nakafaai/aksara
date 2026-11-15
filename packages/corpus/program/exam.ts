@@ -42,6 +42,7 @@ export const examProgramSources = [
       { appLocale: "en", publicSlug: "tka", title: "TKA" },
       { appLocale: "id", publicSlug: "tka", title: "TKA" },
       { appLocale: "de", publicSlug: "tka", title: "TKA" },
+      { appLocale: "ms", publicSlug: "tka", title: "TKA" },
     ],
     version: { label: "Pusmendik" },
   },
@@ -74,6 +75,7 @@ export const examProgramSources = [
       { appLocale: "en", publicSlug: "snbt", title: "SNBT 2027" },
       { appLocale: "id", publicSlug: "snbt", title: "SNBT 2027" },
       { appLocale: "de", publicSlug: "snbt", title: "SNBT 2027" },
+      { appLocale: "ms", publicSlug: "snbt", title: "SNBT 2027" },
     ],
     version: {
       endsAt: "2027-12-31",

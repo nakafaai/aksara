@@ -28,6 +28,7 @@ describe("Quran source policy", () => {
     expect(Record.keys(QURAN_SOURCE_POLICY.terms)).toEqual([
       "islamhouse",
       "kemenag",
+      "nakafa",
       "quranenc",
       "tanzil",
     ]);

@@ -1,14 +1,19 @@
 import { CatalogRowSchema } from "@nakafa/aksara-contracts/assessment/catalog";
 import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
-import {
-  ACTIVE_APP_LOCALES,
-  type AppLocale,
+import type {
+  ActiveAppLocale,
+  AppLocale,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import { projectTryoutExam } from "#corpus/tryout/exam";
+import {
+  projectTryoutExam,
+  type ServedExam,
+  serveTryoutExam,
+} from "#corpus/tryout/exam";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
+import { servedLocales } from "#corpus/tryout/row";
 import type { ExamSource } from "#corpus/tryout/schema";
 import type { PaperOf } from "#corpus/tryout/track";
 
@@ -22,7 +27,11 @@ export class TryoutCatalogDecodeError extends Schema.TaggedError<
 
 /** Projects one shared country once per locale from country-owned facts. */
 const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
-  function* (source: ExamSource, appLocale: AppLocale) {
+  function* (
+    source: ExamSource,
+    appLocale: AppLocale,
+    appLocales: readonly ActiveAppLocale[]
+  ) {
     const owner = `${source.countryKey}:${appLocale}`;
     const [translation, routeSlug] = yield* Effect.all(
       [
@@ -42,6 +51,7 @@ const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
         ? {}
         : { description: translation.description }),
       appLocale,
+      appLocales,
       countryCode: source.countryCode,
       countryKey: source.countryKey,
       graph,
@@ -54,57 +64,60 @@ const projectCountry = Effect.fn("AksaraCorpus.projectTryoutCatalogCountry")(
   }
 );
 
-/** Selects one registry-validated owner of each shared country identity. */
-function uniqueCountries(sources: readonly ExamSource[]) {
-  return [
-    ...MutableHashMap.values(
-      MutableHashMap.fromIterable(
-        Arr.map(sources, (source): [string, ExamSource] => [
-          source.countryKey,
-          source,
-        ])
+/**
+ * Selects one registry-validated owner of each shared country identity, served
+ * wherever one of its exams is.
+ */
+function uniqueCountries(exams: readonly ServedExam[]) {
+  const owners = MutableHashMap.fromIterable(
+    Arr.map(exams, (exam): [string, ExamSource] => [
+      exam.source.countryKey,
+      exam.source,
+    ])
+  );
+  return Arr.map([...MutableHashMap.values(owners)], (source) => ({
+    appLocales: servedLocales(
+      Arr.map(
+        Arr.filter(
+          exams,
+          (exam) => exam.source.countryKey === source.countryKey
+        ),
+        ({ appLocales }) => appLocales
       )
     ),
-  ];
+    source,
+  }));
 }
 
-/** Produces strict hierarchy rows from one validated locale selection. */
-const projectCatalog = Effect.fn("AksaraCorpus.projectTryoutCatalogSelection")(
-  function* (
-    sources: readonly ExamSource[],
-    appLocales: readonly AppLocale[],
-    paperOf: PaperOf
-  ) {
-    const countries = yield* Effect.forEach(
-      uniqueCountries(sources),
-      (source) =>
-        Effect.forEach(appLocales, (appLocale) =>
-          projectCountry(source, appLocale)
-        )
-    );
-    const exams = yield* Effect.forEach(sources, (source) =>
-      Effect.forEach(appLocales, (appLocale) =>
-        projectTryoutExam(source, appLocale, paperOf)
-      )
-    );
-    const rows = yield* Schema.decodeUnknownEffect(
-      Schema.Array(CatalogRowSchema)
-    )([...Arr.flatten(countries), ...Arr.flatten(Arr.flatten(exams))], {
-      onExcessProperty: "error",
-    }).pipe(
-      Effect.mapError((cause) => new TryoutCatalogDecodeError({ cause }))
-    );
-    yield* validateTryoutRoutes(rows);
-    return rows;
-  }
-);
-
 /**
- * Produces the catalog rows of every active exam in every active app locale,
- * each set naming the paper that the publisher froze for it.
+ * Produces the catalog rows of every active exam, each node in exactly the
+ * locales the sets beneath it are written in, and each set naming the paper
+ * that the publisher froze for it. A locale without a set of an exam shows
+ * neither the exam nor a country that holds no other exam in it.
  */
 export const projectTryoutCatalog = Effect.fn(
   "AksaraCorpus.projectTryoutCatalog"
 )(function* (sources: readonly ExamSource[], paperOf: PaperOf) {
-  return yield* projectCatalog(sources, ACTIVE_APP_LOCALES, paperOf);
+  const exams = yield* Effect.forEach(sources, (source) =>
+    serveTryoutExam(source, paperOf)
+  );
+  const countries = yield* Effect.forEach(
+    uniqueCountries(exams),
+    ({ appLocales, source }) =>
+      Effect.forEach(appLocales, (appLocale) =>
+        projectCountry(source, appLocale, appLocales)
+      )
+  );
+  const examRows = yield* Effect.forEach(exams, (exam) =>
+    Effect.forEach(exam.appLocales, (appLocale) =>
+      projectTryoutExam(exam, appLocale)
+    )
+  );
+  const rows = yield* Schema.decodeUnknownEffect(
+    Schema.Array(CatalogRowSchema)
+  )([...Arr.flatten(countries), ...Arr.flatten(Arr.flatten(examRows))], {
+    onExcessProperty: "error",
+  }).pipe(Effect.mapError((cause) => new TryoutCatalogDecodeError({ cause })));
+  yield* validateTryoutRoutes(rows);
+  return rows;
 });

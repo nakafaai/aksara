@@ -10,6 +10,7 @@ import {
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
 } from "#contracts/locale";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
 import {
@@ -41,6 +42,7 @@ const QuranStaticProvenanceScopeSchema = Schema.Literals([
 const QuranExternalTafsirProvenanceScopeSchema = Schema.Literals([
   "en-tafsir-access",
   "de-tafsir-access",
+  "ms-tafsir-access",
 ]);
 
 const QuranNonTranslationProvenanceScopeSchema = Schema.Union([
@@ -67,6 +69,7 @@ const QURAN_TAFSIR_PROVENANCE_SCOPES = {
   de: "de-tafsir-access",
   en: "en-tafsir-access",
   id: "id-tafsir",
+  ms: "ms-tafsir-access",
 } as const satisfies Record<
   ActiveAppLocaleCode,
   QuranNonTranslationProvenanceScope
@@ -95,6 +98,7 @@ const QURAN_STATIC_PROVENANCE_SOURCE = {
   "de-tafsir-access": quranTafsirSourceId(GERMAN_APP_LOCALE_CODE),
   "en-tafsir-access": quranTafsirSourceId(ENGLISH_APP_LOCALE_CODE),
   "id-tafsir": quranTafsirSourceId(INDONESIAN_APP_LOCALE_CODE),
+  "ms-tafsir-access": quranTafsirSourceId(MALAY_APP_LOCALE_CODE),
   metadata: "tanzil-metadata",
 } as const satisfies Record<QuranNonTranslationProvenanceScope, QuranSourceId>;
 

@@ -1,7 +1,10 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, Option } from "effect";
+import {
+  ACTIVE_APP_LOCALES,
+  ActiveAppLocaleListSchema,
+} from "@nakafa/aksara-contracts/locale";
+import { Array as Arr, Effect, Option, Schema } from "effect";
 import { described, testExamInput, titled } from "#corpus/test/exam";
 import { projectTryoutCatalog } from "#corpus/tryout/catalog";
 import { defineExamSource } from "#corpus/tryout/schema";
@@ -9,9 +12,20 @@ import { paperId } from "#corpus/tryout/track";
 
 const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
 
-/** Freezes a test paper for every set. */
+/** Freezes a test paper for every set, written in every active locale. */
 function paperOf(id: string) {
-  return Option.some({ hash, id });
+  return Option.some({ appLocales: ACTIVE_APP_LOCALES, hash, id });
+}
+
+/** Freezes a test paper for every set, the upper one written in every locale but Malay. */
+function withoutMalayUpper(id: string) {
+  return Option.some({
+    appLocales: id.endsWith("/2027/set-1")
+      ? Schema.decodeSync(ActiveAppLocaleListSchema)(["en", "id", "de"])
+      : ACTIVE_APP_LOCALES,
+    hash,
+    id,
+  });
 }
 
 /** The test exam with a description on its country and on its English exam page. */
@@ -92,6 +106,56 @@ describe("projectTryoutCatalog", () => {
     })
   );
 
+  it.effect("serves each node only in the locales of the sets beneath it", () =>
+    Effect.gen(function* () {
+      const exam = yield* describedExam;
+      const rows = yield* projectTryoutCatalog([exam], withoutMalayUpper);
+      const malay = Arr.filter(rows, ({ appLocale }) => appLocale === "ms");
+      const unwritten = Arr.filter(
+        ACTIVE_APP_LOCALES,
+        (locale) => locale !== "ms"
+      );
+
+      expect(Arr.map(malay, ({ kind }) => kind)).toEqual([
+        "country",
+        "exam",
+        "group",
+        "track",
+        "set",
+        "section",
+      ]);
+      expect(
+        Arr.map(
+          Arr.filter(rows, ({ appLocale }) => appLocale === "en"),
+          ({ appLocales, kind }) => [kind, appLocales]
+        )
+      ).toEqual([
+        ["country", ACTIVE_APP_LOCALES],
+        ["exam", ACTIVE_APP_LOCALES],
+        ["group", ACTIVE_APP_LOCALES],
+        ["track", ACTIVE_APP_LOCALES],
+        ["set", ACTIVE_APP_LOCALES],
+        ["section", ACTIVE_APP_LOCALES],
+        ["group", unwritten],
+        ["track", unwritten],
+        ["set", unwritten],
+        ["section", unwritten],
+        ["section", unwritten],
+      ]);
+
+      const english = yield* projectTryoutCatalog([exam], (id) =>
+        Option.some({
+          appLocales: Schema.decodeSync(ActiveAppLocaleListSchema)(["en"]),
+          hash,
+          id,
+        })
+      );
+      expect(
+        Arr.dedupe(Arr.map(english, ({ appLocale }) => appLocale))
+      ).toEqual(["en"]);
+    })
+  );
+
   it.effect("names the paper of a set from its track's profile", () =>
     Effect.gen(function* () {
       const exam = yield* describedExam;
@@ -116,7 +180,11 @@ describe("projectTryoutCatalog", () => {
           Option.none()
         ).pipe(Effect.flip);
         const invalid = yield* projectTryoutCatalog([exam], () =>
-          Option.some({ hash, id: "Not a paper" })
+          Option.some({
+            appLocales: ACTIVE_APP_LOCALES,
+            hash,
+            id: "Not a paper",
+          })
         ).pipe(Effect.flip);
         const { de: _de, ...partial } = described("A test exam.");
         const untranslated = yield* projectTryoutCatalog(

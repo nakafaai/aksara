@@ -66,7 +66,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
         );
         expect(attributions).toHaveLength(1);
         expect(attributions[0]).toMatchObject({
-          activeAppLocales: ["en", "id", "de"],
+          activeAppLocales: ["en", "id", "de", "ms"],
           sources: expect.arrayContaining([
             expect.objectContaining({
               copy: [
@@ -81,6 +81,10 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
                 expect.objectContaining({
                   appLocale: "de",
                   title: "Tanzil-Qurantext in uthmanischer Schrift",
+                }),
+                expect.objectContaining({
+                  appLocale: "ms",
+                  title: "Teks Al-Quran Tanzil (Uthmani)",
                 }),
               ],
               id: "tanzil-text",
@@ -101,6 +105,11 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
               appLocale: "de",
               kind: "external",
               sourceId: "mokhtasar-german",
+            },
+            {
+              appLocale: "ms",
+              kind: "external",
+              sourceId: "mokhtasar-indonesian",
             },
           ],
         });
@@ -207,7 +216,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
         const searches = Arr.filter(rows, isSearch);
 
         expect(attribution).toMatchObject({
-          activeAppLocales: ["en", "id", "de"],
+          activeAppLocales: ["en", "id", "de", "ms"],
           sources: expect.arrayContaining([
             expect.objectContaining({ id: "quranenc-german" }),
           ]),
@@ -226,7 +235,7 @@ layer(quranTestSourcesLayer)("Quran projection", (it) => {
             },
           ])
         );
-        expect(searches).toHaveLength(QURAN_SURAH_COUNT * 3);
+        expect(searches).toHaveLength(QURAN_SURAH_COUNT * 4);
         expect(findLocaleSearch(searches, "de")).toMatchObject({
           graph: { assetId: "asset:de:quran:quran-surah:1" },
           route: "quran/1",

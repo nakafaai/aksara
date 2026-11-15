@@ -39,7 +39,7 @@ describe("Quran base contracts", () => {
     }).toEqual({
       attributionCount: 1,
       chunkSize: 6,
-      externalTafsirLocales: ["en", "de"],
+      externalTafsirLocales: ["en", "de", "ms"],
       surahCount: 114,
       verseCount: 6236,
     });
