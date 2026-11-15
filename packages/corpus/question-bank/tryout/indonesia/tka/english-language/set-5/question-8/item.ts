@@ -4,33 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "sequence",
   },
-  stimulus: "cave-visit",
+  stimulus: "ridge-turnaround",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "They dissolved because water kept dripping on them.",
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "Visitors in the past were allowed to break off pieces and take them home.",
-        },
-        {
-          correct: false,
-          label: "Oil from visitors' hands stopped them from growing.",
-        },
-        {
-          correct: false,
-          label: "They were destroyed when the concrete steps were built.",
-        },
-        {
-          correct: false,
-          label: "Guides removed them to make the path safer for students.",
+          label: "I, II, and IV only",
         },
       ],
     },

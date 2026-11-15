@@ -4,26 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "prediction",
   },
-  stimulus: "water-filter",
+  stimulus: "fire-drill",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "pouring the muddy water onto the gravel" },
-        { correct: false, label: "adding the coarse sand" },
-        {
-          correct: false,
-          label: "cutting the bottle about 10 centimeters from the bottom",
-        },
         {
           correct: true,
-          label: "placing the cotton cloth inside, just above the cap",
+          label: "Moving one first-floor class into a ground-floor room",
         },
         {
           correct: false,
-          label: "comparing the filtered water with the muddy water in the jar",
+          label: "Moving one first-floor class into a second-floor room",
+        },
+        {
+          correct: false,
+          label:
+            "Letting the first-floor classes go down in reverse alphabetical order",
+        },
+        {
+          correct: false,
+          label: "Asking each teacher to leave the room first instead of last",
+        },
+        {
+          correct: false,
+          label: "Sending the second-floor classes down Staircase A",
         },
       ],
     },

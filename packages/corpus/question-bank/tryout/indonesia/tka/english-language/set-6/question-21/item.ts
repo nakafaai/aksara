@@ -2,38 +2,45 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "walking-bus",
+  stimulus: "late-start",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "to describe the morning traffic jam in front of SD Taman Kenari",
+            "Two of the three schools also opened a canteen breakfast in the same semester.",
         },
         {
-          correct: false,
-          label: "to report the results of a vehicle count at SD Lereng Asri",
+          column: 2,
+          label:
+            "Asking teenagers to think clearly before seven in the morning wastes the first lesson.",
         },
         {
-          correct: true,
-          label:
-            "to persuade SD Taman Kenari to start a walking bus for its students",
+          column: 3,
+          label: "The later start alone cut lateness at the three schools.",
         },
         {
-          correct: false,
-          label:
-            "to explain the World Health Organization's activity guidelines",
+          column: 1,
+          label: "7:30 is the latest start time the buses allow.",
         },
         {
-          correct: false,
-          label:
-            "to argue that parents should never drive their children to school",
+          column: 2,
+          label: "No other change could do as much for so little cost.",
+        },
+        {
+          column: 3,
+          label: "More than $$14\\%$$ of SMA Cahaya's students arrive late.",
         },
       ],
     },

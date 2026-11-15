@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "supporting-detail",
   },
-  stimulus: "water-filter",
+  stimulus: "fire-drill",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "a list of materials, the purpose of the activity, numbered steps, and a safety warning",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "numbered steps, a list of materials, and the results of an experiment",
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "the purpose and a safety warning, a list of materials, numbered steps, and final advice",
+          label: "I, II, III, and IV only",
         },
         {
           correct: false,
-          label: "a problem, arguments for and against, and a recommendation",
+          label: "I, II, III, IV, and V",
         },
         {
           correct: false,
-          label: "an orientation, a series of events, and a personal comment",
+          label: "I, III, and IV only",
         },
       ],
     },

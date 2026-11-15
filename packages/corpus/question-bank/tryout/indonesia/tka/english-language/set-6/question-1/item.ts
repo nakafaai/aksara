@@ -6,25 +6,31 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "explicit-information",
   },
-  stimulus: "tea-terrace",
+  stimulus: "water-rota",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "so that the silver oak trees can grow taller",
+          label: "None, because one tank holds enough for four days",
+        },
+        {
+          correct: true,
+          label: "$$200$$ litres, costing $$\\text{Rp}50{,}000$$",
         },
         {
           correct: false,
-          label: "so that visitors can see the valley from the café",
+          label: "$$150$$ litres, costing $$\\text{Rp}37{,}500$$",
         },
-        { correct: true, label: "so that pickers can reach the top leaves" },
         {
           correct: false,
-          label: "so that rainwater can flow into the ditches",
+          label: "$$200$$ litres, costing $$\\text{Rp}10{,}000$$",
         },
-        { correct: false, label: "so that the leaves dry faster on the racks" },
+        {
+          correct: false,
+          label: "$$200$$ litres, costing $$\\text{Rp}1{,}000{,}000$$",
+        },
       ],
     },
   },

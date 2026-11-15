@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "summary",
   },
-  stimulus: "cave-visit",
+  stimulus: "ridge-turnaround",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A guide explains how stalactites form and why they grow so slowly.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "Students break off pieces of rock in a cave and later regret it.",
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "A class explores a limestone cave with a guide, experiences total darkness, and learns at a museum why the cave is protected.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "A class takes a long bus trip and writes stories about their favorite places.",
-        },
-        {
-          correct: false,
-          label:
-            "Visitors are shown photographs of a cave taken fifty years ago.",
+          label: "I, IV, and V only",
         },
       ],
     },

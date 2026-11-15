@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "stage-lines",
+  stimulus: "grandfather-bike",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "It is a fantasy, because the river in the play rises by itself.",
-        },
-        {
-          correct: false,
-          label:
-            "It is a fantasy, because words cannot really disappear from someone's mind.",
-        },
-        {
           correct: true,
-          label:
-            "It is realistic, because an actor forgetting lines and another actor improvising could really happen.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "It is a legend, because it explains how a flood began in a village.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "It is a fable, because its characters are animals that can talk.",
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, IV, and V",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

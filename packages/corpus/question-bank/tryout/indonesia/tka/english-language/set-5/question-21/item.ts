@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "swim-lessons",
+  stimulus: "bag-fee",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "to describe the town pool and its prices for school groups",
-        },
-        {
-          correct: false,
-          label: "to report the results of the sports club's swimming course",
-        },
-        {
-          correct: false,
-          label:
-            "to argue that every school should build its own swimming pool",
-        },
-        {
-          correct: false,
-          label: "to explain how to float on your back for one minute",
+          correct: true,
+          label: "Fifteen points is a small price for keeping the choice.",
         },
         {
           correct: true,
-          label:
-            "to persuade the school to add swimming lessons to physical education",
+          label: "A ban looks tidier on paper.",
+        },
+        {
+          correct: false,
+          label: "Every bag the charging stalls handed out was paid for.",
+        },
+        {
+          correct: false,
+          label: "A charge would raise more money for the drains than a ban.",
+        },
+        {
+          correct: true,
+          label: "Shoppers adapt quickly.",
         },
       ],
     },

@@ -4,33 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "comparison",
+    topic: "cause-effect",
   },
-  stimulus: "night-market",
+  stimulus: "solar-hall",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The night market sells food, while the day market does not.",
+          label: "I only",
         },
         {
           correct: false,
-          label: "The night market is held inside the Sentosa Market building.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "The night market gives shoppers free plastic bags.",
+          label: "III and IV only",
         },
         {
           correct: false,
-          label: "The night market is open every evening of the week.",
+          label: "I, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "Only people who live in the district can sell at the night market.",
+          label: "I and III only",
         },
       ],
     },

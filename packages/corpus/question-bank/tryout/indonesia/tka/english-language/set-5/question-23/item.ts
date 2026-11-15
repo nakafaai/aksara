@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "swim-lessons",
+  stimulus: "bag-fee",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The course proves that every student could learn to swim in four weeks.",
-        },
-        {
-          correct: true,
-          label:
-            "More volunteers could float on their back for one minute after the course than before it.",
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "The volunteers were chosen at random from all of the school's students.",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
         },
         {
           correct: true,
-          label:
-            "The number of volunteers who could swim 25 meters rose by 13.",
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

@@ -4,21 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "bike-tire",
+  stimulus: "path-concrete",
   versions: {
     en: {
-      columns: ["Finding the hole", "Removing the tube", "Repairing the tube"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Holding the tube under water to look for bubbles",
+          correct: false,
+          label: "$$12$$",
         },
-        { column: 3, label: "Rubbing the area around the hole with sandpaper" },
-        { column: 2, label: "Sliding the second lever around the rim" },
-        { column: 3, label: "Pressing the patch firmly onto the glue" },
+        {
+          correct: false,
+          label: "$$4$$",
+        },
+        {
+          correct: true,
+          label: "$$5$$",
+        },
+        {
+          correct: false,
+          label: "$$3$$",
+        },
+        {
+          correct: false,
+          label: "$$30$$",
+        },
       ],
     },
   },

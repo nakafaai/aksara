@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "bike-tire",
+  stimulus: "path-concrete",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "a goal, a list of materials, steps, and the results of a test",
-        },
-        {
-          correct: false,
-          label: "a claim, three supporting reasons, and a conclusion",
-        },
-        {
-          correct: false,
-          label: "a setting, a conflict, and the way the conflict is solved",
-        },
-        {
-          correct: false,
-          label: "numbered steps, a list of tools, and a summary",
+          label: "I and II only",
         },
         {
           correct: true,
-          label: "a title, the tools you need, numbered steps, and a tip",
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

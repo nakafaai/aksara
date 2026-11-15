@@ -2,23 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "explicit-information",
+    topic: "character",
   },
-  stimulus: "cave-visit",
+  stimulus: "ridge-turnaround",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "a flashlight and a map of the cave" },
-        { correct: false, label: "a pair of gloves to protect the rocks" },
-        { correct: false, label: "a notebook for writing one sentence" },
+        {
+          correct: true,
+          label:
+            "He keeps to his rule even when Raka says the summit is only an hour away.",
+        },
+        {
+          correct: true,
+          label: "He lets the slowest walker set the group's pace.",
+        },
         {
           correct: false,
-          label: "a photograph of the cave from fifty years ago",
+          label: "He argues with Raka about whether to go on.",
         },
-        { correct: true, label: "a helmet with a headlamp" },
+        {
+          correct: false,
+          label: "He makes the turning decision himself at noon.",
+        },
+        {
+          correct: false,
+          label: "He turns the group around because he sees the cloud coming.",
+        },
       ],
     },
   },

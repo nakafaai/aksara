@@ -2,31 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "classification",
   },
-  stimulus: "bike-tire",
+  stimulus: "path-concrete",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Follows the instructions",
+        "Breaks the instructions",
+        "Not covered",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "pumping a little air into the tube and holding it under water",
-        },
-        { correct: false, label: "removing the wheel from the frame" },
-        {
-          correct: false,
-          label: "rubbing the area around the hole with sandpaper",
+            "Adding a little water to a mix that has begun to stiffen after two hours, so that it can still be poured",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "checking the inside of the tire for a thorn or a piece of glass",
+            "Walking on the path on the fourth day while the sacks are still kept damp",
         },
-        { correct: false, label: "turning the bicycle upside down" },
+        {
+          column: 2,
+          label:
+            "Taking the damp sacks off on the fifth day because the path already looks hard",
+        },
+        {
+          column: 3,
+          label: "Colouring the concrete red by adding a powder to the dry mix",
+        },
+        {
+          column: 1,
+          label:
+            "Pouring the mix $$60$$ minutes after adding the water, before it has started to set",
+        },
       ],
     },
   },

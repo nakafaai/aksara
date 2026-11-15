@@ -2,25 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "outline",
   },
-  stimulus: "borrowed-camera",
+  stimulus: "songket-loom",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "She is forgiving when accidents happen." },
-        { correct: true, label: "She expects Bayu to use the film carefully." },
         {
           correct: false,
-          label: "She cares more about the camera than about Bayu's feelings.",
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "IV and V only",
         },
         {
           correct: true,
-          label:
-            "She wants Bayu to keep the habit of thinking before taking pictures.",
+          label: "I, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, III, IV, and V only",
         },
       ],
     },

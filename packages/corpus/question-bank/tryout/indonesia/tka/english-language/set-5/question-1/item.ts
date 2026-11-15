@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
-  stimulus: "night-market",
+  stimulus: "solar-hall",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "why food at the night market is cheaper than food at the day market",
+          label: "$$10.25$$ kWh",
+        },
+        {
+          correct: false,
+          label: "$$7$$ kWh",
         },
         {
           correct: true,
-          label: "how a car park is arranged and used as a weekly night market",
+          label: "$$6.25$$ kWh",
         },
         {
           correct: false,
-          label: "how the Lantern Night Market first began in the district",
+          label: "$$3.4$$ kWh",
         },
         {
           correct: false,
-          label: "how to rent a table and open a stall at the night market",
-        },
-        {
-          correct: false,
-          label: "a performance given by local students on a wooden stage",
+          label: "$$7.4$$ kWh",
         },
       ],
     },

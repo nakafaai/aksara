@@ -2,28 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "borrowed-camera",
+  stimulus: "songket-loom",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aunt Ratih lends Bayu her film camera" },
         {
           correct: false,
-          label: "Bayu walks around the harbor and takes three pictures",
+          label: "I and V only",
         },
-        { correct: false, label: "Bayu gives his prize money to his aunt" },
+        {
+          correct: false,
+          label: "I, II, III, and V only",
+        },
         {
           correct: true,
-          label: "the lens cap rolls between the rocks into the water",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label: "the judge writes a note on the back of the photo",
+          label: "II and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },
