@@ -1,51 +1,67 @@
-# Track the amount of alcohol
+# Write both years as factors
 
-At the start the barrel holds <InlineMath math="0.3\cdot50=15" /> litres of alcohol. Pouring off <InlineMath math="x" /> litres of mixture removes more than water: **<InlineMath math="30\,\%" /> of it is alcohol too**, so <InlineMath math="0.3x" /> litres. Then <InlineMath math="x" /> litres of pure alcohol go in. The volume is back to <InlineMath math="50" /> litres:
+Call the first year's rate <InlineMath math="P" /> percent. Then the balance grows by the factor <InlineMath math="1+\frac{P}{100}" /> in the first year and by <InlineMath math="1+\frac{P+2}{100}" /> in the second. **The first year's interest earns interest in the second year**, so the two factors are multiplied:
 
-<BlockMath math="\text{alcohol at the end}=15-0.3x+x=15+0.7x" />
+<BlockMath math="10{,}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{,}235" />
 
-# Set the new share equal
+# A quadratic equation in <InlineMath math="P" />
 
-At the end, <InlineMath math="44\,\%" /> of <InlineMath math="50" /> litres is alcohol, which is <InlineMath math="22" /> litres:
+Since <InlineMath math="10{,}000=100\cdot100" />, you can multiply each factor by <InlineMath math="100" />. That gives **an equation in whole numbers**:
 
-<BlockMath math="15+0.7x=22\quad\Longrightarrow\quad 0.7x=7\quad\Longrightarrow\quad x=10" />
+<BlockMath math="\begin{aligned}
+(100+P)(102+P)&=11{,}235 \\
+P^2+202P+10{,}200&=11{,}235 \\
+P^2+202P-1{,}035&=0 \\
+(P-5)(P+207)&=0
+\end{aligned}" />
+
+The factorisation works because <InlineMath math="5\cdot207=1{,}035" /> and <InlineMath math="207-5=202" />.
+
+# Discard the negative solution
+
+A rate of <InlineMath math="-207\,\%" /> is **not a sensible interest rate**, because nothing would be left after the first year. So <InlineMath math="P=5" />:
 
 <MathVisual
-  title={<>Alcohol share after the exchange</>}
-  description={<>The graph shows the alcohol share <InlineMath math="\frac{15+0.7x}{50}" /> when <InlineMath math="x" /> litres are exchanged. It starts at <InlineMath math="0.30" /> for <InlineMath math="x=0" /> and rises in a straight line. The horizontal line at <InlineMath math="0.44" /> meets it at <InlineMath math="x=10" />.</>}
+  title={<>Balance after two years by interest rate</>}
+  description={<>The solid graph shows the balance <InlineMath math="(100+P)(102+P)" /> in euros for a rate of <InlineMath math="P" /> percent in the first year and <InlineMath math="P+2" /> percent in the second. It meets the line <InlineMath math="11{,}235" /> at <InlineMath math="P=5" />. Dashed is <InlineMath math="(100+P)^2" /> for two equal rates: it reaches almost the same value at <InlineMath math="P=6" />.</>}
   labels={{
-    key: <><InlineMath math="x=10" /></>,
-    s: <>share after the exchange</>,
-    t: <><InlineMath math="0.44" /></>,
+    key: <><InlineMath math="P=5" /></>,
+    eq: <><InlineMath math="P=6" /></>,
+    t: <><InlineMath math="11{,}235" /></>,
+    a: <>two rates</>,
+    b: <>equal rates</>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -2, max: 52 },
-      y: { min: 0, max: 1.1 },
+      x: { min: -0.5, max: 9.8 },
+      y: { min: 10000, max: 12300 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "share", kind: "function", appearance: "primary", formula: "(15 + 0.7*x)/50", domain: { min: 0, max: 50 } },
-      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 0.44 }, to: { x: 50, y: 0.44 } },
-      { id: "meet", kind: "point", appearance: "answer", at: { x: 10, y: 0.44 } },
-      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0.3 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
+      { id: "equal", kind: "point", appearance: "highlight", at: { x: 6, y: 11236 } },
     ],
     labels: [
-      { key: "key", objectId: "meet", at: { x: 10, y: 0.44 }, placement: "below-right" },
-      { key: "s", objectId: "share", at: { x: 40, y: 0.86 }, placement: "left" },
-      { key: "t", objectId: "target", at: { x: 50, y: 0.44 }, placement: "above" },
+      { key: "key", objectId: "solution", at: { x: 5, y: 11235 }, placement: "above-left" },
+      { key: "eq", objectId: "equal", at: { x: 6, y: 11236 }, placement: "below-right" },
+      { key: "t", objectId: "target", at: { x: 0, y: 11235 }, placement: "above-right" },
+      { key: "a", objectId: "two-rates", at: { x: 8.5, y: 11973 }, placement: "left" },
+      { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
 />
 
-Check: pouring off <InlineMath math="10" /> litres takes <InlineMath math="3" /> litres of alcohol with it, leaving <InlineMath math="12" /> litres. With <InlineMath math="10" /> litres of pure alcohol that makes <InlineMath math="22" /> litres, and <InlineMath math="\frac{22}{50}=44\,\%" />. **So <InlineMath math="x=10" />**.
+Check: <InlineMath math="10{,}000\cdot1.05=10{,}500" /> and <InlineMath math="10{,}500\cdot1.07=11{,}235" />. The first year's rate was <InlineMath math="5\,\%" />.
 
 # Why the other answers are wrong
 
-- <InlineMath math="x=7" /> forgets that the poured-off mixture **takes alcohol with it**: <InlineMath math="15+x=22" />.
-- <InlineMath math="x=\frac{70}{3}" /> uses <InlineMath math="0.3x" /> instead of <InlineMath math="0.7x" /> as the gain: <InlineMath math="15+0.3x=22" />.
-- <InlineMath math="x=14" /> reads the <InlineMath math="14" /> percentage points from <InlineMath math="30\,\%" /> to <InlineMath math="44\,\%" /> as litres.
-- <InlineMath math="x=12.5" /> pours nothing off and only adds alcohol: <InlineMath math="\frac{15+x}{50+x}=0.44" />.
-- <InlineMath math="x=22" /> is the amount of alcohol at the end, not the amount exchanged.
+- <InlineMath math="6\,\%" /> assumes **two equal rates**. That gives <InlineMath math="10{,}000\cdot1.06^2=11{,}236\text{ €}" />, almost the same amount, but the rates must differ by <InlineMath math="2" /> percentage points.
+- <InlineMath math="7\,\%" /> is the second year's rate.
+- <InlineMath math="5.175\,\%" /> works without compound interest: <InlineMath math="P+(P+2)=12.35" />.
+- <InlineMath math="6.175\,\%" /> splits the total growth of <InlineMath math="12.35\,\%" /> evenly over two years.
+- <InlineMath math="12.35\,\%" /> is the growth over both years together, not one year's rate.

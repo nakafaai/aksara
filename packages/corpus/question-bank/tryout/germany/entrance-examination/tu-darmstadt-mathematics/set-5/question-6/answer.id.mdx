@@ -1,51 +1,67 @@
-# Ikuti banyaknya alkohol
+# Tulis kedua tahun sebagai faktor
 
-Mula-mula tong berisi <InlineMath math="0{,}3\cdot50=15" /> liter alkohol. Saat <InlineMath math="x" /> liter campuran dituang keluar, yang hilang bukan hanya air: **<InlineMath math="30\,\%" /> darinya juga alkohol**, yaitu <InlineMath math="0{,}3x" /> liter. Lalu <InlineMath math="x" /> liter alkohol murni dimasukkan. Volumenya kembali <InlineMath math="50" /> liter:
+Misalkan suku bunga tahun pertama <InlineMath math="P" /> persen. Maka saldo tumbuh dengan faktor <InlineMath math="1+\frac{P}{100}" /> di tahun pertama dan <InlineMath math="1+\frac{P+2}{100}" /> di tahun kedua. **Bunga tahun pertama ikut berbunga di tahun kedua**, jadi kedua faktor itu dikalikan:
 
-<BlockMath math="\text{alkohol di akhir}=15-0{,}3x+x=15+0{,}7x" />
+<BlockMath math="10{.}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{.}235" />
 
-# Samakan kadar barunya
+# Persamaan kuadrat dalam <InlineMath math="P" />
 
-Di akhir, <InlineMath math="44\,\%" /> dari <InlineMath math="50" /> liter adalah alkohol, yaitu <InlineMath math="22" /> liter:
+Karena <InlineMath math="10{.}000=100\cdot100" />, setiap faktor bisa dikalikan <InlineMath math="100" />. Hasilnya **persamaan dengan bilangan bulat**:
 
-<BlockMath math="15+0{,}7x=22\quad\Longrightarrow\quad 0{,}7x=7\quad\Longrightarrow\quad x=10" />
+<BlockMath math="\begin{aligned}
+(100+P)(102+P)&=11{.}235 \\
+P^2+202P+10{.}200&=11{.}235 \\
+P^2+202P-1{.}035&=0 \\
+(P-5)(P+207)&=0
+\end{aligned}" />
+
+Pemfaktoran itu cocok, karena <InlineMath math="5\cdot207=1{.}035" /> dan <InlineMath math="207-5=202" />.
+
+# Buang penyelesaian negatif
+
+Suku bunga <InlineMath math="-207\,\%" /> **bukan suku bunga yang masuk akal**, karena setelah tahun pertama saldonya sudah habis. Jadi <InlineMath math="P=5" />:
 
 <MathVisual
-  title={<>Kadar alkohol setelah ditukar</>}
-  description={<>Grafik menunjukkan kadar alkohol <InlineMath math="\frac{15+0{,}7x}{50}" /> kalau <InlineMath math="x" /> liter ditukar. Grafiknya mulai di <InlineMath math="0{,}30" /> untuk <InlineMath math="x=0" /> dan naik lurus. Garis mendatar di <InlineMath math="0{,}44" /> memotongnya di <InlineMath math="x=10" />.</>}
+  title={<>Saldo setelah dua tahun menurut suku bunga</>}
+  description={<>Grafik penuh menunjukkan saldo <InlineMath math="(100+P)(102+P)" /> dalam euro untuk suku bunga <InlineMath math="P" /> persen di tahun pertama dan <InlineMath math="P+2" /> persen di tahun kedua. Grafik itu memotong garis <InlineMath math="11{.}235" /> di <InlineMath math="P=5" />. Garis putus-putus adalah <InlineMath math="(100+P)^2" /> untuk dua suku bunga yang sama: nilainya hampir sama di <InlineMath math="P=6" />.</>}
   labels={{
-    key: <><InlineMath math="x=10" /></>,
-    s: <>kadar setelah ditukar</>,
-    t: <><InlineMath math="0{,}44" /></>,
+    key: <><InlineMath math="P=5" /></>,
+    eq: <><InlineMath math="P=6" /></>,
+    t: <><InlineMath math="11{.}235" /></>,
+    a: <>dua suku bunga</>,
+    b: <>suku bunga sama</>,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -2, max: 52 },
-      y: { min: 0, max: 1.1 },
+      x: { min: -0.5, max: 9.8 },
+      y: { min: 10000, max: 12300 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "share", kind: "function", appearance: "primary", formula: "(15 + 0.7*x)/50", domain: { min: 0, max: 50 } },
-      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 0.44 }, to: { x: 50, y: 0.44 } },
-      { id: "meet", kind: "point", appearance: "answer", at: { x: 10, y: 0.44 } },
-      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0.3 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
+      { id: "equal", kind: "point", appearance: "highlight", at: { x: 6, y: 11236 } },
     ],
     labels: [
-      { key: "key", objectId: "meet", at: { x: 10, y: 0.44 }, placement: "below-right" },
-      { key: "s", objectId: "share", at: { x: 40, y: 0.86 }, placement: "left" },
-      { key: "t", objectId: "target", at: { x: 50, y: 0.44 }, placement: "above" },
+      { key: "key", objectId: "solution", at: { x: 5, y: 11235 }, placement: "above-left" },
+      { key: "eq", objectId: "equal", at: { x: 6, y: 11236 }, placement: "below-right" },
+      { key: "t", objectId: "target", at: { x: 0, y: 11235 }, placement: "above-right" },
+      { key: "a", objectId: "two-rates", at: { x: 8.5, y: 11973 }, placement: "left" },
+      { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
 />
 
-Cek: menuang <InlineMath math="10" /> liter ikut membuang <InlineMath math="3" /> liter alkohol, jadi tersisa <InlineMath math="12" /> liter. Ditambah <InlineMath math="10" /> liter alkohol murni menjadi <InlineMath math="22" /> liter, dan <InlineMath math="\frac{22}{50}=44\,\%" />. **Jadi <InlineMath math="x=10" />**.
+Cek: <InlineMath math="10{.}000\cdot1{,}05=10{.}500" /> dan <InlineMath math="10{.}500\cdot1{,}07=11{.}235" />. Suku bunga tahun pertama <InlineMath math="5\,\%" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="x=7" /> lupa bahwa campuran yang dituang **ikut membawa alkohol**: <InlineMath math="15+x=22" />.
-- <InlineMath math="x=\frac{70}{3}" /> memakai <InlineMath math="0{,}3x" />, bukan <InlineMath math="0{,}7x" />, sebagai tambahan: <InlineMath math="15+0{,}3x=22" />.
-- <InlineMath math="x=14" /> membaca <InlineMath math="14" /> poin persentase dari <InlineMath math="30\,\%" /> ke <InlineMath math="44\,\%" /> sebagai liter.
-- <InlineMath math="x=12{,}5" /> tidak menuang apa pun dan hanya menambah alkohol: <InlineMath math="\frac{15+x}{50+x}=0{,}44" />.
-- <InlineMath math="x=22" /> adalah banyaknya alkohol di akhir, bukan banyaknya yang ditukar.
+- <InlineMath math="6\,\%" /> menganggap **dua suku bunga yang sama**. Hasilnya <InlineMath math="10{.}000\cdot1{,}06^2=11{.}236\text{ €}" />, hampir sama, padahal kedua suku bunga harus berselisih <InlineMath math="2" /> poin persentase.
+- <InlineMath math="7\,\%" /> adalah suku bunga tahun kedua.
+- <InlineMath math="5{,}175\,\%" /> menghitung tanpa bunga majemuk: <InlineMath math="P+(P+2)=12{,}35" />.
+- <InlineMath math="6{,}175\,\%" /> membagi pertumbuhan total <InlineMath math="12{,}35\,\%" /> sama rata untuk dua tahun.
+- <InlineMath math="12{,}35\,\%" /> adalah pertumbuhan selama dua tahun sekaligus, bukan suku bunga satu tahun.
