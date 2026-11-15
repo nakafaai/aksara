@@ -3,36 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "inference",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "village-postman",
+  stimulus: "ai-homework",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Kabar bahwa Mbah Karsih sedang sakit keras dan perlu segera dijenguk.",
+            "Kedua penulis sepakat bahwa pekerjaan rumah ada untuk melatih siswa berpikir.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Permintaan agar Warno lebih sering menelepon ibunya lewat video.",
+            "Penulis Teks B menolak cara pemeriksaan lisan yang dipakai penulis Teks A.",
         },
         {
-          correct: true,
-          label: "Permintaan agar Warno sesekali mengirim surat untuk ibunya.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Pemberitahuan bahwa kantor pos di kecamatan akan segera ditutup.",
+            "Penelitian yang dikutip Teks B melemahkan anggapan bahwa larangan dapat ditegakkan dengan alat pendeteksi.",
         },
         {
-          correct: false,
-          label: "Tagihan biaya kiriman paket yang belum dibayar oleh Warno.",
+          column: 2,
+          label:
+            "Penulis Teks B membantah bahwa sebagian siswa tidak dapat menjelaskan esainya sendiri.",
+        },
+        {
+          column: 1,
+          label:
+            "Dalam usul Teks B, siswa yang memakai kecerdasan buatan tetap harus menunjukkan pemikirannya sendiri.",
         },
       ],
     },

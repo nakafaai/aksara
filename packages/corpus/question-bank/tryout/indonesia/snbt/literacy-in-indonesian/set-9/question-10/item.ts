@@ -2,34 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "character",
   },
-  stimulus: "tea-picker",
+  stimulus: "old-translator",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Mak Inah memetik pucuk teratas dengan dua daun muda di bawahnya.",
+            "Ia mengetahui kesulitan kecil suaminya sehari-hari walaupun suaminya jarang bercerita.",
         },
         {
-          column: 1,
-          label:
-            "Pemetik dari lereng timur akan dipindah ke bagian pengeringan.",
+          correct: false,
+          label: "Ia kecewa karena suaminya tidak pernah menjadi orang sukses.",
         },
         {
-          column: 2,
-          label: "Mulai bulan depan, seluruh kebun teh dipanen dengan mesin.",
+          correct: true,
+          label:
+            "Ia pernah menanggung beban keluarga tanpa memberi tahu suaminya.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Laras datang ke kebun untuk menggantikan neneknya memetik teh.",
+            "Ia menulis surat-surat itu kepada suaminya ketika suaminya bekerja jauh.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia berharap cucunya kelak menjadi penerjemah seperti kakeknya.",
         },
       ],
     },

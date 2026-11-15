@@ -2,39 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "taman-siswa",
+  stimulus: "lingua-franca",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "menolaknya sepenuhnya karena gagasan itu berasal dari bangsa penjajah",
+          correct: true,
+          label: "Bahasa itu sudah dikenal oleh anggota dari berbagai daerah.",
         },
         {
           correct: false,
           label:
-            "menganggapnya lebih unggul daripada semua gagasan dari bangsanya sendiri",
-        },
-        {
-          correct: false,
-          label:
-            "menilainya hanya cocok untuk anak-anak keturunan Eropa di Hindia Belanda",
-        },
-        {
-          correct: false,
-          label:
-            "baru mempelajarinya setelah Taman Siswa membuka cabang di banyak kota",
+            "Bahasa itu dituturkan paling banyak anggota sebagai bahasa ibu.",
         },
         {
           correct: true,
           label:
-            "mempelajarinya, tetapi tetap mendasarkan pendidikan pada budaya sendiri",
+            "Bahasa itu tidak mengharuskan anggota memilih kata menurut kedudukan lawan bicara.",
+        },
+        {
+          correct: true,
+          label:
+            "Bahasa itu tidak terkesan mengutamakan kelompok asal salah satu anggota.",
+        },
+        {
+          correct: false,
+          label: "Bahasa itu dipakai oleh ketua organisasi sejak kecil.",
         },
       ],
     },

@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "peat-fire",
+  stimulus: "c4-photosynthesis",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "Gambut terbentuk karena sisa tumbuhan membusuk sempurna dalam waktu singkat.",
+            "Kekeringan dapat menaikkan fotorespirasi tumbuhan C3 walaupun suhunya tidak naik.",
         },
         {
           column: 1,
           label:
-            "Lahan gambut tropis Indonesia terutama terdapat di Sumatra, Kalimantan, dan Papua.",
-        },
-        {
-          column: 1,
-          label:
-            "Kebakaran gambut dapat menjalar di bawah tanah tanpa nyala yang besar.",
+            "Di tempat yang sejuk dan teduh, tumbuhan C3 dapat tumbuh sebaik atau lebih baik daripada tumbuhan C4.",
         },
         {
           column: 2,
           label:
-            "Menyekat kanal dapat memadamkan api gambut yang sudah menyala.",
+            "Enzim-enzim jalur C4 sama sekali tidak terdapat pada tumbuhan C3.",
+        },
+        {
+          column: 1,
+          label:
+            "Padi yang sudah menghasilkan sejumlah enzim jalur C4 belum tentu sudah bekerja seperti tumbuhan C4.",
         },
       ],
     },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "author-view",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "film-review",
+  stimulus: "survivorship-bias",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "dialog yang panjang dan penuh penjelasan dalam film itu",
-        },
-        {
-          correct: false,
-          label: "jumlah adegan lomba layang-layang yang banyak dalam film",
+          correct: true,
+          label:
+            "Berapa banyak rumah yang dibangun pada masa yang sama dengan rumah-rumah tua itu, tetapi sudah runtuh atau dibongkar?",
         },
         {
           correct: false,
           label:
-            "kecepatan cerita yang bergerak dari satu adegan ke adegan lain",
+            "Berapa banyak rumah baru yang dibangun di kota itu dalam sepuluh tahun terakhir?",
         },
         {
           correct: true,
-          label: "cara film menyampaikan perasaan tanpa banyak kata",
+          label:
+            "Apakah rumah tua yang rapuh lebih mungkin sudah dibongkar sebelum sempat diperiksa?",
         },
         {
           correct: false,
-          label: "musik latar yang menjelaskan perasaan setiap tokohnya",
+          label:
+            "Berapa harga bahan bangunan pada masa rumah-rumah tua itu dibangun?",
+        },
+        {
+          correct: false,
+          label:
+            "Apakah rumah-rumah tua itu dicat ulang dalam beberapa tahun terakhir?",
         },
       ],
     },

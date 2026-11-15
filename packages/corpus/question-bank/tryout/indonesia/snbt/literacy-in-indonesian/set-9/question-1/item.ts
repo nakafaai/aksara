@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "cause-effect",
   },
-  stimulus: "peat-fire",
+  stimulus: "c4-photosynthesis",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Air tanah menipis, stomata menutup, suhu daun naik, lalu Rubisco lebih sering mengikat oksigen.",
+        },
+        {
           correct: true,
           label:
-            "Gambut yang kering menjadi ringan, berongga, dan mudah menyala.",
+            "Air tanah menipis, stomata menutup, $$\\mathrm{CO_2}$$ sulit masuk sementara oksigen menumpuk, lalu Rubisco lebih sering mengikat oksigen dan sebagian karbon terlepas kembali.",
         },
         {
           correct: false,
           label:
-            "Kanal-kanal yang digali membawa minyak dari lapisan tanah yang lebih dalam.",
+            "Air tanah menipis, stomata membuka lebar, oksigen keluar dari daun, lalu Rubisco kekurangan oksigen.",
         },
         {
           correct: false,
           label:
-            "Air rawa yang mengalir keluar meninggalkan garam yang mudah menyala.",
+            "Air tanah menipis, stomata menutup, $$\\mathrm{CO_2}$$ menumpuk di dalam daun, lalu Rubisco lebih sering mengikat $$\\mathrm{CO_2}$$.",
         },
         {
           correct: false,
           label:
-            "Tumbuhan yang ditanam di lahan itu menghasilkan getah yang mudah terbakar.",
-        },
-        {
-          correct: false,
-          label:
-            "Permukaan tanah yang turun menjadikan lahan itu lebih dekat ke sumber panas bumi.",
+            "Air tanah menipis, stomata menutup, $$\\mathrm{CO_2}$$ sulit masuk, lalu PEP karboksilase mengikat oksigen sebagai gantinya.",
         },
       ],
     },

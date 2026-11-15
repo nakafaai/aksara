@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "water-stunting",
+  stimulus: "street-vendors",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Desa dengan akses air minum layak tertinggi memiliki persentase balita stunting terendah.",
-        },
-        {
-          column: 2,
-          label: "Jumlah balita stunting terbanyak terdapat di Wonosari.",
+            "Teks B menerima tujuan Teks A agar trotoar dapat dilalui pejalan kaki dengan aman.",
         },
         {
           column: 2,
           label:
-            "Kurang dari separuh rumah tangga di Tanjungrejo memiliki air minum layak.",
+            "Teks B menilai bahwa pemindahan pedagang pasti gagal dalam keadaan apa pun.",
         },
         {
           column: 1,
           label:
-            "Jumlah balita stunting di Karangsari dua kali jumlah balita stunting di Sukamaju.",
+            "Kedua teks sama-sama menyebut jarak $$400$$ meter, tetapi untuk tujuan yang berbeda.",
+        },
+        {
+          column: 2,
+          label: "Teks B meragukan angka kecelakaan yang dipakai Teks A.",
+        },
+        {
+          column: 1,
+          label:
+            "Jika usul trotoar bersama dalam Teks B dijalankan di Jalan Merdeka, ruang bagi pejalan kaki lebih lebar daripada sekarang.",
         },
       ],
     },

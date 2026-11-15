@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "data-interpretation",
   },
-  stimulus: "coral-bleaching",
+  stimulus: "shorebird-flyway",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Alga di dalam jaringan karang memberi karang sebagian besar makanannya.",
+            "Populasi burung pantai yang singgah di muara itu menyusut lebih dari separuh setelah jalan di atas pematang dibuka.",
         },
         {
-          column: 1,
-          label: "Karang yang memutih dapat pulih jika suhu air segera turun.",
+          correct: false,
+          label:
+            "Jalan di atas pematang mengurangi mangsa di lumpur sehingga burung yang makan saat surut ikut berkurang.",
         },
         {
-          column: 2,
-          label: "Terumbu karang menutupi sekitar seperempat dasar laut.",
+          correct: true,
+          label:
+            "Burung masih makan di lumpur muara, tetapi banyak yang bertengger di tempat lain saat pasang, dan itu dapat menggerus cadangan lemaknya bila tempatnya jauh.",
         },
         {
-          column: 2,
-          label: "Jeda antara peristiwa pemutihan massal kini makin panjang.",
+          correct: false,
+          label:
+            "Gangguan di pematang tidak merugikan burung karena jumlah burung yang makan saat surut hampir tidak berubah.",
+        },
+        {
+          correct: false,
+          label:
+            "Hitungan saat pasang turun karena dataran lumpur di muara itu menyusut seperti dataran pasang surut di Laut Kuning.",
         },
       ],
     },

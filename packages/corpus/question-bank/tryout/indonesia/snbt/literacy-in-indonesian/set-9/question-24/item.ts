@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "author-view",
   },
-  stimulus: "batik-wax",
+  stimulus: "pantun-tradition",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Motifnya selalu berbeda dari motif batik tradisional yang asli dan lama.",
-        },
-        {
-          correct: false,
-          label: "Harganya lebih mahal daripada batik tulis maupun batik cap.",
-        },
-        {
-          correct: false,
-          label:
-            "Kain itu tidak diakui UNESCO karena dibuat di luar Indonesia.",
+            "Sampiran itu menyimpan makna tersembunyi bahwa air pasang melambangkan kemakmuran yang membuat orang sombong.",
         },
         {
           correct: true,
           label:
-            "Kain itu dibuat tanpa malam, padahal batik ditentukan oleh teknik malam.",
+            "Sampiran itu terutama menyiapkan bunyi akhir -ur dan -i yang muncul lagi di baris isi, sedangkan kaitan gambarannya dengan nasihat itu paling jauh hanya longgar.",
         },
         {
           correct: false,
-          label: "Warnanya tidak dapat bertahan lama setelah kain itu dicuci.",
+          label:
+            "Sampiran itu menyiapkan bunyi akhir -ur dan -i, dan gambarannya pasti menggemakan isi karena nelayan yang pulang melambangkan orang yang mencari ilmu.",
+        },
+        {
+          correct: false,
+          label:
+            "Sampiran itu tidak berfungsi, karena rimanya a-a-b-b sehingga bait itu bukan pantun.",
+        },
+        {
+          correct: false,
+          label:
+            "Sampiran itu lebih penting daripada isi, karena gambaran pantai lebih mudah diingat pendengar.",
         },
       ],
     },

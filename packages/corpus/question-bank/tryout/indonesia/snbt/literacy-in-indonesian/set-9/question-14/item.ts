@@ -2,34 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "application",
   },
-  stimulus: "water-stunting",
+  stimulus: "street-vendors",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "21,0 persen",
+          column: 1,
+          label:
+            "Pedagang berjualan pada jam makan siang di bagian trotoar selebar $$4$$ meter, dengan $$1{,}5$$ meter tetap kosong.",
         },
         {
-          correct: true,
-          label: "22,4 persen",
+          column: 2,
+          label:
+            "Pedagang berjualan sepanjang hari di trotoar selebar $$3$$ meter dan menyisakan $$1$$ meter untuk pejalan kaki.",
         },
         {
-          correct: false,
-          label: "23,8 persen",
+          column: 1,
+          label:
+            "Halte bus dipindahkan ke depan Pasar Sentra setelah pedagang pindah ke sana.",
         },
         {
-          correct: false,
-          label: "27,0 persen",
+          column: 2,
+          label:
+            "Semua pedagang dilarang berjualan di sekitar Jalan Merdeka tanpa disediakan tempat pengganti.",
         },
         {
-          correct: false,
-          label: "33,0 persen",
+          column: 1,
+          label:
+            "Pedagang berjualan pada malam hari di trotoar selebar $$3$$ meter, dengan $$1{,}5$$ meter tetap kosong.",
         },
       ],
     },

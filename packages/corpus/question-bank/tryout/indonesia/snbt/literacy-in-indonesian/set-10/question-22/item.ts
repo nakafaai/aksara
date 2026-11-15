@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "taman-siswa",
+  stimulus: "lingua-franca",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Ki Hadjar ingin Taman Siswa meniru sekolah Eropa sepenuhnya.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Dalam sistem among, guru berperan sebagai penguasa yang memerintah.",
+            "Bahasa Melayu sudah dipakai untuk tulisan di wilayah ini sejak abad ketujuh, dan bahasa Indonesia sekarang sama persis dengan bahasa prasasti itu.",
         },
         {
-          column: 1,
-          label: "Taman Siswa didirikan di Yogyakarta pada 1922.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Peraturan tahun 1932 tentang sekolah swasta akhirnya dicabut setelah protes meluas.",
+            "Semua penduduk Sriwijaya berbahasa ibu Melayu, karena prasasti kerajaannya ditulis dalam bahasa Melayu Kuno.",
+        },
+        {
+          correct: false,
+          label:
+            "Bahasa Melayu adalah bahasa tertua di dunia yang masih dipakai, karena prasasti itu berumur lebih dari seribu tahun.",
+        },
+        {
+          correct: false,
+          label:
+            "Bahasa Melayu sudah dipakai untuk tulisan di wilayah ini sejak abad ketujuh, dan tidak ada bahasa lain yang pernah ditulis di Sriwijaya.",
+        },
+        {
+          correct: true,
+          label:
+            "Bahasa Melayu sudah dipakai untuk tulisan di wilayah ini sejak abad ketujuh, tetapi satu prasasti tidak menunjukkan bahasa apa yang dipakai semua penduduk sehari-hari.",
         },
       ],
     },
