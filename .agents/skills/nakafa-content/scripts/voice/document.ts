@@ -11,8 +11,10 @@ import { findOpeningHighlightIssues } from "#nakafa-content/highlight/opening";
 import { findHighlightVariantIssues } from "#nakafa-content/highlight/variant";
 import { findExternalLinkPlacementIssues } from "#nakafa-content/link/check";
 import { findInternalLinkIssues } from "#nakafa-content/link/internal";
+import { findClockMathIssues } from "#nakafa-content/math/clock";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
 import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
+import { findDollarMathIssues } from "#nakafa-content/math/dollar";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
 import { findPlainNumbers } from "#nakafa-content/math/number";
 import { findMathStackIssues } from "#nakafa-content/math/stack";
@@ -51,6 +53,8 @@ export function findDocumentIssues(
     ...findHighlightVariantIssues(source, tree),
     ...findDroppedSpaceIssues(source, tree),
     ...findPlainNumbers(source, tree),
+    ...findDollarMathIssues(source, tree),
+    ...findClockMathIssues(locale, source, tree),
   ];
   if (profile === "question") {
     return [

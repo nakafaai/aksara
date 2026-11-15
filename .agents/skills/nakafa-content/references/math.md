@@ -6,7 +6,9 @@ strings with their own [math syntax](questions.md#response-items).
 - Mathematics and chemistry are never plain text, anywhere a learner reads
   them: prose, headings, table cells, and every visual's title, description,
   labels, facts, and legends. Write `<InlineMath math="..." />` or
-  `<BlockMath math="..." />`, never dollar math, and write a visual's text prop
+  `<BlockMath math="..." />`, never dollar math (the gate blocks `$$30$$` and
+  `$x$` in MDX as `dollar-math`, while a price such as `USD $100` stays text),
+  and write a visual's text prop
   as JSX: `description={<>Die Kurve <InlineMath math="x^2/16" /> steigt</>}`.
   Chemistry follows the corpus convention, `\mathrm{H_2O}` with
   `\rightarrow`, so `title="2H₂(g) + O₂(g) → 2H₂O(g)"` becomes
@@ -32,7 +34,9 @@ strings with their own [math syntax](questions.md#response-items).
   and Malay write `2.5` and `5{,}000`. These stay text: a year (`2024`,
   `1998-2024`, `SNBT 2027`, `tahun ajaran 2025/26`), a date (`13 November
   2026`, `13.11.2026`), a clock time, which names a moment (`08.00`,
-  `12:30`, `6:45`, `18 Uhr`, `6:00 pagi`, `pukul 7`, `jam 8.00`, `7 a.m.`),
+  `12:30`, `6:45`, `18 Uhr`, `6:00 pagi`, `pukul 7`, `jam 8.00`, `7 a.m.`,
+  never `20{:}24` or `16{.}00` inside math, which the gate blocks as
+  `clock-time-math`, while the duration between two times stays math),
   an era or century (`300 SM`, `abad ke-19`), a document,
   exam, course, or legal label (`Soal 3`, `Kelas 10`, `Langkah 1 dan 2`,
   `Bab 4.1`, `Pasal 1(2)`, `UU 12/2011`, `urutan ke-1 sampai ke-6`), a
