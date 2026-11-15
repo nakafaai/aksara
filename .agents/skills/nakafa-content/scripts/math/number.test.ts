@@ -76,7 +76,7 @@ it("keeps a unit symbol that starts a word, and a word unit, as prose", () => {
 it("treats the ordinal ke-3 as a number and names glued to a number as text", () => {
   assert.deepEqual(
     quantities(
-      "suku ke-3, 5cm, COVID-19, SARS-CoV-2, B12, 3D, 1990s, 2nd, 1990-an, 34/PUU-XX/2022, x_2, v1.2, #4, @5, a.3, &#8212;"
+      "suku ke-3, 5cm, COVID-19, SARS-CoV-2, B12, 3D, 1990s, 2nd, 1990-an, 45- bis 64-Jährige, 30- to 44-year-olds, 34/PUU-XX/2022, x_2, v1.2, #4, @5, a.3, &#8212;"
     ),
     ["3", "5cm"]
   );
@@ -103,9 +103,9 @@ it("keeps a year-like number that carries a unit, percent, or currency as a quan
 it("keeps document, exam, and legal labels as text and counts as quantities", () => {
   assert.deepEqual(
     quantities(
-      "Soal 3, Kelas 10, Kumpulan 2, Group 4, Langkah 1 dan 2, nomor 1, 2, dan 3, Bab 4.1, Step 2, Klasse 9, Aufgabe 2b, Gleichung (2), Pasal 1(2), Soal 1–5, soal 6 sampai 9, Law Number 39, Nr. 4, **Lösung 2**, Pembahasan 3, Tingkat 5%, 3 soal, Kelas 10, 25 siswa"
+      "Soal 3, Kelas 10, Kumpulan 2, Group 4, Langkah 1 dan 2, nomor 1, 2, dan 3, Bab 4.1, Step 2, Klasse 9, Aufgabe 2b, Gleichung (2), Pasal 1(2), Soal 1–5, soal 6 sampai 9, Law Number 39, Nr. 4, **Lösung 2**, Pembahasan 3, Tingkat 5%, Tingkat 15%, Years 3 to 6, 3 soal, Kelas 10, 25 siswa"
     ),
-    ["5%", "3", "25"]
+    ["5%", "15%", "3", "25"]
   );
 });
 
@@ -186,6 +186,40 @@ it("keeps a clock time as text and a measurement that looks like one as a quanti
       "Pukul 08.00 ada 10 orang, bus berangkat 12.30 dan 13:05 sampai 24.00, | 10.00-10.20 | lalu 12.30 kg dan 2.50."
     ),
     ["10", "12.30 kg", "2.50"]
+  );
+});
+
+it("keeps a clock time with a one-digit hour or a clock word as text and a duration as a quantity", () => {
+  assert.deepEqual(
+    quantities(
+      "um 18 Uhr, von 6 bis 18 Uhr, um 6.30 Uhr, 6:00 pagi, dari 6:20 hingga 6:25 pagi, pukul 7, pukul 6:48 petang, 7 a.m., 7:30 pm, from 6:20 to 6:48, jam 8.00 sampai 9.00, pukul 9.20 sampai 9.45, lalu 7 jam dan menginap 3 malam, 3 Uhren, 6.20 saja"
+    ),
+    ["7", "3", "3", "6.20"]
+  );
+});
+
+it("keeps a numbered reference as text and a count of references as a quantity", () => {
+  assert.deepEqual(
+    quantities(
+      "syarat 1, rule 2, Bedingung 3, Teks 2, Text 1, keterangan 2, premise 1, Prämisse 2, fact 1, Angabe 4, clue 3, kalimat 4, perenggan 2, Regeln 1 und 2, Simpulan 2, Conclusion 3, Schluss 4, Order 1, Reihenfolge 2, Kemungkinan 4, Tindakan 1, Feature 2, Situation 3, Assignment 1, bernomor 1 sampai 4, tetapi 3 syarat dan 2 rules"
+    ),
+    ["3", "2"]
+  );
+});
+
+it("keeps a lane, seat, floor, box, or slot number as text and a count of them as a quantity", () => {
+  assert.deepEqual(
+    quantities(
+      "jalur 3, lane 3, Bahn 1, lorong 3, lantai 2, floor 4, kursi 4, Stuhl 5, kotak 1, Kiste 2, Platz 3, Giliran 6, urutan 1 dan 2, pattern 5, Muster 6, AUX 2, SMA Negeri 2 Sukaraja, Kolom 1 sampai 8, Bus 7, Parcel 3, Juri 2, golongan 13 sampai 18, in den Absätzen 2 und 3, tetapi 3 kursi dan 8 lanes"
+    ),
+    ["3", "8"]
+  );
+});
+
+it("reads the ordinal ke-2 as math in every case and a labelled ordinal as text", () => {
+  assert.deepEqual(
+    quantities("suku ke-7, hari ke-1 dan ke-2, Ke-2, urutan ke-1 sampai ke-6"),
+    ["7", "1", "2", "2"]
   );
 });
 

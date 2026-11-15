@@ -83,6 +83,7 @@ const BLOCKING_RULES = new Set([
   "math-stack-content",
   "nested-relation-alignment",
   "plain-math-label",
+  "plain-number",
   "known-decorative-science-heading",
   "redirected-cell-machinery-metaphor",
   "rhetorical-not-only",

@@ -162,8 +162,8 @@ export const checkLessonRoot = Effect.fn("LessonVoiceCheck.checkLessonRoot")(
       )
     );
     const pending = documents.flatMap(
-      ({ file, locale, repositoryPath, source, tree }) =>
-        findPendingIssues(file, source, tree).map((issue) => ({
+      ({ locale, repositoryPath, source, tree }) =>
+        findPendingIssues(source, tree).map((issue) => ({
           file: repositoryPath,
           locale,
           ...issue,

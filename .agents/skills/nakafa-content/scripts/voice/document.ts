@@ -13,6 +13,7 @@ import { findInternalLinkIssues } from "#nakafa-content/link/internal";
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
 import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
+import { findPlainNumbers } from "#nakafa-content/math/number";
 import { findMathStackIssues } from "#nakafa-content/math/stack";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { findDroppedSpaceIssues } from "#nakafa-content/space/check";
@@ -25,7 +26,8 @@ import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
 /**
  * Applies structural checks to assessed prompts and authored voice to
- * explanations. A bank document compiles to an assessment document, which has
+ * explanations. Every document except a public page writes each quantity as
+ * math, the assessed prompt included. A bank document compiles to an assessment document, which has
  * no MathContainer, so it writes each formula as a block of its own and the
  * math stack rule applies to lessons and articles only.
  */
@@ -47,6 +49,7 @@ export function findDocumentIssues(
     ...findHighlightNestingIssues(source, tree),
     ...findHighlightVariantIssues(source, tree),
     ...findDroppedSpaceIssues(source, tree),
+    ...findPlainNumbers(source, tree),
   ];
   if (profile === "question") {
     return [

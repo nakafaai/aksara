@@ -317,11 +317,15 @@ know, so it is not the full id list.
 Widen one of these only after the corpus-wide search and the positive,
 negative, and boundary tests described above.
 
-Four pending rules carry owner requirements that the corpus does not meet
-yet: `plain-number` (13 November 2026, [mathematics rules](math.md)) finds a
-plain number a learner reads as a quantity in lessons, articles, questions, and
-answers, with years, dates, labels, markers, and names kept out, and
-`math/fix.ts` wraps every unambiguous one; `plain-math-text` (D37, [mathematics rules](math.md)) finds Unicode sub-
+`plain-number` (13 November 2026, [mathematics rules](math.md)) blocks a
+plain number a learner reads as a quantity in lessons, articles, questions,
+readings, and answers, with years, dates, clock times, labels, numbered
+references and places, markers, and names kept out; `math/fix.ts` wraps every
+unambiguous one. It became blocking on 15 November 2026, in the change that
+cleared its last occurrence.
+
+Three pending rules carry owner requirements that the corpus does not meet
+yet: `plain-math-text` (D37, [mathematics rules](math.md)) finds Unicode sub-
 and superscripts, math symbols and arrows, Greek letters, element formulas with
 a count that does not start with 0, the diatomic gases, and simple equations
 between numbers and one-letter variables in the text a learner reads, headings
