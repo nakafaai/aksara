@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "railway-time",
+  stimulus: "piano-lessons",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Trains could only run safely during the hours of daylight.",
-        },
-        {
-          correct: false,
           label:
-            "Passengers wanted their watches to match the sun more closely.",
-        },
-        {
-          correct: false,
-          label:
-            "Parliament ordered the railways to use Greenwich time in 1840.",
+            "That she was losing her hearing, and that she sent the narrator on because the narrator had become too good for her.",
         },
         {
           correct: true,
           label:
-            "With faster trains, one timetable holding several local times caused confusion.",
+            "That she was losing her hearing, and that she sent the narrator on partly because she could no longer judge her playing, which she did not say.",
         },
         {
           correct: false,
           label:
-            "Towns in the west refused to let trains from London stop at their stations.",
+            "That she had grown fond of the narrator, and that she sent her on so as not to have to criticise her again.",
+        },
+        {
+          correct: false,
+          label:
+            "That she was losing interest in teaching, and that she sent the narrator on so that she could stop giving lessons.",
+        },
+        {
+          correct: false,
+          label:
+            "That she was losing her hearing, and that she sent the narrator on because she had already told her everything she knew.",
         },
       ],
     },

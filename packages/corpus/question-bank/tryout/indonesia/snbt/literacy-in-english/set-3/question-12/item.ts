@@ -6,29 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "meat-survey",
+  stimulus: "bus-punctuality",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "The youngest age group had the highest percentage of its members saying they ate less meat.",
+            "Northline ran a larger share of its urban trips on time than Southway did.",
+        },
+        {
+          column: 2,
+          label: "Southway was the more punctual operator on rural routes.",
+        },
+        {
+          column: 1,
+          label:
+            "The newspaper's figure of seven points is calculated correctly from the table.",
         },
         {
           column: 2,
           label:
-            "More respondents aged 45 to 64 than aged 30 to 44 said they ate less meat.",
+            "Northline's lower overall rate shows that it runs late more often on every kind of route.",
         },
         {
-          column: 2,
-          label: "Health was the most common main reason in every age group.",
-        },
-        {
-          column: 2,
-          label: "The survey asked respondents how much less meat they ate.",
+          column: 1,
+          label:
+            "The gap between the two overall rates comes from the different mix of routes rather than from Southway being more punctual.",
         },
       ],
     },

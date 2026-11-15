@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "antikythera",
+  stimulus: "spare-key",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "The mechanism could be used to predict when eclipses were likely.",
-        },
-        {
           column: 2,
-          label: "Fewer than ten gears have survived from the mechanism.",
-        },
-        {
-          column: 2,
-          label:
-            "Medieval astronomical clocks were built before the Antikythera mechanism.",
+          label: "Gran found the key as soon as she started looking for it.",
         },
         {
           column: 1,
           label:
-            "One dial followed a four-year cycle that included the Olympics.",
+            "The narrator chose the hiding place without telling Gran where it was.",
+        },
+        {
+          column: 1,
+          label:
+            "Gran learned from the narrator, during the phone call, that the key was in a flowerpot at the back.",
+        },
+        {
+          column: 2,
+          label:
+            "The narrator was still angry with Gran when the drive home ended.",
+        },
+        {
+          column: 2,
+          label:
+            "Gran and the narrator talk about Gran's memory after the key is moved.",
         },
       ],
     },

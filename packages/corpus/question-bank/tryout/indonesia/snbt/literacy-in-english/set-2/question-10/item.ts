@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "calculation",
   },
-  stimulus: "right-repair",
+  stimulus: "speed-cameras",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A rule that only the original manufacturer may replace phone batteries",
+          label: "About $$300$$",
         },
         {
           correct: false,
-          label:
-            "A tax on independent repair shops to fund manufacturers' service centres",
+          label: "About $$50$$",
         },
         {
           correct: false,
-          label:
-            "A ban on selling any phone or appliance that contains a glued battery",
+          label: "About $$100$$",
         },
         {
           correct: true,
-          label:
-            "A rule that phone makers publish repair manuals and sell parts to anyone",
+          label: "About $$150$$",
         },
         {
           correct: false,
-          label:
-            "A law requiring owners to keep every device for at least five years",
+          label: "About $$420$$",
         },
       ],
     },

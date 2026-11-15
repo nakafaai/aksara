@@ -3,38 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "railway-time",
+  stimulus: "piano-lessons",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Practical needs led companies to agree on a standard before the law did.",
+            "Her wish to stay until Mrs Varga found something wrong shows that she valued the criticism as a sign that Mrs Varga was listening.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Governments invented standard time and then forced railways to accept it.",
+            "She believed that the praise she received in the spring was deserved.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Local time was abolished as soon as the first railway timetable appeared.",
+            "Looking back, she presents the spring changes as clues that she failed to connect at the time.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Standard time spread from the United States to Britain after 1883.",
+            "She wanted to stay with Mrs Varga because Mr Hollis had a reputation as a harsh teacher.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Private companies always choose better standards than governments do.",
+            "She learned from Mrs Varga herself why the lessons had changed.",
         },
       ],
     },

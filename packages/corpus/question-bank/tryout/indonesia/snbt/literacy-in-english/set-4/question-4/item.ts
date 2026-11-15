@@ -4,35 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "application",
   },
-  stimulus: "deep-vents",
+  stimulus: "clever-hans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Some sunlight reaches the vents through very clear water.",
-        },
-        {
-          correct: false,
-          label: "The tube worms rise to the surface at night to feed.",
+          label:
+            "Children who know they were taught with a new method take a written test that a computer marks.",
         },
         {
           correct: false,
           label:
-            "The heat of the vent fluid comes from the sun's warming of the ocean.",
-        },
-        {
-          correct: false,
-          label:
-            "Vent bacteria use sugars that sink down from plants at the surface.",
+            "A computer reads each question aloud and records each child's answer, while a researcher who knows the groups watches from behind a one-way mirror.",
         },
         {
           correct: true,
           label:
-            "Most vent bacteria need oxygen that photosynthesis in sunlight produced.",
+            "An examiner who knows which children were taught with a new method gives each child a spoken test and decides on the spot whether each answer is good enough.",
+        },
+        {
+          correct: false,
+          label:
+            "A stranger who does not know which children were taught with a new method gives each child a spoken test and records every answer.",
+        },
+        {
+          correct: false,
+          label:
+            "A teacher who knows which children were taught with a new method hands out a written test and leaves the room while they work.",
         },
       ],
     },

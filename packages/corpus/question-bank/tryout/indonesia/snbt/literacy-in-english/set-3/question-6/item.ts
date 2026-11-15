@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "text-relation",
   },
-  stimulus: "four-day-week",
+  stimulus: "bag-charge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Plastic use in the city has fallen since the charge began.",
+        },
+        {
+          correct: false,
           label:
-            "The four-day week has failed in most of the companies that have tried it.",
+            "Households that used carrier bags to line their bins now buy bin liners instead.",
+        },
+        {
+          correct: false,
+          label:
+            "No earlier campaign changed shopping habits as quickly as the charge has.",
+        },
+        {
+          correct: false,
+          label:
+            "Extending the charge to paper bags would be a sensible next step.",
         },
         {
           correct: true,
           label:
-            "Further trials are worthwhile, but current evidence does not justify a law for everyone.",
-        },
-        {
-          correct: false,
-          label:
-            "Governments should require every employer to adopt a four-day week as soon as possible.",
-        },
-        {
-          correct: false,
-          label:
-            "Compressed weeks are better than reduced weeks because pay stays the same.",
-        },
-        {
-          correct: false,
-          label:
-            "Workers in hospitals and care homes should be the first to receive a four-day week.",
+            "The weight of the carrier bags no longer handed out overstates how much plastic the city has stopped using.",
         },
       ],
     },

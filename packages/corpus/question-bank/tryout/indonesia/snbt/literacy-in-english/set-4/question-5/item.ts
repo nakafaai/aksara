@@ -2,37 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "deep-vents",
+  stimulus: "clever-hans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Europa is known to have tube worms living beneath its ice.",
+          label:
+            "The software may be responding to the type of camera rather than to illness, so the hospital should stop using the bedside camera.",
         },
         {
           correct: false,
           label:
-            "Vent animals could be carried to Europa by deep ocean currents.",
+            "The software is remarkable in the way Hans was, so it should be used as it is.",
+        },
+        {
+          correct: false,
+          label:
+            "The researchers must have signalled the answers on purpose, so they should be replaced.",
         },
         {
           correct: true,
           label:
-            "Chemical energy like that at vents might support life without light.",
-        },
-        {
-          correct: false,
-          label: "Europa's ice is made mostly of hydrogen sulphide from vents.",
+            "The software may be responding to the type of camera rather than to illness, so it should be tested on photos in which the camera gives no clue to the answer.",
         },
         {
           correct: false,
           label:
-            "Scientists plan to move vent bacteria to Europa to start life there.",
+            "The software may be responding to the type of camera rather than to illness, so it should be retrained on more photos from the same bedside camera.",
         },
       ],
     },

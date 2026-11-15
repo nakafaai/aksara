@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "half-sleep",
+  stimulus: "cholera-pump",
   versions: {
     en: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Resting on a quiet, sheltered beach after a long day of feeding",
-        },
-        {
-          correct: false,
-          label: "Lying on rocks on land beside other seals in its colony",
+            "Closing the well ended the outbreak, as removing the pump handle ended the outbreak in 1854.",
         },
         {
           correct: false,
           label:
-            "Sleeping in a protected enclosure where no predators can reach it",
+            "The fall shows that the well was the cause, because cases dropped within a week of the closure.",
         },
         {
           correct: true,
-          label: "Resting in the open water some distance from the shore",
+          label:
+            "The fall alone does not show that the well was the cause, because cases may already have been falling as people left.",
         },
         {
           correct: false,
           label:
-            "Lying on land during a warm afternoon when the beach is empty",
+            "The fall alone does not show that the well was the cause, because only a comparison of two water companies could prove it.",
+        },
+        {
+          correct: false,
+          label:
+            "The fall alone does not show that the well was the cause, because a map of the cases was not drawn.",
         },
       ],
     },

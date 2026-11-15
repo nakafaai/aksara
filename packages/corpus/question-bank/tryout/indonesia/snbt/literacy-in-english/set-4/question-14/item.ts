@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "bike-lanes",
+  stimulus: "liver-screening",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The lanes were separated from traffic by low concrete barriers.",
-        },
-        {
-          correct: false,
-          label:
-            "The council member said Main Street had become more dangerous.",
+          correct: true,
+          label: "Of the $$585$$ positive results, $$495$$ were false alarms.",
         },
         {
           correct: true,
           label:
-            "Cycling rose about 25 percent citywide, even on streets with no new lanes.",
+            "Overall, the test gave the right result for about $$95\\%$$ of the adults tested.",
         },
         {
           correct: false,
           label:
-            "Station Avenue had fewer cyclists than Main Street in both periods.",
+            "A positive result raised a person's chance of having the condition from $$1\\%$$ to about $$90\\%$$.",
+        },
+        {
+          correct: true,
+          label:
+            "If the $$585$$ adults who tested positive took a second, independent test with the same error rates, more of those testing positive again would have the condition than not.",
         },
         {
           correct: false,
           label:
-            "The analyst said the risk per cyclist was the figure that mattered.",
+            "The $$10$$ adults with the condition who tested negative made up $$10\\%$$ of all negative results.",
         },
       ],
     },

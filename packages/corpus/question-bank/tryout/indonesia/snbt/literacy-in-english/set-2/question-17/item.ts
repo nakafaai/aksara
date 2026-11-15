@@ -3,37 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
+    contentDomain: "fiction",
     topic: "inference",
   },
-  stimulus: "jikji-printing",
+  stimulus: "market-scale",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "the National Library of France kept it hidden from Korean researchers.",
+            "The man in the good coat received less rice than the needle showed.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "no one at the library had yet recognised when and how it had been printed.",
+            "The inspector's clean record says more about when he visits than about how the scale is used.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "it was written in a language that French librarians could not read.",
+            "Before weighing the man's rice, Grandma moves the needle from just below zero to exactly zero.",
         },
         {
-          correct: false,
-          label: "it arrived in Paris only shortly before the 1970s.",
+          column: 2,
+          label:
+            "The narrator works out the purpose of the screw the moment Grandma shows it to her.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "the French diplomat who acquired it refused to show it to anyone.",
+            "Grandma accepts the narrator's mistakes because a small loss to a customer does not matter to her.",
         },
       ],
     },

@@ -2,39 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "visitor-fee",
+  stimulus: "school-start",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "A large fee that only wealthy tourists could afford to pay each day",
-        },
-        {
-          correct: false,
-          label:
-            "Closing the town to all visitors during the busy summer months",
-        },
-        {
-          correct: false,
-          label:
-            "A small fee with no cap on numbers and no public record of spending",
-        },
-        {
           correct: true,
           label:
-            "Timed bookings with a daily cap, plus a fee openly spent on residents' needs",
+            "That the gain in sleep may be smaller than $$34$$ minutes, because the high schools would start only half an hour later.",
         },
         {
           correct: false,
           label:
-            "Removing all charges so that more visitors can come into the town",
+            "That the gain in sleep may be smaller than $$34$$ minutes, because high-school students would still have to catch their bus at the old time.",
+        },
+        {
+          correct: false,
+          label:
+            "That the middle schools would have to start at 9:30, which many working parents cannot manage.",
+        },
+        {
+          correct: false,
+          label:
+            "That moving to 8:30 would delay the high schools by almost an hour, more than the students need.",
+        },
+        {
+          correct: false,
+          label: "That extra buses would cost $$2.4$$ million dollars a year.",
         },
       ],
     },

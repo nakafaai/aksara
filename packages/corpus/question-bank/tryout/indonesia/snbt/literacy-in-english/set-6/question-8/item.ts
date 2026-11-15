@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "calculation",
   },
-  stimulus: "grading-curve",
+  stimulus: "test-optional",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "It rose by $$7$$ percentage points, about $$37\\%$$ of the old share.",
+        },
+        {
+          correct: false,
+          label:
+            "It rose by $$7$$ percentage points, which is a rise of $$7\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "It rose by $$19$$ percentage points, about $$158\\%$$ of the old share.",
+        },
+        {
+          correct: false,
+          label:
+            "It rose by $$7$$ percentage points, about $$40\\%$$ of the old share, in line with applications.",
+        },
+        {
           correct: true,
           label:
-            "To show that a curve can give low marks to students who have learned well",
-        },
-        {
-          correct: false,
-          label:
-            "To argue that strong students should be placed in separate, faster classes",
-        },
-        {
-          correct: false,
-          label:
-            "To show that strong classes usually cheat to raise their marks",
-        },
-        {
-          correct: false,
-          label:
-            "To prove that every student in a strong class will receive an A",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that a teacher's own standards might be too strict",
+            "It rose by $$7$$ percentage points, about $$58\\%$$ of the old share.",
         },
       ],
     },

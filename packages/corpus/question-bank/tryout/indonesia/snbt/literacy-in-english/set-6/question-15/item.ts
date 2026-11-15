@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "application",
   },
-  stimulus: "water-meters",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "E-books would overtake print books, because tripling twice is a rise of $$600\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "E-books and print books would be lent about equally, because each format would change by the same number of loans as this year.",
+        },
+        {
+          correct: false,
+          label:
+            "Print books would still be lent more often, by about $$135{,}000$$ loans.",
+        },
+        {
+          correct: false,
+          label:
+            "Total loans would fall, because print loans make up most of the total.",
+        },
+        {
           correct: true,
           label:
-            "Use fell more where meters were installed, but how much the meters caused is unclear.",
-        },
-        {
-          correct: false,
-          label:
-            "Smart meters cut water use by exactly 15 percent in every area where they are used.",
-        },
-        {
-          correct: false,
-          label:
-            "Ordinary meters increase water use because they are read only once every three months.",
-        },
-        {
-          correct: false,
-          label:
-            "The fall in Area A was caused entirely by the council's leak repair programme.",
-        },
-        {
-          correct: false,
-          label:
-            "Residents of Areas C and D wasted more water than residents of A and B.",
+            "Print books would still be lent more often than e-books, by about $$64{,}800$$ loans.",
         },
       ],
     },

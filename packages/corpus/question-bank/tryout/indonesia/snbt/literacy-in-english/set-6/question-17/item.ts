@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "railway-time",
+  stimulus: "piano-lessons",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Bristol's local noon came about ten minutes after London's.",
-        },
-        {
-          column: 2,
+          correct: true,
           label:
-            "Greenwich time became the legal time in Great Britain in 1840.",
+            "That the note is a habit so old the narrator no longer notices it, and Mr Hollis, who can hear it, stops her there in his first week.",
         },
         {
-          column: 2,
-          label: "The American railroads agreed on six time zones in 1883.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "The United States government made the time zones law in 1918.",
+            "That the note is a habit so old the narrator no longer notices it, and the narrator finally fixes it before leaving Mrs Varga.",
+        },
+        {
+          correct: false,
+          label:
+            "That the note is something Mrs Varga herself had stopped hearing, and Mr Hollis, who can hear it, stops the narrator there.",
+        },
+        {
+          correct: false,
+          label:
+            "That the note is a habit so old the narrator no longer notices it, and Mr Hollis stops her there because the conservatory piano is out of tune.",
+        },
+        {
+          correct: false,
+          label:
+            "That the note comes from an old piano, and the conservatory's piano shows the note was never wrong.",
         },
       ],
     },

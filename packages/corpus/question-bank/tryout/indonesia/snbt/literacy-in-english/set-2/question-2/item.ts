@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "inference",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "cuckoo-eggs",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
           label:
-            "survive by going inactive until conditions improve, not by withstanding them.",
+            "The field experiments confirm the textbook view that hosts usually fail to notice cuckoo eggs.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "move away from harsh conditions as soon as they detect a change in moisture.",
+            "A warbler that has not seen a cuckoo near its nest may keep an odd egg even in a reed bed where cuckoos are common.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "become stronger the longer they are exposed to harsh conditions in the wild.",
+            "The close match between cuckoo eggs and host eggs is the passage's main evidence that hosts weigh risks.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "avoid harsh conditions by living only in deep lakes and oceans.",
+            "The risk of throwing out its own unusual eggs is one reason a warbler can gain from accepting odd eggs where cuckoos are rare.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "fight harsh conditions by producing large amounts of trehalose in their cells.",
+            "If cuckoos became common again in the English reed bed, the passage gives reason to expect rejection there to rise within years rather than over many generations.",
         },
       ],
     },

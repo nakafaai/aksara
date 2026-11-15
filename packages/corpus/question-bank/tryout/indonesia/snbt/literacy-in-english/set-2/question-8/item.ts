@@ -2,33 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "right-repair",
+  stimulus: "speed-cameras",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Independent repair shops are often small local businesses.",
+          correct: false,
+          label: "About $$42\\%$$, the fall that the counts show.",
         },
         {
-          column: 2,
-          label: "Manufacturers' safety concerns about repairs have no basis.",
-        },
-        {
-          column: 1,
+          correct: false,
           label:
-            "Publishing repair instructions can reduce poorly done repairs.",
+            "About $$34\\%$$, the fall at the sites minus the city-wide fall.",
         },
         {
-          column: 2,
+          correct: false,
+          label: "About $$8\\%$$, the same as the city-wide fall.",
+        },
+        {
+          correct: false,
+          label: "$$0\\%$$, because the whole fall is regression to the mean.",
+        },
+        {
+          correct: true,
           label:
-            "The European Union requires owners of household appliances to repair them rather than replace them.",
+            "About $$21\\%$$, roughly half of the fall that the counts show.",
         },
       ],
     },

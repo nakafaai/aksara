@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "text-relation",
   },
-  stimulus: "visitor-fee",
+  stimulus: "school-start",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Most visitors do not know that the fee exists until after they arrive.",
+            "Teenagers' body clocks make an early school start hard for them.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "A fee most visitors accept deters few, while a higher one excludes poorer people.",
+            "Every high school should start at 8:30 or later, whatever it costs.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Fees are usually collected only from residents, not from day visitors.",
+            "Moving to 8:30 would give this district's students about $$34$$ more minutes of sleep.",
         },
         {
-          correct: false,
-          label:
-            "Visitors can easily avoid paying by arriving late in the evening instead.",
+          column: 1,
+          label: "A later start would be good for high-school students.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The fee money is spent on souvenirs rather than on managing the crowds.",
+            "Extra buses would cost the district $$2.4$$ million dollars a year.",
         },
       ],
     },

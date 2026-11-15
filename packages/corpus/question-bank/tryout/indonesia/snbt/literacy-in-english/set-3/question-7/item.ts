@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "text-relation",
   },
-  stimulus: "four-day-week",
+  stimulus: "bag-charge",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Firms that expected to benefit may have joined, so results may not fit others.",
+            "Supermarkets in the city hand out far fewer carrier bags than before the charge.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Volunteer companies paid their staff less than other companies did.",
+            "The city uses about $$320$$ tonnes less plastic each year because of the charge.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Voluntary trials are not permitted in sectors such as healthcare and transport.",
+            "Results of the charge should be reported by weight, with bin liners included.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Companies that volunteer tend to exaggerate their results to look successful.",
+            "The charge has reduced the amount of plastic used in the city.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Volunteering meant the trials lasted longer than planned trials would.",
+            "Paper bags are worse for the environment than plastic carrier bags.",
         },
       ],
     },

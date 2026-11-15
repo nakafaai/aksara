@@ -6,30 +6,36 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "bike-lanes",
+  stimulus: "liver-screening",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "The total number of cyclist injuries on the three streets fell after the lanes opened.",
+            "More adults without the condition tested positive than adults with it.",
         },
         {
           column: 2,
-          label: "Cycling increased only on streets that received new lanes.",
+          label:
+            "Because the test misses one in ten people who have the condition, about $$1{,}000$$ of last year's adults with the condition were not detected.",
         },
         {
           column: 1,
           label:
-            "Each of the three streets had more daily cyclists after the lanes opened.",
+            "A negative result was very strong evidence that the person did not have the condition.",
+        },
+        {
+          column: 2,
+          label:
+            "The maker's figure of $$95\\%$$ means that $$95\\%$$ of positive results are correct.",
         },
         {
           column: 1,
           label:
-            "Station Avenue had the highest injury rate per cyclist both before and after the lanes opened.",
+            "If the condition were ten times as common, with the same error rates, a larger share of positive results would be correct.",
         },
       ],
     },

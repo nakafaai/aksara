@@ -2,39 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "water-meters",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Installing smart meters in Area C as well, starting halfway through the trial",
-        },
-        {
-          correct: false,
-          label:
-            "Asking households in Areas A and B whether they liked the app",
-        },
-        {
-          correct: false,
-          label:
-            "Reading the ordinary meters in Areas C and D once a year instead",
-        },
-        {
-          correct: false,
-          label:
-            "Raising water prices in all four areas during the second summer",
+            "Print books made up a smaller share of all loans in 2024 than in 2023.",
         },
         {
           correct: true,
           label:
-            "Choosing at random which similar areas receive meters, not by application",
+            "E-book loans rose by $$200\\%$$, which is the same as saying they tripled.",
+        },
+        {
+          correct: false,
+          label: "Audiobook loans rose by more loans than e-book loans did.",
+        },
+        {
+          correct: true,
+          label:
+            'The director\'s phrase "about the same number of books, in different shapes" fits the change in total loans.',
+        },
+        {
+          correct: true,
+          label: "Print loans fell by more loans than audiobook loans rose.",
         },
       ],
     },

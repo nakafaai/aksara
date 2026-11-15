@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "grading-curve",
+  stimulus: "test-optional",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Grades should be abolished because they turn students into rivals.",
+            "Students admitted without scores averaged $$2.9$$ against $$3.1$$, and the university now admits more students from low-income families.",
         },
         {
           correct: false,
           label:
-            "A strict curve is the fairest way to deal with tests that are too hard.",
+            "Research favours reading scores against the results of an applicant's school, and coaching can also improve essays and activities.",
+        },
+        {
+          correct: false,
+          label:
+            "Tests should stay optional for now, and the university should track how students do after their first year.",
         },
         {
           correct: true,
           label:
-            "Grades should measure students against clear standards, not each other.",
+            "Students admitted without scores averaged $$2.9$$ against $$3.1$$, and both groups had already been chosen after the university weighed everything else it knew.",
         },
         {
           correct: false,
           label:
-            "Teachers should give more A grades so that weaker classes are protected.",
-        },
-        {
-          correct: false,
-          label:
-            "Study groups are more useful than grades for judging what students know.",
+            "Students admitted without scores averaged $$2.9$$ against $$3.1$$, and coaching can also improve essays and activities.",
         },
       ],
     },

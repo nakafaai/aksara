@@ -324,6 +324,18 @@ references and places, markers, and names kept out; `math/fix.ts` wraps every
 unambiguous one. It became blocking on 15 November 2026, in the change that
 cleared its last occurrence.
 
+`dollar-math` blocks math written between dollar signs in learner-visible
+MDX, `$$30$$` or `$x^2$`, because only response labels render dollar math. It
+reads single dollars the way Pandoc does, so a price such as `USD $100`,
+`$5 and $10`, or `$5-$6` stays text, and the plain-number rule skips the
+number inside dollar math instead of reading its dollar as a currency.
+`clock-time-math` blocks a clock time inside a `math` prop: a braced
+separator before two minute digits (`20{:}24`, `16{.}00`) in every locale, and
+a whole value such as `07.00` in Indonesian and German, whose decimal mark is
+a comma. A bare colon (`9:25`) stays a ratio, an English or Malay `19.25`
+stays a decimal, and a time inside a JSX expression prop is a manual read
+item. Both rules became blocking on 15 November 2026 with zero occurrences.
+
 Three pending rules carry owner requirements that the corpus does not meet
 yet: `plain-math-text` (D37, [mathematics rules](math.md)) finds Unicode sub-
 and superscripts, math symbols and arrows, Greek letters, element formulas with

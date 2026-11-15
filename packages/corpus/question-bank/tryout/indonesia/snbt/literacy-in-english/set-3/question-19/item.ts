@@ -3,38 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "rosetta-stone",
+  stimulus: "clinic-interpreter",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "It allowed him to read the Greek section of the stone for the first time.",
+            "He answered it himself because it concerned his own conduct rather than his illness.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "It showed him which temples contained the oldest royal cartouches.",
+            "He answered it himself because he did not trust the narrator to translate it correctly.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "It proved that hieroglyphs were symbols expressing mystical ideas.",
+            "His answer was probably meant to protect how the doctor saw him.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "It let him translate the Demotic script directly without any comparison.",
+            "He felt that hearing the doctor's news through the narrator made it harder to bear.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "It gave him a sense of spoken Egyptian against which to check readings.",
+            "He plans to tell the doctor the truth about the tablets at his next visit.",
         },
       ],
     },

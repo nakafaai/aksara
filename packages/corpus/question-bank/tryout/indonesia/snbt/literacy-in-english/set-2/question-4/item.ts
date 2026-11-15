@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "inference",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "cuckoo-eggs",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "show that tardigrades are closely related to these two kinds of animals.",
-        },
-        {
-          correct: false,
-          label:
-            "argue that trehalose is harmful to tardigrades when their cells dry out.",
-        },
-        {
-          correct: false,
-          label:
-            "prove that all drought-tolerant animals survive drying in exactly the same way.",
-        },
-        {
-          correct: false,
-          label:
-            "explain why brine shrimp can survive in outer space as tardigrades do.",
+            "Its birds cannot tell their own eggs from the eggs of other birds.",
         },
         {
           correct: true,
           label:
-            "contrast the sugar used by other animals with the molecules tardigrades rely on.",
+            "Its high acceptance may reflect a low risk of meeting cuckoos rather than an inability to spot odd eggs.",
+        },
+        {
+          correct: false,
+          label:
+            "Its high acceptance must have been shaped by natural selection over many generations.",
+        },
+        {
+          correct: false,
+          label:
+            "Each of its birds loses little when an egg it accepts turns out to be a cuckoo's.",
+        },
+        {
+          correct: true,
+          label:
+            "Its rate of acceptance could fall if cuckoos became more common nearby.",
         },
       ],
     },

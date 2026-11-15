@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "half-sleep",
+  stimulus: "cholera-pump",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
           column: 2,
           label:
-            "Ducks in the middle of the row kept one eye open more often than ducks at the ends.",
+            "Removing the pump handle is what ended the Broad Street outbreak.",
         },
         {
           column: 1,
           label:
-            "Fur seals usually sleep with both hemispheres when they are on land.",
+            "A cluster of deaths around the pump could also be explained by the air that nearby residents shared.",
+        },
+        {
+          column: 2,
+          label: "Snow's evidence persuaded most officials of his day.",
         },
         {
           column: 1,
-          label: "Frigatebirds slept for less than an hour a day while flying.",
+          label:
+            "The brewery workers' escape fits the water theory because they did not drink water from the pump.",
         },
         {
           column: 2,
           label:
-            "Humans can sleep with one hemisphere fully awake, as dolphins do.",
+            "The Lambeth company drew its water from the river below the city's sewage outlets.",
         },
       ],
     },

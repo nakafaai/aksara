@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "structure",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "jikji-printing",
+  stimulus: "market-scale",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "argue that Bi Sheng, not the Korean monks, deserves the credit for printing *Jikji*.",
+            "On the narrator's first morning, she tells her to watch Grandma's hands rather than the needle.",
         },
         {
           correct: false,
           label:
-            "explain how woodblocks were carved and inked in Korean temples.",
-        },
-        {
-          correct: false,
-          label:
-            "prove that clay type produced clearer pages than metal type did.",
-        },
-        {
-          correct: false,
-          label:
-            "describe the life and other writings of the scholar Shen Kuo.",
+            "She says that the scale is not to be trusted, as the fish seller and the baker also say.",
         },
         {
           correct: true,
           label:
-            "trace movable type back before *Jikji* and explain why woodblocks still prevailed in China.",
+            "She knows that the inspector comes on Mondays, when the market is shut.",
+        },
+        {
+          correct: false,
+          label:
+            "She is surprised to hear that the trick lies in a screw rather than in Grandma's hands.",
+        },
+        {
+          correct: true,
+          label:
+            'She laughs, rather than looking troubled, when the narrator says, "It\'s the screw."',
         },
       ],
     },
