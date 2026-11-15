@@ -4,36 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "argument-evaluation",
   },
-  stimulus: "half-sleep",
+  stimulus: "cholera-pump",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "It shows that ducks sleep better when they are surrounded by other ducks.",
+          correct: true,
+          label: "Deaths clustered around the Broad Street pump.",
         },
         {
           correct: true,
           label:
-            "It shows that the behaviour changes with how exposed a duck is.",
+            "Deaths fell after many residents left the area, which took them away from both the pump and the air around it.",
         },
         {
           correct: false,
           label:
-            "It proves that ducks at the ends were older than ducks in the middle.",
+            "A widow who lived miles away, but drank water fetched from Broad Street, died of cholera.",
         },
         {
           correct: false,
           label:
-            "It allows the researchers to count how many ducks were in the row.",
+            "Neighbours in the same street died at very different rates depending on their water company.",
         },
         {
           correct: false,
-          label: "It shows that ducks in the middle never sleep at all.",
+          label:
+            "Workers at a brewery beside the pump, who did not drink its water, escaped almost entirely.",
         },
       ],
     },

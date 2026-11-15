@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "application",
   },
-  stimulus: "half-sleep",
+  stimulus: "cholera-pump",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,25 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Some animals sleep with half the brain at a time, which keeps them safe or moving.",
+            "A school beside the pump whose pupils drank only water carried from a distant spring had almost no cases.",
+        },
+        {
+          correct: false,
+          label: "A street far from the pump had almost no cases.",
         },
         {
           correct: false,
           label:
-            "Dolphins are the only animals that are able to sleep while they keep swimming.",
+            "A family living beside the pump, who drank its water every day, all fell ill.",
+        },
+        {
+          correct: false,
+          label: "A district south of the river had many more cases than Soho.",
         },
         {
           correct: false,
           label:
-            "Humans sleep badly in hotels because half of the brain stays fully awake all night.",
-        },
-        {
-          correct: false,
-          label:
-            "Frigatebirds sleep for more hours in the air than they do when resting on land.",
-        },
-        {
-          correct: false,
-          label:
-            "Sleep matters less for birds than for mammals, since birds can fly while resting.",
+            "A doctor who lived near the pump and treated many patients caught cholera himself.",
         },
       ],
     },

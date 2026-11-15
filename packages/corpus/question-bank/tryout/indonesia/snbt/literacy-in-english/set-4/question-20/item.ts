@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "antikythera",
+  stimulus: "spare-key",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Other ancient shipwrecks have yielded several devices built with similar gears.",
+            "From thinking Gran had locked herself out by accident to learning that she had done it on purpose to test the narrator.",
         },
         {
           correct: false,
           label:
-            "Ancient writers may have described such machines, though no account names one.",
+            "From feeling tricked by Gran's test to deciding that Gran should no longer live alone.",
         },
         {
           correct: false,
           label:
-            "The device's manual mentions a workshop that produced copies for sale.",
+            "From worrying about Gran's memory to realising that Gran had remembered everything.",
+        },
+        {
+          correct: false,
+          label:
+            "From feeling tricked by Gran's test to seeing that Gran's memory is perfect and the test was a joke.",
         },
         {
           correct: true,
           label:
-            "Bronze was often melted down for reuse, so similar devices may simply be lost.",
-        },
-        {
-          correct: false,
-          label:
-            "Medieval clocks were modelled on ancient devices that still survive today.",
+            "From feeling tricked by Gran's test to seeing that the test covered Gran's difficulty, which the narrator then helps with without saying so.",
         },
       ],
     },

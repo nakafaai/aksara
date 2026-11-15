@@ -6,31 +6,34 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "water-meters",
+  stimulus: "library-loans",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
           column: 2,
+          label: "Most of the library's loans in 2024 were e-books.",
+        },
+        {
+          column: 1,
           label:
-            "Area C used more water in the first year of the trial than in the year before.",
+            "The number of extra e-book loans in 2024 equals the fall in print loans.",
+        },
+        {
+          column: 2,
+          label: "The library lent fewer items in total in 2024 than in 2023.",
+        },
+        {
+          column: 1,
+          label:
+            "Audiobook loans grew by a larger percentage than the library's total loans.",
         },
         {
           column: 2,
           label:
-            "Each area without smart meters cut its use by more than 50 litres a day.",
-        },
-        {
-          column: 1,
-          label:
-            "Both areas with smart meters cut their use by more than 10 percent.",
-        },
-        {
-          column: 1,
-          label:
-            "Before the trial, Area A used the most water of the four areas.",
+            "The tripling of e-book loans shows that the city's people read more in 2024.",
         },
       ],
     },

@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "strengthen-weaken",
   },
-  stimulus: "grading-curve",
+  stimulus: "test-optional",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Students in curved courses reported feeling more stressed before exams.",
-        },
-        {
-          correct: false,
-          label:
-            "Teachers who use curves spend less time marking than other teachers.",
-        },
-        {
-          correct: false,
-          label:
-            "Employers rarely look at the grades of individual university courses.",
-        },
-        {
-          correct: false,
-          label:
-            "Some students prefer curves because they learn their exact rank at once.",
-        },
-        {
           correct: true,
           label:
-            "Students in curved courses formed study groups as often as students elsewhere.",
+            "Among applicants from the same school and with similar family incomes, test scores still predicted first-year grades.",
+        },
+        {
+          correct: false,
+          label:
+            "Applicants who sent in scores had, on average, attended better-funded schools than those who did not.",
+        },
+        {
+          correct: false,
+          label:
+            "Test scores rose at schools that began to offer free coaching to all their students.",
+        },
+        {
+          correct: false,
+          label:
+            "Students admitted without scores earned lower first-year grades than students admitted with scores.",
+        },
+        {
+          correct: false,
+          label:
+            "Coaching can raise an applicant's essay as well as the applicant's test score.",
         },
       ],
     },

@@ -2,38 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "railway-time",
+  stimulus: "piano-lessons",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "To show that American newspapers opposed the railways' new time zones",
-        },
-        {
-          correct: false,
-          label:
-            "To explain why the government waited until 1918 to pass a law on time",
+            "She praised a performance so bad that the narrator stopped in the middle.",
         },
         {
           correct: true,
           label:
-            "To make vivid how resetting clocks to a zone could repeat a familiar moment",
+            "She asked for the slow movement to be played louder and louder.",
         },
         {
           correct: false,
           label:
-            "To prove that every single American town saw noon twice on that particular day",
+            "She told the narrator's mother that she had taught her everything she could.",
         },
         {
-          correct: false,
-          label: "To show that the sun appeared twice over some American towns",
+          correct: true,
+          label:
+            "She watched the metronome's swinging arm rather than listening for its tick.",
+        },
+        {
+          correct: true,
+          label: "She did not move when the telephone rang in the hall.",
         },
       ],
     },

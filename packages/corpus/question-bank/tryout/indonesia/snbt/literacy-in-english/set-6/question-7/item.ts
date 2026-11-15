@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "grading-curve",
+  stimulus: "test-optional",
   versions: {
     en: {
       columns: ["Yes", "No"],
@@ -15,22 +15,26 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Under a curve, helping a classmate can lower your own chances.",
+            "The rise in admitted students from low-income families is a good result.",
+        },
+        {
+          column: 2,
+          label:
+            "Entrance tests mainly measure how much coaching a family can afford.",
         },
         {
           column: 1,
           label:
-            "The author grants that the concerns of curving's supporters are real.",
+            "Students admitted without scores earned somewhat lower first-year grades than students admitted with scores.",
+        },
+        {
+          column: 2,
+          label: "The university should bring back required test scores.",
         },
         {
           column: 2,
           label:
-            "A strict curve ensures that every student with an A has mastered the material.",
-        },
-        {
-          column: 2,
-          label:
-            "Teachers should never adjust marks after a test turns out to be difficult.",
+            "Dropping the tests has not lowered the university's standard.",
         },
       ],
     },

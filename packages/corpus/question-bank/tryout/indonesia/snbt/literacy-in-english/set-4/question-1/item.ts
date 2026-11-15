@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "research-design",
   },
-  stimulus: "deep-vents",
+  stimulus: "clever-hans",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Vent life runs on chemical energy from bacteria yet still depends on the sun indirectly.",
+            "A questioner who knows the answer stands hidden from Hans, and a questioner who does not know it stands in full view.",
         },
         {
           correct: false,
           label:
-            "The vents were discovered by accident while scientists were searching for shipwrecks.",
+            "A questioner who knows the answer stands in full view, and then asks harder sums from the same place.",
         },
         {
           correct: false,
           label:
-            "Tube worms are the only animals that can survive at the bottom of the Pacific Ocean.",
+            "A questioner who does not know the answer stands in full view, and then stands hidden from Hans.",
         },
         {
           correct: false,
           label:
-            "Hydrogen sulphide is harmless to animals that live near the vents.",
+            "Von Osten asks the questions in full view, and then a stranger who knows the answer asks them from the same place.",
         },
         {
           correct: false,
           label:
-            "Life on Europa has probably developed in the same way as life around vents.",
+            "A questioner who knows the answer stands in full view, and then Hans is tested by the same questioner on another day.",
         },
       ],
     },

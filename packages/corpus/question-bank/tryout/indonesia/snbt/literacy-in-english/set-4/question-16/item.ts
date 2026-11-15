@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "antikythera",
+  stimulus: "spare-key",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Its unusual weight compared with the statues found beside it",
+          label:
+            "That Gran had found the key at once, as she said, and had rung only to see whether the narrator would come.",
         },
         {
           correct: false,
           label:
-            "Thousands of letters that were clearly visible on its surface",
-        },
-        {
-          correct: false,
-          label: "X-ray images taken soon after it was brought to the surface",
-        },
-        {
-          correct: false,
-          label: "A user's manual found together with it in the wreck",
+            "That Gran had not been able to find the key, and had pretended to be locked out so that the narrator would visit.",
         },
         {
           correct: true,
-          label: "A toothed gear wheel seen after the lump cracked apart",
+          label:
+            "That Gran had not been able to find the key and needed the narrator's directions, and that her story of a test covered this.",
+        },
+        {
+          correct: false,
+          label:
+            "That Gran had not been able to find the key because the narrator had hidden it in the wrong flowerpot.",
+        },
+        {
+          correct: false,
+          label:
+            "That Gran had found the key but had forgotten which door it opened, and was too proud to say so.",
         },
       ],
     },

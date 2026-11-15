@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "water-meters",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "2.0%",
+          label:
+            "They rose by about $$200\\%$$, which supports the headline, since e-book loans tripled.",
         },
         {
           correct: false,
-          label: "9.3%",
-        },
-        {
-          correct: false,
-          label: "12.1%",
+          label:
+            "They rose by about $$11\\%$$, which partly supports the headline, since more was borrowed overall.",
         },
         {
           correct: true,
-          label: "15.0%",
+          label:
+            "They rose by about $$1\\%$$, which suggests that readers mostly changed format rather than read more.",
         },
         {
           correct: false,
-          label: "17.6%",
+          label:
+            "They fell by about $$10\\%$$, which contradicts the headline, since print loans fell.",
+        },
+        {
+          correct: false,
+          label:
+            "They rose by about $$1\\%$$, which suggests that e-books drew in many new readers who had not borrowed before.",
         },
       ],
     },
