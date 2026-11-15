@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "vocabulary-in-context",
+    topic: "argument-evaluation",
   },
   stimulus: "continental-drift",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The popular version praises the scientists who later confirmed drift far more warmly than it praises Wegener, who first proposed the idea.",
+            "Wegener was a meteorologist rather than a geologist, and nearly every speaker at the 1926 symposium rejected drift.",
         },
         {
           correct: true,
           label:
-            "The popular version judges the debate by what was learned decades afterwards, and so passes over objections that were sound when they were raised.",
+            "Physicists showed that Wegener's proposed forces were far too feeble, and Jeffreys argued, correctly, that a continent could not plough through the ocean floor.",
         },
         {
           correct: false,
           label:
-            "The popular version overstates how much evidence Wegener had gathered, since his fossils, rock layers and coastlines were all far weaker than the story usually suggests to its readers.",
+            "The coasts of South America and Africa fit together, and fossils of Glossopteris turn up on landmasses that oceans now separate.",
         },
         {
           correct: false,
           label:
-            "The popular version hides the fact that Wegener's critics had measured the drift of Greenland far more accurately than he had.",
+            "Physicists showed that Wegener's proposed forces were far too feeble, and Wegener died in 1930 with his idea still a minority view.",
         },
         {
           correct: false,
           label:
-            "The popular version blames critics for rejecting a theory that physicists had already confirmed by the time of the New York symposium.",
+            "No one had found a land bridge, and Jeffreys argued, correctly, that a continent could not plough through the ocean floor.",
         },
       ],
     },

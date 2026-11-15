@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The ice protects the blossoms mainly by keeping the wind off them.",
+            "Once the blossoms are cased in ice, they stay safe even if the water is turned off.",
         },
         {
           column: 1,
@@ -30,12 +30,12 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The narrator understood the method from the moment the water was turned on.",
+            "By morning the narrator understood the method well enough to explain it without mistakes.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "The Hallers' bare trees prove that the grandfather's method works on every frosty night.",
+            "The Hallers' bare trees fit the method having worked, though on their own they do not prove it.",
         },
       ],
     },

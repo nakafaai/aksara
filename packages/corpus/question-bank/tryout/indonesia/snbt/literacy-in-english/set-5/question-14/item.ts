@@ -14,17 +14,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The number of unvaccinated children in each district and in each school",
+            "The number of unvaccinated children in each school, not only in each district",
         },
         {
           correct: false,
           label:
-            "The total number of vaccine doses given in the province last year",
-        },
-        {
-          correct: false,
-          label:
-            "The provincial coverage figure for each of the previous five years",
+            "Each district's coverage figure, since a district that has reached $$95\\%$$ needs no team",
         },
         {
           correct: true,
@@ -33,7 +28,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The share of children with two doses in neighbouring provinces",
+            "The number of children in each district, since a larger district has more children to protect",
+        },
+        {
+          correct: false,
+          label:
+            "The provincial coverage figure for each of the previous five years",
         },
       ],
     },

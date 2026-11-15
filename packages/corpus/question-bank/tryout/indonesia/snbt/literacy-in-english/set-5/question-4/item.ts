@@ -29,12 +29,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A doctor doubts a new drug because the first study used a faulty thermometer that greatly overstated how far the fever had dropped.",
+            "A doctor sees a new drug lower fever in trial after trial and, although no one can say how it acts, keeps prescribing it while asking researchers to find out.",
         },
         {
           correct: false,
           label:
-            "A doctor trusts a theory of how a new drug ought to work and keeps prescribing it even though trials show no effect on fever.",
+            "A doctor sees a new drug lower fever in only one small trial and, since no one can say how it acts, waits for more trials before deciding.",
         },
       ],
     },

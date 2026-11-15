@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "strengthen-weaken",
   },
   stimulus: "measles-coverage",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It relies on clinic records, which may count doses that were given to children living outside the province.",
+            "Northgate, the district with the most cases, had the lowest coverage in the province.",
         },
         {
           correct: false,
           label:
-            "It measures the province against a target that is set too high for a disease as easily spread as measles.",
+            "Most of the children who caught measles in Riverside and Hillcrest had received both doses of the vaccine.",
         },
         {
           correct: false,
           label:
-            "It ignores that measles is spread mainly by adults, who are not counted in the coverage figures for children and so are missing from the newspaper's comparison altogether.",
+            "Most of the children who caught measles in Eastport had received at least one dose of the vaccine.",
         },
         {
           correct: true,
           label:
-            "It treats the provincial average as if it described every community, though most cases came from places where coverage was far lower.",
+            "Most of the children who caught measles in Northgate and Eastport had received both doses of the vaccine.",
         },
         {
           correct: false,
           label:
-            "It assumes that two doses protect a child completely, though the passage gives no figure for how well the vaccine works.",
+            "The private school in Eastport had more unvaccinated pupils than any other school in the district.",
         },
       ],
     },
