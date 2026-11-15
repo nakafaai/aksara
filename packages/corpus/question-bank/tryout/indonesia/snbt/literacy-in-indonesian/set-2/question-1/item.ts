@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "bagian sungai yang deras tepat di bawah tambang, karena kadar merkuri total di airnya paling tinggi",
+            "Di bagian sungai yang deras dekat tambang, karena merkuri anorganik di sana paling banyak dan langsung diserap tubuh ikan.",
         },
         {
           correct: true,
           label:
-            "waduk tenang berdasar miskin oksigen di hilir, walaupun kadar merkuri total airnya lebih rendah",
+            "Di waduk yang tenang, karena lumpur dasarnya yang miskin oksigen memungkinkan bakteri mengubah merkuri menjadi metilmerkuri.",
         },
         {
           correct: false,
           label:
-            "danau berair jernih yang tidak menerima air dari sungai tambang, karena airnya paling tenang",
+            "Di waduk yang tenang, karena kadar merkuri total dalam airnya paling tinggi di antara ketiga tempat itu.",
         },
         {
           correct: false,
           label:
-            "bagian sungai yang deras tepat di bawah tambang, karena ikan di sana paling dekat dengan sumber merkuri",
+            "Di danau berair jernih, karena air yang tenang selalu menghasilkan metilmerkuri paling banyak, dari mana pun merkurinya berasal.",
         },
         {
           correct: false,
           label:
-            "waduk yang tenang sekitar $$30$$ km di hilir, karena ikan pemakan tumbuhan di sana memakan ikan lain",
+            "Di waduk yang tenang, karena ikan pemakan tumbuhan di sana tentu lebih tua dan lebih besar daripada ikan di sungai.",
         },
       ],
     },

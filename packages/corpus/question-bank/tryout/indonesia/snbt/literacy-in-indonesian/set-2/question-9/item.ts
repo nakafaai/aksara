@@ -13,24 +13,29 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label:
-            "Ibu secara halus membujuk Laras agar membatalkan kepergiannya ke Bandung.",
-        },
-        {
           column: 1,
           label:
-            "Ibu menerima pilihan Laras walaupun tidak mengatakannya secara langsung.",
+            "Ibu sudah lama memperhatikan minat Laras pada gambar bangunan.",
         },
         {
           column: 2,
           label:
-            "Ibu menganggap motif pucuk rebung tidak perlu lagi ditenun keluarga mereka.",
+            "Ibu meminta Laras pulang setiap libur untuk menyelesaikan kain itu.",
         },
         {
           column: 1,
           label:
-            "Ibu menyerahkan kepada Laras cara meneruskan tradisi keluarga itu.",
+            "Ibu menyerahkan kain yang belum selesai dan membiarkan Laras menentukan cara menyelesaikannya.",
+        },
+        {
+          column: 2,
+          label:
+            "Ibu masih berharap Laras meneruskan motif pucuk rebung tanpa perubahan.",
+        },
+        {
+          column: 1,
+          label:
+            "Malam itu Ibu lebih banyak berbicara lewat kiasan dan perbuatan daripada mengatakan perasaannya secara langsung.",
         },
       ],
     },

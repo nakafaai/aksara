@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa kelapa sawit berasal dari Indonesia, lalu menyebar ke Afrika lewat kebun raya",
+            "memberi contoh aklimatisasi yang melayani perkebunan, sekaligus membuktikan bahwa sebutan laboratorium perkebunan tepat untuk seluruh sejarah kebun itu",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa kebun raya hanya melayani perkebunan, sehingga sebutan laboratorium perkebunan berlaku untuk seluruh sejarahnya",
+            "memberi contoh konservasi di luar habitat asli, karena bibit sawit dirawat di kebun sebelum keturunannya ditanam di Sumatra",
         },
         {
           correct: true,
           label:
-            "memberi contoh fungsi aklimatisasi yang melayani perkebunan, sekaligus menjadi dasar sebutan yang kemudian dibatasi oleh penulis",
+            "memberi contoh aklimatisasi yang melayani perkebunan, sekaligus menjadi dasar sebutan yang kemudian dibatasi oleh penulis",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa empat bibit sawit itu masih hidup dan menjadi koleksi utama kebun raya saat ini",
+            "memberi contoh aklimatisasi yang gagal, karena teks hanya menyebut keturunan bibit itu sering disebut menjadi sumber benih",
         },
         {
           correct: false,
           label:
-            "memberi contoh fungsi konservasi, karena bibit sawit diselamatkan dari kepunahan di Afrika Barat",
+            "memberi contoh kegiatan ilmiah kebun itu, karena sawit diteliti di laboratorium bersama tumbuhan yang tidak punya nilai dagang",
         },
       ],
     },

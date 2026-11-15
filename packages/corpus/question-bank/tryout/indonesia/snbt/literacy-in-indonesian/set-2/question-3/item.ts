@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "menilai bahaya dari merkuri total dalam air, padahal bahaya bagi warga bergantung pada metilmerkuri dalam daging ikan.",
+            "Sekitar $$0{,}14$$ miligram per kilogram, padahal data tim di hilir sekitar $$6$$ kali lipatnya.",
         },
         {
           correct: false,
           label:
-            "salah membaca data air, sebab kadar merkuri total di rawa hilir sebenarnya lebih tinggi daripada di titik dekat tambang.",
+            "Sekitar $$1{,}26$$ miligram per kilogram, padahal data tim di hilir lebih rendah dari itu.",
         },
         {
           correct: false,
           label:
-            "hanya memperhatikan ikan pemangsa, padahal ikan pemakan tumbuhan di hilir juga sudah melampaui batas yang dipakai tim.",
+            "Sekitar $$0{,}14$$ miligram per kilogram, padahal data tim di hilir sekitar $$2$$ kali lipatnya.",
         },
         {
           correct: false,
           label:
-            "mengabaikan bahwa ikan hanya ditangkap pada satu musim kemarau sehingga data tim belum mewakili musim hujan.",
+            "Sekitar $$0{,}30$$ miligram per kilogram, padahal data tim di hilir sekitar $$3$$ kali lipatnya.",
         },
         {
           correct: false,
           label:
-            "melupakan bahwa memasak dan menggoreng ikan tidak menurunkan kadar metilmerkuri yang terikat pada protein daging.",
+            "Sekitar $$0{,}14$$ miligram per kilogram, padahal data tim di hilir sekitar $$9$$ kali lipatnya.",
         },
       ],
     },

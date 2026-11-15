@@ -11,11 +11,26 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Rp$$28{.}000$$ per kilogram" },
-        { correct: true, label: "Rp$$32{.}250$$ per kilogram" },
-        { correct: false, label: "Rp$$32{.}000$$ per kilogram" },
-        { correct: false, label: "Rp$$30{.}000$$ per kilogram" },
-        { correct: false, label: "Rp$$33{.}000$$ per kilogram" },
+        {
+          correct: false,
+          label: "Rp$$80$$ juta",
+        },
+        {
+          correct: true,
+          label: "Rp$$90$$ juta",
+        },
+        {
+          correct: false,
+          label: "Rp$$100$$ juta",
+        },
+        {
+          correct: false,
+          label: "Rp$$110$$ juta",
+        },
+        {
+          correct: false,
+          label: "Rp$$200$$ juta",
+        },
       ],
     },
   },

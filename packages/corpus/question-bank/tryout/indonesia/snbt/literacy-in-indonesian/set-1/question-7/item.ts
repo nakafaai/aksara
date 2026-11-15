@@ -12,9 +12,9 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
+          correct: false,
           label:
-            "Pak Darsa tidak terkesan oleh penjelasan Wulan tentang cara kerja sensor lampu baru.",
+            "Pak Darsa meminta Wulan menunda pemasangan lampu baru sampai musim kabut berakhir.",
         },
         {
           correct: false,

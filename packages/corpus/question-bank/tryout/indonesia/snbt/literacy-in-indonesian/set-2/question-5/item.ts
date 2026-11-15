@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "research-design",
   },
   stimulus: "mercury-gold",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "menunjukkan bahwa selisih antartitik sudah muncul di dasar rantai makanan, tanda lebih banyak metilmerkuri masuk di rawa.",
+            "Keduanya membuat besar selisih antartitik belum pasti, tetapi tidak menyelamatkan simpulan pejabat yang hanya bertumpu pada kebersihan air.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa ikan pemakan tumbuhan dari hilir juga sudah tidak layak dikonsumsi menurut batas yang dipakai tim.",
+            "Keduanya menggugurkan bantahan tim, karena ikan di hilir mungkin lebih besar dan ditangkap pada musim yang lebih kering daripada ikan di hulu.",
         },
         {
           correct: false,
           label:
-            "menjelaskan bahwa alga di hilir tumbuh dalam air yang mengandung merkuri total lebih tinggi daripada air di hulu.",
+            "Hanya keterbatasan ukuran tubuh yang perlu diperhatikan, karena teks menyebut musim tidak memengaruhi kadar metilmerkuri dalam ikan.",
         },
         {
           correct: false,
           label:
-            "menghapus keraguan akibat ukuran tubuh ikan yang tidak dicatat, karena perbedaan ukuran hanya memengaruhi ikan pemangsa.",
+            "Keduanya tidak berpengaruh, karena tim sudah membandingkan ikan dari kelompok makan yang sama di kedua titik.",
         },
         {
           correct: false,
           label:
-            "menegaskan bahwa ikan pemangsa di hilir memperoleh kadar tertingginya dengan memakan ikan pemakan tumbuhan di rawa.",
+            "Keduanya membuat besar selisih antartitik belum pasti, sehingga simpulan pejabat bahwa warga tidak perlu khawatir menjadi benar.",
         },
       ],
     },

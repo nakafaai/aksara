@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa Laras membenci menenun sejak kecil, sehingga kepergiannya adalah pelarian dari tradisi keluarga",
+            "menyiapkan akhir cerita, sehingga ketika Laras menghitung benang motif baru, pembaca menangkap bahwa Laras masih takut pada ketukan sisir tenun Ibu",
         },
         {
           correct: false,
           label:
-            "menjelaskan asal-usul motif pucuk rebung, sehingga pembaca tahu mengapa motif itu hanya ditenun keluarga Laras",
+            'menunjukkan keterampilan warisan Ibu, sehingga "Kau saja yang selesaikan" terbaca sebagai perintah untuk meneruskan motif pucuk rebung',
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa Ibu adalah guru yang keras dan tidak sabar, sehingga Laras merasa lega dapat meninggalkan rumah",
+            "menyiapkan akhir cerita, sehingga ketika Laras menghitung benang motif baru, pembaca menangkap bahwa motif itu ternyata miring karena satu benang salah",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa Laras mahir menenun, sehingga ia menemukan satu benang yang salah pada motif baru di kain itu",
+            "menunjukkan bahwa Laras membenci menenun sejak kecil, sehingga kepergiannya ke Bandung terbaca sebagai pelarian dari tradisi keluarga",
         },
         {
           correct: true,
           label:
-            'menunjukkan keterampilan warisan Ibu, sehingga "Kau saja yang selesaikan" terbaca sebagai kepercayaan, bukan perintah',
+            "menyiapkan akhir cerita, sehingga ketika Laras menghitung benang motif baru dan tidak menemukan satu pun yang salah, pembaca menangkap bahwa ketelitian warisan itu tetap hidup dalam bentuk baru",
         },
       ],
     },

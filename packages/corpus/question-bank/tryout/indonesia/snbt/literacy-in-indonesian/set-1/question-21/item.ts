@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "*Goeroe itu mengadjar anak-anak rakjat jang makmur.*",
+          label: "*Sekolah Rakjat Oemoem Soedjono, Djalan Tjempaka*",
         },
         {
           correct: true,
-          label: "*Guru itu mengadjar anak-anak rakjat jang makmur.*",
+          label: "*Sekolah Rakjat Umum Soedjono, Djalan Tjempaka*",
         },
         {
           correct: false,
-          label: "*Guru itu mengajar anak-anak rakjat jang makmur.*",
+          label: "*Sekolah Rakyat Umum Soedjono, Djalan Tjempaka*",
         },
         {
           correct: false,
-          label: "*Guru itu mengadjar anak-anak rakyat yang makmur.*",
+          label: "*Sekolah Rakjat Umum Sudjono, Djalan Tjempaka*",
         },
         {
           correct: false,
-          label: "*Guru itu mengadjar anak-anak ra'jat jang ma'moer.*",
+          label: "*Sekolah Rakjat Umum Soedjono, Jalan Cempaka*",
         },
       ],
     },

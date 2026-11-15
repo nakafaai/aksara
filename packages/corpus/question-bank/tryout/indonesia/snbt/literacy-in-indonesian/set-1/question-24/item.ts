@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dokumen itu memakai Ejaan Republik, karena masih ada gabungan huruf *dj* di dalamnya yang baru diganti pada 1972.",
+            "P ditulis sebelum 1947, karena *Soekarno* masih memakai *oe*, sedangkan Q ditulis pada 1972 atau sesudahnya.",
         },
         {
           correct: false,
           label:
-            "Dokumen itu melanggar EYD, karena gabungan huruf *dj* seharusnya sudah ditulis *j* di semua kata sejak 1972.",
+            "P ditulis antara 1947 dan 1972, karena *membatja* masih memakai *tj*, sedangkan Q ditulis pada 1972 atau sesudahnya.",
         },
         {
           correct: true,
           label:
-            "Dokumen itu bisa dari 1985, karena kata-katanya mengikuti EYD, sedangkan *dj* pada nama diri sering dipertahankan.",
+            "P ditulis sebelum 1972, entah sebelum atau sesudah 1947, sedangkan Q ditulis pada 1972 atau sesudahnya.",
         },
         {
           correct: false,
           label:
-            "Dokumen itu mencampur dua ejaan dari zaman berbeda, sehingga tidak mungkin berasal dari sebuah dokumen resmi.",
+            "P ditulis sebelum 1972, sedangkan Q tidak mungkin dokumen resmi, karena mencampur *oe* dari ejaan lama dengan *c* dari EYD.",
         },
         {
           correct: false,
           label:
-            "Dokumen itu memakai ejaan Van Ophuijsen, karena nama yang memakai *dj* pasti berasal dari masa pemerintahan kolonial.",
+            "P dan Q dapat ditulis pada tahun yang sama, karena perbedaan *tj* dan *c* hanya soal kebiasaan penulisnya.",
         },
       ],
     },

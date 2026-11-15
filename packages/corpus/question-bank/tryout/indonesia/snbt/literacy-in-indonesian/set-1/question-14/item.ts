@@ -15,22 +15,25 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Ponsel yang dibawa siswa selama pelajaran dapat mengganggu konsentrasi.",
+            "Notifikasi ponsel selama pelajaran dapat memecah perhatian siswa.",
+        },
+        {
+          column: 1,
+          label: "Ponsel sebaiknya dijauhkan dari siswa selama jam pelajaran.",
         },
         {
           column: 2,
           label:
-            "Larangan membawa ponsel sepanjang hari sekolah adalah kebijakan yang paling tepat.",
+            "Aturan yang tidak dapat diawasi guru hanya akan dipatuhi oleh siswa yang memang tertib.",
         },
         {
           column: 2,
           label:
-            "Kenaikan nilai di SMA Harapan Bangsa membuktikan manfaat pembatasan ponsel.",
+            "Kenaikan nilai di SMA Harapan Bangsa mungkin sebagian disebabkan oleh hal lain selain pembatasan ponsel.",
         },
         {
           column: 2,
-          label:
-            "Siswa yang harus dapat dihubungi keluarganya perlu dikecualikan dari aturan ponsel.",
+          label: "Jam istirahat sebaiknya juga bebas dari ponsel.",
         },
       ],
     },

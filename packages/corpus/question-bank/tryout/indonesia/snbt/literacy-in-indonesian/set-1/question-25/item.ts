@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebuah kota mengganti seluruh papan nama jalan dengan nama-nama baru, sehingga warga perlu waktu lama untuk menemukan alamat yang mereka kenal.",
+            "Sebuah kota mengganti bentuk huruf semua rambu jalan dengan biaya besar, dan pengemudi perlu waktu lama untuk terbiasa, sehingga kekhawatiran warga terbukti.",
         },
         {
           correct: false,
           label:
-            "Sebuah sekolah menghapus pelajaran menulis tegak bersambung, sehingga siswa tidak lagi mampu membaca surat tulisan tangan kakek mereka.",
+            "Sebuah kota mengganti bentuk huruf semua rambu jalan, dan pengemudi tetap memahami rambu itu karena kata-katanya sama, sehingga penggantian itu tidak memakan biaya apa pun.",
         },
         {
           correct: false,
           label:
-            "Sebuah penerbit mencetak ulang semua novel lamanya dengan sampul baru yang lebih mahal, sehingga pembaca muda lebih tertarik membelinya.",
+            "Sebuah kota mengganti nama-nama jalan sekaligus bentuk hurufnya, tetapi pengemudi tetap memahami rambu lama karena kata-katanya sama.",
         },
         {
           correct: true,
           label:
-            "Sebuah kota mengganti bentuk huruf semua rambu jalan dengan biaya besar, tetapi pengemudi tetap memahami rambu lama karena kata-katanya sama.",
+            "Sebuah kota mengganti bentuk huruf semua rambu jalan dengan biaya besar, tetapi pengemudi tetap dapat membaca rambu lama karena kata-katanya sama.",
         },
         {
           correct: false,
           label:
-            "Sebuah kantor beralih dari arsip kertas ke arsip digital dengan biaya besar, sehingga dokumen lama yang tidak dipindai menjadi sulit ditemukan.",
+            "Sebuah penerbit menerjemahkan novel lama ke bahasa sehari-hari dengan biaya besar, tetapi pembaca muda tetap dapat membaca versi aslinya karena isinya sama.",
         },
       ],
     },

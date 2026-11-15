@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pada 2024, hanya satu sekolah uji coba yang tingkat kehadirannya melampaui tingkat kehadiran gabungan sekolah lain.",
+            "Pada 2024, hanya satu sekolah uji coba yang tingkat kehadirannya melampaui tingkat kehadiran gabungan $$36$$ sekolah lain.",
         },
         {
           correct: true,

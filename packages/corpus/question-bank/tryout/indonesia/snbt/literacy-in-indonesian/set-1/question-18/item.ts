@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Pada semester ganjil 2023, tingkat kehadiran setiap sekolah uji coba lebih rendah daripada tingkat kehadiran gabungan sekolah lain di kabupaten itu.",
+            "Pada semester ganjil 2023, tingkat kehadiran setiap sekolah uji coba lebih rendah daripada tingkat kehadiran gabungan $$36$$ sekolah lain di kabupaten itu.",
         },
         {
           column: 1,

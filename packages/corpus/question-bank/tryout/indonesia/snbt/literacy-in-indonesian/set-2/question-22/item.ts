@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "argument-evaluation",
   },
   stimulus: "botanic-garden",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "menanam padi varietas provinsi lain di lahan uji untuk melihat apakah padi itu tumbuh baik sebelum dibagikan kepada petani",
+            "Empat bibit sawit yang keturunannya disebut menjadi benih perkebunan, dan laboratorium yang mempelajari jenis-jenis tanpa nilai dagang.",
         },
         {
           correct: false,
           label:
-            "menyimpan biji ratusan jenis tumbuhan langka dalam ruang pendingin agar dapat ditanam kembali jika jenis itu punah di alam",
+            "Empat bibit sawit yang keturunannya disebut menjadi benih perkebunan, dan letak kebun di samping istana gubernur jenderal.",
         },
         {
           correct: false,
           label:
-            "mengeringkan dan memberi label pada daun dan bunga tumbuhan hutan untuk dipelajari ciri-cirinya oleh peneliti",
+            "Herbarium berisi spesimen tumbuhan yang dikeringkan, dan laboratorium yang mempelajari jenis-jenis tanpa nilai dagang.",
         },
         {
           correct: false,
           label:
-            "memindahkan anggrek yang hampir punah dari hutan yang akan dibuka ke sebuah taman di kota agar tetap hidup dan berbunga",
+            "Aklimatisasi tumbuhan dari negeri lain, dan konservasi tumbuhan yang terancam di hutan.",
         },
         {
           correct: false,
           label:
-            "membuka taman kota yang rindang agar warga punya tempat beristirahat dan berolahraga",
+            "Empat bibit sawit yang keturunannya disebut menjadi benih perkebunan, dan pendiri kebun yang lahir di Jerman.",
         },
       ],
     },

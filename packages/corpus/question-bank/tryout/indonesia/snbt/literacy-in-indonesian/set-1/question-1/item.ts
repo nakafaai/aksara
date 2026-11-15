@@ -13,23 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "kelompok I dan III, dengan selisih $$0{,}5$$ mm",
+          label:
+            "Pengaruh penggosokan dan pengaruh biosida, karena panel kelompok I juga disemprot biosida.",
         },
         {
           correct: false,
-          label: "kelompok II dan III, dengan selisih $$0{,}2$$ mm",
+          label:
+            "Pengaruh penggosokan dan pengaruh hilangnya lumut, karena kedua perlakuan itu selalu diberikan bersama.",
         },
         {
           correct: false,
-          label: "kelompok I dan II, dengan selisih $$0{,}5$$ mm",
+          label:
+            "Pengaruh sisi dinding dan pengaruh perlakuan, karena setiap kelompok ditempatkan pada sisi dinding yang berbeda.",
         },
         {
           correct: true,
-          label: "kelompok I dan II, dengan selisih $$0{,}3$$ mm",
+          label:
+            "Pengaruh biosida pada batu dan pengaruh hilangnya lumut, karena setiap panel yang disemprot biosida juga kehilangan lumutnya.",
         },
         {
           correct: false,
-          label: "kelompok II dan III, dengan selisih $$0{,}3$$ mm",
+          label:
+            "Pengaruh lumut mati dan pengaruh lumut hidup, karena lapisan lumut mati pada kelompok II langsung dibuang.",
         },
       ],
     },
