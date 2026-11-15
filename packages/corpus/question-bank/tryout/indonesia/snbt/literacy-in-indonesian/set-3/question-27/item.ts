@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "data-interpretation",
   },
-  stimulus: "novel-review",
+  stimulus: "anchoring-price",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Dialog antarwarga terdengar kaku dan terlalu banyak dijelaskan narator.",
+            "Dibandingkan dengan kelompok ketiga, rata-rata harga di kelompok kedua naik lebih banyak daripada turunnya rata-rata harga di kelompok pertama.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Catatan harian sang kakek terlalu panjang sehingga mengganggu alur cerita.",
+            "Sebagian besar siswa di kelompok kedua bersedia membayar lebih dari Rp$$100{.}000$$.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Cerita terlalu banyak membahas sejarah desa dan kurang membahas masa kini.",
+            "Selisih antara kelompok kedua dan kelompok ketiga lebih besar jika diukur dengan rata-rata daripada dengan median.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Bagian akhirnya tergesa-gesa dan sebagian tokoh pendukung kurang digarap.",
+            "Karena pembagian kelompoknya acak, data menunjukkan bahwa angka Rp$$160{.}000$$ menaikkan harga yang bersedia dibayar setiap siswa sebesar Rp$$40{.}000$$.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Tokoh Sinta digambarkan tidak memahami persoalan mata air yang kering.",
+            "Median harga di kelompok pertama Rp$$15{.}000$$ lebih rendah daripada median di kelompok ketiga.",
         },
       ],
     },

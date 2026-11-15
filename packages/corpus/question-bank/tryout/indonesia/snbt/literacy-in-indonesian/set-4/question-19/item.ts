@@ -2,35 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "inference",
   },
-  stimulus: "regional-language",
+  stimulus: "dengue-cases",
   versions: {
     id: {
       columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "Teks 2 menolak semua bentuk pelajaran bahasa daerah di sekolah.",
+            "Laju yang tercatat di Kota Baru mungkin lebih mendekati keadaan sebenarnya daripada laju di kecamatan lain.",
         },
         {
           column: 1,
           label:
-            "Teks 1 menyebut kebiasaan orang tua sebagai penyebab berkurangnya penutur muda.",
-        },
-        {
-          column: 1,
-          label:
-            "Menurut Teks 2, murid di kelasnya berbicara dalam sembilan bahasa yang berbeda di rumah.",
+            "Laju sebenarnya di kecamatan selain Kota Baru mungkin lebih tinggi daripada laju di tabel.",
         },
         {
           column: 2,
           label:
-            "Teks 1 mengusulkan agar pelajaran bahasa daerah hanya diberikan di SMA.",
+            "Kasus Kota Baru banyak karena warga kecamatan lain dirawat di rumah sakit Kota Baru dan tercatat di sana.",
+        },
+        {
+          column: 1,
+          label:
+            "Selisih risiko sebenarnya antara warga Cibeureum dan warga Kota Baru mungkin lebih besar daripada yang terlihat di tabel.",
         },
       ],
     },

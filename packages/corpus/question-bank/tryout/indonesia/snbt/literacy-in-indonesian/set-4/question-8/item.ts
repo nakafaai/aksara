@@ -3,34 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "free-transit",
+  stimulus: "village-midwife",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Waktu tempuh dan keandalan lebih menentukan pilihan orang daripada harga tiket.",
+            "Bu Warsih sudah memutuskan merujuk Sumi sebelum Nia memintanya.",
+        },
+        {
+          column: 2,
+          label:
+            "Bu Warsih meragukan hasil pengukuran tekanan darah yang dilakukan Nia.",
         },
         {
           column: 1,
           label:
-            "Pendapatan tiket ikut membiayai sopir, bahan bakar, dan perawatan bus.",
+            "Mak Rosnah mengetahui peristiwa yang diceritakan Bu Warsih dari pengalamannya sendiri.",
         },
         {
           column: 2,
-          label:
-            "Kekhawatiran bahwa ongkos memberatkan sebagian warga tidak berdasar.",
+          label: "Ambulans baru dipanggil setelah Rahmat tiba di poskesdes.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Tiket gratis untuk semua orang adalah cara terbaik membantu warga berpenghasilan rendah.",
+            "Bu Warsih juga merasa tegang, walaupun tidak menunjukkannya di depan Nia.",
         },
       ],
     },

@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "conclusion",
   },
-  stimulus: "mangrove-carbon",
+  stimulus: "wolbachia-mosquito",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Bibit dari pohon mangrove di sekitarnya dapat tumbuh sendiri di bekas tambak itu.",
+            "Pendekatan Wolbachia dapat melindungi warga walaupun jumlah nyamuk Aedes aegypti di wilayahnya tidak berkurang.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Karbon di tanah bekas tambak itu kemungkinan lebih cepat terlepas ke atmosfer.",
+            "Karena proporsi pasien positif di klaster pelepasan kira-kira seperempat proporsi di klaster pembanding, pelepasan mencegah sekitar tiga perempat dari seluruh demam yang dialami warga.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bekas tambak itu harus ditanami satu jenis mangrove secara rapat agar pulih.",
+            "Seandainya tidak ada nyamuk yang menyeberang batas klaster, efikasi yang terukur kemungkinan tidak lebih rendah daripada $$77{,}1\\%$$.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Air pasang akan menenggelamkan dan mematikan hutan mangrove di sekitarnya.",
+            "Uji AWED menunjukkan bahwa pelepasan nyamuk ber-Wolbachia lebih efektif daripada pengasapan dan pemberantasan sarang.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bekas tambak itu mungkin baru pulih jika ditanami bibit dalam jumlah besar.",
+            "Dugaan bahwa penurunan kasus hanya terjadi karena warga klaster pelepasan lebih jarang berobat dijawab oleh cara peneliti membandingkan proporsi.",
         },
       ],
     },

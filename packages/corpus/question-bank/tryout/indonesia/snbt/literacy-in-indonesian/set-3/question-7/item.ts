@@ -2,38 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "sugar-tax",
+  stimulus: "night-bus-driver",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Gula dalam minuman lebih cepat merusak gigi daripada gula dalam makanan.",
+            "Warsito pernah menganggap nasihat sopir lama sebagai dalih orang yang sudah lamban.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Minuman manis tidak membuat kenyang sehingga porsi makan jarang dikurangi.",
+            "Bus tiba di Pulogebang lebih awal dari biasanya karena tidak mampir di Pemalang.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Gula dalam minuman kemasan selalu berasal dari pemanis buatan.",
+            "Pada malam itu, Bu Tarmi tidak mau menerima uang Warsito untuk melunasi bonnya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Minuman manis harganya lebih murah daripada makanan yang sama manisnya.",
+            "Mulai Senin, Ardi akan bekerja sebagai kenek bus di perusahaan yang sama.",
         },
         {
-          correct: false,
-          label: "Gula dalam minuman tidak tercantum pada label kemasan.",
+          column: 2,
+          label:
+            "Nenek berkerudung biru turun dari bus di rumah makan Bu Tarmi.",
         },
       ],
     },

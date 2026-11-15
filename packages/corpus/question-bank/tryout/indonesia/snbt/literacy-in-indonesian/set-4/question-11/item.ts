@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
   },
-  stimulus: "island-teacher",
+  stimulus: "class-size",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Menggambarkan cuaca mendung yang menandai hari yang berat.",
-        },
-        {
           correct: false,
-          label: "Menunjukkan bahwa pulau itu kaya akan tambang timah.",
+          label:
+            "Project STAR dilakukan di Amerika Serikat, sehingga hasilnya sama sekali tidak dapat dipakai untuk sekolah dasar di Indonesia.",
         },
         {
           correct: false,
           label:
-            "Menjelaskan bahwa kapal motor di dermaga itu terbuat dari logam timah.",
+            "Pembagian acak dalam Project STAR membuat siswa yang kebetulan lebih pandai masuk ke kelas kecil.",
         },
         {
           correct: false,
-          label: "Menandakan bahwa hari itu adalah hari libur sekolah.",
+          label:
+            "Hasil pembatasan kelas di California jauh lebih kecil daripada hasil yang dicapai Project STAR.",
         },
         {
           correct: false,
-          label: "Menggambarkan langit cerah yang cocok untuk berlayar.",
+          label:
+            "Biaya kelas kecil mungkin lebih mahal daripada biaya mengejar ketertinggalan membaca siswa di kelas-kelas berikutnya.",
+        },
+        {
+          correct: true,
+          label:
+            "Project STAR membandingkan kelas $$13$$ sampai $$17$$ siswa dengan kelas $$22$$ sampai $$25$$ siswa, bukan kelas $$36$$ dengan $$24$$ siswa.",
         },
       ],
     },

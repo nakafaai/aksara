@@ -2,36 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "last-angkot",
+  stimulus: "online-loan",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 1,
-          label:
-            "Jumlah penumpang angkot 07 menurun setelah bus koridor beroperasi.",
-        },
-        {
-          column: 2,
-          label:
-            "Mak Inah menyebut tarif yang mahal sebagai alasannya menolak bus koridor.",
-        },
-        {
-          column: 2,
-          label:
-            "Pak Damar meminta Mak Inah membayar ongkos pada hari terakhir.",
-        },
-        {
-          column: 1,
-          label:
-            "Halte bus terdekat berjarak sekitar dua ratus meter dari pasar.",
-        },
+      kind: "choice",
+      options: [
+        { correct: false, label: "$$12\\%$$" },
+        { correct: false, label: "$$22\\%$$" },
+        { correct: false, label: "sekitar $$13{,}3\\%$$" },
+        { correct: true, label: "sekitar $$24{,}4\\%$$" },
+        { correct: false, label: "$$10\\%$$" },
       ],
     },
   },

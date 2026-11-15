@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "banda-nutmeg",
+  stimulus: "balai-pustaka",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Belanda menyesal telah melepaskan New Amsterdam kepada Inggris di Amerika Utara.",
+            "Lembaga pemerintah membagikan buku pelajaran gratis ke desa-desa, tetapi hanya mencetak naskah yang tidak mengkritik kebijakan pemerintah.",
         },
         {
           correct: false,
           label:
-            "New Amsterdam lebih banyak menghasilkan pala daripada Pulau Run.",
+            "Penerbit swasta mencetak buku apa saja yang diperkirakan laku, tanpa menilai isinya lebih dulu.",
         },
         {
           correct: true,
           label:
-            "Penilaian atas sebuah tempat dapat berubah jauh dari zaman ke zaman.",
+            "Sebuah aplikasi menyebarkan tulisan pengguna ke banyak pembaca secara gratis, tetapi menyembunyikan tulisan yang mengkritik pemilik aplikasi.",
         },
         {
           correct: false,
           label:
-            "Pulau Run masih menjadi pusat perdagangan pala dunia hingga kini.",
+            "Perpustakaan daerah membeli setiap buku yang terbit di daerahnya agar semua warga dapat membacanya.",
         },
         {
           correct: false,
           label:
-            "Inggris tidak pernah tertarik pada perdagangan rempah di Maluku.",
+            "Kantor sensor melarang peredaran sejumlah buku, tetapi tidak menerbitkan atau membagikan bacaan apa pun.",
         },
       ],
     },

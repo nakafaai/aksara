@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "regional-language",
+  stimulus: "dengue-cases",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Teks 1 mengusulkan satu kewajiban yang tegas, sedangkan Teks 2 meminta pelajaran disesuaikan dengan bahasa ibu murid.",
+            "Pada 2024, Cibeureum memiliki laju kasus tertinggi walaupun banyak kasusnya bukan yang terbanyak.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Teks 1 ingin menyelamatkan bahasa daerah, sedangkan Teks 2 menganggap bahasa daerah tidak perlu lagi diselamatkan di sekolah.",
+            "Pada 2024, warga Pasirjaya menghadapi risiko lebih besar daripada warga Karangtengah karena kasusnya lebih banyak.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Teks 1 menolak bahasa Indonesia di sekolah, sedangkan Teks 2 mendukung bahasa Indonesia sebagai satu-satunya bahasa.",
+            "Lebih dari separuh kasus kabupaten pada 2024 berasal dari dua kecamatan yang kasusnya paling banyak.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Teks 1 membahas sekolah di kota, sedangkan Teks 2 membahas sekolah di desa.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 1 menyalahkan sekolah, sedangkan Teks 2 menyalahkan orang tua murid.",
+            "Kalau anggaran dibagi sebanding dengan laju kasus 2024, Kota Baru tetap mendapat bagian terbesar.",
         },
       ],
     },

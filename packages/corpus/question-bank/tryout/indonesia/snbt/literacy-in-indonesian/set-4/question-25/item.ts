@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "strengthen-weaken",
   },
-  stimulus: "banda-nutmeg",
+  stimulus: "balai-pustaka",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "VOC memindahkan seluruh kebun pala dari Banda ke Batavia.",
+          label:
+            "Data penjualan yang menunjukkan bahwa novel Siti Nurbaya dicetak ulang berkali-kali pada masa kolonial.",
         },
         {
           correct: false,
           label:
-            "Permintaan pala di Eropa hilang setelah ditemukan bumbu lain.",
+            "Daftar naskah yang ditolak Balai Pustaka karena dinilai memuat kritik terhadap pemerintah kolonial.",
         },
         {
           correct: false,
           label:
-            "Penduduk Banda kembali menguasai perdagangan pala secara bebas.",
+            "Catatan bahwa sebagian besar pegawai Balai Pustaka adalah penulis dan penerjemah pribumi.",
         },
         {
           correct: true,
-          label: "Bibit pala ditanam di tempat lain sehingga harga pala turun.",
+          label:
+            "Surat pejabat kolonial yang menyebut perluasan Taman Pustaka sebagai cara menekan peredaran bacaan liar.",
         },
         {
           correct: false,
-          label: "Perjanjian Breda melarang perdagangan pala dari Maluku.",
+          label:
+            "Laporan bahwa bacaan liar tetap beredar luas walaupun buku Balai Pustaka dijual dengan harga murah.",
         },
       ],
     },

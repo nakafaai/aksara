@@ -2,33 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "island-teacher",
+  stimulus: "class-size",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
+          column: 1,
+          label:
+            "Kedua penulis sepakat bahwa anak kelas 1 dapat belajar lebih baik dalam kelas yang lebih kecil.",
+        },
+        {
           column: 2,
           label:
-            "Bu Asih menyeberang ke Pulau Gesik dengan kapal motor seperti biasa.",
+            "Penulis Teks B menolak hasil Project STAR karena percobaan itu tidak membagi siswa secara acak.",
         },
         {
           column: 1,
           label:
-            "Bu Asih menulis surat pengunduran diri setelah usulan kenaikan honornya ditolak.",
+            "Usul Teks A membutuhkan $$20$$ kelas 1 tambahan di Kabupaten Lembah Hijau.",
         },
         {
           column: 2,
-          label: "Semua murid datang ke sekolah pada hari itu.",
-        },
-        {
-          column: 1,
-          label: "Murid-murid membersihkan ruang kelas sebelum Bu Asih tiba.",
+          label:
+            "Menurut Teks B, hasil California lebih kecil karena kelas kecil memang tidak bermanfaat bagi siswa miskin.",
         },
       ],
     },

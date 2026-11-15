@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "tin-roof",
+  stimulus: "choice-overload",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Radio di rumah itu sudah rusak sehingga siarannya tidak dapat didengar.",
+            "Seorang penggemar kopi membeli merek langganannya dari rak yang memajang $$40$$ merek kopi.",
         },
         {
           correct: false,
           label:
-            "Bunyi tetesan air terdengar lebih merdu daripada lagu-lagu di radio.",
-        },
-        {
-          correct: false,
-          label:
-            "Ayah tidak suka mendengarkan berita apa pun yang disiarkan radio.",
+            "Seorang siswa memilih satu dari tiga paket wisata sekolah yang semuanya sama kecuali dalam harga per orang.",
         },
         {
           correct: true,
           label:
-            "Kenyataan yang dialami sendiri lebih dapat dipercaya daripada janji.",
+            "Seorang pekerja baru memilih satu dari $$30$$ paket asuransi kesehatan yang berbeda dalam banyak syarat sekaligus.",
         },
         {
           correct: false,
           label:
-            "Hujan malam itu sudah diramalkan dengan tepat oleh siaran radio.",
+            "Seorang pembeli memilih warna kaus dari $$12$$ warna yang harganya sama dan modelnya sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Seorang ibu membeli beras dengan merek yang sama seperti setiap bulan dari toko yang biasa ia datangi di dekat rumah.",
         },
       ],
     },

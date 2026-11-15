@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "island-teacher",
+  stimulus: "class-size",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "guru sebaiknya tidak menyeberang ketika laut sedang berbahaya bagi perahu kecil",
-        },
-        {
-          correct: false,
-          label:
-            "kenaikan honor adalah satu-satunya cara agar guru di pulau terpencil bertahan",
-        },
-        {
-          correct: false,
-          label:
-            "nelayan lebih memahami cuaca laut daripada nakhoda kapal motor",
-        },
-        {
           correct: true,
           label:
-            "kesungguhan orang yang dilayani dapat memperbarui semangat di tengah kesulitan",
+            "$$20$$ guru, sehingga kebutuhan itu baru terpenuhi pada tahun ketiga",
         },
         {
           correct: false,
           label:
-            "murid yang rajin menghafal perkalian akan selalu disayangi gurunya",
+            "$$12$$ guru, sehingga kebutuhan itu sudah terpenuhi pada tahun kedua",
+        },
+        {
+          correct: false,
+          label:
+            "$$40$$ guru, sehingga kebutuhan itu baru terpenuhi pada tahun kelima",
+        },
+        {
+          correct: false,
+          label:
+            "$$20$$ guru, sehingga kebutuhan itu sudah terpenuhi pada tahun kedua",
+        },
+        {
+          correct: false,
+          label:
+            "$$60$$ guru, sehingga kebutuhan itu baru terpenuhi pada tahun kedelapan",
         },
       ],
     },

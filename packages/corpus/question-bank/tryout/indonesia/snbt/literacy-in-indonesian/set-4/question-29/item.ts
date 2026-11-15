@@ -2,37 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "tin-roof",
+  stimulus: "choice-overload",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Pandai memanfaatkan keadaan sulit tanpa menyia-nyiakan apa pun.",
+            "Lebih banyak pengunjung berhenti di stan $$24$$ rasa daripada di stan $$6$$ rasa.",
         },
         {
-          correct: false,
-          label: "Marah karena atap rumahnya bocor di banyak tempat sekaligus.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "Lelah dan ingin segera pindah ke rumah lain yang lebih layak.",
+            "Di antara pengunjung yang berhenti, yang membeli di stan $$6$$ rasa kira-kira sepuluh kali lebih sering daripada di stan $$24$$ rasa.",
         },
         {
-          correct: false,
-          label: "Gembira karena hujan membuat halaman rumahnya tergenang air.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Tidak peduli pada kerusakan rumahnya setelah hujan semalaman akhirnya reda.",
+            "Meta-analisis 2010 menemukan bahwa banyak pilihan selalu menurunkan pembelian.",
+        },
+        {
+          column: 1,
+          label:
+            "Hasil percobaan selai belum tentu berlaku untuk pilihan yang mudah dibandingkan.",
         },
       ],
     },

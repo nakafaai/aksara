@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "plot-function",
+    contentDomain: "informational-text",
+    topic: "strengthen-weaken",
   },
-  stimulus: "last-angkot",
+  stimulus: "online-loan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Peminjam yang gagal bayar di kota itu kebanyakan berpenghasilan rendah dan tidak tetap.",
+        },
+        {
+          correct: false,
+          label:
+            "Jumlah aplikasi pinjaman daring yang beroperasi di kota itu bertambah dua kali lipat dalam setahun terakhir.",
+        },
+        {
+          correct: false,
+          label:
+            "Sebagian peminjam yang gagal bayar mengaku meminjam untuk membayar pinjaman lain.",
+        },
+        {
+          correct: false,
+          label:
+            "Banyak warga kota itu tidak pernah mendapat pelajaran tentang bunga di sekolah.",
+        },
+        {
           correct: true,
           label:
-            "Menyiratkan bahwa kebaikan Pak Damar dapat berbenturan dengan aturan bus yang ketat.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa Pak Damar akan segera dipromosikan menjadi kepala pengemudi.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa petugas itu ikut membantu mengangkat keranjang penumpang.",
-        },
-        {
-          correct: false,
-          label:
-            "Menegaskan bahwa Mak Inah adalah penumpang yang terdaftar resmi di bus koridor.",
-        },
-        {
-          correct: false,
-          label:
-            "Menandakan bahwa bus koridor akan ditutup seperti trayek angkot 07.",
+            "Di antara peminjam yang lancar membayar, dua pertiga juga tidak dapat menjawab soal bunga yang sama.",
         },
       ],
     },

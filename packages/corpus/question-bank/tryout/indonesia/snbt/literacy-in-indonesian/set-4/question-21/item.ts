@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "main-idea",
   },
-  stimulus: "regional-language",
+  stimulus: "balai-pustaka",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Di sekolah-sekolah kota, banyak murid berbahasa ibu yang berbeda dari bahasa daerah provinsi.",
+            "Penyebaran bacaan dan penyaringan isinya di Balai Pustaka adalah dua sisi dari satu kebijakan kolonial.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar murid di desa-desa provinsi itu berbahasa daerah yang sama di rumah masing-masing.",
+            "Balai Pustaka berjasa besar bagi sastra Indonesia karena menerbitkan novel-novel yang kini dibaca di sekolah.",
         },
         {
           correct: false,
           label:
-            "Guru bahasa daerah di provinsi itu jumlahnya sudah mencukupi untuk semua sekolah.",
+            "Balai Pustaka pada dasarnya hanyalah alat sensor, sehingga jasanya menyebarkan bacaan tidak perlu diperhitungkan.",
         },
         {
           correct: false,
           label:
-            "Murid yang belajar bahasa daerah memperoleh nilai bahasa Indonesia yang lebih baik.",
+            "Bacaan liar lebih bermutu daripada terbitan Balai Pustaka karena ditulis tanpa pedoman dari pemerintah kolonial.",
         },
         {
           correct: false,
           label:
-            "Cerita rakyat lebih mudah direkam dengan telepon genggam daripada dengan buku.",
+            "Balai Pustaka didirikan pada 1917 untuk menggantikan sekolah pribumi yang dinilai gagal mengajarkan membaca.",
         },
       ],
     },

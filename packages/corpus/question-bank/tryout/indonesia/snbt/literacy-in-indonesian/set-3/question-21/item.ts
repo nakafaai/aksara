@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "author-purpose",
   },
-  stimulus: "village-tourism",
+  stimulus: "railway-java",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menghentikan kunjungan wisatawan pada akhir pekan secara bertahap.",
+            "menunjukkan bahwa Tanggung adalah kota pelabuhan terbesar di Jawa Tengah pada masa itu, sehingga wajar menjadi ujung jalur pertama",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan bahwa jalur pertama itu gagal karena hanya mencapai kota kecil",
+        },
+        {
+          correct: false,
+          label:
+            "membuktikan bahwa penduduk Tanggung paling diuntungkan oleh jalur pertama",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa pemerintah kolonial memilih Tanggung karena dekat dengan istana dan pusat pemerintahan di Jawa Tengah",
         },
         {
           correct: true,
           label:
-            "Melayani minat wisatawan tanpa mengubah upacara menjadi pertunjukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Memindahkan upacara syukur panen ke hari Sabtu agar lebih ramai.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengganti upacara syukur panen dengan pertunjukan tari dan musik.",
-        },
-        {
-          correct: false,
-          label: "Membuka area keramat bagi wisatawan pada akhir pekan saja.",
+            "menunjukkan bahwa jalur itu dirancang menuju daerah penghasil barang ekspor, sehingga arah relnya mengungkap siapa yang dilayani",
         },
       ],
     },

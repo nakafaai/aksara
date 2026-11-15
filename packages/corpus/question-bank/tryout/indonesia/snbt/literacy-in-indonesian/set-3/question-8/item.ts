@@ -3,34 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "sugar-tax",
+  stimulus: "night-bus-driver",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Penerimaan cukai dapat dipakai untuk meringankan beban warga berpenghasilan rendah.",
+            "Bu Tarmi menghapus utang Warsito sebagai salam perpisahan yang tak diucapkan, dan obrolan tentang harga cabai menunjukkan keduanya menghindari kata perpisahan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Cukai minuman berpemanis cukup untuk menyelesaikan seluruh masalah gizi.",
+            "Bu Tarmi menghapus utang Warsito karena kasihan, dan obrolan tentang harga cabai menunjukkan rumah makannya sedang merugi.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Biaya pengobatan penyakit akibat gula berlebih pada akhirnya ikut ditanggung bersama.",
+            "Bu Tarmi marah karena Warsito terlambat membayar, dan obrolan tentang harga cabai dipakai untuk menutupi kemarahannya.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kebijakan cukai sebaiknya ditunda sampai ada solusi yang menyelesaikan semua masalah gizi.",
+            "Bu Tarmi mencatat pembayaran itu di halaman baru, dan obrolan tentang harga cabai menunjukkan hubungan mereka selama ini hanya urusan dagang antara penjual dan pelanggan.",
+        },
+        {
+          correct: false,
+          label:
+            "Bu Tarmi menyimpan bon itu untuk ditagih kelak, dan obrolan tentang harga cabai menunjukkan ia belum tahu bahwa trayek bus malam itu akan segera ditutup.",
         },
       ],
     },

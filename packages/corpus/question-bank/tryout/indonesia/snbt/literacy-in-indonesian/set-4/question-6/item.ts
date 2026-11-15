@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "free-transit",
+  stimulus: "village-midwife",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Angkutan umum sebaiknya dihapus dan diganti dengan kendaraan pribadi yang lebih cepat.",
+            "surat rujukan baru berlaku setelah pihak rumah sakit di kota menyetujui dan membuka pintu bagi Sumi",
         },
         {
           correct: false,
           label:
-            "Tiket angkutan umum sebaiknya dinaikkan agar pemerintah memperoleh pendapatan lebih besar.",
+            "Nia harus belajar membuka pintu poskesdes sendiri, karena Bu Warsih tidak akan selalu ada di sana",
+        },
+        {
+          correct: false,
+          label:
+            "surat itu disimpan di laci yang terkunci, sehingga hanya Bu Warsih yang dapat mengeluarkannya",
         },
         {
           correct: true,
           label:
-            "Dana sebaiknya dipakai untuk layanan andal, dengan potongan tiket bagi yang membutuhkan.",
+            "surat rujukan hanya sarana, sedangkan keputusan untuk berangkat harus datang dari keluarga Sumi sendiri",
         },
         {
           correct: false,
           label:
-            "Semua warga kota sebaiknya mendapat angkutan umum gratis tanpa kecuali.",
-        },
-        {
-          correct: false,
-          label:
-            "Warga berpenghasilan rendah sebaiknya beralih ke sepeda motor agar lebih tepat waktu.",
+            "Bu Warsih belum yakin bahwa Sumi perlu dirujuk, sehingga surat itu baru disiapkan untuk berjaga-jaga",
         },
       ],
     },

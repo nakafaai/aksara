@@ -6,32 +6,35 @@ const item: ItemSource = {
     contentDomain: "fiction",
     topic: "character",
   },
-  stimulus: "island-teacher",
+  stimulus: "village-midwife",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Ia sudah menyerahkan surat itu ke kantor dinas dan menyimpan salinannya.",
+            "Nia keberatan karena tidak dilibatkan dalam rencana yang sudah disiapkan Bu Warsih.",
         },
         {
           correct: false,
-          label: "Ia ingin murid-muridnya menemukan surat itu dan membacanya.",
+          label:
+            "Bu Warsih menolak memberi tahu Nia rencananya pada kesempatan berikutnya.",
         },
         {
           correct: true,
           label:
-            "Ia menunda niat mundur tanpa sepenuhnya membuang kemungkinan itu.",
+            "Bu Warsih ingin Nia kelak juga meyakinkan keluarga pasien, bukan hanya mengukur keadaan pasien.",
         },
         {
           correct: false,
-          label: "Ia lupa membawa surat itu ke kantor dinas karena kelelahan.",
+          label:
+            "Nia menyesal karena telah mendesak Bu Warsih agar Sumi segera dirujuk.",
         },
         {
           correct: false,
-          label: "Ia memutuskan pindah mengajar ke sekolah lain di pulau itu.",
+          label:
+            "Bu Warsih menganggap alat ukur tidak sepenting kemampuan bercerita dalam merujuk pasien.",
         },
       ],
     },

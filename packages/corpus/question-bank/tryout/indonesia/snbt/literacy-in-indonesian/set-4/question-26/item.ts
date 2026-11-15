@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "summary",
+    topic: "calculation",
   },
-  stimulus: "banda-nutmeg",
+  stimulus: "choice-overload",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pala Banda pertama kali dibawa ke Eropa oleh VOC pada abad ke-17.",
-        },
-        {
-          correct: false,
-          label:
-            "Perjanjian Breda adalah peristiwa terpenting dalam seluruh sejarah Kepulauan Banda.",
-        },
-        {
-          correct: false,
-          label:
-            "Pala menjadi mahal karena hanya tumbuh di Mauritius dan Grenada.",
-        },
-        {
-          correct: false,
-          label:
-            "Orang Banda berhasil mempertahankan perdagangan bebas hingga abad ke-19.",
+            "$$15$$ orang di stan $$24$$ rasa dan $$150$$ orang di stan $$6$$ rasa",
         },
         {
           correct: true,
           label:
-            "Monopoli pala VOC dibangun dengan kekerasan, lalu runtuh setelah pala menyebar.",
+            "$$9$$ orang di stan $$24$$ rasa dan $$60$$ orang di stan $$6$$ rasa",
+        },
+        {
+          correct: false,
+          label:
+            "$$300$$ orang di stan $$24$$ rasa dan $$200$$ orang di stan $$6$$ rasa",
+        },
+        {
+          correct: false,
+          label:
+            "$$1{,}8$$ orang di stan $$24$$ rasa dan $$12$$ orang di stan $$6$$ rasa",
+        },
+        {
+          correct: false,
+          label:
+            "$$60$$ orang di stan $$24$$ rasa dan $$9$$ orang di stan $$6$$ rasa",
         },
       ],
     },

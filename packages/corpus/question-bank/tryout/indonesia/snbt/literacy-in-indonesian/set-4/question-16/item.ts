@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "coffee-plots",
+  stimulus: "dengue-cases",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pohon pelindung merugikan karena hasil biji turun 120 kilogram per hektare.",
+            "$$200$$ per $$100{.}000$$ penduduk, jauh di atas laju kabupaten",
+        },
+        {
+          correct: false,
+          label:
+            "$$80$$ per $$100{.}000$$ penduduk, jauh di bawah laju kabupaten, yaitu sekitar $$93$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$130$$ per $$100{.}000$$ penduduk, tertinggi di antara semua kecamatan",
+        },
+        {
+          correct: false,
+          label:
+            "$$80$$ per $$100{.}000$$ penduduk, di atas laju kabupaten, yaitu sekitar $$69$$",
         },
         {
           correct: true,
           label:
-            "Hasil turun, tetapi harga per kilogram naik sehingga pendapatan bertambah.",
-        },
-        {
-          correct: false,
-          label:
-            "Pohon pelindung tidak berpengaruh karena skor kedua kebun sama-sama di bawah 85.",
-        },
-        {
-          correct: false,
-          label:
-            "Pohon pelindung menaikkan hasil dan skor cita rasa sekaligus.",
-        },
-        {
-          correct: false,
-          label: "Pohon pelindung hanya berguna di ketinggian 1.400 mdpl.",
+            "$$80$$ per $$100{.}000$$ penduduk, sedikit di bawah laju kabupaten, yaitu $$82$$",
         },
       ],
     },

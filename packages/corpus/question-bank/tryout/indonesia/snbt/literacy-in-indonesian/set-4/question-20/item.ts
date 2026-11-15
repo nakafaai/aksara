@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "calculation",
   },
-  stimulus: "regional-language",
+  stimulus: "dengue-cases",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
+          label: "Rp$$114{,}8$$ juta, sama dengan bagian setiap kecamatan lain",
+        },
+        {
+          correct: false,
           label:
-            "Bahasa daerah sebaiknya menggantikan bahasa Indonesia di sekolah.",
+            "Rp$$65{,}6$$ juta, atau Rp$$820$$ per penduduk, sebanding dengan banyak penduduknya",
+        },
+        {
+          correct: false,
+          label:
+            "Rp$$104$$ juta, atau Rp$$1{.}300$$ per penduduk, lebih kecil daripada bagian Kota Baru per penduduk",
         },
         {
           correct: true,
           label:
-            "Bahasa daerah perlu diselamatkan dan sekolah dapat ikut berperan.",
+            "Rp$$104$$ juta, atau Rp$$1{.}300$$ per penduduk, lebih besar daripada bagian Kota Baru per penduduk",
         },
         {
           correct: false,
           label:
-            "Setiap sekolah wajib memakai bahasa daerah provinsi setiap hari.",
-        },
-        {
-          correct: false,
-          label:
-            "Orang tua sebaiknya dilarang berbahasa Indonesia kepada anaknya.",
-        },
-        {
-          correct: false,
-          label:
-            "Murid perlu belajar sembilan bahasa daerah sekaligus di kelas.",
+            "Rp$$130$$ juta, karena laju kasusnya $$130$$ per $$100{.}000$$ penduduk",
         },
       ],
     },

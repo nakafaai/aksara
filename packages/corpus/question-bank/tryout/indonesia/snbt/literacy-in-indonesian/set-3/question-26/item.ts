@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "author-purpose",
   },
-  stimulus: "youth-pledge",
+  stimulus: "anchoring-price",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kongres Pemuda II diadakan di Batavia oleh perkumpulan pemuda dari berbagai daerah.",
-        },
-        {
-          correct: false,
-          label:
-            "bahasa Jawa ditolak sebagai bahasa persatuan karena penuturnya terlalu banyak.",
-        },
-        {
-          correct: false,
-          label:
-            "Mohammad Yamin dan Mohammad Tabrani berselisih tentang pemilihan tempat kongres.",
+            "menunjukkan bahwa peserta menebak dengan asal karena mereka tidak tahu jumlah negara Afrika di Perserikatan Bangsa-Bangsa",
         },
         {
           correct: true,
           label:
-            "pilihan kata dan nama dalam ikrar 1928 menjadikan bahasa Indonesia milik bersama.",
+            "menyingkirkan dugaan bahwa angka jangkar berpengaruh hanya karena orang menganggapnya sebagai petunjuk jawaban",
         },
         {
           correct: false,
           label:
-            "Undang-Undang Dasar 1945 lahir dari perdebatan para pemuda pada tahun 1926.",
+            "membuktikan bahwa penjelasan pertama lebih tepat daripada penjelasan kedua tentang efek jangkar",
+        },
+        {
+          correct: false,
+          label:
+            "menegaskan bahwa roda angka dalam percobaan itu sengaja diatur oleh peneliti agar hasilnya sesuai harapan",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan mengapa median tebakan kedua kelompok berbeda sekitar dua puluh poin persentase",
         },
       ],
     },

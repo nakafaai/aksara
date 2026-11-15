@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "application",
   },
-  stimulus: "coffee-plots",
+  stimulus: "class-size",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Kebun A",
+          correct: true,
+          label:
+            "Mengecilkan kelas 1 lebih dulu di sekolah-sekolah dengan siswa paling kurang mampu.",
         },
         {
           correct: false,
-          label: "Kebun B",
-        },
-        {
-          correct: false,
-          label: "Kebun C",
+          label:
+            "Mengecilkan semua kelas 1 sekaligus tahun depan dengan merekrut guru tanpa sertifikat.",
         },
         {
           correct: true,
-          label: "Kebun D",
+          label:
+            "Menambah kelas kecil setiap tahun sebanyak guru bersertifikat yang dapat diangkat tahun itu.",
         },
         {
           correct: false,
-          label: "Kebun A dan Kebun D sama besarnya",
+          label:
+            "Membatalkan pengecilan kelas dan memakai seluruh dananya untuk membangun ruang kelas baru.",
+        },
+        {
+          correct: false,
+          label:
+            "Menunda semua perubahan sampai kabupaten itu menjalankan percobaan acak sendiri.",
         },
       ],
     },
