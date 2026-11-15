@@ -150,19 +150,37 @@ Avoid:
 - narrating arithmetic with filler such as `next` or `finally` when the
   derivation already shows the transition.
 
-## Visual structure in worked answers
+## Visual-first explanations
 
-The answer form follows the problem. Use a diagram, graph, table, number line,
-or other renderer-owned component when the learner must inspect that
-representation to understand the reasoning. Explain the decisive relationship
-in accessible prose and show how it enters the solution.
+An explanation teaches with visuals, not with plain text alone (owner
+decision of 15 November 2026). A learner who chose a wrong answer usually
+misread a relationship, and a figure shows that relationship faster than a
+paragraph does.
 
-Do not add a visual merely because the corresponding lesson uses one. A direct
-calculation usually needs a clear orientation, one complete derivation, an
-interpretation or check, and a conclusion. A case analysis may benefit from a
-compact table. A route, dependency, or multi-stage process may benefit from a
-diagram. The representation earns its place by making the reasoning easier to
-reconstruct.
+- Show each step a learner could misread as a figure, a graph, a model, or a
+  simulation: a geometric relationship, the reading of a graph, a case split, a
+  force or field, a particle model, a process with stages, a comparison of data.
+  Plain text alone is the exception.
+- A visual carries a reasoning step. The prose says what to look at and how it
+  enters the solution, and the next step uses it. Never add a visual as
+  decoration, as a picture of the result with no reasoning, or as a repeat of a
+  formula already shown.
+- Use any figure of the Visual Catalog. Choose a lab or a three-dimensional
+  scene when moving, rotating, or choosing a case makes the reasoning visible;
+  a `MathVisual`, `LineEquation`, `NumberLine`, or chart when a static or
+  parametric drawing is enough; `Mermaid` for a process or a dependency. Group
+  a formula with the figure it draws in a `ContentStack`.
+- Start from the question's figure when the question has one, so the learner
+  recognizes it, then add what the solution needs. An explanation may show
+  answer state: the answer drawn in the `answer` appearance, a regression line,
+  a lab's takeaway or result note.
+- A mathematics or science explanation without a visual fails review unless
+  the reviewer records why no visual helps, such as a one-operation arithmetic
+  item or a definition recalled word for word. A reading, language, or evidence
+  item may use a compact table or a highlighted quotation instead.
+- A case analysis may use a compact table, and a route, dependency, or
+  multi-stage process a diagram. Every representation earns its place by
+  making the reasoning easier to reconstruct.
 
 All localized explanations must preserve the same meaningful
 subgoals, conditions, evidence, representations, checks, and conclusion. They
@@ -174,8 +192,8 @@ may differ in sentence structure so each reads naturally in its own language.
   conclusion.
 - A multi-step item needs explicit subgoals and the reasoning that connects
   them.
-- A visual item must state decisive diagram relationships in accessible text
-  and explain how they enter the solution.
+- A visual item must show its decisive relationships in a figure, state them
+  in accessible text, and explain how they enter the solution.
 - A combinatorics or probability item must define the sample space, justify
   favorable cases, and account for impossible cases.
 - A data or modeling item must interpret the numerical result in context.
@@ -216,13 +234,6 @@ Studienkolleg exams explained in Indonesian or English, quote each German exam
 term at first use and explain it in the explanation language, for example
 *Definitionsbereich* (domain). Mathematics, symbols, and results stay identical
 across every locale.
-
-## Visual reasoning
-
-Geometry, vector, function, and data items get an interactive visual in the
-explanation when rotating, moving, or changing a value makes the reasoning
-visible. Reuse the question's visual as the starting state so the learner
-recognizes it.
 
 ## Evidence basis
 
