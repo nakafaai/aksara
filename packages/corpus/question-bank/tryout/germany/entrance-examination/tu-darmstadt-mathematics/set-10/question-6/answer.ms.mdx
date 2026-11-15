@@ -1,0 +1,55 @@
+# Cari asas dan nilai awal
+
+Bahagikan dua nilai fungsi itu. Faktor <InlineMath math="a" /> terbatal dan **yang tinggal ialah <InlineMath math="b^2" />**:
+
+<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
+
+Oleh sebab <InlineMath math="b>0" />, <InlineMath math="b=3" />, dan daripada <InlineMath math="f(1)=3a=6" /> kita dapat <InlineMath math="a=2" />. Jadi <InlineMath math="f(x)=2\cdot3^x" />.
+
+# Semak ketaksamaan dengan nombor bulat
+
+Yang dicari ialah nombor bulat terkecil <InlineMath math="x" /> dengan <InlineMath math="2\cdot3^x>1000" />, iaitu <InlineMath math="3^x>500" />. Kuasa bagi <InlineMath math="3" /> bertambah dengan cepat, jadi **cukup dikira satu demi satu**:
+
+<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+
+<MathVisual
+  title={<>Bila <InlineMath math="f" /> melepasi <InlineMath math="1000" /></>}
+  description={<>Graf <InlineMath math="f(x)=2\cdot3^x" /> naik semakin curam. Pada <InlineMath math="x=5" /> nilainya <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, dan pada <InlineMath math="x=6" /> nilainya <InlineMath math="1458" />, sudah di atasnya.</>}
+  labels={{
+    five: <><InlineMath math="f(5)=486" /></>,
+    six: <><InlineMath math="f(6)=1458" /></>,
+    l: <><InlineMath math="1000" /></>,
+    g: <><InlineMath math="2\cdot3^x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 6.8 },
+      y: { min: 0, max: 2000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "2*3^x", domain: { min: 0, max: 6.2 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 1000 }, to: { x: 6.5, y: 1000 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: 486 } },
+      { id: "p6", kind: "point", appearance: "answer", at: { x: 6, y: 1458 } },
+    ],
+    labels: [
+      { key: "five", objectId: "p5", at: { x: 5, y: 486 }, placement: "left" },
+      { key: "six", objectId: "p6", at: { x: 6, y: 1458 }, placement: "left" },
+      { key: "l", objectId: "level", at: { x: 0, y: 1000 }, placement: "above-right" },
+      { key: "g", objectId: "growth", at: { x: 6.1, y: 1700 }, placement: "left" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="f(5)=486\le1000" /> dan <InlineMath math="f(6)=1458>1000" />. Nombor bulat terkecilnya ialah **<InlineMath math="x=6" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="x=5" /> memakai **<InlineMath math="a=6" />, bukan <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Sedangkan nilai awal ialah <InlineMath math="f(0)=a" />, bukan <InlineMath math="f(1)" />.
+- <InlineMath math="x=7" /> mengalihkan eksponen sebanyak satu, contohnya dengan <InlineMath math="f(x)=2\cdot3^{x-1}" />.
+- <InlineMath math="x=4" /> menganggap <InlineMath math="\frac{f(3)}{f(1)}=9" /> sebagai asas: dengan <InlineMath math="b=9" /> dan <InlineMath math="a=\frac23" />, <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
+- <InlineMath math="x=43" /> mengira secara linear: dari <InlineMath math="6" /> ke <InlineMath math="54" /> dalam dua langkah bermakna <InlineMath math="24" /> setiap langkah, dan <InlineMath math="6+24(x-1)>1000" /> memberi <InlineMath math="x=43" />.
+- <InlineMath math="x=3" /> ialah kedudukan nilai kedua yang diberi, <InlineMath math="f(3)=54" />.

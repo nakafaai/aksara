@@ -1,19 +1,56 @@
-Nenne die kleinere Zahl <InlineMath math="n" />. Die nächste natürliche Zahl ist dann <InlineMath math="n+1" />, und aus dem Produkt entsteht eine **quadratische Gleichung**.
+# Drei Gleichungen für drei Seiten
+
+Nenne die Katheten <InlineMath math="a" /> und <InlineMath math="b" /> und die Hypotenuse <InlineMath math="c" />. Umfang, Flächeninhalt und Pythagoras liefern **drei Gleichungen**:
+
+<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+
+# Mit <InlineMath math="(a+b)^2" /> die Katheten loswerden
+
+Du musst <InlineMath math="a" /> und <InlineMath math="b" /> nicht einzeln kennen. Quadriere <InlineMath math="a+b=30-c" /> und setze **<InlineMath math="ab=60" /> und <InlineMath math="a^2+b^2=c^2" />** ein:
 
 <BlockMath math="\begin{aligned}
-n(n+1)&=156 \\
-n^2+n-156&=0 \\
-(n-12)(n+13)&=0
+(a+b)^2&=a^2+b^2+2ab \\
+(30-c)^2&=c^2+120 \\
+900-60c+c^2&=c^2+120 \\
+780&=60c\quad\Longrightarrow\quad c=13
 \end{aligned}" />
 
-Für die Faktorisierung suchst du zwei Zahlen mit dem Produkt <InlineMath math="-156" /> und der Summe <InlineMath math="1" />. Das sind <InlineMath math="13" /> und <InlineMath math="-12" />. Die Lösung <InlineMath math="n=-13" /> ist keine natürliche Zahl, also bleibt <InlineMath math="n=12" />, und die Zahlen sind <InlineMath math="12" /> und <InlineMath math="13" />.
+<MathVisual
+  title={<>Das gesuchte Dreieck</>}
+  description={<>Ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="12" /> und <InlineMath math="5" /> und der Hypotenuse <InlineMath math="13" />. Sein Umfang ist <InlineMath math="12+5+13=30" />, sein Flächeninhalt <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  labels={{
+    a: <><InlineMath math="a=12" /></>,
+    b: <><InlineMath math="b=5" /></>,
+    c: <><InlineMath math="c=13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -1.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 5 }] },
+      { id: "hyp", kind: "segment", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 2.5 }, placement: "left" },
+      { key: "c", objectId: "hyp", at: { x: 6, y: 2.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-Zur Kontrolle: <InlineMath math="12\cdot13=156" />. Außerdem liegt <InlineMath math="\sqrt{156}" /> knapp unter <InlineMath math="\sqrt{169}=13" />, also müssen die Zahlen um <InlineMath math="12{,}5" /> herum liegen.
+# Probe mit den Katheten
 
-Die Summe der beiden Zahlen ist also <InlineMath math="12+13=25" />.
+Mit <InlineMath math="c=13" /> ist <InlineMath math="a+b=17" /> und <InlineMath math="ab=60" />, also sind <InlineMath math="a" /> und <InlineMath math="b" /> die Lösungen von <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> und <InlineMath math="5" />. Tatsächlich gilt <InlineMath math="12^2+5^2=169=13^2" />. Die Hypotenuse ist **<InlineMath math="13\text{ cm}" /> lang**.
 
-- <InlineMath math="12" /> ist nur die kleinere der beiden Zahlen.
-- <InlineMath math="13" /> ist nur die größere der beiden Zahlen.
-- <InlineMath math="78" /> ist die Hälfte des Produkts, <InlineMath math="156:2" />. Das Produkt zu halbieren ergibt keine Summe.
-- <InlineMath math="24" /> ist das Doppelte der kleineren Zahl, als wären beide Zahlen gleich <InlineMath math="12" />.
-- <InlineMath math="26" /> ist das Doppelte der größeren Zahl, als wären beide Zahlen gleich <InlineMath math="13" />.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="14\text{ cm}" /> vergisst den Faktor <InlineMath math="\frac12" /> im Flächeninhalt, also <InlineMath math="ab=30" />: Dann folgt <InlineMath math="900-60c=60" /> und <InlineMath math="c=14" />.
+- <InlineMath math="12\text{ cm}" /> ist **die längere Kathete**, nicht die Hypotenuse.
+- <InlineMath math="15\text{ cm}" /> ist der halbe Umfang.
+- <InlineMath math="10\text{ cm}" /> teilt den Umfang durch drei, als wäre das Dreieck gleichseitig.
+- <InlineMath math="5\text{ cm}" /> ist die kürzere Kathete.

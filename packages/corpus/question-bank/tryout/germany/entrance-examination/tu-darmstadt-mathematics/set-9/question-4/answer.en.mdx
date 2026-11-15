@@ -1,17 +1,62 @@
-The task asks for the largest possible area of the enclosure. The area depends on how the fence is split. So write it as a **quadratic function of one side length** and look for its vertex.
+# Write the area in terms of one length
 
-Call each of the two sides that lead away from the wall <InlineMath math="x" /> metres. That leaves <InlineMath math="40-2x" /> metres of fence for the side parallel to the wall.
+Call the two sides perpendicular to the wall <InlineMath math="x" /> and the side parallel to the wall <InlineMath math="y" />. The fence gives <InlineMath math="2x+y=60" />, so <InlineMath math="y=60-2x" />. The area is then **a quadratic function of <InlineMath math="x" />**:
 
-<BlockMath math="A(x)=x\,(40-2x)=-2x^2+40x=-2\left(x-10\right)^2+200" />
+<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
 
-The parabola opens downwards, so its vertex <InlineMath math="(10\mid200)" /> is the maximum. At <InlineMath math="x=10" /> the enclosure is <InlineMath math="10\text{ m}" /> deep and <InlineMath math="20\text{ m}" /> long.
+# The condition on the wall side
 
-As a check, compare neighbouring values: <InlineMath math="x=8" /> gives <InlineMath math="8\cdot24=192" />, and <InlineMath math="x=12" /> also gives <InlineMath math="12\cdot16=192" />. Both are below <InlineMath math="200" />, and the symmetry about <InlineMath math="x=10" /> fits.
+Without a condition the vertex would be at <InlineMath math="x=15" /> with <InlineMath math="A=450" />. But then <InlineMath math="y=60-30=30" />, which is **longer than the allowed <InlineMath math="24\text{ m}" />**. The condition <InlineMath math="y\le24" /> means:
 
-So the area is at most <InlineMath math="200\text{ m}^2" />.
+<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
 
-- <InlineMath math="100\text{ m}^2" /> is a square of <InlineMath math="10\text{ m}" /> by <InlineMath math="10\text{ m}" />. That uses only <InlineMath math="30\text{ m}" /> of fence, while the wall saves a whole side.
-- <InlineMath math="400\text{ m}^2" /> uses <InlineMath math="20\text{ m}" /> by <InlineMath math="20\text{ m}" />. That would need <InlineMath math="60\text{ m}" /> of fence.
-- <InlineMath math="150\text{ m}^2" /> belongs to <InlineMath math="x=5" />. That is possible but not the largest value.
-- <InlineMath math="800\text{ m}^2" /> multiplies the fence length by half the fence length, <InlineMath math="40\cdot20" />. No <InlineMath math="40\text{ m}" /> fence can enclose that much.
-- <InlineMath math="192\text{ m}^2" /> belongs to <InlineMath math="x=8" /> or <InlineMath math="x=12" />. That is close to the maximum but not yet the vertex.
+# The maximum at the boundary
+
+For <InlineMath math="x\ge18" /> the vertex is off to the left, and the parabola falls. The largest allowed value is **at the boundary <InlineMath math="x=18" />**:
+
+<MathVisual
+  title={<>Area depending on <InlineMath math="x" /></>}
+  description={<>The parabola <InlineMath math="A(x)=x\,(60-2x)" /> for the length <InlineMath math="x" /> of the sides perpendicular to the wall. Its vertex <InlineMath math="(15\mid450)" /> lies in the dashed, forbidden part left of <InlineMath math="x=18" />, because there the side along the wall would be longer than <InlineMath math="24" />. In the allowed part <InlineMath math="x\ge18" /> the parabola falls, and its highest point is <InlineMath math="(18\mid432)" />.</>}
+  labels={{
+    v: <><InlineMath math="(15\mid450)" /></>,
+    m: <><InlineMath math="(18\mid432)" /></>,
+    ok: <>allowed</>,
+    no: <>forbidden</>,
+    b: <><InlineMath math="x=18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 32 },
+      y: { min: 0, max: 500 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "banned", kind: "function", appearance: "construction", formula: "x*(60 - 2*x)", domain: { min: 0, max: 18 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "x*(60 - 2*x)", domain: { min: 18, max: 30 } },
+      { id: "border", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 18, y: 470 } },
+      { id: "vertex", kind: "point", appearance: "highlight", at: { x: 15, y: 450 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 18, y: 432 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 15, y: 450 }, placement: "above-left" },
+      { key: "m", objectId: "best", at: { x: 18, y: 432 }, placement: "right" },
+      { key: "ok", objectId: "allowed", at: { x: 26, y: 208 }, placement: "right" },
+      { key: "no", objectId: "banned", at: { x: 5, y: 250 }, placement: "left" },
+      { key: "b", objectId: "border", at: { x: 18, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+
+The enclosure can be at most <InlineMath math="432\text{ m}^2" />, with <InlineMath math="18\text{ m}" /> perpendicular and <InlineMath math="24\text{ m}" /> parallel to the wall.
+
+# Why the other answers are wrong
+
+- <InlineMath math="450\text{ m}^2" /> is the vertex value, where the wall side would be <InlineMath math="30\text{ m}" />. **It breaks the condition**.
+- <InlineMath math="576\text{ m}^2" /> is a square with side <InlineMath math="24" />. That would need <InlineMath math="72\text{ m}" /> of fence.
+- <InlineMath math="360\text{ m}^2" /> combines <InlineMath math="x=15" /> from the vertex with <InlineMath math="y=24" />. That uses only <InlineMath math="54\text{ m}" /> of fence.
+- <InlineMath math="288\text{ m}^2" /> takes <InlineMath math="24\cdot12" />, a wrong second side.
+- <InlineMath math="225\text{ m}^2" /> is a square with side <InlineMath math="15" />, with no link to the fence.

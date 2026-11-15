@@ -1,13 +1,52 @@
-Soal menanyakan jumlah seluruh buku di perpustakaan itu. Di sini yang **dicari adalah nilai dasarnya**: <InlineMath math="48" /> buku yang dipinjam adalah bagiannya, <InlineMath math="15\,\%" /> adalah persentasenya, dan seluruh koleksi <InlineMath math="G" /> belum diketahui.
+# Perubahan sebagai faktor
 
-<BlockMath math="0{,}15\cdot G=48\quad\Rightarrow\quad G=\frac{48}{0{,}15}=\frac{4800}{15}=320" />
+Kenaikan <InlineMath math="25\,\%" /> mengalikan harga dengan <InlineMath math="1{,}25" />. Di akhir harga harus <InlineMath math="10\,\%" /> di bawah harga lama, yaitu <InlineMath math="0{,}9" /> kalinya. Yang dicari adalah penurunan sebesar bagian <InlineMath math="s" />, **dihitung dari harga yang sudah naik**:
 
-Tanpa kalkulator kamu juga bisa lewat bagian yang lebih kecil: jika <InlineMath math="15\,\%" /> sama dengan <InlineMath math="48" /> buku, maka <InlineMath math="5\,\%" /> adalah sepertiganya, yaitu <InlineMath math="16" /> buku. <InlineMath math="100\,\%" /> adalah dua puluh kalinya, <InlineMath math="20\cdot16=320" />. Sebagai pemeriksaan: <InlineMath math="15\,\%" /> dari <InlineMath math="320" /> adalah <InlineMath math="0{,}15\cdot320=48" />.
+<BlockMath math="1{,}25\,(1-s)=0{,}9" />
 
-Jadi, perpustakaan itu punya <InlineMath math="320" /> buku.
+# Hitung persentasenya
 
-- <InlineMath math="7{,}2" /> adalah <InlineMath math="15\,\%" /> dari <InlineMath math="48" />. Di sini bagian dan nilai dasarnya tertukar.
-- <InlineMath math="55{,}2" /> menghitung <InlineMath math="48" /> ditambah <InlineMath math="15\,\%" /> dari <InlineMath math="48" />, seolah-olah koleksinya hanya sedikit lebih banyak daripada buku yang dipinjam.
-- <InlineMath math="720" /> mengalikan <InlineMath math="48" /> dengan <InlineMath math="15" />, bukan membaginya dengan <InlineMath math="0{,}15" />.
-- <InlineMath math="3{,}2" /> membagi <InlineMath math="48" /> dengan <InlineMath math="15" /> dan melupakan faktor <InlineMath math="100" />.
-- <InlineMath math="32" /> membagi dengan <InlineMath math="1{,}5" />, bukan <InlineMath math="0{,}15" />, sehingga koma bergeser satu tempat.
+<BlockMath math="1-s=\frac{0{,}9}{1{,}25}=0{,}72\quad\Longrightarrow\quad s=0{,}28=28\,\%" />
+
+<MathVisual
+  title={<>Harga dalam dua langkah</>}
+  description={<>Harga sebagai indeks dengan <InlineMath math="100" /> di awal. Harga naik menjadi <InlineMath math="125" />, lalu turun menjadi <InlineMath math="90" />, yaitu <InlineMath math="10" /> di bawah nilai awal. Langkah kedua adalah penurunan <InlineMath math="35" /> dari <InlineMath math="125" />, yaitu <InlineMath math="28\,\%" />.</>}
+  labels={{
+    s: <>awal <InlineMath math="100" /></>,
+    t: <>naik <InlineMath math="125" /></>,
+    e: <>akhir <InlineMath math="90" /></>,
+    cut: <><InlineMath math="-28\,\%" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 2.8 },
+      y: { min: 80, max: 135 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 2, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 125 }, { x: 2, y: 90 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 1, y: 125 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 90 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "above-left" },
+      { key: "t", objectId: "p1", at: { x: 1, y: 125 }, placement: "above" },
+      { key: "e", objectId: "p2", at: { x: 2, y: 90 }, placement: "right" },
+      { key: "cut", objectId: "path", at: { x: 1.5, y: 107.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek dengan <InlineMath math="100\text{ €}" />: naik menjadi <InlineMath math="125\text{ €}" />, <InlineMath math="28\,\%" /> darinya <InlineMath math="35\text{ €}" />, tersisa <InlineMath math="90\text{ €}" />. Harga yang sudah naik itu **diturunkan <InlineMath math="28\,\%" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="35\,\%" /> menjumlahkan poin persentase <InlineMath math="25+10" />. Padahal penurunannya dihitung **dari nilai awal yang lebih besar, <InlineMath math="125" />**.
+- <InlineMath math="30\,\%" /> mengambil <InlineMath math="20\,\%" /> untuk membatalkan kenaikan ditambah <InlineMath math="10\,\%" /> lagi.
+- <InlineMath math="72\,\%" /> adalah bagian yang tersisa, <InlineMath math="\frac{0{,}9}{1{,}25}" />, bukan penurunannya.
+- <InlineMath math="20\,\%" /> hanya mengembalikan harga ke nilai awal: <InlineMath math="1{,}25\cdot0{,}8=1" />.
+- <InlineMath math="25\,\%" /> hanya membalik kenaikan: <InlineMath math="1{,}25\cdot0{,}75=0{,}9375" />.

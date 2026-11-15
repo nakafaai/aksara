@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$x=\\log_{\\frac23}6$$",
+        },
+        {
+          correct: false,
+          label: "$$x=\\log_6\\frac32$$",
+        },
+        {
+          correct: false,
+          label: "$$x=\\log_{\\frac32}3$$",
+        },
+        {
           correct: true,
-          label: "$$10^{9}<2^{30}<3^{20}$$",
+          label: "$$x=\\log_{\\frac32}6$$",
         },
         {
           correct: false,
-          label: "$$2^{30}<10^{9}<3^{20}$$",
+          label: "$$x=-1$$",
         },
         {
           correct: false,
-          label: "$$2^{30}<3^{20}<10^{9}$$",
-        },
-        {
-          correct: false,
-          label: "$$3^{20}<10^{9}<2^{30}$$",
-        },
-        {
-          correct: false,
-          label: "$$10^{9}<3^{20}<2^{30}$$",
-        },
-        {
-          correct: false,
-          label: "$$3^{20}<2^{30}<10^{9}$$",
+          label: "Es gibt keine reelle Zahl $$x$$ mit dieser Eigenschaft.",
         },
       ],
     },

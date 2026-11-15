@@ -1,15 +1,68 @@
-Soal menanyakan berapa meter jalan itu naik sepanjang <InlineMath math="2{,}5\text{ km}" />. Karena jalan naik secara merata, semua segitiga kemiringannya sebangun. Karena itu, tinggi dan jarak mendatar **sebanding**, seperti pada teorema intersep.
+# Segitiga miringnya sama kaki
 
-Ubah dulu jaraknya ke meter, <InlineMath math="2{,}5\text{ km}=2500\text{ m}" />. Itu sama dengan <InlineMath math="2500:100=25" /> bagian yang masing-masing <InlineMath math="100\text{ m}" />.
+Sebut kaki menara <InlineMath math="F" /> dan puncaknya <InlineMath math="T" />. Pada segitiga <InlineMath math="PQT" />, sudut di <InlineMath math="P" /> besarnya <InlineMath math="30^\circ" />. Sudut di <InlineMath math="Q" /> adalah pelurus <InlineMath math="60^\circ" />, jadi <InlineMath math="120^\circ" />. Tersisa tepat <InlineMath math="180^\circ-30^\circ-120^\circ=30^\circ" /> di <InlineMath math="T" />. **Dua sudut sama berarti dua sisi sama**:
 
-<BlockMath math="h=25\cdot8\text{ m}=200\text{ m}\qquad\text{atau}\qquad h=0{,}08\cdot2500\text{ m}=200\text{ m}" />
+<BlockMath math="\overline{QT}=\overline{PQ}=40\text{ m}" />
 
-Sebagai pemeriksaan, cek perbandingannya: <InlineMath math="\frac{200}{2500}=\frac{8}{100}=8\,\%" />, tepat kemiringan pada rambu.
+<MathVisual
+  title={<>Menara dan dua titik pandang</>}
+  description={<>Menara <InlineMath math="\overline{FT}" /> berdiri di kiri. Dari <InlineMath math="P" /> puncak <InlineMath math="T" /> terlihat dengan sudut <InlineMath math="30^\circ" />, dari titik <InlineMath math="Q" /> yang <InlineMath math="40" /> lebih dekat dengan sudut <InlineMath math="60^\circ" />. Segitiga <InlineMath math="PQT" /> bersudut <InlineMath math="30^\circ" /> di <InlineMath math="P" /> dan di <InlineMath math="T" />, jadi sama kaki dengan <InlineMath math="\overline{QT}=40" />.</>}
+  labels={{
+    t: <><InlineMath math="T" /></>,
+    f: <><InlineMath math="F" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    h: <><InlineMath math="h" /></>,
+    d: <><InlineMath math="40" /></>,
+    a: <><InlineMath math="30^\circ" /></>,
+    b: <><InlineMath math="60^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 66 },
+      y: { min: -6, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tower", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "sight-p", kind: "segment", appearance: "secondary", from: { x: 60, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "sight-q", kind: "segment", appearance: "secondary", from: { x: 20, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "walk", kind: "segment", appearance: "highlight", from: { x: 20, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 34.641 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "pq", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "top", at: { x: 0, y: 34.641 }, placement: "above-right" },
+      { key: "f", objectId: "foot", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "pp", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "h", objectId: "tower", at: { x: 0, y: 17.3205 }, placement: "left" },
+      { key: "d", objectId: "walk", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "a", objectId: "sight-p", at: { x: 54, y: 3.5 }, placement: "above" },
+      { key: "b", objectId: "sight-q", at: { x: 17, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
 
-Jadi, jalan itu naik <InlineMath math="200\text{ m}" />.
+# Tinggi pada segitiga siku-siku <InlineMath math="QFT" />
 
-- <InlineMath math="20\text{ m}" /> menganggap <InlineMath math="2{,}5\text{ km}" /> sama dengan <InlineMath math="250\text{ m}" />, karena koma digeser satu tempat terlalu sedikit.
-- <InlineMath math="2{.}000\text{ m}" /> memakai <InlineMath math="25\,000\text{ m}" />, bukan <InlineMath math="2500\text{ m}" />.
-- <InlineMath math="312{,}5\text{ m}" /> membagi <InlineMath math="2500" /> dengan <InlineMath math="8" />, bukan mengalikannya dengan <InlineMath math="0{,}08" />.
-- <InlineMath math="8\text{ m}" /> memakai tinggi untuk <InlineMath math="100\text{ m}" /> tanpa menyesuaikannya dengan jarak yang lebih panjang.
-- <InlineMath math="31{,}25\text{ m}" /> menggabungkan kedua kesalahan: <InlineMath math="250\text{ m}" /> dibagi <InlineMath math="8" />.
+Pada segitiga <InlineMath math="QFT" />, sudut di <InlineMath math="F" /> siku-siku dan sudut di <InlineMath math="Q" /> besarnya <InlineMath math="60^\circ" />. Tingginya adalah **sisi di depan sudut <InlineMath math="60^\circ" />**:
+
+<BlockMath math="h=\overline{QT}\cdot\sin60^\circ=40\cdot\frac{\sqrt3}{2}=20\sqrt3" />
+
+# Cek dengan kedua sudut
+
+Maka <InlineMath math="\overline{QF}=40\cdot\cos60^\circ=20" /> dan <InlineMath math="\overline{PF}=60" />. Memang <InlineMath math="\tan30^\circ=\frac{20\sqrt3}{60}=\frac{\sqrt3}{3}" />. Menara itu **tingginya <InlineMath math="20\sqrt3\text{ m}" />**, sekitar <InlineMath math="34{,}6\text{ m}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="40\sqrt3\text{ m}" /> memakai <InlineMath math="\tan60^\circ" /> dengan seluruh <InlineMath math="40" />: <InlineMath math="40\cdot\sqrt3" />. Padahal <InlineMath math="40" /> itu **bukan jarak <InlineMath math="Q" /> ke menara**.
+- <InlineMath math="20\text{ m}" /> adalah jarak <InlineMath math="\overline{QF}" />, bukan tinggi.
+- <InlineMath math="40\text{ m}" /> adalah ruas miring <InlineMath math="\overline{QT}" />.
+- <InlineMath math="10\sqrt3\text{ m}" /> membagi dua tingginya sekali lagi.
+- <InlineMath math="\frac{40\sqrt3}{3}\text{ m}" /> menghitung <InlineMath math="40\cdot\tan30^\circ" />, seolah-olah <InlineMath math="P" /> berjarak <InlineMath math="40" /> dari menara.

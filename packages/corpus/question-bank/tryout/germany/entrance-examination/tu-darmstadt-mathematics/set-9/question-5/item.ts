@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(2\\mid1)$$",
+          label: "$$P'(1\\mid2)$$",
+        },
+        {
+          correct: false,
+          label: "$$P'(0\\mid5)$$",
+        },
+        {
+          correct: false,
+          label: "$$P'(-5\\mid0)$$",
+        },
+        {
+          correct: false,
+          label: "$$P'(3\\mid-4)$$",
+        },
+        {
+          correct: false,
+          label: "$$P'(-4\\mid3)$$",
         },
         {
           correct: true,
-          label: "$$(0\\mid2)$$",
-        },
-        {
-          correct: false,
-          label: "$$(4\\mid0)$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\frac23\\mid\\frac53\\right)$$",
-        },
-        {
-          correct: false,
-          label: "$$(8\\mid-4)$$",
-        },
-        {
-          correct: false,
-          label: "$$(-4\\mid4)$$",
+          label: "$$P'(-3\\mid4)$$",
         },
       ],
     },

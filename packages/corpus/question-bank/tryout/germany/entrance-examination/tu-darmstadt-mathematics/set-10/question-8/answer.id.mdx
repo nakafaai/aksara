@@ -1,15 +1,59 @@
-Soal menanyakan berapa liter air yang muat di akuarium itu jika diisi penuh. Volume balok adalah panjang kali lebar kali tinggi. Untuk mengubahnya, ingat bahwa **satu liter sama dengan satu desimeter kubik**, jadi <InlineMath math="1\text{ liter}=1\text{ dm}^3=1000\text{ cm}^3" />.
+# Letak kaki garis tinggi
 
-Paling mudah langsung dihitung dalam desimeter: <InlineMath math="80\text{ cm}=8\text{ dm}" />, <InlineMath math="40\text{ cm}=4\text{ dm}" />, dan <InlineMath math="50\text{ cm}=5\text{ dm}" />.
+Puncak <InlineMath math="S" /> sama jauh dari ketiga titik sudut alas. Karena itu garis tingginya mengenai alas di **titik berat <InlineMath math="O" />**, yang sekaligus pusat lingkaran luarnya. Pada segitiga sama sisi bersisi <InlineMath math="6" />, garis beratnya panjangnya <InlineMath math="3\sqrt3" />, dan <InlineMath math="O" /> membaginya dengan perbandingan <InlineMath math="2:1" />:
 
-<BlockMath math="V=8\cdot4\cdot5\text{ dm}^3=160\text{ dm}^3=160\text{ liter}" />
+<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
 
-Sebagai pemeriksaan, hitung dalam sentimeter kubik: <InlineMath math="80\cdot40\cdot50=160\,000\text{ cm}^3" />, lalu dibagi <InlineMath math="1000" /> hasilnya kembali <InlineMath math="160" /> liter.
+# Pythagoras pada segitiga <InlineMath math="OAS" />
 
-Jadi, akuarium itu memuat <InlineMath math="160" /> liter air.
+Garis tinggi tegak lurus alas, jadi segitiga <InlineMath math="OAS" /> siku-siku di <InlineMath math="O" />. **Rusuk <InlineMath math="\overline{AS}=6" /> adalah sisi miringnya**:
 
-- <InlineMath math="16" /> liter membagi <InlineMath math="160\,000" /> dengan <InlineMath math="10\,000" />, sepuluh kali terlalu banyak.
-- <InlineMath math="1{.}600" /> liter menganggap <InlineMath math="1\text{ liter}=100\text{ cm}^3" />. Padahal satu liter sama dengan <InlineMath math="1000\text{ cm}^3" />.
-- <InlineMath math="16{.}000" /> liter hanya membagi dengan <InlineMath math="10" />, seperti mengubah satuan panjang.
-- <InlineMath math="160{.}000" /> liter adalah volume dalam sentimeter kubik, belum diubah ke liter.
-- <InlineMath math="1{,}6" /> liter membagi dengan <InlineMath math="100\,000" /> sehingga hasilnya seratus kali terlalu kecil.
+<MathVisual
+  title={<>Segitiga dari tinggi, rusuk, dan jarak</>}
+  description={<>Potongan melalui puncak <InlineMath math="S" />, titik sudut alas <InlineMath math="A" />, dan titik berat alas <InlineMath math="O" />. Segitiga <InlineMath math="OAS" /> siku-siku di <InlineMath math="O" />, dengan <InlineMath math="\overline{OA}=2\sqrt3" />, rusuk <InlineMath math="\overline{AS}=6" /> sebagai sisi miring, dan tinggi <InlineMath math="h=\overline{OS}" />.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    o: <><InlineMath math="O" /></>,
+    a: <><InlineMath math="A" /></>,
+    e: <><InlineMath math="6" /></>,
+    r: <><InlineMath math="2\sqrt3" /></>,
+    h: <><InlineMath math="h" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3.4641, y: 0 }, { x: 0, y: 4.899 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "edge", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 0, y: 4.899 } },
+      { id: "po", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 3.4641, y: 0 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 0, y: 4.899 }, placement: "above" },
+      { key: "o", objectId: "po", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 3.4641, y: 0 }, placement: "below-right" },
+      { key: "e", objectId: "edge", at: { x: 1.73205, y: 2.4495 }, placement: "above-right" },
+      { key: "r", objectId: "section", at: { x: 1.73205, y: 0 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 0, y: 2.4495 }, placement: "left" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+
+Jarak titik sudut ke bidang di depannya **<InlineMath math="2\sqrt6\text{ cm}" />**, sekitar <InlineMath math="4{,}9\text{ cm}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> adalah **tinggi satu sisi segitiga**, bukan tinggi limas segitiga beraturan itu.
+- <InlineMath math="3\text{ cm}" /> memakai seluruh garis berat <InlineMath math="3\sqrt3" />, bukan <InlineMath math="2\sqrt3" />: <InlineMath math="\sqrt{36-27}=3" />.
+- <InlineMath math="2\sqrt3\text{ cm}" /> adalah jarak <InlineMath math="\overline{OA}" /> di bidang alas.
+- <InlineMath math="3\sqrt2\text{ cm}" /> memakai <InlineMath math="3\sqrt2" /> sebagai jarak <InlineMath math="\overline{OA}" />, seperti setengah diagonal persegi: <InlineMath math="\sqrt{36-18}" />.
+- <InlineMath math="\sqrt{30}\text{ cm}" /> hanya mengurangkan <InlineMath math="6" />, bukan <InlineMath math="12" />: <InlineMath math="\sqrt{36-6}" />.

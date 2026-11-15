@@ -1,15 +1,55 @@
-Eine Gleichung passt nur, wenn sie **jedes Wertepaar der Tabelle** erfüllt. Ein Blick auf die Zuwächse zeigt, welche Art von Funktion in Frage kommt: Die Werte steigen um <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="6" />. Die Zuwächse sind nicht gleich, also ist <InlineMath math="f" /> nicht linear. Sie wachsen aber gleichmäßig um <InlineMath math="2" />, das spricht für eine quadratische Funktion.
+# Basis und Anfangswert bestimmen
 
-Prüfe <InlineMath math="f(x)=x^2+x+1" /> an allen vier Stellen.
+Teile <InlineMath math="f(3)" /> durch <InlineMath math="f(1)" />. Der Faktor <InlineMath math="a" /> kürzt sich, und **es bleibt <InlineMath math="b^2" /> übrig**:
 
-<BlockMath math="f(0)=1\qquad f(1)=1+1+1=3\qquad f(2)=4+2+1=7\qquad f(3)=9+3+1=13" />
+<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
 
-Alle vier Werte stimmen mit der Tabelle überein. Zur Kontrolle passt auch der gleichmäßige Zuwachs: Bei <InlineMath math="x^2" /> wachsen die Zuwächse immer um <InlineMath math="2" />.
+Wegen <InlineMath math="b>0" /> ist <InlineMath math="b=3" />, und aus <InlineMath math="f(1)=3a=6" /> folgt <InlineMath math="a=2" />. Also ist <InlineMath math="f(x)=2\cdot3^x" />.
 
-Zu allen Werten passt also <InlineMath math="f(x)=x^2+x+1" />.
+# Die Ungleichung mit ganzen Zahlen prüfen
 
-- <InlineMath math="f(x)=2x+1" /> passt nur bei <InlineMath math="x=0" /> und <InlineMath math="x=1" />. Bei <InlineMath math="x=2" /> ergibt sich <InlineMath math="5" /> statt <InlineMath math="7" />.
-- <InlineMath math="f(x)=x^2+1" /> passt nur bei <InlineMath math="x=0" />. Bei <InlineMath math="x=1" /> ergibt sich <InlineMath math="2" /> statt <InlineMath math="3" />.
-- <InlineMath math="f(x)=4x+1" /> passt bei <InlineMath math="x=0" /> und <InlineMath math="x=3" />, aber bei <InlineMath math="x=1" /> ergibt sich <InlineMath math="5" /> statt <InlineMath math="3" />.
-- <InlineMath math="f(x)=x^2+2x+1" /> passt nur bei <InlineMath math="x=0" />. Bei <InlineMath math="x=1" /> ergibt sich <InlineMath math="4" />.
-- <InlineMath math="f(x)=3x^2-x+1" /> passt bei <InlineMath math="x=0" /> und <InlineMath math="x=1" />, aber bei <InlineMath math="x=2" /> ergibt sich <InlineMath math="11" /> statt <InlineMath math="7" />.
+Gesucht ist die kleinste ganze Zahl <InlineMath math="x" /> mit <InlineMath math="2\cdot3^x>1000" />, also <InlineMath math="3^x>500" />. Die Potenzen von <InlineMath math="3" /> wachsen schnell, deshalb **genügt es, sie der Reihe nach zu berechnen**:
+
+<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+
+<MathVisual
+  title={<>Wann <InlineMath math="f" /> die Marke <InlineMath math="1000" /> überschreitet</>}
+  description={<>Der Graph von <InlineMath math="f(x)=2\cdot3^x" /> wächst immer steiler. Bei <InlineMath math="x=5" /> liegt er mit <InlineMath math="486" /> noch unter der Linie <InlineMath math="1000" />, bei <InlineMath math="x=6" /> mit <InlineMath math="1458" /> schon darüber.</>}
+  labels={{
+    five: <><InlineMath math="f(5)=486" /></>,
+    six: <><InlineMath math="f(6)=1458" /></>,
+    l: <><InlineMath math="1000" /></>,
+    g: <><InlineMath math="2\cdot3^x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 6.8 },
+      y: { min: 0, max: 2000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "2*3^x", domain: { min: 0, max: 6.2 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 1000 }, to: { x: 6.5, y: 1000 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: 486 } },
+      { id: "p6", kind: "point", appearance: "answer", at: { x: 6, y: 1458 } },
+    ],
+    labels: [
+      { key: "five", objectId: "p5", at: { x: 5, y: 486 }, placement: "left" },
+      { key: "six", objectId: "p6", at: { x: 6, y: 1458 }, placement: "left" },
+      { key: "l", objectId: "level", at: { x: 0, y: 1000 }, placement: "above-right" },
+      { key: "g", objectId: "growth", at: { x: 6.1, y: 1700 }, placement: "left" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="f(5)=486\le1000" /> und <InlineMath math="f(6)=1458>1000" />. Die kleinste ganze Zahl ist **<InlineMath math="x=6" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="x=5" /> nimmt **<InlineMath math="a=6" /> statt <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Der Anfangswert ist aber <InlineMath math="f(0)=a" />, nicht <InlineMath math="f(1)" />.
+- <InlineMath math="x=7" /> verschiebt den Exponenten um eins, etwa mit <InlineMath math="f(x)=2\cdot3^{x-1}" />.
+- <InlineMath math="x=4" /> hält <InlineMath math="\frac{f(3)}{f(1)}=9" /> für die Basis: Mit <InlineMath math="b=9" /> und <InlineMath math="a=\frac23" /> wäre <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
+- <InlineMath math="x=43" /> rechnet linear: Von <InlineMath math="6" /> auf <InlineMath math="54" /> in zwei Schritten sind <InlineMath math="24" /> pro Schritt, und <InlineMath math="6+24(x-1)>1000" /> ergibt <InlineMath math="x=43" />.
+- <InlineMath math="x=3" /> ist die Stelle des zweiten gegebenen Werts, <InlineMath math="f(3)=54" />.

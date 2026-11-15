@@ -1,0 +1,68 @@
+# Segi tiga condong itu sama kaki
+
+Namakan kaki menara <InlineMath math="F" /> dan puncaknya <InlineMath math="T" />. Dalam segi tiga <InlineMath math="PQT" />, sudut di <InlineMath math="P" /> ialah <InlineMath math="30^\circ" />. Sudut di <InlineMath math="Q" /> ialah sudut penggenap kepada <InlineMath math="60^\circ" />, iaitu <InlineMath math="120^\circ" />. Maka tinggal tepat <InlineMath math="180^\circ-30^\circ-120^\circ=30^\circ" /> di <InlineMath math="T" />. **Dua sudut yang sama bermaksud dua sisi yang sama**:
+
+<BlockMath math="\overline{QT}=\overline{PQ}=40\text{ m}" />
+
+<MathVisual
+  title={<>Menara dan dua titik pandangan</>}
+  description={<>Menara <InlineMath math="\overline{FT}" /> berdiri di sebelah kiri. Dari <InlineMath math="P" /> puncak <InlineMath math="T" /> kelihatan pada sudut <InlineMath math="30^\circ" />, dari titik <InlineMath math="Q" /> yang <InlineMath math="40" /> lebih dekat pada sudut <InlineMath math="60^\circ" />. Segi tiga <InlineMath math="PQT" /> bersudut <InlineMath math="30^\circ" /> di <InlineMath math="P" /> dan di <InlineMath math="T" />, jadi ia sama kaki dengan <InlineMath math="\overline{QT}=40" />.</>}
+  labels={{
+    t: <><InlineMath math="T" /></>,
+    f: <><InlineMath math="F" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    h: <><InlineMath math="h" /></>,
+    d: <><InlineMath math="40" /></>,
+    a: <><InlineMath math="30^\circ" /></>,
+    b: <><InlineMath math="60^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 66 },
+      y: { min: -6, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tower", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "sight-p", kind: "segment", appearance: "secondary", from: { x: 60, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "sight-q", kind: "segment", appearance: "secondary", from: { x: 20, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "walk", kind: "segment", appearance: "highlight", from: { x: 20, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 34.641 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "pq", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "top", at: { x: 0, y: 34.641 }, placement: "above-right" },
+      { key: "f", objectId: "foot", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "pp", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "h", objectId: "tower", at: { x: 0, y: 17.3205 }, placement: "left" },
+      { key: "d", objectId: "walk", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "a", objectId: "sight-p", at: { x: 54, y: 3.5 }, placement: "above" },
+      { key: "b", objectId: "sight-q", at: { x: 17, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Tinggi dalam segi tiga bersudut tegak <InlineMath math="QFT" />
+
+Dalam segi tiga <InlineMath math="QFT" />, sudut di <InlineMath math="F" /> ialah sudut tegak dan sudut di <InlineMath math="Q" /> ialah <InlineMath math="60^\circ" />. Tingginya ialah **sisi bertentangan dengan sudut <InlineMath math="60^\circ" />**:
+
+<BlockMath math="h=\overline{QT}\cdot\sin60^\circ=40\cdot\frac{\sqrt3}{2}=20\sqrt3" />
+
+# Semak dengan kedua-dua sudut
+
+Maka <InlineMath math="\overline{QF}=40\cdot\cos60^\circ=20" /> dan <InlineMath math="\overline{PF}=60" />. Memang <InlineMath math="\tan30^\circ=\frac{20\sqrt3}{60}=\frac{\sqrt3}{3}" />. Menara itu **setinggi <InlineMath math="20\sqrt3\text{ m}" />**, kira-kira <InlineMath math="34.6\text{ m}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="40\sqrt3\text{ m}" /> memakai <InlineMath math="\tan60^\circ" /> dengan seluruh <InlineMath math="40" />: <InlineMath math="40\cdot\sqrt3" />. Sedangkan <InlineMath math="40" /> itu **bukan jarak <InlineMath math="Q" /> ke menara**.
+- <InlineMath math="20\text{ m}" /> ialah jarak <InlineMath math="\overline{QF}" />, bukan tinggi.
+- <InlineMath math="40\text{ m}" /> ialah jarak condong <InlineMath math="\overline{QT}" />.
+- <InlineMath math="10\sqrt3\text{ m}" /> membahagi dua tinggi itu sekali lagi.
+- <InlineMath math="\frac{40\sqrt3}{3}\text{ m}" /> mengira <InlineMath math="40\cdot\tan30^\circ" />, seolah-olah <InlineMath math="P" /> berjarak <InlineMath math="40" /> dari menara.

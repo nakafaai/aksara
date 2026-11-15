@@ -1,15 +1,59 @@
-Das Volumen eines Quaders ist Länge mal Breite mal Höhe. Für die Umrechnung gilt: **Ein Liter ist ein Kubikdezimeter**, also <InlineMath math="1\text{ Liter}=1\text{ dm}^3=1000\text{ cm}^3" />.
+# Wo der Fußpunkt der Höhe liegt
 
-Am einfachsten rechnest du gleich in Dezimetern: <InlineMath math="80\text{ cm}=8\text{ dm}" />, <InlineMath math="40\text{ cm}=4\text{ dm}" /> und <InlineMath math="50\text{ cm}=5\text{ dm}" />.
+Die Spitze <InlineMath math="S" /> ist von allen drei Ecken der Grundfläche gleich weit entfernt. Deshalb trifft die Höhe die Grundfläche in ihrem **Schwerpunkt <InlineMath math="O" />**, der zugleich Umkreismittelpunkt ist. Im gleichseitigen Dreieck mit der Seite <InlineMath math="6" /> ist die Seitenhalbierende <InlineMath math="3\sqrt3" /> lang, und <InlineMath math="O" /> teilt sie im Verhältnis <InlineMath math="2:1" />:
 
-<BlockMath math="V=8\cdot4\cdot5\text{ dm}^3=160\text{ dm}^3=160\text{ Liter}" />
+<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
 
-Zur Kontrolle rechnest du in Kubikzentimetern: <InlineMath math="80\cdot40\cdot50=160\,000\text{ cm}^3" />, und geteilt durch <InlineMath math="1000" /> ergibt das wieder <InlineMath math="160" /> Liter.
+# Pythagoras im Dreieck <InlineMath math="OAS" />
 
-Das Aquarium fasst also <InlineMath math="160" /> Liter Wasser.
+Die Höhe steht senkrecht auf der Grundfläche, also ist das Dreieck <InlineMath math="OAS" /> bei <InlineMath math="O" /> rechtwinklig. **Die Kante <InlineMath math="\overline{AS}=6" /> ist die Hypotenuse**:
 
-- <InlineMath math="16" /> Liter teilt <InlineMath math="160\,000" /> durch <InlineMath math="10\,000" /> und damit zehnmal zu stark.
-- <InlineMath math="1{.}600" /> Liter nimmt <InlineMath math="1\text{ Liter}=100\text{ cm}^3" /> an. Ein Liter sind aber <InlineMath math="1000\text{ cm}^3" />.
-- <InlineMath math="16{.}000" /> Liter teilt nur durch <InlineMath math="10" />, als wäre die Umrechnung die einer Länge.
-- <InlineMath math="160{.}000" /> Liter ist das Volumen in Kubikzentimetern, ohne Umrechnung in Liter.
-- <InlineMath math="1{,}6" /> Liter teilt durch <InlineMath math="100\,000" /> und rechnet damit hundertmal zu klein.
+<MathVisual
+  title={<>Das Dreieck aus Höhe, Kante und Abstand</>}
+  description={<>Ein Schnitt durch die Spitze <InlineMath math="S" />, die Ecke <InlineMath math="A" /> der Grundfläche und den Schwerpunkt <InlineMath math="O" /> der Grundfläche. Das Dreieck <InlineMath math="OAS" /> ist bei <InlineMath math="O" /> rechtwinklig, mit <InlineMath math="\overline{OA}=2\sqrt3" />, der Kante <InlineMath math="\overline{AS}=6" /> als Hypotenuse und der Höhe <InlineMath math="h=\overline{OS}" />.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    o: <><InlineMath math="O" /></>,
+    a: <><InlineMath math="A" /></>,
+    e: <><InlineMath math="6" /></>,
+    r: <><InlineMath math="2\sqrt3" /></>,
+    h: <><InlineMath math="h" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3.4641, y: 0 }, { x: 0, y: 4.899 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "edge", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 0, y: 4.899 } },
+      { id: "po", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 3.4641, y: 0 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 0, y: 4.899 }, placement: "above" },
+      { key: "o", objectId: "po", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 3.4641, y: 0 }, placement: "below-right" },
+      { key: "e", objectId: "edge", at: { x: 1.73205, y: 2.4495 }, placement: "above-right" },
+      { key: "r", objectId: "section", at: { x: 1.73205, y: 0 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 0, y: 2.4495 }, placement: "left" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+
+Der Abstand einer Ecke von der gegenüberliegenden Fläche ist **<InlineMath math="2\sqrt6\text{ cm}" />**, etwa <InlineMath math="4{,}9\text{ cm}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> ist **die Höhe einer Seitenfläche**, nicht des Tetraeders.
+- <InlineMath math="3\text{ cm}" /> setzt die ganze Seitenhalbierende <InlineMath math="3\sqrt3" /> statt <InlineMath math="2\sqrt3" /> ein: <InlineMath math="\sqrt{36-27}=3" />.
+- <InlineMath math="2\sqrt3\text{ cm}" /> ist der Abstand <InlineMath math="\overline{OA}" /> in der Grundfläche.
+- <InlineMath math="3\sqrt2\text{ cm}" /> verwendet <InlineMath math="3\sqrt2" /> als Abstand <InlineMath math="\overline{OA}" />, wie die halbe Diagonale eines Quadrats: <InlineMath math="\sqrt{36-18}" />.
+- <InlineMath math="\sqrt{30}\text{ cm}" /> zieht nur <InlineMath math="6" /> statt <InlineMath math="12" /> ab: <InlineMath math="\sqrt{36-6}" />.

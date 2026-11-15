@@ -1,0 +1,62 @@
+# Nyatakan luas dengan satu panjang
+
+Biar dua sisi yang berserenjang dengan tembok ialah <InlineMath math="x" /> dan sisi yang selari dengan tembok ialah <InlineMath math="y" />. Pagar memberi <InlineMath math="2x+y=60" />, jadi <InlineMath math="y=60-2x" />. Luasnya kemudian ialah **fungsi kuadratik dalam <InlineMath math="x" />**:
+
+<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
+
+# Syarat bagi sisi tembok
+
+Tanpa syarat, bucunya pada <InlineMath math="x=15" /> dengan <InlineMath math="A=450" />. Tetapi ketika itu <InlineMath math="y=60-30=30" />, iaitu **lebih panjang daripada <InlineMath math="24\text{ m}" /> yang dibenarkan**. Syarat <InlineMath math="y\le24" /> bermaksud:
+
+<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
+
+# Nilai maksimum di sempadan
+
+Bagi <InlineMath math="x\ge18" /> bucunya berada di luar sebelah kiri, dan parabola itu menurun. Nilai terbesar yang dibenarkan berada **di sempadan <InlineMath math="x=18" />**:
+
+<MathVisual
+  title={<>Luas mengikut <InlineMath math="x" /></>}
+  description={<>Parabola <InlineMath math="A(x)=x\,(60-2x)" /> bagi panjang <InlineMath math="x" /> sisi yang berserenjang dengan tembok. Bucunya <InlineMath math="(15\mid450)" /> berada di bahagian putus-putus yang dilarang di kiri <InlineMath math="x=18" />, kerana di situ sisi sepanjang tembok melebihi <InlineMath math="24" />. Pada bahagian yang dibenarkan, <InlineMath math="x\ge18" />, parabola itu menurun, dan titik tertingginya ialah <InlineMath math="(18\mid432)" />.</>}
+  labels={{
+    v: <><InlineMath math="(15\mid450)" /></>,
+    m: <><InlineMath math="(18\mid432)" /></>,
+    ok: <>dibenarkan</>,
+    no: <>dilarang</>,
+    b: <><InlineMath math="x=18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 32 },
+      y: { min: 0, max: 500 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "banned", kind: "function", appearance: "construction", formula: "x*(60 - 2*x)", domain: { min: 0, max: 18 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "x*(60 - 2*x)", domain: { min: 18, max: 30 } },
+      { id: "border", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 18, y: 470 } },
+      { id: "vertex", kind: "point", appearance: "highlight", at: { x: 15, y: 450 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 18, y: 432 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 15, y: 450 }, placement: "above-left" },
+      { key: "m", objectId: "best", at: { x: 18, y: 432 }, placement: "right" },
+      { key: "ok", objectId: "allowed", at: { x: 26, y: 208 }, placement: "right" },
+      { key: "no", objectId: "banned", at: { x: 5, y: 250 }, placement: "left" },
+      { key: "b", objectId: "border", at: { x: 18, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+
+Kandang itu paling besar <InlineMath math="432\text{ m}^2" />, dengan <InlineMath math="18\text{ m}" /> berserenjang dan <InlineMath math="24\text{ m}" /> selari dengan tembok.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="450\text{ m}^2" /> ialah nilai bucu, apabila sisi tembok sepanjang <InlineMath math="30\text{ m}" />. **Nilai itu melanggar syarat**.
+- <InlineMath math="576\text{ m}^2" /> ialah segi empat sama bersisi <InlineMath math="24" />. Untuk itu perlukan pagar <InlineMath math="72\text{ m}" />.
+- <InlineMath math="360\text{ m}^2" /> menggabungkan <InlineMath math="x=15" /> daripada bucu dengan <InlineMath math="y=24" />. Pagar yang digunakan hanya <InlineMath math="54\text{ m}" />.
+- <InlineMath math="288\text{ m}^2" /> memakai <InlineMath math="24\cdot12" />, sisi kedua yang salah.
+- <InlineMath math="225\text{ m}^2" /> ialah segi empat sama bersisi <InlineMath math="15" />, tanpa kaitan dengan pagar.

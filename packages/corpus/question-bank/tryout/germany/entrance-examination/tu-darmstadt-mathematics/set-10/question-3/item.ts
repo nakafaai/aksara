@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$23$$",
-        },
-        {
-          correct: false,
-          label: "$$26$$",
-        },
-        {
-          correct: false,
-          label: "$$27$$",
-        },
-        {
-          correct: false,
-          label: "$$22{,}5$$",
-        },
-        {
-          correct: false,
-          label: "$$24$$",
+          label: "$$\\frac32\\le x\\le4$$",
         },
         {
           correct: true,
-          label: "$$22$$",
+          label: "$$\\frac23\\le x\\le4$$",
+        },
+        {
+          correct: false,
+          label: "$$x\\le4$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac23\\le x<\\frac32$$",
+        },
+        {
+          correct: false,
+          label: "$$-4\\le x\\le-\\frac23$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac23<x<4$$",
         },
       ],
     },

@@ -1,17 +1,62 @@
-Der Flächeninhalt hängt davon ab, wie du den Zaun aufteilst. Du stellst ihn deshalb als **quadratische Funktion einer Seitenlänge** auf und suchst ihren Scheitelpunkt.
+# Den Flächeninhalt durch eine Länge ausdrücken
 
-Nenne die beiden Seiten, die von der Mauer weg führen, jeweils <InlineMath math="x" /> Meter. Für die Seite parallel zur Mauer bleiben <InlineMath math="40-2x" /> Meter Zaun.
+Nenne die beiden Seiten senkrecht zur Mauer <InlineMath math="x" /> und die Seite parallel zur Mauer <InlineMath math="y" />. Der Zaun liefert <InlineMath math="2x+y=60" />, also <InlineMath math="y=60-2x" />. Der Flächeninhalt ist dann **eine quadratische Funktion von <InlineMath math="x" />**:
 
-<BlockMath math="A(x)=x\,(40-2x)=-2x^2+40x=-2\left(x-10\right)^2+200" />
+<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
 
-Die Parabel ist nach unten geöffnet, ihr Scheitelpunkt <InlineMath math="(10\mid200)" /> ist also das Maximum. Bei <InlineMath math="x=10" /> ist das Gehege <InlineMath math="10\text{ m}" /> tief und <InlineMath math="20\text{ m}" /> lang.
+# Die Bedingung an die Mauerseite
 
-Zur Kontrolle vergleichst du mit Nachbarwerten: Für <InlineMath math="x=8" /> ergibt sich <InlineMath math="8\cdot24=192" />, für <InlineMath math="x=12" /> ebenfalls <InlineMath math="12\cdot16=192" />. Beide liegen unter <InlineMath math="200" />, und die Symmetrie um <InlineMath math="x=10" /> passt.
+Ohne Bedingung wäre der Scheitel bei <InlineMath math="x=15" /> mit <InlineMath math="A=450" />. Dann wäre aber <InlineMath math="y=60-30=30" />, und das ist **länger als die erlaubten <InlineMath math="24\text{ m}" />**. Die Bedingung <InlineMath math="y\le24" /> bedeutet:
 
-Der Flächeninhalt beträgt also höchstens <InlineMath math="200\text{ m}^2" />.
+<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
 
-- <InlineMath math="100\text{ m}^2" /> ist ein Quadrat von <InlineMath math="10\text{ m}" /> mal <InlineMath math="10\text{ m}" />. Das verbraucht nur <InlineMath math="30\text{ m}" /> Zaun, die Mauer spart aber eine ganze Seite.
-- <InlineMath math="400\text{ m}^2" /> rechnet mit <InlineMath math="20\text{ m}" /> mal <InlineMath math="20\text{ m}" />. Dafür bräuchte man <InlineMath math="60\text{ m}" /> Zaun.
-- <InlineMath math="150\text{ m}^2" /> gehört zu <InlineMath math="x=5" />. Das ist möglich, aber nicht der größte Wert.
-- <InlineMath math="800\text{ m}^2" /> multipliziert die Zaunlänge mit der halben Zaunlänge, <InlineMath math="40\cdot20" />. So viel Fläche lässt sich mit <InlineMath math="40\text{ m}" /> Zaun nicht begrenzen.
-- <InlineMath math="192\text{ m}^2" /> gehört zu <InlineMath math="x=8" /> oder <InlineMath math="x=12" />. Das liegt nahe am Maximum, ist aber noch nicht der Scheitelpunkt.
+# Das Maximum am Rand
+
+Für <InlineMath math="x\ge18" /> liegt der Scheitel links außerhalb, und die Parabel fällt. Der größte erlaubte Wert liegt **am Rand <InlineMath math="x=18" />**:
+
+<MathVisual
+  title={<>Flächeninhalt in Abhängigkeit von <InlineMath math="x" /></>}
+  description={<>Die Parabel <InlineMath math="A(x)=x\,(60-2x)" /> für die Länge <InlineMath math="x" /> der Seiten senkrecht zur Mauer. Ihr Scheitel <InlineMath math="(15\mid450)" /> liegt im gestrichelten, verbotenen Teil links von <InlineMath math="x=18" />, weil dort die Seite an der Mauer länger als <InlineMath math="24" /> wäre. Im erlaubten Teil <InlineMath math="x\ge18" /> fällt die Parabel, ihr höchster Punkt ist <InlineMath math="(18\mid432)" />.</>}
+  labels={{
+    v: <><InlineMath math="(15\mid450)" /></>,
+    m: <><InlineMath math="(18\mid432)" /></>,
+    ok: <>erlaubt</>,
+    no: <>verboten</>,
+    b: <><InlineMath math="x=18" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 32 },
+      y: { min: 0, max: 500 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "banned", kind: "function", appearance: "construction", formula: "x*(60 - 2*x)", domain: { min: 0, max: 18 } },
+      { id: "allowed", kind: "function", appearance: "primary", formula: "x*(60 - 2*x)", domain: { min: 18, max: 30 } },
+      { id: "border", kind: "segment", appearance: "reference", from: { x: 18, y: 0 }, to: { x: 18, y: 470 } },
+      { id: "vertex", kind: "point", appearance: "highlight", at: { x: 15, y: 450 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 18, y: 432 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 15, y: 450 }, placement: "above-left" },
+      { key: "m", objectId: "best", at: { x: 18, y: 432 }, placement: "right" },
+      { key: "ok", objectId: "allowed", at: { x: 26, y: 208 }, placement: "right" },
+      { key: "no", objectId: "banned", at: { x: 5, y: 250 }, placement: "left" },
+      { key: "b", objectId: "border", at: { x: 18, y: 30 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+
+Das Gehege kann höchstens <InlineMath math="432\text{ m}^2" /> groß werden, mit <InlineMath math="18\text{ m}" /> senkrecht und <InlineMath math="24\text{ m}" /> parallel zur Mauer.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="450\text{ m}^2" /> ist der Scheitelwert, bei dem die Mauerseite <InlineMath math="30\text{ m}" /> lang wäre. **Er verletzt die Bedingung**.
+- <InlineMath math="576\text{ m}^2" /> ist ein Quadrat mit der Seite <InlineMath math="24" />. Dafür bräuchte man <InlineMath math="72\text{ m}" /> Zaun.
+- <InlineMath math="360\text{ m}^2" /> kombiniert <InlineMath math="x=15" /> vom Scheitel mit <InlineMath math="y=24" />. Dann wären nur <InlineMath math="54\text{ m}" /> Zaun verbaut.
+- <InlineMath math="288\text{ m}^2" /> nimmt <InlineMath math="24\cdot12" />, also eine falsche zweite Seite.
+- <InlineMath math="225\text{ m}^2" /> ist ein Quadrat mit der Seite <InlineMath math="15" />, ohne Bezug zum Zaun.

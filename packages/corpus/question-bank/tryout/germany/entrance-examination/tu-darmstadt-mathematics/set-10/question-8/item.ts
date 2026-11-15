@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$16$$ Liter",
+          label: "$$3\\sqrt3\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$1{.}600$$ Liter",
+          label: "$$3\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$16{.}000$$ Liter",
-        },
-        {
-          correct: false,
-          label: "$$160{.}000$$ Liter",
-        },
-        {
-          correct: false,
-          label: "$$1{,}6$$ Liter",
+          label: "$$2\\sqrt3\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$160$$ Liter",
+          label: "$$2\\sqrt6\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$3\\sqrt2\\text{ cm}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\sqrt{30}\\text{ cm}$$",
         },
       ],
     },

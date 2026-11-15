@@ -1,17 +1,57 @@
-The task asks you to expand and simplify the product. The neatest way to multiply three factors is **step by step with the difference of squares**. The first two factors match <InlineMath math="(a-b)(a+b)=a^2-b^2" /> exactly.
+# Read absolute values as distances
 
-<BlockMath math="(x-1)(x+1)=x^2-1" />
+<InlineMath math="|x-a|" /> is the distance from <InlineMath math="x" /> to the number <InlineMath math="a" /> on the number line. So <InlineMath math="T(x)" /> is **the sum of the distances from <InlineMath math="x" /> to <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" />**. You want the place where this sum is smallest.
 
-Now you have <InlineMath math="\left(x^2-1\right)\left(x^2+1\right)" />. That is the same identity again, this time with <InlineMath math="a=x^2" /> and <InlineMath math="b=1" />.
+# The distances to the outer points
 
-<BlockMath math="\left(x^2-1\right)\left(x^2+1\right)=\left(x^2\right)^2-1^2=x^4-1" />
+For every <InlineMath math="x" /> between <InlineMath math="1" /> and <InlineMath math="6" />, <InlineMath math="|x-1|+|x-6|=6-1=5" />, because the two distances add up to the length of the segment. Outside that segment the sum is larger. On top of that comes <InlineMath math="|x-4|" />, and **that part is zero at <InlineMath math="x=4" />**:
 
-As a check, substitute <InlineMath math="x=2" />. The original product gives <InlineMath math="1\cdot3\cdot5=15" />, and <InlineMath math="2^4-1=16-1=15" /> agrees.
+<BlockMath math="T(4)=3+0+2=5" />
 
-So the expression equals <InlineMath math="x^4-1" />.
+# Check that nothing is smaller
 
-- <InlineMath math="x^4+1" /> has the wrong sign in the last term. The difference of squares subtracts <InlineMath math="b^2" />.
-- <InlineMath math="x^4-2x^2+1" /> is <InlineMath math="\left(x^2-1\right)^2" />. It comes from treating the last factor as <InlineMath math="x^2-1" />.
-- <InlineMath math="x^3-1" /> adds the exponents <InlineMath math="1+2" /> wrongly. In fact <InlineMath math="\left(x^2\right)^2=x^4" />.
-- <InlineMath math="x^4-x^2-1" /> keeps a term while expanding. The terms <InlineMath math="+x^2" /> and <InlineMath math="-x^2" /> cancel completely.
-- <InlineMath math="x^4+2x^2+1" /> is <InlineMath math="\left(x^2+1\right)^2" />. That would need the factor <InlineMath math="x^2+1" /> twice.
+For every <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> and <InlineMath math="|x-4|\ge0" />. So **<InlineMath math="T(x)\ge5" /> for all <InlineMath math="x" />**, and the value <InlineMath math="5" /> is reached at <InlineMath math="x=4" />:
+
+<MathVisual
+  title={<>The sum of the three distances</>}
+  description={<>The graph of <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> is made of straight pieces with corners at <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" />. Left of <InlineMath math="4" /> it falls, right of <InlineMath math="4" /> it rises. Its lowest point is <InlineMath math="(4\mid5)" />, above the middle one of the three points.</>}
+  labels={{
+    m: <><InlineMath math="(4\mid5)" /></>,
+    t: <><InlineMath math="T(x)" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p6: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 8.5 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-1) + abs(x-4) + abs(x-6)", domain: { min: -1, max: 8 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+      { id: "k1", kind: "point", appearance: "construction", at: { x: 1, y: 0 } },
+      { id: "k4", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "k6", kind: "point", appearance: "construction", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "low", at: { x: 4, y: 5 }, placement: "below" },
+      { key: "t", objectId: "sum", at: { x: 7.5, y: 11.5 }, placement: "left" },
+      { key: "p1", objectId: "k1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "p6", objectId: "k6", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+The smallest value of <InlineMath math="T" /> is <InlineMath math="5" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\frac{16}{3}" /> is the value at the **mean** <InlineMath math="x=\frac{11}{3}" /> of the three numbers. But the sum of distances is smallest at the middle value, the median.
+- <InlineMath math="7" /> is the value at <InlineMath math="x=6" />.
+- <InlineMath math="8" /> is the value at <InlineMath math="x=1" />.
+- <InlineMath math="0" /> would require <InlineMath math="x" /> to be <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" /> at once.
+- <InlineMath math="3" /> is only the distance from <InlineMath math="4" /> to <InlineMath math="1" />, a single term.

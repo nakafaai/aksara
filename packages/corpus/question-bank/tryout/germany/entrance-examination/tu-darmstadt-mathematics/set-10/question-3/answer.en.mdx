@@ -1,19 +1,59 @@
-The task asks for the largest number of crates the person may take. The total load of person and crates must not exceed <InlineMath math="630\text{ kg}" />. With <InlineMath math="n" /> crates this gives a **linear inequality**, whose solution you then restrict to whole numbers.
+# The absolute value splits into two cases
+
+The expression <InlineMath math="2x-3" /> changes sign at <InlineMath math="x=\frac32" />. So each region has **a different inequality without the absolute value**.
+
+# The two cases
 
 <BlockMath math="\begin{aligned}
-90+24n&\le630 \\
-24n&\le540 \\
-n&\le22.5
+x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{so}\ \tfrac32\le x\le4 \\
+x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{so}\ \tfrac23\le x<\tfrac32
 \end{aligned}" />
 
-The number of crates must be a whole number. The largest whole number with <InlineMath math="n\le22.5" /> is <InlineMath math="22" />.
+In the second case you divide by <InlineMath math="-3" />, and **the inequality sign flips**: <InlineMath math="-3x\le-2" /> becomes <InlineMath math="x\ge\frac23" />.
 
-As a check, test both neighbours. With <InlineMath math="22" /> crates the load is <InlineMath math="90+528=618\text{ kg}" />, which is allowed. With <InlineMath math="23" /> crates it would be <InlineMath math="90+552=642\text{ kg}" />, which is too much.
+# Put the cases together
 
-So the person may take at most <InlineMath math="22" /> crates.
+The two parts **join without a gap** at <InlineMath math="\frac32" />:
 
-- <InlineMath math="23" /> rounds <InlineMath math="22.5" /> up. The lift would then be overloaded with <InlineMath math="642\text{ kg}" />.
-- <InlineMath math="26" /> forgets the person and computes <InlineMath math="630:24\approx26.25" />.
-- <InlineMath math="27" /> forgets the person and also rounds <InlineMath math="26.25" /> up.
-- <InlineMath math="22.5" /> is the bound of the inequality. Nobody can take half a crate.
-- <InlineMath math="24" /> mixes up the mass of one crate with the number of crates.
+<MathVisual
+  title={<>Where the absolute value lies below the line</>}
+  description={<>The V-shaped graph of <InlineMath math="y=|2x-3|" /> with its tip at <InlineMath math="x=\tfrac32" /> and the line <InlineMath math="y=x+1" />. Between the intersections at <InlineMath math="x=\tfrac23" /> and <InlineMath math="x=4" /> the line lies above the absolute value. That interval is marked below the axis.</>}
+  labels={{
+    a: <><InlineMath math="x=\tfrac23" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    f: <><InlineMath math="|2x-3|" /></>,
+    g: <><InlineMath math="x+1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -1.6, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "abs", kind: "function", appearance: "primary", formula: "abs(2*x - 3)", domain: { min: -1.5, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -1.5, max: 6 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: 0.6667, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 0.6667, y: 1.6667 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: 0.6667, y: 1.6667 }, placement: "left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: 5 }, placement: "above-left" },
+      { key: "f", objectId: "abs", at: { x: 5.5, y: 8 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 6, y: 7 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Check <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, so the inequality fails. With <InlineMath math="x=2" />: <InlineMath math="1\le3" />, it holds. The solution is <InlineMath math="\frac23\le x\le4" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\frac32\le x\le4" /> works out **only the first case**.
+- <InlineMath math="x\le4" /> keeps the upper bound and forgets the lower one from the second case.
+- <InlineMath math="\frac23\le x<\frac32" /> works out only the second case.
+- <InlineMath math="-4\le x\le-\frac23" /> flips every sign.
+- <InlineMath math="\frac23<x<4" /> excludes the endpoints. There both sides are equal, and <InlineMath math="\le" /> allows that.

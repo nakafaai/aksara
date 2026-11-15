@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$175\\pi\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$700\\pi\\text{ m}$$",
-        },
-        {
           correct: true,
-          label: "$$350\\pi\\text{ m}$$",
+          label: "$$78\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$350\\text{ m}$$",
+          label: "$$156\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$61{,}25\\pi\\text{ m}$$",
+          label: "$$84{,}5\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$35\\pi\\text{ m}$$",
+          label: "$$39\\text{ cm}^2$$",
+        },
+        {
+          correct: false,
+          label: "$$32{,}5\\text{ cm}^2$$",
+        },
+        {
+          correct: false,
+          label: "$$60\\text{ cm}^2$$",
         },
       ],
     },

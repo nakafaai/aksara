@@ -1,13 +1,66 @@
-Soal menanyakan biaya asuransi sebesar <InlineMath math="0{,}5" /> permil (*Promille*). Permil bekerja seperti persen, hanya saja dengan **perseribu, bukan perseratus**. Jadi, <InlineMath math="0{,}5" /> permil adalah <InlineMath math="\frac{0{,}5}{1000}=0{,}0005" />.
+# Persamaan kuadrat dalam <InlineMath math="\sin x" />
 
-<BlockMath math="0{,}0005\cdot2\,000\,000=\frac{2\,000\,000}{1000}\cdot0{,}5=2000\cdot0{,}5=1000" />
+Misalkan <InlineMath math="s=\sin x" />. Persamaannya menjadi **persamaan kuadrat dalam <InlineMath math="s" />**:
 
-Sebagai pemeriksaan, hitung bertahap: satu permil dari <InlineMath math="2{.}000{.}000\text{ €}" /> adalah <InlineMath math="2{.}000\text{ €}" />, jadi setengah permil adalah setengahnya.
+<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{atau}\ s=-\tfrac12" />
 
-Jadi, biaya asuransinya <InlineMath math="1{.}000\text{ €}" />.
+Kedua nilai ada di antara <InlineMath math="-1" /> dan <InlineMath math="1" />, jadi keduanya mungkin sebagai nilai sinus.
 
-- <InlineMath math="10{.}000\text{ €}" /> memakai <InlineMath math="0{,}5" /> persen, bukan permil, yaitu perseratus.
-- <InlineMath math="100\text{ €}" /> menggeser koma satu tempat terlalu jauh dan memakai <InlineMath math="0{,}05" /> permil.
-- <InlineMath math="100{.}000\text{ €}" /> memakai <InlineMath math="5\,\%" />. Itu seratus kali terlalu banyak.
-- <InlineMath math="1{.}000{.}000\text{ €}" /> membaca <InlineMath math="0{,}5" /> sebagai setengah dari seluruh nilai barang.
-- <InlineMath math="10\text{ €}" /> membagi lagi dengan <InlineMath math="100" />, sehingga memakai seperseratus ribu.
+# Hitung sudut untuk setiap nilai sinus
+
+Pada selang <InlineMath math="0^\circ\le x<360^\circ" />, satu nilai sinus biasanya punya dua sudut. **Nilai <InlineMath math="1" /> adalah pengecualian**, karena itu nilai maksimum: hanya tercapai di <InlineMath math="90^\circ" />.
+
+<BlockMath math="\begin{aligned}
+\sin x=1:&\quad x=90^\circ \\
+\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{atau}\ x=360^\circ-30^\circ=330^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>Penyelesaian pada lingkaran satuan</>}
+  description={<>Pada lingkaran satuan, <InlineMath math="\sin x" /> adalah ketinggian titiknya. Garis <InlineMath math="y=1" /> hanya menyinggung lingkaran di atas, di <InlineMath math="90^\circ" />. Garis <InlineMath math="y=-\tfrac12" /> memotongnya dua kali, di <InlineMath math="210^\circ" /> dan <InlineMath math="330^\circ" />.</>}
+  labels={{
+    a: <><InlineMath math="90^\circ" /></>,
+    b: <><InlineMath math="210^\circ" /></>,
+    c: <><InlineMath math="330^\circ" /></>,
+    u: <><InlineMath math="\sin x=1" /></>,
+    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 2.2 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.4, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -1.4 }, to: { x: 0, y: 1.4 } },
+      { id: "top", kind: "segment", appearance: "secondary", from: { x: -0.6, y: 1 }, to: { x: 0.6, y: 1 } },
+      { id: "low", kind: "segment", appearance: "secondary", from: { x: -1.3, y: -0.5 }, to: { x: 1.3, y: -0.5 } },
+      { id: "p90", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+      { id: "p210", kind: "point", appearance: "answer", at: { x: -0.866, y: -0.5 } },
+      { id: "p330", kind: "point", appearance: "answer", at: { x: 0.866, y: -0.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p90", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "b", objectId: "p210", at: { x: -0.866, y: -0.5 }, placement: "below-left" },
+      { key: "c", objectId: "p330", at: { x: 0.866, y: -0.5 }, placement: "below-right" },
+      { key: "u", objectId: "top", at: { x: 0.6, y: 1 }, placement: "right" },
+      { key: "v", objectId: "low", at: { x: 1.3, y: -0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Banyaknya
+
+Bersama-sama ada sudut <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" />, dan <InlineMath math="330^\circ" />. Persamaan itu punya **tepat <InlineMath math="3" /> penyelesaian**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="4" /> memberi dua sudut juga untuk <InlineMath math="\sin x=1" />, padahal **nilai maksimum hanya tercapai sekali**.
+- <InlineMath math="2" /> hanya menghitung satu sudut untuk setiap nilai sinus.
+- <InlineMath math="1" /> hanya menghitung <InlineMath math="\sin x=1" /> dan membuang nilai negatif.
+- <InlineMath math="5" /> ikut menghitung <InlineMath math="x=360^\circ" />, yang sudah di luar selang, dan penyelesaian <InlineMath math="90^\circ" /> yang dihitung ganda.
+- <InlineMath math="6" /> menganggap ada tiga sudut untuk setiap nilai, seolah-olah selangnya lebih dari satu putaran penuh.

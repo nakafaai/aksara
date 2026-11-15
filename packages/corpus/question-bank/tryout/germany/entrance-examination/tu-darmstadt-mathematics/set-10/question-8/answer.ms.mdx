@@ -1,0 +1,59 @@
+# Di mana kaki garis tinggi terletak
+
+Puncak <InlineMath math="S" /> sama jauh dari ketiga-tiga bucu tapak. Oleh itu garis tinggi bertemu tapak di **sentroid <InlineMath math="O" />**, yang juga pusat bulatan luarnya. Dalam segi tiga sama sisi bersisi <InlineMath math="6" />, mediannya sepanjang <InlineMath math="3\sqrt3" />, dan <InlineMath math="O" /> membahaginya dalam nisbah <InlineMath math="2:1" />:
+
+<BlockMath math="\overline{OA}=\frac23\cdot3\sqrt3=2\sqrt3" />
+
+# Pythagoras dalam segi tiga <InlineMath math="OAS" />
+
+Garis tinggi berserenjang dengan tapak, jadi segi tiga <InlineMath math="OAS" /> bersudut tegak di <InlineMath math="O" />. **Sisi <InlineMath math="\overline{AS}=6" /> ialah hipotenusnya**:
+
+<MathVisual
+  title={<>Segi tiga daripada tinggi, sisi dan jarak</>}
+  description={<>Keratan melalui puncak <InlineMath math="S" />, bucu tapak <InlineMath math="A" /> dan sentroid tapak <InlineMath math="O" />. Segi tiga <InlineMath math="OAS" /> bersudut tegak di <InlineMath math="O" />, dengan <InlineMath math="\overline{OA}=2\sqrt3" />, sisi <InlineMath math="\overline{AS}=6" /> sebagai hipotenus dan tinggi <InlineMath math="h=\overline{OS}" />.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    o: <><InlineMath math="O" /></>,
+    a: <><InlineMath math="A" /></>,
+    e: <><InlineMath math="6" /></>,
+    r: <><InlineMath math="2\sqrt3" /></>,
+    h: <><InlineMath math="h" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3.4641, y: 0 }, { x: 0, y: 4.899 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "edge", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 0, y: 4.899 } },
+      { id: "ps", kind: "point", appearance: "reference", at: { x: 0, y: 4.899 } },
+      { id: "po", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 3.4641, y: 0 } },
+    ],
+    labels: [
+      { key: "s", objectId: "ps", at: { x: 0, y: 4.899 }, placement: "above" },
+      { key: "o", objectId: "po", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 3.4641, y: 0 }, placement: "below-right" },
+      { key: "e", objectId: "edge", at: { x: 1.73205, y: 2.4495 }, placement: "above-right" },
+      { key: "r", objectId: "section", at: { x: 1.73205, y: 0 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 0, y: 2.4495 }, placement: "left" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\sqrt{6^2-\left(2\sqrt3\right)^2}=\sqrt{36-12}=\sqrt{24}=2\sqrt6" />
+
+Jarak bucu ke permukaan bertentangan ialah **<InlineMath math="2\sqrt6\text{ cm}" />**, kira-kira <InlineMath math="4.9\text{ cm}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> ialah **tinggi satu muka segi tiga**, bukan tinggi tetrahedron itu.
+- <InlineMath math="3\text{ cm}" /> memakai seluruh median <InlineMath math="3\sqrt3" />, bukan <InlineMath math="2\sqrt3" />: <InlineMath math="\sqrt{36-27}=3" />.
+- <InlineMath math="2\sqrt3\text{ cm}" /> ialah jarak <InlineMath math="\overline{OA}" /> pada tapak.
+- <InlineMath math="3\sqrt2\text{ cm}" /> memakai <InlineMath math="3\sqrt2" /> sebagai jarak <InlineMath math="\overline{OA}" />, seperti separuh pepenjuru segi empat sama: <InlineMath math="\sqrt{36-18}" />.
+- <InlineMath math="\sqrt{30}\text{ cm}" /> hanya menolak <InlineMath math="6" />, bukan <InlineMath math="12" />: <InlineMath math="\sqrt{36-6}" />.

@@ -1,0 +1,52 @@
+# Perubahan sebagai faktor
+
+Kenaikan <InlineMath math="25\,\%" /> mendarab harga dengan <InlineMath math="1.25" />. Pada akhirnya harga mesti <InlineMath math="10\,\%" /> di bawah harga lama, iaitu <InlineMath math="0.9" /> kali ganda. Yang dicari ialah penurunan sebanyak bahagian <InlineMath math="s" />, **diukur daripada harga yang sudah naik**:
+
+<BlockMath math="1.25\,(1-s)=0.9" />
+
+# Kira kadarnya
+
+<BlockMath math="1-s=\frac{0.9}{1.25}=0.72\quad\Longrightarrow\quad s=0.28=28\,\%" />
+
+<MathVisual
+  title={<>Harga dalam dua langkah</>}
+  description={<>Harga sebagai indeks dengan <InlineMath math="100" /> pada permulaan. Harga naik kepada <InlineMath math="125" />, kemudian turun kepada <InlineMath math="90" />, iaitu <InlineMath math="10" /> di bawah nilai awal. Langkah kedua ialah penurunan <InlineMath math="35" /> daripada <InlineMath math="125" />, iaitu <InlineMath math="28\,\%" />.</>}
+  labels={{
+    s: <>awal <InlineMath math="100" /></>,
+    t: <>naik <InlineMath math="125" /></>,
+    e: <>akhir <InlineMath math="90" /></>,
+    cut: <><InlineMath math="-28\,\%" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 2.8 },
+      y: { min: 80, max: 135 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 2, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 125 }, { x: 2, y: 90 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 1, y: 125 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 90 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "above-left" },
+      { key: "t", objectId: "p1", at: { x: 1, y: 125 }, placement: "above" },
+      { key: "e", objectId: "p2", at: { x: 2, y: 90 }, placement: "right" },
+      { key: "cut", objectId: "path", at: { x: 1.5, y: 107.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Semakan dengan <InlineMath math="100\text{ €}" />: naik kepada <InlineMath math="125\text{ €}" />, <InlineMath math="28\,\%" /> daripadanya ialah <InlineMath math="35\text{ €}" />, tinggal <InlineMath math="90\text{ €}" />. Harga yang sudah naik itu **diturunkan sebanyak <InlineMath math="28\,\%" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="35\,\%" /> menambah mata peratus <InlineMath math="25+10" />. Sedangkan penurunan itu diukur **daripada nilai asas yang lebih besar, <InlineMath math="125" />**.
+- <InlineMath math="30\,\%" /> mengambil <InlineMath math="20\,\%" /> untuk membatalkan kenaikan ditambah <InlineMath math="10\,\%" /> lagi.
+- <InlineMath math="72\,\%" /> ialah bahagian yang tinggal, <InlineMath math="\frac{0.9}{1.25}" />, bukan penurunannya.
+- <InlineMath math="20\,\%" /> hanya mengembalikan harga kepada nilai awal: <InlineMath math="1.25\cdot0.8=1" />.
+- <InlineMath math="25\,\%" /> cuma menterbalikkan kenaikan: <InlineMath math="1.25\cdot0.75=0.9375" />.

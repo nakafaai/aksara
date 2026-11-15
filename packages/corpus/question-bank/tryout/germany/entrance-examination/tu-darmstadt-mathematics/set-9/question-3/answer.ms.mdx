@@ -1,0 +1,70 @@
+# Dua segi tiga serupa di titik persilangan
+
+Sisi <InlineMath math="\overline{AB}" /> dan <InlineMath math="\overline{DM}" /> selari. Oleh itu segi tiga <InlineMath math="ABS" /> dan <InlineMath math="MDS" /> adalah **serupa**, dengan <InlineMath math="S" /> sebagai bucu sepunya. Nisbah sisi-sisi yang selari ialah
+
+<BlockMath math="\frac{\overline{AB}}{\overline{DM}}=\frac{4}{2}=2" />
+
+# Tinggi segi tiga <InlineMath math="ABS" />
+
+Kedua-dua tinggi segi tiga terletak pada satu garis tegak dan hasil tambahnya sama dengan panjang sisi <InlineMath math="4" />. Kedua-duanya **dalam nisbah yang sama, <InlineMath math="2:1" />**:
+
+<BlockMath math="h_{ABS}=\frac23\cdot4=\frac83" />
+
+<MathVisual
+  title={<>Segi tiga <InlineMath math="ABS" /> dalam segi empat sama</>}
+  description={<>Segi empat sama <InlineMath math="ABCD" /> dengan sisi <InlineMath math="4" />, <InlineMath math="M" /> di tengah <InlineMath math="\overline{CD}" />. Tembereng garis <InlineMath math="\overline{AM}" /> dan <InlineMath math="\overline{BD}" /> bersilang di <InlineMath math="S" />. Segi tiga <InlineMath math="ABS" /> bertapak <InlineMath math="4" /> dan bertinggi <InlineMath math="\tfrac83" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    m: <><InlineMath math="M" /></>,
+    s: <><InlineMath math="S" /></>,
+    h: <><InlineMath math="\tfrac83" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "abs", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 1.3333, y: 2.6667 }] },
+      { id: "am", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "bd", kind: "segment", appearance: "primary", from: { x: 4, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 1.3333, y: 0 }, to: { x: 1.3333, y: 2.6667 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 4 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "ps", kind: "point", appearance: "answer", at: { x: 1.3333, y: 2.6667 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 4 }, placement: "above-right" },
+      { key: "d", objectId: "pd", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "m", objectId: "pm", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "s", objectId: "ps", at: { x: 1.3333, y: 2.6667 }, placement: "left" },
+      { key: "h", objectId: "height", at: { x: 1.3333, y: 1.3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Luasnya
+
+<BlockMath math="A=\frac12\cdot4\cdot\frac83=\frac{16}{3}\text{ cm}^2" />
+
+Semakan dengan koordinat: <InlineMath math="\overline{AM}" /> terletak pada <InlineMath math="y=2x" /> dan <InlineMath math="\overline{BD}" /> pada <InlineMath math="y=4-x" />. Hasilnya <InlineMath math="x=\frac43" />, <InlineMath math="y=\frac83" />. Segi tiga itu **luasnya <InlineMath math="\frac{16}{3}\text{ cm}^2" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="4\text{ cm}^2" /> meletakkan <InlineMath math="S" /> di **tengah segi empat sama**, dengan tinggi <InlineMath math="2" />. Itu titik persilangan dua pepenjuru.
+- <InlineMath math="8\text{ cm}^2" /> memakai seluruh sisi <InlineMath math="4" /> sebagai tinggi.
+- <InlineMath math="\frac83\text{ cm}^2" /> ialah segi tiga bertinggi <InlineMath math="\frac43" />, iaitu dengan nisbah yang terbalik, <InlineMath math="1:2" />.
+- <InlineMath math="6\text{ cm}^2" /> memakai tinggi <InlineMath math="3" />, seolah-olah <InlineMath math="S" /> membahagi tembereng garis dalam nisbah <InlineMath math="3:1" />.
+- <InlineMath math="\frac{32}{3}\text{ cm}^2" /> terlupa faktor <InlineMath math="\frac12" /> dalam luas segi tiga.

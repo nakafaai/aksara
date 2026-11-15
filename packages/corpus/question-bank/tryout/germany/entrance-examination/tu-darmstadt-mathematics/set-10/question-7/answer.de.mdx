@@ -1,13 +1,66 @@
-Promille funktioniert wie Prozent, nur mit **Tausendsteln statt Hundertsteln**. <InlineMath math="0{,}5" /> Promille sind also <InlineMath math="\frac{0{,}5}{1000}=0{,}0005" />.
+# Eine quadratische Gleichung in <InlineMath math="\sin x" />
 
-<BlockMath math="0{,}0005\cdot2\,000\,000=\frac{2\,000\,000}{1000}\cdot0{,}5=2000\cdot0{,}5=1000" />
+Setze <InlineMath math="s=\sin x" />. Dann ist die Gleichung **quadratisch in <InlineMath math="s" />**:
 
-Zur Kontrolle rechnest du in Schritten: Ein Promille von <InlineMath math="2{.}000{.}000\text{ €}" /> sind <InlineMath math="2{.}000\text{ €}" />, ein halbes Promille also die Hälfte davon.
+<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{oder}\ s=-\tfrac12" />
 
-Die Versicherung kostet also <InlineMath math="1{.}000\text{ €}" />.
+Beide Werte liegen zwischen <InlineMath math="-1" /> und <InlineMath math="1" />, also sind beide als Sinuswerte möglich.
 
-- <InlineMath math="10{.}000\text{ €}" /> rechnet mit <InlineMath math="0{,}5" /> Prozent statt Promille, also mit Hundertsteln.
-- <InlineMath math="100\text{ €}" /> verschiebt das Komma eine Stelle zu weit und rechnet mit <InlineMath math="0{,}05" /> Promille.
-- <InlineMath math="100{.}000\text{ €}" /> rechnet mit <InlineMath math="5\,\%" />. Das ist hundertmal zu viel.
-- <InlineMath math="1{.}000{.}000\text{ €}" /> liest <InlineMath math="0{,}5" /> als die Hälfte des ganzen Warenwertes.
-- <InlineMath math="10\text{ €}" /> teilt noch einmal durch <InlineMath math="100" /> und rechnet damit mit einem Hunderttausendstel.
+# Winkel zu jedem Sinuswert zählen
+
+Im Bereich <InlineMath math="0^\circ\le x<360^\circ" /> hat ein Sinuswert meistens zwei Winkel. **Der Wert <InlineMath math="1" /> ist eine Ausnahme**, weil er das Maximum ist: Er wird nur bei <InlineMath math="90^\circ" /> angenommen.
+
+<BlockMath math="\begin{aligned}
+\sin x=1:&\quad x=90^\circ \\
+\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{oder}\ x=360^\circ-30^\circ=330^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>Die Lösungen am Einheitskreis</>}
+  description={<>Am Einheitskreis ist <InlineMath math="\sin x" /> die Höhe des Punktes. Die Gerade <InlineMath math="y=1" /> berührt den Kreis nur oben, bei <InlineMath math="90^\circ" />. Die Gerade <InlineMath math="y=-\tfrac12" /> schneidet ihn zweimal, bei <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />.</>}
+  labels={{
+    a: <><InlineMath math="90^\circ" /></>,
+    b: <><InlineMath math="210^\circ" /></>,
+    c: <><InlineMath math="330^\circ" /></>,
+    u: <><InlineMath math="\sin x=1" /></>,
+    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 2.2 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.4, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -1.4 }, to: { x: 0, y: 1.4 } },
+      { id: "top", kind: "segment", appearance: "secondary", from: { x: -0.6, y: 1 }, to: { x: 0.6, y: 1 } },
+      { id: "low", kind: "segment", appearance: "secondary", from: { x: -1.3, y: -0.5 }, to: { x: 1.3, y: -0.5 } },
+      { id: "p90", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+      { id: "p210", kind: "point", appearance: "answer", at: { x: -0.866, y: -0.5 } },
+      { id: "p330", kind: "point", appearance: "answer", at: { x: 0.866, y: -0.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p90", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "b", objectId: "p210", at: { x: -0.866, y: -0.5 }, placement: "below-left" },
+      { key: "c", objectId: "p330", at: { x: 0.866, y: -0.5 }, placement: "below-right" },
+      { key: "u", objectId: "top", at: { x: 0.6, y: 1 }, placement: "right" },
+      { key: "v", objectId: "low", at: { x: 1.3, y: -0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Die Anzahl
+
+Zusammen sind es die Winkel <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> und <InlineMath math="330^\circ" />. Die Gleichung hat **genau <InlineMath math="3" /> Lösungen**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4" /> gibt auch <InlineMath math="\sin x=1" /> zwei Winkel, obwohl **das Maximum nur einmal erreicht wird**.
+- <InlineMath math="2" /> zählt nur einen Winkel pro Sinuswert.
+- <InlineMath math="1" /> zählt nur <InlineMath math="\sin x=1" /> und verwirft den negativen Wert.
+- <InlineMath math="5" /> zählt zusätzlich <InlineMath math="x=360^\circ" /> mit, das nicht mehr im Bereich liegt, und die doppelte <InlineMath math="90^\circ" />-Lösung.
+- <InlineMath math="6" /> nimmt für jeden der beiden Werte drei Winkel an, als würde der Bereich über eine volle Umdrehung hinausgehen.

@@ -1,19 +1,59 @@
-Soal menanyakan banyak peti paling banyak yang boleh dibawa. Beban total orang dan peti tidak boleh melebihi <InlineMath math="630\text{ kg}" />. Dengan <InlineMath math="n" /> peti, terbentuk **pertidaksamaan linear**, lalu penyelesaiannya dibatasi pada bilangan bulat.
+# Nilai mutlak memecah menjadi dua kasus
+
+Bentuk <InlineMath math="2x-3" /> berganti tanda di <InlineMath math="x=\frac32" />. Karena itu setiap daerah punya **pertidaksamaan lain tanpa nilai mutlak**.
+
+# Kedua kasus
 
 <BlockMath math="\begin{aligned}
-90+24n&\le630 \\
-24n&\le540 \\
-n&\le22{,}5
+x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{jadi}\ \tfrac32\le x\le4 \\
+x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{jadi}\ \tfrac23\le x<\tfrac32
 \end{aligned}" />
 
-Banyak peti harus bilangan bulat. Bilangan bulat terbesar yang memenuhi <InlineMath math="n\le22{,}5" /> adalah <InlineMath math="22" />.
+Pada kasus kedua kamu membagi dengan <InlineMath math="-3" />, dan **tanda pertidaksamaannya berbalik**: <InlineMath math="-3x\le-2" /> menjadi <InlineMath math="x\ge\frac23" />.
 
-Sebagai pemeriksaan, hitung kedua nilai di sekitarnya. Dengan <InlineMath math="22" /> peti, bebannya <InlineMath math="90+528=618\text{ kg}" />, jadi boleh. Dengan <InlineMath math="23" /> peti, bebannya <InlineMath math="90+552=642\text{ kg}" />, jadi terlalu berat.
+# Gabungkan kedua kasus
 
-Jadi, orang itu boleh membawa paling banyak <InlineMath math="22" /> peti.
+Kedua bagian **bersambung tanpa celah** di <InlineMath math="\frac32" />:
 
-- <InlineMath math="23" /> membulatkan <InlineMath math="22{,}5" /> ke atas. Lift itu lalu kelebihan beban dengan <InlineMath math="642\text{ kg}" />.
-- <InlineMath math="26" /> melupakan orangnya dan menghitung <InlineMath math="630:24\approx26{,}25" />.
-- <InlineMath math="27" /> melupakan orangnya dan juga membulatkan <InlineMath math="26{,}25" /> ke atas.
-- <InlineMath math="22{,}5" /> adalah batas pertidaksamaannya. Padahal tidak mungkin membawa setengah peti.
-- <InlineMath math="24" /> tertukar antara massa satu peti dan banyak peti.
+<MathVisual
+  title={<>Tempat nilai mutlak di bawah garis</>}
+  description={<>Grafik berbentuk V dari <InlineMath math="y=|2x-3|" /> dengan ujung di <InlineMath math="x=\tfrac32" /> dan garis <InlineMath math="y=x+1" />. Di antara titik potong <InlineMath math="x=\tfrac23" /> dan <InlineMath math="x=4" />, garis berada di atas nilai mutlak. Selang itu ditandai di bawah sumbu.</>}
+  labels={{
+    a: <><InlineMath math="x=\tfrac23" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    f: <><InlineMath math="|2x-3|" /></>,
+    g: <><InlineMath math="x+1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -1.6, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "abs", kind: "function", appearance: "primary", formula: "abs(2*x - 3)", domain: { min: -1.5, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -1.5, max: 6 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: 0.6667, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 0.6667, y: 1.6667 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: 0.6667, y: 1.6667 }, placement: "left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: 5 }, placement: "above-left" },
+      { key: "f", objectId: "abs", at: { x: 5.5, y: 8 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 6, y: 7 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Cek <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, jadi pertidaksamaannya tidak berlaku. Dengan <InlineMath math="x=2" />: <InlineMath math="1\le3" />, berlaku. Penyelesaiannya <InlineMath math="\frac23\le x\le4" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac32\le x\le4" /> **hanya menghitung kasus pertama**.
+- <InlineMath math="x\le4" /> menyimpan batas atas dan lupa batas bawah dari kasus kedua.
+- <InlineMath math="\frac23\le x<\frac32" /> hanya menghitung kasus kedua.
+- <InlineMath math="-4\le x\le-\frac23" /> membalik semua tanda.
+- <InlineMath math="\frac23<x<4" /> membuang ujung-ujungnya. Di sana kedua ruas sama, dan <InlineMath math="\le" /> membolehkannya.

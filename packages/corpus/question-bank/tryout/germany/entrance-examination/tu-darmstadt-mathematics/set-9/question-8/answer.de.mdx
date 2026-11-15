@@ -1,19 +1,50 @@
-Die Zahlen sind zu groß zum Ausrechnen. Du vergleichst sie paarweise, indem du **sie als Potenzen mit gleichem Exponenten schreibst**. Bei gleichem Exponenten entscheidet die Basis.
+# Die Unbekannte aus dem Exponenten holen
 
-Zuerst <InlineMath math="2^{30}" /> und <InlineMath math="10^9" />, beide mit dem Exponenten <InlineMath math="3" />:
+Die Basen <InlineMath math="2" /> und <InlineMath math="3" /> lassen sich nicht angleichen. Trenne deshalb die Potenzen so, dass **alle Potenzen mit <InlineMath math="x" /> auf einer Seite stehen**:
 
-<BlockMath math="2^{30}=\left(2^{10}\right)^3=1024^3>1000^3=10^9" />
+<BlockMath math="2^{x+1}=3^{x-1}\quad\Longleftrightarrow\quad 2\cdot2^x=\frac{3^x}{3}\quad\Longleftrightarrow\quad 6=\frac{3^x}{2^x}=\left(\frac32\right)^x" />
 
-Dann <InlineMath math="2^{30}" /> und <InlineMath math="3^{20}" />, beide mit dem Exponenten <InlineMath math="10" />:
+# Logarithmieren
 
-<BlockMath math="3^{20}=\left(3^2\right)^{10}=9^{10}>8^{10}=\left(2^3\right)^{10}=2^{30}" />
+Die Gleichung <InlineMath math="\left(\frac32\right)^x=6" /> hat **genau eine Lösung**, den Logarithmus von <InlineMath math="6" /> zur Basis <InlineMath math="\frac32" />:
 
-Damit liegt <InlineMath math="2^{30}" /> zwischen den beiden anderen Zahlen. Zur Kontrolle helfen grobe Werte: <InlineMath math="2^{30}\approx1{,}07\cdot10^9" /> liegt knapp über <InlineMath math="10^9" />, und <InlineMath math="3^{20}\approx3{,}5\cdot10^9" /> liegt deutlich darüber.
+<BlockMath math="x=\log_{\frac32}6=\frac{\lg6}{\lg1{,}5}\approx4{,}42" />
 
-Die richtige Ordnung ist also <InlineMath math="10^{9}<2^{30}<3^{20}" />.
+<MathVisual
+  title={<>Zwei Exponentialfunktionen</>}
+  description={<>Die Graphen von <InlineMath math="y=2^{x+1}" /> und <InlineMath math="y=3^{x-1}" />. Für kleine <InlineMath math="x" /> liegt <InlineMath math="2^{x+1}" /> oben, weil sie mit dem größeren Wert startet. <InlineMath math="3^{x-1}" /> wächst schneller und überholt sie genau einmal, bei <InlineMath math="x\approx4{,}42" />.</>}
+  labels={{
+    a: <><InlineMath math="2^{x+1}" /></>,
+    b: <><InlineMath math="3^{x-1}" /></>,
+    m: <><InlineMath math="x\approx4{,}42" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 6 },
+      y: { min: -5, max: 100 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two", kind: "function", appearance: "primary", formula: "2^(x+1)", domain: { min: -1, max: 5.2 } },
+      { id: "three", kind: "function", appearance: "secondary", formula: "3^(x-1)", domain: { min: -1, max: 5.2 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 4.419, y: 42.78 } },
+    ],
+    labels: [
+      { key: "a", objectId: "two", at: { x: 2.5, y: 11.3 }, placement: "above-left" },
+      { key: "b", objectId: "three", at: { x: 5, y: 81 }, placement: "left" },
+      { key: "m", objectId: "meet", at: { x: 4.419, y: 42.78 }, placement: "below-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="2^{30}<10^{9}<3^{20}" /> behauptet <InlineMath math="2^{30}<10^9" />. Wegen <InlineMath math="1024>1000" /> ist aber <InlineMath math="2^{30}" /> größer.
-- <InlineMath math="2^{30}<3^{20}<10^{9}" /> macht <InlineMath math="10^9" /> zur größten Zahl, nur weil seine Basis am größten ist. Der Exponent <InlineMath math="9" /> ist aber viel kleiner.
-- <InlineMath math="3^{20}<10^{9}<2^{30}" /> macht <InlineMath math="2^{30}" /> zur größten Zahl, weil der Exponent <InlineMath math="30" /> am größten ist. Die Basis <InlineMath math="2" /> ist aber klein.
-- <InlineMath math="10^{9}<3^{20}<2^{30}" /> stimmt bei <InlineMath math="10^9" />, vertauscht aber die beiden anderen. Es gilt <InlineMath math="9^{10}>8^{10}" />.
-- <InlineMath math="3^{20}<2^{30}<10^{9}" /> dreht die richtige Ordnung vollständig um.
+Probe: <InlineMath math="2^{5{,}42}\approx42{,}8" /> und <InlineMath math="3^{3{,}42}\approx42{,}8" />. Die Lösung ist **<InlineMath math="x=\log_{\frac32}6" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\log_{\frac23}6" /> entsteht, wenn du die Exponenten vertauschst, also <InlineMath math="2^{x-1}=3^{x+1}" /> löst. Das ist **eine negative Zahl**.
+- <InlineMath math="\log_6\frac32" /> vertauscht Basis und Argument des Logarithmus.
+- <InlineMath math="\log_{\frac32}3" /> vergisst beim Umstellen den Faktor <InlineMath math="2" /> aus <InlineMath math="2^{x+1}" />: <InlineMath math="3^{x}=3\cdot2^x" />.
+- <InlineMath math="-1" /> macht die linke Seite zu <InlineMath math="2^0=1" />, die rechte aber zu <InlineMath math="3^{-2}=\frac19" />. Wer nur eine Seite prüft, übersieht das.
+- „Keine reelle Zahl“ übersieht, dass <InlineMath math="3^{x-1}" /> schneller wächst und <InlineMath math="2^{x+1}" /> genau einmal überholt.

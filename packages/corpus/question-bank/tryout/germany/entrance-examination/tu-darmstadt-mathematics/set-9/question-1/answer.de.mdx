@@ -1,17 +1,57 @@
-Drei Faktoren multiplizierst du am geschicktesten **schrittweise mit der dritten binomischen Formel**. Die ersten beiden Faktoren passen genau zu <InlineMath math="(a-b)(a+b)=a^2-b^2" />.
+# Beträge als Abstände lesen
 
-<BlockMath math="(x-1)(x+1)=x^2-1" />
+<InlineMath math="|x-a|" /> ist der Abstand von <InlineMath math="x" /> zur Zahl <InlineMath math="a" /> auf dem Zahlenstrahl. <InlineMath math="T(x)" /> ist also **die Summe der Abstände von <InlineMath math="x" /> zu <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" />**. Gesucht ist die Stelle, an der diese Summe am kleinsten ist.
 
-Jetzt steht <InlineMath math="\left(x^2-1\right)\left(x^2+1\right)" /> da. Das ist noch einmal dieselbe Formel, diesmal mit <InlineMath math="a=x^2" /> und <InlineMath math="b=1" />.
+# Die Abstände zu den äußeren Punkten
 
-<BlockMath math="\left(x^2-1\right)\left(x^2+1\right)=\left(x^2\right)^2-1^2=x^4-1" />
+Für jedes <InlineMath math="x" /> zwischen <InlineMath math="1" /> und <InlineMath math="6" /> gilt <InlineMath math="|x-1|+|x-6|=6-1=5" />, denn die beiden Abstände ergänzen sich zur Länge der Strecke. Außerhalb dieser Strecke ist die Summe größer. Dazu kommt noch <InlineMath math="|x-4|" />, und **dieser Teil ist bei <InlineMath math="x=4" /> gleich null**:
 
-Zur Kontrolle setzt du <InlineMath math="x=2" /> ein. Der Ausgangsterm ergibt <InlineMath math="1\cdot3\cdot5=15" />, und <InlineMath math="2^4-1=16-1=15" /> stimmt überein.
+<BlockMath math="T(4)=3+0+2=5" />
 
-Der Term ist also gleich <InlineMath math="x^4-1" />.
+# Prüfen, dass nichts kleiner ist
 
-- <InlineMath math="x^4+1" /> hat das falsche Vorzeichen beim letzten Glied. Bei der dritten binomischen Formel wird <InlineMath math="b^2" /> subtrahiert.
-- <InlineMath math="x^4-2x^2+1" /> ist <InlineMath math="\left(x^2-1\right)^2" />. So entsteht es, wenn der letzte Faktor wie <InlineMath math="x^2-1" /> behandelt wird.
-- <InlineMath math="x^3-1" /> addiert die Exponenten <InlineMath math="1+2" /> falsch. Es gilt <InlineMath math="\left(x^2\right)^2=x^4" />.
-- <InlineMath math="x^4-x^2-1" /> lässt beim Ausmultiplizieren ein Glied stehen. Die Glieder <InlineMath math="+x^2" /> und <InlineMath math="-x^2" /> heben sich ganz auf.
-- <InlineMath math="x^4+2x^2+1" /> ist <InlineMath math="\left(x^2+1\right)^2" />. Dazu müsste der Term zweimal <InlineMath math="x^2+1" /> enthalten.
+Für jedes <InlineMath math="x" /> ist <InlineMath math="|x-1|+|x-6|\ge5" /> und <InlineMath math="|x-4|\ge0" />. Also ist **<InlineMath math="T(x)\ge5" /> für alle <InlineMath math="x" />**, und bei <InlineMath math="x=4" /> wird der Wert <InlineMath math="5" /> erreicht:
+
+<MathVisual
+  title={<>Die Summe der drei Abstände</>}
+  description={<>Der Graph von <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> besteht aus geraden Stücken mit Knicken bei <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" />. Links von <InlineMath math="4" /> fällt er, rechts davon steigt er. Sein tiefster Punkt ist <InlineMath math="(4\mid5)" /> über dem mittleren der drei Punkte.</>}
+  labels={{
+    m: <><InlineMath math="(4\mid5)" /></>,
+    t: <><InlineMath math="T(x)" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p6: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 8.5 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-1) + abs(x-4) + abs(x-6)", domain: { min: -1, max: 8 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+      { id: "k1", kind: "point", appearance: "construction", at: { x: 1, y: 0 } },
+      { id: "k4", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "k6", kind: "point", appearance: "construction", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "low", at: { x: 4, y: 5 }, placement: "below" },
+      { key: "t", objectId: "sum", at: { x: 7.5, y: 11.5 }, placement: "left" },
+      { key: "p1", objectId: "k1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "p6", objectId: "k6", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Der kleinste Wert von <InlineMath math="T" /> ist <InlineMath math="5" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{16}{3}" /> ist der Wert am **Mittelwert** <InlineMath math="x=\frac{11}{3}" /> der drei Zahlen. Die Summe der Abstände ist aber beim mittleren Wert, dem Median, am kleinsten.
+- <InlineMath math="7" /> ist der Wert bei <InlineMath math="x=6" />.
+- <InlineMath math="8" /> ist der Wert bei <InlineMath math="x=1" />.
+- <InlineMath math="0" /> würde verlangen, dass <InlineMath math="x" /> gleichzeitig <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="6" /> ist.
+- <InlineMath math="3" /> ist nur der Abstand von <InlineMath math="4" /> zu <InlineMath math="1" />, also ein einzelner Summand.

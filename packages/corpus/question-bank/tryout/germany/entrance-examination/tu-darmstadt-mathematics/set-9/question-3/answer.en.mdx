@@ -1,18 +1,70 @@
-The task asks for the area of the whole figure, exactly. The figure splits into **the square and four equal semicircles**. Compute the parts separately and add them.
+# Two similar triangles at the intersection
 
-The square has <InlineMath math="6\cdot6=36\text{ cm}^2" />. Each semicircle has diameter <InlineMath math="6\text{ cm}" />, so radius <InlineMath math="r=3\text{ cm}" />. A semicircle is half of the circle's area <InlineMath math="\pi r^2" />.
+The sides <InlineMath math="\overline{AB}" /> and <InlineMath math="\overline{DM}" /> are parallel. So triangles <InlineMath math="ABS" /> and <InlineMath math="MDS" /> are **similar**, with <InlineMath math="S" /> as their common tip. The ratio of the parallel sides is
 
-<BlockMath math="\begin{aligned}
-A_{\text{semicircle}}&=\frac12\cdot\pi\cdot3^2=\frac92\pi \\
-A_{\text{figure}}&=36+4\cdot\frac92\pi=36+18\pi
-\end{aligned}" />
+<BlockMath math="\frac{\overline{AB}}{\overline{DM}}=\frac{4}{2}=2" />
 
-As a check, put two semicircles together into one full circle of radius <InlineMath math="3\text{ cm}" />. So the figure contains two full circles of <InlineMath math="9\pi\text{ cm}^2" /> each, together <InlineMath math="18\pi\text{ cm}^2" />.
+# The height of triangle <InlineMath math="ABS" />
 
-So the figure has an area of <InlineMath math="(36+18\pi)\text{ cm}^2" />.
+The two triangles' heights lie on one vertical line and add up to the side length <InlineMath math="4" />. They are **in the same ratio <InlineMath math="2:1" />**:
 
-- <InlineMath math="(36+36\pi)\text{ cm}^2" /> uses a full circle for each side instead of a semicircle.
-- <InlineMath math="(36+9\pi)\text{ cm}^2" /> counts only two semicircles, which is just one full circle.
-- <InlineMath math="(36+72\pi)\text{ cm}^2" /> uses the diameter <InlineMath math="6\text{ cm}" /> as the radius.
-- <InlineMath math="18\pi\text{ cm}^2" /> is only the area of the semicircles. The square in the middle is missing.
-- <InlineMath math="(36+12\pi)\text{ cm}^2" /> adds the arc lengths <InlineMath math="4\cdot3\pi" />, a length instead of an area.
+<BlockMath math="h_{ABS}=\frac23\cdot4=\frac83" />
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABS" /> in the square</>}
+  description={<>The square <InlineMath math="ABCD" /> with side <InlineMath math="4" />, <InlineMath math="M" /> at the midpoint of <InlineMath math="\overline{CD}" />. The segments <InlineMath math="\overline{AM}" /> and <InlineMath math="\overline{BD}" /> meet at <InlineMath math="S" />. Triangle <InlineMath math="ABS" /> has base <InlineMath math="4" /> and height <InlineMath math="\tfrac83" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    m: <><InlineMath math="M" /></>,
+    s: <><InlineMath math="S" /></>,
+    h: <><InlineMath math="\tfrac83" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "abs", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 1.3333, y: 2.6667 }] },
+      { id: "am", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "bd", kind: "segment", appearance: "primary", from: { x: 4, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 1.3333, y: 0 }, to: { x: 1.3333, y: 2.6667 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 4 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "pm", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "ps", kind: "point", appearance: "answer", at: { x: 1.3333, y: 2.6667 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 4, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 4 }, placement: "above-right" },
+      { key: "d", objectId: "pd", at: { x: 0, y: 4 }, placement: "above-left" },
+      { key: "m", objectId: "pm", at: { x: 2, y: 4 }, placement: "above" },
+      { key: "s", objectId: "ps", at: { x: 1.3333, y: 2.6667 }, placement: "left" },
+      { key: "h", objectId: "height", at: { x: 1.3333, y: 1.3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The area
+
+<BlockMath math="A=\frac12\cdot4\cdot\frac83=\frac{16}{3}\text{ cm}^2" />
+
+Check with coordinates: <InlineMath math="\overline{AM}" /> lies on <InlineMath math="y=2x" /> and <InlineMath math="\overline{BD}" /> on <InlineMath math="y=4-x" />. That gives <InlineMath math="x=\frac43" />, <InlineMath math="y=\frac83" />. The triangle has **an area of <InlineMath math="\frac{16}{3}\text{ cm}^2" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="4\text{ cm}^2" /> puts <InlineMath math="S" /> at **the centre of the square**, with height <InlineMath math="2" />. That would be where the diagonals meet.
+- <InlineMath math="8\text{ cm}^2" /> uses the whole side <InlineMath math="4" /> as the height.
+- <InlineMath math="\frac83\text{ cm}^2" /> is the triangle with height <InlineMath math="\frac43" />, that is with the ratio reversed to <InlineMath math="1:2" />.
+- <InlineMath math="6\text{ cm}^2" /> uses height <InlineMath math="3" />, as if <InlineMath math="S" /> split the segment in the ratio <InlineMath math="3:1" />.
+- <InlineMath math="\frac{32}{3}\text{ cm}^2" /> forgets the factor <InlineMath math="\frac12" /> in the triangle area.

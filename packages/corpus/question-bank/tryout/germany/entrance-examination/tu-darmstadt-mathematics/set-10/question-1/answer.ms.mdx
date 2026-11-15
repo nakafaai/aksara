@@ -1,0 +1,30 @@
+# Kerja dari dalam ke luar
+
+Setiap punca ialah kuasa dengan eksponen pecahan: <InlineMath math="\sqrt{u}=u^{\frac12}" /> dan <InlineMath math="\sqrt[3]{u}=u^{\frac13}" />. Apabila didarab, **eksponen ditambah**, dan apabila punca diambil, eksponen dibahagi. Jadi kerja dari punca paling dalam ke luar:
+
+| Langkah | Ungkapan | sebagai kuasa |
+| --- | --- | --- |
+| punca paling dalam | <InlineMath math="\sqrt{x}" /> | <InlineMath math="x^{\frac12}" /> |
+| darab <InlineMath math="x^2" /> | <InlineMath math="x^2\cdot\sqrt{x}" /> | <InlineMath math="x^{\frac52}" /> |
+| punca kuasa tiga | <InlineMath math="\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac56}" /> |
+| darab <InlineMath math="x" /> | <InlineMath math="x\cdot\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac{11}{6}}" /> |
+| punca paling luar | <InlineMath math="\sqrt{x\cdot\sqrt[3]{x^2\sqrt x}}" /> | <InlineMath math="x^{\frac{11}{12}}" /> |
+
+# Kiraan langkah demi langkah
+
+<BlockMath math="\begin{aligned}
+x^2\cdot x^{\frac12}&=x^{2+\frac12}=x^{\frac52} \\
+\left(x^{\frac52}\right)^{\frac13}&=x^{\frac56} \\
+x\cdot x^{\frac56}&=x^{\frac{11}{6}} \\
+\left(x^{\frac{11}{6}}\right)^{\frac12}&=x^{\frac{11}{12}}
+\end{aligned}" />
+
+Semak dengan <InlineMath math="x=2^{12}=4096" />: punca paling dalam ialah <InlineMath math="2^6" />, kemudian <InlineMath math="2^{24}\cdot2^6=2^{30}" />, punca kuasa tiganya <InlineMath math="2^{10}" />, didarab <InlineMath math="2^{12}" /> menjadi <InlineMath math="2^{22}" />, dan punca kuasa duanya <InlineMath math="2^{11}=\left(2^{12}\right)^{\frac{11}{12}}" />. Ungkapan itu **sama dengan <InlineMath math="x^{\frac{11}{12}}" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="x^{\frac{11}{6}}" /> **terlupa punca paling luar**.
+- <InlineMath math="x^{\frac56}" /> berhenti pada punca kuasa tiga dan membuang <InlineMath math="x" /> di hadapannya serta punca paling luar.
+- <InlineMath math="x^{\frac34}" /> membuang faktor <InlineMath math="x^2" /> dan punca kuasa tiga, lalu hanya mengira <InlineMath math="\sqrt{x\cdot\sqrt x}=x^{\frac34}" />.
+- <InlineMath math="x^{\frac7{12}}" /> mengenakan punca kuasa tiga juga pada <InlineMath math="x" /> di luar: <InlineMath math="\left(x\cdot x^{\frac52}\right)^{\frac13}=x^{\frac76}" />, dan punca kuasa duanya <InlineMath math="x^{\frac7{12}}" />.
+- <InlineMath math="x^{\frac{13}{12}}" /> membaca <InlineMath math="\sqrt x" /> sebagai <InlineMath math="x^{\frac32}" />: bahagian dalam menjadi <InlineMath math="x^{\frac72}" />, punca kuasa tiganya <InlineMath math="x^{\frac76}" />, didarab <InlineMath math="x" /> menjadi <InlineMath math="x^{\frac{13}{6}}" />, dan punca paling luarnya <InlineMath math="x^{\frac{13}{12}}" />.

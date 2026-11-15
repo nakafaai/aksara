@@ -1,17 +1,30 @@
-Wurzeln lassen sich als **Potenzen mit Bruchexponenten** schreiben: <InlineMath math="\sqrt[n]{x^m}=x^{\frac mn}" /> für <InlineMath math="x>0" />. Dann gelten die bekannten Potenzgesetze.
+# Von innen nach außen arbeiten
 
-<BlockMath math="\sqrt{x^3}=x^{\frac32}\qquad\sqrt[4]{x^2}=x^{\frac24}=x^{\frac12}" />
+Jede Wurzel ist eine Potenz mit gebrochenem Exponenten: <InlineMath math="\sqrt{u}=u^{\frac12}" /> und <InlineMath math="\sqrt[3]{u}=u^{\frac13}" />. Beim Multiplizieren **addieren sich die Exponenten**, beim Wurzelziehen werden sie geteilt. Arbeite deshalb von der innersten Wurzel nach außen:
 
-Bei gleicher Basis werden die Exponenten addiert.
+| Schritt | Term | als Potenz |
+| --- | --- | --- |
+| innerste Wurzel | <InlineMath math="\sqrt{x}" /> | <InlineMath math="x^{\frac12}" /> |
+| mal <InlineMath math="x^2" /> | <InlineMath math="x^2\cdot\sqrt{x}" /> | <InlineMath math="x^{\frac52}" /> |
+| dritte Wurzel | <InlineMath math="\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac56}" /> |
+| mal <InlineMath math="x" /> | <InlineMath math="x\cdot\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac{11}{6}}" /> |
+| äußere Wurzel | <InlineMath math="\sqrt{x\cdot\sqrt[3]{x^2\sqrt x}}" /> | <InlineMath math="x^{\frac{11}{12}}" /> |
 
-<BlockMath math="x^{\frac32}\cdot x^{\frac12}=x^{\frac32+\frac12}=x^{\frac42}=x^2" />
+# Die Rechnung im Einzelnen
 
-Zur Kontrolle setzt du <InlineMath math="x=4" /> ein. Es gilt <InlineMath math="\sqrt{4^3}=\sqrt{64}=8" /> und <InlineMath math="\sqrt[4]{4^2}=\sqrt[4]{16}=2" />, zusammen <InlineMath math="8\cdot2=16=4^2" />.
+<BlockMath math="\begin{aligned}
+x^2\cdot x^{\frac12}&=x^{2+\frac12}=x^{\frac52} \\
+\left(x^{\frac52}\right)^{\frac13}&=x^{\frac56} \\
+x\cdot x^{\frac56}&=x^{\frac{11}{6}} \\
+\left(x^{\frac{11}{6}}\right)^{\frac12}&=x^{\frac{11}{12}}
+\end{aligned}" />
 
-Der Term ist also gleich <InlineMath math="x^2" />.
+Probe mit <InlineMath math="x=2^{12}=4096" />: Die innerste Wurzel ist <InlineMath math="2^6" />, dann <InlineMath math="2^{24}\cdot2^6=2^{30}" />, die dritte Wurzel ist <InlineMath math="2^{10}" />, mal <InlineMath math="2^{12}" /> ergibt <InlineMath math="2^{22}" />, die Wurzel daraus <InlineMath math="2^{11}=\left(2^{12}\right)^{\frac{11}{12}}" />. Der Term ist **gleich <InlineMath math="x^{\frac{11}{12}}" />**.
 
-- <InlineMath math="x^{\frac34}" /> multipliziert die Exponenten <InlineMath math="\frac32\cdot\frac12" />, statt sie zu addieren.
-- <InlineMath math="x^{\frac52}" /> behandelt <InlineMath math="\sqrt[4]{x^2}" /> wie <InlineMath math="x" />. Die vierte Wurzel aus <InlineMath math="x^2" /> ist aber <InlineMath math="x^{\frac12}" />.
-- <InlineMath math="x^{\frac74}" /> rechnet <InlineMath math="\sqrt[4]{x^2}" /> als <InlineMath math="x^{\frac14}" /> und übersieht das Quadrat unter der Wurzel.
-- <InlineMath math="x^6" /> multipliziert nur die Exponenten unter den Wurzeln, <InlineMath math="3\cdot2" />, und lässt die Wurzeln weg.
-- <InlineMath math="x" /> subtrahiert die Exponenten, <InlineMath math="\frac32-\frac12" />. Bei einem Produkt werden sie addiert.
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="x^{\frac{11}{6}}" /> **vergisst die äußere Wurzel**.
+- <InlineMath math="x^{\frac56}" /> bleibt bei der dritten Wurzel stehen und lässt das <InlineMath math="x" /> davor und die äußere Wurzel weg.
+- <InlineMath math="x^{\frac34}" /> lässt den Faktor <InlineMath math="x^2" /> und die dritte Wurzel weg und rechnet nur <InlineMath math="\sqrt{x\cdot\sqrt x}=x^{\frac34}" />.
+- <InlineMath math="x^{\frac7{12}}" /> wendet die dritte Wurzel auch auf das äußere <InlineMath math="x" /> an: <InlineMath math="\left(x\cdot x^{\frac52}\right)^{\frac13}=x^{\frac76}" />, nach der äußeren Wurzel <InlineMath math="x^{\frac7{12}}" />.
+- <InlineMath math="x^{\frac{13}{12}}" /> liest <InlineMath math="\sqrt x" /> als <InlineMath math="x^{\frac32}" />: Dann wird innen <InlineMath math="x^{\frac72}" />, nach der dritten Wurzel <InlineMath math="x^{\frac76}" />, mal <InlineMath math="x" /> ergibt <InlineMath math="x^{\frac{13}{6}}" /> und nach der äußeren Wurzel <InlineMath math="x^{\frac{13}{12}}" />.
