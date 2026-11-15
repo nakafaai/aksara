@@ -27,6 +27,7 @@ function files(prompt: string) {
       [`/checkout/${ROOT}/answer.en.mdx`, "Because."],
       [`/checkout/${ROOT}/answer.id.mdx`, "Karena."],
       [`/checkout/${ROOT}/answer.de.mdx`, "Weil."],
+      [`/checkout/${ROOT}/answer.ms.mdx`, "Kerana."],
     ]),
     Path.layer
   );
@@ -147,6 +148,7 @@ describe("assembleItem", () => {
             ["en", version.hash],
             ["id", version.hash],
             ["de", version.hash],
+            ["ms", version.hash],
           ]
         );
       })

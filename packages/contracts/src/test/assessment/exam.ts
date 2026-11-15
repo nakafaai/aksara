@@ -10,12 +10,17 @@ import {
 import { allOrNothing, perPart } from "#contracts/test/assessment/scoring";
 import { tkaMatrix, tkaMultiple } from "#contracts/test/assessment/tka";
 
-/** Builds one section of the SNBT profile: key, items, seconds, and its three names. */
+/** Builds one section of the SNBT profile: key, items, seconds, and its four names. */
 function snbtSection(
   id: string,
   items: number,
   seconds: number,
-  names: { readonly de: string; readonly en: string; readonly id: string }
+  names: {
+    readonly de: string;
+    readonly en: string;
+    readonly id: string;
+    readonly ms: string;
+  }
 ) {
   return {
     id,
@@ -34,36 +39,43 @@ const SNBT_SECTIONS = [
     de: "Allgemeines Schlussfolgern",
     en: "General Reasoning",
     id: "Penalaran Umum",
+    ms: "Penaakulan Umum",
   }),
   snbtSection("general-knowledge-and-understanding", 20, 900, {
     de: "Allgemeines Wissen und Verständnis",
     en: "General Knowledge and Understanding",
     id: "Pengetahuan dan Pemahaman Umum",
+    ms: "Pengetahuan dan Kefahaman Umum",
   }),
   snbtSection("reading-comprehension-and-writing", 20, 1500, {
     de: "Leseverständnis und Schreiben",
     en: "Reading Comprehension and Writing",
     id: "Pemahaman Bacaan dan Menulis",
+    ms: "Kefahaman Bacaan dan Penulisan",
   }),
   snbtSection("quantitative-knowledge", 20, 1200, {
     de: "Quantitatives Wissen",
     en: "Quantitative Knowledge",
     id: "Pengetahuan Kuantitatif",
+    ms: "Pengetahuan Kuantitatif",
   }),
   snbtSection("literacy-in-indonesian", 30, 2550, {
     de: "Lesekompetenz in indonesischer Sprache",
     en: "Literacy in Indonesian",
     id: "Literasi dalam Bahasa Indonesia",
+    ms: "Literasi dalam Bahasa Indonesia",
   }),
   snbtSection("literacy-in-english", 20, 1200, {
     de: "Lesekompetenz in englischer Sprache",
     en: "Literacy in English",
     id: "Literasi dalam Bahasa Inggris",
+    ms: "Literasi dalam Bahasa Inggeris",
   }),
   snbtSection("mathematical-reasoning", 20, 2550, {
     de: "Mathematisches Schlussfolgern",
     en: "Mathematical Reasoning",
     id: "Penalaran Matematika",
+    ms: "Penaakulan Matematik",
   }),
 ];
 
@@ -92,7 +104,7 @@ export const snbtProfile = {
   defaults: [{ interaction: "choice", rule: allOrNothing }],
   graceSeconds: 120,
   id: "indonesia/snbt",
-  names: { de: "SNBT", en: "SNBT", id: "SNBT" },
+  names: { de: "SNBT", en: "SNBT", id: "SNBT", ms: "SNBT" },
   report: { sections: true, standardError: true, total: true },
   sampledMath: "score",
   scale: { maximum: 1000, minimum: 0 },
@@ -107,7 +119,12 @@ export const partOne = {
   id: "part-one",
   interactions: ["choice", "textEntry"],
   items: 10,
-  names: { de: "Teil eins", en: "Part one", id: "Bagian satu" },
+  names: {
+    de: "Teil eins",
+    en: "Part one",
+    id: "Bagian satu",
+    ms: "Bahagian satu",
+  },
   navigation: "linear",
   seconds: 1800,
   tools: ["calculator-scientific", "formula-sheet", "mark-for-review"],
@@ -118,7 +135,12 @@ export const partTwo = {
   id: "part-two",
   interactions: ["choice", "extendedText"],
   items: 5,
-  names: { de: "Teil zwei", en: "Part two", id: "Bagian dua" },
+  names: {
+    de: "Teil zwei",
+    en: "Part two",
+    id: "Bagian dua",
+    ms: "Bahagian dua",
+  },
   navigation: "free",
   seconds: 1200,
   tools: ["notes"],
@@ -145,7 +167,12 @@ export const schoolProfile = {
   defaults: [choiceDefault, textEntryDefault],
   graceSeconds: 60,
   id: "school/test-exam",
-  names: { de: "Testpruefung", en: "Test exam", id: "Ujian uji" },
+  names: {
+    de: "Testpruefung",
+    en: "Test exam",
+    id: "Ujian uji",
+    ms: "Peperiksaan ujian",
+  },
   report: { sections: false, standardError: false, total: true },
   sampledMath: "review",
   scoring: { kind: "raw" },

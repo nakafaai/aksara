@@ -73,6 +73,11 @@ export const kssmProgramSource = {
       publicSlug: "kssm",
       title: "KSSM Malaysia",
     },
+    {
+      appLocale: "ms",
+      publicSlug: "kssm",
+      title: "KSSM Malaysia",
+    },
   ],
   version: { label: "Malaysia" },
 } as const;

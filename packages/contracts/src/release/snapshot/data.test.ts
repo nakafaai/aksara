@@ -115,11 +115,11 @@ describe("structured snapshot data", () => {
         "\n"
       );
 
-      expect(assessmentRows.length).toBe(27);
+      expect(assessmentRows.length).toBe(34);
       expect(
         Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
       ).toBe(
-        "b53eb9ffb5523c09872f14d104deb8b8d4b99b1cd11b6512aa65e0a2e4de0670"
+        "ab7a3d9130cb2634c2aff90ff91483c174a84bdf15d50c6cb50f45565f996f58"
       );
     })
   );
@@ -144,11 +144,11 @@ describe("structured snapshot data", () => {
           "\n"
         );
 
-        expect(quranRows.length).toBe(1542);
+        expect(quranRows.length).toBe(1656);
         expect(
           Hex.encode(yield* digestSha256(new TextEncoder().encode(canonical)))
         ).toBe(
-          "db50217860f1291996b6d4cd956d50fa42e0ec7892b9a360a83eb5ca72fdefdd"
+          "9ebf898a3067fdbd8e007efb4480df06d60483b01deef90902cd320b94d4dc65"
         );
       }),
     30_000

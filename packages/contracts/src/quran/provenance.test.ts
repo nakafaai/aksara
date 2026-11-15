@@ -74,6 +74,9 @@ describe("Quran provenance golden identities", () => {
       "de-surah-name",
       "de-translation",
       "de-tafsir-access",
+      "ms-surah-name",
+      "ms-translation",
+      "ms-tafsir-access",
       "metadata",
     ]);
   });
@@ -95,6 +98,9 @@ describe("Quran provenance golden identities", () => {
       ["de-surah-name", "bubenheim-names"],
       ["de-translation", "quranenc-german"],
       ["de-tafsir-access", "mokhtasar-german"],
+      ["ms-surah-name", "nakafa-malay-names"],
+      ["ms-translation", "quranenc-malay"],
+      ["ms-tafsir-access", "mokhtasar-indonesian"],
       ["metadata", "tanzil-metadata"],
     ]);
   });

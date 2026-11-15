@@ -1,23 +1,53 @@
 import type { LearningGraphSegments } from "@nakafa/aksara-contracts/graph/identity";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect } from "effect";
+import { Array as Arr, Effect, Result } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import { graphIdentity, localizedFields, publicPath } from "#corpus/tryout/row";
+import {
+  graphIdentity,
+  localizedFields,
+  publicPath,
+  servedLocales,
+} from "#corpus/tryout/row";
 import type { ExamSource, GroupSource } from "#corpus/tryout/schema";
-import { type PaperOf, projectTrack } from "#corpus/tryout/track";
+import {
+  type PaperOf,
+  projectTrack,
+  type ServedTrack,
+  serves,
+  serveTrack,
+} from "#corpus/tryout/track";
 
 const TRYOUT_PATH = "try-out";
 
-/** Projects one group of an exam with its route, and the tracks it holds. */
+/** Freezes every track of one exam and serves the exam wherever one of its sets is written. */
+export const serveTryoutExam = Effect.fn("AksaraCorpus.serveTryoutExam")(
+  function* (source: ExamSource, paperOf: PaperOf) {
+    const tracks = yield* Effect.forEach(source.tracks, (track) =>
+      serveTrack(source, track, paperOf)
+    );
+    return {
+      appLocales: servedLocales(
+        Arr.map(tracks, ({ appLocales }) => appLocales)
+      ),
+      source,
+      tracks,
+    };
+  }
+);
+
+/** One exam with its served tracks and the locales they are served in together. */
+export type ServedExam = Effect.Success<ReturnType<typeof serveTryoutExam>>;
+
+/** Projects one group of an exam with its route, and the tracks it serves in one locale. */
 const projectGroup = Effect.fn("AksaraCorpus.projectTryoutCatalogGroup")(
   function* (
     source: ExamSource,
     group: GroupSource,
+    tracks: readonly ServedTrack[],
     appLocale: AppLocale,
     examPath: string,
-    examLens: LearningGraphSegments["lens"],
-    paperOf: PaperOf
+    examLens: LearningGraphSegments["lens"]
   ) {
     const owner = `${source.examKey}:${group.key}`;
     const [routeSlug, translation] = yield* Effect.all(
@@ -34,15 +64,17 @@ const projectGroup = Effect.fn("AksaraCorpus.projectTryoutCatalogGroup")(
       ["tryout-group", source.countryKey, source.examKey, group.key],
       examLens
     );
-    const tracks = yield* Effect.forEach(
-      Arr.filter(source.tracks, (track) => track.group === group.key),
-      (track) =>
-        projectTrack(source, track, appLocale, groupPath, examLens, paperOf)
+    const projected = yield* Effect.forEach(
+      Arr.filter(tracks, (served) => serves(served, appLocale)),
+      (served) => projectTrack(source, served, appLocale, groupPath, examLens)
     );
     return [
       {
         ...localizedFields({
           appLocale,
+          appLocales: servedLocales(
+            Arr.map(tracks, ({ appLocales }) => appLocales)
+          ),
           description: translation.description,
           sourceRevision: source.sourceRevision,
           title: translation.title,
@@ -55,15 +87,16 @@ const projectGroup = Effect.fn("AksaraCorpus.projectTryoutCatalogGroup")(
         order: group.order,
         publicPath: groupPath,
       },
-      ...Arr.flatten(tracks),
+      ...Arr.flatten(projected),
     ];
   }
 );
 
-/** Projects one localized exam and every active child hierarchy row. */
+/** Projects one localized exam and every child row it serves in that locale. */
 export const projectTryoutExam = Effect.fn(
   "AksaraCorpus.projectTryoutCatalogExam"
-)(function* (source: ExamSource, appLocale: AppLocale, paperOf: PaperOf) {
+)(function* (served: ServedExam, appLocale: AppLocale) {
+  const { source } = served;
   const owner = `${source.countryKey}:${source.examKey}`;
   const [countryRouteSlug, examRouteSlug, examTranslation] = yield* Effect.all(
     [
@@ -86,13 +119,24 @@ export const projectTryoutExam = Effect.fn(
     ["tryout-exam", source.countryKey, source.examKey],
     examLens
   );
-  const groups = yield* Effect.forEach(source.grouping.groups, (group) =>
-    projectGroup(source, group, appLocale, examPath, examLens, paperOf)
+  const groups = yield* Effect.forEach(
+    Arr.filterMap(source.grouping.groups, (group) => {
+      const tracks = Arr.filter(
+        served.tracks,
+        ({ track }) => track.group === group.key
+      );
+      return Arr.some(tracks, (track) => serves(track, appLocale))
+        ? Result.succeed({ group, tracks })
+        : Result.failVoid;
+    }),
+    ({ group, tracks }) =>
+      projectGroup(source, group, tracks, appLocale, examPath, examLens)
   );
   return [
     {
       ...localizedFields({
         appLocale,
+        appLocales: served.appLocales,
         description: examTranslation.description,
         sourceRevision: source.sourceRevision,
         title: source.examName,

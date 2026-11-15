@@ -26,7 +26,6 @@ import {
 } from "effect";
 import {
   appLocaleCode,
-  carriedAppLocales,
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
@@ -153,11 +152,7 @@ const expandMaterial = Effect.fn("AksaraCorpus.expandMaterial")(function* (
   binding: MaterialSourceBinding,
   appLocales: ActiveAppLocaleList
 ) {
-  const carried = carriedAppLocales(
-    appLocales,
-    (code) => binding.source.translations[code] !== undefined
-  );
-  const sections = yield* Effect.forEach(carried, (appLocale) =>
+  const sections = yield* Effect.forEach(appLocales, (appLocale) =>
     Effect.forEach(binding.source.sections, (section, sectionIndex) =>
       projectMaterial(binding, section, sectionIndex, appLocale)
     )

@@ -30,7 +30,7 @@ describe("Quran snapshot row verification", () => {
           Stream.fromIterable(snapshotData.rows)
         );
 
-        expect(projectionCount).toBe(1542);
+        expect(projectionCount).toBe(1656);
       }),
     30_000
   );
@@ -58,7 +58,7 @@ describe("Quran snapshot row verification", () => {
           field: "projectionDigest",
         });
         expect("actual" in error ? error.actual : undefined).toBe(
-          "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd"
+          "sha256:3a021aa207cc4db5570defa60b37eb16bd57ab843bcbfb80f549846b948236db"
         );
       }),
     30_000

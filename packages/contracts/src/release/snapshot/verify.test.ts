@@ -88,7 +88,7 @@ describe("structured snapshot verification", () => {
           }),
         });
 
-        expect(result.stagedRows).toBe(2157);
+        expect(result.stagedRows).toBe(2470);
         expect(
           Arr.map(Rec.values(result.snapshots), ({ mode }) => mode)
         ).toEqual(["replace", "replace", "replace"]);
@@ -260,34 +260,34 @@ describe("structured snapshot verification", () => {
           rows: snapshotData.rows,
         });
 
-        expect(result.stagedRows).toBe(2157);
+        expect(result.stagedRows).toBe(2470);
         expect(result.snapshots).toEqual({
           assessment: {
             baseSnapshotId: null,
             mode: "replace",
             resultSnapshotId:
-              "sha256:4d06af7379ad9a046d9a173088e056a21b880ef69990a95a17fbe5e3ff00d95d",
-            rowCount: 27,
+              "sha256:5b78a9d3bfe7d10c1aeeb9cfbd3a26aeca1cec8098d1884decc45523703a789b",
+            rowCount: 34,
             rowDigest:
-              "sha256:9cf7734f6eef1818f7662470095724c3610be544448f8fb36de166c752542c39",
+              "sha256:fccb066897525d4d1bd492c05b5e518c70f66a47eab13b63975b9e0055105ad2",
           },
           program: {
             baseSnapshotId: null,
             mode: "replace",
             resultSnapshotId:
-              "sha256:a94c1fc351939f10f0c73f4c891be1691dede2d0ecf86dad014d37fc82de9b02",
-            rowCount: 588,
+              "sha256:fcbf7e442a7bd062ce50d64b3d9e85394642fc9270334ba3f1701c22e22cab40",
+            rowCount: 780,
             rowDigest:
-              "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc",
+              "sha256:a86da6c00b6c85d5057c6ed23ed793e1f8a864659d32b4e202b2b2dc31680180",
           },
           quran: {
             baseSnapshotId: null,
             mode: "replace",
             resultSnapshotId:
-              "sha256:b1c76d2ed5ba5dc86776737779ffeb73d9e6f21387a30d6538f7178bb3704a82",
-            rowCount: 1542,
+              "sha256:1051bbd1dddf2588e801fe16485c4ec301fc8e3f6551df621f7843d31a48d310",
+            rowCount: 1656,
             rowDigest:
-              "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+              "sha256:3a021aa207cc4db5570defa60b37eb16bd57ab843bcbfb80f549846b948236db",
           },
         });
       })

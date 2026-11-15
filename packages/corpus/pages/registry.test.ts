@@ -87,42 +87,6 @@ describe("public page registry", () => {
   );
 
   it.effect(
-    "publishes a declared locale that is not served yet once a page names its path",
-    () =>
-      Effect.gen(function* () {
-        const source = pageSource();
-        const entries = yield* decodePageRegistry(
-          [
-            {
-              ...source,
-              publicPaths: { ...source.publicPaths, ms: "dasar-privasi" },
-            },
-          ],
-          ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
-        );
-
-        expect(
-          Arr.map(entries, ({ route, sourcePath }) => [
-            route.appLocale,
-            route.publicPath,
-            sourcePath,
-          ])
-        ).toEqual([
-          [
-            "de",
-            "privacy-policy",
-            "packages/corpus/pages/privacy-policy/de.mdx",
-          ],
-          [
-            "ms",
-            "dasar-privasi",
-            "packages/corpus/pages/privacy-policy/ms.mdx",
-          ],
-        ]);
-      })
-  );
-
-  it.effect(
     "rejects duplicate page keys, source roots, and locale routes",
     () =>
       Effect.gen(function* () {

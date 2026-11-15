@@ -43,7 +43,7 @@ export type MaterialPublicNamespace = typeof MaterialPublicNamespaceSchema.Type;
  * The public material namespace of every declared app locale. Declaring a
  * locale fails to compile until it names its own namespace here.
  */
-const MATERIAL_PUBLIC_NAMESPACES = {
+export const MATERIAL_PUBLIC_NAMESPACES = {
   de: "faecher",
   en: "subjects",
   id: "materi",

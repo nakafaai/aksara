@@ -1,10 +1,8 @@
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { Array as Arr, Exit, Schema } from "effect";
 
-import { Sha256HashSchema } from "#contracts/ids";
 import {
   ActiveAppLocaleListSchema,
-  AppLocaleSchema,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,
   INDONESIAN_APP_LOCALE_CODE,
@@ -24,84 +22,10 @@ import {
   quranSourceFileCount,
   quranSourceIds,
 } from "#contracts/quran/source";
-
-const hash = Sha256HashSchema.make(`sha256:${"a".repeat(64)}`);
-
-/** Builds one complete test attribution for a required source identity. */
-function source(id: ReturnType<typeof quranSourceIds>[number]) {
-  const common = {
-    copy: [
-      {
-        appLocale: AppLocaleSchema.make("en"),
-        notice: "Technical English attribution notice.",
-        title: "Technical English source",
-      },
-      {
-        appLocale: AppLocaleSchema.make("id"),
-        notice: "Catatan atribusi teknis bahasa Indonesia.",
-        title: "Sumber teknis bahasa Indonesia",
-      },
-      {
-        appLocale: AppLocaleSchema.make("de"),
-        notice: "Technischer deutscher Quellenhinweis.",
-        title: "Technische deutsche Quelle",
-      },
-    ],
-    publisher: "Technical publisher",
-    retrievedAt: "2026-07-24T17:57:50Z",
-    sourceUrl: `https://example.test/source/${id}`,
-    updateUrl: `https://example.test/update/${id}`,
-    version: "test-source",
-  } as const;
-  if (id === "mokhtasar-english" || id === "mokhtasar-german") {
-    return QuranExternalSourceAttributionSchema.make({
-      ...common,
-      id,
-      kind: "external",
-      terms: {
-        access: "link-only",
-        url: `https://example.test/terms/${id}`,
-      },
-    });
-  }
-  return QuranEmbeddedSourceAttributionSchema.make({
-    ...common,
-    artifact: { byteCount: 1, digest: hash, fileCount: 1 },
-    id,
-    kind: "embedded",
-    terms: {
-      artifact: { byteCount: 1, digest: hash, fileCount: 1 },
-      url: `https://example.test/terms/${id}`,
-    },
-  });
-}
-
-/** Builds test-only Tafsir access in canonical locale order. */
-function tafsirAccess() {
-  const english = makeAppLocale(ENGLISH_APP_LOCALE_CODE);
-  const indonesian = makeAppLocale(INDONESIAN_APP_LOCALE_CODE);
-  const german = makeAppLocale(GERMAN_APP_LOCALE_CODE);
-  return [
-    QuranTafsirAccessSchema.make({
-      appLocale: english,
-      kind: "external",
-      notice: "Technical English Tafsir notice.",
-      sourceId: "mokhtasar-english",
-    }),
-    QuranTafsirAccessSchema.make({
-      appLocale: indonesian,
-      kind: "embedded",
-      notice: "Catatan teknis tafsir Indonesia.",
-      sourceId: "quranenc-tafsir",
-    }),
-    QuranTafsirAccessSchema.make({
-      appLocale: german,
-      kind: "external",
-      notice: "Technischer deutscher Tafsirhinweis.",
-      sourceId: "mokhtasar-german",
-    }),
-  ] as const;
-}
+import {
+  quranSourceAttribution,
+  quranTafsirAccess,
+} from "#contracts/test/attribution";
 
 describe("Quran source ids golden vectors", () => {
   it("pins the ordered source identities of the active and single-locale sets", () => {
@@ -145,8 +69,8 @@ describe("Quran source ids golden vectors", () => {
 
 describe("Quran source contracts", () => {
   it("preserves exact source kinds and Tafsir pairs in inferred types", () => {
-    const embedded = source("tanzil-text");
-    const external = source("mokhtasar-english");
+    const embedded = quranSourceAttribution("tanzil-text");
+    const external = quranSourceAttribution("mokhtasar-english");
     const [englishSchema, indonesianSchema, germanSchema] =
       QuranTafsirAccessSchema.members;
     const englishLocale = makeAppLocale(ENGLISH_APP_LOCALE_CODE);
@@ -188,9 +112,10 @@ describe("Quran source contracts", () => {
       "en",
       "id",
       "de",
+      "ms",
     ]);
-    const sources = Arr.map(quranSourceIds(active), source);
-    const access = tafsirAccess();
+    const sources = Arr.map(quranSourceIds(active), quranSourceAttribution);
+    const access = quranTafsirAccess();
     const row = Schema.decodeSync(QuranAttributionRowSchema)({
       activeAppLocales: active,
       kind: "quran-attribution",
@@ -200,7 +125,9 @@ describe("Quran source contracts", () => {
     expect(Arr.map(row.sources, ({ id }) => id)).toEqual(
       quranSourceIds(active)
     );
-    expect(quranSourceFileCount(active)).toBe(121);
+    // Arabic and metadata, one XML per en/id/de translation and 114 Malay
+    // responses, the id/de/ms name records, and 114 Indonesian Tafsir responses.
+    expect(quranSourceFileCount(active)).toBe(2 + 3 + 114 + 3 + 114);
     expect(hasRequiredQuranSources(row.sources, active)).toBe(true);
     expect(hasRequiredQuranSources(Arr.dropRight(row.sources, 1), active)).toBe(
       false
@@ -241,9 +168,9 @@ describe("Quran source contracts", () => {
   });
 
   it("rejects imprecise retrieval metadata and insecure evidence", () => {
-    const base = source("tanzil-text");
-    const external = source("mokhtasar-english");
-    const [englishAccess] = tafsirAccess();
+    const base = quranSourceAttribution("tanzil-text");
+    const external = quranSourceAttribution("mokhtasar-english");
+    const [englishAccess] = quranTafsirAccess();
     if (englishAccess.kind !== "external") {
       throw new Error("Expected technical English Tafsir to use a link.");
     }

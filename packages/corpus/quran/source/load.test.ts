@@ -114,10 +114,10 @@ layer(fixtureLayer)("Quran source loading", (it) => {
         const loaded = yield* load(fixture.sourceBytes);
 
         expect(loaded.summary).toEqual({
-          byteCount: 20_600_641,
+          byteCount: 26_462_642,
           digest:
-            "sha256:de42a454eba6c2e88e2e17d4db03827df33751c1212f6b36542a9be6ac83a9c1",
-          fileCount: 121,
+            "sha256:db27daa635f53490416a50d2b5c86d2f8a38f2fef929418cb03df5285bf37d0c",
+          fileCount: 236,
         });
         expect(loaded.sources.tafsir).toHaveLength(114);
         expect(loaded.sources.translations.de).toContain(

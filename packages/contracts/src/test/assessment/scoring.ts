@@ -46,4 +46,5 @@ export const formula = {
   de: "Mittelwert der Teilergebnisse (Testwert)",
   en: "Average of the section scores (test value)",
   id: "Rata-rata skor bagian (nilai uji)",
+  ms: "Purata skor bahagian (nilai ujian)",
 };

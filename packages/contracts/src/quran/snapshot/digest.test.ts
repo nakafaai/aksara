@@ -51,15 +51,15 @@ describe("Quran aggregate digest golden vectors", () => {
         expect(summary).toEqual({
           attributionCount: 1,
           chunkCount: 1085,
-          projectionCount: 1542,
+          projectionCount: 1656,
           projectionDigest:
-            "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+            "sha256:3a021aa207cc4db5570defa60b37eb16bd57ab843bcbfb80f549846b948236db",
           runtimeCount: 1200,
           runtimeDigest:
-            "sha256:ad9a02895067ecc3bf286016aeabd2b1b87547c91b3ac693f3a44531fde7dfd6",
-          searchCount: 342,
+            "sha256:1f1eb6504ed9a910ca799f6f69c05181e4b9a446d455ca0716010c61b1133723",
+          searchCount: 456,
           searchDigest:
-            "sha256:e4a59f0a90d4ef54e516cb7125910e783736ee16f5518485bd54bdf8df65d83e",
+            "sha256:d9e15b23c040cbd1cb5124e9ae09fcf648654da64f2c3140ec6e99e99935c888",
         });
       })
   );
@@ -74,11 +74,11 @@ describe("Quran aggregate digest golden vectors", () => {
 
       expect(chunked).toMatchObject({
         projectionDigest:
-          "sha256:35166bf48e99b55e6fb8394655e8bb413590ed60213befffd8e76deeffdd53fd",
+          "sha256:3a021aa207cc4db5570defa60b37eb16bd57ab843bcbfb80f549846b948236db",
         runtimeDigest:
-          "sha256:ad9a02895067ecc3bf286016aeabd2b1b87547c91b3ac693f3a44531fde7dfd6",
+          "sha256:1f1eb6504ed9a910ca799f6f69c05181e4b9a446d455ca0716010c61b1133723",
         searchDigest:
-          "sha256:e4a59f0a90d4ef54e516cb7125910e783736ee16f5518485bd54bdf8df65d83e",
+          "sha256:d9e15b23c040cbd1cb5124e9ae09fcf648654da64f2c3140ec6e99e99935c888",
       });
     })
   );

@@ -9,7 +9,7 @@ import {
   Stream,
 } from "effect";
 
-import { catalogRowIdentity } from "#contracts/assessment/catalog";
+import { catalogLocaleBreach } from "#contracts/assessment/locales";
 import type { Paper } from "#contracts/assessment/paper";
 import { verifyPaperStimuli } from "#contracts/assessment/paper";
 import type { ExamProfile } from "#contracts/assessment/profile";
@@ -181,9 +181,36 @@ const verifyPapers = Effect.fn("AksaraContracts.verifyAssessmentPapers")(
   }
 );
 
-/** Verifies each item version: its family, its reading, its key, its explanations, and a paper that places it. */
+/**
+ * The explanations the catalog asks for: each version a set's paper places,
+ * in every locale that set is written in.
+ */
+function requiredExplanations(rows: Rows) {
+  return HashSet.fromIterable(
+    Arr.flatMap(rows.catalog, (row) => {
+      if (row.kind !== "set") {
+        return [];
+      }
+      const placed = Arr.flatMap(
+        Option.toArray(HashMap.get(rows.papers, row.paper.id)),
+        ({ paper }) =>
+          Arr.flatMap(paper.sections, ({ placements }) => placements)
+      );
+      return Arr.flatMap(placed, ({ hash }) =>
+        Arr.map(row.appLocales, (language) =>
+          explanationIdentity(hash, language)
+        )
+      );
+    })
+  );
+}
+
+/**
+ * Verifies each item version: its family, its reading, its key, a paper that
+ * places it, and its explanation in every locale of every set that places it.
+ */
 const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
-  function* (rows: Rows, activeAppLocales: ActiveAppLocaleList) {
+  function* (rows: Rows) {
     const placed = HashSet.fromIterable(
       Arr.flatMap(Arr.fromIterable(HashMap.values(rows.papers)), ({ paper }) =>
         Arr.flatMap(paper.sections, ({ placements }) =>
@@ -207,13 +234,12 @@ const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
         placed,
         version.hash
       ), "unplaced", version.hash);
-      for (const language of activeAppLocales) {
-        const identity = explanationIdentity(version.hash, language);
-        yield* require(HashMap.has(
-          rows.explanations,
-          identity
-        ), "explanation", identity);
-      }
+    }
+    for (const identity of requiredExplanations(rows)) {
+      yield* require(HashMap.has(
+        rows.explanations,
+        identity
+      ), "explanation", identity);
     }
     const familiesWithVersions = HashSet.fromIterable(
       Arr.map(
@@ -240,8 +266,8 @@ function verifyRecordsOfItems(rows: Rows) {
 }
 
 /**
- * Verifies the catalog: every node in every active app locale, every set's
- * paper, and the sections of each set equal to the sections of its paper.
+ * Verifies the catalog: every set's paper, the sections of each set equal to
+ * the sections of its paper, and every node in exactly the locales it serves.
  */
 const verifyCatalog = Effect.fn("AksaraContracts.verifyAssessmentCatalog")(
   function* (rows: Rows, activeAppLocales: ActiveAppLocaleList) {
@@ -274,15 +300,11 @@ const verifyCatalog = Effect.fn("AksaraContracts.verifyAssessmentCatalog")(
           )
       ), "section", `${row.appLocale}\0${row.setKey}`);
     }
-    const present = HashSet.fromIterable(
-      Arr.map(rows.catalog, catalogRowIdentity)
-    );
-    for (const row of rows.catalog) {
-      for (const appLocale of activeAppLocales) {
-        const identity = catalogRowIdentity({ ...row, appLocale });
-        yield* require(HashSet.has(present, identity), "locale", identity);
-      }
-    }
+    const breach = catalogLocaleBreach(rows.catalog, activeAppLocales);
+    yield* require(Option.isNone(breach), "locale", Option.getOrElse(
+      breach,
+      () => ""
+    ));
   }
 );
 
@@ -290,7 +312,8 @@ const verifyCatalog = Effect.fn("AksaraContracts.verifyAssessmentCatalog")(
  * Verifies that an assessment snapshot is closed: the catalog reaches papers it
  * holds, every paper fits the profile it follows and places versions it holds,
  * every version has its family, its reading, its key, and an explanation in
- * every active app locale, and no family, key, or explanation is left over.
+ * every locale of each set that places it, and no family, key, or explanation
+ * is left over.
  */
 export const verifyAssessmentClosure = Effect.fn(
   "AksaraContracts.verifyAssessmentClosure"
@@ -301,6 +324,6 @@ export const verifyAssessmentClosure = Effect.fn(
   const rows = indexRows(yield* Stream.runCollect(input.records));
   yield* verifyCatalog(rows, input.activeAppLocales);
   yield* verifyPapers(rows);
-  yield* verifyItems(rows, input.activeAppLocales);
+  yield* verifyItems(rows);
   yield* verifyRecordsOfItems(rows);
 });

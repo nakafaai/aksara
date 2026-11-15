@@ -29,13 +29,13 @@ describe("program aggregate digest golden vectors", () => {
         });
 
         expect(summary).toEqual({
-          curriculumRowCount: 4,
+          curriculumRowCount: 5,
           programRowCount: 1,
-          rowCount: 5,
+          rowCount: 6,
           rowDigest:
-            "sha256:3b3c864411bc6b733384f8f7078bfaa8f388ddfdc83617c4b0aec9ec0a81edb7",
-          sitemapCount: 3,
-          slugCount: 3,
+            "sha256:267c8bec7687a462abdae85c4b04e5c4c97c17df004674ff2d183fe359851b32",
+          sitemapCount: 4,
+          slugCount: 4,
         });
       })
   );
@@ -52,7 +52,7 @@ describe("program aggregate digest golden vectors", () => {
       });
 
       expect(single.rowDigest).toBe(
-        "sha256:3b3c864411bc6b733384f8f7078bfaa8f388ddfdc83617c4b0aec9ec0a81edb7"
+        "sha256:267c8bec7687a462abdae85c4b04e5c4c97c17df004674ff2d183fe359851b32"
       );
       expect(triple.rowDigest).toBe(single.rowDigest);
     })
@@ -97,11 +97,11 @@ describe("program aggregate digest", () => {
         rows: Stream.make(nonCurriculum),
       });
       expect(summary).toMatchObject({
-        curriculumRowCount: 582,
+        curriculumRowCount: 774,
         programRowCount: 6,
-        rowCount: 588,
-        sitemapCount: 78,
-        slugCount: 18,
+        rowCount: 780,
+        sitemapCount: 102,
+        slugCount: 24,
       });
       expect(nonCurriculumSummary).toMatchObject({
         curriculumRowCount: 0,

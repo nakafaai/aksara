@@ -57,9 +57,17 @@ export function quranSourceFileCount(activeAppLocales: ActiveAppLocaleList) {
   )
     ? QURAN_SURAH_COUNT
     : 0;
-  return (
-    2 + activeAppLocales.length + supplementalNameFileCount + tafsirFileCount
+  // The Malay translation is pinned as one QuranEnc response per surah.
+  const translationFileCount = Arr.reduce(
+    activeAppLocales,
+    0,
+    (count, appLocale) =>
+      count +
+      (quranTranslationSourceId(appLocale) === "quranenc-malay"
+        ? QURAN_SURAH_COUNT
+        : 1)
   );
+  return 2 + translationFileCount + supplementalNameFileCount + tafsirFileCount;
 }
 
 const HttpsUrlSchema = Schema.String.pipe(
@@ -164,11 +172,21 @@ const QuranGermanTafsirAccessSchema = Schema.Struct({
   ),
 });
 
+const QuranMalayTafsirAccessSchema = Schema.Struct({
+  appLocale: appLocaleLiteral(QuranExternalTafsirLocaleSchema.literals[2]),
+  kind: Schema.Literal("external"),
+  notice: Schema.Trimmed.check(Schema.isNonEmpty()),
+  sourceId: Schema.Literal(
+    quranTafsirSourceId(QuranExternalTafsirLocaleSchema.literals[2])
+  ),
+});
+
 /** Signed locale-specific access to embedded or official external Tafsir. */
 export const QuranTafsirAccessSchema = Schema.Union([
   QuranEnglishTafsirAccessSchema,
   QuranIndonesianTafsirAccessSchema,
   QuranGermanTafsirAccessSchema,
+  QuranMalayTafsirAccessSchema,
 ]);
 export type QuranTafsirAccess = typeof QuranTafsirAccessSchema.Type;
 

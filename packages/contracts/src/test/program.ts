@@ -25,6 +25,7 @@ import { compareCodeUnits } from "#contracts/text/order";
 const english = AppLocaleSchema.make("en");
 const indonesian = AppLocaleSchema.make("id");
 const german = AppLocaleSchema.make("de");
+const malay = AppLocaleSchema.make("ms");
 
 /** Builds one clearly test-only learning program at a stable position. */
 export function makeTestProgram(index: number) {
@@ -62,6 +63,11 @@ export function makeTestProgram(index: number) {
         appLocale: german,
         publicSlug: `testprogramm-${index}`,
         title: `Testprogramm ${index}`,
+      },
+      {
+        appLocale: malay,
+        publicSlug: `program-ujian-${index}`,
+        title: `Program Ujian ${index}`,
       },
     ],
     version: { label: "Test version" },

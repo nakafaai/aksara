@@ -67,6 +67,11 @@ export const digestProgram = Schema.decodeSync(LearningProgramSchema)({
       publicSlug: "digest-programm",
       title: "Digest Programm",
     },
+    {
+      appLocale: "ms",
+      publicSlug: "program-ringkas",
+      title: "Program Ringkas",
+    },
   ],
   version: { label: "Test version" },
 });
@@ -88,7 +93,7 @@ export const digestRows = [
     kind: "program",
     row: digestProgram,
     rowHash:
-      "sha256:f531f354d4324c3afe43b70c06665ed2a267827964f0489fd4328f987431b7f0",
+      "sha256:10f1439db995dc3fe80f045ecd8a7dff1f809fa5bff78d11d99b9da8742fa982",
   }),
   Schema.decodeSync(ProgramSnapshotRowSchema)({
     kind: "curriculum",
@@ -133,6 +138,17 @@ export const digestRows = [
     rowHash:
       "sha256:6e7558d0b24bbaddb86d6d1c6574a77a78b9d5c7fb91810c5583eebdaa86c99b",
   }),
+  Schema.decodeSync(ProgramSnapshotRowSchema)({
+    kind: "curriculum",
+    row: Schema.decodeSync(CurriculumRouteSchema)({
+      ...digestRootEn,
+      appLocale: "ms",
+      publicPath: "kurikulum/program-ringkas",
+      title: "Program Ringkas",
+    }),
+    rowHash:
+      "sha256:37d13f3cdeb5fc1addf2328aff52ba789fa39489f8bbfc3b29a579eed807fb1d",
+  }),
 ];
 
 /** Builds the route inputs whose ownership, ancestry, and root rejections are pinned. */
@@ -168,7 +184,7 @@ export const routeRejectionInputs = Effect.fn(
     ...firstProgram.row,
     translations: Arr.filter(
       firstProgram.row.translations,
-      ({ appLocale }) => appLocale !== "de"
+      ({ appLocale }) => appLocale === "en" || appLocale === "id"
     ),
   });
   const priorProgram = yield* makeProgramSnapshotRow(priorProgramRow);

@@ -7,6 +7,8 @@
 - Amended: 2026-10-25, zero-legacy: the old `question/` and `tryout/` modules are
   deleted by the change that switches their readers, and the steps below land as
   one change.
+- Amended: 2026-11-15, version 7.0.0: a try-out set serves the locales it is
+  explained in (see Set locales in 7.0.0).
 
 ## Context
 
@@ -441,9 +443,9 @@ it. It holds steps 1 to 3 of this record and deletes the old generation.
 - A number line ray is authored without its `start` or its `end`, as the
   renderer draws one, and the compiler writes `-infinity` or `infinity`, which
   JSON cannot hold as numbers.
-- The `language` of an explanation. The corpus explains every item in every app
-  locale, while the item is asked in the language of its section, so one version
-  has an explanation in each locale.
+- The `language` of an explanation. The corpus explains an item in each locale
+  its set is written in, while the item is asked in the language of its section,
+  so one version has an explanation in each locale of its set.
 - `contentDomain` in place of `competency` on the blueprint: the name of the
   dimension in the official TKA framework, which the corpus already records.
 - `assessment/answer`: the grammar and matcher of typed answers, which lived in
@@ -462,7 +464,31 @@ it. It holds steps 1 to 3 of this record and deletes the old generation.
   verifies its digest, its counts, its identity, and its closure: the catalog
   reaches papers it holds, a paper fits its profile and places versions it holds,
   and every version has its family, its reading, its key, and an explanation in
-  each active app locale.
+  each locale of the sets that place it.
+
+### Set locales in 7.0.0
+
+Malay became an active locale while most try-out sets were explained in English,
+Indonesian, and German only. Every lesson, page, article, program, and the Quran
+stays required in every active locale. A try-out set is the one node that may
+serve fewer:
+
+- Every catalog row carries `appLocales`, the locales its node is published in,
+  the same on each of its rows. A set lists the locales every question of it is
+  explained in, and a paper that combines several sets serves the locales they
+  share. A section serves its set's locales. A country, exam, group, or track
+  serves the union of the sets beneath it, so no locale shows a node without a
+  set, and a locale with no set of an exam shows neither the exam nor a country
+  left empty.
+- The closure checks that each row's locale is one of its node's, that the node
+  has a row in each of them, that a node's locales equal those beneath it, and
+  that each placed version has an explanation in every locale of every set that
+  places it. A missing locale is never filled from another language (ADR 0018 in
+  Nakafa): a page simply does not exist in that locale, and its alternates name
+  only the locales it has.
+- The corpus reads a set's locales from the explanations it writes. A question
+  that writes a locale its set's other questions lack fails, so a set is written
+  in a locale completely or not at all.
 
 ### What it deletes
 

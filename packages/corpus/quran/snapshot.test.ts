@@ -16,21 +16,21 @@ layer(NodeServices.layer)("Quran snapshot preparation", (it) => {
 
         expect(snapshot.manifest).toMatchObject({
           projectionDigest:
-            "sha256:be930c4a68579727a51732ba6ee622a9bec34a49acaf881a379f497e64d8fba8",
+            "sha256:ec307f5e521bfc9212c3a76183747e85752d7a481cebec9ea79e71ad990e160f",
           provenanceDigest:
-            "sha256:478263c93e1fc38077d8476ec462e9f08cae9218865f4d7d2773868f5cf1541f",
+            "sha256:aab13f062ec6989c1fe7286b8d8e1b0f7adc2115d17e6dc0b2b49c38d2afa2d8",
           provenanceStatus: "approved",
           runtimeDigest:
-            "sha256:8bae581ae54a7c722b200f2a1134335a88b27e9398a572221ec16ffb044daf69",
-          searchCount: 342,
+            "sha256:130b5523e2d13ed077277e28183a583cbcc1936b552f266fa5157f8942928bcb",
+          searchCount: 456,
           searchDigest:
-            "sha256:55797023180303406d42770e90bb997ce19c3dca856e29c9c9568e0ae4335953",
+            "sha256:0d2d8f8fc75e273258f80e8075ce038e0776682f53ce266d74c98f9597846bf8",
           snapshotId:
-            "sha256:3f51e04465e765d4b9e77f560e59b5d65b6d63475423be2c5e42da8b8c3e2a43",
-          sourceBytes: 20_600_641,
+            "sha256:7a68a5699d2a67abc69c37f2ff062d13e3a461f3d485f672c301a6c09d7f4e5f",
+          sourceBytes: 26_462_642,
           sourceDigest:
-            "sha256:de42a454eba6c2e88e2e17d4db03827df33751c1212f6b36542a9be6ac83a9c1",
-          sourceFileCount: 121,
+            "sha256:db27daa635f53490416a50d2b5c86d2f8a38f2fef929418cb03df5285bf37d0c",
+          sourceFileCount: 236,
           surahCount: 114,
           verseCount: 6236,
         });

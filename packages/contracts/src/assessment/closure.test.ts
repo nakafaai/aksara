@@ -3,7 +3,7 @@ import { Array as Arr, Effect, Stream } from "effect";
 
 import { verifyAssessmentClosure } from "#contracts/assessment/closure";
 import type { AssessmentRecord } from "#contracts/assessment/snapshot";
-import { ACTIVE_APP_LOCALES } from "#contracts/locale";
+import { ACTIVE_APP_LOCALES, ActiveAppLocaleSchema } from "#contracts/locale";
 import { hash } from "#contracts/test/assessment/item";
 import { makeAssessmentTestRecords } from "#contracts/test/assessment/snapshot";
 
@@ -34,6 +34,33 @@ function changed(
   change: (row: AssessmentRecord["row"]) => AssessmentRecord["row"]
 ) {
   return Arr.map(records, (record) => ({ ...record, row: change(record.row) }));
+}
+
+/** Serves every catalog node of a fixture without its Malay rows, as a set not yet written in Malay. */
+function withoutMalay(records: readonly AssessmentRecord[]) {
+  const served = Arr.filter(
+    ACTIVE_APP_LOCALES,
+    (appLocale) => appLocale !== "ms"
+  );
+  return changed(
+    Arr.filter(
+      records,
+      ({ row }) => !(row.kind === "catalog" && row.row.appLocale === "ms")
+    ),
+    (row) =>
+      row.kind === "catalog"
+        ? {
+            ...row,
+            row: {
+              ...row.row,
+              appLocales: [
+                ActiveAppLocaleSchema.make("en"),
+                ...Arr.drop(served, 1),
+              ],
+            },
+          }
+        : row
+  );
 }
 
 describe("assessment closure", () => {
@@ -170,5 +197,45 @@ describe("assessment closure", () => {
           "explanation"
         );
       })
+  );
+
+  it.effect(
+    "serves a set only in the locales it is written in, without a Malay explanation it does not need",
+    () =>
+      Effect.gen(function* () {
+        const records = withoutMalay(yield* makeAssessmentTestRecords());
+
+        assert.strictEqual(yield* closure(records), "closed");
+        assert.strictEqual(
+          yield* closure(
+            Arr.filter(
+              records,
+              ({ row }) =>
+                !(
+                  row.kind === "explanation" &&
+                  row.explanation.language === "ms"
+                )
+            )
+          ),
+          "closed"
+        );
+      })
+  );
+
+  it.effect("refuses a set without its explanation in a locale it serves", () =>
+    Effect.gen(function* () {
+      const records = yield* makeAssessmentTestRecords();
+
+      assert.strictEqual(
+        yield* closure(
+          Arr.filter(
+            records,
+            ({ row }) =>
+              !(row.kind === "explanation" && row.explanation.language === "ms")
+          )
+        ),
+        "explanation"
+      );
+    })
   );
 });

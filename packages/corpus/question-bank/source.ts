@@ -1,13 +1,12 @@
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
-  ACTIVE_APP_LOCALES,
+  APP_LOCALE_CODES,
   type AppLocaleCode,
   AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
-import { appLocaleCode, carriedAppLocales } from "#corpus/locale/source";
 import { QuestionReadError, readEntries } from "#corpus/question-bank/entries";
 import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
 import {
@@ -38,8 +37,13 @@ export const StimulusSourceSchema = Schema.Struct({
 });
 export type StimulusSource = typeof StimulusSourceSchema.Type;
 
-/** One authored set: its questions in order and the readings they share. */
+/**
+ * One authored set: the locales it is explained in, its questions in order,
+ * and the readings they share. A set is published in exactly the locales it
+ * writes an explanation in, and each of its questions writes every one.
+ */
 export const QuestionSetSchema = Schema.Struct({
+  explanations: Schema.NonEmptyArray(AppLocaleCodeSchema),
   path: SetPathSchema,
   questions: Schema.Array(QuestionSourceSchema),
   stimuli: Schema.Array(StimulusSourceSchema),
@@ -54,6 +58,12 @@ export class QuestionFileSetError extends Schema.TaggedError<
   files: Schema.Array(Schema.String),
   sourcePath: CorpusSourcePathSchema,
 }) {}
+
+/** A set writes no explanation in any locale. */
+export class QuestionExplanationError extends Schema.TaggedError<
+  QuestionExplanationError,
+  { readonly brand: unique symbol }
+>()("QuestionExplanationError", { set: SetPathSchema }) {}
 
 /** A set does not number its questions from one without a gap. */
 export class QuestionSequenceError extends Schema.TaggedError<
@@ -216,14 +226,14 @@ const readSet = Effect.fn("AksaraCorpus.readSet")(function* (
       Arr.filter(questionEntries, (entry) => entry.number === number),
       ({ file }) => file
     );
-  const explanations = Arr.map(
-    carriedAppLocales(ACTIVE_APP_LOCALES, (code) =>
-      Arr.some(numbers, (number) =>
-        Arr.contains(filesOf(number), `answer.${code}.mdx`)
-      )
-    ),
-    appLocaleCode
+  const explanations = Arr.filter(APP_LOCALE_CODES, (code) =>
+    Arr.some(numbers, (number) =>
+      Arr.contains(filesOf(number), `answer.${code}.mdx`)
+    )
   );
+  if (!Arr.isReadonlyArrayNonEmpty(explanations)) {
+    return yield* new QuestionExplanationError({ set });
+  }
   const questions = yield* Effect.forEach(numbers, (number) =>
     readQuestion(corpusRoot, set, number, filesOf(number), explanations)
   );
@@ -236,7 +246,7 @@ const readSet = Effect.fn("AksaraCorpus.readSet")(function* (
         entry.kind === "stimulus"
     )
   );
-  return { path: set, questions, stimuli };
+  return { explanations, path: set, questions, stimuli };
 });
 
 /**

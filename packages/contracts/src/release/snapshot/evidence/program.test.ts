@@ -30,7 +30,7 @@ describe("program snapshot row verification", () => {
           Stream.fromIterable(snapshotData.rows)
         );
 
-        expect(rowCount).toBe(588);
+        expect(rowCount).toBe(780);
       }),
     30_000
   );
@@ -58,7 +58,7 @@ describe("program snapshot row verification", () => {
           field: "rowDigest",
         });
         expect("actual" in error ? error.actual : undefined).toBe(
-          "sha256:3ede07c7c49092e5f91ee4507902b2d7d6eb41f49330f8c083d09626fefdc5cc"
+          "sha256:a86da6c00b6c85d5057c6ed23ed793e1f8a864659d32b4e202b2b2dc31680180"
         );
       }),
     30_000

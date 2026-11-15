@@ -46,7 +46,7 @@ layer(quranTestSourcesLayer)("Quran schema", (it) => {
       expect(
         Arr.reduce(values, 0, (count, surah) => count + surah.verses.length)
       ).toBe(QURAN_VERSE_COUNT);
-      expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de"]);
+      expect(ACTIVE_APP_LOCALE_CODES).toEqual(["en", "id", "de", "ms"]);
       expect(
         Arr.every(values, ({ verses }) =>
           Arr.every(

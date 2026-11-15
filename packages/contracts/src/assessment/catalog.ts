@@ -4,7 +4,7 @@ import { KebabKeySchema, PaperIdSchema } from "#contracts/assessment/identity";
 import { CountryCodeSchema } from "#contracts/country";
 import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { PublicPathSchema, Sha256HashSchema } from "#contracts/ids";
-import { AppLocaleSchema } from "#contracts/locale";
+import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 
 const PositiveCountSchema = Schema.Int.check(Schema.isGreaterThan(0));
 
@@ -34,7 +34,6 @@ export const SectionVisibilitySchema = Schema.Literals([
   "visible",
 ]);
 
-/** What every row of the catalog says in one app locale. */
 /**
  * How hard a set is, measured by Aksara's difficulty panel against the real
  * exam and published with the set, never picked by hand. The scale starts at
@@ -49,8 +48,16 @@ export const SetLevelSchema = Schema.Literals([
 ]);
 export type SetLevel = typeof SetLevelSchema.Type;
 
+/**
+ * What every row of the catalog says in one app locale. `appLocales` lists
+ * every locale the node is published in, the same on each of its rows: a set
+ * names the locales it is written in, a section those of its set, and a
+ * country, exam, group, or track those of the sets beneath it, so no locale
+ * shows a node without a set and none falls back to another language.
+ */
 const LocalizedFields = {
   appLocale: AppLocaleSchema,
+  appLocales: ActiveAppLocaleListSchema,
   description: Schema.optionalKey(Schema.String),
   graph: LearningGraphIdentitySchema,
   sourceRevision: CatalogRevisionSchema,
@@ -156,15 +163,14 @@ export const CatalogRowSchema = Schema.Union([
 export type CatalogRow = typeof CatalogRowSchema.Type;
 
 /**
- * The identity of one catalog row, unique within a snapshot: its locale, its
- * kind, and the keys of its node and of every node above it. A group names
- * its own key; a track is unique within its exam, so a track and the rows
- * under it leave their group out.
+ * The identity of one catalog node, the same in every locale: its kind and the
+ * keys of its node and of every node above it. A group names its own key; a
+ * track is unique within its exam, so a track and the rows under it leave
+ * their group out.
  */
-export function catalogRowIdentity(row: CatalogRow) {
+export function catalogNodeIdentity(row: CatalogRow) {
   return Arr.join(
     [
-      row.appLocale,
       row.kind,
       row.countryKey,
       "examKey" in row ? row.examKey : "",
@@ -175,4 +181,9 @@ export function catalogRowIdentity(row: CatalogRow) {
     ],
     "\0"
   );
+}
+
+/** The identity of one catalog row, unique within a snapshot: its locale and its node. */
+export function catalogRowIdentity(row: CatalogRow) {
+  return `${row.appLocale}\0${catalogNodeIdentity(row)}`;
 }
