@@ -1,0 +1,69 @@
+# Tulis setiap punca sebagai kuasa dua
+
+Ketiga-tiga nombor di bawah tanda punca berbentuk <InlineMath math="a\pm2\sqrt b" />. Bentuk begini selalunya **kuasa dua sempurna**, sebab <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. Jadi kamu cari dua nombor yang hasil tambah kuasa duanya ialah <InlineMath math="a" />, dan dua kali hasil darabnya sama dengan bahagian punca:
+
+<BlockMath math="\begin{aligned}
+9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
+9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
+6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
+\end{aligned}" />
+
+# Semak tanda setiap punca
+
+Punca kuasa dua tidak pernah negatif: <InlineMath math="\sqrt{u^2}=|u|" />. Untuk <InlineMath math="9-4\sqrt5" />, kedua-dua <InlineMath math="\sqrt5-2" /> dan <InlineMath math="2-\sqrt5" /> memberi nombor itu apabila dikuasaduakan. Puncanya ialah **nombor yang positif**. Oleh sebab <InlineMath math="4<5<9" />, nilai <InlineMath math="\sqrt5" /> terletak antara <InlineMath math="2" /> dengan <InlineMath math="3" />:
+
+<MathVisual
+  title={<>Kedudukan <InlineMath math="\sqrt5" /></>}
+  description={<>Garis nombor dengan titik <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" /> dan <InlineMath math="3" />. Titik <InlineMath math="\sqrt5" /> berada sedikit di kanan <InlineMath math="2" />. Bahagian pendek dari <InlineMath math="2" /> hingga <InlineMath math="\sqrt5" /> ditanda: panjangnya, <InlineMath math="\sqrt5-2" />, positif.</>}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt5" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.8 },
+      y: { min: -1, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2.236, y: 0 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 2.236, y: 0 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "p1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "two", objectId: "p2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "root", objectId: "p5", at: { x: 2.236, y: 0 }, placement: "above" },
+      { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Maka <InlineMath math="\sqrt5-2>0" /> dan <InlineMath math="\sqrt5-1>0" />, tetapi <InlineMath math="2-\sqrt5<0" />. Jadi
+
+<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+
+# Kira pecahan itu
+
+Dalam pengangka, **kedua-dua <InlineMath math="\sqrt5" /> terbatal**. Penyebut pula dirasionalkan dengan beza dua kuasa dua:
+
+<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+
+Semakan dengan <InlineMath math="\sqrt5\approx2.236" /> pun sama: pengangkanya kira-kira <InlineMath math="4.236-0.236=4" />, penyebutnya kira-kira <InlineMath math="1.236" />, dan <InlineMath math="4\div1.236\approx3.236\approx\sqrt5+1" />.
+
+Nilai ungkapan itu ialah <InlineMath math="\sqrt5+1" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="-\sqrt5-1" /> terhasil kalau <InlineMath math="\sqrt{6-2\sqrt5}" /> ditulis sebagai <InlineMath math="1-\sqrt5" />. Nombor itu **negatif, jadi ia tidak boleh menjadi punca kuasa dua**.
+- <InlineMath math="\frac{5+\sqrt5}{2}" /> terhasil kalau <InlineMath math="\sqrt{9-4\sqrt5}" /> ditulis sebagai <InlineMath math="2-\sqrt5" />. Pengangka lalu menjadi <InlineMath math="2\sqrt5" />, bukan <InlineMath math="4" />.
+- <InlineMath math="-\frac{5+\sqrt5}{2}" /> membuat kedua-dua kesilapan tanda itu serentak.
+- <InlineMath math="\sqrt5-1" /> terhasil kalau <InlineMath math="(\sqrt5-1)^2" /> dikira sebagai <InlineMath math="5-1=4" /> seperti beza dua kuasa dua, lalu <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" /> dipermudahkan. Sebenarnya <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
+- <InlineMath math="\frac{2\sqrt5+2}{3}" /> terhasil kalau <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> dikira sebagai <InlineMath math="5+1=6" />, sedangkan jawapannya <InlineMath math="5-1=4" />.

@@ -1,0 +1,58 @@
+# Semak dahulu sama ada kubus tenggelam
+
+Jumlah air tetap sama, cuma taburannya yang berubah. Perkara penting ialah sama ada kubus akhirnya tenggelam sepenuhnya. Andaikan dahulu air kekal **di bawah permukaan atas kubus**, jadi <InlineMath math="h\le20\text{ cm}" />. Maka air hanya berada di atas tapak kosong di sebelah kubus:
+
+<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
+
+# Samakan isi padu air
+
+Isi padu air ialah <InlineMath math="1200\cdot10=12{,}000\text{ cm}^3" />. Air itu kini memenuhi tapak kosong hingga ketinggian <InlineMath math="h" />:
+
+<BlockMath math="800\,h=12{,}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+
+**Andaian tadi betul**, kerana <InlineMath math="15\text{ cm}<20\text{ cm}" />. Jadi kubus masih tersembul <InlineMath math="5\text{ cm}" /> di atas air.
+
+<MathVisual
+  title={<>Bekas dilihat dari hadapan</>}
+  description={<>Pandangan hadapan bekas yang lebarnya <InlineMath math="40\text{ cm}" />. Di sebelah kiri berdiri kubus dengan sisi <InlineMath math="20\text{ cm}" />. Di sebelahnya, air kini setinggi <InlineMath math="15\text{ cm}" />, lebih rendah daripada sisi kubus. Paras air lama, <InlineMath math="10\text{ cm}" />, dilukis sebagai garis.</>}
+  labels={{
+    cube: <>kubus</>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>asal <InlineMath math="10\text{ cm}" /></>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    water: <>air</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 52 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
+      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
+      { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
+      { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
+    ],
+    labels: [
+      { key: "cube", objectId: "block", at: { x: 10, y: 10 }, placement: "above" },
+      { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
+      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Paras air selepas itu ialah <InlineMath math="15\text{ cm}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> menganggap seluruh kubus, <InlineMath math="8{,}000\text{ cm}^3" />, tenggelam: <InlineMath math="\frac{12{,}000+8{,}000}{1200}" />. Kalau begitu, paras air mesti sekurang-kurangnya <InlineMath math="20\text{ cm}" />, dan <InlineMath math="\frac{50}{3}<20" /> bercanggah dengan itu.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> hanya mengira bahagian kubus yang terendam pada mulanya: <InlineMath math="\frac{12{,}000+400\cdot10}{1200}" />. Apabila air naik, **lebih banyak bahagian kubus terendam**.
+- <InlineMath math="20\text{ cm}" /> menganggap air naik tepat hingga permukaan atas kubus.
+- <InlineMath math="7.5\text{ cm}" /> menambah tapak kubus kepada tapak bekas, sedangkan ia patut ditolak: <InlineMath math="\frac{12{,}000}{1600}" />.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> memakai <InlineMath math="20^2=400" /> sebagai isi padu kubus, sedangkan sepatutnya <InlineMath math="20^3" />.

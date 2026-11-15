@@ -1,17 +1,69 @@
-Kedua bagian bentuk aljabar itu memuat <InlineMath math="4x^2" />. Jika kamu **menjabarkan kedua bagian sepenuhnya**, suku-suku kuadrat itu saling menghilangkan. Untuk kuadratnya, gunakan rumus <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> dengan <InlineMath math="a=2x" /> dan <InlineMath math="b=1" />. Di depan hasil kali kedua ada tanda minus, jadi tuliskan hasil penjabarannya di dalam kurung.
+# Tulis setiap akar sebagai kuadrat
+
+Ketiga bilangan di bawah akar berbentuk <InlineMath math="a\pm2\sqrt b" />. Bentuk seperti ini sering merupakan **kuadrat sempurna**, karena <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. Jadi, cari dua bilangan yang jumlah kuadratnya <InlineMath math="a" /> dan dua kali hasil kalinya sama dengan bagian akarnya:
 
 <BlockMath math="\begin{aligned}
-(2x-1)^2-4x(x-1)&=(4x^2-4x+1)-(4x^2-4x) \\
-&=4x^2-4x+1-4x^2+4x \\
-&=1
+9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
+9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
+6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
 \end{aligned}" />
 
-Sebagai pemeriksaan, substitusikan satu nilai, misalnya <InlineMath math="x=3" />: <InlineMath math="5^2-4\cdot3\cdot2=25-24=1" />.
+# Periksa tanda setiap akar
 
-Jadi, bentuk itu bernilai <InlineMath math="1" /> untuk setiap <InlineMath math="x" />.
+Akar kuadrat tidak pernah negatif: <InlineMath math="\sqrt{u^2}=|u|" />. Untuk <InlineMath math="9-4\sqrt5" />, baik <InlineMath math="\sqrt5-2" /> maupun <InlineMath math="2-\sqrt5" /> kalau dikuadratkan menghasilkan bilangan itu. Akarnya adalah **bilangan yang positif**. Karena <InlineMath math="4<5<9" />, nilai <InlineMath math="\sqrt5" /> terletak antara <InlineMath math="2" /> dan <InlineMath math="3" />:
 
-- <InlineMath math="-1" /> muncul jika <InlineMath math="(-1)^2" /> dihitung sebagai <InlineMath math="-1" /> saat mengkuadratkan.
-- <InlineMath math="4x+1" /> muncul jika suku tengah <InlineMath math="-4x" /> hilang saat mengkuadratkan, yaitu jika dipakai <InlineMath math="(2x-1)^2=4x^2+1" />.
-- <InlineMath math="4x-1" /> mencampuradukkan kuadrat dengan selisih dua kuadrat dan memakai <InlineMath math="(2x-1)^2=4x^2-1" />.
-- <InlineMath math="1-8x" /> hanya mengubah tanda <InlineMath math="4x^2" /> saat membuka kurung, tidak mengubah tanda <InlineMath math="-4x" />.
-- <InlineMath math="8x^2-8x+1" /> menambahkan hasil kali kedua, padahal seharusnya mengurangkannya.
+<MathVisual
+  title={<>Letak <InlineMath math="\sqrt5" /></>}
+  description={<>Garis bilangan dengan titik <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" />, dan <InlineMath math="3" />. Titik <InlineMath math="\sqrt5" /> sedikit di kanan <InlineMath math="2" />. Ruas pendek dari <InlineMath math="2" /> sampai <InlineMath math="\sqrt5" /> ditandai: panjangnya, yaitu <InlineMath math="\sqrt5-2" />, positif.</>}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt5" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.8 },
+      y: { min: -1, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2.236, y: 0 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 2.236, y: 0 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "p1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "two", objectId: "p2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "root", objectId: "p5", at: { x: 2.236, y: 0 }, placement: "above" },
+      { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Jadi <InlineMath math="\sqrt5-2>0" /> dan <InlineMath math="\sqrt5-1>0" />, tetapi <InlineMath math="2-\sqrt5<0" />. Akibatnya
+
+<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+
+# Hitung pecahannya
+
+Di pembilang, **kedua <InlineMath math="\sqrt5" /> saling menghapus**. Penyebutnya dirasionalkan dengan selisih dua kuadrat:
+
+<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+
+Cek dengan <InlineMath math="\sqrt5\approx2{,}236" />: pembilangnya sekitar <InlineMath math="4{,}236-0{,}236=4" />, penyebutnya sekitar <InlineMath math="1{,}236" />, dan <InlineMath math="4:1{,}236\approx3{,}236\approx\sqrt5+1" />.
+
+Nilai bentuk itu adalah <InlineMath math="\sqrt5+1" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-\sqrt5-1" /> muncul kalau <InlineMath math="\sqrt{6-2\sqrt5}" /> ditulis sebagai <InlineMath math="1-\sqrt5" />. Bilangan itu **negatif, jadi tidak mungkin hasil akar**.
+- <InlineMath math="\frac{5+\sqrt5}{2}" /> muncul kalau <InlineMath math="\sqrt{9-4\sqrt5}" /> ditulis sebagai <InlineMath math="2-\sqrt5" />. Pembilangnya lalu menjadi <InlineMath math="2\sqrt5" />, bukan <InlineMath math="4" />.
+- <InlineMath math="-\frac{5+\sqrt5}{2}" /> melakukan kedua kesalahan tanda itu sekaligus.
+- <InlineMath math="\sqrt5-1" /> muncul kalau <InlineMath math="(\sqrt5-1)^2" /> dihitung <InlineMath math="5-1=4" /> seperti selisih dua kuadrat, lalu <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" /> disederhanakan. Padahal <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
+- <InlineMath math="\frac{2\sqrt5+2}{3}" /> muncul kalau <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> dihitung <InlineMath math="5+1=6" />, padahal hasilnya <InlineMath math="5-1=4" />.

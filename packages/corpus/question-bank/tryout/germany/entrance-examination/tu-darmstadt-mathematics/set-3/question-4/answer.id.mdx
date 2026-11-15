@@ -1,16 +1,72 @@
-Pagar mengelilingi seluruh taman bermain satu kali, jadi panjangnya adalah **keliling trapesium**. Tiga sisi sudah diketahui, hanya sisi miringnya yang belum. Jika kamu menarik garis tegak lurus dari sudut kanan atas ke sisi bawah, terbentuk segitiga siku-siku. Sisi tegaknya <InlineMath math="35\text{ m}" />, dan sisi mendatarnya adalah selisih kedua sisi sejajar, <InlineMath math="18-6=12\text{ m}" />.
+# Letakkan segitiga di bidang koordinat
+
+Letakkan sudut siku-siku di titik asal <InlineMath math="C(0\mid0)" /> dan kedua kaki segitiga di sumbu: <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Dengan begitu **kedua titik pusat bisa ditulis sebagai titik berkoordinat**. Sisi miringnya <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+
+# Tentukan pusat lingkaran dalam
+
+Lingkaran dalam menyinggung kedua sisi siku-siku, jadi **jarak <InlineMath math="I" /> ke kedua sumbu sama dengan <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Jari-jarinya didapat dari luas. Bagi segitiga di <InlineMath math="I" /> menjadi tiga segitiga kecil yang tingginya semua <InlineMath math="r" />:
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{12^2+35^2}=\sqrt{144+1{.}225}=\sqrt{1{.}369}=37\text{ m} \\
-u&=18+6+35+37=96\text{ m}
+\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
+24&=12r \\
+r&=2
 \end{aligned}" />
 
-Sebagai pemeriksaan, sisi miring harus lebih panjang daripada <InlineMath math="35\text{ m}" />, tetapi lebih pendek daripada <InlineMath math="12+35=47\text{ m}" />. Keduanya berlaku untuk <InlineMath math="37\text{ m}" />.
+Jadi <InlineMath math="I(2\mid2)" />.
 
-Jadi, panjang seluruh pagar adalah <InlineMath math="96\text{ m}" />.
+# Tentukan pusat lingkaran luar
 
-- <InlineMath math="59\text{ m}" /> hanya menjumlahkan tiga sisi yang diketahui dan melupakan sisi miring.
-- <InlineMath math="94\text{ m}" /> menganggap sisi miring sama panjang dengan sisi tegak, <InlineMath math="35\text{ m}" />.
-- <InlineMath math="106\text{ m}" /> menjumlahkan kedua sisi siku-siku menjadi <InlineMath math="12+35=47\text{ m}" />, bukan memakai teorema Pythagoras.
-- <InlineMath math="420\text{ m}" /> adalah bilangan untuk luas, <InlineMath math="\frac{18+6}{2}\cdot35=420\text{ m}^2" />, bukan keliling.
-- <InlineMath math="840\text{ m}" /> menghitung <InlineMath math="(18+6)\cdot35" />. Itu rumus luas tanpa dibagi dua.
+Pada segitiga siku-siku, **pusat lingkaran luar terletak di titik tengah sisi miring** (teorema Thales). Titik tengah <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" /> adalah <InlineMath math="U(4\mid3)" />, dengan jari-jari <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Lingkaran dalam dan lingkaran luar dalam koordinat</>}
+  description={<>Segitiga siku-siku dengan <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" />, dan <InlineMath math="B(0\mid6)" />. Lingkaran dalamnya berpusat di <InlineMath math="I(2\mid2)" /> dengan jari-jari <InlineMath math="2" />. Lingkaran luarnya berpusat di <InlineMath math="U(4\mid3)" />, titik tengah sisi miring, dengan jari-jari <InlineMath math="5" />. Ruas dari <InlineMath math="I" /> ke <InlineMath math="U" /> disorot.</>}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2\mid2)" /></>,
+    u: <><InlineMath math="U(4\mid3)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 9.5 },
+      y: { min: -2.5, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "circumcircle", kind: "circle", appearance: "construction", center: { x: 4, y: 3 }, radius: 5 },
+      { id: "distance", kind: "segment", appearance: "answer", from: { x: 2, y: 2 }, to: { x: 4, y: 3 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "pi", kind: "point", appearance: "highlight", at: { x: 2, y: 2 } },
+      { id: "pu", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "c", objectId: "pc", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "i", objectId: "pi", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Hitung jaraknya
+
+<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+
+**Jarak kedua titik pusat itu <InlineMath math="\sqrt5" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\sqrt{13}" /> muncul dari <InlineMath math="r=1" />: luas dibagi **keliling penuh <InlineMath math="24" />, bukan setengah keliling <InlineMath math="12" />**, lalu <InlineMath math="I(1\mid1)" /> berjarak <InlineMath math="\sqrt{9+4}" /> dari <InlineMath math="U" />.
+- <InlineMath math="3" /> adalah selisih jari-jari <InlineMath math="5-2" />. Padahal kedua pusat tidak segaris dengan titik singgung kedua lingkaran.
+- <InlineMath math="7" /> adalah jumlah jari-jari <InlineMath math="5+2" />.
+- <InlineMath math="\frac23" /> muncul kalau <InlineMath math="U" /> tertukar dengan titik berat <InlineMath math="\left(\frac83\mid2\right)" />. Titik berat bukan pusat lingkaran luar.
+- <InlineMath math="2\sqrt2" /> adalah jarak <InlineMath math="I" /> ke titik sudut <InlineMath math="C" />, bukan ke <InlineMath math="U" />.

@@ -1,17 +1,69 @@
-Beide Teile des Terms enthalten <InlineMath math="4x^2" />. Wenn du **beide Teile vollständig ausmultiplizierst**, heben sich diese quadratischen Glieder auf. Für das Quadrat verwendest du die zweite binomische Formel <InlineMath math="(a-b)^2=a^2-2ab+b^2" /> mit <InlineMath math="a=2x" /> und <InlineMath math="b=1" />. Vor dem zweiten Produkt steht ein Minuszeichen, deshalb setzt du es nach dem Ausmultiplizieren in Klammern.
+# Jede Wurzel als Quadrat schreiben
+
+Alle drei Radikanden haben die Form <InlineMath math="a\pm2\sqrt b" />. So ein Ausdruck ist oft **ein vollständiges Quadrat**, denn <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. Du suchst also zwei Zahlen, deren Quadrate zusammen <InlineMath math="a" /> ergeben und deren doppeltes Produkt der Wurzelteil ist:
 
 <BlockMath math="\begin{aligned}
-(2x-1)^2-4x(x-1)&=(4x^2-4x+1)-(4x^2-4x) \\
-&=4x^2-4x+1-4x^2+4x \\
-&=1
+9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
+9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
+6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
 \end{aligned}" />
 
-Zur Kontrolle setzt du einen Wert ein, etwa <InlineMath math="x=3" />: <InlineMath math="5^2-4\cdot3\cdot2=25-24=1" />.
+# Das Vorzeichen jeder Wurzel prüfen
 
-Der Term hat also für jedes <InlineMath math="x" /> den Wert <InlineMath math="1" />.
+Eine Quadratwurzel ist nie negativ, es gilt <InlineMath math="\sqrt{u^2}=|u|" />. Bei <InlineMath math="9-4\sqrt5" /> passen sowohl <InlineMath math="\sqrt5-2" /> als auch <InlineMath math="2-\sqrt5" /> als Basis des Quadrats. Die Wurzel ist **die positive der beiden Zahlen**. Wegen <InlineMath math="4<5<9" /> liegt <InlineMath math="\sqrt5" /> zwischen <InlineMath math="2" /> und <InlineMath math="3" />:
 
-- <InlineMath math="-1" /> entsteht, wenn beim Quadrieren <InlineMath math="(-1)^2" /> als <InlineMath math="-1" /> gerechnet wird.
-- <InlineMath math="4x+1" /> entsteht, wenn beim Quadrieren das mittlere Glied <InlineMath math="-4x" /> fehlt, also <InlineMath math="(2x-1)^2=4x^2+1" /> gerechnet wird.
-- <InlineMath math="4x-1" /> verwechselt das Quadrat mit der dritten binomischen Formel und rechnet <InlineMath math="(2x-1)^2=4x^2-1" />.
-- <InlineMath math="1-8x" /> ändert beim Auflösen der Klammer nur das Vorzeichen von <InlineMath math="4x^2" />, nicht das von <InlineMath math="-4x" />.
-- <InlineMath math="8x^2-8x+1" /> addiert das zweite Produkt, statt es abzuziehen.
+<MathVisual
+  title={<>Wo <InlineMath math="\sqrt5" /> liegt</>}
+  description={<>Ein Zahlenstrahl mit den Punkten <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" /> und <InlineMath math="3" />. Der Punkt <InlineMath math="\sqrt5" /> liegt knapp rechts von <InlineMath math="2" />. Das kurze Stück von <InlineMath math="2" /> bis <InlineMath math="\sqrt5" /> ist markiert: Seine Länge <InlineMath math="\sqrt5-2" /> ist positiv.</>}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt5" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.8 },
+      y: { min: -1, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2.236, y: 0 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 0 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 2.236, y: 0 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "one", objectId: "p1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "two", objectId: "p2", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "root", objectId: "p5", at: { x: 2.236, y: 0 }, placement: "above" },
+      { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Also ist <InlineMath math="\sqrt5-2>0" /> und <InlineMath math="\sqrt5-1>0" />, aber <InlineMath math="2-\sqrt5<0" />. Damit gilt
+
+<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+
+# Den Bruch ausrechnen
+
+Im Zähler **fallen die beiden <InlineMath math="\sqrt5" /> weg**. Den Nenner machst du mit der dritten binomischen Formel rational:
+
+<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+
+Eine Probe mit <InlineMath math="\sqrt5\approx2{,}236" /> bestätigt das: Der Zähler ist etwa <InlineMath math="4{,}236-0{,}236=4" />, der Nenner etwa <InlineMath math="1{,}236" />, und <InlineMath math="4:1{,}236\approx3{,}236\approx\sqrt5+1" />.
+
+Der Term hat den Wert <InlineMath math="\sqrt5+1" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-\sqrt5-1" /> entsteht, wenn du <InlineMath math="\sqrt{6-2\sqrt5}" /> als <InlineMath math="1-\sqrt5" /> schreibst. Diese Zahl ist **negativ und kann keine Wurzel sein**.
+- <InlineMath math="\frac{5+\sqrt5}{2}" /> entsteht, wenn du <InlineMath math="\sqrt{9-4\sqrt5}" /> als <InlineMath math="2-\sqrt5" /> schreibst. Dann wird der Zähler <InlineMath math="2\sqrt5" /> statt <InlineMath math="4" />.
+- <InlineMath math="-\frac{5+\sqrt5}{2}" /> macht beide Vorzeichenfehler auf einmal.
+- <InlineMath math="\sqrt5-1" /> entsteht, wenn du <InlineMath math="(\sqrt5-1)^2" /> wie eine dritte binomische Formel als <InlineMath math="5-1=4" /> rechnest und dann <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" /> kürzt. Richtig ist <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
+- <InlineMath math="\frac{2\sqrt5+2}{3}" /> entsteht, wenn du beim Erweitern <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> als <InlineMath math="5+1=6" /> statt als <InlineMath math="5-1=4" /> rechnest.

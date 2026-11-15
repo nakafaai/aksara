@@ -1,19 +1,74 @@
-Zwei Geraden, die nicht parallel zu einer Achse verlaufen, stehen genau dann senkrecht aufeinander, wenn das **Produkt ihrer Steigungen** <InlineMath math="-1" /> ist. Bestimme deshalb zuerst die Steigung <InlineMath math="k" /> der Geraden durch <InlineMath math="P" /> und <InlineMath math="Q" />.
+# Genau ein gemeinsamer Punkt heißt Diskriminante null
+
+Gemeinsame Punkte von <InlineMath math="g" /> und <InlineMath math="p" /> erfüllen beide Gleichungen. Setze die rechten Seiten gleich und bringe alles auf eine Seite:
+
+<BlockMath math="x^2+bx+7=2x+3\quad\Longleftrightarrow\quad x^2+(b-2)\,x+4=0" />
+
+Genau ein gemeinsamer Punkt bedeutet: Diese quadratische Gleichung hat genau eine Lösung, **ihre Diskriminante ist also null**:
 
 <BlockMath math="\begin{aligned}
-k&=\frac{5-1}{5-(-1)}=\frac{4}{6}=\frac{2}{3} \\
-m\cdot\frac{2}{3}&=-1 \\
-m&=-\frac{3}{2}
+(b-2)^2-4\cdot1\cdot4&=0 \\
+(b-2)^2&=16 \\
+b-2=4\quad&\text{oder}\quad b-2=-4 \\
+b=6\quad&\text{oder}\quad b=-2
 \end{aligned}" />
 
-Der Achsenabschnitt <InlineMath math="-4" /> verschiebt die Gerade <InlineMath math="g" /> nur nach unten und hat keinen Einfluss auf ihre Richtung.
+# Den Berührpunkt für beide Werte bestimmen
 
-Zur Kontrolle: <InlineMath math="-\frac{3}{2}\cdot\frac{2}{3}=-1" />.
+Bei Diskriminante null ist **die einzige Lösung** <InlineMath math="x=-\frac{b-2}{2}=\frac{2-b}{2}" />. Die <InlineMath math="y" />-Koordinate liefert die Gerade:
 
-Die Steigung ist also <InlineMath math="m=-\frac{3}{2}" />.
+<BlockMath math="\begin{aligned}
+b=6:&\quad x=-2,\quad y=2\cdot(-2)+3=-1 \\
+b=-2:&\quad x=2,\quad y=2\cdot2+3=7
+\end{aligned}" />
 
-- <InlineMath math="m=-4" /> ist der <InlineMath math="y" />-Achsenabschnitt von <InlineMath math="g" />, nicht ihre Steigung.
-- <InlineMath math="m=-\frac{2}{3}" /> ändert nur das Vorzeichen der Steigung und bildet nicht den Kehrwert.
-- <InlineMath math="m=\frac{2}{3}" /> ist die Steigung der Geraden durch <InlineMath math="P" /> und <InlineMath math="Q" />. Mit dieser Steigung wäre <InlineMath math="g" /> parallel zu ihr.
-- <InlineMath math="m=\frac{3}{2}" /> bildet den Kehrwert, vergisst aber das Minuszeichen. Das Produkt der Steigungen wäre dann <InlineMath math="1" />.
-- <InlineMath math="m=4" /> nimmt nur den Höhenunterschied <InlineMath math="5-1" /> von <InlineMath math="P" /> nach <InlineMath math="Q" /> und teilt nicht durch den waagerechten Abstand.
+# Die Bedingung an den Quadranten anwenden
+
+Beide Werte von <InlineMath math="b" /> liefern genau einen gemeinsamen Punkt. Erst **die Lage des Punktes** trennt sie:
+
+<MathVisual
+  title={<>Zwei Parabeln berühren die Gerade</>}
+  description={<>Die Gerade <InlineMath math="g: y=2x+3" /> und zwei Parabeln. Die Parabel <InlineMath math="y=x^2-2x+7" /> berührt <InlineMath math="g" /> im Punkt <InlineMath math="B(2\mid7)" /> im ersten Quadranten. Die gestrichelte Parabel <InlineMath math="y=x^2+6x+7" /> berührt <InlineMath math="g" /> im Punkt <InlineMath math="(-2\mid-1)" /> im dritten Quadranten.</>}
+  labels={{
+    b: <><InlineMath math="B(2\mid7)" /></>,
+    q: <><InlineMath math="(-2\mid-1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    ok: <><InlineMath math="b=-2" /></>,
+    bad: <><InlineMath math="b=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 6 },
+      y: { min: -6.5, max: 17.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x + 7", domain: { min: -1, max: 4.2 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6*x + 7", domain: { min: -5, max: -0.5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
+      { id: "wrong", kind: "point", appearance: "highlight", at: { x: -2, y: -1 } },
+    ],
+    labels: [
+      { key: "b", objectId: "touch", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "q", objectId: "wrong", at: { x: -2, y: -1 }, placement: "below-right" },
+      { key: "g", objectId: "line", at: { x: 4, y: 11 }, placement: "left" },
+      { key: "ok", objectId: "parabola", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "bad", objectId: "other", at: { x: -4.5, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+Für <InlineMath math="b=6" /> liegt der Punkt <InlineMath math="(-2\mid-1)" /> im dritten Quadranten, für <InlineMath math="b=-2" /> liegt <InlineMath math="B(2\mid7)" /> im ersten Quadranten.
+
+Also ist <InlineMath math="b=-2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="b=6" /> gehört zum Berührpunkt <InlineMath math="(-2\mid-1)" /> mit zwei negativen Koordinaten.
+- <InlineMath math="b=-2" /> oder <InlineMath math="b=6" /> erfüllt nur die Bedingung „genau ein Punkt“ und **übersieht die Bedingung an den Quadranten**.
+- <InlineMath math="b=-6" /> entsteht mit einem Vorzeichenfehler beim Umstellen: Aus <InlineMath math="x^2+(b+2)x+4=0" /> folgt <InlineMath math="b=2" /> oder <InlineMath math="b=-6" />, und mit <InlineMath math="x=-\frac{b+2}{2}" /> scheint <InlineMath math="b=-6" /> in den ersten Quadranten zu führen.
+- <InlineMath math="b=0" /> entsteht, wenn in der Diskriminante der Faktor <InlineMath math="4" /> fehlt: <InlineMath math="(b-2)^2-4=0" /> liefert <InlineMath math="b=0" /> oder <InlineMath math="b=4" />. Für <InlineMath math="b=0" /> hat <InlineMath math="x^2-2x+4=0" /> aber gar keine Lösung.
+- <InlineMath math="b=4" /> ist der zweite Wert aus derselben falschen Diskriminante. Für <InlineMath math="b=4" /> hat <InlineMath math="x^2+2x+4=0" /> ebenfalls keine Lösung.

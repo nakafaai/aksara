@@ -1,16 +1,58 @@
-Zähle die Kanten **nach ihrer Lage**. Ein Prisma besteht aus zwei gleichen Grundflächen, die durch Seitenkanten verbunden sind.
+# Erst prüfen, ob der Würfel untergeht
 
-- Das untere Sechseck hat <InlineMath math="6" /> Kanten.
-- Das obere Sechseck hat ebenfalls <InlineMath math="6" /> Kanten.
-- Jede der <InlineMath math="6" /> Ecken des unteren Sechsecks ist durch eine senkrechte Seitenkante mit der passenden Ecke oben verbunden.
+Die Wassermenge bleibt gleich, sie verteilt sich nur neu. Entscheidend ist, ob der Würfel am Ende ganz unter Wasser steht. Nimm zunächst an, dass das Wasser **unter der Oberkante des Würfels** bleibt, also <InlineMath math="h\le20\text{ cm}" />. Dann steht das Wasser nur auf der freien Grundfläche neben dem Würfel:
 
-<BlockMath math="6+6+6=18" />
+<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
 
-Zur Kontrolle hilft der eulersche Polyedersatz <InlineMath math="E-K+F=2" />. Das Prisma hat <InlineMath math="E=12" /> Ecken und <InlineMath math="F=8" /> Flächen, nämlich <InlineMath math="2" /> Sechsecke und <InlineMath math="6" /> Rechtecke. Daraus folgt <InlineMath math="K=E+F-2=12+8-2=18" />.
+# Die Wassermenge gleichsetzen
 
-Das Prisma hat also <InlineMath math="18" /> Kanten.
+Das Wasservolumen ist <InlineMath math="1200\cdot10=12{.}000\text{ cm}^3" />. Es füllt jetzt die freie Fläche bis zur Höhe <InlineMath math="h" />:
 
-- <InlineMath math="6" /> sind nur die Kanten einer einzigen Grundfläche.
-- <InlineMath math="8" /> ist die Anzahl der Flächen, nicht der Kanten.
-- <InlineMath math="12" /> ist die Anzahl der Ecken, oder die Kanten der beiden Sechsecke ohne die Seitenkanten.
-- <InlineMath math="14" /> und <InlineMath math="16" /> passen zu keiner vollständigen Zählung. Der Polyedersatz lässt mit <InlineMath math="12" /> Ecken und <InlineMath math="8" /> Flächen nur <InlineMath math="18" /> Kanten zu.
+<BlockMath math="800\,h=12{.}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+
+**Die Annahme stimmt**, denn <InlineMath math="15\text{ cm}<20\text{ cm}" />. Der Würfel ragt also noch <InlineMath math="5\text{ cm}" /> aus dem Wasser.
+
+<MathVisual
+  title={<>Becken von vorn gesehen</>}
+  description={<>Vorderansicht des Beckens, <InlineMath math="40\text{ cm}" /> breit. Links steht der Würfel mit der Kantenlänge <InlineMath math="20\text{ cm}" />. Rechts daneben steht das Wasser jetzt <InlineMath math="15\text{ cm}" /> hoch, also niedriger als die Würfelkante. Die alte Wasserhöhe von <InlineMath math="10\text{ cm}" /> ist als Linie eingezeichnet.</>}
+  labels={{
+    cube: <>Würfel</>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>vorher <InlineMath math="10\text{ cm}" /></>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    water: <>Wasser</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 52 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
+      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
+      { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
+      { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
+    ],
+    labels: [
+      { key: "cube", objectId: "block", at: { x: 10, y: 10 }, placement: "above" },
+      { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
+      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Das Wasser steht danach <InlineMath math="15\text{ cm}" /> hoch.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> rechnet so, als wäre der ganze Würfel mit <InlineMath math="8{.}000\text{ cm}^3" /> unter Wasser: <InlineMath math="\frac{12{.}000+8{.}000}{1200}" />. Dann müsste das Wasser aber mindestens <InlineMath math="20\text{ cm}" /> hoch stehen, und <InlineMath math="\frac{50}{3}<20" /> widerspricht dem.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> zählt nur den Teil des Würfels, der anfangs im Wasser war: <InlineMath math="\frac{12{.}000+400\cdot10}{1200}" />. Beim Steigen **taucht der Würfel aber weiter ein**.
+- <InlineMath math="20\text{ cm}" /> nimmt an, dass das Wasser genau bis zur Oberkante des Würfels steigt.
+- <InlineMath math="7{,}5\text{ cm}" /> addiert die Würfelfläche zur Grundfläche, statt sie abzuziehen: <InlineMath math="\frac{12{.}000}{1600}" />.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> verwendet <InlineMath math="20^2=400" /> als Volumen des Würfels statt <InlineMath math="20^3" />.

@@ -1,0 +1,69 @@
+# Tetapkan domain dahulu
+
+Logaritma hanya tertakrif untuk nombor positif. Dalam persamaan ada <InlineMath math="\log_2 x" /> dan <InlineMath math="\log_2(x+3)" />, jadi mesti:
+
+<BlockMath math="x>0\quad\text{dan}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+
+Syarat ini milik persamaan **asal**. Nanti kamu hanya boleh simpan nombor dengan <InlineMath math="x>0" /> sebagai penyelesaian.
+
+# Gabungkan logaritma
+
+Dengan <InlineMath math="2\log_2 x=\log_2 x^2" /> dan <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" />, sebelah kiri menjadi **satu logaritma**. Kemudian guna takrif <InlineMath math="\log_2 w=2\iff w=2^2=4" />:
+
+<BlockMath math="\begin{aligned}
+\log_2\frac{x^2}{x+3}&=2 \\
+\frac{x^2}{x+3}&=4 \\
+x^2-4x-12&=0 \\
+(x-6)(x+2)&=0
+\end{aligned}" />
+
+Persamaan kuadratik itu ada dua penyelesaian, <InlineMath math="x=6" /> dan <InlineMath math="x=-2" />.
+
+# Uji kedua-dua calon
+
+Ungkapan ubahan <InlineMath math="\log_2\frac{x^2}{x+3}" /> juga tertakrif pada <InlineMath math="x=-2" />, tetapi sebelah kiri yang asal tidak, sebab <InlineMath math="\log_2(-2)" /> tidak wujud. Maknanya, langkah <InlineMath math="2\log_2 x=\log_2 x^2" /> **telah meluaskan domain**:
+
+<MathVisual
+  title={<>Sebelah kiri dan nilai <InlineMath math="2" /></>}
+  description={<>Graf sebelah kiri <InlineMath math="2\log_2 x-\log_2(x+3)" /> hanya wujud untuk <InlineMath math="x>0" /> dan bertemu garis mengufuk <InlineMath math="y=2" /> tepat pada <InlineMath math="x=6" />. Garis putus-putus ialah graf ungkapan yang sudah diubah, <InlineMath math="\log_2\frac{x^2}{x+3}" />, untuk <InlineMath math="x" /> negatif. Graf itu bertemu garis pada <InlineMath math="x=-2" />, sedangkan di situ persamaan asal tidak tertakrif.</>}
+  labels={{
+    key: <><InlineMath math="x=6" /></>,
+    fake: <><InlineMath math="x=-2" /></>,
+    h: <>sebelah kiri</>,
+    g: <>ungkapan ubahan sahaja</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 10 },
+      y: { min: -4, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "fake", objectId: "extra", at: { x: -2, y: 2 }, placement: "above-left" },
+      { key: "h", objectId: "left-side", at: { x: 9, y: 2.7 }, placement: "above" },
+      { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Uji <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. Persamaan itu benar.
+
+Set penyelesaiannya ialah <InlineMath math="\mathbb{L}=\{6\}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> menyimpan <InlineMath math="x=-2" />. Di situ **<InlineMath math="\log_2 x" /> tidak tertakrif**, walaupun persamaan ubahan itu benar.
+- <InlineMath math="\mathbb{L}=\{-2\}" /> membuang penyelesaian yang betul dan menyimpan yang salah.
+- <InlineMath math="\mathbb{L}=\{\}" /> terhasil kalau <InlineMath math="2\log_2 x" /> dibaca sebagai <InlineMath math="\log_2(2x)" />. Lalu <InlineMath math="\frac{2x}{x+3}=4" /> memberi <InlineMath math="x=-6" />, dan nombor itu tersingkir.
+- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> terhasil kalau beza logaritma ditukar menjadi logaritma bagi beza: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
+- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> terhasil kalau daripada <InlineMath math="\log_2 w=2" /> kamu simpulkan <InlineMath math="w=2" />, sedangkan sepatutnya <InlineMath math="w=4" />.

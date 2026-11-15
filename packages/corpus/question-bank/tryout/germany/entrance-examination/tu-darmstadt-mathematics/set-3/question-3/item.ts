@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10$$",
+          label: "$$\\mathbb{L}=\\{-2;\\,6\\}$$",
         },
         {
           correct: false,
-          label: "$$10^2$$",
-        },
-        {
-          correct: false,
-          label: "$$10^3$$",
+          label: "$$\\mathbb{L}=\\{-2\\}$$",
         },
         {
           correct: true,
-          label: "$$10^4$$",
+          label: "$$\\mathbb{L}=\\{6\\}$$",
         },
         {
           correct: false,
-          label: "$$10^5$$",
+          label: "$$\\mathbb{L}=\\{\\}$$",
         },
         {
           correct: false,
-          label: "$$10^6$$",
+          label: "$$\\mathbb{L}=\\left\\{\\frac{1+\\sqrt{29}}{2}\\right\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{1+\\sqrt7\\}$$",
         },
       ],
     },

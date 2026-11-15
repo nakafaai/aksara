@@ -1,16 +1,72 @@
-Der Zaun läuft einmal um den ganzen Spielplatz, seine Länge ist also der **Umfang des Trapezes**. Drei Seiten sind gegeben, nur die schräge Seite fehlt noch. Fällst du von der oberen rechten Ecke das Lot auf die untere Seite, entsteht ein rechtwinkliges Dreieck. Seine senkrechte Kathete ist <InlineMath math="35\text{ m}" /> lang, seine waagerechte Kathete ist der Unterschied der parallelen Seiten, <InlineMath math="18-6=12\text{ m}" />.
+# Das Dreieck in ein Koordinatensystem legen
+
+Lege den rechten Winkel in den Ursprung <InlineMath math="C(0\mid0)" /> und die Katheten auf die Achsen: <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" />. Dann lassen sich **beide Mittelpunkte als Punkte mit Koordinaten** bestimmen. Die Hypotenuse ist <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+
+# Den Inkreismittelpunkt bestimmen
+
+Der Inkreis berührt beide Katheten, also hat **<InlineMath math="I" /> von beiden Achsen den Abstand <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Den Radius liefert der Flächeninhalt. Zerlege das Dreieck an <InlineMath math="I" /> in drei Teildreiecke, deren Höhen alle <InlineMath math="r" /> sind:
 
 <BlockMath math="\begin{aligned}
-s&=\sqrt{12^2+35^2}=\sqrt{144+1{.}225}=\sqrt{1{.}369}=37\text{ m} \\
-u&=18+6+35+37=96\text{ m}
+\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
+24&=12r \\
+r&=2
 \end{aligned}" />
 
-Zur Kontrolle: Die schräge Seite muss länger sein als <InlineMath math="35\text{ m}" />, aber kürzer als <InlineMath math="12+35=47\text{ m}" />. Beides gilt für <InlineMath math="37\text{ m}" />.
+Also ist <InlineMath math="I(2\mid2)" />.
 
-Der Zaun ist also insgesamt <InlineMath math="96\text{ m}" /> lang.
+# Den Umkreismittelpunkt bestimmen
 
-- <InlineMath math="59\text{ m}" /> addiert nur die drei gegebenen Seiten und vergisst die schräge Seite.
-- <InlineMath math="94\text{ m}" /> setzt die schräge Seite gleich der senkrechten Seite <InlineMath math="35\text{ m}" />.
-- <InlineMath math="106\text{ m}" /> addiert die beiden Katheten zu <InlineMath math="12+35=47\text{ m}" />, statt den Satz des Pythagoras zu verwenden.
-- <InlineMath math="420\text{ m}" /> ist die Maßzahl des Flächeninhalts, <InlineMath math="\frac{18+6}{2}\cdot35=420\text{ m}^2" />, nicht des Umfangs.
-- <InlineMath math="840\text{ m}" /> rechnet <InlineMath math="(18+6)\cdot35" />. Das ist die Flächenformel ohne das Halbieren.
+Im rechtwinkligen Dreieck liegt **der Umkreismittelpunkt in der Mitte der Hypotenuse** (Satz des Thales). Die Mitte von <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" /> ist <InlineMath math="U(4\mid3)" />, der Radius ist <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Inkreis und Umkreis im Koordinatensystem</>}
+  description={<>Das rechtwinklige Dreieck mit <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" />. Der Inkreis hat den Mittelpunkt <InlineMath math="I(2\mid2)" /> und den Radius <InlineMath math="2" />. Der Umkreis hat den Mittelpunkt <InlineMath math="U(4\mid3)" />, die Mitte der Hypotenuse, und den Radius <InlineMath math="5" />. Die Strecke von <InlineMath math="I" /> nach <InlineMath math="U" /> ist hervorgehoben.</>}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2\mid2)" /></>,
+    u: <><InlineMath math="U(4\mid3)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 9.5 },
+      y: { min: -2.5, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "circumcircle", kind: "circle", appearance: "construction", center: { x: 4, y: 3 }, radius: 5 },
+      { id: "distance", kind: "segment", appearance: "answer", from: { x: 2, y: 2 }, to: { x: 4, y: 3 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "pi", kind: "point", appearance: "highlight", at: { x: 2, y: 2 } },
+      { id: "pu", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "c", objectId: "pc", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "i", objectId: "pi", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Den Abstand berechnen
+
+<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+
+Die beiden Mittelpunkte sind **<InlineMath math="\sqrt5" /> voneinander entfernt**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\sqrt{13}" /> entsteht mit <InlineMath math="r=1" />: Dann wurde der Flächeninhalt durch **den ganzen Umfang <InlineMath math="24" /> statt durch den halben Umfang <InlineMath math="12" />** geteilt, und <InlineMath math="I(1\mid1)" /> liegt <InlineMath math="\sqrt{9+4}" /> von <InlineMath math="U" /> entfernt.
+- <InlineMath math="3" /> ist die Differenz der Radien <InlineMath math="5-2" />. Die beiden Mittelpunkte liegen aber nicht auf einer gemeinsamen Geraden mit einem Berührpunkt.
+- <InlineMath math="7" /> ist die Summe der Radien <InlineMath math="5+2" />.
+- <InlineMath math="\frac23" /> entsteht, wenn du <InlineMath math="U" /> mit dem Schwerpunkt <InlineMath math="\left(\frac83\mid2\right)" /> verwechselst. Der Schwerpunkt ist nicht der Umkreismittelpunkt.
+- <InlineMath math="2\sqrt2" /> ist der Abstand von <InlineMath math="I" /> zur Ecke <InlineMath math="C" />, nicht zu <InlineMath math="U" />.
