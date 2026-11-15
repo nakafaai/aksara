@@ -2,29 +2,47 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "classification",
   },
-  stimulus: "repot-plant",
+  stimulus: "indigo-dye",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Follows the instructions",
+        "Breaks the instructions",
+        "Not covered",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
+          label: "Mixing $$250$$ grams of paste into a fresh bath",
+        },
+        {
+          column: 1,
           label:
-            "loosening the outer roots and cutting off any black, soft ones",
+            "Stirring another $$25$$ grams of paste into the bath before the fourth cloth goes in",
         },
         {
-          correct: false,
-          label: "watering slowly until water drains out of the bottom",
+          column: 1,
+          label:
+            "Giving a cloth $$6$$ rounds of a $$5$$-minute dip and a $$15$$-minute airing to make it dark blue",
         },
-        { correct: false, label: "watering the plant lightly the day before" },
-        { correct: false, label: "pressing the fresh soil down lightly" },
         {
-          correct: false,
-          label: "keeping the plant out of strong sunlight for a week",
+          column: 2,
+          label:
+            "Giving a cloth $$4$$ dips of $$5$$ minutes one after another, then one airing of $$60$$ minutes",
+        },
+        {
+          column: 3,
+          label: "Adding a spoonful of salt to the bath",
+        },
+        {
+          column: 2,
+          label:
+            "Rinsing the cloth in cold water with vinegar on the same day as its last round",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "data-interpretation",
   },
-  stimulus: "nickel-processing",
+  stimulus: "household-spending",
   versions: {
     id: {
       columns: ["Ya", "Tidak"],
@@ -15,22 +15,27 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Teks 1 menyebut bahwa larangan ekspor bijih nikel mentah mulai berlaku pada 2020.",
-        },
-        {
-          column: 2,
-          label:
-            "Teks 2 menolak setiap bentuk pengolahan nikel di dalam negeri.",
-        },
-        {
-          column: 2,
-          label:
-            "Teks 1 membahas kecelakaan kerja di kawasan industri pengolahan.",
+            "Kenaikan harga beras $$20\\%$$ menambah pengeluaran kelompok $$20\\%$$ terbawah sekitar $$3{,}6\\%$$ dari seluruh pengeluarannya, jika banyak beras yang dibeli tetap.",
         },
         {
           column: 1,
           label:
-            "Teks 2 menyebut warga sekitar mengeluhkan debu dan air sungai yang keruh.",
+            "Dalam rupiah, tambahan biaya beras kelompok $$20\\%$$ teratas lebih besar daripada tambahan biaya beras kelompok $$20\\%$$ terbawah.",
+        },
+        {
+          column: 2,
+          label:
+            "Subsidi harga beras di semua toko memberi rupiah paling banyak kepada kelompok $$20\\%$$ terbawah.",
+        },
+        {
+          column: 1,
+          label:
+            "Sebagai bagian dari seluruh pengeluaran, kenaikan harga beras paling berat bagi kelompok $$20\\%$$ terbawah.",
+        },
+        {
+          column: 2,
+          label:
+            "Porsi beras dalam pengeluaran kelompok $$20\\%$$ teratas lebih besar daripada porsi beras kelompok $$20\\%$$ terbawah.",
         },
       ],
     },

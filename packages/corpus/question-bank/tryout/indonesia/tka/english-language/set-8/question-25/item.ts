@@ -6,31 +6,30 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "summary",
   },
-  stimulus: "class-cleaning",
+  stimulus: "reading-minutes",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The writer says the parents are wrong about everything.",
-        },
-        {
-          correct: false,
-          label: "The writer asks students to clean the whole school.",
-        },
-        {
-          correct: false,
-          label: "The writer reports how much the school's cleaners earn.",
+          label: "I and IV only",
         },
         {
           correct: true,
-          label:
-            "The writer agrees that professional cleaners are still needed but limits student duty to the classroom.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The writer suggests closing the school hall.",
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

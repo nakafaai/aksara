@@ -6,33 +6,30 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "summary",
   },
-  stimulus: "swim-lessons",
+  stimulus: "bag-fee",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The writer rejects the parents' concern as unimportant.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The writer asks the school to build a pool next to the sports field.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: true,
-          label:
-            "The writer accepts a concern about cost and suggests using the nearby town pool and starting small.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer reports new results from the sports club's course.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label: "The writer explains the rules for swimming at the town pool.",
+          label: "I, II, III, and IV only",
         },
       ],
     },

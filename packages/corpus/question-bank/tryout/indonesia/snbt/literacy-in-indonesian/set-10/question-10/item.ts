@@ -2,32 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "implicit-information",
   },
-  stimulus: "village-postman",
+  stimulus: "crossing-guard",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Isi tas Pak Darto kini kebanyakan tagihan, surat dari bank, dan paket kecil.",
+            "Cara palang diturunkan sekarang berbeda dari cara ayah Rani dulu menurunkannya.",
         },
         {
           column: 2,
-          label: "Mbah Karsih tidak suka ditelepon anaknya lewat video.",
-        },
-        {
-          column: 2,
-          label: "Pak Darto mengirim suratnya dengan layanan kilat.",
+          label:
+            "Kereta jam empat terlambat pada hari ulang tahun Rani yang kesembilan.",
         },
         {
           column: 1,
-          label: "Warno menelepon ibunya lewat video setiap Minggu.",
+          label:
+            "Pada hari ulang tahun Rani yang kesembilan, kereta jam lima sudah lewat sebelum ayahnya pulang.",
+        },
+        {
+          column: 2,
+          label:
+            "Penjaga muda mengenali Rani sebagai anak penjaga yang dulu bertugas di pos itu.",
+        },
+        {
+          column: 2,
+          label:
+            "Potongan koran itu menyebut bahwa penjaga yang membantu korban adalah ayah Rani.",
         },
       ],
     },

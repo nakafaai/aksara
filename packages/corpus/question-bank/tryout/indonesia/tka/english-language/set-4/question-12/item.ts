@@ -2,30 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "outline",
   },
-  stimulus: "power-cut",
+  stimulus: "kite-cliff",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "He stays practical when he has to act in the dark.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "He is annoyed that his grandmother needs his help.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: true,
-          label: "He is able to joke about his own fear afterwards.",
+          label: "I, II, and IV only",
         },
         {
-          correct: true,
-          label: "He tries to make his grandmother feel at ease.",
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

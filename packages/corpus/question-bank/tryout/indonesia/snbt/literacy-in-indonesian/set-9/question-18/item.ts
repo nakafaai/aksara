@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "argument-evaluation",
   },
-  stimulus: "remote-work",
+  stimulus: "tutoring-scores",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Brosur salah menghitung, karena selisih nilai Februari kedua kelompok kurang dari $$10$$ poin, dan tabel pertama menunjukkannya.",
+        },
+        {
+          correct: false,
+          label:
+            "Siswa yang tidak ikut juga naik, sehingga bimbingan terbukti tidak berpengaruh sama sekali, dan tabel pertama menunjukkan kenaikan $$9$$ poin.",
+        },
+        {
           correct: true,
           label:
-            "seberapa jauh karyawan sebaiknya diizinkan bekerja dari rumah",
-        },
-        {
-          correct: false,
-          label: "perlu tidaknya perusahaan merekrut pekerja dari kota lain",
+            "Siswa bimbingan sudah unggul $$7$$ poin sebelum bimbingan dimulai, dan tabel kedua menunjukkan bahwa dengan titik awal sama, selisih kenaikannya hanya $$2$$ poin.",
         },
         {
           correct: false,
           label:
-            "apakah pekerja berpengalaman diuntungkan oleh kerja jarak jauh",
+            "Siswa bimbingan sudah unggul $$7$$ poin sebelum bimbingan dimulai, dan tabel kedua menunjukkan bahwa dengan titik awal sama, selisih kenaikannya $$11$$ poin.",
         },
         {
           correct: false,
-          label: "perlu tidaknya rapat dadakan dihapus dari semua kantor",
-        },
-        {
-          correct: false,
-          label: "apakah laporan dan analisis data dapat dikerjakan di kantor",
+          label:
+            "Kelompok bimbingan lebih sedikit siswanya, sehingga rata-ratanya tidak dapat dibandingkan sama sekali, dan tabel pertama menunjukkan $$120$$ banding $$180$$ siswa.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "calculation",
   },
-  stimulus: "bike-share",
+  stimulus: "fuel-subsidy",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah perjalanan pada April ternyata lebih sedikit daripada pada Maret.",
+            "$$17\\%$$ dan $$23\\%$$, jadi kelompok keempat lebih terbebani",
+        },
+        {
+          correct: false,
+          label:
+            "Rp$$1{,}7$$ juta dan Rp$$2{,}3$$ juta, jadi kelompok keempat lebih terbebani",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$3{,}8\\%$$ dan $$3{,}3\\%$$, jadi kelompok keempat lebih terbebani",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$37{,}8\\%$$ dan $$32{,}9\\%$$, jadi kelompok tengah lebih terbebani",
         },
         {
           correct: true,
           label:
-            "Perjalanan per sepeda turun pada April, jadi warga tidak terbukti makin rajin.",
-        },
-        {
-          correct: false,
-          label:
-            "Kenaikan jumlah perjalanan dari Maret ke April lebih dari dua kali lipat.",
-        },
-        {
-          correct: false,
-          label:
-            "Tabel tidak mencatat jumlah sepeda yang tersedia pada setiap bulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Musim hujan justru baru dimulai pada April, sehingga perjalanan seharusnya turun.",
+            "sekitar $$3{,}8\\%$$ dan $$3{,}3\\%$$, jadi kelompok tengah lebih terbebani",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa Bu Warsih sudah terlalu tua dan lelah untuk menangani pasien seperti Sumi",
+            "membuka bahwa ketenangan Bu Warsih sepanjang adegan adalah sikap menahan diri, karena ia menyesal tidak memberi tahu Nia soal surat rujukan",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa Bu Warsih menyesal karena tidak memberi tahu Nia tentang surat rujukan yang ia tulis sejak sore",
+            "menunjukkan bahwa Bu Warsih kedinginan setelah hujan deras turun sepanjang malam di desa tepi sungai itu",
         },
         {
           correct: false,
           label:
-            "menegaskan bahwa udara malam itu sangat dingin karena hujan deras belum juga berhenti",
+            "membuka bahwa ketenangan Bu Warsih sepanjang adegan adalah sikap menahan diri, karena ia tidak percaya Nia mampu mengantar Sumi sampai ke kota",
         },
         {
           correct: false,
           label:
-            "memberi tanda bahwa Bu Warsih marah kepada Nia karena bidan muda itu terus mendesaknya",
+            "menunjukkan bahwa Bu Warsih kesal karena kalah berdebat dengan Nia, sehingga perasaannya baru tampak setelah semua orang pergi",
         },
         {
           correct: true,
           label:
-            "membuka bahwa ketenangan Bu Warsih sepanjang adegan adalah sikap menahan diri, bukan karena ia tidak cemas",
+            "membuka bahwa ketenangan Bu Warsih sepanjang adegan adalah sikap menahan diri, bukan tanda bahwa ia tidak cemas akan keadaan Sumi",
         },
       ],
     },

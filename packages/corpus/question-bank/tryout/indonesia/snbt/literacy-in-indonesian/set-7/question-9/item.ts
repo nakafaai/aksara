@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    contentDomain: "fiction",
+    topic: "tone-attitude",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Jumlah kendaraan pribadi di kota itu naik setiap tahun selama sepuluh tahun terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Biaya membangun trotoar lebih murah daripada biaya melebarkan jalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pengendara mobil mengeluh karena lajur jalan menjadi lebih sempit.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedagang kaki lima lebih suka berjualan di trotoar yang lebar.",
-        },
-        {
           correct: true,
           label:
-            "Setelah trotoar diperbaiki, pejalan kaki bertambah dan perjalanan pendek naik ojek turun.",
+            'Dari kekaguman kanak-kanak pada kemampuan ayah membaca laut menjadi kesadaran bahwa ia sendiri belum mampu membaca "pasang" hidupnya, ditandai jawaban ayah di telepon.',
+        },
+        {
+          correct: false,
+          label:
+            "Dari kekaguman pada ayah menjadi kekecewaan karena ayah tidak lagi melaut, ditandai baris tentang lutut ayah yang berkarat.",
+        },
+        {
+          correct: false,
+          label:
+            "Dari kebosanan pada jadwal pasang menjadi kerinduan pada kampung, ditandai jam ponsel yang tepat sampai detik.",
+        },
+        {
+          correct: false,
+          label:
+            'Dari kekaguman pada ayah menjadi keraguan pada nasihatnya, ditandai jawaban aku, "tidak ada laut di sini, Yah".',
+        },
+        {
+          correct: false,
+          label:
+            "Sikap aku tidak berkembang sama sekali, karena sejak awal ia sudah memahami arti pasang dalam hidupnya.",
         },
       ],
     },

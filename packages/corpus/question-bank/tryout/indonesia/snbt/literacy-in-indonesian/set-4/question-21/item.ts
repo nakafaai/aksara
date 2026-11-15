@@ -9,32 +9,33 @@ const item: ItemSource = {
   stimulus: "balai-pustaka",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Penyebaran bacaan dan penyaringan isinya di Balai Pustaka adalah dua sisi dari satu kebijakan kolonial.",
+            "Pemerintah kolonial menyebarkan bacaan karena ingin ikut menentukan apa yang dibaca rakyat yang mulai melek huruf.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Balai Pustaka berjasa besar bagi sastra Indonesia karena menerbitkan novel-novel yang kini dibaca di sekolah.",
+            "Jasa Balai Pustaka menyebarkan bacaan membuat perannya sebagai penyaring tidak perlu dipersoalkan lagi.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Balai Pustaka pada dasarnya hanyalah alat sensor, sehingga jasanya menyebarkan bacaan tidak perlu diperhitungkan.",
+            "Wajah penyebar bacaan dan wajah penyaring sama-sama nyata, bukan salah satunya kedok bagi yang lain.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bacaan liar lebih bermutu daripada terbitan Balai Pustaka karena ditulis tanpa pedoman dari pemerintah kolonial.",
+            "Balai Pustaka paling tepat dinilai dari naskah-naskah yang ditolaknya, karena di situlah wajah aslinya tampak.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Balai Pustaka didirikan pada 1917 untuk menggantikan sekolah pribumi yang dinilai gagal mengajarkan membaca.",
+            "Bacaan liar lebih bermutu daripada terbitan Balai Pustaka karena terbit tanpa pedoman pemerintah kolonial.",
         },
       ],
     },

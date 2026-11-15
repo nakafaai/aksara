@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "remote-work",
+  stimulus: "tutoring-scores",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Teks 2 menolak segala bentuk kerja dari rumah.",
+          correct: false,
+          label:
+            "sekitar $$12$$ poin, sama dengan kenaikan rata-rata seluruh siswa bimbingan",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Teks 1 membahas kesulitan karyawan baru yang bekerja dari rumah.",
+            "sekitar $$12{,}7$$ poin, dari sekitar $$62$$ menjadi sekitar $$74{,}7$$",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Teks 1 menyebut perusahaan dapat merekrut orang dari kota mana saja.",
+            "sekitar $$11$$ poin, sama dengan kenaikan siswa bimbingan di tabel kedua",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Teks 2 menyebut karyawan baru yang bekerja dari rumah lebih mudah merasa terasing.",
+            "sekitar $$1$$ poin, yaitu selisih nilai Februari $$74$$ dan $$73$$",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$9$$ poin, sama dengan kenaikan siswa yang tidak ikut bimbingan",
         },
       ],
     },

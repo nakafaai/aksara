@@ -12,29 +12,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Percobaan selai ternyata keliru, karena meta-analisis 2010 membuktikan bahwa banyaknya pilihan tidak pernah berpengaruh pada pembelian.",
-        },
-        {
-          correct: false,
-          label:
-            "Stan $$24$$ rasa justru menarik lebih banyak pengunjung, sehingga toko tetap untung dengan memajang banyak pilihan.",
+            "Dalam meta-analisis 2010, pengaruh rata-rata banyaknya pilihan terhadap pembelian hampir nol.",
         },
         {
           correct: true,
           label:
-            "Penelitian sesudahnya menemukan pengaruh rata-rata hampir nol, dan kelebihan pilihan hanya lebih mungkin muncul dalam keadaan tertentu.",
+            "Dalam sebagian percobaan, pilihan yang banyak justru menambah pembelian.",
         },
         {
           correct: false,
           label:
-            "Percobaan selai hanya dilakukan pada satu jenis barang, sehingga hasilnya tidak berlaku sama sekali untuk barang lain.",
+            "Percobaan selai terbukti keliru, sehingga hasilnya tidak perlu dipakai lagi.",
+        },
+        {
+          correct: true,
+          label:
+            "Mengurangi pilihan lebih mungkin membantu jika pilihan-pilihannya sulit dibandingkan satu sama lain.",
         },
         {
           correct: false,
           label:
-            "Meta-analisis 2015 menunjukkan bahwa banyak pilihan selalu menambah pembelian jika orang ingin memilih dengan usaha sesedikit mungkin.",
+            "Mengurangi pilihan pasti menaikkan penjualan jika pembeli ingin memilih dengan usaha sesedikit mungkin.",
         },
       ],
     },

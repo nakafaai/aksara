@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "sequence",
+    topic: "explicit-information",
   },
-  stimulus: "beach-cleanup",
+  stimulus: "orange-float",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "the volunteers meeting at the parking area" },
-        {
-          correct: false,
-          label: "Kak Dewi dividing the volunteers into groups of five",
-        },
-        {
-          correct: false,
-          label: "the writer thinking about the wrappers on the way home",
-        },
-        {
-          correct: false,
-          label:
-            "Kak Dewi explaining that much of the waste came down the river",
-        },
         {
           correct: true,
-          label:
-            "the writer's group counting wrappers, straws, and bottles near the river mouth",
+          label: "$$0.40$$ metres per second",
+        },
+        {
+          correct: false,
+          label: "about $$0.39$$ metres per second",
+        },
+        {
+          correct: false,
+          label: "about $$0.44$$ metres per second",
+        },
+        {
+          correct: false,
+          label: "about $$0.42$$ metres per second",
+        },
+        {
+          correct: false,
+          label: "about $$0.43$$ metres per second",
         },
       ],
     },

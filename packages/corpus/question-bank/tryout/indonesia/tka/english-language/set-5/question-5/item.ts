@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "text-fit",
+    topic: "information-validity",
   },
-  stimulus: "night-market",
+  stimulus: "solar-hall",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Bright yellow tape on the ground marks the edges of this open lane.",
+            "On an overcast day, the panels produce less than half of what they produce on a clear day.",
+        },
+        {
+          correct: true,
+          label:
+            "Starting full, with everything else switched off (the refrigerator too), the battery can run the fans for $$20$$ hours before the hall switches to the grid.",
+        },
+        {
+          correct: false,
+          label: "The panels will have paid for themselves within eight years.",
+        },
+        {
+          correct: true,
+          label:
+            "In one day, the refrigerator uses more energy than the projector uses on a typical event evening.",
         },
         {
           correct: false,
           label:
-            "The school band will play a new song at next Saturday's show.",
-        },
-        {
-          correct: false,
-          label: "Night markets first appeared in China hundreds of years ago.",
-        },
-        {
-          correct: false,
-          label:
-            "Readers who dislike crowds should visit the day market instead.",
-        },
-        {
-          correct: false,
-          label:
-            "The benches in front of the stage are painted green every year.",
+            "The hall bought more than $$300$$ kWh from the grid in the rainy months last year.",
         },
       ],
     },

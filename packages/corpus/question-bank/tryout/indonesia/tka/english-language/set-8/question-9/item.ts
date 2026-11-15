@@ -4,30 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "character",
   },
-  stimulus: "science-fair",
+  stimulus: "egg-incubator",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "They had never seen ice melt before." },
         {
           correct: false,
-          label: "They expected the unwrapped cube to last the longest.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "They believed the judges had made a mistake.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "They thought newspaper was the best material.",
+          label: "III and V only",
         },
         {
           correct: true,
-          label:
-            "They linked wool with warmth, so they expected it to make the ice melt faster.",
+          label: "I, III, and V only",
+        },
+        {
+          correct: false,
+          label: "I, III, IV, and V only",
         },
       ],
     },

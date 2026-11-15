@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "calculation",
   },
-  stimulus: "water-stunting",
+  stimulus: "tutoring-scores",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Air dan stunting tampak berkaitan, tetapi pendapatan terbukti sama sekali tidak berpengaruh.",
-        },
-        {
-          correct: false,
-          label:
-            "Stunting di keempat desa itu sepenuhnya disebabkan oleh pendapatan yang rendah.",
-        },
-        {
-          correct: false,
-          label:
-            "Desa yang dekat puskesmas selalu memiliki akses air minum yang lebih baik.",
-        },
-        {
-          correct: false,
-          label:
-            "Diare berulang tidak berkaitan dengan penyerapan zat gizi pada anak.",
-        },
-        {
           correct: true,
           label:
-            "Akses air yang baik sejalan dengan stunting yang rendah, tetapi faktor lain ikut berbeda.",
+            "sekitar $$10{,}2$$ poin, berada di antara kenaikan kedua kelompok, yaitu $$12$$ dan $$9$$ poin",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$10{,}5$$ poin, yaitu rata-rata biasa dari kenaikan $$12$$ dan $$9$$ poin",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$10$$ poin, yaitu selisih nilai Februari kedua kelompok",
+        },
+        {
+          correct: false,
+          label: "sekitar $$21$$ poin, yaitu jumlah kenaikan kedua kelompok",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$10{,}2$$ poin, lebih besar daripada kenaikan kedua kelompok",
         },
       ],
     },

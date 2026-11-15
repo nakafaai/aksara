@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
   },
-  stimulus: "jamu-seller",
+  stimulus: "science-language",
   versions: {
     id: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "dari bangga menjadi kecewa karena bakul jamunya ternyata terlalu berat",
+            "Kajian itu hanya mencakup $$400$$ artikel, jadi perlu mengulang kajian di lebih banyak universitas agar jumlahnya cukup.",
         },
         {
           correct: false,
-          label: "dari marah menjadi takut karena para pelanggan menunggu",
-        },
-        {
-          correct: false,
-          label: "dari acuh tak acuh menjadi ingin berhenti kuliah farmasi",
+          label:
+            "Selisih sitasi bisa berasal dari dana dan pengalaman tim, jadi perlu menghitung sitasi selama sepuluh tahun, bukan lima tahun.",
         },
         {
           correct: true,
           label:
-            "dari malu menjadi menghargai pengetahuan dan kepedulian ibunya",
+            "Selisih sitasi bisa berasal dari dana dan pengalaman tim, jadi perlu membandingkan sitasi artikel kedua bahasa yang dana proyek dan pengalaman timnya setara.",
         },
         {
           correct: false,
-          label: "dari kasihan menjadi ingin menjual jamu di kota",
+          label:
+            "Selisih sitasi bisa berasal dari dana dan pengalaman tim, jadi perlu menghitung berapa petugas pemadam dan petani yang membaca artikel berbahasa Indonesia.",
+        },
+        {
+          correct: false,
+          label:
+            "Sitasi tidak mengukur manfaat bagi pemakai yang bukan peneliti, jadi perlu membandingkan sitasi artikel kedua bahasa yang dana dan timnya setara.",
         },
       ],
     },

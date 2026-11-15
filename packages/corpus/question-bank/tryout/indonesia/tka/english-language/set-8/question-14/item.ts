@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "synthesis",
+    topic: "prediction",
   },
-  stimulus: "night-ferry",
+  stimulus: "dry-well",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The fisherman agreed to help because he was paid with the sack of rice.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The grandmother phoned the fisherman and asked him to take them across.",
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
         },
         {
           correct: true,
-          label:
-            "The deckhand who took the mangosteens is the one who asked his father to help them.",
-        },
-        {
-          correct: false,
-          label: "Rani missed her cousin's wedding because the ferry was full.",
-        },
-        {
-          correct: false,
-          label: "The ferry turned around and came back to pick them up.",
+          label: "I, II, and IV only",
         },
       ],
     },

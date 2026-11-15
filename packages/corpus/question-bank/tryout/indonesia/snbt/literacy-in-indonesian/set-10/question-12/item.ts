@@ -3,34 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "village-postman",
+  stimulus: "ai-homework",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "tidak mengerti cara memakai ponsel yang dipinjam dari tetangganya",
+            "Lebih dari separuh siswa yang diperiksa penulis Teks A tidak dapat menjelaskan gagasan utama esainya sendiri.",
         },
         {
-          correct: false,
-          label: "menganggap telepon video lebih mahal daripada surat",
+          column: 2,
+          label:
+            "Menurut Teks A, $$18$$ siswa sudah terbukti memakai aplikasi kecerdasan buatan.",
         },
         {
-          correct: false,
-          label: "merasa anaknya tidak jujur ketika meneleponnya",
+          column: 1,
+          label:
+            "Menurut Teks B, alat pendeteksi dapat merugikan siswa yang bukan penutur asli bahasa Inggris.",
         },
         {
-          correct: true,
-          label: "menghargai surat karena dapat disimpan dan dibaca ulang",
+          column: 2,
+          label:
+            "Menurut penelitian yang dikutip Teks B, alat pendeteksi tulisan mesin tidak pernah benar.",
         },
         {
-          correct: false,
-          label: "ingin Pak Darto berhenti mengantar tagihan ke dusun",
+          column: 2,
+          label: "Teks B mengusulkan agar seluruh esai dikerjakan di kelas.",
         },
       ],
     },

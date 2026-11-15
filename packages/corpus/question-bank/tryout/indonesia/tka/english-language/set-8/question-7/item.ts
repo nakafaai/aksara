@@ -6,16 +6,31 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "explicit-information",
   },
-  stimulus: "science-fair",
+  stimulus: "egg-incubator",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "The group won first place." },
-        { column: 1, label: "Each group had four weeks to prepare." },
-        { column: 1, label: "The group repeated its test three times." },
-        { column: 2, label: "The cube wrapped in foil lasted the longest." },
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "One half",
+        },
+        {
+          correct: false,
+          label: "One sixth",
+        },
+        {
+          correct: false,
+          label: "Two fifteenths",
+        },
+        {
+          correct: false,
+          label: "One fifth",
+        },
+        {
+          correct: true,
+          label: "One third",
+        },
       ],
     },
   },

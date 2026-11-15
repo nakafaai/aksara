@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "prediction",
+    topic: "cause-effect",
   },
-  stimulus: "fair-discussion",
+  stimulus: "compost-heap",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,26 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Respect the pass, return to the focused question, and invite another perspective.",
+            "A heap mixed by weight, three kilograms of browns to one of greens, is likely to stay cold.",
+        },
+        {
+          correct: true,
+          label: "A heap with too many greens smells of ammonia.",
         },
         {
           correct: false,
           label:
-            "Require the invited student to answer so every participant reaches the same turn count.",
+            "A heap that smells sour after eight weeks cannot be turned, because turning stops after six weeks.",
         },
         {
           correct: false,
           label:
-            "Let the two dominant students continue because the first invitation did not produce an answer.",
+            "A heap that reaches $$60^\\circ\\text{C}$$ in its first week is too wet.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "End the discussion and use the participation list to declare the most active speaker the winner.",
-        },
-        {
-          correct: false,
-          label:
-            "Remove the right to pass from the next invitation so a different voice must enter.",
+            "A damp heap that stays cold in its first week and has no smell needs more greens, not water.",
         },
       ],
     },

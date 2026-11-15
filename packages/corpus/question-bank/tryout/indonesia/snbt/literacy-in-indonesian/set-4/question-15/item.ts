@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "membuktikan bahwa kelas kecil tidak bermanfaat bagi siswa SD di mana pun, sehingga usul Teks A sebaiknya ditolak seluruhnya",
+            "Batas ukuran kelas yang direncanakan sama-sama $$20$$ siswa per kelas.",
         },
         {
           correct: true,
           label:
-            "menunjukkan bahwa manfaat kelas kecil dapat menyusut kalau kebijakan diperluas lebih cepat daripada tersedianya guru yang layak",
+            "Kebijakannya sama-sama menuntut banyak guru baru, padahal guru layak yang tersedia jauh lebih sedikit.",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa Project STAR dirancang dengan buruk, sehingga hasilnya tidak dapat dipercaya",
+            "Pembagian siswa ke kelas kecil dan kelas biasa sama-sama dilakukan secara acak.",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa California membatasi ukuran kelas lebih ketat daripada batas yang diusulkan Teks A untuk Lembah Hijau",
+            "Kebijakannya sama-sama dimulai dari sekolah-sekolah di kawasan miskin.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa guru bersertifikat lebih suka mengajar di sekolah-sekolah di kawasan miskin",
+            "Nilai tes siswa kelas kecil sama-sama turun setelah kebijakan dijalankan.",
         },
       ],
     },

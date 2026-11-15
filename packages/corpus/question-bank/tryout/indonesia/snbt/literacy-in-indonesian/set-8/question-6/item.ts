@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "school-distance",
+  stimulus: "last-newsstand",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Aturan jarak sebaiknya dihapus dan diganti dengan seleksi nilai seperti dulu.",
-        },
-        {
-          correct: false,
-          label:
-            "Aturan jarak sudah berjalan sempurna sehingga tidak perlu diubah sama sekali.",
+            "Pak Darto datang demi koran Pagi Raya yang sebentar lagi berhenti terbit, dan kabar tentang anaknya menunjukkan ia ingin berhemat seperti anaknya.",
         },
         {
           correct: true,
           label:
-            "Aturan jarak perlu dipertahankan, tetapi kelemahannya di lapangan harus diatasi.",
+            "Pak Darto datang untuk kebersamaan yang ia temukan di lapak, dan kabar tentang anaknya yang tidak pulang membuat janji Pak Harun untuk tetap ada makin berarti.",
         },
         {
           correct: false,
           label:
-            "Aturan jarak hanya cocok diterapkan di kecamatan yang memiliki tiga SMA negeri.",
+            "Pak Darto datang untuk kebersamaan yang ia temukan di lapak, dan kabar tentang anaknya menunjukkan ia marah kepada anaknya sehingga memilih menjauh dari rumah.",
         },
         {
           correct: false,
           label:
-            "Aturan jarak lebih adil jika setiap keluarga boleh memilih alamatnya sendiri.",
+            "Pak Harun berjanji koran Pagi Raya akan tetap ada sesudah berhenti terbit, dan Pak Darto percaya karena ia jarang membaca berita.",
+        },
+        {
+          correct: false,
+          label:
+            "Pak Darto datang untuk kebersamaan yang ia temukan di lapak, tetapi ia akan berhenti datang begitu Pagi Raya tidak lagi terbit.",
         },
       ],
     },

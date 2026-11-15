@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "prediction",
+    topic: "main-idea-purpose",
   },
-  stimulus: "borrowed-camera",
+  stimulus: "songket-loom",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "take as many pictures as possible and keep only the best one",
-        },
-        {
           correct: true,
-          label: "wait for the right moment before taking each picture",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "refuse to borrow the camera again because he lost the cap",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label: "leave the lens cap at home so that he cannot lose it",
+          label: "I only",
         },
         {
           correct: false,
-          label: "enter only photos from his phone in future contests",
+          label: "II and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
       ],
     },

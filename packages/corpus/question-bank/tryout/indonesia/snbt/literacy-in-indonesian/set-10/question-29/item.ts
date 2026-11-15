@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "wall-clock",
+  stimulus: "regression-mean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "tidak tahu cara membetulkan jarum jam dinding",
+          correct: true,
+          label:
+            "Pemain yang mencetak gol terbanyak pada satu musim mencetak lebih sedikit gol pada musim berikutnya, walaupun latihannya sama.",
         },
         {
           correct: true,
-          label: "ingin menjaga kenangan tentang Kakek apa adanya",
+          label:
+            "Ruas jalan dengan kecelakaan terbanyak tahun lalu mencatat lebih sedikit kecelakaan tahun ini, walaupun tidak ada perubahan apa pun di jalan itu.",
         },
         {
           correct: false,
-          label: "ingin membeli jam baru yang lebih tepat waktunya",
+          label:
+            "Siswa yang dibagi secara acak ke kelompok yang belajar lebih lama mendapat nilai lebih tinggi daripada kelompok lain.",
+        },
+        {
+          correct: true,
+          label:
+            "Orang yang berobat ketika sakit kepalanya paling parah biasanya merasa lebih baik keesokan harinya, apa pun obat yang diminum.",
         },
         {
           correct: false,
-          label: "kesal karena jam itu selalu terlambat setiap hari",
-        },
-        {
-          correct: false,
-          label: "menganggap waktu tidak penting dalam hidupnya",
+          label:
+            "Tinggi badan anak-anak bertambah dari tahun ke tahun selama masa sekolah dasar.",
         },
       ],
     },

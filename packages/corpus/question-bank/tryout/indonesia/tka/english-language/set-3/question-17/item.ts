@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "classification",
   },
-  stimulus: "fair-discussion",
+  stimulus: "compost-heap",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Ready to use", "Turn it now", "Leave it as it is"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Rank the first responses, narrow the question, and let the highest-ranked speaker conclude.",
+            "Heap A: built $$9$$ weeks ago, centre $$29^\\circ\\text{C}$$ on the last check and $$28^\\circ\\text{C}$$ today, air $$26^\\circ\\text{C}$$, smells of earth.",
         },
         {
-          correct: false,
+          column: 3,
           label:
-            "Start with interruptions, skip evidence, and end without reflection.",
+            "Heap B: built $$10$$ weeks ago, centre $$33^\\circ\\text{C}$$ on the last check and $$31^\\circ\\text{C}$$ today, air $$27^\\circ\\text{C}$$, smells of earth.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Let the two most active speakers test each other's claims before inviting others.",
+            "Heap C: built $$4$$ weeks ago, centre $$47^\\circ\\text{C}$$ on the last check and $$43^\\circ\\text{C}$$ today.",
         },
         {
-          correct: true,
+          column: 3,
           label:
-            "Focus and prepare, exchange and restate, widen participation, revise, then review the process.",
+            "Heap D: built $$7$$ weeks ago, centre $$41^\\circ\\text{C}$$ on the last check and $$39^\\circ\\text{C}$$ today.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Hide key terms and prevent participants from correcting restatements.",
+            "Heap E: built exactly $$8$$ weeks ago, centre $$30^\\circ\\text{C}$$ on the last check and $$29^\\circ\\text{C}$$ today, air $$27^\\circ\\text{C}$$, smells of earth.",
         },
       ],
     },

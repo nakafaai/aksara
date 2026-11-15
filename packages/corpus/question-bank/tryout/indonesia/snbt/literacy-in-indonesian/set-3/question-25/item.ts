@@ -15,12 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Dahulu, kereta dari jalur Semarang ke pedalaman tidak dapat langsung berjalan di jalur yang dibangun perusahaan milik pemerintah.",
-        },
-        {
-          column: 1,
-          label:
-            "Barang yang berpindah antarjalur dengan lebar rel berbeda harus dipindahkan di stasiun pertemuan.",
+            "Dahulu, kereta dari jalur Semarang ke pedalaman tidak dapat langsung berjalan di jalur milik perusahaan pemerintah.",
         },
         {
           column: 2,
@@ -30,12 +25,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Sebelum ada rel, mengangkut hasil bumi lebih sulit pada musim hujan.",
+            "Sebelum ada rel, lama perjalanan hasil bumi dapat berbeda antara musim kemarau dan musim hujan.",
         },
         {
           column: 2,
           label:
-            "Jalur pertama dibangun dengan rel lebar agar seragam dengan jaringan milik pemerintah.",
+            "Jalur pertama memakai rel lebar agar seragam dengan jaringan milik pemerintah.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada awalnya, kereta api di jalur itu hanya mengangkut hasil perkebunan.",
         },
       ],
     },

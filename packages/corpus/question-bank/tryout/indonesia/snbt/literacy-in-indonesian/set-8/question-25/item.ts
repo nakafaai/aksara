@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "author-view",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "semua peserta konferensi sebenarnya mendukung blok Uni Soviet",
+            "Penulis menilai cerita itu menyentuh tetapi tidak lengkap, dan menolak pandangan bahwa kemenangan itu berarti lebih dari olahraga.",
         },
         {
           correct: true,
           label:
-            "peserta konferensi tidak selalu sepakat walaupun memiliki tujuan bersama",
+            "Penulis menilai cerita itu menyentuh tetapi tidak lengkap, dan menegaskan bahwa kemenangan itu berarti lebih dari olahraga.",
         },
         {
           correct: false,
           label:
-            "konferensi itu dibatalkan sebelum Dasasila Bandung disepakati",
+            "Penulis menolak cerita itu sepenuhnya, tetapi menegaskan bahwa kemenangan itu berarti lebih dari olahraga.",
         },
         {
           correct: false,
           label:
-            "Eropa Timur menjadi salah satu peserta Konferensi Asia Afrika",
+            "Penulis menerima cerita itu sepenuhnya, dan menegaskan bahwa kemenangan itu berarti lebih dari olahraga.",
         },
         {
           correct: false,
           label:
-            "negara-negara Afrika tidak diizinkan berbicara sama sekali dalam konferensi itu",
+            "Penulis menilai cerita itu sengaja dikarang, dan menolak pandangan bahwa kemenangan itu berarti lebih dari olahraga.",
         },
       ],
     },

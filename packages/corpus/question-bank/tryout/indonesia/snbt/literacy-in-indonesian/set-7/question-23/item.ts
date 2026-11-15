@@ -2,32 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "cause-effect",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Kata *meja* dan *jendela* berasal dari bahasa Belanda.",
-        },
-        {
-          column: 1,
-          label: "Kata *kulkas* berasal dari kata Belanda *koelkast*.",
-        },
-        {
-          column: 2,
+          correct: true,
           label:
-            "Dalam bahasa Indonesia, kata *sengsara* masih berarti perputaran kelahiran dan kematian.",
+            "Tiang yang diletakkan di atas batu sandi dapat bergeser sedikit ketika tanah berguncang.",
         },
         {
-          column: 1,
-          label: "Kata *daring* merupakan singkatan dari *dalam jaringan*.",
+          correct: false,
+          label:
+            "Atap yang curam ikut mengalirkan guncangan ke tanah bersama air hujan.",
+        },
+        {
+          correct: true,
+          label: "Sambungan pasak dapat bergerak sedikit tanpa patah.",
+        },
+        {
+          correct: false,
+          label:
+            "Pasak kayu mengunci sambungan begitu rapat sehingga rumah tidak bergerak sama sekali.",
+        },
+        {
+          correct: true,
+          label:
+            "Bangunan yang kaku menahan seluruh guncangan sampai bagian terlemahnya patah.",
         },
       ],
     },

@@ -4,30 +4,42 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "explicit-information",
+    topic: "classification",
   },
-  stimulus: "night-market",
+  stimulus: "solar-hall",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: [
+        "The battery alone is enough",
+        "The hall will need the grid",
+        "Not allowed as planned",
+      ],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Every food stall must keep a bucket of water beside its stove.",
+            "Film night after a clear day, battery full: lights, projector and sound system for $$3$$ hours each.",
+        },
+        {
+          column: 3,
+          label:
+            "Wedding after a clear day, battery full: lights and fans for $$5$$ hours, sound system for $$4$$ hours, and the water pump for one hour while the sound system plays.",
         },
         {
           column: 2,
-          label: "The west lane is where most of the food is sold.",
+          label:
+            "Night market after an overcast day, $$12$$ kWh in the battery at sunset: lights and fans for $$6$$ hours.",
         },
         {
           column: 1,
-          label: "Cloth bags can be bought at the information booth.",
+          label:
+            "Meeting after a clear day, battery full: lights and fans for $$5$$ hours, then the water pump for one hour after everything else is off.",
         },
         {
           column: 2,
-          label: "Stallholders from any district may sell at the night market.",
+          label:
+            "Quiz night after an overcast day, $$10$$ kWh in the battery at sunset: lights, fans and sound system for $$4$$ hours each.",
         },
       ],
     },

@@ -2,37 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "letter-poem",
+  stimulus: "framing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            '"Operasi ini memberi peluang hidup $$90\\%$$" dan "Operasi ini membawa risiko meninggal $$10\\%$$"',
+        },
+        {
           correct: false,
           label:
-            "aku lirik menanam bunga di halaman rumah kosnya untuk mengingat kampung halamannya",
-        },
-        {
-          correct: false,
-          label:
-            "aku lirik ingin segera pulang dan bertani lagi di sawah ibunya",
-        },
-        {
-          correct: false,
-          label: "aku lirik sudah melupakan kampungnya sejak bekerja di kota",
-        },
-        {
-          correct: false,
-          label: "aku lirik sakit dada karena udara kota yang kotor",
+            '"Vaksin ini melindungi $$95\\%$$ penerimanya" dan "Vaksin itu melindungi $$80\\%$$ penerimanya"',
         },
         {
           correct: true,
           label:
-            "aku lirik berusaha merawat ingatan dan ikatannya dengan kampung halaman",
+            '"Daging ini $$75\\%$$ bebas lemak" dan "Daging ini mengandung $$25\\%$$ lemak"',
+        },
+        {
+          correct: false,
+          label:
+            '"Harga sepatu ini dipotong Rp$$10{.}000$$" dan "Harga sepatu ini dipotong $$10\\%$$"',
+        },
+        {
+          correct: true,
+          label:
+            '"Program ini menyelamatkan $$200$$ dari $$600$$ warga" dan "Dengan program ini, $$400$$ dari $$600$$ warga akan meninggal"',
         },
       ],
     },

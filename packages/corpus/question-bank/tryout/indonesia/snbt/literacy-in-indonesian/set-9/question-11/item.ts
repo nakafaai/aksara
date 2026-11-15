@@ -3,34 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "tea-picker",
+  stimulus: "street-vendors",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "panik karena takut kehilangan pekerjaannya di kebun teh",
+          label:
+            "sekitar Rp$$150{.}000$$, sehingga sewa sebulan sama dengan pendapatan satu hari",
         },
         {
           correct: false,
           label:
-            "marah dan langsung memprotes keputusan mandor di depan pemetik lain",
+            "sekitar Rp$$290{.}000$$, sehingga sewa sebulan tertutup oleh pendapatan kurang dari satu hari",
         },
         {
           correct: false,
-          label: "gembira karena pekerjaannya akan menjadi lebih ringan",
+          label:
+            "sekitar Rp$$208{.}000$$, sehingga sewa sebulan baru tertutup oleh pendapatan sekitar tiga hari",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar Rp$$250{.}000$$, sama dengan pedagang Pasar Baru, sehingga sewa sebulan tertutup oleh pendapatan kurang dari satu hari",
         },
         {
           correct: true,
-          label: "tenang dan yakin bahwa keahlian memetiknya tetap berharga",
-        },
-        {
-          correct: false,
-          label: "acuh tak acuh karena ia sudah berencana pindah ke kota",
+          label:
+            "sekitar Rp$$208{.}000$$, sehingga sewa sebulan tertutup oleh pendapatan kurang dari satu hari",
         },
       ],
     },

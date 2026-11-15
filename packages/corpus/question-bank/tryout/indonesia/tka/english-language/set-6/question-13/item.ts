@@ -4,24 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "prediction",
+    topic: "character",
   },
-  stimulus: "stage-lines",
+  stimulus: "grandfather-bike",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "leave the stage and ask the teacher for the script",
+          label: "I, III, and IV only",
         },
-        { correct: false, label: "refuse to take part in another school play" },
-        { correct: false, label: "ask Tomi to say all of her lines for her" },
-        { correct: false, label: "blame the audience for making noise" },
+        {
+          correct: false,
+          label: "III, IV, and V only",
+        },
         {
           correct: true,
-          label:
-            "use what is happening on stage to find her way back to her lines",
+          label: "I, III, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, IV, and V",
+        },
+        {
+          correct: false,
+          label: "I and V only",
         },
       ],
     },

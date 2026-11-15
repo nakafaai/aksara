@@ -4,33 +4,34 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "text-fit",
+    topic: "information-validity",
   },
-  stimulus: "pottery-village",
+  stimulus: "island-ferry",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Visitors often buy a small cup as a souvenir.",
+          correct: true,
+          label:
+            "A passenger whose outward trip is on a Monday can still make the trip back on the following Sunday with a return ticket.",
         },
         {
           correct: false,
-          label: "The river floods the rice fields every few years.",
-        },
-        {
-          correct: false,
-          label: "Some potters first learned their skills in the city.",
-        },
-        {
-          correct: false,
-          label: "Rice farmers in the village plant twice a year.",
+          label:
+            "A passenger whose outward trip is on a Monday can still make the trip back on the following Monday with a return ticket.",
         },
         {
           correct: true,
-          label:
-            "After cooling overnight, the pots are carried back to each family's workshop.",
+          label: "On a normal day, the ferry spends $$6$$ hours at sea.",
+        },
+        {
+          correct: false,
+          label: "The first ferry from Pulau Lima leaves at 8:00 every day.",
+        },
+        {
+          correct: false,
+          label: "A child of $$12$$ travels at the child fare.",
         },
       ],
     },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "fact-opinion",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
   },
-  stimulus: "film-review",
+  stimulus: "survivorship-bias",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Kekuatan terbesar film ini ada pada kesederhanaannya.",
-        },
-        {
-          correct: false,
-          label: "Bagian tengah film terasa berlarut-larut.",
+          label:
+            "Kisah itu hanya memuat yang berhasil, dan untuk mengujinya cukup mengumpulkan lebih banyak kisah pengusaha sukses yang berhenti kuliah.",
         },
         {
           correct: false,
           label:
-            "Adegan menghitung uang receh adalah adegan yang paling menyentuh.",
+            "Pengusaha yang berhenti kuliah biasanya berasal dari keluarga kaya, dan untuk mengujinya perlu dicatat penghasilan orang tua mereka.",
         },
         {
           correct: false,
-          label: "Film ini layak ditonton oleh keluarga.",
+          label:
+            "Kisah itu hanya memuat yang berhasil, dan untuk mengujinya perlu ditanyakan berapa lama mereka kuliah sebelum berhenti.",
         },
         {
           correct: true,
-          label: "Film ini berdurasi 98 menit.",
+          label:
+            "Kisah itu hanya memuat yang berhasil, dan untuk mengujinya perlu dibandingkan bagian yang menjadi pengusaha sukses di antara semua yang berhenti kuliah dan di antara yang lulus.",
+        },
+        {
+          correct: false,
+          label:
+            "Berhenti kuliah memberi lebih banyak waktu untuk membangun usaha, dan untuk mengujinya perlu dicatat jam kerja para pengusaha itu.",
         },
       ],
     },

@@ -3,37 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "author-view",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "film-review",
+  stimulus: "survivorship-bias",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "buruk, karena bagian tengahnya berisi tiga adegan lomba yang sama",
+            "Jika pesawat yang tertembak di mesin ternyata tetap dapat pulang, saran Wald kehilangan dasarnya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "sempurna, karena tidak ada satu pun adegan yang perlu diperbaiki",
+            "Selama pertempuran, mesin pesawat jarang terkena tembakan musuh.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "layak ditonton, walaupun bagian tengahnya terasa berlarut-larut",
+            "Catatan para perwira adalah contoh data yang sudah melewati suatu penyaringan.",
         },
         {
-          correct: false,
-          label: "membosankan, karena kamera terlalu lama diam di wajah pemain",
+          column: 2,
+          label:
+            "Menurut Wald, baja sebaiknya dipasang merata di seluruh badan pesawat.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "hanya cocok untuk penonton dewasa yang pernah kehilangan pekerjaan",
+            "Teks menyatakan bahwa pola lubang dalam contoh itu adalah catatan sebenarnya dari Perang Dunia II.",
         },
       ],
     },

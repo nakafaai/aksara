@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "text-fit",
+    topic: "explicit-information",
   },
-  stimulus: "rain-market",
+  stimulus: "tool-library",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Vendors uncover displays after rain so damp air can move across them.",
+          label: "$$\\text{Rp}100{,}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}60{,}000$$",
         },
         {
           correct: true,
-          label:
-            "A staff member replaces any bridge whose surface becomes loose or slippery.",
+          label: "$$\\text{Rp}80{,}000$$",
         },
         {
           correct: false,
-          label: "The drain is hidden beneath a group of chairs.",
+          label: "$$\\text{Rp}120{,}000$$",
         },
         {
           correct: false,
-          label:
-            "Staff replace bridges by visual judgment without recording the time of inspection.",
-        },
-        {
-          correct: false,
-          label: "Paper prints are placed directly in the wet channel.",
+          label: "$$\\text{Rp}90{,}000$$",
         },
       ],
     },

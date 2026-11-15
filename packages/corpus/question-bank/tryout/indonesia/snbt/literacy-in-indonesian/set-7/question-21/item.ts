@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "main-idea",
   },
-  stimulus: "recorded-lectures",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Gonjong rumah gadang melengkung seperti tanduk kerbau, dan atapnya yang curam membuat air hujan cepat mengalir turun.",
+        },
+        {
+          correct: false,
+          label:
+            "Dalam adat matrilineal, rumah gadang milik kaum, dan bilik-biliknya disediakan untuk anak perempuan yang sudah menikah.",
+        },
+        {
           correct: true,
           label:
-            "Sebagian besar rekaman kuliah baru ditonton pada minggu terakhir sebelum ujian.",
+            "Rumah gadang lentur saat gempa karena cara tiang dan sambungannya disusun, tetapi kelenturan itu menuntut perawatan dan cara berdiri yang asli.",
         },
         {
           correct: false,
           label:
-            "Mahasiswa yang bekerja paruh waktu paling sering menonton rekaman kuliah.",
+            "Tiang rumah gadang diletakkan di atas batu sandi, dan sambungannya dikunci dengan pasak kayu, bukan paku.",
         },
         {
           correct: false,
           label:
-            "Video kuliah dapat dihentikan dan diulang sebanyak yang diperlukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Diskusi di kelas kecil lebih hidup daripada diskusi di kelas yang besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian dosen lebih suka merekam kuliah daripada mengajar langsung di kelas.",
+            'Sebutan rumah gadang sebagai "rumah tahan gempa" perlu dibaca dengan hati-hati.',
         },
       ],
     },

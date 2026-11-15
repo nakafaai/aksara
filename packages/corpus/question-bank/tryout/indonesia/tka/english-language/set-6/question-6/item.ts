@@ -4,22 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "explicit-information",
+    topic: "summary",
   },
-  stimulus: "beach-cleanup",
+  stimulus: "orange-float",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "Each group received two sacks." },
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "Bottles were the most common item found by the writer's group.",
+          correct: true,
+          label: "I, II, and III only",
         },
-        { column: 1, label: "The volunteers met before seven o'clock." },
-        { column: 2, label: "The data was sent to the town's tourism office." },
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
       ],
     },
   },

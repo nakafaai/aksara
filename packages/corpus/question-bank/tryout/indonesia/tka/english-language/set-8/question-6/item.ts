@@ -6,34 +6,30 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "summary",
   },
-  stimulus: "science-fair",
+  stimulus: "egg-incubator",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A group proves that aluminum foil is the best material for keeping things cold.",
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
         {
           correct: true,
-          label:
-            "A group tests which material keeps ice frozen longest, finds that wool works best, and explains why at the science fair.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "Visitors at a science fair teach a group that wool makes things warm.",
+          label: "II, III, and V only",
         },
         {
           correct: false,
-          label:
-            "The judges award first place to a group that studied melting ice.",
-        },
-        {
-          correct: false,
-          label: "Students learn how cooler bags are made in a factory.",
+          label: "I, II, III, and V only",
         },
       ],
     },

@@ -2,39 +2,46 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "shade-trees",
+  stimulus: "homework-cap",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "To show that the shop owners' worries about cost are based on false information",
+            "More than half of the students surveyed slept less than seven hours on school nights.",
         },
         {
-          correct: false,
-          label:
-            "To explain why the measurements were taken on only one street in the town",
+          column: 3,
+          label: "Teachers set about $$2.1$$ hours of homework a day.",
         },
         {
-          correct: false,
-          label:
-            "To persuade the shop owners to pay for watering the young trees themselves",
+          column: 2,
+          label: "A firm cap is the only fair answer.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "To admit a real drawback of the plan and show how to manage it",
+            "Bu Anjani's students reported spending longer on her tasks than she had planned.",
         },
         {
-          correct: false,
+          column: 3,
+          label: "A shared calendar would end students' tiredness.",
+        },
+        {
+          column: 2,
           label:
-            "To list the tree species that grow best along the sidewalks of the town",
+            "A school that keeps students up past midnight is failing them.",
         },
       ],
     },

@@ -4,27 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "information-validity",
+    topic: "reader-response",
   },
-  stimulus: "water-filter",
+  stimulus: "fire-drill",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Water from this filter is safe to drink once it looks clear.",
+          correct: false,
+          label: "I and II only",
         },
         {
-          column: 1,
-          label:
-            "Pouring too fast lets some water pass through without being filtered.",
+          correct: true,
+          label: "I, II, and IV only",
         },
-        { column: 1, label: "Gravel forms the top layer of the filter." },
         {
-          column: 2,
-          label: "This filter can remove dissolved chemicals from the water.",
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

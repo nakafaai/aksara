@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "comparison",
   },
-  stimulus: "rain-market",
+  stimulus: "tool-library",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The market closes whenever a shallow channel contains water.",
-        },
-        {
-          correct: false,
-          label:
-            "The passage mainly describes how the cooking row changes after rain.",
-        },
-        {
           correct: true,
-          label:
-            "The market adapts its layout and equipment to continue safely after rain.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The market's main challenge is replacing information signs damaged by rain.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "The market is designed mainly for a dry afternoon.",
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
         },
       ],
     },

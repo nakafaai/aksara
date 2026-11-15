@@ -6,26 +6,30 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "explicit-information",
   },
-  stimulus: "gamelan-rehearsal",
+  stimulus: "mangrove-planting",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "Before the first rehearsal, the writer practiced every evening on a saron at home.",
+          correct: false,
+          label: "$$35$$ percentage points",
         },
         {
-          column: 1,
-          label:
-            "The group had to stop twice because the writer's speed did not match theirs.",
+          correct: false,
+          label: "about $$38$$ percentage points",
         },
         {
-          column: 2,
-          label:
-            "Bu Ratna told the writer to count the beats more carefully in the next piece.",
+          correct: false,
+          label: "about $$43$$ percentage points",
+        },
+        {
+          correct: true,
+          label: "about $$40$$ percentage points",
+        },
+        {
+          correct: false,
+          label: "about $$6$$ percentage points",
         },
       ],
     },

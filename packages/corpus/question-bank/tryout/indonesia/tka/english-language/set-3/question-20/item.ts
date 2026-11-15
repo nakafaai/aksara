@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "reader-response",
   },
-  stimulus: "fair-discussion",
+  stimulus: "compost-heap",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Provide quiet writing time.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: true,
-          label: "Invite someone who has not spoken.",
-        },
-        {
-          correct: true,
-          label: "Allow an invited person to pass.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "Prioritize speakers who can respond immediately so the discussion keeps moving.",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

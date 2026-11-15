@@ -4,36 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "calculation",
   },
-  stimulus: "artefact-return",
+  stimulus: "fuel-subsidy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "keduanya menolak pengembalian sebelum museum baru selesai dibangun",
+            "Biaya bantuan tunai itu kurang dari seperempat anggaran subsidi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "keduanya menganggap museum Eropa lebih baik dalam merawat benda-benda kuno",
+            "Rumah tangga di kelompok kedua menerima bantuan tunai yang lebih kecil daripada subsidi yang hilang.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "keduanya setuju bahwa benda hasil rampasan berhak kembali ke tanah asalnya",
+            "Rumah tangga di kelompok terbawah menerima bantuan tunai yang lebih besar daripada subsidi yang hilang.",
         },
         {
-          correct: false,
-          label: "keduanya meminta agar pengembalian dilakukan secara bertahap",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "keduanya menilai pengembalian benda budaya sebagai urusan dagang",
+            "Rumah tangga di kelompok tengah ikut menerima bantuan tunai dari usulan itu.",
         },
       ],
     },

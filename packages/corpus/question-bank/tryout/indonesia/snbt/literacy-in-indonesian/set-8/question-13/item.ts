@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "jamu-seller",
+  stimulus: "science-language",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Pekerjaan yang dianggap sederhana bisa menyimpan ilmu dan kepedulian besar.",
+            "Jika separuh dari $$400$$ artikel itu berbahasa Inggris, rata-rata sitasi seluruh artikel dalam lima tahun adalah $$7{,}5$$ kali.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Anak sebaiknya meneruskan pekerjaan orang tua daripada kuliah di kota.",
+            "Data Teks A menunjukkan bahwa jika seorang dosen menerjemahkan artikel berbahasa Indonesianya ke bahasa Inggris, sitasinya akan menjadi empat kali.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penjual jamu sebaiknya beristirahat jika pinggangnya mulai terasa sakit.",
+            "Data Teks A cukup untuk menghitung jumlah seluruh sitasi ke-$$400$$ artikel itu dalam lima tahun.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Ilmu dari buku kuliah selalu lebih tepat daripada pengalaman sehari-hari di pasar.",
+            "Menurut rata-rata dalam Teks A, empat artikel berbahasa Indonesia bersama-sama dikutip sama banyak dengan satu artikel berbahasa Inggris.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Teman sekolah tidak perlu mengetahui pekerjaan orang tua kita.",
+            "Teks B memakai undang-undang untuk menunjukkan bahwa artikel berbahasa Indonesia lebih banyak dibaca.",
         },
       ],
     },

@@ -2,19 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "comparison",
   },
-  stimulus: "tea-terrace",
+  stimulus: "water-rota",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "the shallow ditches along each terrace" },
-        { correct: false, label: "the narrow paths between the rows" },
-        { correct: true, label: "the fallen leaves of the silver oak trees" },
-        { correct: false, label: "the rows of windows in the factory" },
+        {
+          correct: false,
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
       ],
     },
   },

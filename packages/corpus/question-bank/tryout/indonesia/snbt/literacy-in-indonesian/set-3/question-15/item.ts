@@ -14,22 +14,27 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label:
-            "Banyak peminjam pinjaman daring akhirnya kesulitan membayar kembali pinjamannya.",
+          label: "Pemahaman warga tentang biaya pinjaman tetap ada gunanya.",
         },
         {
           column: 2,
           label:
-            "Pengawasan terhadap aplikasi pinjaman daring perlu diperketat.",
+            "Survei terhadap peminjam yang gagal bayar sudah cukup untuk menunjukkan akar masalahnya.",
+        },
+        {
+          column: 2,
+          label:
+            "Aplikasi sebaiknya diwajibkan menampilkan total biaya dalam rupiah di satu halaman.",
         },
         {
           column: 1,
-          label: "Pemahaman warga tentang biaya pinjaman tetap berguna.",
+          label:
+            "Bunga per hari yang tampak kecil menjadi jauh lebih besar bila dihitung untuk sebulan.",
         },
         {
           column: 2,
           label:
-            "Rendahnya literasi keuangan warga adalah akar masalah pinjaman daring.",
+            "Angka biaya pinjaman Aplikasi Kilat sudah dapat dilihat lengkap sebelum pinjaman disetujui.",
         },
       ],
     },

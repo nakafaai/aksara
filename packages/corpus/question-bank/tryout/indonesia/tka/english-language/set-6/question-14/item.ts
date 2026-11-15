@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "synthesis",
+    topic: "prediction",
   },
-  stimulus: "stage-lines",
+  stimulus: "grandfather-bike",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I and V only",
+        },
+        {
           correct: true,
-          label:
-            "Although Maya had practiced her script for a month, she added Tomi's question to it after the performance.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label: "Maya forgot her lines because she had not practiced enough.",
+          label: "I, II, III, and V only",
         },
         {
           correct: false,
-          label:
-            "Tomi wrote his question in Maya's script before the play began.",
+          label: "II and V only",
         },
         {
           correct: false,
-          label: "The flood in the play had really happened in Maya's village.",
-        },
-        {
-          correct: false,
-          label:
-            "Maya played the fisherman, and Tomi played the chief's daughter.",
+          label: "I, II, IV, and V only",
         },
       ],
     },

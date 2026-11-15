@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "strengthen-weaken",
   },
-  stimulus: "peat-fire",
+  stimulus: "c4-photosynthesis",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "membuktikan bahwa kebakaran gambut hanya terjadi di Indonesia",
-        },
-        {
           correct: true,
-          label: "menunjukkan betapa luas dampak asap dari kebakaran gambut",
-        },
-        {
-          correct: false,
-          label: "menjelaskan cara gambut terbentuk selama ribuan tahun",
-        },
-        {
-          correct: false,
-          label: "menyalahkan negara tetangga atas kabut asap yang terjadi",
+          label:
+            "Padi yang sudah menghasilkan semua enzim jalur C4 dalam jumlah besar ternyata tetap kehilangan $$\\mathrm{CO_2}$$ dari sel seludangnya sebelum sempat dipakai Rubisco.",
         },
         {
           correct: false,
           label:
-            "menyarankan agar kanal-kanal baru segera digali di lahan gambut",
+            "Enzim-enzim jalur C4 ternyata ditemukan pada lebih banyak jenis tumbuhan C3 daripada yang diduga.",
+        },
+        {
+          correct: false,
+          label:
+            "Jalur C4 ternyata muncul secara terpisah pada lebih banyak kelompok tumbuhan daripada yang diduga.",
+        },
+        {
+          correct: false,
+          label:
+            "Padi yang diberi gen jalur C4 ternyata menghasilkan enzim-enzimnya tepat di sel mesofil dan sel seludang.",
+        },
+        {
+          correct: false,
+          label:
+            "Biaya penelitian padi C4 ternyata jauh lebih besar daripada perkiraan semula.",
         },
       ],
     },

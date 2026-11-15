@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "ia mengabaikan kemungkinan bahwa angka efikasi di Yogyakarta terlalu tinggi akibat nyamuk yang menyeberang batas antarklaster selama uji",
+            "Perlindungan baru dapat diharapkan setelah populasi nyamuk lokal dimusnahkan, dan soal pengganti pemberantasan sarang tidak diuji oleh rancangan AWED.",
         },
         {
           correct: false,
           label:
-            "ia lupa bahwa penurunan kasus di Yogyakarta mungkin hanya kebetulan jatuh pada tahun yang sepi demam berdarah",
+            "Perlindungan baru dapat diharapkan setelah proporsi nyamuk ber-Wolbachia tinggi, dan uji AWED membuktikan bahwa kedua cara harus selalu dipakai bersama.",
         },
         {
           correct: false,
           label:
-            "ia tidak menyadari bahwa Wolbachia baru bekerja setelah populasi nyamuk lokal dimusnahkan lebih dulu",
+            "Efikasi di Yogyakarta kemungkinan terlalu tinggi karena nyamuk menyeberang batas klaster, dan soal pengganti pemberantasan sarang tidak diuji oleh rancangan AWED.",
         },
         {
           correct: true,
           label:
-            "ia menganggap perlindungan muncul sejak pelepasan dimulai dan cukup untuk menggantikan cara lama, padahal keduanya tidak didukung uji itu",
+            "Perlindungan baru dapat diharapkan setelah proporsi nyamuk ber-Wolbachia tinggi, dan soal pengganti pemberantasan sarang tidak diuji oleh rancangan AWED.",
         },
         {
           correct: false,
           label:
-            "ia benar soal manfaat Wolbachia, tetapi keliru soal biaya karena pelepasan nyamuk harus terus diulang tanpa henti setiap musim hujan",
+            "Perlindungan baru dapat diharapkan setelah proporsi nyamuk ber-Wolbachia tinggi, dan nyamuk ber-Wolbachia harus dilepas ulang setiap tahun agar bertahan.",
         },
       ],
     },

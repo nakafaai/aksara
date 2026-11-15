@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "walking-bus",
+  stimulus: "late-start",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "SD Lereng Asri's walking bus ended its traffic problem completely.",
-        },
-        {
-          correct: true,
-          label:
-            "A walking bus could reduce the number of vehicles at SD Taman Kenari's gate, as it did at SD Lereng Asri.",
-        },
-        {
-          correct: true,
-          label:
-            "Children who are now dropped off by motorbike or car could get half of the recommended daily activity by joining a walking bus.",
+          label: "I only",
         },
         {
           correct: false,
-          label: "A walking bus must run every day of the year to be useful.",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
         },
       ],
     },

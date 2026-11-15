@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "front-labels",
+  stimulus: "crossing-guard",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pembelian minuman bertanda di Cile turun setelah aturan itu berlaku.",
+            "Ia marah kepada Rani, dan rinciannya adalah ia menyimpan potongan koran agar Rani tidak membacanya.",
         },
         {
           correct: true,
           label:
-            "Pembeli umumnya menganggap produk tanpa logo kurang sehat dan menghindarinya.",
+            "Ia terguncang oleh kejadian sore itu dan tidak sanggup menceritakannya, dan rinciannya adalah potongan koran tentang kecelakaan yang ia simpan bertahun-tahun di lacinya.",
         },
         {
           correct: false,
           label:
-            "Sebagian besar pembeli tidak sempat membaca tabel nilai gizi di toko.",
+            "Ia lupa pada janjinya, dan rinciannya adalah ia baru datang setelah kereta jam lima lewat.",
         },
         {
           correct: false,
           label:
-            "Tanda segi delapan hitam di Cile dicetak dengan warna yang sangat mencolok mata.",
+            "Ia malu karena terlambat, dan rinciannya adalah berita yang memuji penjaga dari pos terdekat.",
         },
         {
           correct: false,
           label:
-            "Produsen lebih suka memasang logo daripada tanda peringatan di kemasannya.",
+            "Ia lelah karena kehujanan, dan rinciannya adalah seragamnya yang basah, sedangkan kejadian di perlintasan tidak berhubungan dengan diamnya.",
         },
       ],
     },
