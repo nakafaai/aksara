@@ -1,11 +1,18 @@
+import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, FileSystem, Schema } from "effect";
+import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
+import { inDirectory, makeRepository } from "#scripts/check/fixture";
 import {
+  ChangedFilesError,
+  changedFiles,
+  checkVisuals,
   corpusSources,
+  sourcesToCheck,
   VisualPolicyError,
   visualFindings,
   visualReport,
 } from "#scripts/check/visuals";
+import { runGit } from "#scripts/git";
 
 /** One plane scene whose diagonal ends at the given x and a labelled point at 3.85. */
 function scene(x: string) {
@@ -137,5 +144,140 @@ describe("visualReport", () => {
         })
       )
     )
+  );
+});
+
+describe("sourcesToCheck", () => {
+  const files = [
+    "packages/corpus/material/lesson/a/en.mdx",
+    "packages/corpus/material/lesson/b/en.mdx",
+    "packages/compiler/src/policy/math.ts",
+  ];
+
+  it("reads only the sources a change below the corpus alone touched", () => {
+    expect(
+      sourcesToCheck(files, [
+        "packages/corpus/material/lesson/b/en.mdx",
+        "packages/corpus/material/registry.ts",
+      ])
+    ).toEqual(["packages/corpus/material/lesson/b/en.mdx"]);
+    expect(sourcesToCheck(files, [])).toEqual([]);
+  });
+
+  it("reads every source when the change reaches beyond the corpus", () => {
+    expect(
+      sourcesToCheck(files, [
+        "packages/corpus/material/lesson/b/en.mdx",
+        "packages/compiler/src/policy/math.ts",
+      ])
+    ).toEqual([
+      "packages/corpus/material/lesson/a/en.mdx",
+      "packages/corpus/material/lesson/b/en.mdx",
+    ]);
+  });
+});
+
+describe("changedFiles", () => {
+  it.effect(
+    "lists what a change committed, staged, edited and added since its merge base",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* makeRepository();
+        const git = (args: readonly string[]) =>
+          runGit(
+            [
+              "-c",
+              "user.name=Test",
+              "-c",
+              "user.email=test@example.com",
+              ...args,
+            ],
+            {
+              cwd: root,
+            }
+          );
+        const write = (file: string) =>
+          fileSystem.writeFileString(path.join(root, file), `${file}\n`);
+        for (const file of ["kept.mdx", "edited.mdx", "staged.mdx"]) {
+          yield* write(file);
+        }
+        yield* git(["add", "--", "kept.mdx", "edited.mdx", "staged.mdx"]);
+        yield* git(["commit", "--quiet", "-m", "base"]);
+        yield* git(["branch", "base"]);
+        yield* write("committed.mdx");
+        yield* git(["add", "--", "committed.mdx"]);
+        yield* git(["commit", "--quiet", "-m", "change"]);
+        yield* fileSystem.writeFileString(
+          path.join(root, "staged.mdx"),
+          "staged again\n"
+        );
+        yield* git(["add", "--", "staged.mdx"]);
+        yield* fileSystem.writeFileString(
+          path.join(root, "edited.mdx"),
+          "edited again\n"
+        );
+        yield* write("added.mdx");
+
+        expect(
+          Arr.sort(yield* inDirectory(root, changedFiles("base")), Order.String)
+        ).toEqual(["added.mdx", "committed.mdx", "edited.mdx", "staged.mdx"]);
+
+        const missing = yield* Effect.flip(
+          inDirectory(root, changedFiles("missing"))
+        );
+        expect(missing).toBeInstanceOf(ChangedFilesError);
+        expect(missing.message).toContain("git merge-base missing HEAD failed");
+      }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
+  );
+});
+
+describe("checkVisuals", () => {
+  it.effect(
+    "reads the sources a corpus change touched, and every source once the change reaches beyond the corpus",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* makeRepository();
+        const git = (args: readonly string[]) =>
+          runGit(
+            [
+              "-c",
+              "user.name=Test",
+              "-c",
+              "user.email=test@example.com",
+              ...args,
+            ],
+            { cwd: root }
+          );
+        const lesson = "packages/corpus/material/lesson";
+        yield* fileSystem.makeDirectory(path.join(root, lesson), {
+          recursive: true,
+        });
+        // A source main already carries, which the policy now rejects.
+        yield* fileSystem.writeFileString(
+          path.join(root, lesson, "old.mdx"),
+          ROUNDED
+        );
+        yield* git(["add", "--", "."]);
+        yield* git(["commit", "--quiet", "-m", "base"]);
+        yield* git(["branch", "base"]);
+        yield* fileSystem.writeFileString(
+          path.join(root, lesson, "new.mdx"),
+          EXACT
+        );
+        yield* inDirectory(root, checkVisuals("base"));
+
+        yield* fileSystem.writeFileString(path.join(root, "policy.ts"), "");
+        const rejected = yield* inDirectory(root, checkVisuals("base")).pipe(
+          Effect.as(Arr.empty<string>()),
+          Effect.catchTag("VisualPolicyError", (error) =>
+            Effect.succeed(Arr.map(error.findings, (finding) => finding.file))
+          )
+        );
+        expect(rejected).toContain(`${lesson}/old.mdx`);
+      }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
   );
 });
