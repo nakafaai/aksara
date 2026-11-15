@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Seorang penjual menurunkan harga madu setelah melihat struk belanja pembeli dari pasar yang harganya lebih rendah.",
+            "Seorang penjual menurunkan harga madu setelah melihat struk yang membuktikan harga madu yang sama di pasar memang lebih rendah.",
         },
       ],
     },
