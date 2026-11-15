@@ -1,6 +1,23 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Array as Arr, Effect } from "effect";
-import { blocks, reason } from "#compiler/test/assessment";
+import { assessmentVisuals } from "@nakafa/aksara-contracts/visual/catalog";
+import { Array as Arr, Effect, Schema } from "effect";
+import {
+  compileExplanationDocument,
+  compileReadingDocument,
+} from "#compiler/assessment/document";
+import { blocks, reason, site } from "#compiler/test/assessment";
+
+/** A three-dimensional lab of the lesson catalog, as a prompt places it. */
+const LAB = Arr.join(
+  [
+    "<VirusStructureLab",
+    '  title="Virion"',
+    '  description="Rotate the virion."',
+    '  labels={{ chooseMode: "Part", viewLabel: "Virion view", items: [{ tab: "Capsid" }] }}',
+    "/>",
+  ],
+  "\n"
+);
 
 describe("figureNode", () => {
   it.effect("draws figures with their text alternative", () =>
@@ -67,12 +84,15 @@ describe("figureNode", () => {
       ) {
         return assert.fail("Expected a number line figure.");
       }
+      const { segments } = yield* Schema.decodeUnknownEffect(
+        assessmentVisuals.NumberLine.props
+      )(number.attrs.props);
       assert.deepStrictEqual(
-        Arr.map(number.attrs.props.segments, ({ end, start }) => [start, end]),
+        Arr.map(segments, ({ end, start }) => [start, end]),
         [
-          ["-infinity", 1],
+          [undefined, 1],
           [1, 5],
-          [5, "infinity"],
+          [5, undefined],
         ]
       );
       assert.deepStrictEqual(
@@ -94,6 +114,65 @@ describe("figureNode", () => {
         ]
       );
     })
+  );
+
+  it.effect("draws a lab of the lesson catalog in a prompt", () =>
+    Effect.gen(function* () {
+      const [lab] = yield* blocks(LAB);
+
+      assert.deepStrictEqual(
+        lab?.type === "figure"
+          ? [lab.attrs.component, lab.attrs.alt]
+          : ["block", ""],
+        ["VirusStructureLab", "Rotate the virion."]
+      );
+    })
+  );
+
+  it.effect("refuses answer state before the answer, and shows it after", () =>
+    Effect.gen(function* () {
+      const circle =
+        '<UnitCircle title="Angle" description="An angle." angle={30} trigValues={{ sin: "1/2" }} />';
+      const takeaway = LAB.replace(
+        'tab: "Capsid"',
+        'tab: "Capsid", takeaway: "It protects."'
+      );
+      const prompt = yield* blocks(circle).pipe(Effect.flip);
+      const explanation = yield* compileExplanationDocument({
+        ...site,
+        rawMdx: `${circle}\n\n${takeaway}`,
+      });
+
+      assert.deepStrictEqual(
+        "reason" in prompt ? [prompt.reason, prompt.cause] : [prompt._tag],
+        ["answer", ["trigValues"]]
+      );
+      assert.strictEqual(yield* reason(takeaway), "answer");
+      assert.strictEqual(
+        yield* compileReadingDocument({ ...site, rawMdx: circle }).pipe(
+          Effect.flip,
+          Effect.map((error) => ("reason" in error ? error.reason : error._tag))
+        ),
+        "answer"
+      );
+      assert.deepStrictEqual(
+        Arr.map(explanation.content, ({ type }) => type),
+        ["figure", "figure"]
+      );
+    })
+  );
+
+  it.effect(
+    "names a figure by its description or refuses one with neither",
+    () =>
+      Effect.gen(function* () {
+        assert.strictEqual(
+          yield* reason(
+            '<FunctionAndNonFunctionRelationVisualizer accessibilityLabel="Arrows" domainLabel="X" codomainLabel="Y" domain={[]} codomain={[]} mappings={[]} />'
+          ),
+          "props"
+        );
+      })
   );
 
   it.effect("refuses a figure whose props its contract refuses", () =>

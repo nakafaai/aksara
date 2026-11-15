@@ -90,8 +90,6 @@ export const numberLineProps = {
       label: [math("+")],
       shaded: false,
       showPoints: true,
-      start: "-infinity",
-      startInclusive: false,
       startLabel: [math("-\\infty")],
     },
     {
@@ -107,7 +105,6 @@ export const numberLineProps = {
     },
     {
       backgroundColor: "transparent",
-      end: "infinity",
       endLabel: [math("+\\infty")],
       label: [math("+")],
       start: 7,
@@ -198,9 +195,10 @@ export const fixedPointsLine = {
 export const diagramProps = {
   chart:
     'flowchart TD\n  A["Gescannten Brief erfassen"] --> B["Texterkennung"]\n  B --> C["Namen, Orte und Themen vorschlagen"]\n  C --> D["Suchergebnisse"]',
-  description:
-    "Erkennungsfehler können Metadaten und Suchergebnisse erreichen.",
-  title: "Von der Texterkennung zur Prüfung",
+  description: [
+    text("Erkennungsfehler können Metadaten und Suchergebnisse erreichen."),
+  ],
+  title: [text("Von der Texterkennung zur Prüfung")],
 };
 
 /** The flow chart as a figure node. */

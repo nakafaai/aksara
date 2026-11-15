@@ -1,12 +1,13 @@
 import { describe, expect, it } from "@effect/vitest";
-
-import { ChartPropsSchema } from "#contracts/assessment/chart";
 import {
   decodeStrict,
   failsStrict,
   math,
   text,
 } from "#contracts/test/assessment/document";
+import { assessmentVisuals } from "#contracts/visual/catalog";
+
+const ChartPropsSchema = assessmentVisuals.Chart.props;
 
 const histogram = {
   bars: "touching",

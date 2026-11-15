@@ -1,6 +1,6 @@
 import {
   compileAssessmentBlocks,
-  compileContentDocument,
+  compileExplanationDocument,
 } from "@nakafa/aksara-compiler/assessment/document";
 import {
   type AssessmentSite,
@@ -117,7 +117,7 @@ export type AssembleItemError =
   | AssessmentReadError
   | AssessmentSourceError
   | Effect.Error<ReturnType<typeof compileAssessmentBlocks>>
-  | Effect.Error<ReturnType<typeof compileContentDocument>>
+  | Effect.Error<ReturnType<typeof compileExplanationDocument>>
   | Effect.Error<ReturnType<typeof labelDocument>>
   | Effect.Error<ReturnType<typeof hashItemVersion>>;
 
@@ -155,7 +155,7 @@ export const assembleItem: (
           `${sourceRoot}/answer.${locale}.mdx`
         ),
         (source) =>
-          Effect.map(compileContentDocument(source), (document) => ({
+          Effect.map(compileExplanationDocument(source), (document) => ({
             document,
             language: ContentLanguageSchema.make(locale),
           }))

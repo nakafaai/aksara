@@ -99,6 +99,10 @@ export type BlockNode =
   | {
       readonly content: readonly [TableRowNode, ...TableRowNode[]];
       readonly type: "table";
+    }
+  | {
+      readonly content: readonly [BlockNode, ...BlockNode[]];
+      readonly type: "contentBlock" | "contentStack";
     };
 export type ListItemNode = typeof ListItemSchema.Type;
 export type TableRowNode = typeof TableRowSchema.Type;
@@ -138,6 +142,16 @@ const TableCellSchema = Schema.Struct({
   type: Schema.Literals(["tableCell", "tableHeader"]),
 });
 
+/**
+ * A group of blocks, as a lesson groups them: `contentStack` stacks related
+ * blocks, such as a formula and the graph it draws, and `contentBlock` sets one
+ * block apart with space around it.
+ */
+const ContentGroupSchema = Schema.Struct({
+  content: Schema.NonEmptyArray(BlockRef),
+  type: Schema.Literals(["contentBlock", "contentStack"]),
+});
+
 const TableRowSchema = Schema.Struct({
   content: Schema.NonEmptyArray(TableCellSchema),
   type: Schema.Literal("tableRow"),
@@ -161,6 +175,7 @@ export const BlockSchema: Schema.Codec<BlockNode> = Schema.Union([
   OrderedListSchema,
   BlockquoteSchema,
   TableSchema,
+  ContentGroupSchema,
 ]);
 
 /** Every node of a document, whatever its level. */

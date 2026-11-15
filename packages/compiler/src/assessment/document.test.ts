@@ -1,6 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
-import { compileContentDocument } from "#compiler/assessment/document";
+import { compileReadingDocument } from "#compiler/assessment/document";
 import { blocks, reason, site } from "#compiler/test/assessment";
 
 describe("compileAssessmentBlocks", () => {
@@ -236,10 +236,10 @@ describe("compileAssessmentBlocks", () => {
   );
 });
 
-describe("compileContentDocument", () => {
+describe("compileReadingDocument", () => {
   it.effect("checks a document without interaction places", () =>
     Effect.gen(function* () {
-      const document = yield* compileContentDocument({
+      const document = yield* compileReadingDocument({
         ...site,
         rawMdx: "Read.",
       });
@@ -255,7 +255,7 @@ describe("compileContentDocument", () => {
 
   it.effect("refuses a document deeper than its contract allows", () =>
     Effect.gen(function* () {
-      const error = yield* compileContentDocument({
+      const error = yield* compileReadingDocument({
         ...site,
         rawMdx: `${"> ".repeat(15)}deep`,
       }).pipe(Effect.flip);

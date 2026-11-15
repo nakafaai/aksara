@@ -18,16 +18,28 @@ and do not add a local override file or language mapping.
 
 Aksara compiles every prompt, reading, explanation, and option label into an
 Assessment Document, the data that Nakafa renders and Tiptap edits. These files
-therefore hold no `export const metadata` and no module code, and they use only
-Markdown, `InlineMath`, `BlockMath`, and the six figures: `Chart`,
-`LineEquation`, `MathVisual`, `Mermaid`, `NumberLine`, and `UnitCircle`. Mark a
-decisive phrase with `**phrase**`; `<Highlight>`, `<MathContainer>`,
-`<ContentStack>`, and `<AgentContext>` belong to lessons only. Consecutive
-`BlockMath` blocks render as one derivation. A figure says in words what it
-shows: its `description` is its text alternative, and an `alt` prop replaces
-it when the figure needs a fuller description, such as the letters of a pattern
-that the description must not give away. Draw a bar chart, line chart, or
-histogram with `Chart` and its data, never with a component of its own.
+therefore hold no `export const metadata` and no module code. They use
+Markdown, `InlineMath`, `BlockMath`, `Highlight`, `ContentStack`,
+`ContentBlock`, and every figure of the Visual Catalog: each visual component a
+lesson may use, labs and three-dimensional scenes included, with the same props
+a lesson gives it (`packages/contracts/src/visual`). `MathContainer`,
+`ContentGrid`, `CodeBlock`, `AgentContext`, and `FunctionAndNonFunctionDiagram`
+stay in lessons; place a `FunctionAndNonFunctionRelationVisualizer` as the
+figure instead of its diagram card. Consecutive `BlockMath` blocks render as one
+derivation. A figure says in words what it shows: its `description` is its text
+alternative, and an `alt` prop replaces it when the figure needs a fuller
+description, such as the letters of a pattern that the description must not
+give away. Draw a bar chart, line chart, or histogram as data, with `Chart` or
+the lesson chart that fits, never with a component of its own.
+
+A prompt, a shared reading, and an option label never show the answer. The
+compiler refuses a figure whose props hold answer state there: a unit circle's
+exact values, a regression line, a scene object drawn as the answer, a lab's
+takeaway, meaning, calculation, or result note. The catalog names those props
+for each component. An interactive lab can still compute what an item asks,
+whatever its props say, so review opens every interactive prompt figure and
+refuses one that leads a learner to the answer. An explanation may show
+everything, and should: see [solutions](solutions.md).
 
 Every exam section owns its real assessment languages, independent of the
 application locale. Indonesian SNBT and TKA sections use Indonesian, except
@@ -199,8 +211,14 @@ to reduce line count.
   reasoning item cannot reduce to substitution. Larger numbers, obscure
   wording, oversized arithmetic, or gratuitous data do not establish a harder
   cognitive task.
-- A graph, chart, or 3D model must support a real inference. Trace the complete
-  path from stimulus to answer; visual polish does not establish reasoning.
+- A graph, chart, lab, or 3D model must support a real inference. Trace the
+  complete path from stimulus to answer; visual polish does not establish
+  reasoning. Ask with a figure whenever the real exam does: an apparatus, a
+  circuit, a cell, a map, or a graph that the official paper draws belongs in
+  the prompt as a figure, not described away in words.
+- Open every interactive figure of a prompt or reading and check that no
+  choice, slider, or tab shows what the item asks. The compiler refuses the
+  answer-state props the catalog names; review owns the rest.
 - Independently solve every new question, verify each distractor, and confirm
   that exactly the intended responses are correct before publication. Compare
   sibling sets for substantive uniqueness. Flag a template whose only variation

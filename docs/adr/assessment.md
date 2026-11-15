@@ -8,8 +8,9 @@
   deleted by the change that switches their readers, and the steps below land as
   one change.
 - Amended: 2026-11-15, version 7.0.0: a try-out set serves the locales it is
-  explained in (see Set locales in 7.0.0), and a paper section places every
-  language of its items (see Section languages in 7.0.0).
+  explained in (see Set locales in 7.0.0), a paper section places every
+  language of its items (see Section languages in 7.0.0), and a figure is any
+  visual of the Visual Catalog (see The Visual Catalog in 7.0.0).
 
 ## Context
 
@@ -36,9 +37,11 @@ The Assessment Document is a ProseMirror JSON tree, so Tiptap can edit the same
 document later. Its nodes are `doc`, `paragraph`, `heading` (levels 1 to 3),
 `bulletList`, `orderedList`, `listItem`, `table`, `tableRow`, `tableHeader`,
 `tableCell`, `blockquote`, `codeBlock`, `mathBlock`, `figure`, `image`,
-`interaction`, `text`, `mathInline`, `hardBreak`, and `inlineInteraction`. Its
-marks are `bold`, `italic`, `underline`, `code`, `subscript`, `superscript`, and
-`link` (an absolute HTTPS address, or a site path such as a lesson route, which
+`contentStack`, `contentBlock`, `interaction`, `text`, `mathInline`,
+`hardBreak`, and `inlineInteraction`. Its marks are `bold`, `italic`,
+`underline`, `code`, `subscript`, `superscript`, `highlight` (a tone, `warning`,
+`success`, or null), and `link` (an absolute HTTPS address, or a site path such
+as a lesson route, which
 the renderer resolves on the host that shows the document, so a School host
 keeps its learners).
 
@@ -49,20 +52,10 @@ keeps its learners).
 - LaTeX is stored once, in `mathInline`, `mathBlock`, and the figure props.
   MathML is derived at render time (KaTeX 0.19 with `output: "htmlAndMathml"`)
   and is never stored.
-- A `figure` names one of five components (`MathVisual`, `NumberLine`,
-  `LineEquation`, `Mermaid`, `UnitCircle`), carries typed props for it, a
-  required text alternative, and a caption that is rich text or `null`. The props
-  are the ones the question bank uses, read from the MDX files under
-  `packages/corpus/question-bank` and checked against the component props in
-  Nakafa's `packages/design-system` and against the rest of the corpus. A
-  `MathVisual` scene is the `MathVisualSchema` that already exists in
-  `math/visual`, and its rich labels must match the label anchors of the scene.
-  The circle shapes that lessons draw with `LineEquation` are left out, because
-  no item uses one. A `LineEquation` series may have a line width of zero, which
-  draws its points alone, as the answer to TKA compulsory mathematics set 3,
-  question 8, does. Its camera sits away from the point it looks at, counting the
-  defaults of the renderer for a pose that is left out: the card puts the camera
-  at (10, 6, 10), and the scene looks at the origin.
+- A `figure` names a figure component of the Visual Catalog, carries the props
+  that component's catalog schema takes, a required text alternative, and a
+  caption that is rich text or `null` (see The Visual Catalog in 7.0.0). Rich
+  text inside the props is the same inline nodes as everywhere in the document.
 - An `image` carries an asset identifier, a required text alternative, and its
   pixel width and height, so a page can reserve the space before the file loads.
 - An `interaction` block or an `inlineInteraction` node names an interaction of
@@ -224,7 +217,7 @@ interaction.
 
 | Module | Owns |
 | --- | --- |
-| `document`, `inline`, `figure` | the Assessment Document, its inline nodes, the five figures and the image |
+| `document`, `inline`, `figure` | the Assessment Document, its inline nodes, the figure node over the Visual Catalog, and the image |
 | `interaction`, `choice`, `entry`, `graphic` | the twelve interactions |
 | `scoring` | rules, strategies, scales, the score ceiling of a rule, and the points of a wrong-parts table |
 | `key`, `explanation` | the answer key and the explanation of an item version, each a record of its own |
@@ -522,6 +515,59 @@ languages:
   section, and `freezePaper` places every one.
 - Explanations stay per app locale, unchanged.
 
+### The Visual Catalog in 7.0.0
+
+The owner decided on 15 November 2026 that no visual is limited to lessons:
+lessons, articles, prompts, readings, explanations, and School items may all use
+every visual Nakafa draws, labs and three-dimensional scenes included, and an
+explanation teaches with visuals first. Before, the list of visuals lived in
+four places that had to agree: the figure union of six components here, the
+compiler's own list, Nakafa's assessment figure switch, and its School figure
+drafts. A visual a lesson could use reached no assessment.
+
+- The Visual Catalog (`visual/catalog`) is the one list. It maps each of the 84
+  components of Nakafa's renderer to the schema of its props and to the reader
+  of the answer state those props hold. Each schema is the renderer's own
+  props, read from Nakafa's design system on 15 November 2026: exact keys, the
+  identifiers of a lab's options, and the checks a figure had before (scene
+  labels that match their anchors, line indices that name a point, a camera
+  away from its target, ordered ranges). Props that only a running page sets,
+  such as callbacks, class names, and the Mermaid settings, are not authored and
+  are not in the catalog.
+- One schema serves every document kind. A schema takes the schema of rich text
+  as its one parameter, and every kind decodes rich text to the inline nodes of
+  this contract: an assessment stores them, and a lesson writes them as elements
+  of its content tree, which the compiler reads into the same nodes. The
+  compiler checks every component of every lesson, article, and page against the
+  catalog, and refuses a component outside it.
+- A figure node is `{ component, props, alt, caption }` for any catalog
+  component whose kind is `figure`. The reason to reject free props, that a
+  figure no schema describes cannot be checked, edited, or exported, holds
+  through the catalog schema. The fixed union is deleted. `NumberLine`,
+  `LineEquation`, and `UnitCircle` stay catalog components, and a number line
+  ray is a segment without a start or an end, as the renderer draws it.
+- Components of kind `markup` shape text and layout. `Highlight` is a mark,
+  `ContentStack` and `ContentBlock` are nodes that group blocks, and `BlockMath`
+  and `InlineMath` are the math nodes. `MathContainer`, `ContentGrid`,
+  `CodeBlock`, `AgentContext`, and the `FunctionAndNonFunctionDiagram` card stay
+  in lessons; an assessment places the relation visualizer itself.
+- A prompt, a shared reading, and an option label never show answer state. The
+  catalog names, for each component, the props that state a result: the exact
+  values of a unit circle, a regression line and its residuals, a scene object
+  drawn as the answer and the readouts a scene computes, the output of the
+  inverse function machine, and a lab's takeaway, meaning, calculation, ratio,
+  or result note. The compiler refuses a figure with any of them before the
+  answer and keeps them in an explanation. A component whose required props
+  hold answer state shows the answer by design and may sit only in an
+  explanation. A lab can still compute what an item asks whatever its props
+  say, so review opens every interactive prompt figure.
+- Checking the corpus against the catalog found renderer drift that had dropped
+  authored words in silence: `Mermaid` titles and descriptions written as rich
+  text but typed as plain strings, and descriptions of
+  `QuadraticEquationReadingRoomProblem`, `NepotismStage`, and `BacterialGrowth`
+  that the components never drew. The catalog takes the words as authored, and
+  Nakafa's components draw them in the same release.
+
 ### What it deletes
 
 `question/`, `tryout/`, `projection/question`, the content family `question` with
@@ -546,8 +592,9 @@ optional unit. Publication derives every identifier, the key, the
 prompt with its interaction placed after the stem, and the hashes. A reading is
 its own file in the set, `<reading>/stimulus.<language>.mdx`, used by key; the
 migration moved each of the 159 readings out of the 887 prompts that copied it.
-The assessment vocabulary of MDX is Markdown, `InlineMath`, `BlockMath`, and the
-six figures, without metadata; headings of an explanation start at `#`.
+The assessment vocabulary of MDX is Markdown, `InlineMath`, `BlockMath`,
+`Highlight`, `ContentStack`, `ContentBlock`, and every figure of the Visual
+Catalog, without metadata; headings of an explanation start at `#`.
 
 ### Profiles of the try-outs
 
@@ -569,7 +616,8 @@ Nakafa: 2.5 heartbeats of 30 seconds (`PRESENCE_INTERVAL`).
 - Copying a shared reading into the prompt of each item. The copies drift, and
   an edit would have to find all of them.
 - `Schema.Unknown` or free JSON for figure props. A figure that no schema
-  describes cannot be checked, edited, or exported.
+  describes cannot be checked, edited, or exported. The Visual Catalog gives
+  every figure its schema instead of a fixed union of a few components.
 - An equivalence policy on the math entry. Whether a sample may score is a rule
   of the exam, not of the item: the same item scores a sample in a try-out and
   sends it to the teacher in a school exam.

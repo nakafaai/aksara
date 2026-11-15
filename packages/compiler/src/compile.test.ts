@@ -16,7 +16,7 @@ const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));
 const testRendererManifest = createTestRendererManifest({
   components: ["BlockMath", "InlineMath", "MathVisual"],
   domains: {
-    chemistry: ["AtomShellLab"],
+    chemistry: ["MethaneCombustionEquationLab"],
     mathematics: ["FunctionMachine"],
   },
 });
@@ -59,6 +59,9 @@ const rejectRawMdx = Effect.fn("CompilerTest.rejectRawMdx")(function* (
 ) {
   return yield* Effect.flip(compileRawMdx(rawMdx, rendererDomain));
 });
+
+/** A function machine with the props its catalog schema takes. */
+const MACHINE = `<FunctionMachine title={<>Machine</>} description={<>Doubles its input.</>} inputLabel="Input" />`;
 
 describe("compileContent", () => {
   it.effect(
@@ -108,11 +111,9 @@ describe("compileContent", () => {
 
   it.effect("allows only the selected route domain registry", () =>
     Effect.gen(function* () {
-      const mathematics = yield* compileRawMdx(
-        withMetadata("<FunctionMachine />")
-      );
+      const mathematics = yield* compileRawMdx(withMetadata(MACHINE));
       const chemistryError = yield* rejectRawMdx(
-        withMetadata("<FunctionMachine />"),
+        withMetadata(MACHINE),
         "chemistry"
       );
       assert.strictEqual(mathematics.payload.rendererDomain, "mathematics");
@@ -126,23 +127,21 @@ describe("compileContent", () => {
   it.effect("compiles selected components inside rich JSX attributes", () =>
     Effect.gen(function* () {
       const { payload } = yield* compileRawMdx(
-        withMetadata(`<AtomShellLab
-          title={<>Atomic Shell Model</>}
-          description={
-            <>
-              Separate shell content from the maximum
-              <InlineMath math="2n^2" /> capacity.
-            </>
-          }
+        withMetadata(`<MethaneCombustionEquationLab
+          title={<>Burning Methane</>}
+          description={<>Count the atoms of <InlineMath math="CH_4" />.</>}
           labels={{
-            note: <>Shell <InlineMath math="K" /> is full.</>,
+            equation: <><InlineMath math="CH_4 + 2O_2" /></>,
+            moleculeView: "Molecules",
+            products: "Products",
+            reactants: "Reactants",
           }}
         />`),
         "chemistry"
       );
       assert.deepStrictEqual(payload.requiredComponents, [
-        "AtomShellLab",
         "InlineMath",
+        "MethaneCombustionEquationLab",
       ]);
     })
   );

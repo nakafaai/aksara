@@ -10,7 +10,7 @@ import type {
   ContentTreeElement,
 } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Option, Predicate } from "effect";
-import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
+import { type BlockSite, sourceError } from "#compiler/assessment/error";
 import { figureComponent, figureNode } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
 
@@ -18,6 +18,7 @@ type BlockError = ReturnType<typeof sourceError>;
 
 /** Elements that sit inside a line of text; any other element is a block. */
 const INLINE_ELEMENTS = [
+  "Highlight",
   "InlineMath",
   "a",
   "br",
@@ -79,7 +80,7 @@ function runsOf(children: readonly ContentTreeChild[]) {
 /** Converts one run: a paragraph of inline children, or one block element. */
 function blocksOfRun(
   run: readonly ContentTreeChild[],
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<readonly BlockNode[], BlockError> {
   const [first] = run;
   if (first === undefined || Arr.every(run, isBlank)) {
@@ -96,7 +97,7 @@ function blocksOfRun(
 /** Converts the children of an element into the blocks of a document. */
 export function blockChildren(
   children: readonly ContentTreeChild[],
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<readonly BlockNode[], BlockError> {
   return Effect.map(
     Effect.forEach(runsOf(children), (run) => blocksOfRun(run, site)),
@@ -105,7 +106,7 @@ export function blockChildren(
 }
 
 /** The failure of a list, table, row, or quote that holds nothing. */
-function emptyError(element: ContentTreeElement, site: AssessmentSite) {
+function emptyError(element: ContentTreeElement, site: BlockSite) {
   return () => sourceError(site, element.name, "document");
 }
 
@@ -120,7 +121,7 @@ function elementChildren(element: ContentTreeElement) {
 /** Converts one list item: it opens with a paragraph, then holds any blocks. */
 function listItem(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<ListItemNode, BlockError> {
   return Effect.map(blockChildren(element.children, site), (blocks) => {
     const [first, ...rest] = blocks;
@@ -134,7 +135,7 @@ function listItem(
 /** Converts the items of one list, refusing a list without one. */
 function listItems(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<readonly [ListItemNode, ...ListItemNode[]], BlockError> {
   return Effect.forEach(elementChildren(element), (item) =>
     item.name === "li"
@@ -155,7 +156,7 @@ function listStart(element: ContentTreeElement) {
  */
 function tableCell(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<TableCellNode, BlockError> {
   const type = element.name === "th" ? "tableHeader" : "tableCell";
   return Effect.map(inlineContent(element.children, site), (content) => ({
@@ -168,7 +169,7 @@ function tableCell(
 /** Converts one table row, refusing a row without a cell. */
 function tableRow(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<TableRowNode, BlockError> {
   return Effect.forEach(elementChildren(element), (cell) =>
     tableCell(cell, site)
@@ -184,7 +185,7 @@ function tableRow(
  */
 function table(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<BlockNode, BlockError> {
   const rows = Arr.flatMap(elementChildren(element), (section) =>
     section.name === "tr" ? [section] : elementChildren(section)
@@ -195,10 +196,21 @@ function table(
   );
 }
 
+/** The node each layout component of a lesson becomes in a document. */
+const GROUP_NODES = {
+  ContentBlock: "contentBlock",
+  ContentStack: "contentStack",
+} as const;
+
+/** Checks whether an element is a layout component that groups blocks. */
+function isGroup(name: string): name is keyof typeof GROUP_NODES {
+  return name === "ContentBlock" || name === "ContentStack";
+}
+
 /** Converts one block element into the blocks it stands for. */
 function blockElement(
   element: ContentTreeElement,
-  site: AssessmentSite
+  site: BlockSite
 ): Effect.Effect<readonly BlockNode[], BlockError> {
   if (element.name === "fragment") {
     return blockChildren(element.children, site);
@@ -255,6 +267,16 @@ function blockElement(
   }
   if (element.name === "table") {
     return Effect.map(table(element, site), (node) => [node]);
+  }
+  if (isGroup(element.name)) {
+    const type = GROUP_NODES[element.name];
+    return blockChildren(element.children, site).pipe(
+      Effect.filterOrFail(
+        Arr.isReadonlyArrayNonEmpty,
+        emptyError(element, site)
+      ),
+      Effect.map((content) => [{ content, type }])
+    );
   }
   return Effect.fail(sourceError(site, element.name, "element"));
 }

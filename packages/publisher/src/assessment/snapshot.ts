@@ -1,4 +1,7 @@
-import type { compileContentDocument } from "@nakafa/aksara-compiler/assessment/document";
+import type {
+  compileExplanationDocument,
+  compileReadingDocument,
+} from "@nakafa/aksara-compiler/assessment/document";
 import {
   hashExamProfile,
   type hashPaper,
@@ -65,7 +68,8 @@ export interface PreparedAssessmentSnapshot {
 export type PrepareAssessmentSnapshotError =
   | AssembleItemError
   | Schema.SchemaError
-  | Effect.Error<ReturnType<typeof compileContentDocument>>
+  | Effect.Error<ReturnType<typeof compileExplanationDocument>>
+  | Effect.Error<ReturnType<typeof compileReadingDocument>>
   | Effect.Error<ReturnType<typeof hashStimulusVersion>>
   | Effect.Error<ReturnType<typeof verifyPaperStimuli>>
   | Effect.Error<ReturnType<typeof verifyPaperPlaces>>

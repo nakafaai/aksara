@@ -45,19 +45,36 @@ const LinkMarkSchema = Schema.Struct({
   type: Schema.Literal("link"),
 });
 
+/**
+ * A highlight mark: a phrase marked for attention, as a lesson marks it with
+ * `Highlight`. `variant` is the tone, `warning` or `success`, and null when the
+ * author set none, which the renderer draws in the warning tone.
+ */
+const HighlightMarkSchema = Schema.Struct({
+  attrs: Schema.Struct({
+    variant: Schema.NullOr(Schema.Literals(["success", "warning"])),
+  }),
+  type: Schema.Literal("highlight"),
+});
+
 /** One text mark, as ProseMirror writes it: `{ type }` plus `attrs` when it has any. */
-export const MarkSchema = Schema.Union([PlainMarkSchema, LinkMarkSchema]);
+export const MarkSchema = Schema.Union([
+  PlainMarkSchema,
+  HighlightMarkSchema,
+  LinkMarkSchema,
+]);
 export type Mark = typeof MarkSchema.Type;
 
 /**
  * The one order of marks on a text node. ProseMirror keeps a mark set in the
  * order of its schema, so an equal set always has one encoding: the plain marks
- * in their written order, then the link.
+ * in their written order, then the highlight, then the link.
  */
-const MARK_ORDER = Arr.append(
-  PlainMarkSchema.fields.type.literals,
-  LinkMarkSchema.fields.type.literal
-);
+const MARK_ORDER = [
+  ...PlainMarkSchema.fields.type.literals,
+  HighlightMarkSchema.fields.type.literal,
+  LinkMarkSchema.fields.type.literal,
+];
 
 /** Orders marks as a text node keeps them. */
 export const MarkOrder: Order.Order<Mark> = Order.mapInput(

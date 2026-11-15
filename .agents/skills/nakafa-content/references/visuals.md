@@ -5,6 +5,20 @@ Choose a representation for its instructional job, not for variety alone.
 For assessed content, also apply the
 [question-bank assessment review](questions.md#assessment-review).
 
+## One catalog for every content kind
+
+Every visual component lives in the Visual Catalog
+(`packages/contracts/src/visual`): its name, the schema of its props, and the
+props that hold answer state. No visual is limited to lessons. A lesson, an
+article, a try-out or exam prompt, a shared reading, an explanation, and a
+School item may all use every catalog visual, labs and three-dimensional scenes
+included, with the same props. The compiler checks each component of every
+document against its catalog schema and names the file, the component, and the
+prop it refuses. Nakafa draws them all through one renderer, so a visual added
+to the catalog and to Nakafa's renderer is available in every content kind at
+once. A prompt or a reading never shows answer state; an explanation may (see
+[questions](questions.md) and [solutions](solutions.md)).
+
 - Use prose for explanation, interpretation, uncertainty, and causal reasoning.
 - Use a short list for parallel items that do not need cross-column comparison.
 - Use a Markdown table for exact mappings or repeated comparisons. Keep cells
@@ -262,9 +276,9 @@ perspective never changes the mathematical dimension of an authored object.
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
 effort. Tables, blockquotes, and Mermaid diagrams remain review decisions, not
-quotas: a routine worked answer can remain prose plus one derivation, and none
-of them is added merely to make a document look more varied. Lessons also
-follow the interactive visual rule below.
+quotas, and none of them is added merely to make a document look more varied.
+A worked answer follows the visual-first rule of [solutions](solutions.md).
+Lessons also follow the interactive visual rule below.
 
 ## Interactive visual in every lesson
 
