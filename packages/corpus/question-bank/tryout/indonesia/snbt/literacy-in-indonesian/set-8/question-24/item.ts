@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mereka ingin bergabung dengan blok yang dipimpin Amerika Serikat.",
+            "rencana membina klub setempat selama bertahun-tahun, karena menurut penulis pembinaan yang lama membuat pemain kehilangan semangat",
         },
         {
           correct: false,
-          label: "Mereka diundang oleh Uni Soviet untuk membahas Eropa Timur.",
+          label:
+            "rencana yang dibiayai iuran anggota dan pengusaha setempat, karena menurut penulis pembinaan seharusnya dibiayai pemerintah",
         },
         {
           correct: false,
-          label: "Mereka ingin membangun museum bersama di kota Bandung.",
+          label:
+            "rencana membentuk regu dari atlet terbaik saat ini lalu memberi mereka pelatihan motivasi sebulan, karena menurut penulis semangat tidak berperan dalam kemenangan 1958",
         },
         {
           correct: true,
           label:
-            "Mereka ingin bekerja sama tanpa bergantung pada blok mana pun.",
+            "rencana membentuk regu dari atlet terbaik saat ini lalu memberi mereka pelatihan motivasi sebulan, karena rencana itu hanya mengandalkan semangat dan melewatkan pembinaan klub yang lama",
         },
         {
           correct: false,
           label:
-            "Mereka ingin membagi wilayah Afrika di antara negara-negara Asia yang hadir.",
+            "rencana menggelar kompetisi rutin antarklub, karena menurut penulis kompetisi hanya cocok untuk negara yang sudah lama merdeka",
         },
       ],
     },

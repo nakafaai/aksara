@@ -2,37 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Lembaga bahasa melarang penutur mempelajari asal-usul kata.",
-        },
-        {
-          correct: false,
           label:
-            "Kata pinjaman selalu dipakai dengan makna yang sama seperti aslinya.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar kata pinjaman hanya muncul dalam dokumen resmi.",
+            "Iklan itu tepat, karena bentuk dan atap gonjong rumah itu sama dengan rumah gadang lama.",
         },
         {
           correct: true,
           label:
-            "Ejaan dan bunyinya disesuaikan sehingga terdengar seperti kata asli.",
+            "Iklan itu menyesatkan, karena rumah itu meniru bentuk rumah gadang tetapi tidak memakai cara berdiri yang membuat rumah gadang lama lentur.",
         },
         {
           correct: false,
-          label: "Penutur tidak tertarik pada sejarah bahasa sama sekali.",
+          label:
+            "Iklan itu menyesatkan, karena menurut teks rumah dengan fondasi beton pasti roboh saat gempa.",
+        },
+        {
+          correct: false,
+          label:
+            "Iklan itu tepat, karena beton dan paku lebih kuat daripada kayu dan pasak.",
+        },
+        {
+          correct: false,
+          label:
+            "Iklan itu menyesatkan, karena menurut teks rumah gadang yang asli pun selalu sama rentannya dengan bangunan lain.",
         },
       ],
     },

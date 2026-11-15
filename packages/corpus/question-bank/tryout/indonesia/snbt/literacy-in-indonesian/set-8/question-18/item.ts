@@ -4,32 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "nickel-processing",
+  stimulus: "household-spending",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "ekspor bijih nikel mentah sebaiknya dibuka kembali",
+          column: 1,
+          label:
+            "Kelompok $$20\\%$$ tengah membelanjakan lebih dari separuh pengeluarannya untuk makanan.",
         },
         {
-          correct: true,
-          label: "pengolahan nikel di dalam negeri perlu dilanjutkan",
+          column: 2,
+          label:
+            "Pengeluaran bukan makanan kelompok $$20\\%$$ terbawah lebih besar daripada pengeluaran makanannya.",
         },
         {
-          correct: false,
-          label: "pembangkit batu bara untuk smelter harus segera ditutup",
+          column: 1,
+          label:
+            "Pengeluaran bukan makanan per kapita kelompok $$20\\%$$ teratas lebih dari sepuluh kali pengeluaran bukan makanan kelompok $$20\\%$$ terbawah.",
         },
         {
-          correct: false,
-          label: "larangan ekspor perlu diterapkan pada semua bahan tambang",
-        },
-        {
-          correct: false,
-          label: "daerah penghasil nikel tidak memerlukan bagian manfaat",
+          column: 2,
+          label:
+            "Porsi makanan turun dengan besar yang sama di antara setiap dua kelompok yang berurutan.",
         },
       ],
     },

@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "inference",
   },
-  stimulus: "gut-bacteria",
+  stimulus: "bat-echolocation",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "yakin bahwa bakteri usus adalah penyebab utama obesitas pada manusia",
+            "Spallanzani sudah tahu bahwa kelelawar memakai telinganya lebih dari satu abad sebelum orang tahu bunyi apa yang dipakai kelelawar.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "mengakui ada hubungan, tetapi berhati-hati soal sebab-akibatnya pada manusia",
+            "Bunyi yang dipancarkan kelelawar pemburu serangga tidak dapat memantul dari benda sekecil nyamuk.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "menolak semua penelitian yang memakai tikus sebagai hewan percobaan",
+            "Jika selang antara panggilan dan gema makin pendek, benda yang memantulkan gema itu makin dekat.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "menganggap mikrobioma tidak berperan apa pun dalam kesehatan manusia",
+            "Barbastel dapat mendeteksi ngengat dari jarak yang lebih jauh daripada kelelawar lain yang berburu di udara terbuka.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "menyarankan agar setiap orang gemuk segera menjalani pemindahan bakteri usus",
+            "Percobaan Corcoran menunjukkan bahwa sebagian besar ngengat di alam memakai klik untuk mengacaukan sonar kelelawar.",
         },
       ],
     },

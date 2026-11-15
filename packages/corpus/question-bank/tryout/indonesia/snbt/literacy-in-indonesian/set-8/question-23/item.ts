@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-structure",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Konferensi Asia Afrika diikuti oleh wakil dari 29 negara Eropa.",
+            "Keterangan itu mengoreksi cerita bahwa Indonesia menang hanya dengan semangat, dan kalimat itu menyimpulkannya: para pemain sudah terbentuk sebelum regu nasional ada.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Persiapan konferensi dibahas dalam pertemuan di Kolombo dan Bogor.",
+            "Keterangan itu mengoreksi cerita bahwa Indonesia menang hanya dengan semangat, dan kalimat itu menjelaskan bahwa PBSI sudah menyiapkan perlengkapan dan tempat latihan bagi regu.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Gerakan Non-Blok lahir dalam Konferensi Asia Afrika pada 1955.",
+            "Keterangan itu membuktikan bahwa semangat tidak berperan dalam kemenangan, dan kalimat itu menyimpulkan bahwa para pemain sudah terbentuk sebelum regu nasional ada.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Dasasila Bandung menekankan penyelesaian sengketa secara damai.",
+            "Keterangan itu menjelaskan mengapa Malaya kalah, dan kalimat itu menyimpulkan bahwa Malaya kekurangan pemain yang terlatih.",
+        },
+        {
+          correct: false,
+          label:
+            "Keterangan itu menunjukkan bahwa pemerintah membiayai klub-klub sejak awal, dan kalimat itu menyimpulkan bahwa negara sudah menyiapkan regu sejak PBSI berdiri.",
         },
       ],
     },

@@ -2,32 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "character",
   },
-  stimulus: "jamu-seller",
+  stimulus: "last-newsstand",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Sari kuliah di jurusan kedokteran di kota.",
-        },
-        {
-          column: 2,
-          label: "Bu Darmi tidak mengangkat telepon dari Sari.",
-        },
-        {
-          column: 1,
-          label: "Bakul Bu Darmi berisi delapan botol jamu.",
-        },
-        {
-          column: 1,
+          correct: true,
           label:
-            "Sari menelepon ibunya karena tidak tahu takaran pesanan seorang kakek.",
+            "Lapaknya menjadi tempat bertemu bagi beberapa orang yang ia kenal baik.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia yakin penjualan koran akan kembali naik dalam waktu dekat.",
+        },
+        {
+          correct: true,
+          label:
+            "Ia merasa punya janji kepada pelanggan tetap seperti Pak Darto.",
+        },
+        {
+          correct: false,
+          label: "Ia belum tahu bahwa koran Pagi Raya akan berhenti terbit.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia ingin menyaingi berita di ponsel dengan menjual koran yang lebih murah.",
         },
       ],
     },

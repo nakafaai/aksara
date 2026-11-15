@@ -2,35 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "tone-attitude",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "letter-poem",
+  stimulus: "framing-effect",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "marah karena ibunya tidak pernah mengirim surat balasan",
-        },
-        {
-          correct: true,
-          label: "rindu dan kesepian, tetapi tetap berusaha menenangkan ibunya",
-        },
-        {
-          correct: false,
-          label: "bangga karena telah berhasil hidup mewah di kota besar",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "takut karena lampu-lampu kota tidak pernah padam sepanjang malam hari",
+            "Program A dan program C memberi hasil yang sama jika dinyatakan dalam banyak orang yang selamat.",
         },
         {
-          correct: false,
-          label: "menyesal karena salah memilih pekerjaan di kota",
+          column: 1,
+          label:
+            "Di kelompok pertama, sebagian besar peserta memilih program yang hasilnya pasti.",
+        },
+        {
+          column: 2,
+          label:
+            "Di kelompok kedua, sebagian besar peserta memilih program yang hasilnya pasti.",
+        },
+        {
+          column: 1,
+          label:
+            "Secara rata-rata, program B menyelamatkan orang sebanyak program A.",
+        },
+        {
+          column: 2,
+          label:
+            "Percobaan itu menunjukkan bahwa para mahasiswa tidak dapat menghitung peluang dengan benar.",
         },
       ],
     },

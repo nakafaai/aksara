@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "cause-effect",
   },
-  stimulus: "gut-bacteria",
+  stimulus: "bat-echolocation",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Antibiotik mengandung bakteri *C. difficile* yang ikut tertelan.",
-        },
-        {
-          correct: false,
-          label:
-            "Bakteri bermanfaat berubah menjadi *C. difficile* karena antibiotik.",
-        },
-        {
-          correct: false,
-          label:
-            "Serat yang tidak tercerna berubah menjadi racun di usus besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Tubuh mungkin berhenti membuat butirat sendiri selama pengobatan antibiotik berlangsung.",
-        },
-        {
           correct: true,
           label:
-            "Antibiotik ikut membunuh bakteri baik, lalu ruangnya diisi bakteri merugikan.",
+            "Ngengat itu berada di sisi kanan dan makin dekat, dan panggilan kelelawar makin rapat karena setiap gema cepat usang selagi mangsa terus berbelok.",
+        },
+        {
+          correct: false,
+          label:
+            "Ngengat itu berada di sisi kanan tetapi makin jauh, dan panggilan kelelawar makin jarang karena gemanya makin lemah.",
+        },
+        {
+          correct: false,
+          label:
+            "Ngengat itu berada di sisi kiri dan makin dekat, dan panggilan kelelawar makin rapat karena setiap gema cepat usang selagi mangsa terus berbelok.",
+        },
+        {
+          correct: false,
+          label:
+            "Ngengat itu berada di sisi kanan dan makin dekat, dan panggilan kelelawar makin keras agar ngengat tidak sempat mendengarnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Ngengat itu berada di sisi kanan, tetapi jaraknya tidak dapat diketahui, karena selang antara panggilan dan gema hanya menunjukkan arah.",
         },
       ],
     },

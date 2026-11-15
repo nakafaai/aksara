@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "waste-meeting",
+  stimulus: "testing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "teguran keras Pak Karto karena usulnya membakar sampah",
+          correct: true,
+          label:
+            "menutup catatan, menuliskan semua yang diingat, lalu mencocokkannya dengan catatan",
         },
         {
           correct: false,
-          label: "rasa malu karena dituduh menjadi penyebab batuk anak Bu Ning",
-        },
-        {
-          correct: false,
-          label: "keputusan kelurahan menambah jadwal kedatangan truk sampah",
-        },
-        {
-          correct: false,
-          label: "kemungkinan ia diberi upah untuk mengolah kompos sendiri",
+          label:
+            "menandai kalimat-kalimat penting dengan stabilo sambil membaca ulang buku",
         },
         {
           correct: true,
-          label: "tawaran Dina dan temannya mengambil sisa makanan setiap sore",
+          label:
+            "mengerjakan soal latihan sebelum membaca ulang bab, lalu memeriksa jawaban yang salah",
+        },
+        {
+          correct: false,
+          label:
+            "membaca ulang seluruh catatan empat kali pada malam sebelum ujian",
+        },
+        {
+          correct: true,
+          label:
+            "menjelaskan materi kepada teman tanpa melihat catatan, lalu memeriksa bagian yang terlewat",
         },
       ],
     },

@@ -2,39 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "school-distance",
+  stimulus: "last-newsstand",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Sebagian besar orang tua di kota besar lebih suka sekolah yang dekat rumah.",
+            "Sore itu, koran yang tersisa lebih dari dua pertiga dari koran yang dibawa Pak Harun hari itu.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Les tambahan di kota besar semakin mahal dalam beberapa tahun terakhir.",
+            "Pak Darto adalah satu-satunya pembeli koran di lapak Pak Harun hari itu.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Sekolah unggulan di kota memiliki fasilitas yang lebih lengkap daripada sekolah lain.",
+            "Sesudah Pagi Raya berhenti terbit, judul koran di lapak itu tinggal seperenam dari jumlah judul koran yang dulu dijual.",
         },
         {
-          correct: false,
-          label:
-            "Pemeriksaan alamat memerlukan waktu yang lebih lama daripada biasanya.",
+          column: 2,
+          label: "Bu Sri mendengar kabar berhentinya Pagi Raya dari Pak Harun.",
         },
         {
-          correct: true,
-          label:
-            "Anak dari kecamatan tanpa SMA negeri hampir tidak pernah diterima di SMA negeri.",
+          column: 2,
+          label: "Lapak Pak Harun kini hanya menjual koran.",
         },
       ],
     },
