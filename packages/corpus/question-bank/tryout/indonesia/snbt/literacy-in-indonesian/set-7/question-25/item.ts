@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "author-view",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kata itu dipinjam pada masa penjajahan yang penuh penderitaan.",
+            "Penulis menolak sebutan itu, karena menurutnya rumah gadang sama rentannya dengan bangunan lain dalam keadaan apa pun.",
         },
         {
           correct: false,
           label:
-            "Orang Indonesia tidak mengenal ajaran Hindu dan Buddha sama sekali.",
+            "Penulis menerima sebutan itu sepenuhnya, karena tiang di atas batu sandi pasti mencegah kerusakan.",
+        },
+        {
+          correct: false,
+          label:
+            "Penulis tidak menilai sebutan itu dan hanya melaporkan bahwa sebutan itu sering dipakai dalam promosi.",
         },
         {
           correct: true,
           label:
-            "Dalam ajaran asalnya, hidup yang terus berputar dipandang sebagai penderitaan.",
+            "Penulis menerima dasar sebutan itu, tetapi membatasinya pada rumah gadang yang kayunya sehat dan cara berdirinya masih asli.",
         },
         {
           correct: false,
           label:
-            "Lembaga bahasa menetapkan makna baru itu dalam dokumen resmi.",
-        },
-        {
-          correct: false,
-          label:
-            "Bunyi kata itu terdengar sedih bagi sebagian besar penutur bahasa Indonesia.",
+            "Penulis menilai sebutan itu tepat hanya untuk rumah gadang baru yang tiangnya dicor ke fondasi beton dan disambung paku.",
         },
       ],
     },

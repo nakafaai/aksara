@@ -3,37 +3,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "mobile-library",
+  stimulus: "plastic-levy",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Ia ingin menghafal seluruh isi buku itu untuk mengikuti lomba di sekolahnya.",
+          label: "$$80\\%$$, sama dengan penurunan jumlah kantong tipis",
+        },
+        {
+          correct: false,
+          label: "sekitar $$66\\%$$, dihitung dari jumlah semua kantong",
         },
         {
           correct: false,
           label:
-            "Buku-buku lain di kotak Wulan sudah selesai ia baca semuanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Wulan melarang anak-anak meminjam buku selain buku bergambar.",
+            "sekitar $$46\\%$$, dengan berat sesudah cukai sebagai pembagi",
         },
         {
           correct: true,
-          label:
-            "Ia belum lancar membaca dan menutupinya dengan buku yang gambarnya ia kenal.",
+          label: "sekitar $$32\\%$$, dari $$190$$ ton menjadi $$130$$ ton",
         },
         {
           correct: false,
-          label: "Ia ingin menjadi nelayan yang mencari ikan paus.",
+          label:
+            "sekitar $$68\\%$$, dengan $$130$$ ton sebagai besar penurunan",
         },
       ],
     },

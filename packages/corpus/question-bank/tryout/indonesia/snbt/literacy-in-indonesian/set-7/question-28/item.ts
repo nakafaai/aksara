@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "waste-meeting",
+  stimulus: "testing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "anak Bu Ning sudah sembuh sehingga tidak akan batuk lagi",
+          label:
+            "Mahasiswa yang membaca empat kali memang mengingat paling banyak, sehingga perkiraan mereka tepat.",
         },
         {
           correct: false,
-          label: "Bu Ning menuduh Pak Hasan sebagai penyebab batuk anaknya",
-        },
-        {
-          correct: false,
-          label: "warga lain sudah lebih dulu batuk karena bau sampah",
+          label:
+            "Mahasiswa yang mengingat tiga kali lebih rendah hati, sehingga mereka sengaja memberi perkiraan yang rendah.",
         },
         {
           correct: true,
-          label: "membakar sampah akan mengganggu kesehatan lebih banyak warga",
+          label:
+            "Rasa lancar karena membaca ulang membuat mahasiswa merasa lebih siap daripada yang ditunjukkan hasil tes satu minggu.",
         },
         {
           correct: false,
-          label: "Bu Ning ingin pindah dari kampung itu bersama anaknya",
+          label:
+            "Perkiraan mahasiswa tidak berhubungan dengan cara belajar, karena setiap orang menilai dirinya secara berbeda.",
+        },
+        {
+          correct: false,
+          label:
+            "Mahasiswa yang membaca empat kali sengaja melebih-lebihkan perkiraannya agar terlihat pandai di depan peneliti.",
         },
       ],
     },

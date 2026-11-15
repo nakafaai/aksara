@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "inference",
   },
-  stimulus: "bandung-conference",
+  stimulus: "framing-effect",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "menegaskan bahwa gagasan konferensi lebih penting daripada tempatnya",
+            "Keempat program memberi hasil rata-rata yang sama, $$200$$ orang selamat, tetapi kebanyakan peserta beralih pilihan saat bingkainya berubah.",
         },
         {
           correct: false,
           label:
-            "mengkritik pemerintah yang mengubah gedung itu menjadi museum",
-        },
-        {
-          correct: false,
-          label: "menyarankan agar Museum Konferensi Asia Afrika ditutup saja",
+            "Program B dan D lebih berisiko daripada program A dan C, sehingga peserta yang rasional seharusnya selalu memilih program yang pasti.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa gedung itu sebenarnya tidak pernah dipakai untuk konferensi",
+            "Peserta di kedua kelompok membaca program yang sama sekali berbeda, sehingga pilihan mereka tidak dapat dibandingkan.",
         },
         {
           correct: false,
-          label: "menunjukkan bahwa museum itu jarang dikunjungi orang",
+          label:
+            "Program A menyelamatkan lebih banyak orang daripada program C, tetapi peserta tidak menyadarinya.",
+        },
+        {
+          correct: false,
+          label:
+            "Peserta di kelompok kedua lebih pandai berhitung peluang, sehingga mereka memilih program yang menyelamatkan lebih banyak orang.",
         },
       ],
     },

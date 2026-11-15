@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mereka ingin bergabung dengan blok yang dipimpin Amerika Serikat.",
-        },
-        {
-          correct: false,
-          label: "Mereka diundang oleh Uni Soviet untuk membahas Eropa Timur.",
-        },
-        {
-          correct: false,
-          label: "Mereka ingin membangun museum bersama di kota Bandung.",
+            "mengadakan pelatihan motivasi selama sebulan bagi atlet terbaik menjelang kejuaraan nasional",
         },
         {
           correct: true,
           label:
-            "Mereka ingin bekerja sama tanpa bergantung pada blok mana pun.",
+            "mendukung klub setempat agar menggelar kompetisi rutin bertahun-tahun, lalu memilih regu dari pemain yang terbentuk di sana",
         },
         {
           correct: false,
           label:
-            "Mereka ingin membagi wilayah Afrika di antara negara-negara Asia yang hadir.",
+            "mendatangkan pemain berprestasi dari daerah lain beberapa bulan menjelang kejuaraan agar regunya langsung kuat",
+        },
+        {
+          correct: false,
+          label:
+            "membangun satu gedung olahraga besar dan menunggu bakat muncul dengan sendirinya",
+        },
+        {
+          correct: false,
+          label:
+            "memutar rekaman pertandingan 1958 di sekolah-sekolah setiap pekan agar siswa bersemangat seperti para pemain dulu",
         },
       ],
     },

@@ -4,32 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "inference",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "plastic-levy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "39,5 persen",
+          column: 1,
+          label:
+            "Menurut kajian 2011, tas katun yang dipakai $$50$$ kali masih berdampak pemanasan global lebih besar daripada $$50$$ kantong tipis sekali pakai yang digantikannya.",
         },
         {
-          correct: true,
-          label: "48,9 persen",
+          column: 2,
+          label:
+            "Menurut kajian 2011, tas katun selalu lebih buruk bagi lingkungan daripada kantong plastik tipis.",
         },
         {
-          correct: false,
-          label: "60,5 persen",
+          column: 1,
+          label:
+            "Kajian 2011 tidak dapat dipakai untuk menilai seberapa banyak kantong plastik yang mencemari laut.",
         },
         {
-          correct: false,
-          label: "80,9 persen",
+          column: 2,
+          label:
+            "Penulis Teks B menyimpulkan bahwa cukai kantong plastik sebaiknya dihapus.",
         },
         {
-          correct: false,
-          label: "123,7 persen",
+          column: 2,
+          label:
+            "Menurut kajian 2011, tas katun yang dipakai $$200$$ kali berdampak pemanasan global lebih besar daripada $$200$$ kantong tipis sekali pakai.",
         },
       ],
     },

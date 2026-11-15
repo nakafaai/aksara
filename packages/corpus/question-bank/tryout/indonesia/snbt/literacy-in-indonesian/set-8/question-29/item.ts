@@ -3,35 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "author-reasoning",
   },
-  stimulus: "letter-poem",
+  stimulus: "framing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "aku lirik tidak mampu membeli makanan karena gajinya kecil",
-        },
-        {
-          correct: false,
-          label: "penjual nasi di kota tidak ramah kepada para pembelinya",
-        },
-        {
-          correct: false,
-          label:
-            "aku lirik terlalu sibuk bekerja di kantor sehingga lupa makan setiap hari",
-        },
-        {
           correct: true,
           label:
-            "di kota, aku lirik kehilangan perhatian sederhana yang dulu ia terima",
+            "Keuntungan pasti lebih disukai daripada keuntungan berisiko, sedangkan kerugian pasti terasa lebih berat daripada kerugian berisiko.",
         },
         {
           correct: false,
-          label: "teman-teman aku lirik juga belum makan sepanjang hari",
+          label:
+            "Orang selalu memilih program yang menyelamatkan paling banyak orang, berapa pun peluangnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Orang tidak memahami arti peluang sepertiga dan dua pertiga, sehingga mereka memilih program secara acak saja.",
+        },
+        {
+          correct: false,
+          label:
+            "Kerugian yang pasti lebih disukai daripada kerugian yang berisiko, karena orang selalu ingin segera tahu hasil akhirnya.",
+        },
+        {
+          correct: false,
+          label:
+            "Orang lebih percaya pada program yang disebut lebih dulu dalam soal, apa pun isinya.",
         },
       ],
     },

@@ -2,37 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "plot-function",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "research-design",
   },
-  stimulus: "mobile-library",
+  stimulus: "plastic-levy",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Dimas kehilangan minat pada hewan laut dan beralih ke hewan darat",
+            "berat total plastik dari kantong tipis dan kantong sampah sebelum dan sesudah cukai",
         },
         {
           correct: false,
-          label: "Wulan berhenti membawa buku ikan paus karena sampulnya lepas",
+          label:
+            "jumlah pengelola supermarket yang menyatakan setuju dengan cukai kantong plastik",
         },
         {
           correct: true,
           label:
-            "Dimas kini cukup mampu dan berani membaca buku yang belum ia kenal",
+            "jumlah kantong plastik di pasar tradisional sebelum dan sesudah cukai",
         },
         {
           correct: false,
           label:
-            "gurita adalah hewan laut yang lebih disukai anak-anak di dusun itu",
+            "harga tas belanja kain di supermarket Bandar Selatan pada 2023",
         },
         {
-          correct: false,
-          label: "Dimas masih berpura-pura membaca dengan buku yang baru",
+          correct: true,
+          label: "data pemakaian kantong selama beberapa tahun sesudah 2023",
         },
       ],
     },

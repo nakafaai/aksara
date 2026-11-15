@@ -4,33 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "plastic-levy",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            "Rumah Q dan Rumah R memiliki kapasitas panel yang sama dan menghasilkan listrik yang sama.",
+            "Teks B menerima angka Teks A, tetapi mempersoalkan apakah angka itu mengukur hal yang menentukan keberhasilan kebijakan.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Rumah S tidak perlu membeli listrik dari jaringan sama sekali.",
+            "Teks B menolak angka Teks A dan menggantinya dengan data penjualan kantong sampah yang dianggap lebih jujur.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Rumah dengan kapasitas panel terbesar juga menghasilkan listrik paling banyak.",
+            "Teks B mendukung Teks A sepenuhnya, lalu menambahkan contoh dari Inggris sebagai bukti tambahan keberhasilan cukai.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Selama bulan itu, panel Rumah S menghasilkan listrik lebih banyak daripada yang dipakai rumahnya.",
+            "Teks B menolak cukai, karena tas pengganti menurut kajian Inggris lebih merusak lingkungan daripada kantong plastik.",
+        },
+        {
+          correct: false,
+          label:
+            "Teks B membahas masalah lain yang tidak berhubungan dengan cukai, yaitu dampak pemanasan global dari tas katun.",
         },
       ],
     },

@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "cause-effect",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Kata *meja* dan *jendela* berasal dari bahasa Belanda.",
-        },
-        {
-          column: 1,
-          label: "Kata *kulkas* berasal dari kata Belanda *koelkast*.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Dalam bahasa Indonesia, kata *sengsara* masih berarti perputaran kelahiran dan kematian.",
+            "Pasak kayu lebih murah daripada paku, sehingga rumah gadang dapat dibangun oleh seluruh anggota kaum.",
         },
         {
-          column: 1,
-          label: "Kata *daring* merupakan singkatan dari *dalam jaringan*.",
+          correct: false,
+          label:
+            "Pasak kayu membuat sambungan sama sekali tidak dapat bergerak, sehingga rumah tetap tegak saat tanah berguncang.",
+        },
+        {
+          correct: false,
+          label:
+            "Paku tidak dikenal masyarakat Minangkabau ketika rumah gadang pertama kali dibangun.",
+        },
+        {
+          correct: false,
+          label:
+            "Pasak kayu membuat tiang tertanam lebih dalam ke tanah, sehingga rumah tidak bergeser dari tempatnya.",
+        },
+        {
+          correct: true,
+          label:
+            "Sambungan pasak dapat bergerak sedikit tanpa patah, sehingga sebagian guncangan diredam alih-alih ditahan seluruhnya.",
         },
       ],
     },

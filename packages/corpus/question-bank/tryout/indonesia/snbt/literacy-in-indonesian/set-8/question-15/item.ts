@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-structure",
   },
-  stimulus: "breakfast-survey",
+  stimulus: "science-language",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Lebih dari separuh siswa sarapan 4 atau 5 hari dalam seminggu.",
+            "membuktikan bahwa penelitian tentang kebakaran gambut tidak pernah dikutip oleh peneliti dari luar negeri",
         },
         {
-          column: 2,
-          label: "Rata-rata nilai kuis seluruh 400 siswa adalah 69.",
+          correct: false,
+          label:
+            "menunjukkan bahwa kebakaran gambut adalah masalah terbesar dalam penelitian di Indonesia",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Dilihat dari persentasenya, kelompok yang paling jarang sarapan paling banyak sulit berkonsentrasi.",
+            "menjelaskan mengapa artikel berbahasa Inggris berasal dari proyek dengan dana besar",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Jumlah siswa yang sulit berkonsentrasi paling banyak terdapat pada kelompok 0 atau 1 hari.",
+            "menunjukkan bahwa pemakai terpenting penelitian bisa bukan peneliti, sehingga sitasi tidak menangkap manfaatnya",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa petani dan petugas pemadam di sekitar gambut menolak membaca artikel berbahasa Inggris",
         },
       ],
     },

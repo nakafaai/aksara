@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "jamu-seller",
+  stimulus: "science-language",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Pekerjaan yang dianggap sederhana bisa menyimpan ilmu dan kepedulian besar.",
+            "Menurut Teks B, undang-undang mewajibkan bahasa Indonesia dalam publikasi karya ilmiah di Indonesia.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Anak sebaiknya meneruskan pekerjaan orang tua daripada kuliah di kota.",
+            "Dalam data Teks A, rata-rata sitasi artikel berbahasa Inggris empat kali rata-rata sitasi artikel berbahasa Indonesia.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Penjual jamu sebaiknya beristirahat jika pinggangnya mulai terasa sakit.",
+            "Data Teks A membuktikan bahwa menulis dalam bahasa Inggris melipatgandakan sitasi sebuah artikel menjadi empat kali.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Ilmu dari buku kuliah selalu lebih tepat daripada pengalaman sehari-hari di pasar.",
-        },
-        {
-          correct: false,
-          label:
-            "Teman sekolah tidak perlu mengetahui pekerjaan orang tua kita.",
+            "Teks B memakai istilah daring dan luring sebagai contoh kemampuan bahasa Indonesia membentuk istilah baru.",
         },
       ],
     },

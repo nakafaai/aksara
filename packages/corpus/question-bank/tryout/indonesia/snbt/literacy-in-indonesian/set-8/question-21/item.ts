@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "main-idea",
   },
-  stimulus: "nickel-processing",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Nilai ekspor produk olahan nikel naik setiap tahun sejak 2020.",
-        },
-        {
-          correct: false,
-          label:
-            "Jumlah pekerja di kawasan industri pengolahan terus bertambah.",
+            "Indonesia memenangi Piala Thomas 1958 hanya karena semangat juang para pemainnya yang luar biasa.",
         },
         {
           correct: true,
           label:
-            "Penyakit saluran napas warga sekitar smelter naik sejak smelter beroperasi.",
+            "Kemenangan 1958 lahir dari semangat yang bertemu dengan pembinaan panjang di klub-klub bulu tangkis.",
         },
         {
           correct: false,
           label:
-            "Harga nikel dunia naik ketika permintaan baterai kendaraan listrik meningkat tajam.",
+            "Kemenangan 1958 tidak berarti apa-apa di luar olahraga, karena hanya menyangkut satu kejuaraan.",
         },
         {
           correct: false,
-          label: "Sebagian smelter akan memakai listrik tenaga surya kelak.",
+          label:
+            "Malaya kalah pada 1958 karena regu itu sudah terlalu lama menjadi juara dan kehilangan semangat.",
+        },
+        {
+          correct: false,
+          label:
+            "PBSI adalah satu-satunya lembaga yang menyiapkan pemain Indonesia untuk Piala Thomas 1958.",
         },
       ],
     },

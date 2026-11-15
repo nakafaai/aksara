@@ -2,32 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "mobile-library",
+  stimulus: "tide-poem",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label: "Dimas selalu datang paling awal ke balai dusun.",
+          column: 1,
+          label:
+            "Menurut catatan penyair, percakapan di bait terakhir pernah benar-benar terjadi.",
         },
         {
-          column: 1,
-          label: "Wulan membawa buku dari perpustakaan kecamatan.",
+          column: 2,
+          label:
+            "Catatan penyair menyebut bahwa air pasang di kampungnya datang sekali sehari pada jam yang sama.",
         },
         {
           column: 1,
           label:
-            "Kalimat yang diucapkan Dimas tentang paus biru tidak tertulis di halaman itu.",
+            "Baris tentang pasang sebagai tamu yang datang dua kali sehari sejalan dengan keterangan dalam catatan penyair.",
         },
         {
           column: 2,
-          label: "Wulan menegur Dimas karena berpura-pura dapat membaca.",
+          label:
+            "Penyair langsung memahami jawaban ayahnya ketika percakapan itu terjadi.",
         },
       ],
     },

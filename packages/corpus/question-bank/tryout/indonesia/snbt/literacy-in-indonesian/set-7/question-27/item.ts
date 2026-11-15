@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "conflict",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
   },
-  stimulus: "waste-meeting",
+  stimulus: "testing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "cara menangani sampah yang menumpuk sambil menunggu truk",
+          label:
+            "Keunggulan latihan mengingat baru tampak pada tes yang tertunda, sedangkan tes lima menit masih diuntungkan oleh bacaan yang baru saja dibaca.",
         },
         {
           correct: false,
-          label: "jadwal ronda malam yang tidak disepakati oleh para warga",
+          label:
+            "Hasil tes lima menit tidak dapat dipercaya, karena mahasiswa belum sempat beristirahat dan masih lelah sesudah sesi terakhir.",
         },
         {
           correct: false,
-          label: "siapa yang harus menggantikan Pak Karto sebagai ketua RT",
+          label:
+            "Pada tes lima menit, kelompok yang mengingat tiga kali sebenarnya juga mengingat paling banyak jika angkanya tidak dibulatkan.",
         },
         {
           correct: false,
-          label: "harga ember kompos yang dianggap terlalu mahal oleh warga",
+          label:
+            "Tes lima menit memakai teks yang berbeda dari tes satu minggu, sehingga keduanya tidak dapat dibandingkan.",
         },
         {
           correct: false,
-          label: "kemungkinan Dina pindah ke sekolah lain yang lebih jauh",
+          label:
+            "Kelompok yang membaca empat kali menghabiskan waktu belajar lebih lama daripada kelompok lain, sehingga hasil tes lima menitnya tidak adil.",
         },
       ],
     },

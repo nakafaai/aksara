@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "text-structure",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Berkendara di jalan yang lebih lebar terasa mudah, sehingga makin banyak orang berkendara.",
+            "menunjukkan bahwa ketepatan ukuran waktu tidak sama dengan kemampuan mengetahui kapan harus bertindak",
         },
         {
           correct: false,
           label:
-            "Trotoar yang dikorbankan untuk pelebaran jalan selalu dipakai untuk parkir motor.",
+            "menunjukkan bahwa kehidupan di kota lebih teratur dan lebih tepat waktu daripada kehidupan di kampung nelayan",
         },
         {
           correct: false,
           label:
-            "Jumlah penduduk kota bertambah lebih cepat daripada panjang jalan yang dibangun.",
+            "menunjukkan bahwa aku sudah melupakan ayahnya sejak pindah ke kota yang tidak punya laut",
         },
         {
           correct: false,
           label:
-            "Pengendara ojek paling banyak memakai jalan yang sudah dilebarkan pemerintah.",
+            "menunjukkan bahwa ponsel lebih berguna bagi nelayan daripada tanda-tanda langit dan lumpur",
         },
         {
           correct: false,
           label:
-            "Kemacetan hilang dengan sendirinya jika jalan dibiarkan tanpa perubahan.",
+            "menunjukkan bahwa aku menyesal tidak menjadi nelayan seperti ayahnya di kampung",
         },
       ],
     },

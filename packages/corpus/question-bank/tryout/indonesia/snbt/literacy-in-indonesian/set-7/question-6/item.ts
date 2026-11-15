@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kemacetan kota paling tepat diatasi dengan melebarkan jalan secara bertahap.",
+            "Kota tempat aku tinggal sebenarnya punya laut, tetapi aku tidak pernah memperhatikan naik turunnya air di sana.",
         },
         {
           correct: false,
           label:
-            "Ojek sebaiknya dilarang agar warga terbiasa berjalan kaki untuk jarak dekat.",
+            "Ayah mulai pikun, sehingga ia mengira semua tempat mengalami pasang seperti kampungnya.",
         },
         {
           correct: true,
           label:
-            "Kota perlu mengutamakan trotoar, bukan mengorbankannya demi jalan lebar.",
+            "Setiap kehidupan punya irama naik dan turun yang perlu dikenali, dan aku belum mengenali irama hidupku di kota.",
         },
         {
           correct: false,
           label:
-            "Kendaraan pribadi sebaiknya dilarang masuk ke pusat kota sepanjang hari.",
+            "Ayah ingin aku pulang ke kampung, karena hanya di sana aku dapat belajar membaca pasang seperti dirinya dulu.",
         },
         {
           correct: false,
           label:
-            "Trotoar mungkin hanya cocok dibangun di kota yang penduduknya sedikit.",
+            "Ayah menyesal tidak mengajarkan cara membaca pasang kepadaku ketika aku masih kecil.",
         },
       ],
     },

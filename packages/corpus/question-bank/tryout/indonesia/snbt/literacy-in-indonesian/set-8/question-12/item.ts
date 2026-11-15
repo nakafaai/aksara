@@ -3,37 +3,33 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "plot-function",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "jamu-seller",
+  stimulus: "science-language",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Ia merasa bosan karena buku kuliahnya terlalu sulit dipahami.",
+            "Kedua penulis sepakat bahwa artikel berbahasa Inggris dapat menjangkau lebih banyak peneliti di luar negeri.",
         },
         {
-          correct: true,
-          label:
-            "Ia sadar ibunya sudah lama menguasai takaran dan pantangan yang ia pelajari.",
+          column: 1,
+          label: "Penulis Teks B tidak menolak publikasi dalam bahasa Inggris.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Ia ingin memastikan ibunya sudah tidur nyenyak sebelum ia kembali ke kota besok.",
+            "Penulis Teks A menyatakan bahwa bahasa Indonesia tidak mampu menjadi bahasa ilmu.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Ia memutuskan bahwa ilmu farmasi tidak berguna bagi penjual jamu.",
-        },
-        {
-          correct: false,
-          label: "Ia ingin membaca buku itu bersama ibunya pada sore hari.",
+            "Menurut Teks B, jumlah sitasi tidak mengukur manfaat penelitian bagi pemakai yang bukan peneliti.",
         },
       ],
     },

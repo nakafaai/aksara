@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "research-design",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "bus-ridership",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menambah panel surya agar listrik yang mengalir ke jaringan pada siang hari makin besar.",
+            "kenaikan total penumpang, karena semua koridor sama-sama mendapat penurunan tarif",
         },
         {
           correct: false,
           label:
-            "Mematikan panel surya pada siang hari agar listrik di jaringan tidak berlebih.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyalakan pompa air pada malam hari ketika panel tidak bekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Menjual sebagian panel kepada Rumah R yang pemakaiannya paling besar.",
+            "kenaikan di Koridor A, karena koridor itu punya penumpang terbanyak sesudah perubahan",
         },
         {
           correct: true,
           label:
-            "Memindahkan pemakaian alat yang boros listrik dari malam hari ke siang hari.",
+            "kenaikan di Koridor C dan Koridor D, karena hanya tarif yang berubah di kedua koridor itu",
+        },
+        {
+          correct: false,
+          label:
+            "selisih kenaikan antara Koridor A dan Koridor B, karena keduanya sama-sama dibuat lebih sering",
+        },
+        {
+          correct: false,
+          label:
+            "kenaikan di Koridor B, karena koridor itu penumpangnya paling sedikit sebelum perubahan",
         },
       ],
     },

@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "inference",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "school-distance",
+  stimulus: "last-newsstand",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "aturan jarak dapat menutup peluang anak berprestasi yang jauh dari sekolah",
+            "Bu Sri memberikan nasi uduk itu sebagai tanda persahabatan, dan keduanya menjaga kebiasaan itu tanpa membicarakannya.",
         },
         {
           correct: false,
           label:
-            "anak-anak di kecamatan itu umumnya memiliki nilai yang kurang baik",
+            "Bu Sri tidak sadar bahwa Pak Harun menyodorkan uang, karena setiap pagi ia sibuk melayani pembeli di losnya sendiri.",
         },
         {
           correct: false,
           label:
-            "sekolah di kecamatan itu menolak semua pendaftar yang bernilai tinggi",
+            "Bu Sri menolak uang Pak Harun karena masih marah atas uang receh titipannya yang pernah hilang di lapak itu.",
         },
         {
           correct: false,
           label:
-            "jarak rumah lebih penting daripada nilai rapor bagi para orang tua di kecamatan itu",
+            "Pak Harun sebenarnya tidak ingin membayar, sehingga ia hanya berpura-pura menyodorkan uang.",
         },
         {
           correct: false,
           label:
-            "anak-anak di kecamatan itu lebih suka bersekolah di luar kota",
+            "Bu Sri sengaja menahan pembayaran agar Pak Harun terus menyimpan uang recehnya setiap pagi.",
         },
       ],
     },

@@ -3,38 +3,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    contentDomain: "fiction",
+    topic: "tone-attitude",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Jumlah kendaraan pribadi di kota itu naik setiap tahun selama sepuluh tahun terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "Biaya membangun trotoar lebih murah daripada biaya melebarkan jalan.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pengendara mobil mengeluh karena lajur jalan menjadi lebih sempit.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedagang kaki lima lebih suka berjualan di trotoar yang lebar.",
+          label: "marah, karena ayah memaksa keluarganya hidup mengikuti laut",
         },
         {
           correct: true,
           label:
-            "Setelah trotoar diperbaiki, pejalan kaki bertambah dan perjalanan pendek naik ojek turun.",
+            "rindu yang tenang, disertai kesadaran yang perlahan tumbuh tentang kebijaksanaan ayah",
+        },
+        {
+          correct: false,
+          label:
+            "duka yang mendalam, karena ayah sudah meninggal dan tidak dapat lagi melaut",
+        },
+        {
+          correct: false,
+          label:
+            "mengejek, karena ayah masih percaya pada tanda-tanda alam di zaman ponsel",
+        },
+        {
+          correct: false,
+          label:
+            "gembira tanpa beban, karena aku sudah bebas dari jadwal pasang di kota",
         },
       ],
     },

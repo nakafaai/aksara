@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "inference",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa Indonesia sebaiknya menolak kata pinjaman dari bahasa Inggris.",
+            "Tiang rumah gadang yang diletakkan di atas batu sandi dapat bergeser ketika tanah berguncang.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Sebagian besar kosakata bahasa Indonesia berasal dari bahasa Sanskerta.",
+            "Rumah gadang tidak pernah rusak oleh gempa, berapa pun umur kayunya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Lembaga bahasa pemerintah berhasil membuat semua padanan menjadi populer.",
+            "Gonjong dibuat melengkung terutama agar rumah gadang lebih lentur saat gempa.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Kata pinjaman dari bahasa Belanda lebih banyak daripada dari Portugis.",
-        },
-        {
-          correct: true,
-          label:
-            "Kata pinjaman mencerminkan sejarah dan terus disesuaikan oleh penuturnya.",
+            "Rumah gadang baru yang tiangnya dicor ke fondasi beton lebih mudah bergeser saat gempa daripada rumah gadang lama.",
         },
       ],
     },

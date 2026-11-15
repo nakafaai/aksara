@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
   },
-  stimulus: "waste-meeting",
+  stimulus: "testing-effect",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "ingin segera menyerahkan urusan sampah kepada kelurahan",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "mengajak warga mencoba dulu dan menilai hasilnya bersama-sama",
+            "Pada tes lima menit, kelompok yang membaca empat kali mengingat paling banyak.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "tidak yakin pada hitungannya sendiri tentang isi kantong sampah",
+            "Kelompok yang membaca empat kali memperkirakan dirinya akan mengingat paling sedikit.",
         },
         {
-          correct: false,
-          label: "ingin memaksa semua warga memilah sampah tanpa pengecualian",
+          column: 1,
+          label:
+            "Pada tes satu minggu, kelompok yang mengingat tiga kali mengingat lebih dari satu setengah kali gagasan yang diingat kelompok yang membaca empat kali.",
         },
         {
-          correct: false,
-          label: "berniat menunda keputusan sampai Pak Hasan pindah rumah",
+          column: 2,
+          label:
+            "Menurut teks, latihan mengingat tanpa umpan balik selalu lebih baik daripada membaca ulang.",
         },
       ],
     },

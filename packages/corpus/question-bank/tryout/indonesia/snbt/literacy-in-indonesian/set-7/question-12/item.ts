@@ -3,36 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "mobile-library",
+  stimulus: "plastic-levy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "kecewa karena merasa sudah dibohongi oleh Dimas selama berminggu-minggu",
+            "Kedua teks sepakat bahwa jumlah kantong tipis yang dibagikan supermarket turun tajam.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "menjaga perasaan Dimas sambil diam-diam membantunya belajar membaca",
+            "Penulis Teks B menganggap angka yang dipakai Teks A tidak benar.",
         },
         {
-          correct: false,
-          label: "ingin melaporkan kemampuan membaca Dimas kepada kepala dusun",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "mengabaikan anak-anak lain agar dapat mengajari Dimas sepanjang hari",
+            "Penulis Teks B meragukan bahwa turunnya jumlah kantong otomatis berarti turunnya plastik yang dipakai.",
         },
         {
-          correct: false,
-          label: "akan berhenti membawa buku ikan paus ke dusun itu",
+          column: 2,
+          label:
+            "Teks A memakai data dari supermarket dan pasar tradisional di Bandar Selatan.",
         },
       ],
     },

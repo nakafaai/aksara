@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "inference",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Konferensi Asia Afrika diprakarsai oleh lima negara yang lebih dulu bertemu di Kolombo dan Bogor.",
+            "Sebelum 1958, Piala Thomas belum pernah dimenangi negara selain Malaya.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Konferensi Asia Afrika gagal total karena para pesertanya berbeda pandangan tentang Uni Soviet.",
+            "Indonesia memenangi Piala Thomas pada keikutsertaannya yang pertama.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Gedung Konferensi Asia Afrika adalah warisan terpenting dari konferensi tersebut.",
+            "Para pemain regu 1958 baru mulai berlatih bulu tangkis setelah PBSI berdiri.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Konferensi Asia Afrika diadakan agar Indonesia memimpin Gerakan Non-Blok.",
-        },
-        {
-          correct: true,
-          label:
-            "Konferensi Asia Afrika menyatukan negara baru di luar blok dan meninggalkan warisan gagasan.",
+            "Indonesia memenangi Piala Thomas pada tiga kejuaraan berturut-turut, dari 1958 sampai 1964.",
         },
       ],
     },

@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-structure",
   },
-  stimulus: "bandung-conference",
+  stimulus: "thomas-cup-1958",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Konferensi Asia Afrika diikuti oleh wakil dari 29 negara Eropa.",
+            "menjelaskan aturan pertandingan Piala Thomas yang memungkinkan negara baru seperti Indonesia menang",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Persiapan konferensi dibahas dalam pertemuan di Kolombo dan Bogor.",
+            "menunjukkan bahwa para pemain Indonesia lebih kaya daripada pemain Malaya",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Gerakan Non-Blok lahir dalam Konferensi Asia Afrika pada 1955.",
+            "mengoreksi cerita kemenangan karena semangat saja dengan menunjukkan dasar yang sudah dibangun sebelumnya",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Dasasila Bandung menekankan penyelesaian sengketa secara damai.",
+            "membuktikan bahwa klub-klub bulu tangkis jauh lebih penting daripada semangat para pemain yang berangkat ke Singapura",
+        },
+        {
+          correct: false,
+          label:
+            "menjelaskan mengapa PBSI baru berdiri pada 1951, jauh sesudah klub-klub bulu tangkis",
         },
       ],
     },

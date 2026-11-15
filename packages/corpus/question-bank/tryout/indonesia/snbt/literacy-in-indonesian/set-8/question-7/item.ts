@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "symbol",
   },
-  stimulus: "school-distance",
+  stimulus: "last-newsstand",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar aturan penerimaan berdasarkan jarak dihapus.",
+            "Pak Harun mencatat orang-orang yang masih berutang kepadanya, dan coretan menandai utang yang sudah lunas.",
         },
         {
-          column: 1,
-          label: "Menurut penulis, sekolah negeri tidak tersebar merata.",
+          correct: true,
+          label:
+            "Pak Harun mencatat pelanggan tetap yang masih ia layani, dan coretan menandai pelanggan yang sudah tidak datang lagi.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Penulis menyebut keluarga yang jujur dirugikan oleh pemindahan alamat.",
+            "Pak Harun mencatat nama-nama koran yang akan berhenti terbit, dan coretan menandai koran yang sudah berhenti.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar nilai kembali menjadi satu-satunya dasar penerimaan.",
+            "Pak Harun mencatat calon pembeli lapaknya, dan coretan menandai orang yang menolak membelinya.",
+        },
+        {
+          correct: false,
+          label:
+            "Pak Harun mencatat penumpang bus yang sering lewat, dan coretan menandai penumpang yang pindah terminal.",
         },
       ],
     },

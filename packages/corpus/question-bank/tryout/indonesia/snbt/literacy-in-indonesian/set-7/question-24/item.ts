@@ -2,37 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "borrowed-words",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Lembaga bahasa melarang penutur mempelajari asal-usul kata.",
-        },
-        {
-          correct: false,
           label:
-            "Kata pinjaman selalu dipakai dengan makna yang sama seperti aslinya.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar kata pinjaman hanya muncul dalam dokumen resmi.",
+            "rumah beton yang dinding dan tiangnya dibuat jauh lebih tebal dan ditanam dalam fondasi agar tidak bergerak sama sekali",
         },
         {
           correct: true,
           label:
-            "Ejaan dan bunyinya disesuaikan sehingga terdengar seperti kata asli.",
+            "rumah kayu ringan yang sambungannya dapat sedikit bergerak dan berdiri di atas dudukan yang memungkinkan sedikit pergeseran",
         },
         {
           correct: false,
-          label: "Penutur tidak tertarik pada sejarah bahasa sama sekali.",
+          label:
+            "rumah beton beratap gonjong yang dicat menyerupai kayu agar tampak seperti rumah gadang",
+        },
+        {
+          correct: false,
+          label:
+            "rumah kayu yang tiangnya ditanam dalam-dalam ke tanah dan setiap sambungannya dikunci rapat dengan paku baja",
+        },
+        {
+          correct: false,
+          label:
+            "rumah kayu yang dibangun di atas tanah yang lebih tinggi agar tidak tergenang air hujan",
         },
       ],
     },

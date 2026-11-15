@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "author-reasoning",
   },
-  stimulus: "breakfast-survey",
+  stimulus: "household-spending",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mengulang survei yang sama persis kepada 400 siswa kelas X pada tahun ajaran berikutnya.",
+            "Jumlah rupiah untuk makanan sama besar di semua kelompok pengeluaran, sehingga hanya porsinya yang dapat membedakan kesejahteraan kelompok.",
         },
         {
           correct: false,
           label:
-            "Bertanya kepada siswa apakah mereka merasa lebih pintar setelah sarapan.",
+            "Porsi makanan lebih mudah dihitung daripada jumlah rupiah, karena tidak memerlukan data pengeluaran.",
         },
         {
           correct: false,
           label:
-            "Membandingkan nilai kuis siswa kelas X dengan nilai siswa kelas XII.",
+            "Keluarga yang lebih sejahtera membelanjakan rupiah lebih sedikit untuk makanan daripada keluarga miskin, sehingga jumlah rupiah menyesatkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Porsi makanan menunjukkan berapa banyak jenis makanan yang dapat dibeli sebuah keluarga.",
         },
         {
           correct: true,
           label:
-            "Memberi sarapan di sekolah kepada kelas yang dipilih acak, lalu membandingkan nilai.",
-        },
-        {
-          correct: false,
-          label:
-            "Menambah jumlah kuis matematika menjadi tiga kali dalam seminggu saja.",
+            "Keluarga sejahtera justru membelanjakan rupiah lebih banyak untuk makanan, tetapi bagian anggaran yang tersisa untuk kebutuhan lain lebih besar.",
         },
       ],
     },

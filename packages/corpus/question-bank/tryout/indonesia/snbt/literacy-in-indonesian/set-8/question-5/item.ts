@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "calculation",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "membuktikan bahwa tempe pertama kali dibuat dengan kedelai impor",
+          label: "$$2$$ kali, karena volumenya turun dua kali $$3$$ dB",
+        },
+        {
+          correct: false,
+          label: "$$6$$ kali, sesuai dengan selisih desibelnya",
+        },
+        {
+          correct: false,
+          label: "sekitar $$1{,}07$$ kali, karena $$97$$ dibagi $$91$$",
         },
         {
           correct: true,
-          label: "menunjukkan bahwa tempe sudah dikenal di Jawa sejak lama",
+          label: "$$4$$ kali, dari $$30$$ menit menjadi $$2$$ jam",
         },
         {
           correct: false,
-          label:
-            "menjelaskan cara membuat tempe yang paling tepat menurut leluhur",
-        },
-        {
-          correct: false,
-          label:
-            "membandingkan tempe di Jawa dengan tempe di negara-negara lain",
-        },
-        {
-          correct: false,
-          label: "menyarankan agar pembaca membaca karya sastra Jawa tersebut",
+          label: "$$8$$ kali, dari $$15$$ menit menjadi $$2$$ jam",
         },
       ],
     },

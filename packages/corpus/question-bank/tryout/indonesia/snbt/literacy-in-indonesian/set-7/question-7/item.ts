@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "interpretation",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Menurut penulis, trotoar yang baik cukup lebar untuk dua orang berpapasan.",
+            "Keluarga aku dahulu mengatur kegiatan sehari-hari menurut waktu pasang dan surut.",
         },
         {
           column: 2,
           label:
-            "Penulis berpendapat kota yang ramah pejalan kaki sebaiknya melarang kendaraan pribadi.",
+            "Ayah berhenti melaut karena laut di kampungnya tidak lagi mengalami pasang.",
         },
         {
           column: 2,
           label:
-            "Menurut penulis, pelebaran jalan biasanya mengatasi kemacetan untuk waktu yang lama.",
+            "Aku memakai jam di ponselnya untuk mengetahui kapan pasang datang di kotanya.",
         },
         {
-          column: 1,
-          label:
-            "Penulis menyebut bagian tersulit adalah menjaga trotoar tetap bebas dari parkir dan dagangan.",
+          column: 2,
+          label: "Ayah biasanya berangkat melaut ketika air mulai surut.",
         },
       ],
     },

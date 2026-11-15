@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "argument-evaluation",
   },
-  stimulus: "recorded-lectures",
+  stimulus: "bus-ridership",
   versions: {
     id: {
-      columns: ["Ya", "Tidak"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Teks 1 menyebut rekaman membantu mahasiswa yang bekerja paruh waktu.",
+            "Kenaikan penumpang hampir sepertiga terlalu kecil untuk dianggap berarti bagi bus kota.",
         },
         {
-          column: 2,
-          label: "Teks 2 menolak penggunaan rekaman kuliah sama sekali.",
+          correct: true,
+          label:
+            "Kenaikan itu bersamaan dengan bus yang lebih sering, dan koridor yang hanya mendapat tarif murah naik sekitar $$10\\%$$.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Menurut Teks 2, banyak mahasiswa menunda menonton rekaman sampai menjelang ujian.",
+            "Wali kota memakai rata-rata hari kerja, padahal seharusnya memakai rata-rata penumpang pada akhir pekan dan hari libur.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Teks 1 mengusulkan agar kegiatan di kelas dihapus seluruhnya.",
+            "Penumpang Koridor C lebih banyak daripada Koridor A sebelum perubahan, sehingga datanya tidak dapat dibandingkan.",
+        },
+        {
+          correct: false,
+          label:
+            "Tarif Rp$$3{.}000$$ terlalu murah, sehingga pendapatan tiket tidak cukup untuk membiayai bus.",
         },
       ],
     },

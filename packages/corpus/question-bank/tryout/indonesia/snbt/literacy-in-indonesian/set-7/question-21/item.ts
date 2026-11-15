@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "main-idea",
   },
-  stimulus: "recorded-lectures",
+  stimulus: "rumah-gadang",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Sebagian besar rekaman kuliah baru ditonton pada minggu terakhir sebelum ujian.",
+            "Kelenturan rumah gadang saat gempa berasal dari susunan tiang dan sambungannya, dan kelenturan itu bergantung pada perawatan.",
         },
         {
           correct: false,
           label:
-            "Mahasiswa yang bekerja paruh waktu paling sering menonton rekaman kuliah.",
+            "Rumah gadang adalah bangunan yang tidak dapat rusak oleh gempa karena atap gonjongnya melengkung seperti tanduk kerbau.",
         },
         {
           correct: false,
           label:
-            "Video kuliah dapat dihentikan dan diulang sebanyak yang diperlukan.",
+            "Rumah gadang lebih penting sebagai milik kaum dalam adat matrilineal daripada sebagai bangunan.",
         },
         {
           correct: false,
           label:
-            "Diskusi di kelas kecil lebih hidup daripada diskusi di kelas yang besar.",
+            "Semua rumah gadang baru sebaiknya dibangun dengan fondasi beton agar lebih kuat menahan gempa.",
         },
         {
           correct: false,
           label:
-            "Sebagian dosen lebih suka merekam kuliah daripada mengajar langsung di kelas.",
+            "Atap rumah gadang yang curam dibuat untuk mengalirkan air hujan dengan cepat dan sekaligus meredam guncangan saat gempa.",
         },
       ],
     },
