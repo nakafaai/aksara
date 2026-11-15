@@ -1,4 +1,4 @@
-import { compileContentDocument } from "@nakafa/aksara-compiler/assessment/document";
+import { compileReadingDocument } from "@nakafa/aksara-compiler/assessment/document";
 import {
   hashPaper,
   hashStimulusVersion,
@@ -48,7 +48,7 @@ const compileStimuli = Effect.fn("AksaraPublisher.compileStimuli")(function* (
           );
           const body = {
             deliveryLanguage: ContentLanguageSchema.make(language),
-            document: yield* compileContentDocument(source),
+            document: yield* compileReadingDocument(source),
             id,
           };
           return StimulusVersionSchema.make({

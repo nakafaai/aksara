@@ -1,26 +1,34 @@
 import { compile } from "@mdx-js/mdx";
 import type { BlockNode } from "@nakafa/aksara-contracts/assessment/document";
 import { ContentDocumentSchema } from "@nakafa/aksara-contracts/assessment/document";
+import { FIGURE_NAMES } from "@nakafa/aksara-contracts/visual/catalog";
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { blockChildren } from "#compiler/assessment/block";
-import { AssessmentSiteSchema, sourceError } from "#compiler/assessment/error";
-import { FIGURE_COMPONENTS } from "#compiler/assessment/figure";
+import {
+  AssessmentSiteSchema,
+  type BlockSite,
+  sourceError,
+} from "#compiler/assessment/error";
 import { MDX_PROVIDER_SOURCE } from "#compiler/config";
 import { MdxCompilationError } from "#compiler/errors";
 import { createSourcePolicy } from "#compiler/policy/source";
 import { evaluateContentTree } from "#compiler/tree/evaluate";
 
 /**
- * The components an assessment source may use: the two formula components and
- * the figures. Every other element is Markdown, so one authored document has
- * one form, and the document holds exactly what its source says.
+ * The components an assessment source may use: the two formula components, a
+ * highlight, the two layouts that group blocks, and every figure of the Visual
+ * Catalog. Every other element is Markdown, so one authored document has one
+ * form, and the document holds exactly what its source says.
  */
 export const ASSESSMENT_COMPONENTS = [
   "BlockMath",
+  "ContentBlock",
+  "ContentStack",
+  "Highlight",
   "InlineMath",
-  ...FIGURE_COMPONENTS,
+  ...FIGURE_NAMES,
 ];
 
 /** One authored assessment source: a prompt, a shared reading, or an explanation. */
@@ -36,10 +44,15 @@ export type AssessmentSource = typeof AssessmentSourceSchema.Type;
  * document, and its element tree becomes the nodes of the Assessment Document.
  * The source holds no module code, not even metadata: a document is data.
  */
-export const compileAssessmentBlocks = Effect.fn(
-  "AksaraCompiler.compileAssessmentBlocks"
-)(function* (source: AssessmentSource) {
-  const site = { contentKey: source.contentKey, sourcePath: source.sourcePath };
+const compileBlocks = Effect.fn("AksaraCompiler.compileBlocks")(function* (
+  source: AssessmentSource,
+  answers: BlockSite["answers"]
+) {
+  const site: BlockSite = {
+    answers,
+    contentKey: source.contentKey,
+    sourcePath: source.sourcePath,
+  };
   const policy = createSourcePolicy(
     source.contentKey,
     source.sourcePath,
@@ -80,13 +93,22 @@ export const compileAssessmentBlocks = Effect.fn(
 });
 
 /**
- * Compiles a source that places no interaction, a shared reading or an
- * explanation, into its document, which the contract checks as a whole.
+ * Compiles the prompt of an item into its blocks. A learner reads it before
+ * answering, so its figures hold no answer state.
  */
-export const compileContentDocument = Effect.fn(
-  "AksaraCompiler.compileContentDocument"
-)(function* (source: AssessmentSource) {
-  const content = yield* compileAssessmentBlocks(source);
+export const compileAssessmentBlocks = Effect.fn(
+  "AksaraCompiler.compileAssessmentBlocks"
+)((source: AssessmentSource) => compileBlocks(source, "hidden"));
+
+/**
+ * Compiles a source that places no interaction into its document, which the
+ * contract checks as a whole.
+ */
+const compileDocument = Effect.fn("AksaraCompiler.compileDocument")(function* (
+  source: AssessmentSource,
+  answers: BlockSite["answers"]
+) {
+  const content = yield* compileBlocks(source, answers);
   const site = { contentKey: source.contentKey, sourcePath: source.sourcePath };
   return yield* Schema.decodeEffect(ContentDocumentSchema)(
     { content, type: "doc" },
@@ -95,3 +117,19 @@ export const compileContentDocument = Effect.fn(
     Effect.mapError((cause) => sourceError(site, "fragment", "document", cause))
   );
 });
+
+/**
+ * Compiles a shared reading into its document. A learner reads it before
+ * answering, so its figures hold no answer state.
+ */
+export const compileReadingDocument = Effect.fn(
+  "AksaraCompiler.compileReadingDocument"
+)((source: AssessmentSource) => compileDocument(source, "hidden"));
+
+/**
+ * Compiles an explanation into its document. A learner reads it after the
+ * answer, so its figures may show everything.
+ */
+export const compileExplanationDocument = Effect.fn(
+  "AksaraCompiler.compileExplanationDocument"
+)((source: AssessmentSource) => compileDocument(source, "shown"));

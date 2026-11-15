@@ -18,6 +18,7 @@ import type {
   ContentTreePolicyError,
   MdxCompilationError,
   RendererComponentMissingError,
+  VisualPropsError,
 } from "#compiler/errors";
 import { AuthoredMetadataSchema } from "#compiler/metadata";
 import type { SourcePolicyError } from "#compiler/policy/source";
@@ -42,7 +43,8 @@ export type CompileContentError =
   | ContentTreePolicyError
   | MdxCompilationError
   | RendererComponentMissingError
-  | SourcePolicyError;
+  | SourcePolicyError
+  | VisualPropsError;
 
 /** Compiles trusted authored MDX without executing the emitted function body. */
 export const compileContent: (

@@ -1,8 +1,8 @@
 import { Array as Arr, Schema } from "effect";
 
 import { hasDistinctIds } from "#contracts/assessment/identity";
-import { RichTextSchema } from "#contracts/assessment/inline";
-import { PlainTextSchema } from "#contracts/assessment/scalar";
+import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import { figure } from "#contracts/visual/entry";
 
 /**
  * One series of a chart: its name, whether it is drawn as bars or as a line,
@@ -11,7 +11,7 @@ import { PlainTextSchema } from "#contracts/assessment/scalar";
  * some years.
  */
 const ChartSeriesSchema = Schema.Struct({
-  label: PlainTextSchema,
+  label: TextSchema,
   mark: Schema.Literals(["bar", "line"]),
   values: Schema.NonEmptyArray(Schema.NullOr(Schema.Finite)),
 });
@@ -26,23 +26,32 @@ const ValueRangeSchema = Schema.Struct({
   })
 );
 
-const ChartFieldsSchema = Schema.Struct({
-  /**
-   * How the bars of a chart that has bars stand: `apart` leaves a gap between
-   * neighboring categories, as a bar chart does, and `touching` closes it, as a
-   * histogram of classes does. A chart of lines alone has no bars to place.
-   */
-  bars: Schema.optionalKey(Schema.Literals(["apart", "touching"])),
-  categories: Schema.NonEmptyArray(PlainTextSchema),
-  description: RichTextSchema,
-  series: Schema.NonEmptyArray(ChartSeriesSchema),
-  title: RichTextSchema,
-  valueLabel: Schema.optionalKey(PlainTextSchema),
-  valueRange: Schema.optionalKey(ValueRangeSchema),
-});
+/** The fields of a chart, before the checks that relate them. */
+function chartFields<E>(rich: RichSlot<E>) {
+  return Schema.Struct({
+    ...cardFields(rich),
+    /**
+     * How the bars of a chart that has bars stand: `apart` leaves a gap between
+     * neighboring categories, as a bar chart does, and `touching` closes it, as
+     * a histogram of classes does. A chart of lines alone has no bars to place.
+     */
+    bars: Schema.optionalKey(Schema.Literals(["apart", "touching"])),
+    categories: Schema.NonEmptyArray(TextSchema),
+    series: Schema.NonEmptyArray(ChartSeriesSchema),
+    valueLabel: Schema.optionalKey(TextSchema),
+    valueRange: Schema.optionalKey(ValueRangeSchema),
+  });
+}
+
+/** The data a chart relates: its categories, its series, and its bar placement. */
+interface ChartData {
+  readonly bars?: "apart" | "touching";
+  readonly categories: readonly string[];
+  readonly series: readonly (typeof ChartSeriesSchema.Type)[];
+}
 
 /** Checks that every series has one value for each category, and at least one that is not null. */
-function hasValuePerCategory(chart: typeof ChartFieldsSchema.Type) {
+function hasValuePerCategory(chart: ChartData) {
   return Arr.every(
     chart.series,
     ({ values }) =>
@@ -52,12 +61,12 @@ function hasValuePerCategory(chart: typeof ChartFieldsSchema.Type) {
 }
 
 /** Checks that no two series share a name, so a legend tells them apart in words. */
-function hasDistinctSeries(chart: typeof ChartFieldsSchema.Type) {
+function hasDistinctSeries(chart: ChartData) {
   return hasDistinctIds(Arr.map(chart.series, ({ label }) => label));
 }
 
 /** Checks that a chart says how its bars stand exactly when it has bars. */
-function hasBarPlacement(chart: typeof ChartFieldsSchema.Type) {
+function hasBarPlacement(chart: ChartData) {
   const hasBars = Arr.some(chart.series, ({ mark }) => mark === "bar");
   return hasBars === (chart.bars !== undefined);
 }
@@ -69,16 +78,20 @@ function hasBarPlacement(chart: typeof ChartFieldsSchema.Type) {
  * learner reads the same values that the figure draws. Every series has a
  * name, because no meaning may ride on color alone.
  */
-export const ChartPropsSchema = ChartFieldsSchema.check(
-  Schema.makeFilter(hasValuePerCategory, {
-    message:
-      "Expected each series to have one value for each category, and at least one value.",
-  }),
-  Schema.makeFilter(hasDistinctSeries, {
-    message: "Expected each series to have a name of its own.",
-  }),
-  Schema.makeFilter(hasBarPlacement, {
-    message: "Expected a bar placement on a chart with bars, and on no other.",
-  })
-);
-export type ChartProps = typeof ChartPropsSchema.Type;
+export function chartProps<E>(rich: RichSlot<E>) {
+  return figure(
+    chartFields(rich).check(
+      Schema.makeFilter(hasValuePerCategory, {
+        message:
+          "Expected each series to have one value for each category, and at least one value.",
+      }),
+      Schema.makeFilter(hasDistinctSeries, {
+        message: "Expected each series to have a name of its own.",
+      }),
+      Schema.makeFilter(hasBarPlacement, {
+        message:
+          "Expected a bar placement on a chart with bars, and on no other.",
+      })
+    )
+  );
+}

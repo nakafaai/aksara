@@ -9,11 +9,13 @@ import { Schema } from "effect";
  * `element` names an element the document has no node for, `heading` a heading
  * deeper than the three levels a document holds, `link` a link that is not an
  * absolute HTTPS address, `math` an empty formula, `props` the props of a
- * figure that its contract refuses, `placement` a block where only text may sit
- * or text where only blocks may sit, and `document` a document that its
- * contract refuses as a whole.
+ * figure that its catalog schema refuses, `answer` a figure that shows answer
+ * state where a learner reads before answering, `placement` a block where only
+ * text may sit or text where only blocks may sit, and `document` a document
+ * that its contract refuses as a whole.
  */
 export const AssessmentSourceReasonSchema = Schema.Literals([
+  "answer",
   "document",
   "element",
   "heading",
@@ -43,6 +45,15 @@ export const AssessmentSiteSchema = Schema.Struct({
 });
 export type AssessmentSite = typeof AssessmentSiteSchema.Type;
 
+/**
+ * A document being converted, and whether its figures may show answer state:
+ * `shown` in an explanation, `hidden` in a prompt, a reading, or an option
+ * label, which a learner reads before answering.
+ */
+export interface BlockSite extends AssessmentSite {
+  readonly answers: "hidden" | "shown";
+}
+
 /** Builds the error for one element of one document. */
 export function sourceError(
   site: AssessmentSite,
@@ -58,3 +69,16 @@ export function sourceError(
     sourcePath: site.sourcePath,
   });
 }
+
+/**
+ * One inline element that cannot become rich text, before it is known which
+ * document holds it: the rich text of a figure prop is read by its catalog
+ * schema, which names the document only when the whole figure fails.
+ */
+export class InlineError extends Schema.TaggedError<
+  InlineError,
+  { readonly brand: unique symbol }
+>()("InlineError", {
+  element: Schema.String.check(Schema.isNonEmpty()),
+  reason: AssessmentSourceReasonSchema,
+}) {}

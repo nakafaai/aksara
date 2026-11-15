@@ -9,7 +9,6 @@ import {
 import type {
   ContentTreeChild,
   ContentTreeElement,
-  ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
 import {
   Array as Arr,
@@ -20,10 +19,16 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
+import {
+  type AssessmentSite,
+  InlineError,
+  sourceError,
+} from "#compiler/assessment/error";
 
 /** The mark each authored element adds to its text. */
-const ELEMENT_MARKS: Readonly<Record<string, Exclude<Mark["type"], "link">>> = {
+const ELEMENT_MARKS: Readonly<
+  Record<string, Exclude<Mark["type"], "highlight" | "link">>
+> = {
   code: "code",
   em: "italic",
   strong: "bold",
@@ -50,46 +55,75 @@ function textNode(text: string, marks: readonly Mark[]): InlineNode {
 }
 
 /** Reads the LaTeX of one math component, which must be a formula. */
-function latexOf(element: ContentTreeElement, site: AssessmentSite) {
+function latexOf(element: ContentTreeElement) {
   const { math } = element.props;
   if (!Predicate.isString(math) || math.trim().length === 0) {
-    return Effect.fail(sourceError(site, element.name, "math"));
+    return Effect.fail(
+      new InlineError({ element: element.name, reason: "math" })
+    );
   }
   return Effect.succeed(math.trim());
 }
 
-/** Reads the link mark of one anchor, which must point to an absolute HTTPS address or a site path. */
-function linkMark(element: ContentTreeElement, site: AssessmentSite) {
-  const mark = { attrs: { href: element.props.href }, type: "link" };
+/** Reads the mark of one element whose props become its attributes: a link or a highlight. */
+function attributeMark(
+  element: ContentTreeElement,
+  mark: unknown,
+  reason: "link" | "props"
+) {
   if (!Schema.is(MarkSchema)(mark)) {
-    return Effect.fail(sourceError(site, element.name, "link"));
+    return Effect.fail(new InlineError({ element: element.name, reason }));
   }
   return Effect.succeed(mark);
+}
+
+/** Reads the link mark of one anchor, which must point to an absolute HTTPS address or a site path. */
+function linkMark(element: ContentTreeElement) {
+  const mark = { attrs: { href: element.props.href }, type: "link" };
+  return attributeMark(element, mark, "link");
+}
+
+/** Reads the highlight mark of one `Highlight`, in the tone its author set or none. */
+function highlightMark(element: ContentTreeElement) {
+  const { variant = null, ...rest } = element.props;
+  const mark = Rec.isEmptyRecord(rest)
+    ? { attrs: { variant }, type: "highlight" }
+    : undefined;
+  return attributeMark(element, mark, "props");
 }
 
 /** Converts the inline children of one element under the marks around them. */
 function inlineChildren(
   children: readonly ContentTreeChild[],
-  marks: readonly Mark[],
-  site: AssessmentSite
-): Effect.Effect<readonly InlineNode[], ReturnType<typeof sourceError>> {
+  marks: readonly Mark[]
+): Effect.Effect<readonly InlineNode[], InlineError> {
   return Effect.map(
-    Effect.forEach(children, (child) => inlineChild(child, marks, site)),
+    Effect.forEach(children, (child) => inlineChild(child, marks)),
     Arr.flatten
+  );
+}
+
+/** Converts the children of one element under the mark it adds. */
+function markedChildren(
+  element: ContentTreeElement,
+  marks: readonly Mark[],
+  mark: Effect.Effect<Mark, InlineError>
+) {
+  return Effect.flatMap(mark, (added) =>
+    inlineChildren(element.children, withMark(marks, added))
   );
 }
 
 /** Converts one inline child: text, a formula, a break, a link, or a marked run. */
 function inlineChild(
   child: ContentTreeChild,
-  marks: readonly Mark[],
-  site: AssessmentSite
-): Effect.Effect<readonly InlineNode[], ReturnType<typeof sourceError>> {
+  marks: readonly Mark[]
+): Effect.Effect<readonly InlineNode[], InlineError> {
   if (Predicate.isString(child)) {
     return Effect.succeed([textNode(child.replace(SOFT_BREAK, " "), marks)]);
   }
   if (child.name === "InlineMath") {
-    return Effect.map(latexOf(child, site), (latex) => [
+    return Effect.map(latexOf(child), (latex) => [
       { attrs: { latex }, type: "mathInline" },
     ]);
   }
@@ -97,24 +131,25 @@ function inlineChild(
     return Effect.succeed([{ type: "hardBreak" }]);
   }
   if (child.name === "fragment") {
-    return inlineChildren(child.children, marks, site);
+    return inlineChildren(child.children, marks);
   }
   if (child.name === "a") {
-    return Effect.flatMap(linkMark(child, site), (link) =>
-      inlineChildren(child.children, withMark(marks, link), site)
-    );
+    return markedChildren(child, marks, linkMark(child));
+  }
+  if (child.name === "Highlight") {
+    return markedChildren(child, marks, highlightMark(child));
   }
   return Option.match(Rec.get(ELEMENT_MARKS, child.name), {
-    onNone: () => Effect.fail(sourceError(site, child.name, "placement")),
-    onSome: (type) =>
-      inlineChildren(child.children, withMark(marks, { type }), site),
+    onNone: () =>
+      Effect.fail(
+        new InlineError({ element: child.name, reason: "placement" })
+      ),
+    onSome: (type) => inlineChildren(child.children, withMark(marks, { type })),
   });
 }
 
 /** Checks whether a prop value is an element of the tree rather than JSON data. */
-export function isTreeElement(
-  value: ContentTreeValue
-): value is ContentTreeElement {
+export function isTreeElement(value: unknown): value is ContentTreeElement {
   return (
     Predicate.isObject(value) &&
     !Arr.isArray(value) &&
@@ -179,34 +214,43 @@ function withoutEmptyRuns(nodes: readonly InlineNode[]) {
   return Arr.filter(nodes, (node) => node.type !== "text" || node.text !== "");
 }
 
+/** Converts inline children into merged runs, trimmed lines, and no empty text. */
+function inlineNodes(children: readonly ContentTreeChild[]) {
+  return Effect.map(inlineChildren(children, []), (nodes) =>
+    mergeRuns(withoutEmptyRuns(trimLines(mergeRuns(nodes))))
+  );
+}
+
 /**
  * Converts the children of a paragraph, a heading, or a cell into the inline
  * content of a document: merged runs, trimmed lines, and no empty text.
  */
 export const inlineContent = Effect.fn("AksaraCompiler.inlineContent")(
-  function* (children: readonly ContentTreeChild[], site: AssessmentSite) {
-    const nodes = yield* inlineChildren(children, [], site);
-    return mergeRuns(withoutEmptyRuns(trimLines(mergeRuns(nodes))));
-  }
+  (children: readonly ContentTreeChild[], site: AssessmentSite) =>
+    inlineNodes(children).pipe(
+      Effect.mapError(({ element, reason }) =>
+        sourceError(site, element, reason)
+      )
+    )
 );
 
 /**
  * Converts one prop that holds rich text, such as a figure title or a label: a
- * string, or an element of text and formulas.
+ * string, or an element of text and formulas. Rich text holds no break and no
+ * interaction, so a prop that needs one is refused.
  */
-export const richText = Effect.fn("AksaraCompiler.richText")(function* (
-  value: ContentTreeValue,
-  element: string,
-  site: AssessmentSite
+export const treeRichText = Effect.fn("AksaraCompiler.treeRichText")(function* (
+  value: unknown
 ) {
   const children = Predicate.isString(value)
     ? [value]
     : Arr.filter([value], isTreeElement);
-  const content = yield* inlineContent(children, site);
+  const content = yield* inlineNodes(children);
   if (!Schema.is(RichTextSchema)(content)) {
-    return yield* sourceError(site, element, "props");
+    return yield* new InlineError({ element: "rich text", reason: "props" });
   }
-  return content satisfies RichText;
+  const rich: RichText = content;
+  return rich;
 });
 
 /** Writes rich text as plain text, each formula as its LaTeX. */

@@ -103,7 +103,10 @@ function treeChild(node: Nodes): readonly ContentTreeChild[] {
 export const labelDocument = Effect.fn("AksaraCompiler.labelDocument")(
   function* (label: string, site: AssessmentSite) {
     const root = markdown.parse(label);
-    const content = yield* blockChildren(childrenOf(root), site);
+    const content = yield* blockChildren(childrenOf(root), {
+      ...site,
+      answers: "hidden",
+    });
     return yield* Schema.decodeEffect(ContentDocumentSchema)(
       { content, type: "doc" },
       { onExcessProperty: "error" }

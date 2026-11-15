@@ -50,6 +50,7 @@ import {
   validateMetadata,
 } from "#compiler/metadata";
 import { createSourcePolicy } from "#compiler/policy/source";
+import { checkTreeVisuals } from "#compiler/tree/catalog";
 import { evaluateContentTree } from "#compiler/tree/evaluate";
 
 type CompileRequestError =
@@ -221,6 +222,10 @@ export const compileValidatedContent = Effect.fn(
   const contentTree = yield* evaluateContentTree({
     compiledCode: String(file),
     componentNames: components,
+    contentKey: request.contentKey,
+    sourcePath: request.sourcePath,
+  });
+  yield* checkTreeVisuals(contentTree, {
     contentKey: request.contentKey,
     sourcePath: request.sourcePath,
   });

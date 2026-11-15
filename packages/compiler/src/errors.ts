@@ -292,3 +292,22 @@ export class ContentTreePolicyError extends Schema.TaggedError<
   reason: ContentTreePolicyReasonSchema,
   sourcePath: CorpusSourcePathSchema,
 }) {}
+
+/**
+ * Why a compiled element fails the Visual Catalog: `unknown` names a component
+ * that is not in the catalog, and `props` gives a component props that its
+ * catalog schema refuses.
+ */
+export const VisualPropsReasonSchema = Schema.Literals(["props", "unknown"]);
+
+/** A component of a content tree is not in the Visual Catalog, or its props fail its schema. */
+export class VisualPropsError extends Schema.TaggedError<
+  VisualPropsError,
+  { readonly brand: unique symbol }
+>()("VisualPropsError", {
+  component: Schema.String.check(Schema.isNonEmpty()),
+  contentKey: ContentKeySchema,
+  issue: Schema.optional(Schema.String),
+  reason: VisualPropsReasonSchema,
+  sourcePath: CorpusSourcePathSchema,
+}) {}

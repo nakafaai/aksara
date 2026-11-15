@@ -1,6 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Effect } from "effect";
-import { blocks } from "#compiler/test/assessment";
+import { Array as Arr, Effect } from "effect";
+import { blocks, reason } from "#compiler/test/assessment";
 
 describe("blockChildren", () => {
   it.effect(
@@ -43,6 +43,87 @@ describe("blockChildren", () => {
           content: [{ marks: [{ type: "bold" }], text: "a b", type: "text" }],
           type: "paragraph",
         });
+      })
+  );
+});
+
+describe("lesson layout and emphasis", () => {
+  it.effect(
+    "writes a highlight as a mark and groups blocks as a lesson does",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* blocks(
+          Arr.join(
+            [
+              'Keep <Highlight>the same distance</Highlight> and <Highlight variant="success">done</Highlight>.',
+              "",
+              "<ContentStack>",
+              '<BlockMath math="x = 2" />',
+              "<ContentBlock>",
+              "Inside.",
+              "</ContentBlock>",
+              "</ContentStack>",
+            ],
+            "\n"
+          )
+        );
+
+        assert.deepStrictEqual(result, [
+          {
+            content: [
+              { text: "Keep ", type: "text" },
+              {
+                marks: [{ attrs: { variant: null }, type: "highlight" }],
+                text: "the same distance",
+                type: "text",
+              },
+              { text: " and ", type: "text" },
+              {
+                marks: [{ attrs: { variant: "success" }, type: "highlight" }],
+                text: "done",
+                type: "text",
+              },
+              { text: ".", type: "text" },
+            ],
+            type: "paragraph",
+          },
+          {
+            content: [
+              { attrs: { latex: "x = 2" }, type: "mathBlock" },
+              {
+                content: [
+                  {
+                    content: [{ text: "Inside.", type: "text" }],
+                    type: "paragraph",
+                  },
+                ],
+                type: "contentBlock",
+              },
+            ],
+            type: "contentStack",
+          },
+        ]);
+      })
+  );
+
+  it.effect(
+    "refuses an empty group, a highlight tone outside the catalog, and a grid",
+    () =>
+      Effect.gen(function* () {
+        assert.strictEqual(
+          yield* reason("<ContentStack></ContentStack>"),
+          "document"
+        );
+        for (const highlight of [
+          '<Highlight variant="danger">risk</Highlight>',
+          '<Highlight tone="warning">risk</Highlight>',
+        ]) {
+          assert.strictEqual(yield* reason(`A ${highlight}.`), "props");
+        }
+        assert.strictEqual(
+          yield* reason("<ContentGrid>x</ContentGrid>"),
+          "ContentTreeEvaluationError"
+        );
       })
   );
 });
