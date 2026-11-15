@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    contentDomain: "fiction",
+    topic: "characterization",
   },
-  stimulus: "antikythera",
+  stimulus: "spare-key",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "They allowed researchers to separate the fused fragments without breaking them.",
-        },
-        {
-          correct: false,
-          label:
-            "They proved that the device had been used to set the dates of the Olympics.",
-        },
-        {
-          correct: false,
-          label:
-            "They showed that the mechanism had been built shortly before the ship sank.",
-        },
-        {
           correct: true,
           label:
-            "They let researchers count hidden gear teeth and read letters long unreadable.",
+            "That Gran accepts help with her memory as long as it stays private, and the narrator goes along with that.",
         },
         {
           correct: false,
           label:
-            "They confirmed that corrosion had caused the lump to crack apart in the museum.",
+            "That Gran accepts help with her memory, but the narrator resents having to keep quiet about it.",
+        },
+        {
+          correct: false,
+          label:
+            "That Gran refuses any help with her memory, so the narrator stops trying to give it.",
+        },
+        {
+          correct: false,
+          label:
+            "That Gran no longer needs any help, because the note means she will never forget again.",
+        },
+        {
+          correct: false,
+          label:
+            "That Gran writes the place down to prove to the narrator that her memory is still sound.",
         },
       ],
     },

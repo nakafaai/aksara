@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "deep-vents",
+  stimulus: "clever-hans",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "The scientists aboard *Alvin* expected to find crowded communities of animals at the vents.",
+            "Tap eight times, because Hans had learned to add small numbers correctly.",
         },
         {
-          column: 1,
-          label: "An adult giant tube worm has no mouth and no gut.",
-        },
-        {
-          column: 1,
-          label: "A single vent can stop flowing after only a few years.",
-        },
-        {
-          column: 2,
+          correct: false,
           label:
-            "Vent bacteria make their food from sunlight that filters down from the surface.",
+            "Tap nine times, because Hans can read the number written on the card in von Osten's hand.",
+        },
+        {
+          correct: true,
+          label:
+            "Tap nine times, because Hans stops at the questioner's cue, and the cue follows what the questioner expects.",
+        },
+        {
+          correct: false,
+          label:
+            "Tap eight times, because von Osten's cue comes when Hans reaches the true sum, whatever von Osten believes.",
+        },
+        {
+          correct: false,
+          label:
+            "Tap a random number of times, because nobody in Hans's view knows the true answer.",
         },
       ],
     },

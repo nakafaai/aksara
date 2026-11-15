@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "calculation",
   },
-  stimulus: "half-sleep",
+  stimulus: "cholera-pump",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The ducks were keeping watch on the researchers' cameras.",
-        },
-        {
-          correct: false,
           label:
-            "Ducks in the middle of the row were unable to open their eyes while asleep.",
-        },
-        {
-          correct: false,
-          label: "The open eye was resting while the closed eye kept watch.",
-        },
-        {
-          correct: false,
-          label: "Ducks prefer to look at other ducks while they sleep.",
+            "About $$8{,}220$$, which is about $$8{,}120$$ more than the $$98$$ they actually had.",
         },
         {
           correct: true,
           label:
-            "The ducks used their waking half of the brain to watch for danger.",
+            "About $$820$$, which is about $$720$$ more than the $$98$$ they actually had.",
+        },
+        {
+          correct: false,
+          label:
+            "About $$1{,}263$$, the same number as the Southwark and Vauxhall houses had.",
+        },
+        {
+          correct: false,
+          label:
+            "About $$820$$, which is about $$443$$ fewer than the Southwark and Vauxhall houses had, so Lambeth's water was the more dangerous.",
+        },
+        {
+          correct: false,
+          label:
+            "About $$720$$, which is about $$622$$ more than the $$98$$ they actually had.",
         },
       ],
     },

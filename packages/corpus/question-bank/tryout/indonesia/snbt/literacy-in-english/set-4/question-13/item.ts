@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "argument-evaluation",
   },
-  stimulus: "bike-lanes",
+  stimulus: "liver-screening",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Main Street actually recorded fewer injuries after the lanes opened.",
+            "The test misses $$10$$ of the $$100$$ people who have the condition, so a positive result cannot be trusted.",
+        },
+        {
+          correct: false,
+          label:
+            "The maker's figure of $$95\\%$$ is false, because the test is right far less often than that overall.",
+        },
+        {
+          correct: false,
+          label:
+            "Most adults who test negative still have the condition, so testing positive adds little.",
         },
         {
           correct: true,
           label:
-            "Injuries rose slightly, but cyclists doubled, so each rider's risk fell.",
+            "The condition is rare, so even a small false-alarm rate among the many healthy adults produces more positives than the few adults with the condition do.",
         },
         {
           correct: false,
           label:
-            "Injuries on Main Street were caused mostly by pedestrians, not cars.",
-        },
-        {
-          correct: false,
-          label:
-            "The lanes on Main Street were built more recently than the others.",
-        },
-        {
-          correct: false,
-          label:
-            "Main Street had fewer cyclists after the lanes than before them.",
+            "The test wrongly flags $$5$$ in every $$100$$ healthy adults, so only $$5\\%$$ of positive results are false.",
         },
       ],
     },

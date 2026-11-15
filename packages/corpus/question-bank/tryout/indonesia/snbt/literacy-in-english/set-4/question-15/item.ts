@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "bike-lanes",
+  stimulus: "liver-screening",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The citywide figure must have been calculated incorrectly.",
-        },
-        {
-          correct: false,
-          label: "River Road became more dangerous than the other two streets.",
-        },
-        {
-          correct: false,
-          label:
-            "Cycling on River Road would have fallen without the new lane.",
-        },
-        {
-          correct: false,
-          label:
-            "Every new cyclist on River Road moved there from Main Street.",
+          label: "About $$15\\%$$",
         },
         {
           correct: true,
-          label:
-            "The lane probably attracted extra cyclists beyond the citywide rise.",
+          label: "About $$67\\%$$",
+        },
+        {
+          correct: false,
+          label: "About $$90\\%$$",
+        },
+        {
+          correct: false,
+          label: "About $$95\\%$$",
+        },
+        {
+          correct: false,
+          label: "About $$50\\%$$",
         },
       ],
     },

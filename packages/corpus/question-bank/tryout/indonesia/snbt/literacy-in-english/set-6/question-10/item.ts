@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "text-relation",
   },
-  stimulus: "grading-curve",
+  stimulus: "test-optional",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            "Text B agrees with Text A's aim but disputes what the grade figures show.",
+        },
+        {
           correct: false,
           label:
-            "Teachers should be paid more for grading against detailed standards.",
+            "Text B argues that the university should go back to requiring test scores now.",
         },
         {
           correct: true,
           label:
-            "A curve is easy to run, but it teaches students to value beating others.",
+            'According to Text B, the gap behind Text A\'s phrase "almost as high" is $$0.2$$ in average first-year grades.',
+        },
+        {
+          correct: true,
+          label:
+            "Text B suggests that dropping tests may not remove the advantage that coaching gives.",
         },
         {
           correct: false,
           label:
-            "Students should learn to value simple answers over complicated ones.",
-        },
-        {
-          correct: false,
-          label:
-            "Simple tests are better than difficult tests for students of every level.",
-        },
-        {
-          correct: false,
-          label:
-            "Students would learn more if their teachers had fewer papers to read.",
+            "Both writers report the rise in applications as evidence for their position.",
         },
       ],
     },

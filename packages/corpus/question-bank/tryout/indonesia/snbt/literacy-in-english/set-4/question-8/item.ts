@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "visitor-fee",
+  stimulus: "school-start",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Booking time slots can spread visits across the day.",
+          correct: false,
+          label: "About $$34$$",
         },
         {
-          column: 1,
-          label:
-            "Fee revenue should be reported openly and spent where residents can see the results.",
+          correct: true,
+          label: "About $$19$$",
         },
         {
-          column: 2,
-          label:
-            "Cities that depend on tourism should close their gates to visitors.",
+          correct: false,
+          label: "About $$30$$",
         },
         {
-          column: 2,
-          label:
-            "Venice charges the fee to day visitors on every day of the year.",
+          correct: false,
+          label: "About $$62$$",
+        },
+        {
+          correct: false,
+          label: "About $$4$$",
         },
       ],
     },

@@ -3,38 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
+    contentDomain: "fiction",
     topic: "inference",
   },
-  stimulus: "railway-time",
+  stimulus: "piano-lessons",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Bristol's clockmakers were unable to build a clock that kept accurate time.",
+            "Mrs Varga's praise in the spring shows that the narrator's playing had improved.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "For a time, people in Bristol lived with both local time and railway time.",
+            "Mrs Varga's move to the end of the keyboard let her watch the narrator's hands.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bristol's station kept local time until Parliament changed the law in 1880.",
+            "The narrator's annoyance at the spring praise came from feeling that she had not earned it.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The clock was built in 1880 to celebrate the new law on Greenwich time.",
+            "Mrs Varga moved her chair so that she could hear the piano better.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Visitors to Bristol might have used the clock to time their journeys by sea.",
+            "Mr Hollis's first lesson suggests that the wrong note in bar twelve had survived the spring.",
         },
       ],
     },

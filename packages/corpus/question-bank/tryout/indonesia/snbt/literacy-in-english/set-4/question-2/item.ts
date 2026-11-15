@@ -6,31 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "inference",
   },
-  stimulus: "deep-vents",
+  stimulus: "clever-hans",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "It catches small animals that drift past in the current.",
-        },
-        {
-          correct: false,
-          label: "It produces the food that the worm's bacteria later digest.",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "It takes in the chemicals the bacteria need and passes them on.",
+            "The 1904 commission concluded that Hans could really do arithmetic.",
         },
         {
-          correct: false,
-          label: "It warns other animals that the worm's body is poisonous.",
+          column: 1,
+          label:
+            "Hans could answer correctly when a stranger who knew the answer asked the question.",
         },
         {
-          correct: false,
-          label: "It allows the worm to swim between vents when one closes.",
+          column: 2,
+          label: "Von Osten signalled the answers to Hans on purpose.",
+        },
+        {
+          column: 1,
+          label:
+            "Asked a sum whose answer was known only to someone out of his sight, Hans would most likely have failed.",
+        },
+        {
+          column: 2,
+          label:
+            "Once Pfungst knew about the cue, he was able to stop himself from giving it.",
         },
       ],
     },

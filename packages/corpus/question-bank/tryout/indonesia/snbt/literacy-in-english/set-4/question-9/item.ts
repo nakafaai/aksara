@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "figurative-language",
+    topic: "text-relation",
   },
-  stimulus: "visitor-fee",
+  stimulus: "school-start",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "The fee will make the city famous as a model of good tourism policy.",
+            "Text B accepts Text A's account of teenagers' sleep but questions whether Text A's evidence fits the district.",
         },
         {
           correct: false,
           label:
-            "The fee will be printed on symbols and signs throughout the city.",
-        },
-        {
-          correct: false,
-          label:
-            "The fee proves that the city has finally solved its overtourism problem.",
-        },
-        {
-          correct: false,
-          label:
-            "The fee may push residents to leave the city for quieter places.",
+            "Text B argues that a later start does not improve students' sleep.",
         },
         {
           correct: true,
           label:
-            "The fee may look like action while leaving the crowds as large as before.",
+            "Text A's evidence comes from a change that made school start $$55$$ minutes later.",
+        },
+        {
+          correct: true,
+          label:
+            "If the district moved its high schools later but kept its primary schools at their present time, Text B says it would have to buy more buses.",
+        },
+        {
+          correct: false,
+          label:
+            "Text A's figure of $$34$$ minutes is the average gain across all the students in the other city.",
         },
       ],
     },

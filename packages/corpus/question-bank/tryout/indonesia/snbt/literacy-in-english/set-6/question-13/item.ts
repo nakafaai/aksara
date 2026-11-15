@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "argument-evaluation",
   },
-  stimulus: "water-meters",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It shows that the smart meters in Area A were installed incorrectly by the company.",
+            "E-book loans tripled, but the newspaper should have reported the change as $$200\\%$$ rather than as tripling.",
         },
         {
           correct: false,
           label:
-            "It means that Area A should have been compared with Area B only.",
+            "Total loans rose by only about $$1\\%$$, so the headline should have called it a reading slowdown.",
+        },
+        {
+          correct: false,
+          label:
+            "The rise in e-books came mostly from new readers, so the people who already borrowed were not reading more.",
         },
         {
           correct: true,
           label:
-            "Part of Area A's fall may come from repaired leaks rather than the meters.",
+            "E-book loans started from a small base, and their whole rise matched the fall in print loans, so total loans barely changed.",
         },
         {
           correct: false,
           label:
-            "It proves that the smart meters had no effect on water use at all.",
-        },
-        {
-          correct: false,
-          label: "It shows that leaks are more common in Areas C and D.",
+            "The library's director said that print loans will fall, which shows the figures are wrong.",
         },
       ],
     },
