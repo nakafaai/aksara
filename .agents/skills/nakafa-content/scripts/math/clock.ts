@@ -29,15 +29,26 @@ const BRACED_CLOCK_PATTERN =
  */
 const DOTTED_CLOCK_PATTERN = /^(?:[01]\d|2[0-4])\.[0-5]\d$/u;
 
-/** The locales whose decimal mark is a comma. */
-const COMMA_DECIMAL_LOCALES = new Set<LessonVoiceLocale>(["de", "id"]);
+type JsxMdxNode = MdxNode & {
+  attributes: MdxAttribute[];
+};
+
+/** Narrows one MDX node to a JSX element, whose attributes are always listed. */
+function isJsxElement(node: MdxNode): node is JsxMdxNode {
+  return node.type === "mdxJsxFlowElement" || node.type === "mdxJsxTextElement";
+}
+
+/** Whether a locale writes its decimal mark as a comma, as Intl formats it. */
+function writesDecimalComma(locale: LessonVoiceLocale): boolean {
+  return new Intl.NumberFormat(locale).format(1.5) === "1,5";
+}
 
 /** Returns the offset of every clock time inside one decoded math value. */
 function clockOffsets(value: string, locale: LessonVoiceLocale): number[] {
   const offsets = [...value.matchAll(BRACED_CLOCK_PATTERN)].map(
     (match) => match.index
   );
-  if (COMMA_DECIMAL_LOCALES.has(locale) && DOTTED_CLOCK_PATTERN.test(value)) {
+  if (writesDecimalComma(locale) && DOTTED_CLOCK_PATTERN.test(value)) {
     offsets.push(0);
   }
   return offsets;
@@ -86,13 +97,10 @@ export function findClockMathIssues(
 ): LessonVoiceIssue[] {
   const offsets = new Set<number>();
   visitMdxNodes(tree, (node) => {
-    if (
-      node.type !== "mdxJsxFlowElement" &&
-      node.type !== "mdxJsxTextElement"
-    ) {
+    if (!isJsxElement(node)) {
       return;
     }
-    for (const attribute of node.attributes ?? []) {
+    for (const attribute of node.attributes) {
       collectAttributeOffsets(attribute, locale, offsets, source);
     }
   });

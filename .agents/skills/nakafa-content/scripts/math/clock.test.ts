@@ -11,9 +11,13 @@ function findings(locale: LessonVoiceLocale, source: string): string[] {
 }
 
 it("finds a braced clock time in every locale", () => {
-  assert.deepEqual(findings("en", 'Done at <InlineMath math="20{:}24" />.'), [
-    "clock-time-math 1:27",
-  ]);
+  assert.deepEqual(
+    findings(
+      "en",
+      'From <InlineMath math="19{:}00" /> to <InlineMath math="20{:}24" />.'
+    ),
+    ["clock-time-math 1:24", "clock-time-math 1:57"]
+  );
   assert.deepEqual(
     findings("id", 'Pukul <InlineMath math="16{.}00" /> tepat.'),
     ["clock-time-math 1:25"]
@@ -51,4 +55,13 @@ it("keeps durations, ratios, decimals, and thousands as quantities", () => {
     'Selama <InlineMath math="84" /> menit, sejak pukul 16.00.',
   ].join("\n");
   assert.deepEqual(findings("id", source), []);
+});
+
+it("reads only math props that hold a value", () => {
+  const source = [
+    '<MathVisual title="Pukul 07.00" />',
+    "<InlineMath math />",
+    '<InlineMath math={"08{:}00"} />',
+  ].join("\n");
+  assert.deepEqual(findings("id", source), ["clock-time-math 3:20"]);
 });
