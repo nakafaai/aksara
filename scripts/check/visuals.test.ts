@@ -147,6 +147,13 @@ describe("visualReport", () => {
   );
 });
 
+/** Runs Git in a test repository as a test author, so a commit needs no global identity. */
+const gitIn = (root: string, args: readonly string[]) =>
+  runGit(
+    ["-c", "user.name=Test", "-c", "user.email=test@example.com", ...args],
+    { cwd: root }
+  );
+
 describe("sourcesToCheck", () => {
   const files = [
     "packages/corpus/material/lesson/a/en.mdx",
@@ -185,35 +192,29 @@ describe("changedFiles", () => {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
         const root = yield* makeRepository();
-        const git = (args: readonly string[]) =>
-          runGit(
-            [
-              "-c",
-              "user.name=Test",
-              "-c",
-              "user.email=test@example.com",
-              ...args,
-            ],
-            {
-              cwd: root,
-            }
-          );
+        /** Writes a file whose text is its own name. */
         const write = (file: string) =>
           fileSystem.writeFileString(path.join(root, file), `${file}\n`);
         for (const file of ["kept.mdx", "edited.mdx", "staged.mdx"]) {
           yield* write(file);
         }
-        yield* git(["add", "--", "kept.mdx", "edited.mdx", "staged.mdx"]);
-        yield* git(["commit", "--quiet", "-m", "base"]);
-        yield* git(["branch", "base"]);
+        yield* gitIn(root, [
+          "add",
+          "--",
+          "kept.mdx",
+          "edited.mdx",
+          "staged.mdx",
+        ]);
+        yield* gitIn(root, ["commit", "--quiet", "-m", "base"]);
+        yield* gitIn(root, ["branch", "base"]);
         yield* write("committed.mdx");
-        yield* git(["add", "--", "committed.mdx"]);
-        yield* git(["commit", "--quiet", "-m", "change"]);
+        yield* gitIn(root, ["add", "--", "committed.mdx"]);
+        yield* gitIn(root, ["commit", "--quiet", "-m", "change"]);
         yield* fileSystem.writeFileString(
           path.join(root, "staged.mdx"),
           "staged again\n"
         );
-        yield* git(["add", "--", "staged.mdx"]);
+        yield* gitIn(root, ["add", "--", "staged.mdx"]);
         yield* fileSystem.writeFileString(
           path.join(root, "edited.mdx"),
           "edited again\n"
@@ -241,17 +242,6 @@ describe("checkVisuals", () => {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
         const root = yield* makeRepository();
-        const git = (args: readonly string[]) =>
-          runGit(
-            [
-              "-c",
-              "user.name=Test",
-              "-c",
-              "user.email=test@example.com",
-              ...args,
-            ],
-            { cwd: root }
-          );
         const lesson = "packages/corpus/material/lesson";
         yield* fileSystem.makeDirectory(path.join(root, lesson), {
           recursive: true,
@@ -261,9 +251,9 @@ describe("checkVisuals", () => {
           path.join(root, lesson, "old.mdx"),
           ROUNDED
         );
-        yield* git(["add", "--", "."]);
-        yield* git(["commit", "--quiet", "-m", "base"]);
-        yield* git(["branch", "base"]);
+        yield* gitIn(root, ["add", "--", "."]);
+        yield* gitIn(root, ["commit", "--quiet", "-m", "base"]);
+        yield* gitIn(root, ["branch", "base"]);
         yield* fileSystem.writeFileString(
           path.join(root, lesson, "new.mdx"),
           EXACT
