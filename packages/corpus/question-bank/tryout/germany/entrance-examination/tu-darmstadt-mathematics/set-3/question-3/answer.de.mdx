@@ -1,16 +1,69 @@
-Schreibe zuerst die Dezimalzahl als **Zehnerpotenz**, dann kannst du Ziffern und Potenzen getrennt verrechnen. Es gilt <InlineMath math="0{,}002=2\cdot10^{-3}" />, denn die <InlineMath math="2" /> steht an der dritten Stelle nach dem Komma.
+# Erst den Definitionsbereich festlegen
+
+Ein Logarithmus ist nur für positive Zahlen definiert. In der Gleichung stehen <InlineMath math="\log_2 x" /> und <InlineMath math="\log_2(x+3)" />, also muss gelten:
+
+<BlockMath math="x>0\quad\text{und}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+
+Diese Bedingung gilt für die **ursprüngliche** Gleichung. Später darfst du nur Zahlen mit <InlineMath math="x>0" /> als Lösung behalten.
+
+# Die Logarithmen zusammenfassen
+
+Mit <InlineMath math="2\log_2 x=\log_2 x^2" /> und <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" /> wird die linke Seite zu **einem einzigen Logarithmus**. Danach wendest du die Definition <InlineMath math="\log_2 w=2\iff w=2^2=4" /> an:
 
 <BlockMath math="\begin{aligned}
-\frac{2\cdot10^{-3}\cdot3\cdot10^5}{6\cdot10^{-2}}&=\frac{6\cdot10^{2}}{6\cdot10^{-2}} \\
-&=10^{2-(-2)}=10^4
+\log_2\frac{x^2}{x+3}&=2 \\
+\frac{x^2}{x+3}&=4 \\
+x^2-4x-12&=0 \\
+(x-6)(x+2)&=0
 \end{aligned}" />
 
-Zur Kontrolle ohne Potenzen: Der Zähler ist <InlineMath math="0{,}002\cdot300{.}000=600" /> und der Nenner <InlineMath math="0{,}06" />. Es gilt <InlineMath math="600:0{,}06=60{.}000:6=10{.}000=10^4" />.
+Die quadratische Gleichung hat die Lösungen <InlineMath math="x=6" /> und <InlineMath math="x=-2" />.
 
-Der Ausdruck hat also den Wert <InlineMath math="10^4" />.
+# Die Kandidaten prüfen
 
-- <InlineMath math="10^5" /> entsteht, wenn <InlineMath math="0{,}002" /> als <InlineMath math="2\cdot10^{-2}" /> geschrieben wird. Dann ist der Zähler zehnmal zu groß.
-- <InlineMath math="10^3" /> entsteht mit <InlineMath math="0{,}002=2\cdot10^{-4}" />, also mit einer Stelle zu viel.
-- <InlineMath math="10^2" /> ist nur der Zähler geteilt durch <InlineMath math="6" />, ohne die Division durch <InlineMath math="10^{-2}" />.
-- <InlineMath math="10^6" /> entsteht, wenn zusätzlich durch <InlineMath math="10^{-2}" /> geteilt wird, als stünde es zweimal im Nenner.
-- <InlineMath math="10" /> passt zu keiner der Umformungen, denn der Exponent ist <InlineMath math="-3+5-(-2)=4" />.
+Der umgeformte Term <InlineMath math="\log_2\frac{x^2}{x+3}" /> ist auch für <InlineMath math="x=-2" /> definiert, die ursprüngliche linke Seite aber nicht, denn <InlineMath math="\log_2(-2)" /> gibt es nicht. Die Umformung <InlineMath math="2\log_2 x=\log_2 x^2" /> hat **den Definitionsbereich also vergrößert**:
+
+<MathVisual
+  title={<>Linke Seite und Wert <InlineMath math="2" /></>}
+  description={<>Der Graph der linken Seite <InlineMath math="2\log_2 x-\log_2(x+3)" /> existiert nur für <InlineMath math="x>0" /> und schneidet die waagerechte Gerade <InlineMath math="y=2" /> genau bei <InlineMath math="x=6" />. Gestrichelt ist der Graph des umgeformten Terms <InlineMath math="\log_2\frac{x^2}{x+3}" /> für negative <InlineMath math="x" /> gezeichnet. Er trifft die Gerade bei <InlineMath math="x=-2" />, wo die ursprüngliche Gleichung gar nicht definiert ist.</>}
+  labels={{
+    key: <><InlineMath math="x=6" /></>,
+    fake: <><InlineMath math="x=-2" /></>,
+    h: <>linke Seite</>,
+    g: <>nur umgeformt</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 10 },
+      y: { min: -4, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "fake", objectId: "extra", at: { x: -2, y: 2 }, placement: "above-left" },
+      { key: "h", objectId: "left-side", at: { x: 9, y: 2.7 }, placement: "above" },
+      { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Probe für <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. Die Gleichung stimmt.
+
+Die Lösungsmenge ist <InlineMath math="\mathbb{L}=\{6\}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> behält <InlineMath math="x=-2" />. Dort ist **<InlineMath math="\log_2 x" /> nicht definiert**, auch wenn die umgeformte Gleichung stimmt.
+- <InlineMath math="\mathbb{L}=\{-2\}" /> verwirft die richtige Lösung und behält die falsche.
+- <InlineMath math="\mathbb{L}=\{\}" /> entsteht, wenn du <InlineMath math="2\log_2 x" /> als <InlineMath math="\log_2(2x)" /> liest. Dann folgt <InlineMath math="\frac{2x}{x+3}=4" />, also <InlineMath math="x=-6" />, und diese Zahl fällt weg.
+- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> entsteht, wenn du die Differenz der Logarithmen als Logarithmus der Differenz rechnest: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
+- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> entsteht, wenn du aus <InlineMath math="\log_2 w=2" /> den Schluss <InlineMath math="w=2" /> statt <InlineMath math="w=4" /> ziehst.

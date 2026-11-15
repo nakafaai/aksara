@@ -1,16 +1,69 @@
-Tulis dulu bilangan desimalnya sebagai **perpangkatan sepuluh**, lalu hitung angka dan perpangkatannya secara terpisah. Berlaku <InlineMath math="0{,}002=2\cdot10^{-3}" />, karena angka <InlineMath math="2" /> berada di tempat ketiga setelah koma.
+# Tentukan dulu daerah asalnya
+
+Logaritma hanya terdefinisi untuk bilangan positif. Di persamaan ada <InlineMath math="\log_2 x" /> dan <InlineMath math="\log_2(x+3)" />, jadi harus berlaku:
+
+<BlockMath math="x>0\quad\text{dan}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+
+Syarat ini milik persamaan **asli**. Nanti hanya bilangan dengan <InlineMath math="x>0" /> yang boleh dipertahankan sebagai penyelesaian.
+
+# Gabungkan logaritmanya
+
+Dengan <InlineMath math="2\log_2 x=\log_2 x^2" /> dan <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" />, ruas kiri menjadi **satu logaritma**. Setelah itu pakai definisi <InlineMath math="\log_2 w=2\iff w=2^2=4" />:
 
 <BlockMath math="\begin{aligned}
-\frac{2\cdot10^{-3}\cdot3\cdot10^5}{6\cdot10^{-2}}&=\frac{6\cdot10^{2}}{6\cdot10^{-2}} \\
-&=10^{2-(-2)}=10^4
+\log_2\frac{x^2}{x+3}&=2 \\
+\frac{x^2}{x+3}&=4 \\
+x^2-4x-12&=0 \\
+(x-6)(x+2)&=0
 \end{aligned}" />
 
-Sebagai pemeriksaan tanpa perpangkatan: pembilangnya <InlineMath math="0{,}002\cdot300{.}000=600" /> dan penyebutnya <InlineMath math="0{,}06" />. Maka <InlineMath math="600:0{,}06=60{.}000:6=10{.}000=10^4" />.
+Persamaan kuadrat itu punya penyelesaian <InlineMath math="x=6" /> dan <InlineMath math="x=-2" />.
 
-Jadi, nilai bentuk tersebut adalah <InlineMath math="10^4" />.
+# Periksa kedua calon
 
-- <InlineMath math="10^5" /> muncul jika <InlineMath math="0{,}002" /> ditulis <InlineMath math="2\cdot10^{-2}" />, sehingga pembilangnya sepuluh kali terlalu besar.
-- <InlineMath math="10^3" /> muncul dari <InlineMath math="0{,}002=2\cdot10^{-4}" />, yaitu satu tempat terlalu banyak.
-- <InlineMath math="10^2" /> hanyalah pembilang dibagi <InlineMath math="6" />, tanpa pembagian dengan <InlineMath math="10^{-2}" />.
-- <InlineMath math="10^6" /> muncul jika pembagian dengan <InlineMath math="10^{-2}" /> dilakukan dua kali.
-- <InlineMath math="10" /> tidak sesuai dengan langkah mana pun, karena eksponennya <InlineMath math="-3+5-(-2)=4" />.
+Bentuk ubahan <InlineMath math="\log_2\frac{x^2}{x+3}" /> juga terdefinisi di <InlineMath math="x=-2" />, tetapi ruas kiri yang asli tidak, karena <InlineMath math="\log_2(-2)" /> tidak ada. Jadi langkah <InlineMath math="2\log_2 x=\log_2 x^2" /> **memperluas daerah asalnya**:
+
+<MathVisual
+  title={<>Ruas kiri dan nilai <InlineMath math="2" /></>}
+  description={<>Grafik ruas kiri <InlineMath math="2\log_2 x-\log_2(x+3)" /> hanya ada untuk <InlineMath math="x>0" /> dan memotong garis mendatar <InlineMath math="y=2" /> tepat di <InlineMath math="x=6" />. Garis putus-putus adalah grafik bentuk yang sudah diubah, <InlineMath math="\log_2\frac{x^2}{x+3}" />, untuk <InlineMath math="x" /> negatif. Grafik itu memotong garis di <InlineMath math="x=-2" />, padahal di sana persamaan aslinya tidak terdefinisi.</>}
+  labels={{
+    key: <><InlineMath math="x=6" /></>,
+    fake: <><InlineMath math="x=-2" /></>,
+    h: <>ruas kiri</>,
+    g: <>hanya bentuk ubahan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 10 },
+      y: { min: -4, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "fake", objectId: "extra", at: { x: -2, y: 2 }, placement: "above-left" },
+      { key: "h", objectId: "left-side", at: { x: 9, y: 2.7 }, placement: "above" },
+      { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. Persamaannya benar.
+
+Himpunan penyelesaiannya <InlineMath math="\mathbb{L}=\{6\}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> mempertahankan <InlineMath math="x=-2" />. Di sana **<InlineMath math="\log_2 x" /> tidak terdefinisi**, walaupun persamaan ubahannya benar.
+- <InlineMath math="\mathbb{L}=\{-2\}" /> membuang penyelesaian yang benar dan menyimpan yang salah.
+- <InlineMath math="\mathbb{L}=\{\}" /> muncul kalau <InlineMath math="2\log_2 x" /> dibaca sebagai <InlineMath math="\log_2(2x)" />. Lalu <InlineMath math="\frac{2x}{x+3}=4" /> memberi <InlineMath math="x=-6" />, dan bilangan itu gugur.
+- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> muncul kalau selisih logaritma diubah menjadi logaritma dari selisih: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
+- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> muncul kalau dari <InlineMath math="\log_2 w=2" /> disimpulkan <InlineMath math="w=2" />, padahal <InlineMath math="w=4" />.

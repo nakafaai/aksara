@@ -1,16 +1,69 @@
-First write the decimal as a **power of ten**, then handle the digits and the powers separately. Note that the German prompt writes the decimal as <InlineMath math="0{,}002" />, which is <InlineMath math="0.002=2\cdot10^{-3}" />, because the <InlineMath math="2" /> sits in the third decimal place.
+# Fix the domain first
+
+A logarithm is only defined for positive numbers. The equation contains <InlineMath math="\log_2 x" /> and <InlineMath math="\log_2(x+3)" />, so you need:
+
+<BlockMath math="x>0\quad\text{and}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+
+This condition belongs to the **original** equation. Later you may keep only numbers with <InlineMath math="x>0" /> as solutions.
+
+# Combine the logarithms
+
+With <InlineMath math="2\log_2 x=\log_2 x^2" /> and <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" /> the left side becomes **a single logarithm**. Then use the definition <InlineMath math="\log_2 w=2\iff w=2^2=4" />:
 
 <BlockMath math="\begin{aligned}
-\frac{2\cdot10^{-3}\cdot3\cdot10^5}{6\cdot10^{-2}}&=\frac{6\cdot10^{2}}{6\cdot10^{-2}} \\
-&=10^{2-(-2)}=10^4
+\log_2\frac{x^2}{x+3}&=2 \\
+\frac{x^2}{x+3}&=4 \\
+x^2-4x-12&=0 \\
+(x-6)(x+2)&=0
 \end{aligned}" />
 
-As a check without powers: the numerator is <InlineMath math="0.002\cdot300{,}000=600" /> and the denominator is <InlineMath math="0.06" />. Then <InlineMath math="600\div0.06=60{,}000\div6=10{,}000=10^4" />.
+The quadratic equation has the solutions <InlineMath math="x=6" /> and <InlineMath math="x=-2" />.
 
-So the expression has the value <InlineMath math="10^4" />.
+# Check the candidates
 
-- <InlineMath math="10^5" /> comes from writing <InlineMath math="0.002" /> as <InlineMath math="2\cdot10^{-2}" />, which makes the numerator ten times too large.
-- <InlineMath math="10^3" /> comes from <InlineMath math="0.002=2\cdot10^{-4}" />, one place too many.
-- <InlineMath math="10^2" /> is only the numerator divided by <InlineMath math="6" />, without dividing by <InlineMath math="10^{-2}" />.
-- <InlineMath math="10^6" /> comes from dividing by <InlineMath math="10^{-2}" /> twice, as if it appeared twice in the denominator.
-- <InlineMath math="10" /> fits none of these steps, because the exponent is <InlineMath math="-3+5-(-2)=4" />.
+The rewritten expression <InlineMath math="\log_2\frac{x^2}{x+3}" /> is also defined at <InlineMath math="x=-2" />, but the original left side isn't, because <InlineMath math="\log_2(-2)" /> doesn't exist. So the step <InlineMath math="2\log_2 x=\log_2 x^2" /> **made the domain larger**:
+
+<MathVisual
+  title={<>Left side and the value <InlineMath math="2" /></>}
+  description={<>The graph of the left side <InlineMath math="2\log_2 x-\log_2(x+3)" /> exists only for <InlineMath math="x>0" /> and meets the horizontal line <InlineMath math="y=2" /> exactly at <InlineMath math="x=6" />. Dashed is the graph of the rewritten expression <InlineMath math="\log_2\frac{x^2}{x+3}" /> for negative <InlineMath math="x" />. It meets the line at <InlineMath math="x=-2" />, where the original equation isn't defined.</>}
+  labels={{
+    key: <><InlineMath math="x=6" /></>,
+    fake: <><InlineMath math="x=-2" /></>,
+    h: <>left side</>,
+    g: <>rewritten only</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 10 },
+      y: { min: -4, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
+      { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "fake", objectId: "extra", at: { x: -2, y: 2 }, placement: "above-left" },
+      { key: "h", objectId: "left-side", at: { x: 9, y: 2.7 }, placement: "above" },
+      { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Check <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. The equation holds.
+
+The solution set is <InlineMath math="\mathbb{L}=\{6\}" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> keeps <InlineMath math="x=-2" />. There **<InlineMath math="\log_2 x" /> isn't defined**, even though the rewritten equation holds.
+- <InlineMath math="\mathbb{L}=\{-2\}" /> throws away the real solution and keeps the false one.
+- <InlineMath math="\mathbb{L}=\{\}" /> comes from reading <InlineMath math="2\log_2 x" /> as <InlineMath math="\log_2(2x)" />. Then <InlineMath math="\frac{2x}{x+3}=4" /> gives <InlineMath math="x=-6" />, which drops out.
+- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> comes from turning the difference of logarithms into the logarithm of a difference: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
+- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> comes from concluding <InlineMath math="w=2" /> instead of <InlineMath math="w=4" /> from <InlineMath math="\log_2 w=2" />.

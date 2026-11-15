@@ -1,16 +1,68 @@
-Because the interest is added to the capital each year and then earns interest itself, this is **compound interest** (*Zinseszins*). Every year the capital is multiplied by the factor <InlineMath math="1.03" />.
+# Work with a sample number
+
+All the data are percentages, and so is the change you want. That means you can start with a convenient number, for example <InlineMath math="100" /> members. The key point: the two shares refer to **different bases**, <InlineMath math="20\,\%" /> to the old and <InlineMath math="25\,\%" /> to the new number of members.
+
+# The numbers before and after
 
 <BlockMath math="\begin{aligned}
-\text{after 1 year}&:\ 2{,}000\cdot1.03=2{,}060\text{ €} \\
-\text{after 2 years}&:\ 2{,}060\cdot1.03=2{,}121.80\text{ €}
+\text{before:}&\quad 100\ \text{members},\quad 20\ \text{young},\quad 80\ \text{adults} \\
+\text{after:}&\quad 100\cdot1.2=120\ \text{members},\quad 0.25\cdot120=30\ \text{young},\quad 120-30=90\ \text{adults}
 \end{aligned}" />
 
-In the second year the interest is more than <InlineMath math="60\text{ €}" />: it is <InlineMath math="3\,\%" /> of <InlineMath math="2{,}060\text{ €}" />, which is <InlineMath math="61.80\text{ €}" />. In one line: <InlineMath math="2{,}000\cdot1.03^2=2{,}000\cdot1.0609=2{,}121.80" />.
+<MathVisual
+  title={<>Members before and after</>}
+  description={<>Two bars on the same scale. Top: the club before, with <InlineMath math="100" /> members, <InlineMath math="20" /> young people and <InlineMath math="80" /> adults. Bottom: the club after, with <InlineMath math="120" /> members, <InlineMath math="30" /> young people and <InlineMath math="90" /> adults. The adult part of the bottom bar is longer than in the top bar.</>}
+  labels={{
+    before: <>before: <InlineMath math="100" /></>,
+    after: <>after: <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>young people</>,
+    adult: <>adults</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
+      { id: "young-after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 0, y: 1 }] },
+      { id: "adult-after", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 1 }, { x: 3, y: 1 }] },
+      { id: "tag-before", kind: "point", appearance: "reference", at: { x: 0, y: 4.6 } },
+      { id: "tag-after", kind: "point", appearance: "reference", at: { x: 0, y: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "tag-before", at: { x: 0, y: 4.6 }, placement: "right" },
+      { key: "after", objectId: "tag-after", at: { x: 0, y: 1.6 }, placement: "right" },
+      { key: "y1", objectId: "young-before", at: { x: 1, y: 3.5 }, placement: "below" },
+      { key: "a1", objectId: "adult-before", at: { x: 6, y: 3.5 }, placement: "below" },
+      { key: "y2", objectId: "young-after", at: { x: 1.5, y: 0.5 }, placement: "below" },
+      { key: "a2", objectId: "adult-after", at: { x: 7.5, y: 0.5 }, placement: "below" },
+      { key: "young", objectId: "young-after", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-So after two years the capital has grown to <InlineMath math="2{,}121.80\text{ €}" />.
+# Measure the change against the old value
 
-- <InlineMath math="60.00\text{ €}" /> is only the interest of the first year.
-- <InlineMath math="121.80\text{ €}" /> is the total interest after two years, not the balance.
-- <InlineMath math="2{,}060.00\text{ €}" /> is the amount after one year.
-- <InlineMath math="2{,}120.00\text{ €}" /> uses simple interest, twice <InlineMath math="60\text{ €}" />. The first year's interest earns interest in the second year.
-- <InlineMath math="2{,}180.00\text{ €}" /> uses three years of simple interest, <InlineMath math="2{,}000+3\cdot60" />.
+The number of adults goes from <InlineMath math="80" /> to <InlineMath math="90" />. A percentage change is measured **against the starting value**:
+
+<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0.125=12.5\,\%" />
+
+Even though the adults' share falls from <InlineMath math="80\,\%" /> to <InlineMath math="75\,\%" />, their number rose by <InlineMath math="12.5\,\%" />.
+
+# Why the other answers are wrong
+
+- "fell by <InlineMath math="5\,\%" />" reads the change of the share from <InlineMath math="80\,\%" /> to <InlineMath math="75\,\%" /> as a change of the number. Those are **<InlineMath math="5" /> percentage points of a different base**.
+- "fell by <InlineMath math="6.25\,\%" />" compares the shares, <InlineMath math="\frac{75}{80}=0.9375" />, so again shares instead of numbers.
+- "rose by <InlineMath math="20\,\%" />" carries the growth of the whole club over to the adults.
+- "fell by <InlineMath math="12.5\,\%" />" has the right number but the wrong direction: <InlineMath math="90" /> is more than <InlineMath math="80" />.
+- "rose by <InlineMath math="50\,\%" />" is the change for the young members, from <InlineMath math="20" /> to <InlineMath math="30" />.

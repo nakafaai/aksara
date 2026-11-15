@@ -1,16 +1,58 @@
-Count the edges (*Kanten*) **by their position**. A prism consists of two equal bases joined by lateral edges.
+# First check whether the cube goes under
 
-- The bottom hexagon has <InlineMath math="6" /> edges.
-- The top hexagon also has <InlineMath math="6" /> edges.
-- Each of the <InlineMath math="6" /> vertices of the bottom hexagon is joined by a vertical lateral edge to the matching vertex at the top.
+The amount of water stays the same. It only spreads out differently. The key question is whether the cube ends up fully under water. Assume first that the water stays **below the top of the cube**, so <InlineMath math="h\le20\text{ cm}" />. Then the water only stands on the free floor area next to the cube:
 
-<BlockMath math="6+6+6=18" />
+<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
 
-Euler's polyhedron formula <InlineMath math="V-E+F=2" /> gives a check. The prism has <InlineMath math="V=12" /> vertices and <InlineMath math="F=8" /> faces, namely <InlineMath math="2" /> hexagons and <InlineMath math="6" /> rectangles. So <InlineMath math="E=V+F-2=12+8-2=18" />.
+# Set the amounts of water equal
 
-So the prism has <InlineMath math="18" /> edges.
+The water volume is <InlineMath math="1200\cdot10=12{,}000\text{ cm}^3" />. It now fills the free area up to the height <InlineMath math="h" />:
 
-- <InlineMath math="6" /> counts only the edges of a single base.
-- <InlineMath math="8" /> is the number of faces, not edges.
-- <InlineMath math="12" /> is the number of vertices, or the edges of both hexagons without the lateral edges.
-- <InlineMath math="14" /> and <InlineMath math="16" /> fit no complete count. With <InlineMath math="12" /> vertices and <InlineMath math="8" /> faces, Euler's formula allows only <InlineMath math="18" /> edges.
+<BlockMath math="800\,h=12{,}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+
+**The assumption holds**, because <InlineMath math="15\text{ cm}<20\text{ cm}" />. So the cube still sticks <InlineMath math="5\text{ cm}" /> out of the water.
+
+<MathVisual
+  title={<>The tank seen from the front</>}
+  description={<>Front view of the tank, <InlineMath math="40\text{ cm}" /> wide. On the left stands the cube with edge <InlineMath math="20\text{ cm}" />. Next to it the water now stands <InlineMath math="15\text{ cm}" /> high, lower than the cube's edge. The old water level of <InlineMath math="10\text{ cm}" /> is drawn as a line.</>}
+  labels={{
+    cube: <>cube</>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>before <InlineMath math="10\text{ cm}" /></>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    water: <>water</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 52 },
+      y: { min: -2, max: 27 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
+      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
+      { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
+      { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
+    ],
+    labels: [
+      { key: "cube", objectId: "block", at: { x: 10, y: 10 }, placement: "above" },
+      { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
+      { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
+      { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
+      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
+
+The water then stands <InlineMath math="15\text{ cm}" /> high.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> assumes the whole cube, <InlineMath math="8{,}000\text{ cm}^3" />, is under water: <InlineMath math="\frac{12{,}000+8{,}000}{1200}" />. Then the water would have to be at least <InlineMath math="20\text{ cm}" /> high, and <InlineMath math="\frac{50}{3}<20" /> contradicts that.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> counts only the part of the cube that was in the water at the start: <InlineMath math="\frac{12{,}000+400\cdot10}{1200}" />. As the water rises, **more of the cube goes under**.
+- <InlineMath math="20\text{ cm}" /> assumes the water rises exactly to the top of the cube.
+- <InlineMath math="7.5\text{ cm}" /> adds the cube's base to the floor area instead of subtracting it: <InlineMath math="\frac{12{,}000}{1600}" />.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> uses <InlineMath math="20^2=400" /> as the cube's volume instead of <InlineMath math="20^3" />.

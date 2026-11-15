@@ -1,0 +1,68 @@
+# Kira dengan nombor contoh
+
+Semua data dalam bentuk peratus, dan perubahan yang ditanya pun peratus. Jadi kamu boleh mula dengan nombor yang senang, contohnya <InlineMath math="100" /> ahli. Yang penting: kedua-dua bahagian itu merujuk kepada **nilai asas yang berbeza**, <InlineMath math="20\,\%" /> kepada bilangan ahli lama dan <InlineMath math="25\,\%" /> kepada bilangan ahli baharu.
+
+# Bilangan sebelum dan selepas
+
+<BlockMath math="\begin{aligned}
+\text{sebelum:}&\quad 100\ \text{ahli},\quad 20\ \text{remaja},\quad 80\ \text{dewasa} \\
+\text{selepas:}&\quad 100\cdot1.2=120\ \text{ahli},\quad 0.25\cdot120=30\ \text{remaja},\quad 120-30=90\ \text{dewasa}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Ahli sebelum dan selepas</>}
+  description={<>Dua bar dengan skala yang sama. Atas: kelab sebelumnya dengan <InlineMath math="100" /> ahli, iaitu <InlineMath math="20" /> remaja dan <InlineMath math="80" /> orang dewasa. Bawah: kelab selepasnya dengan <InlineMath math="120" /> ahli, iaitu <InlineMath math="30" /> remaja dan <InlineMath math="90" /> orang dewasa. Bahagian orang dewasa pada bar bawah lebih panjang daripada pada bar atas.</>}
+  labels={{
+    before: <>sebelum: <InlineMath math="100" /></>,
+    after: <>selepas: <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>remaja</>,
+    adult: <>dewasa</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
+      { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
+      { id: "young-after", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 1 }, { x: 0, y: 1 }] },
+      { id: "adult-after", kind: "polygon", appearance: "answer", vertices: [{ x: 3, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 1 }, { x: 3, y: 1 }] },
+      { id: "tag-before", kind: "point", appearance: "reference", at: { x: 0, y: 4.6 } },
+      { id: "tag-after", kind: "point", appearance: "reference", at: { x: 0, y: 1.6 } },
+    ],
+    labels: [
+      { key: "before", objectId: "tag-before", at: { x: 0, y: 4.6 }, placement: "right" },
+      { key: "after", objectId: "tag-after", at: { x: 0, y: 1.6 }, placement: "right" },
+      { key: "y1", objectId: "young-before", at: { x: 1, y: 3.5 }, placement: "below" },
+      { key: "a1", objectId: "adult-before", at: { x: 6, y: 3.5 }, placement: "below" },
+      { key: "y2", objectId: "young-after", at: { x: 1.5, y: 0.5 }, placement: "below" },
+      { key: "a2", objectId: "adult-after", at: { x: 7.5, y: 0.5 }, placement: "below" },
+      { key: "young", objectId: "young-after", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Ukur perubahan berbanding nilai lama
+
+Bilangan orang dewasa naik daripada <InlineMath math="80" /> kepada <InlineMath math="90" />. Perubahan peratus sentiasa diukur **berbanding nilai asal**:
+
+<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0.125=12.5\,\%" />
+
+Walaupun bahagian orang dewasa turun daripada <InlineMath math="80\,\%" /> kepada <InlineMath math="75\,\%" />, bilangan mereka sebenarnya naik <InlineMath math="12.5\,\%" />.
+
+# Kenapa jawapan lain salah
+
+- "turun <InlineMath math="5\,\%" />" membaca perubahan bahagian daripada <InlineMath math="80\,\%" /> kepada <InlineMath math="75\,\%" /> sebagai perubahan bilangan. Itu **<InlineMath math="5" /> mata peratus daripada nilai asas yang lain**.
+- "turun <InlineMath math="6.25\,\%" />" membandingkan bahagian, <InlineMath math="\frac{75}{80}=0.9375" />, jadi sekali lagi bahagian, bukan bilangan.
+- "naik <InlineMath math="20\,\%" />" memakai pertumbuhan seluruh kelab untuk orang dewasa.
+- "turun <InlineMath math="12.5\,\%" />" nombornya betul, tetapi arahnya salah: <InlineMath math="90" /> lebih besar daripada <InlineMath math="80" />.
+- "naik <InlineMath math="50\,\%" />" ialah perubahan bilangan remaja, daripada <InlineMath math="20" /> kepada <InlineMath math="30" />.

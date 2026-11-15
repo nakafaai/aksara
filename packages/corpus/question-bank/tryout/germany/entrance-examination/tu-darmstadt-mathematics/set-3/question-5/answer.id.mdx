@@ -1,19 +1,74 @@
-Dua garis yang tidak sejajar sumbu saling tegak lurus tepat ketika **hasil kali gradiennya** sama dengan <InlineMath math="-1" />. Karena itu, tentukan dulu gradien <InlineMath math="k" /> garis yang melalui <InlineMath math="P" /> dan <InlineMath math="Q" />.
+# Tepat satu titik persekutuan berarti diskriminan nol
+
+Titik persekutuan <InlineMath math="g" /> dan <InlineMath math="p" /> memenuhi kedua persamaan. Samakan ruas kanannya, lalu pindahkan semua suku ke satu ruas:
+
+<BlockMath math="x^2+bx+7=2x+3\quad\Longleftrightarrow\quad x^2+(b-2)\,x+4=0" />
+
+Tepat satu titik persekutuan berarti persamaan kuadrat ini punya tepat satu penyelesaian, jadi **diskriminannya nol**:
 
 <BlockMath math="\begin{aligned}
-k&=\frac{5-1}{5-(-1)}=\frac{4}{6}=\frac{2}{3} \\
-m\cdot\frac{2}{3}&=-1 \\
-m&=-\frac{3}{2}
+(b-2)^2-4\cdot1\cdot4&=0 \\
+(b-2)^2&=16 \\
+b-2=4\quad&\text{atau}\quad b-2=-4 \\
+b=6\quad&\text{atau}\quad b=-2
 \end{aligned}" />
 
-Titik potong sumbu <InlineMath math="y" />, yaitu <InlineMath math="-4" />, hanya menggeser garis <InlineMath math="g" /> ke bawah dan tidak memengaruhi arahnya.
+# Tentukan titik singgung untuk kedua nilai
 
-Sebagai pemeriksaan, <InlineMath math="-\frac{3}{2}\cdot\frac{2}{3}=-1" />.
+Kalau diskriminannya nol, **penyelesaian tunggalnya** <InlineMath math="x=-\frac{b-2}{2}=\frac{2-b}{2}" />. Koordinat <InlineMath math="y" /> diambil dari persamaan garis:
 
-Jadi, gradiennya adalah <InlineMath math="m=-\frac{3}{2}" />.
+<BlockMath math="\begin{aligned}
+b=6:&\quad x=-2,\quad y=2\cdot(-2)+3=-1 \\
+b=-2:&\quad x=2,\quad y=2\cdot2+3=7
+\end{aligned}" />
 
-- <InlineMath math="m=-4" /> adalah titik potong <InlineMath math="g" /> dengan sumbu <InlineMath math="y" />, bukan gradiennya.
-- <InlineMath math="m=-\frac{2}{3}" /> hanya mengubah tanda gradien dan tidak mengambil kebalikannya.
-- <InlineMath math="m=\frac{2}{3}" /> adalah gradien garis yang melalui <InlineMath math="P" /> dan <InlineMath math="Q" />. Dengan gradien ini, <InlineMath math="g" /> akan sejajar dengan garis itu.
-- <InlineMath math="m=\frac{3}{2}" /> mengambil kebalikannya, tetapi melupakan tanda minus. Hasil kali kedua gradien menjadi <InlineMath math="1" />.
-- <InlineMath math="m=4" /> hanya mengambil selisih ketinggian <InlineMath math="5-1" /> dari <InlineMath math="P" /> ke <InlineMath math="Q" /> dan tidak membaginya dengan jarak mendatar.
+# Terapkan syarat kuadran
+
+Kedua nilai <InlineMath math="b" /> sama-sama memberi tepat satu titik persekutuan. Yang membedakannya hanya **letak titik itu**:
+
+<MathVisual
+  title={<>Dua parabola menyinggung garis</>}
+  description={<>Garis <InlineMath math="g: y=2x+3" /> dan dua parabola. Parabola <InlineMath math="y=x^2-2x+7" /> menyinggung <InlineMath math="g" /> di titik <InlineMath math="B(2\mid7)" /> di kuadran pertama. Parabola putus-putus <InlineMath math="y=x^2+6x+7" /> menyinggung <InlineMath math="g" /> di titik <InlineMath math="(-2\mid-1)" /> di kuadran ketiga.</>}
+  labels={{
+    b: <><InlineMath math="B(2\mid7)" /></>,
+    q: <><InlineMath math="(-2\mid-1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    ok: <><InlineMath math="b=-2" /></>,
+    bad: <><InlineMath math="b=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 6 },
+      y: { min: -6.5, max: 17.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x + 7", domain: { min: -1, max: 4.2 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6*x + 7", domain: { min: -5, max: -0.5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
+      { id: "wrong", kind: "point", appearance: "highlight", at: { x: -2, y: -1 } },
+    ],
+    labels: [
+      { key: "b", objectId: "touch", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "q", objectId: "wrong", at: { x: -2, y: -1 }, placement: "below-right" },
+      { key: "g", objectId: "line", at: { x: 4, y: 11 }, placement: "left" },
+      { key: "ok", objectId: "parabola", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "bad", objectId: "other", at: { x: -4.5, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+Untuk <InlineMath math="b=6" />, titik <InlineMath math="(-2\mid-1)" /> ada di kuadran ketiga. Untuk <InlineMath math="b=-2" />, titik <InlineMath math="B(2\mid7)" /> ada di kuadran pertama.
+
+Jadi <InlineMath math="b=-2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="b=6" /> menghasilkan titik singgung <InlineMath math="(-2\mid-1)" /> yang kedua koordinatnya negatif.
+- <InlineMath math="b=-2" /> atau <InlineMath math="b=6" /> hanya memakai syarat "tepat satu titik" dan **melewatkan syarat kuadran**.
+- <InlineMath math="b=-6" /> muncul dari kesalahan tanda saat memindahkan suku: <InlineMath math="x^2+(b+2)x+4=0" /> memberi <InlineMath math="b=2" /> atau <InlineMath math="b=-6" />, dan dengan <InlineMath math="x=-\frac{b+2}{2}" /> nilai <InlineMath math="b=-6" /> tampak mengarah ke kuadran pertama.
+- <InlineMath math="b=0" /> muncul kalau faktor <InlineMath math="4" /> di diskriminan hilang: <InlineMath math="(b-2)^2-4=0" /> memberi <InlineMath math="b=0" /> atau <InlineMath math="b=4" />. Padahal untuk <InlineMath math="b=0" />, persamaan <InlineMath math="x^2-2x+4=0" /> tidak punya penyelesaian sama sekali.
+- <InlineMath math="b=4" /> adalah nilai kedua dari diskriminan yang salah itu. Untuk <InlineMath math="b=4" />, persamaan <InlineMath math="x^2+2x+4=0" /> juga tidak punya penyelesaian.

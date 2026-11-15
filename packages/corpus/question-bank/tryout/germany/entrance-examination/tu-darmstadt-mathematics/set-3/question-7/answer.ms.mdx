@@ -1,0 +1,61 @@
+# Jus membentuk kon yang serupa
+
+Oleh sebab bucu gelas berada di bawah, jus itu sendiri membentuk kon kecil dengan bucu yang sama. Kon itu **serupa** dengan seluruh gelas: tingginya <InlineMath math="\frac34" /> tinggi gelas, dan mengikut teorem pintasan, jejarinya juga <InlineMath math="\frac34" /> jejari atas gelas.
+
+<MathVisual
+  title={<>Kon jus dan kon gelas dalam keratan rentas</>}
+  description={<>Keratan rentas gelas: segi tiga dengan bucu di bawah, tinggi <InlineMath math="h" /> dan jejari atas <InlineMath math="r" />. Jus memenuhi segi tiga yang lebih kecil dan serupa, dengan tinggi <InlineMath math="\tfrac34h" /> dan jejari <InlineMath math="\tfrac34r" />.</>}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac34h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac34r" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
+      { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "top-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 4, y: 8 } },
+      { id: "juice-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 3, y: 6 } },
+    ],
+    labels: [
+      { key: "full", objectId: "axis", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "part", objectId: "axis", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "r", objectId: "top-radius", at: { x: 2, y: 8 }, placement: "above" },
+      { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Isi padu bertambah mengikut kuasa tiga
+
+Isi padu kon <InlineMath math="V=\frac13\pi r^2h" /> mengandungi satu panjang yang dikuasaduakan dan satu panjang lagi. Kalau semua panjang didarab dengan <InlineMath math="\frac34" />, **isi padu didarab dengan <InlineMath math="\left(\frac34\right)^3" />**:
+
+<BlockMath math="\begin{aligned}
+V_{\text{jus}}&=\left(\tfrac34\right)^3V_{\text{gelas}}=\tfrac{27}{64}\,V_{\text{gelas}} \\
+V_{\text{gelas}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
+\end{aligned}" />
+
+# Yang masih kurang
+
+Soalan ini bukan bertanya isi seluruh gelas, tetapi **jumlah jus sehingga penuh**:
+
+<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+
+Gelas itu masih boleh diisi <InlineMath math="74\text{ ml}" /> jus lagi.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="18\text{ ml}" /> mengira secara linear: tiga suku berisi <InlineMath math="54\text{ ml}" />, jadi satu suku dianggap berisi <InlineMath math="18\text{ ml}" />. Sedangkan suku tinggi yang paling atas ialah **bahagian gelas yang paling lebar**.
+- <InlineMath math="42\text{ ml}" /> memakai faktor <InlineMath math="\left(\frac34\right)^2" /> seperti untuk luas, lalu isi gelas menjadi <InlineMath math="96\text{ ml}" />.
+- <InlineMath math="128\text{ ml}" /> ialah isi seluruh gelas, bukan baki yang kurang.
+- <InlineMath math="72\text{ ml}" /> ialah isi seluruh gelas mengikut kiraan linear, <InlineMath math="54\cdot\frac43" />.
+- <InlineMath math="24\text{ ml}" /> mendarab baki linear <InlineMath math="18\text{ ml}" /> sekali lagi dengan <InlineMath math="\frac43" />, jadi baki dan jumlah keseluruhan tercampur.

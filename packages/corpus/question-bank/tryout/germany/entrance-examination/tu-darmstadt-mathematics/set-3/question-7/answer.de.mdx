@@ -1,16 +1,61 @@
-Die Figur ist eine **Strahlensatzfigur in X-Form**: Die beiden Geraden kreuzen sich in <InlineMath math="S" />, und die parallelen Strecken liegen auf verschiedenen Seiten von <InlineMath math="S" />. Auch hier stehen die parallelen Strecken im Verhältnis ihrer Abstände von <InlineMath math="S" />, gemessen auf derselben Geraden.
+# Der Saft bildet einen ähnlichen Kegel
+
+Weil die Spitze unten ist, bildet der Saft selbst einen kleinen Kegel mit derselben Spitze. Er ist dem ganzen Glas **ähnlich**: Seine Höhe ist <InlineMath math="\frac34" /> der Glashöhe, und nach dem Strahlensatz ist auch sein Radius <InlineMath math="\frac34" /> des oberen Glasradius.
+
+<MathVisual
+  title={<>Saftkegel und Glaskegel im Längsschnitt</>}
+  description={<>Längsschnitt durch das Glas: ein Dreieck mit der Spitze unten, Höhe <InlineMath math="h" /> und oberem Radius <InlineMath math="r" />. Der Saft füllt ein kleineres, ähnliches Dreieck mit der Höhe <InlineMath math="\tfrac34h" /> und dem Radius <InlineMath math="\tfrac34r" />.</>}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac34h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac34r" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
+      { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "top-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 4, y: 8 } },
+      { id: "juice-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 3, y: 6 } },
+    ],
+    labels: [
+      { key: "full", objectId: "axis", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "part", objectId: "axis", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "r", objectId: "top-radius", at: { x: 2, y: 8 }, placement: "above" },
+      { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Volumen wachsen mit der dritten Potenz
+
+Das Kegelvolumen <InlineMath math="V=\frac13\pi r^2h" /> enthält eine Länge im Quadrat und eine weitere Länge einfach. Werden alle Längen mit <InlineMath math="\frac34" /> multipliziert, wird **das Volumen mit <InlineMath math="\left(\frac34\right)^3" /> multipliziert**:
 
 <BlockMath math="\begin{aligned}
-\frac{\overline{CD}}{\overline{AB}}&=\frac{\overline{SC}}{\overline{SA}} \\
-\overline{CD}&=4{,}2\cdot\frac{5}{3}=1{,}4\cdot5=7\text{ cm}
+V_{\text{Saft}}&=\left(\tfrac34\right)^3V_{\text{Glas}}=\tfrac{27}{64}\,V_{\text{Glas}} \\
+V_{\text{Glas}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
 \end{aligned}" />
 
-Das Ergebnis ist plausibel: <InlineMath math="C" /> liegt weiter von <InlineMath math="S" /> entfernt als <InlineMath math="A" />, also muss <InlineMath math="\overline{CD}" /> länger sein als <InlineMath math="\overline{AB}" />, und zwar um den Faktor <InlineMath math="\frac53" />.
+# Was noch fehlt
 
-Die Strecke <InlineMath math="\overline{CD}" /> ist also <InlineMath math="7\text{ cm}" /> lang.
+Gefragt ist nicht das ganze Glas, sondern **die Menge bis zum Rand**:
 
-- <InlineMath math="2{,}52\text{ cm}" /> entsteht mit dem umgedrehten Verhältnis, <InlineMath math="4{,}2\cdot\frac35" />. Die weiter entfernte Strecke wäre dann kürzer.
-- <InlineMath math="7{,}2\text{ cm}" /> addiert, statt zu vervielfachen: <InlineMath math="4{,}2+3" />.
-- <InlineMath math="8{,}4\text{ cm}" /> verdoppelt <InlineMath math="\overline{AB}" />, als wäre <InlineMath math="\overline{SC}" /> doppelt so lang wie <InlineMath math="\overline{SA}" />.
-- <InlineMath math="9{,}2\text{ cm}" /> addiert <InlineMath math="4{,}2+5" />.
-- <InlineMath math="12{,}6\text{ cm}" /> multipliziert mit <InlineMath math="3" /> statt mit dem Verhältnis <InlineMath math="\frac53" />.
+<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+
+Es passen noch <InlineMath math="74\text{ ml}" /> Saft in das Glas.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="18\text{ ml}" /> rechnet linear: Drei Viertel enthalten <InlineMath math="54\text{ ml}" />, also soll ein Viertel <InlineMath math="18\text{ ml}" /> enthalten. Das obere Viertel der Höhe ist aber **der breiteste Teil des Glases**.
+- <InlineMath math="42\text{ ml}" /> rechnet mit dem Faktor <InlineMath math="\left(\frac34\right)^2" /> wie bei einer Fläche: Dann wäre das Glas <InlineMath math="96\text{ ml}" /> groß.
+- <InlineMath math="128\text{ ml}" /> ist das ganze Glas, nicht der fehlende Rest.
+- <InlineMath math="72\text{ ml}" /> ist das ganze Glas bei linearer Rechnung, <InlineMath math="54\cdot\frac43" />.
+- <InlineMath math="24\text{ ml}" /> ist der fehlende Rest bei der linearen Rechnung <InlineMath math="72-54=18" />, noch einmal mit <InlineMath math="\frac43" /> multipliziert, also eine Vermischung von Rest und Gesamtmenge.

@@ -1,0 +1,72 @@
+# Letak segi tiga dalam satah koordinat
+
+Letakkan sudut tegak di asalan <InlineMath math="C(0\mid0)" /> dan kedua-dua sisi tegak di atas paksi: <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Dengan cara ini **kedua-dua pusat boleh ditulis sebagai titik berkoordinat**. Hipotenusnya <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+
+# Cari pusat bulatan dalam
+
+Bulatan dalam menyentuh kedua-dua sisi tegak, jadi **jarak <InlineMath math="I" /> ke kedua-dua paksi ialah <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Jejari diperoleh daripada luas. Bahagikan segi tiga pada <InlineMath math="I" /> kepada tiga segi tiga kecil yang tingginya semuanya <InlineMath math="r" />:
+
+<BlockMath math="\begin{aligned}
+\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
+24&=12r \\
+r&=2
+\end{aligned}" />
+
+Jadi <InlineMath math="I(2\mid2)" />.
+
+# Cari pusat bulatan luar
+
+Dalam segi tiga bersudut tegak, **pusat bulatan luar terletak di titik tengah hipotenus** (teorem Thales). Titik tengah <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" /> ialah <InlineMath math="U(4\mid3)" />, dengan jejari <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Bulatan dalam dan bulatan luar dalam koordinat</>}
+  description={<>Segi tiga bersudut tegak dengan <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Bulatan dalamnya berpusat di <InlineMath math="I(2\mid2)" /> dengan jejari <InlineMath math="2" />. Bulatan luarnya berpusat di <InlineMath math="U(4\mid3)" />, titik tengah hipotenus, dengan jejari <InlineMath math="5" />. Tembereng garis dari <InlineMath math="I" /> ke <InlineMath math="U" /> diserlahkan.</>}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2\mid2)" /></>,
+    u: <><InlineMath math="U(4\mid3)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 9.5 },
+      y: { min: -2.5, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "circumcircle", kind: "circle", appearance: "construction", center: { x: 4, y: 3 }, radius: 5 },
+      { id: "distance", kind: "segment", appearance: "answer", from: { x: 2, y: 2 }, to: { x: 4, y: 3 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "pi", kind: "point", appearance: "highlight", at: { x: 2, y: 2 } },
+      { id: "pu", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "c", objectId: "pc", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "a", objectId: "pa", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "i", objectId: "pi", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Kira jaraknya
+
+<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+
+**Jarak antara kedua-dua pusat ialah <InlineMath math="\sqrt5" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\sqrt{13}" /> datang daripada <InlineMath math="r=1" />: luas dibahagi dengan **perimeter penuh <InlineMath math="24" />, bukan separuh perimeter <InlineMath math="12" />**, lalu <InlineMath math="I(1\mid1)" /> berjarak <InlineMath math="\sqrt{9+4}" /> dari <InlineMath math="U" />.
+- <InlineMath math="3" /> ialah beza jejari <InlineMath math="5-2" />. Tetapi kedua-dua pusat tidak segaris dengan titik sentuhan dua bulatan.
+- <InlineMath math="7" /> ialah hasil tambah jejari <InlineMath math="5+2" />.
+- <InlineMath math="\frac23" /> terhasil kalau <InlineMath math="U" /> tertukar dengan sentroid <InlineMath math="\left(\frac83\mid2\right)" />. Sentroid bukan pusat bulatan luar.
+- <InlineMath math="2\sqrt2" /> ialah jarak <InlineMath math="I" /> ke bucu <InlineMath math="C" />, bukan ke <InlineMath math="U" />.

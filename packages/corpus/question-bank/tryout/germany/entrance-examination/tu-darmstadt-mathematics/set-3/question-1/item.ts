@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$-\\sqrt5-1$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac{5+\\sqrt5}{2}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\sqrt5-1$$",
+        },
+        {
           correct: true,
-          label: "$$1$$",
+          label: "$$\\sqrt5+1$$",
         },
         {
           correct: false,
-          label: "$$-1$$",
+          label: "$$\\frac{2\\sqrt5+2}{3}$$",
         },
         {
           correct: false,
-          label: "$$4x+1$$",
-        },
-        {
-          correct: false,
-          label: "$$4x-1$$",
-        },
-        {
-          correct: false,
-          label: "$$1-8x$$",
-        },
-        {
-          correct: false,
-          label: "$$8x^2-8x+1$$",
+          label: "$$-\\frac{5+\\sqrt5}{2}$$",
         },
       ],
     },

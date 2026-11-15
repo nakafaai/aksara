@@ -1,19 +1,74 @@
-Two lines that are not parallel to an axis are perpendicular exactly when the **product of their slopes** is <InlineMath math="-1" />. So first find the slope <InlineMath math="k" /> of the line through <InlineMath math="P" /> and <InlineMath math="Q" />.
+# Exactly one common point means discriminant zero
+
+Common points of <InlineMath math="g" /> and <InlineMath math="p" /> satisfy both equations. Set the right-hand sides equal and move everything to one side:
+
+<BlockMath math="x^2+bx+7=2x+3\quad\Longleftrightarrow\quad x^2+(b-2)\,x+4=0" />
+
+Exactly one common point means this quadratic equation has exactly one solution, so **its discriminant is zero**:
 
 <BlockMath math="\begin{aligned}
-k&=\frac{5-1}{5-(-1)}=\frac{4}{6}=\frac{2}{3} \\
-m\cdot\frac{2}{3}&=-1 \\
-m&=-\frac{3}{2}
+(b-2)^2-4\cdot1\cdot4&=0 \\
+(b-2)^2&=16 \\
+b-2=4\quad&\text{or}\quad b-2=-4 \\
+b=6\quad&\text{or}\quad b=-2
 \end{aligned}" />
 
-The intercept <InlineMath math="-4" /> only shifts the line <InlineMath math="g" /> downward and has no effect on its direction.
+# Find the point of contact for both values
 
-As a check, <InlineMath math="-\frac{3}{2}\cdot\frac{2}{3}=-1" />.
+With discriminant zero **the only solution** is <InlineMath math="x=-\frac{b-2}{2}=\frac{2-b}{2}" />. The line gives the <InlineMath math="y" />-coordinate:
 
-So the slope is <InlineMath math="m=-\frac{3}{2}" />.
+<BlockMath math="\begin{aligned}
+b=6:&\quad x=-2,\quad y=2\cdot(-2)+3=-1 \\
+b=-2:&\quad x=2,\quad y=2\cdot2+3=7
+\end{aligned}" />
 
-- <InlineMath math="m=-4" /> is the <InlineMath math="y" />-intercept of <InlineMath math="g" />, not its slope.
-- <InlineMath math="m=-\frac{2}{3}" /> changes only the sign of the slope and does not take the reciprocal.
-- <InlineMath math="m=\frac{2}{3}" /> is the slope of the line through <InlineMath math="P" /> and <InlineMath math="Q" />. With this slope, <InlineMath math="g" /> would be parallel to it.
-- <InlineMath math="m=\frac{3}{2}" /> takes the reciprocal but forgets the minus sign. The product of the slopes would then be <InlineMath math="1" />.
-- <InlineMath math="m=4" /> takes only the rise <InlineMath math="5-1" /> from <InlineMath math="P" /> to <InlineMath math="Q" /> and does not divide by the horizontal distance.
+# Apply the quadrant condition
+
+Both values of <InlineMath math="b" /> give exactly one common point. Only **the position of the point** tells them apart:
+
+<MathVisual
+  title={<>Two parabolas touch the line</>}
+  description={<>The line <InlineMath math="g: y=2x+3" /> and two parabolas. The parabola <InlineMath math="y=x^2-2x+7" /> touches <InlineMath math="g" /> at <InlineMath math="B(2\mid7)" /> in the first quadrant. The dashed parabola <InlineMath math="y=x^2+6x+7" /> touches <InlineMath math="g" /> at <InlineMath math="(-2\mid-1)" /> in the third quadrant.</>}
+  labels={{
+    b: <><InlineMath math="B(2\mid7)" /></>,
+    q: <><InlineMath math="(-2\mid-1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    ok: <><InlineMath math="b=-2" /></>,
+    bad: <><InlineMath math="b=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 6 },
+      y: { min: -6.5, max: 17.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x + 7", domain: { min: -1, max: 4.2 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6*x + 7", domain: { min: -5, max: -0.5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
+      { id: "wrong", kind: "point", appearance: "highlight", at: { x: -2, y: -1 } },
+    ],
+    labels: [
+      { key: "b", objectId: "touch", at: { x: 2, y: 7 }, placement: "right" },
+      { key: "q", objectId: "wrong", at: { x: -2, y: -1 }, placement: "below-right" },
+      { key: "g", objectId: "line", at: { x: 4, y: 11 }, placement: "left" },
+      { key: "ok", objectId: "parabola", at: { x: 3.5, y: 12.25 }, placement: "right" },
+      { key: "bad", objectId: "other", at: { x: -4.5, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+For <InlineMath math="b=6" /> the point <InlineMath math="(-2\mid-1)" /> lies in the third quadrant. For <InlineMath math="b=-2" /> the point <InlineMath math="B(2\mid7)" /> lies in the first quadrant.
+
+So <InlineMath math="b=-2" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="b=6" /> belongs to the point of contact <InlineMath math="(-2\mid-1)" />, with two negative coordinates.
+- <InlineMath math="b=-2" /> or <InlineMath math="b=6" /> uses only the condition "exactly one point" and **overlooks the quadrant condition**.
+- <InlineMath math="b=-6" /> comes from a sign slip when rearranging: <InlineMath math="x^2+(b+2)x+4=0" /> gives <InlineMath math="b=2" /> or <InlineMath math="b=-6" />, and with <InlineMath math="x=-\frac{b+2}{2}" /> the value <InlineMath math="b=-6" /> seems to lead into the first quadrant.
+- <InlineMath math="b=0" /> comes from dropping the factor <InlineMath math="4" /> in the discriminant: <InlineMath math="(b-2)^2-4=0" /> gives <InlineMath math="b=0" /> or <InlineMath math="b=4" />. For <InlineMath math="b=0" />, though, <InlineMath math="x^2-2x+4=0" /> has no solution at all.
+- <InlineMath math="b=4" /> is the second value from the same wrong discriminant. For <InlineMath math="b=4" />, <InlineMath math="x^2+2x+4=0" /> has no solution either.

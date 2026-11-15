@@ -1,16 +1,61 @@
-The figure is an **intercept theorem figure in X form**: the two lines cross at <InlineMath math="S" />, and the parallel segments lie on opposite sides of <InlineMath math="S" />. Here too, the parallel segments are in the ratio of their distances from <InlineMath math="S" />, measured on the same line.
+# The juice forms a similar cone
+
+Because the tip points down, the juice itself forms a small cone with the same tip. It is **similar** to the whole glass: its height is <InlineMath math="\frac34" /> of the glass height, and by the intercept theorem its radius is also <InlineMath math="\frac34" /> of the top radius.
+
+<MathVisual
+  title={<>Juice cone and glass cone in cross-section</>}
+  description={<>A cross-section through the glass: a triangle pointing down, with height <InlineMath math="h" /> and top radius <InlineMath math="r" />. The juice fills a smaller, similar triangle with height <InlineMath math="\tfrac34h" /> and radius <InlineMath math="\tfrac34r" />.</>}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac34h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac34r" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
+      { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "top-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 8 }, to: { x: 4, y: 8 } },
+      { id: "juice-radius", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 3, y: 6 } },
+    ],
+    labels: [
+      { key: "full", objectId: "axis", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "part", objectId: "axis", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "r", objectId: "top-radius", at: { x: 2, y: 8 }, placement: "above" },
+      { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Volumes grow with the third power
+
+The cone volume <InlineMath math="V=\frac13\pi r^2h" /> contains one length squared and another length once. If every length is multiplied by <InlineMath math="\frac34" />, **the volume is multiplied by <InlineMath math="\left(\frac34\right)^3" />**:
 
 <BlockMath math="\begin{aligned}
-\frac{\overline{CD}}{\overline{AB}}&=\frac{\overline{SC}}{\overline{SA}} \\
-\overline{CD}&=4.2\cdot\frac{5}{3}=1.4\cdot5=7\text{ cm}
+V_{\text{juice}}&=\left(\tfrac34\right)^3V_{\text{glass}}=\tfrac{27}{64}\,V_{\text{glass}} \\
+V_{\text{glass}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
 \end{aligned}" />
 
-The result is plausible: <InlineMath math="C" /> is farther from <InlineMath math="S" /> than <InlineMath math="A" />, so <InlineMath math="\overline{CD}" /> must be longer than <InlineMath math="\overline{AB}" />, by the factor <InlineMath math="\frac53" />.
+# What is still missing
 
-So the segment <InlineMath math="\overline{CD}" /> is <InlineMath math="7\text{ cm}" /> long.
+The question isn't the whole glass, but **the amount up to the rim**:
 
-- <InlineMath math="2.52\text{ cm}" /> uses the inverted ratio, <InlineMath math="4.2\cdot\frac35" />. The farther segment would then be shorter.
-- <InlineMath math="7.2\text{ cm}" /> adds instead of scaling: <InlineMath math="4.2+3" />.
-- <InlineMath math="8.4\text{ cm}" /> doubles <InlineMath math="\overline{AB}" />, as if <InlineMath math="\overline{SC}" /> were twice <InlineMath math="\overline{SA}" />.
-- <InlineMath math="9.2\text{ cm}" /> adds <InlineMath math="4.2+5" />.
-- <InlineMath math="12.6\text{ cm}" /> multiplies by <InlineMath math="3" /> instead of by the ratio <InlineMath math="\frac53" />.
+<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+
+Another <InlineMath math="74\text{ ml}" /> of juice fits into the glass.
+
+# Why the other answers are wrong
+
+- <InlineMath math="18\text{ ml}" /> works linearly: three quarters hold <InlineMath math="54\text{ ml}" />, so one quarter should hold <InlineMath math="18\text{ ml}" />. But the top quarter of the height is **the widest part of the glass**.
+- <InlineMath math="42\text{ ml}" /> uses the factor <InlineMath math="\left(\frac34\right)^2" /> as for an area. Then the glass would hold <InlineMath math="96\text{ ml}" />.
+- <InlineMath math="128\text{ ml}" /> is the whole glass, not the missing part.
+- <InlineMath math="72\text{ ml}" /> is the whole glass under the linear reasoning, <InlineMath math="54\cdot\frac43" />.
+- <InlineMath math="24\text{ ml}" /> multiplies the linear remainder <InlineMath math="18\text{ ml}" /> by <InlineMath math="\frac43" /> once more, mixing up the remainder and the total.
