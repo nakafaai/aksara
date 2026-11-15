@@ -1,0 +1,13 @@
+# Work back through the NAND gate
+
+A NAND gate gives <InlineMath math="0" /> only when both of its inputs are <InlineMath math="1" />. The last row has <InlineMath math="C=0" />, so <InlineMath math="Q=1" /> whatever <InlineMath math="X" /> is, and **that row tells you nothing about P**. Use the four rows with <InlineMath math="C=1" />: there <InlineMath math="Q=\overline{X}" />, so <InlineMath math="X" /> is the opposite of <InlineMath math="Q" />.
+
+<BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
+
+For <InlineMath math="AB=00,01,10,11" /> the values of <InlineMath math="Q" /> are <InlineMath math="1,0,0,0" />, so <InlineMath math="X" /> is <InlineMath math="0,1,1,1" />. An output of <InlineMath math="0" /> only when both inputs are <InlineMath math="0" /> is the mark of an OR gate. So gate P is an OR gate.
+
+# Why the other options are wrong
+
+- NOR comes from taking <InlineMath math="X" /> equal to <InlineMath math="Q" />, but **the NAND gate inverts** <InlineMath math="X" /> when <InlineMath math="C=1" />.
+- AND gives <InlineMath math="X=0,0,0,1" />, so <InlineMath math="Q=1,1,1,0" />, which does not match the table.
+- NAND gives <InlineMath math="X=1,1,1,0" />, so <InlineMath math="Q=0,0,0,1" />, which does not match either.

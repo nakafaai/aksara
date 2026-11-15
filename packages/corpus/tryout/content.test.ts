@@ -51,6 +51,7 @@ describe("loadTryoutContent", () => {
           "snbt",
           "tka",
           "entrance-examination",
+          "spm",
         ]);
         expect(sets).toHaveLength(bank.sets);
         expect(questions).toHaveLength(bank.questions);

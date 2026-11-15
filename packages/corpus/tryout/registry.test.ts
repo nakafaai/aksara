@@ -59,6 +59,7 @@ describe("tryout registry", () => {
         "snbt",
         "tka",
         "entrance-examination",
+        "spm",
       ]);
       expect(
         Arr.map(sources, ({ countryOrder, examOrder }) => [
@@ -69,11 +70,13 @@ describe("tryout registry", () => {
         [1, 1],
         [1, 2],
         [2, 1],
+        [3, 1],
       ]);
       expect(Arr.map(reversed, ({ examKey }) => examKey)).toEqual([
         "snbt",
         "tka",
         "entrance-examination",
+        "spm",
       ]);
       expect(Arr.map(orderedCountries, ({ countryKey }) => countryKey)).toEqual(
         ["indonesia", "germany"]
@@ -90,6 +93,7 @@ describe("tryout registry", () => {
         "2026-10-02",
         "2026-09-27",
         "2026-11-08",
+        "2026-11-15",
       ]);
     })
   );
