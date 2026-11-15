@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "paraphrase",
+    topic: "application",
   },
   stimulus: "nuclear-power",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "A series of four reactors would produce electricity cheaply enough to match new wind and solar when the two are compared plant by plant.",
+            "A city's first tram line runs late and over budget, and its planners argue that the city should stop after one line, since a second would cost just as much.",
         },
         {
           correct: false,
           label:
-            "Whether the country goes on to build a fourth reactor should depend on whether the first three are finished on time and on budget.",
+            "A city's first tram line runs late and over budget because no local firm has built one in decades, and its planners argue that the city should hire a foreign firm for every later line.",
         },
         {
           correct: true,
           label:
-            "A later reactor can avoid the delays and costs of the first only if the country keeps building, so that its crews gain the experience they lack.",
+            "A city's first tram line runs late and over budget because no local firm has built one in decades, and its planners argue that later lines will come cheaper only if the city keeps building them.",
         },
         {
           correct: false,
           label:
-            "Nobody can know what a fourth reactor would cost until the first one has been finished and the size of its overrun has been measured.",
+            "A city's first tram line runs late and over budget, and its planners argue that later lines will come cheaper because the price of tram cars is falling worldwide.",
         },
         {
           correct: false,
           label:
-            "Countries that stopped building reactors for a generation cannot win back the skills they lost, however many new reactors they decide to build and however long they keep the crews together.",
+            "A city's first three tram lines all opened on time, and its planners argue that a fourth will cost the same as each of the first three.",
         },
       ],
     },

@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Northgate had as many unvaccinated children as Riverside, although it had only a fifth as many children.",
+            "Northgate had as many children without both doses as Riverside, although it had only a fifth as many children.",
         },
         {
           column: 2,
