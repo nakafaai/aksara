@@ -2,26 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "synthesis",
   },
-  stimulus: "substitute-teacher",
+  stimulus: "music-box",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "He finds ways to get students involved." },
         {
-          correct: true,
-          label:
-            "He builds on what students already know from their own lives.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "He spends most of the lesson looking at his phone.",
+          label: "I, II, and III only",
         },
-        { correct: true, label: "He connects the activity to the textbook." },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
       ],
     },
   },

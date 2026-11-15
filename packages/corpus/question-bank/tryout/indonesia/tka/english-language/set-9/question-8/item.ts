@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "summary",
+    topic: "sequence",
   },
-  stimulus: "class-mural",
+  stimulus: "chili-harvest",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A teacher paints a mural behind the canteen while students watch.",
+          label: "Q, P, S, R, T",
+        },
+        {
+          correct: false,
+          label: "S, Q, P, R, T",
+        },
+        {
+          correct: false,
+          label: "Q, S, R, P, T",
+        },
+        {
+          correct: false,
+          label: "Q, S, P, T, R",
         },
         {
           correct: true,
-          label:
-            "A class plans, prepares, and paints a mural, and the finished wall changes how students use the area.",
-        },
-        {
-          correct: false,
-          label: "Students vote to paint a picture of a future city.",
-        },
-        {
-          correct: false,
-          label: "A class repairs cracks in a wall and paints it white.",
-        },
-        {
-          correct: false,
-          label:
-            "The canteen owner asks students to eat lunch in their classrooms.",
+          label: "Q, S, P, R, T",
         },
       ],
     },

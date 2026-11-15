@@ -4,30 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "prediction",
+    topic: "character",
   },
-  stimulus: "wrong-bus",
+  stimulus: "seed-jar",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "refuse ever to take a bus alone again" },
         {
           correct: false,
-          label: "read her book without looking up from the start of the trip",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "take the 7B on purpose to see the rice fields again",
+          label: "I, II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "III and V only",
         },
         {
           correct: true,
-          label:
-            "check the whole route sign, including any letter, before getting on",
+          label: "I, III, and V only",
         },
         {
           correct: false,
-          label: "ask her aunt to drive her instead of taking the bus",
+          label: "I, III, IV, and V only",
         },
       ],
     },

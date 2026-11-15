@@ -4,24 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "supporting-detail",
   },
-  stimulus: "book-cover",
+  stimulus: "chili-seedlings",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "so that the tape sticks more strongly" },
-        { correct: false, label: "so that the plastic becomes thicker" },
         {
           correct: false,
-          label: "so that the title can be read through the cover",
+          label: "II and III only",
         },
-        { correct: false, label: "so that the book closes more tightly" },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
+        },
         {
           correct: true,
-          label:
-            "so that the plastic can be removed at the end of the year without tearing any pages",
+          label: "I, II, and III only",
         },
       ],
     },

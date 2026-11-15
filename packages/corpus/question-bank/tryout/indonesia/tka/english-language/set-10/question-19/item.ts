@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "book-cover",
+  stimulus: "chili-seedlings",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "a story about a student who loses a textbook, then a lesson",
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
         },
         {
           correct: true,
-          label:
-            "the purpose, the materials, numbered steps, and a tip with the writer's opinion",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "the materials, a tip, the numbered steps, then the purpose",
-        },
-        {
-          correct: false,
-          label: "a description of different kinds of plastic covers",
-        },
-        {
-          correct: false,
-          label: "reasons for covering books, then a conclusion",
+          label: "I and IV only",
         },
       ],
     },

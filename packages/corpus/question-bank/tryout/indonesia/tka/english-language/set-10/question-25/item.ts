@@ -2,38 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "reader-response",
+    topic: "summary",
   },
-  stimulus: "coding-club",
+  stimulus: "bike-racks",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "“The club should not start, because attendance dropped by a few students.”",
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
         },
         {
           correct: true,
-          label:
-            "“A one-semester trial with feedback seems a sensible way to see whether a regular club works.”",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "“Every student should be made to join the coding club.”",
-        },
-        {
-          correct: false,
-          label:
-            "“The school should close the football club to make room for coding.”",
-        },
-        {
-          correct: false,
-          label:
-            "“Coding will definitely make every student better at mathematics.”",
+          label: "I, II, III, and IV only",
         },
       ],
     },

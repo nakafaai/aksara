@@ -2,37 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "first-aid",
+  stimulus: "sweet-drinks",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "to explain how the school's youth health club was started",
+          column: 2,
+          label: "Nothing changes habits like a price.",
         },
         {
-          correct: false,
+          column: 1,
+          label: "SMP Mutiara's trial ran through the rainy months.",
+        },
+        {
+          column: 3,
           label:
-            "to give step-by-step instructions for treating a burn at home",
+            "The rainy months caused the fall in drink sales at SMP Mutiara.",
         },
         {
-          correct: false,
-          label: "to report one class's quiz results to the parents",
+          column: 1,
+          label: "Nobody counted the nurse's headache visits the year before.",
         },
         {
-          correct: true,
-          label:
-            "to persuade the school to give every Grade 10 student a basic first-aid course",
+          column: 2,
+          label: "A small charge is a fair price for healthier students.",
         },
         {
-          correct: false,
-          label:
-            "to argue that students can take the place of teachers on school trips",
+          column: 3,
+          label: "The canteen's stallholders oppose the charge.",
         },
       ],
     },

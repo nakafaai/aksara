@@ -6,20 +6,31 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "explicit-information",
   },
-  stimulus: "stilt-house",
+  stimulus: "data-plan",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The roof is covered with palm fiber." },
         {
           correct: true,
-          label:
-            "The house stands on posts, so the water flows under the floor.",
+          label: "$$7$$ GB of daytime data and $$5$$ GB of night data",
         },
-        { correct: false, label: "The walls are made of woven bamboo panels." },
-        { correct: false, label: "The ladder to the veranda has seven steps." },
-        { correct: false, label: "The house is built from ironwood." },
+        {
+          correct: false,
+          label: "$$7$$ GB of daytime data and $$8$$ GB of night data",
+        },
+        {
+          correct: false,
+          label: "$$5$$ GB of daytime data and $$5$$ GB of night data",
+        },
+        {
+          correct: false,
+          label: "$$10$$ GB of daytime data and $$5$$ GB of night data",
+        },
+        {
+          correct: false,
+          label: "$$10$$ GB of daytime data and $$10$$ GB of night data",
+        },
       ],
     },
   },

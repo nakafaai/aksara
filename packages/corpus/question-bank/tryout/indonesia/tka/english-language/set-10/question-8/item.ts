@@ -4,33 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "sequence",
   },
-  stimulus: "flood-kitchen",
+  stimulus: "fun-run",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "because the volunteers were too tired to keep cooking",
+          label: "R, P, Q, S, T",
         },
         {
           correct: false,
-          label: "because Pak Yusuf closed the kitchen as a punishment",
+          label: "Q, R, P, S, T",
         },
         {
           correct: true,
-          label:
-            "because the water went down and left houses that needed to be cleared of mud",
+          label: "R, Q, P, S, T",
         },
         {
           correct: false,
-          label: "because the families no longer needed any help at all",
+          label: "R, Q, S, P, T",
         },
         {
           correct: false,
-          label: "because the motorbike team refused to keep working",
+          label: "R, Q, P, T, S",
         },
       ],
     },

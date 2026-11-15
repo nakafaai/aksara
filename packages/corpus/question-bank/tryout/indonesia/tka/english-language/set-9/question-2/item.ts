@@ -2,29 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "classification",
   },
-  stimulus: "stilt-house",
+  stimulus: "data-plan",
   versions: {
     en: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "how to build a house from ironwood" },
+      columns: ["Still valid", "Already ended"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "the history of the village of Lembah Tinggi",
-        },
-        { correct: false, label: "why termites damage most wooden houses" },
-        {
-          correct: true,
+          column: 2,
           label:
-            "the features of a traditional stilt house and how they suit local conditions",
+            "A Harian bought at 23:00 on a Monday, checked at 0:30 on Tuesday",
         },
         {
-          correct: false,
-          label: "how the writer's grandmother weaves cloth on her loom",
+          column: 1,
+          label:
+            "A Mingguan bought at 8:00 on a Wednesday, checked at 22:00 on the following Tuesday",
+        },
+        {
+          column: 2,
+          label:
+            "A Mingguan bought at 8:00 on a Wednesday, checked at 7:00 on the following Wednesday",
+        },
+        {
+          column: 1,
+          label:
+            "A Bulanan bought at 10:00 on 1 March, checked at 23:00 on 30 March",
+        },
+        {
+          column: 2,
+          label:
+            "A Bulanan bought at 10:00 on 1 March, checked at 0:10 on 31 March",
         },
       ],
     },

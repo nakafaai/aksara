@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "summary",
   },
-  stimulus: "flood-kitchen",
+  stimulus: "fun-run",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A coordinator explains to volunteers why floods happen in the village.",
-        },
-        {
-          correct: false,
-          label:
-            "Families refuse the food because the water is still knee-deep.",
-        },
-        {
-          correct: false,
-          label:
-            "The writer cooks rice in huge pots for four hundred families.",
+          label: "I and II only",
         },
         {
           correct: true,
-          label:
-            "Two siblings volunteer during a flood, first in an emergency kitchen and then cleaning houses, and the writer learns how much planning aid needs.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "A motorbike team rescues families who are trapped by the river.",
+          label: "I, II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "II and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

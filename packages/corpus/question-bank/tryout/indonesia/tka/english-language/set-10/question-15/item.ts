@@ -6,33 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "wrong-bus",
+  stimulus: "seed-jar",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "A realistic story, because getting on a bus with a similar number is an everyday mistake.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "A fantasy, because the bus drives into the rice fields by magic.",
+          label: "II, IV, and V only",
         },
         {
           correct: false,
-          label: "A legend, because it explains how Bus 7B got its name.",
+          label: "I, II, III, IV, and V",
         },
         {
           correct: false,
-          label:
-            "A fable, because the driver is an animal who teaches a lesson.",
+          label: "I, IV, and V only",
         },
         {
           correct: false,
-          label: "A fantasy, because a phone battery cannot run low.",
+          label: "II and V only",
         },
       ],
     },

@@ -2,26 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "information-validity",
+    topic: "summary",
   },
-  stimulus: "first-aid",
+  stimulus: "sweet-drinks",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "Thirty students took part in the trial course." },
-        { column: 2, label: "The trial course lasted a full week." },
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "The writer wants students to move anyone who has fallen to a safer place.",
+          correct: false,
+          label: "I and IV only",
         },
         {
-          column: 1,
-          label: "The second quiz was taken right after the course.",
+          correct: false,
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
         },
       ],
     },

@@ -2,31 +2,47 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "coding-club",
+  stimulus: "bike-racks",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "to persuade the school to start a weekly coding club",
+          column: 2,
+          label: "Cycling is simply the best start to a school day.",
         },
         {
-          correct: false,
-          label: "to describe the clubs that the school already offers",
+          column: 1,
+          label:
+            "Fuel prices rose in the same term as SMA Harapan built its racks.",
         },
         {
-          correct: false,
-          label: "to report how many students attended the trial each week",
+          column: 3,
+          label:
+            "The rise in fuel prices caused the rise in cycling at SMA Harapan.",
         },
-        { correct: false, label: "to explain how to write a computer program" },
         {
-          correct: false,
-          label: "to argue that students should spend more time on screens",
+          column: 1,
+          label:
+            "Nobody kept lateness figures at SMA Harapan for earlier years.",
+        },
+        {
+          column: 2,
+          label:
+            "SMA Pelita's students should not be riding motorbikes at all.",
+        },
+        {
+          column: 3,
+          label: "Late arrivals at SMA Pelita fell last year.",
         },
       ],
     },

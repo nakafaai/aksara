@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "summary",
+    topic: "main-idea-purpose",
   },
-  stimulus: "first-aid",
+  stimulus: "sweet-drinks",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "I and V only",
+        },
+        {
           correct: true,
-          label:
-            "Using a trial course and a story from a school trip, the writer argues for first-aid training for every Grade 10 student and answers parents' worries by keeping the steps simple and safe.",
-        },
-        {
-          correct: false,
-          label:
-            "A student cuts her hand at a waterfall, and her friends take her to hospital.",
-        },
-        {
-          correct: false,
-          label:
-            "The youth health club looks for new members by offering free quizzes.",
-        },
-        {
-          correct: false,
-          label:
-            "Parents ask the school to stop all trips until every teacher has learned first aid.",
-        },
-        {
-          correct: false,
-          label:
-            "A quiz proves that trained students will always act correctly in a real emergency.",
+          label: "I, II, IV, and V only",
         },
       ],
     },

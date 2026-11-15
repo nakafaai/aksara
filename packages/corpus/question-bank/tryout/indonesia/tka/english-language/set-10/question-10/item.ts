@@ -4,21 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "information-validity",
+    topic: "text-fit",
   },
-  stimulus: "flood-kitchen",
+  stimulus: "fun-run",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Volunteers had packed four hundred boxes by noon.",
+          correct: true,
+          label:
+            "It seemed a sensible way to see at a glance who was on the track.",
         },
-        { column: 2, label: "The writer cooked rice in huge pots." },
-        { column: 1, label: "The water went down on the third day." },
-        { column: 2, label: "Pak Yusuf said that masks were not necessary." },
+        {
+          correct: false,
+          label: "I made no mark until a runner had finished a full lap.",
+        },
+        {
+          correct: true,
+          label:
+            "It did not cross my mind that setting off is not the same as finishing a lap.",
+        },
+        {
+          correct: false,
+          label:
+            "Bu Sinta checked my sheet against her times that same afternoon.",
+        },
+        {
+          correct: false,
+          label: "All our runners ran the same number of laps.",
+        },
       ],
     },
   },

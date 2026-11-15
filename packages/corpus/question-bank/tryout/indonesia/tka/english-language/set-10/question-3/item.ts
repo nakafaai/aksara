@@ -2,20 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "comparison",
   },
-  stimulus: "hill-observatory",
+  stimulus: "library-loans",
   versions: {
     en: {
-      columns: ["Ground floor", "Lawn outside", "Upper floor"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "A screen for showing photographs" },
-        { column: 3, label: "The main telescope on a concrete pillar" },
-        { column: 2, label: "Smaller telescopes set up for visitors" },
-        { column: 1, label: "Twenty folding chairs" },
+      kind: "choice",
+      options: [
+        {
+          correct: true,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "I and V only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, and V only",
+        },
       ],
     },
   },

@@ -2,32 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "coding-club",
+  stimulus: "bike-racks",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "A regular club would certainly have more students than the trial did.",
-        },
-        {
           correct: true,
-          label: "Attendance fell by 5 students between week 1 and week 6.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label: "The trial was held during the rainy season.",
+          label: "I and II only",
         },
         {
-          correct: true,
-          label:
-            "Most of the students who signed up were still attending at the end.",
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
       ],
     },

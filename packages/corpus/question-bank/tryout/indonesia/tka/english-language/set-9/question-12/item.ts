@@ -6,26 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "outline",
   },
-  stimulus: "substitute-teacher",
+  stimulus: "music-box",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Pak Hendra walks into Class 9B instead of Bu Lina.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label:
-            "The class whispers about what substitute teachers usually do.",
+          label: "I, II, and IV only",
         },
-        { correct: false, label: "Pak Hendra asks who has ever been lost." },
-        { correct: false, label: "Fikri says he once took the wrong angkot." },
+        {
+          correct: false,
+          label: "IV and V only",
+        },
         {
           correct: true,
-          label:
-            "The class leaves Bu Lina a note asking to keep Pak Hendra's maps.",
+          label: "I, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

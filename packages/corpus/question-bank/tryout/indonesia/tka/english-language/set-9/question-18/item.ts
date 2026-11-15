@@ -4,24 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "supporting-detail",
   },
-  stimulus: "paper-lantern",
+  stimulus: "bread-rolls",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "because the glue makes the strips stiff" },
         {
           correct: false,
-          label: "because thicker paper is used for the lantern",
+          label: "I and II only",
         },
-        { correct: false, label: "because the cuts go past the line" },
-        { correct: false, label: "because the handle pulls the strips upward" },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and III only",
+        },
         {
           correct: true,
-          label:
-            "because each strip is still joined at both ends, so pushing the ends closer makes its middle bulge out",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and V only",
         },
       ],
     },

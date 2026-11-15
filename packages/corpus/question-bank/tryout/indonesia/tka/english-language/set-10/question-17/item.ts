@@ -2,30 +2,47 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "classification",
   },
-  stimulus: "book-cover",
+  stimulus: "chili-seedlings",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Follows the instructions",
+        "Breaks the instructions",
+        "Not covered",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "taping each corner of the flaps to the plastic",
-        },
-        {
-          correct: false,
-          label: "marking a line 5 centimeters outside the book",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "folding the plastic along the top and bottom edges over the inside of the covers",
+            "Putting the first row $$35$$ cm in from the long edge of the bed",
         },
-        { correct: false, label: "opening and closing the book a few times" },
-        { correct: false, label: "writing your name on a sticker" },
+        {
+          column: 1,
+          label:
+            "Giving a bed of $$36$$ seedlings $$18$$ litres in all each morning in the dry season",
+        },
+        {
+          column: 1,
+          label: "Putting $$9$$ seedlings along a row $$4$$ m long",
+        },
+        {
+          column: 3,
+          label: "Covering the soil between the plants with rice straw",
+        },
+        {
+          column: 2,
+          label:
+            "Giving a bed of $$36$$ seedlings $$18$$ litres in all each morning outside the dry season",
+        },
+        {
+          column: 1,
+          label: "Taking the palm-leaf shade off on the fourth morning",
+        },
       ],
     },
   },

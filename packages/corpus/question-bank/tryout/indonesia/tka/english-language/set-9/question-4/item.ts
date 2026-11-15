@@ -4,36 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "comparison",
+    topic: "cause-effect",
   },
-  stimulus: "stilt-house",
+  stimulus: "data-plan",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I and II only",
+        },
+        {
           correct: true,
-          label:
-            "The larger room is used for sitting, eating, and sleeping, while the smaller room is the kitchen.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The larger room is outside, while the smaller room is under the house.",
+          label: "I, III, and IV only",
         },
         {
           correct: false,
-          label: "The larger room has a fan, while the smaller room does not.",
+          label: "II and III only",
         },
         {
           correct: false,
-          label:
-            "The larger room is at the back, while the smaller room is at the front.",
-        },
-        {
-          correct: false,
-          label:
-            "The larger room is for guests only, while the smaller room holds the loom.",
+          label: "I, II, III, and V only",
         },
       ],
     },

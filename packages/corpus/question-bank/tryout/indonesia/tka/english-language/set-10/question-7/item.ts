@@ -2,28 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "sequence",
+    topic: "explicit-information",
   },
-  stimulus: "flood-kitchen",
+  stimulus: "fun-run",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Volunteers carried mud out of houses." },
-        { correct: false, label: "Pak Yusuf gave each volunteer a job." },
         {
           correct: false,
-          label: "The writer packed food into boxes for the first time.",
+          label:
+            "$$\\text{Rp}2{,}000$$ back, and $$\\text{Rp}64{,}000$$ paid in the end",
         },
         {
           correct: false,
-          label: "Everyone washed their hands with soap before starting.",
+          label:
+            "$$\\text{Rp}8{,}000$$ back, and $$\\text{Rp}66{,}000$$ paid in the end",
         },
         {
           correct: false,
-          label: "A motorbike team delivered boxes to families at home.",
+          label:
+            "$$\\text{Rp}16{,}000$$ back, and $$\\text{Rp}50{,}000$$ paid in the end",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Rp}8{,}000$$ back, and $$\\text{Rp}74{,}000$$ paid in the end",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{Rp}8{,}000$$ back, and $$\\text{Rp}58{,}000$$ paid in the end",
         },
       ],
     },
