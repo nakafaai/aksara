@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "fact-opinion",
+    topic: "text-fit",
   },
-  stimulus: "egret-hide",
+  stimulus: "bike-share",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The boardwalk is about two hundred meters long.",
-        },
-        {
-          correct: false,
-          label:
-            "Herons often hunt in the reeds directly in front of the slits, only a few meters from the bench.",
-        },
-        {
-          correct: false,
-          label:
-            "Every Monday, a ranger copies the new entries into the reserve's records.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "The ground floor is the most rewarding place for a first visit.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "The platform is closed whenever the wind is strong.",
+          label: "I, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
         },
       ],
     },

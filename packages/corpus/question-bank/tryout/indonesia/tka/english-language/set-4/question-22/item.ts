@@ -2,30 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "information-validity",
+    topic: "main-idea-purpose",
   },
-  stimulus: "shade-trees",
+  stimulus: "homework-cap",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "The trees lowered the air temperature across the town center.",
+          correct: true,
+          label: "I, II, and IV only",
         },
         {
-          column: 2,
-          label:
-            "Asphalt in the sun is hotter than grass in the sun at every hour of the day.",
+          correct: false,
+          label: "I, II, IV, and V only",
         },
         {
-          column: 1,
-          label:
-            "On the day of the test, concrete in full sun was hotter than grass in full sun.",
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

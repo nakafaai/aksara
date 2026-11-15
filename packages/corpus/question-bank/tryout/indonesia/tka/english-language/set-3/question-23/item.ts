@@ -2,28 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "explicit-information",
+    topic: "supporting-detail",
   },
-  stimulus: "repair-first",
+  stimulus: "dim-lights",
   versions: {
     en: {
-      columns: ["Repair benefit", "Replacement reason"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "A worn wheel can be changed without replacing the whole device.",
+          correct: false,
+          label: "I only",
         },
         {
-          column: 2,
-          label: "An unapproved battery would be required.",
+          correct: false,
+          label: "I, II, and III only",
         },
         {
-          column: 2,
-          label: "Old equipment no longer meets accessibility needs.",
+          correct: true,
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

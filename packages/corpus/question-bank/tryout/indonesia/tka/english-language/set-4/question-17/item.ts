@@ -2,35 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "classification",
   },
-  stimulus: "pinhole-projector",
+  stimulus: "fish-tank",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Ready for fish",
+        "Keep cycling",
+        "Change a quarter of the water first",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "It will be larger and fainter than at a greater distance.",
-        },
-        {
-          correct: true,
-          label: "It will be smaller and brighter than at a greater distance.",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "It will not appear until the screen is at least one meter away.",
+            "Tank P: ammonia $$0, 0, 0$$; nitrite $$0, 0, 0$$; nitrate $$20$$ on the last test.",
         },
         {
-          correct: false,
-          label: "It will show the edge of the Moon more clearly than before.",
+          column: 2,
+          label:
+            "Tank Q: ammonia $$0, 0, 0$$; nitrite $$0.5, 0, 0$$; nitrate $$15$$ on the last test.",
         },
         {
-          correct: false,
-          label: "It will turn into a dark curve instead of a bright circle.",
+          column: 3,
+          label:
+            "Tank R: ammonia $$0, 0, 0$$; nitrite $$0, 0, 0$$; nitrate $$60$$ on the last test.",
+        },
+        {
+          column: 2,
+          label:
+            "Tank S: ammonia $$0, 0, 0$$; nitrite $$0, 0, 0$$; nitrate $$0$$ on the last test.",
+        },
+        {
+          column: 1,
+          label:
+            "Tank T: ammonia $$0.25, 0, 0, 0$$; nitrite $$0, 0, 0, 0$$; nitrate $$35$$ on the last test.",
         },
       ],
     },

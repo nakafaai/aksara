@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "shade-trees",
+  stimulus: "homework-cap",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The hottest air in town is found near the bus terminal.",
-        },
-        {
-          correct: true,
-          label:
-            "Many people walk these routes at midday, mostly without shade.",
+          label: "I only",
         },
         {
           correct: false,
-          label: "Shop owners have offered to pay for watering the trees.",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and III only",
         },
         {
           correct: true,
-          label: "Shade made the biggest difference on paved surfaces.",
+          label: "I and II only",
         },
       ],
     },

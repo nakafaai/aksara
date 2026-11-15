@@ -6,26 +6,36 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "synthesis",
   },
-  stimulus: "repair-first",
+  stimulus: "dim-lights",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Assess safety.",
+          column: 1,
+          label:
+            "On the dimmed streets, complaints in 2025 were more than seven times those in 2024.",
         },
         {
-          correct: true,
-          label: "Estimate additional useful life.",
+          column: 2,
+          label:
+            "In 2025, night-time road crashes fell on both groups of streets.",
         },
         {
-          correct: false,
-          label: "Ignore the replacement option.",
+          column: 1,
+          label:
+            "Dimming would cut the city's yearly streetlight electricity bill by about a twelfth.",
         },
         {
-          correct: true,
-          label: "Record the reason for the final choice.",
+          column: 2,
+          label:
+            "The dimmed streets had fewer night-time burglaries than the bright streets in both years.",
+        },
+        {
+          column: 1,
+          label:
+            "Burglaries fell by more on the dimmed streets than on the bright streets.",
         },
       ],
     },

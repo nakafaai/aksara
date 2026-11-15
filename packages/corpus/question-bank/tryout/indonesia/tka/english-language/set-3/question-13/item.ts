@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "supporting-detail",
+    topic: "character",
   },
-  stimulus: "future-seeds",
+  stimulus: "radio-shop",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I and II only",
+        },
+        {
           correct: true,
-          label: "The project listed checkpoints from 2024 to 2040.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label: "The greenhouse had a loose board.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label: "The envelope looked faded.",
+          label: "II, III, and V only",
         },
         {
           correct: false,
-          label: "The exhibition concerned future food.",
-        },
-        {
-          correct: false,
-          label: "Twelve days passed before seedlings appeared.",
+          label: "I, II, III, and V only",
         },
       ],
     },

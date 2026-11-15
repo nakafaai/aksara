@@ -2,30 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "cause-effect",
   },
-  stimulus: "egret-hide",
+  stimulus: "bike-share",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The sign asking visitors to stop talking",
-        },
-        {
           correct: true,
-          label: "The reed screens along the end of the boardwalk",
-        },
-        {
-          correct: true,
-          label: "The wooden flaps over the viewing slits",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The waist-high rail on the upper platform",
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

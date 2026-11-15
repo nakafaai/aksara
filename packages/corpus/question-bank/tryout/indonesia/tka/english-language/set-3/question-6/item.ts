@@ -4,36 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "summary",
+    topic: "explicit-information",
   },
-  stimulus: "archive-week",
+  stimulus: "relay-ride",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "A volunteer completes the identifications before attaching source notes.",
+          label: "$$\\text{Rp}865{,}000$$",
         },
         {
           correct: false,
-          label:
-            "The archivist stores contributor notes separately to keep the main database consistent.",
+          label: "$$\\text{Rp}750{,}000$$",
         },
         {
           correct: false,
-          label:
-            "A box of photographs is discarded because most names are unknown.",
+          label: "$$\\text{Rp}1{,}025{,}000$$",
         },
         {
           correct: true,
-          label:
-            "A volunteer learns to separate observation, memory, and uncertainty in archive records.",
+          label: "$$\\text{Rp}875{,}000$$",
         },
         {
           correct: false,
-          label: "The writer spends the week repairing a railway station.",
+          label: "$$\\text{Rp}375{,}000$$",
         },
       ],
     },

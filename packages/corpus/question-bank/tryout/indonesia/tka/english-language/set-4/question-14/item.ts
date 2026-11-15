@@ -6,31 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "prediction",
   },
-  stimulus: "power-cut",
+  stimulus: "kite-cliff",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Stay where he is until the electricity comes back on",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "Wait in the kitchen for his grandmother to bring a candle",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "Search the dark house for the matches and the candles",
+          label: "I, II, III, and IV",
         },
         {
           correct: false,
-          label: "Call his parents to ask where the candles are kept",
+          label: "II and III only",
         },
         {
           correct: true,
-          label:
-            "Take the flashlight from the drawer and go to his grandmother",
+          label: "I, II, and III only",
         },
       ],
     },

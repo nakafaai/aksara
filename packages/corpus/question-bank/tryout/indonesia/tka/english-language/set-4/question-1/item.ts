@@ -2,38 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
-  stimulus: "egret-hide",
+  stimulus: "bike-share",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "To persuade readers to visit the reserve when large flocks arrive",
+          label: "$$\\text{Rp}5{,}000$$",
         },
         {
           correct: false,
-          label:
-            "To explain why herons prefer to hunt in the reeds near the hide",
+          label: "$$\\text{Rp}11{,}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}10{,}000$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}6{,}000$$",
         },
         {
           correct: true,
-          label:
-            "To describe how a bird hide lets visitors watch birds without disturbing them",
-        },
-        {
-          correct: false,
-          label:
-            "To report what a group of visitors saw during one morning at the hide",
-        },
-        {
-          correct: false,
-          label: "To teach readers how to build a hide beside a shallow lagoon",
+          label: "$$\\text{Rp}8{,}000$$",
         },
       ],
     },

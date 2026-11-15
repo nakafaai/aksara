@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "fact-opinion",
   },
-  stimulus: "repair-first",
+  stimulus: "dim-lights",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,24 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Keep equipment in service whenever any repair remains technically possible.",
-        },
-        {
-          correct: false,
-          label: "Safety guards may be removed to reduce cost.",
-        },
-        {
-          correct: false,
-          label:
-            "Assess repair cost without comparing the safety of available replacements.",
+            "The people the union speaks for walk mostly along those roads.",
         },
         {
           correct: true,
           label:
-            "Repeated failures across identical items provide evidence for choosing a better design.",
+            "The savings, about $$\\text{Rp}800$$ million a year, are too large to ignore.",
         },
         {
           correct: false,
-          label:
-            "Treat avoiding a new purchase as sufficient evidence of a lower environmental cost.",
+          label: "Residential streets carry $$40\\%$$ of the lights.",
+        },
+        {
+          correct: true,
+          label: "That feeling matters.",
+        },
+        {
+          correct: true,
+          label: "Dimming is not a gamble.",
         },
       ],
     },

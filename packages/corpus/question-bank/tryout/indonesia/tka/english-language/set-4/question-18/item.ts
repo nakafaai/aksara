@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "supporting-detail",
   },
-  stimulus: "pinhole-projector",
+  stimulus: "fish-tank",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Making the projector, the danger of looking at the Sun, adjusting the image, setting it up, a final warning",
-        },
-        {
-          correct: false,
-          label:
-            "The danger of looking at the Sun, setting it up, making the projector, adjusting the image, a final warning",
+          label: "I and II only",
         },
         {
           correct: true,
-          label:
-            "The danger of looking at the Sun, making the projector, setting it up, adjusting the image, a final warning",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "The danger of looking at the Sun, making the projector, testing sunglasses, setting it up, adjusting the image",
+          label: "I, II, III, and V only",
         },
         {
           correct: false,
-          label:
-            "The danger of looking at the Sun, making the projector, looking through the pinhole, adjusting the image, a final warning",
+          label: "II and V only",
+        },
+        {
+          correct: false,
+          label: "I, III, and V only",
         },
       ],
     },
