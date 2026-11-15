@@ -15,27 +15,27 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Warsito pernah menganggap nasihat sopir lama sebagai dalih orang yang sudah lamban.",
+            "Bu Tarmi menghapus sisa bon Warsito sebagai tanda perpisahan.",
         },
         {
           column: 2,
           label:
-            "Bus tiba di Pulogebang lebih awal dari biasanya karena tidak mampir di Pemalang.",
+            "Ardi meminta Warsito mampir di rumah makan Bu Tarmi agar penumpang dapat beristirahat.",
+        },
+        {
+          column: 2,
+          label:
+            "Bus tiba di Pulogebang tepat waktu karena Warsito tidak berhenti lama di Pemalang.",
         },
         {
           column: 1,
           label:
-            "Pada malam itu, Bu Tarmi tidak mau menerima uang Warsito untuk melunasi bonnya.",
+            "Warsito menyimpan papan nama trayek karena papan itu berarti baginya, bukan karena nilai besinya.",
         },
         {
           column: 2,
           label:
-            "Mulai Senin, Ardi akan bekerja sebagai kenek bus di perusahaan yang sama.",
-        },
-        {
-          column: 2,
-          label:
-            "Nenek berkerudung biru turun dari bus di rumah makan Bu Tarmi.",
+            "Kebiasaan Warsito memanaskan mesin jauh sebelum berangkat baru dimulai pada malam terakhir itu.",
         },
       ],
     },

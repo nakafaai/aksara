@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "figurative-language",
   },
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Warga tetap sepenuhnya bertanggung jawab, karena lubang yang tertutup daun masih dapat dilihat oleh orang yang berhati-hati.",
-        },
-        {
-          correct: false,
-          label:
-            "Biaya pinjaman sebenarnya kecil, tetapi warga salah menghitungnya karena tidak memahami bunga harian.",
-        },
-        {
-          correct: false,
-          label:
-            "Kesalahan terletak pada pemerintah, karena pemerintahlah yang seharusnya menutup lubang itu dengan aturan.",
+            "pejalan kaki adalah peminjam, lubang adalah biaya pinjaman yang besar, dan daun adalah rendahnya literasi keuangan warga",
         },
         {
           correct: true,
           label:
-            "Kesalahan tidak bisa ditimpakan seluruhnya pada warga, karena biaya pinjaman disajikan dengan cara yang membuatnya sulit terlihat.",
+            "pejalan kaki adalah peminjam, lubang adalah biaya pinjaman yang besar, dan daun adalah penyajian biaya yang tersebar dan baru lengkap setelah pinjaman disetujui",
         },
         {
           correct: false,
           label:
-            "Aplikasi menyembunyikan seluruh biaya, sehingga tidak ada angka biaya yang tercantum di aplikasi itu.",
+            "pejalan kaki adalah aplikasi pinjaman, lubang adalah biaya pinjaman yang besar, dan daun adalah penyajian biaya yang tersebar dan baru lengkap setelah pinjaman disetujui",
+        },
+        {
+          correct: false,
+          label:
+            "pejalan kaki adalah peminjam, lubang adalah aturan pemerintah yang longgar, dan daun adalah penyajian biaya yang tersebar dan baru lengkap setelah pinjaman disetujui",
+        },
+        {
+          correct: false,
+          label:
+            "pejalan kaki adalah peminjam, lubang adalah biaya pinjaman yang besar, dan daun adalah aturan yang mewajibkan total biaya tampil di satu halaman",
         },
       ],
     },

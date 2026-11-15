@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "surat rujukan baru berlaku setelah pihak rumah sakit di kota menyetujui dan membuka pintu bagi Sumi",
+            "Udin sudah menunggu dengan ambulans di seberang jembatan sejak magrib.",
         },
         {
           correct: false,
           label:
-            "Nia harus belajar membuka pintu poskesdes sendiri, karena Bu Warsih tidak akan selalu ada di sana",
-        },
-        {
-          correct: false,
-          label:
-            "surat itu disimpan di laci yang terkunci, sehingga hanya Bu Warsih yang dapat mengeluarkannya",
+            "Nia menemukan surat rujukan yang sudah ditandatangani Bu Warsih di dalam laci.",
         },
         {
           correct: true,
           label:
-            "surat rujukan hanya sarana, sedangkan keputusan untuk berangkat harus datang dari keluarga Sumi sendiri",
+            'Mak Rosnah berdiri sebelum Rahmat sempat bicara dan berkata, "Bawa istrimu. Aku ikut."',
         },
         {
           correct: false,
           label:
-            "Bu Warsih belum yakin bahwa Sumi perlu dirujuk, sehingga surat itu baru disiapkan untuk berjaga-jaga",
+            "Bu Warsih menyerahkan surat rujukan kepada Nia dan memintanya mengantar Sumi.",
+        },
+        {
+          correct: false,
+          label:
+            "Rahmat masuk ke poskesdes dengan basah kuyup dan napas terengah-engah.",
         },
       ],
     },

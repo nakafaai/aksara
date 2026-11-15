@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jalur pertama itu dibangun oleh perusahaan swasta, bukan oleh pemerintah kolonial.",
+            "Sebagian besar muatan jalur itu pada tahun-tahun pertama adalah penumpang biasa dan barang mereka, karena itu membuktikan bahwa jalur itu dibangun oleh pemerintah, bukan oleh perusahaan swasta.",
         },
         {
           correct: false,
           label:
-            "Gula, kopi, dan tembakau dari pedalaman Jawa Tengah dijual mahal di pasar Eropa.",
+            "Kota-kota di sepanjang rel tumbuh lebih cepat daripada kota lain, karena itu menunjukkan bahwa arah rel tidak mencerminkan siapa yang paling banyak memakainya.",
         },
         {
           correct: false,
           label:
-            "Pada tahun-tahun pertama, rel itu juga dipakai untuk mengangkut pegawai perusahaan perkebunan ke kantor mereka di Semarang.",
+            "Gula dan kopi dari pedalaman dijual mahal di pasar Eropa, karena itu menunjukkan bahwa pemilik perkebunan sebenarnya merugi.",
         },
         {
           correct: false,
           label:
-            "Kota-kota kecil di sepanjang rel tumbuh lebih cepat daripada kota-kota di Jawa Tengah yang tidak dilalui rel.",
+            "Jalur pertama dibangun oleh perusahaan swasta, karena itu menunjukkan bahwa pemerintah kolonial tidak ikut diuntungkan.",
         },
         {
           correct: true,
           label:
-            "Pada tahun-tahun pertama, sebagian besar muatan jalur itu adalah penumpang biasa dan barang mereka, bukan hasil perkebunan.",
+            "Sebagian besar muatan jalur itu pada tahun-tahun pertama adalah penumpang biasa dan barang mereka, karena itu menunjukkan bahwa arah rel tidak mencerminkan siapa yang paling banyak memakainya.",
         },
       ],
     },

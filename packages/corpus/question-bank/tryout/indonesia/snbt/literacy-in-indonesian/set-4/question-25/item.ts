@@ -14,17 +14,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Data penjualan yang menunjukkan bahwa novel Siti Nurbaya dicetak ulang berkali-kali pada masa kolonial.",
-        },
-        {
-          correct: false,
-          label:
             "Daftar naskah yang ditolak Balai Pustaka karena dinilai memuat kritik terhadap pemerintah kolonial.",
         },
         {
           correct: false,
           label:
-            "Catatan bahwa sebagian besar pegawai Balai Pustaka adalah penulis dan penerjemah pribumi.",
+            "Data bahwa buku Balai Pustaka dijual jauh lebih murah daripada novel-novel pergerakan pada masa yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Laporan bahwa Taman Pustaka paling banyak didirikan di kota kecil yang tidak punya toko buku.",
         },
         {
           correct: true,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Laporan bahwa bacaan liar tetap beredar luas walaupun buku Balai Pustaka dijual dengan harga murah.",
+            "Catatan bahwa Balai Pustaka juga menerbitkan buku pertanian dan kesehatan dalam berbagai bahasa daerah.",
         },
       ],
     },

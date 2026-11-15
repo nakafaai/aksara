@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa peserta menebak dengan asal karena mereka tidak tahu jumlah negara Afrika di Perserikatan Bangsa-Bangsa",
+            "Keterangan itu menunjukkan bahwa peserta menebak dengan asal, dan percobaan itu tetap tidak dapat membedakan kedua penjelasan efek jangkar.",
+        },
+        {
+          correct: false,
+          label:
+            "Keterangan itu menunjukkan bahwa angka jangkar tetap berpengaruh walaupun tidak dianggap sebagai petunjuk jawaban, dan percobaan itu membuktikan bahwa penjelasan pertama yang benar.",
+        },
+        {
+          correct: false,
+          label:
+            "Keterangan itu menunjukkan bahwa roda sengaja diatur oleh peneliti, dan percobaan itu tetap tidak dapat membedakan kedua penjelasan efek jangkar.",
         },
         {
           correct: true,
           label:
-            "menyingkirkan dugaan bahwa angka jangkar berpengaruh hanya karena orang menganggapnya sebagai petunjuk jawaban",
+            "Keterangan itu menunjukkan bahwa angka jangkar tetap berpengaruh walaupun tidak dianggap sebagai petunjuk jawaban, dan percobaan itu tetap tidak dapat membedakan kedua penjelasan efek jangkar.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa penjelasan pertama lebih tepat daripada penjelasan kedua tentang efek jangkar",
-        },
-        {
-          correct: false,
-          label:
-            "menegaskan bahwa roda angka dalam percobaan itu sengaja diatur oleh peneliti agar hasilnya sesuai harapan",
-        },
-        {
-          correct: false,
-          label:
-            "menjelaskan mengapa median tebakan kedua kelompok berbeda sekitar dua puluh poin persentase",
+            "Keterangan itu menunjukkan bahwa angka jangkar tetap berpengaruh walaupun tidak dianggap sebagai petunjuk jawaban, dan percobaan itu tidak dapat menunjukkan ke arah mana jangkar menarik tebakan.",
         },
       ],
     },
