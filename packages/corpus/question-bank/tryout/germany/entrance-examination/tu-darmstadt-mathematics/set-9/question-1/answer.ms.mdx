@@ -1,0 +1,57 @@
+# Baca nilai mutlak sebagai jarak
+
+<InlineMath math="|x-a|" /> ialah jarak <InlineMath math="x" /> ke nombor <InlineMath math="a" /> pada garis nombor. Jadi <InlineMath math="T(x)" /> ialah **hasil tambah jarak <InlineMath math="x" /> ke <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" />**. Yang dicari ialah tempat hasil tambah itu paling kecil.
+
+# Jarak ke dua titik luar
+
+Bagi setiap <InlineMath math="x" /> di antara <InlineMath math="1" /> dan <InlineMath math="6" />, <InlineMath math="|x-1|+|x-6|=6-1=5" />, kerana dua jarak itu bersama-sama sepanjang tembereng garis tersebut. Di luar tembereng itu hasil tambahnya lebih besar. Kemudian ditambah <InlineMath math="|x-4|" />, dan **bahagian ini sifar pada <InlineMath math="x=4" />**:
+
+<BlockMath math="T(4)=3+0+2=5" />
+
+# Pastikan tiada yang lebih kecil
+
+Bagi setiap <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> dan <InlineMath math="|x-4|\ge0" />. Jadi **<InlineMath math="T(x)\ge5" /> bagi semua <InlineMath math="x" />**, dan nilai <InlineMath math="5" /> dicapai pada <InlineMath math="x=4" />:
+
+<MathVisual
+  title={<>Hasil tambah tiga jarak</>}
+  description={<>Graf <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> terdiri daripada bahagian lurus dengan bucu pada <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" />. Di kiri <InlineMath math="4" /> graf itu menurun, di kanannya menaik. Titik terendahnya ialah <InlineMath math="(4\mid5)" />, tepat di atas titik tengah antara tiga titik itu.</>}
+  labels={{
+    m: <><InlineMath math="(4\mid5)" /></>,
+    t: <><InlineMath math="T(x)" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p6: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 8.5 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-1) + abs(x-4) + abs(x-6)", domain: { min: -1, max: 8 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+      { id: "k1", kind: "point", appearance: "construction", at: { x: 1, y: 0 } },
+      { id: "k4", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "k6", kind: "point", appearance: "construction", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "low", at: { x: 4, y: 5 }, placement: "below" },
+      { key: "t", objectId: "sum", at: { x: 7.5, y: 11.5 }, placement: "left" },
+      { key: "p1", objectId: "k1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "p6", objectId: "k6", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Nilai terkecil <InlineMath math="T" /> ialah <InlineMath math="5" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\frac{16}{3}" /> ialah nilai pada **min** <InlineMath math="x=\frac{11}{3}" /> bagi tiga nombor itu. Sedangkan hasil tambah jarak paling kecil pada nilai tengah, iaitu median.
+- <InlineMath math="7" /> ialah nilai pada <InlineMath math="x=6" />.
+- <InlineMath math="8" /> ialah nilai pada <InlineMath math="x=1" />.
+- <InlineMath math="0" /> memerlukan <InlineMath math="x" /> sama dengan <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" /> serentak.
+- <InlineMath math="3" /> hanyalah jarak <InlineMath math="4" /> ke <InlineMath math="1" />, satu sebutan sahaja.

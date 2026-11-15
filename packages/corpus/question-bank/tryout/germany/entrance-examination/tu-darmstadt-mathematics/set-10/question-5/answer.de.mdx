@@ -1,15 +1,68 @@
-Weil die Straße gleichmäßig steigt, sind alle Steigungsdreiecke ähnlich. Höhe und waagerechte Entfernung sind deshalb **proportional**, wie beim Strahlensatz.
+# Das schräge Dreieck ist gleichschenklig
 
-Rechne die Entfernung zuerst in Meter um, <InlineMath math="2{,}5\text{ km}=2500\text{ m}" />. Das sind <InlineMath math="2500:100=25" /> Abschnitte von je <InlineMath math="100\text{ m}" />.
+Nenne den Fuß des Turms <InlineMath math="F" /> und die Spitze <InlineMath math="T" />. Im Dreieck <InlineMath math="PQT" /> ist der Winkel bei <InlineMath math="P" /> gleich <InlineMath math="30^\circ" />. Der Winkel bei <InlineMath math="Q" /> ist der Nebenwinkel von <InlineMath math="60^\circ" />, also <InlineMath math="120^\circ" />. Damit bleibt bei <InlineMath math="T" /> genau <InlineMath math="180^\circ-30^\circ-120^\circ=30^\circ" />. **Zwei gleiche Winkel heißen zwei gleiche Seiten**:
 
-<BlockMath math="h=25\cdot8\text{ m}=200\text{ m}\qquad\text{oder}\qquad h=0{,}08\cdot2500\text{ m}=200\text{ m}" />
+<BlockMath math="\overline{QT}=\overline{PQ}=40\text{ m}" />
 
-Zur Kontrolle prüfst du das Verhältnis: <InlineMath math="\frac{200}{2500}=\frac{8}{100}=8\,\%" />, genau die Steigung auf dem Schild.
+<MathVisual
+  title={<>Turm und zwei Blickpunkte</>}
+  description={<>Der Turm <InlineMath math="\overline{FT}" /> steht links. Von <InlineMath math="P" /> aus sieht man die Spitze <InlineMath math="T" /> unter <InlineMath math="30^\circ" />, von dem <InlineMath math="40" /> näher gelegenen Punkt <InlineMath math="Q" /> unter <InlineMath math="60^\circ" />. Das Dreieck <InlineMath math="PQT" /> hat bei <InlineMath math="P" /> und bei <InlineMath math="T" /> je <InlineMath math="30^\circ" />, ist also gleichschenklig mit <InlineMath math="\overline{QT}=40" />.</>}
+  labels={{
+    t: <><InlineMath math="T" /></>,
+    f: <><InlineMath math="F" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    h: <><InlineMath math="h" /></>,
+    d: <><InlineMath math="40" /></>,
+    a: <><InlineMath math="30^\circ" /></>,
+    b: <><InlineMath math="60^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 66 },
+      y: { min: -6, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tower", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "sight-p", kind: "segment", appearance: "secondary", from: { x: 60, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "sight-q", kind: "segment", appearance: "secondary", from: { x: 20, y: 0 }, to: { x: 0, y: 34.641 } },
+      { id: "walk", kind: "segment", appearance: "highlight", from: { x: 20, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 34.641 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 60, y: 0 } },
+      { id: "pq", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "top", at: { x: 0, y: 34.641 }, placement: "above-right" },
+      { key: "f", objectId: "foot", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "pp", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: 20, y: 0 }, placement: "below" },
+      { key: "h", objectId: "tower", at: { x: 0, y: 17.3205 }, placement: "left" },
+      { key: "d", objectId: "walk", at: { x: 40, y: 0 }, placement: "below" },
+      { key: "a", objectId: "sight-p", at: { x: 54, y: 3.5 }, placement: "above" },
+      { key: "b", objectId: "sight-q", at: { x: 17, y: 5 }, placement: "above" },
+    ],
+  }}
+/>
 
-Die Straße steigt also um <InlineMath math="200\text{ m}" />.
+# Die Höhe im rechtwinkligen Dreieck <InlineMath math="QFT" />
 
-- <InlineMath math="20\text{ m}" /> rechnet <InlineMath math="2{,}5\text{ km}" /> als <InlineMath math="250\text{ m}" /> und verschiebt das Komma beim Umrechnen um eine Stelle zu wenig.
-- <InlineMath math="2{.}000\text{ m}" /> rechnet mit <InlineMath math="25\,000\text{ m}" /> statt <InlineMath math="2500\text{ m}" />.
-- <InlineMath math="312{,}5\text{ m}" /> teilt <InlineMath math="2500" /> durch <InlineMath math="8" />, statt mit <InlineMath math="0{,}08" /> zu multiplizieren.
-- <InlineMath math="8\text{ m}" /> übernimmt die Höhe für <InlineMath math="100\text{ m}" /> und passt sie nicht an die längere Strecke an.
-- <InlineMath math="31{,}25\text{ m}" /> verbindet beide Fehler: <InlineMath math="250\text{ m}" /> geteilt durch <InlineMath math="8" />.
+Im Dreieck <InlineMath math="QFT" /> ist der Winkel bei <InlineMath math="F" /> ein rechter und der bei <InlineMath math="Q" /> gleich <InlineMath math="60^\circ" />. Die Höhe ist **die Gegenkathete zum Winkel <InlineMath math="60^\circ" />**:
+
+<BlockMath math="h=\overline{QT}\cdot\sin60^\circ=40\cdot\frac{\sqrt3}{2}=20\sqrt3" />
+
+# Probe mit beiden Winkeln
+
+Dann ist <InlineMath math="\overline{QF}=40\cdot\cos60^\circ=20" /> und <InlineMath math="\overline{PF}=60" />. Tatsächlich gilt <InlineMath math="\tan30^\circ=\frac{20\sqrt3}{60}=\frac{\sqrt3}{3}" />. Der Turm ist **<InlineMath math="20\sqrt3\text{ m}" /> hoch**, etwa <InlineMath math="34{,}6\text{ m}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40\sqrt3\text{ m}" /> verwendet <InlineMath math="\tan60^\circ" /> mit der ganzen Strecke <InlineMath math="40" />: <InlineMath math="40\cdot\sqrt3" />. Die <InlineMath math="40" /> sind aber **nicht der Abstand von <InlineMath math="Q" /> zum Turm**.
+- <InlineMath math="20\text{ m}" /> ist der Abstand <InlineMath math="\overline{QF}" />, nicht die Höhe.
+- <InlineMath math="40\text{ m}" /> ist die schräge Strecke <InlineMath math="\overline{QT}" />.
+- <InlineMath math="10\sqrt3\text{ m}" /> halbiert die Höhe ein zweites Mal.
+- <InlineMath math="\frac{40\sqrt3}{3}\text{ m}" /> rechnet <InlineMath math="40\cdot\tan30^\circ" />, als stünde <InlineMath math="P" /> <InlineMath math="40" /> vom Turm entfernt.

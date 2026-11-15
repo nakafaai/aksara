@@ -1,0 +1,59 @@
+# Nilai mutlak terpecah kepada dua kes
+
+Ungkapan <InlineMath math="2x-3" /> bertukar tanda pada <InlineMath math="x=\frac32" />. Oleh itu setiap kawasan mempunyai **ketaksamaan lain tanpa nilai mutlak**.
+
+# Dua kes itu
+
+<BlockMath math="\begin{aligned}
+x\ge\tfrac32:&\quad 2x-3\le x+1\quad\Longrightarrow\quad x\le4,\quad\text{jadi}\ \tfrac32\le x\le4 \\
+x<\tfrac32:&\quad 3-2x\le x+1\quad\Longrightarrow\quad x\ge\tfrac23,\quad\text{jadi}\ \tfrac23\le x<\tfrac32
+\end{aligned}" />
+
+Dalam kes kedua kamu membahagi dengan <InlineMath math="-3" />, dan **tanda ketaksamaan terbalik**: <InlineMath math="-3x\le-2" /> menjadi <InlineMath math="x\ge\frac23" />.
+
+# Cantumkan kedua-dua kes
+
+Kedua-dua bahagian **bersambung tanpa celah** pada <InlineMath math="\frac32" />:
+
+<MathVisual
+  title={<>Di mana nilai mutlak berada di bawah garis</>}
+  description={<>Graf berbentuk V bagi <InlineMath math="y=|2x-3|" /> dengan hujung pada <InlineMath math="x=\tfrac32" /> dan garis <InlineMath math="y=x+1" />. Di antara titik persilangan <InlineMath math="x=\tfrac23" /> dan <InlineMath math="x=4" />, garis berada di atas nilai mutlak. Selang itu ditanda di bawah paksi.</>}
+  labels={{
+    a: <><InlineMath math="x=\tfrac23" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    f: <><InlineMath math="|2x-3|" /></>,
+    g: <><InlineMath math="x+1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 7 },
+      y: { min: -1.6, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "abs", kind: "function", appearance: "primary", formula: "abs(2*x - 3)", domain: { min: -1.5, max: 6 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -1.5, max: 6 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: 0.6667, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 0.6667, y: 1.6667 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: 0.6667, y: 1.6667 }, placement: "left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: 5 }, placement: "above-left" },
+      { key: "f", objectId: "abs", at: { x: 5.5, y: 8 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 6, y: 7 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Semak <InlineMath math="x=0" />: <InlineMath math="|{-3}|=3>1" />, jadi ketaksamaan itu tidak benar. Dengan <InlineMath math="x=2" />: <InlineMath math="1\le3" />, ia benar. Penyelesaiannya ialah <InlineMath math="\frac23\le x\le4" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\frac32\le x\le4" /> **hanya mengira kes pertama**.
+- <InlineMath math="x\le4" /> menyimpan batas atas dan terlupa batas bawah daripada kes kedua.
+- <InlineMath math="\frac23\le x<\frac32" /> hanya mengira kes kedua.
+- <InlineMath math="-4\le x\le-\frac23" /> menterbalikkan semua tanda.
+- <InlineMath math="\frac23<x<4" /> mengecualikan hujung-hujungnya. Di situ kedua-dua belah sama, dan <InlineMath math="\le" /> membenarkannya.

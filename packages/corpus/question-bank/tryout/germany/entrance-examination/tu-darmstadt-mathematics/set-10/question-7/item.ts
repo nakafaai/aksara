@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10{.}000\\text{ €}$$",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label: "$$100\\text{ €}$$",
+          label: "$$2$$",
         },
         {
           correct: false,
-          label: "$$100{.}000\\text{ €}$$",
+          label: "$$1$$",
+        },
+        {
+          correct: false,
+          label: "$$5$$",
         },
         {
           correct: true,
-          label: "$$1{.}000\\text{ €}$$",
+          label: "$$3$$",
         },
         {
           correct: false,
-          label: "$$1{.}000{.}000\\text{ €}$$",
-        },
-        {
-          correct: false,
-          label: "$$10\\text{ €}$$",
+          label: "$$6$$",
         },
       ],
     },

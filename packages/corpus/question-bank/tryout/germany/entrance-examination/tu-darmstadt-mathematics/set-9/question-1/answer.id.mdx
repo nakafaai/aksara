@@ -1,17 +1,57 @@
-Soal meminta hasil kali itu dijabarkan dan disederhanakan. Tiga faktor paling mudah dikalikan **bertahap dengan rumus selisih dua kuadrat**. Dua faktor pertama tepat cocok dengan <InlineMath math="(a-b)(a+b)=a^2-b^2" />.
+# Baca nilai mutlak sebagai jarak
 
-<BlockMath math="(x-1)(x+1)=x^2-1" />
+<InlineMath math="|x-a|" /> adalah jarak <InlineMath math="x" /> ke bilangan <InlineMath math="a" /> pada garis bilangan. Jadi <InlineMath math="T(x)" /> adalah **jumlah jarak <InlineMath math="x" /> ke <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />**. Yang dicari adalah tempat jumlah itu paling kecil.
 
-Sekarang tersisa <InlineMath math="\left(x^2-1\right)\left(x^2+1\right)" />. Itu rumus yang sama sekali lagi, kali ini dengan <InlineMath math="a=x^2" /> dan <InlineMath math="b=1" />.
+# Jarak ke kedua titik luar
 
-<BlockMath math="\left(x^2-1\right)\left(x^2+1\right)=\left(x^2\right)^2-1^2=x^4-1" />
+Untuk setiap <InlineMath math="x" /> di antara <InlineMath math="1" /> dan <InlineMath math="6" /> berlaku <InlineMath math="|x-1|+|x-6|=6-1=5" />, karena kedua jarak itu bersama-sama sepanjang ruas tersebut. Di luar ruas itu jumlahnya lebih besar. Lalu ditambah <InlineMath math="|x-4|" />, dan **bagian ini nol di <InlineMath math="x=4" />**:
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="x=2" />. Bentuk awal menghasilkan <InlineMath math="1\cdot3\cdot5=15" />, dan <InlineMath math="2^4-1=16-1=15" /> sesuai.
+<BlockMath math="T(4)=3+0+2=5" />
 
-Jadi, bentuk itu sama dengan <InlineMath math="x^4-1" />.
+# Pastikan tidak ada yang lebih kecil
 
-- <InlineMath math="x^4+1" /> salah tanda pada suku terakhir. Pada selisih dua kuadrat, <InlineMath math="b^2" /> dikurangkan.
-- <InlineMath math="x^4-2x^2+1" /> adalah <InlineMath math="\left(x^2-1\right)^2" />. Hasil itu muncul jika faktor terakhir diperlakukan seperti <InlineMath math="x^2-1" />.
-- <InlineMath math="x^3-1" /> salah menjumlahkan pangkat <InlineMath math="1+2" />. Padahal <InlineMath math="\left(x^2\right)^2=x^4" />.
-- <InlineMath math="x^4-x^2-1" /> menyisakan satu suku saat menjabarkan. Suku <InlineMath math="+x^2" /> dan <InlineMath math="-x^2" /> saling menghilangkan sepenuhnya.
-- <InlineMath math="x^4+2x^2+1" /> adalah <InlineMath math="\left(x^2+1\right)^2" />. Untuk itu faktor <InlineMath math="x^2+1" /> harus muncul dua kali.
+Untuk setiap <InlineMath math="x" /> berlaku <InlineMath math="|x-1|+|x-6|\ge5" /> dan <InlineMath math="|x-4|\ge0" />. Jadi **<InlineMath math="T(x)\ge5" /> untuk semua <InlineMath math="x" />**, dan nilai <InlineMath math="5" /> tercapai di <InlineMath math="x=4" />:
+
+<MathVisual
+  title={<>Jumlah ketiga jarak</>}
+  description={<>Grafik <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> terdiri dari potongan lurus dengan tekukan di <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Di kiri <InlineMath math="4" /> grafiknya turun, di kanannya naik. Titik terendahnya <InlineMath math="(4\mid5)" />, tepat di atas titik tengah dari ketiga titik itu.</>}
+  labels={{
+    m: <><InlineMath math="(4\mid5)" /></>,
+    t: <><InlineMath math="T(x)" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p6: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 8.5 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-1) + abs(x-4) + abs(x-6)", domain: { min: -1, max: 8 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "low", kind: "point", appearance: "answer", at: { x: 4, y: 5 } },
+      { id: "k1", kind: "point", appearance: "construction", at: { x: 1, y: 0 } },
+      { id: "k4", kind: "point", appearance: "highlight", at: { x: 4, y: 0 } },
+      { id: "k6", kind: "point", appearance: "construction", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "low", at: { x: 4, y: 5 }, placement: "below" },
+      { key: "t", objectId: "sum", at: { x: 7.5, y: 11.5 }, placement: "left" },
+      { key: "p1", objectId: "k1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "p6", objectId: "k6", at: { x: 6, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Nilai terkecil <InlineMath math="T" /> adalah <InlineMath math="5" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{16}{3}" /> adalah nilai di **rata-rata** <InlineMath math="x=\frac{11}{3}" /> ketiga bilangan. Padahal jumlah jarak paling kecil di nilai tengah, yaitu median.
+- <InlineMath math="7" /> adalah nilai di <InlineMath math="x=6" />.
+- <InlineMath math="8" /> adalah nilai di <InlineMath math="x=1" />.
+- <InlineMath math="0" /> menuntut <InlineMath math="x" /> sekaligus sama dengan <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />.
+- <InlineMath math="3" /> hanya jarak <InlineMath math="4" /> ke <InlineMath math="1" />, satu suku saja.

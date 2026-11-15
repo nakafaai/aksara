@@ -1,15 +1,55 @@
-Soal menanyakan persamaan fungsi yang cocok dengan semua nilai pada tabel (*Wertetabelle*). Suatu persamaan hanya cocok jika memenuhi **setiap pasangan nilai pada tabel**. Kenaikannya menunjukkan jenis fungsi yang mungkin: nilainya naik <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Kenaikannya tidak sama, jadi <InlineMath math="f" /> bukan fungsi linear. Namun, kenaikannya bertambah secara teratur sebesar <InlineMath math="2" />, dan itu mengarah ke fungsi kuadrat.
+# Tentukan basis dan nilai awalnya
 
-Uji <InlineMath math="f(x)=x^2+x+1" /> di keempat titik.
+Bagi kedua nilai fungsi itu. Faktor <InlineMath math="a" /> saling menghapus dan **tersisa <InlineMath math="b^2" />**:
 
-<BlockMath math="f(0)=1\qquad f(1)=1+1+1=3\qquad f(2)=4+2+1=7\qquad f(3)=9+3+1=13" />
+<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
 
-Keempat nilai sama dengan tabel. Sebagai pemeriksaan, kenaikan yang teratur itu juga cocok: pada <InlineMath math="x^2" />, kenaikannya selalu bertambah <InlineMath math="2" />.
+Karena <InlineMath math="b>0" />, <InlineMath math="b=3" />, dan dari <InlineMath math="f(1)=3a=6" /> diperoleh <InlineMath math="a=2" />. Jadi <InlineMath math="f(x)=2\cdot3^x" />.
 
-Jadi, persamaan yang cocok dengan semua nilai adalah <InlineMath math="f(x)=x^2+x+1" />.
+# Periksa pertidaksamaan dengan bilangan bulat
 
-- <InlineMath math="f(x)=2x+1" /> hanya cocok di <InlineMath math="x=0" /> dan <InlineMath math="x=1" />. Di <InlineMath math="x=2" /> hasilnya <InlineMath math="5" />, bukan <InlineMath math="7" />.
-- <InlineMath math="f(x)=x^2+1" /> hanya cocok di <InlineMath math="x=0" />. Di <InlineMath math="x=1" /> hasilnya <InlineMath math="2" />, bukan <InlineMath math="3" />.
-- <InlineMath math="f(x)=4x+1" /> cocok di <InlineMath math="x=0" /> dan <InlineMath math="x=3" />, tetapi di <InlineMath math="x=1" /> hasilnya <InlineMath math="5" />, bukan <InlineMath math="3" />.
-- <InlineMath math="f(x)=x^2+2x+1" /> hanya cocok di <InlineMath math="x=0" />. Di <InlineMath math="x=1" /> hasilnya <InlineMath math="4" />.
-- <InlineMath math="f(x)=3x^2-x+1" /> cocok di <InlineMath math="x=0" /> dan <InlineMath math="x=1" />, tetapi di <InlineMath math="x=2" /> hasilnya <InlineMath math="11" />, bukan <InlineMath math="7" />.
+Yang dicari adalah bilangan bulat terkecil <InlineMath math="x" /> dengan <InlineMath math="2\cdot3^x>1000" />, yaitu <InlineMath math="3^x>500" />. Pangkat dari <InlineMath math="3" /> tumbuh cepat, jadi **cukup dihitung satu per satu**:
+
+<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+
+<MathVisual
+  title={<>Kapan <InlineMath math="f" /> melewati <InlineMath math="1000" /></>}
+  description={<>Grafik <InlineMath math="f(x)=2\cdot3^x" /> naik makin curam. Di <InlineMath math="x=5" /> nilainya <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, dan di <InlineMath math="x=6" /> nilainya <InlineMath math="1458" />, sudah di atasnya.</>}
+  labels={{
+    five: <><InlineMath math="f(5)=486" /></>,
+    six: <><InlineMath math="f(6)=1458" /></>,
+    l: <><InlineMath math="1000" /></>,
+    g: <><InlineMath math="2\cdot3^x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 6.8 },
+      y: { min: 0, max: 2000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "2*3^x", domain: { min: 0, max: 6.2 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 1000 }, to: { x: 6.5, y: 1000 } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: 486 } },
+      { id: "p6", kind: "point", appearance: "answer", at: { x: 6, y: 1458 } },
+    ],
+    labels: [
+      { key: "five", objectId: "p5", at: { x: 5, y: 486 }, placement: "left" },
+      { key: "six", objectId: "p6", at: { x: 6, y: 1458 }, placement: "left" },
+      { key: "l", objectId: "level", at: { x: 0, y: 1000 }, placement: "above-right" },
+      { key: "g", objectId: "growth", at: { x: 6.1, y: 1700 }, placement: "left" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="f(5)=486\le1000" /> dan <InlineMath math="f(6)=1458>1000" />. Bilangan bulat terkecilnya **<InlineMath math="x=6" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="x=5" /> memakai **<InlineMath math="a=6" />, bukan <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Padahal nilai awalnya <InlineMath math="f(0)=a" />, bukan <InlineMath math="f(1)" />.
+- <InlineMath math="x=7" /> menggeser pangkatnya satu, misalnya dengan <InlineMath math="f(x)=2\cdot3^{x-1}" />.
+- <InlineMath math="x=4" /> menganggap <InlineMath math="\frac{f(3)}{f(1)}=9" /> sebagai basis: dengan <InlineMath math="b=9" /> dan <InlineMath math="a=\frac23" />, <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
+- <InlineMath math="x=43" /> menghitung secara linear: dari <InlineMath math="6" /> ke <InlineMath math="54" /> dalam dua langkah berarti <InlineMath math="24" /> per langkah, dan <InlineMath math="6+24(x-1)>1000" /> memberi <InlineMath math="x=43" />.
+- <InlineMath math="x=3" /> adalah tempat nilai kedua yang diketahui, <InlineMath math="f(3)=54" />.

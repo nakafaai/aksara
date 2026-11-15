@@ -1,0 +1,65 @@
+# Domain dan mengkuasaduakan
+
+Punca memerlukan <InlineMath math="x\ge-3" />. Kedua-dua belah tidak pernah negatif, jadi kamu boleh **mengkuasaduakan tanpa memecahkan kes**, dan <InlineMath math="|x-3|^2=(x-3)^2" />:
+
+<BlockMath math="\begin{aligned}
+(x-3)^2&=x+3 \\
+x^2-7x+6&=0 \\
+(x-1)(x-6)&=0
+\end{aligned}" />
+
+# Uji kedua-dua calon
+
+Oleh sebab kedua-dua belah tidak negatif, langkah mengkuasaduakan di sini boleh diterbalikkan. Walaupun begitu, **semakan dalam persamaan asal** tetap berguna:
+
+<BlockMath math="\begin{aligned}
+x=1:&\quad |1-3|=2,\quad \sqrt{4}=2 \\
+x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
+\end{aligned}" />
+
+<MathVisual
+  title={<>Nilai mutlak dan punca dalam satu gambar</>}
+  description={<>Graf <InlineMath math="y=|x-3|" /> mempunyai bucu pada <InlineMath math="x=3" />. Graf <InlineMath math="y=\sqrt{x+3}" /> bermula pada <InlineMath math="x=-3" />. Kedua-duanya bersilang dua kali, di <InlineMath math="(1\mid2)" /> dan <InlineMath math="(6\mid3)" />. Garis putus-putus ialah <InlineMath math="y=x-3" />: tanpa nilai mutlak bahagian ini berada di bawah paksi dan tidak bertemu graf punca di kiri <InlineMath math="3" />.</>}
+  labels={{
+    p1: <><InlineMath math="(1\mid2)" /></>,
+    p6: <><InlineMath math="(6\mid3)" /></>,
+    a: <><InlineMath math="|x-3|" /></>,
+    r: <><InlineMath math="\sqrt{x+3}" /></>,
+    q: <><InlineMath math="x-3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 9.5 },
+      y: { min: -3, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "abs", kind: "function", appearance: "primary", formula: "abs(x-3)", domain: { min: -3, max: 8 } },
+      { id: "root", kind: "function", appearance: "secondary", formula: "sqrt(x+3)", domain: { min: -3, max: 8 } },
+      { id: "plain", kind: "function", appearance: "construction", formula: "x - 3", domain: { min: 0.5, max: 3 } },
+      { id: "s1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "s6", kind: "point", appearance: "answer", at: { x: 6, y: 3 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "p6", objectId: "s6", at: { x: 6, y: 3 }, placement: "above-left" },
+      { key: "a", objectId: "abs", at: { x: 7.5, y: 4.5 }, placement: "right" },
+      { key: "r", objectId: "root", at: { x: 7.5, y: 3.24 }, placement: "below-right" },
+      { key: "q", objectId: "plain", at: { x: 1, y: -2 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Kenapa nilai mutlak penting
+
+Tanpa nilai mutlak, persamaan itu menjadi <InlineMath math="x-3=\sqrt{x+3}" />. Bagi <InlineMath math="x=1" /> sebelah kirinya <InlineMath math="-2" />, dan **penyelesaian itu akan tersingkir**. Dengan nilai mutlak kedua-dua penyelesaian kekal: <InlineMath math="\mathbb{L}=\{1;\,6\}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\{6\}" /> **menganggap <InlineMath math="|x-3|" /> sama seperti <InlineMath math="x-3" />**, lalu membuang <InlineMath math="x=1" />.
+- <InlineMath math="\{1\}" /> membuang penyelesaian yang lebih besar tanpa sebab.
+- <InlineMath math="\{-1;\,6\}" /> terhasil daripada kesilapan tanda semasa memfaktorkan: <InlineMath math="(x+1)(x-6)=x^2-5x-6" />.
+- <InlineMath math="\{-6;\,-1\}" /> memfaktorkan <InlineMath math="x^2+7x+6" />, bukan <InlineMath math="x^2-7x+6" />. Lagipun <InlineMath math="-6<-3" /> tiada dalam domain.
+- <InlineMath math="\{\}" /> terlepas pandang bahawa kedua-dua semakan menjadi.

@@ -1,19 +1,56 @@
-Soal menanyakan jumlah dua bilangan asli berurutan yang hasil kalinya <InlineMath math="156" />. Sebut bilangan yang lebih kecil <InlineMath math="n" />. Bilangan asli berikutnya adalah <InlineMath math="n+1" />, dan hasil kalinya membentuk **persamaan kuadrat**.
+# Tiga persamaan untuk tiga sisi
+
+Misalkan sisi siku-sikunya <InlineMath math="a" /> dan <InlineMath math="b" /> dan sisi miringnya <InlineMath math="c" />. Keliling, luas, dan Pythagoras memberi **tiga persamaan**:
+
+<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+
+# Pakai <InlineMath math="(a+b)^2" /> untuk menghilangkan sisi siku-siku
+
+Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> masing-masing. Kuadratkan <InlineMath math="a+b=30-c" /> lalu substitusikan **<InlineMath math="ab=60" /> dan <InlineMath math="a^2+b^2=c^2" />**:
 
 <BlockMath math="\begin{aligned}
-n(n+1)&=156 \\
-n^2+n-156&=0 \\
-(n-12)(n+13)&=0
+(a+b)^2&=a^2+b^2+2ab \\
+(30-c)^2&=c^2+120 \\
+900-60c+c^2&=c^2+120 \\
+780&=60c\quad\Longrightarrow\quad c=13
 \end{aligned}" />
 
-Untuk memfaktorkan, cari dua bilangan yang hasil kalinya <InlineMath math="-156" /> dan jumlahnya <InlineMath math="1" />. Bilangan itu adalah <InlineMath math="13" /> dan <InlineMath math="-12" />. Penyelesaian <InlineMath math="n=-13" /> bukan bilangan asli, jadi tersisa <InlineMath math="n=12" />, dan kedua bilangannya adalah <InlineMath math="12" /> dan <InlineMath math="13" />.
+<MathVisual
+  title={<>Segitiga yang dicari</>}
+  description={<>Segitiga siku-siku dengan sisi siku-siku <InlineMath math="12" /> dan <InlineMath math="5" /> serta sisi miring <InlineMath math="13" />. Kelilingnya <InlineMath math="12+5+13=30" /> dan luasnya <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  labels={{
+    a: <><InlineMath math="a=12" /></>,
+    b: <><InlineMath math="b=5" /></>,
+    c: <><InlineMath math="c=13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -1.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 5 }] },
+      { id: "hyp", kind: "segment", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 2.5 }, placement: "left" },
+      { key: "c", objectId: "hyp", at: { x: 6, y: 2.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-Sebagai pemeriksaan: <InlineMath math="12\cdot13=156" />. Selain itu, <InlineMath math="\sqrt{156}" /> sedikit di bawah <InlineMath math="\sqrt{169}=13" />, jadi kedua bilangan harus berada di sekitar <InlineMath math="12{,}5" />.
+# Cek dengan sisi siku-siku
 
-Jadi, jumlah kedua bilangan itu adalah <InlineMath math="12+13=25" />.
+Dengan <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> dan <InlineMath math="ab=60" />, jadi <InlineMath math="a" /> dan <InlineMath math="b" /> adalah penyelesaian <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> dan <InlineMath math="5" />. Memang <InlineMath math="12^2+5^2=169=13^2" />. Sisi miringnya **sepanjang <InlineMath math="13\text{ cm}" />**.
 
-- <InlineMath math="12" /> hanyalah bilangan yang lebih kecil.
-- <InlineMath math="13" /> hanyalah bilangan yang lebih besar.
-- <InlineMath math="78" /> adalah setengah dari hasil kalinya, <InlineMath math="156:2" />. Membagi dua hasil kali tidak menghasilkan jumlah.
-- <InlineMath math="24" /> adalah dua kali bilangan yang lebih kecil, seolah-olah kedua bilangan sama dengan <InlineMath math="12" />.
-- <InlineMath math="26" /> adalah dua kali bilangan yang lebih besar, seolah-olah kedua bilangan sama dengan <InlineMath math="13" />.
+# Mengapa pilihan lain salah
+
+- <InlineMath math="14\text{ cm}" /> lupa faktor <InlineMath math="\frac12" /> pada luas, jadi <InlineMath math="ab=30" />: lalu <InlineMath math="900-60c=60" /> dan <InlineMath math="c=14" />.
+- <InlineMath math="12\text{ cm}" /> adalah **sisi siku-siku yang lebih panjang**, bukan sisi miring.
+- <InlineMath math="15\text{ cm}" /> adalah setengah keliling.
+- <InlineMath math="10\text{ cm}" /> membagi keliling dengan tiga, seolah-olah segitiganya sama sisi.
+- <InlineMath math="5\text{ cm}" /> adalah sisi siku-siku yang lebih pendek.

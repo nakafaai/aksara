@@ -1,0 +1,62 @@
+# Garis serenjang dari <InlineMath math="P" /> ke <InlineMath math="g" />
+
+Dalam pantulan pada suatu garis, titik dan imejnya terletak **pada garis yang berserenjang dengan paksi pantulan**, sama jauh daripadanya. Garis <InlineMath math="g" /> berkecerunan <InlineMath math="2" />, jadi garis serenjangnya berkecerunan <InlineMath math="-\frac12" />. Melalui <InlineMath math="P(5\mid0)" />:
+
+<BlockMath math="y=-\frac12(x-5)" />
+
+# Titik kaki garis serenjang
+
+Titik persilangannya dengan <InlineMath math="g" /> ialah **titik tengah antara <InlineMath math="P" /> dan <InlineMath math="P'" />**:
+
+<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+
+Jadi <InlineMath math="F(1\mid2)" />.
+
+# Imej melalui titik tengah
+
+<InlineMath math="F" /> ialah titik tengah <InlineMath math="P" /> dan <InlineMath math="P'" />, jadi <InlineMath math="P'=2F-P" />:
+
+<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+
+<MathVisual
+  title={<>Pantulan pada <InlineMath math="y=2x" /></>}
+  description={<>Garis <InlineMath math="g: y=2x" />, titik <InlineMath math="P(5\mid0)" /> dan imejnya <InlineMath math="P'(-3\mid4)" />. Tembereng garis <InlineMath math="\overline{PP'}" /> berserenjang dengan <InlineMath math="g" /> dan dibahagi dua oleh <InlineMath math="g" /> di titik kaki <InlineMath math="F(1\mid2)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(5\mid0)" /></>,
+    q: <><InlineMath math="P'(-3\mid4)" /></>,
+    f: <><InlineMath math="F(1\mid2)" /></>,
+    g: <><InlineMath math="g: y=2x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 6.5 },
+      y: { min: -4.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "primary", formula: "2*x", domain: { min: -2.2, max: 3.4 } },
+      { id: "link", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+      { id: "pf", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: -3, y: 4 }, placement: "above" },
+      { key: "f", objectId: "pf", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "g", objectId: "mirror", at: { x: 3.2, y: 6.4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="\overline{OP}=5" /> dan <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. Asalan terletak pada <InlineMath math="g" />, jadi **jarak ke asalan kekal**. Imejnya ialah <InlineMath math="P'(-3\mid4)" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="P'(1\mid2)" /> hanyalah **titik kaki garis serenjang**, iaitu titik tengah, bukan imej.
+- <InlineMath math="P'(0\mid5)" /> memantulkan pada garis <InlineMath math="y=x" />, bukan <InlineMath math="y=2x" />.
+- <InlineMath math="P'(-5\mid0)" /> memantulkan pada asalan atau paksi <InlineMath math="y" />.
+- <InlineMath math="P'(3\mid-4)" /> menterbalikkan kedua-dua tanda: <InlineMath math="P-2F=(3\mid-4)" />, bukan <InlineMath math="2F-P" />.
+- <InlineMath math="P'(-4\mid3)" /> menukar koordinat imej yang betul.

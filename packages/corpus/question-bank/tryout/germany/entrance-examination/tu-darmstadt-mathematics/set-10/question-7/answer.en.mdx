@@ -1,13 +1,66 @@
-The task asks for the cost of the insurance at <InlineMath math="0.5" /> per mille (*Promille*). Per mille works like percent, only with **thousandths instead of hundredths**. So <InlineMath math="0.5" /> per mille is <InlineMath math="\frac{0.5}{1000}=0.0005" />.
+# A quadratic equation in <InlineMath math="\sin x" />
 
-<BlockMath math="0.0005\cdot2\,000\,000=\frac{2\,000\,000}{1000}\cdot0.5=2000\cdot0.5=1000" />
+Set <InlineMath math="s=\sin x" />. Then the equation is **quadratic in <InlineMath math="s" />**:
 
-As a check, go in steps: one per mille of <InlineMath math="2{,}000{,}000\text{ €}" /> is <InlineMath math="2{,}000\text{ €}" />, so half a per mille is half of that.
+<BlockMath math="2s^2-s-1=0\quad\Longleftrightarrow\quad (2s+1)(s-1)=0\quad\Longleftrightarrow\quad s=1\ \text{or}\ s=-\tfrac12" />
 
-So the insurance costs <InlineMath math="1{,}000\text{ €}" />.
+Both values lie between <InlineMath math="-1" /> and <InlineMath math="1" />, so both are possible as sine values.
 
-- <InlineMath math="10{,}000\text{ €}" /> uses <InlineMath math="0.5" /> percent instead of per mille, so hundredths.
-- <InlineMath math="100\text{ €}" /> moves the decimal point one place too far and uses <InlineMath math="0.05" /> per mille.
-- <InlineMath math="100{,}000\text{ €}" /> uses <InlineMath math="5\,\%" />. That is a hundred times too much.
-- <InlineMath math="1{,}000{,}000\text{ €}" /> reads <InlineMath math="0.5" /> as half of the whole value of the goods.
-- <InlineMath math="10\text{ €}" /> divides by <InlineMath math="100" /> once more and so uses a hundred-thousandth.
+# Count the angles for each sine value
+
+In the range <InlineMath math="0^\circ\le x<360^\circ" /> a sine value usually has two angles. **The value <InlineMath math="1" /> is an exception**, because it is the maximum: it is reached only at <InlineMath math="90^\circ" />.
+
+<BlockMath math="\begin{aligned}
+\sin x=1:&\quad x=90^\circ \\
+\sin x=-\tfrac12:&\quad x=180^\circ+30^\circ=210^\circ\ \text{or}\ x=360^\circ-30^\circ=330^\circ
+\end{aligned}" />
+
+<MathVisual
+  title={<>The solutions on the unit circle</>}
+  description={<>On the unit circle, <InlineMath math="\sin x" /> is the height of the point. The line <InlineMath math="y=1" /> only touches the circle at the top, at <InlineMath math="90^\circ" />. The line <InlineMath math="y=-\tfrac12" /> cuts it twice, at <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />.</>}
+  labels={{
+    a: <><InlineMath math="90^\circ" /></>,
+    b: <><InlineMath math="210^\circ" /></>,
+    c: <><InlineMath math="330^\circ" /></>,
+    u: <><InlineMath math="\sin x=1" /></>,
+    v: <><InlineMath math="\sin x=-\tfrac12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.8, max: 2.2 },
+      y: { min: -1.5, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "unit", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -1.4, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -1.4 }, to: { x: 0, y: 1.4 } },
+      { id: "top", kind: "segment", appearance: "secondary", from: { x: -0.6, y: 1 }, to: { x: 0.6, y: 1 } },
+      { id: "low", kind: "segment", appearance: "secondary", from: { x: -1.3, y: -0.5 }, to: { x: 1.3, y: -0.5 } },
+      { id: "p90", kind: "point", appearance: "answer", at: { x: 0, y: 1 } },
+      { id: "p210", kind: "point", appearance: "answer", at: { x: -0.866, y: -0.5 } },
+      { id: "p330", kind: "point", appearance: "answer", at: { x: 0.866, y: -0.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p90", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "b", objectId: "p210", at: { x: -0.866, y: -0.5 }, placement: "below-left" },
+      { key: "c", objectId: "p330", at: { x: 0.866, y: -0.5 }, placement: "below-right" },
+      { key: "u", objectId: "top", at: { x: 0.6, y: 1 }, placement: "right" },
+      { key: "v", objectId: "low", at: { x: 1.3, y: -0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+# The count
+
+Together these are the angles <InlineMath math="90^\circ" />, <InlineMath math="210^\circ" /> and <InlineMath math="330^\circ" />. The equation has **exactly <InlineMath math="3" /> solutions**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="4" /> gives <InlineMath math="\sin x=1" /> two angles too, although **the maximum is reached only once**.
+- <InlineMath math="2" /> counts only one angle per sine value.
+- <InlineMath math="1" /> counts only <InlineMath math="\sin x=1" /> and discards the negative value.
+- <InlineMath math="5" /> also counts <InlineMath math="x=360^\circ" />, which is outside the range, and the doubled <InlineMath math="90^\circ" /> solution.
+- <InlineMath math="6" /> assumes three angles for each value, as if the range went beyond one full turn.

@@ -1,13 +1,52 @@
-The task asks for the library's whole stock of books. Here the **base value is unknown**: the <InlineMath math="48" /> borrowed books are the part, <InlineMath math="15\,\%" /> is the rate, and the whole stock <InlineMath math="G" /> is what you look for.
+# The changes as factors
 
-<BlockMath math="0.15\cdot G=48\quad\Rightarrow\quad G=\frac{48}{0.15}=\frac{4800}{15}=320" />
+The <InlineMath math="25\,\%" /> increase multiplies the price by <InlineMath math="1.25" />. In the end it should be <InlineMath math="10\,\%" /> below the old price, so <InlineMath math="0.9" /> times it. You want the cut by the share <InlineMath math="s" />, **measured against the raised price**:
 
-Without a calculator you can also go through smaller shares: if <InlineMath math="15\,\%" /> is <InlineMath math="48" /> books, then <InlineMath math="5\,\%" /> is a third of that, <InlineMath math="16" /> books. <InlineMath math="100\,\%" /> is twenty times as much, <InlineMath math="20\cdot16=320" />. As a check: <InlineMath math="15\,\%" /> of <InlineMath math="320" /> is <InlineMath math="0.15\cdot320=48" />.
+<BlockMath math="1.25\,(1-s)=0.9" />
 
-So the library has <InlineMath math="320" /> books.
+# Work out the rate
 
-- <InlineMath math="7.2" /> is <InlineMath math="15\,\%" /> of <InlineMath math="48" />. It swaps the part and the base value.
-- <InlineMath math="55.2" /> computes <InlineMath math="48" /> plus <InlineMath math="15\,\%" /> of <InlineMath math="48" />, as if the stock were only a little larger than the borrowed books.
-- <InlineMath math="720" /> multiplies <InlineMath math="48" /> by <InlineMath math="15" /> instead of dividing by <InlineMath math="0.15" />.
-- <InlineMath math="3.2" /> divides <InlineMath math="48" /> by <InlineMath math="15" /> and forgets the factor <InlineMath math="100" />.
-- <InlineMath math="32" /> divides by <InlineMath math="1.5" /> instead of <InlineMath math="0.15" /> and so shifts the decimal point by one place.
+<BlockMath math="1-s=\frac{0.9}{1.25}=0.72\quad\Longrightarrow\quad s=0.28=28\,\%" />
+
+<MathVisual
+  title={<>The price in two steps</>}
+  description={<>The price as an index with <InlineMath math="100" /> at the start. It rises to <InlineMath math="125" /> and then falls to <InlineMath math="90" />, which is <InlineMath math="10" /> below the start. The second step is a cut of <InlineMath math="35" /> from <InlineMath math="125" />, which is <InlineMath math="28\,\%" />.</>}
+  labels={{
+    s: <>start <InlineMath math="100" /></>,
+    t: <>raised <InlineMath math="125" /></>,
+    e: <>end <InlineMath math="90" /></>,
+    cut: <><InlineMath math="-28\,\%" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 2.8 },
+      y: { min: 80, max: 135 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 2, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 125 }, { x: 2, y: 90 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 1, y: 125 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 90 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "above-left" },
+      { key: "t", objectId: "p1", at: { x: 1, y: 125 }, placement: "above" },
+      { key: "e", objectId: "p2", at: { x: 2, y: 90 }, placement: "right" },
+      { key: "cut", objectId: "path", at: { x: 1.5, y: 107.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Check with <InlineMath math="100\text{ €}" />: raised to <InlineMath math="125\text{ €}" />, <InlineMath math="28\,\%" /> of that is <InlineMath math="35\text{ €}" />, leaving <InlineMath math="90\text{ €}" />. The raised price was **cut by <InlineMath math="28\,\%" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="35\,\%" /> adds the percentage points <InlineMath math="25+10" />. But the cut is measured **against the larger base <InlineMath math="125" />**.
+- <InlineMath math="30\,\%" /> takes <InlineMath math="20\,\%" /> to undo the increase plus another <InlineMath math="10\,\%" />.
+- <InlineMath math="72\,\%" /> is the remaining share <InlineMath math="\frac{0.9}{1.25}" />, not the cut.
+- <InlineMath math="20\,\%" /> only brings the price back to the start: <InlineMath math="1.25\cdot0.8=1" />.
+- <InlineMath math="25\,\%" /> just reverses the increase: <InlineMath math="1.25\cdot0.75=0.9375" />.

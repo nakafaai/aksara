@@ -1,18 +1,68 @@
-The task asks for the distance the wheel covers, exactly. In one full turn the wheel rolls off **exactly its circumference**. So the distance is <InlineMath math="500" /> times the circumference.
+# Recognise the shape of the quadrilateral
 
-First convert the diameter to metres, <InlineMath math="70\text{ cm}=0.7\text{ m}" />. The circumference is <InlineMath math="C=\pi d" />.
+A radius to the point of contact is perpendicular to the tangent. So <InlineMath math="\overline{M_1A}" /> and <InlineMath math="\overline{M_2B}" /> are both perpendicular to <InlineMath math="\overline{AB}" /> and parallel to each other. The quadrilateral <InlineMath math="M_1ABM_2" /> is **a right trapezium** with parallel sides <InlineMath math="9" /> and <InlineMath math="4" /> and height <InlineMath math="\overline{AB}" />.
 
-<BlockMath math="\begin{aligned}
-C&=\pi\cdot0.7\text{ m}=0.7\pi\text{ m} \\
-s&=500\cdot0.7\pi\text{ m}=350\pi\text{ m}
-\end{aligned}" />
+# The length <InlineMath math="\overline{AB}" />
 
-As a check, estimate with <InlineMath math="\pi\approx3" />: one circumference is a bit over <InlineMath math="2\text{ m}" />, and <InlineMath math="500" /> turns give a bit over <InlineMath math="1\text{ km}" />. More precisely, <InlineMath math="350\pi\approx1100\text{ m}" />.
+Because the circles touch from outside, <InlineMath math="\overline{M_1M_2}=9+4=13" />. Draw a line from <InlineMath math="M_2" /> parallel to <InlineMath math="\overline{AB}" />. With <InlineMath math="\overline{M_1M_2}" /> it forms **a right triangle with legs <InlineMath math="\overline{AB}" /> and <InlineMath math="9-4=5" />**:
 
-So the wheel covers <InlineMath math="350\pi\text{ m}" />.
+<BlockMath math="\overline{AB}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
 
-- <InlineMath math="175\pi\text{ m}" /> computes the circumference with the radius, <InlineMath math="\pi r" />. The circumference is <InlineMath math="2\pi r=\pi d" />.
-- <InlineMath math="700\pi\text{ m}" /> computes <InlineMath math="2\pi d" /> and so counts the circumference twice.
-- <InlineMath math="350\text{ m}" /> forgets the factor <InlineMath math="\pi" /> and computes only <InlineMath math="500\cdot0.7" />.
-- <InlineMath math="61.25\pi\text{ m}" /> uses the area formula <InlineMath math="\pi r^2=\pi\cdot0.35^2" /> instead of the circumference.
-- <InlineMath math="35\pi\text{ m}" /> converts <InlineMath math="35{,}000\pi\text{ cm}" /> to metres with the factor <InlineMath math="1000" /> instead of <InlineMath math="100" />.
+<MathVisual
+  title={<>Two circles on one tangent</>}
+  description={<>The tangent runs horizontally at the bottom. The big circle about <InlineMath math="M_1" /> with radius <InlineMath math="9" /> touches it at <InlineMath math="A" />, the small one about <InlineMath math="M_2" /> with radius <InlineMath math="4" /> at <InlineMath math="B" />. The circles touch each other, so <InlineMath math="\overline{M_1M_2}=13" />. The quadrilateral <InlineMath math="M_1ABM_2" /> is a right trapezium with parallel sides <InlineMath math="9" /> and <InlineMath math="4" /> and height <InlineMath math="\overline{AB}=12" />.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    ab: <><InlineMath math="12" /></>,
+    r1: <><InlineMath math="9" /></>,
+    r2: <><InlineMath math="4" /></>,
+    d: <><InlineMath math="13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 18 },
+      y: { min: -2, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "secondary", center: { x: 0, y: 9 }, radius: 9 },
+      { id: "c2", kind: "circle", appearance: "secondary", center: { x: 12, y: 4 }, radius: 4 },
+      { id: "tangent", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "quad", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 4 }, { x: 0, y: 9 }] },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 9 }, to: { x: 12, y: 4 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 12, y: 4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 12, y: 0 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 9 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 12, y: 4 }, placement: "right" },
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "ab", objectId: "quad", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "r1", objectId: "quad", at: { x: 0, y: 4.5 }, placement: "right" },
+      { key: "r2", objectId: "quad", at: { x: 12, y: 2 }, placement: "left" },
+      { key: "d", objectId: "centres", at: { x: 6, y: 6.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# The area of the trapezium
+
+<BlockMath math="A=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+
+The quadrilateral has **an area of <InlineMath math="78\text{ cm}^2" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="156\text{ cm}^2" /> **forgets to halve** in the trapezium formula.
+- <InlineMath math="84.5\text{ cm}^2" /> takes the distance between the centres, <InlineMath math="13" />, as the height: <InlineMath math="\frac{13}{2}\cdot13" />.
+- <InlineMath math="39\text{ cm}^2" /> halves twice: <InlineMath math="\frac12\cdot\frac{13\cdot12}{2}" />.
+- <InlineMath math="32.5\text{ cm}^2" /> takes the difference of the radii, <InlineMath math="5" />, as the height: <InlineMath math="\frac{13}{2}\cdot5" />.
+- <InlineMath math="60\text{ cm}^2" /> uses <InlineMath math="5\cdot12" />, only the difference of the radii instead of their sum.

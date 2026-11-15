@@ -1,0 +1,68 @@
+# Kenal pasti bentuk sisi empat itu
+
+Jejari ke titik sentuhan berserenjang dengan tangen. Jadi <InlineMath math="\overline{M_1A}" /> dan <InlineMath math="\overline{M_2B}" /> kedua-duanya berserenjang dengan <InlineMath math="\overline{AB}" /> dan selari antara satu sama lain. Sisi empat <InlineMath math="M_1ABM_2" /> ialah **trapezium bersudut tegak** dengan sisi selari <InlineMath math="9" /> dan <InlineMath math="4" /> serta tinggi <InlineMath math="\overline{AB}" />.
+
+# Panjang <InlineMath math="\overline{AB}" />
+
+Oleh sebab kedua-dua bulatan bersentuhan di luar, <InlineMath math="\overline{M_1M_2}=9+4=13" />. Lukis garis dari <InlineMath math="M_2" /> yang selari dengan <InlineMath math="\overline{AB}" />. Bersama <InlineMath math="\overline{M_1M_2}" /> garis itu membentuk **segi tiga bersudut tegak dengan sisi tegak <InlineMath math="\overline{AB}" /> dan <InlineMath math="9-4=5" />**:
+
+<BlockMath math="\overline{AB}=\sqrt{13^2-5^2}=\sqrt{144}=12" />
+
+<MathVisual
+  title={<>Dua bulatan pada satu tangen</>}
+  description={<>Tangen itu mengufuk di bawah. Bulatan besar berpusat <InlineMath math="M_1" /> berjejari <InlineMath math="9" /> menyentuhnya di <InlineMath math="A" />, bulatan kecil berpusat <InlineMath math="M_2" /> berjejari <InlineMath math="4" /> di <InlineMath math="B" />. Kedua-dua bulatan bersentuhan, jadi <InlineMath math="\overline{M_1M_2}=13" />. Sisi empat <InlineMath math="M_1ABM_2" /> ialah trapezium bersudut tegak dengan sisi selari <InlineMath math="9" /> dan <InlineMath math="4" /> serta tinggi <InlineMath math="\overline{AB}=12" />.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    ab: <><InlineMath math="12" /></>,
+    r1: <><InlineMath math="9" /></>,
+    r2: <><InlineMath math="4" /></>,
+    d: <><InlineMath math="13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 18 },
+      y: { min: -2, max: 19 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "secondary", center: { x: 0, y: 9 }, radius: 9 },
+      { id: "c2", kind: "circle", appearance: "secondary", center: { x: 12, y: 4 }, radius: 4 },
+      { id: "tangent", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "quad", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 12, y: 4 }, { x: 0, y: 9 }] },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 9 }, to: { x: 12, y: 4 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 12, y: 4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 12, y: 0 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 9 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 12, y: 4 }, placement: "right" },
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 12, y: 0 }, placement: "below-right" },
+      { key: "ab", objectId: "quad", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "r1", objectId: "quad", at: { x: 0, y: 4.5 }, placement: "right" },
+      { key: "r2", objectId: "quad", at: { x: 12, y: 2 }, placement: "left" },
+      { key: "d", objectId: "centres", at: { x: 6, y: 6.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Luas trapezium
+
+<BlockMath math="A=\frac{9+4}{2}\cdot12=78\text{ cm}^2" />
+
+Sisi empat itu **luasnya <InlineMath math="78\text{ cm}^2" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="156\text{ cm}^2" /> **terlupa membahagi dua** dalam rumus trapezium.
+- <InlineMath math="84.5\text{ cm}^2" /> memakai jarak antara pusat, <InlineMath math="13" />, sebagai tinggi: <InlineMath math="\frac{13}{2}\cdot13" />.
+- <InlineMath math="39\text{ cm}^2" /> membahagi dua sebanyak dua kali: <InlineMath math="\frac12\cdot\frac{13\cdot12}{2}" />.
+- <InlineMath math="32.5\text{ cm}^2" /> memakai beza jejari, <InlineMath math="5" />, sebagai tinggi: <InlineMath math="\frac{13}{2}\cdot5" />.
+- <InlineMath math="60\text{ cm}^2" /> memakai <InlineMath math="5\cdot12" />, hanya beza jejari, bukan hasil tambahnya.

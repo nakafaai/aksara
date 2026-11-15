@@ -1,15 +1,62 @@
-The task asks for the point <InlineMath math="T" /> that divides the segment in the ratio <InlineMath math="1:3" />. With that ratio the whole segment consists of <InlineMath math="1+3=4" /> equal parts. So <InlineMath math="T" /> lies **a quarter of the way** from <InlineMath math="A" /> to <InlineMath math="B" />.
+# The perpendicular from <InlineMath math="P" /> to <InlineMath math="g" />
 
-From <InlineMath math="A(-2\mid3)" /> to <InlineMath math="B(6\mid-1)" /> you go <InlineMath math="8" /> to the right and <InlineMath math="4" /> down. A quarter of that is <InlineMath math="2" /> to the right and <InlineMath math="1" /> down.
+In a reflection in a line, a point and its image lie **on a perpendicular to the mirror line**, equally far from it. The line <InlineMath math="g" /> has slope <InlineMath math="2" />, so the perpendicular has slope <InlineMath math="-\frac12" />. Through <InlineMath math="P(5\mid0)" />:
 
-<BlockMath math="T=\left(-2+\tfrac14\cdot8\;\middle|\;3+\tfrac14\cdot(-4)\right)=(0\mid2)" />
+<BlockMath math="y=-\frac12(x-5)" />
 
-As a check, look at the two parts. From <InlineMath math="A" /> to <InlineMath math="T" /> it is <InlineMath math="2" /> right and <InlineMath math="1" /> down, from <InlineMath math="T" /> to <InlineMath math="B" /> it is <InlineMath math="6" /> right and <InlineMath math="3" /> down. That is exactly three times as much, so the ratio is <InlineMath math="1:3" />.
+# The foot of the perpendicular
 
-So the point is <InlineMath math="T(0\mid2)" />.
+The intersection with <InlineMath math="g" /> is **the midpoint between <InlineMath math="P" /> and <InlineMath math="P'" />**:
 
-- <InlineMath math="(2\mid1)" /> is the midpoint of the segment. It divides it in the ratio <InlineMath math="1:1" />.
-- <InlineMath math="(4\mid0)" /> lies three quarters of the way. It divides the segment in the ratio <InlineMath math="3:1" />.
-- <InlineMath math="\left(\frac23\mid\frac53\right)" /> goes a third of the way. The ratio <InlineMath math="1:3" /> means a quarter, not a third.
-- <InlineMath math="(8\mid-4)" /> is only the step from <InlineMath math="A" /> to <InlineMath math="B" />, not a point of the segment.
-- <InlineMath math="(-4\mid4)" /> goes a quarter in the wrong direction and lies outside the segment.
+<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+
+So <InlineMath math="F(1\mid2)" />.
+
+# The image through the midpoint
+
+<InlineMath math="F" /> is the midpoint of <InlineMath math="P" /> and <InlineMath math="P'" />, so <InlineMath math="P'=2F-P" />:
+
+<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+
+<MathVisual
+  title={<>Reflection in <InlineMath math="y=2x" /></>}
+  description={<>The line <InlineMath math="g: y=2x" />, the point <InlineMath math="P(5\mid0)" /> and its image <InlineMath math="P'(-3\mid4)" />. The segment <InlineMath math="\overline{PP'}" /> is perpendicular to <InlineMath math="g" /> and is cut in half by <InlineMath math="g" /> at the foot <InlineMath math="F(1\mid2)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(5\mid0)" /></>,
+    q: <><InlineMath math="P'(-3\mid4)" /></>,
+    f: <><InlineMath math="F(1\mid2)" /></>,
+    g: <><InlineMath math="g: y=2x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 6.5 },
+      y: { min: -4.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "primary", formula: "2*x", domain: { min: -2.2, max: 3.4 } },
+      { id: "link", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+      { id: "pf", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: -3, y: 4 }, placement: "above" },
+      { key: "f", objectId: "pf", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "g", objectId: "mirror", at: { x: 3.2, y: 6.4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="\overline{OP}=5" /> and <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. The origin lies on <InlineMath math="g" />, so **the distance to it is preserved**. The image is <InlineMath math="P'(-3\mid4)" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="P'(1\mid2)" /> is only **the foot of the perpendicular**, the midpoint, not the image.
+- <InlineMath math="P'(0\mid5)" /> reflects in the line <InlineMath math="y=x" /> instead of <InlineMath math="y=2x" />.
+- <InlineMath math="P'(-5\mid0)" /> reflects in the origin, or in the <InlineMath math="y" />-axis.
+- <InlineMath math="P'(3\mid-4)" /> has both signs flipped: <InlineMath math="P-2F=(3\mid-4)" /> instead of <InlineMath math="2F-P" />.
+- <InlineMath math="P'(-4\mid3)" /> swaps the coordinates of the correct image.

@@ -1,15 +1,62 @@
-Soal menanyakan titik <InlineMath math="T" /> yang membagi ruas garis dengan perbandingan <InlineMath math="1:3" />. Dengan perbandingan itu, seluruh ruas terdiri atas <InlineMath math="1+3=4" /> bagian yang sama. Jadi, <InlineMath math="T" /> terletak **seperempat jalan** dari <InlineMath math="A" /> ke <InlineMath math="B" />.
+# Garis tegak lurus dari <InlineMath math="P" /> ke <InlineMath math="g" />
 
-Dari <InlineMath math="A(-2\mid3)" /> ke <InlineMath math="B(6\mid-1)" /> kamu bergerak <InlineMath math="8" /> ke kanan dan <InlineMath math="4" /> ke bawah. Seperempatnya adalah <InlineMath math="2" /> ke kanan dan <InlineMath math="1" /> ke bawah.
+Pada pencerminan terhadap garis, sebuah titik dan bayangannya terletak **pada garis yang tegak lurus sumbu cermin**, sama jauh darinya. Garis <InlineMath math="g" /> bergradien <InlineMath math="2" />, jadi garis tegak lurusnya bergradien <InlineMath math="-\frac12" />. Melalui <InlineMath math="P(5\mid0)" />:
 
-<BlockMath math="T=\left(-2+\tfrac14\cdot8\;\middle|\;3+\tfrac14\cdot(-4)\right)=(0\mid2)" />
+<BlockMath math="y=-\frac12(x-5)" />
 
-Sebagai pemeriksaan, lihat kedua bagiannya. Dari <InlineMath math="A" /> ke <InlineMath math="T" /> bergerak <InlineMath math="2" /> ke kanan dan <InlineMath math="1" /> ke bawah, dari <InlineMath math="T" /> ke <InlineMath math="B" /> bergerak <InlineMath math="6" /> ke kanan dan <InlineMath math="3" /> ke bawah. Itu tepat tiga kalinya, jadi perbandingannya <InlineMath math="1:3" />.
+# Titik kaki garis tegak lurus
 
-Jadi, titiknya adalah <InlineMath math="T(0\mid2)" />.
+Titik potongnya dengan <InlineMath math="g" /> adalah **titik tengah antara <InlineMath math="P" /> dan <InlineMath math="P'" />**:
 
-- <InlineMath math="(2\mid1)" /> adalah titik tengah ruas garis. Titik itu membagi dengan perbandingan <InlineMath math="1:1" />.
-- <InlineMath math="(4\mid0)" /> terletak tiga perempat jalan. Titik itu membagi dengan perbandingan <InlineMath math="3:1" />.
-- <InlineMath math="\left(\frac23\mid\frac53\right)" /> berjalan sepertiga jalan. Perbandingan <InlineMath math="1:3" /> berarti seperempat, bukan sepertiga.
-- <InlineMath math="(8\mid-4)" /> hanyalah langkah dari <InlineMath math="A" /> ke <InlineMath math="B" />, bukan titik pada ruas garis.
-- <InlineMath math="(-4\mid4)" /> berjalan seperempat ke arah yang salah dan terletak di luar ruas garis.
+<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+
+Jadi <InlineMath math="F(1\mid2)" />.
+
+# Bayangan lewat titik tengah
+
+<InlineMath math="F" /> adalah titik tengah <InlineMath math="P" /> dan <InlineMath math="P'" />, jadi <InlineMath math="P'=2F-P" />:
+
+<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+
+<MathVisual
+  title={<>Pencerminan terhadap <InlineMath math="y=2x" /></>}
+  description={<>Garis <InlineMath math="g: y=2x" />, titik <InlineMath math="P(5\mid0)" />, dan bayangannya <InlineMath math="P'(-3\mid4)" />. Ruas <InlineMath math="\overline{PP'}" /> tegak lurus <InlineMath math="g" /> dan dibagi dua oleh <InlineMath math="g" /> di titik kaki <InlineMath math="F(1\mid2)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(5\mid0)" /></>,
+    q: <><InlineMath math="P'(-3\mid4)" /></>,
+    f: <><InlineMath math="F(1\mid2)" /></>,
+    g: <><InlineMath math="g: y=2x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 6.5 },
+      y: { min: -4.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "primary", formula: "2*x", domain: { min: -2.2, max: 3.4 } },
+      { id: "link", kind: "segment", appearance: "secondary", from: { x: 5, y: 0 }, to: { x: -3, y: 4 } },
+      { id: "pp", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: -3, y: 4 } },
+      { id: "pf", kind: "point", appearance: "highlight", at: { x: 1, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "q", objectId: "pq", at: { x: -3, y: 4 }, placement: "above" },
+      { key: "f", objectId: "pf", at: { x: 1, y: 2 }, placement: "right" },
+      { key: "g", objectId: "mirror", at: { x: 3.2, y: 6.4 }, placement: "left" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="\overline{OP}=5" /> dan <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. Titik asal terletak pada <InlineMath math="g" />, jadi **jaraknya ke titik asal tetap**. Bayangannya <InlineMath math="P'(-3\mid4)" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="P'(1\mid2)" /> hanya **titik kaki garis tegak lurus**, yaitu titik tengahnya, bukan bayangannya.
+- <InlineMath math="P'(0\mid5)" /> mencerminkan terhadap garis <InlineMath math="y=x" />, bukan <InlineMath math="y=2x" />.
+- <InlineMath math="P'(-5\mid0)" /> mencerminkan terhadap titik asal atau sumbu <InlineMath math="y" />.
+- <InlineMath math="P'(3\mid-4)" /> membalik kedua tanda: <InlineMath math="P-2F=(3\mid-4)" />, bukan <InlineMath math="2F-P" />.
+- <InlineMath math="P'(-4\mid3)" /> menukar koordinat bayangan yang benar.

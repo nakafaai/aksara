@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$4\\text{ cm}^2$$",
+        },
+        {
           correct: true,
-          label: "$$(36+18\\pi)\\text{ cm}^2$$",
+          label: "$$\\frac{16}{3}\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(36+36\\pi)\\text{ cm}^2$$",
+          label: "$$8\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(36+9\\pi)\\text{ cm}^2$$",
+          label: "$$\\frac83\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$(36+72\\pi)\\text{ cm}^2$$",
+          label: "$$6\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$18\\pi\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$(36+12\\pi)\\text{ cm}^2$$",
+          label: "$$\\frac{32}{3}\\text{ cm}^2$$",
         },
       ],
     },

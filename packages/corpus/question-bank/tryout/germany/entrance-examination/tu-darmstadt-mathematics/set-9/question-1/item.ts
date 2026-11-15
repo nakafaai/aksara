@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$x^4+1$$",
+          label: "$$\\frac{16}{3}$$",
         },
         {
           correct: false,
-          label: "$$x^4-2x^2+1$$",
+          label: "$$7$$",
         },
         {
           correct: true,
-          label: "$$x^4-1$$",
+          label: "$$5$$",
         },
         {
           correct: false,
-          label: "$$x^3-1$$",
+          label: "$$8$$",
         },
         {
           correct: false,
-          label: "$$x^4-x^2-1$$",
+          label: "$$0$$",
         },
         {
           correct: false,
-          label: "$$x^4+2x^2+1$$",
+          label: "$$3$$",
         },
       ],
     },

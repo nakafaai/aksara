@@ -1,0 +1,56 @@
+# Tiga persamaan untuk tiga sisi
+
+Biar sisi tegaknya <InlineMath math="a" /> dan <InlineMath math="b" /> dan hipotenusnya <InlineMath math="c" />. Perimeter, luas dan Pythagoras memberi **tiga persamaan**:
+
+<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+
+# Guna <InlineMath math="(a+b)^2" /> untuk menghapuskan sisi tegak
+
+Kamu tidak perlu tahu <InlineMath math="a" /> dan <InlineMath math="b" /> secara berasingan. Kuasaduakan <InlineMath math="a+b=30-c" /> dan gantikan **<InlineMath math="ab=60" /> dan <InlineMath math="a^2+b^2=c^2" />**:
+
+<BlockMath math="\begin{aligned}
+(a+b)^2&=a^2+b^2+2ab \\
+(30-c)^2&=c^2+120 \\
+900-60c+c^2&=c^2+120 \\
+780&=60c\quad\Longrightarrow\quad c=13
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga yang dicari</>}
+  description={<>Segi tiga bersudut tegak dengan sisi tegak <InlineMath math="12" /> dan <InlineMath math="5" /> serta hipotenus <InlineMath math="13" />. Perimeternya <InlineMath math="12+5+13=30" /> dan luasnya <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  labels={{
+    a: <><InlineMath math="a=12" /></>,
+    b: <><InlineMath math="b=5" /></>,
+    c: <><InlineMath math="c=13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -1.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 5 }] },
+      { id: "hyp", kind: "segment", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 2.5 }, placement: "left" },
+      { key: "c", objectId: "hyp", at: { x: 6, y: 2.5 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Semak dengan sisi tegak
+
+Dengan <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> dan <InlineMath math="ab=60" />, jadi <InlineMath math="a" /> dan <InlineMath math="b" /> ialah penyelesaian <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> dan <InlineMath math="5" />. Memang <InlineMath math="12^2+5^2=169=13^2" />. Hipotenus itu **sepanjang <InlineMath math="13\text{ cm}" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="14\text{ cm}" /> terlupa faktor <InlineMath math="\frac12" /> dalam luas, jadi <InlineMath math="ab=30" />: lalu <InlineMath math="900-60c=60" /> dan <InlineMath math="c=14" />.
+- <InlineMath math="12\text{ cm}" /> ialah **sisi tegak yang lebih panjang**, bukan hipotenus.
+- <InlineMath math="15\text{ cm}" /> ialah separuh perimeter.
+- <InlineMath math="10\text{ cm}" /> membahagi perimeter dengan tiga, seolah-olah segi tiga itu sama sisi.
+- <InlineMath math="5\text{ cm}" /> ialah sisi tegak yang lebih pendek.

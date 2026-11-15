@@ -17,6 +17,6 @@ export const darmstadtRatings: readonly SetRating[] = [
   { items: 8, level: 2, raters: 1 },
   { items: 8, level: 4.47, raters: 8 },
   { items: 8, level: 4.39, raters: 8 },
-  { items: 8, level: 2.25, raters: 1 },
-  { items: 8, level: 1.62, raters: 1 },
+  { items: 8, level: 4.17, raters: 8 },
+  { items: 8, level: 3.98, raters: 8 },
 ];

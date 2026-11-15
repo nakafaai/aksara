@@ -1,19 +1,56 @@
-The task asks for the sum of two consecutive natural numbers whose product is <InlineMath math="156" />. Call the smaller number <InlineMath math="n" />. The next natural number is <InlineMath math="n+1" />, and the product gives a **quadratic equation**.
+# Three equations for three sides
+
+Call the legs <InlineMath math="a" /> and <InlineMath math="b" /> and the hypotenuse <InlineMath math="c" />. Perimeter, area and Pythagoras give **three equations**:
+
+<BlockMath math="a+b+c=30,\qquad \tfrac12ab=30,\qquad a^2+b^2=c^2" />
+
+# Use <InlineMath math="(a+b)^2" /> to get rid of the legs
+
+You don't need <InlineMath math="a" /> and <InlineMath math="b" /> separately. Square <InlineMath math="a+b=30-c" /> and substitute **<InlineMath math="ab=60" /> and <InlineMath math="a^2+b^2=c^2" />**:
 
 <BlockMath math="\begin{aligned}
-n(n+1)&=156 \\
-n^2+n-156&=0 \\
-(n-12)(n+13)&=0
+(a+b)^2&=a^2+b^2+2ab \\
+(30-c)^2&=c^2+120 \\
+900-60c+c^2&=c^2+120 \\
+780&=60c\quad\Longrightarrow\quad c=13
 \end{aligned}" />
 
-To factor, look for two numbers with product <InlineMath math="-156" /> and sum <InlineMath math="1" />. Those are <InlineMath math="13" /> and <InlineMath math="-12" />. The solution <InlineMath math="n=-13" /> is not a natural number, so <InlineMath math="n=12" /> remains, and the numbers are <InlineMath math="12" /> and <InlineMath math="13" />.
+<MathVisual
+  title={<>The triangle you want</>}
+  description={<>A right triangle with legs <InlineMath math="12" /> and <InlineMath math="5" /> and hypotenuse <InlineMath math="13" />. Its perimeter is <InlineMath math="12+5+13=30" /> and its area <InlineMath math="\frac12\cdot12\cdot5=30" />.</>}
+  labels={{
+    a: <><InlineMath math="a=12" /></>,
+    b: <><InlineMath math="b=5" /></>,
+    c: <><InlineMath math="c=13" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 14 },
+      y: { min: -1.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 12, y: 0 }, { x: 0, y: 5 }] },
+      { id: "hyp", kind: "segment", appearance: "answer", from: { x: 12, y: 0 }, to: { x: 0, y: 5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 2.5 }, placement: "left" },
+      { key: "c", objectId: "hyp", at: { x: 6, y: 2.5 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-As a check: <InlineMath math="12\cdot13=156" />. Also, <InlineMath math="\sqrt{156}" /> lies just below <InlineMath math="\sqrt{169}=13" />, so the numbers must lie around <InlineMath math="12.5" />.
+# Check with the legs
 
-So the sum of the two numbers is <InlineMath math="12+13=25" />.
+With <InlineMath math="c=13" />, <InlineMath math="a+b=17" /> and <InlineMath math="ab=60" />, so <InlineMath math="a" /> and <InlineMath math="b" /> solve <InlineMath math="t^2-17t+60=0" />: <InlineMath math="12" /> and <InlineMath math="5" />. Indeed <InlineMath math="12^2+5^2=169=13^2" />. The hypotenuse is **<InlineMath math="13\text{ cm}" /> long**.
 
-- <InlineMath math="12" /> is only the smaller of the two numbers.
-- <InlineMath math="13" /> is only the larger of the two numbers.
-- <InlineMath math="78" /> is half of the product, <InlineMath math="156:2" />. Halving a product does not give a sum.
-- <InlineMath math="24" /> is twice the smaller number, as if both numbers were <InlineMath math="12" />.
-- <InlineMath math="26" /> is twice the larger number, as if both numbers were <InlineMath math="13" />.
+# Why the other answers are wrong
+
+- <InlineMath math="14\text{ cm}" /> forgets the factor <InlineMath math="\frac12" /> in the area, so <InlineMath math="ab=30" />: then <InlineMath math="900-60c=60" /> and <InlineMath math="c=14" />.
+- <InlineMath math="12\text{ cm}" /> is **the longer leg**, not the hypotenuse.
+- <InlineMath math="15\text{ cm}" /> is half the perimeter.
+- <InlineMath math="10\text{ cm}" /> divides the perimeter by three, as if the triangle were equilateral.
+- <InlineMath math="5\text{ cm}" /> is the shorter leg.

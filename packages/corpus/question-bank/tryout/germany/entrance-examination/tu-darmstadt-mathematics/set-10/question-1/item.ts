@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$x^{\\frac34}$$",
+          label: "$$x^{\\frac{11}{6}}$$",
+        },
+        {
+          correct: false,
+          label: "$$x^{\\frac56}$$",
         },
         {
           correct: true,
-          label: "$$x^{2}$$",
+          label: "$$x^{\\frac{11}{12}}$$",
         },
         {
           correct: false,
-          label: "$$x^{\\frac52}$$",
+          label: "$$x^{\\frac34}$$",
         },
         {
           correct: false,
-          label: "$$x^{\\frac74}$$",
+          label: "$$x^{\\frac{7}{12}}$$",
         },
         {
           correct: false,
-          label: "$$x^{6}$$",
-        },
-        {
-          correct: false,
-          label: "$$x$$",
+          label: "$$x^{\\frac{13}{12}}$$",
         },
       ],
     },

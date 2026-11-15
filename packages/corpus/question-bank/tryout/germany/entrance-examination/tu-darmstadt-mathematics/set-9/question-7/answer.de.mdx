@@ -1,13 +1,52 @@
-Hier ist der **Grundwert gesucht**: Die <InlineMath math="48" /> ausgeliehenen Bücher sind der Prozentwert, <InlineMath math="15\,\%" /> der Prozentsatz, und der ganze Bestand <InlineMath math="G" /> ist unbekannt.
+# Die Änderungen als Faktoren
 
-<BlockMath math="0{,}15\cdot G=48\quad\Rightarrow\quad G=\frac{48}{0{,}15}=\frac{4800}{15}=320" />
+Die Erhöhung um <InlineMath math="25\,\%" /> multipliziert den Preis mit <InlineMath math="1{,}25" />. Am Ende soll er <InlineMath math="10\,\%" /> unter dem alten Preis liegen, also beim <InlineMath math="0{,}9" />-Fachen. Gesucht ist die Senkung um den Anteil <InlineMath math="s" />, **bezogen auf den erhöhten Preis**:
 
-Ohne Taschenrechner geht es auch über <InlineMath math="1\,\%" />: Wenn <InlineMath math="15\,\%" /> genau <InlineMath math="48" /> Bücher sind, dann sind <InlineMath math="5\,\%" /> ein Drittel davon, also <InlineMath math="16" /> Bücher. <InlineMath math="100\,\%" /> sind zwanzigmal so viel, <InlineMath math="20\cdot16=320" />. Zur Kontrolle: <InlineMath math="15\,\%" /> von <InlineMath math="320" /> sind <InlineMath math="0{,}15\cdot320=48" />.
+<BlockMath math="1{,}25\,(1-s)=0{,}9" />
 
-Die Bibliothek hat also <InlineMath math="320" /> Bücher.
+# Den Prozentsatz ausrechnen
 
-- <InlineMath math="7{,}2" /> ist <InlineMath math="15\,\%" /> von <InlineMath math="48" />. Hier werden Prozentwert und Grundwert vertauscht.
-- <InlineMath math="55{,}2" /> rechnet <InlineMath math="48+15\,\%" /> von <InlineMath math="48" />, als ob der Bestand nur etwas größer wäre als die ausgeliehenen Bücher.
-- <InlineMath math="720" /> multipliziert <InlineMath math="48" /> mit <InlineMath math="15" />, statt durch <InlineMath math="0{,}15" /> zu teilen.
-- <InlineMath math="3{,}2" /> teilt <InlineMath math="48" /> durch <InlineMath math="15" /> und vergisst den Faktor <InlineMath math="100" />.
-- <InlineMath math="32" /> teilt durch <InlineMath math="1{,}5" /> statt durch <InlineMath math="0{,}15" /> und verschiebt so das Komma um eine Stelle.
+<BlockMath math="1-s=\frac{0{,}9}{1{,}25}=0{,}72\quad\Longrightarrow\quad s=0{,}28=28\,\%" />
+
+<MathVisual
+  title={<>Der Preis in zwei Schritten</>}
+  description={<>Der Preis als Index mit <InlineMath math="100" /> am Anfang. Er steigt auf <InlineMath math="125" /> und fällt dann auf <InlineMath math="90" />, also <InlineMath math="10" /> unter den Anfangswert. Der zweite Schritt ist eine Senkung um <InlineMath math="35" /> von <InlineMath math="125" />, das sind <InlineMath math="28\,\%" />.</>}
+  labels={{
+    s: <>Anfang <InlineMath math="100" /></>,
+    t: <>erhöht <InlineMath math="125" /></>,
+    e: <>Ende <InlineMath math="90" /></>,
+    cut: <><InlineMath math="-28\,\%" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.6, max: 2.8 },
+      y: { min: 80, max: 135 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 2, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 125 }, { x: 2, y: 90 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 1, y: 125 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 90 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "above-left" },
+      { key: "t", objectId: "p1", at: { x: 1, y: 125 }, placement: "above" },
+      { key: "e", objectId: "p2", at: { x: 2, y: 90 }, placement: "right" },
+      { key: "cut", objectId: "path", at: { x: 1.5, y: 107.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Probe mit <InlineMath math="100\text{ €}" />: erhöht auf <InlineMath math="125\text{ €}" />, davon <InlineMath math="28\,\%" /> sind <InlineMath math="35\text{ €}" />, es bleiben <InlineMath math="90\text{ €}" />. Der erhöhte Preis wurde **um <InlineMath math="28\,\%" /> gesenkt**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="35\,\%" /> addiert die Prozentpunkte <InlineMath math="25+10" />. Die Senkung bezieht sich aber **auf den größeren Grundwert <InlineMath math="125" />**.
+- <InlineMath math="30\,\%" /> rechnet <InlineMath math="20\,\%" /> für die Rücknahme der Erhöhung plus <InlineMath math="10\,\%" /> dazu.
+- <InlineMath math="72\,\%" /> ist der verbleibende Anteil <InlineMath math="\frac{0{,}9}{1{,}25}" />, nicht die Senkung.
+- <InlineMath math="20\,\%" /> bringt den Preis nur zurück auf den Anfangswert: <InlineMath math="1{,}25\cdot0{,}8=1" />.
+- <InlineMath math="25\,\%" /> dreht einfach die Erhöhung um: <InlineMath math="1{,}25\cdot0{,}75=0{,}9375" />.
