@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pendukung menyetujui bahwa pilihan bawaan mengatur orang, sehingga mereka mengusulkan agar semua formulir dibiarkan kosong tanpa centang." },
-        { correct: false, label: "Pendukung membantah bahwa pilihan bawaan berpengaruh, karena orang selalu bebas mengubah pilihannya." },
-        { correct: false, label: "Pendukung menganggap soal etika tidak penting, karena pilihan bawaan terbukti menaikkan jumlah donor organ." },
-        { correct: false, label: "Pendukung setuju bahwa formulir kosong adalah pilihan yang netral, tetapi menilainya terlalu sulit dibuat." },
-        { correct: true, label: "Pendukung menilai pilihan bawaan tak terhindarkan, jadi yang dipersoalkan adalah pilihan bawaan mana dan siapa yang menanggung akibatnya." },
+        { correct: false, label: "Sebuah toko menampilkan harga coret di samping harga diskon, karena pembeli lebih tertarik membeli ketika melihat selisih harga yang besar." },
+        { correct: false, label: "Sebuah sekolah membiarkan siswa memilih kegiatan ekstrakurikuler sendiri, karena kebebasan memilih dianggap paling penting." },
+        { correct: false, label: "Pemerintah mewajibkan pengendara memakai helm, karena keselamatan dianggap lebih penting daripada kebebasan memilih." },
+        { correct: false, label: "Seorang dokter menuliskan dosis bawaan pada resep, karena banyak pasien malas membaca petunjuk pemakaian obat." },
+        { correct: true, label: "Seorang guru berkata bahwa tidak memberi pekerjaan rumah pun sudah sebuah keputusan, jadi yang perlu dibahas adalah pekerjaan rumah seperti apa." },
       ],
     },
   },

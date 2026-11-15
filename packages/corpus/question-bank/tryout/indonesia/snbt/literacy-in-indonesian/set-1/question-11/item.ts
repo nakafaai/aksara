@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Teks B menolak data itu, karena menganggap nilai SMA Harapan Bangsa tidak benar-benar naik dan hanya dilaporkan naik oleh guru." },
-        { correct: false, label: "Teks B menerima data itu sebagai bukti manfaat larangan, tetapi menilai kenaikan $$6$$ poin terlalu kecil untuk mengubah kebijakan sekolah lain." },
-        { correct: false, label: "Teks B memakai data SMA Pelita untuk membuktikan bahwa larangan ponsel sama sekali tidak berpengaruh pada nilai siswa di sekolah mana pun." },
-        { correct: true, label: "Teks B menerima bahwa nilai naik, tetapi memakai sekolah pembanding untuk menunjukkan sebagian besar kenaikan itu mungkin berasal dari hal lain." },
-        { correct: false, label: "Teks B menunjukkan bahwa pergantian format ujian hanya menaikkan nilai SMA Harapan Bangsa, bukan sekolah lain di kabupaten yang sama." },
+        { correct: false, label: "$$6$$ poin, karena SMA Pelita tidak melarang ponsel sehingga tidak dapat dijadikan pembanding" },
+        { correct: false, label: "$$5$$ poin, yaitu kenaikan yang sama besar dengan kenaikan di SMA Pelita" },
+        { correct: false, label: "sekitar $$1$$ poin, atau kira-kira seperlima dari kenaikan di SMA Harapan Bangsa" },
+        { correct: true, label: "sekitar $$1$$ poin, atau kira-kira seperenam dari kenaikan di SMA Harapan Bangsa" },
+        { correct: false, label: "sekitar $$2$$ poin, karena nilai awal SMA Pelita $$2$$ poin lebih tinggi" },
       ],
     },
   },

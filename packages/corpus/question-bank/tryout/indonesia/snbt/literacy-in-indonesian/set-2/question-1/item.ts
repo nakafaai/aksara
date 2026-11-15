@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "paraphrase",
+    topic: "application",
   },
   stimulus: "mercury-gold",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Merkuri paling berbahaya di tempat yang paling dekat dengan tambang, karena di sanalah merkuri pertama kali mengendap.",
-        },
-        {
-          correct: true,
-          label:
-            "Kondisi tempat merkuri mengendap, seperti lumpur rawa yang miskin oksigen, ikut menentukan seberapa banyak merkuri menjadi metilmerkuri.",
-        },
-        {
-          correct: false,
-          label:
-            "Banyaknya merkuri di sungai tidak berpengaruh pada kadar ikan selama merkuri itu mengendap di lumpur dan tidak terlarut di air.",
-        },
-        {
-          correct: false,
-          label:
-            "Kadar metilmerkuri dalam ikan lebih ditentukan oleh bagian tubuh ikan tempat merkuri menumpuk daripada oleh jumlah merkuri di air.",
-        },
-        {
-          correct: false,
-          label:
-            "Merkuri yang mengendap di rawa hilir lebih banyak daripada merkuri yang terbawa air di dekat tambang, sehingga ikan hilir lebih tercemar.",
-        },
+        { correct: false, label: "bagian sungai yang deras tepat di bawah tambang, karena kadar merkuri total di airnya paling tinggi" },
+        { correct: true, label: "waduk tenang berdasar miskin oksigen di hilir, walaupun kadar merkuri total airnya lebih rendah" },
+        { correct: false, label: "danau berair jernih yang tidak menerima air dari sungai tambang, karena airnya paling tenang" },
+        { correct: false, label: "bagian sungai yang deras tepat di bawah tambang, karena ikan di sana paling dekat dengan sumber merkuri" },
+        { correct: false, label: "waduk yang tenang sekitar $$30$$ km di hilir, karena ikan pemakan tumbuhan di sana memakan ikan lain" },
       ],
     },
   },

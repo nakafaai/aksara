@@ -12,9 +12,9 @@ const item: ItemSource = {
       columns: ["Sesuai", "Tidak sesuai"],
       kind: "matrix",
       statements: [
-        { column: 2, label: "Ibu berharap Laras membatalkan rencananya dan tetap tinggal untuk menenun." },
+        { column: 2, label: "Ibu secara halus membujuk Laras agar membatalkan kepergiannya ke Bandung." },
         { column: 1, label: "Ibu menerima pilihan Laras walaupun tidak mengatakannya secara langsung." },
-        { column: 2, label: "Ibu menganggap tradisi menenun keluarga tidak lagi penting." },
+        { column: 2, label: "Ibu menganggap motif pucuk rebung tidak perlu lagi ditenun keluarga mereka." },
         { column: 1, label: "Ibu menyerahkan kepada Laras cara meneruskan tradisi keluarga itu." },
       ],
     },

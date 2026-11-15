@@ -4,18 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "point-of-view",
+    topic: "strengthen-weaken",
   },
   stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Penulis menerima sebutan itu sepenuhnya, karena kisah kelapa sawit membuktikan bahwa kebun itu sejak awal dibangun untuk kepentingan perkebunan." },
-        { correct: false, label: "Penulis menolak sebutan itu sepenuhnya, karena kebun itu sejak awal dibangun untuk penelitian ilmiah murni." },
-        { correct: true, label: "Penulis menerima sebutan itu untuk sebagian kegiatan, tetapi menilainya mengabaikan penelitian tumbuhan yang tidak punya nilai dagang." },
-        { correct: false, label: "Penulis menerima sebutan itu untuk sebagian kegiatan, tetapi menilainya tidak berlaku karena kelapa sawit gagal tumbuh." },
-        { correct: false, label: "Penulis tidak menanggapi sebutan itu dan hanya melaporkan pendapat para sejarawan." },
+        { correct: false, label: "Bantahan penulis menjadi lebih kuat, karena laboratorium itu terbukti didatangi peneliti dari banyak negara di dunia." },
+        { correct: false, label: "Bantahan penulis tidak terpengaruh, karena sebutan itu hanya menyangkut kebun, bukan laboratoriumnya." },
+        { correct: true, label: "Bantahan penulis melemah, tetapi tidak gugur, karena kebun itu masih punya herbarium dan kini berfungsi untuk konservasi." },
+        { correct: false, label: "Bantahan penulis gugur seluruhnya, sehingga sebutan itu berlaku untuk seluruh sejarah kebun itu sampai sekarang." },
+        { correct: false, label: "Bantahan penulis melemah, karena kelapa sawit ternyata tidak pernah ditanam di kebun itu." },
       ],
     },
   },

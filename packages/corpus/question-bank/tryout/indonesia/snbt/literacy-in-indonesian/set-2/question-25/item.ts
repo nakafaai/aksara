@@ -4,18 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "application",
   },
   stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Kebun raya terlalu kecil untuk menanam semua jenis tumbuhan, sehingga sebagian jenis tidak tertampung." },
-        { correct: true, label: "Setiap jenis hanya diwakili sedikit individu, dan penyerbuk, jamur tanah, atau penyebar bijinya tidak ikut pindah ke kebun." },
-        { correct: false, label: "Kebun raya hanya memuat sedikit individu setiap jenis, sehingga tumbuhan di kebun lebih mudah terserang penyakit daripada di hutan." },
-        { correct: false, label: "Kebun raya dikelola untuk kebutuhan perkebunan, sehingga tumbuhan yang tidak bernilai dagang tidak dirawat." },
-        { correct: false, label: "Tumbuhan di kebun raya tidak dapat berbuah, karena iklim Bogor berbeda dengan iklim hutan asalnya." },
+        { correct: false, label: "menanam lebih banyak individu dari berbagai populasi di kebun raya" },
+        { correct: true, label: "melindungi hutan tempat tumbuhan itu hidup bersama penyerbuk dan jamurnya" },
+        { correct: false, label: "mendatangkan penyerbuk dan hewan penyebar biji dari hutan ke dalam kebun raya" },
+        { correct: false, label: "menyimpan biji tumbuhan itu di bank biji yang suhunya rendah" },
+        { correct: false, label: "memperluas kebun raya agar dapat menampung lebih banyak jenis tumbuhan" },
       ],
     },
   },

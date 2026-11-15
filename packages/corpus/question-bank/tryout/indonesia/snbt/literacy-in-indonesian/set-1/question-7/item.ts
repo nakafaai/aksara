@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: true, label: "dari menjaga jarak menjadi mewariskan pengetahuan yang tidak dimiliki mesin, terlihat dari tanda langit dan kunci" },
-        { correct: false, label: "dari menjaga jarak menjadi mengagumi lampu baru, terlihat dari lensa yang ia poles sampai tak bersidik jari" },
-        { correct: false, label: "dari bermusuhan secara terbuka menjadi mewariskan pengetahuannya, terlihat dari tanda langit yang ia jelaskan" },
-        { correct: false, label: "dari curiga kepada Wulan menjadi bergantung kepadanya, terlihat dari kunci pintu yang ia serahkan pagi itu" },
-        { correct: false, label: "tetap menjaga jarak sampai akhir, terlihat dari engkol yang tidak lagi ia putar pada malam terakhir" },
+        { correct: true, label: "Pak Darsa tidak terkesan oleh penjelasan Wulan tentang cara kerja sensor lampu baru." },
+        { correct: false, label: "Pak Darsa menolak membantu pemasangan lampu baru karena marah tugasnya diambil alih mesin." },
+        { correct: true, label: "Pak Darsa mewariskan kepada Wulan pengetahuan yang tidak dapat dibaca oleh sensor lampu." },
+        { correct: false, label: "Pak Darsa menyerahkan kunci kuningan karena kunci itu tidak lagi dapat membuka apa pun." },
+        { correct: true, label: "Pak Darsa membiarkan Wulan mencatat pengetahuannya, walaupun pada awalnya ia menjaga jarak." },
       ],
     },
   },

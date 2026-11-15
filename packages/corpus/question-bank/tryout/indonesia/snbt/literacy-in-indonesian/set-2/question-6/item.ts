@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Ibu ingin Laras membawa benang emas ke Bandung, karena benang yang tidak dipakai akan rusak." },
-        { correct: false, label: "Melepas Laras tidak akan memutus ikatan mereka, tetapi Laras harus segera pulang agar ikatan itu tidak rusak." },
-        { correct: true, label: "Melepas Laras tidak akan memutus ikatan mereka, sedangkan menahannya justru dapat menyia-nyiakan Laras." },
-        { correct: false, label: "Ibu kecewa karena Laras memilih kuliah, sebab benang emas yang terlalu lama digulung akan rusak." },
-        { correct: false, label: "Menahan Laras di rumah akan menjaga ikatan mereka, sama seperti benang emas yang dijaga dengan disimpan." },
+        { correct: true, label: "Kepergian Laras tidak akan memutus ikatan mereka, seperti benang emas yang tidak putus ketika ditarik." },
+        { correct: false, label: "Ibu ingin Laras membawa benang emas ke Bandung, agar benang itu tidak rusak karena tidak dipakai." },
+        { correct: false, label: "Laras harus segera pulang, karena ikatan yang terlalu lama ditinggalkan akan rusak seperti benang." },
+        { correct: true, label: "Menahan Laras di rumah justru dapat menyia-nyiakan dirinya, seperti benang yang disimpan dan tidak dipakai." },
+        { correct: false, label: "Ibu kecewa dengan pilihan Laras, karena ikatan mereka akan putus seperti benang yang ditarik." },
       ],
     },
   },

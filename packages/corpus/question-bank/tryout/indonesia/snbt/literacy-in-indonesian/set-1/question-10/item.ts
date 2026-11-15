@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "memperlihatkan bahwa buku catatan jaga sudah usang, sekaligus menjadi titik ketika Pak Darsa menyerah pada mesin" },
-        { correct: false, label: "menjelaskan mengapa banyak nelayan celaka di tanjung, sekaligus menjadi alasan kantor di kota memasang lampu baru" },
-        { correct: false, label: "memperlihatkan kekurangan Wulan sebagai teknisi, sekaligus menjadi titik ketika Pak Darsa mulai meragukannya" },
-        { correct: false, label: "memperlihatkan bahwa Pak Darsa ingin tetap tinggal di pulau, sekaligus menjadi titik ketika ia mulai berbagi" },
-        { correct: true, label: "memperlihatkan pengetahuan yang tidak dibawa lampu baru, sekaligus menjadi titik ketika Pak Darsa mulai membagikannya" },
+        { correct: false, label: "menunjukkan bahwa buku catatan jaga sudah usang dan tidak lagi dibaca siapa pun, termasuk kantor di kota" },
+        { correct: true, label: "memperlihatkan pengetahuan tentang laut yang tidak dapat dibaca oleh sensor lampu baru" },
+        { correct: false, label: "membuktikan bahwa tanda langit Pak Darsa lebih tepat daripada sensor lampu baru" },
+        { correct: true, label: "menandai saat sikap Pak Darsa terhadap Wulan berubah dari menjaga jarak menjadi berbagi" },
+        { correct: false, label: "menjelaskan mengapa kantor di kota memutuskan mengganti penjaga dengan lampu otomatis" },
       ],
     },
   },

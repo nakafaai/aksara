@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "text-relation",
   },
@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Teks B menolak kenaikan upah minimum, karena kenaikan upah akan membuat usaha mikro memangkas pekerjanya." },
-        { correct: false, label: "Teks B menerima tujuan Teks A dan seluruh buktinya, tetapi meminta agar kenaikan ditunda selama tiga tahun." },
-        { correct: true, label: "Teks B menerima tujuan Teks A, tetapi meragukan bukti Teks A untuk usaha mikro dan mengusulkan kenaikan yang dibedakan." },
-        { correct: false, label: "Teks B meragukan bukti Teks A, sehingga menyimpulkan bahwa upah minimum saat ini sebenarnya sudah cukup untuk hidup layak." },
-        { correct: false, label: "Teks B menerima tujuan Teks A, tetapi menuduh dewan pengupahan hanya mendengarkan suara pengusaha besar." },
+        { correct: false, label: "Usul itu dapat diterima, karena kenaikan bertahap tetap menaikkan upah semua pekerja pada tahun depan." },
+        { correct: false, label: "Usul itu keliru, karena penelitian di berbagai negara membuktikan usaha mikro sama sekali tidak terdampak kenaikan upah minimum." },
+        { correct: true, label: "Usul itu menunda sebagian besar suntikan daya beli, karena menurut Teks B sebagian besar pekerja ada di usaha mikro dan kecil." },
+        { correct: false, label: "Usul itu menunda suntikan daya beli, tetapi hanya untuk sebagian kecil pekerja di kabupaten itu, sehingga pengaruhnya tidak berarti." },
+        { correct: false, label: "Usul itu tidak perlu ditanggapi, karena keberatan pengusaha selalu muncul setiap tahun tanpa bukti." },
       ],
     },
   },

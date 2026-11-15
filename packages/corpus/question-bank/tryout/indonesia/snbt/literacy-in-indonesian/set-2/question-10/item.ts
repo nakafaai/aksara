@@ -11,11 +11,11 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Tradisi harus disalin persis agar tidak hilang, dan Laras membuktikannya dengan menghitung benang tanpa menemukan kesalahan." },
-        { correct: true, label: "Tradisi dapat diteruskan sambil diubah oleh hidup generasi berikutnya, dan restu Ibu disampaikan lewat kain, bukan kata-kata." },
-        { correct: false, label: "Tradisi dapat diteruskan sambil diubah oleh hidup generasi berikutnya, tetapi Ibu menolak perubahan itu dengan membiarkan kain tak selesai." },
-        { correct: false, label: "Pendidikan di kota membuat anak meninggalkan tradisi, dan kain yang belum selesai melambangkan tradisi yang putus." },
-        { correct: false, label: "Restu Ibu disampaikan lewat kain, bukan kata-kata, karena Ibu tidak menguasai bahasa yang dipakai Laras di kota." },
+        { correct: false, label: "Tradisi harus disalin persis agar tidak hilang, sebagaimana ditunjukkan oleh benang yang tidak satu pun salah." },
+        { correct: true, label: "Tradisi keluarga itu diteruskan sambil diubah oleh hidup yang dipilih Laras." },
+        { correct: false, label: "Kain yang belum selesai melambangkan tradisi keluarga yang putus karena Laras pergi." },
+        { correct: true, label: "Ibu tidak menyatakan restunya secara terang-terangan, tetapi penerimaannya tampak lewat kain yang ia tenun." },
+        { correct: false, label: "Ibu diam karena tidak menguasai bahasa yang dipakai Laras di kota." },
       ],
     },
   },
