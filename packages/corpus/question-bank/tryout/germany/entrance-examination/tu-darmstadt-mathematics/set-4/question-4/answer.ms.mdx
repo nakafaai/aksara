@@ -1,0 +1,75 @@
+# Cari bahagian-bahagian hipotenus
+
+Tinggi membahagi hipotenus kepada dua bahagian <InlineMath math="p" /> dan <InlineMath math="q" />. Ada dua hubungan untuk kedua-duanya: hasil tambahnya ialah hipotenus, dan mengikut **teorem tinggi**, hasil darabnya sama dengan kuasa dua tinggi:
+
+<BlockMath math="\begin{aligned}
+p+q&=13,\qquad p\cdot q=h^2=36 \\
+p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
+\end{aligned}" />
+
+Jadi kedua-dua bahagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
+
+<MathVisual
+  title={<>Tinggi membahagi hipotenus</>}
+  description={<>Segi tiga <InlineMath math="ABC" /> dengan hipotenus <InlineMath math="\overline{AB}=13" /> di bawah dan sudut tegak di <InlineMath math="C" /> di atas. Tinggi dari <InlineMath math="C" /> ke hipotenus panjangnya <InlineMath math="6" /> dan membahagi hipotenus kepada bahagian <InlineMath math="p=4" /> dan <InlineMath math="q=9" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p=4" /></>,
+    q: <><InlineMath math="q=9" /></>,
+    h: <><InlineMath math="h=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -2, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "piece-p", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "piece-q", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 13, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 6 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 13, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "p", objectId: "piece-p", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "q", objectId: "piece-q", at: { x: 8.5, y: 0 }, placement: "below" },
+      { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Cari sisi tegak
+
+Mengikut **teorem sisi tegak**, kuasa dua setiap sisi tegak sama dengan hipotenus didarab dengan bahagian yang bersebelahan dengan sisi itu:
+
+<BlockMath math="\begin{aligned}
+a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
+b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+\end{aligned}" />
+
+Semakan: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+
+# Tambah perimeternya
+
+<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+
+**Perimeter segi tiga itu ialah** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, kira-kira <InlineMath math="31.0\text{ cm}" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="30\text{ cm}" /> memakai sisi yang biasa dikenali, <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Tetapi segi tiga itu ada **tinggi yang lain**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
+- <InlineMath math="26\text{ cm}" /> menambah bahagian <InlineMath math="4" /> dan <InlineMath math="9" /> kepada hipotenus, seolah-olah kedua-duanya sisi tegak.
+- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> memakai <InlineMath math="ab=2\cdot13\cdot6=156" />. Yang betul ialah <InlineMath math="ab=c\cdot h=78" />, sebab kedua-dua hasil darab itu sama dengan dua kali luas.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> cuma hasil tambah sisi tegak, tanpa hipotenus.
+- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> hanya mengira satu sisi tegak.

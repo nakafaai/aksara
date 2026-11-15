@@ -1,15 +1,61 @@
-Hier musst du **Prozentpunkte und Prozent auseinanderhalten**. Der Anteil steigt von <InlineMath math="20\,\%" /> auf <InlineMath math="25\,\%" />, also um <InlineMath math="5" /> Prozentpunkte. Gefragt ist aber, um wie viel Prozent die Anzahl der Radfahrenden wächst, also die Zunahme im Verhältnis zum alten Wert.
+# Prozentänderungen als Faktoren
 
-Nenne die feste Gesamtzahl der Beschäftigten <InlineMath math="N" />. Vorher fahren <InlineMath math="0{,}20\,N" /> Personen mit dem Rad, danach <InlineMath math="0{,}25\,N" />. Die Zunahme teilst du durch den Grundwert, den alten Wert.
+Schreibe den gesuchten Prozentsatz als Dezimalzahl <InlineMath math="p" />. Die Erhöhung multipliziert den Preis mit <InlineMath math="1+p" />. Die Senkung um den doppelten Prozentsatz bezieht sich auf **den schon erhöhten Preis** und multipliziert mit <InlineMath math="1-2p" />. Am Ende ist der Preis <InlineMath math="12\,\%" /> niedriger, also das <InlineMath math="0{,}88" />-Fache:
 
-<BlockMath math="\frac{0{,}25\,N-0{,}20\,N}{0{,}20\,N}=\frac{0{,}05}{0{,}20}=\frac14=25\,\%" />
+<BlockMath math="(1+p)(1-2p)=0{,}88" />
 
-Zur Kontrolle nimmst du ein konkretes Beispiel mit <InlineMath math="N=100" />. Dann fahren erst <InlineMath math="20" /> und später <InlineMath math="25" /> Personen mit dem Rad. Die Zunahme um <InlineMath math="5" /> Personen ist ein Viertel von <InlineMath math="20" />.
+# Die quadratische Gleichung lösen
 
-Die Zahl der Beschäftigten, die mit dem Fahrrad fahren, ist also um <InlineMath math="25\,\%" /> gestiegen.
+<BlockMath math="\begin{aligned}
+1-p-2p^2&=0{,}88 \\
+2p^2+p-0{,}12&=0 \\
+p&=\frac{-1\pm\sqrt{1+0{,}96}}{4}=\frac{-1\pm1{,}4}{4}
+\end{aligned}" />
 
-- <InlineMath math="5\,\%" /> ist die Differenz der beiden Anteile. Das sind <InlineMath math="5" /> Prozentpunkte, keine Zunahme um <InlineMath math="5\,\%" />.
-- <InlineMath math="20\,\%" /> bezieht die Zunahme auf den neuen Wert, <InlineMath math="\frac{5}{25}" />. Grundwert ist aber der alte Wert <InlineMath math="20" />.
-- <InlineMath math="45\,\%" /> addiert die beiden Anteile. Diese Summe hat keine Bedeutung für die Veränderung.
-- <InlineMath math="80\,\%" /> ist <InlineMath math="\frac{20}{25}" />, also der alte Wert als Anteil des neuen.
-- <InlineMath math="125\,\%" /> ist der neue Wert als Anteil des alten, <InlineMath math="\frac{25}{20}" />. Die Zunahme ist nur der Teil über <InlineMath math="100\,\%" />.
+Das ergibt **<InlineMath math="p=0{,}1" /> oder <InlineMath math="p=-0{,}6" />**.
+
+# Die negative Lösung verwerfen
+
+Eine Erhöhung braucht **einen positiven Prozentsatz**, also bleibt <InlineMath math="p=0{,}1" />:
+
+<MathVisual
+  title={<>Gesamtfaktor in Abhängigkeit vom Prozentsatz</>}
+  description={<>Der Graph zeigt den Gesamtfaktor <InlineMath math="(1+p)(1-2p)" /> für Prozentsätze <InlineMath math="p" /> als Dezimalzahl. Die waagerechte Linie liegt bei <InlineMath math="0{,}88" />. Sie schneidet den Graphen bei <InlineMath math="p=0{,}1" /> und bei <InlineMath math="p=-0{,}6" />. Nur <InlineMath math="p=0{,}1" /> ist eine Erhöhung.</>}
+  labels={{
+    key: <><InlineMath math="p=0{,}1" /></>,
+    bad: <><InlineMath math="p=-0{,}6" /></>,
+    f: <>Gesamtfaktor</>,
+    t: <><InlineMath math="0{,}88" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.9, max: 0.6 },
+      y: { min: 0, max: 1.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "factor", kind: "function", appearance: "primary", formula: "(1+x)*(1-2*x)", domain: { min: -0.8, max: 0.45 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0.88 }, to: { x: 0.45, y: 0.88 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 0.1, y: 0.88 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -0.6, y: 0.88 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 0.1, y: 0.88 }, placement: "below-right" },
+      { key: "bad", objectId: "neg", at: { x: -0.6, y: 0.88 }, placement: "below-left" },
+      { key: "f", objectId: "factor", at: { x: -0.25, y: 1.125 }, placement: "above" },
+      { key: "t", objectId: "target", at: { x: 0.45, y: 0.88 }, placement: "right" },
+    ],
+  }}
+/>
+
+Probe: Erhöhung um <InlineMath math="10\,\%" /> auf das <InlineMath math="1{,}1" />-Fache, Senkung um <InlineMath math="20\,\%" /> auf <InlineMath math="1{,}1\cdot0{,}8=0{,}88" />. Der Preis wurde zuerst um <InlineMath math="10\,\%" /> erhöht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12\,\%" /> rechnet linear: <InlineMath math="p-2p=-12\,\%" />. Dabei wird die Senkung auf den alten statt auf den erhöhten Preis bezogen.
+- <InlineMath math="20\,\%" /> ist der Prozentsatz der **Senkung**, nicht der Erhöhung.
+- <InlineMath math="60\,\%" /> ist der Betrag der negativen Lösung <InlineMath math="p=-0{,}6" />, die keine Erhöhung beschreibt.
+- <InlineMath math="6\,\%" /> halbiert die <InlineMath math="12\,\%" />.
+- <InlineMath math="4\,\%" /> teilt die <InlineMath math="12\,\%" /> durch drei, als ob Erhöhung und Senkung zusammen eine Änderung um <InlineMath math="3p=12\,\%" /> wären.

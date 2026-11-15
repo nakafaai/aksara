@@ -1,20 +1,67 @@
-Soal menanyakan banyak lot undian (*Lose*) di dalam wadah pada awalnya. Mengambil lot kosong tidak mengubah banyak lot berhadiah, hanya jumlah totalnya. Nyatakan **banyak lot berhadiah yang tetap** ini dengan dua cara, lalu samakan keduanya.
+# Tulis kedua tahun sebagai faktor
 
-Sebut banyak lot mula-mula <InlineMath math="N" />. Awalnya ada <InlineMath math="0{,}2\,N" /> lot berhadiah. Setelah itu tersisa <InlineMath math="N-40" /> lot, dan <InlineMath math="30\,\%" /> di antaranya berhadiah.
+Misalkan suku bunga tahun pertama <InlineMath math="P" /> persen. Maka saldo tumbuh dengan faktor <InlineMath math="1+\frac{P}{100}" /> di tahun pertama dan <InlineMath math="1+\frac{P+2}{100}" /> di tahun kedua. **Bunga tahun pertama ikut berbunga di tahun kedua**, jadi kedua faktor itu dikalikan:
+
+<BlockMath math="10{.}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{.}235" />
+
+# Persamaan kuadrat dalam <InlineMath math="P" />
+
+Karena <InlineMath math="10{.}000=100\cdot100" />, setiap faktor bisa dikalikan <InlineMath math="100" />. Hasilnya **persamaan dengan bilangan bulat**:
 
 <BlockMath math="\begin{aligned}
-0{,}2\,N&=0{,}3\,(N-40) \\
-0{,}2\,N&=0{,}3\,N-12 \\
-12&=0{,}1\,N \\
-N&=120
+(100+P)(102+P)&=11{.}235 \\
+P^2+202P+10{.}200&=11{.}235 \\
+P^2+202P-1{.}035&=0 \\
+(P-5)(P+207)&=0
 \end{aligned}" />
 
-Sebagai pemeriksaan, hitung maju. Dari <InlineMath math="120" /> lot, ada <InlineMath math="24" /> lot berhadiah. Setelah pengambilan tersisa <InlineMath math="80" /> lot, dan <InlineMath math="\frac{24}{80}=0{,}3=30\,\%" />.
+Pemfaktoran itu cocok, karena <InlineMath math="5\cdot207=1{.}035" /> dan <InlineMath math="207-5=202" />.
 
-Jadi, mula-mula ada <InlineMath math="120" /> lot di dalam wadah.
+# Buang penyelesaian negatif
 
-- <InlineMath math="80" /> adalah banyak lot setelah lot kosong diambil.
-- <InlineMath math="24" /> adalah banyak lot berhadiah, bukan banyak seluruh lot.
-- <InlineMath math="160" /> menambahkan lagi <InlineMath math="40" /> lot kosong ke <InlineMath math="120" /> lot mula-mula.
-- <InlineMath math="400" /> muncul jika di ruas kanan yang dikurangkan adalah <InlineMath math="40" />, bukan <InlineMath math="0{,}3\cdot40" />, sehingga diperoleh <InlineMath math="0{,}1\,N=40" />.
-- <InlineMath math="12" /> hanyalah nilai <InlineMath math="0{,}3\cdot40" />, hasil antara dalam perhitungan.
+Suku bunga <InlineMath math="-207\,\%" /> **bukan suku bunga yang masuk akal**, karena setelah tahun pertama saldonya sudah habis. Jadi <InlineMath math="P=5" />:
+
+<MathVisual
+  title={<>Saldo setelah dua tahun menurut suku bunga</>}
+  description={<>Grafik penuh menunjukkan saldo <InlineMath math="(100+P)(102+P)" /> dalam euro untuk suku bunga <InlineMath math="P" /> persen di tahun pertama dan <InlineMath math="P+2" /> persen di tahun kedua. Grafik itu memotong garis <InlineMath math="11{.}235" /> di <InlineMath math="P=5" />. Garis putus-putus adalah <InlineMath math="(100+P)^2" /> untuk dua suku bunga yang sama: nilainya hampir sama di <InlineMath math="P=6" />.</>}
+  labels={{
+    key: <><InlineMath math="P=5" /></>,
+    eq: <><InlineMath math="P=6" /></>,
+    t: <><InlineMath math="11{.}235" /></>,
+    a: <>dua suku bunga</>,
+    b: <>suku bunga sama</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9.8 },
+      y: { min: 10000, max: 12300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
+      { id: "equal", kind: "point", appearance: "highlight", at: { x: 6, y: 11236 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 5, y: 11235 }, placement: "above-left" },
+      { key: "eq", objectId: "equal", at: { x: 6, y: 11236 }, placement: "below-right" },
+      { key: "t", objectId: "target", at: { x: 0, y: 11235 }, placement: "above-right" },
+      { key: "a", objectId: "two-rates", at: { x: 8.5, y: 11973 }, placement: "left" },
+      { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="10{.}000\cdot1{,}05=10{.}500" /> dan <InlineMath math="10{.}500\cdot1{,}07=11{.}235" />. Suku bunga tahun pertama <InlineMath math="5\,\%" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6\,\%" /> menganggap **dua suku bunga yang sama**. Hasilnya <InlineMath math="10{.}000\cdot1{,}06^2=11{.}236\text{ €}" />, hampir sama, padahal kedua suku bunga harus berselisih <InlineMath math="2" /> poin persentase.
+- <InlineMath math="7\,\%" /> adalah suku bunga tahun kedua.
+- <InlineMath math="5{,}175\,\%" /> menghitung tanpa bunga majemuk: <InlineMath math="P+(P+2)=12{,}35" />.
+- <InlineMath math="6{,}175\,\%" /> membagi pertumbuhan total <InlineMath math="12{,}35\,\%" /> sama rata untuk dua tahun.
+- <InlineMath math="12{,}35\,\%" /> adalah pertumbuhan selama dua tahun sekaligus, bukan suku bunga satu tahun.

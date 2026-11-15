@@ -1,20 +1,67 @@
-Die Zahl der Gewinne bleibt beim Herausnehmen gleich, nur die Gesamtzahl wird kleiner. Diese **unveränderte Zahl der Gewinne** drückst du zweimal aus und setzt beide Ausdrücke gleich.
+# Beide Jahre als Faktoren schreiben
 
-Nenne die ursprüngliche Zahl der Lose <InlineMath math="N" />. Vorher sind <InlineMath math="0{,}2\,N" /> Lose Gewinne. Nachher liegen <InlineMath math="N-40" /> Lose in der Trommel, und davon sind <InlineMath math="30\,\%" /> Gewinne.
+Nenne den Zinssatz des ersten Jahres <InlineMath math="P" /> Prozent. Dann wächst das Guthaben im ersten Jahr mit dem Faktor <InlineMath math="1+\frac{P}{100}" /> und im zweiten mit <InlineMath math="1+\frac{P+2}{100}" />. **Die Zinsen des ersten Jahres werden im zweiten mitverzinst**, also werden die beiden Faktoren multipliziert:
+
+<BlockMath math="10{.}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{.}235" />
+
+# Eine quadratische Gleichung in <InlineMath math="P" />
+
+Wegen <InlineMath math="10{.}000=100\cdot100" /> kannst du jeden Faktor mit <InlineMath math="100" /> multiplizieren. So entsteht **eine Gleichung mit ganzen Zahlen**:
 
 <BlockMath math="\begin{aligned}
-0{,}2\,N&=0{,}3\,(N-40) \\
-0{,}2\,N&=0{,}3\,N-12 \\
-12&=0{,}1\,N \\
-N&=120
+(100+P)(102+P)&=11{.}235 \\
+P^2+202P+10{.}200&=11{.}235 \\
+P^2+202P-1{.}035&=0 \\
+(P-5)(P+207)&=0
 \end{aligned}" />
 
-Zur Kontrolle rechnest du vorwärts. Von <InlineMath math="120" /> Losen sind <InlineMath math="24" /> Gewinne. Nach dem Herausnehmen bleiben <InlineMath math="80" /> Lose, und <InlineMath math="\frac{24}{80}=0{,}3=30\,\%" />.
+Die Zerlegung passt, weil <InlineMath math="5\cdot207=1{.}035" /> und <InlineMath math="207-5=202" />.
 
-Ursprünglich waren also <InlineMath math="120" /> Lose in der Trommel.
+# Die negative Lösung verwerfen
 
-- <InlineMath math="80" /> ist die Zahl der Lose nach dem Herausnehmen der Nieten.
-- <InlineMath math="24" /> ist die Zahl der Gewinne, nicht die Zahl aller Lose.
-- <InlineMath math="160" /> addiert die <InlineMath math="40" /> Nieten noch einmal zu den ursprünglichen <InlineMath math="120" /> Losen.
-- <InlineMath math="400" /> entsteht, wenn auf der rechten Seite <InlineMath math="0{,}3\cdot40" /> nicht ausgerechnet, sondern einfach <InlineMath math="40" /> abgezogen wird: <InlineMath math="0{,}1\,N=40" />.
-- <InlineMath math="12" /> ist nur der Wert von <InlineMath math="0{,}3\cdot40" />, ein Zwischenergebnis der Rechnung.
+Ein Zinssatz von <InlineMath math="-207\,\%" /> ist **kein sinnvoller Zinssatz**, denn dann wäre schon nach dem ersten Jahr nichts mehr übrig. Also ist <InlineMath math="P=5" />:
+
+<MathVisual
+  title={<>Guthaben nach zwei Jahren je nach Zinssatz</>}
+  description={<>Der durchgezogene Graph zeigt das Guthaben <InlineMath math="(100+P)(102+P)" /> in Euro für einen Zinssatz von <InlineMath math="P" /> Prozent im ersten Jahr und <InlineMath math="P+2" /> Prozent im zweiten. Er trifft die Linie <InlineMath math="11{.}235" /> bei <InlineMath math="P=5" />. Gestrichelt ist <InlineMath math="(100+P)^2" /> für zwei gleiche Zinssätze gezeichnet: Er erreicht fast denselben Wert bei <InlineMath math="P=6" />.</>}
+  labels={{
+    key: <><InlineMath math="P=5" /></>,
+    eq: <><InlineMath math="P=6" /></>,
+    t: <><InlineMath math="11{.}235" /></>,
+    a: <>zwei Zinssätze</>,
+    b: <>gleicher Zinssatz</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9.8 },
+      y: { min: 10000, max: 12300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
+      { id: "equal", kind: "point", appearance: "highlight", at: { x: 6, y: 11236 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 5, y: 11235 }, placement: "above-left" },
+      { key: "eq", objectId: "equal", at: { x: 6, y: 11236 }, placement: "below-right" },
+      { key: "t", objectId: "target", at: { x: 0, y: 11235 }, placement: "above-right" },
+      { key: "a", objectId: "two-rates", at: { x: 8.5, y: 11973 }, placement: "left" },
+      { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="10{.}000\cdot1{,}05=10{.}500" /> und <InlineMath math="10{.}500\cdot1{,}07=11{.}235" />. Der Zinssatz im ersten Jahr war <InlineMath math="5\,\%" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6\,\%" /> nimmt **zwei gleiche Zinssätze** an. Das liefert <InlineMath math="10{.}000\cdot1{,}06^2=11{.}236\text{ €}" />, fast denselben Betrag, aber die Zinssätze sollen sich um <InlineMath math="2" /> Prozentpunkte unterscheiden.
+- <InlineMath math="7\,\%" /> ist der Zinssatz des zweiten Jahres.
+- <InlineMath math="5{,}175\,\%" /> rechnet ohne Zinseszins: <InlineMath math="P+(P+2)=12{,}35" />.
+- <InlineMath math="6{,}175\,\%" /> teilt den Gesamtzuwachs von <InlineMath math="12{,}35\,\%" /> gleichmäßig auf zwei Jahre auf.
+- <InlineMath math="12{,}35\,\%" /> ist der Zuwachs über beide Jahre zusammen, nicht der Zinssatz eines Jahres.

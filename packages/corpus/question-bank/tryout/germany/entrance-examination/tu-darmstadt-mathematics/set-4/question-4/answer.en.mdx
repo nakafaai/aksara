@@ -1,22 +1,75 @@
-The task asks for the coordinates of the end point <InlineMath math="B" />. The midpoint lies **exactly halfway between the end points**. So its coordinates are the averages of the coordinates of <InlineMath math="A" /> and <InlineMath math="B" />.
+# Find the pieces of the hypotenuse
 
-<BlockMath math="x_M=\frac{x_A+x_B}{2}\qquad y_M=\frac{y_A+y_B}{2}" />
-
-Here you are not looking for <InlineMath math="M" /> but for <InlineMath math="B" />. Rearrange each equation for the coordinate of <InlineMath math="B" /> to get <InlineMath math="x_B=2x_M-x_A" /> and <InlineMath math="y_B=2y_M-y_A" />.
+The altitude splits the hypotenuse into two pieces <InlineMath math="p" /> and <InlineMath math="q" />. Two facts hold for them: they add up to the hypotenuse, and by the **altitude theorem** their product is the square of the altitude:
 
 <BlockMath math="\begin{aligned}
-x_B&=2\cdot2-(-3)=4+3=7 \\
-y_B&=2\cdot(-1)-5=-2-5=-7
+p+q&=13,\qquad p\cdot q=h^2=36 \\
+p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
 \end{aligned}" />
 
-Picture it: from <InlineMath math="A" /> to <InlineMath math="M" /> you move <InlineMath math="5" /> to the right and <InlineMath math="6" /> down. Take the same step once more from <InlineMath math="M" /> and you land at <InlineMath math="(2+5\mid-1-6)=(7\mid-7)" />.
+So the pieces are <InlineMath math="4\text{ cm}" /> and <InlineMath math="9\text{ cm}" />.
 
-As a check, compute the midpoint of <InlineMath math="A(-3\mid5)" /> and <InlineMath math="B(7\mid-7)" />: <InlineMath math="\left(\frac{-3+7}{2}\mid\frac{5-7}{2}\right)=(2\mid-1)" />. That is exactly <InlineMath math="M" />.
+<MathVisual
+  title={<>The altitude splits the hypotenuse</>}
+  description={<>Triangle <InlineMath math="ABC" /> with the hypotenuse <InlineMath math="\overline{AB}=13" /> at the bottom and the right angle at <InlineMath math="C" /> at the top. The altitude from <InlineMath math="C" /> to the hypotenuse is <InlineMath math="6" /> long and splits the hypotenuse into the pieces <InlineMath math="p=4" /> and <InlineMath math="q=9" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p=4" /></>,
+    q: <><InlineMath math="q=9" /></>,
+    h: <><InlineMath math="h=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -2, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "piece-p", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "piece-q", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 13, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 6 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 13, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "p", objectId: "piece-p", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "q", objectId: "piece-q", at: { x: 8.5, y: 0 }, placement: "below" },
+      { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
 
-So the end point is <InlineMath math="B(7\mid-7)" />.
+# Find the legs
 
-- <InlineMath math="(-1\mid4)" /> is the sum of the coordinates of <InlineMath math="A" /> and <InlineMath math="M" />. That does not produce any midpoint.
-- <InlineMath math="(5\mid-6)" /> is only the step from <InlineMath math="A" /> to <InlineMath math="M" />, that is <InlineMath math="M-A" />, and not a point of the segment.
-- <InlineMath math="(-8\mid11)" /> comes from swapping the roles and reflecting <InlineMath math="M" /> in <InlineMath math="A" />. That point lies on the other side of <InlineMath math="A" />.
-- <InlineMath math="\left(-\frac12\mid2\right)" /> is the midpoint between <InlineMath math="A" /> and <InlineMath math="M" />, not the end point.
-- <InlineMath math="(7\mid3)" /> has the right <InlineMath math="x" />-coordinate. For <InlineMath math="y" />, though, it computes <InlineMath math="-2+5" /> instead of <InlineMath math="-2-5" />.
+By the **leg theorem**, the square of each leg is the hypotenuse times the piece next to that leg:
+
+<BlockMath math="\begin{aligned}
+a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
+b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+\end{aligned}" />
+
+Check: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+
+# Add up the perimeter
+
+<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+
+**The perimeter is** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, about <InlineMath math="31.0\text{ cm}" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="30\text{ cm}" /> takes the familiar sides <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. That triangle has **a different altitude**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
+- <InlineMath math="26\text{ cm}" /> adds the pieces <InlineMath math="4" /> and <InlineMath math="9" /> to the hypotenuse as if they were the legs.
+- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> uses <InlineMath math="ab=2\cdot13\cdot6=156" />. In fact <InlineMath math="ab=c\cdot h=78" />, because both products are twice the area.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> is only the sum of the legs, without the hypotenuse.
+- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> counts only one leg.

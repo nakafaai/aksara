@@ -1,15 +1,70 @@
-Für ein Dreieck brauchst du eine Grundseite und die **Höhe zu dieser Grundseite**. Nimm <InlineMath math="\overline{AB}" /> als Grundseite. Die Höhe ist dann der Abstand des Punktes <InlineMath math="E" /> von der Geraden durch <InlineMath math="A" /> und <InlineMath math="B" />.
+# Wo die Winkelhalbierende die Seite trifft
 
-Die Seite <InlineMath math="\overline{CD}" /> ist parallel zu <InlineMath math="\overline{AB}" /> und hat überall den Abstand <InlineMath math="\overline{BC}=6\text{ cm}" /> von ihr. Wo <InlineMath math="E" /> auf <InlineMath math="\overline{CD}" /> auch liegt, die Höhe ist immer <InlineMath math="6\text{ cm}" />.
+Die Winkelhalbierende teilt die gegenüberliegende Seite **im Verhältnis der anliegenden Seiten**:
 
-<BlockMath math="A_{ABE}=\frac12\cdot\overline{AB}\cdot h=\frac12\cdot10\cdot6=30" />
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
 
-Zur Kontrolle legst du <InlineMath math="E" /> genau auf <InlineMath math="D" />. Dann ist <InlineMath math="ABE" /> das Dreieck <InlineMath math="ABD" />, also die Hälfte des Rechtecks, und das Rechteck hat <InlineMath math="10\cdot6=60\text{ cm}^2" />. Die Hälfte davon sind ebenfalls <InlineMath math="30\text{ cm}^2" />.
+<MathVisual
+  title={<>Die Winkelhalbierende teilt <InlineMath math="\overline{BC}" /></>}
+  description={<>Das Dreieck mit <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> und <InlineMath math="\overline{BC}=5" />. Die Winkelhalbierende von <InlineMath math="A" /> trifft <InlineMath math="\overline{BC}" /> in <InlineMath math="D" /> und teilt die Seite in <InlineMath math="\overline{BD}=3" /> und <InlineMath math="\overline{DC}=2" />. Die Strecke <InlineMath math="\overline{AD}" /> ist hervorgehoben.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
+      { id: "piece-bd", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 4.5, y: 3.9686 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 4.5, y: 3.9686 }, placement: "above" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "pc", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "pd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "bd", objectId: "piece-bd", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "triangle", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "triangle", at: { x: 2.25, y: 1.9843 }, placement: "above-left" },
+      { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
+    ],
+  }}
+/>
 
-Das Dreieck <InlineMath math="ABE" /> hat also den Flächeninhalt <InlineMath math="30\text{ cm}^2" />, egal wo <InlineMath math="E" /> auf <InlineMath math="\overline{CD}" /> liegt.
+# Den Winkel bei <InlineMath math="B" /> bestimmen
 
-- <InlineMath math="60\text{ cm}^2" /> ist der Flächeninhalt des ganzen Rechtecks. Beim Dreieck fehlt der Faktor <InlineMath math="\frac12" />.
-- <InlineMath math="15\text{ cm}^2" /> halbiert zweimal, etwa indem die Höhe als halbe Rechteckbreite <InlineMath math="3\text{ cm}" /> genommen wird.
-- <InlineMath math="32\text{ cm}^2" /> ist der Zahlenwert des Umfangs des Rechtecks, <InlineMath math="2\cdot(10+6)=32" />, also eine Länge.
-- <InlineMath math="20\text{ cm}^2" /> nimmt an, dass die drei Dreiecke <InlineMath math="AED" />, <InlineMath math="ABE" /> und <InlineMath math="BCE" /> gleich groß sind. Die beiden äußeren Dreiecke haben aber zusammen genau so viel Fläche wie <InlineMath math="ABE" />.
-- „Das hängt von der Lage von <InlineMath math="E" /> ab“ übersieht, dass Grundseite und Höhe gleich bleiben, wenn <InlineMath math="E" /> parallel zu <InlineMath math="\overline{AB}" /> wandert.
+Im ganzen Dreieck <InlineMath math="ABC" /> kennst du alle drei Seiten. Der Kosinussatz liefert **den Kosinus des Winkels bei <InlineMath math="B" />**:
+
+<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+
+# Den Kosinussatz im Teildreieck <InlineMath math="ABD" />
+
+Im Dreieck <InlineMath math="ABD" /> kennst du jetzt <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> und den eingeschlossenen Winkel <InlineMath math="\beta" />. Wende den Kosinussatz noch einmal an:
+
+<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+
+Die Strecke ist **<InlineMath math="3\sqrt2" /> lang**, etwa <InlineMath math="4{,}24" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\sqrt{22}" /> teilt im **umgekehrten Verhältnis**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
+- <InlineMath math="\frac{\sqrt{79}}{2}" /> ist die Länge der Seitenhalbierenden von <InlineMath math="A" />, also mit <InlineMath math="D" /> in der Mitte von <InlineMath math="\overline{BC}" />.
+- <InlineMath math="2\sqrt6" /> ist <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. Diese Abkürzung lässt den Korrekturterm der Formel für die Winkelhalbierende weg.
+- <InlineMath math="3" /> ist <InlineMath math="\overline{BD}" />, nicht <InlineMath math="\overline{AD}" />.
+- <InlineMath math="3\sqrt3" /> rechnet mit <InlineMath math="\cos\beta=\frac12" />, als wäre der Winkel bei <InlineMath math="B" /> gleich <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.

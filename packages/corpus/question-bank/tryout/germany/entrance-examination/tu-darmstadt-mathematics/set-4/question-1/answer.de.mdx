@@ -1,21 +1,70 @@
-Hier brauchst du zwei **Potenzgesetze für gleiche Basen**. Beim Potenzieren einer Potenz werden die Exponenten multipliziert, beim Dividieren werden sie subtrahiert.
+# Jeden Bruch rational machen
 
-<BlockMath math="\left(a^m\right)^n=a^{m\cdot n}\qquad\frac{a^m}{a^n}=a^{m-n}" />
+Jeder Summand hat die Form <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> mit <InlineMath math="k=1,2,\ldots,15" />. Erweitere mit <InlineMath math="\sqrt{k+1}-\sqrt k" />. Die dritte binomische Formel macht den Nenner zu <InlineMath math="1" />:
 
-Zuerst quadrierst du die Klammer im Zähler. Jeder Faktor in der Klammer wird quadriert, also verdoppeln sich beide Exponenten.
+<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
 
-<BlockMath math="\left(x^{3}y^{-2}\right)^{2}=x^{6}y^{-4}" />
+Jeder Bruch ist also **eine Differenz zweier benachbarter Wurzeln**.
 
-Dann dividierst du getrennt nach den Basen <InlineMath math="x" /> und <InlineMath math="y" />. Beim Exponenten von <InlineMath math="y" /> stehen zwei Minuszeichen hintereinander, und zweimal Minus ergibt Plus.
+# Die Summe fällt zusammen
 
-<BlockMath math="\frac{x^{6}y^{-4}}{x^{4}y^{-5}}=x^{6-4}\cdot y^{-4-(-5)}=x^{2}\cdot y^{1}=x^{2}y" />
+Schreibe die Summe mit diesen Differenzen auf. Jede Wurzel von <InlineMath math="\sqrt2" /> bis <InlineMath math="\sqrt{15}" /> kommt einmal mit Plus und einmal mit Minus vor:
 
-Zur Kontrolle setzt du <InlineMath math="x=1" /> und <InlineMath math="y=2" /> ein. Der Ausgangsterm ergibt <InlineMath math="\frac{\left(2^{-2}\right)^{2}}{2^{-5}}=\frac{2^{-4}}{2^{-5}}=2" />, und <InlineMath math="x^{2}y" /> ergibt ebenfalls <InlineMath math="1\cdot2=2" />.
+<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
 
-Der Term lässt sich also zu <InlineMath math="x^{2}y" /> zusammenfassen.
+Am Zahlenstrahl siehst du, warum **nur der erste und der letzte Punkt übrig bleiben**:
 
-- <InlineMath math="\frac{x^2}{y}" /> entsteht, wenn beim Exponenten von <InlineMath math="y" /> in der falschen Reihenfolge subtrahiert wird, also <InlineMath math="-5-(-4)=-1" /> statt <InlineMath math="-4-(-5)=1" />.
-- <InlineMath math="\frac{x^{10}}{y^9}" /> entsteht, wenn beim Dividieren die Exponenten addiert statt subtrahiert werden: <InlineMath math="6+4=10" /> und <InlineMath math="-4+(-5)=-9" />.
-- <InlineMath math="x^2y^3" /> entsteht, wenn nur <InlineMath math="x^3" /> quadriert wird und <InlineMath math="y^{-2}" /> unverändert bleibt. Dann ergibt sich <InlineMath math="y^{-2-(-5)}=y^3" />.
-- <InlineMath math="xy^5" /> entsteht, wenn beim Quadrieren die <InlineMath math="2" /> zu den Exponenten addiert statt mit ihnen multipliziert wird. Aus <InlineMath math="x^5y^0" /> im Zähler wird dann <InlineMath math="x^{5-4}y^{0+5}" />.
-- <InlineMath math="\frac{x^2}{y^9}" /> entsteht aus dem Vorzeichenfehler <InlineMath math="-4-5=-9" />. Das Minus vor <InlineMath math="(-5)" /> macht aus der Subtraktion aber eine Addition.
+<MathVisual
+  title={<>Fünfzehn Stücke auf dem Zahlenstrahl</>}
+  description={<>Auf dem Zahlenstrahl liegen die Punkte <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Jeder Bruch der Summe ist die Länge eines Stücks von <InlineMath math="\sqrt k" /> bis <InlineMath math="\sqrt{k+1}" />. Die fünfzehn Stücke liegen lückenlos hintereinander und reichen zusammen von <InlineMath math="1" /> bis <InlineMath math="4" />, also über die Länge <InlineMath math="3" />.</>}
+  labels={{
+    one: <><InlineMath math="\sqrt1=1" /></>,
+    four: <><InlineMath math="\sqrt{16}=4" /></>,
+    sum: <><InlineMath math="4-1=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.5, max: 4.5 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "step-1", kind: "segment", appearance: "highlight", from: { x: 1.0, y: 0 }, to: { x: 1.4142, y: 0 } },
+      { id: "step-2", kind: "segment", appearance: "secondary", from: { x: 1.4142, y: 0 }, to: { x: 1.7321, y: 0 } },
+      { id: "step-3", kind: "segment", appearance: "highlight", from: { x: 1.7321, y: 0 }, to: { x: 2.0, y: 0 } },
+      { id: "step-4", kind: "segment", appearance: "secondary", from: { x: 2.0, y: 0 }, to: { x: 2.2361, y: 0 } },
+      { id: "step-5", kind: "segment", appearance: "highlight", from: { x: 2.2361, y: 0 }, to: { x: 2.4495, y: 0 } },
+      { id: "step-6", kind: "segment", appearance: "secondary", from: { x: 2.4495, y: 0 }, to: { x: 2.6458, y: 0 } },
+      { id: "step-7", kind: "segment", appearance: "highlight", from: { x: 2.6458, y: 0 }, to: { x: 2.8284, y: 0 } },
+      { id: "step-8", kind: "segment", appearance: "secondary", from: { x: 2.8284, y: 0 }, to: { x: 3.0, y: 0 } },
+      { id: "step-9", kind: "segment", appearance: "highlight", from: { x: 3.0, y: 0 }, to: { x: 3.1623, y: 0 } },
+      { id: "step-10", kind: "segment", appearance: "secondary", from: { x: 3.1623, y: 0 }, to: { x: 3.3166, y: 0 } },
+      { id: "step-11", kind: "segment", appearance: "highlight", from: { x: 3.3166, y: 0 }, to: { x: 3.4641, y: 0 } },
+      { id: "step-12", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 3.6056, y: 0 } },
+      { id: "step-13", kind: "segment", appearance: "highlight", from: { x: 3.6056, y: 0 }, to: { x: 3.7417, y: 0 } },
+      { id: "step-14", kind: "segment", appearance: "secondary", from: { x: 3.7417, y: 0 }, to: { x: 3.873, y: 0 } },
+      { id: "step-15", kind: "segment", appearance: "highlight", from: { x: 3.873, y: 0 }, to: { x: 4.0, y: 0 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "total", kind: "segment", appearance: "answer", from: { x: 1, y: 0.5 }, to: { x: 4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "one", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "four", objectId: "end", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Die Summe hat den Wert <InlineMath math="3" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-3" /> entsteht, wenn du mit <InlineMath math="\sqrt k-\sqrt{k+1}" /> erweiterst und den Nenner trotzdem als <InlineMath math="+1" /> liest. Jeder Summand ist aber **positiv**, also auch die Summe.
+- <InlineMath math="4-\sqrt2" /> lässt den ersten Bruch weg und beginnt die Kette erst bei <InlineMath math="\sqrt2" />.
+- <InlineMath math="\sqrt{17}-1" /> zählt einen Bruch zu viel, bis <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> vergisst, dass am Anfang <InlineMath math="\sqrt1=1" /> abgezogen wird.
+- <InlineMath math="15" /> ist die Anzahl der Brüche, nicht ihre Summe.

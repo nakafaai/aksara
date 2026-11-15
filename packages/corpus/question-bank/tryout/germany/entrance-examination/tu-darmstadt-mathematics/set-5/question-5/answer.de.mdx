@@ -1,19 +1,60 @@
-Gleicher Umfang bedeutet **nicht** gleichen Flächeninhalt. Du bestimmst deshalb zuerst die Seite des Quadrats aus dem Umfang und vergleichst danach die beiden Flächen.
+# Wo der Mittelpunkt liegen muss
 
-Der Umfang des Rechtecks ist <InlineMath math="U=2\cdot(12+4)=32\text{ cm}" />. Das Quadrat hat vier gleich lange Seiten, also ist jede Seite <InlineMath math="32:4=8\text{ cm}" /> lang.
+Ein Kreis, der beide Achsen berührt, hat von beiden Achsen den Abstand <InlineMath math="r" />. Im ersten Quadranten liegt **sein Mittelpunkt also bei <InlineMath math="M(r\mid r)" />**. Damit hängt der ganze Kreis nur noch von <InlineMath math="r" /> ab.
+
+# Die Bedingung mit dem Punkt <InlineMath math="P" />
+
+Der Punkt <InlineMath math="P(1\mid8)" /> liegt auf dem Kreis, wenn **sein Abstand zu <InlineMath math="M" /> genau <InlineMath math="r" />** ist:
 
 <BlockMath math="\begin{aligned}
-A_{\text{Quadrat}}&=8\cdot8=64\text{ cm}^2 \\
-A_{\text{Rechteck}}&=12\cdot4=48\text{ cm}^2 \\
-64-48&=16
+(1-r)^2+(8-r)^2&=r^2 \\
+1-2r+r^2+64-16r+r^2&=r^2 \\
+r^2-18r+65&=0 \\
+(r-5)(r-13)&=0
 \end{aligned}" />
 
-Zur Kontrolle prüfst du den Umfang des Quadrats: <InlineMath math="4\cdot8=32\text{ cm}" />, genau wie beim Rechteck. Bei festem Umfang hat das Quadrat den größten Flächeninhalt aller Rechtecke, also muss der Unterschied positiv sein.
+# Beide Lösungen prüfen
 
-Der Flächeninhalt des Quadrats ist also um <InlineMath math="16\text{ cm}^2" /> größer.
+Beide Radien sind positiv, und beide Mittelpunkte <InlineMath math="(5\mid5)" /> und <InlineMath math="(13\mid13)" /> liegen im ersten Quadranten. **Keine Lösung fällt weg**:
 
-- <InlineMath math="0\text{ cm}^2" /> nimmt an, dass gleicher Umfang auch gleichen Flächeninhalt bedeutet. Das stimmt nicht, wie <InlineMath math="64\ne48" /> zeigt.
-- <InlineMath math="8\text{ cm}^2" /> ist die Differenz der Seitenlängen <InlineMath math="12-4" /> oder die Seite des Quadrats, aber kein Flächenunterschied.
-- <InlineMath math="32\text{ cm}^2" /> ist der Zahlenwert des gemeinsamen Umfangs, also eine Länge in Zentimetern.
-- <InlineMath math="48\text{ cm}^2" /> ist der Flächeninhalt des Rechtecks selbst.
-- <InlineMath math="64\text{ cm}^2" /> ist der Flächeninhalt des Quadrats selbst. Gefragt ist der Unterschied zum Rechteck.
+<MathVisual
+  title={<>Zwei passende Kreise</>}
+  description={<>Im ersten Quadranten liegen zwei Kreise, die beide Achsen berühren: der kleine mit dem Mittelpunkt <InlineMath math="M_1(5\mid5)" /> und dem Radius <InlineMath math="5" />, der große mit dem Mittelpunkt <InlineMath math="M_2(13\mid13)" /> und dem Radius <InlineMath math="13" />. Beide gehen durch den Punkt <InlineMath math="P(1\mid8)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(1\mid8)" /></>,
+    m1: <><InlineMath math="M_1(5\mid5)" /></>,
+    m2: <><InlineMath math="M_2(13\mid13)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 28 },
+      y: { min: -2, max: 28 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
+      { id: "small", kind: "circle", appearance: "primary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "large", kind: "circle", appearance: "secondary", center: { x: 13, y: 13 }, radius: 13 },
+      { id: "point", kind: "point", appearance: "answer", at: { x: 1, y: 8 } },
+      { id: "c1", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "c2", kind: "point", appearance: "reference", at: { x: 13, y: 13 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point", at: { x: 1, y: 8 }, placement: "left" },
+      { key: "m1", objectId: "c1", at: { x: 5, y: 5 }, placement: "below" },
+      { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> und <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Der Radius kann <InlineMath math="5" /> oder <InlineMath math="13" /> sein.
+
+# Warum die anderen Antworten falsch sind
+
+- „nur <InlineMath math="r=5" />“ und „nur <InlineMath math="r=13" />“ **verwerfen eine gültige Lösung** der quadratischen Gleichung.
+- „nur <InlineMath math="r=\sqrt{65}" />“ ist der Abstand von <InlineMath math="P" /> zum Ursprung, <InlineMath math="\sqrt{1+64}" />. Der Ursprung ist aber nicht der Mittelpunkt.
+- „nur <InlineMath math="r=4{,}5" />“ halbiert die Summe der Koordinaten von <InlineMath math="P" />, als läge der Mittelpunkt in der Mitte zwischen den Achsenabschnitten.
+- „nur <InlineMath math="r=9" />“ ist der Mittelwert der beiden richtigen Radien, also der <InlineMath math="r" />-Wert des Scheitels von <InlineMath math="r^2-18r+65" />.

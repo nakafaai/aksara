@@ -1,0 +1,59 @@
+# Nyatakan bilangan kemeja sebagai pecahan
+
+Kalau sehelai kemeja berharga <InlineMath math="p" /> euro, dengan <InlineMath math="600" /> euro peniaga itu mendapat tepat <InlineMath math="\frac{600}{p}" /> helai. Pada harga <InlineMath math="p-5" /> dia akan mendapat <InlineMath math="\frac{600}{p-5}" /> helai, iaitu **tepat <InlineMath math="4" /> helai lebih**:
+
+<BlockMath math="\frac{600}{p-5}-\frac{600}{p}=4" />
+
+# Selesaikan persamaan itu
+
+Darab dengan <InlineMath math="p(p-5)" />, **kemudian bahagi dengan <InlineMath math="4" />**:
+
+<BlockMath math="\begin{aligned}
+600p-600(p-5)&=4p(p-5) \\
+3000&=4p^2-20p \\
+p^2-5p-750&=0 \\
+(p-30)(p+25)&=0
+\end{aligned}" />
+
+# Simpan harga yang munasabah
+
+Harga mesti positif, jadi **<InlineMath math="p=-25" /> tersingkir**:
+
+<MathVisual
+  title={<>Berapa banyak kemeja lagi</>}
+  description={<>Bagi setiap harga <InlineMath math="p" /> dalam euro, graf menunjukkan berapa banyak kemeja lagi yang diperoleh dengan <InlineMath math="600" /> euro kalau setiap kemeja <InlineMath math="5" /> euro lebih murah: <InlineMath math="\frac{600}{p-5}-\frac{600}{p}" />. Garis mengufuk berada pada <InlineMath math="4" /> kemeja. Garis itu bertemu graf yang menurun pada <InlineMath math="p=30" />.</>}
+  labels={{
+    key: <><InlineMath math="p=30" /></>,
+    d: <>kemeja tambahan</>,
+    four: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 62 },
+      y: { min: 0, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "difference", kind: "function", appearance: "primary", formula: "600/(x-5) - 600/x", domain: { min: 12, max: 60 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 10, y: 4 }, to: { x: 60, y: 4 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 4 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 30, y: 4 }, placement: "above-right" },
+      { key: "d", objectId: "difference", at: { x: 15, y: 20.0 }, placement: "right" },
+      { key: "four", objectId: "level", at: { x: 60, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Semakan: pada harga <InlineMath math="30" /> euro dapat <InlineMath math="20" /> helai, pada harga <InlineMath math="25" /> euro dapat <InlineMath math="24" /> helai, iaitu <InlineMath math="4" /> helai lebih. Harga sehelai kemeja ialah <InlineMath math="30" /> euro.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="25" /> euro ialah **harga murah yang dibayangkan**, bukan harga sebenar.
+- <InlineMath math="20" /> euro sebenarnya bilangan kemeja, <InlineMath math="\frac{600}{30}=20" />.
+- "Tiada harga yang sepadan" terhasil kalau persamaan disusun secara terbalik: <InlineMath math="\frac{600}{p}-\frac{600}{p-5}=4" />. Sebelah kirinya negatif bagi setiap harga melebihi <InlineMath math="5" /> euro.
+- <InlineMath math="24" /> euro ialah bilangan kemeja pada harga yang lebih murah.
+- <InlineMath math="150" /> euro membahagi <InlineMath math="600" /> dengan <InlineMath math="4" /> helai kemeja tambahan.

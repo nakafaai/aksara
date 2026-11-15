@@ -1,19 +1,32 @@
-The task asks how many digits (*Ziffern*) the number has when written out. Computing it without a calculator is tedious. The trick is to **pair each <InlineMath math="2" /> with a <InlineMath math="5" /> to make powers of ten**, because <InlineMath math="2\cdot5=10" />.
+# Only the last digits matter
 
-There are only ten factors of <InlineMath math="2" />. So split <InlineMath math="5^{12}" /> into <InlineMath math="5^{10}\cdot5^2" /> and form ten pairs.
+The last digit of a product depends only on the last digits of the factors. So you don't compute the huge numbers, you only follow **how the last digit repeats as you multiply**:
 
-<BlockMath math="2^{10}\cdot5^{12}=2^{10}\cdot5^{10}\cdot5^{2}=(2\cdot5)^{10}\cdot25=25\cdot10^{10}" />
+| <InlineMath math="n" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="6" /> |
+| --- | --- | --- | --- | --- | --- | --- |
+| last digit of <InlineMath math="7^n" /> | <InlineMath math="7" /> | <InlineMath math="9" /> | <InlineMath math="3" /> | <InlineMath math="1" /> | <InlineMath math="7" /> | <InlineMath math="9" /> |
+| last digit of <InlineMath math="3^n" /> | <InlineMath math="3" /> | <InlineMath math="9" /> | <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="3" /> | <InlineMath math="9" /> |
 
-So the number is <InlineMath math="25" /> followed by ten zeros. That makes <InlineMath math="2" /> digits for <InlineMath math="25" /> and <InlineMath math="10" /> zeros.
+Both last digits repeat with period <InlineMath math="4" />.
 
-<BlockMath math="25\cdot10^{10}=250\,000\,000\,000" />
+# Find the place in the cycle
 
-As a check, count in groups of three: <InlineMath math="250" />, then three groups of three zeros, together <InlineMath math="3+9=12" /> digits.
+What matters is the remainder of the exponent on division by <InlineMath math="4" />:
 
-So the number has <InlineMath math="12" /> digits.
+<BlockMath math="2026=4\cdot506+2" />
 
-- <InlineMath math="11" /> is the number of digits of <InlineMath math="10^{10}" /> alone, a one followed by ten zeros. The factor <InlineMath math="25" /> adds one more digit.
-- <InlineMath math="10" /> confuses the exponent <InlineMath math="10" /> with the number of digits of <InlineMath math="10^{10}" />. That number has eleven digits.
-- <InlineMath math="13" /> counts three digits instead of two for the factor <InlineMath math="25" />.
-- <InlineMath math="22" /> adds the exponents, <InlineMath math="10+12" />. The bases are different, so the exponents may not be added.
-- <InlineMath math="120" /> multiplies the exponents, <InlineMath math="10\cdot12" />. That is not a valid step either.
+The exponent leaves remainder <InlineMath math="2" />, so both powers sit **at the second place of the cycle**: <InlineMath math="7^{2026}" /> ends in <InlineMath math="9" />, and <InlineMath math="3^{2026}" /> also ends in <InlineMath math="9" />.
+
+# Add the last digits
+
+<BlockMath math="9+9=18" />
+
+The sum ends **in the digit <InlineMath math="8" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="0" /> generalises <InlineMath math="7+3=10" />. That only works for exponents with remainder <InlineMath math="1" /> or <InlineMath math="3" />, where one last digit is <InlineMath math="7" /> and the other is <InlineMath math="3" />.
+- <InlineMath math="2" /> belongs to an exponent with remainder <InlineMath math="0" />, where both powers end in <InlineMath math="1" />.
+- <InlineMath math="9" /> is the last digit of **one** term, not of the sum.
+- <InlineMath math="6" /> comes from miscounting the period and taking last digit <InlineMath math="7" /> for <InlineMath math="3^{2026}" />: <InlineMath math="9+7=16" />.
+- <InlineMath math="4" /> mixes up the place in the cycle with the last digit and adds the remainder <InlineMath math="2" /> twice: <InlineMath math="2+2=4" />.

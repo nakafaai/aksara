@@ -1,15 +1,57 @@
-The task asks for the *Zinssatz pro Jahr* (annual interest rate). An annual rate refers the interest **to a whole year**. The <InlineMath math="54\text{ €}" /> belong to <InlineMath math="9" /> months, though. So first scale them up to <InlineMath math="12" /> months, then divide by the capital.
+# Find the rate from two increases
 
-Because the interest grows in proportion to time, one month brings <InlineMath math="54:9=6\text{ €}" />, so a year brings <InlineMath math="12\cdot6=72\text{ €}" />.
+Growth at the rate <InlineMath math="p" /> (as a decimal) multiplies production by <InlineMath math="1+p" />. Two equal increases in a row give **the factor <InlineMath math="(1+p)^2" />**, and that is <InlineMath math="1.44" />:
 
-<BlockMath math="p=\frac{72}{2400}=\frac{3}{100}=3\,\%" />
+<BlockMath math="(1+p)^2=1.44\quad\Longrightarrow\quad 1+p=1.2\quad\Longrightarrow\quad p=0.2" />
 
-As a check, work forwards. <InlineMath math="3\,\%" /> of <InlineMath math="2{,}400\text{ €}" /> is <InlineMath math="72\text{ €}" /> per year. For <InlineMath math="9" /> months, three quarters of a year, that is <InlineMath math="\frac34\cdot72=54\text{ €}" />.
+The negative root <InlineMath math="1+p=-1.2" /> gives no sensible factor.
 
-So the interest rate is <InlineMath math="3\,\%" /> per year.
+# Measure the cut against the new value
 
-- <InlineMath math="2.25\,\%" /> is <InlineMath math="\frac{54}{2400}" />, the rate for <InlineMath math="9" /> months. It was not converted to a year.
-- <InlineMath math="0.25\,\%" /> is the rate for one month, <InlineMath math="\frac{6}{2400}" />.
-- <InlineMath math="27\,\%" /> takes <InlineMath math="2.25\,\%" /> as a monthly rate and multiplies by <InlineMath math="12" />.
-- <InlineMath math="1.6875\,\%" /> uses the factor <InlineMath math="\frac{9}{12}" /> instead of <InlineMath math="\frac{12}{9}" />, that is <InlineMath math="2.25\,\%\cdot\frac34" />.
-- <InlineMath math="0.1875\,\%" /> divides the <InlineMath math="54\text{ €}" /> by <InlineMath math="12" /> months, although they were paid for only <InlineMath math="9" /> months.
+In the third year production falls by <InlineMath math="20\,\%" />, measured **from the level it has reached**, that is from <InlineMath math="1.44" /> times the start:
+
+<BlockMath math="1.44\cdot(1-0.2)=1.44\cdot0.8=1.152" />
+
+<MathVisual
+  title={<>Production over three years</>}
+  description={<>Production as an index with <InlineMath math="100" /> at the start. It rises to <InlineMath math="120" /> and <InlineMath math="144" /> and falls to <InlineMath math="115.2" /> in the third year. The horizontal line at <InlineMath math="100" /> marks the start, and the end point lies <InlineMath math="15.2" /> above it.</>}
+  labels={{
+    s: <>start <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>end <InlineMath math="115.2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.8 },
+      y: { min: 90, max: 155 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 120 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 144 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 115.2 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "below" },
+      { key: "y1", objectId: "p1", at: { x: 1, y: 120 }, placement: "above-left" },
+      { key: "y2", objectId: "p2", at: { x: 2, y: 144 }, placement: "above" },
+      { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
+    ],
+  }}
+/>
+
+At the end production is **<InlineMath math="15.2\,\%" /> above the start**.
+
+# Why the other answers are wrong
+
+- "by <InlineMath math="24\,\%" />" **subtracts <InlineMath math="20" /> percentage points from <InlineMath math="44\,\%" />** instead of applying the cut to the new value.
+- "by <InlineMath math="22\,\%" />" halves <InlineMath math="44\,\%" /> into a rate per year and then works out <InlineMath math="44-22" />.
+- "by <InlineMath math="20\,\%" />" assumes one increase and the cut cancel each other.
+- "by <InlineMath math="12.32\,\%" />" uses <InlineMath math="22\,\%" /> as the rate: <InlineMath math="1.44\cdot0.78=1.1232" />.
+- "by <InlineMath math="0\,\%" />" assumes the cut undoes all the increases.

@@ -1,19 +1,59 @@
-Soal menanyakan pernyataan yang benar tentang segitiga <InlineMath math="ABC" />. Apakah sebuah segitiga sama kaki atau siku-siku ditentukan oleh **panjang ketiga sisinya**. Hitung setiap panjang dari selisih koordinat dengan teorema Pythagoras.
+# Dua garis tinggi sudah cukup
 
-<BlockMath math="\begin{aligned}
-\overline{AB}^2&=(5-1)^2+(4-1)^2=16+9=25 \\
-\overline{BC}^2&=(2-5)^2+(8-4)^2=9+16=25 \\
-\overline{AC}^2&=(2-1)^2+(8-1)^2=1+49=50
-\end{aligned}" />
+Ketiga garis tinggi berpotongan di satu titik. Jadi untuk koordinatnya cukup **dua garis tinggi**, dan yang ketiga dipakai untuk mengecek.
 
-Jadi, <InlineMath math="\overline{AB}=\overline{BC}=5\text{ cm}" />, dan segitiga itu sama kaki. Selain itu, <InlineMath math="\overline{AB}^2+\overline{BC}^2=25+25=50=\overline{AC}^2" />. Menurut kebalikan teorema Pythagoras, sudut siku-sikunya berhadapan dengan sisi terpanjang <InlineMath math="\overline{AC}" />, jadi berada di <InlineMath math="B" />.
+Sisi <InlineMath math="\overline{AB}" /> terletak pada sumbu <InlineMath math="x" />. Garis tinggi dari <InlineMath math="C" /> tegak lurus padanya, jadi berupa garis tegak <InlineMath math="x=2" />.
 
-Sebagai pemeriksaan, bandingkan gradien kedua sisi di <InlineMath math="B" />. Sisi <InlineMath math="\overline{AB}" /> bergradien <InlineMath math="\frac34" />, sisi <InlineMath math="\overline{BC}" /> bergradien <InlineMath math="\frac{4}{-3}=-\frac43" />. Hasil kalinya <InlineMath math="-1" />, jadi kedua sisi itu saling tegak lurus.
+# Garis tinggi dari <InlineMath math="A" />
 
-Jadi, segitiga itu siku-siku dan sama kaki dengan sudut siku-siku di <InlineMath math="B" />.
+Sisi <InlineMath math="\overline{BC}" /> bergradien <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. Garis yang tegak lurus padanya bergradien <InlineMath math="1" />, karena **gradien dua garis yang tegak lurus hasil kalinya <InlineMath math="-1" />**. Jadi garis tinggi dari <InlineMath math="A(0\mid0)" /> adalah <InlineMath math="y=x" />.
 
-- Sudut siku-siku di <InlineMath math="A" /> akan membuat <InlineMath math="\overline{BC}" /> menjadi sisi terpanjang. Padahal sisi terpanjangnya <InlineMath math="\overline{AC}" />, dan sudut di <InlineMath math="A" /> besarnya <InlineMath math="45^\circ" />.
-- Sudut siku-siku di <InlineMath math="C" /> akan membuat <InlineMath math="\overline{AB}" /> menjadi sisi terpanjang. Sudut di <InlineMath math="C" /> juga hanya <InlineMath math="45^\circ" />.
-- Segitiga itu bukan segitiga sama sisi, karena <InlineMath math="\overline{AC}=\sqrt{50}\approx7{,}1\text{ cm}" /> lebih panjang daripada kedua sisi lainnya.
-- Segitiga itu memang sama kaki, tetapi karena <InlineMath math="25+25=50" />, segitiga itu juga siku-siku.
-- Siku-siku di <InlineMath math="B" /> memang benar, tetapi kedua sisi di <InlineMath math="B" /> sama panjang. Jadi, segitiga itu tetap sama kaki.
+# Titik potongnya
+
+<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+
+<MathVisual
+  title={<>Ketiga garis tinggi</>}
+  description={<>Segitiga dengan <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" />, dan <InlineMath math="C(2\mid6)" />. Garis tinggi dari <InlineMath math="C" /> adalah ruas tegak di <InlineMath math="x=2" />. Garis tinggi dari <InlineMath math="A" /> terletak pada <InlineMath math="y=x" /> dan memotong <InlineMath math="\overline{BC}" /> di <InlineMath math="(4\mid4)" />. Garis tinggi dari <InlineMath math="B" /> memotong <InlineMath math="\overline{AC}" /> di <InlineMath math="(0{,}8\mid2{,}4)" />. Ketiganya melalui <InlineMath math="H(2\mid2)" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2\mid2)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
+      { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
+      { id: "alt-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "alt-b", kind: "segment", appearance: "construction", from: { x: 8, y: 0 }, to: { x: 0.8, y: 2.4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 2, y: 6 } },
+      { id: "ph", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek dengan garis tinggi ketiga: <InlineMath math="\overline{AC}" /> bergradien <InlineMath math="3" />, jadi garis tinggi dari <InlineMath math="B" /> bergradien <InlineMath math="-\frac13" />. Garis melalui <InlineMath math="B(8\mid0)" /> dengan gradien itu bernilai <InlineMath math="-\frac13\cdot(2-8)=2" /> di <InlineMath math="x=2" />. Garis itu **juga melalui <InlineMath math="H(2\mid2)" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="H(4\mid2)" /> adalah titik potong **garis sumbu**, yaitu pusat lingkaran luar.
+- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> adalah titik berat, tempat garis-garis berat berpotongan.
+- <InlineMath math="H(2\mid6)" /> adalah titik sudut <InlineMath math="C" />. Garis tinggi dari <InlineMath math="C" /> memang melalui <InlineMath math="C" />, tetapi garis tinggi lain tidak.
+- <InlineMath math="H(2\mid4)" /> muncul kalau garis tinggi dari <InlineMath math="A" /> diberi gradien <InlineMath math="2" />, jadi bukan negatif kebalikan dari <InlineMath math="-1" />.
+- <InlineMath math="H(6\mid2)" /> menukar koordinat titik <InlineMath math="C" /> menjadi <InlineMath math="(6\mid2)" /> lalu memakai garis tinggi <InlineMath math="x=6" />.

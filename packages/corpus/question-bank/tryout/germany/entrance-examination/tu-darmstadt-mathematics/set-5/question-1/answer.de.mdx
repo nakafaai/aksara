@@ -1,19 +1,59 @@
-Brüche subtrahierst du erst, wenn sie **denselben Nenner** haben. Der Hauptnenner von <InlineMath math="x-1" /> und <InlineMath math="x+1" /> ist ihr Produkt, und nach der dritten binomischen Formel gilt <InlineMath math="(x-1)(x+1)=x^2-1" />.
+# Teilbarkeit heißt Nullstelle
 
-Erweitere den ersten Bruch mit <InlineMath math="x+1" /> und den zweiten mit <InlineMath math="x-1" />.
+Ein Polynom ist genau dann ohne Rest durch <InlineMath math="(x-1)" /> teilbar, wenn **<InlineMath math="x=1" /> eine Nullstelle ist**. Das liefert eine Gleichung für <InlineMath math="a" />:
 
-<BlockMath math="\frac{2}{x-1}-\frac{1}{x+1}=\frac{2(x+1)}{(x-1)(x+1)}-\frac{x-1}{(x-1)(x+1)}" />
+<BlockMath math="p(1)=1+a-5+6=a+2=0\quad\Longrightarrow\quad a=-2" />
 
-Jetzt subtrahierst du die Zähler. Das Minus gilt für den ganzen zweiten Zähler, deshalb setzt du ihn in Klammern.
+# Durch den bekannten Linearfaktor teilen
 
-<BlockMath math="\frac{2(x+1)-(x-1)}{x^2-1}=\frac{2x+2-x+1}{x^2-1}=\frac{x+3}{x^2-1}" />
+Mit <InlineMath math="a=-2" /> ist <InlineMath math="p(x)=x^3-2x^2-5x+6" />. Die Polynomdivision durch <InlineMath math="(x-1)" /> lässt **einen quadratischen Faktor** übrig, den du dann zerlegst:
 
-Zur Kontrolle setzt du <InlineMath math="x=2" /> ein. Die Differenz ergibt <InlineMath math="\frac21-\frac13=\frac53" />, und der Bruch ergibt <InlineMath math="\frac{2+3}{4-1}=\frac53" />.
+<BlockMath math="\begin{aligned}
+x^3-2x^2-5x+6&=(x-1)\left(x^2-x-6\right) \\
+x^2-x-6&=(x-3)(x+2)
+\end{aligned}" />
 
-Die Differenz ist also gleich <InlineMath math="\frac{x+3}{x^2-1}" />.
+Probe: <InlineMath math="(x-1)(x-3)(x+2)" /> ausmultipliziert ergibt wieder <InlineMath math="x^3-2x^2-5x+6" />.
 
-- <InlineMath math="\frac{x+1}{x^2-1}" /> entsteht, wenn das Minus nur auf <InlineMath math="x" /> wirkt. Dann steht im Zähler <InlineMath math="2x+2-x-1" /> statt <InlineMath math="2x+2-x+1" />.
-- <InlineMath math="\frac{1}{x^2-1}" /> subtrahiert nur die alten Zähler <InlineMath math="2-1" />. Beim Erweitern müssen die Zähler aber mit multipliziert werden.
-- <InlineMath math="-\frac12" /> entsteht, wenn Zähler und Nenner jeweils für sich subtrahiert werden: <InlineMath math="\frac{2-1}{(x-1)-(x+1)}" />. So werden Brüche nicht subtrahiert.
-- <InlineMath math="\frac{3x+1}{x^2-1}" /> addiert die Zähler, statt sie zu subtrahieren: <InlineMath math="2x+2+x-1" />.
-- <InlineMath math="\frac{x+3}{x^2+1}" /> hat den richtigen Zähler, aber einen falschen Nenner. Das Produkt <InlineMath math="(x-1)(x+1)" /> ist <InlineMath math="x^2-1" />, nicht <InlineMath math="x^2+1" />.
+<MathVisual
+  title={<>Die drei Nullstellen von <InlineMath math="p" /></>}
+  description={<>Der Graph von <InlineMath math="p(x)=x^3-2x^2-5x+6" /> schneidet die <InlineMath math="x" />-Achse dreimal: bei <InlineMath math="-2" />, bei der gegebenen Nullstelle <InlineMath math="1" /> und bei <InlineMath math="3" />.</>}
+  labels={{
+    m2: <><InlineMath math="-2" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p3: <><InlineMath math="3" /></>,
+    p: <><InlineMath math="p" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 4.5 },
+      y: { min: -13, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2*x^2 - 5*x + 6", domain: { min: -2.6, max: 3.8 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "r3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m2", objectId: "r1", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p1", objectId: "r2", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "p3", objectId: "r3", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "p", objectId: "poly", at: { x: 3.6, y: 10.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Außer <InlineMath math="x=1" /> hat <InlineMath math="p" /> **die Nullstellen <InlineMath math="x=-2" /> und <InlineMath math="x=3" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="x=2" /> und <InlineMath math="x=-3" /> sind die Nullstellen von <InlineMath math="x^2+x-6" />. Das entsteht, wenn du <InlineMath math="x^2-x-6" /> **mit vertauschten Vorzeichen zerlegst**, also als <InlineMath math="(x+3)(x-2)" />.
+- <InlineMath math="x=\frac{11\pm\sqrt{97}}{2}" /> entsteht, wenn du <InlineMath math="p(-1)=0" /> statt <InlineMath math="p(1)=0" /> ansetzt. Dann wird <InlineMath math="a=-10" />, und der Rest ist <InlineMath math="x^2-11x+6" />.
+- „Keine weiteren Nullstellen“ entsteht, wenn bei der Division <InlineMath math="x^2-x+6" /> herauskommt. Dieser Faktor hat wirklich keine Nullstelle, ist aber falsch berechnet.
+- <InlineMath math="x=-1" /> und <InlineMath math="x=6" /> sind die Nullstellen von <InlineMath math="x^2-5x-6" />. Dieser Faktor entsteht, wenn du nicht dividierst, sondern die Koeffizienten <InlineMath math="-5" /> und <InlineMath math="6" /> von <InlineMath math="p" /> einfach in einen quadratischen Term überträgst.
+- <InlineMath math="x=2" /> und <InlineMath math="x=3" /> sind die Nullstellen von <InlineMath math="x^2-5x+6" />, einem falschen Restfaktor mit vertauschten Vorzeichen.

@@ -1,15 +1,64 @@
-Das Kantenband läuft am **äußeren Rand der Gesamtfigur** entlang. Die beiden kurzen Rechteckseiten liegen innen, dort wo die Halbkreise ansetzen. Sie gehören deshalb nicht zum Rand.
+# Definitionsbereich und Fallunterscheidung
 
-Der Rand besteht aus zwei Teilen. Das sind die beiden langen Rechteckseiten mit zusammen <InlineMath math="2\cdot100\text{ cm}=200\text{ cm}" /> und die beiden Halbkreisbögen. Zwei Halbkreise mit demselben Durchmesser ergeben zusammen den Umfang eines ganzen Kreises, <InlineMath math="U=\pi d" />.
+Die Wurzel ist nur für <InlineMath math="x+5\ge0" />, also <InlineMath math="x\ge-5" />, definiert. Quadrieren ist nur dann eine sichere Umformung, wenn beide Seiten nicht negativ sind. Deshalb trennst du zwei Fälle nach **dem Vorzeichen der rechten Seite** <InlineMath math="x-1" />.
 
-<BlockMath math="U_{\text{Bögen}}=\pi\cdot60\text{ cm}=60\pi\text{ cm}\qquad U_{\text{Band}}=200\text{ cm}+60\pi\text{ cm}" />
+# Fall 1: die rechte Seite ist negativ
 
-Zur Kontrolle schätzt du mit <InlineMath math="\pi\approx3{,}14" /> ab: <InlineMath math="60\pi\approx188" />, also ist das Kantenband ungefähr <InlineMath math="388\text{ cm}" /> lang. Das ist mehr als der Umfang des Rechtecks allein, <InlineMath math="320\text{ cm}" />, wie es sein muss, denn jeder Bogen ist länger als die gerade Seite, die er ersetzt.
+Für <InlineMath math="-5\le x<1" /> ist <InlineMath math="x-1<0" />. Eine Wurzel ist nie negativ, also gilt die Ungleichung hier **ohne jede Rechnung**. Alle <InlineMath math="x" /> mit <InlineMath math="-5\le x<1" /> sind Lösungen.
 
-Das Kantenband ist also <InlineMath math="(200+60\pi)\text{ cm}" /> lang.
+# Fall 2: die rechte Seite ist nicht negativ
 
-- <InlineMath math="(200+120\pi)\text{ cm}" /> rechnet für jeden Halbkreis den Umfang eines ganzen Kreises.
-- <InlineMath math="(200+30\pi)\text{ cm}" /> nimmt nur einen der beiden Halbkreisbögen.
-- <InlineMath math="(320+60\pi)\text{ cm}" /> zählt die beiden kurzen Rechteckseiten mit, die im Inneren liegen.
-- <InlineMath math="(100+60\pi)\text{ cm}" /> zählt nur eine der beiden langen Seiten.
-- <InlineMath math="(200+900\pi)\text{ cm}" /> verwendet die Flächenformel <InlineMath math="\pi r^2=\pi\cdot30^2" /> statt der Umfangsformel.
+Für <InlineMath math="x\ge1" /> sind beide Seiten nicht negativ, und **du darfst quadrieren**:
+
+<BlockMath math="\begin{aligned}
+x+5&>(x-1)^2=x^2-2x+1 \\
+0&>x^2-3x-4=(x-4)(x+1) \\
+-1&<x<4
+\end{aligned}" />
+
+Zusammen mit <InlineMath math="x\ge1" /> bleibt **<InlineMath math="1\le x<4" />**.
+
+# Beide Fälle zusammensetzen
+
+<MathVisual
+  title={<>Wo die Wurzel über der Geraden liegt</>}
+  description={<>Der Graph von <InlineMath math="y=\sqrt{x+5}" /> beginnt bei <InlineMath math="x=-5" /> und steigt langsam. Die Gerade <InlineMath math="y=x-1" /> steigt schneller. Links von <InlineMath math="x=4" /> liegt der Wurzelgraph über der Geraden, bei <InlineMath math="x=4" /> schneiden sich beide im Punkt <InlineMath math="(4\mid3)" />, rechts davon liegt die Gerade oben. Unter der Achse ist das Intervall von <InlineMath math="-5" /> bis <InlineMath math="4" /> markiert.</>}
+  labels={{
+    start: <><InlineMath math="x=-5" /></>,
+    end: <><InlineMath math="x=4" /></>,
+    r: <><InlineMath math="\sqrt{x+5}" /></>,
+    l: <><InlineMath math="x-1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8 },
+      y: { min: -7.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "left-end", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "end", objectId: "meet", at: { x: 4, y: 3 }, placement: "above-left" },
+      { key: "r", objectId: "root", at: { x: 6, y: 3.32 }, placement: "above" },
+      { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die beiden Teile **schließen lückenlos aneinander an**. Die Ungleichung gilt für <InlineMath math="-5\le x<4" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-1<x<4" /> quadriert ohne Fallunterscheidung und **verliert die Zahlen von <InlineMath math="-5" /> bis <InlineMath math="-1" />**, für die die rechte Seite negativ ist.
+- <InlineMath math="1\le x<4" /> rechnet nur Fall 2.
+- <InlineMath math="x<4" /> vergisst den Definitionsbereich <InlineMath math="x\ge-5" />.
+- <InlineMath math="-5\le x\le4" /> nimmt <InlineMath math="x=4" /> mit. Dort sind beide Seiten gleich <InlineMath math="3" />, und die Ungleichung ist streng.
+- <InlineMath math="x>4" /> dreht das Ergebnis um. Rechts von <InlineMath math="4" /> liegt die Gerade über der Wurzel.

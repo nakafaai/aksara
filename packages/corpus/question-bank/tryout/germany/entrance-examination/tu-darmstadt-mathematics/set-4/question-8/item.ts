@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$c<b<a$$",
-        },
-        {
-          correct: false,
-          label: "$$b<a<c$$",
-        },
-        {
-          correct: false,
-          label: "$$a<c<b$$",
-        },
-        {
-          correct: false,
-          label: "$$c<a<b$$",
-        },
-        {
-          correct: false,
-          label: "$$b<c<a$$",
+          label: "$$144\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$a<b<c$$",
+          label: "$$48\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$60\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$12\\sqrt7\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$72\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$180\\text{ cm}^3$$",
         },
       ],
     },

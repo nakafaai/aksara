@@ -1,22 +1,75 @@
-Der Mittelpunkt liegt **genau in der Mitte zwischen den Endpunkten**. Seine Koordinaten sind deshalb die Mittelwerte der Koordinaten von <InlineMath math="A" /> und <InlineMath math="B" />.
+# Die Hypotenusenabschnitte bestimmen
 
-<BlockMath math="x_M=\frac{x_A+x_B}{2}\qquad y_M=\frac{y_A+y_B}{2}" />
-
-Gesucht ist hier nicht <InlineMath math="M" />, sondern <InlineMath math="B" />. Du stellst jede Gleichung nach der Koordinate von <InlineMath math="B" /> um und erhältst <InlineMath math="x_B=2x_M-x_A" /> und <InlineMath math="y_B=2y_M-y_A" />.
+Die Höhe zerlegt die Hypotenuse in zwei Abschnitte <InlineMath math="p" /> und <InlineMath math="q" />. Für sie gelten zwei Beziehungen: Sie ergeben zusammen die Hypotenuse, und nach dem **Höhensatz** ist ihr Produkt das Quadrat der Höhe:
 
 <BlockMath math="\begin{aligned}
-x_B&=2\cdot2-(-3)=4+3=7 \\
-y_B&=2\cdot(-1)-5=-2-5=-7
+p+q&=13,\qquad p\cdot q=h^2=36 \\
+p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
 \end{aligned}" />
 
-Anschaulich gehst du von <InlineMath math="A" /> nach <InlineMath math="M" /> um <InlineMath math="5" /> nach rechts und <InlineMath math="6" /> nach unten. Denselben Schritt gehst du von <InlineMath math="M" /> aus noch einmal und landest bei <InlineMath math="(2+5\mid-1-6)=(7\mid-7)" />.
+Also sind die Abschnitte <InlineMath math="4\text{ cm}" /> und <InlineMath math="9\text{ cm}" />.
 
-Zur Kontrolle berechnest du den Mittelpunkt von <InlineMath math="A(-3\mid5)" /> und <InlineMath math="B(7\mid-7)" />: <InlineMath math="\left(\frac{-3+7}{2}\mid\frac{5-7}{2}\right)=(2\mid-1)" />. Das ist genau <InlineMath math="M" />.
+<MathVisual
+  title={<>Die Höhe teilt die Hypotenuse</>}
+  description={<>Das Dreieck <InlineMath math="ABC" /> mit der Hypotenuse <InlineMath math="\overline{AB}=13" /> unten und dem rechten Winkel bei <InlineMath math="C" /> oben. Die Höhe von <InlineMath math="C" /> auf die Hypotenuse ist <InlineMath math="6" /> lang und teilt die Hypotenuse in die Abschnitte <InlineMath math="p=4" /> und <InlineMath math="q=9" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p=4" /></>,
+    q: <><InlineMath math="q=9" /></>,
+    h: <><InlineMath math="h=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -2, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "piece-p", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "piece-q", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 13, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 6 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 13, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "p", objectId: "piece-p", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "q", objectId: "piece-q", at: { x: 8.5, y: 0 }, placement: "below" },
+      { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
 
-Der Endpunkt ist also <InlineMath math="B(7\mid-7)" />.
+# Die Katheten bestimmen
 
-- <InlineMath math="(-1\mid4)" /> ist die Summe der Koordinaten von <InlineMath math="A" /> und <InlineMath math="M" />. Ein Mittelpunkt entsteht so nicht.
-- <InlineMath math="(5\mid-6)" /> ist nur der Schritt von <InlineMath math="A" /> nach <InlineMath math="M" />, also <InlineMath math="M-A" />, und kein Punkt der Strecke.
-- <InlineMath math="(-8\mid11)" /> entsteht, wenn die Rollen vertauscht werden und <InlineMath math="M" /> an <InlineMath math="A" /> gespiegelt wird. Dieser Punkt liegt auf der anderen Seite von <InlineMath math="A" />.
-- <InlineMath math="\left(-\frac12\mid2\right)" /> ist der Mittelpunkt zwischen <InlineMath math="A" /> und <InlineMath math="M" />, nicht der Endpunkt.
-- <InlineMath math="(7\mid3)" /> hat die richtige <InlineMath math="x" />-Koordinate. Bei <InlineMath math="y" /> wurde aber <InlineMath math="-2+5" /> statt <InlineMath math="-2-5" /> gerechnet.
+Nach dem **Kathetensatz** ist das Quadrat jeder Kathete das Produkt aus der Hypotenuse und dem anliegenden Abschnitt:
+
+<BlockMath math="\begin{aligned}
+a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
+b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+\end{aligned}" />
+
+Probe: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+
+# Den Umfang addieren
+
+<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+
+**Der Umfang beträgt** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, etwa <InlineMath math="31{,}0\text{ cm}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="30\text{ cm}" /> nimmt die bekannten Seiten <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Dieses Dreieck hat aber **eine andere Höhe**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
+- <InlineMath math="26\text{ cm}" /> addiert die Abschnitte <InlineMath math="4" /> und <InlineMath math="9" /> zur Hypotenuse, als wären sie die Katheten.
+- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> rechnet mit <InlineMath math="ab=2\cdot13\cdot6=156" />. Richtig ist <InlineMath math="ab=c\cdot h=78" />, denn beide Produkte sind das Doppelte des Flächeninhalts.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> ist nur die Summe der Katheten, ohne die Hypotenuse.
+- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> zählt nur eine Kathete.

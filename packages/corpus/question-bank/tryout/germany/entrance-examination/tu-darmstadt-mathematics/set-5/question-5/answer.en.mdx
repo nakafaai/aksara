@@ -1,19 +1,60 @@
-The task asks *um wie viel* (by how much) the square's area is larger. Equal perimeter does **not** mean equal area. So first find the side of the square from the perimeter, then compare the two areas.
+# Where the centre must be
 
-The perimeter of the rectangle is <InlineMath math="P=2\cdot(12+4)=32\text{ cm}" />. The square has four equal sides, so each side is <InlineMath math="32:4=8\text{ cm}" /> long.
+A circle that touches both axes is at distance <InlineMath math="r" /> from both axes. In the first quadrant **its centre is therefore at <InlineMath math="M(r\mid r)" />**. So the whole circle depends only on <InlineMath math="r" />.
+
+# The condition from the point <InlineMath math="P" />
+
+The point <InlineMath math="P(1\mid8)" /> lies on the circle when **its distance to <InlineMath math="M" /> is exactly <InlineMath math="r" />**:
 
 <BlockMath math="\begin{aligned}
-A_{\text{square}}&=8\cdot8=64\text{ cm}^2 \\
-A_{\text{rectangle}}&=12\cdot4=48\text{ cm}^2 \\
-64-48&=16
+(1-r)^2+(8-r)^2&=r^2 \\
+1-2r+r^2+64-16r+r^2&=r^2 \\
+r^2-18r+65&=0 \\
+(r-5)(r-13)&=0
 \end{aligned}" />
 
-As a check, test the perimeter of the square: <InlineMath math="4\cdot8=32\text{ cm}" />, exactly as for the rectangle. For a fixed perimeter the square has the largest area of all rectangles, so the difference must be positive.
+# Check both solutions
 
-So the square's area is larger by <InlineMath math="16\text{ cm}^2" />.
+Both radii are positive, and both centres <InlineMath math="(5\mid5)" /> and <InlineMath math="(13\mid13)" /> lie in the first quadrant. **Neither solution drops out**:
 
-- <InlineMath math="0\text{ cm}^2" /> assumes that equal perimeter means equal area. That is false, as <InlineMath math="64\ne48" /> shows.
-- <InlineMath math="8\text{ cm}^2" /> is the difference of the side lengths, <InlineMath math="12-4" />, or the side of the square, but not a difference of areas.
-- <InlineMath math="32\text{ cm}^2" /> is the number of the common perimeter, which is a length in centimetres.
-- <InlineMath math="48\text{ cm}^2" /> is the area of the rectangle itself.
-- <InlineMath math="64\text{ cm}^2" /> is the area of the square itself. The task asks for the difference from the rectangle.
+<MathVisual
+  title={<>Two circles that fit</>}
+  description={<>Two circles lie in the first quadrant and touch both axes: the small one with centre <InlineMath math="M_1(5\mid5)" /> and radius <InlineMath math="5" />, the large one with centre <InlineMath math="M_2(13\mid13)" /> and radius <InlineMath math="13" />. Both pass through the point <InlineMath math="P(1\mid8)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(1\mid8)" /></>,
+    m1: <><InlineMath math="M_1(5\mid5)" /></>,
+    m2: <><InlineMath math="M_2(13\mid13)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 28 },
+      y: { min: -2, max: 28 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
+      { id: "small", kind: "circle", appearance: "primary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "large", kind: "circle", appearance: "secondary", center: { x: 13, y: 13 }, radius: 13 },
+      { id: "point", kind: "point", appearance: "answer", at: { x: 1, y: 8 } },
+      { id: "c1", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "c2", kind: "point", appearance: "reference", at: { x: 13, y: 13 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point", at: { x: 1, y: 8 }, placement: "left" },
+      { key: "m1", objectId: "c1", at: { x: 5, y: 5 }, placement: "below" },
+      { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> and <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. The radius can be <InlineMath math="5" /> or <InlineMath math="13" />.
+
+# Why the other answers are wrong
+
+- "only <InlineMath math="r=5" />" and "only <InlineMath math="r=13" />" **throw away a valid solution** of the quadratic equation.
+- "only <InlineMath math="r=\sqrt{65}" />" is the distance from <InlineMath math="P" /> to the origin, <InlineMath math="\sqrt{1+64}" />. But the origin isn't the centre.
+- "only <InlineMath math="r=4.5" />" halves the sum of the coordinates of <InlineMath math="P" />, as if the centre were halfway between the intercepts.
+- "only <InlineMath math="r=9" />" is the average of the two correct radii, the <InlineMath math="r" />-value of the vertex of <InlineMath math="r^2-18r+65" />.

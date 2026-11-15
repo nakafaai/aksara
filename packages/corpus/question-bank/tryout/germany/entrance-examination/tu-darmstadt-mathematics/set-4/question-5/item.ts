@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$10$$ Stunden",
+        },
+        {
+          correct: false,
+          label: "$$11$$ Stunden",
+        },
+        {
+          correct: false,
+          label: "$$8{,}5$$ Stunden",
+        },
+        {
+          correct: false,
+          label: "$$2$$ Stunden oder $$15$$ Stunden",
+        },
+        {
           correct: true,
-          label: "$$5\\text{ m}$$",
+          label: "$$15$$ Stunden",
         },
         {
           correct: false,
-          label: "$$\\sqrt{34}\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$2\\sqrt{13}\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$7\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$\\sqrt7\\text{ m}$$",
-        },
-        {
-          correct: false,
-          label: "$$10\\text{ m}$$",
+          label: "$$12$$ Stunden",
         },
       ],
     },

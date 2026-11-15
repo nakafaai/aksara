@@ -1,15 +1,62 @@
-Soal menanyakan bentuk bidang irisan (*Schnittfläche*). Bentuknya segitiga, karena irisan itu melalui tepat tiga titik sudut kubus dan hanya memotong tiga sisi yang bertemu di <InlineMath math="E" />. Yang menentukan jenisnya adalah **panjang ketiga sisinya**.
+# Penampang membuatnya datar
 
-Setiap dua dari tiga titik ujung itu terletak pada satu sisi kubus yang sama, yaitu salah satu dari tiga sisi di titik sudut <InlineMath math="E" />. Jadi, ruas yang menghubungkannya adalah diagonal sisi. Dengan panjang rusuk <InlineMath math="a" />, teorema Pythagoras memberi panjang yang sama untuk setiap sisi segitiga:
+Potong kerucut dan tabung memanjang melalui sumbu bersamanya. Kerucut menjadi segitiga, tabung menjadi persegi panjang. **Sudut atas persegi panjang terletak pada sisi miring**, karena tepi tabung menyentuh selimut kerucut:
 
-<BlockMath math="d=\sqrt{a^2+a^2}=a\sqrt2" />
+<MathVisual
+  title={<>Penampang kerucut dan tabung</>}
+  description={<>Penampang melalui sumbu bersama: segitiga sama kaki dengan alas <InlineMath math="12" /> dan tinggi <InlineMath math="12" />, dengan persegi panjang di dalamnya yang lebarnya <InlineMath math="2r=6" /> dan tingginya <InlineMath math="h=6" />. Sudut atas persegi panjang, misalnya <InlineMath math="(3\mid6)" />, terletak pada sisi miring segitiga.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    r: <><InlineMath math="r=3" /></>,
+    h: <><InlineMath math="h=6" /></>,
+    base: <><InlineMath math="6" /></>,
+    top: <><InlineMath math="12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -1.5, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 12 }] },
+      { id: "cylinder", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "apex", kind: "point", appearance: "reference", at: { x: 0, y: 12 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 3, y: 6 } },
+    ],
+    labels: [
+      { key: "s", objectId: "apex", at: { x: 0, y: 12 }, placement: "above" },
+      { key: "r", objectId: "cylinder", at: { x: 1.5, y: 6 }, placement: "above" },
+      { key: "h", objectId: "cylinder", at: { x: -3, y: 3 }, placement: "left" },
+      { key: "base", objectId: "cone", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "top", objectId: "axis", at: { x: 0, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
 
-Jadi, ketiga sisi segitiga itu sama panjang. Sebagai pemeriksaan, ambil kubus dengan <InlineMath math="a=1" />, titik sudut <InlineMath math="E" /> di titik asal, dan titik ujung <InlineMath math="(1\mid0\mid0)" />, <InlineMath math="(0\mid1\mid0)" />, serta <InlineMath math="(0\mid0\mid1)" />. Setiap jarak antara dua titik itu adalah <InlineMath math="\sqrt{1+1}=\sqrt2" />.
+# Teorema intercept di puncak
 
-Jadi, bidang irisannya berbentuk segitiga sama sisi.
+Di atas tabung tersisa kerucut kecil dengan tinggi <InlineMath math="12-h" /> dan jari-jari <InlineMath math="r" />. Kerucut kecil itu **sebangun dengan kerucut besar**:
 
-- Segitiga siku-siku sama kaki muncul jika sudut siku-siku di titik sudut <InlineMath math="E" /> dianggap terbawa ke bidang irisan. Padahal semua sudut segitiga irisan itu <InlineMath math="60^\circ" />.
-- Persegi memerlukan empat titik sudut. Irisan ini hanya melalui tiga titik sudut kubus dan hanya memotong tiga sisi.
-- Persegi panjang yang bukan persegi muncul pada irisan yang melalui dua rusuk yang berhadapan, bukan di sini.
-- Segi enam beraturan muncul pada irisan melalui titik tengah enam rusuk yang tegak lurus diagonal ruang, bukan melalui tiga titik sudut.
-- Segitiga sama kaki yang bukan sama sisi akan punya satu sisi dengan panjang berbeda. Padahal ketiga sisinya adalah diagonal sisi yang sama panjang.
+<BlockMath math="\frac{r}{6}=\frac{12-h}{12}" />
+
+Dengan syarat <InlineMath math="h=2r" /> persamaan itu menjadi:
+
+<BlockMath math="\frac{r}{6}=\frac{12-2r}{12}\quad\Longrightarrow\quad 2r=12-2r\quad\Longrightarrow\quad r=3,\ h=6" />
+
+# Volumenya
+
+<BlockMath math="V=\pi r^2h=\pi\cdot3^2\cdot6=54\pi\text{ cm}^3" />
+
+Tabung itu **bervolume <InlineMath math="54\pi\text{ cm}^3" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="64\pi\text{ cm}^3" /> menyamakan tinggi dengan **jari-jari**, bukan diameter: dari <InlineMath math="\frac r6=\frac{12-r}{12}" /> diperoleh <InlineMath math="r=4" />, dan <InlineMath math="\pi\cdot16\cdot4=64\pi" />.
+- <InlineMath math="216\pi\text{ cm}^3" /> memakai diameter <InlineMath math="6" /> sebagai jari-jari: <InlineMath math="\pi\cdot36\cdot6" />.
+- <InlineMath math="18\pi\text{ cm}^3" /> memakai rumus kerucut dengan <InlineMath math="\frac13" /> untuk tabung.
+- <InlineMath math="27\pi\text{ cm}^3" /> memakai tinggi <InlineMath math="3" />, bukan <InlineMath math="6" />.
+- <InlineMath math="48\pi\text{ cm}^3" /> adalah volume tabung berjari-jari <InlineMath math="4" /> dan tinggi <InlineMath math="3" />, yang mencampur jari-jari dan tinggi dari dua cara yang berbeda.

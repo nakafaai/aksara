@@ -1,0 +1,68 @@
+# Nyatakan pintasan paksi dengan kecerunan
+
+Garis melalui <InlineMath math="P(2\mid3)" /> dengan kecerunan <InlineMath math="m<0" /> mempunyai persamaan <InlineMath math="y=m(x-2)+3" />. **Titik pintasannya dengan paksi** bergantung pada <InlineMath math="m" />:
+
+<BlockMath math="\begin{aligned}
+x=0:&\quad y_0=3-2m \\
+y=0:&\quad x_0=2-\frac3m
+\end{aligned}" />
+
+Bagi <InlineMath math="m<0" /> kedua-duanya positif, jadi segi tiga itu berada dalam sukuan pertama.
+
+# Bentukkan syarat luas
+
+Segi tiga itu bersudut tegak dengan sisi tegak <InlineMath math="x_0" /> dan <InlineMath math="y_0" />. **Jangan lupa faktor <InlineMath math="\frac12" />**:
+
+<BlockMath math="\begin{aligned}
+\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
+12-4m-\tfrac9m&=24 \\
+4m^2+12m+9&=0 \\
+(2m+3)^2&=0
+\end{aligned}" />
+
+# Penyelesaian berulang
+
+Persamaan kuadratik itu hanya ada **satu penyelesaian, <InlineMath math="m=-\frac32" />**. Maka <InlineMath math="y_0=3+3=6" /> dan <InlineMath math="x_0=2+2=4" />:
+
+<MathVisual
+  title={<>Garis dan segi tiganya</>}
+  description={<>Garis <InlineMath math="g: y=-1.5x+6" /> bertemu paksi pada <InlineMath math="(4\mid0)" /> dan <InlineMath math="(0\mid6)" />. Bersama paksi-paksi, garis itu membatasi segi tiga bersudut tegak dengan luas <InlineMath math="12" />. Titik <InlineMath math="P(2\mid3)" /> terletak tepat di tengah tembereng garis antara dua titik pintasan paksi.</>}
+  labels={{
+    p: <><InlineMath math="P(2\mid3)" /></>,
+    x0: <><InlineMath math="(4\mid0)" /></>,
+    y0: <><InlineMath math="(0\mid6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "x0", objectId: "px", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "y0", objectId: "py", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="\frac12\cdot4\cdot6=12" />. Persamaan garis itu ialah <InlineMath math="y=-1.5x+6" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> memakai salingan kecerunan. Segi tiganya bersisi tegak <InlineMath math="6.5" /> dan <InlineMath math="\frac{13}{3}" /> dan **luasnya bukan <InlineMath math="12" />**.
+- <InlineMath math="y=-3x+9" /> atau <InlineMath math="y=-0.75x+4.5" /> menjangka dua garis. Kedua-duanya memang melalui <InlineMath math="P" />, tetapi setiap satu membatasi segi tiga dengan luas <InlineMath math="13.5" />.
+- <InlineMath math="y=-\frac23x+4" /> menukar pintasan <InlineMath math="4" /> dan <InlineMath math="6" />. Garis itu tidak melalui <InlineMath math="P" />, kerana <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
+- <InlineMath math="y=1.5x" /> mempunyai kecerunan positif dan melalui asalan.
+- "Tiada garis sedemikian" terhasil kalau faktor <InlineMath math="\frac12" /> tertinggal: syarat itu lalu menjadi <InlineMath math="4m^2=-9" />.

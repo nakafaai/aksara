@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$8$$",
+          label: "$$a=-2$$ oder $$a=2$$",
         },
         {
           correct: false,
-          label: "$$12$$",
+          label: "$$a=\\frac{13}{6}$$",
         },
         {
           correct: false,
-          label: "$$15$$",
+          label: "$$a=2$$ oder $$a=\\frac{13}{6}$$",
         },
         {
           correct: true,
-          label: "$$6$$",
+          label: "$$a=2$$",
         },
         {
           correct: false,
-          label: "$$16$$",
+          label: "$$a=-2$$",
         },
         {
           correct: false,
-          label: "$$30$$",
+          label: "$$a=2\\sqrt2$$",
         },
       ],
     },

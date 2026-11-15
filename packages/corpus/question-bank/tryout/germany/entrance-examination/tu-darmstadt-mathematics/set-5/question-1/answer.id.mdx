@@ -1,19 +1,59 @@
-Soal meminta selisih itu ditulis *als einen einzigen Bruch* (sebagai satu pecahan). Pecahan baru bisa dikurangkan setelah **penyebutnya sama**. Penyebut persekutuan dari <InlineMath math="x-1" /> dan <InlineMath math="x+1" /> adalah hasil kali keduanya, dan menurut selisih dua kuadrat <InlineMath math="(x-1)(x+1)=x^2-1" />.
+# Habis dibagi berarti pembuat nol
 
-Perluas pecahan pertama dengan <InlineMath math="x+1" /> dan pecahan kedua dengan <InlineMath math="x-1" />.
+Sebuah polinom habis dibagi <InlineMath math="(x-1)" /> tepat ketika **<InlineMath math="x=1" /> adalah pembuat nol**. Dari situ diperoleh persamaan untuk <InlineMath math="a" />:
 
-<BlockMath math="\frac{2}{x-1}-\frac{1}{x+1}=\frac{2(x+1)}{(x-1)(x+1)}-\frac{x-1}{(x-1)(x+1)}" />
+<BlockMath math="p(1)=1+a-5+6=a+2=0\quad\Longrightarrow\quad a=-2" />
 
-Sekarang kurangkan pembilangnya. Tanda minus berlaku untuk seluruh pembilang kedua, jadi tulis pembilang itu di dalam kurung.
+# Bagi dengan faktor linear yang diketahui
 
-<BlockMath math="\frac{2(x+1)-(x-1)}{x^2-1}=\frac{2x+2-x+1}{x^2-1}=\frac{x+3}{x^2-1}" />
+Dengan <InlineMath math="a=-2" />, <InlineMath math="p(x)=x^3-2x^2-5x+6" />. Pembagian polinom oleh <InlineMath math="(x-1)" /> menyisakan **faktor kuadrat**, yang lalu kamu faktorkan:
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="x=2" />. Selisihnya menghasilkan <InlineMath math="\frac21-\frac13=\frac53" />, dan pecahan hasilnya juga <InlineMath math="\frac{2+3}{4-1}=\frac53" />.
+<BlockMath math="\begin{aligned}
+x^3-2x^2-5x+6&=(x-1)\left(x^2-x-6\right) \\
+x^2-x-6&=(x-3)(x+2)
+\end{aligned}" />
 
-Jadi, selisih itu sama dengan <InlineMath math="\frac{x+3}{x^2-1}" />.
+Cek: kalau <InlineMath math="(x-1)(x-3)(x+2)" /> dikalikan, hasilnya kembali <InlineMath math="x^3-2x^2-5x+6" />.
 
-- <InlineMath math="\frac{x+1}{x^2-1}" /> muncul jika tanda minus hanya dikenakan pada <InlineMath math="x" />. Pembilangnya menjadi <InlineMath math="2x+2-x-1" />, bukan <InlineMath math="2x+2-x+1" />.
-- <InlineMath math="\frac{1}{x^2-1}" /> hanya mengurangkan pembilang lama, <InlineMath math="2-1" />. Saat pecahan diperluas, pembilangnya juga harus ikut dikalikan.
-- <InlineMath math="-\frac12" /> muncul jika pembilang dan penyebut dikurangkan masing-masing, <InlineMath math="\frac{2-1}{(x-1)-(x+1)}" />. Pecahan tidak dikurangkan dengan cara itu.
-- <InlineMath math="\frac{3x+1}{x^2-1}" /> menjumlahkan pembilangnya, bukan mengurangkan: <InlineMath math="2x+2+x-1" />.
-- <InlineMath math="\frac{x+3}{x^2+1}" /> sudah benar pembilangnya, tetapi penyebutnya salah. Hasil kali <InlineMath math="(x-1)(x+1)" /> adalah <InlineMath math="x^2-1" />, bukan <InlineMath math="x^2+1" />.
+<MathVisual
+  title={<>Tiga pembuat nol <InlineMath math="p" /></>}
+  description={<>Grafik <InlineMath math="p(x)=x^3-2x^2-5x+6" /> memotong sumbu <InlineMath math="x" /> tiga kali: di <InlineMath math="-2" />, di pembuat nol yang diketahui <InlineMath math="1" />, dan di <InlineMath math="3" />.</>}
+  labels={{
+    m2: <><InlineMath math="-2" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p3: <><InlineMath math="3" /></>,
+    p: <><InlineMath math="p" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 4.5 },
+      y: { min: -13, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2*x^2 - 5*x + 6", domain: { min: -2.6, max: 3.8 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "r3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m2", objectId: "r1", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p1", objectId: "r2", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "p3", objectId: "r3", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "p", objectId: "poly", at: { x: 3.6, y: 10.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Selain <InlineMath math="x=1" />, <InlineMath math="p" /> punya **pembuat nol <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="x=2" /> dan <InlineMath math="x=-3" /> adalah pembuat nol <InlineMath math="x^2+x-6" />. Itu muncul kalau <InlineMath math="x^2-x-6" /> **difaktorkan dengan kedua tanda tertukar**, menjadi <InlineMath math="(x+3)(x-2)" />.
+- <InlineMath math="x=\frac{11\pm\sqrt{97}}{2}" /> muncul kalau yang dipakai <InlineMath math="p(-1)=0" />, bukan <InlineMath math="p(1)=0" />. Maka <InlineMath math="a=-10" /> dan sisa faktornya <InlineMath math="x^2-11x+6" />.
+- "Tidak ada pembuat nol lain" muncul kalau pembagian menghasilkan <InlineMath math="x^2-x+6" />. Faktor itu memang tidak punya pembuat nol, tetapi hitungannya salah.
+- <InlineMath math="x=-1" /> dan <InlineMath math="x=6" /> adalah pembuat nol <InlineMath math="x^2-5x-6" />. Faktor itu muncul kalau kamu tidak membagi, tetapi langsung menyalin koefisien <InlineMath math="-5" /> dan <InlineMath math="6" /> dari <InlineMath math="p" /> ke bentuk kuadrat.
+- <InlineMath math="x=2" /> dan <InlineMath math="x=3" /> adalah pembuat nol <InlineMath math="x^2-5x+6" />, sisa faktor yang salah karena tandanya tertukar.

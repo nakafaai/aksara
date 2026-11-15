@@ -1,19 +1,59 @@
-The task asks you to write the difference *als einen einzigen Bruch* (as a single fraction). You can subtract fractions only once they have **the same denominator**. The lowest common denominator of <InlineMath math="x-1" /> and <InlineMath math="x+1" /> is their product, and by the difference of squares <InlineMath math="(x-1)(x+1)=x^2-1" />.
+# Divisibility means a zero
 
-Expand the first fraction by <InlineMath math="x+1" /> and the second by <InlineMath math="x-1" />.
+A polynomial is divisible by <InlineMath math="(x-1)" /> with no remainder exactly when **<InlineMath math="x=1" /> is a zero**. That gives an equation for <InlineMath math="a" />:
 
-<BlockMath math="\frac{2}{x-1}-\frac{1}{x+1}=\frac{2(x+1)}{(x-1)(x+1)}-\frac{x-1}{(x-1)(x+1)}" />
+<BlockMath math="p(1)=1+a-5+6=a+2=0\quad\Longrightarrow\quad a=-2" />
 
-Now subtract the numerators. The minus applies to the whole second numerator, so put it in brackets.
+# Divide by the known linear factor
 
-<BlockMath math="\frac{2(x+1)-(x-1)}{x^2-1}=\frac{2x+2-x+1}{x^2-1}=\frac{x+3}{x^2-1}" />
+With <InlineMath math="a=-2" />, <InlineMath math="p(x)=x^3-2x^2-5x+6" />. Polynomial division by <InlineMath math="(x-1)" /> leaves **a quadratic factor**, which you then factor:
 
-As a check, substitute <InlineMath math="x=2" />. The difference gives <InlineMath math="\frac21-\frac13=\frac53" />, and the fraction gives <InlineMath math="\frac{2+3}{4-1}=\frac53" />.
+<BlockMath math="\begin{aligned}
+x^3-2x^2-5x+6&=(x-1)\left(x^2-x-6\right) \\
+x^2-x-6&=(x-3)(x+2)
+\end{aligned}" />
 
-So the difference equals <InlineMath math="\frac{x+3}{x^2-1}" />.
+Check: multiplying out <InlineMath math="(x-1)(x-3)(x+2)" /> gives <InlineMath math="x^3-2x^2-5x+6" /> again.
 
-- <InlineMath math="\frac{x+1}{x^2-1}" /> comes from applying the minus to <InlineMath math="x" /> only. The numerator then reads <InlineMath math="2x+2-x-1" /> instead of <InlineMath math="2x+2-x+1" />.
-- <InlineMath math="\frac{1}{x^2-1}" /> subtracts only the old numerators, <InlineMath math="2-1" />. When you expand a fraction, its numerator has to be multiplied too.
-- <InlineMath math="-\frac12" /> comes from subtracting numerators and denominators separately, <InlineMath math="\frac{2-1}{(x-1)-(x+1)}" />. Fractions are not subtracted that way.
-- <InlineMath math="\frac{3x+1}{x^2-1}" /> adds the numerators instead of subtracting them, <InlineMath math="2x+2+x-1" />.
-- <InlineMath math="\frac{x+3}{x^2+1}" /> has the right numerator but the wrong denominator. The product <InlineMath math="(x-1)(x+1)" /> is <InlineMath math="x^2-1" />, not <InlineMath math="x^2+1" />.
+<MathVisual
+  title={<>The three zeros of <InlineMath math="p" /></>}
+  description={<>The graph of <InlineMath math="p(x)=x^3-2x^2-5x+6" /> crosses the <InlineMath math="x" />-axis three times: at <InlineMath math="-2" />, at the given zero <InlineMath math="1" /> and at <InlineMath math="3" />.</>}
+  labels={{
+    m2: <><InlineMath math="-2" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p3: <><InlineMath math="3" /></>,
+    p: <><InlineMath math="p" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 4.5 },
+      y: { min: -13, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2*x^2 - 5*x + 6", domain: { min: -2.6, max: 3.8 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "r3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m2", objectId: "r1", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p1", objectId: "r2", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "p3", objectId: "r3", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "p", objectId: "poly", at: { x: 3.6, y: 10.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Besides <InlineMath math="x=1" />, <InlineMath math="p" /> has **the zeros <InlineMath math="x=-2" /> and <InlineMath math="x=3" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="x=2" /> and <InlineMath math="x=-3" /> are the zeros of <InlineMath math="x^2+x-6" />. That comes from **factoring <InlineMath math="x^2-x-6" /> with both signs swapped**, as <InlineMath math="(x+3)(x-2)" />.
+- <InlineMath math="x=\frac{11\pm\sqrt{97}}{2}" /> comes from using <InlineMath math="p(-1)=0" /> instead of <InlineMath math="p(1)=0" />. Then <InlineMath math="a=-10" /> and the remaining factor is <InlineMath math="x^2-11x+6" />.
+- "No further zeros" comes from getting <InlineMath math="x^2-x+6" /> in the division. That factor really has no zero, but it's calculated wrongly.
+- <InlineMath math="x=-1" /> and <InlineMath math="x=6" /> are the zeros of <InlineMath math="x^2-5x-6" />. That factor comes from not dividing at all and just copying the coefficients <InlineMath math="-5" /> and <InlineMath math="6" /> of <InlineMath math="p" /> into a quadratic.
+- <InlineMath math="x=2" /> and <InlineMath math="x=3" /> are the zeros of <InlineMath math="x^2-5x+6" />, a wrong remaining factor with swapped signs.

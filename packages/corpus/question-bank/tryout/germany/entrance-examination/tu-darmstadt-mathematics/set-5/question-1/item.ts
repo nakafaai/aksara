@@ -7,27 +7,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\frac{x+1}{x^2-1}$$",
+          label: "$$x=2$$ und $$x=-3$$",
         },
         {
           correct: false,
-          label: "$$\\frac{1}{x^2-1}$$",
-        },
-        {
-          correct: false,
-          label: "$$-\\frac12$$",
+          label:
+            "$$x=\\frac{11-\\sqrt{97}}{2}$$ und $$x=\\frac{11+\\sqrt{97}}{2}$$",
         },
         {
           correct: true,
-          label: "$$\\frac{x+3}{x^2-1}$$",
+          label: "$$x=-2$$ und $$x=3$$",
         },
         {
           correct: false,
-          label: "$$\\frac{3x+1}{x^2-1}$$",
+          label: "Es gibt keine weiteren reellen Nullstellen.",
         },
         {
           correct: false,
-          label: "$$\\frac{x+3}{x^2+1}$$",
+          label: "$$x=-1$$ und $$x=6$$",
+        },
+        {
+          correct: false,
+          label: "$$x=2$$ und $$x=3$$",
         },
       ],
     },

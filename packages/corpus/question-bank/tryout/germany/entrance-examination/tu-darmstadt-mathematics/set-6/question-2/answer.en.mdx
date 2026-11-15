@@ -1,17 +1,60 @@
-The task says *Zerlegen Sie vollständig in Linearfaktoren* (factor completely into linear factors). With four terms, **factoring in two groups** often helps. Group the first two and the last two terms and look for the same bracket in each group.
+# Write the roots as absolute values
 
-<BlockMath math="x^3-2x^2-9x+18=x^2(x-2)-9(x-2)" />
+Under the roots there are squares: <InlineMath math="x^2-6x+9=(x-3)^2" /> and <InlineMath math="x^2+4x+4=(x+2)^2" />. A root is never negative, so **<InlineMath math="\sqrt{u^2}=|u|" />, not <InlineMath math="u" />**:
 
-Watch the sign in the second group: <InlineMath math="-9x+18=-9\cdot(x-2)" />, because <InlineMath math="-9\cdot(-2)=+18" />. Now both groups contain the factor <InlineMath math="(x-2)" />, so factor it out. The rest, <InlineMath math="x^2-9" />, is a difference of squares.
+<BlockMath math="|x-3|+|x+2|=7" />
 
-<BlockMath math="(x-2)(x^2-9)=(x-2)(x-3)(x+3)" />
+# Go through the three regions
 
-As a check, substitute the zeros of the factors into the original expression. For <InlineMath math="x=2" /> you get <InlineMath math="8-8-18+18=0" />, for <InlineMath math="x=3" /> you get <InlineMath math="27-18-27+18=0" />, and for <InlineMath math="x=-3" /> you get <InlineMath math="-27-18+27+18=0" />. At <InlineMath math="x=0" /> both forms have the value <InlineMath math="18" />.
+The absolute values change sign at <InlineMath math="x=-2" /> and <InlineMath math="x=3" />. That splits the number line into three regions, and **each region has its own equation**:
 
-So the factorization into linear factors is <InlineMath math="(x-2)(x-3)(x+3)" />.
+<BlockMath math="\begin{aligned}
+x<-2:&\quad (3-x)+(-x-2)=1-2x=7\ \Rightarrow\ x=-3 \\
+-2\le x\le3:&\quad (3-x)+(x+2)=5\ne7 \\
+x>3:&\quad (x-3)+(x+2)=2x-1=7\ \Rightarrow\ x=4
+\end{aligned}" />
 
-- <InlineMath math="(x+2)(x-3)(x+3)" /> has no zero at <InlineMath math="x=2" />, while the expression does. The error comes from writing <InlineMath math="-9x+18" /> as <InlineMath math="-9(x+2)" />.
-- <InlineMath math="(x-2)(x-3)^2" /> factors <InlineMath math="x^2-9" /> wrongly. In fact <InlineMath math="(x-3)^2=x^2-6x+9" />, not <InlineMath math="x^2-9" />.
-- <InlineMath math="(x-2)(x^2+9)" /> comes from the sign error <InlineMath math="-9x+18=+9(x-2)" />. Besides, <InlineMath math="x^2+9" /> is not a product of linear factors.
-- <InlineMath math="(2-x)(x-3)(x+3)" /> has exactly the opposite sign. At <InlineMath math="x=0" /> it gives <InlineMath math="2\cdot(-3)\cdot3=-18" /> instead of <InlineMath math="18" />.
-- <InlineMath math="(x-2)(x-9)(x+9)" /> treats <InlineMath math="x^2-9" /> like <InlineMath math="x^2-9^2" />. The number <InlineMath math="9" /> is <InlineMath math="3^2" />.
+Both values lie in their region: <InlineMath math="-3<-2" /> and <InlineMath math="4>3" />.
+
+<MathVisual
+  title={<>Sum of two distances</>}
+  description={<>The graph of <InlineMath math="|x-3|+|x+2|" /> is flat at height <InlineMath math="5" /> between <InlineMath math="x=-2" /> and <InlineMath math="x=3" /> and rises on both sides outside. The line <InlineMath math="y=7" /> meets it at <InlineMath math="x=-3" /> and at <InlineMath math="x=4" />.</>}
+  labels={{
+    a: <><InlineMath math="x=-3" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    f: <><InlineMath math="|x-3|+|x+2|" /></>,
+    five: <><InlineMath math="5" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 6.5 },
+      y: { min: 0, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-3) + abs(x+2)", domain: { min: -5, max: 6 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 7 }, to: { x: 6, y: 7 } },
+      { id: "flat", kind: "segment", appearance: "highlight", from: { x: -2, y: 5 }, to: { x: 3, y: 5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: -3, y: 7 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: -3, y: 7 }, placement: "above-left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: 7 }, placement: "above-right" },
+      { key: "f", objectId: "sum", at: { x: 5.5, y: 10 }, placement: "left" },
+      { key: "five", objectId: "flat", at: { x: 0.5, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="\sqrt{36}+\sqrt{1}=7" /> for <InlineMath math="x=-3" /> and <InlineMath math="\sqrt1+\sqrt{36}=7" /> for <InlineMath math="x=4" />. The equation holds **for <InlineMath math="x=-3" /> and for <InlineMath math="x=4" />**.
+
+# Why the other answers are wrong
+
+- "only <InlineMath math="x=4" />" sets <InlineMath math="\sqrt{(x-3)^2}=x-3" /> and <InlineMath math="\sqrt{(x+2)^2}=x+2" /> without absolute values. Then **the solution left of <InlineMath math="-2" /> is missing**.
+- "only <InlineMath math="x=-3" />" checks only the left region.
+- <InlineMath math="x=-4" /> or <InlineMath math="x=3" /> comes from swapped signs in both absolute values, that is from <InlineMath math="|x+3|+|x-2|=7" />.
+- "all <InlineMath math="x" /> with <InlineMath math="-2\le x\le3" />" is the region where the sum is <InlineMath math="5" />, not <InlineMath math="7" />.
+- "no such number" overlooks the two outer regions.

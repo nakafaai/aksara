@@ -1,0 +1,70 @@
+# Rasionalkan setiap pecahan
+
+Setiap sebutan berbentuk <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> dengan <InlineMath math="k=1,2,\ldots,15" />. Darab pengangka dan penyebut dengan <InlineMath math="\sqrt{k+1}-\sqrt k" />. Beza dua kuasa dua menjadikan penyebut itu <InlineMath math="1" />:
+
+<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
+
+Jadi setiap pecahan ialah **beza dua punca yang bersebelahan**.
+
+# Hasil tambah itu mengecut
+
+Tulis hasil tambah dengan beza-beza tadi. Setiap punca dari <InlineMath math="\sqrt2" /> hingga <InlineMath math="\sqrt{15}" /> muncul sekali dengan tanda tambah dan sekali dengan tanda tolak:
+
+<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
+
+Garis nombor menunjukkan kenapa **hanya titik pertama dan titik terakhir yang tinggal**:
+
+<MathVisual
+  title={<>Lima belas bahagian pada garis nombor</>}
+  description={<>Garis nombor memuatkan titik <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Setiap pecahan dalam hasil tambah ialah panjang bahagian dari <InlineMath math="\sqrt k" /> hingga <InlineMath math="\sqrt{k+1}" />. Kelima-belas bahagian bersambung tanpa celah dan bersama-sama merentang dari <InlineMath math="1" /> hingga <InlineMath math="4" />, iaitu sepanjang <InlineMath math="3" />.</>}
+  labels={{
+    one: <><InlineMath math="\sqrt1=1" /></>,
+    four: <><InlineMath math="\sqrt{16}=4" /></>,
+    sum: <><InlineMath math="4-1=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.5, max: 4.5 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "step-1", kind: "segment", appearance: "highlight", from: { x: 1.0, y: 0 }, to: { x: 1.4142, y: 0 } },
+      { id: "step-2", kind: "segment", appearance: "secondary", from: { x: 1.4142, y: 0 }, to: { x: 1.7321, y: 0 } },
+      { id: "step-3", kind: "segment", appearance: "highlight", from: { x: 1.7321, y: 0 }, to: { x: 2.0, y: 0 } },
+      { id: "step-4", kind: "segment", appearance: "secondary", from: { x: 2.0, y: 0 }, to: { x: 2.2361, y: 0 } },
+      { id: "step-5", kind: "segment", appearance: "highlight", from: { x: 2.2361, y: 0 }, to: { x: 2.4495, y: 0 } },
+      { id: "step-6", kind: "segment", appearance: "secondary", from: { x: 2.4495, y: 0 }, to: { x: 2.6458, y: 0 } },
+      { id: "step-7", kind: "segment", appearance: "highlight", from: { x: 2.6458, y: 0 }, to: { x: 2.8284, y: 0 } },
+      { id: "step-8", kind: "segment", appearance: "secondary", from: { x: 2.8284, y: 0 }, to: { x: 3.0, y: 0 } },
+      { id: "step-9", kind: "segment", appearance: "highlight", from: { x: 3.0, y: 0 }, to: { x: 3.1623, y: 0 } },
+      { id: "step-10", kind: "segment", appearance: "secondary", from: { x: 3.1623, y: 0 }, to: { x: 3.3166, y: 0 } },
+      { id: "step-11", kind: "segment", appearance: "highlight", from: { x: 3.3166, y: 0 }, to: { x: 3.4641, y: 0 } },
+      { id: "step-12", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 3.6056, y: 0 } },
+      { id: "step-13", kind: "segment", appearance: "highlight", from: { x: 3.6056, y: 0 }, to: { x: 3.7417, y: 0 } },
+      { id: "step-14", kind: "segment", appearance: "secondary", from: { x: 3.7417, y: 0 }, to: { x: 3.873, y: 0 } },
+      { id: "step-15", kind: "segment", appearance: "highlight", from: { x: 3.873, y: 0 }, to: { x: 4.0, y: 0 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "total", kind: "segment", appearance: "answer", from: { x: 1, y: 0.5 }, to: { x: 4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "one", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "four", objectId: "end", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Nilai hasil tambah itu ialah <InlineMath math="3" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="-3" /> terhasil kalau kamu darab dengan <InlineMath math="\sqrt k-\sqrt{k+1}" /> tetapi masih membaca penyebut sebagai <InlineMath math="+1" />. Sedangkan setiap sebutan **positif**, jadi hasil tambahnya pun positif.
+- <InlineMath math="4-\sqrt2" /> membuang pecahan pertama, jadi rantai itu bermula di <InlineMath math="\sqrt2" />.
+- <InlineMath math="\sqrt{17}-1" /> mengira satu pecahan terlebih, sehingga <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> terlupa bahawa <InlineMath math="\sqrt1=1" /> ditolak pada permulaan.
+- <InlineMath math="15" /> ialah bilangan pecahan, bukan hasil tambahnya.

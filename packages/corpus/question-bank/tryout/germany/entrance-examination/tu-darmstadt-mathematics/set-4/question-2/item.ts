@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$x=19$$",
-        },
-        {
-          correct: false,
-          label: "$$x=-9$$",
-        },
-        {
-          correct: false,
-          label: "$$x=-14$$",
-        },
-        {
-          correct: false,
-          label: "$$x=35$$",
-        },
-        {
           correct: true,
-          label: "$$x=13$$",
+          label: "$$\\mathbb{L}=\\{1;\\,5\\}$$",
         },
         {
           correct: false,
-          label: "$$x=-3$$",
+          label: "$$\\mathbb{L}=\\{5\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{1\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{1;\\,3\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{3+2\\sqrt3\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{\\}$$",
         },
       ],
     },

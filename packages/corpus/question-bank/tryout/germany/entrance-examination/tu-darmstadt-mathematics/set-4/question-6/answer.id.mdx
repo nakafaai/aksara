@@ -1,19 +1,57 @@
-Soal menanyakan luas segitiga itu dalam *Flächeneinheiten* (satuan luas). Untuk menghitung luas, kamu perlu **ketiga titik sudut segitiga**. Dua titik ada di sumbu <InlineMath math="y" />, tempat kedua garis memotongnya. Titik ketiga adalah titik potong kedua garis.
+# Di mana nilai minimum bisa berada
 
-Di sumbu <InlineMath math="y" /> berlaku <InlineMath math="x=0" />. Grafik <InlineMath math="f" /> memotongnya di <InlineMath math="(0\mid1)" />, grafik <InlineMath math="g" /> di <InlineMath math="(0\mid7)" />. Titik potong <InlineMath math="S" /> kamu cari dengan menyamakan kedua rumus.
+Grafik <InlineMath math="f" /> adalah parabola terbuka ke atas dengan puncak di <InlineMath math="x=a" />, karena <InlineMath math="f(x)=(x-a)^2+6-a^2" />. Pada selang <InlineMath math="0\le x\le3" />, nilai terkecilnya ada **di puncak atau di salah satu ujung selang**. Kasus mana yang terjadi bergantung pada letak <InlineMath math="a" />.
 
-<BlockMath math="2x+1=-x+7\quad\Rightarrow\quad3x=6\quad\Rightarrow\quad x=2,\ y=2\cdot2+1=5" />
+# Tiga kasus
 
-Pakai sisi yang terletak pada sumbu <InlineMath math="y" /> sebagai alas. Panjangnya <InlineMath math="7-1=6" />. Tinggi yang sesuai adalah jarak mendatar dari <InlineMath math="S(2\mid5)" /> ke sumbu <InlineMath math="y" />, yaitu koordinat <InlineMath math="x" />-nya, <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{tidak termasuk kasus ini}) \\
+a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{padahal}\ \tfrac{13}{6}<3) \\
+a<0:&\quad \min=f(0)=6\ne2
+\end{aligned}" />
 
-<BlockMath math="L=\frac12\cdot a\cdot t=\frac12\cdot6\cdot2=6" />
+Hanya di kasus pertama bilangan yang ditemukan **cocok dengan syarat kasusnya**.
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="x=2" /> juga ke <InlineMath math="g" />: <InlineMath math="-2+7=5" />. Jadi, kedua garis memang melalui <InlineMath math="(2\mid5)" />.
+<MathVisual
+  title={<>Nilai terkecil pada selang</>}
+  description={<>Selangnya ada di antara garis tegak <InlineMath math="x=0" /> dan <InlineMath math="x=3" />. Parabola untuk <InlineMath math="a=2" /> punya puncak <InlineMath math="(2\mid2)" /> di dalam selang, jadi nilai terkecilnya di sana <InlineMath math="2" />. Parabola untuk <InlineMath math="a=\frac{13}{6}" /> memang melalui <InlineMath math="(3\mid2)" />, tetapi di dalam selang turun lebih rendah dari <InlineMath math="2" />.</>}
+  labels={{
+    min: <><InlineMath math="(2\mid2)" /></>,
+    g: <><InlineMath math="a=2" /></>,
+    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4.8 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "min", objectId: "vertex", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "g", objectId: "good", at: { x: 3.4, y: 3.96 }, placement: "right" },
+      { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
+    ],
+  }}
+/>
 
-Jadi, luas segitiga itu <InlineMath math="6" /> satuan luas.
+# Cek
 
-- <InlineMath math="8" /> menjumlahkan kedua titik potong sumbu, <InlineMath math="7+1" />, sebagai alas. Padahal jaraknya pada sumbu adalah <InlineMath math="7-1=6" />.
-- <InlineMath math="12" /> lupa faktor <InlineMath math="\frac12" /> dalam rumus luas segitiga.
-- <InlineMath math="15" /> memakai koordinat <InlineMath math="y" /> titik <InlineMath math="S" />, yaitu <InlineMath math="5" />, sebagai tinggi. Tinggi terhadap alas di sumbu <InlineMath math="y" /> adalah jarak mendatar <InlineMath math="2" />.
-- <InlineMath math="16" /> menggabungkan alas yang salah, <InlineMath math="8" />, dengan faktor <InlineMath math="\frac12" /> yang terlupa.
-- <InlineMath math="30" /> memakai <InlineMath math="5" /> sebagai tinggi dan juga lupa faktor <InlineMath math="\frac12" />.
+Untuk <InlineMath math="a=2" />, <InlineMath math="f(x)=(x-2)^2+2" />. Puncak <InlineMath math="x=2" /> ada di dalam selang, jadi **nilai terkecilnya di sana <InlineMath math="2" />**. Jadi <InlineMath math="a=2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="a=-2" /> atau <InlineMath math="a=2" /> mengambil kedua penyelesaian <InlineMath math="6-a^2=2" />. Untuk <InlineMath math="a=-2" /> puncaknya di <InlineMath math="x=-2" />, di luar selang, dan nilai terkecil pada selang adalah <InlineMath math="f(0)=6" />.
+- <InlineMath math="a=\frac{13}{6}" /> hanya memeriksa ujung kanan. Karena <InlineMath math="\frac{13}{6}" /> ada di dalam selang, nilai puncaknya <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> **lebih kecil dari <InlineMath math="2" />**.
+- <InlineMath math="a=2" /> atau <InlineMath math="a=\frac{13}{6}" /> menyimpan penyelesaian kasus ujung tanpa memeriksa syarat <InlineMath math="a>3" />.
+- <InlineMath math="a=-2" /> saja adalah nilai yang puncaknya sama sekali tidak ada di selang.
+- <InlineMath math="a=2\sqrt2" /> muncul kalau nilai puncak dihitung <InlineMath math="6-\frac{a^2}{2}" />, bukan <InlineMath math="6-a^2" />.

@@ -7,27 +7,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$50$$",
+          label: "$$\\mathbb{L}=\\left\\{\\frac12;\\,4\\right\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{2\\}$$",
         },
         {
           correct: true,
-          label: "$$200$$",
+          label: "$$\\mathbb{L}=\\{-1;\\,2\\}$$",
         },
         {
           correct: false,
-          label: "$$2\\cdot10^{-2}$$",
+          label: "$$\\mathbb{L}=\\{1;\\,2\\}$$",
         },
         {
           correct: false,
-          label: "$$2\\cdot10^{-12}$$",
+          label: "$$\\mathbb{L}=\\{2-\\log_2 7\\}$$",
         },
         {
           correct: false,
-          label: "$$2\\cdot10^{12}$$",
-        },
-        {
-          correct: false,
-          label: "$$5\\cdot10^{-3}$$",
+          label:
+            "$$\\mathbb{L}=\\left\\{\\log_2\\frac{9-\\sqrt{65}}{2};\\,\\log_2\\frac{9+\\sqrt{65}}{2}\\right\\}$$",
         },
       ],
     },

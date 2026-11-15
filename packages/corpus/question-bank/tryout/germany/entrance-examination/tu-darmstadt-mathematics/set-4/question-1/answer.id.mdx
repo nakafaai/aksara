@@ -1,21 +1,70 @@
-Soal meminta *Fassen Sie den Term zusammen* (sederhanakan bentuknya). Di sini kamu perlu dua **sifat perpangkatan dengan basis yang sama**. Memangkatkan bentuk pangkat berarti mengalikan eksponennya, sedangkan membagi berarti mengurangkan eksponennya.
+# Rasionalkan setiap pecahan
 
-<BlockMath math="\left(a^m\right)^n=a^{m\cdot n}\qquad\frac{a^m}{a^n}=a^{m-n}" />
+Setiap suku berbentuk <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> dengan <InlineMath math="k=1,2,\ldots,15" />. Kalikan pembilang dan penyebut dengan <InlineMath math="\sqrt{k+1}-\sqrt k" />. Selisih dua kuadrat membuat penyebutnya menjadi <InlineMath math="1" />:
 
-Pertama, kuadratkan kurung pada pembilang. Setiap faktor di dalam kurung ikut dikuadratkan, jadi kedua eksponennya menjadi dua kali lipat.
+<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
 
-<BlockMath math="\left(x^{3}y^{-2}\right)^{2}=x^{6}y^{-4}" />
+Jadi setiap pecahan adalah **selisih dua akar yang bersebelahan**.
 
-Lalu bagi per basis, <InlineMath math="x" /> dan <InlineMath math="y" /> secara terpisah. Pada eksponen <InlineMath math="y" /> ada dua tanda minus berurutan, dan minus kali minus menjadi plus.
+# Jumlahnya menyusut
 
-<BlockMath math="\frac{x^{6}y^{-4}}{x^{4}y^{-5}}=x^{6-4}\cdot y^{-4-(-5)}=x^{2}\cdot y^{1}=x^{2}y" />
+Tulis jumlah itu dengan selisih-selisih tadi. Setiap akar dari <InlineMath math="\sqrt2" /> sampai <InlineMath math="\sqrt{15}" /> muncul sekali bertanda plus dan sekali bertanda minus:
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="x=1" /> dan <InlineMath math="y=2" />. Bentuk awalnya menghasilkan <InlineMath math="\frac{\left(2^{-2}\right)^{2}}{2^{-5}}=\frac{2^{-4}}{2^{-5}}=2" />, dan <InlineMath math="x^{2}y" /> juga menghasilkan <InlineMath math="1\cdot2=2" />.
+<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
 
-Jadi, bentuk tersebut dapat disederhanakan menjadi <InlineMath math="x^{2}y" />.
+Garis bilangan menunjukkan mengapa **hanya titik pertama dan titik terakhir yang tersisa**:
 
-- <InlineMath math="\frac{x^2}{y}" /> muncul jika eksponen <InlineMath math="y" /> dikurangkan dengan urutan terbalik, yaitu <InlineMath math="-5-(-4)=-1" />, bukan <InlineMath math="-4-(-5)=1" />.
-- <InlineMath math="\frac{x^{10}}{y^9}" /> muncul jika eksponen dijumlahkan, bukan dikurangkan, saat membagi: <InlineMath math="6+4=10" /> dan <InlineMath math="-4+(-5)=-9" />.
-- <InlineMath math="x^2y^3" /> muncul jika hanya <InlineMath math="x^3" /> yang dikuadratkan, sedangkan <InlineMath math="y^{-2}" /> dibiarkan. Hasilnya <InlineMath math="y^{-2-(-5)}=y^3" />.
-- <InlineMath math="xy^5" /> muncul jika angka <InlineMath math="2" /> ditambahkan ke eksponen, bukan dikalikan. Pembilangnya lalu menjadi <InlineMath math="x^5y^0" />, dan pembagiannya menghasilkan <InlineMath math="x^{5-4}y^{0+5}" />.
-- <InlineMath math="\frac{x^2}{y^9}" /> berasal dari kesalahan tanda <InlineMath math="-4-5=-9" />. Tanda minus di depan <InlineMath math="(-5)" /> mengubah pengurangan menjadi penjumlahan.
+<MathVisual
+  title={<>Lima belas potongan di garis bilangan</>}
+  description={<>Garis bilangan memuat titik <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Setiap pecahan dalam jumlah itu adalah panjang potongan dari <InlineMath math="\sqrt k" /> sampai <InlineMath math="\sqrt{k+1}" />. Kelima belas potongan bersambung tanpa celah dan bersama-sama membentang dari <InlineMath math="1" /> sampai <InlineMath math="4" />, jadi panjangnya <InlineMath math="3" />.</>}
+  labels={{
+    one: <><InlineMath math="\sqrt1=1" /></>,
+    four: <><InlineMath math="\sqrt{16}=4" /></>,
+    sum: <><InlineMath math="4-1=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.5, max: 4.5 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "step-1", kind: "segment", appearance: "highlight", from: { x: 1.0, y: 0 }, to: { x: 1.4142, y: 0 } },
+      { id: "step-2", kind: "segment", appearance: "secondary", from: { x: 1.4142, y: 0 }, to: { x: 1.7321, y: 0 } },
+      { id: "step-3", kind: "segment", appearance: "highlight", from: { x: 1.7321, y: 0 }, to: { x: 2.0, y: 0 } },
+      { id: "step-4", kind: "segment", appearance: "secondary", from: { x: 2.0, y: 0 }, to: { x: 2.2361, y: 0 } },
+      { id: "step-5", kind: "segment", appearance: "highlight", from: { x: 2.2361, y: 0 }, to: { x: 2.4495, y: 0 } },
+      { id: "step-6", kind: "segment", appearance: "secondary", from: { x: 2.4495, y: 0 }, to: { x: 2.6458, y: 0 } },
+      { id: "step-7", kind: "segment", appearance: "highlight", from: { x: 2.6458, y: 0 }, to: { x: 2.8284, y: 0 } },
+      { id: "step-8", kind: "segment", appearance: "secondary", from: { x: 2.8284, y: 0 }, to: { x: 3.0, y: 0 } },
+      { id: "step-9", kind: "segment", appearance: "highlight", from: { x: 3.0, y: 0 }, to: { x: 3.1623, y: 0 } },
+      { id: "step-10", kind: "segment", appearance: "secondary", from: { x: 3.1623, y: 0 }, to: { x: 3.3166, y: 0 } },
+      { id: "step-11", kind: "segment", appearance: "highlight", from: { x: 3.3166, y: 0 }, to: { x: 3.4641, y: 0 } },
+      { id: "step-12", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 3.6056, y: 0 } },
+      { id: "step-13", kind: "segment", appearance: "highlight", from: { x: 3.6056, y: 0 }, to: { x: 3.7417, y: 0 } },
+      { id: "step-14", kind: "segment", appearance: "secondary", from: { x: 3.7417, y: 0 }, to: { x: 3.873, y: 0 } },
+      { id: "step-15", kind: "segment", appearance: "highlight", from: { x: 3.873, y: 0 }, to: { x: 4.0, y: 0 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "total", kind: "segment", appearance: "answer", from: { x: 1, y: 0.5 }, to: { x: 4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "one", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "four", objectId: "end", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Nilai jumlah itu <InlineMath math="3" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-3" /> muncul kalau kamu mengalikan dengan <InlineMath math="\sqrt k-\sqrt{k+1}" /> tetapi penyebutnya tetap dibaca <InlineMath math="+1" />. Padahal setiap suku **positif**, jadi jumlahnya juga positif.
+- <InlineMath math="4-\sqrt2" /> membuang pecahan pertama sehingga rantainya baru mulai di <InlineMath math="\sqrt2" />.
+- <InlineMath math="\sqrt{17}-1" /> menghitung satu pecahan terlalu banyak, sampai <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> lupa bahwa di awal ada <InlineMath math="\sqrt1=1" /> yang dikurangkan.
+- <InlineMath math="15" /> adalah banyaknya pecahan, bukan jumlahnya.

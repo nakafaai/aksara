@@ -1,19 +1,60 @@
-Soal menanyakan *um wie viel* (berapa lebih besar) luas persegi itu. Keliling yang sama **tidak** berarti luasnya sama. Jadi, tentukan dulu sisi persegi dari kelilingnya, lalu bandingkan kedua luas.
+# Di mana pusatnya harus berada
 
-Keliling persegi panjang adalah <InlineMath math="K=2\cdot(12+4)=32\text{ cm}" />. Persegi punya empat sisi yang sama panjang, jadi setiap sisinya <InlineMath math="32:4=8\text{ cm}" />.
+Lingkaran yang menyinggung kedua sumbu berjarak <InlineMath math="r" /> dari kedua sumbu. Di kuadran pertama **pusatnya ada di <InlineMath math="M(r\mid r)" />**. Jadi seluruh lingkaran hanya bergantung pada <InlineMath math="r" />.
+
+# Syarat dari titik <InlineMath math="P" />
+
+Titik <InlineMath math="P(1\mid8)" /> terletak pada lingkaran kalau **jaraknya ke <InlineMath math="M" /> tepat <InlineMath math="r" />**:
 
 <BlockMath math="\begin{aligned}
-L_{\text{persegi}}&=8\cdot8=64\text{ cm}^2 \\
-L_{\text{persegi panjang}}&=12\cdot4=48\text{ cm}^2 \\
-64-48&=16
+(1-r)^2+(8-r)^2&=r^2 \\
+1-2r+r^2+64-16r+r^2&=r^2 \\
+r^2-18r+65&=0 \\
+(r-5)(r-13)&=0
 \end{aligned}" />
 
-Sebagai pemeriksaan, cek keliling persegi: <InlineMath math="4\cdot8=32\text{ cm}" />, sama persis dengan persegi panjang. Untuk keliling yang tetap, persegi punya luas terbesar di antara semua persegi panjang, jadi selisihnya harus positif.
+# Periksa kedua penyelesaian
 
-Jadi, luas persegi itu <InlineMath math="16\text{ cm}^2" /> lebih besar.
+Kedua jari-jari positif, dan kedua pusat <InlineMath math="(5\mid5)" /> dan <InlineMath math="(13\mid13)" /> ada di kuadran pertama. **Tidak ada penyelesaian yang gugur**:
 
-- <InlineMath math="0\text{ cm}^2" /> menganggap keliling yang sama berarti luas yang sama. Itu keliru, seperti ditunjukkan oleh <InlineMath math="64\ne48" />.
-- <InlineMath math="8\text{ cm}^2" /> adalah selisih panjang sisi, <InlineMath math="12-4" />, atau sisi persegi, bukan selisih luas.
-- <InlineMath math="32\text{ cm}^2" /> adalah angka keliling bersama, yaitu panjang dalam sentimeter.
-- <InlineMath math="48\text{ cm}^2" /> adalah luas persegi panjang itu sendiri.
-- <InlineMath math="64\text{ cm}^2" /> adalah luas persegi itu sendiri. Yang ditanyakan adalah selisihnya terhadap persegi panjang.
+<MathVisual
+  title={<>Dua lingkaran yang cocok</>}
+  description={<>Di kuadran pertama ada dua lingkaran yang menyinggung kedua sumbu: yang kecil berpusat <InlineMath math="M_1(5\mid5)" /> dengan jari-jari <InlineMath math="5" />, yang besar berpusat <InlineMath math="M_2(13\mid13)" /> dengan jari-jari <InlineMath math="13" />. Keduanya melalui titik <InlineMath math="P(1\mid8)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(1\mid8)" /></>,
+    m1: <><InlineMath math="M_1(5\mid5)" /></>,
+    m2: <><InlineMath math="M_2(13\mid13)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 28 },
+      y: { min: -2, max: 28 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
+      { id: "small", kind: "circle", appearance: "primary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "large", kind: "circle", appearance: "secondary", center: { x: 13, y: 13 }, radius: 13 },
+      { id: "point", kind: "point", appearance: "answer", at: { x: 1, y: 8 } },
+      { id: "c1", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "c2", kind: "point", appearance: "reference", at: { x: 13, y: 13 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point", at: { x: 1, y: 8 }, placement: "left" },
+      { key: "m1", objectId: "c1", at: { x: 5, y: 5 }, placement: "below" },
+      { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> dan <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Jari-jarinya bisa <InlineMath math="5" /> atau <InlineMath math="13" />.
+
+# Mengapa pilihan lain salah
+
+- "hanya <InlineMath math="r=5" />" dan "hanya <InlineMath math="r=13" />" **membuang penyelesaian yang sah** dari persamaan kuadrat itu.
+- "hanya <InlineMath math="r=\sqrt{65}" />" adalah jarak <InlineMath math="P" /> ke titik asal, <InlineMath math="\sqrt{1+64}" />. Padahal titik asal bukan pusat lingkaran.
+- "hanya <InlineMath math="r=4{,}5" />" membagi dua jumlah koordinat <InlineMath math="P" />, seolah-olah pusatnya di tengah-tengah titik potong sumbu.
+- "hanya <InlineMath math="r=9" />" adalah rata-rata kedua jari-jari yang benar, yaitu nilai <InlineMath math="r" /> di puncak <InlineMath math="r^2-18r+65" />.

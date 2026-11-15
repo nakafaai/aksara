@@ -1,15 +1,70 @@
-Soal menanyakan luas segitiga <InlineMath math="ABE" />. Untuk segitiga, kamu perlu alas dan **tinggi terhadap alas itu**. Ambil <InlineMath math="\overline{AB}" /> sebagai alas. Tingginya adalah jarak titik <InlineMath math="E" /> ke garis yang melalui <InlineMath math="A" /> dan <InlineMath math="B" />.
+# Tempat garis bagi memotong sisi
 
-Sisi <InlineMath math="\overline{CD}" /> sejajar dengan <InlineMath math="\overline{AB}" />, dan jaraknya ke <InlineMath math="\overline{AB}" /> selalu <InlineMath math="\overline{BC}=6\text{ cm}" />. Bagaimanapun letak <InlineMath math="E" /> pada <InlineMath math="\overline{CD}" />, tingginya selalu <InlineMath math="6\text{ cm}" />.
+Garis bagi sudut membagi sisi di depannya **menurut perbandingan kedua sisi yang mengapitnya**:
 
-<BlockMath math="L_{ABE}=\frac12\cdot\overline{AB}\cdot t=\frac12\cdot10\cdot6=30" />
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
 
-Sebagai pemeriksaan, letakkan <InlineMath math="E" /> tepat di <InlineMath math="D" />. Maka <InlineMath math="ABE" /> adalah segitiga <InlineMath math="ABD" />, yaitu setengah persegi panjang, dan luas persegi panjang itu <InlineMath math="10\cdot6=60\text{ cm}^2" />. Setengahnya juga <InlineMath math="30\text{ cm}^2" />.
+<MathVisual
+  title={<>Garis bagi membagi <InlineMath math="\overline{BC}" /></>}
+  description={<>Segitiga dengan <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" />, dan <InlineMath math="\overline{BC}=5" />. Garis bagi sudut <InlineMath math="A" /> memotong <InlineMath math="\overline{BC}" /> di <InlineMath math="D" /> dan membagi sisi itu menjadi <InlineMath math="\overline{BD}=3" /> dan <InlineMath math="\overline{DC}=2" />. Ruas <InlineMath math="\overline{AD}" /> disorot.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
+      { id: "piece-bd", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 4.5, y: 3.9686 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 4.5, y: 3.9686 }, placement: "above" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "pc", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "pd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "bd", objectId: "piece-bd", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "triangle", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "triangle", at: { x: 2.25, y: 1.9843 }, placement: "above-left" },
+      { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
+    ],
+  }}
+/>
 
-Jadi, luas segitiga <InlineMath math="ABE" /> adalah <InlineMath math="30\text{ cm}^2" />, bagaimanapun letak <InlineMath math="E" /> pada <InlineMath math="\overline{CD}" />.
+# Tentukan sudut di <InlineMath math="B" />
 
-- <InlineMath math="60\text{ cm}^2" /> adalah luas seluruh persegi panjang. Untuk segitiga, faktor <InlineMath math="\frac12" /> terlupa.
-- <InlineMath math="15\text{ cm}^2" /> membagi dua sebanyak dua kali, misalnya dengan memakai setengah lebar persegi panjang, <InlineMath math="3\text{ cm}" />, sebagai tinggi.
-- <InlineMath math="32\text{ cm}^2" /> adalah angka keliling persegi panjang, <InlineMath math="2\cdot(10+6)=32" />, yang merupakan panjang.
-- <InlineMath math="20\text{ cm}^2" /> menganggap ketiga segitiga <InlineMath math="AED" />, <InlineMath math="ABE" />, dan <InlineMath math="BCE" /> sama luas. Padahal dua segitiga di pinggir jika digabung luasnya tepat sama dengan <InlineMath math="ABE" />.
-- Pilihan *Das hängt von der Lage von E ab* (bergantung pada letak <InlineMath math="E" />) melewatkan bahwa alas dan tingginya tetap sama selama <InlineMath math="E" /> bergeser sejajar <InlineMath math="\overline{AB}" />.
+Pada segitiga <InlineMath math="ABC" /> ketiga sisinya diketahui. Aturan kosinus memberi **kosinus sudut di <InlineMath math="B" />**:
+
+<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+
+# Aturan kosinus di segitiga <InlineMath math="ABD" />
+
+Pada segitiga <InlineMath math="ABD" /> sekarang diketahui <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" />, dan sudut apitnya <InlineMath math="\beta" />. Pakai aturan kosinus sekali lagi:
+
+<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+
+Ruas itu **panjangnya <InlineMath math="3\sqrt2" />**, kira-kira <InlineMath math="4{,}24" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\sqrt{22}" /> membagi dengan **perbandingan terbalik**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
+- <InlineMath math="\frac{\sqrt{79}}{2}" /> adalah panjang garis berat dari <InlineMath math="A" />, dengan <InlineMath math="D" /> di titik tengah <InlineMath math="\overline{BC}" />.
+- <InlineMath math="2\sqrt6" /> adalah <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. Jalan pintas itu membuang suku koreksi pada rumus garis bagi.
+- <InlineMath math="3" /> adalah <InlineMath math="\overline{BD}" />, bukan <InlineMath math="\overline{AD}" />.
+- <InlineMath math="3\sqrt3" /> memakai <InlineMath math="\cos\beta=\frac12" />, seolah-olah sudut di <InlineMath math="B" /> besarnya <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.

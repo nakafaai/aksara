@@ -1,19 +1,59 @@
-Ob ein Dreieck gleichschenklig oder rechtwinklig ist, entscheiden **die drei Seitenlängen**. Jede Länge berechnest du mit dem Satz des Pythagoras aus den Koordinatenunterschieden.
+# Zwei Höhen genügen
 
-<BlockMath math="\begin{aligned}
-\overline{AB}^2&=(5-1)^2+(4-1)^2=16+9=25 \\
-\overline{BC}^2&=(2-5)^2+(8-4)^2=9+16=25 \\
-\overline{AC}^2&=(2-1)^2+(8-1)^2=1+49=50
-\end{aligned}" />
+Alle drei Höhen schneiden sich in einem Punkt. Für seine Koordinaten genügen also **zwei Höhen**, die dritte dient als Probe.
 
-Also ist <InlineMath math="\overline{AB}=\overline{BC}=5\text{ cm}" />, und das Dreieck ist gleichschenklig. Außerdem gilt <InlineMath math="\overline{AB}^2+\overline{BC}^2=25+25=50=\overline{AC}^2" />. Nach der Umkehrung des Satzes des Pythagoras liegt der rechte Winkel gegenüber der längsten Seite <InlineMath math="\overline{AC}" />, also bei <InlineMath math="B" />.
+Die Seite <InlineMath math="\overline{AB}" /> liegt auf der <InlineMath math="x" />-Achse. Die Höhe von <InlineMath math="C" /> steht senkrecht darauf, ist also die senkrechte Gerade <InlineMath math="x=2" />.
 
-Zur Kontrolle vergleichst du die Steigungen der Seiten an <InlineMath math="B" />. Die Strecke <InlineMath math="\overline{AB}" /> hat die Steigung <InlineMath math="\frac34" />, die Strecke <InlineMath math="\overline{BC}" /> die Steigung <InlineMath math="\frac{4}{-3}=-\frac43" />. Das Produkt ist <InlineMath math="-1" />, die beiden Seiten stehen also senkrecht aufeinander.
+# Die Höhe von <InlineMath math="A" />
 
-Das Dreieck ist also rechtwinklig und gleichschenklig mit dem rechten Winkel bei <InlineMath math="B" />.
+Die Seite <InlineMath math="\overline{BC}" /> hat die Steigung <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. Eine Senkrechte dazu hat die Steigung <InlineMath math="1" />, denn **die Steigungen senkrechter Geraden multiplizieren sich zu <InlineMath math="-1" />**. Die Höhe von <InlineMath math="A(0\mid0)" /> ist also <InlineMath math="y=x" />.
 
-- Ein rechter Winkel bei <InlineMath math="A" /> würde <InlineMath math="\overline{BC}" /> zur längsten Seite machen. Längste Seite ist aber <InlineMath math="\overline{AC}" />, und bei <InlineMath math="A" /> liegt ein Winkel von <InlineMath math="45^\circ" />.
-- Ein rechter Winkel bei <InlineMath math="C" /> würde <InlineMath math="\overline{AB}" /> zur längsten Seite machen. Auch bei <InlineMath math="C" /> liegt aber nur ein Winkel von <InlineMath math="45^\circ" />.
-- Gleichseitig ist das Dreieck nicht, denn <InlineMath math="\overline{AC}=\sqrt{50}\approx7{,}1\text{ cm}" /> ist länger als die beiden anderen Seiten.
-- Gleichschenklig ist es zwar, aber wegen <InlineMath math="25+25=50" /> ist es auch rechtwinklig.
-- Rechtwinklig bei <InlineMath math="B" /> stimmt, aber die beiden Seiten an <InlineMath math="B" /> sind gleich lang. Das Dreieck ist also doch gleichschenklig.
+# Der Schnittpunkt
+
+<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+
+<MathVisual
+  title={<>Die drei Höhen</>}
+  description={<>Das Dreieck mit <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" /> und <InlineMath math="C(2\mid6)" />. Die Höhe von <InlineMath math="C" /> ist die senkrechte Strecke bei <InlineMath math="x=2" />. Die Höhe von <InlineMath math="A" /> liegt auf <InlineMath math="y=x" /> und trifft <InlineMath math="\overline{BC}" /> in <InlineMath math="(4\mid4)" />. Die Höhe von <InlineMath math="B" /> trifft <InlineMath math="\overline{AC}" /> in <InlineMath math="(0{,}8\mid2{,}4)" />. Alle drei gehen durch <InlineMath math="H(2\mid2)" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2\mid2)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
+      { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
+      { id: "alt-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "alt-b", kind: "segment", appearance: "construction", from: { x: 8, y: 0 }, to: { x: 0.8, y: 2.4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 2, y: 6 } },
+      { id: "ph", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Probe mit der dritten Höhe: <InlineMath math="\overline{AC}" /> hat die Steigung <InlineMath math="3" />, die Höhe von <InlineMath math="B" /> also die Steigung <InlineMath math="-\frac13" />. Die Gerade durch <InlineMath math="B(8\mid0)" /> mit dieser Steigung hat bei <InlineMath math="x=2" /> den Wert <InlineMath math="-\frac13\cdot(2-8)=2" />. Sie geht **auch durch <InlineMath math="H(2\mid2)" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="H(4\mid2)" /> ist der Schnittpunkt der **Mittelsenkrechten**, also der Umkreismittelpunkt.
+- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> ist der Schwerpunkt, der Schnittpunkt der Seitenhalbierenden.
+- <InlineMath math="H(2\mid6)" /> ist die Ecke <InlineMath math="C" />. Die Höhe von <InlineMath math="C" /> geht zwar durch <InlineMath math="C" />, die anderen Höhen aber nicht.
+- <InlineMath math="H(2\mid4)" /> entsteht, wenn du für die Höhe von <InlineMath math="A" /> die Steigung <InlineMath math="2" /> nimmst, also nicht den negativen Kehrwert von <InlineMath math="-1" /> bildest.
+- <InlineMath math="H(6\mid2)" /> vertauscht die Koordinaten der Ecke <InlineMath math="C" /> zu <InlineMath math="(6\mid2)" /> und nimmt dann die Höhe <InlineMath math="x=6" />.

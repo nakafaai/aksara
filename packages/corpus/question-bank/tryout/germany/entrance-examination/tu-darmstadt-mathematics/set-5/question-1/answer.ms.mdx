@@ -1,0 +1,59 @@
+# Boleh dibahagi tepat bermaksud punca sifar
+
+Suatu polinomial boleh dibahagi tepat dengan <InlineMath math="(x-1)" /> apabila **<InlineMath math="x=1" /> ialah punca sifar**. Daripada itu kita dapat persamaan untuk <InlineMath math="a" />:
+
+<BlockMath math="p(1)=1+a-5+6=a+2=0\quad\Longrightarrow\quad a=-2" />
+
+# Bahagi dengan faktor linear yang diketahui
+
+Dengan <InlineMath math="a=-2" />, <InlineMath math="p(x)=x^3-2x^2-5x+6" />. Pembahagian polinomial dengan <InlineMath math="(x-1)" /> meninggalkan **satu faktor kuadratik**, yang kemudian kamu faktorkan:
+
+<BlockMath math="\begin{aligned}
+x^3-2x^2-5x+6&=(x-1)\left(x^2-x-6\right) \\
+x^2-x-6&=(x-3)(x+2)
+\end{aligned}" />
+
+Semakan: kalau <InlineMath math="(x-1)(x-3)(x+2)" /> didarab keluar, hasilnya kembali <InlineMath math="x^3-2x^2-5x+6" />.
+
+<MathVisual
+  title={<>Tiga punca sifar <InlineMath math="p" /></>}
+  description={<>Graf <InlineMath math="p(x)=x^3-2x^2-5x+6" /> memotong paksi <InlineMath math="x" /> tiga kali: pada <InlineMath math="-2" />, pada punca sifar yang diberi <InlineMath math="1" /> dan pada <InlineMath math="3" />.</>}
+  labels={{
+    m2: <><InlineMath math="-2" /></>,
+    p1: <><InlineMath math="1" /></>,
+    p3: <><InlineMath math="3" /></>,
+    p: <><InlineMath math="p" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.2, max: 4.5 },
+      y: { min: -13, max: 14 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "x^3 - 2*x^2 - 5*x + 6", domain: { min: -2.6, max: 3.8 } },
+      { id: "r1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "r2", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "r3", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "m2", objectId: "r1", at: { x: -2, y: 0 }, placement: "below-left" },
+      { key: "p1", objectId: "r2", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "p3", objectId: "r3", at: { x: 3, y: 0 }, placement: "above-left" },
+      { key: "p", objectId: "poly", at: { x: 3.6, y: 10.2 }, placement: "left" },
+    ],
+  }}
+/>
+
+Selain <InlineMath math="x=1" />, <InlineMath math="p" /> mempunyai **punca sifar <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="x=2" /> dan <InlineMath math="x=-3" /> ialah punca sifar <InlineMath math="x^2+x-6" />. Ini terhasil kalau <InlineMath math="x^2-x-6" /> **difaktorkan dengan kedua-dua tanda tertukar**, menjadi <InlineMath math="(x+3)(x-2)" />.
+- <InlineMath math="x=\frac{11\pm\sqrt{97}}{2}" /> terhasil kalau kamu guna <InlineMath math="p(-1)=0" />, bukan <InlineMath math="p(1)=0" />. Maka <InlineMath math="a=-10" /> dan faktor bakinya <InlineMath math="x^2-11x+6" />.
+- "Tiada punca sifar lain" terhasil kalau pembahagian memberi <InlineMath math="x^2-x+6" />. Faktor itu memang tiada punca sifar, tetapi kiraannya salah.
+- <InlineMath math="x=-1" /> dan <InlineMath math="x=6" /> ialah punca sifar <InlineMath math="x^2-5x-6" />. Faktor itu terhasil kalau kamu tidak membahagi, tetapi terus menyalin pekali <InlineMath math="-5" /> dan <InlineMath math="6" /> daripada <InlineMath math="p" /> ke dalam ungkapan kuadratik.
+- <InlineMath math="x=2" /> dan <InlineMath math="x=3" /> ialah punca sifar <InlineMath math="x^2-5x+6" />, faktor baki yang salah kerana tandanya tertukar.

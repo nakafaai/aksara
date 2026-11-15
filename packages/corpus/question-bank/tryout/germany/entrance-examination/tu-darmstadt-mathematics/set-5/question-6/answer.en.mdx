@@ -1,20 +1,67 @@
-The task asks how many tickets (*Lose*) were in the drum at the start. Removing blanks does not change the number of winning tickets, only the total. Write this **unchanged number of winners** in two ways and set the two expressions equal.
+# Write both years as factors
 
-Call the original number of tickets <InlineMath math="N" />. Before, <InlineMath math="0.2\,N" /> tickets are winners. Afterwards <InlineMath math="N-40" /> tickets are in the drum, and <InlineMath math="30\,\%" /> of them are winners.
+Call the first year's rate <InlineMath math="P" /> percent. Then the balance grows by the factor <InlineMath math="1+\frac{P}{100}" /> in the first year and by <InlineMath math="1+\frac{P+2}{100}" /> in the second. **The first year's interest earns interest in the second year**, so the two factors are multiplied:
+
+<BlockMath math="10{,}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{,}235" />
+
+# A quadratic equation in <InlineMath math="P" />
+
+Since <InlineMath math="10{,}000=100\cdot100" />, you can multiply each factor by <InlineMath math="100" />. That gives **an equation in whole numbers**:
 
 <BlockMath math="\begin{aligned}
-0.2\,N&=0.3\,(N-40) \\
-0.2\,N&=0.3\,N-12 \\
-12&=0.1\,N \\
-N&=120
+(100+P)(102+P)&=11{,}235 \\
+P^2+202P+10{,}200&=11{,}235 \\
+P^2+202P-1{,}035&=0 \\
+(P-5)(P+207)&=0
 \end{aligned}" />
 
-As a check, work forwards. Of <InlineMath math="120" /> tickets, <InlineMath math="24" /> are winners. After the removal <InlineMath math="80" /> tickets remain, and <InlineMath math="\frac{24}{80}=0.3=30\,\%" />.
+The factorisation works because <InlineMath math="5\cdot207=1{,}035" /> and <InlineMath math="207-5=202" />.
 
-So there were <InlineMath math="120" /> tickets in the drum at the start.
+# Discard the negative solution
 
-- <InlineMath math="80" /> is the number of tickets after the blanks are removed.
-- <InlineMath math="24" /> is the number of winning tickets, not of all tickets.
-- <InlineMath math="160" /> adds the <InlineMath math="40" /> blanks once more to the original <InlineMath math="120" /> tickets.
-- <InlineMath math="400" /> comes from subtracting <InlineMath math="40" /> on the right side instead of <InlineMath math="0.3\cdot40" />, which gives <InlineMath math="0.1\,N=40" />.
-- <InlineMath math="12" /> is only the value of <InlineMath math="0.3\cdot40" />, an intermediate result.
+A rate of <InlineMath math="-207\,\%" /> is **not a sensible interest rate**, because nothing would be left after the first year. So <InlineMath math="P=5" />:
+
+<MathVisual
+  title={<>Balance after two years by interest rate</>}
+  description={<>The solid graph shows the balance <InlineMath math="(100+P)(102+P)" /> in euros for a rate of <InlineMath math="P" /> percent in the first year and <InlineMath math="P+2" /> percent in the second. It meets the line <InlineMath math="11{,}235" /> at <InlineMath math="P=5" />. Dashed is <InlineMath math="(100+P)^2" /> for two equal rates: it reaches almost the same value at <InlineMath math="P=6" />.</>}
+  labels={{
+    key: <><InlineMath math="P=5" /></>,
+    eq: <><InlineMath math="P=6" /></>,
+    t: <><InlineMath math="11{,}235" /></>,
+    a: <>two rates</>,
+    b: <>equal rates</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 9.8 },
+      y: { min: 10000, max: 12300 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
+      { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
+      { id: "equal", kind: "point", appearance: "highlight", at: { x: 6, y: 11236 } },
+    ],
+    labels: [
+      { key: "key", objectId: "solution", at: { x: 5, y: 11235 }, placement: "above-left" },
+      { key: "eq", objectId: "equal", at: { x: 6, y: 11236 }, placement: "below-right" },
+      { key: "t", objectId: "target", at: { x: 0, y: 11235 }, placement: "above-right" },
+      { key: "a", objectId: "two-rates", at: { x: 8.5, y: 11973 }, placement: "left" },
+      { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="10{,}000\cdot1.05=10{,}500" /> and <InlineMath math="10{,}500\cdot1.07=11{,}235" />. The first year's rate was <InlineMath math="5\,\%" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="6\,\%" /> assumes **two equal rates**. That gives <InlineMath math="10{,}000\cdot1.06^2=11{,}236\text{ €}" />, almost the same amount, but the rates must differ by <InlineMath math="2" /> percentage points.
+- <InlineMath math="7\,\%" /> is the second year's rate.
+- <InlineMath math="5.175\,\%" /> works without compound interest: <InlineMath math="P+(P+2)=12.35" />.
+- <InlineMath math="6.175\,\%" /> splits the total growth of <InlineMath math="12.35\,\%" /> evenly over two years.
+- <InlineMath math="12.35\,\%" /> is the growth over both years together, not one year's rate.

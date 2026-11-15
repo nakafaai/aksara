@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(x+2)(x-3)(x+3)$$",
-        },
-        {
-          correct: false,
-          label: "$$(x-2)(x-3)^2$$",
-        },
-        {
-          correct: false,
-          label: "$$(x-2)(x^2+9)$$",
-        },
-        {
-          correct: false,
-          label: "$$(2-x)(x-3)(x+3)$$",
+          label: "nur $$x=4$$",
         },
         {
           correct: true,
-          label: "$$(x-2)(x-3)(x+3)$$",
+          label: "$$x=-3$$ oder $$x=4$$",
         },
         {
           correct: false,
-          label: "$$(x-2)(x-9)(x+9)$$",
+          label: "nur $$x=-3$$",
+        },
+        {
+          correct: false,
+          label: "$$x=-4$$ oder $$x=3$$",
+        },
+        {
+          correct: false,
+          label: "alle $$x$$ mit $$-2\\le x\\le3$$",
+        },
+        {
+          correct: false,
+          label: "Es gibt keine solche Zahl $$x$$.",
         },
       ],
     },

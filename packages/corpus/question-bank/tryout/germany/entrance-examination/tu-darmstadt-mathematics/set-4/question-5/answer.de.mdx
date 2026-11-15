@@ -1,15 +1,59 @@
-Die gesuchte Strecke ist die Hypotenuse eines **rechtwinkligen Dreiecks im Inneren der Pyramide**. Seine Ecken sind die Spitze, der Mittelpunkt der Grundfläche und die Mitte einer Grundkante.
+# Mit Leistungen pro Stunde rechnen
 
-Die eine Kathete ist die Pyramidenhöhe <InlineMath math="h=4\text{ m}" />. Die andere führt vom Mittelpunkt der Grundfläche zur Mitte einer Grundkante. Sie ist halb so lang wie eine Grundkante, also <InlineMath math="3\text{ m}" />. Der rechte Winkel liegt am Mittelpunkt der Grundfläche, weil die Höhe senkrecht auf der Grundfläche steht.
+Zeiten darf man nicht einfach addieren, Leistungen schon. Braucht die schwächere Pumpe allein <InlineMath math="x" /> Stunden, so füllt sie in einer Stunde <InlineMath math="\frac1x" /> des Beckens. Die stärkere braucht <InlineMath math="x-5" /> Stunden und schafft <InlineMath math="\frac{1}{x-5}" /> pro Stunde. Zusammen füllen beide **<InlineMath math="\frac16" /> des Beckens pro Stunde**:
 
-<BlockMath math="h_s^2=4^2+3^2=16+9=25\quad\Rightarrow\quad h_s=5" />
+<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
 
-Zur Kontrolle vergleichst du mit der Seitenkante <InlineMath math="s" />, die von einer Ecke zur Spitze führt. Ihre waagerechte Kathete ist die halbe Diagonale <InlineMath math="3\sqrt2\text{ m}" />, also gilt <InlineMath math="s=\sqrt{16+18}=\sqrt{34}\approx5{,}8" />. Die Höhe der Seitenfläche muss kürzer sein als die Seitenkante, und <InlineMath math="5<5{,}8" /> passt.
+# Die Gleichung lösen
 
-Die Höhe einer Seitenfläche ist also <InlineMath math="5\text{ m}" /> lang.
+Multipliziere mit **dem Hauptnenner <InlineMath math="6x(x-5)" />**:
 
-- <InlineMath math="\sqrt{34}\text{ m}" /> ist die Seitenkante von einer Ecke zur Spitze, nicht die Höhe der Seitenfläche.
-- <InlineMath math="2\sqrt{13}\text{ m}" /> ist <InlineMath math="\sqrt{4^2+6^2}" />. Hier wird die ganze Grundkante statt ihrer Hälfte als Kathete verwendet.
-- <InlineMath math="7\text{ m}" /> addiert die beiden Katheten <InlineMath math="4+3" />, statt den Satz des Pythagoras anzuwenden.
-- <InlineMath math="\sqrt7\text{ m}" /> ist <InlineMath math="\sqrt{4^2-3^2}" />. Gesucht ist aber die Hypotenuse, also die Summe der Quadrate.
-- <InlineMath math="10\text{ m}" /> addiert die Pyramidenhöhe und die ganze Grundkante, <InlineMath math="4+6" />.
+<BlockMath math="\begin{aligned}
+6(x-5)+6x&=x(x-5) \\
+12x-30&=x^2-5x \\
+x^2-17x+30&=0 \\
+(x-15)(x-2)&=0
+\end{aligned}" />
+
+# Die passende Lösung auswählen
+
+Die stärkere Pumpe braucht <InlineMath math="x-5" /> Stunden, und **diese Zeit muss positiv sein**. Für <InlineMath math="x=2" /> wären es <InlineMath math="-3" /> Stunden, diese Lösung fällt weg:
+
+<MathVisual
+  title={<>Gemeinsame Leistung je Stunde</>}
+  description={<>Für Zeiten <InlineMath math="x>5" /> der schwächeren Pumpe ist die gemeinsame Leistung <InlineMath math="\frac1x+\frac1{x-5}" /> als fallender Graph gezeichnet. Die waagerechte Gerade <InlineMath math="y=\frac16" /> ist die geforderte Leistung. Beide treffen sich genau einmal, bei <InlineMath math="x=15" />.</>}
+  labels={{
+    key: <><InlineMath math="x=15" /></>,
+    r: <>gemeinsame Leistung</>,
+    j: <><InlineMath math="\frac16" /> Becken pro Stunde</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 5, max: 31 },
+      y: { min: 0, max: 0.65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 15, y: 0.16666666666666666 }, placement: "above-right" },
+      { key: "r", objectId: "rate", at: { x: 9, y: 0.3611111111111111 }, placement: "right" },
+      { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
+    ],
+  }}
+/>
+
+Probe für <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. Die schwächere Pumpe braucht allein <InlineMath math="15" /> Stunden.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10" /> Stunden ist die Zeit der **stärkeren** Pumpe.
+- <InlineMath math="11" /> Stunden addiert die <InlineMath math="5" /> Stunden zur gemeinsamen Zeit.
+- <InlineMath math="8{,}5" /> Stunden behandelt <InlineMath math="6" /> Stunden als Mittelwert der beiden Zeiten: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
+- „<InlineMath math="2" /> Stunden oder <InlineMath math="15" /> Stunden“ übersieht, dass bei <InlineMath math="x=2" /> die stärkere Pumpe eine negative Zeit bräuchte.
+- <InlineMath math="12" /> Stunden nimmt an, dass jede Pumpe allein doppelt so lange braucht wie beide zusammen. Das gilt nur bei gleich starken Pumpen.

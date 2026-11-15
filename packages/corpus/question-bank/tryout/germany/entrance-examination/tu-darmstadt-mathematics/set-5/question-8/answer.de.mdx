@@ -1,15 +1,62 @@
-Die Schnittfläche ist ein Dreieck, denn der Schnitt geht durch genau drei Ecken des Würfels und schneidet nur die drei Seitenflächen, die an <InlineMath math="E" /> anliegen. Entscheidend sind **die Längen seiner drei Seiten**.
+# Ein Längsschnitt macht alles eben
 
-Je zwei der drei Endpunkte liegen auf einer gemeinsamen Seitenfläche des Würfels, nämlich auf einer der drei Flächen an der Ecke <InlineMath math="E" />. Die Verbindungsstrecke ist deshalb eine Flächendiagonale. Mit der Kantenlänge <InlineMath math="a" /> gilt nach dem Satz des Pythagoras für jede dieser Seiten:
+Schneide Kegel und Zylinder längs durch die gemeinsame Achse. Der Kegel wird zu einem Dreieck, der Zylinder zu einem Rechteck. **Die oberen Ecken des Rechtecks liegen auf den Schrägseiten**, weil der Zylinderrand den Mantel berührt:
 
-<BlockMath math="d=\sqrt{a^2+a^2}=a\sqrt2" />
+<MathVisual
+  title={<>Längsschnitt durch Kegel und Zylinder</>}
+  description={<>Längsschnitt durch die gemeinsame Achse: ein gleichschenkliges Dreieck mit der Grundseite <InlineMath math="12" /> und der Höhe <InlineMath math="12" />, darin ein Rechteck mit der Breite <InlineMath math="2r=6" /> und der Höhe <InlineMath math="h=6" />. Die oberen Ecken des Rechtecks, etwa <InlineMath math="(3\mid6)" />, liegen auf den Schrägseiten des Dreiecks.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    r: <><InlineMath math="r=3" /></>,
+    h: <><InlineMath math="h=6" /></>,
+    base: <><InlineMath math="6" /></>,
+    top: <><InlineMath math="12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -1.5, max: 13.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cone", kind: "polygon", appearance: "primary", vertices: [{ x: -6, y: 0 }, { x: 6, y: 0 }, { x: 0, y: 12 }] },
+      { id: "cylinder", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 12 } },
+      { id: "apex", kind: "point", appearance: "reference", at: { x: 0, y: 12 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 3, y: 6 } },
+    ],
+    labels: [
+      { key: "s", objectId: "apex", at: { x: 0, y: 12 }, placement: "above" },
+      { key: "r", objectId: "cylinder", at: { x: 1.5, y: 6 }, placement: "above" },
+      { key: "h", objectId: "cylinder", at: { x: -3, y: 3 }, placement: "left" },
+      { key: "base", objectId: "cone", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "top", objectId: "axis", at: { x: 0, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
 
-Alle drei Seiten des Dreiecks sind also gleich lang. Zur Kontrolle denkst du an den Würfel mit <InlineMath math="a=1" />, die Ecke <InlineMath math="E" /> im Ursprung und die Endpunkte <InlineMath math="(1\mid0\mid0)" />, <InlineMath math="(0\mid1\mid0)" /> und <InlineMath math="(0\mid0\mid1)" />. Jeder Abstand zwischen zwei dieser Punkte ist <InlineMath math="\sqrt{1+1}=\sqrt2" />.
+# Strahlensatz an der Spitze
 
-Die Schnittfläche ist also ein gleichseitiges Dreieck.
+Oberhalb des Zylinders bleibt ein kleiner Kegel mit der Höhe <InlineMath math="12-h" /> und dem Radius <InlineMath math="r" />. Er ist **dem großen Kegel ähnlich**:
 
-- Ein rechtwinkliges und gleichschenkliges Dreieck entsteht, wenn man die rechten Winkel an der Ecke <InlineMath math="E" /> auf die Schnittfläche überträgt. Die Winkel des Schnittdreiecks sind aber alle <InlineMath math="60^\circ" />.
-- Ein Quadrat bräuchte vier Ecken. Der Schnitt geht aber nur durch drei Würfelecken und trifft nur drei Seitenflächen.
-- Ein Rechteck, das kein Quadrat ist, entsteht bei einem Schnitt durch zwei gegenüberliegende Kanten, nicht hier.
-- Ein regelmäßiges Sechseck entsteht bei einem Schnitt durch die Mitten von sechs Kanten senkrecht zur Raumdiagonalen, nicht durch drei Würfelecken.
-- Ein gleichschenkliges, nicht gleichseitiges Dreieck hätte eine Seite mit anderer Länge. Alle drei Seiten sind aber Flächendiagonalen gleicher Länge.
+<BlockMath math="\frac{r}{6}=\frac{12-h}{12}" />
+
+Mit der Bedingung <InlineMath math="h=2r" /> wird daraus:
+
+<BlockMath math="\frac{r}{6}=\frac{12-2r}{12}\quad\Longrightarrow\quad 2r=12-2r\quad\Longrightarrow\quad r=3,\ h=6" />
+
+# Das Volumen
+
+<BlockMath math="V=\pi r^2h=\pi\cdot3^2\cdot6=54\pi\text{ cm}^3" />
+
+Der Zylinder hat **das Volumen <InlineMath math="54\pi\text{ cm}^3" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="64\pi\text{ cm}^3" /> setzt die Höhe gleich dem **Radius** statt dem Durchmesser: Aus <InlineMath math="\frac r6=\frac{12-r}{12}" /> folgt <InlineMath math="r=4" />, und <InlineMath math="\pi\cdot16\cdot4=64\pi" />.
+- <InlineMath math="216\pi\text{ cm}^3" /> rechnet mit dem Durchmesser <InlineMath math="6" /> als Radius: <InlineMath math="\pi\cdot36\cdot6" />.
+- <InlineMath math="18\pi\text{ cm}^3" /> nimmt die Kegelformel mit <InlineMath math="\frac13" /> für den Zylinder.
+- <InlineMath math="27\pi\text{ cm}^3" /> nimmt die Höhe <InlineMath math="3" /> statt <InlineMath math="6" />.
+- <InlineMath math="48\pi\text{ cm}^3" /> ist das Volumen eines Zylinders mit Radius <InlineMath math="4" /> und Höhe <InlineMath math="3" />: Hier wurden Radius und Höhe aus zwei verschiedenen Ansätzen gemischt.

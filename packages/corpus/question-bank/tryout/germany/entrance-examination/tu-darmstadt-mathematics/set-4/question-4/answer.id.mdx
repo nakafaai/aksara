@@ -1,22 +1,75 @@
-Soal menanyakan koordinat titik ujung <InlineMath math="B" />. Titik tengah terletak **tepat di tengah-tengah kedua titik ujung**. Karena itu, koordinatnya adalah rata-rata koordinat <InlineMath math="A" /> dan <InlineMath math="B" />.
+# Tentukan bagian-bagian sisi miring
 
-<BlockMath math="x_M=\frac{x_A+x_B}{2}\qquad y_M=\frac{y_A+y_B}{2}" />
-
-Yang dicari di sini bukan <InlineMath math="M" />, melainkan <InlineMath math="B" />. Ubah setiap persamaan untuk koordinat <InlineMath math="B" /> sehingga diperoleh <InlineMath math="x_B=2x_M-x_A" /> dan <InlineMath math="y_B=2y_M-y_A" />.
+Tinggi membagi sisi miring menjadi dua bagian <InlineMath math="p" /> dan <InlineMath math="q" />. Ada dua hubungan untuk keduanya: jumlahnya sama dengan sisi miring, dan menurut **teorema tinggi** hasil kalinya sama dengan kuadrat tinggi:
 
 <BlockMath math="\begin{aligned}
-x_B&=2\cdot2-(-3)=4+3=7 \\
-y_B&=2\cdot(-1)-5=-2-5=-7
+p+q&=13,\qquad p\cdot q=h^2=36 \\
+p\,(13-p)&=36\ \Longleftrightarrow\ p^2-13p+36=0\ \Longleftrightarrow\ (p-4)(p-9)=0
 \end{aligned}" />
 
-Bayangkan langkahnya: dari <InlineMath math="A" /> ke <InlineMath math="M" /> kamu bergerak <InlineMath math="5" /> ke kanan dan <InlineMath math="6" /> ke bawah. Lakukan langkah yang sama sekali lagi dari <InlineMath math="M" />, dan kamu tiba di <InlineMath math="(2+5\mid-1-6)=(7\mid-7)" />.
+Jadi kedua bagian itu <InlineMath math="4\text{ cm}" /> dan <InlineMath math="9\text{ cm}" />.
 
-Sebagai pemeriksaan, hitung titik tengah <InlineMath math="A(-3\mid5)" /> dan <InlineMath math="B(7\mid-7)" />: <InlineMath math="\left(\frac{-3+7}{2}\mid\frac{5-7}{2}\right)=(2\mid-1)" />. Hasilnya tepat <InlineMath math="M" />.
+<MathVisual
+  title={<>Tinggi membagi sisi miring</>}
+  description={<>Segitiga <InlineMath math="ABC" /> dengan sisi miring <InlineMath math="\overline{AB}=13" /> di bawah dan sudut siku-siku di <InlineMath math="C" /> di atas. Tinggi dari <InlineMath math="C" /> ke sisi miring panjangnya <InlineMath math="6" /> dan membagi sisi miring menjadi bagian <InlineMath math="p=4" /> dan <InlineMath math="q=9" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    p: <><InlineMath math="p=4" /></>,
+    q: <><InlineMath math="q=9" /></>,
+    h: <><InlineMath math="h=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 14 },
+      y: { min: -2, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 13, y: 0 }, { x: 4, y: 6 }] },
+      { id: "altitude", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 4, y: 6 } },
+      { id: "piece-p", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "piece-q", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 13, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 13, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 4, y: 6 } },
+      { id: "foot", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 13, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 4, y: 6 }, placement: "above" },
+      { key: "p", objectId: "piece-p", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "q", objectId: "piece-q", at: { x: 8.5, y: 0 }, placement: "below" },
+      { key: "h", objectId: "altitude", at: { x: 4, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
 
-Jadi, titik ujungnya adalah <InlineMath math="B(7\mid-7)" />.
+# Tentukan sisi siku-sikunya
 
-- <InlineMath math="(-1\mid4)" /> adalah jumlah koordinat <InlineMath math="A" /> dan <InlineMath math="M" />. Cara itu tidak menghasilkan titik tengah apa pun.
-- <InlineMath math="(5\mid-6)" /> hanyalah langkah dari <InlineMath math="A" /> ke <InlineMath math="M" />, yaitu <InlineMath math="M-A" />, dan bukan titik pada ruas garis itu.
-- <InlineMath math="(-8\mid11)" /> muncul jika perannya tertukar dan <InlineMath math="M" /> dicerminkan terhadap <InlineMath math="A" />. Titik itu berada di sisi lain <InlineMath math="A" />.
-- <InlineMath math="\left(-\frac12\mid2\right)" /> adalah titik tengah antara <InlineMath math="A" /> dan <InlineMath math="M" />, bukan titik ujungnya.
-- <InlineMath math="(7\mid3)" /> sudah benar koordinat <InlineMath math="x" />-nya. Namun, untuk <InlineMath math="y" /> yang dihitung adalah <InlineMath math="-2+5" />, bukan <InlineMath math="-2-5" />.
+Menurut **teorema kaki segitiga**, kuadrat setiap sisi siku-siku sama dengan sisi miring dikali bagian yang menempel pada sisi itu:
+
+<BlockMath math="\begin{aligned}
+a^2&=13\cdot4=52,\qquad a=2\sqrt{13} \\
+b^2&=13\cdot9=117,\qquad b=3\sqrt{13}
+\end{aligned}" />
+
+Cek: <InlineMath math="a^2+b^2=52+117=169=13^2" />.
+
+# Jumlahkan kelilingnya
+
+<BlockMath math="u=13+2\sqrt{13}+3\sqrt{13}=(13+5\sqrt{13})\text{ cm}" />
+
+**Keliling segitiga itu** <InlineMath math="(13+5\sqrt{13})\text{ cm}" />, kira-kira <InlineMath math="31{,}0\text{ cm}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="30\text{ cm}" /> memakai sisi yang sudah dikenal, <InlineMath math="5" />, <InlineMath math="12" />, <InlineMath math="13" />. Padahal segitiga itu punya **tinggi yang lain**: <InlineMath math="\frac{5\cdot12}{13}=\frac{60}{13}\ne6" />.
+- <InlineMath math="26\text{ cm}" /> menjumlahkan bagian <InlineMath math="4" /> dan <InlineMath math="9" /> dengan sisi miring, seolah-olah keduanya sisi siku-siku.
+- <InlineMath math="(13+\sqrt{481})\text{ cm}" /> memakai <InlineMath math="ab=2\cdot13\cdot6=156" />. Yang benar <InlineMath math="ab=c\cdot h=78" />, karena kedua hasil kali itu sama dengan dua kali luas.
+- <InlineMath math="5\sqrt{13}\text{ cm}" /> hanya jumlah kedua sisi siku-siku, tanpa sisi miring.
+- <InlineMath math="(13+2\sqrt{13})\text{ cm}" /> hanya menghitung satu sisi siku-siku.

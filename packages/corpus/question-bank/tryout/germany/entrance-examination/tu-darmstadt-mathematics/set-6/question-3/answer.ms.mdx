@@ -1,0 +1,59 @@
+# Dua garis tinggi sudah memadai
+
+Ketiga-tiga garis tinggi bersilang pada satu titik. Jadi untuk koordinatnya **dua garis tinggi sudah memadai**, dan yang ketiga digunakan untuk menyemak.
+
+Sisi <InlineMath math="\overline{AB}" /> terletak pada paksi <InlineMath math="x" />. Garis tinggi dari <InlineMath math="C" /> berserenjang dengannya, jadi ia ialah garis tegak <InlineMath math="x=2" />.
+
+# Garis tinggi dari <InlineMath math="A" />
+
+Sisi <InlineMath math="\overline{BC}" /> mempunyai kecerunan <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. Garis yang berserenjang dengannya mempunyai kecerunan <InlineMath math="1" />, kerana **hasil darab kecerunan dua garis berserenjang ialah <InlineMath math="-1" />**. Jadi garis tinggi dari <InlineMath math="A(0\mid0)" /> ialah <InlineMath math="y=x" />.
+
+# Titik persilangan
+
+<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+
+<MathVisual
+  title={<>Tiga garis tinggi</>}
+  description={<>Segi tiga dengan <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" /> dan <InlineMath math="C(2\mid6)" />. Garis tinggi dari <InlineMath math="C" /> ialah tembereng garis tegak pada <InlineMath math="x=2" />. Garis tinggi dari <InlineMath math="A" /> terletak pada <InlineMath math="y=x" /> dan bertemu <InlineMath math="\overline{BC}" /> di <InlineMath math="(4\mid4)" />. Garis tinggi dari <InlineMath math="B" /> bertemu <InlineMath math="\overline{AC}" /> di <InlineMath math="(0.8\mid2.4)" />. Ketiga-tiganya melalui <InlineMath math="H(2\mid2)" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2\mid2)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
+      { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
+      { id: "alt-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "alt-b", kind: "segment", appearance: "construction", from: { x: 8, y: 0 }, to: { x: 0.8, y: 2.4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 2, y: 6 } },
+      { id: "ph", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Semak dengan garis tinggi ketiga: <InlineMath math="\overline{AC}" /> mempunyai kecerunan <InlineMath math="3" />, jadi garis tinggi dari <InlineMath math="B" /> mempunyai kecerunan <InlineMath math="-\frac13" />. Garis melalui <InlineMath math="B(8\mid0)" /> dengan kecerunan itu bernilai <InlineMath math="-\frac13\cdot(2-8)=2" /> pada <InlineMath math="x=2" />. Garis itu **juga melalui <InlineMath math="H(2\mid2)" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="H(4\mid2)" /> ialah titik persilangan **pembahagi dua sama serenjang**, iaitu pusat bulatan luar.
+- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> ialah sentroid, tempat garis median bersilang.
+- <InlineMath math="H(2\mid6)" /> ialah bucu <InlineMath math="C" />. Garis tinggi dari <InlineMath math="C" /> memang melalui <InlineMath math="C" />, tetapi garis tinggi yang lain tidak.
+- <InlineMath math="H(2\mid4)" /> terhasil kalau garis tinggi dari <InlineMath math="A" /> diberi kecerunan <InlineMath math="2" />, jadi bukan negatif salingan bagi <InlineMath math="-1" />.
+- <InlineMath math="H(6\mid2)" /> menukar koordinat bucu <InlineMath math="C" /> menjadi <InlineMath math="(6\mid2)" /> lalu memakai garis tinggi <InlineMath math="x=6" />.

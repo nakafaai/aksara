@@ -1,21 +1,67 @@
-Soal meminta *Lösen Sie die Gleichung* (selesaikan persamaannya). Pecahan dalam persamaan bisa dihilangkan dengan **mengalikan kedua ruas dengan KPK penyebutnya**. KPK dari <InlineMath math="3" /> dan <InlineMath math="4" /> adalah <InlineMath math="12" />. Pastikan ruas kanan juga dikalikan dengan <InlineMath math="12" />.
+# Daerah asal dan kuadrat pertama
 
-<BlockMath math="12\cdot\frac{x+2}{3}-12\cdot\frac{x-1}{4}=12\cdot2" />
-
-Setelah disederhanakan, diperoleh <InlineMath math="4(x+2)-3(x-1)=24" />. Tanda minus di depan pecahan kedua berlaku untuk seluruh pembilang <InlineMath math="x-1" />. Karena itu, saat dijabarkan, <InlineMath math="-3\cdot(-1)" /> menjadi <InlineMath math="+3" />.
+Kedua akar harus terdefinisi: <InlineMath math="3x+1\ge0" /> dan <InlineMath math="x-1\ge0" />, jadi bersama-sama <InlineMath math="x\ge1" />. Pindahkan satu akar ke ruas lain sebelum mengkuadratkan, supaya **hanya tersisa satu akar**:
 
 <BlockMath math="\begin{aligned}
-4x+8-3x+3&=24 \\
-x+11&=24 \\
-x&=13
+\sqrt{3x+1}&=2+\sqrt{x-1} \\
+3x+1&=4+4\sqrt{x-1}+x-1 \\
+2x-2&=4\sqrt{x-1} \\
+x-1&=2\sqrt{x-1}
 \end{aligned}" />
 
-Sebagai pemeriksaan, substitusikan <InlineMath math="x=13" /> ke persamaan awal: <InlineMath math="\frac{15}{3}-\frac{12}{4}=5-3=2" />. Kedua ruas sama.
+# Jangan membagi dengan akarnya
 
-Jadi, penyelesaian persamaan itu adalah <InlineMath math="x=13" />.
+Rasanya wajar membagi kedua ruas dengan <InlineMath math="\sqrt{x-1}" />. Tetapi untuk <InlineMath math="x=1" /> bilangan itu <InlineMath math="0" />, dan **kamu tidak boleh membagi dengan <InlineMath math="0" />**. Sebagai gantinya, misalkan <InlineMath math="u=\sqrt{x-1}\ge0" />. Maka <InlineMath math="x-1=u^2" />:
 
-- <InlineMath math="x=19" /> muncul jika tanda minus di depan pecahan kedua hanya dikenakan pada <InlineMath math="x" />. Hasilnya <InlineMath math="-3x-3" />, bukan <InlineMath math="-3x+3" />, lalu <InlineMath math="x+5=24" />.
-- <InlineMath math="x=-9" /> muncul jika ruas kanan tidak dikalikan dengan <InlineMath math="12" />. Persamaan <InlineMath math="x+11=2" /> lalu memberi nilai yang salah.
-- <InlineMath math="x=-14" /> muncul jika faktor pengalinya tertukar, yaitu <InlineMath math="3(x+2)-4(x-1)=24" />. Pecahan dengan penyebut <InlineMath math="3" /> memerlukan faktor <InlineMath math="4" />.
-- <InlineMath math="x=35" /> muncul jika <InlineMath math="11" /> ditambahkan, bukan dikurangkan, saat memindahkan suku.
-- <InlineMath math="x=-3" /> menggabungkan dua kesalahan: tanda minus hanya dikenakan pada <InlineMath math="x" />, dan ruas kanan tetap <InlineMath math="2" />. Hasilnya <InlineMath math="x+5=2" />.
+<BlockMath math="u^2=2u\quad\Longleftrightarrow\quad u(u-2)=0\quad\Longleftrightarrow\quad u=0\ \text{atau}\ u=2" />
+
+Dari <InlineMath math="u=0" /> diperoleh <InlineMath math="x=1" />, dan dari <InlineMath math="u=2" /> diperoleh <InlineMath math="x-1=4" />, jadi <InlineMath math="x=5" />.
+
+# Periksa kedua calon
+
+Mengkuadratkan bisa memunculkan penyelesaian palsu, jadi **substitusikan keduanya ke persamaan asli**:
+
+<BlockMath math="\begin{aligned}
+x=1:&\quad\sqrt4-\sqrt0=2 \\
+x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
+\end{aligned}" />
+
+<MathVisual
+  title={<>Kedua penyelesaian pada grafik</>}
+  description={<>Grafik ruas kiri <InlineMath math="\sqrt{3x+1}-\sqrt{x-1}" /> dimulai di <InlineMath math="x=1" /> pada ketinggian <InlineMath math="2" />, turun sampai sekitar <InlineMath math="1{,}63" /> di <InlineMath math="x=\tfrac53" />, lalu naik lagi. Di <InlineMath math="x=5" /> grafiknya tepat setinggi <InlineMath math="2" /> sekali lagi. Jadi garis mendatar <InlineMath math="y=2" /> memotongnya di dua titik.</>}
+  labels={{
+    one: <><InlineMath math="x=1" /></>,
+    five: <><InlineMath math="x=5" /></>,
+    f: <>ruas kiri</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11.5 },
+      y: { min: 0, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3*x+1) - sqrt(x-1)", domain: { min: 1, max: 11 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+    ],
+    labels: [
+      { key: "one", objectId: "p1", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "five", objectId: "p5", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "f", objectId: "left-side", at: { x: 10, y: 2.57 }, placement: "above" },
+    ],
+  }}
+/>
+
+Himpunan penyelesaiannya <InlineMath math="\mathbb{L}=\{1;\,5\}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\mathbb{L}=\{5\}" /> muncul kalau kamu membagi dengan <InlineMath math="\sqrt{x-1}" />. Dengan begitu **penyelesaian <InlineMath math="x=1" /> hilang**.
+- <InlineMath math="\mathbb{L}=\{1\}" /> muncul kalau ruas kiri dikuadratkan suku demi suku: <InlineMath math="(3x+1)-(x-1)=4" />. Padahal <InlineMath math="(a-b)^2\ne a^2-b^2" />.
+- <InlineMath math="\mathbb{L}=\{1;\,3\}" /> muncul kalau faktor <InlineMath math="2" /> dalam <InlineMath math="x-1=2\sqrt{x-1}" /> tidak ikut dikuadratkan: <InlineMath math="(x-1)^2=2(x-1)" />.
+- <InlineMath math="\mathbb{L}=\{3+2\sqrt3\}" /> muncul dari salah tanda saat menjabarkan: <InlineMath math="x^2-2x+1=4x+4" />.
+- <InlineMath math="\mathbb{L}=\{\}" /> melewatkan bahwa kedua pemeriksaan berhasil.
