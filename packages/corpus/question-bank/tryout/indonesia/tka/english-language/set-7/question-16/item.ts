@@ -4,32 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "repot-plant",
+  stimulus: "indigo-dye",
   versions: {
     en: {
-      columns: [
-        "Getting the new pot ready",
-        "Removing the plant",
-        "Settling the plant in",
-      ],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label:
-            "Putting about three centimeters of soil in the bottom of the new pot",
+          correct: false,
+          label: "$$6$$ hours $$40$$ minutes, with $$200$$ grams of paste",
         },
         {
-          column: 2,
-          label: "Tapping the sides of the old pot when the plant is stuck",
+          correct: false,
+          label: "$$5$$ hours $$40$$ minutes, with $$225$$ grams of paste",
         },
         {
-          column: 3,
-          label: "Pressing the fresh soil down lightly around the roots",
+          correct: false,
+          label: "$$6$$ hours $$40$$ minutes, with $$250$$ grams of paste",
         },
-        { column: 2, label: "Holding the plant at the base of its stems" },
+        {
+          correct: true,
+          label: "$$6$$ hours $$40$$ minutes, with $$225$$ grams of paste",
+        },
+        {
+          correct: false,
+          label: "$$1$$ hour $$40$$ minutes, with $$225$$ grams of paste",
+        },
       ],
     },
   },

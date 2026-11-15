@@ -2,35 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "class-cleaning",
+  stimulus: "reading-minutes",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "to describe how to sweep a classroom properly",
+          column: 1,
+          label: "Both pilot teachers already ran book clubs.",
         },
         {
-          correct: false,
-          label: "to report how long each cleaning task takes",
-        },
-        {
-          correct: false,
-          label: "to persuade parents to clean the school toilets",
-        },
-        {
-          correct: false,
-          label: "to argue that the school should dismiss its cleaners",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "to argue that the school should keep student cleaning duty in the classroom",
+            "Daily practice builds readers better than anything else does.",
+        },
+        {
+          column: 3,
+          label: "The two hundred new books raised borrowing.",
+        },
+        {
+          column: 1,
+          label: "The first lesson is mathematics on four days of the week.",
+        },
+        {
+          column: 2,
+          label: "Fifteen minutes a day is a small price for daily reading.",
+        },
+        {
+          column: 3,
+          label: "Year 8 already reads during the long break.",
         },
       ],
     },

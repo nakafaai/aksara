@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "repot-plant",
+  stimulus: "indigo-dye",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "a list of tools followed by a story about a family garden",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "a claim about houseplants, several reasons, and a conclusion",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label: "a description of different kinds of flower pots",
+          label: "I, II, III, and IV",
         },
         {
           correct: false,
-          label:
-            "the steps first, then the reasons for repotting, then the tools",
+          label: "I and IV only",
         },
         {
           correct: true,
-          label:
-            "when and why to repot, the things you need, numbered steps, and advice for afterward",
+          label: "I, II, and IV only",
         },
       ],
     },

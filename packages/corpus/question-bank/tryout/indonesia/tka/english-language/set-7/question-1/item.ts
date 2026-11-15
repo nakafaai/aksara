@@ -2,30 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
-  stimulus: "pottery-village",
+  stimulus: "island-ferry",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "how to make a water jar on a wheel that is turned by foot",
+          label: "$$\\text{Rp}135{,}000$$",
         },
-        { correct: false, label: "why younger potters prefer electric wheels" },
         {
           correct: false,
-          label: "the history of the river that runs past the village",
+          label: "$$\\text{Rp}143{,}750$$",
         },
         {
           correct: true,
-          label:
-            "how a village is organized around making pottery from its red clay",
+          label: "$$\\text{Rp}168{,}750$$",
         },
-        { correct: false, label: "a visitor's first attempt to make a pot" },
+        {
+          correct: false,
+          label: "$$\\text{Rp}193{,}750$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}218{,}750$$",
+        },
       ],
     },
   },

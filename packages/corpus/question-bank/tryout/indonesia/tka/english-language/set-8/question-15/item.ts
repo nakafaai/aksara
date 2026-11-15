@@ -6,33 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "night-ferry",
+  stimulus: "dry-well",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "It is a fantasy, because the mangosteens have magic powers.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "It is a fantasy, because a fishing boat cannot travel at night.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "It is a legend, because it explains how Pulau Kecil got its name.",
-        },
-        {
-          correct: false,
-          label: "It is a fable, because the fisherman is really an animal.",
+          label: "I, II, III, IV, and V",
         },
         {
           correct: true,
-          label:
-            "It is realistic, because missing a ferry and getting help from a stranger's family could happen in real life.",
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II, IV, and V only",
         },
       ],
     },

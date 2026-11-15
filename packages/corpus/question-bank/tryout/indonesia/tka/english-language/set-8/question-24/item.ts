@@ -2,36 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "class-cleaning",
+  stimulus: "reading-minutes",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
+          label: "Students should read more.",
+        },
+        {
+          correct: false,
+          label: "The reading time raised test scores by $$8$$ points.",
+        },
+        {
+          correct: true,
           label:
-            "Many students start to pick up after themselves without being told.",
+            "The two pilot classes together borrowed $$180$$ more books than in the semester before.",
         },
         {
           correct: false,
-          label: "Sweeping the floor takes about six minutes on average.",
+          label: "The $$15$$ minutes should come from the first lesson.",
         },
         {
           correct: false,
-          label:
-            "Hiring two extra cleaners would cost about 60 million rupiah a year.",
-        },
-        {
-          correct: false,
-          label: "Toilets and gutters require equipment and training.",
-        },
-        {
-          correct: false,
-          label: "The duty team empties the bins before lessons start.",
+          label: "The reading time was tried in every class.",
         },
       ],
     },

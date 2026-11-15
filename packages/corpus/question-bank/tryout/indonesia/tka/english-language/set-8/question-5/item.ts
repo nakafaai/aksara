@@ -4,37 +4,34 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "reader-response",
+    topic: "information-validity",
   },
-  stimulus: "train-station",
+  stimulus: "clinic-queue",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "“The museum must be boring, because the clock does not even work.”",
-        },
-        {
-          correct: false,
-          label:
-            "“The town should knock down the station and build a shopping mall.”",
-        },
-        {
-          correct: false,
-          label:
-            "“The locomotive must still be able to pull passenger trains.”",
+            "On a Saturday, the last numbered patient's turn begins at 11:54.",
         },
         {
           correct: true,
-          label:
-            "“Seeing the stopped clock and hearing a former station master would help me imagine the station's last days.”",
+          label: "On a weekday, numbers $$45$$ and $$46$$ go in at 11:54.",
+        },
+        {
+          correct: false,
+          label: "On a weekday, number $$30$$ goes in at 13:18.",
         },
         {
           correct: false,
           label:
-            "“I would be disappointed, because visitors cannot touch anything in the museum.”",
+            "On a Saturday, the doctor sees $$6$$ numbered patients an hour.",
+        },
+        {
+          correct: false,
+          label: "Every patient over $$60$$ is seen by a doctor.",
         },
       ],
     },

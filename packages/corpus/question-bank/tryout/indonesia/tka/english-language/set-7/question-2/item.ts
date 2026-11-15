@@ -4,18 +4,34 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "explicit-information",
+    topic: "classification",
   },
-  stimulus: "pottery-village",
+  stimulus: "island-ferry",
   versions: {
     en: {
-      kind: "choice",
-      options: [
-        { correct: true, label: "They crack." },
-        { correct: false, label: "They turn a deep reddish brown." },
-        { correct: false, label: "They become too hard to shape." },
-        { correct: false, label: "They collapse on the wheel." },
-        { correct: false, label: "They dent more easily." },
+      columns: ["At 12:00", "At 13:00"],
+      kind: "matrix",
+      statements: [
+        {
+          column: 2,
+          label: "Low tide at 6:45",
+        },
+        {
+          column: 1,
+          label: "Low tide at 8:45",
+        },
+        {
+          column: 2,
+          label: "Low tide at 12:20",
+        },
+        {
+          column: 1,
+          label: "Low tide at 10:15",
+        },
+        {
+          column: 1,
+          label: "Low tide at 13:00",
+        },
       ],
     },
   },

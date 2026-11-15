@@ -2,19 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "comparison",
   },
-  stimulus: "train-station",
+  stimulus: "clinic-queue",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "lanterns once used to signal to drivers" },
-        { correct: false, label: "wooden benches from the waiting room" },
-        { correct: false, label: "the ticket window with brass bars" },
-        { correct: true, label: "conductors' caps" },
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
       ],
     },
   },

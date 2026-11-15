@@ -4,28 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "supporting-detail",
   },
-  stimulus: "repot-plant",
+  stimulus: "indigo-dye",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "so that the roots can grow out through the drainage holes",
-        },
-        {
-          correct: false,
-          label: "so that the pot looks larger than the old one",
-        },
-        {
           correct: true,
-          label:
-            "so that there is room for water and it does not spill over the rim when the plant is watered",
+          label: "I and II only",
         },
-        { correct: false, label: "so that the plant gets more sunlight" },
-        { correct: false, label: "so that the black roots can dry out" },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and V only",
+        },
       ],
     },
   },

@@ -2,34 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "bus-shelters",
+  stimulus: "market-street",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "For about 125 million rupiah in total, the council could give eight of the fourteen stops a roof.",
+          correct: false,
+          label: "I only",
         },
         {
           correct: false,
-          label:
-            "The roof at the market stop proved that roofs alone increase boardings.",
-        },
-        {
-          correct: true,
-          label:
-            "Older passengers who now skip trips in the rain might travel more if the stops had roofs.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Every stop on the main route will have a shelter by the end of next year.",
+          label: "III and IV only",
+        },
+        {
+          correct: true,
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

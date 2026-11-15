@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "fried-rice",
+  stimulus: "rain-gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "ingredients, steps, and the history of fried rice",
-        },
-        {
           correct: true,
-          label:
-            "a title, advice about the rice, a list of ingredients, numbered steps, and a safety note",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "an opinion about fried rice supported by several reasons",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "a story about a family dinner that ends with a lesson",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label:
-            "the steps first, then the ingredients, then serving suggestions",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },
