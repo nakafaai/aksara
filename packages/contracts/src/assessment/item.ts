@@ -123,13 +123,27 @@ const ItemFieldsSchema = Schema.Struct({
  * them in another order.
  */
 function hasOneStructure(item: typeof ItemFieldsSchema.Type) {
-  return hasSameStructure(
-    Arr.map(item.versions, ({ interactions, joint, scoring }) => ({
-      interactions,
-      joint: joint === undefined ? undefined : sortedJoint(joint),
-      scoring,
-    }))
-  );
+  return hasSameStructure(Arr.map(item.versions, versionStructure));
+}
+
+/**
+ * The parts of a version that every language of its item shares once its words
+ * are dropped: the interactions, the joint rule with its levels as sets, and
+ * the scoring rules.
+ */
+export function versionStructure({
+  interactions,
+  joint,
+  scoring,
+}: Pick<
+  typeof ItemVersionBodySchema.Type,
+  "interactions" | "joint" | "scoring"
+>) {
+  return {
+    interactions,
+    joint: joint === undefined ? undefined : sortedJoint(joint),
+    scoring,
+  };
 }
 
 /**

@@ -21,7 +21,7 @@ export const tkaAdvancedMathematicsTrack = {
         interactions: ["choice", "matrix"],
         items: 25,
         key: "advanced-mathematics",
-        language: "id",
+        languages: ["id"],
         seconds: 3600,
         translations: {
           de: { title: "Fortgeschrittene Mathematik" },

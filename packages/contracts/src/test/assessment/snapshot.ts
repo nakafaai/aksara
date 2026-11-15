@@ -192,7 +192,15 @@ export const makeAssessmentTestRecords = Effect.fn(
     profile: { hash: profileHash, id: testProfile.id },
     sections: [
       {
-        placements: [{ family: version.family, hash: version.hash }],
+        languages: [version.deliveryLanguage],
+        placements: [
+          {
+            family: version.family,
+            versions: [
+              { hash: version.hash, language: version.deliveryLanguage },
+            ],
+          },
+        ],
         section: "test-section",
       },
     ],

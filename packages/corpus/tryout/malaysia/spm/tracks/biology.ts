@@ -1,3 +1,7 @@
+import {
+  ENGLISH_APP_LOCALE_CODE,
+  MALAY_APP_LOCALE_CODE,
+} from "@nakafa/aksara-contracts/locale";
 import { Array as Arr } from "effect";
 import { biologyRatings } from "#corpus/tryout/malaysia/spm/ratings";
 import type { TrackSourceInput } from "#corpus/tryout/schema";
@@ -5,8 +9,8 @@ import type { TrackSourceInput } from "#corpus/tryout/schema";
 /**
  * SPM Biologi Paper 1 (4551/1): 40 objective items in 75 minutes, single choice
  * with a few combined choices, printed in Malay with the English beneath, as
- * the Lembaga Peperiksaan format book shows. A learner sits the Malay version;
- * every item also carries its English version.
+ * the Lembaga Peperiksaan format book shows. A learner starts in Malay and
+ * may switch to English at any time, as the real paper prints both.
  */
 export const spmBiologyTrack = {
   group: "form-5",
@@ -26,7 +30,7 @@ export const spmBiologyTrack = {
         interactions: ["choice"],
         items: 40,
         key: "biology",
-        language: "ms",
+        languages: [MALAY_APP_LOCALE_CODE, ENGLISH_APP_LOCALE_CODE],
         seconds: 4500,
         translations: {
           de: { title: "Biologie" },

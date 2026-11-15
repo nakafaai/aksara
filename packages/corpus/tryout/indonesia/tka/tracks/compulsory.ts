@@ -21,7 +21,7 @@ export const tkaCompulsoryMathematicsTrack = {
         interactions: ["choice", "matrix"],
         items: 25,
         key: "compulsory-mathematics",
-        language: "id",
+        languages: ["id"],
         seconds: 4500,
         translations: {
           de: { title: "Pflichtmathematik" },

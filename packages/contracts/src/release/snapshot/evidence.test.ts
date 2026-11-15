@@ -210,7 +210,7 @@ describe("structured snapshot domain verification", () => {
         ).toEqual([
           "sha256:a86da6c00b6c85d5057c6ed23ed793e1f8a864659d32b4e202b2b2dc31680180",
           "sha256:3a021aa207cc4db5570defa60b37eb16bd57ab843bcbfb80f549846b948236db",
-          "sha256:fccb066897525d4d1bd492c05b5e518c70f66a47eab13b63975b9e0055105ad2",
+          "sha256:4f7c3a51661c93315577962f4450fcebd2ec58e7af238c85f2162359faa2bd5b",
         ]);
       }),
     30_000

@@ -2,7 +2,10 @@ import {
   GroupAxisSchema,
   SectionVisibilitySchema,
 } from "@nakafa/aksara-contracts/assessment/catalog";
-import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
+import {
+  hasDistinctIds,
+  KebabKeySchema,
+} from "@nakafa/aksara-contracts/assessment/identity";
 import { InteractionKindSchema } from "@nakafa/aksara-contracts/assessment/interaction";
 import { ReportFormSchema } from "@nakafa/aksara-contracts/assessment/profile";
 import {
@@ -41,16 +44,21 @@ const ExamTranslationMapSchema = localizedSourceMapSchema(
 );
 
 /**
- * One section of an exam profile: the language its items are asked in, how
- * many items it has, how long it lasts, the interactions it allows, and its
- * names and routes. Every set of the track sits the same sections in this
- * order, each with its own items.
+ * One section of an exam profile: the languages its items are asked in, the
+ * first being the one a learner starts in, how many items it has, how long it
+ * lasts, the interactions it allows, and its names and routes. Every set of the
+ * track sits the same sections in this order, each with its own items, and
+ * every item of a section is written in each of its languages.
  */
 export const SectionSourceSchema = Schema.Struct({
   interactions: Schema.NonEmptyArray(InteractionKindSchema),
   items: PositiveIntSchema,
   key: KebabKeySchema,
-  language: AppLocaleCodeSchema,
+  languages: Schema.NonEmptyArray(AppLocaleCodeSchema).check(
+    Schema.makeFilter(hasDistinctIds, {
+      message: "Expected each section language once.",
+    })
+  ),
   routeSlugs: Schema.optionalKey(PublicRouteSlugMapSchema),
   seconds: PositiveIntSchema,
   translations: TranslationMapSchema,

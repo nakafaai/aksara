@@ -57,7 +57,7 @@ describe("examSetPaths", () => {
 });
 
 describe("planTryoutPapers", () => {
-  it.effect("plans one paper for each set, each section in its language", () =>
+  it.effect("plans one paper for each set, each section in its languages", () =>
     Effect.gen(function* () {
       const papers = yield* plan(yield* readSets(testExamFiles));
 
@@ -65,9 +65,9 @@ describe("planTryoutPapers", () => {
         Arr.map(papers, ({ id, profile, sections, setKey, trackKey }) => ({
           id,
           profile,
-          sections: Arr.map(sections, ({ key, language, set }) => [
+          sections: Arr.map(sections, ({ key, languages, set }) => [
             key,
-            language,
+            languages,
             set.questions.length,
           ]),
           setKey,
@@ -77,7 +77,7 @@ describe("planTryoutPapers", () => {
         {
           id: "test-country/test-exam/test-subject/set-1",
           profile: "test-country/test-exam/test-subject",
-          sections: [["test-subject", "id", 2]],
+          sections: [["test-subject", ["id"], 2]],
           setKey: "set-1",
           trackKey: "test-subject",
         },
@@ -85,8 +85,8 @@ describe("planTryoutPapers", () => {
           id: "test-country/test-exam/2027/set-1",
           profile: "test-country/test-exam/2027",
           sections: [
-            ["test-reasoning", "id", 1],
-            ["test-english", "en", 1],
+            ["test-reasoning", ["id"], 1],
+            ["test-english", ["en"], 1],
           ],
           setKey: "set-1",
           trackKey: "2027",
@@ -141,6 +141,51 @@ describe("planTryoutPapers", () => {
             "reason" in error ? error.reason : error._tag
           )
         ).toEqual(["missing", "items", "language", "interaction"]);
+      })
+  );
+
+  it.effect(
+    "plans a section in two languages only when every item is written in both",
+    () =>
+      Effect.gen(function* () {
+        const exam = yield* defineExamSource({
+          ...testExamInput,
+          tracks: [
+            {
+              ...testSubjectTrack,
+              profile: {
+                ...testSubjectTrack.profile,
+                sections: [{ ...testSubjectSection, languages: ["id", "en"] }],
+              },
+            },
+            testYearTrack,
+          ],
+        });
+        const both = {
+          versions: { en: TEST_ITEM.versions.id, id: TEST_ITEM.versions.id },
+        };
+        /** Plans the bilingual exam over the subject set written in the given files. */
+        const planBilingual = (files: readonly (readonly [string, string])[]) =>
+          Effect.gen(function* () {
+            const sets = yield* readQuestionSets(
+              CHECKOUT,
+              examSetPaths([exam])
+            ).pipe(Effect.provide(checkoutLayer(withSubject(files))));
+            return yield* planTryoutPapers([exam], sets);
+          });
+        const [paper] = yield* planBilingual([
+          ...questionFiles(1, both, "Satu.", subjectSet),
+          ...questionFiles(2, both, "Dua.", subjectSet),
+        ]);
+        const missing = yield* planBilingual([
+          ...questionFiles(1, both, "Satu.", subjectSet),
+          ...questionFiles(2, TEST_ITEM, "Dua.", subjectSet),
+        ]).pipe(Effect.flip);
+
+        expect(
+          Arr.map(paper?.sections ?? [], ({ languages }) => languages)
+        ).toEqual([["id", "en"]]);
+        expect(missing).toMatchObject({ reason: "language", set: subjectSet });
       })
   );
 
