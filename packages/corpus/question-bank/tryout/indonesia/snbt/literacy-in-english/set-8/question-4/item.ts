@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "author-reasoning",
   },
-  stimulus: "city-birdsong",
+  stimulus: "phineas-gage",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "It proves that street lights have no effect on any bird species.",
-        },
-        {
-          correct: false,
-          label:
-            "It shows that robins can see better at night than during the day.",
-        },
-        {
-          correct: false,
-          label:
-            "It means that robins sing only at night in every British city.",
+            "It included details, such as fights and heavy drinking, that appear in no account by anyone who knew him.",
         },
         {
           correct: true,
           label:
-            "It challenges the common explanation that lighting causes night singing.",
+            "It treated changes seen soon after the accident as lasting for the rest of his life.",
         },
         {
           correct: false,
           label:
-            "It suggests that daytime noise might be louder in Britain than elsewhere.",
+            "It claimed that Gage survived an iron rod passing through his head.",
+        },
+        {
+          correct: true,
+          label:
+            "It said he could never hold a job again, although he later worked for years as a coach driver in Chile.",
+        },
+        {
+          correct: false,
+          label:
+            "It used Harlow's report that Gage's friends said he was \"no longer Gage\".",
         },
       ],
     },

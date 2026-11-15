@@ -4,37 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "text-relation",
   },
-  stimulus: "classroom-points",
+  stimulus: "phone-ban",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "A weekly ranking that shows each pupil's points on the classroom wall",
+            "Text B supports a ban but doubts that it explains the size of the rise Text A reports.",
         },
         {
           correct: false,
-          label:
-            "A badge for every pupil who completes ten worksheets in a row without a mistake",
-        },
-        {
-          correct: false,
-          label:
-            "A prize for the pupil who reads the most books by the end of term",
+          label: "Text B says that bullying increased after the ban.",
         },
         {
           correct: true,
           label:
-            "A puzzle that gives instant hints and lets pupils retry until they solve it",
+            "Text B's point about bullying is that a fall during school hours was expected once phones were gone.",
+        },
+        {
+          correct: true,
+          label:
+            "Text B reports that the gains found in other studies were mostly among pupils who were already struggling.",
         },
         {
           correct: false,
-          label:
-            "A test that pupils may only attempt once, with no feedback until later",
+          label: "Text A reports that the new maths textbook improved results.",
         },
       ],
     },

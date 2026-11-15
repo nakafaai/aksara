@@ -2,33 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "ibn-battuta",
+  stimulus: "night-bus",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Ibn Battuta wrote the *Rihla* himself from detailed daily notes.",
+            "That he kept a fixed distance on purpose, as if he were hunting her, which fits her fear on the lane.",
         },
         {
-          column: 2,
-          label: "Samudra Pasai was on the southern coast of Java.",
-        },
-        {
-          column: 1,
+          correct: true,
           label:
-            "Ibn Battuta served as a judge in both Delhi and the Maldives.",
+            "That he kept a fixed distance on purpose, as if following an instruction, which fits the task her mother had given him.",
         },
         {
-          column: 1,
-          label: "Ibn Battuta was twenty-one when he set out for Mecca.",
+          correct: false,
+          label:
+            "That he kept a fixed distance on purpose, as if following an instruction, because he was afraid of the narrator.",
+        },
+        {
+          correct: false,
+          label:
+            "That he kept a fixed distance because his work as a hospital porter had trained him to follow patients.",
+        },
+        {
+          correct: false,
+          label:
+            "That he kept a fixed distance on purpose, as if following an instruction, because her mother had told him to stay out of sight.",
         },
       ],
     },

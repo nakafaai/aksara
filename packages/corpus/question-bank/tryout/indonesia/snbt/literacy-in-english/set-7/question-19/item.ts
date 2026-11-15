@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "point-of-view",
   },
-  stimulus: "carnegie-libraries",
+  stimulus: "umbrella-stand",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Because he thought the sign would bring the umbrellas back faster, while in fact they came back only when she was in hospital.",
+        },
+        {
+          correct: false,
+          label:
+            "Because he judged the lending by how many umbrellas came back, while for Mrs Okonjo the point was to save money on umbrellas for herself.",
+        },
+        {
+          correct: false,
+          label:
+            "Because he judged the lending by its cost to her, while for Mrs Okonjo the point was to keep the street dry.",
+        },
+        {
           correct: true,
           label:
-            "To suggest a personal reason behind Carnegie's gifts to libraries",
-        },
-        {
-          correct: false,
-          label: "To show that private libraries were better than public ones",
+            "Because he judged the lending by how many umbrellas came back, while for Mrs Okonjo the point was the ties the lending built with her neighbours.",
         },
         {
           correct: false,
           label:
-            "To explain how Carnegie first made his fortune in the steel industry",
-        },
-        {
-          correct: false,
-          label: "To prove that every working boy in Pittsburgh became wealthy",
-        },
-        {
-          correct: false,
-          label: "To argue that libraries should only open on Saturdays",
+            "Because he thought the umbrellas were a waste, while the narrator thought a sign would have brought them back faster.",
         },
       ],
     },

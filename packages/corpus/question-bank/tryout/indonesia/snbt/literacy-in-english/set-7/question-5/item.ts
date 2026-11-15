@@ -2,35 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "slime-mould",
+  stimulus: "mozart-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "It would grow thicker to attract more food towards it.",
-        },
-        {
           correct: true,
-          label: "It would shrink and eventually disappear from the network.",
-        },
-        {
-          correct: false,
-          label: "It would turn into a trail of slime that marks the route.",
+          label: "Listen to a favourite song just before the puzzle.",
         },
         {
           correct: false,
           label:
-            "It would stay the same size as the other tubes in the network.",
+            "Listen to a favourite song an hour before the puzzle, so there is time to settle.",
+        },
+        {
+          correct: true,
+          label:
+            "If you enjoy stories more than music, listen to an interesting story just before the puzzle.",
         },
         {
           correct: false,
-          label: "It would split into several new tubes that search for food.",
+          label:
+            "Listen to slow, sad music just before the puzzle, to calm your nerves.",
+        },
+        {
+          correct: false,
+          label:
+            "Listen to Mozart rather than any other composer, because the composer is what matters.",
         },
       ],
     },

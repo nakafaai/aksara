@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "strengthen-weaken",
   },
-  stimulus: "slime-mould",
+  stimulus: "mozart-effect",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To argue that railway engineers should stop studying slime moulds",
-        },
-        {
-          correct: false,
-          label:
-            "To admit that the Tokyo experiment was carried out incorrectly",
-        },
-        {
-          correct: false,
-          label:
-            "To suggest that slime moulds design networks better than people",
+            "Students who heard Mozart did better on the task than students who heard nothing at all.",
         },
         {
           correct: true,
-          label: "To correct the idea that the slime mould plans its networks",
+          label:
+            "Students who heard Mozart did better than students who heard an equally lively piece by another composer, even though both groups felt equally alert and cheerful.",
         },
         {
           correct: false,
           label:
-            "To claim that the slime mould's network was probably a coincidence",
+            "The improvement after Mozart was larger than the improvement after drinking a cup of coffee.",
+        },
+        {
+          correct: false,
+          label:
+            "Students who heard a lively Mozart piece did better than students who heard a slow, sad Mozart piece.",
+        },
+        {
+          correct: false,
+          label:
+            "A review that pooled dozens of studies found the average effect to be small.",
         },
       ],
     },

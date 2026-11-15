@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "calculation",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "congestion-charge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "To show that governments have already answered every question about cost and energy",
+          label: "About $$82$$",
         },
         {
           correct: false,
-          label:
-            "To argue that cultivated meat uses more energy than farming does",
+          label: "About $$27$$",
         },
         {
           correct: false,
-          label:
-            "To suggest that regulators never ask questions about traditional foods",
+          label: "About $$67$$",
         },
         {
           correct: false,
-          label:
-            "To admit that the questions about cultivated meat cannot be answered",
+          label: "About $$62$$",
         },
         {
           correct: true,
-          label:
-            "To point out that a ban stops the research that could settle open questions",
+          label: "About $$55$$",
         },
       ],
     },

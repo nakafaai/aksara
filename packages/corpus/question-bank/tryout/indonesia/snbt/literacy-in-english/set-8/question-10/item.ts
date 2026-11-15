@@ -4,33 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "text-relation",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "congestion-charge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            "Text B accepts Text A's figure for all cars but disputes what it shows about private cars.",
+        },
+        {
           correct: false,
-          label: "To make cultivated meat look more traditional to shoppers",
+          label: "Text B argues that the charge should be scrapped.",
+        },
+        {
+          correct: true,
+          label:
+            "Text A's $$18\\%$$ includes ride-hailing cars, which pay no charge.",
+        },
+        {
+          correct: true,
+          label:
+            "Text B links the fall in average speeds to ride-hailing cars driving empty between passengers.",
         },
         {
           correct: false,
           label:
-            "To raise the price of cultivated meat above that of farmed meat",
-        },
-        {
-          correct: false,
-          label: "To prove that cultivated meat is safer than farmed meat",
-        },
-        {
-          correct: true,
-          label: "To let people who prefer farmed meat avoid cultivated meat",
-        },
-        {
-          correct: false,
-          label: "To persuade farmers to switch to producing cultivated meat",
+            "Text A says that buses are still running faster than before the charge.",
         },
       ],
     },

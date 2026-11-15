@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "city-birdsong",
+  stimulus: "phineas-gage",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Traffic noise is concentrated at low frequencies.",
+          correct: true,
+          label:
+            "Gage's behaviour seems to have changed after the injury, but he later held a demanding job for years, so the change may not have been permanent.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Singing louder or at night uses time that could be spent feeding.",
+            "Gage's behaviour seems to have changed after the injury, but his friends later admitted that they had exaggerated, so the change may never have happened.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "In the robin study, street lighting predicted night singing better than daytime noise.",
+            "Gage's behaviour seems to have changed after the injury, and he later held a demanding job for years, which proves that his later routine cured him.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "During the 2020 lockdowns, white-crowned sparrows in San Francisco sang more loudly.",
+            "Gage's behaviour changed for good after the injury, although he later found work driving coaches in Chile.",
+        },
+        {
+          correct: false,
+          label:
+            "Gage's behaviour seems to have changed after the injury, and his later fights and heavy drinking show the change lasted.",
         },
       ],
     },
