@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "main-idea",
   },
-  stimulus: "kawi-script",
+  stimulus: "bystander-effect",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Aksara Jawa dan Bali kembali menjadi aksara utama dalam kehidupan sehari-hari masyarakat.",
+            "Kehadiran orang lain menurunkan kesediaan tiap orang menolong, sehingga korban di tempat ramai lebih jarang ditolong siapa pun.",
         },
         {
           correct: false,
           label:
-            "Huruf Latin akan segera tergantikan oleh aksara daerah karena aksara daerah sudah dapat diketik di ponsel.",
-        },
-        {
-          correct: false,
-          label:
-            "Standar pengodean komputer menjadi penyebab tersisihnya aksara turunan Kawi.",
-        },
-        {
-          correct: false,
-          label:
-            "Aksara Arab dan huruf Latin tidak pernah dipakai pada masa yang sama dengan aksara turunan Kawi.",
+            "Efek penonton hanyalah mitos dari pemberitaan yang keliru, sehingga kehadiran orang lain tidak memengaruhi kesediaan menolong.",
         },
         {
           correct: true,
           label:
-            "Aksara turunan Kawi dipelajari kembali karena dianggap bagian dari jati diri walau bukan lagi alat tulis utama.",
+            "Kehadiran orang lain dapat menurunkan kesediaan tiap orang menolong, tetapi korban di tempat ramai belum tentu jarang ditolong.",
+        },
+        {
+          correct: false,
+          label:
+            "Kehadiran orang lain dapat menurunkan kesediaan tiap orang menolong, tetapi efek itu hanya terjadi di ruang laboratorium saja.",
+        },
+        {
+          correct: false,
+          label:
+            "Efek penonton selalu melemah di tempat ramai, sehingga makin banyak orang, makin besar kesediaan tiap orang menolong.",
         },
       ],
     },

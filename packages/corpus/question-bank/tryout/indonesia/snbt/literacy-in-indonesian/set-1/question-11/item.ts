@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "ferry-ticket",
+  stimulus: "phone-ban",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Laila memberi tahu ayahnya bahwa angin bulan ini bertiup ke arah kota sehingga pelayaran aman.",
+            "$$6$$ poin, karena SMA Pelita tidak melarang ponsel sehingga tidak dapat dijadikan pembanding",
+        },
+        {
+          correct: false,
+          label:
+            "$$5$$ poin, yaitu kenaikan yang sama besar dengan kenaikan di SMA Pelita",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$1$$ poin, atau kira-kira seperlima dari kenaikan di SMA Harapan Bangsa",
         },
         {
           correct: true,
           label:
-            "Laila menegaskan bahwa arah hidupnya kini menuju kota dengan memakai ungkapan yang pernah diajarkan ayahnya.",
+            "sekitar $$1$$ poin, atau kira-kira seperenam dari kenaikan di SMA Harapan Bangsa",
         },
         {
           correct: false,
           label:
-            "Laila mengejek ayahnya yang terlalu percaya pada tanda-tanda alam.",
-        },
-        {
-          correct: false,
-          label:
-            "Laila mengakui bahwa keputusannya belum tetap karena angin dapat berubah sewaktu-waktu.",
-        },
-        {
-          correct: false,
-          label: "Laila meminta ayahnya ikut pindah ke kota bersamanya.",
+            "sekitar $$2$$ poin, karena nilai awal SMA Pelita $$2$$ poin lebih tinggi",
         },
       ],
     },

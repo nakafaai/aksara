@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "assumption",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "class-ranking",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            "Pak Darsa tidak terkesan oleh penjelasan Wulan tentang cara kerja sensor lampu baru.",
+        },
+        {
           correct: false,
           label:
-            "Nilai rapor sama sekali tidak mencerminkan penguasaan materi.",
+            "Pak Darsa menolak membantu pemasangan lampu baru karena marah tugasnya diambil alih mesin.",
         },
         {
           correct: true,
           label:
-            "Kemampuan rata-rata siswa dapat berbeda dari satu kelas ke kelas lain.",
+            "Pak Darsa mewariskan kepada Wulan pengetahuan yang tidak dapat dibaca oleh sensor lampu.",
         },
         {
           correct: false,
           label:
-            "Orang tua tidak pernah membaca nilai setiap mata pelajaran di rapor.",
+            "Pak Darsa menyerahkan kunci kuningan karena kunci itu tidak lagi dapat membuka apa pun.",
         },
         {
-          correct: false,
-          label: "Setiap kelas memiliki jumlah siswa yang sama.",
-        },
-        {
-          correct: false,
+          correct: true,
           label:
-            "Guru di kelas yang kuat memberikan nilai lebih rendah daripada guru di kelas lain.",
+            "Pak Darsa membiarkan Wulan mencatat pengetahuannya, walaupun pada awalnya ia menjaga jarak.",
         },
       ],
     },

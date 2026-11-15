@@ -3,34 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "class-ranking",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "Kenaikan nilai seorang siswa dapat tidak tampak dalam peringkatnya.",
+            "Sebelum lampu baru dipasang, penjaga mercusuar harus naik ke ruang lampu lebih dari sekali setiap malam.",
         },
         {
           column: 2,
           label:
-            "Persaingan antarsiswa akan hilang sepenuhnya jika peringkat dihapus dari rapor.",
+            "Wulan meragukan kemampuan sensor lampu baru untuk membaca kabut.",
         },
         {
           column: 1,
           label:
-            "Selisih kecil antarperingkat dapat disalahpahami sebagai perbedaan besar.",
+            "Catatan di kolom paling kanan buku jaga berasal dari pengamatan Pak Darsa sendiri, bukan dari permintaan kantor.",
         },
         {
           column: 2,
           label:
-            "Rapor yang diusulkan penulis akan mengurangi beban kerja guru.",
+            "Pak Darsa mulai menjadi penjaga mercusuar setelah ayahnya meninggal dunia.",
+        },
+        {
+          column: 2,
+          label:
+            "Setelah lampu baru dipasang, kunci kuningan itu tidak lagi berguna di menara.",
         },
       ],
     },

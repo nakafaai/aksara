@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "character",
+    topic: "text-structure",
   },
-  stimulus: "ferry-ticket",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "menunjukkan bahwa buku catatan jaga sudah usang dan tidak lagi dibaca siapa pun, termasuk kantor di kota",
+        },
+        {
           correct: true,
           label:
-            "Tanda bahwa ia dengan sadar merelakan Laila pergi meskipun berat.",
+            "memperlihatkan pengetahuan tentang laut yang tidak dapat dibaca oleh sensor lampu baru",
         },
         {
           correct: false,
           label:
-            "Ungkapan marah karena Laila tidak menghiraukan peringatannya tentang ombak.",
+            "membuktikan bahwa tanda langit Pak Darsa lebih tepat daripada sensor lampu baru",
+        },
+        {
+          correct: true,
+          label:
+            "menandai saat sikap Pak Darsa terhadap Wulan berubah dari menjaga jarak menjadi berbagi",
         },
         {
           correct: false,
           label:
-            "Kebiasaan baru yang muncul karena permukaan stempelnya sudah licin dan aus.",
-        },
-        {
-          correct: false,
-          label:
-            "Isyarat bahwa ia ingin segera melayani antrean penumpang yang mulai gelisah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tanda bahwa ia yakin Laila akan pulang ke pulau sebelum Lebaran.",
+            "menjelaskan mengapa kantor di kota memutuskan mengganti penjaga dengan lampu otomatis",
         },
       ],
     },

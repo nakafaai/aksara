@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "rice-irrigation",
+  stimulus: "minimum-wage",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Setiap meter kubik air irigasi menghasilkan lebih banyak gabah pada pengairan berselang.",
+            "Penelitian itu keliru, karena kenaikan upah di mana pun selalu mengurangi lapangan kerja.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Pengairan berselang memerlukan lebih dari dua kali lipat hari kerja penyiangan dibandingkan penggenangan terus-menerus.",
+            "Penelitian itu mungkin benar untuk perusahaan besar yang tercatat resmi.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Hasil gabah pengairan berselang lebih tinggi lebih dari 10 persen daripada hasil penggenangan terus-menerus.",
+            "Penelitian itu sudah cukup untuk menilai usaha mikro, karena usaha mikro juga dapat menaikkan harga kapan saja.",
         },
         {
-          column: 2,
-          label: "Uji coba dilakukan pada musim hujan dan musim kemarau.",
+          correct: true,
+          label:
+            "Penelitian itu belum menjawab nasib usaha mikro yang labanya tipis dan tidak bisa menaikkan harga semaunya.",
+        },
+        {
+          correct: false,
+          label:
+            "Penelitian itu tidak relevan, karena pekerja Sukaraja membelanjakan upahnya di kota lain.",
         },
       ],
     },

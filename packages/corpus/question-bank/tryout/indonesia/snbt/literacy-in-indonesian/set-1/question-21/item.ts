@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "assumption",
+    topic: "application",
   },
-  stimulus: "car-free-day",
+  stimulus: "spelling-reform",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Jumlah pengunjung hari bebas kendaraan terus bertambah setiap bulan.",
-        },
-        {
-          correct: false,
-          label:
-            "Pedagang di sepanjang Jalan Merdeka mendukung perluasan program.",
-        },
-        {
-          correct: false,
-          label:
-            "Warga lebih memilih bersepeda daripada berjalan kaki pada Minggu pagi.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengukuran karbon monoksida lebih akurat pada hari Minggu daripada pada hari kerja.",
+          label: "*Goeroe itu mengadjar anak-anak rakjat jang makmur.*",
         },
         {
           correct: true,
-          label:
-            "Penurunan polusi di Jalan Merdeka tidak sekadar berpindah ke jalan-jalan di sekitarnya.",
+          label: "*Guru itu mengadjar anak-anak rakjat jang makmur.*",
+        },
+        {
+          correct: false,
+          label: "*Guru itu mengajar anak-anak rakjat jang makmur.*",
+        },
+        {
+          correct: false,
+          label: "*Guru itu mengadjar anak-anak rakyat yang makmur.*",
+        },
+        {
+          correct: false,
+          label: "*Guru itu mengadjar anak-anak ra'jat jang ma'moer.*",
         },
       ],
     },

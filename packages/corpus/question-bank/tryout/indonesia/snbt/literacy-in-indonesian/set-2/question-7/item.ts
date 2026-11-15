@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label:
-            "Magang untuk belajar selalu diadakan di perusahaan besar yang mapan.",
+          column: 1,
+          label: "Ibu tidak pernah secara langsung melarang Laras berangkat.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Magang untuk belajar selalu memberikan sertifikat di akhir masa magang.",
+            "Ibu melepas kain dari alat tenun dengan menggunting benang lungsinnya sebelum kain itu mencapai panjang yang direncanakan.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Magang untuk belajar memiliki pembimbing yang ditunjuk, rencana belajar tertulis, dan batas waktu.",
+            "Laras berjanji kepada Ibu bahwa ia tidak akan pulang sebelum kuliahnya selesai.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Magang untuk belajar memiliki jam kerja yang lebih pendek daripada jam kerja karyawan.",
-        },
-        {
-          correct: false,
-          label:
-            "Magang untuk belajar dipilih sendiri oleh mahasiswa tanpa campur tangan kampus.",
+            "Ibu menenun motif garis lurus pada kain itu setelah Laras berangkat ke Bandung.",
         },
       ],
     },

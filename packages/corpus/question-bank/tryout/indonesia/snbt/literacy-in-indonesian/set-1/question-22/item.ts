@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "inference",
   },
-  stimulus: "kawi-script",
+  stimulus: "spelling-reform",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Raja-raja Jawa melarang penggunaan aksara Pallawa pada prasasti.",
+            "Buku pelajaran yang dicetak pada 1960 sesuai pedoman resmi menulis kata *yang* sebagai *jang*.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Bunyi dan susunan kata bahasa Jawa Kuno berbeda dari bahasa Sanskerta.",
+            "Sejak 1947, ejaan resmi tidak lagi memakai *oe* untuk bunyi /u/.",
         },
         {
-          correct: false,
-          label:
-            "Garis yang membulat lebih mudah digoreskan pada daun lontar daripada garis yang bersudut.",
+          column: 2,
+          label: "Pembaruan 1972 mengubah cara orang mengucapkan kata *cinta*.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Pendeta dan pedagang dari India selatan berhenti datang ke Nusantara.",
-        },
-        {
-          correct: false,
-          label:
-            "Aksara itu perlu disederhanakan agar dapat dipakai di Filipina.",
+            "Dalam dokumen resmi sesudah 1972, nama diri tidak selalu ditulis dengan ejaan yang berlaku.",
         },
       ],
     },

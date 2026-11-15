@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "calculation",
   },
-  stimulus: "rice-irrigation",
+  stimulus: "fish-auction",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pengairan berselang selalu meningkatkan hasil gabah pada musim apa pun.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengairan berselang mengurangi kebutuhan tenaga kerja petani selama musim tanam.",
-        },
-        {
-          correct: false,
-          label:
-            "Penggenangan terus-menerus menghasilkan lebih banyak gabah daripada pengairan berselang.",
+            "Nilai lelang total naik sekitar $$16{,}7\\%$$, dan nilai rata-rata per perahu juga ikut naik.",
         },
         {
           correct: true,
           label:
-            "Di desa itu pada musim kemarau, cara berselang menghemat air tanpa menurunkan hasil, tetapi menambah penyiangan.",
+            "Nilai lelang total naik sekitar $$16{,}7\\%$$, tetapi nilai rata-rata per perahu turun sekitar $$27\\%$$.",
         },
         {
           correct: false,
           label:
-            "Uji coba ini membuktikan bahwa semua desa di lereng Gunung Lawu sebaiknya beralih ke pengairan berselang.",
+            "Nilai lelang total naik $$25\\%$$ karena beratnya naik, tetapi nilai rata-rata per perahu turun sekitar $$27\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "Nilai lelang total turun sekitar $$6{,}7\\%$$, dan nilai rata-rata per perahu juga turun.",
+        },
+        {
+          correct: false,
+          label:
+            "Nilai lelang total naik sekitar $$16{,}7\\%$$, sedangkan nilai rata-rata per perahu tidak berubah.",
         },
       ],
     },

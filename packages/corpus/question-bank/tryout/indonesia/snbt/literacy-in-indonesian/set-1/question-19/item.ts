@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "data-interpretation",
   },
-  stimulus: "car-free-day",
+  stimulus: "school-meals",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah pengunjung Jalan Merdeka pada setiap Minggu pagi selama program berlangsung.",
-        },
-        {
-          correct: false,
-          label:
-            "Kadar karbon monoksida di Jalan Merdeka pada hari kerja selama program berlangsung.",
+            "Rute angkutan baru menjelaskan seluruh kenaikan di Kalirejo dan Sumberan, sehingga makan siang gratis tidak berpengaruh apa pun.",
         },
         {
           correct: true,
           label:
-            "Kualitas udara di Jalan Kenanga dan Jalan Cempaka sebelum dan selama program.",
+            "Kenaikan di sekolah yang mendapat keduanya jauh melebihi jumlah kenaikan karena masing-masing, jadi keduanya saling memperkuat.",
         },
         {
           correct: false,
           label:
-            "Pendapatan pedagang kaki lima yang mendapat lapak di Jalan Merdeka setiap Minggu.",
+            "Makan siang gratis tidak berpengaruh sama sekali, karena sekolah yang hanya mendapat makan siang naik kurang dari tiga poin.",
         },
         {
           correct: false,
           label:
-            "Jumlah sepeda yang melintas di Jalan Merdeka selama jam bebas kendaraan.",
+            "Kenaikan di sekolah yang mendapat keduanya kira-kira sama dengan jumlah kenaikan karena makan siang dan karena rute angkutan.",
+        },
+        {
+          correct: false,
+          label:
+            "Makan siang gratis lebih berpengaruh daripada rute angkutan, karena kenaikan terbesar justru terjadi di sekolah uji coba program.",
         },
       ],
     },

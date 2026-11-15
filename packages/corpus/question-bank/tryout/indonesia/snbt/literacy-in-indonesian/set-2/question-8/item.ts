@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "text-structure",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Pengalaman kerja yang berharga tidak menghapus kewajiban menghargai kerja mahasiswa magang.",
+            "menunjukkan bahwa Laras membenci menenun sejak kecil, sehingga kepergiannya adalah pelarian dari tradisi keluarga",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Lembaga nirlaba yang tidak mampu membayar tidak boleh menerima mahasiswa magang.",
+            "menjelaskan asal-usul motif pucuk rebung, sehingga pembaca tahu mengapa motif itu hanya ditenun keluarga Laras",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Magang tanpa upah dapat menjadikan pengalaman kerja hak istimewa mahasiswa dari keluarga mampu.",
+            "menunjukkan bahwa Ibu adalah guru yang keras dan tidak sabar, sehingga Laras merasa lega dapat meninggalkan rumah",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kampus sebaiknya mengakui setiap kegiatan magang sebagai satuan kredit semester.",
+            "menunjukkan bahwa Laras mahir menenun, sehingga ia menemukan satu benang yang salah pada motif baru di kain itu",
+        },
+        {
+          correct: true,
+          label:
+            'menunjukkan keterampilan warisan Ibu, sehingga "Kau saja yang selesaikan" terbaca sebagai kepercayaan, bukan perintah',
         },
       ],
     },

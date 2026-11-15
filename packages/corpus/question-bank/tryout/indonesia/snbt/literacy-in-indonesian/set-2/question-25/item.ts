@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "application",
   },
-  stimulus: "subak-water",
+  stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,26 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membuktikan bahwa subak sudah ada sejak seribu tahun yang lalu.",
-        },
-        {
-          correct: false,
-          label: "Menolak penetapan subak sebagai Warisan Dunia oleh UNESCO.",
-        },
-        {
-          correct: false,
-          label: "Menyusun jadwal tanam baru untuk menggantikan jadwal pura.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa varietas unggul lebih tahan hama daripada varietas lama.",
+            "menanam lebih banyak individu dari berbagai populasi di kebun raya",
         },
         {
           correct: true,
           label:
-            "Menjelaskan secara ilmiah mengapa jadwal pura berhasil menyeimbangkan air dan hama.",
+            "melindungi hutan tempat tumbuhan itu hidup bersama penyerbuk dan jamurnya",
+        },
+        {
+          correct: false,
+          label:
+            "mendatangkan penyerbuk dan hewan penyebar biji dari hutan ke dalam kebun raya",
+        },
+        {
+          correct: false,
+          label: "menyimpan biji tumbuhan itu di bank biji yang suhunya rendah",
+        },
+        {
+          correct: false,
+          label:
+            "memperluas kebun raya agar dapat menampung lebih banyak jenis tumbuhan",
         },
       ],
     },

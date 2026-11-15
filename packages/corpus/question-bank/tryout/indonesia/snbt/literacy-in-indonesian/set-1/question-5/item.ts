@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "point-of-view",
   },
-  stimulus: "sleep-memory",
+  stimulus: "temple-moss",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Dina akan menguasai kedua materi sama baiknya karena tidur mengolah semua informasi yang ia temui hari itu.",
+            "Data uji coba menunjukkan bahwa lumut tidak melebarkan retakan pada batu candi.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Ingatan Dina tentang materi sejarah akan melemah karena hipokampus memindahkannya ke neokorteks.",
+            "Selisih antara kelompok I dan kelompok II menunjukkan bahwa sebagian batu yang hilang berasal dari cara membuang lumut.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Tidur tidak berpengaruh pada materi sejarah karena Dina mempelajarinya pada sore hari, bukan menjelang tidur.",
+            "Karena kelompok III kehilangan permukaan paling sedikit, lumut sebaiknya juga dibiarkan tumbuh pada relief berukir.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Dina sebaiknya begadang membaca materi geografi agar materi itu ikut dikonsolidasi malam itu.",
+            "Urutan kehilangan permukaan ketiga kelompok sejalan dengan dugaan bahwa siklus basah kering merusak batu.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Ingatan sejarahnya cenderung lebih bertahan daripada jika ia begadang, tetapi tidur tidak membantunya menguasai geografi.",
+            "Hasil uji coba dapat langsung dipakai untuk menentukan perawatan candi batu kapur di daerah beriklim kering.",
         },
       ],
     },

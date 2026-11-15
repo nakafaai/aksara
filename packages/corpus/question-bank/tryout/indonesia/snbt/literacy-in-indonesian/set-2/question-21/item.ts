@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
     topic: "author-purpose",
   },
-  stimulus: "essay-scoring",
+  stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membuktikan bahwa semua skor yang diberikan mesin kepada siswa itu keliru.",
+            "menunjukkan bahwa kelapa sawit berasal dari Indonesia, lalu menyebar ke Afrika lewat kebun raya",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa kebun raya hanya melayani perkebunan, sehingga sebutan laboratorium perkebunan berlaku untuk seluruh sejarahnya",
         },
         {
           correct: true,
           label:
-            "Menunjukkan bahwa rata-rata yang tinggi dapat menutupi kesalahan pada esai tak biasa.",
+            "memberi contoh fungsi aklimatisasi yang melayani perkebunan, sekaligus menjadi dasar sebutan yang kemudian dibatasi oleh penulis",
         },
         {
           correct: false,
           label:
-            "Menunjukkan bahwa siswa di kelas penulis malas menulis esai yang panjang.",
+            "membuktikan bahwa empat bibit sawit itu masih hidup dan menjadi koleksi utama kebun raya saat ini",
         },
         {
           correct: false,
           label:
-            "Menegaskan bahwa kosakata yang canggih tidak penting dalam menulis esai.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyindir dinas pendidikan karena menggelar uji coba di dua belas sekolah.",
+            "memberi contoh fungsi konservasi, karena bibit sawit diselamatkan dari kepunahan di Afrika Barat",
         },
       ],
     },

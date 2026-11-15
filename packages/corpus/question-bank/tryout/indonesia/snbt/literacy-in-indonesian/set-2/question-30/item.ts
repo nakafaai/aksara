@@ -3,36 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "rice-field-drama",
+  stimulus: "default-choice",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Pak Karta sudah memutuskan untuk menjual sawah kepada pembeli dari kota.",
+            "Dalam penelitian 2003, persentase warga yang tercatat bersedia menjadi donor lebih tinggi di negara dengan sistem keluar.",
         },
         {
-          correct: false,
-          label: "Pak Karta ingin menghukum kedua anaknya karena bertengkar.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Pak Karta hendak menunjukkan batas-batas sawah kepada pembeli.",
+            "Mengganti sistem masuk menjadi sistem keluar pasti menambah jumlah transplantasi organ.",
         },
         {
-          correct: false,
-          label: "Pak Karta tidak mendengarkan percakapan kedua anaknya.",
-        },
-        {
-          correct: true,
+          column: 2,
           label:
-            "Pak Karta mulai mempertimbangkan usul Ningsih dan ingin melibatkan kedua anaknya.",
+            "Setelah pendaftaran otomatis, total iuran seluruh karyawan PT Sinar Mandiri, termasuk yang tidak ikut, turun.",
+        },
+        {
+          column: 2,
+          label:
+            "Karyawan yang tetap memakai iuran bawaan $$3\\%$$ pasti tidak membaca formulir pendaftarannya.",
         },
       ],
     },

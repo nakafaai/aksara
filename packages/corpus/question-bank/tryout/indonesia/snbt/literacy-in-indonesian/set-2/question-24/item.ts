@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "strengthen-weaken",
   },
-  stimulus: "subak-water",
+  stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Varietas unggul yang ditanam petani lebih disukai wereng daripada varietas lama.",
+            "Bantahan penulis menjadi lebih kuat, karena laboratorium itu terbukti didatangi peneliti dari banyak negara di dunia.",
         },
         {
           correct: false,
           label:
-            "Pura air berhenti mengadakan upacara sehingga petani kehilangan pemimpin.",
-        },
-        {
-          correct: false,
-          label:
-            "Air dari pegunungan dialihkan ke hotel dan vila sehingga sawah mengering.",
+            "Bantahan penulis tidak terpengaruh, karena sebutan itu hanya menyangkut kebun, bukan laboratoriumnya.",
         },
         {
           correct: true,
           label:
-            "Tanpa jadwal serentak, hama tidak lagi kehilangan makanan di wilayah yang luas.",
+            "Bantahan penulis melemah, tetapi tidak gugur, karena herbarium untuk penelitian, contoh keduanya, tidak tersentuh temuan itu.",
         },
         {
           correct: false,
           label:
-            "Subak di hilir mulai menanam lebih dulu daripada subak di hulu.",
+            "Bantahan penulis gugur seluruhnya, sehingga sebutan itu berlaku untuk seluruh sejarah kebun itu sampai sekarang.",
+        },
+        {
+          correct: false,
+          label:
+            "Bantahan penulis melemah, karena kelapa sawit ternyata tidak pernah ditanam di kebun itu.",
         },
       ],
     },

@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            "Kepergian Laras tidak akan memutus ikatan mereka, seperti benang emas yang tidak putus ketika ditarik.",
+        },
+        {
           correct: false,
           label:
-            "Semua bentuk magang bagi mahasiswa sebaiknya dihapus karena lebih banyak merugikan daripada menguntungkan.",
+            "Ibu ingin Laras membawa benang emas ke Bandung, agar benang itu tidak rusak karena tidak dipakai.",
+        },
+        {
+          correct: false,
+          label:
+            "Laras harus segera pulang, karena ikatan yang terlalu lama ditinggalkan akan rusak seperti benang.",
         },
         {
           correct: true,
           label:
-            "Magang tanpa upah perlu dibatasi karena mempersempit kesempatan mahasiswa kurang mampu dan menggeser pekerja.",
+            "Menahan Laras di rumah justru dapat menyia-nyiakan dirinya, seperti benang yang disimpan dan tidak dipakai.",
         },
         {
           correct: false,
           label:
-            "Mahasiswa magang seharusnya dibayar setara dengan karyawan tetap sejak hari pertama bekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Perusahaan rintisan dan lembaga nirlaba sebaiknya tidak menerima mahasiswa magang.",
-        },
-        {
-          correct: false,
-          label:
-            "Mahasiswa sebaiknya menolak semua tawaran magang yang tidak memberikan sertifikat.",
+            "Ibu kecewa dengan pilihan Laras, karena ikatan mereka akan putus seperti benang yang ditarik.",
         },
       ],
     },

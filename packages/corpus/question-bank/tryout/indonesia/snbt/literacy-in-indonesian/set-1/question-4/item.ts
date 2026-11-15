@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "data-interpretation",
   },
-  stimulus: "sleep-memory",
+  stimulus: "temple-moss",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Tikus yang pemutaran ulangnya dihentikan selama tidur tetap mengingat jalur labirin sama baiknya.",
+            "Keduanya sama-sama menambah $$25$$ siklus per tahun, tetapi penggosokan menambah kehilangan permukaan lebih besar, jadi penggosokan tampaknya juga merusak lewat cara lain.",
         },
         {
           correct: false,
           label:
-            "Tikus yang kurang tidur setelah belajar lebih lambat menemukan jalur labirin keesokan harinya.",
+            "Penggosokan menambah siklus basah kering lebih banyak daripada hilangnya lumut, sehingga wajar jika penggosokan juga menambah kehilangan permukaan lebih besar.",
         },
         {
           correct: false,
           label:
-            "Pemutaran ulang pada tikus berlangsung beberapa kali lebih cepat daripada urutan aslinya saat menjelajah labirin.",
+            "Penggosokan dan hilangnya lumut sama-sama menambah $$25$$ siklus basah kering per tahun, sehingga keduanya pasti menambah kehilangan permukaan dengan besar yang sama.",
         },
         {
           correct: false,
           label:
-            "Pada manusia, aktivitas hipokampus juga meningkat selama tidur gelombang lambat setelah kegiatan belajar.",
+            "Hilangnya lumut menambah kehilangan permukaan lebih besar daripada penggosokan, walaupun keduanya menambah siklus basah kering dengan jumlah yang sama setiap tahun.",
         },
         {
           correct: false,
           label:
-            "Tidur siang yang singkat menghasilkan keuntungan ingatan yang lebih kecil daripada tidur semalam penuh.",
+            "Siklus basah kering tidak berhubungan dengan kehilangan permukaan, karena kelompok dengan siklus terbanyak ternyata bukan kelompok yang paling rusak setelah empat tahun.",
         },
       ],
     },

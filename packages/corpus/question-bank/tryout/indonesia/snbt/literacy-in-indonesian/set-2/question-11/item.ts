@@ -2,38 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "character",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "sewing-machine",
+  stimulus: "minimum-wage",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Usul itu dapat diterima, karena kenaikan bertahap tetap menaikkan upah semua pekerja pada tahun depan.",
+        },
+        {
+          correct: false,
+          label:
+            "Usul itu keliru, karena penelitian di berbagai negara membuktikan usaha mikro sama sekali tidak terdampak kenaikan upah minimum.",
+        },
+        {
           correct: true,
           label:
-            "Mbah Darsih mulai menerima Sekar sebagai penerus yang layak menjahit bersamanya.",
+            "Usul itu menunda sebagian besar suntikan daya beli, karena menurut Teks B sebagian besar pekerja ada di usaha mikro dan kecil.",
         },
         {
           correct: false,
           label:
-            "Mbah Darsih ingin berhenti menjahit dan menyerahkan semua pesanan kepada Sekar.",
+            "Usul itu menunda suntikan daya beli, tetapi hanya untuk sebagian kecil pekerja di kabupaten itu, sehingga pengaruhnya tidak berarti.",
         },
         {
           correct: false,
           label:
-            "Mbah Darsih marah karena Sekar memakai mesin jahitnya tanpa izin.",
-        },
-        {
-          correct: false,
-          label:
-            "Mbah Darsih menyiapkan tempat duduk bagi pembeli yang datang ke rumah.",
-        },
-        {
-          correct: false,
-          label: "Mbah Darsih berencana membeli mesin jahit kedua untuk Sekar.",
+            "Usul itu tidak perlu ditanggapi, karena keberatan pengusaha selalu muncul setiap tahun tanpa bukti.",
         },
       ],
     },

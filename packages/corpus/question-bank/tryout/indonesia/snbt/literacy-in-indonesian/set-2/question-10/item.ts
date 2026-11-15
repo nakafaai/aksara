@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "character",
+    topic: "theme",
   },
-  stimulus: "sewing-machine",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia tidak menyukai kebiasaan cucunya memotret kebaya di depan dinding putih.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia ingin kebaya buatannya dijual dengan harga yang lebih mahal di toko daring.",
+            "Tradisi harus disalin persis agar tidak hilang, sebagaimana ditunjukkan oleh benang yang tidak satu pun salah.",
         },
         {
           correct: true,
           label:
-            "Ia menganggap mutu jahitan harus dijaga demi pemakai walau tidak tampak di foto.",
+            "Tradisi keluarga itu diteruskan sambil diubah oleh hidup yang dipilih Laras.",
         },
         {
           correct: false,
           label:
-            "Ia tersinggung karena tidak pernah diajak ikut berfoto bersama kebayanya.",
+            "Kain yang belum selesai melambangkan tradisi keluarga yang putus karena Laras pergi.",
+        },
+        {
+          correct: true,
+          label:
+            "Ibu tidak menyatakan restunya secara terang-terangan, tetapi penerimaannya tampak lewat kain yang ia tenun.",
         },
         {
           correct: false,
           label:
-            "Ia menolak gagasan menjual kebaya melalui toko daring milik cucunya.",
+            "Ibu diam karena tidak menguasai bahasa yang dipakai Laras di kota.",
         },
       ],
     },

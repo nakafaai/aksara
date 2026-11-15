@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "argument-structure",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "class-ranking",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia menolak anggapan bahwa beasiswa memerlukan proses seleksi berdasarkan prestasi.",
+            "Ia tidak lagi dapat memutar engkol, karena jam pemutar lensa sudah dicabut oleh Wulan sore itu.",
         },
         {
           correct: false,
           label:
-            "Ia menyarankan agar beasiswa dibagikan secara merata kepada semua siswa yang membutuhkan.",
+            "Ia lupa memutar engkol, karena terlalu asyik bercerita kepada Wulan tentang angin dan camar sampai larut malam.",
         },
         {
           correct: true,
           label:
-            "Ia mengakui seleksi itu perlu, tetapi menyebut daftarnya dapat disusun tanpa dicantumkan di rapor setiap siswa.",
+            "Ia memilih melepas kebiasaan warisan ayahnya sebelum mesin memaksanya, karena jam pemutar baru dicabut besok.",
         },
         {
           correct: false,
           label:
-            "Ia menganggap seleksi beasiswa sebagai satu-satunya alasan yang sah untuk mempertahankan peringkat di rapor.",
+            "Ia menyerahkan tugas memutar engkol kepada Wulan, karena Wulan sudah menguasai cara kerja lensa dan jam pemutarnya.",
         },
         {
           correct: false,
           label:
-            "Ia mengusulkan agar penerima beasiswa ditentukan oleh penilaian wali kelas tanpa kriteria tertulis.",
+            "Ia sengaja membiarkan lensa berhenti berputar, karena ingin membuktikan bahwa lampu baru tidak dapat diandalkan.",
         },
       ],
     },

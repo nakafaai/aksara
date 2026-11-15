@@ -6,31 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "inference",
   },
-  stimulus: "subak-water",
+  stimulus: "botanic-garden",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label:
-            "Subak-subak yang berdekatan cenderung mulai menanam pada waktu yang sama.",
+          label: "Kebun Raya Bogor didirikan sebelum Indonesia merdeka.",
         },
         {
           column: 2,
           label:
-            "Jadwal bertahap antara hulu dan hilir bertujuan agar semua subak membutuhkan air paling banyak pada saat yang sama.",
+            "Pendiri Kebun Raya Bogor adalah seorang ahli botani kelahiran Belanda.",
+        },
+        {
+          column: 2,
+          label:
+            "Kelapa sawit yang kini ditanam di Sumatra adalah tumbuhan asli Nusantara.",
         },
         {
           column: 1,
           label:
-            "Mengosongkan atau menggenangi sawah-sawah yang berdekatan secara serentak setelah panen membantu menekan populasi hama.",
+            "Pada masa kini, kebun itu terutama berfungsi menjaga tumbuhan yang terancam punah di alam.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Program peningkatan produksi pada tahun 1970-an membuat petani makin patuh pada jadwal pura.",
+            "Tidak semua tumbuhan yang dikumpulkan kebun itu disimpan dalam keadaan hidup.",
         },
       ],
     },

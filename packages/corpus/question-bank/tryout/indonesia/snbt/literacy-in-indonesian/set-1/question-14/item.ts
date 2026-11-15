@@ -4,32 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "food-waste",
+  stimulus: "phone-ban",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label: "Sekitar 24 persen",
+          column: 1,
+          label:
+            "Ponsel yang dibawa siswa selama pelajaran dapat mengganggu konsentrasi.",
         },
         {
-          correct: false,
-          label: "Sekitar 25 persen",
+          column: 2,
+          label:
+            "Larangan membawa ponsel sepanjang hari sekolah adalah kebijakan yang paling tepat.",
         },
         {
-          correct: false,
-          label: "Sekitar 36 persen",
+          column: 2,
+          label:
+            "Kenaikan nilai di SMA Harapan Bangsa membuktikan manfaat pembatasan ponsel.",
         },
         {
-          correct: false,
-          label: "Sekitar 37 persen",
-        },
-        {
-          correct: false,
-          label: "Hampir 50 persen",
+          column: 2,
+          label:
+            "Siswa yang harus dapat dihubungi keluarganya perlu dikecualikan dari aturan ponsel.",
         },
       ],
     },

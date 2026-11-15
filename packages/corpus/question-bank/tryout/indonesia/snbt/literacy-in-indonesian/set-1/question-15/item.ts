@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "food-waste",
+  stimulus: "phone-ban",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Sayur menghasilkan jumlah sisa makanan terbesar per rumah tangga per minggu.",
+            "Loker kelas masih membiarkan siswa memegang ponsel saat istirahat, padahal Teks A menghitung obrolan saat istirahat sebagai hasil larangan.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Lebih dari dua pertiga sisa makanan dalam survei tergolong dapat dihindari.",
+            "Loker kelas tetap tidak dapat diawasi, karena guru tidak mungkin memeriksa tiga puluh saku siswa setiap jam pelajaran.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Sisa buah yang dapat dihindari lebih banyak daripada sisa lauk hewani yang dapat dihindari.",
+            "Loker kelas terlalu mahal untuk disediakan di setiap kelas, sehingga larangan penuh dengan loket satpam lebih hemat.",
         },
         {
-          column: 2,
-          label: "Survei mencatat sisa makanan yang diberikan kepada ternak.",
+          correct: false,
+          label:
+            "Loker kelas tidak diperlukan, karena kenaikan nilai di SMA Harapan Bangsa sudah membuktikan bahwa siswa patuh tanpa pengawasan.",
+        },
+        {
+          correct: false,
+          label:
+            "Loker kelas dapat diterima, karena loker juga menjauhkan ponsel dari tangan siswa selama pelajaran berlangsung.",
         },
       ],
     },

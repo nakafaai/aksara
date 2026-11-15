@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "sleep-memory",
+  stimulus: "temple-moss",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Agar kedua kelompok mempelajari daftar pasangan kata yang sama banyak dan sama sulitnya.",
+            "Dalam uji coba itu, kelompok yang mengalami lebih banyak siklus basah kering per tahun juga kehilangan permukaan lebih banyak.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Karena tidur siang menghasilkan lebih banyak tidur gelombang lambat daripada tidur malam.",
+            "Lumut pada panel kelompok III menyebabkan retakan dalam yang ditemukan di bawah lapisan lumut tebal.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Agar peserta tidak mengetahui kelompok mana yang diharapkan mengingat lebih banyak.",
+            "Membiarkan lumut mati rontok sendiri menghasilkan kehilangan permukaan yang lebih kecil daripada menggosoknya.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Untuk memastikan perbedaan skor tidak disebabkan oleh kondisi peserta pada jam tes.",
+            "Hasil uji coba itu berlaku untuk candi andesit di daerah beriklim apa pun.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Untuk membuktikan bahwa kelelahan pada malam hari tidak memengaruhi kemampuan mengingat.",
+            "Undian di setiap sisi dinding membuat perbedaan paparan matahari antarsisi sulit dijadikan penjelasan atas selisih hasil antarkelompok.",
         },
       ],
     },

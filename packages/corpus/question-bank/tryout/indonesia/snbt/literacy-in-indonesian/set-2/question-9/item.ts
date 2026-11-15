@@ -3,38 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Sesuai", "Tidak sesuai"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Banyak perusahaan besar sudah memberikan uang saku kepada mahasiswa magang.",
+            "Ibu secara halus membujuk Laras agar membatalkan kepergiannya ke Bandung.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Sebagian besar mahasiswa magang merasa memperoleh pengalaman yang berharga.",
+            "Ibu menerima pilihan Laras walaupun tidak mengatakannya secara langsung.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Biaya sewa kamar di kota-kota besar naik dalam lima tahun terakhir.",
+            "Ibu menganggap motif pucuk rebung tidak perlu lagi ditenun keluarga mereka.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Mahasiswa dari keluarga miskin dan kaya sama seringnya mengikuti magang tanpa upah.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian lowongan magang mensyaratkan indeks prestasi kumulatif yang tinggi.",
+            "Ibu menyerahkan kepada Laras cara meneruskan tradisi keluarga itu.",
         },
       ],
     },

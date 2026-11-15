@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
   },
-  stimulus: "rice-field-drama",
+  stimulus: "default-choice",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Membujuk Bayu agar meninggalkan bengkel dan ikut kuliah pertanian.",
+            "Sebuah toko menampilkan harga coret di samping harga diskon, karena pembeli lebih tertarik membeli ketika melihat selisih harga yang besar.",
         },
         {
           correct: false,
           label:
-            "Mendukung penjualan sawah kepada pembeli dari kota dengan cara yang lebih menguntungkan.",
+            "Sebuah sekolah membiarkan siswa memilih kegiatan ekstrakurikuler sendiri, karena kebebasan memilih dianggap paling penting.",
         },
         {
           correct: false,
           label:
-            "Menyalahkan Pak Karta karena tidak lagi mampu mengolah sawah.",
+            "Pemerintah mewajibkan pengendara memakai helm, karena keselamatan dianggap lebih penting daripada kebebasan memilih.",
+        },
+        {
+          correct: false,
+          label:
+            "Seorang dokter menuliskan dosis bawaan pada resep, karena banyak pasien malas membaca petunjuk pemakaian obat.",
         },
         {
           correct: true,
           label:
-            "Menyelamatkan sawah dengan menggabungkan keahlian Bayu dan ilmu pertanian Ningsih.",
-        },
-        {
-          correct: false,
-          label:
-            "Meminta dosennya membeli sawah keluarga untuk lahan percobaan kampus.",
+            "Seorang guru berkata bahwa tidak memberi pekerjaan rumah pun sudah sebuah keputusan, jadi yang perlu dibahas adalah pekerjaan rumah seperti apa.",
         },
       ],
     },

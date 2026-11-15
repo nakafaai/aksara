@@ -3,37 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "conflict",
+    contentDomain: "informational-text",
+    topic: "assumption",
   },
-  stimulus: "sewing-machine",
+  stimulus: "minimum-wage",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Persaingan antara Sekar dan ibunya dalam mewarisi keahlian Mbah Darsih.",
+            "Sebagian berarti dari tambahan upah pekerja berupah minimum dibelanjakan di dalam Kabupaten Sukaraja.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Perebutan mesin jahit tua antara Mbah Darsih dan Sekar setelah pesanan menumpuk.",
+            "Pengusaha tidak menanggapi kenaikan upah dengan memangkas banyak pekerja.",
         },
         {
-          correct: false,
-          label: "Penolakan Mbah Darsih terhadap segala bentuk teknologi baru.",
+          column: 2,
+          label:
+            "Semua pekerja berupah minimum di Sukaraja bekerja di perusahaan besar.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Pertentangan antara memenuhi pesanan dengan cepat dan menjaga mutu jahitan.",
-        },
-        {
-          correct: false,
-          label:
-            "Kesulitan Sekar mendapatkan pembeli bagi kebaya neneknya di kota besar.",
+            "Harga barang di Sukaraja sama sekali tidak naik setelah upah minimum naik.",
         },
       ],
     },

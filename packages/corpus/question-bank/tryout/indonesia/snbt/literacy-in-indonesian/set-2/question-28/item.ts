@@ -3,36 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "structure",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "rice-field-drama",
+  stimulus: "default-choice",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "Menunjukkan bahwa malam sudah berganti menjadi pagi.",
-        },
-        {
-          correct: true,
-          label:
-            "Menandai ketegangan setelah jawaban Ningsih membantah anggapan Bayu.",
-        },
-        {
-          correct: false,
-          label:
-            "Menggambarkan suasana gembira setelah keluarga mencapai kesepakatan.",
-        },
-        {
-          correct: false,
-          label: "Menandai pergantian babak dalam pementasan.",
-        },
-        {
-          correct: false,
-          label: "Menunjukkan bahwa Bu Karta kembali ke dapur.",
-        },
+        { correct: false, label: "$$150$$ orang" },
+        { correct: false, label: "$$100$$ orang" },
+        { correct: false, label: "$$750$$ orang" },
+        { correct: true, label: "$$250$$ orang" },
+        { correct: false, label: "$$400$$ orang" },
       ],
     },
   },

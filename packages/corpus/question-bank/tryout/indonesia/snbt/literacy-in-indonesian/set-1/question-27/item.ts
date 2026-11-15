@@ -3,33 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "salt-field",
+  stimulus: "bystander-effect",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Langit yang berubah makin biru ketika siang tiba.",
+          column: 1,
+          label:
+            "Pemberitaan awal tentang kasus 1964 melebih-lebihkan banyaknya orang yang menyaksikan serangan tanpa berbuat apa pun.",
         },
         {
-          correct: false,
-          label: "Ayah yang menyerah pada cuaca yang tidak menentu.",
+          column: 1,
+          label:
+            "Dalam percobaan 1968, peserta yang mengira ada empat pendengar lain lebih jarang mencari bantuan sebelum suara kejang berhenti.",
         },
         {
-          correct: false,
-          label: "Air laut yang surut karena pasang berganti.",
+          column: 2,
+          label:
+            "Rekaman kamera pengawas membuktikan bahwa efek penonton tidak pernah terjadi di tempat umum.",
         },
         {
-          correct: true,
-          label: "Air laut yang menguap dan meninggalkan garam.",
+          column: 1,
+          label:
+            "Meta-analisis 2011 menemukan bahwa efek penonton lebih lemah dalam keadaan yang jelas berbahaya.",
         },
         {
-          correct: false,
-          label: "Air yang meresap ke dalam tanah di bawah petak.",
+          column: 2,
+          label:
+            "Dalam rekaman kamera pengawas, makin banyak orang di sekitar kejadian, makin kecil peluang setiap orang untuk menolong.",
         },
       ],
     },

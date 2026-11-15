@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "strengthen-weaken",
   },
-  stimulus: "ferry-ticket",
+  stimulus: "phone-ban",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Pak Rasyid pernah menolak menstempel karcis seorang penumpang.",
+            "laporan tambahan dari guru-guru SMA Harapan Bangsa bahwa siswa lebih tenang dan lebih fokus di kelas setelah larangan berlaku",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Pak Rasyid menulis nama Laila dengan tergesa-gesa karena antrean mulai gelisah.",
+            "data bahwa sekolah lain yang juga berganti format ujian tetapi tidak melarang ponsel rata-rata hanya naik sekitar $$1$$ poin",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Permainan masa kecil Laila menunjukkan bahwa keinginannya pergi ke kota sudah lama ada.",
+            "hasil survei bahwa sebagian besar siswa dan orang tua di SMA Harapan Bangsa menyukai larangan ponsel itu",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Suara KM Cahaya Laut digambarkan serak seperti batuk orang tua.",
+            "rata-rata nilai ujian akhir SMA Harapan Bangsa pada 2025, setahun setelah larangan berjalan dengan format ujian yang sama",
+        },
+        {
+          correct: false,
+          label:
+            "data bahwa SMA Pelita memiliki lebih sedikit siswa dan guru daripada SMA Harapan Bangsa pada tahun yang sama",
         },
       ],
     },

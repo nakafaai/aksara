@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "application",
   },
-  stimulus: "lichen-air",
+  stimulus: "mercury-gold",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lumut kerak membutuhkan lebih banyak cahaya matahari daripada pohon untuk bertahan hidup.",
-        },
-        {
-          correct: false,
-          label:
-            "Jamur dalam lumut kerak tidak dapat menahan air hujan sehingga zat pencemar mudah masuk.",
+            "bagian sungai yang deras tepat di bawah tambang, karena kadar merkuri total di airnya paling tinggi",
         },
         {
           correct: true,
           label:
-            "Lumut kerak menyerap zat langsung lewat seluruh permukaan tubuh dan tidak dapat menggugurkan daun.",
+            "waduk tenang berdasar miskin oksigen di hilir, walaupun kadar merkuri total airnya lebih rendah",
         },
         {
           correct: false,
           label:
-            "Lumut kerak hanya dapat tumbuh di batang pohon yang kulit kayunya asam dan lembap.",
+            "danau berair jernih yang tidak menerima air dari sungai tambang, karena airnya paling tenang",
         },
         {
           correct: false,
           label:
-            "Ganggang dalam lumut kerak berhenti berfotosintesis ketika udara mengandung nitrogen.",
+            "bagian sungai yang deras tepat di bawah tambang, karena ikan di sana paling dekat dengan sumber merkuri",
+        },
+        {
+          correct: false,
+          label:
+            "waduk yang tenang sekitar $$30$$ km di hilir, karena ikan pemakan tumbuhan di sana memakan ikan lain",
         },
       ],
     },
