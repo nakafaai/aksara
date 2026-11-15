@@ -108,6 +108,26 @@ it("retains lesson opening requirements and contract-owned body roles", () => {
   assert.equal(documentProfile("/corpus/pages/terms/de.mdx"), "page");
 });
 
+it("blocks a plain number used as a quantity in every document except a public page", () => {
+  const source = `${METADATA}## Sisa\n\nBersisa 2 jika dibagi <InlineMath math="5" />, pada Soal 3.`;
+  for (const [file, count] of [
+    ["question.id.mdx", 1],
+    ["answer.id.mdx", 1],
+    ["/corpus/articles/topic/id.mdx", 1],
+    ["id.mdx", 1],
+    ["/corpus/pages/about/id.mdx", 0],
+  ] as const) {
+    const numbers = findDocumentIssues(
+      file,
+      "id",
+      source,
+      parseLessonMdx(source)
+    ).filter(({ rule }) => rule === "plain-number");
+    assert.equal(numbers.length, count, file);
+    assert.ok(numbers.every(isBlockingLessonVoiceIssue));
+  }
+});
+
 it("holds a public page to the address rules alone", () => {
   const formal = [
     [

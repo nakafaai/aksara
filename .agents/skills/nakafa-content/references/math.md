@@ -22,8 +22,8 @@ strings with their own [math syntax](questions.md#response-items).
   ordinary text. Mathematical indices and calculated positions remain math.
 - Every number a learner reads as a quantity is math, never plain digits
   beside rendered math (owner, 13 November 2026): a count, a measurement, an
-  amount, a percentage, a value, a clock time, and an ordinal index such as
-  `ke-<InlineMath math="3" />`. `bersisa 2 jika dibagi 5` becomes `bersisa
+  amount, a percentage, a value, a duration, and an ordinal index such as
+  `ke-<InlineMath math="3" />`, in every case (`Ke-2`, `hari ke-1 dan ke-2`). `bersisa 2 jika dibagi 5` becomes `bersisa
   <InlineMath math="2" /> jika dibagi <InlineMath math="5" />`. A unit symbol
   goes inside the math as `5\text{ cm}`, `\text{ cm}^2`, `\text{ m/s}^2`,
   `30^\circ`, `30^\circ\text{C}`, `10\text{ k}\Omega`, `25\%`, and
@@ -31,16 +31,25 @@ strings with their own [math syntax](questions.md#response-items).
   after the math. Indonesian and German write `2{,}5` and `5{.}000`; English
   and Malay write `2.5` and `5{,}000`. These stay text: a year (`2024`,
   `1998-2024`, `SNBT 2027`, `tahun ajaran 2025/26`), a date (`13 November
-  2026`, `13.11.2026`), a clock time with a two-digit hour (`08.00`,
-  `12:30`), an era or century (`300 SM`, `abad ke-19`), a document,
+  2026`, `13.11.2026`), a clock time, which names a moment (`08.00`,
+  `12:30`, `6:45`, `18 Uhr`, `6:00 pagi`, `pukul 7`, `jam 8.00`, `7 a.m.`),
+  an era or century (`300 SM`, `abad ke-19`), a document,
   exam, course, or legal label (`Soal 3`, `Kelas 10`, `Langkah 1 dan 2`,
-  `Bab 4.1`, `Pasal 1(2)`, `UU 12/2011`), an item title whose label word
+  `Bab 4.1`, `Pasal 1(2)`, `UU 12/2011`, `urutan ke-1 sampai ke-6`), a
+  numbered reference an item or a solution points back to (`syarat 1`,
+  `rule 2`, `Bedingung 3`, `Teks 2`, `Angabe 4`, `Simpulan 2`), a numbered
+  place or slot (`jalur 3`, `lane 3`, `Bahn 1`, `lorong 3`, `kursi 4`,
+  `lantai 2`, `Platz 3`, `SMA Negeri 2`), an item title whose label word
   carries a qualifier before its number (`Soal identifikasi 4`,
   `Einordnungsaufgabe 1`, `Soalan pengelasan 2`), a statement, equation, or
   citation marker (`(1)`, `(2')`, `[3]`, `(Smith, 2019)`), a section number that opens a line, and a
-  number glued into a name (`COVID-19`, `3D`, `B12`, `1990s`). Code, links,
-  and metadata stay out. The [voice gate](verification.md#lesson-voice-gate)
-  reports each remaining number as `plain-number`, and
+  number glued into a name (`COVID-19`, `3D`, `B12`, `1990s`, the suspended
+  `45-` of `45- bis 64-Jährige`). A count before the noun (`3 kursi`,
+  `7 jam`, `3 malam`) stays a quantity. A one-digit hour before a point
+  (`6.45`) reads as an English decimal, so write `pukul 6.45` or `6:45`.
+  Code, links, and metadata stay out. The [voice gate](verification.md#lesson-voice-gate)
+  blocks each remaining number as `plain-number` in lessons, articles,
+  questions, readings, and answers, and
   `node --conditions=aksara-source .agents/skills/nakafa-content/scripts/math/fix.ts <directory or .mdx file>...`
   wraps every unambiguous one in place. It leaves for a person a number whose
   separators the locale cannot read (`3.5` in Indonesian), a number inside a

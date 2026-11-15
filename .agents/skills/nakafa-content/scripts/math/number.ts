@@ -25,6 +25,9 @@ const SIGN_BEFORE_PATTERN = /(?:^|[\s([{=])[-−]$/u;
 const CURRENCY_BEFORE_PATTERN = /(?:Rp\.?\s?|US\$|\$|€\s?|£)$/u;
 const PERCENT_AFTER_PATTERN = /^\s?%/u;
 const GLUED_AFTER_PATTERN = /^[-/]\p{L}/u;
+/** The first half of a suspended compound: `45- bis 64-Jährige`, `30- to 44-year-olds`. */
+const SUSPENDED_AFTER_PATTERN =
+  /^-\s+(?:bis|und|oder|to|and|or|dan|atau|sampai|hingga)\s+\d+-\p{L}/u;
 const PATH_BEFORE_PATTERN = /[\p{L}\p{N}][/#@\\.]$|[#@\\^&]$/u;
 
 /**
@@ -37,11 +40,13 @@ const YEAR_PATTERN =
   /^(?:(?:1[5-9]|2[01])\d\d(?:\/\d{2,4})?|\d{1,4}\/(?:1[5-9]|2[01])\d\d)$/u;
 
 /**
- * A clock time with a two-digit hour, such as `08.00`, `12:30` or the midnight `24.00`. No locale
+ * A clock time with a two-digit hour, such as `08.00`, `12:30` or the midnight
+ * `24.00`, or a one-digit hour before a colon, such as `6:45`. No locale
  * writes a quantity this way with no unit: Indonesian, German and Malay
- * decimals take a comma, and a time names a moment, so it stays text.
+ * decimals take a comma, a ratio is math, and a time names a moment, so it
+ * stays text. A one-digit hour before a point (`6.45`) is an English decimal.
  */
-const CLOCK_PATTERN = /^(?:(?:[01]\d|2[0-3])[.:][0-5]\d|24[.:]00)$/u;
+const CLOCK_PATTERN = /^(?:(?:[01]\d|2[0-3])[.:][0-5]\d|24[.:]00|\d:[0-5]\d)$/u;
 
 /** Whether a character exists and is a letter, a mark, or an underscore. */
 function isLetter(character: string | undefined): boolean {
@@ -68,7 +73,8 @@ function isGluedBefore(before: string): boolean {
 /**
  * Returns the end of the unit or percent sign that follows a number, the end
  * of the number when none does, or `undefined` when a letter glues the number
- * into a name such as `3D`, `1990s`, or `2nd`.
+ * into a name such as `3D`, `1990s`, `2nd`, or the suspended `45-` of
+ * `45- bis 64-Jährige`.
  */
 function quantityEnd(text: string, end: number): number | undefined {
   const after = text.slice(end);
@@ -80,7 +86,11 @@ function quantityEnd(text: string, end: number): number | undefined {
   if (unit > 0) {
     return end + unit;
   }
-  if (isLetter(after[0]) || GLUED_AFTER_PATTERN.test(after)) {
+  if (
+    isLetter(after[0]) ||
+    GLUED_AFTER_PATTERN.test(after) ||
+    SUSPENDED_AFTER_PATTERN.test(after)
+  ) {
     return;
   }
   return end;
