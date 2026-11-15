@@ -2,34 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "congestion-charge",
   versions: {
     en: {
       columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label: "Cultivated meat is already cheaper than farmed meat.",
-        },
-        {
           column: 1,
-          label:
-            "Singapore was the first country to approve the sale of cultivated meat.",
-        },
-        {
-          column: 1,
-          label:
-            "A ban prevents evidence about the product from being collected.",
+          label: "Fewer cars enter the centre than before the charge.",
         },
         {
           column: 2,
           label:
-            "Labelling cultivated meat would force consumers to stop buying farmed meat.",
+            "Private cars entering the centre are down by about $$18\\%$$.",
+        },
+        {
+          column: 1,
+          label: "The city should keep the charge.",
+        },
+        {
+          column: 2,
+          label:
+            "Average speeds in the centre are almost back to where they were before the charge.",
+        },
+        {
+          column: 2,
+          label: "Ride-hailing cars should pay the charge.",
         },
       ],
     },

@@ -6,31 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "museum-visits",
+  stimulus: "cycling-safety",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "Every visitor group came in larger numbers after the gallery opened.",
+            "Per million kilometres cycled, cyclists in Eastvale were injured about twice as often as cyclists in Riverton.",
+        },
+        {
+          column: 2,
+          label: "Riverton recorded fewer cycling injuries than Eastvale.",
         },
         {
           column: 1,
           label:
-            "Families' average visit became 50 percent longer after the gallery opened.",
-        },
-        {
-          column: 1,
-          label:
-            "In the first period, adults without children were the largest group.",
+            "Per resident, Eastvale had fewer cycling injuries than Riverton.",
         },
         {
           column: 2,
           label:
-            "School groups' average visit became longer after the gallery opened.",
+            "The table shows that Riverton's bike lanes caused its lower injury rate.",
+        },
+        {
+          column: 2,
+          label:
+            "On average, Riverton's residents each cycled a shorter distance than Eastvale's residents.",
         },
       ],
     },

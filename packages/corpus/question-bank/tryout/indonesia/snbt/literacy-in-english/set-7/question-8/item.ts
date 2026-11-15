@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "calculation",
   },
-  stimulus: "classroom-points",
+  stimulus: "phone-ban",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "To show that young children draw better when they use markers",
+            "By about $$15\\%$$ of the old rate, which Text B says the ban alone caused.",
         },
         {
           correct: false,
           label:
-            "To prove that certificates are the most effective classroom reward",
+            "By about $$9\\%$$ of the old rate, which Text B says could have come from any of three changes made that September.",
         },
         {
           correct: false,
           label:
-            "To argue that preschools should stop giving children free play",
+            "By about $$13\\%$$ of the old rate, which Text B says could have come from any of three changes made that September.",
         },
         {
           correct: false,
-          label: "To show that children dislike drawing more than reading",
+          label:
+            "By about $$15\\%$$ of the old rate, which Text B says is too small to matter.",
         },
         {
           correct: true,
           label:
-            "To show how a reward can reduce interest once it is taken away",
+            "By about $$15\\%$$ of the old rate, which Text B says could have come from any of three changes made that September.",
         },
       ],
     },

@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "conclusion",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "application",
   },
-  stimulus: "carnegie-libraries",
+  stimulus: "umbrella-stand",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "It caused most Carnegie libraries to close within a few years.",
-        },
-        {
-          correct: false,
-          label:
-            "It was dropped soon after the first libraries had been built.",
-        },
-        {
           correct: true,
           label:
-            "It may have helped the buildings last by building a habit of care.",
+            "A neighbour who lends tools without keeping a list, and finds that the visits from people bringing them back matter more to her than the tools.",
         },
         {
           correct: false,
           label:
-            "It proved that towns valued free gifts more than paid services.",
+            "A neighbour who lends tools without keeping a list, and puts up a notice asking for them back once too many go missing.",
         },
         {
           correct: false,
           label:
-            "It was probably the reason the buildings became museums and offices.",
+            "A neighbour who lends tools without keeping a list, and is finally repaid when everyone returns them at once.",
+        },
+        {
+          correct: false,
+          label:
+            "A neighbour who lends tools without keeping a list, so that she never has to admit how many she has lost.",
+        },
+        {
+          correct: false,
+          label:
+            "A neighbour who lends tools without keeping a list, and decides to stop when too few come back.",
         },
       ],
     },

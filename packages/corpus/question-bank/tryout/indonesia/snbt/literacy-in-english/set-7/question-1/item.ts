@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "inference",
   },
-  stimulus: "slime-mould",
+  stimulus: "mozart-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "That students did better on the task after Mozart than after relaxation instructions.",
+        },
+        {
+          correct: true,
+          label: "That the benefit lasts long after the music stops.",
+        },
+        {
+          correct: false,
+          label:
+            "That students did better on the task after Mozart than after silence.",
+        },
+        {
           correct: true,
           label:
-            "A brainless slime mould builds efficient networks by following simple local rules.",
+            "That the music raises intelligence in general rather than performance on one kind of task.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "Slime moulds are intelligent animals that can plan railway networks for cities.",
-        },
-        {
-          correct: false,
-          label:
-            "The Tokyo railway system was originally designed by copying the growth of a slime mould.",
-        },
-        {
-          correct: false,
-          label:
-            "Slime moulds are fungi that grow fastest when food is placed in a maze.",
-        },
-        {
-          correct: false,
-          label:
-            "Engineers will replace computers with slime moulds in the future.",
+            "That the benefit comes from Mozart's music in particular rather than from music in general.",
         },
       ],
     },

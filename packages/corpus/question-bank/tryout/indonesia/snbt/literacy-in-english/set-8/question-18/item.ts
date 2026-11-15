@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
+    contentDomain: "fiction",
     topic: "inference",
   },
-  stimulus: "ibn-battuta",
+  stimulus: "night-bus",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Much of it was told from memory, years after the events it describes.",
+            "Mr Lin's shift at the hospital had ended before the last bus left the town centre.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Ibn Juzayy had travelled with Ibn Battuta and later added many of his own adventures.",
+            "After the narrator went in, Mr Lin walked on past her house towards his own street.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The sultan of Morocco ordered him to praise only Muslim rulers.",
+            "The narrator's fear on the lane came from not knowing who the man was.",
         },
         {
-          correct: false,
-          label:
-            "Ibn Battuta had never learned to read or write during his studies.",
+          column: 2,
+          label: "Mr Lin followed the narrator all the way to her front door.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The book was written in a language that Ibn Battuta did not speak.",
+            "The narrator's mother had told her in advance that Mr Lin would be on the bus.",
         },
       ],
     },

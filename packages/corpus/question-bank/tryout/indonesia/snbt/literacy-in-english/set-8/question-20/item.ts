@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "ibn-battuta",
+  stimulus: "night-bus",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "From a stranger she feared to someone who protected her only because her mother had asked, so his care meant little.",
+        },
+        {
           correct: true,
           label:
-            "To give a concrete example of the welcome his learning brought him",
+            "From a stranger she feared to someone who quietly protected her, perhaps at more trouble to himself than her mother knew.",
         },
         {
           correct: false,
           label:
-            "To prove that Ibn Battuta's account of China is entirely reliable",
+            "From a stranger she feared to someone who quietly protected her on his own way home, two streets past hers, as her mother said.",
         },
         {
           correct: false,
           label:
-            "To show that Samudra Pasai was the largest port in the Indian Ocean",
+            "From a stranger she feared to someone who quietly protected her because he wanted to be thanked.",
         },
         {
           correct: false,
           label:
-            "To explain why Ibn Battuta kept so few written records of his voyage",
-        },
-        {
-          correct: false,
-          label:
-            "To argue that the sultan of Pasai later wrote the *Rihla* himself",
+            "From a stranger she ignored to a neighbour she had known all along.",
         },
       ],
     },

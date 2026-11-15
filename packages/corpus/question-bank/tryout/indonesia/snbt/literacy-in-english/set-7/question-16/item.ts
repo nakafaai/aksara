@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "carnegie-libraries",
+  stimulus: "umbrella-stand",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Name the library after Andrew Carnegie and display his portrait inside.",
+            "Her father called the lending a leak, and she gave the umbrellas out again when she came home.",
         },
         {
           correct: false,
           label:
-            "Agree to buy all of the library's books from Carnegie's own company.",
+            "People came to the door to ask how she was, and there were nineteen umbrellas in the stand.",
         },
         {
           correct: false,
-          label: "Show that it already had more readers than any nearby town.",
+          label:
+            "She bought cheap umbrellas at the market every few months, and hardly any came back.",
+        },
+        {
+          correct: false,
+          label:
+            'One note said "Sorry it took so long", and she never bought another umbrella.',
         },
         {
           correct: true,
           label:
-            "Provide the land and promise to pay yearly for running the library.",
-        },
-        {
-          correct: false,
-          label:
-            "Promise to open the library to working boys only on Saturdays.",
+            "People came to the door to ask how she was, and she gave the umbrellas out to them again, one by one.",
         },
       ],
     },

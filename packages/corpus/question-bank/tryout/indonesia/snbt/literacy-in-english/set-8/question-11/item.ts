@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "scooter-pilot",
+  stimulus: "hotel-survey",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "It is the share of all the chain's guests who rated their stay good or excellent, and about six in seven of the answers came from Station.",
+        },
+        {
+          correct: false,
+          label:
+            "It is the share of answers that rated the stay good or excellent, and the answers came about equally from the two hotels, so it reflects both hotels equally.",
+        },
+        {
           correct: true,
-          label: "2.0",
+          label:
+            "It is the share of answers that rated the stay good or excellent, and about six in seven of those answers came from Station, so it mostly reflects Station's guests.",
         },
         {
           correct: false,
-          label: "2.5",
+          label:
+            "It is the average of the two hotels' shares of good or excellent answers.",
         },
         {
           correct: false,
-          label: "2.7",
-        },
-        {
-          correct: false,
-          label: "4.0",
-        },
-        {
-          correct: false,
-          label: "16.0",
+          label:
+            "It is the share of answers that rated the stay good or excellent, and about three in five of the answers came from Station, matching its share of guests.",
         },
       ],
     },

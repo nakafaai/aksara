@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "city-birdsong",
+  stimulus: "phineas-gage",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The birds will begin singing only during the noisiest middle part of the day.",
-        },
-        {
           correct: true,
-          label: "The lowest notes of their songs will tend to rise in pitch.",
+          label:
+            "A patient forgets new names in the first weeks after an operation, and a textbook describes this as permanent although the patient later returns to a demanding job.",
         },
         {
           correct: false,
           label:
-            "The lowest notes of their songs will become lower than before.",
+            "A patient forgets new names for years after an operation, and a textbook describes this as permanent.",
         },
         {
           correct: false,
-          label: "The birds will stop singing completely within a few weeks.",
+          label:
+            "A patient forgets new names in the first weeks after an operation, and a textbook describes this as temporary because the patient later returns to work.",
         },
         {
           correct: false,
-          label: "Females will become more attracted to the males' new songs.",
+          label:
+            "A patient forgets new names in the first weeks after an operation, and a textbook describes this as permanent, which later tests at the patient's new job confirm.",
+        },
+        {
+          correct: false,
+          label:
+            "A patient forgets new names in the first weeks after an operation, and a doctor writes a short report about it at the time.",
         },
       ],
     },

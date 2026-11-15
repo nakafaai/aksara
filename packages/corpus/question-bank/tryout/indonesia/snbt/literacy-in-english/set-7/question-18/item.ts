@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "carnegie-libraries",
+  stimulus: "umbrella-stand",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "He wanted towns to repay the full cost of the buildings over time.",
+            'That people returned the umbrellas they had borrowed during the three weeks she was in hospital, as the note "Sorry it took so long" shows.',
+        },
+        {
+          correct: false,
+          label:
+            'That neighbours bought her new umbrellas as get-well presents, as the note "Hope you\'re mending" shows.',
+        },
+        {
+          correct: false,
+          label:
+            "That the narrator's sign had finally persuaded people to bring their umbrellas back.",
         },
         {
           correct: true,
           label:
-            "He thought a community that paid for its library would value it.",
+            'That people returned umbrellas they had kept for a long time, not only recent loans, as the note "Sorry it took so long" also shows.',
         },
         {
           correct: false,
           label:
-            "He needed the taxes to keep his steel mills running at a profit.",
-        },
-        {
-          correct: false,
-          label:
-            "He wanted to stop small towns from receiving library buildings.",
-        },
-        {
-          correct: false,
-          label: "He planned to sell the buildings back to the towns later.",
+            'That people returned umbrellas they had kept for a long time, not only recent loans, as the note "Hope you\'re mending" also shows.',
         },
       ],
     },

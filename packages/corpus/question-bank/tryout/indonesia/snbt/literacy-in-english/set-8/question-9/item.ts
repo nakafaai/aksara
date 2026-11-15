@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "strengthen-weaken",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "congestion-charge",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Cultivated meat costs several times more than farmed chicken in shops.",
+            "On streets of the centre where ride-hailing cars are rarely seen, speeds have fallen as much as on the streets where they are common.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Standard food reviews cannot detect the risks cultivated meat could pose.",
+            "Speeds have fallen most at the times of day when ride-hailing cars are most numerous.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Consumers in Singapore have bought cultivated chicken in a few restaurants since 2020.",
+            "Over the same two years, the city closed one lane on each main road in the centre to build cycle paths.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Many traditional dishes were once considered strange new foods.",
+            "Ride-hailing cars spend about a third of their time driving empty between passengers.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Labels on new foods are read by most shoppers before they buy them.",
+            "Buses now run more slowly through the centre than they did in the first year of the charge.",
         },
       ],
     },

@@ -4,37 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "data-interpretation",
   },
-  stimulus: "scooter-pilot",
+  stimulus: "hotel-survey",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "The lower speed limit cut the total number of injuries in half within a single month.",
+            "Station's guests were four times as likely as Harbour's guests to answer the survey.",
+        },
+        {
+          correct: true,
+          label: "The $$92\\%$$ is a share of answers, not a share of guests.",
         },
         {
           correct: false,
           label:
-            "Adding 300 scooters caused the injury rate to rise in month 3.",
-        },
-        {
-          correct: false,
-          label:
-            "Shared scooters became more dangerous the longer the pilot ran.",
-        },
-        {
-          correct: false,
-          label:
-            "Riders stopped using the scooters after the speed limit was lowered.",
+            "Harbour's result rests on more answers than Station's result.",
         },
         {
           correct: true,
           label:
-            "Injuries per trip fell over the pilot, though the reasons are not yet clear.",
+            "If every guest who did not answer had been unhappy, about $$13\\%$$ of guests would have rated their stay good or excellent.",
+        },
+        {
+          correct: false,
+          label: "Station had fewer guests than Harbour last year.",
         },
       ],
     },
