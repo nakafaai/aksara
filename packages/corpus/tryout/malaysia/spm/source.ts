@@ -1,7 +1,9 @@
 import { Effect } from "effect";
 
 import { malaysiaTryoutCountry } from "#corpus/tryout/malaysia/country";
+import { spmChemistryReadiness } from "#corpus/tryout/malaysia/spm/readiness/chemistry";
 import { spmPhysicsReadiness } from "#corpus/tryout/malaysia/spm/readiness/physics";
+import { spmChemistryTrack } from "#corpus/tryout/malaysia/spm/tracks/chemistry";
 import { spmPhysicsTrack } from "#corpus/tryout/malaysia/spm/tracks/physics";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import { defineExamSource } from "#corpus/tryout/schema";
@@ -52,7 +54,7 @@ const spmTryoutCatalog = defineExamSource({
     ],
   },
   sourceRevision: "2026-11-15",
-  tracks: [spmPhysicsTrack],
+  tracks: [spmPhysicsTrack, spmChemistryTrack],
 });
 
 /** Validates the SPM catalog against its official readiness. */
@@ -60,6 +62,7 @@ export const spmTryoutSource = Effect.gen(function* () {
   const [source, ...readinessEntries] = yield* Effect.all([
     spmTryoutCatalog,
     spmPhysicsReadiness,
+    spmChemistryReadiness,
   ]);
   for (const readiness of readinessEntries) {
     yield* validateAssessmentSourceReadiness(source, readiness);
