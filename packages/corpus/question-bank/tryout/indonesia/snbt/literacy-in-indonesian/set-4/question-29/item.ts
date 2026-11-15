@@ -15,7 +15,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Lebih banyak pengunjung berhenti di stan $$24$$ rasa daripada di stan $$6$$ rasa.",
+            "Di antara pengunjung yang lewat, persentase yang berhenti lebih besar di stan $$24$$ rasa daripada di stan $$6$$ rasa.",
         },
         {
           column: 1,
