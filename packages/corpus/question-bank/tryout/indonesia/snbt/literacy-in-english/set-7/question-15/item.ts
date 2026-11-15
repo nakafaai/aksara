@@ -4,37 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "application",
   },
-  stimulus: "museum-visits",
+  stimulus: "cycling-safety",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Comparing July to December with January to June of the same year",
+            "Eastvale's rate would fall from $$6$$ to $$4$$ injuries per million kilometres.",
+        },
+        {
+          correct: true,
+          label: "Eastvale's rate would still be higher than Riverton's.",
         },
         {
           correct: false,
-          label:
-            "Comparing the number of school groups with the number of families",
-        },
-        {
-          correct: false,
-          label:
-            "Comparing the museum's visitors with the art museum's visitors in August",
-        },
-        {
-          correct: false,
-          label:
-            "Comparing how long adults stayed with how long families stayed",
+          label: "Eastvale would now be safer to cycle in than Riverton.",
         },
         {
           correct: true,
           label:
-            "Comparing July to December with July to December of the year before",
+            "Eastvale's number of injuries would rise even though its rate fell.",
+        },
+        {
+          correct: false,
+          label:
+            "Each Eastvale resident would now cycle more, on average, than each Riverton resident.",
         },
       ],
     },

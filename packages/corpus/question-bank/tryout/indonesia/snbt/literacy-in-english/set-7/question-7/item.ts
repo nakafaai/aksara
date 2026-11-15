@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "classroom-points",
+  stimulus: "phone-ban",
   versions: {
     en: {
       columns: ["Yes", "No"],
@@ -14,20 +14,25 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Pupils often work harder when points are on offer.",
+          label: "The school has felt calmer since the ban.",
         },
         {
           column: 2,
           label:
-            "In the 1973 experiment, every child was promised a certificate.",
-        },
-        {
-          column: 2,
-          label: "Leaderboards mainly help pupils who are near the bottom.",
+            "The ban raised the maths pass rate by nine percentage points.",
         },
         {
           column: 1,
-          label: "Good games let players fail and try again without penalty.",
+          label: "Keeping phones out of lessons is a reasonable policy.",
+        },
+        {
+          column: 2,
+          label: "Bullying moved to the evening after the ban.",
+        },
+        {
+          column: 2,
+          label:
+            "Other schools that ban phones should expect a similar rise in their pass rates.",
         },
       ],
     },

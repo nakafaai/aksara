@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "ibn-battuta",
+  stimulus: "night-bus",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It should be ignored, because some passages were borrowed from others.",
+            "He waited in plain view until she had the door open, then lifted one hand in goodbye.",
         },
         {
           correct: false,
-          label:
-            "It is entirely accurate, because many descriptions match other sources.",
+          label: "Her mother worked at the same hospital as Mr Lin.",
         },
         {
           correct: true,
-          label:
-            "It is valuable but must be checked, since some parts are doubtful.",
+          label: "He got off at her stop and walked up the lane behind her.",
         },
         {
           correct: false,
           label:
-            "It is useful only for its account of China in the fourteenth century.",
+            "He walked back down the lane towards the main road when she was inside.",
         },
         {
           correct: false,
           label:
-            "It was written mainly to entertain the sultan rather than to record events.",
+            "By the time she reached the gate she had her keys between her fingers.",
         },
       ],
     },

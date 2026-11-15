@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "text-relation",
   },
-  stimulus: "cultivated-meat",
+  stimulus: "congestion-charge",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "It supports the charge, but argues that the $$18\\%$$ hides a much larger fall in private cars, offset by the new bus routes, which have slowed traffic again.",
+        },
+        {
+          correct: false,
+          label:
+            "It supports the charge, but argues that the $$18\\%$$ overstates the fall, because exempt ride-hailing cars were left out of the count.",
+        },
+        {
+          correct: false,
+          label:
+            "It supports the charge, but argues that the $$18\\%$$ hides a much larger fall in private cars, offset by exempt ride-hailing cars, so private cars should be exempted too.",
+        },
+        {
           correct: true,
           label:
-            "Cultivated meat should be reviewed and labelled rather than banned outright.",
+            "It supports the charge, but argues that the $$18\\%$$ hides a much larger fall in private cars, offset by exempt ride-hailing cars that have slowed traffic again.",
         },
         {
           correct: false,
           label:
-            "Cultivated meat should replace farmed meat as soon as it becomes cheaper.",
-        },
-        {
-          correct: false,
-          label:
-            "Governments should ban cultivated meat until it has been eaten for decades.",
-        },
-        {
-          correct: false,
-          label:
-            "Traditional farmers should be paid to produce cultivated meat in their regions.",
-        },
-        {
-          correct: false,
-          label:
-            "Food regulators are unable to judge the safety of entirely new products.",
+            "It rejects the charge, arguing that exempt ride-hailing cars have slowed traffic almost back to its level before the charge.",
         },
       ],
     },

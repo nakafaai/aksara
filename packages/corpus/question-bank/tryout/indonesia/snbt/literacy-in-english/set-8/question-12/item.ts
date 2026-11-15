@@ -6,29 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "scooter-pilot",
+  stimulus: "hotel-survey",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "The number of injuries reported was highest in month 3.",
+          label:
+            "A higher share of Harbour's answers rated the stay good or excellent than of Station's answers.",
         },
         {
           column: 2,
-          label:
-            "Each scooter was used for fewer trips in month 4 than in month 1.",
-        },
-        {
-          column: 2,
-          label:
-            "The injury figures include every injury anywhere in the city.",
+          label: "Most of the chain's guests answered the survey.",
         },
         {
           column: 1,
-          label: "Each month's average trip was longer than the month before.",
+          label:
+            "At least about $$13\\%$$ of all the chain's guests rated their stay good or excellent.",
+        },
+        {
+          column: 2,
+          label:
+            "Guests at Harbour were happier with their stay than guests at Station.",
+        },
+        {
+          column: 2,
+          label:
+            "If unhappy guests answer less often, the $$92\\%$$ is more likely to understate satisfaction than to overstate it.",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "strengthen-weaken",
   },
-  stimulus: "classroom-points",
+  stimulus: "phone-ban",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pupils who once read for badges kept reading after the badges stopped.",
+            "A nearby school that changed to the same textbook and hired new maths teachers that year, but did not ban phones, saw no change in its pass rate.",
         },
         {
           correct: false,
           label:
-            "Pupils in classes with leaderboards finished more exercises each week.",
+            "Teachers reported that pupils spent more time on maths homework after the ban.",
         },
         {
           correct: false,
           label:
-            "Pupils near the bottom of leaderboards often felt discouraged by them.",
+            "Pass rates also rose that year at three other schools that banned phones.",
         },
         {
           correct: false,
           label:
-            "Teachers found points quick and easy to add to their existing lessons.",
+            "The school's maths pass rate had been rising steadily for five years before the ban.",
         },
         {
           correct: false,
           label:
-            "Some pupils prefer badges to certificates as a type of reward.",
+            "The two new maths teachers had both won teaching awards at their previous schools.",
         },
       ],
     },

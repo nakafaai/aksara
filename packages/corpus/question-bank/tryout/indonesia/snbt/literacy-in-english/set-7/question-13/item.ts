@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "argument-evaluation",
   },
-  stimulus: "museum-visits",
+  stimulus: "cycling-safety",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The art museum's visitors were mostly school groups, who stayed longer.",
+            "Most of the cycling in Riverton happens on its separated bike lanes.",
+        },
+        {
+          correct: false,
+          label:
+            "Riverton has more residents than Eastvale, so it should be expected to record more injuries.",
         },
         {
           correct: true,
           label:
-            "Some of the rise may come from people who would otherwise have gone there.",
+            "Riverton records only cycling injuries treated in hospital, while Eastvale also records injuries treated by family doctors.",
         },
         {
           correct: false,
           label:
-            "It proves that the new gallery attracted no new visitors to the city museum.",
+            "Riverton's cyclists ride four times as far as Eastvale's, so they spend more time at risk.",
         },
         {
           correct: false,
           label:
-            "It means that the second period was shorter than the first period.",
-        },
-        {
-          correct: false,
-          label: "It shows that the new gallery was built too quickly.",
+            "Eastvale's residents own fewer bicycles than Riverton's residents.",
         },
       ],
     },

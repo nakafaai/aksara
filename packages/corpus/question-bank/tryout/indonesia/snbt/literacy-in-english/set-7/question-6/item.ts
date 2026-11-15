@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "calculation",
   },
-  stimulus: "classroom-points",
+  stimulus: "phone-ban",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,25 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Schools should ban all games because they distract pupils from learning.",
+            "About $$3$$ percentage points, which is about a third of the old pass rate of $$61\\%$$.",
         },
         {
           correct: false,
-          label:
-            "Points and badges are the most effective way to keep pupils reading for years.",
+          label: "About $$6$$ percentage points, two-thirds of the rise.",
         },
         {
           correct: true,
-          label:
-            "Schools should borrow games' feedback and challenge, not just their points.",
+          label: "About $$3$$ percentage points, a third of the rise.",
         },
         {
           correct: false,
           label:
-            "Leaderboards should show every pupil's rank so that all try harder.",
+            "About $$3$$ percentage points, which is the size of gain the studies comparing schools found.",
         },
         {
           correct: false,
           label:
-            "Pupils would learn more if teachers gave certificates for every task.",
+            "About $$3\\%$$ of the old pass rate, so the ban made no real difference.",
         },
       ],
     },

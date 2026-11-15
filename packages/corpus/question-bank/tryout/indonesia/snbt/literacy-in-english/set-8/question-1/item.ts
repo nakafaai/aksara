@@ -4,36 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "evidence-status",
   },
-  stimulus: "city-birdsong",
+  stimulus: "phineas-gage",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "City birds have stopped singing because traffic makes their songs useless.",
+            "Harlow's 1868 report described Gage getting into fights and drinking heavily.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Street lighting is the main reason why city robins sing at night.",
+            "The textbook story and the years in Chile cannot both be true of the whole of Gage's later life.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Birds adjust their songs to city noise, but these changes may carry costs.",
+            "The passage shows that the front of the brain has nothing to do with personality.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Great tits in quiet woods sing louder than great tits in noisy cities.",
+            "The changes Harlow reported may describe only the period soon after the accident.",
         },
         {
-          correct: false,
-          label: "Lockdowns permanently changed the way that city birds sing.",
+          column: 2,
+          label: "Gage died within a few months of the accident.",
         },
       ],
     },

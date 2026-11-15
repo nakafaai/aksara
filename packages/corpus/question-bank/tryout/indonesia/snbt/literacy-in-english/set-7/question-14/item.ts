@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "data-interpretation",
   },
-  stimulus: "museum-visits",
+  stimulus: "cycling-safety",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Families came more and stayed longer, but the holiday may explain part of it.",
+            "On average, each Riverton resident cycled more kilometres than each Eastvale resident.",
+        },
+        {
+          correct: true,
+          label:
+            "Measured per resident, Eastvale had fewer injuries, but not half as many.",
+        },
+        {
+          correct: true,
+          label:
+            "Eastvale's cyclists rode a quarter as far as Riverton's in total and had half as many injuries.",
         },
         {
           correct: false,
           label:
-            "The new gallery doubled the number of families visiting the museum.",
+            "If Eastvale's cyclists had ridden $$40$$ million kilometres at their own rate, they would have had about $$120$$ injuries.",
         },
         {
           correct: false,
           label:
-            "Adults without children stopped visiting because of the new gallery.",
-        },
-        {
-          correct: false,
-          label:
-            "School groups disliked the new gallery, since their visits became a little shorter.",
-        },
-        {
-          correct: false,
-          label: "The museum will keep growing by 12 percent every six months.",
+            "The table shows that the bike lanes encouraged more people in Riverton to cycle.",
         },
       ],
     },

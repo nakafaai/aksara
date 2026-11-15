@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "slime-mould",
+  stimulus: "mozart-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The slime mould stores the trail inside its millions of nuclei.",
-        },
-        {
-          correct: false,
-          label:
-            "The trail helps the slime mould remember the layout of Tokyo.",
-        },
-        {
-          correct: false,
-          label:
-            "The trail is made of nerve cells that the slime mould leaves behind.",
-        },
-        {
-          correct: false,
-          label:
-            "The trail allows the slime mould to remember food from years ago.",
-        },
-        {
           correct: true,
           label:
-            "The trail records where it has been, but outside its own body.",
+            "Little or no benefit, because any effect fades within about fifteen minutes and depends on how alert and cheerful pupils feel when they take the test.",
+        },
+        {
+          correct: false,
+          label:
+            "A small benefit, because a review that pooled dozens of studies found that the average effect is small but real.",
+        },
+        {
+          correct: false,
+          label:
+            "A benefit for pupils who enjoy the music, because the effect comes from mood rather than from Mozart.",
+        },
+        {
+          correct: false,
+          label:
+            "Little or no benefit, because the effect appears only when the music is by Mozart and the pupils hear it too early.",
+        },
+        {
+          correct: false,
+          label:
+            "Little or no benefit, because the 1993 study tested only thirty-six students.",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "argument-evaluation",
   },
-  stimulus: "city-birdsong",
+  stimulus: "phineas-gage",
   versions: {
     en: {
       kind: "choice",
@@ -14,24 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sparrows in San Francisco had stopped defending their territories.",
+            "That he could keep to a fixed timetable and manage horses, which shows that Harlow's description was wrong even for the first months.",
         },
         {
-          correct: false,
-          label: "Lockdowns made sparrows less attractive to potential mates.",
+          correct: true,
+          label:
+            "That he could keep to a fixed timetable and manage a team of horses, the kind of planning Harlow reported he could no longer do.",
         },
         {
           correct: false,
           label:
-            "Sparrows can only hear songs from about twice their usual distance.",
+            "That he had recovered from every effect of the injury, so Harlow's report must have been false.",
         },
         {
           correct: false,
-          label: "The sparrows left the city during the lockdowns.",
+          label:
+            "That his friends had been wrong all along to say that he was no longer the man he had been.",
         },
         {
-          correct: true,
-          label: "Traffic noise had been making the birds sing more loudly.",
+          correct: false,
+          label:
+            "That he could keep to a fixed timetable, which proves that the front of the brain has nothing to do with planning.",
         },
       ],
     },
