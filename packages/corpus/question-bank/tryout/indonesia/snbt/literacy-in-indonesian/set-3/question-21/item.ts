@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "strengthen-weaken",
   },
   stimulus: "railway-java",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "menunjukkan bahwa Tanggung adalah kota pelabuhan terbesar di Jawa Tengah pada masa itu, sehingga wajar menjadi ujung jalur pertama",
+            "Jalur pertama itu dibangun oleh perusahaan swasta, bukan oleh pemerintah kolonial.",
         },
         {
           correct: false,
           label:
-            "menjelaskan bahwa jalur pertama itu gagal karena hanya mencapai kota kecil",
+            "Gula, kopi, dan tembakau dari pedalaman Jawa Tengah dijual mahal di pasar Eropa.",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa penduduk Tanggung paling diuntungkan oleh jalur pertama",
+            "Pada tahun-tahun pertama, rel itu juga dipakai untuk mengangkut beras dari pelabuhan ke pasar-pasar di pedalaman Jawa Tengah.",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa pemerintah kolonial memilih Tanggung karena dekat dengan istana dan pusat pemerintahan di Jawa Tengah",
+            "Kota-kota kecil di sepanjang rel tumbuh lebih cepat daripada kota-kota di Jawa Tengah yang tidak dilalui rel.",
         },
         {
           correct: true,
           label:
-            "menunjukkan bahwa jalur itu dirancang menuju daerah penghasil barang ekspor, sehingga arah relnya mengungkap siapa yang dilayani",
+            "Pada tahun-tahun pertama, sebagian besar pendapatan perusahaan kereta berasal dari tiket penumpang, bukan dari angkutan hasil bumi.",
         },
       ],
     },

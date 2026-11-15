@@ -14,7 +14,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teks B menolak edukasi keuangan, karena menganggap edukasi tidak berguna bagi peminjam.",
+            "Teks B menerima manfaat edukasi dan bukti survei Teks A, tetapi menilai aturan tampilan biaya lebih mendesak.",
+        },
+        {
+          correct: false,
+          label:
+            "Teks B meragukan bukti survei Teks A, dan karena itu menolak edukasi keuangan sebagai langkah yang sia-sia.",
         },
         {
           correct: false,
@@ -24,12 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teks B menolak survei Teks A seluruhnya, karena menganggap survei itu memakai data palsu.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks B setuju dengan Teks A bahwa semua biaya pinjaman sudah terbuka dan mudah dibaca warga.",
+            "Teks B membantah angka bunga Teks A, karena bunga sebenarnya dihitung dari uang yang diterima peminjam.",
         },
         {
           correct: true,

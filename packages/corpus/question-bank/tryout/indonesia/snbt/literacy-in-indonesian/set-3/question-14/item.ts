@@ -14,17 +14,17 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Warga sebenarnya tidak berhati-hati, sehingga wajar jika mereka terjerat seperti pejalan kaki yang lalai.",
+            "Warga tetap sepenuhnya bertanggung jawab, karena lubang yang tertutup daun masih dapat dilihat oleh orang yang berhati-hati.",
         },
         {
           correct: false,
           label:
-            "Aplikasi pinjaman sengaja dibuat berbahaya, sehingga warga sebaiknya sama sekali tidak meminjam secara daring dalam keadaan apa pun.",
+            "Biaya pinjaman sebenarnya kecil, tetapi warga salah menghitungnya karena tidak memahami bunga harian.",
         },
         {
           correct: false,
           label:
-            "Peminjam yang terjerat tidak dapat disalahkan sama sekali, karena semua biaya pinjaman disembunyikan.",
+            "Kesalahan terletak pada pemerintah, karena pemerintahlah yang seharusnya menutup lubang itu dengan aturan.",
         },
         {
           correct: true,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Edukasi keuangan tidak berguna, karena pejalan kaki yang paham pun tetap akan jatuh ke lubang.",
+            "Aplikasi menyembunyikan seluruh biaya, sehingga tidak ada angka biaya yang tercantum di aplikasi itu.",
         },
       ],
     },
