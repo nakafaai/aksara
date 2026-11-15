@@ -19,6 +19,32 @@ Diese Regel gilt nur für Stoffe in der Gasphase. Ihre Volumina müssen außerde
 
 Wir verwenden die **Näherung idealer Gase** und zählen die Volumina, die tatsächlich reagieren oder entstehen. Nicht umgesetztes überschüssiges Gas wird getrennt berechnet.
 
+### Koeffizienten zählen Moleküle
+
+Gasvolumen stehen im selben Verhältnis wie die Koeffizienten, weil **die Koeffizienten Moleküle zählen**. Wähl die Reaktion zu Chlorwasserstoff und zieh den Regler. <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{H_2}" /> und <InlineMath math="1" /> Molekül <InlineMath math="\mathrm{Cl_2}" /> ergeben <InlineMath math="2" /> Moleküle <InlineMath math="\mathrm{HCl}" />, genau das Volumenverhältnis <InlineMath math="1 : 1 : 2" />.
+
+<ReactionBalanceLab
+  title={<>Gasmoleküle verbinden sich</>}
+  description={<>Vergleiche die Zahl der Moleküle vor und nach der Reaktion.</>}
+  reactions={[
+    { id: "hydrogen-chloride-synthesis", name: "Bildung von Chlorwasserstoff", tab: <InlineMath math="\mathrm{HCl}" /> },
+    { id: "ammonia-synthesis", name: "Bildung von Ammoniak", tab: <InlineMath math="\mathrm{NH_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atome je Element</>,
+    choose: "Reaktion wählen",
+    economy: <>Atomökonomie</>,
+    equation: <>Reaktionsgleichung</>,
+    mass: <>Masse der Edukte und Produkte</>,
+    molecules: <>Anzahl der Moleküle</>,
+    products: <>Produkte</>,
+    progress: "Reaktionsverlauf",
+    reactants: <>Edukte</>,
+    view: "Reaktion auf Teilchenebene",
+  }}
+/>
+
 ## Wasser muss gasförmig sein
 
 Die ausgeglichene Gleichung zur Bildung von Wasserdampf lautet:
@@ -179,6 +205,29 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
 Bei der Zersetzung von <InlineMath math="600\ \mathrm{mL}" /> Ammoniakgas entstehen also <InlineMath math="900\ \mathrm{mL}" /> Wasserstoffgas und <InlineMath math="300\ \mathrm{mL}" /> Stickstoffgas.
+
+### Die Moleküle im Ammoniakbeispiel
+
+Ammoniak zerfällt in Stickstoff und Wasserstoff. Dreh alle drei Moleküle und zähl ihre Atome. Jedes <InlineMath math="\mathrm{NH_3}" /> trägt <InlineMath math="1" /> Stickstoffatom, jedes <InlineMath math="\mathrm{N_2}" /> braucht aber <InlineMath math="2" />. Deshalb ergeben <InlineMath math="2" /> Volumen Ammoniak **nur halb so viel Volumen** Stickstoff, also <InlineMath math="1" />.
+
+<MoleculeShapeLab
+  title={<>Ammoniak, Stickstoff und Wasserstoff</>}
+  description={<>Dreh jedes Modell und zähl die Stickstoffatome in jedem Molekül.</>}
+  molecules={[
+    { id: "ammonia", name: "Ammoniak" },
+    { id: "nitrogen", name: "Stickstoff" },
+    { id: "hydrogen", name: "Wasserstoff" },
+  ]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Summenformel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel oder -länge</>,
+    view: "Dreidimensionales Molekülmodell",
+  }}
+/>
 
 ## Bedingungen für Volumenverhältnisse
 

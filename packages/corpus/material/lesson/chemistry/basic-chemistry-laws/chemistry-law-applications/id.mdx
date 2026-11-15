@@ -149,6 +149,29 @@ Tentukan **batas sistem**, lalu pilih bagian data yang benar-benar dibandingkan.
 - Jika soal menanyakan dua senyawa dari unsur yang sama, samakan satu unsur sebelum membandingkan unsur lain.
 - Jika soal menanyakan volume gas, pastikan semua gas diukur pada suhu dan tekanan yang sama.
 
+### Molekul di Balik Angka
+
+Dalam soal yang memakai dua hukum, **setiap angka massa dan volume datang dari molekul nyata**. Putar model <InlineMath math="\mathrm{C_3H_8}" />, <InlineMath math="\mathrm{CO_2}" />, dan <InlineMath math="\mathrm{H_2O}" />. Kolom massa molekul relatif menunjukkan dari mana angka <InlineMath math="44" /> atau <InlineMath math="18" /> berasal, yaitu jumlah massa atom penyusunnya.
+
+<MoleculeShapeLab
+  title={<>Molekul dalam Soal Pembakaran</>}
+  description={<>Putar setiap molekul dan baca massa molekul relatif yang dipakai soal.</>}
+  molecules={[
+    { id: "propane", name: "Propana" },
+    { id: "carbon-dioxide", name: "Karbon dioksida" },
+    { id: "water", name: "Air" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
 ## Pembakaran Metana
 
 Gas metana terbakar menurut persamaan setara berikut.
@@ -199,5 +222,30 @@ Baca koefisien <InlineMath math="\mathrm{CH_4(g)}+2\mathrm{O_2(g)}\rightarrow\ma
     o2: <InlineMath math="2\mathrm{O_2}:\ 100\ \mathrm{mL}" />,
     co2: <InlineMath math="\mathrm{CO_2}:\ 50\ \mathrm{mL}" />,
     h2o: <InlineMath math="2\mathrm{H_2O(g)}:\ 100\ \mathrm{mL}" />,
+  }}
+/>
+
+### Propana Mengikuti Aturan yang Sama
+
+Metana bukan satu-satunya bahan bakar yang bisa kamu hitung. Gas elpiji sebagian besar berisi propana, dan pembakarannya juga **setara atom demi atom**. Geser slider dan perhatikan <InlineMath math="6" /> molekul pereaksi berubah menjadi <InlineMath math="7" /> molekul produk, sementara massa kedua sisi tetap <InlineMath math="204" />.
+
+<ReactionBalanceLab
+  title={<>Pembakaran Propana</>}
+  description={<>Geser slider dan lihat <InlineMath math="6" /> molekul menjadi <InlineMath math="7" />.</>}
+  reactions={[
+    { id: "propane-combustion", name: "Pembakaran propana", tab: <InlineMath math="\mathrm{C_3H_8}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
   }}
 />

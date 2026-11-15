@@ -19,6 +19,32 @@ This rule applies only to substances in the gas phase. Their volumes must also b
 
 We use the **ideal-gas approximation** and count the volumes that actually react or form. Any unreacted excess gas must be counted separately.
 
+### Coefficients Count Molecules
+
+Gas volumes come in the same ratio as the coefficients because **the coefficients count molecules**. Choose the hydrogen chloride reaction and drag the slider. <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="1" /> molecule of <InlineMath math="\mathrm{Cl_2}" /> give <InlineMath math="2" /> molecules of <InlineMath math="\mathrm{HCl}" />, exactly the volume ratio <InlineMath math="1 : 1 : 2" />.
+
+<ReactionBalanceLab
+  title={<>Gas Molecules Combine</>}
+  description={<>Compare the number of molecules before and after the reaction.</>}
+  reactions={[
+    { id: "hydrogen-chloride-synthesis", name: "Forming hydrogen chloride", tab: <InlineMath math="\mathrm{HCl}" /> },
+    { id: "ammonia-synthesis", name: "Forming ammonia", tab: <InlineMath math="\mathrm{NH_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
+  }}
+/>
+
 ## Water Must Be in the Gas Phase
 
 Look at the balanced equation for forming water vapor.
@@ -179,6 +205,29 @@ V_{\mathrm{N_2}} &= 1 \times 300 = 300\ \mathrm{mL}
 \end{aligned}" />
 
 So decomposing <InlineMath math="600\ \mathrm{mL}" /> of ammonia gas produces <InlineMath math="900\ \mathrm{mL}" /> of hydrogen gas and <InlineMath math="300\ \mathrm{mL}" /> of nitrogen gas.
+
+### The Molecules in the Ammonia Example
+
+Ammonia breaks down into nitrogen and hydrogen. Turn all three molecules and count their atoms. Each <InlineMath math="\mathrm{NH_3}" /> carries <InlineMath math="1" /> nitrogen atom, while each <InlineMath math="\mathrm{N_2}" /> needs <InlineMath math="2" />. That is why <InlineMath math="2" /> volumes of ammonia **give only** <InlineMath math="1" /> volume of nitrogen.
+
+<MoleculeShapeLab
+  title={<>Ammonia, Nitrogen, and Hydrogen</>}
+  description={<>Turn each model and count the nitrogen atoms in every molecule.</>}
+  molecules={[
+    { id: "ammonia", name: "Ammonia" },
+    { id: "nitrogen", name: "Nitrogen" },
+    { id: "hydrogen", name: "Hydrogen" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
+  }}
+/>
 
 ## Conditions for Using Volume Ratios
 

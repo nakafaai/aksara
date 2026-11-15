@@ -19,6 +19,30 @@ Corak asasnya kelihatan seperti ini.
 
 Baca anak panah itu sebagai "menghasilkan". Tanda tambah bermaksud ada lebih daripada satu bahan di sebelah yang sama.
 
+### Setiap Formula Ialah Molekul Sebenar
+
+Sebelum menulis persamaan, kenali dahulu formula setiap bahan. Putar model <InlineMath math="\mathrm{N_2}" />, <InlineMath math="\mathrm{O_2}" />, <InlineMath math="\mathrm{NO}" /> dan <InlineMath math="\mathrm{SO_2}" />. Nombor kecil dalam formula mengira atom dalam satu molekul, jadi nombor itu **tidak boleh kamu ubah semasa mengimbangkan persamaan**.
+
+<MoleculeShapeLab
+  title={<>Formula dan Bentuk Molekul</>}
+  description={<>Kira atom pada setiap model dan padankan dengan formulanya.</>}
+  molecules={[
+    { id: "nitrogen", name: "Nitrogen" },
+    { id: "oxygen", name: "Oksigen" },
+    { id: "nitrogen-monoxide", name: "Nitrogen monoksida" },
+    { id: "sulfur-dioxide", name: "Sulfur dioksida" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model isi ruang</>,
+    formula: <>Formula molekul</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
+  }}
+/>
+
 ## Persamaan Pembakaran Metana
 
 Mulakan dengan ayat biasa: metana bertindak balas dengan oksigen untuk menghasilkan karbon dioksida dan air. **Bahan tindak balas diletakkan di sebelah kiri**, manakala hasil tindak balas di sebelah kanan.
@@ -161,5 +185,31 @@ Gunakan langkah terakhir pada gas dalam dapur perkhemahan: <InlineMath math="\ma
     c: <InlineMath math="\mathrm{C}:\ 3=3" />,
     h: <InlineMath math="\mathrm{H}:\ 8=4\cdot2" />,
     o: <InlineMath math="\mathrm{O}:\ 5\cdot2=3\cdot2+4" />,
+  }}
+/>
+
+### Menyemak Keseimbangan Atom demi Atom
+
+Langkah terakhir menulis persamaan ialah menyemak setiap unsur. Pilih satu tindak balas dan lihat bacaan bilangan atom. Nilai di kiri dan kanan tanda sama dengan **mesti sama bagi setiap unsur**. Pekali boleh berubah, tetapi formula tidak.
+
+<ReactionBalanceLab
+  title={<>Persamaan yang Seimbang</>}
+  description={<>Pilih tindak balas dan semak bilangan atom setiap unsur di kedua-dua belah.</>}
+  reactions={[
+    { id: "nitrogen-fixation", name: "Pembentukan nitrogen monoksida", tab: <InlineMath math="\mathrm{NO}" /> },
+    { id: "sulfur-dioxide-oxidation", name: "Pengoksidaan sulfur dioksida", tab: <InlineMath math="\mathrm{SO_3}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Bilangan atom setiap unsur</>,
+    choose: "Pilih tindak balas",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan tindak balas</>,
+    mass: <>Jisim bahan dan hasil tindak balas</>,
+    molecules: <>Bilangan molekul</>,
+    products: <>Hasil tindak balas</>,
+    progress: "Perjalanan tindak balas",
+    reactants: <>Bahan tindak balas</>,
+    view: "Tindak balas pada aras atom",
   }}
 />

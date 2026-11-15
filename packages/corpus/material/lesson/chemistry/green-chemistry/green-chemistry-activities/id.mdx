@@ -29,6 +29,31 @@ Tabel berikut menghubungkan setiap SDG dengan hal yang dinilai dalam desain kimi
 
 Desain ulang kimia mendukung suatu SDG jika perubahan yang dilakukan dan bukti dampak perubahan dinyatakan dengan jelas.
 
+### Membersihkan Gas Buang
+
+Konverter katalitik di knalpot kendaraan adalah contoh kegiatan kimia hijau yang mengubah zat berbahaya sebelum lepas ke udara. Di dalamnya, karbon monoksida bereaksi dengan oksigen menjadi karbon dioksida. Geser slider: <InlineMath math="3" /> molekul pereaksi menjadi <InlineMath math="2" /> molekul produk, dan **gas yang sangat beracun berubah menjadi gas yang jauh kurang beracun**.
+
+<ReactionBalanceLab
+  title={<>Reaksi di Konverter Katalitik</>}
+  description={<>Karbon monoksida dari mesin diubah menjadi karbon dioksida.</>}
+  reactions={[
+    { id: "carbon-monoxide-oxidation", name: "Oksidasi karbon monoksida", tab: <InlineMath math="\mathrm{CO}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Jumlah atom tiap unsur</>,
+    choose: "Pilih reaksi",
+    economy: <>Ekonomi atom</>,
+    equation: <>Persamaan reaksi</>,
+    mass: <>Massa pereaksi dan produk</>,
+    molecules: <>Jumlah molekul</>,
+    products: <>Produk</>,
+    progress: "Jalannya reaksi",
+    reactants: <>Pereaksi</>,
+    view: "Reaksi pada tingkat atom",
+  }}
+/>
+
 ## Aliran Bahan dari Masukan hingga Limbah
 
 Mulailah dengan mencatat setiap bahan yang dipakai, perubahan yang terjadi, produk, sisa, dan bahayanya. Saat membandingkan dua proses, pastikan keduanya menghasilkan fungsi yang sama bagi pengguna.
@@ -156,6 +181,30 @@ Ikuti karbon dalam tumpukan daun yang sama. Pembakaran mengoksidasi hampir semua
     burn: <>dibakar: habis dalam hitungan menit</>,
     compost: <>dikompos: berminggu-minggu</>,
     kept: <>karbon tersimpan di kompos</>,
+  }}
+/>
+
+### Gas dari Tumpukan Kompos
+
+Kompos yang mendapat cukup udara melepas terutama <InlineMath math="\mathrm{CO_2}" />. Kalau tumpukan terlalu padat dan kekurangan oksigen, mikroba juga menghasilkan metana <InlineMath math="\mathrm{CH_4}" />, amonia <InlineMath math="\mathrm{NH_3}" />, dan dinitrogen monoksida <InlineMath math="\mathrm{N_2O}" />. Metana dan <InlineMath math="\mathrm{N_2O}" /> adalah **gas rumah kaca yang kuat**, jadi membalik kompos secara rutin membantu mengurangi dampaknya.
+
+<MoleculeShapeLab
+  title={<>Molekul Gas dari Kompos</>}
+  description={<>Putar setiap model dan bandingkan bentuk serta massa relatifnya.</>}
+  molecules={[
+    { id: "carbon-dioxide", name: "Karbon dioksida" },
+    { id: "methane", name: "Metana" },
+    { id: "ammonia", name: "Amonia" },
+    { id: "dinitrogen-monoxide", name: "Dinitrogen monoksida" },
+  ]}
+  labels={{
+    atoms: <>Atom penyusun</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang</>,
+    formula: <>Rumus molekul</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut atau panjang ikatan</>,
+    view: "Model molekul tiga dimensi",
   }}
 />
 

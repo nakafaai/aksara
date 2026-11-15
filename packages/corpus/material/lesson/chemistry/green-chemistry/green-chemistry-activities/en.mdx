@@ -29,6 +29,31 @@ The table links each SDG to a chemical design question and a result that can be 
 
 A chemical redesign contributes to an SDG when measurements show that it reduces the stated hazard, resource use, emission, or waste.
 
+### Cleaning Exhaust Gas
+
+The catalytic converter in a car exhaust is a green chemistry measure that changes a harmful substance before it reaches the air. Inside it, carbon monoxide reacts with oxygen to form carbon dioxide. Drag the slider: <InlineMath math="3" /> reactant molecules become <InlineMath math="2" /> product molecules, and **a highly toxic gas turns into a far less toxic one**.
+
+<ReactionBalanceLab
+  title={<>The Reaction in a Catalytic Converter</>}
+  description={<>Carbon monoxide from the engine becomes carbon dioxide.</>}
+  reactions={[
+    { id: "carbon-monoxide-oxidation", name: "Oxidising carbon monoxide", tab: <InlineMath math="\mathrm{CO}" /> },
+  ]}
+  reading="molecules"
+  labels={{
+    atoms: <>Atoms of each element</>,
+    choose: "Choose a reaction",
+    economy: <>Atom economy</>,
+    equation: <>Balanced equation</>,
+    mass: <>Mass of reactants and products</>,
+    molecules: <>Number of molecules</>,
+    products: <>Products</>,
+    progress: "Reaction progress",
+    reactants: <>Reactants</>,
+    view: "Reaction at the level of atoms",
+  }}
+/>
+
 ## Material Flow from Inputs to Waste
 
 Begin by recording every material used, the changes it undergoes, the products, the residues, and the hazards. When comparing two processes, make sure they perform the same task.
@@ -156,6 +181,30 @@ Follow the carbon in the same pile of leaves. Burning oxidizes almost all of it 
     burn: <>burning: gone in minutes</>,
     compost: <>composting: weeks</>,
     kept: <>carbon kept in compost</>,
+  }}
+/>
+
+### Gases from a Compost Heap
+
+Compost with enough air gives off mostly <InlineMath math="\mathrm{CO_2}" />. When a heap is packed too tightly and runs short of oxygen, microbes also make methane, <InlineMath math="\mathrm{CH_4}" />, ammonia, <InlineMath math="\mathrm{NH_3}" />, and nitrous oxide, <InlineMath math="\mathrm{N_2O}" />. Methane and <InlineMath math="\mathrm{N_2O}" /> are **strong greenhouse gases**, so turning the compost regularly helps reduce its impact.
+
+<MoleculeShapeLab
+  title={<>Gas Molecules from Compost</>}
+  description={<>Turn each model and compare its shape and relative mass.</>}
+  molecules={[
+    { id: "carbon-dioxide", name: "Carbon dioxide" },
+    { id: "methane", name: "Methane" },
+    { id: "ammonia", name: "Ammonia" },
+    { id: "dinitrogen-monoxide", name: "Dinitrogen monoxide" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Molecular formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle or length</>,
+    view: "Three-dimensional molecular model",
   }}
 />
 
