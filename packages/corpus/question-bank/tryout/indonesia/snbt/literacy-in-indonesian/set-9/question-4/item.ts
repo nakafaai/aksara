@@ -4,37 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "calculation",
   },
-  stimulus: "peat-fire",
+  stimulus: "c4-photosynthesis",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Menggali kanal baru agar air hujan lebih cepat keluar dari lahan.",
+          label: "$$7{,}5$$ ton, sesuai dengan target para pendukung",
         },
         {
           correct: false,
           label:
-            "Menyiapkan lebih banyak pesawat penyiram air untuk musim kemarau.",
+            "$$6{,}05$$ ton, sesuai dengan simulasi pada kadar $$\\mathrm{CO_2}$$ yang lebih tinggi",
+        },
+        {
+          correct: false,
+          label: "$$1{,}6$$ ton, yaitu besar tambahan hasilnya",
         },
         {
           correct: false,
           label:
-            "Membakar sisa tanaman sebelum musim kemarau agar bahan bakar habis.",
+            "$$6{,}6$$ ton, atau $$0{,}9$$ ton lebih banyak daripada target para pendukung",
         },
         {
           correct: true,
           label:
-            "Menyekat kanal agar air tertahan dan permukaan air tanah naik.",
-        },
-        {
-          correct: false,
-          label:
-            "Menanam lebih banyak tanaman di permukaan gambut agar tanah tidak ikut menyusut.",
+            "$$6{,}6$$ ton, atau $$0{,}9$$ ton lebih sedikit daripada target para pendukung",
         },
       ],
     },

@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "calculation",
   },
-  stimulus: "coral-bleaching",
+  stimulus: "shorebird-flyway",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Karang itu akan mati karena warnanya sudah berubah menjadi putih seluruhnya.",
-        },
-        {
-          correct: false,
-          label: "Alga lain akan segera menutupi karang dan mencegahnya pulih.",
-        },
-        {
-          correct: false,
-          label: "Kerangka kapur karang akan larut karena kehilangan alga.",
+            "sekitar $$62{,}5\\%$$ dan $$4{,}5\\%$$, jadi populasi burung di muara itu sudah turun lebih dari separuh",
         },
         {
           correct: false,
           label:
-            "Karang akan berpindah ke perairan yang lebih dingin di dekatnya.",
+            "sekitar $$37{,}5\\%$$ dan $$95{,}5\\%$$, jadi burung lebih banyak meninggalkan lumpur daripada pematang",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$167\\%$$ dan $$4{,}8\\%$$, jadi gangguan terutama mengenai tempat bertengger",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$62{,}5\\%$$ dan $$50\\%$$, jadi kedua tempat sama-sama terganggu oleh sepeda motor",
         },
         {
           correct: true,
           label:
-            "Alga kembali menghuni jaringan karang, dan karang itu perlahan pulih.",
+            "sekitar $$62{,}5\\%$$ dan $$4{,}5\\%$$, jadi gangguan terutama mengenai tempat bertengger, bukan tempat makan, walaupun ke mana burung itu bertengger belum diketahui",
         },
       ],
     },

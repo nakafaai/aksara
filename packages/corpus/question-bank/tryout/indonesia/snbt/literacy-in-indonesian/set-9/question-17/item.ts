@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "research-design",
   },
-  stimulus: "water-stunting",
+  stimulus: "tutoring-scores",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah puskesmas di seluruh kabupaten itu pada tahun yang sama.",
+            "selisih nilai Februari kedua kelompok di tabel pertama, yaitu $$10$$ poin",
         },
         {
           correct: false,
           label:
-            "Rata-rata pendapatan rumah tangga di keempat desa itu pada tahun pendataan berikutnya.",
+            "selisih nilai Agustus kedua kelompok di tabel pertama, yaitu $$7$$ poin",
         },
         {
           correct: false,
           label:
-            "Jumlah balita di setiap desa yang lahir pada tahun pendataan.",
+            "selisih kenaikan kedua kelompok di tabel pertama, yaitu $$3$$ poin",
         },
         {
           correct: true,
           label:
-            "Persentase stunting pada keluarga berpendapatan setara yang akses airnya berbeda.",
+            "selisih kenaikan kedua kelompok di tabel kedua, yaitu $$2$$ poin",
         },
         {
           correct: false,
           label:
-            "Pendapat para ibu tentang rasa air minum di desa masing-masing.",
+            "nilai Februari kelompok yang ikut bimbingan di tabel kedua, yaitu $$73$$",
         },
       ],
     },

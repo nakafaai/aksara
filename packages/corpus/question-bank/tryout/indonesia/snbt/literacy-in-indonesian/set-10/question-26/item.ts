@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "author-reasoning",
   },
-  stimulus: "taman-siswa",
+  stimulus: "regression-mean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "menjelaskan alasan peraturan tahun 1932 akhirnya dicabut",
+          correct: true,
+          label:
+            "sekitar $$51$$, karena tanpa kelas tambahan nilai mereka diperkirakan tetap naik sekitar $$6$$ poin seperti kelompok pembanding",
         },
         {
           correct: false,
           label:
-            "membuktikan bahwa Taman Siswa kini menjadi satu-satunya sekolah",
-        },
-        {
-          correct: true,
-          label: "menunjukkan bahwa jasa Ki Hadjar masih dihargai hingga kini",
+            "tetap $$45$$, karena tanpa kelas tambahan nilai mereka tidak akan berubah",
         },
         {
           correct: false,
-          label: "mengkritik pemerintah kolonial yang mencurigai Taman Siswa",
+          label:
+            "sekitar $$55$$, karena seluruh kenaikan $$10$$ poin disebabkan oleh regresi ke rata-rata",
         },
         {
           correct: false,
-          label: "memberi tahu tanggal berdirinya perguruan Taman Siswa",
+          label:
+            "sekitar $$41$$, karena nilai mereka akan turun seperti nilai kelompok bernilai tertinggi",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$52$$, sama dengan nilai tes kedua kelompok pembanding",
         },
       ],
     },

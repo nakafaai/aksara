@@ -4,36 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "remote-work",
+  stimulus: "tutoring-scores",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "semua karyawan sebaiknya bekerja di kantor lima hari seminggu",
+            "Pada Agustus, rata-rata nilai seluruh $$300$$ siswa lebih dekat ke rata-rata kelompok yang tidak ikut bimbingan daripada ke kelompok yang ikut.",
         },
         {
-          correct: true,
-          label: "kerja dari rumah membawa manfaat bagi sebagian pekerja",
+          column: 2,
+          label:
+            "Pada tabel kedua, kenaikan siswa bimbingan dua kali lipat kenaikan siswa yang tidak ikut.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "karyawan baru belajar paling banyak dari pelatihan lewat layar",
+            "Lebih dari separuh siswa di tabel kedua adalah siswa yang ikut bimbingan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "perusahaan sebaiknya hanya merekrut orang dari kota yang sama",
+            "Data guru itu membuktikan bahwa bimbingan sama sekali tidak berpengaruh terhadap nilai.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "rapat dadakan adalah cara terbaik untuk menyelesaikan laporan",
+            "Menurut guru, siswa dengan nilai awal sama pasti sama juga dalam semangat belajarnya.",
         },
       ],
     },

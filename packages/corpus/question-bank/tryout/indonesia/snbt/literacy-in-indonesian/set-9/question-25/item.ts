@@ -4,34 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "inference",
   },
-  stimulus: "batik-wax",
+  stimulus: "pantun-tradition",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "batik cap, karena motifnya berulang rapi dan ada retakan malam",
+            "Dalam tradisi palang pintu, pantun berbalas terjadi sebelum pengantin pria dipersilakan masuk.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "batik tulis, karena garis retakan hanya muncul pada batik tulis",
+            "Menurut teks, pantun hanya dipakai untuk menyampaikan nasihat.",
         },
         {
-          correct: false,
-          label: "tekstil bermotif batik, karena motifnya berulang dengan rapi",
+          column: 1,
+          label: "Baris pertama pantun contoh memiliki sepuluh suku kata.",
         },
         {
-          correct: false,
-          label: "batik tulis, karena motif buatan tangan selalu sama persis",
+          column: 2,
+          label: "Pantun contoh dalam teks memiliki pola rima a-a-b-b.",
         },
         {
-          correct: false,
-          label: "tekstil bermotif batik, karena dibuat dengan cap tembaga",
+          column: 2,
+          label:
+            "Baris keempat pantun contoh memiliki lebih dari dua belas suku kata.",
         },
       ],
     },

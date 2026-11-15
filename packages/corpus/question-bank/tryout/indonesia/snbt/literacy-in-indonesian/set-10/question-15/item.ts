@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "application",
   },
-  stimulus: "bike-share",
+  stimulus: "ai-homework",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Jumlah perjalanan turun setiap bulan selama puncak musim hujan.",
+            "meminta siswa menjelaskan esainya secara lisan dan memakai alat pendeteksi untuk memastikan hasilnya",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Jumlah perjalanan pada Juni lebih dari dua kali jumlah perjalanan pada Januari.",
+            "meminta siswa menjelaskan esainya secara lisan dan melarang kecerdasan buatan untuk semua tugas",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Rata-rata perjalanan per sepeda pada Juni dua kali rata-rata pada April.",
+            "meminta siswa menjelaskan esainya secara lisan dan membolehkan kecerdasan buatan untuk semua tugas tanpa syarat",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Rata-rata perjalanan per sepeda pada Maret lebih tinggi daripada pada Mei.",
+            "meminta siswa menjelaskan esainya secara lisan, tanpa menambahkan larangan, alat pendeteksi, atau izin memakai mesin",
+        },
+        {
+          correct: false,
+          label:
+            "meminta siswa menjelaskan esainya secara lisan dan menilai esai dari kerapian bahasanya",
         },
       ],
     },

@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
+    contentDomain: "fiction",
+    topic: "text-structure",
   },
-  stimulus: "national-exam",
+  stimulus: "old-translator",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Paragraf itu menunjukkan bahwa Pak Sastro penerjemah yang kurang berhasil, dan bagian yang bergantung padanya adalah keraguannya menerjemahkan surat terakhir.",
+        },
+        {
+          correct: false,
+          label:
+            'Paragraf itu menjelaskan alasan Dita meminta terjemahan, dan bagian yang bergantung padanya adalah ucapan Dita, "Biar aku bisa kenal Eyang Putri."',
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf itu membangun pembanding bahwa memilih padanan biasanya mudah, dan bagian yang bergantung padanya adalah usul Dita tentang kata sukses.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf itu membangun pembanding bahwa memilih padanan biasanya mudah, dan bagian yang bergantung padanya adalah terjemahan kalimat kalung yang dibuat kata demi kata.",
+        },
+        {
           correct: true,
           label:
-            "ujian bertaruhan tinggi tidak lagi mengukur kemampuan dengan jujur",
-        },
-        {
-          correct: false,
-          label:
-            "bimbingan belajar adalah cara terbaik menyiapkan siswa menghadapi ujian",
-        },
-        {
-          correct: false,
-          label:
-            "nilai rapor lebih mudah dibandingkan daripada nilai ujian nasional",
-        },
-        {
-          correct: false,
-          label:
-            "pemerintah tidak memerlukan data tentang mutu pendidikan di daerah",
-        },
-        {
-          correct: false,
-          label:
-            "siswa pada masa lalu lebih bersungguh-sungguh daripada siswa sekarang",
+            'Paragraf itu membangun pembanding bahwa memilih padanan biasanya mudah, dan bagian yang bergantung padanya adalah kalimat "Kali ini tidak." di awal paragraf ketiga.',
         },
       ],
     },

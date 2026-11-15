@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "data-interpretation",
   },
-  stimulus: "wall-clock",
+  stimulus: "regression-mean",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "Membetulkan letak jarum jam yang sering terlambat.",
+          column: 1,
+          label:
+            "Kelompok yang mengikuti kelas tambahan naik lebih banyak daripada kelompok pembanding.",
         },
         {
-          correct: true,
-          label: "Memutar jam tujuh putaran sambil menghitung pelan.",
+          column: 2,
+          label:
+            "Data menunjukkan bahwa kelas tambahan menaikkan nilai sebesar $$10$$ poin.",
         },
         {
-          correct: false,
-          label: "Berdoa di ruang tengah bersama Ibu dan cucunya.",
+          column: 1,
+          label:
+            "Tanpa perlakuan apa pun, siswa yang bernilai terendah pada tes pertama dapat naik nilainya pada tes kedua.",
         },
         {
-          correct: false,
-          label: "Mengantar tamu yang datang sampai ke depan pintu.",
+          column: 2,
+          label:
+            "Siswa bernilai tertinggi turun nilainya karena mereka menjadi malas belajar.",
         },
         {
-          correct: false,
-          label: "Memutar jam sebanyak mungkin agar tidak berhenti.",
+          column: 2,
+          label: "Kelompok pembanding juga mengikuti sebagian kelas tambahan.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "author-reasoning",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "front-labels",
+  stimulus: "crossing-guard",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,25 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "menjelaskan mengapa tabel di belakang kemasan jarang dipakai pembeli",
+            "Ayah Rani kemungkinan besar adalah penjaga yang membantu mengangkat korban dari rel.",
+        },
+        {
+          correct: true,
+          label:
+            "Cara palang pintu di pos itu dioperasikan sudah berubah sejak Rani kecil.",
         },
         {
           correct: false,
-          label:
-            "membuktikan bahwa pembeli tidak peduli pada kesehatan mereka sendiri",
+          label: "Penjaga muda di pos itu mengenal ayah Rani.",
         },
         {
           correct: false,
-          label:
-            "menunjukkan bahwa tanda di Cile berhasil menurunkan pembelian",
+          label: "Ayah Rani lupa bahwa hari itu adalah hari ulang tahun Rani.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "mengkritik produsen yang mengubah resep agar lolos dari tanda",
-        },
-        {
-          correct: false,
-          label:
-            "menyarankan agar toko memberi pembeli waktu belanja lebih lama",
+            "Rani membawa kue kecil yang sama untuk mengenang sore ketika ia dulu menunggu ayahnya.",
         },
       ],
     },

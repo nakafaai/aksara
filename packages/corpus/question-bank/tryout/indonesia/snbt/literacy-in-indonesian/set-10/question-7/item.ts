@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "plot-function",
   },
-  stimulus: "front-labels",
+  stimulus: "crossing-guard",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: true,
           label:
-            'Logo "Pilihan Lebih Sehat" wajib dipasang pada semua produk di Indonesia.',
+            "sekitar $$17$$ tahun, dan di antaranya Rani menemukan potongan koran di laci ayahnya",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Di Cile, tanda segi delapan hitam wajib bagi produk yang melewati batas tertentu.",
+            "sekitar $$17$$ tahun, dan di antaranya ayah Rani pulang dengan seragam basah",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Sebagian produsen di Cile mengubah resep agar produknya tidak diberi tanda.",
+            "sekitar $$26$$ tahun, dan di antaranya Rani menemukan potongan koran di laci ayahnya",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Tabel informasi nilai gizi tidak mencantumkan kandungan gula.",
+            "sekitar $$9$$ tahun, dan di antaranya engkol palang diganti tombol",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$17$$ tahun, dan di antaranya pengendara sepeda motor menerobos palang di perlintasan sebelah",
         },
       ],
     },
