@@ -21,6 +21,7 @@ import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/re
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { spmPhysicsReadiness } from "#corpus/tryout/malaysia/spm/readiness/physics";
 import { examSetPaths } from "#corpus/tryout/projection";
 import {
   validateAssessmentReadinessEntries,
@@ -42,6 +43,7 @@ const loadReadinessRegistry = Effect.gen(function* () {
     tkaEnglishReadiness,
     tkaAdvancedMathematicsReadiness,
     tuDarmstadtEntranceReadiness,
+    spmPhysicsReadiness,
   ]);
   return { readiness, sets, sources };
 });

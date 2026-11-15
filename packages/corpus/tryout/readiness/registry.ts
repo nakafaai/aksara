@@ -7,6 +7,7 @@ import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/re
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaEnglishReadiness } from "#corpus/tryout/indonesia/tka/readiness/english";
 import { tkaIndonesianReadiness } from "#corpus/tryout/indonesia/tka/readiness/indonesian";
+import { spmPhysicsReadiness } from "#corpus/tryout/malaysia/spm/readiness/physics";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type { ExamSource } from "#corpus/tryout/schema";
@@ -18,6 +19,7 @@ const readinessPrograms = [
   tkaEnglishReadiness,
   tkaAdvancedMathematicsReadiness,
   tuDarmstadtEntranceReadiness,
+  spmPhysicsReadiness,
 ];
 
 /** Returns the country and exam identity owned by one readiness gate. */

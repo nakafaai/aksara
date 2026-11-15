@@ -1,0 +1,13 @@
+# Rückwärts durch das NAND-Gatter
+
+Ein NAND-Gatter liefert <InlineMath math="0" /> nur, wenn beide Eingänge <InlineMath math="1" /> sind. In der letzten Zeile ist <InlineMath math="C=0" />, also <InlineMath math="Q=1" />, egal welchen Wert <InlineMath math="X" /> hat, und **diese Zeile verrät nichts über P**. Nimm die vier Zeilen mit <InlineMath math="C=1" />: Dort gilt <InlineMath math="Q=\overline{X}" />, also ist <InlineMath math="X" /> das Gegenteil von <InlineMath math="Q" />.
+
+<BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
+
+Für <InlineMath math="AB=00,01,10,11" /> ist <InlineMath math="Q" /> gleich <InlineMath math="1,0,0,0" />, also ist <InlineMath math="X" /> gleich <InlineMath math="0,1,1,1" />. Ausgang <InlineMath math="0" /> nur, wenn beide Eingänge <InlineMath math="0" /> sind, ist das Kennzeichen eines OR-Gatters. Gatter P ist also ein OR-Gatter.
+
+# Warum die anderen Antworten falsch sind
+
+- NOR entsteht, wenn <InlineMath math="X" /> gleich <InlineMath math="Q" /> gesetzt wird, doch **das NAND-Gatter kehrt <InlineMath math="X" /> um**, wenn <InlineMath math="C=1" /> ist.
+- AND ergibt <InlineMath math="X=0,0,0,1" />, also <InlineMath math="Q=1,1,1,0" />, das passt nicht zur Tabelle.
+- NAND ergibt <InlineMath math="X=1,1,1,0" />, also <InlineMath math="Q=0,0,0,1" />, das passt ebenfalls nicht.

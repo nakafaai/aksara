@@ -1,0 +1,13 @@
+# Mundur melewati gerbang NAND
+
+Gerbang NAND mengeluarkan <InlineMath math="0" /> hanya jika kedua masukannya <InlineMath math="1" />. Baris terakhir punya <InlineMath math="C=0" />, jadi <InlineMath math="Q=1" /> apa pun nilai <InlineMath math="X" />, dan **baris itu tidak memberi informasi tentang P**. Pakai empat baris dengan <InlineMath math="C=1" />: di sana <InlineMath math="Q=\overline{X}" />, jadi <InlineMath math="X" /> adalah kebalikan <InlineMath math="Q" />.
+
+<BlockMath math="C=1:\quad Q=\overline{X\cdot1}=\overline{X}\ \Rightarrow\ X=\overline{Q}" />
+
+Untuk <InlineMath math="AB=00,01,10,11" />, nilai <InlineMath math="Q" /> adalah <InlineMath math="1,0,0,0" />, jadi <InlineMath math="X" /> adalah <InlineMath math="0,1,1,1" />. Keluaran <InlineMath math="0" /> hanya saat kedua masukan <InlineMath math="0" /> adalah ciri gerbang OR. Jadi, gerbang P adalah gerbang OR.
+
+# Mengapa pilihan lain salah
+
+- NOR muncul kalau <InlineMath math="X" /> dianggap sama dengan <InlineMath math="Q" />, padahal **gerbang NAND membalik** nilai <InlineMath math="X" /> saat <InlineMath math="C=1" />.
+- AND memberi <InlineMath math="X=0,0,0,1" />, sehingga <InlineMath math="Q=1,1,1,0" />, tidak cocok dengan tabel.
+- NAND memberi <InlineMath math="X=1,1,1,0" />, sehingga <InlineMath math="Q=0,0,0,1" />, juga tidak cocok.
