@@ -50,9 +50,11 @@ export type AssessmentSite = typeof AssessmentSiteSchema.Type;
  * `shown` in an explanation, `hidden` in a prompt, a reading, or an option
  * label, which a learner reads before answering.
  */
-export interface BlockSite extends AssessmentSite {
-  readonly answers: "hidden" | "shown";
-}
+export const BlockSiteSchema = Schema.Struct({
+  ...AssessmentSiteSchema.fields,
+  answers: Schema.Literals(["hidden", "shown"]),
+});
+export type BlockSite = typeof BlockSiteSchema.Type;
 
 /** Builds the error for one element of one document. */
 export function sourceError(

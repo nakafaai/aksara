@@ -1,5 +1,6 @@
 import { assert, describe, it } from "@effect/vitest";
-import { Array as Arr, Effect } from "effect";
+import { assessmentVisuals } from "@nakafa/aksara-contracts/visual/catalog";
+import { Array as Arr, Effect, Schema } from "effect";
 import {
   compileExplanationDocument,
   compileReadingDocument,
@@ -83,8 +84,11 @@ describe("figureNode", () => {
       ) {
         return assert.fail("Expected a number line figure.");
       }
+      const { segments } = yield* Schema.decodeUnknownEffect(
+        assessmentVisuals.NumberLine.props
+      )(number.attrs.props);
       assert.deepStrictEqual(
-        Arr.map(number.attrs.props.segments, ({ end, start }) => [start, end]),
+        Arr.map(segments, ({ end, start }) => [start, end]),
         [
           [undefined, 1],
           [1, 5],
@@ -140,7 +144,7 @@ describe("figureNode", () => {
       });
 
       assert.deepStrictEqual(
-        [prompt.reason, "cause" in prompt ? prompt.cause : undefined],
+        "reason" in prompt ? [prompt.reason, prompt.cause] : [prompt._tag],
         ["answer", ["trigValues"]]
       );
       assert.strictEqual(yield* reason(takeaway), "answer");

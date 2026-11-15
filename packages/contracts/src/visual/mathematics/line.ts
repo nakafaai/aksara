@@ -72,11 +72,16 @@ function strokeFields<E>(rich: RichSlot<E>) {
 }
 
 /** The indices and label places of a line drawn through its points. */
-interface IndexedLine {
-  readonly labels?: readonly { readonly at?: number }[];
-  readonly pointIndices?: readonly number[];
-  readonly points: readonly unknown[];
-}
+const IndexedLineSchema = Schema.Struct({
+  labels: Schema.optionalKey(
+    Schema.Array(
+      Schema.Struct({ at: Schema.optionalKey(NonNegativeIntSchema) })
+    )
+  ),
+  pointIndices: Schema.optionalKey(Schema.Array(NonNegativeIntSchema)),
+  points: Schema.Array(Schema.Unknown),
+});
+type IndexedLine = typeof IndexedLineSchema.Type;
 
 /** Checks that every index of a line names one of its points. */
 function hasIndexedPoints(line: IndexedLine) {

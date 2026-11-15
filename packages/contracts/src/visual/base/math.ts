@@ -1,20 +1,24 @@
 import { Array as Arr, Predicate, Record as Rec, Schema } from "effect";
 
-import { MathVisualKeySchema } from "#contracts/math/base";
 import {
-  type MathVisual,
-  MathVisualSchema,
-  mathVisualLabelKeys,
-} from "#contracts/math/visual";
+  MathAppearanceSchema,
+  MathVisualKeySchema,
+} from "#contracts/math/base";
+import { MathVisualSchema, mathVisualLabelKeys } from "#contracts/math/visual";
 import { NoPropsSchema } from "#contracts/visual/base/layout";
 import { cardFields, type RichSlot } from "#contracts/visual/card";
 import { type AnswerReader, figure, markup } from "#contracts/visual/entry";
 
-/** A scene and the rich labels it anchors, before the check that relates them. */
-interface LabeledScene {
-  readonly labels?: Readonly<Record<string, unknown>>;
-  readonly scene: MathVisual;
-}
+/** A scene and the keys of the rich labels it anchors, as the check reads them. */
+const LabeledSceneSchema = Schema.Struct({
+  labels: Schema.optionalKey(Schema.Record(Schema.String, Schema.Unknown)),
+  scene: MathVisualSchema,
+});
+type LabeledScene = typeof LabeledSceneSchema.Type;
+
+/** The appearance of one scene object, which says whether it draws the answer. */
+const AppearanceSchema = Schema.Struct({ appearance: MathAppearanceSchema });
+type Appearance = typeof AppearanceSchema.Type;
 
 /**
  * Checks that the rich labels match the anchors of the scene, key for key. A
@@ -51,7 +55,7 @@ const sceneAnswer: AnswerReader = (props) => {
   if (!Schema.is(MathVisualSchema)(scene)) {
     return [];
   }
-  const objects: readonly { readonly appearance: string }[] = scene.objects;
+  const objects: readonly Appearance[] = scene.objects;
   const answers = Arr.flatMap(objects, (object, index) =>
     object.appearance === "answer" ? [`scene.objects.${index}`] : []
   );

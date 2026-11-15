@@ -31,10 +31,11 @@ const DEFAULT_CAMERA_POSITION: typeof TripleSchema.Type = [10, 6, 10];
 const DEFAULT_CAMERA_TARGET: typeof TripleSchema.Type = [0, 0, 0];
 
 /** The camera of a scene: where it sits and where it looks, each optional. */
-interface CameraPose {
-  readonly cameraPosition?: typeof TripleSchema.Type;
-  readonly cameraTarget?: typeof TripleSchema.Type;
-}
+const CameraPoseSchema = Schema.Struct({
+  cameraPosition: Schema.optionalKey(TripleSchema),
+  cameraTarget: Schema.optionalKey(TripleSchema),
+});
+type CameraPose = typeof CameraPoseSchema.Type;
 
 /**
  * Checks that the camera sits away from the point it looks at, with the
@@ -56,8 +57,7 @@ function lineEquation<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       ...cardFields(rich),
-      cameraPosition: Schema.optionalKey(TripleSchema),
-      cameraTarget: Schema.optionalKey(TripleSchema),
+      ...CameraPoseSchema.fields,
       data: Schema.NonEmptyArray(sceneLine(rich)),
       showZAxis: Schema.optionalKey(Schema.Boolean),
     }).check(

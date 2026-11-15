@@ -1,9 +1,5 @@
 import { RichTextSchema } from "@nakafa/aksara-contracts/assessment/inline";
 import type {
-  ContentKey,
-  CorpusSourcePath,
-} from "@nakafa/aksara-contracts/ids";
-import type {
   ContentTreeElement,
   ContentTreeProps,
   ContentTreeValue,
@@ -25,6 +21,7 @@ import {
   SchemaIssue,
   SchemaTransformation,
 } from "effect";
+import type { AssessmentSite } from "#compiler/assessment/error";
 import { isTreeElement, treeRichText } from "#compiler/assessment/inline";
 import { VisualPropsError } from "#compiler/errors";
 
@@ -110,14 +107,8 @@ function elementsOfValue(
   return [];
 }
 
-/** Where a checked tree comes from, which every failure names. */
-interface TreeSite {
-  readonly contentKey: ContentKey;
-  readonly sourcePath: CorpusSourcePath;
-}
-
 /** Checks one component element against its catalog schema. */
-function checkElement(element: ContentTreeElement, site: TreeSite) {
+function checkElement(element: ContentTreeElement, site: AssessmentSite) {
   const component = Option.liftPredicate(
     element.name,
     Schema.is(VisualNameSchema)
@@ -149,7 +140,7 @@ function checkElement(element: ContentTreeElement, site: TreeSite) {
  * is a catalog component, and its props are the ones its schema takes.
  */
 export const checkTreeVisuals = Effect.fn("AksaraCompiler.checkTreeVisuals")(
-  function* (tree: ContentTreeElement, site: TreeSite) {
+  function* (tree: ContentTreeElement, site: AssessmentSite) {
     const components = Arr.filter(elementsOf(tree), ({ name }) =>
       COMPONENT_PATTERN.test(name)
     );

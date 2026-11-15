@@ -26,28 +26,27 @@ const ValueRangeSchema = Schema.Struct({
   })
 );
 
+/** The data a chart relates: its bar placement, its categories, and its series. */
+const ChartDataSchema = Schema.Struct({
+  /**
+   * How the bars of a chart that has bars stand: `apart` leaves a gap between
+   * neighboring categories, as a bar chart does, and `touching` closes it, as
+   * a histogram of classes does. A chart of lines alone has no bars to place.
+   */
+  bars: Schema.optionalKey(Schema.Literals(["apart", "touching"])),
+  categories: Schema.NonEmptyArray(TextSchema),
+  series: Schema.NonEmptyArray(ChartSeriesSchema),
+});
+type ChartData = typeof ChartDataSchema.Type;
+
 /** The fields of a chart, before the checks that relate them. */
 function chartFields<E>(rich: RichSlot<E>) {
   return Schema.Struct({
     ...cardFields(rich),
-    /**
-     * How the bars of a chart that has bars stand: `apart` leaves a gap between
-     * neighboring categories, as a bar chart does, and `touching` closes it, as
-     * a histogram of classes does. A chart of lines alone has no bars to place.
-     */
-    bars: Schema.optionalKey(Schema.Literals(["apart", "touching"])),
-    categories: Schema.NonEmptyArray(TextSchema),
-    series: Schema.NonEmptyArray(ChartSeriesSchema),
+    ...ChartDataSchema.fields,
     valueLabel: Schema.optionalKey(TextSchema),
     valueRange: Schema.optionalKey(ValueRangeSchema),
   });
-}
-
-/** The data a chart relates: its categories, its series, and its bar placement. */
-interface ChartData {
-  readonly bars?: "apart" | "touching";
-  readonly categories: readonly string[];
-  readonly series: readonly (typeof ChartSeriesSchema.Type)[];
 }
 
 /** Checks that every series has one value for each category, and at least one that is not null. */

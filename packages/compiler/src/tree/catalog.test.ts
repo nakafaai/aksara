@@ -4,7 +4,7 @@ import {
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
 import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
-import { Effect, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 import { checkTreeVisuals, TreeRichSchema } from "#compiler/tree/catalog";
 
 const site = {
@@ -79,17 +79,17 @@ describe("checkTreeVisuals", () => {
 describe("TreeRichSchema", () => {
   it.effect("reads rich text from a tree and never writes it back", () =>
     Effect.gen(function* () {
-      const rich = yield* Schema.decodeUnknownEffect(TreeRichSchema)("Plain");
-      const refused = yield* Schema.decodeUnknownEffect(TreeRichSchema)(
+      const rich = yield* Schema.decodeEffect(TreeRichSchema)("Plain");
+      const refused = yield* Schema.decodeEffect(TreeRichSchema)(
         element("fragment", {}, ["A", element("br", {}), "B"])
       ).pipe(Effect.flip);
-      const written = yield* Schema.encodeUnknownEffect(TreeRichSchema)(
-        rich
-      ).pipe(Effect.flip);
+      const written = yield* Effect.exit(
+        Schema.encodeEffect(TreeRichSchema)(rich)
+      );
 
       assert.deepStrictEqual(rich, [{ text: "Plain", type: "text" }]);
       assert.strictEqual(refused._tag, "SchemaError");
-      assert.strictEqual(written._tag, "SchemaError");
+      assert.isTrue(Exit.isFailure(written));
     })
   );
 });

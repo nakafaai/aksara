@@ -1,4 +1,4 @@
-import { Array as Arr, Predicate, Record as Rec, type Schema } from "effect";
+import { Array as Arr, Predicate, Record as Rec, Schema } from "effect";
 
 /**
  * How a document draws a catalog component. A `figure` is a visual that a
@@ -35,10 +35,11 @@ export interface VisualEntry<Props extends Schema.Top> {
 }
 
 /** The value one step of a path names in a value, with the path so far. */
-interface Located {
-  readonly path: readonly string[];
-  readonly value: unknown;
-}
+const LocatedSchema = Schema.Struct({
+  path: Schema.Array(Schema.String),
+  value: Schema.Unknown,
+});
+type Located = typeof LocatedSchema.Type;
 
 /** Follows one step of a path from every value reached so far. */
 function stepInto(located: readonly Located[], step: AnswerStep) {

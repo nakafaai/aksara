@@ -3,10 +3,11 @@ import { cardFields, type RichSlot } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** The two ends of one segment; a missing end is a ray to the edge of the axis. */
-interface SegmentEnds {
-  readonly end?: number;
-  readonly start?: number;
-}
+const SegmentEndsSchema = Schema.Struct({
+  end: Schema.optionalKey(Schema.Finite),
+  start: Schema.optionalKey(Schema.Finite),
+});
+type SegmentEnds = typeof SegmentEndsSchema.Type;
 
 /** Checks that a segment that has two ends does not end before it starts. */
 function isOrderedSegment({ end, start }: SegmentEnds) {
@@ -39,10 +40,11 @@ function segment<E>(rich: RichSlot<E>) {
 }
 
 /** The visible range of a number line, each end optional. */
-interface VisibleRange {
-  readonly max?: number;
-  readonly min?: number;
-}
+const VisibleRangeSchema = Schema.Struct({
+  max: Schema.optionalKey(Schema.Finite),
+  min: Schema.optionalKey(Schema.Finite),
+});
+type VisibleRange = typeof VisibleRangeSchema.Type;
 
 /** Checks that the visible range of a number line runs upward. */
 function isOrderedRange({ max, min }: VisibleRange) {
@@ -54,8 +56,7 @@ export function numberLine<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       ...cardFields(rich),
-      max: Schema.optionalKey(Schema.Finite),
-      min: Schema.optionalKey(Schema.Finite),
+      ...VisibleRangeSchema.fields,
       segments: Schema.NonEmptyArray(segment(rich)),
     }).check(
       Schema.makeFilter(isOrderedRange, {
