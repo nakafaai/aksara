@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$200$$ per $$100{.}000$$ penduduk, jauh di atas laju kabupaten",
+            "$$94$$ per $$100{.}000$$ penduduk, dan dalam persen sama besar dengan kenaikan banyak kasus",
         },
         {
           correct: false,
           label:
-            "$$80$$ per $$100{.}000$$ penduduk, jauh di bawah laju kabupaten, yaitu sekitar $$93$$",
+            "sekitar $$13{,}4$$ per $$100{.}000$$ penduduk, dan dalam persen lebih kecil daripada kenaikan banyak kasus karena penduduknya banyak",
         },
         {
           correct: false,
           label:
-            "$$130$$ per $$100{.}000$$ penduduk, tertinggi di antara semua kecamatan",
+            "sekitar $$19{,}6$$ per $$100{.}000$$ penduduk, dan dalam persen sama besar dengan kenaikan banyak kasus",
         },
         {
           correct: false,
           label:
-            "$$80$$ per $$100{.}000$$ penduduk, di atas laju kabupaten, yaitu sekitar $$69$$",
+            "sekitar $$13{,}4$$ per $$100{.}000$$ penduduk, dan dalam persen lebih besar daripada kenaikan banyak kasus",
         },
         {
           correct: true,
           label:
-            "$$80$$ per $$100{.}000$$ penduduk, sedikit di bawah laju kabupaten, yaitu $$82$$",
+            "sekitar $$13{,}4$$ per $$100{.}000$$ penduduk, dan dalam persen sama besar dengan kenaikan banyak kasus",
         },
       ],
     },

@@ -15,22 +15,27 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Jalur kereta api pertama di Hindia Belanda tidak dibangun oleh pemerintah kolonial.",
+            "Dari peletakan batu pertama sampai kereta mulai berjalan, pembangunan jalur Semarang ke Tanggung memakan waktu lebih dari tiga tahun.",
+        },
+        {
+          column: 2,
+          label:
+            "Ketika kereta pertama mulai berjalan, rel sudah mencapai Surakarta.",
         },
         {
           column: 1,
           label:
-            "Pembangunan jalur Semarang ke Tanggung, dari peletakan batu pertama sampai kereta mulai berjalan, memakan waktu lebih dari tiga tahun.",
+            "Selisih lebar rel jalur pertama dan rel yang akhirnya dipakai di sebagian besar Jawa lebih dari $$35$$ cm.",
         },
         {
           column: 2,
           label:
-            "Pada 1867, kereta api sudah dapat berjalan dari Semarang sampai Surakarta.",
+            "Rel selebar $$1{.}067$$ mm pertama kali dipakai di jalur Semarang ke Tanggung.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Lebar rel jalur Semarang ke pedalaman sama dengan lebar rel yang akhirnya dipakai di sebagian besar Jawa.",
+            "Sebelum lebar rel diseragamkan, barang dari jalur Semarang yang menuju jalur pemerintah harus dipindahkan ke kereta lain.",
         },
       ],
     },

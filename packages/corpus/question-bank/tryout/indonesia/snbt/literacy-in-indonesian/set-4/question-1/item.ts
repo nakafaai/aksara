@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Penulis menolak kedua pandangan itu karena tanggul tidak ada gunanya selama tanah turun dan keberatan warga hanya dalih untuk mempertahankan sumur.",
+            "Penulis menolak alasan pejabat tetapi tetap menganggap tanggul perlu, dan karena keberatan warga sah, ia mengusulkan agar pembatasan sumur ditunda sampai pipa menjangkau semua rumah.",
         },
         {
           correct: false,
           label:
-            "Penulis menerima hitungan pejabat tentang umur tanggul, tetapi menolak keberatan warga karena sumur rumah tangga adalah penyumbang penurunan terbesar.",
+            "Penulis menolak alasan pejabat dan menganggap tanggul tidak perlu, tetapi menerima keberatan warga sebagai syarat pelaksanaan pembatasan sumur.",
         },
         {
           correct: true,
           label:
-            "Penulis menolak alasan pejabat tetapi tetap menganggap tanggul perlu, dan menerima keberatan warga sebagai syarat pelaksanaan, bukan alasan menunda.",
+            "Penulis menolak alasan pejabat tetapi tetap menganggap tanggul perlu, dan menerima keberatan warga sebagai syarat pelaksanaan, bukan sebagai alasan untuk menunda.",
         },
         {
           correct: false,
           label:
-            "Penulis membenarkan keberatan warga sehingga ia mengusulkan agar pembatasan sumur menunggu sampai air perpipaan menjangkau semua rumah.",
+            "Penulis menolak alasan pejabat tetapi tetap menganggap tanggul perlu, dan menolak keberatan warga karena sumur rumah tangga adalah penyumbang penurunan terbesar.",
         },
         {
           correct: false,
           label:
-            "Penulis setuju bahwa perubahan iklim adalah penyebab utama genangan, tetapi menilai tanggul kurang hemat dibandingkan perluasan air perpipaan.",
+            "Penulis menerima hitungan pejabat bahwa tanggul aman berabad-abad, tetapi menolak keberatan warga karena tanah akan terus turun.",
         },
       ],
     },

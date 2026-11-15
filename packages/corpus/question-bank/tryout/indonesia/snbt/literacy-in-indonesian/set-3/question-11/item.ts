@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Teks B menerima manfaat edukasi dan bukti survei Teks A, tetapi menilai aturan tampilan biaya lebih mendesak.",
+            "Teks B menerima manfaat edukasi, meragukan survei Teks A karena sampelnya terlalu kecil, dan menilai aturan tampilan biaya lebih mendesak.",
         },
         {
           correct: false,
           label:
-            "Teks B meragukan bukti survei Teks A, dan karena itu menolak edukasi keuangan sebagai langkah yang sia-sia.",
+            "Teks B menolak edukasi keuangan, meragukan survei Teks A karena tidak punya pembanding, dan menilai aturan tampilan biaya lebih mendesak.",
         },
         {
           correct: false,
           label:
-            "Teks B menerima bahwa literasi rendah adalah akar masalah, tetapi menilai edukasi di sekolah terlalu lambat untuk menolong warga.",
+            "Teks B menerima manfaat edukasi, meragukan survei Teks A karena tidak punya pembanding, dan menilai edukasi di sekolah lebih mendesak daripada aturan.",
         },
         {
           correct: false,
           label:
-            "Teks B membantah angka bunga Teks A, karena bunga sebenarnya dihitung dari uang yang diterima peminjam.",
+            "Teks B menerima manfaat edukasi, menerima survei Teks A sebagai bukti akar masalah, dan menilai aturan tampilan biaya lebih mendesak.",
         },
         {
           correct: true,
           label:
-            "Teks B menerima manfaat edukasi, tetapi meragukan bukti Teks A dan menilai rancangan produk serta pengawasan lebih mendesak.",
+            "Teks B menerima manfaat edukasi, meragukan survei Teks A karena tidak punya pembanding, dan menilai aturan tampilan biaya dan pengawasan lebih mendesak.",
         },
       ],
     },

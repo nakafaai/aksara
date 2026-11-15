@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Warsito masih menganggap nasihat itu dalih, tetapi ia menyetir pelan karena bus tuanya sudah tidak kuat melaju kencang.",
+            "Warsito kini menerima nasihat itu, dan sikapnya membuat Ardi ikut menerimanya, sehingga di akhir perjalanan Ardi tidak lagi mempersoalkan keterlambatan.",
         },
         {
           correct: true,
           label:
-            "Warsito kini menerima nasihat itu, dan sikapnya yang tenang malam itu ikut membuat Ardi berhenti mengejar waktu.",
+            "Warsito kini menerima nasihat itu, dan sikapnya membuat Ardi berhenti melirik jam selama perjalanan, walaupun di akhir Ardi masih menilai keterlambatan dengan ukuran kantor travel.",
         },
         {
           correct: false,
           label:
-            "Warsito kini menerima nasihat itu, tetapi Ardi tetap gelisah mengejar waktu sampai bus tiba di Jakarta.",
+            "Warsito masih menganggap nasihat itu dalih, tetapi ia menyetir pelan karena bus tuanya tidak kuat lagi, dan Ardi tetap melirik jam sampai Jakarta.",
         },
         {
           correct: false,
           label:
-            "Warsito menolak nasihat itu, dan karena itu ia memacu bus agar Ardi tiba di kantor travel sebelum subuh.",
+            "Warsito kini menerima nasihat itu, dan sikapnya membuat Ardi berhenti melirik jam, sehingga Ardi memutuskan tidak jadi bekerja di kantor travel.",
         },
         {
           correct: false,
           label:
-            "Warsito kini menerima nasihat itu, karena perusahaan melarang sopir melaju di atas delapan puluh kilometer per jam.",
+            "Warsito kini menerima nasihat itu karena perusahaan membatasi kecepatan bus, dan Ardi tetap melirik jam sampai Jakarta.",
         },
       ],
     },

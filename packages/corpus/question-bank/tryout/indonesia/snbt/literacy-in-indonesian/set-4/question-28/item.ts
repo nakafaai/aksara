@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "research-design",
   },
   stimulus: "choice-overload",
   versions: {
@@ -12,29 +12,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Seorang penggemar kopi membeli merek langganannya dari rak yang memajang $$40$$ merek kopi.",
-        },
-        {
-          correct: false,
-          label:
-            "Seorang siswa memilih satu dari tiga paket wisata sekolah yang semuanya sama kecuali dalam harga per orang.",
-        },
-        {
           correct: true,
           label:
-            "Seorang pekerja baru memilih satu dari $$30$$ paket asuransi kesehatan yang berbeda dalam banyak syarat sekaligus.",
+            "Meminta pekerja baru yang belum paham asuransi memilih dari $$5$$ atau $$30$$ paket asuransi kesehatan yang berbeda dalam banyak syarat.",
         },
         {
           correct: false,
           label:
-            "Seorang pembeli memilih warna kaus dari $$12$$ warna yang harganya sama dan modelnya sama.",
+            "Mengulang percobaan selai di toko yang sama dengan $$6$$ dan $$24$$ rasa, agar hasilnya dapat dibandingkan langsung.",
         },
         {
           correct: false,
           label:
-            "Seorang ibu membeli beras dengan merek yang sama seperti setiap bulan dari toko yang biasa ia datangi di dekat rumah.",
+            "Meminta pembeli umum memilih kaus dari $$5$$ atau $$30$$ warna, dengan harga dan model yang sama.",
+        },
+        {
+          correct: false,
+          label:
+            "Meminta agen asuransi berpengalaman memilih dari $$5$$ atau $$30$$ paket asuransi kesehatan yang berbeda dalam banyak syarat.",
+        },
+        {
+          correct: false,
+          label:
+            "Meminta pembeli yang terburu-buru memilih dari $$5$$ atau $$30$$ merek air mineral yang hampir sama.",
         },
       ],
     },

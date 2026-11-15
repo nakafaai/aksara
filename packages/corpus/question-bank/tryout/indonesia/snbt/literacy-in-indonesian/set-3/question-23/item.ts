@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "membantah kesimpulan paragraf sebelumnya, sehingga penulis akhirnya menyebut rel sebagai alat modernisasi bagi seluruh penduduk",
+            "Paragraf itu mengakui manfaat rel bagi pedagang kecil dan buruh, paragraf itu membatalkan kesimpulan tentang siapa yang paling diuntungkan, dan manfaat itu digambarkan bukan sebagai tujuan utama.",
         },
         {
           correct: false,
           label:
-            "menambah bukti bahwa keuntungan terbesar jatuh ke pemilik perkebunan, karena pasar baru melayani perkebunan",
+            "Paragraf itu mengakui manfaat rel bagi pemilik perkebunan, paragraf itu tidak membatalkan kesimpulan tentang siapa yang paling diuntungkan, dan manfaat itu digambarkan bukan sebagai tujuan utama.",
         },
         {
           correct: false,
           label:
-            "menjelaskan mengapa perusahaan swasta, bukan pemerintah, yang membangun jalur pertama",
+            "Paragraf itu membantah sebutan awal modernisasi dalam buku pelajaran, paragraf itu tidak membatalkan kesimpulan tentang siapa yang paling diuntungkan, dan manfaat itu digambarkan bukan sebagai tujuan utama.",
         },
         {
           correct: true,
           label:
-            "mengakui manfaat rel bagi sebagian penduduk agar penilaian penulis tidak berat sebelah, tanpa membatalkan kesimpulan tentang siapa yang paling diuntungkan",
+            "Paragraf itu mengakui manfaat rel bagi pedagang kecil dan buruh, paragraf itu tidak membatalkan kesimpulan tentang siapa yang paling diuntungkan, dan manfaat itu digambarkan bukan sebagai tujuan utama, tetapi tetap nyata.",
         },
         {
           correct: false,
           label:
-            "menunjukkan bahwa manfaat bagi penumpang adalah tujuan utama yang sejak awal direncanakan perusahaan kereta api swasta itu",
+            "Paragraf itu mengakui manfaat rel bagi pedagang kecil dan buruh, paragraf itu tidak membatalkan kesimpulan tentang siapa yang paling diuntungkan, dan manfaat itu digambarkan sudah direncanakan sejak awal.",
         },
       ],
     },
