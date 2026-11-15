@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The grandfather had begun to forget how to protect the orchard.",
+            "The narrator found the list in the coat pocket on the night of the frost.",
         },
         {
           column: 1,
@@ -30,7 +30,12 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The narrator blames the Hallers for not watering their trees.",
+            "The list shows that the grandfather no longer trusted his own memory of the steps.",
+        },
+        {
+          column: 2,
+          label:
+            "The list repeats the thermometer readings that the grandfather wrote on his hand that night.",
         },
       ],
     },

@@ -20,7 +20,7 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The land bridges that critics proposed were meant to explain the shared fossils, yet they left the ancient ice in India unexplained.",
+            "The land bridges that critics proposed were meant to explain the shared fossils, yet they could not account for the ancient ice sheets that Wegener had pointed to.",
         },
         {
           column: 2,

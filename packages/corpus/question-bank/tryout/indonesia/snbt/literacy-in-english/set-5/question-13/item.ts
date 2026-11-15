@@ -30,7 +30,12 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Eastport had more cases than Hillcrest because Eastport has more children.",
+            "If the private school's families had all been vaccinated, Eastport's coverage would have risen well above $$95\\%$$.",
+        },
+        {
+          column: 2,
+          label:
+            "Eastport's unvaccinated children were spread fairly evenly across the district.",
         },
       ],
     },

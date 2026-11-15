@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "assumption",
+    topic: "text-relation",
   },
   stimulus: "nuclear-power",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "That gas plants used only during rare windless weeks would add little carbon dioxide to the air while they are held in reserve.",
+            "It accepts that the country can go on burning some gas, but rejects the claim that gas plants used only in rare windless weeks would emit little.",
         },
         {
           correct: false,
           label:
-            "That wind farms and solar parks can be planned and built far more quickly than a reactor that is approved at the same time.",
+            "It accepts that gas plants used only in rare windless weeks would emit little, but rejects the claim that wind farms and solar parks can be built quickly.",
         },
         {
           correct: true,
           label:
-            "That storage will improve enough to take over from the reserve gas plants before the country has to stop burning gas altogether.",
+            "It accepts that gas plants used only in rare windless weeks would emit little, but rejects the idea that the country can rely on them once it stops burning gas.",
         },
         {
           correct: false,
           label:
-            "That a reactor emits almost no carbon dioxide while it runs and produces power steadily whatever the weather happens to be.",
+            "It accepts that storage will close the gap by the 2040s, but rejects the cost of keeping gas plants in reserve until then.",
         },
         {
           correct: false,
           label:
-            "That batteries can already carry the whole grid through a windless winter week without any help from a steady source.",
+            "It accepts that gas plants used only in rare windless weeks would emit little, but rejects them because they would cost more to build than reactors.",
         },
       ],
     },

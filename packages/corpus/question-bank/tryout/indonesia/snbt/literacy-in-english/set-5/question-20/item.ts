@@ -28,9 +28,14 @@ const item: ItemSource = {
             "The grandfather's nod after her clumsy explanation shows encouragement rather than judgement.",
         },
         {
+          column: 1,
+          label:
+            "The narrator tells the story some time later, knowing more than she did on the night of the frost.",
+        },
+        {
           column: 2,
           label:
-            "The story is told by the grandfather looking back on his life.",
+            'The grandfather\'s remark that the Hallers "had been unlucky" shows that he believed the frost, not the watering, decided which trees bore fruit.',
         },
       ],
     },

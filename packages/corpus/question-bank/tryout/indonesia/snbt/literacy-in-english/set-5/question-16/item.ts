@@ -14,12 +14,12 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "He believes the pump is close to failing and must be watched every minute until morning.",
+            "He believes the pump is close to failing, and he wants her to call him if it stops.",
         },
         {
           correct: false,
           label:
-            "He has lost interest in the orchard now that every twig has been cased in ice.",
+            "He is more tired than he will admit, and he sends her to watch the pump so that he can rest without her seeing him.",
         },
         {
           correct: false,
@@ -29,7 +29,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "He is annoyed that the narrator questioned his decision to water the trees.",
+            "He is annoyed that she questioned his method, and he gives her a task to keep her quiet.",
         },
         {
           correct: true,

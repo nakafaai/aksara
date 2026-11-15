@@ -31,6 +31,11 @@ const item: ItemSource = {
           label:
             "Raising Northgate's coverage to $$95\\%$$ would have meant vaccinating about $$1{,}500$$ more of its children.",
         },
+        {
+          column: 1,
+          label:
+            "Raising Northgate's coverage to $$95\\%$$ would have lifted the provincial figure to about $$95.5\\%$$.",
+        },
       ],
     },
   },
