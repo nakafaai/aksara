@@ -1,15 +1,62 @@
-Eine Nullstelle ist ein <InlineMath math="x" /> mit <InlineMath math="f(x)=0" />. Bei einer quadratischen Funktion <InlineMath math="x^2+px+q" /> entscheidet die **Diskriminante <InlineMath math="D=p^2-4q" />**: Ist sie negativ, gibt es keine Nullstelle. Prüfe jede Funktion.
+# Der Abstand der Nullstellen bestimmt die Tiefe
 
-Für <InlineMath math="f(x)=x^2+2x+3" /> ist <InlineMath math="p=2" /> und <InlineMath math="q=3" />.
+Schreibe <InlineMath math="f" /> in Scheitelpunktform: <InlineMath math="f(x)=(x-h)^2+k" /> mit dem Scheitel <InlineMath math="S(h\mid k)" />. Die Nullstellen liegen symmetrisch zum Scheitel, also je <InlineMath math="3" /> links und rechts von <InlineMath math="h" />. Bei <InlineMath math="x=h+3" /> ist <InlineMath math="f=0" />:
 
-<BlockMath math="D=2^2-4\cdot3=4-12=-8<0" />
+<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
 
-Diese Funktion hat also keine Nullstelle. Zur Kontrolle ergänzt du quadratisch: <InlineMath math="x^2+2x+3=(x+1)^2+2" />. Ein Quadrat ist nie negativ, also ist der Funktionswert immer mindestens <InlineMath math="2" /> und nie null.
+Der Scheitel liegt also **<InlineMath math="9" /> Einheiten unter der <InlineMath math="x" />-Achse**, unabhängig von <InlineMath math="h" />.
 
-Keine Nullstelle hat also <InlineMath math="f(x)=x^2+2x+3" />.
+# Die Gerade legt die Lage fest
 
-- <InlineMath math="f(x)=x^2-2x+1=(x-1)^2" /> hat die Nullstelle <InlineMath math="x=1" />.
-- <InlineMath math="f(x)=x^2-3" /> hat die Nullstellen <InlineMath math="x=\sqrt3" /> und <InlineMath math="x=-\sqrt3" />.
-- <InlineMath math="f(x)=2x+5" /> ist eine Gerade mit der Steigung <InlineMath math="2" /> und schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="x=-\frac52" />.
-- <InlineMath math="f(x)=x^2+x-1" /> hat die Diskriminante <InlineMath math="1+4=5>0" /> und damit zwei Nullstellen.
-- <InlineMath math="f(x)=-x^2+4" /> hat die Nullstellen <InlineMath math="x=2" /> und <InlineMath math="x=-2" />, denn <InlineMath math="-4+4=0" />.
+Der Scheitel liegt auf <InlineMath math="y=x-10" />, also **gilt <InlineMath math="k=h-10" />**:
+
+<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+
+# Die Funktionsgleichung
+
+<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+
+<MathVisual
+  title={<>Parabel, Nullstellen und Scheitel</>}
+  description={<>Die Parabel <InlineMath math="y=x^2-2x-8" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-2" /> und <InlineMath math="4" />, also in Punkten mit dem Abstand <InlineMath math="6" />. Ihr Scheitel <InlineMath math="S(1\mid-9)" /> liegt in der Mitte darunter, genau auf der Geraden <InlineMath math="y=x-10" />.</>}
+  labels={{
+    v: <><InlineMath math="S(1\mid-9)" /></>,
+    l: <><InlineMath math="y=x-10" /></>,
+    r1: <><InlineMath math="-2" /></>,
+    r2: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 8 },
+      y: { min: -12, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 8", domain: { min: -3, max: 5 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 10", domain: { min: -1, max: 6 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "width", kind: "segment", appearance: "highlight", from: { x: -2, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -9 } },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 1, y: -9 }, placement: "below-left" },
+      { key: "l", objectId: "line", at: { x: 6, y: -4 }, placement: "right" },
+      { key: "r1", objectId: "z1", at: { x: -2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "z2", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> hat die Nullstellen <InlineMath math="4" /> und <InlineMath math="-2" />, im Abstand <InlineMath math="6" />. **Die gesuchte Gleichung** ist <InlineMath math="f(x)=x^2-2x-8" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="f(x)=x^2+2x-8" /> hat den Scheitel <InlineMath math="(-1\mid-9)" />. Dieser Punkt liegt **nicht auf der Geraden**, denn <InlineMath math="-1-10=-11\ne-9" />.
+- <InlineMath math="f(x)=x^2-14x+46" /> nimmt die Tiefe <InlineMath math="3" /> statt <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
+- <InlineMath math="f(x)=x^2-2x-9" /> übernimmt <InlineMath math="k=-9" /> als konstanten Term, ohne <InlineMath math="(x-1)^2" /> auszumultiplizieren.
+- <InlineMath math="f(x)=x^2-2x+8" /> hat ein falsches Vorzeichen beim konstanten Term. Diese Parabel hat gar keine Nullstelle.
+- <InlineMath math="f(x)=x^2-4x-5" /> hat zwar Nullstellen im Abstand <InlineMath math="6" />, aber den Scheitel <InlineMath math="(2\mid-9)" />, der nicht auf der Geraden liegt.

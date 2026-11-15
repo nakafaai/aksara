@@ -1,15 +1,59 @@
-Die gesuchte Strecke ist die Hypotenuse eines **rechtwinkligen Dreiecks im Inneren des Würfels**. Seine Ecken sind die Ecke <InlineMath math="E" /> der Grundfläche, der Punkt <InlineMath math="M" /> und der Mittelpunkt <InlineMath math="N" /> der Grundfläche direkt unter <InlineMath math="M" />.
+# Was ein Inkreis für die Seiten bedeutet
 
-Die senkrechte Kathete <InlineMath math="\overline{NM}" /> ist eine Kantenlänge, also <InlineMath math="4\text{ cm}" />. Die waagerechte Kathete <InlineMath math="\overline{EN}" /> ist die halbe Diagonale der Grundfläche. Die ganze Diagonale ist <InlineMath math="4\sqrt2\text{ cm}" />, die Hälfte also <InlineMath math="2\sqrt2\text{ cm}" />.
+Von jeder Ecke aus sind die beiden Tangentenabschnitte zum Inkreis gleich lang. Deshalb gilt in jedem Viereck mit Inkreis: **Die Summen gegenüberliegender Seiten sind gleich**. Für das Trapez mit den Schenkeln <InlineMath math="s" /> heißt das:
 
-<BlockMath math="\overline{EM}^2=\left(2\sqrt2\right)^2+4^2=8+16=24\quad\Rightarrow\quad\overline{EM}=\sqrt{24}=2\sqrt6" />
+<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
 
-Zur Kontrolle liegt das Ergebnis <InlineMath math="2\sqrt6\approx4{,}9" /> zwischen der Kantenlänge <InlineMath math="4" /> und der Raumdiagonalen <InlineMath math="4\sqrt3\approx6{,}9" />. Das passt, denn <InlineMath math="M" /> liegt näher an <InlineMath math="E" /> als die gegenüberliegende Ecke, aber weiter weg als die Ecke direkt darüber.
+# Die Höhe aus einem Stützdreieck
 
-Der Abstand beträgt also <InlineMath math="2\sqrt6\text{ cm}" />.
+Fälle von einer oberen Ecke das Lot auf die Grundseite. Wegen der Symmetrie steht es <InlineMath math="\frac{8-2}{2}=3" /> vom Ende der Grundseite entfernt. Es entsteht **ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="5" />**:
 
-- <InlineMath math="4\sqrt3\text{ cm}" /> ist die Raumdiagonale zur gegenüberliegenden Ecke, nicht der Abstand zur Flächenmitte.
-- <InlineMath math="4\sqrt2\text{ cm}" /> ist eine Flächendiagonale des Würfels.
-- <InlineMath math="2\sqrt5\text{ cm}" /> ist <InlineMath math="\sqrt{2^2+4^2}" />. Hier wird als waagerechte Kathete nur die halbe Kante statt der halben Diagonale genommen.
-- <InlineMath math="2\sqrt2\text{ cm}" /> ist nur die waagerechte Kathete. Der senkrechte Teil fehlt.
-- <InlineMath math="6\text{ cm}" /> addiert halbe Kante und Kante, <InlineMath math="2+4" />, statt den Satz des Pythagoras anzuwenden.
+<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+
+<MathVisual
+  title={<>Das Trapez mit Inkreis</>}
+  description={<>Ein gleichschenkliges Trapez mit der Grundseite <InlineMath math="8" /> unten, der Deckseite <InlineMath math="2" /> oben und zwei Schenkeln der Länge <InlineMath math="5" />. Der Inkreis berührt alle vier Seiten und hat den Radius <InlineMath math="2" />. Die Höhe <InlineMath math="h=4" /> ist so groß wie sein Durchmesser.</>}
+  labels={{
+    long: <><InlineMath math="8" /></>,
+    short: <><InlineMath math="2" /></>,
+    leg: <><InlineMath math="5" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    r: <><InlineMath math="r=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "trapezoid", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "trapezoid", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "trapezoid", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "leg", objectId: "trapezoid", at: { x: 2.5, y: 2 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "r", objectId: "radius", at: { x: 0, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Der Flächeninhalt
+
+<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+
+Probe: Der Inkreis hat den Radius <InlineMath math="\frac h2=2" />, und es gilt <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. Das Trapez hat **den Flächeninhalt <InlineMath math="20\text{ cm}^2" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="25\text{ cm}^2" /> nimmt **den Schenkel <InlineMath math="5" /> als Höhe**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
+- <InlineMath math="40\text{ cm}^2" /> vergisst das Halbieren in der Trapezformel: <InlineMath math="(8+2)\cdot4" />.
+- <InlineMath math="15\text{ cm}^2" /> nimmt den Überstand <InlineMath math="3" /> als Höhe.
+- <InlineMath math="10\text{ cm}^2" /> nimmt den Radius <InlineMath math="2" /> statt des Durchmessers <InlineMath math="4" /> als Höhe.
+- <InlineMath math="30\text{ cm}^2" /> rechnet mit der Höhe <InlineMath math="3" /> und ohne das Halbieren: <InlineMath math="(8+2)\cdot3" />.

@@ -1,15 +1,58 @@
-The task asks by what percentage the average speed (*Durchschnittsgeschwindigkeit*) has risen. For a fixed distance, <InlineMath math="v=\frac{s}{t}" />. Speed and travel time are therefore **inversely proportional**: if the time falls to a fraction, the speed grows by the reciprocal of that fraction.
+# The average comes from distance and time
 
-The new time is <InlineMath math="\frac23" /> of the old one. So the new speed is <InlineMath math="\frac32" /> times the old one.
+The average speed is **the whole distance divided by the whole time**, not the mean of the two speeds. Call the one-way distance <InlineMath math="s" /> and the return speed <InlineMath math="v" />:
 
-<BlockMath math="v_{\text{new}}=\frac{s}{\frac23\,t}=\frac32\cdot\frac{s}{t}=1.5\cdot v_{\text{old}}" />
+<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
 
-The factor <InlineMath math="1.5" /> means an increase of <InlineMath math="50\,\%" />. As a check, take a distance of <InlineMath math="300\text{ km}" />. Before, the train averages <InlineMath math="300:3=100\ \tfrac{\text{km}}{\text{h}}" />, afterwards <InlineMath math="300:2=150\ \tfrac{\text{km}}{\text{h}}" />. That is <InlineMath math="50" /> more, which relative to <InlineMath math="100" /> is <InlineMath math="50\,\%" />.
+# The distance cancels
 
-So the average speed has risen by <InlineMath math="50\,\%" />.
+Cancel <InlineMath math="s" /> and keep working with reciprocals:
 
-- <InlineMath math="33\tfrac13\,\%" /> is the drop in travel time, one hour out of three. The task asks for the rise in speed.
-- <InlineMath math="66\tfrac23\,\%" /> is the new travel time as a share of the old one, <InlineMath math="\frac23" />.
-- <InlineMath math="60\,\%" /> takes the <InlineMath math="60" /> minutes saved as a percentage.
-- <InlineMath math="150\,\%" /> is the new speed as a share of the old one. The increase is only the part above <InlineMath math="100\,\%" />.
-- <InlineMath math="1.5\,\%" /> writes the factor <InlineMath math="1.5" /> as a percentage instead of converting it to <InlineMath math="150\,\%" />.
+<BlockMath math="\begin{aligned}
+\frac{2}{\frac1{20}+\frac1v}&=24 \\
+\frac1{20}+\frac1v&=\frac1{12} \\
+\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\end{aligned}" />
+
+So **the speed is <InlineMath math="v=30" />**.
+
+<MathVisual
+  title={<>Average depending on the return speed</>}
+  description={<>The graph shows the average speed <InlineMath math="\frac{40v}{v+20}" /> for return speeds <InlineMath math="v" /> when the outward trip is at <InlineMath math="20" />. It rises more and more slowly and stays below <InlineMath math="40" />. The line at <InlineMath math="24" /> meets it at <InlineMath math="v=30" />, not at <InlineMath math="28" />.</>}
+  labels={{
+    key: <><InlineMath math="v=30" /></>,
+    a: <>average</>,
+    t: <><InlineMath math="24" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 62 },
+      y: { min: 0, max: 34 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "40*x/(x+20)", domain: { min: 5, max: 60 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 24 }, to: { x: 60, y: 24 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 24 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 30, y: 24 }, placement: "below-right" },
+      { key: "a", objectId: "average", at: { x: 55, y: 29.3 }, placement: "above" },
+      { key: "t", objectId: "target", at: { x: 0, y: 24 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Check with a sample distance
+
+For <InlineMath math="s=60\text{ km}" /> the trip out takes <InlineMath math="3" /> hours and the trip back <InlineMath math="2" /> hours. <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> hours gives an average of <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. She rides back **at <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> uses **the plain average**: <InlineMath math="\frac{20+v}{2}=24" />. But she spends more time on the slow trip out.
+- <InlineMath math="28.8\,\frac{\text{km}}{\text{h}}" /> is <InlineMath math="\frac{24^2}{20}" />, a geometric mean.
+- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> doubles the outward speed.
+- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> reads the reciprocal <InlineMath math="\frac1{12}" /> as a speed.
+- "Not possible at any speed" comes from leaving out the factor <InlineMath math="2" /> for the doubled distance: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> would only have negative solutions.

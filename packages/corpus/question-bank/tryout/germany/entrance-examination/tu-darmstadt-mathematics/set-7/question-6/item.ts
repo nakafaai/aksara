@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$f(x)=x^2-2x+1$$",
+          label: "$$f(x)=x^2+2x-8$$",
         },
         {
           correct: false,
-          label: "$$f(x)=x^2-3$$",
+          label: "$$f(x)=x^2-14x+46$$",
         },
         {
           correct: false,
-          label: "$$f(x)=2x+5$$",
+          label: "$$f(x)=x^2-2x-9$$",
         },
         {
           correct: false,
-          label: "$$f(x)=x^2+x-1$$",
+          label: "$$f(x)=x^2-2x+8$$",
+        },
+        {
+          correct: false,
+          label: "$$f(x)=x^2-4x-5$$",
         },
         {
           correct: true,
-          label: "$$f(x)=x^2+2x+3$$",
-        },
-        {
-          correct: false,
-          label: "$$f(x)=-x^2+4$$",
+          label: "$$f(x)=x^2-2x-8$$",
         },
       ],
     },

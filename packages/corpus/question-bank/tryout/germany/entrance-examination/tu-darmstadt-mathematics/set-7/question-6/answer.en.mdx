@@ -1,15 +1,62 @@
-The task asks which function has *keine Nullstelle* (no zero) in the real numbers. A zero is an <InlineMath math="x" /> with <InlineMath math="f(x)=0" />. For a quadratic function <InlineMath math="x^2+px+q" />, the **discriminant <InlineMath math="D=p^2-4q" />** decides: if it is negative, there is no zero. Check each function.
+# The distance between the zeros fixes the depth
 
-For <InlineMath math="f(x)=x^2+2x+3" />, <InlineMath math="p=2" /> and <InlineMath math="q=3" />.
+Write <InlineMath math="f" /> in vertex form: <InlineMath math="f(x)=(x-h)^2+k" /> with vertex <InlineMath math="S(h\mid k)" />. The zeros lie symmetric about the vertex, <InlineMath math="3" /> to the left and <InlineMath math="3" /> to the right of <InlineMath math="h" />. At <InlineMath math="x=h+3" />, <InlineMath math="f=0" />:
 
-<BlockMath math="D=2^2-4\cdot3=4-12=-8<0" />
+<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
 
-So this function has no zero. As a check, complete the square: <InlineMath math="x^2+2x+3=(x+1)^2+2" />. A square is never negative, so the value is always at least <InlineMath math="2" /> and never zero.
+So the vertex lies **<InlineMath math="9" /> units below the <InlineMath math="x" />-axis**, whatever <InlineMath math="h" /> is.
 
-So the function without a zero is <InlineMath math="f(x)=x^2+2x+3" />.
+# The line fixes the position
 
-- <InlineMath math="f(x)=x^2-2x+1=(x-1)^2" /> has the zero <InlineMath math="x=1" />.
-- <InlineMath math="f(x)=x^2-3" /> has the zeros <InlineMath math="x=\sqrt3" /> and <InlineMath math="x=-\sqrt3" />.
-- <InlineMath math="f(x)=2x+5" /> is a line with slope <InlineMath math="2" /> and crosses the <InlineMath math="x" />-axis at <InlineMath math="x=-\frac52" />.
-- <InlineMath math="f(x)=x^2+x-1" /> has the discriminant <InlineMath math="1+4=5>0" /> and therefore two zeros.
-- <InlineMath math="f(x)=-x^2+4" /> has the zeros <InlineMath math="x=2" /> and <InlineMath math="x=-2" />, because <InlineMath math="-4+4=0" />.
+The vertex lies on <InlineMath math="y=x-10" />, so **it satisfies <InlineMath math="k=h-10" />**:
+
+<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+
+# The equation of the function
+
+<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+
+<MathVisual
+  title={<>Parabola, zeros and vertex</>}
+  description={<>The parabola <InlineMath math="y=x^2-2x-8" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-2" /> and <InlineMath math="4" />, points <InlineMath math="6" /> apart. Its vertex <InlineMath math="S(1\mid-9)" /> lies midway below them, exactly on the line <InlineMath math="y=x-10" />.</>}
+  labels={{
+    v: <><InlineMath math="S(1\mid-9)" /></>,
+    l: <><InlineMath math="y=x-10" /></>,
+    r1: <><InlineMath math="-2" /></>,
+    r2: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 8 },
+      y: { min: -12, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 8", domain: { min: -3, max: 5 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 10", domain: { min: -1, max: 6 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "width", kind: "segment", appearance: "highlight", from: { x: -2, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -9 } },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 1, y: -9 }, placement: "below-left" },
+      { key: "l", objectId: "line", at: { x: 6, y: -4 }, placement: "right" },
+      { key: "r1", objectId: "z1", at: { x: -2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "z2", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> has zeros <InlineMath math="4" /> and <InlineMath math="-2" />, <InlineMath math="6" /> apart. **The equation you want** is <InlineMath math="f(x)=x^2-2x-8" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="f(x)=x^2+2x-8" /> has vertex <InlineMath math="(-1\mid-9)" />. That point **isn't on the line**, because <InlineMath math="-1-10=-11\ne-9" />.
+- <InlineMath math="f(x)=x^2-14x+46" /> takes the depth as <InlineMath math="3" /> instead of <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
+- <InlineMath math="f(x)=x^2-2x-9" /> uses <InlineMath math="k=-9" /> as the constant term without expanding <InlineMath math="(x-1)^2" />.
+- <InlineMath math="f(x)=x^2-2x+8" /> has the wrong sign on the constant term. This parabola has no zeros at all.
+- <InlineMath math="f(x)=x^2-4x-5" /> does have zeros <InlineMath math="6" /> apart, but its vertex <InlineMath math="(2\mid-9)" /> isn't on the line.

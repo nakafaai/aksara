@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$c=\\frac{2A}{h}+a$$",
-        },
-        {
-          correct: false,
-          label: "$$c=\\frac{A}{2h}-a$$",
-        },
-        {
-          correct: false,
-          label: "$$c=\\frac{2A-a}{h}$$",
-        },
-        {
-          correct: false,
-          label: "$$c=2Ah-a$$",
-        },
-        {
-          correct: false,
-          label: "$$c=\\frac{h}{2A}-a$$",
+          label: "$$1$$",
         },
         {
           correct: true,
-          label: "$$c=\\frac{2A}{h}-a$$",
+          label: "$$-1$$",
+        },
+        {
+          correct: false,
+          label: "$$-2$$",
+        },
+        {
+          correct: false,
+          label: "$$-\\frac12$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$",
+        },
+        {
+          correct: false,
+          label: "$$\\frac12$$",
         },
       ],
     },

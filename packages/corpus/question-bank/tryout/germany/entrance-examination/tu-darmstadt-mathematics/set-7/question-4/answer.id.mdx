@@ -1,21 +1,63 @@
-Soal menanyakan nilai <InlineMath math="x" />. Jarak dua titik kamu hitung dengan **teorema Pythagoras**. Selisih koordinat <InlineMath math="x" /> dan selisih koordinat <InlineMath math="y" /> menjadi sisi siku-siku, sedangkan jaraknya menjadi sisi miring.
+# Sama jauh berarti garis sumbu
 
-Selisih koordinat <InlineMath math="y" /> adalah <InlineMath math="6-2=4" />. Sebut selisih koordinat <InlineMath math="x" /> sebagai <InlineMath math="x-1" />.
+Semua titik yang sama jauh dari <InlineMath math="A" /> dan <InlineMath math="B" /> terletak **pada garis sumbu ruas <InlineMath math="\overline{AB}" />**. Garis itu melalui titik tengah <InlineMath math="M(3\mid3)" /> dan tegak lurus <InlineMath math="\overline{AB}" />. Ruas itu bergradien <InlineMath math="\frac{1-5}{5-1}=-1" />, jadi garis sumbunya bergradien <InlineMath math="1" />:
 
-<BlockMath math="\begin{aligned}
-(x-1)^2+4^2&=5^2 \\
-(x-1)^2&=25-16=9 \\
-x-1&=3\quad\text{atau}\quad x-1=-3
-\end{aligned}" />
+<BlockMath math="y-3=1\cdot(x-3)\quad\Longleftrightarrow\quad y=x" />
 
-Dari sini diperoleh <InlineMath math="x=4" /> atau <InlineMath math="x=-2" />. Karena syarat <InlineMath math="x>1" />, hanya <InlineMath math="x=4" /> yang tersisa.
+# Tentukan titik potongnya dengan <InlineMath math="g" />
 
-Sebagai pemeriksaan, hitung jarak <InlineMath math="P(1\mid2)" /> dan <InlineMath math="Q(4\mid6)" />: <InlineMath math="\sqrt{3^2+4^2}=\sqrt{25}=5" />.
+<InlineMath math="P" /> terletak pada kedua garis, jadi **berlaku <InlineMath math="2x-1=x" />**:
 
-Jadi, <InlineMath math="x=4" />.
+<BlockMath math="x=1,\quad y=1\quad\Longrightarrow\quad P(1\mid1)" />
 
-- <InlineMath math="x=-2" /> juga memenuhi persamaannya, tetapi melanggar syarat <InlineMath math="x>1" />.
-- <InlineMath math="x=3" /> hanyalah selisih <InlineMath math="x-1" />. Angka <InlineMath math="1" /> masih harus ditambahkan.
-- <InlineMath math="x=6" /> memakai seluruh jarak <InlineMath math="5" /> sebagai selisih mendatar dan mengabaikan selisih tegak <InlineMath math="4" />.
-- <InlineMath math="x=1+\sqrt{21}" /> lupa mengkuadratkan <InlineMath math="4" />, yaitu <InlineMath math="(x-1)^2=25-4" />.
-- <InlineMath math="x=1+\sqrt{41}" /> menjumlahkan kuadratnya, <InlineMath math="(x-1)^2=25+16" />. Padahal sisi siku-siku lebih pendek daripada sisi miring.
+<MathVisual
+  title={<>Garis sumbu dan garis <InlineMath math="g" /></>}
+  description={<>Titik <InlineMath math="A(1\mid5)" /> dan <InlineMath math="B(5\mid1)" /> dengan garis sumbunya <InlineMath math="y=x" />. Garis <InlineMath math="g: y=2x-1" /> memotong garis sumbu di <InlineMath math="P(1\mid1)" />. Dari <InlineMath math="P" />, ruas ke <InlineMath math="A" /> dan ke <InlineMath math="B" /> sama-sama panjangnya <InlineMath math="4" />.</>}
+  labels={{
+    a: <><InlineMath math="A(1\mid5)" /></>,
+    b: <><InlineMath math="B(5\mid1)" /></>,
+    p: <><InlineMath math="P(1\mid1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    s: <><InlineMath math="y=x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -2.5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "2*x - 1", domain: { min: -0.5, max: 3.8 } },
+      { id: "bisector", kind: "function", appearance: "secondary", formula: "x", domain: { min: -0.5, max: 6 } },
+      { id: "ab", kind: "segment", appearance: "construction", from: { x: 1, y: 5 }, to: { x: 5, y: 1 } },
+      { id: "pa", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 1, y: 5 } },
+      { id: "pb", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "pta", kind: "point", appearance: "reference", at: { x: 1, y: 5 } },
+      { id: "ptb", kind: "point", appearance: "reference", at: { x: 5, y: 1 } },
+      { id: "ptp", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pta", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "b", objectId: "ptb", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "p", objectId: "ptp", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 3.6, y: 6.2 }, placement: "left" },
+      { key: "s", objectId: "bisector", at: { x: 5.8, y: 5.8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+# Hitung jaraknya
+
+<BlockMath math="\overline{PA}=\sqrt{(1-1)^2+(5-1)^2}=4,\qquad \overline{PB}=\sqrt{(5-1)^2+(1-1)^2}=4" />
+
+Kedua jarak itu sama. <InlineMath math="P" /> **berjarak <InlineMath math="4" /> satuan dari <InlineMath math="A" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{4\sqrt2}{3}" /> muncul dari gradien <InlineMath math="-1" />, bukan <InlineMath math="1" />, yaitu dari garis <InlineMath math="AB" /> sendiri: titik potongnya dengan <InlineMath math="g" /> adalah <InlineMath math="\left(\frac73\mid\frac{11}{3}\right)" />, **yang jauh lebih jauh dari <InlineMath math="B" /> daripada dari <InlineMath math="A" />**.
+- <InlineMath math="2\sqrt2" /> adalah jarak <InlineMath math="A" /> ke titik tengah <InlineMath math="M(3\mid3)" />. Titik itu tidak terletak pada <InlineMath math="g" />.
+- <InlineMath math="4\sqrt2" /> adalah panjang seluruh ruas <InlineMath math="\overline{AB}" />.
+- <InlineMath math="\sqrt2" /> adalah jarak <InlineMath math="P" /> ke titik asal.
+- <InlineMath math="2" /> muncul kalau koordinat <InlineMath math="x" /> titik tengah dimasukkan ke <InlineMath math="g" />: <InlineMath math="P(3\mid5)" /> berjarak <InlineMath math="2" /> dari <InlineMath math="A" />, tetapi <InlineMath math="2\sqrt5" /> dari <InlineMath math="B" />.

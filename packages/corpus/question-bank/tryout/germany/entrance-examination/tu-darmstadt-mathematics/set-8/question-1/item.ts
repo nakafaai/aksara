@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$a=-3$$ und $$b=-5$$",
+          label: "$$-3\\sqrt5$$",
         },
         {
           correct: false,
-          label: "$$a=3$$ und $$b=5$$",
+          label: "$$3\\sqrt5$$ oder $$-3\\sqrt5$$",
         },
         {
           correct: false,
-          label: "$$a=6$$ und $$b=4$$",
+          label: "$$7$$",
         },
         {
           correct: false,
-          label: "$$a=3$$ und $$b=-1$$",
+          label: "$$\\sqrt5$$",
         },
         {
           correct: true,
-          label: "$$a=3$$ und $$b=1$$",
+          label: "$$3\\sqrt5$$",
         },
         {
           correct: false,
-          label: "$$a=1$$ und $$b=3$$",
+          label: "$$3\\sqrt7$$",
         },
       ],
     },

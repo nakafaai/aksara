@@ -1,13 +1,70 @@
-Soal menanyakan nilai yang paling dekat dengan banyak detik dalam satu tahun. Ubah **dari hari ke jam, menit, lalu detik**, dan baru menaksir di akhir. Satu hari ada <InlineMath math="24" /> jam, satu jam <InlineMath math="60" /> menit, dan satu menit <InlineMath math="60" /> detik, jadi satu jam ada <InlineMath math="3600" /> detik.
+# Daerah asal dulu
 
-<BlockMath math="365\cdot24\cdot3600=8760\cdot3600=31\,536\,000\approx3{,}2\cdot10^{7}" />
+Logaritma hanya terdefinisi untuk numerus positif:
 
-Tanpa perkalian panjang pun bisa, dengan faktor yang dibulatkan: <InlineMath math="365\cdot24\approx9000" /> jam dan <InlineMath math="9000\cdot3600\approx3{,}2\cdot10^7" />. Sebagai pemeriksaan, cek orde besarnya dengan satu hari: satu hari ada <InlineMath math="24\cdot3600=86\,400\approx10^5" /> detik, dan <InlineMath math="365" /> hari kira-kira <InlineMath math="4\cdot10^2" /> hari, jadi totalnya sedikit di atas <InlineMath math="10^7" />.
+<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{atau}\ x>3" />
 
-Jadi, nilai yang paling dekat adalah <InlineMath math="3\cdot10^7" />.
+Hanya bilangan di daerah ini yang **mungkin menjadi penyelesaian**.
 
-- <InlineMath math="5\cdot10^5" /> kira-kira banyak menit dalam setahun, <InlineMath math="525\,600" />. Faktor <InlineMath math="60" /> yang terakhir terlupa.
-- <InlineMath math="9\cdot10^3" /> kira-kira banyak jam dalam setahun, <InlineMath math="8760" />.
-- <InlineMath math="3\cdot10^6" /> sepuluh kali terlalu kecil. Hasil itu muncul jika satu jam dihitung <InlineMath math="360" /> detik, bukan <InlineMath math="3600" /> detik.
-- <InlineMath math="3\cdot10^8" /> sepuluh kali terlalu besar, misalnya jika satu jam dihitung <InlineMath math="36\,000" /> detik.
-- <InlineMath math="9\cdot10^4" /> kira-kira banyak detik dalam satu hari saja, <InlineMath math="86\,400" />.
+# Basis kurang dari <InlineMath math="1" /> membalik tanda pertidaksamaan
+
+Tulis <InlineMath math="-2=\log_{\frac12}4" />, karena <InlineMath math="\left(\frac12\right)^{-2}=4" />. Logaritma berbasis <InlineMath math="\frac12" /> **turun tegas**: logaritma yang lebih besar milik numerus yang lebih kecil. Karena itu tandanya berbalik:
+
+<BlockMath math="\begin{aligned}
+\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
+x^2-3x&\le4 \\
+(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\end{aligned}" />
+
+# Gabungkan kedua syarat
+
+Irisan <InlineMath math="-1\le x\le4" /> dengan daerah asal. Bilangan dari <InlineMath math="0" /> sampai <InlineMath math="3" /> **gugur**, termasuk ujung <InlineMath math="0" /> dan <InlineMath math="3" /> itu sendiri:
+
+<MathVisual
+  title={<>Logaritma di atas garis <InlineMath math="y=-2" /></>}
+  description={<>Grafik <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> terdiri dari dua cabang, di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />. Di antaranya bentuk itu tidak terdefinisi. Kedua cabang berada pada atau di atas garis <InlineMath math="y=-2" /> untuk <InlineMath math="-1\le x<0" /> dan untuk <InlineMath math="3<x\le4" />. Kedua selang itu ditandai di bawah sumbu.</>}
+  labels={{
+    a: <><InlineMath math="x=-1" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    l: <><InlineMath math="y=-2" /></>,
+    z0: <><InlineMath math="0" /></>,
+    z3: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 5.5 },
+      y: { min: -3.6, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "log_(0.5)(x^2 - 3*x)", domain: { min: -1.5, max: -0.05 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "log_(0.5)(x^2 - 3*x)", domain: { min: 3.05, max: 4.5 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: -2 }, to: { x: 5, y: -2 } },
+      { id: "sol-left", kind: "segment", appearance: "answer", from: { x: -1, y: -3 }, to: { x: -0.05, y: -3 } },
+      { id: "sol-right", kind: "segment", appearance: "answer", from: { x: 3.05, y: -3 }, to: { x: 4, y: -3 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: -1, y: -2 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 4, y: -2 } },
+      { id: "q0", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+      { id: "q3", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: -1, y: -2 }, placement: "above-left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: -2 }, placement: "above-right" },
+      { key: "l", objectId: "level", at: { x: 5, y: -2 }, placement: "below" },
+      { key: "z0", objectId: "q0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "z3", objectId: "q3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Pertidaksamaan itu berlaku untuk <InlineMath math="-1\le x<0" /> atau <InlineMath math="3<x\le4" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-1\le x\le4" /> **lupa daerah asal**. Untuk <InlineMath math="x=1" /> numerusnya <InlineMath math="-2" />.
+- <InlineMath math="x\le-1" /> atau <InlineMath math="x\ge4" /> tidak membalik tanda pertidaksamaan, seolah-olah basisnya lebih dari <InlineMath math="1" />.
+- <InlineMath math="x<0" /> atau <InlineMath math="x>3" /> hanyalah daerah asal.
+- <InlineMath math="-1<x<0" /> atau <InlineMath math="3<x<4" /> membuang ujung <InlineMath math="-1" /> dan <InlineMath math="4" />. Di sana logaritmanya tepat <InlineMath math="-2" />, dan <InlineMath math="\ge" /> membolehkannya.
+- <InlineMath math="-1\le x\le0" /> atau <InlineMath math="3\le x\le4" /> memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />. Di sana numerusnya <InlineMath math="0" />, dan logaritmanya tidak terdefinisi.

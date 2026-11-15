@@ -1,15 +1,59 @@
-The task asks how far <InlineMath math="M" />, the centre of the top face, is from a corner of the bottom face. That distance is the hypotenuse of a **right triangle inside the cube**. Its corners are the corner <InlineMath math="E" /> of the bottom face, the point <InlineMath math="M" />, and the centre <InlineMath math="N" /> of the bottom face directly below <InlineMath math="M" />.
+# What an incircle means for the sides
 
-The vertical leg <InlineMath math="\overline{NM}" /> is one edge, <InlineMath math="4\text{ cm}" />. The horizontal leg <InlineMath math="\overline{EN}" /> is half the diagonal of the bottom face. The whole diagonal is <InlineMath math="4\sqrt2\text{ cm}" />, so half is <InlineMath math="2\sqrt2\text{ cm}" />.
+From each corner the two tangent lengths to the incircle are equal. So in every quadrilateral with an incircle **the sums of opposite sides are equal**. For the trapezium with legs <InlineMath math="s" />:
 
-<BlockMath math="\overline{EM}^2=\left(2\sqrt2\right)^2+4^2=8+16=24\quad\Rightarrow\quad\overline{EM}=\sqrt{24}=2\sqrt6" />
+<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
 
-As a check, the result <InlineMath math="2\sqrt6\approx4.9" /> lies between the edge <InlineMath math="4" /> and the space diagonal <InlineMath math="4\sqrt3\approx6.9" />. That fits, because <InlineMath math="M" /> is closer to <InlineMath math="E" /> than the opposite corner, but further away than the corner directly above.
+# The height from a supporting triangle
 
-So the distance is <InlineMath math="2\sqrt6\text{ cm}" />.
+Drop a perpendicular from a top corner to the base. By symmetry it is <InlineMath math="\frac{8-2}{2}=3" /> from the end of the base. This forms **a right triangle with hypotenuse <InlineMath math="5" />**:
 
-- <InlineMath math="4\sqrt3\text{ cm}" /> is the space diagonal to the opposite corner, not the distance to the face centre.
-- <InlineMath math="4\sqrt2\text{ cm}" /> is a face diagonal of the cube.
-- <InlineMath math="2\sqrt5\text{ cm}" /> is <InlineMath math="\sqrt{2^2+4^2}" />. It takes only half an edge as the horizontal leg instead of half the diagonal.
-- <InlineMath math="2\sqrt2\text{ cm}" /> is only the horizontal leg. The vertical part is missing.
-- <InlineMath math="6\text{ cm}" /> adds half an edge and an edge, <InlineMath math="2+4" />, instead of using Pythagoras' theorem.
+<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+
+<MathVisual
+  title={<>The trapezium with an incircle</>}
+  description={<>An isosceles trapezium with base <InlineMath math="8" /> at the bottom, top side <InlineMath math="2" /> and two legs of length <InlineMath math="5" />. The incircle touches all four sides and has radius <InlineMath math="2" />. The height <InlineMath math="h=4" /> equals its diameter.</>}
+  labels={{
+    long: <><InlineMath math="8" /></>,
+    short: <><InlineMath math="2" /></>,
+    leg: <><InlineMath math="5" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    r: <><InlineMath math="r=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "trapezoid", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "trapezoid", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "trapezoid", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "leg", objectId: "trapezoid", at: { x: 2.5, y: 2 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "r", objectId: "radius", at: { x: 0, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+# The area
+
+<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+
+Check: the incircle has radius <InlineMath math="\frac h2=2" />, and <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. The trapezium has **an area of <InlineMath math="20\text{ cm}^2" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="25\text{ cm}^2" /> takes **the leg <InlineMath math="5" /> as the height**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
+- <InlineMath math="40\text{ cm}^2" /> forgets to halve in the trapezium formula: <InlineMath math="(8+2)\cdot4" />.
+- <InlineMath math="15\text{ cm}^2" /> takes the overhang <InlineMath math="3" /> as the height.
+- <InlineMath math="10\text{ cm}^2" /> takes the radius <InlineMath math="2" /> instead of the diameter <InlineMath math="4" /> as the height.
+- <InlineMath math="30\text{ cm}^2" /> uses height <InlineMath math="3" /> and doesn't halve: <InlineMath math="(8+2)\cdot3" />.

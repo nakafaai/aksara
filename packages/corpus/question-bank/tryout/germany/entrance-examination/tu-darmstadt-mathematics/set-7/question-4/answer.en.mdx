@@ -1,21 +1,63 @@
-The task asks for the value of <InlineMath math="x" />. You compute the distance between two points with **Pythagoras' theorem**. The differences of the <InlineMath math="x" />-coordinates and of the <InlineMath math="y" />-coordinates are the legs, and the distance is the hypotenuse.
+# Equally far means perpendicular bisector
 
-The difference of the <InlineMath math="y" />-coordinates is <InlineMath math="6-2=4" />. Call the difference of the <InlineMath math="x" />-coordinates <InlineMath math="x-1" />.
+All points that are equally far from <InlineMath math="A" /> and <InlineMath math="B" /> lie **on the perpendicular bisector of <InlineMath math="\overline{AB}" />**. It passes through the midpoint <InlineMath math="M(3\mid3)" /> and is perpendicular to <InlineMath math="\overline{AB}" />. The segment has slope <InlineMath math="\frac{1-5}{5-1}=-1" />, so the bisector has slope <InlineMath math="1" />:
 
-<BlockMath math="\begin{aligned}
-(x-1)^2+4^2&=5^2 \\
-(x-1)^2&=25-16=9 \\
-x-1&=3\quad\text{or}\quad x-1=-3
-\end{aligned}" />
+<BlockMath math="y-3=1\cdot(x-3)\quad\Longleftrightarrow\quad y=x" />
 
-This gives <InlineMath math="x=4" /> or <InlineMath math="x=-2" />. Because of the condition <InlineMath math="x>1" />, only <InlineMath math="x=4" /> remains.
+# Find the intersection with <InlineMath math="g" />
 
-As a check, compute the distance between <InlineMath math="P(1\mid2)" /> and <InlineMath math="Q(4\mid6)" />: <InlineMath math="\sqrt{3^2+4^2}=\sqrt{25}=5" />.
+<InlineMath math="P" /> lies on both lines, so **<InlineMath math="2x-1=x" /> holds**:
 
-So <InlineMath math="x=4" />.
+<BlockMath math="x=1,\quad y=1\quad\Longrightarrow\quad P(1\mid1)" />
 
-- <InlineMath math="x=-2" /> also solves the equation but breaks the condition <InlineMath math="x>1" />.
-- <InlineMath math="x=3" /> is only the difference <InlineMath math="x-1" />. The <InlineMath math="1" /> still has to be added.
-- <InlineMath math="x=6" /> takes the whole distance <InlineMath math="5" /> as the horizontal difference and ignores the vertical difference <InlineMath math="4" />.
-- <InlineMath math="x=1+\sqrt{21}" /> forgets to square the <InlineMath math="4" />, that is <InlineMath math="(x-1)^2=25-4" />.
-- <InlineMath math="x=1+\sqrt{41}" /> adds the squares, <InlineMath math="(x-1)^2=25+16" />. A leg is shorter than the hypotenuse.
+<MathVisual
+  title={<>Perpendicular bisector and line <InlineMath math="g" /></>}
+  description={<>The points <InlineMath math="A(1\mid5)" /> and <InlineMath math="B(5\mid1)" /> with their perpendicular bisector <InlineMath math="y=x" />. The line <InlineMath math="g: y=2x-1" /> meets the bisector at <InlineMath math="P(1\mid1)" />. From <InlineMath math="P" /> the segments to <InlineMath math="A" /> and to <InlineMath math="B" /> are both <InlineMath math="4" /> long.</>}
+  labels={{
+    a: <><InlineMath math="A(1\mid5)" /></>,
+    b: <><InlineMath math="B(5\mid1)" /></>,
+    p: <><InlineMath math="P(1\mid1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    s: <><InlineMath math="y=x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -2.5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "2*x - 1", domain: { min: -0.5, max: 3.8 } },
+      { id: "bisector", kind: "function", appearance: "secondary", formula: "x", domain: { min: -0.5, max: 6 } },
+      { id: "ab", kind: "segment", appearance: "construction", from: { x: 1, y: 5 }, to: { x: 5, y: 1 } },
+      { id: "pa", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 1, y: 5 } },
+      { id: "pb", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "pta", kind: "point", appearance: "reference", at: { x: 1, y: 5 } },
+      { id: "ptb", kind: "point", appearance: "reference", at: { x: 5, y: 1 } },
+      { id: "ptp", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pta", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "b", objectId: "ptb", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "p", objectId: "ptp", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 3.6, y: 6.2 }, placement: "left" },
+      { key: "s", objectId: "bisector", at: { x: 5.8, y: 5.8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+# Work out the distance
+
+<BlockMath math="\overline{PA}=\sqrt{(1-1)^2+(5-1)^2}=4,\qquad \overline{PB}=\sqrt{(5-1)^2+(1-1)^2}=4" />
+
+Both distances agree. <InlineMath math="P" /> is **<InlineMath math="4" /> units from <InlineMath math="A" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\frac{4\sqrt2}{3}" /> comes from slope <InlineMath math="-1" /> instead of <InlineMath math="1" />, that is from the line <InlineMath math="AB" /> itself: it meets <InlineMath math="g" /> at <InlineMath math="\left(\frac73\mid\frac{11}{3}\right)" />, **which is much farther from <InlineMath math="B" /> than from <InlineMath math="A" />**.
+- <InlineMath math="2\sqrt2" /> is the distance from <InlineMath math="A" /> to the midpoint <InlineMath math="M(3\mid3)" />. That point doesn't lie on <InlineMath math="g" />.
+- <InlineMath math="4\sqrt2" /> is the length of the whole segment <InlineMath math="\overline{AB}" />.
+- <InlineMath math="\sqrt2" /> is the distance from <InlineMath math="P" /> to the origin.
+- <InlineMath math="2" /> comes from putting the midpoint's <InlineMath math="x" />-coordinate into <InlineMath math="g" />: <InlineMath math="P(3\mid5)" /> is <InlineMath math="2" /> from <InlineMath math="A" /> but <InlineMath math="2\sqrt5" /> from <InlineMath math="B" />.

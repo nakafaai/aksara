@@ -1,0 +1,67 @@
+# Cari sudut pusat
+
+Namakan kedua-dua pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" />, serta titik persilangan <InlineMath math="P" /> dan <InlineMath math="Q" />. Dalam segi tiga <InlineMath math="M_1M_2P" /> semua sisinya <InlineMath math="6\text{ cm}" />: dua jejari dan jarak antara pusat. **Segi tiga itu sama sisi**, jadi <InlineMath math="\angle M_2M_1P=60^\circ" />. Dengan cara yang sama <InlineMath math="\angle M_2M_1Q=60^\circ" />, menjadikan <InlineMath math="\angle PM_1Q=120^\circ" />.
+
+<MathVisual
+  title={<>Kanta daripada dua bulatan</>}
+  description={<>Dua bulatan berjejari <InlineMath math="6" /> dengan pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" /> yang berjarak <InlineMath math="6" />. Kedua-duanya bersilang di <InlineMath math="P" /> dan <InlineMath math="Q" />. Segi tiga <InlineMath math="M_1M_2P" /> dan <InlineMath math="M_1M_2Q" /> sama sisi, jadi sudut <InlineMath math="PM_1Q" /> ialah <InlineMath math="120^\circ" />. Perentas <InlineMath math="\overline{PQ}" /> membahagi kanta kepada dua tembereng bulatan yang sama.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    r: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 13 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "c2", kind: "circle", appearance: "primary", center: { x: 6, y: 0 }, radius: 6 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 3, y: 5.1962 }, to: { x: 3, y: -5.1962 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "r2", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: -5.1962 } },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: 3, y: -5.1962 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "p", objectId: "pp", at: { x: 3, y: 5.1962 }, placement: "above" },
+      { key: "q", objectId: "pq", at: { x: 3, y: -5.1962 }, placement: "below" },
+      { key: "r", objectId: "r1", at: { x: 1.5, y: 2.5981 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Satu tembereng bulatan
+
+Perentas <InlineMath math="\overline{PQ}" /> membahagi kanta kepada dua tembereng yang sama. Satu tembereng ialah **sektor <InlineMath math="120^\circ" /> tolak segi tiga <InlineMath math="M_1PQ" />**:
+
+<BlockMath math="\begin{aligned}
+A_{\text{sektor}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
+A_{\text{segi tiga}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
+A_{\text{tembereng}}&=12\pi-9\sqrt3
+\end{aligned}" />
+
+# Seluruh kanta
+
+<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+
+Itu kira-kira <InlineMath math="44.2\text{ cm}^2" />. Kawasan sepunya itu **luasnya <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> **hanya satu tembereng**, iaitu separuh kanta.
+- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> memakai <InlineMath math="60^\circ" />, bukan <InlineMath math="120^\circ" />, sebagai sudut pusat: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
+- <InlineMath math="24\pi\text{ cm}^2" /> mengira kedua-dua sektor dan terlupa menolak segi tiga.
+- <InlineMath math="(24\pi-18)\text{ cm}^2" /> memakai <InlineMath math="\sin120^\circ=\frac12" />.
+- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> memakai sektor <InlineMath math="180^\circ" /> dan segi tiga dengan luas dua kali ganda.

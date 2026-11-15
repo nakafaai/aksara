@@ -1,18 +1,72 @@
-The task asks for the area of the octagon (*Achteck*). The octagon is **the square without the four cut-off triangles**. So subtract the area of the four corners from the area of the square.
+# Triangle <InlineMath math="ABS" /> is equilateral
 
-Each triangle is right-angled with legs <InlineMath math="2\text{ cm}" /> and <InlineMath math="2\text{ cm}" />. Its area is half the product of the legs.
+<InlineMath math="S" /> lies on the arc about <InlineMath math="A" />, so <InlineMath math="\overline{AS}=6" />. It also lies on the arc about <InlineMath math="B" />, so <InlineMath math="\overline{BS}=6" />. Together with <InlineMath math="\overline{AB}=6" />, triangle <InlineMath math="ABS" /> is **equilateral**.
 
-<BlockMath math="\begin{aligned}
-A_{\text{triangle}}&=\frac12\cdot2\cdot2=2\text{ cm}^2 \\
-A_{\text{octagon}}&=8^2-4\cdot2=64-8=56\text{ cm}^2
-\end{aligned}" />
+# The height above <InlineMath math="\overline{AB}" />
 
-As a check, imagine pushing two corners together. Two such triangles make a square of <InlineMath math="2\text{ cm}" /> by <InlineMath math="2\text{ cm}" />, which is <InlineMath math="4\text{ cm}^2" />. All four corners together are then <InlineMath math="8\text{ cm}^2" />.
+The height of an equilateral triangle with side <InlineMath math="6" /> halves the base. By Pythagoras:
 
-So the octagon has an area of <InlineMath math="56\text{ cm}^2" />.
+<BlockMath math="h=\sqrt{6^2-3^2}=\sqrt{27}=3\sqrt3" />
 
-- <InlineMath math="48\text{ cm}^2" /> subtracts a whole square of <InlineMath math="4\text{ cm}^2" /> at each corner. The triangle is only half of that.
-- <InlineMath math="60\text{ cm}^2" /> takes the triangle's area as <InlineMath math="\frac12\cdot2=1" /> and forgets the second leg.
-- <InlineMath math="62\text{ cm}^2" /> subtracts only one corner.
-- <InlineMath math="64\text{ cm}^2" /> is the whole square, with nothing cut off.
-- <InlineMath math="58\text{ cm}^2" /> subtracts only three of the four corners.
+So <InlineMath math="S" /> lies **<InlineMath math="3\sqrt3" /> above the side <InlineMath math="\overline{AB}" />**.
+
+<MathVisual
+  title={<>Where the arcs meet</>}
+  description={<>The square <InlineMath math="ABCD" /> with side <InlineMath math="6" />. The arcs about <InlineMath math="A" /> and about <InlineMath math="B" /> meet at <InlineMath math="S" />. Triangle <InlineMath math="ABS" /> is equilateral with height <InlineMath math="3\sqrt3" />. From <InlineMath math="S" /> to the top side <InlineMath math="\overline{CD}" /> the short piece <InlineMath math="6-3\sqrt3" /> is left.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    s: <><InlineMath math="S" /></>,
+    gap: <><InlineMath math="6-3\sqrt3" /></>,
+    h: <><InlineMath math="3\sqrt3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7.5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 0, y: 6 }] },
+      { id: "arc-a", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90 },
+      { id: "arc-b", kind: "arc", appearance: "primary", center: { x: 6, y: 0 }, radius: 6, startDegrees: 90, sweepDegrees: 90 },
+      { id: "triangle", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 5.1962 }] },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 5.1962 }, to: { x: 3, y: 6 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 6, y: 6 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "ps", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 6, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "pd", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "s", objectId: "ps", at: { x: 3, y: 5.1962 }, placement: "left" },
+      { key: "gap", objectId: "gap", at: { x: 3, y: 5.6 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 3, y: 2.6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# The distance to the opposite side
+
+The side <InlineMath math="\overline{CD}" /> is <InlineMath math="6" /> above <InlineMath math="\overline{AB}" />. You want **what's left up to it**:
+
+<BlockMath math="6-3\sqrt3\approx6-5.196=0.804" />
+
+<InlineMath math="S" /> is <InlineMath math="(6-3\sqrt3)\text{ cm}" /> from <InlineMath math="\overline{CD}" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> is **the distance to the wrong side**, to <InlineMath math="\overline{AB}" /> instead of <InlineMath math="\overline{CD}" />.
+- <InlineMath math="3\text{ cm}" /> is the distance from <InlineMath math="S" /> to the sides <InlineMath math="\overline{AD}" /> and <InlineMath math="\overline{BC}" />.
+- <InlineMath math="(6-3\sqrt2)\text{ cm}" /> uses half the square's diagonal, <InlineMath math="3\sqrt2" />, as the height.
+- <InlineMath math="(3\sqrt3-3)\text{ cm}" /> subtracts half the side instead of subtracting the height from the whole side.
+- <InlineMath math="(6-2\sqrt3)\text{ cm}" /> confuses the height <InlineMath math="3\sqrt3" /> with the distance <InlineMath math="2\sqrt3" /> from the centroid of triangle <InlineMath math="ABS" /> to its corner <InlineMath math="S" />.

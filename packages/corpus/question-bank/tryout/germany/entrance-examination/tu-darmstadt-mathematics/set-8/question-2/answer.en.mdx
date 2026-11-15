@@ -1,17 +1,65 @@
-The task asks for the value of <InlineMath math="c" />. Each number appears in exactly two of the three equations. So it pays to **add all three equations**. Then every number appears exactly twice on the left side.
+# An equation in whole numbers
 
-<BlockMath math="(a+b)+(b+c)+(a+c)=10+13+15\quad\Rightarrow\quad2(a+b+c)=38\quad\Rightarrow\quad a+b+c=19" />
+Call the number of tickets at <InlineMath math="7" /> euros <InlineMath math="a" /> and at <InlineMath math="11" /> euros <InlineMath math="b" />. Both are **whole numbers from <InlineMath math="0" /> up**, and
 
-Subtract the first equation <InlineMath math="a+b=10" />, and <InlineMath math="c" /> is left.
+<BlockMath math="7a+11b=200" />
 
-<BlockMath math="c=(a+b+c)-(a+b)=19-10=9" />
+You want the largest value of <InlineMath math="a+b" />.
 
-As a check, find the other numbers too: <InlineMath math="a=19-13=6" /> and <InlineMath math="b=19-15=4" />. Then <InlineMath math="6+4=10" />, <InlineMath math="4+9=13" /> and <InlineMath math="6+9=15" />.
+# Which values of <InlineMath math="b" /> work
 
-So <InlineMath math="c=9" />.
+<InlineMath math="200-11b" /> must be divisible by <InlineMath math="7" />. Test <InlineMath math="b=0,1,2,\ldots" /> until <InlineMath math="11b>200" />. The remainders repeat with period <InlineMath math="7" />, and **only <InlineMath math="b=1" />, <InlineMath math="b=8" /> and <InlineMath math="b=15" /> work**:
 
-- <InlineMath math="c=19" /> is the sum <InlineMath math="a+b+c" />, not <InlineMath math="c" /> alone.
-- <InlineMath math="c=38" /> is the sum of the three right sides, which is twice <InlineMath math="a+b+c" />.
-- <InlineMath math="c=6" /> is the value of <InlineMath math="a" />.
-- <InlineMath math="c=4" /> is the value of <InlineMath math="b" />.
-- <InlineMath math="c=13" /> is the sum <InlineMath math="b+c" /> from the second equation, not <InlineMath math="c" /> alone.
+<BlockMath math="\begin{aligned}
+b=1:&\quad 7a=189,\quad a=27,\quad a+b=28 \\
+b=8:&\quad 7a=112,\quad a=16,\quad a+b=24 \\
+b=15:&\quad 7a=35,\quad a=5,\quad a+b=20
+\end{aligned}" />
+
+For <InlineMath math="b=22" />, <InlineMath math="11b=242>200" />.
+
+<MathVisual
+  title={<>Every possible ticket count</>}
+  description={<>The line <InlineMath math="7a+11b=200" /> in the first quadrant, with <InlineMath math="a" /> tickets at <InlineMath math="7" /> euros to the right and <InlineMath math="b" /> tickets at <InlineMath math="11" /> euros upwards. Exactly three whole-number points lie on it: <InlineMath math="(27\mid1)" />, <InlineMath math="(16\mid8)" /> and <InlineMath math="(5\mid15)" />. The point <InlineMath math="(27\mid1)" /> has the largest sum, <InlineMath math="a+b=28" />.</>}
+  labels={{
+    p1: <><InlineMath math="(27\mid1)" /></>,
+    p2: <><InlineMath math="(16\mid8)" /></>,
+    p3: <><InlineMath math="(5\mid15)" /></>,
+    l: <><InlineMath math="7a+11b=200" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 32 },
+      y: { min: -1, max: 21 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: 0, y: 18.18 }, to: { x: 28.57, y: 0 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: 27, y: 1 } },
+      { id: "q2", kind: "point", appearance: "highlight", at: { x: 16, y: 8 } },
+      { id: "q3", kind: "point", appearance: "highlight", at: { x: 5, y: 15 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "q1", at: { x: 27, y: 1 }, placement: "above-right" },
+      { key: "p2", objectId: "q2", at: { x: 16, y: 8 }, placement: "above-right" },
+      { key: "p3", objectId: "q3", at: { x: 5, y: 15 }, placement: "above-right" },
+      { key: "l", objectId: "line", at: { x: 10, y: 11.82 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# The largest number
+
+More cheap tickets mean more tickets in total. The most tickets are <InlineMath math="27" /> at <InlineMath math="7" /> euros and one at <InlineMath math="11" /> euros: **at most <InlineMath math="28" /> tickets**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="20" /> is the **smallest** possible number, <InlineMath math="5+15" />.
+- <InlineMath math="24" /> is the middle solution, <InlineMath math="16+8" />.
+- <InlineMath math="29" /> rounds <InlineMath math="\frac{200}{7}\approx28.6" /> up, as if there were only <InlineMath math="7" />-euro tickets. But <InlineMath math="200" /> isn't divisible by <InlineMath math="7" />.
+- <InlineMath math="18" /> is <InlineMath math="\frac{200}{11}" /> rounded down, only <InlineMath math="11" />-euro tickets. That doesn't come out exactly either.
+- <InlineMath math="27" /> counts only the <InlineMath math="7" />-euro tickets of the best solution and forgets the one <InlineMath math="11" />-euro ticket.

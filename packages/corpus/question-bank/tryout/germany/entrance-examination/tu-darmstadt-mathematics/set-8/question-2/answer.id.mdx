@@ -1,17 +1,65 @@
-Soal menanyakan nilai <InlineMath math="c" />. Setiap bilangan muncul di tepat dua dari tiga persamaan. Karena itu, **jumlahkan ketiga persamaan**. Setiap bilangan lalu muncul tepat dua kali di ruas kiri.
+# Persamaan dengan bilangan bulat
 
-<BlockMath math="(a+b)+(b+c)+(a+c)=10+13+15\quad\Rightarrow\quad2(a+b+c)=38\quad\Rightarrow\quad a+b+c=19" />
+Misalkan banyak tiket seharga <InlineMath math="7" /> euro adalah <InlineMath math="a" /> dan seharga <InlineMath math="11" /> euro adalah <InlineMath math="b" />. Keduanya **bilangan bulat mulai dari <InlineMath math="0" />**, dan berlaku
 
-Kurangkan persamaan pertama, <InlineMath math="a+b=10" />, maka tersisa <InlineMath math="c" />.
+<BlockMath math="7a+11b=200" />
 
-<BlockMath math="c=(a+b+c)-(a+b)=19-10=9" />
+Yang dicari adalah nilai terbesar <InlineMath math="a+b" />.
 
-Sebagai pemeriksaan, tentukan juga bilangan lainnya: <InlineMath math="a=19-13=6" /> dan <InlineMath math="b=19-15=4" />. Maka <InlineMath math="6+4=10" />, <InlineMath math="4+9=13" />, dan <InlineMath math="6+9=15" />.
+# Nilai <InlineMath math="b" /> yang mungkin
 
-Jadi, <InlineMath math="c=9" />.
+<InlineMath math="200-11b" /> harus habis dibagi <InlineMath math="7" />. Coba <InlineMath math="b=0,1,2,\ldots" /> sampai <InlineMath math="11b>200" />. Sisanya berulang dengan periode <InlineMath math="7" />, dan **hanya <InlineMath math="b=1" />, <InlineMath math="b=8" />, dan <InlineMath math="b=15" /> yang cocok**:
 
-- <InlineMath math="c=19" /> adalah jumlah <InlineMath math="a+b+c" />, bukan <InlineMath math="c" /> saja.
-- <InlineMath math="c=38" /> adalah jumlah ketiga ruas kanan, yaitu dua kali <InlineMath math="a+b+c" />.
-- <InlineMath math="c=6" /> adalah nilai <InlineMath math="a" />.
-- <InlineMath math="c=4" /> adalah nilai <InlineMath math="b" />.
-- <InlineMath math="c=13" /> adalah jumlah <InlineMath math="b+c" /> dari persamaan kedua, bukan <InlineMath math="c" /> saja.
+<BlockMath math="\begin{aligned}
+b=1:&\quad 7a=189,\quad a=27,\quad a+b=28 \\
+b=8:&\quad 7a=112,\quad a=16,\quad a+b=24 \\
+b=15:&\quad 7a=35,\quad a=5,\quad a+b=20
+\end{aligned}" />
+
+Untuk <InlineMath math="b=22" />, <InlineMath math="11b=242>200" />.
+
+<MathVisual
+  title={<>Semua banyak tiket yang mungkin</>}
+  description={<>Garis <InlineMath math="7a+11b=200" /> di kuadran pertama, dengan <InlineMath math="a" /> tiket seharga <InlineMath math="7" /> euro ke kanan dan <InlineMath math="b" /> tiket seharga <InlineMath math="11" /> euro ke atas. Tepat tiga titik bilangan bulat terletak padanya: <InlineMath math="(27\mid1)" />, <InlineMath math="(16\mid8)" />, dan <InlineMath math="(5\mid15)" />. Titik <InlineMath math="(27\mid1)" /> punya jumlah terbesar, <InlineMath math="a+b=28" />.</>}
+  labels={{
+    p1: <><InlineMath math="(27\mid1)" /></>,
+    p2: <><InlineMath math="(16\mid8)" /></>,
+    p3: <><InlineMath math="(5\mid15)" /></>,
+    l: <><InlineMath math="7a+11b=200" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 32 },
+      y: { min: -1, max: 21 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: 0, y: 18.18 }, to: { x: 28.57, y: 0 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: 27, y: 1 } },
+      { id: "q2", kind: "point", appearance: "highlight", at: { x: 16, y: 8 } },
+      { id: "q3", kind: "point", appearance: "highlight", at: { x: 5, y: 15 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "q1", at: { x: 27, y: 1 }, placement: "above-right" },
+      { key: "p2", objectId: "q2", at: { x: 16, y: 8 }, placement: "above-right" },
+      { key: "p3", objectId: "q3", at: { x: 5, y: 15 }, placement: "above-right" },
+      { key: "l", objectId: "line", at: { x: 10, y: 11.82 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Banyak tiket terbesar
+
+Makin banyak tiket murah, makin banyak tiket seluruhnya. Paling banyak adalah <InlineMath math="27" /> tiket seharga <InlineMath math="7" /> euro dan satu tiket seharga <InlineMath math="11" /> euro: **paling banyak <InlineMath math="28" /> tiket**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="20" /> adalah banyak tiket **terkecil** yang mungkin, <InlineMath math="5+15" />.
+- <InlineMath math="24" /> adalah penyelesaian tengah, <InlineMath math="16+8" />.
+- <InlineMath math="29" /> membulatkan <InlineMath math="\frac{200}{7}\approx28{,}6" /> ke atas, seolah-olah hanya ada tiket <InlineMath math="7" /> euro. Padahal <InlineMath math="200" /> tidak habis dibagi <InlineMath math="7" />.
+- <InlineMath math="18" /> adalah <InlineMath math="\frac{200}{11}" /> dibulatkan ke bawah, hanya tiket <InlineMath math="11" /> euro. Itu juga tidak pas.
+- <InlineMath math="27" /> hanya menghitung tiket <InlineMath math="7" /> euro dari penyelesaian terbaik dan lupa satu tiket <InlineMath math="11" /> euro.

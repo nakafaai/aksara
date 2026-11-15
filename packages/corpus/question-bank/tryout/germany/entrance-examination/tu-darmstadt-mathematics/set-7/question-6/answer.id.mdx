@@ -1,15 +1,62 @@
-Soal menanyakan fungsi mana yang *keine Nullstelle* (tidak punya titik nol) pada bilangan real. Titik nol adalah <InlineMath math="x" /> dengan <InlineMath math="f(x)=0" />. Untuk fungsi kuadrat <InlineMath math="x^2+px+q" />, yang menentukan adalah **diskriminan <InlineMath math="D=p^2-4q" />**: jika negatif, tidak ada titik nol. Periksa setiap fungsi.
+# Jarak pembuat nol menentukan kedalaman
 
-Untuk <InlineMath math="f(x)=x^2+2x+3" />, berlaku <InlineMath math="p=2" /> dan <InlineMath math="q=3" />.
+Tulis <InlineMath math="f" /> dalam bentuk puncak: <InlineMath math="f(x)=(x-h)^2+k" /> dengan puncak <InlineMath math="S(h\mid k)" />. Kedua pembuat nol simetris terhadap puncak, masing-masing <InlineMath math="3" /> di kiri dan kanan <InlineMath math="h" />. Di <InlineMath math="x=h+3" /> berlaku <InlineMath math="f=0" />:
 
-<BlockMath math="D=2^2-4\cdot3=4-12=-8<0" />
+<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
 
-Jadi, fungsi ini tidak punya titik nol. Sebagai pemeriksaan, lengkapkan kuadratnya: <InlineMath math="x^2+2x+3=(x+1)^2+2" />. Kuadrat tidak pernah negatif, jadi nilai fungsinya selalu paling kecil <InlineMath math="2" /> dan tidak pernah nol.
+Jadi puncaknya **<InlineMath math="9" /> satuan di bawah sumbu <InlineMath math="x" />**, berapa pun <InlineMath math="h" />.
 
-Jadi, fungsi yang tidak punya titik nol adalah <InlineMath math="f(x)=x^2+2x+3" />.
+# Garis menentukan letaknya
 
-- <InlineMath math="f(x)=x^2-2x+1=(x-1)^2" /> punya titik nol <InlineMath math="x=1" />.
-- <InlineMath math="f(x)=x^2-3" /> punya titik nol <InlineMath math="x=\sqrt3" /> dan <InlineMath math="x=-\sqrt3" />.
-- <InlineMath math="f(x)=2x+5" /> adalah garis bergradien <InlineMath math="2" /> yang memotong sumbu <InlineMath math="x" /> di <InlineMath math="x=-\frac52" />.
-- <InlineMath math="f(x)=x^2+x-1" /> punya diskriminan <InlineMath math="1+4=5>0" />, jadi punya dua titik nol.
-- <InlineMath math="f(x)=-x^2+4" /> punya titik nol <InlineMath math="x=2" /> dan <InlineMath math="x=-2" />, karena <InlineMath math="-4+4=0" />.
+Puncak terletak pada <InlineMath math="y=x-10" />, jadi **berlaku <InlineMath math="k=h-10" />**:
+
+<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+
+# Persamaan fungsinya
+
+<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+
+<MathVisual
+  title={<>Parabola, pembuat nol, dan puncak</>}
+  description={<>Parabola <InlineMath math="y=x^2-2x-8" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-2" /> dan <InlineMath math="4" />, dua titik yang berjarak <InlineMath math="6" />. Puncaknya <InlineMath math="S(1\mid-9)" /> ada tepat di tengah di bawahnya, pada garis <InlineMath math="y=x-10" />.</>}
+  labels={{
+    v: <><InlineMath math="S(1\mid-9)" /></>,
+    l: <><InlineMath math="y=x-10" /></>,
+    r1: <><InlineMath math="-2" /></>,
+    r2: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 8 },
+      y: { min: -12, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 8", domain: { min: -3, max: 5 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 10", domain: { min: -1, max: 6 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "width", kind: "segment", appearance: "highlight", from: { x: -2, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -9 } },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 1, y: -9 }, placement: "below-left" },
+      { key: "l", objectId: "line", at: { x: 6, y: -4 }, placement: "right" },
+      { key: "r1", objectId: "z1", at: { x: -2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "z2", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> punya pembuat nol <InlineMath math="4" /> dan <InlineMath math="-2" />, berjarak <InlineMath math="6" />. **Persamaan yang dicari** adalah <InlineMath math="f(x)=x^2-2x-8" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="f(x)=x^2+2x-8" /> berpuncak di <InlineMath math="(-1\mid-9)" />. Titik itu **tidak terletak pada garis**, karena <InlineMath math="-1-10=-11\ne-9" />.
+- <InlineMath math="f(x)=x^2-14x+46" /> memakai kedalaman <InlineMath math="3" />, bukan <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
+- <InlineMath math="f(x)=x^2-2x-9" /> memakai <InlineMath math="k=-9" /> sebagai suku tetap tanpa menjabarkan <InlineMath math="(x-1)^2" />.
+- <InlineMath math="f(x)=x^2-2x+8" /> salah tanda pada suku tetapnya. Parabola ini sama sekali tidak punya pembuat nol.
+- <InlineMath math="f(x)=x^2-4x-5" /> memang punya pembuat nol berjarak <InlineMath math="6" />, tetapi puncaknya <InlineMath math="(2\mid-9)" /> tidak terletak pada garis.

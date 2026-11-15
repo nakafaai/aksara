@@ -1,15 +1,66 @@
-In der Gleichung kommen nur <InlineMath math="x^4" /> und <InlineMath math="x^2" /> vor. Mit der **Substitution <InlineMath math="z=x^2" />** wird daraus eine quadratische Gleichung, denn <InlineMath math="x^4=\left(x^2\right)^2=z^2" />.
+# Den wiederkehrenden Term ersetzen
 
-<BlockMath math="z^2-13z+36=0\quad\Rightarrow\quad(z-4)(z-9)=0\quad\Rightarrow\quad z=4\ \text{oder}\ z=9" />
+Der Ausdruck <InlineMath math="x^2-2x" /> kommt zweimal vor. Setze <InlineMath math="u=x^2-2x" />. Dann wird die Gleichung **quadratisch in <InlineMath math="u" />**:
 
-Jetzt machst du die Substitution rückgängig. Aus <InlineMath math="x^2=4" /> folgen zwei Lösungen, <InlineMath math="x=2" /> und <InlineMath math="x=-2" />. Aus <InlineMath math="x^2=9" /> folgen <InlineMath math="x=3" /> und <InlineMath math="x=-3" />.
+<BlockMath math="u^2-2u-3=0\quad\Longleftrightarrow\quad (u-3)(u+1)=0\quad\Longleftrightarrow\quad u=3\ \text{oder}\ u=-1" />
 
-Zur Kontrolle setzt du ein. Für <InlineMath math="x=\pm2" /> gilt <InlineMath math="16-52+36=0" />, für <InlineMath math="x=\pm3" /> gilt <InlineMath math="81-117+36=0" />. Die negativen Werte ergeben dasselbe, weil nur gerade Potenzen vorkommen.
+# Welche Werte <InlineMath math="u" /> annehmen kann
 
-Die Gleichung hat also die vier Lösungen <InlineMath math="x=-3" />, <InlineMath math="x=-2" />, <InlineMath math="x=2" /> und <InlineMath math="x=3" />.
+Anders als bei <InlineMath math="u=x^2" /> darf <InlineMath math="u" /> hier negativ sein. Wegen <InlineMath math="x^2-2x=(x-1)^2-1" /> ist **der kleinste Wert von <InlineMath math="u" /> genau <InlineMath math="-1" />**. Beide Werte sind also möglich:
 
-- Nur <InlineMath math="x=2" /> und <InlineMath math="x=3" /> übersieht die negativen Wurzeln. Auch <InlineMath math="(-2)^2=4" /> und <InlineMath math="(-3)^2=9" /> lösen die Gleichungen für <InlineMath math="x^2" />.
-- <InlineMath math="x=4" /> und <InlineMath math="x=9" /> sind die Lösungen für <InlineMath math="z" />. Die Rücksubstitution fehlt.
-- <InlineMath math="x=\pm4" /> und <InlineMath math="x=\pm9" /> setzt <InlineMath math="x=\pm z" /> statt <InlineMath math="x^2=z" />. Für <InlineMath math="x=4" /> ergibt die linke Seite <InlineMath math="256-208+36=84\ne0" />.
-- „Keine reelle Lösung“ entsteht aus dem Vorzeichenfehler <InlineMath math="(z+4)(z+9)=0" />. Dann wären <InlineMath math="z=-4" /> und <InlineMath math="z=-9" /> keine möglichen Werte für <InlineMath math="x^2" />.
-- Nur <InlineMath math="x=-2" /> und <InlineMath math="x=2" /> übersetzt nur eine der beiden Lösungen für <InlineMath math="z" /> zurück.
+<MathVisual
+  title={<>Welche Werte <InlineMath math="u=x^2-2x" /> annimmt</>}
+  description={<>Die Parabel <InlineMath math="u=x^2-2x" /> hat ihren tiefsten Punkt bei <InlineMath math="x=1" /> mit <InlineMath math="u=-1" />. Die Gerade <InlineMath math="u=3" /> schneidet sie bei <InlineMath math="x=-1" /> und <InlineMath math="x=3" />. Die Gerade <InlineMath math="u=-1" /> berührt sie genau im Scheitel bei <InlineMath math="x=1" />.</>}
+  labels={{
+    u: <><InlineMath math="u=x^2-2x" /></>,
+    three: <><InlineMath math="u=3" /></>,
+    minus: <><InlineMath math="u=-1" /></>,
+    x1: <><InlineMath math="-1" /></>,
+    x2: <><InlineMath math="1" /></>,
+    x3: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 4.8 },
+      y: { min: -2, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x", domain: { min: -1.8, max: 3.8 } },
+      { id: "upper", kind: "segment", appearance: "reference", from: { x: -2, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "lower", kind: "segment", appearance: "reference", from: { x: -2, y: -1 }, to: { x: 4, y: -1 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: -1, y: 3 } },
+      { id: "q3", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
+      { id: "q2", kind: "point", appearance: "answer", at: { x: 1, y: -1 } },
+    ],
+    labels: [
+      { key: "u", objectId: "parabola", at: { x: 3.6, y: 5.76 }, placement: "left" },
+      { key: "three", objectId: "upper", at: { x: 4, y: 3 }, placement: "above" },
+      { key: "minus", objectId: "lower", at: { x: 4, y: -1 }, placement: "below" },
+      { key: "x1", objectId: "q1", at: { x: -1, y: 3 }, placement: "above-left" },
+      { key: "x2", objectId: "q2", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "x3", objectId: "q3", at: { x: 3, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Für beide Werte nach <InlineMath math="x" /> auflösen
+
+Jeder Wert von <InlineMath math="u" /> ergibt **eine eigene quadratische Gleichung in <InlineMath math="x" />**:
+
+<BlockMath math="\begin{aligned}
+x^2-2x=3&\quad\Longleftrightarrow\quad (x-3)(x+1)=0\quad\Longleftrightarrow\quad x=3\ \text{oder}\ x=-1 \\
+x^2-2x=-1&\quad\Longleftrightarrow\quad (x-1)^2=0\quad\Longleftrightarrow\quad x=1
+\end{aligned}" />
+
+Probe für <InlineMath math="x=1" />: <InlineMath math="(1-2)^2-2\cdot(1-2)-3=1+2-3=0" />. Die Lösungsmenge ist **<InlineMath math="\mathbb{L}=\{-1;\,1;\,3\}" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\{-1;\,3\}" /> verwirft <InlineMath math="u=-1" />, als könnte <InlineMath math="u" /> nicht negativ sein. Dabei **fehlt die Lösung <InlineMath math="x=1" />**. Zufällig stimmen diese beiden Zahlen auch mit den <InlineMath math="u" />-Werten überein.
+- <InlineMath math="\{1\}" /> rechnet nur den Fall <InlineMath math="u=-1" />.
+- <InlineMath math="\{-3;\,-1;\,1\}" /> löst mit <InlineMath math="x^2+2x" /> statt <InlineMath math="x^2-2x" />, also mit einem Vorzeichenfehler.
+- <InlineMath math="\{1-\sqrt2;\,1+\sqrt2\}" /> entsteht mit den falschen Werten <InlineMath math="u=1" /> und <InlineMath math="u=-3" /> aus <InlineMath math="(u+3)(u-1)" />. Dann liefert nur <InlineMath math="x^2-2x=1" /> Lösungen.
+- <InlineMath math="\{1;\,3\}" /> lässt die negative Zahl <InlineMath math="x=-1" /> weg.

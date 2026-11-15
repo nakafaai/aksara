@@ -1,18 +1,72 @@
-Soal menanyakan luas segi delapan (*Achteck*) yang terbentuk. Segi delapan itu adalah **persegi tanpa keempat segitiga yang dipotong**. Jadi, kurangkan luas keempat sudut dari luas persegi.
+# Segitiga <InlineMath math="ABS" /> sama sisi
 
-Setiap segitiga siku-siku dengan sisi siku-siku <InlineMath math="2\text{ cm}" /> dan <InlineMath math="2\text{ cm}" />. Luasnya setengah hasil kali kedua sisi siku-siku itu.
+<InlineMath math="S" /> terletak pada busur berpusat <InlineMath math="A" />, jadi <InlineMath math="\overline{AS}=6" />. <InlineMath math="S" /> juga terletak pada busur berpusat <InlineMath math="B" />, jadi <InlineMath math="\overline{BS}=6" />. Bersama <InlineMath math="\overline{AB}=6" />, segitiga <InlineMath math="ABS" /> **sama sisi**.
 
-<BlockMath math="\begin{aligned}
-L_{\text{segitiga}}&=\frac12\cdot2\cdot2=2\text{ cm}^2 \\
-L_{\text{segi delapan}}&=8^2-4\cdot2=64-8=56\text{ cm}^2
-\end{aligned}" />
+# Tinggi di atas <InlineMath math="\overline{AB}" />
 
-Sebagai pemeriksaan, bayangkan dua potongan sudut digabungkan. Dua segitiga seperti itu membentuk persegi <InlineMath math="2\text{ cm}" /> kali <InlineMath math="2\text{ cm}" />, yaitu <InlineMath math="4\text{ cm}^2" />. Keempat sudut bersama-sama lalu <InlineMath math="8\text{ cm}^2" />.
+Tinggi segitiga sama sisi bersisi <InlineMath math="6" /> membagi dua alasnya. Menurut Pythagoras:
 
-Jadi, luas segi delapan itu <InlineMath math="56\text{ cm}^2" />.
+<BlockMath math="h=\sqrt{6^2-3^2}=\sqrt{27}=3\sqrt3" />
 
-- <InlineMath math="48\text{ cm}^2" /> mengurangkan satu persegi utuh <InlineMath math="4\text{ cm}^2" /> di setiap sudut. Padahal segitiganya hanya setengahnya.
-- <InlineMath math="60\text{ cm}^2" /> menghitung luas segitiga sebagai <InlineMath math="\frac12\cdot2=1" /> dan melupakan sisi siku-siku kedua.
-- <InlineMath math="62\text{ cm}^2" /> hanya mengurangkan satu sudut.
-- <InlineMath math="64\text{ cm}^2" /> adalah persegi utuh, tanpa ada yang dipotong.
-- <InlineMath math="58\text{ cm}^2" /> hanya mengurangkan tiga dari empat sudut.
+Jadi <InlineMath math="S" /> terletak **<InlineMath math="3\sqrt3" /> di atas sisi <InlineMath math="\overline{AB}" />**.
+
+<MathVisual
+  title={<>Titik potong kedua busur</>}
+  description={<>Persegi <InlineMath math="ABCD" /> dengan sisi <InlineMath math="6" />. Busur berpusat <InlineMath math="A" /> dan busur berpusat <InlineMath math="B" /> berpotongan di <InlineMath math="S" />. Segitiga <InlineMath math="ABS" /> sama sisi dengan tinggi <InlineMath math="3\sqrt3" />. Dari <InlineMath math="S" /> ke sisi atas <InlineMath math="\overline{CD}" /> tersisa potongan pendek <InlineMath math="6-3\sqrt3" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    s: <><InlineMath math="S" /></>,
+    gap: <><InlineMath math="6-3\sqrt3" /></>,
+    h: <><InlineMath math="3\sqrt3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7.5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 0, y: 6 }] },
+      { id: "arc-a", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90 },
+      { id: "arc-b", kind: "arc", appearance: "primary", center: { x: 6, y: 0 }, radius: 6, startDegrees: 90, sweepDegrees: 90 },
+      { id: "triangle", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 5.1962 }] },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 5.1962 }, to: { x: 3, y: 6 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 6, y: 6 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "ps", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 6, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "pd", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "s", objectId: "ps", at: { x: 3, y: 5.1962 }, placement: "left" },
+      { key: "gap", objectId: "gap", at: { x: 3, y: 5.6 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 3, y: 2.6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Jarak ke sisi di depannya
+
+Sisi <InlineMath math="\overline{CD}" /> berada <InlineMath math="6" /> di atas <InlineMath math="\overline{AB}" />. Yang dicari adalah **sisa jarak sampai ke sana**:
+
+<BlockMath math="6-3\sqrt3\approx6-5{,}196=0{,}804" />
+
+<InlineMath math="S" /> berjarak <InlineMath math="(6-3\sqrt3)\text{ cm}" /> dari <InlineMath math="\overline{CD}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> adalah **jarak ke sisi yang salah**, yaitu ke <InlineMath math="\overline{AB}" />, bukan ke <InlineMath math="\overline{CD}" />.
+- <InlineMath math="3\text{ cm}" /> adalah jarak <InlineMath math="S" /> ke sisi <InlineMath math="\overline{AD}" /> dan <InlineMath math="\overline{BC}" />.
+- <InlineMath math="(6-3\sqrt2)\text{ cm}" /> memakai setengah diagonal persegi, <InlineMath math="3\sqrt2" />, sebagai tinggi.
+- <InlineMath math="(3\sqrt3-3)\text{ cm}" /> mengurangkan setengah sisi, bukan mengurangkan tinggi dari sisi penuh.
+- <InlineMath math="(6-2\sqrt3)\text{ cm}" /> tertukar antara tinggi <InlineMath math="3\sqrt3" /> dan jarak <InlineMath math="2\sqrt3" /> dari titik berat segitiga <InlineMath math="ABS" /> ke titik sudut <InlineMath math="S" />.

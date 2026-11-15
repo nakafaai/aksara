@@ -1,18 +1,72 @@
-Das Achteck ist **das Quadrat ohne die vier abgeschnittenen Dreiecke**. Du ziehst also von der Fläche des Quadrats die Fläche der vier Ecken ab.
+# Das Dreieck <InlineMath math="ABS" /> ist gleichseitig
 
-Jedes Dreieck ist rechtwinklig mit den Katheten <InlineMath math="2\text{ cm}" /> und <InlineMath math="2\text{ cm}" />. Seine Fläche ist das halbe Produkt der Katheten.
+<InlineMath math="S" /> liegt auf dem Bogen um <InlineMath math="A" />, also ist <InlineMath math="\overline{AS}=6" />. Ebenso liegt <InlineMath math="S" /> auf dem Bogen um <InlineMath math="B" />, also ist <InlineMath math="\overline{BS}=6" />. Zusammen mit <InlineMath math="\overline{AB}=6" /> ist das Dreieck <InlineMath math="ABS" /> **gleichseitig**.
 
-<BlockMath math="\begin{aligned}
-A_{\text{Dreieck}}&=\frac12\cdot2\cdot2=2\text{ cm}^2 \\
-A_{\text{Achteck}}&=8^2-4\cdot2=64-8=56\text{ cm}^2
-\end{aligned}" />
+# Die Höhe über <InlineMath math="\overline{AB}" />
 
-Zur Kontrolle denkst du dir zwei gegenüberliegende Ecken zusammengeschoben. Zwei solche Dreiecke ergeben ein Quadrat von <InlineMath math="2\text{ cm}" /> mal <InlineMath math="2\text{ cm}" />, also <InlineMath math="4\text{ cm}^2" />. Alle vier Ecken zusammen sind dann <InlineMath math="8\text{ cm}^2" />.
+Die Höhe eines gleichseitigen Dreiecks mit der Seite <InlineMath math="6" /> halbiert die Grundseite. Nach Pythagoras gilt:
 
-Das Achteck hat also einen Flächeninhalt von <InlineMath math="56\text{ cm}^2" />.
+<BlockMath math="h=\sqrt{6^2-3^2}=\sqrt{27}=3\sqrt3" />
 
-- <InlineMath math="48\text{ cm}^2" /> zieht an jeder Ecke ein ganzes Quadrat von <InlineMath math="4\text{ cm}^2" /> ab. Das Dreieck ist aber nur halb so groß.
-- <InlineMath math="60\text{ cm}^2" /> rechnet die Dreiecksfläche als <InlineMath math="\frac12\cdot2=1" /> und vergisst die zweite Kathete.
-- <InlineMath math="62\text{ cm}^2" /> zieht nur eine einzige Ecke ab.
-- <InlineMath math="64\text{ cm}^2" /> ist das ganze Quadrat, ohne dass etwas abgeschnitten wurde.
-- <InlineMath math="58\text{ cm}^2" /> zieht nur drei der vier Ecken ab.
+<InlineMath math="S" /> liegt also **<InlineMath math="3\sqrt3" /> über der Seite <InlineMath math="\overline{AB}" />**.
+
+<MathVisual
+  title={<>Der Schnittpunkt der Bögen</>}
+  description={<>Das Quadrat <InlineMath math="ABCD" /> mit der Seite <InlineMath math="6" />. Die Bögen um <InlineMath math="A" /> und um <InlineMath math="B" /> schneiden sich in <InlineMath math="S" />. Das Dreieck <InlineMath math="ABS" /> ist gleichseitig mit der Höhe <InlineMath math="3\sqrt3" />. Von <InlineMath math="S" /> bis zur oberen Seite <InlineMath math="\overline{CD}" /> bleibt das kurze Stück <InlineMath math="6-3\sqrt3" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    s: <><InlineMath math="S" /></>,
+    gap: <><InlineMath math="6-3\sqrt3" /></>,
+    h: <><InlineMath math="3\sqrt3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7.5 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 6 }, { x: 0, y: 6 }] },
+      { id: "arc-a", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 6, startDegrees: 0, sweepDegrees: 90 },
+      { id: "arc-b", kind: "arc", appearance: "primary", center: { x: 6, y: 0 }, radius: 6, startDegrees: 90, sweepDegrees: 90 },
+      { id: "triangle", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 5.1962 }] },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 3, y: 5.1962 }, to: { x: 3, y: 6 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 6, y: 6 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+      { id: "ps", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 6, y: 6 }, placement: "above-right" },
+      { key: "d", objectId: "pd", at: { x: 0, y: 6 }, placement: "above-left" },
+      { key: "s", objectId: "ps", at: { x: 3, y: 5.1962 }, placement: "left" },
+      { key: "gap", objectId: "gap", at: { x: 3, y: 5.6 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 3, y: 2.6 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Der Abstand zur gegenüberliegenden Seite
+
+Die Seite <InlineMath math="\overline{CD}" /> liegt <InlineMath math="6" /> über <InlineMath math="\overline{AB}" />. Gesucht ist **der Rest bis dorthin**:
+
+<BlockMath math="6-3\sqrt3\approx6-5{,}196=0{,}804" />
+
+<InlineMath math="S" /> ist <InlineMath math="(6-3\sqrt3)\text{ cm}" /> von <InlineMath math="\overline{CD}" /> entfernt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3\sqrt3\text{ cm}" /> ist **der Abstand zur falschen Seite**, nämlich zu <InlineMath math="\overline{AB}" /> statt zu <InlineMath math="\overline{CD}" />.
+- <InlineMath math="3\text{ cm}" /> ist der Abstand von <InlineMath math="S" /> zu den Seiten <InlineMath math="\overline{AD}" /> und <InlineMath math="\overline{BC}" />.
+- <InlineMath math="(6-3\sqrt2)\text{ cm}" /> verwendet die halbe Diagonale des Quadrats, <InlineMath math="3\sqrt2" />, als Höhe.
+- <InlineMath math="(3\sqrt3-3)\text{ cm}" /> zieht die halbe Seitenlänge ab statt die Höhe von der ganzen Seite.
+- <InlineMath math="(6-2\sqrt3)\text{ cm}" /> verwechselt die Höhe <InlineMath math="3\sqrt3" /> mit dem Abstand <InlineMath math="2\sqrt3" /> vom Schwerpunkt des Dreiecks <InlineMath math="ABS" /> zu seiner Ecke <InlineMath math="S" />.

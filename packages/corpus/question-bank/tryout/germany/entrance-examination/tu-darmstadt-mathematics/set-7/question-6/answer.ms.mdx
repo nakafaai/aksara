@@ -1,0 +1,62 @@
+# Jarak antara punca sifar menentukan kedalaman
+
+Tulis <InlineMath math="f" /> dalam bentuk bucu: <InlineMath math="f(x)=(x-h)^2+k" /> dengan bucu <InlineMath math="S(h\mid k)" />. Kedua-dua punca sifar simetri terhadap bucu, masing-masing <InlineMath math="3" /> di kiri dan kanan <InlineMath math="h" />. Pada <InlineMath math="x=h+3" />, <InlineMath math="f=0" />:
+
+<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
+
+Jadi bucu itu **<InlineMath math="9" /> unit di bawah paksi <InlineMath math="x" />**, tidak kira berapa nilai <InlineMath math="h" />.
+
+# Garis menentukan kedudukannya
+
+Bucu terletak pada <InlineMath math="y=x-10" />, jadi **mesti <InlineMath math="k=h-10" />**:
+
+<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+
+# Persamaan fungsi
+
+<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+
+<MathVisual
+  title={<>Parabola, punca sifar dan bucu</>}
+  description={<>Parabola <InlineMath math="y=x^2-2x-8" /> memotong paksi <InlineMath math="x" /> pada <InlineMath math="-2" /> dan <InlineMath math="4" />, dua titik yang berjarak <InlineMath math="6" />. Bucunya <InlineMath math="S(1\mid-9)" /> terletak tepat di tengah di bawahnya, pada garis <InlineMath math="y=x-10" />.</>}
+  labels={{
+    v: <><InlineMath math="S(1\mid-9)" /></>,
+    l: <><InlineMath math="y=x-10" /></>,
+    r1: <><InlineMath math="-2" /></>,
+    r2: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 8 },
+      y: { min: -12, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x - 8", domain: { min: -3, max: 5 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 10", domain: { min: -1, max: 6 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "width", kind: "segment", appearance: "highlight", from: { x: -2, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 1, y: -9 } },
+      { id: "z1", kind: "point", appearance: "reference", at: { x: -2, y: 0 } },
+      { id: "z2", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "v", objectId: "vertex", at: { x: 1, y: -9 }, placement: "below-left" },
+      { key: "l", objectId: "line", at: { x: 6, y: -4 }, placement: "right" },
+      { key: "r1", objectId: "z1", at: { x: -2, y: 0 }, placement: "above-left" },
+      { key: "r2", objectId: "z2", at: { x: 4, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> mempunyai punca sifar <InlineMath math="4" /> dan <InlineMath math="-2" />, berjarak <InlineMath math="6" />. **Persamaan yang dicari** ialah <InlineMath math="f(x)=x^2-2x-8" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="f(x)=x^2+2x-8" /> mempunyai bucu <InlineMath math="(-1\mid-9)" />. Titik itu **tidak terletak pada garis**, kerana <InlineMath math="-1-10=-11\ne-9" />.
+- <InlineMath math="f(x)=x^2-14x+46" /> memakai kedalaman <InlineMath math="3" />, bukan <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
+- <InlineMath math="f(x)=x^2-2x-9" /> memakai <InlineMath math="k=-9" /> sebagai sebutan malar tanpa mengembangkan <InlineMath math="(x-1)^2" />.
+- <InlineMath math="f(x)=x^2-2x+8" /> salah tanda pada sebutan malar. Parabola ini langsung tiada punca sifar.
+- <InlineMath math="f(x)=x^2-4x-5" /> memang mempunyai punca sifar yang berjarak <InlineMath math="6" />, tetapi bucunya <InlineMath math="(2\mid-9)" /> tidak terletak pada garis.

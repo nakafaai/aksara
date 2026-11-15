@@ -1,15 +1,56 @@
-Eine lineare Funktion <InlineMath math="f(x)=mx+n" /> ist genau dann streng monoton fallend, wenn **ihre Steigung <InlineMath math="m" /> negativ** ist. Der Achsenabschnitt <InlineMath math="n=1" /> spielt dafür keine Rolle.
+# Erst der Fall ohne quadratisches Glied
 
-Hier ist die Steigung <InlineMath math="m=2-k" />. Du löst die Ungleichung <InlineMath math="m<0" />.
+Für <InlineMath math="a=1" /> fällt <InlineMath math="x^2" /> weg, und es bleibt die Gerade <InlineMath math="f(x)=2x+3" />. **Eine nicht waagerechte Gerade wird irgendwann negativ**, zum Beispiel ist <InlineMath math="f(-2)=-1" />. Also scheidet <InlineMath math="a=1" /> aus.
 
-<BlockMath math="2-k<0\quad\Rightarrow\quad2<k\quad\Rightarrow\quad k>2" />
+# Bedingungen für eine Parabel
 
-Zur Kontrolle setzt du Werte ein. Für <InlineMath math="k=3" /> ist <InlineMath math="f(x)=-x+1" />, und der Graph fällt. Für <InlineMath math="k=2" /> ist <InlineMath math="f(x)=1" /> konstant. Für <InlineMath math="k=0" /> ist <InlineMath math="f(x)=2x+1" />, und der Graph steigt.
+Für <InlineMath math="a\ne1" /> ist der Graph eine Parabel. Sie liegt genau dann ganz oberhalb der <InlineMath math="x" />-Achse, wenn sie **nach oben geöffnet ist und keine Nullstelle hat**:
 
-Die Funktion ist also für alle <InlineMath math="k>2" /> streng monoton fallend.
+<BlockMath math="\begin{aligned}
+a-1&>0\quad\Longrightarrow\quad a>1 \\
+D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+\end{aligned}" />
 
-- Für <InlineMath math="k<2" /> ist die Steigung positiv, die Funktion steigt.
-- <InlineMath math="k>-2" /> entsteht aus dem Vorzeichenfehler <InlineMath math="2+k<0" /> mit zusätzlich umgedrehtem Zeichen. Für <InlineMath math="k=0" /> steigt die Funktion aber.
-- Für <InlineMath math="k=2" /> ist die Steigung null. Eine konstante Funktion fällt nicht.
-- <InlineMath math="k\ge2" /> schließt <InlineMath math="k=2" /> ein, und dort ist <InlineMath math="f" /> konstant, also nicht streng monoton fallend.
-- <InlineMath math="k<-2" /> entsteht aus dem Vorzeichenfehler <InlineMath math="2+k<0" />. Für <InlineMath math="k=-3" /> ist die Steigung aber <InlineMath math="2-(-3)=5" />, also positiv.
+# Beide Bedingungen zusammen
+
+Beide Bedingungen gelten genau für <InlineMath math="a>2" />. Für <InlineMath math="a=2" /> ist <InlineMath math="D=0" />: Der Graph **berührt die Achse**, und <InlineMath math="f(-2)=0" /> ist nicht positiv.
+
+<MathVisual
+  title={<>Wann der Graph ganz oberhalb liegt</>}
+  description={<>Für <InlineMath math="a=3" /> ist <InlineMath math="f(x)=2x^2+6x+5" /> eine nach oben geöffnete Parabel, die ganz oberhalb der <InlineMath math="x" />-Achse liegt. Für den Grenzwert <InlineMath math="a=2" /> ist <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, und der Graph berührt die Achse im Punkt <InlineMath math="(-2\mid0)" />. Dort ist <InlineMath math="f(x)>0" /> verletzt.</>}
+  labels={{
+    g: <><InlineMath math="a=3" /></>,
+    e: <><InlineMath math="a=2" /></>,
+    t: <><InlineMath math="(-2\mid0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 3 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "2*x^2 + 6*x + 5", domain: { min: -3.4, max: 0.4 } },
+      { id: "edge", kind: "function", appearance: "secondary", formula: "x^2 + 4*x + 4", domain: { min: -4.5, max: 0.5 } },
+      { id: "touch", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "good", at: { x: -3.3, y: 6.98 }, placement: "left" },
+      { key: "e", objectId: "edge", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "t", objectId: "touch", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Es gilt <InlineMath math="f(x)>0" /> für alle <InlineMath math="x" /> genau dann, wenn <InlineMath math="a>2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="a>1" /> prüft nur die Öffnung der Parabel. Für <InlineMath math="a=1{,}5" /> ist <InlineMath math="D=2>0" />, und die Parabel **hat Nullstellen**.
+- <InlineMath math="a\ge2" /> nimmt <InlineMath math="a=2" /> mit, wo der Graph die Achse berührt.
+- <InlineMath math="1<a<2" /> dreht die Diskriminantenbedingung um.
+- <InlineMath math="a=1" /> oder <InlineMath math="a>2" /> übersieht, dass die Gerade für <InlineMath math="a=1" /> negative Werte annimmt.
+- <InlineMath math="a<2" /> verwendet nur <InlineMath math="D<0" /> mit falschem Ungleichheitszeichen und ignoriert die Öffnung.

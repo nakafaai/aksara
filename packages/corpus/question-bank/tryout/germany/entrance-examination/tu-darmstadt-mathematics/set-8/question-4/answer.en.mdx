@@ -1,15 +1,65 @@
-The task asks for the coordinates of vertex <InlineMath math="D" />. In a parallelogram, opposite sides are **parallel and of equal length**. So the step from <InlineMath math="A" /> to <InlineMath math="D" /> is the same as the step from <InlineMath math="B" /> to <InlineMath math="C" />.
+# The area from the coordinates
 
-From <InlineMath math="B(6\mid2)" /> to <InlineMath math="C(8\mid6)" /> you go <InlineMath math="2" /> to the right and <InlineMath math="4" /> up. Take this step from <InlineMath math="A" />.
+If one corner is at the origin, the triangle with the other corners <InlineMath math="(x_1\mid y_1)" /> and <InlineMath math="(x_2\mid y_2)" /> has area <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **The absolute value matters**, because without it the expression can be negative, depending on the orientation:
 
-<BlockMath math="D=(1+2\mid1+4)=(3\mid5)" />
+<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
 
-As a check, test the other two sides. From <InlineMath math="A" /> to <InlineMath math="B" /> you go <InlineMath math="5" /> to the right and <InlineMath math="1" /> up, and the same from <InlineMath math="D(3\mid5)" /> to <InlineMath math="C(8\mid6)" />. The diagonals also bisect each other: the midpoints of <InlineMath math="\overline{AC}" /> and of <InlineMath math="\overline{BD}" /> are both <InlineMath math="\left(\frac92\mid\frac72\right)" />.
+# Solve the absolute value equation
 
-So the vertex is <InlineMath math="D(3\mid5)" />.
+<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
 
-- <InlineMath math="(13\mid7)" /> is <InlineMath math="B+C-A" />. That is the fourth point of a parallelogram in which <InlineMath math="A" /> and <InlineMath math="D" /> are opposite, not the vertex of <InlineMath math="ABCD" />.
-- <InlineMath math="(-1\mid-3)" /> is <InlineMath math="A+B-C" />, the fourth point of a parallelogram in which <InlineMath math="C" /> and <InlineMath math="D" /> are opposite.
-- <InlineMath math="\left(\frac92\mid\frac72\right)" /> is where the diagonals cross, not a vertex.
-- <InlineMath math="(2\mid4)" /> is only the step from <InlineMath math="B" /> to <InlineMath math="C" />, not a point of the parallelogram.
-- <InlineMath math="(5\mid1)" /> is only the step from <InlineMath math="A" /> to <InlineMath math="B" />.
+An absolute value is <InlineMath math="30" /> when **what's inside is <InlineMath math="30" /> or <InlineMath math="-30" />**:
+
+<BlockMath math="\begin{aligned}
+36-2k=30&\quad\Longrightarrow\quad k=3 \\
+36-2k=-30&\quad\Longrightarrow\quad k=33
+\end{aligned}" />
+
+<MathVisual
+  title={<>Two positions for <InlineMath math="C" /></>}
+  description={<>The points <InlineMath math="A(0\mid0)" /> and <InlineMath math="B(6\mid2)" /> and the horizontal line <InlineMath math="y=6" /> that carries <InlineMath math="C" />. Two triangles have area <InlineMath math="15" />: one with <InlineMath math="C_1(3\mid6)" /> on the left and a long, flat one with <InlineMath math="C_2(33\mid6)" /> far to the right.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c1: <><InlineMath math="C_1(3\mid6)" /></>,
+    c2: <><InlineMath math="C_2(33\mid6)" /></>,
+    l: <><InlineMath math="y=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 36 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "row", kind: "segment", appearance: "reference", from: { x: -1, y: 6 }, to: { x: 35, y: 6 } },
+      { id: "t1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 3, y: 6 }] },
+      { id: "t2", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 33, y: 6 }] },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: 6 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 33, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "c1", objectId: "p1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "c2", objectId: "p2", at: { x: 33, y: 6 }, placement: "above-left" },
+      { key: "l", objectId: "row", at: { x: -1, y: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Check
+
+For <InlineMath math="k=3" />, <InlineMath math="\frac12|36-6|=15" />, and for <InlineMath math="k=33" />, <InlineMath math="\frac12|36-66|=15" />. Both values give a real triangle, so **<InlineMath math="k=3" /> or <InlineMath math="k=33" />**.
+
+# Why the other answers are wrong
+
+- "only <InlineMath math="k=3" />" works without the absolute value and **loses the second position**.
+- "only <InlineMath math="k=33" />" loses the first position.
+- <InlineMath math="k=10.5" /> or <InlineMath math="k=25.5" /> forgets the factor <InlineMath math="\frac12" />: these values come from <InlineMath math="|36-2k|=15" />, and the triangle would have area <InlineMath math="7.5" />.
+- <InlineMath math="k=-3" /> or <InlineMath math="k=3" /> puts the absolute value around <InlineMath math="k" /> instead of around the whole expression.
+- "only <InlineMath math="k=18" />" is the value where <InlineMath math="36-2k=0" />. Then the three points are on one line and there's no triangle.

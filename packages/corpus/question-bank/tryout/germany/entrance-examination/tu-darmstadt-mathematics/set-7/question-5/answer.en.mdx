@@ -1,15 +1,69 @@
-The task asks how tall the image (*Bild*) of the person is on the back wall of the pinhole camera. The light rays from the person's head and feet pass straight through the hole. They cross there like two lines, and the person and the image are parallel. That is the figure of the **intercept theorem with the hole as its vertex**.
+# Two similar triangles at each spot
 
-The lengths are in the same ratio as the distances from the hole. First convert both distances to the same unit: <InlineMath math="20\text{ cm}=0.2\text{ m}" />.
+The lamp, the tip of the shadow and the person's head lie on one light ray. The person and the lamp post both stand upright, so the small triangle at the person and the big triangle at the post are **similar**. If the person stands at distance <InlineMath math="d" /> from the post and the shadow is <InlineMath math="s" /> long:
 
-<BlockMath math="\frac{b}{1.8}=\frac{0.2}{6}\quad\Rightarrow\quad b=1.8\cdot\frac{0.2}{6}=\frac{0.36}{6}=0.06" />
+<BlockMath math="\frac{1.8}{s}=\frac{H}{d+s}\quad\Longleftrightarrow\quad H\,s=1.8\,(d+s)" />
 
-So the image is <InlineMath math="0.06\text{ m}=6\text{ cm}" /> tall. As a check, look at the scale. The person stands <InlineMath math="6:0.2=30" /> times as far from the hole as the back wall, so the image is <InlineMath math="30" /> times smaller: <InlineMath math="180\text{ cm}:30=6\text{ cm}" />.
+# Write down both spots
 
-So the image of the person is <InlineMath math="6\text{ cm}" /> tall.
+You don't know <InlineMath math="d" />, but it grows by <InlineMath math="3" />. That gives **two equations in the unknowns <InlineMath math="d" /> and <InlineMath math="H" />**:
 
-- <InlineMath math="0.6\text{ cm}" /> moves the decimal point one place too few when converting <InlineMath math="0.06\text{ m}" />.
-- <InlineMath math="60\text{ cm}" /> converts <InlineMath math="0.06\text{ m}" /> to centimetres with the factor <InlineMath math="1000" /> instead of <InlineMath math="100" />.
-- <InlineMath math="54\text{ m}" /> sets up the ratio upside down, <InlineMath math="1.8\cdot\frac{6}{0.2}" />. The image in a small box cannot be larger than the person.
-- <InlineMath math="30\text{ cm}" /> is only the scale <InlineMath math="30" />, how many times smaller the image is, not a length.
-- <InlineMath math="6\text{ m}" /> computes with <InlineMath math="20" /> and <InlineMath math="6" /> without converting, <InlineMath math="1.8\cdot\frac{20}{6}=6" />, and so mixes centimetres and metres.
+<BlockMath math="\begin{aligned}
+2H&=1.8\,(d+2) \\
+3.5H&=1.8\,(d+3+3.5)
+\end{aligned}" />
+
+# Get rid of the unknown distance
+
+Subtract the first equation from the second. The <InlineMath math="d" /> drops out:
+
+<BlockMath math="1.5H=1.8\cdot4.5=8.1\quad\Longrightarrow\quad H=5.4" />
+
+<MathVisual
+  title={<>Lamp post, person and shadow</>}
+  description={<>On the left the lamp post with the lamp at height <InlineMath math="H" />. The person, <InlineMath math="1.8" /> tall, first stands at <InlineMath math="x=4" /> with a shadow to <InlineMath math="x=6" />, then <InlineMath math="3" /> further at <InlineMath math="x=7" /> with a shadow to <InlineMath math="x=10.5" />. The light rays from the lamp graze the person's head and end at the tips of the shadows.</>}
+  labels={{
+    h: <><InlineMath math="H=5.4" /></>,
+    p1: <><InlineMath math="1.8" /></>,
+    s1: <><InlineMath math="2" /></>,
+    s2: <><InlineMath math="3.5" /></>,
+    walk: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 11.5 },
+      y: { min: -1, max: 6.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 5.4 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "person-1", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 1.8 } },
+      { id: "person-2", kind: "segment", appearance: "secondary", from: { x: 7, y: 0 }, to: { x: 7, y: 1.8 } },
+      { id: "ray-1", kind: "segment", appearance: "construction", from: { x: 0, y: 5.4 }, to: { x: 6, y: 0 } },
+      { id: "ray-2", kind: "segment", appearance: "construction", from: { x: 0, y: 5.4 }, to: { x: 10.5, y: 0 } },
+      { id: "shadow-1", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "shadow-2", kind: "segment", appearance: "highlight", from: { x: 7, y: 0 }, to: { x: 10.5, y: 0 } },
+      { id: "lamp", kind: "point", appearance: "answer", at: { x: 0, y: 5.4 } },
+    ],
+    labels: [
+      { key: "h", objectId: "lamp", at: { x: 0, y: 5.4 }, placement: "right" },
+      { key: "p1", objectId: "person-1", at: { x: 4, y: 0.9 }, placement: "left" },
+      { key: "s1", objectId: "shadow-1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "s2", objectId: "shadow-2", at: { x: 8.75, y: 0 }, placement: "below" },
+      { key: "walk", objectId: "ground", at: { x: 5.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Check: the first equation gives <InlineMath math="10.8=1.8(d+2)" />, so <InlineMath math="d=4" />. Then the second shadow satisfies <InlineMath math="5.4\,s=1.8\,(7+s)" />, so <InlineMath math="s=3.5" />. The lamp hangs **at a height of <InlineMath math="5.4\text{ m}" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="3.6\text{ m}" /> is only <InlineMath math="H-1.8" />, the lamp's height **above the person's head**.
+- <InlineMath math="3.15\text{ m}" /> multiplies the height by the ratio of the shadows: <InlineMath math="1.8\cdot\frac{3.5}{2}" />.
+- <InlineMath math="6.3\text{ m}" /> is <InlineMath math="1.8\cdot3.5" />, as if the second shadow were the distance to the post.
+- <InlineMath math="2.7\text{ m}" /> is <InlineMath math="1.8\cdot1.5" />, the height times the growth of the shadow.
+- <InlineMath math="7.2\text{ m}" /> counts the person's height twice: <InlineMath math="5.4+1.8" />.

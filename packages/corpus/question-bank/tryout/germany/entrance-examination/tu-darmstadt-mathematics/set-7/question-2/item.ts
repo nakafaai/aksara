@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$x=2$$ und $$x=3$$",
-        },
-        {
           correct: true,
-          label: "$$x=-3$$, $$x=-2$$, $$x=2$$ und $$x=3$$",
+          label: "$$\\mathbb{L}=\\{-1;\\,1;\\,3\\}$$",
         },
         {
           correct: false,
-          label: "$$x=4$$ und $$x=9$$",
+          label: "$$\\mathbb{L}=\\{-1;\\,3\\}$$",
         },
         {
           correct: false,
-          label: "$$x=-9$$, $$x=-4$$, $$x=4$$ und $$x=9$$",
+          label: "$$\\mathbb{L}=\\{1\\}$$",
         },
         {
           correct: false,
-          label: "Die Gleichung hat keine reelle Lösung.",
+          label: "$$\\mathbb{L}=\\{-3;\\,-1;\\,1\\}$$",
         },
         {
           correct: false,
-          label: "$$x=-2$$ und $$x=2$$",
+          label: "$$\\mathbb{L}=\\{1-\\sqrt2;\\,1+\\sqrt2\\}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\mathbb{L}=\\{1;\\,3\\}$$",
         },
       ],
     },

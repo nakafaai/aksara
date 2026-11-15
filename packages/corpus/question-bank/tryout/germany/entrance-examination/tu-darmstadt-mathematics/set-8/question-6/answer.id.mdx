@@ -1,15 +1,56 @@
-Soal menanyakan nilai <InlineMath math="k" /> agar fungsi itu *streng monoton fallend* (turun tegas). Fungsi linear <InlineMath math="f(x)=mx+n" /> turun tegas tepat jika **gradiennya, <InlineMath math="m" />, negatif**. Titik potong <InlineMath math="n=1" /> tidak berpengaruh.
+# Dulu kasus tanpa suku kuadrat
 
-Di sini gradiennya <InlineMath math="m=2-k" />. Selesaikan pertidaksamaan <InlineMath math="m<0" />.
+Untuk <InlineMath math="a=1" />, suku <InlineMath math="x^2" /> hilang dan tersisa garis <InlineMath math="f(x)=2x+3" />. **Garis yang tidak mendatar pasti negatif di suatu tempat**, misalnya <InlineMath math="f(-2)=-1" />. Jadi <InlineMath math="a=1" /> gugur.
 
-<BlockMath math="2-k<0\quad\Rightarrow\quad2<k\quad\Rightarrow\quad k>2" />
+# Syarat untuk parabola
 
-Sebagai pemeriksaan, substitusikan beberapa nilai. Untuk <InlineMath math="k=3" />, <InlineMath math="f(x)=-x+1" /> dan grafiknya turun. Untuk <InlineMath math="k=2" />, <InlineMath math="f(x)=1" /> konstan. Untuk <InlineMath math="k=0" />, <InlineMath math="f(x)=2x+1" /> dan grafiknya naik.
+Untuk <InlineMath math="a\ne1" /> grafiknya parabola. Parabola itu seluruhnya di atas sumbu <InlineMath math="x" /> tepat ketika **terbuka ke atas dan tidak punya pembuat nol**:
 
-Jadi, fungsi itu turun tegas untuk semua <InlineMath math="k>2" />.
+<BlockMath math="\begin{aligned}
+a-1&>0\quad\Longrightarrow\quad a>1 \\
+D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+\end{aligned}" />
 
-- Untuk <InlineMath math="k<2" />, gradiennya positif sehingga fungsinya naik.
-- <InlineMath math="k>-2" /> berasal dari kesalahan tanda <InlineMath math="2+k<0" /> disertai tanda pertidaksamaan yang terbalik. Untuk <InlineMath math="k=0" />, fungsinya justru naik.
-- Untuk <InlineMath math="k=2" />, gradiennya nol. Fungsi konstan tidak turun.
-- <InlineMath math="k\ge2" /> ikut memasukkan <InlineMath math="k=2" />, padahal di sana <InlineMath math="f" /> konstan sehingga tidak turun tegas.
-- <InlineMath math="k<-2" /> berasal dari kesalahan tanda <InlineMath math="2+k<0" />. Untuk <InlineMath math="k=-3" />, gradiennya <InlineMath math="2-(-3)=5" />, yaitu positif.
+# Gabungkan kedua syarat
+
+Kedua syarat berlaku tepat untuk <InlineMath math="a>2" />. Untuk <InlineMath math="a=2" />, <InlineMath math="D=0" />: grafiknya **menyinggung sumbu**, dan <InlineMath math="f(-2)=0" /> tidak positif.
+
+<MathVisual
+  title={<>Kapan grafik seluruhnya di atas</>}
+  description={<>Untuk <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> adalah parabola terbuka ke atas yang seluruhnya di atas sumbu <InlineMath math="x" />. Untuk nilai batas <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, dan grafiknya menyinggung sumbu di <InlineMath math="(-2\mid0)" />. Di sana <InlineMath math="f(x)>0" /> tidak terpenuhi.</>}
+  labels={{
+    g: <><InlineMath math="a=3" /></>,
+    e: <><InlineMath math="a=2" /></>,
+    t: <><InlineMath math="(-2\mid0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 3 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "2*x^2 + 6*x + 5", domain: { min: -3.4, max: 0.4 } },
+      { id: "edge", kind: "function", appearance: "secondary", formula: "x^2 + 4*x + 4", domain: { min: -4.5, max: 0.5 } },
+      { id: "touch", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "good", at: { x: -3.3, y: 6.98 }, placement: "left" },
+      { key: "e", objectId: "edge", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "t", objectId: "touch", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<InlineMath math="f(x)>0" /> untuk semua <InlineMath math="x" /> tepat ketika <InlineMath math="a>2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="a>1" /> hanya memeriksa arah bukaan parabola. Untuk <InlineMath math="a=1{,}5" />, <InlineMath math="D=2>0" />, dan parabolanya **punya pembuat nol**.
+- <InlineMath math="a\ge2" /> ikut memasukkan <InlineMath math="a=2" />, saat grafik menyinggung sumbu.
+- <InlineMath math="1<a<2" /> membalik syarat diskriminan.
+- <InlineMath math="a=1" /> atau <InlineMath math="a>2" /> melewatkan bahwa garis untuk <InlineMath math="a=1" /> mencapai nilai negatif.
+- <InlineMath math="a<2" /> hanya memakai <InlineMath math="D<0" /> dengan tanda yang terbalik dan mengabaikan arah bukaan.

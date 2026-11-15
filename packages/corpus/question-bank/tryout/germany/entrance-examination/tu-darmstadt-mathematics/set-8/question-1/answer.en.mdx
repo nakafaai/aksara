@@ -1,15 +1,62 @@
-The task asks for the values of <InlineMath math="a" /> and <InlineMath math="b" />. Two expressions are equal for every <InlineMath math="x" /> exactly when **the coefficients of equal powers match**. So expand the left side and sort it by powers of <InlineMath math="x" />.
+# Split the expression
 
-<BlockMath math="(x+a)(x-2)=x^2-2x+ax-2a=x^2+(a-2)\,x-2a" />
+The difference of squares splits the expression into **one known and one unknown bracket**:
 
-Now compare with <InlineMath math="x^2+bx-6" />. The constant terms give <InlineMath math="-2a=-6" />, so <InlineMath math="a=3" />. The coefficients of <InlineMath math="x" /> give <InlineMath math="b=a-2=3-2=1" />.
+<BlockMath math="x^2-\frac1{x^2}=\left(x+\frac1x\right)\left(x-\frac1x\right)=3\left(x-\frac1x\right)" />
 
-As a check, expand with these values: <InlineMath math="(x+3)(x-2)=x^2-2x+3x-6=x^2+x-6" />. That is exactly <InlineMath math="x^2+bx-6" /> with <InlineMath math="b=1" />.
+# Find the difference through its square
 
-So <InlineMath math="a=3" /> and <InlineMath math="b=1" />.
+Square the difference and use the known sum. The two squares **differ only in the mixed term** <InlineMath math="\pm2\cdot x\cdot\frac1x=\pm2" />:
 
-- <InlineMath math="a=-3" /> and <InlineMath math="b=-5" /> come from the sign error <InlineMath math="a\cdot(-2)=+2a" />, which gives <InlineMath math="2a=-6" />.
-- <InlineMath math="a=3" /> and <InlineMath math="b=5" /> use <InlineMath math="b=a+2" />. The coefficient of <InlineMath math="x" /> is <InlineMath math="a-2" />.
-- <InlineMath math="a=6" /> and <InlineMath math="b=4" /> drop the factor <InlineMath math="2" /> in the constant term and set <InlineMath math="a=6" />.
-- <InlineMath math="a=3" /> and <InlineMath math="b=-1" /> use <InlineMath math="b=2-a" /> instead of <InlineMath math="b=a-2" />.
-- <InlineMath math="a=1" /> and <InlineMath math="b=3" /> swap the two correct values.
+<BlockMath math="\left(x-\frac1x\right)^2=\left(x+\frac1x\right)^2-4=9-4=5" />
+
+So <InlineMath math="x-\frac1x=\sqrt5" /> or <InlineMath math="x-\frac1x=-\sqrt5" />.
+
+# The condition <InlineMath math="x>1" /> decides the sign
+
+For <InlineMath math="x>1" />, <InlineMath math="\frac1x<1<x" />, so **<InlineMath math="x-\frac1x" /> is positive**. That rules out <InlineMath math="-\sqrt5" />:
+
+<MathVisual
+  title={<>Two numbers with <InlineMath math="x+\frac1x=3" /></>}
+  description={<>The graph of <InlineMath math="y=x+\frac1x" /> for positive <InlineMath math="x" /> meets the line <InlineMath math="y=3" /> twice: at <InlineMath math="x\approx0.38" />, left of the vertical line <InlineMath math="x=1" />, and at <InlineMath math="x\approx2.62" />, right of it. Only the right point satisfies <InlineMath math="x>1" />.</>}
+  labels={{
+    small: <><InlineMath math="x\approx0.38" /></>,
+    big: <><InlineMath math="x\approx2.62" /></>,
+    f: <><InlineMath math="x+\frac1x" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 5.5 },
+      y: { min: 0, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x + 1/x", domain: { min: 0.25, max: 5 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 5, y: 3 } },
+      { id: "one", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 6 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 0.382, y: 3 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2.618, y: 3 } },
+    ],
+    labels: [
+      { key: "small", objectId: "p1", at: { x: 0.382, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "p2", at: { x: 2.618, y: 3 }, placement: "above" },
+      { key: "f", objectId: "curve", at: { x: 4.5, y: 4.72 }, placement: "above" },
+      { key: "three", objectId: "level", at: { x: 5, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="x^2-\frac1{x^2}=3\sqrt5" />
+
+Check with <InlineMath math="x=\frac{3+\sqrt5}{2}\approx2.618" />: <InlineMath math="x^2\approx6.854" /> and <InlineMath math="\frac1{x^2}\approx0.146" />, a difference of about <InlineMath math="6.708\approx3\sqrt5" />. The value is **exactly <InlineMath math="3\sqrt5" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="-3\sqrt5" /> belongs to the other solution, <InlineMath math="x\approx0.38" />. It **doesn't satisfy <InlineMath math="x>1" />**.
+- <InlineMath math="3\sqrt5" /> or <InlineMath math="-3\sqrt5" /> overlooks that the condition <InlineMath math="x>1" /> fixes the sign.
+- <InlineMath math="7" /> is <InlineMath math="x^2+\frac1{x^2}=9-2" />, the sum of the squares instead of their difference.
+- <InlineMath math="\sqrt5" /> is only the difference <InlineMath math="x-\frac1x" />. The factor <InlineMath math="x+\frac1x=3" /> is missing.
+- <InlineMath math="3\sqrt7" /> squares wrongly: <InlineMath math="\left(x-\frac1x\right)^2=9-2=7" /> instead of <InlineMath math="9-4=5" />.
