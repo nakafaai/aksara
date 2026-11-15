@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-structure",
   },
-  stimulus: "breakfast-survey",
+  stimulus: "science-language",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Lebih dari separuh siswa sarapan 4 atau 5 hari dalam seminggu.",
+            "Contoh itu mendukung keberatan bahwa sitasi tidak menangkap manfaat penelitian bagi pemakai yang bukan peneliti.",
         },
         {
-          column: 2,
-          label: "Rata-rata nilai kuis seluruh 400 siswa adalah 69.",
+          correct: false,
+          label:
+            "Contoh itu menjawab klaim Teks A bahwa selisih sitasi di Universitas Tirta Raya disebabkan oleh bahasa.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Dilihat dari persentasenya, kelompok yang paling jarang sarapan paling banyak sulit berkonsentrasi.",
+            "Contoh itu ikut mendasari usul agar hasil penelitian terbit lengkap dalam bahasa Indonesia.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Jumlah siswa yang sulit berkonsentrasi paling banyak terdapat pada kelompok 0 atau 1 hari.",
+            "Contoh itu menunjukkan bahwa bahasa Indonesia mampu membentuk istilah baru untuk hal baru.",
+        },
+        {
+          correct: false,
+          label:
+            "Contoh itu membantah bahwa artikel berbahasa Inggris menjangkau lebih banyak peneliti di luar negeri.",
         },
       ],
     },

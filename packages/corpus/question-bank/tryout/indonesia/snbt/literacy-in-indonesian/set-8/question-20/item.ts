@@ -2,36 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "assumption",
+    topic: "calculation",
   },
-  stimulus: "nickel-processing",
+  stimulus: "household-spending",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "Rp$$180{.}000$$, yaitu $$20\\%$$ dari seluruh pengeluaran",
+        },
+        {
+          correct: false,
+          label: "Rp$$104{.}400$$, yaitu $$20\\%$$ dari pengeluaran makanan",
+        },
+        {
           correct: true,
-          label:
-            "nilai tambah dari pengolahan nikel otomatis dinikmati masyarakat luas",
+          label: "Rp$$27{.}000$$, yaitu $$20\\%$$ dari pengeluaran beras",
         },
         {
           correct: false,
-          label: "larangan ekspor bijih nikel mentah mulai berlaku pada 2020",
+          label: "Rp$$135{.}000$$, yaitu seluruh pengeluaran beras",
         },
         {
           correct: false,
-          label: "smelter memerlukan listrik dalam jumlah yang sangat besar",
-        },
-        {
-          correct: false,
-          label: "negara lain tidak lagi membutuhkan nikel dari Indonesia",
-        },
-        {
-          correct: false,
-          label:
-            "tambang nikel tidak memerlukan pembukaan hutan sama sekali di daerah itu",
+          label: "Rp$$21{.}600$$, sama dengan tambahan biaya kelompok terbawah",
         },
       ],
     },

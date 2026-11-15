@@ -4,35 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "recorded-lectures",
+  stimulus: "bus-ridership",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Banyak penumpang naik di semua koridor." },
         {
-          correct: false,
-          label: "perlu tidaknya mahasiswa mengikuti ujian di akhir semester",
-        },
-        {
-          correct: false,
-          label: "apakah dosen sebaiknya berbicara lebih lama di dalam kelas",
-        },
-        {
-          correct: false,
+          column: 1,
           label:
-            "perlu tidaknya mahasiswa yang bekerja paruh waktu mendapat beasiswa kuliah dari kampus",
+            "Koridor A mengalami kenaikan penumpang dengan persentase terbesar.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "apakah rekaman sebaiknya menggantikan ceramah di kelas atau melengkapinya",
+            "Penurunan tarif menyebabkan kenaikan penumpang sebesar $$60\\%$$ di Koridor A.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "mungkin tidaknya diskusi dilakukan di kelas yang sangat besar",
+            "Kedua koridor yang frekuensinya tidak berubah mengalami kenaikan dengan persentase yang sama.",
+        },
+        {
+          column: 2,
+          label: "Total penumpang bus kota naik lebih dari $$50\\%$$.",
         },
       ],
     },

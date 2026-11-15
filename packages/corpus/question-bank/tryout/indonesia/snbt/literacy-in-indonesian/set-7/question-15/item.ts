@@ -4,33 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "plastic-levy",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Rumah Q dan Rumah R memiliki kapasitas panel yang sama dan menghasilkan listrik yang sama.",
+            "Teks A tetap benar bahwa kebiasaan berubah dan cukai berhasil mengurangi plastik, karena jumlah kantong tipis turun $$80\\%$$.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Rumah S tidak perlu membeli listrik dari jaringan sama sekali.",
+            "Temuan itu membuktikan bahwa penulis Teks B sejak awal menolak cukai kantong plastik.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Rumah dengan kapasitas panel terbesar juga menghasilkan listrik paling banyak.",
+            "Temuan itu menunjukkan bahwa angka penurunan $$80\\%$$ dalam Teks A salah hitung.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Selama bulan itu, panel Rumah S menghasilkan listrik lebih banyak daripada yang dipakai rumahnya.",
+            "Jumlah kantong tipis tetap turun $$80\\%$$, tetapi keberhasilan yang diklaim Teks A tidak terbukti menurut ukuran yang diminta Teks B.",
+        },
+        {
+          correct: false,
+          label:
+            "Temuan itu membuktikan bahwa cukai membuat berat plastik naik, sehingga kebijakan itu merugikan lingkungan.",
         },
       ],
     },

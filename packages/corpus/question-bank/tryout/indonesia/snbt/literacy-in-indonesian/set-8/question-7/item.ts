@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "symbol",
   },
-  stimulus: "school-distance",
+  stimulus: "last-newsstand",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar aturan penerimaan berdasarkan jarak dihapus.",
+            "Nama-nama itu orang yang masih berutang kepadanya, dan coretan menandai utang yang sudah lunas, didukung oleh uang pas yang diserahkan Pak Darto.",
         },
         {
-          column: 1,
-          label: "Menurut penulis, sekolah negeri tidak tersebar merata.",
+          correct: true,
+          label:
+            "Nama-nama itu pelanggan tetap yang ia layani, dan coretan menandai yang sudah tidak datang lagi, didukung oleh percakapan bahwa Pak Darto datang karena Pak Harun selalu membawa koran.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Penulis menyebut keluarga yang jujur dirugikan oleh pemindahan alamat.",
+            "Nama-nama itu pelanggan tetap yang ia layani, dan coretan menandai yang sudah tidak datang lagi, didukung oleh sopir bus yang pergi tanpa melirik koran.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Penulis mengusulkan agar nilai kembali menjadi satu-satunya dasar penerimaan.",
+            "Nama-nama itu koran yang akan berhenti terbit, dan coretan menandai koran yang sudah berhenti, didukung oleh kabar bahwa Pagi Raya berhenti cetak bulan depan.",
+        },
+        {
+          correct: false,
+          label:
+            "Nama-nama itu pelanggan tetap, dan coretan menandai pelanggan yang beralih membaca berita di ponsel, didukung oleh ucapan sopir bus tentang ponselnya.",
         },
       ],
     },

@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "calculation",
   },
-  stimulus: "breakfast-survey",
+  stimulus: "household-spending",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Mengulang survei yang sama persis kepada 400 siswa kelas X pada tahun ajaran berikutnya.",
-        },
-        {
-          correct: false,
-          label:
-            "Bertanya kepada siswa apakah mereka merasa lebih pintar setelah sarapan.",
-        },
-        {
-          correct: false,
-          label:
-            "Membandingkan nilai kuis siswa kelas X dengan nilai siswa kelas XII.",
-        },
-        {
           correct: true,
           label:
-            "Memberi sarapan di sekolah kepada kelas yang dipilih acak, lalu membandingkan nilai.",
+            "kelompok $$20\\%$$ kedua ke kelompok $$20\\%$$ tengah, sekitar Rp$$126{.}000$$",
         },
         {
           correct: false,
           label:
-            "Menambah jumlah kuis matematika menjadi tiga kali dalam seminggu saja.",
+            "kelompok $$20\\%$$ terbawah ke kelompok $$20\\%$$ kedua, sekitar Rp$$150{.}000$$",
+        },
+        {
+          correct: false,
+          label:
+            "kelompok $$20\\%$$ tengah ke kelompok $$20\\%$$ keempat, sekitar Rp$$198{.}000$$",
+        },
+        {
+          correct: false,
+          label:
+            "kelompok $$20\\%$$ kedua ke kelompok $$20\\%$$ tengah, sekitar Rp$$300{.}000$$",
+        },
+        {
+          correct: false,
+          label:
+            "kelompok $$20\\%$$ keempat ke kelompok $$20\\%$$ teratas, sekitar Rp$$414{.}000$$",
         },
       ],
     },

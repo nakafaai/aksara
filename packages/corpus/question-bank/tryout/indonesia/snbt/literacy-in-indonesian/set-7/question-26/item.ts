@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-view",
+    topic: "calculation",
   },
-  stimulus: "borrowed-words",
+  stimulus: "testing-effect",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Lembaga bahasa sebaiknya berhenti membuat padanan untuk kata asing.",
+            "$$43\\%$$, sedangkan kelompok yang mengingat tiga kali kehilangan $$10\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$48\\%$$, sedangkan kelompok yang mengingat tiga kali kehilangan sekitar $$86\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$52\\%$$, sedangkan kelompok yang mengingat tiga kali kehilangan $$10\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "sekitar $$108\\%$$, sedangkan kelompok yang mengingat tiga kali kehilangan sekitar $$16\\%$$",
         },
         {
           correct: true,
           label:
-            "Nasib sebuah padanan ditentukan oleh pemakaian penutur, bukan oleh lembaga.",
-        },
-        {
-          correct: false,
-          label:
-            "Kata *unduh* dan *daring* gagal karena jarang dipakai penutur.",
-        },
-        {
-          correct: false,
-          label:
-            "Dokumen resmi adalah tempat terbaik untuk memperkenalkan kata baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Padanan dari kosakata sendiri selalu lebih baik daripada kata serapan.",
+            "sekitar $$52\\%$$, sedangkan kelompok yang mengingat tiga kali kehilangan sekitar $$14\\%$$",
         },
       ],
     },

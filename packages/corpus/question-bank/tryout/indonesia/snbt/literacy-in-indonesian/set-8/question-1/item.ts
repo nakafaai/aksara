@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "author-purpose",
   },
-  stimulus: "tempe-mold",
+  stimulus: "noise-hearing",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Menunjukkan bahwa ambang dengar yang pulih belum menjamin telinga utuh, karena sel rambut luar tikus rusak walaupun ambang dengarnya kembali normal.",
+        },
+        {
           correct: true,
           label:
-            "Benang-benang miselium kapang yang menjalar di antara butir kedelai.",
+            "Menunjukkan bahwa ambang dengar yang pulih belum menjamin telinga utuh, karena sinaps sel rambut dalam hilang walaupun ambang dengar tikus kembali normal, meski belum pasti berlaku pada manusia.",
         },
         {
           correct: false,
           label:
-            "Air rebusan yang mengering dan menjadi lengket di sekitar butir kedelai.",
+            "Membuktikan bahwa ambang dengar yang pulih belum menjamin telinga utuh pada manusia, karena sinaps penonton konser hilang walaupun audiogramnya normal.",
         },
         {
           correct: false,
           label:
-            "Daun pisang yang menekan butir-butir kedelai selama satu sampai dua hari.",
+            "Menunjukkan bahwa ambang dengar yang pulih belum menjamin telinga utuh, karena sinaps yang hilang tumbuh kembali dalam dua pekan sehingga tidak tampak pada audiogram.",
         },
         {
           correct: false,
           label:
-            "Bakteri penghasil vitamin B12 yang menempel pada kulit kedelai.",
-        },
-        {
-          correct: false,
-          label:
-            "Enzim dari kedelai sendiri yang mungkin keluar ketika kedelai direndam.",
+            "Menunjukkan bahwa ambang dengar yang pulih belum menjamin telinga utuh, karena tinitus pada tikus itu membuktikan bahwa sinapsnya rusak.",
         },
       ],
     },

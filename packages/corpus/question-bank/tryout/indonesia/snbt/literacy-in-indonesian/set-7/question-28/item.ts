@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "waste-meeting",
+  stimulus: "testing-effect",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "anak Bu Ning sudah sembuh sehingga tidak akan batuk lagi",
+          label:
+            "Rasa lancar membuat kelompok itu merasa paling siap padahal ingatan satu minggunya paling rendah, sesuai penjelasan bahwa jawaban yang keliru dapat ikut teringat tanpa umpan balik.",
         },
         {
           correct: false,
-          label: "Bu Ning menuduh Pak Hasan sebagai penyebab batuk anaknya",
+          label:
+            "Kelompok itu memang mengingat paling banyak setelah satu minggu, sehingga perkiraannya tepat, sesuai penjelasan bahwa membaca ulang memberi rasa lancar.",
         },
         {
           correct: false,
-          label: "warga lain sudah lebih dulu batuk karena bau sampah",
+          label:
+            "Rasa lancar membuat kelompok itu merasa paling siap padahal ingatan satu minggunya paling rendah, sesuai penjelasan bahwa latihan mengingat paling berguna jika diikuti umpan balik.",
+        },
+        {
+          correct: false,
+          label:
+            "Perkiraan itu menunjukkan bahwa mahasiswa tahu cara belajar terbaik bagi dirinya, sesuai penjelasan bahwa setiap usaha mengingat memperkuat jalan menuju ingatan.",
         },
         {
           correct: true,
-          label: "membakar sampah akan mengganggu kesehatan lebih banyak warga",
-        },
-        {
-          correct: false,
-          label: "Bu Ning ingin pindah dari kampung itu bersama anaknya",
+          label:
+            "Rasa lancar membuat kelompok itu merasa paling siap padahal ingatan satu minggunya paling rendah, sesuai penjelasan bahwa membaca ulang memberi rasa lancar tetapi tidak melatih menarik kembali ingatan.",
         },
       ],
     },

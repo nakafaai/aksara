@@ -4,36 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "calculation",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "bus-ridership",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "naik sekitar $$33\\%$$, sama dengan kenaikan banyak penumpang",
+        },
+        {
+          correct: false,
+          label: "turun $$40\\%$$, sama dengan penurunan tarif",
+        },
+        {
+          correct: false,
+          label:
+            "naik sekitar $$20\\%$$, karena penumpang bertambah lebih cepat daripada tarif turun",
+        },
+        {
           correct: true,
           label:
-            "Panel hanya bekerja pada siang hari, padahal rumah juga memakai listrik malam hari.",
-        },
-        {
-          correct: false,
-          label: "Panel Rumah S rusak selama sebagian besar bulan itu.",
+            "turun sekitar $$20\\%$$, dari Rp$$180$$ juta menjadi sekitar Rp$$143$$ juta",
         },
         {
           correct: false,
           label:
-            "Koperasi mewajibkan setiap anggota membeli listrik dari jaringan.",
-        },
-        {
-          correct: false,
-          label:
-            "Kapasitas panel Rumah S terlalu kecil dibandingkan dengan rumah lain.",
-        },
-        {
-          correct: false,
-          label:
-            "Listrik dari panel surya lebih mahal daripada listrik yang dibeli dari jaringan.",
+            "turun sekitar $$25\\%$$, dengan pendapatan November sebagai pembagi",
         },
       ],
     },

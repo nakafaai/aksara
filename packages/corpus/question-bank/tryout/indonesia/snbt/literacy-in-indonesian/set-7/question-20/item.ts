@@ -4,36 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "conclusion",
   },
-  stimulus: "recorded-lectures",
+  stimulus: "bus-ridership",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "rekaman kuliah sebaiknya ditonton belasan jam sekaligus sebelum ujian",
-        },
-        {
-          correct: false,
-          label:
-            "sambungan internet semua mahasiswa sudah cukup stabil untuk belajar daring",
+            "Bus yang lebih sering kemungkinan menyumbang sebagian besar kenaikan penumpang di Koridor A dan Koridor B.",
         },
         {
           correct: true,
           label:
-            "mahasiswa perlu kesempatan bertanya dan berlatih bersama di kelas",
+            "Jika setiap penumpang membayar tarif penuh, pendapatan tiket per hari kerja turun walaupun banyak penumpang bertambah.",
         },
         {
           correct: false,
           label:
-            "dosen sebaiknya tidak lagi menyiapkan ceramah untuk mahasiswanya",
+            "Kenaikan penumpang pasti bertahan pada bulan-bulan sesudah November 2024.",
         },
         {
           correct: false,
-          label: "kuliah tatap muka tidak diperlukan lagi dalam beberapa tahun",
+          label:
+            "Penurunan tarif tidak berpengaruh sama sekali terhadap penumpang di Koridor C dan Koridor D.",
+        },
+        {
+          correct: true,
+          label:
+            "Menurunkan tarif lagi menjadi Rp$$2{.}000$$ dapat menurunkan pendapatan tiket lebih jauh jika penumpang hanya naik sedikit.",
         },
       ],
     },
