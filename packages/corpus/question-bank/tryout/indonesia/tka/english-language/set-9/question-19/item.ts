@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "outline",
+    topic: "prediction",
   },
-  stimulus: "paper-lantern",
+  stimulus: "bread-rolls",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "a story about a lantern festival followed by a moral",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "an argument that families should make their own decorations",
+          label: "II and IV only",
         },
         {
           correct: true,
-          label:
-            "a safety note, a list of materials, numbered steps, and a tip",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "a description of lanterns from different countries",
+          label: "I, II, III, and IV",
         },
         {
           correct: false,
-          label: "the steps first, then the materials, then a warning",
+          label: "I and IV only",
         },
       ],
     },

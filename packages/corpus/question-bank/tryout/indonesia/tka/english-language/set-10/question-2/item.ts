@@ -4,27 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "explicit-information",
+    topic: "classification",
   },
-  stimulus: "hill-observatory",
+  stimulus: "library-loans",
   versions: {
     en: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "so that the roof can turn more easily" },
+      columns: ["No fine", "Fined"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "so that visitors cannot touch the telescope",
+          column: 1,
+          label: "A magazine borrowed on Monday 1 and returned on Monday 8",
         },
         {
-          correct: true,
-          label: "so that footsteps do not shake the telescope",
+          column: 2,
+          label: "A book borrowed on Saturday 6 and returned on Monday 22",
         },
         {
-          correct: false,
-          label: "so that the telescope can be carried outside",
+          column: 1,
+          label: "A DVD borrowed on Thursday 4 and returned on Monday 8",
         },
-        { correct: false, label: "so that the classroom below stays quiet" },
+        {
+          column: 2,
+          label:
+            "A book borrowed on Monday 1, renewed twice in time, and returned on Tuesday 30",
+        },
+        {
+          column: 2,
+          label:
+            "A magazine borrowed on Tuesday 2 and returned on Wednesday 10",
+        },
       ],
     },
   },

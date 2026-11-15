@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "synthesis",
+    topic: "main-idea-purpose",
   },
-  stimulus: "flood-kitchen",
+  stimulus: "fun-run",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "The writer's memory of how much planning a food box needs comes from the writer's own job at the packing table.",
-        },
-        {
-          correct: true,
-          label:
-            "Some of the boxes that the motorbike team delivered were packed by volunteers like the writer.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer's brother carried mud out of houses on the first morning.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "The flood lasted only one day before the water went down.",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

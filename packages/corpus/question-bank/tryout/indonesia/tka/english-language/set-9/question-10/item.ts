@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "reader-response",
+    topic: "text-fit",
   },
-  stimulus: "class-mural",
+  stimulus: "chili-harvest",
   versions: {
     en: {
       kind: "choice",
@@ -14,26 +14,24 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "“Taking time to prepare carefully can make the final result last much longer.”",
+            "Lina followed it on the first Friday, and nobody looked at the book again until the end of the month.",
+        },
+        {
+          correct: false,
+          label: "We weighed the big basket empty on the first day we used it.",
+        },
+        {
+          correct: true,
+          label: "The canteen scale shows weights to one decimal place.",
         },
         {
           correct: false,
           label:
-            "“Murals are a waste of time, because preparing the wall is boring.”",
+            "We weighed the chilies straight on the scale, without any basket.",
         },
         {
           correct: false,
-          label:
-            "“Students should never paint walls without professional artists.”",
-        },
-        {
-          correct: false,
-          label:
-            "“The class should have chosen ‘Future City’ instead of ‘Our River’.”",
-        },
-        {
-          correct: false,
-          label: "“Only art teachers can enjoy projects like this one.”",
+          label: "Bu Wening weighed every basket herself.",
         },
       ],
     },

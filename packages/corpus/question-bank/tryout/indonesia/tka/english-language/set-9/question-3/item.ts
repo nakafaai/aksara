@@ -2,19 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "comparison",
   },
-  stimulus: "stilt-house",
+  stimulus: "data-plan",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "sleeping mats" },
-        { correct: true, label: "the grandmother's loom" },
-        { correct: false, label: "the kitchen" },
-        { correct: true, label: "a pair of bicycles" },
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, III, and V only",
+        },
+        {
+          correct: true,
+          label: "I and V only",
+        },
+        {
+          correct: false,
+          label: "I, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
+        },
       ],
     },
   },

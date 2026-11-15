@@ -2,32 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
-  stimulus: "hill-observatory",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\text{Rp}25{,}500$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}23{,}500$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Rp}22{,}000$$",
+        },
+        {
           correct: true,
-          label:
-            "how a small observatory is laid out and used by its club and visitors",
-        },
-        { correct: false, label: "how to build a simple telescope at home" },
-        {
-          correct: false,
-          label: "the history of astronomy in the town of Sukaluhur",
+          label: "$$\\text{Rp}21{,}500$$",
         },
         {
           correct: false,
-          label: "why the Moon looks different from night to night",
-        },
-        {
-          correct: false,
-          label: "one visitor's first night looking through a telescope",
+          label: "$$\\text{Rp}10{,}750$$",
         },
       ],
     },

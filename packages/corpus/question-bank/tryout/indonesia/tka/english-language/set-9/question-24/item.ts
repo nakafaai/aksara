@@ -2,33 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "first-aid",
+  stimulus: "sweet-drinks",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The average quiz score rose from 4.2 to 8.6.",
-        },
-        { correct: false, label: "The trial course took only two afternoons." },
-        {
-          correct: false,
-          label: "Students are taught to call an adult or an ambulance first.",
+          correct: true,
+          label: "Students drink too much sugar.",
         },
         {
           correct: false,
-          label:
-            "A trained student can help a younger brother who burns a finger.",
+          label: "The charge caused the fall in drink sales at SMP Mutiara.",
         },
         {
           correct: true,
           label:
-            "On last year's trip, a student cut her hand while the teachers were at the front of the group.",
+            "During the trial, SMP Mutiara's canteen sold $$540$$ sweetened drinks a week.",
+        },
+        {
+          correct: false,
+          label: "Visits to the nurse for headaches fell at SMP Mutiara.",
+        },
+        {
+          correct: true,
+          label: "Drinking-water fountains are worth installing.",
         },
       ],
     },

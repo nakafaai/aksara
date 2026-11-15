@@ -4,33 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "main-idea-purpose",
   },
-  stimulus: "class-mural",
+  stimulus: "chili-harvest",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "because the base coat made the painting go faster",
-        },
-        {
-          correct: false,
-          label: "because the class won a prize for the mural",
-        },
-        {
-          correct: false,
-          label: "because Bu Sinta explained it on the first day",
+          label: "I and II only",
         },
         {
           correct: true,
-          label:
-            "because the mural's colors have stayed bright while the paint on the gate nearby is peeling",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "because the canteen owner paid for the paint",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

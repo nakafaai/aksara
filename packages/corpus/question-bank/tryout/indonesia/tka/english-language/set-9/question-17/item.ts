@@ -2,29 +2,47 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "classification",
   },
-  stimulus: "paper-lantern",
+  stimulus: "bread-rolls",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Follows the instructions",
+        "Breaks the instructions",
+        "Not covered",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
+          label: "Adding water that has been heated to $$50$$ degrees",
+        },
+        {
+          column: 2,
           label:
-            "rolling it into a tube, with the cuts running from top to bottom",
+            "Using $$1{,}000$$ g of flour and $$14$$ g of yeast for a double batch",
         },
         {
-          correct: false,
-          label: "drawing a line 2 centimeters below the open edges",
+          column: 1,
+          label:
+            "Letting the shaped rolls rise for $$30$$ minutes after a first rise of $$60$$ minutes",
         },
-        { correct: false, label: "gluing the handle across the top" },
-        { correct: false, label: "folding the sheet in half lengthwise" },
         {
-          correct: false,
-          label: "pressing the top and bottom toward each other",
+          column: 3,
+          label: "Adding raisins to the dough",
+        },
+        {
+          column: 2,
+          label:
+            "Pouring the salt straight onto the yeast before the flour goes in",
+        },
+        {
+          column: 1,
+          label:
+            "Weighing the pieces so that all $$12$$ come out the same weight",
         },
       ],
     },

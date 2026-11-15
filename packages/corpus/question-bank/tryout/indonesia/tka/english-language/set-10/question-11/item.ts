@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "synthesis",
   },
-  stimulus: "wrong-bus",
+  stimulus: "seed-jar",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "careless, because she loses the card her mother wrote",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "rude, because she argues with the bus driver",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "lazy, because she refuses to walk to the bakery",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label: "fearless, because she never feels worried at all",
+          label: "I, II, III, and IV",
         },
         {
           correct: true,
-          label:
-            "resourceful, because she asks for help and finds her own way back",
+          label: "I, II, and IV only",
         },
       ],
     },

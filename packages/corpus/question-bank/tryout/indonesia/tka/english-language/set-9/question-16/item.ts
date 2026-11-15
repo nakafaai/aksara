@@ -4,31 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "paper-lantern",
+  stimulus: "bread-rolls",
   versions: {
     en: {
-      columns: [
-        "Cutting the paper",
-        "Folding and marking",
-        "Shaping and finishing",
-      ],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Drawing a line 2 centimeters below the open edges",
+          correct: false,
+          label: "$$1$$ hour $$45$$ minutes",
         },
         {
-          column: 1,
-          label: "Cutting straight up to the line every 2 centimeters",
+          correct: false,
+          label: "$$2$$ hours $$45$$ minutes",
         },
         {
-          column: 3,
-          label: "Pressing the top and bottom of the tube toward each other",
+          correct: false,
+          label: "$$4$$ hours $$15$$ minutes",
         },
-        { column: 3, label: "Gluing a paper strip across the top as a handle" },
+        {
+          correct: false,
+          label: "$$3$$ hours",
+        },
+        {
+          correct: true,
+          label: "$$3$$ hours $$15$$ minutes",
+        },
       ],
     },
   },

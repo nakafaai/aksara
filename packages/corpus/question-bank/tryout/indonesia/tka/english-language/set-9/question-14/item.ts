@@ -2,33 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "synthesis",
+    topic: "prediction",
   },
-  stimulus: "substitute-teacher",
+  stimulus: "music-box",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pak Hendra turned out to be Fikri's uncle." },
         {
           correct: true,
-          label:
-            "Fikri, who rarely spoke at the start, later wrote the class's note to Bu Lina.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "Bu Lina taught the map lesson after she came back.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The class copied pages from the textbook for the whole lesson.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label: "Fikri's group got lost because the compass was broken.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
         },
       ],
     },

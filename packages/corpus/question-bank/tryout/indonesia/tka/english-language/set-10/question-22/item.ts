@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "summary",
+    topic: "main-idea-purpose",
   },
-  stimulus: "coding-club",
+  stimulus: "bike-racks",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The writer says that screen time is never harmful for children.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "The writer asks parents to buy computers for their children.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: true,
-          label:
-            "The writer accepts parents' worry about screen time, points to the short and partly offline sessions, and suggests a trial semester.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The writer reports new attendance figures from the trial.",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer suggests that the club meet every day after school.",
+          label: "I, IV, and V only",
         },
       ],
     },

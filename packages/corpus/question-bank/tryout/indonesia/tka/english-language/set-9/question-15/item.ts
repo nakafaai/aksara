@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "substitute-teacher",
+  stimulus: "music-box",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Fantasy, because the old maps carry the students back in time.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "Fantasy, because a compass cannot show directions inside a classroom.",
-        },
-        {
-          correct: false,
-          label:
-            "Fantasy, because a substitute teacher is not allowed to teach geography.",
+          label: "II, IV, and V only",
         },
         {
           correct: true,
-          label:
-            "Realistic, because a substitute teacher using hands-on activities is something that happens in real schools.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "Legend, because the story explains how the city's streets got their names.",
+          label: "I, II, III, IV, and V",
+        },
+        {
+          correct: false,
+          label: "II and V only",
         },
       ],
     },

@@ -4,28 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "fact-opinion",
+    topic: "reader-response",
   },
-  stimulus: "book-cover",
+  stimulus: "chili-seedlings",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Covering one book takes about ten minutes." },
         {
           correct: false,
-          label:
-            "You will need a roll of clear plastic cover, scissors, a ruler, a pencil, and clear tape.",
+          label: "I only",
         },
-        { correct: false, label: "Cut along the line." },
         {
           correct: true,
-          label:
-            "In my opinion, a book you have covered yourself is a book you take better care of.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "If the cover feels tight, loosen the side flaps a little.",
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
         },
       ],
     },

@@ -4,18 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "explicit-information",
+    topic: "summary",
   },
-  stimulus: "class-mural",
+  stimulus: "chili-harvest",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "The theme “Our River” won by a large margin." },
-        { column: 1, label: "Preparing the wall took two Saturdays." },
-        { column: 2, label: "The class used the design of only one group." },
-        { column: 1, label: "The outline was sketched in chalk." },
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and V only",
+        },
+        {
+          correct: true,
+          label: "I, II, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
+        },
       ],
     },
   },

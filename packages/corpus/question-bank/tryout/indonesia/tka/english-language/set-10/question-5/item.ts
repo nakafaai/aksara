@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "text-fit",
+    topic: "information-validity",
   },
-  stimulus: "hill-observatory",
+  stimulus: "library-loans",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "The club was founded by three science teachers.",
+          correct: true,
+          label:
+            "A book borrowed on a Saturday and renewed once is due on the Saturday three weeks later.",
         },
         {
           correct: true,
           label:
-            "Visitors are also asked not to use the flash on their cameras.",
+            "A DVD borrowed on a Thursday falls due on the Sunday, so it may come back on the Monday without a fine.",
         },
         {
-          correct: false,
-          label: "The Moon is about 384,000 kilometers from the Earth.",
+          correct: true,
+          label:
+            "A member under $$12$$ who returns a DVD $$3$$ days late, with no Sunday among them, pays $$\\text{Rp}3{,}000$$.",
         },
         {
           correct: false,
           label:
-            "The classroom chairs can be folded and stacked against the wall.",
+            "A magazine borrowed on a Monday may be renewed on the following Monday.",
         },
         {
           correct: false,
-          label: "The observatory has been closed for repairs since last year.",
+          label:
+            "A member who holds $$4$$ books and $$2$$ DVDs may also borrow a magazine.",
         },
       ],
     },

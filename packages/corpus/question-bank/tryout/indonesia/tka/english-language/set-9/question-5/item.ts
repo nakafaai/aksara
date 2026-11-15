@@ -4,30 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "fact-opinion",
+    topic: "information-validity",
   },
-  stimulus: "stilt-house",
+  stimulus: "data-plan",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "It was built more than sixty years ago from ironwood.",
+          correct: true,
+          label:
+            "A Harian bought at 23:30 can be used for at most $$29$$ minutes.",
         },
         {
           correct: false,
-          label: "A wooden ladder with seven steps leads up to a wide veranda.",
+          label: "Night data can be used at 6:30.",
         },
-        {
-          correct: false,
-          label: "The roof is steep and covered with palm fiber.",
-        },
-        { correct: false, label: "Inside, there are only two rooms." },
         {
           correct: true,
           label:
-            "None feels as calm as my grandmother's house when the rain is falling and the river is singing underneath.",
+            "A Mingguan bought on a Friday is still valid on the following Thursday.",
+        },
+        {
+          correct: false,
+          label: "Leftover night data is added to a renewed package.",
+        },
+        {
+          correct: false,
+          label:
+            "A Bulanan gives $$40$$ GB that can be used at any time of day.",
         },
       ],
     },

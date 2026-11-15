@@ -4,33 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "text-fit",
+    topic: "reader-response",
   },
-  stimulus: "paper-lantern",
+  stimulus: "bread-rolls",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Fold the sheet in half lengthwise once more.",
-        },
-        {
           correct: true,
-          label:
-            "Wait until the glue is completely dry before you shape the lantern.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "Put a small candle inside the tube to light it up.",
+          label: "I only",
         },
         {
           correct: false,
-          label: "Cut the handle strip into several small pieces.",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "Draw another line 2 centimeters below the fold.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
         },
       ],
     },

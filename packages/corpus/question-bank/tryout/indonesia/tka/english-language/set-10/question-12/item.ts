@@ -6,28 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "outline",
   },
-  stimulus: "wrong-bus",
+  stimulus: "seed-jar",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Nadia's mother writes the route on a card." },
+        {
+          correct: false,
+          label: "I and IV only",
+        },
         {
           correct: true,
-          label:
-            "Nadia realizes that she is on Bus 7B, far from the clock tower.",
+          label: "I, IV, and V only",
         },
         {
           correct: false,
-          label: "Nadia reaches the bakery forty minutes late.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "Her aunt writes a note on the back of the card.",
+          label: "IV and V only",
         },
         {
           correct: false,
-          label: "Nadia checks the bus sign twice at the market.",
+          label: "I, II, IV, and V only",
         },
       ],
     },

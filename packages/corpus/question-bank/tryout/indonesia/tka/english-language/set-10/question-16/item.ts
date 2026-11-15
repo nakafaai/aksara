@@ -4,27 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "book-cover",
+  stimulus: "chili-seedlings",
   versions: {
     en: {
-      columns: ["Folding and taping", "Cutting", "Measuring and marking"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 3,
-          label: "Marking a line on the plastic 5 centimeters outside the book",
+          correct: false,
+          label: "$$24$$",
         },
         {
-          column: 2,
-          label: "Cutting a narrow V shape at the top and bottom of the spine",
+          correct: true,
+          label: "$$36$$",
         },
         {
-          column: 1,
-          label: "Folding the side flaps over the inside of the covers",
+          correct: false,
+          label: "$$32$$",
         },
-        { column: 1, label: "Taping each corner of the flaps to the plastic" },
+        {
+          correct: false,
+          label: "$$27$$",
+        },
+        {
+          correct: false,
+          label: "$$30$$",
+        },
       ],
     },
   },
