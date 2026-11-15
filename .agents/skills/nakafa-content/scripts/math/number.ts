@@ -1,3 +1,4 @@
+import { findDollarSpans } from "#nakafa-content/math/dollar";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import { textSpans } from "#nakafa-content/math/span";
 import { unitLength } from "#nakafa-content/math/unit";
@@ -168,7 +169,7 @@ function joinTuples(text: string, matches: NumberMatch[]): NumberMatch[] {
  * stay text (see `textSpans`).
  */
 export function findNumbers(text: string): NumberMatch[] {
-  const spans = textSpans(text);
+  const spans = [...textSpans(text), ...findDollarSpans(text)];
   const matches: NumberMatch[] = [];
   for (const match of text.matchAll(NUMBER_PATTERN)) {
     const start = match.index;
