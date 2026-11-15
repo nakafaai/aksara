@@ -4,38 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "essay-scoring",
+  stimulus: "fish-auction",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: false,
-          label:
-            "Teks 2 menuduh data dalam Teks 1 sebagai hasil rekayasa dinas pendidikan.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 2 memperluas usulan Teks 1 agar mesin juga menilai ujian di sekolah swasta.",
-        },
-        {
-          correct: true,
-          label:
-            "Teks 2 mengakui sebagian manfaat mesin, tetapi menolak menyerahkan nilai akhir kepadanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 2 membahas topik yang sama sekali berbeda dari topik dalam Teks 1.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 2 mendukung sepenuhnya rencana dinas pendidikan dalam Teks 1.",
-        },
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
+        { column: 2, label: "Pada Februari, teri menyumbang lebih dari separuh nilai lelang total." },
+        { column: 1, label: "Harga rata-rata seluruh ikan turun walaupun harga setiap jenis ikan naik." },
+        { column: 1, label: "Nilai lelang tongkol pada Februari kurang dari nilainya pada Januari." },
+        { column: 1, label: "Berat kembung yang terjual tidak berubah, tetapi nilai lelangnya naik." },
       ],
     },
   },

@@ -4,36 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "argument-evaluation",
   },
-  stimulus: "subak-water",
+  stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Membuktikan bahwa subak sudah ada sejak seribu tahun yang lalu.",
-        },
-        {
-          correct: false,
-          label: "Menolak penetapan subak sebagai Warisan Dunia oleh UNESCO.",
-        },
-        {
-          correct: false,
-          label: "Menyusun jadwal tanam baru untuk menggantikan jadwal pura.",
-        },
-        {
-          correct: false,
-          label:
-            "Menunjukkan bahwa varietas unggul lebih tahan hama daripada varietas lama.",
-        },
-        {
-          correct: true,
-          label:
-            "Menjelaskan secara ilmiah mengapa jadwal pura berhasil menyeimbangkan air dan hama.",
-        },
+        { correct: false, label: "Kebun raya terlalu kecil untuk menanam semua jenis tumbuhan, sehingga sebagian jenis tidak tertampung." },
+        { correct: true, label: "Setiap jenis hanya diwakili sedikit individu, dan penyerbuk, jamur tanah, atau penyebar bijinya tidak ikut pindah ke kebun." },
+        { correct: false, label: "Kebun raya hanya memuat sedikit individu setiap jenis, sehingga tumbuhan di kebun lebih mudah terserang penyakit daripada di hutan." },
+        { correct: false, label: "Kebun raya dikelola untuk kebutuhan perkebunan, sehingga tumbuhan yang tidak bernilai dagang tidak dirawat." },
+        { correct: false, label: "Tumbuhan di kebun raya tidak dapat berbuah, karena iklim Bogor berbeda dengan iklim hutan asalnya." },
       ],
     },
   },

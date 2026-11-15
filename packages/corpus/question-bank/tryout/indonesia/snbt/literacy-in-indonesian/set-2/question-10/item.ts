@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "character",
+    topic: "theme",
   },
-  stimulus: "sewing-machine",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Ia tidak menyukai kebiasaan cucunya memotret kebaya di depan dinding putih.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia ingin kebaya buatannya dijual dengan harga yang lebih mahal di toko daring.",
-        },
-        {
-          correct: true,
-          label:
-            "Ia menganggap mutu jahitan harus dijaga demi pemakai walau tidak tampak di foto.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia tersinggung karena tidak pernah diajak ikut berfoto bersama kebayanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Ia menolak gagasan menjual kebaya melalui toko daring milik cucunya.",
-        },
+        { correct: false, label: "Tradisi harus disalin persis agar tidak hilang, dan Laras membuktikannya dengan menghitung benang tanpa menemukan kesalahan." },
+        { correct: true, label: "Tradisi dapat diteruskan sambil diubah oleh hidup generasi berikutnya, dan restu Ibu disampaikan lewat kain, bukan kata-kata." },
+        { correct: false, label: "Tradisi dapat diteruskan sambil diubah oleh hidup generasi berikutnya, tetapi Ibu menolak perubahan itu dengan membiarkan kain tak selesai." },
+        { correct: false, label: "Pendidikan di kota membuat anak meninggalkan tradisi, dan kain yang belum selesai melambangkan tradisi yang putus." },
+        { correct: false, label: "Restu Ibu disampaikan lewat kain, bukan kata-kata, karena Ibu tidak menguasai bahasa yang dipakai Laras di kota." },
       ],
     },
   },

@@ -3,39 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "character",
+    contentDomain: "informational-text",
+    topic: "argument-evaluation",
   },
-  stimulus: "rice-field-drama",
+  stimulus: "default-choice",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Membujuk Bayu agar meninggalkan bengkel dan ikut kuliah pertanian.",
-        },
-        {
-          correct: false,
-          label:
-            "Mendukung penjualan sawah kepada pembeli dari kota dengan cara yang lebih menguntungkan.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyalahkan Pak Karta karena tidak lagi mampu mengolah sawah.",
-        },
-        {
-          correct: true,
-          label:
-            "Menyelamatkan sawah dengan menggabungkan keahlian Bayu dan ilmu pertanian Ningsih.",
-        },
-        {
-          correct: false,
-          label:
-            "Meminta dosennya membeli sawah keluarga untuk lahan percobaan kampus.",
-        },
+        { correct: false, label: "Pendukung menyetujui bahwa pilihan bawaan mengatur orang, sehingga mereka mengusulkan agar semua formulir dibiarkan kosong tanpa centang." },
+        { correct: false, label: "Pendukung membantah bahwa pilihan bawaan berpengaruh, karena orang selalu bebas mengubah pilihannya." },
+        { correct: false, label: "Pendukung menganggap soal etika tidak penting, karena pilihan bawaan terbukti menaikkan jumlah donor organ." },
+        { correct: false, label: "Pendukung setuju bahwa formulir kosong adalah pilihan yang netral, tetapi menilainya terlalu sulit dibuat." },
+        { correct: true, label: "Pendukung menilai pilihan bawaan tak terhindarkan, jadi yang dipersoalkan adalah pilihan bawaan mana dan siapa yang menanggung akibatnya." },
       ],
     },
   },

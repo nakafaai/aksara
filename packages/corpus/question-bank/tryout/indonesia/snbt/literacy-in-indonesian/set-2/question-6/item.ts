@@ -3,39 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "main-idea",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Semua bentuk magang bagi mahasiswa sebaiknya dihapus karena lebih banyak merugikan daripada menguntungkan.",
-        },
-        {
-          correct: true,
-          label:
-            "Magang tanpa upah perlu dibatasi karena mempersempit kesempatan mahasiswa kurang mampu dan menggeser pekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Mahasiswa magang seharusnya dibayar setara dengan karyawan tetap sejak hari pertama bekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Perusahaan rintisan dan lembaga nirlaba sebaiknya tidak menerima mahasiswa magang.",
-        },
-        {
-          correct: false,
-          label:
-            "Mahasiswa sebaiknya menolak semua tawaran magang yang tidak memberikan sertifikat.",
-        },
+        { correct: false, label: "Ibu ingin Laras membawa benang emas ke Bandung, karena benang yang tidak dipakai akan rusak." },
+        { correct: false, label: "Melepas Laras tidak akan memutus ikatan mereka, tetapi Laras harus segera pulang agar ikatan itu tidak rusak." },
+        { correct: true, label: "Melepas Laras tidak akan memutus ikatan mereka, sedangkan menahannya justru dapat menyia-nyiakan Laras." },
+        { correct: false, label: "Ibu kecewa karena Laras memilih kuliah, sebab benang emas yang terlalu lama digulung akan rusak." },
+        { correct: false, label: "Menahan Laras di rumah akan menjaga ikatan mereka, sama seperti benang emas yang dijaga dengan disimpan." },
       ],
     },
   },

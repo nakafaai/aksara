@@ -2,36 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "detail",
   },
-  stimulus: "kawi-script",
+  stimulus: "spelling-reform",
   versions: {
     id: {
       columns: ["Benar", "Salah"],
       kind: "matrix",
       statements: [
-        {
-          column: 1,
-          label:
-            "Satu huruf konsonan tanpa tanda tambahan dibaca dengan vokal /a/.",
-        },
-        {
-          column: 2,
-          label:
-            "Untuk menulis suku kata *ki*, juru tulis memakai huruf yang sama sekali berbeda dari huruf untuk *ka*.",
-        },
-        {
-          column: 1,
-          label:
-            "Suku kata yang diakhiri konsonan, seperti *tan*, memerlukan tanda yang mematikan vokal.",
-        },
-        {
-          column: 2,
-          label:
-            "Setiap vokal ditulis sebagai huruf tersendiri yang selalu berdiri di samping konsonan.",
-        },
+        { column: 1, label: "Pembaruan 1972 mengganti lebih banyak huruf atau gabungan huruf daripada pembaruan 1947." },
+        { column: 2, label: "Pembaruan 2015 dan 2022 terutama mengganti huruf untuk bunyi konsonan." },
+        { column: 2, label: "Pada 1947, setiap tanda petik untuk hamzah diganti huruf *k*." },
+        { column: 2, label: "Indonesia dan Malaysia sudah memakai ejaan yang sama sejak 1947." },
       ],
     },
   },

@@ -4,37 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "main-idea",
   },
-  stimulus: "subak-water",
+  stimulus: "default-choice",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Subak di hilir lebih penting daripada subak di hulu karena menerima air terakhir.",
-        },
-        {
-          correct: false,
-          label:
-            "UNESCO perlu mengambil alih pengelolaan subak dari para petani.",
-        },
-        {
-          correct: true,
-          label:
-            "Gangguan di satu subak dapat merembet ke subak lain karena semuanya satu jaringan.",
-        },
-        {
-          correct: false,
-          label: "Alih fungsi sawah menjadi vila menguntungkan subak di hilir.",
-        },
-        {
-          correct: false,
-          label:
-            "Anak-anak petani wajib kembali bekerja di sawah agar subak tetap hidup.",
-        },
+        { correct: true, label: "Pilihan bawaan sangat memengaruhi keikutsertaan, tetapi keikutsertaan yang naik belum tentu menghasilkan hasil akhir yang diinginkan." },
+        { correct: false, label: "Pilihan bawaan sangat memengaruhi keikutsertaan orang, sehingga sistem keluar pasti menambah jumlah organ yang benar-benar didonorkan." },
+        { correct: false, label: "Pilihan bawaan hanya berpengaruh pada orang yang malas membaca formulir, bukan pada orang yang memahami pilihannya." },
+        { correct: false, label: "Pilihan bawaan adalah cara halus untuk mengatur orang, sehingga sebaiknya semua formulir dibiarkan kosong." },
+        { correct: false, label: "Pilihan bawaan berpengaruh lebih kecil daripada iklan dan uang, tetapi lebih murah untuk diterapkan." },
       ],
     },
   },

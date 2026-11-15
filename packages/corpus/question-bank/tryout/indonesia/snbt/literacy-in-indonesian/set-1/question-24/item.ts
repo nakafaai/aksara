@@ -4,38 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "kawi-script",
+  stimulus: "spelling-reform",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Teks-teks Jawa Kuno pada awalnya ditulis di Bali, bukan di Jawa.",
-        },
-        {
-          correct: false,
-          label:
-            "Aksara Bali lebih tua daripada aksara Kawi sehingga naskahnya lebih lengkap.",
-        },
-        {
-          correct: true,
-          label:
-            "Teks-teks itu bertahan berkat penyalinan, sedangkan naskah aslinya mungkin sudah rusak.",
-        },
-        {
-          correct: false,
-          label:
-            "Salinan yang dibuat di Bali pasti sama persis dengan naskah aslinya.",
-        },
-        {
-          correct: false,
-          label:
-            "Daun lontar lebih awet di Bali karena orang Bali lebih pandai merawatnya.",
-        },
+        { correct: false, label: "Dokumen itu memakai Ejaan Republik, karena masih ada gabungan huruf *dj* di dalamnya yang baru diganti pada 1972." },
+        { correct: false, label: "Dokumen itu melanggar EYD, karena gabungan huruf *dj* seharusnya sudah ditulis *j* di semua kata sejak 1972." },
+        { correct: true, label: "Dokumen itu bisa dari 1985, karena kata-katanya mengikuti EYD, sedangkan *dj* pada nama diri sering dipertahankan." },
+        { correct: false, label: "Dokumen itu mencampur dua ejaan dari zaman berbeda, sehingga tidak mungkin berasal dari sebuah dokumen resmi." },
+        { correct: false, label: "Dokumen itu memakai ejaan Van Ophuijsen, karena nama yang memakai *dj* pasti berasal dari masa pemerintahan kolonial." },
       ],
     },
   },

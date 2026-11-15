@@ -3,39 +3,19 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    contentDomain: "fiction",
+    topic: "theme",
   },
-  stimulus: "class-ranking",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Siswa yang berperingkat tinggi lebih sering diterima di perguruan tinggi negeri daripada siswa berperingkat rendah.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar orang tua lebih menyukai rapor yang mencantumkan peringkat daripada rapor deskriptif.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa di sekolah tanpa peringkat memperoleh rata-rata nilai ujian akhir yang sedikit lebih tinggi.",
-        },
-        {
-          correct: true,
-          label:
-            "Dibandingkan sekolah tanpa peringkat yang serupa, siswa di sekolah berperingkat lebih jarang menjelaskan materi kepada teman.",
-        },
-        {
-          correct: false,
-          label:
-            "Guru memerlukan waktu dua kali lebih lama untuk menulis rapor deskriptif daripada rapor berperingkat.",
-        },
+        { correct: false, label: "Lampu itu rusak pada hari pertama, dan senyum Pak Darsa menunjukkan kepuasannya karena kekhawatirannya terbukti." },
+        { correct: false, label: "Lampu yang padam menunjukkan kelalaian Wulan, dan senyum Pak Darsa menyembunyikan kekecewaannya." },
+        { correct: false, label: "Aturan bahwa mercusuar tidak boleh tidur tidak lagi mengikat, dan senyum itu menunjukkan Pak Darsa sudah memahami sepenuhnya perasaannya." },
+        { correct: false, label: "Pesan ayahnya membuat Pak Darsa terkurung di pulau, dan senyum itu menunjukkan kemarahannya akhirnya reda." },
+        { correct: true, label: "Aturan bahwa mercusuar tidak boleh tidur tidak lagi mengikat, dan senyum itu menunjukkan penerimaan yang belum sepenuhnya ia pahami." },
       ],
     },
   },

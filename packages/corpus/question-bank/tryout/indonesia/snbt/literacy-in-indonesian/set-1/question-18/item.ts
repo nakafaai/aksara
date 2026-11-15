@@ -4,38 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "car-free-day",
+  stimulus: "school-meals",
   versions: {
     id: {
-      kind: "choice",
-      options: [
-        {
-          correct: true,
-          label:
-            "Teks 1 mengusulkan perluasan, sedangkan Teks 2 meminta dampak di jalan pengalihan diukur dahulu.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 1 mendukung program, sedangkan Teks 2 meminta program dihentikan karena merugikan pedagang.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 1 menilai program dari sisi kesehatan, sedangkan Teks 2 menilainya dari sisi pendidikan anak.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 1 menolak kehadiran pedagang kaki lima, sedangkan Teks 2 membela pedagang kaki lima.",
-        },
-        {
-          correct: false,
-          label:
-            "Teks 1 dan Teks 2 sama-sama meminta program dipindahkan ke Jalan Pahlawan.",
-        },
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
+        { column: 1, label: "Pada semester ganjil 2023, tingkat kehadiran setiap sekolah uji coba lebih rendah daripada tingkat kehadiran gabungan sekolah lain di kabupaten itu." },
+        { column: 1, label: "Pada semester ganjil 2024, tingkat kehadiran gabungan seluruh siswa di keempat sekolah uji coba lebih dari $$92\\%$$." },
+        { column: 2, label: "Makan siang gratis menaikkan tingkat kehadiran di SD Kalirejo sebesar delapan poin." },
+        { column: 1, label: "Kenaikan tingkat kehadiran di SD Tegalsari dan SD Watugede lebih besar daripada kenaikan di sekolah yang tidak mendapat program." },
       ],
     },
   },

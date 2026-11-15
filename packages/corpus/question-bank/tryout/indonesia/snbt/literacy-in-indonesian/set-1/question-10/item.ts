@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "fiction",
-    topic: "character",
+    topic: "text-structure",
   },
-  stimulus: "ferry-ticket",
+  stimulus: "lighthouse-keeper",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "Tanda bahwa ia dengan sadar merelakan Laila pergi meskipun berat.",
-        },
-        {
-          correct: false,
-          label:
-            "Ungkapan marah karena Laila tidak menghiraukan peringatannya tentang ombak.",
-        },
-        {
-          correct: false,
-          label:
-            "Kebiasaan baru yang muncul karena permukaan stempelnya sudah licin dan aus.",
-        },
-        {
-          correct: false,
-          label:
-            "Isyarat bahwa ia ingin segera melayani antrean penumpang yang mulai gelisah.",
-        },
-        {
-          correct: false,
-          label:
-            "Tanda bahwa ia yakin Laila akan pulang ke pulau sebelum Lebaran.",
-        },
+        { correct: false, label: "memperlihatkan bahwa buku catatan jaga sudah usang, sekaligus menjadi titik ketika Pak Darsa menyerah pada mesin" },
+        { correct: false, label: "menjelaskan mengapa banyak nelayan celaka di tanjung, sekaligus menjadi alasan kantor di kota memasang lampu baru" },
+        { correct: false, label: "memperlihatkan kekurangan Wulan sebagai teknisi, sekaligus menjadi titik ketika Pak Darsa mulai meragukannya" },
+        { correct: false, label: "memperlihatkan bahwa Pak Darsa ingin tetap tinggal di pulau, sekaligus menjadi titik ketika ia mulai berbagi" },
+        { correct: true, label: "memperlihatkan pengetahuan yang tidak dibawa lampu baru, sekaligus menjadi titik ketika Pak Darsa mulai membagikannya" },
       ],
     },
   },

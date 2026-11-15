@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "research-design",
   },
-  stimulus: "sleep-memory",
+  stimulus: "temple-moss",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Tidur dapat menggantikan sebagian jam belajar karena otak tetap mengolah informasi ketika tubuh beristirahat.",
-        },
-        {
-          correct: true,
-          label:
-            "Tidur memperkuat ingatan yang sudah terbentuk saat belajar sehingga kurang tidur merugikan, baik sebelum maupun sesudah belajar.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidur gelombang lambat dan tidur REM sama-sama memicu pengolahan ulang ingatan yang baru dipelajari.",
-        },
-        {
-          correct: false,
-          label:
-            "Begadang hanya merugikan jika dilakukan setelah belajar karena pada malam itulah konsolidasi berlangsung.",
-        },
-        {
-          correct: false,
-          label:
-            "Ingatan terbentuk sepenuhnya di neokorteks saat terjaga, lalu tidur menjaganya agar tidak tertimpa informasi lain.",
-        },
+        { correct: false, label: "kelompok I dan III, dengan selisih $$0{,}5$$ mm" },
+        { correct: false, label: "kelompok II dan III, dengan selisih $$0{,}2$$ mm" },
+        { correct: false, label: "kelompok I dan II, dengan selisih $$0{,}5$$ mm" },
+        { correct: true, label: "kelompok I dan II, dengan selisih $$0{,}3$$ mm" },
+        { correct: false, label: "kelompok II dan III, dengan selisih $$0{,}3$$ mm" },
       ],
     },
   },

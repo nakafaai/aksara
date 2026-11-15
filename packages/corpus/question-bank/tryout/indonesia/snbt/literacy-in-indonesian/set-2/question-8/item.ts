@@ -2,36 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "text-structure",
   },
-  stimulus: "unpaid-internship",
+  stimulus: "weaver-daughter",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
-        {
-          column: 1,
-          label:
-            "Pengalaman kerja yang berharga tidak menghapus kewajiban menghargai kerja mahasiswa magang.",
-        },
-        {
-          column: 2,
-          label:
-            "Lembaga nirlaba yang tidak mampu membayar tidak boleh menerima mahasiswa magang.",
-        },
-        {
-          column: 1,
-          label:
-            "Magang tanpa upah dapat menjadikan pengalaman kerja hak istimewa mahasiswa dari keluarga mampu.",
-        },
-        {
-          column: 2,
-          label:
-            "Kampus sebaiknya mengakui setiap kegiatan magang sebagai satuan kredit semester.",
-        },
+      kind: "choice",
+      options: [
+        { correct: false, label: "menunjukkan bahwa Laras membenci menenun sejak kecil, sehingga kepergiannya adalah pelarian dari tradisi keluarga" },
+        { correct: false, label: "menjelaskan asal-usul motif pucuk rebung, sehingga pembaca tahu mengapa motif itu hanya ditenun keluarga Laras" },
+        { correct: false, label: "menunjukkan bahwa Ibu adalah guru yang keras dan tidak sabar, sehingga Laras merasa lega dapat meninggalkan rumah" },
+        { correct: false, label: "menunjukkan bahwa Laras mahir menenun, sehingga ia menemukan satu benang yang salah pada motif baru di kain itu" },
+        { correct: true, label: "menunjukkan keterampilan warisan Ibu, sehingga \"Kau saja yang selesaikan\" terbaca sebagai kepercayaan, bukan perintah" },
       ],
     },
   },

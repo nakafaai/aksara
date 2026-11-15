@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "data-interpretation",
   },
-  stimulus: "lichen-air",
+  stimulus: "mercury-gold",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Menjelaskan alasan pembakaran batu bara dihentikan di Inggris.",
+            "Di antara semua kadar rata-rata dalam tabel, tepat $$1$$ kadar yang melampaui batas yang dipakai tim.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Memberikan bukti bahwa keberadaan lumut kerak mengikuti naik turunnya kadar sulfur dioksida.",
+            "Setiap ikan pemangsa yang ditangkap di titik hilir mengandung metilmerkuri di atas batas yang dipakai tim.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Membandingkan jenis lumut kerak di Inggris dengan jenis lumut kerak di Indonesia.",
+            "Jika penambang berhenti memakai merkuri tahun ini, kadar metilmerkuri pada ikan rawa belum tentu turun dalam waktu dekat.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Menunjukkan bahwa lumut kerak di pedesaan lebih tahan terhadap pencemaran daripada lumut kerak di kota.",
+            "Ikan pemangsa dari titik hulu aman dimakan ibu hamil setiap hari karena kadar rata-ratanya di bawah batas yang dipakai tim.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Membuktikan bahwa semua jenis lumut kerak kembali setelah udara menjadi bersih.",
+            "Tim telah membuktikan bahwa lumpur rawa yang miskin oksigen adalah penyebab tingginya kadar metilmerkuri pada ikan di titik hilir.",
         },
       ],
     },

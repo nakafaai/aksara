@@ -2,37 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "structure",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "inference",
   },
-  stimulus: "rice-field-drama",
+  stimulus: "default-choice",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "Menunjukkan bahwa malam sudah berganti menjadi pagi.",
-        },
-        {
-          correct: true,
-          label:
-            "Menandai ketegangan setelah jawaban Ningsih membantah anggapan Bayu.",
-        },
-        {
-          correct: false,
-          label:
-            "Menggambarkan suasana gembira setelah keluarga mencapai kesepakatan.",
-        },
-        {
-          correct: false,
-          label: "Menandai pergantian babak dalam pementasan.",
-        },
-        {
-          correct: false,
-          label: "Menunjukkan bahwa Bu Karta kembali ke dapur.",
-        },
+        { correct: false, label: "Karyawan itu tidak tahu bahwa mereka boleh mengubah iuran, karena perusahaan tidak memberitahukannya." },
+        { correct: false, label: "Karyawan itu kehilangan minat menabung, karena program tabungan pensiun kini diikuti hampir semua orang." },
+        { correct: false, label: "Karyawan itu lebih suka menabung di bank lain, karena bunga program perusahaan turun setelah pendaftaran otomatis." },
+        { correct: true, label: "Karyawan itu mungkin membaca iuran $$3\\%$$ sebagai anjuran perusahaan, atau menunda usaha untuk mengubahnya." },
+        { correct: false, label: "Karyawan itu dipaksa perusahaan menurunkan iuran menjadi $$3\\%$$, sehingga tidak ada yang dapat memilih $$6\\%$$." },
       ],
     },
   },

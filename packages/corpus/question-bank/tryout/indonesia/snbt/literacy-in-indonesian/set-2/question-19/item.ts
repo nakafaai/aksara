@@ -2,35 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "argument-evaluation",
   },
-  stimulus: "essay-scoring",
+  stimulus: "fish-auction",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label: "90 esai",
-        },
-        {
-          correct: false,
-          label: "570 esai",
-        },
-        {
-          correct: false,
-          label: "660 esai",
-        },
-        {
-          correct: false,
-          label: "2.340 esai",
-        },
-        {
-          correct: false,
-          label: "2.910 esai",
-        },
+        { correct: true, label: "Ia memakai harga rata-rata seluruh ikan, yang turun karena komposisi berubah, padahal harga setiap jenis justru naik." },
+        { correct: false, label: "Ia memakai harga rata-rata seluruh ikan, padahal seharusnya memakai nilai lelang total yang naik Rp$$200$$ juta." },
+        { correct: false, label: "Ia salah menghitung harga rata-rata, karena rata-rata yang benar adalah rata-rata biasa dari ketiga harga per kilogram." },
+        { correct: false, label: "Ia hanya melihat dua bulan, padahal harga ikan baru dapat dinilai setelah satu tahun penuh." },
+        { correct: false, label: "Ia mengabaikan bahwa harga kembung naik paling kecil, sehingga hanya nelayan kembung yang dirugikan." },
       ],
     },
   },

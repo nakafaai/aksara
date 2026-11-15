@@ -2,40 +2,20 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "point-of-view",
   },
-  stimulus: "subak-water",
+  stimulus: "botanic-garden",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "Varietas unggul yang ditanam petani lebih disukai wereng daripada varietas lama.",
-        },
-        {
-          correct: false,
-          label:
-            "Pura air berhenti mengadakan upacara sehingga petani kehilangan pemimpin.",
-        },
-        {
-          correct: false,
-          label:
-            "Air dari pegunungan dialihkan ke hotel dan vila sehingga sawah mengering.",
-        },
-        {
-          correct: true,
-          label:
-            "Tanpa jadwal serentak, hama tidak lagi kehilangan makanan di wilayah yang luas.",
-        },
-        {
-          correct: false,
-          label:
-            "Subak di hilir mulai menanam lebih dulu daripada subak di hulu.",
-        },
+        { correct: false, label: "Penulis menerima sebutan itu sepenuhnya, karena kisah kelapa sawit membuktikan bahwa kebun itu sejak awal dibangun untuk kepentingan perkebunan." },
+        { correct: false, label: "Penulis menolak sebutan itu sepenuhnya, karena kebun itu sejak awal dibangun untuk penelitian ilmiah murni." },
+        { correct: true, label: "Penulis menerima sebutan itu untuk sebagian kegiatan, tetapi menilainya mengabaikan penelitian tumbuhan yang tidak punya nilai dagang." },
+        { correct: false, label: "Penulis menerima sebutan itu untuk sebagian kegiatan, tetapi menilainya tidak berlaku karena kelapa sawit gagal tumbuh." },
+        { correct: false, label: "Penulis tidak menanggapi sebutan itu dan hanya melaporkan pendapat para sejarawan." },
       ],
     },
   },
