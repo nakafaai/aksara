@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "strengthen-weaken",
   },
   stimulus: "subscription-churn",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Lumen's total revenue in July to September compared with its revenue in April to June",
+            "Cancellations among subscribers who had been paying since before July rose from about $$22{,}000$$ to about $$50{,}000$$.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The number of July to September sign-ups who joined through the company's advertising",
+            "About $$30{,}000$$ of the July to September cancellations came from trial accounts that had never paid.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "The churn rates of rival streaming services that did not raise their prices in July",
+            "Most of the trial users who cancelled had paid for at least one month before they left.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "How many of the July to September cancellations came from trial accounts and how many from subscribers who had paid before July",
+            "The churn rate fell back in October to December, once few new customers were on a trial.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "The number of subscribers who were still on a free trial at the end of December",
+            "Cancellations among subscribers who had been paying since before July rose from about $$22{,}000$$ to about $$25{,}000$$.",
         },
       ],
     },

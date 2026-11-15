@@ -25,12 +25,17 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "The cartographers objected to the Peters map mainly because it made rich countries look smaller.",
+            "On the Peters map, Greenland would look about as large as Africa.",
         },
         {
           column: 1,
           label:
-            "The passage implies that an equal-area map must distort shapes somewhere.",
+            "On the Peters map, Africa would cover roughly fourteen times the area of Greenland.",
+        },
+        {
+          column: 2,
+          label:
+            "The cartographers objected that the Peters map got the areas of countries wrong.",
         },
       ],
     },

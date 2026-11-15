@@ -13,27 +13,28 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "Use an equal-area map for the size comparison.",
+          label:
+            "A country near latitude $$60^\\circ$$ appears about four times its true area, so it would have to be shrunk to about a quarter for a fair comparison.",
         },
         {
           correct: false,
           label:
-            "Use Mercator's map, and shrink Greenland by eye to about half its size.",
-        },
-        {
-          correct: false,
-          label:
-            "Use any world map, since every projection distorts area in the same way.",
+            "A country near latitude $$60^\\circ$$ appears about twice its true area, since every length there is doubled.",
         },
         {
           correct: true,
           label:
-            "If only Mercator's map is available, warn that lands far from the equator look larger than they are.",
+            "Greenland, which lies even farther from the equator, is enlarged by more than four times.",
         },
         {
           correct: false,
           label:
-            "Use Mercator's map, since it keeps shapes true and true shapes mean true sizes.",
+            "Because the shapes of small areas stay true, a small island near latitude $$60^\\circ$$ also shows its true area.",
+        },
+        {
+          correct: true,
+          label:
+            "On an equal-area map, Greenland would cover about one fourteenth of the area that Africa covers.",
         },
       ],
     },

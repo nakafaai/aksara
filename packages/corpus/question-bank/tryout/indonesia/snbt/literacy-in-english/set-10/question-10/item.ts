@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "By arguing that the family's success is probably down to chance, and that it is likely to fade as the two children grow older and their work gets harder.",
+            "By granting that the family's success may be real, but arguing that it will probably fade as the children's work gets harder.",
         },
         {
           correct: true,
           label:
-            "By granting that the success may be real but noting that happy families share their stories most, so it says little in general.",
+            "By granting that the family's success may be real, but noting that families for whom it works share their stories most, so one story says little in general.",
         },
         {
           correct: false,
           label:
-            "By agreeing with it, since the survey figures show that a great many other families made the same choice in 2020.",
+            "By granting that the family's success may be real, and agreeing that the survey figures show many other families got the same results.",
         },
         {
           correct: false,
           label:
-            "By treating it as strong evidence, because it follows children who moved from attending school to learning at home.",
+            "By granting that the family's success may be real, and calling for studies of children who move between home and school, which would show her result is typical.",
         },
         {
           correct: false,
           label:
-            "By replying that the parent lacks the training she would need to judge her own children's progress fairly.",
+            "By rejecting the story as unreliable, since families whose homeschooling went well rarely write about it.",
         },
       ],
     },

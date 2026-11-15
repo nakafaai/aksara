@@ -2,9 +2,9 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "paraphrase",
+    topic: "application",
   },
   stimulus: "ant-foraging",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The researchers timed each trial and found that the short branch was the one the colony settled on fastest.",
+            "Walkers crossing a lawn compare two paths and choose the one with the better view, and soon everyone takes it.",
         },
         {
           correct: false,
           label:
-            "Ants on the short branch got home sooner, which shows that each ant learns to prefer the quicker of two routes.",
+            "A gardener measures two paths across a lawn and lines the shorter one with stones, and walkers follow the stones.",
         },
         {
           correct: true,
           label:
-            "Round trips on the short branch ended sooner, so it was re-marked first and that small lead kept on growing.",
+            "Walkers on the shorter of two paths across a lawn finish sooner and cross again sooner, so it wears bare first, and later walkers follow the bare path without measuring either.",
         },
         {
           correct: false,
           label:
-            "Given enough time, any colony will move from a long route to a shorter one once both routes are available.",
+            "Walkers who know the lawn well take the shorter path, and newcomers copy them once they have watched for a few days.",
         },
         {
           correct: false,
           label:
-            "The short branch won because its scent faded more slowly than the scent laid along the long branch.",
+            "More walkers happen to start on the longer of two paths across a lawn, so it wears bare first, and later walkers follow the bare path.",
         },
       ],
     },

@@ -25,12 +25,17 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "The ending suggests that an old habit carries on in a new setting.",
+            'The twelfth crossing, justified because the timetable "had never said anything about a last day", shows him using his own rules to put off the ending.',
         },
         {
           column: 2,
           label:
             "By the end, the father has decided that the ferry was never important.",
+        },
+        {
+          column: 2,
+          label:
+            "The final scene shows that the father has fully accepted the bridge.",
         },
       ],
     },

@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It rejects the research as outdated, arguing that the badge studies show distance no longer affects how often colleagues talk.",
+            "It grants that distance cuts contact, but argues that the badge studies show open plans make the work itself worse.",
         },
         {
           correct: false,
@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It doubts the research because Allen studied only engineers, whose habits may not match those of other office workers.",
+            "It grants that distance cuts contact, but argues that open floors are too noisy for colleagues to hear one another.",
         },
         {
           correct: true,

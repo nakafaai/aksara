@@ -12,28 +12,29 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "Halfway over on the last crossing, he cuts the engine and lets the boat drift in silence.",
-        },
-        {
-          correct: true,
-          label:
-            "He stays home from the opening, saying that he has a bad knee.",
-        },
-        {
           correct: false,
-          label: "A woman who has not ridden the ferry in years brings a cake.",
+          label:
+            "A woman brings a cake, and the man in the council jacket calls it the end of an era.",
+        },
+        {
+          correct: true,
+          label:
+            'He cuts the engine halfway over on the last crossing and lets the boat drift in silence, and the next day he stays home from the opening with a "bad knee".',
         },
         {
           correct: false,
           label:
-            "The bridge has been growing out of both banks for three summers.",
+            "He cuts the engine halfway over on the last crossing and lets the boat drift in silence, and the ferry is to be sold to a company that wants it for parts.",
         },
         {
-          correct: true,
+          correct: false,
           label:
-            "He counts the first cars crossing the bridge under his breath.",
+            'He stays home from the opening with a "bad knee", and the bridge has been growing out of both banks for three summers.',
+        },
+        {
+          correct: false,
+          label:
+            "Two boys ride back and forth without paying, and the bridge lights are switched on for a test.",
         },
       ],
     },
