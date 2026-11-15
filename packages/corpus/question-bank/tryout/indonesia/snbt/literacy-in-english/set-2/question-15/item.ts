@@ -2,39 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "calculation",
   },
-  stimulus: "library-hours",
+  stimulus: "clinic-reminders",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$6$$, the gap between $$10\\%$$ and $$4\\%$$ in 2024.",
+        },
+        {
+          correct: false,
+          label:
+            "$$1$$, the fall in the signed-up group from $$5\\%$$ to $$4\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "$$5$$, the fall from the clinic's $$9\\%$$ in 2023 to $$4\\%$$.",
+        },
+        {
+          correct: false,
+          label:
+            "$$2$$, the fall in the signed-up group added to the fall in the other group.",
+        },
+        {
           correct: true,
           label:
-            "Evening hours drew some recent non-users, but the data cannot show how many visits merely moved.",
-        },
-        {
-          correct: false,
-          label:
-            "All 130 evening visitors were people who had never used the library before.",
-        },
-        {
-          correct: false,
-          label:
-            "The pilot reduced the total number of weekday visits to the library.",
-        },
-        {
-          correct: false,
-          label:
-            "Daytime visits fell because of the evening hours, exactly as the head librarian argued.",
-        },
-        {
-          correct: false,
-          label:
-            "The council paid the full 9,000 dollars for the pilot from its budget.",
+            "$$0$$, because the group without reminders fell by the same amount.",
         },
       ],
     },

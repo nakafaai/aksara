@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "cause-effect",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "rosetta-stone",
+  stimulus: "clinic-interpreter",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It was the oldest known example of Egyptian writing ever found.",
-        },
-        {
-          correct: false,
-          label:
-            "It explained in Greek exactly how each hieroglyph should be pronounced.",
-        },
-        {
-          correct: false,
-          label:
-            "It showed every hieroglyphic sign together with a picture of its meaning.",
+            "That he had been taking the tablets every day, and now moves them so that he will not forget them on busy mornings.",
         },
         {
           correct: true,
           label:
-            "It gave the same decree in hieroglyphs and in readable Greek.",
+            "That he had not been taking the tablets regularly since his previous appointment, and now means to start.",
         },
         {
           correct: false,
           label:
-            "It was found inside a temple that Champollion had studied for years.",
+            "That he stopped taking the tablets only after today's visit, and now means to start again tomorrow.",
+        },
+        {
+          correct: false,
+          label:
+            "That he had not been taking the tablets, and moves the box only so that the narrator will think he has changed.",
+        },
+        {
+          correct: false,
+          label:
+            "That he had been taking tablets from a second box, and the one in the drawer was only a spare.",
         },
       ],
     },

@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "informational-text",
-    topic: "main-idea",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "point-of-view",
   },
-  stimulus: "rosetta-stone",
+  stimulus: "clinic-interpreter",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The Rosetta Stone should be returned to Egypt from the British Museum in London.",
-        },
-        {
-          correct: false,
-          label:
-            "Thomas Young deserves more credit than Champollion for the decipherment of hieroglyphs.",
-        },
-        {
-          correct: false,
-          label:
-            "Greek was the most important language in ancient Egypt in 196 BC.",
-        },
-        {
-          correct: false,
-          label:
-            "Coptic was invented by Champollion to help him read the hieroglyphs on the stone.",
+          correct: true,
+          label: "That her father wanted help with the long words.",
         },
         {
           correct: true,
-          label:
-            "Hieroglyphs were read once scholars saw a mixed working script, not mystical symbols.",
+          label: "That her father had not needed her at the clinic at all.",
+        },
+        {
+          correct: false,
+          label: "That her father speaks the doctor's language well.",
+        },
+        {
+          correct: false,
+          label: "That the doctor spoke to her rather than to her father.",
+        },
+        {
+          correct: false,
+          label: "That her father enjoys arguing with the tax office.",
         },
       ],
     },

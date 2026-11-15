@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "cause-effect",
   },
-  stimulus: "meat-survey",
+  stimulus: "bus-punctuality",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Health was not given as a main reason by any of the age groups surveyed.",
-        },
-        {
-          correct: false,
-          label:
-            "Older respondents were more likely to eat less meat than younger ones.",
-        },
-        {
-          correct: false,
-          label:
-            "The survey included too few people to say anything reliable about health.",
-        },
-        {
-          correct: false,
-          label:
-            "Environmental concern was the main reason given by most respondents who cut meat.",
+            "Southway ran more trips in total, so its on-time trips make up a bigger share of all trips.",
         },
         {
           correct: true,
           label:
-            "The group with the highest rate of cutting meat named cost, as prices rose.",
+            "Most of Southway's trips are rural, and rural trips run on time far more often for both operators.",
+        },
+        {
+          correct: false,
+          label:
+            "Northline's rural trips run late more often than Southway's, which pulls its overall rate down.",
+        },
+        {
+          correct: false,
+          label:
+            "The five-minute rule is easier to meet on rural roads, so Southway's drivers can afford to be less careful.",
+        },
+        {
+          correct: false,
+          label:
+            "Urban trips count twice in the overall rate, which works against the operator with more urban routes.",
         },
       ],
     },

@@ -4,36 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "cause-effect",
   },
-  stimulus: "bird-compass",
+  stimulus: "mpemba-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Birds in cages tried to head in the seasonal direction without seeing the sky.",
-        },
-        {
           correct: true,
           label:
-            "Robins turned around when only the vertical part of the field was reversed.",
+            "Timing a different event, such as the first ice instead of reaching zero degrees, and placing the thermometer in a slightly different spot.",
         },
         {
           correct: false,
           label:
-            "Magnetic field lines run almost parallel to the ground near the equator.",
-        },
-        {
-          correct: false,
-          label: "Songbirds migrating to Africa usually travel at night.",
+            "Hot water losing mass by evaporation, and hot water holding less dissolved gas.",
         },
         {
           correct: false,
           label:
-            "Iron-containing cells in the beak were found to be immune cells.",
+            "Timing a different event, such as the first ice instead of reaching zero degrees, and warming the water before it goes into the freezer.",
+        },
+        {
+          correct: false,
+          label:
+            "Placing the thermometer in a slightly different spot, and using an ice-cream mixture instead of water.",
+        },
+        {
+          correct: false,
+          label:
+            "Warm water rising and carrying heat to the surface, and placing the thermometer in a slightly different spot.",
         },
       ],
     },

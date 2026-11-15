@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "author-reasoning",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "cuckoo-eggs",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Tardigrades thrive in extreme environments such as outer space because their active bodies are exceptionally strong.",
+            "Because deserting a nest loses a week or more of a short breeding season, which matters most where cuckoos are rare.",
         },
         {
           correct: true,
           label:
-            "Tardigrades survive extremes mainly by drying into an inactive state, aided by proteins still being studied.",
+            "Because an odd egg there is usually its own, so a habit of rejecting would mostly destroy its own eggs.",
         },
         {
           correct: false,
           label:
-            "Tardigrades and brine shrimp use the same sugar to protect their cells from drying out.",
+            "Because cuckoo eggs match host eggs so closely that it could not pick out the cuckoo's egg anyway.",
         },
         {
           correct: false,
           label:
-            "Tardigrade proteins are already being used to store vaccines without refrigeration.",
+            "Because where cuckoos are rare, an accepted cuckoo egg no longer leads to the loss of the warbler's brood.",
         },
         {
           correct: false,
           label:
-            "Tardigrades are the only animals that can survive for years without any water at all.",
+            "Because natural selection has removed the ability to recognise odd eggs from warblers that rarely meet cuckoos.",
         },
       ],
     },

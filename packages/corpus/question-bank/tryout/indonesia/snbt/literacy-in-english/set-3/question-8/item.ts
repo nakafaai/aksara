@@ -2,35 +2,37 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "calculation",
   },
-  stimulus: "four-day-week",
+  stimulus: "bag-charge",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "In a reduced week, employees work fewer total hours for the same pay.",
+            "About $$200$$ tonnes, roughly three-eighths of the council's figure.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The best trial results came mainly from compressed weeks of four ten-hour days.",
+            "About $$120$$ tonnes, roughly three-eighths of the council's figure.",
         },
         {
-          column: 1,
-          label:
-            "Governments could require employers in trials to share their data.",
+          correct: false,
+          label: "About $$320$$ tonnes, all of the council's figure.",
         },
         {
-          column: 2,
+          correct: false,
+          label: "About $$440$$ tonnes, more than the council's figure.",
+        },
+        {
+          correct: true,
           label:
-            "Hospitals and care homes were well represented in the voluntary trials.",
+            "About $$200$$ tonnes, roughly five-eighths of the council's figure.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "application",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "cuckoo-eggs",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Human cells are naturally better protected from X-rays than tardigrade cells are.",
+            "Warblers at Y can tell eggs apart better, because birds living in open reeds have sharper eyesight.",
         },
         {
           correct: false,
           label:
-            "The DNA-protecting protein also allows human cells to survive being dried out.",
-        },
-        {
-          correct: false,
-          label:
-            "All tardigrade species produce the same DNA-protecting protein in their cells.",
+            "Warblers at Y have been shaped by natural selection to reject more, because their reeds are cut every year.",
         },
         {
           correct: true,
           label:
-            "One protein supplies part of the tardigrade's radiation protection, even inside human cells.",
+            "Warblers at Y are more likely to have seen a cuckoo near the nest, and a warbler that has seen one rejects far more often.",
         },
         {
           correct: false,
           label:
-            "X-rays cause no damage at all to human cells that contain the tardigrade gene.",
+            "Cuckoos at X lay better forgeries, so the warblers there are fooled more often than the warblers at Y.",
+        },
+        {
+          correct: false,
+          label:
+            "Warblers at X face more cuckoos, so tolerance costs them more, and they should in fact be rejecting more than the warblers at Y.",
         },
       ],
     },

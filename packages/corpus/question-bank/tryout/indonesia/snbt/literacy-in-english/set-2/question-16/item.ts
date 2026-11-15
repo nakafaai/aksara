@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "jikji-printing",
+  stimulus: "market-scale",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Because *Jikji* was nearly destroyed by damp while it was kept in Paris",
-        },
-        {
-          correct: false,
-          label:
-            "Because only books that UNESCO lists can officially be called the oldest",
-        },
-        {
-          correct: false,
-          label:
-            "Because Gutenberg's Bible has not survived in complete form anywhere",
+            "The needle stops a hair below zero when the narrator tests the empty tray, and Grandma turns the screw back for the nurse's daughter.",
         },
         {
           correct: true,
           label:
-            "Because earlier metal-type books may have existed, but none is known to survive",
+            "The needle sits exactly on zero for the man in the good coat, and Grandma turns the screw back for the nurse's daughter.",
         },
         {
           correct: false,
           label:
-            "Because the first volume of *Jikji* was printed with carved wooden blocks",
+            "The needle sits exactly on zero for the man in the good coat, and the inspector never finds the scale wrong.",
+        },
+        {
+          correct: false,
+          label:
+            "Grandma calls out weights before the needle stops, and the narrator's customers go home with less rice than the needle promised.",
+        },
+        {
+          correct: false,
+          label:
+            "The fish seller winks when he says the scale is not to be trusted, and Grandma turns the screw a quarter turn.",
         },
       ],
     },

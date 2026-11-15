@@ -4,36 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "tone-attitude",
+    topic: "application",
   },
-  stimulus: "bird-compass",
+  stimulus: "mpemba-effect",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "It has been proven beyond doubt by experiments in the wild.",
+          label:
+            "The result may confirm the Mpemba effect, which suggests that the 2016 study was measuring the wrong thing.",
         },
         {
           correct: false,
           label:
-            "It is less convincing than the idea of iron cells in the beak.",
+            "The hot cup probably lost more water by evaporation, so less water had to freeze, which fully explains the result.",
         },
         {
           correct: false,
           label:
-            "It is an interesting guess with no experimental support so far.",
+            "The result contradicts the 2016 study, although a single trial may also reflect chance details such as supercooling.",
         },
         {
           correct: true,
           label:
-            "Its support is stronger than ever, but the question is not settled.",
+            "The result does not contradict the 2016 study, which timed cooling to zero degrees, and a single trial may reflect chance details such as supercooling.",
         },
         {
           correct: false,
           label:
-            "It explains bird navigation fully, so other cues are unnecessary.",
+            "The result does not contradict the 2016 study, because that study found that hot water freezes first in home freezers.",
         },
       ],
     },

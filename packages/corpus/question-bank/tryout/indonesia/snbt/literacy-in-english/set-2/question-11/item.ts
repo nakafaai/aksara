@@ -4,32 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "calculation",
   },
-  stimulus: "library-hours",
+  stimulus: "clinic-reminders",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "About 14 percent",
-        },
-        {
           correct: true,
-          label: "About 16 percent",
+          label:
+            "About $$17\\%$$, roughly half of their share of about a third of all appointments.",
         },
         {
           correct: false,
-          label: "About 22 percent",
+          label:
+            "About $$4\\%$$, much less than their share of about a third of all appointments.",
         },
         {
           correct: false,
-          label: "About 25 percent",
+          label:
+            "About $$33\\%$$, the same as their share of about a third of all appointments.",
         },
         {
           correct: false,
-          label: "About 80 percent",
+          label:
+            "About $$17\\%$$, about the same as their share of all appointments.",
+        },
+        {
+          correct: false,
+          label:
+            "About $$20\\%$$, a little more than half of their share of about a third of all appointments.",
         },
       ],
     },
