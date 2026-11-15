@@ -1,15 +1,58 @@
-Soal menanyakan berapa persen kecepatan rata-rata (*Durchschnittsgeschwindigkeit*) naik. Untuk jarak yang tetap, berlaku <InlineMath math="v=\frac{s}{t}" />. Kecepatan dan waktu tempuh **berbanding terbalik**: jika waktu turun menjadi suatu bagian, kecepatan naik sebesar kebalikan dari bagian itu.
+# Rata-rata dihitung dari jarak dan waktu
 
-Waktu yang baru adalah <InlineMath math="\frac23" /> dari waktu lama. Jadi, kecepatan yang baru adalah <InlineMath math="\frac32" /> kali kecepatan lama.
+Kecepatan rata-rata adalah **seluruh jarak dibagi seluruh waktu**, bukan rata-rata kedua kecepatan. Misalkan jarak sekali jalan <InlineMath math="s" /> dan kecepatan pulang <InlineMath math="v" />:
 
-<BlockMath math="v_{\text{baru}}=\frac{s}{\frac23\,t}=\frac32\cdot\frac{s}{t}=1{,}5\cdot v_{\text{lama}}" />
+<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
 
-Faktor <InlineMath math="1{,}5" /> berarti kenaikan <InlineMath math="50\,\%" />. Sebagai pemeriksaan, ambil jarak <InlineMath math="300\text{ km}" />. Awalnya kereta melaju <InlineMath math="300:3=100\ \tfrac{\text{km}}{\text{jam}}" />, kemudian <InlineMath math="300:2=150\ \tfrac{\text{km}}{\text{jam}}" />. Selisihnya <InlineMath math="50" />, dan dibandingkan dengan <InlineMath math="100" /> itu berarti <InlineMath math="50\,\%" />.
+# Jaraknya saling menghapus
 
-Jadi, kecepatan rata-ratanya naik <InlineMath math="50\,\%" />.
+Coret <InlineMath math="s" />, lalu lanjutkan dengan kebalikan-kebalikannya:
 
-- <InlineMath math="33\tfrac13\,\%" /> adalah penurunan waktu tempuh, satu jam dari tiga jam. Yang ditanyakan adalah kenaikan kecepatan.
-- <InlineMath math="66\tfrac23\,\%" /> adalah waktu tempuh baru sebagai bagian dari waktu lama, <InlineMath math="\frac23" />.
-- <InlineMath math="60\,\%" /> memakai <InlineMath math="60" /> menit yang dihemat sebagai angka persen.
-- <InlineMath math="150\,\%" /> adalah kecepatan baru sebagai bagian dari kecepatan lama. Kenaikannya hanya bagian di atas <InlineMath math="100\,\%" />.
-- <InlineMath math="1{,}5\,\%" /> menulis faktor <InlineMath math="1{,}5" /> sebagai persen, bukan mengubahnya menjadi <InlineMath math="150\,\%" />.
+<BlockMath math="\begin{aligned}
+\frac{2}{\frac1{20}+\frac1v}&=24 \\
+\frac1{20}+\frac1v&=\frac1{12} \\
+\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\end{aligned}" />
+
+Jadi **kecepatannya <InlineMath math="v=30" />**.
+
+<MathVisual
+  title={<>Rata-rata menurut kecepatan pulang</>}
+  description={<>Grafik menunjukkan kecepatan rata-rata <InlineMath math="\frac{40v}{v+20}" /> untuk kecepatan pulang <InlineMath math="v" /> kalau perjalanan pergi ditempuh dengan <InlineMath math="20" />. Grafiknya naik makin lambat dan tetap di bawah <InlineMath math="40" />. Garis di <InlineMath math="24" /> memotongnya di <InlineMath math="v=30" />, bukan di <InlineMath math="28" />.</>}
+  labels={{
+    key: <><InlineMath math="v=30" /></>,
+    a: <>rata-rata</>,
+    t: <><InlineMath math="24" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 62 },
+      y: { min: 0, max: 34 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "40*x/(x+20)", domain: { min: 5, max: 60 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 24 }, to: { x: 60, y: 24 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 24 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 30, y: 24 }, placement: "below-right" },
+      { key: "a", objectId: "average", at: { x: 55, y: 29.3 }, placement: "above" },
+      { key: "t", objectId: "target", at: { x: 0, y: 24 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Cek dengan jarak contoh
+
+Untuk <InlineMath math="s=60\text{ km}" />, perjalanan pergi butuh <InlineMath math="3" /> jam dan pulang <InlineMath math="2" /> jam. <InlineMath math="120\text{ km}" /> dalam <InlineMath math="5" /> jam memberi rata-rata <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. Ia pulang **dengan kecepatan <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> memakai **rata-rata biasa**: <InlineMath math="\frac{20+v}{2}=24" />. Padahal ia menghabiskan lebih banyak waktu pada perjalanan pergi yang lambat.
+- <InlineMath math="28{,}8\,\frac{\text{km}}{\text{h}}" /> adalah <InlineMath math="\frac{24^2}{20}" />, rata-rata geometris.
+- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> menggandakan kecepatan pergi.
+- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> membaca kebalikan <InlineMath math="\frac1{12}" /> sebagai kecepatan.
+- "Tidak mungkin dengan kecepatan berapa pun" muncul kalau faktor <InlineMath math="2" /> untuk jarak pulang-pergi hilang: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> hanya punya penyelesaian negatif.

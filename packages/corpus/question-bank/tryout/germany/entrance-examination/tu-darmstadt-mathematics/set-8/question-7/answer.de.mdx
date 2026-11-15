@@ -1,13 +1,61 @@
-Im Kreisdiagramm entsprechen **<InlineMath math="100\,\%" /> dem vollen Winkel von <InlineMath math="360^\circ" />**. Ein Anteil bekommt denselben Anteil des Vollwinkels.
+# Was <InlineMath math="f^{-1}(12)" /> bedeutet
 
-<BlockMath math="45\,\%\cdot360^\circ=0{,}45\cdot360^\circ=162^\circ" />
+<InlineMath math="f^{-1}(12)" /> ist die Zahl <InlineMath math="x" /> aus dem betrachteten Bereich, für die **<InlineMath math="f(x)=12" /> gilt**. Du musst also keine Umkehrfunktion aufstellen, sondern eine Gleichung lösen:
 
-Ohne Taschenrechner hilft eine Zerlegung: <InlineMath math="10\,\%" /> von <InlineMath math="360^\circ" /> sind <InlineMath math="36^\circ" />, also sind <InlineMath math="40\,\%" /> genau <InlineMath math="144^\circ" /> und <InlineMath math="5\,\%" /> genau <InlineMath math="18^\circ" />. Zusammen ergibt das <InlineMath math="144^\circ+18^\circ=162^\circ" />. Zur Kontrolle: <InlineMath math="45\,\%" /> ist knapp die Hälfte, und <InlineMath math="162^\circ" /> ist knapp die Hälfte von <InlineMath math="360^\circ" />.
+<BlockMath math="\begin{aligned}
+x^2-6x+5&=12 \\
+(x-3)^2-9+5&=12 \\
+(x-3)^2&=16
+\end{aligned}" />
 
-Der Mittelpunktswinkel für den Bus beträgt also <InlineMath math="162^\circ" />.
+Also ist <InlineMath math="x-3=4" /> oder <InlineMath math="x-3=-4" />, das heißt <InlineMath math="x=7" /> oder <InlineMath math="x=-1" />.
 
-- <InlineMath math="45^\circ" /> übernimmt die Prozentzahl als Gradzahl. Ein Kreis hat aber <InlineMath math="360^\circ" />, nicht <InlineMath math="100^\circ" />.
-- <InlineMath math="81^\circ" /> rechnet mit einem Halbkreis von <InlineMath math="180^\circ" /> statt mit dem ganzen Kreis.
-- <InlineMath math="198^\circ" /> ist der Winkel für die übrigen <InlineMath math="55\,\%" /> der Befragten.
-- <InlineMath math="16{,}2^\circ" /> verschiebt das Komma und rechnet mit <InlineMath math="0{,}045" /> statt <InlineMath math="0{,}45" />.
-- <InlineMath math="324^\circ" /> verdoppelt den richtigen Winkel und rechnet mit <InlineMath math="0{,}9" /> statt <InlineMath math="0{,}45" />.
+# Der Bereich wählt die Lösung aus
+
+Die Funktion wird nur für <InlineMath math="x\ge3" /> betrachtet. Nur dort ist sie umkehrbar, weil **jeder Funktionswert dort genau einmal vorkommt**. Von den beiden Lösungen liegt nur <InlineMath math="x=7" /> in diesem Bereich:
+
+<MathVisual
+  title={<>Nur der rechte Ast zählt</>}
+  description={<>Die Parabel <InlineMath math="y=x^2-6x+5" /> mit dem Scheitel <InlineMath math="(3\mid-4)" />. Der rechte Ast für <InlineMath math="x\ge3" /> ist durchgezogen, der linke gestrichelt. Die Gerade <InlineMath math="y=12" /> trifft den rechten Ast in <InlineMath math="(7\mid12)" /> und den linken in <InlineMath math="(-1\mid12)" />, der nicht zum betrachteten Bereich gehört.</>}
+  labels={{
+    key: <><InlineMath math="(7\mid12)" /></>,
+    bad: <><InlineMath math="(-1\mid12)" /></>,
+    u: <><InlineMath math="x\ge3" /></>,
+    o: <>nicht betrachtet</>,
+    t: <><InlineMath math="y=12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 9 },
+      y: { min: -5, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "used", kind: "function", appearance: "primary", formula: "x^2 - 6*x + 5", domain: { min: 3, max: 7.6 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 - 6*x + 5", domain: { min: -1.6, max: 3 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: 12 }, to: { x: 8.5, y: 12 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 7, y: 12 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -1, y: 12 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 7, y: 12 }, placement: "above-left" },
+      { key: "bad", objectId: "neg", at: { x: -1, y: 12 }, placement: "above-right" },
+      { key: "u", objectId: "used", at: { x: 7.4, y: 15.4 }, placement: "left" },
+      { key: "o", objectId: "other", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "t", objectId: "level", at: { x: 8.5, y: 12 }, placement: "below" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="f(7)=49-42+5=12" />. Es gilt **<InlineMath math="f^{-1}(12)=7" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="-1" /> löst <InlineMath math="f(x)=12" /> auf dem **linken Ast**, der nicht zum betrachteten Bereich gehört.
+- <InlineMath math="7" /> oder <InlineMath math="-1" /> übersieht, dass eine Umkehrfunktion jedem Wert genau eine Zahl zuordnet.
+- <InlineMath math="77" /> ist <InlineMath math="f(12)=144-72+5" />, also der Funktionswert statt des Urbilds.
+- <InlineMath math="\frac1{77}" /> verwechselt <InlineMath math="f^{-1}" /> mit dem Kehrwert <InlineMath math="\frac{1}{f(12)}" />.
+- <InlineMath math="3+\sqrt{12}" /> vergisst beim Ergänzen die Zahlen <InlineMath math="-9+5" />: aus <InlineMath math="(x-3)^2=12" /> statt <InlineMath math="(x-3)^2=16" />.

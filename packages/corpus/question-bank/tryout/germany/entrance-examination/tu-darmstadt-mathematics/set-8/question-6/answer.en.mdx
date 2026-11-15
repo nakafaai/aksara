@@ -1,15 +1,56 @@
-The task asks for which <InlineMath math="k" /> the function is *streng monoton fallend* (strictly decreasing). A linear function <InlineMath math="f(x)=mx+n" /> is strictly decreasing exactly when **its slope <InlineMath math="m" /> is negative**. The intercept <InlineMath math="n=1" /> plays no role.
+# First the case without the squared term
 
-Here the slope is <InlineMath math="m=2-k" />. Solve the inequality <InlineMath math="m<0" />.
+For <InlineMath math="a=1" /> the <InlineMath math="x^2" /> disappears and the line <InlineMath math="f(x)=2x+3" /> is left. **A line that isn't horizontal becomes negative somewhere**, for example <InlineMath math="f(-2)=-1" />. So <InlineMath math="a=1" /> is out.
 
-<BlockMath math="2-k<0\quad\Rightarrow\quad2<k\quad\Rightarrow\quad k>2" />
+# Conditions for a parabola
 
-As a check, substitute values. For <InlineMath math="k=3" />, <InlineMath math="f(x)=-x+1" /> and the graph falls. For <InlineMath math="k=2" />, <InlineMath math="f(x)=1" /> is constant. For <InlineMath math="k=0" />, <InlineMath math="f(x)=2x+1" /> and the graph rises.
+For <InlineMath math="a\ne1" /> the graph is a parabola. It lies entirely above the <InlineMath math="x" />-axis exactly when it **opens upwards and has no zeros**:
 
-So the function is strictly decreasing for every <InlineMath math="k>2" />.
+<BlockMath math="\begin{aligned}
+a-1&>0\quad\Longrightarrow\quad a>1 \\
+D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+\end{aligned}" />
 
-- For <InlineMath math="k<2" /> the slope is positive, so the function rises.
-- <InlineMath math="k>-2" /> comes from the sign error <InlineMath math="2+k<0" /> together with a reversed inequality sign. For <InlineMath math="k=0" /> the function rises.
-- For <InlineMath math="k=2" /> the slope is zero. A constant function does not fall.
-- <InlineMath math="k\ge2" /> includes <InlineMath math="k=2" />, where <InlineMath math="f" /> is constant and so not strictly decreasing.
-- <InlineMath math="k<-2" /> comes from the sign error <InlineMath math="2+k<0" />. For <InlineMath math="k=-3" /> the slope is <InlineMath math="2-(-3)=5" />, which is positive.
+# Both conditions together
+
+Both hold exactly for <InlineMath math="a>2" />. For <InlineMath math="a=2" />, <InlineMath math="D=0" />: the graph **touches the axis**, and <InlineMath math="f(-2)=0" /> isn't positive.
+
+<MathVisual
+  title={<>When the graph lies entirely above</>}
+  description={<>For <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> is an upward parabola lying entirely above the <InlineMath math="x" />-axis. For the boundary value <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, and the graph touches the axis at <InlineMath math="(-2\mid0)" />. There <InlineMath math="f(x)>0" /> fails.</>}
+  labels={{
+    g: <><InlineMath math="a=3" /></>,
+    e: <><InlineMath math="a=2" /></>,
+    t: <><InlineMath math="(-2\mid0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 3 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "2*x^2 + 6*x + 5", domain: { min: -3.4, max: 0.4 } },
+      { id: "edge", kind: "function", appearance: "secondary", formula: "x^2 + 4*x + 4", domain: { min: -4.5, max: 0.5 } },
+      { id: "touch", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "good", at: { x: -3.3, y: 6.98 }, placement: "left" },
+      { key: "e", objectId: "edge", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "t", objectId: "touch", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<InlineMath math="f(x)>0" /> for all <InlineMath math="x" /> exactly when <InlineMath math="a>2" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="a>1" /> checks only which way the parabola opens. For <InlineMath math="a=1.5" />, <InlineMath math="D=2>0" />, and the parabola **has zeros**.
+- <InlineMath math="a\ge2" /> includes <InlineMath math="a=2" />, where the graph touches the axis.
+- <InlineMath math="1<a<2" /> reverses the discriminant condition.
+- <InlineMath math="a=1" /> or <InlineMath math="a>2" /> overlooks that the line for <InlineMath math="a=1" /> takes negative values.
+- <InlineMath math="a<2" /> uses only <InlineMath math="D<0" /> with the inequality the wrong way round and ignores the opening.

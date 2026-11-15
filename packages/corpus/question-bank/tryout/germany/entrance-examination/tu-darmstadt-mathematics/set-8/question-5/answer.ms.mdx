@@ -1,0 +1,59 @@
+# Maksud bulatan dalam bagi sisi-sisinya
+
+Dari setiap bucu, dua tembereng tangen ke bulatan dalam sama panjang. Oleh itu dalam setiap sisi empat yang mempunyai bulatan dalam, **hasil tambah sisi-sisi bertentangan adalah sama**. Bagi trapezium dengan kaki <InlineMath math="s" />:
+
+<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
+
+# Tinggi daripada segi tiga bantu
+
+Lukis garis serenjang dari satu bucu atas ke tapak. Oleh sebab simetri, kakinya berada <InlineMath math="\frac{8-2}{2}=3" /> dari hujung tapak. Terbentuk **segi tiga bersudut tegak dengan hipotenus <InlineMath math="5" />**:
+
+<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+
+<MathVisual
+  title={<>Trapezium dengan bulatan dalam</>}
+  description={<>Trapezium sama kaki dengan tapak <InlineMath math="8" /> di bawah, sisi atas <InlineMath math="2" /> dan dua kaki sepanjang <InlineMath math="5" />. Bulatan dalamnya menyentuh keempat-empat sisi dan berjejari <InlineMath math="2" />. Tinggi <InlineMath math="h=4" /> sama dengan diameternya.</>}
+  labels={{
+    long: <><InlineMath math="8" /></>,
+    short: <><InlineMath math="2" /></>,
+    leg: <><InlineMath math="5" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    r: <><InlineMath math="r=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "trapezoid", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "trapezoid", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "trapezoid", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "leg", objectId: "trapezoid", at: { x: 2.5, y: 2 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "r", objectId: "radius", at: { x: 0, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Luasnya
+
+<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+
+Semakan: bulatan dalam berjejari <InlineMath math="\frac h2=2" />, dan <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. Trapezium itu **luasnya <InlineMath math="20\text{ cm}^2" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="25\text{ cm}^2" /> memakai **kaki <InlineMath math="5" /> sebagai tinggi**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
+- <InlineMath math="40\text{ cm}^2" /> terlupa membahagi dua dalam rumus trapezium: <InlineMath math="(8+2)\cdot4" />.
+- <InlineMath math="15\text{ cm}^2" /> memakai lebihan tapak <InlineMath math="3" /> sebagai tinggi.
+- <InlineMath math="10\text{ cm}^2" /> memakai jejari <InlineMath math="2" />, bukan diameter <InlineMath math="4" />, sebagai tinggi.
+- <InlineMath math="30\text{ cm}^2" /> memakai tinggi <InlineMath math="3" /> dan tidak membahagi dua: <InlineMath math="(8+2)\cdot3" />.

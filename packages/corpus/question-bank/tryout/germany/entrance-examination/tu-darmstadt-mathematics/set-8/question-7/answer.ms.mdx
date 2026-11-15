@@ -1,0 +1,61 @@
+# Maksud <InlineMath math="f^{-1}(12)" />
+
+<InlineMath math="f^{-1}(12)" /> ialah nombor <InlineMath math="x" /> dalam julat yang dipertimbangkan sehingga **<InlineMath math="f(x)=12" /> dipenuhi**. Jadi kamu tidak perlu membina fungsi songsang, cukup selesaikan satu persamaan:
+
+<BlockMath math="\begin{aligned}
+x^2-6x+5&=12 \\
+(x-3)^2-9+5&=12 \\
+(x-3)^2&=16
+\end{aligned}" />
+
+Jadi <InlineMath math="x-3=4" /> atau <InlineMath math="x-3=-4" />, iaitu <InlineMath math="x=7" /> atau <InlineMath math="x=-1" />.
+
+# Julat itu memilih penyelesaian
+
+Fungsi itu hanya dipertimbangkan bagi <InlineMath math="x\ge3" />. Hanya di situ ia mempunyai songsangan, kerana **setiap nilai fungsi muncul tepat sekali di situ**. Daripada dua penyelesaian, hanya <InlineMath math="x=7" /> yang berada dalam julat itu:
+
+<MathVisual
+  title={<>Hanya cabang kanan yang dikira</>}
+  description={<>Parabola <InlineMath math="y=x^2-6x+5" /> dengan bucu <InlineMath math="(3\mid-4)" />. Cabang kanan bagi <InlineMath math="x\ge3" /> dilukis penuh, cabang kiri putus-putus. Garis <InlineMath math="y=12" /> bertemu cabang kanan di <InlineMath math="(7\mid12)" /> dan cabang kiri di <InlineMath math="(-1\mid12)" />, yang tidak termasuk dalam julat yang dipertimbangkan.</>}
+  labels={{
+    key: <><InlineMath math="(7\mid12)" /></>,
+    bad: <><InlineMath math="(-1\mid12)" /></>,
+    u: <><InlineMath math="x\ge3" /></>,
+    o: <>tidak dipertimbangkan</>,
+    t: <><InlineMath math="y=12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 9 },
+      y: { min: -5, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "used", kind: "function", appearance: "primary", formula: "x^2 - 6*x + 5", domain: { min: 3, max: 7.6 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 - 6*x + 5", domain: { min: -1.6, max: 3 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: 12 }, to: { x: 8.5, y: 12 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 7, y: 12 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -1, y: 12 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 7, y: 12 }, placement: "above-left" },
+      { key: "bad", objectId: "neg", at: { x: -1, y: 12 }, placement: "above-right" },
+      { key: "u", objectId: "used", at: { x: 7.4, y: 15.4 }, placement: "left" },
+      { key: "o", objectId: "other", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "t", objectId: "level", at: { x: 8.5, y: 12 }, placement: "below" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="f(7)=49-42+5=12" />. Jadi **<InlineMath math="f^{-1}(12)=7" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="-1" /> menyelesaikan <InlineMath math="f(x)=12" /> pada **cabang kiri**, yang tidak termasuk dalam julat yang dipertimbangkan.
+- <InlineMath math="7" /> atau <InlineMath math="-1" /> terlepas pandang bahawa fungsi songsang memetakan setiap nilai kepada tepat satu nombor.
+- <InlineMath math="77" /> ialah <InlineMath math="f(12)=144-72+5" />, iaitu nilai fungsi, bukan objeknya.
+- <InlineMath math="\frac1{77}" /> menyamakan <InlineMath math="f^{-1}" /> dengan salingan <InlineMath math="\frac{1}{f(12)}" />.
+- <InlineMath math="3+\sqrt{12}" /> terlupa nombor <InlineMath math="-9+5" /> semasa melengkapkan kuasa dua: daripada <InlineMath math="(x-3)^2=12" />, sedangkan sepatutnya <InlineMath math="(x-3)^2=16" />.

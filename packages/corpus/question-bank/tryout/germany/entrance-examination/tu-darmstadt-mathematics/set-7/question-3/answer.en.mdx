@@ -1,17 +1,67 @@
-The task asks for the area of the rectangle. Call the side of one small square <InlineMath math="s" />. Then the rectangle is <InlineMath math="3s" /> long and <InlineMath math="2s" /> wide. Use the perimeter to find **<InlineMath math="s" /> first**, and only then the area.
+# Find the central angle
 
-<BlockMath math="P=2\cdot(3s+2s)=10s=40\quad\Rightarrow\quad s=4" />
+Call the centres <InlineMath math="M_1" /> and <InlineMath math="M_2" /> and the intersection points <InlineMath math="P" /> and <InlineMath math="Q" />. In triangle <InlineMath math="M_1M_2P" /> every side is <InlineMath math="6\text{ cm}" />: two radii and the distance between the centres. **The triangle is equilateral**, so <InlineMath math="\angle M_2M_1P=60^\circ" />. In the same way <InlineMath math="\angle M_2M_1Q=60^\circ" />, together <InlineMath math="\angle PM_1Q=120^\circ" />.
 
-So the rectangle is <InlineMath math="12\text{ cm}" /> long and <InlineMath math="8\text{ cm}" /> wide.
+<MathVisual
+  title={<>The lens made by two circles</>}
+  description={<>Two circles of radius <InlineMath math="6" /> with centres <InlineMath math="M_1" /> and <InlineMath math="M_2" /> at distance <InlineMath math="6" />. They meet at <InlineMath math="P" /> and <InlineMath math="Q" />. The triangles <InlineMath math="M_1M_2P" /> and <InlineMath math="M_1M_2Q" /> are equilateral, so the angle <InlineMath math="PM_1Q" /> is <InlineMath math="120^\circ" />. The chord <InlineMath math="\overline{PQ}" /> splits the lens into two equal circular segments.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    r: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 13 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "c2", kind: "circle", appearance: "primary", center: { x: 6, y: 0 }, radius: 6 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 3, y: 5.1962 }, to: { x: 3, y: -5.1962 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "r2", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: -5.1962 } },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: 3, y: -5.1962 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "p", objectId: "pp", at: { x: 3, y: 5.1962 }, placement: "above" },
+      { key: "q", objectId: "pq", at: { x: 3, y: -5.1962 }, placement: "below" },
+      { key: "r", objectId: "r1", at: { x: 1.5, y: 2.5981 }, placement: "above-left" },
+    ],
+  }}
+/>
 
-<BlockMath math="A=12\cdot8=96\text{ cm}^2" />
+# One circular segment
 
-As a check, count the squares: each has <InlineMath math="4\cdot4=16\text{ cm}^2" />, and six of them make <InlineMath math="6\cdot16=96\text{ cm}^2" />. The perimeter fits too: <InlineMath math="2\cdot(12+8)=40\text{ cm}" />.
+The chord <InlineMath math="\overline{PQ}" /> splits the lens into two equal circular segments. One segment is **the <InlineMath math="120^\circ" /> sector minus triangle <InlineMath math="M_1PQ" />**:
 
-So the rectangle has an area of <InlineMath math="96\text{ cm}^2" />.
+<BlockMath math="\begin{aligned}
+A_{\text{sector}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
+A_{\text{triangle}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
+A_{\text{segment}}&=12\pi-9\sqrt3
+\end{aligned}" />
 
-- <InlineMath math="16\text{ cm}^2" /> is the area of a single small square.
-- <InlineMath math="24\text{ cm}^2" /> computes <InlineMath math="6\cdot4" /> and forgets to square the side.
-- <InlineMath math="100\text{ cm}^2" /> treats the rectangle like a square with perimeter <InlineMath math="40\text{ cm}" />, so with side <InlineMath math="10\text{ cm}" />.
-- <InlineMath math="384\text{ cm}^2" /> sets <InlineMath math="5s=40" /> and forgets the factor <InlineMath math="2" /> in the perimeter. Then <InlineMath math="s" /> would be <InlineMath math="8" />.
-- <InlineMath math="40\text{ cm}^2" /> takes the number of the perimeter, which is a length.
+# The whole lens
+
+<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+
+That's about <InlineMath math="44.2\text{ cm}^2" />. The common region has **an area of <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> is **only one circular segment**, half the lens.
+- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> uses <InlineMath math="60^\circ" /> instead of <InlineMath math="120^\circ" /> as the central angle: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
+- <InlineMath math="24\pi\text{ cm}^2" /> counts the two sectors and forgets to subtract the triangles.
+- <InlineMath math="(24\pi-18)\text{ cm}^2" /> takes <InlineMath math="\sin120^\circ=\frac12" />.
+- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> uses <InlineMath math="180^\circ" /> sectors and triangles with twice the area.

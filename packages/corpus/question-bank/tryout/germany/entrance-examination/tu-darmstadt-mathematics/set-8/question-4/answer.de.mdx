@@ -1,15 +1,65 @@
-In einem Parallelogramm sind gegenüberliegende Seiten **parallel und gleich lang**. Der Weg von <InlineMath math="A" /> nach <InlineMath math="D" /> ist deshalb derselbe wie der Weg von <InlineMath math="B" /> nach <InlineMath math="C" />.
+# Der Flächeninhalt aus den Koordinaten
 
-Von <InlineMath math="B(6\mid2)" /> nach <InlineMath math="C(8\mid6)" /> geht es <InlineMath math="2" /> nach rechts und <InlineMath math="4" /> nach oben. Diesen Schritt machst du von <InlineMath math="A" /> aus.
+Liegt eine Ecke im Ursprung, so hat das Dreieck mit den anderen Ecken <InlineMath math="(x_1\mid y_1)" /> und <InlineMath math="(x_2\mid y_2)" /> den Flächeninhalt <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **Der Betrag ist wichtig**, weil der Term ohne Betrag je nach Umlaufsinn negativ sein kann:
 
-<BlockMath math="D=(1+2\mid1+4)=(3\mid5)" />
+<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
 
-Zur Kontrolle prüfst du die anderen beiden Seiten. Von <InlineMath math="A" /> nach <InlineMath math="B" /> geht es <InlineMath math="5" /> nach rechts und <InlineMath math="1" /> nach oben, und von <InlineMath math="D(3\mid5)" /> nach <InlineMath math="C(8\mid6)" /> ebenfalls. Außerdem halbieren sich die Diagonalen: Die Mitte von <InlineMath math="\overline{AC}" /> und die Mitte von <InlineMath math="\overline{BD}" /> sind beide <InlineMath math="\left(\frac92\mid\frac72\right)" />.
+# Die Betragsgleichung lösen
 
-Der Eckpunkt ist also <InlineMath math="D(3\mid5)" />.
+<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
 
-- <InlineMath math="(13\mid7)" /> ist <InlineMath math="B+C-A" />. Das ist der vierte Punkt eines Parallelogramms, in dem <InlineMath math="A" /> und <InlineMath math="D" /> gegenüberliegen, nicht der Eckpunkt von <InlineMath math="ABCD" />.
-- <InlineMath math="(-1\mid-3)" /> ist <InlineMath math="A+B-C" />, der vierte Punkt eines Parallelogramms, in dem <InlineMath math="C" /> und <InlineMath math="D" /> gegenüberliegen.
-- <InlineMath math="\left(\frac92\mid\frac72\right)" /> ist der Schnittpunkt der Diagonalen, kein Eckpunkt.
-- <InlineMath math="(2\mid4)" /> ist nur der Schritt von <InlineMath math="B" /> nach <InlineMath math="C" />, kein Punkt des Parallelogramms.
-- <InlineMath math="(5\mid1)" /> ist nur der Schritt von <InlineMath math="A" /> nach <InlineMath math="B" />.
+Ein Betrag ist <InlineMath math="30" />, wenn **der Inhalt <InlineMath math="30" /> oder <InlineMath math="-30" /> ist**:
+
+<BlockMath math="\begin{aligned}
+36-2k=30&\quad\Longrightarrow\quad k=3 \\
+36-2k=-30&\quad\Longrightarrow\quad k=33
+\end{aligned}" />
+
+<MathVisual
+  title={<>Zwei Lagen für <InlineMath math="C" /></>}
+  description={<>Die Punkte <InlineMath math="A(0\mid0)" /> und <InlineMath math="B(6\mid2)" /> und die waagerechte Gerade <InlineMath math="y=6" />, auf der <InlineMath math="C" /> liegt. Zwei Dreiecke haben den Flächeninhalt <InlineMath math="15" />: eines mit <InlineMath math="C_1(3\mid6)" /> links und ein langes, flaches mit <InlineMath math="C_2(33\mid6)" /> weit rechts.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c1: <><InlineMath math="C_1(3\mid6)" /></>,
+    c2: <><InlineMath math="C_2(33\mid6)" /></>,
+    l: <><InlineMath math="y=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 36 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "row", kind: "segment", appearance: "reference", from: { x: -1, y: 6 }, to: { x: 35, y: 6 } },
+      { id: "t1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 3, y: 6 }] },
+      { id: "t2", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 33, y: 6 }] },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: 6 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 33, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "c1", objectId: "p1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "c2", objectId: "p2", at: { x: 33, y: 6 }, placement: "above-left" },
+      { key: "l", objectId: "row", at: { x: -1, y: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Probe
+
+Für <InlineMath math="k=3" /> ist <InlineMath math="\frac12|36-6|=15" />, für <InlineMath math="k=33" /> ist <InlineMath math="\frac12|36-66|=15" />. Beide Werte liefern ein echtes Dreieck, also gilt **<InlineMath math="k=3" /> oder <InlineMath math="k=33" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- „nur <InlineMath math="k=3" />“ rechnet ohne Betrag und **verliert die zweite Lage**.
+- „nur <InlineMath math="k=33" />“ verliert die erste Lage.
+- <InlineMath math="k=10{,}5" /> oder <InlineMath math="k=25{,}5" /> vergisst den Faktor <InlineMath math="\frac12" />: Aus <InlineMath math="|36-2k|=15" /> folgen diese Werte, das Dreieck hätte dann den Flächeninhalt <InlineMath math="7{,}5" />.
+- <InlineMath math="k=-3" /> oder <InlineMath math="k=3" /> setzt den Betrag um <InlineMath math="k" /> statt um den ganzen Term.
+- „nur <InlineMath math="k=18" />“ ist der Wert, für den <InlineMath math="36-2k=0" /> ist. Dann liegen die drei Punkte auf einer Geraden, und es gibt kein Dreieck.

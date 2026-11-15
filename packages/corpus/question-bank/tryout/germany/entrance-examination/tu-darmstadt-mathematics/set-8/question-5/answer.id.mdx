@@ -1,15 +1,59 @@
-Soal menanyakan jarak <InlineMath math="M" />, titik tengah sisi atas, ke salah satu titik sudut alas. Jarak itu adalah sisi miring **segitiga siku-siku di dalam kubus**. Titik sudutnya adalah titik sudut alas <InlineMath math="E" />, titik <InlineMath math="M" />, dan titik tengah alas <InlineMath math="N" /> tepat di bawah <InlineMath math="M" />.
+# Arti lingkaran dalam bagi sisi-sisinya
 
-Sisi siku-siku tegak <InlineMath math="\overline{NM}" /> sama dengan satu rusuk, <InlineMath math="4\text{ cm}" />. Sisi siku-siku mendatar <InlineMath math="\overline{EN}" /> adalah setengah diagonal alas. Diagonal alasnya <InlineMath math="4\sqrt2\text{ cm}" />, jadi setengahnya <InlineMath math="2\sqrt2\text{ cm}" />.
+Dari setiap titik sudut, kedua ruas garis singgung ke lingkaran dalam sama panjang. Karena itu pada setiap segi empat yang punya lingkaran dalam, **jumlah sisi-sisi yang berhadapan sama**. Untuk trapesium dengan kaki <InlineMath math="s" />:
 
-<BlockMath math="\overline{EM}^2=\left(2\sqrt2\right)^2+4^2=8+16=24\quad\Rightarrow\quad\overline{EM}=\sqrt{24}=2\sqrt6" />
+<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
 
-Sebagai pemeriksaan, hasil <InlineMath math="2\sqrt6\approx4{,}9" /> terletak di antara rusuk <InlineMath math="4" /> dan diagonal ruang <InlineMath math="4\sqrt3\approx6{,}9" />. Itu masuk akal, karena <InlineMath math="M" /> lebih dekat ke <InlineMath math="E" /> daripada titik sudut yang berseberangan, tetapi lebih jauh daripada titik sudut tepat di atas <InlineMath math="E" />.
+# Tinggi dari segitiga bantu
 
-Jadi, jaraknya <InlineMath math="2\sqrt6\text{ cm}" />.
+Tarik garis tegak dari salah satu titik sudut atas ke alas. Karena simetris, kaki garis itu berjarak <InlineMath math="\frac{8-2}{2}=3" /> dari ujung alas. Terbentuk **segitiga siku-siku dengan sisi miring <InlineMath math="5" />**:
 
-- <InlineMath math="4\sqrt3\text{ cm}" /> adalah diagonal ruang ke titik sudut yang berseberangan, bukan jarak ke titik tengah sisi.
-- <InlineMath math="4\sqrt2\text{ cm}" /> adalah diagonal sisi kubus.
-- <InlineMath math="2\sqrt5\text{ cm}" /> adalah <InlineMath math="\sqrt{2^2+4^2}" />. Di sini sisi mendatarnya hanya setengah rusuk, bukan setengah diagonal.
-- <InlineMath math="2\sqrt2\text{ cm}" /> hanyalah sisi siku-siku mendatar. Bagian tegaknya terlewat.
-- <InlineMath math="6\text{ cm}" /> menjumlahkan setengah rusuk dan satu rusuk, <InlineMath math="2+4" />, alih-alih memakai teorema Pythagoras.
+<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+
+<MathVisual
+  title={<>Trapesium dengan lingkaran dalam</>}
+  description={<>Trapesium sama kaki dengan alas <InlineMath math="8" /> di bawah, sisi atas <InlineMath math="2" />, dan dua kaki sepanjang <InlineMath math="5" />. Lingkaran dalamnya menyinggung keempat sisi dan berjari-jari <InlineMath math="2" />. Tinggi <InlineMath math="h=4" /> sama dengan diameternya.</>}
+  labels={{
+    long: <><InlineMath math="8" /></>,
+    short: <><InlineMath math="2" /></>,
+    leg: <><InlineMath math="5" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    r: <><InlineMath math="r=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5, max: 5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "trapezoid", kind: "polygon", appearance: "primary", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 1, y: 4 }, { x: -1, y: 4 }] },
+      { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 0, y: 2 }, radius: 2 },
+      { id: "height", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 2 }, to: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "long", objectId: "trapezoid", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "short", objectId: "trapezoid", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "leg", objectId: "trapezoid", at: { x: 2.5, y: 2 }, placement: "right" },
+      { key: "h", objectId: "height", at: { x: 1, y: 1 }, placement: "right" },
+      { key: "r", objectId: "radius", at: { x: 0, y: 1 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Luasnya
+
+<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+
+Cek: lingkaran dalam berjari-jari <InlineMath math="\frac h2=2" />, dan <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. Trapesium itu **luasnya <InlineMath math="20\text{ cm}^2" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="25\text{ cm}^2" /> memakai **kaki <InlineMath math="5" /> sebagai tinggi**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
+- <InlineMath math="40\text{ cm}^2" /> lupa membagi dua pada rumus trapesium: <InlineMath math="(8+2)\cdot4" />.
+- <InlineMath math="15\text{ cm}^2" /> memakai kelebihan alas <InlineMath math="3" /> sebagai tinggi.
+- <InlineMath math="10\text{ cm}^2" /> memakai jari-jari <InlineMath math="2" />, bukan diameter <InlineMath math="4" />, sebagai tinggi.
+- <InlineMath math="30\text{ cm}^2" /> memakai tinggi <InlineMath math="3" /> dan tidak membagi dua: <InlineMath math="(8+2)\cdot3" />.

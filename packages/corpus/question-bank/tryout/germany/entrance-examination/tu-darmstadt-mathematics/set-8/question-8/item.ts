@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3{.}125$$",
+          label: "$$-2\\le x\\le4$$",
         },
         {
           correct: false,
-          label: "$$\\frac{1}{3{.}125}$$",
+          label: "$$x\\le-4$$ oder $$x\\ge2$$",
+        },
+        {
+          correct: false,
+          label: "$$-4\\le x\\le2$$",
+        },
+        {
+          correct: false,
+          label: "$$x\\ge4$$",
+        },
+        {
+          correct: false,
+          label: "$$x\\le-2\\sqrt2$$ oder $$x\\ge2\\sqrt2$$",
         },
         {
           correct: true,
-          label: "$$5$$",
-        },
-        {
-          correct: false,
-          label: "$$125$$",
-        },
-        {
-          correct: false,
-          label: "$$-0{,}024$$",
-        },
-        {
-          correct: false,
-          label: "$$25$$",
+          label: "$$x\\le-2$$ oder $$x\\ge4$$",
         },
       ],
     },

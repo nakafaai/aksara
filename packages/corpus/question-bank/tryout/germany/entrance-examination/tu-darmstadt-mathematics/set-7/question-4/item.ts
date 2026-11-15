@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$\\frac{4\\sqrt2}{3}$$",
+        },
+        {
+          correct: false,
+          label: "$$2\\sqrt2$$",
+        },
+        {
+          correct: false,
+          label: "$$4\\sqrt2$$",
+        },
+        {
           correct: true,
-          label: "$$x=4$$",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label: "$$x=-2$$",
+          label: "$$\\sqrt2$$",
         },
         {
           correct: false,
-          label: "$$x=3$$",
-        },
-        {
-          correct: false,
-          label: "$$x=6$$",
-        },
-        {
-          correct: false,
-          label: "$$x=1+\\sqrt{21}$$",
-        },
-        {
-          correct: false,
-          label: "$$x=1+\\sqrt{41}$$",
+          label: "$$2$$",
         },
       ],
     },

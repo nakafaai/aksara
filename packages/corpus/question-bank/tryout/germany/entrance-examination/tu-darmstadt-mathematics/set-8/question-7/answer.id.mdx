@@ -1,13 +1,61 @@
-Soal menanyakan sudut pusat (*Mittelpunktswinkel*) juring untuk bus pada diagram lingkaran. Pada diagram lingkaran, **<InlineMath math="100\,\%" /> sama dengan sudut penuh <InlineMath math="360^\circ" />**. Suatu bagian mendapat bagian yang sama dari sudut penuh.
+# Arti <InlineMath math="f^{-1}(12)" />
 
-<BlockMath math="45\,\%\cdot360^\circ=0{,}45\cdot360^\circ=162^\circ" />
+<InlineMath math="f^{-1}(12)" /> adalah bilangan <InlineMath math="x" /> di daerah yang dibahas sehingga **berlaku <InlineMath math="f(x)=12" />**. Jadi kamu tidak perlu menyusun fungsi invers, cukup menyelesaikan persamaan:
 
-Tanpa kalkulator, pecah perhitungannya: <InlineMath math="10\,\%" /> dari <InlineMath math="360^\circ" /> adalah <InlineMath math="36^\circ" />, jadi <InlineMath math="40\,\%" /> adalah <InlineMath math="144^\circ" /> dan <InlineMath math="5\,\%" /> adalah <InlineMath math="18^\circ" />. Jumlahnya <InlineMath math="144^\circ+18^\circ=162^\circ" />. Sebagai pemeriksaan, <InlineMath math="45\,\%" /> sedikit di bawah setengah, dan <InlineMath math="162^\circ" /> juga sedikit di bawah setengah dari <InlineMath math="360^\circ" />.
+<BlockMath math="\begin{aligned}
+x^2-6x+5&=12 \\
+(x-3)^2-9+5&=12 \\
+(x-3)^2&=16
+\end{aligned}" />
 
-Jadi, sudut pusat untuk bus adalah <InlineMath math="162^\circ" />.
+Jadi <InlineMath math="x-3=4" /> atau <InlineMath math="x-3=-4" />, yaitu <InlineMath math="x=7" /> atau <InlineMath math="x=-1" />.
 
-- <InlineMath math="45^\circ" /> memakai angka persen sebagai besar derajat. Padahal lingkaran punya <InlineMath math="360^\circ" />, bukan <InlineMath math="100^\circ" />.
-- <InlineMath math="81^\circ" /> memakai setengah lingkaran, <InlineMath math="180^\circ" />, bukan lingkaran penuh.
-- <InlineMath math="198^\circ" /> adalah sudut untuk <InlineMath math="55\,\%" /> responden lainnya.
-- <InlineMath math="16{,}2^\circ" /> menggeser koma dan memakai <InlineMath math="0{,}045" />, bukan <InlineMath math="0{,}45" />.
-- <InlineMath math="324^\circ" /> menggandakan sudut yang benar dan memakai <InlineMath math="0{,}9" />, bukan <InlineMath math="0{,}45" />.
+# Daerahnya memilih penyelesaian
+
+Fungsi itu hanya dibahas untuk <InlineMath math="x\ge3" />. Hanya di sana fungsi itu punya invers, karena **setiap nilai fungsi muncul tepat sekali di sana**. Dari kedua penyelesaian, hanya <InlineMath math="x=7" /> yang ada di daerah itu:
+
+<MathVisual
+  title={<>Hanya cabang kanan yang dihitung</>}
+  description={<>Parabola <InlineMath math="y=x^2-6x+5" /> dengan puncak <InlineMath math="(3\mid-4)" />. Cabang kanan untuk <InlineMath math="x\ge3" /> digambar penuh, cabang kiri putus-putus. Garis <InlineMath math="y=12" /> memotong cabang kanan di <InlineMath math="(7\mid12)" /> dan cabang kiri di <InlineMath math="(-1\mid12)" />, yang tidak termasuk daerah yang dibahas.</>}
+  labels={{
+    key: <><InlineMath math="(7\mid12)" /></>,
+    bad: <><InlineMath math="(-1\mid12)" /></>,
+    u: <><InlineMath math="x\ge3" /></>,
+    o: <>tidak dibahas</>,
+    t: <><InlineMath math="y=12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 9 },
+      y: { min: -5, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "used", kind: "function", appearance: "primary", formula: "x^2 - 6*x + 5", domain: { min: 3, max: 7.6 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 - 6*x + 5", domain: { min: -1.6, max: 3 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: 12 }, to: { x: 8.5, y: 12 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 7, y: 12 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -1, y: 12 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 7, y: 12 }, placement: "above-left" },
+      { key: "bad", objectId: "neg", at: { x: -1, y: 12 }, placement: "above-right" },
+      { key: "u", objectId: "used", at: { x: 7.4, y: 15.4 }, placement: "left" },
+      { key: "o", objectId: "other", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "t", objectId: "level", at: { x: 8.5, y: 12 }, placement: "below" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="f(7)=49-42+5=12" />. Jadi **<InlineMath math="f^{-1}(12)=7" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-1" /> menyelesaikan <InlineMath math="f(x)=12" /> pada **cabang kiri**, yang tidak termasuk daerah yang dibahas.
+- <InlineMath math="7" /> atau <InlineMath math="-1" /> melewatkan bahwa fungsi invers memasangkan tepat satu bilangan untuk setiap nilai.
+- <InlineMath math="77" /> adalah <InlineMath math="f(12)=144-72+5" />, nilai fungsinya, bukan prapetanya.
+- <InlineMath math="\frac1{77}" /> menyamakan <InlineMath math="f^{-1}" /> dengan kebalikan <InlineMath math="\frac{1}{f(12)}" />.
+- <InlineMath math="3+\sqrt{12}" /> lupa bilangan <InlineMath math="-9+5" /> saat melengkapkan kuadrat: dari <InlineMath math="(x-3)^2=12" />, padahal <InlineMath math="(x-3)^2=16" />.

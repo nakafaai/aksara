@@ -1,21 +1,63 @@
-Den Abstand zweier Punkte berechnest du mit dem **Satz des Pythagoras**. Die Unterschiede der <InlineMath math="x" />-Koordinaten und der <InlineMath math="y" />-Koordinaten sind die Katheten, der Abstand ist die Hypotenuse.
+# Gleich weit entfernt heißt Mittelsenkrechte
 
-Der Unterschied der <InlineMath math="y" />-Koordinaten ist <InlineMath math="6-2=4" />. Den Unterschied der <InlineMath math="x" />-Koordinaten nennst du <InlineMath math="x-1" />.
+Alle Punkte, die von <InlineMath math="A" /> und <InlineMath math="B" /> gleich weit entfernt sind, liegen **auf der Mittelsenkrechten der Strecke <InlineMath math="\overline{AB}" />**. Sie geht durch die Mitte <InlineMath math="M(3\mid3)" /> und steht senkrecht auf <InlineMath math="\overline{AB}" />. Die Strecke hat die Steigung <InlineMath math="\frac{1-5}{5-1}=-1" />, die Mittelsenkrechte also die Steigung <InlineMath math="1" />:
 
-<BlockMath math="\begin{aligned}
-(x-1)^2+4^2&=5^2 \\
-(x-1)^2&=25-16=9 \\
-x-1&=3\quad\text{oder}\quad x-1=-3
-\end{aligned}" />
+<BlockMath math="y-3=1\cdot(x-3)\quad\Longleftrightarrow\quad y=x" />
 
-Daraus folgt <InlineMath math="x=4" /> oder <InlineMath math="x=-2" />. Wegen der Bedingung <InlineMath math="x>1" /> bleibt nur <InlineMath math="x=4" />.
+# Den Schnittpunkt mit <InlineMath math="g" /> bestimmen
 
-Zur Kontrolle berechnest du den Abstand von <InlineMath math="P(1\mid2)" /> und <InlineMath math="Q(4\mid6)" />: <InlineMath math="\sqrt{3^2+4^2}=\sqrt{25}=5" />.
+<InlineMath math="P" /> liegt auf beiden Geraden, also **gilt <InlineMath math="2x-1=x" />**:
 
-Es gilt also <InlineMath math="x=4" />.
+<BlockMath math="x=1,\quad y=1\quad\Longrightarrow\quad P(1\mid1)" />
 
-- <InlineMath math="x=-2" /> löst die Gleichung auch, verletzt aber die Bedingung <InlineMath math="x>1" />.
-- <InlineMath math="x=3" /> ist nur der Unterschied <InlineMath math="x-1" />. Die <InlineMath math="1" /> muss noch addiert werden.
-- <InlineMath math="x=6" /> nimmt den ganzen Abstand <InlineMath math="5" /> als waagerechten Unterschied und übersieht den senkrechten Unterschied <InlineMath math="4" />.
-- <InlineMath math="x=1+\sqrt{21}" /> vergisst, die <InlineMath math="4" /> zu quadrieren, also <InlineMath math="(x-1)^2=25-4" />.
-- <InlineMath math="x=1+\sqrt{41}" /> addiert die Quadrate, <InlineMath math="(x-1)^2=25+16" />. Die Kathete ist aber kürzer als die Hypotenuse.
+<MathVisual
+  title={<>Mittelsenkrechte und Gerade <InlineMath math="g" /></>}
+  description={<>Die Punkte <InlineMath math="A(1\mid5)" /> und <InlineMath math="B(5\mid1)" /> mit ihrer Mittelsenkrechten <InlineMath math="y=x" />. Die Gerade <InlineMath math="g: y=2x-1" /> schneidet die Mittelsenkrechte in <InlineMath math="P(1\mid1)" />. Von <InlineMath math="P" /> aus sind die Strecken zu <InlineMath math="A" /> und zu <InlineMath math="B" /> beide <InlineMath math="4" /> lang.</>}
+  labels={{
+    a: <><InlineMath math="A(1\mid5)" /></>,
+    b: <><InlineMath math="B(5\mid1)" /></>,
+    p: <><InlineMath math="P(1\mid1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    s: <><InlineMath math="y=x" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 7 },
+      y: { min: -2.5, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "g", kind: "function", appearance: "primary", formula: "2*x - 1", domain: { min: -0.5, max: 3.8 } },
+      { id: "bisector", kind: "function", appearance: "secondary", formula: "x", domain: { min: -0.5, max: 6 } },
+      { id: "ab", kind: "segment", appearance: "construction", from: { x: 1, y: 5 }, to: { x: 5, y: 1 } },
+      { id: "pa", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 1, y: 5 } },
+      { id: "pb", kind: "segment", appearance: "answer", from: { x: 1, y: 1 }, to: { x: 5, y: 1 } },
+      { id: "pta", kind: "point", appearance: "reference", at: { x: 1, y: 5 } },
+      { id: "ptb", kind: "point", appearance: "reference", at: { x: 5, y: 1 } },
+      { id: "ptp", kind: "point", appearance: "answer", at: { x: 1, y: 1 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pta", at: { x: 1, y: 5 }, placement: "above-left" },
+      { key: "b", objectId: "ptb", at: { x: 5, y: 1 }, placement: "right" },
+      { key: "p", objectId: "ptp", at: { x: 1, y: 1 }, placement: "below-left" },
+      { key: "g", objectId: "g", at: { x: 3.6, y: 6.2 }, placement: "left" },
+      { key: "s", objectId: "bisector", at: { x: 5.8, y: 5.8 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+# Den Abstand berechnen
+
+<BlockMath math="\overline{PA}=\sqrt{(1-1)^2+(5-1)^2}=4,\qquad \overline{PB}=\sqrt{(5-1)^2+(1-1)^2}=4" />
+
+Beide Abstände stimmen überein. <InlineMath math="P" /> ist **<InlineMath math="4" /> Einheiten von <InlineMath math="A" /> entfernt**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\frac{4\sqrt2}{3}" /> entsteht mit der Steigung <InlineMath math="-1" /> statt <InlineMath math="1" />, also mit der Geraden <InlineMath math="AB" /> selbst: Ihr Schnittpunkt mit <InlineMath math="g" /> ist <InlineMath math="\left(\frac73\mid\frac{11}{3}\right)" />, **und er ist von <InlineMath math="B" /> viel weiter entfernt als von <InlineMath math="A" />**.
+- <InlineMath math="2\sqrt2" /> ist der Abstand von <InlineMath math="A" /> zur Mitte <InlineMath math="M(3\mid3)" />. Dieser Punkt liegt aber nicht auf <InlineMath math="g" />.
+- <InlineMath math="4\sqrt2" /> ist die Länge der ganzen Strecke <InlineMath math="\overline{AB}" />.
+- <InlineMath math="\sqrt2" /> ist der Abstand von <InlineMath math="P" /> zum Ursprung.
+- <InlineMath math="2" /> entsteht, wenn du die <InlineMath math="x" />-Koordinate der Mitte in <InlineMath math="g" /> einsetzt: <InlineMath math="P(3\mid5)" /> ist <InlineMath math="2" /> von <InlineMath math="A" />, aber <InlineMath math="2\sqrt5" /> von <InlineMath math="B" /> entfernt.

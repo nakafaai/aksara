@@ -1,17 +1,67 @@
-Nenne die Seitenlänge eines kleinen Quadrats <InlineMath math="s" />. Dann ist das Rechteck <InlineMath math="3s" /> lang und <InlineMath math="2s" /> breit. Aus dem Umfang bestimmst du **zuerst <InlineMath math="s" />** und erst danach die Fläche.
+# Den Mittelpunktswinkel finden
 
-<BlockMath math="U=2\cdot(3s+2s)=10s=40\quad\Rightarrow\quad s=4" />
+Nenne die Mittelpunkte <InlineMath math="M_1" /> und <InlineMath math="M_2" /> und die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" />. Im Dreieck <InlineMath math="M_1M_2P" /> sind alle Seiten <InlineMath math="6\text{ cm}" /> lang: zwei Radien und der Abstand der Mittelpunkte. **Das Dreieck ist gleichseitig**, also ist <InlineMath math="\angle M_2M_1P=60^\circ" />. Ebenso ist <InlineMath math="\angle M_2M_1Q=60^\circ" />, zusammen <InlineMath math="\angle PM_1Q=120^\circ" />.
 
-Das Rechteck ist also <InlineMath math="12\text{ cm}" /> lang und <InlineMath math="8\text{ cm}" /> breit.
+<MathVisual
+  title={<>Die Linse aus zwei Kreisen</>}
+  description={<>Zwei Kreise mit dem Radius <InlineMath math="6" /> und den Mittelpunkten <InlineMath math="M_1" /> und <InlineMath math="M_2" /> im Abstand <InlineMath math="6" />. Sie schneiden sich in <InlineMath math="P" /> und <InlineMath math="Q" />. Die Dreiecke <InlineMath math="M_1M_2P" /> und <InlineMath math="M_1M_2Q" /> sind gleichseitig, also ist der Winkel <InlineMath math="PM_1Q" /> gleich <InlineMath math="120^\circ" />. Die Sehne <InlineMath math="\overline{PQ}" /> teilt die Linse in zwei gleiche Kreisabschnitte.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    r: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 13 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "c2", kind: "circle", appearance: "primary", center: { x: 6, y: 0 }, radius: 6 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 3, y: 5.1962 }, to: { x: 3, y: -5.1962 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "r2", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: -5.1962 } },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: 3, y: -5.1962 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "p", objectId: "pp", at: { x: 3, y: 5.1962 }, placement: "above" },
+      { key: "q", objectId: "pq", at: { x: 3, y: -5.1962 }, placement: "below" },
+      { key: "r", objectId: "r1", at: { x: 1.5, y: 2.5981 }, placement: "above-left" },
+    ],
+  }}
+/>
 
-<BlockMath math="A=12\cdot8=96\text{ cm}^2" />
+# Ein Kreisabschnitt
 
-Zur Kontrolle rechnest du über die Quadrate: Jedes hat <InlineMath math="4\cdot4=16\text{ cm}^2" />, und sechs davon ergeben <InlineMath math="6\cdot16=96\text{ cm}^2" />. Auch der Umfang stimmt: <InlineMath math="2\cdot(12+8)=40\text{ cm}" />.
+Die Sehne <InlineMath math="\overline{PQ}" /> teilt die Linse in zwei gleiche Kreisabschnitte. Ein Abschnitt ist **der Sektor mit <InlineMath math="120^\circ" /> minus das Dreieck <InlineMath math="M_1PQ" />**:
 
-Das Rechteck hat also einen Flächeninhalt von <InlineMath math="96\text{ cm}^2" />.
+<BlockMath math="\begin{aligned}
+A_{\text{Sektor}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
+A_{\text{Dreieck}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
+A_{\text{Abschnitt}}&=12\pi-9\sqrt3
+\end{aligned}" />
 
-- <InlineMath math="16\text{ cm}^2" /> ist die Fläche eines einzigen kleinen Quadrats.
-- <InlineMath math="24\text{ cm}^2" /> rechnet <InlineMath math="6\cdot4" /> und vergisst, die Seitenlänge zu quadrieren.
-- <InlineMath math="100\text{ cm}^2" /> behandelt das Rechteck wie ein Quadrat mit dem Umfang <InlineMath math="40\text{ cm}" />, also mit der Seite <InlineMath math="10\text{ cm}" />.
-- <InlineMath math="384\text{ cm}^2" /> setzt <InlineMath math="5s=40" /> und vergisst den Faktor <InlineMath math="2" /> im Umfang. Dann wäre <InlineMath math="s=8" />.
-- <InlineMath math="40\text{ cm}^2" /> übernimmt den Zahlenwert des Umfangs, also einer Länge.
+# Die ganze Linse
+
+<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+
+Das sind etwa <InlineMath math="44{,}2\text{ cm}^2" />. Die gemeinsame Fläche hat **den Inhalt <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> ist **nur ein Kreisabschnitt**, also die halbe Linse.
+- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> nimmt <InlineMath math="60^\circ" /> statt <InlineMath math="120^\circ" /> als Mittelpunktswinkel: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
+- <InlineMath math="24\pi\text{ cm}^2" /> zählt die beiden Sektoren und vergisst, die Dreiecke abzuziehen.
+- <InlineMath math="(24\pi-18)\text{ cm}^2" /> rechnet <InlineMath math="\sin120^\circ=\frac12" />.
+- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> verwendet <InlineMath math="180^\circ" />-Sektoren und gleichseitige Dreiecke mit doppelter Fläche.

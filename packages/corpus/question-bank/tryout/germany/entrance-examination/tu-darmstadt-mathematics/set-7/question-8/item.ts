@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "$$5\\cdot10^{5}$$",
-        },
-        {
           correct: true,
-          label: "$$3\\cdot10^{7}$$",
+          label: "$$-1\\le x<0$$ oder $$3<x\\le4$$",
         },
         {
           correct: false,
-          label: "$$9\\cdot10^{3}$$",
+          label: "$$-1\\le x\\le4$$",
         },
         {
           correct: false,
-          label: "$$3\\cdot10^{6}$$",
+          label: "$$x\\le-1$$ oder $$x\\ge4$$",
         },
         {
           correct: false,
-          label: "$$3\\cdot10^{8}$$",
+          label: "$$x<0$$ oder $$x>3$$",
         },
         {
           correct: false,
-          label: "$$9\\cdot10^{4}$$",
+          label: "$$-1<x<0$$ oder $$3<x<4$$",
+        },
+        {
+          correct: false,
+          label: "$$-1\\le x\\le0$$ oder $$3\\le x\\le4$$",
         },
       ],
     },

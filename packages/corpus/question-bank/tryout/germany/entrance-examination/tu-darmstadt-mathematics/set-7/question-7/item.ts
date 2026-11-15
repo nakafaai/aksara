@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "um $$33\\tfrac13\\,\\%$$",
+          label: "$$28\\,\\frac{\\text{km}}{\\text{h}}$$",
         },
         {
           correct: false,
-          label: "um $$66\\tfrac23\\,\\%$$",
+          label: "$$28{,}8\\,\\frac{\\text{km}}{\\text{h}}$$",
         },
         {
           correct: false,
-          label: "um $$60\\,\\%$$",
+          label: "$$40\\,\\frac{\\text{km}}{\\text{h}}$$",
         },
         {
           correct: false,
-          label: "um $$150\\,\\%$$",
-        },
-        {
-          correct: false,
-          label: "um $$1{,}5\\,\\%$$",
+          label: "$$12\\,\\frac{\\text{km}}{\\text{h}}$$",
         },
         {
           correct: true,
-          label: "um $$50\\,\\%$$",
+          label: "$$30\\,\\frac{\\text{km}}{\\text{h}}$$",
+        },
+        {
+          correct: false,
+          label: "Das ist mit keiner Geschwindigkeit möglich.",
         },
       ],
     },

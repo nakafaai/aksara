@@ -1,13 +1,61 @@
-The task asks for the central angle (*Mittelpunktswinkel*) of the bus sector in a pie chart. In a pie chart, **<InlineMath math="100\,\%" /> corresponds to the full angle of <InlineMath math="360^\circ" />**. A share gets the same share of the full angle.
+# What <InlineMath math="f^{-1}(12)" /> means
 
-<BlockMath math="45\,\%\cdot360^\circ=0.45\cdot360^\circ=162^\circ" />
+<InlineMath math="f^{-1}(12)" /> is the number <InlineMath math="x" /> in the range considered for which **<InlineMath math="f(x)=12" /> holds**. So you don't have to write down the inverse function, just solve an equation:
 
-Without a calculator, split it up: <InlineMath math="10\,\%" /> of <InlineMath math="360^\circ" /> is <InlineMath math="36^\circ" />, so <InlineMath math="40\,\%" /> is <InlineMath math="144^\circ" /> and <InlineMath math="5\,\%" /> is <InlineMath math="18^\circ" />. Together that gives <InlineMath math="144^\circ+18^\circ=162^\circ" />. As a check, <InlineMath math="45\,\%" /> is just under half, and <InlineMath math="162^\circ" /> is just under half of <InlineMath math="360^\circ" />.
+<BlockMath math="\begin{aligned}
+x^2-6x+5&=12 \\
+(x-3)^2-9+5&=12 \\
+(x-3)^2&=16
+\end{aligned}" />
 
-So the central angle for the bus is <InlineMath math="162^\circ" />.
+So <InlineMath math="x-3=4" /> or <InlineMath math="x-3=-4" />, that is <InlineMath math="x=7" /> or <InlineMath math="x=-1" />.
 
-- <InlineMath math="45^\circ" /> takes the percentage as a number of degrees. A circle has <InlineMath math="360^\circ" />, not <InlineMath math="100^\circ" />.
-- <InlineMath math="81^\circ" /> uses a half circle of <InlineMath math="180^\circ" /> instead of the full circle.
-- <InlineMath math="198^\circ" /> is the angle for the other <InlineMath math="55\,\%" /> of the people asked.
-- <InlineMath math="16.2^\circ" /> shifts the decimal point and uses <InlineMath math="0.045" /> instead of <InlineMath math="0.45" />.
-- <InlineMath math="324^\circ" /> doubles the correct angle and uses <InlineMath math="0.9" /> instead of <InlineMath math="0.45" />.
+# The range picks the solution
+
+The function is only considered for <InlineMath math="x\ge3" />. Only there is it invertible, because **every function value occurs exactly once there**. Of the two solutions only <InlineMath math="x=7" /> lies in that range:
+
+<MathVisual
+  title={<>Only the right branch counts</>}
+  description={<>The parabola <InlineMath math="y=x^2-6x+5" /> with vertex <InlineMath math="(3\mid-4)" />. The right branch for <InlineMath math="x\ge3" /> is solid, the left one dashed. The line <InlineMath math="y=12" /> meets the right branch at <InlineMath math="(7\mid12)" /> and the left one at <InlineMath math="(-1\mid12)" />, which isn't in the range considered.</>}
+  labels={{
+    key: <><InlineMath math="(7\mid12)" /></>,
+    bad: <><InlineMath math="(-1\mid12)" /></>,
+    u: <><InlineMath math="x\ge3" /></>,
+    o: <>not considered</>,
+    t: <><InlineMath math="y=12" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 9 },
+      y: { min: -5, max: 17 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "used", kind: "function", appearance: "primary", formula: "x^2 - 6*x + 5", domain: { min: 3, max: 7.6 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 - 6*x + 5", domain: { min: -1.6, max: 3 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: 12 }, to: { x: 8.5, y: 12 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 7, y: 12 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -1, y: 12 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 7, y: 12 }, placement: "above-left" },
+      { key: "bad", objectId: "neg", at: { x: -1, y: 12 }, placement: "above-right" },
+      { key: "u", objectId: "used", at: { x: 7.4, y: 15.4 }, placement: "left" },
+      { key: "o", objectId: "other", at: { x: 0, y: 5 }, placement: "right" },
+      { key: "t", objectId: "level", at: { x: 8.5, y: 12 }, placement: "below" },
+    ],
+  }}
+/>
+
+Check: <InlineMath math="f(7)=49-42+5=12" />. So **<InlineMath math="f^{-1}(12)=7" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="-1" /> solves <InlineMath math="f(x)=12" /> on the **left branch**, which isn't in the range considered.
+- <InlineMath math="7" /> or <InlineMath math="-1" /> overlooks that an inverse function assigns exactly one number to each value.
+- <InlineMath math="77" /> is <InlineMath math="f(12)=144-72+5" />, the function value instead of the preimage.
+- <InlineMath math="\frac1{77}" /> confuses <InlineMath math="f^{-1}" /> with the reciprocal <InlineMath math="\frac{1}{f(12)}" />.
+- <InlineMath math="3+\sqrt{12}" /> forgets the numbers <InlineMath math="-9+5" /> when completing the square: from <InlineMath math="(x-3)^2=12" /> instead of <InlineMath math="(x-3)^2=16" />.

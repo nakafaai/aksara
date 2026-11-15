@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "für alle $$k<2$$",
+          label: "$$a>1$$",
         },
         {
           correct: false,
-          label: "für alle $$k>-2$$",
+          label: "$$a\\ge2$$",
         },
         {
           correct: false,
-          label: "nur für $$k=2$$",
+          label: "$$1<a<2$$",
+        },
+        {
+          correct: false,
+          label: "$$a=1$$ oder $$a>2$$",
+        },
+        {
+          correct: false,
+          label: "$$a<2$$",
         },
         {
           correct: true,
-          label: "für alle $$k>2$$",
-        },
-        {
-          correct: false,
-          label: "für alle $$k\\ge2$$",
-        },
-        {
-          correct: false,
-          label: "für alle $$k<-2$$",
+          label: "$$a>2$$",
         },
       ],
     },

@@ -1,0 +1,70 @@
+# Domain dahulu
+
+Logaritma hanya tertakrif untuk hujah yang positif:
+
+<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{atau}\ x>3" />
+
+Hanya nombor dalam julat ini yang **boleh menjadi penyelesaian**.
+
+# Asas kurang daripada <InlineMath math="1" /> menterbalikkan ketaksamaan
+
+Tulis <InlineMath math="-2=\log_{\frac12}4" />, kerana <InlineMath math="\left(\frac12\right)^{-2}=4" />. Logaritma berasas <InlineMath math="\frac12" /> **menyusut secara tegas**: logaritma yang lebih besar milik hujah yang lebih kecil. Jadi tandanya terbalik:
+
+<BlockMath math="\begin{aligned}
+\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
+x^2-3x&\le4 \\
+(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\end{aligned}" />
+
+# Gabungkan kedua-dua syarat
+
+Ambil persilangan <InlineMath math="-1\le x\le4" /> dengan domain. Nombor dari <InlineMath math="0" /> hingga <InlineMath math="3" /> **tersingkir**, termasuk hujung <InlineMath math="0" /> dan <InlineMath math="3" /> sendiri:
+
+<MathVisual
+  title={<>Logaritma di atas garis <InlineMath math="y=-2" /></>}
+  description={<>Graf <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> terdiri daripada dua cabang, di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />. Di antaranya ungkapan itu tidak tertakrif. Kedua-dua cabang berada pada atau di atas garis <InlineMath math="y=-2" /> bagi <InlineMath math="-1\le x<0" /> dan bagi <InlineMath math="3<x\le4" />. Kedua-dua selang itu ditanda di bawah paksi.</>}
+  labels={{
+    a: <><InlineMath math="x=-1" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    l: <><InlineMath math="y=-2" /></>,
+    z0: <><InlineMath math="0" /></>,
+    z3: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 5.5 },
+      y: { min: -3.6, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "log_(0.5)(x^2 - 3*x)", domain: { min: -1.5, max: -0.05 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "log_(0.5)(x^2 - 3*x)", domain: { min: 3.05, max: 4.5 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -2, y: -2 }, to: { x: 5, y: -2 } },
+      { id: "sol-left", kind: "segment", appearance: "answer", from: { x: -1, y: -3 }, to: { x: -0.05, y: -3 } },
+      { id: "sol-right", kind: "segment", appearance: "answer", from: { x: 3.05, y: -3 }, to: { x: 4, y: -3 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: -1, y: -2 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 4, y: -2 } },
+      { id: "q0", kind: "point", appearance: "construction", at: { x: 0, y: 0 } },
+      { id: "q3", kind: "point", appearance: "construction", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: -1, y: -2 }, placement: "above-left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: -2 }, placement: "above-right" },
+      { key: "l", objectId: "level", at: { x: 5, y: -2 }, placement: "below" },
+      { key: "z0", objectId: "q0", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "z3", objectId: "q3", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Ketaksamaan itu benar bagi <InlineMath math="-1\le x<0" /> atau <InlineMath math="3<x\le4" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="-1\le x\le4" /> **terlupa domain**. Bagi <InlineMath math="x=1" /> hujahnya ialah <InlineMath math="-2" />.
+- <InlineMath math="x\le-1" /> atau <InlineMath math="x\ge4" /> tidak menterbalikkan tanda ketaksamaan, seolah-olah asasnya lebih besar daripada <InlineMath math="1" />.
+- <InlineMath math="x<0" /> atau <InlineMath math="x>3" /> hanyalah domain.
+- <InlineMath math="-1<x<0" /> atau <InlineMath math="3<x<4" /> mengecualikan hujung <InlineMath math="-1" /> dan <InlineMath math="4" />. Di situ logaritmanya tepat <InlineMath math="-2" />, dan <InlineMath math="\ge" /> membenarkannya.
+- <InlineMath math="-1\le x\le0" /> atau <InlineMath math="3\le x\le4" /> memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />. Di situ hujahnya <InlineMath math="0" />, dan logaritma tidak tertakrif.

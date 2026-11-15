@@ -1,18 +1,60 @@
-Eine Formel stellst du um wie eine Gleichung. Du machst **die Rechenschritte rückwärts**, die mit <InlineMath math="c" /> passiert sind: Zuletzt wurde durch <InlineMath math="2" /> geteilt, davor mit <InlineMath math="h" /> multipliziert, davor <InlineMath math="a" /> addiert.
+# Erst den Term vereinfachen
+
+Schreibe <InlineMath math="u=a^{-1}=\frac1a" /> und <InlineMath math="v=b^{-1}=\frac1b" />. Der Nenner <InlineMath math="u^2-v^2" /> ist eine dritte binomische Formel, und **der Faktor <InlineMath math="u+v" /> kürzt sich**:
+
+<BlockMath math="\frac{u+v}{u^2-v^2}=\frac{u+v}{(u-v)(u+v)}=\frac{1}{u-v}=\frac{1}{\frac1a-\frac1b}=\frac{ab}{b-a}" />
+
+# Produkt und Differenz von <InlineMath math="a" /> und <InlineMath math="b" />
+
+Jetzt brauchst du nur noch <InlineMath math="ab" /> und <InlineMath math="b-a" />:
 
 <BlockMath math="\begin{aligned}
-A&=\frac{(a+c)\cdot h}{2} &&\mid\cdot2 \\
-2A&=(a+c)\cdot h &&\mid:h \\
-\frac{2A}{h}&=a+c &&\mid-a \\
-c&=\frac{2A}{h}-a
+ab&=(\sqrt3+1)(\sqrt3-1)=3-1=2 \\
+b-a&=(\sqrt3-1)-(\sqrt3+1)=-2
 \end{aligned}" />
 
-Zur Kontrolle setzt du Zahlen ein, etwa <InlineMath math="a=5" />, <InlineMath math="c=3" /> und <InlineMath math="h=2" />. Dann ist <InlineMath math="A=\frac{8\cdot2}{2}=8" />, und die umgestellte Formel liefert <InlineMath math="\frac{2\cdot8}{2}-5=8-5=3" />, also wieder <InlineMath math="c=3" />.
+Die Reihenfolge in <InlineMath math="b-a" /> entscheidet **über das Vorzeichen**:
 
-Nach <InlineMath math="c" /> aufgelöst lautet die Formel also <InlineMath math="c=\frac{2A}{h}-a" />.
+<MathVisual
+  title={<>Die Lage von <InlineMath math="a" /> und <InlineMath math="b" /></>}
+  description={<>Auf dem Zahlenstrahl liegt <InlineMath math="b=\sqrt3-1\approx0{,}73" /> links von <InlineMath math="a=\sqrt3+1\approx2{,}73" />. Der Abstand ist <InlineMath math="a-b=2" />, also ist <InlineMath math="b-a=-2" /> negativ.</>}
+  labels={{
+    b: <><InlineMath math="b\approx0{,}73" /></>,
+    a: <><InlineMath math="a\approx2{,}73" /></>,
+    gap: <><InlineMath math="a-b=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.8 },
+      y: { min: -1, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "highlight", from: { x: 0.732, y: 0 }, to: { x: 2.732, y: 0 } },
+      { id: "pb", kind: "point", appearance: "answer", at: { x: 0.732, y: 0 } },
+      { id: "pa", kind: "point", appearance: "answer", at: { x: 2.732, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "pb", at: { x: 0.732, y: 0 }, placement: "below" },
+      { key: "a", objectId: "pa", at: { x: 2.732, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.732, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
 
-- <InlineMath math="c=\frac{2A}{h}+a" /> hat beim letzten Schritt das falsche Vorzeichen. Wer <InlineMath math="a" /> auf die andere Seite bringt, muss es subtrahieren.
-- <InlineMath math="c=\frac{A}{2h}-a" /> teilt durch <InlineMath math="2" />, statt mit <InlineMath math="2" /> zu multiplizieren.
-- <InlineMath math="c=\frac{2A-a}{h}" /> zieht <InlineMath math="a" /> ab, bevor durch <InlineMath math="h" /> geteilt wird. Dann müsste aber <InlineMath math="ah" /> abgezogen werden, denn <InlineMath math="a" /> ist mit <InlineMath math="h" /> multipliziert.
-- <InlineMath math="c=2Ah-a" /> multipliziert mit <InlineMath math="h" />, statt durch <InlineMath math="h" /> zu teilen.
-- <InlineMath math="c=\frac{h}{2A}-a" /> dreht den Bruch um. Mit den Kontrollzahlen ergibt sich <InlineMath math="\frac{2}{16}-5" />, also nicht <InlineMath math="3" />.
+# Den Wert ausrechnen
+
+<BlockMath math="\frac{ab}{b-a}=\frac{2}{-2}=-1" />
+
+Probe mit Näherungswerten: <InlineMath math="\frac1a\approx0{,}366" /> und <InlineMath math="\frac1b\approx1{,}366" />. Der Zähler ist etwa <InlineMath math="1{,}732" />, der Nenner etwa <InlineMath math="0{,}134-1{,}866=-1{,}732" />. Der Term hat **den Wert <InlineMath math="-1" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1" /> dreht die Differenz um: <InlineMath math="\frac{ab}{a-b}" /> statt <InlineMath math="\frac{ab}{b-a}" />. Dabei **geht das Minuszeichen verloren**.
+- <InlineMath math="-2" /> rechnet <InlineMath math="ab=4" />, also <InlineMath math="(\sqrt3+1)(\sqrt3-1)" /> wie <InlineMath math="3+1" />.
+- <InlineMath math="-\frac12" /> lässt im Zähler das Produkt <InlineMath math="ab" /> weg: <InlineMath math="\frac{1}{b-a}" />.
+- <InlineMath math="2" /> ist nur das Produkt <InlineMath math="ab" />, ohne den Nenner.
+- <InlineMath math="\frac12" /> ist nur der Kehrwert von <InlineMath math="ab" />, also <InlineMath math="\frac{1}{ab}" />.

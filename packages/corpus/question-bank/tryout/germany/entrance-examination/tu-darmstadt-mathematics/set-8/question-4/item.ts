@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(13\\mid7)$$",
+          label: "nur $$k=3$$",
         },
         {
           correct: false,
-          label: "$$(-1\\mid-3)$$",
-        },
-        {
-          correct: false,
-          label: "$$\\left(\\frac92\\mid\\frac72\\right)$$",
-        },
-        {
-          correct: false,
-          label: "$$(2\\mid4)$$",
-        },
-        {
-          correct: false,
-          label: "$$(5\\mid1)$$",
+          label: "nur $$k=33$$",
         },
         {
           correct: true,
-          label: "$$(3\\mid5)$$",
+          label: "$$k=3$$ oder $$k=33$$",
+        },
+        {
+          correct: false,
+          label: "$$k=10{,}5$$ oder $$k=25{,}5$$",
+        },
+        {
+          correct: false,
+          label: "$$k=-3$$ oder $$k=3$$",
+        },
+        {
+          correct: false,
+          label: "nur $$k=18$$",
         },
       ],
     },

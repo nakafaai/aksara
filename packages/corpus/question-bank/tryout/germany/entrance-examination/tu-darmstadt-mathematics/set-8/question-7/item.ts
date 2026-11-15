@@ -6,28 +6,28 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "$$-1$$",
+        },
+        {
+          correct: false,
+          label: "$$7$$ oder $$-1$$",
+        },
+        {
+          correct: false,
+          label: "$$77$$",
+        },
+        {
           correct: true,
-          label: "$$162^\\circ$$",
+          label: "$$7$$",
         },
         {
           correct: false,
-          label: "$$45^\\circ$$",
+          label: "$$\\frac{1}{77}$$",
         },
         {
           correct: false,
-          label: "$$81^\\circ$$",
-        },
-        {
-          correct: false,
-          label: "$$198^\\circ$$",
-        },
-        {
-          correct: false,
-          label: "$$16{,}2^\\circ$$",
-        },
-        {
-          correct: false,
-          label: "$$324^\\circ$$",
+          label: "$$3+\\sqrt{12}$$",
         },
       ],
     },

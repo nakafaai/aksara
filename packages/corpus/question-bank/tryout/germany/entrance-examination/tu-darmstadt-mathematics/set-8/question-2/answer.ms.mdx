@@ -1,0 +1,65 @@
+# Persamaan dengan nombor bulat
+
+Biar bilangan tiket berharga <InlineMath math="7" /> euro ialah <InlineMath math="a" /> dan yang berharga <InlineMath math="11" /> euro ialah <InlineMath math="b" />. Kedua-duanya **nombor bulat bermula dari <InlineMath math="0" />**, dan
+
+<BlockMath math="7a+11b=200" />
+
+Yang dicari ialah nilai terbesar <InlineMath math="a+b" />.
+
+# Nilai <InlineMath math="b" /> yang mungkin
+
+<InlineMath math="200-11b" /> mesti boleh dibahagi tepat dengan <InlineMath math="7" />. Cuba <InlineMath math="b=0,1,2,\ldots" /> hingga <InlineMath math="11b>200" />. Bakinya berulang dengan kala <InlineMath math="7" />, dan **hanya <InlineMath math="b=1" />, <InlineMath math="b=8" /> dan <InlineMath math="b=15" /> yang sesuai**:
+
+<BlockMath math="\begin{aligned}
+b=1:&\quad 7a=189,\quad a=27,\quad a+b=28 \\
+b=8:&\quad 7a=112,\quad a=16,\quad a+b=24 \\
+b=15:&\quad 7a=35,\quad a=5,\quad a+b=20
+\end{aligned}" />
+
+Bagi <InlineMath math="b=22" />, <InlineMath math="11b=242>200" />.
+
+<MathVisual
+  title={<>Semua bilangan tiket yang mungkin</>}
+  description={<>Garis <InlineMath math="7a+11b=200" /> dalam sukuan pertama, dengan <InlineMath math="a" /> tiket berharga <InlineMath math="7" /> euro ke kanan dan <InlineMath math="b" /> tiket berharga <InlineMath math="11" /> euro ke atas. Tepat tiga titik integer terletak padanya: <InlineMath math="(27\mid1)" />, <InlineMath math="(16\mid8)" /> dan <InlineMath math="(5\mid15)" />. Titik <InlineMath math="(27\mid1)" /> mempunyai hasil tambah terbesar, <InlineMath math="a+b=28" />.</>}
+  labels={{
+    p1: <><InlineMath math="(27\mid1)" /></>,
+    p2: <><InlineMath math="(16\mid8)" /></>,
+    p3: <><InlineMath math="(5\mid15)" /></>,
+    l: <><InlineMath math="7a+11b=200" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 32 },
+      y: { min: -1, max: 21 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "segment", appearance: "primary", from: { x: 0, y: 18.18 }, to: { x: 28.57, y: 0 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 30, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 20 } },
+      { id: "q1", kind: "point", appearance: "answer", at: { x: 27, y: 1 } },
+      { id: "q2", kind: "point", appearance: "highlight", at: { x: 16, y: 8 } },
+      { id: "q3", kind: "point", appearance: "highlight", at: { x: 5, y: 15 } },
+    ],
+    labels: [
+      { key: "p1", objectId: "q1", at: { x: 27, y: 1 }, placement: "above-right" },
+      { key: "p2", objectId: "q2", at: { x: 16, y: 8 }, placement: "above-right" },
+      { key: "p3", objectId: "q3", at: { x: 5, y: 15 }, placement: "above-right" },
+      { key: "l", objectId: "line", at: { x: 10, y: 11.82 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Bilangan terbesar
+
+Lebih banyak tiket murah bermakna lebih banyak tiket kesemuanya. Paling banyak ialah <InlineMath math="27" /> tiket berharga <InlineMath math="7" /> euro dan satu tiket berharga <InlineMath math="11" /> euro: **paling banyak <InlineMath math="28" /> tiket**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="20" /> ialah bilangan **terkecil** yang mungkin, <InlineMath math="5+15" />.
+- <InlineMath math="24" /> ialah penyelesaian tengah, <InlineMath math="16+8" />.
+- <InlineMath math="29" /> membundarkan <InlineMath math="\frac{200}{7}\approx28.6" /> ke atas, seolah-olah hanya ada tiket <InlineMath math="7" /> euro. Sedangkan <InlineMath math="200" /> tidak boleh dibahagi tepat dengan <InlineMath math="7" />.
+- <InlineMath math="18" /> ialah <InlineMath math="\frac{200}{11}" /> dibundarkan ke bawah, hanya tiket <InlineMath math="11" /> euro. Itu pun tidak tepat.
+- <InlineMath math="27" /> hanya mengira tiket <InlineMath math="7" /> euro dalam penyelesaian terbaik dan terlupa satu tiket <InlineMath math="11" /> euro.

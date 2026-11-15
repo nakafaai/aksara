@@ -1,0 +1,56 @@
+# Dahulu kes tanpa sebutan kuasa dua
+
+Bagi <InlineMath math="a=1" />, sebutan <InlineMath math="x^2" /> hilang dan tinggal garis <InlineMath math="f(x)=2x+3" />. **Garis yang tidak mengufuk pasti negatif di suatu tempat**, contohnya <InlineMath math="f(-2)=-1" />. Jadi <InlineMath math="a=1" /> tersingkir.
+
+# Syarat untuk parabola
+
+Bagi <InlineMath math="a\ne1" /> grafnya ialah parabola. Parabola itu sepenuhnya di atas paksi <InlineMath math="x" /> tepat apabila ia **terbuka ke atas dan tiada punca sifar**:
+
+<BlockMath math="\begin{aligned}
+a-1&>0\quad\Longrightarrow\quad a>1 \\
+D=(2a)^2-4(a-1)(a+2)&=4a^2-4\left(a^2+a-2\right)=-4a+8<0\quad\Longrightarrow\quad a>2
+\end{aligned}" />
+
+# Gabungkan kedua-dua syarat
+
+Kedua-dua syarat benar tepat bagi <InlineMath math="a>2" />. Bagi <InlineMath math="a=2" />, <InlineMath math="D=0" />: graf itu **menyentuh paksi**, dan <InlineMath math="f(-2)=0" /> tidak positif.
+
+<MathVisual
+  title={<>Bila graf berada sepenuhnya di atas</>}
+  description={<>Bagi <InlineMath math="a=3" />, <InlineMath math="f(x)=2x^2+6x+5" /> ialah parabola terbuka ke atas yang sepenuhnya di atas paksi <InlineMath math="x" />. Bagi nilai sempadan <InlineMath math="a=2" />, <InlineMath math="f(x)=x^2+4x+4=(x+2)^2" />, dan graf itu menyentuh paksi di <InlineMath math="(-2\mid0)" />. Di situ <InlineMath math="f(x)>0" /> tidak dipenuhi.</>}
+  labels={{
+    g: <><InlineMath math="a=3" /></>,
+    e: <><InlineMath math="a=2" /></>,
+    t: <><InlineMath math="(-2\mid0)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 3 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "2*x^2 + 6*x + 5", domain: { min: -3.4, max: 0.4 } },
+      { id: "edge", kind: "function", appearance: "secondary", formula: "x^2 + 4*x + 4", domain: { min: -4.5, max: 0.5 } },
+      { id: "touch", kind: "point", appearance: "highlight", at: { x: -2, y: 0 } },
+    ],
+    labels: [
+      { key: "g", objectId: "good", at: { x: -3.3, y: 6.98 }, placement: "left" },
+      { key: "e", objectId: "edge", at: { x: 0.5, y: 6.25 }, placement: "right" },
+      { key: "t", objectId: "touch", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<InlineMath math="f(x)>0" /> bagi semua <InlineMath math="x" /> tepat apabila <InlineMath math="a>2" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="a>1" /> hanya menyemak arah bukaan parabola. Bagi <InlineMath math="a=1.5" />, <InlineMath math="D=2>0" />, dan parabola itu **mempunyai punca sifar**.
+- <InlineMath math="a\ge2" /> turut mengambil <InlineMath math="a=2" />, apabila graf menyentuh paksi.
+- <InlineMath math="1<a<2" /> menterbalikkan syarat pembezalayan.
+- <InlineMath math="a=1" /> atau <InlineMath math="a>2" /> terlepas pandang bahawa garis bagi <InlineMath math="a=1" /> mencapai nilai negatif.
+- <InlineMath math="a<2" /> hanya memakai <InlineMath math="D<0" /> dengan tanda yang terbalik dan mengabaikan arah bukaan.

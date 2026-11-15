@@ -1,15 +1,69 @@
-Soal menanyakan tinggi bayangan (*Bild*) orang itu pada dinding belakang kamera lubang jarum. Sinar cahaya dari kepala dan kaki orang itu lewat lurus melalui lubang. Kedua sinar berpotongan di sana seperti dua garis, dan orang serta bayangannya sejajar. Itulah bentuk **teorema intersep dengan lubang sebagai titik puncaknya**.
+# Dua segitiga sebangun di setiap posisi
 
-Perbandingan panjangnya sama dengan perbandingan jarak ke lubang. Ubah dulu kedua jarak ke satuan yang sama: <InlineMath math="20\text{ cm}=0{,}2\text{ m}" />.
+Lampu, ujung bayangan, dan kepala orang itu terletak pada satu sinar cahaya. Orang dan tiang sama-sama berdiri tegak, jadi segitiga kecil di orang dan segitiga besar di tiang **sebangun**. Kalau orang berdiri sejauh <InlineMath math="d" /> dari tiang dan bayangannya sepanjang <InlineMath math="s" />:
 
-<BlockMath math="\frac{b}{1{,}8}=\frac{0{,}2}{6}\quad\Rightarrow\quad b=1{,}8\cdot\frac{0{,}2}{6}=\frac{0{,}36}{6}=0{,}06" />
+<BlockMath math="\frac{1{,}8}{s}=\frac{H}{d+s}\quad\Longleftrightarrow\quad H\,s=1{,}8\,(d+s)" />
 
-Jadi, tinggi bayangannya <InlineMath math="0{,}06\text{ m}=6\text{ cm}" />. Sebagai pemeriksaan, lihat skalanya. Jarak orang ke lubang <InlineMath math="6:0{,}2=30" /> kali jarak dinding belakang, jadi bayangannya <InlineMath math="30" /> kali lebih kecil: <InlineMath math="180\text{ cm}:30=6\text{ cm}" />.
+# Tulis kedua posisi
 
-Jadi, tinggi bayangan orang itu <InlineMath math="6\text{ cm}" />.
+Jarak <InlineMath math="d" /> tidak diketahui, tetapi bertambah <InlineMath math="3" />. Dari situ diperoleh **dua persamaan dengan variabel <InlineMath math="d" /> dan <InlineMath math="H" />**:
 
-- <InlineMath math="0{,}6\text{ cm}" /> menggeser koma satu tempat terlalu sedikit saat mengubah <InlineMath math="0{,}06\text{ m}" />.
-- <InlineMath math="60\text{ cm}" /> mengubah <InlineMath math="0{,}06\text{ m}" /> ke sentimeter dengan faktor <InlineMath math="1000" />, bukan <InlineMath math="100" />.
-- <InlineMath math="54\text{ m}" /> menyusun perbandingan secara terbalik, <InlineMath math="1{,}8\cdot\frac{6}{0{,}2}" />. Bayangan di dalam kotak kecil tidak mungkin lebih besar daripada orangnya.
-- <InlineMath math="30\text{ cm}" /> hanyalah skala <InlineMath math="30" />, yaitu berapa kali bayangan lebih kecil, bukan panjang.
-- <InlineMath math="6\text{ m}" /> menghitung dengan <InlineMath math="20" /> dan <InlineMath math="6" /> tanpa mengubah satuan, <InlineMath math="1{,}8\cdot\frac{20}{6}=6" />, sehingga sentimeter dan meter tercampur.
+<BlockMath math="\begin{aligned}
+2H&=1{,}8\,(d+2) \\
+3{,}5H&=1{,}8\,(d+3+3{,}5)
+\end{aligned}" />
+
+# Hilangkan jarak yang tidak diketahui
+
+Kurangkan persamaan pertama dari persamaan kedua. Variabel <InlineMath math="d" /> hilang:
+
+<BlockMath math="1{,}5H=1{,}8\cdot4{,}5=8{,}1\quad\Longrightarrow\quad H=5{,}4" />
+
+<MathVisual
+  title={<>Tiang lampu, orang, dan bayangan</>}
+  description={<>Di kiri ada tiang dengan lampu pada ketinggian <InlineMath math="H" />. Orang setinggi <InlineMath math="1{,}8" /> mula-mula berdiri di <InlineMath math="x=4" /> dengan bayangan sampai <InlineMath math="x=6" />, lalu <InlineMath math="3" /> lebih jauh di <InlineMath math="x=7" /> dengan bayangan sampai <InlineMath math="x=10{,}5" />. Sinar dari lampu menyentuh kepala orang itu dan berakhir di ujung bayangan.</>}
+  labels={{
+    h: <><InlineMath math="H=5{,}4" /></>,
+    p1: <><InlineMath math="1{,}8" /></>,
+    s1: <><InlineMath math="2" /></>,
+    s2: <><InlineMath math="3{,}5" /></>,
+    walk: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 11.5 },
+      y: { min: -1, max: 6.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pole", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 5.4 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 11, y: 0 } },
+      { id: "person-1", kind: "segment", appearance: "secondary", from: { x: 4, y: 0 }, to: { x: 4, y: 1.8 } },
+      { id: "person-2", kind: "segment", appearance: "secondary", from: { x: 7, y: 0 }, to: { x: 7, y: 1.8 } },
+      { id: "ray-1", kind: "segment", appearance: "construction", from: { x: 0, y: 5.4 }, to: { x: 6, y: 0 } },
+      { id: "ray-2", kind: "segment", appearance: "construction", from: { x: 0, y: 5.4 }, to: { x: 10.5, y: 0 } },
+      { id: "shadow-1", kind: "segment", appearance: "highlight", from: { x: 4, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "shadow-2", kind: "segment", appearance: "highlight", from: { x: 7, y: 0 }, to: { x: 10.5, y: 0 } },
+      { id: "lamp", kind: "point", appearance: "answer", at: { x: 0, y: 5.4 } },
+    ],
+    labels: [
+      { key: "h", objectId: "lamp", at: { x: 0, y: 5.4 }, placement: "right" },
+      { key: "p1", objectId: "person-1", at: { x: 4, y: 0.9 }, placement: "left" },
+      { key: "s1", objectId: "shadow-1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "s2", objectId: "shadow-2", at: { x: 8.75, y: 0 }, placement: "below" },
+      { key: "walk", objectId: "ground", at: { x: 5.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Cek: dari persamaan pertama <InlineMath math="10{,}8=1{,}8(d+2)" />, jadi <InlineMath math="d=4" />. Lalu bayangan kedua memenuhi <InlineMath math="5{,}4\,s=1{,}8\,(7+s)" />, jadi <InlineMath math="s=3{,}5" />. Lampu itu berada **pada ketinggian <InlineMath math="5{,}4\text{ m}" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3{,}6\text{ m}" /> hanya <InlineMath math="H-1{,}8" />, yaitu tinggi lampu **di atas kepala orang itu**.
+- <InlineMath math="3{,}15\text{ m}" /> mengalikan tinggi badan dengan perbandingan kedua bayangan: <InlineMath math="1{,}8\cdot\frac{3{,}5}{2}" />.
+- <InlineMath math="6{,}3\text{ m}" /> adalah <InlineMath math="1{,}8\cdot3{,}5" />, seolah-olah bayangan kedua adalah jarak ke tiang.
+- <InlineMath math="2{,}7\text{ m}" /> adalah <InlineMath math="1{,}8\cdot1{,}5" />, tinggi badan dikali pertambahan bayangan.
+- <InlineMath math="7{,}2\text{ m}" /> menghitung tinggi badan dua kali: <InlineMath math="5{,}4+1{,}8" />.

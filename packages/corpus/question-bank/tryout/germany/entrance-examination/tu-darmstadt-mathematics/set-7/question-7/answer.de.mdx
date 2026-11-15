@@ -1,15 +1,58 @@
-Bei fester Strecke gilt <InlineMath math="v=\frac{s}{t}" />. Geschwindigkeit und Fahrzeit sind also **umgekehrt proportional**: Sinkt die Zeit auf einen Bruchteil, steigt die Geschwindigkeit um den Kehrwert dieses Bruchteils.
+# Der Durchschnitt kommt aus Weg und Zeit
 
-Die neue Zeit ist <InlineMath math="\frac23" /> der alten. Also ist die neue Geschwindigkeit das <InlineMath math="\frac32" />-Fache der alten.
+Die Durchschnittsgeschwindigkeit ist **der ganze Weg geteilt durch die ganze Zeit**, nicht der Mittelwert der beiden Geschwindigkeiten. Nenne die einfache Strecke <InlineMath math="s" /> und die Geschwindigkeit auf dem Rückweg <InlineMath math="v" />:
 
-<BlockMath math="v_{\text{neu}}=\frac{s}{\frac23\,t}=\frac32\cdot\frac{s}{t}=1{,}5\cdot v_{\text{alt}}" />
+<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
 
-Der Faktor <InlineMath math="1{,}5" /> bedeutet eine Zunahme um <InlineMath math="50\,\%" />. Zur Kontrolle nimmst du eine Strecke von <InlineMath math="300\text{ km}" />. Vorher fährt der Zug <InlineMath math="300:3=100\ \tfrac{\text{km}}{\text{h}}" />, nachher <InlineMath math="300:2=150\ \tfrac{\text{km}}{\text{h}}" />. Das sind <InlineMath math="50" /> mehr, bezogen auf <InlineMath math="100" /> also <InlineMath math="50\,\%" />.
+# Die Strecke kürzt sich
 
-Die Durchschnittsgeschwindigkeit ist also um <InlineMath math="50\,\%" /> gestiegen.
+Kürze <InlineMath math="s" /> und rechne mit den Kehrwerten weiter:
 
-- <InlineMath math="33\tfrac13\,\%" /> ist die Abnahme der Fahrzeit, eine Stunde von drei Stunden. Gefragt ist die Zunahme der Geschwindigkeit.
-- <InlineMath math="66\tfrac23\,\%" /> ist die neue Fahrzeit als Anteil der alten, <InlineMath math="\frac23" />.
-- <InlineMath math="60\,\%" /> übernimmt die eingesparten <InlineMath math="60" /> Minuten als Prozentzahl.
-- <InlineMath math="150\,\%" /> ist die neue Geschwindigkeit als Anteil der alten. Die Zunahme ist nur der Teil über <InlineMath math="100\,\%" />.
-- <InlineMath math="1{,}5\,\%" /> schreibt den Faktor <InlineMath math="1{,}5" /> als Prozentzahl, statt ihn in <InlineMath math="150\,\%" /> umzurechnen.
+<BlockMath math="\begin{aligned}
+\frac{2}{\frac1{20}+\frac1v}&=24 \\
+\frac1{20}+\frac1v&=\frac1{12} \\
+\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\end{aligned}" />
+
+Also ist **die Geschwindigkeit <InlineMath math="v=30" />**.
+
+<MathVisual
+  title={<>Durchschnitt in Abhängigkeit vom Rückweg</>}
+  description={<>Der Graph zeigt die Durchschnittsgeschwindigkeit <InlineMath math="\frac{40v}{v+20}" /> für Rückweg-Geschwindigkeiten <InlineMath math="v" />, wenn der Hinweg mit <InlineMath math="20" /> gefahren wird. Er steigt immer langsamer und bleibt unter <InlineMath math="40" />. Die Linie bei <InlineMath math="24" /> trifft ihn bei <InlineMath math="v=30" />, nicht bei <InlineMath math="28" />.</>}
+  labels={{
+    key: <><InlineMath math="v=30" /></>,
+    a: <>Durchschnitt</>,
+    t: <><InlineMath math="24" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 62 },
+      y: { min: 0, max: 34 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "40*x/(x+20)", domain: { min: 5, max: 60 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 24 }, to: { x: 60, y: 24 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 24 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 30, y: 24 }, placement: "below-right" },
+      { key: "a", objectId: "average", at: { x: 55, y: 29.3 }, placement: "above" },
+      { key: "t", objectId: "target", at: { x: 0, y: 24 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Probe mit einer Beispielstrecke
+
+Für <InlineMath math="s=60\text{ km}" /> dauert der Hinweg <InlineMath math="3" /> Stunden und der Rückweg <InlineMath math="2" /> Stunden. Für <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> Stunden ergibt sich der Durchschnitt <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. Sie fährt auf dem Rückweg **mit <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> setzt **den einfachen Mittelwert** an: <InlineMath math="\frac{20+v}{2}=24" />. Auf dem langsamen Hinweg verbringt sie aber mehr Zeit.
+- <InlineMath math="28{,}8\,\frac{\text{km}}{\text{h}}" /> ist <InlineMath math="\frac{24^2}{20}" />, ein geometrischer Mittelwert.
+- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> verdoppelt die Geschwindigkeit des Hinwegs.
+- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> liest den Kehrwert <InlineMath math="\frac1{12}" /> als Geschwindigkeit.
+- „Das ist mit keiner Geschwindigkeit möglich“ entsteht ohne den Faktor <InlineMath math="2" /> für den doppelten Weg: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> hätte nur negative Lösungen.

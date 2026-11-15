@@ -1,15 +1,65 @@
-Soal menanyakan koordinat titik sudut <InlineMath math="D" />. Pada jajar genjang, sisi-sisi yang berhadapan **sejajar dan sama panjang**. Karena itu, langkah dari <InlineMath math="A" /> ke <InlineMath math="D" /> sama dengan langkah dari <InlineMath math="B" /> ke <InlineMath math="C" />.
+# Luas dari koordinat
 
-Dari <InlineMath math="B(6\mid2)" /> ke <InlineMath math="C(8\mid6)" /> kamu bergerak <InlineMath math="2" /> ke kanan dan <InlineMath math="4" /> ke atas. Lakukan langkah itu dari <InlineMath math="A" />.
+Kalau satu titik sudut ada di titik asal, segitiga dengan titik sudut lain <InlineMath math="(x_1\mid y_1)" /> dan <InlineMath math="(x_2\mid y_2)" /> luasnya <InlineMath math="\frac12\left|x_1y_2-x_2y_1\right|" />. **Nilai mutlaknya penting**, karena tanpa itu bentuknya bisa negatif, tergantung arah urutan titiknya:
 
-<BlockMath math="D=(1+2\mid1+4)=(3\mid5)" />
+<BlockMath math="A=\frac12\left|6\cdot6-k\cdot2\right|=\frac12\left|36-2k\right|" />
 
-Sebagai pemeriksaan, cek dua sisi lainnya. Dari <InlineMath math="A" /> ke <InlineMath math="B" /> bergerak <InlineMath math="5" /> ke kanan dan <InlineMath math="1" /> ke atas, sama seperti dari <InlineMath math="D(3\mid5)" /> ke <InlineMath math="C(8\mid6)" />. Selain itu, kedua diagonal saling membagi dua: titik tengah <InlineMath math="\overline{AC}" /> dan titik tengah <InlineMath math="\overline{BD}" /> sama-sama <InlineMath math="\left(\frac92\mid\frac72\right)" />.
+# Selesaikan persamaan nilai mutlaknya
 
-Jadi, titik sudutnya adalah <InlineMath math="D(3\mid5)" />.
+<BlockMath math="\frac12\left|36-2k\right|=15\quad\Longleftrightarrow\quad \left|36-2k\right|=30" />
 
-- <InlineMath math="(13\mid7)" /> adalah <InlineMath math="B+C-A" />. Itu titik keempat jajar genjang yang menempatkan <InlineMath math="A" /> dan <InlineMath math="D" /> berhadapan, bukan titik sudut <InlineMath math="ABCD" />.
-- <InlineMath math="(-1\mid-3)" /> adalah <InlineMath math="A+B-C" />, titik keempat jajar genjang yang menempatkan <InlineMath math="C" /> dan <InlineMath math="D" /> berhadapan.
-- <InlineMath math="\left(\frac92\mid\frac72\right)" /> adalah titik potong kedua diagonal, bukan titik sudut.
-- <InlineMath math="(2\mid4)" /> hanyalah langkah dari <InlineMath math="B" /> ke <InlineMath math="C" />, bukan titik pada jajar genjang.
-- <InlineMath math="(5\mid1)" /> hanyalah langkah dari <InlineMath math="A" /> ke <InlineMath math="B" />.
+Nilai mutlak sama dengan <InlineMath math="30" /> kalau **isinya <InlineMath math="30" /> atau <InlineMath math="-30" />**:
+
+<BlockMath math="\begin{aligned}
+36-2k=30&\quad\Longrightarrow\quad k=3 \\
+36-2k=-30&\quad\Longrightarrow\quad k=33
+\end{aligned}" />
+
+<MathVisual
+  title={<>Dua letak untuk <InlineMath math="C" /></>}
+  description={<>Titik <InlineMath math="A(0\mid0)" /> dan <InlineMath math="B(6\mid2)" /> serta garis mendatar <InlineMath math="y=6" /> tempat <InlineMath math="C" /> berada. Dua segitiga punya luas <InlineMath math="15" />: satu dengan <InlineMath math="C_1(3\mid6)" /> di kiri dan satu lagi panjang dan pipih dengan <InlineMath math="C_2(33\mid6)" /> jauh di kanan.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c1: <><InlineMath math="C_1(3\mid6)" /></>,
+    c2: <><InlineMath math="C_2(33\mid6)" /></>,
+    l: <><InlineMath math="y=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 36 },
+      y: { min: -1.5, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "row", kind: "segment", appearance: "reference", from: { x: -1, y: 6 }, to: { x: 35, y: 6 } },
+      { id: "t1", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 3, y: 6 }] },
+      { id: "t2", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 2 }, { x: 33, y: 6 }] },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 6, y: 2 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 3, y: 6 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 33, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 6, y: 2 }, placement: "below-right" },
+      { key: "c1", objectId: "p1", at: { x: 3, y: 6 }, placement: "above" },
+      { key: "c2", objectId: "p2", at: { x: 33, y: 6 }, placement: "above-left" },
+      { key: "l", objectId: "row", at: { x: -1, y: 6 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+# Cek
+
+Untuk <InlineMath math="k=3" />, <InlineMath math="\frac12|36-6|=15" />, dan untuk <InlineMath math="k=33" />, <InlineMath math="\frac12|36-66|=15" />. Kedua nilai memberi segitiga yang sungguhan, jadi **<InlineMath math="k=3" /> atau <InlineMath math="k=33" />**.
+
+# Mengapa pilihan lain salah
+
+- "hanya <InlineMath math="k=3" />" menghitung tanpa nilai mutlak dan **kehilangan letak kedua**.
+- "hanya <InlineMath math="k=33" />" kehilangan letak pertama.
+- <InlineMath math="k=10{,}5" /> atau <InlineMath math="k=25{,}5" /> lupa faktor <InlineMath math="\frac12" />: nilai itu muncul dari <InlineMath math="|36-2k|=15" />, dan luas segitiganya menjadi <InlineMath math="7{,}5" />.
+- <InlineMath math="k=-3" /> atau <InlineMath math="k=3" /> memasang nilai mutlak pada <InlineMath math="k" />, bukan pada seluruh bentuknya.
+- "hanya <InlineMath math="k=18" />" adalah nilai saat <InlineMath math="36-2k=0" />. Ketiga titik lalu segaris, jadi tidak ada segitiga.

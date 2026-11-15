@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$16\\text{ cm}^2$$",
+          label: "$$(12\\pi-9\\sqrt3)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$24\\text{ cm}^2$$",
-        },
-        {
-          correct: false,
-          label: "$$100\\text{ cm}^2$$",
+          label: "$$(12\\pi-18\\sqrt3)\\text{ cm}^2$$",
         },
         {
           correct: true,
-          label: "$$96\\text{ cm}^2$$",
+          label: "$$(24\\pi-18\\sqrt3)\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$384\\text{ cm}^2$$",
+          label: "$$24\\pi\\text{ cm}^2$$",
         },
         {
           correct: false,
-          label: "$$40\\text{ cm}^2$$",
+          label: "$$(24\\pi-18)\\text{ cm}^2$$",
+        },
+        {
+          correct: false,
+          label: "$$(36\\pi-36\\sqrt3)\\text{ cm}^2$$",
         },
       ],
     },

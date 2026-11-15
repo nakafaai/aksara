@@ -1,0 +1,60 @@
+# Permudahkan ungkapan dahulu
+
+Tulis <InlineMath math="u=a^{-1}=\frac1a" /> dan <InlineMath math="v=b^{-1}=\frac1b" />. Penyebut <InlineMath math="u^2-v^2" /> ialah beza dua kuasa dua, dan **faktor <InlineMath math="u+v" /> boleh dibatalkan**:
+
+<BlockMath math="\frac{u+v}{u^2-v^2}=\frac{u+v}{(u-v)(u+v)}=\frac{1}{u-v}=\frac{1}{\frac1a-\frac1b}=\frac{ab}{b-a}" />
+
+# Hasil darab dan beza <InlineMath math="a" /> dan <InlineMath math="b" />
+
+Sekarang kamu hanya perlukan <InlineMath math="ab" /> dan <InlineMath math="b-a" />:
+
+<BlockMath math="\begin{aligned}
+ab&=(\sqrt3+1)(\sqrt3-1)=3-1=2 \\
+b-a&=(\sqrt3-1)-(\sqrt3+1)=-2
+\end{aligned}" />
+
+Susunan dalam <InlineMath math="b-a" /> menentukan **tandanya**:
+
+<MathVisual
+  title={<>Kedudukan <InlineMath math="a" /> dan <InlineMath math="b" /></>}
+  description={<>Pada garis nombor, <InlineMath math="b=\sqrt3-1\approx0.73" /> terletak di kiri <InlineMath math="a=\sqrt3+1\approx2.73" />. Jaraknya <InlineMath math="a-b=2" />, jadi <InlineMath math="b-a=-2" /> negatif.</>}
+  labels={{
+    b: <><InlineMath math="b\approx0.73" /></>,
+    a: <><InlineMath math="a\approx2.73" /></>,
+    gap: <><InlineMath math="a-b=2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 3.8 },
+      y: { min: -1, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "highlight", from: { x: 0.732, y: 0 }, to: { x: 2.732, y: 0 } },
+      { id: "pb", kind: "point", appearance: "answer", at: { x: 0.732, y: 0 } },
+      { id: "pa", kind: "point", appearance: "answer", at: { x: 2.732, y: 0 } },
+    ],
+    labels: [
+      { key: "b", objectId: "pb", at: { x: 0.732, y: 0 }, placement: "below" },
+      { key: "a", objectId: "pa", at: { x: 2.732, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 1.732, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Kira nilainya
+
+<BlockMath math="\frac{ab}{b-a}=\frac{2}{-2}=-1" />
+
+Semak dengan nilai anggaran: <InlineMath math="\frac1a\approx0.366" /> dan <InlineMath math="\frac1b\approx1.366" />. Pengangkanya kira-kira <InlineMath math="1.732" />, penyebutnya kira-kira <InlineMath math="0.134-1.866=-1.732" />. Ungkapan itu **bernilai <InlineMath math="-1" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="1" /> menterbalikkan beza: <InlineMath math="\frac{ab}{a-b}" />, bukan <InlineMath math="\frac{ab}{b-a}" />. Akibatnya **tanda negatif hilang**.
+- <InlineMath math="-2" /> mengira <InlineMath math="ab=4" />, seolah-olah <InlineMath math="(\sqrt3+1)(\sqrt3-1)" /> sama dengan <InlineMath math="3+1" />.
+- <InlineMath math="-\frac12" /> membuang hasil darab <InlineMath math="ab" /> daripada pengangka: <InlineMath math="\frac{1}{b-a}" />.
+- <InlineMath math="2" /> hanyalah hasil darab <InlineMath math="ab" />, tanpa penyebut.
+- <InlineMath math="\frac12" /> hanyalah salingan <InlineMath math="ab" />, iaitu <InlineMath math="\frac{1}{ab}" />.

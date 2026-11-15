@@ -1,17 +1,67 @@
-Soal menanyakan luas persegi panjang itu. Sebut panjang sisi satu persegi kecil <InlineMath math="s" />. Maka panjang persegi panjang <InlineMath math="3s" /> dan lebarnya <InlineMath math="2s" />. Dari kelilingnya, tentukan **<InlineMath math="s" /> terlebih dahulu**, baru kemudian luasnya.
+# Tentukan sudut pusatnya
 
-<BlockMath math="K=2\cdot(3s+2s)=10s=40\quad\Rightarrow\quad s=4" />
+Sebut kedua pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" />, serta kedua titik potong <InlineMath math="P" /> dan <InlineMath math="Q" />. Pada segitiga <InlineMath math="M_1M_2P" /> semua sisinya <InlineMath math="6\text{ cm}" />: dua jari-jari dan jarak kedua pusat. **Segitiga itu sama sisi**, jadi <InlineMath math="\angle M_2M_1P=60^\circ" />. Dengan cara yang sama <InlineMath math="\angle M_2M_1Q=60^\circ" />, sehingga <InlineMath math="\angle PM_1Q=120^\circ" />.
 
-Jadi, persegi panjang itu panjangnya <InlineMath math="12\text{ cm}" /> dan lebarnya <InlineMath math="8\text{ cm}" />.
+<MathVisual
+  title={<>Lensa dari dua lingkaran</>}
+  description={<>Dua lingkaran berjari-jari <InlineMath math="6" /> dengan pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" /> yang berjarak <InlineMath math="6" />. Keduanya berpotongan di <InlineMath math="P" /> dan <InlineMath math="Q" />. Segitiga <InlineMath math="M_1M_2P" /> dan <InlineMath math="M_1M_2Q" /> sama sisi, jadi sudut <InlineMath math="PM_1Q" /> besarnya <InlineMath math="120^\circ" />. Tali busur <InlineMath math="\overline{PQ}" /> membagi lensa menjadi dua tembereng lingkaran yang sama.</>}
+  labels={{
+    m1: <><InlineMath math="M_1" /></>,
+    m2: <><InlineMath math="M_2" /></>,
+    p: <><InlineMath math="P" /></>,
+    q: <><InlineMath math="Q" /></>,
+    r: <><InlineMath math="6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 13 },
+      y: { min: -7, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c1", kind: "circle", appearance: "primary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "c2", kind: "circle", appearance: "primary", center: { x: 6, y: 0 }, radius: 6 },
+      { id: "chord", kind: "segment", appearance: "highlight", from: { x: 3, y: 5.1962 }, to: { x: 3, y: -5.1962 } },
+      { id: "r1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 5.1962 } },
+      { id: "r2", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: -5.1962 } },
+      { id: "centres", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "pm1", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pm2", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 3, y: 5.1962 } },
+      { id: "pq", kind: "point", appearance: "answer", at: { x: 3, y: -5.1962 } },
+    ],
+    labels: [
+      { key: "m1", objectId: "pm1", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "m2", objectId: "pm2", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "p", objectId: "pp", at: { x: 3, y: 5.1962 }, placement: "above" },
+      { key: "q", objectId: "pq", at: { x: 3, y: -5.1962 }, placement: "below" },
+      { key: "r", objectId: "r1", at: { x: 1.5, y: 2.5981 }, placement: "above-left" },
+    ],
+  }}
+/>
 
-<BlockMath math="L=12\cdot8=96\text{ cm}^2" />
+# Satu tembereng lingkaran
 
-Sebagai pemeriksaan, hitung lewat persegi kecilnya: setiap persegi luasnya <InlineMath math="4\cdot4=16\text{ cm}^2" />, dan enam persegi menghasilkan <InlineMath math="6\cdot16=96\text{ cm}^2" />. Kelilingnya juga cocok: <InlineMath math="2\cdot(12+8)=40\text{ cm}" />.
+Tali busur <InlineMath math="\overline{PQ}" /> membagi lensa menjadi dua tembereng yang sama. Satu tembereng adalah **juring <InlineMath math="120^\circ" /> dikurangi segitiga <InlineMath math="M_1PQ" />**:
 
-Jadi, luas persegi panjang itu <InlineMath math="96\text{ cm}^2" />.
+<BlockMath math="\begin{aligned}
+A_{\text{juring}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
+A_{\text{segitiga}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
+A_{\text{tembereng}}&=12\pi-9\sqrt3
+\end{aligned}" />
 
-- <InlineMath math="16\text{ cm}^2" /> adalah luas satu persegi kecil saja.
-- <InlineMath math="24\text{ cm}^2" /> menghitung <InlineMath math="6\cdot4" /> dan lupa mengkuadratkan sisinya.
-- <InlineMath math="100\text{ cm}^2" /> memperlakukan persegi panjang seperti persegi berkeliling <InlineMath math="40\text{ cm}" />, yaitu bersisi <InlineMath math="10\text{ cm}" />.
-- <InlineMath math="384\text{ cm}^2" /> memakai <InlineMath math="5s=40" /> dan lupa faktor <InlineMath math="2" /> pada keliling. Dengan begitu <InlineMath math="s" /> menjadi <InlineMath math="8" />.
-- <InlineMath math="40\text{ cm}^2" /> memakai angka keliling, padahal keliling adalah panjang.
+# Seluruh lensa
+
+<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+
+Kira-kira <InlineMath math="44{,}2\text{ cm}^2" />. Daerah persekutuan itu **luasnya <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> **hanya satu tembereng**, yaitu setengah lensa.
+- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> memakai <InlineMath math="60^\circ" />, bukan <InlineMath math="120^\circ" />, sebagai sudut pusat: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
+- <InlineMath math="24\pi\text{ cm}^2" /> menghitung kedua juring dan lupa mengurangkan segitiganya.
+- <InlineMath math="(24\pi-18)\text{ cm}^2" /> memakai <InlineMath math="\sin120^\circ=\frac12" />.
+- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> memakai juring <InlineMath math="180^\circ" /> dan segitiga dengan luas dua kali lipat.

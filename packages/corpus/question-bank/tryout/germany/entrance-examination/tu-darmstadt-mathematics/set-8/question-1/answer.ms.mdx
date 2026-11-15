@@ -1,0 +1,62 @@
+# Leraikan ungkapan itu
+
+Dengan beza dua kuasa dua, ungkapan yang dicari terlerai kepada **satu kurungan yang diketahui dan satu yang belum**:
+
+<BlockMath math="x^2-\frac1{x^2}=\left(x+\frac1x\right)\left(x-\frac1x\right)=3\left(x-\frac1x\right)" />
+
+# Cari beza melalui kuasa duanya
+
+Kuasaduakan beza itu dan guna hasil tambah yang diketahui. Kedua-dua kuasa dua itu **hanya berbeza pada sebutan tengah** <InlineMath math="\pm2\cdot x\cdot\frac1x=\pm2" />:
+
+<BlockMath math="\left(x-\frac1x\right)^2=\left(x+\frac1x\right)^2-4=9-4=5" />
+
+Jadi <InlineMath math="x-\frac1x=\sqrt5" /> atau <InlineMath math="x-\frac1x=-\sqrt5" />.
+
+# Syarat <InlineMath math="x>1" /> menentukan tanda
+
+Bagi <InlineMath math="x>1" />, <InlineMath math="\frac1x<1<x" />, jadi **<InlineMath math="x-\frac1x" /> positif**. Ini menyingkirkan <InlineMath math="-\sqrt5" />:
+
+<MathVisual
+  title={<>Dua nombor dengan <InlineMath math="x+\frac1x=3" /></>}
+  description={<>Graf <InlineMath math="y=x+\frac1x" /> bagi <InlineMath math="x" /> positif bertemu garis <InlineMath math="y=3" /> dua kali: pada <InlineMath math="x\approx0.38" />, di kiri garis tegak <InlineMath math="x=1" />, dan pada <InlineMath math="x\approx2.62" />, di kanannya. Hanya titik kanan yang memenuhi <InlineMath math="x>1" />.</>}
+  labels={{
+    small: <><InlineMath math="x\approx0.38" /></>,
+    big: <><InlineMath math="x\approx2.62" /></>,
+    f: <><InlineMath math="x+\frac1x" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 5.5 },
+      y: { min: 0, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x + 1/x", domain: { min: 0.25, max: 5 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 5, y: 3 } },
+      { id: "one", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 6 } },
+      { id: "p1", kind: "point", appearance: "highlight", at: { x: 0.382, y: 3 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 2.618, y: 3 } },
+    ],
+    labels: [
+      { key: "small", objectId: "p1", at: { x: 0.382, y: 3 }, placement: "below-right" },
+      { key: "big", objectId: "p2", at: { x: 2.618, y: 3 }, placement: "above" },
+      { key: "f", objectId: "curve", at: { x: 4.5, y: 4.72 }, placement: "above" },
+      { key: "three", objectId: "level", at: { x: 5, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="x^2-\frac1{x^2}=3\sqrt5" />
+
+Semak dengan <InlineMath math="x=\frac{3+\sqrt5}{2}\approx2.618" />: <InlineMath math="x^2\approx6.854" /> dan <InlineMath math="\frac1{x^2}\approx0.146" />, bezanya kira-kira <InlineMath math="6.708\approx3\sqrt5" />. Nilainya **tepat <InlineMath math="3\sqrt5" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="-3\sqrt5" /> milik penyelesaian yang satu lagi, <InlineMath math="x\approx0.38" />. Penyelesaian itu **tidak memenuhi <InlineMath math="x>1" />**.
+- <InlineMath math="3\sqrt5" /> atau <InlineMath math="-3\sqrt5" /> terlepas pandang bahawa syarat <InlineMath math="x>1" /> menentukan tanda.
+- <InlineMath math="7" /> ialah <InlineMath math="x^2+\frac1{x^2}=9-2" />, hasil tambah kuasa dua, bukan bezanya.
+- <InlineMath math="\sqrt5" /> cuma beza <InlineMath math="x-\frac1x" />. Faktor <InlineMath math="x+\frac1x=3" /> tertinggal.
+- <InlineMath math="3\sqrt7" /> tersilap mengkuasaduakan: <InlineMath math="\left(x-\frac1x\right)^2=9-2=7" />, sedangkan sepatutnya <InlineMath math="9-4=5" />.
