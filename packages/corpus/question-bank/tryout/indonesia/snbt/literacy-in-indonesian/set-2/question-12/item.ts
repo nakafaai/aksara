@@ -9,33 +9,32 @@ const item: ItemSource = {
   stimulus: "minimum-wage",
   versions: {
     id: {
-      columns: ["Teks A", "Teks B"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label:
-            "Kenaikan penjualan pada 2022 sudah cukup untuk menunjukkan bahwa kenaikan upah menguntungkan usaha kecil.",
+          label: "Upah minimum yang berlaku sekarang perlu dinaikkan.",
         },
         {
           column: 2,
           label:
-            "Hasil penelitian tentang perusahaan besar tidak dapat langsung dipakai untuk memperkirakan nasib sebuah toko roti.",
+            "Kenaikan penjualan pasar pada 2022 menunjukkan bahwa kenaikan upah menguntungkan usaha kecil.",
+        },
+        {
+          column: 2,
+          label:
+            "Usaha besar dan usaha mikro sebaiknya menaikkan upah dengan besar dan jadwal yang sama.",
         },
         {
           column: 1,
           label:
-            "Keberatan pengusaha tidak perlu ditunggu sebelum dewan pengupahan mengambil keputusan.",
+            "Pekerja usaha mikro pada akhirnya tetap harus menerima kenaikan upah, walaupun lebih lambat.",
         },
         {
           column: 2,
           label:
-            "Angka penjualan 2022 belum dapat memisahkan pengaruh kenaikan upah dari pengaruh pulihnya kegiatan ekonomi.",
-        },
-        {
-          column: 2,
-          label:
-            "Kelonggaran waktu bagi usaha mikro tidak boleh menghapus kenaikan upah bagi pekerjanya.",
+            "Hasil penelitian tentang perusahaan besar dapat langsung dipakai untuk memperkirakan dampak kenaikan upah pada usaha mikro.",
         },
       ],
     },

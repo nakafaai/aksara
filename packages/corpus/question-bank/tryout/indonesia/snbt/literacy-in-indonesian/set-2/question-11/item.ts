@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Usul itu dapat diterima, karena kenaikan bertahap tetap menaikkan upah semua pekerja pada tahun depan.",
+            "Usul itu menunda sebagian besar suntikan daya beli, karena menurut Teks A pekerja usaha mikro membelanjakan upahnya di luar kabupaten.",
         },
         {
           correct: false,
           label:
-            "Usul itu keliru, karena penelitian di berbagai negara membuktikan usaha mikro sama sekali tidak terdampak kenaikan upah minimum.",
+            "Usul itu menunda suntikan daya beli, tetapi hanya bagi pekerja pabrik, karena menurut Teks B pabrik menyerap sebagian besar pekerja di Sukaraja.",
         },
         {
           correct: true,
           label:
-            "Usul itu menunda sebagian besar suntikan daya beli, karena menurut Teks B sebagian besar pekerja ada di usaha mikro dan kecil.",
+            "Usul itu menunda sebagian besar suntikan daya beli, karena menurut Teks B sebagian besar pekerja di Sukaraja bekerja di usaha mikro dan kecil.",
         },
         {
           correct: false,
           label:
-            "Usul itu menunda suntikan daya beli, tetapi hanya untuk sebagian kecil pekerja di kabupaten itu, sehingga pengaruhnya tidak berarti.",
+            "Usul itu menunda sebagian besar suntikan daya beli, sehingga penjualan di pasar tradisional pasti turun seperti yang terjadi pada 2022.",
         },
         {
           correct: false,
           label:
-            "Usul itu tidak perlu ditanggapi, karena keberatan pengusaha selalu muncul setiap tahun tanpa bukti.",
+            "Usul itu menunda suntikan daya beli, tetapi tidak berarti, karena kenaikan upah yang tidak terlalu besar umumnya tidak banyak mengurangi lapangan kerja.",
         },
       ],
     },

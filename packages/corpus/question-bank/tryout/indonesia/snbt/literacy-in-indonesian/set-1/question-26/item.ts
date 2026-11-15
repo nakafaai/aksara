@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kehadiran orang lain menurunkan kesediaan tiap orang menolong, sehingga korban di tempat ramai lebih jarang ditolong siapa pun.",
+            "Menolaknya, karena rekaman kamera hanya mencatat pertengkaran, bukan kecelakaan, sehingga datanya tidak berlaku untuk orang yang celaka.",
         },
         {
           correct: false,
           label:
-            "Efek penonton hanyalah mitos dari pemberitaan yang keliru, sehingga kehadiran orang lain tidak memengaruhi kesediaan menolong.",
+            "Menolaknya, karena kecelakaan adalah keadaan yang jelas berbahaya, dan dalam keadaan seperti itu efek penonton justru makin kuat.",
         },
         {
           correct: true,
           label:
-            "Kehadiran orang lain dapat menurunkan kesediaan tiap orang menolong, tetapi korban di tempat ramai belum tentu jarang ditolong.",
+            "Menolaknya, karena peluang ada yang menolong memang dapat naik di tempat ramai, tetapi justru di sana setiap orang mudah menunggu orang lain.",
         },
         {
           correct: false,
           label:
-            "Kehadiran orang lain dapat menurunkan kesediaan tiap orang menolong, tetapi efek itu hanya terjadi di ruang laboratorium saja.",
+            "Menolaknya, karena peluang ada yang menolong memang dapat naik di tempat ramai, tetapi tidak pernah melebihi peluang orang yang menolong sendirian.",
         },
         {
           correct: false,
           label:
-            "Efek penonton selalu melemah di tempat ramai, sehingga makin banyak orang, makin besar kesediaan tiap orang menolong.",
+            "Menerimanya, karena rekaman kamera menunjukkan bahwa makin banyak orang di sekitar kejadian, makin besar peluang ada yang menolong.",
         },
       ],
     },

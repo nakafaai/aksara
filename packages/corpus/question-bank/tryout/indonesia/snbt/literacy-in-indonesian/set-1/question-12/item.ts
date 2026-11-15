@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "laporan tambahan dari guru-guru SMA Harapan Bangsa bahwa siswa lebih tenang dan lebih fokus di kelas setelah larangan berlaku",
+            "Sekolah-sekolah lain di kabupaten itu yang tidak melarang ponsel juga mengalami kenaikan rata-rata nilai sekitar $$5$$ poin.",
         },
         {
           correct: true,
           label:
-            "data bahwa sekolah lain yang juga berganti format ujian tetapi tidak melarang ponsel rata-rata hanya naik sekitar $$1$$ poin",
+            "SMA Pelita mulai mengadakan les tambahan bagi seluruh siswa kelas akhir pada tahun ujian yang sama.",
         },
         {
           correct: false,
           label:
-            "hasil survei bahwa sebagian besar siswa dan orang tua di SMA Harapan Bangsa menyukai larangan ponsel itu",
+            "Siswa SMA Pelita dan SMA Harapan Bangsa berasal dari lingkungan dan latar keluarga yang mirip.",
         },
         {
           correct: false,
           label:
-            "rata-rata nilai ujian akhir SMA Harapan Bangsa pada 2025, setahun setelah larangan berjalan dengan format ujian yang sama",
+            "Guru-guru SMA Harapan Bangsa melaporkan bahwa siswa lebih tenang di kelas setelah larangan berlaku.",
         },
         {
           correct: false,
           label:
-            "data bahwa SMA Pelita memiliki lebih sedikit siswa dan guru daripada SMA Harapan Bangsa pada tahun yang sama",
+            "Sebagian siswa SMA Pelita masih menyimpan ponsel di saku selama pelajaran pada tahun itu.",
         },
       ],
     },

@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Laras harus segera pulang, karena ikatan yang terlalu lama ditinggalkan akan rusak seperti benang.",
+            "Ibu ingin Laras berjanji pulang setiap libur, agar ikatan mereka tidak rusak seperti benang yang lama digulung.",
         },
         {
           correct: true,

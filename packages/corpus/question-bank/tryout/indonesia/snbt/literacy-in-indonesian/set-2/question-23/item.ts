@@ -14,27 +14,28 @@ const item: ItemSource = {
       statements: [
         {
           column: 1,
-          label: "Kebun Raya Bogor didirikan sebelum Indonesia merdeka.",
+          label:
+            "Bibit kelapa sawit yang ditanam di kebun itu didatangkan dari luar Nusantara.",
         },
         {
           column: 2,
           label:
-            "Pendiri Kebun Raya Bogor adalah seorang ahli botani kelahiran Belanda.",
+            "Herbarium kebun itu menyimpan tumbuhan hidup yang terancam punah di hutan.",
+        },
+        {
+          column: 1,
+          label:
+            "Sebagian peneliti yang datang ke laboratorium kebun itu tidak sedang mencari tanaman yang menguntungkan.",
         },
         {
           column: 2,
           label:
-            "Kelapa sawit yang kini ditanam di Sumatra adalah tumbuhan asli Nusantara.",
+            "Kebun raya dapat menjaga keragaman genetik suatu jenis sebaik hutan tempat jenis itu hidup.",
         },
         {
-          column: 1,
+          column: 2,
           label:
-            "Pada masa kini, kebun itu terutama berfungsi menjaga tumbuhan yang terancam punah di alam.",
-        },
-        {
-          column: 1,
-          label:
-            "Tidak semua tumbuhan yang dikumpulkan kebun itu disimpan dalam keadaan hidup.",
+            "Semua sejarawan menyebut kebun raya pada masa kolonial sebagai laboratorium perkebunan.",
         },
       ],
     },

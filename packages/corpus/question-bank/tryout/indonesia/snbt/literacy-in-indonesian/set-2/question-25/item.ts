@@ -19,7 +19,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "melindungi hutan tempat tumbuhan itu hidup bersama penyerbuk dan jamurnya",
+            "menjaga hutan tempat populasi besar tumbuhan itu hidup bersama penyerbuk, jamur tanah, dan hewan penyebar bijinya",
         },
         {
           correct: false,
@@ -28,12 +28,13 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "menyimpan biji tumbuhan itu di bank biji yang suhunya rendah",
+          label:
+            "menyimpan biji dari banyak individu di bank biji yang suhunya rendah",
         },
         {
           correct: false,
           label:
-            "memperluas kebun raya agar dapat menampung lebih banyak jenis tumbuhan",
+            "menanam lebih banyak individu dari berbagai populasi bersama jamur tanahnya di kebun raya",
         },
       ],
     },

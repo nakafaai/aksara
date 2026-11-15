@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Loker kelas masih membiarkan siswa memegang ponsel saat istirahat, padahal Teks A menghitung obrolan saat istirahat sebagai hasil larangan.",
+            "Loker kelas tidak menjangkau jam istirahat, padahal Teks A menghitung siswa yang kembali mengobrol saat istirahat sebagai salah satu hasil larangan.",
         },
         {
           correct: false,
           label:
-            "Loker kelas tetap tidak dapat diawasi, karena guru tidak mungkin memeriksa tiga puluh saku siswa setiap jam pelajaran.",
+            "Loker kelas tidak menjangkau jam istirahat, padahal Teks A menyebut kenaikan nilai dari $$68$$ menjadi $$74$$ terjadi karena ponsel tidak dipakai saat istirahat.",
         },
         {
           correct: false,
           label:
-            "Loker kelas terlalu mahal untuk disediakan di setiap kelas, sehingga larangan penuh dengan loket satpam lebih hemat.",
+            "Loker kelas tidak menjangkau jam istirahat, padahal Teks A menyebut notifikasi saat istirahat sebagai penyebab utama perhatian siswa pecah.",
         },
         {
           correct: false,
           label:
-            "Loker kelas tidak diperlukan, karena kenaikan nilai di SMA Harapan Bangsa sudah membuktikan bahwa siswa patuh tanpa pengawasan.",
+            "Loker kelas tidak diperlukan, karena Teks A menganggap ponsel yang dimatikan selama pelajaran sudah cukup untuk menjaga perhatian siswa.",
         },
         {
           correct: false,
           label:
-            "Loker kelas dapat diterima, karena loker juga menjauhkan ponsel dari tangan siswa selama pelajaran berlangsung.",
+            "Loker kelas dapat diterima, karena Teks A hanya mempersoalkan ponsel yang bergetar di saku selama pelajaran berlangsung.",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Ia memakai harga rata-rata seluruh ikan, yang turun karena komposisi berubah, padahal harga setiap jenis justru naik.",
+            "Alasannya lemah, karena harga per kilogram ketiga jenis ikan justru naik, dan rata-ratanya turun hanya karena porsi teri yang murah membesar.",
         },
         {
           correct: false,
           label:
-            "Ia memakai harga rata-rata seluruh ikan, padahal seharusnya memakai nilai lelang total yang naik Rp$$200$$ juta.",
+            "Alasannya lemah, karena harga per kilogram ketiga jenis ikan justru naik, dan rata-ratanya turun karena ketua koperasi salah membagi nilai lelang dengan berat total.",
         },
         {
           correct: false,
           label:
-            "Ia salah menghitung harga rata-rata, karena rata-rata yang benar adalah rata-rata biasa dari ketiga harga per kilogram.",
+            "Alasannya kuat, karena harga rata-rata memang turun dari Rp$$30{.}000$$ menjadi Rp$$28{.}000$$, dan teri yang paling banyak dijual harganya paling rendah.",
         },
         {
           correct: false,
           label:
-            "Ia hanya melihat dua bulan, padahal harga ikan baru dapat dinilai setelah satu tahun penuh.",
+            "Alasannya lemah, karena harga per kilogram ketiga jenis ikan justru naik, dan rata-ratanya turun karena setiap perahu menjual lebih sedikit ikan.",
         },
         {
           correct: false,
           label:
-            "Ia mengabaikan bahwa harga kembung naik paling kecil, sehingga hanya nelayan kembung yang dirugikan.",
+            "Alasannya lemah, karena harga per kilogram hanya naik untuk tongkol dan teri, sedangkan harga kembung justru turun.",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Sebuah survei terhadap $$1{.}000$$ pengemudi menemukan bahwa pengemudi yang sering mengantuk lebih sering mengalami kecelakaan, lalu disimpulkan bahwa kantuk menyebabkan kecelakaan.",
+            'Seorang panitia menulis bahwa "ribuan" orang menghadiri acaranya, padahal hanya sekitar $$500$$ orang, lalu memakai angka itu untuk meminta gedung yang lebih besar.',
         },
         {
           correct: true,
           label:
-            "Satu video viral pengemudi ojek ugal-ugalan, yang ternyata dipotong dan dibesar-besarkan, dijadikan bukti bahwa pengemudi ojek di kota itu tak peduli keselamatan.",
+            'Berita tentang turis yang "dikerubungi puluhan pedagang", padahal rekaman hanya menunjukkan $$3$$ pedagang, dipakai sebagai bukti bahwa pedagang di kota wisata itu tidak ramah.',
         },
         {
           correct: false,
           label:
-            "Sebuah percobaan menemukan bahwa siswa yang belajar dengan musik mengingat lebih sedikit, tetapi percobaan lain dengan musik yang berbeda tidak menemukan selisih.",
+            "Seorang warga yang dompetnya benar-benar dicopet di sebuah terminal menyimpulkan bahwa semua terminal di negeri itu penuh pencopet dan tidak aman bagi siapa pun.",
         },
         {
           correct: false,
           label:
-            "Data rekaman kamera di tiga kota menunjukkan bahwa sebagian besar pertengkaran di jalan akhirnya dilerai oleh orang-orang di sekitarnya.",
+            "Sebuah percobaan laboratorium menemukan bahwa orang lebih jarang menolong ketika ada orang lain, lalu disimpulkan bahwa setiap kerumunan di jalan berbahaya bagi korban.",
         },
         {
           correct: false,
           label:
-            "Seorang wali kota menolak hasil survei kepuasan warga terhadap layanannya karena survei itu dilakukan oleh lembaga yang tidak ia sukai.",
+            "Sebuah rekaman utuh menunjukkan beberapa orang diam saja ketika seorang pejalan kaki terjatuh, lalu disimpulkan bahwa orang-orang dalam rekaman itu tidak menolong saat itu.",
         },
       ],
     },
