@@ -19,7 +19,7 @@ const FONT_SIZES = [
 ] as const;
 
 /** The size of a label: a named size, or a measure in scene units. */
-export const FontSizeSchema = Schema.Union([
+const FontSizeSchema = Schema.Union([
   Schema.Literals(FONT_SIZES),
   PositiveMeasureSchema,
 ]);

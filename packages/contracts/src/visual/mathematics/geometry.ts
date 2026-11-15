@@ -1,19 +1,14 @@
 import { Schema } from "effect";
 
 import { LatexSchema } from "#contracts/assessment/scalar";
-import { PositiveMeasureSchema } from "#contracts/math/base";
 import {
   cardFields,
   type RichSlot,
-  TextSchema,
   TripleSchema,
 } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
-import { FontSizeSchema, sceneLine } from "#contracts/visual/mathematics/line";
+import { sceneLine } from "#contracts/visual/mathematics/line";
 import { numberLine } from "#contracts/visual/mathematics/number";
-
-/** The sides of the right triangle, each with its own label. */
-const TRIANGLE_SIDES = ["adjacent", "opposite", "hypotenuse"] as const;
 
 /**
  * Where the `LineEquation` card puts the camera when `cameraPosition` is left
@@ -68,48 +63,6 @@ function lineEquation<E>(rich: RichSlot<E>) {
   );
 }
 
-/** A range of one axis, from its first number to its second. */
-const RangeSchema = Schema.Tuple([Schema.Finite, Schema.Finite]);
-
-/** One region of an `Inequality` scene: the side of a boundary line it shades. */
-function inequalityRegion<E>(rich: RichSlot<E>) {
-  return Schema.Struct({
-    boundaryColor: Schema.optionalKey(TextSchema),
-    boundaryLine2D: Schema.optionalKey(TripleSchema),
-    boundaryLineWidth: Schema.optionalKey(PositiveMeasureSchema),
-    color: Schema.optionalKey(TextSchema),
-    is2D: Schema.optionalKey(Schema.Boolean),
-    label: Schema.optionalKey(
-      Schema.Struct({
-        color: Schema.optionalKey(TextSchema),
-        fontSize: Schema.optionalKey(FontSizeSchema),
-        position: TripleSchema,
-        text: rich,
-      })
-    ),
-    opacity: Schema.optionalKey(
-      Schema.Finite.check(Schema.isBetween({ maximum: 1, minimum: 0 }))
-    ),
-    resolution: Schema.optionalKey(Schema.Int.check(Schema.isGreaterThan(0))),
-    showBoundary: Schema.optionalKey(Schema.Boolean),
-    xRange: Schema.optionalKey(RangeSchema),
-    yRange: Schema.optionalKey(RangeSchema),
-    zRange: Schema.optionalKey(RangeSchema),
-  });
-}
-
-/** Props of `Inequality`: shaded regions of linear inequalities. */
-function inequality<E>(rich: RichSlot<E>) {
-  return figure(
-    Schema.Struct({
-      ...cardFields(rich),
-      cameraPosition: Schema.optionalKey(TripleSchema),
-      cameraTarget: Schema.optionalKey(TripleSchema),
-      data: Schema.Array(inequalityRegion(rich)),
-    })
-  );
-}
-
 /** The exact sine, cosine, and tangent of the angle, each as LaTeX, such as `5/13`. */
 const TrigValuesSchema = Schema.Struct({
   cos: Schema.optionalKey(LatexSchema),
@@ -129,20 +82,6 @@ function unitCircle<E>(rich: RichSlot<E>) {
   );
 }
 
-/** Props of `Triangle`: a right triangle at an angle, with its sides named. */
-function triangle<E>(rich: RichSlot<E>) {
-  return figure(
-    Schema.Struct({
-      ...cardFields(rich),
-      angle: Schema.optionalKey(Schema.Finite),
-      labels: Schema.optionalKey(
-        Schema.Record(Schema.Literals(TRIANGLE_SIDES), rich)
-      ),
-      size: Schema.optionalKey(PositiveMeasureSchema),
-    })
-  );
-}
-
 /** Props of `QuadraticEquationReadingRoomProblem`: a room whose sides are unknown. */
 function readingRoom<E>(rich: RichSlot<E>) {
   return figure(
@@ -155,17 +94,15 @@ function readingRoom<E>(rich: RichSlot<E>) {
 }
 
 /**
- * The visuals of lines, regions, and shapes. The exact trigonometric values
+ * The visuals of lines, numbers, and circles. The exact trigonometric values
  * of a unit circle are what a learner is asked to find, so they are answer
  * state.
  */
 export function geometryVisuals<E>(rich: RichSlot<E>) {
   return {
-    Inequality: inequality(rich),
     LineEquation: lineEquation(rich),
     NumberLine: numberLine(rich),
     QuadraticEquationReadingRoomProblem: readingRoom(rich),
-    Triangle: triangle(rich),
     UnitCircle: unitCircle(rich),
   };
 }

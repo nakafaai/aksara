@@ -525,7 +525,7 @@ four places that had to agree: the figure union of six components here, the
 compiler's own list, Nakafa's assessment figure switch, and its School figure
 drafts. A visual a lesson could use reached no assessment.
 
-- The Visual Catalog (`visual/catalog`) is the one list. It maps each of the 87
+- The Visual Catalog (`visual/catalog`) is the one list. It maps each of the 84
   components of Nakafa's renderer to the schema of its props and to the reader
   of the answer state those props hold. Each schema is the renderer's own
   props, read from Nakafa's design system on 15 November 2026: exact keys, the

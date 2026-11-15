@@ -94,28 +94,6 @@ function scatterDiagram<E>(rich: RichSlot<E>) {
   });
 }
 
-/** Props of `VectorChart`: named vectors drawn through their points. */
-function vectorChart<E>(rich: RichSlot<E>) {
-  return figure(
-    Schema.Struct({
-      ...cardFields(rich),
-      vectors: Schema.Array(
-        Schema.Struct({
-          color: Schema.optionalKey(TextSchema),
-          direction: Schema.optionalKey(
-            Schema.Literals(["forward", "backward", "both", "none"])
-          ),
-          id: TextSchema,
-          name: rich,
-          points: Schema.NonEmptyArray(
-            Schema.Struct({ x: Schema.Finite, y: Schema.Finite })
-          ),
-        })
-      ),
-    })
-  );
-}
-
 /** Props of `FunctionChart`: the exponential model `p · aˣ` and its table. */
 function functionChart<E>(rich: RichSlot<E>) {
   return figure(
@@ -144,6 +122,5 @@ export function chartVisuals<E>(rich: RichSlot<E>) {
       scatterDiagram(rich),
       answerAt(["calculateRegressionLine"], ["showResiduals"])
     ),
-    VectorChart: vectorChart(rich),
   };
 }
