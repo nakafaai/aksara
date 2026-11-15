@@ -4,26 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "explicit-information",
+    topic: "classification",
   },
-  stimulus: "train-station",
+  stimulus: "clinic-queue",
   versions: {
     en: {
-      kind: "choice",
-      options: [
-        { correct: false, label: "The clock broke during a storm in 1985." },
+      columns: ["Seen that day", "Given a ticket for the next morning"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "It is the time when the museum opens each day.",
-        },
-        { correct: false, label: "It was the year the locomotive was built." },
-        {
-          correct: false,
-          label: "The volunteer set it to mark his first day at work.",
+          column: 1,
+          label: "Number $$44$$ on a Wednesday",
         },
         {
-          correct: true,
-          label: "It was the departure time of the last passenger train.",
+          column: 2,
+          label: "Number $$24$$ on a Saturday",
+        },
+        {
+          column: 2,
+          label: "Number $$47$$ on a Monday",
+        },
+        {
+          column: 1,
+          label: "Number $$23$$ on a Saturday",
+        },
+        {
+          column: 1,
+          label: "Number $$45$$ on a Friday",
         },
       ],
     },

@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Warsito meneruskan nasihat sopir lama dalam bentuk baru: secepat dan semudah apa pun jalannya, penumpang tetap harus diperlakukan sebagai manusia.",
+            "Kalimat itu menggemakan nasihat sopir lama dengan mengganti jalannya, dari pantura menjadi jalan tol, tetapi tetap mempertahankan perhatian kepada penumpang.",
         },
         {
           correct: false,
           label:
-            "Warsito memperingatkan Ardi bahwa jalan tol berbahaya, sehingga Ardi sebaiknya tidak bekerja di kantor travel.",
+            "Kalimat itu menggemakan nasihat sopir lama dengan mengganti kendaraannya, dari bus menjadi travel, tetapi tetap mempertahankan kecepatan tiba.",
         },
         {
           correct: false,
           label:
-            "Warsito meneruskan nasihat sopir lama dalam bentuk baru: Ardi harus selalu tiba tepat waktu agar gajinya tidak dipotong.",
+            "Kalimat itu menggemakan ucapan Bu Tarmi dengan mengganti jalannya, dari pantura menjadi jalan tol, tetapi tetap mempertahankan perhatian kepada penumpang.",
         },
         {
           correct: false,
           label:
-            "Warsito menyesal karena trayeknya ditutup, sehingga ia menyalahkan jalan tol yang membuat bus malam tidak lagi diminati.",
+            "Kalimat itu menggemakan nasihat sopir lama dengan mengganti perhatian kepada penumpang, tetapi tetap mempertahankan jalan yang ditempuh.",
         },
         {
           correct: false,
           label:
-            "Warsito ingin Ardi kembali bekerja bersamanya di bus malam, karena jalan tol membuat pekerjaan sopir menjadi membosankan.",
+            "Kalimat itu menggemakan nasihat sopir lama dengan mengganti jalannya, dari pantura menjadi jalan tol, tetapi tetap mempertahankan ketepatan waktu tiba.",
         },
       ],
     },

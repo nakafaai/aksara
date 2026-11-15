@@ -2,30 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "information-validity",
+    topic: "summary",
   },
-  stimulus: "walking-bus",
+  stimulus: "late-start",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label:
-            "SD Lereng Asri's vehicle numbers came from a national survey.",
-        },
-        { column: 1, label: "A walking bus is led by volunteer parents." },
-        {
-          column: 2,
-          label: "Walking buses are impossible during the rainy season.",
+          correct: true,
+          label: "I, II, and IV only",
         },
         {
-          column: 1,
-          label:
-            "A fifteen-minute walk each way adds up to thirty minutes of activity.",
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "I and IV only",
         },
       ],
     },

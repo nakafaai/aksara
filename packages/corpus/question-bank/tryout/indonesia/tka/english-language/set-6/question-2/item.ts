@@ -2,35 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "classification",
   },
-  stimulus: "tea-terrace",
+  stimulus: "water-rota",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Lasts", "Runs short"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
+          label: "A Block B household of three with one $$1$$-cubic-metre tank",
+        },
+        {
+          column: 2,
+          label: "A Block D household of five with one $$1$$-cubic-metre tank",
+        },
+        {
+          column: 1,
           label:
-            "to describe the features of a tea estate and how its parts are arranged",
+            "A Block A household of six with one tank, after its afternoon turn on the fourth day of the rota",
         },
         {
-          correct: false,
-          label: "to explain how fresh leaves are processed into black tea",
+          column: 2,
+          label:
+            "A Block A household of six with one tank, after its morning turn on the first day of the rota",
         },
         {
-          correct: false,
-          label: "to persuade readers to buy tea grown on the estate",
-        },
-        {
-          correct: false,
-          label: "to tell the story of one picker's day on the estate",
-        },
-        {
-          correct: false,
-          label: "to compare tea estates in several different regions",
+          column: 1,
+          label:
+            "A Block C household of seven with two $$1$$-cubic-metre tanks",
         },
       ],
     },

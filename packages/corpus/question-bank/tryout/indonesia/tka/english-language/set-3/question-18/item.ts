@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "comparison",
   },
-  stimulus: "fair-discussion",
+  stimulus: "compost-heap",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "II and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
           correct: true,
-          label:
-            "Joko should be allowed to correct the restatement so the response begins from his actual meaning.",
-        },
-        {
-          correct: false,
-          label:
-            "Maya's evidence should be rejected because an inaccurate restatement makes later evidence unusable.",
-        },
-        {
-          correct: false,
-          label:
-            "The participation list should award Joko another turn and record it as a higher score.",
-        },
-        {
-          correct: false,
-          label:
-            "Maya should repeat the dominant view, even if it differs from the point Joko made.",
-        },
-        {
-          correct: false,
-          label:
-            "The group should redefine the original question so Maya's restatement becomes accurate.",
+          label: "I, II, and III only",
         },
       ],
     },

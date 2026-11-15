@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia mencari alasan untuk menunda keberangkatan, karena masih ada penumpang yang belum membeli tiket di loket terminal malam itu.",
+            "Warsito mencari dalih untuk menunda keberangkatan, karena masih ada penumpang yang belum membeli tiket sehingga kursi belum terjual semua.",
         },
         {
           correct: false,
           label:
-            "Ia benar-benar yakin jam terminal terlalu cepat, karena ia selalu berangkat tepat waktu menurut jam tangannya selama dua puluh tiga tahun.",
+            "Warsito benar-benar yakin jam terminal terlalu cepat, karena ia selalu berangkat tepat waktu menurut jam tangannya.",
         },
         {
           correct: true,
           label:
-            "Ia mencari alasan untuk menunda keberangkatan, karena sebagian dirinya masih menunggu penumpang kursi nomor tiga yang ia tahu tidak akan datang.",
+            "Warsito mencari dalih untuk menunda keberangkatan, karena sebagian dirinya masih menunggu nenek berkerudung biru yang biasa naik pada menit terakhir.",
         },
         {
           correct: false,
           label:
-            "Ia ingin mempermainkan Ardi, karena kesal Ardi akan meninggalkannya untuk bekerja di kantor travel.",
+            "Warsito mencari dalih untuk menunda keberangkatan, karena ia kesal Ardi memintanya tidak mampir di Pemalang.",
         },
         {
           correct: false,
           label:
-            "Ia sengaja berangkat terlambat agar bus tiba di Jakarta pada jam yang lebih sepi dan lebih aman.",
+            "Warsito mencari dalih untuk menunda keberangkatan, karena ia ingin tiba di Jakarta ketika jalan lebih sepi.",
         },
       ],
     },

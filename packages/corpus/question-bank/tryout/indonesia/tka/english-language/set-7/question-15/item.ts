@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "missing-key",
+  stimulus: "dark-lighthouse",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "It is a fantasy, because a key cannot be kept inside a fridge.",
-        },
-        {
-          correct: false,
-          label:
-            "It is a fantasy, because Dito knows where the key is by magic.",
-        },
-        {
-          correct: false,
-          label:
-            "It is a fable, because it teaches a lesson through talking animals.",
+          label: "I, II, and V only",
         },
         {
           correct: true,
-          label:
-            "It is realistic, because putting a key away with the groceries could really happen.",
+          label: "I, II, III, and V only",
         },
         {
           correct: false,
-          label:
-            "It is a legend, because it explains how a family tradition began.",
+          label: "I, II, III, IV, and V",
+        },
+        {
+          correct: false,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
         },
       ],
     },

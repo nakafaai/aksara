@@ -4,34 +4,34 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "explicit-information",
+    topic: "classification",
   },
-  stimulus: "egret-hide",
+  stimulus: "bike-share",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Visitors copy them onto the painted board beside the door.",
+          correct: true,
+          label: "A $$40$$-minute pedal-bike ride that ends in a dock.",
         },
         {
           correct: false,
-          label: "A ranger reads them aloud to visitors on the upper platform.",
-        },
-        {
-          correct: false,
-          label:
-            "Visitors check them against the bird outlines before they leave.",
-        },
-        {
-          correct: false,
-          label:
-            "A ranger copies them into the reserve's records every evening.",
+          label: "A $$40$$-minute e-bike ride that ends in a dock.",
         },
         {
           correct: true,
-          label: "A ranger adds them to the reserve's records once a week.",
+          label:
+            "A $$44$$-minute pedal-bike ride to a full station, a press of the full-dock button, and $$12$$ more minutes to a free dock at the next station.",
+        },
+        {
+          correct: false,
+          label:
+            "A $$30$$-minute pedal-bike ride after which the bike is left leaning against a full station.",
+        },
+        {
+          correct: false,
+          label: "A $$46$$-minute pedal-bike ride that ends in a dock.",
         },
       ],
     },

@@ -3,35 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    contentDomain: "informational-text",
+    topic: "research-design",
   },
-  stimulus: "wall-clock",
+  stimulus: "regression-mean",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "akhirnya tahu bahwa pendengaran Kakek sudah lemah",
-        },
-        {
-          correct: false,
-          label: "ingin menghentikan kebiasaan memutar jam setiap Senin",
+          label:
+            "memberi kelas tambahan kepada semua siswa bernilai terendah, lalu membandingkan kenaikan mereka dengan kenaikan siswa bernilai tertinggi",
         },
         {
           correct: false,
           label:
-            "merasa terpaksa menggantikan tugas yang dulu selalu dikerjakan Kakek",
+            "membagi siswa bernilai terendah secara acak, tetapi dalam kelompok kelas tambahan hanya menghitung siswa yang rajin datang",
         },
         {
           correct: true,
           label:
-            "mulai merasakan makna kebiasaan itu setelah menjalaninya sendiri",
+            "membagi siswa bernilai terendah secara acak ke kelompok yang ikut dan tidak ikut kelas tambahan, lalu membandingkan kenaikan kedua kelompok, karena regresi ke rata-rata mengenai keduanya sama besar",
         },
         {
           correct: false,
-          label: "baru mengetahui jumlah putaran jam yang benar dari Ibu",
+          label:
+            "memakai siswa bernilai terendah yang jadwalnya bentrok sebagai pembanding, lalu menambah jumlah mereka agar perbandingannya lebih meyakinkan",
+        },
+        {
+          correct: false,
+          label:
+            "membagi siswa bernilai terendah secara acak, lalu membandingkan kenaikan kelompok kelas tambahan dengan angka $$10$$ poin dari tahun ini",
         },
       ],
     },

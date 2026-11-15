@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "bike-share",
+  stimulus: "fuel-subsidy",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Jumlah sepeda yang rusak atau hilang di kota itu selama bulan Juni saja",
+            "Dua kelompok teratas bersama-sama menikmati lebih dari separuh subsidi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pendapat warga tentang warna dan bentuk sepeda sewa yang dipakai",
+            "Setiap rumah tangga di kelompok terbawah menerima subsidi lebih besar daripada setiap rumah tangga di kelompok teratas.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Jumlah perjalanan harian di kota itu selama bulan Januari saja",
+            "Sebagai bagian dari pengeluarannya, subsidi lebih berarti bagi rumah tangga terbawah daripada bagi rumah tangga teratas.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Jumlah perjalanan bulanan di kota serupa yang sepedanya tetap 200",
+            "Kelompok tengah menikmati sekitar sepertiga dari total subsidi.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Jumlah penduduk kota itu menurut sensus terakhir yang dilakukan",
+            "Menurut teks, menghapus subsidi pasti menghemat anggaran tanpa merugikan kelompok terbawah sedikit pun.",
         },
       ],
     },

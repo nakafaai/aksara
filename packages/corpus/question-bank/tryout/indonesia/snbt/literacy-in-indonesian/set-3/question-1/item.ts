@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Hasil itu layak dipercaya untuk Yogyakarta karena pembandingnya diamati pada periode yang sama, tetapi belum menjawab soal kota lain dan soal pengganti cara lama.",
+            "Rancangannya kuat karena membandingkan dua kelompok pada periode yang sama, angka efikasinya lebih mungkin terlalu rendah, dan hasilnya belum tentu berlaku di kota lain.",
         },
         {
           correct: false,
           label:
-            "Hasil itu perlu diuji ulang di Yogyakarta karena kasus demam berdarah naik turun dari tahun ke tahun, sehingga penurunannya bisa jatuh pada tahun yang sepi.",
+            "Rancangannya kuat karena membandingkan dua kelompok pada periode yang sama, angka efikasinya lebih mungkin terlalu tinggi, dan hasilnya belum tentu berlaku di kota lain.",
         },
         {
           correct: false,
           label:
-            "Hasil itu membuktikan bahwa Wolbachia dapat menggantikan pemberantasan sarang, karena nyamuk ber-Wolbachia mampu bertahan tanpa pelepasan ulang.",
+            "Rancangannya kuat karena menghitung jumlah kasus di setiap klaster, angka efikasinya lebih mungkin terlalu rendah, dan hasilnya belum tentu berlaku di kota lain.",
         },
         {
           correct: false,
           label:
-            "Hasil itu kemungkinan melebih-lebihkan manfaat Wolbachia, karena nyamuk ber-Wolbachia dapat terbang melewati batas klaster ke klaster pembanding.",
+            "Rancangannya kuat karena membandingkan dua kelompok pada periode yang sama, angka efikasinya lebih mungkin terlalu rendah, dan hasilnya membuktikan bahwa Wolbachia dapat menggantikan pemberantasan sarang.",
         },
         {
           correct: false,
           label:
-            "Hasil itu kuat karena pengacakan dilakukan per wilayah, sehingga dapat langsung diterapkan di kota lain yang memiliki nyamuk Aedes aegypti.",
+            "Rancangannya kuat karena membandingkan kasus sebelum dan sesudah pelepasan, angka efikasinya lebih mungkin terlalu rendah, dan hasilnya belum tentu berlaku di kota lain.",
         },
       ],
     },

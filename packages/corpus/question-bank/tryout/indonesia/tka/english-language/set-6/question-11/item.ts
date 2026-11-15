@@ -2,27 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "synthesis",
   },
-  stimulus: "stage-lines",
+  stimulus: "grandfather-bike",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "He thinks quickly when something goes wrong.",
+          correct: false,
+          label: "I and IV only",
         },
-        { correct: true, label: "He helps without making a fuss about it." },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
         {
           correct: false,
-          label: "He wants the audience to notice Maya's mistake.",
+          label: "I, II, and III only",
         },
         {
-          correct: true,
-          label: "He notices when a fellow actor is in trouble.",
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
         },
       ],
     },

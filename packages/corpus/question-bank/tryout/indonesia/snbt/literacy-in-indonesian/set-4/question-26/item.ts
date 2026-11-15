@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$15$$ orang di stan $$24$$ rasa dan $$150$$ orang di stan $$6$$ rasa",
+            "pembeli $$10$$ kali lipat, pengunjung yang berhenti $$1{,}5$$ kali lipat",
         },
         {
           correct: true,
           label:
-            "$$9$$ orang di stan $$24$$ rasa dan $$60$$ orang di stan $$6$$ rasa",
+            "pembeli sekitar $$6{,}7$$ kali lipat, pengunjung yang berhenti $$1{,}5$$ kali lipat",
         },
         {
           correct: false,
           label:
-            "$$300$$ orang di stan $$24$$ rasa dan $$200$$ orang di stan $$6$$ rasa",
+            "pembeli sekitar $$6{,}7$$ kali lipat, pengunjung yang berhenti sekitar $$0{,}67$$ kali lipat",
         },
         {
           correct: false,
           label:
-            "$$1{,}8$$ orang di stan $$24$$ rasa dan $$12$$ orang di stan $$6$$ rasa",
+            "pembeli $$10$$ kali lipat, pengunjung yang berhenti $$1{,}2$$ kali lipat",
         },
         {
           correct: false,
           label:
-            "$$60$$ orang di stan $$24$$ rasa dan $$9$$ orang di stan $$6$$ rasa",
+            "pembeli $$1{,}5$$ kali lipat, pengunjung yang berhenti sekitar $$6{,}7$$ kali lipat",
         },
       ],
     },

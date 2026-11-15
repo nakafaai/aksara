@@ -2,38 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "outline",
   },
-  stimulus: "repair-first",
+  stimulus: "dim-lights",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "To make repair the default even when safety or accessibility evidence is incomplete",
+          label: "I and III only",
         },
         {
           correct: false,
-          label:
-            "To treat repair cost as the deciding factor before assessing safety",
+          label: "I, III, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "To present repair as generally cheaper without requiring a documented assessment",
+          label: "II, III, and V only",
         },
         {
           correct: false,
-          label: "To keep unsupported equipment in service",
+          label: "I, II, III, and V only",
         },
         {
           correct: true,
-          label:
-            "To argue for a documented repair check that still permits justified replacement",
+          label: "I, III, and V only",
         },
       ],
     },

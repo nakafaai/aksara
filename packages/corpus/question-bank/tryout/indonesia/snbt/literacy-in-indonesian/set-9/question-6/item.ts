@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "word-meaning",
   },
-  stimulus: "national-exam",
+  stimulus: "old-translator",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ujian nasional sebaiknya dihapus karena nilai rapor sudah cukup untuk dibandingkan.",
+            "Dalam kedua pilihan, Pak Sastro memilih kata yang lebih sopan agar terjemahannya tidak menyinggung cucunya.",
         },
         {
           correct: false,
           label:
-            "Ujian nasional perlu kembali menjadi penentu kelulusan agar siswa bersungguh-sungguh.",
+            "Dalam kedua pilihan, Pak Sastro mengikuti usul Dita agar terjemahannya mudah dipahami.",
         },
         {
           correct: true,
           label:
-            "Ujian bersama tetap perlu, tetapi tidak menjadi satu-satunya penentu kelulusan.",
+            "Dalam kedua pilihan, Pak Sastro menolak kata yang ringkas dan umum demi frasa yang menyimpan cara Bu Ratmi memandang suaminya, yaitu keluhan yang sabar dan kesulitan kecil yang ia ketahui.",
         },
         {
           correct: false,
           label:
-            "Ujian nasional hanya perlu diadakan di wilayah yang mutu pendidikannya tertinggal.",
+            "Dalam kedua pilihan, Pak Sastro memilih kata yang menggambarkan sifat, bukan kejadian atau kebiasaan.",
         },
         {
           correct: false,
           label:
-            "Ujian nasional sebaiknya diganti dengan bimbingan belajar untuk semua siswa.",
+            "Dalam pilihan pertama ia mengutamakan kesetiaan, tetapi dalam pilihan kedua ia mengutamakan kenangan pribadinya, jadi keduanya tidak sejalan.",
         },
       ],
     },

@@ -2,39 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "sequence",
+    topic: "explicit-information",
   },
-  stimulus: "cave-visit",
+  stimulus: "ridge-turnaround",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "entering the first chamber, receiving helmets, standing in darkness, visiting the museum",
-        },
-        {
-          correct: false,
-          label:
-            "receiving helmets, visiting the museum, standing in darkness, writing a sentence",
-        },
-        {
-          correct: false,
-          label:
-            "receiving helmets, standing in darkness, entering the first chamber, visiting the museum",
-        },
-        {
           correct: true,
           label:
-            "receiving helmets, entering the first chamber, standing in darkness, visiting the museum",
+            "About $$1$$ hour $$55$$ minutes after the cloud reached the ridge",
+        },
+        {
+          correct: false,
+          label: "About $$25$$ minutes before the cloud reached the ridge",
+        },
+        {
+          correct: false,
+          label: "About $$15$$ minutes before the cloud reached the ridge",
+        },
+        {
+          correct: false,
+          label: "About $$25$$ minutes after the cloud reached the ridge",
         },
         {
           correct: false,
           label:
-            "standing in darkness, receiving helmets, visiting the museum, writing a sentence",
+            "About $$2$$ hours $$5$$ minutes after the cloud reached the ridge",
         },
       ],
     },

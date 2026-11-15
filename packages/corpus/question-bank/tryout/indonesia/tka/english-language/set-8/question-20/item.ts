@@ -4,21 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "text-fit",
+    topic: "reader-response",
   },
-  stimulus: "fried-rice",
+  stimulus: "rain-gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Cook a fresh pot of rice in a rice cooker." },
-        { correct: false, label: "Serve the eggs on a separate plate." },
+        {
+          correct: false,
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
         {
           correct: true,
-          label: "Scramble the eggs together with the garlic and shallots.",
+          label: "I and II only",
         },
-        { correct: false, label: "Add the cucumber slices to the wok." },
-        { correct: false, label: "Rinse the wok with cold water." },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
       ],
     },
   },

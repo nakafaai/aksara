@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "prediction",
   },
-  stimulus: "pinhole-projector",
+  stimulus: "fish-tank",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The foil has to warm up in the sunlight before it can form an image.",
+            "Add $$3$$ more fish now; all $$9$$ could be in during week $$2$$.",
         },
         {
           correct: false,
           label:
-            "The image appears only after the eclipse has already started.",
+            "Change a quarter of the water and add no more fish this week; all $$9$$ could be in during week $$2$$.",
         },
         {
           correct: false,
           label:
-            "Turning first makes the image larger than it would be otherwise.",
-        },
-        {
-          correct: false,
-          label:
-            "The pinhole must be made outside while you face away from the Sun.",
+            "Change all of the water and start cycling again; all $$9$$ could be in during week $$4$$.",
         },
         {
           correct: true,
           label:
-            "Facing away first means you never look toward the Sun while lining up the cards.",
+            "Change a quarter of the water and add no more fish this week; all $$9$$ could be in during week $$3$$.",
+        },
+        {
+          correct: false,
+          label:
+            "Add no more fish this week without changing any water; all $$9$$ could be in during week $$3$$.",
         },
       ],
     },

@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "prediction",
+    topic: "character",
   },
-  stimulus: "night-ferry",
+  stimulus: "dry-well",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "that her grandmother is wasting food the family needs",
-        },
-        {
           correct: true,
-          label: "that small kindnesses can come back in unexpected ways",
+          label: "I, III, and V only",
         },
         {
           correct: false,
-          label: "that she should hide the basket from her grandmother",
+          label: "I and III only",
         },
         {
           correct: false,
-          label: "that ferries always leave before their scheduled time",
+          label: "I, II, III, and V only",
         },
         {
           correct: false,
-          label: "that she should never travel with her grandmother again",
+          label: "III and V only",
+        },
+        {
+          correct: false,
+          label: "I, III, IV, and V only",
         },
       ],
     },

@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "letter-poem",
+  stimulus: "framing-effect",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "gaji pertama aku lirik ternyata jauh lebih kecil daripada yang ia harapkan selama ini",
+            "$$150$$ orang, karena program A dan C isinya sama sehingga semua memilihnya",
         },
         {
           correct: false,
           label:
-            "aku lirik mengirim uang pada malam hari ketika udara kota dingin",
+            "$$225$$ orang, yaitu $$75\\%$$ dari $$300$$ orang, rata-rata kedua persentase",
+        },
+        {
+          correct: false,
+          label:
+            "$$108$$ orang, yaitu yang memilih program A di kelompok pertama saja",
+        },
+        {
+          correct: false,
+          label:
+            "$$33$$ orang, yaitu yang memilih program C di kelompok kedua saja",
         },
         {
           correct: true,
           label:
-            "kiriman uang terasa tidak mampu mewakili kasih sayang yang ingin diberikan",
-        },
-        {
-          correct: false,
-          label: "ibu aku lirik tidak menyukai uang yang dikirim lewat layar",
-        },
-        {
-          correct: false,
-          label: "aku lirik lupa menuliskan jumlah uang dengan benar",
+            "$$141$$ orang, yaitu $$108$$ dari kelompok pertama dan $$33$$ dari kelompok kedua",
         },
       ],
     },

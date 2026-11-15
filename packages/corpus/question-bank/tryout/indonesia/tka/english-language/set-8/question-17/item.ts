@@ -2,24 +2,47 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "sequence",
+    topic: "classification",
   },
-  stimulus: "fried-rice",
+  stimulus: "rain-gauge",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Follows the instructions",
+        "Breaks the instructions",
+        "Not covered",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 2,
           label:
-            "pushing them to one side and cracking the eggs into the empty space",
+            "Setting the gauge $$3$$ metres from a wall that is $$4$$ metres tall",
         },
-        { correct: false, label: "adding the sweet soy sauce and salt" },
-        { correct: false, label: "breaking up lumps in the cold rice" },
-        { correct: false, label: "tasting the rice and adding more salt" },
-        { correct: false, label: "serving the rice with cucumber slices" },
+        {
+          column: 1,
+          label:
+            "Setting the gauge $$5$$ metres from a tree that is $$5$$ metres tall",
+        },
+        {
+          column: 1,
+          label:
+            "Reading the gauge at 7:00 and then pouring water out down to the zero line",
+        },
+        {
+          column: 3,
+          label: "Painting the bottle black",
+        },
+        {
+          column: 2,
+          label: "Reading the level by looking down into the bottle from above",
+        },
+        {
+          column: 2,
+          label: "Using a bottle that narrows towards the top",
+        },
       ],
     },
   },

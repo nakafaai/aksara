@@ -4,27 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "comparison",
+    topic: "cause-effect",
   },
-  stimulus: "train-station",
+  stimulus: "clinic-queue",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "It is used as a museum instead of serving passengers.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "It has a red tiled roof instead of a metal one.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "Its old ticket window has been replaced with a new one.",
+          label: "I, II, III, and IV only",
         },
-        { correct: false, label: "It has more tracks than it used to." },
-        { correct: false, label: "Its clock now shows the correct time." },
+        {
+          correct: false,
+          label: "II and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, and V only",
+        },
       ],
     },
   },

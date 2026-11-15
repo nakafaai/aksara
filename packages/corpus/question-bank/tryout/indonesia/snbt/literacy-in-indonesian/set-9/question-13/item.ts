@@ -3,33 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    contentDomain: "informational-text",
+    topic: "assumption",
   },
-  stimulus: "tea-picker",
+  stimulus: "street-vendors",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "persaingan antara para pemetik teh untuk menjadi mandor",
-        },
-        {
-          correct: false,
-          label: "kehidupan mahasiswa yang merekam tugas kuliah di desa",
+          label:
+            "Hanya pemerintah kota, karena lapak gratis selama enam bulan menghabiskan anggaran.",
         },
         {
           correct: true,
-          label: "nilai keahlian tangan manusia di tengah datangnya mesin",
+          label:
+            "Pedagang, karena pendapatannya bisa turun seperti di Pasar Baru, dan akhirnya juga pejalan kaki, karena pedagang yang kembali berjualan di jalan akan memakai trotoar lagi.",
         },
         {
           correct: false,
-          label: "kerasnya cuaca di perkebunan teh pada pagi hari",
+          label:
+            "Pedagang, karena pendapatannya bisa turun, sedangkan pejalan kaki pasti tetap diuntungkan karena trotoar akan tetap kosong.",
         },
         {
           correct: false,
-          label: "hubungan nenek dan cucu yang tinggal berjauhan di kota",
+          label:
+            "Pembeli, karena harga makanan di Pasar Sentra pasti lebih mahal daripada di trotoar.",
+        },
+        {
+          correct: false,
+          label:
+            "Tidak ada yang dirugikan, karena halte bus akan dipindahkan ke depan pasar tujuan.",
         },
       ],
     },

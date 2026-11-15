@@ -2,27 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "information-validity",
   },
-  stimulus: "rain-market",
+  stimulus: "tool-library",
   versions: {
     en: {
-      columns: ["Safe movement", "Product protection", "Drainage"],
+      columns: ["Supported", "Contradicted", "Not stated"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "Yellow-edged wooden bridges",
+          label:
+            "The library has lent tools more than seventy times as often as the number of tools it opened with.",
         },
         {
           column: 2,
-          label: "Vertical racks beneath deep awnings",
+          label:
+            "A family membership lets four people in one household each have a tool out at the same time.",
         },
         {
           column: 3,
-          label: "A blue circle kept clear of chairs",
+          label:
+            "Most of the members surveyed later bought the tool they had put off buying.",
+        },
+        {
+          column: 1,
+          label:
+            "Most of the tools that come back needing repair are fixed at the library.",
+        },
+        {
+          column: 2,
+          label:
+            "A member who keeps a tool past its due date always pays a late fee.",
+        },
+        {
+          column: 3,
+          label: "Red-band tools cost more to replace than yellow-band tools.",
         },
       ],
     },

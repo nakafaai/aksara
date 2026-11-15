@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "text-structure",
+    topic: "argument-evaluation",
   },
   stimulus: "balai-pustaka",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "membuktikan bahwa buku Balai Pustaka lebih bermutu, sehingga rakyat yang mulai melek huruf lebih memilihnya daripada bacaan liar",
+            "Menilai sebuah klub sepak bola hanya dari trofinya keliru, karena yang lebih penting adalah banyaknya penonton yang datang ke stadion.",
+        },
+        {
+          correct: false,
+          label:
+            "Menilai sebuah klub sepak bola hanya dari pemain yang dicoretnya lebih tepat, karena di situlah watak asli klub itu tampak.",
+        },
+        {
+          correct: false,
+          label:
+            "Menilai sebuah klub sepak bola dari trofi maupun pemain yang dicoret sama-sama tidak perlu, karena klub sebaiknya tidak dinilai sama sekali.",
+        },
+        {
+          correct: false,
+          label:
+            "Menilai sebuah klub sepak bola hanya dari trofinya sama kelirunya dengan menilainya hanya dari stadionnya, karena keduanya tidak berhubungan dengan pemain.",
         },
         {
           correct: true,
           label:
-            "menunjukkan bahwa penyebaran bacaan yang murah ikut menjalankan tugas penyaringan, karena bacaan yang aman jadi lebih mudah didapat",
-        },
-        {
-          correct: false,
-          label:
-            "menjelaskan bahwa pemerintah kolonial rugi besar karena harus menjual buku dengan harga yang sangat murah",
-        },
-        {
-          correct: false,
-          label:
-            "menunjukkan bahwa harga murah adalah satu-satunya alasan rakyat mulai melek huruf pada masa itu",
-        },
-        {
-          correct: false,
-          label:
-            "menegaskan bahwa bacaan liar dilarang terbit karena harganya jauh lebih mahal daripada buku-buku terbitan Balai Pustaka",
+            "Menilai sebuah klub sepak bola hanya dari trofinya sama kelirunya dengan menilainya hanya dari pemain yang dicoretnya, karena keduanya hasil dari cara klub memilih pemain.",
         },
       ],
     },

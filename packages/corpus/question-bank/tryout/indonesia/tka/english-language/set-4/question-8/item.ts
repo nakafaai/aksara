@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "sequence",
   },
-  stimulus: "gamelan-rehearsal",
+  stimulus: "mangrove-planting",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The writer had not practiced the melody enough at home before the rehearsals.",
+          label: "P, U, Q, S, T, R",
         },
         {
           correct: false,
-          label: "The other players were not keeping a steady beat.",
+          label: "U, Q, P, S, T, R",
         },
         {
           correct: false,
-          label: "The drummer changed the speed without giving any signal.",
+          label: "U, S, Q, P, T, R",
+        },
+        {
+          correct: false,
+          label: "U, Q, S, P, R, T",
         },
         {
           correct: true,
-          label:
-            "The writer kept counting instead of following the drummer's changes in speed.",
-        },
-        {
-          correct: false,
-          label:
-            "The writer's saron was too quiet to be heard over the other instruments.",
+          label: "U, Q, S, P, T, R",
         },
       ],
     },

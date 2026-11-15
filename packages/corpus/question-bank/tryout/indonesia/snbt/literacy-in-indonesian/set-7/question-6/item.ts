@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "figurative-language",
   },
-  stimulus: "walkable-city",
+  stimulus: "tide-poem",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kemacetan kota paling tepat diatasi dengan melebarkan jalan secara bertahap.",
+            'Di bait pertama "membaca" berarti memakai tabel pasang, dan di akhir puisi maknanya berubah menjadi mengenali irama naik turun dalam hidup.',
         },
         {
           correct: false,
           label:
-            "Ojek sebaiknya dilarang agar warga terbiasa berjalan kaki untuk jarak dekat.",
+            'Di bait pertama "membaca" berarti melihat jam dinding, dan di akhir puisi maknanya tetap sama karena ayah menyuruh aku memperhatikan jam ponselnya.',
         },
         {
           correct: true,
           label:
-            "Kota perlu mengutamakan trotoar, bukan mengorbankannya demi jalan lebar.",
+            'Di bait pertama "membaca" berarti mengenali tanda alam untuk tahu kapan harus bertindak, dan di akhir puisi maknanya diperluas menjadi mengenali irama naik turun dalam hidup.',
         },
         {
           correct: false,
           label:
-            "Kendaraan pribadi sebaiknya dilarang masuk ke pusat kota sepanjang hari.",
+            'Di bait pertama "membaca" berarti mengenali tanda alam, dan di akhir puisi maknanya dipersempit menjadi mengenali pasang laut di kota tempat aku tinggal.',
         },
         {
           correct: false,
           label:
-            "Trotoar mungkin hanya cocok dibangun di kota yang penduduknya sedikit.",
+            'Di bait pertama "membaca" berarti menebak tanpa dasar, dan di akhir puisi ayah mengakui bahwa tebakannya tentang laut sering keliru.',
         },
       ],
     },

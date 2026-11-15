@@ -6,7 +6,7 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "inference",
   },
-  stimulus: "peat-fire",
+  stimulus: "c4-photosynthesis",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Air dari udara menguap sebelum sampai ke permukaan tanah gambut.",
+            "Pada kadar $$\\mathrm{CO_2}$$ yang tinggi, pompa C4 berhenti bekerja karena tidak ada $$\\mathrm{CO_2}$$ yang perlu dipompa.",
         },
         {
           correct: false,
           label:
-            "Pesawat penyiram air hanya dapat terbang ketika tidak ada asap.",
-        },
-        {
-          correct: false,
-          label:
-            "Air justru menjadikan gambut lebih ringan dan lebih mudah terbakar.",
-        },
-        {
-          correct: false,
-          label:
-            "Siraman air dari udara baru dilakukan setelah kebakaran berlangsung berbulan-bulan.",
+            "Pada kadar $$\\mathrm{CO_2}$$ yang tinggi, padi C4 kehilangan lebih banyak air untuk setiap gram gula yang dibuatnya.",
         },
         {
           correct: true,
           label:
-            "Bara yang menjalar di bawah tanah tetap menyala walaupun permukaannya padam.",
+            "Pada kadar $$\\mathrm{CO_2}$$ yang tinggi, Rubisco padi biasa lebih jarang mengikat oksigen, sehingga keunggulan pompa C4 ikut mengecil.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada kadar $$\\mathrm{CO_2}$$ yang tinggi, Rubisco padi biasa makin sering mengikat oksigen, sehingga padi C4 makin unggul.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada kadar $$\\mathrm{CO_2}$$ yang tinggi, suhu daun turun sehingga fotorespirasi sama sekali tidak terjadi.",
         },
       ],
     },

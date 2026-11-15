@@ -15,26 +15,27 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Komisi yang memilih bacaan untuk rakyat sudah bekerja sebelum nama Balai Pustaka dipakai.",
-        },
-        {
-          column: 2,
-          label: "Balai Pustaka hanya menerbitkan buku dalam bahasa Melayu.",
-        },
-        {
-          column: 1,
-          label:
-            "Naskah yang mengkritik pemerintah kolonial sulit terbit lewat Balai Pustaka.",
+            "Komisi pemilih bacaan bekerja sekitar sembilan tahun sebelum diubah menjadi kantor penerbitan.",
         },
         {
           column: 2,
           label:
-            'Istilah "bacaan liar" dipakai para penulis pergerakan untuk menyebut karya mereka sendiri.',
+            "Semua buku terbitan Balai Pustaka ditulis dalam bahasa Melayu.",
         },
         {
           column: 1,
           label:
-            "Sebagian karya yang kini dianggap penting dalam sastra Indonesia terbit lewat Balai Pustaka.",
+            "Naskah Salah Asuhan tidak terbit persis seperti yang semula diserahkan penulisnya.",
+        },
+        {
+          column: 2,
+          label:
+            "Para penulis pergerakan menyebut karya mereka sendiri sebagai bacaan liar.",
+        },
+        {
+          column: 2,
+          label:
+            "Nota Rinkes secara tertulis melarang semua kritik terhadap pemerintah kolonial.",
         },
       ],
     },

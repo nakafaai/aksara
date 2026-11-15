@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Laju kasus Sukamulya pada 2024 masih yang terendah di kabupaten, sehingga kenaikannya tidak perlu terlalu diperhatikan oleh dinas.",
+            "Kenaikan itu hanya $$30$$ kasus tambahan, sehingga laju kasus Sukamulya pada 2024 sebenarnya yang terendah di kabupaten.",
         },
         {
           correct: false,
           label:
-            "Kasus di Sukamulya dicatat menurut tempat berobat, sehingga sebagian kasusnya berasal dari kecamatan lain.",
+            "Kasus Kota Baru bertambah $$40$$, lebih banyak daripada Sukamulya, sehingga penularan paling cepat sebenarnya terjadi di Kota Baru.",
         },
         {
           correct: true,
           label:
-            "Kenaikan itu hanya $$30$$ kasus pada $$50{.}000$$ penduduk, sehingga sedikit kasus saja sudah membuat persentasenya besar.",
+            "Kenaikan itu hanya $$30$$ kasus tambahan, tetapi laju Sukamulya pada 2024 termasuk yang tertinggi, sehingga kenaikannya tetap patut diperhatikan walaupun persentasenya membesar karena jumlah awalnya kecil.",
         },
         {
           correct: false,
           label:
-            "Kasus di Kota Baru naik lebih banyak, yaitu $$40$$ kasus, sehingga penularan di Kota Baru pasti lebih cepat.",
+            "Kenaikan itu hanya $$30$$ kasus tambahan, tetapi laju Sukamulya pada 2024 adalah yang tertinggi di kabupaten, sehingga sebutan menyebar paling cepat tetap tepat.",
         },
         {
           correct: false,
           label:
-            "Puskesmas Sukamulya dapat memeriksa darah, sehingga kasus ringan di sana lebih sering tercatat daripada dahulu.",
+            "Kasus di luar Kota Baru lebih sering tidak tercatat, sehingga kenaikan di Sukamulya pasti lebih kecil daripada yang tercatat.",
         },
       ],
     },

@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "comparison",
+    topic: "sequence",
   },
-  stimulus: "archive-week",
+  stimulus: "relay-ride",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The writer treated a plausible memory as enough to complete an uncertain label.",
+          correct: true,
+          label: "Rina's chain came off.",
         },
         {
           correct: false,
-          label: "The writer stopped linking supporting evidence.",
+          label: "Bagas stopped to wave a cat off the road.",
         },
         {
           correct: true,
-          label:
-            "The writer learned that honest uncertainty can make records more useful.",
+          label: "The narrator put a foot down at the corner by the fountain.",
         },
         {
           correct: false,
-          label:
-            "The writer concluded that memories and objects are identical sources.",
+          label: "Yusuf rode his seventh lap.",
         },
         {
-          correct: false,
-          label: "The writer refused to describe photographs without names.",
+          correct: true,
+          label: "Dimas began the lap that did not count.",
         },
       ],
     },

@@ -2,32 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "fiction",
-    topic: "explicit-information",
+    topic: "text-relation",
   },
-  stimulus: "mobile-library",
+  stimulus: "tide-poem",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
-          label: "Dimas selalu datang paling awal ke balai dusun.",
-        },
-        {
           column: 1,
-          label: "Wulan membawa buku dari perpustakaan kecamatan.",
+          label:
+            "Menurut catatan penyair, puisi itu baru selesai sesudah percakapan di bait terakhir terjadi.",
         },
         {
           column: 1,
           label:
-            "Kalimat yang diucapkan Dimas tentang paus biru tidak tertulis di halaman itu.",
+            "Menurut catatan penyair, dalam satu minggu waktu datangnya pasang di kampungnya dapat bergeser beberapa jam.",
         },
         {
           column: 2,
-          label: "Wulan menegur Dimas karena berpura-pura dapat membaca.",
+          label:
+            "Catatan penyair dan bait pertama sama-sama menunjukkan bahwa ayah memakai tabel pasang.",
+        },
+        {
+          column: 2,
+          label:
+            "Penyair langsung memahami jawaban ayahnya ketika percakapan itu terjadi.",
+        },
+        {
+          column: 2,
+          label: "Puisi itu ditulis sebelum ayah penyair berhenti melaut.",
         },
       ],
     },

@@ -4,34 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "prediction",
   },
-  stimulus: "future-seeds",
+  stimulus: "radio-shop",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "She wants the 2036 class to guess what happened.",
+          label: "I only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
         },
         {
           correct: true,
-          label:
-            "She accepts responsibility for making her work usable by others.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "She regrets checking the archive.",
-        },
-        {
-          correct: false,
-          label: "She believes the backup seeds should be hidden.",
-        },
-        {
-          correct: false,
-          label:
-            "She values completing the 2024 test more than preserving continuity for later classes.",
+          label: "II and III only",
         },
       ],
     },

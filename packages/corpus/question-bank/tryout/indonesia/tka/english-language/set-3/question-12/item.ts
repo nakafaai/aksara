@@ -4,25 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "explicit-information",
+    topic: "synthesis",
   },
-  stimulus: "future-seeds",
+  stimulus: "radio-shop",
   versions: {
     en: {
-      columns: ["Initial interpretation", "Later evidence"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "The packet should stay closed until 2040.",
+          correct: false,
+          label: "I only",
         },
         {
-          column: 2,
-          label: "The code matched a twelve-year check.",
+          correct: false,
+          label: "II and III only",
         },
         {
-          column: 2,
-          label: "2032 was one checkpoint in a series.",
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: true,
+          label: "I and II only",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
         },
       ],
     },

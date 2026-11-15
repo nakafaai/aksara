@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "village-postman",
+  stimulus: "ai-homework",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Teknologi baru sebaiknya ditolak karena merenggangkan hubungan keluarga.",
-        },
-        {
-          correct: false,
-          label:
-            "Pekerjaan tukang pos sudah tidak lagi diperlukan di daerah pedesaan.",
-        },
-        {
-          correct: false,
-          label:
-            "Anak yang merantau wajib pulang setiap tahun untuk menemui kedua orang tuanya.",
-        },
-        {
-          correct: false,
-          label:
-            "Surat kilat selalu lebih berharga daripada surat yang dikirim biasa.",
-        },
-        {
           correct: true,
-          label:
-            "Kepedulian sederhana dapat menjawab kerinduan yang tidak dipenuhi teknologi.",
+          label: "$$115$$ siswa, sekitar $$72\\%$$ dari angkatan",
+        },
+        {
+          correct: false,
+          label: "$$70$$ siswa, sekitar $$44\\%$$ dari angkatan",
+        },
+        {
+          correct: false,
+          label: "$$45$$ siswa, sekitar $$28\\%$$ dari angkatan",
+        },
+        {
+          correct: false,
+          label: "$$115$$ siswa, sekitar $$56\\%$$ dari angkatan",
+        },
+        {
+          correct: false,
+          label: "$$105$$ siswa, sekitar $$66\\%$$ dari angkatan",
         },
       ],
     },

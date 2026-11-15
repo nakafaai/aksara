@@ -3,33 +3,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "calculation",
   },
-  stimulus: "wall-clock",
+  stimulus: "regression-mean",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "tamu yang dulu sering datang berkunjung ke rumah Kakek",
+          column: 1,
+          label:
+            "Menurut cara yang diusulkan guru, kenaikan yang dapat dikaitkan dengan kelas tambahan sekitar $$4$$ poin.",
         },
         {
-          correct: false,
-          label: "jam yang sudah rusak dan tidak bergerak lagi",
+          column: 2,
+          label:
+            "Kenaikan nilai kelompok kelas tambahan lebih dari $$25\\%$$ dari nilai awalnya.",
         },
         {
-          correct: true,
-          label: "jam yang terus berjalan seakan masih menunggu Kakek",
+          column: 1,
+          label:
+            "Kelompok bernilai tertinggi turun $$4$$ poin walaupun tidak mendapat perlakuan apa pun.",
         },
         {
-          correct: false,
-          label: "Ibu yang ingin para tamunya segera pulang",
-        },
-        {
-          correct: false,
-          label: "Kakek yang tidak suka menerima tamu di rumahnya",
+          column: 2,
+          label:
+            "Kenaikan nilai kelompok pembanding lebih dari $$15\\%$$ dari nilai awalnya.",
         },
       ],
     },

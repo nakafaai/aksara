@@ -15,22 +15,27 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Di antara pengunjung yang lewat, persentase yang berhenti lebih besar di stan $$24$$ rasa daripada di stan $$6$$ rasa.",
-        },
-        {
-          column: 1,
-          label:
-            "Di antara pengunjung yang berhenti, yang membeli di stan $$6$$ rasa kira-kira sepuluh kali lebih sering daripada di stan $$24$$ rasa.",
+            "Dari jumlah pengunjung lewat yang sama, stan $$24$$ rasa menghentikan lebih banyak pengunjung, tetapi menghasilkan lebih sedikit pembeli daripada stan $$6$$ rasa.",
         },
         {
           column: 2,
           label:
-            "Meta-analisis 2010 menemukan bahwa banyak pilihan selalu menurunkan pembelian.",
+            "Stan $$24$$ rasa menghentikan dua kali lebih banyak pengunjung daripada stan $$6$$ rasa.",
+        },
+        {
+          column: 2,
+          label:
+            "Meta-analisis 2010 menunjukkan bahwa banyaknya pilihan tidak pernah memengaruhi pembelian.",
         },
         {
           column: 1,
           label:
-            "Hasil percobaan selai belum tentu berlaku untuk pilihan yang mudah dibandingkan.",
+            "Menurut meta-analisis 2015, orang yang sudah tahu apa yang ia inginkan lebih kecil kemungkinannya mengalami kelebihan pilihan.",
+        },
+        {
+          column: 2,
+          label:
+            "Penulis menyimpulkan bahwa percobaan selai keliru dan perlu diabaikan.",
         },
       ],
     },

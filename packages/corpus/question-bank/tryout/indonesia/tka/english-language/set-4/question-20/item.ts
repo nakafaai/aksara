@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "procedure",
-    topic: "text-fit",
+    topic: "reader-response",
   },
-  stimulus: "pinhole-projector",
+  stimulus: "fish-tank",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "III only",
+        },
+        {
           correct: true,
-          label:
-            "If the foil tears or the hole becomes too large, replace the foil and try again.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Hold the foil up to the Sun and look through the hole to check that it is open.",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "Long ago, many people were frightened by eclipses and told stories to explain them.",
-        },
-        {
-          correct: false,
-          label:
-            "Dark sunglasses are a good choice when you want to check the hole quickly.",
-        },
-        {
-          correct: false,
-          label:
-            "I made my first projector last year, and it worked much better than I expected.",
+          label: "I, II, III, and IV",
         },
       ],
     },

@@ -2,21 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "explicit-information",
+    topic: "prediction",
   },
-  stimulus: "missing-key",
+  stimulus: "dark-lighthouse",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "She searched her desk drawer." },
-        { correct: false, label: "She checked the fridge." },
-        { correct: true, label: "She set two alarms." },
+        {
+          correct: false,
+          label: "I and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and V only",
+        },
         {
           correct: true,
-          label: "She asked her father to drive her in the morning.",
+          label: "I, II, and V only",
+        },
+        {
+          correct: false,
+          label: "II and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

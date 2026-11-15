@@ -4,36 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "synthesis",
+    topic: "summary",
   },
-  stimulus: "future-seeds",
+  stimulus: "radio-shop",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Older packets contain instructions that later students should follow without checking context.",
-        },
-        {
           correct: true,
-          label:
-            "Check context before acting, and leave clear records for future participants.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The project should test the entire seed reserve at the first checkpoint.",
+          label: "I, II, III, and IV only",
         },
         {
           correct: false,
-          label: "Archive lists make experiments impossible.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "Each class should finish its seed experiment without relying on earlier records.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I and II only",
         },
       ],
     },

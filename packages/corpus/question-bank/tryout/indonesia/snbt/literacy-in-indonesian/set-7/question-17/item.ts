@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "research-design",
   },
-  stimulus: "rooftop-solar",
+  stimulus: "bus-ridership",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menambah panel surya agar listrik yang mengalir ke jaringan pada siang hari makin besar.",
-        },
-        {
-          correct: false,
-          label:
-            "Mematikan panel surya pada siang hari agar listrik di jaringan tidak berlebih.",
-        },
-        {
-          correct: false,
-          label:
-            "Menyalakan pompa air pada malam hari ketika panel tidak bekerja.",
-        },
-        {
-          correct: false,
-          label:
-            "Menjual sebagian panel kepada Rumah R yang pemakaiannya paling besar.",
+            "Koridor C dan Koridor D, dengan anggapan bus yang lebih sering tidak menambah penumpang sama sekali di koridor mana pun.",
         },
         {
           correct: true,
           label:
-            "Memindahkan pemakaian alat yang boros listrik dari malam hari ke siang hari.",
+            "Koridor C dan Koridor D, dengan anggapan penumpang Koridor A dan B menanggapi tarif murah dengan cara yang sama seperti penumpang Koridor C dan D.",
+        },
+        {
+          correct: false,
+          label:
+            "Total semua koridor, dengan anggapan semua koridor mendapat perubahan yang sama dari pemerintah kota.",
+        },
+        {
+          correct: false,
+          label:
+            "Koridor A dan Koridor B, dengan anggapan bus yang lebih sering hanya menambah penumpang di koridor yang ramai.",
+        },
+        {
+          correct: false,
+          label:
+            "Koridor C dan Koridor D, dengan anggapan setiap penumpang di sana membayar tarif penuh satu kali per hari.",
         },
       ],
     },

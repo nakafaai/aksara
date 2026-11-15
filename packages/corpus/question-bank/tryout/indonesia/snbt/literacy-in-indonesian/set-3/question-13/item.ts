@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Peminjam yang gagal bayar di kota itu kebanyakan berpenghasilan rendah dan tidak tetap.",
+            "Sebagian besar peminjam yang gagal bayar mengaku meminjam untuk menutup pinjaman di aplikasi lain.",
         },
         {
           correct: false,
           label:
-            "Jumlah aplikasi pinjaman daring yang beroperasi di kota itu bertambah dua kali lipat dalam setahun terakhir.",
+            "Survei serupa di kota lain juga menemukan bahwa dua pertiga peminjam yang gagal bayar tidak dapat menjawab soal bunga.",
         },
         {
           correct: false,
           label:
-            "Sebagian peminjam yang gagal bayar mengaku meminjam untuk membayar pinjaman lain.",
+            "Survei diulang terhadap $$3{.}000$$ peminjam yang gagal bayar, dan hasilnya tetap dua pertiga tidak dapat menjawab soal bunga.",
         },
         {
           correct: false,
           label:
-            "Banyak warga kota itu tidak pernah mendapat pelajaran tentang bunga di sekolah.",
+            "Aplikasi Kilat kini menampilkan seluruh biaya pinjaman di satu halaman sebelum peminjam menyetujuinya.",
         },
         {
           correct: true,
           label:
-            "Di antara peminjam yang lancar membayar, dua pertiga juga tidak dapat menjawab soal bunga yang sama.",
+            "Di antara peminjam yang lancar membayar, hanya sepersepuluh yang tidak dapat menjawab soal bunga yang sama.",
         },
       ],
     },

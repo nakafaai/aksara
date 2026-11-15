@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "data-interpretation",
   },
-  stimulus: "breakfast-survey",
+  stimulus: "household-spending",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Sarapan setiap hari pasti menaikkan nilai kuis matematika setiap siswa.",
+            "Makin besar pengeluaran per kapita sebuah kelompok, makin kecil porsi makanannya.",
         },
         {
           correct: false,
           label:
-            "Siswa yang jarang sarapan pada dasarnya kurang pandai daripada siswa yang sering sarapan.",
-        },
-        {
-          correct: false,
-          label:
-            "Tidur yang singkat adalah satu-satunya penyebab nilai kuis yang rendah.",
-        },
-        {
-          correct: false,
-          label:
-            "Kuis matematika itu terlalu sulit bagi seluruh siswa kelas X.",
+            "Kelompok $$20\\%$$ terbawah membelanjakan rupiah paling banyak untuk makanan.",
         },
         {
           correct: true,
           label:
-            "Yang sering sarapan bernilai lebih tinggi, tetapi sarapan belum terbukti penyebabnya.",
+            "Pengeluaran makanan per kapita kelompok $$20\\%$$ teratas lebih dari tiga kali pengeluaran makanan kelompok $$20\\%$$ terbawah.",
+        },
+        {
+          correct: false,
+          label:
+            "Porsi makanan kelompok $$20\\%$$ teratas kurang dari separuh porsi makanan kelompok $$20\\%$$ terbawah.",
+        },
+        {
+          correct: true,
+          label:
+            "Semua kelompok di bawah kelompok keempat membelanjakan lebih dari separuh pengeluarannya untuk makanan.",
         },
       ],
     },

@@ -2,32 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "descriptive",
-    topic: "main-idea-purpose",
+    topic: "explicit-information",
   },
-  stimulus: "train-station",
+  stimulus: "clinic-queue",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "to explain how a steam locomotive works" },
         {
           correct: false,
-          label: "to persuade the town to reopen the station for passengers",
+          label: "It begins $$96$$ minutes earlier in the morning",
         },
         {
           correct: true,
-          label:
-            "to describe an old railway station that is now a heritage museum",
+          label: "It begins at the same time of the morning",
         },
         {
           correct: false,
-          label: "to tell the story of the last passenger train",
+          label: "It begins $$12$$ minutes later in the morning",
         },
         {
           correct: false,
-          label: "to compare the old station with the new one",
+          label: "It begins $$180$$ minutes earlier in the morning",
+        },
+        {
+          correct: false,
+          label: "It begins $$6$$ minutes earlier in the morning",
         },
       ],
     },

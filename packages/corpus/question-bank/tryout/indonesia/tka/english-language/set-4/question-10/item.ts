@@ -4,37 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "reader-response",
+    topic: "information-validity",
   },
-  stimulus: "gamelan-rehearsal",
+  stimulus: "mangrove-planting",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Supported", "Contradicted", "Not stated"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "Practicing alone at home is a waste of time for musicians who play in a group.",
+            "More seedlings died or went missing in Zone C than in Zones A and B together.",
         },
         {
-          correct: true,
-          label:
-            "Playing in a group takes both a well-learned part and attention to the person who leads.",
+          column: 1,
+          label: "Zone A had the highest survival rate by Bu Fitri's method.",
         },
         {
-          correct: false,
+          column: 3,
           label:
-            "Good musicians should trust their own counting, whatever the other players are doing.",
+            "Most of the $$50$$ seedlings replanted in May were alive in June.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Teachers should stop a rehearsal every time one player makes a mistake in the melody.",
+            "Fewer than two-thirds of the seedlings planted in March were counted as surviving.",
         },
         {
-          correct: false,
-          label:
-            "A concert goes well when the players are free to choose their own speed.",
+          column: 3,
+          label: "The uncertain seedlings in Zone B later died.",
         },
       ],
     },

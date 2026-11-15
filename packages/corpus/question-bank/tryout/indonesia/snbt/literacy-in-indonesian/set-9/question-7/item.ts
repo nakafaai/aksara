@@ -2,35 +2,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "national-exam",
+  stimulus: "old-translator",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 2,
+          column: 1,
           label:
-            "Penulis menganggap masalah perbandingan nilai antarsekolah tidak nyata.",
+            "Pak Sastro sudah menerjemahkan surat kelima sebelum Dita menanyakan kalung itu kepadanya.",
+        },
+        {
+          column: 2,
+          label: "Bu Ratmi menulis surat-surat itu kepada suaminya.",
         },
         {
           column: 1,
           label:
-            "Menurut penulis, ujian yang menentukan kelulusan dapat mendorong sekolah memangkas pelajaran yang tidak diujikan.",
+            "Sampai membaca surat kelima, Pak Sastro mengira kalung itu hilang ketika mereka pindah rumah.",
+        },
+        {
+          column: 2,
+          label: "Dita mengusulkan agar Pak Sastro memakai kata pendiam.",
         },
         {
           column: 2,
           label:
-            "Penulis mengusulkan agar hasil ujian bersama tidak dipakai untuk apa pun.",
-        },
-        {
-          column: 1,
-          label:
-            "Menurut penulis, taruhan yang lebih rendah menghasilkan data yang lebih dapat dipercaya.",
+            "Pak Sastro sudah memutuskan untuk tidak menerjemahkan surat yang tersisa.",
         },
       ],
     },

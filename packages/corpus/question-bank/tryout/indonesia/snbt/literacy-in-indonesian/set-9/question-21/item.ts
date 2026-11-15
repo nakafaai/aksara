@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "text-structure",
   },
-  stimulus: "remote-work",
+  stimulus: "pantun-tradition",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pekerja berpengalaman menyelesaikan laporan lebih cepat ketika bekerja dari rumah.",
+            "Paragraf pertama melaporkan pengakuan resmi, dan paragraf terakhir menegaskan bahwa pengakuan itu sudah cukup untuk menjaga pantun.",
         },
         {
           correct: false,
           label:
-            "Perusahaan yang mengizinkan kerja dari rumah menerima lebih banyak lamaran kerja.",
+            "Paragraf pertama menolak pengajuan bersama, dan paragraf terakhir mengusulkan agar pantun diajukan ulang oleh satu negara.",
+        },
+        {
+          correct: false,
+          label:
+            "Paragraf pertama dan paragraf terakhir sama-sama menjelaskan bentuk pantun, yaitu empat baris berima a-b-a-b.",
         },
         {
           correct: true,
           label:
-            "Karyawan baru yang bekerja dari rumah sepenuhnya lebih lambat menguasai pekerjaannya.",
+            "Paragraf pertama melaporkan pengakuan resmi, dan paragraf terakhir membatasi arti pengakuan itu: sertifikat hanya mencatat, sedangkan pantun hidup bila terus dipakai.",
         },
         {
           correct: false,
           label:
-            "Biaya sewa kantor turun ketika separuh karyawan bekerja dari rumah.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian pekerja lebih suka bekerja di kafe daripada di rumah.",
+            "Paragraf pertama melaporkan pengakuan resmi, dan paragraf terakhir menjelaskan bahwa UNESCO akan mencabut pengakuan itu bila pantun tidak lagi dipakai.",
         },
       ],
     },

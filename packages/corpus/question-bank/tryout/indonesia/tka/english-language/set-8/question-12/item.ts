@@ -6,28 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "outline",
   },
-  stimulus: "night-ferry",
+  stimulus: "dry-well",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Rani and her grandmother carry a basket and a sack of rice.",
+          label: "I, IV, and V only",
         },
         {
           correct: false,
-          label: "The grandmother dozes against the side of the fishing boat.",
+          label: "I, II, and IV only",
         },
-        { correct: false, label: "They reach the island before midnight." },
         {
           correct: true,
-          label:
-            "The ferry is already full when Rani and her grandmother arrive.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label: "Rani notices that the basket is two mangosteens lighter.",
+          label: "IV and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
       ],
     },

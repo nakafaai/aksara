@@ -2,36 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "fiction",
-    topic: "explicit-information",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "informational-text",
+    topic: "application",
   },
-  stimulus: "film-review",
+  stimulus: "survivorship-bias",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Tokoh ibu hanya muncul dalam satu adegan di awal film.",
+          correct: true,
+          label:
+            "Menyimpulkan bahwa sepeda motor buatan dulu lebih awet karena motor tua yang masih dipakai di jalan kondisinya baik.",
         },
         {
           correct: true,
           label:
-            "Ia muncul di banyak adegan, tetapi pikirannya tidak pernah ditunjukkan.",
-        },
-        {
-          correct: false,
-          label: "Pemeran tokoh ibu baru pertama kali berakting dalam film.",
+            "Menilai keunggulan reksa dana dari reksa dana yang masih ada sekarang, tanpa menghitung yang sudah ditutup karena merugi.",
         },
         {
           correct: false,
           label:
-            "Tokoh ibu tidak pernah ikut menonton lomba layang-layang bersama Bima.",
+            "Membandingkan nilai siswa yang dibagi secara acak ke dalam dua metode belajar yang berbeda.",
+        },
+        {
+          correct: true,
+          label:
+            "Menyimpulkan bahwa lagu-lagu zaman dulu lebih bagus karena lagu lama yang masih sering diputar sekarang semuanya bagus.",
         },
         {
           correct: false,
-          label: "Tokoh ibu menentang Bima menjual layang-layang di lapangan.",
+          label:
+            "Menyurvei secara acak semua lulusan SMA di sebuah kota, termasuk yang tidak melanjutkan kuliah.",
         },
       ],
     },

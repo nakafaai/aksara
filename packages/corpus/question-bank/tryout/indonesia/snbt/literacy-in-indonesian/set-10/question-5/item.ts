@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "application",
   },
-  stimulus: "coral-bleaching",
+  stimulus: "shorebird-flyway",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "membuktikan bahwa terumbu karang menutupi sebagian besar dasar laut",
-        },
-        {
-          correct: false,
-          label:
-            "menjelaskan cara alga melakukan fotosintesis di dalam jaringan tubuh karang",
+            "P, karena luasnya paling besar sehingga burung tetap punya banyak lumpur di tempat lain",
         },
         {
           correct: true,
           label:
-            "menunjukkan pentingnya terumbu yang kecil luasnya tetapi kaya kehidupan",
+            "Q, karena masih ada dua pengganti dalam jangkauan terbang, asalkan tempat bertengger di dekat pengganti itu tetap aman",
         },
         {
           correct: false,
           label:
-            "menyarankan agar penyelam tidak lagi mengunjungi terumbu karang",
+            "R, karena penggantinya masih memiliki hamparan lumpur yang luas",
         },
         {
           correct: false,
-          label: "membandingkan karang dengan tumbuhan yang hidup di daratan",
+          label:
+            "P, karena burung cukup pindah ke dataran lumpur lain, berapa pun jaraknya",
+        },
+        {
+          correct: false,
+          label:
+            "Q, karena luasnya paling kecil, sehingga hilangnya sama sekali tidak berpengaruh pada burung",
         },
       ],
     },

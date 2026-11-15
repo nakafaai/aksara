@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "narrative",
-    topic: "outline",
+    topic: "character",
   },
-  stimulus: "power-cut",
+  stimulus: "kite-cliff",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "A power cut scares Bayu, his grandmother calls, he gets her stick and a candle, and he prepares for next time.",
+          label: "He makes practical decisions from what he sees in nature.",
         },
         {
           correct: false,
+          label: "He tells the narrator exactly when the rain will start.",
+        },
+        {
+          correct: true,
           label:
-            "Bayu lights a candle, the tall man appears, his grandmother calls him, and his parents come home early.",
+            "He gives his lesson in words before he lets the narrator try.",
+        },
+        {
+          correct: true,
+          label: "He treats his late brother's kite as something precious.",
         },
         {
           correct: false,
-          label:
-            "His parents call from the wedding, Bayu finds the candles, the lights go out, and his grandmother falls asleep.",
-        },
-        {
-          correct: false,
-          label:
-            "The lights go out, Bayu's grandmother finds the candles herself, Bayu tells her a story, and the power returns.",
-        },
-        {
-          correct: false,
-          label:
-            "Bayu waits on the sofa until the power comes back, and only then does he put out two flashlights.",
+          label: "He explains the red kite's flight as a change in the wind.",
         },
       ],
     },

@@ -4,35 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "sequence",
   },
-  stimulus: "volcano-hike",
+  stimulus: "bridge-count",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "R, P, Q, T, S",
+        },
+        {
           correct: true,
-          label:
-            "By the third break, the climb had tired the writer so much that the rests felt necessary.",
+          label: "R, Q, P, T, S",
         },
         {
           correct: false,
-          label:
-            "Bu Endah explained that the breaks were for taking photos of the forest.",
+          label: "Q, R, P, T, S",
         },
         {
           correct: false,
-          label:
-            "The writer's cousin had lost his water bottle and needed to rest.",
+          label: "R, Q, T, P, S",
         },
         {
           correct: false,
-          label: "The wind had become too strong to keep walking.",
-        },
-        {
-          correct: false,
-          label: "The forest was too dark for anyone to walk without stopping.",
+          label: "R, Q, P, S, T",
         },
       ],
     },

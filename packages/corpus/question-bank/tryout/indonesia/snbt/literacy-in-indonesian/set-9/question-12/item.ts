@@ -3,37 +3,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "tea-picker",
+  stimulus: "street-vendors",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "pucuk terbaik hanya dapat dipilih oleh tangan yang terampil dan teliti",
+            "Kedua penulis setuju bahwa trotoar seharusnya dapat dilalui pejalan kaki dengan aman.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "mesin pemetik di kebun itu belum pernah dicoba di lereng timur",
+            "Teks B menyiratkan bahwa letak lokasi baru lebih menentukan daripada mutu bangunannya.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Laras harus menyimpan pucuk itu agar tidak dipetik oleh mesin",
+            "Menurut Teks A, pedagang wajib membayar sewa lapak sejak bulan pertama.",
         },
         {
-          correct: false,
-          label: "pucuk itu tumbuh di tempat yang tidak dapat dijangkau mesin",
+          column: 1,
+          label:
+            "Menurut survei Teks B, lebih dari separuh pedagang yang dipindahkan pada 2022 kembali ke jalan dalam setahun.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Mak Inah akan menolak dipindahkan ke bagian pengeringan mulai bulan depan",
+            "Penulis Teks B menolak penataan pedagang kaki lima dalam bentuk apa pun.",
         },
       ],
     },

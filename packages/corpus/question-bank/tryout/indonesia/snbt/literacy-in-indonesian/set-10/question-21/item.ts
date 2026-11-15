@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "inference",
   },
-  stimulus: "artefact-return",
+  stimulus: "lingua-franca",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Sebagian museum daerah belum punya ruang berpengatur suhu dan kelembapan.",
+            "kesetaraan, karena tingkat tutur menandai kedudukan lawan bicara dan bahasa satu suku dapat terkesan mengistimewakan suku itu",
         },
         {
           correct: false,
           label:
-            "Benda-benda itu dirampas oleh tentara kolonial pada akhir abad ke-19.",
+            "kepraktisan, karena bahasa Melayu pasar sederhana dan mudah dipelajari para pedagang",
         },
         {
           correct: false,
           label:
-            "Masyarakat setempat menyambut kepulangan arca dengan upacara adat.",
+            "jumlah penutur, karena bahasa dengan penutur asli terbanyak paling adil untuk dipilih",
         },
         {
           correct: false,
           label:
-            "Jumlah pengunjung museum di Belanda menurun tajam dalam lima tahun terakhir.",
+            "kemurnian bahasa, karena bahasa Melayu tidak menyerap kata dari bahasa lain",
         },
         {
           correct: false,
           label:
-            "Arca dari masa Singasari dipahat dari batu andesit yang sangat keras.",
+            "kepatuhan pada pemerintah kolonial, karena Belanda memakai bahasa Melayu di sekolah pribumi",
         },
       ],
     },

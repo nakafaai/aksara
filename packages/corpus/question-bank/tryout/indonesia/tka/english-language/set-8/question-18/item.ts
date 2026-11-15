@@ -4,22 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "supporting-detail",
   },
-  stimulus: "fried-rice",
+  stimulus: "rain-gauge",
   versions: {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "so that the eggs cook more quickly" },
-        { correct: false, label: "so that the rice becomes stickier" },
-        { correct: false, label: "so that the oil does not spit" },
+        {
+          correct: false,
+          label: "I only",
+        },
         {
           correct: true,
-          label:
-            "because cooking them until brown would burn them and spoil the taste",
+          label: "I and IV only",
         },
-        { correct: false, label: "because golden garlic is easier to chop" },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
+        },
       ],
     },
   },

@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "cause-effect",
+    topic: "supporting-detail",
   },
-  stimulus: "rain-market",
+  stimulus: "tool-library",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The yellow edges of the wooden bridges will become harder to see.",
+          label: "I only",
         },
         {
           correct: true,
-          label:
-            "Damp air will have less room to circulate behind the paper prints.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The clips will no longer hold the lower corners when wind enters the lane.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The warmer lamps over the cooking row will cool the soup pots.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The blue circle around the central drain will be covered by the rack.",
+          label: "II and IV only",
         },
       ],
     },

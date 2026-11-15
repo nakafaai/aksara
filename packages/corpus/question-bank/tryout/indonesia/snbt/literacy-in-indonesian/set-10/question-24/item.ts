@@ -4,32 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "application",
+    topic: "inference",
   },
-  stimulus: "taman-siswa",
+  stimulus: "lingua-franca",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "di depan memberi teladan",
+          column: 1,
+          label:
+            "Bahasa Melayu sudah ditulis lebih dari dua belas abad sebelum Sumpah Pemuda.",
         },
         {
-          correct: false,
-          label: "di tengah membangun semangat",
+          column: 1,
+          label:
+            "Menurut teks, pemerintah kolonial ikut memakai bahasa Melayu di luar perdagangan.",
         },
         {
-          correct: false,
-          label: "di depan memberi perintah",
+          column: 2,
+          label:
+            "Teks menyebut jumlah pasti penutur asli bahasa Jawa pada 1928.",
         },
         {
-          correct: true,
-          label: "di belakang memberi dorongan",
+          column: 2,
+          label:
+            "Bahasa Indonesia sekarang hanya terdiri atas kata-kata yang berasal dari bahasa Melayu.",
         },
         {
-          correct: false,
-          label: "di belakang memberi hukuman",
+          column: 2,
+          label:
+            "Banyak tokoh pergerakan dari Jawa menolak bahasa Melayu sebagai bahasa persatuan.",
         },
       ],
     },
