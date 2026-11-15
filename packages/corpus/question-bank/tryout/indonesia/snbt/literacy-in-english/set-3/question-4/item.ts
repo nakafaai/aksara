@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "text-structure",
   },
-  stimulus: "bird-compass",
+  stimulus: "mpemba-effect",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It showed that robins can see magnetic patterns in daylight but not at night.",
-        },
-        {
-          correct: false,
-          label:
-            "It proved that aluminium screens help robins grow stronger iron-based magnets.",
-        },
-        {
-          correct: false,
-          label:
-            "It showed that robins navigate better inside huts than they do in the open.",
+            "Yes, because the 2016 study found no sign that hot water froze before cold water.",
         },
         {
           correct: true,
           label:
-            "It showed that weak noise, harmless to a magnet, disrupted the birds until blocked.",
+            "Not necessarily, because the 1969 paper reported hot water freezing first, while the 2016 study timed only cooling to zero degrees, a different event.",
         },
         {
           correct: false,
           label:
-            "It found cryptochrome in the robins' beaks rather than in their retinas.",
+            "Yes, because the 2016 study showed that the thermometers in the 1969 experiment had been placed wrongly.",
+        },
+        {
+          correct: false,
+          label:
+            "No, because both studies found that hot water reached zero degrees before cold water.",
+        },
+        {
+          correct: false,
+          label:
+            "Not necessarily, because the 1969 paper tested ice-cream mixtures, while the 2016 study tested pure water.",
         },
       ],
     },

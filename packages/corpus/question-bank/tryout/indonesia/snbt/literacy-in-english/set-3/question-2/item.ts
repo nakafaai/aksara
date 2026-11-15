@@ -4,32 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "evidence-status",
   },
-  stimulus: "bird-compass",
+  stimulus: "mpemba-effect",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "hidden away behind.",
+          column: 2,
+          label:
+            "Mpemba and Osborne's 1969 paper was the first written claim that warm water can freeze faster than cold water.",
         },
         {
-          correct: false,
-          label: "replaced entirely by.",
+          column: 1,
+          label:
+            "A cup of water that reaches zero degrees first may still be the last of two cups to freeze solid.",
         },
         {
-          correct: true,
-          label: "laid on top of.",
+          column: 2,
+          label:
+            "The 2016 study ruled out evaporation as a cause of the Mpemba effect.",
         },
         {
-          correct: false,
-          label: "reflected back off.",
+          column: 1,
+          label:
+            "Two experimenters who placed their thermometers differently could reach opposite conclusions about the same pair of cups.",
         },
         {
-          correct: false,
-          label: "blurred together into.",
+          column: 1,
+          label:
+            "Supercooling can make a cooler cup freeze later than a warmer one even when the cooler cup reaches zero degrees first.",
         },
       ],
     },

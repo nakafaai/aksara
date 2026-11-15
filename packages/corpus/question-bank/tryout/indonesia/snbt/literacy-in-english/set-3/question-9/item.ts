@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "argument-evaluation",
   },
-  stimulus: "four-day-week",
+  stimulus: "bag-charge",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "It keeps the same hours and skips the redesign behind the good results.",
+            "It would be about $$80$$ tonnes, much less than the figure implied in Text B.",
         },
         {
           correct: false,
           label:
-            "It requires employees to accept lower pay for the same amount of work.",
+            "It would be about $$260$$ tonnes, more than the figure implied in Text B.",
         },
         {
           correct: false,
           label:
-            "It is used only in hospitals, where staff must be present every day.",
+            "It would still be about $$200$$ tonnes, because the other shops do not hand out carrier bags.",
         },
         {
           correct: false,
           label:
-            "It reduces the number of meetings so much that teams stop communicating.",
+            "It would be about $$560$$ tonnes, because the extra bin liners must be added to the bags saved.",
         },
         {
           correct: false,
           label:
-            "It has never been tested in any company in the United Kingdom.",
+            "It would be zero, because every carrier bag not handed out has been replaced by a bin liner.",
         },
       ],
     },

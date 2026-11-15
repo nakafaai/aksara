@@ -2,33 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
-    contentDomain: "informational-text",
-    topic: "explicit-information",
+    cognitiveLevel: "inferential",
+    contentDomain: "fiction",
+    topic: "inference",
   },
-  stimulus: "rosetta-stone",
+  stimulus: "clinic-interpreter",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
+          column: 2,
+          label:
+            "The father asked for help because he struggles to understand the doctor's language.",
+        },
+        {
           column: 1,
-          label: "The Rosetta Stone was discovered by French soldiers.",
+          label:
+            "The doctor addressed her explanations mainly to the narrator rather than to the father.",
+        },
+        {
+          column: 1,
+          label:
+            "What troubles the father most at the clinic is being judged, not the medical terms.",
         },
         {
           column: 2,
           label:
-            "The decree on the stone was written in four different scripts.",
+            "The narrator realises on the bus that her father has not been taking his tablets.",
         },
         {
           column: 1,
-          label: "Coptic is described as a late form of the Egyptian language.",
-        },
-        {
-          column: 2,
           label:
-            "Hieroglyphs were deciphered within a few months of the stone's discovery.",
+            "The father said \"Every day\" in the doctor's language rather than in the family's own.",
         },
       ],
     },

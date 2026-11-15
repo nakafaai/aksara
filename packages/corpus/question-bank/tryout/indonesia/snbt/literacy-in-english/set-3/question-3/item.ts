@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "application",
   },
-  stimulus: "bird-compass",
+  stimulus: "mpemba-effect",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Birds kept where they cannot see the sky may still try to fly in the correct seasonal direction.",
+            "Lab P has confirmed the Mpemba effect, so Lab Q must have timed its cups wrongly.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The 2012 study confirmed that iron-containing cells in the beak send magnetic signals to the brain.",
+            "Both labs may be right, because reaching zero first and freezing solid first are different events.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Near the poles, magnetic field lines run almost parallel to the ground.",
+            "The disagreement may come from where the thermometers sat, so neither result shows on its own that the effect is real.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "The passage suggests that birds may rely on more than one kind of cue to navigate.",
+            "The disagreement may come from supercooling, which can leave one cup liquid below zero while the other freezes.",
+        },
+        {
+          correct: false,
+          label:
+            "Hot water reaches zero first only near the bottom of a cup, so Lab Q measured in the wrong place.",
         },
       ],
     },

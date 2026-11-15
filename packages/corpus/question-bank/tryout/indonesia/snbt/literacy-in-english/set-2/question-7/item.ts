@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "inference",
+    topic: "text-relation",
   },
-  stimulus: "right-repair",
+  stimulus: "speed-cameras",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 2,
           label:
-            "A shop cannot buy a replacement battery because the company sells parts only to its own service centres.",
+            "Comparing the camera sites with the city as a whole measures what the cameras achieved.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "A phone disables a feature after getting a screen taken from an identical phone.",
+            "Injury crashes at the camera sites fell after the cameras went in.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "A washing machine cannot be opened because its screws need a special tool.",
+            "The $$60$$ new sites should wait until the first $$40$$ have been measured properly.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "A repair manual is available only to technicians who pay a yearly fee.",
+            "The cameras probably prevented at least some injury crashes at the sites.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "A battery is glued so firmly that removing it risks breaking the case.",
+            "The fall at the camera sites is larger than the cameras alone would explain.",
         },
       ],
     },

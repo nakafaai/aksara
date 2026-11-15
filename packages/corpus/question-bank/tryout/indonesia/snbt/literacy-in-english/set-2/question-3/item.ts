@@ -4,33 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "figurative-language",
   },
-  stimulus: "tardigrade-survival",
+  stimulus: "cuckoo-eggs",
   versions: {
     en: {
-      columns: ["True", "False"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "An active tardigrade can easily survive conditions that would kill many other small invertebrates.",
+            "The idea in the second paragraph that accepting hosts are simply fooled, on the grounds that hosts in fact reject every cuckoo egg once they have seen a cuckoo.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "In the tun state, a tardigrade's metabolism drops to a level that is barely detectable.",
+            "The idea in the third paragraph that rejection is costly, on the grounds that accepting a cuckoo egg costs the host its whole brood.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "The passage suggests that some proteins found in tardigrades lack a fixed shape in solution.",
+            "The idea in the second paragraph that accepting hosts are simply fooled, on the grounds that acceptance can be a sensible bet where cuckoos are rare.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The passage reports that vaccines can already be stored dry at room temperature using tardigrade proteins.",
+            "The idea in the second paragraph that cuckoo eggs match host eggs, on the grounds that the field experiments found the match to be poor.",
+        },
+        {
+          correct: false,
+          label:
+            "The idea in the first paragraph that the cuckoo chick pushes out the host's eggs, on the grounds that most hosts reject cuckoo eggs before they hatch.",
         },
       ],
     },

@@ -4,37 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "main-idea",
+    topic: "text-relation",
   },
-  stimulus: "right-repair",
+  stimulus: "speed-cameras",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label:
+            "Injury crashes at the camera sites fell after the cameras were installed.",
+        },
+        {
+          correct: false,
+          label:
+            "The cameras' effect at the sites is about as large as the crash counts there suggest.",
+        },
+        {
+          correct: false,
+          label:
+            "Comparing the sites with the whole city shows what the cameras achieved.",
+        },
+        {
           correct: true,
           label:
-            "Laws should open up parts, manuals, and repair, protecting safety in less restrictive ways.",
+            "Even without cameras, the camera sites would probably have fallen by more than the city as a whole.",
         },
         {
           correct: false,
           label:
-            "Manufacturers should be banned from producing devices with glued batteries.",
-        },
-        {
-          correct: false,
-          label:
-            "Only authorised service centres should be allowed to repair modern devices.",
-        },
-        {
-          correct: false,
-          label:
-            "Safety concerns about repairs are invented by manufacturers to increase profits.",
-        },
-        {
-          correct: false,
-          label:
-            "Owners should be required to repair their devices instead of replacing them.",
+            "Once chance is allowed for, the cameras turn out to have had no effect on crashes.",
         },
       ],
     },

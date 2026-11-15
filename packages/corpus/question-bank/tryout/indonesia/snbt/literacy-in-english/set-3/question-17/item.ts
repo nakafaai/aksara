@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "text-comparison",
+    cognitiveLevel: "evaluation-appreciation",
+    contentDomain: "fiction",
+    topic: "application",
   },
-  stimulus: "rosetta-stone",
+  stimulus: "clinic-interpreter",
   versions: {
     en: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Young limited sound signs to foreign names, but Champollion found them in Egyptian names too.",
+            "A job applicant who understands every question but feels the interviewer judging him by his accent rather than his answers.",
         },
         {
           correct: false,
           label:
-            "Young read the Greek text, while Champollion read only the Demotic text.",
+            "An immigrant who cannot follow a fast-talking official and asks his son to explain the forms.",
         },
         {
           correct: false,
           label:
-            "Young believed hieroglyphs were purely mystical, while Champollion believed they were only sounds.",
+            "A patient who understands the diagnosis perfectly but dreads hearing bad news at all.",
         },
         {
           correct: false,
           label:
-            "Young studied temples in Egypt, while Champollion studied only the stone in London.",
+            "A student who fails an exam because the questions were harder than anything taught in class.",
         },
         {
           correct: false,
           label:
-            "Young identified Ramesses and Thutmose, while Champollion identified Ptolemy.",
+            "A tourist who cannot read the menu and has to point at the pictures to order a meal.",
         },
       ],
     },

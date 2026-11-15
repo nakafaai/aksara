@@ -6,31 +6,36 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "data-interpretation",
   },
-  stimulus: "library-hours",
+  stimulus: "clinic-reminders",
   versions: {
     en: {
-      columns: ["True", "False"],
+      columns: ["Yes", "No"],
       kind: "matrix",
       statements: [
         {
           column: 1,
           label:
-            "During the pilot, every daytime time slot had fewer visitors than before the pilot.",
+            "Among patients who did not sign up, the missed rate fell by as many percentage points as among patients who signed up.",
+        },
+        {
+          column: 2,
+          label:
+            "In 2024, patients who signed up missed a larger share of their appointments than the clinic's patients as a whole had missed in 2023.",
         },
         {
           column: 1,
           label:
-            "During the pilot, the evening slot attracted more visitors than the 9 a.m. to 12 noon slot.",
+            "In 2024, patients who did not sign up accounted for five of every six missed appointments.",
         },
         {
           column: 2,
           label:
-            "The average number of daytime visitors fell by more than 100 per weekday during the pilot.",
+            "The figures show that the reminders lowered the missed rate of the patients who signed up.",
         },
         {
           column: 2,
           label:
-            "The questionnaire was given to every visitor to the library during the pilot.",
+            "Had the reminders had no effect, the signed-up group's missed rate would most likely have stayed at $$5\\%$$ in 2024.",
         },
       ],
     },
