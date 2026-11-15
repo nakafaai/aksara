@@ -11,11 +11,26 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "Laba turun $$10\\%$$, dan harga perlu naik $$4\\%$$." },
-        { correct: false, label: "Laba turun $$80\\%$$, dan harga perlu naik $$10\\%$$." },
-        { correct: false, label: "Laba turun $$20\\%$$, dan harga perlu naik $$4\\%$$." },
-        { correct: true, label: "Laba turun $$80\\%$$, dan harga perlu naik $$4\\%$$." },
-        { correct: false, label: "Laba turun $$80\\%$$, dan harga perlu naik $$40\\%$$." },
+        {
+          correct: false,
+          label: "Laba turun $$10\\%$$, dan harga perlu naik $$4\\%$$.",
+        },
+        {
+          correct: false,
+          label: "Laba turun $$80\\%$$, dan harga perlu naik $$10\\%$$.",
+        },
+        {
+          correct: false,
+          label: "Laba turun $$20\\%$$, dan harga perlu naik $$4\\%$$.",
+        },
+        {
+          correct: true,
+          label: "Laba turun $$80\\%$$, dan harga perlu naik $$4\\%$$.",
+        },
+        {
+          correct: false,
+          label: "Laba turun $$80\\%$$, dan harga perlu naik $$40\\%$$.",
+        },
       ],
     },
   },

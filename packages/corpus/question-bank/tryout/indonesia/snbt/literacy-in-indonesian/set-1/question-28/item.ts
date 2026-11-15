@@ -15,7 +15,11 @@ const item: ItemSource = {
         { correct: false, label: "$$3$$ orang" },
         { correct: false, label: "$$5$$ orang" },
         { correct: false, label: "$$2$$ orang" },
-        { correct: false, label: "Tidak ada, karena peluang setiap orang dalam kerumunan lebih kecil daripada $$80\\%$$." },
+        {
+          correct: false,
+          label:
+            "Tidak ada, karena peluang setiap orang dalam kerumunan lebih kecil daripada $$80\\%$$.",
+        },
       ],
     },
   },
