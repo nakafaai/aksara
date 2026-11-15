@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "vocabulary-in-context",
+    topic: "text-relation",
   },
   stimulus: "homeschooling",
   versions: {
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Children who spend their days at home and are rarely seen at co-op classes, sports clubs, libraries or the other public places where children meet.",
+            "That her children see other children every day, at co-op classes, at soccer and at the library.",
         },
         {
           correct: false,
           label:
-            "Children whose families never told anyone they teach at home, so they are missing from the national count.",
+            "That the share of households reporting homeschooling rose from $$5.4\\%$$ to $$11.1\\%$$ in 2020.",
         },
         {
           correct: false,
           label:
-            "Children who went back to school after the pandemic and so dropped out of the household surveys.",
+            'That "study after study" finds homeschooled students scoring well above the national average.',
         },
         {
           correct: true,
           label:
-            "Homeschooled children whose progress goes unreported, above all those whose parents lack the time or training of the success stories.",
+            "That the burden of proof should fall on those who want to tighten the rules.",
         },
         {
           correct: false,
           label:
-            "Children who were bullied or whose needs a school never met, and who now flourish quietly at home.",
+            "That no one knows her children's habits and gaps better than she does.",
         },
       ],
     },

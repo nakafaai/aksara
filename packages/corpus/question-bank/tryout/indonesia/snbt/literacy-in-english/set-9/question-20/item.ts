@@ -9,33 +9,32 @@ const item: ItemSource = {
   stimulus: "map-projection",
   versions: {
     en: {
-      columns: ["Yes", "No"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "The author thinks the complaint that Mercator's map distorts the world misses what the map was made for.",
+            "As one more trade-off, keeping areas true by giving up shapes, and as the first world map to make that trade.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The author thinks online maps should stop using a version of Mercator's projection.",
+            "As a fairer map that corrects Mercator's bias against the tropics, just as Peters claimed.",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "The author holds that choosing a projection means choosing which property to keep true.",
+            "As one more trade-off, keeping areas true by giving up shapes, which suits some tasks but is not the right map for every job.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The author agrees with Peters that Mercator's map was designed to flatter Europe.",
+            "As one more trade-off, keeping shapes true by giving up areas, which suits navigation better than Mercator's map.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "The author regards Mercator's map as the best choice for a general-purpose world map.",
+            "As a map to be rejected outright, because cartographers objected to it.",
         },
       ],
     },

@@ -17,6 +17,6 @@ export const snbtRatings: readonly SetRating[] = [
   { items: 28, level: 3.38, raters: 1 },
   { items: 28, level: 3.13, raters: 1 },
   { items: 28, level: 3.13, raters: 1 },
-  { items: 28, level: 2.82, raters: 1 },
-  { items: 28, level: 2.93, raters: 1 },
+  { items: 28, level: 3, raters: 1 },
+  { items: 28, level: 3.04, raters: 1 },
 ];

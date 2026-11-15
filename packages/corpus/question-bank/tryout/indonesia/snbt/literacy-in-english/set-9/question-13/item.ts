@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "It counts the panels' output in kWh instead of as a share of the electricity the school uses.",
+            "July's efficiency was about $$19\\%$$, the same as March's, so July's high output does show that heat did no harm.",
         },
         {
           correct: false,
           label:
-            "It assumes that July was the hottest month, although the table shows that June was hotter.",
+            "July's efficiency was about $$17.5\\%$$, higher than June's, so heat began to help once the panels passed $$40$$ °C.",
         },
         {
           correct: true,
           label:
-            "It judges heat by total output, which more sunlight can raise even while each unit of sunlight is used less well.",
+            "July's efficiency was about $$16.5\\%$$, the lowest of the six months, so its high output came from having the most sunlight.",
         },
         {
           correct: false,
           label:
-            "It forgets that the panels were not washed after March, so the dust on the glass, not the heat, explains the whole of July's loss.",
+            "July's efficiency was about $$16.5\\%$$, the lowest of the six months, which proves that heat alone caused the loss.",
         },
         {
           correct: false,
           label:
-            "It compares July with March, when the panels were new and had not yet lost any of their efficiency.",
+            "June's efficiency was the lowest of the six months, so June, not July, is the month that shows the harm from heat.",
         },
       ],
     },

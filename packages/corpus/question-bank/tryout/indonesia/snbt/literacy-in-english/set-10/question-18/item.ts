@@ -13,9 +13,9 @@ const item: ItemSource = {
       kind: "matrix",
       statements: [
         {
-          column: 1,
+          column: 2,
           label:
-            "The narrator had never before seen her father read back through the ledger.",
+            "The narrator had often seen her father read back through the ledger.",
         },
         {
           column: 1,
@@ -28,9 +28,14 @@ const item: ItemSource = {
             "The father kept the ledger because the ferry company required him to.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            'The final entry, "river quiet", shows that the river was unusually calm for the time of year.',
+            'The final entry, "river quiet", is the kind of note he made for every crossing, not a comment written only for the last one.',
+        },
+        {
+          column: 1,
+          label:
+            "Counting the first cars on the bridge carries on, in a way, the habit that the ledger records.",
         },
       ],
     },
