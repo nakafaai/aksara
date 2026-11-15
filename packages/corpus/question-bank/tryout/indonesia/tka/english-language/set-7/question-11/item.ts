@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "synthesis",
   },
-  stimulus: "missing-key",
+  stimulus: "dark-lighthouse",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "stubborn, because she refuses to thank Dito",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label: "careless, because she loses the key again in the morning",
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
         },
         {
           correct: true,
-          label:
-            "fair, because she admits that Dito was right and shares her chocolate with him",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "fearful, because she is afraid of missing the bus",
-        },
-        {
-          correct: false,
-          label: "jealous, because Dito found the key before she did",
+          label: "I, II, III, and IV",
         },
       ],
     },

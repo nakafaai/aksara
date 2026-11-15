@@ -4,27 +4,36 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "fact-opinion",
+    topic: "text-fit",
   },
-  stimulus: "science-fair",
+  stimulus: "egg-incubator",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label: "I think that was the best compliment we could have received.",
+          label:
+            "I read the chart quickly and copied only the numbers into my notebook.",
         },
-        { correct: false, label: "We repeated the test three times." },
         {
           correct: false,
-          label: "The unwrapped cube melted in about 40 minutes.",
+          label: 'I wrote "Monday: day 0" on the first line of my record.',
         },
-        { correct: false, label: "The judges gave us second place." },
+        {
+          correct: true,
+          label:
+            "I meant to read the chart again properly later, but I never did.",
+        },
         {
           correct: false,
           label:
-            "Each group of three had four weeks to plan and carry out a small experiment.",
+            "Bu Ratna checked my record every morning and corrected the day numbers.",
+        },
+        {
+          correct: false,
+          label:
+            "All fifteen eggs were still developing at the first candling.",
         },
       ],
     },

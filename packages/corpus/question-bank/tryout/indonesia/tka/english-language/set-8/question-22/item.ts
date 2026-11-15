@@ -2,29 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "information-validity",
+    topic: "main-idea-purpose",
   },
-  stimulus: "class-cleaning",
+  stimulus: "reading-minutes",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "A duty team spends about twelve minutes on its tasks.",
-        },
-        { column: 2, label: "Every student cleans the classroom every day." },
-        {
-          column: 2,
-          label: "The writer wants students to clean the toilets and gutters.",
+          correct: false,
+          label: "I and II only",
         },
         {
-          column: 1,
-          label:
-            "Hiring two extra cleaners would cost about 60 million rupiah a year.",
+          correct: false,
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "I, IV, and V only",
         },
       ],
     },

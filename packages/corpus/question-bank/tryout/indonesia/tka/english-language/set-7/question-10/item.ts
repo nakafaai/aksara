@@ -4,24 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "information-validity",
+    topic: "text-fit",
   },
-  stimulus: "volcano-hike",
+  stimulus: "bridge-count",
   versions: {
     en: {
-      columns: ["Supported", "Not supported"],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "The group camped at the summit overnight." },
-        { column: 1, label: "The hike started before sunrise." },
+      kind: "choice",
+      options: [
         {
-          column: 2,
-          label: "Fajar went back down alone after losing his water bottle.",
+          correct: true,
+          label:
+            "Nobody checked the table against the tally sheets, since the totals only ever went up.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Bu Endah stopped the group every forty minutes for water and a rest.",
+            "Yosef checked each figure against the camera on the bridge as he wrote it.",
+        },
+        {
+          correct: true,
+          label: "I looked over Yosef's table at 9:00 and found nothing wrong.",
+        },
+        {
+          correct: false,
+          label:
+            "We all expected the busiest hour to be 6:00 to 7:00, and the table proved us right.",
+        },
+        {
+          correct: true,
+          label: "The camera on the bridge had been put up the month before.",
         },
       ],
     },

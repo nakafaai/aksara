@@ -4,18 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "fried-rice",
+  stimulus: "rain-gauge",
   versions: {
     en: {
-      columns: ["Preparing", "Cooking", "Serving"],
-      kind: "matrix",
-      statements: [
-        { column: 1, label: "Breaking up lumps in the cold rice" },
-        { column: 2, label: "Frying the garlic and shallots until golden" },
-        { column: 3, label: "Sprinkling fried shallots on top" },
-        { column: 2, label: "Stirring in the sweet soy sauce" },
+      kind: "choice",
+      options: [
+        {
+          correct: false,
+          label: "$$54$$",
+        },
+        {
+          correct: false,
+          label: "$$9$$",
+        },
+        {
+          correct: true,
+          label: "$$81$$",
+        },
+        {
+          correct: false,
+          label: "$$324$$",
+        },
+        {
+          correct: false,
+          label: "$$48$$",
+        },
       ],
     },
   },

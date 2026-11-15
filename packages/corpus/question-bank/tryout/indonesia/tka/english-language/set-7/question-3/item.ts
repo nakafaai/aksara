@@ -2,23 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "classification",
+    topic: "comparison",
   },
-  stimulus: "pottery-village",
+  stimulus: "island-ferry",
   versions: {
     en: {
-      columns: ["Drying yard", "Kiln", "Workshop"],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "Pots are fired for about eight hours." },
-        { column: 3, label: "A potter turns the wheel with a foot." },
+      kind: "choice",
+      options: [
         {
-          column: 1,
-          label: "Pots stand in rows on bamboo racks in the shade.",
+          correct: false,
+          label: "I and V only",
         },
-        { column: 3, label: "Younger potters finish the edges by hand." },
+        {
+          correct: true,
+          label: "I, II, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and V only",
+        },
       ],
     },
   },

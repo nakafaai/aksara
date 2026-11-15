@@ -2,27 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "narrative",
-    topic: "character",
+    topic: "synthesis",
   },
-  stimulus: "night-ferry",
+  stimulus: "dry-well",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "She argues with the deckhand to get onto the ferry.",
-        },
-        { correct: true, label: "She stays calm when her plans go wrong." },
-        {
-          correct: false,
-          label: "She phones the fisherman to ask for a ride.",
+          label: "I and II only",
         },
         {
           correct: true,
-          label: "She is generous even toward people she does not know well.",
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
         },
       ],
     },

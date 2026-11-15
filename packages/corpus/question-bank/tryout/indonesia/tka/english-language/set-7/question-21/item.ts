@@ -2,35 +2,46 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "analytical-exposition",
-    topic: "main-idea-purpose",
+    topic: "fact-opinion",
   },
-  stimulus: "bus-shelters",
+  stimulus: "market-street",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Stated as a fact",
+        "Stated as an opinion",
+        "Not stated in either text",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
-          label: "to describe the bus route through the town of Wiraguna",
+          column: 2,
+          label: "A street without engines is simply a pleasure to shop in.",
         },
         {
-          correct: false,
-          label: "to report the results of the bus company's ticket records",
-        },
-        {
-          correct: false,
-          label: "to argue that the town needs more buses on its main route",
-        },
-        {
-          correct: true,
+          column: 1,
           label:
-            "to persuade the council to build shelters at the five busiest uncovered stops",
+            "Kota Lama opened a free parking lot at the same time as the trial.",
         },
         {
-          correct: false,
-          label: "to complain about litter and graffiti at bus stops",
+          column: 3,
+          label:
+            "The free parking lot caused the rise in shoppers at Kota Lama.",
+        },
+        {
+          column: 1,
+          label:
+            "Nobody compared the rise in takings with the same Sundays of the year before.",
+        },
+        {
+          column: 2,
+          label: "Nothing else could bring so many shoppers back so cheaply.",
+        },
+        {
+          column: 3,
+          label: "The clinic opposes closing the street.",
         },
       ],
     },

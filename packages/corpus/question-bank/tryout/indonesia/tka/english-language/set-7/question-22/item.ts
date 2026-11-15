@@ -2,37 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "summary",
+    topic: "main-idea-purpose",
   },
-  stimulus: "bus-shelters",
+  stimulus: "market-street",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: false,
+          label: "I, II, and V only",
+        },
+        {
           correct: true,
-          label:
-            "The writer admits that shelters might attract litter but suggests bins and help from schools.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer says that litter would not be a real problem at the shelters.",
+          label: "II and IV only",
         },
         {
           correct: false,
-          label: "The writer asks local schools to pay for the new shelters.",
+          label: "I, II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer reports that graffiti has already appeared at the market stop.",
-        },
-        {
-          correct: false,
-          label: "The writer suggests removing all bins from the bus stops.",
+          label: "I and IV only",
         },
       ],
     },

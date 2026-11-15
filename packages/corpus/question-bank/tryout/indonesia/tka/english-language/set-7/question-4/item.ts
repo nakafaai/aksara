@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "comparison",
+    topic: "cause-effect",
   },
-  stimulus: "pottery-village",
+  stimulus: "island-ferry",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "They fire their pots during the day instead of at night.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "They use clay brought from another village.",
+          label: "I, II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "I and III only",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
         },
         {
           correct: true,
-          label: "They use electric wheels instead of wheels turned by foot.",
-        },
-        {
-          correct: false,
-          label: "They no longer finish the edges of their pots by hand.",
-        },
-        {
-          correct: false,
-          label: "They make only tiny cups for the village shop.",
+          label: "I, II, and III only",
         },
       ],
     },

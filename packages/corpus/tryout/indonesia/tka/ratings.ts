@@ -45,7 +45,7 @@ export const advancedRatings: readonly SetRating[] = [
  * set 1 to 10 in order.
  * One rater rated ten evenly spaced items
  * of the set alone on 13 Nov 2026, and set 2 again on 15 Nov 2026 after its
- * rewrite. Sets 3 to 6 were rated on 15 Nov 2026 after their rewrites by two
+ * rewrite. Sets 3 to 8 were rated on 15 Nov 2026 after their rewrites by two
  * raters each, on all 25 items of the set alone. A rewritten set replaces its
  * entry with a rating of its new items.
  */
@@ -56,8 +56,8 @@ export const englishRatings: readonly SetRating[] = [
   { items: 25, level: 3.6, raters: 2 },
   { items: 25, level: 3.74, raters: 2 },
   { items: 25, level: 3.57, raters: 2 },
-  { items: 10, level: 2, raters: 1 },
-  { items: 10, level: 1.9, raters: 1 },
+  { items: 25, level: 3.81, raters: 2 },
+  { items: 25, level: 3.68, raters: 2 },
   { items: 10, level: 1.9, raters: 1 },
   { items: 10, level: 1.9, raters: 1 },
 ];

@@ -2,37 +2,36 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "bus-shelters",
+  stimulus: "market-street",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Only three of the fourteen stops on the main route have a roof.",
+          correct: true,
+          label: "Jalan Pasar is too crowded on Sunday mornings.",
         },
         {
           correct: false,
-          label: "Many older passengers stay home during the rainy season.",
+          label: "The rise in Kota Lama's takings was caused by the closure.",
         },
         {
           correct: true,
           label:
-            "Boardings at the market stop rose from about 210 to about 260 a day after it got a roof.",
+            "Kota Lama's average number of shoppers rose by $$30\\%$$ during the trial.",
         },
         {
           correct: false,
           label:
-            "A simple steel shelter with a bench costs about 25 million rupiah.",
+            "A trial should compare its figures with the same Sundays of the year before.",
         },
         {
           correct: false,
-          label: "Local schools have offered to adopt a shelter.",
+          label: "Ambulances must be able to reach the clinic on Jalan Pasar.",
         },
       ],
     },

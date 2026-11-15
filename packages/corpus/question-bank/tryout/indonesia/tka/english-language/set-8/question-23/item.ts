@@ -2,30 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "synthesis",
+    topic: "supporting-detail",
   },
-  stimulus: "class-cleaning",
+  stimulus: "reading-minutes",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Sweeping takes about half of a duty team's total time.",
+          correct: false,
+          label: "I only",
         },
         {
           correct: false,
-          label: "Emptying the bins takes the longest of the three tasks.",
-        },
-        {
-          correct: true,
-          label: "The duty team finishes its tasks before the first bell.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "The tasks were timed over a whole semester.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: true,
+          label: "I and II only",
         },
       ],
     },

@@ -2,32 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "synthesis",
+    topic: "main-idea-purpose",
   },
-  stimulus: "volcano-hike",
+  stimulus: "bridge-count",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "The darkness on the way up kept the writer from seeing how steep the trail was.",
-        },
-        {
-          correct: true,
-          label:
-            "The group reached the summit about three and a quarter hours after starting.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "Fajar slipped in the pine forest and lost his headlamp.",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: true,
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label: "The group stayed at the summit until the clouds rolled in.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, III, and IV only",
         },
       ],
     },

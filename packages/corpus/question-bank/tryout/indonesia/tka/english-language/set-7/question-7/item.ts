@@ -2,31 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "sequence",
+    topic: "explicit-information",
   },
-  stimulus: "volcano-hike",
+  stimulus: "bridge-count",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "The writer saw how steep the trail really was.",
+          label: "$$220$$",
         },
         {
           correct: false,
-          label: "The group started up the trail at two in the morning.",
+          label: "$$330$$",
         },
         {
           correct: false,
-          label: "The sky turned orange behind a line of mountains.",
+          label: "$$1{,}500$$",
         },
-        { correct: true, label: "Fajar slipped and lost his water bottle." },
+        {
+          correct: true,
+          label: "$$860$$",
+        },
         {
           correct: false,
-          label: "Bu Endah said the group could stay for only twenty minutes.",
+          label: "$$530$$",
         },
       ],
     },

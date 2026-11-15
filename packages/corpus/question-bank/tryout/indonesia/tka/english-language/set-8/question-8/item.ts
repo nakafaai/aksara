@@ -6,25 +6,30 @@ const item: ItemSource = {
     contentDomain: "recount",
     topic: "sequence",
   },
-  stimulus: "science-fair",
+  stimulus: "egg-incubator",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Visitors asked whether wool is supposed to make things warm.",
-        },
-        { correct: false, label: "The judges gave the group second place." },
-        { correct: true, label: "Bayu predicted that the foil would win." },
-        {
-          correct: false,
-          label: "The group explained how trapped air slows heat.",
+          correct: true,
+          label: "R, P, S, Q, T",
         },
         {
           correct: false,
-          label:
-            "The group found that the unwrapped cube melted in about 40 minutes.",
+          label: "R, S, P, Q, T",
+        },
+        {
+          correct: false,
+          label: "P, R, S, Q, T",
+        },
+        {
+          correct: false,
+          label: "R, P, Q, S, T",
+        },
+        {
+          correct: false,
+          label: "R, S, Q, P, T",
         },
       ],
     },
