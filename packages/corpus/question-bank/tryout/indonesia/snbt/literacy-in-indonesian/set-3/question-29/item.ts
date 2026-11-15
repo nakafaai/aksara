@@ -14,7 +14,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Angka yang diketahui acak tetap dapat menggeser perkiraan orang.",
+            "Angka yang dianggap acak tetap dapat menggeser perkiraan orang.",
         },
         {
           correct: false,

@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hasil pembatasan kelas di California jauh lebih kecil daripada hasil yang dicapai Project STAR.",
+            "Hasil pembatasan kelas di California lebih kecil daripada hasil yang dicapai Project STAR.",
         },
         {
           correct: false,

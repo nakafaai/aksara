@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Meta-analisis 2015 menunjukkan bahwa banyak pilihan selalu menambah pembelian jika orang ingin memilih dengan cepat.",
+            "Meta-analisis 2015 menunjukkan bahwa banyak pilihan selalu menambah pembelian jika orang ingin memilih dengan usaha sesedikit mungkin.",
         },
       ],
     },
