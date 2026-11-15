@@ -2,33 +2,44 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "cause-effect",
+    topic: "classification",
   },
-  stimulus: "water-filter",
+  stimulus: "fire-drill",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: [
+        "Within $$8$$ minutes",
+        "After $$8$$ minutes but within $$12$$",
+        "After $$12$$ minutes",
+      ],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
-          label:
-            "to keep the charcoal and sand from falling through the holes in the cap",
+          column: 1,
+          label: "Class 11B",
         },
         {
-          correct: false,
-          label: "to remove germs so that the water becomes safe to drink",
+          column: 1,
+          label: "Class 11C",
         },
         {
-          correct: false,
-          label: "to make the water flow through the bottle more quickly",
+          column: 2,
+          label: "Class 11D",
         },
         {
-          correct: false,
-          label: "to stop the top part of the bottle from tipping over",
+          column: 2,
+          label: "Class 12A",
         },
-        { correct: false, label: "to give the filtered water a cleaner color" },
+        {
+          column: 3,
+          label: "Class 12B",
+        },
+        {
+          column: 1,
+          label: "Class 10C",
+        },
       ],
     },
   },

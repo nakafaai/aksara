@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "walking-bus",
+  stimulus: "late-start",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "Children squeeze between the vehicles to reach the gate.",
+          correct: true,
+          label: "A 6:45 start is hard on teenagers.",
         },
         {
           correct: false,
-          label:
-            "Fifteen children in bright vests are easy for drivers to see.",
+          label: "The later start raised first-lesson marks by $$5$$ points.",
         },
-        {
-          correct: false,
-          label:
-            "Children should be active for an average of at least sixty minutes a day.",
-        },
-        { correct: false, label: "Routes can pause on stormy days." },
         {
           correct: true,
           label:
-            "The number of vehicles stopping at SD Lereng Asri's gate fell from about 140 to about 90.",
+            "The share of students arriving late at the three schools fell by $$8$$ percentage points.",
+        },
+        {
+          correct: false,
+          label: "SMA Cahaya should start at 8:00.",
+        },
+        {
+          correct: true,
+          label: "The three schools moved their start time.",
         },
       ],
     },

@@ -4,25 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "cause-effect",
+    topic: "main-idea-purpose",
   },
-  stimulus: "beach-cleanup",
+  stimulus: "orange-float",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label:
-            "The stretch near the river mouth had far more rubbish than the stretches farther away.",
+          correct: false,
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "The writer's group found a toothbrush and a flip-flop.",
+          label: "II and III only",
         },
-        { correct: false, label: "Most of the waste was thin snack wrappers." },
-        { correct: false, label: "Most of the volunteers came from the town." },
-        { correct: false, label: "The university team had already proven it." },
+        {
+          correct: false,
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II, III, and IV only",
+        },
+        {
+          correct: true,
+          label: "I, II, and III only",
+        },
       ],
     },
   },

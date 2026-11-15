@@ -6,31 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "outline",
   },
-  stimulus: "stage-lines",
+  stimulus: "grandfather-bike",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Maya practices her lines every night for a month.",
+          label: "I and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and IV only",
+        },
+        {
+          correct: false,
+          label: "IV and V only",
+        },
+        {
+          correct: false,
+          label: "I, II, IV, and V only",
         },
         {
           correct: true,
-          label:
-            "Maya answers Tomi's made-up question, and the rest of her speech comes back.",
-        },
-        {
-          correct: false,
-          label: "Maya forgets her first line in front of a full hall.",
-        },
-        {
-          correct: false,
-          label: "Somebody in the audience coughs during the silence.",
-        },
-        {
-          correct: false,
-          label: "Maya stands behind the curtain, repeating her first line.",
+          label: "I, IV, and V only",
         },
       ],
     },

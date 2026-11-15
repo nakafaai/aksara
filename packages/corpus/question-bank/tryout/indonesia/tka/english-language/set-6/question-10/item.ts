@@ -4,37 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "recount",
-    topic: "reader-response",
+    topic: "text-fit",
   },
-  stimulus: "beach-cleanup",
+  stimulus: "orange-float",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "“Beach cleanups are useless because the rubbish just keeps coming back.”",
+            "Pacing seemed close enough, since I had measured my paces on the classroom floor.",
         },
         {
           correct: false,
           label:
-            "“Tourists should be banned from Pantai Kuta Baru to keep it clean.”",
-        },
-        {
-          correct: false,
-          label:
-            "“Bottles must be the biggest problem on every beach in Indonesia.”",
+            "I checked the distance with Pak Rudi's measuring tape before we began.",
         },
         {
           correct: true,
           label:
-            "“Reducing waste in the towns along the river may matter as much as cleaning the beach.”",
+            "Nobody thought to check it, because the bank looked about right.",
+        },
+        {
+          correct: true,
+          label: "Siska pushed the second stake into the mud where I stopped.",
         },
         {
           correct: false,
-          label:
-            "“The scouts should stop recording data because counting takes too long.”",
+          label: "The stakes stood exactly ten metres apart.",
         },
       ],
     },

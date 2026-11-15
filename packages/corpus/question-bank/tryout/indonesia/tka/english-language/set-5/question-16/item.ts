@@ -4,28 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "water-filter",
+  stimulus: "fire-drill",
   versions: {
     en: {
-      columns: [
-        "Building the layers",
-        "Preparing the bottle",
-        "Using and checking the filter",
-      ],
-      kind: "matrix",
-      statements: [
-        { column: 2, label: "Making holes in the cap with a nail" },
-        { column: 1, label: "Putting the fine sand above the charcoal" },
+      kind: "choice",
+      options: [
         {
-          column: 3,
-          label:
-            "Pouring the water through a second time when it still looks cloudy",
+          correct: false,
+          label: "$$14$$",
         },
         {
-          column: 2,
-          label: "Cutting the bottle 10 centimeters from the bottom",
+          correct: true,
+          label: "$$16$$",
+        },
+        {
+          correct: false,
+          label: "$$10$$",
+        },
+        {
+          correct: false,
+          label: "$$8$$",
+        },
+        {
+          correct: false,
+          label: "$$18$$",
         },
       ],
     },

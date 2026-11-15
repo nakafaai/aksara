@@ -2,38 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "recount",
-    topic: "summary",
+    topic: "sequence",
   },
-  stimulus: "beach-cleanup",
+  stimulus: "orange-float",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Volunteers weigh 87 kilograms of waste collected from a beach.",
+          label: "P, Q, S, R, T",
         },
         {
           correct: false,
-          label: "Tourists are blamed for leaving rubbish at Pantai Kuta Baru.",
+          label: "Q, P, R, S, T",
+        },
+        {
+          correct: false,
+          label: "T, Q, P, S, R",
         },
         {
           correct: true,
-          label:
-            "A scout troop joins a beach cleanup, records what it finds, and learns that much of the waste may come from upstream.",
+          label: "Q, P, S, R, T",
         },
         {
           correct: false,
-          label:
-            "A university team explains how beaches can reduce plastic waste.",
-        },
-        {
-          correct: false,
-          label:
-            "A scout troop learns how to untangle a fishing net from driftwood.",
+          label: "P, S, Q, R, T",
         },
       ],
     },

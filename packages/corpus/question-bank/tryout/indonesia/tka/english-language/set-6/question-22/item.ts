@@ -2,39 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "summary",
+    topic: "main-idea-purpose",
   },
-  stimulus: "walking-bus",
+  stimulus: "late-start",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The writer agrees that walking buses should stop for the whole rainy season.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The writer says that rain is not a real problem for a walking bus.",
+          label: "II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "The writer suggests that the school buy raincoats for every student.",
+          label: "I, II, III, and IV only",
         },
         {
           correct: true,
-          label:
-            "The writer admits that the rainy season is a problem but explains how the routes can adapt.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "The writer reports that SD Lereng Asri cancelled its routes because of rain.",
+          label: "I and IV only",
         },
       ],
     },

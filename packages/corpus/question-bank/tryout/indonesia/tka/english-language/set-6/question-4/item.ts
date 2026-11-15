@@ -4,37 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "descriptive",
-    topic: "comparison",
+    topic: "cause-effect",
   },
-  stimulus: "tea-terrace",
+  stimulus: "water-rota",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "The tea bushes give shade, while the silver oaks are picked for tea.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The tea bushes grow at the top of the estate, while the silver oaks grow only near the factory.",
+          label: "I, II, and V only",
         },
         {
           correct: false,
-          label:
-            "The tea bushes are planted at random, while the silver oaks are planted in rows.",
+          label: "II and III only",
         },
         {
           correct: true,
-          label:
-            "The tea bushes are kept low, while the silver oaks grow tall and give shade.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "The tea bushes lose their leaves, while the silver oaks keep theirs all year.",
+          label: "I, III, and IV only",
         },
       ],
     },

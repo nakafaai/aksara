@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "synthesis",
   },
-  stimulus: "borrowed-camera",
+  stimulus: "songket-loom",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Bayu lost the lens cap because he was busy taking too many pictures.",
-        },
-        {
-          correct: false,
-          label:
-            "Aunt Ratih stayed angry about the cap until Bayu won a prize.",
-        },
-        {
           correct: true,
-          label:
-            "The patience Bayu practiced with the film camera helped him take the photo that won second prize.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "Bayu's phone photos were better than his film photos, so he did not win first prize.",
+          label: "I and IV only",
         },
         {
           correct: false,
-          label:
-            "The fisherman in the photo encouraged Bayu to enter the contest.",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
         },
       ],
     },

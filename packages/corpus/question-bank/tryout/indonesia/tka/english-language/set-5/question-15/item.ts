@@ -6,34 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "realism-fantasy",
   },
-  stimulus: "borrowed-camera",
+  stimulus: "songket-loom",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "It is a fantasy, because a gull stays frozen in the air.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "It is a fantasy, because a camera cannot be limited to twenty-four pictures.",
+          label: "II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "It is realistic only at the beginning, because the prize at the end is magical.",
+          label: "I, II, III, IV, and V",
         },
         {
           correct: false,
-          label:
-            "It is a fairy tale, because it ends with a lesson about patience.",
+          label: "I and IV only",
         },
         {
           correct: true,
-          label:
-            "It is realistic, because every event in it could happen in everyday life.",
+          label: "I, II, IV, and V only",
         },
       ],
     },

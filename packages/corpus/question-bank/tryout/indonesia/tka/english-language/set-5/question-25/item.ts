@@ -2,39 +2,40 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "reader-response",
+    topic: "synthesis",
   },
-  stimulus: "swim-lessons",
+  stimulus: "bag-fee",
   versions: {
     en: {
-      kind: "choice",
-      options: [
+      columns: ["Yes", "No"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "“I disagree, because the course shows that most students cannot learn to swim.”",
+            "During the trial, the charging stalls handed out $$2{,}800$$ fewer bags a week than before.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "“I agree completely, because the survey proves that every student at the school is in danger.”",
+            "Across all sixty stalls, the number of bags handed out fell by more than half.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "“The idea is pointless, because the writer admits that the volunteers may have been keener than others.”",
+            "Bag use fell by a larger share at the stalls without the charge than at the charging stalls.",
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "“The plan seems worth trying, and recording how many students reach 25 meters would show whether it works for students who did not volunteer.”",
+            "Before the trial, a stall with the charge and a stall without it handed out the same number of bags on average.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "“The writer should have asked for a longer lunch break instead.”",
+            "During the trial, the forty stalls without the charge handed out more than six times as many bags as the charging stalls.",
         },
       ],
     },

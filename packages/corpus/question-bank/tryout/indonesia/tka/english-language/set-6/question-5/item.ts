@@ -4,34 +4,35 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "descriptive",
-    topic: "fact-opinion",
+    topic: "information-validity",
   },
-  stimulus: "tea-terrace",
+  stimulus: "water-rota",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
+          correct: true,
+          label:
+            "A $$1$$-cubic-metre tank that is empty can be filled in under an hour of supply.",
+        },
+        {
           correct: false,
-          label: "The café's terrace faces east, toward a valley.",
+          label:
+            "Every block waits exactly four days between the end of one turn and the start of the next.",
+        },
+        {
+          correct: false,
+          label: "Most houses in Kampung Sumber have two tanks.",
         },
         {
           correct: true,
           label:
-            "There is no better place to drink a cup of tea than that terrace on a clear morning.",
+            "At Bu Narti's figure, one full $$1$$-cubic-metre tank lasts a household of five for more than three days.",
         },
         {
-          correct: false,
-          label: "Inside, fresh leaves are spread out on wire racks.",
-        },
-        {
-          correct: false,
-          label: "Each terrace is held up by a low wall of stacked stones.",
-        },
-        {
-          correct: false,
-          label:
-            "The estate covers the lower slopes of a mountain about 1,400 meters above sea level.",
+          correct: true,
+          label: "Cart water costs $$\\text{Rp}250$$ a litre.",
         },
       ],
     },
