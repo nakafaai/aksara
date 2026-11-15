@@ -6,35 +6,35 @@ const item: ItemSource = {
     contentDomain: "informational-text",
     topic: "application",
   },
-  stimulus: "novel-review",
+  stimulus: "anchoring-price",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Pembaca yang hanya menyukai cerita dengan akhir yang dibangun perlahan dan rapi.",
+            "Peserta lelang yang lebih dulu ditanya apakah lukisan itu bernilai lebih atau kurang dari Rp$$50{.}000{.}000$$ menawar lebih tinggi daripada yang ditanya dengan Rp$$5{.}000{.}000$$.",
         },
         {
           correct: false,
           label:
-            "Pembaca yang mencari buku panduan teknis tentang pengelolaan mata air.",
+            "Seorang pembeli membayar Rp$$600{.}000$$ untuk jaket setelah temannya yang penjahit menghitung harga bahan dan ongkos jahitnya.",
         },
         {
           correct: false,
           label:
-            "Pembaca yang menginginkan kisah petualangan dengan banyak adegan laga.",
-        },
-        {
-          correct: false,
-          label:
-            "Pembaca yang lebih menyukai tokoh pendukung daripada tokoh utama.",
+            "Seorang pembeli memilih satu dari dua sepatu yang sama persis karena harganya lebih murah di toko sebelah.",
         },
         {
           correct: true,
           label:
-            "Pembaca yang suka kisah lingkungan tanpa mengharapkan penyelesaian sederhana.",
+            "Siswa yang mula-mula ditanya apakah tinggi sebuah menara lebih atau kurang dari $$900$$ meter menebak lebih tinggi daripada yang ditanya dengan $$90$$ meter.",
+        },
+        {
+          correct: false,
+          label:
+            "Seorang penjual menurunkan harga madu setelah melihat struk yang membuktikan harga madu yang sama di pasar memang lebih rendah.",
         },
       ],
     },

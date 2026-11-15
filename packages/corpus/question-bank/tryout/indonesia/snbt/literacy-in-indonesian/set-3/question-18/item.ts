@@ -4,36 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "text-comparison",
+    topic: "data-interpretation",
   },
-  stimulus: "village-tourism",
+  stimulus: "rainfall-harvest",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Upacara syukur panen sebaiknya digelar lebih sering untuk wisatawan.",
+            "Hasil per hektare Sukamaju pada 2023 lebih tinggi daripada pada 2022.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Pariwisata memberi penghasilan baru dan membuat sebagian anak muda pulang.",
+            "Produksi padi ketiga kabupaten bersama-sama turun lebih dari seperempat dari 2022 ke 2023.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Jumlah pengunjung perlu dibatasi agar rumah adat tidak rusak.",
+            "Sawah di kabupaten dengan irigasi teknis paling luas tidak kehilangan luas panen pada 2023.",
         },
         {
-          correct: false,
-          label: "Lahan parkir bus sebaiknya dibangun di dekat rumah adat.",
-        },
-        {
-          correct: false,
+          column: 2,
           label:
-            "Wisatawan sebaiknya dilarang menyaksikan semua kegiatan budaya desa.",
+            "Dalam ribu hektare, luas panen Banyulor turun lebih banyak daripada luas panen Ciranda.",
         },
       ],
     },

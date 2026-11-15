@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "point-of-view",
   },
-  stimulus: "youth-pledge",
+  stimulus: "railway-java",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
+          correct: true,
           label:
-            "Bahasa Melayu memiliki jumlah penutur asli paling banyak di Nusantara.",
+            "Jalur Semarang ke Tanggung memang merupakan awal modernisasi Jawa.",
         },
         {
           correct: false,
           label:
-            "Bahasa Melayu ditetapkan oleh pemerintah kolonial sebagai bahasa wajib.",
-        },
-        {
-          correct: false,
-          label:
-            "Bahasa Melayu memiliki kosakata paling lengkap di antara bahasa daerah.",
+            "Jalur pertama itu dirancang terutama untuk memudahkan perjalanan penduduk.",
         },
         {
           correct: true,
           label:
-            "Bahasa Melayu sudah luas dipahami dan tingkatan tuturnya lebih setara.",
+            "Manfaat rel bagi pedagang kecil dan buruh nyata, walaupun bukan tujuan utama pembangunannya.",
         },
         {
           correct: false,
           label:
-            "Bahasa Melayu sudah lama dipakai dalam surat kabar milik para pemuda.",
+            "Lebar rel jalur pertama menjadi standar yang dipakai di sebagian besar Jawa.",
+        },
+        {
+          correct: true,
+          label:
+            "Keuntungan terbesar dari jalur pertama jatuh ke pemilik perkebunan dan perusahaan dagang.",
         },
       ],
     },

@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "canteen-labels",
+  stimulus: "rainfall-harvest",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Jumlah siswa yang disurvei terlalu banyak untuk menggambarkan seluruh sekolah.",
+            "Penurunan produksi di ketiga kabupaten terutama disebabkan oleh turunnya hasil per hektare, bukan oleh menyusutnya luas panen.",
         },
         {
           correct: false,
           label:
-            "Penjualan makanan berlabel kuning tidak berubah sama sekali selama pencatatan.",
+            "Irigasi teknis yang luas membuat Sukamaju sama sekali tidak terdampak kemarau, sehingga produksinya tetap seperti tahun normal.",
         },
         {
           correct: true,
           label:
-            "Kenaikan penjualan hijau mungkin disebabkan turunnya harga, bukan oleh labelnya.",
+            "Penurunan produksi dalam persen makin besar saat irigasi teknis makin sempit, dan di Ciranda serta Banyulor terutama karena luas panen menyusut.",
         },
         {
           correct: false,
           label:
-            "Pencatatan seharusnya dilakukan oleh kepala sekolah, bukan oleh guru IPA.",
+            "Hasil per hektare di ketiga kabupaten turun sekitar seperlima pada tahun El Nino.",
         },
         {
           correct: false,
           label:
-            "Label merah membuat makanan tampak lebih menarik bagi sebagian siswa.",
+            "Penurunan luas panen dalam ribu hektare paling besar terjadi di Banyulor, kabupaten dengan irigasi teknis paling sempit.",
         },
       ],
     },

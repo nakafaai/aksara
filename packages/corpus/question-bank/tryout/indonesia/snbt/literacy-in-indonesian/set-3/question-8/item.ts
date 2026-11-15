@@ -3,34 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-view",
+    contentDomain: "fiction",
+    topic: "implicit-information",
   },
-  stimulus: "sugar-tax",
+  stimulus: "night-bus-driver",
   versions: {
     id: {
-      columns: ["Sesuai", "Tidak sesuai"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: true,
           label:
-            "Penerimaan cukai dapat dipakai untuk meringankan beban warga berpenghasilan rendah.",
+            "Bu Tarmi menghapus utang Warsito sebagai salam perpisahan yang tidak diucapkan.",
         },
         {
-          column: 2,
+          correct: true,
           label:
-            "Cukai minuman berpemanis cukup untuk menyelesaikan seluruh masalah gizi.",
+            "Obrolan tentang harga cabai dipakai keduanya untuk menghindari kata perpisahan.",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Biaya pengobatan penyakit akibat gula berlebih pada akhirnya ikut ditanggung bersama.",
+            "Bu Tarmi menghapus utang Warsito karena rumah makannya sedang merugi dan tidak butuh uang itu.",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Kebijakan cukai sebaiknya ditunda sampai ada solusi yang menyelesaikan semua masalah gizi.",
+            "Bu Tarmi menyimpan halaman bon itu agar dapat menagih Warsito pada lain waktu.",
+        },
+        {
+          correct: false,
+          label:
+            "Hubungan Bu Tarmi dan Warsito selama ini hanya urusan dagang antara penjual dan pelanggan.",
         },
       ],
     },

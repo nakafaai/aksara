@@ -11,8 +11,8 @@ import type { SetRating } from "#corpus/tryout/level";
 export const snbtRatings: readonly SetRating[] = [
   { items: 28, level: 3.43, raters: 1 },
   { items: 28, level: 3.75, raters: 1 },
-  { items: 28, level: 3.46, raters: 1 },
-  { items: 28, level: 3.39, raters: 1 },
+  { items: 28, level: 3.79, raters: 1 },
+  { items: 28, level: 3.68, raters: 1 },
   { items: 28, level: 3.46, raters: 1 },
   { items: 28, level: 3.38, raters: 1 },
   { items: 28, level: 3.13, raters: 1 },

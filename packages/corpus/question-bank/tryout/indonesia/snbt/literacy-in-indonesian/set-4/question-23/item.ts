@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-structure",
   },
-  stimulus: "banda-nutmeg",
+  stimulus: "balai-pustaka",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 1,
+          correct: false,
           label:
-            "Sampai abad ke-18, pohon pala hanya tumbuh di Kepulauan Banda.",
+            "membuktikan bahwa buku Balai Pustaka lebih bermutu, sehingga rakyat yang mulai melek huruf lebih memilihnya daripada bacaan liar",
         },
         {
-          column: 2,
-          label: "Fuli adalah jenis pala yang tumbuh di Mauritius.",
+          correct: true,
+          label:
+            "menunjukkan bahwa penyebaran bacaan yang murah ikut menjalankan tugas penyaringan, karena bacaan yang aman jadi lebih mudah didapat",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Dalam Perjanjian Breda, Belanda menyerahkan Pulau Run kepada Inggris.",
+            "menjelaskan bahwa pemerintah kolonial rugi besar karena harus menjual buku dengan harga yang sangat murah",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Setelah 1621, kebun pala di Banda dikerjakan oleh orang-orang yang didatangkan sebagai budak.",
+            "menunjukkan bahwa harga murah adalah satu-satunya alasan rakyat mulai melek huruf pada masa itu",
+        },
+        {
+          correct: false,
+          label:
+            "menegaskan bahwa bacaan liar dilarang terbit karena harganya jauh lebih mahal daripada buku-buku terbitan Balai Pustaka",
         },
       ],
     },

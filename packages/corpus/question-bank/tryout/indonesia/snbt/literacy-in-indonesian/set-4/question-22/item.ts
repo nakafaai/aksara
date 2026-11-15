@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "inference",
   },
-  stimulus: "banda-nutmeg",
+  stimulus: "balai-pustaka",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Orang Banda menolak menanam pala setelah harga pala di Eropa turun tajam.",
+            "Komisi yang memilih bacaan untuk rakyat sudah bekerja sebelum nama Balai Pustaka dipakai.",
         },
         {
-          correct: false,
-          label:
-            "Inggris meminta VOC menyerang Banda agar dapat merebut Pulau Run.",
+          column: 2,
+          label: "Balai Pustaka hanya menerbitkan buku dalam bahasa Melayu.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Pedagang Tionghoa berhenti membeli pala dari Kepulauan Banda sama sekali.",
+            "Naskah yang mengkritik pemerintah kolonial sulit terbit lewat Balai Pustaka.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Pohon pala di Banda rusak sehingga VOC membutuhkan lahan baru di pulau-pulau lain.",
+            'Istilah "bacaan liar" dipakai para penulis pergerakan untuk menyebut karya mereka sendiri.',
         },
         {
-          correct: true,
+          column: 1,
           label:
-            "Orang Banda tetap menjual pala kepada pedagang lain meski terikat perjanjian.",
+            "Sebagian karya yang kini dianggap penting dalam sastra Indonesia terbit lewat Balai Pustaka.",
         },
       ],
     },

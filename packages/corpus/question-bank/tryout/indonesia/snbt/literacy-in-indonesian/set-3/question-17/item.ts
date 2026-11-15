@@ -4,38 +4,18 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "conclusion",
+    topic: "calculation",
   },
-  stimulus: "canteen-labels",
+  stimulus: "rainfall-harvest",
   versions: {
     id: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "Turunnya penjualan merah di kantin belum tentu berarti siswa makan lebih sedikit gorengan.",
-        },
-        {
-          correct: false,
-          label:
-            "Siswa makan lebih sedikit gorengan karena penjualan merah di kantin turun 250 porsi.",
-        },
-        {
-          correct: false,
-          label:
-            "Konsumsi gorengan siswa kemungkinan besar justru meningkat sejak label dipasang.",
-        },
-        {
-          correct: false,
-          label:
-            "Warung depan sekolah menjual gorengan dengan harga lebih murah daripada kantin.",
-        },
-        {
-          correct: false,
-          label:
-            "Sebagian besar siswa kini membeli gorengan di warung, bukan di kantin.",
-        },
+        { correct: false, label: "sekitar $$21\\%$$" },
+        { correct: true, label: "sekitar $$79\\%$$" },
+        { correct: false, label: "$$25\\%$$" },
+        { correct: false, label: "sekitar $$31{,}8\\%$$" },
+        { correct: false, label: "sekitar $$9\\%$$" },
       ],
     },
   },

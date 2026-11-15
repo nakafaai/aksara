@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-structure",
   },
-  stimulus: "coffee-plots",
+  stimulus: "class-size",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Kebun dengan hasil biji terbanyak juga memperoleh pendapatan terbesar.",
+            "membuktikan bahwa kelas kecil tidak bermanfaat bagi siswa SD di mana pun, sehingga usul Teks A sebaiknya ditolak seluruhnya",
         },
         {
-          column: 2,
-          label: "Kebun C memperoleh harga per kilogram tertinggi.",
+          correct: true,
+          label:
+            "menunjukkan bahwa manfaat kelas kecil dapat menyusut kalau kebijakan diperluas lebih cepat daripada tersedianya guru yang layak",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Pada ketinggian yang sama, kebun berpohon pelindung menghasilkan biji lebih sedikit daripada kebun tanpa pohon pelindung.",
+            "menunjukkan bahwa Project STAR dirancang dengan buruk, sehingga hasilnya tidak dapat dipercaya",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Dengan perlakuan pohon pelindung yang sama, kebun di ketinggian 1.400 mdpl memiliki skor cita rasa lebih tinggi daripada kebun di 1.100 mdpl.",
+            "menunjukkan bahwa California membatasi ukuran kelas lebih ketat daripada batas yang diusulkan Teks A untuk Lembah Hijau",
+        },
+        {
+          correct: false,
+          label:
+            "membuktikan bahwa guru bersertifikat lebih suka mengajar di sekolah-sekolah di kawasan miskin",
         },
       ],
     },

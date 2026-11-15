@@ -4,37 +4,38 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "inference",
   },
-  stimulus: "youth-pledge",
+  stimulus: "railway-java",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa persatuan harus diambil dari bahasa dengan penutur terbanyak.",
+            "Dahulu, kereta dari jalur Semarang ke pedalaman tidak dapat langsung berjalan di jalur yang dibangun perusahaan milik pemerintah.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa Melayu tidak cocok karena memiliki tingkatan tutur yang rumit.",
+            "Barang yang berpindah antarjalur dengan lebar rel berbeda harus dipindahkan di stasiun pertemuan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Nama bahasa sebaiknya diputuskan setelah kemerdekaan tercapai.",
+            "Rel selebar $$1{.}435$$ mm masih dipakai di jalur Semarang ke pedalaman sampai sekarang.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Bahasa daerah harus dihapus agar bangsa Indonesia dapat bersatu.",
+            "Sebelum ada rel, mengangkut hasil bumi lebih sulit pada musim hujan.",
         },
         {
-          correct: true,
+          column: 2,
           label:
-            "Nama bahasa sebaiknya selaras dengan nama bangsa dan tanah airnya.",
+            "Jalur pertama dibangun dengan rel lebar agar seragam dengan jaringan milik pemerintah.",
         },
       ],
     },

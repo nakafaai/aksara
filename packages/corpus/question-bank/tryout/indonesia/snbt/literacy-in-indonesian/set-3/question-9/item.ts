@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "figurative-language",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "sugar-tax",
+  stimulus: "night-bus-driver",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ajakan agar pemerintah mencari kebijakan lain yang lebih sempurna daripada cukai.",
-        },
-        {
-          correct: false,
-          label:
-            "Pengakuan bahwa cukai tidak terbukti mengubah perilaku produsen dan konsumen.",
-        },
-        {
-          correct: false,
-          label:
-            "Peringatan bahwa iklan dan harga sayur lebih berpengaruh daripada cukai.",
+            "Warsito masih menganggap nasihat itu dalih, tetapi ia menyetir pelan karena bus tuanya sudah tidak kuat melaju kencang.",
         },
         {
           correct: true,
           label:
-            "Kritik terhadap penolakan kebijakan yang bermanfaat hanya karena tidak sempurna.",
+            "Warsito kini menerima nasihat itu, dan sikapnya yang tenang malam itu ikut membuat Ardi berhenti mengejar waktu.",
         },
         {
           correct: false,
           label:
-            "Pernyataan bahwa masalah gizi tidak akan pernah dapat diselesaikan.",
+            "Warsito kini menerima nasihat itu, tetapi Ardi tetap gelisah mengejar waktu sampai bus tiba di Jakarta.",
+        },
+        {
+          correct: false,
+          label:
+            "Warsito menolak nasihat itu, dan karena itu ia memacu bus agar Ardi tiba di kantor travel sebelum subuh.",
+        },
+        {
+          correct: false,
+          label:
+            "Warsito kini menerima nasihat itu, karena perusahaan melarang sopir melaju di atas delapan puluh kilometer per jam.",
         },
       ],
     },

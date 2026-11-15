@@ -2,39 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "main-idea",
   },
-  stimulus: "mangrove-carbon",
+  stimulus: "wolbachia-mosquito",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Pohon mangrove menyerap karbon dioksida jauh lebih cepat daripada tumbuhan lain.",
-        },
-        {
           correct: true,
           label:
-            "Genangan yang hampir tanpa oksigen membuat sisa tumbuhan sangat lambat terurai dan menumpuk.",
+            "Hasil itu layak dipercaya untuk Yogyakarta karena pembandingnya diamati pada periode yang sama, tetapi belum menjawab soal kota lain dan soal pengganti cara lama.",
         },
         {
           correct: false,
           label:
-            "Air laut membawa karbon dari daratan dan mengendapkannya di sela-sela akar mangrove.",
+            "Hasil itu perlu diuji ulang di Yogyakarta karena kasus demam berdarah naik turun dari tahun ke tahun, sehingga penurunannya bisa jatuh pada tahun yang sepi.",
         },
         {
           correct: false,
           label:
-            "Akar napas mangrove memompa karbon dioksida dari udara ke dalam lapisan tanah.",
+            "Hasil itu membuktikan bahwa Wolbachia dapat menggantikan pemberantasan sarang, karena nyamuk ber-Wolbachia mampu bertahan tanpa pelepasan ulang.",
         },
         {
           correct: false,
           label:
-            "Ombak yang tertahan akar mangrove perlahan mengubah lumpur menjadi karbon.",
+            "Hasil itu kemungkinan melebih-lebihkan manfaat Wolbachia, karena nyamuk ber-Wolbachia dapat terbang melewati batas klaster ke klaster pembanding.",
+        },
+        {
+          correct: false,
+          label:
+            "Hasil itu kuat karena pengacakan dilakukan per wilayah, sehingga dapat langsung diterapkan di kota lain yang memiliki nyamuk Aedes aegypti.",
         },
       ],
     },

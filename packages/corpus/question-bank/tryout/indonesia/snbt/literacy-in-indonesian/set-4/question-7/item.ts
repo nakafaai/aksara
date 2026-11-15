@@ -3,38 +3,38 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "free-transit",
+  stimulus: "village-midwife",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "Membuktikan bahwa bus gratis selalu gagal menarik penumpang baru di kota mana pun.",
-        },
-        {
           correct: true,
           label:
-            "Menunjukkan bahwa sebagian penumpang baru berasal dari pejalan kaki, bukan pengendara mobil.",
+            "Ia sudah memutuskan merujuk Sumi, tetapi menunggu keluarga Sumi sendiri setuju, karena dulu ada rujukan yang berakhir di tengah jalan.",
         },
         {
           correct: false,
           label:
-            "Menjelaskan cara kota itu membiayai bus gratis tanpa kehilangan pendapatan tiket.",
+            "Ia meragukan hasil pengukuran Nia, sehingga ia memeriksa Sumi sendiri sebelum menyetujui rujukan yang diminta Nia dengan tergesa-gesa.",
         },
         {
           correct: false,
           label:
-            "Membandingkan jumlah bus gratis di kota Eropa itu dengan jumlah bus di kota-kota Indonesia.",
+            "Ia menunggu hujan reda, karena jembatan dapat ditutup dan ambulans tidak akan bisa menyeberang malam itu.",
         },
         {
           correct: false,
           label:
-            "Menunjukkan bahwa warga Eropa umumnya lebih suka berjalan kaki daripada naik bus.",
+            "Ia ingin Sumi tetap dirawat di poskesdes, tetapi akhirnya mengalah karena Mak Rosnah sendiri meminta Sumi segera dibawa ke kota.",
+        },
+        {
+          correct: false,
+          label:
+            "Ia sengaja membiarkan Nia panik agar bidan muda itu belajar mengambil keputusan sendiri tanpa bantuannya.",
         },
       ],
     },

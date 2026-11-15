@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "textual",
     contentDomain: "informational-text",
-    topic: "author-purpose",
+    topic: "paraphrase",
   },
-  stimulus: "antibiotic-resistance",
+  stimulus: "land-subsidence",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Menunjukkan bahwa bahaya kekebalan bakteri sudah dikenali sejak awal masa antibiotik.",
+            "Laju penurunan tanah akan mengecil, tetapi sebagian besar ketinggian yang sudah hilang tidak kembali.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Membuktikan bahwa penisilin tidak lagi dapat dipakai untuk mengobati infeksi apa pun.",
+            "Lapisan lempung akan mengembang lagi hingga mendekati tebal semula setelah muka air sumur pulih.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Menjelaskan cara Fleming menemukan penisilin di laboratoriumnya.",
+            "Kenaikan muka laut relatif di pelabuhan langsung turun menjadi $$0{,}4$$ cm per tahun sejak tahun pemompaan dihentikan.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Menegaskan bahwa Hadiah Nobel sebaiknya diberikan kepada penemu obat.",
-        },
-        {
-          correct: false,
-          label:
-            "Membandingkan penisilin dengan antibiotik yang ditemukan sesudah tahun 1980-an.",
+            "Penurunan terutama berasal dari lapisan pasir yang kehilangan air, sehingga mengisi kembali lapisan pasir akan memulihkan sebagian besar penurunan.",
         },
       ],
     },

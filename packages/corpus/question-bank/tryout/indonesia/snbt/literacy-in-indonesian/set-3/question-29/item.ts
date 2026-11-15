@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "author-reasoning",
+    topic: "inference",
   },
-  stimulus: "novel-review",
+  stimulus: "anchoring-price",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Catatan itu memperlihatkan bahwa dilema Sinta pernah dialami kakeknya.",
+            "Angka yang dianggap acak tetap dapat menggeser perkiraan orang.",
         },
         {
           correct: false,
           label:
-            "Catatan itu menjelaskan cara membuat peta mata air dengan tangan secara rinci.",
+            "Efek jangkar hanya terjadi pada orang yang tidak tahu harga pasar suatu barang.",
+        },
+        {
+          correct: true,
+          label:
+            "Percobaan roda angka tidak dapat menunjukkan penjelasan mana yang benar tentang efek jangkar.",
         },
         {
           correct: false,
           label:
-            "Catatan itu menggantikan dialog antarwarga yang terlalu banyak dalam novel.",
+            "Dalam tawar-menawar, pihak yang lebih dulu menyebut angka tinggi pasti mendapat harga akhir yang lebih tinggi.",
         },
         {
-          correct: false,
+          correct: true,
           label:
-            "Catatan itu membuktikan bahwa perkebunan di hulu sudah ada sejak tahun 1970-an.",
-        },
-        {
-          correct: false,
-          label:
-            "Catatan itu menunjukkan bahwa Sinta sebenarnya tidak berasal dari desa itu.",
+            "Pada pedagang madu, efek angka yang disebut lebih lemah daripada pada siswa, tetapi tetap ada.",
         },
       ],
     },

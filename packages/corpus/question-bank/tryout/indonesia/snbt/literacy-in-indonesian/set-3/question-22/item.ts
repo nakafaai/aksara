@@ -4,37 +4,33 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "word-meaning",
+    topic: "inference",
   },
-  stimulus: "youth-pledge",
+  stimulus: "railway-java",
   versions: {
     id: {
-      kind: "choice",
-      options: [
+      columns: ["Ya", "Tidak"],
+      kind: "matrix",
+      statements: [
         {
-          correct: true,
+          column: 1,
           label:
-            "Bahasa Indonesia menjadi bahasa bersama tanpa menghapus bahasa-bahasa daerah.",
+            "Jalur kereta api pertama di Hindia Belanda tidak dibangun oleh pemerintah kolonial.",
         },
         {
-          correct: false,
+          column: 1,
           label:
-            "Para pemuda wajib berhenti memakai bahasa daerah dalam kehidupan sehari-hari.",
+            "Pembangunan jalur Semarang ke Tanggung, dari peletakan batu pertama sampai kereta mulai berjalan, memakan waktu lebih dari tiga tahun.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Bahasa Indonesia ditetapkan sebagai satu-satunya bahasa resmi pada tahun 1928.",
+            "Pada 1867, kereta api sudah dapat berjalan dari Semarang sampai Surakarta.",
         },
         {
-          correct: false,
+          column: 2,
           label:
-            "Para pemuda menganggap bahasa daerah lebih tinggi daripada bahasa Indonesia.",
-        },
-        {
-          correct: false,
-          label:
-            "Para pemuda belum sepakat bahwa bahasa Indonesia perlu menjadi bahasa bersama.",
+            "Lebar rel jalur Semarang ke pedalaman sama dengan lebar rel yang akhirnya dipakai di sebagian besar Jawa.",
         },
       ],
     },

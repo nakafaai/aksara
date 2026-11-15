@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
-    contentDomain: "fiction",
-    topic: "theme-message",
+    cognitiveLevel: "inferential",
+    contentDomain: "informational-text",
+    topic: "main-idea",
   },
-  stimulus: "tin-roof",
+  stimulus: "choice-overload",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label: "sedih dan putus asa menghadapi kemiskinan",
+          correct: true,
+          label:
+            "Pertanyaan yang lebih tepat adalah dalam keadaan apa banyak pilihan merugikan, bukan apakah banyak pilihan itu buruk.",
         },
         {
           correct: false,
-          label: "tegang dan menakutkan karena badai besar",
+          label:
+            "Toko sebaiknya selalu mengurangi pilihan barang agar pembeli tidak bingung.",
         },
         {
           correct: true,
-          label: "hangat dan tabah dalam kesederhanaan",
+          label:
+            "Satu percobaan yang terkenal belum cukup untuk dijadikan aturan umum.",
         },
         {
           correct: false,
-          label: "marah terhadap keadaan rumah yang rusak",
+          label:
+            "Percobaan selai terbukti keliru, sehingga sebaiknya tidak lagi dikutip.",
         },
         {
-          correct: false,
-          label: "riang karena hujan menyenangkan anak-anak",
+          correct: true,
+          label:
+            "Memudahkan pembeli membandingkan pilihan dapat mengurangi risiko kelebihan pilihan.",
         },
       ],
     },

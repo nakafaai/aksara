@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "fiction",
-    topic: "figurative-language",
+    contentDomain: "informational-text",
+    topic: "text-relation",
   },
-  stimulus: "last-angkot",
+  stimulus: "online-loan",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Mak Inah ingin anak Pak Damar mengetahui bahwa ayahnya miskin.",
+            "Teks B menerima manfaat edukasi dan bukti survei Teks A, tetapi menilai aturan tampilan biaya lebih mendesak.",
         },
         {
           correct: false,
           label:
-            "Mak Inah merasa tersinggung karena tawaran gratis dari Pak Damar.",
+            "Teks B meragukan bukti survei Teks A, dan karena itu menolak edukasi keuangan sebagai langkah yang sia-sia.",
         },
         {
           correct: false,
           label:
-            "Mak Inah ingin Pak Damar menabung uang itu untuk biaya sekolah anaknya.",
+            "Teks B menerima bahwa literasi rendah adalah akar masalah, tetapi menilai edukasi di sekolah terlalu lambat untuk menolong warga.",
+        },
+        {
+          correct: false,
+          label:
+            "Teks B membantah angka bunga Teks A, karena bunga sebenarnya dihitung dari uang yang diterima peminjam.",
         },
         {
           correct: true,
           label:
-            "Mak Inah ingin menghargai kerja Pak Damar dan menjaga harga dirinya sebagai ayah.",
-        },
-        {
-          correct: false,
-          label:
-            "Mak Inah menyindir Pak Damar yang meninggalkan angkot demi bus koridor.",
+            "Teks B menerima manfaat edukasi, tetapi meragukan bukti Teks A dan menilai rancangan produk serta pengawasan lebih mendesak.",
         },
       ],
     },

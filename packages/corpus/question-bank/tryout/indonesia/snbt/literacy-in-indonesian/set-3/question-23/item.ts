@@ -2,35 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "text-structure",
   },
-  stimulus: "youth-pledge",
+  stimulus: "railway-java",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 2,
+          correct: false,
           label:
-            "Ikrar 1928 menyatakan bahwa para pemuda mengaku berbahasa satu.",
+            "membantah kesimpulan paragraf sebelumnya, sehingga penulis akhirnya menyebut rel sebagai alat modernisasi bagi seluruh penduduk",
         },
         {
-          column: 1,
+          correct: false,
           label:
-            "Bahasa Melayu dipahami di banyak daerah karena lama menjadi bahasa perdagangan.",
+            "menambah bukti bahwa keuntungan terbesar jatuh ke pemilik perkebunan, karena pasar baru melayani perkebunan",
         },
         {
-          column: 2,
+          correct: false,
           label:
-            "Nama bahasa Indonesia sudah disepakati pada Kongres Pemuda I tahun 1926.",
+            "menjelaskan mengapa perusahaan swasta, bukan pemerintah, yang membangun jalur pertama",
         },
         {
-          column: 1,
+          correct: true,
           label:
-            "Bahasa Indonesia ditetapkan sebagai bahasa negara dalam Undang-Undang Dasar 1945.",
+            "mengakui manfaat rel bagi sebagian penduduk agar penilaian penulis tidak berat sebelah, tanpa membatalkan kesimpulan tentang siapa yang paling diuntungkan",
+        },
+        {
+          correct: false,
+          label:
+            "menunjukkan bahwa manfaat bagi penumpang adalah tujuan utama yang sejak awal direncanakan perusahaan kereta api swasta itu",
         },
       ],
     },

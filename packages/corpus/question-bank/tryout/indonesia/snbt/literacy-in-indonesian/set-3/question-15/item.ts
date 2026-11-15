@@ -4,32 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "text-relation",
   },
-  stimulus: "canteen-labels",
+  stimulus: "online-loan",
   versions: {
     id: {
-      columns: ["Benar", "Salah"],
+      columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
           column: 1,
-          label: "Penjualan jajanan berlabel hijau naik lebih dari 40 persen.",
+          label:
+            "Banyak peminjam pinjaman daring akhirnya kesulitan membayar kembali pinjamannya.",
         },
         {
           column: 2,
           label:
-            "Jumlah seluruh porsi yang terjual di kantin bertambah setelah label dipasang.",
+            "Pengawasan terhadap aplikasi pinjaman daring perlu diperketat.",
         },
         {
           column: 1,
-          label:
-            "Jumlah porsi jajanan merah yang berkurang lebih banyak daripada jumlah porsi jajanan hijau yang bertambah.",
+          label: "Pemahaman warga tentang biaya pinjaman tetap berguna.",
         },
         {
           column: 2,
           label:
-            "Survei menunjukkan bahwa semua siswa mengurangi konsumsi gorengan.",
+            "Rendahnya literasi keuangan warga adalah akar masalah pinjaman daring.",
         },
       ],
     },

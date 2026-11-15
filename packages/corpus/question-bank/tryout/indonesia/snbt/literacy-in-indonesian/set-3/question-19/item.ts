@@ -2,34 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "explicit-information",
+    topic: "data-interpretation",
   },
-  stimulus: "village-tourism",
+  stimulus: "rainfall-harvest",
   versions: {
     id: {
       columns: ["Ya", "Tidak"],
       kind: "matrix",
       statements: [
         {
-          column: 1,
-          label:
-            "Teks 1 berencana menggelar upacara syukur panen setiap Sabtu.",
-        },
-        {
-          column: 2,
-          label: "Teks 2 menolak semua kegiatan wisata di desa itu.",
-        },
-        {
           column: 2,
           label:
-            "Menurut Teks 2, warga boleh memasuki area keramat kapan saja.",
+            "Irigasi teknis yang luas menyebabkan Sukamaju lebih tahan terhadap kemarau daripada dua kabupaten lainnya.",
         },
         {
           column: 1,
           label:
-            "Teks 2 mengusulkan agar lahan parkir dipindahkan ke luar kampung.",
+            "Pada tahun El Nino, penurunan produksi dalam persen paling besar terjadi di kabupaten dengan irigasi teknis paling sempit.",
+        },
+        {
+          column: 2,
+          label:
+            "Petani Banyulor menanam lebih sedikit pada 2023 karena takut gagal panen.",
+        },
+        {
+          column: 2,
+          label:
+            "Pada 2022, produksi Sukamaju lebih dari separuh produksi ketiga kabupaten bersama-sama.",
         },
       ],
     },

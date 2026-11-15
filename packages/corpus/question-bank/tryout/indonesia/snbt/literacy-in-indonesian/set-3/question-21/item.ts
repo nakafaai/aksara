@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "argument-evaluation",
+    topic: "strengthen-weaken",
   },
-  stimulus: "village-tourism",
+  stimulus: "railway-java",
   versions: {
     id: {
       kind: "choice",
@@ -14,26 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menghentikan kunjungan wisatawan pada akhir pekan secara bertahap.",
+            "Jalur pertama itu dibangun oleh perusahaan swasta, bukan oleh pemerintah kolonial.",
+        },
+        {
+          correct: false,
+          label:
+            "Gula, kopi, dan tembakau dari pedalaman Jawa Tengah dijual mahal di pasar Eropa.",
+        },
+        {
+          correct: false,
+          label:
+            "Pada tahun-tahun pertama, rel itu juga dipakai untuk mengangkut pegawai perusahaan perkebunan ke kantor mereka di Semarang.",
+        },
+        {
+          correct: false,
+          label:
+            "Kota-kota kecil di sepanjang rel tumbuh lebih cepat daripada kota-kota di Jawa Tengah yang tidak dilalui rel.",
         },
         {
           correct: true,
           label:
-            "Melayani minat wisatawan tanpa mengubah upacara menjadi pertunjukan.",
-        },
-        {
-          correct: false,
-          label:
-            "Memindahkan upacara syukur panen ke hari Sabtu agar lebih ramai.",
-        },
-        {
-          correct: false,
-          label:
-            "Mengganti upacara syukur panen dengan pertunjukan tari dan musik.",
-        },
-        {
-          correct: false,
-          label: "Membuka area keramat bagi wisatawan pada akhir pekan saja.",
+            "Pada tahun-tahun pertama, sebagian besar muatan jalur itu adalah penumpang biasa dan barang mereka, bukan hasil perkebunan.",
         },
       ],
     },

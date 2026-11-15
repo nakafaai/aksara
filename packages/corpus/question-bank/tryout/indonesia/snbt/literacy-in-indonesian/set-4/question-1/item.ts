@@ -2,11 +2,11 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "textual",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "cause-effect",
+    topic: "point-of-view",
   },
-  stimulus: "antibiotic-resistance",
+  stimulus: "land-subsidence",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Antibiotik mengubah bakteri yang peka menjadi bakteri yang kebal.",
+            "Penulis menolak kedua pandangan itu karena tanggul tidak ada gunanya selama tanah turun dan keberatan warga hanya dalih untuk mempertahankan sumur.",
+        },
+        {
+          correct: false,
+          label:
+            "Penulis menerima hitungan pejabat tentang umur tanggul, tetapi menolak keberatan warga karena sumur rumah tangga adalah penyumbang penurunan terbesar.",
         },
         {
           correct: true,
           label:
-            "Bakteri peka mati sehingga bakteri tahan berkembang biak tanpa banyak pesaing.",
+            "Penulis menolak alasan pejabat tetapi tetap menganggap tanggul perlu, dan menerima keberatan warga sebagai syarat pelaksanaan, bukan alasan menunda.",
         },
         {
           correct: false,
           label:
-            "Bakteri belajar melawan antibiotik setelah beberapa kali terpapar obat yang sama.",
+            "Penulis membenarkan keberatan warga sehingga ia mengusulkan agar pembatasan sumur menunggu sampai air perpipaan menjangkau semua rumah.",
         },
         {
           correct: false,
           label:
-            "Antibiotik merangsang tubuh menghasilkan lebih banyak bakteri baru.",
-        },
-        {
-          correct: false,
-          label:
-            "Bakteri yang kebal memakan bakteri yang mati karena antibiotik.",
+            "Penulis setuju bahwa perubahan iklim adalah penyebab utama genangan, tetapi menilai tanggul kurang hemat dibandingkan perluasan air perpipaan.",
         },
       ],
     },

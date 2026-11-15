@@ -4,34 +4,37 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "fact-opinion",
+    topic: "strengthen-weaken",
   },
-  stimulus: "novel-review",
+  stimulus: "anchoring-price",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Separuh mata air itu kini kering.",
+          label:
+            "Siswa di kelompok kedua lebih sering membeli madu di rumah daripada siswa di dua kelompok lainnya.",
         },
         {
           correct: false,
           label:
-            "Ia pulang karena kakeknya meninggal dan mewariskan sebuah peta.",
+            "Kelompok pertama dan kedua sama-sama menulis harga lebih rendah setelah diberi tahu harga madu di pasar.",
         },
         {
           correct: true,
-          label: "Dialog dalam novel ini juga patut dipuji.",
+          label:
+            "Kelompok tambahan yang diberi tahu bahwa Rp$$160{.}000$$ diambil dengan undian tetap menulis harga hampir sama dengan kelompok kedua.",
         },
         {
           correct: false,
           label:
-            "Rara menyelang-nyelingi bab masa kini dengan catatan harian sang kakek.",
+            "Pedagang madu di pasar menulis harga yang lebih dekat dengan harga pasar daripada siswa di ketiga kelompok.",
         },
         {
           correct: false,
-          label: "Sinta mulai menelusuri penyebab mata air yang kering.",
+          label:
+            "Kelompok tambahan yang mendengar angka Rp$$160{.}000$$ tanpa pertanyaan lebih mahal atau lebih murah menulis harga lebih tinggi lagi.",
         },
       ],
     },

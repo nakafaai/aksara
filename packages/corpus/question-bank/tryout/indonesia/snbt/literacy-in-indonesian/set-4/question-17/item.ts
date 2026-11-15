@@ -4,9 +4,9 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "research-design",
+    topic: "data-interpretation",
   },
-  stimulus: "coffee-plots",
+  stimulus: "dengue-cases",
   versions: {
     id: {
       kind: "choice",
@@ -14,25 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Skor cita rasa tidak berhubungan dengan harga yang dibayar koperasi.",
-        },
-        {
-          correct: false,
-          label: "Kebun yang dicatat ditanami varietas kopi yang berbeda-beda.",
+            "Laju kasus Sukamulya pada 2024 masih yang terendah di kabupaten, sehingga kenaikannya tidak perlu terlalu diperhatikan oleh dinas.",
         },
         {
           correct: false,
           label:
-            "Pohon pelindung hanya ditanam di kebun yang berada paling tinggi.",
-        },
-        {
-          correct: false,
-          label: "Koperasi tidak mencatat hasil biji dari setiap kebun.",
+            "Kasus di Sukamulya dicatat menurut tempat berobat, sehingga sebagian kasusnya berasal dari kecamatan lain.",
         },
         {
           correct: true,
           label:
-            "Setiap perlakuan hanya diwakili satu kebun dalam satu musim panen.",
+            "Kenaikan itu hanya $$30$$ kasus pada $$50{.}000$$ penduduk, sehingga sedikit kasus saja sudah membuat persentasenya besar.",
+        },
+        {
+          correct: false,
+          label:
+            "Kasus di Kota Baru naik lebih banyak, yaitu $$40$$ kasus, sehingga penularan di Kota Baru pasti lebih cepat.",
+        },
+        {
+          correct: false,
+          label:
+            "Puskesmas Sukamulya dapat memeriksa darah, sehingga kasus ringan di sana lebih sering tercatat daripada dahulu.",
         },
       ],
     },

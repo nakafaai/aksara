@@ -2,34 +2,39 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "evaluation-appreciation",
     contentDomain: "informational-text",
-    topic: "data-interpretation",
+    topic: "figurative-language",
   },
-  stimulus: "canteen-labels",
+  stimulus: "online-loan",
   versions: {
     id: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label: "Sekitar 27,8 persen",
+          label:
+            "Warga tetap sepenuhnya bertanggung jawab, karena lubang yang tertutup daun masih dapat dilihat oleh orang yang berhati-hati.",
         },
         {
           correct: false,
-          label: "32,5 persen",
+          label:
+            "Biaya pinjaman sebenarnya kecil, tetapi warga salah menghitungnya karena tidak memahami bunga harian.",
+        },
+        {
+          correct: false,
+          label:
+            "Kesalahan terletak pada pemerintah, karena pemerintahlah yang seharusnya menutup lubang itu dengan aturan.",
         },
         {
           correct: true,
-          label: "Sekitar 34,2 persen",
+          label:
+            "Kesalahan tidak bisa ditimpakan seluruhnya pada warga, karena biaya pinjaman disajikan dengan cara yang membuatnya sulit terlihat.",
         },
         {
           correct: false,
-          label: "45 persen",
-        },
-        {
-          correct: false,
-          label: "Sekitar 72,2 persen",
+          label:
+            "Aplikasi menyembunyikan seluruh biaya, sehingga tidak ada angka biaya yang tercantum di aplikasi itu.",
         },
       ],
     },

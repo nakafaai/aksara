@@ -3,10 +3,10 @@ import type { ItemSource } from "#corpus/question-bank/item";
 const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "inferential",
-    contentDomain: "informational-text",
-    topic: "author-purpose",
+    contentDomain: "fiction",
+    topic: "character",
   },
-  stimulus: "sugar-tax",
+  stimulus: "night-bus-driver",
   versions: {
     id: {
       kind: "choice",
@@ -14,27 +14,27 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Menunjukkan bahwa pungutan itu terutama bekerja dengan membuat konsumen membeli lebih sedikit.",
+            "Ia mencari alasan untuk menunda keberangkatan, karena masih ada penumpang yang belum membeli tiket di loket terminal malam itu.",
         },
         {
           correct: false,
           label:
-            "Menunjukkan bahwa konsumen Inggris lebih peduli kesehatan daripada konsumen lain.",
+            "Ia benar-benar yakin jam terminal terlalu cepat, karena ia selalu berangkat tepat waktu menurut jam tangannya selama dua puluh tiga tahun.",
         },
         {
           correct: true,
           label:
-            "Menunjukkan bahwa cukai dapat mengurangi gula melalui perubahan resep oleh produsen.",
+            "Ia mencari alasan untuk menunda keberangkatan, karena sebagian dirinya masih menunggu penumpang kursi nomor tiga yang ia tahu tidak akan datang.",
         },
         {
           correct: false,
           label:
-            "Menjelaskan cara menghitung besarnya cukai berdasarkan harga jual minuman.",
+            "Ia ingin mempermainkan Ardi, karena kesal Ardi akan meninggalkannya untuk bekerja di kantor travel.",
         },
         {
           correct: false,
           label:
-            "Membuktikan bahwa produsen minuman selalu menolak aturan pemerintah tentang gula.",
+            "Ia sengaja berangkat terlambat agar bus tiba di Jakarta pada jam yang lebih sepi dan lebih aman.",
         },
       ],
     },
