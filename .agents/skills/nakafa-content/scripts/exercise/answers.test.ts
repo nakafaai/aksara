@@ -16,6 +16,13 @@ it.each([
   ["ms", "Soalan Latihan", "Jalan Kerja", "Soalan"],
   ["ms", "Latihan", "Skema Jawapan", "Jawapan"],
   ["ms", "Latihan", "Penyelesaian", "Penyelesaian"],
+  ["en", "Practice", "Answers", "Problem"],
+  ["en", "Exercises", "Solutions for Simplifying Radicals", "Problem"],
+  ["de", "Übungen", "Durchgerechnete Lösung", "Aufgabe"],
+  ["id", "Latihan", "Pembahasan Penyederhanaan Bentuk Akar", "Soal"],
+  ["ms", "Latihan", "Jawapan", "Soalan"],
+  ["ms", "Latihan", "Kunci Jawapan", "Soalan"],
+  ["ms", "Latihan", "Penyelesaian Latihan Kedua", "Soalan"],
 ] as const)(
   "requires %s answer numbers, not merely topic names or step numbers",
   (locale, exercise, solution, label) => {

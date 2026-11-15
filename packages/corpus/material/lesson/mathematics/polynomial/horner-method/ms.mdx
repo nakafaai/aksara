@@ -11,8 +11,6 @@ export const metadata = {
 
 Kaedah Horner <Highlight>membahagikan polinomial dengan pembahagi linear</Highlight> seperti <InlineMath math="(x-c)" /> dengan hanya menggunakan pekalinya yang disusun mengikut tertib. Setiap langkah mendarabkan hasil terkini dengan <InlineMath math="c" /> dan menambahkan pekali seterusnya, jadi pengiraan ini tidak perlu mengulang pemboleh ubah dan kuasa seperti dalam pembahagian panjang. Nombor terakhir dalam skema ialah **baki**, yang sama dengan <InlineMath math="P(c)" />, dan nombor-nombor sebelumnya ialah pekali hasil bahagi.
 
-### Perbandingan dengan Pembahagian Panjang
-
 Untuk melihat bagaimana kaedah Horner memudahkan proses ini, bandingkan pembahagian <InlineMath math="P(x) = x^3 - 7x + 8" /> (atau <InlineMath math="x^3 + 0x^2 - 7x + 8" />) dengan <InlineMath math="x-2" /> menggunakan kedua-dua kaedah:
 
 **Pembahagian Panjang**:
@@ -145,8 +143,6 @@ Semak baki dengan menilai polinomial secara terus: <InlineMath math="P(-3) = 2(-
   data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
-
-### Pembahagi dengan Pekali Pelopor Selain Satu
 
 Untuk pembahagi <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0" />, gunakan <InlineMath math="c=b/a" /> dalam skema. Tetapi, **bahagikan hasil bahagi yang diperoleh dengan pekali pelopor pembahagi**. Bakinya tidak berubah.
 

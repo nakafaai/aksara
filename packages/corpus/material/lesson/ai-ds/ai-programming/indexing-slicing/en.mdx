@@ -13,8 +13,6 @@ Indexing selects **one element by position** from a string or list. For example,
 
 Python starts its index numbers at <InlineMath math="0" />. The first element has index <InlineMath math="0" />, the second has index <InlineMath math="1" />, and so on. Python also supports negative indices that count backward from the end.
 
-### Positive and Negative Indices
-
 In strings or lists, each character or element has two types of indices. Positive indices start from <InlineMath math="0" /> at the beginning, while negative indices start from <InlineMath math="-1" /> at the end.
 
 The table places **two indices on the same element**. Both `1` and `-4` select `e`. The code uses `repr()` so quotation marks and empty strings remain visible in the output.
@@ -117,8 +115,6 @@ A negative step reverses the selection direction. The form `s[::-1]` omits both 
 ## Slice Rules
 
 A slice is written as `start:stop:step`. The start index is included, the **stop index is excluded**, and a negative step walks the sequence from right to left.
-
-### Counting the Selected Elements
 
 Let <InlineMath math="n" /> be the length of `s`. For the simple case <InlineMath math="0 \le i \le j \le n" /> with the default positive step, `s[i:j]` has length <InlineMath math="j-i" />. General slices may contain omitted, negative, or out-of-range bounds and a different step. Python first **normalizes them against the sequence length**. The exact count is `len(range(*slice(i, j, step).indices(len(s))))`.
 
@@ -309,8 +305,6 @@ A slice picks the indices of `range(start, stop, step)`. For `s = 'Python'`, `s[
 ## Slice Shorthand
 
 Omitted bounds follow the **step direction**. A positive step starts at the beginning by default and stops after the final element. A negative step starts at the final element by default and stops beyond the first element.
-
-### From the Beginning or to the End
 
 With the **default positive step**, `s[:3]` selects the beginning and `s[3:]` selects the end. In `s[::-1]`, both omitted bounds follow the negative direction, reversing the sequence.
 

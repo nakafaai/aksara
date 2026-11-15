@@ -89,8 +89,6 @@ Listen und Tupel ordnen Elemente nach Position, Dictionaries dagegen nach Schlü
 
 Ein Dictionary ist veränderlich, seine **Schlüssel sind eindeutig und hashbar**, und seine Iterationsreihenfolge folgt der Einfügereihenfolge der Schlüssel. Diese drei Eigenschaften erklären fast alles, was dir später auffällt: warum du Einträge nach dem Anlegen ergänzen oder entfernen kannst, warum eine Zuweisung an einen vorhandenen Schlüssel den alten Wert ersetzt statt einen zweiten Eintrag anzulegen, und warum das Durchlaufen eine stabile Reihenfolge liefert.
 
-### Einfügereihenfolge und eindeutige Schlüssel
-
 Die Python-Sprachspezifikation garantiert die Einfügereihenfolge von Dictionaries seit Python `3.7`. Ein neuer Wert für einen vorhandenen Schlüssel aktualisiert den Eintrag, **ohne den Schlüssel zu verschieben**. Löschst du ihn und fügst ihn erneut ein, steht er anschließend am Ende.
 
 <CodeBlock
@@ -126,8 +124,6 @@ Schlüssel in einem Dictionary sind immer eindeutig. In `d = {'a': 1, 'b': 2, 'a
 ## Zugriff auf Wörterbücher
 
 Um einen Wert aus einem Dictionary abzurufen, **gibst du seinen Schlüssel an**. Ein verständlicher Schlüssel wie ein Name oder ein Datum übernimmt dabei die Aufgabe eines fortlaufenden Zahlenindex.
-
-### Indizierung mit Schlüsseln
 
 <CodeBlock
   data={[
@@ -224,8 +220,6 @@ Die Ansicht `items()` liefert **Schlüssel und Wert gemeinsam**. Durch Tupelentp
 ## Drei Arten von Dictionary Views
 
 Ein Dictionary stellt **dynamische Ansichten** seiner Schlüssel, Werte und Schlüssel-Wert-Paare bereit. Eine solche Ansicht ist keine Kopie: Sie liest bei jeder Iteration den aktuellen Inhalt des Dictionaries, sodass eine Änderung nach dem Erzeugen der Ansicht sofort sichtbar wird.
-
-### Dictionary Views erzeugen
 
 <CodeBlock
   data={[

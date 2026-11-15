@@ -13,8 +13,6 @@ Die Indizierung wählt **ein Element über seine Position** aus einer Zeichenfol
 
 Python zählt Indizes ab <InlineMath math="0" />. Das erste Element hat den Index <InlineMath math="0" />, das zweite den Index <InlineMath math="1" /> und so weiter. **Negative Indizes** zählen vom Ende rückwärts.
 
-### Positive und negative Indizes
-
 Positive Indizes beginnen mit <InlineMath math="0" /> am Anfang. Negative Indizes beginnen mit <InlineMath math="-1" /> am Ende.
 
 Die Tabelle zeigt **zwei Indizes für dasselbe Element**. Sowohl `1` als auch `-4` wählen `e`. Der Code verwendet `repr()`, damit Anführungszeichen und leere Strings in der Ausgabe sichtbar sind.
@@ -117,8 +115,6 @@ Ein negativer Schritt kehrt die Auswahlrichtung um. `s[::-1]` lässt beide Grenz
 ## Regeln für Slicing
 
 Ein Slice wird als `start:stop:step` geschrieben. Der Startindex gehört zum Ergebnis, **der Endindex nicht**, und eine negative Schrittweite liest die Sequenz von rechts nach links.
-
-### Anzahl der ausgewählten Elemente
 
 Sei <InlineMath math="n" /> die Länge von `s`. Im einfachen Fall <InlineMath math="0 \le i \le j \le n" /> mit der positiven Standardschrittweite hat `s[i:j]` die Länge <InlineMath math="j-i" />. Allgemeine Slices können ausgelassene, negative oder außerhalb liegende Grenzen und eine andere Schrittweite besitzen. Python **normalisiert sie zunächst anhand der Sequenzlänge**. Die genaue Anzahl ist `len(range(*slice(i, j, step).indices(len(s))))`.
 
@@ -309,8 +305,6 @@ Ein Slice wählt die Indizes von `range(start, stop, step)`. Für `s = 'Python'`
 ## Kurzformen beim Slicing
 
 Ausgelassene Grenzen folgen der **Richtung der Schrittweite**. Bei positiver Schrittweite beginnt die Auswahl standardmäßig am Anfang und reicht bis hinter das letzte Element. Bei negativer Schrittweite beginnt sie am letzten Element und reicht bis vor das erste.
-
-### Vom Anfang oder bis zum Ende
 
 Mit der **positiven Standardschrittweite** wählt `s[:3]` den Anfang und `s[3:]` das Ende aus. Bei `s[::-1]` folgen beide ausgelassenen Grenzen der negativen Richtung, sodass die Reihenfolge umgekehrt wird.
 

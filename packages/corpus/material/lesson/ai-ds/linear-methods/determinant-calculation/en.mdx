@@ -55,8 +55,6 @@ Alternatively, we may expand along any fixed column <InlineMath math="j" />:
 
 The term <InlineMath math="(-1)^{i+j}\det A_{ij}" /> is the **cofactor** of <InlineMath math="a_{ij}" />. The factor <InlineMath math="(-1)^{i+j}" /> creates the alternating checkerboard pattern of signs. Choosing a row or column with many zeros reduces the number of minors we need to evaluate.
 
-### Cofactor Expansion for a Third Order Matrix
-
 Look at an example of cofactor expansion for a <InlineMath math="3 \times 3" /> matrix:
 
 <BlockMath math="A = \begin{pmatrix} 2 & 1 & 3 \\ 0 & 4 & 1 \\ 1 & 2 & 0 \end{pmatrix}" />
@@ -185,8 +183,6 @@ The calculation gives:
 </MathContainer>
 
 If an algorithm scales a row during elimination, that scale factor must also be recorded and removed from the final product. In numerical computation, partial pivoting is normally used to avoid a zero pivot and reduce the effect of roundoff errors.
-
-### Operation Count
 
 For a dense <InlineMath math="n \times n" /> matrix, the elimination or <InlineMath math="\mathrm{LU}" /> factorization requires about <InlineMath math="\frac{2}{3}n^3 + O(n^2)" /> floating-point operations. Multiplying the resulting diagonal entries requires only <InlineMath math="O(n)" /> additional work. A naive recursive cofactor expansion can grow like <InlineMath math="O(n!)" />.
 

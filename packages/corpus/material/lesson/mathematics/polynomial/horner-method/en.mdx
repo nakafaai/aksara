@@ -11,8 +11,6 @@ export const metadata = {
 
 Horner's method <Highlight>divides a polynomial by a linear divisor</Highlight> such as <InlineMath math="(x-c)" /> using only its ordered coefficients. Each step multiplies the latest result by <InlineMath math="c" /> and adds the next coefficient, so the calculation does not repeat the variables and powers used in long division. The last number of the scheme is **the remainder**, which equals <InlineMath math="P(c)" />, and the numbers before it are the coefficients of the quotient.
 
-### Comparison with Long Division
-
 To see how Horner's method simplifies the process, compare the division of <InlineMath math="P(x) = x^3 - 7x + 8" /> (or <InlineMath math="x^3 + 0x^2 - 7x + 8" />) by <InlineMath math="x-2" /> using both methods:
 
 **Long Division**:
@@ -145,8 +143,6 @@ Check the remainder by evaluating the polynomial directly: <InlineMath math="P(-
   data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
-
-### A Divisor with a Leading Coefficient Other Than One
 
 For a divisor <InlineMath math="ax-b" /> with <InlineMath math="a\ne0" />, use <InlineMath math="c=b/a" /> in the scheme. However, **divide the resulting quotient by the divisor’s leading coefficient**. The remainder stays unchanged.
 

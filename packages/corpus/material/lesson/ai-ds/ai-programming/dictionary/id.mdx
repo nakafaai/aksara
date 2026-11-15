@@ -89,8 +89,6 @@ List dan tuple mengatur item berdasarkan posisi. Dictionary mengatur isinya berd
 
 Dictionary bersifat **mutable**, tetapi setiap kuncinya harus unik dan memiliki nilai hash yang tetap. Saat dictionary dibaca dengan `for` loop, kuncinya muncul sesuai urutan saat pertama kali ditambahkan.
 
-### Urutan Penyisipan dan Kunci Unik
-
 Sejak Python `3.7`, spesifikasi bahasa menjamin insertion order pada dictionary. Menetapkan nilai baru ke kunci yang sudah ada **tidak memindahkan posisi kunci** tersebut. Jika kunci dihapus lalu ditambahkan kembali, posisinya berpindah ke akhir.
 
 <CodeBlock
@@ -126,8 +124,6 @@ Kunci dalam dictionary selalu unik. Pada `d = {'a': 1, 'b': 2, 'a': 3}`, kunci `
 ## Mengakses Nilai
 
 Untuk mengambil value, tulis **key di dalam kurung siku**. Key seperti nama atau tanggal dapat dipakai sebagai pengenal, jadi kamu tidak perlu mencari value melalui indeks angka.
-
-### Memakai Kunci
 
 <CodeBlock
   data={[
@@ -224,8 +220,6 @@ Method `items()` menghasilkan pasangan kunci dan nilai. Pada `for key, val in ph
 ## Tiga Jenis Dictionary View
 
 Method `keys()`, `values()`, dan `items()` menghasilkan dictionary view yang berbeda. **View tetap terhubung** ke dictionary asal, sehingga perubahan pada dictionary juga muncul pada view tersebut.
-
-### Membuat Dictionary View
 
 <CodeBlock
   data={[

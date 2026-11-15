@@ -139,9 +139,12 @@ boundary before widening a rule. Preserve the following verification boundaries:
 - The heading demonstrative form of an ambiguous reference is blocking through
   `heading-demonstrative-reference`, which matches only the demonstrative words;
   a heading that carries the `-nya` clitic stays a manual review item.
-  `empty-section-body`, `heading-without-body`, `list-only-section`, and
-  `component-only-section` are blocking section-body defects, while
-  `thin-section-body` is a review candidate. The section-body
+  `empty-section-body`, `heading-without-body`, `list-only-section`,
+  `component-only-section`, and `thin-section-body` are blocking section-body
+  defects; `thin-section-body` became blocking on 15 November 2026, when no
+  lesson section stayed under the bar. The lesson outline rules
+  `lone-subsection`, `flat-outline`, and `crowded-outline` block too, and
+  [structure](structure.md#lesson-shape) owns their shape. The section-body
   bar is twenty-five prose words or one real representation, and list-item
   text counts as prose. Body-level demonstratives, possessives, Indonesian
   `-nya`, and English `it/that/they` stay a manual review item, because no rule

@@ -17,8 +17,6 @@ Sei <InlineMath math="A\in\mathbb{R}^{m\times n}" /> mit <InlineMath math="m\geq
 
 Diese Faktorisierung heißt <InlineMath math="\mathrm{QR}" />-Zerlegung von <InlineMath math="A" />.
 
-### Beweis mit Orthogonalisierung nach Gram und Schmidt
-
 Sei <InlineMath math="a_j" /> die <InlineMath math="j" />-te Spalte von <InlineMath math="A" />. Das Gram-Schmidt-Verfahren **entfernt die Anteile** in bereits bestimmten Richtungen und normiert anschließend den Rest:
 
 <MathContainer>
@@ -165,8 +163,6 @@ Dreh diese dreidimensionale Szene, um das Beispiel von allen Seiten zu sehen. Di
 
 Das klassische Gram-Schmidt-Verfahren lässt sich direkt herleiten, kann aber bei **nahezu linear abhängigen Spalten** in Gleitkommaarithmetik Orthogonalität verlieren. Das modifizierte Verfahren verringert diesen Fehler. Numerische Software verwendet für dichte Matrizen meist Householder-Spiegelungen. Givens-Rotationen eignen sich, wenn nur einzelne Einträge beseitigt werden sollen.
 
-### Householdertransformation
-
 Für einen Einheitsvektor <InlineMath math="v\in\mathbb{R}^m" /> ist die Householder-Matrix definiert durch
 
 <BlockMath math="S = I - 2vv^T \in \mathbb{R}^{m \times m}" />
@@ -227,8 +223,6 @@ Wir beginnen mit <InlineMath math="A_1=A" /> und spiegeln die erste Spalte auf e
 </MathContainer>
 
 <BlockMath math="u_1 = \tilde{a}_1 \mp \|\tilde{a}_1\|_2 \cdot e_1" />
-
-### Iterativer Transformationsprozess
 
 Mit <InlineMath math="S_1=I_m-2v_1v_1^T" /> werden alle Einträge der ersten Spalte unterhalb der Diagonale null:
 

@@ -11,8 +11,6 @@ export const metadata = {
 
 Metode Horner <Highlight>membagi polinomial dengan pembagi linear</Highlight> seperti <InlineMath math="(x-c)" /> hanya dari urutan koefisiennya. Pada setiap langkah, hasil terakhir dikalikan dengan <InlineMath math="c" /> lalu ditambah dengan koefisien berikutnya. Karena itu, kita tidak perlu menulis ulang variabel dan pangkat seperti pada pembagian bersusun. Angka terakhir pada skema adalah **sisa pembagian**, yang sama dengan nilai <InlineMath math="P(c)" />, dan angka-angka sebelumnya adalah koefisien hasil bagi.
 
-### Perbandingan dengan Pembagian Bersusun
-
 Untuk melihat bagaimana Metode Horner menyederhanakan proses, mari bandingkan pembagian <InlineMath math="P(x) = x^3 - 7x + 8" /> (atau <InlineMath math="x^3 + 0x^2 - 7x + 8" />) dengan <InlineMath math="x-2" /> menggunakan kedua cara:
 
 **Pembagian Bersusun**:
@@ -145,8 +143,6 @@ Periksa sisanya dengan menghitung nilai polinomial langsung: <InlineMath math="P
   data={[-3, -2, -1, 0, 1].map((x) => ({ name: String(x), value: 2 * x ** 3 + 5 * x ** 2 + 6 }))}
   chartConfig={{ value: { label: "P(x)", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
-
-### Pembagi dengan Koefisien Utama Selain Satu
 
 Jika pembagi berbentuk <InlineMath math="ax-b" /> dengan <InlineMath math="a\ne0" />, gunakan <InlineMath math="c=b/a" /> pada skema. Namun, **hasil bagi harus dibagi lagi dengan koefisien utama pembagi**. Sisa tidak berubah.
 

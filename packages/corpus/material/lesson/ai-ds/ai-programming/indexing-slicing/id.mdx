@@ -13,8 +13,6 @@ Indexing mengambil **satu elemen berdasarkan posisinya** dari string atau list. 
 
 Python memulai nomor indeks dari <InlineMath math="0" />. Elemen pertama memiliki indeks <InlineMath math="0" />, elemen kedua memiliki indeks <InlineMath math="1" />, dan seterusnya. Python juga mendukung **indeks negatif** yang menghitung mundur dari akhir.
 
-### Indeks Positif dan Negatif
-
 Dalam string atau list, setiap karakter atau elemen memiliki dua jenis indeks. Indeks positif dimulai dari <InlineMath math="0" /> di awal, sedangkan indeks negatif dimulai dari <InlineMath math="-1" /> di akhir.
 
 Tabel ini menempatkan **dua indeks pada elemen yang sama**. Indeks `1` dan `-4` sama-sama memilih `e`. Contoh kode memakai `repr()` agar tanda kutip dan string kosong terlihat pada keluaran.
@@ -117,8 +115,6 @@ print(repr(s[-1:4:-1]))  # Output: '!dlroW '`
 ## Aturan Slicing
 
 Indeks awal, indeks akhir, dan `step` menentukan elemen yang masuk ke hasil. Aturan utamanya: indeks awal ikut diambil, **indeks akhir tidak**, dan `step` negatif membalik arah pembacaan dari kanan ke kiri.
-
-### Menghitung Panjang Hasil
 
 Misalkan <InlineMath math="n" /> adalah panjang `s`. Untuk kasus <InlineMath math="0 \le i \le j \le n" /> dengan `step` positif bawaan, panjang `s[i:j]` adalah <InlineMath math="j-i" />. Bentuk lain dapat mengosongkan batas, memakai indeks negatif, melewati rentang, atau menentukan `step` berbeda. **Python menyesuaikan batas tersebut** terhadap panjang data. Jumlah elemen hasil slicing dapat dihitung dengan `len(range(*slice(i, j, step).indices(len(s))))`.
 
@@ -309,8 +305,6 @@ Slice memilih indeks `range(start, stop, step)`. Untuk `s = 'Python'`, `s[0:6:2]
 ## Bentuk Singkat Slicing
 
 Batas yang dikosongkan mengikuti **arah step**. Untuk step positif, awal bawaan adalah awal data dan akhir bawaan melewati elemen terakhir. Untuk step negatif, awal bawaan adalah elemen terakhir dan akhir bawaan melewati elemen pertama.
-
-### Mengambil dari Awal atau Sampai Akhir
 
 Dengan **step positif bawaan**, `s[:3]` mengambil bagian awal dan `s[3:]` mengambil bagian akhir. Pada `s[::-1]`, kedua batas mengikuti arah negatif sehingga urutannya terbalik.
 
