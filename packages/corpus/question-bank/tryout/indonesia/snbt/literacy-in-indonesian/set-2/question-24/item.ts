@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Bantahan penulis melemah, tetapi tidak gugur, karena kebun itu masih punya herbarium dan kini berfungsi untuk konservasi.",
+            "Bantahan penulis melemah, tetapi tidak gugur, karena herbarium untuk penelitian, contoh keduanya, tidak tersentuh temuan itu.",
         },
         {
           correct: false,
