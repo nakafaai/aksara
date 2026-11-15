@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "descriptive",
     topic: "comparison",
   },
-  stimulus: "egret-hide",
+  stimulus: "bike-share",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The platform is busiest in the evening, while the ground floor is busiest at sunrise.",
-        },
-        {
           correct: true,
-          label:
-            "The platform gives a wider view, but birds notice people there more easily.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "The platform is closer to the hunting herons than the bench downstairs is.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "The platform stays open in strong wind, while the ground floor then closes.",
+          label: "I, II, III, and IV",
         },
         {
           correct: false,
-          label:
-            "The platform has viewing slits with flaps, while the ground floor has an open rail.",
+          label: "II and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, and III only",
         },
       ],
     },

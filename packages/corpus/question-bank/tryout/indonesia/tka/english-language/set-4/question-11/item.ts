@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "narrative",
     topic: "synthesis",
   },
-  stimulus: "power-cut",
+  stimulus: "kite-cliff",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "He is calm from the start, so he goes straight to the kitchen for candles.",
-        },
-        {
-          correct: false,
-          label:
-            "He is afraid of the storm, so he stays on the sofa until his parents come home.",
-        },
-        {
           correct: true,
-          label:
-            "His fear keeps him on the sofa, but her need for help gets him moving.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "He forgets his fear once the power returns, and then he looks for her stick.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label:
-            "His grandmother is frightened too, so she asks him to stay where he is.",
+          label: "I, II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "II, III, and V only",
+        },
+        {
+          correct: false,
+          label: "I, III, and V only",
         },
       ],
     },

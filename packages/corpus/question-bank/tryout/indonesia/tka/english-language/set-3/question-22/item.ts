@@ -2,35 +2,34 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "evaluation-appreciation",
+    cognitiveLevel: "inferential",
     contentDomain: "analytical-exposition",
-    topic: "fact-opinion",
+    topic: "main-idea-purpose",
   },
-  stimulus: "repair-first",
+  stimulus: "dim-lights",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: true,
-          label:
-            "Public organizations should check repairability before replacement.",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label: "The passage names three questions for repair decisions.",
+          label: "I and II only",
         },
         {
           correct: false,
-          label: "A damaged cable is one example of a repairable fault.",
+          label: "I, II, III, and V only",
         },
         {
           correct: false,
-          label: "The decision record includes the estimated repair cost.",
+          label: "I, III, and IV only",
         },
         {
           correct: false,
-          label: "Unavailable expertise is identified as a possible risk.",
+          label: "II, III, and V only",
         },
       ],
     },

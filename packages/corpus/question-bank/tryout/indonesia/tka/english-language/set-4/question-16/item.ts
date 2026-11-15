@@ -4,25 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "procedure",
-    topic: "classification",
+    topic: "explicit-information",
   },
-  stimulus: "pinhole-projector",
+  stimulus: "fish-tank",
   versions: {
     en: {
-      columns: ["Adjusting the image", "Making the projector", "Setting it up"],
-      kind: "matrix",
-      statements: [
+      kind: "choice",
+      options: [
         {
-          column: 3,
-          label: "Holding the foil card above your shoulder",
+          correct: false,
+          label: "$$40$$ millilitres",
         },
         {
-          column: 1,
-          label: "Moving the screen farther from the foil",
+          correct: false,
+          label: "$$60$$ millilitres",
         },
         {
-          column: 2,
-          label: "Pushing a pin through the center of the foil",
+          correct: true,
+          label: "$$45$$ millilitres",
+        },
+        {
+          correct: false,
+          label: "$$65$$ millilitres",
+        },
+        {
+          correct: false,
+          label: "$$15$$ millilitres",
         },
       ],
     },

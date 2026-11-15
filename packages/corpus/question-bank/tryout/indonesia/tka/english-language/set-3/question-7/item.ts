@@ -4,30 +4,32 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "textual",
     contentDomain: "recount",
-    topic: "outline",
+    topic: "summary",
   },
-  stimulus: "archive-week",
+  stimulus: "relay-ride",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: true,
-          label: "Recording visible details",
+          correct: false,
+          label: "II and III only",
         },
         {
           correct: true,
-          label: "Linking a newspaper comparison",
+          label: "II, III, and IV only",
         },
         {
           correct: false,
-          label:
-            "Recording a visitor's identification as the main label before finding another source",
+          label: "I, II, and III only",
         },
         {
           correct: false,
-          label:
-            "Confirming the identity of every person in all forty-two photographs",
+          label: "I, II, III, and IV",
+        },
+        {
+          correct: false,
+          label: "III and IV only",
         },
       ],
     },

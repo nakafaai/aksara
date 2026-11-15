@@ -2,39 +2,35 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "inferential",
+    cognitiveLevel: "textual",
     contentDomain: "analytical-exposition",
-    topic: "supporting-detail",
+    topic: "synthesis",
   },
-  stimulus: "shade-trees",
+  stimulus: "homework-cap",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
-          correct: false,
-          label:
-            "The measurements were taken at 1 p.m. on a single clear day in September.",
+          correct: true,
+          label: "Many students at the school are too tired.",
         },
         {
           correct: true,
-          label:
-            "Shade lowered asphalt by $$19$$ degrees and concrete by $$15$$, but grass by only $$7$$.",
+          label: "Homework is part of the reason students are tired.",
         },
         {
           correct: false,
           label:
-            "Asphalt in full sun was the hottest of all the surfaces that were measured.",
+            "Students spend an average of $$2.1$$ hours a day on homework set by teachers.",
         },
         {
           correct: false,
-          label:
-            "Some large trees already grow along Jalan Melati, where the office took its measurements.",
+          label: "A cap of $$60$$ minutes a day would solve the problem.",
         },
         {
           correct: false,
-          label:
-            "The concrete sidewalk measured $$32$$ degrees under the trees at the time of the test.",
+          label: "Teachers often misjudge how long their tasks take.",
         },
       ],
     },

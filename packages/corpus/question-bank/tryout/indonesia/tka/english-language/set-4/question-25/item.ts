@@ -6,35 +6,30 @@ const item: ItemSource = {
     contentDomain: "analytical-exposition",
     topic: "summary",
   },
-  stimulus: "shade-trees",
+  stimulus: "homework-cap",
   versions: {
     en: {
       kind: "choice",
       options: [
         {
           correct: false,
-          label:
-            "Shade trees cost too much to water, so the town should build roofs over its sidewalks instead.",
-        },
-        {
-          correct: false,
-          label:
-            "Measurements on one street prove that trees would make the whole town cooler and healthier.",
+          label: "I and IV only",
         },
         {
           correct: true,
-          label:
-            "Measurements on one street support planting trees on busy walking routes, with a plan for their care.",
+          label: "I, II, and IV only",
         },
         {
           correct: false,
-          label:
-            "Shop owners and the public works office disagree about how hot the streets of the town become.",
+          label: "I, II, IV, and V only",
         },
         {
           correct: false,
-          label:
-            "An infrared thermometer showed that grass stays cooler than asphalt in every season of the year.",
+          label: "II, III, and IV only",
+        },
+        {
+          correct: false,
+          label: "I, II, III, and IV only",
         },
       ],
     },
