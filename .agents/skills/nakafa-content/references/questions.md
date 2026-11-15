@@ -29,12 +29,18 @@ it when the figure needs a fuller description, such as the letters of a pattern
 that the description must not give away. Draw a bar chart, line chart, or
 histogram with `Chart` and its data, never with a component of its own.
 
-Every exam section owns its real assessment language, independent of the
+Every exam section owns its real assessment languages, independent of the
 application locale. Indonesian SNBT and TKA sections use Indonesian, except
 English assessments, which use English. A German exam owns the appropriate
-German regional language. The section's fixed language policy selects exactly
-one prompt and response locale. Worked answers remain localized for every
-application locale in the authorized authoring scope.
+German regional language. A section whose real paper prints two languages,
+such as SPM science in Malay and English, lists both in its `languages`, the
+first being the one a learner starts in. Every question of a section is
+written in each of the section's languages, with one `question.<language>.mdx`
+per language: the same task, the same options and the same answers, in that
+language's words. A typed answer lists its accepted texts in each language.
+The learner reads one language at a time and may switch, and the answer stays
+the same. Worked answers remain localized for every application locale in the
+authorized authoring scope.
 Every authored locale file must pass the same inventory, ownership, preview,
 and editorial checks, whether or not that locale is included in a publication.
 The presence of an authored source file alone never changes publication state.

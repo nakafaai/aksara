@@ -21,6 +21,17 @@ import {
 } from "#contracts/test/assessment/exam";
 import { hash } from "#contracts/test/assessment/item";
 import {
+  bilingualKeys,
+  bilingualPaper,
+  bilingualPlacement,
+  bilingualVersions,
+  choice,
+  keyOf,
+  places,
+  reorderedKeys,
+  text,
+} from "#contracts/test/assessment/languages";
+import {
   snbtQuestion10,
   snbtQuestion11,
   snbtQuestion12,
@@ -28,6 +39,7 @@ import {
 import {
   tkaMatrix,
   tkaMultiple,
+  tkaMultipleEnglish,
   tkaMultipleExplanation,
 } from "#contracts/test/assessment/tka";
 
@@ -190,5 +202,89 @@ describe("the stimuli a paper lists", () => {
         unused: [other],
       });
     })
+  );
+});
+
+describe("paper places in several languages", () => {
+  it("places one item in every language of its section, in the section's order", () => {
+    expect(failsStrict(PaperSchema, bilingualPaper)).toBe(false);
+    for (const versions of [
+      [bilingualPlacement.versions[0]],
+      Arr.reverse(bilingualPlacement.versions),
+      [bilingualPlacement.versions[0], bilingualPlacement.versions[0]],
+    ]) {
+      expect(
+        failsStrict(PaperSchema, {
+          ...bilingualPaper,
+          sections: [
+            {
+              ...bilingualPaper.sections[0],
+              placements: [{ ...bilingualPlacement, versions }],
+            },
+          ],
+        })
+      ).toBe(true);
+    }
+    expect(
+      failsStrict(PaperSchema, {
+        ...bilingualPaper,
+        sections: [{ ...bilingualPaper.sections[0], languages: ["id", "id"] }],
+      })
+    ).toBe(true);
+  });
+
+  it.effect(
+    "holds an item whose versions differ only in words, and refuses one that differs in more",
+    () =>
+      Effect.gen(function* () {
+        const keys = [
+          keyOf(tkaMultiple.hash, choice),
+          keyOf(tkaMultipleEnglish.hash, choice),
+        ];
+
+        expect(yield* places([tkaMultiple, tkaMultipleEnglish], keys)).toBe(
+          "held"
+        );
+        expect(
+          yield* places(
+            [tkaMultiple, { ...tkaMultipleEnglish, deliveryLanguage: "ms" }],
+            keys
+          )
+        ).toBe("version");
+        expect(yield* places([tkaMultiple], keys)).toBe("version");
+        expect(
+          yield* places(
+            [
+              tkaMultiple,
+              {
+                ...tkaMultipleEnglish,
+                interactions: [
+                  { ...tkaMultipleEnglish.interactions[0], maxChoices: 4 },
+                ],
+              },
+            ],
+            keys
+          )
+        ).toBe("structure");
+      })
+  );
+
+  it.effect(
+    "keys a typed answer in each language's words, and every other answer the same in all",
+    () =>
+      Effect.gen(function* () {
+        const reasons = yield* Effect.forEach(
+          [
+            bilingualKeys(text(["segitiga"]), text(["triangle"])),
+            bilingualKeys(text(["segitiga"]), text(["triangle"], false)),
+            bilingualKeys(choice, { ...choice, correct: ["option-2"] }),
+            [keyOf(tkaMultiple.hash, choice)],
+            reorderedKeys(),
+          ],
+          (keys) => places(bilingualVersions, keys)
+        );
+
+        expect(reasons).toEqual(["held", "key", "key", "key", "held"]);
+      })
   );
 });

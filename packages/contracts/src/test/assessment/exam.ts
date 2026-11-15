@@ -184,16 +184,21 @@ export const schoolProfile = {
 /** The profile that the paper of the passage set follows, by identifier and hash. */
 export const profileReference = { hash: hash("7"), id: snbtProfile.id };
 
-/** Names one item version by its family and its hash. */
+/** Places one item by its family, with its one version in the language it is written in. */
 function placementOf(version: {
+  readonly deliveryLanguage: string;
   readonly family: string;
   readonly hash: string;
 }) {
-  return { family: version.family, hash: version.hash };
+  return {
+    family: version.family,
+    versions: [{ hash: version.hash, language: version.deliveryLanguage }],
+  };
 }
 
 /** The section of the three questions that share the passage. */
 export const passageSection = {
+  languages: ["id"],
   placements: Arr.map(
     [snbtQuestion10, snbtQuestion11, snbtQuestion12],
     placementOf
@@ -203,6 +208,7 @@ export const passageSection = {
 
 /** The section of the two TKA questions, placed here to test a second section. */
 export const tkaSection = {
+  languages: ["id"],
   placements: Arr.map([tkaMultiple, tkaMatrix], placementOf),
   section: "quantitative-knowledge",
 };

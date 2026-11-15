@@ -8,7 +8,8 @@
   deleted by the change that switches their readers, and the steps below land as
   one change.
 - Amended: 2026-11-15, version 7.0.0: a try-out set serves the locales it is
-  explained in (see Set locales in 7.0.0).
+  explained in (see Set locales in 7.0.0), and a paper section places every
+  language of its items (see Section languages in 7.0.0).
 
 ## Context
 
@@ -204,14 +205,15 @@ interaction.
   school exam, so there a sample never grades a student on its own. The same
   item therefore needs no change to sit in a try-out and in a school exam.
 - A paper is a frozen manuscript: the profile it follows by identifier and hash,
-  sections with ordered places, each place an item version by family and hash,
-  and the stimulus versions it uses by identifier and hash. A paper is frozen and
-  named by its content hash. A paper bundle carries prompts and stimuli only,
-  never a key and never an explanation. The schema of a paper cannot see the
-  item versions its places name, so `verifyPaperStimuli` checks that the
-  stimulus versions a paper lists are exactly the ones those item versions use,
-  each once. Whoever freezes a paper runs it first, because the hash fixes the
-  content.
+  sections with their languages and ordered places, each place an item family
+  with its version in every language of the section, and the stimulus versions
+  it uses by identifier and hash. A paper is frozen and named by its content
+  hash. A paper bundle carries prompts and stimuli only, never a key and never an
+  explanation. The schema of a paper cannot see the item versions its places
+  name, so `verifyPaperStimuli` checks that the stimulus versions a paper lists
+  are exactly the ones those item versions use, each once, and
+  `verifyPaperPlaces` checks each place (see Section languages in 7.0.0).
+  Whoever freezes a paper runs both first, because the hash fixes the content.
 - The tool registry has twelve identifiers: three calculators (`basic`,
   `scientific`, `graphing`; no calculator is the absence of all three), a formula
   sheet, an option eliminator, a highlighter, mark for review, notes, a line
@@ -375,7 +377,8 @@ keeps `DeliveryLanguageSchema`, which holds the declared app locales.
 The direction of a text is not stored: the renderer follows the script of each
 text. Every reader of the language was traced. `hasFamilyVersions` keeps one
 version per language of an item, `hasOwnVersions` keeps one version per language
-of a stimulus, and a paper holds no language. No check compares the language of a
+of a stimulus, and a paper section names its languages (see Section languages in
+7.0.0). No check compares the language of a
 stimulus reference with the language of its item, because a reference holds only
 an identifier and a hash. No publication path of Aksara decodes assessment items
 at this version, so none refuses a language outside the app locales yet. The
@@ -489,6 +492,35 @@ serve fewer:
 - The corpus reads a set's locales from the explanations it writes. A question
   that writes a locale its set's other questions lack fails, so a set is written
   in a locale completely or not at all.
+
+### Section languages in 7.0.0
+
+A real SPM science paper prints Malay and English, and a candidate reads mainly
+in one and glances at the other. A place named one version, so a section had one
+language and the second never reached a learner. A section now names its
+languages:
+
+- `PaperSection.languages` is an ordered, non-empty list of content languages,
+  each once; the first is the one a learner starts in. A place is
+  `{ family, versions: [{ language, hash }] }`, its versions exactly the
+  section's languages in that order. The single `hash` of a place is deleted,
+  and the hash of the paper covers every version.
+- `verifyPaperPlaces` checks each place: every version is of the place's family
+  and written in the language it is placed for; the versions share one
+  structure (`versionStructure`: the interactions, the joint rule, and the
+  scoring rules without their words); and their keys agree on every answer
+  apart from the accepted texts of a typed answer and the descriptors of a
+  rubric. One place per family stays. The snapshot closure runs the same check.
+- Each version keeps its own key. A typed answer lists its accepted texts in its
+  own language, so a learner who reads in Malay and types in English is not
+  refused: Nakafa grades a typed answer against the accepted texts of every
+  version of the place, and a switch of language never changes a grade. Every
+  other answer is the same in every language, because its options are structure.
+- The corpus `SectionSource.languages` replaces `language`. SNBT and TKA
+  sections keep `["id"]` or `["en"]`, Darmstadt `["de"]`, and SPM takes
+  `["ms", "en"]`. `planSection` refuses an item that lacks a language of its
+  section, and `freezePaper` places every one.
+- Explanations stay per app locale, unchanged.
 
 ### What it deletes
 

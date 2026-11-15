@@ -266,10 +266,10 @@ describe("structured snapshot verification", () => {
             baseSnapshotId: null,
             mode: "replace",
             resultSnapshotId:
-              "sha256:5b78a9d3bfe7d10c1aeeb9cfbd3a26aeca1cec8098d1884decc45523703a789b",
+              "sha256:f0af06e68e9c045bbb78bc29311ba69e25ce58a627c30cdc77ec9a8f6d9b014f",
             rowCount: 34,
             rowDigest:
-              "sha256:fccb066897525d4d1bd492c05b5e518c70f66a47eab13b63975b9e0055105ad2",
+              "sha256:4f7c3a51661c93315577962f4450fcebd2ec58e7af238c85f2162359faa2bd5b",
           },
           program: {
             baseSnapshotId: null,

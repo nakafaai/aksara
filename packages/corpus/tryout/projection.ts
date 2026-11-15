@@ -20,10 +20,10 @@ import type {
 } from "#corpus/tryout/schema";
 import { paperId } from "#corpus/tryout/track";
 
-/** One section of a planned paper: the bank set it places, in the section's language. */
+/** One section of a planned paper: the bank set it places, in each of the section's languages. */
 const PlannedSectionSchema = Schema.Struct({
   key: KebabKeySchema,
-  language: AppLocaleCodeSchema,
+  languages: Schema.NonEmptyArray(AppLocaleCodeSchema),
   set: QuestionSetSchema,
 });
 
@@ -123,8 +123,8 @@ const requireStimulusGroups = Effect.fn("AksaraCorpus.requireStimulusGroups")(
 );
 
 /**
- * Plans one section: its bank set, with exactly its items, each asked in its
- * language with an interaction its section allows.
+ * Plans one section: its bank set, with exactly its items, each asked in every
+ * language of the section with an interaction its section allows.
  */
 const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
   exam: ExamSource,
@@ -142,12 +142,15 @@ const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
     return yield* new PaperPlanError({ reason: "items", set: path });
   }
   if (
-    !Arr.every(questions, ({ item }) =>
-      Arr.some(
+    !Arr.every(questions, ({ item }) => {
+      const written = Arr.map(
         itemVersions(item.versions),
-        ({ language }) => language === section.language
-      )
-    )
+        ({ language }) => language
+      );
+      return Arr.every(section.languages, (language) =>
+        Arr.contains(written, language)
+      );
+    })
   ) {
     return yield* new PaperPlanError({ reason: "language", set: path });
   }
@@ -161,7 +164,7 @@ const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
     return yield* new PaperPlanError({ reason: "interaction", set: path });
   }
   yield* requireStimulusGroups(found.value);
-  return { key: section.key, language: section.language, set: found.value };
+  return { key: section.key, languages: section.languages, set: found.value };
 });
 
 /** Plans the paper of one set of a track. */

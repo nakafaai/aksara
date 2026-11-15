@@ -13,7 +13,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix", "numericEntry"],
     items: 30,
     key: "general-reasoning",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "allgemeines-schlussfolgern",
       en: "general-reasoning",
@@ -33,7 +33,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix"],
     items: 20,
     key: "general-knowledge-and-understanding",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "allgemeines-wissen-und-verstaendnis",
       en: "general-knowledge-and-understanding",
@@ -53,7 +53,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix"],
     items: 20,
     key: "reading-comprehension-and-writing",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "leseverstaendnis-und-schreiben",
       en: "reading-comprehension-and-writing",
@@ -73,7 +73,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "quantitative-knowledge",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "quantitatives-wissen",
       en: "quantitative-knowledge",
@@ -93,7 +93,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix"],
     items: 30,
     key: "literacy-in-indonesian",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "lesekompetenz-in-indonesischer-sprache",
       en: "literacy-in-indonesian",
@@ -113,7 +113,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix"],
     items: 20,
     key: "literacy-in-english",
-    language: "en",
+    languages: ["en"],
     routeSlugs: {
       de: "lesekompetenz-in-englischer-sprache",
       en: "literacy-in-english",
@@ -133,7 +133,7 @@ const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
     interactions: ["choice", "matrix", "numericEntry"],
     items: 20,
     key: "mathematical-reasoning",
-    language: "id",
+    languages: ["id"],
     routeSlugs: {
       de: "mathematisches-schlussfolgern",
       en: "mathematical-reasoning",

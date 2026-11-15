@@ -28,7 +28,7 @@ export const tuDarmstadtEntranceTrack = {
         interactions: ["choice"],
         items: 8,
         key: "tu-darmstadt-mathematics",
-        language: "de",
+        languages: ["de"],
         seconds: 2400,
         translations: {
           de: { title: "Mathematik" },

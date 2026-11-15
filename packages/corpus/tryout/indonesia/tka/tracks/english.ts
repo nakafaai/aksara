@@ -21,7 +21,7 @@ export const tkaEnglishTrack = {
         interactions: ["choice", "matrix"],
         items: 25,
         key: "english-language",
-        language: "en",
+        languages: ["en"],
         seconds: 4500,
         translations: {
           de: { title: "Englisch" },

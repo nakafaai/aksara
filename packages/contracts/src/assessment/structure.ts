@@ -12,16 +12,44 @@ const LANGUAGE_FIELDS = HashSet.make("alt", "label", "unit");
  * flags.
  */
 export function structureOf(value: unknown): unknown {
+  return withoutFields(value, LANGUAGE_FIELDS);
+}
+
+/** Returns a value with the named fields dropped at every depth. */
+function withoutFields(
+  value: unknown,
+  fields: HashSet.HashSet<string>
+): unknown {
   if (Arr.isArray(value)) {
-    return Arr.map(value, (part) => structureOf(part));
+    return Arr.map(value, (part) => withoutFields(part, fields));
   }
   if (Predicate.isObject(value)) {
     return Rec.map(
-      Rec.filter(value, (_, key) => !HashSet.has(LANGUAGE_FIELDS, key)),
-      (part) => structureOf(part)
+      Rec.filter(value, (_, key) => !HashSet.has(fields, key)),
+      (part) => withoutFields(part, fields)
     );
   }
   return value;
+}
+
+/**
+ * The fields of an answer key that hold the words of a language: the accepted
+ * texts of a text entry and the descriptors of a rubric. Everything else in a
+ * key, such as a choice, a number, or a tolerance, is the same in every
+ * language of an item.
+ */
+const KEY_WORD_FIELDS = HashSet.make("acceptedAnswers", "descriptor");
+
+/**
+ * Checks that every answer key has the shape of the first apart from its
+ * words, so the language versions of one item agree on every answer and differ
+ * only in the texts a learner may type and the words a grader reads.
+ */
+export function hasSameKeyStructure(keys: Arr.NonEmptyReadonlyArray<unknown>) {
+  const first = withoutFields(Arr.headNonEmpty(keys), KEY_WORD_FIELDS);
+  return Arr.every(keys, (key) =>
+    Equal.equals(withoutFields(key, KEY_WORD_FIELDS), first)
+  );
 }
 
 /**
