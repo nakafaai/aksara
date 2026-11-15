@@ -1,15 +1,59 @@
-Soal menanyakan tinggi salah satu sisi tegak tenda, dari tengah rusuk alas sampai puncak. Ruas itu adalah sisi miring sebuah **segitiga siku-siku di dalam limas**. Titik sudutnya adalah puncak, titik pusat alas, dan titik tengah salah satu rusuk alas.
+# Hitung dengan laju per jam
 
-Sisi siku-siku pertama adalah tinggi limas, <InlineMath math="h=4\text{ m}" />. Sisi siku-siku kedua menghubungkan titik pusat alas dengan titik tengah rusuk alas. Panjangnya setengah rusuk alas, yaitu <InlineMath math="3\text{ m}" />. Sudut siku-sikunya ada di titik pusat alas, karena tinggi limas tegak lurus terhadap alas.
+Waktu tidak boleh langsung dijumlahkan, tetapi laju boleh. Kalau pompa yang lebih lemah sendirian butuh <InlineMath math="x" /> jam, dalam satu jam ia mengisi <InlineMath math="\frac1x" /> bak. Pompa yang lebih kuat butuh <InlineMath math="x-5" /> jam dan mengisi <InlineMath math="\frac{1}{x-5}" /> per jam. Bersama-sama keduanya mengisi **<InlineMath math="\frac16" /> bak per jam**:
 
-<BlockMath math="h_s^2=4^2+3^2=16+9=25\quad\Rightarrow\quad h_s=5" />
+<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
 
-Sebagai pemeriksaan, bandingkan dengan rusuk tegak <InlineMath math="s" />, yang menghubungkan titik sudut alas dengan puncak. Sisi mendatarnya adalah setengah diagonal alas, <InlineMath math="3\sqrt2\text{ m}" />, jadi <InlineMath math="s=\sqrt{16+18}=\sqrt{34}\approx5{,}8" />. Tinggi sisi tegak harus lebih pendek daripada rusuk tegak, dan <InlineMath math="5<5{,}8" /> sesuai.
+# Selesaikan persamaannya
 
-Jadi, tinggi sisi tegak itu <InlineMath math="5\text{ m}" />.
+Kalikan dengan **penyebut bersama <InlineMath math="6x(x-5)" />**:
 
-- <InlineMath math="\sqrt{34}\text{ m}" /> adalah rusuk tegak dari titik sudut alas ke puncak, bukan tinggi sisi tegak.
-- <InlineMath math="2\sqrt{13}\text{ m}" /> adalah <InlineMath math="\sqrt{4^2+6^2}" />. Di sini seluruh rusuk alas dipakai sebagai sisi siku-siku, bukan setengahnya.
-- <InlineMath math="7\text{ m}" /> menjumlahkan kedua sisi siku-siku, <InlineMath math="4+3" />, alih-alih memakai teorema Pythagoras.
-- <InlineMath math="\sqrt7\text{ m}" /> adalah <InlineMath math="\sqrt{4^2-3^2}" />. Untuk sisi miring, kuadratnya harus dijumlahkan.
-- <InlineMath math="10\text{ m}" /> menjumlahkan tinggi limas dan seluruh rusuk alas, <InlineMath math="4+6" />.
+<BlockMath math="\begin{aligned}
+6(x-5)+6x&=x(x-5) \\
+12x-30&=x^2-5x \\
+x^2-17x+30&=0 \\
+(x-15)(x-2)&=0
+\end{aligned}" />
+
+# Pilih penyelesaian yang masuk akal
+
+Pompa yang lebih kuat butuh <InlineMath math="x-5" /> jam, dan **waktu itu harus positif**. Untuk <InlineMath math="x=2" /> waktunya <InlineMath math="-3" /> jam, jadi penyelesaian itu gugur:
+
+<MathVisual
+  title={<>Laju gabungan per jam</>}
+  description={<>Untuk waktu <InlineMath math="x>5" /> pompa yang lebih lemah, laju gabungan <InlineMath math="\frac1x+\frac1{x-5}" /> digambar sebagai grafik yang turun. Garis mendatar <InlineMath math="y=\frac16" /> adalah laju yang diminta. Keduanya bertemu tepat sekali, di <InlineMath math="x=15" />.</>}
+  labels={{
+    key: <><InlineMath math="x=15" /></>,
+    r: <>laju gabungan</>,
+    j: <><InlineMath math="\frac16" /> bak per jam</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 5, max: 31 },
+      y: { min: 0, max: 0.65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 15, y: 0.16666666666666666 }, placement: "above-right" },
+      { key: "r", objectId: "rate", at: { x: 9, y: 0.3611111111111111 }, placement: "right" },
+      { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
+    ],
+  }}
+/>
+
+Cek <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. Pompa yang lebih lemah sendirian butuh <InlineMath math="15" /> jam.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10" /> jam adalah waktu pompa yang **lebih kuat**.
+- <InlineMath math="11" /> jam menambahkan <InlineMath math="5" /> jam ke waktu gabungan.
+- <InlineMath math="8{,}5" /> jam menganggap <InlineMath math="6" /> jam sebagai rata-rata kedua waktu: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
+- "<InlineMath math="2" /> jam atau <InlineMath math="15" /> jam" melewatkan bahwa untuk <InlineMath math="x=2" /> pompa yang lebih kuat butuh waktu negatif.
+- <InlineMath math="12" /> jam menganggap setiap pompa sendirian butuh dua kali waktu gabungan. Itu hanya benar kalau kedua pompa sama kuat.

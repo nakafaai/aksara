@@ -1,15 +1,61 @@
-Soal menanyakan *um wie viel Prozent* (naik berapa persen) jumlah pesepeda itu. Di sini kamu perlu **membedakan poin persentase dan persen**. Bagiannya naik dari <InlineMath math="20\,\%" /> menjadi <InlineMath math="25\,\%" />, yaitu <InlineMath math="5" /> poin persentase. Namun, yang ditanyakan adalah kenaikan jumlah pesepeda dalam persen, yaitu kenaikannya dibandingkan dengan nilai lama.
+# Perubahan persen sebagai faktor
 
-Sebut banyak karyawan yang tetap itu <InlineMath math="N" />. Awalnya ada <InlineMath math="0{,}20\,N" /> orang yang bersepeda, setelahnya <InlineMath math="0{,}25\,N" />. Bagi kenaikannya dengan nilai dasar, yaitu nilai lama.
+Tulis persentase yang dicari sebagai desimal <InlineMath math="p" />. Kenaikan mengalikan harga dengan <InlineMath math="1+p" />. Penurunan sebesar dua kali persentase itu dihitung dari **harga yang sudah naik** dan mengalikan dengan <InlineMath math="1-2p" />. Di akhir harganya <InlineMath math="12\,\%" /> lebih rendah, jadi menjadi <InlineMath math="0{,}88" /> kali semula:
 
-<BlockMath math="\frac{0{,}25\,N-0{,}20\,N}{0{,}20\,N}=\frac{0{,}05}{0{,}20}=\frac14=25\,\%" />
+<BlockMath math="(1+p)(1-2p)=0{,}88" />
 
-Sebagai pemeriksaan, ambil contoh konkret dengan <InlineMath math="N=100" />. Awalnya <InlineMath math="20" /> orang bersepeda, kemudian <InlineMath math="25" /> orang. Kenaikan <InlineMath math="5" /> orang itu adalah seperempat dari <InlineMath math="20" />.
+# Selesaikan persamaan kuadratnya
 
-Jadi, jumlah karyawan yang bersepeda ke tempat kerja naik <InlineMath math="25\,\%" />.
+<BlockMath math="\begin{aligned}
+1-p-2p^2&=0{,}88 \\
+2p^2+p-0{,}12&=0 \\
+p&=\frac{-1\pm\sqrt{1+0{,}96}}{4}=\frac{-1\pm1{,}4}{4}
+\end{aligned}" />
 
-- <InlineMath math="5\,\%" /> adalah selisih kedua bagian. Itu <InlineMath math="5" /> poin persentase, bukan kenaikan <InlineMath math="5\,\%" />.
-- <InlineMath math="20\,\%" /> membagi kenaikan dengan nilai baru, <InlineMath math="\frac{5}{25}" />. Padahal nilai dasarnya adalah nilai lama, <InlineMath math="20" />.
-- <InlineMath math="45\,\%" /> menjumlahkan kedua bagian. Jumlah itu tidak menggambarkan perubahan apa pun.
-- <InlineMath math="80\,\%" /> adalah <InlineMath math="\frac{20}{25}" />, yaitu nilai lama sebagai bagian dari nilai baru.
-- <InlineMath math="125\,\%" /> adalah nilai baru sebagai bagian dari nilai lama, <InlineMath math="\frac{25}{20}" />. Kenaikannya hanya bagian di atas <InlineMath math="100\,\%" />.
+Hasilnya **<InlineMath math="p=0{,}1" /> atau <InlineMath math="p=-0{,}6" />**.
+
+# Buang penyelesaian negatif
+
+Kenaikan butuh **persentase yang positif**, jadi tersisa <InlineMath math="p=0{,}1" />:
+
+<MathVisual
+  title={<>Faktor total menurut persentasenya</>}
+  description={<>Grafik menunjukkan faktor total <InlineMath math="(1+p)(1-2p)" /> untuk persentase <InlineMath math="p" /> dalam bentuk desimal. Garis mendatar ada di <InlineMath math="0{,}88" />. Garis itu memotong grafik di <InlineMath math="p=0{,}1" /> dan di <InlineMath math="p=-0{,}6" />. Hanya <InlineMath math="p=0{,}1" /> yang berupa kenaikan.</>}
+  labels={{
+    key: <><InlineMath math="p=0{,}1" /></>,
+    bad: <><InlineMath math="p=-0{,}6" /></>,
+    f: <>faktor total</>,
+    t: <><InlineMath math="0{,}88" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.9, max: 0.6 },
+      y: { min: 0, max: 1.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "factor", kind: "function", appearance: "primary", formula: "(1+x)*(1-2*x)", domain: { min: -0.8, max: 0.45 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0.88 }, to: { x: 0.45, y: 0.88 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 0.1, y: 0.88 } },
+      { id: "neg", kind: "point", appearance: "highlight", at: { x: -0.6, y: 0.88 } },
+    ],
+    labels: [
+      { key: "key", objectId: "good", at: { x: 0.1, y: 0.88 }, placement: "below-right" },
+      { key: "bad", objectId: "neg", at: { x: -0.6, y: 0.88 }, placement: "below-left" },
+      { key: "f", objectId: "factor", at: { x: -0.25, y: 1.125 }, placement: "above" },
+      { key: "t", objectId: "target", at: { x: 0.45, y: 0.88 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek: naik <InlineMath math="10\,\%" /> menjadi <InlineMath math="1{,}1" /> kali, turun <InlineMath math="20\,\%" /> menjadi <InlineMath math="1{,}1\cdot0{,}8=0{,}88" />. Harganya mula-mula dinaikkan <InlineMath math="10\,\%" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="12\,\%" /> menghitung secara linear: <InlineMath math="p-2p=-12\,\%" />. Di situ penurunan dihitung dari harga lama, bukan dari harga yang sudah naik.
+- <InlineMath math="20\,\%" /> adalah persentase **penurunan**, bukan kenaikan.
+- <InlineMath math="60\,\%" /> adalah besar penyelesaian negatif <InlineMath math="p=-0{,}6" />, yang tidak menggambarkan kenaikan.
+- <InlineMath math="6\,\%" /> membagi dua <InlineMath math="12\,\%" />.
+- <InlineMath math="4\,\%" /> membagi <InlineMath math="12\,\%" /> dengan tiga, seolah-olah kenaikan dan penurunan bersama-sama merupakan perubahan sebesar <InlineMath math="3p=12\,\%" />.

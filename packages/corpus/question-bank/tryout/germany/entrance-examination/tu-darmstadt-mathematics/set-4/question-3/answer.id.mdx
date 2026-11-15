@@ -1,15 +1,64 @@
-Soal menanyakan panjang pita tepi (*Kantenband*) di sekeliling daun meja, secara eksak. Pita itu mengikuti **tepi luar seluruh bangun**. Dua sisi pendek persegi panjang berada di bagian dalam, tempat setengah lingkaran menempel. Karena itu, kedua sisi itu bukan bagian dari tepi.
+# Daerah asal dan pembagian kasus
 
-Tepinya terdiri atas dua bagian. Bagian pertama adalah dua sisi panjang persegi panjang, totalnya <InlineMath math="2\cdot100\text{ cm}=200\text{ cm}" />. Bagian kedua adalah dua busur setengah lingkaran. Dua setengah lingkaran dengan diameter yang sama jika digabung membentuk keliling satu lingkaran penuh, <InlineMath math="K=\pi d" />.
+Akar hanya terdefinisi untuk <InlineMath math="x+5\ge0" />, yaitu <InlineMath math="x\ge-5" />. Mengkuadratkan hanya aman kalau kedua ruas tidak negatif. Karena itu bagi menjadi dua kasus menurut **tanda ruas kanan** <InlineMath math="x-1" />.
 
-<BlockMath math="K_{\text{busur}}=\pi\cdot60\text{ cm}=60\pi\text{ cm}\qquad K_{\text{pita}}=200\text{ cm}+60\pi\text{ cm}" />
+# Kasus 1: ruas kanan negatif
 
-Sebagai pemeriksaan, taksir dengan <InlineMath math="\pi\approx3{,}14" />: <InlineMath math="60\pi\approx188" />, jadi panjang pita sekitar <InlineMath math="388\text{ cm}" />. Nilai itu lebih besar daripada keliling persegi panjang saja, <InlineMath math="320\text{ cm}" />, dan memang harus begitu karena setiap busur lebih panjang daripada sisi lurus yang digantikannya.
+Untuk <InlineMath math="-5\le x<1" /> berlaku <InlineMath math="x-1<0" />. Akar tidak pernah negatif, jadi pertidaksamaannya berlaku di sini **tanpa perlu menghitung**. Semua <InlineMath math="x" /> dengan <InlineMath math="-5\le x<1" /> adalah penyelesaian.
 
-Jadi, panjang pita tepi itu <InlineMath math="(200+60\pi)\text{ cm}" />.
+# Kasus 2: ruas kanan tidak negatif
 
-- <InlineMath math="(200+120\pi)\text{ cm}" /> memakai keliling lingkaran penuh untuk setiap setengah lingkaran.
-- <InlineMath math="(200+30\pi)\text{ cm}" /> hanya mengambil salah satu dari dua busur.
-- <InlineMath math="(320+60\pi)\text{ cm}" /> ikut menghitung dua sisi pendek persegi panjang yang berada di bagian dalam.
-- <InlineMath math="(100+60\pi)\text{ cm}" /> hanya menghitung salah satu sisi panjang.
-- <InlineMath math="(200+900\pi)\text{ cm}" /> memakai rumus luas <InlineMath math="\pi r^2=\pi\cdot30^2" />, bukan rumus keliling.
+Untuk <InlineMath math="x\ge1" /> kedua ruas tidak negatif, dan **kamu boleh mengkuadratkan**:
+
+<BlockMath math="\begin{aligned}
+x+5&>(x-1)^2=x^2-2x+1 \\
+0&>x^2-3x-4=(x-4)(x+1) \\
+-1&<x<4
+\end{aligned}" />
+
+Digabung dengan <InlineMath math="x\ge1" />, tersisa **<InlineMath math="1\le x<4" />**.
+
+# Gabungkan kedua kasus
+
+<MathVisual
+  title={<>Tempat akar berada di atas garis</>}
+  description={<>Grafik <InlineMath math="y=\sqrt{x+5}" /> dimulai di <InlineMath math="x=-5" /> dan naik perlahan. Garis <InlineMath math="y=x-1" /> naik lebih cepat. Di kiri <InlineMath math="x=4" /> grafik akar ada di atas garis, di <InlineMath math="x=4" /> keduanya berpotongan di <InlineMath math="(4\mid3)" />, dan di kanannya garis berada di atas. Di bawah sumbu ditandai selang dari <InlineMath math="-5" /> sampai <InlineMath math="4" />.</>}
+  labels={{
+    start: <><InlineMath math="x=-5" /></>,
+    end: <><InlineMath math="x=4" /></>,
+    r: <><InlineMath math="\sqrt{x+5}" /></>,
+    l: <><InlineMath math="x-1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8 },
+      y: { min: -7.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "left-end", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "end", objectId: "meet", at: { x: 4, y: 3 }, placement: "above-left" },
+      { key: "r", objectId: "root", at: { x: 6, y: 3.32 }, placement: "above" },
+      { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Kedua bagian **bersambung tanpa celah**. Pertidaksamaan itu berlaku untuk <InlineMath math="-5\le x<4" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="-1<x<4" /> mengkuadratkan tanpa membagi kasus dan **kehilangan bilangan dari <InlineMath math="-5" /> sampai <InlineMath math="-1" />**, tempat ruas kanan negatif.
+- <InlineMath math="1\le x<4" /> hanya menghitung kasus 2.
+- <InlineMath math="x<4" /> lupa daerah asal <InlineMath math="x\ge-5" />.
+- <InlineMath math="-5\le x\le4" /> ikut memasukkan <InlineMath math="x=4" />. Di sana kedua ruas sama dengan <InlineMath math="3" />, padahal pertidaksamaannya tegas.
+- <InlineMath math="x>4" /> membalik hasilnya. Di kanan <InlineMath math="4" /> garis berada di atas akar.

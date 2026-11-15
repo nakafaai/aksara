@@ -1,0 +1,61 @@
+# Tinggi muka sisi
+
+Setiap muka sisi ialah segi tiga dengan tapak <InlineMath math="6\text{ cm}" />. Daripada luasnya kita peroleh tingginya <InlineMath math="h_s" />, iaitu **tinggi muka sisi**, bukan tinggi piramid:
+
+<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
+
+# Tinggi piramid
+
+Potong piramid secara tegak melalui puncak dan titik tengah dua sisi tapak yang bertentangan. Keratan itu menunjukkan segi tiga bersudut tegak daripada **separuh sisi tapak, tinggi piramid dan tinggi condong**:
+
+<MathVisual
+  title={<>Keratan melalui puncak</>}
+  description={<>Keratan tegak melalui puncak <InlineMath math="S" /> dan titik tengah dua sisi tapak yang bertentangan. Keratan itu segi tiga sama kaki dengan tapak <InlineMath math="6" />. Di sebelah kanan kelihatan segi tiga bersudut tegak daripada separuh tapak <InlineMath math="3" />, tinggi <InlineMath math="h=4" /> dan tinggi condong <InlineMath math="5" />.</>}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    s: <>tinggi condong <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4.5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "slant", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "half-base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "centre", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "top", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "m", objectId: "centre", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "s", objectId: "slant", at: { x: 1.5, y: 2 }, placement: "right" },
+      { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
+
+# Isi padu
+
+<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+
+Piramid itu **berisi padu <InlineMath math="48\text{ cm}^3" />**.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="144\text{ cm}^3" /> **terlupa faktor <InlineMath math="\frac13" />** dalam isi padu piramid.
+- <InlineMath math="60\text{ cm}^3" /> memakai tinggi condong <InlineMath math="5" /> sebagai tinggi piramid: <InlineMath math="\frac13\cdot36\cdot5" />.
+- <InlineMath math="12\sqrt7\text{ cm}^3" /> menganggap <InlineMath math="5\text{ cm}" /> sebagai panjang sisi condong dan memakai separuh pepenjuru <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
+- <InlineMath math="72\text{ cm}^3" /> memakai <InlineMath math="\frac12" />, bukan <InlineMath math="\frac13" />.
+- <InlineMath math="180\text{ cm}^3" /> membuat dua kesilapan: tinggi condong dipakai sebagai tinggi piramid dan faktor <InlineMath math="\frac13" /> tertinggal.

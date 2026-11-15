@@ -1,15 +1,64 @@
-The task asks how long the edge band (*Kantenband*) around the table top is, exactly. The edge band runs along the **outer edge of the whole figure**. The two short sides of the rectangle lie inside, where the semicircles are attached. So they are not part of the edge.
+# Domain and case split
 
-The edge has two parts. One part is the two long sides of the rectangle, together <InlineMath math="2\cdot100\text{ cm}=200\text{ cm}" />. The other is the two semicircular arcs. Two semicircles with the same diameter together make the circumference of one full circle, <InlineMath math="C=\pi d" />.
+The root is only defined for <InlineMath math="x+5\ge0" />, that is <InlineMath math="x\ge-5" />. Squaring is only a safe step when both sides are non-negative. So split into two cases by **the sign of the right side** <InlineMath math="x-1" />.
 
-<BlockMath math="C_{\text{arcs}}=\pi\cdot60\text{ cm}=60\pi\text{ cm}\qquad C_{\text{band}}=200\text{ cm}+60\pi\text{ cm}" />
+# Case 1: the right side is negative
 
-As a check, estimate with <InlineMath math="\pi\approx3.14" />: <InlineMath math="60\pi\approx188" />, so the band is about <InlineMath math="388\text{ cm}" /> long. That is more than the perimeter of the rectangle alone, <InlineMath math="320\text{ cm}" />, as it should be, because each arc is longer than the straight side it replaces.
+For <InlineMath math="-5\le x<1" /> we have <InlineMath math="x-1<0" />. A root is never negative, so the inequality holds here **without any calculation**. Every <InlineMath math="x" /> with <InlineMath math="-5\le x<1" /> is a solution.
 
-So the edge band is <InlineMath math="(200+60\pi)\text{ cm}" /> long.
+# Case 2: the right side is non-negative
 
-- <InlineMath math="(200+120\pi)\text{ cm}" /> uses the circumference of a full circle for each semicircle.
-- <InlineMath math="(200+30\pi)\text{ cm}" /> takes only one of the two arcs.
-- <InlineMath math="(320+60\pi)\text{ cm}" /> also counts the two short sides of the rectangle, which lie inside.
-- <InlineMath math="(100+60\pi)\text{ cm}" /> counts only one of the two long sides.
-- <InlineMath math="(200+900\pi)\text{ cm}" /> uses the area formula <InlineMath math="\pi r^2=\pi\cdot30^2" /> instead of the circumference formula.
+For <InlineMath math="x\ge1" /> both sides are non-negative, and **you may square**:
+
+<BlockMath math="\begin{aligned}
+x+5&>(x-1)^2=x^2-2x+1 \\
+0&>x^2-3x-4=(x-4)(x+1) \\
+-1&<x<4
+\end{aligned}" />
+
+Together with <InlineMath math="x\ge1" /> this leaves **<InlineMath math="1\le x<4" />**.
+
+# Put the two cases together
+
+<MathVisual
+  title={<>Where the root lies above the line</>}
+  description={<>The graph of <InlineMath math="y=\sqrt{x+5}" /> starts at <InlineMath math="x=-5" /> and rises slowly. The line <InlineMath math="y=x-1" /> rises faster. To the left of <InlineMath math="x=4" /> the root graph lies above the line, at <InlineMath math="x=4" /> they meet at <InlineMath math="(4\mid3)" />, and to the right the line is on top. Below the axis the interval from <InlineMath math="-5" /> to <InlineMath math="4" /> is marked.</>}
+  labels={{
+    start: <><InlineMath math="x=-5" /></>,
+    end: <><InlineMath math="x=4" /></>,
+    r: <><InlineMath math="\sqrt{x+5}" /></>,
+    l: <><InlineMath math="x-1" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 8 },
+      y: { min: -7.5, max: 6.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "root", kind: "function", appearance: "primary", formula: "sqrt(x+5)", domain: { min: -5, max: 7 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "x - 1", domain: { min: -6, max: 7 } },
+      { id: "solution", kind: "segment", appearance: "answer", from: { x: -5, y: -0.8 }, to: { x: 4, y: -0.8 } },
+      { id: "left-end", kind: "point", appearance: "answer", at: { x: -5, y: 0 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "left-end", at: { x: -5, y: 0 }, placement: "above-left" },
+      { key: "end", objectId: "meet", at: { x: 4, y: 3 }, placement: "above-left" },
+      { key: "r", objectId: "root", at: { x: 6, y: 3.32 }, placement: "above" },
+      { key: "l", objectId: "line", at: { x: 6.5, y: 5.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+The two parts **join without a gap**. The inequality holds for <InlineMath math="-5\le x<4" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="-1<x<4" /> squares without splitting cases and **loses the numbers from <InlineMath math="-5" /> to <InlineMath math="-1" />**, where the right side is negative.
+- <InlineMath math="1\le x<4" /> works out case 2 only.
+- <InlineMath math="x<4" /> forgets the domain <InlineMath math="x\ge-5" />.
+- <InlineMath math="-5\le x\le4" /> includes <InlineMath math="x=4" />. There both sides equal <InlineMath math="3" />, and the inequality is strict.
+- <InlineMath math="x>4" /> turns the result around. To the right of <InlineMath math="4" /> the line lies above the root.

@@ -1,20 +1,51 @@
-Die Zahl der Gewinne bleibt beim Herausnehmen gleich, nur die Gesamtzahl wird kleiner. Diese **unveränderte Zahl der Gewinne** drückst du zweimal aus und setzt beide Ausdrücke gleich.
+# Die Alkoholmenge verfolgen
 
-Nenne die ursprüngliche Zahl der Lose <InlineMath math="N" />. Vorher sind <InlineMath math="0{,}2\,N" /> Lose Gewinne. Nachher liegen <InlineMath math="N-40" /> Lose in der Trommel, und davon sind <InlineMath math="30\,\%" /> Gewinne.
+Am Anfang enthält das Fass <InlineMath math="0{,}3\cdot50=15" /> Liter Alkohol. Beim Abgießen von <InlineMath math="x" /> Litern Mischung geht nicht nur Wasser verloren: **Auch <InlineMath math="30\,\%" /> davon sind Alkohol**, also <InlineMath math="0{,}3x" /> Liter. Danach kommen <InlineMath math="x" /> Liter reiner Alkohol dazu. Das Volumen ist wieder <InlineMath math="50" /> Liter:
 
-<BlockMath math="\begin{aligned}
-0{,}2\,N&=0{,}3\,(N-40) \\
-0{,}2\,N&=0{,}3\,N-12 \\
-12&=0{,}1\,N \\
-N&=120
-\end{aligned}" />
+<BlockMath math="\text{Alkohol am Ende}=15-0{,}3x+x=15+0{,}7x" />
 
-Zur Kontrolle rechnest du vorwärts. Von <InlineMath math="120" /> Losen sind <InlineMath math="24" /> Gewinne. Nach dem Herausnehmen bleiben <InlineMath math="80" /> Lose, und <InlineMath math="\frac{24}{80}=0{,}3=30\,\%" />.
+# Den neuen Anteil gleichsetzen
 
-Ursprünglich waren also <InlineMath math="120" /> Lose in der Trommel.
+Am Ende sind <InlineMath math="44\,\%" /> von <InlineMath math="50" /> Litern Alkohol, also <InlineMath math="22" /> Liter:
 
-- <InlineMath math="80" /> ist die Zahl der Lose nach dem Herausnehmen der Nieten.
-- <InlineMath math="24" /> ist die Zahl der Gewinne, nicht die Zahl aller Lose.
-- <InlineMath math="160" /> addiert die <InlineMath math="40" /> Nieten noch einmal zu den ursprünglichen <InlineMath math="120" /> Losen.
-- <InlineMath math="400" /> entsteht, wenn auf der rechten Seite <InlineMath math="0{,}3\cdot40" /> nicht ausgerechnet, sondern einfach <InlineMath math="40" /> abgezogen wird: <InlineMath math="0{,}1\,N=40" />.
-- <InlineMath math="12" /> ist nur der Wert von <InlineMath math="0{,}3\cdot40" />, ein Zwischenergebnis der Rechnung.
+<BlockMath math="15+0{,}7x=22\quad\Longrightarrow\quad 0{,}7x=7\quad\Longrightarrow\quad x=10" />
+
+<MathVisual
+  title={<>Alkoholanteil nach dem Austausch</>}
+  description={<>Der Graph zeigt den Alkoholanteil <InlineMath math="\frac{15+0{,}7x}{50}" />, wenn <InlineMath math="x" /> Liter ausgetauscht werden. Er beginnt bei <InlineMath math="0{,}30" /> für <InlineMath math="x=0" /> und steigt geradlinig. Die waagerechte Linie bei <InlineMath math="0{,}44" /> trifft ihn bei <InlineMath math="x=10" />.</>}
+  labels={{
+    key: <><InlineMath math="x=10" /></>,
+    s: <>Anteil nach dem Austausch</>,
+    t: <><InlineMath math="0{,}44" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: 0, max: 1.1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "share", kind: "function", appearance: "primary", formula: "(15 + 0.7*x)/50", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 0.44 }, to: { x: 50, y: 0.44 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 10, y: 0.44 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0.3 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 10, y: 0.44 }, placement: "below-right" },
+      { key: "s", objectId: "share", at: { x: 40, y: 0.86 }, placement: "left" },
+      { key: "t", objectId: "target", at: { x: 50, y: 0.44 }, placement: "above" },
+    ],
+  }}
+/>
+
+Probe: Abgießen von <InlineMath math="10" /> Litern nimmt <InlineMath math="3" /> Liter Alkohol mit, es bleiben <InlineMath math="12" /> Liter. Mit <InlineMath math="10" /> Litern reinem Alkohol sind es <InlineMath math="22" /> Liter, und <InlineMath math="\frac{22}{50}=44\,\%" />. **Es gilt <InlineMath math="x=10" />**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="x=7" /> vergisst, dass mit der abgegossenen Mischung **auch Alkohol verloren geht**: <InlineMath math="15+x=22" />.
+- <InlineMath math="x=\frac{70}{3}" /> rechnet mit <InlineMath math="0{,}3x" /> statt <InlineMath math="0{,}7x" /> als Zuwachs: <InlineMath math="15+0{,}3x=22" />.
+- <InlineMath math="x=14" /> liest die <InlineMath math="14" /> Prozentpunkte von <InlineMath math="30\,\%" /> auf <InlineMath math="44\,\%" /> als Liter.
+- <InlineMath math="x=12{,}5" /> gießt nichts ab und gibt nur Alkohol dazu: <InlineMath math="\frac{15+x}{50+x}=0{,}44" />.
+- <InlineMath math="x=22" /> ist die Alkoholmenge am Ende, nicht die ausgetauschte Menge.

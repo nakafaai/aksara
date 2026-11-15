@@ -1,21 +1,70 @@
-The task says *Fassen Sie den Term zusammen* (simplify the expression). You need two **power rules for equal bases** here. Raising a power to a power multiplies the exponents, and dividing subtracts them.
+# Rationalise each fraction
 
-<BlockMath math="\left(a^m\right)^n=a^{m\cdot n}\qquad\frac{a^m}{a^n}=a^{m-n}" />
+Each term has the form <InlineMath math="\frac{1}{\sqrt k+\sqrt{k+1}}" /> with <InlineMath math="k=1,2,\ldots,15" />. Multiply top and bottom by <InlineMath math="\sqrt{k+1}-\sqrt k" />. The difference of squares turns the denominator into <InlineMath math="1" />:
 
-First square the bracket in the numerator. Every factor inside the bracket is squared, so both exponents double.
+<BlockMath math="\frac{1}{\sqrt k+\sqrt{k+1}}=\frac{\sqrt{k+1}-\sqrt k}{(k+1)-k}=\sqrt{k+1}-\sqrt k" />
 
-<BlockMath math="\left(x^{3}y^{-2}\right)^{2}=x^{6}y^{-4}" />
+So each fraction is **a difference of two neighbouring roots**.
 
-Then divide base by base, <InlineMath math="x" /> and <InlineMath math="y" /> separately. The exponent of <InlineMath math="y" /> has two minus signs in a row, and two minus signs make a plus.
+# The sum collapses
 
-<BlockMath math="\frac{x^{6}y^{-4}}{x^{4}y^{-5}}=x^{6-4}\cdot y^{-4-(-5)}=x^{2}\cdot y^{1}=x^{2}y" />
+Write the sum with these differences. Every root from <InlineMath math="\sqrt2" /> to <InlineMath math="\sqrt{15}" /> appears once with a plus and once with a minus:
 
-As a check, substitute <InlineMath math="x=1" /> and <InlineMath math="y=2" />. The original expression gives <InlineMath math="\frac{\left(2^{-2}\right)^{2}}{2^{-5}}=\frac{2^{-4}}{2^{-5}}=2" />, and <InlineMath math="x^{2}y" /> also gives <InlineMath math="1\cdot2=2" />.
+<BlockMath math="\left(\sqrt2-\sqrt1\right)+\left(\sqrt3-\sqrt2\right)+\ldots+\left(\sqrt{16}-\sqrt{15}\right)=\sqrt{16}-\sqrt1=4-1=3" />
 
-So the expression simplifies to <InlineMath math="x^{2}y" />.
+The number line shows why **only the first and the last point remain**:
 
-- <InlineMath math="\frac{x^2}{y}" /> comes from subtracting the exponents of <InlineMath math="y" /> in the wrong order, <InlineMath math="-5-(-4)=-1" /> instead of <InlineMath math="-4-(-5)=1" />.
-- <InlineMath math="\frac{x^{10}}{y^9}" /> comes from adding the exponents instead of subtracting them when dividing: <InlineMath math="6+4=10" /> and <InlineMath math="-4+(-5)=-9" />.
-- <InlineMath math="x^2y^3" /> comes from squaring only <InlineMath math="x^3" /> and leaving <InlineMath math="y^{-2}" /> unchanged. That gives <InlineMath math="y^{-2-(-5)}=y^3" />.
-- <InlineMath math="xy^5" /> comes from adding the <InlineMath math="2" /> to the exponents instead of multiplying by it. The numerator then becomes <InlineMath math="x^5y^0" />, and dividing gives <InlineMath math="x^{5-4}y^{0+5}" />.
-- <InlineMath math="\frac{x^2}{y^9}" /> comes from the sign error <InlineMath math="-4-5=-9" />. The minus in front of <InlineMath math="(-5)" /> turns the subtraction into an addition.
+<MathVisual
+  title={<>Fifteen pieces on the number line</>}
+  description={<>The number line carries the points <InlineMath math="\sqrt1, \sqrt2, \ldots, \sqrt{16}" />. Each fraction of the sum is the length of the piece from <InlineMath math="\sqrt k" /> to <InlineMath math="\sqrt{k+1}" />. The fifteen pieces sit end to end and together reach from <InlineMath math="1" /> to <InlineMath math="4" />, a length of <InlineMath math="3" />.</>}
+  labels={{
+    one: <><InlineMath math="\sqrt1=1" /></>,
+    four: <><InlineMath math="\sqrt{16}=4" /></>,
+    sum: <><InlineMath math="4-1=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.5, max: 4.5 },
+      y: { min: -1, max: 1.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0.8, y: 0 }, to: { x: 4.2, y: 0 } },
+      { id: "step-1", kind: "segment", appearance: "highlight", from: { x: 1.0, y: 0 }, to: { x: 1.4142, y: 0 } },
+      { id: "step-2", kind: "segment", appearance: "secondary", from: { x: 1.4142, y: 0 }, to: { x: 1.7321, y: 0 } },
+      { id: "step-3", kind: "segment", appearance: "highlight", from: { x: 1.7321, y: 0 }, to: { x: 2.0, y: 0 } },
+      { id: "step-4", kind: "segment", appearance: "secondary", from: { x: 2.0, y: 0 }, to: { x: 2.2361, y: 0 } },
+      { id: "step-5", kind: "segment", appearance: "highlight", from: { x: 2.2361, y: 0 }, to: { x: 2.4495, y: 0 } },
+      { id: "step-6", kind: "segment", appearance: "secondary", from: { x: 2.4495, y: 0 }, to: { x: 2.6458, y: 0 } },
+      { id: "step-7", kind: "segment", appearance: "highlight", from: { x: 2.6458, y: 0 }, to: { x: 2.8284, y: 0 } },
+      { id: "step-8", kind: "segment", appearance: "secondary", from: { x: 2.8284, y: 0 }, to: { x: 3.0, y: 0 } },
+      { id: "step-9", kind: "segment", appearance: "highlight", from: { x: 3.0, y: 0 }, to: { x: 3.1623, y: 0 } },
+      { id: "step-10", kind: "segment", appearance: "secondary", from: { x: 3.1623, y: 0 }, to: { x: 3.3166, y: 0 } },
+      { id: "step-11", kind: "segment", appearance: "highlight", from: { x: 3.3166, y: 0 }, to: { x: 3.4641, y: 0 } },
+      { id: "step-12", kind: "segment", appearance: "secondary", from: { x: 3.4641, y: 0 }, to: { x: 3.6056, y: 0 } },
+      { id: "step-13", kind: "segment", appearance: "highlight", from: { x: 3.6056, y: 0 }, to: { x: 3.7417, y: 0 } },
+      { id: "step-14", kind: "segment", appearance: "secondary", from: { x: 3.7417, y: 0 }, to: { x: 3.873, y: 0 } },
+      { id: "step-15", kind: "segment", appearance: "highlight", from: { x: 3.873, y: 0 }, to: { x: 4.0, y: 0 } },
+      { id: "start", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+      { id: "total", kind: "segment", appearance: "answer", from: { x: 1, y: 0.5 }, to: { x: 4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "one", objectId: "start", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "four", objectId: "end", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "sum", objectId: "total", at: { x: 2.5, y: 0.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+The sum is <InlineMath math="3" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="-3" /> comes from multiplying by <InlineMath math="\sqrt k-\sqrt{k+1}" /> and still reading the denominator as <InlineMath math="+1" />. But every term is **positive**, so the sum is too.
+- <InlineMath math="4-\sqrt2" /> drops the first fraction and starts the chain at <InlineMath math="\sqrt2" />.
+- <InlineMath math="\sqrt{17}-1" /> counts one fraction too many, up to <InlineMath math="\sqrt{17}" />.
+- <InlineMath math="4" /> forgets that <InlineMath math="\sqrt1=1" /> is subtracted at the start.
+- <InlineMath math="15" /> is the number of fractions, not their sum.

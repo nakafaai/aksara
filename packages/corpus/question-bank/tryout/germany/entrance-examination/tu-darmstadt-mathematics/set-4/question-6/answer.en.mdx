@@ -1,19 +1,57 @@
-The task asks for the area of the triangle, in *Flächeneinheiten* (square units). For the area you need the **three vertices of the triangle**. Two of them lie on the <InlineMath math="y" />-axis, where the lines cross it. The third is the intersection point of the two lines.
+# Where the minimum can be
 
-On the <InlineMath math="y" />-axis, <InlineMath math="x=0" />. The graph of <InlineMath math="f" /> crosses it at <InlineMath math="(0\mid1)" />, the graph of <InlineMath math="g" /> at <InlineMath math="(0\mid7)" />. Find the intersection point <InlineMath math="S" /> by setting the terms equal.
+The graph of <InlineMath math="f" /> is an upward parabola with its vertex at <InlineMath math="x=a" />, because <InlineMath math="f(x)=(x-a)^2+6-a^2" />. On the interval <InlineMath math="0\le x\le3" /> the smallest value is **either at the vertex or at an end of the interval**. Which case happens depends on where <InlineMath math="a" /> lies.
 
-<BlockMath math="2x+1=-x+7\quad\Rightarrow\quad3x=6\quad\Rightarrow\quad x=2,\ y=2\cdot2+1=5" />
+# The three cases
 
-Use the side on the <InlineMath math="y" />-axis as the base. It is <InlineMath math="7-1=6" /> long. The matching height is the horizontal distance from <InlineMath math="S(2\mid5)" /> to the <InlineMath math="y" />-axis, which is the <InlineMath math="x" />-coordinate <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{isn't in this case}) \\
+a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{but}\ \tfrac{13}{6}<3) \\
+a<0:&\quad \min=f(0)=6\ne2
+\end{aligned}" />
 
-<BlockMath math="A=\frac12\cdot b\cdot h=\frac12\cdot6\cdot2=6" />
+Only in the first case does the number you find **fit the assumption of the case**.
 
-As a check, substitute <InlineMath math="x=2" /> into <InlineMath math="g" /> as well: <InlineMath math="-2+7=5" />. So both lines really pass through <InlineMath math="(2\mid5)" />.
+<MathVisual
+  title={<>Smallest value on the interval</>}
+  description={<>The interval lies between the vertical lines at <InlineMath math="x=0" /> and <InlineMath math="x=3" />. The parabola for <InlineMath math="a=2" /> has its vertex <InlineMath math="(2\mid2)" /> inside the interval, so its smallest value there is <InlineMath math="2" />. The parabola for <InlineMath math="a=\frac{13}{6}" /> does pass through <InlineMath math="(3\mid2)" />, but inside the interval it dips below <InlineMath math="2" />.</>}
+  labels={{
+    min: <><InlineMath math="(2\mid2)" /></>,
+    g: <><InlineMath math="a=2" /></>,
+    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4.8 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "min", objectId: "vertex", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "g", objectId: "good", at: { x: 3.4, y: 3.96 }, placement: "right" },
+      { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
+    ],
+  }}
+/>
 
-So the triangle has an area of <InlineMath math="6" /> square units.
+# Check
 
-- <InlineMath math="8" /> adds the two intercepts, <InlineMath math="7+1" />, as the base. Their distance on the axis is <InlineMath math="7-1=6" />.
-- <InlineMath math="12" /> forgets the factor <InlineMath math="\frac12" /> of the triangle formula.
-- <InlineMath math="15" /> takes the <InlineMath math="y" />-coordinate <InlineMath math="5" /> of <InlineMath math="S" /> as the height. The height to a base on the <InlineMath math="y" />-axis is the horizontal distance <InlineMath math="2" />.
-- <InlineMath math="16" /> combines the wrong base <InlineMath math="8" /> with the missing factor <InlineMath math="\frac12" />.
-- <InlineMath math="30" /> takes <InlineMath math="5" /> as the height and also forgets the factor <InlineMath math="\frac12" />.
+For <InlineMath math="a=2" />, <InlineMath math="f(x)=(x-2)^2+2" />. The vertex <InlineMath math="x=2" /> lies in the interval, so **the smallest value there is <InlineMath math="2" />**. So <InlineMath math="a=2" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="a=-2" /> or <InlineMath math="a=2" /> takes both solutions of <InlineMath math="6-a^2=2" />. For <InlineMath math="a=-2" /> the vertex is at <InlineMath math="x=-2" />, outside, and the smallest value on the interval is <InlineMath math="f(0)=6" />.
+- <InlineMath math="a=\frac{13}{6}" /> checks only the right end. Since <InlineMath math="\frac{13}{6}" /> lies in the interval, the vertex value <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> is **less than <InlineMath math="2" />**.
+- <InlineMath math="a=2" /> or <InlineMath math="a=\frac{13}{6}" /> keeps the solution of the end case without checking the condition <InlineMath math="a>3" />.
+- <InlineMath math="a=-2" /> alone is the value whose vertex isn't in the interval at all.
+- <InlineMath math="a=2\sqrt2" /> comes from taking the vertex value as <InlineMath math="6-\frac{a^2}{2}" /> instead of <InlineMath math="6-a^2" />.

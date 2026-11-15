@@ -1,19 +1,59 @@
-The task asks which statement about triangle <InlineMath math="ABC" /> is true. Whether a triangle is isosceles or right-angled is decided by **its three side lengths**. Compute each length from the coordinate differences with Pythagoras' theorem.
+# Two altitudes are enough
 
-<BlockMath math="\begin{aligned}
-\overline{AB}^2&=(5-1)^2+(4-1)^2=16+9=25 \\
-\overline{BC}^2&=(2-5)^2+(8-4)^2=9+16=25 \\
-\overline{AC}^2&=(2-1)^2+(8-1)^2=1+49=50
-\end{aligned}" />
+All three altitudes meet in one point. So **two altitudes** are enough for its coordinates, and the third serves as a check.
 
-So <InlineMath math="\overline{AB}=\overline{BC}=5\text{ cm}" />, and the triangle is isosceles. Also <InlineMath math="\overline{AB}^2+\overline{BC}^2=25+25=50=\overline{AC}^2" />. By the converse of Pythagoras' theorem, the right angle lies opposite the longest side <InlineMath math="\overline{AC}" />, so at <InlineMath math="B" />.
+The side <InlineMath math="\overline{AB}" /> lies on the <InlineMath math="x" />-axis. The altitude from <InlineMath math="C" /> is perpendicular to it, so it's the vertical line <InlineMath math="x=2" />.
 
-As a check, compare the slopes of the sides at <InlineMath math="B" />. Side <InlineMath math="\overline{AB}" /> has slope <InlineMath math="\frac34" />, side <InlineMath math="\overline{BC}" /> has slope <InlineMath math="\frac{4}{-3}=-\frac43" />. Their product is <InlineMath math="-1" />, so the two sides are perpendicular.
+# The altitude from <InlineMath math="A" />
 
-So the triangle is right-angled and isosceles, with the right angle at <InlineMath math="B" />.
+The side <InlineMath math="\overline{BC}" /> has slope <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. A perpendicular line has slope <InlineMath math="1" />, because **the slopes of perpendicular lines multiply to <InlineMath math="-1" />**. So the altitude from <InlineMath math="A(0\mid0)" /> is <InlineMath math="y=x" />.
 
-- A right angle at <InlineMath math="A" /> would make <InlineMath math="\overline{BC}" /> the longest side. The longest side is <InlineMath math="\overline{AC}" />, and the angle at <InlineMath math="A" /> is <InlineMath math="45^\circ" />.
-- A right angle at <InlineMath math="C" /> would make <InlineMath math="\overline{AB}" /> the longest side. The angle at <InlineMath math="C" /> is also only <InlineMath math="45^\circ" />.
-- The triangle is not equilateral, because <InlineMath math="\overline{AC}=\sqrt{50}\approx7.1\text{ cm}" /> is longer than the other two sides.
-- It is isosceles, but because <InlineMath math="25+25=50" /> it is right-angled as well.
-- A right angle at <InlineMath math="B" /> is correct, but the two sides at <InlineMath math="B" /> are equal. So the triangle is isosceles after all.
+# The intersection
+
+<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+
+<MathVisual
+  title={<>The three altitudes</>}
+  description={<>The triangle with <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" /> and <InlineMath math="C(2\mid6)" />. The altitude from <InlineMath math="C" /> is the vertical segment at <InlineMath math="x=2" />. The altitude from <InlineMath math="A" /> lies on <InlineMath math="y=x" /> and meets <InlineMath math="\overline{BC}" /> at <InlineMath math="(4\mid4)" />. The altitude from <InlineMath math="B" /> meets <InlineMath math="\overline{AC}" /> at <InlineMath math="(0.8\mid2.4)" />. All three pass through <InlineMath math="H(2\mid2)" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2\mid2)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
+      { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
+      { id: "alt-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "alt-b", kind: "segment", appearance: "construction", from: { x: 8, y: 0 }, to: { x: 0.8, y: 2.4 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 2, y: 6 } },
+      { id: "ph", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Check with the third altitude: <InlineMath math="\overline{AC}" /> has slope <InlineMath math="3" />, so the altitude from <InlineMath math="B" /> has slope <InlineMath math="-\frac13" />. The line through <InlineMath math="B(8\mid0)" /> with this slope has the value <InlineMath math="-\frac13\cdot(2-8)=2" /> at <InlineMath math="x=2" />. It **also passes through <InlineMath math="H(2\mid2)" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="H(4\mid2)" /> is where the **perpendicular bisectors** meet, the circumcentre.
+- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> is the centroid, where the medians meet.
+- <InlineMath math="H(2\mid6)" /> is the corner <InlineMath math="C" />. The altitude from <InlineMath math="C" /> passes through <InlineMath math="C" />, but the other altitudes don't.
+- <InlineMath math="H(2\mid4)" /> comes from giving the altitude from <InlineMath math="A" /> slope <InlineMath math="2" />, that is not taking the negative reciprocal of <InlineMath math="-1" />.
+- <InlineMath math="H(6\mid2)" /> swaps the coordinates of the corner <InlineMath math="C" /> to <InlineMath math="(6\mid2)" /> and then uses the altitude <InlineMath math="x=6" />.

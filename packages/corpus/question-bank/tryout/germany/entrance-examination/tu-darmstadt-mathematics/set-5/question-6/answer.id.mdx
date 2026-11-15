@@ -1,20 +1,51 @@
-Soal menanyakan banyak lot undian (*Lose*) di dalam wadah pada awalnya. Mengambil lot kosong tidak mengubah banyak lot berhadiah, hanya jumlah totalnya. Nyatakan **banyak lot berhadiah yang tetap** ini dengan dua cara, lalu samakan keduanya.
+# Ikuti banyaknya alkohol
 
-Sebut banyak lot mula-mula <InlineMath math="N" />. Awalnya ada <InlineMath math="0{,}2\,N" /> lot berhadiah. Setelah itu tersisa <InlineMath math="N-40" /> lot, dan <InlineMath math="30\,\%" /> di antaranya berhadiah.
+Mula-mula tong berisi <InlineMath math="0{,}3\cdot50=15" /> liter alkohol. Saat <InlineMath math="x" /> liter campuran dituang keluar, yang hilang bukan hanya air: **<InlineMath math="30\,\%" /> darinya juga alkohol**, yaitu <InlineMath math="0{,}3x" /> liter. Lalu <InlineMath math="x" /> liter alkohol murni dimasukkan. Volumenya kembali <InlineMath math="50" /> liter:
 
-<BlockMath math="\begin{aligned}
-0{,}2\,N&=0{,}3\,(N-40) \\
-0{,}2\,N&=0{,}3\,N-12 \\
-12&=0{,}1\,N \\
-N&=120
-\end{aligned}" />
+<BlockMath math="\text{alkohol di akhir}=15-0{,}3x+x=15+0{,}7x" />
 
-Sebagai pemeriksaan, hitung maju. Dari <InlineMath math="120" /> lot, ada <InlineMath math="24" /> lot berhadiah. Setelah pengambilan tersisa <InlineMath math="80" /> lot, dan <InlineMath math="\frac{24}{80}=0{,}3=30\,\%" />.
+# Samakan kadar barunya
 
-Jadi, mula-mula ada <InlineMath math="120" /> lot di dalam wadah.
+Di akhir, <InlineMath math="44\,\%" /> dari <InlineMath math="50" /> liter adalah alkohol, yaitu <InlineMath math="22" /> liter:
 
-- <InlineMath math="80" /> adalah banyak lot setelah lot kosong diambil.
-- <InlineMath math="24" /> adalah banyak lot berhadiah, bukan banyak seluruh lot.
-- <InlineMath math="160" /> menambahkan lagi <InlineMath math="40" /> lot kosong ke <InlineMath math="120" /> lot mula-mula.
-- <InlineMath math="400" /> muncul jika di ruas kanan yang dikurangkan adalah <InlineMath math="40" />, bukan <InlineMath math="0{,}3\cdot40" />, sehingga diperoleh <InlineMath math="0{,}1\,N=40" />.
-- <InlineMath math="12" /> hanyalah nilai <InlineMath math="0{,}3\cdot40" />, hasil antara dalam perhitungan.
+<BlockMath math="15+0{,}7x=22\quad\Longrightarrow\quad 0{,}7x=7\quad\Longrightarrow\quad x=10" />
+
+<MathVisual
+  title={<>Kadar alkohol setelah ditukar</>}
+  description={<>Grafik menunjukkan kadar alkohol <InlineMath math="\frac{15+0{,}7x}{50}" /> kalau <InlineMath math="x" /> liter ditukar. Grafiknya mulai di <InlineMath math="0{,}30" /> untuk <InlineMath math="x=0" /> dan naik lurus. Garis mendatar di <InlineMath math="0{,}44" /> memotongnya di <InlineMath math="x=10" />.</>}
+  labels={{
+    key: <><InlineMath math="x=10" /></>,
+    s: <>kadar setelah ditukar</>,
+    t: <><InlineMath math="0{,}44" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: 0, max: 1.1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "share", kind: "function", appearance: "primary", formula: "(15 + 0.7*x)/50", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 0.44 }, to: { x: 50, y: 0.44 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 10, y: 0.44 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0.3 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 10, y: 0.44 }, placement: "below-right" },
+      { key: "s", objectId: "share", at: { x: 40, y: 0.86 }, placement: "left" },
+      { key: "t", objectId: "target", at: { x: 50, y: 0.44 }, placement: "above" },
+    ],
+  }}
+/>
+
+Cek: menuang <InlineMath math="10" /> liter ikut membuang <InlineMath math="3" /> liter alkohol, jadi tersisa <InlineMath math="12" /> liter. Ditambah <InlineMath math="10" /> liter alkohol murni menjadi <InlineMath math="22" /> liter, dan <InlineMath math="\frac{22}{50}=44\,\%" />. **Jadi <InlineMath math="x=10" />**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="x=7" /> lupa bahwa campuran yang dituang **ikut membawa alkohol**: <InlineMath math="15+x=22" />.
+- <InlineMath math="x=\frac{70}{3}" /> memakai <InlineMath math="0{,}3x" />, bukan <InlineMath math="0{,}7x" />, sebagai tambahan: <InlineMath math="15+0{,}3x=22" />.
+- <InlineMath math="x=14" /> membaca <InlineMath math="14" /> poin persentase dari <InlineMath math="30\,\%" /> ke <InlineMath math="44\,\%" /> sebagai liter.
+- <InlineMath math="x=12{,}5" /> tidak menuang apa pun dan hanya menambah alkohol: <InlineMath math="\frac{15+x}{50+x}=0{,}44" />.
+- <InlineMath math="x=22" /> adalah banyaknya alkohol di akhir, bukan banyaknya yang ditukar.

@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2{,}5$$ Stunden",
+          label: "$$25\\text{ €}$$",
         },
         {
           correct: false,
-          label: "$$6{,}5$$ Stunden",
+          label: "$$20\\text{ €}$$",
         },
         {
           correct: false,
-          label: "$$12$$ Stunden",
+          label: "Die Angaben passen zu keinem Preis.",
         },
         {
           correct: false,
-          label: "$$\\frac{19}{3}$$ Stunden",
+          label: "$$24\\text{ €}$$",
         },
         {
           correct: true,
-          label: "$$9{,}5$$ Stunden",
+          label: "$$30\\text{ €}$$",
         },
         {
           correct: false,
-          label: "$$14{,}5$$ Stunden",
+          label: "$$150\\text{ €}$$",
         },
       ],
     },

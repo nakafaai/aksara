@@ -1,15 +1,68 @@
-Aus den Angaben stellst du zuerst die **Geradengleichung <InlineMath math="y=mx+n" />** auf. Dann prüfst du, welcher Punkt sie erfüllt.
+# Die Achsenabschnitte mit der Steigung ausdrücken
 
-Die Steigung ist Höhe durch Breite des Steigungsdreiecks, also <InlineMath math="m=\frac34" />. Der Punkt <InlineMath math="P(0\mid-2)" /> liegt auf der <InlineMath math="y" />-Achse, also ist <InlineMath math="n=-2" />.
+Eine Gerade durch <InlineMath math="P(2\mid3)" /> mit der Steigung <InlineMath math="m<0" /> hat die Gleichung <InlineMath math="y=m(x-2)+3" />. Ihre **Schnittpunkte mit den Achsen** hängen von <InlineMath math="m" /> ab:
 
-<BlockMath math="y=\frac34\,x-2" />
+<BlockMath math="\begin{aligned}
+x=0:&\quad y_0=3-2m \\
+y=0:&\quad x_0=2-\frac3m
+\end{aligned}" />
 
-Für <InlineMath math="x=8" /> ergibt sich <InlineMath math="y=\frac34\cdot8-2=6-2=4" />. Der Punkt <InlineMath math="(8\mid4)" /> liegt also auf der Geraden. Zur Kontrolle gehst du das Steigungsdreieck zweimal: von <InlineMath math="P(0\mid-2)" /> aus <InlineMath math="8" /> nach rechts und <InlineMath math="6" /> nach oben, und du landest bei <InlineMath math="(8\mid4)" />.
+Für <InlineMath math="m<0" /> sind beide positiv, das Dreieck liegt also im ersten Quadranten.
 
-Auf der Geraden liegt also der Punkt <InlineMath math="(8\mid4)" />.
+# Die Flächenbedingung aufstellen
 
-- <InlineMath math="(8\mid6)" /> vergisst den Startwert <InlineMath math="-2" /> und rechnet mit <InlineMath math="y=\frac34x" />.
-- <InlineMath math="(6\mid6)" /> vertauscht Breite und Höhe und rechnet mit der Steigung <InlineMath math="\frac43" />: <InlineMath math="\frac43\cdot6-2=6" />.
-- <InlineMath math="(-8\mid4)" /> nimmt die Steigung <InlineMath math="-\frac34" />. Die Gerade steigt aber nach rechts.
-- <InlineMath math="(0\mid2)" /> hat das falsche Vorzeichen beim <InlineMath math="y" />-Achsenabschnitt. Die Gerade schneidet die <InlineMath math="y" />-Achse bei <InlineMath math="-2" />.
-- <InlineMath math="(4\mid3)" /> setzt das Steigungsdreieck im Ursprung statt in <InlineMath math="P" /> an. Von <InlineMath math="P" /> aus erreicht man <InlineMath math="(4\mid1)" />.
+Das Dreieck ist rechtwinklig mit den Katheten <InlineMath math="x_0" /> und <InlineMath math="y_0" />. **Vergiss den Faktor <InlineMath math="\frac12" /> nicht**:
+
+<BlockMath math="\begin{aligned}
+\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
+12-4m-\tfrac9m&=24 \\
+4m^2+12m+9&=0 \\
+(2m+3)^2&=0
+\end{aligned}" />
+
+# Eine doppelte Lösung
+
+Die quadratische Gleichung hat nur **die eine Lösung <InlineMath math="m=-\frac32" />**. Damit ist <InlineMath math="y_0=3+3=6" /> und <InlineMath math="x_0=2+2=4" />:
+
+<MathVisual
+  title={<>Die Gerade mit dem Dreieck</>}
+  description={<>Die Gerade <InlineMath math="g: y=-1{,}5x+6" /> schneidet die Achsen in <InlineMath math="(4\mid0)" /> und <InlineMath math="(0\mid6)" />. Zusammen mit den Achsen begrenzt sie ein rechtwinkliges Dreieck mit dem Flächeninhalt <InlineMath math="12" />. Der Punkt <InlineMath math="P(2\mid3)" /> liegt genau in der Mitte der Strecke zwischen den beiden Achsenpunkten.</>}
+  labels={{
+    p: <><InlineMath math="P(2\mid3)" /></>,
+    x0: <><InlineMath math="(4\mid0)" /></>,
+    y0: <><InlineMath math="(0\mid6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "x0", objectId: "px", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "y0", objectId: "py", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
+    ],
+  }}
+/>
+
+Probe: <InlineMath math="\frac12\cdot4\cdot6=12" />. Die Gerade hat die Gleichung <InlineMath math="y=-1{,}5x+6" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> nimmt den Kehrwert der Steigung. Ihr Dreieck hat die Katheten <InlineMath math="6{,}5" /> und <InlineMath math="\frac{13}{3}" /> und **nicht den Flächeninhalt <InlineMath math="12" />**.
+- <InlineMath math="y=-3x+9" /> oder <InlineMath math="y=-0{,}75x+4{,}5" /> erwartet zwei Geraden. Diese beiden gehen zwar durch <InlineMath math="P" />, begrenzen aber jeweils ein Dreieck mit dem Flächeninhalt <InlineMath math="13{,}5" />.
+- <InlineMath math="y=-\frac23x+4" /> vertauscht die Achsenabschnitte <InlineMath math="4" /> und <InlineMath math="6" />. Diese Gerade geht nicht durch <InlineMath math="P" />, denn <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
+- <InlineMath math="y=1{,}5x" /> hat eine positive Steigung und geht durch den Ursprung.
+- „Es gibt keine solche Gerade“ entsteht ohne den Faktor <InlineMath math="\frac12" />: Dann führt die Bedingung auf <InlineMath math="4m^2=-9" />.

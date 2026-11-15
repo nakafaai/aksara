@@ -1,15 +1,70 @@
-The task asks for the area of triangle <InlineMath math="ABE" />. For a triangle you need a base and the **height to that base**. Take <InlineMath math="\overline{AB}" /> as the base. The height is then the distance of point <InlineMath math="E" /> from the line through <InlineMath math="A" /> and <InlineMath math="B" />.
+# Where the bisector meets the side
 
-Side <InlineMath math="\overline{CD}" /> is parallel to <InlineMath math="\overline{AB}" /> and everywhere at the distance <InlineMath math="\overline{BC}=6\text{ cm}" /> from it. Wherever <InlineMath math="E" /> lies on <InlineMath math="\overline{CD}" />, the height is always <InlineMath math="6\text{ cm}" />.
+The angle bisector splits the opposite side **in the ratio of the two adjacent sides**:
 
-<BlockMath math="A_{ABE}=\frac12\cdot\overline{AB}\cdot h=\frac12\cdot10\cdot6=30" />
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
 
-As a check, put <InlineMath math="E" /> exactly on <InlineMath math="D" />. Then <InlineMath math="ABE" /> is triangle <InlineMath math="ABD" />, which is half the rectangle, and the rectangle has <InlineMath math="10\cdot6=60\text{ cm}^2" />. Half of that is also <InlineMath math="30\text{ cm}^2" />.
+<MathVisual
+  title={<>The bisector splits <InlineMath math="\overline{BC}" /></>}
+  description={<>The triangle with <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> and <InlineMath math="\overline{BC}=5" />. The bisector of the angle at <InlineMath math="A" /> meets <InlineMath math="\overline{BC}" /> at <InlineMath math="D" /> and splits the side into <InlineMath math="\overline{BD}=3" /> and <InlineMath math="\overline{DC}=2" />. The segment <InlineMath math="\overline{AD}" /> is highlighted.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
+      { id: "piece-bd", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 4.5, y: 3.9686 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 4.5, y: 3.9686 }, placement: "above" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "pc", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "pd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "bd", objectId: "piece-bd", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "triangle", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "triangle", at: { x: 2.25, y: 1.9843 }, placement: "above-left" },
+      { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
+    ],
+  }}
+/>
 
-So triangle <InlineMath math="ABE" /> has an area of <InlineMath math="30\text{ cm}^2" />, wherever <InlineMath math="E" /> lies on <InlineMath math="\overline{CD}" />.
+# Find the angle at <InlineMath math="B" />
 
-- <InlineMath math="60\text{ cm}^2" /> is the area of the whole rectangle. For the triangle the factor <InlineMath math="\frac12" /> is missing.
-- <InlineMath math="15\text{ cm}^2" /> halves twice, for example by taking half the width of the rectangle, <InlineMath math="3\text{ cm}" />, as the height.
-- <InlineMath math="32\text{ cm}^2" /> is the number of the rectangle's perimeter, <InlineMath math="2\cdot(10+6)=32" />, which is a length.
-- <InlineMath math="20\text{ cm}^2" /> assumes that the three triangles <InlineMath math="AED" />, <InlineMath math="ABE" /> and <InlineMath math="BCE" /> are equal. The two outer triangles together have exactly as much area as <InlineMath math="ABE" />.
-- The option *Das hängt von der Lage von E ab* (it depends on where <InlineMath math="E" /> is) overlooks that the base and the height stay the same while <InlineMath math="E" /> moves parallel to <InlineMath math="\overline{AB}" />.
+In the whole triangle <InlineMath math="ABC" /> you know all three sides. The cosine rule gives **the cosine of the angle at <InlineMath math="B" />**:
+
+<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+
+# The cosine rule in triangle <InlineMath math="ABD" />
+
+In triangle <InlineMath math="ABD" /> you now know <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> and the angle <InlineMath math="\beta" /> between them. Use the cosine rule again:
+
+<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+
+The segment is **<InlineMath math="3\sqrt2" /> long**, about <InlineMath math="4.24" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\sqrt{22}" /> splits in **the reversed ratio**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
+- <InlineMath math="\frac{\sqrt{79}}{2}" /> is the length of the median from <InlineMath math="A" />, with <InlineMath math="D" /> at the midpoint of <InlineMath math="\overline{BC}" />.
+- <InlineMath math="2\sqrt6" /> is <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. That shortcut leaves out the correction term of the bisector formula.
+- <InlineMath math="3" /> is <InlineMath math="\overline{BD}" />, not <InlineMath math="\overline{AD}" />.
+- <InlineMath math="3\sqrt3" /> uses <InlineMath math="\cos\beta=\frac12" />, as if the angle at <InlineMath math="B" /> were <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.

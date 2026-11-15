@@ -1,20 +1,51 @@
-The task asks how many tickets (*Lose*) were in the drum at the start. Removing blanks does not change the number of winning tickets, only the total. Write this **unchanged number of winners** in two ways and set the two expressions equal.
+# Track the amount of alcohol
 
-Call the original number of tickets <InlineMath math="N" />. Before, <InlineMath math="0.2\,N" /> tickets are winners. Afterwards <InlineMath math="N-40" /> tickets are in the drum, and <InlineMath math="30\,\%" /> of them are winners.
+At the start the barrel holds <InlineMath math="0.3\cdot50=15" /> litres of alcohol. Pouring off <InlineMath math="x" /> litres of mixture removes more than water: **<InlineMath math="30\,\%" /> of it is alcohol too**, so <InlineMath math="0.3x" /> litres. Then <InlineMath math="x" /> litres of pure alcohol go in. The volume is back to <InlineMath math="50" /> litres:
 
-<BlockMath math="\begin{aligned}
-0.2\,N&=0.3\,(N-40) \\
-0.2\,N&=0.3\,N-12 \\
-12&=0.1\,N \\
-N&=120
-\end{aligned}" />
+<BlockMath math="\text{alcohol at the end}=15-0.3x+x=15+0.7x" />
 
-As a check, work forwards. Of <InlineMath math="120" /> tickets, <InlineMath math="24" /> are winners. After the removal <InlineMath math="80" /> tickets remain, and <InlineMath math="\frac{24}{80}=0.3=30\,\%" />.
+# Set the new share equal
 
-So there were <InlineMath math="120" /> tickets in the drum at the start.
+At the end, <InlineMath math="44\,\%" /> of <InlineMath math="50" /> litres is alcohol, which is <InlineMath math="22" /> litres:
 
-- <InlineMath math="80" /> is the number of tickets after the blanks are removed.
-- <InlineMath math="24" /> is the number of winning tickets, not of all tickets.
-- <InlineMath math="160" /> adds the <InlineMath math="40" /> blanks once more to the original <InlineMath math="120" /> tickets.
-- <InlineMath math="400" /> comes from subtracting <InlineMath math="40" /> on the right side instead of <InlineMath math="0.3\cdot40" />, which gives <InlineMath math="0.1\,N=40" />.
-- <InlineMath math="12" /> is only the value of <InlineMath math="0.3\cdot40" />, an intermediate result.
+<BlockMath math="15+0.7x=22\quad\Longrightarrow\quad 0.7x=7\quad\Longrightarrow\quad x=10" />
+
+<MathVisual
+  title={<>Alcohol share after the exchange</>}
+  description={<>The graph shows the alcohol share <InlineMath math="\frac{15+0.7x}{50}" /> when <InlineMath math="x" /> litres are exchanged. It starts at <InlineMath math="0.30" /> for <InlineMath math="x=0" /> and rises in a straight line. The horizontal line at <InlineMath math="0.44" /> meets it at <InlineMath math="x=10" />.</>}
+  labels={{
+    key: <><InlineMath math="x=10" /></>,
+    s: <>share after the exchange</>,
+    t: <><InlineMath math="0.44" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 52 },
+      y: { min: 0, max: 1.1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "share", kind: "function", appearance: "primary", formula: "(15 + 0.7*x)/50", domain: { min: 0, max: 50 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 0.44 }, to: { x: 50, y: 0.44 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 10, y: 0.44 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 0, y: 0.3 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 10, y: 0.44 }, placement: "below-right" },
+      { key: "s", objectId: "share", at: { x: 40, y: 0.86 }, placement: "left" },
+      { key: "t", objectId: "target", at: { x: 50, y: 0.44 }, placement: "above" },
+    ],
+  }}
+/>
+
+Check: pouring off <InlineMath math="10" /> litres takes <InlineMath math="3" /> litres of alcohol with it, leaving <InlineMath math="12" /> litres. With <InlineMath math="10" /> litres of pure alcohol that makes <InlineMath math="22" /> litres, and <InlineMath math="\frac{22}{50}=44\,\%" />. **So <InlineMath math="x=10" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="x=7" /> forgets that the poured-off mixture **takes alcohol with it**: <InlineMath math="15+x=22" />.
+- <InlineMath math="x=\frac{70}{3}" /> uses <InlineMath math="0.3x" /> instead of <InlineMath math="0.7x" /> as the gain: <InlineMath math="15+0.3x=22" />.
+- <InlineMath math="x=14" /> reads the <InlineMath math="14" /> percentage points from <InlineMath math="30\,\%" /> to <InlineMath math="44\,\%" /> as litres.
+- <InlineMath math="x=12.5" /> pours nothing off and only adds alcohol: <InlineMath math="\frac{15+x}{50+x}=0.44" />.
+- <InlineMath math="x=22" /> is the amount of alcohol at the end, not the amount exchanged.

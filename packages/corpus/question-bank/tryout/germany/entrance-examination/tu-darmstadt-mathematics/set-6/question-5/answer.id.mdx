@@ -1,15 +1,68 @@
-Soal menanyakan titik mana yang terletak pada garis itu. Susun dulu **persamaan garis <InlineMath math="y=mx+n" />** dari datanya, lalu periksa titik mana yang memenuhinya.
+# Nyatakan titik potong sumbu dengan gradien
 
-Gradiennya adalah naik dibagi maju pada segitiga kemiringan, jadi <InlineMath math="m=\frac34" />. Titik <InlineMath math="P(0\mid-2)" /> terletak pada sumbu <InlineMath math="y" />, jadi <InlineMath math="n=-2" />.
+Garis melalui <InlineMath math="P(2\mid3)" /> dengan gradien <InlineMath math="m<0" /> berpersamaan <InlineMath math="y=m(x-2)+3" />. **Titik potongnya dengan sumbu** bergantung pada <InlineMath math="m" />:
 
-<BlockMath math="y=\frac34\,x-2" />
+<BlockMath math="\begin{aligned}
+x=0:&\quad y_0=3-2m \\
+y=0:&\quad x_0=2-\frac3m
+\end{aligned}" />
 
-Untuk <InlineMath math="x=8" /> diperoleh <InlineMath math="y=\frac34\cdot8-2=6-2=4" />. Jadi, titik <InlineMath math="(8\mid4)" /> terletak pada garis. Sebagai pemeriksaan, jalani segitiga kemiringan dua kali: dari <InlineMath math="P(0\mid-2)" /> maju <InlineMath math="8" /> ke kanan dan naik <InlineMath math="6" />, maka kamu tiba di <InlineMath math="(8\mid4)" />.
+Untuk <InlineMath math="m<0" /> keduanya positif, jadi segitiganya ada di kuadran pertama.
 
-Jadi, titik yang terletak pada garis adalah <InlineMath math="(8\mid4)" />.
+# Susun syarat luasnya
 
-- <InlineMath math="(8\mid6)" /> melupakan nilai awal <InlineMath math="-2" /> dan memakai <InlineMath math="y=\frac34x" />.
-- <InlineMath math="(6\mid6)" /> menukar maju dan naik sehingga memakai gradien <InlineMath math="\frac43" />: <InlineMath math="\frac43\cdot6-2=6" />.
-- <InlineMath math="(-8\mid4)" /> memakai gradien <InlineMath math="-\frac34" />. Padahal garisnya naik ke kanan.
-- <InlineMath math="(0\mid2)" /> salah tanda pada titik potong sumbu <InlineMath math="y" />. Garis itu memotong sumbu <InlineMath math="y" /> di <InlineMath math="-2" />.
-- <InlineMath math="(4\mid3)" /> memulai segitiga kemiringan dari titik asal, bukan dari <InlineMath math="P" />. Dari <InlineMath math="P" />, kamu sampai di <InlineMath math="(4\mid1)" />.
+Segitiga itu siku-siku dengan sisi siku-siku <InlineMath math="x_0" /> dan <InlineMath math="y_0" />. **Jangan lupa faktor <InlineMath math="\frac12" />**:
+
+<BlockMath math="\begin{aligned}
+\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
+12-4m-\tfrac9m&=24 \\
+4m^2+12m+9&=0 \\
+(2m+3)^2&=0
+\end{aligned}" />
+
+# Penyelesaian kembar
+
+Persamaan kuadrat itu hanya punya **satu penyelesaian, <InlineMath math="m=-\frac32" />**. Maka <InlineMath math="y_0=3+3=6" /> dan <InlineMath math="x_0=2+2=4" />:
+
+<MathVisual
+  title={<>Garis dan segitiganya</>}
+  description={<>Garis <InlineMath math="g: y=-1{,}5x+6" /> memotong sumbu di <InlineMath math="(4\mid0)" /> dan <InlineMath math="(0\mid6)" />. Bersama sumbu-sumbu, garis itu membatasi segitiga siku-siku dengan luas <InlineMath math="12" />. Titik <InlineMath math="P(2\mid3)" /> tepat berada di tengah ruas antara kedua titik potong sumbu.</>}
+  labels={{
+    p: <><InlineMath math="P(2\mid3)" /></>,
+    x0: <><InlineMath math="(4\mid0)" /></>,
+    y0: <><InlineMath math="(0\mid6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+      { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
+      { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
+    ],
+    labels: [
+      { key: "p", objectId: "pp", at: { x: 2, y: 3 }, placement: "above-right" },
+      { key: "x0", objectId: "px", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "y0", objectId: "py", at: { x: 0, y: 6 }, placement: "left" },
+      { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="\frac12\cdot4\cdot6=12" />. Persamaan garisnya <InlineMath math="y=-1{,}5x+6" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> memakai kebalikan gradien. Segitiganya bersisi siku-siku <InlineMath math="6{,}5" /> dan <InlineMath math="\frac{13}{3}" /> dan **luasnya bukan <InlineMath math="12" />**.
+- <InlineMath math="y=-3x+9" /> atau <InlineMath math="y=-0{,}75x+4{,}5" /> mengharapkan dua garis. Keduanya memang melalui <InlineMath math="P" />, tetapi masing-masing membatasi segitiga dengan luas <InlineMath math="13{,}5" />.
+- <InlineMath math="y=-\frac23x+4" /> menukar titik potong <InlineMath math="4" /> dan <InlineMath math="6" />. Garis itu tidak melalui <InlineMath math="P" />, karena <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
+- <InlineMath math="y=1{,}5x" /> bergradien positif dan melalui titik asal.
+- "Tidak ada garis seperti itu" muncul kalau faktor <InlineMath math="\frac12" /> dibuang: syaratnya lalu menjadi <InlineMath math="4m^2=-9" />.

@@ -1,19 +1,57 @@
-Für den Flächeninhalt brauchst du die **drei Eckpunkte des Dreiecks**. Zwei liegen auf der <InlineMath math="y" />-Achse, dort wo die Geraden sie schneiden. Der dritte ist der Schnittpunkt der beiden Geraden.
+# Wo das Minimum liegen kann
 
-Auf der <InlineMath math="y" />-Achse gilt <InlineMath math="x=0" />. Die Gerade von <InlineMath math="f" /> schneidet sie in <InlineMath math="(0\mid1)" />, die Gerade von <InlineMath math="g" /> in <InlineMath math="(0\mid7)" />. Den Schnittpunkt <InlineMath math="S" /> findest du durch Gleichsetzen.
+Der Graph von <InlineMath math="f" /> ist eine nach oben geöffnete Parabel mit dem Scheitel bei <InlineMath math="x=a" />, denn <InlineMath math="f(x)=(x-a)^2+6-a^2" />. Auf dem Intervall <InlineMath math="0\le x\le3" /> liegt der kleinste Wert **entweder am Scheitel oder an einem Rand**. Welcher Fall eintritt, hängt davon ab, wo <InlineMath math="a" /> liegt.
 
-<BlockMath math="2x+1=-x+7\quad\Rightarrow\quad3x=6\quad\Rightarrow\quad x=2,\ y=2\cdot2+1=5" />
+# Die drei Fälle
 
-Die Seite auf der <InlineMath math="y" />-Achse dient als Grundseite. Sie ist <InlineMath math="7-1=6" /> lang. Die zugehörige Höhe ist der waagerechte Abstand von <InlineMath math="S(2\mid5)" /> zur <InlineMath math="y" />-Achse, also die <InlineMath math="x" />-Koordinate <InlineMath math="2" />.
+<BlockMath math="\begin{aligned}
+0\le a\le3:&\quad \min=f(a)=6-a^2=2\ \Rightarrow\ a=2\ \ (a=-2\ \text{liegt nicht im Fall}) \\
+a>3:&\quad \min=f(3)=15-6a=2\ \Rightarrow\ a=\tfrac{13}{6}\ \ (\text{aber}\ \tfrac{13}{6}<3) \\
+a<0:&\quad \min=f(0)=6\ne2
+\end{aligned}" />
 
-<BlockMath math="A=\frac12\cdot g\cdot h=\frac12\cdot6\cdot2=6" />
+Nur im ersten Fall passt die gefundene Zahl **zur Annahme des Falls**.
 
-Zur Kontrolle setzt du <InlineMath math="x=2" /> auch in <InlineMath math="g" /> ein: <InlineMath math="-2+7=5" />. Beide Geraden gehen also wirklich durch <InlineMath math="(2\mid5)" />.
+<MathVisual
+  title={<>Kleinster Wert auf dem Intervall</>}
+  description={<>Zwischen den senkrechten Linien bei <InlineMath math="x=0" /> und <InlineMath math="x=3" /> liegt das Intervall. Die Parabel für <InlineMath math="a=2" /> hat ihren Scheitel <InlineMath math="(2\mid2)" /> im Intervall, ihr kleinster Wert dort ist <InlineMath math="2" />. Die Parabel für <InlineMath math="a=\frac{13}{6}" /> geht zwar durch <InlineMath math="(3\mid2)" />, sinkt im Intervall aber tiefer als <InlineMath math="2" />.</>}
+  labels={{
+    min: <><InlineMath math="(2\mid2)" /></>,
+    g: <><InlineMath math="a=2" /></>,
+    b: <><InlineMath math="a=\tfrac{13}{6}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4.8 },
+      y: { min: -0.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left-wall", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "right-wall", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 7 } },
+      { id: "good", kind: "function", appearance: "primary", formula: "x^2 - 4*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "bad", kind: "function", appearance: "secondary", formula: "x^2 - (13/3)*x + 6", domain: { min: -0.5, max: 3.5 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: -0.5, y: 2 }, to: { x: 3.5, y: 2 } },
+      { id: "vertex", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "min", objectId: "vertex", at: { x: 2, y: 2 }, placement: "below" },
+      { key: "g", objectId: "good", at: { x: 3.4, y: 3.96 }, placement: "right" },
+      { key: "b", objectId: "bad", at: { x: 3.4, y: 2.83 }, placement: "below-right" },
+    ],
+  }}
+/>
 
-Das Dreieck hat also den Flächeninhalt <InlineMath math="6" /> Flächeneinheiten.
+# Probe
 
-- <InlineMath math="8" /> addiert die beiden Achsenabschnitte <InlineMath math="7+1" /> als Grundseite. Ihr Abstand auf der Achse ist aber <InlineMath math="7-1=6" />.
-- <InlineMath math="12" /> vergisst den Faktor <InlineMath math="\frac12" /> der Dreiecksformel.
-- <InlineMath math="15" /> nimmt die <InlineMath math="y" />-Koordinate <InlineMath math="5" /> von <InlineMath math="S" /> als Höhe. Die Höhe zur Grundseite auf der <InlineMath math="y" />-Achse ist aber der waagerechte Abstand <InlineMath math="2" />.
-- <InlineMath math="16" /> verbindet die falsche Grundseite <InlineMath math="8" /> mit dem fehlenden Faktor <InlineMath math="\frac12" />.
-- <InlineMath math="30" /> nimmt <InlineMath math="5" /> als Höhe und vergisst zusätzlich den Faktor <InlineMath math="\frac12" />.
+Für <InlineMath math="a=2" /> ist <InlineMath math="f(x)=(x-2)^2+2" />. Der Scheitel <InlineMath math="x=2" /> liegt im Intervall, also ist **der kleinste Wert dort <InlineMath math="2" />**. Es gilt <InlineMath math="a=2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="a=-2" /> oder <InlineMath math="a=2" /> nimmt beide Lösungen von <InlineMath math="6-a^2=2" />. Für <InlineMath math="a=-2" /> liegt der Scheitel bei <InlineMath math="x=-2" /> außerhalb, und der kleinste Wert auf dem Intervall ist <InlineMath math="f(0)=6" />.
+- <InlineMath math="a=\frac{13}{6}" /> prüft nur den rechten Rand. Weil <InlineMath math="\frac{13}{6}" /> im Intervall liegt, ist der Scheitelwert <InlineMath math="6-\frac{169}{36}=\frac{47}{36}" /> **kleiner als <InlineMath math="2" />**.
+- <InlineMath math="a=2" /> oder <InlineMath math="a=\frac{13}{6}" /> übernimmt die Lösung des Randfalls, ohne die Bedingung <InlineMath math="a>3" /> zu prüfen.
+- <InlineMath math="a=-2" /> allein ist der Wert, dessen Scheitel gar nicht im Intervall liegt.
+- <InlineMath math="a=2\sqrt2" /> entsteht, wenn du den Scheitelwert als <InlineMath math="6-\frac{a^2}{2}" /> statt <InlineMath math="6-a^2" /> rechnest.

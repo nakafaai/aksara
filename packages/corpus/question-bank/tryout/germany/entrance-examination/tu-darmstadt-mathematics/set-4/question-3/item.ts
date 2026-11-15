@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$(200+120\\pi)\\text{ cm}$$",
+          label: "$$-1<x<4$$",
         },
         {
           correct: false,
-          label: "$$(200+30\\pi)\\text{ cm}$$",
+          label: "$$1\\le x<4$$",
         },
         {
           correct: true,
-          label: "$$(200+60\\pi)\\text{ cm}$$",
+          label: "$$-5\\le x<4$$",
         },
         {
           correct: false,
-          label: "$$(320+60\\pi)\\text{ cm}$$",
+          label: "$$x<4$$",
         },
         {
           correct: false,
-          label: "$$(100+60\\pi)\\text{ cm}$$",
+          label: "$$-5\\le x\\le4$$",
         },
         {
           correct: false,
-          label: "$$(200+900\\pi)\\text{ cm}$$",
+          label: "$$x>4$$",
         },
       ],
     },

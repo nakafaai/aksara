@@ -7,27 +7,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\frac{x^2}{y}$$",
+          label: "$$-3$$",
         },
         {
           correct: true,
-          label: "$$x^2y$$",
+          label: "$$3$$",
         },
         {
           correct: false,
-          label: "$$\\frac{x^{10}}{y^9}$$",
+          label: "$$4-\\sqrt2$$",
         },
         {
           correct: false,
-          label: "$$x^2y^3$$",
+          label: "$$\\sqrt{17}-1$$",
         },
         {
           correct: false,
-          label: "$$xy^5$$",
+          label: "$$4$$",
         },
         {
           correct: false,
-          label: "$$\\frac{x^2}{y^9}$$",
+          label: "$$15$$",
         },
       ],
     },

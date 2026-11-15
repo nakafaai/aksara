@@ -1,21 +1,67 @@
-The task says *Lösen Sie die Gleichung* (solve the equation). You get rid of fractions in an equation by **multiplying both sides by the lowest common denominator**. The lowest common denominator of <InlineMath math="3" /> and <InlineMath math="4" /> is <InlineMath math="12" />. Make sure the right side is multiplied by <InlineMath math="12" /> as well.
+# Domain and the first squaring
 
-<BlockMath math="12\cdot\frac{x+2}{3}-12\cdot\frac{x-1}{4}=12\cdot2" />
-
-Cancelling gives <InlineMath math="4(x+2)-3(x-1)=24" />. The minus in front of the second fraction applies to the whole numerator <InlineMath math="x-1" />. When you expand, <InlineMath math="-3\cdot(-1)" /> therefore becomes <InlineMath math="+3" />.
+Both roots must be defined: <InlineMath math="3x+1\ge0" /> and <InlineMath math="x-1\ge0" />, so together <InlineMath math="x\ge1" />. Move one root to the other side before squaring, so that **only one root is left**:
 
 <BlockMath math="\begin{aligned}
-4x+8-3x+3&=24 \\
-x+11&=24 \\
-x&=13
+\sqrt{3x+1}&=2+\sqrt{x-1} \\
+3x+1&=4+4\sqrt{x-1}+x-1 \\
+2x-2&=4\sqrt{x-1} \\
+x-1&=2\sqrt{x-1}
 \end{aligned}" />
 
-As a check, substitute <InlineMath math="x=13" /> into the original equation: <InlineMath math="\frac{15}{3}-\frac{12}{4}=5-3=2" />. Both sides agree.
+# Don't divide by the root
 
-So the solution of the equation is <InlineMath math="x=13" />.
+It's tempting to divide both sides by <InlineMath math="\sqrt{x-1}" />. But for <InlineMath math="x=1" /> that number is <InlineMath math="0" />, and **you can't divide by <InlineMath math="0" />**. Instead set <InlineMath math="u=\sqrt{x-1}\ge0" />. Then <InlineMath math="x-1=u^2" />:
 
-- <InlineMath math="x=19" /> comes from applying the minus in front of the second fraction to <InlineMath math="x" /> only. That gives <InlineMath math="-3x-3" /> instead of <InlineMath math="-3x+3" />, and then <InlineMath math="x+5=24" />.
-- <InlineMath math="x=-9" /> comes from not multiplying the right side by <InlineMath math="12" />. The equation <InlineMath math="x+11=2" /> then gives the wrong value.
-- <InlineMath math="x=-14" /> comes from swapping the factors, <InlineMath math="3(x+2)-4(x-1)=24" />. The fraction with denominator <InlineMath math="3" /> needs the factor <InlineMath math="4" />.
-- <InlineMath math="x=35" /> comes from adding the <InlineMath math="11" /> instead of subtracting it while rearranging.
-- <InlineMath math="x=-3" /> combines two errors: the minus acts on <InlineMath math="x" /> only, and the right side stays <InlineMath math="2" />. That gives <InlineMath math="x+5=2" />.
+<BlockMath math="u^2=2u\quad\Longleftrightarrow\quad u(u-2)=0\quad\Longleftrightarrow\quad u=0\ \text{or}\ u=2" />
+
+From <InlineMath math="u=0" /> you get <InlineMath math="x=1" />, and from <InlineMath math="u=2" /> you get <InlineMath math="x-1=4" />, so <InlineMath math="x=5" />.
+
+# Check both candidates
+
+Squaring can create false solutions, so **substitute both into the original equation**:
+
+<BlockMath math="\begin{aligned}
+x=1:&\quad\sqrt4-\sqrt0=2 \\
+x=5:&\quad\sqrt{16}-\sqrt4=4-2=2
+\end{aligned}" />
+
+<MathVisual
+  title={<>Both solutions on the graph</>}
+  description={<>The graph of the left side <InlineMath math="\sqrt{3x+1}-\sqrt{x-1}" /> starts at <InlineMath math="x=1" /> at height <InlineMath math="2" />, falls to about <InlineMath math="1.63" /> at <InlineMath math="x=\tfrac53" /> and then rises again. At <InlineMath math="x=5" /> it is exactly at height <InlineMath math="2" /> once more. So the horizontal line <InlineMath math="y=2" /> meets it at two points.</>}
+  labels={{
+    one: <><InlineMath math="x=1" /></>,
+    five: <><InlineMath math="x=5" /></>,
+    f: <>left side</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 11.5 },
+      y: { min: 0, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "sqrt(3*x+1) - sqrt(x-1)", domain: { min: 1, max: 11 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 2 } },
+    ],
+    labels: [
+      { key: "one", objectId: "p1", at: { x: 1, y: 2 }, placement: "below" },
+      { key: "five", objectId: "p5", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "f", objectId: "left-side", at: { x: 10, y: 2.57 }, placement: "above" },
+    ],
+  }}
+/>
+
+The solution set is <InlineMath math="\mathbb{L}=\{1;\,5\}" />.
+
+# Why the other answers are wrong
+
+- <InlineMath math="\mathbb{L}=\{5\}" /> comes from dividing by <InlineMath math="\sqrt{x-1}" />. That way **the solution <InlineMath math="x=1" /> gets lost**.
+- <InlineMath math="\mathbb{L}=\{1\}" /> comes from squaring the left side term by term: <InlineMath math="(3x+1)-(x-1)=4" />. But <InlineMath math="(a-b)^2\ne a^2-b^2" />.
+- <InlineMath math="\mathbb{L}=\{1;\,3\}" /> comes from not squaring the factor <InlineMath math="2" /> in <InlineMath math="x-1=2\sqrt{x-1}" />: <InlineMath math="(x-1)^2=2(x-1)" />.
+- <InlineMath math="\mathbb{L}=\{3+2\sqrt3\}" /> comes from a sign slip when expanding: <InlineMath math="x^2-2x+1=4x+4" />.
+- <InlineMath math="\mathbb{L}=\{\}" /> overlooks that both checks work out.

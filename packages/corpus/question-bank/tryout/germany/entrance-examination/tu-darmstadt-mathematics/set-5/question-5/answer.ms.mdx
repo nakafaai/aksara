@@ -1,0 +1,60 @@
+# Di mana pusat mesti berada
+
+Bulatan yang menyentuh kedua-dua paksi berjarak <InlineMath math="r" /> dari kedua-dua paksi. Dalam sukuan pertama **pusatnya terletak di <InlineMath math="M(r\mid r)" />**. Jadi seluruh bulatan hanya bergantung pada <InlineMath math="r" />.
+
+# Syarat daripada titik <InlineMath math="P" />
+
+Titik <InlineMath math="P(1\mid8)" /> terletak pada bulatan apabila **jaraknya ke <InlineMath math="M" /> tepat <InlineMath math="r" />**:
+
+<BlockMath math="\begin{aligned}
+(1-r)^2+(8-r)^2&=r^2 \\
+1-2r+r^2+64-16r+r^2&=r^2 \\
+r^2-18r+65&=0 \\
+(r-5)(r-13)&=0
+\end{aligned}" />
+
+# Semak kedua-dua penyelesaian
+
+Kedua-dua jejari positif, dan kedua-dua pusat <InlineMath math="(5\mid5)" /> dan <InlineMath math="(13\mid13)" /> terletak dalam sukuan pertama. **Tiada penyelesaian yang tersingkir**:
+
+<MathVisual
+  title={<>Dua bulatan yang sepadan</>}
+  description={<>Dalam sukuan pertama terdapat dua bulatan yang menyentuh kedua-dua paksi: yang kecil berpusat <InlineMath math="M_1(5\mid5)" /> dengan jejari <InlineMath math="5" />, yang besar berpusat <InlineMath math="M_2(13\mid13)" /> dengan jejari <InlineMath math="13" />. Kedua-duanya melalui titik <InlineMath math="P(1\mid8)" />.</>}
+  labels={{
+    p: <><InlineMath math="P(1\mid8)" /></>,
+    m1: <><InlineMath math="M_1(5\mid5)" /></>,
+    m2: <><InlineMath math="M_2(13\mid13)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 28 },
+      y: { min: -2, max: 28 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
+      { id: "small", kind: "circle", appearance: "primary", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "large", kind: "circle", appearance: "secondary", center: { x: 13, y: 13 }, radius: 13 },
+      { id: "point", kind: "point", appearance: "answer", at: { x: 1, y: 8 } },
+      { id: "c1", kind: "point", appearance: "reference", at: { x: 5, y: 5 } },
+      { id: "c2", kind: "point", appearance: "reference", at: { x: 13, y: 13 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point", at: { x: 1, y: 8 }, placement: "left" },
+      { key: "m1", objectId: "c1", at: { x: 5, y: 5 }, placement: "below" },
+      { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Semakan: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> dan <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Jejarinya boleh <InlineMath math="5" /> atau <InlineMath math="13" />.
+
+# Kenapa jawapan lain salah
+
+- "hanya <InlineMath math="r=5" />" dan "hanya <InlineMath math="r=13" />" **membuang penyelesaian yang sah** bagi persamaan kuadratik itu.
+- "hanya <InlineMath math="r=\sqrt{65}" />" ialah jarak <InlineMath math="P" /> ke asalan, <InlineMath math="\sqrt{1+64}" />. Sedangkan asalan bukan pusat bulatan.
+- "hanya <InlineMath math="r=4.5" />" membahagi dua hasil tambah koordinat <InlineMath math="P" />, seolah-olah pusat berada di tengah-tengah antara pintasan paksi.
+- "hanya <InlineMath math="r=9" />" ialah purata dua jejari yang betul, iaitu nilai <InlineMath math="r" /> pada bucu <InlineMath math="r^2-18r+65" />.

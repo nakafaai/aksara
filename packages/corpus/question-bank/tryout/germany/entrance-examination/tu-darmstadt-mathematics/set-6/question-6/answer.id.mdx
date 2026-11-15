@@ -1,15 +1,57 @@
-Soal menanyakan *Zinssatz pro Jahr* (suku bunga per tahun). Suku bunga tahunan mengacu pada bunga **untuk satu tahun penuh**. Padahal <InlineMath math="54\text{ €}" /> itu untuk <InlineMath math="9" /> bulan. Jadi, ubah dulu ke <InlineMath math="12" /> bulan, lalu bagi dengan modalnya.
+# Cari persentasenya dari dua kenaikan
 
-Karena bunga tumbuh sebanding dengan waktu, satu bulan menghasilkan <InlineMath math="54:9=6\text{ €}" />, sehingga satu tahun menghasilkan <InlineMath math="12\cdot6=72\text{ €}" />.
+Pertumbuhan dengan persentase <InlineMath math="p" /> (dalam desimal) mengalikan produksi dengan <InlineMath math="1+p" />. Dua kenaikan yang sama berturut-turut menghasilkan **faktor <InlineMath math="(1+p)^2" />**, dan faktor itu <InlineMath math="1{,}44" />:
 
-<BlockMath math="p=\frac{72}{2400}=\frac{3}{100}=3\,\%" />
+<BlockMath math="(1+p)^2=1{,}44\quad\Longrightarrow\quad 1+p=1{,}2\quad\Longrightarrow\quad p=0{,}2" />
 
-Sebagai pemeriksaan, hitung maju. <InlineMath math="3\,\%" /> dari <InlineMath math="2{.}400\text{ €}" /> adalah <InlineMath math="72\text{ €}" /> per tahun. Untuk <InlineMath math="9" /> bulan, yaitu tiga perempat tahun, bunganya <InlineMath math="\frac34\cdot72=54\text{ €}" />.
+Akar negatif <InlineMath math="1+p=-1{,}2" /> tidak memberi faktor yang masuk akal.
 
-Jadi, suku bunganya <InlineMath math="3\,\%" /> per tahun.
+# Hitung penurunan dari nilai baru
 
-- <InlineMath math="2{,}25\,\%" /> adalah <InlineMath math="\frac{54}{2400}" />, suku bunga untuk <InlineMath math="9" /> bulan. Nilai itu belum diubah ke satu tahun.
-- <InlineMath math="0{,}25\,\%" /> adalah suku bunga untuk satu bulan, <InlineMath math="\frac{6}{2400}" />.
-- <InlineMath math="27\,\%" /> menganggap <InlineMath math="2{,}25\,\%" /> sebagai bunga per bulan lalu mengalikannya dengan <InlineMath math="12" />.
-- <InlineMath math="1{,}6875\,\%" /> memakai faktor <InlineMath math="\frac{9}{12}" />, bukan <InlineMath math="\frac{12}{9}" />, yaitu <InlineMath math="2{,}25\,\%\cdot\frac34" />.
-- <InlineMath math="0{,}1875\,\%" /> membagi <InlineMath math="54\text{ €}" /> dengan <InlineMath math="12" /> bulan, padahal bunga itu hanya untuk <InlineMath math="9" /> bulan.
+Pada tahun ketiga produksi turun <InlineMath math="20\,\%" />, dihitung **dari tingkat yang sudah dicapai**, yaitu dari <InlineMath math="1{,}44" /> kali semula:
+
+<BlockMath math="1{,}44\cdot(1-0{,}2)=1{,}44\cdot0{,}8=1{,}152" />
+
+<MathVisual
+  title={<>Produksi selama tiga tahun</>}
+  description={<>Produksi sebagai indeks dengan <InlineMath math="100" /> di awal. Produksi naik menjadi <InlineMath math="120" /> dan <InlineMath math="144" />, lalu turun menjadi <InlineMath math="115{,}2" /> pada tahun ketiga. Garis mendatar di <InlineMath math="100" /> menandai nilai awal, dan titik akhirnya <InlineMath math="15{,}2" /> di atasnya.</>}
+  labels={{
+    s: <>awal <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>akhir <InlineMath math="115{,}2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.8 },
+      y: { min: 90, max: 155 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 120 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 144 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 115.2 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "below" },
+      { key: "y1", objectId: "p1", at: { x: 1, y: 120 }, placement: "above-left" },
+      { key: "y2", objectId: "p2", at: { x: 2, y: 144 }, placement: "above" },
+      { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Di akhir, produksi **<InlineMath math="15{,}2\,\%" /> di atas nilai awal**.
+
+# Mengapa pilihan lain salah
+
+- "<InlineMath math="24\,\%" />" **mengurangkan <InlineMath math="20" /> poin persentase dari <InlineMath math="44\,\%" />**, bukannya menerapkan penurunan pada nilai yang baru.
+- "<InlineMath math="22\,\%" />" membagi dua <InlineMath math="44\,\%" /> menjadi persentase per tahun, lalu menghitung <InlineMath math="44-22" />.
+- "<InlineMath math="20\,\%" />" menganggap satu kenaikan dan penurunan itu saling menghapus.
+- "<InlineMath math="12{,}32\,\%" />" memakai <InlineMath math="22\,\%" /> sebagai persentasenya: <InlineMath math="1{,}44\cdot0{,}78=1{,}1232" />.
+- "<InlineMath math="0\,\%" />" menganggap penurunan itu membatalkan semua kenaikan.

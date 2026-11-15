@@ -1,15 +1,57 @@
-Ein Jahreszinssatz bezieht die Zinsen **auf ein ganzes Jahr**. Die <InlineMath math="54\text{ €}" /> gehören aber zu <InlineMath math="9" /> Monaten. Rechne sie deshalb zuerst auf <InlineMath math="12" /> Monate hoch und teile dann durch das Kapital.
+# Den Prozentsatz aus zwei Steigerungen finden
 
-Weil die Zinsen proportional zur Zeit wachsen, fallen in einem Monat <InlineMath math="54:9=6\text{ €}" /> an, in einem Jahr also <InlineMath math="12\cdot6=72\text{ €}" />.
+Ein Wachstum um den Prozentsatz <InlineMath math="p" /> (als Dezimalzahl) multipliziert die Produktion mit <InlineMath math="1+p" />. Zwei gleiche Steigerungen hintereinander ergeben **den Faktor <InlineMath math="(1+p)^2" />**, und dieser ist <InlineMath math="1{,}44" />:
 
-<BlockMath math="p=\frac{72}{2400}=\frac{3}{100}=3\,\%" />
+<BlockMath math="(1+p)^2=1{,}44\quad\Longrightarrow\quad 1+p=1{,}2\quad\Longrightarrow\quad p=0{,}2" />
 
-Zur Kontrolle rechnest du vorwärts. <InlineMath math="3\,\%" /> von <InlineMath math="2{.}400\text{ €}" /> sind <InlineMath math="72\text{ €}" /> im Jahr. Für <InlineMath math="9" /> Monate, also drei Viertel eines Jahres, sind das <InlineMath math="\frac34\cdot72=54\text{ €}" />.
+Die negative Wurzel <InlineMath math="1+p=-1{,}2" /> ergibt keinen sinnvollen Faktor.
 
-Der Zinssatz beträgt also <InlineMath math="3\,\%" /> pro Jahr.
+# Die Senkung auf den neuen Wert beziehen
 
-- <InlineMath math="2{,}25\,\%" /> ist <InlineMath math="\frac{54}{2400}" />, der Zinssatz für <InlineMath math="9" /> Monate. Er wurde nicht auf ein Jahr umgerechnet.
-- <InlineMath math="0{,}25\,\%" /> ist der Zinssatz für einen Monat, <InlineMath math="\frac{6}{2400}" />.
-- <InlineMath math="27\,\%" /> nimmt <InlineMath math="2{,}25\,\%" /> als Monatszins und multipliziert mit <InlineMath math="12" />.
-- <InlineMath math="1{,}6875\,\%" /> rechnet mit dem Faktor <InlineMath math="\frac{9}{12}" /> statt <InlineMath math="\frac{12}{9}" />, also <InlineMath math="2{,}25\,\%\cdot\frac34" />.
-- <InlineMath math="0{,}1875\,\%" /> teilt die <InlineMath math="54\text{ €}" /> durch <InlineMath math="12" /> Monate, obwohl sie nur für <InlineMath math="9" /> Monate gezahlt wurden.
+Im dritten Jahr sinkt die Produktion um <InlineMath math="20\,\%" />, und zwar **vom erreichten Stand aus**, also vom <InlineMath math="1{,}44" />-Fachen:
+
+<BlockMath math="1{,}44\cdot(1-0{,}2)=1{,}44\cdot0{,}8=1{,}152" />
+
+<MathVisual
+  title={<>Produktion über drei Jahre</>}
+  description={<>Die Produktion als Index mit <InlineMath math="100" /> am Anfang. Sie steigt auf <InlineMath math="120" /> und <InlineMath math="144" /> und fällt im dritten Jahr auf <InlineMath math="115{,}2" />. Die waagerechte Linie bei <InlineMath math="100" /> zeigt den Anfangswert, der Endpunkt liegt um <InlineMath math="15{,}2" /> darüber.</>}
+  labels={{
+    s: <>Anfang <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>Ende <InlineMath math="115{,}2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.8 },
+      y: { min: 90, max: 155 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
+      { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 100 } },
+      { id: "p1", kind: "point", appearance: "reference", at: { x: 1, y: 120 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 144 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 115.2 } },
+    ],
+    labels: [
+      { key: "s", objectId: "p0", at: { x: 0, y: 100 }, placement: "below" },
+      { key: "y1", objectId: "p1", at: { x: 1, y: 120 }, placement: "above-left" },
+      { key: "y2", objectId: "p2", at: { x: 2, y: 144 }, placement: "above" },
+      { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Produktion liegt am Ende **um <InlineMath math="15{,}2\,\%" /> über dem Anfang**.
+
+# Warum die anderen Antworten falsch sind
+
+- „um <InlineMath math="24\,\%" />“ **zieht <InlineMath math="20" /> Prozentpunkte von <InlineMath math="44\,\%" /> ab**, statt die Senkung auf den neuen Wert zu beziehen.
+- „um <InlineMath math="22\,\%" />“ halbiert die <InlineMath math="44\,\%" /> zu einem Prozentsatz pro Jahr und rechnet dann <InlineMath math="44-22" />.
+- „um <InlineMath math="20\,\%" />“ nimmt an, dass sich eine Steigerung und die Senkung gegenseitig aufheben.
+- „um <InlineMath math="12{,}32\,\%" />“ verwendet <InlineMath math="22\,\%" /> als Prozentsatz: <InlineMath math="1{,}44\cdot0{,}78=1{,}1232" />.
+- „um <InlineMath math="0\,\%" />“ nimmt an, dass die Senkung alle Steigerungen rückgängig macht.

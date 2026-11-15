@@ -1,19 +1,61 @@
-The task asks for the correct *Anordnung* (order) of the three numbers. All three lie just above <InlineMath math="7" />. So compare them **in pairs with an exact calculation** instead of with rounded values.
+# The height of a side face
 
-First <InlineMath math="a" /> and <InlineMath math="b" />. Both are positive, so squaring keeps their order. You have <InlineMath math="a^2=50" />.
+Each side face is a triangle with base <InlineMath math="6\text{ cm}" />. Its area gives its height <InlineMath math="h_s" />, the **height of the side face**, not the height of the pyramid:
 
-<BlockMath math="b^2=7.1^2=50.41>50=a^2\quad\Rightarrow\quad a<b" />
+<BlockMath math="\frac12\cdot6\cdot h_s=15\quad\Longrightarrow\quad h_s=5\text{ cm}" />
 
-Then <InlineMath math="b" /> and <InlineMath math="c" />. Multiply <InlineMath math="b" /> by <InlineMath math="7" /> and compare the result with <InlineMath math="50" />, the numerator of <InlineMath math="c" />.
+# The height of the pyramid
 
-<BlockMath math="7\cdot7.1=49.7<50\quad\Rightarrow\quad7.1<\frac{50}{7}\quad\Rightarrow\quad b<c" />
+Cut the pyramid vertically through the apex and the midpoints of two opposite base edges. The cut shows a right triangle made of **half the base edge, the pyramid's height and the slant height**:
 
-From <InlineMath math="a<b" /> and <InlineMath math="b<c" /> the whole chain follows. Approximations help as a check: <InlineMath math="\sqrt{50}\approx7.07" /> and <InlineMath math="\frac{50}{7}\approx7.14" />, and <InlineMath math="7.1" /> lies in between.
+<MathVisual
+  title={<>Cross-section through the apex</>}
+  description={<>A vertical cut through the apex <InlineMath math="S" /> and the midpoints of two opposite base edges. It is an isosceles triangle with base <InlineMath math="6" />. On the right you see a right triangle made of half the base, <InlineMath math="3" />, the height <InlineMath math="h=4" /> and the slant height <InlineMath math="5" />.</>}
+  labels={{
+    apex: <><InlineMath math="S" /></>,
+    m: <><InlineMath math="M" /></>,
+    h: <><InlineMath math="h=4" /></>,
+    s: <>slant height <InlineMath math="5" /></>,
+    half: <><InlineMath math="3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4.5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "section", kind: "polygon", appearance: "primary", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 4 }] },
+      { id: "height", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "slant", kind: "segment", appearance: "highlight", from: { x: 3, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "half-base", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "centre", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "apex", objectId: "top", at: { x: 0, y: 4 }, placement: "above" },
+      { key: "m", objectId: "centre", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "s", objectId: "slant", at: { x: 1.5, y: 2 }, placement: "right" },
+      { key: "half", objectId: "half-base", at: { x: 1.5, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
 
-So the correct order is <InlineMath math="a<b<c" />.
+<BlockMath math="h=\sqrt{5^2-3^2}=\sqrt{16}=4\text{ cm}" />
 
-- <InlineMath math="c<b<a" /> reverses the correct order completely.
-- <InlineMath math="b<a<c" /> claims <InlineMath math="7.1<\sqrt{50}" />. Because <InlineMath math="7.1^2=50.41>50" />, <InlineMath math="7.1" /> is the larger one.
-- <InlineMath math="a<c<b" /> claims <InlineMath math="\frac{50}{7}<7.1" />. Because <InlineMath math="7\cdot7.1=49.7<50" />, <InlineMath math="\frac{50}{7}" /> is the larger one.
-- <InlineMath math="c<a<b" /> makes <InlineMath math="c" /> the smallest number, although <InlineMath math="c" /> is greater than <InlineMath math="b" /> and therefore also greater than <InlineMath math="a" />.
-- <InlineMath math="b<c<a" /> makes <InlineMath math="a" /> the largest number, although <InlineMath math="a<b" /> already holds.
+# The volume
+
+<BlockMath math="V=\frac13\cdot G\cdot h=\frac13\cdot6^2\cdot4=48\text{ cm}^3" />
+
+The pyramid has **a volume of <InlineMath math="48\text{ cm}^3" />**.
+
+# Why the other answers are wrong
+
+- <InlineMath math="144\text{ cm}^3" /> **forgets the factor <InlineMath math="\frac13" />** in the pyramid volume.
+- <InlineMath math="60\text{ cm}^3" /> uses the slant height <InlineMath math="5" /> as the pyramid's height: <InlineMath math="\frac13\cdot36\cdot5" />.
+- <InlineMath math="12\sqrt7\text{ cm}^3" /> takes <InlineMath math="5\text{ cm}" /> as the length of a side edge and works with half the diagonal, <InlineMath math="3\sqrt2" />: <InlineMath math="h=\sqrt{25-18}=\sqrt7" />.
+- <InlineMath math="72\text{ cm}^3" /> uses <InlineMath math="\frac12" /> instead of <InlineMath math="\frac13" />.
+- <InlineMath math="180\text{ cm}^3" /> makes two mistakes: slant height as the height and no factor <InlineMath math="\frac13" />.

@@ -1,15 +1,59 @@
-The task asks for the height of one side face of the tent, from the middle of a base edge to the apex. That segment is the hypotenuse of a **right triangle inside the pyramid**. Its corners are the apex, the centre of the base, and the middle of a base edge.
+# Work with rates per hour
 
-One leg is the height of the pyramid, <InlineMath math="h=4\text{ m}" />. The other runs from the centre of the base to the middle of a base edge. It is half a base edge long, so <InlineMath math="3\text{ m}" />. The right angle is at the centre of the base, because the height is perpendicular to the base.
+You can't simply add times, but you can add rates. If the weaker pump alone needs <InlineMath math="x" /> hours, it fills <InlineMath math="\frac1x" /> of the tank per hour. The stronger one needs <InlineMath math="x-5" /> hours and manages <InlineMath math="\frac{1}{x-5}" /> per hour. Together they fill **<InlineMath math="\frac16" /> of the tank per hour**:
 
-<BlockMath math="h_s^2=4^2+3^2=16+9=25\quad\Rightarrow\quad h_s=5" />
+<BlockMath math="\frac1x+\frac{1}{x-5}=\frac16" />
 
-As a check, compare with the lateral edge <InlineMath math="s" />, which runs from a corner to the apex. Its horizontal leg is half the diagonal, <InlineMath math="3\sqrt2\text{ m}" />, so <InlineMath math="s=\sqrt{16+18}=\sqrt{34}\approx5.8" />. The height of a side face must be shorter than the lateral edge, and <InlineMath math="5<5.8" /> fits.
+# Solve the equation
 
-So the height of a side face is <InlineMath math="5\text{ m}" />.
+Multiply by **the common denominator <InlineMath math="6x(x-5)" />**:
 
-- <InlineMath math="\sqrt{34}\text{ m}" /> is the lateral edge from a corner to the apex, not the height of the side face.
-- <InlineMath math="2\sqrt{13}\text{ m}" /> is <InlineMath math="\sqrt{4^2+6^2}" />. It uses the whole base edge instead of half of it as a leg.
-- <InlineMath math="7\text{ m}" /> adds the two legs, <InlineMath math="4+3" />, instead of using Pythagoras' theorem.
-- <InlineMath math="\sqrt7\text{ m}" /> is <InlineMath math="\sqrt{4^2-3^2}" />. The hypotenuse needs the sum of the squares.
-- <InlineMath math="10\text{ m}" /> adds the height of the pyramid and the whole base edge, <InlineMath math="4+6" />.
+<BlockMath math="\begin{aligned}
+6(x-5)+6x&=x(x-5) \\
+12x-30&=x^2-5x \\
+x^2-17x+30&=0 \\
+(x-15)(x-2)&=0
+\end{aligned}" />
+
+# Pick the solution that fits
+
+The stronger pump needs <InlineMath math="x-5" /> hours, and **that time must be positive**. For <InlineMath math="x=2" /> it would be <InlineMath math="-3" /> hours, so that solution drops out:
+
+<MathVisual
+  title={<>Joint rate per hour</>}
+  description={<>For times <InlineMath math="x>5" /> of the weaker pump the joint rate <InlineMath math="\frac1x+\frac1{x-5}" /> is drawn as a falling graph. The horizontal line <InlineMath math="y=\frac16" /> is the required rate. They meet exactly once, at <InlineMath math="x=15" />.</>}
+  labels={{
+    key: <><InlineMath math="x=15" /></>,
+    r: <>joint rate</>,
+    j: <><InlineMath math="\frac16" /> tank per hour</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 5, max: 31 },
+      y: { min: 0, max: 0.65 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 5, y: 0.16666666666666666 }, to: { x: 30, y: 0.16666666666666666 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "1/x + 1/(x-5)", domain: { min: 7, max: 30 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 0.16666666666666666 } },
+    ],
+    labels: [
+      { key: "key", objectId: "meet", at: { x: 15, y: 0.16666666666666666 }, placement: "above-right" },
+      { key: "r", objectId: "rate", at: { x: 9, y: 0.3611111111111111 }, placement: "right" },
+      { key: "j", objectId: "level", at: { x: 28, y: 0.16666666666666666 }, placement: "above" },
+    ],
+  }}
+/>
+
+Check <InlineMath math="x=15" />: <InlineMath math="\frac1{15}+\frac1{10}=\frac{2+3}{30}=\frac16" />. The weaker pump alone needs <InlineMath math="15" /> hours.
+
+# Why the other answers are wrong
+
+- <InlineMath math="10" /> hours is the time of the **stronger** pump.
+- <InlineMath math="11" /> hours adds the <InlineMath math="5" /> hours to the joint time.
+- <InlineMath math="8.5" /> hours treats <InlineMath math="6" /> hours as the average of the two times: <InlineMath math="\frac{x+(x-5)}{2}=6" />.
+- "<InlineMath math="2" /> hours or <InlineMath math="15" /> hours" overlooks that for <InlineMath math="x=2" /> the stronger pump would need a negative time.
+- <InlineMath math="12" /> hours assumes each pump alone takes twice as long as both together. That only holds for two equally strong pumps.

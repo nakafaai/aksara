@@ -1,0 +1,70 @@
+# Di mana pembahagi dua sudut bertemu sisi
+
+Pembahagi dua sudut membahagi sisi bertentangan **mengikut nisbah dua sisi yang bersebelahan**:
+
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
+
+<MathVisual
+  title={<>Pembahagi dua sudut membahagi <InlineMath math="\overline{BC}" /></>}
+  description={<>Segi tiga dengan <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> dan <InlineMath math="\overline{BC}=5" />. Pembahagi dua sudut <InlineMath math="A" /> bertemu <InlineMath math="\overline{BC}" /> di <InlineMath math="D" /> dan membahagi sisi itu kepada <InlineMath math="\overline{BD}=3" /> dan <InlineMath math="\overline{DC}=2" />. Tembereng garis <InlineMath math="\overline{AD}" /> diserlahkan.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
+      { id: "piece-bd", kind: "segment", appearance: "highlight", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pc", kind: "point", appearance: "reference", at: { x: 5, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 4.5, y: 3.9686 } },
+      { id: "pd", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 4.5, y: 3.9686 }, placement: "above" },
+      { key: "b", objectId: "pb", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "pc", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "pd", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "bd", objectId: "piece-bd", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "dc", objectId: "triangle", at: { x: 4, y: 0 }, placement: "below" },
+      { key: "ab", objectId: "triangle", at: { x: 2.25, y: 1.9843 }, placement: "above-left" },
+      { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Cari sudut di <InlineMath math="B" />
+
+Dalam segi tiga <InlineMath math="ABC" /> ketiga-tiga sisi diketahui. Petua kosinus memberi **kosinus sudut di <InlineMath math="B" />**:
+
+<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+
+# Petua kosinus dalam segi tiga <InlineMath math="ABD" />
+
+Dalam segi tiga <InlineMath math="ABD" /> kini diketahui <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> dan sudut di antaranya, <InlineMath math="\beta" />. Guna petua kosinus sekali lagi:
+
+<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+
+Tembereng garis itu **panjangnya <InlineMath math="3\sqrt2" />**, kira-kira <InlineMath math="4.24" />.
+
+# Kenapa jawapan lain salah
+
+- <InlineMath math="\sqrt{22}" /> membahagi mengikut **nisbah terbalik**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
+- <InlineMath math="\frac{\sqrt{79}}{2}" /> ialah panjang median dari <InlineMath math="A" />, dengan <InlineMath math="D" /> di titik tengah <InlineMath math="\overline{BC}" />.
+- <InlineMath math="2\sqrt6" /> ialah <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. Jalan pintas itu membuang sebutan pembetulan dalam rumus pembahagi dua sudut.
+- <InlineMath math="3" /> ialah <InlineMath math="\overline{BD}" />, bukan <InlineMath math="\overline{AD}" />.
+- <InlineMath math="3\sqrt3" /> memakai <InlineMath math="\cos\beta=\frac12" />, seolah-olah sudut di <InlineMath math="B" /> ialah <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.

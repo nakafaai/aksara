@@ -1,17 +1,60 @@
-Soal meminta *Zerlegen Sie vollständig in Linearfaktoren* (faktorkan sepenuhnya menjadi faktor-faktor linear). Untuk empat suku, **pemfaktoran per kelompok** sering membantu. Kelompokkan dua suku pertama dan dua suku terakhir, lalu cari kurung yang sama di setiap kelompok.
+# Tulis akar sebagai nilai mutlak
 
-<BlockMath math="x^3-2x^2-9x+18=x^2(x-2)-9(x-2)" />
+Di bawah akar ada bentuk kuadrat: <InlineMath math="x^2-6x+9=(x-3)^2" /> dan <InlineMath math="x^2+4x+4=(x+2)^2" />. Akar tidak pernah negatif, jadi **<InlineMath math="\sqrt{u^2}=|u|" />, bukan <InlineMath math="u" />**:
 
-Perhatikan tanda pada kelompok kedua: <InlineMath math="-9x+18=-9\cdot(x-2)" />, karena <InlineMath math="-9\cdot(-2)=+18" />. Sekarang kedua kelompok memuat faktor <InlineMath math="(x-2)" />, jadi keluarkan faktor itu. Sisanya, <InlineMath math="x^2-9" />, adalah selisih dua kuadrat.
+<BlockMath math="|x-3|+|x+2|=7" />
 
-<BlockMath math="(x-2)(x^2-9)=(x-2)(x-3)(x+3)" />
+# Telusuri ketiga daerah
 
-Sebagai pemeriksaan, substitusikan pembuat nol setiap faktor ke bentuk awal. Untuk <InlineMath math="x=2" /> diperoleh <InlineMath math="8-8-18+18=0" />, untuk <InlineMath math="x=3" /> diperoleh <InlineMath math="27-18-27+18=0" />, dan untuk <InlineMath math="x=-3" /> diperoleh <InlineMath math="-27-18+27+18=0" />. Di <InlineMath math="x=0" />, kedua bentuk bernilai <InlineMath math="18" />.
+Nilai mutlak berganti tanda di <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />. Garis bilangan pun terbagi menjadi tiga daerah, dan **setiap daerah punya persamaannya sendiri**:
 
-Jadi, pemfaktorannya menjadi faktor linear adalah <InlineMath math="(x-2)(x-3)(x+3)" />.
+<BlockMath math="\begin{aligned}
+x<-2:&\quad (3-x)+(-x-2)=1-2x=7\ \Rightarrow\ x=-3 \\
+-2\le x\le3:&\quad (3-x)+(x+2)=5\ne7 \\
+x>3:&\quad (x-3)+(x+2)=2x-1=7\ \Rightarrow\ x=4
+\end{aligned}" />
 
-- <InlineMath math="(x+2)(x-3)(x+3)" /> tidak bernilai nol di <InlineMath math="x=2" />, padahal bentuk awalnya bernilai nol di sana. Kesalahannya muncul jika <InlineMath math="-9x+18" /> ditulis sebagai <InlineMath math="-9(x+2)" />.
-- <InlineMath math="(x-2)(x-3)^2" /> salah memfaktorkan <InlineMath math="x^2-9" />. Padahal <InlineMath math="(x-3)^2=x^2-6x+9" />, bukan <InlineMath math="x^2-9" />.
-- <InlineMath math="(x-2)(x^2+9)" /> berasal dari kesalahan tanda <InlineMath math="-9x+18=+9(x-2)" />. Selain itu, <InlineMath math="x^2+9" /> bukan hasil kali faktor linear.
-- <InlineMath math="(2-x)(x-3)(x+3)" /> tandanya tepat berlawanan. Di <InlineMath math="x=0" /> hasilnya <InlineMath math="2\cdot(-3)\cdot3=-18" />, bukan <InlineMath math="18" />.
-- <InlineMath math="(x-2)(x-9)(x+9)" /> memperlakukan <InlineMath math="x^2-9" /> seperti <InlineMath math="x^2-9^2" />. Padahal <InlineMath math="9" /> adalah <InlineMath math="3^2" />.
+Kedua nilai ada di daerahnya masing-masing: <InlineMath math="-3<-2" /> dan <InlineMath math="4>3" />.
+
+<MathVisual
+  title={<>Jumlah dua jarak</>}
+  description={<>Grafik <InlineMath math="|x-3|+|x+2|" /> mendatar pada ketinggian <InlineMath math="5" /> di antara <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />, lalu naik ke kedua sisi di luar selang itu. Garis <InlineMath math="y=7" /> memotongnya di <InlineMath math="x=-3" /> dan di <InlineMath math="x=4" />.</>}
+  labels={{
+    a: <><InlineMath math="x=-3" /></>,
+    b: <><InlineMath math="x=4" /></>,
+    f: <><InlineMath math="|x-3|+|x+2|" /></>,
+    five: <><InlineMath math="5" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 6.5 },
+      y: { min: 0, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-3) + abs(x+2)", domain: { min: -5, max: 6 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 7 }, to: { x: 6, y: 7 } },
+      { id: "flat", kind: "segment", appearance: "highlight", from: { x: -2, y: 5 }, to: { x: 3, y: 5 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: -3, y: 7 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: 4, y: 7 } },
+    ],
+    labels: [
+      { key: "a", objectId: "p1", at: { x: -3, y: 7 }, placement: "above-left" },
+      { key: "b", objectId: "p2", at: { x: 4, y: 7 }, placement: "above-right" },
+      { key: "f", objectId: "sum", at: { x: 5.5, y: 10 }, placement: "left" },
+      { key: "five", objectId: "flat", at: { x: 0.5, y: 5 }, placement: "below" },
+    ],
+  }}
+/>
+
+Cek: <InlineMath math="\sqrt{36}+\sqrt{1}=7" /> untuk <InlineMath math="x=-3" /> dan <InlineMath math="\sqrt1+\sqrt{36}=7" /> untuk <InlineMath math="x=4" />. Persamaan itu berlaku **untuk <InlineMath math="x=-3" /> dan untuk <InlineMath math="x=4" />**.
+
+# Mengapa pilihan lain salah
+
+- "hanya <InlineMath math="x=4" />" menulis <InlineMath math="\sqrt{(x-3)^2}=x-3" /> dan <InlineMath math="\sqrt{(x+2)^2}=x+2" /> tanpa nilai mutlak. Akibatnya **penyelesaian di kiri <InlineMath math="-2" /> hilang**.
+- "hanya <InlineMath math="x=-3" />" hanya memeriksa daerah kiri.
+- <InlineMath math="x=-4" /> atau <InlineMath math="x=3" /> muncul dari tanda yang tertukar di kedua nilai mutlak, yaitu dari <InlineMath math="|x+3|+|x-2|=7" />.
+- "semua <InlineMath math="x" /> dengan <InlineMath math="-2\le x\le3" />" adalah daerah tempat jumlahnya <InlineMath math="5" />, bukan <InlineMath math="7" />.
+- "tidak ada bilangan seperti itu" melewatkan kedua daerah luar.
