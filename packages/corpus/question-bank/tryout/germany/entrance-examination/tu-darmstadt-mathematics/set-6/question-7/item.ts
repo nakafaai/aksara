@@ -27,7 +27,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$\\mathbb{L}=\\left\\{\\log_2\\frac{9-\\sqrt{65}}{2};\\,\\log_2\\frac{9+\\sqrt{65}}{2}\\right\\}$$",
+          label:
+            "$$\\mathbb{L}=\\left\\{\\log_2\\frac{9-\\sqrt{65}}{2};\\,\\log_2\\frac{9+\\sqrt{65}}{2}\\right\\}$$",
         },
       ],
     },

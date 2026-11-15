@@ -11,7 +11,8 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$x=\\frac{11-\\sqrt{97}}{2}$$ und $$x=\\frac{11+\\sqrt{97}}{2}$$",
+          label:
+            "$$x=\\frac{11-\\sqrt{97}}{2}$$ und $$x=\\frac{11+\\sqrt{97}}{2}$$",
         },
         {
           correct: true,
