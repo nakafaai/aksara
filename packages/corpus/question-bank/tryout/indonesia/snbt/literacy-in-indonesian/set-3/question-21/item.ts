@@ -24,7 +24,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Pada tahun-tahun pertama, rel itu juga dipakai untuk mengangkut beras dari pelabuhan ke pasar-pasar di pedalaman Jawa Tengah.",
+            "Pada tahun-tahun pertama, rel itu juga dipakai untuk mengangkut pegawai perusahaan perkebunan ke kantor mereka di Semarang.",
         },
         {
           correct: false,
@@ -34,7 +34,7 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Pada tahun-tahun pertama, sebagian besar pendapatan perusahaan kereta berasal dari tiket penumpang, bukan dari angkutan hasil bumi.",
+            "Pada tahun-tahun pertama, sebagian besar muatan jalur itu adalah penumpang biasa dan barang mereka, bukan hasil perkebunan.",
         },
       ],
     },
