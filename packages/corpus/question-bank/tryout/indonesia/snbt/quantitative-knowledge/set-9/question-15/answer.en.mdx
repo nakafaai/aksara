@@ -1,48 +1,39 @@
-Both <InlineMath math="P" /> and <InlineMath math="Q" /> depend on <InlineMath math="n" />, so first find **every integer <InlineMath math="n" /> that's allowed**. Then compare <InlineMath math="P" /> and <InlineMath math="Q" /> for each of those values. If the relationship changes from one allowed <InlineMath math="n" /> to another, the information isn't enough.
+A logarithmic inequality has **two conditions working at once**: every argument must be positive, and the inequality itself. If the argument condition is missed, the set of <InlineMath math="n" /> widens and the relation between <InlineMath math="P" /> and <InlineMath math="Q" /> becomes undecided.
 
-# The domain of the logarithms
+# The argument condition
 
-A logarithm is only defined for positive numbers. So <InlineMath math="n>0" /> and <InlineMath math="n-2>0" />, which together give <InlineMath math="n>2" />. **This domain condition applies before you solve the inequality**.
+<InlineMath math="n-3>0" /> and <InlineMath math="n+3>0" />, so **<InlineMath math="n>3" />**. **This condition throws out all the small numbers**.
 
 # Solving the inequality
 
-The sum of two logarithms with the same base is the logarithm of the product, and <InlineMath math="3={}^{2}\log8" />. The base <InlineMath math="2" /> is greater than <InlineMath math="1" />, so **the inequality keeps its direction** when you drop the logarithms.
+Combine the two logarithms:
 
-<BlockMath math="\begin{aligned}
-{}^{2}\log\big(n(n-2)\big)&\le{}^{2}\log8\\
-n^2-2n-8&\le0\\
-(n-4)(n+2)&\le0\\
--2\le n&\le4
-\end{aligned}" />
+<BlockMath math="{}^{2}\log\big((n-3)(n+3)\big)\le4\iff n^2-9\le16\iff n^2\le25." />
 
-Combined with <InlineMath math="n>2" />, the only integers left are <InlineMath math="n=3" /> and <InlineMath math="n=4" />. Check the edge: for <InlineMath math="n=4" />, the left side is <InlineMath math="{}^{2}\log4+{}^{2}\log2=3" />, which works. For <InlineMath math="n=5" />, the left side is <InlineMath math="{}^{2}\log15>{}^{2}\log8=3" />, which doesn't.
+Together with <InlineMath math="n>3" />, **the only integers left are <InlineMath math="n=4" /> and <InlineMath math="n=5" />**.
 
 # Comparing P and Q
 
-<BlockMath math="\begin{aligned}
-n=3&\;\Longrightarrow\;P=2^3=8,\quad Q=3^2=9\\
-n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
-\end{aligned}" />
-
-For <InlineMath math="n=3" /> you get <InlineMath math="Q>P" />, while for <InlineMath math="n=4" /> you get <InlineMath math="P=Q" />. Both values are allowed, so **no single relationship is always true**.
-
-The chart below compares <InlineMath math="P=2^n" /> and <InlineMath math="Q=n^2" /> for <InlineMath math="n=1" /> to <InlineMath math="6" />. At <InlineMath math="n=3" /> the line for <InlineMath math="Q" /> is on top, at <InlineMath math="n=4" /> **the two lines meet**, and only at <InlineMath math="n=5" /> does <InlineMath math="P" /> pull ahead, but that value isn't allowed.
+The chart below shows both quantities for <InlineMath math="n=0" /> to <InlineMath math="5" />. **The order flips between <InlineMath math="n=3" /> and <InlineMath math="n=4" />**, right at the edge of the argument condition.
 
 <Chart
-  title={<>The values of <InlineMath math="2^n" /> and <InlineMath math="n^2" /> for <InlineMath math="n=1" /> to <InlineMath math="6" /></>}
-  description={<>The values of <InlineMath math="2^n" /> are <InlineMath math="2, 4, 8, 16, 32, 64" />, and the values of <InlineMath math="n^2" /> are <InlineMath math="1, 4, 9, 16, 25, 36" />. For the allowed values, <InlineMath math="n=3" /> gives <InlineMath math="8<9" /> and <InlineMath math="n=4" /> gives <InlineMath math="16=16" />.</>}
-  valueLabel="Value"
-  categories={Array.from({ length: 6 }, (_, i) => `${i + 1}`)}
+  title={<>Values of <InlineMath math="P=2^n" /> and <InlineMath math="Q=3n+2" /> for some integers</>}
+  description={<>For <InlineMath math="n=0" /> to <InlineMath math="3" />, <InlineMath math="Q" /> is larger. For <InlineMath math="n=4" /> and <InlineMath math="n=5" />, the only integers that satisfy the inequality, <InlineMath math="P=16" /> and <InlineMath math="32" /> beat <InlineMath math="Q=14" /> and <InlineMath math="17" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
   series={[
-    { label: "P", mark: "line", values: Array.from({ length: 6 }, (_, i) => 2 ** (i + 1)) },
-    { label: "Q", mark: "line", values: Array.from({ length: 6 }, (_, i) => (i + 1) ** 2) },
+    { label: "P", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 2 ** n) },
+    { label: "Q", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 3 * n + 2) },
   ]}
+  valueLabel="Value"
 />
+
+For <InlineMath math="n=4" />: <InlineMath math="P=16>14=Q" />. For <InlineMath math="n=5" />: <InlineMath math="P=32>17=Q" />. Both cases give the same relation, so <InlineMath math="P>Q" /> is certain.
 
 # The tempting wrong options
 
-- <InlineMath math="Q>P" /> **only checks <InlineMath math="n=3" />**. It's true that <InlineMath math="Q" /> never loses to <InlineMath math="P" /> here, but for <InlineMath math="n=4" /> they're equal.
-- <InlineMath math="P=Q" /> only checks <InlineMath math="n=4" /> and forgets <InlineMath math="n=3" />.
-- <InlineMath math="P>Q" /> ignores the inequality and uses the general fact that <InlineMath math="2^n>n^2" /> for <InlineMath math="n\ge5" />, but here <InlineMath math="n" /> is at most <InlineMath math="4" />.
+- Not enough information comes from **ignoring the argument condition**. From <InlineMath math="n^2\le25" /> alone, numbers like <InlineMath math="n=0" /> or <InlineMath math="n=3" /> get counted, and there <InlineMath math="Q>P" />.
+- <InlineMath math="Q>P" /> uses only those small numbers, for example <InlineMath math="n=3" /> with <InlineMath math="8<11" />.
+- <InlineMath math="P=Q" /> holds for neither case, since <InlineMath math="16\neq14" /> and <InlineMath math="32\neq17" />. It comes from eyeballing the quantities near <InlineMath math="n=4" />, where the gap is smallest, without computing them.
 
-So the information given isn't enough to decide the relationship between <InlineMath math="P" /> and <InlineMath math="Q" />.
+So the correct relation is <InlineMath math="P>Q" />.

@@ -1,63 +1,37 @@
-You're looking for the largest charge that **can't be paid exactly**, even with unlimited stamps. To keep the numbers short, every value below is in thousands of rupiah. The plan: turn the compulsory stamp rule into a problem without the rule, find the largest amount that can't be made from <InlineMath math="7" /> and <InlineMath math="9" />, then put the rule back.
+In thousands of rupiah, a payable fee has the form <InlineMath math="7a+9b" /> with <InlineMath math="a\ge1" /> and <InlineMath math="b\ge1" />. **The rule "at least one stamp of each kind" shifts everything**: write <InlineMath math="a=1+a'" /> and <InlineMath math="b=1+b'" /> with <InlineMath math="a',b'\ge0" />, and the fee becomes
 
-# The rule as a shift
+<BlockMath math="7a+9b=16+\left(7a'+9b'\right)." />
 
-Every express parcel already carries one <InlineMath math="9" /> stamp. The rest of the charge can be paid with any number of <InlineMath math="7" /> and <InlineMath math="9" /> stamps, including none at all. So a charge <InlineMath math="M" /> can be paid exactly **if and only if <InlineMath math="M-9" /> can be made without the rule**. In other words, the rule shifts every charge by <InlineMath math="9" />.
+So a fee <InlineMath math="n" /> can be paid exactly when <InlineMath math="n-16" /> can be written as <InlineMath math="7a'+9b'" /> with no extra rule.
 
-# Amounts you can make without the rule
+# The gaps of the two stamp values
 
-Group the amounts by their remainder when divided by <InlineMath math="7" />. Adding one <InlineMath math="7" /> stamp doesn't change that remainder. So once one amount in a group can be made, **every larger amount in the same group can be made too**. You only need the smallest amount in each group, and that smallest amount uses <InlineMath math="9" /> stamps alone.
+Without the extra rule, the numbers that can't be written as <InlineMath math="7a'+9b'" /> are the gaps. For two values with no common factor, **the number of gaps is <InlineMath math="\tfrac{(7-1)(9-1)}{2}=24" />** and the largest gap is <InlineMath math="7\cdot9-7-9=47" />. The number <InlineMath math="0" /> isn't a gap, since <InlineMath math="0=7\cdot0+9\cdot0" />.
 
-| Number of <InlineMath math="9" /> stamps | Amount | Remainder after dividing by <InlineMath math="7" /> |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="9" /> | <InlineMath math="2" /> |
-| <InlineMath math="2" /> | <InlineMath math="18" /> | <InlineMath math="4" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="6" /> |
-| <InlineMath math="4" /> | <InlineMath math="36" /> | <InlineMath math="1" /> |
-| <InlineMath math="5" /> | <InlineMath math="45" /> | <InlineMath math="3" /> |
-| <InlineMath math="6" /> | <InlineMath math="54" /> | <InlineMath math="5" /> |
+# Putting the two parts together
 
-All seven remainders show up exactly once, so the table gives the smallest amount in every group. The largest of these smallest amounts is <InlineMath math="54" />, in the group with remainder <InlineMath math="5" />. The amount <InlineMath math="54-7=47" /> sits in the same group but is smaller, so it can't be made. In every other group the smallest amount is at most <InlineMath math="45" />, so every amount above <InlineMath math="47" /> in those groups can be made. In the remainder <InlineMath math="5" /> group, the next amount after <InlineMath math="47" /> is <InlineMath math="54" />, which can be made. So without the rule, the largest amount you can't make is <InlineMath math="47" />.
+A positive fee <InlineMath math="n" /> can't be paid in two situations:
 
-The chart below shows the smallest amount you can make in each remainder group. **The tallest bar is in the remainder <InlineMath math="5" /> group**, at <InlineMath math="54" />, so <InlineMath math="54-7=47" /> is the largest amount you can't make without the rule.
+- **Fees below the price of one pair of stamps**, that is <InlineMath math="n<16" />: even one stamp of each kind already costs <InlineMath math="16" /> thousand. That gives <InlineMath math="15" /> values.
+- <InlineMath math="n\ge16" /> but <InlineMath math="n-16" /> is a gap: <InlineMath math="24" /> values, from <InlineMath math="17" /> to <InlineMath math="63" />.
+
+The chart below separates the two parts.
 
 <Chart
-  title={<>Smallest amount you can make by remainder on division by <InlineMath math="7" /></>}
-  description={<>For remainders <InlineMath math="0" /> to <InlineMath math="6" />, the smallest amounts you can make from <InlineMath math="7" /> and <InlineMath math="9" /> stamps are <InlineMath math="0, 36, 9, 45, 18, 54, 27" />, in thousands of rupiah. The largest of these is <InlineMath math="54" />, in the remainder <InlineMath math="5" /> group.</>}
+  title={<>Fees that can’t be paid by range, in thousands of rupiah</>}
+  description={<>All <InlineMath math="15" /> fees from <InlineMath math="1" /> to <InlineMath math="15" /> thousand can’t be paid. From <InlineMath math="16" /> to <InlineMath math="63" /> thousand there are <InlineMath math="24" /> that can’t be paid, and from <InlineMath math="64" /> thousand on every fee can be paid.</>}
   bars="apart"
-  categories={["0", "1", "2", "3", "4", "5", "6"]}
-  series={[
-    { label: "Smallest amount in its group", mark: "bar", values: [0, 36, 9, 45, 18, null, 27] },
-    { label: "Largest smallest amount", mark: "bar", values: [null, null, null, null, null, 54, null] },
-  ]}
-  valueLabel="Amount (thousand rupiah)"
+  categories={["1 to 15", "16 to 63", "64 and up"]}
+  series={[{ label: "Fees that can’t be paid", mark: "bar", values: [15, 24, 0] }]}
+  valueLabel="Number of fees"
 />
 
-# Putting the rule back
-
-A charge <InlineMath math="M" /> can be paid if and only if <InlineMath math="M-9" /> can be made. The largest charge that fails comes from setting <InlineMath math="M-9" /> equal to the largest amount you can't make.
-
-<BlockMath math="\begin{aligned}
-M-9&=47\\
-M&=56
-\end{aligned}" />
-
-For every <InlineMath math="M>56" />, the value <InlineMath math="M-9" /> is more than <InlineMath math="47" />, so it can be made, and **the charge <InlineMath math="M" /> can be paid**.
-
-# Checking the result
-
-The charge <InlineMath math="56=7\cdot8" /> is a multiple of <InlineMath math="7" />. If <InlineMath math="56=7a+9b" />, then <InlineMath math="9b" /> must also be a multiple of <InlineMath math="7" />, so **the number of <InlineMath math="9" /> stamps must be a multiple of <InlineMath math="7" />**. The rule needs <InlineMath math="b\ge1" />, which forces <InlineMath math="b\ge7" /> and <InlineMath math="9b\ge63>56" />. That's impossible, so <InlineMath math="56" /> really can't be paid. The next charge can:
-
-<BlockMath math="57=4\cdot9+3\cdot7=36+21" />
+The total is <InlineMath math="15+24=39" /> fees.
 
 # The tempting wrong options
 
-All five options really are charges that can't be paid, so trying to pay each one isn't enough. What decides it is **which charge is the largest**.
+- <InlineMath math="24" /> counts only the gaps of <InlineMath math="7a'+9b'" />, **ignoring the rule of at least one stamp of each kind**.
+- <InlineMath math="15" /> counts only the fees below <InlineMath math="16" /> thousand and forgets the gaps above.
+- <InlineMath math="47" /> is the largest gap without the rule, and <InlineMath math="63=16+47" /> is the largest fee that can't be paid with the rule. Both **answer the largest value, not how many**.
 
-- <InlineMath math="\text{Rp}47{,}000" /> is the answer **without the compulsory stamp rule**. With the rule, <InlineMath math="47" /> can't be paid either, because <InlineMath math="47-9=38" /> can't be made, but there's a larger charge that also fails.
-- <InlineMath math="\text{Rp}33{,}000" /> shifts the number <InlineMath math="24" /> by <InlineMath math="9" />. But <InlineMath math="24" /> is how many amounts fail without the rule, not the largest of them.
-- <InlineMath math="\text{Rp}38{,}000" /> shifts in the wrong direction, <InlineMath math="47-9" />. The rule adds to the charge.
-- <InlineMath math="\text{Rp}24{,}000" /> is the number of amounts you can't make without the rule, not the largest of them.
-
-So the largest express parcel charge that can't be paid exactly is <InlineMath math="\text{Rp}56{,}000" />.
+So the number of fees that can't be paid exactly is <InlineMath math="39" />.

@@ -1,42 +1,32 @@
-You're counting the numbers from <InlineMath math="1" /> to <InlineMath math="100" /> that can't be written as <InlineMath math="10a+14b" />, where <InlineMath math="a" /> and <InlineMath math="b" /> are whole numbers. The key is that <InlineMath math="10" /> and <InlineMath math="14" /> are **both even**. The plan: split odd and even scores, then turn the even scores into a smaller problem with <InlineMath math="5" /> and <InlineMath math="7" />.
+Write <InlineMath math="n=a^2-b^2=(a-b)(a+b)" />. The two factors <InlineMath math="a-b" /> and <InlineMath math="a+b" /> are **always both odd or both even**, because their difference <InlineMath math="2b" /> is even. That gives two steps: sort the numbers by their remainder on division by <InlineMath math="4" />, then check the condition that <InlineMath math="b" /> must be positive.
 
-# Odd scores
+# The impossible numbers
 
-Every score has the form <InlineMath math="10a+14b=2(5a+7b)" />, so **every score is even**. That means none of the odd numbers from <InlineMath math="1" /> to <InlineMath math="100" /> can be a score. There are <InlineMath math="50" /> of them.
+If both factors are odd, the product is odd. If both are even, the product is a multiple of <InlineMath math="4" />. So **a number with remainder <InlineMath math="2" /> on division by <InlineMath math="4" /> is never a difference of squares**. There are <InlineMath math="25" /> such numbers, <InlineMath math="2,6,10,\dots,98" />.
 
-# Even scores
+# Odd numbers and multiples of four
 
-An even number <InlineMath math="2m" />, with <InlineMath math="1\le m\le50" />, is a score exactly when <InlineMath math="m=5a+7b" />. So you only need the values of <InlineMath math="m" /> that **can't be made from <InlineMath math="5" /> and <InlineMath math="7" />**.
+- An odd number <InlineMath math="n=2k+1" /> can be written <InlineMath math="(k+1)^2-k^2" />. **The condition <InlineMath math="b=k\ge1" />** removes <InlineMath math="n=1" />, and indeed <InlineMath math="1=(a-b)(a+b)" /> only works with <InlineMath math="a=1" />, <InlineMath math="b=0" />.
+- A multiple of four <InlineMath math="n=4m" /> can be written <InlineMath math="(m+1)^2-(m-1)^2" />. The condition <InlineMath math="b=m-1\ge1" /> removes <InlineMath math="n=4" />, and indeed <InlineMath math="4=2\cdot2" /> only gives <InlineMath math="a=2" />, <InlineMath math="b=0" />.
 
-Group the values of <InlineMath math="m" /> by their remainder when divided by <InlineMath math="5" />. Adding <InlineMath math="5" /> doesn't change the remainder, so in each group you only need the smallest number that can be made, which is the first multiple of <InlineMath math="7" /> that lands in that group. Every positive number below it in the same group can't be made.
-
-| Remainder after dividing by <InlineMath math="5" /> | Smallest you can make | Can't be made |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | none |
-| <InlineMath math="1" /> | <InlineMath math="21" /> | <InlineMath math="1,\ 6,\ 11,\ 16" /> |
-| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="2" /> |
-| <InlineMath math="3" /> | <InlineMath math="28" /> | <InlineMath math="3,\ 8,\ 13,\ 18,\ 23" /> |
-| <InlineMath math="4" /> | <InlineMath math="14" /> | <InlineMath math="4,\ 9" /> |
-
-That's <InlineMath math="4+1+5+2=12" /> values of <InlineMath math="m" /> that fail. The largest is <InlineMath math="23" />, which is still at most <InlineMath math="50" />, so **all twelve fall inside the range**. They match the even scores <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
-
-The chart below splits the numbers <InlineMath math="1" /> to <InlineMath math="100" /> into three groups. The first two bars are impossible scores: **every odd number** and the <InlineMath math="12" /> even numbers whose half can't be made from <InlineMath math="5" /> and <InlineMath math="7" />.
+No other square drops out. For example, <InlineMath math="9=5^2-4^2" /> and <InlineMath math="16=5^2-3^2" />.
 
 <Chart
-  title={<>The numbers <InlineMath math="1" /> to <InlineMath math="100" /> by whether they can be a score</>}
-  description={<>There are <InlineMath math="50" /> odd numbers, all impossible. Of the <InlineMath math="50" /> even numbers, <InlineMath math="12" /> are impossible and <InlineMath math="38" /> can be scores. The impossible scores number <InlineMath math="50+12=62" />.</>}
-  categories={["Odd", "Even, impossible", "Even, possible"]}
+  title={<>Numbers from <InlineMath math="1" /> to <InlineMath math="100" /> by remainder on division by <InlineMath math="4" /></>}
+  description={<>There are <InlineMath math="50" /> odd numbers, <InlineMath math="25" /> multiples of <InlineMath math="4" />, and <InlineMath math="25" /> numbers with remainder <InlineMath math="2" />. The positive square differences among them number <InlineMath math="49" />, <InlineMath math="24" />, and <InlineMath math="0" />, since <InlineMath math="1" /> and <InlineMath math="4" /> drop out.</>}
   bars="apart"
-  series={[{ label: "How many numbers", mark: "bar", values: [50, 12, 50 - 12] }]}
-  valueLabel="How many numbers"
+  categories={["Odd", "Multiple of 4", "Remainder 2"]}
+  series={[
+    { label: "All numbers", mark: "bar", values: [50, 25, 25] },
+    { label: "Positive square differences", mark: "bar", values: [50 - 1, 25 - 1, 0] },
+  ]}
+  valueLabel="Numbers"
 />
 
-# Adding up and checking
+# Adding up
 
-<BlockMath math="50+12=62" />
+The odd numbers that pass number <InlineMath math="50-1=49" />, and the multiples of four that pass number <InlineMath math="25-1=24" />. **The total is <InlineMath math="49+24=73" />**.
 
-Check the score <InlineMath math="46" />. Subtract <InlineMath math="14b" /> for <InlineMath math="b=0,1,2,3" />: what's left is <InlineMath math="46" />, <InlineMath math="32" />, <InlineMath math="18" />, and <InlineMath math="4" />, and none is a multiple of <InlineMath math="10" />. So <InlineMath math="46" /> really fails. On the other hand, <InlineMath math="48=2\cdot10+2\cdot14" /> works. The count of failing values of <InlineMath math="m" /> also matches the formula for two coprime numbers, <InlineMath math="\frac{(5-1)(7-1)}{2}=12" />.
+Common wrong results are <InlineMath math="75" />, which forgets that <InlineMath math="b" /> must be positive and so counts <InlineMath math="1" /> and <InlineMath math="4" />, and <InlineMath math="50" />, which counts only the odd numbers.
 
-The answer <InlineMath math="12" /> comes from **forgetting all the odd scores**. The answer <InlineMath math="50" /> comes from counting only the odd scores and assuming every even score is reachable.
-
-So there are <InlineMath math="62" /> whole numbers from <InlineMath math="1" /> to <InlineMath math="100" /> that can't be a score.
+So the number of integers from <InlineMath math="1" /> to <InlineMath math="100" /> that are positive square differences is <InlineMath math="73" />.

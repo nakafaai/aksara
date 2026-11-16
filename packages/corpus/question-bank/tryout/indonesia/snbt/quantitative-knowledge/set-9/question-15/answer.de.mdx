@@ -1,48 +1,39 @@
-<InlineMath math="P" /> und <InlineMath math="Q" /> hängen beide von <InlineMath math="n" /> ab, also bestimme zuerst **alle zulässigen ganzen Zahlen <InlineMath math="n" />**. Vergleiche dann <InlineMath math="P" /> und <InlineMath math="Q" /> für jeden dieser Werte. Ändert sich die Beziehung von einem zulässigen <InlineMath math="n" /> zum nächsten, reichen die Informationen nicht.
+Eine Logarithmusungleichung hat **zwei Bedingungen, die gleichzeitig wirken**: Jedes Argument muss positiv sein, und die Ungleichung selbst muss gelten. Wird die Bedingung an die Argumente übersehen, wird die Menge der <InlineMath math="n" /> größer, und die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> bleibt offen.
 
-# Der Definitionsbereich der Logarithmen
+# Die Bedingung an die Argumente
 
-Ein Logarithmus ist nur für positive Zahlen definiert. Also gilt <InlineMath math="n>0" /> und <InlineMath math="n-2>0" />, zusammen <InlineMath math="n>2" />. **Diese Bedingung gilt schon, bevor du die Ungleichung löst**.
+<InlineMath math="n-3>0" /> und <InlineMath math="n+3>0" />, also **<InlineMath math="n>3" />**. **Diese Bedingung wirft alle kleinen Zahlen hinaus**.
 
 # Die Ungleichung lösen
 
-Die Summe zweier Logarithmen zur selben Basis ist der Logarithmus des Produkts, und <InlineMath math="3={}^{2}\log8" />. Die Basis <InlineMath math="2" /> ist größer als <InlineMath math="1" />, also **behält die Ungleichung ihre Richtung**, wenn du die Logarithmen weglässt.
+Fasse die beiden Logarithmen zusammen:
 
-<BlockMath math="\begin{aligned}
-{}^{2}\log\big(n(n-2)\big)&\le{}^{2}\log8\\
-n^2-2n-8&\le0\\
-(n-4)(n+2)&\le0\\
--2\le n&\le4
-\end{aligned}" />
+<BlockMath math="{}^{2}\log\big((n-3)(n+3)\big)\le4\iff n^2-9\le16\iff n^2\le25." />
 
-Zusammen mit <InlineMath math="n>2" /> bleiben nur die ganzen Zahlen <InlineMath math="n=3" /> und <InlineMath math="n=4" />. Prüf den Rand: Für <InlineMath math="n=4" /> ist die linke Seite <InlineMath math="{}^{2}\log4+{}^{2}\log2=3" />, das passt. Für <InlineMath math="n=5" /> ist sie <InlineMath math="{}^{2}\log15>{}^{2}\log8=3" />, das passt nicht.
+Zusammen mit <InlineMath math="n>3" /> **bleiben nur die ganzen Zahlen <InlineMath math="n=4" /> und <InlineMath math="n=5" />**.
 
 # P und Q vergleichen
 
-<BlockMath math="\begin{aligned}
-n=3&\;\Longrightarrow\;P=2^3=8,\quad Q=3^2=9\\
-n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
-\end{aligned}" />
-
-Für <InlineMath math="n=3" /> gilt <InlineMath math="Q>P" />, für <InlineMath math="n=4" /> dagegen <InlineMath math="P=Q" />. Beide Werte sind zulässig, also **gibt es keine Beziehung, die immer gilt**.
-
-Das Diagramm vergleicht <InlineMath math="P=2^n" /> und <InlineMath math="Q=n^2" /> für <InlineMath math="n=1" /> bis <InlineMath math="6" />. Bei <InlineMath math="n=3" /> liegt die Linie für <InlineMath math="Q" /> oben, bei <InlineMath math="n=4" /> **treffen sich beide Linien**, und erst bei <InlineMath math="n=5" /> zieht <InlineMath math="P" /> vorbei, aber dieser Wert ist nicht erlaubt.
+Das Diagramm zeigt beide Größen für <InlineMath math="n=0" /> bis <InlineMath math="5" />. **Die Reihenfolge kippt zwischen <InlineMath math="n=3" /> und <InlineMath math="n=4" />**, genau an der Grenze der Bedingung an die Argumente.
 
 <Chart
-  title={<>Die Werte von <InlineMath math="2^n" /> und <InlineMath math="n^2" /> für <InlineMath math="n=1" /> bis <InlineMath math="6" /></>}
-  description={<>Die Werte von <InlineMath math="2^n" /> sind <InlineMath math="2, 4, 8, 16, 32, 64" />, die von <InlineMath math="n^2" /> sind <InlineMath math="1, 4, 9, 16, 25, 36" />. Für die erlaubten Werte liefert <InlineMath math="n=3" /> <InlineMath math="8<9" /> und <InlineMath math="n=4" /> <InlineMath math="16=16" />.</>}
-  valueLabel="Wert"
-  categories={Array.from({ length: 6 }, (_, i) => `${i + 1}`)}
+  title={<>Werte von <InlineMath math="P=2^n" /> und <InlineMath math="Q=3n+2" /> für einige ganze Zahlen</>}
+  description={<>Für <InlineMath math="n=0" /> bis <InlineMath math="3" /> ist <InlineMath math="Q" /> größer. Für <InlineMath math="n=4" /> und <InlineMath math="n=5" />, die einzigen ganzen Zahlen, die die Ungleichung erfüllen, liegen <InlineMath math="P=16" /> und <InlineMath math="32" /> über <InlineMath math="Q=14" /> und <InlineMath math="17" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
   series={[
-    { label: "P", mark: "line", values: Array.from({ length: 6 }, (_, i) => 2 ** (i + 1)) },
-    { label: "Q", mark: "line", values: Array.from({ length: 6 }, (_, i) => (i + 1) ** 2) },
+    { label: "P", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 2 ** n) },
+    { label: "Q", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 3 * n + 2) },
   ]}
+  valueLabel="Wert"
 />
+
+Für <InlineMath math="n=4" />: <InlineMath math="P=16>14=Q" />. Für <InlineMath math="n=5" />: <InlineMath math="P=32>17=Q" />. Beide Fälle geben dieselbe Beziehung, also ist <InlineMath math="P>Q" /> sicher.
 
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="Q>P" /> **prüft nur <InlineMath math="n=3" />**. Zwar ist <InlineMath math="Q" /> hier nie kleiner als <InlineMath math="P" />, aber für <InlineMath math="n=4" /> sind beide gleich.
-- <InlineMath math="P=Q" /> prüft nur <InlineMath math="n=4" /> und vergisst <InlineMath math="n=3" />.
-- <InlineMath math="P>Q" /> ignoriert die Ungleichung und verwendet die allgemeine Tatsache <InlineMath math="2^n>n^2" /> für <InlineMath math="n\ge5" />, obwohl <InlineMath math="n" /> hier höchstens <InlineMath math="4" /> ist.
+- Nicht genug Information entsteht, wenn man **die Bedingung an die Argumente übersieht**. Aus <InlineMath math="n^2\le25" /> allein zählen Zahlen wie <InlineMath math="n=0" /> oder <InlineMath math="n=3" /> mit, und dort ist <InlineMath math="Q>P" />.
+- <InlineMath math="Q>P" /> nutzt nur diese kleinen Zahlen, zum Beispiel <InlineMath math="n=3" /> mit <InlineMath math="8<11" />.
+- <InlineMath math="P=Q" /> gilt in keinem Fall, denn <InlineMath math="16\neq14" /> und <InlineMath math="32\neq17" />. Diese Wahl entsteht, wenn man die Größen nahe <InlineMath math="n=4" />, wo der Abstand am kleinsten ist, nur schätzt statt rechnet.
 
-Die gegebenen Informationen reichen also nicht, um die Beziehung zwischen <InlineMath math="P" /> und <InlineMath math="Q" /> festzulegen.
+Also ist die richtige Beziehung <InlineMath math="P>Q" />.

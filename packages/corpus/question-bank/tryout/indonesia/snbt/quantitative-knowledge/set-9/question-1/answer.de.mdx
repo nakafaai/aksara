@@ -1,63 +1,37 @@
-Gesucht ist das größte Porto, das sich **nicht passend bezahlen lässt**, obwohl es beliebig viele Briefmarken gibt. Damit die Zahlen kurz bleiben, steht unten jeder Wert in Tausend Rupiah. Der Plan: Mach aus der Pflichtmarke zuerst eine Aufgabe ohne Regel, such den größten Betrag, der sich nicht aus <InlineMath math="7" /> und <InlineMath math="9" /> bilden lässt, und nimm dann die Regel wieder dazu.
+In Tausend Rupiah hat eine bezahlbare Gebühr die Form <InlineMath math="7a+9b" /> mit <InlineMath math="a\ge1" /> und <InlineMath math="b\ge1" />. **Die Regel „mindestens eine Marke jeder Sorte“ verschiebt alles**: Schreib <InlineMath math="a=1+a'" /> und <InlineMath math="b=1+b'" /> mit <InlineMath math="a',b'\ge0" />, dann ist die Gebühr
 
-# Die Regel als Verschiebung
+<BlockMath math="7a+9b=16+\left(7a'+9b'\right)." />
 
-Jedes Expresspaket trägt schon sicher eine <InlineMath math="9" />-Marke. Den Rest darfst du mit beliebig vielen <InlineMath math="7" />- und <InlineMath math="9" />-Marken bezahlen, auch mit gar keiner. Ein Porto <InlineMath math="M" /> lässt sich also **genau dann passend bezahlen, wenn sich <InlineMath math="M-9" /> ohne Regel bilden lässt**. Die Regel verschiebt also jedes Porto um <InlineMath math="9" />.
+Eine Gebühr <InlineMath math="n" /> ist also genau dann bezahlbar, wenn sich <InlineMath math="n-16" /> ohne weitere Regel als <InlineMath math="7a'+9b'" /> schreiben lässt.
 
-# Beträge ohne Regel
+# Die Lücken der beiden Markenwerte
 
-Teile die Beträge nach ihrem Rest beim Teilen durch <InlineMath math="7" /> in Gruppen ein. Eine zusätzliche <InlineMath math="7" />-Marke ändert diesen Rest nicht. Sobald also ein Betrag in einer Gruppe bildbar ist, **ist auch jeder größere Betrag derselben Gruppe bildbar**. Du brauchst nur den kleinsten Betrag jeder Gruppe, und den bildest du allein mit <InlineMath math="9" />-Marken.
+Ohne Zusatzregel sind die Zahlen, die sich nicht als <InlineMath math="7a'+9b'" /> schreiben lassen, die Lücken. Für zwei teilerfremde Werte ist **die Zahl der Lücken <InlineMath math="\tfrac{(7-1)(9-1)}{2}=24" />**, und die größte Lücke ist <InlineMath math="7\cdot9-7-9=47" />. Die Zahl <InlineMath math="0" /> ist keine Lücke, denn <InlineMath math="0=7\cdot0+9\cdot0" />.
 
-| Anzahl der <InlineMath math="9" />-Marken | Betrag | Rest beim Teilen durch <InlineMath math="7" /> |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="9" /> | <InlineMath math="2" /> |
-| <InlineMath math="2" /> | <InlineMath math="18" /> | <InlineMath math="4" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="6" /> |
-| <InlineMath math="4" /> | <InlineMath math="36" /> | <InlineMath math="1" /> |
-| <InlineMath math="5" /> | <InlineMath math="45" /> | <InlineMath math="3" /> |
-| <InlineMath math="6" /> | <InlineMath math="54" /> | <InlineMath math="5" /> |
+# Beide Teile zusammensetzen
 
-Alle sieben Reste kommen genau einmal vor, die Tabelle liefert also den kleinsten Betrag jeder Gruppe. Der größte dieser kleinsten Beträge ist <InlineMath math="54" />, in der Gruppe mit Rest <InlineMath math="5" />. Der Betrag <InlineMath math="54-7=47" /> liegt in derselben Gruppe, ist aber kleiner, also lässt er sich nicht bilden. In jeder anderen Gruppe ist der kleinste Betrag höchstens <InlineMath math="45" />, also ist dort jeder Betrag über <InlineMath math="47" /> bildbar. In der Gruppe mit Rest <InlineMath math="5" /> ist der nächste Betrag nach <InlineMath math="47" /> die <InlineMath math="54" />, und die ist bildbar. Ohne Regel ist <InlineMath math="47" /> also der größte Betrag, der sich nicht bilden lässt.
+Eine positive Gebühr <InlineMath math="n" /> ist in zwei Fällen nicht bezahlbar:
 
-Das Diagramm zeigt den kleinsten Betrag, der sich in jeder Restgruppe bilden lässt. **Der höchste Balken steht in der Gruppe mit Rest <InlineMath math="5" />**, bei <InlineMath math="54" />, also ist <InlineMath math="54-7=47" /> der größte Betrag, der sich ohne die Regel nicht bilden lässt.
+- **Gebühren unter dem Preis eines Markenpaars**, also <InlineMath math="n<16" />: Schon je eine Marke kostet <InlineMath math="16" /> Tausend. Das gibt <InlineMath math="15" /> Werte.
+- <InlineMath math="n\ge16" />, aber <InlineMath math="n-16" /> ist eine Lücke: <InlineMath math="24" /> Werte, von <InlineMath math="17" /> bis <InlineMath math="63" />.
+
+Das Diagramm trennt die beiden Teile.
 
 <Chart
-  title={<>Kleinster bildbarer Betrag nach dem Rest bei Division durch <InlineMath math="7" /></>}
-  description={<>Für die Reste <InlineMath math="0" /> bis <InlineMath math="6" /> sind die kleinsten Beträge aus Marken zu <InlineMath math="7" /> und <InlineMath math="9" /> gleich <InlineMath math="0, 36, 9, 45, 18, 54, 27" />, in Tausend Rupiah. Der größte davon ist <InlineMath math="54" /> in der Gruppe mit Rest <InlineMath math="5" />.</>}
+  title={<>Nicht bezahlbare Gebühren nach Bereich, in Tausend Rupiah</>}
+  description={<>Alle <InlineMath math="15" /> Gebühren von <InlineMath math="1" /> bis <InlineMath math="15" /> Tausend sind nicht bezahlbar. Von <InlineMath math="16" /> bis <InlineMath math="63" /> Tausend sind es <InlineMath math="24" />, und ab <InlineMath math="64" /> Tausend ist jede Gebühr bezahlbar.</>}
   bars="apart"
-  categories={["0", "1", "2", "3", "4", "5", "6"]}
-  series={[
-    { label: "Kleinster Betrag der Gruppe", mark: "bar", values: [0, 36, 9, 45, 18, null, 27] },
-    { label: "Größter kleinster Betrag", mark: "bar", values: [null, null, null, null, null, 54, null] },
-  ]}
-  valueLabel="Betrag (Tausend Rupiah)"
+  categories={["1 bis 15", "16 bis 63", "64 und mehr"]}
+  series={[{ label: "Nicht bezahlbare Gebühren", mark: "bar", values: [15, 24, 0] }]}
+  valueLabel="Anzahl der Gebühren"
 />
 
-# Die Regel wieder dazunehmen
-
-Ein Porto <InlineMath math="M" /> ist genau dann bezahlbar, wenn <InlineMath math="M-9" /> bildbar ist. Das größte Porto, das scheitert, bekommst du, wenn <InlineMath math="M-9" /> gleich dem größten nicht bildbaren Betrag ist.
-
-<BlockMath math="\begin{aligned}
-M-9&=47\\
-M&=56
-\end{aligned}" />
-
-Für jedes <InlineMath math="M>56" /> ist <InlineMath math="M-9" /> größer als <InlineMath math="47" />, also bildbar, und **das Porto <InlineMath math="M" /> ist bezahlbar**.
-
-# Die Probe
-
-Das Porto <InlineMath math="56=7\cdot8" /> ist ein Vielfaches von <InlineMath math="7" />. Wenn <InlineMath math="56=7a+9b" /> gilt, muss auch <InlineMath math="9b" /> ein Vielfaches von <InlineMath math="7" /> sein, also **muss die Anzahl der <InlineMath math="9" />-Marken ein Vielfaches von <InlineMath math="7" /> sein**. Die Regel verlangt <InlineMath math="b\ge1" />, also folgt <InlineMath math="b\ge7" /> und <InlineMath math="9b\ge63>56" />. Das geht nicht, also ist <InlineMath math="56" /> wirklich nicht bezahlbar. Das nächste Porto klappt:
-
-<BlockMath math="57=4\cdot9+3\cdot7=36+21" />
+Insgesamt sind es <InlineMath math="15+24=39" /> Gebühren.
 
 # Die verlockenden falschen Antworten
 
-Alle fünf Antworten sind tatsächlich Beträge, die sich nicht bezahlen lassen, also reicht es nicht, jede einzeln zu prüfen. Entscheidend ist, **welcher Betrag der größte ist**.
+- <InlineMath math="24" /> zählt nur die Lücken von <InlineMath math="7a'+9b'" /> und **übersieht die Regel von mindestens einer Marke jeder Sorte**.
+- <InlineMath math="15" /> zählt nur die Gebühren unter <InlineMath math="16" /> Tausend und vergisst die Lücken darüber.
+- <InlineMath math="47" /> ist die größte Lücke ohne Regel, und <InlineMath math="63=16+47" /> ist die größte nicht bezahlbare Gebühr mit Regel. Beide **beantworten den größten Wert, nicht die Anzahl**.
 
-- <InlineMath math="\text{Rp}47{.}000" /> ist die Antwort **ohne die Pflichtmarke**. Mit der Regel ist zwar auch <InlineMath math="47" /> nicht bezahlbar, weil sich <InlineMath math="47-9=38" /> nicht bilden lässt, aber es gibt noch ein größeres Porto, das scheitert.
-- <InlineMath math="\text{Rp}33{.}000" /> verschiebt die Zahl <InlineMath math="24" /> um <InlineMath math="9" />. Dabei ist <InlineMath math="24" /> die Anzahl der Beträge, die ohne Regel scheitern, nicht der größte davon.
-- <InlineMath math="\text{Rp}38{.}000" /> verschiebt in die falsche Richtung, nämlich <InlineMath math="47-9" />. Die Regel erhöht das Porto.
-- <InlineMath math="\text{Rp}24{.}000" /> ist die Anzahl der Beträge, die sich ohne Regel nicht bilden lassen, nicht der größte davon.
-
-Das größte Porto für ein Expresspaket, das sich nicht passend bezahlen lässt, beträgt also <InlineMath math="\text{Rp}56{.}000" />.
+Also gibt es <InlineMath math="39" /> Gebühren, die sich nicht genau bezahlen lassen.

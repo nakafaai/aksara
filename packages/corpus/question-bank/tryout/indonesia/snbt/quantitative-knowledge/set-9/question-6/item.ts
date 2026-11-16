@@ -5,7 +5,7 @@ const item: ItemSource = {
     id: {
       kind: "numericEntry",
       unit: "bilangan",
-      value: "62",
+      value: "73",
     },
   },
 };

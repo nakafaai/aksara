@@ -1,48 +1,39 @@
-Kuantitas <InlineMath math="P" /> dan <InlineMath math="Q" /> bergantung pada <InlineMath math="n" />, jadi cari dulu **semua bilangan bulat <InlineMath math="n" /> yang diizinkan**. Setelah itu bandingkan <InlineMath math="P" /> dan <InlineMath math="Q" /> untuk setiap nilai itu. Kalau hubungannya berbeda untuk nilai <InlineMath math="n" /> yang berbeda, informasinya tidak cukup.
+Pertidaksamaan logaritma punya **dua syarat yang bekerja bersamaan**: numerus setiap logaritma harus positif, dan pertidaksamaannya sendiri. Kalau syarat numerus terlewat, himpunan <InlineMath math="n" /> melebar, dan hubungan <InlineMath math="P" /> dengan <InlineMath math="Q" /> menjadi tidak tentu.
 
 # Syarat numerus
 
-Logaritma hanya terdefinisi untuk bilangan positif. Jadi <InlineMath math="n>0" /> dan <InlineMath math="n-2>0" />, yang bersama-sama memberi <InlineMath math="n>2" />. **Syarat numerus ini berlaku sebelum pertidaksamaan diselesaikan**.
+<InlineMath math="n-3>0" /> dan <InlineMath math="n+3>0" />, jadi **<InlineMath math="n>3" />**. **Syarat ini membuang semua bilangan kecil**.
 
 # Menyelesaikan pertidaksamaan
 
-Jumlah dua logaritma berbasis sama adalah logaritma dari hasil kalinya, dan <InlineMath math="3={}^{2}\log8" />. Basis <InlineMath math="2" /> lebih dari <InlineMath math="1" />, jadi **arah tanda tidak berubah** saat logaritma dilepas.
+Gabungkan kedua logaritma:
 
-<BlockMath math="\begin{aligned}
-{}^{2}\log\big(n(n-2)\big)&\le{}^{2}\log8\\
-n^2-2n-8&\le0\\
-(n-4)(n+2)&\le0\\
--2\le n&\le4
-\end{aligned}" />
+<BlockMath math="{}^{2}\log\big((n-3)(n+3)\big)\le4\iff n^2-9\le16\iff n^2\le25." />
 
-Digabung dengan <InlineMath math="n>2" />, bilangan bulat yang tersisa hanya <InlineMath math="n=3" /> dan <InlineMath math="n=4" />. Cek batasnya: untuk <InlineMath math="n=4" />, ruas kiri <InlineMath math="{}^{2}\log4+{}^{2}\log2=3" />, memenuhi. Untuk <InlineMath math="n=5" />, ruas kiri <InlineMath math="{}^{2}\log15>{}^{2}\log8=3" />, tidak memenuhi.
+Bersama <InlineMath math="n>3" />, **bilangan bulat yang tersisa hanya <InlineMath math="n=4" /> dan <InlineMath math="n=5" />**.
 
 # Membandingkan P dan Q
 
-<BlockMath math="\begin{aligned}
-n=3&\;\Longrightarrow\;P=2^3=8,\quad Q=3^2=9\\
-n=4&\;\Longrightarrow\;P=2^4=16,\quad Q=4^2=16
-\end{aligned}" />
-
-Untuk <InlineMath math="n=3" /> berlaku <InlineMath math="Q>P" />, sedangkan untuk <InlineMath math="n=4" /> berlaku <InlineMath math="P=Q" />. Kedua nilai sama-sama sah, jadi **tidak ada satu hubungan yang selalu benar**.
-
-Grafik berikut membandingkan <InlineMath math="P=2^n" /> dan <InlineMath math="Q=n^2" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="6" />. Di <InlineMath math="n=3" /> garis <InlineMath math="Q" /> di atas, di <InlineMath math="n=4" /> **kedua garis bertemu**, dan baru di <InlineMath math="n=5" /> garis <InlineMath math="P" /> menyalip, tetapi nilai itu tidak diizinkan.
+Grafik berikut memperlihatkan kedua kuantitas untuk <InlineMath math="n=0" /> sampai <InlineMath math="5" />. **Urutannya berbalik di antara <InlineMath math="n=3" /> dan <InlineMath math="n=4" />**, tepat di batas syarat numerus.
 
 <Chart
-  title={<>Nilai <InlineMath math="2^n" /> dan <InlineMath math="n^2" /> untuk <InlineMath math="n=1" /> sampai <InlineMath math="6" /></>}
-  description={<>Nilai <InlineMath math="2^n" /> adalah <InlineMath math="2, 4, 8, 16, 32, 64" />, dan nilai <InlineMath math="n^2" /> adalah <InlineMath math="1, 4, 9, 16, 25, 36" />. Untuk nilai yang diizinkan, <InlineMath math="n=3" /> memberi <InlineMath math="8<9" /> dan <InlineMath math="n=4" /> memberi <InlineMath math="16=16" />.</>}
-  valueLabel="Nilai"
-  categories={Array.from({ length: 6 }, (_, i) => `${i + 1}`)}
+  title={<>Nilai <InlineMath math="P=2^n" /> dan <InlineMath math="Q=3n+2" /> untuk beberapa bilangan bulat</>}
+  description={<>Untuk <InlineMath math="n=0" /> sampai <InlineMath math="3" />, nilai <InlineMath math="Q" /> lebih besar. Untuk <InlineMath math="n=4" /> dan <InlineMath math="n=5" />, yaitu satu-satunya bilangan bulat yang memenuhi pertidaksamaan, <InlineMath math="P=16" /> dan <InlineMath math="32" /> lebih besar daripada <InlineMath math="Q=14" /> dan <InlineMath math="17" />.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4", "5"]}
   series={[
-    { label: "P", mark: "line", values: Array.from({ length: 6 }, (_, i) => 2 ** (i + 1)) },
-    { label: "Q", mark: "line", values: Array.from({ length: 6 }, (_, i) => (i + 1) ** 2) },
+    { label: "P", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 2 ** n) },
+    { label: "Q", mark: "bar", values: [0, 1, 2, 3, 4, 5].map((n) => 3 * n + 2) },
   ]}
+  valueLabel="Nilai"
 />
+
+Untuk <InlineMath math="n=4" />: <InlineMath math="P=16>14=Q" />. Untuk <InlineMath math="n=5" />: <InlineMath math="P=32>17=Q" />. Kedua kemungkinan memberi hubungan yang sama, jadi <InlineMath math="P>Q" /> dapat dipastikan.
 
 # Pilihan yang menjebak
 
-- <InlineMath math="Q>P" /> **hanya memeriksa <InlineMath math="n=3" />**. Memang <InlineMath math="Q" /> tidak pernah kalah dari <InlineMath math="P" /> di sini, tetapi untuk <InlineMath math="n=4" /> keduanya sama.
-- <InlineMath math="P=Q" /> hanya memeriksa <InlineMath math="n=4" /> dan melupakan <InlineMath math="n=3" />.
-- <InlineMath math="P>Q" /> mengabaikan pertidaksamaan dan memakai fakta umum bahwa <InlineMath math="2^n>n^2" /> untuk <InlineMath math="n\ge5" />, padahal <InlineMath math="n" /> paling besar <InlineMath math="4" />.
+- Informasi tidak cukup muncul kalau **syarat numerus diabaikan**. Dari <InlineMath math="n^2\le25" /> saja, bilangan seperti <InlineMath math="n=0" /> atau <InlineMath math="n=3" /> ikut terhitung, dan di sana <InlineMath math="Q>P" />.
+- <InlineMath math="Q>P" /> memakai bilangan kecil itu saja, misalnya <InlineMath math="n=3" /> dengan <InlineMath math="8<11" />.
+- <InlineMath math="P=Q" /> tidak dipenuhi oleh satu pun kemungkinan, karena <InlineMath math="16\neq14" /> dan <InlineMath math="32\neq17" />. Pilihan ini muncul kalau kedua kuantitas hanya ditaksir dekat <InlineMath math="n=4" />, tempat selisihnya paling kecil, tanpa dihitung.
 
-Jadi, informasi yang diberikan tidak cukup untuk memutuskan hubungan antara <InlineMath math="P" /> dan <InlineMath math="Q" />.
+Jadi, hubungan yang benar adalah <InlineMath math="P>Q" />.

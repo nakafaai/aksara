@@ -1,42 +1,32 @@
-Kita menghitung bilangan dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang tidak bisa ditulis sebagai <InlineMath math="10a+14b" />, dengan <InlineMath math="a" /> dan <InlineMath math="b" /> bilangan cacah. Kuncinya, <InlineMath math="10" /> dan <InlineMath math="14" /> **sama-sama genap**. Rencananya: pisahkan skor ganjil dan genap, lalu ubah skor genap menjadi soal yang lebih kecil dengan <InlineMath math="5" /> dan <InlineMath math="7" />.
+Tulis <InlineMath math="n=a^2-b^2=(a-b)(a+b)" />. Kedua faktor <InlineMath math="a-b" /> dan <InlineMath math="a+b" /> **selalu sama-sama ganjil atau sama-sama genap**, karena selisihnya <InlineMath math="2b" /> genap. Dari sini muncul dua langkah: memilah bilangan menurut sisa pembagian oleh <InlineMath math="4" />, lalu memeriksa syarat bahwa <InlineMath math="b" /> harus positif.
 
-# Skor ganjil
+# Bilangan yang mustahil
 
-Setiap skor berbentuk <InlineMath math="10a+14b=2(5a+7b)" />, jadi **setiap skor pasti genap**. Akibatnya, semua bilangan ganjil dari <InlineMath math="1" /> sampai <InlineMath math="100" /> tidak mungkin menjadi skor. Banyaknya ada <InlineMath math="50" />.
+Kalau kedua faktor ganjil, hasil kalinya ganjil. Kalau kedua faktor genap, hasil kalinya kelipatan <InlineMath math="4" />. Jadi **bilangan bersisa <InlineMath math="2" /> jika dibagi <InlineMath math="4" /> tidak pernah menjadi selisih kuadrat**. Ada <InlineMath math="25" /> bilangan seperti itu, yaitu <InlineMath math="2,6,10,\dots,98" />.
 
-# Skor genap
+# Bilangan ganjil dan kelipatan empat
 
-Bilangan genap <InlineMath math="2m" />, dengan <InlineMath math="1\le m\le50" />, bisa menjadi skor tepat ketika <InlineMath math="m=5a+7b" />. Jadi kamu tinggal mencari nilai <InlineMath math="m" /> yang **tidak bisa dibentuk dari <InlineMath math="5" /> dan <InlineMath math="7" />**.
+- Bilangan ganjil <InlineMath math="n=2k+1" /> dapat ditulis <InlineMath math="(k+1)^2-k^2" />. **Syarat <InlineMath math="b=k\ge1" />** membuang <InlineMath math="n=1" />, dan memang <InlineMath math="1=(a-b)(a+b)" /> hanya mungkin dengan <InlineMath math="a=1" />, <InlineMath math="b=0" />.
+- Kelipatan empat <InlineMath math="n=4m" /> dapat ditulis <InlineMath math="(m+1)^2-(m-1)^2" />. Syarat <InlineMath math="b=m-1\ge1" /> membuang <InlineMath math="n=4" />, dan memang <InlineMath math="4=2\cdot2" /> hanya memberi <InlineMath math="a=2" />, <InlineMath math="b=0" />.
 
-Kelompokkan <InlineMath math="m" /> menurut sisa pembagiannya oleh <InlineMath math="5" />. Menambah <InlineMath math="5" /> tidak mengubah sisa, jadi di setiap kelompok cukup cari bilangan terkecil yang bisa dibentuk, yaitu kelipatan <InlineMath math="7" /> yang pertama kali jatuh di kelompok itu. Semua bilangan positif di bawahnya dalam kelompok yang sama tidak bisa dibentuk.
-
-| Sisa bagi <InlineMath math="5" /> | Terkecil yang bisa dibentuk | Tidak bisa dibentuk |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | tidak ada |
-| <InlineMath math="1" /> | <InlineMath math="21" /> | <InlineMath math="1,\ 6,\ 11,\ 16" /> |
-| <InlineMath math="2" /> | <InlineMath math="7" /> | <InlineMath math="2" /> |
-| <InlineMath math="3" /> | <InlineMath math="28" /> | <InlineMath math="3,\ 8,\ 13,\ 18,\ 23" /> |
-| <InlineMath math="4" /> | <InlineMath math="14" /> | <InlineMath math="4,\ 9" /> |
-
-Ada <InlineMath math="4+1+5+2=12" /> nilai <InlineMath math="m" /> yang gagal. Nilai terbesarnya <InlineMath math="23" />, masih tidak lebih dari <InlineMath math="50" />, jadi **kedua belas nilai itu masuk rentang soal**. Mereka sesuai dengan skor genap <InlineMath math="2,4,6,8,12,16,18,22,26,32,36,46" />.
-
-Grafik berikut membagi bilangan <InlineMath math="1" /> sampai <InlineMath math="100" /> menjadi tiga kelompok. Dua batang pertama adalah skor yang mustahil: **semua bilangan ganjil** dan <InlineMath math="12" /> bilangan genap yang setengahnya tidak bisa dibentuk dari <InlineMath math="5" /> dan <InlineMath math="7" />.
+Bilangan kuadrat lain tidak gugur. Misalnya <InlineMath math="9=5^2-4^2" /> dan <InlineMath math="16=5^2-3^2" />.
 
 <Chart
-  title={<>Bilangan <InlineMath math="1" /> sampai <InlineMath math="100" /> menurut bisa tidaknya menjadi skor</>}
-  description={<>Ada <InlineMath math="50" /> bilangan ganjil, semuanya mustahil. Dari <InlineMath math="50" /> bilangan genap, <InlineMath math="12" /> mustahil dan <InlineMath math="38" /> bisa menjadi skor. Banyak skor yang mustahil adalah <InlineMath math="50+12=62" />.</>}
-  categories={["Ganjil", "Genap yang mustahil", "Genap yang mungkin"]}
+  title={<>Bilangan dari <InlineMath math="1" /> sampai <InlineMath math="100" /> menurut sisa pembagian oleh <InlineMath math="4" /></>}
+  description={<>Ada <InlineMath math="50" /> bilangan ganjil, <InlineMath math="25" /> kelipatan <InlineMath math="4" />, dan <InlineMath math="25" /> bilangan bersisa <InlineMath math="2" />. Yang merupakan selisih kuadrat positif ada <InlineMath math="49" />, <InlineMath math="24" />, dan <InlineMath math="0" />, karena <InlineMath math="1" /> dan <InlineMath math="4" /> gugur.</>}
   bars="apart"
-  series={[{ label: "Banyak bilangan", mark: "bar", values: [50, 12, 50 - 12] }]}
+  categories={["Ganjil", "Kelipatan 4", "Sisa 2"]}
+  series={[
+    { label: "Semua bilangan", mark: "bar", values: [50, 25, 25] },
+    { label: "Selisih kuadrat positif", mark: "bar", values: [50 - 1, 25 - 1, 0] },
+  ]}
   valueLabel="Banyak bilangan"
 />
 
-# Menjumlahkan dan memeriksa
+# Menjumlahkan
 
-<BlockMath math="50+12=62" />
+Bilangan ganjil yang lolos ada <InlineMath math="50-1=49" />, dan kelipatan empat yang lolos ada <InlineMath math="25-1=24" />. **Totalnya <InlineMath math="49+24=73" />**.
 
-Cek skor <InlineMath math="46" />. Kurangkan <InlineMath math="14b" /> untuk <InlineMath math="b=0,1,2,3" />: sisanya <InlineMath math="46" />, <InlineMath math="32" />, <InlineMath math="18" />, dan <InlineMath math="4" />, tidak ada yang kelipatan <InlineMath math="10" />. Jadi <InlineMath math="46" /> memang gagal. Sebaliknya <InlineMath math="48=2\cdot10+2\cdot14" /> berhasil. Banyaknya nilai <InlineMath math="m" /> yang gagal juga cocok dengan rumus untuk dua bilangan yang saling prima, <InlineMath math="\frac{(5-1)(7-1)}{2}=12" />.
+Hasil yang sering muncul tetapi keliru adalah <InlineMath math="75" />, yang lupa bahwa <InlineMath math="b" /> harus positif sehingga <InlineMath math="1" /> dan <InlineMath math="4" /> ikut terhitung, dan <InlineMath math="50" />, yang hanya menghitung bilangan ganjil.
 
-Jawaban <InlineMath math="12" /> muncul kalau kamu **lupa semua skor ganjil**. Jawaban <InlineMath math="50" /> muncul kalau kamu hanya menghitung skor ganjil dan menganggap semua skor genap pasti tercapai.
-
-Jadi, ada <InlineMath math="62" /> bilangan bulat dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang tidak mungkin menjadi skor.
+Jadi, banyak bilangan bulat dari <InlineMath math="1" /> sampai <InlineMath math="100" /> yang merupakan selisih kuadrat positif adalah <InlineMath math="73" />.

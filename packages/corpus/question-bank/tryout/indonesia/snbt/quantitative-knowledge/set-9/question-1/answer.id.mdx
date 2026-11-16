@@ -1,63 +1,37 @@
-Kita mencari ongkos terbesar yang **tidak bisa dibayar tepat** walaupun perangkonya tidak terbatas. Supaya angkanya ringkas, semua nilai di bawah ini ditulis dalam ribu rupiah. Rencananya: ubah dulu aturan perangko wajib menjadi soal tanpa aturan, cari ongkos terbesar yang tidak bisa dibentuk dari <InlineMath math="7" /> dan <InlineMath math="9" />, lalu kembalikan aturannya.
+Dalam ribu rupiah, ongkos yang dapat dibayar berbentuk <InlineMath math="7a+9b" /> dengan <InlineMath math="a\ge1" /> dan <InlineMath math="b\ge1" />. **Syarat "paling sedikit satu perangko dari setiap jenis" menggeser semuanya**: tulis <InlineMath math="a=1+a'" /> dan <InlineMath math="b=1+b'" /> dengan <InlineMath math="a',b'\ge0" />, maka ongkosnya
 
-# Aturan wajib sebagai pergeseran
+<BlockMath math="7a+9b=16+\left(7a'+9b'\right)." />
 
-Setiap paket kilat sudah pasti memakai satu perangko <InlineMath math="9" />. Sisa ongkosnya boleh dibayar dengan perangko <InlineMath math="7" /> dan <InlineMath math="9" /> berapa pun banyaknya, termasuk tidak ada sama sekali. Jadi ongkos <InlineMath math="M" /> bisa dibayar tepat **jika dan hanya jika <InlineMath math="M-9" /> bisa dibentuk tanpa aturan**. Artinya, aturan itu menggeser semua ongkos sejauh <InlineMath math="9" />.
+Jadi ongkos <InlineMath math="n" /> dapat dibayar tepat kalau <InlineMath math="n-16" /> dapat ditulis sebagai <InlineMath math="7a'+9b'" /> tanpa syarat apa pun.
 
-# Ongkos yang bisa dibentuk tanpa aturan
+# Celah dari kedua jenis perangko
 
-Kelompokkan ongkos menurut sisa pembagiannya oleh <InlineMath math="7" />. Menambah satu perangko <InlineMath math="7" /> tidak mengubah sisa itu. Jadi begitu satu ongkos dalam sebuah kelompok bisa dibentuk, **semua ongkos yang lebih besar dalam kelompok yang sama juga bisa dibentuk**. Kamu cukup mencari ongkos terkecil di setiap kelompok, dan ongkos terkecil itu dibentuk dari perangko <InlineMath math="9" /> saja.
+Tanpa syarat tambahan, bilangan yang tidak dapat ditulis sebagai <InlineMath math="7a'+9b'" /> adalah celahnya. Untuk dua nilai yang tidak punya faktor persekutuan, **banyak celah adalah <InlineMath math="\tfrac{(7-1)(9-1)}{2}=24" />** dan celah terbesarnya <InlineMath math="7\cdot9-7-9=47" />. Bilangan <InlineMath math="0" /> bukan celah, karena <InlineMath math="0=7\cdot0+9\cdot0" />.
 
-| Banyak perangko <InlineMath math="9" /> | Ongkos | Sisa bagi <InlineMath math="7" /> |
-| :---: | :---: | :---: |
-| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
-| <InlineMath math="1" /> | <InlineMath math="9" /> | <InlineMath math="2" /> |
-| <InlineMath math="2" /> | <InlineMath math="18" /> | <InlineMath math="4" /> |
-| <InlineMath math="3" /> | <InlineMath math="27" /> | <InlineMath math="6" /> |
-| <InlineMath math="4" /> | <InlineMath math="36" /> | <InlineMath math="1" /> |
-| <InlineMath math="5" /> | <InlineMath math="45" /> | <InlineMath math="3" /> |
-| <InlineMath math="6" /> | <InlineMath math="54" /> | <InlineMath math="5" /> |
+# Menggabungkan kedua bagian
 
-Ketujuh sisa muncul tepat sekali, jadi tabel ini memberi ongkos terkecil di setiap kelompok. Ongkos terkecil yang paling besar adalah <InlineMath math="54" />, di kelompok sisa <InlineMath math="5" />. Ongkos <InlineMath math="54-7=47" /> ada di kelompok yang sama tetapi lebih kecil, jadi tidak bisa dibentuk. Di kelompok lain, ongkos terkecilnya paling besar <InlineMath math="45" />, sehingga semua ongkos di atas <InlineMath math="47" /> di kelompok itu bisa dibentuk. Di kelompok sisa <InlineMath math="5" />, ongkos berikutnya setelah <InlineMath math="47" /> adalah <InlineMath math="54" />, yang juga bisa dibentuk. Jadi tanpa aturan, ongkos terbesar yang tidak bisa dibentuk adalah <InlineMath math="47" />.
+Ongkos positif <InlineMath math="n" /> tidak dapat dibayar dalam dua keadaan:
 
-Grafik berikut memperlihatkan jumlah terkecil yang bisa dibentuk di setiap kelompok sisa. **Batang tertinggi ada di kelompok sisa <InlineMath math="5" />**, yaitu <InlineMath math="54" />, jadi <InlineMath math="54-7=47" /> adalah jumlah terbesar yang tidak bisa dibentuk tanpa aturan.
+- **Ongkos di bawah harga sepasang perangko**, yaitu <InlineMath math="n<16" />: bahkan satu perangko dari setiap jenis sudah <InlineMath math="16" /> ribu. Ini memberi <InlineMath math="15" /> nilai.
+- <InlineMath math="n\ge16" /> tetapi <InlineMath math="n-16" /> adalah celah: <InlineMath math="24" /> nilai, dari <InlineMath math="17" /> sampai <InlineMath math="63" />.
+
+Grafik berikut memisahkan kedua bagian itu.
 
 <Chart
-  title={<>Jumlah terkecil yang bisa dibentuk menurut sisa pembagian oleh <InlineMath math="7" /></>}
-  description={<>Untuk sisa <InlineMath math="0" /> sampai <InlineMath math="6" />, jumlah terkecil yang bisa dibentuk dari perangko <InlineMath math="7" /> dan <InlineMath math="9" /> adalah <InlineMath math="0, 36, 9, 45, 18, 54, 27" />, dalam ribuan rupiah. Nilai terbesarnya <InlineMath math="54" /> di kelompok sisa <InlineMath math="5" />.</>}
+  title={<>Ongkos yang tidak dapat dibayar menurut rentang, dalam ribu rupiah</>}
+  description={<>Semua <InlineMath math="15" /> ongkos dari <InlineMath math="1" /> sampai <InlineMath math="15" /> ribu tidak dapat dibayar. Dari <InlineMath math="16" /> sampai <InlineMath math="63" /> ribu ada <InlineMath math="24" /> ongkos yang tidak dapat dibayar, dan mulai <InlineMath math="64" /> ribu semuanya dapat dibayar.</>}
   bars="apart"
-  categories={["0", "1", "2", "3", "4", "5", "6"]}
-  series={[
-    { label: "Jumlah terkecil di kelompoknya", mark: "bar", values: [0, 36, 9, 45, 18, null, 27] },
-    { label: "Jumlah terkecil tertinggi", mark: "bar", values: [null, null, null, null, null, 54, null] },
-  ]}
-  valueLabel="Jumlah (ribu rupiah)"
+  categories={["1 sampai 15", "16 sampai 63", "64 ke atas"]}
+  series={[{ label: "Ongkos yang tidak dapat dibayar", mark: "bar", values: [15, 24, 0] }]}
+  valueLabel="Banyak nilai ongkos"
 />
 
-# Mengembalikan aturan wajib
-
-Ongkos <InlineMath math="M" /> bisa dibayar jika dan hanya jika <InlineMath math="M-9" /> bisa dibentuk. Ongkos terbesar yang gagal didapat saat <InlineMath math="M-9" /> sama dengan ongkos terbesar yang tidak bisa dibentuk.
-
-<BlockMath math="\begin{aligned}
-M-9&=47\\
-M&=56
-\end{aligned}" />
-
-Untuk setiap <InlineMath math="M>56" />, nilai <InlineMath math="M-9" /> lebih dari <InlineMath math="47" />, jadi bisa dibentuk, dan **ongkos <InlineMath math="M" /> bisa dibayar**.
-
-# Memeriksa hasilnya
-
-Ongkos <InlineMath math="56=7\cdot8" /> adalah kelipatan <InlineMath math="7" />. Kalau <InlineMath math="56=7a+9b" />, maka <InlineMath math="9b" /> juga harus kelipatan <InlineMath math="7" />, jadi **banyak perangko <InlineMath math="9" /> harus kelipatan <InlineMath math="7" />**. Aturan meminta <InlineMath math="b\ge1" />, sehingga <InlineMath math="b\ge7" /> dan <InlineMath math="9b\ge63>56" />. Itu mustahil, jadi <InlineMath math="56" /> memang tidak bisa dibayar. Ongkos berikutnya bisa:
-
-<BlockMath math="57=4\cdot9+3\cdot7=36+21" />
+Totalnya <InlineMath math="15+24=39" /> nilai ongkos.
 
 # Pilihan yang menjebak
 
-Kelima pilihan memang ongkos yang tidak bisa dibayar, jadi mencoba membayar setiap pilihan belum cukup. Yang menentukan adalah **ongkos mana yang terbesar**.
+- <InlineMath math="24" /> menghitung celah <InlineMath math="7a'+9b'" /> saja, **mengabaikan syarat paling sedikit satu perangko dari setiap jenis**.
+- <InlineMath math="15" /> hanya menghitung ongkos di bawah <InlineMath math="16" /> ribu dan lupa celah di atasnya.
+- <InlineMath math="47" /> adalah celah terbesar tanpa syarat, dan <InlineMath math="63=16+47" /> adalah ongkos terbesar yang tidak dapat dibayar dengan syarat. Keduanya **menjawab nilai terbesar, bukan banyaknya**.
 
-- <InlineMath math="\text{Rp}47{.}000" /> adalah jawaban **tanpa aturan perangko wajib**. Dengan aturan itu, ongkos <InlineMath math="47" /> pun tidak bisa dibayar, karena <InlineMath math="47-9=38" /> tidak bisa dibentuk, tetapi masih ada ongkos lebih besar yang gagal.
-- <InlineMath math="\text{Rp}33{.}000" /> menggeser angka <InlineMath math="24" /> sejauh <InlineMath math="9" />. Angka <InlineMath math="24" /> adalah banyaknya ongkos yang gagal tanpa aturan, bukan ongkos terbesarnya.
-- <InlineMath math="\text{Rp}38{.}000" /> menggeser ke arah yang salah, yaitu <InlineMath math="47-9" />. Aturan wajib justru menambah ongkos.
-- <InlineMath math="\text{Rp}24{.}000" /> adalah banyaknya ongkos yang tidak bisa dibentuk tanpa aturan, bukan ongkos terbesarnya.
-
-Jadi, ongkos kirim paket kilat terbesar yang tidak dapat dibayar tepat adalah <InlineMath math="\text{Rp}56{.}000" />.
+Jadi, banyak nilai ongkos kirim yang tidak dapat dibayar tepat adalah <InlineMath math="39" />.
