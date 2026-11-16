@@ -15,11 +15,14 @@ import { atomVisuals } from "#contracts/visual/chemistry/atom";
 import { balanceVisuals } from "#contracts/visual/chemistry/balance";
 import { bondingVisuals } from "#contracts/visual/chemistry/bonding";
 import { discoveryVisuals } from "#contracts/visual/chemistry/discovery";
+import { electrochemistryVisuals } from "#contracts/visual/chemistry/electrochemistry";
 import { electronVisuals } from "#contracts/visual/chemistry/electron";
 import { lawVisuals } from "#contracts/visual/chemistry/laws";
 import { particleVisuals } from "#contracts/visual/chemistry/particles";
 import { periodicVisuals } from "#contracts/visual/chemistry/periodic";
+import { rateVisuals } from "#contracts/visual/chemistry/rate";
 import { reactionVisuals } from "#contracts/visual/chemistry/reaction";
+import { titrationVisuals } from "#contracts/visual/chemistry/titration";
 import type { VisualEntry } from "#contracts/visual/entry";
 import { chartVisuals } from "#contracts/visual/mathematics/charts";
 import { functionVisuals } from "#contracts/visual/mathematics/function";
@@ -61,6 +64,9 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...biologyVisuals(rich),
     ...atomVisuals(rich),
     ...electronVisuals(rich),
+    ...electrochemistryVisuals(rich),
+    ...titrationVisuals(rich),
+    ...rateVisuals(rich),
     ...lawVisuals(rich),
     ...particleVisuals(rich),
     ...periodicVisuals(rich),

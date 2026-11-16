@@ -25,6 +25,25 @@ Das Diagramm stellt die Stoffmengen beider Versuche nebeneinander. In Versuch I 
   valueLabel="Stoffmenge (mol)"
 />
 
+Beweg den Zeitschieber im Labor. Die Pulverkurve ist am Anfang steiler, und die Kurve von Versuch I flacht bei <InlineMath math="0{,}025\text{ mol}" /> ab, der Hälfte der <InlineMath math="0{,}050\text{ mol}" /> von Versuch II. Die Steilheit der Kurven ist ein Modell für den schnelleren Start, nur die beiden Endmengen stammen aus der Rechnung.
+
+<GasRateLab
+  title={<>Kohlenstoffdioxid aus Stücken und aus Pulver</>}
+  description={<>Calciumcarbonat in Stücken in Versuch I und als Pulver in Versuch II, jeder Kolben mit einer Gasspritze verbunden.</>}
+  runs={[
+    { amount: 0.025, solid: "chips" },
+    { amount: 0.05, solid: "powder" },
+  ]}
+  showCurves
+  labels={{
+    final: <>Endmenge an Kohlenstoffdioxid</>,
+    runs: [<>Versuch I</>, <>Versuch II</>],
+    solids: { chips: <>Stücke</>, granules: <>Körner</>, powder: <>Pulver</> },
+    time: "Zeit",
+    view: "Gassammlung in zwei Versuchen",
+  }}
+/>
+
 Versuch II hat also die höhere Anfangsgeschwindigkeit und das doppelte Endvolumen an Gas.
 
 # Warum die anderen Antworten falsch sind
