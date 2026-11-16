@@ -1,28 +1,26 @@
-# Der flache Teil der Kurve ist das Schmelzen
+# Die Steigung des Feststoffs gibt die Heizleistung, beide Trends legen Beginn und Ende des Schmelzens fest
 
-Die Temperatur bleibt von Minute <InlineMath math="3{,}2" /> bis <InlineMath math="4{,}8" /> bei <InlineMath math="80^\circ\text{C}" />. **In diesen <InlineMath math="96\text{ s}" /> geht jedes Joule in das Trennen der Moleküle**, nicht in ihre Bewegung, also steigt die Temperatur, das Maß ihrer mittleren kinetischen Energie, nicht.
+Die Leistung ist unbekannt, also folgt sie aus dem Teil des Graphen, in dem nur der Feststoff warm wird: <InlineMath math="20^\circ\text{C}" /> pro Minute in <InlineMath math="12{,}8\text{ g}" /> Feststoff. **Der flache Abschnitt beginnt und endet nicht auf einem Rasterpunkt**. Die Gerade des Feststoffs erreicht <InlineMath math="80^\circ\text{C}" /> eine halbe Minute nach der Messung bei <InlineMath math="2\text{ min}" />, die der Flüssigkeit verlässt <InlineMath math="80^\circ\text{C}" /> eine Dreiviertelminute vor der Messung bei <InlineMath math="9\text{ min}" />. Beim Schmelzen trennt die Wärme Moleküle gegen ihre Anziehung, also bleiben ihre kinetische Energie und die Temperatur konstant.
 
 <Chart
-  title={<>Heizkurve von Naphthalin</>}
-  description={<>Das Plateau bei <InlineMath math="80^\circ\text{C}" /> dauert von Minute <InlineMath math="3{,}2" /> bis <InlineMath math="4{,}8" />, der Schmelzpunkt.</>}
-  categories={["0", "0,8", "1,6", "2,4", "3,2", "4,0", "4,8", "5,6", "6,4"]}
+  title={<>Schmelzdauer auf drei Arten abgelesen</>}
+  description={<>Nur die flachen Rasterpunkte geben <InlineMath math="5{,}0\text{ min}" />, beide Trends bis <InlineMath math="80^\circ\text{C}" /> verlängert geben <InlineMath math="5{,}75\text{ min}" />, und vom letzten Punkt darunter zum ersten darüber sind es <InlineMath math="7{,}0\text{ min}" />.</>}
+  bars="apart"
+  categories={["Rasterpunkte 3 bis 8", "Trends treffen 80 °C", "Letzter unter bis erster über"]}
   series={[
-    { label: "Temperatur", mark: "line", values: [30, 46, 62, 75, 80, 80, 80, 91, 102] },
+    { label: "Zeit", mark: "bar", values: [5.0, 5.75, 7.0] },
   ]}
-  valueLabel="Temperatur (°C)"
+  valueLabel="Zeit (min)"
 />
 
 <BlockMath math="\begin{aligned}
-t&=(4{,}8-3{,}2)\times60=96\text{ s}\\
-E&=40\times96=3840\text{ J}=3{,}84\text{ kJ}\\
-n&=\frac{25{,}6}{128}=0{,}200\text{ mol}\\
-\frac{3{,}84}{0{,}200}&=19{,}2\text{ kJ mol}^{-1}
+P&=12{,}8\times1{,}30\times\tfrac{70-30}{2}=332{,}8\text{ J min}^{-1}\\
+t_1&=2+\tfrac{80-70}{20}=2{,}50\text{ min},\quad t_2=9-\tfrac{91{,}5-80}{106{,}8-91{,}5}=8{,}25\text{ min}\\
+\Delta H&=\tfrac{332{,}8\times(8{,}25-2{,}50)}{12{,}8\div128}=19{.}100\text{ J mol}^{-1}=19{,}1\text{ kJ mol}^{-1}
 \end{aligned}" />
-
-Ein Mol braucht also <InlineMath math="19{,}2\text{ kJ}" /> zum Schmelzen.
 
 # Warum die anderen Antworten falsch sind
 
-- Eine steigende kinetische Energie würde die Temperatur erhöhen, was das Plateau ausschließt.
-- <InlineMath math="3{,}84\text{ kJ}" /> schmilzt die Probe, <InlineMath math="0{,}200\text{ mol}" />. **Teil durch die Stoffmenge, dann hast du den Wert pro Mol**.
-- <InlineMath math="38{,}4\text{ kJ mol}^{-1}" /> liest den Beginn des Plateaus, Minute <InlineMath math="3{,}2" />, als seine Dauer.
+- <InlineMath math="16{,}6\text{ kJ mol}^{-1}" /> zählt nur die Rasterpunkte bei <InlineMath math="80^\circ\text{C}" />, von <InlineMath math="3" /> bis <InlineMath math="8\text{ min}" />, und übersieht das Schmelzen davor und danach.
+- Konstante Temperatur heißt konstante mittlere kinetische Energie. **Die Wärme erhöht die potenzielle Energie der Moleküle, während sie sich trennen**.
+- <InlineMath math="23{,}3\text{ kJ mol}^{-1}" /> nimmt die ganze Spanne von <InlineMath math="2" /> bis <InlineMath math="9\text{ min}" />, die das Erwärmen von Feststoff und Flüssigkeit einschließt.

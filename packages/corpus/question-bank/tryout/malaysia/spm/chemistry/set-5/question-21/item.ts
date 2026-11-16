@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.2\\text{ dm}^3$$ of oxygen at the anode and $$2.4\\text{ dm}^3$$ of hydrogen at the cathode",
+            "Anode $$3.6\\text{ dm}^3$$, cathode $$3.6\\text{ dm}^3$$, sodium hydroxide solution",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ of chlorine at the anode and $$4.6\\text{ g}$$ of sodium at the cathode",
+            "Anode $$1.2\\text{ dm}^3$$, cathode $$3.6\\text{ dm}^3$$, sodium hydroxide solution",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ of chlorine at the anode, $$2.4\\text{ dm}^3$$ of hydrogen at the cathode, and $$0.20\\text{ mol}$$ of sodium hydroxide in the solution",
+            "Anode $$2.4\\text{ dm}^3$$, cathode $$3.6\\text{ dm}^3$$, sodium hydroxide solution",
         },
         {
           correct: false,
           label:
-            "$$4.8\\text{ dm}^3$$ of chlorine at the anode and $$4.8\\text{ dm}^3$$ of hydrogen at the cathode",
+            "Anode $$2.4\\text{ dm}^3$$, cathode $$3.6\\text{ dm}^3$$, an acidic solution",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.2\\text{ dm}^3$$ oksigen di anod dan $$2.4\\text{ dm}^3$$ hidrogen di katod",
+            "Anod $$3.6\\text{ dm}^3$$, katod $$3.6\\text{ dm}^3$$, larutan natrium hidroksida",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ klorin di anod dan $$4.6\\text{ g}$$ natrium di katod",
+            "Anod $$1.2\\text{ dm}^3$$, katod $$3.6\\text{ dm}^3$$, larutan natrium hidroksida",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ klorin di anod, $$2.4\\text{ dm}^3$$ hidrogen di katod, dan $$0.20\\text{ mol}$$ natrium hidroksida dalam larutan",
+            "Anod $$2.4\\text{ dm}^3$$, katod $$3.6\\text{ dm}^3$$, larutan natrium hidroksida",
         },
         {
           correct: false,
           label:
-            "$$4.8\\text{ dm}^3$$ klorin di anod dan $$4.8\\text{ dm}^3$$ hidrogen di katod",
+            "Anod $$2.4\\text{ dm}^3$$, katod $$3.6\\text{ dm}^3$$, larutan berasid",
         },
       ],
     },

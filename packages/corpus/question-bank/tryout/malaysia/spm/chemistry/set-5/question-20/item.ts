@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "The batch needs $$400\\text{ kg}$$ of silica, and borosilicate glass expands more than soda-lime glass when heated",
+            "$$57.6\\text{ kg}$$ of boric acid, $$7.74\\text{ m}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "The batch needs $$360\\text{ kg}$$ of silica, and borosilicate glass resists sudden heating",
+            "$$115\\text{ kg}$$ of boric acid, $$15.5\\text{ m}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "The batch needs $$400\\text{ kg}$$ of silica, and light darkens photochromic glass by oxidising silver ions",
+            "$$115\\text{ kg}$$ of boric acid, $$7.74\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: true,
           label:
-            "The batch needs $$400\\text{ kg}$$ of silica, borosilicate glass expands little when heated, and light darkens photochromic glass by reducing silver ions to silver atoms",
+            "$$115\\text{ kg}$$ of boric acid, $$7.74\\text{ m}^3$$ of carbon dioxide",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan kaca borosilikat mengembang lebih banyak daripada kaca soda kapur apabila dipanaskan",
+            "$$57.6\\text{ kg}$$ asid borik, $$7.74\\text{ m}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Kelompok itu memerlukan $$360\\text{ kg}$$ silika, dan kaca borosilikat tahan pemanasan mendadak",
+            "$$115\\text{ kg}$$ asid borik, $$15.5\\text{ m}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, dan cahaya menggelapkan kaca fotokromik dengan mengoksidakan ion argentum",
+            "$$115\\text{ kg}$$ asid borik, $$7.74\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: true,
           label:
-            "Kelompok itu memerlukan $$400\\text{ kg}$$ silika, kaca borosilikat sedikit mengembang apabila dipanaskan, dan cahaya menggelapkan kaca fotokromik dengan menurunkan ion argentum kepada atom argentum",
+            "$$115\\text{ kg}$$ asid borik, $$7.74\\text{ m}^3$$ karbon dioksida",
         },
       ],
     },

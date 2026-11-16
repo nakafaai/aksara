@@ -10,24 +10,36 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$10^{18}$$ nanocubes, $$600\\text{ m}^2$$" },
-        { correct: false, label: "$$10^{18}$$ nanocubes, $$6.0\\text{ m}^2$$" },
-        { correct: false, label: "$$10^{6}$$ nanocubes, $$600\\text{ m}^2$$" },
+        { correct: true, label: "$$0.965\\text{ g}$$, $$100$$ times more" },
         {
           correct: false,
-          label: "$$10^{18}$$ nanocubes, $$6.0\\times10^{-4}\\text{ m}^2$$",
+          label: "$$0.965\\text{ g}$$, $$10\\,000$$ times more",
         },
+        {
+          correct: false,
+          label: "$$9.65\\times10^{-7}\\text{ g}$$, $$100$$ times more",
+        },
+        { correct: false, label: "$$5.79\\text{ g}$$, $$100$$ times more" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$10^{18}$$ nanokiub, $$600\\text{ m}^2$$" },
-        { correct: false, label: "$$10^{18}$$ nanokiub, $$6.0\\text{ m}^2$$" },
-        { correct: false, label: "$$10^{6}$$ nanokiub, $$600\\text{ m}^2$$" },
+        {
+          correct: true,
+          label: "$$0.965\\text{ g}$$, $$100$$ kali lebih banyak",
+        },
         {
           correct: false,
-          label: "$$10^{18}$$ nanokiub, $$6.0\\times10^{-4}\\text{ m}^2$$",
+          label: "$$0.965\\text{ g}$$, $$10\\,000$$ kali lebih banyak",
+        },
+        {
+          correct: false,
+          label: "$$9.65\\times10^{-7}\\text{ g}$$, $$100$$ kali lebih banyak",
+        },
+        {
+          correct: false,
+          label: "$$5.79\\text{ g}$$, $$100$$ kali lebih banyak",
         },
       ],
     },

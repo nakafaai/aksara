@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Aluminium, and its oxide reacts only with acids",
+          label:
+            "$$\\text{AlCl}_3$$ molecules, and an oxide that reacts with both acids and alkalis",
         },
         {
           correct: false,
-          label: "Phosphorus, and its oxide reacts only with alkalis",
+          label:
+            "$$\\text{Al}_2\\text{Cl}_6$$ molecules, and an oxide that reacts only with acids",
         },
         {
           correct: false,
-          label: "Magnesium, and its oxide reacts only with acids",
+          label:
+            "$$\\text{Al}_2\\text{Cl}_6$$ molecules, and an oxide that reacts only with alkalis",
         },
         {
           correct: true,
-          label: "Aluminium, and its oxide reacts with both acids and alkalis",
+          label:
+            "$$\\text{Al}_2\\text{Cl}_6$$ molecules, and an oxide that reacts with both acids and alkalis",
         },
       ],
     },
@@ -33,20 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Aluminium, dan oksidanya bertindak balas dengan asid sahaja",
+          label:
+            "Molekul $$\\text{AlCl}_3$$, dan oksida yang bertindak balas dengan asid dan alkali",
         },
         {
           correct: false,
-          label: "Fosforus, dan oksidanya bertindak balas dengan alkali sahaja",
+          label:
+            "Molekul $$\\text{Al}_2\\text{Cl}_6$$, dan oksida yang bertindak balas dengan asid sahaja",
         },
         {
           correct: false,
-          label: "Magnesium, dan oksidanya bertindak balas dengan asid sahaja",
+          label:
+            "Molekul $$\\text{Al}_2\\text{Cl}_6$$, dan oksida yang bertindak balas dengan alkali sahaja",
         },
         {
           correct: true,
           label:
-            "Aluminium, dan oksidanya bertindak balas dengan asid dan alkali",
+            "Molekul $$\\text{Al}_2\\text{Cl}_6$$, dan oksida yang bertindak balas dengan asid dan alkali",
         },
       ],
     },

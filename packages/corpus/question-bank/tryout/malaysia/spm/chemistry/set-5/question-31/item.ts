@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$100\\text{ cm}^3$$, orange to green" },
-        { correct: true, label: "$$66.7\\text{ cm}^3$$, orange to green" },
-        { correct: false, label: "$$66.7\\text{ cm}^3$$, green to orange" },
-        { correct: false, label: "$$150\\text{ cm}^3$$, orange to green" },
+        {
+          correct: false,
+          label: "$$0.36\\text{ g}$$, and only the product of propan-1-ol",
+        },
+        {
+          correct: true,
+          label: "$$0.54\\text{ g}$$, and only the product of propan-1-ol",
+        },
+        {
+          correct: false,
+          label: "$$0.54\\text{ g}$$, and the products of both alcohols",
+        },
+        {
+          correct: false,
+          label: "$$0.90\\text{ g}$$, and only the product of propan-1-ol",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$100\\text{ cm}^3$$, jingga kepada hijau" },
-        { correct: true, label: "$$66.7\\text{ cm}^3$$, jingga kepada hijau" },
-        { correct: false, label: "$$66.7\\text{ cm}^3$$, hijau kepada jingga" },
-        { correct: false, label: "$$150\\text{ cm}^3$$, jingga kepada hijau" },
+        {
+          correct: false,
+          label: "$$0.36\\text{ g}$$, dan hasil propan-1-ol sahaja",
+        },
+        {
+          correct: true,
+          label: "$$0.54\\text{ g}$$, dan hasil propan-1-ol sahaja",
+        },
+        {
+          correct: false,
+          label: "$$0.54\\text{ g}$$, dan hasil kedua-dua alkohol",
+        },
+        {
+          correct: false,
+          label: "$$0.90\\text{ g}$$, dan hasil propan-1-ol sahaja",
+        },
       ],
     },
   },

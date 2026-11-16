@@ -1,21 +1,26 @@
-# Concentration decides the anode, and sodium never leaves the solution
+# The chloride runs out a third of the way through, and the anode switches to oxygen
 
-At the anode, chloride ions are so concentrated that **chlorine is discharged instead of oxygen**. At the cathode, sodium ions stay in solution because water is far easier to reduce, so hydrogen forms and leaves hydroxide ions behind. Each gas takes two electrons per molecule.
+The solution holds only <InlineMath math="0.100\text{ mol}" /> of chloride ions, enough for <InlineMath math="0.10\text{ mol}" /> of the electrons. **Once the chloride is used up, hydroxide ions are discharged at the anode instead**, and each oxygen molecule takes four electrons, not two. At the cathode hydrogen forms the whole time. The sodium ions stay with the hydroxide ions left behind.
 
-<Mermaid
-  title={<>What happens at each electrode</>}
-  description={<>Chlorine forms at the anode, hydrogen at the cathode, and sodium hydroxide stays in the solution.</>}
-  chart={"flowchart LR\n  A[\"Anode (+): Cl- is concentrated\"] --> C[\"Cl2 gas\"]\n  K[\"Cathode (-): Na+ stays, H2O is discharged\"] --> H[\"H2 gas + OH-\"]\n  H --> N[\"NaOH left in solution\"]"}
+<Chart
+  title={<>Gases from the electrolysis</>}
+  description={<>The anode gives <InlineMath math="0.050\text{ mol}" /> of chlorine and then <InlineMath math="0.050\text{ mol}" /> of oxygen, and the cathode <InlineMath math="0.15\text{ mol}" /> of hydrogen.</>}
+  bars="apart"
+  categories={["Chlorine", "Oxygen", "Hydrogen"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [0.050, 0.050, 0.15] },
+  ]}
+  valueLabel="Amount (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{anode}&:\ 2\text{Cl}^-\rightarrow\text{Cl}_2+2e^-\Rightarrow0.10\text{ mol}=2.4\text{ dm}^3\\
-\text{cathode}&:\ 2\text{H}_2\text{O}+2e^-\rightarrow\text{H}_2+2\text{OH}^-\Rightarrow0.10\text{ mol}=2.4\text{ dm}^3\\
-\text{OH}^-&=0.20\text{ mol, with Na}^+\text{ as NaOH}
+n(\text{Cl}^-)&=5.0\times0.0200=0.100\text{ mol}\Rightarrow0.050\text{ mol Cl}_2\ (0.10\text{ mol }e^-)\\
+4\text{OH}^-&\rightarrow\text{O}_2+2\text{H}_2\text{O}+4e^-:\ \tfrac{0.30-0.10}{4}=0.050\text{ mol O}_2\\
+V_{\text{anode}}&=(0.050+0.050)\times24=2.4\text{ dm}^3,\quad V_{\text{cathode}}=\tfrac{0.30}{2}\times24=3.6\text{ dm}^3
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- Oxygen forms from dilute sodium chloride solution. **A concentrated solution discharges chloride ions**.
-- Sodium metal forms only from molten sodium chloride. In water, water is reduced instead.
-- <InlineMath math="4.8\text{ dm}^3" /> gives each molecule one electron, but each <InlineMath math="\text{Cl}_2" /> or <InlineMath math="\text{H}_2" /> needs two.
+- <InlineMath math="3.6\text{ dm}^3" /> at the anode treats all the electrons as making chlorine, but only <InlineMath math="0.100\text{ mol}" /> of chloride is present.
+- <InlineMath math="1.2\text{ dm}^3" /> stops the anode gas when the chloride runs out. **The current keeps flowing and discharges hydroxide ions**.
+- The hydrogen ions removed at the cathode outnumber the hydroxide ions removed at the anode, so <InlineMath math="0.100\text{ mol}" /> of hydroxide ions stays in solution with the sodium ions.

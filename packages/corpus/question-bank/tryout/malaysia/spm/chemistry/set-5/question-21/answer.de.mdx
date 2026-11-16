@@ -1,21 +1,26 @@
-# Die Konzentration entscheidet an der Anode, und Natrium verlässt die Lösung nie
+# Das Chlorid ist nach einem Drittel verbraucht, und die Anode wechselt zu Sauerstoff
 
-An der Anode sind die Chloridionen so konzentriert, dass **Chlor statt Sauerstoff entsteht**. An der Kathode bleiben die Natriumionen in Lösung, weil Wasser viel leichter reduziert wird, also entsteht Wasserstoff und Hydroxidionen bleiben zurück. Jedes Gas braucht zwei Elektronen pro Molekül.
+Die Lösung enthält nur <InlineMath math="0{,}100\text{ mol}" /> Chloridionen, genug für <InlineMath math="0{,}10\text{ mol}" /> Elektronen. **Ist das Chlorid verbraucht, werden an der Anode Hydroxidionen entladen**, und jedes Sauerstoffmolekül braucht vier Elektronen, nicht zwei. An der Kathode entsteht die ganze Zeit Wasserstoff. Die Natriumionen bleiben mit den übrigen Hydroxidionen zurück.
 
-<Mermaid
-  title={<>Was an jeder Elektrode geschieht</>}
-  description={<>Chlor entsteht an der Anode, Wasserstoff an der Kathode, und Natronlauge bleibt in der Lösung.</>}
-  chart={"flowchart LR\n  A[\"Anode (+): Cl- ist konzentriert\"] --> C[\"Cl2 Gas\"]\n  K[\"Kathode (-): Na+ bleibt, H2O wird entladen\"] --> H[\"H2 Gas + OH-\"]\n  H --> N[\"NaOH bleibt in Lösung\"]"}
+<Chart
+  title={<>Gase der Elektrolyse</>}
+  description={<>Die Anode gibt <InlineMath math="0{,}050\text{ mol}" /> Chlor und danach <InlineMath math="0{,}050\text{ mol}" /> Sauerstoff, die Kathode <InlineMath math="0{,}15\text{ mol}" /> Wasserstoff.</>}
+  bars="apart"
+  categories={["Chlor", "Sauerstoff", "Wasserstoff"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.050, 0.050, 0.15] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-\text{Anode}&:\ 2\text{Cl}^-\rightarrow\text{Cl}_2+2e^-\Rightarrow0{,}10\text{ mol}=2{,}4\text{ dm}^3\\
-\text{Kathode}&:\ 2\text{H}_2\text{O}+2e^-\rightarrow\text{H}_2+2\text{OH}^-\Rightarrow0{,}10\text{ mol}=2{,}4\text{ dm}^3\\
-\text{OH}^-&=0{,}20\text{ mol, mit Na}^+\text{ als NaOH}
+n(\text{Cl}^-)&=5{,}0\times0{,}0200=0{,}100\text{ mol}\Rightarrow0{,}050\text{ mol Cl}_2\ (0{,}10\text{ mol }e^-)\\
+4\text{OH}^-&\rightarrow\text{O}_2+2\text{H}_2\text{O}+4e^-:\ \tfrac{0{,}30-0{,}10}{4}=0{,}050\text{ mol O}_2\\
+V_{\text{Anode}}&=(0{,}050+0{,}050)\times24=2{,}4\text{ dm}^3,\quad V_{\text{Kathode}}=\tfrac{0{,}30}{2}\times24=3{,}6\text{ dm}^3
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- Sauerstoff entsteht aus verdünnter Kochsalzlösung. **Eine konzentrierte Lösung entlädt Chloridionen**.
-- Natriummetall entsteht nur aus geschmolzenem Natriumchlorid. In Wasser wird stattdessen Wasser reduziert.
-- <InlineMath math="4{,}8\text{ dm}^3" /> gibt jedem Molekül ein Elektron, doch jedes <InlineMath math="\text{Cl}_2" /> oder <InlineMath math="\text{H}_2" /> braucht zwei.
+- <InlineMath math="3{,}6\text{ dm}^3" /> an der Anode lässt alle Elektronen Chlor bilden, doch es gibt nur <InlineMath math="0{,}100\text{ mol}" /> Chlorid.
+- <InlineMath math="1{,}2\text{ dm}^3" /> stoppt das Anodengas, wenn das Chlorid verbraucht ist. **Der Strom fließt weiter und entlädt Hydroxidionen**.
+- An der Kathode werden mehr Wasserstoffionen entfernt als an der Anode Hydroxidionen, also bleiben <InlineMath math="0{,}100\text{ mol}" /> Hydroxidionen mit den Natriumionen in Lösung.

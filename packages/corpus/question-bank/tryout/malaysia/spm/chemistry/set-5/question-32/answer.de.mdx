@@ -1,23 +1,26 @@
-# Die Doppelbindung hat zwei verschiedene Enden, also kann die OH-Gruppe an beide
+# Nur der primäre Alkohol wird zur Säure, also zählt die Titration allein Propan-1-ol
 
-Wasserdampf lagert sich an die Doppelbindung an: H an einen Kohlenstoff, OH an den anderen. **Die Doppelbindung des Propens verbindet einen Endkohlenstoff mit dem mittleren**, also kann OH an beide, und es entsteht Propan-1-ol oder Propan-2-ol. Beide haben die Formel <InlineMath math="\text{C}_3\text{H}_7\text{OH}" />, also hängt die Masse nicht vom Gemisch ab.
+Wasserdampf addiert sich auf zwei Arten an die Doppelbindung. **Propan-2-ol wird nur zu Propanon oxidiert, das keine Lauge neutralisiert**, also stammt die titrierte Säure allein aus Propan-1-ol. Das Zehntel mal zehn, von der Gesamtmenge abgezogen, gibt das Propan-2-ol. Es ist das Vierfache des Propan-1-ols, weil sich der Wasserstoff an das endständige Kohlenstoffatom mit mehr Wasserstoff anlagert.
 
-<Mermaid
-  title={<>Zwei Arten, wie sich Wasser an Propen anlagert</>}
-  description={<>Die OH-Gruppe geht an den Endkohlenstoff und gibt Propan-1-ol, oder an den mittleren und gibt Propan-2-ol.</>}
-  chart={"flowchart LR\n  P[\"CH3-CH=CH2 + H2O\"] -->|\"OH am Endkohlenstoff\"| A[\"Propan-1-ol\"]\n  P -->|\"OH am mittleren Kohlenstoff\"| B[\"Propan-2-ol\"]"}
+<Chart
+  title={<>Stoffmenge jedes Alkohols</>}
+  description={<>Die <InlineMath math="0{,}0800\text{ mol}" /> Alkohol sind <InlineMath math="0{,}0160\text{ mol}" /> Propan-1-ol und <InlineMath math="0{,}0640\text{ mol}" /> Propan-2-ol.</>}
+  bars="apart"
+  categories={["Propan-1-ol", "Propan-2-ol"]}
+  series={[
+    { label: "Stoffmenge", mark: "bar", values: [0.0160, 0.0640] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{C}_3\text{H}_6)&=\tfrac{4{,}2}{42}=0{,}10\text{ mol}\Rightarrow0{,}80\times0{,}10=0{,}080\text{ mol reagieren}\\
-\text{C}_3\text{H}_6+\text{H}_2\text{O}&\rightarrow\text{C}_3\text{H}_7\text{OH}\quad(M_r=60)\\
-m&=0{,}080\times60=4{,}8\text{ g}
+n(\text{Alkohole})&=0{,}80\times\tfrac{4{,}2}{42}=0{,}0800\text{ mol}\\
+n(\text{propan-1-ol})&=10\times0{,}100\times0{,}0160=0{,}0160\text{ mol}\\
+m(\text{propan-2-ol})&=(0{,}0800-0{,}0160)\times60=3{,}84\text{ g}
 \end{aligned}" />
-
-Nur das Propan-1-ol im Gemisch ließe sich später zu Propansäure oxidieren.
 
 # Warum die anderen Antworten falsch sind
 
-- Ein Alkohol übersieht, dass OH an beide Kohlenstoffe der Doppelbindung kann.
-- <InlineMath math="6{,}0\text{ g}" /> setzt das ganze Propen um, doch nur <InlineMath math="80\%" /> reagierten.
-- <InlineMath math="3{,}4\text{ g}" /> nimmt <InlineMath math="80\%" /> der Propenmasse. **Das angelagerte Wasser macht jedes Molekül schwerer, <InlineMath math="42" /> auf <InlineMath math="60" />**.
+- <InlineMath math="0{,}96\text{ g}" /> ist das Propan-1-ol, das die Titration misst, nicht das Propan-2-ol.
+- <InlineMath math="5{,}04\text{ g}" /> geht von allen <InlineMath math="0{,}100\text{ mol}" /> Propen aus. **Nur <InlineMath math="80\%" /> reagieren**.
+- Bei der Oxidation entsteht Säure, also ist Propan-1-ol vorhanden. Propen ist unsymmetrisch, also entstehen beide Alkohole.

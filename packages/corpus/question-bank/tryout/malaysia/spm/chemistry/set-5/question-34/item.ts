@@ -10,27 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$34.5\\text{ g}$$" },
-        { correct: false, label: "$$24.1\\text{ g}$$" },
-        {
-          correct: false,
-          label:
-            "$$49.2\\text{ g}$$, though the soup would cool because $$\\Delta H$$ is negative",
-        },
-        { correct: true, label: "$$49.2\\text{ g}$$" },
+        { correct: false, label: "$$45.5^\\circ\\text{C}$$" },
+        { correct: false, label: "$$48.8^\\circ\\text{C}$$" },
+        { correct: false, label: "$$65.0^\\circ\\text{C}$$" },
+        { correct: true, label: "$$34.1^\\circ\\text{C}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$34.5\\text{ g}$$" },
-        { correct: false, label: "$$24.1\\text{ g}$$" },
-        {
-          correct: false,
-          label:
-            "$$49.2\\text{ g}$$, walaupun sup akan menjadi sejuk kerana $$\\Delta H$$ negatif",
-        },
-        { correct: true, label: "$$49.2\\text{ g}$$" },
+        { correct: false, label: "$$45.5^\\circ\\text{C}$$" },
+        { correct: false, label: "$$48.8^\\circ\\text{C}$$" },
+        { correct: false, label: "$$65.0^\\circ\\text{C}$$" },
+        { correct: true, label: "$$34.1^\\circ\\text{C}$$" },
       ],
     },
   },

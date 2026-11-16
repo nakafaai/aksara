@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$11.3\\text{ mL}$$ per dose, and $$11.3\\text{ mL}$$ a day",
+          label: "$$35.0\\text{ mL}$$, $$7.15\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: false,
-          label: "$$2.25\\text{ mL}$$ per dose, and $$9.0\\text{ mL}$$ a day",
+          label: "$$45.0\\text{ mL}$$, $$8.74\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: false,
-          label: "$$11.3\\text{ mL}$$ per dose, and $$67.5\\text{ mL}$$ a day",
+          label: "$$22.5\\text{ mL}$$, $$3.58\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: true,
-          label:
-            "$$11.3\\text{ mL}$$ per dose, and $$45.0\\text{ mL}$$ a day at most",
+          label: "$$22.5\\text{ mL}$$, $$5.17\\times10^{-3}\\text{ mol}$$",
         },
       ],
     },
@@ -34,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$11.3\\text{ mL}$$ setiap dos, dan $$11.3\\text{ mL}$$ sehari",
+          label: "$$35.0\\text{ mL}$$, $$7.15\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: false,
-          label:
-            "$$2.25\\text{ mL}$$ setiap dos, dan $$9.0\\text{ mL}$$ sehari",
+          label: "$$45.0\\text{ mL}$$, $$8.74\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: false,
-          label:
-            "$$11.3\\text{ mL}$$ setiap dos, dan $$67.5\\text{ mL}$$ sehari",
+          label: "$$22.5\\text{ mL}$$, $$3.58\\times10^{-3}\\text{ mol}$$",
         },
         {
           correct: true,
-          label:
-            "$$11.3\\text{ mL}$$ setiap dos, dan paling banyak $$45.0\\text{ mL}$$ sehari",
+          label: "$$22.5\\text{ mL}$$, $$5.17\\times10^{-3}\\text{ mol}$$",
         },
       ],
     },

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$19.2\\text{ kJ mol}^{-1}$$, and the kinetic energy of the molecules rises",
+            "$$16.6\\text{ kJ mol}^{-1}$$, and the forces of attraction between molecules are overcome while their average kinetic energy stays the same",
         },
         {
           correct: false,
           label:
-            "$$3.84\\text{ kJ mol}^{-1}$$, and the heat overcomes the forces between molecules",
+            "$$19.1\\text{ kJ mol}^{-1}$$, and the molecules gain kinetic energy and move faster",
         },
         {
           correct: false,
           label:
-            "$$38.4\\text{ kJ mol}^{-1}$$, and the heat overcomes the forces between molecules",
+            "$$23.3\\text{ kJ mol}^{-1}$$, and the forces of attraction between molecules are overcome while their average kinetic energy stays the same",
         },
         {
           correct: true,
           label:
-            "$$19.2\\text{ kJ mol}^{-1}$$, and the heat overcomes the forces between molecules while their kinetic energy stays constant",
+            "$$19.1\\text{ kJ mol}^{-1}$$, and the forces of attraction between molecules are overcome while their average kinetic energy stays the same",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$19.2\\text{ kJ mol}^{-1}$$, dan tenaga kinetik molekul meningkat",
+            "$$16.6\\text{ kJ mol}^{-1}$$, dan daya tarikan antara molekul diatasi manakala tenaga kinetik puratanya kekal",
         },
         {
           correct: false,
           label:
-            "$$3.84\\text{ kJ mol}^{-1}$$, dan haba mengatasi daya antara molekul",
+            "$$19.1\\text{ kJ mol}^{-1}$$, dan molekul menerima tenaga kinetik lalu bergerak lebih laju",
         },
         {
           correct: false,
           label:
-            "$$38.4\\text{ kJ mol}^{-1}$$, dan haba mengatasi daya antara molekul",
+            "$$23.3\\text{ kJ mol}^{-1}$$, dan daya tarikan antara molekul diatasi manakala tenaga kinetik puratanya kekal",
         },
         {
           correct: true,
           label:
-            "$$19.2\\text{ kJ mol}^{-1}$$, dan haba mengatasi daya antara molekul sementara tenaga kinetiknya kekal malar",
+            "$$19.1\\text{ kJ mol}^{-1}$$, dan daya tarikan antara molekul diatasi manakala tenaga kinetik puratanya kekal",
         },
       ],
     },

@@ -13,21 +13,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Copper(II) carbonate, which gives black copper(II) oxide and carbon dioxide",
-        },
-        {
-          correct: false,
-          label: "Iron(II) nitrate, which gives a red-brown residue",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$480\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Copper(II) nitrate, which gives a black residue and a colourless gas only",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$1320\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Cu(NO}_3)_2$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Copper(II) nitrate, which gives black copper(II) oxide, brown nitrogen dioxide and oxygen",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$600\\text{ cm}^3$$",
         },
       ],
     },
@@ -37,21 +37,21 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kuprum(II) karbonat, yang menghasilkan kuprum(II) oksida hitam dan karbon dioksida",
-        },
-        {
-          correct: false,
-          label: "Ferum(II) nitrat, yang menghasilkan baki perang kemerahan",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$480\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "Kuprum(II) nitrat, yang menghasilkan baki hitam dan gas tanpa warna sahaja",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$1320\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{Cu(NO}_3)_2$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "Kuprum(II) nitrat, yang menghasilkan kuprum(II) oksida hitam, nitrogen dioksida perang dan oksigen",
+            "$$\\text{Cu(NO}_3)_2\\cdot3\\text{H}_2\\text{O}$$, $$600\\text{ cm}^3$$",
         },
       ],
     },

@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$ alcohols, $$4.8\\text{ g}$$ in total" },
-        { correct: false, label: "$$1$$ alcohol, $$4.8\\text{ g}$$" },
-        { correct: false, label: "$$2$$ alcohols, $$6.0\\text{ g}$$ in total" },
-        { correct: false, label: "$$2$$ alcohols, $$3.4\\text{ g}$$ in total" },
+        { correct: true, label: "$$3.84\\text{ g}$$, the major product" },
+        { correct: false, label: "$$0.96\\text{ g}$$, the minor product" },
+        { correct: false, label: "$$5.04\\text{ g}$$, the major product" },
+        { correct: false, label: "$$4.80\\text{ g}$$, the only product" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$ alkohol, $$4.8\\text{ g}$$ kesemuanya" },
-        { correct: false, label: "$$1$$ alkohol, $$4.8\\text{ g}$$" },
-        {
-          correct: false,
-          label: "$$2$$ alkohol, $$6.0\\text{ g}$$ kesemuanya",
-        },
-        {
-          correct: false,
-          label: "$$2$$ alkohol, $$3.4\\text{ g}$$ kesemuanya",
-        },
+        { correct: true, label: "$$3.84\\text{ g}$$, hasil utama" },
+        { correct: false, label: "$$0.96\\text{ g}$$, hasil sampingan" },
+        { correct: false, label: "$$5.04\\text{ g}$$, hasil utama" },
+        { correct: false, label: "$$4.80\\text{ g}$$, satu-satunya hasil" },
       ],
     },
   },
