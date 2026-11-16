@@ -33,6 +33,20 @@ Hier **ist eine Lkw-Ladung günstiger, obwohl sie zu viel enthält**, denn die <
 
 <BlockMath math="340{.}000+700{.}000=1{.}040{.}000" />
 
+Das Diagramm vergleicht die drei Kaufwege für beide Materialien. **Der kürzeste Balken liegt jeweils bei einem anderen Weg**: Sand ist mit Wanne und Eimern am billigsten, Kies mit einer Lkw-Ladung.
+
+<Chart
+  title={<>Kosten für Sand und Kies nach Kaufweg</>}
+  description={<>Sand: nur Eimer <InlineMath math="\text{Rp}440{.}000" />, Wanne und Eimer <InlineMath math="\text{Rp}340{.}000" />, Lkw-Ladung <InlineMath math="\text{Rp}500{.}000" />. Kies: nur Eimer <InlineMath math="\text{Rp}825{.}000" />, Wanne und Eimer <InlineMath math="\text{Rp}725{.}000" />, Lkw-Ladung <InlineMath math="\text{Rp}700{.}000" />.</>}
+  categories={["Nur Eimer", "Wanne und Eimer", "Lkw-Ladung"]}
+  bars="apart"
+  series={[
+    { label: "Sand", mark: "bar", values: [22 * 20000, 300000 + 2 * 20000, 500000] },
+    { label: "Kies", mark: "bar", values: [33 * 25000, 400000 + 13 * 25000, 700000] },
+  ]}
+  valueLabel="Kosten (Rupiah)"
+/>
+
 # Die verlockenden falschen Antworten
 
 Die Antwort <InlineMath math="1{.}065{.}000" /> entsteht, wenn du den Kies passend kaufst, also eine Wanne und <InlineMath math="13" /> Eimer, weil **zu viel zu kaufen angeblich immer teurer ist**. Die Antwort <InlineMath math="1{.}265{.}000" /> entsteht, wenn du alles in Eimern kaufst. Die Antwort <InlineMath math="950{.}000" /> entsteht, wenn du die Reserve vergisst und mit <InlineMath math="1\text{ m}^3" /> Sand und <InlineMath math="1{,}5\text{ m}^3" /> Kies rechnest.

@@ -35,6 +35,21 @@ Three rows are easy to misread.
 
 The departures with a free transfer are 21:18, 22:12, and 22:48, so there are <InlineMath math="3" /> of them.
 
+The chart below colours every departure by its free transfer. **Only three bars stay at or below the <InlineMath math="15" />-minute line**, and the <InlineMath math="15" />-minute bar for the 22:12 bus A touches that line exactly.
+
+<Chart
+  title={<>Wait for each bus A departure and its free transfer</>}
+  description={<>The 21:18, 22:12, and 22:48 buses A give waits of <InlineMath math="9" />, <InlineMath math="15" />, and <InlineMath math="9" /> minutes, so their transfers are free. The 21:00, 21:36, 21:54, 22:30, and 23:06 buses A give waits longer than <InlineMath math="15" /> minutes. The 23:24 and 23:42 buses A get no bus B.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Free transfer", mark: "bar", values: [null, 9, null, null, 15, null, 9, null, null, null] },
+    { label: "Pay for bus B", mark: "bar", values: [27, null, 21, 33, null, 27, null, 21, null, null] },
+    { label: "Limit 15 minutes", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Wait (minutes)"
+/>
+
 # Checking with the repeating pattern
 
 Bus A repeats every <InlineMath math="18\text{ minutes}" /> and bus B every <InlineMath math="30\text{ minutes}" />, so the waits repeat every <InlineMath math="90\text{ minutes}" />, their least common multiple. The first <InlineMath math="90\text{ minutes}" /> hold **two free transfers**, 21:18 and 22:12. The next <InlineMath math="90\text{ minutes}" /> would give 22:48 and 23:42. But the 23:42 bus A gets no bus B because bus B has stopped running, so only 22:48 is left. The total is still <InlineMath math="2+1=3" />.

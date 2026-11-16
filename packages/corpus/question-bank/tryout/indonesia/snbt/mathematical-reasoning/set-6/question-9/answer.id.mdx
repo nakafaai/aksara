@@ -20,6 +20,18 @@ Bus A terakhir yang masih sempat adalah bus yang berangkat pukul 21.36.
 
 Coba jalankan perjalanan Rina dari awal. Bus A berangkat pukul 21.36 dan tiba di Halte Pasar pukul 22.01. Rina berjalan dan sudah siap paling lambat pukul 22.05, lalu naik bus B pukul 22.22 dan tiba di Halte Kampus pukul 22.37. Waktu itu **tidak melewati pukul 22.40**. Waktu tunggunya <InlineMath math="21\text{ menit}" />, lebih dari <InlineMath math="15\text{ menit}" />, jadi Rina tidak mendapat transfer gratis. Soal ini hanya menanyakan waktu, jadi ongkos tidak mengubah jawaban.
 
+Diagram berikut menyusun perjalanan Rina dari awal sampai akhir. **Setiap langkah menambah waktu sesuai aturannya**, dan ujungnya tetap jatuh sebelum batas pukul 22.40.
+
+<Mermaid
+  title={<>Perjalanan Rina dengan bus A pukul 21.36 dan bus B pukul 22.22</>}
+  description={<>Bus A berangkat pukul 21.36 dan tiba di Halte Pasar pukul 22.01. Sesudah berjalan <InlineMath math="4" /> menit, Rina siap pukul 22.05, lalu naik bus B pukul 22.22 dan tiba di Halte Kampus pukul 22.37, tiga menit sebelum batas pukul 22.40.</>}
+  chart={`flowchart LR
+    A["Bus A berangkat 21.36"] -->|"25 menit"| B["Tiba di Halte Pasar 22.01"]
+    B -->|"jalan 4 menit"| C["Siap naik 22.05"]
+    C -->|"menunggu"| D["Bus B berangkat 22.22"]
+    D -->|"15 menit"| E["Tiba di Halte Kampus 22.37"]`}
+/>
+
 # Jebakan pada pilihan lain
 
 Setiap pilihan yang salah **memakai aturan yang keliru atau melewatkan satu waktu tempuh**.

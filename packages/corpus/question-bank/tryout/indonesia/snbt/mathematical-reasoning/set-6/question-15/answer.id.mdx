@@ -16,6 +16,21 @@ Dari syarat ini saja, <InlineMath math="n" /> paling sedikit <InlineMath math="8
 
 Banyak pemilih QRIS baru, <InlineMath math="0{,}8n=\frac{4n}{5}" />, harus bilangan bulat karena menghitung orang. Itu hanya terjadi jika **<InlineMath math="n" /> kelipatan <InlineMath math="5" />**. Untuk <InlineMath math="n=86" />, banyak pemilih QRIS baru adalah <InlineMath math="68{,}8" /> orang, jadi tidak mungkin. Kelipatan <InlineMath math="5" /> terkecil yang paling sedikit <InlineMath math="86" /> adalah <InlineMath math="90" />.
 
+Grafik berikut menghitung persentase keseluruhan Pasar X untuk banyak responden baru yang merupakan kelipatan <InlineMath math="5" />. **Batang <InlineMath math="85" /> masih sedikit di bawah garis target**, dan batang <InlineMath math="90" /> adalah yang pertama melewatinya.
+
+<Chart
+  title={<>Persentase keseluruhan pemilih QRIS di Pasar X menurut banyak responden baru</>}
+  description={<>Dengan <InlineMath math="75" />, <InlineMath math="80" />, <InlineMath math="85" />, <InlineMath math="90" />, dan <InlineMath math="95" /> responden baru, persentasenya sekitar <InlineMath math="50{,}9\%" />, <InlineMath math="51{,}4\%" />, <InlineMath math="51{,}9\%" />, <InlineMath math="52{,}4\%" />, dan <InlineMath math="52{,}9\%" />. Garis datar menandai target <InlineMath math="52\%" />. Sumbu nilai dimulai dari <InlineMath math="50\%" />.</>}
+  bars="apart"
+  categories={["75", "80", "85", "90", "95"]}
+  series={[
+    { label: "Persentase keseluruhan Pasar X", mark: "bar", values: [75, 80, 85, 90, 95].map((n) => ((80 + 0.8 * n) / (200 + n)) * 100) },
+    { label: "Target 52%", mark: "line", values: [52, 52, 52, 52, 52] },
+  ]}
+  valueRange={{ min: 50, max: 54 }}
+  valueLabel="Pemilih QRIS (%)"
+/>
+
 # Pemeriksaan hasil
 
 Bandingkan <InlineMath math="n=90" /> dengan kelipatan <InlineMath math="5" /> sebelumnya, <InlineMath math="n=85" />. Untuk membandingkan pecahan dengan <InlineMath math="52\%" />, **kalikan silang supaya tidak perlu membagi**.

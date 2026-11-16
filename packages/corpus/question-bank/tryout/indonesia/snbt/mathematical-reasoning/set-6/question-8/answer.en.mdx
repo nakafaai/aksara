@@ -18,6 +18,17 @@ Minute charges of <InlineMath math="\text{Rp}15{,}000" /> are below the <InlineM
 
 For example, seven trips of <InlineMath math="20\text{ minutes}" /> and one of <InlineMath math="50\text{ minutes}" />.
 
+The chart below compares the longest time from both ways to pay. **The subscription bar is far taller**, because every trip brings <InlineMath math="20" /> free minutes.
+
+<Chart
+  title={<>Longest total riding time with a <InlineMath math="\text{Rp}45{,}000" /> budget for <InlineMath math="8" /> trips</>}
+  description={<>On the regular tariff, the longest time is <InlineMath math="116" /> minutes. On the subscription, it's <InlineMath math="8\cdot 20+30=190" /> minutes.</>}
+  categories={["Regular tariff", "Subscription"]}
+  bars="apart"
+  series={[{ label: "Longest total time (minutes)", mark: "bar", values: [(45000 - 8 * 2000) / 250, 8 * 20 + (45000 - 30000) / 500] }]}
+  valueLabel="Time (minutes)"
+/>
+
 # Comparing the two options
 
 The subscription gives <InlineMath math="190\text{ minutes}" />, longer than the <InlineMath math="116\text{ minutes}" /> on the regular tariff. So Eko **picks the subscription**.

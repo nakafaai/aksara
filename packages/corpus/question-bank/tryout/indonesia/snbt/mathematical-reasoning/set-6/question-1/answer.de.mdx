@@ -32,6 +32,19 @@ Nach 07:00 Uhr läuft nur noch Hahn K, also **sinkt der Füllstand ab <InlineMat
 
 Der zweite Zeitpunkt liegt <InlineMath math="36\text{ Minuten}" /> nach 07:00 Uhr, also um 07:36 Uhr.
 
+Das Diagramm verfolgt den Füllstand alle <InlineMath math="20" /> Minuten. **Die Linie schneidet die Linie bei <InlineMath math="4{.}200" /> Litern zweimal**: einmal beim Steigen um 06.00 Uhr und noch einmal beim Fallen zwischen 07.20 und 07.40 Uhr.
+
+<Chart
+  title={<>Füllstand des Wassertanks von 05.00 bis 10.00 Uhr</>}
+  description={<>Der Füllstand steigt von <InlineMath math="1{.}000" /> Litern um 05.00 Uhr auf <InlineMath math="6{.}000" /> Liter um 06.20 Uhr, bleibt bis 07.00 Uhr bei <InlineMath math="6{.}000" /> Litern und fällt dann um <InlineMath math="50" /> Liter pro Minute, bis der Tank um 09.00 Uhr leer ist. Die waagerechte Linie markiert <InlineMath math="4{.}200" /> Liter.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Füllstand", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0, 0, 0] },
+    { label: "4.200 Liter", mark: "line", values: Array.from({ length: 16 }, () => 4200) },
+  ]}
+  valueLabel="Füllstand (Liter)"
+/>
+
 # Kontrolle des Ergebnisses
 
 Bis 07:36 Uhr hat Hahn K seit Beginn des Sinkens <InlineMath math="50\cdot 36=1{.}800\text{ Liter}" /> abgegeben, und <InlineMath math="6{.}000-1{.}800=4{.}200" />. Das Ergebnis passt auch zeitlich, denn **leer ist der Tank erst um 09:00 Uhr**, also <InlineMath math="6{.}000:50=120\text{ Minuten}" /> nach 07:00 Uhr. Damit liegt 07:36 Uhr mitten in der Phase des Sinkens.

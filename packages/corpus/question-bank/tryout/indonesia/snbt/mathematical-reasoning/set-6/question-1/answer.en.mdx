@@ -32,6 +32,19 @@ After 07:00 only tap K is running, so the level **drops by <InlineMath math="50\
 
 The second moment is <InlineMath math="36\text{ minutes}" /> after 07:00, which is 07:36.
 
+The chart below follows the water level every <InlineMath math="20" /> minutes. **The level line crosses the <InlineMath math="4{,}200" />-liter line twice**: once on the way up at 06:00, and once more on the way down between 07:20 and 07:40.
+
+<Chart
+  title={<>Water level from 05:00 to 10:00</>}
+  description={<>The level rises from <InlineMath math="1{,}000" /> liters at 05:00 to <InlineMath math="6{,}000" /> liters at 06:20, stays at <InlineMath math="6{,}000" /> liters until 07:00, then falls by <InlineMath math="50" /> liters per minute until the tank is empty at 09:00. The flat line marks <InlineMath math="4{,}200" /> liters.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Water level", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0, 0, 0] },
+    { label: "4,200 liters", mark: "line", values: Array.from({ length: 16 }, () => 4200) },
+  ]}
+  valueLabel="Water level (liters)"
+/>
+
 # Checking the result
 
 By 07:36, tap K has let out <InlineMath math="50\cdot 36=1{,}800\text{ liters}" /> since the level started falling, and <InlineMath math="6{,}000-1{,}800=4{,}200" />. The answer also makes sense because **the tank only runs dry at 09:00**, which is <InlineMath math="6{,}000\div 50=120\text{ minutes}" /> after 07:00. So 07:36 really sits inside the falling stretch.

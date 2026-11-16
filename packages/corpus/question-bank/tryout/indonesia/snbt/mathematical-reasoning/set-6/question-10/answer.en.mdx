@@ -19,6 +19,20 @@ Bus A reaches Halte Pasar <InlineMath math="25\text{ minutes}" /> after it leave
 
 The 21:54 bus A arrives at 22:19, only <InlineMath math="3\text{ minutes}" /> before the 22:22 bus B, so its riders have to wait for the 22:52 bus. The same happens to the 23:24 bus A, but there's no bus B after the 23:52 one.
 
+The chart below draws the waits from that table. **The tallest bar is <InlineMath math="33" /> minutes for the 21:54 bus A**, and the last two bars are empty because there's no bus B left.
+
+<Chart
+  title={<>Wait at Halte Pasar by bus A departure</>}
+  description={<>For buses A leaving from 21:00 to 23:06, the waits are <InlineMath math="27, 9, 21, 33, 15, 27, 9, 21" /> minutes. Riders of the 23:24 and 23:42 buses A get no bus B. The flat line marks the free transfer limit of <InlineMath math="15" /> minutes.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Wait (minutes)", mark: "bar", values: [27, 9, 21, 33, 15, 27, 9, 21, null, null] },
+    { label: "Free transfer limit", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Wait (minutes)"
+/>
+
 # The statement about the longest wait
 
 The longest wait in the list is <InlineMath math="33\text{ minutes}" />, for riders of the 21:54 bus A. You only get <InlineMath math="27\text{ minutes}" /> if you **ignore the <InlineMath math="4\text{-minute}" /> walk**, because then those riders seem to catch the 22:22 bus. This statement is **false**.

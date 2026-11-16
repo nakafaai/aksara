@@ -19,6 +19,19 @@ Biaya menit bertambah <InlineMath math="\text{Rp}10{.}000" /> setiap perjalanan 
 | <InlineMath math="5" /> | <InlineMath math="60{.}000" /> | <InlineMath math="60{.}000" /> |
 | <InlineMath math="6" /> | <InlineMath math="72{.}000" /> | <InlineMath math="60{.}000" /> |
 
+Grafik berikut menggambar kedua total biaya dari tabel itu. Garis langganan **menjadi datar mulai perjalanan ketiga**, sedangkan garis reguler terus naik, menyamainya di <InlineMath math="5" /> perjalanan dan melewatinya di <InlineMath math="6" /> perjalanan.
+
+<Chart
+  title={<>Total biaya perjalanan <InlineMath math="40" /> menit menurut banyak perjalanan</>}
+  description={<>Biaya tarif reguler adalah <InlineMath math="12{.}000" /> rupiah dikali banyak perjalanan. Biaya paket langganan adalah <InlineMath math="40{.}000" />, <InlineMath math="50{.}000" />, lalu tetap <InlineMath math="60{.}000" /> rupiah mulai perjalanan ketiga. Kedua biaya sama pada <InlineMath math="5" /> perjalanan.</>}
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Tarif reguler", mark: "line", values: Array.from({ length: 7 }, (_, i) => 12000 * (i + 1)) },
+    { label: "Paket langganan", mark: "line", values: Array.from({ length: 7 }, (_, i) => 30000 + Math.min(10000 * (i + 1), 30000)) },
+  ]}
+  valueLabel="Total biaya (rupiah)"
+/>
+
 # Syarat lebih murah
 
 Paket langganan harus **lebih murah**, bukan sekadar sama. Untuk <InlineMath math="n" /> perjalanan dengan <InlineMath math="n\ge 3" />, syaratnya:

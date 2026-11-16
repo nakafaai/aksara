@@ -18,6 +18,17 @@ Biaya menit <InlineMath math="\text{Rp}15{.}000" /> belum mencapai batas <Inline
 
 Contohnya tujuh perjalanan <InlineMath math="20\text{ menit}" /> dan satu perjalanan <InlineMath math="50\text{ menit}" />.
 
+Grafik berikut membandingkan waktu terlama dari kedua cara bayar. **Batang paket langganan jauh lebih tinggi**, karena setiap perjalanan membawa <InlineMath math="20" /> menit gratis.
+
+<Chart
+  title={<>Total waktu bersepeda terlama dengan anggaran <InlineMath math="\text{Rp}45{.}000" /> untuk <InlineMath math="8" /> perjalanan</>}
+  description={<>Dengan tarif reguler, waktu terlamanya <InlineMath math="116" /> menit. Dengan paket langganan, waktu terlamanya <InlineMath math="8\cdot 20+30=190" /> menit.</>}
+  categories={["Tarif reguler", "Paket langganan"]}
+  bars="apart"
+  series={[{ label: "Total waktu terlama (menit)", mark: "bar", values: [(45000 - 8 * 2000) / 250, 8 * 20 + (45000 - 30000) / 500] }]}
+  valueLabel="Waktu (menit)"
+/>
+
 # Membandingkan kedua cara
 
 Paket langganan memberi <InlineMath math="190\text{ menit}" />, lebih lama daripada <InlineMath math="116\text{ menit}" /> dengan tarif reguler. Jadi Eko **memilih paket langganan**.

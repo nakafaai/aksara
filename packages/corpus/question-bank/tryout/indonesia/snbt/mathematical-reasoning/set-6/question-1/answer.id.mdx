@@ -32,6 +32,19 @@ Setelah pukul 07.00 hanya keran K yang bekerja, sehingga isi tandon **turun <Inl
 
 Saat yang kedua adalah <InlineMath math="36\text{ menit}" /> setelah pukul 07.00, yaitu pukul 07.36.
 
+Grafik berikut mengikuti isi tandon setiap <InlineMath math="20" /> menit. **Garis isi memotong garis <InlineMath math="4{.}200" /> liter dua kali**: sekali saat naik pukul 06.00, dan sekali lagi saat turun di antara pukul 07.20 dan 07.40.
+
+<Chart
+  title={<>Isi tandon dari pukul 05.00 sampai 10.00</>}
+  description={<>Isi tandon naik dari <InlineMath math="1{.}000" /> liter pada pukul 05.00 menjadi <InlineMath math="6{.}000" /> liter pada pukul 06.20, tertahan di <InlineMath math="6{.}000" /> liter sampai pukul 07.00, lalu turun <InlineMath math="50" /> liter per menit sampai kosong pada pukul 09.00. Garis datar menandai <InlineMath math="4{.}200" /> liter.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00", "07.20", "07.40", "08.00", "08.20", "08.40", "09.00", "09.20", "09.40", "10.00"]}
+  series={[
+    { label: "Isi tandon", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000, 5000, 4000, 3000, 2000, 1000, 0, 0, 0, 0] },
+    { label: "4.200 liter", mark: "line", values: Array.from({ length: 16 }, () => 4200) },
+  ]}
+  valueLabel="Isi tandon (liter)"
+/>
+
 # Pemeriksaan hasil
 
 Pada pukul 07.36 keran K sudah mengalirkan <InlineMath math="50\cdot 36=1{.}800\text{ liter}" /> sejak tandon mulai turun, dan <InlineMath math="6{.}000-1{.}800=4{.}200" />. Hasil ini juga masuk akal, karena **tandon baru kosong pukul 09.00**, yaitu <InlineMath math="6{.}000:50=120\text{ menit}" /> setelah pukul 07.00. Jadi pukul 07.36 memang berada di tengah masa turun.

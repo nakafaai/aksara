@@ -19,6 +19,19 @@ The minute charges grow by <InlineMath math="\text{Rp}10{,}000" /> per trip unti
 | <InlineMath math="5" /> | <InlineMath math="60{,}000" /> | <InlineMath math="60{,}000" /> |
 | <InlineMath math="6" /> | <InlineMath math="72{,}000" /> | <InlineMath math="60{,}000" /> |
 
+The chart below draws both totals from that table. The subscription line **goes flat from the third trip on**, while the regular line keeps climbing, meets it at <InlineMath math="5" /> trips, and passes it at <InlineMath math="6" /> trips.
+
+<Chart
+  title={<>Total cost of <InlineMath math="40" />-minute trips by number of trips</>}
+  description={<>The regular tariff costs <InlineMath math="12{,}000" /> rupiah times the number of trips. The subscription costs <InlineMath math="40{,}000" />, <InlineMath math="50{,}000" />, then stays at <InlineMath math="60{,}000" /> rupiah from the third trip on. Both cost the same at <InlineMath math="5" /> trips.</>}
+  categories={Array.from({ length: 7 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Regular tariff", mark: "line", values: Array.from({ length: 7 }, (_, i) => 12000 * (i + 1)) },
+    { label: "Subscription", mark: "line", values: Array.from({ length: 7 }, (_, i) => 30000 + Math.min(10000 * (i + 1), 30000)) },
+  ]}
+  valueLabel="Total cost (rupiah)"
+/>
+
 # The condition for cheaper
 
 The subscription has to be **strictly cheaper**, not just equal. For <InlineMath math="n" /> trips with <InlineMath math="n\ge 3" />, the condition is:

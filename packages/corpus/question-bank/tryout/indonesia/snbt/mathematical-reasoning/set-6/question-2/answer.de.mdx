@@ -26,6 +26,19 @@ Wasser geht verloren, solange der Tank voll und der Nettozufluss positiv ist, al
 
 Prüf das auf einem zweiten Weg. Bis 07:00 Uhr pumpen die Pumpen <InlineMath math="60\cdot 120+80\cdot 60=12{.}000\text{ Liter}" /> hinein, und Hahn K gibt <InlineMath math="50\cdot 100=5{.}000\text{ Liter}" /> ab. Ohne Überlaufrohr läge der Füllstand bei <InlineMath math="1{.}000+12{.}000-5{.}000=8{.}000\text{ Liter}" />, der Überschuss ist also <InlineMath math="8{.}000-6{.}000=2{.}000\text{ Liter}" />. Die Aussage ist **richtig**.
 
+Das Diagramm vergleicht den tatsächlichen Füllstand mit dem Füllstand ohne Überlaufrohr. **Die Lücke zwischen beiden Linien um 07.00 Uhr ist das verlorene Wasser**, <InlineMath math="8{.}000-6{.}000=2{.}000" /> Liter.
+
+<Chart
+  title={<>Füllstand mit und ohne Überlaufrohr, 05.00 bis 07.00 Uhr</>}
+  description={<>Beide Linien stimmen bis 06.20 Uhr überein, wenn der Tank <InlineMath math="6{.}000" /> Liter erreicht. Danach bleibt der tatsächliche Füllstand bei <InlineMath math="6{.}000" /> Litern, während der Füllstand ohne Überlaufrohr um 06.40 Uhr auf <InlineMath math="7{.}800" /> Liter und um 07.00 Uhr auf <InlineMath math="8{.}000" /> Liter steigt.</>}
+  categories={["05.00", "05.20", "05.40", "06.00", "06.20", "06.40", "07.00"]}
+  series={[
+    { label: "Tatsächlicher Füllstand", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000, 6000] },
+    { label: "Füllstand ohne Überlaufrohr", mark: "line", values: [1000, 2200, 2400, 4200, 6000, 6000 + 90 * 20, 6000 + 90 * 20 + 10 * 20] },
+  ]}
+  valueLabel="Füllstand (Liter)"
+/>
+
 # Die Aussage über den früher geöffneten Hahn
 
 Öffnet Hahn K schon um 05:00 Uhr, läuft er <InlineMath math="20\text{ Minuten}" /> länger. Dadurch fließen zusätzlich <InlineMath math="50\cdot 20=1{.}000\text{ Liter}" /> ab. **Ohne Überlaufrohr läge der höchste Füllstand bei <InlineMath math="8{.}000-1{.}000=7{.}000\text{ Liter}" />**, also immer noch über der Kapazität. Es gehen also weiterhin <InlineMath math="1{.}000\text{ Liter}" /> verloren. Die Aussage ist **falsch**.

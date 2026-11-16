@@ -19,6 +19,20 @@ Bus A ist <InlineMath math="25\text{ Minuten}" /> nach der Abfahrt an der Halte 
 
 Bus A um 21:54 Uhr kommt um 22:19 Uhr an, nur <InlineMath math="3\text{ Minuten}" /> vor dem Bus B um 22:22 Uhr, also müssen seine Fahrgäste auf den Bus um 22:52 Uhr warten. Dasselbe passiert beim Bus A um 23:24 Uhr, aber nach dem Bus B um 23:52 Uhr fährt keiner mehr.
 
+Das Diagramm zeigt die Wartezeiten aus der Tabelle. **Der höchste Balken sind <InlineMath math="33" /> Minuten für Bus A um 21.54 Uhr**, und die letzten beiden Balken sind leer, weil kein Bus B mehr fährt.
+
+<Chart
+  title={<>Wartezeit an Halte Pasar nach Abfahrt von Bus A</>}
+  description={<>Für Busse A von 21.00 bis 23.06 Uhr betragen die Wartezeiten <InlineMath math="27, 9, 21, 33, 15, 27, 9, 21" /> Minuten. Fahrgäste der Busse A um 23.24 und 23.42 Uhr bekommen keinen Bus B. Die waagerechte Linie markiert die Grenze für den Gratisumstieg, <InlineMath math="15" /> Minuten.</>}
+  bars="apart"
+  categories={["21.00", "21.18", "21.36", "21.54", "22.12", "22.30", "22.48", "23.06", "23.24", "23.42"]}
+  series={[
+    { label: "Wartezeit (Minuten)", mark: "bar", values: [27, 9, 21, 33, 15, 27, 9, 21, null, null] },
+    { label: "Grenze für Gratisumstieg", mark: "line", values: Array.from({ length: 10 }, () => 15) },
+  ]}
+  valueLabel="Wartezeit (Minuten)"
+/>
+
 # Die Aussage über die längste Wartezeit
 
 Die längste Wartezeit in der Liste beträgt <InlineMath math="33\text{ Minuten}" />, beim Bus A um 21:54 Uhr. Auf <InlineMath math="27\text{ Minuten}" /> kommst du nur, wenn du **den Fußweg von <InlineMath math="4\text{ Minuten}" /> übersiehst**, weil diese Fahrgäste dann scheinbar den Bus um 22:22 Uhr erreichen. Die Aussage ist **falsch**.
