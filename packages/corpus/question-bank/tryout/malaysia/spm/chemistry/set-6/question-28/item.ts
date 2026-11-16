@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$, $$3.74\\text{ g}$$" },
-        { correct: false, label: "$$1$$, $$2.14\\text{ g}$$" },
-        { correct: false, label: "$$2$$, $$2.14\\text{ g}$$" },
-        { correct: false, label: "$$1$$, $$3.74\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$2$$, $$3.74\\text{ g}$$, $$480\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$1$$, $$2.14\\text{ g}$$, $$240\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$, $$2.14\\text{ g}$$, $$480\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$, $$3.74\\text{ g}$$, $$240\\text{ cm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2$$, $$3.74\\text{ g}$$" },
-        { correct: false, label: "$$1$$, $$2.14\\text{ g}$$" },
-        { correct: false, label: "$$2$$, $$2.14\\text{ g}$$" },
-        { correct: false, label: "$$1$$, $$3.74\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$2$$, $$3.74\\text{ g}$$, $$480\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$1$$, $$2.14\\text{ g}$$, $$240\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$, $$2.14\\text{ g}$$, $$480\\text{ cm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$2$$, $$3.74\\text{ g}$$, $$240\\text{ cm}^3$$",
+        },
       ],
     },
   },

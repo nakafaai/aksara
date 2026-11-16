@@ -12,29 +12,29 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$120$$ minutes, with the spoon as the cathode",
-        },
-        {
-          correct: false,
-          label: "$$6.0$$ minutes, with the spoon as the cathode",
-        },
-        {
-          correct: true,
           label: "$$60.0$$ minutes, with the spoon as the cathode",
         },
         {
           correct: false,
-          label: "$$60.0$$ minutes, with the spoon as the anode",
+          label: "$$54.0$$ minutes, with the spoon as the cathode",
+        },
+        {
+          correct: true,
+          label: "$$66.7$$ minutes, with the spoon as the cathode",
+        },
+        {
+          correct: false,
+          label: "$$66.7$$ minutes, with the spoon as the anode",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$120$$ minit, dengan sudu sebagai katod" },
-        { correct: false, label: "$$6.0$$ minit, dengan sudu sebagai katod" },
-        { correct: true, label: "$$60.0$$ minit, dengan sudu sebagai katod" },
-        { correct: false, label: "$$60.0$$ minit, dengan sudu sebagai anod" },
+        { correct: false, label: "$$60.0$$ minit, dengan sudu sebagai katod" },
+        { correct: false, label: "$$54.0$$ minit, dengan sudu sebagai katod" },
+        { correct: true, label: "$$66.7$$ minit, dengan sudu sebagai katod" },
+        { correct: false, label: "$$66.7$$ minit, dengan sudu sebagai anod" },
       ],
     },
   },

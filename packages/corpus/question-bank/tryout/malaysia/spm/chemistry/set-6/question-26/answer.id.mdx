@@ -1,25 +1,25 @@
-# Ubah lapisan menjadi volume, volume menjadi mol, dan mol menjadi muatan
+# Lapisan ke volume, volume ke mol, mol ke muatan, lalu perhitungkan muatan yang terbuang
 
-Lapisan itu lempeng tipis: luas dikali tebal, dengan tebal dalam sentimeter, <InlineMath math="0{,}00200\text{ cm}" />, agar cocok dengan massa jenisnya. **Tiap ion perak hanya memerlukan satu elektron**, jadi mol elektron sama dengan mol perak. Sendok harus menjadi katode, tempat ion perak menerima elektron dan mengendap, sedangkan anode perak larut menggantikannya.
+Lapisan adalah luas dikali tebal, dengan tebal dalam sentimeter, <InlineMath math="0{,}00200\text{ cm}" />, agar cocok dengan massa jenis: <InlineMath math="1{,}008\text{ g}" /> perak. **Tiap ion perak menerima satu elektron**, jadi <InlineMath math="901\text{ C}" /> harus mengendap di sendok. **Itu hanya <InlineMath math="90\%" /> dari yang mengalir**, jadi sumber harus mengalirkan <InlineMath math="1001\text{ C}" />. Sendok adalah katode, tempat ion perak menerima elektron.
 
 <Chart
-  title={<>Perak yang mengendap pada arus tetap</>}
-  description={<>Pada arus tetap, perak bertambah merata terhadap waktu, mencapai <InlineMath math="1{,}008\text{ g}" /> yang diperlukan lapisan setelah <InlineMath math="60" /> menit.</>}
-  categories={["0", "15", "30", "45", "60"]}
+  title={<>Muatan dalam penyepuhan</>}
+  description={<>Perak memerlukan <InlineMath math="901\text{ C}" />, dan <InlineMath math="1001\text{ C}" /> harus mengalir.</>}
+  bars="apart"
+  categories={["Muatan untuk perak", "Muatan yang harus mengalir"]}
   series={[
-    { label: "Perak mengendap", mark: "line", values: [0, 0.252, 0.504, 0.756, 1.008] },
+    { label: "Muatan", mark: "bar", values: [901, 1001] },
   ]}
-  valueLabel="Perak mengendap (g)"
+  valueLabel="Muatan (C)"
 />
 
 <BlockMath math="\begin{aligned}
-m&=48{,}0\times0{,}00200\times10{,}5=1{,}008\text{ g}\Rightarrow n(\text{Ag})=\tfrac{1{,}008}{108}=9{,}33\times10^{-3}\text{ mol}\\
-Q&=9{,}33\times10^{-3}\times96{.}500=901\text{ C}\\
-t&=\tfrac{901}{0{,}250}=3600\text{ s}=60{,}0\text{ min}
+m&=48{,}0\times0{,}00200\times10{,}5=1{,}008\text{ g}\Rightarrow Q_{\text{Ag}}=\tfrac{1{,}008}{108}\times96{.}500=901\text{ C}\\
+t&=\tfrac{901}{0{,}90\times0{,}250}=4000\text{ s}=66{,}7\text{ min}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="120" /> menit memberi tiap ion perak dua elektron. **Ion perak hanya bermuatan positif satu**.
-- <InlineMath math="6{,}0" /> menit salah mengubah tebal, <InlineMath math="0{,}0200\text{ mm}" /> sebagai <InlineMath math="0{,}000200\text{ cm}" />, yang membuat lapisan sepuluh kali terlalu tipis.
+- <InlineMath math="60{,}0" /> menit mengabaikan muatan yang terbuang. **Hanya <InlineMath math="90\%" /> arus yang mengendapkan perak**.
+- <InlineMath math="54{,}0" /> menit mengalikan dengan <InlineMath math="0{,}90" />, bukan membagi, seakan pemborosan mempercepat penyepuhan.
 - Di anode logam melarut. **Benda yang disepuh selalu menjadi katode**.
