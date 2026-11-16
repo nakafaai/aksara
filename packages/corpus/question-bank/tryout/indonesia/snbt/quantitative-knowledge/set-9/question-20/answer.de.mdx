@@ -1,44 +1,31 @@
-Jeder Term der Entwicklung hat die Form <InlineMath math="a^ib^jc^k" /> mit <InlineMath math="i+j+k=10" />. Der Plan: Zähl alle möglichen Termformen und prüf dann, **welche Terme sich beim Subtrahieren der beiden Entwicklungen aufheben**.
+Die vier Summanden unterscheiden sich nur in den Vorzeichen von <InlineMath math="b" /> und <InlineMath math="c" />, also verfolgst du, **was mit einem gleichartigen Term geschieht**, <InlineMath math="a^ib^jc^l" /> mit <InlineMath math="i+j+l=8" />. Sein Koeffizient in <InlineMath math="(a+b+c)^8" /> sei <InlineMath math="K>0" />.
 
-# Terme in einer Entwicklung
+# Der gemeinsame Koeffizient eines Terms
 
-In <InlineMath math="(a+b+c)^{10}" /> erscheint jedes Tripel natürlicher Exponenten <InlineMath math="(i,j,k)" /> mit <InlineMath math="i+j+k=10" /> als **ein Term mit positivem Koeffizienten**. Zu jedem <InlineMath math="i" /> kann <InlineMath math="j" /> von <InlineMath math="0" /> bis <InlineMath math="10-i" /> laufen, das sind <InlineMath math="11-i" /> Möglichkeiten, und <InlineMath math="k" /> liegt dann fest.
+Ersetzt man <InlineMath math="c" /> durch <InlineMath math="-c" />, wird der Term mit <InlineMath math="(-1)^l" /> multipliziert, ersetzt man <InlineMath math="b" /> durch <InlineMath math="-b" />, mit <InlineMath math="(-1)^j" />. Der gemeinsame Koeffizient ist
 
-<BlockMath math="11+10+9+\dots+1=66=\binom{12}{2}" />
+<BlockMath math="K\left(1-(-1)^l-(-1)^j+(-1)^{j+l}\right)=K\left(1-(-1)^j\right)\left(1-(-1)^l\right)." />
 
-# Vorzeichen in der zweiten Entwicklung
+**Dieses Produkt ist nur dann nicht null, wenn <InlineMath math="j" /> und <InlineMath math="l" /> beide ungerade sind**, und dann gleich <InlineMath math="4K" />. Ist einer gerade, verschwindet der Term.
 
-Schreib <InlineMath math="(a-b-c)^{10}=\big(a+(-b)+(-c)\big)^{10}" />. Der passende Term ist <InlineMath math="a^i(-b)^j(-c)^k=(-1)^{j+k}a^ib^jc^k" /> mit demselben Koeffizienten. Nach dem Subtrahieren wird der Koeffizient von <InlineMath math="a^ib^jc^k" /> mit <InlineMath math="1-(-1)^{j+k}" /> multipliziert.
+# Die Potenzpaare zählen
 
-<BlockMath math="\begin{aligned}
-j+k\ \text{gerade}&\;\Longrightarrow\;1-1=0\\
-j+k\ \text{ungerade}&\;\Longrightarrow\;1-(-1)=2
-\end{aligned}" />
-
-Also **bleibt ein Term nur stehen, wenn <InlineMath math="j+k" /> ungerade ist**. Wegen <InlineMath math="j+k=10-i" /> und weil <InlineMath math="10" /> gerade ist, heißt das: <InlineMath math="i" /> ist ungerade.
-
-# Die verbleibenden Terme zählen
-
-Für <InlineMath math="i=1,3,5,7,9" /> gibt es jeweils <InlineMath math="11-i" /> Möglichkeiten für <InlineMath math="(j,k)" />.
-
-<BlockMath math="10+8+6+4+2=30" />
-
-Das Diagramm zählt die Terme nach dem Exponenten <InlineMath math="i" /> von <InlineMath math="a" />. **Nur die Balken bei ungeradem <InlineMath math="i" /> bleiben übrig**, zusammen <InlineMath math="10+8+6+4+2=30" />.
+**Die Summe zweier ungerader Zahlen ist gerade**, also gilt <InlineMath math="j+l=s" /> mit <InlineMath math="s\in\{2,4,6,8\}" />, und <InlineMath math="i=8-s" /> steht fest. Für jedes <InlineMath math="s" /> sind die ungeraden Paare <InlineMath math="(j,l)" /> gleich <InlineMath math="(1,s-1),(3,s-3),\dots,(s-1,1)" />, also <InlineMath math="\tfrac{s}{2}" /> Stück.
 
 <Chart
-  title={<>Anzahl der Terme <InlineMath math="a^ib^jc^k" /> nach dem Exponenten <InlineMath math="i" /></>}
-  description={<>Für jedes <InlineMath math="i" /> von <InlineMath math="0" /> bis <InlineMath math="10" /> gibt es <InlineMath math="11-i" /> Terme. Die Terme mit geradem <InlineMath math="i" /> heben sich auf, <InlineMath math="36" /> Stück. Die Terme mit ungeradem <InlineMath math="i" /> bleiben, <InlineMath math="30" /> Stück.</>}
+  title={<>Verbleibende Terme nach der Gesamtpotenz von <InlineMath math="b" /> und <InlineMath math="c" /></>}
+  description={<>Für <InlineMath math="j+l=2" />, <InlineMath math="4" />, <InlineMath math="6" /> und <InlineMath math="8" /> gibt es <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4" /> Paare ungerader Potenzen <InlineMath math="(j,l)" />. Zusammen sind es <InlineMath math="10" />.</>}
   bars="apart"
-  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
-  series={[
-    { label: "Bleibt (i ungerade)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 1 ? 11 - i : null)) },
-    { label: "Hebt sich auf (i gerade)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 0 ? 11 - i : null)) },
-  ]}
-  valueLabel="Anzahl der Terme"
+  categories={["2", "4", "6", "8"]}
+  series={[{ label: "Verbleibende Terme", mark: "bar", values: [2, 4, 6, 8].map((s) => s / 2) }]}
+  valueLabel="Terme"
 />
 
-Probe von der anderen Seite: Terme mit geradem <InlineMath math="i" /> gibt es <InlineMath math="11+9+7+5+3+1=36" />, sie heben sich alle auf, und <InlineMath math="30+36=66" /> passt zur ursprünglichen Anzahl.
+Zusammen sind es <InlineMath math="1+2+3+4=10" /> Terme. Zum Beispiel bleibt <InlineMath math="a^6bc" /> mit dem Koeffizienten <InlineMath math="4\cdot56=224" />, während <InlineMath math="a^6b^2" /> verschwindet.
 
-Die Antwort <InlineMath math="66" /> entsteht, wenn du **vergisst, dass sich Terme aufheben**. Die Antwort <InlineMath math="36" /> entsteht, wenn du genau die Terme behältst, die verschwinden, als würden beide Ausdrücke addiert. Die Antwort <InlineMath math="33" /> entsteht, wenn du annimmst, dass genau die Hälfte übrig bleibt.
+# Häufige falsche Ergebnisse
 
-Das vereinfachte Ergebnis hat also <InlineMath math="30" /> Terme.
+- <InlineMath math="24" /> zählt jeden Term mit geradem <InlineMath math="j+l" /> von mindestens <InlineMath math="2" />, **ohne zu prüfen, dass beide ungerade sein müssen**.
+- <InlineMath math="20" /> verlangt nur eine ungerade Potenz von <InlineMath math="b" />, wie bei <InlineMath math="(a+b+c)^8-(a-b+c)^8" />.
+
+Also gibt es <InlineMath math="10" /> Terme mit einem Koeffizienten ungleich null.

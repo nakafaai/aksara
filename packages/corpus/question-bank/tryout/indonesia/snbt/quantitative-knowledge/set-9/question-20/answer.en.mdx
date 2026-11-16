@@ -1,44 +1,31 @@
-Every term of the expansion has the form <InlineMath math="a^ib^jc^k" /> with <InlineMath math="i+j+k=10" />. The plan: count every possible term shape, then check **which terms cancel** when you subtract the two expansions.
+The four terms differ only in the signs of <InlineMath math="b" /> and <InlineMath math="c" />, so track **what happens to one like term** <InlineMath math="a^ib^jc^l" /> with <InlineMath math="i+j+l=8" />. Let its coefficient in <InlineMath math="(a+b+c)^8" /> be <InlineMath math="K>0" />.
 
-# Terms in one expansion
+# The combined coefficient of one term
 
-In <InlineMath math="(a+b+c)^{10}" />, every triple of whole-number exponents <InlineMath math="(i,j,k)" /> with <InlineMath math="i+j+k=10" /> shows up as **one term with a positive coefficient**. For each <InlineMath math="i" />, the exponent <InlineMath math="j" /> can be <InlineMath math="0" /> to <InlineMath math="10-i" />, so there are <InlineMath math="11-i" /> choices, and <InlineMath math="k" /> is then fixed.
+Replacing <InlineMath math="c" /> with <InlineMath math="-c" /> multiplies the term by <InlineMath math="(-1)^l" />, and replacing <InlineMath math="b" /> with <InlineMath math="-b" /> multiplies it by <InlineMath math="(-1)^j" />. The combined coefficient is
 
-<BlockMath math="11+10+9+\dots+1=66=\binom{12}{2}" />
+<BlockMath math="K\left(1-(-1)^l-(-1)^j+(-1)^{j+l}\right)=K\left(1-(-1)^j\right)\left(1-(-1)^l\right)." />
 
-# Signs in the second expansion
+**That product is nonzero only when <InlineMath math="j" /> and <InlineMath math="l" /> are both odd**, and then it equals <InlineMath math="4K" />. If either is even, the term disappears.
 
-Write <InlineMath math="(a-b-c)^{10}=\big(a+(-b)+(-c)\big)^{10}" />. The matching term is <InlineMath math="a^i(-b)^j(-c)^k=(-1)^{j+k}a^ib^jc^k" /> with the same coefficient. After subtracting, the coefficient of <InlineMath math="a^ib^jc^k" /> gets multiplied by <InlineMath math="1-(-1)^{j+k}" />.
+# Counting the power pairs
 
-<BlockMath math="\begin{aligned}
-j+k\ \text{even}&\;\Longrightarrow\;1-1=0\\
-j+k\ \text{odd}&\;\Longrightarrow\;1-(-1)=2
-\end{aligned}" />
-
-So **a term survives only when <InlineMath math="j+k" /> is odd**. Since <InlineMath math="j+k=10-i" /> and <InlineMath math="10" /> is even, that's the same as <InlineMath math="i" /> being odd.
-
-# Counting the surviving terms
-
-For <InlineMath math="i=1,3,5,7,9" />, the number of choices for <InlineMath math="(j,k)" /> is <InlineMath math="11-i" />.
-
-<BlockMath math="10+8+6+4+2=30" />
-
-The chart below counts the terms by the exponent <InlineMath math="i" /> of <InlineMath math="a" />. **Only the bars at odd <InlineMath math="i" /> survive**, and they add up to <InlineMath math="10+8+6+4+2=30" />.
+**The sum of two odd numbers is even**, so <InlineMath math="j+l=s" /> with <InlineMath math="s\in\{2,4,6,8\}" />, and <InlineMath math="i=8-s" /> is fixed. For each <InlineMath math="s" />, the odd pairs <InlineMath math="(j,l)" /> are <InlineMath math="(1,s-1),(3,s-3),\dots,(s-1,1)" />, that is <InlineMath math="\tfrac{s}{2}" /> of them.
 
 <Chart
-  title={<>Number of terms <InlineMath math="a^ib^jc^k" /> by the exponent <InlineMath math="i" /></>}
-  description={<>For each <InlineMath math="i" /> from <InlineMath math="0" /> to <InlineMath math="10" />, there are <InlineMath math="11-i" /> terms. The terms with even <InlineMath math="i" /> cancel, <InlineMath math="36" /> of them. The terms with odd <InlineMath math="i" /> survive, <InlineMath math="30" /> of them.</>}
+  title={<>Surviving terms by the total power of <InlineMath math="b" /> and <InlineMath math="c" /></>}
+  description={<>For <InlineMath math="j+l=2" />, <InlineMath math="4" />, <InlineMath math="6" />, and <InlineMath math="8" />, the number of odd power pairs <InlineMath math="(j,l)" /> is <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, and <InlineMath math="4" />. They add up to <InlineMath math="10" />.</>}
   bars="apart"
-  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
-  series={[
-    { label: "Kept (odd i)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 1 ? 11 - i : null)) },
-    { label: "Cancelled (even i)", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i % 2 === 0 ? 11 - i : null)) },
-  ]}
-  valueLabel="Number of terms"
+  categories={["2", "4", "6", "8"]}
+  series={[{ label: "Surviving terms", mark: "bar", values: [2, 4, 6, 8].map((s) => s / 2) }]}
+  valueLabel="Terms"
 />
 
-Check from the other side: the terms with even <InlineMath math="i" /> number <InlineMath math="11+9+7+5+3+1=36" />, all of them cancel, and <InlineMath math="30+36=66" />, matching the original count.
+The total is <InlineMath math="1+2+3+4=10" /> terms. For example, <InlineMath math="a^6bc" /> survives with coefficient <InlineMath math="4\cdot56=224" />, while <InlineMath math="a^6b^2" /> disappears.
 
-The answer <InlineMath math="66" /> comes from **forgetting that some terms cancel**. The answer <InlineMath math="36" /> comes from keeping exactly the terms that vanish, as if the two expressions were added. The answer <InlineMath math="33" /> comes from assuming exactly half the terms survive.
+# Common wrong results
 
-So the simplified result has <InlineMath math="30" /> terms.
+- <InlineMath math="24" /> counts every term with <InlineMath math="j+l" /> even and at least <InlineMath math="2" />, **without checking that both must be odd**.
+- <InlineMath math="20" /> only asks for an odd power of <InlineMath math="b" />, as in <InlineMath math="(a+b+c)^8-(a-b+c)^8" />.
+
+So the number of terms with a nonzero coefficient is <InlineMath math="10" />.
