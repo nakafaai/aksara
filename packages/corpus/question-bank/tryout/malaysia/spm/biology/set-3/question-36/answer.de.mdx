@@ -1,27 +1,29 @@
-# Die Zonen im Raum als Stufen in der Zeit lesen
+# Die Ziegen und ihr Futter zusammen lesen
 
-An einer Küste, die ins Meer hinauswächst, zeigen die Zonen vom Meer landeinwärts die **Stufen der Sukzession**, die jede Stelle im Lauf der Zeit durchläuft. Die meerseitige Zone ist die jüngste Stufe, die landseitige die älteste.
+Eine Population kann nur wachsen, solange ihr Futter mithält. Hier **fressen die Ziegen ihren eigenen Futtervorrat**, die Pflanzendecke bestimmt also, wie viele Ziegen die Insel tragen kann, und die Ziegen verändern diese Zahl.
 
 <Chart
-  title={<>Überflutung in jeder Mangrovenzone</>}
-  bars="apart"
-  categories={["Zone 1", "Zone 2", "Zone 3"]}
+  title={<>Ziegen und Pflanzendecke auf der Insel</>}
+  categories={["Jahr 0", "Jahr 1", "Jahr 2", "Jahr 3", "Jahr 4", "Jahr 5", "Jahr 6", "Jahr 7", "Jahr 8", "Jahr 9", "Jahr 10", "Jahr 11", "Jahr 12"]}
   series={[
-    { label: "Überflutungen pro Monat", mark: "bar", values: [56, 40, 8] },
+    { label: "Ziegen", mark: "line", values: [20, 30, 60, 120, 200, 260, 280, 250, 180, 150, 160, 155, 158] },
+    { label: "Pflanzendecke (%)", mark: "line", values: [90, 88, 80, 65, 45, 30, 20, 15, 15, 18, 20, 21, 21] },
   ]}
-  valueLabel="Überflutungen pro Monat"
-  description={<>Zone <InlineMath math="1" /> wird <InlineMath math="56" />-mal im Monat überflutet, Zone <InlineMath math="2" /> <InlineMath math="40" />-mal und Zone <InlineMath math="3" /> nur <InlineMath math="8" />-mal. Die Überflutung nimmt ab, je höher der Boden landeinwärts liegt.</>}
+  valueLabel="Wert"
+  description={<>Die Ziegen steigen von <InlineMath math="20" /> auf den Höchststand <InlineMath math="280" /> in Jahr <InlineMath math="6" />, brechen bis Jahr <InlineMath math="9" /> auf <InlineMath math="150" /> ein und bleiben dann bei etwa <InlineMath math="155" />. Die Pflanzendecke fällt bis Jahr <InlineMath math="7" /> von <InlineMath math="90\,\%" /> auf <InlineMath math="15\,\%" /> und erholt sich nur auf etwa <InlineMath math="21\,\%" />.</>}
 />
 
-- I: *Avicennia* und *Sonneratia* sind die Pioniere. Ihre dichten Atemwurzeln bremsen das Wasser, Schlamm setzt sich ab, und der Boden steigt von <InlineMath math="0{,}5\text{ m}" /> in Richtung der <InlineMath math="1{,}5\text{ m}" />, auf denen *Rhizophora* wächst. Aussage I stimmt.
-- II: Zone <InlineMath math="2" /> liegt bei <InlineMath math="1{,}5\text{ m}" />, Zone <InlineMath math="1" /> bei <InlineMath math="0{,}5\text{ m}" />, der Boden muss also um <InlineMath math="1{,}0\text{ m}=100\text{ cm}" /> steigen. Bei <InlineMath math="2\text{ cm}" /> pro Jahr dauert das <InlineMath math="\tfrac{100}{2}=50" /> Jahre, danach passt die Stelle zu den Bäumen von Zone <InlineMath math="2" />. Aussage II stimmt.
-- III: *Bruguiera* wächst in Zone <InlineMath math="3" />, auf dem höchsten Boden, der nur <InlineMath math="8" />-mal im Monat überflutet wird. Sie ist die landseitige Art, nicht die, die am meisten Überflutung erträgt. Aussage III ist falsch.
-- IV: Jede Zone erhöht und festigt den Boden, er wird seltener überflutet und weniger salzig. Diese neuen Bedingungen passen zu späteren Arten, die dann die Bäume verdrängen, die den Boden verändert haben. Aussage IV stimmt.
+<BlockMath math="\text{jährliche Zuwächse}: 10,\ 30,\ 60,\ 80,\ 60,\ 20,\ \text{dann Verluste}" />
 
-Richtig sind also die Aussagen I, II und IV.
+- I: Die Ziegen steigen auf <InlineMath math="280" />, während die Pflanzendecke von <InlineMath math="90\,\%" /> auf <InlineMath math="20\,\%" /> fällt. Bei so wenig Futter bricht die Population ein. Danach trägt die Insel nur noch etwa <InlineMath math="155" /> Ziegen, weit unter dem Höchststand, weil die Beweidung die Pflanzen geschädigt hat. Aussage I stimmt.
+- II: Der größte jährliche Zuwachs beträgt <InlineMath math="200-120=80" /> Ziegen, zwischen Jahr <InlineMath math="3" /> und <InlineMath math="4" />. Aussage II stimmt.
+- III: Ab Jahr <InlineMath math="9" /> bleiben die Zahlen zwischen <InlineMath math="150" /> und <InlineMath math="160" />, eine neue **Tragfähigkeit**. Die Pflanzendecke erholt sich nur auf etwa <InlineMath math="21\,\%" />, die Insel ernährt also weniger Ziegen als zu Beginn. Aussage III stimmt.
+- IV: Auf der Insel gibt es keine Fressfeinde. Der Rückgang folgt dem Verlust der Pflanzendecke, die Ursache ist also Futtermangel. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur I und II verwirft IV und übersieht, dass die Pioniere **den Boden für ihre Nachfolger bereiten**.
-- Nur I, II und III nimmt III an, **doch die Tabelle stellt Bruguiera landeinwärts, auf selten überfluteten Boden**.
-- Nur II, III und IV verwirft die **Schlammfalle der Pionierwurzeln** und nimmt die falsche Lage von Bruguiera an.
+- Nur I und III verwirft II, meist weil der größte Bestand statt des **größten jährlichen Zuwachses** gewählt wird.
+- Nur II, III und IV macht Fressfeinde verantwortlich, **obwohl die Insel keine hat**, und verwirft das Überschießen.
+- Nur I, II und IV nimmt Fressfeinde an und verwirft die niedrigere Tragfähigkeit, die die stabilen Zahlen zeigen.

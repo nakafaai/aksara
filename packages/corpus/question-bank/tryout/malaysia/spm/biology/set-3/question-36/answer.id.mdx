@@ -1,27 +1,29 @@
-# Baca zona dalam ruang sebagai tahap dalam waktu
+# Baca kambing dan makanannya bersamaan
 
-Di pantai yang terus bertambah ke laut, zona dari laut ke darat menunjukkan **tahap suksesi** yang dilalui tiap titik seiring waktu. Zona di tepi laut adalah tahap termuda, dan zona di darat adalah tahap tertua.
+Populasi hanya bisa tumbuh selama makanannya mencukupi. Di sini kambing **memakan persediaan makanannya sendiri**, jadi tutupan tumbuhan menentukan berapa kambing yang bisa ditampung pulau itu, dan kambing mengubah angka itu.
 
 <Chart
-  title={<>Genangan di Tiap Zona Mangrove</>}
-  bars="apart"
-  categories={["Zona 1", "Zona 2", "Zona 3"]}
+  title={<>Kambing dan Tutupan Tumbuhan di Pulau</>}
+  categories={["Tahun 0", "Tahun 1", "Tahun 2", "Tahun 3", "Tahun 4", "Tahun 5", "Tahun 6", "Tahun 7", "Tahun 8", "Tahun 9", "Tahun 10", "Tahun 11", "Tahun 12"]}
   series={[
-    { label: "Kali tergenang per bulan", mark: "bar", values: [56, 40, 8] },
+    { label: "Kambing", mark: "line", values: [20, 30, 60, 120, 200, 260, 280, 250, 180, 150, 160, 155, 158] },
+    { label: "Tutupan tumbuhan (%)", mark: "line", values: [90, 88, 80, 65, 45, 30, 20, 15, 15, 18, 20, 21, 21] },
   ]}
-  valueLabel="Kali tergenang per bulan"
-  description={<>Zona <InlineMath math="1" /> tergenang <InlineMath math="56" /> kali sebulan, zona <InlineMath math="2" /> <InlineMath math="40" /> kali, dan zona <InlineMath math="3" /> hanya <InlineMath math="8" /> kali. Genangan berkurang saat tanah makin tinggi ke arah darat.</>}
+  valueLabel="Nilai"
+  description={<>Kambing naik dari <InlineMath math="20" /> ke puncak <InlineMath math="280" /> pada tahun ke-<InlineMath math="6" />, anjlok ke <InlineMath math="150" /> pada tahun ke-<InlineMath math="9" />, lalu bertahan sekitar <InlineMath math="155" />. Tutupan tumbuhan turun dari <InlineMath math="90\%" /> ke <InlineMath math="15\%" /> pada tahun ke-<InlineMath math="7" /> dan hanya pulih sampai sekitar <InlineMath math="21\%" />.</>}
 />
 
-- I: *Avicennia* dan *Sonneratia* adalah spesies perintis. Akar napasnya yang rapat memperlambat air sehingga lumpur mengendap, dan ini meninggikan tanah dari <InlineMath math="0.5\text{ m}" /> menuju <InlineMath math="1.5\text{ m}" /> tempat *Rhizophora* tumbuh. Pernyataan I benar.
-- II: zona <InlineMath math="2" /> berada di <InlineMath math="1.5\text{ m}" /> dan zona <InlineMath math="1" /> di <InlineMath math="0.5\text{ m}" />, jadi tanah harus naik <InlineMath math="1.0\text{ m}=100\text{ cm}" />. Dengan <InlineMath math="2\text{ cm}" /> per tahun, itu butuh <InlineMath math="\tfrac{100}{2}=50" /> tahun, setelah itu tempat itu cocok bagi pohon zona <InlineMath math="2" />. Pernyataan II benar.
-- III: *Bruguiera* tumbuh di zona <InlineMath math="3" />, tanah tertinggi yang hanya tergenang <InlineMath math="8" /> kali sebulan. Ia spesies sisi darat, bukan yang paling tahan genangan. Pernyataan III salah.
-- IV: tiap zona meninggikan dan memadatkan tanah, membuatnya lebih jarang tergenang dan kurang asin. Kondisi baru itu cocok bagi spesies berikutnya, yang lalu mengalahkan pohon yang telah mengubah tanah itu. Pernyataan IV benar.
+<BlockMath math="\text{pertambahan tahunan}: 10,\ 30,\ 60,\ 80,\ 60,\ 20,\ \text{lalu berkurang}" />
 
-Jadi pernyataan I, II, dan IV benar.
+- I: kambing naik sampai <InlineMath math="280" /> sementara tutupan tumbuhan turun dari <InlineMath math="90\%" /> ke <InlineMath math="20\%" />. Dengan makanan yang tinggal sedikit, populasi anjlok. Pulau itu lalu hanya menampung sekitar <InlineMath math="155" /> kambing, jauh di bawah puncak, karena penggembalaan merusak tumbuhan. Pernyataan I benar.
+- II: pertambahan tahunan terbesar adalah <InlineMath math="200-120=80" /> ekor, antara tahun ke-<InlineMath math="3" /> dan ke-<InlineMath math="4" />. Pernyataan II benar.
+- III: mulai tahun ke-<InlineMath math="9" /> jumlahnya bertahan di antara <InlineMath math="150" /> dan <InlineMath math="160" />, yaitu **daya dukung** yang baru. Tutupan tumbuhan hanya pulih sampai sekitar <InlineMath math="21\%" />, jadi pulau itu menghidupi lebih sedikit kambing daripada di awal. Pernyataan III benar.
+- IV: pulau itu tidak punya pemangsa. Penurunan mengikuti hilangnya tutupan tumbuhan, jadi penyebabnya kekurangan makanan. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
 
 # Mengapa pilihan lain salah
 
-- I dan II saja menolak IV, melewatkan bahwa perintis **menyiapkan lahan** bagi spesies yang menggantikannya.
-- I, II, dan III saja menerima III, **padahal tabel menempatkan Bruguiera di darat, di tanah yang jarang tergenang**.
-- II, III, dan IV saja menolak **peran akar perintis menjebak lumpur** dan menerima letak Bruguiera yang keliru.
+- I dan III saja menolak II, biasanya setelah memilih populasi terbesar alih-alih **pertambahan tahunan terbesar**.
+- II, III, dan IV saja menyalahkan pemangsa, **padahal pulau itu tidak punya pemangsa**, dan menolak lonjakan berlebih.
+- I, II, dan IV saja menerima pemangsa dan menolak daya dukung lebih rendah yang ditunjukkan angka yang stabil.
