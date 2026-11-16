@@ -55,6 +55,14 @@ const CORPUS_ROOTS = [
 ] as const;
 const CORPUS_PARTS = await readCorpusParts(CORPUS, CORPUS_ROOTS);
 
+/**
+ * The time each corpus test gets. A part's check reads every document in it,
+ * and the split check walks a whole root twice, once whole and once part by
+ * part, so its time grows with the root: the question bank's walk reached the
+ * default ten seconds on 16 November 2026.
+ */
+const CORPUS_TIMEOUT = 60_000;
+
 for (const [[root, , minimum], parts] of Arr.zip(CORPUS_ROOTS, CORPUS_PARTS)) {
   checkTest(
     `splits ${root} into parts that hold every document`,
@@ -63,7 +71,8 @@ for (const [[root, , minimum], parts] of Arr.zip(CORPUS_ROOTS, CORPUS_PARTS)) {
       const held = yield* Effect.forEach(parts, collectLessonFiles);
       assert.ok(documents.length >= minimum);
       assert.strictEqual(Arr.flatten(held).length, documents.length);
-    })
+    }),
+    CORPUS_TIMEOUT
   );
   for (const part of parts) {
     checkTest(
@@ -72,7 +81,7 @@ for (const [[root, , minimum], parts] of Arr.zip(CORPUS_ROOTS, CORPUS_PARTS)) {
         const report = yield* checkLessonRoot(part);
         assert.deepEqual(report.issues, []);
       }),
-      60_000
+      CORPUS_TIMEOUT
     );
   }
 }
