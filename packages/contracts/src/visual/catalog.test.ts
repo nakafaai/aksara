@@ -1,4 +1,4 @@
-import { describe, expect, it } from "@effect/vitest";
+import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { Array as Arr, Order } from "effect";
 import {
   decodeStrict,
@@ -9,8 +9,10 @@ import {
   answerState,
   assessmentVisuals,
   FIGURE_NAMES,
+  type FigureName,
   FigureNameSchema,
   VISUAL_NAMES,
+  type VisualName,
   VisualNameSchema,
 } from "#contracts/visual/catalog";
 
@@ -26,11 +28,11 @@ const MARKUP = [
   "Highlight",
   "InlineMath",
   "MathContainer",
-];
+] as const;
 
 describe("visual catalog", () => {
   it("names every component of Nakafa's renderer once, in code-unit order", () => {
-    expect(VISUAL_NAMES).toHaveLength(84);
+    expect(VISUAL_NAMES).toHaveLength(184);
     expect(VISUAL_NAMES).toEqual(
       Arr.sort(Arr.dedupe(VISUAL_NAMES), Order.String)
     );
@@ -40,6 +42,9 @@ describe("visual catalog", () => {
   it("draws every component as a figure except the markup", () => {
     expect(Arr.difference(VISUAL_NAMES, FIGURE_NAMES)).toEqual(MARKUP);
     expect(FigureNameSchema.literals).toEqual(FIGURE_NAMES);
+    expectTypeOf<Exclude<VisualName, FigureName>>().toEqualTypeOf<
+      (typeof MARKUP)[number]
+    >();
   });
 
   it("checks a lab, a 3D scene, and a chart against the same schemas a lesson uses", () => {

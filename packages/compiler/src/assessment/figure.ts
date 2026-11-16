@@ -1,4 +1,7 @@
-import { FigureNodeSchema } from "@nakafa/aksara-contracts/assessment/figure";
+import {
+  type FigureNode,
+  FigureNodeSchema,
+} from "@nakafa/aksara-contracts/assessment/figure";
 import type { RichText } from "@nakafa/aksara-contracts/assessment/inline";
 import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
 import {
@@ -7,7 +10,11 @@ import {
   type VisualName,
 } from "@nakafa/aksara-contracts/visual/catalog";
 import { Array as Arr, Effect, Option, Predicate, Schema } from "effect";
-import { type BlockSite, sourceError } from "#compiler/assessment/error";
+import {
+  type AssessmentSourceError,
+  type BlockSite,
+  sourceError,
+} from "#compiler/assessment/error";
 import { plainText } from "#compiler/assessment/inline";
 import { decodeTreeProps } from "#compiler/tree/catalog";
 
@@ -63,7 +70,13 @@ function hideAnswer(
  * schema has checked the props already, so a node that its contract then
  * refuses is a defect, not an authoring failure.
  */
-export const figureNode = Effect.fn("AksaraCompiler.figureNode")(function* (
+export const figureNode: (
+  element: ContentTreeElement,
+  component: VisualName,
+  site: BlockSite
+) => Effect.Effect<FigureNode, AssessmentSourceError> = Effect.fn(
+  "AksaraCompiler.figureNode"
+)(function* (
   element: ContentTreeElement,
   component: VisualName,
   site: BlockSite
