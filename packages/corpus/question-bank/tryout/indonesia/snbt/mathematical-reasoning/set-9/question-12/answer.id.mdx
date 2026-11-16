@@ -23,6 +23,21 @@ d=14 &: (14+4)\times8{,}488=18\times8{,}488=152{,}784\ge150
 
 Setoran <InlineMath math="13{,}5" /> juta masih kurang, sedangkan <InlineMath math="14" /> juta sudah cukup. **Setoran yang lebih besar selalu memberi saldo lebih besar**, jadi <InlineMath math="14" /> juta adalah yang paling kecil.
 
+Grafik berikut menghitung saldo akhir tahun ke-<InlineMath math="6" /> untuk setoran kelipatan setengah juta. **Batang <InlineMath math="13{,}5" /> juta masih di bawah garis target**, dan batang pertama yang melewatinya adalah <InlineMath math="14" /> juta.
+
+<Chart
+  title={<>Saldo akhir tahun ke-<InlineMath math="6" /> menurut setoran tahunan</>}
+  description={<>Untuk setoran <InlineMath math="12" />, <InlineMath math="12{,}5" />, <InlineMath math="13" />, <InlineMath math="13{,}5" />, <InlineMath math="14" />, <InlineMath math="14{,}5" />, dan <InlineMath math="15" /> juta rupiah, saldonya sekitar <InlineMath math="135{,}8" />, <InlineMath math="140{,}1" />, <InlineMath math="144{,}3" />, <InlineMath math="148{,}5" />, <InlineMath math="152{,}8" />, <InlineMath math="157{,}0" />, dan <InlineMath math="161{,}3" /> juta rupiah. Garis datar menandai target <InlineMath math="150" /> juta rupiah. Sumbu nilai dimulai dari <InlineMath math="130" />.</>}
+  categories={["12", "12,5", "13", "13,5", "14", "14,5", "15"]}
+  bars="apart"
+  series={[
+    { label: "Saldo akhir tahun ke-6 (juta rupiah)", mark: "bar", values: [12, 12.5, 13, 13.5, 14, 14.5, 15].map((d) => (d + 4) * 8.488) },
+    { label: "Target 150 juta", mark: "line", values: [150, 150, 150, 150, 150, 150, 150] },
+  ]}
+  valueRange={{ min: 130, max: 165 }}
+  valueLabel="Saldo (juta rupiah)"
+/>
+
 # Pilihan yang keliru
 
 Setiap pilihan lain **melewatkan satu syarat dari aturan**.

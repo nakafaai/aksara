@@ -19,6 +19,18 @@ From midnight to 05:15 there are <InlineMath math="5\times60+15=315" /> minutes.
 
 Check: from 21:05 to 24:00 is <InlineMath math="175" /> minutes, plus <InlineMath math="315" /> minutes to 05:15, so <InlineMath math="490" /> minutes. Take off <InlineMath math="20" /> minutes awake and the effective sleep is <InlineMath math="470" /> minutes, exactly the average.
 
+The diagram below lays out that night from bedtime to wake-up. **The time before and after midnight has to add up to <InlineMath math="490" /> minutes**, which is effective sleep plus time awake.
+
+<Mermaid
+  title={<>Time in bed from 21:05 to 05:15</>}
+  description={<>From 21:05 to 24:00 is <InlineMath math="175" /> minutes, and from 24:00 to 05:15 is <InlineMath math="315" /> minutes, so the time in bed is <InlineMath math="490" /> minutes. Taking off <InlineMath math="20" /> minutes awake leaves <InlineMath math="470" /> minutes of effective sleep.</>}
+  chart={`flowchart LR
+    A["Bedtime 21:05"] -->|"175 minutes"| B["Midnight 24:00"]
+    B -->|"315 minutes"| C["Wake up 05:15"]
+    C --> D["In bed 490 minutes"]
+    D -->|"minus 20 minutes awake"| E["Effective sleep 470 minutes"]`}
+/>
+
 # The wrong options
 
 Each other option **uses the wrong measure for how long to sleep** or forgets the time awake.

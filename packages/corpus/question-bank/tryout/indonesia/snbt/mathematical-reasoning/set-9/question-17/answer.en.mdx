@@ -17,6 +17,20 @@ On Tuesday, machine P needs only <InlineMath math="1" /> more hour to hit the li
 
 Machine Q is simpler: two blocks of <InlineMath math="7" /> running hours and <InlineMath math="1" /> maintenance hour fill the <InlineMath math="16" /> shift hours exactly, so it starts from zero every day and runs <InlineMath math="14" /> hours.
 
+The chart below splits Tuesday's <InlineMath math="16" /> shift hours for both machines. **Machine P loses one running hour compared with Monday** because the hours carried from Monday force three maintenance stops.
+
+<Chart
+  title={<>Running and maintenance hours on Tuesday</>}
+  description={<>Machine P runs <InlineMath math="13" /> hours and gets <InlineMath math="3" /> hours of maintenance. Machine Q runs <InlineMath math="14" /> hours and gets <InlineMath math="2" /> hours of maintenance. Each machine fills exactly <InlineMath math="16" /> shift hours.</>}
+  categories={["Machine P", "Machine Q"]}
+  bars="apart"
+  series={[
+    { label: "Running hours", mark: "bar", values: [1 + 5 + 5 + 2, 7 + 7] },
+    { label: "Maintenance hours", mark: "bar", values: [3, 2] },
+  ]}
+  valueLabel="Hours"
+/>
+
 # Good parts on Tuesday
 
 <BlockMath math="13\times114+14\times81=1{,}482+1{,}134=2{,}616" />

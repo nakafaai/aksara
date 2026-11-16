@@ -29,6 +29,20 @@ Maschine Q läuft <InlineMath math="7" /> Stunden und wird dann <InlineMath math
 
 Kontrolliere das, indem du **jeden Tag einzeln addierst**: Montag bringt <InlineMath math="14\times114+14\times81=2{.}730" />, Dienstag und Mittwoch je <InlineMath math="13\times114+14\times81=2{.}616" />. Zusammen sind das <InlineMath math="2{.}730+2{.}616+2{.}616=7{.}962" />, dasselbe.
 
+Das Diagramm summiert die guten Teile bis zum Ende jedes Tages. **Der Mittwochsbalken bleibt knapp unter der Auftragslinie**, es fehlen <InlineMath math="38" /> Teile.
+
+<Chart
+  title={<>Gesammelte gute Teile bis zum Ende jedes Tages</>}
+  description={<>Bis Ende Montag sind <InlineMath math="2{.}730" /> gute Teile gesammelt, bis Ende Dienstag <InlineMath math="5{.}346" /> und bis Ende Mittwoch <InlineMath math="7{.}962" />. Die waagerechte Linie markiert den Auftrag von <InlineMath math="8{.}000" /> guten Teilen.</>}
+  categories={["Montag", "Dienstag", "Mittwoch"]}
+  bars="apart"
+  series={[
+    { label: "Bisher gesammelte gute Teile", mark: "bar", values: [14 * 114 + 14 * 81, 14 * 114 + 14 * 81 + 13 * 114 + 14 * 81, 40 * 114 + 42 * 81] },
+    { label: "Auftrag 8.000", mark: "line", values: [8000, 8000, 8000] },
+  ]}
+  valueLabel="Gute Teile"
+/>
+
 # Fallen, die du vermeiden solltest
 
 Der Fehlbetrag ist klein, deshalb **kippt schon eine falsch gezählte Stunde das Ergebnis**.

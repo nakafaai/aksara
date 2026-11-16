@@ -10,6 +10,20 @@ Even the two smallest teams make <InlineMath math="9+10=19" /> people, more than
 
 The three smallest teams make <InlineMath math="9+10+12=31" /> people, more than the <InlineMath math="30" /> seats of the bus. So one bus trip carries at most two teams. Any two teams fit on the bus, since the two largest make only <InlineMath math="13+14=27" /> people.
 
+The chart below puts each team next to the minibus capacity. **Each bar fits on its own, but the two smallest bars alone make <InlineMath math="19" /> people**, so one minibus can only carry one team.
+
+<Chart
+  title={<>Members of each team and minibus capacity</>}
+  description={<>The six teams have <InlineMath math="9" />, <InlineMath math="10" />, <InlineMath math="12" />, <InlineMath math="12" />, <InlineMath math="13" />, and <InlineMath math="14" /> members. The flat line marks the minibus capacity of <InlineMath math="14" /> people.</>}
+  bars="apart"
+  categories={["9", "10", "12", "12", "13", "14"]}
+  series={[
+    { label: "Team members", mark: "bar", values: [9, 10, 12, 12, 13, 14] },
+    { label: "Minibus capacity", mark: "line", values: [14, 14, 14, 14, 14, 14] },
+  ]}
+  valueLabel="People"
+/>
+
 # The cheapest plan
 
 Say there are <InlineMath math="b" /> bus trips and <InlineMath math="m" /> minibus trips. All six teams must travel, so <InlineMath math="2b+m\ge6" />, with <InlineMath math="b\le2" /> and <InlineMath math="m\le4" />. Try each value of <InlineMath math="b" />.

@@ -31,6 +31,20 @@ Only <InlineMath math="b=2" /> works, so **both bus trips are a must**, and <Inl
 
 Check the times: the two bus trips arrive at 07:25 and 08:15, and the three minibus trips use the two 07:00 departures and one 07:40 departure. All of them arrive before 08:30.
 
+The chart below counts the seats of several trip plans that still arrive on time. **The first bar past the <InlineMath math="100" /> line is two buses and three minibuses**, the cheapest plan that's enough.
+
+<Chart
+  title={<>Seats for trip plans that arrive by 08:30</>}
+  description={<>One bus and four minibuses give <InlineMath math="86" /> seats. Two buses and two minibuses give <InlineMath math="88" /> seats. Two buses and three minibuses give <InlineMath math="102" /> seats for <InlineMath math="\text{Rp}495{,}000" />. Two buses and four minibuses give <InlineMath math="116" /> seats. The flat line marks <InlineMath math="100" /> participants.</>}
+  categories={["1 bus, 4 minibuses", "2 buses, 2 minibuses", "2 buses, 3 minibuses", "2 buses, 4 minibuses"]}
+  bars="apart"
+  series={[
+    { label: "Seats", mark: "bar", values: [30 + 4 * 14, 60 + 2 * 14, 60 + 3 * 14, 60 + 4 * 14] },
+    { label: "100 participants", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Seats"
+/>
+
 # The wrong options
 
 The other options **forget the time limit or don't search for the cheapest mix**.

@@ -18,6 +18,21 @@ Berat <InlineMath math="36\text{ kg}" /> hanya memberi <InlineMath math="105" />
 
 Setiap tambahan satu kilogram memberi <InlineMath math="750\text{ g}" /> dan paling banyak satu batch baru yang mengambil <InlineMath math="200\text{ g}" />. Jadi berat yang lebih besar tidak pernah memberi kantong lebih sedikit, dan berat di bawah <InlineMath math="36\text{ kg}" /> pasti kurang. Berat dark paling kecil adalah <InlineMath math="38\text{ kg}" />.
 
+Grafik berikut menghitung kantong dark untuk beberapa berat biji hijau. **Batang <InlineMath math="37\text{ kg}" /> masih di bawah garis pesanan** karena kilogram ketiga puluh tujuh memaksa batch keempat, dan batang pertama yang cukup adalah <InlineMath math="38\text{ kg}" />.
+
+<Chart
+  title={<>Banyak kantong dark menurut berat biji hijau</>}
+  description={<>Biji hijau <InlineMath math="35" />, <InlineMath math="36" />, <InlineMath math="37" />, <InlineMath math="38" />, dan <InlineMath math="39\text{ kg}" /> menghasilkan <InlineMath math="102" />, <InlineMath math="105" />, <InlineMath math="107" />, <InlineMath math="110" />, dan <InlineMath math="113" /> kantong dark. Garis datar menandai pesanan <InlineMath math="108" /> kantong. Sumbu nilai dimulai dari <InlineMath math="95" />.</>}
+  bars="apart"
+  categories={["35", "36", "37", "38", "39"]}
+  series={[
+    { label: "Kantong dark", mark: "bar", values: [35, 36, 37, 38, 39].map((w) => Math.floor((750 * w - 200 * Math.ceil(w / 12)) / 250)) },
+    { label: "Pesanan 108 kantong", mark: "line", values: [108, 108, 108, 108, 108] },
+  ]}
+  valueRange={{ min: 95, max: 115 }}
+  valueLabel="Banyak kantong"
+/>
+
 # Kantong light dari sisa biji
 
 Sisa biji hijau adalah <InlineMath math="50-38=12\text{ kg}" />. **Berat ini pas untuk satu batch**, jadi uji rasanya hanya <InlineMath math="200\text{ g}" />.
