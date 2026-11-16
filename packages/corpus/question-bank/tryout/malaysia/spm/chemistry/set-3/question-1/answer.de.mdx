@@ -1,0 +1,22 @@
+# Nur übereinstimmende Werte nehmen, dann das Stoffmengenverhältnis
+
+Die Grobtitration sucht nur den Endpunkt und geht nie in den Mittelwert ein. Von den vier Läufen stimmen <InlineMath math="24{,}10" />, <InlineMath math="24{,}15" /> und <InlineMath math="24{,}12" /> auf <InlineMath math="0{,}05\text{ cm}^3" /> überein, während <InlineMath math="24{,}60" /> um etwa <InlineMath math="0{,}5\text{ cm}^3" /> übertitriert ist. Der **Mittelwert der übereinstimmenden Werte** ist <InlineMath math="\tfrac{24{,}10 + 24{,}15 + 24{,}12}{3} = 24{,}12\text{ cm}^3" />.
+
+<Chart
+  title={<>Titrationswerte aus fünf Durchgängen</>}
+  bars="apart"
+  categories={["Grob", "Lauf 1", "Lauf 2", "Lauf 3", "Lauf 4"]}
+  series={[
+    { label: "Volumen Säure (cm³)", mark: "bar", values: [25.4, 24.1, 24.15, 24.6, 24.12] },
+  ]}
+  valueLabel="Volumen Säure (cm³)"
+  description={<>Grob <InlineMath math="25{,}40" />, Lauf <InlineMath math="1" /> <InlineMath math="24{,}10" />, Lauf <InlineMath math="2" /> <InlineMath math="24{,}15" />, Lauf <InlineMath math="3" /> <InlineMath math="24{,}60" /> und Lauf <InlineMath math="4" /> <InlineMath math="24{,}12\text{ cm}^3" />.</>}
+/>
+
+Die Lauge enthält <InlineMath math="0{,}100 \times \tfrac{25{,}0}{1000} = 0{,}00250" /> mol, und <InlineMath math="\text{NaOH} + \text{HCl} \rightarrow \text{NaCl} + \text{H}_2\text{O}" /> ist eins zu eins. Also <InlineMath math="c = 0{,}00250 \div \tfrac{24{,}12}{1000} = 0{,}104\text{ mol dm}^{-3}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}102\text{ mol dm}^{-3}" /> mittelt alle fünf Werte, **die Grobtitration und den übertitrierten Lauf eingeschlossen**.
+- <InlineMath math="0{,}0965\text{ mol dm}^{-3}" /> dreht das Verhältnis um: <InlineMath math="0{,}100 \times 24{,}12 \div 25{,}0" />.
+- <InlineMath math="0{,}0984\text{ mol dm}^{-3}" /> nimmt nur die Grobtitration.
