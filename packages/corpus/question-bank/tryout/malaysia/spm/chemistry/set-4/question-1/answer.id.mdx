@@ -1,0 +1,22 @@
+# Titer berasal dari dua pembacaan, jadi membawa dua ketidakpastian
+
+Titer adalah selisih pembacaan: <InlineMath math="24.80 - 1.25 = 23.55" /> cm³. Tiap pembacaan bisa meleset <InlineMath math="0.05" /> cm³ ke arah mana pun, dan pada kasus terburuk kedua galat bertambah, jadi ketidakpastian titer **±<InlineMath math="<InlineMath math="0.10" />\text{ cm}^3" />**.
+
+<Chart
+  title={<>Pembacaan Buret</>}
+  bars="apart"
+  categories={["Awal", "Akhir"]}
+  series={[
+    { label: "Pembacaan (cm³)", mark: "bar", values: [1.25, 24.8] },
+  ]}
+  valueLabel="Pembacaan (cm³)"
+  description={<>Pembacaan awal <InlineMath math="<InlineMath math="1.25" />\text{ cm}^3" />, pembacaan akhir <InlineMath math="<InlineMath math="24.80" />\text{ cm}^3" />. Tiap pembacaan punya ketidakpastian ±<InlineMath math="<InlineMath math="0.05" />\text{ cm}^3" />.</>}
+/>
+
+Sebagai bagian dari titer: <InlineMath math="\tfrac{0.10}{23.55} \times 100\% = 0.42\%" />. Titer yang lebih besar membuat ±<InlineMath math="<InlineMath math="0.10" />\text{ cm}^3" /> yang sama menjadi persen yang lebih kecil, makanya titrasi menargetkan titer di atas sekitar <InlineMath math="20" /> cm³.
+
+# Kenapa pilihan lain salah
+
+- ±<InlineMath math="<InlineMath math="0.05" />\text{ cm}^3" /> hanya menghitung satu pembacaan, padahal titer butuh **kedua** pembacaan awal dan akhir.
+- <InlineMath math="<InlineMath math="26.05" />\text{ cm}^3" /> menjumlahkan pembacaan, bukan mengurangkannya.
+- <InlineMath math="4.2" />% salah satu tempat desimal: <InlineMath math="0.10 \div 23.55" /> adalah <InlineMath math="0.0042" />, yaitu <InlineMath math="0.42\%" />.
