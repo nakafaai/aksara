@@ -3,6 +3,16 @@ Start by naming the flaw in the developer's reasoning. Two features have to show
 1. The people who answer **choose for themselves to take part**. Users who exercise a lot are keener to fill in a survey about exercise, so they're over-represented.
 2. The result from those respondents is **carried over to the whole group** that was invited, meaning all the app's users.
 
+The diagram below draws both features in the developer's reasoning. **The voluntary filter sits in the middle**, and the result after that filter is carried back to all users.
+
+<Mermaid
+  title={<>The two features of the flaw in the app developer's reasoning</>}
+  description={<>All users are invited. Users who exercise a lot are keener to fill in the survey, so of the <InlineMath math="800" /> respondents, <InlineMath math="90\%" /> exercise often. That figure is then carried over to all users.</>}
+  chart={`flowchart LR
+    U["All users invited"] -->|"choose for themselves to answer"| R["800 respondents, 90% exercise often"]
+    R -.->|"carried over to everyone"| S["Taken as 90% of all users"]`}
+/>
+
 The radio station's reasoning has both features. Listeners decide for themselves whether to phone in, and people who like the show are more likely to call. Then the <InlineMath math="85\%" /> of callers is carried over to all listeners.
 
 The other arguments have only one feature, or neither.

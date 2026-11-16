@@ -6,6 +6,20 @@ Hitung setiap pernyataan dari tabel.
 
 **Pernyataan 3** bernilai Benar. <InlineMath math="1{,}2\times305=366" />, sedangkan minggu ke-<InlineMath math="8" /> tercatat <InlineMath math="380" />. Jadi, kenaikannya lebih dari <InlineMath math="20\%" />, tepatnya <InlineMath math="\frac{380-305}{305}\approx24{,}6\%" />.
 
+Grafik berikut menaruh pemakaian tangga di samping dua garis acuan. **Minggu ke-<InlineMath math="8" /> masih di atas garis <InlineMath math="366" />**, jadi kenaikannya lebih dari <InlineMath math="20\%" />.
+
+<Chart
+  title={<>Perjalanan naik tangga dibandingkan dengan rata-rata sebelum poster</>}
+  description={<>Rata-rata minggu <InlineMath math="1" /> sampai <InlineMath math="4" /> adalah <InlineMath math="305" />, dan naik <InlineMath math="20\%" /> dari angka itu adalah <InlineMath math="366" />. Minggu <InlineMath math="8" /> mencatat <InlineMath math="380" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Naik tangga", mark: "line", values: [300, 320, 310, 290, 700, 560, 430, 380] },
+    { label: "Rata-rata minggu 1 sampai 4", mark: "line", values: Array.from({ length: 8 }, () => (300 + 320 + 310 + 290) / 4) },
+    { label: "Naik 20% dari rata-rata itu", mark: "line", values: Array.from({ length: 8 }, () => (((300 + 320 + 310 + 290) / 4) * 12) / 10) },
+  ]}
+  valueLabel="Perjalanan per hari"
+/>
+
 **Pernyataan 4** bernilai Salah. Lift turun <InlineMath math="2{.}380-2{.}000=380" />, sedangkan tangga naik <InlineMath math="700-290=410" />. Kedua angka itu tidak sama.
 
 Jadi, pernyataan 2 dan 3 benar, sedangkan pernyataan 1 dan 4 salah.

@@ -1,5 +1,17 @@
 Choose Mungkin (possible) or Tidak mungkin (impossible) for each order. Test each against all five rules. One violation is enough to make an order **impossible**.
 
+The chart below counts the rules each order breaks. **An order with a zero bar is a possible order**.
+
+<Chart
+  title={<>Rules broken by each presentation order</>}
+  description={<>Order 1 breaks <InlineMath math="1" /> rule, rule 4. Order 3 breaks <InlineMath math="1" /> rule, rule 2. Orders 2 and 4 break no rule.</>}
+  categories={["Order 1", "Order 2", "Order 3", "Order 4"]}
+  bars="apart"
+  series={[{ label: "Rules broken", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Rules"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Order 1**: impossible. U in third place comes just after R in second place, which breaks rule 4.
 
 **Order 2**: possible. Q follows P directly, R comes before S, T is last, U in fifth place is not next to R in third, and S is fourth.

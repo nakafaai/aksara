@@ -35,6 +35,17 @@ Semua jadwal yang sah tercatat di tabel berikut.
 
 <BlockMath math="3 + 2 + 2 + 2 = 9" />
 
+Grafik berikut merangkum banyak jadwal pada setiap kasus batik. **Hanya kasus batik di Senin pagi yang memberi tiga jadwal**, karena di sana syarat 5 menggugurkan satu dari empat calon.
+
+<Chart
+  title={<>Banyak jadwal sah menurut sesi batik</>}
+  description={<>Batik di Senin pagi memberi <InlineMath math="3" /> jadwal. Batik di Senin siang, Selasa pagi, dan Selasa siang masing-masing memberi <InlineMath math="2" /> jadwal. Totalnya <InlineMath math="9" />.</>}
+  categories={["Senin pagi", "Senin siang", "Selasa pagi", "Selasa siang"]}
+  bars="apart"
+  series={[{ label: "Banyak jadwal sah", mark: "bar", values: [3, 2, 2, 2] }]}
+  valueLabel="Banyak jadwal"
+/>
+
 Hasil lain biasanya berasal dari satu langkah yang terlewat. Angka <InlineMath math="5" /> muncul jika batik dan gamelan hanya dicari pada hari yang sama, sehingga kasus 2 dan 4 hilang. Angka <InlineMath math="10" /> muncul jika syarat 5 lupa dipakai, karena kasus 1 lalu mendapat jadwal tambahan dengan kuliner di Selasa pagi dan wayang di Selasa siang.
 
 Jadi, banyak jadwal yang memenuhi semua syarat adalah <InlineMath math="9" />.

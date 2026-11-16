@@ -11,6 +11,20 @@ You can't compare these three offers with a single number, because **the result 
 | <InlineMath math="6" /> | <InlineMath math="192" /> | <InlineMath math="240-35=205" /> | <InlineMath math="5\cdot40=200" /> |
 | <InlineMath math="8" /> | <InlineMath math="256" /> | <InlineMath math="320-35=285" /> | <InlineMath math="6\cdot40=240" /> |
 
+The chart below draws the three cost columns. **The lines cross each other**, so the cheapest shop changes with the number of T-shirts.
+
+<Chart
+  title={<>Cost of T-shirts at the three shops</>}
+  description={<>For <InlineMath math="4" /> T-shirts, the cost is <InlineMath math="128" />, <InlineMath math="125" />, and <InlineMath math="120" /> thousand rupiah at shops A, B, and C. For <InlineMath math="5" />, it's <InlineMath math="160" />, <InlineMath math="165" />, and <InlineMath math="160" />. For <InlineMath math="6" />, it's <InlineMath math="192" />, <InlineMath math="205" />, and <InlineMath math="200" />. For <InlineMath math="8" />, it's <InlineMath math="256" />, <InlineMath math="285" />, and <InlineMath math="240" />.</>}
+  categories={["4", "5", "6", "8"]}
+  series={[
+    { label: "Shop A", mark: "line", values: [4, 5, 6, 8].map((n) => (n * 40 * 8) / 10) },
+    { label: "Shop B, one transaction", mark: "line", values: [4, 5, 6, 8].map((n) => n * 40 - 35) },
+    { label: "Shop C", mark: "line", values: [4, 5, 6, 8].map((n) => (n - Math.floor(n / 4)) * 40) },
+  ]}
+  valueLabel="Thousand rupiah"
+/>
+
 The first statement is true. For <InlineMath math="4" /> T-shirts, shop C asks <InlineMath math="120" />, cheaper than <InlineMath math="125" /> and <InlineMath math="128" />.
 
 The second statement is true. Shop B's cut applies per transaction. One transaction of <InlineMath math="8" /> T-shirts earns only one cut, giving <InlineMath math="285" />. Two transactions of <InlineMath math="4" /> T-shirts earn two cuts.

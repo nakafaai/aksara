@@ -15,6 +15,19 @@ This list gives two complete valid schedules.
 | I | wayang | batik | gamelan | angklung | dongeng | kuliner |
 | II | wayang | batik | gamelan | kuliner | dongeng | angklung |
 
+The diagram below draws the six sessions in order for that list. **Monday afternoon comes right before Tuesday morning**, so batik and gamelan stay back to back even though they're on different days.
+
+<Mermaid
+  title={<>The six sessions in order for the list wayang, gamelan, dongeng</>}
+  description={<>Monday morning is wayang, Monday afternoon batik, Tuesday morning gamelan, and Wednesday morning dongeng. Angklung and kuliner fill Tuesday afternoon and Wednesday afternoon in either order.</>}
+  chart={`flowchart LR
+    S1["Monday morning: wayang"] --> S2["Monday afternoon: batik"]
+    S2 -->|"condition 1: back to back"| S3["Tuesday morning: gamelan"]
+    S3 --> S4["Tuesday afternoon: angklung or kuliner"]
+    S4 --> S5["Wednesday morning: dongeng"]
+    S5 --> S6["Wednesday afternoon: kuliner or angklung"]`}
+/>
+
 The other four lists fail, each because of one condition that's easy to miss.
 
 - Angklung, gamelan, dongeng fails because wayang has nowhere to go. Gamelan on Tuesday morning puts batik on Monday afternoon, so Monday is full. Wayang can't be on Tuesday, where gamelan is (condition 2), and it can't be on Wednesday, because its day must come before the dongeng day (condition 3).

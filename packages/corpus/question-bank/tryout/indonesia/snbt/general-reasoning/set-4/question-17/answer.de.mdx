@@ -35,6 +35,17 @@ Die Tabelle zeigt alle gültigen Pläne.
 
 <BlockMath math="3 + 2 + 2 + 2 = 9" />
 
+Das Diagramm fasst die Pläne in jedem Batik-Fall zusammen. **Nur der Fall mit Batik am Montagvormittag liefert drei Pläne**, weil Bedingung 5 dort einen von vier Kandidaten streicht.
+
+<Chart
+  title={<>Gültige Pläne nach Sitzung von Batik</>}
+  description={<>Batik am Montagvormittag liefert <InlineMath math="3" /> Pläne. Batik am Montagnachmittag, Dienstagvormittag und Dienstagnachmittag liefert je <InlineMath math="2" /> Pläne. Insgesamt sind es <InlineMath math="9" />.</>}
+  categories={["Montagvormittag", "Montagnachmittag", "Dienstagvormittag", "Dienstagnachmittag"]}
+  bars="apart"
+  series={[{ label: "Gültige Pläne", mark: "bar", values: [3, 2, 2, 2] }]}
+  valueLabel="Pläne"
+/>
+
 Andere Ergebnisse entstehen meist durch einen übersehenen Schritt. Auf <InlineMath math="5" /> kommst du, wenn du Batik und Gamelan nur am selben Tag suchst, denn dann fehlen die Fälle 2 und 4. Auf <InlineMath math="10" /> kommst du, wenn du Bedingung 5 vergisst, denn dann bekommt Fall 1 einen zusätzlichen Plan mit Kuliner am Dienstagvormittag und Wayang am Dienstagnachmittag.
 
 Es gibt also <InlineMath math="9" /> Pläne, die alle Bedingungen erfüllen.

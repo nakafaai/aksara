@@ -4,6 +4,20 @@ Hitung dulu total omzet harian setiap kelompok, dalam juta rupiah:
 
 <BlockMath math="\begin{aligned} \text{April, pengguna: } & 30 \times 2{,}0 = 60 \\ \text{April, bukan pengguna: } & 90 \times 1{,}2 = 108 \\ \text{April, total: } & 60 + 108 = 168 \\ \text{Juli, pengguna: } & 60 \times 1{,}8 = 108 \\ \text{Juli, bukan pengguna: } & 60 \times 1{,}0 = 60 \\ \text{Juli, total: } & 108 + 60 = 168 \end{aligned}" />
 
+Grafik berikut menggambar total omzet harian kedua kelompok. **Kedua kelompok bertukar tinggi batang, tetapi jumlahnya tetap <InlineMath math="168" /> juta**.
+
+<Chart
+  title={<>Total omzet harian menurut kelompok pedagang, April dan Juli</>}
+  description={<>Pada April, pengguna mencatat <InlineMath math="60" /> juta dan bukan pengguna <InlineMath math="108" /> juta rupiah. Pada Juli, pengguna <InlineMath math="108" /> juta dan bukan pengguna <InlineMath math="60" /> juta rupiah. Totalnya <InlineMath math="168" /> juta di kedua bulan.</>}
+  categories={["April", "Juli"]}
+  bars="apart"
+  series={[
+    { label: "Pengguna dompet digital", mark: "bar", values: [30 * 2.0, 60 * 1.8] },
+    { label: "Bukan pengguna", mark: "bar", values: [90 * 1.2, 60 * 1.0] },
+  ]}
+  valueLabel="Omzet harian (juta rupiah)"
+/>
+
 Pernyataan 1 bernilai Salah. Rata-rata seluruh pedagang pada April adalah total dibagi banyak pedagang, yaitu <InlineMath math="\frac{168}{120}=1{,}4" />, jadi <InlineMath math="\text{Rp}1{,}4\text{ juta}" />. Angka <InlineMath math="\text{Rp}1{,}6\text{ juta}" /> muncul jika kamu merata-ratakan <InlineMath math="2{,}0" /> dan <InlineMath math="1{,}2" /> begitu saja, padahal bukan pengguna tiga kali lebih banyak daripada pengguna.
 
 Pernyataan 2 bernilai Salah. Total April dan total Juli sama-sama <InlineMath math="\text{Rp}168\text{ juta}" />. Kedua rata-rata kelompok memang turun, tetapi itu tidak berarti totalnya turun, karena <InlineMath math="30" /> pedagang pindah dari kelompok bukan pengguna ke kelompok pengguna.

@@ -1,5 +1,19 @@
 Achte auf zwei Veränderungen, die scheinbar gegeneinander wirken. Mehr Angestellte nahmen sich mehrmals Essen, und trotzdem **sank die gesamte genommene Menge pro Person**, von <InlineMath math="620" /> Gramm auf <InlineMath math="540" /> Gramm, denn diese Zahl enthält schon den zweiten und jeden weiteren Gang zum Buffet. Kleinere Teller verringerten also die genommene Menge, obwohl manche nachholten.
 
+Das Diagramm vergleicht die drei Essensmengen vor und nach dem Tellerwechsel. **Alle drei Balken sinken zugleich**, obwohl mehr Angestellte sich mehrmals Essen nehmen.
+
+<Chart
+  title={<>Essen pro Person bei einem Mittagessen</>}
+  description={<>Mit Tellern von <InlineMath math="28" /> cm nehmen die Angestellten <InlineMath math="620" /> Gramm, werfen <InlineMath math="70" /> Gramm weg und essen <InlineMath math="550" /> Gramm. Mit Tellern von <InlineMath math="23" /> cm sind es <InlineMath math="540" />, <InlineMath math="40" /> und <InlineMath math="500" /> Gramm.</>}
+  categories={["Genommen", "Weggeworfen", "Gegessen"]}
+  bars="apart"
+  series={[
+    { label: "Teller mit 28 cm", mark: "bar", values: [620, 70, 620 - 70] },
+    { label: "Teller mit 23 cm", mark: "bar", values: [540, 40, 540 - 40] },
+  ]}
+  valueLabel="Gramm"
+/>
+
 Die anderen Optionen sind nicht gestützt:
 
 - Gegessen wird, was genommen wurde, minus Reste. Vorher waren es <InlineMath math="620-70=550" /> Gramm, nachher <InlineMath math="540-40=500" /> Gramm. Der Rückgang beträgt <InlineMath math="50" /> Gramm, nicht <InlineMath math="80" /> Gramm.

@@ -11,6 +11,18 @@ Ketiga aturan bisa disambung menjadi satu rantai.
 
 <BlockMath math="\text{fasih} \Rightarrow \text{dipanggil wawancara} \Rightarrow \text{lulus tes} \Rightarrow \text{tidak terlambat}" />
 
+Diagram berikut menggambar rantai itu beserta keterangan 3. **Relawan hanya terjamin masuk rantai lewat orang yang dipanggil wawancara**, sehingga relawan lain bebas berada di luar rantai.
+
+<Mermaid
+  title={<>Rantai keterangan seleksi pemandu pelajar</>}
+  description={<>Pendaftar yang fasih berbahasa Inggris dipanggil wawancara, yang dipanggil wawancara lulus tes sejarah, dan yang lulus tes sejarah tidak terlambat menyerahkan berkas. Sebagian yang dipanggil wawancara pernah menjadi relawan museum.</>}
+  chart={`flowchart LR
+    F["Fasih berbahasa Inggris"] -->|"keterangan 4"| W["Dipanggil wawancara"]
+    W -->|"keterangan 1"| L["Lulus tes sejarah"]
+    L -->|"keterangan 2"| T["Tidak terlambat"]
+    R["Relawan museum"] -.->|"sebagian, keterangan 3"| W`}
+/>
+
 Pernyataan 1 pasti benar. Ikuti rantai di atas dari kiri ke kanan. Setiap pendaftar yang fasih berbahasa Inggris pasti sampai di ujung rantai, yaitu tidak terlambat.
 
 Pernyataan 2 tidak pasti benar. Rantai itu hanya melindungi relawan yang dipanggil wawancara. Tidak ada keterangan yang mewajibkan setiap relawan dipanggil wawancara, jadi bisa saja ada relawan yang tidak dipanggil, dan relawan seperti itu boleh terlambat.

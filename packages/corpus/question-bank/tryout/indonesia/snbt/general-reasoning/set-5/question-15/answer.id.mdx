@@ -8,6 +8,21 @@ Mulai dari pilihan "Jika Gendis dipilih, Danu juga dipilih". Andaikan Gendis dip
 4. Bening tidak dipilih, jadi Haikal juga tidak boleh dipilih. Syarat 5 berarti Haikal hanya boleh masuk kalau Bening masuk.
 5. Danu tidak dipilih, jadi Arka juga tidak boleh dipilih. Ini kontrapositif syarat 2. Kontrapositif dari "jika <InlineMath math="p" />, maka <InlineMath math="q" />" adalah "jika tidak <InlineMath math="q" />, maka tidak <InlineMath math="p" />", dan nilainya selalu sama dengan pernyataan aslinya.
 
+Diagram berikut menggambar akibat pengandaian itu. **Setiap panah mencoret satu kandidat**, sampai hanya tiga orang yang tersisa.
+
+<Mermaid
+  title={<>Akibat pengandaian Gendis dipilih tetapi Danu tidak</>}
+  description={<>Gendis dipilih mencoret Fauzan. Tanpa Danu dan Fauzan, Elvira wajib dipilih, sehingga Bening tercoret, lalu Haikal ikut tercoret. Tanpa Danu, Arka juga tercoret. Yang tersisa hanya Cempaka, Elvira, dan Gendis.</>}
+  chart={`flowchart LR
+    A["Gendis dipilih, Danu tidak"] -->|"syarat 6"| F["Fauzan tercoret"]
+    F -->|"syarat 1"| E["Elvira wajib dipilih"]
+    E -->|"syarat 3"| B["Bening tercoret"]
+    B -->|"syarat 5"| H["Haikal tercoret"]
+    A -->|"kontrapositif syarat 2"| K["Arka tercoret"]
+    H --> T["Tersisa 3 orang, padahal tim perlu 4"]
+    K --> T`}
+/>
+
 Sekarang hitung siapa yang masih boleh masuk. Arka, Bening, Danu, Fauzan, dan Haikal sudah tercoret. Sisanya hanya Cempaka, Elvira, dan Gendis, yaitu tiga orang, padahal tim butuh empat. Andaian tadi mustahil, jadi **setiap tim yang memuat Gendis pasti memuat Danu**.
 
 Untuk keempat pilihan lain, cukup tunjukkan satu tim sah yang membantahnya. Keempat tim berikut memenuhi keenam syarat. Kamu bisa mengeceknya satu per satu seperti di atas.

@@ -5,6 +5,19 @@ Ist R auf Platz zwei, kläre zuerst, wer auf Platz eins stehen kann.
 - **P** nicht, denn Q muss direkt auf P folgen, Platz zwei hat aber R.
 - **Q** nicht, denn P muss direkt vor Q stehen.
 
+Das Diagramm fasst zusammen, warum jeder Kandidat für Platz eins ausscheidet. **Nur T bleibt übrig**, weil T als Erste auftreten darf.
+
+<Mermaid
+  title={<>Wer zuerst auftreten kann, wenn R auf Platz zwei steht</>}
+  description={<>U scheidet aus, weil U direkt vor R stünde. S scheidet aus, weil S nach R kommen muss. P scheidet aus, weil Q direkt auf P folgen muss, Platz zwei aber R hat. Q scheidet aus, weil P direkt vor Q stehen muss. Übrig bleibt nur T.</>}
+  chart={`flowchart LR
+    R["R auf Platz zwei"] --> U["U zuerst: direkt vor R, scheidet aus"]
+    R --> S["S zuerst: vor R, scheidet aus"]
+    R --> P["P zuerst: Q kann nicht Zweite sein, scheidet aus"]
+    R --> Q["Q zuerst: kein Platz für P davor, scheidet aus"]
+    R --> T["T zuerst: erlaubt"]`}
+/>
+
 Es bleibt nur **T**, also steht T sicher auf Platz eins. Die Reihenfolgen, die alle Regeln erfüllen, sind T, R, P, Q, S, U, dann T, R, S, P, Q, U und T, R, S, U, P, Q.
 
 Die anderen Optionen sind nicht sicher:

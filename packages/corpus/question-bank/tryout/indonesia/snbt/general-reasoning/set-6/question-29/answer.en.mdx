@@ -8,4 +8,15 @@ Routes through X: from A to X there are <InlineMath math="2" /> steps east and <
 
 <BlockMath math="15-9=6" />
 
+The chart below puts the three counts side by side. **Routes through X take up more than half of all routes**, so only <InlineMath math="6" /> are left.
+
+<Chart
+  title={<>Routes from A to B: all, through X, and avoiding X</>}
+  description={<>There are <InlineMath math="15" /> routes in all. The routes through X number <InlineMath math="3\times3=9" />. The routes avoiding X number <InlineMath math="6" />.</>}
+  categories={["All routes", "Through X", "Avoiding X"]}
+  bars="apart"
+  series={[{ label: "Routes", mark: "bar", values: [15, 3 * 3, 15 - 3 * 3] }]}
+  valueLabel="Routes"
+/>
+
 So Dina can choose from <InlineMath math="6" /> routes.

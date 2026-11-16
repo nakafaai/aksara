@@ -15,6 +15,19 @@ Aus dieser Liste entstehen zwei vollständige gültige Pläne.
 | I | Wayang | Batik | Gamelan | Angklung | Dongeng | Kuliner |
 | II | Wayang | Batik | Gamelan | Kuliner | Dongeng | Angklung |
 
+Das Diagramm zeichnet die sechs Sitzungen der Reihe nach für diese Liste. **Der Montagnachmittag liegt direkt vor dem Dienstagvormittag**, also folgen Batik und Gamelan direkt aufeinander, obwohl sie an verschiedenen Tagen liegen.
+
+<Mermaid
+  title={<>Die sechs Sitzungen der Reihe nach für die Liste Wayang, Gamelan, Dongeng</>}
+  description={<>Montagvormittag Wayang, Montagnachmittag Batik, Dienstagvormittag Gamelan und Mittwochvormittag Dongeng. Angklung und Kuliner füllen Dienstagnachmittag und Mittwochnachmittag in beliebiger Reihenfolge.</>}
+  chart={`flowchart LR
+    S1["Montagvormittag: Wayang"] --> S2["Montagnachmittag: Batik"]
+    S2 -->|"Bedingung 1: direkt nacheinander"| S3["Dienstagvormittag: Gamelan"]
+    S3 --> S4["Dienstagnachmittag: Angklung oder Kuliner"]
+    S4 --> S5["Mittwochvormittag: Dongeng"]
+    S5 --> S6["Mittwochnachmittag: Kuliner oder Angklung"]`}
+/>
+
 Die anderen vier Listen scheitern, jede an einer Bedingung, die man leicht übersieht.
 
 - Angklung, Gamelan, Dongeng scheitert, weil Wayang keinen Platz hat. Gamelan am Dienstagvormittag setzt Batik auf den Montagnachmittag, also ist der Montag voll. Wayang darf nicht auf den Dienstag, wo Gamelan liegt (Bedingung 2), und nicht auf den Mittwoch, weil sein Tag vor dem Dongeng-Tag liegen muss (Bedingung 3).

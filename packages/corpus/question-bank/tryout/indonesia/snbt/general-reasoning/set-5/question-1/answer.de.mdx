@@ -7,6 +7,20 @@ Du suchst den Schluss, den die Zahlen der Tabelle garantieren, nicht einen, der 
 
 Der Saisonfang eines großen Bootes steigt von <InlineMath math="100\cdot100=10{.}000" /> kg auf <InlineMath math="80\cdot160=12{.}800" /> kg. Trotzdem **sinkt sein Reinertrag** von <InlineMath math="170" /> Millionen auf <InlineMath math="152" /> Millionen Rupiah. Der niedrigere Preis, die wenigeren Fahrten und das teurere Benzin fressen den Gewinn aus dem größeren Fang pro Fahrt auf.
 
+Das Diagramm zerlegt die Einnahmen eines großen Boots. **Der Erlös sinkt nur wenig, aber die Benzinkosten steigen**, also fällt der Reinertrag.
+
+<Chart
+  title={<>Erlös, Benzinkosten und Reinertrag eines großen Boots</>}
+  description={<>In der Saison 2024 beträgt der Erlös <InlineMath math="200" /> Millionen, das Benzin <InlineMath math="30" /> Millionen und der Reinertrag <InlineMath math="170" /> Millionen Rupiah. In der Saison 2025 sind es <InlineMath math="192" />, <InlineMath math="40" /> und <InlineMath math="152" /> Millionen Rupiah.</>}
+  categories={["Erlös", "Benzinkosten", "Reinertrag"]}
+  bars="apart"
+  series={[
+    { label: "Saison 2024", mark: "bar", values: [(100 * 100 * 20) / 1000, (100 * 300) / 1000, (100 * 100 * 20 - 100 * 300) / 1000] },
+    { label: "Saison 2025", mark: "bar", values: [(80 * 160 * 15) / 1000, (80 * 500) / 1000, (80 * 160 * 15 - 80 * 500) / 1000] },
+  ]}
+  valueLabel="Millionen Rupiah"
+/>
+
 Prüf jetzt die anderen Schlüsse der Reihe nach.
 
 - Der Anstieg um <InlineMath math="60\%" /> gilt nur für den Fang pro Fahrt. Der Reinertrag sinkt sogar, also stimmt die Behauptung des Gruppenleiters nicht.

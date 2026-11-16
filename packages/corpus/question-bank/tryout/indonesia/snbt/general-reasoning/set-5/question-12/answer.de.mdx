@@ -14,6 +14,18 @@ Geh jetzt von <InlineMath math="\neg t" /> aus rückwärts. Die Kontraposition v
 
 <BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
+Das Diagramm zeichnet diese Kette mit dem fehlenden Glied. **Den gestrichelten Pfeil von <InlineMath math="q" /> nach <InlineMath math="r" /> muss die vierte Prämisse füllen**.
+
+<Mermaid
+  title={<>Die Kette vom starken Regen bis dazu, dass die zehnte Klasse nicht live zusieht</>}
+  description={<>Starker Regen verlegt das Finale in die Sporthalle. Wird die Zuschauerzahl auf <InlineMath math="300" /> begrenzt, bekommt die zehnte Klasse keine Karten und sieht nicht live zu. Es fehlt der Schritt von der Verlegung zur Begrenzung.</>}
+  chart={`flowchart LR
+    P["p: starker Regen"] -->|"Prämisse 1"| Q["q: Finale in der Sporthalle"]
+    Q -.->|"braucht eine vierte Prämisse"| R["r: höchstens 300 Zuschauer"]
+    R -->|"Prämisse 3"| S["nicht s: keine Karten"]
+    S -->|"Kontraposition von Prämisse 2"| T["nicht t: nicht live dabei"]`}
+/>
+
 Das fehlende Glied ist <InlineMath math="q \Rightarrow r" />: Wird das Finale in die Sporthalle verlegt, wird die Zuschauerzahl auf <InlineMath math="300" /> Personen begrenzt. Genau diese Form steht nicht unter den Antworten. Dort steht ihre Kontraposition <InlineMath math="\neg r \Rightarrow \neg q" />: Wird die Zuschauerzahl nicht auf <InlineMath math="300" /> Personen begrenzt, wird das Finale nicht in die Sporthalle verlegt. Eine Kontraposition hat immer denselben Wahrheitswert wie die ursprüngliche Aussage, also **schließt diese Antwort genau die Lücke in der Kette**.
 
 Um die anderen Antworten zu prüfen, nimmst du eine Beispielsituation. Es regnet stark, das Finale wird in die Sporthalle verlegt, die Zuschauerzahl wird nicht begrenzt, die zehnte Klasse bekommt Karten und sieht live zu. Alle drei Prämissen gelten, aber die Schlussfolgerung scheitert, denn es hat geregnet und die Klasse hat trotzdem zugesehen. Eine falsche Antwort schließt diese Situation nicht aus.

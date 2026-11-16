@@ -6,4 +6,18 @@ The current harvest is <InlineMath math="72+52+84+63=271" /> tons. Since only gr
 
 <BlockMath math="288-271=17\text{ tons}" />
 
+The chart below compares the current harvest with what's needed. **Both pairs of bars differ by the same <InlineMath math="17" /> tons**, because only group C changes.
+
+<Chart
+  title={<>Current harvest and the harvest needed for <InlineMath math="6.4" /> tons per hectare</>}
+  description={<>Group C now harvests <InlineMath math="84" /> tons and needs <InlineMath math="101" />. All groups together now harvest <InlineMath math="271" /> tons and need <InlineMath math="288" />.</>}
+  categories={["Group C", "All groups"]}
+  bars="apart"
+  series={[
+    { label: "This season", mark: "bar", values: [84, 72 + 52 + 84 + 63] },
+    { label: "Needed", mark: "bar", values: [84 + 17, (64 * 45) / 10] },
+  ]}
+  valueLabel="Tons"
+/>
+
 Check: C's harvest becomes <InlineMath math="84+17=101" /> tons, the total is <InlineMath math="288" /> tons, and <InlineMath math="\frac{288}{45}=6.4" />. So group C must harvest <InlineMath math="17" /> tons more.

@@ -15,6 +15,19 @@ Dari daftar ini ada dua jadwal lengkap yang sah.
 | I | wayang | batik | gamelan | angklung | dongeng | kuliner |
 | II | wayang | batik | gamelan | kuliner | dongeng | angklung |
 
+Diagram berikut menggambar keenam sesi berurutan untuk daftar itu. **Senin siang langsung mendahului Selasa pagi**, sehingga batik dan gamelan tetap berurutan walaupun berbeda hari.
+
+<Mermaid
+  title={<>Urutan enam sesi untuk daftar wayang, gamelan, dongeng</>}
+  description={<>Senin pagi wayang, Senin siang batik, Selasa pagi gamelan, Rabu pagi dongeng. Angklung dan kuliner mengisi Selasa siang dan Rabu siang dengan urutan mana saja.</>}
+  chart={`flowchart LR
+    S1["Senin pagi: wayang"] --> S2["Senin siang: batik"]
+    S2 -->|"syarat 1: berurutan"| S3["Selasa pagi: gamelan"]
+    S3 --> S4["Selasa siang: angklung atau kuliner"]
+    S4 --> S5["Rabu pagi: dongeng"]
+    S5 --> S6["Rabu siang: kuliner atau angklung"]`}
+/>
+
 Keempat daftar lain gagal, masing-masing karena satu syarat yang mudah terlewat.
 
 - Angklung, gamelan, dongeng gagal karena wayang tidak kebagian tempat. Gamelan di Selasa pagi membuat batik di Senin siang, sehingga hari Senin penuh. Wayang tidak boleh di Selasa karena ada gamelan (syarat 2), dan tidak boleh di Rabu karena harinya harus lebih awal daripada hari dongeng (syarat 3).

@@ -7,6 +7,20 @@ Lompatan yang terlihat adalah <InlineMath math="1" />, <InlineMath math="3" />, 
 - Lompatan ke-<InlineMath math="1" /> dan ke-<InlineMath math="3" /> adalah <InlineMath math="1" /> dan <InlineMath math="2" />. Polanya bertambah satu, jadi lompatan ke-<InlineMath math="5" /> adalah <InlineMath math="3" /> dan lompatan ke-<InlineMath math="7" /> adalah <InlineMath math="4" />.
 - Lompatan ke-<InlineMath math="2" /> adalah <InlineMath math="3" />. Kalau polanya juga bertambah satu, lompatan ke-<InlineMath math="4" /> adalah <InlineMath math="4" /> dan lompatan ke-<InlineMath math="6" /> adalah <InlineMath math="5" />. Lompatan ke-<InlineMath math="6" /> memang <InlineMath math="5" />, jadi dugaan ini cocok.
 
+Grafik berikut memisahkan kedua pola lompatan. **Masing-masing pola naik satu setiap kali muncul**, sehingga lompatan ke-<InlineMath math="4" /> dan ke-<InlineMath math="7" /> sama-sama <InlineMath math="4" />.
+
+<Chart
+  title={<>Besar lompatan mundur dari satu huruf ke huruf berikutnya</>}
+  description={<>Lompatan urutan ganjil adalah <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="4" />. Lompatan urutan genap adalah <InlineMath math="3" />, <InlineMath math="4" />, dan <InlineMath math="5" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Lompatan urutan ganjil", mark: "bar", values: [1, null, 2, null, 3, null, 4] },
+    { label: "Lompatan urutan genap", mark: "bar", values: [null, 3, null, 4, null, 5, null] },
+  ]}
+  valueLabel="Besar lompatan"
+/>
+
 Sekarang isi huruf yang kosong.
 
 <BlockMath math="\begin{aligned}

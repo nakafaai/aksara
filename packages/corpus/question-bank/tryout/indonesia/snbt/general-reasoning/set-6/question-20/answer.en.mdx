@@ -2,6 +2,18 @@ The two statements give the order <InlineMath math="N>M>K" /> with O lowest. The
 
 "L is lower than K" leaves L only one place, between K and O. The order becomes <InlineMath math="N>M>K>L>O" />, and it is certain.
 
+The diagram below draws the full order. **L has only one place, between K and O**, so no tree's position is in doubt anymore.
+
+<Mermaid
+  title={<>Height order of the five trees once L is shorter than K</>}
+  description={<>N is taller than M, M is taller than K, K is taller than L, and L is taller than O, the shortest tree.</>}
+  chart={`flowchart LR
+    N["N"] --> M["M"]
+    M --> K["K"]
+    K -->|"extra information"| L["L"]
+    L --> O["O, shortest"]`}
+/>
+
 The other options are not enough:
 
 - L being taller than O is already known, since O is lowest.

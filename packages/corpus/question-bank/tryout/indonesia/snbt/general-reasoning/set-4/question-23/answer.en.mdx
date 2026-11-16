@@ -8,6 +8,18 @@ Step 2. Add up the passes and the exam takers, then divide.
 
 <BlockMath math="\frac{51 + 117 + 96 + 57}{60 + 180 + 128 + 60} = \frac{321}{428} = 75.0\%" />
 
+The chart below compares each district's pass rate with the combined figure. **The combined bar is lower than the average of the four rates**, because district Q, with the lowest rate, has the most exam takers.
+
+<Chart
+  title={<>Pass rate of exam takers by district</>}
+  description={<>The pass rates in districts P, Q, R, and S are <InlineMath math="85\%" />, <InlineMath math="65\%" />, <InlineMath math="75\%" />, and <InlineMath math="95\%" />. The combined figure is <InlineMath math="321" /> out of <InlineMath math="428" />, which is <InlineMath math="75\%" />, while the average of the four rates is <InlineMath math="80\%" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "Combined", "Average of four rates"]}
+  series={[{ label: "Pass rate (%)", mark: "bar", values: [(51 / 60) * 100, (117 / 180) * 100, (96 / 128) * 100, (57 / 60) * 100, (321 / 428) * 100, ((51 / 60 + 117 / 180 + 96 / 128 + 57 / 60) / 4) * 100] }]}
+  valueLabel="Pass rate (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Check: <InlineMath math="75\% \times 428 = 321" />, exactly the number who passed.
 
 The other options come from the wrong denominator or the wrong kind of average.

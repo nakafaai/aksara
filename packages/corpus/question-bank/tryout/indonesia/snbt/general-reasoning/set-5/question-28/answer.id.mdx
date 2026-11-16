@@ -11,6 +11,20 @@ Tiga promosi ini tidak bisa dibandingkan dengan satu angka, karena **hasilnya be
 | <InlineMath math="6" /> | <InlineMath math="192" /> | <InlineMath math="240-35=205" /> | <InlineMath math="5\cdot40=200" /> |
 | <InlineMath math="8" /> | <InlineMath math="256" /> | <InlineMath math="320-35=285" /> | <InlineMath math="6\cdot40=240" /> |
 
+Grafik berikut menggambar ketiga kolom biaya. **Garis-garisnya saling bersilangan**, jadi toko termurah berganti menurut banyak kaus.
+
+<Chart
+  title={<>Biaya membeli kaus di ketiga toko</>}
+  description={<>Untuk <InlineMath math="4" /> kaus, biayanya <InlineMath math="128" />, <InlineMath math="125" />, dan <InlineMath math="120" /> ribu rupiah di Toko A, B, dan C. Untuk <InlineMath math="5" /> kaus, <InlineMath math="160" />, <InlineMath math="165" />, dan <InlineMath math="160" />. Untuk <InlineMath math="6" /> kaus, <InlineMath math="192" />, <InlineMath math="205" />, dan <InlineMath math="200" />. Untuk <InlineMath math="8" /> kaus, <InlineMath math="256" />, <InlineMath math="285" />, dan <InlineMath math="240" />.</>}
+  categories={["4", "5", "6", "8"]}
+  series={[
+    { label: "Toko A", mark: "line", values: [4, 5, 6, 8].map((n) => (n * 40 * 8) / 10) },
+    { label: "Toko B, satu transaksi", mark: "line", values: [4, 5, 6, 8].map((n) => n * 40 - 35) },
+    { label: "Toko C", mark: "line", values: [4, 5, 6, 8].map((n) => (n - Math.floor(n / 4)) * 40) },
+  ]}
+  valueLabel="Ribu rupiah"
+/>
+
 Pernyataan pertama benar. Untuk <InlineMath math="4" /> kaus, Toko C meminta <InlineMath math="120" />, lebih murah daripada <InlineMath math="125" /> dan <InlineMath math="128" />.
 
 Pernyataan kedua benar. Potongan Toko B berlaku per transaksi. Satu transaksi <InlineMath math="8" /> kaus hanya mendapat satu potongan, yaitu <InlineMath math="285" />. Dua transaksi <InlineMath math="4" /> kaus mendapat dua potongan.

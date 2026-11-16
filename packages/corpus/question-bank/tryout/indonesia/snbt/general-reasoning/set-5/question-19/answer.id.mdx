@@ -9,6 +9,18 @@ Keterangan 4 menjamin ada siswa, sebut saja siswa X, yang menjadi anggota klub f
 
 Tinggal satu simpulan: sebagian anggota klub fotografi bukan anggota klub teater. Simpulan ini tidak sah. Keterangan 4 hanya berkata bahwa paling sedikit satu anggota klub fotografi adalah anggota klub teater. Keterangan itu tidak melarang **semua** anggota klub fotografi menjadi anggota klub teater. Misalnya, klub fotografi hanya berisi siswa X. Keempat keterangan tetap terpenuhi, tetapi tidak ada anggota klub fotografi yang berada di luar klub teater.
 
+Diagram berikut menggambar keadaan yang membantah simpulan itu. **Klub fotografi bisa saja hanya berisi siswa X**, sehingga semua anggotanya ikut klub teater.
+
+<Mermaid
+  title={<>Keadaan saat semua anggota klub fotografi juga anggota klub teater</>}
+  description={<>Klub fotografi hanya berisi siswa X, yang juga anggota klub teater dan ikut pameran. Siswa Y anggota klub teater dan panitia pentas seni, sehingga tidak ikut pameran. Keempat keterangan terpenuhi, tetapi tidak ada anggota klub fotografi yang bukan anggota klub teater.</>}
+  chart={`flowchart LR
+    X["Siswa X: satu-satunya anggota klub fotografi"] --> T["Klub teater"]
+    X --> P["Ikut pameran sekolah"]
+    Y["Siswa Y: panitia pentas seni"] --> T
+    Y -.->|"tidak ikut"| P`}
+/>
+
 Kesalahan yang memancing di sini adalah membaca _sebagian_ sebagai _sebagian saja, tidak semua_. Dalam logika, _sebagian_ berarti paling sedikit satu, dan boleh saja semuanya.
 
 Jadi, simpulan yang tidak sah adalah bahwa sebagian anggota klub fotografi bukan anggota klub teater.

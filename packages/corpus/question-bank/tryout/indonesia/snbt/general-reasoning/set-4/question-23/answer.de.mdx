@@ -8,6 +8,18 @@ Schritt 2. Addiere Bestandene und Prüflinge und teile.
 
 <BlockMath math="\frac{51 + 117 + 96 + 57}{60 + 180 + 128 + 60} = \frac{321}{428} = 75{,}0\%" />
 
+Das Diagramm vergleicht die Bestehensquote jedes Bezirks mit dem Gesamtwert. **Der Gesamtbalken liegt unter dem Mittel der vier Quoten**, weil Bezirk Q mit der niedrigsten Quote die meisten Prüflinge hat.
+
+<Chart
+  title={<>Bestehensquote der Prüflinge nach Bezirk</>}
+  description={<>Die Bestehensquoten in den Bezirken P, Q, R und S sind <InlineMath math="85\%" />, <InlineMath math="65\%" />, <InlineMath math="75\%" /> und <InlineMath math="95\%" />. Der Gesamtwert ist <InlineMath math="321" /> von <InlineMath math="428" />, also <InlineMath math="75\%" />, das Mittel der vier Quoten dagegen <InlineMath math="80\%" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "Gesamt", "Mittel der vier Quoten"]}
+  series={[{ label: "Bestehensquote (%)", mark: "bar", values: [(51 / 60) * 100, (117 / 180) * 100, (96 / 128) * 100, (57 / 60) * 100, (321 / 428) * 100, ((51 / 60 + 117 / 180 + 96 / 128 + 57 / 60) / 4) * 100] }]}
+  valueLabel="Bestehensquote (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Probe: <InlineMath math="75\% \times 428 = 321" />, genau die Zahl der Bestandenen.
 
 Die anderen Antworten entstehen aus einem falschen Nenner oder einem falschen Mittelwert.

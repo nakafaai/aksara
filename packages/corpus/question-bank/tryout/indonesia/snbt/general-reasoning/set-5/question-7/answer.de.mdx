@@ -5,6 +5,21 @@ Die Leitung des Verkehrsamts behauptet einen Zusammenhang von Ursache und Wirkun
 
 Schau dir jetzt die Aussage über Kreuzungen ohne Kamera an. Dort gab es die Kontrollen auch, trotzdem blieb der Anteil ohne Helm bei <InlineMath math="25\%" />. Die Kontrollen allein haben die Gewohnheit also nicht geändert. Auch die Zahl der Motorräder ist dort nicht gestiegen, die Leute ohne Helm sind also nicht einfach dorthin ausgewichen. Beide anderen Ursachen fallen auf einmal weg, übrig bleibt der elektronische Strafzettel.
 
+Das Diagramm vergleicht die beiden Arten von Kreuzungen nach dieser Aussage. **Nur der Balken der Kamerakreuzungen sinkt**, obwohl an beiden kontrolliert wurde.
+
+<Chart
+  title={<>Anteil der Fahrenden ohne Helm nach Art der Kreuzung</>}
+  description={<>An Kreuzungen mit Kamera fällt der Anteil von <InlineMath math="25\%" /> auf <InlineMath math="5\%" />. Laut dieser Aussage bleibt er an Kreuzungen ohne Kamera, die ebenfalls kontrolliert wurden, bei etwa <InlineMath math="25\%" />.</>}
+  categories={["Kreuzungen mit Kamera", "Kreuzungen ohne Kamera"]}
+  bars="apart"
+  series={[
+    { label: "Vor den elektronischen Strafzetteln", mark: "bar", values: [(6000 / 24000) * 100, 25] },
+    { label: "Nach den elektronischen Strafzetteln", mark: "bar", values: [(1050 / 21000) * 100, 25] },
+  ]}
+  valueLabel="Ohne Helm (%)"
+  valueRange={{ min: 0, max: 30 }}
+/>
+
 Die anderen Aussagen leisten das nicht.
 
 - Die Zahl von <InlineMath math="1{.}050" /> Personen pro Tag wiederholt nur die Tabelle. Sie erklärt nicht, warum der Anteil gefallen ist.

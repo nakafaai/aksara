@@ -2,6 +2,18 @@ Dari dua pernyataan itu diketahui urutan <InlineMath math="N>M>K" /> dan O palin
 
 Informasi "L lebih rendah daripada K" menyisakan satu tempat saja bagi L, yaitu di antara K dan O. Urutannya menjadi <InlineMath math="N>M>K>L>O" />, dan urutan ini pasti.
 
+Diagram berikut menggambar urutan lengkapnya. **L hanya punya satu tempat di antara K dan O**, sehingga tidak ada lagi pohon yang letaknya ragu.
+
+<Mermaid
+  title={<>Urutan tinggi kelima pohon setelah L lebih rendah daripada K</>}
+  description={<>N lebih tinggi daripada M, M lebih tinggi daripada K, K lebih tinggi daripada L, dan L lebih tinggi daripada O, pohon terendah.</>}
+  chart={`flowchart LR
+    N["N"] --> M["M"]
+    M --> K["K"]
+    K -->|"informasi tambahan"| L["L"]
+    L --> O["O, paling rendah"]`}
+/>
+
 Pilihan lain tidak cukup:
 
 - L lebih tinggi daripada O sudah diketahui, karena O paling rendah.

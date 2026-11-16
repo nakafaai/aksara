@@ -10,6 +10,18 @@ Schritt zwei: Bilde die Kontraposition, also dreh den Pfeil um und verneine beid
 
 <BlockMath math="(\neg\text{Schulung gemacht} \vee \neg\text{Karte dabei}) \Rightarrow \neg\text{darf ausleihen}" />
 
+Das Diagramm prüft eine Person Schritt für Schritt. **Eine verfehlte Voraussetzung reicht schon für „darf nicht ausleihen“**, beide zu erfüllen garantiert dagegen keine Ausleihe.
+
+<Mermaid
+  title={<>Prüfung der Voraussetzungen zum Ausleihen von Laborgeräten</>}
+  description={<>Wer die Sicherheitsschulung nicht gemacht hat, darf nicht ausleihen. Wer die Schulung gemacht hat, aber keine Laborkarte dabeihat, darf auch nicht ausleihen. Wer beides erfüllt, kommt infrage, hat aber keine Garantie auf eine Ausleihe.</>}
+  chart={`flowchart LR
+    A{"Sicherheitsschulung gemacht?"} -->|"nein"| X["Darf nicht ausleihen"]
+    A -->|"ja"| B{"Laborkarte dabei?"}
+    B -->|"nein"| Y["Darf nicht ausleihen"]
+    B -->|"ja"| Z["Kommt infrage, ohne Garantie"]`}
+/>
+
 Diese Form ist genau die Aussage „wenn jemand die Sicherheitsschulung noch nicht gemacht hat oder keine Laborkarte dabeihat, darf er keine Laborgeräte ausleihen“.
 
 Jede andere Option kannst du mit einer Situation testen, in der ihr Wahrheitswert vom Ausgangssatz abweicht.

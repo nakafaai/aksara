@@ -6,6 +6,19 @@ Net rates in one cycle:
 
 At the end of each cycle the volume is <InlineMath math="300 + 175k" /> liters: <InlineMath math="475" />, <InlineMath math="650" />, <InlineMath math="825" /> and <InlineMath math="1{,}000" /> liters at minutes <InlineMath math="15" />, <InlineMath math="30" />, <InlineMath math="45" /> and <InlineMath math="60" />.
 
+The chart below draws the volume at each point where pump A switches. **The line zigzags like a saw and touches the capacity at minute <InlineMath math="68" />**, in the middle of the fifth cycle.
+
+<Chart
+  title={<>Water in the tank by minute</>}
+  description={<>The volume starts at <InlineMath math="300" /> liters, rises <InlineMath math="250" /> liters while pump A works, then falls <InlineMath math="75" /> liters while pump A rests. The highest point in the fourth cycle is <InlineMath math="1{,}075" /> liters at minute <InlineMath math="55" />. The tank is full at <InlineMath math="1{,}200" /> liters at minute <InlineMath math="68" />.</>}
+  categories={["0", "10", "15", "25", "30", "40", "45", "55", "60", "68"]}
+  series={[
+    { label: "Water volume", mark: "line", values: [300, 300 + 250, 550 - 75, 475 + 250, 725 - 75, 650 + 250, 900 - 75, 825 + 250, 1075 - 75, 1000 + 8 * 25] },
+    { label: "Tank capacity", mark: "line", values: [1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200, 1200] },
+  ]}
+  valueLabel="Liters"
+/>
+
 Statement 1 is Benar (true). The highest volume in the fourth cycle comes at minute <InlineMath math="55" />: <InlineMath math="825 + 250 = 1{,}075" /> liters, not full yet. From minute <InlineMath math="60" />, the <InlineMath math="1{,}000" /> liters rise by <InlineMath math="25" /> liters per minute, so the missing <InlineMath math="200" /> liters take <InlineMath math="200 : 25 = 8" /> minutes. The tank is full at minute <InlineMath math="68" />. If you count only whole cycles, <InlineMath math="300 + 175k \ge 1{,}200" /> gives <InlineMath math="k = 6" /> and minute <InlineMath math="90" />, but the tank fills earlier.
 
 Statement 2 is Salah (false). In the first <InlineMath math="30" /> minutes the volume goes from <InlineMath math="300" /> to <InlineMath math="650" /> liters, an increase of <InlineMath math="350" /> liters. The average is <InlineMath math="350 : 30 \approx 11.7" /> liters per minute, less than <InlineMath math="12" />.

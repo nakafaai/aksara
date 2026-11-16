@@ -6,4 +6,18 @@ Bisher sind es <InlineMath math="72+52+84+63=271" /> Tonnen. Da sich nur Gruppe 
 
 <BlockMath math="288-271=17\text{ Tonnen}" />
 
+Das Diagramm vergleicht die jetzige Ernte mit der benötigten. **Beide Balkenpaare unterscheiden sich um dieselben <InlineMath math="17" /> Tonnen**, weil sich nur Gruppe C ändert.
+
+<Chart
+  title={<>Jetzige Ernte und benötigte Ernte für <InlineMath math="6{,}4" /> Tonnen pro Hektar</>}
+  description={<>Gruppe C erntet jetzt <InlineMath math="84" /> Tonnen und braucht <InlineMath math="101" />. Alle Gruppen zusammen ernten jetzt <InlineMath math="271" /> Tonnen und brauchen <InlineMath math="288" />.</>}
+  categories={["Gruppe C", "Alle Gruppen"]}
+  bars="apart"
+  series={[
+    { label: "Diese Saison", mark: "bar", values: [84, 72 + 52 + 84 + 63] },
+    { label: "Benötigt", mark: "bar", values: [84 + 17, (64 * 45) / 10] },
+  ]}
+  valueLabel="Tonnen"
+/>
+
 Probe: C erntet <InlineMath math="84+17=101" /> Tonnen, insgesamt sind es <InlineMath math="288" /> Tonnen, und <InlineMath math="\frac{288}{45}=6{,}4" />. Gruppe C muss also <InlineMath math="17" /> Tonnen mehr ernten.

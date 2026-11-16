@@ -5,6 +5,21 @@ Simpulan kepala dinas adalah klaim sebab-akibat. Persentase memang turun dari <I
 
 Sekarang lihat pernyataan tentang persimpangan tanpa kamera. Persimpangan itu juga terkena razia, tetapi persentase pengendara tanpa helm di sana tetap <InlineMath math="25\%" />. Artinya, razia saja tidak mengubah kebiasaan. Sepeda motor di sana juga tidak bertambah, jadi pengendara tanpa helm tidak sekadar pindah ke sana. Dua penyebab lain tersingkir sekaligus, dan yang tersisa adalah tilang elektronik.
 
+Grafik berikut membandingkan kedua jenis persimpangan menurut pernyataan itu. **Hanya persimpangan berkamera yang batangnya turun**, padahal razia terjadi di keduanya.
+
+<Chart
+  title={<>Persentase pengendara tanpa helm menurut jenis persimpangan</>}
+  description={<>Di persimpangan berkamera, persentasenya turun dari <InlineMath math="25\%" /> ke <InlineMath math="5\%" />. Menurut pernyataan itu, di persimpangan tanpa kamera yang juga dirazia, persentasenya tetap sekitar <InlineMath math="25\%" />.</>}
+  categories={["Persimpangan berkamera", "Persimpangan tanpa kamera"]}
+  bars="apart"
+  series={[
+    { label: "Sebelum tilang elektronik", mark: "bar", values: [(6000 / 24000) * 100, 25] },
+    { label: "Sesudah tilang elektronik", mark: "bar", values: [(1050 / 21000) * 100, 25] },
+  ]}
+  valueLabel="Tanpa helm (%)"
+  valueRange={{ min: 0, max: 30 }}
+/>
+
 Pernyataan lain tidak melakukan itu.
 
 - Angka <InlineMath math="1{.}050" /> pengendara per hari hanya mengulang isi tabel. Angka itu tidak menjelaskan mengapa persentasenya turun.

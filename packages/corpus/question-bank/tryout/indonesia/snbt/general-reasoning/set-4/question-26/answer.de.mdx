@@ -12,6 +12,20 @@ Aussage (2) allein. Rina kauft <InlineMath math="8" /> Dinge, also <InlineMath m
 
 Diese Summe muss durch <InlineMath math="8" /> teilbar sein. Probier jedes <InlineMath math="x" /> von <InlineMath math="1" /> bis <InlineMath math="7" />: Die Summen sind <InlineMath math="34, 36, 38, 40, 42, 44, 46" />. Nur <InlineMath math="40" /> ist durch <InlineMath math="8" /> teilbar, nämlich bei <InlineMath math="x = 4" />. Aussage (2) allein **reicht also schon**: Rina kauft <InlineMath math="4" /> Hefte.
 
+Das Diagramm zeichnet den Betrag für jede Zahl von Heften. **Nur bei <InlineMath math="x=4" /> ist der Restbalken null**.
+
+<Chart
+  title={<>Gezahlter Betrag und Rest bei Division durch <InlineMath math="8" />, wenn Rina <InlineMath math="8" /> Teile kauft</>}
+  description={<>Für <InlineMath math="x=1" /> bis <InlineMath math="7" /> Hefte betragen die Summen <InlineMath math="34" />, <InlineMath math="36" />, <InlineMath math="38" />, <InlineMath math="40" />, <InlineMath math="42" />, <InlineMath math="44" /> und <InlineMath math="46" /> Tausend Rupiah. Die Reste bei Division durch <InlineMath math="8" /> sind <InlineMath math="2" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Gezahlt (Tausend Rupiah)", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => 32 + 2 * x) },
+    { label: "Rest bei Division durch 8", mark: "bar", values: [1, 2, 3, 4, 5, 6, 7].map((x) => (32 + 2 * x) % 8) },
+  ]}
+  valueLabel="Tausend Rupiah oder Rest"
+/>
+
 Die anderen Antworten entstehen, wenn man zu früh aufhört.
 
 - Aussage (1) allein reicht: Man hört beim ersten gefundenen Paar auf, obwohl es drei gibt.

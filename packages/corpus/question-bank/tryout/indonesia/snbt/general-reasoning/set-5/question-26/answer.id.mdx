@@ -13,6 +13,20 @@ Coba setiap nilai <InlineMath math="m" /> yang mungkin. Karena <InlineMath math=
 | <InlineMath math="3" /> | <InlineMath math="16" /> | Ya, <InlineMath math="b=4" /> |
 | <InlineMath math="4" /> | <InlineMath math="7" /> | Tidak |
 
+Grafik berikut menggambar kolom tabel itu. **Hanya pada <InlineMath math="m=3" /> batang sisanya bernilai nol**, jadi hanya di sana banyak buku tulis bulat.
+
+<Chart
+  title={<>Uang untuk buku tulis menurut banyak map</>}
+  description={<>Untuk <InlineMath math="m=1" /> sampai <InlineMath math="4" />, uang yang tersisa untuk buku tulis adalah <InlineMath math="34" />, <InlineMath math="25" />, <InlineMath math="16" />, dan <InlineMath math="7" /> ribu rupiah. Sisanya jika dibagi <InlineMath math="4" /> adalah <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="0" />, dan <InlineMath math="3" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4"]}
+  series={[
+    { label: "Sisa uang untuk buku tulis (ribu rupiah)", mark: "bar", values: [1, 2, 3, 4].map((m) => 43 - 9 * m) },
+    { label: "Sisa dibagi 4", mark: "bar", values: [1, 2, 3, 4].map((m) => (43 - 9 * m) % 4) },
+  ]}
+  valueLabel="Ribu rupiah atau sisa"
+/>
+
 Hanya <InlineMath math="m=3" /> yang menghasilkan <InlineMath math="b" /> bulat. Jadi, pernyataan (1) saja sudah memastikan Laras membeli <InlineMath math="3" /> map.
 
 Periksa pernyataan (2) sendirian. Pernyataan itu hanya berkata <InlineMath math="b=m+1" />. Laras bisa membeli <InlineMath math="2" /> buku tulis dan <InlineMath math="1" /> map, atau <InlineMath math="5" /> buku tulis dan <InlineMath math="4" /> map, dan seterusnya. Banyak map tidak bisa dipastikan, jadi pernyataan (2) saja tidak cukup.

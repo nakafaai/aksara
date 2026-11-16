@@ -15,6 +15,17 @@ Check it with the table, in millions of rupiah. The April total is <InlineMath m
 
 The remaining non-users average <InlineMath math="1.0" />. So <InlineMath math="1.0 < 1.6 < 2.0" />, which fits the explanation.
 
+The chart below puts the three groups of traders side by side. **The May traders' bar sits in the middle**, shorter than the original users' but taller than the remaining non-users'.
+
+<Chart
+  title={<>Average daily turnover of three groups of traders</>}
+  description={<>The thirty original users average <InlineMath math="2.0" /> million rupiah. The thirty traders who started using the e-wallet in May average <InlineMath math="1.6" /> million. The sixty remaining non-users average <InlineMath math="1.0" /> million.</>}
+  categories={["Original users", "May traders", "Remaining non-users"]}
+  bars="apart"
+  series={[{ label: "Average daily turnover (million rupiah)", mark: "bar", values: [2.0, (60 * 1.8 - 30 * 2.0) / 30, 1.0] }]}
+  valueLabel="Million rupiah per day"
+/>
+
 Here's why the other options fall short:
 
 - If the May traders had lower turnover than the remaining non-users, their leaving would raise the non-users' average. The first fact would stay unexplained.

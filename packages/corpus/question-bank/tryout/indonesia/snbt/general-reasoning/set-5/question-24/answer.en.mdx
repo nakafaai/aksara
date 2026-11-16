@@ -9,6 +9,20 @@ The first statement is false. A customer who never goes online during night hour
 
 The Besar package is cheaper. The statement looks true if you divide by all the quota, because <InlineMath math="45{,}000:20=2{,}250" /> really is smaller than <InlineMath math="70{,}000:30\approx2{,}333" />.
 
+The chart below works out the price per GB with both denominators. **The cheaper package flips** once the denominator changes.
+
+<Chart
+  title={<>Price per GB of the Sedang and Besar packages with two denominators</>}
+  description={<>Over main quota only, the Sedang package costs <InlineMath math="4{,}500" /> and the Besar package about <InlineMath math="3{,}889" /> rupiah per GB. Over all the quota, the Sedang package costs <InlineMath math="2{,}250" /> and the Besar package about <InlineMath math="2{,}333" /> rupiah per GB.</>}
+  categories={["Sedang package", "Besar package"]}
+  bars="apart"
+  series={[
+    { label: "Over main quota only", mark: "bar", values: [45000 / 10, Math.round(70000 / 18)] },
+    { label: "Over all the quota", mark: "bar", values: [45000 / 20, Math.round(70000 / 30)] },
+  ]}
+  valueLabel="Rupiah per GB"
+/>
+
 The second statement is true. This time the denominator is all the quota.
 
 <BlockMath math="\begin{aligned}

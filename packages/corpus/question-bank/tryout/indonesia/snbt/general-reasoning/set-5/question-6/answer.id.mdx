@@ -9,6 +9,20 @@ Hitung jumlah kehadiran sebulan dulu.
 
 Orangnya bertambah <InlineMath math="12" />, tetapi kehadirannya berkurang <InlineMath math="360" />. Itu terjadi kalau siswa yang dulu tidak pernah hadir kini datang ke beberapa sesi, sementara banyak siswa lain melewatkan lebih banyak sesi daripada sebelumnya, misalnya karena merasa bisa menonton rekaman. Siswa baru menambah hitungan orang, dan sesi yang dilewatkan mengurangi hitungan kehadiran.
 
+Grafik berikut menaruh kedua ukuran berdampingan. **Batang pertama turun sementara batang kedua naik**, karena keduanya mengukur hal yang berbeda.
+
+<Chart
+  title={<>Dua ukuran kehadiran pada Januari dan Februari</>}
+  description={<>Rata-rata siswa yang hadir per sesi turun dari <InlineMath math="150" /> ke <InlineMath math="120" />. Banyak siswa yang hadir paling sedikit satu sesi naik dari <InlineMath math="180" /> ke <InlineMath math="192" />.</>}
+  categories={["Januari", "Februari"]}
+  bars="apart"
+  series={[
+    { label: "Rata-rata hadir per sesi", mark: "bar", values: [150, 120] },
+    { label: "Hadir paling sedikit satu sesi", mark: "bar", values: [180, 192] },
+  ]}
+  valueLabel="Banyak siswa"
+/>
+
 Penjelasan lain gagal pada salah satu fakta.
 
 - Menonton rekaman berkali-kali tidak mengubah catatan kehadiran sama sekali.

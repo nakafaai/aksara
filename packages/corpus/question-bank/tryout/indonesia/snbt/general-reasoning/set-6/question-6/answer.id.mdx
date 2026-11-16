@@ -2,6 +2,20 @@ Pola yang perlu dijelaskan adalah **lonjakan pada minggu ke-<InlineMath math="5"
 
 Poster yang baru dipasang menarik perhatian, sehingga banyak karyawan mencoba naik tangga. Setelah beberapa minggu, poster itu menjadi pemandangan biasa, dan sebagian karyawan kembali ke kebiasaan lama naik lift. Penjelasan ini cocok dengan lonjakan dan penurunan bertahap sekaligus.
 
+Grafik berikut menggambar ketiga angka itu selama delapan minggu. **Garis total hampir datar**, jadi perjalanan yang pindah ke tangga pada minggu ke-<InlineMath math="5" /> perlahan kembali ke lift.
+
+<Chart
+  title={<>Perjalanan naik lift, naik tangga, dan seluruhnya per hari kerja</>}
+  description={<>Seluruh perjalanan tetap sekitar <InlineMath math="2{.}700" /> per hari. Pada minggu <InlineMath math="5" />, lift turun ke <InlineMath math="2{.}000" /> dan tangga naik ke <InlineMath math="700" />. Sampai minggu <InlineMath math="8" />, lift naik lagi ke <InlineMath math="2{.}300" /> dan tangga turun ke <InlineMath math="380" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Naik lift", mark: "line", values: [2400, 2350, 2420, 2380, 2000, 2150, 2250, 2300] },
+    { label: "Naik tangga", mark: "line", values: [300, 320, 310, 290, 700, 560, 430, 380] },
+    { label: "Seluruh perjalanan", mark: "line", values: [2400 + 300, 2350 + 320, 2420 + 310, 2380 + 290, 2000 + 700, 2150 + 560, 2250 + 430, 2300 + 380] },
+  ]}
+  valueLabel="Perjalanan per hari"
+/>
+
 Pilihan lain tidak cocok:
 
 - Jumlah perjalanan seluruhnya tidak bertambah, jadi karyawan tidak bertambah.

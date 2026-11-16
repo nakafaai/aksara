@@ -7,6 +7,21 @@ The key here is **picking the right denominator** for each statement. A pass rat
 | R | <InlineMath math="96 : 128 = 75\%" /> | <InlineMath math="96 : 160 = 60\%" /> |
 | S | <InlineMath math="57 : 60 = 95\%" /> | <InlineMath math="57 : 100 = 57\%" /> |
 
+The chart below draws both columns of the table. **District S has the tallest bar with the first denominator but the shortest bar with the second**.
+
+<Chart
+  title={<>Share who passed with two different denominators</>}
+  description={<>Over exam takers, the pass rates of P, Q, R, and S are <InlineMath math="85\%" />, <InlineMath math="65\%" />, <InlineMath math="75\%" />, and <InlineMath math="95\%" />. Over registered participants, they're <InlineMath math="63.75\%" />, <InlineMath math="58.5\%" />, <InlineMath math="60\%" />, and <InlineMath math="57\%" />.</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Passed over exam takers", mark: "bar", values: [(51 / 60) * 100, (117 / 180) * 100, (96 / 128) * 100, (57 / 60) * 100] },
+    { label: "Passed over registered", mark: "bar", values: [(51 / 80) * 100, (117 / 200) * 100, (96 / 160) * 100, (57 / 100) * 100] },
+  ]}
+  valueLabel="Percent"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
 Statement 1 is Benar (true). Altogether <InlineMath math="321" /> of <InlineMath math="428" /> exam takers passed, which is <InlineMath math="75\%" />. The <InlineMath math="80\%" /> in the office's report is only the plain average of four percentages.
 
 Statement 2 is Salah (false). S does have the highest pass rate, <InlineMath math="95\%" />, but that divides by exam takers. Compared with registered participants, S is actually the lowest at <InlineMath math="57\%" />, because only <InlineMath math="60\%" /> of its participants could sit the exam.

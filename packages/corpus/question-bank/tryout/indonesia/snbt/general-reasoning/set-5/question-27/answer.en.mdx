@@ -14,6 +14,18 @@ Now count the meetings. In <InlineMath math="168" /> days there are <InlineMath 
 
 Check those six meetings: the remainders of <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" /> and <InlineMath math="144" /> on division by <InlineMath math="7" /> are <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" /> and <InlineMath math="4" />. None is <InlineMath math="0" />, so none of the six falls on a Monday.
 
+The chart below draws that remainder for all seven meetings. **The bar only hits zero at day <InlineMath math="168" />**, so the six meetings before it fall on days other than Monday.
+
+<Chart
+  title={<>Remainder of each meeting day on division by <InlineMath math="7" /></>}
+  description={<>For days <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" />, and <InlineMath math="144" />, the remainders are <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" />, and <InlineMath math="4" />. Day <InlineMath math="168" /> leaves <InlineMath math="0" />, which is a Monday.</>}
+  bars="apart"
+  categories={["24", "48", "72", "96", "120", "144", "168"]}
+  series={[{ label: "Remainder on division by 7", mark: "bar", values: [24, 48, 72, 96, 120, 144, 168].map((d) => d % 7) }]}
+  valueLabel="Remainder"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 You'd get <InlineMath math="7" /> times by counting the Monday meeting too. You'd get <InlineMath math="20" /> times or <InlineMath math="27" /> times by counting only the market days, <InlineMath math="168:8-1" />, or only the health post days, <InlineMath math="168:6-1" />.
 
 So the two events take place together <InlineMath math="6" /> times on days other than Monday.

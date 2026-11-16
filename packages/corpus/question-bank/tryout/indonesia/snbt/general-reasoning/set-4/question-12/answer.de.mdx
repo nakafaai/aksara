@@ -12,6 +12,18 @@ Kurz zusammengefasst sehen die Schritte 1 bis 4 so aus.
 
 <BlockMath math="\begin{aligned} \neg\text{Tafel} &\Rightarrow \neg\text{Milchkaffee} \\ \text{Barista da} \wedge \neg\text{Milchkaffee} &\Rightarrow \text{Maschine kaputt} \\ \text{Maschine kaputt} &\Rightarrow \text{Techniker gerufen} \end{aligned}" />
 
+Das Diagramm zeichnet diesen Weg rückwärts. **Die Kette endet beim gerufenen Techniker**, weil Regel 4 den Laden nicht zwingt, die Servicegebühr zu zahlen.
+
+<Mermaid
+  title={<>Rückwärts von der fehlenden Werbetafel</>}
+  description={<>Die Werbetafel stand nicht, also wurde kein Milchkaffee verkauft. Der Hauptbarista war da, also war die Espressomaschine kaputt. Die Maschine war kaputt, also wurde der Techniker gerufen. Die Servicegebühr bleibt offen.</>}
+  chart={`flowchart LR
+    P["Werbetafel nicht aufgestellt"] -->|"Regel 2"| K["Kein Milchkaffee verkauft"]
+    K -->|"Regel 1, Barista da"| M["Espressomaschine kaputt"]
+    M -->|"Regel 3"| T["Techniker gerufen"]
+    T -.->|"Regel 4 zwingt nicht"| B["Servicegebühr offen"]`}
+/>
+
 Zur Kontrolle baust du den Donnerstag nach: Barista da, Maschine kaputt, kein Milchkaffee, keine Werbetafel, Techniker gerufen. Alle vier Regeln gelten, **egal ob das Café die Servicegebühr bezahlt oder nicht**. Über die Servicegebühr lässt sich also wirklich nichts sagen.
 
 Die anderen Optionen scheitern an jeweils einem falschen Schritt.

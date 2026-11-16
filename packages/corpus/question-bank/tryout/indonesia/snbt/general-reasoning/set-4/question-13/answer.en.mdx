@@ -10,6 +10,18 @@ Step two: take the contrapositive, which means flipping the arrow and negating b
 
 <BlockMath math="(\neg\text{did training} \vee \neg\text{has card}) \Rightarrow \neg\text{may borrow}" />
 
+The diagram below checks a student step by step. **One failed requirement is already enough to reach "may not borrow"**, while passing both doesn't guarantee a loan.
+
+<Mermaid
+  title={<>Checking the requirements for borrowing lab equipment</>}
+  description={<>A student who hasn't done the safety training may not borrow. A student who did the training but doesn't bring a lab card may not borrow either. A student who meets both may be considered, but isn't guaranteed a loan.</>}
+  chart={`flowchart LR
+    A{"Did the safety training?"} -->|"no"| X["May not borrow"]
+    A -->|"yes"| B{"Brought a lab card?"}
+    B -->|"no"| Y["May not borrow"]
+    B -->|"yes"| Z["May be considered, not guaranteed"]`}
+/>
+
 That form is exactly the statement "if a student hasn't done the safety training or doesn't bring a lab card, they may not borrow lab equipment".
 
 You can test every other option with one situation where its truth value differs from the original.

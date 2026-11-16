@@ -8,6 +8,20 @@ The original statement says that at least one participant has three features at 
 
 Its negation: no participant at all has all three features together. The standard form is "Every participant who attended from the first day and handed in the practical report received a certificate." That form isn't offered, so use this test: the correct negation forbids exactly one combination, attended, handed in the report, but no certificate. Every other combination must stay allowed.
 
+The diagram below checks a participant feature by feature. **Only one path ends at "forbidden"**: attended, handed in the report, but no certificate.
+
+<Mermaid
+  title={<>The one combination the negation forbids</>}
+  description={<>A participant who didn't attend from the first day or didn't hand in the report may or may not get a certificate. A participant who attended and handed in the report must get a certificate. Attended, report, no certificate is the only forbidden combination.</>}
+  chart={`flowchart LR
+    A{"Attended from day one?"} -->|"no"| OK1["Anything allowed"]
+    A -->|"yes"| B{"Handed in the report?"}
+    B -->|"no"| OK2["Anything allowed"]
+    B -->|"yes"| C{"Got a certificate?"}
+    C -->|"yes"| OK3["Allowed"]
+    C -->|"no"| X["Forbidden by the negation"]`}
+/>
+
 Now look at "Every participant who attended from the first day but didn't receive a certificate didn't hand in the practical report." Take a participant who attended from the first day and didn't receive a certificate. This sentence forces that participant not to have handed in the report. So the combination attended, report, no certificate is forbidden, and no other combination is. The sentence **forbids exactly the same single combination**, so it means the same as the negation.
 
 The table checks each option by the combinations it forbids. "Yes" means the participant has that feature.

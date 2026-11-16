@@ -14,6 +14,18 @@ Zähl jetzt die Treffen. In <InlineMath math="168" /> Tagen gibt es <InlineMath 
 
 Prüf diese sechs Treffen: Die Reste von <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" /> und <InlineMath math="144" /> bei Division durch <InlineMath math="7" /> sind <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" /> und <InlineMath math="4" />. Keiner ist <InlineMath math="0" />, keines der sechs fällt also auf einen Montag.
 
+Das Diagramm zeichnet diesen Rest für alle sieben Treffen. **Erst an Tag <InlineMath math="168" /> erreicht der Balken null**, also liegen die sechs Treffen davor nicht auf einem Montag.
+
+<Chart
+  title={<>Rest des Tages jedes Treffens bei Division durch <InlineMath math="7" /></>}
+  description={<>Für die Tage <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" /> und <InlineMath math="144" /> sind die Reste <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" /> und <InlineMath math="4" />. Tag <InlineMath math="168" /> lässt den Rest <InlineMath math="0" />, also einen Montag.</>}
+  bars="apart"
+  categories={["24", "48", "72", "96", "120", "144", "168"]}
+  series={[{ label: "Rest bei Division durch 7", mark: "bar", values: [24, 48, 72, 96, 120, 144, 168].map((d) => d % 7) }]}
+  valueLabel="Rest"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 Auf <InlineMath math="7" />-mal kommst du, wenn du das Montagstreffen mitzählst. Auf <InlineMath math="20" />-mal oder <InlineMath math="27" />-mal kommst du, wenn du nur die Markttage zählst, also <InlineMath math="168:8-1" />, oder nur die Tage der Gesundheitsstation, also <InlineMath math="168:6-1" />.
 
 Die beiden Termine fallen also <InlineMath math="6" />-mal an einem anderen Wochentag als Montag zusammen.

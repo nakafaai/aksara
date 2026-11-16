@@ -8,6 +8,20 @@ Die ursprüngliche Aussage sagt, dass mindestens eine Person im Kurs drei Merkma
 
 Die Verneinung lautet: Niemand im Kurs hat alle drei Merkmale zusammen. Die Standardform ist "Jede Person, die ab dem ersten Tag da war und den Praxisbericht abgegeben hat, hat ein Zertifikat bekommen." Diese Form wird nicht angeboten, also nimmst du diesen Test: Die richtige Verneinung verbietet genau eine Kombination, nämlich da gewesen, Bericht abgegeben, aber kein Zertifikat. Jede andere Kombination muss erlaubt bleiben.
 
+Das Diagramm prüft eine teilnehmende Person Merkmal für Merkmal. **Nur ein Weg endet bei „verboten“**: ab dem ersten Tag da, Bericht abgegeben, aber kein Zertifikat.
+
+<Mermaid
+  title={<>Die einzige Kombination, die die Verneinung verbietet</>}
+  description={<>Wer nicht ab dem ersten Tag da war oder den Bericht nicht abgegeben hat, darf ein Zertifikat haben oder nicht. Wer da war und den Bericht abgegeben hat, muss ein Zertifikat bekommen. Da, Bericht, kein Zertifikat ist die einzige verbotene Kombination.</>}
+  chart={`flowchart LR
+    A{"Ab dem ersten Tag da?"} -->|"nein"| OK1["Alles erlaubt"]
+    A -->|"ja"| B{"Bericht abgegeben?"}
+    B -->|"nein"| OK2["Alles erlaubt"]
+    B -->|"ja"| C{"Zertifikat bekommen?"}
+    C -->|"ja"| OK3["Erlaubt"]
+    C -->|"nein"| X["Von der Verneinung verboten"]`}
+/>
+
 Schau dir jetzt den Satz an: "Jede Person, die ab dem ersten Tag da war, aber kein Zertifikat bekommen hat, hat den Praxisbericht nicht abgegeben." Nimm eine Person, die ab dem ersten Tag da war und kein Zertifikat bekommen hat. Der Satz zwingt sie dazu, den Bericht nicht abgegeben zu haben. Die Kombination da gewesen, Bericht, kein Zertifikat ist also verboten, und keine andere Kombination ist es. Der Satz **verbietet genau dieselbe einzelne Kombination**, also bedeutet er dasselbe wie die Verneinung.
 
 Die Tabelle prüft jede Antwort danach, welche Kombinationen sie verbietet. "Ja" heißt, die Person hat dieses Merkmal.

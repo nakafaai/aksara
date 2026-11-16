@@ -8,6 +8,18 @@ Ducks were only ever taken out for spraying, so those four plots were all spraye
 
 <BlockMath math="\begin{aligned} \text{Ducks from the start: } & \frac{4}{20} = 20\% \\ \text{No ducks from the start: } & \frac{12-4}{20} = \frac{8}{20} = 40\% \end{aligned}" />
 
+The chart below compares the two groups as they stood at the start of the season. **The bar for plots with ducks from the start is only half as tall as the bar for plots without ducks**.
+
+<Chart
+  title={<>Share of plots sprayed by their state at the start of the season</>}
+  description={<>Of the <InlineMath math="20" /> plots with ducks from the start, <InlineMath math="4" /> were sprayed, which is <InlineMath math="20\%" />. Of the <InlineMath math="20" /> plots without ducks from the start, <InlineMath math="8" /> were sprayed, which is <InlineMath math="40\%" />.</>}
+  categories={["Ducks from the start", "No ducks from the start"]}
+  bars="apart"
+  series={[{ label: "Sprayed plots (%)", mark: "bar", values: [(4 / 20) * 100, ((12 - 4) / 20) * 100] }]}
+  valueLabel="Sprayed plots (%)"
+  valueRange={{ min: 0, max: 50 }}
+/>
+
 So <InlineMath math="20\%" /> is half of <InlineMath math="40\%" />. Check the total: <InlineMath math="4+8=12" /> sprayed plots, the same as the table.
 
 Here's why the other options don't hold:

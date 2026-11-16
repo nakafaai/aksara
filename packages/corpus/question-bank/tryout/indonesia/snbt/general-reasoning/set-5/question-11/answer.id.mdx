@@ -9,6 +9,17 @@ Tulis ulang keempat keterangan dengan bahasa sehari-hari dulu.
 
 Bibit X adalah kunci soal ini. Keterangan 3 **menjamin bibit X benar-benar ada**, jadi semua hal yang pasti berlaku pada bibit X ikut menjadi pernyataan "sebagian" yang pasti benar.
 
+Diagram berikut menelusuri bibit X melalui keterangan lainnya. **Ketiga cabang dari bibit X adalah hal yang pasti**, karena keterangan 3 menjamin bibit itu benar-benar ada.
+
+<Mermaid
+  title={<>Jejak bibit X melalui keempat keterangan</>}
+  description={<>Bibit X disemai di rumah kaca dan berumur kurang dari <InlineMath math="3" /> bulan. Karena di rumah kaca, bibit X diberi kompos. Karena masih muda, bibit X bukan bibit tanaman buah, sehingga tidak dikirim ke Desa Sukamaju.</>}
+  chart={`flowchart LR
+    X["Bibit X: di rumah kaca, umur kurang dari 3 bulan"] -->|"keterangan 4"| K["Diberi pupuk kompos"]
+    X -->|"keterangan 2"| B["Bukan bibit tanaman buah"]
+    B -->|"keterangan 1"| S["Tidak dikirim ke Desa Sukamaju"]`}
+/>
+
 Pernyataan 1 pasti benar. Bibit X ada di rumah kaca, jadi menurut keterangan 4 bibit X diberi kompos. Umur bibit X kurang dari <InlineMath math="3" /> bulan, jadi menurut keterangan 2 bibit X bukan bibit tanaman buah. Berarti ada bibit berpupuk kompos yang bukan bibit tanaman buah. Kalimat "tidak semua A adalah B" artinya sama dengan "ada A yang bukan B", jadi pernyataan ini terbukti. Bentuk "tidak semua" sering terdengar seperti tebakan, padahal di sini tiga keterangan menjaminnya.
 
 Pernyataan 2 tidak pasti benar. Keterangan 3 hanya berbicara tentang sebagian bibit di rumah kaca, bukan semuanya. Bayangkan bibit mangga berumur <InlineMath math="5" /> bulan yang disemai di rumah kaca, diberi kompos, lalu dikirim ke Desa Sukamaju. Bibit itu tanaman buah (keterangan 1 aman), umurnya tidak kurang dari <InlineMath math="3" /> bulan (keterangan 2 aman), dan diberi kompos (keterangan 4 aman). Bibit X tetap ada, jadi keterangan 3 juga aman. Keadaan ini membantah pernyataan 2. Kesalahannya adalah membaca "sebagian" seolah-olah "semua".

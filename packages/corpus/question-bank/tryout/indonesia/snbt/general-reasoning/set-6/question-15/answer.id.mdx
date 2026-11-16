@@ -5,6 +5,19 @@ Jika R di urutan kedua, cari dulu siapa yang dapat di urutan pertama.
 - **P** tidak boleh di urutan pertama, sebab Q harus tepat setelah P, padahal urutan kedua sudah diisi R.
 - **Q** tidak boleh di urutan pertama, sebab P harus tepat sebelum Q.
 
+Diagram berikut merangkum alasan setiap calon pengisi urutan pertama gugur. **Hanya T yang lolos**, karena T memang boleh tampil pertama.
+
+<Mermaid
+  title={<>Siapa yang dapat tampil pertama jika R tampil kedua</>}
+  description={<>U gugur karena akan tepat sebelum R. S gugur karena harus sesudah R. P gugur karena Q harus tepat sesudah P, padahal urutan kedua diisi R. Q gugur karena P harus tepat sebelum Q. Yang tersisa hanya T.</>}
+  chart={`flowchart LR
+    R["R di urutan kedua"] --> U["U pertama: tepat sebelum R, gugur"]
+    R --> S["S pertama: sebelum R, gugur"]
+    R --> P["P pertama: Q tidak bisa kedua, gugur"]
+    R --> Q["Q pertama: P tidak bisa sebelumnya, gugur"]
+    R --> T["T pertama: lolos"]`}
+/>
+
 Satu-satunya yang tersisa adalah **T**, jadi T pasti tampil pertama. Urutan yang memenuhi semua syarat adalah T, R, P, Q, S, U, lalu T, R, S, P, Q, U, dan T, R, S, U, P, Q.
 
 Pilihan lain tidak pasti:

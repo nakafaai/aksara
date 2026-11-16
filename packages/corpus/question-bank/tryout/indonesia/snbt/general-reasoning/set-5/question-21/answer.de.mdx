@@ -7,6 +7,20 @@ Sichtbar sind die Sprünge <InlineMath math="1" />, <InlineMath math="3" />, <In
 - Der <InlineMath math="1." /> und der <InlineMath math="3." /> Sprung sind <InlineMath math="1" /> und <InlineMath math="2" />. Das Muster wächst um eins, also ist der <InlineMath math="5." /> Sprung <InlineMath math="3" /> und der <InlineMath math="7." /> Sprung <InlineMath math="4" />.
 - Der <InlineMath math="2." /> Sprung ist <InlineMath math="3" />. Wächst auch dieses Muster um eins, ist der <InlineMath math="4." /> Sprung <InlineMath math="4" /> und der <InlineMath math="6." /> Sprung <InlineMath math="5" />. Der <InlineMath math="6." /> Sprung ist wirklich <InlineMath math="5" />, die Vermutung passt also.
 
+Das Diagramm trennt die beiden Sprungmuster. **Jedes Muster wächst bei jedem Auftreten um eins**, also sind Sprung <InlineMath math="4" /> und Sprung <InlineMath math="7" /> beide <InlineMath math="4" />.
+
+<Chart
+  title={<>Größe des Rückwärtssprungs von einem Buchstaben zum nächsten</>}
+  description={<>Die Sprünge an ungeraden Stellen sind <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="4" />. Die Sprünge an geraden Stellen sind <InlineMath math="3" />, <InlineMath math="4" /> und <InlineMath math="5" />.</>}
+  bars="apart"
+  categories={["1", "2", "3", "4", "5", "6", "7"]}
+  series={[
+    { label: "Sprünge an ungeraden Stellen", mark: "bar", values: [1, null, 2, null, 3, null, 4] },
+    { label: "Sprünge an geraden Stellen", mark: "bar", values: [null, 3, null, 4, null, 5, null] },
+  ]}
+  valueLabel="Sprunggröße"
+/>
+
 Füll jetzt die fehlenden Buchstaben ein.
 
 <BlockMath math="\begin{aligned}

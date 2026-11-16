@@ -18,6 +18,19 @@ Step 2. Lay out the schedule. The machine works in <InlineMath math="3" />-hour 
 
 The last <InlineMath math="70" /> T-shirts take <InlineMath math="70 : 50 = 1.4" /> hours, which is <InlineMath math="1" /> hour <InlineMath math="24" /> minutes, so the order is done at 20:24. Check: <InlineMath math="10.4" /> hours of work plus <InlineMath math="3" /> hours of rest is <InlineMath math="13" /> hours <InlineMath math="24" /> minutes after 07:00.
 
+The chart below draws the T-shirts done through the day. **The line is flat during the three hours of rest**, and the last stretch of <InlineMath math="1" /> hour <InlineMath math="24" /> minutes brings it to <InlineMath math="520" />.
+
+<Chart
+  title={<>T-shirts done from 07:00 to 20:24</>}
+  description={<>Each three-hour work block adds <InlineMath math="150" /> T-shirts, and each hour of rest adds nothing. After three work blocks and three rests, <InlineMath math="450" /> T-shirts are done at 19:00. The last <InlineMath math="70" /> are done at 20:24.</>}
+  categories={["07:00", "10:00", "11:00", "14:00", "15:00", "18:00", "19:00", "20:24"]}
+  series={[
+    { label: "T-shirts done", mark: "line", values: [0, 3 * 50, 150, 150 + 3 * 50, 300, 300 + 3 * 50, 450, 450 + 70] },
+    { label: "Order", mark: "line", values: [520, 520, 520, 520, 520, 520, 520, 520] },
+  ]}
+  valueLabel="T-shirts"
+/>
+
 The other options come from miscounting rests or minutes.
 
 - 17:24 ignores all the rests.

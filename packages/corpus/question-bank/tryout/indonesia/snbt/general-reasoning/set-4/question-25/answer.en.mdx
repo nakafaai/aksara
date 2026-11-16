@@ -10,6 +10,20 @@ Step 2. Find how many passes are needed.
 
 A number of people has to be a whole number. <InlineMath math="102" /> people isn't enough, because <InlineMath math="102 : 128 \approx 79.7\%" /> is still below <InlineMath math="80\%" />. So at least <InlineMath math="103" /> people must pass.
 
+The chart below draws the pass rate for several numbers of passes. **The pass-rate line only reaches the target once <InlineMath math="103" /> people pass**.
+
+<Chart
+  title={<>District R's pass rate out of <InlineMath math="128" /> exam takers</>}
+  description={<>With <InlineMath math="96" /> passes, the rate is <InlineMath math="75\%" />. With <InlineMath math="102" />, it's about <InlineMath math="79.7\%" />, still below <InlineMath math="80\%" />. With <InlineMath math="103" />, it's about <InlineMath math="80.5\%" />.</>}
+  categories={["96", "99", "100", "101", "102", "103", "104"]}
+  series={[
+    { label: "Pass rate", mark: "line", values: [96, 99, 100, 101, 102, 103, 104].map((n) => (n / 128) * 100) },
+    { label: "80% target", mark: "line", values: [80, 80, 80, 80, 80, 80, 80] },
+  ]}
+  valueLabel="Pass rate (%)"
+  valueRange={{ min: 70, max: 85 }}
+/>
+
 Step 3. Compare with this year, when <InlineMath math="96" /> people passed.
 
 <BlockMath math="103 - 96 = 7" />

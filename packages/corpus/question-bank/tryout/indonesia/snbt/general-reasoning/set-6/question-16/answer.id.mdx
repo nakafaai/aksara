@@ -1,5 +1,17 @@
 Uji setiap urutan terhadap kelima syarat. Satu pelanggaran sudah cukup untuk membuat urutan itu **tidak mungkin**.
 
+Grafik berikut menghitung syarat yang dilanggar setiap urutan. **Urutan dengan batang nol adalah urutan yang mungkin**.
+
+<Chart
+  title={<>Banyak syarat yang dilanggar oleh setiap urutan tampil</>}
+  description={<>Urutan 1 melanggar <InlineMath math="1" /> syarat, yaitu syarat 4. Urutan 3 melanggar <InlineMath math="1" /> syarat, yaitu syarat 2. Urutan 2 dan urutan 4 tidak melanggar syarat apa pun.</>}
+  categories={["Urutan 1", "Urutan 2", "Urutan 3", "Urutan 4"]}
+  bars="apart"
+  series={[{ label: "Syarat yang dilanggar", mark: "bar", values: [1, 0, 1, 0] }]}
+  valueLabel="Banyak syarat"
+  valueRange={{ min: 0, max: 2 }}
+/>
+
 **Urutan 1**: Tidak mungkin. U di urutan ketiga tepat sesudah R di urutan kedua, sehingga melanggar syarat 4.
 
 **Urutan 2**: Mungkin. Q tepat setelah P, R sebelum S, T terakhir, U di urutan kelima tidak bersebelahan dengan R di urutan ketiga, dan S di urutan keempat.

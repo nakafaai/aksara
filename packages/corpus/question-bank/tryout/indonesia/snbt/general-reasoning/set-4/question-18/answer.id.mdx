@@ -12,6 +12,19 @@ Kamus sudah pasti di kotak 3. Payung tidak di kotak 2 dan tidak di kotak 3, jadi
 - Payung di kotak 1. Jam dinding tinggal punya kotak 2 atau kotak 4. Nomor 2 berurutan dengan nomor 1, jadi kotak 2 melanggar kebalikan label kotak 4. Kotak 4 membuat nomor kamus, yaitu <InlineMath math="3" />, lebih kecil daripada nomor jam dinding, jadi kotak 4 melanggar kebalikan label kotak 3. Kasus ini gugur.
 - Payung di kotak 4. Kotak 1 tidak boleh berisi kamus atau termos, dan payung sudah di kotak 4, jadi kotak 1 berisi jam dinding. Termos mengisi kotak 2.
 
+Diagram berikut menggambar kedua kasus letak payung. **Cabang payung di kotak 1 buntu di kedua pilihannya**, sehingga hanya cabang payung di kotak 4 yang tersisa.
+
+<Mermaid
+  title={<>Dua kasus letak payung setelah kamus pasti di kotak 3</>}
+  description={<>Jika payung di kotak 1, jam dinding di kotak 2 bertetangga dengan payung, sedangkan jam dinding di kotak 4 membuat nomor kamus lebih kecil. Jika payung di kotak 4, kotak 1 harus berisi jam dinding dan kotak 2 berisi termos.</>}
+  chart={`flowchart LR
+    K["Kamus di kotak 3"] --> A["Payung di kotak 1"]
+    K --> B["Payung di kotak 4"]
+    A --> A1["Jam di kotak 2: bertetangga dengan payung, gagal"]
+    A --> A2["Jam di kotak 4: nomor kamus lebih kecil, gagal"]
+    B --> B1["Kotak 1 jam dinding, kotak 2 termos"]`}
+/>
+
 Hasilnya: kotak 1 jam dinding, kotak 2 termos, kotak 3 kamus, kotak 4 payung. Cek sekali lagi bahwa keempat label memang salah. Kotak 1 berisi jam dinding, bukan kamus atau termos. Kamus ada di kotak 3, tetapi kotak 2 berisi termos, bukan payung. Nomor kamus, yaitu <InlineMath math="3" />, tidak lebih kecil daripada nomor jam dinding, yaitu <InlineMath math="1" />. Jam dinding di kotak 1 dan payung di kotak 4 tidak berurutan.
 
 Setiap pilihan lain membuat tepat satu label menjadi benar.

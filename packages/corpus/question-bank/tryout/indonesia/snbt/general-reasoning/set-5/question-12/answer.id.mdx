@@ -14,6 +14,18 @@ Sekarang mundur dari <InlineMath math="\neg t" />. Kontrapositif premis 2, yaitu
 
 <BlockMath math="p \Rightarrow q \;\overset{?}{\Rightarrow}\; r \Rightarrow \neg s \Rightarrow \neg t" />
 
+Diagram berikut menggambar rantai itu dengan mata rantai yang masih kosong. **Panah putus-putus dari <InlineMath math="q" /> ke <InlineMath math="r" /> adalah yang harus diisi premis keempat**.
+
+<Mermaid
+  title={<>Rantai dari hujan deras sampai siswa tidak menonton langsung</>}
+  description={<>Hujan deras membuat final dipindah ke gedung olahraga. Jika penonton dibatasi <InlineMath math="300" /> orang, siswa kelas X tidak mendapat tiket, sehingga tidak menonton langsung. Yang belum ada adalah langkah dari final dipindah ke penonton dibatasi.</>}
+  chart={`flowchart LR
+    P["p: hujan deras"] -->|"premis 1"| Q["q: final dipindah ke gedung olahraga"]
+    Q -.->|"perlu premis keempat"| R["r: penonton dibatasi 300 orang"]
+    R -->|"premis 3"| S["tidak s: tidak mendapat tiket"]
+    S -->|"kontrapositif premis 2"| T["tidak t: tidak menonton langsung"]`}
+/>
+
 Mata rantai yang hilang adalah <InlineMath math="q \Rightarrow r" />: kalau pertandingan dipindahkan ke gedung olahraga, jumlah penonton dibatasi <InlineMath math="300" /> orang. Bentuk itu tidak muncul apa adanya di pilihan. Yang muncul adalah kontrapositifnya, <InlineMath math="\neg r \Rightarrow \neg q" />: jika jumlah penonton tidak dibatasi <InlineMath math="300" /> orang, pertandingan final tidak dipindahkan ke gedung olahraga. Karena kontrapositif selalu bernilai sama dengan pernyataan aslinya, pilihan ini **tepat menyambung rantai yang putus**.
 
 Untuk menguji pilihan yang lain, pakai satu keadaan contoh. Hujan deras turun, pertandingan dipindahkan ke gedung olahraga, jumlah penonton tidak dibatasi, siswa kelas X mendapat tiket, lalu mereka menonton langsung. Ketiga premis terpenuhi, tetapi simpulannya gagal, karena hujan turun dan siswa kelas X tetap menonton. Pilihan yang salah tidak melarang keadaan ini.

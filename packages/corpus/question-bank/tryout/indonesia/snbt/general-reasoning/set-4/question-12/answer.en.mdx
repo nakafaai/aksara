@@ -12,6 +12,18 @@ Here are steps 1 to 4 in short form.
 
 <BlockMath math="\begin{aligned} \neg\text{promo} &\Rightarrow \neg\text{milk coffee} \\ \text{barista in} \wedge \neg\text{milk coffee} &\Rightarrow \text{machine broken} \\ \text{machine broken} &\Rightarrow \text{technician called} \end{aligned}" />
 
+The diagram below draws that backward walk. **The chain stops at the technician being called**, because rule 4 doesn't force the shop to pay the service fee.
+
+<Mermaid
+  title={<>Working backward from the missing promo board</>}
+  description={<>The promo board wasn't put up, so milk coffee wasn't on sale. The head barista came in, so the espresso machine was broken. The machine was broken, so the technician was called. The service fee still can't be decided.</>}
+  chart={`flowchart LR
+    P["Promo board not put up"] -->|"rule 2"| K["Milk coffee not on sale"]
+    K -->|"rule 1, barista in"| M["Espresso machine broken"]
+    M -->|"rule 3"| T["Technician called"]
+    T -.->|"rule 4 doesn't force it"| B["Service fee undecided"]`}
+/>
+
 To check, build that Thursday: barista in, machine broken, no milk coffee, no promo board, technician called. All four rules hold **whether or not the shop pays the service fee**. So the service fee really can't be decided.
 
 The other options fall because of one wrong step.

@@ -14,6 +14,18 @@ Sekarang hitung pertemuannya. Dalam <InlineMath math="168" /> hari ada <InlineMa
 
 Cek keenam pertemuan itu: sisa pembagian <InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" />, dan <InlineMath math="144" /> oleh <InlineMath math="7" /> berturut-turut adalah <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" />, dan <InlineMath math="4" />. Tidak ada yang bersisa <InlineMath math="0" />, jadi keenamnya memang bukan hari Senin.
 
+Grafik berikut menggambar sisa itu untuk ketujuh pertemuan. **Batang baru menyentuh nol pada hari ke-<InlineMath math="168" />**, jadi enam pertemuan sebelumnya jatuh pada hari selain Senin.
+
+<Chart
+  title={<>Sisa pembagian hari pertemuan oleh <InlineMath math="7" /></>}
+  description={<>Untuk hari ke-<InlineMath math="24" />, <InlineMath math="48" />, <InlineMath math="72" />, <InlineMath math="96" />, <InlineMath math="120" />, dan <InlineMath math="144" />, sisanya <InlineMath math="3" />, <InlineMath math="6" />, <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="1" />, dan <InlineMath math="4" />. Hari ke-<InlineMath math="168" /> bersisa <InlineMath math="0" />, yaitu hari Senin.</>}
+  bars="apart"
+  categories={["24", "48", "72", "96", "120", "144", "168"]}
+  series={[{ label: "Sisa pembagian oleh 7", mark: "bar", values: [24, 48, 72, 96, 120, 144, 168].map((d) => d % 7) }]}
+  valueLabel="Sisa"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 Jawaban <InlineMath math="7" /> kali muncul kalau pertemuan pada hari Senin ikut dihitung. Jawaban <InlineMath math="20" /> kali dan <InlineMath math="27" /> kali muncul kalau yang dihitung adalah kedatangan pasar murah saja, yaitu <InlineMath math="168:8-1" />, atau posyandu saja, yaitu <InlineMath math="168:6-1" />.
 
 Jadi, keduanya berlangsung bersama <InlineMath math="6" /> kali pada hari selain Senin.

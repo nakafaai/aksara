@@ -13,6 +13,21 @@ Start with fact 3, because it's the tightest. Naufal and Tiara are exactly two v
 | Third order | Satria | Pandu | Naufal | Ratri | Olivia | Tiara |
 | Fourth order | Satria | Pandu | Naufal | Olivia | Ratri | Tiara |
 
+The chart below compares Olivia's and Ratri's positions in the four orders. **Only in the fourth order is Olivia's bar shorter than Ratri's**, so "Olivia arrives before Ratri" leaves exactly one order.
+
+<Chart
+  title={<>Olivia's and Ratri's arrival positions in the four valid orders</>}
+  description={<>Olivia arrives in positions <InlineMath math="6" />, <InlineMath math="6" />, <InlineMath math="5" />, and <InlineMath math="4" />. Ratri arrives in positions <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="4" />, and <InlineMath math="5" />.</>}
+  categories={["First order", "Second order", "Third order", "Fourth order"]}
+  bars="apart"
+  series={[
+    { label: "Olivia's position", mark: "bar", values: [6, 6, 5, 4] },
+    { label: "Ratri's position", mark: "bar", values: [3, 4, 4, 5] },
+  ]}
+  valueLabel="Arrival position"
+  valueRange={{ min: 0, max: 6 }}
+/>
+
 Now test each extra fact.
 
 - Satria arrives first: three orders still fit.
