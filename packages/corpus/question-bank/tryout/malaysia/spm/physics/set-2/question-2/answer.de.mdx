@@ -1,0 +1,28 @@
+# Das Höhenverhältnis in ein Geschwindigkeitsverhältnis umrechnen
+
+Die Steigung ist ein Verhältnis von Höhen. Die Höhe wächst mit dem Quadrat der Geschwindigkeit, also **behält jeder Aufprall <InlineMath math="\sqrt{0{,}64}=0{,}8" /> der Geschwindigkeit**, und ein Flug hinauf und hinunter dauert <InlineMath math="2v/g" />, also ist jeder Flug <InlineMath math="0{,}8" />-mal so lang wie der vorige.
+
+<BlockMath math="\begin{aligned}
+t_0&=\sqrt{\frac{2(2{,}00)}{10}}=0{,}632\text{ s},\quad v_0=g\,t_0=6{,}32\text{ m s}^{-1}\\
+\text{Flug 1}&=\frac{2(0{,}8\,v_0)}{g}=1{,}6\,t_0=1{,}01\text{ s}\\
+\text{Flug 2}&=0{,}8\times1{,}01=0{,}81\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Dauer jedes Abschnitts der Bewegung</>}
+  description={<>Balkendiagramm: Der erste Fall dauert <InlineMath math="0{,}63\text{ s}" />, der Flug nach dem ersten Aufprall <InlineMath math="1{,}01\text{ s}" /> und der Flug nach dem zweiten Aufprall <InlineMath math="0{,}81\text{ s}" />, zusammen <InlineMath math="2{,}45\text{ s}" />.</>}
+  bars="apart"
+  categories={["Erster Fall", "Flug 1", "Flug 2"]}
+  series={[
+    { label: "Dauer", mark: "bar", values: [0.63, 1.01, 0.81] },
+  ]}
+  valueLabel="Dauer (s)"
+/>
+
+Der dritte Aufprall beendet den zweiten Flug: <InlineMath math="0{,}63+1{,}01+0{,}81=2{,}45\text{ s}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}96\text{ s}" /> **verkürzt jede Flugzeit um den Faktor <InlineMath math="0{,}64" />, als folgte die Zeit der Höhe**.
+- <InlineMath math="1{,}64\text{ s}" /> hört beim zweiten Aufprall auf.
+- <InlineMath math="1{,}54\text{ s}" /> zählt jeden Flug nur in eine Richtung, hinauf, aber nicht wieder hinunter.

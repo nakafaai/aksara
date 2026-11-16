@@ -1,0 +1,43 @@
+# Follow the light through lens, mirror and lens again
+
+On the first pass the lens would form an image at <InlineMath math="v" /> with <InlineMath math="\dfrac1{20}=\dfrac1{30}+\dfrac1v" />, so <InlineMath math="v=60\text{ cm}" />. That point lies <InlineMath math="20\text{ cm}" /> beyond the mirror, so the light never reaches it. **The mirror folds the converging light back, and it meets <InlineMath math="20\text{ cm}" /> in front of the mirror**, which is <InlineMath math="20\text{ cm}" /> from the lens.
+
+<MathVisual
+  title={<>Image positions along the axis</>}
+  description={<>The lens at <InlineMath math="0" />, the object at <InlineMath math="-30\text{ cm}" /> and the mirror at <InlineMath math="40\text{ cm}" />. The lens alone would form an image at <InlineMath math="60\text{ cm}" />, beyond the mirror. The mirror folds it back to <InlineMath math="20\text{ cm}" />, exactly at the lens's focal point.</>}
+  labels={{
+    obj: <>object</>,
+    lens: <>lens</>,
+    mirror: <>mirror</>,
+    first: <>would-be image, <InlineMath math="60\text{ cm}" /></>,
+    fold: <>folded image at <InlineMath math="F" />, <InlineMath math="20\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 65 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "obj", kind: "vector", appearance: "primary", from: { x: -30, y: 0 }, to: { x: -30, y: 6 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -9 }, to: { x: 0, y: 9 } },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 40, y: -9 }, to: { x: 40, y: 9 } },
+      { id: "first", kind: "point", appearance: "warning", at: { x: 60, y: 0 } },
+      { id: "fold", kind: "point", appearance: "answer", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "obj", objectId: "obj", at: { x: -30, y: 6 }, placement: "above" },
+      { key: "lens", objectId: "lens", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 40, y: 9 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "fold", objectId: "fold", at: { x: 20, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+That point is the lens's focal point. Light diverging from the focal point leaves a convex lens parallel to the axis, so <InlineMath math="v\to\infty" /> and no final image forms.
+
+# Why the other options are wrong
+
+- A real image <InlineMath math="30\text{ cm}" /> in front of the lens uses <InlineMath math="u=60\text{ cm}" /> on the way back, the distance to the would-be image, instead of <InlineMath math="20\text{ cm}" />. **The mirror moves the image to <InlineMath math="20\text{ cm}" /> from the lens**.
+- A real image <InlineMath math="20\text{ cm}" /> behind the lens is where the reflected light meets, before it passes back through the lens.
+- A real image <InlineMath math="60\text{ cm}" /> in front of the lens simply mirrors the first-pass result, ignoring the mirror's position.

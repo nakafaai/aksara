@@ -1,0 +1,24 @@
+# Compare the new speed with the escape speed at r
+
+In a circular orbit <InlineMath math="v=\sqrt{GM/r}" />, and the escape speed from the same radius is <InlineMath math="\sqrt{2GM/r}=\sqrt2\,v" />. **So <InlineMath math="\sqrt2\,v" /> is exactly the escape speed where the satellite is**, and I is true. Kinetic energy goes as <InlineMath math="v^2" />, so it doubles, and II is true.
+
+<Chart
+  title={<>Speeds at radius r</>}
+  description={<>Bar chart in units of the orbital speed <InlineMath math="v" />: orbital speed <InlineMath math="1" />, speed after the burn <InlineMath math="1.41" />, and escape speed at radius <InlineMath math="r" /> also <InlineMath math="1.41" />.</>}
+  bars="apart"
+  categories={["Orbital speed", "After the burn", "Escape speed at r"]}
+  series={[
+    { label: "Speed", mark: "bar", values: [1, 1.41, 1.41] },
+  ]}
+  valueLabel="Speed (multiples of v)"
+/>
+
+III is false because escape speed falls with distance, <InlineMath math="\sqrt{2GM/r}" /> is smaller at <InlineMath math="r" /> than at the surface, not larger. IV is false because <InlineMath math="T=2\pi\sqrt{r^3/GM}" /> contains no mass of the satellite.
+
+So only I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only accepts III. **Escape speed is smaller farther out**, since <InlineMath math="r" /> sits in the denominator.
+- II and IV only rejects I and accepts IV, but the period does not depend on the satellite's mass.
+- I and III only misses II and keeps the false III.

@@ -1,0 +1,30 @@
+# Eine Zelle ablesen
+
+**Der <InlineMath math="V" />-Achsenabschnitt ist die Quellenspannung, <InlineMath math="1{,}5\text{ V}" />, der <InlineMath math="I" />-Achsenabschnitt der Kurzschlussstrom, also <InlineMath math="r=1{,}5/3{,}0=0{,}50\,\Omega" />**.
+
+# Eine verkehrte Zelle zieht ihre Spannung ab, addiert aber ihren Widerstand
+
+**Die verkehrte Zelle arbeitet gegen eine der anderen**, also ist die Gesamtquellenspannung <InlineMath math="1{,}5+1{,}5-1{,}5=1{,}5\text{ V}" />. Ihr Innenwiderstand liegt weiter im Stromweg, also addieren sich alle drei Widerstände.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{1{,}5}{2{,}0+3(0{,}50)}=0{,}43\text{ A}\\
+V&=0{,}43\times2{,}0=0{,}86\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Die drei Zellen in Reihe</>}
+  description={<>Balkendiagramm von Quellenspannung und Innenwiderstand: alle Zellen richtig, <InlineMath math="4{,}5\text{ V}" /> und <InlineMath math="1{,}5\,\Omega" />, und eine verkehrt, <InlineMath math="1{,}5\text{ V}" /> und weiterhin <InlineMath math="1{,}5\,\Omega" />.</>}
+  bars="apart"
+  categories={["Alle richtig", "Eine verkehrt"]}
+  series={[
+    { label: "Quellenspannung (V)", mark: "bar", values: [4.5, 1.5] },
+    { label: "Innenwiderstand (Ω)", mark: "bar", values: [1.5, 1.5] },
+  ]}
+  valueLabel="Wert"
+/>
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}29\text{ A}" /> **übergeht die verkehrte Zelle und rechnet mit <InlineMath math="4{,}5\text{ V}" />**.
+- <InlineMath math="0{,}50\text{ A}" /> lässt den Innenwiderstand der verkehrten Zelle weg.
+- <InlineMath math="0{,}75\text{ A}" /> übergeht alle Innenwiderstände.

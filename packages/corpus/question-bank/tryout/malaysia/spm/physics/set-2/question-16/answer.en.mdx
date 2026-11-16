@@ -1,0 +1,43 @@
+# Get the wavelength, then test each change
+
+The slit formula gives <InlineMath math="\lambda=\dfrac{ax}{D}=\dfrac{6.0\times12.5}{50}=1.5\text{ cm}" />, so I is true, and <InlineMath math="f=\dfrac{v}{\lambda}=\dfrac{3.0\times10^8}{0.015}=2.0\times10^{10}\text{ Hz}=20\text{ GHz}" />, so II is true.
+
+<MathVisual
+  title={<>Strong signals along the detector line</>}
+  description={<>Two slits <InlineMath math="a=6.0\text{ cm}" /> apart, and a line <InlineMath math="D=50\text{ cm}" /> away with strong signals every <InlineMath math="x=12.5\text{ cm}" />, so <InlineMath math="\lambda=ax/D=1.5\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="a=6.0\text{ cm}" /></>,
+    d: <><InlineMath math="D=50\text{ cm}" /></>,
+    x: <><InlineMath math="x=12.5\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 58 }, y: { min: -30, max: 30 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "primary", from: { x: 0, y: -28 }, to: { x: 0, y: -3 } },
+      { id: "wall2", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 0, y: 28 } },
+      { id: "d", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50, y: 0 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 50, y: -28 }, to: { x: 50, y: 28 } },
+      { id: "m0", kind: "point", appearance: "answer", at: { x: 50, y: 0 } },
+      { id: "m1", kind: "point", appearance: "answer", at: { x: 50, y: 12.5 } },
+      { id: "m2", kind: "point", appearance: "answer", at: { x: 50, y: -12.5 } },
+      { id: "m3", kind: "point", appearance: "answer", at: { x: 50, y: 25 } },
+      { id: "m4", kind: "point", appearance: "answer", at: { x: 50, y: -25 } },
+      { id: "x", kind: "segment", appearance: "highlight", from: { x: 53, y: 0 }, to: { x: 53, y: 12.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "wall", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "d", objectId: "d", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "x", objectId: "x", at: { x: 53, y: 6.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+III is true because the regular pattern comes from two sources interfering, and one slit alone only spreads the waves out. **IV breaks the condition the formula rests on**: a strong signal beside the centre needs <InlineMath math="a\sin\theta=\lambda" />, and with <InlineMath math="a=1.0\text{ cm}" /> less than <InlineMath math="\lambda=1.5\text{ cm}" /> that would need <InlineMath math="\sin\theta=1.5" />. Only the central strong signal is left, so the <InlineMath math="75\text{ cm}" /> from <InlineMath math="\lambda=ax/D" /> never appears. So I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only rejects III, but **with one slit there is nothing to interfere with**, so the regular pattern goes.
+- I, II and IV only accepts IV, which applies <InlineMath math="\lambda=ax/D" /> where no strong signal beside the centre can exist.
+- III and IV only drops the two correct calculations and keeps the false IV.

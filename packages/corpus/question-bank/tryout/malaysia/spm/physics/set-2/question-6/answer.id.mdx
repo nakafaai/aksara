@@ -1,0 +1,49 @@
+# Kecepatan setelah dorongan
+
+Impulsnya adalah luas segitiga, <InlineMath math="\tfrac12(0{,}20)(10)=1{,}0\text{ N s}" /> ke timur, dan **keping sudah membawa <InlineMath math="0{,}60\text{ kg m s}^{-1}" /> ke barat**.
+
+<BlockMath math="p=1{,}0-0{,}60=0{,}40\text{ kg m s}^{-1}\ \text{ke timur},\qquad v=\frac{0{,}40}{0{,}50}=0{,}80\text{ m s}^{-1}" />
+
+# Seberapa jauh gesekan membiarkannya meluncur
+
+<BlockMath math="d=\frac{\tfrac12(0{,}50)(0{,}80)^2}{0{,}20}=0{,}80\text{ m}" />
+
+# Dinding lebih dekat dari <InlineMath math="0{,}80\text{ m}" />
+
+**Keping mencapai dinding setelah <InlineMath math="0{,}60\text{ m}" /> dengan kelajuan yang masih tersisa, memantul dengan kelajuan sama, dan memakai sisa <InlineMath math="0{,}20\text{ m}" /> saat kembali**.
+
+<MathVisual
+  title={<>Lintasan keping setelah dorongan</>}
+  description={<>Posisi ke timur dari titik dorongan berakhir. Keping meluncur <InlineMath math="0{,}60\text{ m}" /> ke timur sampai dinding, memantul, dan meluncur kembali <InlineMath math="0{,}20\text{ m}" />, menghabiskan <InlineMath math="0{,}80\text{ m}" /> luncurannya, jadi berhenti di <InlineMath math="0{,}40\text{ m}" />.</>}
+  labels={{
+    out: <>pergi <InlineMath math="0{,}60\text{ m}" /></>,
+    back: <>kembali <InlineMath math="0{,}20\text{ m}" /></>,
+    wall: <>dinding</>,
+    stop: <><InlineMath math="0{,}40\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 0.75 }, y: { min: -0.3, max: 0.45 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "out", kind: "vector", appearance: "secondary", from: { x: 0, y: 0.2 }, to: { x: 0.6, y: 0.2 } },
+      { id: "back", kind: "vector", appearance: "primary", from: { x: 0.6, y: 0.05 }, to: { x: 0.4, y: 0.05 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0.6, y: -0.2 }, to: { x: 0.6, y: 0.35 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 0.4, y: 0.05 } },
+    ],
+    labels: [
+      { key: "out", objectId: "out", at: { x: 0.3, y: 0.2 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 0.5, y: 0.05 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 0.6, y: 0.35 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 0.4, y: 0.05 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Keping berhenti <InlineMath math="0{,}60-0{,}20=0{,}40\text{ m}" /> di timur tempat dorongan berakhir.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0{,}80\text{ m}" /> **ke timur menaruh keping di balik dinding**.
+- <InlineMath math="0{,}20\text{ m}" /> ke timur adalah jarak keping kembali dari dinding, bukan jaraknya dari tempat dorongan berakhir.
+- <InlineMath math="0{,}80\text{ m}" /> ke barat membiarkan keping terus ke barat, padahal dorongan membalik arahnya.

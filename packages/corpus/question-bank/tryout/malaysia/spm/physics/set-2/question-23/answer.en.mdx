@@ -1,0 +1,44 @@
+# Read the sense of the acceleration from the tilt
+
+The spring pulls the mass up and towards the support. The mass sits east of the support, so **the horizontal pull, and with it the acceleration, points west**. The train moves east, so it is slowing down.
+
+<MathVisual
+  title={<>Forces on the hanging mass</>}
+  description={<>The spring force points from the mass up and back towards the west, <InlineMath math="15^\circ" /> from the vertical. Its vertical part balances the weight of <InlineMath math="2.0\text{ N}" /> and its horizontal part points west, so the net force and the acceleration point west while the train moves east.</>}
+  labels={{
+    t: <>spring force <InlineMath math="2.07\text{ N}" /></>,
+    w: <>weight <InlineMath math="2.0\text{ N}" /></>,
+    f: <>net force west</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.0, max: 0.6 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0.9659 } },
+      { id: "w", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: -0.97 } },
+      { id: "f", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: -0.13, y: 0.5 }, placement: "left" },
+      { key: "w", objectId: "w", at: { x: 0, y: -0.6 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -0.13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Balance vertically, then use the horizontal part
+
+<BlockMath math="\begin{aligned}
+T\cos15^\circ&=mg\ \Rightarrow\ T=\frac{2.0}{0.966}=2.07\text{ N}\\
+a&=g\tan15^\circ=2.7\text{ m s}^{-2}\\
+x&=\frac{T}{k}=\frac{2.07}{40}=0.052\text{ m}=5.2\text{ cm}
+\end{aligned}" />
+
+**The spring force is larger than the weight, so the extension is more than the <InlineMath math="5.0\text{ cm}" /> it would have at rest**.
+
+# Why the other options are wrong
+
+- **Speeding up would leave the mass trailing west of the support, the opposite tilt**.
+- <InlineMath math="5.0\text{ cm}" /> divides the weight by <InlineMath math="k" />, but the spring must also supply the horizontal force.
+- <InlineMath math="2.6\text{ m s}^{-2}" /> uses <InlineMath math="g\sin15^\circ" /> and also takes the wrong sense.

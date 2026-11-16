@@ -1,0 +1,43 @@
+# Erst die Wellenlänge, dann jede Änderung prüfen
+
+Die Spaltformel liefert <InlineMath math="\lambda=\dfrac{ax}{D}=\dfrac{6{,}0\times12{,}5}{50}=1{,}5\text{ cm}" />, also ist I wahr, und <InlineMath math="f=\dfrac{v}{\lambda}=\dfrac{3{,}0\times10^8}{0{,}015}=2{,}0\times10^{10}\text{ Hz}=20\text{ GHz}" />, also ist II wahr.
+
+<MathVisual
+  title={<>Starke Signale entlang der Detektorlinie</>}
+  description={<>Zwei Spalte im Abstand <InlineMath math="a=6{,}0\text{ cm}" /> und eine Linie in <InlineMath math="D=50\text{ cm}" /> Entfernung mit starken Signalen alle <InlineMath math="x=12{,}5\text{ cm}" />, also <InlineMath math="\lambda=ax/D=1{,}5\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="a=6{,}0\text{ cm}" /></>,
+    d: <><InlineMath math="D=50\text{ cm}" /></>,
+    x: <><InlineMath math="x=12{,}5\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 58 }, y: { min: -30, max: 30 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "primary", from: { x: 0, y: -28 }, to: { x: 0, y: -3 } },
+      { id: "wall2", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 0, y: 28 } },
+      { id: "d", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50, y: 0 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 50, y: -28 }, to: { x: 50, y: 28 } },
+      { id: "m0", kind: "point", appearance: "answer", at: { x: 50, y: 0 } },
+      { id: "m1", kind: "point", appearance: "answer", at: { x: 50, y: 12.5 } },
+      { id: "m2", kind: "point", appearance: "answer", at: { x: 50, y: -12.5 } },
+      { id: "m3", kind: "point", appearance: "answer", at: { x: 50, y: 25 } },
+      { id: "m4", kind: "point", appearance: "answer", at: { x: 50, y: -25 } },
+      { id: "x", kind: "segment", appearance: "highlight", from: { x: 53, y: 0 }, to: { x: 53, y: 12.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "wall", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "d", objectId: "d", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "x", objectId: "x", at: { x: 53, y: 6.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+III ist wahr, denn das regelmäßige Muster entsteht durch die Interferenz zweier Quellen, ein einzelner Spalt fächert die Wellen nur auf. **IV verletzt die Bedingung, auf der die Formel beruht**: Ein starkes Signal neben der Mitte braucht <InlineMath math="a\sin\theta=\lambda" />, und mit <InlineMath math="a=1{,}0\text{ cm}" /> kleiner als <InlineMath math="\lambda=1{,}5\text{ cm}" /> wäre dafür <InlineMath math="\sin\theta=1{,}5" /> nötig. Es bleibt nur das mittlere starke Signal, die <InlineMath math="75\text{ cm}" /> aus <InlineMath math="\lambda=ax/D" /> treten also nie auf. Also sind I, II und III richtig.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II nur verwirft III, aber **mit einem Spalt gibt es nichts, womit die Welle interferieren könnte**, das regelmäßige Muster verschwindet also.
+- I, II und IV nur übernimmt IV und wendet <InlineMath math="\lambda=ax/D" /> an, wo neben der Mitte gar kein starkes Signal entstehen kann.
+- III und IV nur verwirft die beiden richtigen Rechnungen und behält das falsche IV.

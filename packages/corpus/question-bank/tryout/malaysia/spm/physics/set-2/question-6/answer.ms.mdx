@@ -1,0 +1,49 @@
+# Halaju selepas tolakan
+
+Impuls ialah luas segi tiga, <InlineMath math="\tfrac12(0.20)(10)=1.0\text{ N s}" /> ke timur, dan **cakera sudah membawa <InlineMath math="0.60\text{ kg m s}^{-1}" /> ke barat**.
+
+<BlockMath math="p=1.0-0.60=0.40\text{ kg m s}^{-1}\ \text{ke timur},\qquad v=\frac{0.40}{0.50}=0.80\text{ m s}^{-1}" />
+
+# Sejauh mana geseran membenarkannya menggelongsor
+
+<BlockMath math="d=\frac{\tfrac12(0.50)(0.80)^2}{0.20}=0.80\text{ m}" />
+
+# Dinding lebih dekat daripada <InlineMath math="0.80\text{ m}" />
+
+**Cakera sampai ke dinding selepas <InlineMath math="0.60\text{ m}" /> dengan laju yang masih berbaki, melantun dengan laju yang sama, dan menggunakan baki <InlineMath math="0.20\text{ m}" /> semasa kembali**.
+
+<MathVisual
+  title={<>Laluan cakera selepas tolakan</>}
+  description={<>Kedudukan ke timur dari titik tolakan berakhir. Cakera menggelongsor <InlineMath math="0.60\text{ m}" /> ke timur hingga dinding, melantun, dan menggelongsor balik <InlineMath math="0.20\text{ m}" />, menghabiskan <InlineMath math="0.80\text{ m}" /> gelongsorannya, jadi ia berhenti pada <InlineMath math="0.40\text{ m}" />.</>}
+  labels={{
+    out: <>pergi <InlineMath math="0.60\text{ m}" /></>,
+    back: <>balik <InlineMath math="0.20\text{ m}" /></>,
+    wall: <>dinding</>,
+    stop: <><InlineMath math="0.40\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 0.75 }, y: { min: -0.3, max: 0.45 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "out", kind: "vector", appearance: "secondary", from: { x: 0, y: 0.2 }, to: { x: 0.6, y: 0.2 } },
+      { id: "back", kind: "vector", appearance: "primary", from: { x: 0.6, y: 0.05 }, to: { x: 0.4, y: 0.05 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0.6, y: -0.2 }, to: { x: 0.6, y: 0.35 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 0.4, y: 0.05 } },
+    ],
+    labels: [
+      { key: "out", objectId: "out", at: { x: 0.3, y: 0.2 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 0.5, y: 0.05 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 0.6, y: 0.35 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 0.4, y: 0.05 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Ia berhenti <InlineMath math="0.60-0.20=0.40\text{ m}" /> ke timur dari tempat tolakan berakhir.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.80\text{ m}" /> **ke timur meletakkan cakera di sebalik dinding**.
+- <InlineMath math="0.20\text{ m}" /> ke timur ialah jarak cakera kembali dari dinding, bukan jaraknya dari tempat tolakan berakhir.
+- <InlineMath math="0.80\text{ m}" /> ke barat membiarkan cakera terus ke barat, tetapi tolakan telah membalikkan arahnya.

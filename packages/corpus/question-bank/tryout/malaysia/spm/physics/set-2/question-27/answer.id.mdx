@@ -1,0 +1,32 @@
+# Tekanan di bawah tiap piston
+
+Beban memerlukan <InlineMath math="16\,000/0{,}20=80\,000\text{ Pa}" /> di bawah piston besar. **Piston kecil berada <InlineMath math="0{,}50\text{ m}" /> lebih rendah di dalam minyak, jadi tekanan di sana lebih besar sebesar <InlineMath math="\rho gh" />**.
+
+<BlockMath math="p_{\text{kecil}}=80\,000+800\times10\times0{,}50=84\,000\text{ Pa}" />
+
+<Chart
+  title={<>Tekanan pada tiap piston</>}
+  description={<>Diagram batang: beban memerlukan <InlineMath math="80\text{ kPa}" /> di bawah piston besar, dan piston kecil, <InlineMath math="0{,}50\text{ m}" /> lebih rendah di dalam minyak, harus memberi <InlineMath math="84\text{ kPa}" />.</>}
+  bars="apart"
+  categories={["Piston besar", "Piston kecil"]}
+  series={[
+    { label: "Tekanan", mark: "bar", values: [80, 84] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+/>
+
+# Gaya pada tuas
+
+<BlockMath math="F_{\text{piston}}=84\,000\times4{,}0\times10^{-4}=33{,}6\text{ N},\qquad F_{\text{tuas}}=\frac{33{,}6}{5}=6{,}7\text{ N}" />
+
+# Jumlah langkah
+
+**Minyak yang didorong keluar piston kecil mengisi ruang di bawah piston besar**.
+
+<BlockMath math="n=\frac{0{,}20\times0{,}10}{4{,}0\times10^{-4}\times0{,}080}=625" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="6{,}4\text{ N}" /> **mengabaikan beda ketinggian di dalam minyak**.
+- <InlineMath math="6{,}1\text{ N}" /> mengurangkan <InlineMath math="\rho gh" />, seolah piston kecil yang lebih tinggi.
+- <InlineMath math="125" /> langkah membagi dengan rasio tuas, padahal tuas mengubah gaya, bukan volume minyak yang dipindahkan.

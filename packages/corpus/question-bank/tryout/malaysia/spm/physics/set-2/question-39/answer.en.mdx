@@ -1,0 +1,34 @@
+# Energy from one reaction
+
+<BlockMath math="\begin{aligned}
+\Delta m&=(2.01410+3.01605)-(4.00260+1.00867)=0.01888\text{ u}\\
+E&=0.01888\times1.66\times10^{-27}\times(3.0\times10^8)^2=2.82\times10^{-12}\text{ J}
+\end{aligned}" />
+
+# The reactions must supply more than the output
+
+**Only <InlineMath math="35\%" /> of the fusion energy becomes electrical energy**, so the reactions must release <InlineMath math="1.0/0.35=2.86\text{ GW}" />.
+
+<Chart
+  title={<>Electrical output and fusion power</>}
+  description={<>Bar chart: the plant delivers <InlineMath math="1.0\text{ GW}" /> of electrical power, so at <InlineMath math="35\%" /> efficiency the reactions must release <InlineMath math="2.86\text{ GW}" />.</>}
+  bars="apart"
+  categories={["Electrical output", "Fusion power"]}
+  series={[
+    { label: "Power", mark: "bar", values: [1.0, 2.86] },
+  ]}
+  valueLabel="Power (GW)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{reactions per day}&=\frac{2.86\times10^9}{2.82\times10^{-12}}\times86\,400=8.75\times10^{25}\\
+m_{\text{D}}&=8.75\times10^{25}\times2.01410\times1.66\times10^{-27}=0.29\text{ kg}
+\end{aligned}" />
+
+Each reaction uses one deuterium nucleus, so only its mass of <InlineMath math="2.01410\text{ u}" /> counts.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.10\text{ kg}" /> **ignores the efficiency, as if all fusion energy became electrical**.
+- <InlineMath math="0.73\text{ kg}" /> counts the tritium as well as the deuterium.
+- <InlineMath math="0.036\text{ kg}" /> multiplies by the efficiency instead of dividing.

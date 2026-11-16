@@ -1,0 +1,49 @@
+# Velocity after the push
+
+The impulse is the triangle's area, <InlineMath math="\tfrac12(0.20)(10)=1.0\text{ N s}" /> east, and **the puck already carries <InlineMath math="0.60\text{ kg m s}^{-1}" /> west**.
+
+<BlockMath math="p=1.0-0.60=0.40\text{ kg m s}^{-1}\ \text{east},\qquad v=\frac{0.40}{0.50}=0.80\text{ m s}^{-1}" />
+
+# How far friction lets it slide
+
+<BlockMath math="d=\frac{\tfrac12(0.50)(0.80)^2}{0.20}=0.80\text{ m}" />
+
+# The wall is closer than <InlineMath math="0.80\text{ m}" />
+
+**The puck reaches the wall after <InlineMath math="0.60\text{ m}" /> with speed to spare, rebounds at the same speed, and uses the remaining <InlineMath math="0.20\text{ m}" /> coming back**.
+
+<MathVisual
+  title={<>Path of the puck after the push</>}
+  description={<>Position east of the point where the push ends. The puck slides <InlineMath math="0.60\text{ m}" /> east to the wall, rebounds, and slides back <InlineMath math="0.20\text{ m}" />, using up its <InlineMath math="0.80\text{ m}" /> of sliding, so it stops at <InlineMath math="0.40\text{ m}" />.</>}
+  labels={{
+    out: <>out <InlineMath math="0.60\text{ m}" /></>,
+    back: <>back <InlineMath math="0.20\text{ m}" /></>,
+    wall: <>wall</>,
+    stop: <><InlineMath math="0.40\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 0.75 }, y: { min: -0.3, max: 0.45 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "out", kind: "vector", appearance: "secondary", from: { x: 0, y: 0.2 }, to: { x: 0.6, y: 0.2 } },
+      { id: "back", kind: "vector", appearance: "primary", from: { x: 0.6, y: 0.05 }, to: { x: 0.4, y: 0.05 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0.6, y: -0.2 }, to: { x: 0.6, y: 0.35 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 0.4, y: 0.05 } },
+    ],
+    labels: [
+      { key: "out", objectId: "out", at: { x: 0.3, y: 0.2 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 0.5, y: 0.05 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 0.6, y: 0.35 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 0.4, y: 0.05 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+It stops <InlineMath math="0.60-0.20=0.40\text{ m}" /> east of where the push ended.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.80\text{ m}" /> **east would put the puck beyond the wall**.
+- <InlineMath math="0.20\text{ m}" /> east is how far the puck comes back from the wall, not its distance from where the push ended.
+- <InlineMath math="0.80\text{ m}" /> west keeps the puck moving west, but the push reversed it.

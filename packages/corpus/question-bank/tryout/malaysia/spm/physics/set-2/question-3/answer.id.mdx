@@ -1,0 +1,39 @@
+# Nilai tiap pernyataan sendiri-sendiri
+
+Pernyataan I berasal dari gaya hambat. <InlineMath math="\eta=\dfrac{F}{6\pi rv}" /> bersatuan <InlineMath math="\dfrac{\text{kg m s}^{-2}}{\text{m}\cdot\text{m s}^{-1}}=\text{kg m}^{-1}\text{ s}^{-1}" />, jadi I benar. Pernyataan II mengikuti rumusnya, karena <InlineMath math="v_t\propto r^2" /> untuk bahan yang sama, sehingga jari-jari dua kali lipat memberi kelajuan empat kali lipat.
+
+<MathVisual
+  title={<>Gaya pada bola saat kelajuan terminal</>}
+  description={<>Berat bekerja ke bawah, sedangkan gaya hambat dan gaya apung dari minyak sama-sama bekerja ke atas dan bersama mengimbangi berat.</>}
+  labels={{
+    w: <>berat</>,
+    f: <>gaya hambat <InlineMath math="F" /></>,
+    u: <>gaya apung</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ball", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.5 },
+      { id: "w", kind: "vector", appearance: "warning", from: { x: 0, y: -0.5 }, to: { x: 0, y: -2.2 } },
+      { id: "f", kind: "vector", appearance: "primary", from: { x: 0.25, y: 0.43 }, to: { x: 0.25, y: 1.6 } },
+      { id: "u", kind: "vector", appearance: "secondary", from: { x: -0.25, y: 0.43 }, to: { x: -0.25, y: 0.9 } },
+    ],
+    labels: [
+      { key: "w", objectId: "w", at: { x: 0, y: -2.2 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: 0.25, y: 1.6 }, placement: "right" },
+      { key: "u", objectId: "u", at: { x: -0.25, y: 0.9 }, placement: "left" },
+    ],
+  }}
+/>
+
+**Pernyataan III melupakan gaya apung**. Saat kelajuan terminal gaya-gayanya seimbang, jadi gaya hambat ditambah gaya apung sama dengan berat, dan gaya hambat saja lebih kecil dari berat. Karena itulah <InlineMath math="(\rho-\sigma)" /> muncul di rumus. Pernyataan IV salah karena tujuh besaran pokok SI adalah panjang, massa, waktu, kuat arus, suhu, jumlah zat, dan intensitas cahaya.
+
+Jadi hanya I dan II yang benar.
+
+# Kenapa pilihan lain salah
+
+- I dan III saja mempertahankan III. **Gaya apung juga menahan bola**, jadi gaya hambat lebih kecil dari berat.
+- II dan IV saja membuang satuan yang benar di I dan menerima <InlineMath math="\eta" /> sebagai besaran pokok, padahal itu besaran turunan.
+- I, II, dan III saja lagi-lagi menerima III, yang mengabaikan gaya apung.
