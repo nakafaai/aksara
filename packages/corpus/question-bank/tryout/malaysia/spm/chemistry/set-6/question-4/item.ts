@@ -14,7 +14,10 @@ const item: ItemSource = {
           correct: false,
           label: "$$\\text{C}_5\\text{H}_{12}$$, $$1920\\text{ cm}^3$$",
         },
-        { correct: false, label: "$$\\text{CH}_2$$, $$360\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "$$\\text{C}_4\\text{H}_6\\text{O}$$, $$1080\\text{ cm}^3$$",
+        },
         {
           correct: false,
           label: "$$\\text{C}_5\\text{H}_{10}$$, $$1200\\text{ cm}^3$$",
@@ -32,7 +35,10 @@ const item: ItemSource = {
           correct: false,
           label: "$$\\text{C}_5\\text{H}_{12}$$, $$1920\\text{ cm}^3$$",
         },
-        { correct: false, label: "$$\\text{CH}_2$$, $$360\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "$$\\text{C}_4\\text{H}_6\\text{O}$$, $$1080\\text{ cm}^3$$",
+        },
         {
           correct: false,
           label: "$$\\text{C}_5\\text{H}_{10}$$, $$1200\\text{ cm}^3$$",

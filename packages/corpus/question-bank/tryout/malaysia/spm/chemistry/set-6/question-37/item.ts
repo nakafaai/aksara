@@ -10,19 +10,37 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$253\\text{ dm}^3$$, $$1.82\\text{ kg}$$" },
-        { correct: false, label: "$$240\\text{ dm}^3$$, $$1.73\\text{ kg}$$" },
-        { correct: false, label: "$$253\\text{ dm}^3$$, $$0.911\\text{ kg}$$" },
-        { correct: false, label: "$$228\\text{ dm}^3$$, $$1.64\\text{ kg}$$" },
+        { correct: true, label: "$$253\\text{ dm}^3$$, $$2.11\\text{ dm}^3$$" },
+        {
+          correct: false,
+          label: "$$240\\text{ dm}^3$$, $$2.00\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$253\\text{ dm}^3$$, $$1.05\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$228\\text{ dm}^3$$, $$1.90\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$253\\text{ dm}^3$$, $$1.82\\text{ kg}$$" },
-        { correct: false, label: "$$240\\text{ dm}^3$$, $$1.73\\text{ kg}$$" },
-        { correct: false, label: "$$253\\text{ dm}^3$$, $$0.911\\text{ kg}$$" },
-        { correct: false, label: "$$228\\text{ dm}^3$$, $$1.64\\text{ kg}$$" },
+        { correct: true, label: "$$253\\text{ dm}^3$$, $$2.11\\text{ dm}^3$$" },
+        {
+          correct: false,
+          label: "$$240\\text{ dm}^3$$, $$2.00\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$253\\text{ dm}^3$$, $$1.05\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$228\\text{ dm}^3$$, $$1.90\\text{ dm}^3$$",
+        },
       ],
     },
   },
