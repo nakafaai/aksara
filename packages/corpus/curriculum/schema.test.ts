@@ -171,7 +171,7 @@ describe("curriculum schema", () => {
         "curriculum/source.ts",
       ]);
 
-      expect(files).toHaveLength(33);
+      expect(files).toHaveLength(36);
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });

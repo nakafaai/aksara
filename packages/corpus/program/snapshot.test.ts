@@ -15,10 +15,10 @@ describe("program snapshot preparation", () => {
 
       expect(prepared.manifest).toMatchObject({
         activeAppLocales: ["en", "id", "de", "ms"],
-        curriculumRowCount: 1184,
+        curriculumRowCount: 1192,
         format: "localized-program-snapshot",
         programRowCount: 7,
-        rowCount: 1191,
+        rowCount: 1199,
         sitemapCount: 140,
         slugCount: 28,
       });
@@ -85,7 +85,7 @@ describe("program snapshot preparation", () => {
         { de: "tka", en: "tka", id: "tka", key: "tka", ms: "tka" },
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt", ms: "snbt" },
       ]);
-      expect(curriculumRows).toHaveLength(1184);
+      expect(curriculumRows).toHaveLength(1192);
       expect(Option.getOrThrow(Arr.head(curriculumRows)).row).toMatchObject({
         appLocale: "de",
         programKey: "cambridge-international",
@@ -153,9 +153,9 @@ describe("program snapshot preparation", () => {
       });
 
       expect(expanded.manifest).toMatchObject({
-        curriculumRowCount: 1184,
+        curriculumRowCount: 1192,
         programRowCount: 8,
-        rowCount: 1192,
+        rowCount: 1200,
         sitemapCount: 140,
         slugCount: 32,
       });
