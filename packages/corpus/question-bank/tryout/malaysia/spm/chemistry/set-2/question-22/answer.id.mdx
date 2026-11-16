@@ -1,23 +1,31 @@
-# Oksidasi adalah kenaikan bilangan oksidasi
+# Lacak bilangan oksidasi setiap atom yang berubah
 
-Ion besi(II) teroksidasi saat **bilangan oksidasinya naik dari <InlineMath math="+2" />**, artinya ion itu melepas elektron.
+Besi(II) teroksidasi hanya jika bilangan oksidasinya naik dari <InlineMath math="+2" /> ke <InlineMath math="+3" />. Lalu cari atom yang tereduksi di setiap reaksi itu, dan baca **perubahan untuk satu atom**, bukan untuk seluruh ion.
+
+Grafik ini menjajarkan setiap atom yang berubah, sebelum dan sesudah reaksinya.
 
 <Chart
-  title={<>Bilangan Oksidasi Besi Sebelum dan Sesudah</>}
+  title={<>Bilangan oksidasi sebelum dan sesudah setiap reaksi</>}
+  description={<>Besi di I berubah dari <InlineMath math="+2" /> ke <InlineMath math="+3" />, mangan di I dari <InlineMath math="+7" /> ke <InlineMath math="+2" />, besi di II dari <InlineMath math="+2" /> ke <InlineMath math="0" />, dan kromium di III dari <InlineMath math="+6" /> ke <InlineMath math="+3" />.</>}
   bars="apart"
-  categories={["FeCl₂ + Cl₂", "FeO + HCl", "Fe + CuSO₄", "FeCl₃ + NaOH"]}
+  categories={["Fe di I", "Mn di I", "Fe di II", "Cr di III"]}
   series={[
-    { label: "Sebelum", mark: "bar", values: [2, 2, 0, 3] },
-    { label: "Sesudah", mark: "bar", values: [3, 2, 2, 3] },
+    { label: "Sebelum", mark: "bar", values: [2, 7, 2, 6] },
+    { label: "Sesudah", mark: "bar", values: [3, 2, 0, 3] },
   ]}
   valueLabel="Bilangan oksidasi"
-  description={<>Besi berubah dari <InlineMath math="+2" /> ke <InlineMath math="+3" /> dengan klorin, tetap <InlineMath math="+2" /> dengan asam klorida, berubah dari <InlineMath math="0" /> ke <InlineMath math="+2" /> dengan tembaga(II) sulfat, dan tetap <InlineMath math="+3" /> dengan natrium hidroksida.</>}
 />
 
-Pada <InlineMath math="2\text{FeCl}_2 + \text{Cl}_2 \rightarrow 2\text{FeCl}_3" />, besi berubah dari <InlineMath math="+2" /> di <InlineMath math="\text{FeCl}_2" /> menjadi <InlineMath math="+3" /> di <InlineMath math="\text{FeCl}_3" />. Tiap <InlineMath math="\text{Fe}^{2+}" /> melepas satu elektron ke klorin: <InlineMath math="\text{Fe}^{2+} \rightarrow \text{Fe}^{3+} + e^-" />.
+<BlockMath math="\begin{aligned}
+\text{I: }&\text{Fe}\ {+2}\rightarrow{+3},\quad \text{Mn}\ {+7}\rightarrow{+2}\ (\text{perubahan }5)\\
+\text{II: }&\text{Fe}\ {+2}\rightarrow 0\ (\text{tereduksi}),\quad \text{Zn}\ 0\rightarrow{+2}\\
+\text{III: }&\text{Fe}\ {+2}\rightarrow{+3},\quad 2x-14=-2\Rightarrow x=+6\rightarrow{+3}\ (\text{perubahan }3)
+\end{aligned}" />
+
+Di II, besi(II) menerima elektron dan tereduksi, sedangkan seng teroksidasi. Jadi besi(II) teroksidasi di I dan III, mangan berubah sebesar <InlineMath math="5" /> dan setiap kromium sebesar <InlineMath math="3" />.
 
 # Kenapa pilihan lain salah
 
-- Pada reaksi dengan asam klorida, besi tetap <InlineMath math="+2" />. Itu penetralan, bukan reaksi redoks.
-- Dengan tembaga(II) sulfat, besi memang teroksidasi, tapi **besi mulai sebagai logam pada <InlineMath math="0" />, bukan besi(II)**. Besi(II) justru hasilnya.
-- Dengan natrium hidroksida, besi tetap <InlineMath math="+3" /> dalam pengendapan.
+- Setiap Cr sebesar <InlineMath math="6" /> menghitung enam elektron yang diterima satu ion dikromat sebagai perubahan satu atom kromium. **Keenam elektron itu dibagi oleh dua atom kromium**.
+- Menambahkan II menganggap setiap perubahan besi(II) sebagai oksidasi, padahal di II besi(II) menerima elektron dan tereduksi.
+- II saja membaca <InlineMath math="\text{Fe}^{2+}\rightarrow\text{Fe}" /> sebagai oksidasi karena muatannya hilang, padahal kehilangan muatan positif berarti menerima elektron.

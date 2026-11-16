@@ -1,25 +1,49 @@
-# More carbon for the same oxygen means more soot
+# Equal masses are not equal moles
 
-Soot is **unburnt carbon**. A fuel that is richer in carbon needs more oxygen to burn completely, so in open air more of its carbon is left unburnt.
+Both molecules have six carbon atoms, but hex-1-ene has two fewer hydrogen atoms, so it is lighter, <InlineMath math="84" /> against <InlineMath math="86" />. **A gram of hex-1-ene holds more molecules, and so more carbon**. That extra carbon shows up twice: as soot when air is short, and as more carbon dioxide when the oxygen is plentiful.
 
-<Chart
-  title={<>Percentage of Carbon by Mass</>}
-  bars="apart"
-  categories={["Hexane, C₆H₁₄", "Hexene, C₆H₁₂"]}
-  series={[
-    { label: "Carbon by mass (%)", mark: "bar", values: [83.7, 85.7] },
+Turn the two chains, then compare the products the chart works out for one gram of each.
+
+<MoleculeShapeLab
+  title={<>Hexane and hex-1-ene</>}
+  description={<>Both chains have six carbon atoms. Hex-1-ene has a double bond at the end of the chain and two hydrogen atoms fewer.</>}
+  molecules={[
+    { id: "hexane", name: "hexane" },
+    { id: "hexene", name: "hex-1-ene" },
   ]}
-  valueLabel="Carbon by mass (%)"
-  description={<>Hexane is <InlineMath math="83.7\%" /> carbon by mass and hexene is <InlineMath math="85.7\%" />.</>}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Hexane and hex-1-ene",
+  }}
 />
 
-- Hexane, <InlineMath math="\text{C}_6\text{H}_{14}" />: <InlineMath math="\dfrac{72}{86} \times 100\% = 83.7\%" /> carbon.
-- Hexene, <InlineMath math="\text{C}_6\text{H}_{12}" />: <InlineMath math="\dfrac{72}{84} \times 100\% = 85.7\%" /> carbon.
+<Chart
+  title={<>Products from <InlineMath math="1.00\text{ g}" /> of each fuel</>}
+  description={<>Hex-1-ene gives <InlineMath math="3.14\text{ g}" /> of carbon dioxide against <InlineMath math="3.07\text{ g}" /> from hexane, and <InlineMath math="1.29\text{ g}" /> of water against <InlineMath math="1.47\text{ g}" />.</>}
+  bars="apart"
+  categories={["Hexane", "Hex-1-ene"]}
+  series={[
+    { label: "Carbon dioxide", mark: "bar", values: [3.07, 3.14] },
+    { label: "Water", mark: "bar", values: [1.47, 1.29] },
+  ]}
+  valueLabel="Mass (g)"
+/>
 
-Hexene has two fewer hydrogen atoms for the same six carbons, so a larger share of its mass is carbon, and its flame is sootier.
+<BlockMath math="\begin{aligned}
+\text{C}_6\text{H}_{14}:\ n&=\frac{1.00}{86}=0.0116\text{ mol},\ m(\text{CO}_2)=6\times0.0116\times44=3.07\text{ g}\\
+\text{C}_6\text{H}_{12}:\ n&=\frac{1.00}{84}=0.0119\text{ mol},\ m(\text{CO}_2)=6\times0.0119\times44=3.14\text{ g}\\
+\%\,\text{C}&=\frac{72}{86}\times100\%=83.7\%\ \text{against}\ \frac{72}{84}\times100\%=85.7\%
+\end{aligned}" />
+
+So hex-1-ene gives more carbon dioxide because more of its mass is carbon.
 
 # Why the other options are wrong
 
-- Both molecules have **exactly six carbon atoms**.
-- Boiling point does not decide how completely a fuel burns.
-- Decolourising bromine water shows the double bond, but it does not explain the soot.
+- The double bond holds no extra hydrogen. Hex-1-ene has fewer hydrogen atoms, so it forms less water, <InlineMath math="1.29\text{ g}" /> against <InlineMath math="1.47\text{ g}" />.
+- Six carbon atoms per molecule would give equal carbon dioxide only for equal moles. **Equal masses of the two fuels contain different numbers of molecules**.
+- Hexane's extra atoms are hydrogen, which forms water, not carbon dioxide. Per gram it carries less carbon.

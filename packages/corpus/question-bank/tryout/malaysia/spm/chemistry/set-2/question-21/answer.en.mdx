@@ -1,24 +1,50 @@
-# A bigger voltage means the metals are further apart in the series
+# Put every metal on one scale against copper
 
-The further apart two metals are in the electrochemical series, **the larger the voltage of their cell**. The more electropositive metal gives away electrons and becomes the negative terminal.
+Copper is the positive terminal in three cells, so P, Q and R sit below copper in the electrochemical series, by <InlineMath math="2.70" />, <InlineMath math="0.40" /> and <InlineMath math="1.10\text{ V}" />. In the last cell S is the positive terminal, so **S sits above copper**, by <InlineMath math="0.46\text{ V}" />. The highest voltage comes from the two metals that stand farthest apart on that scale.
 
-<Chart
-  title={<>Voltage of Each Metal Paired with Copper</>}
-  bars="apart"
-  categories={["Metal P", "Metal Q", "Metal R", "Metal S"]}
-  series={[
-    { label: "Voltage (V)", mark: "bar", values: [2.7, 0.4, 1.1, 0.8] },
-  ]}
-  valueLabel="Voltage (V)"
-  description={<>Paired with copper, metal P gives <InlineMath math="2.7\text{ V}" />, Q <InlineMath math="0.4\text{ V}" />, R <InlineMath math="1.1\text{ V}" /> and S <InlineMath math="0.8\text{ V}" />, with copper as the positive terminal every time.</>}
+On one scale with copper at zero, P is the lowest metal and S is the only one above copper.
+
+<MathVisual
+  title={<>The four metals on one scale with copper at zero</>}
+  description={<>P is at <InlineMath math="-2.70\text{ V}" />, R at <InlineMath math="-1.10\text{ V}" />, Q at <InlineMath math="-0.40\text{ V}" />, copper at zero and S at <InlineMath math="+0.46\text{ V}" />. The arrow from P to S spans <InlineMath math="3.16\text{ V}" />, the largest gap.</>}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ -2.70\text{ V}" />,
+    r: <InlineMath math="\mathrm{R}:\ -1.10\text{ V}" />,
+    q: <InlineMath math="\mathrm{Q}:\ -0.40\text{ V}" />,
+    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
+    s: <InlineMath math="\mathrm{S}:\ +0.46\text{ V}" />,
+    gap: <InlineMath math="E_{\text{cell}}=3.16\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
+      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
+      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
+      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
+      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
+      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
+    ],
+  }}
 />
 
-Copper is the positive terminal each time, so every metal is more electropositive than copper. Ranked by voltage, the order from most to least electropositive is P, R, S, Q, then copper.
+<BlockMath math="E_{\text{cell}}=0.46-(-2.70)=3.16\text{ V}" />
 
-In a cell of P and R, P is higher in the series, so it is the negative terminal. The voltage is roughly the difference of their voltages against copper: <InlineMath math="2.7 - 1.1 = 1.6\text{ V}" />.
+P is lower in the series, so P gives up electrons and is the negative terminal. So P and S give <InlineMath math="3.16\text{ V}" />, with P as the negative terminal.
 
 # Why the other options are wrong
 
-- Q gives the smallest voltage, so it is **the least electropositive of the four**, just above copper.
-- S is below R in the series, so S cannot displace R. Only a more electropositive metal displaces another.
-- Copper is the positive terminal against Q too, so Q is more electropositive than copper.
+- <InlineMath math="2.24\text{ V}" /> subtracts <InlineMath math="0.46" /> from <InlineMath math="2.70" />, as if S were also below copper. **The terminal column puts S on the other side of copper**.
+- <InlineMath math="3.16\text{ V}" /> with S as the negative terminal reverses the roles: the metal lower in the series, P, gives up the electrons.
+- P and Q at <InlineMath math="2.30\text{ V}" /> reads the S cell as if copper were its positive terminal too, so Q looks farther from P than S does.

@@ -1,18 +1,34 @@
-# Addition polymers keep every atom of their monomers
+# Count the links in the chain, then take their water away
 
-In addition polymerisation, **the double bonds open and the monomers join without losing any atoms**. The chain's mass is the mass of one monomer times the number of monomers.
+Each amide link forms when a carboxyl group of the acid meets an amino group of the diamine, and that link gives off one water molecule. **A straight chain of <InlineMath math="1000" /> monomers has one link fewer than it has monomers**, just as a row of beads has one gap fewer than it has beads.
 
 <Mermaid
-  title={<>Addition Polymerisation of Chloroethene</>}
-  description={<>The double bond of each chloroethene opens and the monomers join end to end. No atom is lost, so the chain has the mass of all its monomers.</>}
-  chart={"flowchart LR\n  M[2000 chloroethene, CH2=CHCl, Mr 62.5 each] -->|double bonds open| P[One PVC chain]\n  P --> R[Repeating unit: CH2-CHCl]\n  P --> X[No small molecule lost: Mr = 2000 x 62.5]"}
+  title={<>Monomers joined by amide links</>}
+  description={<>The acid and the diamine alternate along the chain. Every arrow is one amide link and one water molecule given off, and the chain ends at the <InlineMath math="1000" />th monomer.</>}
+  chart={"flowchart LR\n  A1[\"hexanedioic acid\"] -->|amide link, H2O out| B1[\"hexane-1,6-diamine\"]\n  B1 -->|amide link, H2O out| A2[\"hexanedioic acid\"]\n  A2 -->|amide link, H2O out| B2[\"hexane-1,6-diamine\"]\n  B2 -.-> Z[\"up to the 1000th monomer\"]"}
 />
 
-- Relative molecular mass of chloroethene, <InlineMath math="\text{C}_2\text{H}_3\text{Cl}" />: <InlineMath math="2(12) + 3(1) + 35.5 = 62.5" />.
-- Chain of <InlineMath math="2000" /> monomers: <InlineMath math="2000 \times 62.5 = 125\,000" />.
+<BlockMath math="\begin{aligned}
+\text{links}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
+M_r&=500(146)+500(116)-999(18)\\
+&=73\,000+58\,000-17\,982=113\,018
+\end{aligned}" />
+
+<Chart
+  title={<>Mass of the monomers, the water and the chain</>}
+  description={<>The monomers add up to <InlineMath math="131\,000" />. The water given off is <InlineMath math="17\,982" />, which leaves <InlineMath math="113\,018" /> for the chain.</>}
+  bars="apart"
+  categories={["Monomers", "Water given off", "Nylon chain"]}
+  series={[
+    { label: "Relative mass", mark: "bar", values: [131000, 17982, 113018] },
+  ]}
+  valueLabel="Relative mass"
+/>
+
+So the chain releases <InlineMath math="999" /> water molecules and has a relative molecular mass of <InlineMath math="113\,018" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="62\,500" /> counts only <InlineMath math="1000" /> monomers, **as if each repeating unit held two monomers**.
-- <InlineMath math="250\,000" /> doubles the chain, counting <InlineMath math="4000" /> monomers.
-- <InlineMath math="89\,000" /> leaves out chlorine and counts only carbon and hydrogen.
+- <InlineMath math="1000" /> water molecules gives one per monomer. The two ends of the chain keep their groups, so there is one link fewer.
+- <InlineMath math="500" /> counts one water molecule per pair of monomers. **Every link between neighbours gives off water, also the link between one pair and the next**.
+- <InlineMath math="131\,000" /> counts the water correctly but never takes its mass away from the monomers.

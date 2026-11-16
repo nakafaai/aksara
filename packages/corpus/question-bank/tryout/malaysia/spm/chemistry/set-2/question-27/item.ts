@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3200\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$4200\\text{ kJ mol}^{-1}$$" },
-        { correct: true, label: "$$3540\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$2950\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$1.05\\text{ g}$$" },
+        { correct: false, label: "$$0.72\\text{ g}$$" },
+        { correct: true, label: "$$0.85\\text{ g}$$" },
+        { correct: false, label: "$$0.69\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3200\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$4200\\text{ kJ mol}^{-1}$$" },
-        { correct: true, label: "$$3540\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$2950\\text{ kJ mol}^{-1}$$" },
+        { correct: false, label: "$$1.05\\text{ g}$$" },
+        { correct: false, label: "$$0.72\\text{ g}$$" },
+        { correct: true, label: "$$0.85\\text{ g}$$" },
+        { correct: false, label: "$$0.69\\text{ g}$$" },
       ],
     },
   },

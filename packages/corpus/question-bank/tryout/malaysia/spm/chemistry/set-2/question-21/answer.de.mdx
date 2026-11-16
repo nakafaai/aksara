@@ -1,24 +1,50 @@
-# Größere Spannung heißt: Die Metalle liegen in der Reihe weiter auseinander
+# Alle Metalle auf eine Skala gegen Kupfer
 
-Je weiter zwei Metalle in der Spannungsreihe auseinanderliegen, **desto größer ist die Spannung ihrer Zelle**. Das unedlere Metall gibt Elektronen ab und wird zum Minuspol.
+In drei Zellen ist Kupfer der Pluspol, also stehen P, Q und R in der Spannungsreihe unter Kupfer, um <InlineMath math="2{,}70" />, <InlineMath math="0{,}40" /> und <InlineMath math="1{,}10\text{ V}" />. In der letzten Zelle ist S der Pluspol, also **steht S über Kupfer**, um <InlineMath math="0{,}46\text{ V}" />. Die höchste Spannung liefern die beiden Metalle, die auf dieser Skala am weitesten auseinander liegen.
 
-<Chart
-  title={<>Spannung jedes Metalls gegen Kupfer</>}
-  bars="apart"
-  categories={["Metall P", "Metall Q", "Metall R", "Metall S"]}
-  series={[
-    { label: "Spannung (V)", mark: "bar", values: [2.7, 0.4, 1.1, 0.8] },
-  ]}
-  valueLabel="Spannung (V)"
-  description={<>Gegen Kupfer liefert Metall P <InlineMath math="2{,}7\text{ V}" />, Q <InlineMath math="0{,}4\text{ V}" />, R <InlineMath math="1{,}1\text{ V}" /> und S <InlineMath math="0{,}8\text{ V}" />, wobei Kupfer jedes Mal der Pluspol ist.</>}
+Auf einer Skala mit Kupfer bei null steht P ganz unten, und S ist das einzige Metall über Kupfer.
+
+<MathVisual
+  title={<>Die vier Metalle auf einer Skala mit Kupfer bei null</>}
+  description={<>P liegt bei <InlineMath math="-2{,}70\text{ V}" />, R bei <InlineMath math="-1{,}10\text{ V}" />, Q bei <InlineMath math="-0{,}40\text{ V}" />, Kupfer bei null und S bei <InlineMath math="+0{,}46\text{ V}" />. Der Pfeil von P nach S überspannt <InlineMath math="3{,}16\text{ V}" />, den größten Abstand.</>}
+  labels={{
+    p: <InlineMath math="\mathrm{P}:\ -2{,}70\text{ V}" />,
+    r: <InlineMath math="\mathrm{R}:\ -1{,}10\text{ V}" />,
+    q: <InlineMath math="\mathrm{Q}:\ -0{,}40\text{ V}" />,
+    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
+    s: <InlineMath math="\mathrm{S}:\ +0{,}46\text{ V}" />,
+    gap: <InlineMath math="E_{\text{Zelle}}=3{,}16\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
+      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
+      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
+      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
+      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
+    ],
+    labels: [
+      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
+      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
+      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
+      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
+      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
+    ],
+  }}
 />
 
-Kupfer ist jedes Mal der Pluspol, also ist jedes Metall unedler als Kupfer. Nach der Spannung geordnet ist die Reihenfolge vom unedelsten zum edelsten P, R, S, Q, dann Kupfer.
+<BlockMath math="E_{\text{Zelle}}=0{,}46-(-2{,}70)=3{,}16\text{ V}" />
 
-In einer Zelle aus P und R steht P weiter oben, also ist P der Minuspol. Die Spannung ist ungefähr die Differenz ihrer Spannungen gegen Kupfer: <InlineMath math="2{,}7 - 1{,}1 = 1{,}6\text{ V}" />.
+P steht tiefer in der Reihe, gibt also Elektronen ab und ist der Minuspol. P und S liefern also <InlineMath math="3{,}16\text{ V}" />, mit P als Minuspol.
 
 # Warum die anderen Antworten falsch sind
 
-- Q liefert die kleinste Spannung, ist also **das edelste der vier Metalle**, knapp unedler als Kupfer.
-- S steht unter R in der Reihe, kann R also nicht verdrängen. Nur ein unedleres Metall verdrängt ein anderes.
-- Kupfer ist auch gegen Q der Pluspol, also ist Q unedler als Kupfer.
+- <InlineMath math="2{,}24\text{ V}" /> zieht <InlineMath math="0{,}46" /> von <InlineMath math="2{,}70" /> ab, als stünde auch S unter Kupfer. **Die Spalte der Pole setzt S auf die andere Seite von Kupfer**.
+- <InlineMath math="3{,}16\text{ V}" /> mit S als Minuspol vertauscht die Rollen: Das tiefer stehende Metall P gibt die Elektronen ab.
+- P und Q mit <InlineMath math="2{,}30\text{ V}" /> liest die S-Zelle, als wäre auch dort Kupfer der Pluspol, und so scheint Q weiter von P entfernt als S.

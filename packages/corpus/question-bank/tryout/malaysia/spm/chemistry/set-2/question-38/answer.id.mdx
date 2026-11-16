@@ -1,23 +1,34 @@
-# Ikatan silang bekerja seperti pegas di antara rantai
+# Satu jembatan, dua atom belerang, dua unit terikat
 
-Pada karet alam, rantai polimer yang panjang **saling bergeser** saat diregangkan dan tetap di posisi barunya. Vulkanisasi mengikat rantai-rantai itu dengan belerang.
+Ubah belerang menjadi jembatan dulu, lalu hitung unit yang disentuh jembatan itu. **Setiap jembatan memakai dua atom belerang tetapi mengikat dua unit**, satu di tiap rantai, jadi jumlah unit terikat sama dengan jumlah atom belerang.
 
-<Chart
-  title={<>Panjang Pita Karet Sebelum dan Sesudah Beban</>}
-  bars="apart"
-  categories={["Karet alam", "Karet tervulkanisasi"]}
-  series={[
-    { label: "Dengan beban", mark: "bar", values: [18.5, 13.2] },
-    { label: "Setelah beban dilepas", mark: "bar", values: [12.4, 10.1] },
-  ]}
-  valueLabel="Panjang (cm)"
-  description={<>Kedua pita mulai dari <InlineMath math="10{,}0\text{ cm}" />. Dengan beban, karet alam meregang ke <InlineMath math="18{,}5\text{ cm}" /> dan karet tervulkanisasi ke <InlineMath math="13{,}2\text{ cm}" />. Setelah beban dilepas, karet alam tetap <InlineMath math="12{,}4\text{ cm}" /> dan karet tervulkanisasi kembali ke <InlineMath math="10{,}1\text{ cm}" />.</>}
+<Mermaid
+  title={<>Jembatan belerang di antara dua rantai</>}
+  description={<>Dua atom belerang menghubungkan satu unit di rantai atas dengan satu unit di rantai bawah. Satu jembatan mengikat dua unit.</>}
+  chart={"flowchart LR\n  A1[\"unit isoprena\"] --- A2[\"unit terikat\"] --- A3[\"unit isoprena\"]\n  B1[\"unit isoprena\"] --- B2[\"unit terikat\"] --- B3[\"unit isoprena\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
 />
 
-Karet alam masih <InlineMath math="2{,}4\text{ cm}" /> lebih panjang setelah beban dilepas, sedangkan karet tervulkanisasi kembali dalam selisih <InlineMath math="0{,}1\text{ cm}" />. Pada karet tervulkanisasi, atom belerang membentuk ikatan silang di antara rantai yang bersebelahan. Ikatan ini mencegah rantai bergeser dan menariknya kembali saat beban hilang, jadi karetnya lebih elastis dan tidak terlalu meregang.
+<BlockMath math="\begin{aligned}
+n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1{,}0\text{ mol},\quad n(\text{S})=\frac{3{,}2}{32}=0{,}10\text{ mol}\\
+n(\text{ikatan silang})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\\
+n(\text{unit terikat})&=2\times0{,}050=0{,}10\text{ mol}\ \Rightarrow\ \frac{0{,}10}{1{,}0}\times100\%=10\%
+\end{aligned}" />
+
+<Chart
+  title={<>Jumlah zat dalam karet tervulkanisasi</>}
+  description={<>Karet itu berisi <InlineMath math="1{,}0\text{ mol}" /> unit isoprena. Sebanyak <InlineMath math="0{,}10\text{ mol}" /> atom belerang membentuk <InlineMath math="0{,}050\text{ mol}" /> jembatan, yang mengikat <InlineMath math="0{,}10\text{ mol}" /> unit.</>}
+  bars="apart"
+  categories={["Unit isoprena", "Atom belerang", "Ikatan silang", "Unit terikat"]}
+  series={[
+    { label: "Jumlah zat", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+  ]}
+  valueLabel="Jumlah zat (mol)"
+/>
+
+Jadi <InlineMath math="10\%" /> unit membawa ikatan silang. Jembatan itu menahan rantai di tempatnya, jadi karet yang diregangkan kembali ke bentuknya serta lebih keras dan kuat dari karet alam.
 
 # Kenapa pilihan lain salah
 
-- Belerang memakai sebagian ikatan rangkap dua untuk membentuk ikatan silang, tapi **karetnya tetap lentur, tidak kaku**.
-- Vulkanisasi menyambung rantai. Vulkanisasi tidak memutusnya.
-- Membentuk ikatan silang memakai ikatan rangkap dua, jadi karet tervulkanisasi punya lebih sedikit, bukan lebih banyak.
+- <InlineMath math="5\%" /> menghitung satu unit untuk tiap jembatan dan lupa bahwa tiap jembatan punya dua ujung, satu di tiap rantai.
+- <InlineMath math="20\%" /> menganggap tiap atom belerang sebagai jembatan berujung dua. **Satu jembatan butuh sepasang atom belerang**, jadi jumlahnya hanya separuh.
+- Ikatan silang membuat karet lebih keras, bukan lebih lunak, dan sebagian besar ikatan rangkapnya masih ada. Persentasenya benar, tetapi efeknya terbalik.

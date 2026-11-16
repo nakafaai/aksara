@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$100\\%$$" },
-        { correct: false, label: "$$25.6\\%$$" },
-        { correct: false, label: "$$48.9\\%$$" },
-        { correct: true, label: "$$51.1\\%$$" },
+        {
+          correct: false,
+          label: "$$90\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$225\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$112.5\\text{ kg}$$ of glucose, atom economy $$100\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$112.5\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$100\\%$$" },
-        { correct: false, label: "$$25.6\\%$$" },
-        { correct: false, label: "$$48.9\\%$$" },
-        { correct: true, label: "$$51.1\\%$$" },
+        {
+          correct: false,
+          label: "$$90\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$225\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$112.5\\text{ kg}$$ glukosa, ekonomi atom $$100\\%$$",
+        },
+        {
+          correct: true,
+          label: "$$112.5\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+        },
       ],
     },
   },

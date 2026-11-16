@@ -1,35 +1,49 @@
-# Penambahan hidrogen menjenuhkan ikatan rangkap dua
+# Setiap etena mengambil satu hidrogen dan menyisakan satu etana
 
-Etena, <InlineMath math="\text{C}_2\text{H}_4" />, menjadi etana, <InlineMath math="\text{C}_2\text{H}_6" />, dengan menerima dua atom hidrogen. **Hidrogenasi** ini butuh hidrogen, katalis nikel, dan suhu sekitar <InlineMath math="180^\circ\text{C}" />.
+Etana tidak bereaksi. Etena mengadisi hidrogen, jadi dua volume gas menjadi satu. **Setiap sentimeter kubik etena mengecilkan total sebanyak satu sentimeter kubik**, sehingga penurunan volume sama dengan volume etena.
 
-<InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2 \xrightarrow{\text{Ni},\ 180^\circ\text{C}} \text{C}_2\text{H}_6" />
+<BlockMath math="\begin{aligned}
+\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
+\text{penurunan}&=(30+40)-50=20\text{ cm}^3\\
+V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+\end{aligned}" />
 
-<Mermaid
-  title={<>Zat yang Diadisi pada Ikatan Rangkap Dua Etena</>}
-  description={<>Tiap pereaksi mengadisi ikatan rangkap dua karbon dengan karbon. Hanya hidrogen dengan katalis nikel yang menghasilkan etana.</>}
-  chart={"flowchart LR\n  E[Etena, C2H4] -->|H2, nikel, 180 °C| A[Etana, C2H6]\n  E -->|uap air, H3PO4, 300 °C, 60 atm| B[Etanol]\n  E -->|air bromin| C[1,2-dibromoetana]\n  E -->|KMnO4 yang diasamkan| D[Etana-1,2-diol]"}
-/>
+Putar kedua molekul: etana adalah etena yang ikatan rangkapnya terbuka dan tiap karbonnya mendapat satu atom hidrogen.
 
 <MoleculeShapeLab
-  title={<>Etena Sebelum dan Etana Sesudah</>}
-  description={<>Bandingkan etena yang datar dengan etana yang terbentuk: dua atom hidrogen bertambah dan ikatan rangkap dua menjadi ikatan tunggal.</>}
+  title={<>Etena menjadi etana</>}
+  description={<>Etena punya ikatan rangkap di antara dua atom karbonnya. Setelah mengadisi hidrogen, etana hanya punya ikatan tunggal.</>}
   molecules={[
-    { id: "ethene", name: "Etena" },
-    { id: "ethane", name: "Etana" },
+    { id: "ethene", name: "etena" },
+    { id: "ethane", name: "etana" },
   ]}
   labels={{
-    atoms: <>Atom penyusun</>,
+    atoms: <>Atom</>,
     choose: "Pilih molekul",
-    fill: <>Model ruang</>,
-    formula: <>Rumus molekul</>,
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
     mass: <>Massa molekul relatif</>,
-    shape: <>Sudut atau panjang ikatan</>,
-    view: "Model molekul tiga dimensi",
+    shape: <>Sudut ikatan</>,
+    view: "Etena dan etana",
   }}
 />
 
+<Chart
+  title={<>Volume gas sebelum dan sesudah</>}
+  description={<>Sebelum: <InlineMath math="20\text{ cm}^3" /> etena, <InlineMath math="10\text{ cm}^3" /> etana, dan <InlineMath math="40\text{ cm}^3" /> hidrogen. Sesudah: tidak ada etena, <InlineMath math="30\text{ cm}^3" /> etana, dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />.</>}
+  bars="apart"
+  categories={["Etena", "Etana", "Hidrogen"]}
+  series={[
+    { label: "Sebelum", mark: "bar", values: [20, 10, 40] },
+    { label: "Sesudah", mark: "bar", values: [0, 30, 20] },
+  ]}
+  valueLabel="Volume (cm³)"
+/>
+
+Cek: tersisa <InlineMath math="30\text{ cm}^3" /> etana dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />, sesuai pengukuran.
+
 # Kenapa pilihan lain salah
 
-- Uap air dengan asam fosfat menambah air dan menghasilkan **etanol**, bukan etana.
-- Air bromin menambah bromin dan menghasilkan 1,2-dibromoetana, yaitu uji ikatan rangkap dua.
-- Kalium manganat(VII) yang diasamkan mengoksidasi etena menjadi etana-1,2-diol.
+- <InlineMath math="10\text{ cm}^3" /> membagi penurunan <InlineMath math="20\text{ cm}^3" /> antara etena dan hidrogen, padahal satu volume masing-masing menjadi satu volume etana, jadi penurunannya sama dengan etena saja.
+- <InlineMath math="30\text{ cm}^3" /> menganggap seluruh campuran adalah etena. Kalau begitu, <InlineMath math="30\text{ cm}^3" /> hidrogen bereaksi dan hanya <InlineMath math="40\text{ cm}^3" /> gas tersisa.
+- <InlineMath math="40\text{ cm}^3" /> menganggap semua hidrogen habis. **Hidrogen berlebih di sini**, dan <InlineMath math="20\text{ cm}^3" /> masih tersisa.

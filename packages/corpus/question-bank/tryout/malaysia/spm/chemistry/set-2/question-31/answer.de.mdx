@@ -1,25 +1,49 @@
-# Mehr Kohlenstoff bei gleich viel Sauerstoff heißt mehr Ruß
+# Gleiche Masse heißt nicht gleiche Stoffmenge
 
-Ruß ist **unverbrannter Kohlenstoff**. Ein kohlenstoffreicherer Brennstoff braucht mehr Sauerstoff, um vollständig zu verbrennen, also bleibt an offener Luft mehr Kohlenstoff unverbrannt.
+Beide Moleküle haben sechs Kohlenstoffatome, doch Hex-1-en hat zwei Wasserstoffatome weniger und ist leichter, <InlineMath math="84" /> gegen <InlineMath math="86" />. **Ein Gramm Hex-1-en enthält mehr Moleküle und damit mehr Kohlenstoff**. Dieser zusätzliche Kohlenstoff zeigt sich zweimal: als Ruß, wenn Luft fehlt, und als mehr Kohlenstoffdioxid, wenn reichlich Sauerstoff da ist.
 
-<Chart
-  title={<>Massenanteil an Kohlenstoff</>}
-  bars="apart"
-  categories={["Hexan, C₆H₁₄", "Hexen, C₆H₁₂"]}
-  series={[
-    { label: "Massenanteil Kohlenstoff (%)", mark: "bar", values: [83.7, 85.7] },
+Dreh die beiden Ketten und vergleich dann die Produkte, die das Diagramm für je ein Gramm ausrechnet.
+
+<MoleculeShapeLab
+  title={<>Hexan und Hex-1-en</>}
+  description={<>Beide Ketten haben sechs Kohlenstoffatome. Hex-1-en hat eine Doppelbindung am Kettenende und zwei Wasserstoffatome weniger.</>}
+  molecules={[
+    { id: "hexane", name: "Hexan" },
+    { id: "hexene", name: "Hex-1-en" },
   ]}
-  valueLabel="Massenanteil Kohlenstoff (%)"
-  description={<>Hexan besteht zu <InlineMath math="83{,}7\%" /> aus Kohlenstoff und Hexen zu <InlineMath math="85{,}7\%" />.</>}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Hexan und Hex-1-en",
+  }}
 />
 
-- Hexan, <InlineMath math="\text{C}_6\text{H}_{14}" />: <InlineMath math="\dfrac{72}{86} \times 100\,\% = 83{,}7\,\%" /> Kohlenstoff.
-- Hexen, <InlineMath math="\text{C}_6\text{H}_{12}" />: <InlineMath math="\dfrac{72}{84} \times 100\,\% = 85{,}7\,\%" /> Kohlenstoff.
+<Chart
+  title={<>Produkte aus <InlineMath math="1{,}00\text{ g}" /> jedes Brennstoffs</>}
+  description={<>Hex-1-en liefert <InlineMath math="3{,}14\text{ g}" /> Kohlenstoffdioxid gegen <InlineMath math="3{,}07\text{ g}" /> aus Hexan, und <InlineMath math="1{,}29\text{ g}" /> Wasser gegen <InlineMath math="1{,}47\text{ g}" />.</>}
+  bars="apart"
+  categories={["Hexan", "Hex-1-en"]}
+  series={[
+    { label: "Kohlenstoffdioxid", mark: "bar", values: [3.07, 3.14] },
+    { label: "Wasser", mark: "bar", values: [1.47, 1.29] },
+  ]}
+  valueLabel="Masse (g)"
+/>
 
-Hexen hat bei denselben sechs Kohlenstoffatomen zwei Wasserstoffatome weniger, also ist ein größerer Teil seiner Masse Kohlenstoff, und die Flamme rußt stärker.
+<BlockMath math="\begin{aligned}
+\text{C}_6\text{H}_{14}:\ n&=\frac{1{,}00}{86}=0{,}0116\text{ mol},\ m(\text{CO}_2)=6\times0{,}0116\times44=3{,}07\text{ g}\\
+\text{C}_6\text{H}_{12}:\ n&=\frac{1{,}00}{84}=0{,}0119\text{ mol},\ m(\text{CO}_2)=6\times0{,}0119\times44=3{,}14\text{ g}\\
+\%{.}\text{C}&=\frac{72}{86}\times100\%=83{,}7\%\ \text{gegen}\ \frac{72}{84}\times100\%=85{,}7\%
+\end{aligned}" />
+
+Hex-1-en liefert also mehr Kohlenstoffdioxid, weil ein größerer Teil seiner Masse Kohlenstoff ist.
 
 # Warum die anderen Antworten falsch sind
 
-- Beide Moleküle haben **genau sechs Kohlenstoffatome**.
-- Der Siedepunkt bestimmt nicht, wie vollständig ein Brennstoff verbrennt.
-- Das Entfärben von Bromwasser zeigt die Doppelbindung, erklärt aber den Ruß nicht.
+- Die Doppelbindung hält keinen zusätzlichen Wasserstoff. Hex-1-en hat weniger Wasserstoffatome und bildet daher weniger Wasser, <InlineMath math="1{,}29\text{ g}" /> gegen <InlineMath math="1{,}47\text{ g}" />.
+- Sechs Kohlenstoffatome pro Molekül ergeben nur bei gleicher Stoffmenge gleich viel Kohlenstoffdioxid. **Gleiche Massen der beiden Brennstoffe enthalten unterschiedlich viele Moleküle**.
+- Die zusätzlichen Atome von Hexan sind Wasserstoff, der Wasser bildet, kein Kohlenstoffdioxid. Pro Gramm trägt Hexan weniger Kohlenstoff.

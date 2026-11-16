@@ -1,25 +1,31 @@
-# Doppelte Wärme erwärmt doppelt so viel Wasser um gleich viel
+# Finde, was in Versuch II zuerst verbraucht ist, und verteil seine Wärme auf die größere Lösung
 
-Der Temperaturanstieg ist <InlineMath math="\Delta\theta = \dfrac{Q}{mc}" />. Doppeltes Volumen derselben Lösung **verdoppelt gleichzeitig die Wärme und die Masse**.
+Versuch I verrät die Wärme pro Mol: <InlineMath math="0{,}010\text{ mol}" /> Kupfer(II)-Ionen liefern <InlineMath math="2100\text{ J}" />, also liefert die Reaktion <InlineMath math="210\text{ kJ}" /> pro Mol. In Versuch II **ist das Zink zuerst verbraucht**, denn nur <InlineMath math="0{,}010\text{ mol}" /> Zink treffen auf <InlineMath math="0{,}040\text{ mol}" /> Kupfer(II)-Ionen.
+
+<BlockMath math="\begin{aligned}
+\text{I}:\ n(\text{Cu}^{2+})&=\frac{50}{1000}\times0{,}20=0{,}010\text{ mol},\ Q=50\times4{,}2\times10{,}0=2100\text{ J}\\
+\text{II}:\ n(\text{Cu}^{2+})&=\frac{100}{1000}\times0{,}40=0{,}040\text{ mol},\ n(\text{Zn})=\frac{0{,}65}{65}=0{,}010\text{ mol}\\
+Q_{\text{II}}&=0{,}010\times210{.}000=2100\text{ J}\\
+\Delta\theta_{\text{II}}&=\frac{2100}{100\times4{,}2}=5{,}0^\circ\text{C}
+\end{aligned}" />
+
+Das Diagramm zeigt den Anstieg, den jede Lesart von Versuch II ergäbe. Nur die letzte nutzt das Zink und die Lösung, die wirklich da sind.
 
 <Chart
-  title={<>Wärme, Masse der Lösung und Temperaturanstieg</>}
+  title={<>Temperaturanstieg für jede Lesart von Versuch II</>}
+  description={<>Zink im Überschuss mit <InlineMath math="50\text{ g}" /> Lösung ergibt <InlineMath math="40^\circ\text{C}" />, Zink im Überschuss mit <InlineMath math="100\text{ g}" /> ergibt <InlineMath math="20^\circ\text{C}" />, Zink begrenzend mit <InlineMath math="50\text{ g}" /> ergibt <InlineMath math="10^\circ\text{C}" />, und Zink begrenzend mit <InlineMath math="100\text{ g}" /> ergibt <InlineMath math="5^\circ\text{C}" />, der echte Fall.</>}
   bars="apart"
-  categories={["Freigesetzte Wärme", "Masse der Lösung", "Temperaturanstieg"]}
+  categories={["Zink im Überschuss, 50 g", "Zink im Überschuss, 100 g", "Zink begrenzend, 50 g", "Zink begrenzend, 100 g"]}
   series={[
-    { label: "Versuch I", mark: "bar", values: [1, 1, 1] },
-    { label: "Versuch II", mark: "bar", values: [2, 2, 1] },
+    { label: "Temperaturanstieg", mark: "bar", values: [40, 20, 10, 5] },
   ]}
-  valueLabel="Wert relativ zu Versuch I"
-  description={<>Doppeltes Volumen verdoppelt die freigesetzte Wärme und die Masse der Lösung, also bleibt der Temperaturanstieg beim 1-Fachen von Versuch I.</>}
+  valueLabel="Temperaturanstieg (°C)"
 />
 
-- Stoffmenge <InlineMath math="\text{Cu}^{2+}" />: Versuch I hat <InlineMath math="0{,}2 \times \dfrac{50}{1000} = 0{,}010\text{ mol}" />, Versuch II hat <InlineMath math="0{,}020\text{ mol}" />, also verdoppelt sich <InlineMath math="Q" />.
-- Die Masse der Lösung geht von <InlineMath math="50\text{ g}" /> auf <InlineMath math="100\text{ g}" />, also verdoppelt sich <InlineMath math="m" />.
-- <InlineMath math="\Delta\theta = \dfrac{2Q}{2mc} = \dfrac{Q}{mc}" />, der Anstieg bleibt also bei <InlineMath math="10^\circ\text{C}" />.
+Die Temperatur steigt also um <InlineMath math="5^\circ\text{C}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="20^\circ\text{C}" /> verdoppelt die Wärme, **vergisst aber die doppelte Masse der Lösung**.
-- <InlineMath math="5^\circ\text{C}" /> verdoppelt die Masse, vergisst aber die doppelte Wärme.
-- <InlineMath math="40^\circ\text{C}" /> hat keine Grundlage: Nichts im Versuch ändert sich um das Vierfache.
+- <InlineMath math="20^\circ\text{C}" /> lässt alle <InlineMath math="0{,}040\text{ mol}" /> Kupfer(II)-Ionen reagieren, als wäre Zink noch im Überschuss. **Hier sind <InlineMath math="0{,}65\text{ g}" /> Zink nur <InlineMath math="0{,}010\text{ mol}" />**.
+- <InlineMath math="40^\circ\text{C}" /> macht denselben Fehler und rechnet außerdem weiter mit <InlineMath math="50\text{ g}" /> Lösung, obwohl es jetzt <InlineMath math="100\text{ g}" /> sind.
+- <InlineMath math="10^\circ\text{C}" /> erkennt, dass das Zink die Wärme auf <InlineMath math="2100\text{ J}" /> begrenzt, verteilt sie aber auf <InlineMath math="50\text{ g}" /> statt auf <InlineMath math="100\text{ g}" />.

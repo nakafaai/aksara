@@ -1,11 +1,16 @@
-# A copper anode dissolves as fast as the cathode grows
+# The same electrons, two different anodes
 
-With copper electrodes, the anode is not inert: **copper atoms at the anode give up electrons and enter the solution**, while copper(II) ions are discharged at the cathode.
+In series, both cells pass the same <InlineMath math="0.10\text{ mol}" /> of electrons. The cathodes behave alike, but the anodes do not: a copper anode dissolves and replaces every copper(II) ion it loses, while **a carbon anode only discharges hydroxide ions**.
+
+Run both cells in the lab and compare the two solutions.
 
 <ElectrolysisLab
-  title={<>Copper Electrodes in Copper(II) Sulfate</>}
-  description={<>Two copper electrodes in copper(II) sulfate solution, joined to a battery.</>}
-  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  title={<>Both cells after <InlineMath math="0.10\text{ mol}" /> of electrons</>}
+  description={<>In P the copper anode dissolves as fast as copper deposits, so the solution stays blue. In Q copper deposits while oxygen forms, so the copper(II) ions run out.</>}
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
   electrons={0.1}
   showProducts
   labels={{
@@ -14,21 +19,23 @@ With copper electrodes, the anode is not inert: **copper atoms at the anode give
     atCathode: <>At the cathode</>,
     battery: "Battery",
     cathode: "Cathode",
-    cells: [<>Copper(II) sulfate solution, copper electrodes</>],
+    cells: [<>Cell P: copper electrodes</>, <>Cell Q: carbon electrodes</>],
     electrons: <>Electrons passed</>,
     ph: <>pH of the electrolyte</>,
     trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Electrolysis cell with copper electrodes in copper(II) sulfate solution",
+    view: "Two electrolysis cells of copper(II) sulfate in series",
   }}
 />
 
-- Anode: <InlineMath math="\text{Cu} \rightarrow \text{Cu}^{2+} + 2e^-" />, so the anode gets thinner.
-- Cathode: <InlineMath math="\text{Cu}^{2+} + 2e^- \rightarrow \text{Cu}" />. <InlineMath math="0.10" /> mol of electrons deposit <InlineMath math="0.05" /> mol of Cu: <InlineMath math="0.05 \times 64 = 3.2\text{ g}" />.
+<BlockMath math="\begin{aligned}
+n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
+n(\text{Cu}^{2+})\text{ in Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+\end{aligned}" />
 
-Each copper(II) ion removed at the cathode is replaced by one from the anode, so the concentration, and the blue colour, stay the same.
+The <InlineMath math="0.050\text{ mol}" /> of copper deposited in Q is every copper(II) ion it held, and nothing replaces them, so the blue colour disappears. So the anode of P loses <InlineMath math="3.2\text{ g}" />, and the solution in Q turns colourless as oxygen forms at its anode.
 
 # Why the other options are wrong
 
-- <InlineMath math="6.4\text{ g}" /> takes one copper atom per electron. The fading blue belongs to **carbon electrodes, where nothing replaces the copper(II) ions**.
-- With carbon electrodes the cathode does gain <InlineMath math="3.2\text{ g}" /> and the colour fades, but here the copper anode refills the solution.
-- The anode dissolves and loses mass. Only the cathode gains.
+- The blue fading in P swaps the cells: in P the copper anode keeps the copper(II) ions at the same level.
+- <InlineMath math="6.4\text{ g}" /> takes the <InlineMath math="0.10\text{ mol}" /> of electrons as moles of copper. **Each copper(II) ion needs two electrons**.
+- Q staying blue treats the carbon anode like the copper one, though nothing in Q replaces the copper(II) ions that leave the solution.

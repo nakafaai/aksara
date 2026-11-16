@@ -10,19 +10,41 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2\\text{FeCl}_2 + \\text{Cl}_2 \\rightarrow 2\\text{FeCl}_3$$" },
-        { correct: false, label: "$$\\text{FeO} + 2\\text{HCl} \\rightarrow \\text{FeCl}_2 + \\text{H}_2\\text{O}$$" },
-        { correct: false, label: "$$\\text{Fe} + \\text{CuSO}_4 \\rightarrow \\text{FeSO}_4 + \\text{Cu}$$" },
-        { correct: false, label: "$$\\text{FeCl}_3 + 3\\text{NaOH} \\rightarrow \\text{Fe(OH)}_3 + 3\\text{NaCl}$$" },
+        {
+          correct: true,
+          label: "I and III. Mn changes by $$5$$, and each Cr changes by $$3$$",
+        },
+        {
+          correct: false,
+          label: "I and III. Mn changes by $$5$$, and each Cr changes by $$6$$",
+        },
+        {
+          correct: false,
+          label:
+            "I, II and III. Mn changes by $$5$$, Fe in II by $$2$$, and each Cr by $$3$$",
+        },
+        { correct: false, label: "II only. Fe changes by $$2$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2\\text{FeCl}_2 + \\text{Cl}_2 \\rightarrow 2\\text{FeCl}_3$$" },
-        { correct: false, label: "$$\\text{FeO} + 2\\text{HCl} \\rightarrow \\text{FeCl}_2 + \\text{H}_2\\text{O}$$" },
-        { correct: false, label: "$$\\text{Fe} + \\text{CuSO}_4 \\rightarrow \\text{FeSO}_4 + \\text{Cu}$$" },
-        { correct: false, label: "$$\\text{FeCl}_3 + 3\\text{NaOH} \\rightarrow \\text{Fe(OH)}_3 + 3\\text{NaCl}$$" },
+        {
+          correct: true,
+          label:
+            "I dan III. Mn berubah sebanyak $$5$$, dan setiap Cr berubah sebanyak $$3$$",
+        },
+        {
+          correct: false,
+          label:
+            "I dan III. Mn berubah sebanyak $$5$$, dan setiap Cr berubah sebanyak $$6$$",
+        },
+        {
+          correct: false,
+          label:
+            "I, II dan III. Mn berubah sebanyak $$5$$, Fe dalam II sebanyak $$2$$, dan setiap Cr sebanyak $$3$$",
+        },
+        { correct: false, label: "II sahaja. Fe berubah sebanyak $$2$$" },
       ],
     },
   },

@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Sulfur removes every double bond, so the chains become rigid" },
-        { correct: true, label: "Sulfur atoms form cross-links between the polymer chains, which pull the chains back to their original positions" },
-        { correct: false, label: "Vulcanisation breaks the polymer chains into shorter pieces" },
-        { correct: false, label: "Vulcanised rubber has more double bonds than natural rubber" },
+        {
+          correct: false,
+          label:
+            "$$5\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+        },
+        {
+          correct: true,
+          label:
+            "$$10\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+        },
+        {
+          correct: false,
+          label:
+            "$$20\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+        },
+        {
+          correct: false,
+          label:
+            "$$10\\%$$, and the rubber becomes softer because the cross-links use up its double bonds",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Sulfur menyingkirkan setiap ikatan ganda dua, jadi rantai menjadi tegar" },
-        { correct: true, label: "Atom sulfur membentuk rangkai silang antara rantai polimer, yang menarik rantai kembali ke kedudukan asalnya" },
-        { correct: false, label: "Pemvulkanan memecahkan rantai polimer kepada bahagian yang lebih pendek" },
-        { correct: false, label: "Getah tervulkan mempunyai lebih banyak ikatan ganda dua daripada getah asli" },
+        {
+          correct: false,
+          label:
+            "$$5\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+        },
+        {
+          correct: true,
+          label:
+            "$$10\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+        },
+        {
+          correct: false,
+          label:
+            "$$20\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+        },
+        {
+          correct: false,
+          label:
+            "$$10\\%$$, dan getah itu menjadi lebih lembut kerana rangkai silang menggunakan ikatan ganda duanya",
+        },
       ],
     },
   },

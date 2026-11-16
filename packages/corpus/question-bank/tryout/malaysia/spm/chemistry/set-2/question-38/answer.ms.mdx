@@ -1,23 +1,34 @@
-# Rangkai silang bertindak seperti spring antara rantai
+# Satu jambatan, dua atom sulfur, dua unit berangkai
 
-Dalam getah asli, rantai polimer yang panjang **menggelongsor antara satu sama lain** apabila diregang dan kekal pada kedudukan baharu. Pemvulkanan mengikat rantai bersama dengan sulfur.
+Tukarkan sulfur kepada jambatan dahulu, kemudian kira unit yang disentuh oleh jambatan itu. **Setiap jambatan menggunakan dua atom sulfur tetapi menyambung dua unit**, satu pada setiap rantai, jadi bilangan unit berangkai sama dengan bilangan atom sulfur.
 
-<Chart
-  title={<>Panjang Jalur Getah Sebelum dan Selepas Beban</>}
-  bars="apart"
-  categories={["Getah asli", "Getah tervulkan"]}
-  series={[
-    { label: "Dengan beban", mark: "bar", values: [18.5, 13.2] },
-    { label: "Selepas beban dialihkan", mark: "bar", values: [12.4, 10.1] },
-  ]}
-  valueLabel="Panjang (cm)"
-  description={<>Kedua-dua jalur bermula pada <InlineMath math="10.0\text{ cm}" />. Dengan beban, getah asli meregang kepada <InlineMath math="18.5\text{ cm}" /> dan getah tervulkan kepada <InlineMath math="13.2\text{ cm}" />. Selepas beban dialihkan, getah asli kekal <InlineMath math="12.4\text{ cm}" /> dan getah tervulkan kembali kepada <InlineMath math="10.1\text{ cm}" />.</>}
+<Mermaid
+  title={<>Jambatan sulfur antara dua rantai</>}
+  description={<>Dua atom sulfur menyambung satu unit pada rantai atas kepada satu unit pada rantai bawah. Satu jambatan menyambung dua unit.</>}
+  chart={"flowchart LR\n  A1[\"unit isoprena\"] --- A2[\"unit berangkai\"] --- A3[\"unit isoprena\"]\n  B1[\"unit isoprena\"] --- B2[\"unit berangkai\"] --- B3[\"unit isoprena\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
 />
 
-Getah asli masih <InlineMath math="2.4\text{ cm}" /> lebih panjang selepas beban dialihkan, manakala getah tervulkan kembali dalam lingkungan <InlineMath math="0.1\text{ cm}" />. Dalam getah tervulkan, atom sulfur membentuk rangkai silang antara rantai yang bersebelahan. Rangkai ini menghalang rantai daripada menggelongsor dan menariknya kembali apabila beban dialihkan, jadi getah lebih kenyal dan kurang meregang.
+<BlockMath math="\begin{aligned}
+n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1.0\text{ mol},\quad n(\text{S})=\frac{3.2}{32}=0.10\text{ mol}\\
+n(\text{rangkai silang})&=\frac{0.10}{2}=0.050\text{ mol}\\
+n(\text{unit berangkai})&=2\times0.050=0.10\text{ mol}\ \Rightarrow\ \frac{0.10}{1.0}\times100\%=10\%
+\end{aligned}" />
+
+<Chart
+  title={<>Kuantiti dalam getah tervulkan</>}
+  description={<>Getah itu mengandungi <InlineMath math="1.0\text{ mol}" /> unit isoprena. Sebanyak <InlineMath math="0.10\text{ mol}" /> atom sulfur membentuk <InlineMath math="0.050\text{ mol}" /> jambatan, yang menyambung <InlineMath math="0.10\text{ mol}" /> unit.</>}
+  bars="apart"
+  categories={["Unit isoprena", "Atom sulfur", "Rangkai silang", "Unit berangkai"]}
+  series={[
+    { label: "Bilangan mol", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
+  ]}
+  valueLabel="Bilangan mol (mol)"
+/>
+
+Jadi <InlineMath math="10\%" /> unit membawa rangkai silang. Jambatan itu memegang rantai di tempatnya, jadi getah yang diregangkan kembali kepada bentuknya dan lebih keras serta lebih kuat daripada getah asli.
 
 # Kenapa pilihan lain salah
 
-- Sulfur menggunakan sebahagian ikatan ganda dua untuk membentuk rangkai silang, tetapi **getah kekal lentur, bukan tegar**.
-- Pemvulkanan menyambungkan rantai. Ia tidak memecahkannya.
-- Pembentukan rangkai silang menggunakan ikatan ganda dua, jadi getah tervulkan mempunyai lebih sedikit, bukan lebih banyak.
+- <InlineMath math="5\%" /> mengira satu unit bagi setiap jambatan dan terlupa setiap jambatan ada dua hujung, satu pada setiap rantai.
+- <InlineMath math="20\%" /> menganggap setiap atom sulfur sebagai jambatan dengan dua hujung. **Satu jambatan memerlukan sepasang atom sulfur**, jadi bilangannya hanya separuh.
+- Rangkai silang menjadikan getah lebih keras, bukan lebih lembut, dan kebanyakan ikatan ganda duanya masih ada. Peratusnya betul, tetapi kesannya terbalik.

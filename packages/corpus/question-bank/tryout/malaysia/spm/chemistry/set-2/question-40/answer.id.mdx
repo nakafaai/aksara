@@ -1,26 +1,28 @@
-# Ekonomi atom membandingkan produk yang diinginkan dengan semua yang terbentuk
+# Rendemen dan ekonomi atom mengukur dua kehilangan yang berbeda
 
-Ekonomi atom adalah <InlineMath math="\dfrac{\text{massa produk yang diinginkan}}{\text{massa total pereaksi}} \times 100\%" />. **Setiap atom yang menjadi produk samping menurunkannya**.
+Rendemen memberi tahu berapa banyak etanol yang benar-benar terbentuk dari yang mungkin, jadi rendemen menentukan jumlah glukosa yang dibutuhkan. Ekonomi atom hanya berasal dari persamaan reaksinya. **Bahkan dengan rendemen sempurna, karbon dioksida tetap membawa pergi sebagian dari tiap molekul glukosa**.
+
+<BlockMath math="\begin{aligned}
+n(\text{C}_2\text{H}_5\text{OH})&=\frac{46{.}000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
+m(\text{glukosa})&=\frac{500\times180}{0{,}80}=112{.}500\text{ g}=112{,}5\text{ kg}\\
+\text{ekonomi atom}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51{,}1\%
+\end{aligned}" />
 
 <Chart
-  title={<>Ekonomi Atom Dua Jalur Pembuatan Etanol</>}
+  title={<>Ke mana massa satu mol glukosa pergi</>}
+  description={<>Satu mol glukosa, <InlineMath math="180\text{ g}" />, menjadi <InlineMath math="92\text{ g}" /> etanol dan <InlineMath math="88\text{ g}" /> karbon dioksida. Hanya etanol yang merupakan produk yang diinginkan.</>}
   bars="apart"
-  categories={["Hidrasi etena", "Fermentasi glukosa"]}
+  categories={["Glukosa", "Etanol", "Karbon dioksida"]}
   series={[
-    { label: "Ekonomi atom", mark: "bar", values: [100, 51.1] },
+    { label: "Massa", mark: "bar", values: [180, 92, 88] },
   ]}
-  valueLabel="Ekonomi atom (%)"
-  description={<>Hidrasi etena mengubah setiap atom menjadi etanol, <InlineMath math="100\%" />. Fermentasi glukosa mengubah <InlineMath math="51{,}1\%" /> massa menjadi etanol dan sisanya menjadi karbon dioksida.</>}
+  valueLabel="Massa dari satu mol glukosa (g)"
 />
 
-- Massa pereaksi: satu glukosa, <InlineMath math="M_r = 6(12) + 12(1) + 6(16) = 180" />.
-- Massa produk yang diinginkan: dua etanol, <InlineMath math="2 \times 46 = 92" />.
-- Ekonomi atom: <InlineMath math="\dfrac{92}{180} \times 100\% = 51{,}1\%" />.
-
-Sisa <InlineMath math="48{,}9\%" /> keluar sebagai karbon dioksida. Hidrasi etena, <InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2\text{O} \rightarrow \text{C}_2\text{H}_5\text{OH}" />, tidak punya produk samping, jadi ekonomi atomnya <InlineMath math="100\%" />.
+Jadi satu batch memakai <InlineMath math="112{,}5\text{ kg}" /> glukosa, dan ekonomi atomnya <InlineMath math="51{,}1\%" />, berapa pun rendemennya.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="100\%" /> milik hidrasi, **bukan fermentasi yang juga menghasilkan karbon dioksida**.
-- <InlineMath math="25{,}6\%" /> hanya menghitung satu molekul etanol, <InlineMath math="\dfrac{46}{180}" />.
-- <InlineMath math="48{,}9\%" /> adalah bagian yang menjadi karbon dioksida, yaitu limbahnya.
+- <InlineMath math="90\text{ kg}" /> adalah glukosa untuk rendemen penuh. Pada <InlineMath math="80\%" /> pabrik butuh lebih banyak, <InlineMath math="90\div0{,}80" />.
+- <InlineMath math="225\text{ kg}" /> memakai satu glukosa untuk tiap etanol dan melewatkan angka <InlineMath math="2" /> di depan <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Satu glukosa memberi dua molekul etanol.
+- <InlineMath math="100\%" /> menghitung karbon dioksida sebagai produk yang diinginkan. **Hanya etanol yang dihitung**, jadi hampir separuh massa memang hilang menurut persamaannya.

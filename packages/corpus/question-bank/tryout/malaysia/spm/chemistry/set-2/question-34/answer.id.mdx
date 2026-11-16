@@ -1,22 +1,48 @@
-# Suhu yang turun berarti kalor sedang diserap
+# Airnya mendingin, jadi pelarutan menyerap kalor
 
-Saat suatu proses menyerap kalor, kalor itu diambil dari air di sekitarnya, jadi **termometer menunjukkan angka lebih rendah**. Ini perubahan endoterm, dan <InlineMath math="\Delta H" /> bernilai positif.
+Kalor yang memecah padatan itu diambil dari air, jadi suhunya turun. **Menyerap kalor membuat perubahannya endoterm, jadi tandanya positif**. Hitung kalornya dari penurunan suhu, lalu bagi dengan jumlah mol yang larut.
 
-<Chart
-  title={<>Energi Pereaksi dan Hasil</>}
-  bars="apart"
-  categories={["Padatan dan air", "Ion terlarut"]}
-  series={[
-    { label: "Energi", mark: "bar", values: [0, 25.7] },
-  ]}
-  valueLabel="Energi relatif terhadap pereaksi (kJ mol⁻¹)"
-  description={<>Padatan dan air mulai di <InlineMath math="0" />, dan ion terlarut berada <InlineMath math="25{,}7\text{ kJ mol}^{-1}" /> lebih tinggi, jadi kalor diserap.</>}
+<BlockMath math="\begin{aligned}
+\Delta\theta&=28{,}0-24{,}6=3{,}4^\circ\text{C}\\
+Q&=50\times4{,}2\times3{,}4=714\text{ J}=0{,}714\text{ kJ}\\
+n(\text{NH}_4\text{NO}_3)&=\frac{2{,}0}{80}=0{,}025\text{ mol}\\
+\Delta H&=+\frac{0{,}714}{0{,}025}=+28{,}6\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Di diagram tingkat energi, ion terlarut ada di atas padatan dan air sebesar nilai itu, karena ion itu sekarang menyimpan kalor yang hilang dari air.
+
+<MathVisual
+  title={<>Diagram tingkat energi pelarutan amonium nitrat</>}
+  description={<>Produk, yaitu ion terlarut, ada lebih tinggi dari pereaksi, yaitu padatan dan air. Panahnya mengarah ke atas dan menunjukkan <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />.</>}
+  labels={{
+    energy: <>Energi</>,
+    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
+    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
+    change: <InlineMath math="\Delta H=+28{,}6\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
+      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
+      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
+    ],
+    labels: [
+      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
+      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
+      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
+      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
+    ],
+  }}
 />
 
-Melarutkan amonium nitrat menyerap sekitar <InlineMath math="25{,}7\text{ kJ mol}^{-1}" />. Ion yang terlarut akhirnya punya energi lebih besar daripada padatan dan air di awal, itulah sebabnya hasil berada di atas pereaksi pada diagram tingkat energi.
+Jadi perubahan kalornya <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />, dengan produk di atas pereaksi.
 
 # Kenapa pilihan lain salah
 
-- Proses eksoterm melepas kalor dan **menaikkan suhu**, kebalikan dari yang terukur.
-- Gelas polistirena menahan sebagian besar pertukaran kalor dengan udara. Suhunya turun karena pelarutan mengambil kalor dari air itu sendiri.
-- Pada perubahan endoterm, energi yang diserap untuk memutus ikatan lebih besar daripada energi yang dilepas saat ikatan baru terbentuk, bukan lebih kecil.
+- <InlineMath math="-28{,}6\text{ kJ mol}^{-1}" /> membaca penurunan suhu sebagai kalor yang dilepas. Air kehilangan kalor untuk pelarutan, jadi reaksinya menerima kalor.
+- <InlineMath math="+0{,}714\text{ kJ mol}^{-1}" /> adalah kalor untuk <InlineMath math="2{,}0\text{ g}" />, bukan untuk satu mol. **Bagi dengan <InlineMath math="0{,}025\text{ mol}" /> untuk mendapat nilai per mol**.
+- <InlineMath math="\Delta H" /> positif dengan pereaksi di atas saling bertentangan. Pereaksi di atas produk berarti energi dilepas.
