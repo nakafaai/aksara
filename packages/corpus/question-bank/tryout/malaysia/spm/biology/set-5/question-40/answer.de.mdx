@@ -1,0 +1,32 @@
+# Jeden Abschnitt in eine Rate pro Jahr umrechnen, bevor verglichen wird
+
+Die Abschnitte sind <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="50" /> und <InlineMath math="100" /> Jahre lang, die **Änderung pro Jahr** muss also bestimmt werden, bevor zwei Abschnitte verglichen werden.
+
+| Abschnitt (Jahre) | <InlineMath math="0" /> bis <InlineMath math="20" /> | <InlineMath math="20" /> bis <InlineMath math="50" /> | <InlineMath math="50" /> bis <InlineMath math="100" /> | <InlineMath math="100" /> bis <InlineMath math="200" /> |
+| --- | --- | --- | --- | --- |
+| Boden (cm pro Jahr) | <InlineMath math="0{,}025" /> | <InlineMath math="0{,}05" /> | <InlineMath math="0{,}12" /> | <InlineMath math="0{,}22" /> |
+| Arten pro Jahr | <InlineMath math="0{,}25" /> | <InlineMath math="0{,}33" /> | <InlineMath math="0{,}5" /> | <InlineMath math="0{,}2" /> |
+
+<Chart
+  title={<>Boden und Arten auf der Lava über zwei Jahrhunderte</>}
+  categories={["0", "20", "50", "100", "200"]}
+  series={[
+    { label: "Bodentiefe (cm)", mark: "line", values: [0, 0.5, 2, 8, 30] },
+    { label: "Pflanzenarten", mark: "line", values: [0, 5, 15, 40, 60] },
+  ]}
+  valueLabel="Wert"
+  description={<>Der Boden wächst in <InlineMath math="200" /> Jahren von <InlineMath math="0" /> auf <InlineMath math="30" /> cm, die Arten von <InlineMath math="0" /> auf <InlineMath math="60" />. Arten kommen zwischen Jahr <InlineMath math="50" /> und <InlineMath math="100" /> am schnellsten hinzu, Boden zwischen Jahr <InlineMath math="100" /> und <InlineMath math="200" />.</>}
+/>
+
+- I: Der Boden wächst von Jahr <InlineMath math="50" /> bis <InlineMath math="100" /> um <InlineMath math="0{,}12\text{ cm}" /> pro Jahr, von Jahr <InlineMath math="100" /> bis <InlineMath math="200" /> um <InlineMath math="0{,}22\text{ cm}" /> pro Jahr, also später schneller. Aussage I ist falsch.
+- II: Flechten wachsen auf nacktem Gestein, setzen Säuren frei, die es verwittern, und hinterlassen ihre toten Reste. So beginnt die erste dünne Bodenschicht, die Moose brauchen. Aussage II stimmt.
+- III: Von Jahr <InlineMath math="50" /> bis <InlineMath math="100" /> kommen in <InlineMath math="50" /> Jahren <InlineMath math="25" /> Arten hinzu, <InlineMath math="0{,}5" /> pro Jahr, schneller als in jedem anderen Abschnitt. Aussage III stimmt.
+- IV: Jede Stufe vertieft den Boden und verändert Licht und Feuchtigkeit, sodass neue, konkurrenzstärkere Arten übernehmen, bis ein stabiler Wald entsteht. Aussage IV stimmt.
+
+Richtig sind also die Aussagen II, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II akzeptiert I, **vergleicht die Summen von <InlineMath math="6" /> und <InlineMath math="22\text{ cm}" />, ohne durch die Jahre zu teilen**, und verwirft dann III.
+- Nur I, III und IV akzeptiert I und verwirft II, **die Pionierrolle der Flechten**.
+- Nur II und IV verwirft III, **obwohl <InlineMath math="0{,}5" /> Arten pro Jahr die schnellste Rate sind**.

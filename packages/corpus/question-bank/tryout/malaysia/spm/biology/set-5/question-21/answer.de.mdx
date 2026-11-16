@@ -1,0 +1,33 @@
+# Den Nahrungsvorrat in die Wurzel und wieder heraus verfolgen
+
+Eine zweijährige Pflanze **legt im ersten Jahr Vorräte an** und verbraucht sie im zweiten für die Fortpflanzung. Wurzel und Spross werden zu jedem Zeitpunkt addiert, um die ganze Pflanze zu sehen, denn ein Teil kann wachsen, während der andere schrumpft.
+
+| Monat | <InlineMath math="0" /> | <InlineMath math="4" /> | <InlineMath math="8" /> | <InlineMath math="12" /> | <InlineMath math="16" /> | <InlineMath math="20" /> | <InlineMath math="24" /> |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Ganze Pflanze (g) | <InlineMath math="0" /> | <InlineMath math="100" /> | <InlineMath math="210" /> | <InlineMath math="170" /> | <InlineMath math="150" /> | <InlineMath math="160" /> | <InlineMath math="80" /> |
+
+<Chart
+  title={<>Trockenmasse einer Möhrenpflanze über zwei Jahre</>}
+  categories={["0", "4", "8", "12", "16", "20", "24"]}
+  series={[
+    { label: "Wurzel", mark: "line", values: [0, 60, 140, 150, 120, 50, 20] },
+    { label: "Spross, Blüten und Samen", mark: "line", values: [0, 40, 70, 20, 30, 110, 60] },
+  ]}
+  valueLabel="Trockenmasse (g)"
+  description={<>Die Wurzel wächst bis Monat <InlineMath math="12" /> auf <InlineMath math="150" /> g und fällt bis Monat <InlineMath math="24" /> auf <InlineMath math="20" /> g. Der Spross erreicht im ersten Jahr <InlineMath math="70" /> g und steigt beim Blühen bis Monat <InlineMath math="20" /> erneut auf <InlineMath math="110" /> g.</>}
+/>
+
+<BlockMath math="\text{Wurzelverlust}: \frac{150-20}{150}=\frac{130}{150}\approx87\,\%" />
+
+- I: Die Wurzel erreicht <InlineMath math="150" /> g und fällt auf <InlineMath math="20" /> g, ein Verlust von <InlineMath math="130" /> g, etwa <InlineMath math="87\,\%" />. Aussage I stimmt.
+- II: Während die Wurzel von Monat <InlineMath math="12" /> bis <InlineMath math="20" /> schrumpft, bildet der Spross einen Blütenstiel und steigt auf <InlineMath math="110" /> g. Der Vorrat wird abgebaut und nach oben gebracht, um ihn aufzubauen. Aussage II stimmt.
+- III: Die ganze Pflanze ist in Monat <InlineMath math="8" /> mit <InlineMath math="210" /> g am schwersten. In Monat <InlineMath math="12" /> sind die Blätter abgestorben, die Summe beträgt nur <InlineMath math="170" /> g. Aussage III ist falsch.
+- IV: Die Möhre speichert im ersten Jahr Nahrung in der Wurzel und nutzt sie im zweiten, um zu blühen, Samen zu bilden und zu sterben. Das ist ein zweijähriger Lebenszyklus. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II verwirft IV, **den zweijährigen Zyklus, den die ganze Grafik zeigt**.
+- Nur II, III und IV hält **das Maximum der Wurzel für das der ganzen Pflanze** und verwirft den Verlust von <InlineMath math="87\,\%" />.
+- Nur I, III und IV akzeptiert III und verwirft II und **übersieht, wohin die Nahrung der Wurzel geht**.

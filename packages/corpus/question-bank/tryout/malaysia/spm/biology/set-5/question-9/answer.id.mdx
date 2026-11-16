@@ -1,0 +1,34 @@
+# Pakai kedua ukuran, karena masing-masing bisa keliru sendiri
+
+Glukosa dalam darah menunjukkan apakah laktosa sudah **dicerna dan diserap** di usus halus. Hidrogen dalam napas menunjukkan apakah **bakteri di usus besar** memfermentasi sisanya. Orang tanpa laktase dan tanpa bakteri usus memberi angka rendah pada keduanya.
+
+<Chart
+  title={<>Hidrogen Napas setelah Minuman Laktosa</>}
+  categories={["0 min", "30 min", "60 min", "90 min", "120 min", "150 min", "180 min"]}
+  series={[
+    { label: "Orang P", mark: "line", values: [4, 5, 5, 6, 6, 7, 7] },
+    { label: "Orang Q", mark: "line", values: [6, 7, 9, 24, 48, 62, 58] },
+    { label: "Orang R", mark: "line", values: [5, 5, 6, 6, 7, 7, 7] },
+  ]}
+  valueLabel="Hidrogen napas (ppm)"
+  description={<>P dan R tetap di antara <InlineMath math="4" /> dan <InlineMath math="7" /> ppm sepanjang waktu. Q tetap rendah selama satu jam, lalu naik ke <InlineMath math="62" /> ppm pada menit ke-<InlineMath math="150" />.</>}
+/>
+
+| Orang | Kenaikan hidrogen <InlineMath math="\geq20" />? | Kenaikan glukosa <InlineMath math="<1{,}1" />? | Laktosa tercerna? |
+| --- | --- | --- | --- |
+| P | tidak | tidak | ya |
+| Q | ya | ya | tidak |
+| R | tidak | ya | tidak |
+
+- I: glukosa Q hampir tidak naik, jadi laktosa tidak diserap. Laktosa sampai ke usus besar, tempat bakteri memfermentasinya, dan hidrogen yang dihasilkan masuk ke darah lalu keluar lewat napas. Pernyataan I benar.
+- II: glukosa R hanya naik <InlineMath math="0{,}2\text{ mmol/L}" />, serendah Q. R tidak mencerna laktosa, jadi kurva hidrogen yang datar tidak mungkin berarti pencernaan normal. Pernyataan II salah.
+- III: laktosa yang tidak tercerna sampai ke usus besar R, tetapi antibiotik yang baru diminum sudah membunuh sebagian besar bakteri yang akan memfermentasinya, jadi hidrogen yang dibuat sedikit. Pernyataan III benar.
+- IV: sel manusia menghasilkan asam laktat pada respirasi anaerob, bukan hidrogen. Hidrogen itu berasal dari **fermentasi oleh bakteri**. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja hanya memercayai hidrogen R dan mengabaikan bahwa **glukosa R hampir tidak naik**, hanya <InlineMath math="0{,}2\text{ mmol/L}" />.
+- II dan IV saja menolak peran bakteri di I dan III, **padahal semua hidrogen berasal dari bakteri**.
+- I, III, dan IV saja menganggap sel Q sendiri membuat hidrogen, **hal yang tidak dilakukan sel manusia**.

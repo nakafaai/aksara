@@ -1,0 +1,30 @@
+# Read each row in the right direction
+
+A trial compares the treated group with the placebo group row by row. The order matters: a **larger** number of days means a **slower** recovery.
+
+<Chart
+  title={<>Outcomes of an Antibiotic Trial for Viral Sore Throat</>}
+  bars="apart"
+  categories={["Side effects (%)", "Resistant throat bacteria (%)"]}
+  series={[
+    { label: "Antibiotic", mark: "bar", values: [18, 40] },
+    { label: "Placebo", mark: "bar", values: [6, 12] },
+  ]}
+  valueLabel="Patients (%)"
+  description={<>Side effects reach <InlineMath math="18\%" /> with the antibiotic and <InlineMath math="6\%" /> with the placebo. Resistant throat bacteria are found in <InlineMath math="40\%" /> against <InlineMath math="12\%" />.</>}
+/>
+
+<BlockMath math="\text{recovery}: 6.1-6.0=+0.1\text{ day},\qquad \text{side effects}: 18\%-6\%=12\text{ in every }100" />
+
+- I: the antibiotic group took <InlineMath math="6.1" /> days and the placebo group <InlineMath math="6.0" />, so the antibiotic did not shorten recovery at all. That fits, because antibiotics act on bacteria and the infection is viral. Statement I is wrong.
+- II: <InlineMath math="18" /> of every <InlineMath math="100" /> on the antibiotic had side effects against <InlineMath math="6" /> on the placebo, so about <InlineMath math="12" /> in every <InlineMath math="100" /> had side effects caused by the drug. Statement II is correct.
+- III: a few throat bacteria were already resistant. The antibiotic removed their susceptible neighbours, so the resistant ones multiplied, from <InlineMath math="12\%" /> to <InlineMath math="40\%" /> of patients. Statement III is correct.
+- IV: mutations arise at random, whether or not an antibiotic is present. The antibiotic only **selects** the resistant bacteria that already exist. Statement IV is wrong.
+
+So statements II and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only reads <InlineMath math="6.1" /> against <InlineMath math="6.0" /> backwards, **as if more days meant faster recovery**.
+- III and IV only rejects II and lets the drug **cause the mutations it selects**.
+- I and II only makes the slip in I and **rejects the selection that explains the rise to <InlineMath math="40\%" />**.

@@ -1,0 +1,30 @@
+# Bina penggunaan oksigen daripada tiga faktor dan darabkannya
+
+Oksigen yang digunakan per minit ialah darah yang dipam per minit didarab dengan oksigen yang **diambil daripada setiap liter**. Darah yang dipam per minit ialah kadar denyutan jantung didarab dengan isi padu strok, dan kadar denyutan jantung diperoleh daripada jarak antara denyutan pada EKG.
+
+<BlockMath math="\text{rehat}: \frac{20}{25}=0.8\text{ s setiap denyutan}\Rightarrow\frac{60}{0.8}=75\text{ denyutan/min},\qquad \text{senaman}: \frac{12}{25}=0.48\text{ s}\Rightarrow125\text{ denyutan/min}" />
+
+<BlockMath math="\text{rehat}: 75\times0.070=5.25\text{ L/min},\ \ 5.25\times(200-150)\approx263\text{ mL/min}" />
+
+<BlockMath math="\text{senaman}: 125\times0.100=12.5\text{ L/min},\ \ 12.5\times(200-80)=1500\text{ mL/min}" />
+
+<BlockMath math="\frac{1500}{263}\approx5.7" />
+
+<Chart
+  title={<>Berapa Banyak Setiap Faktor Meningkat Semasa Senaman</>}
+  bars="apart"
+  categories={["Kadar denyutan jantung", "Isi padu strok", "Oksigen diambil per liter", "Oksigen digunakan per minit"]}
+  series={[
+    { label: "Nilai semasa senaman", mark: "bar", values: [1.67, 1.43, 2.4, 5.7] },
+  ]}
+  valueLabel="Kali ganda nilai rehat"
+  description={<>Kadar denyutan jantung meningkat <InlineMath math="1.67" /> kali, isi padu strok <InlineMath math="1.43" /> kali dan oksigen yang diambil daripada setiap liter <InlineMath math="2.4" /> kali. Apabila didarab, oksigen yang digunakan per minit meningkat <InlineMath math="5.7" /> kali.</>}
+/>
+
+Setiap faktor meningkat sedikit, tetapi kerana ia didarab, penggunaan oksigen meningkat kira-kira <InlineMath math="5.7" /> kali.
+
+# Kenapa pilihan lain salah
+
+- Kira-kira <InlineMath math="1.7" /> kali hanya mengira **kadar denyutan jantung yang lebih cepat**, <InlineMath math="\tfrac{125}{75}" />.
+- Kira-kira <InlineMath math="2.4" /> kali hanya mengira **peningkatan darah yang dipam**, <InlineMath math="\tfrac{12.5}{5.25}" />, atau hanya oksigen tambahan yang diambil daripada setiap liter, dan terlepas faktor yang lain.
+- Kira-kira <InlineMath math="4.0" /> kali mendarab kadar denyutan jantung dengan oksigen yang diambil per liter, <InlineMath math="1.67\times2.4" />, dan **meninggalkan isi padu strok yang lebih besar**.

@@ -1,0 +1,28 @@
+# Beide Gene getrennt behandeln und dann multiplizieren
+
+Die Gene liegen auf verschiedenen Chromosomen und werden daher **unabhängig** vererbt. Für jedes Merkmal wird die Wahrscheinlichkeit unter allen Kindern bestimmt, dann wird multipliziert.
+
+<BlockMath math="X^GX^g\times X^GY:\quad X^GX^G,\ X^GX^g,\ X^GY,\ X^gY\ \Rightarrow\ P(\text{Sohn mit G6PD-Mangel})=\tfrac{1}{4}" />
+
+<BlockMath math="Tt\times Tt:\quad TT,\ Tt,\ Tt,\ tt\ \Rightarrow\ P(\text{keine Thalassämia major})=\tfrac{3}{4}" />
+
+<BlockMath math="\tfrac{1}{4}\cdot\tfrac{3}{4}=\tfrac{3}{16}" />
+
+<Chart
+  title={<>Wahrscheinlichkeit jedes Ergebnisses beim nächsten Kind</>}
+  bars="apart"
+  categories={["Sohn nur mit G6PD-Mangel", "Sohn mit beiden Krankheiten", "Tochter mit G6PD-Mangel"]}
+  series={[
+    { label: "Wahrscheinlichkeit", mark: "bar", values: [18.75, 6.25, 0] },
+  ]}
+  valueLabel="Wahrscheinlichkeit (%)"
+  description={<>Ein Sohn nur mit G6PD-Mangel hat eine Wahrscheinlichkeit von <InlineMath math="18{,}75\,\%" />, ein Sohn mit beiden Krankheiten <InlineMath math="6{,}25\,\%" />, eine Tochter mit G6PD-Mangel keine.</>}
+/>
+
+Gefragt ist nach dem **nächsten Kind**, das Sohn oder Tochter sein kann, die Wahrscheinlichkeit eines Sohnes mit G6PD-Mangel enthält also schon die <InlineMath math="\tfrac{1}{2}" /> für einen Sohn. Die Antwort ist <InlineMath math="\tfrac{3}{16}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="\tfrac{3}{8}" /> setzt <InlineMath math="\tfrac{1}{2}" /> für G6PD-Mangel an, die Wahrscheinlichkeit **nur unter Söhnen**, nicht unter allen Kindern.
+- <InlineMath math="\tfrac{1}{16}" /> ist die Wahrscheinlichkeit eines Sohnes mit G6PD-Mangel, der **auch** Thalassämia major hat, <InlineMath math="\tfrac{1}{4}\cdot\tfrac{1}{4}" />.
+- <InlineMath math="\tfrac{1}{4}" /> ist die Wahrscheinlichkeit eines Sohnes mit G6PD-Mangel und **übergeht das Thalassämie-Gen** ganz.

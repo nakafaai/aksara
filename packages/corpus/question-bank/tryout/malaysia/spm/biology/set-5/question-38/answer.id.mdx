@@ -1,0 +1,24 @@
+# Hitung setiap urutan yang membuat satu dari tiga anak terkena
+
+Tiap anak berpeluang <InlineMath math="\tfrac{1}{4}" /> untuk terkena dan <InlineMath math="\tfrac{3}{4}" /> untuk tidak terkena. **Tepat satu** yang terkena bisa terjadi dalam tiga urutan: anak pertama, kedua, atau ketiga.
+
+<BlockMath math="P(\text{satu urutan})=\tfrac{1}{4}\times\tfrac{3}{4}\times\tfrac{3}{4}=\tfrac{9}{64},\qquad 3\times\tfrac{9}{64}=\tfrac{27}{64}\approx42\%" />
+
+<Chart
+  title={<>Jumlah Anak yang Terkena dari Tiga Anak</>}
+  bars="apart"
+  categories={["Tidak ada", "Tepat satu", "Tepat dua", "Ketiganya"]}
+  series={[
+    { label: "Peluang", mark: "bar", values: [42.2, 42.2, 14.1, 1.6] },
+  ]}
+  valueLabel="Peluang (%)"
+  description={<>Tidak ada yang terkena dan tepat satu yang terkena masing-masing berpeluang sekitar <InlineMath math="42\%" />. Tepat dua sekitar <InlineMath math="14\%" />, dan ketiganya di bawah <InlineMath math="2\%" />.</>}
+/>
+
+Keempat hasil berjumlah <InlineMath math="1" />: <InlineMath math="\tfrac{27}{64}+\tfrac{27}{64}+\tfrac{9}{64}+\tfrac{1}{64}=1" />. Peluang tepat satu anak terkena adalah <InlineMath math="\tfrac{27}{64}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="\tfrac{9}{64}" /> adalah peluang untuk **satu urutan tertentu**, misalnya hanya anak pertama yang terkena, dan melewatkan dua urutan lainnya.
+- <InlineMath math="\tfrac{37}{64}" /> adalah peluang **paling sedikit satu** anak terkena, <InlineMath math="1-\left(\tfrac{3}{4}\right)^3" />, yang ikut menghitung dua atau tiga yang terkena.
+- <InlineMath math="\tfrac{1}{4}" /> adalah peluang untuk **satu anak**, yang tidak menjawab berapa dari tiga anak yang terkena.
