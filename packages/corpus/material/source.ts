@@ -41,10 +41,12 @@ import { lessonMathematicsVectorOperationsMaterial } from "#corpus/material/less
 import { lessonPhysicsGravitationMaterial } from "#corpus/material/lesson/physics/gravitation/source";
 import { lessonPhysicsHeatMaterial } from "#corpus/material/lesson/physics/heat/source";
 import { lessonPhysicsKinematicsMaterial } from "#corpus/material/lesson/physics/kinematics/source";
+import { lessonPhysicsLightOpticsMaterial } from "#corpus/material/lesson/physics/light-optics/source";
 import { lessonPhysicsMeasurementMaterial } from "#corpus/material/lesson/physics/measurement/source";
 import { lessonPhysicsMomentumMaterial } from "#corpus/material/lesson/physics/momentum/source";
 import { lessonPhysicsRenewableEnergyMaterial } from "#corpus/material/lesson/physics/renewable-energy/source";
 import { lessonPhysicsVectorMaterial } from "#corpus/material/lesson/physics/vector/source";
+import { lessonPhysicsWavesMaterial } from "#corpus/material/lesson/physics/waves/source";
 import type { MaterialEntry } from "#corpus/material/registry";
 import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 
@@ -89,10 +91,12 @@ const materialSourcePrograms = [
   lessonPhysicsGravitationMaterial,
   lessonPhysicsHeatMaterial,
   lessonPhysicsKinematicsMaterial,
+  lessonPhysicsLightOpticsMaterial,
   lessonPhysicsMeasurementMaterial,
   lessonPhysicsMomentumMaterial,
   lessonPhysicsRenewableEnergyMaterial,
   lessonPhysicsVectorMaterial,
+  lessonPhysicsWavesMaterial,
 ];
 
 /** An injected material source catalog failed strict decoding. */

@@ -153,7 +153,33 @@ export const kssmForm4PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-physics-waves-waves",
+        level: "lesson",
+        materialKeys: ["lesson.physics.waves"],
+        order: 10,
+      }),
+    ],
     key: "form-4-physics-waves",
+    materialCard: {
+      de: {
+        description: "Beschreibe Wellen, Resonanz und Interferenz.",
+        title: "Wellen",
+      },
+      en: {
+        description: "Describe waves, resonance and interference.",
+        title: "Waves",
+      },
+      id: {
+        description: "Jelaskan gelombang, resonansi, dan interferensi.",
+        title: "Gelombang",
+      },
+      ms: {
+        description: "Huraikan gelombang, resonans dan interferens.",
+        title: "Gelombang",
+      },
+    },
     order: 50,
     translations: {
       de: { routeSlug: "wellen", title: "Wellen" },
@@ -163,7 +189,33 @@ export const kssmForm4PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-physics-light-and-optics-light-optics",
+        level: "lesson",
+        materialKeys: ["lesson.physics.light-optics"],
+        order: 10,
+      }),
+    ],
     key: "form-4-physics-light-and-optics",
+    materialCard: {
+      de: {
+        description: "Berechne Brechung, Totalreflexion und Linsenbilder.",
+        title: "Licht und Optik",
+      },
+      en: {
+        description: "Work out refraction, total reflection and lens images.",
+        title: "Light and Optics",
+      },
+      id: {
+        description: "Hitung pembiasan, pemantulan total, dan bayangan lensa.",
+        title: "Cahaya dan Optika",
+      },
+      ms: {
+        description: "Kira pembiasan, pantulan dalam penuh dan imej kanta.",
+        title: "Cahaya dan Optik",
+      },
+    },
     order: 60,
     translations: {
       de: { routeSlug: "licht-und-optik", title: "Licht und Optik" },

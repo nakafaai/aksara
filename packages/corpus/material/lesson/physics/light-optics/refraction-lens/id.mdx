@@ -1,0 +1,306 @@
+export const metadata = {
+  title: "Pembiasan Cahaya Pemantulan Total dan Lensa",
+  description:
+    "Pakai hukum Snell, cari sudut kritis untuk pemantulan total, gambar diagram sinar lensa, dan selesaikan rumus lensa lewat contoh lengkap dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Cahaya dan Optika",
+};
+
+## Pembiasan Cahaya dan Hukum Snell
+
+**Pembiasan cahaya** adalah perubahan arah cahaya saat merambat dari satu medium ke medium lain yang kerapatan optiknya berbeda. **Hukum Snell** menyatakan bahwa perbandingan sinus sudut datang dengan sinus sudut bias adalah konstan, yaitu **indeks bias** medium:
+
+<BlockMath math="n = \frac{\sin i}{\sin r} = \frac{c}{v}" />
+
+Di sini <InlineMath math="i" /> adalah sudut datang dan <InlineMath math="r" /> adalah sudut bias, keduanya diukur dari garis normal. <InlineMath math="c = 3{,}0 \times 10^{8}\text{ m/s}" /> adalah cepat rambat cahaya di ruang hampa dan <InlineMath math="v" /> adalah cepat rambatnya di dalam medium. Di model-model berikut, kamu mengubah sudut sinar, menjebak cahaya dengan pemantulan total, dan menggeser benda di depan lensa.
+
+Cahaya membelok **mendekati garis normal** saat masuk ke medium yang lebih rapat secara optik, karena di sana cahaya bergerak lebih lambat. Geser penggeser sudut datang dan indeks bias, lalu bandingkan sudut biasnya.
+
+<MathVisual
+  title={<>Sinar Cahaya dari Udara ke Kaca</>}
+  description={
+    <>
+      Sinar datang dari atas dengan sudut <InlineMath math="i" /> dan dibiaskan
+      ke medium berindeks bias <InlineMath math="n" />. Garis tegak adalah garis
+      normal.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 40, step: 1, label: "i" },
+      { name: "n", min: 1, max: 2.5, value: 1.5, step: 0.05, label: "n" },
+    ],
+    objects: [
+      { id: "boundary", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)/n", y: "-4sqrt(1 - (sin(i pi/180)/n)^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "boundary", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "boundary", at: { x: 3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "angle", formula: "asin(sin(i pi/180)/n) 180/pi" },
+      { key: "speed", formula: "3/n" },
+    ],
+  }}
+  labels={{
+    i: <>Sudut datang <InlineMath math="i" /> dalam derajat</>,
+    n: <>Indeks bias <InlineMath math="n" /></>,
+    air: <>Udara</>,
+    glass: <>Medium rapat</>,
+    angle: <>Sudut bias <InlineMath math="r" /> dalam derajat</>,
+    speed: <>Cepat rambat cahaya dalam <InlineMath math="10^{8}\text{ m/s}" /></>,
+  }}
+/>
+
+### Contoh Memakai Hukum Snell
+
+Sinar cahaya masuk ke kaca berindeks bias <InlineMath math="1{,}5" /> dengan sudut datang <InlineMath math="40^\circ" />. Hitung **sudut biasnya**.
+
+<MathContainer>
+<BlockMath math="\sin r = \frac{\sin 40^\circ}{1{,}5} = \frac{0{,}643}{1{,}5} = 0{,}429" />
+<BlockMath math="r = 25{,}4^\circ" />
+</MathContainer>
+
+Cek dengan model: pada <InlineMath math="i = 40" /> dan <InlineMath math="n = 1{,}5" />, sudut bias terbaca <InlineMath math="25{,}4^\circ" />. Sudut ini lebih kecil daripada sudut datang, jadi sinar membelok mendekati garis normal.
+
+### Contoh Kedalaman Sebenarnya dan Kedalaman Semu
+
+Kolam terlihat lebih dangkal daripada kedalaman sebenarnya karena cahaya dari dasar membelok menjauhi garis normal saat keluar dari air. Hubungannya <InlineMath math="n = \dfrac{\text{kedalaman sebenarnya}}{\text{kedalaman semu}}" />. Untuk kolam sedalam <InlineMath math="2{,}0\text{ m}" /> dengan <InlineMath math="n = 1{,}33" />:
+
+<BlockMath math="\text{kedalaman semu} = \frac{2{,}0}{1{,}33} = 1{,}5\text{ m}" />
+
+Kolam itu terlihat **setengah meter lebih dangkal**. Cek: <InlineMath math="1{,}5 \times 1{,}33 = 2{,}0" />.
+
+## Pemantulan Total
+
+Saat cahaya merambat dari medium rapat ke medium yang kurang rapat, sudut biasnya lebih besar daripada sudut datangnya. Pada **sudut kritis** <InlineMath math="c" />, sudut bias mencapai <InlineMath math="90^\circ" />. Kalau sudut datang melebihi sudut kritis, semua cahaya dipantulkan kembali ke medium rapat. Peristiwa ini disebut **pemantulan total**:
+
+<BlockMath math="\sin c = \frac{1}{n}" />
+
+Untuk kaca dengan <InlineMath math="n = 1{,}5" />, sudut kritisnya <InlineMath math="41{,}8^\circ" />. Geser sudut datang melewati nilai itu dan perhatikan sinar bias menyusuri permukaan, sampai hanya sinar pantul yang tersisa.
+
+<MathVisual
+  title={<>Dari Kaca ke Udara melewati Sudut Kritis</>}
+  description={
+    <>
+      Sinar datang dari bawah di dalam kaca berindeks bias{" "}
+      <InlineMath math="1{,}5" />. Sinar biru dibiaskan ke udara, sinar hijau
+      toska dipantulkan kembali ke dalam kaca.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -4.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 80, value: 30, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: -4.5, y: 0 }, to: { x: 4.5, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: -4.5 }, to: { x: 0, y: 4.5 } },
+      { id: "incident", kind: "path", appearance: "warning", points: [{ x: "-4sin(i pi/180)", y: "-4cos(i pi/180)" }, { x: "0", y: "0" }] },
+      { id: "reflected", kind: "path", appearance: "secondary", points: [{ x: "0", y: "0" }, { x: "4sin(i pi/180)", y: "-4cos(i pi/180)" }] },
+      { id: "refracted", kind: "path", appearance: "primary", points: [{ x: "0", y: "0" }, { x: "4min(1, 1.5sin(i pi/180))", y: "4sqrt(1 - min(1, 1.5sin(i pi/180))^2)" }] },
+    ],
+    labels: [
+      { key: "air", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "above" },
+      { key: "glass", objectId: "surface", at: { x: -3.5, y: 0 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "critical", formula: "asin(1/1.5) 180/pi" },
+      { key: "out", formula: "asin(min(1, 1.5sin(i pi/180))) 180/pi" },
+    ],
+  }}
+  labels={{
+    i: <>Sudut datang <InlineMath math="i" /> dalam derajat</>,
+    air: <>Udara</>,
+    glass: <>Kaca</>,
+    critical: <>Sudut kritis <InlineMath math="c" /></>,
+    out: <>Sudut bias di udara</>,
+  }}
+/>
+
+Bahan berindeks bias tinggi punya sudut kritis yang kecil, jadi cahaya lebih mudah terjebak. Itulah alasan berlian berkilau: cahaya dipantulkan berkali-kali di dalamnya sebelum keluar.
+
+<Chart
+  title={<>Sudut Kritis Tiga Bahan</>}
+  bars="apart"
+  categories={["Air", "Kaca", "Berlian"]}
+  series={[
+    {
+      label: "Sudut kritis (°)",
+      mark: "bar",
+      values: [(Math.asin(1 / 1.33) * 180) / Math.PI, (Math.asin(1 / 1.5) * 180) / Math.PI, (Math.asin(1 / 2.42) * 180) / Math.PI],
+    },
+  ]}
+  valueLabel="Sudut kritis (°)"
+  description={
+    <>
+      Dihitung dari <InlineMath math="\sin c = 1/n" />: air{" "}
+      <InlineMath math="n = 1{,}33" /> memberi <InlineMath math="48{,}8^\circ" />,
+      kaca <InlineMath math="n = 1{,}5" /> memberi{" "}
+      <InlineMath math="41{,}8^\circ" />, dan berlian{" "}
+      <InlineMath math="n = 2{,}42" /> memberi <InlineMath math="24{,}4^\circ" />.
+    </>
+  }
+/>
+
+**Serat optik** memakai pemantulan total untuk mengantar cahaya sejauh ribuan kilometer. Inti kaca diselubungi lapisan berindeks bias lebih rendah, jadi cahaya yang mengenai dinding dengan sudut melebihi sudut kritis tetap berada di dalam inti.
+
+## Lensa dan Pembentukan Bayangan
+
+**Lensa cembung** mengumpulkan sinar sejajar di satu titik di belakang lensa, yaitu **titik fokus** <InlineMath math="F" />. Jarak dari pusat optik ke titik fokus adalah **jarak fokus** <InlineMath math="f" />. Letak bayangan diberikan oleh **rumus lensa**:
+
+<BlockMath math="\frac{1}{f} = \frac{1}{s} + \frac{1}{s'}, \qquad M = \frac{s'}{s}" />
+
+<InlineMath math="s" /> adalah jarak benda, <InlineMath math="s'" /> adalah jarak bayangan, dan <InlineMath math="M" /> adalah perbesaran linear. Untuk bayangan nyata, <InlineMath math="s'" /> bernilai positif. Diagram sinar berikut memakai lensa cembung dengan <InlineMath math="f = 2" /> satuan. Geser bendanya dan lihat bayangan nyata dan terbalik itu berubah ukuran.
+
+<MathVisual
+  title={<>Diagram Sinar Lensa Cembung</>}
+  description={
+    <>
+      Benda setinggi <InlineMath math="1" /> satuan berada sejauh{" "}
+      <InlineMath math="s" /> di kiri lensa. Satu sinar sejajar sumbu dibiaskan
+      melalui <InlineMath math="F" />, dan satu sinar melewati pusat optik tanpa
+      membelok. Bayangan terbentuk di perpotongan kedua sinar.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -9, max: 11 }, y: { min: -4.5, max: 2.5 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "o", min: 2.5, max: 8, value: 6, step: 0.1, label: "o" },
+    ],
+    objects: [
+      { id: "lens", kind: "segment", appearance: "reference", from: { x: 0, y: -4 }, to: { x: 0, y: 2 } },
+      { id: "focus-near", kind: "point", appearance: "construction", at: { x: -2, y: 0 } },
+      { id: "focus-far", kind: "point", appearance: "construction", at: { x: 2, y: 0 } },
+      { id: "object", kind: "path", appearance: "warning", points: [{ x: "-o", y: "0" }, { x: "-o", y: "1" }] },
+      { id: "image", kind: "path", appearance: "answer", points: [{ x: "2o/(o - 2)", y: "0" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "parallel-ray", kind: "path", appearance: "primary", points: [{ x: "-o", y: "1" }, { x: "0", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+      { id: "centre-ray", kind: "path", appearance: "secondary", points: [{ x: "-o", y: "1" }, { x: "2o/(o - 2)", y: "-2/(o - 2)" }] },
+    ],
+    labels: [
+      { key: "focus", objectId: "focus-far", at: { x: 2, y: 0 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "2o/(o - 2)" },
+      { key: "magnification", formula: "2/(o - 2)" },
+    ],
+  }}
+  labels={{
+    o: <>Jarak benda <InlineMath math="s" /></>,
+    focus: <InlineMath math="F" />,
+    distance: <>Jarak bayangan <InlineMath math="s'" /></>,
+    magnification: <>Perbesaran <InlineMath math="M" /></>,
+  }}
+/>
+
+Saat benda lebih jauh dari <InlineMath math="2f" />, bayangannya nyata, terbalik, dan **diperkecil**, seperti pada kamera. Saat benda berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, bayangannya nyata, terbalik, dan **diperbesar**, seperti pada proyektor. Kalau benda lebih dekat dari <InlineMath math="f" />, sinar tidak berpotongan di belakang lensa dan bayangannya menjadi maya, tegak, serta diperbesar. Begitulah cara kerja lup.
+
+### Contoh Rumus Lensa
+
+Benda diletakkan <InlineMath math="15\text{ cm}" /> di depan lensa cembung berjarak fokus <InlineMath math="10\text{ cm}" />. Cari **jarak bayangan dan perbesarannya**.
+
+<MathContainer>
+<BlockMath math="\frac{1}{s'} = \frac{1}{10} - \frac{1}{15} = \frac{1}{30}" />
+<BlockMath math="s' = 30\text{ cm}, \qquad M = \frac{30}{15} = 2" />
+</MathContainer>
+
+Bayangannya nyata, terbalik, dan dua kali lebih besar. Cek dengan model: <InlineMath math="s = 1{,}5f" /> di model adalah <InlineMath math="o = 3" />, dan model memberi <InlineMath math="s' = 6 = 3f" />, sesuai dengan <InlineMath math="30\text{ cm} = 3 \times 10\text{ cm}" />.
+
+### Contoh Menentukan Jarak Fokus dari Grafik
+
+Pada percobaan lensa, grafik <InlineMath math="1/s'" /> terhadap <InlineMath math="1/s" /> berupa garis lurus bergradien <InlineMath math="-1" />. Titik potongnya di kedua sumbu sama dengan <InlineMath math="1/f" />, yaitu **kekuatan lensa** <InlineMath math="P" /> dalam dioptri kalau jaraknya dalam meter.
+
+<MathVisual
+  title={<>Grafik Rumus Lensa</>}
+  description={
+    <>
+      Garis <InlineMath math="1/s' = P - 1/s" />, dengan jarak dalam meter.
+      Geser kekuatan lensa <InlineMath math="P" /> dan lihat kedua titik potong
+      bergerak bersama.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 4, max: 10, value: 5, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "lens-line", kind: "function", appearance: "primary", formula: "p - x", domain: { min: 0, max: 10 } },
+      { id: "intercept-y", kind: "marker", x: "0", y: "p", appearance: "answer" },
+      { id: "intercept-x", kind: "marker", x: "p", y: "0", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "focal", formula: "100/p" },
+    ],
+  }}
+  labels={{
+    p: <>Kekuatan lensa <InlineMath math="P" /> dalam D</>,
+    focal: <>Jarak fokus dalam cm</>,
+  }}
+/>
+
+Kalau titik potongnya <InlineMath math="5\text{ m}^{-1}" />, jarak fokusnya <InlineMath math="1/5 = 0{,}20\text{ m}" />, yaitu <InlineMath math="20\text{ cm}" />. Lensa cekung punya jarak fokus dan kekuatan yang negatif.
+
+## Kesalahan Umum tentang Cahaya dan Optika
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Sudut datang diukur dari permukaan. | Sudut datang dan sudut bias diukur dari garis normal. | Gambar garis normal dulu, lalu ukur sudutnya. |
+| Pemantulan total terjadi saat cahaya masuk ke kaca. | Pemantulan total hanya terjadi dari medium rapat ke medium kurang rapat. | Cek arah cahaya: dari indeks tinggi ke indeks rendah. |
+| Bayangan lensa cembung selalu terbalik. | Kalau <InlineMath math="s < f" />, bayangannya maya dan tegak. | Bandingkan <InlineMath math="s" /> dengan <InlineMath math="f" /> dulu. |
+| Memakai sentimeter untuk kekuatan lensa. | Kekuatan lensa <InlineMath math="P = 1/f" /> butuh <InlineMath math="f" /> dalam meter. | Ubah <InlineMath math="f" /> ke meter sebelum membagi. |
+
+Kesalahan pertama paling sering muncul di soal hukum Snell. **Garis normal adalah acuan** setiap sudut pada pembiasan dan pemantulan.
+
+## Latihan Cahaya dan Optika
+
+Soal-soal ini bergerak dari hukum Snell ke lensa. **Buat sketsa singkat** sebelum menghitung.
+
+1. Cepat rambat cahaya di sejenis plastik adalah <InlineMath math="2{,}0 \times 10^{8}\text{ m/s}" />. Hitung indeks bias plastik itu.
+
+2. Hitung sudut kritis air berindeks bias <InlineMath math="1{,}33" />, dan jelaskan apa yang terjadi pada sinar dari dalam air yang mengenai permukaan dengan sudut <InlineMath math="60^\circ" />.
+
+3. Benda diletakkan <InlineMath math="30\text{ cm}" /> dari lensa cembung berjarak fokus <InlineMath math="20\text{ cm}" />. Hitung jarak bayangan dan perbesarannya, lalu sebutkan sifat bayangannya.
+
+4. Hitung kekuatan lensa cembung berjarak fokus <InlineMath math="25\text{ cm}" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Pakai <InlineMath math="n = c/v" />:
+
+<BlockMath math="n = \frac{3{,}0 \times 10^{8}}{2{,}0 \times 10^{8}} = 1{,}5" />
+
+**Pembahasan 2**: Sudut kritis diberikan oleh <InlineMath math="\sin c = 1/n" />:
+
+<BlockMath math="c = \sin^{-1}\!\left(\frac{1}{1{,}33}\right) = 48{,}8^\circ" />
+
+Sudut <InlineMath math="60^\circ" /> lebih besar daripada <InlineMath math="48{,}8^\circ" />, jadi sinar itu mengalami **pemantulan total** dan tidak ada cahaya yang keluar ke udara.
+
+**Pembahasan 3**: Pakai rumus lensa:
+
+<MathContainer>
+<BlockMath math="\frac{1}{s'} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}" />
+<BlockMath math="s' = 60\text{ cm}, \qquad M = \frac{60}{30} = 2" />
+</MathContainer>
+
+Benda berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, jadi bayangannya nyata, terbalik, dan diperbesar dua kali.
+
+**Pembahasan 4**: Ubah jarak fokus ke meter, <InlineMath math="f = 0{,}25\text{ m}" />:
+
+<BlockMath math="P = \frac{1}{0{,}25} = 4\text{ D}" />
+
+Kekuatan positif menandakan lensa cembung.
