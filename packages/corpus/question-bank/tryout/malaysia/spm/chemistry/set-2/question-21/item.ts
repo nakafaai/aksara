@@ -11,7 +11,7 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: false, label: "Q is the most electropositive of the four metals" },
-        { correct: true, label: "In a cell made of P and R, P is the negative terminal and the voltage is about 1.6 V" },
+        { correct: true, label: "In a cell made of P and R, P is the negative terminal and the voltage is about $$1.6\\text{ V}$$" },
         { correct: false, label: "S can displace R from a solution of its salt" },
         { correct: false, label: "Copper is more electropositive than Q" },
       ],
@@ -20,7 +20,7 @@ const item: ItemSource = {
       kind: "choice",
       options: [
         { correct: false, label: "Q ialah logam paling elektropositif antara keempat-empatnya" },
-        { correct: true, label: "Dalam sel yang terdiri daripada P dan R, P ialah terminal negatif dan voltannya kira-kira 1.6 V" },
+        { correct: true, label: "Dalam sel yang terdiri daripada P dan R, P ialah terminal negatif dan voltannya kira-kira $$1.6\\text{ V}$$" },
         { correct: false, label: "S boleh menyesarkan R daripada larutan garamnya" },
         { correct: false, label: "Kuprum lebih elektropositif daripada Q" },
       ],
