@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "II and IV only" },
-        { correct: false, label: "I and IV only" },
-        { correct: false, label: "I, II and III only" },
-        { correct: true, label: "I and III only" },
+        { correct: false, label: "$$1.92\\text{ dm}^3$$, $$5.76\\text{ g}$$" },
+        { correct: false, label: "$$5.76\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
+        { correct: false, label: "$$0.240\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
+        { correct: true, label: "$$1.92\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "II dan IV sahaja" },
-        { correct: false, label: "I dan IV sahaja" },
-        { correct: false, label: "I, II dan III sahaja" },
-        { correct: true, label: "I dan III sahaja" },
+        { correct: false, label: "$$1.92\\text{ dm}^3$$, $$5.76\\text{ g}$$" },
+        { correct: false, label: "$$5.76\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
+        { correct: false, label: "$$0.240\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
+        { correct: true, label: "$$1.92\\text{ dm}^3$$, $$2.88\\text{ g}$$" },
       ],
     },
   },
