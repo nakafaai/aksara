@@ -1,41 +1,28 @@
-# Work out the gain in each week before comparing
+# Count the splits, then ask what the meristem has not yet built
 
-The table gives **heights**, not rates, so first subtract each height from the next one. Week <InlineMath math="n" /> runs from the end of week <InlineMath math="n-1" /> to the end of week <InlineMath math="n" />.
+The shoots are split at weeks <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="16" /> and <InlineMath math="20" />, so the number is **multiplied by <InlineMath math="5" /> five times**. The meristem at the tip is made of young, undivided cells that have not yet formed the vascular tissue the virus travels in.
 
-<Chart
-  title={<>Height Gained in Each Week</>}
-  bars="apart"
-  categories={["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"]}
-  series={[
-    { label: "Gain (cm)", mark: "bar", values: [2, 5, 11, 18, 20, 14, 6, 2] },
-  ]}
-  valueLabel="Gain (cm)"
-  description={<>The gains are <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="14" />, <InlineMath math="6" /> and <InlineMath math="2\text{ cm}" /> in weeks <InlineMath math="1" /> to <InlineMath math="8" />. The largest gain is in week <InlineMath math="5" />.</>}
-/>
-
-The largest gain is <InlineMath math="58-38=20\text{ cm}" /> in week <InlineMath math="5" />, so the absolute growth rate is highest in week <InlineMath math="5" />. That is the steepest part of the S-shaped growth curve.
-
-Now divide each gain by the height at the start of its week:
-
-<BlockMath math="\text{week }1: \tfrac{2}{2}=1.0,\quad \text{week }2: \tfrac{5}{4}=1.25,\quad \text{week }3: \tfrac{11}{9}\approx1.22,\quad \text{week }4: \tfrac{18}{20}=0.9,\quad \text{week }5: \tfrac{20}{38}\approx0.53" />
+<BlockMath math="1\times5^5=5\times5\times5\times5\times5=3125" />
 
 <Chart
-  title={<>Gain in Each Week Divided by the Starting Height</>}
-  bars="apart"
-  categories={["Week 1", "Week 2", "Week 3", "Week 4", "Week 5", "Week 6", "Week 7", "Week 8"]}
+  title={<>Shoots From One Shoot Tip</>}
+  categories={["0", "4", "8", "12", "16", "20"]}
   series={[
-    { label: "Relative growth rate", mark: "bar", values: [1.0, 1.25, 1.22, 0.9, 0.53, 0.24, 0.08, 0.03] },
+    { label: "Shoots", mark: "line", values: [1, 5, 25, 125, 625, 3125] },
   ]}
-  valueLabel="Relative growth rate"
-  description={<>The relative growth rate is <InlineMath math="1.0" />, <InlineMath math="1.25" />, <InlineMath math="1.22" />, <InlineMath math="0.9" />, <InlineMath math="0.53" />, <InlineMath math="0.24" />, <InlineMath math="0.08" /> and <InlineMath math="0.03" /> in weeks <InlineMath math="1" /> to <InlineMath math="8" />. It peaks in week <InlineMath math="2" />.</>}
+  valueLabel="Number of shoots"
+  description={<>Each split multiplies the shoots by <InlineMath math="5" />: <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="25" />, <InlineMath math="125" />, <InlineMath math="625" /> and <InlineMath math="3125" /> shoots at weeks <InlineMath math="0" /> to <InlineMath math="20" />.</>}
 />
 
-A small young plant grows a lot **for its size**, because almost every cell is still dividing. Later the plant gains more centimetres, but each centimetre is a smaller share of a bigger plant.
+- I: five splits of <InlineMath math="5" /> give <InlineMath math="5^5=3125" /> shoots. Statement I is correct.
+- II: the virus moves in xylem and phloem. The cells at the very tip have not yet become vascular tissue, so a tiny tip can be cut out before the virus reaches it. Statement II is correct.
+- III: every new cell comes from mitosis, which copies the chromosomes exactly, so the plants form a clone of the parent. Statement III is correct.
+- IV: meristem cells have the same chromosome number as every other body cell. They can form any tissue because they have **not yet differentiated**. Statement IV is wrong.
 
-So the absolute growth rate is highest in week <InlineMath math="5" /> and the relative growth rate is highest in week <InlineMath math="2" />.
+So statements I, II and III are correct.
 
 # Why the other options are wrong
 
-- Week <InlineMath math="8" /> for both reads the **tallest height** as the fastest growth, but the plant gains only <InlineMath math="2\text{ cm}" /> that week.
-- Week <InlineMath math="5" /> for both assumes the two rates peak together, **but the relative rate falls as the plant gets bigger**.
-- Week <InlineMath math="4" /> and week <InlineMath math="1" /> names each gain after the week it **starts from**, so the gain from the end of week <InlineMath math="4" /> to the end of week <InlineMath math="5" /> is wrongly called week <InlineMath math="4" />.
+- I and II only rejects III, **although mitosis copies the parent's chromosomes exactly**.
+- II, III and IV only rejects the count, often after **multiplying by <InlineMath math="5" /> only twice**, <InlineMath math="5\times5=25" />, instead of <InlineMath math="5^5" />, and accepts IV.
+- I, III and IV only rejects II and gives meristem cells **extra chromosomes they do not have**.

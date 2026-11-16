@@ -1,41 +1,28 @@
-# Hitung pertambahan tiap minggu sebelum membandingkan
+# Hitung pembelahannya, lalu tanyakan apa yang belum dibentuk meristem
 
-Tabel memberi **tinggi**, bukan laju, jadi kurangkan dulu tiap tinggi dari tinggi berikutnya. Minggu ke-<InlineMath math="n" /> berlangsung dari akhir minggu ke-<InlineMath math="(n-1)" /> sampai akhir minggu ke-<InlineMath math="n" />.
+Tunas dibelah pada minggu ke-<InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="16" />, dan <InlineMath math="20" />, jadi jumlahnya **dikali <InlineMath math="5" /> sebanyak lima kali**. Meristem di ujung terdiri dari sel muda yang belum berdiferensiasi dan belum membentuk jaringan pembuluh yang dilalui virus.
 
-<Chart
-  title={<>Pertambahan Tinggi di Tiap Minggu</>}
-  bars="apart"
-  categories={["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4", "Minggu 5", "Minggu 6", "Minggu 7", "Minggu 8"]}
-  series={[
-    { label: "Pertambahan (cm)", mark: "bar", values: [2, 5, 11, 18, 20, 14, 6, 2] },
-  ]}
-  valueLabel="Pertambahan (cm)"
-  description={<>Pertambahannya <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="14" />, <InlineMath math="6" />, dan <InlineMath math="2\text{ cm}" /> pada minggu ke-<InlineMath math="1" /> sampai ke-<InlineMath math="8" />. Pertambahan terbesar terjadi pada minggu ke-<InlineMath math="5" />.</>}
-/>
-
-Pertambahan terbesar adalah <InlineMath math="58-38=20\text{ cm}" /> pada minggu ke-<InlineMath math="5" />, jadi laju pertumbuhan mutlak tertinggi pada minggu ke-<InlineMath math="5" />. Itulah bagian paling curam dari kurva pertumbuhan berbentuk S.
-
-Lalu bagi tiap pertambahan dengan tinggi di awal minggunya:
-
-<BlockMath math="\text{minggu }1: \tfrac{2}{2}=1{,}0,\quad \text{minggu }2: \tfrac{5}{4}=1{,}25,\quad \text{minggu }3: \tfrac{11}{9}\approx1{,}22,\quad \text{minggu }4: \tfrac{18}{20}=0{,}9,\quad \text{minggu }5: \tfrac{20}{38}\approx0{,}53" />
+<BlockMath math="1\times5^5=5\times5\times5\times5\times5=3125" />
 
 <Chart
-  title={<>Pertambahan Mingguan Dibagi Tinggi Awal</>}
-  bars="apart"
-  categories={["Minggu 1", "Minggu 2", "Minggu 3", "Minggu 4", "Minggu 5", "Minggu 6", "Minggu 7", "Minggu 8"]}
+  title={<>Tunas dari Satu Ujung Tunas</>}
+  categories={["0", "4", "8", "12", "16", "20"]}
   series={[
-    { label: "Laju pertumbuhan relatif", mark: "bar", values: [1.0, 1.25, 1.22, 0.9, 0.53, 0.24, 0.08, 0.03] },
+    { label: "Tunas", mark: "line", values: [1, 5, 25, 125, 625, 3125] },
   ]}
-  valueLabel="Laju pertumbuhan relatif"
-  description={<>Laju pertumbuhan relatifnya <InlineMath math="1{,}0" />, <InlineMath math="1{,}25" />, <InlineMath math="1{,}22" />, <InlineMath math="0{,}9" />, <InlineMath math="0{,}53" />, <InlineMath math="0{,}24" />, <InlineMath math="0{,}08" />, dan <InlineMath math="0{,}03" /> pada minggu ke-<InlineMath math="1" /> sampai ke-<InlineMath math="8" />. Puncaknya pada minggu ke-<InlineMath math="2" />.</>}
+  valueLabel="Jumlah tunas"
+  description={<>Tiap pembelahan mengalikan tunas dengan <InlineMath math="5" />: <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="25" />, <InlineMath math="125" />, <InlineMath math="625" />, dan <InlineMath math="3125" /> tunas pada minggu ke-<InlineMath math="0" /> sampai ke-<InlineMath math="20" />.</>}
 />
 
-Tanaman muda yang kecil tumbuh banyak **dibanding ukurannya**, karena hampir semua selnya masih membelah. Belakangan tanaman bertambah lebih banyak sentimeter, tetapi tiap sentimeter hanyalah bagian kecil dari tanaman yang lebih besar.
+- I: lima pembelahan menjadi <InlineMath math="5" /> memberi <InlineMath math="5^5=3125" /> tunas. Pernyataan I benar.
+- II: virus bergerak lewat xilem dan floem. Sel di ujung tunas belum menjadi jaringan pembuluh, jadi ujung yang sangat kecil bisa dipotong sebelum virus mencapainya. Pernyataan II benar.
+- III: tiap sel baru berasal dari mitosis, yang menyalin kromosom dengan tepat, jadi tanaman-tanaman itu membentuk klon induknya. Pernyataan III benar.
+- IV: sel meristem punya jumlah kromosom yang sama dengan tiap sel tubuh lain. Sel itu bisa membentuk jaringan apa pun karena **belum berdiferensiasi**. Pernyataan IV salah.
 
-Jadi laju pertumbuhan mutlak tertinggi pada minggu ke-<InlineMath math="5" /> dan laju pertumbuhan relatif tertinggi pada minggu ke-<InlineMath math="2" />.
+Jadi pernyataan I, II, dan III benar.
 
 # Mengapa pilihan lain salah
 
-- Minggu ke-<InlineMath math="8" /> untuk keduanya membaca **tinggi maksimum** sebagai pertumbuhan tercepat, padahal tanaman hanya bertambah <InlineMath math="2\text{ cm}" /> pada minggu itu.
-- Minggu ke-<InlineMath math="5" /> untuk keduanya menganggap kedua laju memuncak bersamaan, **padahal laju relatif turun saat tanaman makin besar**.
-- Minggu ke-<InlineMath math="4" /> dan minggu ke-<InlineMath math="1" /> menamai tiap pertambahan dengan minggu **awalnya**, sehingga pertambahan dari akhir minggu ke-<InlineMath math="4" /> sampai akhir minggu ke-<InlineMath math="5" /> keliru disebut minggu ke-<InlineMath math="4" />.
+- I dan II saja menolak III, **padahal mitosis menyalin kromosom induk dengan tepat**.
+- II, III, dan IV saja menolak hitungannya, biasanya karena **mengalikan dengan <InlineMath math="5" /> dua kali saja**, <InlineMath math="5\times5=25" />, bukan <InlineMath math="5^5" />, lalu menerima IV.
+- I, III, dan IV saja menolak II dan memberi sel meristem **kromosom tambahan yang tidak dimilikinya**.

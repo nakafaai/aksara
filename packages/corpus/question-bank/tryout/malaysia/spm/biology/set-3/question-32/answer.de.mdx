@@ -1,35 +1,26 @@
-# Erst die Keimzellen jedes Elternteils, dann das Kreuzungsschema
+# Die Höhenallele zählen, nicht die Genotypen
 
-Weil die Gene auf verschiedenen Chromosomen liegen, werden sie **unabhängig verteilt**. <InlineMath math="RrYy" /> bildet vier Keimzellsorten in gleicher Zahl, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> und <InlineMath math="ry" />, <InlineMath math="Rryy" /> dagegen nur zwei, <InlineMath math="Ry" /> und <InlineMath math="ry" />.
+Jedes <InlineMath math="A" /> oder <InlineMath math="B" /> fügt dieselben <InlineMath math="5\text{ cm}" /> hinzu, die Höhe hängt also nur davon ab, **wie viele** dieser Allele eine Pflanze hat. Eine <InlineMath math="110\text{ cm}" /> große Pflanze hat genau zwei, und drei verschiedene Genotypen liefern sie.
 
-| Keimzellen | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
-| --- | --- | --- |
-| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> rund gelb | <InlineMath math="RrYy" /> rund gelb |
-| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> rund grün | <InlineMath math="Rryy" /> rund grün |
-| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> rund gelb | <InlineMath math="rrYy" /> runzlig gelb |
-| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> rund grün | <InlineMath math="rryy" /> runzlig grün |
+<BlockMath math="110=100+2\cdot5\ \Rightarrow\ \text{zwei Höhenallele}:\quad AAbb,\ aaBB,\ AaBb" />
 
-Das Schema hat <InlineMath math="4\cdot2=8" /> gleich wahrscheinliche Felder. Drei davon sind rund gelb: einmal <InlineMath math="RRYy" /> und zweimal <InlineMath math="RrYy" />.
-
-<BlockMath math="\text{rund gelb}=\tfrac{3}{8}\cdot400=150,\qquad RRYy=\tfrac{1}{8}\cdot400=50" />
+<BlockMath math="\tfrac{1}{16}+\tfrac{1}{16}+\tfrac{4}{16}=\tfrac{6}{16}=\tfrac{3}{8}" />
 
 <Chart
-  title={<>Erwartete Samen jeder Sorte von <InlineMath math="400" /></>}
+  title={<>Erwartete Höhen der Nachkommen</>}
   bars="apart"
-  categories={["Rund gelb", "Rund grün", "Runzlig gelb", "Runzlig grün"]}
+  categories={["100 cm", "105 cm", "110 cm", "115 cm", "120 cm"]}
   series={[
-    { label: "Samen", mark: "bar", values: [150, 150, 50, 50] },
+    { label: "Nachkommen", mark: "bar", values: [6.25, 25, 37.5, 25, 6.25] },
   ]}
-  valueLabel="Samen"
-  description={<>Erwartet: <InlineMath math="150" /> rund gelb, <InlineMath math="150" /> rund grün, <InlineMath math="50" /> runzlig gelb und <InlineMath math="50" /> runzlig grün, ein Verhältnis von <InlineMath math="3:3:1:1" />.</>}
+  valueLabel="Nachkommen (%)"
+  description={<>Von den Nachkommen sind <InlineMath math="6{,}25\,\%" /> <InlineMath math="100" /> cm groß, <InlineMath math="25\,\%" /> <InlineMath math="105" /> cm, <InlineMath math="37{,}5\,\%" /> <InlineMath math="110" /> cm, <InlineMath math="25\,\%" /> <InlineMath math="115" /> cm und <InlineMath math="6{,}25\,\%" /> <InlineMath math="120" /> cm.</>}
 />
 
-Von den <InlineMath math="150" /> runden gelben Samen sind nur die <InlineMath math="RRYy" />-Samen **reinerbig für die Form**, also eins von drei Feldern.
-
-Es sind also <InlineMath math="50" /> der runden gelben Samen reinerbig für die Samenform zu erwarten.
+Zählt man die Höhenallele über alle <InlineMath math="16" /> Kombinationen, ergeben sich <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="4" /> und <InlineMath math="1" /> Nachkommen mit <InlineMath math="0" /> bis <InlineMath math="4" /> Allelen. Die mittlere Klasse mit zwei Allelen ist am häufigsten, deshalb liefern additive Gene eine Höhenverteilung um den Mittelwert. Die Antwort ist <InlineMath math="\tfrac{3}{8}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="150" /> sind alle runden gelben Samen, **die mischerbigen** <InlineMath math="RrYy" /> eingeschlossen.
-- <InlineMath math="100" /> zählt alle <InlineMath math="RR" />-Samen, <InlineMath math="\tfrac{1}{4}\cdot400" />, **ohne nur die gelben zu nehmen**.
-- <InlineMath math="25" /> nutzt <InlineMath math="\tfrac{1}{16}" /> aus einer Kreuzung zweier <InlineMath math="RrYy" />-Pflanzen, **doch ein Elternteil ist hier** <InlineMath math="Rryy" />.
+- <InlineMath math="\tfrac{9}{16}" /> zählt Pflanzen mit mindestens einem <InlineMath math="A" /> und einem <InlineMath math="B" />, die **dominanten Klassen eines gewöhnlichen dihybriden Erbgangs**, die hier von <InlineMath math="110" /> bis <InlineMath math="120\text{ cm}" /> reichen.
+- <InlineMath math="\tfrac{1}{4}" /> zählt nur <InlineMath math="AaBb" /> und **übersieht** <InlineMath math="AAbb" /> **und** <InlineMath math="aaBB" />, die genauso groß sind.
+- <InlineMath math="\tfrac{1}{16}" /> zählt nur einen Genotyp wie <InlineMath math="AAbb" /> und **übersieht die beiden anderen** mit zwei Höhenallelen.

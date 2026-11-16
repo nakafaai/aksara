@@ -1,35 +1,26 @@
-# List the gametes of each parent, then fill a grid
+# Count the height alleles, not the genotypes
 
-Because the genes are on different chromosomes, they **assort independently**. <InlineMath math="RrYy" /> makes four kinds of gamete in equal numbers, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> and <InlineMath math="ry" />, while <InlineMath math="Rryy" /> makes only two, <InlineMath math="Ry" /> and <InlineMath math="ry" />.
+Each <InlineMath math="A" /> or <InlineMath math="B" /> adds the same <InlineMath math="5\text{ cm}" />, so height depends only on **how many** of these alleles a plant has. A plant <InlineMath math="110\text{ cm}" /> tall has exactly two, which three different genotypes provide.
 
-| Gametes | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
-| --- | --- | --- |
-| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> round yellow | <InlineMath math="RrYy" /> round yellow |
-| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> round green | <InlineMath math="Rryy" /> round green |
-| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> round yellow | <InlineMath math="rrYy" /> wrinkled yellow |
-| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> round green | <InlineMath math="rryy" /> wrinkled green |
+<BlockMath math="110=100+2\times5\ \Rightarrow\ \text{two height alleles}:\quad AAbb,\ aaBB,\ AaBb" />
 
-The grid has <InlineMath math="4\times2=8" /> equally likely boxes. Three are round yellow: one <InlineMath math="RRYy" /> and two <InlineMath math="RrYy" />.
-
-<BlockMath math="\text{round yellow}=\tfrac{3}{8}\times400=150,\qquad RRYy=\tfrac{1}{8}\times400=50" />
+<BlockMath math="\tfrac{1}{16}+\tfrac{1}{16}+\tfrac{4}{16}=\tfrac{6}{16}=\tfrac{3}{8}" />
 
 <Chart
-  title={<>Expected Seeds of Each Kind out of <InlineMath math="400" /></>}
+  title={<>Expected Heights of the Offspring</>}
   bars="apart"
-  categories={["Round yellow", "Round green", "Wrinkled yellow", "Wrinkled green"]}
+  categories={["100 cm", "105 cm", "110 cm", "115 cm", "120 cm"]}
   series={[
-    { label: "Seeds", mark: "bar", values: [150, 150, 50, 50] },
+    { label: "Offspring", mark: "bar", values: [6.25, 25, 37.5, 25, 6.25] },
   ]}
-  valueLabel="Seeds"
-  description={<>Expected: <InlineMath math="150" /> round yellow, <InlineMath math="150" /> round green, <InlineMath math="50" /> wrinkled yellow and <InlineMath math="50" /> wrinkled green, a ratio of <InlineMath math="3:3:1:1" />.</>}
+  valueLabel="Offspring (%)"
+  description={<>Of the offspring, <InlineMath math="6.25\%" /> are <InlineMath math="100" /> cm, <InlineMath math="25\%" /> are <InlineMath math="105" /> cm, <InlineMath math="37.5\%" /> are <InlineMath math="110" /> cm, <InlineMath math="25\%" /> are <InlineMath math="115" /> cm and <InlineMath math="6.25\%" /> are <InlineMath math="120" /> cm.</>}
 />
 
-Among the <InlineMath math="150" /> round yellow seeds, only the <InlineMath math="RRYy" /> seeds are **homozygous for shape**, which is one box in three.
-
-So <InlineMath math="50" /> of the round yellow seeds are expected to be homozygous for seed shape.
+Counting height alleles across all <InlineMath math="16" /> combinations gives <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="4" /> and <InlineMath math="1" /> offspring with <InlineMath math="0" /> to <InlineMath math="4" /> alleles. The middle class, two alleles, is the most common, which is why additive genes give a spread of heights centred on the average. The answer is <InlineMath math="\tfrac{3}{8}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="150" /> is every round yellow seed, **including the heterozygous** <InlineMath math="RrYy" /> ones.
-- <InlineMath math="100" /> counts every <InlineMath math="RR" /> seed, <InlineMath math="\tfrac{1}{4}\times400" />, **without keeping only the yellow ones**.
-- <InlineMath math="25" /> uses <InlineMath math="\tfrac{1}{16}" /> from a cross of two <InlineMath math="RrYy" /> plants, **but one parent here is** <InlineMath math="Rryy" />.
+- <InlineMath math="\tfrac{9}{16}" /> counts plants with at least one <InlineMath math="A" /> and one <InlineMath math="B" />, the **dominant classes of an ordinary dihybrid cross**, which here range from <InlineMath math="110" /> to <InlineMath math="120\text{ cm}" />.
+- <InlineMath math="\tfrac{1}{4}" /> counts only <InlineMath math="AaBb" /> and **misses** <InlineMath math="AAbb" /> **and** <InlineMath math="aaBB" />, which are just as tall.
+- <InlineMath math="\tfrac{1}{16}" /> counts a single genotype such as <InlineMath math="AAbb" /> and **misses the other two** with two height alleles.

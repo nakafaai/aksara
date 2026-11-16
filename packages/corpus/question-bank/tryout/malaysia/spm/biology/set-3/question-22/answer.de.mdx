@@ -1,41 +1,28 @@
-# Erst den Zuwachs jeder Woche berechnen, dann vergleichen
+# Die Teilungen zählen und dann fragen, was das Meristem noch nicht gebildet hat
 
-Die Tabelle nennt **Höhen**, keine Raten, also zieht man zuerst jede Höhe von der nächsten ab. Woche <InlineMath math="n" /> reicht vom Ende der Woche <InlineMath math="n-1" /> bis zum Ende der Woche <InlineMath math="n" />.
+Die Sprosse werden in den Wochen <InlineMath math="4" />, <InlineMath math="8" />, <InlineMath math="12" />, <InlineMath math="16" /> und <InlineMath math="20" /> geteilt, die Zahl wird also **fünfmal mit <InlineMath math="5" /> multipliziert**. Das Meristem an der Spitze besteht aus jungen, undifferenzierten Zellen, die das Leitgewebe, in dem das Virus wandert, noch nicht gebildet haben.
 
-<Chart
-  title={<>Höhenzuwachs in jeder Woche</>}
-  bars="apart"
-  categories={["Woche 1", "Woche 2", "Woche 3", "Woche 4", "Woche 5", "Woche 6", "Woche 7", "Woche 8"]}
-  series={[
-    { label: "Zuwachs (cm)", mark: "bar", values: [2, 5, 11, 18, 20, 14, 6, 2] },
-  ]}
-  valueLabel="Zuwachs (cm)"
-  description={<>Der Zuwachs beträgt in den Wochen <InlineMath math="1" /> bis <InlineMath math="8" /> <InlineMath math="2" />, <InlineMath math="5" />, <InlineMath math="11" />, <InlineMath math="18" />, <InlineMath math="20" />, <InlineMath math="14" />, <InlineMath math="6" /> und <InlineMath math="2\text{ cm}" />. Am größten ist er in Woche <InlineMath math="5" />.</>}
-/>
-
-Der größte Zuwachs ist <InlineMath math="58-38=20\text{ cm}" /> in Woche <InlineMath math="5" />, die absolute Wachstumsrate ist also in Woche <InlineMath math="5" /> am höchsten. Das ist der steilste Teil der S-förmigen Wachstumskurve.
-
-Jetzt jeden Zuwachs durch die Höhe zu Beginn seiner Woche teilen:
-
-<BlockMath math="\text{Woche }1: \tfrac{2}{2}=1{,}0,\quad \text{Woche }2: \tfrac{5}{4}=1{,}25,\quad \text{Woche }3: \tfrac{11}{9}\approx1{,}22,\quad \text{Woche }4: \tfrac{18}{20}=0{,}9,\quad \text{Woche }5: \tfrac{20}{38}\approx0{,}53" />
+<BlockMath math="1\cdot5^5=5\cdot5\cdot5\cdot5\cdot5=3125" />
 
 <Chart
-  title={<>Wochenzuwachs geteilt durch die Anfangshöhe</>}
-  bars="apart"
-  categories={["Woche 1", "Woche 2", "Woche 3", "Woche 4", "Woche 5", "Woche 6", "Woche 7", "Woche 8"]}
+  title={<>Sprosse aus einer Sprossspitze</>}
+  categories={["0", "4", "8", "12", "16", "20"]}
   series={[
-    { label: "Relative Wachstumsrate", mark: "bar", values: [1.0, 1.25, 1.22, 0.9, 0.53, 0.24, 0.08, 0.03] },
+    { label: "Sprosse", mark: "line", values: [1, 5, 25, 125, 625, 3125] },
   ]}
-  valueLabel="Relative Wachstumsrate"
-  description={<>Die relative Wachstumsrate beträgt in den Wochen <InlineMath math="1" /> bis <InlineMath math="8" /> <InlineMath math="1{,}0" />, <InlineMath math="1{,}25" />, <InlineMath math="1{,}22" />, <InlineMath math="0{,}9" />, <InlineMath math="0{,}53" />, <InlineMath math="0{,}24" />, <InlineMath math="0{,}08" /> und <InlineMath math="0{,}03" />. Am höchsten ist sie in Woche <InlineMath math="2" />.</>}
+  valueLabel="Anzahl der Sprosse"
+  description={<>Jede Teilung verfünffacht die Sprosse: <InlineMath math="1" />, <InlineMath math="5" />, <InlineMath math="25" />, <InlineMath math="125" />, <InlineMath math="625" /> und <InlineMath math="3125" /> Sprosse in den Wochen <InlineMath math="0" /> bis <InlineMath math="20" />.</>}
 />
 
-Eine kleine junge Pflanze wächst **im Verhältnis zu ihrer Größe** stark, weil sich fast alle Zellen noch teilen. Später gewinnt die Pflanze mehr Zentimeter, doch jeder Zentimeter ist ein kleinerer Anteil einer größeren Pflanze.
+- I: Fünf Teilungen in je <InlineMath math="5" /> ergeben <InlineMath math="5^5=3125" /> Sprosse. Aussage I stimmt.
+- II: Das Virus wandert in Xylem und Phloem. Die Zellen ganz an der Spitze sind noch kein Leitgewebe, eine winzige Spitze lässt sich also herausschneiden, bevor das Virus sie erreicht. Aussage II stimmt.
+- III: Jede neue Zelle entsteht durch Mitose, die die Chromosomen genau kopiert, die Pflanzen bilden also einen Klon der Mutterpflanze. Aussage III stimmt.
+- IV: Meristemzellen haben dieselbe Chromosomenzahl wie jede andere Körperzelle. Sie können jedes Gewebe bilden, weil sie **noch nicht differenziert** sind. Aussage IV ist falsch.
 
-Die absolute Wachstumsrate ist also in Woche <InlineMath math="5" /> am höchsten, die relative in Woche <InlineMath math="2" />.
+Richtig sind also die Aussagen I, II und III.
 
 # Warum die anderen Antworten falsch sind
 
-- Woche <InlineMath math="8" /> für beide hält die **größte Höhe** für das schnellste Wachstum, doch in dieser Woche wächst die Pflanze nur <InlineMath math="2\text{ cm}" />.
-- Woche <InlineMath math="5" /> für beide nimmt an, dass beide Raten gleichzeitig ihr Maximum erreichen, **doch die relative Rate sinkt, je größer die Pflanze wird**.
-- Woche <InlineMath math="4" /> und Woche <InlineMath math="1" /> benennt jeden Zuwachs nach der Woche, **in der er beginnt**, sodass der Zuwachs vom Ende der Woche <InlineMath math="4" /> bis zum Ende der Woche <InlineMath math="5" /> fälschlich Woche <InlineMath math="4" /> heißt.
+- Nur I und II verwirft III, **obwohl die Mitose die Chromosomen der Mutterpflanze genau kopiert**.
+- Nur II, III und IV verwirft die Zählung, meist weil **nur zweimal mit <InlineMath math="5" /> multipliziert** wird, <InlineMath math="5\cdot5=25" /> statt <InlineMath math="5^5" />, und akzeptiert IV.
+- Nur I, III und IV verwirft II und gibt Meristemzellen **zusätzliche Chromosomen, die sie nicht haben**.

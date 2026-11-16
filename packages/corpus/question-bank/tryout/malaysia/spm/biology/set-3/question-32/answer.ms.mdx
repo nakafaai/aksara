@@ -1,35 +1,26 @@
-# Senaraikan gamet setiap induk, kemudian isi grid
+# Kira alel ketinggian, bukan genotip
 
-Oleh sebab gen-gen itu terletak pada kromosom yang berlainan, ia **bersaling secara bebas**. <InlineMath math="RrYy" /> menghasilkan empat jenis gamet dalam bilangan yang sama, <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" /> dan <InlineMath math="ry" />, manakala <InlineMath math="Rryy" /> hanya menghasilkan dua, <InlineMath math="Ry" /> dan <InlineMath math="ry" />.
+Setiap <InlineMath math="A" /> atau <InlineMath math="B" /> menambah <InlineMath math="5\text{ cm}" /> yang sama, jadi ketinggian hanya bergantung pada **berapa banyak** alel ini dimiliki tumbuhan. Tumbuhan setinggi <InlineMath math="110\text{ cm}" /> mempunyai tepat dua, yang diberi oleh tiga genotip berbeza.
 
-| Gamet | <InlineMath math="Ry" /> | <InlineMath math="ry" /> |
-| --- | --- | --- |
-| <InlineMath math="RY" /> | <InlineMath math="RRYy" /> bulat kuning | <InlineMath math="RrYy" /> bulat kuning |
-| <InlineMath math="Ry" /> | <InlineMath math="RRyy" /> bulat hijau | <InlineMath math="Rryy" /> bulat hijau |
-| <InlineMath math="rY" /> | <InlineMath math="RrYy" /> bulat kuning | <InlineMath math="rrYy" /> berkedut kuning |
-| <InlineMath math="ry" /> | <InlineMath math="Rryy" /> bulat hijau | <InlineMath math="rryy" /> berkedut hijau |
+<BlockMath math="110=100+2\times5\ \Rightarrow\ \text{dua alel ketinggian}:\quad AAbb,\ aaBB,\ AaBb" />
 
-Grid itu mempunyai <InlineMath math="4\times2=8" /> petak yang sama kebarangkaliannya. Tiga petak ialah bulat kuning, iaitu satu <InlineMath math="RRYy" /> dan dua <InlineMath math="RrYy" />.
-
-<BlockMath math="\text{bulat kuning}=\tfrac{3}{8}\times400=150,\qquad RRYy=\tfrac{1}{8}\times400=50" />
+<BlockMath math="\tfrac{1}{16}+\tfrac{1}{16}+\tfrac{4}{16}=\tfrac{6}{16}=\tfrac{3}{8}" />
 
 <Chart
-  title={<>Biji Benih Dijangka bagi Setiap Jenis daripada <InlineMath math="400" /></>}
+  title={<>Ketinggian Anak yang Dijangka</>}
   bars="apart"
-  categories={["Bulat kuning", "Bulat hijau", "Berkedut kuning", "Berkedut hijau"]}
+  categories={["100 cm", "105 cm", "110 cm", "115 cm", "120 cm"]}
   series={[
-    { label: "Biji benih", mark: "bar", values: [150, 150, 50, 50] },
+    { label: "Anak", mark: "bar", values: [6.25, 25, 37.5, 25, 6.25] },
   ]}
-  valueLabel="Biji benih"
-  description={<>Jangkaan: <InlineMath math="150" /> bulat kuning, <InlineMath math="150" /> bulat hijau, <InlineMath math="50" /> berkedut kuning dan <InlineMath math="50" /> berkedut hijau, iaitu nisbah <InlineMath math="3:3:1:1" />.</>}
+  valueLabel="Anak (%)"
+  description={<>Daripada anak-anak itu, <InlineMath math="6.25\%" /> setinggi <InlineMath math="100" /> cm, <InlineMath math="25\%" /> setinggi <InlineMath math="105" /> cm, <InlineMath math="37.5\%" /> setinggi <InlineMath math="110" /> cm, <InlineMath math="25\%" /> setinggi <InlineMath math="115" /> cm dan <InlineMath math="6.25\%" /> setinggi <InlineMath math="120" /> cm.</>}
 />
 
-Antara <InlineMath math="150" /> biji bulat kuning, hanya biji <InlineMath math="RRYy" /> yang **homozigot bagi bentuk**, iaitu satu petak daripada tiga.
-
-Jadi <InlineMath math="50" /> biji bulat kuning dijangka homozigot bagi bentuk biji.
+Mengira alel ketinggian dalam kesemua <InlineMath math="16" /> gabungan memberi <InlineMath math="1" />, <InlineMath math="4" />, <InlineMath math="6" />, <InlineMath math="4" /> dan <InlineMath math="1" /> anak dengan <InlineMath math="0" /> hingga <InlineMath math="4" /> alel. Kelas tengah, dua alel, paling biasa, sebab itulah gen tambahan memberi taburan ketinggian yang berpusat pada purata. Jawapannya ialah <InlineMath math="\tfrac{3}{8}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="150" /> ialah semua biji bulat kuning, **termasuk biji heterozigot** <InlineMath math="RrYy" />.
-- <InlineMath math="100" /> mengira semua biji <InlineMath math="RR" />, <InlineMath math="\tfrac{1}{4}\times400" />, **tanpa memilih yang kuning sahaja**.
-- <InlineMath math="25" /> menggunakan <InlineMath math="\tfrac{1}{16}" /> daripada kacukan dua pokok <InlineMath math="RrYy" />, **sedangkan satu induk di sini ialah** <InlineMath math="Rryy" />.
+- <InlineMath math="\tfrac{9}{16}" /> mengira tumbuhan dengan sekurang-kurangnya satu <InlineMath math="A" /> dan satu <InlineMath math="B" />, iaitu **kelas dominan dalam kacukan dihibrid biasa**, yang di sini berjulat <InlineMath math="110" /> hingga <InlineMath math="120\text{ cm}" />.
+- <InlineMath math="\tfrac{1}{4}" /> hanya mengira <InlineMath math="AaBb" /> dan **terlepas** <InlineMath math="AAbb" /> **dan** <InlineMath math="aaBB" />, yang sama tinggi.
+- <InlineMath math="\tfrac{1}{16}" /> mengira satu genotip sahaja seperti <InlineMath math="AAbb" /> dan **terlepas dua yang lain** dengan dua alel ketinggian.
