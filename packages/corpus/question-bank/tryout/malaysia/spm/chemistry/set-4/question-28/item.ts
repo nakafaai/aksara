@@ -13,14 +13,23 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "3 esters: methyl propanoate, ethyl ethanoate and propyl methanoate",
+            "$$4$$ esters, and ethyl propanoate gives ethanol on hydrolysis",
         },
         {
           correct: false,
-          label: "2 esters: methyl propanoate and ethyl ethanoate",
+          label:
+            "$$3$$ esters, and ethyl propanoate gives ethanol on hydrolysis",
         },
-        { correct: false, label: "4 esters, including butyl methanoate" },
-        { correct: false, label: "3 esters, including ethyl propanoate" },
+        {
+          correct: false,
+          label:
+            "$$4$$ esters, and propyl ethanoate gives ethanol on hydrolysis",
+        },
+        {
+          correct: false,
+          label:
+            "$$5$$ esters, counting pentanoic acid, and ethyl propanoate gives ethanol on hydrolysis",
+        },
       ],
     },
     ms: {
@@ -28,11 +37,24 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "3 ester: metil propanoat, etil etanoat dan propil metanoat",
+          label:
+            "$$4$$ ester, dan etil propanoat menghasilkan etanol apabila dihidrolisis",
         },
-        { correct: false, label: "2 ester: metil propanoat dan etil etanoat" },
-        { correct: false, label: "4 ester, termasuk butil metanoat" },
-        { correct: false, label: "3 ester, termasuk etil propanoat" },
+        {
+          correct: false,
+          label:
+            "$$3$$ ester, dan etil propanoat menghasilkan etanol apabila dihidrolisis",
+        },
+        {
+          correct: false,
+          label:
+            "$$4$$ ester, dan propil etanoat menghasilkan etanol apabila dihidrolisis",
+        },
+        {
+          correct: false,
+          label:
+            "$$5$$ ester, termasuk asid pentanoik, dan etil propanoat menghasilkan etanol apabila dihidrolisis",
+        },
       ],
     },
   },
