@@ -1,3 +1,32 @@
 Persegi <InlineMath math="ABCD" /> memiliki panjang sisi <InlineMath math="(2+\sqrt{2})\text{ cm}" />. Sebuah lingkaran menyinggung sisi <InlineMath math="AB" /> dan sisi <InlineMath math="AD" />, dengan kedua titik singgungnya terletak pada sisi-sisi itu. Lingkaran itu juga melalui titik <InlineMath math="C" />.
 
+<MathVisual
+  title={<>Persegi <InlineMath math="ABCD" /> dan lingkaran yang melalui <InlineMath math="C" /></>}
+  description={<>Persegi <InlineMath math="ABCD" /> bersisi <InlineMath math="(2+\sqrt2)\text{ cm}" />. Lingkaran menyinggung sisi <InlineMath math="AB" /> dan <InlineMath math="AD" />, melalui <InlineMath math="C" />, dan memotong sisi <InlineMath math="BC" /> lagi di <InlineMath math="P" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    p: <InlineMath math="P" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.6, max: 4.2 }, y: { min: -0.6, max: 4.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 2 + Math.SQRT2, y: 0 }, { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, { x: 0, y: 2 + Math.SQRT2 }] },
+      { id: "circle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
+      { id: "point-p", kind: "point", appearance: "reference", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "square", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "square", at: { x: 2 + Math.SQRT2, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "square", at: { x: 2 + Math.SQRT2, y: 2 + Math.SQRT2 }, placement: "above-right" },
+      { key: "d", objectId: "square", at: { x: 0, y: 2 + Math.SQRT2 }, placement: "above-left" },
+      { key: "p", objectId: "point-p", at: { x: 2 + Math.SQRT2, y: 2 - Math.SQRT2 }, placement: "right" },
+    ],
+  }}
+/>
+
 Lingkaran itu memotong sisi <InlineMath math="BC" /> di titik <InlineMath math="C" /> dan di satu titik lain, yaitu <InlineMath math="P" />. Panjang <InlineMath math="CP" /> adalah ....

@@ -39,6 +39,21 @@ The student with score <InlineMath math="7" /> leaves class B and joins class A.
 
 The mean of class A rises from <InlineMath math="6.8" />, and the mean of class B rises from <InlineMath math="7.25" />. That makes sense: the score <InlineMath math="7" /> is **above the mean of class A but below the mean of class B**. Adding a value above the mean raises the mean, and removing a value below the mean raises the mean too. To be sure that <InlineMath math="\tfrac{138}{19}>7.25" />, compare <InlineMath math="138\cdot 4=552" /> with <InlineMath math="29\cdot 19=551" />. This statement is true.
 
+The chart below compares the means of both classes before and after the student with score <InlineMath math="7" /> moves. **Both new bars are a little taller** than the old ones, because the score <InlineMath math="7" /> is above class A's mean but below class B's mean.
+
+<Chart
+  title={<>Means of classes A and B before and after the move</>}
+  description={<>The value axis starts at <InlineMath math="6.5" /> so the small changes show. Class A's mean rises from <InlineMath math="6.8" /> to <InlineMath math="\tfrac{109}{16}=6.8125" />. Class B's mean rises from <InlineMath math="7.25" /> to <InlineMath math="\tfrac{138}{19}" />, about <InlineMath math="7.26" />.</>}
+  bars="apart"
+  categories={["A", "B"]}
+  series={[
+    { label: "Mean before", mark: "bar", values: [102 / 15, 145 / 20] },
+    { label: "Mean after the move", mark: "bar", values: [109 / 16, 138 / 19] },
+  ]}
+  valueRange={{ min: 6.5, max: 7.5 }}
+  valueLabel="Mean"
+/>
+
 # The fourth statement
 
 After the new student joins, class A has <InlineMath math="16" /> students, so its median is the mean of the <InlineMath math="8" />th and <InlineMath math="9" />th values. Check **both possibilities for the new score**.

@@ -38,6 +38,37 @@ AD^2 &= AB^2+BD^2-2\cdot AB\cdot BD\cos B \\
 
 A length can't be negative, so <InlineMath math="AD=6\text{ cm}" />.
 
+Drawing the triangle at its true size shows the result. The bisector <InlineMath math="AD" /> splits <InlineMath math="BC" /> into <InlineMath math="3" /> and <InlineMath math="4" />, and **it's as long as <InlineMath math="AB=6" />**, so triangle <InlineMath math="ABD" /> is isosceles.
+
+<MathVisual
+  title={<>Triangle <InlineMath math="ABC" /> and the bisector <InlineMath math="AD" /></>}
+  description={<>The triangle has <InlineMath math="AB=6" />, <InlineMath math="AC=8" />, and <InlineMath math="BC=7" />. The bisector of angle <InlineMath math="A" /> meets <InlineMath math="BC" /> at <InlineMath math="D" />, with <InlineMath math="BD=3" /> and <InlineMath math="DC=4" />. The length of <InlineMath math="AD" /> is <InlineMath math="6" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    d: <InlineMath math="D" />,
+    ad: <InlineMath math="AD=6" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 8 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }] },
+      { id: "bisector", kind: "segment", appearance: "answer", from: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, to: { x: 3, y: 0 } },
+      { id: "point-d", kind: "point", appearance: "highlight", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "triangle", at: { x: 3 / 2, y: (3 * Math.sqrt(15)) / 2 }, placement: "above" },
+      { key: "b", objectId: "triangle", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "c", objectId: "triangle", at: { x: 7, y: 0 }, placement: "below-right" },
+      { key: "d", objectId: "point-d", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "ad", objectId: "bisector", at: { x: 9 / 4, y: (3 * Math.sqrt(15)) / 4 }, placement: "right" },
+    ],
+  }}
+/>
+
 # Checking through the other angle
 
 Work it out from the other side. In triangle <InlineMath math="ABC" />, the cosine of angle <InlineMath math="C" /> is <InlineMath math="\cos C=\dfrac{64+49-36}{2\cdot 8\cdot 7}=\dfrac{11}{16}" />. In triangle <InlineMath math="ADC" />, with <InlineMath math="AC=8" /> and <InlineMath math="DC=4" />, you get the same result.

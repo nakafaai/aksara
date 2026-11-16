@@ -34,6 +34,34 @@ Der Wert <InlineMath math="24" /> wird in einem Punkt mit Bruchkoordinaten errei
 
 Jeder davon verletzt eine Nebenbedingung: Bei <InlineMath math="(0,6)" /> und <InlineMath math="(1,5)" /> wird <InlineMath math="x+3y" /> größer als <InlineMath math="14" />, bei <InlineMath math="(4,3)" />, <InlineMath math="(8,0)" /> und <InlineMath math="(5,2)" /> wird <InlineMath math="2x+y" /> größer als <InlineMath math="10" />. Der Punkt <InlineMath math="(2,4)" /> erfüllt <InlineMath math="2\cdot 2+4=8\le 10" /> und <InlineMath math="2+12=14\le 14" /> mit dem Wert <InlineMath math="6+16=22" />. Also ist **das ganzzahlige Maximum <InlineMath math="22" />**, nicht <InlineMath math="23" />. Auch das Runden der Ecke auf <InlineMath math="(3,4)" /> scheitert, weil <InlineMath math="3+12=15>14" /> ist. Diese Aussage ist falsch.
 
+Der Bereich <InlineMath math="D" /> zeigt beide Maximalwerte. Die Gerade <InlineMath math="3x+4y=24" /> **berührt den Bereich nur in einer Ecke** mit gebrochenen Koordinaten, während der beste ganzzahlige Punkt im Bereich <InlineMath math="(2,4)" /> ist, knapp unter dieser Geraden.
+
+<MathVisual
+  title={<>Bereich <InlineMath math="D" /> und die Niveaulinie <InlineMath math="3x+4y=24" /></>}
+  description={<>Der Bereich <InlineMath math="D" /> hat die Ecken <InlineMath math="(0,0)" />, <InlineMath math="(5,0)" />, <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" /> und <InlineMath math="\left(0,\tfrac{14}{3}\right)" />. Die Gerade <InlineMath math="3x+4y=24" /> berührt den Bereich nur in der Ecke <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />. Der ganzzahlige Punkt <InlineMath math="(2,4)" /> liegt im Bereich und hat den Wert <InlineMath math="22" />.</>}
+  labels={{
+    corner: <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" />,
+    level: <InlineMath math="3x+4y=24" />,
+    whole: <InlineMath math="(2,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 8.5 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "region", kind: "region", appearance: "highlight", inequalities: ["x >= 0", "y >= 0", "2x + y <= 10", "x + 3y <= 14"] },
+      { id: "level", kind: "line", appearance: "secondary", through: [{ x: 0, y: 6 }, { x: 8, y: 0 }] },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 16 / 5, y: 18 / 5 } },
+      { id: "whole", kind: "point", appearance: "primary", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 16 / 5, y: 18 / 5 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 7, y: 0.75 }, placement: "above-right" },
+      { key: "whole", objectId: "whole", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 # Die dritte Aussage
 
 Die Nebenbedingung <InlineMath math="2x+y\le 10" /> sorgt schon dafür, dass <InlineMath math="2x+y" /> höchstens <InlineMath math="10" /> ist. Der Wert <InlineMath math="10" /> wird auf der ganzen Kante von <InlineMath math="(5,0)" /> bis <InlineMath math="\left(\tfrac{16}{5},\tfrac{18}{5}\right)" /> erreicht, zum Beispiel in <InlineMath math="(5,0)" /> und in <InlineMath math="(4,2)" />. Weil **die Funktion parallel zu einer Kante des Bereichs verläuft**, wird das Maximum in unendlich vielen Punkten erreicht. Diese Aussage ist falsch.

@@ -20,6 +20,20 @@ Für den Faktor <InlineMath math="2" /> darf jeder Exponent <InlineMath math="0"
 
 Die drei Wahlen beeinflussen sich nicht, also liefert die **Produktregel** <InlineMath math="7\cdot 5\cdot 3=105" /> geordnete Paare <InlineMath math="(a,b)" />. Diese Zahl zählt <InlineMath math="(a,b)" /> und <InlineMath math="(b,a)" /> noch als zwei Paare und enthält auch Paare mit <InlineMath math="a=b" />.
 
+Das Diagramm vergleicht alle Exponentenpaare mit den Paaren, deren größerer Exponent genau dem Exponenten in <InlineMath math="360" /> entspricht. **Das Produkt der drei passenden Balken**, <InlineMath math="7\cdot5\cdot3" />, ist die Anzahl der geordneten Paare.
+
+<Chart
+  title={<>Exponentenpaare für jeden Primfaktor von <InlineMath math="360" /></>}
+  description={<>Für den Faktor <InlineMath math="2" /> gibt es <InlineMath math="16" /> Exponentenpaare, davon haben <InlineMath math="7" /> den größeren Exponenten <InlineMath math="3" />. Für den Faktor <InlineMath math="3" /> gibt es <InlineMath math="9" /> Paare, davon passen <InlineMath math="5" />. Für den Faktor <InlineMath math="5" /> gibt es <InlineMath math="4" /> Paare, davon passen <InlineMath math="3" />. Das Produkt ist <InlineMath math="105" />.</>}
+  categories={["Faktor 2", "Faktor 3", "Faktor 5"]}
+  bars="apart"
+  series={[
+    { label: "Alle Exponentenpaare", mark: "bar", values: [4 * 4, 3 * 3, 2 * 2] },
+    { label: "Größter Exponent genau", mark: "bar", values: [4 * 4 - 3 * 3, 3 * 3 - 2 * 2, 2 * 2 - 1] },
+  ]}
+  valueLabel="Anzahl der Paare"
+/>
+
 # Die Bedingung an die Reihenfolge
 
 Ein Paar mit <InlineMath math="a=b" /> klappt nur, wenn <InlineMath math="\operatorname{kgV}(a,a)=a=360" /> ist, also **gibt es genau ein Zwillingspaar**, nämlich <InlineMath math="(360,360)" />. Übrig bleiben <InlineMath math="104" /> Paare mit <InlineMath math="a\ne b" />. Sie treten paarweise auf, als <InlineMath math="(a,b)" /> und <InlineMath math="(b,a)" />, und von jedem solchen Doppel erfüllt genau eines <InlineMath math="a<b" />.

@@ -27,6 +27,20 @@ Only odd <InlineMath math="n" /> can work, and the numerator <InlineMath math="\
 
 <BlockMath math="\frac{99-3}{4}+1=25" />
 
+The chart below shows the numerator of <InlineMath math="P_n" /> in simplest form for <InlineMath math="n=2" /> to <InlineMath math="13" />. **Even numerators show up every four steps**, at <InlineMath math="n=3" />, <InlineMath math="7" />, and <InlineMath math="11" />, when <InlineMath math="n+1" /> is a multiple of <InlineMath math="4" />.
+
+<Chart
+  title={<>The numerator of <InlineMath math="P_n=\tfrac{n+1}{2n}" /> after simplifying</>}
+  description={<>For even <InlineMath math="n" />, the numerator is <InlineMath math="n+1" />, always odd. For odd <InlineMath math="n" />, it's <InlineMath math="\tfrac{n+1}{2}" />. That numerator is even at <InlineMath math="n=3" />, <InlineMath math="7" />, and <InlineMath math="11" />, with values <InlineMath math="2" />, <InlineMath math="4" />, and <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Even numerator", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? (i + 3) / 2 : null)) },
+    { label: "Odd numerator", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? null : (i + 2) % 2 === 0 ? i + 3 : (i + 3) / 2)) },
+  ]}
+  valueLabel="Numerator"
+/>
+
 # Checking a few values
 
 Work out the first few values directly.

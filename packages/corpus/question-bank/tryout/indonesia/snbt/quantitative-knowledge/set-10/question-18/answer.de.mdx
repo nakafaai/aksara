@@ -19,6 +19,17 @@ Behandle den Block wie ein einziges Objekt. Dann stehen <InlineMath math="7" /> 
 \text{Anzahl der Anordnungen} &= 5\cdot 60\cdot 6=1{.}800
 \end{aligned}" />
 
+Das Diagramm fasst die drei Wahlen zusammen, die multipliziert werden. **Zuerst wird die Lage des Blocks eingeschränkt**, weil beide Enden Konsonanten sein müssen, dann werden das Blockinnere und die Konsonanten gezählt, wobei Vertauschungen gleicher Buchstaben herausgeteilt werden.
+
+<Mermaid
+  title={<>Die Buchstaben von STATISTIKA mit einem Vokalblock anordnen</>}
+  description={<>Der Vokalblock A, A, I, I hat <InlineMath math="\tfrac{4!}{2!\,2!}=6" /> Anordnungen. Der Block kann an <InlineMath math="5" /> Stellen stehen, die keine Enden sind. Die sechs Konsonanten S, S, T, T, T, K haben <InlineMath math="\tfrac{6!}{2!\,3!}=60" /> Anordnungen. Insgesamt sind es <InlineMath math="6\cdot5\cdot60=1{.}800" /> Anordnungen.</>}
+  chart={`flowchart LR
+    V["Vokalblock A, A, I, I: 4!/(2! 2!) = 6"] --> T["6 x 5 x 60 = 1.800"]
+    P["Lage des Blocks: Stelle 2 bis 6, 5 Möglichkeiten"] --> T
+    K["Konsonanten S, S, T, T, T, K: 6!/(2! 3!) = 60"] --> T`}
+/>
+
 # Probe
 
 Ohne die Bedingung an den ersten und letzten Buchstaben lassen sich die sieben Objekte auf <InlineMath math="\tfrac{7!}{2!\,3!}=420" /> Arten anordnen. Der Block steht auf jedem der sieben Plätze gleich oft, also halten **genau <InlineMath math="5" /> von <InlineMath math="7" /> Teilen** den Block von den Enden fern. Das ergibt <InlineMath math="420\cdot\tfrac{5}{7}\cdot 6=300\cdot 6=1{.}800" />, dasselbe Ergebnis.

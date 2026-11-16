@@ -30,6 +30,20 @@ In both cases **there's always an odd exponent**, <InlineMath math="7" /> or <In
 
 The number <InlineMath math="15" /> matters here. If <InlineMath math="k^2" /> had <InlineMath math="9" /> divisors, the case <InlineMath math="k=p^4" /> would answer "yes", while the case <InlineMath math="k=pq" /> would answer "no".
 
+The diagram below puts both paths side by side. Both **end at an odd exponent** in the factorization of <InlineMath math="k" />, and an odd exponent rules out <InlineMath math="k" /> being a perfect square right away.
+
+<Mermaid
+  title={<>Two paths that both answer no</>}
+  description={<>Statement (1): <InlineMath math="2k" /> has an odd number of divisors, so <InlineMath math="2k" /> is a perfect square, which makes <InlineMath math="k=2j^2" /> with an odd exponent of <InlineMath math="2" />. Statement (2): <InlineMath math="(2e_1+1)(2e_2+1)\cdots=15" />, so <InlineMath math="k=p^7" /> or <InlineMath math="k=pq^2" />, both with an odd exponent. Both paths conclude that <InlineMath math="k" /> isn't a perfect square.</>}
+  chart={`flowchart TD
+    S1["(1) 2k has an odd number of divisors"] --> A1["2k is a perfect square"]
+    A1 --> B1["k = 2 j squared, odd exponent of 2"]
+    S2["(2) k squared has 15 divisors"] --> A2["k = p to the 7 or k = p q squared"]
+    A2 --> B2["an exponent 7 or 1, odd"]
+    B1 --> T["k is not a perfect square"]
+    B2 --> T`}
+/>
+
 # The wrong options
 
 Each statement is sufficient on its own, so **every option that calls one of them insufficient is wrong**.

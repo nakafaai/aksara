@@ -20,6 +20,20 @@ For the factor <InlineMath math="2" />, each exponent can be <InlineMath math="0
 
 The three choices don't affect each other, so the **multiplication rule** gives <InlineMath math="7\cdot 5\cdot 3=105" /> ordered pairs <InlineMath math="(a,b)" />. This number still counts <InlineMath math="(a,b)" /> and <InlineMath math="(b,a)" /> as two pairs, and it also includes pairs with <InlineMath math="a=b" />.
 
+The chart below compares all exponent pairs with the pairs whose larger exponent matches the exponent in <InlineMath math="360" /> exactly. **The product of the three passing bars**, <InlineMath math="7\cdot5\cdot3" />, is the number of ordered pairs.
+
+<Chart
+  title={<>Exponent pairs for each prime factor of <InlineMath math="360" /></>}
+  description={<>For the factor <InlineMath math="2" />, there are <InlineMath math="16" /> exponent pairs, and <InlineMath math="7" /> of them have larger exponent <InlineMath math="3" />. For the factor <InlineMath math="3" />, there are <InlineMath math="9" /> pairs and <InlineMath math="5" /> pass. For the factor <InlineMath math="5" />, there are <InlineMath math="4" /> pairs and <InlineMath math="3" /> pass. Their product is <InlineMath math="105" />.</>}
+  categories={["Factor 2", "Factor 3", "Factor 5"]}
+  bars="apart"
+  series={[
+    { label: "All exponent pairs", mark: "bar", values: [4 * 4, 3 * 3, 2 * 2] },
+    { label: "Largest exponent exact", mark: "bar", values: [4 * 4 - 3 * 3, 3 * 3 - 2 * 2, 2 * 2 - 1] },
+  ]}
+  valueLabel="Number of pairs"
+/>
+
 # The order condition
 
 A pair with <InlineMath math="a=b" /> only works if <InlineMath math="\operatorname{lcm}(a,a)=a=360" />, so **there's just one twin pair**, <InlineMath math="(360,360)" />. That leaves <InlineMath math="104" /> pairs with <InlineMath math="a\ne b" />. They come in couples, <InlineMath math="(a,b)" /> and <InlineMath math="(b,a)" />, and exactly one pair in each couple has <InlineMath math="a<b" />.

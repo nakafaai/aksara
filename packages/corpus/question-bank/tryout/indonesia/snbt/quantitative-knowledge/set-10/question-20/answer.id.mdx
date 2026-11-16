@@ -10,6 +10,30 @@ Di dalam kotak bersisi <InlineMath math="s" />, titik sudut persegi terletak pad
 
 Untuk <InlineMath math="a=0" /> hasilnya kotak itu sendiri, dan setiap nilai <InlineMath math="a" /> lainnya memberi satu persegi miring. Jadi **satu kotak bersisi <InlineMath math="s" /> memuat tepat <InlineMath math="s" /> persegi**.
 
+Gambar berikut memperlihatkan isi satu kotak bersisi <InlineMath math="4" />. Selain kotak itu sendiri, ada **tiga persegi miring** yang sudut-sudutnya bergeser <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="3" /> satuan di sepanjang sisi kotak, jadi kotak itu memuat tepat <InlineMath math="4" /> persegi.
+
+<MathVisual
+  title={<>Empat persegi di dalam satu kotak bersisi <InlineMath math="4" /></>}
+  description={<>Kotak tegak dengan sudut <InlineMath math="(0,0)" /> dan <InlineMath math="(4,4)" />. Tiga persegi miring punya sudut di sisi-sisi kotak: <InlineMath math="(1,0),(4,1),(3,4),(0,3)" />, lalu <InlineMath math="(2,0),(4,2),(2,4),(0,2)" />, lalu <InlineMath math="(3,0),(4,3),(1,4),(0,1)" />. Bersama kotaknya, ada <InlineMath math="4" /> persegi.</>}
+  labels={{
+    box: <InlineMath math="s=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "box", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 4 }, { x: 0, y: 4 }] },
+      { id: "tilt-1", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 4, y: 1 }, { x: 3, y: 4 }, { x: 0, y: 3 }] },
+      { id: "tilt-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 4 }, { x: 0, y: 2 }] },
+      { id: "tilt-3", kind: "polygon", appearance: "highlight", vertices: [{ x: 3, y: 0 }, { x: 4, y: 3 }, { x: 1, y: 4 }, { x: 0, y: 1 }] },
+    ],
+    labels: [
+      { key: "box", objectId: "box", at: { x: 4, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 # Banyak letak kotak
 
 Kotak bersisi <InlineMath math="s" /> dapat digeser ke kanan dalam <InlineMath math="6-s" /> cara dan ke atas dalam <InlineMath math="5-s" /> cara. Titik-titik itu hanya setinggi <InlineMath math="4" /> satuan, jadi **sisi kotak paling besar <InlineMath math="4" />**.

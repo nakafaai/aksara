@@ -27,6 +27,20 @@ Nur ungerade <InlineMath math="n" /> kommen infrage, und der Zähler <InlineMath
 
 <BlockMath math="\frac{99-3}{4}+1=25" />
 
+Das Diagramm zeigt den Zähler von <InlineMath math="P_n" /> in gekürzter Form für <InlineMath math="n=2" /> bis <InlineMath math="13" />. **Gerade Zähler tauchen alle vier Schritte auf**, bei <InlineMath math="n=3" />, <InlineMath math="7" /> und <InlineMath math="11" />, wenn <InlineMath math="n+1" /> ein Vielfaches von <InlineMath math="4" /> ist.
+
+<Chart
+  title={<>Der Zähler von <InlineMath math="P_n=\tfrac{n+1}{2n}" /> nach dem Kürzen</>}
+  description={<>Für gerades <InlineMath math="n" /> ist der Zähler <InlineMath math="n+1" />, immer ungerade. Für ungerades <InlineMath math="n" /> ist er <InlineMath math="\tfrac{n+1}{2}" />. Dieser Zähler ist gerade bei <InlineMath math="n=3" />, <InlineMath math="7" /> und <InlineMath math="11" />, mit den Werten <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="6" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 2}`)}
+  series={[
+    { label: "Gerader Zähler", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? (i + 3) / 2 : null)) },
+    { label: "Ungerader Zähler", mark: "bar", values: Array.from({ length: 12 }, (_, i) => ((i + 2) % 4 === 3 ? null : (i + 2) % 2 === 0 ? i + 3 : (i + 3) / 2)) },
+  ]}
+  valueLabel="Zähler"
+/>
+
 # Probe mit einigen Werten
 
 Rechne die ersten Werte direkt aus.
