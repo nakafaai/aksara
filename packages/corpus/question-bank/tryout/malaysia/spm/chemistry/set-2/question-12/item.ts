@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z" },
-        { correct: false, label: "Y, Z, X" },
-        { correct: false, label: "X, Z, Y" },
-        { correct: true, label: "Z, Y, X" },
+        { correct: false, label: "X, Y, Z. X is sodium." },
+        { correct: false, label: "Z, Y, X. X is aluminium." },
+        { correct: false, label: "Y, Z, X. X is phosphorus." },
+        { correct: true, label: "Z, Y, X. X is sulfur." },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z" },
-        { correct: false, label: "Y, Z, X" },
-        { correct: false, label: "X, Z, Y" },
-        { correct: true, label: "Z, Y, X" },
+        { correct: false, label: "X, Y, Z. X ialah natrium." },
+        { correct: false, label: "Z, Y, X. X ialah aluminium." },
+        { correct: false, label: "Y, Z, X. X ialah fosforus." },
+        { correct: true, label: "Z, Y, X. X ialah sulfur." },
       ],
     },
   },
