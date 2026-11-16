@@ -8,6 +8,7 @@ import {
   Effect,
   FileSystem,
   Layer,
+  Match,
   Option,
   Path,
   Predicate,
@@ -118,19 +119,18 @@ const launcherMessage = (error: CliLaunchError) => {
 /** Prints one typed outer-boundary failure without exposing its cause. */
 const reportLauncherError = (
   error: CliLaunchError | CliPackageError | InfoArgumentsError
-) => {
-  if (error._tag === "CliLaunchError") {
-    return Console.error(launcherMessage(error));
-  }
-  if (error._tag === "CliPackageError") {
-    return Console.error(
-      "The installed Aksara CLI package metadata is unavailable or invalid. Reinstall @nakafa/aksara-cli."
-    );
-  }
-  return Console.error(
-    "The --help and --version options do not accept additional arguments."
-  );
-};
+) =>
+  Match.valueTags(error, {
+    CliLaunchError: (launch) => Console.error(launcherMessage(launch)),
+    CliPackageError: () =>
+      Console.error(
+        "The installed Aksara CLI package metadata is unavailable or invalid. Reinstall @nakafa/aksara-cli."
+      ),
+    InfoArgumentsError: () =>
+      Console.error(
+        "The --help and --version options do not accept additional arguments."
+      ),
+  });
 
 /** Builds the delegated checkout program for the Node runtime boundary. */
 export const makeLauncherProgram = Effect.fn("AksaraCli.makeLauncherProgram")(
