@@ -24,7 +24,7 @@ describe("plant labs", () => {
       radius: 0.5,
       shoots: [{ coat: "none", name: "A", rate: 0.42 }],
     };
-    const props = assessmentVisuals.PotometerLab.props;
+    const { props } = assessmentVisuals.PotometerLab;
 
     expect(decodeStrict(props, potometer)).toEqual(potometer);
     expect(failsStrict(props, { ...potometer, shoots: [] })).toBe(true);
@@ -33,7 +33,7 @@ describe("plant labs", () => {
   });
 
   it("checks Hydrilla readings, with sodium hydrogen carbonate optional", () => {
-    const props = assessmentVisuals.PhotosynthesisLab.props;
+    const { props } = assessmentVisuals.PhotosynthesisLab;
     const lab = {
       ...card,
       labels: {
@@ -58,7 +58,7 @@ describe("plant labs", () => {
   });
 
   it("keeps each tropism stimulus to its own treatments", () => {
-    const props = assessmentVisuals.TropismLab.props;
+    const { props } = assessmentVisuals.TropismLab;
     const labels = {
       bend: [text("Shoot bend")],
       directions: {
@@ -96,7 +96,7 @@ describe("plant labs", () => {
   });
 
   it("asks for even chromosome counts in double fertilisation", () => {
-    const props = assessmentVisuals.FertilisationLab.props;
+    const { props } = assessmentVisuals.FertilisationLab;
     const lab = {
       ...card,
       father: 24,
@@ -123,7 +123,7 @@ describe("plant labs", () => {
   });
 
   it("checks an osmosis series and its optional strip mass", () => {
-    const props = assessmentVisuals.OsmosisLab.props;
+    const { props } = assessmentVisuals.OsmosisLab;
     const lab = {
       ...card,
       labels: {
