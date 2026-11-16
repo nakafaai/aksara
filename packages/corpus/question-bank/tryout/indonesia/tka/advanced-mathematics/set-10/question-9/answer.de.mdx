@@ -2,6 +2,39 @@ Der Wert <InlineMath math="f^{-1}(2)" /> ist **die Zahl <InlineMath math="x" />,
 
 <BlockMath math="\log_2(3x+4)-1=2\ \Leftrightarrow\ \log_2(3x+4)=3\ \Leftrightarrow\ 3x+4=2^3=8\ \Leftrightarrow\ x=\frac43" />
 
+Zeichne den Graphen von <InlineMath math="f" /> und lies ihn rückwärts. Starte auf Höhe <InlineMath math="2" /> an der senkrechten Achse, geh waagerecht bis zur Kurve und dann **senkrecht hinunter zur waagerechten Achse**.
+
+<MathVisual
+  title={<><InlineMath math="f^{-1}(2)" /> am Graphen von <InlineMath math="f" /> ablesen</>}
+  description={<>Die waagerechte Gerade <InlineMath math="y=2" /> trifft die Kurve <InlineMath math="y={}^{2}\log(3x+4)-1" /> in einem Punkt. Das Lot von diesem Punkt trifft die waagerechte Achse bei <InlineMath math="x=\tfrac43" />.</>}
+  labels={{
+    curve: <InlineMath math="y={}^{2}\log(3x+4)-1" />,
+    level: <InlineMath math="y=2" />,
+    foot: <InlineMath math="x=\tfrac43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -2.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "log_2(3x + 4) - 1", domain: { min: -1.2, max: 5 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: -1.5, y: 2 }, to: { x: 4 / 3, y: 2 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 4 / 3, y: 2 }, to: { x: 4 / 3, y: 0 } },
+      { id: "hit", kind: "point", appearance: "secondary", at: { x: 4 / 3, y: 2 } },
+      { id: "foot", kind: "point", appearance: "answer", at: { x: 4 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4, y: Math.log2(16) - 1 }, placement: "below" },
+      { key: "level", objectId: "across", at: { x: -1, y: 2 }, placement: "above" },
+      { key: "foot", objectId: "foot", at: { x: 4 / 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="f\left(\frac43\right)=\log_28-1=3-1=2" />, und <InlineMath math="\frac43>-\frac43" /> liegt in der Definitionsmenge.
 
 Also ist <InlineMath math="f^{-1}(2)=\frac43" />.

@@ -5,6 +5,39 @@ G(0,26)\ge G(14,12)&\ \Leftrightarrow\ 26p\ge1{.}400+12p\ \Leftrightarrow\ p\ge1
 G(0,26)\ge G(20,0)&\ \Leftrightarrow\ 26p\ge2{.}000\ \Leftrightarrow\ p\ge76{,}9\ldots
 \end{aligned}" />
 
+Zeichne die Gewinngerade für <InlineMath math="p=100" />. **Diese Gerade liegt auf der Stoffkante von <InlineMath math="(0,\ 26)" /> bis <InlineMath math="(14,\ 12)" />**, also gehört <InlineMath math="(0,\ 26)" /> erst dann zu den besten Punkten, wenn <InlineMath math="p" /> den Wert <InlineMath math="100" /> erreicht.
+
+<MathVisual
+  title={<>Die Gewinngerade, wenn eine gestempelte Batik <InlineMath math="\text{Rp}100{.}000" /> bringt</>}
+  description={<>Der zulässige Bereich ist derselbe wie zuvor. Die Gewinngerade <InlineMath math="100x+100y=2{.}600" /> liegt auf der Stoffgeraden <InlineMath math="x+y=26" /> und berührt den Bereich entlang der Kante von <InlineMath math="(0,\ 26)" /> bis <InlineMath math="(14,\ 12)" />. Für kleinere <InlineMath math="p" /> ist die Gewinngerade steiler und berührt nur <InlineMath math="(14,\ 12)" /> oder <InlineMath math="(20,\ 0)" />.</>}
+  labels={{
+    edge: <InlineMath math="100x+100y=2{.}600" />,
+    top: <InlineMath math="(0,\ 26)" />,
+    corner: <InlineMath math="(14,\ 12)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 0, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 14, y: 12 }, { x: 0, y: 26 }] },
+      { id: "level", kind: "function", appearance: "construction", formula: "26 - x", domain: { min: 0, max: 26 } },
+      { id: "edge", kind: "segment", appearance: "answer", from: { x: 0, y: 26 }, to: { x: 14, y: 12 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 26 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 14, y: 12 } },
+    ],
+    labels: [
+      { key: "edge", objectId: "edge", at: { x: 7, y: 19 }, placement: "above-right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 26 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 14, y: 12 }, placement: "right" },
+    ],
+  }}
+/>
+
 Beide Bedingungen müssen gelten, also <InlineMath math="p\ge100" />. Bei <InlineMath math="p=100" /> liefern <InlineMath math="(0,26)" /> und <InlineMath math="(14,12)" /> beide <InlineMath math="2{.}600" /> Tausend Rupiah. Die Gewinngerade <InlineMath math="100x+100y" /> ist parallel zur Stoffgeraden <InlineMath math="x+y=26" />, also ist jeder Plan auf dieser Kante gleich gut, und kein anderer Plan ist besser.
 
 Der kleinste Gewinn pro gestempeltem Tuch ist also <InlineMath math="\text{Rp}100{.}000{,}00" />.

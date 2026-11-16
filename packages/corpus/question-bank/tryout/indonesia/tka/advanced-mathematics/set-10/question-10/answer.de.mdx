@@ -2,6 +2,40 @@ Stelle zuerst **die Gewinnfunktion als Differenz zweier Funktionen** auf.
 
 <BlockMath math="P(x)=R(x)-C(x)=90{.}000x-50{.}000x-2{.}000{.}000=40{.}000x-2{.}000{.}000" />
 
+Zeichne die Erlösgerade und die Kostengerade, mit der senkrechten Achse in Tausend Rupiah. **Der Gewinn ist der senkrechte Abstand von der Kostengeraden hinauf zur Erlösgeraden**, und die beiden Geraden schneiden sich dort, wo es weder Gewinn noch Verlust gibt.
+
+<MathVisual
+  title={<>Erlös und Kosten des Häkeltaschen-Betriebs</>}
+  description={<>Die Kostengerade <InlineMath math="C(x)" /> beginnt bei <InlineMath math="2" /> Millionen Rupiah und steigt flacher als die Erlösgerade <InlineMath math="R(x)" />, die bei null beginnt. Die beiden Geraden schneiden sich bei <InlineMath math="x=50" />. Bei <InlineMath math="100" /> Taschen beträgt der Erlös <InlineMath math="9" /> Millionen Rupiah und die Kosten <InlineMath math="7" /> Millionen Rupiah, also ist der senkrechte Abstand <InlineMath math="2" /> Millionen Rupiah.</>}
+  labels={{
+    r: <InlineMath math="R(x)" />,
+    c: <InlineMath math="C(x)" />,
+    even: <InlineMath math="x=50" />,
+    gap: <InlineMath math="P(100)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 120 },
+      y: { min: 0, max: 11000 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "c", kind: "function", appearance: "secondary", formula: "50x + 2000", domain: { min: 0, max: 120 } },
+      { id: "r", kind: "function", appearance: "primary", formula: "90x", domain: { min: 0, max: 120 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 100, y: 7000 }, to: { x: 100, y: 9000 } },
+      { id: "even", kind: "point", appearance: "answer", at: { x: 50, y: 4500 } },
+    ],
+    labels: [
+      { key: "r", objectId: "r", at: { x: 115, y: 10350 }, placement: "left" },
+      { key: "c", objectId: "c", at: { x: 115, y: 7750 }, placement: "below" },
+      { key: "even", objectId: "even", at: { x: 50, y: 4500 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 100, y: 8000 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. **Wahr.** <InlineMath math="P(100)=4{.}000{.}000-2{.}000{.}000=2{.}000{.}000" />.
 2. **Wahr.** Weder Gewinn noch Verlust heißt <InlineMath math="P(x)=0" />, also <InlineMath math="40{.}000x=2{.}000{.}000" /> und damit <InlineMath math="x=50" />.
 3. **Falsch.** <InlineMath math="140{.}000x-2{.}000{.}000" /> addiert Erlös und variable Kosten, die Kosten müssen aber abgezogen werden.

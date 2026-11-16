@@ -2,6 +2,34 @@ Ketika <InlineMath math="x\to\infty" />, nilai <InlineMath math="2^x" /> membesa
 
 <BlockMath math="\lim_{x\to\infty}\frac{3\cdot2^x+5}{2^x-1}=\lim_{x\to\infty}\frac{3+\frac{5}{2^x}}{1-\frac{1}{2^x}}=\frac{3+0}{1-0}=3" />
 
+Gambar grafik fungsinya untuk <InlineMath math="x" /> yang makin besar. **Kurvanya turun dan makin rapat ke garis <InlineMath math="y=3" />**, karena suku <InlineMath math="5" /> dan <InlineMath math="-1" /> makin tidak berarti dibanding <InlineMath math="2^x" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\tfrac{3\cdot2^x+5}{2^x-1}" /> untuk <InlineMath math="x" /> besar</>}
+  description={<>Kurva <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" /> digambar dari <InlineMath math="x=1{,}5" /> sampai <InlineMath math="x=10" />. Kurva itu turun dan mendekati garis mendatar <InlineMath math="y=3" /> dari atas tanpa pernah memotongnya.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{3\cdot2^x+5}{2^x-1}" />,
+    level: <InlineMath math="y=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 10 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "answer", formula: "3", domain: { min: 0, max: 10 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(3*2^x + 5) / (2^x - 1)", domain: { min: 1.5, max: 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2, y: 17 / 3 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 9, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pecahan <InlineMath math="\frac{5}{2^x}" /> dan <InlineMath math="\frac{1}{2^x}" /> menuju <InlineMath math="0" />, karena penyebutnya membesar tanpa batas. Contoh: untuk <InlineMath math="x=10" />, nilainya <InlineMath math="\frac{3077}{1023}\approx3{,}008" />.
 
 Jadi, nilai limitnya <InlineMath math="3" />.

@@ -2,6 +2,40 @@ Cari satu akar bulat lebih dulu. Calon akar rasional berbentuk <InlineMath math=
 
 <BlockMath math="P(x)=(x-4)(4x^2+4x-3)=(x-4)(2x-1)(2x+3)" />
 
+Gambar <InlineMath math="P(x)=(x-4)(2x-1)(2x+3)" />. **Grafiknya memotong sumbu <InlineMath math="x" /> di <InlineMath math="-\tfrac32" />, <InlineMath math="\tfrac12" />, dan <InlineMath math="4" />**, sehingga jumlah akarnya <InlineMath math="3" />.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="P(x)" /> dan akar-akarnya</>}
+  description={<>Kurva memotong sumbu <InlineMath math="x" /> di <InlineMath math="\left(-\tfrac32,\ 0\right)" />, <InlineMath math="\left(\tfrac12,\ 0\right)" />, dan <InlineMath math="(4,\ 0)" />, dan melewati <InlineMath math="(0,\ 12)" />.</>}
+  labels={{
+    curve: <InlineMath math="y=P(x)" />,
+    "root-a": <InlineMath math="-\tfrac32" />,
+    "root-b": <InlineMath math="\tfrac12" />,
+    "root-c": <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 4.6 },
+      y: { min: -55, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x - 4)*(2*x - 1)*(2*x + 3)", domain: { min: -1.8, max: 4.4 } },
+      { id: "root-a", kind: "point", appearance: "answer", at: { x: -1.5, y: 0 } },
+      { id: "root-b", kind: "point", appearance: "answer", at: { x: 0.5, y: 0 } },
+      { id: "root-c", kind: "point", appearance: "answer", at: { x: 4, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.3, y: 0.3 * 7.6 * 11.6 }, placement: "left" },
+      { key: "root-a", objectId: "root-a", at: { x: -1.5, y: 0 }, placement: "above-left" },
+      { key: "root-b", objectId: "root-b", at: { x: 0.5, y: 0 }, placement: "above-right" },
+      { key: "root-c", objectId: "root-c", at: { x: 4, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Akar-akarnya <InlineMath math="4" />, <InlineMath math="\frac12" />, dan <InlineMath math="-\frac32" />.
 
 - **Benar.** <InlineMath math="P(4)=0" />, jadi <InlineMath math="x-4" /> adalah faktor.

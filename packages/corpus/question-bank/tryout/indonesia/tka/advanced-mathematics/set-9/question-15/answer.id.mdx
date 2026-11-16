@@ -2,6 +2,42 @@ Lingkaran yang menyinggung dua garis sejajar terjepit tepat di antaranya. **Jara
 
 <BlockMath math="2r=7-1=6\ \Rightarrow\ r=3,\qquad y_{\text{pusat}}=\frac{1+7}{2}=4" />
 
+Gambar kedua papan dan penampang pipa. **Pipa terjepit tepat di antara kedua garis, jadi diameternya sama dengan jarak kedua garis**, dan pusatnya di tengah-tengah.
+
+<MathVisual
+  title={<>Penampang pipa di antara dua papan</>}
+  description={<>Garis <InlineMath math="y=1" /> dan <InlineMath math="y=7" /> berjarak <InlineMath math="6" />. Lingkaran berpusat di <InlineMath math="(2,4)" /> dengan jari-jari <InlineMath math="3" /> menyentuh kedua garis di <InlineMath math="(2,1)" /> dan <InlineMath math="(2,7)" />.</>}
+  labels={{
+    low: <InlineMath math="y=1" />,
+    high: <InlineMath math="y=7" />,
+    centre: <InlineMath math="(2,4)" />,
+    r: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "reference", formula: "1", domain: { min: -3, max: 7 } },
+      { id: "high", kind: "function", appearance: "reference", formula: "7", domain: { min: -3, max: 7 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 8 } },
+      { id: "pipe", kind: "circle", appearance: "answer", center: { x: 2, y: 4 }, radius: 3 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 6, y: 7 }, placement: "below" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: 4 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pusat juga terletak pada <InlineMath math="x=2" />, jadi pusatnya <InlineMath math="(2,4)" />.
 
 <BlockMath math="\begin{aligned}

@@ -1,5 +1,21 @@
 Two rules about orders settle every statement. Addition needs **exactly the same order**. A product <InlineMath math="PQ" /> is defined when the number of columns of <InlineMath math="P" /> equals the number of rows of <InlineMath math="Q" />, and the result has order (rows of <InlineMath math="P" />) <InlineMath math="\times" /> (columns of <InlineMath math="Q" />). Transposing swaps the order, so <InlineMath math="A^T" /> is <InlineMath math="3\times2" /> and <InlineMath math="B^T" /> is <InlineMath math="2\times3" />.
 
+Write the order of every matrix and every product. **The middle numbers in each pair must match**, and the two outer numbers give the order of the result.
+
+<Mermaid
+  title={<>The order of each sum and product</>}
+  description={<>The matrix <InlineMath math="A" /> is <InlineMath math="2\times3" /> and <InlineMath math="B" /> is <InlineMath math="3\times2" />. The product <InlineMath math="AB" /> is <InlineMath math="2\times2" />, while <InlineMath math="BA" /> and <InlineMath math="A^TB^T" /> are <InlineMath math="3\times3" />. The sum <InlineMath math="A+B" /> is undefined because the orders differ.</>}
+  chart={`flowchart LR
+  A["A: 2×3"] --> AB["AB: (2×3)(3×2) → 2×2"]
+  B["B: 3×2"] --> AB
+  B --> BA["BA: (3×2)(2×3) → 3×3"]
+  A --> BA
+  AT["Aᵀ: 3×2"] --> TT["AᵀBᵀ: (3×2)(2×3) → 3×3"]
+  BT["Bᵀ: 2×3"] --> TT
+  A -.-> S["A + B: undefined, orders differ"]
+  B -.-> S`}
+/>
+
 1. **False.** The orders <InlineMath math="2\times3" /> and <InlineMath math="3\times2" /> differ, so <InlineMath math="A+B" /> is not defined.
 2. **True.** <InlineMath math="(2\times3)(3\times2)" />: the columns of <InlineMath math="A" /> and the rows of <InlineMath math="B" /> are both <InlineMath math="3" />, and the result is <InlineMath math="2\times2" />.
 3. **False.** <InlineMath math="(3\times2)(2\times3)" /> is defined, but the result is <InlineMath math="3\times3" />.

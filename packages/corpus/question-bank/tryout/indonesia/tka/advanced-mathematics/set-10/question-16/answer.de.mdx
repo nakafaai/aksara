@@ -4,6 +4,41 @@ Dieser Kreis hat den Mittelpunkt <InlineMath math="(2,3)" /> und <InlineMath mat
 
 <BlockMath math="13-c=r^2=4\ \Rightarrow\ c=9" />
 
+Zeichne den Kreis, der diese Gerade berührt. **Der Radius zum Berührpunkt steht senkrecht auf der Geraden**, also ist seine Länge der Abstand des Mittelpunkts von der Geraden.
+
+<MathVisual
+  title={<>Der Kreis um <InlineMath math="(2,3)" />, der die Gerade berührt</>}
+  description={<>Die Gerade <InlineMath math="3x+4y-8=0" /> berührt den Kreis um <InlineMath math="(2,3)" /> genau in <InlineMath math="\left(\tfrac45,\tfrac75\right)" />. Der Radius zu diesem Punkt steht senkrecht auf der Geraden und hat die Länge <InlineMath math="2" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,3)" />,
+    line: <InlineMath math="3x+4y-8=0" />,
+    touch: <InlineMath math="\left(\tfrac45,\tfrac75\right)" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "(8 - 3x)/4", domain: { min: -1.5, max: 4.5 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 3 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: 3 }, to: { x: 4 / 5, y: 7 / 5 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 4 / 5, y: 7 / 5 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 4, y: -1 }, placement: "above-right" },
+      { key: "touch", objectId: "touch", at: { x: 4 / 5, y: 7 / 5 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 7 / 5, y: 11 / 5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Probe: Für <InlineMath math="c=9" /> ergibt Einsetzen von <InlineMath math="y=\frac{8-3x}{4}" /> in die Kreisgleichung <InlineMath math="\frac{25}{16}\left(x-\frac45\right)^2=0" /> mit nur einer Lösung. Die Gerade berührt den Kreis also in genau einem Punkt, <InlineMath math="\left(\frac45,\frac75\right)" />.
 
 Also ist <InlineMath math="c=9" />.

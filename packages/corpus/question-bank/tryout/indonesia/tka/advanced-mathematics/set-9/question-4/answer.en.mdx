@@ -18,6 +18,44 @@ P(14,12)&=1{,}400+960=2{,}360 \\
 P(0,26)&=2{,}080
 \end{aligned}" />
 
+Draw the feasible region. **The dyeing line and the fabric line cut it into a quadrilateral**, and the largest profit is at the corner where both run out.
+
+<MathVisual
+  title={<>Feasible region for dyeing and fabric</>}
+  description={<>The horizontal axis is the number of hand-drawn batiks, and the vertical axis is the number of stamped batiks. The shaded region lies below the lines <InlineMath math="2x+y=40" /> and <InlineMath math="x+y=26" />, with corners <InlineMath math="(0,\ 0)" />, <InlineMath math="(20,\ 0)" />, <InlineMath math="(14,\ 12)" />, and <InlineMath math="(0,\ 26)" />. The largest profit is at <InlineMath math="(14,\ 12)" />.</>}
+  labels={{
+    dye: <InlineMath math="2x+y=40" />,
+    cloth: <InlineMath math="x+y=26" />,
+    best: <InlineMath math="(14,\ 12)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+    top: <InlineMath math="(0,\ 26)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 28 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 14, y: 12 }, { x: 0, y: 26 }] },
+      { id: "dye", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 20, y: 0 } },
+      { id: "cloth", kind: "segment", appearance: "secondary", from: { x: 0, y: 26 }, to: { x: 26, y: 0 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 14, y: 12 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 26 } },
+    ],
+    labels: [
+      { key: "dye", objectId: "dye", at: { x: 3, y: 34 }, placement: "right" },
+      { key: "cloth", objectId: "cloth", at: { x: 23, y: 3 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 14, y: 12 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-left" },
+      { key: "top", objectId: "top", at: { x: 0, y: 26 }, placement: "right" },
+    ],
+  }}
+/>
+
 So the maximum profit is <InlineMath math="\text{Rp}2{,}360{,}000.00" />, with <InlineMath math="14" /> hand-drawn and <InlineMath math="12" /> stamped pieces.
 
 - <InlineMath math="\text{Rp}2{,}000{,}000.00" /> is the profit at <InlineMath math="(20,0)" />, hand-drawn batik only.

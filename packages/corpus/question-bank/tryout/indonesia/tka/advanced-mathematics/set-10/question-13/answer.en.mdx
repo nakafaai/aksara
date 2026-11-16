@@ -1,5 +1,43 @@
 The length of the vector is the key to almost every statement: <InlineMath math="\left|\vec{v}\right|=\sqrt{4+1+4}=3" />. The angle with an axis is decided by **the sign of the matching component**, since <InlineMath math="\vec{v}\cdot\vec{i}=-2" />.
 
+Draw <InlineMath math="\vec v" /> in the plane that holds <InlineMath math="\vec v" /> and the <InlineMath math="x" />-axis. **The negative <InlineMath math="x" />-component tilts <InlineMath math="\vec v" /> to the left**, so its angle with <InlineMath math="\vec i" /> is obtuse.
+
+<MathVisual
+  title={<>The vector <InlineMath math="\vec v" />, its unit vector, and <InlineMath math="-2\vec v" /></>}
+  description={<>The vector <InlineMath math="\vec v" /> of length <InlineMath math="3" /> makes an obtuse angle <InlineMath math="\alpha" /> with <InlineMath math="\vec i" />. The unit vector <InlineMath math="\tfrac13\vec v" /> points the same way as <InlineMath math="\vec v" />, and its tip lies exactly on the circle of radius <InlineMath math="1" />. The vector <InlineMath math="-2\vec v" /> points the opposite way.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    unit: <InlineMath math="\tfrac13\vec v" />,
+    opposite: <InlineMath math="-2\vec v" />,
+    i: <InlineMath math="\vec i" />,
+    angle: <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 4.6 },
+      y: { min: -4.8, max: 2.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "opposite", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: -2 * Math.sqrt(5) } },
+      { id: "i", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "v", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: -2, y: Math.sqrt(5) } },
+      { id: "unit", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -2 / 3, y: Math.sqrt(5) / 3 } },
+      { id: "angle", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 180 - Math.atan(Math.sqrt(5) / 2) * 180 / Math.PI },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: -2, y: Math.sqrt(5) }, placement: "left" },
+      { key: "unit", objectId: "unit", at: { x: -2 / 3, y: Math.sqrt(5) / 3 }, placement: "left" },
+      { key: "opposite", objectId: "opposite", at: { x: 4, y: -2 * Math.sqrt(5) }, placement: "left" },
+      { key: "i", objectId: "i", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 0.35, y: 0.35 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 - **True.** <InlineMath math="\left|\vec{v}\right|=\sqrt{(-2)^2+1^2+2^2}=3" />.
 - **False.** A unit vector comes from dividing by the length, <InlineMath math="3" />, not by its square. The unit vector is <InlineMath math="\frac13\left(-2\vec{i}+\vec{j}+2\vec{k}\right)" />.
 - **False.** <InlineMath math="4\vec{i}-2\vec{j}-4\vec{k}=-2\vec{v}" />, a negative multiple, so it points the opposite way.

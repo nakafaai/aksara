@@ -8,6 +8,50 @@ K(7,6)&=105+120=225 &&(7+12=19,\ 14+6=20) \\
 K(4,8)&=60+160=220 &&(4+16=20,\ 8+8=16)
 \end{aligned}" />
 
+Gambar daerah baru dan rencana bilangan cacah di dekat pojok <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />. **Garis keuntungan <InlineMath math="K=230" /> menyentuh rencana <InlineMath math="(6,7)" />**, dan tidak ada titik bilangan cacah di daerah itu yang terletak lebih jauh dari titik asal.
+
+<MathVisual
+  title={<>Daerah rencana setelah jam mesin cuci ditambah</>}
+  description={<>Daerah berarsir dibatasi sumbu-sumbu, garis <InlineMath math="x+2y=20" />, dan garis <InlineMath math="2x+y=20" />, dengan pojok miring di <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />. Rencana <InlineMath math="(6,7)" />, <InlineMath math="(7,6)" />, dan <InlineMath math="(4,8)" /> berada di dalam daerah itu, dan garis putus-putus <InlineMath math="K=230" /> melalui <InlineMath math="(6,7)" />.</>}
+  labels={{
+    washer: <InlineMath math="x+2y=20" />,
+    dryer: <InlineMath math="2x+y=20" />,
+    level: <InlineMath math="K=230" />,
+    corner: <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />,
+    best: <InlineMath math="(6,7)" />,
+    other: <InlineMath math="(7,6)" />,
+    third: <InlineMath math="(4,8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 20 / 3, y: 20 / 3 }, { x: 0, y: 10 }] },
+      { id: "washer", kind: "function", appearance: "primary", formula: "10 - x/2", domain: { min: 0, max: 13 } },
+      { id: "dryer", kind: "function", appearance: "secondary", formula: "20 - 2*x", domain: { min: 4, max: 10.5 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "23/2 - 3*x/4", domain: { min: 0, max: 13 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 20 / 3, y: 20 / 3 } },
+      { id: "other", kind: "point", appearance: "secondary", at: { x: 7, y: 6 } },
+      { id: "third", kind: "point", appearance: "secondary", at: { x: 4, y: 8 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 7 } },
+    ],
+    labels: [
+      { key: "washer", objectId: "washer", at: { x: 12, y: 4 }, placement: "above" },
+      { key: "dryer", objectId: "dryer", at: { x: 9.5, y: 1 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 1, y: 43 / 4 }, placement: "above-right" },
+      { key: "corner", objectId: "corner", at: { x: 20 / 3, y: 20 / 3 }, placement: "right" },
+      { key: "best", objectId: "best", at: { x: 6, y: 7 }, placement: "above" },
+      { key: "other", objectId: "other", at: { x: 7, y: 6 }, placement: "below-right" },
+      { key: "third", objectId: "third", at: { x: 4, y: 8 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Keuntungan dari rencana bilangan cacah selalu kelipatan <InlineMath math="5" /> ribu, sedangkan batas atasnya <InlineMath math="233{,}3" /> ribu. Jadi tidak ada rencana yang memberi <InlineMath math="235" /> ribu atau lebih, dan <InlineMath math="230" /> ribu di <InlineMath math="(6,7)" /> adalah yang terbesar.
 
 Jadi, keuntungan maksimumnya sekarang <InlineMath math="\text{Rp}230{.}000{,}00" />, dengan <InlineMath math="6" /> paket kiloan dan <InlineMath math="7" /> paket bed cover.

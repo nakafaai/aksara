@@ -6,6 +6,47 @@ Pusat <InlineMath math="P" /> memenuhi <InlineMath math="A'-P=2(A-P)" />, sehing
 
 <BlockMath math="P=(2-3,\ 4-4)=(-1,0)" />
 
+Gambar kedua ruas dan sinar dari pusat dilatasi. Sinar dari <InlineMath math="A" /> ke <InlineMath math="A'" /> dan dari <InlineMath math="B" /> ke <InlineMath math="B'" />, jika diperpanjang ke belakang, **bertemu di pusatnya**.
+
+<MathVisual
+  title={<>Dilatasi dengan pusat <InlineMath math="P(-1,0)" /> dan faktor <InlineMath math="2" /></>}
+  description={<>Ruas <InlineMath math="A'B'" /> sejajar <InlineMath math="AB" /> dan dua kali lebih panjang. Garis melalui <InlineMath math="A" /> dan <InlineMath math="A'" /> serta garis melalui <InlineMath math="B" /> dan <InlineMath math="B'" /> bertemu di <InlineMath math="P(-1,0)" />, dan setiap titik bayangan dua kali lebih jauh dari <InlineMath math="P" /> daripada titik asalnya.</>}
+  labels={{
+    p: <InlineMath math="P(-1,0)" />,
+    a: <InlineMath math="A" />,
+    aimage: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    bimage: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 7.5 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "raya", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "rayb", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 7, y: 2 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 3, y: 1 } },
+      { id: "abimage", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "aimage", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "bimage", kind: "point", appearance: "secondary", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -1, y: 0 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "aimage", objectId: "aimage", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "bimage", objectId: "bimage", at: { x: 7, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan titik <InlineMath math="B" />: <InlineMath math="B-P=(4,1)" /> dan <InlineMath math="B'-P=(8,2)=2(4,1)" />. Titik <InlineMath math="P" />, <InlineMath math="B" />, dan <InlineMath math="B'" /> segaris dengan perbandingan jarak <InlineMath math="1:2" />.
 
 Jadi, <InlineMath math="P(-1,0)" />.

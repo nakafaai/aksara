@@ -8,6 +8,17 @@ Multipliziere beide Seiten von links mit <InlineMath math="(A-2I)^{-1}" />, weil
 
 <BlockMath math="X=-(A-2I)^{-1}B=-\begin{pmatrix} -1 & 1 \\ 3 & -2 \end{pmatrix}\begin{pmatrix} 1 & 2 \\ 1 & 1 \end{pmatrix}=-\begin{pmatrix} 0 & -1 \\ 1 & 4 \end{pmatrix}=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />
 
+Folge der Reihenfolge der Schritte. **Der zweite Schritt multipliziert von links**, weil <InlineMath math="X" /> rechts von <InlineMath math="A-2I" /> steht.
+
+<Mermaid
+  title={<>Schritte zum Lösen von <InlineMath math="AX+B=2X" /></>}
+  description={<>Die Gleichung <InlineMath math="AX+B=2X" /> wird zu <InlineMath math="(A-2I)X=-B" /> umgestellt. Dann werden beide Seiten von links mit <InlineMath math="(A-2I)^{-1}" /> multipliziert, also hat <InlineMath math="X" /> die Zeilen <InlineMath math="(0,1)" /> und <InlineMath math="(-1,-4)" />.</>}
+  chart={`flowchart TD
+  S["AX + B = 2X"] -->|"Terme mit X sammeln, X rechts ausklammern"| F["(A − 2I)X = −B"]
+  F -->|"von links mit der Inversen multiplizieren"| X["X = −(A − 2I)⁻¹B"]
+  X --> R["X hat die Zeilen (0, 1) und (−1, −4)"]`}
+/>
+
 Probe: <InlineMath math="AX=\begin{pmatrix} -1 & 0 \\ -3 & -9 \end{pmatrix}" />, also <InlineMath math="AX+B=\begin{pmatrix} 0 & 2 \\ -2 & -8 \end{pmatrix}" />, und das ist <InlineMath math="2X" />.
 
 Also ist <InlineMath math="X=\begin{pmatrix} 0 & 1 \\ -1 & -4 \end{pmatrix}" />.

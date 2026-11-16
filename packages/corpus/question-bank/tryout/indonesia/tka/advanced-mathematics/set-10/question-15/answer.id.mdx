@@ -10,6 +10,43 @@ Pusatnya <InlineMath math="(3,4)" /> dan <InlineMath math="r^2=9+16=25" />.
 
 <BlockMath math="(x-3)^2+(y-4)^2=25\ \Leftrightarrow\ x^2+y^2-6x-8y=0" />
 
+Gambar ketiga patok, garis sumbu <InlineMath math="OP" />, dan lingkaran lintasannya. **Pusat lingkaran terletak pada <InlineMath math="x=3" />, setinggi <InlineMath math="4" />**, sehingga jaraknya ke <InlineMath math="O" />, <InlineMath math="P" />, dan <InlineMath math="Q" /> sama-sama <InlineMath math="5" />.
+
+<MathVisual
+  title={<>Lingkaran lintasan melalui tiga patok</>}
+  description={<>Segitiga dengan titik sudut <InlineMath math="O(0,0)" />, <InlineMath math="P(6,0)" />, dan <InlineMath math="Q(3,9)" /> digambar bersama garis sumbu <InlineMath math="OP" />, yaitu <InlineMath math="x=3" />. Lingkaran berpusat <InlineMath math="(3,4)" /> dengan jari-jari <InlineMath math="5" /> melalui ketiga titik sudut itu.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+    centre: <InlineMath math="(3,4)" />,
+    bisector: <InlineMath math="x=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 8.5 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "track", kind: "circle", appearance: "answer", center: { x: 3, y: 4 }, radius: 5 },
+      { id: "stakes", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 3, y: 9 }] },
+      { id: "bisector", kind: "segment", appearance: "construction", from: { x: 3, y: -1.5 }, to: { x: 3, y: 9.5 } },
+      { id: "ro", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 0, y: 0 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "o", objectId: "stakes", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "p", objectId: "stakes", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "q", objectId: "stakes", at: { x: 3, y: 9 }, placement: "above-right" },
+      { key: "centre", objectId: "centre", at: { x: 3, y: 4 }, placement: "right" },
+      { key: "bisector", objectId: "bisector", at: { x: 3, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="O" /> memenuhi karena konstantanya nol, <InlineMath math="P" /> memberi <InlineMath math="36-36=0" />, dan <InlineMath math="Q" /> memberi <InlineMath math="9+81-18-72=0" />.
 
 Jadi, persamaannya <InlineMath math="x^2+y^2-6x-8y=0" />.

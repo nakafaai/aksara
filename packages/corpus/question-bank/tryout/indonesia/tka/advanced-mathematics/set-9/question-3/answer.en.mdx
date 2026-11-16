@@ -2,6 +2,19 @@ These statements test properties of transposes and determinants. **The propertie
 
 <BlockMath math="AB=\begin{pmatrix} 4 & 8 \\ 3 & 12 \end{pmatrix},\qquad A+B=\begin{pmatrix} 3 & 2 \\ 1 & 7 \end{pmatrix},\qquad \det A=3,\quad \det B=8" />
 
+Compare the determinant of a sum with the sum of determinants, then the determinant of a product with the product of determinants. **The first pair differs, the second pair matches**, because only multiplication has a general rule for determinants.
+
+<Chart
+  title={<>Determinants of a sum and of a product</>}
+  description={<>The value <InlineMath math="\det(A+B)=19" /> differs from <InlineMath math="\det A+\det B=3+8=11" />. The value <InlineMath math="\det(AB)=24" /> equals <InlineMath math="\det A\cdot\det B=3\cdot8" />.</>}
+  bars="apart"
+  categories={["det(A+B)", "det A + det B", "det(AB)", "det A · det B"]}
+  series={[
+    { label: "Value", mark: "bar", values: [19, 11, 24, 24] },
+  ]}
+  valueLabel="Determinant"
+/>
+
 1. **True.** The transpose of a sum is the sum of the transposes. Here both are <InlineMath math="\begin{pmatrix} 3 & 1 \\ 2 & 7 \end{pmatrix}" />.
 2. **False.** <InlineMath math="(AB)^T=\begin{pmatrix} 4 & 3 \\ 8 & 12 \end{pmatrix}" />, while <InlineMath math="A^TB^T=\begin{pmatrix} 1 & 0 \\ 2 & 3 \end{pmatrix}\begin{pmatrix} 2 & 1 \\ 0 & 4 \end{pmatrix}=\begin{pmatrix} 2 & 1 \\ 4 & 14 \end{pmatrix}" />. The correct order is <InlineMath math="B^TA^T" />.
 3. **False.** <InlineMath math="\det(A+B)=21-2=19" />, while <InlineMath math="\det A+\det B=3+8=11" />.

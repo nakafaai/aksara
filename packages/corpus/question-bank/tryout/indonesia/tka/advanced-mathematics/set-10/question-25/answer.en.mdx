@@ -2,6 +2,45 @@ Near <InlineMath math="x=2" />, the two rules give **two one-sided limits that d
 
 <BlockMath math="\lim_{x\to2^-}f(x)=2a+1,\qquad \lim_{x\to2^+}f(x)=4-a,\qquad f(2)=4-a" />
 
+Draw <InlineMath math="f" /> for <InlineMath math="a=1" /> and for <InlineMath math="a=0" />. **For <InlineMath math="a=1" /> the two pieces meet at <InlineMath math="(2,3)" />**, while for <InlineMath math="a=0" /> the graph jumps from height <InlineMath math="1" /> to <InlineMath math="4" />.
+
+<MathVisual
+  title={<>The piecewise function for <InlineMath math="a=1" /> and <InlineMath math="a=0" /></>}
+  description={<>For <InlineMath math="a=1" />, the line <InlineMath math="y=x+1" /> on the left and the parabola <InlineMath math="y=x^2-1" /> on the right meet at <InlineMath math="(2,3)" />. For <InlineMath math="a=0" />, the line <InlineMath math="y=1" /> ends at height <InlineMath math="1" />, while the parabola <InlineMath math="y=x^2" /> starts at height <InlineMath math="4" />.</>}
+  labels={{
+    one: <InlineMath math="a=1" />,
+    zero: <InlineMath math="a=0" />,
+    meet: <InlineMath math="(2,3)" />,
+    low: <InlineMath math="1" />,
+    high: <InlineMath math="4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 3.4 },
+      y: { min: 0, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zeroleft", kind: "function", appearance: "reference", formula: "1", domain: { min: 0, max: 2 } },
+      { id: "zero", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 2, max: 3.2 } },
+      { id: "oneleft", kind: "function", appearance: "answer", formula: "x + 1", domain: { min: 0, max: 2 } },
+      { id: "one", kind: "function", appearance: "answer", formula: "x^2 - 1", domain: { min: 2, max: 3.2 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 2, y: 1 } },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 2, y: 4 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
+    ],
+    labels: [
+      { key: "one", objectId: "one", at: { x: 3.2, y: 3.2 * 3.2 - 1 }, placement: "right" },
+      { key: "zero", objectId: "zero", at: { x: 3, y: 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "low", objectId: "low", at: { x: 2, y: 1 }, placement: "below-right" },
+      { key: "high", objectId: "high", at: { x: 2, y: 4 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 The two-sided limit exists exactly when the one-sided limits agree: <InlineMath math="2a+1=4-a" />, that is <InlineMath math="a=1" />.
 
 - **True.** For <InlineMath math="a=1" />, both one-sided limits equal <InlineMath math="3" />.

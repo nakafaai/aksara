@@ -2,6 +2,39 @@ Nilai <InlineMath math="f^{-1}(2)" /> adalah **bilangan <InlineMath math="x" /> 
 
 <BlockMath math="{}^{2}\log(3x+4)-1=2\ \Leftrightarrow\ {}^{2}\log(3x+4)=3\ \Leftrightarrow\ 3x+4=2^3=8\ \Leftrightarrow\ x=\frac43" />
 
+Gambar grafik <InlineMath math="f" />, lalu baca terbalik. Mulai dari ketinggian <InlineMath math="2" /> di sumbu tegak, jalan mendatar sampai kurva, lalu **turun ke sumbu mendatar**.
+
+<MathVisual
+  title={<>Membaca <InlineMath math="f^{-1}(2)" /> dari grafik <InlineMath math="f" /></>}
+  description={<>Garis mendatar <InlineMath math="y=2" /> memotong kurva <InlineMath math="y={}^{2}\log(3x+4)-1" /> di satu titik. Garis tegak dari titik itu jatuh di <InlineMath math="x=\tfrac43" /> pada sumbu mendatar.</>}
+  labels={{
+    curve: <InlineMath math="y={}^{2}\log(3x+4)-1" />,
+    level: <InlineMath math="y=2" />,
+    foot: <InlineMath math="x=\tfrac43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -2.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "log_2(3x + 4) - 1", domain: { min: -1.2, max: 5 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: -1.5, y: 2 }, to: { x: 4 / 3, y: 2 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 4 / 3, y: 2 }, to: { x: 4 / 3, y: 0 } },
+      { id: "hit", kind: "point", appearance: "secondary", at: { x: 4 / 3, y: 2 } },
+      { id: "foot", kind: "point", appearance: "answer", at: { x: 4 / 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4, y: Math.log2(16) - 1 }, placement: "below" },
+      { key: "level", objectId: "across", at: { x: -1, y: 2 }, placement: "above" },
+      { key: "foot", objectId: "foot", at: { x: 4 / 3, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="f\left(\frac43\right)={}^{2}\log8-1=3-1=2" />, dan <InlineMath math="\frac43>-\frac43" /> berada di daerah asal.
 
 Jadi, <InlineMath math="f^{-1}(2)=\frac43" />.

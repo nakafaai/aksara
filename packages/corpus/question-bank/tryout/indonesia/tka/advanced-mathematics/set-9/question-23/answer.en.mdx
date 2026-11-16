@@ -4,6 +4,40 @@ As <InlineMath math="n\to\infty" />, the factor <InlineMath math="\frac n2" /> g
 
 <BlockMath math="\lim_{n\to\infty}L(n)=\pi\cdot\lim_{t\to0^+}\frac{\sin t}{t}=\pi\cdot1=\pi" />
 
+Draw a regular hexagon inside the circle of radius <InlineMath math="1" />. **The gap between the <InlineMath math="n" />-gon and the circle shrinks as <InlineMath math="n" /> grows**, so its area approaches the circle's area.
+
+<MathVisual
+  title={<>A regular hexagon inside the unit circle</>}
+  description={<>The regular hexagon with every vertex on the circle of radius <InlineMath math="1" /> is made of six isosceles triangles with apex at the centre <InlineMath math="O" />, each with apex angle <InlineMath math="\tfrac{2\pi}{6}" />. There's still a gap between the hexagon's sides and the circle, and that gap shrinks as the number of sides increases.</>}
+  labels={{
+    centre: <InlineMath math="O" />,
+    one: <InlineMath math="1" />,
+    angle: <InlineMath math="\tfrac{2\pi}{6}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.3, max: 1.3 },
+      y: { min: -1.3, max: 1.3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "hexagon", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0 }, { x: 1 / 2, y: Math.sqrt(3) / 2 }, { x: -1 / 2, y: Math.sqrt(3) / 2 }, { x: -1, y: 0 }, { x: -1 / 2, y: -Math.sqrt(3) / 2 }, { x: 1 / 2, y: -Math.sqrt(3) / 2 }] },
+      { id: "slice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1 / 2, y: Math.sqrt(3) / 2 }] },
+      { id: "one", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "angle", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.25, startDegrees: 0, sweepDegrees: 60 },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "one", objectId: "one", at: { x: 1 / 2, y: 0 }, placement: "below" },
+      { key: "angle", objectId: "angle", at: { x: 0.25, y: 0.15 }, placement: "right" },
+    ],
+  }}
+/>
+
 This makes sense: with more and more sides, the polygon looks more and more like its circle, whose area is <InlineMath math="\pi\cdot1^2=\pi" />. For example, <InlineMath math="L(6)=3\sin\frac{\pi}{3}\approx2.598" /> and <InlineMath math="L(100)\approx3.1395" />, while <InlineMath math="\pi\approx3.1416" />.
 
 So <InlineMath math="L(n)" /> approaches <InlineMath math="\pi" />.

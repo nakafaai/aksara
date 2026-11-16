@@ -6,6 +6,35 @@ Now <InlineMath math="A=-4" />, <InlineMath math="B=6" /> and <InlineMath math="
 
 <BlockMath math="r=\sqrt{4+9-(-3)}=\sqrt{16}=4" />
 
+Draw the circle after dividing its equation by <InlineMath math="2" />. **Dividing both sides by <InlineMath math="2" /> doesn't change the circle**, so the centre and radius are read from the divided form.
+
+<MathVisual
+  title={<>The circle <InlineMath math="(x-2)^2+(y+3)^2=16" /></>}
+  description={<>The circle has centre <InlineMath math="(2,-3)" /> and radius <InlineMath math="4" />. The original equation and the equation divided by <InlineMath math="2" /> describe this same circle.</>}
+  labels={{
+    centre: <InlineMath math="(2,-3)" />,
+    r: <InlineMath math="r=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: -8, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: -3 }, radius: 4 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: -3 }, to: { x: 6, y: -3 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: 4, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="(x-2)^2+(y+3)^2=16" /> expands to <InlineMath math="x^2+y^2-4x+6y-3=0" />, and multiplying by <InlineMath math="2" /> gives back the original equation.
 
 So the radius is <InlineMath math="4" />.

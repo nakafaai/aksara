@@ -6,6 +6,47 @@ Das Zentrum <InlineMath math="P" /> erfüllt <InlineMath math="A'-P=2(A-P)" />, 
 
 <BlockMath math="P=(2-3,\ 4-4)=(-1,0)" />
 
+Zeichne beide Strecken und die Strahlen vom Streckzentrum. Die Geraden durch <InlineMath math="A" /> und <InlineMath math="A'" /> und durch <InlineMath math="B" /> und <InlineMath math="B'" /> treffen sich, nach hinten verlängert, **im Zentrum**.
+
+<MathVisual
+  title={<>Streckung mit Zentrum <InlineMath math="P(-1,0)" /> und Faktor <InlineMath math="2" /></>}
+  description={<>Die Strecke <InlineMath math="A'B'" /> ist parallel zu <InlineMath math="AB" /> und doppelt so lang. Die Gerade durch <InlineMath math="A" /> und <InlineMath math="A'" /> und die Gerade durch <InlineMath math="B" /> und <InlineMath math="B'" /> treffen sich in <InlineMath math="P(-1,0)" />, und jeder Bildpunkt ist doppelt so weit von <InlineMath math="P" /> entfernt wie sein Urbild.</>}
+  labels={{
+    p: <InlineMath math="P(-1,0)" />,
+    a: <InlineMath math="A" />,
+    aimage: <InlineMath math="A'" />,
+    b: <InlineMath math="B" />,
+    bimage: <InlineMath math="B'" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 7.5 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "raya", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "rayb", kind: "segment", appearance: "construction", from: { x: -1, y: 0 }, to: { x: 7, y: 2 } },
+      { id: "ab", kind: "segment", appearance: "primary", from: { x: 1, y: 2 }, to: { x: 3, y: 1 } },
+      { id: "abimage", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "p", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+      { id: "aimage", kind: "point", appearance: "secondary", at: { x: 3, y: 4 } },
+      { id: "bimage", kind: "point", appearance: "secondary", at: { x: 7, y: 2 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: -1, y: 0 }, placement: "below-right" },
+      { key: "a", objectId: "a", at: { x: 1, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 3, y: 1 }, placement: "below" },
+      { key: "aimage", objectId: "aimage", at: { x: 3, y: 4 }, placement: "above-left" },
+      { key: "bimage", objectId: "bimage", at: { x: 7, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe mit <InlineMath math="B" />: <InlineMath math="B-P=(4,1)" /> und <InlineMath math="B'-P=(8,2)=2(4,1)" />. Die Punkte <InlineMath math="P" />, <InlineMath math="B" /> und <InlineMath math="B'" /> liegen auf einer Geraden im Abstandsverhältnis <InlineMath math="1:2" />.
 
 Also ist <InlineMath math="P(-1,0)" />.

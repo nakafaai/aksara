@@ -4,6 +4,41 @@ This circle has centre <InlineMath math="(2,3)" /> and <InlineMath math="r^2=4+9
 
 <BlockMath math="13-c=r^2=4\ \Rightarrow\ c=9" />
 
+Draw the circle touching that line. **The radius to the point of contact is perpendicular to the line**, so its length equals the distance from the centre to the line.
+
+<MathVisual
+  title={<>The circle with centre <InlineMath math="(2,3)" /> touching the line</>}
+  description={<>The line <InlineMath math="3x+4y-8=0" /> touches the circle with centre <InlineMath math="(2,3)" /> exactly at <InlineMath math="\left(\tfrac45,\tfrac75\right)" />. The radius to that point is perpendicular to the line and has length <InlineMath math="2" />.</>}
+  labels={{
+    centre: <InlineMath math="(2,3)" />,
+    line: <InlineMath math="3x+4y-8=0" />,
+    touch: <InlineMath math="\left(\tfrac45,\tfrac75\right)" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 5 },
+      y: { min: -1.5, max: 5.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "secondary", formula: "(8 - 3x)/4", domain: { min: -1.5, max: 4.5 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 3 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: 3 }, to: { x: 4 / 5, y: 7 / 5 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: 3 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 4 / 5, y: 7 / 5 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: 3 }, placement: "right" },
+      { key: "line", objectId: "line", at: { x: 4, y: -1 }, placement: "above-right" },
+      { key: "touch", objectId: "touch", at: { x: 4 / 5, y: 7 / 5 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 7 / 5, y: 11 / 5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Check: for <InlineMath math="c=9" />, substituting <InlineMath math="y=\frac{8-3x}{4}" /> into the circle gives <InlineMath math="\frac{25}{16}\left(x-\frac45\right)^2=0" />, with a single root. So the line touches the circle at exactly one point, <InlineMath math="\left(\frac45,\frac75\right)" />.
 
 So <InlineMath math="c=9" />.

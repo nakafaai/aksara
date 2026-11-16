@@ -2,6 +2,37 @@ Start with the exponential part. For every real <InlineMath math="x" />, <Inline
 
 <BlockMath math="2^{x+1}>0\ \Leftrightarrow\ -2^{x+1}<0\ \Leftrightarrow\ 3-2^{x+1}<3" />
 
+Draw <InlineMath math="f" /> with the line <InlineMath math="y=3" />. **To the left the curve creeps up to <InlineMath math="y=3" /> from below without ever touching it**, and to the right it falls without bound.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=3-2^{x+1}" /></>}
+  description={<>The curve passes through <InlineMath math="(0,\ 1)" />, gets closer to the horizontal line <InlineMath math="y=3" /> as <InlineMath math="x" /> decreases, and falls more and more steeply as <InlineMath math="x" /> grows. Every value of <InlineMath math="f" /> lies below the line <InlineMath math="y=3" />.</>}
+  labels={{
+    curve: <InlineMath math="y=3-2^{x+1}" />,
+    ceiling: <InlineMath math="y=3" />,
+    zero: <InlineMath math="(0,\ 1)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 2.2 },
+      y: { min: -6, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ceiling", kind: "function", appearance: "warning", formula: "3", domain: { min: -7, max: 2.2 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "3 - 2^(x + 1)", domain: { min: -7, max: 2 } },
+      { id: "zero", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 1.5, y: 3 - Math.pow(2, 2.5) }, placement: "left" },
+      { key: "ceiling", objectId: "ceiling", at: { x: -6, y: 3 }, placement: "above" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 1 }, placement: "right" },
+    ],
+  }}
+/>
+
 The value <InlineMath math="3" /> is never reached, because <InlineMath math="2^{x+1}" /> is never zero. Conversely, every <InlineMath math="y<3" /> is reached at <InlineMath math="x=\log_2(3-y)-1" />. For example, <InlineMath math="f(0)=1" />, <InlineMath math="f(-5)\approx2.94" /> and <InlineMath math="f(5)=-61" />.
 
 So the range is <InlineMath math="\{y\mid y<3,\ y\in\mathbb{R}\}" />.

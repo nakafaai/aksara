@@ -4,6 +4,43 @@ Eine Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn bildet <I
 
 <BlockMath math="-x'=(y')^2-2y'\ \Leftrightarrow\ x'=-(y')^2+2y'" />
 
+Zeichne die ursprüngliche Parabel und ihr Bild. **Die nach oben geöffnete Parabel dreht sich um eine Vierteldrehung in eine nach links geöffnete**, und jeder Punkt dreht sich um <InlineMath math="90^\circ" /> um <InlineMath math="O" />.
+
+<MathVisual
+  title={<>Drehung der Parabel <InlineMath math="y=x^2-2x" /> um <InlineMath math="90^\circ" /></>}
+  description={<>Die Parabel <InlineMath math="y=x^2-2x" /> ist nach oben geöffnet mit Scheitel <InlineMath math="(1,-1)" />. Ihr Bild <InlineMath math="x=-y^2+2y" /> ist nach links geöffnet mit Scheitel <InlineMath math="(1,1)" />. Die Strecke von <InlineMath math="O" /> nach <InlineMath math="(3,3)" /> und die Strecke von <InlineMath math="O" /> zu ihrem Bild <InlineMath math="(-3,3)" /> bilden einen rechten Winkel.</>}
+  labels={{
+    old: <InlineMath math="y=x^2-2x" />,
+    new: <InlineMath math="x=-y^2+2y" />,
+    p: <InlineMath math="(3,3)" />,
+    pimage: <InlineMath math="(-3,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3.5, max: 3.5 },
+      y: { min: -1.5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "x^2 - 2x", domain: { min: -1, max: 3 } },
+      { id: "upper", kind: "function", appearance: "answer", formula: "1 + sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "lower", kind: "function", appearance: "answer", formula: "1 - sqrt(1 - x)", domain: { min: -3, max: 1 } },
+      { id: "op", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 3 } },
+      { id: "opimage", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: -3, y: 3 } },
+      { id: "p", kind: "point", appearance: "reference", at: { x: 3, y: 3 } },
+      { id: "pimage", kind: "point", appearance: "answer", at: { x: -3, y: 3 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 2.5, y: 1.25 }, placement: "right" },
+      { key: "new", objectId: "lower", at: { x: -3, y: -1 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 3 }, placement: "left" },
+      { key: "pimage", objectId: "pimage", at: { x: -3, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Probe mit zwei Punkten der Parabel: <InlineMath math="(2,0)" /> wird auf <InlineMath math="(0,2)" /> abgebildet, und <InlineMath math="-4+4=0" />. Der Punkt <InlineMath math="(3,3)" /> geht auf <InlineMath math="(-3,3)" />, und <InlineMath math="-9+6=-3" />.
 
 Das Bild ist also <InlineMath math="x=-y^2+2y" />, eine nach links geöffnete Parabel.

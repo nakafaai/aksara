@@ -7,6 +7,34 @@ Matriks persegi tidak memiliki invers tepat ketika **determinannya nol**. Hitung
 
 <BlockMath math="10-2k=0\ \Rightarrow\ k=5" />
 
+Gambar nilai determinan sebagai fungsi dari <InlineMath math="k" />. Matriks kehilangan inversnya **tepat di titik garis itu memotong sumbu mendatar**.
+
+<MathVisual
+  title={<>Determinan <InlineMath math="M" /> sebagai fungsi <InlineMath math="k" /></>}
+  description={<>Garis <InlineMath math="\det M=10-2k" /> turun dua satuan untuk setiap kenaikan <InlineMath math="k" /> sebesar satu. Garis itu memotong sumbu mendatar hanya di <InlineMath math="k=5" />, satu-satunya nilai yang membuat determinannya nol.</>}
+  labels={{
+    det: <InlineMath math="\det M=10-2k" />,
+    root: <InlineMath math="k=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 8 },
+      y: { min: -6, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "det", kind: "function", appearance: "primary", formula: "10 - 2*x", domain: { min: -1, max: 8 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "det", objectId: "det", at: { x: 1, y: 8 }, placement: "right" },
+      { key: "root", objectId: "root", at: { x: 5, y: 0 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan ekspansi baris pertama: <InlineMath math="1(k-2)-2(0-6)+1(0-3k)=10-2k" />, hasilnya sama. Untuk <InlineMath math="k=5" />, baris ketiga sama dengan <InlineMath math="3" /> kali baris pertama dikurangi baris kedua: <InlineMath math="3(1,2,1)-(0,5,2)=(3,1,1)" />, jadi baris-barisnya memang bergantung linear.
 
 Jadi, <InlineMath math="k=5" />.

@@ -8,6 +8,40 @@ One condition is left, the remainder on division by <InlineMath math="x+2" />: <
 
 <BlockMath math="R(x)=(x-1)^2+3x-1=x^2-2x+1+3x-1=x^2+x" />
 
+Draw the remainder <InlineMath math="R(x)=x^2+x" /> with the line <InlineMath math="y=3x-1" />. **The parabola touches the line at <InlineMath math="x=1" />**, because their difference is <InlineMath math="(x-1)^2" />, and it also passes through <InlineMath math="(-2,\ 2)" />.
+
+<MathVisual
+  title={<>The remainder <InlineMath math="R(x)" /> and its two conditions</>}
+  description={<>The parabola <InlineMath math="y=x^2+x" /> touches the line <InlineMath math="y=3x-1" /> exactly at <InlineMath math="(1,\ 2)" /> without crossing it, matching the remainder condition for <InlineMath math="(x-1)^2" />. It also passes through <InlineMath math="(-2,\ 2)" />, matching the remainder on division by <InlineMath math="x+2" />.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2+x" />,
+    line: <InlineMath math="y=3x-1" />,
+    touch: <InlineMath math="(1,\ 2)" />,
+    minus: <InlineMath math="(-2,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 3 },
+      y: { min: -2, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "answer", formula: "x^2 + x", domain: { min: -3, max: 2.3 } },
+      { id: "line", kind: "function", appearance: "secondary", formula: "3*x - 1", domain: { min: -0.3, max: 3 } },
+      { id: "touch", kind: "point", appearance: "primary", at: { x: 1, y: 2 } },
+      { id: "minus", kind: "point", appearance: "primary", at: { x: -2, y: 2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: -2.5, y: 3.75 }, placement: "left" },
+      { key: "line", objectId: "line", at: { x: 2.8, y: 7.4 }, placement: "left" },
+      { key: "touch", objectId: "touch", at: { x: 1, y: 2 }, placement: "below-right" },
+      { key: "minus", objectId: "minus", at: { x: -2, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="x^2+x-(3x-1)=x^2-2x+1=(x-1)^2" />, so the remainder of <InlineMath math="R(x)" /> on division by <InlineMath math="(x-1)^2" /> is indeed <InlineMath math="3x-1" />. Also <InlineMath math="R(-2)=4-2=2" />.
 
 So the remainder is <InlineMath math="x^2+x" />.

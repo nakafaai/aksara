@@ -5,6 +5,38 @@ Zwei Vektoren stehen genau dann senkrecht aufeinander, wenn **ihr Skalarprodukt 
 x+3y+2z&=0
 \end{aligned}" />
 
+Betrachte die Ebene, die <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /> enthält, von der Seite, sodass sie wie eine Gerade aussieht. **Ein Vektor, der auf beiden senkrecht steht, ragt gerade aus dieser Ebene heraus**, während eine Kombination wie <InlineMath math="\vec a+\vec b" /> flach in ihr liegt.
+
+<MathVisual
+  title={<>Die Richtung senkrecht zur Ebene von <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /></>}
+  description={<>Die Ebene, die <InlineMath math="\vec a" /> und <InlineMath math="\vec b" /> enthält, ist von der Seite als waagerechte Gerade gezeichnet. Der Vektor <InlineMath math="(1,-1,1)" /> steht senkrecht auf dieser Geraden, während <InlineMath math="\vec a+\vec b=(3,4,1)" /> entlang der Geraden liegt.</>}
+  labels={{
+    plane: <>Ebene von a und b, von der Seite</>,
+    n: <InlineMath math="(1,-1,1)" />,
+    sum: <InlineMath math="\vec a+\vec b" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2.5, max: 5.6 },
+      y: { min: -0.6, max: 2.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plane", kind: "segment", appearance: "reference", from: { x: -2.5, y: 0 }, to: { x: 5.6, y: 0 } },
+      { id: "sum", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(26), y: 0 } },
+      { id: "n", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 0, y: Math.sqrt(3) } },
+      { id: "corner", kind: "polyline", appearance: "construction", vertices: [{ x: 0.25, y: 0 }, { x: 0.25, y: 0.25 }, { x: 0, y: 0.25 }] },
+    ],
+    labels: [
+      { key: "plane", objectId: "plane", at: { x: -1.5, y: 0 }, placement: "below" },
+      { key: "n", objectId: "n", at: { x: 0, y: Math.sqrt(3) }, placement: "right" },
+      { key: "sum", objectId: "sum", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Multipliziere die erste Gleichung mit <InlineMath math="2" /> und addiere die zweite: <InlineMath math="5x+5y=0" />, also <InlineMath math="y=-x" />. Einsetzen in die erste liefert <InlineMath math="z=2x+y=x" />. Jeder Vektor, der auf beiden senkrecht steht, hat die Form <InlineMath math="x(1,-1,1)" />, und <InlineMath math="x=1" /> ergibt <InlineMath math="\vec{i}-\vec{j}+\vec{k}" />.
 
 Probe: <InlineMath math="(1,-1,1)\cdot\vec{a}=2-1-1=0" /> und <InlineMath math="(1,-1,1)\cdot\vec{b}=1-3+2=0" />.

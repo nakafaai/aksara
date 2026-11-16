@@ -2,6 +2,36 @@ Direktes Einsetzen ergibt <InlineMath math="\frac00" />. Nahe null verhält sich
 
 <BlockMath math="\lim_{x\to0}\frac{x+\sin x}{x-\tan2x}=\lim_{x\to0}\frac{1+\frac{\sin x}{x}}{1-\frac{\tan2x}{x}}=\frac{1+1}{1-2}=-2" />
 
+Zeichne den Graphen des Bruchs nahe <InlineMath math="x=0" />. **Beide Äste der Kurve fallen auf die Höhe <InlineMath math="-2" /> zu**, also ist der Grenzwert negativ.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\tfrac{x+\sin x}{x-\tan2x}" /> nahe null</>}
+  description={<>Die Kurve ist für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}6" /> und <InlineMath math="0{,}6" /> gezeichnet, ohne die Umgebung von null. Die ganze Kurve liegt unter der waagerechten Achse, und beide Äste nähern sich dem Punkt <InlineMath math="(0,-2)" /> auf der gestrichelten Geraden <InlineMath math="y=-2" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{x+\sin x}{x-\tan2x}" />,
+    limit: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.7, max: 0.7 },
+      y: { min: -2.4, max: 0 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + sin(x)) / (x - tan(2x))", domain: { min: -0.6, max: -0.01 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + sin(x)) / (x - tan(2x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.7, y: -2 }, to: { x: 0.7, y: -2 } },
+      { id: "limit", kind: "point", appearance: "answer", at: { x: 0, y: -2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.4, y: -1.2 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Diese Zeile verwendet <InlineMath math="\lim_{x\to0}\frac{\sin x}{x}=1" /> und <InlineMath math="\lim_{x\to0}\frac{\tan2x}{x}=2" />. Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Wert etwa <InlineMath math="-1{,}9995" />.
 
 Der Grenzwert ist also <InlineMath math="-2" />.

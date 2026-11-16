@@ -6,6 +6,35 @@ Jetzt ist <InlineMath math="A=-4" />, <InlineMath math="B=6" /> und <InlineMath 
 
 <BlockMath math="r=\sqrt{4+9-(-3)}=\sqrt{16}=4" />
 
+Zeichne den Kreis, nachdem die Gleichung durch <InlineMath math="2" /> geteilt wurde. **Das Teilen beider Seiten durch <InlineMath math="2" /> ändert den Kreis nicht**, also liest du Mittelpunkt und Radius an der geteilten Form ab.
+
+<MathVisual
+  title={<>Der Kreis <InlineMath math="(x-2)^2+(y+3)^2=16" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="(2,-3)" /> und den Radius <InlineMath math="4" />. Die ursprüngliche Gleichung und die durch <InlineMath math="2" /> geteilte Gleichung beschreiben denselben Kreis.</>}
+  labels={{
+    centre: <InlineMath math="(2,-3)" />,
+    r: <InlineMath math="r=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: -8, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: -3 }, radius: 4 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: -3 }, to: { x: 6, y: -3 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: 4, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: <InlineMath math="(x-2)^2+(y+3)^2=16" /> ergibt ausmultipliziert <InlineMath math="x^2+y^2-4x+6y-3=0" />, und mal <InlineMath math="2" /> wieder die Ausgangsgleichung.
 
 Der Radius ist also <InlineMath math="4" />.

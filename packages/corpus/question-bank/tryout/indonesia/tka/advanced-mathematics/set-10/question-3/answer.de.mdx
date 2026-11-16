@@ -1,5 +1,21 @@
 Zwei Regeln über Formate entscheiden jede Aussage. Addieren geht nur bei **genau gleichem Format**. Ein Produkt <InlineMath math="PQ" /> ist definiert, wenn <InlineMath math="P" /> so viele Spalten hat wie <InlineMath math="Q" /> Zeilen, und das Ergebnis hat das Format (Zeilen von <InlineMath math="P" />) <InlineMath math="\times" /> (Spalten von <InlineMath math="Q" />). Transponieren vertauscht das Format, also ist <InlineMath math="A^T" /> eine <InlineMath math="3\times2" />-Matrix und <InlineMath math="B^T" /> eine <InlineMath math="2\times3" />-Matrix.
 
+Schreibe das Format jeder Matrix und jedes Produkts auf. **Die beiden inneren Zahlen jedes Paars müssen übereinstimmen**, und die beiden äußeren Zahlen geben das Format des Ergebnisses.
+
+<Mermaid
+  title={<>Das Format jeder Summe und jedes Produkts</>}
+  description={<>Die Matrix <InlineMath math="A" /> hat das Format <InlineMath math="2\times3" /> und <InlineMath math="B" /> das Format <InlineMath math="3\times2" />. Das Produkt <InlineMath math="AB" /> hat das Format <InlineMath math="2\times2" />, während <InlineMath math="BA" /> und <InlineMath math="A^TB^T" /> das Format <InlineMath math="3\times3" /> haben. Die Summe <InlineMath math="A+B" /> ist nicht definiert, weil die Formate verschieden sind.</>}
+  chart={`flowchart LR
+  A["A: 2×3"] --> AB["AB: (2×3)(3×2) → 2×2"]
+  B["B: 3×2"] --> AB
+  B --> BA["BA: (3×2)(2×3) → 3×3"]
+  A --> BA
+  AT["Aᵀ: 3×2"] --> TT["AᵀBᵀ: (3×2)(2×3) → 3×3"]
+  BT["Bᵀ: 2×3"] --> TT
+  A -.-> S["A + B: nicht definiert, verschiedene Formate"]
+  B -.-> S`}
+/>
+
 1. **Falsch.** Die Formate <InlineMath math="2\times3" /> und <InlineMath math="3\times2" /> sind verschieden, also ist <InlineMath math="A+B" /> nicht definiert.
 2. **Wahr.** <InlineMath math="(2\times3)(3\times2)" />: Spalten von <InlineMath math="A" /> und Zeilen von <InlineMath math="B" /> sind beide <InlineMath math="3" />, und das Ergebnis ist <InlineMath math="2\times2" />.
 3. **Falsch.** <InlineMath math="(3\times2)(2\times3)" /> ist zwar definiert, das Ergebnis ist aber <InlineMath math="3\times3" />.

@@ -6,6 +6,36 @@ Gunakan <InlineMath math="\lim_{x\to0}\frac{\tan6x}{x}=6" /> dan <InlineMath mat
 
 <BlockMath math="\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43" />
 
+Gambar grafik pecahan itu di dekat <InlineMath math="x=0" />. **Dari kiri maupun kanan, kurvanya turun menuju ketinggian <InlineMath math="\tfrac43" />**, walaupun di <InlineMath math="x=0" /> sendiri pecahannya tidak terdefinisi.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\tfrac{x\tan6x}{1-\cos3x}" /> di dekat nol</>}
+  description={<>Kurva digambar untuk <InlineMath math="x" /> di antara <InlineMath math="-0{,}2" /> dan <InlineMath math="0{,}2" />, kecuali di sekitar nol. Kedua cabangnya simetris dan mendekati titik <InlineMath math="\left(0,\tfrac43\right)" /> pada garis putus-putus <InlineMath math="y=\tfrac43" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{x\tan6x}{1-\cos3x}" />,
+    limit: <InlineMath math="\tfrac43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.25, max: 0.25 },
+      y: { min: 0, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: -0.2, max: -0.01 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: 0.01, max: 0.2 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.25, y: 4 / 3 }, to: { x: 0.25, y: 4 / 3 } },
+      { id: "limit", kind: "point", appearance: "answer", at: { x: 0, y: 4 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.15, y: 2.2 }, placement: "left" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 4 / 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilainya sekitar <InlineMath math="1{,}3350" />, mendekati <InlineMath math="\frac43\approx1{,}3333" />.
 
 Jadi, nilai limitnya <InlineMath math="\frac43" />.

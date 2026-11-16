@@ -6,6 +6,35 @@ Sekarang <InlineMath math="A=-4" />, <InlineMath math="B=6" />, dan <InlineMath 
 
 <BlockMath math="r=\sqrt{4+9-(-3)}=\sqrt{16}=4" />
 
+Gambar lingkaran setelah persamaannya dibagi <InlineMath math="2" />. **Membagi kedua ruas dengan <InlineMath math="2" /> tidak mengubah lingkarannya**, jadi pusat dan jari-jarinya dibaca dari bentuk yang sudah dibagi.
+
+<MathVisual
+  title={<>Lingkaran <InlineMath math="(x-2)^2+(y+3)^2=16" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="(2,-3)" /> dengan jari-jari <InlineMath math="4" />. Persamaan semula dan persamaan yang sudah dibagi <InlineMath math="2" /> menggambarkan lingkaran yang sama ini.</>}
+  labels={{
+    centre: <InlineMath math="(2,-3)" />,
+    r: <InlineMath math="r=4" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: -8, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: -3 }, radius: 4 },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: -3 }, to: { x: 6, y: -3 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: 2, y: -3 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: 2, y: -3 }, placement: "below" },
+      { key: "r", objectId: "r", at: { x: 4, y: -3 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="(x-2)^2+(y+3)^2=16" /> dijabarkan menjadi <InlineMath math="x^2+y^2-4x+6y-3=0" />, dan dikalikan <InlineMath math="2" /> kembali menjadi persamaan semula.
 
 Jadi, jari-jarinya <InlineMath math="4" />.

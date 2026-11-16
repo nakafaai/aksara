@@ -4,6 +4,43 @@ Rotasi <InlineMath math="90^\circ" /> searah jarum jam sama dengan rotasi <Inlin
 
 <BlockMath math="\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} 3 \\ -4 \end{pmatrix}=\begin{pmatrix} -4 \\ -3 \end{pmatrix}" />
 
+Gambar <InlineMath math="P" /> dan bayangannya pada bidang koordinat. **Titik itu berputar di sepanjang lingkaran berjari-jari <InlineMath math="5" />**, dari kuadran IV ke kuadran III, dan ruas ke titik asal ikut berputar <InlineMath math="90^\circ" />.
+
+<MathVisual
+  title={<>Rotasi <InlineMath math="P(3,-4)" /> sejauh <InlineMath math="90^\circ" /> searah jarum jam</>}
+  description={<>Titik <InlineMath math="P(3,-4)" /> bergerak searah jarum jam di sepanjang busur lingkaran berpusat <InlineMath math="O" /> dengan jari-jari <InlineMath math="5" />, sampai ke <InlineMath math="P'(-4,-3)" />. Ruas <InlineMath math="OP" /> dan <InlineMath math="OP'" /> membentuk sudut siku-siku.</>}
+  labels={{
+    o: <InlineMath math="O" />,
+    p: <InlineMath math="P(3,-4)" />,
+    image: <InlineMath math="P'(-4,-3)" />,
+    turn: <InlineMath math="90^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 5 },
+      y: { min: -6, max: 2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "path", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 5, startDegrees: 180 + Math.atan(3 / 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "turn", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 180 + Math.atan(3 / 4) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "op", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: -4 } },
+      { id: "oimage", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -4, y: -3 } },
+      { id: "o", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 3, y: -4 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: -4, y: -3 } },
+    ],
+    labels: [
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "above" },
+      { key: "p", objectId: "p", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -4, y: -3 }, placement: "left" },
+      { key: "turn", objectId: "turn", at: { x: 0, y: -1.2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan: <InlineMath math="P" /> ada di kuadran IV. Berputar <InlineMath math="90^\circ" /> searah jarum jam membawanya ke kuadran III, tempat kedua koordinat negatif. Jaraknya ke <InlineMath math="O" /> tetap <InlineMath math="5" />.
 
 Jadi, bayangannya <InlineMath math="(-4,-3)" />.

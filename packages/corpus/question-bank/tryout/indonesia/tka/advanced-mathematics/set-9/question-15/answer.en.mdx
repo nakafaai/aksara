@@ -2,6 +2,42 @@ A circle tangent to two parallel lines fits exactly between them. **The distance
 
 <BlockMath math="2r=7-1=6\ \Rightarrow\ r=3,\qquad y_{\text{centre}}=\frac{1+7}{2}=4" />
 
+Draw the two boards and the pipe's cross-section. **The pipe is wedged exactly between the two lines, so its diameter equals the distance between them**, and its centre is halfway.
+
+<MathVisual
+  title={<>The pipe's cross-section between two boards</>}
+  description={<>The lines <InlineMath math="y=1" /> and <InlineMath math="y=7" /> are <InlineMath math="6" /> apart. The circle with centre <InlineMath math="(2,4)" /> and radius <InlineMath math="3" /> touches both lines at <InlineMath math="(2,1)" /> and <InlineMath math="(2,7)" />.</>}
+  labels={{
+    low: <InlineMath math="y=1" />,
+    high: <InlineMath math="y=7" />,
+    centre: <InlineMath math="(2,4)" />,
+    r: <InlineMath math="r=3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 7 },
+      y: { min: 0, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "low", kind: "function", appearance: "reference", formula: "1", domain: { min: -3, max: 7 } },
+      { id: "high", kind: "function", appearance: "reference", formula: "7", domain: { min: -3, max: 7 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 8 } },
+      { id: "pipe", kind: "circle", appearance: "answer", center: { x: 2, y: 4 }, radius: 3 },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "centre", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+    ],
+    labels: [
+      { key: "low", objectId: "low", at: { x: 6, y: 1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 6, y: 7 }, placement: "below" },
+      { key: "centre", objectId: "centre", at: { x: 2, y: 4 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 3.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
 The centre is also on <InlineMath math="x=2" />, so it is <InlineMath math="(2,4)" />.
 
 <BlockMath math="\begin{aligned}

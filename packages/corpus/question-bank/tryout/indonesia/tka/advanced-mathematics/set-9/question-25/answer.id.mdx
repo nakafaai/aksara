@@ -1,5 +1,37 @@
 Sifat-sifat limit untuk jumlah, selisih, hasil kali, dan pangkat berlaku selama limit setiap bagian ada. Untuk hasil bagi, **limit penyebutnya tidak boleh nol**.
 
+Gambar contoh <InlineMath math="f(x)=4" /> dan <InlineMath math="g(x)=x-2" /> bersama hasil baginya. **Saat <InlineMath math="g" /> mendekati <InlineMath math="0" />, hasil bagi <InlineMath math="\tfrac fg" /> melesat ke atas di kanan <InlineMath math="2" /> dan ke bawah di kiri <InlineMath math="2" />**, jadi tidak menuju <InlineMath math="0" />.
+
+<MathVisual
+  title={<>Hasil bagi <InlineMath math="\tfrac fg" /> ketika <InlineMath math="g\to0" /></>}
+  description={<>Garis <InlineMath math="f(x)=4" /> tetap setinggi <InlineMath math="4" />, sedangkan garis <InlineMath math="g(x)=x-2" /> melewati <InlineMath math="0" /> di <InlineMath math="x=2" />. Kurva <InlineMath math="\tfrac{4}{x-2}" /> membesar tanpa batas di kanan <InlineMath math="x=2" /> dan mengecil tanpa batas di kiri <InlineMath math="x=2" />.</>}
+  labels={{
+    f: <InlineMath math="f(x)=4" />,
+    g: <InlineMath math="g(x)=x-2" />,
+    q: <InlineMath math="\tfrac{f(x)}{g(x)}=\tfrac{4}{x-2}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 4 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "f", kind: "function", appearance: "secondary", formula: "4", domain: { min: 0, max: 4 } },
+      { id: "g", kind: "function", appearance: "reference", formula: "x - 2", domain: { min: 0, max: 4 } },
+      { id: "left", kind: "function", appearance: "answer", formula: "4 / (x - 2)", domain: { min: 0, max: 1.5 } },
+      { id: "right", kind: "function", appearance: "answer", formula: "4 / (x - 2)", domain: { min: 2.5, max: 4 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0.5, y: 4 }, placement: "above" },
+      { key: "g", objectId: "g", at: { x: 3.5, y: 1.5 }, placement: "below" },
+      { key: "q", objectId: "right", at: { x: 3, y: 4 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 - **Benar.** <InlineMath math="\lim\bigl(f+g\bigr)=4+0=4" />.
 - **Benar.** <InlineMath math="\lim f\,g=4\cdot0=0" />.
 - **Benar.** <InlineMath math="\lim\bigl(f^2-g\bigr)=4^2-0=16" />.

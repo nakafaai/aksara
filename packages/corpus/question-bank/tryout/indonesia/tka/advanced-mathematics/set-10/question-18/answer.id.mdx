@@ -2,6 +2,45 @@ Kolom-kolom matriks transformasi adalah **bayangan vektor satuan <InlineMath mat
 
 <BlockMath math="(1,0)\mapsto(-1,0),\qquad (0,1)\mapsto(0,1)\qquad\Rightarrow\qquad \begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />
 
+Gambar kedua vektor satuan dan bayangannya terhadap sumbu <InlineMath math="Y" />. **Vektor <InlineMath math="(1,0)" /> berbalik ke <InlineMath math="(-1,0)" />, sedangkan <InlineMath math="(0,1)" /> yang terletak pada cermin tidak bergerak**, dan kedua bayangan itu menjadi kolom matriksnya.
+
+<MathVisual
+  title={<>Pencerminan terhadap sumbu <InlineMath math="Y" /></>}
+  description={<>Sumbu <InlineMath math="Y" /> berperan sebagai cermin. Vektor <InlineMath math="(1,0)" /> dipetakan ke <InlineMath math="(-1,0)" />, vektor <InlineMath math="(0,1)" /> tetap di tempatnya, dan titik <InlineMath math="(3,2)" /> dipetakan ke <InlineMath math="(-3,2)" /> pada ketinggian yang sama.</>}
+  labels={{
+    e1: <InlineMath math="(1,0)" />,
+    e1image: <InlineMath math="(-1,0)" />,
+    e2: <InlineMath math="(0,1)" />,
+    p: <InlineMath math="(3,2)" />,
+    pimage: <InlineMath math="(-3,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 4 },
+      y: { min: -1, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "reference", from: { x: 0, y: -1 }, to: { x: 0, y: 3 } },
+      { id: "e1", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "e1image", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "e2", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "join", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: -3, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 3, y: 2 } },
+      { id: "pimage", kind: "point", appearance: "answer", at: { x: -3, y: 2 } },
+    ],
+    labels: [
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "e1image", objectId: "e1image", at: { x: -1, y: 0 }, placement: "below-left" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "pimage", objectId: "pimage", at: { x: -3, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: titik <InlineMath math="(3,2)" /> dipetakan ke <InlineMath math="(-3,2)" />, cerminannya di seberang sumbu <InlineMath math="Y" />.
 
 Jadi, matriksnya <InlineMath math="\begin{pmatrix} -1 & 0 \\ 0 & 1 \end{pmatrix}" />.

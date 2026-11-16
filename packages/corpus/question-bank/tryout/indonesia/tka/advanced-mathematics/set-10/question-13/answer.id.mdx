@@ -1,5 +1,43 @@
 Panjang vektor menjadi kunci bagi hampir semua pernyataan: <InlineMath math="\left|\vec{v}\right|=\sqrt{4+1+4}=3" />. Sudut dengan sumbu ditentukan oleh **tanda komponen yang bersesuaian**, karena <InlineMath math="\vec{v}\cdot\vec{i}=-2" />.
 
+Gambar <InlineMath math="\vec v" /> pada bidang yang memuat <InlineMath math="\vec v" /> dan sumbu <InlineMath math="X" />. **Komponen <InlineMath math="x" /> yang negatif membuat <InlineMath math="\vec v" /> condong ke kiri**, jadi sudutnya dengan <InlineMath math="\vec i" /> tumpul.
+
+<MathVisual
+  title={<>Vektor <InlineMath math="\vec v" />, vektor satuannya, dan <InlineMath math="-2\vec v" /></>}
+  description={<>Vektor <InlineMath math="\vec v" /> sepanjang <InlineMath math="3" /> membentuk sudut tumpul <InlineMath math="\alpha" /> dengan <InlineMath math="\vec i" />. Vektor satuan <InlineMath math="\tfrac13\vec v" /> searah <InlineMath math="\vec v" /> dan ujungnya tepat pada lingkaran berjari-jari <InlineMath math="1" />. Vektor <InlineMath math="-2\vec v" /> menunjuk ke arah yang berlawanan.</>}
+  labels={{
+    v: <InlineMath math="\vec v" />,
+    unit: <InlineMath math="\tfrac13\vec v" />,
+    opposite: <InlineMath math="-2\vec v" />,
+    i: <InlineMath math="\vec i" />,
+    angle: <InlineMath math="\alpha" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 4.6 },
+      y: { min: -4.8, max: 2.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ring", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "opposite", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4, y: -2 * Math.sqrt(5) } },
+      { id: "i", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "v", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: -2, y: Math.sqrt(5) } },
+      { id: "unit", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -2 / 3, y: Math.sqrt(5) / 3 } },
+      { id: "angle", kind: "arc", appearance: "secondary", center: { x: 0, y: 0 }, radius: 0.5, startDegrees: 0, sweepDegrees: 180 - Math.atan(Math.sqrt(5) / 2) * 180 / Math.PI },
+    ],
+    labels: [
+      { key: "v", objectId: "v", at: { x: -2, y: Math.sqrt(5) }, placement: "left" },
+      { key: "unit", objectId: "unit", at: { x: -2 / 3, y: Math.sqrt(5) / 3 }, placement: "left" },
+      { key: "opposite", objectId: "opposite", at: { x: 4, y: -2 * Math.sqrt(5) }, placement: "left" },
+      { key: "i", objectId: "i", at: { x: 1, y: 0 }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 0.35, y: 0.35 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 - **Benar.** <InlineMath math="\left|\vec{v}\right|=\sqrt{(-2)^2+1^2+2^2}=3" />.
 - **Salah.** Vektor satuan diperoleh dengan membagi panjangnya, <InlineMath math="3" />, bukan kuadratnya. Vektor satuannya <InlineMath math="\frac13\left(-2\vec{i}+\vec{j}+2\vec{k}\right)" />.
 - **Salah.** <InlineMath math="4\vec{i}-2\vec{j}-4\vec{k}=-2\vec{v}" />, kelipatan negatif, jadi arahnya berlawanan.

@@ -8,6 +8,50 @@ G(7,6)&=105+120=225 &&(7+12=19,\ 14+6=20) \\
 G(4,8)&=60+160=220 &&(4+16=20,\ 8+8=16)
 \end{aligned}" />
 
+Zeichne den neuen Bereich und die ganzzahligen Pläne nahe der Ecke <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />. **Die Gewinngerade <InlineMath math="G=230" /> berührt den Plan <InlineMath math="(6,7)" />**, und kein ganzzahliger Punkt im Bereich liegt weiter vom Ursprung entfernt.
+
+<MathVisual
+  title={<>Der Planbereich nach den zusätzlichen Waschmaschinenstunden</>}
+  description={<>Der schattierte Bereich wird von den Achsen, der Geraden <InlineMath math="x+2y=20" /> und der Geraden <InlineMath math="2x+y=20" /> begrenzt, mit der schrägen Ecke bei <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />. Die Pläne <InlineMath math="(6,7)" />, <InlineMath math="(7,6)" /> und <InlineMath math="(4,8)" /> liegen im Bereich, und die gestrichelte Gerade <InlineMath math="G=230" /> geht durch <InlineMath math="(6,7)" />.</>}
+  labels={{
+    washer: <InlineMath math="x+2y=20" />,
+    dryer: <InlineMath math="2x+y=20" />,
+    level: <InlineMath math="G=230" />,
+    corner: <InlineMath math="\left(\tfrac{20}{3},\tfrac{20}{3}\right)" />,
+    best: <InlineMath math="(6,7)" />,
+    other: <InlineMath math="(7,6)" />,
+    third: <InlineMath math="(4,8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 20 / 3, y: 20 / 3 }, { x: 0, y: 10 }] },
+      { id: "washer", kind: "function", appearance: "primary", formula: "10 - x/2", domain: { min: 0, max: 13 } },
+      { id: "dryer", kind: "function", appearance: "secondary", formula: "20 - 2*x", domain: { min: 4, max: 10.5 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "23/2 - 3*x/4", domain: { min: 0, max: 13 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 20 / 3, y: 20 / 3 } },
+      { id: "other", kind: "point", appearance: "secondary", at: { x: 7, y: 6 } },
+      { id: "third", kind: "point", appearance: "secondary", at: { x: 4, y: 8 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 6, y: 7 } },
+    ],
+    labels: [
+      { key: "washer", objectId: "washer", at: { x: 12, y: 4 }, placement: "above" },
+      { key: "dryer", objectId: "dryer", at: { x: 9.5, y: 1 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 1, y: 43 / 4 }, placement: "above-right" },
+      { key: "corner", objectId: "corner", at: { x: 20 / 3, y: 20 / 3 }, placement: "right" },
+      { key: "best", objectId: "best", at: { x: 6, y: 7 }, placement: "above" },
+      { key: "other", objectId: "other", at: { x: 7, y: 6 }, placement: "below-right" },
+      { key: "third", objectId: "third", at: { x: 4, y: 8 }, placement: "above-left" },
+    ],
+  }}
+/>
+
 Gewinne ganzzahliger Pläne sind immer Vielfache von <InlineMath math="5" /> Tausend, und die obere Schranke ist <InlineMath math="233{,}3" /> Tausend. Also erreicht kein Plan <InlineMath math="235" /> Tausend, und <InlineMath math="230" /> Tausend bei <InlineMath math="(6,7)" /> ist der größte Wert.
 
 Der größte Gewinn ist jetzt also <InlineMath math="\text{Rp}230{.}000{,}00" />, mit <InlineMath math="6" /> Kilopaketen und <InlineMath math="7" /> Bettdeckenpaketen.

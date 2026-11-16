@@ -6,6 +6,40 @@ Use <InlineMath math="\lim_{x\to0}\frac{x}{\tan ax}=\frac1a" />, <InlineMath mat
 
 <BlockMath math="\lim_{x\to0}\frac{x^2+\sin^23x}{x\tan2x}=\frac12+3\cdot\frac32=\frac12+\frac92=5" />
 
+Draw the two pieces and their sum for small <InlineMath math="x" />. As <InlineMath math="x" /> approaches <InlineMath math="0" />, the first piece heads to <InlineMath math="\tfrac12" />, the second to <InlineMath math="\tfrac92" />, and **their sum to <InlineMath math="5" />**.
+
+<MathVisual
+  title={<>The two pieces of the fraction as <InlineMath math="x\to0" /></>}
+  description={<>Three curves are drawn for small positive <InlineMath math="x" />. The curve <InlineMath math="\tfrac{x}{\tan2x}" /> approaches <InlineMath math="\tfrac12" />, the curve <InlineMath math="\tfrac{\sin^23x}{x\tan2x}" /> approaches <InlineMath math="\tfrac92" />, and the curve of their sum approaches <InlineMath math="5" /> on the vertical axis.</>}
+  labels={{
+    total: <InlineMath math="5" />,
+    big: <InlineMath math="\tfrac92" />,
+    small: <InlineMath math="\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.1, max: 0.65 },
+      y: { min: 0, max: 5.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "small", kind: "function", appearance: "secondary", formula: "x / tan(2*x)", domain: { min: 0.01, max: 0.6 } },
+      { id: "big", kind: "function", appearance: "reference", formula: "sin(3*x)^2 / (x*tan(2*x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "total", kind: "function", appearance: "answer", formula: "(x^2 + sin(3*x)^2) / (x*tan(2*x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "totalend", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "bigend", kind: "point", appearance: "reference", at: { x: 0, y: 4.5 } },
+      { id: "smallend", kind: "point", appearance: "secondary", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "total", objectId: "totalend", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "big", objectId: "bigend", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "small", objectId: "smallend", at: { x: 0, y: 0.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Numerical check: at <InlineMath math="x=0.01" /> the fraction is about <InlineMath math="4.998" />.
 
 So the limit is <InlineMath math="5" />.

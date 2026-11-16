@@ -18,6 +18,47 @@ P(8,4)&=120+80=200 \\
 P(0,8)&=160
 \end{aligned}" />
 
+Draw the region of plans that meet both limits, then slide the profit line away from the origin. **The last profit line to touch the region does so at the corner <InlineMath math="(8,4)" />**, where both machines are fully used.
+
+<MathVisual
+  title={<>The laundry's region of plans and the profit line</>}
+  description={<>The shaded region is bounded by the axes, the line <InlineMath math="x+2y=16" /> and the line <InlineMath math="2x+y=20" />, with corners <InlineMath math="(0,0)" />, <InlineMath math="(10,0)" />, <InlineMath math="(8,4)" /> and <InlineMath math="(0,8)" />. The dashed line <InlineMath math="P=200" /> touches the region only at <InlineMath math="(8,4)" />.</>}
+  labels={{
+    washer: <InlineMath math="x+2y=16" />,
+    dryer: <InlineMath math="2x+y=20" />,
+    level: <InlineMath math="P=200" />,
+    best: <InlineMath math="(8,4)" />,
+    right: <InlineMath math="(10,0)" />,
+    top: <InlineMath math="(0,8)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 13 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 8, y: 4 }, { x: 0, y: 8 }] },
+      { id: "washer", kind: "function", appearance: "primary", formula: "8 - x/2", domain: { min: 0, max: 13 } },
+      { id: "dryer", kind: "function", appearance: "secondary", formula: "20 - 2*x", domain: { min: 4.5, max: 10.5 } },
+      { id: "level", kind: "function", appearance: "construction", formula: "10 - 3*x/4", domain: { min: 0, max: 13 } },
+      { id: "right", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "top", kind: "point", appearance: "reference", at: { x: 0, y: 8 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 8, y: 4 } },
+    ],
+    labels: [
+      { key: "washer", objectId: "washer", at: { x: 12, y: 2 }, placement: "above" },
+      { key: "dryer", objectId: "dryer", at: { x: 5, y: 10 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 2, y: 8.5 }, placement: "above-right" },
+      { key: "best", objectId: "best", at: { x: 8, y: 4 }, placement: "right" },
+      { key: "right", objectId: "right", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "top", objectId: "top", at: { x: 0, y: 8 }, placement: "left" },
+    ],
+  }}
+/>
+
 So the maximum profit is <InlineMath math="\text{Rp}200{,}000.00" />, with <InlineMath math="8" /> per-kilo and <InlineMath math="4" /> bed cover packages.
 
 - <InlineMath math="\text{Rp}150{,}000.00" /> is the profit at <InlineMath math="(10,0)" />, per-kilo packages only.

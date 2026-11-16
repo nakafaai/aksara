@@ -10,6 +10,35 @@ Check the factorisation: <InlineMath math="(x-2)(ax+3)=ax^2+3x-2ax-6" />, which 
 
 <BlockMath math="\lim_{x\to2}(ax+3)=2a+3=7\ \Rightarrow\ a=2,\quad b=3-4=-1" />
 
+Draw <InlineMath math="y=\tfrac{2x^2-x-6}{x-2}" />. **Its graph is the line <InlineMath math="y=2x+3" /> with one hole at <InlineMath math="x=2" />**, and both sides of the line head to height <InlineMath math="7" /> at that hole.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="\tfrac{2x^2-x-6}{x-2}" /> near <InlineMath math="x=2" /></>}
+  description={<>The graph is the line <InlineMath math="y=2x+3" />, undefined at <InlineMath math="x=2" />. From the left and from the right, the function values approach the point <InlineMath math="(2,7)" />, so the limit is <InlineMath math="7" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2x+3,\ x\neq2" />,
+    hole: <InlineMath math="(2,7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 4 },
+      y: { min: 0, max: 12 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*x + 3", domain: { min: -1, max: 4 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 7 } },
+      { id: "hole", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0, y: 3 }, placement: "right" },
+      { key: "hole", objectId: "hole", at: { x: 2, y: 7 }, placement: "left" },
+    ],
+  }}
+/>
+
 Check: <InlineMath math="\frac{2x^2-x-6}{x-2}=\frac{(x-2)(2x+3)}{x-2}=2x+3" />, which tends to <InlineMath math="7" /> at <InlineMath math="x=2" />.
 
 So <InlineMath math="a+b=2+(-1)=1" />.

@@ -2,6 +2,37 @@ The question asks for <InlineMath math="\lim_{t\to\infty}K(t)" />. Numerator and
 
 <BlockMath math="\lim_{t\to\infty}\frac{30+20t}{100+10t}=\lim_{t\to\infty}\frac{\frac{30}{t}+20}{\frac{100}{t}+10}=\frac{20}{10}=2" />
 
+Draw the salt concentration against time. **The curve rises from the starting concentration and levels off just under the line <InlineMath math="K=2" />**, the concentration of the solution flowing in.
+
+<MathVisual
+  title={<>The salt concentration in the tank over time</>}
+  description={<>The curve <InlineMath math="K(t)=\tfrac{30+20t}{100+10t}" /> is drawn for <InlineMath math="t" /> from <InlineMath math="0" /> to <InlineMath math="200" /> minutes. It starts at the initial concentration <InlineMath math="K(0)" />, rises quickly, then hugs the horizontal line <InlineMath math="K=2" /> without passing it.</>}
+  labels={{
+    curve: <InlineMath math="K(t)" />,
+    level: <InlineMath math="K=2" />,
+    start: <InlineMath math="K(0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 200 },
+      y: { min: 0, max: 2.4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "level", kind: "function", appearance: "answer", formula: "2", domain: { min: 0, max: 200 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(30 + 20x) / (100 + 10x)", domain: { min: 0, max: 200 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 3 / 10 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 50, y: 1030 / 600 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 180, y: 2 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 0, y: 3 / 10 }, placement: "right" },
+    ],
+  }}
+/>
+
 This makes sense: over time almost all of the tank's contents come from the incoming solution, so the concentration approaches that solution's concentration, <InlineMath math="2" /> grams per litre. For example, <InlineMath math="K(10)=\frac{230}{200}=1.15" /> and <InlineMath math="K(1000)=\frac{20{,}030}{10{,}100}\approx1.98" />.
 
 So the salt concentration approaches <InlineMath math="2" /> grams per litre.

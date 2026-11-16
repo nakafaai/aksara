@@ -2,6 +2,36 @@ Substitusi langsung memberi <InlineMath math="\frac00" />. Karena setiap suku se
 
 <BlockMath math="\lim_{x\to0}\frac{x+\sin x}{x-\tan2x}=\lim_{x\to0}\frac{1+\frac{\sin x}{x}}{1-\frac{\tan2x}{x}}=\frac{1+1}{1-2}=-2" />
 
+Gambar grafik pecahan itu di dekat <InlineMath math="x=0" />. **Kedua cabang kurva turun menuju ketinggian <InlineMath math="-2" />**, jadi nilai limitnya negatif.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="\tfrac{x+\sin x}{x-\tan2x}" /> di dekat nol</>}
+  description={<>Kurva digambar untuk <InlineMath math="x" /> di antara <InlineMath math="-0{,}6" /> dan <InlineMath math="0{,}6" />, kecuali di sekitar nol. Seluruh kurva berada di bawah sumbu mendatar, dan kedua cabangnya mendekati titik <InlineMath math="(0,-2)" /> pada garis putus-putus <InlineMath math="y=-2" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{x+\sin x}{x-\tan2x}" />,
+    limit: <InlineMath math="-2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.7, max: 0.7 },
+      y: { min: -2.4, max: 0 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(x + sin(x)) / (x - tan(2x))", domain: { min: -0.6, max: -0.01 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x + sin(x)) / (x - tan(2x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.7, y: -2 }, to: { x: 0.7, y: -2 } },
+      { id: "limit", kind: "point", appearance: "answer", at: { x: 0, y: -2 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.4, y: -1.2 }, placement: "right" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
 Baris itu memakai <InlineMath math="\lim_{x\to0}\frac{\sin x}{x}=1" /> dan <InlineMath math="\lim_{x\to0}\frac{\tan2x}{x}=2" />. Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilainya sekitar <InlineMath math="-1{,}9995" />.
 
 Jadi, nilai limitnya <InlineMath math="-2" />.

@@ -7,6 +7,45 @@ A right angle at <InlineMath math="C" /> means **the vectors <InlineMath math="\
 (1-t)(5-t)&=0
 \end{aligned}" />
 
+The angle <InlineMath math="ACB" /> is a right angle exactly when <InlineMath math="C" /> lies on the sphere with diameter <InlineMath math="AB" />. Draw where that sphere meets the plane <InlineMath math="z=0" />, which holds the <InlineMath math="x" />-axis. **The circle of intersection crosses the <InlineMath math="x" />-axis at two points**, so there are two values of <InlineMath math="t" />.
+
+<MathVisual
+  title={<>The sphere with diameter <InlineMath math="AB" /> and the <InlineMath math="x" />-axis</>}
+  description={<>The sphere's centre is the midpoint of <InlineMath math="AB" />, <InlineMath math="M(3,2,0)" />, and its radius is <InlineMath math="2\sqrt2" />. In the plane <InlineMath math="z=0" /> it cuts a circle with centre <InlineMath math="M" />, which sits <InlineMath math="2" /> away from the <InlineMath math="x" />-axis, so the circle crosses that axis at <InlineMath math="t=1" /> and <InlineMath math="t=5" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,2,0)" />,
+    c1: <InlineMath math="t=1" />,
+    c2: <InlineMath math="t=5" />,
+    r: <InlineMath math="2\sqrt2" />,
+    axis: <InlineMath math="x\text{-axis}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7 },
+      y: { min: -1.5, max: 5.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "sphere", kind: "circle", appearance: "primary", center: { x: 3, y: 2 }, radius: 2 * Math.sqrt(2) },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 5, y: 0 } },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 3, y: 2 }, to: { x: 3, y: 0 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "c1", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c2", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 2 }, placement: "above" },
+      { key: "c1", objectId: "c1", at: { x: 1, y: 0 }, placement: "below-left" },
+      { key: "c2", objectId: "c2", at: { x: 5, y: 0 }, placement: "below-right" },
+      { key: "r", objectId: "r", at: { x: 4, y: 1 }, placement: "above-right" },
+      { key: "axis", objectId: "axis", at: { x: 6.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 So <InlineMath math="t=1" /> or <InlineMath math="t=5" />, and their sum is <InlineMath math="6" />.
 
 Check: for <InlineMath math="t=1" />, <InlineMath math="\overrightarrow{CA}=(0,2,2)" /> and <InlineMath math="\overrightarrow{CB}=(4,2,-2)" />, with dot product <InlineMath math="0+4-4=0" />. For <InlineMath math="t=5" />, <InlineMath math="\overrightarrow{CA}=(-4,2,2)" /> and <InlineMath math="\overrightarrow{CB}=(0,2,-2)" />, again <InlineMath math="0+4-4=0" />.

@@ -8,6 +8,44 @@ x^2+2x+1+y^2-8y+16-25&=0 \\
 x^2+y^2+2x-8y-8&=0
 \end{aligned}" />
 
+Draw the centre, the point on the circle and the right triangle between them. **The radius is the hypotenuse of a triangle with sides <InlineMath math="3" /> and <InlineMath math="4" />**, not the sum of those sides.
+
+<MathVisual
+  title={<>The circle with centre <InlineMath math="(-1,4)" /> through <InlineMath math="(2,0)" /></>}
+  description={<>From the centre <InlineMath math="(-1,4)" /> to the point <InlineMath math="(2,0)" />, move <InlineMath math="3" /> units right and <InlineMath math="4" /> units down. The slanted segment is the radius, of length <InlineMath math="5" />.</>}
+  labels={{
+    centre: <InlineMath math="(-1,4)" />,
+    point: <InlineMath math="(2,0)" />,
+    across: <InlineMath math="3" />,
+    down: <InlineMath math="4" />,
+    r: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6.5, max: 4.5 },
+      y: { min: -1.5, max: 9.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: -1, y: 4 }, radius: 5 },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: -1, y: 4 }, to: { x: 2, y: 4 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 2, y: 4 }, to: { x: 2, y: 0 } },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: -1, y: 4 }, to: { x: 2, y: 0 } },
+      { id: "centre", kind: "point", appearance: "secondary", at: { x: -1, y: 4 } },
+      { id: "point", kind: "point", appearance: "primary", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "centre", objectId: "centre", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "point", objectId: "point", at: { x: 2, y: 0 }, placement: "below-right" },
+      { key: "across", objectId: "across", at: { x: 0.5, y: 4 }, placement: "above" },
+      { key: "down", objectId: "down", at: { x: 2, y: 2 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 0.5, y: 2 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check: the point <InlineMath math="(2,0)" /> gives <InlineMath math="4+0+4-0-8=0" />.
 
 So the equation is <InlineMath math="x^2+y^2+2x-8y-8=0" />.

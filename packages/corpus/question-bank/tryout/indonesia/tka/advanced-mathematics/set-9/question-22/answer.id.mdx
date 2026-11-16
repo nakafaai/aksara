@@ -6,6 +6,40 @@ Gunakan <InlineMath math="\lim_{x\to0}\frac{x}{\tan ax}=\frac1a" />, <InlineMath
 
 <BlockMath math="\lim_{x\to0}\frac{x^2+\sin^23x}{x\tan2x}=\frac12+3\cdot\frac32=\frac12+\frac92=5" />
 
+Gambar kedua bagian dan jumlahnya untuk <InlineMath math="x" /> kecil. Saat <InlineMath math="x" /> mendekati <InlineMath math="0" />, kurva bagian pertama menuju <InlineMath math="\tfrac12" />, bagian kedua menuju <InlineMath math="\tfrac92" />, dan **kurva jumlahnya menuju <InlineMath math="5" />**.
+
+<MathVisual
+  title={<>Dua bagian pecahan saat <InlineMath math="x\to0" /></>}
+  description={<>Tiga kurva digambar untuk <InlineMath math="x" /> positif yang kecil. Kurva <InlineMath math="\tfrac{x}{\tan2x}" /> mendekati <InlineMath math="\tfrac12" />, kurva <InlineMath math="\tfrac{\sin^23x}{x\tan2x}" /> mendekati <InlineMath math="\tfrac92" />, dan kurva jumlah keduanya mendekati <InlineMath math="5" /> di sumbu tegak.</>}
+  labels={{
+    total: <InlineMath math="5" />,
+    big: <InlineMath math="\tfrac92" />,
+    small: <InlineMath math="\tfrac12" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.1, max: 0.65 },
+      y: { min: 0, max: 5.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "small", kind: "function", appearance: "secondary", formula: "x / tan(2*x)", domain: { min: 0.01, max: 0.6 } },
+      { id: "big", kind: "function", appearance: "reference", formula: "sin(3*x)^2 / (x*tan(2*x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "total", kind: "function", appearance: "answer", formula: "(x^2 + sin(3*x)^2) / (x*tan(2*x))", domain: { min: 0.01, max: 0.6 } },
+      { id: "totalend", kind: "point", appearance: "answer", at: { x: 0, y: 5 } },
+      { id: "bigend", kind: "point", appearance: "reference", at: { x: 0, y: 4.5 } },
+      { id: "smallend", kind: "point", appearance: "secondary", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "total", objectId: "totalend", at: { x: 0, y: 5 }, placement: "left" },
+      { key: "big", objectId: "bigend", at: { x: 0, y: 4.5 }, placement: "left" },
+      { key: "small", objectId: "smallend", at: { x: 0, y: 0.5 }, placement: "left" },
+    ],
+  }}
+/>
+
 Pemeriksaan numerik: untuk <InlineMath math="x=0{,}01" />, nilai pecahan itu sekitar <InlineMath math="4{,}998" />.
 
 Jadi, nilai limitnya <InlineMath math="5" />.

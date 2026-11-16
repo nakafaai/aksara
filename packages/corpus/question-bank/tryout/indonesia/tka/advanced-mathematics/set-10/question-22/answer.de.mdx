@@ -6,6 +6,36 @@ Verwende <InlineMath math="\lim_{x\to0}\frac{\tan6x}{x}=6" /> und <InlineMath ma
 
 <BlockMath math="\lim_{x\to0}\frac{x\tan6x}{1-\cos3x}=\frac12\cdot6\cdot\left(\frac23\right)^2=\frac12\cdot6\cdot\frac49=\frac43" />
 
+Zeichne den Graphen des Bruchs nahe <InlineMath math="x=0" />. **Von links und von rechts fällt die Kurve auf die Höhe <InlineMath math="\tfrac43" /> zu**, obwohl der Bruch bei <InlineMath math="x=0" /> selbst nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="\tfrac{x\tan6x}{1-\cos3x}" /> nahe null</>}
+  description={<>Die Kurve ist für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}2" /> und <InlineMath math="0{,}2" /> gezeichnet, ohne die Umgebung von null. Ihre beiden Äste sind symmetrisch und nähern sich dem Punkt <InlineMath math="\left(0,\tfrac43\right)" /> auf der gestrichelten Geraden <InlineMath math="y=\tfrac43" />.</>}
+  labels={{
+    curve: <InlineMath math="y=\tfrac{x\tan6x}{1-\cos3x}" />,
+    limit: <InlineMath math="\tfrac43" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.25, max: 0.25 },
+      y: { min: 0, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: -0.2, max: -0.01 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x*tan(6x) / (1 - cos(3x))", domain: { min: 0.01, max: 0.2 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.25, y: 4 / 3 }, to: { x: 0.25, y: 4 / 3 } },
+      { id: "limit", kind: "point", appearance: "answer", at: { x: 0, y: 4 / 3 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 0.15, y: 2.2 }, placement: "left" },
+      { key: "limit", objectId: "limit", at: { x: 0, y: 4 / 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Numerische Probe: Für <InlineMath math="x=0{,}01" /> ist der Wert etwa <InlineMath math="1{,}3350" />, nahe <InlineMath math="\frac43\approx1{,}3333" />.
 
 Der Grenzwert ist also <InlineMath math="\frac43" />.

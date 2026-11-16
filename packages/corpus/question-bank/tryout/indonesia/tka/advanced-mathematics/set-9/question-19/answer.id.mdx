@@ -12,6 +12,45 @@ Nyatakan <InlineMath math="x" /> dan <InlineMath math="y" /> dalam <InlineMath m
 x'-2y'+2&=0
 \end{aligned}" />
 
+Gambar garis semula, pusat rotasi, dan bayangannya. **Titik <InlineMath math="(2,0)" /> berputar <InlineMath math="90^\circ" /> mengelilingi <InlineMath math="(1,1)" /> ke <InlineMath math="(2,2)" />**, dan garis bayangan tegak lurus garis semula.
+
+<MathVisual
+  title={<>Rotasi garis <InlineMath math="2x+y-4=0" /> dengan pusat <InlineMath math="(1,1)" /></>}
+  description={<>Garis semula <InlineMath math="2x+y-4=0" /> dan bayangannya <InlineMath math="x-2y+2=0" /> saling tegak lurus. Ruas dari pusat <InlineMath math="(1,1)" /> ke <InlineMath math="(2,0)" /> diputar <InlineMath math="90^\circ" /> berlawanan arah jarum jam menjadi ruas ke <InlineMath math="(2,2)" />, yang terletak pada garis bayangan.</>}
+  labels={{
+    old: <InlineMath math="2x+y-4=0" />,
+    new: <InlineMath math="x-2y+2=0" />,
+    c: <InlineMath math="(1,1)" />,
+    a: <InlineMath math="(2,0)" />,
+    image: <InlineMath math="(2,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 4 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "old", kind: "function", appearance: "reference", formula: "4-2*x", domain: { min: -0.5, max: 2.5 } },
+      { id: "new", kind: "function", appearance: "answer", formula: "(x+2)/2", domain: { min: -3, max: 4 } },
+      { id: "ca", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 2, y: 0 } },
+      { id: "cimage", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 2, y: 2 } },
+      { id: "c", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 2, y: 0 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: 2, y: 2 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "new", objectId: "new", at: { x: -2, y: 0 }, placement: "above" },
+      { key: "c", objectId: "c", at: { x: 1, y: 1 }, placement: "left" },
+      { key: "a", objectId: "a", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: 2, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan dua titik pada garis semula: <InlineMath math="(2,0)" /> berjarak <InlineMath math="(1,-1)" /> dari pusat, diputar menjadi <InlineMath math="(1,1)" />, sehingga bayangannya <InlineMath math="(2,2)" />, dan <InlineMath math="2-4+2=0" />. Titik <InlineMath math="(0,4)" /> berjarak <InlineMath math="(-1,3)" />, diputar menjadi <InlineMath math="(-3,-1)" />, sehingga bayangannya <InlineMath math="(-2,0)" />, dan <InlineMath math="-2-0+2=0" />.
 
 Jadi, bayangannya <InlineMath math="x-2y+2=0" />.
