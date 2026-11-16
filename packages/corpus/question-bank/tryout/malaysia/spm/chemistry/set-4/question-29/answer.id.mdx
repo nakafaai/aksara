@@ -1,22 +1,23 @@
-# Volume gas yang sama memuat jumlah molekul yang sama
+# Tiap langkah menghilangkan satu gas, jadi tiap selisih menamai satu gas
 
-Pada suhu dan tekanan yang sama, perbandingan volume gas sama dengan perbandingan mol. Jadi <InlineMath math="1" /> volume hidrokarbon butuh **<InlineMath math="5" /> volume oksigen**. Untuk <InlineMath math="\text{C}_x\text{H}_y" />, oksigen yang dibutuhkan per molekul adalah <InlineMath math="x + \tfrac{y}{4}" />.
+Air mengembun saat didinginkan, jadi <InlineMath math="110\text{ cm}^3" /> itu adalah karbon dioksida dan sisa oksigen. Natrium hidroksida **hanya menyerap karbon dioksida**: <InlineMath math="110 - 50 = 60\text{ cm}^3" />. <InlineMath math="50\text{ cm}^3" /> yang tersisa adalah oksigen yang tidak terpakai, jadi <InlineMath math="150 - 50 = 100\text{ cm}^3" /> oksigen telah bereaksi.
 
-<Chart
-  title={<>Volume Gas dalam Pembakaran</>}
-  bars="apart"
-  categories={["Hidrokarbon", "Oksigen terpakai", "Karbon dioksida terbentuk"]}
-  series={[
-    { label: "Volume (cm³)", mark: "bar", values: [10, 50, 30] },
-  ]}
-  valueLabel="Volume (cm³)"
-  description={<><InlineMath math="10\text{ cm}^3" /> hidrokarbon memakai <InlineMath math="50\text{ cm}^3" /> oksigen dan menghasilkan <InlineMath math="30\text{ cm}^3" /> karbon dioksida.</>}
+<Mermaid
+  title={<>Membaca Volume Gas</>}
+  description={<>Natrium hidroksida menyerap karbon dioksida, jadi <InlineMath math="60\text{ cm}^3" /> terbentuk. Oksigen yang dipakai, <InlineMath math="100\text{ cm}^3" />, menentukan hidrogennya.</>}
+  chart={`
+    flowchart LR
+      N0["110 - 50 = 60 cm³ CO2"] --> N1["60 ÷ 20 = 3 atom karbon"]
+      N2["150 - 50 = 100 cm³ O2 dipakai"] --> N3["5 O2 per molekul: 3 + y/4 = 5"]
+      N1 --> N3
+      N3 --> N4["y = 8: C3H8, propana"]
+  `}
 />
 
-Propana cocok: <InlineMath math="\text{C}_3\text{H}_8 + 5\text{O}_2 \rightarrow 3\text{CO}_2 + 4\text{H}_2\text{O}" />, karena <InlineMath math="3 + \tfrac{8}{4} = 5" />. Jadi <InlineMath math="10\text{ cm}^3" /> propana menghasilkan <InlineMath math="30\text{ cm}^3" /> karbon dioksida, dan airnya mengembun menjadi cair.
+Volume yang sama berisi jumlah molekul yang sama. Untuk <InlineMath math="\text{C}_x\text{H}_y + (x + \tfrac{y}{4})\,\text{O}_2 \rightarrow x\,\text{CO}_2 + \tfrac{y}{2}\,\text{H}_2\text{O}" />: karbon dioksida memberi <InlineMath math="x = 60 \div 20 = 3" />, dan oksigen memberi <InlineMath math="x + \tfrac{y}{4} = 100 \div 20 = 5" />, jadi <InlineMath math="y = 8" />. Hidrokarbonnya <InlineMath math="\text{C}_3\text{H}_8" />, propana.
 
 # Kenapa pilihan lain salah
 
-- Propena, <InlineMath math="\text{C}_3\text{H}_6" />, butuh <InlineMath math="3 + \tfrac{6}{4} = 4{,}5" /> volume oksigen, bukan <InlineMath math="5" />.
-- Butana, <InlineMath math="\text{C}_4\text{H}_{10}" />, butuh <InlineMath math="6{,}5" /> volume oksigen.
-- <InlineMath math="70\text{ cm}^3" /> menghitung air sebagai gas, padahal pada suhu ruang air berwujud **cair** dan tidak menempati volume gas.
+- Propena, <InlineMath math="\text{C}_3\text{H}_6" />, hanya memakai <InlineMath math="4{,}5" /> oksigen per molekul, <InlineMath math="90\text{ cm}^3" />, sehingga tersisa <InlineMath math="60\text{ cm}^3" />.
+- Pada suhu kamar air berwujud **cair**, dan volumenya dapat diabaikan, jadi gas terakhir bukan uap air.
+- Butana akan memberi <InlineMath math="80\text{ cm}^3" /> karbon dioksida, bukan <InlineMath math="60\text{ cm}^3" /> yang diserap basa.

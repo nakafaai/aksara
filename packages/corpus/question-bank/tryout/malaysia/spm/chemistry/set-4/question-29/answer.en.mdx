@@ -1,22 +1,23 @@
-# Equal gas volumes hold equal numbers of molecules
+# Each step removes one gas, so each difference names one
 
-At the same temperature and pressure, gas volumes are in the same ratio as moles. So <InlineMath math="1" /> volume of hydrocarbon needs **<InlineMath math="5" /> volumes of oxygen**. For <InlineMath math="\text{C}_x\text{H}_y" />, the oxygen needed per molecule is <InlineMath math="x + \tfrac{y}{4}" />.
+Water condenses on cooling, so the <InlineMath math="110\text{ cm}^3" /> is carbon dioxide and leftover oxygen. Sodium hydroxide **absorbs only the carbon dioxide**: <InlineMath math="110 - 50 = 60\text{ cm}^3" />. The <InlineMath math="50\text{ cm}^3" /> it leaves is unused oxygen, so <InlineMath math="150 - 50 = 100\text{ cm}^3" /> of oxygen reacted.
 
-<Chart
-  title={<>Gas Volumes in the Combustion</>}
-  bars="apart"
-  categories={["Hydrocarbon", "Oxygen used", "Carbon dioxide formed"]}
-  series={[
-    { label: "Volume (cm³)", mark: "bar", values: [10, 50, 30] },
-  ]}
-  valueLabel="Volume (cm³)"
-  description={<><InlineMath math="10\text{ cm}^3" /> of hydrocarbon uses <InlineMath math="50\text{ cm}^3" /> of oxygen and forms <InlineMath math="30\text{ cm}^3" /> of carbon dioxide.</>}
+<Mermaid
+  title={<>Reading the Gas Volumes</>}
+  description={<>Sodium hydroxide removes the carbon dioxide, so <InlineMath math="60\text{ cm}^3" /> of it formed. The oxygen used, <InlineMath math="100\text{ cm}^3" />, fixes the hydrogen.</>}
+  chart={`
+    flowchart LR
+      N0["110 - 50 = 60 cm³ CO2"] --> N1["60 ÷ 20 = 3 carbon atoms"]
+      N2["150 - 50 = 100 cm³ O2 used"] --> N3["5 O2 per molecule: 3 + y/4 = 5"]
+      N1 --> N3
+      N3 --> N4["y = 8: C3H8, propane"]
+  `}
 />
 
-Propane fits: <InlineMath math="\text{C}_3\text{H}_8 + 5\text{O}_2 \rightarrow 3\text{CO}_2 + 4\text{H}_2\text{O}" />, since <InlineMath math="3 + \tfrac{8}{4} = 5" />. Then <InlineMath math="10\text{ cm}^3" /> of propane gives <InlineMath math="30\text{ cm}^3" /> of carbon dioxide, and the water condenses to a liquid.
+Equal volumes hold equal numbers of molecules. For <InlineMath math="\text{C}_x\text{H}_y + (x + \tfrac{y}{4})\,\text{O}_2 \rightarrow x\,\text{CO}_2 + \tfrac{y}{2}\,\text{H}_2\text{O}" />: carbon dioxide gives <InlineMath math="x = 60 \div 20 = 3" />, and oxygen gives <InlineMath math="x + \tfrac{y}{4} = 100 \div 20 = 5" />, so <InlineMath math="y = 8" />. The hydrocarbon is <InlineMath math="\text{C}_3\text{H}_8" />, propane.
 
 # Why the other options are wrong
 
-- Propene, <InlineMath math="\text{C}_3\text{H}_6" />, needs <InlineMath math="3 + \tfrac{6}{4} = 4.5" /> volumes of oxygen, not <InlineMath math="5" />.
-- Butane, <InlineMath math="\text{C}_4\text{H}_{10}" />, needs <InlineMath math="6.5" /> volumes of oxygen.
-- <InlineMath math="70\text{ cm}^3" /> counts the water as a gas, but at room temperature it is a **liquid** and takes no gas volume.
+- Propene, <InlineMath math="\text{C}_3\text{H}_6" />, would use only <InlineMath math="4.5" /> oxygen per molecule, <InlineMath math="90\text{ cm}^3" />, leaving <InlineMath math="60\text{ cm}^3" />.
+- At room temperature the water is **a liquid**, and its volume is negligible, so the last gas cannot be water vapour.
+- Butane would give <InlineMath math="80\text{ cm}^3" /> of carbon dioxide, not the <InlineMath math="60\text{ cm}^3" /> the alkali removed.

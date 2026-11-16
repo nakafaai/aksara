@@ -1,22 +1,23 @@
-# Isi padu gas yang sama mengandungi bilangan molekul yang sama
+# Setiap langkah menyingkirkan satu gas, jadi setiap perbezaan menamakan satu
 
-Pada suhu dan tekanan yang sama, nisbah isi padu gas sama dengan nisbah bilangan mol. Jadi <InlineMath math="1" /> isi padu hidrokarbon memerlukan **<InlineMath math="5" /> isi padu oksigen**. Bagi <InlineMath math="\text{C}_x\text{H}_y" />, oksigen yang diperlukan bagi setiap molekul ialah <InlineMath math="x + \tfrac{y}{4}" />.
+Air terkondensasi semasa disejukkan, jadi <InlineMath math="110\text{ cm}^3" /> itu ialah karbon dioksida dan baki oksigen. Natrium hidroksida **hanya menyerap karbon dioksida**: <InlineMath math="110 - 50 = 60\text{ cm}^3" />. <InlineMath math="50\text{ cm}^3" /> yang tinggal ialah oksigen yang tidak digunakan, jadi <InlineMath math="150 - 50 = 100\text{ cm}^3" /> oksigen telah bertindak balas.
 
-<Chart
-  title={<>Isi Padu Gas dalam Pembakaran</>}
-  bars="apart"
-  categories={["Hidrokarbon", "Oksigen digunakan", "Karbon dioksida terbentuk"]}
-  series={[
-    { label: "Isi padu (cm³)", mark: "bar", values: [10, 50, 30] },
-  ]}
-  valueLabel="Isi padu (cm³)"
-  description={<><InlineMath math="10\text{ cm}^3" /> hidrokarbon menggunakan <InlineMath math="50\text{ cm}^3" /> oksigen dan menghasilkan <InlineMath math="30\text{ cm}^3" /> karbon dioksida.</>}
+<Mermaid
+  title={<>Membaca Isi Padu Gas</>}
+  description={<>Natrium hidroksida menyingkirkan karbon dioksida, jadi <InlineMath math="60\text{ cm}^3" /> terbentuk. Oksigen yang digunakan, <InlineMath math="100\text{ cm}^3" />, menentukan hidrogen.</>}
+  chart={`
+    flowchart LR
+      N0["110 - 50 = 60 cm³ CO2"] --> N1["60 ÷ 20 = 3 atom karbon"]
+      N2["150 - 50 = 100 cm³ O2 digunakan"] --> N3["5 O2 bagi setiap molekul: 3 + y/4 = 5"]
+      N1 --> N3
+      N3 --> N4["y = 8: C3H8, propana"]
+  `}
 />
 
-Propana sepadan: <InlineMath math="\text{C}_3\text{H}_8 + 5\text{O}_2 \rightarrow 3\text{CO}_2 + 4\text{H}_2\text{O}" />, kerana <InlineMath math="3 + \tfrac{8}{4} = 5" />. Jadi <InlineMath math="10\text{ cm}^3" /> propana menghasilkan <InlineMath math="30\text{ cm}^3" /> karbon dioksida, dan air terkondensasi menjadi cecair.
+Isi padu yang sama mengandungi bilangan molekul yang sama. Bagi <InlineMath math="\text{C}_x\text{H}_y + (x + \tfrac{y}{4})\,\text{O}_2 \rightarrow x\,\text{CO}_2 + \tfrac{y}{2}\,\text{H}_2\text{O}" />: karbon dioksida memberikan <InlineMath math="x = 60 \div 20 = 3" />, dan oksigen memberikan <InlineMath math="x + \tfrac{y}{4} = 100 \div 20 = 5" />, jadi <InlineMath math="y = 8" />. Hidrokarbon itu ialah <InlineMath math="\text{C}_3\text{H}_8" />, propana.
 
 # Kenapa pilihan lain salah
 
-- Propena, <InlineMath math="\text{C}_3\text{H}_6" />, memerlukan <InlineMath math="3 + \tfrac{6}{4} = 4.5" /> isi padu oksigen, bukan <InlineMath math="5" />.
-- Butana, <InlineMath math="\text{C}_4\text{H}_{10}" />, memerlukan <InlineMath math="6.5" /> isi padu oksigen.
-- <InlineMath math="70\text{ cm}^3" /> mengira air sebagai gas, tetapi pada suhu bilik ia **cecair** dan tidak menempati isi padu gas.
+- Propena, <InlineMath math="\text{C}_3\text{H}_6" />, hanya menggunakan <InlineMath math="4.5" /> oksigen bagi setiap molekul, <InlineMath math="90\text{ cm}^3" />, dan meninggalkan <InlineMath math="60\text{ cm}^3" />.
+- Pada suhu bilik air ialah **cecair**, dan isi padunya boleh diabaikan, jadi gas terakhir bukan wap air.
+- Butana akan memberikan <InlineMath math="80\text{ cm}^3" /> karbon dioksida, bukan <InlineMath math="60\text{ cm}^3" /> yang diserap oleh alkali.
