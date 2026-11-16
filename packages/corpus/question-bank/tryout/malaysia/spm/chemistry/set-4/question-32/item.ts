@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "1.2 dm³ of hydrogen, with nickel as the catalyst, to give ethane",
+            "0.72 dm³ of hydrogen over a nickel catalyst, and the fat formed has a higher melting point than the oil",
         },
         {
           correct: false,
           label:
-            "2.4 dm³ of hydrogen, with nickel as the catalyst, to give ethane",
+            "0.24 dm³ of hydrogen over a nickel catalyst, and the fat formed has a higher melting point than the oil",
         },
         {
           correct: false,
           label:
-            "1.2 dm³ of hydrogen, with nickel as the catalyst, to give ethanol",
+            "0.72 dm³ of hydrogen over a nickel catalyst, and the fat formed has a lower melting point than the oil",
         },
         {
           correct: false,
           label:
-            "0.6 dm³ of hydrogen, with nickel as the catalyst, to give ethane",
+            "2.16 dm³ of hydrogen over a nickel catalyst, and the fat formed has a higher melting point than the oil",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "1.2 dm³ hidrogen, dengan nikel sebagai mangkin, untuk menghasilkan etana",
+            "0.72 dm³ hidrogen di atas mangkin nikel, dan lemak yang terbentuk mempunyai takat lebur lebih tinggi daripada minyak",
         },
         {
           correct: false,
           label:
-            "2.4 dm³ hidrogen, dengan nikel sebagai mangkin, untuk menghasilkan etana",
+            "0.24 dm³ hidrogen di atas mangkin nikel, dan lemak yang terbentuk mempunyai takat lebur lebih tinggi daripada minyak",
         },
         {
           correct: false,
           label:
-            "1.2 dm³ hidrogen, dengan nikel sebagai mangkin, untuk menghasilkan etanol",
+            "0.72 dm³ hidrogen di atas mangkin nikel, dan lemak yang terbentuk mempunyai takat lebur lebih rendah daripada minyak",
         },
         {
           correct: false,
           label:
-            "0.6 dm³ hidrogen, dengan nikel sebagai mangkin, untuk menghasilkan etana",
+            "2.16 dm³ hidrogen di atas mangkin nikel, dan lemak yang terbentuk mempunyai takat lebur lebih tinggi daripada minyak",
         },
       ],
     },

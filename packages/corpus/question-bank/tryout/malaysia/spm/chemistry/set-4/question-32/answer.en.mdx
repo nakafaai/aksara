@@ -1,21 +1,22 @@
-# One hydrogen molecule for each double bond
+# One hydrogen molecule for every double bond, not every molecule
 
-Ethene, <InlineMath math="M_r = 28" />: <InlineMath math="1.4 \div 28 = 0.050" /> mol. Its single carbon-carbon double bond takes **one hydrogen molecule**: <InlineMath math="\text{C}_2\text{H}_4 + \text{H}_2 \rightarrow \text{C}_2\text{H}_6" />.
+The oil is <InlineMath math="8.84 \div 884 = 0.010" /> mol of molecules. Each has **three carbon-carbon double bonds**, so there are <InlineMath math="0.030" /> mol of double bonds, and each takes one hydrogen molecule: <InlineMath math="0.030 \times 24 = 0.72\text{ dm}^3" />, passed over hot nickel.
 
-<Mermaid
-  title={<>Adding Hydrogen Across the Double Bond</>}
-  description={<><InlineMath math="0.050\text{ mol}" /> of ethene adds <InlineMath math="0.050\text{ mol}" /> of hydrogen over hot nickel to give <InlineMath math="0.050\text{ mol}" /> of ethane.</>}
-  chart={`
-    flowchart LR
-      N0["C2H4: 1.4 g, 0.050 mol"] --> N1["+ H2: 0.050 mol, 1.2 dm³"]
-      N1 -->|"Ni, 180 °C"| N2["C2H6: 0.050 mol"]
-  `}
+<Chart
+  title={<>Double Bonds and Hydrogen in <InlineMath math="8.84\text{ g}" /> of Oil</>}
+  bars="apart"
+  categories={["Oil molecules", "Carbon-carbon double bonds", "Hydrogen needed"]}
+  series={[
+    { label: "Amount (mol)", mark: "bar", values: [<InlineMath math="0.01" />, <InlineMath math="0.03" />, <InlineMath math="0.03" />] },
+  ]}
+  valueLabel="Amount (mol)"
+  description={<><InlineMath math="0.010\text{ mol}" /> of oil holds <InlineMath math="0.030\text{ mol}" /> of double bonds, which take <InlineMath math="0.030\text{ mol}" /> of hydrogen.</>}
 />
 
-So <InlineMath math="0.050" /> mol of hydrogen is needed, which is <InlineMath math="0.050 \times 24 = 1.2\text{ dm}^3" />, passed over a nickel catalyst at about <InlineMath math="180^\circ\text{C}" />. The product is ethane. The same reaction hardens vegetable oils into margarine.
+With no double bonds left, the long chains straighten and pack closely, so the forces between molecules grow stronger. That is why the saturated fat has a **higher melting point** and is solid at room temperature, which is what margarine needs.
 
 # Why the other options are wrong
 
-- <InlineMath math="2.4\text{ dm}^3" /> adds two hydrogen molecules, but ethene has only one double bond.
-- Adding hydrogen gives ethane. Ethanol forms when ethene adds **steam**, not hydrogen.
-- <InlineMath math="0.6\text{ dm}^3" /> halves the hydrogen and would leave half the ethene unsaturated.
+- <InlineMath math="0.24\text{ dm}^3" /> adds one hydrogen molecule per oil molecule, but each molecule has **three double bonds**.
+- Saturating the chains raises the melting point. The oil is liquid and the fat is solid.
+- <InlineMath math="2.16\text{ dm}^3" /> counts nine double bonds per molecule instead of three.
