@@ -8,6 +8,33 @@ n&=\frac{0.46}{46}=0.010\text{ mol}\\
 \Delta H&=-\frac{12.6}{0.010}=-1260\text{ kJ mol}^{-1}
 \end{aligned}" />
 
+The energy level diagram puts the products <InlineMath math="1260\text{ kJ}" /> below the reactants for every mole of ethanol burned.
+
+<MathVisual
+  title={<>Energy level diagram for the combustion of ethanol</>}
+  description={<>The level of <InlineMath math="\mathrm{C_2H_5OH} + 3\mathrm{O_2}" /> is at zero. The level of <InlineMath math="2\mathrm{CO_2} + 3\mathrm{H_2O}" /> is <InlineMath math="1260\text{ kJ}" /> lower, so the arrow points down and <InlineMath math="\Delta H=-1260\text{ kJ mol}^{-1}" />.</>}
+  labels={{
+    reactants: <InlineMath math="\mathrm{C_2H_5OH} + 3\mathrm{O_2}" />,
+    products: <InlineMath math="2\mathrm{CO_2} + 3\mathrm{H_2O}" />,
+    change: <InlineMath math="\Delta H=-1260\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1600 }, y: { min: -1500, max: 200 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "reactant-level", kind: "segment", appearance: "primary", from: { x: 200, y: 0 }, to: { x: 800, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "secondary", from: { x: 200, y: -1260 }, to: { x: 800, y: -1260 } },
+      { id: "enthalpy-change", kind: "vector", appearance: "answer", from: { x: 500, y: 0 }, to: { x: 500, y: -1260 } },
+    ],
+    labels: [
+      { key: "reactants", objectId: "reactant-level", at: { x: 500, y: 0 }, placement: "above" },
+      { key: "products", objectId: "product-level", at: { x: 500, y: -1260 }, placement: "below" },
+      { key: "change", objectId: "enthalpy-change", at: { x: 500, y: -630 }, placement: "right" },
+    ],
+  }}
+/>
+
 The sign is negative because combustion releases heat to the water. So the heat of combustion of ethanol is <InlineMath math="-1260\text{ kJ mol}^{-1}" />.
 
 # Why the other options are wrong

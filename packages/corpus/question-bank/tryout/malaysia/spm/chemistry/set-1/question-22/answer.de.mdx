@@ -2,6 +2,34 @@
 
 Magnesium hat das negativere <InlineMath math="E^\circ" />, wird also oxidiert und bildet den Minuspol, Silber den Pluspol. Am Pluspol **nehmen Silberionen Elektronen auf und scheiden sich ab** als metallisches Silber, die Silberelektrode wird also schwerer. Jedes <InlineMath math="\text{Ag}^+" />-Ion braucht nur ein Elektron.
 
+Trag beide Halbzellen auf einer <InlineMath math="E^\circ" />-Skala ein. Die untere, Magnesium, ist der Minuspol, und der Abstand zwischen beiden ist die Zellspannung.
+
+<MathVisual
+  title={<>Beide Halbzellen auf der <InlineMath math="E^\circ" />-Skala</>}
+  description={<>Magnesium liegt bei <InlineMath math="-2{,}38\text{ V}" /> und Silber bei <InlineMath math="+0{,}80\text{ V}" />. Magnesium liegt tiefer, wird also am Minuspol oxidiert, während Silberionen am Pluspol reduziert werden. Der Abstand ist <InlineMath math="0{,}80-(-2{,}38)=3{,}18\text{ V}" />.</>}
+  labels={{
+    magnesium: <InlineMath math="\mathrm{Mg^{2+}/Mg}:\ -2{,}38\text{ V}" />,
+    silver: <InlineMath math="\mathrm{Ag^+/Ag}:\ +0{,}80\text{ V}" />,
+    gap: <InlineMath math="E^\circ_{\text{Zelle}}=3{,}18\text{ V}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 1.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -2.8 }, to: { x: 0, y: 1.2 } },
+      { id: "magnesium-level", kind: "segment", appearance: "secondary", from: { x: -0.3, y: -2.38 }, to: { x: 0.8, y: -2.38 } },
+      { id: "silver-level", kind: "segment", appearance: "primary", from: { x: -0.3, y: 0.8 }, to: { x: 0.8, y: 0.8 } },
+      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.6, y: -2.38 }, to: { x: 0.6, y: 0.8 } },
+    ],
+    labels: [
+      { key: "magnesium", objectId: "magnesium-level", at: { x: -0.3, y: -2.38 }, placement: "left" },
+      { key: "silver", objectId: "silver-level", at: { x: -0.3, y: 0.8 }, placement: "left" },
+      { key: "gap", objectId: "cell-voltage", at: { x: 0.6, y: -0.79 }, placement: "right" },
+    ],
+  }}
+/>
+
 <BlockMath math="\begin{aligned}
 E^\circ_{\text{Zelle}}&=0{,}80-(-2{,}38)=3{,}18\text{ V}\\
 n(\text{Ag})&=n(e^-)=0{,}020\text{ mol}\\

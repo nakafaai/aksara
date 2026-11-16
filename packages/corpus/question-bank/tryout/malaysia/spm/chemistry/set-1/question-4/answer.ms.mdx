@@ -7,6 +7,20 @@ n(\text{Mg})&=\frac{2.4}{24}=0.10\text{ mol}\\
 n(\text{HCl})&=2.0\times\frac{50}{1000}=0.10\text{ mol}
 \end{aligned}" />
 
+Carta ini meletakkan setiap kuantiti di sebelah kuantiti yang diperlukan untuk menghabiskan bahan tindak balas yang satu lagi.
+
+<Chart
+  title={<>Mol yang ada berbanding mol yang diperlukan</>}
+  description={<>Magnesium: <InlineMath math="0.10\text{ mol}" /> ada, sedangkan hanya <InlineMath math="0.050\text{ mol}" /> diperlukan untuk menghabiskan semua asid. Asid hidroklorik: <InlineMath math="0.10\text{ mol}" /> ada, sedangkan <InlineMath math="0.20\text{ mol}" /> diperlukan untuk menghabiskan semua magnesium.</>}
+  bars="apart"
+  categories={["Magnesium", "Asid hidroklorik"]}
+  series={[
+    { label: "Ada", mark: "bar", values: [2.4 / 24, (2.0 * 50) / 1000] },
+    { label: "Diperlukan untuk menghabiskan bahan yang satu lagi", mark: "bar", values: [(2.0 * 50) / 1000 / 2, 2 * (2.4 / 24)] },
+  ]}
+  valueLabel="Kuantiti (mol)"
+/>
+
 Magnesium <InlineMath math="0.10\text{ mol}" /> memerlukan <InlineMath math="0.20\text{ mol}" /> HCl, sedangkan hanya ada <InlineMath math="0.10\text{ mol}" />. Jadi, HCl ialah bahan tindak balas pengehad dan sebahagian magnesium berbaki.
 
 <BlockMath math="n(\text{H}_2)=\tfrac12\times0.10=0.050\text{ mol}\ \Rightarrow\ V=0.050\times24=1.2\text{ dm}^3" />

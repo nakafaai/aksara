@@ -8,6 +8,33 @@ n(\text{H}_2\text{O})&=1.0\times\frac{50}{1000}=0.050\text{ mol}\\
 \Delta H&=-\frac{2730}{0.050}=-54{,}600\text{ J mol}^{-1}=-54.6\text{ kJ mol}^{-1}
 \end{aligned}" />
 
+On an energy level diagram, the products sit <InlineMath math="54.6\text{ kJ}" /> below the reactants for every mole of water formed.
+
+<MathVisual
+  title={<>Energy level diagram for neutralisation</>}
+  description={<>The level of <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" /> is at zero. The level of <InlineMath math="\mathrm{H_2O}" /> is <InlineMath math="54.6\text{ kJ}" /> lower, so the arrow from reactants to products points down and <InlineMath math="\Delta H=-54.6\text{ kJ mol}^{-1}" />.</>}
+  labels={{
+    reactants: <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" />,
+    products: <InlineMath math="\mathrm{H_2O}" />,
+    change: <InlineMath math="\Delta H=-54.6\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 80 }, y: { min: -70, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "reactant-level", kind: "segment", appearance: "primary", from: { x: 10, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "secondary", from: { x: 10, y: -54.6 }, to: { x: 40, y: -54.6 } },
+      { id: "enthalpy-change", kind: "vector", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 25, y: -54.6 } },
+    ],
+    labels: [
+      { key: "reactants", objectId: "reactant-level", at: { x: 25, y: 0 }, placement: "above" },
+      { key: "products", objectId: "product-level", at: { x: 25, y: -54.6 }, placement: "below" },
+      { key: "change", objectId: "enthalpy-change", at: { x: 25, y: -27.3 }, placement: "right" },
+    ],
+  }}
+/>
+
 The sign is negative because the temperature rises, which means the reaction is exothermic. So the heat of neutralisation is <InlineMath math="-54.6\text{ kJ mol}^{-1}" />.
 
 # Why the other options are wrong

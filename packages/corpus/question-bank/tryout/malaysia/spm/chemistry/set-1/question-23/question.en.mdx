@@ -1,5 +1,37 @@
 Copper(II) sulfate solution is electrolysed using carbon electrodes until <InlineMath math="0.64\text{ g}" /> of copper has been deposited at the cathode.
 
+The diagram shows the set-up of the apparatus.
+
+<MathVisual
+  title={<>Electrolysis of copper(II) sulfate solution</>}
+  description={<>A beaker holds copper(II) sulfate solution. Two carbon electrodes dip into the solution, and wires connect them to the two terminals of a battery.</>}
+  labels={{
+    electrodes: <>Carbon electrodes</>,
+    solution: <>Copper(II) sulfate solution</>,
+    battery: <>Battery</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 12 }, y: { min: -1.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "solution", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 9, y: 0.5 }, { x: 9, y: 4.5 }, { x: 1, y: 4.5 }] },
+      { id: "beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 1, y: 6 }, { x: 1, y: 0.5 }, { x: 9, y: 0.5 }, { x: 9, y: 6 }] },
+      { id: "left-electrode", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1.5 }, { x: 3.6, y: 1.5 }, { x: 3.6, y: 7 }, { x: 3, y: 7 }] },
+      { id: "right-electrode", kind: "polygon", appearance: "secondary", vertices: [{ x: 6.4, y: 1.5 }, { x: 7, y: 1.5 }, { x: 7, y: 7 }, { x: 6.4, y: 7 }] },
+      { id: "left-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 3.3, y: 7 }, { x: 3.3, y: 9 }, { x: 4.6, y: 9 }] },
+      { id: "right-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 5.4, y: 9 }, { x: 6.7, y: 9 }, { x: 6.7, y: 7 }] },
+      { id: "battery-long-plate", kind: "segment", appearance: "highlight", from: { x: 4.6, y: 8.4 }, to: { x: 4.6, y: 9.6 } },
+      { id: "battery-short-plate", kind: "segment", appearance: "highlight", from: { x: 5.4, y: 8.7 }, to: { x: 5.4, y: 9.3 } },
+    ],
+    labels: [
+      { key: "electrodes", objectId: "left-electrode", at: { x: 3, y: 6.5 }, placement: "left" },
+      { key: "solution", objectId: "solution", at: { x: 5, y: 0.5 }, placement: "below" },
+      { key: "battery", objectId: "battery-long-plate", at: { x: 4.6, y: 9.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Relative atomic mass: <InlineMath math="\text{Cu}=64" />. Molar volume of gas at room conditions <InlineMath math="=24\text{ dm}^3\text{ mol}^{-1}" />.
 
 What volume of gas is released at the anode at room conditions, and how does the pH of the solution change?

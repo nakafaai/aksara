@@ -8,6 +8,20 @@ Setarakan dulu kedua persamaan pembakaran untuk mengetahui **oksigen yang dibutu
 5(0{,}10-x)+4{,}5x&=0{,}48\ \Rightarrow\ 0{,}50-0{,}5x=0{,}48\ \Rightarrow\ x=0{,}040
 \end{aligned}" />
 
+Grafik ini membagi campuran dan oksigennya di antara kedua gas. Propena butuh setengah mol oksigen lebih sedikit per mol, dan selisih itulah yang menentukan jumlahnya.
+
+<Chart
+  title={<>Setiap gas dalam campuran dan oksigen yang dipakainya</>}
+  description={<>Propana: <InlineMath math="0{,}060\text{ mol}" />, memakai <InlineMath math="0{,}30\text{ mol}" /> oksigen. Propena: <InlineMath math="0{,}040\text{ mol}" />, memakai <InlineMath math="0{,}18\text{ mol}" /> oksigen. Bersama-sama keduanya memakai <InlineMath math="0{,}48\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Propana", "Propena"]}
+  series={[
+    { label: "Mol dalam campuran", mark: "bar", values: [0.1 - (5 * 0.1 - 0.48) / 0.5, (5 * 0.1 - 0.48) / 0.5] },
+    { label: "Mol oksigen yang dipakai", mark: "bar", values: [5 * (0.1 - (5 * 0.1 - 0.48) / 0.5), 4.5 * ((5 * 0.1 - 0.48) / 0.5)] },
+  ]}
+  valueLabel="Jumlah (mol)"
+/>
+
 Cek: propana <InlineMath math="0{,}060" /> mol memakai <InlineMath math="0{,}30" /> mol oksigen dan propena <InlineMath math="0{,}040" /> mol memakai <InlineMath math="0{,}18" /> mol, totalnya <InlineMath math="0{,}48" /> mol. Jadi, campuran mengandung <InlineMath math="0{,}040" /> mol propena.
 
 # Mengapa pilihan lain salah

@@ -8,6 +8,33 @@ n(\text{H}_2\text{O})&=1{,}0\times\frac{50}{1000}=0{,}050\text{ mol}\\
 \Delta H&=-\frac{2730}{0{,}050}=-54{.}600\text{ J mol}^{-1}=-54{,}6\text{ kJ mol}^{-1}
 \end{aligned}" />
 
+Im Energieniveaudiagramm liegen die Produkte für jedes Mol gebildetes Wasser <InlineMath math="54{,}6\text{ kJ}" /> unter den Edukten.
+
+<MathVisual
+  title={<>Energieniveaudiagramm der Neutralisation</>}
+  description={<>Das Niveau von <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" /> liegt bei null. Das Niveau von <InlineMath math="\mathrm{H_2O}" /> liegt <InlineMath math="54{,}6\text{ kJ}" /> tiefer, der Pfeil von den Edukten zu den Produkten zeigt also nach unten und <InlineMath math="\Delta H=-54{,}6\text{ kJ mol}^{-1}" />.</>}
+  labels={{
+    reactants: <InlineMath math="\mathrm{H^+} + \mathrm{OH^-}" />,
+    products: <InlineMath math="\mathrm{H_2O}" />,
+    change: <InlineMath math="\Delta H=-54{,}6\text{ kJ mol}^{-1}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 80 }, y: { min: -70, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "reactant-level", kind: "segment", appearance: "primary", from: { x: 10, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "product-level", kind: "segment", appearance: "secondary", from: { x: 10, y: -54.6 }, to: { x: 40, y: -54.6 } },
+      { id: "enthalpy-change", kind: "vector", appearance: "answer", from: { x: 25, y: 0 }, to: { x: 25, y: -54.6 } },
+    ],
+    labels: [
+      { key: "reactants", objectId: "reactant-level", at: { x: 25, y: 0 }, placement: "above" },
+      { key: "products", objectId: "product-level", at: { x: 25, y: -54.6 }, placement: "below" },
+      { key: "change", objectId: "enthalpy-change", at: { x: 25, y: -27.3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Das Vorzeichen ist negativ, weil die Temperatur steigt, die Reaktion ist also exotherm. Die Neutralisationswärme beträgt also <InlineMath math="-54{,}6\text{ kJ mol}^{-1}" />.
 
 # Warum die anderen Antworten falsch sind

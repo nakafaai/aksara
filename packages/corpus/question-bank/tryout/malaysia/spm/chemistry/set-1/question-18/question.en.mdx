@@ -1,3 +1,33 @@
 In experiment I, <InlineMath math="50\text{ cm}^3" /> of <InlineMath math="0.20\text{ mol dm}^{-3}" /> sodium thiosulfate solution reacts with <InlineMath math="5\text{ cm}^3" /> of sulfuric acid, and mark X disappears from view after <InlineMath math="20\text{ s}" />. In experiment II, <InlineMath math="20\text{ cm}^3" /> of the same sodium thiosulfate solution is mixed with <InlineMath math="30\text{ cm}^3" /> of distilled water before <InlineMath math="5\text{ cm}^3" /> of the same sulfuric acid is added. Both experiments are at the same temperature.
 
+The diagram shows the set-up of the apparatus. Mark X is viewed from above, through the solution.
+
+<MathVisual
+  title={<>Conical flask on a paper marked with X</>}
+  description={<>A conical flask holding the reaction mixture stands on a sheet of white paper marked with a cross, X. The mark is viewed from directly above the flask.</>}
+  labels={{
+    mixture: <>Sodium thiosulfate solution and sulfuric acid</>,
+    paper: <>White paper with mark X</>,
+    eye: <>View from above</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 15 }, y: { min: -1, max: 11 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "paper", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0.4 }, { x: 10, y: 0.4 }, { x: 10, y: 1 }, { x: 0, y: 1 }] },
+      { id: "mixture", kind: "polygon", appearance: "primary", vertices: [{ x: 1.5, y: 1 }, { x: 8.5, y: 1 }, { x: 8.5 - (2.5 * 2) / 4.5, y: 3 }, { x: 1.5 + (2.5 * 2) / 4.5, y: 3 }] },
+      { id: "flask", kind: "polyline", appearance: "secondary", vertices: [{ x: 4, y: 7.5 }, { x: 4, y: 5.5 }, { x: 1.5, y: 1 }, { x: 8.5, y: 1 }, { x: 6, y: 5.5 }, { x: 6, y: 7.5 }] },
+      { id: "mark-stroke", kind: "segment", appearance: "highlight", from: { x: 4.6, y: 0.5 }, to: { x: 5.4, y: 0.9 } },
+      { id: "mark-cross", kind: "segment", appearance: "highlight", from: { x: 4.6, y: 0.9 }, to: { x: 5.4, y: 0.5 } },
+      { id: "line-of-sight", kind: "vector", appearance: "construction", from: { x: 5, y: 10.5 }, to: { x: 5, y: 8.2 } },
+    ],
+    labels: [
+      { key: "mixture", objectId: "mixture", at: { x: 8.5 - 2.5 / 4.5, y: 2 }, placement: "right" },
+      { key: "paper", objectId: "paper", at: { x: 10, y: 0.7 }, placement: "right" },
+      { key: "eye", objectId: "line-of-sight", at: { x: 5, y: 10.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Assume <InlineMath math="\tfrac1t" /> is directly proportional to the concentration of sodium thiosulfate. How long does it take for mark X to disappear in experiment II?

@@ -8,6 +8,20 @@ Gleiche zuerst beide Verbrennungsgleichungen aus, um **den Sauerstoffbedarf pro 
 5(0{,}10-x)+4{,}5x&=0{,}48\ \Rightarrow\ 0{,}50-0{,}5x=0{,}48\ \Rightarrow\ x=0{,}040
 \end{aligned}" />
 
+Das Diagramm teilt die Mischung und ihren Sauerstoff auf die beiden Gase auf. Propen braucht pro Mol ein halbes Mol weniger Sauerstoff, und genau dieser Unterschied legt seine Menge fest.
+
+<Chart
+  title={<>Jedes Gas der Mischung und sein Sauerstoffverbrauch</>}
+  description={<>Propan: <InlineMath math="0{,}060\text{ mol}" />, verbraucht <InlineMath math="0{,}30\text{ mol}" /> Sauerstoff. Propen: <InlineMath math="0{,}040\text{ mol}" />, verbraucht <InlineMath math="0{,}18\text{ mol}" /> Sauerstoff. Zusammen sind es <InlineMath math="0{,}48\text{ mol}" />.</>}
+  bars="apart"
+  categories={["Propan", "Propen"]}
+  series={[
+    { label: "Stoffmenge in der Mischung", mark: "bar", values: [0.1 - (5 * 0.1 - 0.48) / 0.5, (5 * 0.1 - 0.48) / 0.5] },
+    { label: "Verbrauchter Sauerstoff", mark: "bar", values: [5 * (0.1 - (5 * 0.1 - 0.48) / 0.5), 4.5 * ((5 * 0.1 - 0.48) / 0.5)] },
+  ]}
+  valueLabel="Stoffmenge (mol)"
+/>
+
 Probe: <InlineMath math="0{,}060" /> mol Propan verbrauchen <InlineMath math="0{,}30" /> mol Sauerstoff, <InlineMath math="0{,}040" /> mol Propen <InlineMath math="0{,}18" /> mol, zusammen <InlineMath math="0{,}48" /> mol. Die Mischung enthält also <InlineMath math="0{,}040" /> mol Propen.
 
 # Warum die anderen Antworten falsch sind

@@ -8,6 +8,20 @@ Pada suhu dan tekanan yang sama, perbandingan volume gas sama dengan perbandinga
 \text{gas tersisa}&=50+60=110\text{ cm}^3
 \end{aligned}" />
 
+Grafik ini menampilkan setiap gas sebelum dan sesudah pembakaran. Hanya oksigen sisa dan karbon dioksida yang terbentuk yang tetap berupa gas.
+
+<Chart
+  title={<>Volume gas sebelum dan sesudah reaksi</>}
+  description={<>Sebelum: <InlineMath math="20\text{ cm}^3" /> propana dan <InlineMath math="150\text{ cm}^3" /> oksigen. Setelah didinginkan: propana habis, oksigen tersisa <InlineMath math="50\text{ cm}^3" />, dan karbon dioksida <InlineMath math="60\text{ cm}^3" />, totalnya <InlineMath math="110\text{ cm}^3" />. Airnya berwujud cair, jadi tidak punya batang.</>}
+  bars="apart"
+  categories={["Propana", "Oksigen", "Karbon dioksida"]}
+  series={[
+    { label: "Sebelum", mark: "bar", values: [20, 150, 0] },
+    { label: "Sesudah", mark: "bar", values: [0, 150 - 5 * 20, 3 * 20] },
+  ]}
+  valueLabel="Volume (cm³)"
+/>
+
 Jadi, volume total gas yang tersisa adalah <InlineMath math="110\text{ cm}^3" />.
 
 # Mengapa pilihan lain salah

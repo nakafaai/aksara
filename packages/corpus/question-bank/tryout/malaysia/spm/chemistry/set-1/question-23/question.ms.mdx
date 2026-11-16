@@ -1,5 +1,37 @@
 Larutan kuprum(II) sulfat dielektrolisis menggunakan elektrod karbon sehingga <InlineMath math="0.64\text{ g}" /> kuprum terenap di katod.
 
+Rajah menunjukkan susunan radas.
+
+<MathVisual
+  title={<>Elektrolisis larutan kuprum(II) sulfat</>}
+  description={<>Sebuah bikar berisi larutan kuprum(II) sulfat. Dua elektrod karbon dicelupkan ke dalam larutan, dan wayar menyambungkannya kepada dua terminal bateri.</>}
+  labels={{
+    electrodes: <>Elektrod karbon</>,
+    solution: <>Larutan kuprum(II) sulfat</>,
+    battery: <>Bateri</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3, max: 12 }, y: { min: -1.5, max: 10.5 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "solution", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 9, y: 0.5 }, { x: 9, y: 4.5 }, { x: 1, y: 4.5 }] },
+      { id: "beaker", kind: "polyline", appearance: "reference", vertices: [{ x: 1, y: 6 }, { x: 1, y: 0.5 }, { x: 9, y: 0.5 }, { x: 9, y: 6 }] },
+      { id: "left-electrode", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 1.5 }, { x: 3.6, y: 1.5 }, { x: 3.6, y: 7 }, { x: 3, y: 7 }] },
+      { id: "right-electrode", kind: "polygon", appearance: "secondary", vertices: [{ x: 6.4, y: 1.5 }, { x: 7, y: 1.5 }, { x: 7, y: 7 }, { x: 6.4, y: 7 }] },
+      { id: "left-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 3.3, y: 7 }, { x: 3.3, y: 9 }, { x: 4.6, y: 9 }] },
+      { id: "right-wire", kind: "polyline", appearance: "construction", vertices: [{ x: 5.4, y: 9 }, { x: 6.7, y: 9 }, { x: 6.7, y: 7 }] },
+      { id: "battery-long-plate", kind: "segment", appearance: "highlight", from: { x: 4.6, y: 8.4 }, to: { x: 4.6, y: 9.6 } },
+      { id: "battery-short-plate", kind: "segment", appearance: "highlight", from: { x: 5.4, y: 8.7 }, to: { x: 5.4, y: 9.3 } },
+    ],
+    labels: [
+      { key: "electrodes", objectId: "left-electrode", at: { x: 3, y: 6.5 }, placement: "left" },
+      { key: "solution", objectId: "solution", at: { x: 5, y: 0.5 }, placement: "below" },
+      { key: "battery", objectId: "battery-long-plate", at: { x: 4.6, y: 9.6 }, placement: "above" },
+    ],
+  }}
+/>
+
 Jisim atom relatif: <InlineMath math="\text{Cu}=64" />. Isi padu molar gas pada keadaan bilik <InlineMath math="=24\text{ dm}^3\text{ mol}^{-1}" />.
 
 Berapakah isi padu gas yang terbebas di anod pada keadaan bilik, dan apakah perubahan pH larutan?
