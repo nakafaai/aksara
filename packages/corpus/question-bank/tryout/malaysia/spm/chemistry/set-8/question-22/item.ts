@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$13.9\\text{ g}$$" },
-        { correct: false, label: "$$3.47\\text{ g}$$" },
-        { correct: false, label: "$$6.62\\text{ g}$$" },
-        { correct: true, label: "$$6.95\\text{ g}$$" },
+        { correct: false, label: "$$1.08\\text{ g}$$, pH $$7.0$$" },
+        { correct: false, label: "$$0.54\\text{ g}$$, pH $$1.3$$" },
+        { correct: false, label: "$$1.08\\text{ g}$$, pH $$0.70$$" },
+        { correct: true, label: "$$1.08\\text{ g}$$, pH $$1.0$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$13.9\\text{ g}$$" },
-        { correct: false, label: "$$3.47\\text{ g}$$" },
-        { correct: false, label: "$$6.62\\text{ g}$$" },
-        { correct: true, label: "$$6.95\\text{ g}$$" },
+        { correct: false, label: "$$1.08\\text{ g}$$, pH $$7.0$$" },
+        { correct: false, label: "$$0.54\\text{ g}$$, pH $$1.3$$" },
+        { correct: false, label: "$$1.08\\text{ g}$$, pH $$0.70$$" },
+        { correct: true, label: "$$1.08\\text{ g}$$, pH $$1.0$$" },
       ],
     },
   },
