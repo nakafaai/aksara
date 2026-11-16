@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "2.7 g of aluminium holds the same number of delocalised electrons as 2.3 g of sodium, because both are 0.10 mol",
+            "Sodium $$0.042\\text{ mol}$$ and aluminium $$0.100\\text{ mol}$$, so aluminium has about $$2.4$$ times as many",
         },
         {
           correct: false,
           label:
-            "Sodium holds more delocalised electrons per gram, because its atoms are larger",
+            "Sodium $$0.042\\text{ mol}$$ and aluminium $$0.300\\text{ mol}$$, but sodium melts higher because its atoms are larger",
         },
         {
           correct: false,
           label:
-            "2.7 g of aluminium holds $$6.02 \\\\times 10^{22}$$ delocalised electrons, the same as 2.3 g of sodium",
+            "Sodium $$0.97\\text{ mol}$$ and aluminium $$2.70\\text{ mol}$$, so aluminium has about $$2.8$$ times as many",
         },
         {
           correct: true,
           label:
-            "2.7 g of aluminium holds $$1.81 \\\\times 10^{23}$$ delocalised electrons, three times as many as 2.3 g of sodium, so its metallic bonding is stronger and it melts higher",
+            "Sodium $$0.042\\text{ mol}$$ and aluminium $$0.300\\text{ mol}$$, about $$7$$ times as many, so aluminium has the stronger metallic bonding and melts higher",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "2.7 g aluminium mengandungi bilangan elektron dinyahsetempat yang sama dengan 2.3 g natrium, kerana kedua-duanya 0.10 mol",
+            "Natrium $$0.042\\text{ mol}$$ dan aluminium $$0.100\\text{ mol}$$, jadi aluminium mempunyai kira-kira $$2.4$$ kali ganda",
         },
         {
           correct: false,
           label:
-            "Natrium mengandungi lebih banyak elektron dinyahsetempat per gram, kerana atomnya lebih besar",
+            "Natrium $$0.042\\text{ mol}$$ dan aluminium $$0.300\\text{ mol}$$, tetapi natrium melebur pada suhu lebih tinggi kerana atomnya lebih besar",
         },
         {
           correct: false,
           label:
-            "2.7 g aluminium mengandungi $$6.02 \\\\times 10^{22}$$ elektron dinyahsetempat, sama dengan 2.3 g natrium",
+            "Natrium $$0.97\\text{ mol}$$ dan aluminium $$2.70\\text{ mol}$$, jadi aluminium mempunyai kira-kira $$2.8$$ kali ganda",
         },
         {
           correct: true,
           label:
-            "2.7 g aluminium mengandungi $$1.81 \\\\times 10^{23}$$ elektron dinyahsetempat, tiga kali lebih banyak daripada 2.3 g natrium, jadi ikatan logamnya lebih kuat dan takat leburnya lebih tinggi",
+            "Natrium $$0.042\\text{ mol}$$ dan aluminium $$0.300\\text{ mol}$$, kira-kira $$7$$ kali ganda, jadi ikatan logam aluminium lebih kuat dan takat leburnya lebih tinggi",
         },
       ],
     },
