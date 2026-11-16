@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Methyl propanoate, giving $$1.6\\text{ g}$$ of methanol, with at least $$50\\text{ cm}^3$$ of the alkali",
+            "Methyl propanoate, $$90\\%$$ pure, giving $$1.44\\text{ g}$$ of methanol",
         },
         {
           correct: false,
           label:
-            "Propyl methanoate, giving $$3.0\\text{ g}$$ of propan-1-ol, with at least $$50\\text{ cm}^3$$ of the alkali",
+            "Ethyl ethanoate, $$84\\%$$ pure, giving $$2.07\\text{ g}$$ of ethanol",
         },
         {
           correct: true,
           label:
-            "Ethyl ethanoate, giving $$2.3\\text{ g}$$ of ethanol, with at least $$50\\text{ cm}^3$$ of the alkali",
+            "Ethyl ethanoate, $$90\\%$$ pure, giving $$2.07\\text{ g}$$ of ethanol",
         },
         {
           correct: false,
           label:
-            "Ethyl ethanoate, giving $$2.3\\text{ g}$$ of ethanol, with at least $$100\\text{ cm}^3$$ of the alkali",
+            "Ethyl ethanoate, $$90\\%$$ pure, giving $$2.30\\text{ g}$$ of ethanol",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Metil propanoat, menghasilkan $$1.6\\text{ g}$$ metanol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
+            "Metil propanoat, $$90\\%$$ tulen, menghasilkan $$1.44\\text{ g}$$ metanol",
         },
         {
           correct: false,
           label:
-            "Propil metanoat, menghasilkan $$3.0\\text{ g}$$ propan-1-ol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
+            "Etil etanoat, $$84\\%$$ tulen, menghasilkan $$2.07\\text{ g}$$ etanol",
         },
         {
           correct: true,
           label:
-            "Etil etanoat, menghasilkan $$2.3\\text{ g}$$ etanol, dengan sekurang-kurangnya $$50\\text{ cm}^3$$ alkali",
+            "Etil etanoat, $$90\\%$$ tulen, menghasilkan $$2.07\\text{ g}$$ etanol",
         },
         {
           correct: false,
           label:
-            "Etil etanoat, menghasilkan $$2.3\\text{ g}$$ etanol, dengan sekurang-kurangnya $$100\\text{ cm}^3$$ alkali",
+            "Etil etanoat, $$90\\%$$ tulen, menghasilkan $$2.30\\text{ g}$$ etanol",
         },
       ],
     },

@@ -1,27 +1,26 @@
-# The salt fixes the acid part, and the rest is the alcohol
+# The salt names the ester and also counts it
 
-Test the possible salts: sodium methanoate, <InlineMath math="\text{HCOONa}" />, is <InlineMath math="68" />. Sodium ethanoate, <InlineMath math="\text{CH}_3\text{COONa}" />, is <InlineMath math="15 + 44 + 23 = 82" />. Sodium propanoate is <InlineMath math="96" />. So the acid part is **ethanoate**, with two carbons.
+Test the possible salts: sodium methanoate is <InlineMath math="68" />, sodium ethanoate, <InlineMath math="\text{CH}_3\text{COONa}" />, is <InlineMath math="15 + 44 + 23 = 82" />, and sodium propanoate is <InlineMath math="96" />. So the acid part is **ethanoate**, the other two carbons are the alcohol part, and the ester is ethyl ethanoate, <InlineMath math="\text{CH}_3\text{COOC}_2\text{H}_5" />, <InlineMath math="M_r = 88" />.
 
-The ester has four carbons, so the alcohol part has the other two: ethanol. The ester is **ethyl ethanoate**, <InlineMath math="\text{CH}_3\text{COOC}_2\text{H}_5" />.
+The impurities hold no sodium, so the salt counts only the ester: <InlineMath math="3.69 \div 82 = 0.045" /> mol of salt from <InlineMath math="0.045" /> mol of ester.
 
 <Mermaid
-  title={<>Splitting the Ester</>}
-  description={<>A salt of mass <InlineMath math="82" /> is sodium ethanoate, so the acid part has two carbons and the alcohol part takes the other two.</>}
+  title={<>From the Salt Back to the Ester</>}
+  description={<>The salt of mass <InlineMath math="82" /> is sodium ethanoate, <InlineMath math="0.045\text{ mol}" /> of it, so the sample held <InlineMath math="3.96\text{ g}" /> of ethyl ethanoate.</>}
   chart={`
     flowchart LR
-      N0["C₄H₈O₂ ester"] --> N1["Salt Mr 82: CH₃COONa"]
-      N1 --> N2["Acid part: ethanoate"]
-      N2 --> N3["Alcohol part: C₂H₅, ethanol"]
-      N3 --> N4["0.050 mol ester → 2.3 g ethanol"]
+      N0["Salt Mr 82: CH₃COONa"] --> N1["Ester: ethyl ethanoate, Mr 88"]
+      N2["3.69 g ÷ 82 = 0.045 mol salt"] --> N3["0.045 mol ester: 3.96 g"]
+      N1 --> N3
+      N3 --> N4["3.96 ÷ 4.4 = 90% pure"]
+      N3 --> N5["0.045 mol ethanol: 2.07 g"]
   `}
 />
 
-Ester: <InlineMath math="M_r = 88" />, so <InlineMath math="4.4 \div 88 = 0.050" /> mol. Each ester molecule gives **one alcohol molecule**: <InlineMath math="0.050 \times 46 = 2.3" /> g of ethanol.
-
-**Alkali**: the ester has **one ester link**, so each molecule takes one sodium hydroxide: <InlineMath math="0.050" /> mol, which is <InlineMath math="0.050 \div 1.0 = 0.050\text{ dm}^3 = 50\text{ cm}^3" /> at the least.
+Ester in the sample: <InlineMath math="0.045 \times 88 = 3.96" /> g, so the purity is <InlineMath math="3.96 \div 4.4 \times 100\% = 90\%" />. Each ester molecule gives one ethanol molecule: <InlineMath math="0.045 \times 46 = 2.07" /> g.
 
 # Why the other options are wrong
 
 - Methyl propanoate would give sodium propanoate, <InlineMath math="M_r = 96" />, **not** <InlineMath math="82" />.
-- Propyl methanoate would give sodium methanoate, <InlineMath math="M_r = 68" />.
-- <InlineMath math="100\text{ cm}^3" /> uses two sodium hydroxide per ester molecule, but one ester link takes one.
+- <InlineMath math="84\%" /> divides the salt's mass by the sample's, but the salt is a different compound with a different molar mass.
+- <InlineMath math="2.30\text{ g}" /> treats the whole <InlineMath math="4.4" /> g as ester and ignores the impurities.
