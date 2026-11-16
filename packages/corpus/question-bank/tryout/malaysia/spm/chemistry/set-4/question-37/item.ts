@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "18 kg, because one water molecule leaves for each repeat unit",
+            "$$36\\text{ kg}$$ of water, and a percentage yield of $$83\\%$$",
         },
         {
           correct: true,
           label:
-            "36 kg, because each repeat unit forms two amide links, each giving off one water molecule",
-        },
-        {
-          correct: false,
-          label: "No water forms, because nylon-6,6 is an addition polymer",
+            "$$72\\text{ kg}$$ of water, and a percentage yield of $$90\\%$$",
         },
         {
           correct: false,
           label:
-            "72 kg, because four water molecules leave for each repeat unit",
+            "$$72\\text{ kg}$$ of water, and a percentage yield of $$78\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "No water, because nylon-6,6 is an addition polymer, and a percentage yield of $$78\\%$$",
         },
       ],
     },
@@ -36,23 +37,20 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "18 kg, kerana satu molekul air keluar bagi setiap unit berulang",
+          label: "$$36\\text{ kg}$$ air, dan peratus hasil $$83\\%$$",
         },
         {
           correct: true,
-          label:
-            "36 kg, kerana setiap unit berulang membentuk dua rangkaian amida, masing-masing membebaskan satu molekul air",
+          label: "$$72\\text{ kg}$$ air, dan peratus hasil $$90\\%$$",
+        },
+        {
+          correct: false,
+          label: "$$72\\text{ kg}$$ air, dan peratus hasil $$78\\%$$",
         },
         {
           correct: false,
           label:
-            "Tiada air terbentuk, kerana nilon-6,6 ialah polimer penambahan",
-        },
-        {
-          correct: false,
-          label:
-            "72 kg, kerana empat molekul air keluar bagi setiap unit berulang",
+            "Tiada air, kerana nilon-6,6 ialah polimer penambahan, dan peratus hasil $$78\\%$$",
         },
       ],
     },

@@ -12,41 +12,48 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "16.2 g of glucose, because mass is conserved",
+          label:
+            "$$16.2\\text{ g}$$ of glucose, and $$3.84\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: true,
           label:
-            "18.0 g of glucose, because each glucose unit takes up one water molecule as it is released",
+            "$$18.0\\text{ g}$$ of glucose, and $$3.84\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
           label:
-            "32.4 g of glucose, because each unit splits into two glucose molecules",
+            "$$18.0\\text{ g}$$ of glucose, and $$4.80\\text{ dm}^3$$ of carbon dioxide",
         },
         {
           correct: false,
-          label: "9.0 g of glucose, because half the starch stays unhydrolysed",
+          label:
+            "$$18.0\\text{ g}$$ of glucose, and $$1.92\\text{ dm}^3$$ of carbon dioxide",
         },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "16.2 g glukosa, kerana jisim terabadi" },
+        {
+          correct: false,
+          label:
+            "$$16.2\\text{ g}$$ glukosa, dan $$3.84\\text{ dm}^3$$ karbon dioksida",
+        },
         {
           correct: true,
           label:
-            "18.0 g glukosa, kerana setiap unit glukosa mengambil satu molekul air semasa dibebaskan",
+            "$$18.0\\text{ g}$$ glukosa, dan $$3.84\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
           label:
-            "32.4 g glukosa, kerana setiap unit terpecah kepada dua molekul glukosa",
+            "$$18.0\\text{ g}$$ glukosa, dan $$4.80\\text{ dm}^3$$ karbon dioksida",
         },
         {
           correct: false,
-          label: "9.0 g glukosa, kerana separuh kanji tidak terhidrolisis",
+          label:
+            "$$18.0\\text{ g}$$ glukosa, dan $$1.92\\text{ dm}^3$$ karbon dioksida",
         },
       ],
     },
