@@ -1,0 +1,27 @@
+# Pereaksi yang habis lebih dulu menentukan hasil
+
+Saat dua pereaksi ditakar, **pereaksi yang habis lebih dulu membatasi banyaknya hasil**. Bandingkan kebutuhan tiap pereaksi dengan yang tersedia.
+
+<Chart
+  title={<>Mol yang Tersedia dan Mol yang Terpakai</>}
+  bars="apart"
+  categories={["Magnesium", "Oksigen"]}
+  series={[
+    { label: "Tersedia", mark: "bar", values: [0.25, 0.1] },
+    { label: "Terpakai", mark: "bar", values: [0.2, 0.1] },
+  ]}
+  valueLabel="Jumlah (mol)"
+  description={<>Magnesium: <InlineMath math="0{,}25\text{ mol}" /> tersedia, <InlineMath math="0{,}20\text{ mol}" /> terpakai. Oksigen: <InlineMath math="0{,}10\text{ mol}" /> tersedia, seluruh <InlineMath math="0{,}10\text{ mol}" /> terpakai.</>}
+/>
+
+- Mol Mg: <InlineMath math="\dfrac{6{,}0}{24} = 0{,}25\text{ mol}" />.
+- Mol <InlineMath math="\text{O}_2" />: <InlineMath math="\dfrac{2{,}4}{24} = 0{,}10\text{ mol}" />.
+- <InlineMath math="0{,}10" /> mol <InlineMath math="\text{O}_2" /> hanya bereaksi dengan <InlineMath math="2 \times 0{,}10 = 0{,}20" /> mol Mg, jadi oksigen habis dan <InlineMath math="0{,}05" /> mol Mg tersisa.
+- Mol MgO: <InlineMath math="2 \times 0{,}10 = 0{,}20\text{ mol}" />.
+- Massa MgO: <InlineMath math="0{,}20 \times (24 + 16) = 8{,}0\text{ g}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10{,}0\text{ g}" /> menganggap **semua magnesium bereaksi**, padahal oksigennya tidak cukup.
+- <InlineMath math="4{,}0\text{ g}" /> memasangkan <InlineMath math="1" /> mol <InlineMath math="\text{O}_2" /> dengan <InlineMath math="1" /> mol MgO, mengabaikan angka <InlineMath math="2" /> di persamaan.
+- <InlineMath math="12{,}0\text{ g}" /> menjumlahkan massa magnesium dan oksigen seakan-akan keduanya habis.
