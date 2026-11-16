@@ -6,6 +6,43 @@ The first component fixes the multiplier: <InlineMath math="6=k\cdot2" />, so <I
 
 <BlockMath math="p-2=3\cdot3\ \Rightarrow\ p=11,\qquad q-3=3\cdot1\ \Rightarrow\ q=6" />
 
+Draw the three points on their line, with <InlineMath math="|\overrightarrow{AB}|" /> as the unit. **From <InlineMath math="A" /> to <InlineMath math="C" /> there are three steps of <InlineMath math="\overrightarrow{AB}" />**, one to reach <InlineMath math="B" /> and two more to reach <InlineMath math="C" />.
+
+<MathVisual
+  title={<>The points <InlineMath math="A" />, <InlineMath math="B" />, and <InlineMath math="C" /> on one line</>}
+  description={<>The horizontal line holds the three points for <InlineMath math="p=11" /> and <InlineMath math="q=6" />. One unit of length is <InlineMath math="|\overrightarrow{AB}|=\sqrt{14}" />. The point <InlineMath math="B" /> is <InlineMath math="1" /> unit from <InlineMath math="A" />, and <InlineMath math="C" /> is <InlineMath math="3" /> units from <InlineMath math="A" />, so <InlineMath math="AB:BC=1:2" /> and <InlineMath math="B" /> isn't the midpoint of <InlineMath math="AC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    first: <InlineMath math="\overrightarrow{AB}" />,
+    rest: <InlineMath math="\overrightarrow{BC}=2\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "rest", kind: "vector", appearance: "secondary", from: { x: 1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0 }, placement: "above" },
+      { key: "rest", objectId: "rest", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. The statement that <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> are collinear for <InlineMath math="p=11" /> and <InlineMath math="q=6" /> is true, because then <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />.
 2. The statement that <InlineMath math="B" /> is the midpoint of <InlineMath math="AC" /> is false. The first component forces <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />, not <InlineMath math="2\overrightarrow{AB}" />, so <InlineMath math="B" /> is one third of the way from <InlineMath math="A" />.
 3. The statement <InlineMath math="AB:BC=1:2" /> is true. With <InlineMath math="C(7,11,6)" />, <InlineMath math="\overrightarrow{BC}=(4,6,2)=2\overrightarrow{AB}" />.

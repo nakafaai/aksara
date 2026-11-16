@@ -9,6 +9,40 @@ Alle drei Vektoren haben dieselbe Länge, <InlineMath math="\sqrt{1+1+0}=\sqrt2"
 
 <BlockMath math="|\vec{u}-\vec{v}|=|(1,0,-1)|=\sqrt2,\qquad |\vec{v}-\vec{w}|=|(-1,1,0)|=\sqrt2,\qquad |\vec{w}-\vec{u}|=|(0,-1,1)|=\sqrt2" />
 
+Zeichne <InlineMath math="\vec u" /> und <InlineMath math="\vec v" /> in der Ebene, die beide enthält. **Beide haben die Länge <InlineMath math="\sqrt2" /> und schließen <InlineMath math="60^\circ" /> ein**, also ist auch die Strecke zwischen ihren Spitzen <InlineMath math="\sqrt2" /> lang. Die anderen Paare verhalten sich genauso, also ist <InlineMath math="UVW" /> gleichseitig.
+
+<MathVisual
+  title={<>Zwei Ortsvektoren mit <InlineMath math="60^\circ" /></>}
+  description={<>Die Vektoren <InlineMath math="\vec u" /> und <InlineMath math="\vec v" /> haben beide die Länge <InlineMath math="\sqrt2" /> und schließen <InlineMath math="60^\circ" /> ein. Die Strecke von der Spitze von <InlineMath math="\vec u" /> zur Spitze von <InlineMath math="\vec v" /> ist <InlineMath math="UV=|\vec u-\vec v|=\sqrt2" />, also ist das Dreieck <InlineMath math="OUV" /> gleichseitig.</>}
+  labels={{
+    u: <InlineMath math="\vec u" />,
+    v: <InlineMath math="\vec v" />,
+    side: <InlineMath math="\sqrt2" />,
+    angle: <InlineMath math="60^\circ" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.3, max: 1.8 },
+      y: { min: -0.3, max: 1.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "u", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2), y: 0 } },
+      { id: "v", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "side", kind: "segment", appearance: "answer", from: { x: Math.sqrt(2), y: 0 }, to: { x: Math.sqrt(2) / 2, y: Math.sqrt(6) / 2 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.3, startDegrees: 0, sweepDegrees: 60 },
+    ],
+    labels: [
+      { key: "u", objectId: "u", at: { x: Math.sqrt(2) / 2, y: 0 }, placement: "below" },
+      { key: "v", objectId: "v", at: { x: Math.sqrt(2) / 4, y: Math.sqrt(6) / 4 }, placement: "left" },
+      { key: "side", objectId: "side", at: { x: 3 * Math.sqrt(2) / 4, y: Math.sqrt(6) / 4 }, placement: "right" },
+      { key: "angle", objectId: "angle", at: { x: 0.3, y: 0.15 }, placement: "right" },
+    ],
+  }}
+/>
+
 5. Die Aussage über <InlineMath math="\vec{s}=\vec{u}+\vec{v}+\vec{w}=(2,2,2)" /> ist richtig. Das Skalarprodukt mit jedem der Vektoren ist gleich, <InlineMath math="\vec{s}\cdot\vec{u}=\vec{s}\cdot\vec{v}=\vec{s}\cdot\vec{w}=4" />, und die drei Vektoren sind gleich lang, also stimmen die Kosinuswerte der Winkel überein: <InlineMath math="\frac{4}{2\sqrt3\cdot\sqrt2}" />.
 
 Richtig sind also die Aussagen über den Winkel <InlineMath math="60^\circ" />, das gleichseitige Dreieck <InlineMath math="UVW" /> und die gleich großen Winkel von <InlineMath math="\vec{u}+\vec{v}+\vec{w}" />.

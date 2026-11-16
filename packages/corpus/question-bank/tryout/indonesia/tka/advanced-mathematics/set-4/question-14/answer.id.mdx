@@ -6,6 +6,41 @@ Pusatnya <InlineMath math="P(3,-2)" /> dan <InlineMath math="r=2" />. Jarak <Inl
 
 <BlockMath math="|PT|=\sqrt{(2-3)^2+(-1+2)^2}=\sqrt{1+1}=\sqrt2\approx1{,}41" />
 
+Gambar lingkaran dan titik <InlineMath math="T" />. **Ruas dari pusat ke <InlineMath math="T" /> lebih pendek daripada jari-jari**, jadi <InlineMath math="T" /> berada di dalam lingkaran.
+
+<MathVisual
+  title={<>Titik <InlineMath math="T" /> dan lingkaran berpusat <InlineMath math="P" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="P(3,-2)" /> dengan jari-jari <InlineMath math="2" />. Titik <InlineMath math="T(2,-1)" /> berjarak <InlineMath math="\sqrt2\approx1{,}41" /> dari pusat, kurang dari jari-jari.</>}
+  labels={{
+    p: <InlineMath math="P(3,-2)" />,
+    t: <InlineMath math="T(2,-1)" />,
+    pt: <InlineMath math="\sqrt2" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -5, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 3, y: -2 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: 5, y: -2 } },
+      { id: "pt", kind: "segment", appearance: "answer", from: { x: 3, y: -2 }, to: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 3, y: -2 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "t", objectId: "t", at: { x: 2, y: -1 }, placement: "above-left" },
+      { key: "pt", objectId: "pt", at: { x: 2.5, y: -1.5 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 4, y: -2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Karena <InlineMath math="\sqrt2<2" />, titik <InlineMath math="T" /> berada di dalam lingkaran. Cara singkat memberi kesimpulan yang sama: substitusi <InlineMath math="T" /> ke ruas kiri persamaan memberi <InlineMath math="4+1-12-4+9=-2<0" />.
 
 Jadi, titik <InlineMath math="T" /> berada di dalam lingkaran dan berjarak <InlineMath math="\sqrt2" /> dari pusat.

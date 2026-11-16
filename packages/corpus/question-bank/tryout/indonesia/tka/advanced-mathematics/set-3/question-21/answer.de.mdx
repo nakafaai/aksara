@@ -6,6 +6,34 @@ Für <InlineMath math="x\ne3" /> darfst du <InlineMath math="x-3" /> kürzen, da
 
 <BlockMath math="\lim_{x\to3}\frac{(x-3)(x+1)}{x-3}=\lim_{x\to3}(x+1)=4" />
 
+Zeichne <InlineMath math="f" /> nach dem Kürzen des Faktors <InlineMath math="x-3" />. **Der Graph ist die Gerade <InlineMath math="y=x+1" /> mit einem Loch nur bei <InlineMath math="x=3" />**, und das Loch schließt sich mit <InlineMath math="f(3)=4" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f" /> und der Punkt, der sein Loch füllt</>}
+  description={<>Für <InlineMath math="x\ne3" /> ist der Graph von <InlineMath math="f" /> die Gerade <InlineMath math="y=x+1" />. Der Punkt <InlineMath math="(3,\ 4)" /> ist der einzige Punkt der Geraden, der <InlineMath math="f" /> noch fehlt, also macht <InlineMath math="f(3)=4" /> den Graphen ohne Unterbrechung ganz.</>}
+  labels={{
+    line: <InlineMath math="y=x+1" />,
+    fill: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -2, max: 6 } },
+      { id: "fill", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "fill", objectId: "fill", at: { x: 3, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 Also muss <InlineMath math="f(3)" /> als <InlineMath math="4" /> festgelegt werden. Mit diesem Wert gilt <InlineMath math="f(x)=x+1" /> für jede reelle Zahl, und das ist offensichtlich stetig.
 
 - <InlineMath math="0" /> nimmt an, ein Zähler gleich null mache den Grenzwert null. Der Nenner ist aber auch null.

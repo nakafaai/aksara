@@ -7,6 +7,19 @@ A^4&=A^3A=\begin{pmatrix} 16 & 8+24 \\ 0 & 16 \end{pmatrix}=\begin{pmatrix} 16 &
 A^5&=A^4A=\begin{pmatrix} 32 & 16+64 \\ 0 & 32 \end{pmatrix}=\begin{pmatrix} 32 & 80 \\ 0 & 32 \end{pmatrix}
 \end{aligned}" />
 
+Compare the two kinds of entries for each power. **The top-right entry catches the diagonal at <InlineMath math="n=2" />, then leaves it far behind**, because every multiplication adds a contribution from the diagonal.
+
+<Chart
+  title={<>Entries of <InlineMath math="A^n" /> by power <InlineMath math="n" /></>}
+  description={<>The diagonal entries of <InlineMath math="A^n" /> are <InlineMath math="2,\ 4,\ 8,\ 16,\ 32" />, which is <InlineMath math="2^n" />. The top-right entries are <InlineMath math="1,\ 4,\ 12,\ 32,\ 80" />, which is <InlineMath math="n\cdot2^{n-1}" />. The bottom-left entry is always <InlineMath math="0" />.</>}
+  categories={["n = 1", "n = 2", "n = 3", "n = 4", "n = 5"]}
+  series={[
+    { label: "Diagonal entry", mark: "line", values: [2, 4, 8, 16, 32] },
+    { label: "Top-right entry", mark: "line", values: [1, 4, 12, 32, 80] },
+  ]}
+  valueLabel="Entry value"
+/>
+
 The diagonal entries are always <InlineMath math="2^n" />. The top right entry follows <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> for <InlineMath math="n=2,3,4,5" />. It grows faster than the diagonal because each multiplication adds two contributions to it, one from the previous top right entry and one from a diagonal entry.
 
 The entries of <InlineMath math="A^5" /> add up to <InlineMath math="32+80+0+32=144" />.

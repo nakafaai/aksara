@@ -2,6 +2,46 @@ The columns of a transformation matrix are **the images of the two unit vectors*
 
 The point <InlineMath math="(1,0)" /> on the positive <InlineMath math="x" />-axis moves to the positive <InlineMath math="y" />-axis, and <InlineMath math="(0,1)" /> moves to the negative <InlineMath math="x" />-axis. Both turn a quarter turn anticlockwise. Lengths and angles are kept, because the rule is <InlineMath math="(x,y)\mapsto(-y,x)" /> and <InlineMath math="(-y)^2+x^2=x^2+y^2" />.
 
+Draw the two unit vectors and one sample point with their images. **Everything turns a quarter turn anticlockwise about <InlineMath math="O" />**, with no change in length.
+
+<MathVisual
+  title={<>Images of some vectors under the matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /></>}
+  description={<>The vector <InlineMath math="(1,0)" /> is sent to <InlineMath math="(0,1)" />, and the vector <InlineMath math="(0,1)" /> is sent to <InlineMath math="(-1,0)" />. The point <InlineMath math="(3,1)" /> is sent to <InlineMath math="(-1,3)" />, and the dashed arc shows the <InlineMath math="90^\circ" /> anticlockwise turn from that point to its image.</>}
+  labels={{
+    e1: <InlineMath math="(1,0)" />,
+    "e1-image": <InlineMath math="(0,1)" />,
+    e2: <InlineMath math="(0,1)" />,
+    "e2-image": <InlineMath math="(-1,0)" />,
+    p: <InlineMath math="(3,1)" />,
+    "p-image": <InlineMath math="(-1,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 4 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: Math.sqrt(10), startDegrees: Math.atan(1 / 3) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "e1", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "e2", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "e2-image", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "p", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "p-image", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -1, y: 3 } },
+    ],
+    labels: [
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "e1-image", objectId: "e2", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "e2-image", objectId: "e2-image", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "p-image", objectId: "p-image", at: { x: -1, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
 Example: <InlineMath math="(3,1)" /> maps to <InlineMath math="(-1,3)" />, which lies in quadrant II, one quadrant anticlockwise from quadrant I.
 
 So the transformation is a <InlineMath math="90^\circ" /> anticlockwise rotation about <InlineMath math="O" />.

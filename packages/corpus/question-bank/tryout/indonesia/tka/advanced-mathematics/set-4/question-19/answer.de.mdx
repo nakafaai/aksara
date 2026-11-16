@@ -8,6 +8,39 @@ x^2-2x+1+y^2+6y+9-36&=0 \\
 x^2+y^2-2x+6y-26&=0
 \end{aligned}" />
 
+Verfolge Mittelpunkt und Radius durch beide Schritte. **Die Streckung vergrößert den Kreis nur von <InlineMath math="r=3" /> auf <InlineMath math="r=6" />, dann verschiebt die Translation ihn als Ganzes** zum Mittelpunkt <InlineMath math="(1,-3)" />.
+
+<MathVisual
+  title={<>Der Kreis vor und nach beiden Abbildungen</>}
+  description={<>Der Ausgangskreis hat den Mittelpunkt <InlineMath math="O" /> und den Radius <InlineMath math="3" />. Nach der Streckung bleibt der Mittelpunkt bei <InlineMath math="O" />, und der Radius ist <InlineMath math="6" />. Der Verschiebungspfeil <InlineMath math="(1,-3)" /> bringt diesen Mittelpunkt nach <InlineMath math="(1,-3)" />, wo der Endkreis den Radius <InlineMath math="6" /> hat.</>}
+  labels={{
+    start: <InlineMath math="r=3" />,
+    grown: <InlineMath math="r=6" />,
+    end: <InlineMath math="(1,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -10, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "grown", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "final", kind: "circle", appearance: "answer", center: { x: 1, y: -3 }, radius: 6 },
+      { id: "shift", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -3 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 1, y: -3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "grown", objectId: "grown", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 1, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Der Bildkreis ist also <InlineMath math="x^2+y^2-2x+6y-26=0" />.
 
 - <InlineMath math="x^2+y^2-2x+6y-8=0" /> verdoppelt <InlineMath math="r^2" /> auf <InlineMath math="18" />. Eine Streckung multipliziert den Radius, also wird <InlineMath math="r^2" /> mit <InlineMath math="4" /> multipliziert.

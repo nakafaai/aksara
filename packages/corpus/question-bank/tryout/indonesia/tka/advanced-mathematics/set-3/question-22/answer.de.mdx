@@ -2,6 +2,35 @@ Direktes Einsetzen ergibt <InlineMath math="\frac00" />. Verwende den Standardgr
 
 <BlockMath math="\lim_{x\to0}h(x)=\lim_{x\to0}\frac{\sin5x-\sin x}{\sin2x}=\lim_{x\to0}\frac{\dfrac{\sin5x}{x}-\dfrac{\sin x}{x}}{\dfrac{\sin2x}{x}}=\frac{5-1}{2}=2" />
 
+Zeichne <InlineMath math="h" /> in der Nähe von null. **Der Graph stimmt mit <InlineMath math="2\cos3x" /> überein, dessen Hochpunkt genau bei <InlineMath math="(0,\ 2)" /> liegt**, obwohl <InlineMath math="h(0)" /> selbst nicht definiert ist.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="h" /> in der Nähe von <InlineMath math="x=0" /></>}
+  description={<>Die Kurve <InlineMath math="y=\frac{\sin5x-\sin x}{\sin2x}" /> für <InlineMath math="x" /> zwischen <InlineMath math="-0{,}45" /> und <InlineMath math="0{,}45" /> im Bogenmaß, ohne <InlineMath math="x=0" />. Sie fällt zu beiden Seiten des Punktes <InlineMath math="(0,\ 2)" /> ab.</>}
+  labels={{
+    left: <InlineMath math="y=h(x)" />,
+    target: <InlineMath math="(0,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 0.5 },
+      y: { min: 0, max: 2.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(sin(5*x) - sin(x))/sin(2*x)", domain: { min: -0.45, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(sin(5*x) - sin(x))/sin(2*x)", domain: { min: 0.005, max: 0.45 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.3, y: 2 * Math.cos(0.9) }, placement: "below-left" },
+      { key: "target", objectId: "target", at: { x: 0, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Das Teilen durch <InlineMath math="x" /> ist erlaubt, weil in der Nähe der Grenzstelle <InlineMath math="x\ne0" /> gilt, und alle drei Standardgrenzwerte existieren, mit einem Grenzwert ungleich null im Nenner.
 
 Das Additionstheorem bestätigt das: <InlineMath math="\sin5x-\sin x=2\cos3x\sin2x" />, also wird der Bruch zu <InlineMath math="2\cos3x" />, und das geht gegen <InlineMath math="2\cos0=2" />.

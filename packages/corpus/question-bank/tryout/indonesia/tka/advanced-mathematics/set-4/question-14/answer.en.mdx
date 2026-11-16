@@ -6,6 +6,41 @@ The centre is <InlineMath math="P(3,-2)" /> and <InlineMath math="r=2" />. The d
 
 <BlockMath math="|PT|=\sqrt{(2-3)^2+(-1+2)^2}=\sqrt{1+1}=\sqrt2\approx1.41" />
 
+Draw the circle and the point <InlineMath math="T" />. **The segment from the centre to <InlineMath math="T" /> is shorter than the radius**, so <InlineMath math="T" /> is inside the circle.
+
+<MathVisual
+  title={<>The point <InlineMath math="T" /> and the circle with centre <InlineMath math="P" /></>}
+  description={<>The circle has centre <InlineMath math="P(3,-2)" /> and radius <InlineMath math="2" />. The point <InlineMath math="T(2,-1)" /> is <InlineMath math="\sqrt2\approx1.41" /> from the centre, less than the radius.</>}
+  labels={{
+    p: <InlineMath math="P(3,-2)" />,
+    t: <InlineMath math="T(2,-1)" />,
+    pt: <InlineMath math="\sqrt2" />,
+    r: <InlineMath math="r=2" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 6 },
+      y: { min: -5, max: 1 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 3, y: -2 }, radius: 2 },
+      { id: "r", kind: "segment", appearance: "construction", from: { x: 3, y: -2 }, to: { x: 5, y: -2 } },
+      { id: "pt", kind: "segment", appearance: "answer", from: { x: 3, y: -2 }, to: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "secondary", at: { x: 3, y: -2 } },
+      { id: "t", kind: "point", appearance: "answer", at: { x: 2, y: -1 } },
+    ],
+    labels: [
+      { key: "p", objectId: "p", at: { x: 3, y: -2 }, placement: "below" },
+      { key: "t", objectId: "t", at: { x: 2, y: -1 }, placement: "above-left" },
+      { key: "pt", objectId: "pt", at: { x: 2.5, y: -1.5 }, placement: "right" },
+      { key: "r", objectId: "r", at: { x: 4, y: -2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Since <InlineMath math="\sqrt2<2" />, the point <InlineMath math="T" /> lies inside the circle. A shortcut agrees: substituting <InlineMath math="T" /> into the left side of the equation gives <InlineMath math="4+1-12-4+9=-2<0" />.
 
 So <InlineMath math="T" /> lies inside the circle, <InlineMath math="\sqrt2" /> from the centre.

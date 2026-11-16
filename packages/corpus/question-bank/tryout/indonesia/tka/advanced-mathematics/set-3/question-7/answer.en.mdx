@@ -9,6 +9,40 @@ The second equation gives <InlineMath math="a=b" />. Substituting into the first
 
 <BlockMath math="P(x)=2x^3-2x^2-2x-4=2(x-2)(x^2+x+1)" />
 
+Draw <InlineMath math="P(x)=2(x-2)(x^2+x+1)" />. **The graph crosses the <InlineMath math="x" />-axis only once, at <InlineMath math="x=2" />**, because the quadratic factor is always positive. The points at <InlineMath math="x=-1" /> and <InlineMath math="x=1" /> show both remainders of <InlineMath math="-6" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="P(x)" /> with <InlineMath math="a=b=-2" /></>}
+  description={<>The curve <InlineMath math="y=P(x)" /> rises and crosses the <InlineMath math="x" />-axis only at <InlineMath math="(2,\ 0)" />. It passes through <InlineMath math="(-1,\ -6)" /> and <InlineMath math="(1,\ -6)" />, so the remainders on division by <InlineMath math="x+1" /> and by <InlineMath math="x-1" /> are both <InlineMath math="-6" />.</>}
+  labels={{
+    curve: <InlineMath math="y=2(x-2)(x^2+x+1)" />,
+    root: <InlineMath math="(2,\ 0)" />,
+    minus: <InlineMath math="(-1,\ -6)" />,
+    one: <InlineMath math="(1,\ -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.6, max: 2.8 },
+      y: { min: -12, max: 10 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2*(x - 2)*(x^2 + x + 1)", domain: { min: -1.4, max: 2.45 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "minus", kind: "point", appearance: "secondary", at: { x: -1, y: -6 } },
+      { id: "one", kind: "point", appearance: "secondary", at: { x: 1, y: -6 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 2.4, y: 2 * 0.4 * 9.16 }, placement: "left" },
+      { key: "root", objectId: "root", at: { x: 2, y: 0 }, placement: "right" },
+      { key: "minus", objectId: "minus", at: { x: -1, y: -6 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 1, y: -6 }, placement: "below" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="a=2" /> is false, because <InlineMath math="a=-2" />.
 2. The statement <InlineMath math="a+b=-4" /> is true.
 3. The statement about exactly one real root is true. The factor <InlineMath math="x^2+x+1" /> has discriminant <InlineMath math="1-4=-3<0" />, so it has no real roots. The only real root is <InlineMath math="x=2" />.

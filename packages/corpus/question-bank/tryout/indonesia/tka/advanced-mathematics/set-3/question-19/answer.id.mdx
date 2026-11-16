@@ -8,6 +8,47 @@ Pencerminan terhadap <InlineMath math="y=-x" /> memetakan <InlineMath math="(x,y
 x'-2y'+8&=0
 \end{aligned}" />
 
+Ikuti garis dan satu titiknya melalui kedua langkah. **Pencerminan memutar garis ke garis landai <InlineMath math="x-2y+4=0" />, lalu dilatasi menggesernya menjauh dari <InlineMath math="O" />** tanpa mengubah kemiringannya.
+
+<MathVisual
+  title={<>Garis sebelum dan sesudah kedua transformasi</>}
+  description={<>Garis awal <InlineMath math="y=2x+4" /> melewati <InlineMath math="(0,4)" />. Pencerminan terhadap <InlineMath math="y=-x" /> membawa titik itu ke <InlineMath math="(-4,0)" /> pada garis <InlineMath math="x-2y+4=0" />. Dilatasi dengan faktor <InlineMath math="2" /> membawanya ke <InlineMath math="(-8,0)" /> pada garis <InlineMath math="x-2y+8=0" />, yang sejajar garis sebelumnya.</>}
+  labels={{
+    start: <InlineMath math="2x-y+4=0" />,
+    flip: <InlineMath math="x-2y+4=0" />,
+    end: <InlineMath math="x-2y+8=0" />,
+    a: <InlineMath math="(0,4)" />,
+    b: <InlineMath math="(-4,0)" />,
+    c: <InlineMath math="(-8,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 3 },
+      y: { min: -3, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "-x", domain: { min: -7, max: 3 } },
+      { id: "start", kind: "function", appearance: "reference", formula: "2*x + 4", domain: { min: -3.5, max: 1.5 } },
+      { id: "flip", kind: "function", appearance: "secondary", formula: "(x + 4)/2", domain: { min: -10, max: 3 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(x + 8)/2", domain: { min: -10, max: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: -4, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: -8, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1.2, y: 6.4 }, placement: "left" },
+      { key: "flip", objectId: "flip", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "end", objectId: "end", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: -8, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Pemeriksaan dengan satu titik: <InlineMath math="(0,4)" /> terletak pada garis awal. Pencerminan membawanya ke <InlineMath math="(-4,0)" />, dilatasi ke <InlineMath math="(-8,0)" />, dan <InlineMath math="-8-0+8=0" />.
 
 Jadi, persamaan bayangannya adalah <InlineMath math="x-2y+8=0" />.

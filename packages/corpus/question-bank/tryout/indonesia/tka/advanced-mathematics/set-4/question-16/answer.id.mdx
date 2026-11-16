@@ -6,6 +6,44 @@ Kedua jari-jari ke titik singgung **tegak lurus tali**, jadi keduanya sejajar. G
 \ell&=12
 \end{aligned}" />
 
+Geser tali sejajar dirinya sampai melalui pusat katrol kecil. **Terbentuk segitiga siku-siku dengan sisi miring <InlineMath math="15" />, sisi <InlineMath math="R-r=9" />, dan sisi ketiga yang sama panjang dengan tali**.
+
+<MathVisual
+  title={<>Tali persekutuan luar dan segitiga bantunya</>}
+  description={<>Katrol besar berjari-jari <InlineMath math="11" /> dan katrol kecil berjari-jari <InlineMath math="2" />, dengan jarak pusat <InlineMath math="15" />. Tali menyinggung keduanya dan tegak lurus kedua jari-jari ke titik singgung. Ruas sejajar tali dari pusat katrol kecil membentuk segitiga siku-siku dengan sisi <InlineMath math="9" />, <InlineMath math="12" />, dan <InlineMath math="15" />, jadi tali panjangnya <InlineMath math="12" />.</>}
+  labels={{
+    rope: <InlineMath math="\ell=12" />,
+    helper: <InlineMath math="12" />,
+    centres: <InlineMath math="d=15" />,
+    gap: <InlineMath math="R-r=9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 18 },
+      y: { min: -12, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "small", kind: "circle", appearance: "reference", center: { x: 15, y: 0 }, radius: 2 },
+      { id: "rope", kind: "segment", appearance: "answer", from: { x: 6.6, y: 8.8 }, to: { x: 16.2, y: 1.6 } },
+      { id: "big-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6.6, y: 8.8 } },
+      { id: "small-radius", kind: "segment", appearance: "construction", from: { x: 15, y: 0 }, to: { x: 16.2, y: 1.6 } },
+      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "helper", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 5.4, y: 7.2 } },
+      { id: "gap", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5.4, y: 7.2 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11.4, y: 5.2 }, placement: "above-right" },
+      { key: "helper", objectId: "helper", at: { x: 10.2, y: 3.6 }, placement: "below-left" },
+      { key: "centres", objectId: "centres", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 2.7, y: 3.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 Kedua katrol saling terpisah karena <InlineMath math="d=15>R+r=13" />, jadi garis singgung persekutuan luar memang ada.
 
 Jadi, panjang ruas tali di antara kedua titik singgung adalah <InlineMath math="12" /> cm.

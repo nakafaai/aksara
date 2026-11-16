@@ -7,6 +7,19 @@ A^4&=A^3A=\begin{pmatrix} 16 & 8+24 \\ 0 & 16 \end{pmatrix}=\begin{pmatrix} 16 &
 A^5&=A^4A=\begin{pmatrix} 32 & 16+64 \\ 0 & 32 \end{pmatrix}=\begin{pmatrix} 32 & 80 \\ 0 & 32 \end{pmatrix}
 \end{aligned}" />
 
+Vergleiche die beiden Arten von Einträgen für jede Potenz. **Der Eintrag oben rechts holt die Diagonale bei <InlineMath math="n=2" /> ein und lässt sie dann weit hinter sich**, weil jede Multiplikation einen Beitrag aus der Diagonalen hinzufügt.
+
+<Chart
+  title={<>Einträge von <InlineMath math="A^n" /> nach Potenz <InlineMath math="n" /></>}
+  description={<>Die Diagonaleinträge von <InlineMath math="A^n" /> sind <InlineMath math="2,\ 4,\ 8,\ 16,\ 32" />, also <InlineMath math="2^n" />. Die Einträge oben rechts sind <InlineMath math="1,\ 4,\ 12,\ 32,\ 80" />, also <InlineMath math="n\cdot2^{n-1}" />. Der Eintrag unten links ist immer <InlineMath math="0" />.</>}
+  categories={["n = 1", "n = 2", "n = 3", "n = 4", "n = 5"]}
+  series={[
+    { label: "Diagonaleintrag", mark: "line", values: [2, 4, 8, 16, 32] },
+    { label: "Eintrag oben rechts", mark: "line", values: [1, 4, 12, 32, 80] },
+  ]}
+  valueLabel="Wert des Eintrags"
+/>
+
 Die Diagonaleinträge sind immer <InlineMath math="2^n" />. Der Eintrag oben rechts folgt <InlineMath math="n\cdot2^{n-1}" />: <InlineMath math="4" />, <InlineMath math="12" />, <InlineMath math="32" />, <InlineMath math="80" /> für <InlineMath math="n=2,3,4,5" />. Er wächst schneller als die Diagonale, weil er bei jeder Multiplikation zwei Beiträge bekommt, einen vom vorigen Eintrag oben rechts und einen von einem Diagonaleintrag.
 
 Die Einträge von <InlineMath math="A^5" /> ergeben zusammen <InlineMath math="32+80+0+32=144" />.

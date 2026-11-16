@@ -12,6 +12,45 @@ Pusatnya <InlineMath math="M(2,-1)" /> dan <InlineMath math="r=3" />. Hitung kua
 |PS|&=\sqrt{20}=2\sqrt5
 \end{aligned}" />
 
+Gambar lingkaran, titik <InlineMath math="P" />, dan garis singgungnya. **Jari-jari <InlineMath math="MS" /> tegak lurus <InlineMath math="PS" />**, jadi segitiga <InlineMath math="MSP" /> siku-siku di <InlineMath math="S" /> dengan sisi miring <InlineMath math="MP=\sqrt{29}" />.
+
+<MathVisual
+  title={<>Garis singgung dari <InlineMath math="P(7,1)" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="M(2,-1)" /> dengan jari-jari <InlineMath math="3" />. Dari <InlineMath math="P(7,1)" />, garis singgung menyentuh lingkaran di <InlineMath math="S" />. Segitiga <InlineMath math="MSP" /> punya sisi <InlineMath math="MS=3" />, <InlineMath math="MP=\sqrt{29}" />, dan <InlineMath math="PS=2\sqrt5" />, dengan sudut siku-siku di <InlineMath math="S" />.</>}
+  labels={{
+    m: <InlineMath math="M(2,-1)" />,
+    p: <InlineMath math="P(7,1)" />,
+    s: <InlineMath math="S" />,
+    r: <InlineMath math="r=3" />,
+    ps: <InlineMath math="PS=2\sqrt5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 3 },
+      { id: "mp", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 7, y: 1 } },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "ps", kind: "segment", appearance: "answer", from: { x: 7, y: 1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 7, y: 1 } },
+      { id: "s", kind: "point", appearance: "answer", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 }, placement: "above" },
+      { key: "r", objectId: "r", at: { x: 2 + (45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: -1 + (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "left" },
+      { key: "ps", objectId: "ps", at: { x: (9 + 45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Titik <InlineMath math="P" /> memang di luar lingkaran, karena <InlineMath math="|MP|^2=29>9" />, jadi garis singgung dari <InlineMath math="P" /> ada.
 
 Jadi, panjang ruas garis singgung <InlineMath math="PS" /> adalah <InlineMath math="2\sqrt5" />.

@@ -9,6 +9,42 @@ t&=\frac{60\text{ m}}{4\text{ m/s}}=15\text{ s} \\
 \text{Abdrift}&=3\text{ m/s}\cdot15\text{ s}=45\text{ m}
 \end{aligned}" />
 
+Zeichne den Weg des Bootes von oben. **Der Weg verläuft schräg in Richtung des Vektors <InlineMath math="(3,4)" />**, also treibt das Boot, während es <InlineMath math="60\text{ m}" /> überquert, <InlineMath math="45\text{ m}" /> stromabwärts.
+
+<MathVisual
+  title={<>Der Weg des Bootes über den Fluss</>}
+  description={<>Die beiden waagerechten Linien sind die Ufer im Abstand von <InlineMath math="60\text{ m}" />. Das Boot startet am unteren Ufer und fährt schräg in Richtung <InlineMath math="(3,4)" /> über <InlineMath math="75\text{ m}" />. Sein Landepunkt liegt <InlineMath math="45\text{ m}" /> stromabwärts des Punktes, der dem Startpunkt genau gegenüberliegt.</>}
+  labels={{
+    path: <InlineMath math="75\text{ m}" />,
+    across: <InlineMath math="60\text{ m}" />,
+    drift: <InlineMath math="45\text{ m}" />,
+    land: <>Landung</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 60 },
+      y: { min: -8, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "near", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "far", kind: "segment", appearance: "reference", from: { x: -10, y: 60 }, to: { x: 60, y: 60 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 60 } },
+      { id: "drift", kind: "segment", appearance: "secondary", from: { x: 0, y: 60 }, to: { x: 45, y: 60 } },
+      { id: "path", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 45, y: 60 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 45, y: 60 } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 22.5, y: 30 }, placement: "below-right" },
+      { key: "across", objectId: "across", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "drift", objectId: "drift", at: { x: 22.5, y: 60 }, placement: "above" },
+      { key: "land", objectId: "land", at: { x: 45, y: 60 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Probe mit dem Weg: Das Boot legt <InlineMath math="|\vec{v}|\cdot t=5\cdot15=75" /> m zurück, und tatsächlich ist <InlineMath math="45^2+60^2=2{.}025+3{.}600=5{.}625=75^2" />.
 
 Das Boot landet also <InlineMath math="45" /> m von dem Punkt entfernt, der dem Startpunkt genau gegenüberliegt.

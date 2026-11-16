@@ -12,6 +12,45 @@ Titik itu memberi biaya <InlineMath math="\frac{5{.}000+28{.}000}{3}=11{.}000" /
 | <InlineMath math="9" /> | <InlineMath math="x\ge0" /> dan <InlineMath math="x\le1" /> | <InlineMath math="(0,9)" /> | <InlineMath math="12{.}600" /> |
 | <InlineMath math="10" /> | <InlineMath math="x=0" /> | <InlineMath math="(0,10)" /> | <InlineMath math="14{.}000" /> |
 
+Gambar daerah baru bersama titik-titik bilangan cacah di dalamnya. **Titik pojok tajam <InlineMath math="\left(\tfrac{10}{3},\ \tfrac{20}{3}\right)" /> bukan rencana yang mungkin**, jadi bandingkan hanya titik bulat di dalam segitiga.
+
+<MathVisual
+  title={<>Rencana bilangan cacah dengan parkir paling banyak <InlineMath math="10" /></>}
+  description={<>Daerah yang diarsir adalah segitiga di atas garis <InlineMath math="2x+5y=40" /> dan di bawah garis <InlineMath math="x+y=10" />. Tujuh titik bilangan cacah ada di dalamnya: <InlineMath math="(0,8)" />, <InlineMath math="(0,9)" />, <InlineMath math="(0,10)" />, <InlineMath math="(1,8)" />, <InlineMath math="(1,9)" />, <InlineMath math="(2,8)" />, dan <InlineMath math="(3,7)" />. Yang termurah adalah <InlineMath math="(0,8)" />, dengan biaya <InlineMath math="11{.}200" /> ribu rupiah.</>}
+  labels={{
+    corner: <InlineMath math="\left(\tfrac{10}{3},\ \tfrac{20}{3}\right)" />,
+    best: <InlineMath math="(0,\ 8)" />,
+    near: <InlineMath math="(3,\ 7)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6 },
+      y: { min: 5, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 8 }, { x: 10 / 3, y: 20 / 3 }, { x: 0, y: 10 }] },
+      { id: "capacity", kind: "function", appearance: "primary", formula: "8 - 0.4*x", domain: { min: 0, max: 6 } },
+      { id: "parking", kind: "function", appearance: "secondary", formula: "10 - x", domain: { min: 0, max: 5 } },
+      { id: "corner", kind: "point", appearance: "warning", at: { x: 10 / 3, y: 20 / 3 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 0, y: 8 } },
+      { id: "nine", kind: "point", appearance: "reference", at: { x: 0, y: 9 } },
+      { id: "ten", kind: "point", appearance: "reference", at: { x: 0, y: 10 } },
+      { id: "one-eight", kind: "point", appearance: "reference", at: { x: 1, y: 8 } },
+      { id: "one-nine", kind: "point", appearance: "reference", at: { x: 1, y: 9 } },
+      { id: "two-eight", kind: "point", appearance: "reference", at: { x: 2, y: 8 } },
+      { id: "near", kind: "point", appearance: "secondary", at: { x: 3, y: 7 } },
+    ],
+    labels: [
+      { key: "corner", objectId: "corner", at: { x: 10 / 3, y: 20 / 3 }, placement: "right" },
+      { key: "best", objectId: "best", at: { x: 0, y: 8 }, placement: "left" },
+      { key: "near", objectId: "near", at: { x: 3, y: 7 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Untuk <InlineMath math="y\le6" />, syarat daya angkut menuntut minibus lebih banyak daripada yang muat di parkiran. Biaya terkecil di tabel adalah <InlineMath math="11{.}200" />.
 
 Jadi, biaya sewa minimum sekarang <InlineMath math="\text{Rp}11{.}200{.}000{,}00" />, dengan menyewa <InlineMath math="8" /> bus saja.

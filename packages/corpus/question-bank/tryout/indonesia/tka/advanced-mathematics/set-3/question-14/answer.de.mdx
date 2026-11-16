@@ -13,6 +13,42 @@ x^2-4x+4+y^2-25&=0 \\
 x^2+y^2-4x-21&=0
 \end{aligned}" />
 
+Zeichne den Durchmesser <InlineMath math="AB" /> und seinen Kreis. **Der Mittelpunkt <InlineMath math="M" /> liegt genau in der Mitte des Durchmessers**, und der Radius ist die Hälfte von <InlineMath math="|AB|=10" />.
+
+<MathVisual
+  title={<>Der Kreis mit dem Durchmesser <InlineMath math="AB" /></>}
+  description={<>Die Strecke <InlineMath math="AB" /> von <InlineMath math="(-1,4)" /> nach <InlineMath math="(5,-4)" /> hat die Länge <InlineMath math="10" />. Ihr Mittelpunkt <InlineMath math="M(2,0)" /> ist das Zentrum, und der Kreis mit Radius <InlineMath math="5" /> geht durch <InlineMath math="A" /> und <InlineMath math="B" />.</>}
+  labels={{
+    a: <InlineMath math="A(-1,4)" />,
+    b: <InlineMath math="B(5,-4)" />,
+    m: <InlineMath math="M(2,0)" />,
+    r: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 5 },
+      { id: "diameter", kind: "segment", appearance: "secondary", from: { x: -1, y: 4 }, to: { x: 5, y: -4 } },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: -1, y: 4 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 5, y: -4 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 5, y: -4 }, placement: "below-right" },
+      { key: "m", objectId: "m", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 4.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Probe: Der Punkt <InlineMath math="A" /> liefert <InlineMath math="1+16+4-21=0" />, der Punkt <InlineMath math="B" /> liefert <InlineMath math="25+16-20-21=0" />.
 
 Die Kreisgleichung lautet also <InlineMath math="x^2+y^2-4x-21=0" />.

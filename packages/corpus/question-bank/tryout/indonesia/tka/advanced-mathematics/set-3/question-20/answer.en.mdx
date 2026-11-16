@@ -8,6 +8,46 @@ The centre is <InlineMath math="(1,3)" /> and <InlineMath math="r=2" />. Track t
 
 <BlockMath math="(1,3)\ \xrightarrow{\ x=2\ }\ (4-1,3)=(3,3)\ \xrightarrow{\ x=5\ }\ (10-3,3)=(7,3)" />
 
+Track the circle's centre through both mirrors. **Two reflections in parallel lines <InlineMath math="3" /> apart shift the circle <InlineMath math="6" /> units to the right**, and the radius stays <InlineMath math="2" />.
+
+<MathVisual
+  title={<>The circle reflected twice</>}
+  description={<>The starting circle has centre <InlineMath math="(1,3)" /> and radius <InlineMath math="2" />. The mirror <InlineMath math="x=2" /> takes its centre to <InlineMath math="(3,3)" />, then the mirror <InlineMath math="x=5" /> takes it to <InlineMath math="(7,3)" />. All three circles are the same size.</>}
+  labels={{
+    first: <InlineMath math="x=2" />,
+    second: <InlineMath math="x=5" />,
+    start: <InlineMath math="(1,3)" />,
+    middle: <InlineMath math="(3,3)" />,
+    end: <InlineMath math="(7,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 10 },
+      y: { min: 0, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "segment", appearance: "construction", from: { x: 2, y: 0 }, to: { x: 2, y: 6 } },
+      { id: "second", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: 6 } },
+      { id: "circle-start", kind: "circle", appearance: "reference", center: { x: 1, y: 3 }, radius: 2 },
+      { id: "circle-middle", kind: "circle", appearance: "secondary", center: { x: 3, y: 3 }, radius: 2 },
+      { id: "circle-end", kind: "circle", appearance: "answer", center: { x: 7, y: 3 }, radius: 2 },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 1, y: 3 } },
+      { id: "middle", kind: "point", appearance: "secondary", at: { x: 3, y: 3 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 7, y: 3 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 2, y: 6 }, placement: "above" },
+      { key: "second", objectId: "second", at: { x: 5, y: 6 }, placement: "above" },
+      { key: "start", objectId: "start", at: { x: 1, y: 3 }, placement: "below" },
+      { key: "middle", objectId: "middle", at: { x: 3, y: 3 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 7, y: 3 }, placement: "below" },
+    ],
+  }}
+/>
+
 Two reflections in parallel lines <InlineMath math="3" /> apart equal one translation of <InlineMath math="2\cdot3=6" /> units to the right, from the first line toward the second. The result agrees: <InlineMath math="1+6=7" />.
 
 <BlockMath math="(x-7)^2+(y-3)^2=4\iff x^2+y^2-14x-6y+54=0" />

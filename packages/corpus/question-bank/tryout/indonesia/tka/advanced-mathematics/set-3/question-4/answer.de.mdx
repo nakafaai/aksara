@@ -23,6 +23,47 @@ G(5,25)&=300+1{.}000=1{.}300 \\
 G(0,25)&=1{.}000
 \end{aligned}" />
 
+Zeichne den zulässigen Bereich. **Die drei Grenzgeraden schneiden ihn zu einem Fünfeck zu**, also vergleichst du den Gewinn nur an seinen fünf Ecken.
+
+<MathVisual
+  title={<>Zulässiger Bereich für Arbeitsstunden und Rotorblätter</>}
+  description={<>Die waagerechte Achse ist die Anzahl der Lampen, die senkrechte die Anzahl der Ventilatoren. Der schraffierte Bereich liegt unter den Geraden <InlineMath math="2x+y=40" />, <InlineMath math="x+y=30" /> und <InlineMath math="y=25" />, mit den Ecken <InlineMath math="(0,\ 0)" />, <InlineMath math="(20,\ 0)" />, <InlineMath math="(10,\ 20)" />, <InlineMath math="(5,\ 25)" /> und <InlineMath math="(0,\ 25)" />. Der größte Gewinn liegt bei <InlineMath math="(10,\ 20)" />.</>}
+  labels={{
+    assembly: <InlineMath math="2x+y=40" />,
+    testing: <InlineMath math="x+y=30" />,
+    blades: <InlineMath math="y=25" />,
+    best: <InlineMath math="(10,\ 20)" />,
+    corner: <InlineMath math="(5,\ 25)" />,
+    side: <InlineMath math="(20,\ 0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 32 },
+      y: { min: 0, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 10, y: 20 }, { x: 5, y: 25 }, { x: 0, y: 25 }] },
+      { id: "assembly", kind: "segment", appearance: "primary", from: { x: 0, y: 40 }, to: { x: 20, y: 0 } },
+      { id: "testing", kind: "segment", appearance: "secondary", from: { x: 0, y: 30 }, to: { x: 30, y: 0 } },
+      { id: "blades", kind: "segment", appearance: "reference", from: { x: 0, y: 25 }, to: { x: 32, y: 25 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 10, y: 20 } },
+      { id: "corner", kind: "point", appearance: "reference", at: { x: 5, y: 25 } },
+      { id: "side", kind: "point", appearance: "reference", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "assembly", objectId: "assembly", at: { x: 3, y: 34 }, placement: "right" },
+      { key: "testing", objectId: "testing", at: { x: 25, y: 5 }, placement: "above-right" },
+      { key: "blades", objectId: "blades", at: { x: 28, y: 25 }, placement: "above" },
+      { key: "best", objectId: "best", at: { x: 10, y: 20 }, placement: "right" },
+      { key: "corner", objectId: "corner", at: { x: 5, y: 25 }, placement: "above-right" },
+      { key: "side", objectId: "side", at: { x: 20, y: 0 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Der größte Gewinn ist also <InlineMath math="\text{Rp}1{.}400{.}000{,}00" />, mit <InlineMath math="10" /> Lampen und <InlineMath math="20" /> Ventilatoren.
 
 - <InlineMath math="\text{Rp}1{.}300{.}000{,}00" /> ist der Gewinn in der Ecke <InlineMath math="(5,25)" />.

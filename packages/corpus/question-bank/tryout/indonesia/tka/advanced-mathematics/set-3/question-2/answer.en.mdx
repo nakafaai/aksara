@@ -2,6 +2,21 @@ The product <InlineMath math="QH" /> multiplies each row of <InlineMath math="Q"
 
 <BlockMath math="QH=\begin{pmatrix} 10\cdot15+5\cdot20+8\cdot25 \\ 6\cdot15+12\cdot20+4\cdot25 \end{pmatrix}=\begin{pmatrix} 150+100+200 \\ 90+240+100 \end{pmatrix}=\begin{pmatrix} 450 \\ 430 \end{pmatrix}" />
 
+Break each entry of <InlineMath math="QH" /> into what each item contributes. **One entry is the total revenue of the three items on one day**, so the second row is the total of Sunday's bars.
+
+<Chart
+  title={<>Revenue from each item per day</>}
+  description={<>On Saturday, pens, notebooks, and folders bring in <InlineMath math="150" />, <InlineMath math="100" />, and <InlineMath math="200" /> thousand rupiah, a total of <InlineMath math="450" />. On Sunday they bring in <InlineMath math="90" />, <InlineMath math="240" />, and <InlineMath math="100" /> thousand rupiah, a total of <InlineMath math="430" />.</>}
+  bars="apart"
+  categories={["Saturday", "Sunday"]}
+  series={[
+    { label: "Pens", mark: "bar", values: [150, 90] },
+    { label: "Notebooks", mark: "bar", values: [100, 240] },
+    { label: "Folders", mark: "bar", values: [200, 100] },
+  ]}
+  valueLabel="Thousand rupiah"
+/>
+
 The second row of <InlineMath math="Q" /> holds Sunday's sales. The result is <InlineMath math="430" /> thousand rupiah, Sunday's revenue. The unit of each product is items times thousand rupiah per item, so the result is money, not a number of items.
 
 So the second entry of <InlineMath math="QH" /> is Sunday's revenue, <InlineMath math="\text{Rp}430{,}000.00" />.

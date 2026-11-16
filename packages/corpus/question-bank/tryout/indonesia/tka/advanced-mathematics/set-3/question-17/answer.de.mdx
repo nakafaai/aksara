@@ -14,4 +14,39 @@ Der Mittelpunkt ist <InlineMath math="M(3,2)" />, <InlineMath math="r=5" /> und 
 
 <BlockMath math="1(x-4)+3(y-5)=0\iff x+3y-19=0" />
 
+Zeichne die beiden besonderen Sehnen durch <InlineMath math="P" />. **Die längste Sehne ist der Durchmesser durch <InlineMath math="P" />, die kürzeste steht in <InlineMath math="P" /> senkrecht auf diesem Durchmesser**.
+
+<MathVisual
+  title={<>Die längste und die kürzeste Sehne durch <InlineMath math="P" /></>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="M(3,2)" /> und den Radius <InlineMath math="5" />, und <InlineMath math="P(4,5)" /> liegt im Inneren. Der Durchmesser durch <InlineMath math="M" /> und <InlineMath math="P" /> ist <InlineMath math="10" /> lang. Die Sehne senkrecht zu <InlineMath math="MP" /> in <InlineMath math="P" /> ist <InlineMath math="2\sqrt{15}" /> lang, hat <InlineMath math="P" /> als Mittelpunkt und liegt auf der Geraden <InlineMath math="x+3y-19=0" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,2)" />,
+    p: <InlineMath math="P(4,5)" />,
+    long: <InlineMath math="10" />,
+    short: <InlineMath math="2\sqrt{15}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 9 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 3, y: 2 }, radius: 5 },
+      { id: "long", kind: "segment", appearance: "secondary", from: { x: 3 - 5 / Math.sqrt(10), y: 2 - 15 / Math.sqrt(10) }, to: { x: 3 + 5 / Math.sqrt(10), y: 2 + 15 / Math.sqrt(10) } },
+      { id: "short", kind: "segment", appearance: "answer", from: { x: 4 - 3 * Math.sqrt(1.5), y: 5 + Math.sqrt(1.5) }, to: { x: 4 + 3 * Math.sqrt(1.5), y: 5 - Math.sqrt(1.5) } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 5 }, placement: "above-right" },
+      { key: "long", objectId: "long", at: { x: 3 - 2.5 / Math.sqrt(10), y: 2 - 7.5 / Math.sqrt(10) }, placement: "right" },
+      { key: "short", objectId: "short", at: { x: 4 + 1.5 * Math.sqrt(1.5), y: 5 - 0.5 * Math.sqrt(1.5) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Richtig sind also die Aussagen über die kürzeste Sehne und die Gerade <InlineMath math="x+3y-19=0" />, falsch sind die Aussagen über die Lage von <InlineMath math="P" /> und die längste Sehne.

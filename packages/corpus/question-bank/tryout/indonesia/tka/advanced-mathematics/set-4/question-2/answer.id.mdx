@@ -4,6 +4,37 @@ Persamaan berbentuk <InlineMath math="AX=B" />, jadi <InlineMath math="X=A^{-1}B
 
 <BlockMath math="\begin{pmatrix} x \\ y \end{pmatrix}=\begin{pmatrix} 3 & -1 \\ -5 & 2 \end{pmatrix}\begin{pmatrix} 4 \\ 7 \end{pmatrix}=\begin{pmatrix} 12-7 \\ -20+14 \end{pmatrix}=\begin{pmatrix} 5 \\ -6 \end{pmatrix}" />
 
+Setiap baris persamaan matriks adalah sebuah garis. **Penyelesaian sistem adalah titik potong kedua garis**, dan determinan <InlineMath math="1\ne0" /> menjamin keduanya tidak sejajar.
+
+<MathVisual
+  title={<>Dua persamaan sebagai dua garis</>}
+  description={<>Garis <InlineMath math="2x+y=4" /> dan garis <InlineMath math="5x+3y=7" /> berpotongan tepat di satu titik, <InlineMath math="(5,\ -6)" />.</>}
+  labels={{
+    first: <InlineMath math="2x+y=4" />,
+    second: <InlineMath math="5x+3y=7" />,
+    meet: <InlineMath math="(5,\ -6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -10, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "function", appearance: "primary", formula: "4 - 2*x", domain: { min: -1, max: 7 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "(7 - 5*x)/3", domain: { min: -2, max: 7.6 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 5, y: -6 } },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "second", objectId: "second", at: { x: -1, y: 4 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 5, y: -6 }, placement: "right" },
+    ],
+  }}
+/>
+
 Pemeriksaan ke persamaan semula: <InlineMath math="2(5)+(-6)=4" /> dan <InlineMath math="5(5)+3(-6)=7" />.
 
 Jadi, <InlineMath math="x-y=5-(-6)=11" />.

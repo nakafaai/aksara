@@ -6,6 +6,43 @@ Die erste Komponente legt den Faktor fest: <InlineMath math="6=k\cdot2" />, also
 
 <BlockMath math="p-2=3\cdot3\ \Rightarrow\ p=11,\qquad q-3=3\cdot1\ \Rightarrow\ q=6" />
 
+Zeichne die drei Punkte auf ihrer Geraden, mit <InlineMath math="|\overrightarrow{AB}|" /> als Einheit. **Von <InlineMath math="A" /> nach <InlineMath math="C" /> sind es drei Schritte <InlineMath math="\overrightarrow{AB}" />**, einer bis <InlineMath math="B" /> und zwei weitere bis <InlineMath math="C" />.
+
+<MathVisual
+  title={<>Die Punkte <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> auf einer Geraden</>}
+  description={<>Die waagerechte Gerade enthält die drei Punkte für <InlineMath math="p=11" /> und <InlineMath math="q=6" />. Eine Längeneinheit ist <InlineMath math="|\overrightarrow{AB}|=\sqrt{14}" />. Der Punkt <InlineMath math="B" /> liegt <InlineMath math="1" /> Einheit von <InlineMath math="A" /> entfernt, <InlineMath math="C" /> liegt <InlineMath math="3" /> Einheiten von <InlineMath math="A" /> entfernt, also gilt <InlineMath math="AB:BC=1:2" />, und <InlineMath math="B" /> ist nicht der Mittelpunkt von <InlineMath math="AC" />.</>}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    first: <InlineMath math="\overrightarrow{AB}" />,
+    rest: <InlineMath math="\overrightarrow{BC}=2\overrightarrow{AB}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 3.5 },
+      y: { min: -0.6, max: 0.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "first", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "rest", kind: "vector", appearance: "secondary", from: { x: 1, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "answer", at: { x: 1, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 3, y: 0 }, placement: "below" },
+      { key: "first", objectId: "first", at: { x: 0.5, y: 0 }, placement: "above" },
+      { key: "rest", objectId: "rest", at: { x: 2, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 1. Die Aussage, dass <InlineMath math="A" />, <InlineMath math="B" />, <InlineMath math="C" /> für <InlineMath math="p=11" /> und <InlineMath math="q=6" /> auf einer Geraden liegen, ist richtig, denn dann gilt <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />.
 2. Die Aussage, dass <InlineMath math="B" /> der Mittelpunkt von <InlineMath math="AC" /> ist, ist falsch. Die erste Komponente erzwingt <InlineMath math="\overrightarrow{AC}=3\overrightarrow{AB}" />, nicht <InlineMath math="2\overrightarrow{AB}" />. <InlineMath math="B" /> liegt also ein Drittel des Weges von <InlineMath math="A" /> entfernt.
 3. Die Aussage <InlineMath math="AB:BC=1:2" /> ist richtig. Mit <InlineMath math="C(7,11,6)" /> ist <InlineMath math="\overrightarrow{BC}=(4,6,2)=2\overrightarrow{AB}" />.

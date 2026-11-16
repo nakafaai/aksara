@@ -7,6 +7,35 @@ CD&=\begin{pmatrix} 2 & 6 \\ 1 & 3-2 \end{pmatrix}=\begin{pmatrix} 2 & 6 \\ 1 & 
 C^TD^T&=\begin{pmatrix} 2 & 1 \\ 0 & -1 \end{pmatrix}\begin{pmatrix} 1 & 0 \\ 3 & 2 \end{pmatrix}=\begin{pmatrix} 5 & 2 \\ -3 & -2 \end{pmatrix}
 \end{aligned}" />
 
+Lihat pernyataan kedua sebagai perubahan luas. **Kedua kolom <InlineMath math="C+D" /> sama, yaitu <InlineMath math="(3,1)" />**, jadi persegi satuan dipipihkan menjadi ruas garis berluas nol. Transformasi yang memipihkan seperti ini tidak bisa dibalik.
+
+<MathVisual
+  title={<>Persegi satuan di bawah <InlineMath math="C+D" /></>}
+  description={<>Persegi satuan dengan titik sudut <InlineMath math="(0,0)" />, <InlineMath math="(1,0)" />, <InlineMath math="(1,1)" />, dan <InlineMath math="(0,1)" />. Matriks <InlineMath math="C+D=\begin{pmatrix} 3 & 3 \\ 1 & 1 \end{pmatrix}" /> membawa kedua sisinya ke vektor yang sama <InlineMath math="(3,1)" />, sehingga bayangannya adalah ruas dari <InlineMath math="(0,0)" /> ke <InlineMath math="(6,2)" />.</>}
+  labels={{
+    square: <InlineMath math="\text{luas }1" />,
+    line: <InlineMath math="\text{luas }0" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -0.5, max: 2.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }] },
+      { id: "line", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 6, y: 2 } },
+      { id: "column", kind: "point", appearance: "primary", at: { x: 3, y: 1 } },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 0.5, y: 1 }, placement: "above" },
+      { key: "line", objectId: "line", at: { x: 6, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 2. Pernyataan bahwa <InlineMath math="C+D" /> tidak memiliki invers benar. <InlineMath math="C+D=\begin{pmatrix} 3 & 3 \\ 1 & 1 \end{pmatrix}" /> dan determinannya <InlineMath math="3-3=0" />. Matriks dengan determinan nol tidak memiliki invers.
 3. Pernyataan <InlineMath math="\det\left(C^3\right)=8" /> salah. Determinan hasil kali sama dengan hasil kali determinan, jadi <InlineMath math="\det\left(C^3\right)=(\det C)^3=(-2)^3=-8" />.
 4. Pernyataan tentang <InlineMath math="D^{-1}" /> benar. Tukar entri diagonal utama, ubah tanda entri diagonal lain, lalu bagi dengan <InlineMath math="\det D=2" />. Pemeriksaan: <InlineMath math="D\cdot\frac12\begin{pmatrix} 2 & -3 \\ 0 & 1 \end{pmatrix}=\frac12\begin{pmatrix} 2 & 0 \\ 0 & 2 \end{pmatrix}=I" />.

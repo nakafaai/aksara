@@ -1,5 +1,41 @@
 Model eksponen <InlineMath math="N(t)=N_0\cdot2^{t/k}" /> punya dua arti yang bisa langsung dibaca: <InlineMath math="N_0" /> adalah nilai awal, dan <InlineMath math="k" /> adalah **waktu yang diperlukan untuk berlipat dua**. Di sini <InlineMath math="N_0=500" /> dan <InlineMath math="k=3" />.
 
+Gambar <InlineMath math="N(t)" /> dengan titik setiap <InlineMath math="3" /> bulan. **Setiap <InlineMath math="3" /> bulan tingginya berlipat dua**, dari <InlineMath math="500" /> ke <InlineMath math="1{.}000" />, <InlineMath math="2{.}000" />, <InlineMath math="4{.}000" />, sampai <InlineMath math="8{.}000" />.
+
+<MathVisual
+  title={<>Banyak pengguna aplikasi menurut waktu</>}
+  description={<>Sumbu mendatar adalah waktu <InlineMath math="t" /> dalam bulan, dan sumbu tegak adalah banyak pengguna. Kurva melewati <InlineMath math="(0,\ 500)" />, <InlineMath math="(3,\ 1{.}000)" />, <InlineMath math="(6,\ 2{.}000)" />, <InlineMath math="(9,\ 4{.}000)" />, dan <InlineMath math="(12,\ 8{.}000)" />, makin curam ke kanan.</>}
+  labels={{
+    curve: <InlineMath math="N(t)=500\cdot2^{t/3}" />,
+    start: <InlineMath math="(0,\ 500)" />,
+    six: <InlineMath math="(6,\ 2{.}000)" />,
+    twelve: <InlineMath math="(12,\ 8{.}000)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 13 },
+      y: { min: 0, max: 8800 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "500*2^(x/3)", domain: { min: 0, max: 12.5 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 0, y: 500 } },
+      { id: "three", kind: "point", appearance: "secondary", at: { x: 3, y: 1000 } },
+      { id: "six", kind: "point", appearance: "warning", at: { x: 6, y: 2000 } },
+      { id: "nine", kind: "point", appearance: "secondary", at: { x: 9, y: 4000 } },
+      { id: "twelve", kind: "point", appearance: "answer", at: { x: 12, y: 8000 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 10.5, y: 500 * Math.pow(2, 3.5) }, placement: "left" },
+      { key: "start", objectId: "start", at: { x: 0, y: 500 }, placement: "above-right" },
+      { key: "six", objectId: "six", at: { x: 6, y: 2000 }, placement: "above-left" },
+      { key: "twelve", objectId: "twelve", at: { x: 12, y: 8000 }, placement: "left" },
+    ],
+  }}
+/>
+
 1. Pernyataan tentang awal pengamatan salah. Pada <InlineMath math="t=0" />, <InlineMath math="N(0)=500\cdot2^0=500" /> orang.
 2. Pernyataan tentang berlipat dua setiap <InlineMath math="3" /> bulan benar, karena <InlineMath math="N(t+3)=500\cdot2^{(t+3)/3}=2\cdot500\cdot2^{t/3}=2N(t)" />.
 3. Pernyataan <InlineMath math="N(6)=1{.}500" /> salah. Dalam <InlineMath math="6" /> bulan ada dua kali pelipatan: <InlineMath math="N(6)=500\cdot2^2=2{.}000" />. Nilai <InlineMath math="1{.}500" /> menganggap pertumbuhannya bertambah tetap, padahal model ini berlipat.

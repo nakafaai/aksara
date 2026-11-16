@@ -2,6 +2,35 @@ Substitusi langsung memberi <InlineMath math="\frac00" />. Pakai limit dasar <In
 
 <BlockMath math="\lim_{x\to0}h(x)=\lim_{x\to0}\frac{\sin5x-\sin x}{\sin2x}=\lim_{x\to0}\frac{\dfrac{\sin5x}{x}-\dfrac{\sin x}{x}}{\dfrac{\sin2x}{x}}=\frac{5-1}{2}=2" />
 
+Gambar <InlineMath math="h" /> di sekitar nol. **Grafiknya sama dengan <InlineMath math="2\cos3x" />, yang puncaknya tepat di <InlineMath math="(0,\ 2)" />**, walaupun <InlineMath math="h(0)" /> sendiri tidak terdefinisi.
+
+<MathVisual
+  title={<>Grafik <InlineMath math="h" /> di sekitar <InlineMath math="x=0" /></>}
+  description={<>Kurva <InlineMath math="y=\frac{\sin5x-\sin x}{\sin2x}" /> untuk <InlineMath math="x" /> antara <InlineMath math="-0{,}45" /> dan <InlineMath math="0{,}45" /> radian, tanpa <InlineMath math="x=0" />. Kurvanya melengkung turun dari kedua sisi titik <InlineMath math="(0,\ 2)" />.</>}
+  labels={{
+    left: <InlineMath math="y=h(x)" />,
+    target: <InlineMath math="(0,\ 2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 0.5 },
+      y: { min: 0, max: 2.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "(sin(5*x) - sin(x))/sin(2*x)", domain: { min: -0.45, max: -0.005 } },
+      { id: "right", kind: "function", appearance: "primary", formula: "(sin(5*x) - sin(x))/sin(2*x)", domain: { min: 0.005, max: 0.45 } },
+      { id: "target", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -0.3, y: 2 * Math.cos(0.9) }, placement: "below-left" },
+      { key: "target", objectId: "target", at: { x: 0, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pembagian dengan <InlineMath math="x" /> sah karena <InlineMath math="x\ne0" /> di sekitar titik limit, dan ketiga limit dasarnya ada serta penyebut limitnya tidak nol.
 
 Rumus selisih sinus memberi hasil yang sama: <InlineMath math="\sin5x-\sin x=2\cos3x\sin2x" />, sehingga pecahannya menjadi <InlineMath math="2\cos3x" />, yang menuju <InlineMath math="2\cos0=2" />.

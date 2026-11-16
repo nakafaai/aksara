@@ -14,4 +14,39 @@ Pusatnya <InlineMath math="M(3,2)" />, <InlineMath math="r=5" />, dan <InlineMat
 
 <BlockMath math="1(x-4)+3(y-5)=0\iff x+3y-19=0" />
 
+Gambar dua tali busur istimewa yang melalui <InlineMath math="P" />. **Tali busur terpanjang adalah diameter melalui <InlineMath math="P" />, dan yang terpendek tegak lurus diameter itu di <InlineMath math="P" />**.
+
+<MathVisual
+  title={<>Tali busur terpanjang dan terpendek melalui <InlineMath math="P" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="M(3,2)" /> dengan jari-jari <InlineMath math="5" />, dan <InlineMath math="P(4,5)" /> berada di dalamnya. Diameter melalui <InlineMath math="M" /> dan <InlineMath math="P" /> panjangnya <InlineMath math="10" />. Tali busur yang tegak lurus <InlineMath math="MP" /> di <InlineMath math="P" /> panjangnya <InlineMath math="2\sqrt{15}" />, dengan <InlineMath math="P" /> sebagai titik tengahnya, dan garisnya adalah <InlineMath math="x+3y-19=0" />.</>}
+  labels={{
+    m: <InlineMath math="M(3,2)" />,
+    p: <InlineMath math="P(4,5)" />,
+    long: <InlineMath math="10" />,
+    short: <InlineMath math="2\sqrt{15}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 9 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 3, y: 2 }, radius: 5 },
+      { id: "long", kind: "segment", appearance: "secondary", from: { x: 3 - 5 / Math.sqrt(10), y: 2 - 15 / Math.sqrt(10) }, to: { x: 3 + 5 / Math.sqrt(10), y: 2 + 15 / Math.sqrt(10) } },
+      { id: "short", kind: "segment", appearance: "answer", from: { x: 4 - 3 * Math.sqrt(1.5), y: 5 + Math.sqrt(1.5) }, to: { x: 4 + 3 * Math.sqrt(1.5), y: 5 - Math.sqrt(1.5) } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 3, y: 2 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 4, y: 5 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 3, y: 2 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 4, y: 5 }, placement: "above-right" },
+      { key: "long", objectId: "long", at: { x: 3 - 2.5 / Math.sqrt(10), y: 2 - 7.5 / Math.sqrt(10) }, placement: "right" },
+      { key: "short", objectId: "short", at: { x: 4 + 1.5 * Math.sqrt(1.5), y: 5 - 0.5 * Math.sqrt(1.5) }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Jadi, pernyataan tentang tali busur terpendek dan garis <InlineMath math="x+3y-19=0" /> benar, sedangkan pernyataan tentang letak <InlineMath math="P" /> dan tali busur terpanjang salah.

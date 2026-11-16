@@ -2,6 +2,42 @@ Lingkaran <InlineMath math="L" /> berpusat di <InlineMath math="O(0,0)" /> denga
 
 <BlockMath math="d=\frac{|2\cdot0-0+c|}{\sqrt{2^2+(-1)^2}}=\frac{|c|}{\sqrt5}" />
 
+Gambar lingkaran bersama beberapa garis bergradien <InlineMath math="2" />. **Hanya dua garis sejajar yang menyentuh lingkaran, di kedua sisinya**, sedangkan <InlineMath math="y=2x+5" /> terlalu dekat ke pusat sehingga memotongnya.
+
+<MathVisual
+  title={<>Garis bergradien <InlineMath math="2" /> dan lingkaran <InlineMath math="x^2+y^2=20" /></>}
+  description={<>Lingkaran berpusat di titik asal dengan jari-jari <InlineMath math="2\sqrt5" />. Garis <InlineMath math="y=2x+10" /> menyentuhnya di <InlineMath math="(-4,2)" />, dan garis <InlineMath math="y=2x-10" /> menyentuhnya di <InlineMath math="(4,-2)" />. Garis <InlineMath math="y=2x+5" /> memotong lingkaran di dua titik.</>}
+  labels={{
+    upper: <InlineMath math="y=2x+10" />,
+    lower: <InlineMath math="y=2x-10" />,
+    cut: <InlineMath math="y=2x+5" />,
+    touch: <InlineMath math="(-4,2)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 8 },
+      y: { min: -8, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: Math.sqrt(20) },
+      { id: "upper", kind: "function", appearance: "answer", formula: "2*x + 10", domain: { min: -8, max: -1 } },
+      { id: "lower", kind: "function", appearance: "secondary", formula: "2*x - 10", domain: { min: 1, max: 8 } },
+      { id: "cut", kind: "function", appearance: "warning", formula: "2*x + 5", domain: { min: -6.5, max: 1.5 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: -4, y: 2 } },
+      { id: "other", kind: "point", appearance: "secondary", at: { x: 4, y: -2 } },
+    ],
+    labels: [
+      { key: "upper", objectId: "upper", at: { x: -1.5, y: 7 }, placement: "right" },
+      { key: "lower", objectId: "lower", at: { x: 7.5, y: 5 }, placement: "left" },
+      { key: "cut", objectId: "cut", at: { x: 1.2, y: 7.4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: -4, y: 2 }, placement: "left" },
+    ],
+  }}
+/>
+
 Garis menyinggung jika <InlineMath math="d=r" />, yaitu <InlineMath math="|c|=2\sqrt5\cdot\sqrt5=10" />.
 
 1. Pernyataan bahwa <InlineMath math="y=2x+10" /> menyinggung <InlineMath math="L" /> benar, karena <InlineMath math="|c|=10" />.

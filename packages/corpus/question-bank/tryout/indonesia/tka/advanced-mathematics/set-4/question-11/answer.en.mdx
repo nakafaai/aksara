@@ -9,6 +9,42 @@ t&=\frac{60\text{ m}}{4\text{ m/s}}=15\text{ s} \\
 \text{drift}&=3\text{ m/s}\cdot15\text{ s}=45\text{ m}
 \end{aligned}" />
 
+Draw the boat's path from above. **The path slants along the vector <InlineMath math="(3,4)" />**, so while it covers <InlineMath math="60\text{ m}" /> across, the boat drifts <InlineMath math="45\text{ m}" /> downstream.
+
+<MathVisual
+  title={<>The boat's path across the river</>}
+  description={<>The two horizontal lines are the river banks, <InlineMath math="60\text{ m}" /> apart. The boat leaves the lower bank and moves at a slant along <InlineMath math="(3,4)" /> for <InlineMath math="75\text{ m}" />. Its landing point is <InlineMath math="45\text{ m}" /> downstream of the point directly opposite its start.</>}
+  labels={{
+    path: <InlineMath math="75\text{ m}" />,
+    across: <InlineMath math="60\text{ m}" />,
+    drift: <InlineMath math="45\text{ m}" />,
+    land: <>landing</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 60 },
+      y: { min: -8, max: 70 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "near", kind: "segment", appearance: "reference", from: { x: -10, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "far", kind: "segment", appearance: "reference", from: { x: -10, y: 60 }, to: { x: 60, y: 60 } },
+      { id: "across", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 60 } },
+      { id: "drift", kind: "segment", appearance: "secondary", from: { x: 0, y: 60 }, to: { x: 45, y: 60 } },
+      { id: "path", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 45, y: 60 } },
+      { id: "land", kind: "point", appearance: "answer", at: { x: 45, y: 60 } },
+    ],
+    labels: [
+      { key: "path", objectId: "path", at: { x: 22.5, y: 30 }, placement: "below-right" },
+      { key: "across", objectId: "across", at: { x: 0, y: 30 }, placement: "left" },
+      { key: "drift", objectId: "drift", at: { x: 22.5, y: 60 }, placement: "above" },
+      { key: "land", objectId: "land", at: { x: 45, y: 60 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Check with the path: the boat travels <InlineMath math="|\vec{v}|\cdot t=5\cdot15=75" /> m, and indeed <InlineMath math="45^2+60^2=2{,}025+3{,}600=5{,}625=75^2" />.
 
 So the boat lands <InlineMath math="45" /> m from the point directly opposite its start.

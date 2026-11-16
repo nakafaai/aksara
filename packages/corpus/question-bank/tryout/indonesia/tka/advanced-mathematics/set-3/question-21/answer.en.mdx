@@ -6,6 +6,34 @@ For <InlineMath math="x\ne3" />, you may cancel <InlineMath math="x-3" />, and t
 
 <BlockMath math="\lim_{x\to3}\frac{(x-3)(x+1)}{x-3}=\lim_{x\to3}(x+1)=4" />
 
+Draw <InlineMath math="f" /> after cancelling the factor <InlineMath math="x-3" />. **The graph is the line <InlineMath math="y=x+1" /> with a hole only at <InlineMath math="x=3" />**, and the hole closes if <InlineMath math="f(3)=4" />.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f" /> and the point that fills its hole</>}
+  description={<>For <InlineMath math="x\ne3" />, the graph of <InlineMath math="f" /> is the line <InlineMath math="y=x+1" />. The point <InlineMath math="(3,\ 4)" /> is the only point of the line that <InlineMath math="f" /> doesn't have yet, so defining <InlineMath math="f(3)=4" /> makes the graph whole, with no break.</>}
+  labels={{
+    line: <InlineMath math="y=x+1" />,
+    fill: <InlineMath math="(3,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 6 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "line", kind: "function", appearance: "primary", formula: "x + 1", domain: { min: -2, max: 6 } },
+      { id: "fill", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+    ],
+    labels: [
+      { key: "line", objectId: "line", at: { x: 0, y: 1 }, placement: "above-left" },
+      { key: "fill", objectId: "fill", at: { x: 3, y: 4 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 So <InlineMath math="f(3)" /> must be defined as <InlineMath math="4" />. With that value, <InlineMath math="f(x)=x+1" /> for every real number, which is clearly continuous.
 
 - <InlineMath math="0" /> assumes a zero numerator makes the limit zero. The denominator is zero too.

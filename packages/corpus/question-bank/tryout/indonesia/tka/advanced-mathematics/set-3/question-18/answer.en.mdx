@@ -2,6 +2,41 @@ Reflection in the line <InlineMath math="y=-x" /> **swaps the two coordinates an
 
 <BlockMath math="\begin{pmatrix} 0 & -1 \\ -1 & 0 \end{pmatrix}\begin{pmatrix} -3 \\ 5 \end{pmatrix}=\begin{pmatrix} -5 \\ 3 \end{pmatrix}" />
 
+Draw <InlineMath math="P" />, its image, and the mirror line. **The line <InlineMath math="y=-x" /> cuts the segment <InlineMath math="PP'" /> at a right angle, exactly at its midpoint**.
+
+<MathVisual
+  title={<>Reflecting <InlineMath math="P" /> in <InlineMath math="y=-x" /></>}
+  description={<>The point <InlineMath math="P(-3,5)" /> and its image <InlineMath math="P'(-5,3)" /> lie on either side of the line <InlineMath math="y=-x" />. The segment joining them is perpendicular to the mirror line, and its midpoint <InlineMath math="(-4,4)" /> lies on that line.</>}
+  labels={{
+    mirror: <InlineMath math="y=-x" />,
+    p: <InlineMath math="P(-3,5)" />,
+    image: <InlineMath math="P'(-5,3)" />,
+    mid: <InlineMath math="(-4,4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 2 },
+      y: { min: -2, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "-x", domain: { min: -7, max: 2 } },
+      { id: "join", kind: "segment", appearance: "secondary", from: { x: -3, y: 5 }, to: { x: -5, y: 3 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: -3, y: 5 } },
+      { id: "image", kind: "point", appearance: "answer", at: { x: -5, y: 3 } },
+      { id: "mid", kind: "point", appearance: "reference", at: { x: -4, y: 4 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 1, y: -1 }, placement: "right" },
+      { key: "p", objectId: "p", at: { x: -3, y: 5 }, placement: "right" },
+      { key: "image", objectId: "image", at: { x: -5, y: 3 }, placement: "left" },
+      { key: "mid", objectId: "mid", at: { x: -4, y: 4 }, placement: "below-left" },
+    ],
+  }}
+/>
+
 Check: the line <InlineMath math="y=-x" /> must be the perpendicular bisector of <InlineMath math="PP'" />. The midpoint <InlineMath math="\left(\frac{-3-5}{2},\frac{5+3}{2}\right)=(-4,4)" /> lies on <InlineMath math="y=-x" />, and <InlineMath math="\overrightarrow{PP'}=(-2,-2)" /> is perpendicular to the line's direction <InlineMath math="(1,-1)" />, since <InlineMath math="-2+2=0" />.
 
 So the image of <InlineMath math="P" /> is <InlineMath math="(-5,3)" />.

@@ -4,6 +4,39 @@ Factor, then find the sign of the product.
 
 <BlockMath math="x^2-5x+6=(x-2)(x-3)>0" />
 
+Draw what's inside the logarithm, <InlineMath math="x^2-5x+6" />. **The parabola is above the <InlineMath math="x" />-axis only to the left of <InlineMath math="2" /> and to the right of <InlineMath math="3" />**, and at the two roots its value is zero, so both roots are left out too.
+
+<MathVisual
+  title={<>The sign of <InlineMath math="x^2-5x+6" /></>}
+  description={<>The parabola <InlineMath math="y=(x-2)(x-3)" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="2" /> and <InlineMath math="3" /> and dips below the axis between them. The highlighted parts of the <InlineMath math="x" />-axis, <InlineMath math="x<2" /> and <InlineMath math="x>3" />, are where the argument of the logarithm is positive.</>}
+  labels={{
+    curve: <InlineMath math="y=x^2-5x+6" />,
+    left: <InlineMath math="x<2" />,
+    right: <InlineMath math="x>3" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 5 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 5*x + 6", domain: { min: 0, max: 5 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 3, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "two", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
+      { id: "three", kind: "point", appearance: "warning", at: { x: 3, y: 0 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 4.5, y: 2.75 }, placement: "left" },
+      { key: "left", objectId: "left", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "right", objectId: "right", at: { x: 4, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 A product of two factors is positive when both have the same sign. Both are positive for <InlineMath math="x>3" />, and both are negative for <InlineMath math="x<2" />. Between <InlineMath math="2" /> and <InlineMath math="3" /> the signs differ, for example at <InlineMath math="x=2.5" /> the value is <InlineMath math="(0.5)(-0.5)<0" />.
 
 So the natural domain of <InlineMath math="f" /> is <InlineMath math="\{x\mid x<2\text{ or }x>3\}" />.

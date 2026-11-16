@@ -8,6 +8,39 @@ x^2-2x+1+y^2+6y+9-36&=0 \\
 x^2+y^2-2x+6y-26&=0
 \end{aligned}" />
 
+Lacak pusat dan jari-jari melalui kedua langkah. **Dilatasi hanya memperbesar lingkaran dari <InlineMath math="r=3" /> ke <InlineMath math="r=6" />, lalu translasi menggesernya utuh** ke pusat <InlineMath math="(1,-3)" />.
+
+<MathVisual
+  title={<>Lingkaran sebelum dan sesudah kedua transformasi</>}
+  description={<>Lingkaran awal berpusat di <InlineMath math="O" /> dengan jari-jari <InlineMath math="3" />. Setelah dilatasi, pusatnya tetap di <InlineMath math="O" /> dan jari-jarinya <InlineMath math="6" />. Panah translasi <InlineMath math="(1,-3)" /> membawa pusat itu ke <InlineMath math="(1,-3)" />, tempat lingkaran akhir berjari-jari <InlineMath math="6" />.</>}
+  labels={{
+    start: <InlineMath math="r=3" />,
+    grown: <InlineMath math="r=6" />,
+    end: <InlineMath math="(1,-3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 8 },
+      y: { min: -10, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "start", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 3 },
+      { id: "grown", kind: "circle", appearance: "secondary", center: { x: 0, y: 0 }, radius: 6 },
+      { id: "final", kind: "circle", appearance: "answer", center: { x: 1, y: -3 }, radius: 6 },
+      { id: "shift", kind: "vector", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 1, y: -3 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 1, y: -3 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "grown", objectId: "grown", at: { x: 0, y: 6 }, placement: "above" },
+      { key: "end", objectId: "end", at: { x: 1, y: -3 }, placement: "right" },
+    ],
+  }}
+/>
+
 Jadi, persamaan lingkaran bayangannya adalah <InlineMath math="x^2+y^2-2x+6y-26=0" />.
 
 - <InlineMath math="x^2+y^2-2x+6y-8=0" /> mengalikan <InlineMath math="r^2" /> dengan <InlineMath math="2" />, sehingga <InlineMath math="r^2=18" />. Dilatasi mengalikan jari-jari, jadi <InlineMath math="r^2" /> dikalikan <InlineMath math="4" />.

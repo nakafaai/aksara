@@ -2,6 +2,21 @@ Das Produkt <InlineMath math="QH" /> multipliziert jede Zeile von <InlineMath ma
 
 <BlockMath math="QH=\begin{pmatrix} 10\cdot15+5\cdot20+8\cdot25 \\ 6\cdot15+12\cdot20+4\cdot25 \end{pmatrix}=\begin{pmatrix} 150+100+200 \\ 90+240+100 \end{pmatrix}=\begin{pmatrix} 450 \\ 430 \end{pmatrix}" />
 
+Zerlege jeden Eintrag von <InlineMath math="QH" /> in die Beiträge der einzelnen Waren. **Ein Eintrag ist der Gesamtumsatz der drei Waren an einem Tag**, also ist die zweite Zeile die Summe der Sonntagsbalken.
+
+<Chart
+  title={<>Umsatz jeder Ware pro Tag</>}
+  description={<>Am Samstag bringen Kugelschreiber, Hefte und Mappen <InlineMath math="150" />, <InlineMath math="100" /> und <InlineMath math="200" /> Tausend Rupiah, zusammen <InlineMath math="450" />. Am Sonntag sind es <InlineMath math="90" />, <InlineMath math="240" /> und <InlineMath math="100" /> Tausend Rupiah, zusammen <InlineMath math="430" />.</>}
+  bars="apart"
+  categories={["Samstag", "Sonntag"]}
+  series={[
+    { label: "Kugelschreiber", mark: "bar", values: [150, 90] },
+    { label: "Hefte", mark: "bar", values: [100, 240] },
+    { label: "Mappen", mark: "bar", values: [200, 100] },
+  ]}
+  valueLabel="Tausend Rupiah"
+/>
+
 Die zweite Zeile von <InlineMath math="Q" /> enthält die Verkäufe vom Sonntag. Das Ergebnis <InlineMath math="430" /> in Tausend Rupiah ist der Umsatz vom Sonntag. Die Einheit ist Stück mal Tausend Rupiah pro Stück, das Ergebnis ist also Geld, keine Stückzahl.
 
 Der zweite Eintrag von <InlineMath math="QH" /> ist also der Umsatz vom Sonntag, <InlineMath math="\text{Rp}430{.}000{,}00" />.

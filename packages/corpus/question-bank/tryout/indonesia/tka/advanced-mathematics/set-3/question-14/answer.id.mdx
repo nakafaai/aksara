@@ -13,6 +13,42 @@ x^2-4x+4+y^2-25&=0 \\
 x^2+y^2-4x-21&=0
 \end{aligned}" />
 
+Gambar diameter <InlineMath math="AB" /> dan lingkarannya. **Pusat <InlineMath math="M" /> tepat di tengah diameter**, dan jari-jarinya setengah dari <InlineMath math="|AB|=10" />.
+
+<MathVisual
+  title={<>Lingkaran dengan diameter <InlineMath math="AB" /></>}
+  description={<>Ruas <InlineMath math="AB" /> dari <InlineMath math="(-1,4)" /> ke <InlineMath math="(5,-4)" /> panjangnya <InlineMath math="10" />. Titik tengahnya <InlineMath math="M(2,0)" /> menjadi pusat, dan lingkaran berjari-jari <InlineMath math="5" /> melewati <InlineMath math="A" /> dan <InlineMath math="B" />.</>}
+  labels={{
+    a: <InlineMath math="A(-1,4)" />,
+    b: <InlineMath math="B(5,-4)" />,
+    m: <InlineMath math="M(2,0)" />,
+    r: <InlineMath math="r=5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 8 },
+      y: { min: -6, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 5 },
+      { id: "diameter", kind: "segment", appearance: "secondary", from: { x: -1, y: 4 }, to: { x: 5, y: -4 } },
+      { id: "r", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "a", kind: "point", appearance: "secondary", at: { x: -1, y: 4 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: 5, y: -4 } },
+      { id: "m", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -1, y: 4 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 5, y: -4 }, placement: "below-right" },
+      { key: "m", objectId: "m", at: { x: 2, y: 0 }, placement: "below-left" },
+      { key: "r", objectId: "r", at: { x: 4.5, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
 Pemeriksaan: titik <InlineMath math="A" /> memenuhi <InlineMath math="1+16+4-21=0" />, dan titik <InlineMath math="B" /> memenuhi <InlineMath math="25+16-20-21=0" />.
 
 Jadi, persamaan lingkarannya adalah <InlineMath math="x^2+y^2-4x-21=0" />.

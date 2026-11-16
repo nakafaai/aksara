@@ -2,6 +2,46 @@ Die Spalten einer Abbildungsmatrix sind **die Bilder der beiden Einheitsvektoren
 
 Der Punkt <InlineMath math="(1,0)" /> auf der positiven <InlineMath math="x" />-Achse wandert auf die positive <InlineMath math="y" />-Achse, und <InlineMath math="(0,1)" /> auf die negative <InlineMath math="x" />-Achse. Beide drehen sich um eine Vierteldrehung gegen den Uhrzeigersinn. Längen und Winkel bleiben erhalten, denn die Vorschrift ist <InlineMath math="(x,y)\mapsto(-y,x)" />, und <InlineMath math="(-y)^2+x^2=x^2+y^2" />.
 
+Zeichne die beiden Einheitsvektoren und einen Beispielpunkt mit ihren Bildern. **Alles dreht sich um eine Vierteldrehung gegen den Uhrzeigersinn um <InlineMath math="O" />**, ohne die Länge zu ändern.
+
+<MathVisual
+  title={<>Bilder einiger Vektoren unter der Matrix <InlineMath math="\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}" /></>}
+  description={<>Der Vektor <InlineMath math="(1,0)" /> geht nach <InlineMath math="(0,1)" />, der Vektor <InlineMath math="(0,1)" /> nach <InlineMath math="(-1,0)" />. Der Punkt <InlineMath math="(3,1)" /> geht nach <InlineMath math="(-1,3)" />, und der gestrichelte Bogen zeigt die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn von diesem Punkt zu seinem Bild.</>}
+  labels={{
+    e1: <InlineMath math="(1,0)" />,
+    "e1-image": <InlineMath math="(0,1)" />,
+    e2: <InlineMath math="(0,1)" />,
+    "e2-image": <InlineMath math="(-1,0)" />,
+    p: <InlineMath math="(3,1)" />,
+    "p-image": <InlineMath math="(-1,3)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 4 },
+      y: { min: -1, max: 4 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "turn", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: Math.sqrt(10), startDegrees: Math.atan(1 / 3) * 180 / Math.PI, sweepDegrees: 90 },
+      { id: "e1", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 1, y: 0 } },
+      { id: "e2", kind: "vector", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 1 } },
+      { id: "e2-image", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -1, y: 0 } },
+      { id: "p", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 1 } },
+      { id: "p-image", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -1, y: 3 } },
+    ],
+    labels: [
+      { key: "e1", objectId: "e1", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "e1-image", objectId: "e2", at: { x: 0, y: 1 }, placement: "right" },
+      { key: "e2", objectId: "e2", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "e2-image", objectId: "e2-image", at: { x: -1, y: 0 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 3, y: 1 }, placement: "right" },
+      { key: "p-image", objectId: "p-image", at: { x: -1, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
 Beispiel: <InlineMath math="(3,1)" /> wird auf <InlineMath math="(-1,3)" /> abgebildet, das im II. Quadranten liegt, einen Quadranten gegen den Uhrzeigersinn vom I. Quadranten aus.
 
 Die Abbildung ist also die Drehung um <InlineMath math="90^\circ" /> gegen den Uhrzeigersinn um <InlineMath math="O" />.

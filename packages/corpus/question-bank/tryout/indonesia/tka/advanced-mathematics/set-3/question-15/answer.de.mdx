@@ -12,6 +12,45 @@ Der Mittelpunkt ist <InlineMath math="M(2,-1)" />, und <InlineMath math="r=3" />
 |PS|&=\sqrt{20}=2\sqrt5
 \end{aligned}" />
 
+Zeichne den Kreis, den Punkt <InlineMath math="P" /> und seine Tangente. **Der Radius <InlineMath math="MS" /> steht senkrecht auf <InlineMath math="PS" />**, also hat das Dreieck <InlineMath math="MSP" /> seinen rechten Winkel bei <InlineMath math="S" />, mit der Hypotenuse <InlineMath math="MP=\sqrt{29}" />.
+
+<MathVisual
+  title={<>Die Tangente von <InlineMath math="P(7,1)" /> aus</>}
+  description={<>Der Kreis hat den Mittelpunkt <InlineMath math="M(2,-1)" /> und den Radius <InlineMath math="3" />. Von <InlineMath math="P(7,1)" /> aus berührt die Tangente den Kreis in <InlineMath math="S" />. Das Dreieck <InlineMath math="MSP" /> hat die Seiten <InlineMath math="MS=3" />, <InlineMath math="MP=\sqrt{29}" /> und <InlineMath math="PS=2\sqrt5" />, mit dem rechten Winkel bei <InlineMath math="S" />.</>}
+  labels={{
+    m: <InlineMath math="M(2,-1)" />,
+    p: <InlineMath math="P(7,1)" />,
+    s: <InlineMath math="S" />,
+    r: <InlineMath math="r=3" />,
+    ps: <InlineMath math="PS=2\sqrt5" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 8 },
+      y: { min: -5, max: 3.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "circle", kind: "circle", appearance: "reference", center: { x: 2, y: -1 }, radius: 3 },
+      { id: "mp", kind: "segment", appearance: "construction", from: { x: 2, y: -1 }, to: { x: 7, y: 1 } },
+      { id: "r", kind: "segment", appearance: "secondary", from: { x: 2, y: -1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "ps", kind: "segment", appearance: "answer", from: { x: 7, y: 1 }, to: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+      { id: "m", kind: "point", appearance: "secondary", at: { x: 2, y: -1 } },
+      { id: "p", kind: "point", appearance: "primary", at: { x: 7, y: 1 } },
+      { id: "s", kind: "point", appearance: "answer", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 } },
+    ],
+    labels: [
+      { key: "m", objectId: "m", at: { x: 2, y: -1 }, placement: "below" },
+      { key: "p", objectId: "p", at: { x: 7, y: 1 }, placement: "right" },
+      { key: "s", objectId: "s", at: { x: 2 + 45 / 29 - 12 * Math.sqrt(5) / 29, y: -1 + 18 / 29 + 30 * Math.sqrt(5) / 29 }, placement: "above" },
+      { key: "r", objectId: "r", at: { x: 2 + (45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: -1 + (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "left" },
+      { key: "ps", objectId: "ps", at: { x: (9 + 45 / 29 - 12 * Math.sqrt(5) / 29) / 2, y: (18 / 29 + 30 * Math.sqrt(5) / 29) / 2 }, placement: "above-right" },
+    ],
+  }}
+/>
+
 Der Punkt <InlineMath math="P" /> liegt außerhalb des Kreises, denn <InlineMath math="|MP|^2=29>9" />. Eine Tangente von <InlineMath math="P" /> aus existiert also.
 
 Der Tangentenabschnitt <InlineMath math="PS" /> ist also <InlineMath math="2\sqrt5" /> lang.

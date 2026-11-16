@@ -1,5 +1,43 @@
 Zwei Werkzeuge genügen für alle vier Aussagen: **die Potenzgesetze** für <InlineMath math="f" /> und **die Definition des Logarithmus** für die Umkehrfunktion. Dabei ist <InlineMath math="{}^{3}\log" /> der Logarithmus zur Basis <InlineMath math="3" />.
 
+Zeichne <InlineMath math="f" /> und seine Umkehrfunktion. **Die beiden Graphen sind Spiegelbilder an <InlineMath math="y=x" />**, also ist <InlineMath math="f^{-1}\left(\tfrac19\right)" /> der Wert von <InlineMath math="x" />, für den <InlineMath math="f(x)=\tfrac19" /> gilt, nämlich <InlineMath math="-1" />.
+
+<MathVisual
+  title={<>Der Graph von <InlineMath math="f(x)=3^{x-1}" /> und seiner Umkehrfunktion</>}
+  description={<>Die Kurve <InlineMath math="y=3^{x-1}" /> geht durch <InlineMath math="\left(0,\ \tfrac13\right)" /> und <InlineMath math="(2,\ 3)" />. Die Kurve <InlineMath math="y=1+{}^{3}\log x" /> ist ihr Spiegelbild an der Geraden <InlineMath math="y=x" /> und geht durch <InlineMath math="\left(\tfrac19,\ -1\right)" />.</>}
+  labels={{
+    f: <InlineMath math="y=3^{x-1}" />,
+    inverse: <InlineMath math="y=1+{}^{3}\log x" />,
+    two: <InlineMath math="(2,\ 3)" />,
+    zero: <InlineMath math="\left(0,\ \tfrac13\right)" />,
+    ninth: <InlineMath math="\left(\tfrac19,\ -1\right)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -3, max: 4.5 },
+      y: { min: -3, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "x", domain: { min: -3, max: 4.5 } },
+      { id: "f", kind: "function", appearance: "primary", formula: "3^(x - 1)", domain: { min: -3, max: 2.3 } },
+      { id: "inverse", kind: "function", appearance: "secondary", formula: "1 + log_10(x)/log_10(3)", domain: { min: 0.04, max: 4.5 } },
+      { id: "two", kind: "point", appearance: "primary", at: { x: 2, y: 3 } },
+      { id: "zero", kind: "point", appearance: "primary", at: { x: 0, y: 1 / 3 } },
+      { id: "ninth", kind: "point", appearance: "answer", at: { x: 1 / 9, y: -1 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 2.3, y: Math.pow(3, 1.3) }, placement: "left" },
+      { key: "inverse", objectId: "inverse", at: { x: 4.5, y: 1 + Math.log10(4.5) / Math.log10(3) }, placement: "below-left" },
+      { key: "two", objectId: "two", at: { x: 2, y: 3 }, placement: "left" },
+      { key: "zero", objectId: "zero", at: { x: 0, y: 1 / 3 }, placement: "above-left" },
+      { key: "ninth", objectId: "ninth", at: { x: 1 / 9, y: -1 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. Die Aussage <InlineMath math="f(2)+f(0)=\frac{10}{3}" /> ist richtig: <InlineMath math="f(2)=3^1=3" /> und <InlineMath math="f(0)=3^{-1}=\frac13" />, zusammen <InlineMath math="\frac{10}{3}" />.
 2. Die Aussage über <InlineMath math="f^{-1}" /> ist richtig. Aus <InlineMath math="y=3^{x-1}" /> folgt nach der Definition des Logarithmus <InlineMath math="x-1={}^{3}\log y" />, also <InlineMath math="x=1+{}^{3}\log y" />. Die Bedingung <InlineMath math="x>0" /> ist nötig, weil <InlineMath math="f" /> nur positive Werte annimmt.
 3. Die Aussage, dass <InlineMath math="f(x+1)=3f(x)" /> nur für <InlineMath math="x>0" /> gilt, ist falsch. Für jede reelle Zahl <InlineMath math="x" /> gilt <InlineMath math="f(x+1)=3^{x}=3\cdot3^{x-1}=3f(x)" />.

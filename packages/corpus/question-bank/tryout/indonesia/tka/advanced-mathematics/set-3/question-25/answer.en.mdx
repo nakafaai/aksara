@@ -1,5 +1,39 @@
 Each statement asks how <InlineMath math="f" /> behaves near a point or for very large <InlineMath math="x" />. Factor first to see **which factor tends to zero** at each point: <InlineMath math="f(x)=\frac{x(2x+3)}{(x-1)(x+1)}" />.
 
+Draw <InlineMath math="f" /> with its boundary lines. **The graph hugs <InlineMath math="y=2" /> for large <InlineMath math="x" /> and shoots off near the two vertical lines <InlineMath math="x=\pm1" />**, where the denominator goes to zero but the numerator doesn't.
+
+<MathVisual
+  title={<>The graph of <InlineMath math="f(x)=\frac{2x^2+3x}{x^2-1}" /></>}
+  description={<>The curve has three branches separated by the vertical lines <InlineMath math="x=-1" /> and <InlineMath math="x=1" />. To the right of <InlineMath math="x=1" />, the branch falls from very large values towards the horizontal line <InlineMath math="y=2" />. The middle branch passes through the origin, and near <InlineMath math="x=-1" /> the values run off in opposite directions from the two sides.</>}
+  labels={{
+    flat: <InlineMath math="y=2" />,
+    "wall-left": <InlineMath math="x=-1" />,
+    "wall-right": <InlineMath math="x=1" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 6 },
+      y: { min: -7, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall-left", kind: "segment", appearance: "reference", from: { x: -1, y: -7 }, to: { x: -1, y: 9 } },
+      { id: "wall-right", kind: "segment", appearance: "reference", from: { x: 1, y: -7 }, to: { x: 1, y: 9 } },
+      { id: "flat", kind: "function", appearance: "answer", formula: "2", domain: { min: -6, max: 6 } },
+      { id: "outer-left", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -6, max: -1.15 } },
+      { id: "middle", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: -0.88, max: 0.7 } },
+      { id: "outer-right", kind: "function", appearance: "primary", formula: "(2*x^2 + 3*x)/(x^2 - 1)", domain: { min: 1.4, max: 6 } },
+    ],
+    labels: [
+      { key: "flat", objectId: "flat", at: { x: 5, y: 2 }, placement: "below" },
+      { key: "wall-left", objectId: "wall-left", at: { x: -1, y: 9 }, placement: "left" },
+      { key: "wall-right", objectId: "wall-right", at: { x: 1, y: 9 }, placement: "right" },
+    ],
+  }}
+/>
+
 1. The statement <InlineMath math="\lim_{x\to\infty}f(x)=2" /> is true. Numerator and denominator both have degree two, so the limit is the ratio of the <InlineMath math="x^2" />-coefficients, <InlineMath math="\frac21" />.
 2. The statement <InlineMath math="\lim_{x\to1^+}f(x)=\infty" /> is true. The numerator tends to <InlineMath math="1\cdot5=5>0" />. For <InlineMath math="x" /> slightly above <InlineMath math="1" />, the denominator <InlineMath math="x^2-1" /> is positive and tends to zero, so the fraction becomes a very large positive number.
 3. The statement <InlineMath math="\lim_{x\to-1}f(x)=-\frac12" /> is false. The numerator tends to <InlineMath math="2-3=-1\ne0" /> while the denominator tends to zero, so <InlineMath math="f" /> grows without bound and has no real limit there.

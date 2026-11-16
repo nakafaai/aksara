@@ -14,6 +14,18 @@ Sekarang hitung <InlineMath math="f^{-1}(7)" />.
 x-1&=2\ \Rightarrow\ f^{-1}(7)=3
 \end{aligned}" />
 
+Diagram berikut memperlihatkan kedua langkah invers. **Setiap <InlineMath math="f^{-1}" /> mundur satu langkah <InlineMath math="f" />**, jadi dari <InlineMath math="67" /> kamu mundur dua kali sampai <InlineMath math="3" />.
+
+<Mermaid
+  title={<>Dua langkah mundur dengan <InlineMath math="f^{-1}" /></>}
+  description={<>Panah tegas adalah <InlineMath math="f" />: <InlineMath math="3" /> dibawa ke <InlineMath math="7" />, lalu <InlineMath math="7" /> dibawa ke <InlineMath math="67" />. Panah putus-putus adalah <InlineMath math="f^{-1}" />: dari <InlineMath math="67" /> ke <InlineMath math="7" />, lalu dari <InlineMath math="7" /> ke <InlineMath math="3" />.</>}
+  chart={`flowchart LR
+  T["3"] -->|"f"| S["7"]
+  S -->|"f"| E["67"]
+  E -.->|"f⁻¹"| S
+  S -.->|"f⁻¹"| T`}
+/>
+
 Pemeriksaan ke arah sebaliknya: <InlineMath math="f(3)=4+3=7" /> dan <InlineMath math="f(7)=64+3=67" />.
 
 Jadi, <InlineMath math="\left(f^{-1}\circ f^{-1}\right)(67)=3" />.

@@ -9,6 +9,42 @@ r^2-6r+5&=0 \\
 (r-1)(r-5)&=0
 \end{aligned}" />
 
+Zeichne die beiden passenden Kreise. **Der Mittelpunkt eines Kreises, der beide Achsen berührt, liegt immer auf der Geraden <InlineMath math="y=x" />**, und zwei Kreise mit Mittelpunkt auf dieser Geraden gehen durch <InlineMath math="(2,1)" />.
+
+<MathVisual
+  title={<>Zwei Kreise, die beide Achsen berühren und durch <InlineMath math="(2,1)" /> gehen</>}
+  description={<>Der kleine Kreis hat den Mittelpunkt <InlineMath math="(1,1)" /> und den Radius <InlineMath math="1" />, der große den Mittelpunkt <InlineMath math="(5,5)" /> und den Radius <InlineMath math="5" />. Beide berühren die <InlineMath math="X" />-Achse und die <InlineMath math="Y" />-Achse, ihre Mittelpunkte liegen auf <InlineMath math="y=x" />, und beide gehen durch den Punkt <InlineMath math="(2,1)" />.</>}
+  labels={{
+    small: <InlineMath math="r=1" />,
+    big: <InlineMath math="r=5" />,
+    point: <InlineMath math="(2,1)" />,
+    diagonal: <InlineMath math="y=x" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -0.5, max: 10.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "diagonal", kind: "function", appearance: "construction", formula: "x", domain: { min: 0, max: 10 } },
+      { id: "small", kind: "circle", appearance: "secondary", center: { x: 1, y: 1 }, radius: 1 },
+      { id: "big", kind: "circle", appearance: "answer", center: { x: 5, y: 5 }, radius: 5 },
+      { id: "small-centre", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "big-centre", kind: "point", appearance: "answer", at: { x: 5, y: 5 } },
+      { id: "point", kind: "point", appearance: "primary", at: { x: 2, y: 1 } },
+    ],
+    labels: [
+      { key: "small", objectId: "small-centre", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "big", objectId: "big-centre", at: { x: 5, y: 5 }, placement: "above-left" },
+      { key: "point", objectId: "point", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "diagonal", objectId: "diagonal", at: { x: 9.5, y: 9.5 }, placement: "right" },
+    ],
+  }}
+/>
+
 Es gibt zwei Kreise, mit <InlineMath math="r=1" /> und <InlineMath math="r=5" />. Beide sind gültig: <InlineMath math="(x-1)^2+(y-1)^2=1" /> enthält <InlineMath math="(2,1)" />, weil <InlineMath math="1+0=1" />, und <InlineMath math="(x-5)^2+(y-5)^2=25" /> enthält ihn, weil <InlineMath math="9+16=25" />.
 
 Der größte Radius ist also <InlineMath math="5" />.

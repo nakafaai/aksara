@@ -6,6 +6,44 @@ Both radii to the points of tangency are **perpendicular to the rope**, so they 
 \ell&=12
 \end{aligned}" />
 
+Slide the rope parallel to itself until it passes through the small pulley's centre. **That makes a right triangle with hypotenuse <InlineMath math="15" />, one side <InlineMath math="R-r=9" />, and a third side as long as the rope**.
+
+<MathVisual
+  title={<>The external common tangent and its helper triangle</>}
+  description={<>The big pulley has radius <InlineMath math="11" /> and the small pulley radius <InlineMath math="2" />, with centres <InlineMath math="15" /> apart. The rope touches both and is perpendicular to both radii at the points of contact. The segment parallel to the rope from the small pulley's centre forms a right triangle with sides <InlineMath math="9" />, <InlineMath math="12" />, and <InlineMath math="15" />, so the rope is <InlineMath math="12" /> long.</>}
+  labels={{
+    rope: <InlineMath math="\ell=12" />,
+    helper: <InlineMath math="12" />,
+    centres: <InlineMath math="d=15" />,
+    gap: <InlineMath math="R-r=9" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 18 },
+      y: { min: -12, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "big", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 11 },
+      { id: "small", kind: "circle", appearance: "reference", center: { x: 15, y: 0 }, radius: 2 },
+      { id: "rope", kind: "segment", appearance: "answer", from: { x: 6.6, y: 8.8 }, to: { x: 16.2, y: 1.6 } },
+      { id: "big-radius", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 6.6, y: 8.8 } },
+      { id: "small-radius", kind: "segment", appearance: "construction", from: { x: 15, y: 0 }, to: { x: 16.2, y: 1.6 } },
+      { id: "centres", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "helper", kind: "segment", appearance: "primary", from: { x: 15, y: 0 }, to: { x: 5.4, y: 7.2 } },
+      { id: "gap", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 5.4, y: 7.2 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11.4, y: 5.2 }, placement: "above-right" },
+      { key: "helper", objectId: "helper", at: { x: 10.2, y: 3.6 }, placement: "below-left" },
+      { key: "centres", objectId: "centres", at: { x: 7.5, y: 0 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 2.7, y: 3.6 }, placement: "left" },
+    ],
+  }}
+/>
+
 The pulleys are apart because <InlineMath math="d=15>R+r=13" />, so the external common tangent exists.
 
 So the rope between the two points of tangency is <InlineMath math="12" /> cm long.

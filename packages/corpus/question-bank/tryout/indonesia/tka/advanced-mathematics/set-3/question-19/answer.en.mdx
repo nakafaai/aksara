@@ -8,6 +8,47 @@ Reflection in <InlineMath math="y=-x" /> maps <InlineMath math="(x,y)" /> to <In
 x'-2y'+8&=0
 \end{aligned}" />
 
+Follow the line and one of its points through both steps. **The reflection turns the line into the gentler line <InlineMath math="x-2y+4=0" />, then the dilation pushes it away from <InlineMath math="O" />** without changing its slope.
+
+<MathVisual
+  title={<>The line before and after both transformations</>}
+  description={<>The starting line <InlineMath math="y=2x+4" /> passes through <InlineMath math="(0,4)" />. Reflection in <InlineMath math="y=-x" /> takes that point to <InlineMath math="(-4,0)" /> on the line <InlineMath math="x-2y+4=0" />. Dilation by factor <InlineMath math="2" /> takes it to <InlineMath math="(-8,0)" /> on the line <InlineMath math="x-2y+8=0" />, parallel to the previous one.</>}
+  labels={{
+    start: <InlineMath math="2x-y+4=0" />,
+    flip: <InlineMath math="x-2y+4=0" />,
+    end: <InlineMath math="x-2y+8=0" />,
+    a: <InlineMath math="(0,4)" />,
+    b: <InlineMath math="(-4,0)" />,
+    c: <InlineMath math="(-8,0)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 3 },
+      y: { min: -3, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "function", appearance: "construction", formula: "-x", domain: { min: -7, max: 3 } },
+      { id: "start", kind: "function", appearance: "reference", formula: "2*x + 4", domain: { min: -3.5, max: 1.5 } },
+      { id: "flip", kind: "function", appearance: "secondary", formula: "(x + 4)/2", domain: { min: -10, max: 3 } },
+      { id: "end", kind: "function", appearance: "answer", formula: "(x + 8)/2", domain: { min: -10, max: 3 } },
+      { id: "a", kind: "point", appearance: "reference", at: { x: 0, y: 4 } },
+      { id: "b", kind: "point", appearance: "secondary", at: { x: -4, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: -8, y: 0 } },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1.2, y: 6.4 }, placement: "left" },
+      { key: "flip", objectId: "flip", at: { x: 2, y: 3 }, placement: "below-right" },
+      { key: "end", objectId: "end", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "a", objectId: "a", at: { x: 0, y: 4 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: -4, y: 0 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: -8, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
 Check with one point: <InlineMath math="(0,4)" /> lies on the original line. The reflection sends it to <InlineMath math="(-4,0)" />, the dilation to <InlineMath math="(-8,0)" />, and <InlineMath math="-8-0+8=0" />.
 
 So the image line is <InlineMath math="x-2y+8=0" />.
