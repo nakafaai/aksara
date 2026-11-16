@@ -30,4 +30,17 @@ One example is enough to knock down "always". Compare starting populations of <I
 
 Both starting populations give the same result, because **the tank's capacity wipes out the difference at the start**. The fourth statement is **false**.
 
+The chart below follows the population after each harvest for both starting populations. **The two lines meet at <InlineMath math="760" /> at <InlineMath math="t=6" />** and never split again.
+
+<Chart
+  title={<>Bacteria after each harvest for two starting populations</>}
+  description={<>With a starting population of <InlineMath math="40" /> million cells, the count after the harvests at <InlineMath math="t=3, 6, 9, 12" /> is <InlineMath math="120, 760, 760, 760" /> million cells. With a starting population of <InlineMath math="100" /> million cells, it's <InlineMath math="600, 760, 760, 760" /> million cells.</>}
+  categories={["0", "3", "6", "9", "12"]}
+  series={[
+    { label: "Starting population 40", mark: "line", values: [40, 40 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+    { label: "Starting population 100", mark: "line", values: [100, 100 * 8 - 200, 960 - 200, 960 - 200, 960 - 200] },
+  ]}
+  valueLabel="Bacteria (million cells)"
+/>
+
 So the first statement is true, the second is false, the third is true, and the fourth is false.

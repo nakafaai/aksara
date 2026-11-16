@@ -33,6 +33,20 @@ y &> \tfrac{40}{3}
 
 Der Wert <InlineMath math="\tfrac{40}{3}" /> liegt zwischen <InlineMath math="13" /> und <InlineMath math="14" />, die kleinste ganze Zahl ist also <InlineMath math="y=14" />. Eine Gebühr von <InlineMath math="\text{Rp}14{.}000" /> pro normalem Buch liegt noch unter der Grenze von <InlineMath math="\text{Rp}20{.}000" />, diese Grenze spielt also keine Rolle. <InlineMath math="14" /> Tage nach dem <InlineMath math="23" />. März sind <InlineMath math="x=8+14=22" /> Tage nach dem <InlineMath math="15" />. März. Der März hat <InlineMath math="31" /> Tage, also sind es vom <InlineMath math="15" />. März <InlineMath math="16" /> Tage bis zum <InlineMath math="31" />. März und dann noch <InlineMath math="6" /> Tage bis zum <InlineMath math="6" />. April.
 
+Das Diagramm berechnet die Gesamtgebühr für jedes Rückgabedatum ab dem <InlineMath math="31" />. März. Ab diesem Datum steigen die Balken um genau <InlineMath math="\text{Rp}3{.}000" /> pro Tag, und **der erste Balken über der Grenzlinie ist der <InlineMath math="6" />. April**.
+
+<Chart
+  title={<>Tonos Gesamtgebühr nach Rückgabedatum</>}
+  description={<>Vom <InlineMath math="31" />. März bis zum <InlineMath math="7" />. April beträgt die Gesamtgebühr der Reihe nach <InlineMath math="\text{Rp}104{.}000" />, <InlineMath math="\text{Rp}107{.}000" />, <InlineMath math="\text{Rp}110{.}000" />, <InlineMath math="\text{Rp}113{.}000" />, <InlineMath math="\text{Rp}116{.}000" />, <InlineMath math="\text{Rp}119{.}000" />, <InlineMath math="\text{Rp}122{.}000" /> und <InlineMath math="\text{Rp}125{.}000" />. Die Gebühr für die Nachschlagewerke bleibt bei <InlineMath math="\text{Rp}80{.}000" />. Die waagerechte Linie markiert <InlineMath math="\text{Rp}120{.}000" />.</>}
+  categories={["31. März", "1. April", "2. April", "3. April", "4. April", "5. April", "6. April", "7. April"]}
+  bars="apart"
+  series={[
+    { label: "Gesamtgebühr", mark: "bar", values: Array.from({ length: 8 }, (_, i) => 2 * Math.min(2500 * (16 + i), 40000) + 3 * Math.min(1000 * (8 + i), 20000)) },
+    { label: "Grenze Rp120.000", mark: "line", values: Array.from({ length: 8 }, () => 120000) },
+  ]}
+  valueLabel="Gebühr (Rupiah)"
+/>
+
 # Zwei Daten prüfen
 
 Vergleich den <InlineMath math="5" />. April mit dem <InlineMath math="6" />. April.

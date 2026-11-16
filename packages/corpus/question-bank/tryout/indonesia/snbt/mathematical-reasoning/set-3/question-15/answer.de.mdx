@@ -31,4 +31,19 @@ Mit <InlineMath math="16" /> Stufen ist <InlineMath math="R=18" />, und <InlineM
 
 Die Länge ist genau <InlineMath math="420\text{ cm}" />, die vierte Aussage ist also **wahr**. Wer <InlineMath math="16" /> Auftritte zählt, kommt auf <InlineMath math="448\text{ cm}" /> und urteilt falsch.
 
+Das Diagramm setzt den Wert <InlineMath math="2R+T" /> aller vier Entwürfe zwischen die Grenzen der Schrittregel. **Nur der Entwurf der ersten Aussage fällt unter das Band**, während der Entwurf der dritten Aussage die Schrittregel erfüllt, aber wegen <InlineMath math="R=14{,}4" /> an der Steigungsregel scheitert.
+
+<Chart
+  title={<>Wert von <InlineMath math="2R+T" /> für den Entwurf jeder Aussage</>}
+  description={<>Der Entwurf mit <InlineMath math="18" /> Stufen und <InlineMath math="T=28" /> ergibt <InlineMath math="60" />. Der Entwurf mit <InlineMath math="19" /> Stufen und <InlineMath math="T=32" /> ergibt etwa <InlineMath math="62{,}3" />. Der Entwurf mit <InlineMath math="20" /> Stufen und <InlineMath math="T=34" /> ergibt <InlineMath math="62{,}8" />. Der Entwurf mit <InlineMath math="16" /> Stufen und <InlineMath math="T=28" /> ergibt <InlineMath math="64" />. Zwei waagerechte Linien markieren die Grenzen <InlineMath math="62" /> und <InlineMath math="66" />.</>}
+  categories={["Aussage 1", "Aussage 2", "Aussage 3", "Aussage 4"]}
+  bars="apart"
+  series={[
+    { label: "Wert von 2R + T", mark: "bar", values: [2 * (288 / 18) + 28, 2 * (288 / 19) + 32, 2 * (288 / 20) + 34, 2 * (288 / 16) + 28] },
+    { label: "Untergrenze 62", mark: "line", values: [62, 62, 62, 62] },
+    { label: "Obergrenze 66", mark: "line", values: [66, 66, 66, 66] },
+  ]}
+  valueLabel="Schrittlänge (cm)"
+/>
+
 Die erste Aussage ist also wahr, die zweite wahr, die dritte falsch und die vierte wahr.

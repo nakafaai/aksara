@@ -23,6 +23,36 @@ T &\ge 30
 
 The upper limit is <InlineMath math="T\le66-32=34" />, so <InlineMath math="T=30" /> is allowed and **it's the narrowest tread for both stairs**.
 
+The figure below joins both stairs with <InlineMath math="R=16" /> and <InlineMath math="T=30" />. **Each stair's top step ends at a floor with no tread**, so the lower stair has <InlineMath math="17" /> treads and the upper stair has <InlineMath math="16" />.
+
+<MathVisual
+  title={<>Side view of both stairs with matching steps</>}
+  description={<>The lower stair has <InlineMath math="18" /> steps <InlineMath math="16\text{ cm}" /> high and climbs <InlineMath math="288\text{ cm}" /> over <InlineMath math="510\text{ cm}" />. The upper stair has <InlineMath math="17" /> of the same steps and climbs <InlineMath math="272\text{ cm}" /> over <InlineMath math="480\text{ cm}" />. Every tread is <InlineMath math="30\text{ cm}" /> wide, and the total horizontal length is <InlineMath math="990\text{ cm}" />.</>}
+  labels={{
+    total: <InlineMath math="990\text{ cm}" />,
+    lower: <InlineMath math="288\text{ cm}" />,
+    upper: <InlineMath math="272\text{ cm}" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -120, max: 1100 }, y: { min: -90, max: 620 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -100, y: 0 }, to: { x: 1050, y: 0 } },
+      { id: "middle", kind: "segment", appearance: "reference", from: { x: -100, y: 288 }, to: { x: 510, y: 288 } },
+      { id: "top", kind: "segment", appearance: "reference", from: { x: -100, y: 560 }, to: { x: 1050, y: 560 } },
+      { id: "first", kind: "function", appearance: "primary", formula: "16 * ceil(x / 30)", domain: { min: 0, max: 510 } },
+      { id: "second", kind: "function", appearance: "secondary", formula: "288 + 16 * ceil((x - 510) / 30)", domain: { min: 510, max: 990 } },
+      { id: "length", kind: "segment", appearance: "answer", from: { x: 0, y: -50 }, to: { x: 990, y: -50 } },
+    ],
+    labels: [
+      { key: "total", objectId: "length", at: { x: 495, y: -50 }, placement: "below" },
+      { key: "lower", objectId: "middle", at: { x: -100, y: 288 }, placement: "above-right" },
+      { key: "upper", objectId: "top", at: { x: -100, y: 560 }, placement: "below-right" },
+    ],
+  }}
+/>
+
 # Treads and total length
 
 The top step of each stair has no tread, because **the floor above doesn't count as a tread**. So each stair has one tread fewer than it has steps.

@@ -17,6 +17,19 @@ Bei <InlineMath math="t=6" /> wird <InlineMath math="640\cdot2=1{.}280" /> auf <
 
 Es gibt <InlineMath math="4" /> Ernten, bei <InlineMath math="t=6, 12, 18, 24" />, der neue Plan erntet also insgesamt <InlineMath math="4\cdot400=1{.}600" /> Millionen Zellen.
 
+Das Diagramm summiert die Ernte beider Pläne bis <InlineMath math="t=24" />. **Die Linie des ursprünglichen Plans bleibt ab <InlineMath math="t=3" /> bei <InlineMath math="160" />**, während die Linie des neuen Plans alle sechs Stunden um <InlineMath math="400" /> steigt.
+
+<Chart
+  title={<>Gesamternte bis zu jedem Zeitpunkt für beide Pläne</>}
+  description={<>Beim Plan aus der Information beträgt die Gesamternte bei <InlineMath math="t=3" /> <InlineMath math="160" /> Millionen Zellen und wächst danach nicht mehr, weil die Kultur erschöpft ist. Beim neuen Plan beträgt sie bei <InlineMath math="t=6, 12, 18, 24" /> der Reihe nach <InlineMath math="400" />, <InlineMath math="800" />, <InlineMath math="1{.}200" /> und <InlineMath math="1{.}600" /> Millionen Zellen.</>}
+  categories={Array.from({ length: 8 }, (_, i) => `${3 * (i + 1)}`)}
+  series={[
+    { label: "Plan aus der Information", mark: "line", values: Array.from({ length: 8 }, () => 160) },
+    { label: "Neuer Plan", mark: "line", values: Array.from({ length: 8 }, (_, i) => 400 * Math.floor((i + 1) / 2)) },
+  ]}
+  valueLabel="Gesamternte (Millionen Zellen)"
+/>
+
 # Die Differenz der Pläne
 
 <BlockMath math="1{.}600-160=1{.}440" />

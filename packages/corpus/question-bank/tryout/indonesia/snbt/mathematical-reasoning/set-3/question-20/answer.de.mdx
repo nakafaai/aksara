@@ -14,6 +14,20 @@ Mit dem Meldebestand <InlineMath math="75" /> kommt die erste Bestellung an Tag 
 
 Die zweite Bestellung geht am Ende von Tag <InlineMath math="7" /> raus und kommt an Tag <InlineMath math="10" /> an. Die <InlineMath math="45" /> Säcke am Morgen von Tag <InlineMath math="9" /> sind **genau die Nachfrage dieses Tages**, also entgeht bis Tag <InlineMath math="12" /> kein Verkauf.
 
+Das Diagramm verfolgt den Bestand am Tagesende mit einem Meldebestand von <InlineMath math="75" />. **Der Bestand erreicht erst am Ende von Tag <InlineMath math="9" /> den Wert <InlineMath math="0" />**, nachdem die ganze Anfrage dieses Tages bedient ist, und die zweite Bestellung kommt am nächsten Morgen.
+
+<Chart
+  title={<>Bestand am Tagesende mit einem Meldebestand von <InlineMath math="75" /> Säcken</>}
+  description={<>Der Bestand am Ende der Tage <InlineMath math="1" /> bis <InlineMath math="12" /> beträgt <InlineMath math="100, 75, 45, 25, 140, 100, 70, 45, 0, 100, 70, 50" /> Säcke. Bestellt wird am Ende der Tage <InlineMath math="2" /> und <InlineMath math="7" />, geliefert am Morgen der Tage <InlineMath math="5" /> und <InlineMath math="10" />. Die waagerechte Linie markiert den Meldebestand von <InlineMath math="75" /> Säcken.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Bestand am Tagesende", mark: "bar", values: [100, 75, 45, 25, 140, 100, 70, 45, 0, 100, 70, 50] },
+    { label: "Meldebestand 75", mark: "line", values: Array.from({ length: 12 }, () => 75) },
+  ]}
+  valueLabel="Bestand (Säcke)"
+/>
+
 # Die verlockenden falschen Optionen
 
 Auch jede andere Option bedient jede Nachfrage, **ist aber nicht die kleinste**, denn sie entsteht aus einer falschen Schätzung.

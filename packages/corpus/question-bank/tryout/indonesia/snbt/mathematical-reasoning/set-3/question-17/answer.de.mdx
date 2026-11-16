@@ -36,6 +36,21 @@ Am Ende von Tag <InlineMath math="8" /> ist der Bestand <InlineMath math="55\le6
 
 Am Ende von Tag <InlineMath math="9" /> liegt der Bestand von <InlineMath math="10" /> zwar unter <InlineMath math="60" />, aber der Laden bestellt nicht noch einmal, weil eine Bestellung unterwegs ist.
 
+Das Diagramm fasst den Bestand am Ende jedes Tages zusammen. **Entgangene Verkäufe treten genau zwei Tage nachdem der Bestand unter die Linie bei <InlineMath math="60" /> fällt auf**, weil die Bestellung erst drei Tage später kommt.
+
+<Chart
+  title={<>Bestand am Tagesende und entgangene Verkäufe über <InlineMath math="12" /> Tage</>}
+  description={<>Der Bestand am Ende der Tage <InlineMath math="1" /> bis <InlineMath math="12" /> beträgt <InlineMath math="100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100" /> Säcke. Verkäufe entgehen an Tag <InlineMath math="5" /> mit <InlineMath math="10" /> Säcken und an Tag <InlineMath math="10" /> mit <InlineMath math="40" /> Säcken. Die waagerechte Linie markiert den Meldebestand von <InlineMath math="60" /> Säcken.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Bestand am Tagesende", mark: "bar", values: [100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100] },
+    { label: "Entgangene Verkäufe", mark: "bar", values: [0, 0, 0, 0, 10, 0, 0, 0, 0, 40, 0, 0] },
+    { label: "Meldebestand", mark: "line", values: Array.from({ length: 12 }, () => 60) },
+  ]}
+  valueLabel="Säcke"
+/>
+
 # Die letzten Tage und die Summe
 
 Am Morgen von Tag <InlineMath math="11" /> wird der Bestand <InlineMath math="150" />. Nach Tag <InlineMath math="11" /> bleiben <InlineMath math="120" />, nach Tag <InlineMath math="12" /> bleiben <InlineMath math="100" />, also **geht kein Verkauf mehr verloren**.

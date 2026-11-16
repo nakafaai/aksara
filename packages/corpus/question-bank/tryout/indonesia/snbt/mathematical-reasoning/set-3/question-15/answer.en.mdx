@@ -31,4 +31,19 @@ With <InlineMath math="16" /> steps, <InlineMath math="R=18" />, and <InlineMath
 
 The length is exactly <InlineMath math="420\text{ cm}" />, so the fourth statement is **true**. If you counted <InlineMath math="16" /> treads, you'd get <InlineMath math="448\text{ cm}" /> and judge it wrongly.
 
+The chart below places the value of <InlineMath math="2R+T" /> for all four designs between the limits of the step rule. **Only the first statement's design falls below the band**, while the third statement's design passes the step rule but fails the rise rule because <InlineMath math="R=14.4" />.
+
+<Chart
+  title={<>Value of <InlineMath math="2R+T" /> for the design in each statement</>}
+  description={<>The design with <InlineMath math="18" /> steps and <InlineMath math="T=28" /> gives <InlineMath math="60" />. The design with <InlineMath math="19" /> steps and <InlineMath math="T=32" /> gives about <InlineMath math="62.3" />. The design with <InlineMath math="20" /> steps and <InlineMath math="T=34" /> gives <InlineMath math="62.8" />. The design with <InlineMath math="16" /> steps and <InlineMath math="T=28" /> gives <InlineMath math="64" />. Two flat lines mark the limits <InlineMath math="62" /> and <InlineMath math="66" />.</>}
+  categories={["Statement 1", "Statement 2", "Statement 3", "Statement 4"]}
+  bars="apart"
+  series={[
+    { label: "Value of 2R + T", mark: "bar", values: [2 * (288 / 18) + 28, 2 * (288 / 19) + 32, 2 * (288 / 20) + 34, 2 * (288 / 16) + 28] },
+    { label: "Lower limit 62", mark: "line", values: [62, 62, 62, 62] },
+    { label: "Upper limit 66", mark: "line", values: [66, 66, 66, 66] },
+  ]}
+  valueLabel="Stride (cm)"
+/>
+
 So the first statement is true, the second is true, the third is false, and the fourth is true.

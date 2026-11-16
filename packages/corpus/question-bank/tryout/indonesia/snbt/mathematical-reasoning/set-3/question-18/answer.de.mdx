@@ -18,6 +18,19 @@ Zwei Optionen sind noch im Rennen, also verfolgst du beide weiter. Mit dem Anfan
 
 Mit dem Anfangsbestand <InlineMath math="80" /> beträgt der Bestand an den Tagen <InlineMath math="4" /> bis <InlineMath math="8" /> der Reihe nach <InlineMath math="135" />, <InlineMath math="100" />, <InlineMath math="60" />, <InlineMath math="30" /> und <InlineMath math="5" />. Die zweite Bestellung geht am Ende von Tag <InlineMath math="6" /> raus und kommt an Tag <InlineMath math="9" /> an, genau vor der Nachfrage nach <InlineMath math="45" /> und <InlineMath math="50" /> Säcken. Der Bestand an den Tagen <InlineMath math="9" /> bis <InlineMath math="12" /> ist <InlineMath math="110" />, <InlineMath math="60" />, <InlineMath math="30" /> und <InlineMath math="10" />, also **bleibt keine Nachfrage unbedient**.
 
+Das Diagramm verfolgt den Bestand am Tagesende für die beiden verbliebenen Anfangsbestände. **Die Linie für einen Anfangsbestand von <InlineMath math="100" /> fällt an Tag <InlineMath math="9" /> auf <InlineMath math="0" />**, während die Linie für <InlineMath math="80" /> immer aufgefüllt wird, bevor sie leer ist.
+
+<Chart
+  title={<>Bestand am Tagesende für Anfangsbestände von <InlineMath math="100" /> und <InlineMath math="80" /> Säcken</>}
+  description={<>Bei einem Anfangsbestand von <InlineMath math="100" /> Säcken beträgt der Bestand am Ende der Tage <InlineMath math="1" /> bis <InlineMath math="12" /> der Reihe nach <InlineMath math="80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50" />, und an Tag <InlineMath math="9" /> entgehen <InlineMath math="20" /> Säcke. Bei einem Anfangsbestand von <InlineMath math="80" /> Säcken beträgt er <InlineMath math="60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10" /> ohne entgangene Verkäufe.</>}
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Anfangsbestand 100", mark: "line", values: [80, 55, 25, 5, 120, 80, 50, 25, 0, 100, 70, 50] },
+    { label: "Anfangsbestand 80", mark: "line", values: [60, 35, 5, 135, 100, 60, 30, 5, 110, 60, 30, 10] },
+  ]}
+  valueLabel="Bestand (Säcke)"
+/>
+
 # Die verlockenden falschen Optionen
 
 Jede andere Option scheitert an **einem Tag, an dem die Bestellung noch nicht da ist**.

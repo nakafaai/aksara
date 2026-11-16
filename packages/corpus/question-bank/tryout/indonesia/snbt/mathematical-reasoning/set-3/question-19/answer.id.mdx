@@ -28,4 +28,15 @@ Dengan waktu tunggu dua hari, pesanan akhir hari ke-<InlineMath math="3" /> tiba
 
 Pesanan kedua tetap dibuat pada akhir hari ke-<InlineMath math="8" /> dan tiba pada hari ke-<InlineMath math="11" />. Stok akhir hari ke-<InlineMath math="9" /> menjadi <InlineMath math="55-35=20" /> karung, sedangkan permintaan hari ke-<InlineMath math="10" /> adalah <InlineMath math="50" /> karung. **Masih hilang <InlineMath math="30" /> karung**, jadi pernyataan keempat salah.
 
+Grafik berikut membandingkan total penjualan hilang pada aturan asli dan pada setiap perubahan. **Tidak ada perubahan yang membuat penjualan hilang bertambah**, dan waktu tunggu dua hari bahkan menghapusnya sama sekali.
+
+<Chart
+  title={<>Total penjualan hilang untuk aturan asli dan setiap perubahan</>}
+  description={<>Dengan aturan asli, total penjualan hilang <InlineMath math="50" /> karung. Dengan ukuran pesanan <InlineMath math="100" /> karung, totalnya <InlineMath math="30" /> karung. Dengan waktu tunggu dua hari, totalnya <InlineMath math="0" />. Dengan permintaan hari ke-<InlineMath math="9" /> sebanyak <InlineMath math="35" /> karung, totalnya <InlineMath math="40" /> karung.</>}
+  categories={["Aturan asli", "Pesanan 100 karung", "Tunggu 2 hari", "Permintaan hari ke-9 diubah"]}
+  bars="apart"
+  series={[{ label: "Total penjualan hilang", mark: "bar", values: [10 + 40, 10 + 20, 0, 10 + 30] }]}
+  valueLabel="Karung"
+/>
+
 Jadi, pernyataan pertama benar, pernyataan kedua salah, pernyataan ketiga salah, dan pernyataan keempat salah.

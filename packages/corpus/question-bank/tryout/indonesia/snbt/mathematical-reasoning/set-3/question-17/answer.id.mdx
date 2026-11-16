@@ -36,6 +36,21 @@ Pada akhir hari ke-<InlineMath math="8" />, stok <InlineMath math="55\le60" /> d
 
 Pada akhir hari ke-<InlineMath math="9" />, stok <InlineMath math="10" /> memang di bawah <InlineMath math="60" />, tetapi toko tidak memesan lagi karena masih ada pesanan yang ditunggu.
 
+Grafik berikut merangkum stok akhir setiap hari. **Penjualan hilang muncul tepat pada hari kedua sesudah stok turun di bawah garis <InlineMath math="60" />**, karena pesanan baru tiba tiga hari kemudian.
+
+<Chart
+  title={<>Stok akhir hari dan penjualan hilang selama <InlineMath math="12" /> hari</>}
+  description={<>Stok akhir hari ke-<InlineMath math="1" /> sampai ke-<InlineMath math="12" /> berturut-turut <InlineMath math="100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100" /> karung. Penjualan hilang terjadi pada hari ke-<InlineMath math="5" />, sebanyak <InlineMath math="10" /> karung, dan hari ke-<InlineMath math="10" />, sebanyak <InlineMath math="40" /> karung. Garis datar menandai titik pesan ulang <InlineMath math="60" /> karung.</>}
+  bars="apart"
+  categories={Array.from({ length: 12 }, (_, i) => `${i + 1}`)}
+  series={[
+    { label: "Stok akhir hari", mark: "bar", values: [100, 75, 45, 25, 0, 110, 80, 55, 10, 0, 120, 100] },
+    { label: "Penjualan hilang", mark: "bar", values: [0, 0, 0, 0, 10, 0, 0, 0, 0, 40, 0, 0] },
+    { label: "Titik pesan ulang", mark: "line", values: Array.from({ length: 12 }, () => 60) },
+  ]}
+  valueLabel="Karung"
+/>
+
 # Sisa hari dan total
 
 Pada pagi hari ke-<InlineMath math="11" />, stok menjadi <InlineMath math="150" />. Hari ke-<InlineMath math="11" /> menyisakan <InlineMath math="120" /> dan hari ke-<InlineMath math="12" /> menyisakan <InlineMath math="100" />, jadi **tidak ada penjualan hilang lagi**.

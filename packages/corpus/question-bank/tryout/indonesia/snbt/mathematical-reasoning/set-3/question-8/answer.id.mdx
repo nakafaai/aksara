@@ -9,6 +9,17 @@ Setiap pernyataan dinilai sendiri. Untuk keterlambatan <InlineMath math="d" /> h
 
 Bandingkan keterlambatan <InlineMath math="3" /> hari dan <InlineMath math="4" /> hari. Pada <InlineMath math="3" /> hari buku masih dalam masa tenggang, jadi dendanya <InlineMath math="\text{Rp}0" />. Pada <InlineMath math="4" /> hari, aturan masa tenggang **mendenda seluruh <InlineMath math="4" /> hari sekaligus**, jadi dendanya <InlineMath math="\text{Rp}4{.}000" />. Tambahan satu hari itu menaikkan denda <InlineMath math="\text{Rp}4{.}000" />, lebih dari <InlineMath math="\text{Rp}1{.}000" />. Pernyataan pertama **salah**.
 
+Grafik berikut menggambar denda satu buku biasa untuk keterlambatan <InlineMath math="0" /> sampai <InlineMath math="10" /> hari. **Batangnya kosong sampai hari ke-<InlineMath math="3" />, lalu langsung melompat ke <InlineMath math="\text{Rp}4{.}000" />**, bukan ke <InlineMath math="\text{Rp}1{.}000" />.
+
+<Chart
+  title={<>Denda satu buku biasa menurut banyak hari keterlambatan</>}
+  description={<>Untuk keterlambatan <InlineMath math="0" /> sampai <InlineMath math="3" /> hari, dendanya <InlineMath math="\text{Rp}0" />. Untuk keterlambatan <InlineMath math="4" /> sampai <InlineMath math="10" /> hari, dendanya <InlineMath math="\text{Rp}1{.}000" /> dikali banyak hari, dari <InlineMath math="\text{Rp}4{.}000" /> sampai <InlineMath math="\text{Rp}10{.}000" />.</>}
+  bars="apart"
+  categories={Array.from({ length: 11 }, (_, i) => `${i}`)}
+  series={[{ label: "Denda buku biasa", mark: "bar", values: Array.from({ length: 11 }, (_, i) => (i <= 3 ? 0 : Math.min(1000 * i, 20000))) }]}
+  valueLabel="Denda (rupiah)"
+/>
+
 # Pernyataan kedua
 
 Untuk <InlineMath math="4\le d\le16" />, perbandingannya selalu <InlineMath math="\tfrac{2{.}500d}{1{.}000d}=2{,}5" />, jadi bukan <InlineMath math="2" />. Namun **batas denda mengubah perbandingan itu**. Coba <InlineMath math="d=20" />.

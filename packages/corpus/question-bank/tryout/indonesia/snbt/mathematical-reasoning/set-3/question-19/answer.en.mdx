@@ -28,4 +28,15 @@ With a wait of two days, the order from the end of day <InlineMath math="3" /> a
 
 The second order is still placed at the end of day <InlineMath math="8" /> and arrives on day <InlineMath math="11" />. The stock at the end of day <InlineMath math="9" /> becomes <InlineMath math="55-35=20" /> sacks, while day <InlineMath math="10" /> asks for <InlineMath math="50" /> sacks. **That still loses <InlineMath math="30" /> sacks**, so the fourth statement is false.
 
+The chart below compares the total lost sales under the given rules and under each change. **No change makes lost sales grow**, and a two-day wait even removes them completely.
+
+<Chart
+  title={<>Total lost sales under the given rules and each change</>}
+  description={<>Under the given rules, the total lost sales are <InlineMath math="50" /> sacks. With orders of <InlineMath math="100" /> sacks, the total is <InlineMath math="30" /> sacks. With a two-day wait, the total is <InlineMath math="0" />. With a request of <InlineMath math="35" /> sacks on day <InlineMath math="9" />, the total is <InlineMath math="40" /> sacks.</>}
+  categories={["Given rules", "Orders of 100 sacks", "Two-day wait", "Day 9 request changed"]}
+  bars="apart"
+  series={[{ label: "Total lost sales", mark: "bar", values: [10 + 40, 10 + 20, 0, 10 + 30] }]}
+  valueLabel="Sacks"
+/>
+
 So the first statement is true, the second is false, the third is false and the fourth is false.

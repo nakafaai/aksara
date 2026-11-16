@@ -22,6 +22,20 @@ Without a renewal, the fine of <InlineMath math="23{,}000" /> is cut by the cap 
 
 The fine for <InlineMath math="16" /> days is already exactly <InlineMath math="40{,}000" />, the same as the cap. So renewing doesn't lower the fine at all, but it still adds <InlineMath math="3{,}000" />. That means **a reference book shouldn't be renewed**.
 
+The chart below puts both choices for each book type side by side. **The shorter bar is a different choice for each type**: a regular book is cheaper renewed, a reference book is cheaper left alone.
+
+<Chart
+  title={<>Cost of one of Lina's books with and without a renewal</>}
+  description={<>For a regular book, no renewal costs <InlineMath math="\text{Rp}20{,}000" /> and a renewal costs <InlineMath math="\text{Rp}19{,}000" />. For a reference book, no renewal costs <InlineMath math="\text{Rp}40{,}000" /> and a renewal costs <InlineMath math="\text{Rp}43{,}000" />.</>}
+  categories={["Regular book", "Reference book"]}
+  bars="apart"
+  series={[
+    { label: "No renewal", mark: "bar", values: [Math.min(23 * 1000, 20000), Math.min(23 * 2500, 40000)] },
+    { label: "Renewed", mark: "bar", values: [3000 + 16 * 1000, 3000 + Math.min(16 * 2500, 40000)] },
+  ]}
+  valueLabel="Cost per book (rupiah)"
+/>
+
 # The smallest total
 
 <BlockMath math="\begin{aligned}

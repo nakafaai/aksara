@@ -33,6 +33,20 @@ y &> \tfrac{40}{3}
 
 Nilai <InlineMath math="\tfrac{40}{3}" /> ada di antara <InlineMath math="13" /> dan <InlineMath math="14" />, jadi bilangan bulat terkecilnya <InlineMath math="y=14" />. Denda satu buku biasa <InlineMath math="\text{Rp}14{.}000" /> masih di bawah batas <InlineMath math="\text{Rp}20{.}000" />, jadi batas buku biasa tidak ikut berperan. Keterlambatan <InlineMath math="14" /> hari sesudah <InlineMath math="23" /> Maret jatuh pada <InlineMath math="x=8+14=22" /> hari sesudah <InlineMath math="15" /> Maret. Maret punya <InlineMath math="31" /> hari, jadi dari <InlineMath math="15" /> Maret ada <InlineMath math="16" /> hari sampai <InlineMath math="31" /> Maret, lalu <InlineMath math="6" /> hari lagi sampai <InlineMath math="6" /> April.
 
+Grafik berikut menghitung total denda untuk setiap tanggal pengembalian sejak <InlineMath math="31" /> Maret. Sejak tanggal itu batangnya naik tepat <InlineMath math="\text{Rp}3{.}000" /> per hari, dan **batang pertama yang melewati garis batas adalah <InlineMath math="6" /> April**.
+
+<Chart
+  title={<>Total denda Tono menurut tanggal pengembalian</>}
+  description={<>Dari <InlineMath math="31" /> Maret sampai <InlineMath math="7" /> April, total dendanya berturut-turut <InlineMath math="\text{Rp}104{.}000" />, <InlineMath math="\text{Rp}107{.}000" />, <InlineMath math="\text{Rp}110{.}000" />, <InlineMath math="\text{Rp}113{.}000" />, <InlineMath math="\text{Rp}116{.}000" />, <InlineMath math="\text{Rp}119{.}000" />, <InlineMath math="\text{Rp}122{.}000" />, dan <InlineMath math="\text{Rp}125{.}000" />. Denda buku referensi tetap <InlineMath math="\text{Rp}80{.}000" />. Garis datar menandai <InlineMath math="\text{Rp}120{.}000" />.</>}
+  categories={["31 Mar", "1 Apr", "2 Apr", "3 Apr", "4 Apr", "5 Apr", "6 Apr", "7 Apr"]}
+  bars="apart"
+  series={[
+    { label: "Total denda", mark: "bar", values: Array.from({ length: 8 }, (_, i) => 2 * Math.min(2500 * (16 + i), 40000) + 3 * Math.min(1000 * (8 + i), 20000)) },
+    { label: "Batas Rp120.000", mark: "line", values: Array.from({ length: 8 }, () => 120000) },
+  ]}
+  valueLabel="Denda (rupiah)"
+/>
+
 # Cek dua tanggal
 
 Coba bandingkan <InlineMath math="5" /> April dan <InlineMath math="6" /> April.

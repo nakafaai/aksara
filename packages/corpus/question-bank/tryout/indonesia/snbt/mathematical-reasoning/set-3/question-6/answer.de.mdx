@@ -27,6 +27,20 @@ Wende jetzt Kulanzfrist, Gebührensatz und Obergrenze auf jede Zeile an.
 &= 45{.}000\text{ Rupiah}
 \end{aligned}" />
 
+Das Diagramm vergleicht Tage mal Tarif mit der tatsächlichen Gebühr. **Der Balken des ersten Buchs verschwindet wegen der Schonfrist**, der Balken des Nachschlagewerks bleibt gleich, und der Balken des zweiten normalen Buchs wird von der Obergrenze gekappt.
+
+<Chart
+  title={<>Gebühr für jedes von Nias Büchern vor und nach Schonfrist und Obergrenze</>}
+  description={<>Das erste normale Buch ist <InlineMath math="3" /> Tage zu spät: Tage mal Tarif <InlineMath math="\text{Rp}3{.}000" />, tatsächliche Gebühr <InlineMath math="\text{Rp}0" />. Das Nachschlagewerk ist <InlineMath math="10" /> Tage zu spät: beides <InlineMath math="\text{Rp}25{.}000" />. Das zweite normale Buch ist <InlineMath math="22" /> Tage zu spät: Tage mal Tarif <InlineMath math="\text{Rp}22{.}000" />, tatsächliche Gebühr <InlineMath math="\text{Rp}20{.}000" />.</>}
+  categories={["Erstes normales Buch", "Nachschlagewerk", "Zweites normales Buch"]}
+  bars="apart"
+  series={[
+    { label: "Tage mal Tarif", mark: "bar", values: [3 * 1000, 10 * 2500, 22 * 1000] },
+    { label: "Tatsächliche Gebühr", mark: "bar", values: [0, Math.min(10 * 2500, 40000), Math.min(22 * 1000, 20000)] },
+  ]}
+  valueLabel="Gebühr (Rupiah)"
+/>
+
 # Das Ergebnis prüfen
 
 Für jedes Buch gibt es **eine Regel, die entscheidet**: beim ersten Buch die Kulanzfrist, beim Nachschlagewerk die volle Zählung und beim zweiten normalen Buch die Obergrenze. Lässt du eine dieser Regeln weg, ändert sich das Ergebnis. Ohne Obergrenze kommst du auf <InlineMath math="47" /> Tausend, mit einer Gebühr für das erste Buch auf <InlineMath math="48" /> Tausend, und wenn nur die Tage nach der Kulanzfrist zählen, auf <InlineMath math="36{,}5" /> Tausend.
