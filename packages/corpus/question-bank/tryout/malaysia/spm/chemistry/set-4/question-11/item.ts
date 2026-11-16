@@ -12,19 +12,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{N}_2$$, with 6 shared electrons and 2 lone pairs",
+          label: "$$\\text{N}_2$$, because it also holds a multiple bond",
         },
         {
           correct: false,
-          label: "$$\\text{NH}_3$$, with 6 shared electrons and 1 lone pair",
+          label:
+            "$$\\text{C}_2\\text{H}_2$$, because it also holds a triple bond",
         },
         {
           correct: false,
-          label: "$$\\text{CO}_2$$, with 4 shared electrons and 4 lone pairs",
+          label:
+            "$$\\text{H}_2\\text{O}$$, because it holds only two lone pairs",
         },
         {
           correct: true,
-          label: "$$\\text{CO}_2$$, with 8 shared electrons and 4 lone pairs",
+          label:
+            "$$\\text{HCN}$$, with $$8$$ shared electrons and one lone pair",
         },
       ],
     },
@@ -33,23 +36,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$\\text{N}_2$$, dengan 6 elektron dikongsi dan 2 pasangan elektron bebas",
+          label: "$$\\text{N}_2$$, kerana ia juga mempunyai ikatan berganda",
         },
         {
           correct: false,
           label:
-            "$$\\text{NH}_3$$, dengan 6 elektron dikongsi dan 1 pasangan elektron bebas",
+            "$$\\text{C}_2\\text{H}_2$$, kerana ia juga mempunyai ikatan ganda tiga",
         },
         {
           correct: false,
           label:
-            "$$\\text{CO}_2$$, dengan 4 elektron dikongsi dan 4 pasangan elektron bebas",
+            "$$\\text{H}_2\\text{O}$$, kerana ia hanya mempunyai dua pasangan elektron bebas",
         },
         {
           correct: true,
           label:
-            "$$\\text{CO}_2$$, dengan 8 elektron dikongsi dan 4 pasangan elektron bebas",
+            "$$\\text{HCN}$$, dengan $$8$$ elektron dikongsi dan satu pasangan elektron bebas",
         },
       ],
     },
