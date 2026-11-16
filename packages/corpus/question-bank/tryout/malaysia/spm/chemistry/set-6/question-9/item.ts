@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "Argon, $$4.0$$ hours" },
-        { correct: false, label: "Nitrogen, $$5.7$$ hours" },
-        { correct: false, label: "Helium, $$40$$ hours" },
-        { correct: false, label: "Argon, $$2.0$$ hours" },
+        { correct: true, label: "Argon, $$9.5$$ hours" },
+        { correct: false, label: "Nitrogen, $$13.6$$ hours" },
+        { correct: false, label: "Helium, $$95$$ hours" },
+        { correct: false, label: "Argon, $$10.0$$ hours" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "Argon, $$4.0$$ jam" },
-        { correct: false, label: "Nitrogen, $$5.7$$ jam" },
-        { correct: false, label: "Helium, $$40$$ jam" },
-        { correct: false, label: "Argon, $$2.0$$ jam" },
+        { correct: true, label: "Argon, $$9.5$$ jam" },
+        { correct: false, label: "Nitrogen, $$13.6$$ jam" },
+        { correct: false, label: "Helium, $$95$$ jam" },
+        { correct: false, label: "Argon, $$10.0$$ jam" },
       ],
     },
   },

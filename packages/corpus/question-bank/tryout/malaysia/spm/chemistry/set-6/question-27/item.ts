@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$22.8\\%$$, $$120\\text{ dm}^3$$" },
-        { correct: true, label: "$$22.8\\%$$, $$571\\text{ dm}^3$$" },
-        { correct: false, label: "$$45.6\\%$$, $$571\\text{ dm}^3$$" },
-        { correct: false, label: "$$22.8\\%$$, $$1140\\text{ dm}^3$$" },
+        { correct: false, label: "$$22.8\\%$$, $$76.8\\text{ dm}^3$$" },
+        { correct: true, label: "$$22.8\\%$$, $$528\\text{ dm}^3$$" },
+        { correct: false, label: "$$45.6\\%$$, $$528\\text{ dm}^3$$" },
+        { correct: false, label: "$$22.8\\%$$, $$614\\text{ dm}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$22.8\\%$$, $$120\\text{ dm}^3$$" },
-        { correct: true, label: "$$22.8\\%$$, $$571\\text{ dm}^3$$" },
-        { correct: false, label: "$$45.6\\%$$, $$571\\text{ dm}^3$$" },
-        { correct: false, label: "$$22.8\\%$$, $$1140\\text{ dm}^3$$" },
+        { correct: false, label: "$$22.8\\%$$, $$76.8\\text{ dm}^3$$" },
+        { correct: true, label: "$$22.8\\%$$, $$528\\text{ dm}^3$$" },
+        { correct: false, label: "$$45.6\\%$$, $$528\\text{ dm}^3$$" },
+        { correct: false, label: "$$22.8\\%$$, $$614\\text{ dm}^3$$" },
       ],
     },
   },

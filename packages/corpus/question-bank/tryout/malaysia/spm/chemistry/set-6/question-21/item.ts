@@ -18,7 +18,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$2.07\\text{ g}$$ of lead at the cathode, $$1.60\\text{ g}$$ of bromine at the anode",
+            "$$1.33\\text{ g}$$ of lead at the cathode, $$1.03\\text{ g}$$ of bromine at the anode",
         },
         {
           correct: false,
@@ -43,7 +43,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$2.07\\text{ g}$$ plumbum di katod, $$1.60\\text{ g}$$ bromin di anod",
+            "$$1.33\\text{ g}$$ plumbum di katod, $$1.03\\text{ g}$$ bromin di anod",
         },
         {
           correct: false,

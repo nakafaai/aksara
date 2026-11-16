@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.20\\times10^{23}$$ ions, $$5.79\\times10^4\\text{ C}$$",
-        },
-        {
-          correct: true,
           label: "$$3.01\\times10^{23}$$ ions, $$5.79\\times10^4\\text{ C}$$",
         },
         {
-          correct: false,
-          label: "$$3.01\\times10^{23}$$ ions, $$1.93\\times10^4\\text{ C}$$",
+          correct: true,
+          label: "$$2.01\\times10^{23}$$ ions, $$3.86\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label: "$$3.01\\times10^{23}$$ ions, $$1.16\\times10^5\\text{ C}$$",
+          label: "$$2.01\\times10^{23}$$ ions, $$1.29\\times10^4\\text{ C}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.01\\times10^{23}$$ ions, $$7.72\\times10^4\\text{ C}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.20\\times10^{23}$$ ion, $$5.79\\times10^4\\text{ C}$$",
-        },
-        {
-          correct: true,
           label: "$$3.01\\times10^{23}$$ ion, $$5.79\\times10^4\\text{ C}$$",
         },
         {
-          correct: false,
-          label: "$$3.01\\times10^{23}$$ ion, $$1.93\\times10^4\\text{ C}$$",
+          correct: true,
+          label: "$$2.01\\times10^{23}$$ ion, $$3.86\\times10^4\\text{ C}$$",
         },
         {
           correct: false,
-          label: "$$3.01\\times10^{23}$$ ion, $$1.16\\times10^5\\text{ C}$$",
+          label: "$$2.01\\times10^{23}$$ ion, $$1.29\\times10^4\\text{ C}$$",
+        },
+        {
+          correct: false,
+          label: "$$2.01\\times10^{23}$$ ion, $$7.72\\times10^4\\text{ C}$$",
         },
       ],
     },
