@@ -1,0 +1,316 @@
+export const metadata = {
+  title: "Wärme Wärmekapazität und Gasgesetze",
+  description:
+    "Nutze Q = mcΔT und Q = mL, erkläre das thermische Gleichgewicht, lies eine Erwärmungskurve und löse Aufgaben zu Boyle, Charles und Gay-Lussac.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Wärme",
+};
+
+## Wärme und Temperatur sind verschieden
+
+**Wärme** ist Energie, die von einem heißen zu einem kalten Körper übertragen wird, gemessen in Joule. Die **Temperatur** gibt an, wie heiß etwas ist, hängt mit der mittleren Bewegungsenergie der Teilchen zusammen und wird in Grad Celsius oder Kelvin gemessen. Die zwei Hauptformeln liefern die Energie, um eine Temperatur zu erhöhen, und die Energie, um einen Aggregatzustand zu ändern:
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta T" />
+<BlockMath math="Q = mL" />
+</MathContainer>
+
+Dabei ist <InlineMath math="m" /> die Masse in Kilogramm, <InlineMath math="c" /> die **spezifische Wärmekapazität**, <InlineMath math="\Delta T" /> die Temperaturänderung und <InlineMath math="L" /> die **spezifische latente Wärme**. Hier erhitzt du Wasser im Wasserkocher, führst Eis so lange Energie zu, bis Dampf entsteht, und drückst ein Gas in einer Spritze zusammen.
+
+## Thermisches Gleichgewicht
+
+Berühren sich zwei Körper, fließt Wärme vom wärmeren zum kälteren. Der Nettofluss endet, wenn beide dieselbe Temperatur haben. Diesen Zustand nennt man **thermisches Gleichgewicht**. Ein Thermometer funktioniert genau so: Es erreicht das thermische Gleichgewicht mit einem Körper, und dann zeigt es dessen Temperatur an.
+
+Das Modell zeigt zwei Metallblöcke gleicher Masse und gleichen Materials, einen mit <InlineMath math="80\ {}^\circ\text{C}" /> und einen mit <InlineMath math="20\ {}^\circ\text{C}" />, die sich berühren. Beweg den Zeitregler und sieh zu, wie sich beide Temperaturen bei <InlineMath math="50\ {}^\circ\text{C}" /> treffen.
+
+<MathVisual
+  title={<>Zwei Blöcke erreichen das thermische Gleichgewicht</>}
+  description={
+    <>
+      Der heiße Block hat die Temperatur <InlineMath math="50 + 30e^{-t/10}" />,
+      der kalte <InlineMath math="50 - 30e^{-t/10}" />, mit{" "}
+      <InlineMath math="t" /> in Sekunden. Senkrecht ist die Temperatur in{" "}
+      <InlineMath math="{}^\circ\text{C}" /> aufgetragen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 90 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 50, value: 10, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "hot", kind: "function", appearance: "warning", formula: "50 + 30exp(-x/10)", domain: { min: 0, max: 50 } },
+      { id: "cold", kind: "function", appearance: "primary", formula: "50 - 30exp(-x/10)", domain: { min: 0, max: 50 } },
+      { id: "now", kind: "path", appearance: "reference", points: [{ x: "a", y: "50 - 30exp(-a/10)" }, { x: "a", y: "50 + 30exp(-a/10)" }] },
+    ],
+    readouts: [
+      { key: "hot-reading", formula: "50 + 30exp(-a/10)" },
+      { key: "cold-reading", formula: "50 - 30exp(-a/10)" },
+    ],
+  }}
+  labels={{
+    a: <>Zeit <InlineMath math="a" /> in Sekunden</>,
+    "hot-reading": <>Heißer Block in <InlineMath math="{}^\circ\text{C}" /></>,
+    "cold-reading": <>Kalter Block in <InlineMath math="{}^\circ\text{C}" /></>,
+  }}
+/>
+
+Die Endtemperatur liegt genau in der Mitte, weil beide Blöcke gleiche Masse und gleiches Material haben. Die Wärme, die der heiße Block abgibt, nimmt der kalte auf, solange keine Wärme an die Umgebung verloren geht.
+
+## Spezifische Wärmekapazität
+
+Die **spezifische Wärmekapazität** <InlineMath math="c" /> ist die Wärme, die nötig ist, um <InlineMath math="1\ \text{kg}" /> eines Stoffs um <InlineMath math="1\ \text{K}" /> zu erwärmen. Ihre Einheit ist <InlineMath math="\text{J/(kg K)}" />. Ein Stoff mit großem <InlineMath math="c" /> erwärmt sich langsam und kühlt langsam ab.
+
+<Chart
+  title={<>Spezifische Wärmekapazität einiger Stoffe</>}
+  bars="apart"
+  categories={["Wasser", "Eis", "Aluminium", "Eisen", "Kupfer", "Blei"]}
+  series={[
+    { label: "Spezifische Wärmekapazität (J/(kg K))", mark: "bar", values: [4200, 2100, 900, 450, 390, 130] },
+  ]}
+  valueLabel="Spezifische Wärmekapazität (J/(kg K))"
+  description={
+    <>
+      Übliche gerundete Werte: Wasser <InlineMath math="4200" />, Eis{" "}
+      <InlineMath math="2100" />, Aluminium <InlineMath math="900" />, Eisen{" "}
+      <InlineMath math="450" />, Kupfer <InlineMath math="390" /> und Blei{" "}
+      <InlineMath math="130\ \text{J/(kg K)}" />.
+    </>
+  }
+/>
+
+Wasser hat eine sehr große spezifische Wärmekapazität. Deshalb dient Wasser als Kühlmittel im Autokühler, und deshalb erwärmt sich das Meer tagsüber langsam, sodass ein Seewind entsteht.
+
+Der Wasserkocher im Modell erhitzt Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> aus. Wähle die Wassermenge und vergleich die nötige Energie und Zeit.
+
+<KettleHeatingLab
+  title={<>Ein Wasserkocher bringt Wasser zum Kochen</>}
+  description={
+    <>
+      Wähle halb, voll oder randvoll. Die nötige Energie ist proportional zur
+      Masse des Wassers.
+    </>
+  }
+  labels={{
+    chooseFill: "Wähle die Wassermenge",
+    energy: <>Nötige Energie</>,
+    power: <>Leistung des Wasserkochers</>,
+    rise: <>Temperaturanstieg</>,
+    time: <>Heizdauer</>,
+    viewLabel: "Ein Wasserkocher erhitzt Wasser",
+  }}
+/>
+
+### Beispiel Energie zum Erwärmen von Wasser
+
+Berechne **die nötige Wärme**, um <InlineMath math="2{,}0\ \text{kg}" /> Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" /> zu erwärmen.
+
+<BlockMath math="Q = mc\Delta T = (2{,}0)(4200)(100 - 25) = 630{.}000\ \text{J}" />
+
+Prüf die Einheiten: <InlineMath math="\text{kg} \cdot \text{J/(kg K)} \cdot \text{K} = \text{J}" />. Das Ergebnis ist <InlineMath math="6{,}3 \cdot 10^{5}\ \text{J}" />.
+
+### Beispiel Heizdauer eines Wasserkochers
+
+Ein Wasserkocher mit <InlineMath math="2000\ \text{W}" /> erhitzt <InlineMath math="1{,}5\ \text{kg}" /> Wasser von <InlineMath math="25\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" />. Nimm an, dass keine Wärme verloren geht, also **ist die elektrische Energie gleich der aufgenommenen Wärme**, <InlineMath math="Pt = mc\Delta T" />:
+
+<BlockMath math="t = \frac{mc\Delta T}{P} = \frac{(1{,}5)(4200)(75)}{2000} = 236\ \text{s}" />
+
+Das sind etwa vier Minuten. In Wirklichkeit dauert es länger, weil ein Teil der Wärme den Kocher und die Luft erwärmt.
+
+## Latente Wärme und die Erwärmungskurve
+
+Während ein Stoff seinen Aggregatzustand ändert, bleibt seine Temperatur gleich, obwohl weiter Wärme zufließt. Diese Energie **löst die Bindungen zwischen den Teilchen**, statt die Bewegungsenergie zu erhöhen. Man nennt sie **latente Wärme**. Die spezifische Schmelzwärme von Eis beträgt <InlineMath math="3{,}34 \cdot 10^{5}\ \text{J/kg}" />, die spezifische Verdampfungswärme von Wasser <InlineMath math="2{,}26 \cdot 10^{6}\ \text{J/kg}" />.
+
+Die Kurve unten ist für <InlineMath math="0{,}1\ \text{kg}" /> Eis berechnet, das bei <InlineMath math="-20\ {}^\circ\text{C}" /> beginnt. Beweg den Energieregler und achte auf die zwei waagerechten Abschnitte, Schmelzen und Sieden.
+
+<MathVisual
+  title={<>Erwärmungskurve von Eis bis Dampf</>}
+  description={
+    <>
+      Waagerecht ist die zugeführte Energie in kJ aufgetragen, senkrecht die
+      Temperatur in <InlineMath math="{}^\circ\text{C}" />. Der erste
+      waagerechte Abschnitt braucht <InlineMath math="33{,}4\ \text{kJ}" />, der
+      zweite <InlineMath math="226\ \text{kJ}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: -30, max: 130 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 305, value: 20, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "ice", kind: "segment", appearance: "primary", from: { x: 0, y: -20 }, to: { x: 4.2, y: 0 } },
+      { id: "melting", kind: "segment", appearance: "secondary", from: { x: 4.2, y: 0 }, to: { x: 37.6, y: 0 } },
+      { id: "water", kind: "segment", appearance: "primary", from: { x: 37.6, y: 0 }, to: { x: 79.6, y: 100 } },
+      { id: "boiling", kind: "segment", appearance: "secondary", from: { x: 79.6, y: 100 }, to: { x: 305.6, y: 100 } },
+      { id: "now", kind: "marker", x: "q", y: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42", appearance: "warning" },
+    ],
+    labels: [
+      { key: "melting", objectId: "melting", at: { x: 20.9, y: 0 }, placement: "below" },
+      { key: "boiling", objectId: "boiling", at: { x: 192.6, y: 100 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "temperature", formula: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42" },
+    ],
+  }}
+  labels={{
+    q: <>Zugeführte Energie <InlineMath math="q" /> in kJ</>,
+    melting: <>Schmelzen</>,
+    boiling: <>Sieden</>,
+    temperature: <>Temperatur in <InlineMath math="{}^\circ\text{C}" /></>,
+  }}
+/>
+
+Die Gesamtenergie wird Abschnitt für Abschnitt berechnet:
+
+<MathContainer>
+<BlockMath math="Q_1 = (0{,}1)(2100)(20) = 4200\ \text{J}" />
+<BlockMath math="Q_2 = (0{,}1)(3{,}34 \cdot 10^{5}) = 33{.}400\ \text{J}" />
+<BlockMath math="Q_3 = (0{,}1)(4200)(100) = 42{.}000\ \text{J}" />
+<BlockMath math="Q_4 = (0{,}1)(2{,}26 \cdot 10^{6}) = 226{.}000\ \text{J}" />
+</MathContainer>
+
+Der Siedeabschnitt ist am längsten. Wasser zu verdampfen braucht etwa fünfmal so viel Energie, wie es von <InlineMath math="0\ {}^\circ\text{C}" /> auf <InlineMath math="100\ {}^\circ\text{C}" /> zu erwärmen. Deshalb verbrüht Dampf mit <InlineMath math="100\ {}^\circ\text{C}" /> die Haut schlimmer als kochendes Wasser.
+
+## Die Gasgesetze
+
+Für eine feste Gasmenge hängen Druck <InlineMath math="p" />, Volumen <InlineMath math="V" /> und absolute Temperatur <InlineMath math="T" /> über drei Gesetze zusammen. Die Temperatur muss in **Kelvin** stehen: <InlineMath math="T = \vartheta + 273" />.
+
+| Gesetz | Konstante Größe | Zusammenhang |
+| :--- | :--- | :--- |
+| Gesetz von Boyle-Mariotte | Temperatur | <InlineMath math="p_1V_1 = p_2V_2" /> |
+| Gesetz von Gay-Lussac (Charles) | Druck | <InlineMath math="\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}" /> |
+| Gesetz von Amontons | Volumen | <InlineMath math="\dfrac{p_1}{T_1} = \dfrac{p_2}{T_2}" /> |
+
+Die kinetische Gastheorie erklärt das **Gesetz von Boyle-Mariotte**: Wird das Volumen bei gleicher Temperatur kleiner, treffen die Gasmoleküle häufiger auf die Wände, also steigt der Druck. Das Modell nutzt den Druck in Einheiten von <InlineMath math="p_0" /> und das Volumen in Einheiten von <InlineMath math="V_0" />. Beweg den Regler und sieh, dass das Produkt <InlineMath math="pV" /> gleich bleibt.
+
+<MathVisual
+  title={<>Gesetz von Boyle-Mariotte bei gleicher Temperatur</>}
+  description={
+    <>
+      Die Kurve ist <InlineMath math="pV = 4" /> in Einheiten von{" "}
+      <InlineMath math="p_0 V_0" />. Halbiert sich das Volumen, verdoppelt sich
+      der Druck.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0.5, max: 8, value: 2, step: 0.25, label: "w" },
+    ],
+    objects: [
+      { id: "isotherm", kind: "function", appearance: "primary", formula: "4/x", domain: { min: 0.5, max: 8 } },
+      { id: "state", kind: "marker", x: "w", y: "4/w", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "pressure", formula: "4/w" },
+      { key: "product", formula: "w * 4/w" },
+    ],
+  }}
+  labels={{
+    w: <>Volumen <InlineMath math="V" /> in Einheiten von <InlineMath math="V_0" /></>,
+    pressure: <>Druck in Einheiten von <InlineMath math="p_0" /></>,
+    product: <><InlineMath math="pV" /></>,
+  }}
+/>
+
+Das **Gesetz von Gay-Lussac**, im Englischen Charles' law, zeigt, dass das Volumen eines Gases bei gleichem Druck linear mit der Temperatur wächst. Verlängerst du die Gerade nach hinten, wird das Volumen bei <InlineMath math="-273\ {}^\circ\text{C}" /> null. Diese Temperatur ist der **absolute Nullpunkt**, <InlineMath math="0\ \text{K}" />. Das Modell nutzt ein Gas mit <InlineMath math="273\ \text{cm}^3" /> bei <InlineMath math="0\ {}^\circ\text{C}" />.
+
+<MathVisual
+  title={<>Gesetz von Gay-Lussac und absoluter Nullpunkt</>}
+  description={
+    <>
+      Volumen in <InlineMath math="\text{cm}^3" /> gegen Temperatur in{" "}
+      <InlineMath math="{}^\circ\text{C}" />. Die gestrichelte Linie verlängert
+      bis zum absoluten Nullpunkt, weil echte Gase vorher flüssig werden.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -300, max: 120 }, y: { min: 0, max: 420 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 100, value: 27, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "extrapolation", kind: "function", appearance: "construction", formula: "x + 273", domain: { min: -273, max: 0 } },
+      { id: "measured", kind: "function", appearance: "primary", formula: "x + 273", domain: { min: 0, max: 100 } },
+      { id: "zero", kind: "point", appearance: "answer", at: { x: -273, y: 0 } },
+      { id: "state", kind: "marker", x: "c", y: "c + 273", appearance: "warning" },
+    ],
+    labels: [
+      { key: "zero", objectId: "zero", at: { x: -273, y: 0 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "volume", formula: "c + 273" },
+      { key: "kelvin", formula: "c + 273" },
+    ],
+  }}
+  labels={{
+    c: <>Temperatur <InlineMath math="\vartheta" /> in <InlineMath math="{}^\circ\text{C}" /></>,
+    zero: <>Absoluter Nullpunkt, <InlineMath math="-273\ {}^\circ\text{C}" /></>,
+    volume: <>Volumen in <InlineMath math="\text{cm}^3" /></>,
+    kelvin: <>Absolute Temperatur in K</>,
+  }}
+/>
+
+Volumen und absolute Temperatur zeigen im Modell immer denselben Wert, also ist <InlineMath math="V/T" /> konstant. Das ist das Gesetz in seiner einfachsten Form.
+
+## Typische Fehler bei der Wärme
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Wärme und Temperatur sind dasselbe. | Wärme ist übertragene Energie. Die Temperatur gibt an, wie heiß etwas ist. | Prüf die Einheiten: Joule für Wärme, Grad oder Kelvin für Temperatur. |
+| Die Temperatur steigt, während Eis schmilzt. | Die Energie löst Bindungen, also bleibt die Temperatur gleich. | Such den waagerechten Abschnitt der Erwärmungskurve. |
+| Grad Celsius in die Gasgesetze einsetzen. | Die Gasgesetze brauchen die absolute Temperatur. | Addiere <InlineMath math="273" />, bevor du einsetzt. |
+| <InlineMath math="Q = mc\Delta T" /> beim Sieden verwenden. | Während der Zustandsänderung ändert sich die Temperatur nicht. | Nutze <InlineMath math="Q = mL" /> für die waagerechten Abschnitte. |
+
+Der dritte Fehler kommt bei Aufgaben zu den Gasgesetzen am häufigsten vor. **Rechne zuerst in Kelvin um**, dann erst weiter.
+
+## Übungen zur Wärme
+
+Die Aufgaben beginnen mit einer Formel und enden mit den Gasgesetzen. **Schreib die Einheit jeder Größe** auf, bevor du einsetzt.
+
+1. Berechne die Wärme, die nötig ist, um <InlineMath math="0{,}5\ \text{kg}" /> Aluminium um <InlineMath math="40\ \text{K}" /> zu erwärmen.
+
+2. <InlineMath math="0{,}4\ \text{kg}" /> Wasser mit <InlineMath math="90\ {}^\circ\text{C}" /> werden mit <InlineMath math="0{,}1\ \text{kg}" /> Wasser mit <InlineMath math="15\ {}^\circ\text{C}" /> gemischt. Berechne die Mischtemperatur, wenn keine Wärme verloren geht.
+
+3. Ein Gas in einer Spritze hat bei <InlineMath math="100\ \text{kPa}" /> das Volumen <InlineMath math="60\ \text{cm}^3" />. Es wird bei gleicher Temperatur langsam auf <InlineMath math="20\ \text{cm}^3" /> zusammengedrückt. Berechne den neuen Druck.
+
+4. Ein Reifen enthält Luft mit <InlineMath math="150\ \text{kPa}" /> bei <InlineMath math="27\ {}^\circ\text{C}" />. Die Luft wird bei gleichem Volumen auf <InlineMath math="127\ {}^\circ\text{C}" /> erwärmt. Berechne den neuen Druck.
+
+### Lösungen
+
+**Lösung 1**: Nutze <InlineMath math="Q = mc\Delta T" /> mit <InlineMath math="c = 900\ \text{J/(kg K)}" />:
+
+<BlockMath math="Q = (0{,}5)(900)(40) = 18{.}000\ \text{J}" />
+
+**Lösung 2**: Die vom heißen Wasser abgegebene Wärme nimmt das kalte Wasser auf. Die Mischtemperatur sei <InlineMath math="\vartheta" />:
+
+<MathContainer>
+<BlockMath math="(0{,}4)(4200)(90 - \vartheta) = (0{,}1)(4200)(\vartheta - 15)" />
+<BlockMath math="36 - 0{,}4\vartheta = 0{,}1\vartheta - 1{,}5" />
+<BlockMath math="\vartheta = \frac{37{,}5}{0{,}5} = 75\ {}^\circ\text{C}" />
+</MathContainer>
+
+Probe: <InlineMath math="75\ {}^\circ\text{C}" /> liegt zwischen <InlineMath math="15\ {}^\circ\text{C}" /> und <InlineMath math="90\ {}^\circ\text{C}" />, näher am heißen Wasser, weil dessen Masse größer ist.
+
+**Lösung 3**: Die Temperatur bleibt gleich, also gilt das Gesetz von Boyle-Mariotte:
+
+<BlockMath math="p_2 = \frac{p_1V_1}{V_2} = \frac{(100)(60)}{20} = 300\ \text{kPa}" />
+
+Das Volumen sinkt auf ein Drittel, also **verdreifacht sich der Druck**.
+
+**Lösung 4**: Das Volumen bleibt gleich, also gilt das Gesetz von Amontons mit absoluten Temperaturen: <InlineMath math="T_1 = 300\ \text{K}" /> und <InlineMath math="T_2 = 400\ \text{K}" />.
+
+<BlockMath math="p_2 = \frac{p_1T_2}{T_1} = \frac{(150)(400)}{300} = 200\ \text{kPa}" />
+
+Setzt du versehentlich Grad Celsius ein, erhältst du <InlineMath math="150 \cdot 127 : 27 \approx 706\ \text{kPa}" />, ein unmöglicher Wert für einen gewöhnlichen Reifen.

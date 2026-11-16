@@ -70,11 +70,11 @@ layer(NodeServices.layer)("material registry", (it) => {
               Arr.map(entries, ({ route }) => route.materialKey)
             )
           )
-        ).toBe(40);
+        ).toBe(42);
         for (const locale of ACTIVE_APP_LOCALES) {
           expect(
             Arr.filter(entries, ({ route }) => route.appLocale === locale)
-          ).toHaveLength(387);
+          ).toHaveLength(389);
         }
         expect(projectedPaths).toEqual(authoredPaths);
 

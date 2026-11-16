@@ -37,6 +37,8 @@ import { lessonMathematicsStatisticsFoundationsMaterial } from "#corpus/material
 import { lessonMathematicsStatisticsRegressionMaterial } from "#corpus/material/lesson/mathematics/statistics-regression/source";
 import { lessonMathematicsTrigonometryMaterial } from "#corpus/material/lesson/mathematics/trigonometry/source";
 import { lessonMathematicsVectorOperationsMaterial } from "#corpus/material/lesson/mathematics/vector-operations/source";
+import { lessonPhysicsGravitationMaterial } from "#corpus/material/lesson/physics/gravitation/source";
+import { lessonPhysicsHeatMaterial } from "#corpus/material/lesson/physics/heat/source";
 import { lessonPhysicsKinematicsMaterial } from "#corpus/material/lesson/physics/kinematics/source";
 import { lessonPhysicsMeasurementMaterial } from "#corpus/material/lesson/physics/measurement/source";
 import { lessonPhysicsRenewableEnergyMaterial } from "#corpus/material/lesson/physics/renewable-energy/source";
@@ -81,6 +83,8 @@ const materialSourcePrograms = [
   lessonMathematicsStatisticsRegressionMaterial,
   lessonMathematicsTrigonometryMaterial,
   lessonMathematicsVectorOperationsMaterial,
+  lessonPhysicsGravitationMaterial,
+  lessonPhysicsHeatMaterial,
   lessonPhysicsKinematicsMaterial,
   lessonPhysicsMeasurementMaterial,
   lessonPhysicsRenewableEnergyMaterial,
