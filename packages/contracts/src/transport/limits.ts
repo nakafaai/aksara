@@ -31,12 +31,14 @@ export const MAX_PROJECTION_BATCH_COUNT = 64;
 /**
  * Maximum complete structured-snapshot batch sent to publication ingress. Nakafa
  * decodes, re-encodes, hashes and writes every row of a batch in one Convex
- * mutation, which may run one second: on 16 November 2026 the 7.0.0 assessment
- * rows filled 4 MiB batches and every stageSnapshotBatch timed out, so a batch
- * stays a quarter of that: still one Convex document's 1 MiB, which every row
- * already fits.
+ * mutation, which may run one second, and its cost grows with the batch's bytes.
+ * On 16 November 2026 the 7.0.0 assessment rows filled 4 MiB batches and every
+ * stageSnapshotBatch timed out; release catalog-20261116c then timed out on a
+ * 1 MiB batch of Quran rows after nineteen minutes of staging. A batch therefore
+ * stays at half of that, which still holds the largest snapshot row: a Quran row
+ * of 369 KiB, while no assessment row passes 34 KiB.
  */
-export const MAX_SNAPSHOT_BATCH_BYTES = 1024 * 1024;
+export const MAX_SNAPSHOT_BATCH_BYTES = 512 * 1024;
 
 /** Maximum structured snapshot rows accepted by one staging transaction, inside the same one-second mutation. */
 export const MAX_SNAPSHOT_BATCH_COUNT = 16;

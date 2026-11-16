@@ -30,7 +30,7 @@ describe("publication transport limits", () => {
     expect(MAX_HEAD_PAGE_COUNT).toBe(500);
     expect(MAX_PROJECTION_BATCH_BYTES).toBe(4 * 1024 * 1024);
     expect(MAX_PROJECTION_BATCH_COUNT).toBe(64);
-    expect(MAX_SNAPSHOT_BATCH_BYTES).toBe(1024 * 1024);
+    expect(MAX_SNAPSHOT_BATCH_BYTES).toBe(512 * 1024);
     expect(MAX_SNAPSHOT_BATCH_COUNT).toBe(16);
     expect(MAX_STAGE_GROUP_BYTES).toBe(4 * 1024 * 1024 + 512 * 1024);
     expect(MAX_STAGE_GROUP_COUNT).toBe(64);
