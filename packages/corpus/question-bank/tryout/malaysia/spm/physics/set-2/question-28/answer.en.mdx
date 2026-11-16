@@ -1,0 +1,31 @@
+# Size <InlineMath math="R" /> for normal brightness
+
+Each lamp draws <InlineMath math="3.0/6.0=0.50\text{ A}" /> and has resistance <InlineMath math="6.0^2/3.0=12\,\Omega" />. The pair draws <InlineMath math="1.0\text{ A}" /> at <InlineMath math="6.0\text{ V}" />, and **the internal resistance takes its share of the remaining <InlineMath math="6.0\text{ V}" />**.
+
+<BlockMath math="12-6.0=1.0\times(R+1.0)\ \Rightarrow\ R=5.0\,\Omega" />
+
+# One lamp left
+
+**The remaining lamp is now alone in series with <InlineMath math="R" /> and the internal resistance**. The total resistance rises, but the lamp now takes the whole current instead of half of it.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12}{12+5.0+1.0}=0.667\text{ A}\\
+P&=0.667^2\times12=5.3\text{ W}
+\end{aligned}" />
+
+<Chart
+  title={<>Power in a lamp before and after</>}
+  description={<>Bar chart: each lamp dissipates <InlineMath math="3.0\text{ W}" /> while both work, and the remaining lamp dissipates <InlineMath math="5.3\text{ W}" /> after the other fails, well above its rating.</>}
+  bars="apart"
+  categories={["Both lamps on", "One lamp left"]}
+  series={[
+    { label: "Power of one lamp", mark: "bar", values: [3.0, 5.3] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="3.0\text{ W}" /> **assumes the remaining lamp carries on unchanged**.
+- <InlineMath math="6.0\,\Omega" /> forgets the internal resistance, and its <InlineMath math="4.8\text{ W}" /> carries that slip.
+- <InlineMath math="4.0\,\Omega" /> counts the internal resistance twice.

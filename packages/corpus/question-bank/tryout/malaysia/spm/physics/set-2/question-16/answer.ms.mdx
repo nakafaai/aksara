@@ -1,0 +1,43 @@
+# Dapatkan panjang gelombang, kemudian uji setiap perubahan
+
+Rumus celah memberi <InlineMath math="\lambda=\dfrac{ax}{D}=\dfrac{6.0\times12.5}{50}=1.5\text{ cm}" />, jadi I benar, dan <InlineMath math="f=\dfrac{v}{\lambda}=\dfrac{3.0\times10^8}{0.015}=2.0\times10^{10}\text{ Hz}=20\text{ GHz}" />, jadi II benar.
+
+<MathVisual
+  title={<>Isyarat kuat di sepanjang garis pengesan</>}
+  description={<>Dua celah berjarak <InlineMath math="a=6.0\text{ cm}" />, dan garis sejauh <InlineMath math="D=50\text{ cm}" /> dengan isyarat kuat setiap <InlineMath math="x=12.5\text{ cm}" />, jadi <InlineMath math="\lambda=ax/D=1.5\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="a=6.0\text{ cm}" /></>,
+    d: <><InlineMath math="D=50\text{ cm}" /></>,
+    x: <><InlineMath math="x=12.5\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 58 }, y: { min: -30, max: 30 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "primary", from: { x: 0, y: -28 }, to: { x: 0, y: -3 } },
+      { id: "wall2", kind: "segment", appearance: "primary", from: { x: 0, y: 3 }, to: { x: 0, y: 28 } },
+      { id: "d", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 50, y: 0 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: 50, y: -28 }, to: { x: 50, y: 28 } },
+      { id: "m0", kind: "point", appearance: "answer", at: { x: 50, y: 0 } },
+      { id: "m1", kind: "point", appearance: "answer", at: { x: 50, y: 12.5 } },
+      { id: "m2", kind: "point", appearance: "answer", at: { x: 50, y: -12.5 } },
+      { id: "m3", kind: "point", appearance: "answer", at: { x: 50, y: 25 } },
+      { id: "m4", kind: "point", appearance: "answer", at: { x: 50, y: -25 } },
+      { id: "x", kind: "segment", appearance: "highlight", from: { x: 53, y: 0 }, to: { x: 53, y: 12.5 } },
+    ],
+    labels: [
+      { key: "a", objectId: "wall", at: { x: 0, y: 3 }, placement: "left" },
+      { key: "d", objectId: "d", at: { x: 25, y: 0 }, placement: "below" },
+      { key: "x", objectId: "x", at: { x: 53, y: 6.25 }, placement: "right" },
+    ],
+  }}
+/>
+
+III benar kerana corak sekata itu datang daripada interferens dua sumber, dan satu celah sahaja hanya menyebarkan gelombang. **IV melanggar syarat yang menjadi asas formula itu**: isyarat kuat di sebelah pusat memerlukan <InlineMath math="a\sin\theta=\lambda" />, dan dengan <InlineMath math="a=1.0\text{ cm}" /> lebih kecil daripada <InlineMath math="\lambda=1.5\text{ cm}" /> itu memerlukan <InlineMath math="\sin\theta=1.5" />. Hanya isyarat kuat di pusat yang tinggal, jadi <InlineMath math="75\text{ cm}" /> daripada <InlineMath math="\lambda=ax/D" /> tidak pernah muncul. Jadi I, II dan III yang betul.
+
+# Mengapa pilihan lain salah
+
+- I dan II sahaja menolak III, tetapi **dengan satu celah tiada apa untuk berinterferens**, jadi corak sekata itu hilang.
+- I, II dan IV sahaja menerima IV, yang menggunakan <InlineMath math="\lambda=ax/D" /> walaupun tiada isyarat kuat di sebelah pusat boleh wujud.
+- III dan IV sahaja membuang dua pengiraan yang betul dan mengekalkan IV yang palsu.

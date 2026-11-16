@@ -1,0 +1,40 @@
+# Find the critical angle against water, not air
+
+In air the critical angle is <InlineMath math="\sin^{-1}(1/1.50)=41.8^\circ" />, so <InlineMath math="45^\circ" /> would give total internal reflection. **Under water the critical angle uses the ratio of the two indices**, <InlineMath math="\sin c=\dfrac{1.33}{1.50}" />, which gives <InlineMath math="c=62.5^\circ" />. Now <InlineMath math="45^\circ" /> is below it, so the ray escapes.
+
+<MathVisual
+  title={<>The ray at the long face under water</>}
+  description={<>The ray meets the long face at <InlineMath math="45^\circ" />. Under water the critical angle is <InlineMath math="62.5^\circ" />, larger than <InlineMath math="45^\circ" />, so the ray passes into the water and bends away from the normal to <InlineMath math="53^\circ" />.</>}
+  labels={{
+    glass: <>glass, <InlineMath math="n=1.50" /></>,
+    in: <><InlineMath math="45^\circ" /></>,
+    out: <><InlineMath math="53^\circ" /></>,
+    water: <>water, <InlineMath math="n=1.33" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1.2, max: 4.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ray", kind: "vector", appearance: "primary", from: { x: 1.2, y: -1 }, to: { x: 1.2, y: 1.8 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0.45, y: 1.05 }, to: { x: 2.2, y: 2.8 } },
+      { id: "out", kind: "vector", appearance: "answer", from: { x: 1.2, y: 1.8 }, to: { x: 1.0, y: 3.2 } },
+      { id: "water", kind: "point", appearance: "reference", at: { x: 3.6, y: 3.6 } },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: 0.7, y: 0.5 }, placement: "center" },
+      { key: "in", objectId: "ray", at: { x: 1.2, y: 1.2 }, placement: "left" },
+      { key: "out", objectId: "out", at: { x: 1.0, y: 3.2 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 3.6, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="1.50\sin45^\circ=1.33\sin r\ \Rightarrow\ \sin r=0.797,\ r=53^\circ" />
+
+# Why the other options are wrong
+
+- Total internal reflection uses the critical angle against air. **Water lowers the change in index**, so the critical angle rises to <InlineMath math="62.5^\circ" />.
+- <InlineMath math="39^\circ" /> swaps the indices, <InlineMath math="\sin r=\dfrac{1.33\sin45^\circ}{1.50}" />, as if the ray went from water into glass.
+- <InlineMath math="45^\circ" /> ignores refraction, but the indices differ, so the ray bends.

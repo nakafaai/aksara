@@ -1,0 +1,43 @@
+# Das Licht durch Linse, Spiegel und wieder Linse verfolgen
+
+Beim ersten Durchgang bildete die Linse bei <InlineMath math="v" /> ab mit <InlineMath math="\dfrac1{20}=\dfrac1{30}+\dfrac1v" />, also <InlineMath math="v=60\text{ cm}" />. Dieser Punkt liegt <InlineMath math="20\text{ cm}" /> hinter dem Spiegel, das Licht erreicht ihn also nie. **Der Spiegel klappt das zusammenlaufende Licht zurück, und es trifft sich <InlineMath math="20\text{ cm}" /> vor dem Spiegel**, also <InlineMath math="20\text{ cm}" /> von der Linse.
+
+<MathVisual
+  title={<>Bildlagen entlang der Achse</>}
+  description={<>Die Linse bei <InlineMath math="0" />, der Gegenstand bei <InlineMath math="-30\text{ cm}" /> und der Spiegel bei <InlineMath math="40\text{ cm}" />. Die Linse allein bildete bei <InlineMath math="60\text{ cm}" /> ab, hinter dem Spiegel. Der Spiegel klappt das Bild auf <InlineMath math="20\text{ cm}" /> zurück, genau in den Brennpunkt der Linse.</>}
+  labels={{
+    obj: <>Gegenstand</>,
+    lens: <>Linse</>,
+    mirror: <>Spiegel</>,
+    first: <>Bild ohne Spiegel, <InlineMath math="60\text{ cm}" /></>,
+    fold: <>geklapptes Bild bei <InlineMath math="F" />, <InlineMath math="20\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -35, max: 65 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -34, y: 0 }, to: { x: 64, y: 0 } },
+      { id: "obj", kind: "vector", appearance: "primary", from: { x: -30, y: 0 }, to: { x: -30, y: 6 } },
+      { id: "lens", kind: "segment", appearance: "secondary", from: { x: 0, y: -9 }, to: { x: 0, y: 9 } },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 40, y: -9 }, to: { x: 40, y: 9 } },
+      { id: "first", kind: "point", appearance: "warning", at: { x: 60, y: 0 } },
+      { id: "fold", kind: "point", appearance: "answer", at: { x: 20, y: 0 } },
+    ],
+    labels: [
+      { key: "obj", objectId: "obj", at: { x: -30, y: 6 }, placement: "above" },
+      { key: "lens", objectId: "lens", at: { x: 0, y: 9 }, placement: "above" },
+      { key: "mirror", objectId: "mirror", at: { x: 40, y: 9 }, placement: "above" },
+      { key: "first", objectId: "first", at: { x: 60, y: 0 }, placement: "below" },
+      { key: "fold", objectId: "fold", at: { x: 20, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+Dieser Punkt ist der Brennpunkt der Linse. Licht, das vom Brennpunkt ausgeht, verlässt eine Sammellinse parallel zur Achse, also <InlineMath math="v\to\infty" />, und es entsteht kein Endbild.
+
+# Warum die anderen Antworten falsch sind
+
+- Ein reelles Bild <InlineMath math="30\text{ cm}" /> vor der Linse rechnet auf dem Rückweg mit <InlineMath math="u=60\text{ cm}" />, dem Abstand zum Bild ohne Spiegel, statt mit <InlineMath math="20\text{ cm}" />. **Der Spiegel rückt das Bild auf <InlineMath math="20\text{ cm}" /> an die Linse**.
+- Ein reelles Bild <InlineMath math="20\text{ cm}" /> hinter der Linse ist der Treffpunkt des reflektierten Lichts, bevor es die Linse wieder durchläuft.
+- Ein reelles Bild <InlineMath math="60\text{ cm}" /> vor der Linse spiegelt nur das Ergebnis des ersten Durchgangs und übersieht die Lage des Spiegels.

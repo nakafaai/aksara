@@ -1,0 +1,30 @@
+# Baca satu sel
+
+**Titik potong <InlineMath math="V" /> adalah GGL, <InlineMath math="1{,}5\text{ V}" />, dan titik potong <InlineMath math="I" /> adalah arus hubung singkat, jadi <InlineMath math="r=1{,}5/3{,}0=0{,}50\,\Omega" />**.
+
+# Sel terbalik mengurangi GGL tetapi tetap menambah hambatannya
+
+**Sel yang terbalik melawan salah satu sel lainnya**, jadi GGL total <InlineMath math="1{,}5+1{,}5-1{,}5=1{,}5\text{ V}" />. Hambatan dalamnya tetap berada di jalur arus, jadi ketiga hambatan dijumlahkan.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{1{,}5}{2{,}0+3(0{,}50)}=0{,}43\text{ A}\\
+V&=0{,}43\times2{,}0=0{,}86\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Tiga sel tersusun seri</>}
+  description={<>Diagram batang GGL dan hambatan dalam: dengan semua sel benar, <InlineMath math="4{,}5\text{ V}" /> dan <InlineMath math="1{,}5\,\Omega" />, dan dengan satu terbalik, <InlineMath math="1{,}5\text{ V}" /> dan tetap <InlineMath math="1{,}5\,\Omega" />.</>}
+  bars="apart"
+  categories={["Semua benar", "Satu terbalik"]}
+  series={[
+    { label: "GGL (V)", mark: "bar", values: [4.5, 1.5] },
+    { label: "Hambatan dalam (Ω)", mark: "bar", values: [1.5, 1.5] },
+  ]}
+  valueLabel="Nilai"
+/>
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}29\text{ A}" /> **mengabaikan sel yang terbalik dan memakai <InlineMath math="4{,}5\text{ V}" />**.
+- <InlineMath math="0{,}50\text{ A}" /> menghilangkan hambatan dalam sel yang terbalik.
+- <InlineMath math="0{,}75\text{ A}" /> mengabaikan semua hambatan dalam.

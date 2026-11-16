@@ -1,0 +1,44 @@
+# Die Richtung der Beschleunigung an der Neigung ablesen
+
+Die Feder zieht die Masse nach oben und zum Aufhängepunkt hin. Die Masse hängt östlich des Aufhängepunkts, also **zeigt der waagerechte Zug, und mit ihm die Beschleunigung, nach Westen**. Der Zug fährt nach Osten, also bremst er.
+
+<MathVisual
+  title={<>Kräfte auf die hängende Masse</>}
+  description={<>Die Federkraft zeigt von der Masse nach oben und zurück nach Westen, <InlineMath math="15^\circ" /> gegen die Senkrechte. Ihr senkrechter Anteil hält dem Gewicht von <InlineMath math="2{,}0\text{ N}" /> das Gleichgewicht, ihr waagerechter Anteil zeigt nach Westen, also zeigen resultierende Kraft und Beschleunigung nach Westen, während der Zug nach Osten fährt.</>}
+  labels={{
+    t: <>Federkraft <InlineMath math="2{,}07\text{ N}" /></>,
+    w: <>Gewicht <InlineMath math="2{,}0\text{ N}" /></>,
+    f: <>resultierende Kraft nach Westen</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.0, max: 0.6 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0.9659 } },
+      { id: "w", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: -0.97 } },
+      { id: "f", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: -0.13, y: 0.5 }, placement: "left" },
+      { key: "w", objectId: "w", at: { x: 0, y: -0.6 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -0.13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Senkrecht bilanzieren, dann den waagerechten Anteil nutzen
+
+<BlockMath math="\begin{aligned}
+T\cos15^\circ&=mg\ \Rightarrow\ T=\frac{2{,}0}{0{,}966}=2{,}07\text{ N}\\
+a&=g\tan15^\circ=2{,}7\text{ m s}^{-2}\\
+x&=\frac{T}{k}=\frac{2{,}07}{40}=0{,}052\text{ m}=5{,}2\text{ cm}
+\end{aligned}" />
+
+**Die Federkraft ist größer als das Gewicht, also ist die Dehnung größer als die <InlineMath math="5{,}0\text{ cm}" /> im Stillstand**.
+
+# Warum die anderen Antworten falsch sind
+
+- **Beim Beschleunigen bliebe die Masse westlich des Aufhängepunkts zurück, die entgegengesetzte Neigung**.
+- <InlineMath math="5{,}0\text{ cm}" /> teilt das Gewicht durch <InlineMath math="k" />, doch die Feder muss auch die waagerechte Kraft liefern.
+- <InlineMath math="2{,}6\text{ m s}^{-2}" /> nimmt <InlineMath math="g\sin15^\circ" /> und dazu die falsche Richtung.

@@ -1,0 +1,24 @@
+# Jede Schaltung wählt eine Zeile der Tabelle
+
+**Der Widerstand der Lampe ändert sich mit dem Strom, also muss jede Schaltung über die Zeile gelöst werden, die sie erfüllt**, nicht mit einem festen Widerstand.
+
+<Chart
+  title={<>Widerstand der Lampe bei jedem Strom</>}
+  description={<>Balkendiagramm von <InlineMath math="V/I" /> aus der Tabelle: <InlineMath math="5{,}0\,\Omega" /> bei <InlineMath math="0{,}10\text{ A}" />, <InlineMath math="7{,}5\,\Omega" /> bei <InlineMath math="0{,}20\text{ A}" />, <InlineMath math="10\,\Omega" /> bei <InlineMath math="0{,}30\text{ A}" /> und <InlineMath math="12{,}5\,\Omega" /> bei <InlineMath math="0{,}40\text{ A}" />. Der Widerstand des Fadens steigt, wenn er heiß wird.</>}
+  bars="apart"
+  categories={["0,10 A", "0,20 A", "0,30 A", "0,40 A"]}
+  series={[
+    { label: "Widerstand", mark: "bar", values: [5.0, 7.5, 10.0, 12.5] },
+  ]}
+  valueLabel="Widerstand (Ω)"
+/>
+
+- **I**: <InlineMath math="5{,}0/0{,}40=12{,}5\,\Omega" />, richtig.
+- **II**: Zwei gleiche Lampen teilen sich die <InlineMath math="6{,}0\text{ V}" /> zu gleichen Teilen, je <InlineMath math="3{,}0\text{ V}" />, was die Tabelle mit <InlineMath math="0{,}30\text{ A}" /> paart. Richtig.
+- **III**: Jede Lampe führt <InlineMath math="I" /> und der Widerstand <InlineMath math="2I" />, also <InlineMath math="V+5{,}0(2I)=6{,}0" />. Die Zeile <InlineMath math="0{,}30\text{ A}" />, <InlineMath math="3{,}0\text{ V}" /> passt, die Quelle liefert also <InlineMath math="0{,}60\text{ A}" />. Richtig.
+- **IV**: Bei <InlineMath math="0{,}40\text{ A}" /> braucht die Lampe <InlineMath math="5{,}0\text{ V}" /> und der Widerstand <InlineMath math="4{,}0\text{ V}" />, zusammen <InlineMath math="9{,}0\text{ V}" />, mehr als die Quelle hat. Die Zeile, die <InlineMath math="V+10I=6{,}0" /> erfüllt, ist <InlineMath math="0{,}30\text{ A}" />. Falsch.
+
+# Warum die anderen Antworten falsch sind
+
+- **Nur I und III verwirft II, doch gleiche Lampen in Reihe teilen sich die Spannung zu gleichen Teilen**.
+- Antworten mit IV nehmen den Strom, bei dem die Lampe <InlineMath math="12{,}5\,\Omega" /> erreicht, ohne zu prüfen, ob die Spannungen <InlineMath math="6{,}0\text{ V}" /> ergeben.
