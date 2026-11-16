@@ -1,67 +1,52 @@
-Jede Aussage fragt, wie oft die Kurve eine Gerade trifft, also wie viele Lösungen die Gleichung hat, die <InlineMath math="2^x" /> mit dem Term der Geraden gleichsetzt. Du brauchst drei Eigenschaften der Kurve <InlineMath math="y=2^x" />: Ihre Werte sind **immer positiv**, sie **steigt immer**, und sie ist **nach oben gekrümmt**. Nach oben gekrümmt heißt: Die Strecke zwischen zwei Kurvenpunkten liegt zwischen diesen Punkten über der Kurve, außerhalb davon liegt die Kurve über der Geraden. Deshalb schneidet eine Gerade diese Kurve höchstens zweimal.
-
-# Die erste Aussage
-
-Setz <InlineMath math="x=1" /> und <InlineMath math="x=2" /> in <InlineMath math="2^x=2x" /> ein: <InlineMath math="2^1=2=2\cdot1" /> und <InlineMath math="2^2=4=2\cdot2" />. Die Punkte <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" /> liegen also auf Kurve und Gerade. Weil eine Gerade die Kurve **höchstens zweimal** schneidet, gibt es keinen weiteren Schnittpunkt.
-
-<BlockMath math="\text{Abstand}=\sqrt{(2-1)^2+(4-2)^2}=\sqrt{1+4}=\sqrt5" />
-
-Die Aussage ist **wahr**.
-
-# Die zweite Aussage
-
-Eine waagerechte Gerade hat die Form <InlineMath math="y=c" />. Für <InlineMath math="c\le0" />, etwa <InlineMath math="y=-1" />, hat die Gleichung <InlineMath math="2^x=-1" /> keine Lösung, denn **<InlineMath math="2^x" /> ist immer positiv**. Diese Gerade trifft die Kurve nie. Die Behauptung über "jede waagerechte Gerade" scheitert an diesem einen Beispiel, also ist die Aussage **falsch**. Die Behauptung gilt nur für <InlineMath math="c>0" />.
-
-# Die dritte Aussage
-
-Die Gerade <InlineMath math="y=-x+k" /> fällt immer, die Kurve steigt immer. Die Differenz <InlineMath math="2^x-(-x+k)=2^x+x-k" /> ist eine Summe zweier steigender Teile, also **steigt die Differenz immer** und kann höchstens einmal null sein.
-
-Die Differenz muss auch ihr Vorzeichen wechseln. Bei <InlineMath math="x=k" /> ist die Gerade <InlineMath math="0" /> und die Kurve <InlineMath math="2^k>0" />, die Kurve liegt also über der Geraden. Nimm nun ein <InlineMath math="x" /> mit <InlineMath math="x\le-1" /> und <InlineMath math="x\le k-1" />. Dort ist die Kurve höchstens <InlineMath math="2^{-1}=\frac{1}{2}" />, die Gerade aber mindestens <InlineMath math="-(k-1)+k=1" />, die Gerade liegt also über der Kurve. Die beiden tauschen genau einmal die Lage, also gibt es für jedes <InlineMath math="k" /> genau einen Schnittpunkt. Die Aussage ist **wahr**.
-
-# Die vierte Aussage
-
-Zeig, dass <InlineMath math="2^x>x" /> für jedes <InlineMath math="x" /> gilt. Die Gerade <InlineMath math="y=x+1" /> schneidet die Kurve in <InlineMath math="(0,1)" /> und <InlineMath math="(1,2)" />. Weil die Kurve nach oben gekrümmt ist, **liegt sie außerhalb des Intervalls von <InlineMath math="0" /> bis <InlineMath math="1" /> über dieser Geraden**.
-
-<BlockMath math="\begin{aligned}
-x\le0\ \text{oder}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
-0<x<1&\;\Longrightarrow\;2^x>2^0=1>x
-\end{aligned}" />
-
-Die Kurve liegt immer über der Geraden <InlineMath math="y=x" />, also treffen sie sich nie. Die Aussage ist **falsch**.
-
-Der Graph zeigt die Kurve <InlineMath math="y=2^x" /> mit allen vier Arten von Geraden. Die Gerade <InlineMath math="y=2x" /> schneidet sie zweimal, die fallende Gerade genau einmal, die Gerade <InlineMath math="y=x" /> und die Gerade <InlineMath math="y=-1" /> **berühren die Kurve nie**.
+Die Kurve <InlineMath math="y=2^x" /> ist **linksgekrümmt**: Ihre Steigung wächst ständig. Eine Gerade schneidet sie also höchstens zweimal. Um Schnittpunkte zu zählen, suchst du Vorzeichenwechsel der Differenz <InlineMath math="g(x)=2^x-(\text{Gerade})" /> und nutzt dann die Krümmung.
 
 <MathVisual
-  title={<>Die Kurve <InlineMath math="y=2^x" /> und vier Geraden</>}
-  description={<>Die Kurve <InlineMath math="y=2^x" /> ist immer positiv, steigt immer und ist nach oben gekrümmt. Die Gerade <InlineMath math="y=2x" /> schneidet sie in <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" />. Die Gerade <InlineMath math="y=-x+3" /> schneidet sie genau einmal. Die Gerade <InlineMath math="y=x" /> bleibt unter der Kurve, und die Gerade <InlineMath math="y=-1" /> liegt unter der <InlineMath math="x" />-Achse, weit weg von der Kurve.</>}
+  title={<>Die Kurve <InlineMath math="y=2^x" /> und drei Geraden</>}
+  description={<>Die Gerade <InlineMath math="y=2x" /> trifft die Kurve in <InlineMath math="(1,2)" /> und <InlineMath math="(2,4)" />. Die Gerade <InlineMath math="y=x+1" /> trifft die Kurve in <InlineMath math="(0,1)" /> und <InlineMath math="(1,2)" />. Die Gerade <InlineMath math="y=x" /> liegt überall unterhalb der Kurve.</>}
   labels={{
     curve: <InlineMath math="y=2^x" />,
     two: <InlineMath math="y=2x" />,
-    same: <InlineMath math="y=x" />,
-    fall: <InlineMath math="y=-x+3" />,
-    flat: <InlineMath math="y=-1" />,
+    one: <InlineMath math="y=x+1" />,
+    ident: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3.5 }, y: { min: -2, max: 9 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 3 }, y: { min: -1, max: 6 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "flat", kind: "segment", appearance: "construction", from: { x: -3, y: -1 }, to: { x: 3.5, y: -1 } },
-      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -3, max: 3.15 } },
-      { id: "two", kind: "function", appearance: "secondary", formula: "2x", domain: { min: -1, max: 3.5 } },
-      { id: "same", kind: "function", appearance: "reference", formula: "x", domain: { min: -2, max: 3.5 } },
-      { id: "fall", kind: "function", appearance: "highlight", formula: "-x + 3", domain: { min: -3, max: 3.5 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -1 }, to: { x: 0, y: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -2, max: 2.55 } },
+      { id: "two", kind: "function", appearance: "answer", formula: "2*x", domain: { min: -0.5, max: 2.9 } },
+      { id: "one", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -2, max: 2.9 } },
+      { id: "ident", kind: "function", appearance: "warning", formula: "x", domain: { min: -1, max: 3 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
       { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "p0", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
     ],
     labels: [
-      { key: "curve", objectId: "curve", at: { x: 3, y: 8 }, placement: "left" },
-      { key: "two", objectId: "two", at: { x: 3.5, y: 7 }, placement: "below" },
-      { key: "same", objectId: "same", at: { x: 3.5, y: 3.5 }, placement: "below" },
-      { key: "fall", objectId: "fall", at: { x: -2.5, y: 5.5 }, placement: "right" },
-      { key: "flat", objectId: "flat", at: { x: -2.5, y: -1 }, placement: "below" },
+      { key: "curve", objectId: "curve", at: { x: 2.4, y: 5.28 }, placement: "left" },
+      { key: "two", objectId: "two", at: { x: 2.8, y: 5.6 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -1.5, y: -0.5 }, placement: "above-left" },
+      { key: "ident", objectId: "ident", at: { x: 2.8, y: 2.8 }, placement: "below-right" },
     ],
   }}
 />
 
-Die erste und die dritte Aussage sind also wahr, die zweite und die vierte falsch.
+# Die erste Aussage
+
+Für <InlineMath math="g(x)=2^x-mx" /> mit <InlineMath math="m\ge2" /> prüfst du drei Stellen: <InlineMath math="g(0)=1>0" />, <InlineMath math="g(1)=2-m\le0" />, und für großes <InlineMath math="x" /> wächst <InlineMath math="2^x" /> weit über <InlineMath math="mx" /> hinaus, also wird <InlineMath math="g" /> wieder positiv. Für <InlineMath math="m>2" /> **wechselt das Vorzeichen zweimal**, also gibt es einen Schnittpunkt zwischen <InlineMath math="0" /> und <InlineMath math="1" /> und einen weiteren nach <InlineMath math="1" />. Für <InlineMath math="m=2" /> liegen die Punkte genau bei <InlineMath math="x=1" /> und <InlineMath math="x=2" />. Die Krümmung schließt einen dritten Punkt aus. Die Aussage ist wahr.
+
+# Die zweite Aussage
+
+<InlineMath math="2^0=0+1" /> und <InlineMath math="2^1=1+1" />, also trifft die Gerade <InlineMath math="y=x+1" /> die Kurve in <InlineMath math="(0,1)" /> **und** in <InlineMath math="(1,2)" />, genau zweimal. Die Aussage ist falsch.
+
+# Die dritte Aussage
+
+<InlineMath math="h(x)=2^x+2x-k" /> **steigt immer**, weil <InlineMath math="2^x" /> und <InlineMath math="2x" /> beide steigen. Für sehr kleines <InlineMath math="x" /> ist <InlineMath math="h<0" />, für sehr großes <InlineMath math="x" /> ist <InlineMath math="h>0" />, also hat <InlineMath math="h" /> für jedes <InlineMath math="k" /> genau eine Nullstelle. Kein <InlineMath math="k" /> lässt die Gerade vorbeigehen. Die Aussage ist falsch.
+
+# Die vierte Aussage
+
+Teile in drei Bereiche. **Für <InlineMath math="x\le0" />** ist <InlineMath math="2^x>0\ge x" />. Für <InlineMath math="0<x<1" /> ist <InlineMath math="2^x>1>x" />. Für <InlineMath math="x\ge1" /> steigt die Kurve nach dem Treffpunkt bei <InlineMath math="x=1" /> schneller als die Gerade <InlineMath math="y=x+1" />, also <InlineMath math="2^x\ge x+1>x" />. Die Gerade <InlineMath math="y=x" /> bleibt unterhalb der Kurve, also ist die Aussage wahr.
+
+Also sind die erste und die vierte Aussage wahr, die zweite und die dritte falsch.

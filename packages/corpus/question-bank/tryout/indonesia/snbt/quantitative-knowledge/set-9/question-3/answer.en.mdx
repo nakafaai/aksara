@@ -1,87 +1,63 @@
-All four statements depend on what's inside the set <InlineMath math="S" />, so **pin down exactly what's in it** first. Then judge each statement with its own proof: a "there is" statement needs just one example, while an "every" statement needs a reason that works for all members.
+This fraction has **two kinds of special points**: zeros of the numerator, <InlineMath math="x=1" /> and <InlineMath math="x=-2" />, which may belong because the sign is <InlineMath math="\ge" />, and zeros of the denominator, <InlineMath math="x=0" /> and <InlineMath math="x=2" />, which never belong. The factor <InlineMath math="(x-1)^2" /> is never negative, so it doesn't change the sign.
 
-# Finding the set S
+# Building the set S
 
-Don't multiply both sides by <InlineMath math="x" /> right away. **The sign of <InlineMath math="x" /> isn't known yet**, and multiplying by a negative number flips the inequality. Move everything to one side and write it as one fraction.
+The fraction has the same sign as <InlineMath math="\tfrac{x+2}{x(x-2)}" />, except at <InlineMath math="x=1" />, where the fraction is zero.
 
-<BlockMath math="\begin{aligned}
-\frac{1}{x}<x
-&\iff x-\frac{1}{x}>0\\
-&\iff \frac{x^2-1}{x}>0\\
-&\iff \frac{(x+1)(x-1)}{x}>0
-\end{aligned}" />
+- For <InlineMath math="x<-2" />: the numerator is negative and the denominator positive, so negative.
+- For <InlineMath math="-2\le x<0" />: the numerator is non-negative and the denominator positive, so non-negative.
+- For <InlineMath math="0<x<2" />: the denominator is negative, so negative, **except at <InlineMath math="x=1" />**, where the value is exactly zero.
+- For <InlineMath math="x>2" />: positive.
 
-This fraction can only change sign at <InlineMath math="x=-1" />, <InlineMath math="x=0" />, and <InlineMath math="x=1" />. Test one number in each interval.
-
-| Interval | Test value | Sign of the fraction |
-| :---: | :---: | :---: |
-| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | negative |
-| <InlineMath math="-1<x<0" /> | <InlineMath math="x=-\frac{1}{2}" /> | positive |
-| <InlineMath math="0<x<1" /> | <InlineMath math="x=\frac{1}{2}" /> | negative |
-| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | positive |
-
-So <InlineMath math="S" /> is made of **the numbers between <InlineMath math="-1" /> and <InlineMath math="0" />, plus the numbers greater than <InlineMath math="1" />**.
-
-<BlockMath math="S=\{x\mid -1<x<0\ \text{or}\ x>1\}" />
-
-Graphing both sides shows that set. The curve <InlineMath math="y=\tfrac1x" /> sits **below the line <InlineMath math="y=x" />** in exactly two parts, between <InlineMath math="-1" /> and <InlineMath math="0" /> and to the right of <InlineMath math="1" />, marked by the thick pieces on the <InlineMath math="x" />-axis.
+So <InlineMath math="S=[-2,0)\cup\{1\}\cup(2,\infty)" />. The number line below shows that **<InlineMath math="x=1" /> is a single point** in the middle of a negative region.
 
 <MathVisual
-  title={<>The curve <InlineMath math="y=\tfrac1x" /> and the line <InlineMath math="y=x" /></>}
-  description={<>The curve and the line meet at <InlineMath math="(-1,-1)" /> and <InlineMath math="(1,1)" />. The curve is below the line for <InlineMath math="-1<x<0" /> and for <InlineMath math="x>1" />, and above it for <InlineMath math="x<-1" /> and <InlineMath math="0<x<1" />. The thick pieces on the <InlineMath math="x" />-axis mark the set <InlineMath math="S" />.</>}
+  title={<>The set <InlineMath math="S" /> on the number line</>}
+  description={<>The set <InlineMath math="S" /> consists of the interval <InlineMath math="[-2,0)" />, the single point <InlineMath math="x=1" />, and the interval <InlineMath math="(2,\infty)" />. The points <InlineMath math="0" /> and <InlineMath math="2" /> are excluded because the denominator is zero there.</>}
   labels={{
-    hyper: <InlineMath math="y=\tfrac1x" />,
-    line: <InlineMath math="y=x" />,
-    m1: <InlineMath math="-1" />,
-    p1: <InlineMath math="1" />,
+    m2: <InlineMath math="-2" />,
+    zero: <InlineMath math="0" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    iso: <>single point</>,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -1.5, max: 1.5 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "left-part", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
-      { id: "right-part", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "hyper", kind: "function", appearance: "primary", formula: "1/x", domain: { min: -4, max: 4 } },
-      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -4, max: 4 } },
-      { id: "m1", kind: "point", appearance: "construction", at: { x: -1, y: -1 } },
-      { id: "p1", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: -0.08, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 2.08, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "closed", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "single", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "hole-zero", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "hole-two", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
     ],
     labels: [
-      { key: "hyper", objectId: "hyper", at: { x: 0.5, y: 2 }, placement: "right" },
-      { key: "line", objectId: "line", at: { x: 3.5, y: 3.5 }, placement: "left" },
-      { key: "m1", objectId: "m1", at: { x: -1, y: -1 }, placement: "below-right" },
-      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "m2", objectId: "closed", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "zero", objectId: "hole-zero", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "one", objectId: "single", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "two", objectId: "hole-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "iso", objectId: "single", at: { x: 1, y: 0 }, placement: "above" },
     ],
   }}
 />
 
 # Statement one
 
-No number below <InlineMath math="-1" /> is in <InlineMath math="S" />. Take <InlineMath math="x=-2" />: the value <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> is actually **greater** than <InlineMath math="-2" />. This statement is **false**. The trap appears if you multiply by <InlineMath math="x" /> without watching the sign, which gives <InlineMath math="x^2>1" /> and wrongly lets in <InlineMath math="x<-1" />.
+Between <InlineMath math="0" /> and <InlineMath math="2" />, the only member of <InlineMath math="S" /> is the single point <InlineMath math="1" />, and it's an integer. **This single point is easy to lose** if <InlineMath math="(x-1)^2" /> is simply crossed out. The statement is true.
 
 # Statement two
 
-For <InlineMath math="x\ne0" />, the number <InlineMath math="x^2" /> is always positive. **Multiplying both sides by a positive number keeps the inequality's direction**.
-
-<BlockMath math="\frac{1}{x}<x\;\Longrightarrow\;\frac{1}{x}\cdot x^2<x\cdot x^2\;\Longrightarrow\;x<x^3" />
-
-This step works for every member of <InlineMath math="S" />, so the statement is **true**. Check with <InlineMath math="x=-\frac{1}{2}" />: <InlineMath math="x^3=-\frac{1}{8}" /> is indeed greater than <InlineMath math="-\frac{1}{2}" />.
+The integer members of <InlineMath math="S" /> below <InlineMath math="3" /> are <InlineMath math="-2" />, <InlineMath math="-1" />, and <InlineMath math="1" />, so there are three. **Four comes from counting <InlineMath math="0" /> or <InlineMath math="2" />**, where the denominator is zero. The statement is false.
 
 # Statement three
 
-A "there is" statement only needs **one member that fits**. Take <InlineMath math="x=-\frac{1}{2}" />. It's in <InlineMath math="S" />, since <InlineMath math="\frac{1}{x}=-2<-\frac{1}{2}" />, and its square is <InlineMath math="\frac{1}{4}<1" />. This statement is **true**.
+One counterexample is enough. **Take <InlineMath math="x=-1" />**, a member of <InlineMath math="S" />. Then <InlineMath math="x+3=2" />, which isn't in <InlineMath math="S" />. Another one: <InlineMath math="x=-1.5" /> gives <InlineMath math="1.5" />, which lies in the negative region. The statement is false.
 
 # Statement four
 
-Let <InlineMath math="y=-\frac{1}{x}" />. Then <InlineMath math="\frac{1}{y}=-x" />. Write the membership condition for <InlineMath math="y" />, then multiply both sides by <InlineMath math="-1" />, which flips the sign.
+The negative members of <InlineMath math="S" /> all lie in <InlineMath math="[-2,0)" />, so **their distance from zero is at most <InlineMath math="2" />** and <InlineMath math="x^2\le4" />. The endpoint <InlineMath math="x=-2" /> belongs, and there <InlineMath math="x^2=4" />, which still fits. The statement is true.
 
-<BlockMath math="\begin{aligned}
-\frac{1}{y}<y
-&\iff -x<-\frac{1}{x}\\
-&\iff x>\frac{1}{x}
-\end{aligned}" />
-
-The last line is exactly the membership condition for <InlineMath math="x" />. So **<InlineMath math="y" /> is in <InlineMath math="S" /> exactly when <InlineMath math="x" /> is in <InlineMath math="S" />**, and the statement is **true**. Check with examples: <InlineMath math="x=2" /> gives <InlineMath math="y=-\frac{1}{2}" />, and <InlineMath math="x=-\frac{1}{2}" /> gives <InlineMath math="y=2" />. Both are in <InlineMath math="S" />.
-
-So statement one is false, while statements two, three, and four are true.
+So statements one and four are true, while statements two and three are false.

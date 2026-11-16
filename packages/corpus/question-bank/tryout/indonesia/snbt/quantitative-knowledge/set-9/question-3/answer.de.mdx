@@ -1,87 +1,63 @@
-Alle vier Aussagen hängen davon ab, was in der Menge <InlineMath math="S" /> liegt, also **bestimme zuerst genau, was in ihr liegt**. Danach bekommt jede Aussage ihren eigenen Beweis: Für eine Aussage mit "es gibt" reicht ein Beispiel, eine Aussage mit "jedes" braucht einen Grund, der für alle Elemente gilt.
+Dieser Bruch hat **zwei Arten besonderer Stellen**: Nullstellen des Zählers, <InlineMath math="x=1" /> und <InlineMath math="x=-2" />, die wegen <InlineMath math="\ge" /> dazugehören dürfen, und Nullstellen des Nenners, <InlineMath math="x=0" /> und <InlineMath math="x=2" />, die nie dazugehören. Der Faktor <InlineMath math="(x-1)^2" /> ist nie negativ, ändert also das Vorzeichen nicht.
 
-# Die Menge S bestimmen
+# Die Menge S aufbauen
 
-Multipliziere nicht sofort beide Seiten mit <InlineMath math="x" />. **Das Vorzeichen von <InlineMath math="x" /> ist noch unbekannt**, und eine Multiplikation mit einer negativen Zahl dreht das Ungleichheitszeichen um. Bring alles auf eine Seite und schreib es als einen Bruch.
+Der Bruch hat dasselbe Vorzeichen wie <InlineMath math="\tfrac{x+2}{x(x-2)}" />, außer bei <InlineMath math="x=1" />, wo der Bruch null ist.
 
-<BlockMath math="\begin{aligned}
-\frac{1}{x}<x
-&\iff x-\frac{1}{x}>0\\
-&\iff \frac{x^2-1}{x}>0\\
-&\iff \frac{(x+1)(x-1)}{x}>0
-\end{aligned}" />
+- Für <InlineMath math="x<-2" />: Zähler negativ, Nenner positiv, also negativ.
+- Für <InlineMath math="-2\le x<0" />: Zähler nicht negativ, Nenner positiv, also nicht negativ.
+- Für <InlineMath math="0<x<2" />: Nenner negativ, also negativ, **außer bei <InlineMath math="x=1" />**, wo der Wert genau null ist.
+- Für <InlineMath math="x>2" />: positiv.
 
-Dieser Bruch kann sein Vorzeichen nur bei <InlineMath math="x=-1" />, <InlineMath math="x=0" /> und <InlineMath math="x=1" /> wechseln. Teste in jedem Intervall eine Zahl.
-
-| Intervall | Testwert | Vorzeichen des Bruchs |
-| :---: | :---: | :---: |
-| <InlineMath math="x<-1" /> | <InlineMath math="x=-2" /> | negativ |
-| <InlineMath math="-1<x<0" /> | <InlineMath math="x=-\frac{1}{2}" /> | positiv |
-| <InlineMath math="0<x<1" /> | <InlineMath math="x=\frac{1}{2}" /> | negativ |
-| <InlineMath math="x>1" /> | <InlineMath math="x=2" /> | positiv |
-
-Also besteht <InlineMath math="S" /> aus **den Zahlen zwischen <InlineMath math="-1" /> und <InlineMath math="0" /> und den Zahlen größer als <InlineMath math="1" />**.
-
-<BlockMath math="S=\{x\mid -1<x<0\ \text{oder}\ x>1\}" />
-
-Die Graphen beider Seiten zeigen diese Menge. Die Kurve <InlineMath math="y=\tfrac1x" /> liegt **unter der Geraden <InlineMath math="y=x" />** in genau zwei Teilen, zwischen <InlineMath math="-1" /> und <InlineMath math="0" /> und rechts von <InlineMath math="1" />, markiert durch die dicken Stücke auf der <InlineMath math="x" />-Achse.
+Also ist <InlineMath math="S=[-2,0)\cup\{1\}\cup(2,\infty)" />. Der Zahlenstrahl unten zeigt, dass **<InlineMath math="x=1" /> ein einzelner Punkt** mitten in einem negativen Bereich ist.
 
 <MathVisual
-  title={<>Die Kurve <InlineMath math="y=\tfrac1x" /> und die Gerade <InlineMath math="y=x" /></>}
-  description={<>Kurve und Gerade treffen sich in <InlineMath math="(-1,-1)" /> und <InlineMath math="(1,1)" />. Die Kurve liegt für <InlineMath math="-1<x<0" /> und für <InlineMath math="x>1" /> unter der Geraden, für <InlineMath math="x<-1" /> und <InlineMath math="0<x<1" /> darüber. Die dicken Stücke auf der <InlineMath math="x" />-Achse markieren die Menge <InlineMath math="S" />.</>}
+  title={<>Die Menge <InlineMath math="S" /> auf dem Zahlenstrahl</>}
+  description={<>Die Menge <InlineMath math="S" /> besteht aus dem Intervall <InlineMath math="[-2,0)" />, dem einzelnen Punkt <InlineMath math="x=1" /> und dem Intervall <InlineMath math="(2,\infty)" />. Die Stellen <InlineMath math="0" /> und <InlineMath math="2" /> fehlen, weil der Nenner dort null ist.</>}
   labels={{
-    hyper: <InlineMath math="y=\tfrac1x" />,
-    line: <InlineMath math="y=x" />,
-    m1: <InlineMath math="-1" />,
-    p1: <InlineMath math="1" />,
+    m2: <InlineMath math="-2" />,
+    zero: <InlineMath math="0" />,
+    one: <InlineMath math="1" />,
+    two: <InlineMath math="2" />,
+    iso: <>einzelner Punkt</>,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -1.5, max: 1.5 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "left-part", kind: "segment", appearance: "highlight", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
-      { id: "right-part", kind: "segment", appearance: "highlight", from: { x: 1, y: 0 }, to: { x: 4, y: 0 } },
-      { id: "hyper", kind: "function", appearance: "primary", formula: "1/x", domain: { min: -4, max: 4 } },
-      { id: "line", kind: "function", appearance: "secondary", formula: "x", domain: { min: -4, max: 4 } },
-      { id: "m1", kind: "point", appearance: "construction", at: { x: -1, y: -1 } },
-      { id: "p1", kind: "point", appearance: "construction", at: { x: 1, y: 1 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: -0.08, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 2.08, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "closed", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "single", kind: "point", appearance: "highlight", at: { x: 1, y: 0 } },
+      { id: "hole-zero", kind: "point", appearance: "warning", at: { x: 0, y: 0 } },
+      { id: "hole-two", kind: "point", appearance: "warning", at: { x: 2, y: 0 } },
     ],
     labels: [
-      { key: "hyper", objectId: "hyper", at: { x: 0.5, y: 2 }, placement: "right" },
-      { key: "line", objectId: "line", at: { x: 3.5, y: 3.5 }, placement: "left" },
-      { key: "m1", objectId: "m1", at: { x: -1, y: -1 }, placement: "below-right" },
-      { key: "p1", objectId: "p1", at: { x: 1, y: 1 }, placement: "above-left" },
+      { key: "m2", objectId: "closed", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "zero", objectId: "hole-zero", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "one", objectId: "single", at: { x: 1, y: 0 }, placement: "below" },
+      { key: "two", objectId: "hole-two", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "iso", objectId: "single", at: { x: 1, y: 0 }, placement: "above" },
     ],
   }}
 />
 
 # Die erste Aussage
 
-Keine Zahl unter <InlineMath math="-1" /> liegt in <InlineMath math="S" />. Nimm <InlineMath math="x=-2" />: Der Wert <InlineMath math="\frac{1}{x}=-\frac{1}{2}" /> ist sogar **größer** als <InlineMath math="-2" />. Die Aussage ist **falsch**. Die Falle entsteht, wenn du mit <InlineMath math="x" /> multiplizierst, ohne auf das Vorzeichen zu achten. Dann erhältst du <InlineMath math="x^2>1" />, und das lässt fälschlich <InlineMath math="x<-1" /> zu.
+Zwischen <InlineMath math="0" /> und <InlineMath math="2" /> liegt nur das Element <InlineMath math="1" /> von <InlineMath math="S" />, und das ist eine ganze Zahl. **Dieser einzelne Punkt geht leicht verloren**, wenn man <InlineMath math="(x-1)^2" /> einfach streicht. Die Aussage ist wahr.
 
 # Die zweite Aussage
 
-Für <InlineMath math="x\ne0" /> ist <InlineMath math="x^2" /> immer positiv. **Eine Multiplikation beider Seiten mit einer positiven Zahl erhält die Richtung der Ungleichung**.
-
-<BlockMath math="\frac{1}{x}<x\;\Longrightarrow\;\frac{1}{x}\cdot x^2<x\cdot x^2\;\Longrightarrow\;x<x^3" />
-
-Dieser Schritt gilt für jedes Element von <InlineMath math="S" />, also ist die Aussage **wahr**. Probe mit <InlineMath math="x=-\frac{1}{2}" />: <InlineMath math="x^3=-\frac{1}{8}" /> ist tatsächlich größer als <InlineMath math="-\frac{1}{2}" />.
+Die ganzzahligen Elemente von <InlineMath math="S" /> unter <InlineMath math="3" /> sind <InlineMath math="-2" />, <InlineMath math="-1" /> und <InlineMath math="1" />, also drei. **Vier entsteht, wenn man <InlineMath math="0" /> oder <InlineMath math="2" /> mitzählt**, wo der Nenner null ist. Die Aussage ist falsch.
 
 # Die dritte Aussage
 
-Für eine Aussage mit "es gibt" reicht **ein passendes Element**. Nimm <InlineMath math="x=-\frac{1}{2}" />. Es liegt in <InlineMath math="S" />, denn <InlineMath math="\frac{1}{x}=-2<-\frac{1}{2}" />, und sein Quadrat ist <InlineMath math="\frac{1}{4}<1" />. Die Aussage ist **wahr**.
+Ein Gegenbeispiel genügt. **Nimm <InlineMath math="x=-1" />**, ein Element von <InlineMath math="S" />. Dann ist <InlineMath math="x+3=2" />, und das liegt nicht in <InlineMath math="S" />. Ein weiteres: <InlineMath math="x=-1{,}5" /> gibt <InlineMath math="1{,}5" />, das im negativen Bereich liegt. Die Aussage ist falsch.
 
 # Die vierte Aussage
 
-Setze <InlineMath math="y=-\frac{1}{x}" />. Dann ist <InlineMath math="\frac{1}{y}=-x" />. Schreib die Bedingung für <InlineMath math="y" /> auf und multipliziere beide Seiten mit <InlineMath math="-1" />, was das Zeichen umdreht.
+Die negativen Elemente von <InlineMath math="S" /> liegen alle in <InlineMath math="[-2,0)" />, also **ist ihr Abstand von null höchstens <InlineMath math="2" />** und <InlineMath math="x^2\le4" />. Der Rand <InlineMath math="x=-2" /> gehört dazu, und dort ist <InlineMath math="x^2=4" />, was noch passt. Die Aussage ist wahr.
 
-<BlockMath math="\begin{aligned}
-\frac{1}{y}<y
-&\iff -x<-\frac{1}{x}\\
-&\iff x>\frac{1}{x}
-\end{aligned}" />
-
-Die letzte Zeile ist genau die Bedingung für <InlineMath math="x" /> selbst. Also **liegt <InlineMath math="y" /> genau dann in <InlineMath math="S" />, wenn <InlineMath math="x" /> in <InlineMath math="S" /> liegt**, und die Aussage ist **wahr**. Probe mit Beispielen: <InlineMath math="x=2" /> liefert <InlineMath math="y=-\frac{1}{2}" />, und <InlineMath math="x=-\frac{1}{2}" /> liefert <InlineMath math="y=2" />. Beide liegen in <InlineMath math="S" />.
-
-Die erste Aussage ist also falsch, die zweite, dritte und vierte sind wahr.
+Also sind die erste und die vierte Aussage wahr, die zweite und die dritte falsch.

@@ -1,76 +1,58 @@
-Jede Aussage verwendet Mittelpunkt und Radius des Kreises, also bestimme beide zuerst in Abhängigkeit von <InlineMath math="c" />. Danach **legt jede Aussage ihr eigenes <InlineMath math="c" /> fest**, und du prüfst die Folgerung jedes Mal mit einem anderen Argument.
+Ergänze zuerst quadratisch:
 
-# Mittelpunkt und Radius
+<BlockMath math="(x-3)^2+(y+4)^2=25-c." />
 
-Ergänze quadratisch für <InlineMath math="x" /> und für <InlineMath math="y" />.
-
-<BlockMath math="\begin{aligned}
-x^2-6x+y^2+8y+c&=0\\
-(x-3)^2-9+(y+4)^2-16+c&=0\\
-(x-3)^2+(y+4)^2&=25-c
-\end{aligned}" />
-
-Der Mittelpunkt ist <InlineMath math="(3,-4)" />, und das Quadrat des Radius ist <InlineMath math="r^2=25-c" />. Die Gleichung beschreibt einen echten Kreis **nur für <InlineMath math="25-c>0" />**, also für <InlineMath math="c<25" />.
-
-# Die erste Aussage
-
-Für <InlineMath math="c=25" /> wird die rechte Seite <InlineMath math="0" />. Eine Summe zweier Quadrate ist nur dann null, wenn beide null sind, also ist die Kurve **nur der Punkt <InlineMath math="(3,-4)" />** und kein Kreis mit positivem Radius. Die Aussage ist **falsch**.
-
-# Die zweite Aussage
-
-Ein Kreis berührt die <InlineMath math="x" />-Achse, wenn der Abstand des Mittelpunkts zur <InlineMath math="x" />-Achse gleich dem Radius ist. Dieser Abstand ist <InlineMath math="|-4|=4" />, also <InlineMath math="r=4" /> und <InlineMath math="25-c=16" />, das heißt <InlineMath math="c=9" />. Der Abstand des Mittelpunkts zur <InlineMath math="y" />-Achse ist nur <InlineMath math="3" />, **kleiner als der Radius** <InlineMath math="4" />, also schneidet die <InlineMath math="y" />-Achse den Kreis in zwei Punkten. Prüf das, indem du <InlineMath math="x=0" /> einsetzt.
-
-<BlockMath math="\begin{aligned}
-(0-3)^2+(y+4)^2&=16\\
-(y+4)^2&=7\\
-y&=-4\pm\sqrt7
-\end{aligned}" />
-
-Es gibt zwei Werte für <InlineMath math="y" />, die Aussage ist also **wahr**.
-
-# Die dritte Aussage
-
-Der Kreis geht durch den Ursprung, wenn <InlineMath math="0+0-0+0+c=0" /> gilt, also <InlineMath math="c=0" /> und <InlineMath math="r=5" />. Die Gerade <InlineMath math="4x-3y=0" /> geht zwar durch den Ursprung, der auf dem Kreis liegt, aber **ein gemeinsamer Punkt macht eine Gerade noch nicht zur Tangente**. Eine Gerade ist Tangente, wenn ihr Abstand zum Mittelpunkt gleich dem Radius ist.
-
-<BlockMath math="d=\frac{|4\cdot3-3\cdot(-4)|}{\sqrt{4^2+3^2}}=\frac{24}{5}<5" />
-
-Der Abstand ist kleiner als der Radius, also schneidet die Gerade den Kreis in zwei Punkten: im Ursprung und in <InlineMath math="\left(-\frac{42}{25},-\frac{56}{25}\right)" />. Die Tangente im Ursprung muss senkrecht auf dem Radius in Richtung <InlineMath math="(3,-4)" /> stehen, das ergibt <InlineMath math="3x-4y=0" />. Die Aussage ist **falsch**.
-
-# Die vierte Aussage
-
-Der Kreis berührt die <InlineMath math="y" />-Achse, wenn <InlineMath math="r=|3|=3" /> gilt, also <InlineMath math="25-c=9" /> und <InlineMath math="c=16" />. Der Abstand des Ursprungs zum Mittelpunkt ist <InlineMath math="\sqrt{3^2+4^2}=5" />, **größer als der Radius** <InlineMath math="3" />. Andersherum: Setzt du den Ursprung in die linke Seite ein, erhältst du <InlineMath math="c=16>0" />, ein Zeichen für einen Punkt außerhalb des Kreises. Die Aussage ist **falsch**.
-
-Die Abbildung zeichnet die drei Kreise aus den Aussagen zwei, drei und vier um denselben Mittelpunkt. Der Kreis für <InlineMath math="c=9" /> berührt die <InlineMath math="x" />-Achse, **schneidet aber die <InlineMath math="y" />-Achse**, die Gerade <InlineMath math="4x-3y=0" /> schneidet den Kreis für <InlineMath math="c=0" /> zweimal, und der Kreis für <InlineMath math="c=16" /> berührt die <InlineMath math="y" />-Achse, mit dem Ursprung außerhalb.
+Der Mittelpunkt **bleibt für jedes <InlineMath math="c" /> bei <InlineMath math="(3,-4)" />**, und der Radius ist <InlineMath math="r=\sqrt{25-c}" /> mit <InlineMath math="c<25" />. Der Mittelpunkt liegt <InlineMath math="4" /> von der <InlineMath math="x" />-Achse, <InlineMath math="3" /> von der <InlineMath math="y" />-Achse und <InlineMath math="5" /> vom Ursprung entfernt. Jede Aussage vergleicht dann <InlineMath math="r" /> mit dem passenden Abstand.
 
 <MathVisual
-  title={<>Kreise mit Mittelpunkt <InlineMath math="(3,-4)" /> für drei Werte von <InlineMath math="c" /></>}
-  description={<>Alle drei Kreise haben den Mittelpunkt <InlineMath math="(3,-4)" />. Für <InlineMath math="c=9" /> ist der Radius <InlineMath math="4" />, der Kreis berührt die <InlineMath math="x" />-Achse und schneidet die <InlineMath math="y" />-Achse. Für <InlineMath math="c=0" /> ist der Radius <InlineMath math="5" />, der Kreis geht durch den Ursprung, und die Gerade <InlineMath math="4x-3y=0" /> schneidet ihn zweimal. Für <InlineMath math="c=16" /> ist der Radius <InlineMath math="3" />, und der Kreis berührt die <InlineMath math="y" />-Achse.</>}
+  title={<>Der Kreis um <InlineMath math="(3,-4)" /> für <InlineMath math="c=9" /></>}
+  description={<>Für <InlineMath math="c=9" /> ist der Radius <InlineMath math="4" />, und der Kreis berührt die <InlineMath math="x" />-Achse in <InlineMath math="(3,0)" />. Die Gerade <InlineMath math="3x+4y+7=0" /> geht durch den Mittelpunkt, die Gerade <InlineMath math="y=x" /> liegt etwa <InlineMath math="4{,}95" /> vom Mittelpunkt entfernt, mehr als der Radius.</>}
   labels={{
-    c9: <InlineMath math="c=9" />,
-    c16: <InlineMath math="c=16" />,
-    c0: <InlineMath math="c=0" />,
-    line: <InlineMath math="4x-3y=0" />,
     center: <InlineMath math="(3,-4)" />,
+    chord: <InlineMath math="3x+4y+7=0" />,
+    diag: <InlineMath math="y=x" />,
+    touch: <InlineMath math="(3,0)" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 10 }, y: { min: -11, max: 3 } },
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -10, max: 3 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "c0", kind: "circle", appearance: "reference", center: { x: 3, y: -4 }, radius: 5 },
-      { id: "c9", kind: "circle", appearance: "primary", center: { x: 3, y: -4 }, radius: 4 },
-      { id: "c16", kind: "circle", appearance: "secondary", center: { x: 3, y: -4 }, radius: 3 },
-      { id: "line", kind: "line", appearance: "warning", through: [{ x: 0, y: 0 }, { x: 3, y: 4 }] },
-      { id: "center", kind: "point", appearance: "reference", at: { x: 3, y: -4 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 9, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -10 }, to: { x: 0, y: 3 } },
+      { id: "circle", kind: "circle", appearance: "primary", center: { x: 3, y: -4 }, radius: 4 },
+      { id: "center", kind: "point", appearance: "construction", at: { x: 3, y: -4 } },
+      { id: "touch", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "chord", kind: "function", appearance: "secondary", formula: "-(3*x + 7)/4", domain: { min: -3, max: 9 } },
+      { id: "diag", kind: "function", appearance: "warning", formula: "x", domain: { min: -3, max: 3 } },
     ],
     labels: [
-      { key: "c0", objectId: "c0", at: { x: 8, y: -4 }, placement: "right" },
-      { key: "c9", objectId: "c9", at: { x: 3, y: 0 }, placement: "above" },
-      { key: "c16", objectId: "c16", at: { x: 0, y: -4 }, placement: "left" },
-      { key: "line", objectId: "line", at: { x: -1.5, y: -2 }, placement: "left" },
-      { key: "center", objectId: "center", at: { x: 3, y: -4 }, placement: "below" },
+      { key: "center", objectId: "center", at: { x: 3, y: -4 }, placement: "right" },
+      { key: "touch", objectId: "touch", at: { x: 3, y: 0 }, placement: "above" },
+      { key: "chord", objectId: "chord", at: { x: 8, y: -7.75 }, placement: "below-left" },
+      { key: "diag", objectId: "diag", at: { x: 2.5, y: 2.5 }, placement: "left" },
     ],
   }}
 />
 
-Die zweite Aussage ist also wahr, die erste, dritte und vierte sind falsch.
+# Die erste Aussage
+
+Die <InlineMath math="y" />-Achse in zwei Punkten schneiden heißt <InlineMath math="r>3" />, also <InlineMath math="c<16" />. Die <InlineMath math="x" />-Achse nicht schneiden heißt <InlineMath math="r<4" />, also <InlineMath math="c>9" />. **Beide Grenzen sind echt**: Bei <InlineMath math="c=9" /> berührt der Kreis die <InlineMath math="x" />-Achse, bei <InlineMath math="c=16" /> berührt er die <InlineMath math="y" />-Achse in nur einem Punkt. Die ganzen Zahlen sind <InlineMath math="10,11,\dots,15" />, also sechs, nicht sieben. Die Aussage ist falsch.
+
+# Die zweite Aussage
+
+Der Ursprung im Inneren heißt <InlineMath math="r>5" />. **Ein Radius über <InlineMath math="5" /> liegt automatisch über <InlineMath math="4" /> und <InlineMath math="3" />**, also schneidet der Kreis beide Achsen in je zwei Punkten. Die Aussage ist wahr.
+
+# Die dritte Aussage
+
+Die <InlineMath math="x" />-Achse berühren erzwingt <InlineMath math="r=4" />. Der Abstand des Mittelpunkts von der Geraden <InlineMath math="x-y=0" /> ist
+
+<BlockMath math="\frac{|3-(-4)|}{\sqrt{1^2+1^2}}=\frac{7}{\sqrt2}\approx4{,}95\neq4." />
+
+**Ein Radius kann nicht zwei verschiedene Abstände haben**, also gibt es kein solches <InlineMath math="c" />. Die Aussage ist falsch.
+
+# Die vierte Aussage
+
+Setze den Mittelpunkt in die Geradengleichung ein: <InlineMath math="3\cdot3+4\cdot(-4)+7=0" />. **Die Gerade geht durch den Mittelpunkt**, also trifft sie den Kreis in den beiden Enden eines Durchmessers, egal wie groß der positive Radius ist. Die Aussage ist wahr.
+
+Also sind die zweite und die vierte Aussage wahr, die erste und die dritte falsch.

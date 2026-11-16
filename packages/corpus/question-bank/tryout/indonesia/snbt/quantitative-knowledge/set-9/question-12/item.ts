@@ -9,22 +9,22 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Untuk $$c=25$$, persamaan itu menyatakan lingkaran yang jari-jarinya positif.",
+            "Banyak bilangan bulat $$c$$ sehingga lingkaran itu memotong sumbu $$y$$ di dua titik tetapi tidak memotong sumbu $$x$$ adalah $$7$$.",
         },
         {
           column: 1,
           label:
-            "Jika lingkaran itu menyinggung sumbu $$x$$, maka lingkaran itu memotong sumbu $$y$$ di dua titik.",
+            "Jika titik asal berada di dalam lingkaran itu, maka lingkaran itu memotong sumbu $$x$$ di dua titik dan memotong sumbu $$y$$ di dua titik.",
         },
         {
           column: 2,
           label:
-            "Jika lingkaran itu melalui titik asal, maka garis $$4x-3y=0$$ menyinggung lingkaran itu.",
+            "Ada nilai $$c$$ sehingga lingkaran itu menyinggung sumbu $$x$$ dan juga menyinggung garis $$y=x$$.",
         },
         {
-          column: 2,
+          column: 1,
           label:
-            "Jika lingkaran itu menyinggung sumbu $$y$$, maka titik asal berada di dalam lingkaran itu.",
+            "Untuk setiap nilai $$c$$ yang mungkin, garis $$3x+4y+7=0$$ memotong lingkaran itu di dua titik.",
         },
       ],
     },

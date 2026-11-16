@@ -1,75 +1,62 @@
-Kata "semua nilai yang mungkin" memberi tanda bahwa **lebih dari satu fungsi** bisa memenuhi syarat itu. Rencananya: tulis <InlineMath math="f(x)=ax+b" />, susun komposisinya, cocokkan koefisien, temukan setiap fungsi yang mungkin, lalu jumlahkan nilai <InlineMath math="f(3)" /> dari semuanya.
+Fungsi linear berbentuk <InlineMath math="f(x)=ax+b" />. Syarat pertama biasanya memberi **dua fungsi yang sama-sama sah**, dan kalimat tentang grafik komposisi tiga kali yang memilih salah satunya.
 
-# Menyusun komposisi
+# Dua kemungkinan fungsi
 
-Komposisi ini artinya **hasil <InlineMath math="f(x)" /> dimasukkan lagi ke dalam <InlineMath math="f" />**.
+Komposisi dua kali adalah
 
-<BlockMath math="\begin{aligned}
-f\big(f(x)\big)&=a(ax+b)+b\\
-&=a^2x+ab+b
-\end{aligned}" />
+<BlockMath math="f\big(f(x)\big)=a(ax+b)+b=a^2x+(ab+b)." />
 
-# Mencocokkan koefisien
+Agar sama dengan <InlineMath math="4x+9" /> untuk setiap <InlineMath math="x" />, koefisiennya harus sama: <InlineMath math="a^2=4" /> dan <InlineMath math="b(a+1)=9" />. **Akar kuadrat punya dua tanda**:
 
-Dua bentuk linear sama untuk setiap <InlineMath math="x" /> **hanya jika koefisien <InlineMath math="x" /> dan konstantanya sama**. Jadi <InlineMath math="a^2=4" /> dan <InlineMath math="ab+b=b(a+1)=9" />. Persamaan <InlineMath math="a^2=4" /> punya dua penyelesaian, <InlineMath math="a=2" /> dan <InlineMath math="a=-2" />, dan **keduanya harus diperiksa**.
+- <InlineMath math="a=2" /> memberi <InlineMath math="3b=9" />, jadi <InlineMath math="f(x)=2x+3" />.
+- <InlineMath math="a=-2" /> memberi <InlineMath math="-b=9" />, jadi <InlineMath math="f(x)=-2x-9" />.
 
-<BlockMath math="\begin{aligned}
-a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
-a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
-\end{aligned}" />
+Keduanya memenuhi syarat pertama. Periksa: <InlineMath math="-2(-2x-9)-9=4x+9" />.
 
-# Memeriksa kedua fungsi
+# Syarat grafik komposisi tiga kali
+
+Komposisi tiga kali adalah <InlineMath math="f\big(f(f(x))\big)=a^3x+b\left(a^2+a+1\right)" />, jadi **titik potongnya dengan sumbu <InlineMath math="y" />** ada di <InlineMath math="b\left(a^2+a+1\right)" />.
 
 <BlockMath math="\begin{aligned}
-2(2x+3)+3&=4x+9\\
--2(-2x-9)-9&=4x+18-9=4x+9
+a=2,\ b=3&:\quad 3(4+2+1)=21>0,\\
+a=-2,\ b=-9&:\quad -9(4-2+1)=-27<0.
 \end{aligned}" />
 
-**Keduanya memenuhi**, jadi keduanya dihitung.
-
-# Menjumlahkan nilai f di tiga
-
-<BlockMath math="\begin{aligned}
-f(3)&=2\cdot3+3=9\quad\text{atau}\quad f(3)=-2\cdot3-9=-15\\
-9+(-15)&=-6
-\end{aligned}" />
-
-Grafik kedua fungsi berikut memperlihatkan dua nilai itu. Kedua garis sama-sama memenuhi <InlineMath math="f\big(f(x)\big)=4x+9" />, dan **garis tegak <InlineMath math="x=3" />** memotong keduanya di dua ketinggian berbeda, <InlineMath math="9" /> dan <InlineMath math="-15" />.
+Grafik berikut memperlihatkan kedua garis itu. **Hanya garis untuk <InlineMath math="f(x)=2x+3" /> yang memotong sumbu <InlineMath math="y" /> di atas sumbu <InlineMath math="x" />**.
 
 <MathVisual
-  title={<>Dua fungsi linear yang memenuhi <InlineMath math="f\big(f(x)\big)=4x+9" /></>}
-  description={<>Garis <InlineMath math="y=2x+3" /> naik dan garis <InlineMath math="y=-2x-9" /> turun. Garis tegak <InlineMath math="x=3" /> memotong garis pertama di <InlineMath math="(3,9)" /> dan garis kedua di <InlineMath math="(3,-15)" />. Jumlah kedua nilai itu <InlineMath math="-6" />.</>}
+  title={<>Grafik komposisi tiga kali untuk kedua kemungkinan <InlineMath math="f" /></>}
+  description={<>Untuk <InlineMath math="f(x)=2x+3" />, grafik <InlineMath math="y=8x+21" /> memotong sumbu <InlineMath math="y" /> di <InlineMath math="21" />, di atas sumbu <InlineMath math="x" />. Untuk <InlineMath math="f(x)=-2x-9" />, grafik <InlineMath math="y=-8x-27" /> memotong sumbu <InlineMath math="y" /> di <InlineMath math="-27" />, di bawah sumbu <InlineMath math="x" />.</>}
   labels={{
-    up: <InlineMath math="f(x)=2x+3" />,
-    down: <InlineMath math="f(x)=-2x-9" />,
-    p9: <InlineMath math="(3,9)" />,
-    p15: <InlineMath math="(3,-15)" />,
+    up: <InlineMath math="(0,21)" />,
+    down: <InlineMath math="(0,-27)" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -20, max: 14 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -35, max: 35 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "three", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
-      { id: "up", kind: "function", appearance: "primary", formula: "2x + 3", domain: { min: -3, max: 5 } },
-      { id: "down", kind: "function", appearance: "secondary", formula: "-2x - 9", domain: { min: -3, max: 5 } },
-      { id: "p9", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
-      { id: "p15", kind: "point", appearance: "answer", at: { x: 3, y: -15 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -35 }, to: { x: 0, y: 35 } },
+      { id: "up", kind: "function", appearance: "answer", formula: "8*x + 21", domain: { min: -5, max: 1.5 } },
+      { id: "down", kind: "function", appearance: "warning", formula: "-8*x - 27", domain: { min: -5, max: 1 } },
+      { id: "up-cut", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "down-cut", kind: "point", appearance: "warning", at: { x: 0, y: -27 } },
     ],
     labels: [
-      { key: "up", objectId: "up", at: { x: -2, y: -1 }, placement: "above-left" },
-      { key: "down", objectId: "down", at: { x: -2, y: -5 }, placement: "below-left" },
-      { key: "p9", objectId: "p9", at: { x: 3, y: 9 }, placement: "left" },
-      { key: "p15", objectId: "p15", at: { x: 3, y: -15 }, placement: "right" },
+      { key: "up", objectId: "up-cut", at: { x: 0, y: 21 }, placement: "right" },
+      { key: "down", objectId: "down-cut", at: { x: 0, y: -27 }, placement: "right" },
     ],
   }}
 />
 
+Jadi <InlineMath math="f(x)=2x+3" />, dan <InlineMath math="f(3)=2\cdot3+3=9" />.
+
 # Pilihan yang menjebak
 
-- <InlineMath math="9" /> hanya memakai <InlineMath math="a=2" /> dan **kehilangan kasus <InlineMath math="a=-2" />**.
-- <InlineMath math="6" /> memakai lagi <InlineMath math="b=3" /> untuk <InlineMath math="a=-2" />, sehingga <InlineMath math="f(3)=-3" />. Padahal <InlineMath math="-2(-2x+3)+3=4x-3" />, bukan <InlineMath math="4x+9" />.
-- <InlineMath math="12" /> salah tanda pada <InlineMath math="b" />, memakai <InlineMath math="f(x)=-2x+9" /> dengan <InlineMath math="f(3)=3" />. Fungsi itu memberi <InlineMath math="-2(-2x+9)+9=4x-9" />.
+- <InlineMath math="-6" /> menjumlahkan <InlineMath math="f(3)" /> dari kedua fungsi, <InlineMath math="9+(-15)" />, **tanpa memakai syarat grafik**.
+- <InlineMath math="-15" /> memilih <InlineMath math="f(x)=-2x-9" />, yaitu fungsi yang grafik komposisi tiga kalinya memotong sumbu <InlineMath math="y" /> di bawah sumbu <InlineMath math="x" />.
+- <InlineMath math="15" /> mengira <InlineMath math="b=9" /> langsung dari <InlineMath math="4x+9" />, lalu menghitung <InlineMath math="2\cdot3+9" />.
 - <InlineMath math="21" /> menghitung <InlineMath math="f\big(f(3)\big)=4\cdot3+9" />, bukan <InlineMath math="f(3)" />.
 
-Jadi, jumlah semua nilai <InlineMath math="f(3)" /> yang mungkin adalah <InlineMath math="-6" />.
+Jadi, nilai <InlineMath math="f(3)" /> adalah <InlineMath math="9" />.

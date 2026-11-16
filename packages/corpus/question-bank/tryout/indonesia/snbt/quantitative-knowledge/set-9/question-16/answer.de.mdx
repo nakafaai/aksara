@@ -1,75 +1,62 @@
-Die Worte "alle möglichen Werte" zeigen an, dass **mehr als eine Funktion** die Bedingung erfüllen kann. Der Plan: Schreib <InlineMath math="f(x)=ax+b" />, bilde die Verkettung, vergleiche die Koeffizienten, finde jede mögliche Funktion und addiere dann die Werte von <InlineMath math="f(3)" /> aller dieser Funktionen.
+Eine lineare Funktion hat die Form <InlineMath math="f(x)=ax+b" />. Die erste Bedingung liefert meist **zwei Funktionen, die beide passen**, und der Satz über den Graphen der dreifachen Verkettung wählt eine davon aus.
 
-# Die Verkettung bilden
+# Zwei mögliche Funktionen
 
-Diese Verkettung heißt: **Die Ausgabe <InlineMath math="f(x)" /> wird wieder in <InlineMath math="f" /> eingesetzt**.
+Die zweifache Verkettung ist
 
-<BlockMath math="\begin{aligned}
-f\big(f(x)\big)&=a(ax+b)+b\\
-&=a^2x+ab+b
-\end{aligned}" />
+<BlockMath math="f\big(f(x)\big)=a(ax+b)+b=a^2x+(ab+b)." />
 
-# Koeffizienten vergleichen
+Damit sie für jedes <InlineMath math="x" /> gleich <InlineMath math="4x+9" /> ist, müssen die Koeffizienten übereinstimmen: <InlineMath math="a^2=4" /> und <InlineMath math="b(a+1)=9" />. **Eine Quadratwurzel hat zwei Vorzeichen**:
 
-Zwei lineare Terme sind für jedes <InlineMath math="x" /> gleich, **wenn ihre Koeffizienten von <InlineMath math="x" /> und ihre Konstanten übereinstimmen**. Also gilt <InlineMath math="a^2=4" /> und <InlineMath math="ab+b=b(a+1)=9" />. Die Gleichung <InlineMath math="a^2=4" /> hat zwei Lösungen, <InlineMath math="a=2" /> und <InlineMath math="a=-2" />, und **du musst beide prüfen**.
+- <InlineMath math="a=2" /> gibt <InlineMath math="3b=9" />, also <InlineMath math="f(x)=2x+3" />.
+- <InlineMath math="a=-2" /> gibt <InlineMath math="-b=9" />, also <InlineMath math="f(x)=-2x-9" />.
 
-<BlockMath math="\begin{aligned}
-a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
-a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
-\end{aligned}" />
+Beide erfüllen die erste Bedingung. Probe: <InlineMath math="-2(-2x-9)-9=4x+9" />.
 
-# Beide Funktionen prüfen
+# Die Bedingung an die dreifache Verkettung
+
+Die dreifache Verkettung ist <InlineMath math="f\big(f(f(x))\big)=a^3x+b\left(a^2+a+1\right)" />, also liegt **ihr Schnittpunkt mit der <InlineMath math="y" />-Achse** bei <InlineMath math="b\left(a^2+a+1\right)" />.
 
 <BlockMath math="\begin{aligned}
-2(2x+3)+3&=4x+9\\
--2(-2x-9)-9&=4x+18-9=4x+9
+a=2,\ b=3&:\quad 3(4+2+1)=21>0,\\
+a=-2,\ b=-9&:\quad -9(4-2+1)=-27<0.
 \end{aligned}" />
 
-**Beide passen**, also zählen beide.
-
-# Die Werte von f an der Stelle drei addieren
-
-<BlockMath math="\begin{aligned}
-f(3)&=2\cdot3+3=9\quad\text{oder}\quad f(3)=-2\cdot3-9=-15\\
-9+(-15)&=-6
-\end{aligned}" />
-
-Die Graphen beider Funktionen zeigen die zwei Werte. Beide Geraden erfüllen <InlineMath math="f\big(f(x)\big)=4x+9" />, und **die senkrechte Gerade <InlineMath math="x=3" />** schneidet sie in zwei verschiedenen Höhen, <InlineMath math="9" /> und <InlineMath math="-15" />.
+Der Graph unten zeigt beide Geraden. **Nur die Gerade zu <InlineMath math="f(x)=2x+3" /> schneidet die <InlineMath math="y" />-Achse oberhalb der <InlineMath math="x" />-Achse**.
 
 <MathVisual
-  title={<>Zwei lineare Funktionen mit <InlineMath math="f\big(f(x)\big)=4x+9" /></>}
-  description={<>Die Gerade <InlineMath math="y=2x+3" /> steigt, die Gerade <InlineMath math="y=-2x-9" /> fällt. Die senkrechte Gerade <InlineMath math="x=3" /> schneidet die erste in <InlineMath math="(3,9)" /> und die zweite in <InlineMath math="(3,-15)" />. Zusammen ergeben die beiden Werte <InlineMath math="-6" />.</>}
+  title={<>Graphen der dreifachen Verkettung für beide möglichen <InlineMath math="f" /></>}
+  description={<>Für <InlineMath math="f(x)=2x+3" /> schneidet der Graph <InlineMath math="y=8x+21" /> die <InlineMath math="y" />-Achse bei <InlineMath math="21" />, oberhalb der <InlineMath math="x" />-Achse. Für <InlineMath math="f(x)=-2x-9" /> schneidet der Graph <InlineMath math="y=-8x-27" /> die <InlineMath math="y" />-Achse bei <InlineMath math="-27" />, unterhalb der <InlineMath math="x" />-Achse.</>}
   labels={{
-    up: <InlineMath math="f(x)=2x+3" />,
-    down: <InlineMath math="f(x)=-2x-9" />,
-    p9: <InlineMath math="(3,9)" />,
-    p15: <InlineMath math="(3,-15)" />,
+    up: <InlineMath math="(0,21)" />,
+    down: <InlineMath math="(0,-27)" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -20, max: 14 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -35, max: 35 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "three", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
-      { id: "up", kind: "function", appearance: "primary", formula: "2x + 3", domain: { min: -3, max: 5 } },
-      { id: "down", kind: "function", appearance: "secondary", formula: "-2x - 9", domain: { min: -3, max: 5 } },
-      { id: "p9", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
-      { id: "p15", kind: "point", appearance: "answer", at: { x: 3, y: -15 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -35 }, to: { x: 0, y: 35 } },
+      { id: "up", kind: "function", appearance: "answer", formula: "8*x + 21", domain: { min: -5, max: 1.5 } },
+      { id: "down", kind: "function", appearance: "warning", formula: "-8*x - 27", domain: { min: -5, max: 1 } },
+      { id: "up-cut", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "down-cut", kind: "point", appearance: "warning", at: { x: 0, y: -27 } },
     ],
     labels: [
-      { key: "up", objectId: "up", at: { x: -2, y: -1 }, placement: "above-left" },
-      { key: "down", objectId: "down", at: { x: -2, y: -5 }, placement: "below-left" },
-      { key: "p9", objectId: "p9", at: { x: 3, y: 9 }, placement: "left" },
-      { key: "p15", objectId: "p15", at: { x: 3, y: -15 }, placement: "right" },
+      { key: "up", objectId: "up-cut", at: { x: 0, y: 21 }, placement: "right" },
+      { key: "down", objectId: "down-cut", at: { x: 0, y: -27 }, placement: "right" },
     ],
   }}
 />
 
+Also ist <InlineMath math="f(x)=2x+3" />, und <InlineMath math="f(3)=2\cdot3+3=9" />.
+
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="9" /> verwendet nur <InlineMath math="a=2" /> und **verliert den Fall <InlineMath math="a=-2" />**.
-- <InlineMath math="6" /> übernimmt <InlineMath math="b=3" /> auch für <InlineMath math="a=-2" />, also <InlineMath math="f(3)=-3" />. Aber <InlineMath math="-2(-2x+3)+3=4x-3" /> ist nicht <InlineMath math="4x+9" />.
-- <InlineMath math="12" /> hat einen Vorzeichenfehler bei <InlineMath math="b" /> und verwendet <InlineMath math="f(x)=-2x+9" /> mit <InlineMath math="f(3)=3" />. Diese Funktion liefert <InlineMath math="-2(-2x+9)+9=4x-9" />.
-- <InlineMath math="21" /> berechnet <InlineMath math="f\big(f(3)\big)=4\cdot3+9" /> statt <InlineMath math="f(3)" />.
+- <InlineMath math="-6" /> addiert <InlineMath math="f(3)" /> beider Funktionen, <InlineMath math="9+(-15)" />, **ohne die Bedingung an den Graphen**.
+- <InlineMath math="-15" /> wählt <InlineMath math="f(x)=-2x-9" />, deren dreifache Verkettung die <InlineMath math="y" />-Achse unterhalb der <InlineMath math="x" />-Achse schneidet.
+- <InlineMath math="15" /> liest <InlineMath math="b=9" /> direkt aus <InlineMath math="4x+9" /> ab und rechnet <InlineMath math="2\cdot3+9" />.
+- <InlineMath math="21" /> berechnet <InlineMath math="f\big(f(3)\big)=4\cdot3+9" />, nicht <InlineMath math="f(3)" />.
 
-Die Summe aller möglichen Werte von <InlineMath math="f(3)" /> ist also <InlineMath math="-6" />.
+Also ist der Wert von <InlineMath math="f(3)" /> gleich <InlineMath math="9" />.

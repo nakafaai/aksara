@@ -1,75 +1,62 @@
-The words "all possible values" signal that **more than one function** might satisfy the condition. The plan: write <InlineMath math="f(x)=ax+b" />, build the composition, match coefficients, find every possible function, then add up the values of <InlineMath math="f(3)" /> from all of them.
+A linear function has the form <InlineMath math="f(x)=ax+b" />. The first condition usually gives **two functions that both work**, and the sentence about the triple composition's graph picks one of them.
 
-# Building the composition
+# Two possible functions
 
-This composition means **feeding the output <InlineMath math="f(x)" /> back into <InlineMath math="f" />**.
+The double composition is
 
-<BlockMath math="\begin{aligned}
-f\big(f(x)\big)&=a(ax+b)+b\\
-&=a^2x+ab+b
-\end{aligned}" />
+<BlockMath math="f\big(f(x)\big)=a(ax+b)+b=a^2x+(ab+b)." />
 
-# Matching coefficients
+For it to equal <InlineMath math="4x+9" /> for every <InlineMath math="x" />, the coefficients must match: <InlineMath math="a^2=4" /> and <InlineMath math="b(a+1)=9" />. **A square root has two signs**:
 
-Two linear expressions are equal for every <InlineMath math="x" /> **only if their <InlineMath math="x" /> coefficients and their constants match**. So <InlineMath math="a^2=4" /> and <InlineMath math="ab+b=b(a+1)=9" />. The equation <InlineMath math="a^2=4" /> has two solutions, <InlineMath math="a=2" /> and <InlineMath math="a=-2" />, and **you have to check both**.
+- <InlineMath math="a=2" /> gives <InlineMath math="3b=9" />, so <InlineMath math="f(x)=2x+3" />.
+- <InlineMath math="a=-2" /> gives <InlineMath math="-b=9" />, so <InlineMath math="f(x)=-2x-9" />.
 
-<BlockMath math="\begin{aligned}
-a=2&\;\Longrightarrow\;3b=9,\ b=3,\ f(x)=2x+3\\
-a=-2&\;\Longrightarrow\;-b=9,\ b=-9,\ f(x)=-2x-9
-\end{aligned}" />
+Both meet the first condition. Check: <InlineMath math="-2(-2x-9)-9=4x+9" />.
 
-# Checking both functions
+# The condition on the triple composition
+
+The triple composition is <InlineMath math="f\big(f(f(x))\big)=a^3x+b\left(a^2+a+1\right)" />, so **its <InlineMath math="y" />-intercept** is <InlineMath math="b\left(a^2+a+1\right)" />.
 
 <BlockMath math="\begin{aligned}
-2(2x+3)+3&=4x+9\\
--2(-2x-9)-9&=4x+18-9=4x+9
+a=2,\ b=3&:\quad 3(4+2+1)=21>0,\\
+a=-2,\ b=-9&:\quad -9(4-2+1)=-27<0.
 \end{aligned}" />
 
-**Both work**, so both count.
-
-# Adding the values of f at three
-
-<BlockMath math="\begin{aligned}
-f(3)&=2\cdot3+3=9\quad\text{or}\quad f(3)=-2\cdot3-9=-15\\
-9+(-15)&=-6
-\end{aligned}" />
-
-Graphing both functions shows the two values. Both lines satisfy <InlineMath math="f\big(f(x)\big)=4x+9" />, and **the vertical line <InlineMath math="x=3" />** cuts them at two different heights, <InlineMath math="9" /> and <InlineMath math="-15" />.
+The graph below shows both lines. **Only the line for <InlineMath math="f(x)=2x+3" /> crosses the <InlineMath math="y" />-axis above the <InlineMath math="x" />-axis**.
 
 <MathVisual
-  title={<>Two linear functions that satisfy <InlineMath math="f\big(f(x)\big)=4x+9" /></>}
-  description={<>The line <InlineMath math="y=2x+3" /> rises and the line <InlineMath math="y=-2x-9" /> falls. The vertical line <InlineMath math="x=3" /> cuts the first at <InlineMath math="(3,9)" /> and the second at <InlineMath math="(3,-15)" />. The two values add up to <InlineMath math="-6" />.</>}
+  title={<>Graphs of the triple composition for both possible <InlineMath math="f" /></>}
+  description={<>For <InlineMath math="f(x)=2x+3" />, the graph <InlineMath math="y=8x+21" /> crosses the <InlineMath math="y" />-axis at <InlineMath math="21" />, above the <InlineMath math="x" />-axis. For <InlineMath math="f(x)=-2x-9" />, the graph <InlineMath math="y=-8x-27" /> crosses the <InlineMath math="y" />-axis at <InlineMath math="-27" />, below the <InlineMath math="x" />-axis.</>}
   labels={{
-    up: <InlineMath math="f(x)=2x+3" />,
-    down: <InlineMath math="f(x)=-2x-9" />,
-    p9: <InlineMath math="(3,9)" />,
-    p15: <InlineMath math="(3,-15)" />,
+    up: <InlineMath math="(0,21)" />,
+    down: <InlineMath math="(0,-27)" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -20, max: 14 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -35, max: 35 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "three", kind: "line", appearance: "construction", through: [{ x: 3, y: 0 }, { x: 3, y: 1 }] },
-      { id: "up", kind: "function", appearance: "primary", formula: "2x + 3", domain: { min: -3, max: 5 } },
-      { id: "down", kind: "function", appearance: "secondary", formula: "-2x - 9", domain: { min: -3, max: 5 } },
-      { id: "p9", kind: "point", appearance: "answer", at: { x: 3, y: 9 } },
-      { id: "p15", kind: "point", appearance: "answer", at: { x: 3, y: -15 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -35 }, to: { x: 0, y: 35 } },
+      { id: "up", kind: "function", appearance: "answer", formula: "8*x + 21", domain: { min: -5, max: 1.5 } },
+      { id: "down", kind: "function", appearance: "warning", formula: "-8*x - 27", domain: { min: -5, max: 1 } },
+      { id: "up-cut", kind: "point", appearance: "answer", at: { x: 0, y: 21 } },
+      { id: "down-cut", kind: "point", appearance: "warning", at: { x: 0, y: -27 } },
     ],
     labels: [
-      { key: "up", objectId: "up", at: { x: -2, y: -1 }, placement: "above-left" },
-      { key: "down", objectId: "down", at: { x: -2, y: -5 }, placement: "below-left" },
-      { key: "p9", objectId: "p9", at: { x: 3, y: 9 }, placement: "left" },
-      { key: "p15", objectId: "p15", at: { x: 3, y: -15 }, placement: "right" },
+      { key: "up", objectId: "up-cut", at: { x: 0, y: 21 }, placement: "right" },
+      { key: "down", objectId: "down-cut", at: { x: 0, y: -27 }, placement: "right" },
     ],
   }}
 />
 
+So <InlineMath math="f(x)=2x+3" />, and <InlineMath math="f(3)=2\cdot3+3=9" />.
+
 # The tempting wrong options
 
-- <InlineMath math="9" /> uses only <InlineMath math="a=2" /> and **loses the case <InlineMath math="a=-2" />**.
-- <InlineMath math="6" /> reuses <InlineMath math="b=3" /> for <InlineMath math="a=-2" />, so <InlineMath math="f(3)=-3" />. But <InlineMath math="-2(-2x+3)+3=4x-3" />, not <InlineMath math="4x+9" />.
-- <InlineMath math="12" /> has a sign error in <InlineMath math="b" /> and uses <InlineMath math="f(x)=-2x+9" /> with <InlineMath math="f(3)=3" />. That function gives <InlineMath math="-2(-2x+9)+9=4x-9" />.
+- <InlineMath math="-6" /> adds <InlineMath math="f(3)" /> from both functions, <InlineMath math="9+(-15)" />, **without using the graph condition**.
+- <InlineMath math="-15" /> picks <InlineMath math="f(x)=-2x-9" />, the function whose triple composition crosses the <InlineMath math="y" />-axis below the <InlineMath math="x" />-axis.
+- <InlineMath math="15" /> takes <InlineMath math="b=9" /> straight from <InlineMath math="4x+9" />, then computes <InlineMath math="2\cdot3+9" />.
 - <InlineMath math="21" /> computes <InlineMath math="f\big(f(3)\big)=4\cdot3+9" />, not <InlineMath math="f(3)" />.
 
-So the sum of all possible values of <InlineMath math="f(3)" /> is <InlineMath math="-6" />.
+So the value of <InlineMath math="f(3)" /> is <InlineMath math="9" />.

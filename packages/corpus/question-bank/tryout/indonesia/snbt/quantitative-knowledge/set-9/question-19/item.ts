@@ -9,22 +9,21 @@ const item: ItemSource = {
         {
           column: 1,
           label:
-            "Garis $$y=2x$$ memotong kurva itu di tepat dua titik, dan jarak kedua titik itu $$\\sqrt{5}$$.",
+            "Untuk setiap bilangan bulat $$m\\ge2$$, garis $$y=mx$$ memotong kurva itu di tepat dua titik.",
         },
         {
           column: 2,
           label:
-            "Setiap garis mendatar memotong kurva itu di tepat satu titik.",
+            "Garis $$y=x+1$$ memotong kurva itu di tepat satu titik.",
+        },
+        {
+          column: 2,
+          label:
+            "Ada bilangan real $$k$$ sehingga garis $$y=-2x+k$$ tidak memotong kurva itu.",
         },
         {
           column: 1,
-          label:
-            "Untuk setiap bilangan real $$k$$, garis $$y=-x+k$$ memotong kurva itu di tepat satu titik.",
-        },
-        {
-          column: 2,
-          label:
-            "Garis $$y=x$$ memotong kurva itu di paling sedikit satu titik.",
+          label: "Garis $$y=x$$ tidak memotong kurva itu.",
         },
       ],
     },

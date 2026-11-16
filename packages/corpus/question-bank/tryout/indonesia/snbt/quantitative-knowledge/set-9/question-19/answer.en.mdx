@@ -1,67 +1,52 @@
-Each statement asks how often the curve meets a line, that is, how many solutions the equation setting <InlineMath math="2^x" /> equal to the line's formula has. You need three facts about the curve <InlineMath math="y=2^x" />: its values are **always positive**, it **always rises**, and it **bends upward**. Bending upward means the segment joining two points of the curve lies above the curve between those points, while outside those points the curve lies above the line. As a result, a line cuts this curve at most twice.
-
-# Statement one
-
-Try <InlineMath math="x=1" /> and <InlineMath math="x=2" /> in <InlineMath math="2^x=2x" />: <InlineMath math="2^1=2=2\cdot1" /> and <InlineMath math="2^2=4=2\cdot2" />. So the points <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" /> lie on both the curve and the line. Since a line cuts the curve **at most twice**, there's no other intersection.
-
-<BlockMath math="\text{distance}=\sqrt{(2-1)^2+(4-2)^2}=\sqrt{1+4}=\sqrt5" />
-
-This statement is **true**.
-
-# Statement two
-
-A horizontal line has the form <InlineMath math="y=c" />. If <InlineMath math="c\le0" />, say <InlineMath math="y=-1" />, the equation <InlineMath math="2^x=-1" /> has no solution, because **<InlineMath math="2^x" /> is always positive**. That line never touches the curve. The claim about "every horizontal line" fails with this one example, so the statement is **false**. It only holds for <InlineMath math="c>0" />.
-
-# Statement three
-
-The line <InlineMath math="y=-x+k" /> always falls, while the curve always rises. The difference <InlineMath math="2^x-(-x+k)=2^x+x-k" /> is a sum of two rising parts, so **the difference always rises** and can be zero at most once.
-
-The difference also has to change sign. At <InlineMath math="x=k" />, the line is <InlineMath math="0" /> and the curve is <InlineMath math="2^k>0" />, so the curve is above the line. Now take an <InlineMath math="x" /> with both <InlineMath math="x\le-1" /> and <InlineMath math="x\le k-1" />. There the curve is at most <InlineMath math="2^{-1}=\frac{1}{2}" />, while the line is at least <InlineMath math="-(k-1)+k=1" />, so the line is above the curve. They swap places exactly once, so there's exactly one intersection for every <InlineMath math="k" />. This statement is **true**.
-
-# Statement four
-
-Show that <InlineMath math="2^x>x" /> for every <InlineMath math="x" />. The line <InlineMath math="y=x+1" /> cuts the curve at <InlineMath math="(0,1)" /> and <InlineMath math="(1,2)" />. Because the curve bends upward, **outside the interval from <InlineMath math="0" /> to <InlineMath math="1" /> the curve lies above that line**.
-
-<BlockMath math="\begin{aligned}
-x\le0\ \text{or}\ x\ge1&\;\Longrightarrow\;2^x\ge x+1>x\\
-0<x<1&\;\Longrightarrow\;2^x>2^0=1>x
-\end{aligned}" />
-
-The curve always stays above the line <InlineMath math="y=x" />, so they never meet. This statement is **false**.
-
-The graph below draws the curve <InlineMath math="y=2^x" /> with all four kinds of line. The line <InlineMath math="y=2x" /> cuts it at two points, the falling line cuts it exactly once, while the line <InlineMath math="y=x" /> and the line <InlineMath math="y=-1" /> **never touch the curve**.
+The curve <InlineMath math="y=2^x" /> is **concave up**: its slope keeps increasing. So a line meets it at most twice. To count intersections, look for sign changes of the difference <InlineMath math="g(x)=2^x-(\text{line})" />, then use that concavity.
 
 <MathVisual
-  title={<>The curve <InlineMath math="y=2^x" /> and four lines</>}
-  description={<>The curve <InlineMath math="y=2^x" /> is always positive, always rises, and bends upward. The line <InlineMath math="y=2x" /> cuts it at <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" />. The line <InlineMath math="y=-x+3" /> cuts it exactly once. The line <InlineMath math="y=x" /> stays below the curve, and the line <InlineMath math="y=-1" /> is below the <InlineMath math="x" />-axis, far from the curve.</>}
+  title={<>The curve <InlineMath math="y=2^x" /> and three lines</>}
+  description={<>The line <InlineMath math="y=2x" /> meets the curve at <InlineMath math="(1,2)" /> and <InlineMath math="(2,4)" />. The line <InlineMath math="y=x+1" /> meets the curve at <InlineMath math="(0,1)" /> and <InlineMath math="(1,2)" />. The line <InlineMath math="y=x" /> stays below the curve everywhere.</>}
   labels={{
     curve: <InlineMath math="y=2^x" />,
     two: <InlineMath math="y=2x" />,
-    same: <InlineMath math="y=x" />,
-    fall: <InlineMath math="y=-x+3" />,
-    flat: <InlineMath math="y=-1" />,
+    one: <InlineMath math="y=x+1" />,
+    ident: <InlineMath math="y=x" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3.5 }, y: { min: -2, max: 9 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 3 }, y: { min: -1, max: 6 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "flat", kind: "segment", appearance: "construction", from: { x: -3, y: -1 }, to: { x: 3.5, y: -1 } },
-      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -3, max: 3.15 } },
-      { id: "two", kind: "function", appearance: "secondary", formula: "2x", domain: { min: -1, max: 3.5 } },
-      { id: "same", kind: "function", appearance: "reference", formula: "x", domain: { min: -2, max: 3.5 } },
-      { id: "fall", kind: "function", appearance: "highlight", formula: "-x + 3", domain: { min: -3, max: 3.5 } },
+      { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: -1 }, to: { x: 0, y: 6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^x", domain: { min: -2, max: 2.55 } },
+      { id: "two", kind: "function", appearance: "answer", formula: "2*x", domain: { min: -0.5, max: 2.9 } },
+      { id: "one", kind: "function", appearance: "secondary", formula: "x + 1", domain: { min: -2, max: 2.9 } },
+      { id: "ident", kind: "function", appearance: "warning", formula: "x", domain: { min: -1, max: 3 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: 1, y: 2 } },
       { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 4 } },
+      { id: "p0", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
     ],
     labels: [
-      { key: "curve", objectId: "curve", at: { x: 3, y: 8 }, placement: "left" },
-      { key: "two", objectId: "two", at: { x: 3.5, y: 7 }, placement: "below" },
-      { key: "same", objectId: "same", at: { x: 3.5, y: 3.5 }, placement: "below" },
-      { key: "fall", objectId: "fall", at: { x: -2.5, y: 5.5 }, placement: "right" },
-      { key: "flat", objectId: "flat", at: { x: -2.5, y: -1 }, placement: "below" },
+      { key: "curve", objectId: "curve", at: { x: 2.4, y: 5.28 }, placement: "left" },
+      { key: "two", objectId: "two", at: { x: 2.8, y: 5.6 }, placement: "right" },
+      { key: "one", objectId: "one", at: { x: -1.5, y: -0.5 }, placement: "above-left" },
+      { key: "ident", objectId: "ident", at: { x: 2.8, y: 2.8 }, placement: "below-right" },
     ],
   }}
 />
 
-So statements one and three are true, while statements two and four are false.
+# Statement one
+
+For <InlineMath math="g(x)=2^x-mx" /> with <InlineMath math="m\ge2" />, check three points: <InlineMath math="g(0)=1>0" />, <InlineMath math="g(1)=2-m\le0" />, and for large <InlineMath math="x" /> the power <InlineMath math="2^x" /> far outgrows <InlineMath math="mx" />, so <InlineMath math="g" /> turns positive again. For <InlineMath math="m>2" />, **the sign changes twice**, so there's an intersection between <InlineMath math="0" /> and <InlineMath math="1" /> and another after <InlineMath math="1" />. For <InlineMath math="m=2" />, the points are exactly <InlineMath math="x=1" /> and <InlineMath math="x=2" />. Concavity rules out a third point. The statement is true.
+
+# Statement two
+
+<InlineMath math="2^0=0+1" /> and <InlineMath math="2^1=1+1" />, so the line <InlineMath math="y=x+1" /> meets the curve at <InlineMath math="(0,1)" /> **and** at <InlineMath math="(1,2)" />, exactly two points. The statement is false.
+
+# Statement three
+
+<InlineMath math="h(x)=2^x+2x-k" /> **always increases**, since <InlineMath math="2^x" /> and <InlineMath math="2x" /> both increase. For very small <InlineMath math="x" />, <InlineMath math="h<0" />, and for very large <InlineMath math="x" />, <InlineMath math="h>0" />, so <InlineMath math="h" /> is zero at exactly one point for every <InlineMath math="k" />. No <InlineMath math="k" /> makes the line miss. The statement is false.
+
+# Statement four
+
+Split into three regions. **For <InlineMath math="x\le0" />**, <InlineMath math="2^x>0\ge x" />. For <InlineMath math="0<x<1" />, <InlineMath math="2^x>1>x" />. For <InlineMath math="x\ge1" />, the curve rises faster than the line <InlineMath math="y=x+1" /> after they meet at <InlineMath math="x=1" />, so <InlineMath math="2^x\ge x+1>x" />. The line <InlineMath math="y=x" /> stays below the curve, so the statement is true.
+
+So statements one and four are true, while statements two and three are false.
