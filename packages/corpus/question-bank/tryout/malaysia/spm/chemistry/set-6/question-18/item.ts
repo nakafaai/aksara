@@ -12,40 +12,28 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$",
+          label: "$$120\\text{ cm}^3$$, the same at the start",
         },
         {
           correct: false,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$1.59\\text{ g}$$",
+          label: "$$240\\text{ cm}^3$$, the same at the start",
         },
-        {
-          correct: false,
-          label: "$$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.53\\text{ g}$$",
-        },
-        {
-          correct: true,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$0.53\\text{ g}$$",
-        },
+        { correct: false, label: "$$480\\text{ cm}^3$$, higher at the start" },
+        { correct: true, label: "$$240\\text{ cm}^3$$, higher at the start" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
+        { correct: false, label: "$$120\\text{ cm}^3$$, sama pada awal" },
+        { correct: false, label: "$$240\\text{ cm}^3$$, sama pada awal" },
         {
           correct: false,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$1.59\\text{ g}$$",
-        },
-        {
-          correct: false,
-          label: "$$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.53\\text{ g}$$",
+          label: "$$480\\text{ cm}^3$$, lebih tinggi pada awal",
         },
         {
           correct: true,
-          label: "$$5.64\\text{ cm}^3\\text{ s}^{-1}$$, $$0.53\\text{ g}$$",
+          label: "$$240\\text{ cm}^3$$, lebih tinggi pada awal",
         },
       ],
     },

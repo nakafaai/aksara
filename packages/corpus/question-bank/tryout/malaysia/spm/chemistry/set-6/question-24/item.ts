@@ -12,13 +12,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$20.0\\%$$, it falls from $$-1$$ to $$-2$$",
+          label: "$$1.20\\times10^{22}$$, chlorine is reduced only",
         },
-        { correct: false, label: "$$10.0\\%$$, it rises from $$-1$$ to $$0$$" },
-        { correct: true, label: "$$10.0\\%$$, it falls from $$-1$$ to $$-2$$" },
         {
           correct: false,
-          label: "$$1.00\\%$$, it falls from $$-1$$ to $$-2$$",
+          label:
+            "$$6.02\\times10^{21}$$, sodium hydroxide is the oxidising agent",
+        },
+        {
+          correct: true,
+          label:
+            "$$6.02\\times10^{21}$$, chlorine is both oxidised and reduced",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.20\\times10^{22}$$, chlorine is both oxidised and reduced",
         },
       ],
     },
@@ -27,19 +36,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$20.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+          label: "$$1.20\\times10^{22}$$, klorin diturunkan sahaja",
         },
         {
           correct: false,
-          label: "$$10.0\\%$$, ia naik daripada $$-1$$ kepada $$0$$",
+          label:
+            "$$6.02\\times10^{21}$$, natrium hidroksida ialah agen pengoksidaan",
         },
         {
           correct: true,
-          label: "$$10.0\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+          label:
+            "$$6.02\\times10^{21}$$, klorin dioksidakan dan diturunkan serentak",
         },
         {
           correct: false,
-          label: "$$1.00\\%$$, ia turun daripada $$-1$$ kepada $$-2$$",
+          label:
+            "$$1.20\\times10^{22}$$, klorin dioksidakan dan diturunkan serentak",
         },
       ],
     },

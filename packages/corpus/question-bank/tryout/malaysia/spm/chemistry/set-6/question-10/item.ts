@@ -10,51 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "X $$6.35\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$8.13\\text{ g}$$, $$0\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$1200\\text{ cm}^3$$",
-        },
-        {
-          correct: true,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
-        },
+        { correct: false, label: "$$0.431\\text{ g}$$, sodium" },
+        { correct: false, label: "$$0.431\\text{ g}$$, potassium" },
+        { correct: false, label: "$$0.569\\text{ g}$$, sodium" },
+        { correct: true, label: "$$0.569\\text{ g}$$, potassium" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label:
-            "X $$6.35\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$8.13\\text{ g}$$, $$0\\text{ cm}^3$$",
-        },
-        {
-          correct: false,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$1200\\text{ cm}^3$$",
-        },
-        {
-          correct: true,
-          label:
-            "X $$8.13\\text{ g}$$, Y $$6.35\\text{ g}$$, $$600\\text{ cm}^3$$",
-        },
+        { correct: false, label: "$$0.431\\text{ g}$$, natrium" },
+        { correct: false, label: "$$0.431\\text{ g}$$, kalium" },
+        { correct: false, label: "$$0.569\\text{ g}$$, natrium" },
+        { correct: true, label: "$$0.569\\text{ g}$$, kalium" },
       ],
     },
   },
