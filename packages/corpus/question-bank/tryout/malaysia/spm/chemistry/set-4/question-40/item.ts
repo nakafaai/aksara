@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.27\\text{ g}$$ of magnesium hydroxide; $$500\\text{ cm}^3$$ of stomach acid",
+            "$$1.27\\text{ g}$$ of magnesium hydroxide, and $$500\\text{ cm}^3$$ of stomach acid",
         },
         {
           correct: true,
           label:
-            "$$0.58\\text{ g}$$ of magnesium hydroxide; $$400\\text{ cm}^3$$ of stomach acid",
+            "$$0.58\\text{ g}$$ of magnesium hydroxide, and $$400\\text{ cm}^3$$ of stomach acid",
         },
         {
           correct: false,
           label:
-            "$$0.58\\text{ g}$$ of magnesium hydroxide; $$200\\text{ cm}^3$$ of stomach acid",
+            "$$0.58\\text{ g}$$ of magnesium hydroxide, and $$200\\text{ cm}^3$$ of stomach acid",
         },
         {
           correct: false,
           label:
-            "$$1.00\\text{ g}$$ of magnesium hydroxide; $$400\\text{ cm}^3$$ of stomach acid",
+            "$$1.00\\text{ g}$$ of magnesium hydroxide, and $$400\\text{ cm}^3$$ of stomach acid",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.27\\text{ g}$$ magnesium hidroksida; $$500\\text{ cm}^3$$ asid perut",
+            "$$1.27\\text{ g}$$ magnesium hidroksida, dan $$500\\text{ cm}^3$$ asid perut",
         },
         {
           correct: true,
           label:
-            "$$0.58\\text{ g}$$ magnesium hidroksida; $$400\\text{ cm}^3$$ asid perut",
+            "$$0.58\\text{ g}$$ magnesium hidroksida, dan $$400\\text{ cm}^3$$ asid perut",
         },
         {
           correct: false,
           label:
-            "$$0.58\\text{ g}$$ magnesium hidroksida; $$200\\text{ cm}^3$$ asid perut",
+            "$$0.58\\text{ g}$$ magnesium hidroksida, dan $$200\\text{ cm}^3$$ asid perut",
         },
         {
           correct: false,
           label:
-            "$$1.00\\text{ g}$$ magnesium hidroksida; $$400\\text{ cm}^3$$ asid perut",
+            "$$1.00\\text{ g}$$ magnesium hidroksida, dan $$400\\text{ cm}^3$$ asid perut",
         },
       ],
     },

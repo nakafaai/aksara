@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aluminium chloride" },
-        { correct: true, label: "Zinc chloride" },
-        { correct: false, label: "Lead(II) chloride" },
-        { correct: false, label: "Zinc sulfate" },
+        { correct: false, label: "Aluminium chloride and magnesium sulfate" },
+        { correct: true, label: "Zinc sulfate and magnesium chloride" },
+        { correct: false, label: "Zinc chloride and calcium nitrate" },
+        { correct: false, label: "Lead(II) nitrate and zinc sulfate" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Aluminium klorida" },
-        { correct: true, label: "Zink klorida" },
-        { correct: false, label: "Plumbum(II) klorida" },
-        { correct: false, label: "Zink sulfat" },
+        { correct: false, label: "Aluminium klorida dan magnesium sulfat" },
+        { correct: true, label: "Zink sulfat dan magnesium klorida" },
+        { correct: false, label: "Zink klorida dan kalsium nitrat" },
+        { correct: false, label: "Plumbum(II) nitrat dan zink sulfat" },
       ],
     },
   },

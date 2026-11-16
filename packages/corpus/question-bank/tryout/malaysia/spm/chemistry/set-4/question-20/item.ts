@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$10.9\\text{ g}$$ of black solid; zinc is $$13.0\\%$$ of the brass",
+            "$$10.9\\text{ g}$$ of black solid, and zinc is $$13.0\\%$$ of the brass",
         },
         {
           correct: false,
           label:
-            "$$9.02\\text{ g}$$ of black solid; zinc is $$27.9\\%$$ of the brass",
+            "$$9.02\\text{ g}$$ of black solid, and zinc is $$27.9\\%$$ of the brass",
         },
         {
           correct: true,
           label:
-            "$$9.25\\text{ g}$$ of black solid; zinc is $$26.0\\%$$ of the brass",
+            "$$9.25\\text{ g}$$ of black solid, and zinc is $$26.0\\%$$ of the brass",
         },
         {
           correct: false,
           label:
-            "$$12.5\\text{ g}$$ of black solid; zinc is $$26.0\\%$$ of the brass",
+            "$$12.5\\text{ g}$$ of black solid, and zinc is $$26.0\\%$$ of the brass",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$10.9\\text{ g}$$ pepejal hitam; zink ialah $$13.0\\%$$ daripada loyang",
+            "$$10.9\\text{ g}$$ pepejal hitam, dan zink ialah $$13.0\\%$$ daripada loyang",
         },
         {
           correct: false,
           label:
-            "$$9.02\\text{ g}$$ pepejal hitam; zink ialah $$27.9\\%$$ daripada loyang",
+            "$$9.02\\text{ g}$$ pepejal hitam, dan zink ialah $$27.9\\%$$ daripada loyang",
         },
         {
           correct: true,
           label:
-            "$$9.25\\text{ g}$$ pepejal hitam; zink ialah $$26.0\\%$$ daripada loyang",
+            "$$9.25\\text{ g}$$ pepejal hitam, dan zink ialah $$26.0\\%$$ daripada loyang",
         },
         {
           correct: false,
           label:
-            "$$12.5\\text{ g}$$ pepejal hitam; zink ialah $$26.0\\%$$ daripada loyang",
+            "$$12.5\\text{ g}$$ pepejal hitam, dan zink ialah $$26.0\\%$$ daripada loyang",
         },
       ],
     },
