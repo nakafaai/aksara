@@ -32,7 +32,7 @@ const MARKUP = [
 
 describe("visual catalog", () => {
   it("names every component of Nakafa's renderer once, in code-unit order", () => {
-    expect(VISUAL_NAMES).toHaveLength(181);
+    expect(VISUAL_NAMES).toHaveLength(182);
     expect(VISUAL_NAMES).toEqual(
       Arr.sort(Arr.dedupe(VISUAL_NAMES), Order.String)
     );
@@ -80,6 +80,10 @@ describe("answer state of the catalog", () => {
     expect(
       answerState("GreenhouseEffectLab", { labels: { meaning: [text("M")] } })
     ).toEqual(["labels.meaning"]);
+    expect(
+      answerState("ElectrolysisLab", { electrons: 0.02, showProducts: true })
+    ).toEqual(["electrons", "showProducts"]);
+    expect(answerState("ElectrolysisLab", { showProducts: false })).toEqual([]);
   });
 });
 
