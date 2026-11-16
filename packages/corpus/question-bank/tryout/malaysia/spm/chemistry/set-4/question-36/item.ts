@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Magnesium gives −525 kJ mol⁻¹, releasing more heat than iron, because magnesium sits farther above copper in the electrochemical series",
+            "Iron $$-147\\text{ kJ mol}^{-1}$$, magnesium $$-525\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Magnesium gives −147 kJ mol⁻¹, the same as iron, because both displace the same amount of copper",
+            "Iron $$-147\\text{ kJ mol}^{-1}$$, magnesium $$-263\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Magnesium gives −52.5 kJ mol⁻¹, because the mixture has a mass of 25 g",
+            "Iron $$-73.5\\text{ kJ mol}^{-1}$$, magnesium $$-263\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Iron gives the larger value, because iron atoms are heavier than magnesium atoms",
+            "Iron $$+147\\text{ kJ mol}^{-1}$$, magnesium $$+525\\text{ kJ mol}^{-1}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Magnesium memberikan −525 kJ mol⁻¹, membebaskan lebih banyak haba daripada ferum, kerana magnesium berada lebih jauh di atas kuprum dalam siri elektrokimia",
+            "Ferum $$-147\\text{ kJ mol}^{-1}$$, magnesium $$-525\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Magnesium memberikan −147 kJ mol⁻¹, sama dengan ferum, kerana kedua-duanya menyesarkan jumlah kuprum yang sama",
+            "Ferum $$-147\\text{ kJ mol}^{-1}$$, magnesium $$-263\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Magnesium memberikan −52.5 kJ mol⁻¹, kerana campuran berjisim 25 g",
+            "Ferum $$-73.5\\text{ kJ mol}^{-1}$$, magnesium $$-263\\text{ kJ mol}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "Ferum memberikan nilai yang lebih besar, kerana atom ferum lebih berat daripada atom magnesium",
+            "Ferum $$+147\\text{ kJ mol}^{-1}$$, magnesium $$+525\\text{ kJ mol}^{-1}$$",
         },
       ],
     },
