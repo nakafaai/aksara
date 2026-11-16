@@ -110,3 +110,18 @@ it("keeps an ordinal that names the first element of a set", () => {
     }
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "dash-character": "Nilai berada antara 2 \u2013 3.",
+    "duplicate-adjacent-word": "Kira nilai nilai x.",
+    "duplicated-list-ordinal": "1. Pertama, kira x.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

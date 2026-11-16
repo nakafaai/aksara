@@ -251,3 +251,21 @@ it("rejects empty example prefaces and unsupported evaluation labels", () => {
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "formulaic-attention-filler": "Perlu diingat bahawa x positif.",
+    "formulaic-simplification-transition":
+      "Untuk memudahkan, kita gunakan g = 10.",
+    "formulaic-utility-transition": "Di sinilah teorem Pythagoras berguna.",
+    "generic-tip-intro": "Beberapa tip berguna:",
+    "vague-abstraction-relief": "Contoh ini menjadikan vektor kurang abstrak.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

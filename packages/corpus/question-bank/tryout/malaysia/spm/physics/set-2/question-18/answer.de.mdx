@@ -1,0 +1,40 @@
+# Den Grenzwinkel gegen Wasser bestimmen, nicht gegen Luft
+
+In Luft ist der Grenzwinkel <InlineMath math="\sin^{-1}(1/1{,}50)=41{,}8^\circ" />, <InlineMath math="45^\circ" /> gäbe also Totalreflexion. **Unter Wasser zählt das Verhältnis der beiden Brechzahlen**, <InlineMath math="\sin c=\dfrac{1{,}33}{1{,}50}" />, also <InlineMath math="c=62{,}5^\circ" />. Jetzt liegt <InlineMath math="45^\circ" /> darunter, und der Strahl tritt aus.
+
+<MathVisual
+  title={<>Der Strahl an der langen Fläche unter Wasser</>}
+  description={<>Der Strahl trifft die lange Fläche unter <InlineMath math="45^\circ" />. Unter Wasser ist der Grenzwinkel <InlineMath math="62{,}5^\circ" />, größer als <InlineMath math="45^\circ" />, also tritt der Strahl ins Wasser aus und wird vom Lot weg auf <InlineMath math="53^\circ" /> gebrochen.</>}
+  labels={{
+    glass: <>Glas, <InlineMath math="n=1{,}50" /></>,
+    in: <><InlineMath math="45^\circ" /></>,
+    out: <><InlineMath math="53^\circ" /></>,
+    water: <>Wasser, <InlineMath math="n=1{,}33" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 4.5 }, y: { min: -1.2, max: 4.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 0, y: 3 }] },
+      { id: "ray", kind: "vector", appearance: "primary", from: { x: 1.2, y: -1 }, to: { x: 1.2, y: 1.8 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0.45, y: 1.05 }, to: { x: 2.2, y: 2.8 } },
+      { id: "out", kind: "vector", appearance: "answer", from: { x: 1.2, y: 1.8 }, to: { x: 1.0, y: 3.2 } },
+      { id: "water", kind: "point", appearance: "reference", at: { x: 3.6, y: 3.6 } },
+    ],
+    labels: [
+      { key: "glass", objectId: "glass", at: { x: 0.7, y: 0.5 }, placement: "center" },
+      { key: "in", objectId: "ray", at: { x: 1.2, y: 1.2 }, placement: "left" },
+      { key: "out", objectId: "out", at: { x: 1.0, y: 3.2 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 3.6, y: 3.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="1{,}50\sin45^\circ=1{,}33\sin r\ \Rightarrow\ \sin r=0{,}797,\ r=53^\circ" />
+
+# Warum die anderen Antworten falsch sind
+
+- Totalreflexion rechnet mit dem Grenzwinkel gegen Luft. **Wasser verkleinert den Sprung der Brechzahl**, der Grenzwinkel steigt also auf <InlineMath math="62{,}5^\circ" />.
+- <InlineMath math="39^\circ" /> vertauscht die Brechzahlen, <InlineMath math="\sin r=\dfrac{1{,}33\sin45^\circ}{1{,}50}" />, als ginge der Strahl von Wasser in Glas.
+- <InlineMath math="45^\circ" /> übersieht die Brechung, doch die Brechzahlen sind verschieden, der Strahl knickt also ab.

@@ -1,0 +1,30 @@
+# Nuclei now
+
+Activity is proportional to <InlineMath math="N/T_{1/2}" />. **Equal activities now mean Y, with three times the half-life, has three times as many nuclei**, so X : Y <InlineMath math="=1:3" /> now.
+
+# Twelve hours later
+
+**X goes through <InlineMath math="12/2=6" /> half-lives and Y through <InlineMath math="12/6=2" />**.
+
+<BlockMath math="\begin{aligned}
+\text{activities: }&\frac{(1/2)^6}{(1/2)^2}=\frac{1}{16}\\
+\text{nuclei: }&\frac{1\times(1/2)^6}{3\times(1/2)^2}=\frac{1/64}{3/4}=\frac{1}{48}
+\end{aligned}" />
+
+<Chart
+  title={<>Undecayed nuclei now and after twelve hours</>}
+  description={<>Bar chart in units of X's nuclei now: X has <InlineMath math="1" /> now and <InlineMath math="1/64=0.016" /> after <InlineMath math="12\text{ h}" />, while Y has <InlineMath math="3" /> now and <InlineMath math="3/4=0.75" /> after <InlineMath math="12\text{ h}" />.</>}
+  bars="apart"
+  categories={["Now", "After 12 h"]}
+  series={[
+    { label: "X", mark: "bar", values: [1, 0.016] },
+    { label: "Y", mark: "bar", values: [3, 0.75] },
+  ]}
+  valueLabel="Nuclei (units of X now)"
+/>
+
+# Why the other options are wrong
+
+- **Nuclei <InlineMath math="1:16" /> treats the nuclei as if they followed the activities, forgetting that Y started with three times as many**.
+- Nuclei <InlineMath math="1:3" /> is the ratio now, not after <InlineMath math="12\text{ hours}" />.
+- <InlineMath math="16:1" /> and <InlineMath math="48:1" /> give Y's share first, the reverse of X : Y.

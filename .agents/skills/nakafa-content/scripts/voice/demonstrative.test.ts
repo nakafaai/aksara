@@ -54,3 +54,16 @@ it("keeps relative references out of the demonstrative rule", () => {
     ["german-heading-dependent-clause"]
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "heading-demonstrative-reference": "## Sifat Ini\n\nKamu kira hasilnya.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

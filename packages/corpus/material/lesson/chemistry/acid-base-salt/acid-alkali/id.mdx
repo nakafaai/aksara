@@ -1,0 +1,314 @@
+export const metadata = {
+  title: "Asam Basa dan Garam dengan Nilai pH",
+  description:
+    "Hitung pH dan molaritas, selesaikan perhitungan titrasi, dan pilih cara membuat garam lewat contoh lengkap, kesalahan umum, dan latihan beserta pembahasan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Asam, Basa, dan Garam",
+};
+
+## Asam dan Basa Membutuhkan Air
+
+**Asam** adalah zat yang terionisasi di dalam air menghasilkan **ion hidrogen**, <InlineMath math="\mathrm{H^+}" />. **Basa alkali** adalah basa yang larut dalam air dan terionisasi menghasilkan **ion hidroksida**, <InlineMath math="\mathrm{OH^-}" />. Keasaman diukur dengan nilai pH, <InlineMath math="\mathrm{pH} = -\log[\mathrm{H^+}]" />, pada skala <InlineMath math="0" /> sampai <InlineMath math="14" />. Di model-model berikut, kamu mengencerkan asam sambil melihat pH berubah, menjalankan titrasi, dan membangun kurva penetralan.
+
+Ion <InlineMath math="\mathrm{H^+}" /> sebenarnya bergabung dengan molekul air membentuk **ion hidronium**, <InlineMath math="\mathrm{H_3O^+}" />:
+
+<BlockMath math="\mathrm{HCl} + \mathrm{H_2O} \rightarrow \mathrm{H_3O^+} + \mathrm{Cl^-}" />
+
+Tanpa air, ion itu tidak terbentuk. Hidrogen klorida yang dilarutkan dalam toluena (metilbenzena) tetap berupa molekul, jadi larutannya tidak mengubah kertas lakmus biru menjadi merah. Kalau hidrogen klorida dilarutkan dalam air, molekulnya terionisasi dan sifat asamnya muncul. Hal yang sama berlaku untuk basa: amonia kering tidak mengubah lakmus merah, tetapi larutan amonia dalam air mengubahnya menjadi biru karena air memungkinkan ion <InlineMath math="\mathrm{OH^-}" /> terbentuk.
+
+**Basa** sendiri adalah zat yang bereaksi dengan asam menghasilkan garam dan air saja. Semua alkali adalah basa, tetapi tidak semua basa larut dalam air. Tembaga(II) oksida, misalnya, adalah basa tetapi bukan alkali.
+
+## Nilai pH dan Konsentrasi Ion Hidrogen
+
+Nilai pH yang lebih kecil berarti konsentrasi ion <InlineMath math="\mathrm{H^+}" /> lebih tinggi. Larutan netral pada <InlineMath math="25^\circ\text{C}" /> punya <InlineMath math="\mathrm{pH} = 7" />. Larutan asam punya pH di bawah <InlineMath math="7" />, dan larutan basa punya pH di atas <InlineMath math="7" />. Untuk basa, hitung pOH dulu, lalu pakai hubungan ini:
+
+<MathContainer>
+<BlockMath math="\mathrm{pOH} = -\log[\mathrm{OH^-}]" />
+<BlockMath math="\mathrm{pH} + \mathrm{pOH} = 14" />
+</MathContainer>
+
+Skala pH adalah skala logaritma. Setiap kali konsentrasi <InlineMath math="\mathrm{H^+}" /> turun **sepuluh kali**, pH hanya naik **satu satuan**. Geser penggeser faktor pengenceran untuk asam klorida <InlineMath math="0{,}1\text{ M}" /> dan perhatikan kurvanya yang makin landai.
+
+<MathVisual
+  title={<>pH Asam Klorida Saat Diencerkan</>}
+  description={
+    <>
+      Asam klorida <InlineMath math="0{,}1\text{ M}" /> diencerkan{" "}
+      <InlineMath math="d" /> kali. Kurvanya{" "}
+      <InlineMath math="\mathrm{pH} = 1 + \log d" />. Pengenceran sepuluh kali
+      menaikkan pH dari <InlineMath math="1" /> menjadi <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 4, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + log_10(x)", domain: { min: 1, max: 10 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "tenfold", kind: "point", appearance: "answer", at: { x: 10, y: 2 } },
+      { id: "now", kind: "marker", x: "d", y: "1 + log_10(d)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "tenfold", objectId: "tenfold", at: { x: 10, y: 2 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "concentration", formula: "0.1 / d" },
+      { key: "ph", formula: "1 + log_10(d)" },
+    ],
+  }}
+  labels={{
+    d: <>Faktor pengenceran <InlineMath math="d" /></>,
+    start: <InlineMath math="\mathrm{pH}\ 1" />,
+    tenfold: <InlineMath math="\mathrm{pH}\ 2" />,
+    concentration: <><InlineMath math="[\mathrm{H^+}]" /> dalam <InlineMath math="\text{M}" /></>,
+    ph: <>Nilai pH</>,
+  }}
+/>
+
+Jadi larutan pH <InlineMath math="2" /> bukan dua kali lebih asam daripada larutan pH <InlineMath math="4" />. Selisihnya dua satuan, artinya konsentrasi <InlineMath math="\mathrm{H^+}" /> **seratus kali lipat**:
+
+<BlockMath math="\frac{10^{-2}}{10^{-4}} = 100" />
+
+## Kekuatan dan Konsentrasi Asam
+
+**Kekuatan** asam atau basa bergantung pada **derajat ionisasinya** dalam air, bukan pada konsentrasinya. Asam kuat seperti asam klorida terionisasi **sempurna**, jadi setiap molekul menghasilkan ion <InlineMath math="\mathrm{H^+}" />. Asam lemah seperti asam asetat terionisasi **sebagian**, jadi sebagian besar molekulnya tetap tidak terionisasi. Begitu juga natrium hidroksida adalah basa kuat, sedangkan larutan amonia adalah basa lemah.
+
+<BlockMath math="\mathrm{CH_3COOH} \rightleftharpoons \mathrm{CH_3COO^-} + \mathrm{H^+}" />
+
+Bandingkan larutan dengan **konsentrasi yang sama**, <InlineMath math="0{,}1\text{ M}" />. Nilai untuk asam asetat dan amonia dihitung dari tetapan ionisasinya masing-masing pada <InlineMath math="25^\circ\text{C}" />.
+
+<Chart
+  title={<>pH Asam dan Basa Kuat serta Lemah</>}
+  bars="apart"
+  categories={["Asam klorida", "Asam asetat", "Larutan amonia", "Natrium hidroksida"]}
+  series={[
+    {
+      label: "Nilai pH",
+      mark: "bar",
+      values: [1, -Math.log10(Math.sqrt(1.8e-5 * 0.1)), 14 + Math.log10(Math.sqrt(1.8e-5 * 0.1)), 13],
+    },
+  ]}
+  valueLabel="pH"
+  valueRange={{ min: 0, max: 14 }}
+  description={
+    <>
+      Semua larutan berkonsentrasi <InlineMath math="0{,}1\text{ M}" />. Asam
+      klorida pH <InlineMath math="1{,}0" />, asam asetat pH{" "}
+      <InlineMath math="2{,}9" />, larutan amonia pH <InlineMath math="11{,}1" />,
+      natrium hidroksida pH <InlineMath math="13{,}0" />.
+    </>
+  }
+/>
+
+**Konsentrasi** adalah banyaknya zat terlarut dalam <InlineMath math="1\text{ L}" /> larutan. Konsentrasi bisa ditulis dalam <InlineMath math="\text{g/L}" /> atau sebagai **molaritas**, dalam <InlineMath math="\text{M}" /> atau <InlineMath math="\text{mol/L}" />:
+
+<BlockMath math="M = \frac{n}{V}" />
+
+Di sini <InlineMath math="n" /> adalah jumlah mol zat terlarut dan <InlineMath math="V" /> adalah volume larutan dalam liter. Larutan yang konsentrasinya diketahui dengan tepat disebut **larutan baku**, dan larutan ini dibuat di dalam labu takar.
+
+### Contoh Membuat Larutan Baku
+
+Sebanyak <InlineMath math="2{,}0\text{ g}" /> natrium hidroksida dilarutkan dalam air sampai volumenya <InlineMath math="250\text{ mL}" />. Hitung molaritas larutan itu. Massa molar <InlineMath math="\mathrm{NaOH}" /> adalah <InlineMath math="40\text{ g/mol}" />.
+
+**Ubah massa menjadi mol**, lalu ubah volume menjadi liter:
+
+<MathContainer>
+<BlockMath math="n = \frac{2{,}0}{40} = 0{,}050\text{ mol}" />
+<BlockMath math="V = \frac{250}{1000} = 0{,}250\text{ L}" />
+<BlockMath math="M = \frac{0{,}050}{0{,}250} = 0{,}20\text{ M}" />
+</MathContainer>
+
+Cek lewat konsentrasi massa. Massa dalam <InlineMath math="1\text{ L}" /> adalah empat kali <InlineMath math="2{,}0\text{ g}" />, yaitu <InlineMath math="8{,}0\text{ g/L}" />, dan <InlineMath math="8{,}0 : 40 = 0{,}20" />. Kedua cara memberi jawaban yang sama.
+
+### Contoh Mengencerkan Larutan
+
+Saat air ditambahkan, jumlah mol zat terlarut tidak berubah. Hanya volumenya yang bertambah. Itulah dasar **rumus pengenceran**:
+
+<BlockMath math="M_1V_1 = M_2V_2" />
+
+Untuk membuat <InlineMath math="500\text{ mL}" /> asam klorida <InlineMath math="0{,}10\text{ M}" /> dari asam <InlineMath math="1{,}0\text{ M}" />:
+
+<BlockMath math="V_1 = \frac{M_2V_2}{M_1} = \frac{0{,}10 \times 500}{1{,}0} = 50\text{ mL}" />
+
+Ukur <InlineMath math="50\text{ mL}" /> asam pekat, lalu tambahkan akuades sampai volumenya <InlineMath math="500\text{ mL}" />. Cek: jumlah mol awal <InlineMath math="1{,}0 \times 0{,}050 = 0{,}050" /> mol, dan jumlah mol akhir <InlineMath math="0{,}10 \times 0{,}500 = 0{,}050" /> mol. Sama.
+
+## Penetralan dan Titrasi
+
+**Penetralan** adalah reaksi antara asam dan basa yang menghasilkan garam dan air saja. Pada setiap penetralan asam oleh basa alkali, reaksi yang sebenarnya terjadi adalah ion hidrogen bergabung dengan ion hidroksida:
+
+<BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
+
+**Titrasi** menentukan volume tepat yang dibutuhkan untuk penetralan sempurna. Satu larutan dialirkan dari buret ke larutan lain di dalam labu Erlenmeyer sampai indikator berubah warna. Saat itu disebut **titik akhir titrasi**. Jalankan titrasi berikut dan perhatikan warna fenolftaleinnya.
+
+<TitrationLab
+  title={<>Titrasi Asam Klorida dengan Natrium Hidroksida</>}
+  description={
+    <>
+      Natrium hidroksida <InlineMath math="0{,}10\text{ M}" /> dari buret
+      ditambahkan ke <InlineMath math="10{,}0\text{ mL}" /> asam klorida{" "}
+      <InlineMath math="0{,}10\text{ M}" /> dengan indikator fenolftalein.
+    </>
+  }
+  analyte={{ concentration: 0.1, solute: "hydrochloric-acid", volume: 10 }}
+  titrant={{ concentration: 0.1, solute: "sodium-hydroxide" }}
+  indicator="phenolphthalein"
+  showEndPoint
+  labels={{
+    added: "Volume yang ditambahkan",
+    analyte: <>Di dalam labu</>,
+    endPoint: <>Titik akhir</>,
+    hue: <>Warna di dalam labu</>,
+    hues: {
+      colourless: <>tidak berwarna</>,
+      green: <>hijau</>,
+      orange: <>jingga</>,
+      "pale-green": <>hijau pucat</>,
+      pink: <>merah muda</>,
+      red: <>merah</>,
+      yellow: <>kuning</>,
+    },
+    ph: <>pH</>,
+    reaction: <>Reaksi</>,
+    titrant: <>Di dalam buret</>,
+    view: "Titrasi asam klorida dengan natrium hidroksida",
+  }}
+/>
+
+Kurva ini menunjukkan pH di labu yang sama saat basa ditambahkan. Kurvanya dihitung dari ion <InlineMath math="\mathrm{H^+}" /> yang berlebih sekaligus ionisasi air. Perhatikan lonjakan pH yang tajam di sekitar <InlineMath math="10\text{ mL}" />. Fenolftalein berubah warna di dalam lonjakan itu.
+
+<MathVisual
+  title={<>Kurva pH Penetralan Asam Kuat oleh Basa Kuat</>}
+  description={
+    <>
+      <InlineMath math="10{,}0\text{ mL}" /> asam klorida{" "}
+      <InlineMath math="0{,}10\text{ M}" /> dengan natrium hidroksida{" "}
+      <InlineMath math="0{,}10\text{ M}" />. Sumbu mendatar adalah volume basa
+      dalam <InlineMath math="\text{mL}" />, sumbu tegak adalah pH.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 20, value: 5, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_10(((1 - 0.1x)/(10 + x) + sqrt(((1 - 0.1x)/(10 + x))^2 + 4*10^(-14)))/2)", domain: { min: 0, max: 20 } },
+      { id: "equivalence", kind: "point", appearance: "answer", at: { x: 10, y: 7 } },
+      { id: "now", kind: "marker", x: "a", y: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "equivalence", objectId: "equivalence", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "ph", formula: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)" },
+    ],
+  }}
+  labels={{
+    a: <>Volume basa <InlineMath math="a" /></>,
+    equivalence: <>Netral, <InlineMath math="\mathrm{pH}\ 7" /></>,
+    ph: <>pH di dalam labu</>,
+  }}
+/>
+
+Sekarang pakai titrasi untuk mencari konsentrasi yang belum diketahui. Sebanyak <InlineMath math="25{,}0\text{ mL}" /> natrium hidroksida <InlineMath math="0{,}10\text{ M}" /> dinetralkan oleh <InlineMath math="12{,}50\text{ mL}" /> asam sulfat. Hitung molaritas asam sulfat itu.
+
+Tulis persamaan setaranya dulu, karena perbandingan mol berasal dari sana:
+
+<BlockMath math="\mathrm{H_2SO_4} + 2\mathrm{NaOH} \rightarrow \mathrm{Na_2SO_4} + 2\mathrm{H_2O}" />
+
+Asam sulfat adalah **asam diprotik**, jadi satu mol asam membutuhkan dua mol basa. Pakai <InlineMath math="\dfrac{M_aV_a}{M_bV_b} = \dfrac{a}{b}" /> dengan <InlineMath math="a = 1" /> dan <InlineMath math="b = 2" />:
+
+<BlockMath math="M_a = \frac{1}{2} \times \frac{0{,}10 \times 25{,}0}{12{,}50} = 0{,}10\text{ M}" />
+
+Cek lewat mol. Natrium hidroksida <InlineMath math="0{,}10 \times 0{,}0250 = 0{,}0025" /> mol. Asam sulfat <InlineMath math="0{,}10 \times 0{,}01250 = 0{,}00125" /> mol, tepat setengahnya. Perbandingan <InlineMath math="1 : 2" /> terpenuhi.
+
+## Garam dan Cara Membuatnya
+
+**Garam** adalah senyawa ion yang terbentuk saat ion <InlineMath math="\mathrm{H^+}" /> dari asam diganti ion logam atau ion amonium. Contohnya natrium klorida dari asam klorida dan tembaga(II) sulfat dari asam sulfat. Cara membuat suatu garam bergantung pada **kelarutannya dalam air**:
+
+| Garam | Mudah larut dalam air | Sukar larut dalam air |
+| :--- | :--- | :--- |
+| Garam natrium, kalium, dan amonium | Semua | Tidak ada |
+| Garam nitrat | Semua | Tidak ada |
+| Garam klorida | Sebagian besar | Timbal(II) klorida dan perak klorida |
+| Garam sulfat | Sebagian besar | Barium sulfat, timbal(II) sulfat, dan kalsium sulfat |
+| Garam karbonat | Natrium, kalium, dan amonium karbonat | Sisanya |
+
+Garam natrium, kalium, dan amonium dibuat lewat **titrasi** asam dengan basa alkali, karena kedua pereaksinya larut dan hasilnya tidak bisa disaring. Garam mudah larut lainnya dibuat dengan menambahkan logam, oksida logam, atau karbonat logam **secara berlebih** ke dalam asam, menyaring sisa padatannya, lalu mengkristalkan garam dari filtratnya.
+
+Garam sukar larut dibuat lewat **reaksi pengendapan**, disebut juga reaksi dekomposisi ganda. Dua larutan garam yang mengandung kation dan anion garam itu dicampur, dan endapan langsung terbentuk. Tuangkan larutan perak nitrat ke natrium klorida dan perhatikan endapan putih perak klorida:
+
+<BlockMath math="\mathrm{Ag^+(aq)} + \mathrm{Cl^-(aq)} \rightarrow \mathrm{AgCl(s)}" />
+
+<PrecipitateLab
+  title={<>Pengendapan Perak Klorida</>}
+  description={
+    <>
+      Larutan perak nitrat dituangkan ke larutan natrium klorida di atas
+      timbangan. Endapan putih perak klorida langsung terbentuk.
+    </>
+  }
+  labels={{
+    precipitate: <>Endapan <InlineMath math="\mathrm{AgCl}" /></>,
+    readingAfter: <>Bacaan timbangan setelah dicampur</>,
+    readingBefore: <>Bacaan timbangan sebelum dicampur</>,
+    viewLabel: "Pengendapan perak klorida di atas timbangan",
+  }}
+/>
+
+Endapan itu lalu disaring, dibilas dengan akuades untuk membuang ion lain, dan dikeringkan di antara kertas saring. Perhatikan juga bacaan timbangannya: massa tidak berubah karena tidak ada zat yang keluar dari gelas kimia.
+
+## Kesalahan Umum tentang Asam dan Garam
+
+| Kesalahan | Alasan keliru | Cara mengecek |
+| :--- | :--- | :--- |
+| Larutan pH <InlineMath math="2" /> dua kali lebih asam daripada pH <InlineMath math="4" />. | Skala pH adalah logaritma. Selisih dua satuan berarti <InlineMath math="100" /> kali konsentrasi <InlineMath math="\mathrm{H^+}" />. | Hitung <InlineMath math="10^{-2} : 10^{-4}" />. |
+| Asam kuat berarti asam pekat. | Kekuatan bergantung pada derajat ionisasi. Konsentrasi bergantung pada banyaknya zat terlarut. | Asam asetat pekat tetap asam lemah. |
+| Hidrogen klorida dalam toluena menunjukkan sifat asam. | Tanpa air, hidrogen klorida tidak terionisasi, jadi tidak ada ion <InlineMath math="\mathrm{H^+}" />. | Cari air di dalam sistem itu. |
+| Perak klorida dibuat dengan menambahkan logam perak ke asam klorida. | Perak tidak bereaksi dengan asam klorida, dan perak klorida adalah garam sukar larut. | Garam sukar larut dibuat lewat pengendapan. |
+| Pada titrasi asam sulfat dengan natrium hidroksida, perbandingannya satu banding satu. | Asam sulfat diprotik, jadi perbandingan mol asam dan basa adalah <InlineMath math="1 : 2" />. | Setarakan persamaannya dulu. |
+
+Kesalahan kedua paling sulit dikenali karena kedua kata itu terdengar mirip. Ingat pasangan ini: **kuat atau lemah** menjelaskan ionisasi, sedangkan **pekat atau encer** menjelaskan banyaknya zat terlarut.
+
+## Latihan Asam dan Basa
+
+Soal-soal ini bergerak dari perhitungan pH ke titrasi dan penjelasan. **Tulis satuan di setiap langkah** supaya salah tukar <InlineMath math="\text{mL}" /> dan <InlineMath math="\text{L}" /> cepat ketahuan.
+
+1. Hitung pH asam klorida <InlineMath math="0{,}01\text{ M}" />.
+
+2. Berapa volume larutan natrium hidroksida <InlineMath math="2{,}0\text{ M}" /> yang dibutuhkan untuk membuat <InlineMath math="500\text{ mL}" /> larutan <InlineMath math="0{,}40\text{ M}" />?
+
+3. Sebanyak <InlineMath math="20{,}0\text{ mL}" /> asam klorida <InlineMath math="0{,}50\text{ M}" /> menetralkan <InlineMath math="25{,}0\text{ mL}" /> larutan kalium hidroksida. Hitung molaritas larutan kalium hidroksida.
+
+4. Asam klorida dan asam asetat, masing-masing <InlineMath math="0{,}1\text{ M}" />, dititrasi dengan natrium hidroksida yang sama. Jelaskan mengapa pH awal asam asetat lebih tinggi, tetapi volume basa yang dibutuhkan untuk penetralan sama.
+
+### Pembahasan
+
+**Pembahasan 1**: Asam klorida adalah asam kuat monoprotik, jadi <InlineMath math="[\mathrm{H^+}] = 0{,}01\text{ M}" />.
+
+<BlockMath math="\mathrm{pH} = -\log(0{,}01) = -\log(10^{-2}) = 2" />
+
+Cek dengan logika pengenceran: asam <InlineMath math="0{,}1\text{ M}" /> punya pH <InlineMath math="1" />, dan asam ini sepuluh kali lebih encer, jadi pH naik satu satuan menjadi <InlineMath math="2" />.
+
+**Pembahasan 2**: Jumlah mol natrium hidroksida tidak berubah saat diencerkan, jadi pakai <InlineMath math="M_1V_1 = M_2V_2" />:
+
+<BlockMath math="V_1 = \frac{0{,}40 \times 500}{2{,}0} = 100\text{ mL}" />
+
+Ukur <InlineMath math="100\text{ mL}" /> larutan pekat dan tambahkan akuades sampai <InlineMath math="500\text{ mL}" />. Cek: <InlineMath math="2{,}0 \times 0{,}100 = 0{,}20" /> mol, dan <InlineMath math="0{,}40 \times 0{,}500 = 0{,}20" /> mol.
+
+**Pembahasan 3**: Persamaannya <InlineMath math="\mathrm{HCl} + \mathrm{KOH} \rightarrow \mathrm{KCl} + \mathrm{H_2O}" />, dengan perbandingan mol <InlineMath math="1 : 1" />.
+
+<BlockMath math="M_b = \frac{M_aV_a}{V_b} = \frac{0{,}50 \times 20{,}0}{25{,}0} = 0{,}40\text{ M}" />
+
+Cek: asamnya <InlineMath math="0{,}50 \times 0{,}0200 = 0{,}010" /> mol, dan basanya <InlineMath math="0{,}40 \times 0{,}0250 = 0{,}010" /> mol. Sama, jadi penetralannya sempurna.
+
+**Pembahasan 4**: Asam asetat adalah **asam lemah** yang terionisasi sebagian, jadi konsentrasi ion <InlineMath math="\mathrm{H^+}" /> awalnya jauh lebih rendah daripada asam klorida yang terionisasi sempurna. Itulah alasan pH awalnya lebih tinggi, sekitar <InlineMath math="2{,}9" /> dibanding <InlineMath math="1" />. Namun kedua asam punya **jumlah mol asam yang sama** dan keduanya monoprotik. Saat ion <InlineMath math="\mathrm{OH^-}" /> menghabiskan ion <InlineMath math="\mathrm{H^+}" />, makin banyak molekul asam asetat yang terionisasi, sampai semua molekul asam ternetralkan. Jadi volume natrium hidroksida yang dibutuhkan tetap sama.

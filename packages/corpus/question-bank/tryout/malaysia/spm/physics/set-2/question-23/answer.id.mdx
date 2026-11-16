@@ -1,0 +1,44 @@
+# Baca arah percepatan dari kemiringan
+
+Pegas menarik massa ke atas dan ke arah titik gantung. Massa berada di timur titik gantung, jadi **tarikan horizontal, dan bersamanya percepatan, mengarah ke barat**. Kereta bergerak ke timur, jadi kereta sedang melambat.
+
+<MathVisual
+  title={<>Gaya pada massa yang tergantung</>}
+  description={<>Gaya pegas mengarah dari massa ke atas dan ke belakang ke barat, <InlineMath math="15^\circ" /> dari vertikal. Komponen vertikalnya mengimbangi berat <InlineMath math="2{,}0\text{ N}" /> dan komponen horizontalnya mengarah ke barat, jadi gaya total dan percepatan mengarah ke barat sementara kereta bergerak ke timur.</>}
+  labels={{
+    t: <>gaya pegas <InlineMath math="2{,}07\text{ N}" /></>,
+    w: <>berat <InlineMath math="2{,}0\text{ N}" /></>,
+    f: <>gaya total ke barat</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.0, max: 0.6 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0.9659 } },
+      { id: "w", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: -0.97 } },
+      { id: "f", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: -0.13, y: 0.5 }, placement: "left" },
+      { key: "w", objectId: "w", at: { x: 0, y: -0.6 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -0.13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Seimbangkan arah vertikal, lalu pakai komponen horizontal
+
+<BlockMath math="\begin{aligned}
+T\cos15^\circ&=mg\ \Rightarrow\ T=\frac{2{,}0}{0{,}966}=2{,}07\text{ N}\\
+a&=g\tan15^\circ=2{,}7\text{ m s}^{-2}\\
+x&=\frac{T}{k}=\frac{2{,}07}{40}=0{,}052\text{ m}=5{,}2\text{ cm}
+\end{aligned}" />
+
+**Gaya pegas lebih besar dari berat, jadi pertambahan panjangnya melebihi <InlineMath math="5{,}0\text{ cm}" /> yang dimilikinya saat diam**.
+
+# Kenapa pilihan lain salah
+
+- **Jika kereta dipercepat, massa tertinggal di barat titik gantung, kemiringan yang berlawanan**.
+- <InlineMath math="5{,}0\text{ cm}" /> membagi berat dengan <InlineMath math="k" />, padahal pegas juga harus memberi gaya horizontal.
+- <InlineMath math="2{,}6\text{ m s}^{-2}" /> memakai <InlineMath math="g\sin15^\circ" /> dan juga mengambil arah yang salah.

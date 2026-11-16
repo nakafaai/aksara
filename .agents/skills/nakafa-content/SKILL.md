@@ -28,8 +28,8 @@ content addition, revision, review, or translation in this repository.
    two independent German passes merely because both entries are installed.
    For Malaysian Malay, read the Malaysian Malay section of
    `references/locales.md` completely: no global Malay skill exists, so that
-   section owns the register, the words that differ from Indonesian, and the
-   false friends.
+   section owns the register, the words that differ from Indonesian, the
+   false friends, and the Malay humanizer pass.
 5. If a required locale skill is missing, use the global skill installer for
    [bahasa-indonesia](https://www.skills.sh/ajipurn/bahasa-indonesia-skill/bahasa-indonesia)
    or [humanizer-de](https://github.com/marmbiz/humanizer-de). Do not copy global

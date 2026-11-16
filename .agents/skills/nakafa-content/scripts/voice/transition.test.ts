@@ -183,3 +183,44 @@ it("rejects abstract efficient paths", () => {
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = [
+    ["generic-easiest-way-claim", "Ini cara paling mudah untuk mencari punca."],
+    ["formulaic-good-news-transition", "Berita baiknya, langkah ini pendek."],
+    ["formulaic-key-claim", "Kuncinya ialah memadankan unit."],
+    ["formulaic-key-claim", "Kata kuncinya ialah kadar."],
+    ["inflated-foundation-claim", "Konsep ini menjadi asas untuk kalkulus."],
+    ["formulaic-gateway-transition", "Topik ini pintu masuk ke kalkulus."],
+    [
+      "vague-procedural-improvement",
+      "Jadual ini menjadikan pengiraan lebih mudah.",
+    ],
+    [
+      "vague-procedural-path",
+      "Teorem ini memberikan ujian dan laluan yang cepat.",
+    ],
+    [
+      "abstract-efficiency-path",
+      "Kaedah ini menawarkan laluan yang lebih cekap.",
+    ],
+    ["vague-visual-method", "Graf memberikan cara visual."],
+  ] as const;
+
+  for (const [rule, source] of samples) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});
+
+it("leaves an ordinary Malay key and ending to the sentence", () => {
+  assert.deepEqual(
+    findLessonVoiceIssues(
+      "ms",
+      "Kamus mencari dalam kuncinya, dan bentuk akhirnya bergantung pada matriks."
+    ),
+    []
+  );
+});

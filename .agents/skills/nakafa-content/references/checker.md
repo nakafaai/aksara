@@ -355,7 +355,17 @@ Indonesian `Anda`, `saya`, and `kalian` are blocked only in learner-visible
 authored prose, and `indonesian-formal-request` blocks `Silakan`, `Silahkan`,
 `Mohon`, and `Dimohon`, which the same requirement names. `Permohonan` and a
 quoted sign stay valid, and a stiff `tersebut` stays a manual read item because
-it also names an exact earlier noun. English has no formal pronoun, so the gate
+it also names an exact earlier noun. Malaysian Malay has its own three address
+rules: `malay-learner-address` blocks `anda`, `awak`, `kau`, `engkau`, `kalian`,
+and `korang`; `malay-author-self-reference` blocks `aku`, `daku`, and `patik`;
+and `malay-formal-request` blocks `sila`, `silakan`, `dipersilakan`, `mohon`,
+`dimohon`, `hendaklah`, and `adalah dikehendaki`. Malay `saya` stays valid,
+because it is the neutral Malaysian first person and appears in glosses of
+quoted sources, and `beta` stays valid as the Greek letter in `sel beta`.
+Every other voice rule with an Indonesian or German pattern carries a Malay
+pattern too, and `voice/rules.test.ts` fails when a new rule lacks one, except
+for the named rules that check a feature of German or Indonesian alone. English
+has no formal pronoun, so the gate
 holds no English address rule: a corpus search of every English lesson,
 article, and worked answer found no recurring stiff address shape such as `one
 must`, `the reader should`, `kindly`, or `please note`, and the

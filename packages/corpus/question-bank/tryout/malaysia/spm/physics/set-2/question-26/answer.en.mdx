@@ -1,0 +1,29 @@
+# Lift at sea level
+
+<BlockMath math="\begin{aligned}
+\Delta P&=\tfrac12(1.2)\left(75^2-65^2\right)=840\text{ Pa}\\
+F&=840\times20=16\,800\text{ N}\ \Rightarrow\ m=1680\text{ kg}
+\end{aligned}" />
+
+# Change the density and the speeds together
+
+The pressure difference goes with <InlineMath math="\rho v^2" />. **Both speeds grow by <InlineMath math="1.2" />, so the difference of their squares grows by <InlineMath math="1.44" />**, while the thinner air multiplies it by <InlineMath math="0.75" />.
+
+<BlockMath math="m=1680\times1.44\times0.75=1814\text{ kg}\approx1810\text{ kg}" />
+
+<Chart
+  title={<>Mass the wings can lift</>}
+  description={<>Bar chart: <InlineMath math="1680\text{ kg}" /> at sea level, <InlineMath math="2420\text{ kg}" /> if only the speeds grew by <InlineMath math="1.2" />, and <InlineMath math="1810\text{ kg}" /> at the high airfield, where the thinner air takes back a quarter.</>}
+  bars="apart"
+  categories={["Sea level", "Faster, same air", "High airfield"]}
+  series={[
+    { label: "Mass", mark: "bar", values: [1680, 2420, 1810] },
+  ]}
+  valueLabel="Mass (kg)"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="2420\text{ kg}" /> **uses the faster speeds but forgets the thinner air**.
+- <InlineMath math="1510\text{ kg}" /> scales the lift by <InlineMath math="1.2" /> instead of <InlineMath math="1.2^2" />.
+- <InlineMath math="1260\text{ kg}" /> applies the thinner air but forgets the faster take-off.

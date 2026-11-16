@@ -1,0 +1,317 @@
+export const metadata = {
+  title: "Nota Asid Bes dan Garam Tingkatan Empat",
+  description:
+    "Nota Kimia Tingkatan 4 Bab 6: kira nilai pH dan kepekatan, selesaikan pentitratan, dan pilih kaedah menyediakan garam dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-16",
+  dateModified: "2026-11-16",
+  subject: "Asid, Bes dan Garam",
+};
+
+## Asid dan Alkali Bergantung pada Air
+
+**Asid** ialah bahan kimia yang mengion dalam air untuk menghasilkan **ion hidrogen**, <InlineMath math="\mathrm{H^+}" />. **Alkali** ialah bes yang larut dalam air dan mengion untuk menghasilkan **ion hidroksida**, <InlineMath math="\mathrm{OH^-}" />. Keasidan diukur dengan nilai pH, <InlineMath math="\mathrm{pH} = -\log[\mathrm{H^+}]" />, pada skala <InlineMath math="0" /> hingga <InlineMath math="14" />. Dengan model dalam nota ini, kamu boleh mencairkan asid dan melihat pH berubah, menjalankan pentitratan, dan membina lengkung peneutralan.
+
+Ion <InlineMath math="\mathrm{H^+}" /> sebenarnya bergabung dengan molekul air membentuk **ion hidroksonium**, <InlineMath math="\mathrm{H_3O^+}" />:
+
+<BlockMath math="\mathrm{HCl} + \mathrm{H_2O} \rightarrow \mathrm{H_3O^+} + \mathrm{Cl^-}" />
+
+Tanpa air, ion itu tidak terbentuk. Hidrogen klorida yang dilarutkan dalam metilbenzena kekal sebagai molekul, jadi larutan itu tidak menukar kertas litmus biru kepada merah. Apabila hidrogen klorida dilarutkan dalam air, molekulnya mengion dan sifat asid muncul. Hal yang sama berlaku pada alkali: ammonia kering tidak menukar litmus merah, tetapi larutan ammonia akueus menukarnya kepada biru kerana air membolehkan ion <InlineMath math="\mathrm{OH^-}" /> terbentuk.
+
+**Bes** pula ialah bahan yang bertindak balas dengan asid menghasilkan garam dan air sahaja. Semua alkali ialah bes, tetapi tidak semua bes larut dalam air. Kuprum(II) oksida, misalnya, ialah bes tetapi bukan alkali.
+
+## Nilai pH dan Kepekatan Ion Hidrogen
+
+Nilai pH yang lebih kecil bermaksud kepekatan ion <InlineMath math="\mathrm{H^+}" /> lebih tinggi. Larutan neutral pada <InlineMath math="25^\circ\text{C}" /> mempunyai <InlineMath math="\mathrm{pH} = 7" />. Larutan berasid mempunyai pH kurang daripada <InlineMath math="7" />, dan larutan beralkali mempunyai pH lebih daripada <InlineMath math="7" />. Bagi alkali, kira pOH dulu, kemudian gunakan hubungan ini:
+
+<MathContainer>
+<BlockMath math="\mathrm{pOH} = -\log[\mathrm{OH^-}]" />
+<BlockMath math="\mathrm{pH} + \mathrm{pOH} = 14" />
+</MathContainer>
+
+Skala pH ialah skala logaritma. Setiap kali kepekatan <InlineMath math="\mathrm{H^+}" /> jatuh **sepuluh kali ganda**, pH naik **satu unit** sahaja. Gerakkan gelangsar faktor pencairan untuk asid hidroklorik <InlineMath math="0.1\text{ mol dm}^{-3}" /> dan perhatikan lengkung yang semakin landai.
+
+<MathVisual
+  title={<>pH Asid Hidroklorik apabila Dicairkan</>}
+  description={
+    <>
+      Asid hidroklorik <InlineMath math="0.1\text{ mol dm}^{-3}" /> dicairkan
+      sebanyak <InlineMath math="d" /> kali. Lengkung ialah{" "}
+      <InlineMath math="\mathrm{pH} = 1 + \log d" />. Pencairan sepuluh kali
+      ganda menaikkan pH daripada <InlineMath math="1" /> kepada{" "}
+      <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 10, value: 4, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "1 + log_10(x)", domain: { min: 1, max: 10 } },
+      { id: "start", kind: "point", appearance: "secondary", at: { x: 1, y: 1 } },
+      { id: "tenfold", kind: "point", appearance: "answer", at: { x: 10, y: 2 } },
+      { id: "now", kind: "marker", x: "d", y: "1 + log_10(d)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "start", objectId: "start", at: { x: 1, y: 1 }, placement: "below-right" },
+      { key: "tenfold", objectId: "tenfold", at: { x: 10, y: 2 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "concentration", formula: "0.1 / d" },
+      { key: "ph", formula: "1 + log_10(d)" },
+    ],
+  }}
+  labels={{
+    d: <>Faktor pencairan <InlineMath math="d" /></>,
+    start: <InlineMath math="\mathrm{pH}\ 1" />,
+    tenfold: <InlineMath math="\mathrm{pH}\ 2" />,
+    concentration: <><InlineMath math="[\mathrm{H^+}]" /> dalam <InlineMath math="\text{mol dm}^{-3}" /></>,
+    ph: <>Nilai pH</>,
+  }}
+/>
+
+Jadi larutan pH <InlineMath math="2" /> bukan dua kali lebih berasid daripada larutan pH <InlineMath math="4" />. Bezanya dua unit, iaitu kepekatan <InlineMath math="\mathrm{H^+}" /> **seratus kali ganda**:
+
+<BlockMath math="\frac{10^{-2}}{10^{-4}} = 100" />
+
+## Kekuatan dan Kepekatan Asid
+
+**Kekuatan** asid atau alkali bergantung pada **darjah pengionan** dalam air, bukan pada kepekatannya. Asid kuat seperti asid hidroklorik mengion **lengkap**, jadi setiap molekul menghasilkan ion <InlineMath math="\mathrm{H^+}" />. Asid lemah seperti asid etanoik mengion **separa**, jadi kebanyakan molekul kekal tidak mengion. Begitu juga natrium hidroksida ialah alkali kuat, manakala ammonia akueus ialah alkali lemah.
+
+<BlockMath math="\mathrm{CH_3COOH} \rightleftharpoons \mathrm{CH_3COO^-} + \mathrm{H^+}" />
+
+Bandingkan larutan yang **sama kepekatan**, <InlineMath math="0.1\text{ mol dm}^{-3}" />. Nilai bagi asid etanoik dan ammonia dikira daripada pemalar pengionan masing-masing pada <InlineMath math="25^\circ\text{C}" />.
+
+<Chart
+  title={<>pH Asid dan Alkali Kuat dan Lemah</>}
+  bars="apart"
+  categories={["Asid hidroklorik", "Asid etanoik", "Ammonia akueus", "Natrium hidroksida"]}
+  series={[
+    {
+      label: "Nilai pH",
+      mark: "bar",
+      values: [1, -Math.log10(Math.sqrt(1.8e-5 * 0.1)), 14 + Math.log10(Math.sqrt(1.8e-5 * 0.1)), 13],
+    },
+  ]}
+  valueLabel="pH"
+  valueRange={{ min: 0, max: 14 }}
+  description={
+    <>
+      Semua larutan berkepekatan <InlineMath math="0.1\text{ mol dm}^{-3}" />.
+      Asid hidroklorik pH <InlineMath math="1.0" />, asid etanoik pH{" "}
+      <InlineMath math="2.9" />, ammonia akueus pH <InlineMath math="11.1" />,
+      natrium hidroksida pH <InlineMath math="13.0" />.
+    </>
+  }
+/>
+
+**Kepekatan** pula ialah kuantiti zat terlarut dalam <InlineMath math="1\text{ dm}^3" /> larutan. Kepekatan boleh ditulis dalam <InlineMath math="\text{g dm}^{-3}" /> atau dalam **kemolaran**, <InlineMath math="\text{mol dm}^{-3}" />:
+
+<BlockMath math="M = \frac{n}{V}" />
+
+Di sini <InlineMath math="n" /> ialah bilangan mol zat terlarut dan <InlineMath math="V" /> ialah isi padu larutan dalam <InlineMath math="\text{dm}^3" />. Larutan yang kepekatannya diketahui dengan tepat dipanggil **larutan piawai**, dan larutan ini disediakan dalam kelalang volumetrik.
+
+### Contoh Menyediakan Larutan Piawai
+
+Sebanyak <InlineMath math="2.0\text{ g}" /> natrium hidroksida dilarutkan dalam air dan dijadikan <InlineMath math="250\text{ cm}^3" /> larutan. Hitung kemolaran larutan itu. Jisim molar <InlineMath math="\mathrm{NaOH}" /> ialah <InlineMath math="40\text{ g mol}^{-1}" />.
+
+**Tukar jisim kepada mol**, kemudian tukar isi padu kepada <InlineMath math="\text{dm}^3" />:
+
+<MathContainer>
+<BlockMath math="n = \frac{2.0}{40} = 0.050\text{ mol}" />
+<BlockMath math="V = \frac{250}{1000} = 0.250\text{ dm}^3" />
+<BlockMath math="M = \frac{0.050}{0.250} = 0.20\text{ mol dm}^{-3}" />
+</MathContainer>
+
+Semak melalui kepekatan jisim. Jisim dalam <InlineMath math="1\text{ dm}^3" /> ialah empat kali <InlineMath math="2.0\text{ g}" />, iaitu <InlineMath math="8.0\text{ g dm}^{-3}" />, dan <InlineMath math="8.0 \div 40 = 0.20" />. Kedua-dua cara memberi jawapan yang sama.
+
+### Contoh Mencairkan Larutan
+
+Apabila air ditambah, bilangan mol zat terlarut tidak berubah. Hanya isi padu bertambah. Itulah asas **formula pencairan**:
+
+<BlockMath math="M_1V_1 = M_2V_2" />
+
+Untuk menyediakan <InlineMath math="500\text{ cm}^3" /> asid hidroklorik <InlineMath math="0.10\text{ mol dm}^{-3}" /> daripada asid <InlineMath math="1.0\text{ mol dm}^{-3}" />:
+
+<BlockMath math="V_1 = \frac{M_2V_2}{M_1} = \frac{0.10 \times 500}{1.0} = 50\text{ cm}^3" />
+
+Sukat <InlineMath math="50\text{ cm}^3" /> asid pekat, kemudian tambah air suling sehingga isi padu menjadi <InlineMath math="500\text{ cm}^3" />. Semak: bilangan mol asal <InlineMath math="1.0 \times 0.050 = 0.050" /> mol, dan bilangan mol akhir <InlineMath math="0.10 \times 0.500 = 0.050" /> mol. Sama.
+
+## Peneutralan dan Pentitratan
+
+**Peneutralan** ialah tindak balas antara asid dengan bes yang menghasilkan garam dan air sahaja. Dalam setiap peneutralan asid dengan alkali, tindak balas sebenar ialah ion hidrogen bergabung dengan ion hidroksida:
+
+<BlockMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />
+
+**Pentitratan** menentukan isi padu tepat yang diperlukan untuk peneutralan lengkap. Asid ditambah dari buret ke dalam alkali dalam kelalang kon sehingga penunjuk berubah warna. Saat itu dipanggil **takat akhir**. Jalankan pentitratan di bawah dan perhatikan warna fenolftalein.
+
+<TitrationLab
+  title={<>Pentitratan Asid Hidroklorik dengan Natrium Hidroksida</>}
+  description={
+    <>
+      Natrium hidroksida <InlineMath math="0.10\text{ mol dm}^{-3}" /> dari
+      buret ditambah ke dalam <InlineMath math="10.0\text{ cm}^3" /> asid
+      hidroklorik <InlineMath math="0.10\text{ mol dm}^{-3}" /> dengan
+      fenolftalein.
+    </>
+  }
+  analyte={{ concentration: 0.1, solute: "hydrochloric-acid", volume: 10 }}
+  titrant={{ concentration: 0.1, solute: "sodium-hydroxide" }}
+  indicator="phenolphthalein"
+  showEndPoint
+  labels={{
+    added: "Isi padu ditambah",
+    analyte: <>Dalam kelalang</>,
+    endPoint: <>Takat akhir</>,
+    hue: <>Warna dalam kelalang</>,
+    hues: {
+      colourless: <>tidak berwarna</>,
+      green: <>hijau</>,
+      orange: <>jingga</>,
+      "pale-green": <>hijau pucat</>,
+      pink: <>merah jambu</>,
+      red: <>merah</>,
+      yellow: <>kuning</>,
+    },
+    ph: <>pH</>,
+    reaction: <>Tindak balas</>,
+    titrant: <>Dalam buret</>,
+    view: "Pentitratan asid hidroklorik dengan natrium hidroksida",
+  }}
+/>
+
+Lengkung ini menunjukkan pH dalam kelalang yang sama apabila alkali ditambah. Lengkung dikira dengan mengambil kira ion <InlineMath math="\mathrm{H^+}" /> yang berlebihan dan pengionan air. Perhatikan lonjakan pH yang tajam berhampiran <InlineMath math="10\text{ cm}^3" />. Fenolftalein berubah warna dalam julat lonjakan itu.
+
+<MathVisual
+  title={<>Lengkung pH Peneutralan Asid Kuat dengan Alkali Kuat</>}
+  description={
+    <>
+      <InlineMath math="10.0\text{ cm}^3" /> asid hidroklorik{" "}
+      <InlineMath math="0.10\text{ mol dm}^{-3}" /> dengan natrium hidroksida{" "}
+      <InlineMath math="0.10\text{ mol dm}^{-3}" />. Paksi mengufuk ialah isi
+      padu alkali dalam <InlineMath math="\text{cm}^3" />, paksi menegak ialah
+      pH.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 20, value: 5, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "-log_10(((1 - 0.1x)/(10 + x) + sqrt(((1 - 0.1x)/(10 + x))^2 + 4*10^(-14)))/2)", domain: { min: 0, max: 20 } },
+      { id: "equivalence", kind: "point", appearance: "answer", at: { x: 10, y: 7 } },
+      { id: "now", kind: "marker", x: "a", y: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)", appearance: "warning" },
+    ],
+    labels: [
+      { key: "equivalence", objectId: "equivalence", at: { x: 10, y: 7 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "ph", formula: "-log_10(((1 - 0.1a)/(10 + a) + sqrt(((1 - 0.1a)/(10 + a))^2 + 4*10^(-14)))/2)" },
+    ],
+  }}
+  labels={{
+    a: <>Isi padu alkali <InlineMath math="a" /></>,
+    equivalence: <>Neutral, <InlineMath math="\mathrm{pH}\ 7" /></>,
+    ph: <>pH dalam kelalang</>,
+  }}
+/>
+
+Sekarang gunakan pentitratan untuk mencari kepekatan yang tidak diketahui. Sebanyak <InlineMath math="25.0\text{ cm}^3" /> natrium hidroksida <InlineMath math="0.10\text{ mol dm}^{-3}" /> dineutralkan oleh <InlineMath math="12.50\text{ cm}^3" /> asid sulfurik. Hitung kemolaran asid sulfurik.
+
+Tulis persamaan seimbang dulu, kerana nisbah mol datang daripadanya:
+
+<BlockMath math="\mathrm{H_2SO_4} + 2\mathrm{NaOH} \rightarrow \mathrm{Na_2SO_4} + 2\mathrm{H_2O}" />
+
+Asid sulfurik ialah **asid diprotik**, jadi satu mol asid memerlukan dua mol alkali. Gunakan <InlineMath math="\dfrac{M_aV_a}{M_bV_b} = \dfrac{a}{b}" /> dengan <InlineMath math="a = 1" /> dan <InlineMath math="b = 2" />:
+
+<BlockMath math="M_a = \frac{1}{2} \times \frac{0.10 \times 25.0}{12.50} = 0.10\text{ mol dm}^{-3}" />
+
+Semak dengan mol. Mol natrium hidroksida ialah <InlineMath math="0.10 \times 0.0250 = 0.0025" /> mol. Mol asid sulfurik ialah <InlineMath math="0.10 \times 0.01250 = 0.00125" /> mol, tepat separuh. Nisbah <InlineMath math="1 : 2" /> dipenuhi.
+
+## Garam dan Cara Menyediakannya
+
+**Garam** ialah sebatian ion yang terbentuk apabila ion <InlineMath math="\mathrm{H^+}" /> dalam asid diganti oleh ion logam atau ion ammonium. Contohnya natrium klorida daripada asid hidroklorik dan kuprum(II) sulfat daripada asid sulfurik. Cara menyediakan sesuatu garam bergantung pada **keterlarutannya dalam air**:
+
+| Garam | Larut dalam air | Tidak larut dalam air |
+| :--- | :--- | :--- |
+| Garam natrium, kalium dan ammonium | Semua | Tiada |
+| Garam nitrat | Semua | Tiada |
+| Garam klorida | Kebanyakan | Plumbum(II) klorida dan argentum klorida |
+| Garam sulfat | Kebanyakan | Barium sulfat, plumbum(II) sulfat dan kalsium sulfat |
+| Garam karbonat | Natrium, kalium dan ammonium karbonat | Yang lain |
+
+Garam natrium, kalium dan ammonium disediakan melalui **pentitratan** asid dengan alkali, kerana kedua-dua bahan larut dan hasilnya tidak boleh dituras. Garam terlarutkan yang lain disediakan dengan menambah logam, oksida logam atau karbonat logam **secara berlebihan** kepada asid, menuras bahan berlebihan, kemudian menghablurkan garam daripada hasil turasan.
+
+Garam tak terlarutkan disediakan melalui **tindak balas pemendakan**, iaitu penguraian ganda dua. Dua larutan garam yang mengandungi kation dan anion garam itu dicampurkan, dan mendakan terbentuk serta-merta. Tuangkan larutan argentum nitrat ke dalam natrium klorida dan perhatikan mendakan putih argentum klorida:
+
+<BlockMath math="\mathrm{Ag^+(aq)} + \mathrm{Cl^-(aq)} \rightarrow \mathrm{AgCl(s)}" />
+
+<PrecipitateLab
+  title={<>Pemendakan Argentum Klorida</>}
+  description={
+    <>
+      Larutan argentum nitrat dituang ke dalam larutan natrium klorida di atas
+      neraca. Mendakan putih argentum klorida terbentuk serta-merta.
+    </>
+  }
+  labels={{
+    precipitate: <>Mendakan <InlineMath math="\mathrm{AgCl}" /></>,
+    readingAfter: <>Bacaan neraca selepas dicampur</>,
+    readingBefore: <>Bacaan neraca sebelum dicampur</>,
+    viewLabel: "Pemendakan argentum klorida di atas neraca",
+  }}
+/>
+
+Mendakan itu kemudian dituras, dibilas dengan air suling untuk membuang ion lain, dan dikeringkan di antara kertas turas. Perhatikan juga bacaan neraca: jisim tidak berubah kerana tiada bahan yang keluar daripada bikar.
+
+## Kesilapan Lazim tentang Asid dan Garam
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Larutan pH <InlineMath math="2" /> dua kali lebih berasid daripada pH <InlineMath math="4" />. | Skala pH ialah logaritma. Beza dua unit bermaksud <InlineMath math="100" /> kali kepekatan <InlineMath math="\mathrm{H^+}" />. | Kira <InlineMath math="10^{-2} \div 10^{-4}" />. |
+| Asid kuat bermaksud asid pekat. | Kekuatan bergantung pada darjah pengionan. Kepekatan bergantung pada jumlah zat terlarut. | Asid etanoik pekat masih asid lemah. |
+| Hidrogen klorida dalam metilbenzena menunjukkan sifat asid. | Tanpa air, hidrogen klorida tidak mengion, jadi tiada ion <InlineMath math="\mathrm{H^+}" />. | Cari air dalam sistem itu. |
+| Argentum klorida disediakan dengan menambah logam argentum kepada asid hidroklorik. | Argentum tidak bertindak balas dengan asid hidroklorik, dan argentum klorida ialah garam tak terlarutkan. | Garam tak terlarutkan disediakan melalui pemendakan. |
+| Dalam pentitratan asid sulfurik dengan natrium hidroksida, nisbahnya satu kepada satu. | Asid sulfurik diprotik, jadi nisbah mol asid kepada alkali ialah <InlineMath math="1 : 2" />. | Seimbangkan persamaan dulu. |
+
+Kesilapan kedua paling sukar dikesan kerana kedua-dua perkataan itu kedengaran serupa. Ingat pasangan ini: **kuat atau lemah** menerangkan pengionan, manakala **pekat atau cair** menerangkan jumlah zat terlarut.
+
+## Latihan Asid dan Alkali
+
+Soalan ini bergerak daripada pengiraan pH kepada pentitratan dan penerangan. **Tulis unit pada setiap langkah** supaya kesilapan <InlineMath math="\text{cm}^3" /> dan <InlineMath math="\text{dm}^3" /> cepat kelihatan.
+
+1. Hitung nilai pH asid hidroklorik <InlineMath math="0.01\text{ mol dm}^{-3}" />.
+
+2. Berapakah isi padu larutan natrium hidroksida <InlineMath math="2.0\text{ mol dm}^{-3}" /> yang diperlukan untuk menyediakan <InlineMath math="500\text{ cm}^3" /> larutan <InlineMath math="0.40\text{ mol dm}^{-3}" />?
+
+3. Sebanyak <InlineMath math="20.0\text{ cm}^3" /> asid hidroklorik <InlineMath math="0.50\text{ mol dm}^{-3}" /> meneutralkan <InlineMath math="25.0\text{ cm}^3" /> larutan kalium hidroksida. Hitung kemolaran larutan kalium hidroksida.
+
+4. Asid hidroklorik dan asid etanoik, kedua-duanya <InlineMath math="0.1\text{ mol dm}^{-3}" />, dititratkan dengan natrium hidroksida yang sama. Terangkan sebab pH awal asid etanoik lebih tinggi tetapi isi padu alkali yang diperlukan untuk peneutralan adalah sama.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Asid hidroklorik ialah asid kuat dan monoprotik, jadi <InlineMath math="[\mathrm{H^+}] = 0.01\text{ mol dm}^{-3}" />.
+
+<BlockMath math="\mathrm{pH} = -\log(0.01) = -\log(10^{-2}) = 2" />
+
+Semak dengan logik pencairan: asid <InlineMath math="0.1\text{ mol dm}^{-3}" /> mempunyai pH <InlineMath math="1" />, dan asid ini sepuluh kali lebih cair, jadi pH naik satu unit kepada <InlineMath math="2" />.
+
+**Penyelesaian 2**: Bilangan mol natrium hidroksida tidak berubah semasa pencairan, jadi gunakan <InlineMath math="M_1V_1 = M_2V_2" />:
+
+<BlockMath math="V_1 = \frac{0.40 \times 500}{2.0} = 100\text{ cm}^3" />
+
+Sukat <InlineMath math="100\text{ cm}^3" /> larutan pekat dan tambah air suling hingga <InlineMath math="500\text{ cm}^3" />. Semak: <InlineMath math="2.0 \times 0.100 = 0.20" /> mol, dan <InlineMath math="0.40 \times 0.500 = 0.20" /> mol.
+
+**Penyelesaian 3**: Persamaannya ialah <InlineMath math="\mathrm{HCl} + \mathrm{KOH} \rightarrow \mathrm{KCl} + \mathrm{H_2O}" />, dengan nisbah mol <InlineMath math="1 : 1" />.
+
+<BlockMath math="M_b = \frac{M_aV_a}{V_b} = \frac{0.50 \times 20.0}{25.0} = 0.40\text{ mol dm}^{-3}" />
+
+Semak: mol asid <InlineMath math="0.50 \times 0.0200 = 0.010" /> mol, dan mol alkali <InlineMath math="0.40 \times 0.0250 = 0.010" /> mol. Sama, jadi peneutralan lengkap.
+
+**Penyelesaian 4**: Asid etanoik ialah **asid lemah** yang mengion separa, jadi kepekatan ion <InlineMath math="\mathrm{H^+}" /> awalnya jauh lebih rendah daripada asid hidroklorik yang mengion lengkap. Itulah sebab pH awalnya lebih tinggi, kira-kira <InlineMath math="2.9" /> berbanding <InlineMath math="1" />. Namun kedua-dua asid mempunyai **bilangan mol asid yang sama** dan kedua-duanya monoprotik. Apabila ion <InlineMath math="\mathrm{OH^-}" /> membuang ion <InlineMath math="\mathrm{H^+}" />, lebih banyak molekul asid etanoik mengion, sehingga semua molekul asid dineutralkan. Jadi isi padu natrium hidroksida yang diperlukan tetap sama.

@@ -20,6 +20,7 @@ export const NAVIGATION_VOICE_RULES = [
       de: /\b(?:Quelle|Referenz|Zusammenfassung|Seite|Bericht|Biografie)\b[^.!?\n]{0,60}\b(?:kann (?:über|unter) .+ (?:geöffnet|aufgerufen) werden|ist (?:über|unter) .+ verfügbar)\b/iu,
       en: /\b(?:source|reference|summary|page|report|biography|press release)\b(?:,? which)? (?:can be opened (?:at|through|via)|is available (?:at|through|via))\b/iu,
       id: /\b(?:sumber|rujukan|ringkasan|halaman|laporan|berita|keterangan|siaran pers)(?:nya| tersebut)?\b[^.!?\n]{0,60}\b(?:dapat|bisa) (?:dibuka|diakses) (?:di|melalui|pada)\b/iu,
+      ms: /\b(?:sumber|rujukan|ringkasan|halaman|laporan|berita|keterangan|kenyataan media)(?:nya| tersebut| itu)?\b[^.!?\n]{0,60}\bboleh (?:dibuka|diakses|dicapai) (?:di|melalui|pada)\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

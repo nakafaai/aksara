@@ -2,22 +2,25 @@ import type { SetRating } from "#corpus/tryout/level";
 
 /**
  * The level rating of each SPM Fizik Paper 1 set, set 1 onward in order.
- * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026. A rewritten
- * set replaces its entry with a rating of its new items.
+ * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026, and two
+ * raters rated all 40 items of set 2 alone on 16 Nov 2026 (4.15 and 3.99). A
+ * rewritten set replaces its entry with a rating of its new items.
  */
 export const physicsRatings: readonly SetRating[] = [
   { items: 40, level: 4.33, raters: 8 },
+  { items: 40, level: 4.07, raters: 2 },
 ];
 
 /**
  * The level rating of each SPM Kimia Paper 1 set, set 1 onward in order.
  * Eight raters rated all 40 items of set 1 alone on 15 Nov 2026, and two
  * raters rated all 40 items of set 2 alone on 16 Nov 2026 (3.41 and 3.60), and
- * two raters rated all 40 rewritten items of set 3 alone the same day (4.04 and
- * 3.89, no item under 3.5), and two raters rated all 40 items of set 4 alone
- * (3.19 and 3.11), and two raters rated all 40 items of set 5 alone (3.43 and
- * 3.64), and two raters rated all 40 items of set 6 alone (3.73 and 3.69). A
- * rewritten set replaces its entry with a rating of its new items.
+ * two raters rated all 40 items of set 3 alone the same day (4.04 and 3.89), and
+ * two raters rated all 40 items of set 4 alone (3.19 and 3.11), and two
+ * raters rated all 40 items of set 5 alone (3.43 and 3.64), and two raters
+ * rated all 40 items of set 6 alone (3.73 and 3.69), and two raters rated all
+ * 40 items of set 7 alone (3.35 and 3.51). A rewritten set replaces its entry
+ * with a rating of its new items.
  */
 export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.14, raters: 8 },
@@ -26,6 +29,7 @@ export const chemistryRatings: readonly SetRating[] = [
   { items: 40, level: 4.24, raters: 2 },
   { items: 40, level: 3.53, raters: 2 },
   { items: 40, level: 3.71, raters: 2 },
+  { items: 40, level: 3.43, raters: 2 },
 ];
 
 /**

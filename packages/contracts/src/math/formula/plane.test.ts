@@ -3,6 +3,7 @@ import { Array as Arr, Result } from "effect";
 import type { SampleBox } from "#contracts/math/formula/box";
 import {
   type FormulaGeometry,
+  implicitVisible,
   planeFormulaGeometry,
 } from "#contracts/math/formula/plane";
 
@@ -210,5 +211,26 @@ describe("planeFormulaGeometry", () => {
         )
       )
     );
+  });
+});
+
+describe("implicitVisible", () => {
+  it("answers exactly whether the traced equation draws anything", () => {
+    const equations = ["x^2/9 + y^2/4 = 1", "x^2 + y^2 = 900", "x y = a"];
+    for (const equation of equations) {
+      const visible = implicitVisible(equation, box, { a: 1 });
+      const traced = geometry(
+        { ...fields, equation, kind: "implicit" },
+        { a: 1 }
+      );
+      assert.deepStrictEqual(
+        visible,
+        Result.succeed(Arr.isReadonlyArrayNonEmpty(points(traced)))
+      );
+    }
+  });
+
+  it("fails on an equation that does not read", () => {
+    assert.isTrue(Result.isFailure(implicitVisible("x <", box, {})));
   });
 });

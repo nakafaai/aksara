@@ -72,3 +72,16 @@ it("allows a blockquote to state its message directly", () => {
     assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "blockquote-editorial-label": "> Semak pantas: berapakah x?",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

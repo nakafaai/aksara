@@ -226,3 +226,36 @@ it("rejects German headings that need forbidden punctuation", () => {
     ]
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "generic-application-label": "## Aplikasi Praktikal\n\nKamu kira hasilnya.",
+    "generic-calculation-heading":
+      "## Langkah Pengiraan\n\nKamu kira hasilnya.",
+    "generic-definition-heading": "## Apakah itu Vektor\n\nKamu kira hasilnya.",
+    "generic-everyday-application-heading":
+      "## Aplikasi dalam Kehidupan Seharian\n\nKamu kira hasilnya.",
+    "generic-example-heading": "## Contoh Mudah\n\nKamu kira hasilnya.",
+    "generic-importance-heading":
+      "## Kenapa Kecerunan Berguna\n\nKamu kira hasilnya.",
+    "generic-importance-table-label":
+      "| Konsep | Kenapa penting |\n| --- | --- |\n| Jisim | Tetap |",
+    "generic-important-heading": "## Sifat Penting\n\nKamu kira hasilnya.",
+    "generic-real-world-label": "Ini masalah dunia sebenar.",
+    "generic-section-heading": "## Rumusan\n\nKamu kira hasilnya.",
+    "generic-understanding-heading":
+      "## Memahami Vektor\n\nKamu kira hasilnya.",
+    "indonesian-heading-dehyphenated-reduplication":
+      "## Ciri Ciri Bulatan\n\nKamu kira hasilnya.",
+    "softened-help-heading": "## Graf yang Membantu\n\nKamu kira hasilnya.",
+    "source-only-heading": "## Rujukan\n\nKamu kira hasilnya.",
+    "vague-application-ease": "Prinsip ini menjadikan soalan itu lebih mudah.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

@@ -8,6 +8,7 @@ export const REPORTING_VOICE_RULES = [
       de: /^\s*Gib\b[^.!?\n]{0,160}\bmit (?:der|ihrer|seiner) Unsicherheit\b[^.!?\n]{0,40}\b(?:so|wie folgt) an\b/iu,
       en: /^\s*Report\b[^.!?\n]{0,160}\bwith (?:its|the) uncertainty\b[^.!?\n]{0,40}\bas follows\b/iu,
       id: /^\s*Laporkan\b[^.!?\n]{0,160}\b(?:ketidakpastian(?:nya)?|hasil pengukuran)\b[^.!?\n]{0,40}\bsebagai berikut\b/iu,
+      ms: /^\s*Laporkan\b[^.!?\n]{0,160}\b(?:ketakpastian(?:nya)?|hasil pengukuran)\b[^.!?\n]{0,40}\bseperti berikut\b/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

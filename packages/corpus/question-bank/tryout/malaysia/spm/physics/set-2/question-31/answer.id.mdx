@@ -1,0 +1,24 @@
+# Tiap rangkaian memilih satu baris tabel
+
+**Hambatan lampu berubah terhadap arus, jadi tiap rangkaian harus diselesaikan dengan mencari baris yang memenuhinya**, bukan dengan hambatan tetap.
+
+<Chart
+  title={<>Hambatan lampu pada tiap arus</>}
+  description={<>Diagram batang <InlineMath math="V/I" /> dari tabel: <InlineMath math="5{,}0\,\Omega" /> pada <InlineMath math="0{,}10\text{ A}" />, <InlineMath math="7{,}5\,\Omega" /> pada <InlineMath math="0{,}20\text{ A}" />, <InlineMath math="10\,\Omega" /> pada <InlineMath math="0{,}30\text{ A}" />, dan <InlineMath math="12{,}5\,\Omega" /> pada <InlineMath math="0{,}40\text{ A}" />. Hambatan filamen naik saat memanas.</>}
+  bars="apart"
+  categories={["0,10 A", "0,20 A", "0,30 A", "0,40 A"]}
+  series={[
+    { label: "Hambatan", mark: "bar", values: [5.0, 7.5, 10.0, 12.5] },
+  ]}
+  valueLabel="Hambatan (Ω)"
+/>
+
+- **I**: <InlineMath math="5{,}0/0{,}40=12{,}5\,\Omega" />, benar.
+- **II**: dua lampu identik berbagi <InlineMath math="6{,}0\text{ V}" /> sama rata, masing-masing <InlineMath math="3{,}0\text{ V}" />, yang dipasangkan tabel dengan <InlineMath math="0{,}30\text{ A}" />. Benar.
+- **III**: tiap lampu dialiri <InlineMath math="I" /> dan resistor <InlineMath math="2I" />, jadi <InlineMath math="V+5{,}0(2I)=6{,}0" />. Baris <InlineMath math="0{,}30\text{ A}" />, <InlineMath math="3{,}0\text{ V}" /> cocok, sehingga <InlineMath math="0{,}60\text{ A}" /> dari sumber. Benar.
+- **IV**: pada <InlineMath math="0{,}40\text{ A}" /> lampu butuh <InlineMath math="5{,}0\text{ V}" /> dan resistor <InlineMath math="4{,}0\text{ V}" />, yaitu <InlineMath math="9{,}0\text{ V}" />, melebihi sumber. Baris yang memenuhi <InlineMath math="V+10I=6{,}0" /> adalah <InlineMath math="0{,}30\text{ A}" />. Salah.
+
+# Kenapa pilihan lain salah
+
+- **I dan III saja menolak II, padahal lampu identik yang tersusun seri pasti berbagi tegangan sama rata**.
+- Pilihan yang memuat IV mengambil arus saat lampu mencapai <InlineMath math="12{,}5\,\Omega" />, tanpa memeriksa apakah tegangannya berjumlah <InlineMath math="6{,}0\text{ V}" />.

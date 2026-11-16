@@ -1,0 +1,24 @@
+# Setiap litar memilih satu baris jadual
+
+**Rintangan mentol berubah dengan arus, jadi setiap litar mesti diselesaikan dengan mencari baris yang memenuhinya**, bukan dengan rintangan tetap.
+
+<Chart
+  title={<>Rintangan mentol pada setiap arus</>}
+  description={<>Carta bar <InlineMath math="V/I" /> daripada jadual: <InlineMath math="5.0\,\Omega" /> pada <InlineMath math="0.10\text{ A}" />, <InlineMath math="7.5\,\Omega" /> pada <InlineMath math="0.20\text{ A}" />, <InlineMath math="10\,\Omega" /> pada <InlineMath math="0.30\text{ A}" /> dan <InlineMath math="12.5\,\Omega" /> pada <InlineMath math="0.40\text{ A}" />. Rintangan filamen meningkat apabila ia panas.</>}
+  bars="apart"
+  categories={["0.10 A", "0.20 A", "0.30 A", "0.40 A"]}
+  series={[
+    { label: "Rintangan", mark: "bar", values: [5.0, 7.5, 10.0, 12.5] },
+  ]}
+  valueLabel="Rintangan (Ω)"
+/>
+
+- **I**: <InlineMath math="5.0/0.40=12.5\,\Omega" />, betul.
+- **II**: dua mentol serupa berkongsi <InlineMath math="6.0\text{ V}" /> sama rata, <InlineMath math="3.0\text{ V}" /> setiap satu, yang dipadankan oleh jadual dengan <InlineMath math="0.30\text{ A}" />. Betul.
+- **III**: setiap mentol membawa <InlineMath math="I" /> dan perintang <InlineMath math="2I" />, jadi <InlineMath math="V+5.0(2I)=6.0" />. Baris <InlineMath math="0.30\text{ A}" />, <InlineMath math="3.0\text{ V}" /> sepadan, memberi <InlineMath math="0.60\text{ A}" /> daripada bekalan. Betul.
+- **IV**: pada <InlineMath math="0.40\text{ A}" /> mentol memerlukan <InlineMath math="5.0\text{ V}" /> dan perintang <InlineMath math="4.0\text{ V}" />, iaitu <InlineMath math="9.0\text{ V}" />, melebihi bekalan. Baris yang memenuhi <InlineMath math="V+10I=6.0" /> ialah <InlineMath math="0.30\text{ A}" />. Salah.
+
+# Mengapa pilihan lain salah
+
+- **I dan III sahaja menolak II, tetapi mentol serupa secara sesiri mesti berkongsi voltan sama rata**.
+- Pilihan yang mengandungi IV mengambil arus ketika mentol mencapai <InlineMath math="12.5\,\Omega" />, tanpa menyemak sama ada voltan berjumlah <InlineMath math="6.0\text{ V}" />.

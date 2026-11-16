@@ -158,3 +158,25 @@ it("rejects chemical formulas described as carrying or needing quantities", () =
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "abstract-value-captures-change":
+      "Nilai kecerunan menangkap perubahan itu.",
+    "decorative-bread-metaphor": "Ini seperti memilih potongan daripada roti.",
+    "decorative-raw-material-metaphor":
+      "Mutasi ialah bahan mentah bagi evolusi.",
+    "formulaic-makes-sense-justification":
+      "Hasil ini munasabah kerana jisim tetap.",
+    "formulaic-world-of": "Dalam dunia statistik, purata penting.",
+    "rank-exposure-metaphor": "Pemfaktoran ini menyingkap pangkat matriks.",
+    "stock-learning-journey": "Mulakan perjalanan kamu dalam algebra.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

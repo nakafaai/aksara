@@ -1,0 +1,49 @@
+# Geschwindigkeit nach dem Stoß
+
+Der Kraftstoß ist die Dreiecksfläche, <InlineMath math="\tfrac12(0{,}20)(10)=1{,}0\text{ N s}" /> nach Osten, und **der Puck hat schon <InlineMath math="0{,}60\text{ kg m s}^{-1}" /> nach Westen**.
+
+<BlockMath math="p=1{,}0-0{,}60=0{,}40\text{ kg m s}^{-1}\ \text{nach Osten},\qquad v=\frac{0{,}40}{0{,}50}=0{,}80\text{ m s}^{-1}" />
+
+# Wie weit die Reibung ihn gleiten lässt
+
+<BlockMath math="d=\frac{\tfrac12(0{,}50)(0{,}80)^2}{0{,}20}=0{,}80\text{ m}" />
+
+# Die Wand ist näher als <InlineMath math="0{,}80\text{ m}" />
+
+**Der Puck erreicht die Wand nach <InlineMath math="0{,}60\text{ m}" /> mit restlicher Geschwindigkeit, prallt mit gleichem Tempo ab und verbraucht die übrigen <InlineMath math="0{,}20\text{ m}" /> auf dem Rückweg**.
+
+<MathVisual
+  title={<>Weg des Pucks nach dem Stoß</>}
+  description={<>Lage östlich der Stelle, an der der Stoß endet. Der Puck gleitet <InlineMath math="0{,}60\text{ m}" /> nach Osten zur Wand, prallt ab und gleitet <InlineMath math="0{,}20\text{ m}" /> zurück, womit seine <InlineMath math="0{,}80\text{ m}" /> Gleitweg aufgebraucht sind, also hält er bei <InlineMath math="0{,}40\text{ m}" />.</>}
+  labels={{
+    out: <>hin <InlineMath math="0{,}60\text{ m}" /></>,
+    back: <>zurück <InlineMath math="0{,}20\text{ m}" /></>,
+    wall: <>Wand</>,
+    stop: <><InlineMath math="0{,}40\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 0.75 }, y: { min: -0.3, max: 0.45 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "out", kind: "vector", appearance: "secondary", from: { x: 0, y: 0.2 }, to: { x: 0.6, y: 0.2 } },
+      { id: "back", kind: "vector", appearance: "primary", from: { x: 0.6, y: 0.05 }, to: { x: 0.4, y: 0.05 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0.6, y: -0.2 }, to: { x: 0.6, y: 0.35 } },
+      { id: "stop", kind: "point", appearance: "answer", at: { x: 0.4, y: 0.05 } },
+    ],
+    labels: [
+      { key: "out", objectId: "out", at: { x: 0.3, y: 0.2 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 0.5, y: 0.05 }, placement: "below" },
+      { key: "wall", objectId: "wall", at: { x: 0.6, y: 0.35 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 0.4, y: 0.05 }, placement: "below-left" },
+    ],
+  }}
+/>
+
+Er hält <InlineMath math="0{,}60-0{,}20=0{,}40\text{ m}" /> östlich der Stelle, an der der Stoß endete.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}80\text{ m}" /> **nach Osten läge hinter der Wand**.
+- <InlineMath math="0{,}20\text{ m}" /> nach Osten ist der Rückweg von der Wand, nicht der Abstand von der Stelle, an der der Stoß endete.
+- <InlineMath math="0{,}80\text{ m}" /> nach Westen lässt den Puck weiter nach Westen fahren, doch der Stoß hat ihn umgekehrt.

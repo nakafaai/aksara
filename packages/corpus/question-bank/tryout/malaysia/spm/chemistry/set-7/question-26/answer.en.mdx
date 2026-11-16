@@ -1,0 +1,25 @@
+# Turn hours into seconds, keep only the useful charge, and give each copper ion two electrons
+
+In <InlineMath math="24.0" /> hours, <InlineMath math="86\,400\text{ s}" />, the cell passes <InlineMath math="4.32\times10^7\text{ C}" />, <InlineMath math="448\text{ mol}" /> of electrons. **Only <InlineMath math="85\%" /> of them deposit copper**, and each copper(II) ion takes two, so <InlineMath math="190\text{ mol}" /> of copper forms.
+
+<Chart
+  title={<>Copper from one day of current</>}
+  description={<>The charge could deposit <InlineMath math="14.3\text{ kg}" />, but only <InlineMath math="12.2\text{ kg}" /> forms.</>}
+  bars="apart"
+  categories={["Copper at full efficiency", "Copper produced"]}
+  series={[
+    { label: "Mass", mark: "bar", values: [14.3, 12.2] },
+  ]}
+  valueLabel="Mass (kg)"
+/>
+
+<BlockMath math="\begin{aligned}
+n(e^-)&=\tfrac{500\times24.0\times3600}{96\,500}=448\text{ mol}\\
+m(\text{Cu})&=0.85\times\tfrac{448}{2}\times64=1.22\times10^4\text{ g}=12.2\text{ kg}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="14.3\text{ kg}" /> counts all the charge. **Only <InlineMath math="85\%" /> deposits copper**.
+- <InlineMath math="24.4\text{ kg}" /> gives each copper ion one electron. **Copper(II) ions take two**.
+- <InlineMath math="16.8\text{ kg}" /> divides by <InlineMath math="0.85" /> instead of multiplying, as if the waste added copper.

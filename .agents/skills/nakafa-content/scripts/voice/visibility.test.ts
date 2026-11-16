@@ -208,3 +208,24 @@ it("preserves physical visibility and perspective in model instructions", () => 
     assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "abstract-reading-claim": "Graf ini membaca perubahan halaju.",
+    "abstract-visibility-claim": "Corak itu menjadi kelihatan.",
+    "abstract-visibility-purpose": "Lukis rajah supaya konsepnya nampak.",
+    "formulaic-observation-filler": "Kita boleh lihat bahawa nilainya naik.",
+    "formulaic-visible-claim": "Jadual menjadikan corak itu kelihatan.",
+    "formulaic-visual-handoff":
+      "Jika kita lakar fungsi ini, ia akan kelihatan seperti parabola.",
+    "grouped-data-visibility-claim":
+      "Nilai asal tidak lagi kelihatan selepas data dikumpulkan.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

@@ -80,8 +80,8 @@ describe("curriculum node projection", () => {
           ({ materialKeys }) => materialKeys.length > 0
         );
 
-        expect(nodes).toHaveLength(289);
-        expect(materialNodes).toHaveLength(112);
+        expect(nodes).toHaveLength(293);
+        expect(materialNodes).toHaveLength(116);
         expect(
           Arr.every(
             nodes,
@@ -95,7 +95,7 @@ describe("curriculum node projection", () => {
           materialNodes,
           ({ materialKeys }) => materialKeys
         );
-        expect(HashSet.size(HashSet.fromIterable(allMaterialKeys))).toBe(34);
+        expect(HashSet.size(HashSet.fromIterable(allMaterialKeys))).toBe(38);
         expect(Option.getOrThrow(Arr.head(nodes))).toMatchObject({
           curriculumKey: "cambridge-international",
           key: "early-years",

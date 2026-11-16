@@ -164,3 +164,26 @@ it("flags formulaic conclusions only in their recorded shape", () => {
   );
   assert.deepEqual(rules("en", "The next release is due in March."), []);
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "chatbot-artifact": "Semoga ini membantu kamu.",
+    "cliche-balanced-conclusion": "Akhirnya, semuanya bergantung pada situasi.",
+    "cliche-challenges-outcome":
+      "Walaupun pelbagai cabaran, industri ini terus berkembang.",
+    "generic-upbeat-conclusion": "Masa depan kelihatan cerah.",
+    "knowledge-cutoff-disclaimer":
+      "Sebagai AI, saya tidak mempunyai akses kepada data itu.",
+    "significance-inflation": "Penemuan ini menandakan perubahan penting.",
+    "stacked-hedge": "Nilai ini kemungkinan barangkali kecil.",
+    "vague-significance-tail":
+      "Data itu dibentangkan, menonjolkan kepentingannya.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

@@ -220,3 +220,32 @@ it("rejects a picture metaphor used in place of the calculation", () => {
     );
   }
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "chemical-formula-personification": "membawa dua kali jisim oksigen.",
+    "corrective-decoration-metaphor": "Unit itu bukan sekadar hiasan.",
+    "decorative-integration-journey":
+      "Kamiran membalikkan perjalanan itu melalui pengumpulan.",
+    "decorative-picture-to-calculation":
+      "Kita mengubah gambaran ini menjadi pengiraan yang tepat.",
+    "decorative-recipe-metaphor": "Formula ini seperti resipi.",
+    "decorative-story-metaphor": "Graf ini menceritakan hubungan dua kuantiti.",
+    "formulaic-bridge-metaphor": "Kadar ialah jambatan antara jarak dan masa.",
+    "formulaic-building-block-metaphor": "Atom ialah blok binaan jirim.",
+    "formulaic-compass-metaphor": "Gunakan tanda sebagai kompas.",
+    "indonesian-mathematical-family-calque":
+      "Kamiran ini memberi keluarga antiterbitan.",
+    "known-decorative-science-heading":
+      "## Kad Pengenalan Atom\n\nSetiap atom mempunyai nombor proton.",
+    "redirected-cell-machinery-metaphor":
+      "Virus mengambil alih jentera sel perumah.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

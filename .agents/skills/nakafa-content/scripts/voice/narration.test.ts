@@ -71,3 +71,16 @@ it("rejects the nominalized German sequence adverb", () => {
     []
   );
 });
+
+it("holds Malaysian Malay prose to the same rules", () => {
+  const samples = {
+    "lesson-structure-narration": "Bahagian seterusnya membincangkan graf.",
+  };
+
+  for (const [rule, source] of Object.entries(samples)) {
+    assert.include(
+      findLessonVoiceIssues("ms", source).map((issue) => issue.rule),
+      rule
+    );
+  }
+});

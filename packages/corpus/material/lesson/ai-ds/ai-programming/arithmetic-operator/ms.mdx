@@ -16,7 +16,7 @@ Python menyediakan tujuh operator aritmetik utama. Keutamaannya menentukan <High
 Zum graf ini dan ikut kedua-dua garis dari kiri ke kanan. Garis ungu `x // 3` naik satu langkah setiap kali <InlineMath math="x" /> melepasi gandaan <InlineMath math="3" />, dan bagi nombor negatif ia tetap membundar ke bawah, jadi `-5 // 3` memberi `-2`. Garis hijau kebiruan `x % 3` mendaki dari <InlineMath math="0" /> dan jatuh semula pada setiap gandaan <InlineMath math="3" />, jadi baki sentiasa sekurang-kurangnya <InlineMath math="0" /> dan kurang daripada <InlineMath math="3" />. Pada setiap titik, `x == 3 * (x // 3) + x % 3` sentiasa benar.
 
 <MathVisual
-  title={<>Pembahagian lantai <code>//</code> dan baki <code>%</code></>}
+  title={<>Pembahagian integer <code>//</code> dan baki <code>%</code></>}
   description={<>Garis ungu ialah <code>x // 3</code>, dan garis hijau kebiruan ialah <code>x % 3</code>, dari negatif enam hingga enam. Setiap cebisan termasuk hujung kirinya dan berhenti sejurus sebelum gandaan <InlineMath math="3" /> yang seterusnya.</>}
   scene={{
     space: "plane",
@@ -109,9 +109,9 @@ Operator `/` melakukan pembahagian dan menghasilkan **hasil float** bagi operan 
 
 Walaupun `4 / 2` ialah nombor bulat dari segi matematik, Python memulangkan <InlineMath math="2.0" /> sebagai float.
 
-**Operator Pembahagian Lantai**
+**Operator Pembahagian Integer**
 
-Operator `//` melakukan pembahagian lantai (floor division). Ia membundarkan hasil bahagi ke bawah kepada integer terbesar yang kurang daripada atau sama dengan hasil yang tepat.
+Operator `//` melakukan pembahagian integer (floor division). Ia membundarkan hasil bahagi ke bawah kepada integer terbesar yang kurang daripada atau sama dengan hasil yang tepat.
 
 <CodeBlock
   data={[
@@ -133,7 +133,7 @@ Operator `//` melakukan pembahagian lantai (floor division). Ia membundarkan has
   ]}
 />
 
-Pembahagian lantai membundar ke arah negatif infiniti. Bagi `-7 // 2`, Python mendapat `-3.5` dan membundarkannya ke bawah menjadi `-4`. Jika salah satu operan ialah float, Python tetap menggunakan operasi lantai tetapi memulangkan float.
+Pembahagian integer membundar ke arah negatif infiniti. Bagi `-7 // 2`, Python mendapat `-3.5` dan membundarkannya ke bawah menjadi `-4`. Jika salah satu operan ialah float, Python tetap menggunakan operasi lantai tetapi memulangkan float.
 
 **Operator Modulo `%`**
 
@@ -356,7 +356,7 @@ Bagi operan `int` atau `float`, operator `/` menghasilkan **float**, walaupun ha
 | **Tertinggi** | `**` | Eksponen | Kanan |
 | **Pertengahan** | `*` | Darab | Kiri |
 | **Pertengahan** | `/` | Bahagi | Kiri |
-| **Pertengahan** | `//` | Pembahagian lantai | Kiri |
+| **Pertengahan** | `//` | Pembahagian integer | Kiri |
 | **Pertengahan** | `%` | Modulo | Kiri |
 | **Terendah** | `+` | Tambah | Kiri |
 | **Terendah** | `-` | Tolak | Kiri |
