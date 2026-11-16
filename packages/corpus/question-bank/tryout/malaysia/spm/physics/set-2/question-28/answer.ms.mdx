@@ -1,0 +1,31 @@
+# Tentukan <InlineMath math="R" /> untuk kecerahan normal
+
+Setiap mentol mengambil <InlineMath math="3.0/6.0=0.50\text{ A}" /> dan berintangan <InlineMath math="6.0^2/3.0=12\,\Omega" />. Pasangan itu mengambil <InlineMath math="1.0\text{ A}" /> pada <InlineMath math="6.0\text{ V}" />, dan **rintangan dalam turut mengambil bahagiannya daripada baki <InlineMath math="6.0\text{ V}" />**.
+
+<BlockMath math="12-6.0=1.0\times(R+1.0)\ \Rightarrow\ R=5.0\,\Omega" />
+
+# Tinggal satu mentol
+
+**Mentol yang tinggal kini bersendirian secara sesiri dengan <InlineMath math="R" /> dan rintangan dalam**. Jumlah rintangan bertambah, tetapi mentol itu kini menerima seluruh arus, bukan separuh sahaja.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12}{12+5.0+1.0}=0.667\text{ A}\\
+P&=0.667^2\times12=5.3\text{ W}
+\end{aligned}" />
+
+<Chart
+  title={<>Kuasa dalam mentol sebelum dan selepas</>}
+  description={<>Carta bar: setiap mentol melesapkan <InlineMath math="3.0\text{ W}" /> ketika kedua-duanya berfungsi, dan mentol yang tinggal melesapkan <InlineMath math="5.3\text{ W}" /> selepas yang satu lagi rosak, jauh melebihi kadarannya.</>}
+  bars="apart"
+  categories={["Kedua-dua mentol", "Satu mentol tinggal"]}
+  series={[
+    { label: "Kuasa satu mentol", mark: "bar", values: [3.0, 5.3] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3.0\text{ W}" /> **menganggap mentol yang tinggal tidak berubah**.
+- <InlineMath math="6.0\,\Omega" /> melupakan rintangan dalam, dan <InlineMath math="4.8\text{ W}" />nya membawa kesilapan itu.
+- <InlineMath math="4.0\,\Omega" /> mengira rintangan dalam dua kali.

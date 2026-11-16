@@ -1,0 +1,30 @@
+# Baca satu sel
+
+**Pintasan <InlineMath math="V" /> ialah d.g.e., <InlineMath math="1.5\text{ V}" />, dan pintasan <InlineMath math="I" /> ialah arus litar pintas, jadi <InlineMath math="r=1.5/3.0=0.50\,\Omega" />**.
+
+# Sel terbalik menolak d.g.e.nya tetapi masih menambah rintangannya
+
+**Sel yang terbalik menentang salah satu sel lain**, jadi d.g.e. bersih ialah <InlineMath math="1.5+1.5-1.5=1.5\text{ V}" />. Rintangan dalamnya masih berada dalam laluan arus, jadi ketiga-tiga rintangan dijumlahkan.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{1.5}{2.0+3(0.50)}=0.43\text{ A}\\
+V&=0.43\times2.0=0.86\text{ V}
+\end{aligned}" />
+
+<Chart
+  title={<>Tiga sel secara sesiri</>}
+  description={<>Carta bar d.g.e. dan rintangan dalam: dengan semua sel betul, <InlineMath math="4.5\text{ V}" /> dan <InlineMath math="1.5\,\Omega" />, dan dengan satu terbalik, <InlineMath math="1.5\text{ V}" /> dan masih <InlineMath math="1.5\,\Omega" />.</>}
+  bars="apart"
+  categories={["Semua betul", "Satu terbalik"]}
+  series={[
+    { label: "D.g.e. (V)", mark: "bar", values: [4.5, 1.5] },
+    { label: "Rintangan dalam (Ω)", mark: "bar", values: [1.5, 1.5] },
+  ]}
+  valueLabel="Nilai"
+/>
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.29\text{ A}" /> **mengabaikan sel terbalik dan menggunakan <InlineMath math="4.5\text{ V}" />**.
+- <InlineMath math="0.50\text{ A}" /> meninggalkan rintangan dalam sel yang terbalik.
+- <InlineMath math="0.75\text{ A}" /> mengabaikan semua rintangan dalam.

@@ -1,0 +1,44 @@
+# Baca pegas utuh, lalu bagi dua
+
+Gradiennya <InlineMath math="4\pi^2/k" /> dan titik potong dibagi gradien adalah <InlineMath math="m_s/3" />. **Memotong pegas menjadi dua mengubah dua hal**: tiap setengah hanya bertambah panjang separuhnya di bawah gaya yang sama, jadi konstanta pegasnya menjadi dua kali, dan massanya tinggal separuh.
+
+<BlockMath math="\begin{aligned}
+\frac{m_s}{3}&=\frac{0{,}008}{0{,}16}=0{,}050\text{ kg}\\
+\text{setengah pegas: gradien}&=\frac{0{,}16}{2}=0{,}08,\quad \frac{m_s}{3}\to0{,}025\text{ kg}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Pegas utuh dan setengah pegas</>}
+  description={<>Dua garis lurus <InlineMath math="T^2" /> terhadap <InlineMath math="m" />: pegas utuh dengan gradien <InlineMath math="0{,}16" /> dan titik potong <InlineMath math="0{,}008\text{ s}^2" />, serta setengah pegas dengan gradien <InlineMath math="0{,}08" /> dan titik potong <InlineMath math="0{,}002\text{ s}^2" />. Garis <InlineMath math="T^2=0{,}16\text{ s}^2" /> memotong garis setengah pegas di <InlineMath math="m=1{,}98\text{ kg}" />.</>}
+  labels={{
+    whole: <>pegas utuh, gradien <InlineMath math="0{,}16" /></>,
+    half: <>setengah pegas, gradien <InlineMath math="0{,}08" /></>,
+    level: <><InlineMath math="T^2=0{,}16\text{ s}^2" /></>,
+    hit: <><InlineMath math="m=1{,}98\text{ kg}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.1, max: 2.3 }, y: { min: -0.03, max: 0.42 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "whole", kind: "segment", appearance: "secondary", from: { x: -0.05, y: 0 }, to: { x: 2.2, y: 0.36 } },
+      { id: "half", kind: "segment", appearance: "primary", from: { x: -0.025, y: 0 }, to: { x: 2.2, y: 0.178 } },
+      { id: "level", kind: "segment", appearance: "reference", from: { x: 0, y: 0.16 }, to: { x: 2.2, y: 0.16 } },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 1.975, y: 0.16 } },
+    ],
+    labels: [
+      { key: "whole", objectId: "whole", at: { x: 1.4, y: 0.232 }, placement: "above-left" },
+      { key: "half", objectId: "half", at: { x: 1.2, y: 0.098 }, placement: "below-right" },
+      { key: "level", objectId: "level", at: { x: 0.4, y: 0.16 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 1.975, y: 0.16 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="0{,}40^2=0{,}08\,(m+0{,}025)\ \Rightarrow\ m=2{,}000-0{,}025=1{,}98\text{ kg}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}95\text{ kg}" /> **menggandakan <InlineMath math="k" /> tetapi tetap memakai suku massa pegas utuh <InlineMath math="0{,}050\text{ kg}" />**.
+- <InlineMath math="0{,}98\text{ kg}" /> membagi dua massanya tetapi tetap memakai konstanta pegas lama.
+- <InlineMath math="0{,}95\text{ kg}" /> memakai pegas utuh seolah pegas itu tidak pernah dipotong.

@@ -1,0 +1,28 @@
+# Radius and period of the orbit
+
+**The field strength falls as <InlineMath math="1/r^2" />, so one ninth of the surface value means <InlineMath math="r=3R" />**. Kepler's third law then compares it with the orbit at <InlineMath math="r=R" />.
+
+<BlockMath math="T=85\times3^{3/2}=442\text{ min}=7.4\text{ h}" />
+
+# The ground below turns too
+
+**The point on the equator moves in the same direction**, so the satellite must gain a whole turn on it. Their angular speeds subtract.
+
+<BlockMath math="\frac{1}{T_{\text{pass}}}=\frac{1}{7.4}-\frac{1}{24}\ \Rightarrow\ T_{\text{pass}}=10.6\text{ h}" />
+
+<Chart
+  title={<>Periods that matter</>}
+  description={<>Bar chart: the surface-skimming orbit takes <InlineMath math="1.4\text{ h}" />, the satellite at radius <InlineMath math="3R" /> takes <InlineMath math="7.4\text{ h}" />, the Earth spins in <InlineMath math="24\text{ h}" />, and the satellite returns over the same point every <InlineMath math="10.6\text{ h}" />.</>}
+  bars="apart"
+  categories={["Near surface", "Satellite", "Earth's spin", "Between passes"]}
+  series={[
+    { label: "Time", mark: "bar", values: [1.4, 7.4, 24, 10.6] },
+  ]}
+  valueLabel="Time (h)"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="7.4\text{ hours}" /> **is the orbital period, which ignores the spin of the Earth below**.
+- <InlineMath math="5.6\text{ hours}" /> adds the angular speeds, as for a satellite orbiting against the spin.
+- <InlineMath math="21.5\text{ hours}" /> takes the height, not the radius, as <InlineMath math="3R" />, so the orbit is at <InlineMath math="4R" />.

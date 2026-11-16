@@ -1,0 +1,46 @@
+# Massa jenis Y
+
+Dengan permukaan atas sejajar, air di lengan kanan berada <InlineMath math="8{,}0-4{,}0=4{,}0\text{ cm}" /> di atas batas minyak-air. **Tekanan yang sama pada ketinggian batas** lalu memberi
+
+<BlockMath math="800\times8{,}0=1000\times4{,}0+\rho_Y\times4{,}0\ \Rightarrow\ \rho_Y=600\text{ kg m}^{-3}" />
+
+<MathVisual
+  title={<>Kolom di atas batas minyak-air</>}
+  description={<>Lengan kiri: <InlineMath math="8{,}0\text{ cm}" /> minyak di atas batas. Lengan kanan: <InlineMath math="4{,}0\text{ cm}" /> air lalu <InlineMath math="4{,}0\text{ cm}" /> cairan Y di atas ketinggian yang sama, dengan kedua permukaan atas sejajar.</>}
+  labels={{
+    oil: <>minyak <InlineMath math="8{,}0\text{ cm}" /></>,
+    water: <>air <InlineMath math="4{,}0\text{ cm}" /></>,
+    y: <>Y <InlineMath math="4{,}0\text{ cm}" /></>,
+    level: <>tekanan sama di sini</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "oil", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 8 }, { x: 0, y: 8 }] },
+      { id: "water", kind: "polygon", appearance: "secondary", vertices: [{ x: 6, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 4 }, { x: 6, y: 4 }] },
+      { id: "y", kind: "polygon", appearance: "primary", vertices: [{ x: 6, y: 4 }, { x: 8, y: 4 }, { x: 8, y: 8 }, { x: 6, y: 8 }] },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: -0.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "base", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: -2.5 }, { x: 8, y: -2.5 }, { x: 8, y: 0 }, { x: 6, y: 0 }, { x: 6, y: -0.5 }, { x: 2, y: -0.5 }, { x: 2, y: 0 }, { x: 0, y: 0 }] },
+    ],
+    labels: [
+      { key: "oil", objectId: "oil", at: { x: 1, y: 4 }, placement: "left" },
+      { key: "water", objectId: "water", at: { x: 7, y: 2 }, placement: "right" },
+      { key: "y", objectId: "y", at: { x: 7, y: 6 }, placement: "right" },
+      { key: "level", objectId: "level", at: { x: 4, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Tambahan <InlineMath math="2{,}0\text{ cm}" /> cairan Y
+
+**Saat batas di kiri naik sejauh <InlineMath math="d" />, air di kanan turun sejauh <InlineMath math="d" />**, jadi ketinggian air bergeser <InlineMath math="2d" /> berbeda. Kolom air tambahan itu mengimbangi tambahan <InlineMath math="2{,}0\text{ cm}" /> cairan Y.
+
+<BlockMath math="1000\times2d=600\times2{,}0\ \Rightarrow\ d=0{,}60\text{ cm}" />
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}2\text{ cm}" /> **hanya membiarkan satu lengan bergerak, lupa bahwa air turun di satu sisi saat naik di sisi lain**.
+- <InlineMath math="1600\text{ kg m}^{-3}" /> menganggap ketinggian air sama di bawah kedua kolom, dan <InlineMath math="1{,}6\text{ cm}" />-nya membawa kekeliruan itu.
+- <InlineMath math="0{,}75\text{ cm}" /> mengimbangi Y dengan minyak, bukan dengan air.

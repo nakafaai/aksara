@@ -1,0 +1,34 @@
+# Tenaga daripada satu tindak balas
+
+<BlockMath math="\begin{aligned}
+\Delta m&=(2.01410+3.01605)-(4.00260+1.00867)=0.01888\text{ u}\\
+E&=0.01888\times1.66\times10^{-27}\times(3.0\times10^8)^2=2.82\times10^{-12}\text{ J}
+\end{aligned}" />
+
+# Tindak balas mesti membekalkan lebih daripada output
+
+**Hanya <InlineMath math="35\%" /> tenaga pelakuran menjadi tenaga elektrik**, jadi tindak balas mesti membebaskan <InlineMath math="1.0/0.35=2.86\text{ GW}" />.
+
+<Chart
+  title={<>Output elektrik dan kuasa pelakuran</>}
+  description={<>Carta bar: loji membekalkan kuasa elektrik <InlineMath math="1.0\text{ GW}" />, jadi pada kecekapan <InlineMath math="35\%" /> tindak balas mesti membebaskan <InlineMath math="2.86\text{ GW}" />.</>}
+  bars="apart"
+  categories={["Output elektrik", "Kuasa pelakuran"]}
+  series={[
+    { label: "Kuasa", mark: "bar", values: [1.0, 2.86] },
+  ]}
+  valueLabel="Kuasa (GW)"
+/>
+
+<BlockMath math="\begin{aligned}
+\text{tindak balas sehari}&=\frac{2.86\times10^9}{2.82\times10^{-12}}\times86\,400=8.75\times10^{25}\\
+m_{\text{D}}&=8.75\times10^{25}\times2.01410\times1.66\times10^{-27}=0.29\text{ kg}
+\end{aligned}" />
+
+Setiap tindak balas menggunakan satu nukleus deuterium, jadi hanya jisimnya <InlineMath math="2.01410\text{ u}" /> yang dikira.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0.10\text{ kg}" /> **mengabaikan kecekapan, seolah-olah semua tenaga pelakuran menjadi tenaga elektrik**.
+- <InlineMath math="0.73\text{ kg}" /> turut mengira tritium bersama deuterium.
+- <InlineMath math="0.036\text{ kg}" /> mendarab dengan kecekapan, bukan membahagi.

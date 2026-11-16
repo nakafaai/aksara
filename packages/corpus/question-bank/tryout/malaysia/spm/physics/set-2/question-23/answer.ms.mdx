@@ -1,0 +1,44 @@
+# Baca arah pecutan daripada kecondongan
+
+Spring menarik jisim ke atas dan ke arah titik gantungan. Jisim berada di timur titik gantungan, jadi **tarikan mengufuk, dan juga pecutan, menghala ke barat**. Kereta api bergerak ke timur, jadi ia sedang memperlahan.
+
+<MathVisual
+  title={<>Daya pada jisim tergantung</>}
+  description={<>Daya spring menghala dari jisim ke atas dan ke belakang ke arah barat, <InlineMath math="15^\circ" /> dari menegak. Komponen menegaknya mengimbangi berat <InlineMath math="2.0\text{ N}" /> dan komponen mengufuknya menghala ke barat, jadi daya paduan dan pecutan menghala ke barat sedangkan kereta api bergerak ke timur.</>}
+  labels={{
+    t: <>daya spring <InlineMath math="2.07\text{ N}" /></>,
+    w: <>berat <InlineMath math="2.0\text{ N}" /></>,
+    f: <>daya paduan ke barat</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.0, max: 0.6 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "t", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0.9659 } },
+      { id: "w", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: -0.97 } },
+      { id: "f", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: -0.2588, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: -0.13, y: 0.5 }, placement: "left" },
+      { key: "w", objectId: "w", at: { x: 0, y: -0.6 }, placement: "right" },
+      { key: "f", objectId: "f", at: { x: -0.13, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Seimbangkan secara menegak, kemudian guna komponen mengufuk
+
+<BlockMath math="\begin{aligned}
+T\cos15^\circ&=mg\ \Rightarrow\ T=\frac{2.0}{0.966}=2.07\text{ N}\\
+a&=g\tan15^\circ=2.7\text{ m s}^{-2}\\
+x&=\frac{T}{k}=\frac{2.07}{40}=0.052\text{ m}=5.2\text{ cm}
+\end{aligned}" />
+
+**Daya spring lebih besar daripada berat, jadi pemanjangannya melebihi <InlineMath math="5.0\text{ cm}" /> yang dimilikinya ketika pegun**.
+
+# Mengapa pilihan lain salah
+
+- **Jika memecut, jisim akan ketinggalan di barat titik gantungan, iaitu kecondongan bertentangan**.
+- <InlineMath math="5.0\text{ cm}" /> membahagikan berat dengan <InlineMath math="k" />, tetapi spring juga mesti membekalkan daya mengufuk.
+- <InlineMath math="2.6\text{ m s}^{-2}" /> menggunakan <InlineMath math="g\sin15^\circ" /> dan juga mengambil arah yang salah.

@@ -1,0 +1,32 @@
+# Pressure under each piston
+
+The load needs <InlineMath math="16\,000/0.20=80\,000\text{ Pa}" /> under the large piston. **The small piston sits <InlineMath math="0.50\text{ m}" /> lower in the oil, so the pressure there is larger by <InlineMath math="\rho gh" />**.
+
+<BlockMath math="p_{\text{small}}=80\,000+800\times10\times0.50=84\,000\text{ Pa}" />
+
+<Chart
+  title={<>Pressure at each piston</>}
+  description={<>Bar chart: the load needs <InlineMath math="80\text{ kPa}" /> under the large piston, and the small piston, <InlineMath math="0.50\text{ m}" /> lower in the oil, must supply <InlineMath math="84\text{ kPa}" />.</>}
+  bars="apart"
+  categories={["Large piston", "Small piston"]}
+  series={[
+    { label: "Pressure", mark: "bar", values: [80, 84] },
+  ]}
+  valueLabel="Pressure (kPa)"
+/>
+
+# Force on the handle
+
+<BlockMath math="F_{\text{piston}}=84\,000\times4.0\times10^{-4}=33.6\text{ N},\qquad F_{\text{handle}}=\frac{33.6}{5}=6.7\text{ N}" />
+
+# Strokes
+
+**The oil pushed out by the small piston fills the space under the large one**.
+
+<BlockMath math="n=\frac{0.20\times0.10}{4.0\times10^{-4}\times0.080}=625" />
+
+# Why the other options are wrong
+
+- <InlineMath math="6.4\text{ N}" /> **ignores the height difference in the oil**.
+- <InlineMath math="6.1\text{ N}" /> subtracts <InlineMath math="\rho gh" />, as if the small piston were the higher one.
+- <InlineMath math="125" /> strokes divides by the lever ratio, but the lever changes the force, not the volume of oil moved.

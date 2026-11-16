@@ -1,0 +1,44 @@
+# Fall time relative to the accelerating floor
+
+At <InlineMath math="t=1.0\text{ s}" /> the lift is still accelerating upwards at <InlineMath math="1.5\text{ m s}^{-2}" /> and moves up at <InlineMath math="1.5\text{ m s}^{-1}" />. The bolt shares that velocity, so **relative to the floor it starts at rest and closes in at <InlineMath math="10+1.5=11.5\text{ m s}^{-2}" />**.
+
+<BlockMath math="t=\sqrt{\frac{2(2.5)}{11.5}}=0.66\text{ s}" />
+
+The bolt lands at <InlineMath math="t=1.66\text{ s}" />, before the lift stops accelerating at <InlineMath math="t=2.0\text{ s}" />.
+
+# Where the bolt is in the shaft
+
+**In the shaft the bolt starts with <InlineMath math="1.5\text{ m s}^{-1}" /> upwards and only gravity acts on it**.
+
+<BlockMath math="s=1.5(0.66)-\tfrac12(10)(0.66)^2=0.99-2.17=-1.18\text{ m}" />
+
+<MathVisual
+  title={<>Heights of the bolt and the floor in the shaft</>}
+  description={<>Height in the shaft against time after the bolt comes loose. The floor starts at <InlineMath math="0" /> and rises ever faster. The bolt starts at <InlineMath math="2.5\text{ m}" />, rises briefly, then falls. They meet at <InlineMath math="t=0.66\text{ s}" />, at a height of <InlineMath math="1.32\text{ m}" />, which is <InlineMath math="1.18\text{ m}" /> below the bolt's starting point.</>}
+  labels={{
+    floor: <>floor</>,
+    bolt: <>bolt</>,
+    hit: <><InlineMath math="t=0.66\text{ s}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.03, max: 0.75 }, y: { min: -0.2, max: 3.0 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "polyline", appearance: "secondary", vertices: [{ x: 0.0, y: 0.0 }, { x: 0.0549, y: 0.0847 }, { x: 0.1099, y: 0.1739 }, { x: 0.1648, y: 0.2677 }, { x: 0.2198, y: 0.3659 }, { x: 0.2747, y: 0.4687 }, { x: 0.3297, y: 0.5761 }, { x: 0.3846, y: 0.6879 }, { x: 0.4396, y: 0.8043 }, { x: 0.4945, y: 0.9253 }, { x: 0.5495, y: 1.0507 }, { x: 0.6045, y: 1.1807 }, { x: 0.6594, y: 1.3152 }] },
+      { id: "bolt", kind: "polyline", appearance: "primary", vertices: [{ x: 0.0, y: 2.5 }, { x: 0.0549, y: 2.5673 }, { x: 0.1099, y: 2.6045 }, { x: 0.1648, y: 2.6114 }, { x: 0.2198, y: 2.5881 }, { x: 0.2747, y: 2.5347 }, { x: 0.3297, y: 2.451 }, { x: 0.3846, y: 2.3372 }, { x: 0.4396, y: 2.1932 }, { x: 0.4945, y: 2.0189 }, { x: 0.5495, y: 1.8145 }, { x: 0.6045, y: 1.5799 }, { x: 0.6594, y: 1.3151 }] },
+      { id: "hit", kind: "point", appearance: "answer", at: { x: 0.6594, y: 1.315 } },
+    ],
+    labels: [
+      { key: "floor", objectId: "floor", at: { x: 0.33, y: 0.58 }, placement: "below-right" },
+      { key: "bolt", objectId: "bolt", at: { x: 0.15, y: 2.6 }, placement: "above" },
+      { key: "hit", objectId: "hit", at: { x: 0.6594, y: 1.315 }, placement: "right" },
+    ],
+  }}
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="0.71\text{ s}" /> **treats the lift as moving at constant velocity, as it does only after <InlineMath math="t=2.0\text{ s}" />**.
+- <InlineMath math="2.17\text{ m}" /> forgets that the bolt starts with the lift's upward velocity.
+- <InlineMath math="0.77\text{ s}" /> subtracts the lift's acceleration from <InlineMath math="g" /> instead of adding it.

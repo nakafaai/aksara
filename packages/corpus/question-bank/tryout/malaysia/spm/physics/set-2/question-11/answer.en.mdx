@@ -1,0 +1,29 @@
+# The atmospheric pressure is unknown on a mountain
+
+With the open end up, the thread adds its <InlineMath math="10\text{ cmHg}" /> to the atmosphere <InlineMath math="P" />. With the open end down, it takes <InlineMath math="10\text{ cmHg}" /> away. **Boyle's law for the two positions gives one equation in <InlineMath math="P" />**, so the usual <InlineMath math="76\text{ cmHg}" /> is not needed and is wrong here.
+
+<BlockMath math="(P+10)(15.0)=(P-10)(20.0)\ \Rightarrow\ 15P+150=20P-200\ \Rightarrow\ P=70\text{ cmHg}" />
+
+# Lay the tube flat
+
+**Horizontal, the thread adds nothing, so the gas is at <InlineMath math="70\text{ cmHg}" />**.
+
+<BlockMath math="L=\frac{80\times15.0}{70}=17.1\text{ cm}" />
+
+<Chart
+  title={<>Pressure and length of the trapped air</>}
+  description={<>Bar chart for the three positions: open end up, <InlineMath math="80\text{ cmHg}" /> and <InlineMath math="15.0\text{ cm}" />, then horizontal, <InlineMath math="70\text{ cmHg}" /> and <InlineMath math="17.1\text{ cm}" />, then open end down, <InlineMath math="60\text{ cmHg}" /> and <InlineMath math="20.0\text{ cm}" />. Each product of pressure and length is <InlineMath math="1200" />.</>}
+  bars="apart"
+  categories={["Open end up", "Horizontal", "Open end down"]}
+  series={[
+    { label: "Pressure (cmHg)", mark: "bar", values: [80, 70, 60] },
+    { label: "Length (cm)", mark: "bar", values: [15.0, 17.1, 20.0] },
+  ]}
+  valueLabel="Value"
+/>
+
+# Why the other options are wrong
+
+- <InlineMath math="17.5\text{ cm}" /> **averages the two lengths, but length goes with <InlineMath math="1/P" />, not linearly with the thread's effect**.
+- <InlineMath math="76\text{ cmHg}" /> assumes sea-level pressure, which contradicts the two measured lengths.
+- <InlineMath math="80\text{ cmHg}" /> is the gas pressure with the open end up, not the atmosphere.
