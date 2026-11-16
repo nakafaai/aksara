@@ -53,19 +53,17 @@ const CORPUS_ROOTS = [
   ["pages", 0, 18],
   ["question-bank", 4, 7300],
 ] as const;
-const CORPUS_PARTS = await readCorpusParts(CORPUS, CORPUS_ROOTS);
+const SPLITS = Arr.zip(
+  CORPUS_ROOTS,
+  await readCorpusParts(CORPUS, CORPUS_ROOTS)
+);
 
-for (const [[root, , minimum], parts] of Arr.zip(CORPUS_ROOTS, CORPUS_PARTS)) {
-  checkTest(
-    `splits ${root} into parts that hold every document`,
-    Effect.gen(function* () {
-      const documents = yield* collectLessonFiles(`${CORPUS}/${root}`);
-      const held = yield* Effect.forEach(parts, collectLessonFiles);
-      assert.ok(documents.length >= minimum);
-      assert.strictEqual(Arr.flatten(held).length, documents.length);
-    })
-  );
-  for (const part of parts) {
+for (const [[root, , minimum], corpus] of SPLITS) {
+  it(`splits ${root} into parts that hold every document`, () => {
+    assert.ok(corpus.documents >= minimum);
+    assert.deepEqual(corpus.unheld, []);
+  });
+  for (const part of corpus.parts) {
     checkTest(
       `checks every current document in ${part.slice(CORPUS.length + 1)}`,
       Effect.gen(function* () {
