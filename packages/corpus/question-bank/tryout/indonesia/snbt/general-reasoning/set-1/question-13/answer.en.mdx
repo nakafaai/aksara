@@ -16,6 +16,17 @@ There are three steps, and only three.
 
 The result is "there is an athlete who passed the regional selection and has never had a serious injury, but who is not on the provincial core team and not a sports scholarship holder".
 
+The diagram below sums up the three steps. **Only the word "all" and the "or" demand change**, while the group description stays whole.
+
+<Mermaid
+  title={<>Three steps that turn the statement into its negation</>}
+  description={<>Original: all athletes who passed the regional selection and have never had a serious injury are on the core team or hold a scholarship. "All" becomes "there is", the group description stays, and the "or" demand becomes not on the core team and not a scholarship holder.</>}
+  chart={`flowchart LR
+    A["All athletes in that group"] -->|"all becomes there is"| B["There is an athlete in that group"]
+    C["Passed selection and never seriously injured"] -->|"stays"| D["Passed selection and never seriously injured"]
+    E["Core team or scholarship"] -->|"De Morgan"| F["Not core team and not scholarship"]`}
+/>
+
 The other options fail because of these slips.
 
 - The version with "not on the core team or not a scholarship holder" forgets to turn "or" into "and". An athlete in the group who holds a scholarship but isn't on the core team fits this option, yet doesn't contradict the original.

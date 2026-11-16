@@ -14,6 +14,19 @@ Now follow the chain.
 
 The chain stops here. Premise 4 only works if you know <InlineMath math="f" /> is true or <InlineMath math="s" /> is false, but what you know is that <InlineMath math="s" /> is true. Premise 5 only works if you know <InlineMath math="p" /> is true or <InlineMath math="v" /> is false, but what you know is that <InlineMath math="p" /> is false. So the festival and the guest coach both stay unknown.
 
+The diagram below draws that chain along with the premises that stop halfway. **The proven chain runs from <InlineMath math="\neg k" /> to <InlineMath math="s" />**, while the festival and the guest coach stay unknown.
+
+<Mermaid
+  title={<>The chain of conclusions from the fact that no new costumes were made</>}
+  description={<>No new costumes were made, so by premise 1 no new sponsor joined. Then by premise 2 the hall is rented with the choir's cash, so by premise 3 extra rehearsals are held every Saturday. Premises 4 and 5 give nothing more, so the festival and the guest coach stay unknown.</>}
+  chart={`flowchart LR
+    K["No new costumes"] -->|"premise 1"| P["No new sponsor joins"]
+    P -->|"premise 2"| G["Hall rented with cash"]
+    G -->|"premise 3"| S["Extra rehearsals every Saturday"]
+    S -.->|"premise 4 gives nothing"| F["Festival: unknown"]
+    P -.->|"premise 5 gives nothing"| V["Guest coach: unknown"]`}
+/>
+
 The conclusion that contains <InlineMath math="\neg p" /> and <InlineMath math="s" /> is "no new sponsor joins and extra rehearsals are held every Saturday". Both parts are proven.
 
 Each of the other options has one part that isn't proven.

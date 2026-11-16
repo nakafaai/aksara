@@ -6,6 +6,20 @@ Pernyataan 1 dapat disimpulkan, walaupun terdengar salah. Di setiap baris, petak
 
 Hasilnya <InlineMath math="19\% > 14\%" />. Kelompok yang kemudian berkincir lebih tinggi karena <InlineMath math="15" /> dari <InlineMath math="20" /> petaknya berpadat tebar tinggi.
 
+Grafik berikut memperlihatkan keanehan pernyataan pertama. **Kelompok yang kelak berkincir tidak pernah lebih buruk di setiap baris, tetapi rata-rata seluruhnya justru lebih tinggi**, karena sebagian besar petaknya padat tinggi.
+
+<Chart
+  title={<>Rata-rata kematian siklus lalu menurut padat tebar dan keseluruhan</>}
+  description={<>Pada padat rendah, kedua kelompok <InlineMath math="10\%" />. Pada padat tinggi, kelompok yang kelak berkincir <InlineMath math="22\%" /> dan kelompok tanpa kincir <InlineMath math="26\%" />. Rata-rata seluruh petak yang kelak berkincir <InlineMath math="19\%" />, sedangkan petak yang tidak pernah berkincir <InlineMath math="14\%" />.</>}
+  categories={["Padat rendah", "Padat tinggi", "Seluruh petak"]}
+  bars="apart"
+  series={[
+    { label: "Kelak berkincir", mark: "bar", values: [10, 22, (5 * 10 + 15 * 22) / 20] },
+    { label: "Tidak pernah berkincir", mark: "bar", values: [10, 26, (15 * 10 + 5 * 26) / 20] },
+  ]}
+  valueLabel="Kematian siklus lalu (%)"
+/>
+
 Pernyataan 2 tidak dapat disimpulkan, walaupun terdengar masuk akal. Kalau kenaikan <InlineMath math="8" /> poin dari petak berkincir dipakai, kamu mendapat <InlineMath math="26\% + 8 = 34\%" />. Namun, kelima petak itu tidak pernah dipasangi kincir. Tidak ada data tentang petak-petak itu dengan kincir, dan tidak ada jaminan efek kincir pada petak lain berlaku sama di sana.
 
 Pernyataan 3 tidak dapat disimpulkan. Kemarau memang terjadi pada siklus terakhir, tetapi semua petak melewatinya. Tidak ada petak pada siklus terakhir yang lepas dari kemarau, jadi tidak ada kelompok pembanding untuk memisahkan pengaruh kemarau dari perubahan lain antarsiklus.

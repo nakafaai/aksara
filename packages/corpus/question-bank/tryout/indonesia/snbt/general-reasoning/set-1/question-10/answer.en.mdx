@@ -14,6 +14,19 @@ Whenever a position goes past <InlineMath math="26" />, subtract <InlineMath mat
 | <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
 | <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, then <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, then <InlineMath math="30 - 26 = 4" />, D | DD |
 
+The chart below draws the position of both letters in each term. **Every time a line drops sharply, the count has just passed Z** and started again from A, and the two lines meet at position <InlineMath math="4" /> in term <InlineMath math="10" />.
+
+<Chart
+  title={<>Positions of the first and second letters in terms <InlineMath math="1" /> to <InlineMath math="10" /></>}
+  description={<>The first letters are at positions <InlineMath math="2, 4, 7, 11, 16, 22, 3, 11, 20, 4" />, with a step that grows by one each term. The second letters are at <InlineMath math="19, 26, 7, 14, 21, 2, 9, 16, 23, 4" />, moving forward <InlineMath math="7" /> each term. Position <InlineMath math="1" /> is A and position <InlineMath math="26" /> is Z.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "First letter", mark: "line", values: [2, 4, 7, 11, 16, 22, 29 - 26, 11, 20, 30 - 26] },
+    { label: "Second letter", mark: "line", values: [19, 26, 33 - 26, 14, 21, 28 - 26, 9, 16, 23, 30 - 26] },
+  ]}
+  valueLabel="Letter position"
+/>
+
 Check by jumping straight from term <InlineMath math="5" />. The first letter moves <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> places, and the second letter moves <InlineMath math="5 \times 7 = 35" /> places:
 
 <BlockMath math="\begin{aligned} \text{First letter: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Second letter: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />

@@ -8,6 +8,20 @@ Vergleiche je eine Packung:
 
 Jedes Mal, wenn jemand eine zuckerreiche Packung gegen eine Ersatzpackung tauscht, bleibt die Zahl der Packungen gleich und die zuckerreichen Packungen sinken um eine, aber der verkaufte Zucker steigt um <InlineMath math="36 - 22 = 14" /> Gramm. So können beide Tatsachen zusammen stimmen. Dieses Getränk ist nur der beliebteste Ersatz, also bringt nicht jeder Tausch <InlineMath math="14" /> Gramm mehr. Deshalb passt auch ein Gesamtanstieg von etwa <InlineMath math="1" /> kg.
 
+Das Diagramm vergleicht die beiden Getränke. **Das Ersatzgetränk liegt beim Zucker pro <InlineMath math="100" /> ml hinten, beim Zucker pro Packung aber klar vorn**, weil seine Packung dreimal so groß ist.
+
+<Chart
+  title={<>Zucker pro <InlineMath math="100" /> ml und pro Packung bei beiden Getränken</>}
+  description={<>Das aufgegebene zuckerreiche Getränk hat <InlineMath math="11" /> g Zucker pro <InlineMath math="100" /> ml in einer Packung von <InlineMath math="200" /> ml, also <InlineMath math="22" /> g pro Packung. Das Ersatzgetränk hat <InlineMath math="6" /> g pro <InlineMath math="100" /> ml in einer Packung von <InlineMath math="600" /> ml, also <InlineMath math="36" /> g pro Packung.</>}
+  categories={["Aufgegebenes Getränk", "Ersatzgetränk"]}
+  bars="apart"
+  series={[
+    { label: "Zucker pro 100 ml (g)", mark: "bar", values: [11, 6] },
+    { label: "Zucker pro Packung (g)", mark: "bar", values: [(11 / 100) * 200, (6 / 100) * 600] },
+  ]}
+  valueLabel="Zucker (g)"
+/>
+
 Die anderen Optionen erklären nicht beides:
 
 - Dass mehr Packungen gekauft wurden, widerspricht der Tabelle, denn alle Packungen zusammen blieben bei <InlineMath math="800" />.

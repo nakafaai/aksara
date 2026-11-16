@@ -21,6 +21,17 @@ Cek dengan membagi kelompok "yoga atau pilates tanpa renang" menjadi tiga bagian
 | hanya pilates | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
 | jumlah | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
 
+Grafik berikut menggambar ketiga bagian penerima voucher. **Ketiga batang tidak tumpang tindih**, jadi jumlahnya langsung memberi banyak voucher.
+
+<Chart
+  title={<>Anggota yang mengikuti yoga atau pilates tetapi tidak renang, menurut bagiannya</>}
+  description={<>Ada <InlineMath math="17" /> anggota yang mengikuti yoga dan pilates tanpa renang, <InlineMath math="28" /> anggota yang hanya mengikuti yoga, dan <InlineMath math="13" /> anggota yang hanya mengikuti pilates. Jumlahnya <InlineMath math="58" /> anggota.</>}
+  categories={["Yoga dan pilates", "Hanya yoga", "Hanya pilates"]}
+  bars="apart"
+  series={[{ label: "Banyak anggota", mark: "bar", values: [25 - 8, 85 - 17 - (40 - 8) - 8, 60 - 17 - (30 - 8) - 8] }]}
+  valueLabel="Banyak anggota"
+/>
+
 Hasilnya sama, yaitu <InlineMath math="58" />.
 
 Beberapa hasil keliru yang sering muncul:

@@ -14,6 +14,19 @@ Wenn eine Stelle über <InlineMath math="26" /> hinausgeht, ziehst du <InlineMat
 | <InlineMath math="9" /> | <InlineMath math="11 + 9 = 20" />, T | <InlineMath math="16 + 7 = 23" />, W | TW |
 | <InlineMath math="10" /> | <InlineMath math="20 + 10 = 30" />, dann <InlineMath math="30 - 26 = 4" />, D | <InlineMath math="23 + 7 = 30" />, dann <InlineMath math="30 - 26 = 4" />, D | DD |
 
+Das Diagramm zeigt die Position beider Buchstaben in jedem Glied. **Jedes Mal, wenn eine Linie steil abfällt, hat die Zählung gerade Z überschritten** und beginnt wieder bei A, und beide Linien treffen sich bei Position <InlineMath math="4" /> im Glied <InlineMath math="10" />.
+
+<Chart
+  title={<>Positionen des ersten und zweiten Buchstabens in den Gliedern <InlineMath math="1" /> bis <InlineMath math="10" /></>}
+  description={<>Die ersten Buchstaben stehen an den Positionen <InlineMath math="2, 4, 7, 11, 16, 22, 3, 11, 20, 4" />, mit einem Schritt, der jedes Glied um eins wächst. Die zweiten Buchstaben stehen an <InlineMath math="19, 26, 7, 14, 21, 2, 9, 16, 23, 4" /> und rücken jedes Glied um <InlineMath math="7" /> vor. Position <InlineMath math="1" /> ist A, Position <InlineMath math="26" /> ist Z.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Erster Buchstabe", mark: "line", values: [2, 4, 7, 11, 16, 22, 29 - 26, 11, 20, 30 - 26] },
+    { label: "Zweiter Buchstabe", mark: "line", values: [19, 26, 33 - 26, 14, 21, 28 - 26, 9, 16, 23, 30 - 26] },
+  ]}
+  valueLabel="Buchstabenposition"
+/>
+
 Zur Kontrolle springst du direkt vom <InlineMath math="5" />. Glied aus. Der erste Buchstabe rückt um <InlineMath math="6 + 7 + 8 + 9 + 10 = 40" /> Stellen vor, der zweite um <InlineMath math="5 \cdot 7 = 35" /> Stellen:
 
 <BlockMath math="\begin{aligned} \text{Erster Buchstabe: } & 16 + 40 = 56 = 2(26) + 4 \\ \text{Zweiter Buchstabe: } & 21 + 35 = 56 = 2(26) + 4 \end{aligned}" />

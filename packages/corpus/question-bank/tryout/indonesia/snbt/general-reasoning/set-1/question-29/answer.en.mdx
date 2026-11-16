@@ -21,6 +21,17 @@ Check by splitting the "yoga or pilates, no swimming" group into three parts tha
 | pilates only | <InlineMath math="60-17-(30-8)-8" /> | <InlineMath math="13" /> |
 | total | <InlineMath math="17+28+13" /> | <InlineMath math="58" /> |
 
+The chart below draws the three parts of the voucher group. **The three bars don't overlap**, so their sum gives the number of vouchers straight away.
+
+<Chart
+  title={<>Members who take yoga or pilates but not swimming, by part</>}
+  description={<>There are <InlineMath math="17" /> members who take yoga and pilates without swimming, <InlineMath math="28" /> who take only yoga, and <InlineMath math="13" /> who take only pilates. The total is <InlineMath math="58" /> members.</>}
+  categories={["Yoga and pilates", "Yoga only", "Pilates only"]}
+  bars="apart"
+  series={[{ label: "Members", mark: "bar", values: [25 - 8, 85 - 17 - (40 - 8) - 8, 60 - 17 - (30 - 8) - 8] }]}
+  valueLabel="Members"
+/>
+
 The result matches: <InlineMath math="58" />.
 
 Some wrong results come up often:

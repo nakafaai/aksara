@@ -21,6 +21,19 @@ Der 1. Dezember liegt also <InlineMath math="134" /> Tage nach dem 20. Juli. Tei
 
 Der Rest <InlineMath math="1" /> im Siebentageszyklus schiebt den Wochentag einen Schritt weiter von Montag auf Dienstag (*Selasa*). Der Rest <InlineMath math="4" /> im Fünftageszyklus schiebt den Markttag vier Schritte weiter von Pahing: Pon, Wage, Kliwon, Legi. Der 1. Dezember fällt also auf Selasa Legi.
 
+Das Diagramm trennt die beiden Zyklen. **Der Wochentag rückt um den Rest bei Division durch <InlineMath math="7" /> vor, der Markttag um den Rest bei Division durch <InlineMath math="5" />**.
+
+<Mermaid
+  title={<>Von Senin Pahing zum <InlineMath math="1" />. Dezember</>}
+  description={<>Der <InlineMath math="1" />. Dezember liegt <InlineMath math="134" /> Tage nach dem <InlineMath math="20" />. Juli. Weil <InlineMath math="134" /> bei Division durch <InlineMath math="7" /> den Rest <InlineMath math="1" /> lässt, wird aus Montag Dienstag. Weil <InlineMath math="134" /> bei Division durch <InlineMath math="5" /> den Rest <InlineMath math="4" /> lässt, rückt Pahing vier Schritte auf Legi.</>}
+  chart={`flowchart LR
+    A["20. Juli: Senin Pahing"] --> B["Abstand 134 Tage"]
+    B -->|"Rest 1 bei Division durch 7"| C["Montag plus 1: Dienstag"]
+    B -->|"Rest 4 bei Division durch 5"| D["Pahing plus 4: Pon, Wage, Kliwon, Legi"]
+    C --> E["1. Dezember: Selasa Legi"]
+    D --> E`}
+/>
+
 Prüf es auf einem zweiten Weg. Dasselbe Paar aus Wochentag und Markttag kehrt alle <InlineMath math="7\times5=35" /> Tage zurück. Nach <InlineMath math="3\times35=105" /> Tagen, am 2. November, ist wieder Senin Pahing. Vom 2. November bis zum 1. Dezember sind es <InlineMath math="29" /> Tage, mit <InlineMath math="29=7\times4+1" /> und <InlineMath math="29=5\times5+4" />. Gleiches Ergebnis: Selasa Legi.
 
 Die anderen Optionen entstehen aus verschiedenen Zählfehlern:

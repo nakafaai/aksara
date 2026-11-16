@@ -26,6 +26,20 @@ Die Zahl der Lastwagen muss ganz sein, also braucht es mindestens <InlineMath ma
 
 Prüf beide Seiten der Grenze. Mit <InlineMath math="8" /> Lastwagen steigt der Bestand auf <InlineMath math="51+48=99" />, danach liegt er am Ende der fünf Wochen bei <InlineMath math="88, 77, 66, 55, 44" />. Alle Werte sind mindestens <InlineMath math="40" />. Mit <InlineMath math="7" /> Lastwagen steigt er auf <InlineMath math="93" />, danach <InlineMath math="82, 71, 60, 49, 38" />. In der fünften Woche fällt er unter <InlineMath math="40" />, also reichen <InlineMath math="7" /> Lastwagen nicht.
 
+Das Diagramm verfolgt den Bestand von Bakung in den fünf Wochen nach der Lieferung. **Die Linie mit sieben Lkw fällt in der letzten Woche unter den Sicherheitsbestand**, die Linie mit acht Lkw bleibt darüber.
+
+<Chart
+  title={<>Bestand von Bakung nach der Lieferung am Ende von Woche <InlineMath math="9" /></>}
+  description={<>Mit <InlineMath math="8" /> Lkw beträgt der Bestand in Woche <InlineMath math="9" /> <InlineMath math="99" /> Tonnen, dann <InlineMath math="88" />, <InlineMath math="77" />, <InlineMath math="66" />, <InlineMath math="55" /> und <InlineMath math="44" /> Tonnen. Mit <InlineMath math="7" /> Lkw sind es <InlineMath math="93" />, dann <InlineMath math="82" />, <InlineMath math="71" />, <InlineMath math="60" />, <InlineMath math="49" /> und <InlineMath math="38" /> Tonnen. Die waagerechte Linie markiert den Sicherheitsbestand von <InlineMath math="40" /> Tonnen.</>}
+  categories={["9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Mit 8 Lkw", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 8 - 11 * j) },
+    { label: "Mit 7 Lkw", mark: "line", values: [0, 1, 2, 3, 4, 5].map((j) => 51 + 6 * 7 - 11 * j) },
+    { label: "Sicherheitsbestand 40 Tonnen", mark: "line", values: [40, 40, 40, 40, 40, 40] },
+  ]}
+  valueLabel="Bestand (Tonnen)"
+/>
+
 Einige falsche Antworten tauchen oft auf:
 
 - <InlineMath math="7" /> Lastwagen entstehen, wenn du <InlineMath math="7{,}33" /> abrundest. Dasselbe passiert, wenn du den Schwund vergisst: Dann kommen die Lastwagen in Woche <InlineMath math="10" /> bei <InlineMath math="50" /> Tonnen, und der Bestand sinkt nur um <InlineMath math="10" /> Tonnen pro Woche.
