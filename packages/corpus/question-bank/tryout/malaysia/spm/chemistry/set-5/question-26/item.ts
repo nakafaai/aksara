@@ -10,50 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$65\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide but not aluminium oxide",
-        },
-        {
-          correct: false,
-          label:
-            "$$65\\text{ kg}$$, and carbon could also reduce aluminium oxide",
-        },
-        {
-          correct: false,
-          label:
-            "$$81\\text{ kg}$$, and carbon could also reduce iron(III) oxide and lead(II) oxide",
-        },
-        {
-          correct: false,
-          label: "$$48.8\\text{ kg}$$, because carbon is the limiting reagent",
-        },
+        { correct: true, label: "$$3$$, gold" },
+        { correct: false, label: "$$2$$, gold" },
+        { correct: false, label: "$$3$$, platinum" },
+        { correct: false, label: "$$4$$, platinum" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: true,
-          label:
-            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida tetapi bukan aluminium oksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$65\\text{ kg}$$, dan karbon juga boleh menurunkan aluminium oksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$81\\text{ kg}$$, dan karbon juga boleh menurunkan ferum(III) oksida dan plumbum(II) oksida",
-        },
-        {
-          correct: false,
-          label:
-            "$$48.8\\text{ kg}$$, kerana karbon ialah bahan tindak balas pengehad",
-        },
+        { correct: true, label: "$$3$$, emas" },
+        { correct: false, label: "$$2$$, emas" },
+        { correct: false, label: "$$3$$, platinum" },
+        { correct: false, label: "$$4$$, platinum" },
       ],
     },
   },
