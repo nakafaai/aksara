@@ -1,0 +1,28 @@
+# Balance the turning effects about the elbow
+
+The forearm is a **third-class lever**: the fulcrum is at the elbow, the effort from the biceps is close to it, and the loads are further away. The forearm stays still, so the turning effect of the biceps about the elbow equals the total turning effect of **both** weights:
+
+<Chart
+  title={<>Turning Effects About the Elbow</>}
+  bars="apart"
+  categories={["Ball", "Forearm", "Biceps"]}
+  series={[
+    { label: "Turning effect (N cm)", mark: "bar", values: [960, 225, 1185] },
+  ]}
+  valueLabel="Turning effect (N cm)"
+  description={<>The ball turns the forearm with <InlineMath math="960" /> newton centimetres and the forearm's own weight with <InlineMath math="225" />, so the biceps must supply <InlineMath math="1185" /> from only <InlineMath math="4\text{ cm}" /> away.</>}
+/>
+
+<BlockMath math="\begin{aligned}
+F\times4&=30\times32+15\times15\\
+4F&=960+225=1185\\
+F&=\frac{1185}{4}=296.25\text{ N}
+\end{aligned}" />
+
+So the biceps must pull with <InlineMath math="296.25\text{ N}" />, about ten times the weight of the ball, because its short distance from the elbow gives it little leverage.
+
+# Why the other options are wrong
+
+- <InlineMath math="240\text{ N}" /> balances only the ball, <InlineMath math="\frac{30\times32}{4}" />, and **forgets the weight of the forearm itself**.
+- <InlineMath math="45\text{ N}" /> just adds the two weights and ignores their distances from the fulcrum.
+- <InlineMath math="1185\text{ N}" /> is the total turning effect in <InlineMath math="\text{N cm}" />, not yet divided by the biceps' distance of <InlineMath math="4\text{ cm}" />.

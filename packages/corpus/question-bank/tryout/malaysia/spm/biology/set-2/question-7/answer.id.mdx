@@ -1,0 +1,27 @@
+# Baca apa yang diukur setiap respirometer
+
+Diameter lubang kapilernya sama, jadi setiap jarak mewakili volume dan keduanya bisa langsung dibandingkan.
+
+<Chart
+  title={<>Pertukaran Gas Biji dalam <InlineMath math="20" /> Menit</>}
+  bars="apart"
+  categories={["Oksigen diambil", "Karbon dioksida dilepas"]}
+  series={[
+    { label: "Volume (mm kapiler)", mark: "bar", values: [30, 21] },
+  ]}
+  valueLabel="Volume (mm kapiler)"
+  description={<>Biji mengambil oksigen senilai <InlineMath math="30\text{ mm}" /> kapiler dan melepaskan karbon dioksida senilai <InlineMath math="21\text{ mm}" />, jadi RQ-nya <InlineMath math="21" /> per <InlineMath math="30" />.</>}
+/>
+
+- Di X, kalium hidroksida menyerap semua karbon dioksida, jadi cairan bergerak hanya karena oksigen diambil. **Oksigen yang diambil** <InlineMath math="=30" /> satuan.
+- Di Y, karbon dioksida tetap ada di udara. Cairan bergerak sebesar oksigen yang diambil **dikurangi** karbon dioksida yang dilepaskan, jadi <InlineMath math="30-\text{CO}_2=9" />, sehingga **karbon dioksida yang dilepaskan** <InlineMath math="=21" /> satuan.
+
+<BlockMath math="\text{RQ}=\frac{21}{30}=0.70" />
+
+RQ sekitar <InlineMath math="0.7" /> adalah nilai untuk **lemak**, karena molekul lemak mengandung sedikit oksigen, jadi perlu lebih banyak oksigen untuk setiap karbon dioksida yang dilepaskan. Karbohidrat memberi <InlineMath math="1.0" />, dan protein sekitar <InlineMath math="0.9" />. Jadi, RQ-nya <InlineMath math="0.70" />, dan biji itu terutama merespirasikan lemak, seperti biji yang berminyak.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0.30" /> memakai <InlineMath math="9\text{ mm}" /> di Y sebagai volume karbon dioksida, padahal gerakan itu adalah **selisih** antara oksigen masuk dan karbon dioksida keluar.
+- <InlineMath math="1.00" /> berarti cairan di Y sama sekali tidak bergerak, karena hanya dengan begitu karbon dioksida yang dilepaskan sama dengan oksigen yang diambil.
+- <InlineMath math="1.43" /> membalik rasionya, menjadi oksigen per karbon dioksida.

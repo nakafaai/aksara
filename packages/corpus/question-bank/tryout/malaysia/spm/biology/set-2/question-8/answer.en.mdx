@@ -1,0 +1,28 @@
+# Subtract the dead air from every breath
+
+Total air per minute is the same for both people: <InlineMath math="500\times12=250\times24=6000\text{ cm}^3" />. But the <InlineMath math="150\text{ cm}^3" /> that stays in the airways is lost **in every breath**, so it must be subtracted per breath before multiplying by the number of breaths.
+
+<Chart
+  title={<>Where Each Minute's <InlineMath math="6000\text{ cm}^3" /> of Air Goes</>}
+  bars="apart"
+  categories={["P", "Q"]}
+  series={[
+    { label: "Reaches the alveoli", mark: "bar", values: [4200, 2400] },
+    { label: "Stays in the airways", mark: "bar", values: [1800, 3600] },
+  ]}
+  valueLabel="Air per minute (cm³)"
+  description={<>Of <InlineMath math="6000" /> cubic centimetres per minute, P sends <InlineMath math="4200" /> to the alveoli and leaves 1800 in the airways. Q sends <InlineMath math="2400" /> and leaves <InlineMath math="3600" />.</>}
+/>
+
+<BlockMath math="\begin{aligned}
+\text{P}&:\ (500-150)\times12=350\times12=4200\text{ cm}^3\text{ per minute}\\
+\text{Q}&:\ (250-150)\times24=100\times24=2400\text{ cm}^3\text{ per minute}
+\end{aligned}" />
+
+<InlineMath math="4200-2400=1800" />, so P delivers <InlineMath math="1800\text{ cm}^3" /> more fresh air to the alveoli per minute. Fast, shallow breathing wastes more air in the airways because the loss is paid twice as often.
+
+# Why the other options are wrong
+
+- "Neither" **compares only the total air per minute** and forgets the <InlineMath math="150\text{ cm}^3" /> lost in every breath.
+- Q by <InlineMath math="1800\text{ cm}^3" /> has the right difference but the wrong person. The faster breather loses more to the airways.
+- P by <InlineMath math="3600\text{ cm}^3" /> subtracts the dead air for Q but not for P, comparing <InlineMath math="6000" /> with <InlineMath math="2400" />.

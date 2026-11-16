@@ -1,0 +1,27 @@
+# Split the cross into one gene at a time
+
+The genes are on different chromosomes, so **they assort independently** and each gene can be crossed on its own. Then multiply the two probabilities.
+
+<BlockMath math="\begin{aligned}
+Tt\times Tt&:\ P(\text{tall})=\tfrac{3}{4},\quad P(\text{short})=\tfrac{1}{4}\\
+Pp\times pp&:\ P(\text{purple})=\tfrac{1}{2},\quad P(\text{white})=\tfrac{1}{2}
+\end{aligned}" />
+
+So tall and white has probability <InlineMath math="\frac{3}{4}\times\frac{1}{2}=\frac{3}{8}" />, and short and purple <InlineMath math="\frac{1}{4}\times\frac{1}{2}=\frac{1}{8}" />. Out of <InlineMath math="320" /> offspring, that is <InlineMath math="\frac{3}{8}\times320=120" /> and <InlineMath math="\frac{1}{8}\times320=40" />. The chart shows the whole <InlineMath math="3:3:1:1" /> spread.
+
+<Chart
+  title={<>Expected Offspring of <InlineMath math="TtPp\times Ttpp" /></>}
+  bars="apart"
+  categories={["Tall, purple", "Tall, white", "Short, purple", "Short, white"]}
+  series={[{ label: "Expected offspring", mark: "bar", values: [120, 120, 40, 40] }]}
+  valueLabel="Number of offspring"
+  description={<>Of <InlineMath math="320" /> offspring, <InlineMath math="120" /> are expected tall and purple, <InlineMath math="120" /> tall and white, <InlineMath math="40" /> short and purple, and <InlineMath math="40" /> short and white.</>}
+/>
+
+So <InlineMath math="120" /> offspring are expected tall with white flowers, and <InlineMath math="40" /> short with purple flowers.
+
+# Why the other options are wrong
+
+- <InlineMath math="60" /> and <InlineMath math="60" /> uses the <InlineMath math="9:3:3:1" /> ratio of <InlineMath math="TtPp\times TtPp" />, but **the second parent is** <InlineMath math="pp" />, not <InlineMath math="Pp" />.
+- <InlineMath math="80" /> and <InlineMath math="80" /> uses the <InlineMath math="1:1:1:1" /> ratio of a test cross, which would need the second parent to be <InlineMath math="ttpp" />.
+- <InlineMath math="40" /> and <InlineMath math="120" /> swaps the two answers.

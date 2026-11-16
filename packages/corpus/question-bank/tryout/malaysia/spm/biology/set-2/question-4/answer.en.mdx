@@ -1,0 +1,19 @@
+# Count condensations to build, hydrolyses to cut
+
+Each peptide bond forms by condensation, releasing one water molecule, and breaking one by hydrolysis **uses** one. A chain of <InlineMath math="n" /> amino acids has <InlineMath math="n-1" /> peptide bonds.
+
+<Mermaid
+  title={<>From One Chain to Two</>}
+  description={<>Forming the 86-amino-acid chain makes <InlineMath math="85" /> peptide bonds and releases <InlineMath math="85" /> water molecules. Cutting out the 35-amino-acid middle piece hydrolyses <InlineMath math="2" /> bonds and uses <InlineMath math="2" /> water molecules, leaving chains of <InlineMath math="21" /> and <InlineMath math="30" />.</>}
+  chart={"flowchart LR\n  A[86 free amino acids] -->|85 condensations: 85 water released| B[one chain of 86]\n  B -->|3 disulfide bridges, no water| C[folded chain]\n  C -->|2 hydrolyses: 2 water used| D[chain of 21 + chain of 30]\n  C --> E[middle piece of 35 removed]"}
+/>
+
+<BlockMath math="\text{formed}: 86-1=85\ \text{bonds},\ 85\ \text{water released},\qquad \text{cut}: 2\ \text{bonds},\ 2\ \text{water used}" />
+
+Check: the two final chains have <InlineMath math="20+29=49" /> bonds and the piece removed has <InlineMath math="34" />, so <InlineMath math="49+34+2=85" />. So <InlineMath math="85" /> water molecules are released and <InlineMath math="2" /> are used.
+
+# Why the other options are wrong
+
+- <InlineMath math="86" /> released gives one water molecule per amino acid instead of one per bond.
+- <InlineMath math="49" /> counts only the bonds of the final chains and **forgets the bonds of the piece that was removed**.
+- <InlineMath math="35" /> used gives a water molecule to every amino acid of the piece, but only the two bonds joining it are cut.

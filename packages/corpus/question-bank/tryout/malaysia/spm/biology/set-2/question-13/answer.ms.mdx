@@ -1,0 +1,31 @@
+# Bandingkan glukosa yang diturasi dengan jumlah maksimum yang boleh diserap semula
+
+Jisim glukosa yang diturasi setiap minit ialah isi padu hasil turasan didarab dengan kepekatannya. Glukosa terdapat dalam air kencing sebaik sahaja jisim ini **melebihi** <InlineMath math="375\text{ mg}" /> yang boleh diserap semula oleh tubul.
+
+<Chart
+  title={<>Glukosa yang Dikendalikan oleh Ginjal Setiap Minit</>}
+  categories={["2.0 mg/cm³", "3.0 mg/cm³", "4.2 mg/cm³", "5.0 mg/cm³"]}
+  series={[
+    { label: "Diturasi", mark: "line", values: [250, 375, 525, 625] },
+    { label: "Diserap semula", mark: "line", values: [250, 375, 375, 375] },
+    { label: "Masuk ke air kencing", mark: "line", values: [0, 0, 150, 250] },
+  ]}
+  valueLabel="Glukosa (mg seminit)"
+  description={<>Pada <InlineMath math="2.0" /> dan <InlineMath math="3.0\text{ mg}" /> per sentimeter padu, semua glukosa yang diturasi diserap semula. Pada <InlineMath math="4.2" />, tubul menyerap semula maksimum <InlineMath math="375\text{ mg}" /> dan <InlineMath math="150\text{ mg}" /> masuk ke dalam air kencing, dan pada <InlineMath math="5.0" /> nilainya <InlineMath math="250\text{ mg}" />.</>}
+/>
+
+Nilai ambang ialah kepekatan apabila jisim yang diturasi sama dengan nilai maksimum itu:
+
+<BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
+
+Pada <InlineMath math="4.2\text{ mg cm}^{-3}" />, jisim yang diturasi melebihi nilai maksimum, jadi tubul menyerap semula <InlineMath math="375\text{ mg}" /> sepenuhnya dan bakinya masuk ke dalam air kencing:
+
+<BlockMath math="125\times4.2=525\text{ mg},\qquad 525-375=150\text{ mg seminit}." />
+
+Jadi, glukosa mula terdapat dalam air kencing apabila kepekatan melebihi <InlineMath math="3.0\text{ mg cm}^{-3}" />, dan pada <InlineMath math="4.2\text{ mg cm}^{-3}" /> air kencing menerima <InlineMath math="150\text{ mg}" /> glukosa seminit.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="525\text{ mg}" /> ialah glukosa yang **diturasi**, dan pilihan ini terlupa bahawa <InlineMath math="375\text{ mg}" /> daripadanya masih diserap semula.
+- <InlineMath math="4.2\text{ mg cm}^{-3}" /> dan <InlineMath math="0\text{ mg}" /> menganggap tubul sentiasa menyerap semula semua glukosa, sedangkan ini gagal apabila jisim melebihi had maksimum.
+- <InlineMath math="1.2\text{ mg}" /> menolak kepekatan, <InlineMath math="4.2-3.0" />, tetapi tidak mendarab dengan <InlineMath math="125\text{ cm}^3" /> yang diturasi setiap minit.

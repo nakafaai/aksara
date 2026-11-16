@@ -1,0 +1,22 @@
+# Blutgruppen bestimmen, dann mit dem Antikörper des Patienten abgleichen
+
+Rote Blutkörperchen verklumpen mit Anti-A-Serum, wenn sie Antigen A tragen, und mit Anti-B-Serum, wenn sie Antigen B tragen. Die Tabelle ergibt also:
+
+<Mermaid
+  title={<>Jeden Spender am Anti-A des Patienten prüfen</>}
+  description={<>Das Plasma des Patienten enthält Anti-A. W und X tragen Antigen A und fallen aus. Y und Z tragen kein Antigen A und sind sicher.</>}
+  chart={"flowchart LR\n  P[Patient Gruppe B: Anti-A im Plasma] --> W[W, Gruppe A: Antigen A, unsicher]\n  P --> X[X, Gruppe AB: Antigen A, unsicher]\n  P --> Y[Y, Gruppe 0: kein Antigen, sicher]\n  P --> Z[Z, Gruppe B: nur Antigen B, sicher]"}
+/>
+
+- W trägt nur Antigen A: Blutgruppe A.
+- X trägt die Antigene A und B: Blutgruppe AB.
+- Y trägt keines der beiden Antigene: Blutgruppe <InlineMath math="0" />.
+- Z trägt nur Antigen B: Blutgruppe B.
+
+Der Patient hat Blutgruppe B, sein Plasma enthält also **Anti-A**. Rote Blutkörperchen eines Spenders sind nur sicher, wenn sie **kein Antigen A** tragen, sonst verklumpt das Anti-A des Patienten sie. W und X tragen Antigen A und sind unsicher. Y und Z tragen kein Antigen A und sind sicher. Der Patient kann also nur von Y und Z Blut erhalten.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur Y nimmt den Universalspender, verwirft aber Z, obwohl Blutkörperchen der Gruppe B kein Antigen A tragen.
+- X und Z nimmt X auf und hält Gruppe AB fälschlich für einen Universalspender. Gruppe AB ist der universelle **Empfänger**.
+- W, Y und Z nimmt W auf, dessen Antigen A vom Anti-A des Patienten verklumpt wird.

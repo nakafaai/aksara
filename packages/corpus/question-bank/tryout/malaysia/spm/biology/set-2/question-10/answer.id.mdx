@@ -1,0 +1,22 @@
+# Tentukan golongan darah, lalu cocokkan dengan antibodi pasien
+
+Sel darah merah menggumpal dengan serum anti-A jika membawa antigen A, dan dengan serum anti-B jika membawa antigen B. Jadi, tabel itu memberi golongan darah berikut:
+
+<Mermaid
+  title={<>Mencocokkan Setiap Donor dengan Anti-A Pasien</>}
+  description={<>Plasma pasien mengandung anti-A. W dan X membawa antigen A dan ditolak. Y dan Z tidak membawa antigen A dan aman.</>}
+  chart={"flowchart LR\n  P[Pasien golongan B: anti-A di plasma] --> W[W, golongan A: antigen A, tidak aman]\n  P --> X[X, golongan AB: antigen A, tidak aman]\n  P --> Y[Y, golongan O: tanpa antigen, aman]\n  P --> Z[Z, golongan B: antigen B saja, aman]"}
+/>
+
+- W membawa antigen A saja: golongan A.
+- X membawa antigen A dan B: golongan AB.
+- Y tidak membawa antigen apa pun: golongan O.
+- Z membawa antigen B saja: golongan B.
+
+Pasien bergolongan darah B, jadi plasmanya mengandung antibodi **anti-A**. Sel darah merah donor aman hanya jika **tidak membawa antigen A**, karena kalau membawa, anti-A pasien akan menggumpalkannya. W dan X membawa antigen A, jadi tidak aman. Y dan Z tidak membawa antigen A, jadi aman. Jadi, pasien bisa menerima darah dari Y dan Z saja.
+
+# Kenapa pilihan lain salah
+
+- Y saja menerima donor universal tetapi menolak Z, padahal sel golongan B tidak membawa antigen A.
+- X dan Z menerima X karena keliru menganggap golongan AB sebagai donor universal. Golongan AB adalah **resipien** universal.
+- W, Y, dan Z menerima W, yang antigen A-nya akan digumpalkan oleh anti-A pasien.

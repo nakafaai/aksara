@@ -1,0 +1,28 @@
+# Follow the two groups day by day
+
+The antibiotic only removes the bacteria it can kill, so the two groups change **differently**. Track each one, then compare.
+
+<BlockMath math="\begin{aligned}
+\text{killable}&: 1\,000\,000\xrightarrow{\times0.01}10\,000\xrightarrow{\times0.01}100\\
+\text{resistant}&: 100\to100\to100
+\end{aligned}" />
+
+After <InlineMath math="2" /> days, <InlineMath math="100" /> of the <InlineMath math="200" /> survivors are resistant, so <InlineMath math="\frac{100}{200}=50\%" />.
+
+<Chart
+  title={<>Share of Resistant Bacteria During Treatment</>}
+  categories={["Day 0", "Day 1", "Day 2"]}
+  series={[
+    { label: "Resistant share (%)", mark: "line", values: [0.01, 0.99, 50] },
+  ]}
+  valueLabel="Resistant bacteria (%)"
+  description={<>The resistant share is about <InlineMath math="0.01" /> percent at the start, about <InlineMath math="0.99" /> percent after one day, and <InlineMath math="50" /> percent after two days, when <InlineMath math="100" /> killable bacteria remain beside the <InlineMath math="100" /> resistant ones.</>}
+/>
+
+Stopping early leaves a population in which half the bacteria are resistant, and they can multiply into an infection the antibiotic cannot treat. So <InlineMath math="50\%" /> of the bacteria still alive are resistant.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.01\%" /> is the share **before** treatment, <InlineMath math="\frac{100}{1\,000\,100}" />.
+- <InlineMath math="1\%" /> is roughly the share after one day, <InlineMath math="\frac{100}{10\,100}" />.
+- <InlineMath math="99\%" /> assumes the killable bacteria are all gone, but <InlineMath math="100" /> of them are still alive after two days.
