@@ -1,74 +1,68 @@
 # Baris pertama dan beza antara baris
 
-Soalan ini bertanya bilangan kerusi pada baris terakhir, sedangkan bilangan baris belum diketahui. Jadi urutannya: cari baris pertama <InlineMath math="a" /> dan beza sepunya <InlineMath math="b" />, kemudian bilangan baris <InlineMath math="n" />, barulah baris ke-<InlineMath math="n" />. **Setiap langkah menggunakan hasil langkah sebelumnya**.
-
-Sebutan ke-<InlineMath math="k" /> bagi janjang aritmetik ialah <InlineMath math="u_k=a+(k-1)b" />.
+Urutannya: cari baris pertama <InlineMath math="a" /> dan beza <InlineMath math="b" />, kemudian bilangan kerusi yang tinggal selepas dua baris dirobohkan, kemudian bilangan baris <InlineMath math="n" />, dan barulah baris ke-<InlineMath math="n" />. **Setiap langkah menggunakan hasil langkah sebelumnya**.
 
 <BlockMath math="\begin{aligned}
-u_{12}-u_5&=(a+11b)-(a+4b)=7b=40-26=14 \\
-b&=2 \\
-a&=26-4\cdot2=18
+u_{12}-u_5&=7b=40-26=14\ \Rightarrow\ b=2 \\
+a&=u_5-4b=26-8=18
 \end{aligned}" />
 
-Baris pertama mempunyai <InlineMath math="18" /> kerusi, dan setiap baris seterusnya bertambah <InlineMath math="2" /> kerusi.
+# Kerusi yang tinggal
+
+Jika baris paling belakang ialah baris ke-<InlineMath math="n" />, baris ke-<InlineMath math="1" /> hingga ke-<InlineMath math="n" /> memuatkan <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)=n(n+17)" /> kerusi. **Dua baris hadapan sudah dirobohkan**, jadi kerusinya, <InlineMath math="18+20=38" />, mesti ditolak.
+
+<BlockMath math="n(n+17)-38\ge960\ \Leftrightarrow\ n(n+17)\ge998" />
 
 # Bilangan baris
 
-Hasil tambah <InlineMath math="n" /> sebutan pertama ialah <InlineMath math="S_n=\frac n2\left(2a+(n-1)b\right)" />. Samakan dengan <InlineMath math="1{,}050" />.
+<InlineMath math="20" /> baris asal hanya memberi <InlineMath math="20\cdot37-38=702" /> kerusi, jadi baris memang perlu ditambah. Cuba nombor bulat di sekitar hadnya.
 
 <BlockMath math="\begin{aligned}
-\frac n2\left(36+2(n-1)\right)&=1{,}050 \\
-n(n+17)&=1{,}050 \\
-n^2+17n-1{,}050&=0 \\
-(n-25)(n+42)&=0
+n=24&:\ 24\cdot41=984<998 \\
+n=25&:\ 25\cdot42=1{,}050\ge998
 \end{aligned}" />
 
-Lukis jumlah kerusi pada <InlineMath math="n" /> baris pertama sebagai fungsi <InlineMath math="n" />. **Lengkungnya memotong garis <InlineMath math="1{,}050" /> tepat sekali bagi <InlineMath math="n" /> positif**, iaitu pada <InlineMath math="n=25" />. Punca negatif persamaan kuadratik tidak bermakna di sini.
+**Baris ke-<InlineMath math="24" /> belum mencukupi**, jadi baris paling belakang ialah baris ke-<InlineMath math="25" />. Lukis bilangan kerusi yang tinggal sebagai fungsi nombor baris terakhir. Lengkung itu hanya melepasi garis <InlineMath math="960" /> di antara <InlineMath math="n=24" /> dan <InlineMath math="n=25" />.
 
 <MathVisual
-  title={<>Jumlah kerusi mengikut bilangan baris</>}
-  description={<>Paksi mendatar ialah bilangan baris <InlineMath math="n" />, dan paksi tegak ialah jumlah kerusi. Lengkung <InlineMath math="S_n=n(n+17)" /> naik semakin pantas dari asalan. Garis mendatar pada <InlineMath math="1{,}050" /> memotong lengkung pada <InlineMath math="(25,\ 1{,}050)" />.</>}
+  title={<>Bilangan kerusi yang tinggal mengikut nombor baris terakhir</>}
+  description={<>Paksi mendatar ialah nombor baris paling belakang, dan paksi tegak ialah bilangan kerusi selepas dua baris hadapan dirobohkan, iaitu <InlineMath math="n(n+17)-38" />. Pada <InlineMath math="n=24" /> jumlahnya <InlineMath math="946" />, masih di bawah garis <InlineMath math="960" />, dan pada <InlineMath math="n=25" /> jumlahnya <InlineMath math="1{,}012" />, sudah di atas garis itu.</>}
   labels={{
-    total: <InlineMath math="S_n=n(n+17)" />,
-    target: <InlineMath math="1{.}050" />,
-    hit: <InlineMath math="(25,\ 1{.}050)" />,
+    short: <InlineMath math="(24,\ 946)" />,
+    enough: <InlineMath math="(25,\ 1{,}012)" />,
+    target: <InlineMath math="960" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -1, max: 31 },
-      y: { min: -40, max: 1400 },
+      x: { min: 19.5, max: 26.5 },
+      y: { min: 650, max: 1100 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17)", domain: { min: 0, max: 30 } },
-      { id: "target", kind: "function", appearance: "reference", formula: "1050", domain: { min: 0, max: 30 } },
-      { id: "hit", kind: "point", appearance: "answer", at: { x: 25, y: 1050 } },
+      { id: "total", kind: "function", appearance: "primary", formula: "x(x + 17) - 38", domain: { min: 20, max: 26 } },
+      { id: "target", kind: "function", appearance: "reference", formula: "960", domain: { min: 19.5, max: 26.5 } },
+      { id: "short", kind: "point", appearance: "secondary", at: { x: 24, y: 946 } },
+      { id: "enough", kind: "point", appearance: "answer", at: { x: 25, y: 1012 } },
     ],
     labels: [
-      { key: "total", objectId: "total", at: { x: 15, y: 480 }, placement: "below-right" },
-      { key: "target", objectId: "target", at: { x: 5, y: 1050 }, placement: "above" },
-      { key: "hit", objectId: "hit", at: { x: 25, y: 1050 }, placement: "below-right" },
+      { key: "target", objectId: "target", at: { x: 20.5, y: 960 }, placement: "above" },
+      { key: "short", objectId: "short", at: { x: 24, y: 946 }, placement: "below-right" },
+      { key: "enough", objectId: "enough", at: { x: 25, y: 1012 }, placement: "above-left" },
     ],
   }}
 />
 
-Puncanya ialah <InlineMath math="n=25" /> atau <InlineMath math="n=-42" />. **Bilangan baris tidak mungkin negatif**, jadi <InlineMath math="n=25" />.
-
 # Kerusi pada baris terakhir
-
-Baris terakhir ialah baris ke-<InlineMath math="25" />. Gunakan semula rumus sebutan ke-<InlineMath math="k" /> dengan <InlineMath math="a=18" /> dan <InlineMath math="b=2" />.
 
 <BlockMath math="u_{25}=18+24\cdot2=66" />
 
-Untuk semakan, <InlineMath math="S_{25}=\frac{25}{2}(18+66)=25\cdot42=1{,}050" />. **Jumlahnya sepadan dengan soalan**, jadi bilangan baris dan sebutan terakhir itu memang betul.
-
 # Mengapa pilihan lain salah
 
-- <InlineMath math="42" /> ialah purata kerusi bagi setiap baris, <InlineMath math="1{,}050\div25" />. Dalam janjang aritmetik, purata itu sama dengan baris tengah (baris ke-<InlineMath math="13" />), **bukan baris terakhir**.
-- <InlineMath math="68" /> menggunakan rumus yang salah, <InlineMath math="u_n=a+nb=18+25\cdot2" />. Baris pertama belum menerima tambahan, jadi pendarab yang betul ialah <InlineMath math="n-1" />.
-- <InlineMath math="84" /> datang daripada <InlineMath math="S_n=\frac n2(a+u_n)" /> tetapi terlupa menolak <InlineMath math="a" />. Yang betul ialah <InlineMath math="u_n=\frac{2S_n}{n}-a=84-18=66" />.
-- <InlineMath math="100" /> menggunakan <InlineMath math="n=42" />, iaitu punca <InlineMath math="-42" /> yang tandanya dibuang. Dengan <InlineMath math="42" /> baris, jumlah kerusinya jauh melebihi <InlineMath math="1{,}050" />.
+- <InlineMath math="62" /> menomborkan semula baris yang tinggal bermula dari <InlineMath math="1" />, jadi baris terakhir dianggap baris ke-<InlineMath math="23" />. Sebenarnya **pola kerusi tetap mengikut nombor baris asal**.
+- <InlineMath math="64" /> terlupa menolak <InlineMath math="38" /> kerusi daripada dua baris yang dirobohkan. Syarat <InlineMath math="n(n+17)\ge960" /> sudah dipenuhi pada <InlineMath math="n=24" />.
+- <InlineMath math="44" /> ialah purata kerusi bagi setiap baris yang tinggal, <InlineMath math="\frac{22+66}{2}" />, bukan isi baris terakhir.
+- <InlineMath math="70" /> menambah dua baris lagi untuk menggantikan baris yang dirobohkan, walaupun syarat <InlineMath math="960" /> kerusi sudah dipenuhi pada baris ke-<InlineMath math="25" />.
 
-Jadi, baris ke-<InlineMath math="n" /> mempunyai <InlineMath math="66" /> kerusi.
+Jadi, baris paling belakang memuatkan <InlineMath math="66" /> kerusi.

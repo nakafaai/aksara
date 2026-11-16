@@ -1,31 +1,42 @@
-Ketiga pernyataan membahas perubahan rata-rata gaji. Cara paling aman adalah **selalu bekerja dengan jumlah gaji, bukan dengan rata-rata**, lalu membagi lagi dengan banyak orang di akhir. Semua angka di bawah dalam juta rupiah.
+Ketiga pernyataan membahas perubahan rata-rata gaji. Cara paling aman adalah **selalu bekerja dengan jumlah gaji, bukan dengan rata-rata**, lalu membagi dengan banyak orang di akhir. Semua nilai di bawah dalam juta rupiah.
 
 # Keadaan bulan Maret
 
-Dari tabel, jumlah gaji bagian jahit <InlineMath math="15\cdot4{,}8=72" /> dan bagian desain <InlineMath math="5\cdot7{,}2=36" />. Jadi jumlah seluruhnya dan rata-rata gabungannya:
-
-<BlockMath math="\bar{x}=\frac{72+36}{20}=\frac{108}{20}=5{,}4" />
-
-Bandingkan kenaikan rata-rata gabungan untuk ketiga perubahan yang memakai <InlineMath math="20" /> karyawan yang sama. **Batang pertama tidak menembus garis <InlineMath math="0{,}5" />**, dan dua batang terakhir sama tinggi karena keduanya menambah jumlah gaji sebesar <InlineMath math="7{,}2" /> juta.
-
-<Chart
-  title={<>Kenaikan rata-rata gaji untuk tiap perubahan</>}
-  description={<>Kenaikan <InlineMath math="25\%" /> gaji desain menaikkan rata-rata gabungan <InlineMath math="0{,}45" /> juta. Kenaikan <InlineMath math="10\%" /> gaji jahit dan kenaikan <InlineMath math="1{,}44" /> juta per karyawan desain sama-sama menaikkannya <InlineMath math="0{,}36" /> juta. Garis mendatar menandai <InlineMath math="0{,}5" /> juta.</>}
-  bars="apart"
-  categories={["Desain naik 25%", "Jahit naik 10%", "Desain naik 1,44 juta"]}
-  series={[
-    { label: "Kenaikan rata-rata", mark: "bar", values: [0.45, 0.36, 0.36] },
-    { label: "Batas 0,5 juta", mark: "line", values: [0.5, 0.5, 0.5] },
-  ]}
-  valueLabel="Juta rupiah"
-/>
-
-Kalau banyak karyawan tetap <InlineMath math="20" />, **kenaikan rata-rata gabungan sama dengan kenaikan jumlah gaji dibagi <InlineMath math="20" />**. Aturan ini dipakai di pernyataan pertama dan ketiga.
+Dari tabel, jumlah gaji bagian jahit <InlineMath math="15\cdot4{,}8=72" /> dan bagian desain <InlineMath math="5\cdot7{,}2=36" />, jadi jumlah seluruhnya <InlineMath math="108" /> untuk <InlineMath math="20" /> orang dan **rata-ratanya <InlineMath math="5{,}4" />**.
 
 # Menilai setiap pernyataan
 
-1. **Salah**. Kenaikan <InlineMath math="25\%" /> hanya berlaku untuk jumlah gaji desain, yaitu <InlineMath math="0{,}25\cdot36=9" />. Rata-rata gabungan naik <InlineMath math="\frac{9}{20}=0{,}45" />, dan itu tidak lebih dari <InlineMath math="0{,}5" />. Setiap orang desain memang naik <InlineMath math="0{,}25\cdot7{,}2=1{,}8" />, tetapi hanya <InlineMath math="5" /> dari <InlineMath math="20" /> orang yang menerimanya. Kalau kamu memakai rata-rata dari dua rata-rata, kenaikannya tampak <InlineMath math="\frac{1{,}8}{2}=0{,}9" />, padahal kedua bagian tidak sama besar.
-2. **Benar**. Jumlah gaji menjadi <InlineMath math="108+10\cdot7{,}2=180" /> untuk <InlineMath math="20+10=30" /> orang, jadi rata-ratanya <InlineMath math="\frac{180}{30}=6" />. Ini masuk akal: kedua bagian sekarang sama-sama berisi <InlineMath math="15" /> orang, sehingga rata-rata gabungan tepat berada di tengah <InlineMath math="4{,}8" /> dan <InlineMath math="7{,}2" />.
-3. **Benar**. Kenaikan <InlineMath math="10\%" /> untuk jahit menambah jumlah gaji <InlineMath math="0{,}1\cdot72=7{,}2" />. Kenaikan <InlineMath math="1{,}44" /> untuk setiap orang desain menambah <InlineMath math="5\cdot1{,}44=7{,}2" />. Kedua cara menambah jumlah gaji yang sama untuk <InlineMath math="20" /> orang yang sama, jadi rata-rata gabungan sama-sama naik <InlineMath math="\frac{7{,}2}{20}=0{,}36" />.
+1. **Salah**. Kenaikan bagian desain menambah <InlineMath math="0{,}25\cdot36=9" />, tetapi penurunan bagian jahit mengurangi <InlineMath math="0{,}15\cdot72=10{,}8" />. Jumlahnya turun <InlineMath math="1{,}8" />, jadi rata-ratanya turun menjadi <InlineMath math="5{,}31" />. **Persentase harus dibobot dengan jumlah gaji tiap bagian**. Rata-rata biasa dari <InlineMath math="+25\%" /> dan <InlineMath math="-15\%" />, yaitu <InlineMath math="+5\%" />, memberi kesan naik.
+2. **Benar**. Dengan <InlineMath math="k" /> karyawan baru, rata-ratanya <InlineMath math="\frac{108+7{,}2k}{20+k}" />. Karena penyebutnya positif, syarat rata-rata paling sedikit <InlineMath math="6" /> setara dengan <InlineMath math="108+7{,}2k\ge120+6k" />, yaitu <InlineMath math="1{,}2k\ge12" /> atau <InlineMath math="k\ge10" />. Kedua arah berlaku, jadi kata **tepat ketika** benar.
+3. **Benar**. Jumlahnya menjadi <InlineMath math="108-9=99" /> untuk <InlineMath math="17" /> orang, jadi rata-ratanya <InlineMath math="\frac{99}{17}\approx5{,}82" />. Kenaikannya sekitar <InlineMath math="0{,}42" />, lebih dari <InlineMath math="0{,}4" />. Kalau jumlah orangnya tetap dihitung <InlineMath math="20" />, rata-rata malah terlihat turun.
+
+Gambar rata-rata seluruh karyawan sebagai fungsi banyak karyawan baru <InlineMath math="k" /> pada pernyataan kedua. **Kurvanya naik dan baru mencapai garis <InlineMath math="6" /> tepat di <InlineMath math="k=10" />**, jadi syarat itu berlaku untuk <InlineMath math="k\ge10" /> dan tidak untuk <InlineMath math="k" /> yang lebih kecil.
+
+<MathVisual
+  title={<>Rata-rata gaji menurut banyak karyawan desain baru</>}
+  description={<>Sumbu mendatar adalah banyak karyawan baru <InlineMath math="k" />, sumbu tegak adalah rata-rata gaji seluruh karyawan dalam juta rupiah, yaitu <InlineMath math="\frac{108+7{,}2k}{20+k}" />. Kurva mulai dari <InlineMath math="5{,}4" /> di <InlineMath math="k=0" />, naik, dan memotong garis mendatar <InlineMath math="6" /> di <InlineMath math="k=10" />.</>}
+  labels={{
+    six: <InlineMath math="6" />,
+    ten: <InlineMath math="(10,\ 6)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 31 },
+      y: { min: 5.2, max: 6.6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mean", kind: "function", appearance: "primary", formula: "(108 + 7.2x) / (20 + x)", domain: { min: 0, max: 30 } },
+      { id: "six", kind: "function", appearance: "reference", formula: "6", domain: { min: -1, max: 31 } },
+      { id: "ten", kind: "point", appearance: "answer", at: { x: 10, y: 6 } },
+    ],
+    labels: [
+      { key: "six", objectId: "six", at: { x: 27, y: 6 }, placement: "below" },
+      { key: "ten", objectId: "ten", at: { x: 10, y: 6 }, placement: "above-left" },
+    ],
+  }}
+/>
 
 Jadi, pernyataan pertama salah, sedangkan pernyataan kedua dan ketiga benar.

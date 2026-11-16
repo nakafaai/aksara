@@ -13,23 +13,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$83\\text{ dB}$$",
-        },
-        {
-          correct: false,
-          label: "$$84{,}5\\text{ dB}$$",
-        },
-        {
-          correct: false,
           label: "$$86\\text{ dB}$$",
         },
         {
-          correct: true,
-          label: "$$87{,}8\\text{ dB}$$",
+          correct: false,
+          label: "$$90\\text{ dB}$$",
         },
         {
           correct: false,
+          label: "$$91\\text{ dB}$$",
+        },
+        {
+          correct: true,
           label: "$$89\\text{ dB}$$",
+        },
+        {
+          correct: false,
+          label: "$$92\\text{ dB}$$",
         },
       ],
     },

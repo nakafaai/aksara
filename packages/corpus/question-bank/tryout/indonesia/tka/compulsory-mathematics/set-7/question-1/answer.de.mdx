@@ -1,55 +1,68 @@
-# Intensität von jeder Bühne
+# Intensität einer Trommel
 
-Gefragt ist der Schallpegel am Gästezelt, während zwei Gruppen von Trommeln gleichzeitig spielen. Nach der ersten Regel im Text **addierst du Intensitäten, nicht Dezibel**. Rechne also zuerst die Dezibel in Intensität um, bestimme jede Bühne einzeln und addiere erst dann.
-
-Eine große Trommel hat in <InlineMath math="1\text{ m}" /> Abstand den Pegel <InlineMath math="100\text{ dB}" />. Mit der Formel aus dem Text bekommst du ihre Intensität:
+Nach der ersten Regel **addierst du Intensitäten, nicht Dezibel**. Also rechnest du die Dezibel zuerst in Intensität um. Eine große Trommel hat in <InlineMath math="1\text{ m}" /> Abstand einen Pegel von <InlineMath math="100\text{ dB}" />.
 
 <BlockMath math="\begin{aligned}
-10\log\frac{I}{10^{-12}}&=100 \\
-\frac{I}{10^{-12}}&=10^{10} \\
-I_{\text{groß}}&=10^{-2}\ \text{W/m}^2 \\
-I_{\text{klein}}&=\tfrac14\cdot10^{-2}=2{,}5\cdot10^{-3}\ \text{W/m}^2
+10\log\frac{I}{10^{-12}}&=100\ \Rightarrow\ I_{\text{groß}}=10^{-2}\ \text{W/m}^2 \\
+I_{\text{klein}}&=\tfrac14\cdot10^{-2}\ \text{W/m}^2
 \end{aligned}" />
 
-Das sind Intensitäten in <InlineMath math="1\text{ m}" /> Abstand. Nach der zweiten Regel teilst du im Abstand <InlineMath math="r" /> durch <InlineMath math="r^2" />. Das Zelt ist <InlineMath math="20\text{ m}" /> von Bühne A entfernt, also teilst du durch <InlineMath math="400" />. Von Bühne B ist es <InlineMath math="5\text{ m}" /> entfernt, also teilst du durch <InlineMath math="25" />.
+# Die Lage des Punktes T
+
+Der Punkt <InlineMath math="T" /> liege <InlineMath math="x" /> Meter von Bühne A entfernt, also <InlineMath math="20-x" /> Meter von Bühne B. Die Intensität ist umgekehrt proportional zum Quadrat des Abstands, und die Bedingung lautet, dass beide Bühnen gleich viel beitragen.
 
 <BlockMath math="\begin{aligned}
-I_A&=8\cdot\frac{10^{-2}}{400}=2\cdot10^{-4}\ \text{W/m}^2 \\
-I_B&=4\cdot\frac{2{,}5\cdot10^{-3}}{25}=4\cdot10^{-4}\ \text{W/m}^2
+\frac{9\cdot10^{-2}}{x^2}&=\frac{4\cdot\tfrac14\cdot10^{-2}}{(20-x)^2} \\
+\frac{9}{x^2}&=\frac{1}{(20-x)^2}\ \Rightarrow\ x=3\,(20-x)
 \end{aligned}" />
 
-Bühne B liefert also doppelt so viel wie Bühne A. Ihre Trommeln sind kleiner und weniger, aber sie stehen viel näher am Zelt.
+Weil <InlineMath math="T" /> zwischen den Bühnen liegt, sind beide Abstände positiv, und du nimmst die positive Wurzel. Es folgt <InlineMath math="x=15" />, also **liegt <InlineMath math="T" /> <InlineMath math="15\text{ m}" /> von A und <InlineMath math="5\text{ m}" /> von B entfernt**, näher an der Bühne mit dem schwächeren Klang.
 
-# Der Gesamtpegel
+Zeichne den Beitrag jeder Bühne entlang der Strecke <InlineMath math="AB" />, in Einheiten von <InlineMath math="10^{-4}\ \text{W/m}^2" />. Die Kurve von Bühne A fällt, wenn du dich von A entfernst, die Kurve von Bühne B steigt, wenn du dich B näherst, und **beide treffen sich bei <InlineMath math="x=15" /> mit dem Wert <InlineMath math="4" />**.
 
-Addiere die beiden Intensitäten und rechne mit <InlineMath math="\log6=\log2+\log3=0{,}78" /> zurück in Dezibel.
-
-<BlockMath math="\begin{aligned}
-I&=2\cdot10^{-4}+4\cdot10^{-4}=6\cdot10^{-4}\ \text{W/m}^2 \\
-\mathrm{TI}&=10\log\frac{6\cdot10^{-4}}{10^{-12}}=10\log\left(6\cdot10^{8}\right) \\
-&=10\,(0{,}78+8)=87{,}8\text{ dB}
-\end{aligned}" />
-
-Vergleiche die Beiträge beider Bühnen am Gästezelt. **Die nähere Bühne B trägt doppelt so viel bei wie Bühne A**, und in Dezibel umgerechnet wird die Summe der Balken, nicht die Summe einzelner Pegel.
-
-<Chart
-  title={<>Schallintensität am Gästezelt</>}
-  description={<>In Einheiten von <InlineMath math="10^{-4}\ \text{W/m}^2" /> tragen acht große Trommeln aus <InlineMath math="20\text{ m}" /> <InlineMath math="2" /> bei, vier kleine Trommeln aus <InlineMath math="5\text{ m}" /> <InlineMath math="4" />, zusammen <InlineMath math="6" />. Diese Summe ergibt <InlineMath math="87{,}8\text{ dB}" />.</>}
-  bars="apart"
-  categories={["Bühne A", "Bühne B", "Gesamt"]}
-  series={[
-    { label: "Intensität", mark: "bar", values: [2, 4, 6] },
-  ]}
-  valueLabel="Vielfache von 0,0001 W/m²"
+<MathVisual
+  title={<>Beitrag jeder Bühne entlang der Strecke AB</>}
+  description={<>Die waagerechte Achse ist der Abstand von Bühne A in Metern, die senkrechte Achse die Intensität in Einheiten von <InlineMath math="10^{-4}\ \text{W/m}^2" />. Die Kurve von Bühne A ist <InlineMath math="\frac{900}{x^2}" />, die Kurve von Bühne B ist <InlineMath math="\frac{100}{(20-x)^2}" />. Sie schneiden sich in <InlineMath math="(15,\ 4)" />.</>}
+  labels={{
+    a: <>Bühne A</>,
+    b: <>Bühne B</>,
+    meet: <InlineMath math="(15,\ 4)" />,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 20 },
+      y: { min: 0, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "function", appearance: "primary", formula: "900 / x^2", domain: { min: 7.5, max: 19.5 } },
+      { id: "b", kind: "function", appearance: "secondary", formula: "100 / (20 - x)^2", domain: { min: 1, max: 17.5 } },
+      { id: "meet", kind: "point", appearance: "answer", at: { x: 15, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 8, y: 900 / 64 }, placement: "right" },
+      { key: "b", objectId: "b", at: { x: 17, y: 100 / 9 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 15, y: 4 }, placement: "below-left" },
+    ],
+  }}
 />
 
-Zur Kontrolle: Bühne B allein ergibt <InlineMath math="10\log(4\cdot10^8)=86\text{ dB}" />. Bühne A bringt nur die Hälfte der Intensität von B dazu, also **muss das Ergebnis über <InlineMath math="86\text{ dB}" /> und unter <InlineMath math="89\text{ dB}" /> liegen**. Der Wert <InlineMath math="87{,}8\text{ dB}" /> passt.
+# Der Pegel bei T
+
+Jede Bühne trägt <InlineMath math="\frac{9\cdot10^{-2}{225}=4\cdot10^{-4}" /> bei, also ist **die Gesamtintensität doppelt so groß**.
+
+<BlockMath math="\begin{aligned}
+I&=2\cdot4\cdot10^{-4}=8\cdot10^{-4}\ \text{W/m}^2 \\
+\mathrm{TI}&=10\log\left(8\cdot10^{8}\right)=10\,(3\cdot0{,}30+8)=89\text{ dB}
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="83\text{ dB}" /> ist nur Bühne A, <InlineMath math="10\log(2\cdot10^8)" />. Das passiert, wenn du annimmst, die großen Trommeln geben sicher den Ton an, und Bühne B vergisst.
-- <InlineMath math="84{,}5\text{ dB}" /> ist der Mittelwert von <InlineMath math="83" /> und <InlineMath math="86" />. **Dezibel darfst du nicht direkt mitteln oder addieren**, weil die Skala logarithmisch ist.
-- <InlineMath math="86\text{ dB}" /> ist nur Bühne B. Bühne A erhöht die Intensität trotzdem, auch wenn ihr Anteil kleiner ist.
-- <InlineMath math="89\text{ dB}" /> rechnet <InlineMath math="3\text{ dB}" /> dazu, als wären beide Bühnen gleich stark. Plus <InlineMath math="3\text{ dB}" /> gilt nur, wenn sich die Intensität verdoppelt, hier wächst sie aber nur auf das <InlineMath math="1{,}5" />-Fache.
+- <InlineMath math="86\text{ dB}" /> zählt nur den Beitrag einer Bühne, <InlineMath math="4\cdot10^{-4}" />, und vergisst den anderen.
+- <InlineMath math="90\text{ dB}" /> legt <InlineMath math="T" /> in die Mitte von <InlineMath math="AB" />. **In der Mitte tragen die beiden Bühnen nicht gleich viel bei**, nämlich <InlineMath math="9\cdot10^{-4}" /> und <InlineMath math="10^{-4}" />.
+- <InlineMath math="91\text{ dB}" /> vergisst den Faktor <InlineMath math="\tfrac14" /> für die kleinen Trommeln, sodass <InlineMath math="T" /> <InlineMath math="12\text{ m}" /> von A liegt und jede Bühne <InlineMath math="6{,}25\cdot10^{-4}" /> beiträgt.
+- <InlineMath math="92\text{ dB}" /> rechnet für zwei gleich starke Quellen <InlineMath math="6\text{ dB}" /> dazu. Die doppelte Intensität bringt nur <InlineMath math="10\log2=3\text{ dB}" />.
 
-Der Schallpegel am Gästezelt beträgt also <InlineMath math="87{,}8\text{ dB}" />.
+Also beträgt der Pegel im Punkt <InlineMath math="T" /> <InlineMath math="89\text{ dB}" />.

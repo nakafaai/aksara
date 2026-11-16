@@ -1,49 +1,53 @@
-Soal ini menanyakan rata-rata gaji bagian desain setelah satu orang keluar. Gaji orang yang keluar tidak diberikan, jadi kamu harus menemukannya dulu dari rata-rata seluruh karyawan bulan April. Alat utamanya satu: **rata-rata dikali banyak data sama dengan jumlah data**. Semua angka di bawah dalam juta rupiah.
+Soal ini memberi dua rata-rata baru, dan keduanya harus dipakai berurutan. **Rata-rata bagian desain membuka gaji orang yang keluar, lalu rata-rata seluruh karyawan membuka jumlah gaji kedua karyawan baru, dan syarat paling sedikit <InlineMath math="\text{Rp}3{,}5" /> juta membatasi gaji tertinggi**. Semua nilai di bawah dalam juta rupiah, dan alat utamanya satu: rata-rata dikali banyak data sama dengan jumlah.
 
 # Jumlah gaji bulan Maret
-
-Ubah setiap rata-rata pada tabel menjadi jumlah gaji. Banyak karyawan kedua bagian berbeda, jadi **rata-rata gabungan bukan rata-rata dari dua rata-rata**. Yang dijumlahkan adalah jumlah gajinya.
 
 <BlockMath math="\begin{aligned}
 \text{jahit}&=15\cdot4{,}8=72 \\
 \text{desain}&=5\cdot7{,}2=36 \\
-\text{seluruhnya}&=72+36=108
+\text{seluruh}&=72+36=108
 \end{aligned}" />
 
 # Gaji karyawan yang keluar
 
-Sebut gaji karyawan desain yang keluar <InlineMath math="x" />. Pada bulan April, **banyak karyawan menjadi <InlineMath math="20-1+2=21" />**. Jumlah gaji April bisa ditulis dengan dua cara, dari rata-rata baru dan dari perubahan yang terjadi.
+Setelah satu orang keluar, bagian desain tinggal <InlineMath math="4" /> orang dengan rata-rata <InlineMath math="7{,}35" />.
+
+<BlockMath math="36-g=4\cdot7{,}35=29{,}4\ \Rightarrow\ g=6{,}6" />
+
+**Orang yang keluar bergaji <InlineMath math="6{,}6" />, bukan <InlineMath math="7{,}2" />**. Rata-rata bagian hanya menggambarkan seluruh bagian, bukan gaji satu orang.
+
+# Gaji karyawan baru
+
+Pada bulan April ada <InlineMath math="20-1+2=21" /> karyawan, jadi jumlah gaji seluruhnya <InlineMath math="21\cdot5{,}2=109{,}2" />. Misalkan gaji kedua karyawan baru <InlineMath math="s_1" /> dan <InlineMath math="s_2" />.
 
 <BlockMath math="\begin{aligned}
-21\cdot5{,}2&=108-x+2\cdot3{,}9 \\
-109{,}2&=115{,}8-x \\
-x&=6{,}6
+108-6{,}6+s_1+s_2&=109{,}2 \\
+s_1+s_2&=7{,}8
 \end{aligned}" />
 
-Diagram berikut memperlihatkan jalan dari jumlah gaji ke rata-rata desain. **Persamaan bulan April memakai jumlah gaji, bukan rata-rata**, lalu gaji orang yang keluar dikurangkan dari jumlah gaji desain.
+Bandingkan jumlah gaji setiap kelompok pada kedua bulan. **Jumlah bagian jahit naik <InlineMath math="7{,}8" /> untuk dua orang**, sedangkan jumlah bagian desain turun <InlineMath math="6{,}6" /> untuk satu orang.
 
-<Mermaid
-  title={<>Dari jumlah gaji Maret ke rata-rata desain April</>}
-  description={<>Jumlah gaji Maret <InlineMath math="108" /> juta. Pada April satu gaji <InlineMath math="x" /> keluar dan dua gaji <InlineMath math="3{,}9" /> juta masuk, sehingga jumlahnya <InlineMath math="21\cdot5{,}2" />. Dari situ <InlineMath math="x=6{,}6" />, dan rata-rata empat karyawan desain yang tersisa adalah <InlineMath math="(36-6{,}6)\div4=7{,}35" /> juta.</>}
-  chart={`flowchart TD
-  M["Maret: 72 + 36 = 108"] --> A["April: 108 − x + 2 · 3,9 = 21 · 5,2"]
-  A --> X["x = 6,6"]
-  X --> D["Desain April: (36 − 6,6) ÷ 4 = 7,35"]`}
+<Chart
+  title={<>Jumlah gaji bulan Maret dan April</>}
+  description={<>Dalam juta rupiah, jumlah gaji bagian jahit naik dari <InlineMath math="72" /> menjadi <InlineMath math="79{,}8" />, bagian desain turun dari <InlineMath math="36" /> menjadi <InlineMath math="29{,}4" />, dan seluruh karyawan naik dari <InlineMath math="108" /> menjadi <InlineMath math="109{,}2" />.</>}
+  bars="apart"
+  categories={["Jahit", "Desain", "Seluruh"]}
+  series={[
+    { label: "Maret", mark: "bar", values: [72, 36, 108] },
+    { label: "April", mark: "bar", values: [79.8, 29.4, 109.2] },
+  ]}
+  valueLabel="Juta rupiah"
 />
 
-# Rata-rata bagian desain bulan April
+# Gaji tertinggi yang mungkin
 
-Bagian desain sekarang berisi <InlineMath math="5-1=4" /> orang, dan jumlah gajinya berkurang sebesar gaji orang yang keluar.
-
-<BlockMath math="\frac{36-6{,}6}{4}=\frac{29{,}4}{4}=7{,}35" />
-
-Cek arahnya: orang yang keluar bergaji <InlineMath math="6{,}6" />, **lebih rendah dari rata-rata desain <InlineMath math="7{,}2" />**. Membuang data di bawah rata-rata membuat rata-rata naik, jadi hasil <InlineMath math="7{,}35" /> memang masuk akal.
+Jumlah <InlineMath math="7{,}8" /> bisa dibagi dengan banyak cara. Agar <InlineMath math="s_1" /> sebesar mungkin, <InlineMath math="s_2" /> harus sekecil mungkin, yaitu <InlineMath math="3{,}5" />. Maka <InlineMath math="s_1=7{,}8-3{,}5=4{,}3" />. **Pembagian <InlineMath math="4{,}3" /> dan <InlineMath math="3{,}5" /> memenuhi semua syarat**, jadi nilai itu benar-benar tercapai.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="\text{Rp}4{,}75\text{ juta}" /> muncul kalau dua karyawan baru tidak ikut dihitung, sehingga jumlah gaji April <InlineMath math="19\cdot5{,}2=98{,}8" />. Hasilnya <InlineMath math="x=17" /> dan rata-rata desain <InlineMath math="\frac{36-17}{4}=4{,}75" />.
-- <InlineMath math="\text{Rp}6{,}05\text{ juta}" /> muncul kalau banyak karyawan dianggap tetap <InlineMath math="20" />. **Satu orang keluar dan dua orang masuk, jadi bersihnya bertambah satu**. Hasilnya <InlineMath math="x=11{,}8" /> dan rata-rata desain <InlineMath math="\frac{24{,}2}{4}=6{,}05" />.
-- <InlineMath math="\text{Rp}6{,}6\text{ juta}" /> adalah gaji orang yang keluar. Perhitungannya berhenti satu langkah terlalu cepat.
-- <InlineMath math="\text{Rp}9\text{ juta}" /> adalah <InlineMath math="\frac{36}{4}" />. Banyak orangnya sudah dikurangi, tetapi gaji orang yang keluar lupa dikurangkan dari jumlah gaji.
+- <InlineMath math="\text{Rp}3{,}9\text{ juta}" /> menganggap gaji kedua karyawan baru sama besar. Soal hanya memberi batas bawah, jadi gajinya boleh berbeda.
+- <InlineMath math="\text{Rp}4{,}9\text{ juta}" /> menganggap orang yang keluar bergaji <InlineMath math="7{,}2" />, sama dengan rata-rata bagian desain, sehingga jumlah gaji kedua karyawan baru terbaca <InlineMath math="8{,}4" />. **Gaji itu harus dicari dari rata-rata baru bagian desain**.
+- <InlineMath math="\text{Rp}7{,}8\text{ juta}" /> adalah jumlah gaji kedua karyawan baru, seolah-olah karyawan yang lain bergaji nol.
+- <InlineMath math="\text{Rp}3{,}5\text{ juta}" /> adalah gaji terendah yang diizinkan, bukan gaji tertinggi.
 
-Jadi, rata-rata gaji bagian desain pada bulan April adalah <InlineMath math="\text{Rp}7{,}35\text{ juta}" />.
+Jadi, gaji tertinggi yang mungkin bagi salah satu karyawan baru adalah <InlineMath math="\text{Rp}4{,}3\text{ juta}" /> per bulan.

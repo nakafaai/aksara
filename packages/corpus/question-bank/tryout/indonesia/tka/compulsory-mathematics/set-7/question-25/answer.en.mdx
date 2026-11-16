@@ -1,52 +1,45 @@
-The PIN is picked from **valid PINs only**, so the sample space is every PIN that meets both rules, not every four-digit number. The probability is the number of valid PINs with all digits different divided by the number of all valid PINs.
+The PIN is picked from **valid PINs only**, so the sample space is every PIN that meets both rules. The top of the fraction needs a split into cases by digit pattern, because the rule on neighbouring digits decides which patterns are allowed.
 
 # Number of valid PINs
 
-Fill in the digits from left to right and count the choices at each position. The first digit can be <InlineMath math="1" /> to <InlineMath math="9" />. From the second digit on, **<InlineMath math="0" /> is allowed again**, and the only ban is repeating the digit right before it.
+Fill in the digits from left to right. The first digit can be <InlineMath math="1" /> to <InlineMath math="9" />. From the second digit on, **<InlineMath math="0" /> is allowed again**, and the only ban is repeating the digit right before it.
 
-<BlockMath math="\begin{aligned}
-\text{first digit}&:\ 9 \text{ choices} \\
-\text{second, third, fourth digit}&:\ 10-1=9 \text{ choices each} \\
-n(S)&=9\cdot9\cdot9\cdot9=6{,}561
-\end{aligned}" />
+<BlockMath math="n(S)=9\cdot9\cdot9\cdot9=6{,}561" />
 
-# Valid PINs with all digits different
+# Patterns with exactly three different digits
 
-If all four digits are different, neighbouring digits can't be equal. So **every PIN with four different digits that doesn't start with <InlineMath math="0" /> is automatically valid**, and you only have to count those.
+Three different digits in four places means exactly one digit appears twice. **The repeated digit can't sit in neighbouring places**, so its two places are the first and third, the second and fourth, or the first and fourth. Write each pattern with letters in order of appearance.
 
-<BlockMath math="\begin{aligned}
-\text{first digit}&:\ 9 \text{ choices } (1 \text{ to } 9) \\
-\text{second digit}&:\ 9 \text{ choices } (0 \text{ allowed, but not the first digit}) \\
-\text{third digit}&:\ 8 \text{ choices} \\
-\text{fourth digit}&:\ 7 \text{ choices} \\
-n(A)&=9\cdot9\cdot8\cdot7=4{,}536
-\end{aligned}" />
+<BlockMath math="ABAC,\qquad ABCB,\qquad ABCA" />
 
-Compare the number of choices at each digit position. **Both counts agree for the first two digits and split at the third and fourth**, so the probability is <InlineMath math="\frac{8\cdot7}{9\cdot9}=\frac{56}{81}" />.
+In each pattern, <InlineMath math="A" /> is the first digit, so it has <InlineMath math="9" /> choices. The letter <InlineMath math="B" /> may be <InlineMath math="0" /> as long as it differs from <InlineMath math="A" />, so it has <InlineMath math="9" /> choices, and <InlineMath math="C" /> has <InlineMath math="8" />.
+
+<BlockMath math="n(E)=3\cdot(9\cdot9\cdot8)=3\cdot648=1{,}944" />
+
+Compare the number of valid PINs for each pattern. **Each of the three patterns with exactly three different digits holds <InlineMath math="648" /> PINs**, while the two-digit pattern <InlineMath math="ABAB" /> holds only <InlineMath math="81" /> and the four-digit pattern <InlineMath math="ABCD" /> holds <InlineMath math="4{,}536" />.
 
 <Chart
-  title={<>Number of choices for each PIN digit</>}
-  description={<>For a valid PIN, every position has <InlineMath math="9" /> choices. For a PIN with all digits different, the choices are <InlineMath math="9" />, <InlineMath math="9" />, <InlineMath math="8" />, and <InlineMath math="7" />. The difference lies only in the third and fourth digits.</>}
+  title={<>Number of valid PINs by digit pattern</>}
+  description={<>The pattern <InlineMath math="ABAB" /> holds <InlineMath math="81" /> PINs, the patterns <InlineMath math="ABAC" />, <InlineMath math="ABCA" /> and <InlineMath math="ABCB" /> hold <InlineMath math="648" /> PINs each, and the pattern <InlineMath math="ABCD" /> holds <InlineMath math="4{,}536" /> PINs. Together that makes <InlineMath math="6{,}561" />.</>}
   bars="apart"
-  categories={["First digit", "Second digit", "Third digit", "Fourth digit"]}
+  categories={["ABAB", "ABAC", "ABCA", "ABCB", "ABCD"]}
   series={[
-    { label: "Valid PIN", mark: "bar", values: [9, 9, 9, 9] },
-    { label: "All digits different", mark: "bar", values: [9, 9, 8, 7] },
+    { label: "Number of PINs", mark: "bar", values: [81, 648, 648, 648, 4536] },
   ]}
-  valueLabel="Choices"
+  valueLabel="PINs"
 />
 
 # The probability
 
-Divide the two counts, then simplify by dividing top and bottom by <InlineMath math="81" />. The example in the question, <InlineMath math="1213" />, shows that some valid PINs repeat a digit, so **the probability has to be less than <InlineMath math="1" />**.
+<BlockMath math="P(E)=\frac{1{,}944}{6{,}561}=\frac{8}{27}" />
 
-<BlockMath math="P(A)=\frac{n(A)}{n(S)}=\frac{4{,}536}{6{,}561}=\frac{56}{81}" />
+Check: <InlineMath math="81+1{,}944+4{,}536=6{,}561" />, so **every valid PIN falls into exactly one pattern**.
 
 # Why the other options are wrong
 
-- <InlineMath math="\frac{28}{45}" /> uses the sample space <InlineMath math="10\cdot9\cdot9\cdot9=7{,}290" />, which forgets that the first digit can't be <InlineMath math="0" /> when counting valid PINs.
-- <InlineMath math="\frac{63}{125}" /> uses the sample space <InlineMath math="9{,}000" />, all four-digit numbers. **The PIN is picked from valid PINs**, not from all four-digit numbers.
-- <InlineMath math="\frac{112}{243}" /> uses <InlineMath math="9\cdot8\cdot7\cdot6=3{,}024" /> on top, as if <InlineMath math="0" /> were banned everywhere. That ban only applies to the first digit.
-- <InlineMath math="\frac{25}{81}" /> is <InlineMath math="1-\frac{56}{81}" />, the probability that some digit repeats. That's the opposite of what the question asks.
+- <InlineMath math="\frac{16}{81}" /> uses only two patterns and **loses the pattern <InlineMath math="ABCA" />**, where the repeated digit is first and last.
+- <InlineMath math="\frac{25}{81}" /> is <InlineMath math="1-\frac{56}{81}" />, the probability that some digit repeats. It also includes the pattern <InlineMath math="ABAB" />, which has only two different digits.
+- <InlineMath math="\frac{27}{125}" /> uses the sample space <InlineMath math="9{,}000" />, all four-digit numbers, but the PIN is picked from valid PINs.
+- <InlineMath math="\frac{4}{15}" /> uses the sample space <InlineMath math="10\cdot9\cdot9\cdot9=7{,}290" />, which allows <InlineMath math="0" /> as the first digit.
 
-So the probability that the chosen PIN has four different digits is <InlineMath math="\frac{56}{81}" />.
+So the probability is <InlineMath math="\frac{8}{27}" />.

@@ -1,63 +1,61 @@
-Soal ini menanyakan diameter tabung pejal hasil leburan satu batang pipa. Kuncinya, **volume besi tidak berubah**: volume dinding pipa sama dengan volume tabung pejal yang baru. Jadi hitung dulu volume besi pada pipa, lalu cari jari-jari tabung yang volumenya sama.
+# Volume besi dalam pipa lama
 
-# Volume besi pada pipa
+Diameter luar <InlineMath math="10\text{ cm}" /> memberi jari-jari luar <InlineMath math="5\text{ cm}" />. **Tebal dinding dikurangkan dari jari-jari, bukan dari diameter**, jadi jari-jari dalamnya <InlineMath math="4\text{ cm}" />.
 
-Besi pipa hanya ada di dinding, yaitu daerah cincin di antara lingkaran luar dan lingkaran rongga. Jari-jari luar adalah <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **Dinding setebal <InlineMath math="1\text{ cm}" /> ada di kedua sisi rongga**, jadi diameter rongga <InlineMath math="10-2\cdot1=8\text{ cm}" /> dan jari-jari dalam <InlineMath math="r=4\text{ cm}" />. Panjang pipa juga harus dalam sentimeter, <InlineMath math="5\text{ m}=500\text{ cm}" />.
+<BlockMath math="V_{\text{lama}}=\pi\left(5^2-4^2\right)\cdot500=4{.}500\pi\text{ cm}^3" />
 
-<BlockMath math="\begin{aligned}
-V_{\text{besi}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
-&=\pi\,(5^2-4^2)\cdot500 \\
-&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
-\end{aligned}" />
+# Besi untuk pipa baru
 
-# Jari-jari tabung pejal
-
-Misalkan jari-jari tabung pejal <InlineMath math="\rho" />. Tingginya <InlineMath math="20\text{ cm}" />, dan volumenya harus sama dengan volume besi tadi. Faktor <InlineMath math="\pi" /> ada di kedua ruas, jadi **kamu tidak perlu memasukkan <InlineMath math="\tfrac{22}{7}" />**.
+Hanya <InlineMath math="80\%" /> besi yang tersisa, jadi pipa baru memakai <InlineMath math="0{,}8\cdot4{.}500\pi=3{.}600\pi\text{ cm}^3" />. Pipa baru berjari-jari luar <InlineMath math="6\text{ cm}" /> dan panjang <InlineMath math="180\text{ cm}" />, sedangkan **jari-jari dalamnya <InlineMath math="r" /> belum diketahui**.
 
 <BlockMath math="\begin{aligned}
-\pi\rho^2\cdot20&=4500\pi \\
-\rho^2&=\frac{4500}{20}=225 \\
-\rho&=15\text{ cm}
+\pi\left(6^2-r^2\right)\cdot180&=3{.}600\pi \\
+36-r^2&=20 \\
+r&=4
 \end{aligned}" />
 
-Bandingkan kedua penampang pada skala yang sama. **Tabung pejal <InlineMath math="25" /> kali lebih pendek dari pipa, jadi penampangnya harus <InlineMath math="25" /> kali lebih luas dari cincin pipa**: <InlineMath math="25\cdot9\pi=225\pi" />, yaitu lingkaran berjari-jari <InlineMath math="15" />.
+# Tebal dinding
+
+**Tebal dinding adalah selisih jari-jari luar dan jari-jari dalam**, yaitu <InlineMath math="6-4=2\text{ cm}" />. Gambar kedua penampang berdampingan. Cincin pipa baru lebih lebar, karena besinya disusun pada pipa yang jauh lebih pendek.
 
 <MathVisual
-  title={<>Penampang pipa dan penampang tabung pejal</>}
-  description={<>Di kiri, penampang pipa berupa cincin di antara lingkaran berjari-jari <InlineMath math="5" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="9\pi\text{ cm}^2" />. Di kanan, penampang tabung pejal berupa lingkaran berjari-jari <InlineMath math="15" /> dengan luas <InlineMath math="225\pi\text{ cm}^2" />, digambar dengan skala yang sama.</>}
+  title={<>Penampang pipa lama dan pipa baru</>}
+  description={<>Di kiri, cincin pipa lama di antara lingkaran berjari-jari <InlineMath math="5" /> dan <InlineMath math="4" />, luasnya <InlineMath math="9\pi" />. Di kanan, cincin pipa baru di antara lingkaran berjari-jari <InlineMath math="6" /> dan <InlineMath math="4" />, luasnya <InlineMath math="20\pi" />, dengan tebal dinding <InlineMath math="2" />.</>}
   labels={{
-    pipe: <InlineMath math="9\pi" />,
-    solid: <InlineMath math="225\pi" />,
-    radius: <InlineMath math="\rho=15" />,
+    old: <>lama <InlineMath math="9\pi" /></>,
+    new: <>baru <InlineMath math="20\pi" /></>,
+    thick: <InlineMath math="2" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -28, max: 28 },
-      y: { min: -17, max: 17 },
+      x: { min: -6, max: 21 },
+      y: { min: -8.5, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
-      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
-      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "old-outer", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "old-inner", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "new-outer", kind: "circle", appearance: "primary", center: { x: 14, y: 0 }, radius: 6 },
+      { id: "new-inner", kind: "circle", appearance: "answer", center: { x: 14, y: 0 }, radius: 4 },
+      { id: "thick", kind: "segment", appearance: "answer", from: { x: 18, y: 0 }, to: { x: 20, y: 0 } },
     ],
     labels: [
-      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
-      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
-      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+      { key: "old", objectId: "old-outer", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "new", objectId: "new-outer", at: { x: 14, y: -6 }, placement: "below" },
+      { key: "thick", objectId: "thick", at: { x: 19, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Yang ditanyakan adalah diameter, jadi <InlineMath math="d=2\rho=30\text{ cm}" />. Cek kewajarannya: pipa sepanjang <InlineMath math="500\text{ cm}" /> menjadi tabung yang <InlineMath math="25" /> kali lebih pendek, jadi luas penampangnya harus <InlineMath math="25" /> kali luas cincin, yaitu <InlineMath math="25\cdot9\pi=225\pi" />. Itu memang luas lingkaran berjari-jari <InlineMath math="15" />.
+Pemeriksaan: <InlineMath math="20\pi\cdot180=3{.}600\pi" />, sama dengan besi yang tersisa.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="3\text{ cm}" /> muncul kalau panjang pipa tetap ditulis <InlineMath math="5" /> tanpa diubah ke <InlineMath math="500\text{ cm}" />. **Semua ukuran harus dalam satuan yang sama**.
-- <InlineMath math="6\text{ cm}" /> muncul kalau kamu hanya menyamakan luas penampang, seolah-olah tingginya tetap <InlineMath math="500\text{ cm}" />. Tabung baru jauh lebih pendek, jadi penampangnya harus jauh lebih luas.
-- <InlineMath math="10\text{ cm}" /> muncul kalau luas cincin dihitung sebagai <InlineMath math="\pi\,(R-r)^2=\pi" />. Luas cincin adalah selisih luas dua lingkaran, bukan luas lingkaran berjari-jari tebal dinding.
-- <InlineMath math="15\text{ cm}" /> adalah jari-jarinya. Langkah terakhir, mengalikan dua untuk mendapat diameter, terlewat.
+- <InlineMath math="4\text{ cm}" /> adalah jari-jari dalam pipa baru, atau selisih diameter <InlineMath math="12-8" /> yang lupa dibagi dua.
+- <InlineMath math="\left(6-\sqrt{11}\right)\text{ cm}" /> lupa bahwa <InlineMath math="20\%" /> besi terbuang, sehingga <InlineMath math="36-r^2=25" />.
+- <InlineMath math="\left(6-\sqrt6\right)\text{ cm}" /> menambahkan <InlineMath math="20\%" />, bukan menguranginya, sehingga <InlineMath math="36-r^2=30" />.
+- <InlineMath math="1\text{ cm}" /> menganggap tebal dinding pipa baru sama dengan pipa lama. **Ukuran pipa berubah, jadi tebalnya harus dihitung ulang**.
 
-Jadi, diameter tabung pejal itu <InlineMath math="30\text{ cm}" />.
+Jadi, tebal dinding pipa baru adalah <InlineMath math="2\text{ cm}" />.

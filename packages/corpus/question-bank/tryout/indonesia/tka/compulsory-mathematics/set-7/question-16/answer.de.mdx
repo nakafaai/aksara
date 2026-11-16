@@ -1,63 +1,61 @@
-Gesucht ist der Durchmesser des Vollzylinders, der aus einem eingeschmolzenen Rohr gegossen wird. Entscheidend ist: **Das Volumen des Eisens ändert sich nicht**. Das Volumen der Rohrwand ist also gleich dem Volumen des neuen Vollzylinders. Berechne zuerst das Eisenvolumen im Rohr und dann den Radius eines Zylinders mit diesem Volumen.
+# Eisenvolumen im alten Rohr
 
-# Eisenvolumen im Rohr
+Ein Außendurchmesser von <InlineMath math="10\text{ cm}" /> ergibt einen Außenradius von <InlineMath math="5\text{ cm}" />. **Die Wandstärke wird vom Radius abgezogen, nicht vom Durchmesser**, also ist der Innenradius <InlineMath math="4\text{ cm}" />.
 
-Das Eisen steckt nur in der Wand, also im Ring zwischen dem äußeren Kreis und dem Hohlraum. Der Außenradius ist <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **Die Wand von <InlineMath math="1\text{ cm}" /> liegt auf beiden Seiten des Hohlraums**, der Hohlraum hat also den Durchmesser <InlineMath math="10-2\cdot1=8\text{ cm}" /> und den Innenradius <InlineMath math="r=4\text{ cm}" />. Auch die Länge muss in Zentimetern stehen, <InlineMath math="5\text{ m}=500\text{ cm}" />.
+<BlockMath math="V_{\text{alt}}=\pi\left(5^2-4^2\right)\cdot500=4{.}500\pi\text{ cm}^3" />
 
-<BlockMath math="\begin{aligned}
-V_{\text{Eisen}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
-&=\pi\,(5^2-4^2)\cdot500 \\
-&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
-\end{aligned}" />
+# Eisen für das neue Rohr
 
-# Radius des Vollzylinders
-
-Nenn den Radius des Vollzylinders <InlineMath math="\rho" />. Er ist <InlineMath math="20\text{ cm}" /> hoch, und sein Volumen muss dem Eisenvolumen entsprechen. Der Faktor <InlineMath math="\pi" /> steht auf beiden Seiten, deshalb **brauchst du <InlineMath math="\tfrac{22}{7}" /> hier gar nicht einzusetzen**.
+Übrig bleiben nur <InlineMath math="80\%" /> des Eisens, also verbraucht das neue Rohr <InlineMath math="0{,}8\cdot4{.}500\pi=3{.}600\pi\text{ cm}^3" />. Das neue Rohr hat den Außenradius <InlineMath math="6\text{ cm}" /> und die Länge <InlineMath math="180\text{ cm}" />, **sein Innenradius <InlineMath math="r" /> ist noch unbekannt**.
 
 <BlockMath math="\begin{aligned}
-\pi\rho^2\cdot20&=4500\pi \\
-\rho^2&=\frac{4500}{20}=225 \\
-\rho&=15\text{ cm}
+\pi\left(6^2-r^2\right)\cdot180&=3{.}600\pi \\
+36-r^2&=20 \\
+r&=4
 \end{aligned}" />
 
-Vergleiche beide Querschnitte im selben Maßstab. **Der Vollzylinder ist <InlineMath math="25" />-mal kürzer als das Rohr, also muss sein Querschnitt <InlineMath math="25" />-mal größer sein als der Rohrring**: <InlineMath math="25\cdot9\pi=225\pi" />, ein Kreis mit Radius <InlineMath math="15" />.
+# Die Wandstärke
+
+**Die Wandstärke ist Außenradius minus Innenradius**, also <InlineMath math="6-4=2\text{ cm}" />. Zeichne beide Querschnitte nebeneinander. Der Ring des neuen Rohrs ist breiter, weil sich sein Eisen auf ein viel kürzeres Rohr verteilt.
 
 <MathVisual
-  title={<>Querschnitt des Rohrs und des Vollzylinders</>}
-  description={<>Links ist der Querschnitt des Rohrs ein Ring zwischen Kreisen mit Radius <InlineMath math="5" /> und <InlineMath math="4" />, mit der Fläche <InlineMath math="9\pi\text{ cm}^2" />. Rechts ist der Querschnitt des Vollzylinders ein Kreis mit Radius <InlineMath math="15" /> und der Fläche <InlineMath math="225\pi\text{ cm}^2" />, im selben Maßstab gezeichnet.</>}
+  title={<>Querschnitte des alten und des neuen Rohrs</>}
+  description={<>Links der Ring des alten Rohrs zwischen den Kreisen mit Radius <InlineMath math="5" /> und <InlineMath math="4" />, mit Flächeninhalt <InlineMath math="9\pi" />. Rechts der Ring des neuen Rohrs zwischen den Kreisen mit Radius <InlineMath math="6" /> und <InlineMath math="4" />, mit Flächeninhalt <InlineMath math="20\pi" /> und einer Wandstärke von <InlineMath math="2" />.</>}
   labels={{
-    pipe: <InlineMath math="9\pi" />,
-    solid: <InlineMath math="225\pi" />,
-    radius: <InlineMath math="\rho=15" />,
+    old: <>alt <InlineMath math="9\pi" /></>,
+    new: <>neu <InlineMath math="20\pi" /></>,
+    thick: <InlineMath math="2" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -28, max: 28 },
-      y: { min: -17, max: 17 },
+      x: { min: -6, max: 21 },
+      y: { min: -8.5, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
-      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
-      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "old-outer", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "old-inner", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "new-outer", kind: "circle", appearance: "primary", center: { x: 14, y: 0 }, radius: 6 },
+      { id: "new-inner", kind: "circle", appearance: "answer", center: { x: 14, y: 0 }, radius: 4 },
+      { id: "thick", kind: "segment", appearance: "answer", from: { x: 18, y: 0 }, to: { x: 20, y: 0 } },
     ],
     labels: [
-      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
-      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
-      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+      { key: "old", objectId: "old-outer", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "new", objectId: "new-outer", at: { x: 14, y: -6 }, placement: "below" },
+      { key: "thick", objectId: "thick", at: { x: 19, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Gefragt ist der Durchmesser, also <InlineMath math="d=2\rho=30\text{ cm}" />. Kurze Plausibilitätsprüfung: Aus dem <InlineMath math="500\text{ cm}" /> langen Rohr wird ein <InlineMath math="25" />-mal kürzerer Zylinder, sein Querschnitt muss also <InlineMath math="25" />-mal so groß sein wie der Ring, <InlineMath math="25\cdot9\pi=225\pi" />. Das ist genau die Fläche eines Kreises mit Radius <InlineMath math="15" />.
+Probe: <InlineMath math="20\pi\cdot180=3{.}600\pi" />, genauso viel wie das übrige Eisen.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="3\text{ cm}" /> entsteht, wenn die Länge als <InlineMath math="5" /> stehen bleibt statt <InlineMath math="500\text{ cm}" />. **Alle Maße müssen in derselben Einheit stehen**.
-- <InlineMath math="6\text{ cm}" /> entsteht, wenn du nur die Querschnitte gleichsetzt, als wäre die Höhe noch <InlineMath math="500\text{ cm}" />. Der neue Zylinder ist viel kürzer, sein Querschnitt muss also viel größer sein.
-- <InlineMath math="10\text{ cm}" /> entsteht, wenn du die Ringfläche als <InlineMath math="\pi\,(R-r)^2=\pi" /> nimmst. Die Ringfläche ist die Differenz zweier Kreisflächen, nicht die Fläche eines Kreises mit der Wandstärke als Radius.
-- <InlineMath math="15\text{ cm}" /> ist der Radius. Der letzte Schritt, das Verdoppeln zum Durchmesser, fehlt.
+- <InlineMath math="4\text{ cm}" /> ist der Innenradius des neuen Rohrs oder die Differenz der Durchmesser <InlineMath math="12-8" />, ohne sie zu halbieren.
+- <InlineMath math="\left(6-\sqrt{11}\right)\text{ cm}" /> vergisst, dass <InlineMath math="20\%" /> des Eisens verloren gehen, sodass <InlineMath math="36-r^2=25" /> herauskommt.
+- <InlineMath math="\left(6-\sqrt6\right)\text{ cm}" /> rechnet <InlineMath math="20\%" /> dazu, statt sie abzuziehen, sodass <InlineMath math="36-r^2=30" /> herauskommt.
+- <InlineMath math="1\text{ cm}" /> nimmt an, dass die Wand des neuen Rohrs so dick ist wie die des alten. **Die Maße des Rohrs ändern sich, also muss die Wandstärke neu berechnet werden**.
 
-Der Vollzylinder hat also einen Durchmesser von <InlineMath math="30\text{ cm}" />.
+Also ist die Wand des neuen Rohrs <InlineMath math="2\text{ cm}" /> dick.

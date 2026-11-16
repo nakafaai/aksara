@@ -1,63 +1,61 @@
-Soalan ini bertanya diameter silinder pejal yang dibuat daripada satu batang paip yang dileburkan. Ideanya, **isi padu besi tidak berubah**: isi padu dinding paip sama dengan isi padu silinder pejal yang baharu. Jadi kira dahulu isi padu besi dalam paip, kemudian cari jejari silinder yang isi padunya sama.
+# Isi padu besi dalam paip lama
 
-# Isi padu besi dalam paip
+Diameter luar <InlineMath math="10\text{ cm}" /> memberi jejari luar <InlineMath math="5\text{ cm}" />. **Tebal dinding ditolak daripada jejari, bukan daripada diameter**, jadi jejari dalamnya <InlineMath math="4\text{ cm}" />.
 
-Besi paip hanya terdapat pada dinding, iaitu kawasan berbentuk cincin di antara bulatan luar dan rongga. Jejari luar ialah <InlineMath math="R=\frac{10}{2}=5\text{ cm}" />. **Dinding setebal <InlineMath math="1\text{ cm}" /> berada di kedua-dua belah rongga**, jadi diameter rongga ialah <InlineMath math="10-2\cdot1=8\text{ cm}" /> dan jejari dalam <InlineMath math="r=4\text{ cm}" />. Panjang paip juga mesti dalam sentimeter, <InlineMath math="5\text{ m}=500\text{ cm}" />.
+<BlockMath math="V_{\text{lama}}=\pi\left(5^2-4^2\right)\cdot500=4{,}500\pi\text{ cm}^3" />
 
-<BlockMath math="\begin{aligned}
-V_{\text{besi}}&=\left(\pi R^2-\pi r^2\right)\cdot L \\
-&=\pi\,(5^2-4^2)\cdot500 \\
-&=\pi\cdot9\cdot500=4500\pi\text{ cm}^3
-\end{aligned}" />
+# Besi untuk paip baharu
 
-# Jejari silinder pejal
-
-Katakan jejari silinder pejal ialah <InlineMath math="\rho" />. Tingginya <InlineMath math="20\text{ cm}" />, dan isi padunya mesti sama dengan isi padu besi tadi. Faktor <InlineMath math="\pi" /> ada pada kedua-dua belah, jadi **kamu tidak perlu menggantikan <InlineMath math="\tfrac{22}{7}" /> langsung**.
+Hanya <InlineMath math="80\%" /> besi yang tinggal, jadi paip baharu menggunakan <InlineMath math="0.8\cdot4{,}500\pi=3{,}600\pi\text{ cm}^3" />. Paip baharu berjejari luar <InlineMath math="6\text{ cm}" /> dan panjangnya <InlineMath math="180\text{ cm}" />, manakala **jejari dalamnya <InlineMath math="r" /> belum diketahui**.
 
 <BlockMath math="\begin{aligned}
-\pi\rho^2\cdot20&=4500\pi \\
-\rho^2&=\frac{4500}{20}=225 \\
-\rho&=15\text{ cm}
+\pi\left(6^2-r^2\right)\cdot180&=3{,}600\pi \\
+36-r^2&=20 \\
+r&=4
 \end{aligned}" />
 
-Bandingkan kedua-dua keratan rentas pada skala yang sama. **Silinder pejal <InlineMath math="25" /> kali lebih pendek daripada paip, jadi keratan rentasnya mesti <InlineMath math="25" /> kali lebih luas daripada gelang paip**: <InlineMath math="25\cdot9\pi=225\pi" />, iaitu bulatan berjejari <InlineMath math="15" />.
+# Tebal dinding
+
+**Tebal dinding ialah jejari luar tolak jejari dalam**, iaitu <InlineMath math="6-4=2\text{ cm}" />. Lukis kedua-dua keratan rentas bersebelahan. Gelang paip baharu lebih lebar, kerana besinya disusun pada paip yang jauh lebih pendek.
 
 <MathVisual
-  title={<>Keratan rentas paip dan silinder pejal</>}
-  description={<>Di kiri, keratan rentas paip ialah gelang di antara bulatan berjejari <InlineMath math="5" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="9\pi\text{ cm}^2" />. Di kanan, keratan rentas silinder pejal ialah bulatan berjejari <InlineMath math="15" /> dengan luas <InlineMath math="225\pi\text{ cm}^2" />, dilukis pada skala yang sama.</>}
+  title={<>Keratan rentas paip lama dan paip baharu</>}
+  description={<>Di sebelah kiri, gelang paip lama di antara bulatan berjejari <InlineMath math="5" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="9\pi" />. Di sebelah kanan, gelang paip baharu di antara bulatan berjejari <InlineMath math="6" /> dan <InlineMath math="4" />, dengan luas <InlineMath math="20\pi" /> dan tebal dinding <InlineMath math="2" />.</>}
   labels={{
-    pipe: <InlineMath math="9\pi" />,
-    solid: <InlineMath math="225\pi" />,
-    radius: <InlineMath math="\rho=15" />,
+    old: <>lama <InlineMath math="9\pi" /></>,
+    new: <>baharu <InlineMath math="20\pi" /></>,
+    thick: <InlineMath math="2" />,
   }}
   scene={{
     space: "plane",
     frame: {
       kind: "cartesian",
-      x: { min: -28, max: 28 },
-      y: { min: -17, max: 17 },
+      x: { min: -6, max: 21 },
+      y: { min: -8.5, max: 7 },
     },
     view: { kind: "fit", padding: 0.1 },
     objects: [
-      { id: "pipe", kind: "region", appearance: "secondary", inequalities: ["(x + 20)^2 + y^2 <= 25", "(x + 20)^2 + y^2 >= 16"] },
-      { id: "solid", kind: "circle", appearance: "primary", center: { x: 10, y: 0 }, radius: 15 },
-      { id: "radius", kind: "segment", appearance: "answer", from: { x: 10, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "old-outer", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
+      { id: "old-inner", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 4 },
+      { id: "new-outer", kind: "circle", appearance: "primary", center: { x: 14, y: 0 }, radius: 6 },
+      { id: "new-inner", kind: "circle", appearance: "answer", center: { x: 14, y: 0 }, radius: 4 },
+      { id: "thick", kind: "segment", appearance: "answer", from: { x: 18, y: 0 }, to: { x: 20, y: 0 } },
     ],
     labels: [
-      { key: "pipe", objectId: "pipe", at: { x: -20, y: 5 }, placement: "above" },
-      { key: "solid", objectId: "solid", at: { x: 10, y: 15 }, placement: "above" },
-      { key: "radius", objectId: "radius", at: { x: 17.5, y: 0 }, placement: "below" },
+      { key: "old", objectId: "old-outer", at: { x: 0, y: -5 }, placement: "below" },
+      { key: "new", objectId: "new-outer", at: { x: 14, y: -6 }, placement: "below" },
+      { key: "thick", objectId: "thick", at: { x: 19, y: 0 }, placement: "above" },
     ],
   }}
 />
 
-Yang ditanya ialah diameter, jadi <InlineMath math="d=2\rho=30\text{ cm}" />. Semak sama ada jawapan ini munasabah: paip sepanjang <InlineMath math="500\text{ cm}" /> menjadi silinder yang <InlineMath math="25" /> kali lebih pendek, jadi luas keratan rentasnya mesti <InlineMath math="25" /> kali luas cincin, iaitu <InlineMath math="25\cdot9\pi=225\pi" />. Itu memang luas bulatan berjejari <InlineMath math="15" />.
+Semakan: <InlineMath math="20\pi\cdot180=3{,}600\pi" />, sama dengan besi yang tinggal.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="3\text{ cm}" /> terhasil apabila panjang paip dibiarkan sebagai <InlineMath math="5" /> tanpa ditukar kepada <InlineMath math="500\text{ cm}" />. **Semua ukuran mesti dalam unit yang sama**.
-- <InlineMath math="6\text{ cm}" /> terhasil apabila kamu hanya menyamakan luas keratan rentas, seolah-olah tingginya masih <InlineMath math="500\text{ cm}" />. Silinder baharu jauh lebih pendek, jadi keratan rentasnya mesti jauh lebih luas.
-- <InlineMath math="10\text{ cm}" /> terhasil apabila luas cincin dikira sebagai <InlineMath math="\pi\,(R-r)^2=\pi" />. Luas cincin ialah beza luas dua bulatan, bukan luas bulatan yang jejarinya sama dengan tebal dinding.
-- <InlineMath math="15\text{ cm}" /> ialah jejarinya. Langkah terakhir, iaitu mendarab dua untuk mendapat diameter, tertinggal.
+- <InlineMath math="4\text{ cm}" /> ialah jejari dalam paip baharu, atau beza diameter <InlineMath math="12-8" /> yang terlupa dibahagi dua.
+- <InlineMath math="\left(6-\sqrt{11}\right)\text{ cm}" /> terlupa bahawa <InlineMath math="20\%" /> besi terbuang, jadi <InlineMath math="36-r^2=25" />.
+- <InlineMath math="\left(6-\sqrt6\right)\text{ cm}" /> menambah <InlineMath math="20\%" />, bukan menolaknya, jadi <InlineMath math="36-r^2=30" />.
+- <InlineMath math="1\text{ cm}" /> menganggap tebal dinding paip baharu sama dengan paip lama. **Saiz paip berubah, jadi tebalnya mesti dikira semula**.
 
-Jadi, diameter silinder pejal itu ialah <InlineMath math="30\text{ cm}" />.
+Jadi, tebal dinding paip baharu ialah <InlineMath math="2\text{ cm}" />.

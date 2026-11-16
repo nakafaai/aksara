@@ -15,17 +15,17 @@ const item: ItemSource = {
         {
           column: 2,
           label:
-            "Jika gaji setiap karyawan bagian desain naik $$25\\%$$, rata-rata gaji seluruh karyawan naik lebih dari $$\\text{Rp}0{,}5\\text{ juta}$$.",
+            "Jika gaji setiap karyawan bagian desain naik $$25\\%$$ dan gaji setiap karyawan bagian jahit turun $$15\\%$$, rata-rata gaji seluruh karyawan naik.",
         },
         {
           column: 1,
           label:
-            "Jika $$10$$ karyawan baru dengan gaji masing-masing $$\\text{Rp}7{,}2\\text{ juta}$$ masuk ke bagian desain, rata-rata gaji seluruh karyawan menjadi $$\\text{Rp}6\\text{ juta}$$.",
+            "Jika $$k$$ karyawan baru, masing-masing bergaji $$\\text{Rp}7{,}2\\text{ juta}$$, masuk ke bagian desain, rata-rata gaji seluruh karyawan paling sedikit $$\\text{Rp}6\\text{ juta}$$ tepat ketika $$k\\ge10$$.",
         },
         {
           column: 1,
           label:
-            "Kenaikan gaji $$10\\%$$ untuk setiap karyawan bagian jahit menaikkan rata-rata gaji seluruh karyawan sama besar dengan kenaikan $$\\text{Rp}1{,}44\\text{ juta}$$ untuk setiap karyawan bagian desain.",
+            "Jika tiga karyawan bagian jahit yang masing-masing bergaji $$\\text{Rp}3\\text{ juta}$$ keluar, rata-rata gaji seluruh karyawan naik lebih dari $$\\text{Rp}0{,}4\\text{ juta}$$.",
         },
       ],
     },
