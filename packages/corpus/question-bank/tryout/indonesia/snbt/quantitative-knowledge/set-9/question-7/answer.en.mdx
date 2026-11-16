@@ -1,69 +1,61 @@
-Angle <InlineMath math="OBC" /> sits in triangle <InlineMath math="OBC" />, whose two sides are radii. So you only need **the central angle <InlineMath math="BOC" />**. The plan: turn the tangent angle into an arc measure, use <InlineMath math="AC=AB" /> to find arc <InlineMath math="BC" />, then finish triangle <InlineMath math="OBC" />.
+The question asks for the sum of **all** possible values, so suspect first that the point <InlineMath math="C" /> has more than one position. A chord as long as the radius can be laid off on either side of <InlineMath math="B" />.
 
 # The arc from the tangent angle
 
-The angle between a tangent and a chord **is half the arc it encloses**. The acute angle <InlineMath math="70^\circ" /> encloses the minor arc <InlineMath math="AB" />.
+The angle between a tangent and a chord equals **half the arc it cuts off**. So the minor arc <InlineMath math="AB" /> measures <InlineMath math="2\cdot70^\circ=140^\circ" />, and <InlineMath math="\angle AOB=140^\circ" />.
 
-<BlockMath math="\text{arc }AB=2\cdot70^\circ=140^\circ" />
+# The arc BC
 
-# The arc from equal chords
-
-Equal chords cut off equal arcs. Since <InlineMath math="AC=AB" />, the minor arc <InlineMath math="AC" /> is also <InlineMath math="140^\circ" />. Point <InlineMath math="C" /> isn't <InlineMath math="B" />, so **arc <InlineMath math="AC" /> lies on the other side of <InlineMath math="A" />**. The arc <InlineMath math="BC" /> that doesn't contain <InlineMath math="A" /> is what's left of the circle.
-
-<BlockMath math="\text{arc }BC=360^\circ-140^\circ-140^\circ=80^\circ" />
-
-# The central angle and triangle OBC
-
-A central angle equals the arc it faces, so <InlineMath math="\angle BOC=80^\circ" />. The sides <InlineMath math="OB" /> and <InlineMath math="OC" /> are both radii, so triangle <InlineMath math="OBC" /> is isosceles and **its two base angles are equal**.
-
-<BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
-
-The circle below shows how the arcs fit together. Arcs <InlineMath math="AB" /> and <InlineMath math="AC" /> are each <InlineMath math="140^\circ" />, so **the arc <InlineMath math="BC" /> at the bottom is only <InlineMath math="80^\circ" />**, and triangle <InlineMath math="OBC" /> is isosceles with a top angle of <InlineMath math="80^\circ" />.
+The chord <InlineMath math="BC" /> equals the radius, so **triangle <InlineMath math="OBC" /> is equilateral** and <InlineMath math="\angle BOC=60^\circ" />. The point <InlineMath math="C" /> can lie <InlineMath math="60^\circ" /> from <InlineMath math="B" /> toward <InlineMath math="A" /> or the other way.
 
 <MathVisual
-  title={<>The tangent at <InlineMath math="A" /> and triangle <InlineMath math="OBC" /></>}
-  description={<>The line <InlineMath math="\ell" /> touches the circle at <InlineMath math="A" />, the top point. The chords <InlineMath math="AB" /> and <InlineMath math="AC" /> are equal and mirror each other in the vertical line through <InlineMath math="O" />. The arc <InlineMath math="BC" /> not containing <InlineMath math="A" /> measures <InlineMath math="80^\circ" />, so <InlineMath math="\angle BOC=80^\circ" /> and <InlineMath math="\angle OBC=50^\circ" />.</>}
+  title={<>Two positions of <InlineMath math="C" /> with <InlineMath math="BC" /> equal to the radius</>}
+  description={<>The minor arc <InlineMath math="AB" /> measures <InlineMath math="140^\circ" />. The point <InlineMath math="C_1" /> lies an arc of <InlineMath math="60^\circ" /> from <InlineMath math="B" /> toward <InlineMath math="A" />, so the arc <InlineMath math="AC_1" /> measures <InlineMath math="80^\circ" />. The point <InlineMath math="C_2" /> lies <InlineMath math="60^\circ" /> the other way, so the minor arc <InlineMath math="AC_2" /> measures <InlineMath math="160^\circ" />.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
+    c1: <InlineMath math="C_1" />,
+    c2: <InlineMath math="C_2" />,
     o: <InlineMath math="O" />,
-    tangent: <InlineMath math="\ell" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6.5, max: 6.5 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
       { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
-      { id: "tangent", kind: "line", appearance: "construction", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
-      { id: "chord-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
-      { id: "chord-ac", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
-      { id: "obc", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }] },
+      { id: "chord-ab", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "bc1", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, to: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) } },
+      { id: "bc2", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, to: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) } },
+      { id: "ac1", kind: "segment", appearance: "answer", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) } },
+      { id: "ac2", kind: "segment", appearance: "highlight", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) } },
+      { id: "oa", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 5 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
-      { key: "b", objectId: "obc", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
-      { key: "c", objectId: "obc", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
-      { key: "o", objectId: "obc", at: { x: 0, y: 0 }, placement: "above" },
-      { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
+      { key: "a", objectId: "oa", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "chord-ab", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
+      { key: "c1", objectId: "ac1", at: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) }, placement: "right" },
+      { key: "c2", objectId: "ac2", at: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) }, placement: "below-left" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "left" },
     ],
   }}
 />
 
-# Checking another way
+# The angle OAC in both positions
 
-The inscribed angle <InlineMath math="BAC" /> faces arc <InlineMath math="BC" />, so it's <InlineMath math="40^\circ" />. Triangle <InlineMath math="ABC" /> is isosceles with <InlineMath math="AB=AC" />, so <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. In triangle <InlineMath math="OAB" />, the central angle <InlineMath math="AOB" /> is <InlineMath math="140^\circ" />, so <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. All three angles of triangle <InlineMath math="ABC" /> are acute, so **<InlineMath math="O" /> lies inside it** and the ray <InlineMath math="BO" /> splits angle <InlineMath math="ABC" />.
+Triangle <InlineMath math="OAC" /> is isosceles since <InlineMath math="OA=OC" />, so <InlineMath math="\angle OAC=\tfrac{180^\circ-\angle AOC}{2}" />.
 
-<BlockMath math="\angle OBC=\angle ABC-\angle OBA=70^\circ-20^\circ=50^\circ" />
+- **Position <InlineMath math="C_1" />**: the arc <InlineMath math="AC_1=140^\circ-60^\circ=80^\circ" />, so <InlineMath math="\angle OAC_1=\tfrac{180^\circ-80^\circ}{2}=50^\circ" />.
+- **Position <InlineMath math="C_2" />**: the arc from <InlineMath math="A" /> through <InlineMath math="B" /> to <InlineMath math="C_2" /> measures <InlineMath math="140^\circ+60^\circ=200^\circ" />, so the minor arc is <InlineMath math="160^\circ" /> and <InlineMath math="\angle OAC_2=\tfrac{180^\circ-160^\circ}{2}=10^\circ" />.
 
-The result matches.
+The sum is <InlineMath math="50^\circ+10^\circ=60^\circ" />.
 
 # The tempting wrong options
 
-- <InlineMath math="20^\circ" /> is <InlineMath math="\angle OBA" />, **the angle toward <InlineMath math="A" />**, not toward <InlineMath math="C" />.
-- <InlineMath math="40^\circ" /> is the inscribed angle <InlineMath math="BAC" />, whose vertex is <InlineMath math="A" />.
-- <InlineMath math="70^\circ" /> is the whole angle <InlineMath math="ABC" />, without taking away the part <InlineMath math="\angle OBA" />.
-- <InlineMath math="80^\circ" /> is the central angle <InlineMath math="BOC" />, which stops before using the isosceles triangle <InlineMath math="OBC" />.
+- <InlineMath math="50^\circ" /> uses only position <InlineMath math="C_1" />, **forgetting that <InlineMath math="C" /> can lie on the other side of <InlineMath math="B" />**.
+- <InlineMath math="10^\circ" /> uses only position <InlineMath math="C_2" />.
+- <InlineMath math="70^\circ" /> is the inscribed angle <InlineMath math="ACB" /> for <InlineMath math="C" /> on the major arc, not the angle <InlineMath math="OAC" />.
+- <InlineMath math="180^\circ" /> adds the angle <InlineMath math="ACB" /> in both positions, <InlineMath math="110^\circ+70^\circ" />.
 
-So angle <InlineMath math="OBC" /> measures <InlineMath math="50^\circ" />.
+So the sum of all possible values of the angle <InlineMath math="OAC" /> is <InlineMath math="60^\circ" />.

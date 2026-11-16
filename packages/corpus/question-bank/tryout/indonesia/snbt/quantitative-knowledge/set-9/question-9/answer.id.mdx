@@ -1,78 +1,64 @@
-Pangkat <InlineMath math="x^2-2x" /> muncul dua kali, jadi pertidaksamaan ini sebenarnya **pertidaksamaan kuadrat yang menyamar**. Rencananya: ganti <InlineMath math="3^{x^2-2x}" /> dengan satu huruf, selesaikan pertidaksamaan kuadratnya, kembalikan ke pangkat, lalu selesaikan dua syarat untuk <InlineMath math="x" />.
+Hasil kali dua faktor bernilai paling banyak nol kalau **kedua faktor berlawanan tanda atau salah satunya nol**. Jadi tentukan dulu tanda setiap faktor, lalu gabungkan dua kasusnya.
 
-# Mengubah menjadi pertidaksamaan kuadrat
+# Tanda faktor eksponen
 
-Misalkan <InlineMath math="y=x^2-2x" /> dan <InlineMath math="t=3^y" />, dengan <InlineMath math="t>0" />. Karena <InlineMath math="9=3^2" />, berlaku <InlineMath math="9^y=\left(3^y\right)^2=t^2" />.
+Misalkan <InlineMath math="u=3^x>0" />. Faktor kedua menjadi
 
-<BlockMath math="\begin{aligned}
-t^2-28t+27&\le0\\
-(t-1)(t-27)&\le0\\
-1\le t&\le27
-\end{aligned}" />
+<BlockMath math="u^2-28u+27=(u-1)(u-27)." />
 
-Hasil kali dua faktor bernilai nol atau negatif hanya ketika <InlineMath math="t" /> ada **di antara kedua pembuat nolnya**, termasuk ujung-ujungnya.
+Faktor ini <InlineMath math="\le0" /> tepat ketika <InlineMath math="1\le u\le27" />, yaitu <InlineMath math="0\le x\le3" />, dan positif untuk <InlineMath math="x<0" /> atau <InlineMath math="x>3" />. **Pemisalan ini belum selesai sampai kembali ke <InlineMath math="x" />**.
 
-# Kembali ke pangkat
+# Dua kasus tanda
 
-Fungsi <InlineMath math="3^y" /> selalu naik, jadi urutan nilai <InlineMath math="t" /> sama dengan urutan nilai <InlineMath math="y" />. Tulis kedua batas sebagai pangkat tiga dulu: <InlineMath math="1=3^0" /> dan <InlineMath math="27=3^3" />. **Batasnya berlaku untuk pangkat, bukan untuk angka <InlineMath math="1" /> dan <InlineMath math="27" /> itu sendiri**.
+- Faktor pertama <InlineMath math="\ge0" /> dan faktor kedua <InlineMath math="\le0" />: <InlineMath math="|x|\ge2" /> dan <InlineMath math="0\le x\le3" />, jadi <InlineMath math="2\le x\le3" />.
+- Faktor pertama <InlineMath math="\le0" /> dan faktor kedua <InlineMath math="\ge0" />: <InlineMath math="|x|\le2" /> dan (<InlineMath math="x\le0" /> atau <InlineMath math="x\ge3" />), jadi <InlineMath math="-2\le x\le0" />.
 
-<BlockMath math="3^0\le3^{x^2-2x}\le3^3\iff0\le x^2-2x\le3" />
-
-# Dua syarat untuk x
-
-Ketaksamaan ganda ini berisi dua syarat, dan keduanya harus dipenuhi sekaligus.
-
-<BlockMath math="\begin{aligned}
-x^2-2x\le3&\iff(x-3)(x+1)\le0\iff-1\le x\le3\\
-x^2-2x\ge0&\iff x(x-2)\ge0\iff x\le0\ \text{atau}\ x\ge2
-\end{aligned}" />
-
-Syarat kedua **membuang bilangan di antara <InlineMath math="0" /> dan <InlineMath math="2" />**. Irisan keduanya adalah <InlineMath math="-1\le x\le0" /> atau <InlineMath math="2\le x\le3" />. Bilangan bulatnya <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" />, jadi ada <InlineMath math="4" /> bilangan.
-
-# Memeriksa hasilnya
-
-Untuk <InlineMath math="x=3" /> dan <InlineMath math="x=-1" />, pangkatnya <InlineMath math="3" /> dan <InlineMath math="t=27" />: <InlineMath math="729-756+27=0" />, memenuhi. Untuk <InlineMath math="x=0" />, pangkatnya <InlineMath math="0" /> dan <InlineMath math="t=1" />: <InlineMath math="1-28+27=0" />, memenuhi. Untuk <InlineMath math="x=1" />, pangkatnya <InlineMath math="-1" /> dan <InlineMath math="t=\frac{1}{3}" />:
-
-<BlockMath math="\frac{1}{9}-\frac{28}{3}+27=\frac{1-84+243}{9}=\frac{160}{9}>0" />
-
-Jadi **<InlineMath math="x=1" /> memang tidak memenuhi**.
-
-Grafik pangkat <InlineMath math="y=x^2-2x" /> berikut memperlihatkan kedua syarat sekaligus. Pangkat harus berada **di dalam pita <InlineMath math="0\le y\le3" />**. Titik di <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" /> ada di pita itu, sedangkan <InlineMath math="x=1" /> jatuh ke <InlineMath math="y=-1" />, di bawah pita.
+**Kasus kedua paling mudah terlewat**, karena di sana faktor eksponen positif. Garis bilangan berikut menggabungkan kedua kasus.
 
 <MathVisual
-  title={<>Pangkat <InlineMath math="x^2-2x" /> dan pita <InlineMath math="0\le y\le3" /></>}
-  description={<>Parabola <InlineMath math="y=x^2-2x" /> punya titik terendah <InlineMath math="(1,-1)" />. Pita yang diarsir adalah <InlineMath math="0\le y\le3" />. Untuk bilangan bulat <InlineMath math="x=-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" />, nilai pangkatnya <InlineMath math="3" />, <InlineMath math="0" />, <InlineMath math="0" />, dan <InlineMath math="3" />, semuanya di pita. Untuk <InlineMath math="x=1" />, pangkatnya <InlineMath math="-1" />.</>}
+  title={<>Himpunan penyelesaian pada garis bilangan</>}
+  description={<>Penyelesaiannya adalah <InlineMath math="[-2,0]" /> dan <InlineMath math="[2,3]" />. Bilangan bulatnya <InlineMath math="-2" />, <InlineMath math="-1" />, <InlineMath math="0" />, <InlineMath math="2" />, dan <InlineMath math="3" />, sedangkan <InlineMath math="1" /> tidak memenuhi.</>}
   labels={{
-    curve: <InlineMath math="y=x^2-2x" />,
-    top: <InlineMath math="y=3" />,
-    one: <InlineMath math="x=1" />,
+    a: <InlineMath math="-2" />,
+    b: <InlineMath math="0" />,
+    c: <InlineMath math="2" />,
+    d: <InlineMath math="3" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -2, max: 4 }, y: { min: -2, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 5 }, y: { min: -1.5, max: 1.5 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "band", kind: "region", appearance: "highlight", inequalities: ["y >= 0", "y <= 3", "x >= -2", "x <= 4"] },
-      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 - 2x", domain: { min: -1.5, max: 3.5 } },
-      { id: "pm1", kind: "point", appearance: "answer", at: { x: -1, y: 3 } },
-      { id: "p0", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
-      { id: "p2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
-      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 3 } },
-      { id: "p1", kind: "point", appearance: "warning", at: { x: 1, y: -1 } },
+      { id: "line", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "left", kind: "segment", appearance: "answer", from: { x: -2, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "right", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "p1", kind: "point", appearance: "answer", at: { x: -2, y: 0 } },
+      { id: "p2", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 0, y: 0 } },
+      { id: "p4", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 3, y: 0 } },
+      { id: "miss", kind: "point", appearance: "warning", at: { x: 1, y: 0 } },
     ],
     labels: [
-      { key: "curve", objectId: "curve", at: { x: 3.5, y: 5.25 }, placement: "left" },
-      { key: "top", objectId: "band", at: { x: -1.7, y: 3 }, placement: "above" },
-      { key: "one", objectId: "p1", at: { x: 1, y: -1 }, placement: "below" },
+      { key: "a", objectId: "p1", at: { x: -2, y: 0 }, placement: "below" },
+      { key: "b", objectId: "p3", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "c", objectId: "p4", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "d", objectId: "p5", at: { x: 3, y: 0 }, placement: "below" },
     ],
   }}
 />
 
+Penyelesaiannya <InlineMath math="[-2,0]\cup[2,3]" />, dengan bilangan bulat <InlineMath math="-2,-1,0,2,3" />. Banyaknya <InlineMath math="5" />.
+
+# Memeriksa hasilnya
+
+**Bilangan <InlineMath math="1" /> memang gagal**: <InlineMath math="(1-4)(9-84+27)=(-3)(-48)=144>0" />. Sebaliknya, <InlineMath math="x=-1" /> memberi <InlineMath math="(-3)\left(\tfrac19-\tfrac{28}{3}+27\right)" />, negatif kali positif, jadi memenuhi.
+
 # Pilihan yang menjebak
 
-- <InlineMath math="5" /> **lupa syarat <InlineMath math="x^2-2x\ge0" />**, sehingga <InlineMath math="x=1" /> ikut terhitung.
-- <InlineMath math="10" /> mengubah batas bawah dengan benar, tetapi memakai <InlineMath math="27" /> langsung sebagai batas atas pangkat, yaitu <InlineMath math="0\le x^2-2x\le27" />. Bilangan bulatnya <InlineMath math="-4" /> sampai <InlineMath math="0" /> dan <InlineMath math="2" /> sampai <InlineMath math="6" />.
-- <InlineMath math="8" /> memakai batas <InlineMath math="t" /> langsung sebagai batas pangkat, yaitu <InlineMath math="1\le x^2-2x\le27" />. Bilangan bulatnya <InlineMath math="-4,-3,-2,-1,3,4,5,6" />.
-- <InlineMath math="11" /> membuat kesalahan yang sama dan juga melupakan batas bawah, sehingga menghitung semua bilangan bulat dari <InlineMath math="-4" /> sampai <InlineMath math="6" />.
+- <InlineMath math="2" /> hanya memakai kasus pertama, sehingga **bilangan negatif <InlineMath math="-2" />, <InlineMath math="-1" />, dan <InlineMath math="0" /> terlewat**.
+- <InlineMath math="4" /> hanya menyelesaikan faktor eksponen, <InlineMath math="0\le x\le3" />.
+- <InlineMath math="3" /> meminta kedua faktor sama-sama <InlineMath math="\le0" />, yaitu <InlineMath math="0\le x\le2" />.
+- <InlineMath math="6" /> mengambil seluruh <InlineMath math="[-2,3]" />, termasuk <InlineMath math="x=1" />.
 
-Jadi, ada <InlineMath math="4" /> bilangan bulat <InlineMath math="x" /> yang memenuhi pertidaksamaan itu.
+Jadi, banyak bilangan bulat yang memenuhi pertidaksamaan itu adalah <InlineMath math="5" />.

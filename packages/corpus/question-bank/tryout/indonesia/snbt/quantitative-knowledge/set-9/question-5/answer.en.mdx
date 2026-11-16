@@ -1,73 +1,55 @@
-You need to compute both quantities. <InlineMath math="Q" /> comes from triangle <InlineMath math="ABC" />, which is fully given. <InlineMath math="P" /> comes from the equal-area condition, and that's where the trap is: **two different isosceles triangles with legs <InlineMath math="17\text{ cm}" /> have that area**, and the non-congruence condition picks one of them.
+Equal legs and equal area **don't pin down an isosceles triangle uniquely**: two triangles fit, and the obtuse-angle condition picks one. That choice matters, because the two cases give opposite relations between <InlineMath math="P" /> and <InlineMath math="Q" />.
 
-# The height and area of triangle ABC
+# The area of triangle ABC
 
-In an isosceles triangle, the height from the apex <InlineMath math="A" /> lands exactly at the midpoint of the base <InlineMath math="BC" />. So that height, half the base, and the leg <InlineMath math="AB" /> form **a right triangle**, and Pythagoras applies.
-
-<BlockMath math="\begin{aligned}
-h_{ABC}&=\sqrt{17^2-8^2}=\sqrt{289-64}=\sqrt{225}=15\\
-A_{ABC}&=\tfrac{1}{2}\cdot16\cdot15=120
-\end{aligned}" />
-
-So <InlineMath math="Q=2\cdot15=30" />.
+The altitude from <InlineMath math="A" /> splits the base <InlineMath math="16" /> into two parts of <InlineMath math="8" />, so the height is <InlineMath math="\sqrt{17^2-8^2}=15" /> and **the area is <InlineMath math="\tfrac12\cdot16\cdot15=120" />**.
 
 # Two possible triangles DEF
 
-Let half of the base <InlineMath math="EF" /> be <InlineMath math="u" /> and the height from <InlineMath math="D" /> be <InlineMath math="h" />. Pythagoras gives <InlineMath math="u^2+h^2=17^2=289" />. The area is <InlineMath math="\frac{1}{2}\cdot2u\cdot h=uh" />, so <InlineMath math="uh=120" />. **Add and subtract <InlineMath math="2uh" />** to get perfect squares.
+Let the altitude of triangle <InlineMath math="DEF" /> from <InlineMath math="D" /> be <InlineMath math="h" /> and half the base <InlineMath math="m" />. Then <InlineMath math="m^2+h^2=289" /> and the area is <InlineMath math="mh=120" />. **Both equations are symmetric in <InlineMath math="m" /> and <InlineMath math="h" />**:
 
-<BlockMath math="\begin{aligned}
-(u+h)^2&=u^2+h^2+2uh=289+240=529\\
-(u-h)^2&=u^2+h^2-2uh=289-240=49
-\end{aligned}" />
+<BlockMath math="(m+h)^2=289+240=529,\qquad (m-h)^2=289-240=49." />
 
-Since <InlineMath math="u" /> and <InlineMath math="h" /> are positive, <InlineMath math="u+h=23" /> and they differ by <InlineMath math="7" />. The only pairs are <InlineMath math="u=8,\ h=15" /> or <InlineMath math="u=15,\ h=8" />, so <InlineMath math="EF=16" /> or <InlineMath math="EF=30" />.
-
-# The non-congruence condition
-
-If <InlineMath math="EF=16" />, triangle <InlineMath math="DEF" /> has sides <InlineMath math="17" />, <InlineMath math="17" />, and <InlineMath math="16" />, exactly like triangle <InlineMath math="ABC" />. Two triangles with the same three sides **are always congruent**, so this case is out. What's left is <InlineMath math="EF=30" />, so <InlineMath math="P=30" />.
-
-Check this triangle: base <InlineMath math="30" /> and height <InlineMath math="8" /> give area <InlineMath math="\frac{1}{2}\cdot30\cdot8=120" />, and the leg is <InlineMath math="\sqrt{15^2+8^2}=\sqrt{289}=17" />. Both fit.
-
-The figure below puts both isosceles triangles with legs <InlineMath math="17" /> side by side. Triangle <InlineMath math="DEF" /> **is triangle <InlineMath math="ABC" /> with half the base and the height swapping roles**: its base is <InlineMath math="30" /> and its height <InlineMath math="8" />, but its area is still <InlineMath math="120" />.
+So <InlineMath math="\{m,h\}=\{15,8\}" />. The first case is <InlineMath math="m=8" />, <InlineMath math="h=15" />, base <InlineMath math="16" />. The second is <InlineMath math="m=15" />, <InlineMath math="h=8" />, base <InlineMath math="30" />.
 
 <MathVisual
   title={<>Two isosceles triangles with legs <InlineMath math="17" /> and area <InlineMath math="120" /></>}
-  description={<>Triangle <InlineMath math="ABC" /> has base <InlineMath math="16" /> and height <InlineMath math="15" />. Triangle <InlineMath math="DEF" /> has base <InlineMath math="30" /> and height <InlineMath math="8" />. Both have legs of <InlineMath math="17" /> and area <InlineMath math="120" />, but different shapes.</>}
+  description={<>The first triangle has base <InlineMath math="16" /> and height <InlineMath math="15" />, with an acute apex angle. The second has base <InlineMath math="30" /> and height <InlineMath math="8" />, with an obtuse apex angle. Both have legs <InlineMath math="17" /> and area <InlineMath math="120" />.</>}
   labels={{
-    abc: <InlineMath math="ABC" />,
-    def: <InlineMath math="DEF" />,
+    acute: <>base 16, acute apex</>,
+    obtuse: <>base 30, obtuse apex</>,
     h1: <InlineMath math="15" />,
     h2: <InlineMath math="8" />,
-    b1: <InlineMath math="16" />,
-    b2: <InlineMath math="30" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -10, max: 37 }, y: { min: -3, max: 17 } },
-    view: { kind: "fit", padding: 0.04 },
+    frame: { kind: "cartesian", x: { min: -22, max: 31 }, y: { min: -3, max: 18 } },
+    view: { kind: "fit", padding: 0.05 },
     objects: [
-      { id: "abc", kind: "polygon", appearance: "primary", vertices: [{ x: -8, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 15 }] },
-      { id: "def", kind: "polygon", appearance: "answer", vertices: [{ x: 5, y: 0 }, { x: 35, y: 0 }, { x: 20, y: 8 }] },
-      { id: "height-abc", kind: "segment", appearance: "construction", from: { x: 0, y: 15 }, to: { x: 0, y: 0 } },
-      { id: "height-def", kind: "segment", appearance: "construction", from: { x: 20, y: 8 }, to: { x: 20, y: 0 } },
+      { id: "acute", kind: "polygon", appearance: "warning", vertices: [{ x: -20, y: 0 }, { x: -4, y: 0 }, { x: -12, y: 15 }] },
+      { id: "obtuse", kind: "polygon", appearance: "answer", vertices: [{ x: -1, y: 0 }, { x: 29, y: 0 }, { x: 14, y: 8 }] },
+      { id: "h1", kind: "segment", appearance: "construction", from: { x: -12, y: 15 }, to: { x: -12, y: 0 } },
+      { id: "h2", kind: "segment", appearance: "construction", from: { x: 14, y: 8 }, to: { x: 14, y: 0 } },
     ],
     labels: [
-      { key: "abc", objectId: "abc", at: { x: 0, y: 15 }, placement: "above" },
-      { key: "def", objectId: "def", at: { x: 20, y: 8 }, placement: "above" },
-      { key: "h1", objectId: "height-abc", at: { x: 0, y: 7.5 }, placement: "left" },
-      { key: "h2", objectId: "height-def", at: { x: 20, y: 4 }, placement: "right" },
-      { key: "b1", objectId: "abc", at: { x: -4, y: 0 }, placement: "below" },
-      { key: "b2", objectId: "def", at: { x: 27, y: 0 }, placement: "below" },
+      { key: "acute", objectId: "acute", at: { x: -12, y: 0 }, placement: "below" },
+      { key: "obtuse", objectId: "obtuse", at: { x: 14, y: 0 }, placement: "below" },
+      { key: "h1", objectId: "h1", at: { x: -12, y: 7.5 }, placement: "right" },
+      { key: "h2", objectId: "h2", at: { x: 14, y: 4 }, placement: "right" },
     ],
   }}
 />
 
-# Comparing and the tempting wrong options
+# The obtuse-angle condition
 
-The two quantities are equal, <InlineMath math="P=Q=30" />. That's no accident: in triangle <InlineMath math="DEF" />, half the base and the height swap roles with those of triangle <InlineMath math="ABC" />, so **half of <InlineMath math="EF" /> equals the height of triangle <InlineMath math="ABC" />**.
+An obtuse apex angle means **the square of the base exceeds the sum of the squares of the legs**, that is <InlineMath math="17^2+17^2=578" />. Base <InlineMath math="16" /> gives <InlineMath math="256<578" />, acute. Base <InlineMath math="30" /> gives <InlineMath math="900>578" />, obtuse. So <InlineMath math="EF=30" /> and the height is <InlineMath math="8" />.
 
-- <InlineMath math="Q>P" /> comes from using <InlineMath math="EF=16" />, the triangle that's congruent to <InlineMath math="ABC" />.
-- The "not enough information" option comes from finding both values of <InlineMath math="EF" /> but forgetting the non-congruence condition.
-- <InlineMath math="P>Q" /> comes from computing <InlineMath math="Q" /> with the height of triangle <InlineMath math="DEF" />, <InlineMath math="2\cdot8=16" />, but <InlineMath math="Q" /> uses the height of triangle <InlineMath math="ABC" />.
+Then <InlineMath math="P=30" /> and <InlineMath math="Q=2\cdot8=16" />, so <InlineMath math="P>Q" />.
 
-So the correct relationship is <InlineMath math="P=Q" />, since both equal <InlineMath math="30\text{ cm}" />.
+# The tempting wrong options
+
+- <InlineMath math="Q>P" /> uses the triangle congruent to <InlineMath math="ABC" />, base <InlineMath math="16" /> and height <InlineMath math="15" />, **without checking the obtuse condition**.
+- Not enough information comes from finding both cases but not using the obtuse-angle condition to choose.
+- <InlineMath math="P=Q" /> takes <InlineMath math="Q" /> as twice the height of triangle <InlineMath math="ABC" />, that is <InlineMath math="30" />, instead of twice the height of triangle <InlineMath math="DEF" />.
+
+So the correct relation is <InlineMath math="P>Q" />.

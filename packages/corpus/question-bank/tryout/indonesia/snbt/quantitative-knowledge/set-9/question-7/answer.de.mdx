@@ -1,69 +1,61 @@
-Der Winkel <InlineMath math="OBC" /> liegt im Dreieck <InlineMath math="OBC" />, dessen zwei Seiten Radien sind. Du brauchst also nur **den Mittelpunktswinkel <InlineMath math="BOC" />**. Der Plan: Mach aus dem Sehnen-Tangenten-Winkel ein Bogenmaß, finde mit <InlineMath math="AC=AB" /> den Bogen <InlineMath math="BC" /> und löse dann das Dreieck <InlineMath math="OBC" />.
+Gefragt ist die Summe **aller** möglichen Werte, also vermute zuerst, dass der Punkt <InlineMath math="C" /> mehr als eine Lage hat. Eine Sehne von der Länge des Radius lässt sich auf beiden Seiten von <InlineMath math="B" /> abtragen.
 
 # Der Bogen aus dem Tangentenwinkel
 
-Der Winkel zwischen Tangente und Sehne **ist halb so groß wie der Bogen, den er einschließt**. Der spitze Winkel <InlineMath math="70^\circ" /> schließt den kleinen Bogen <InlineMath math="AB" /> ein.
+Der Winkel zwischen Tangente und Sehne ist **halb so groß wie der eingeschlossene Bogen**. Der kleine Bogen <InlineMath math="AB" /> misst also <InlineMath math="2\cdot70^\circ=140^\circ" />, und <InlineMath math="\angle AOB=140^\circ" />.
 
-<BlockMath math="\text{Bogen }AB=2\cdot70^\circ=140^\circ" />
+# Der Bogen BC
 
-# Der Bogen aus gleich langen Sehnen
-
-Gleich lange Sehnen schneiden gleich große Bögen ab. Wegen <InlineMath math="AC=AB" /> ist auch der kleine Bogen <InlineMath math="AC" /> gleich <InlineMath math="140^\circ" />. Der Punkt <InlineMath math="C" /> ist nicht <InlineMath math="B" />, also **liegt der Bogen <InlineMath math="AC" /> auf der anderen Seite von <InlineMath math="A" />**. Der Bogen <InlineMath math="BC" />, der <InlineMath math="A" /> nicht enthält, ist der Rest des Kreises.
-
-<BlockMath math="\text{Bogen }BC=360^\circ-140^\circ-140^\circ=80^\circ" />
-
-# Mittelpunktswinkel und Dreieck OBC
-
-Ein Mittelpunktswinkel ist so groß wie der Bogen, dem er gegenüberliegt, also <InlineMath math="\angle BOC=80^\circ" />. Die Seiten <InlineMath math="OB" /> und <InlineMath math="OC" /> sind beide Radien, also ist das Dreieck <InlineMath math="OBC" /> gleichschenklig, und **seine beiden Basiswinkel sind gleich groß**.
-
-<BlockMath math="\angle OBC=\frac{180^\circ-80^\circ}{2}=50^\circ" />
-
-Der Kreis zeigt, wie die Bögen zusammenpassen. Die Bögen <InlineMath math="AB" /> und <InlineMath math="AC" /> messen je <InlineMath math="140^\circ" />, also **bleibt für den Bogen <InlineMath math="BC" /> unten nur <InlineMath math="80^\circ" />**, und das Dreieck <InlineMath math="OBC" /> ist gleichschenklig mit Spitzenwinkel <InlineMath math="80^\circ" />.
+Die Sehne <InlineMath math="BC" /> ist so lang wie der Radius, also ist **das Dreieck <InlineMath math="OBC" /> gleichseitig** und <InlineMath math="\angle BOC=60^\circ" />. Der Punkt <InlineMath math="C" /> kann <InlineMath math="60^\circ" /> von <InlineMath math="B" /> in Richtung <InlineMath math="A" /> oder in der anderen Richtung liegen.
 
 <MathVisual
-  title={<>Die Tangente in <InlineMath math="A" /> und das Dreieck <InlineMath math="OBC" /></>}
-  description={<>Die Gerade <InlineMath math="\ell" /> berührt den Kreis in <InlineMath math="A" />, dem höchsten Punkt. Die Sehnen <InlineMath math="AB" /> und <InlineMath math="AC" /> sind gleich lang und spiegeln sich an der senkrechten Geraden durch <InlineMath math="O" />. Der Bogen <InlineMath math="BC" /> ohne <InlineMath math="A" /> misst <InlineMath math="80^\circ" />, also <InlineMath math="\angle BOC=80^\circ" /> und <InlineMath math="\angle OBC=50^\circ" />.</>}
+  title={<>Zwei Lagen von <InlineMath math="C" /> mit <InlineMath math="BC" /> gleich dem Radius</>}
+  description={<>Der kleine Bogen <InlineMath math="AB" /> misst <InlineMath math="140^\circ" />. Der Punkt <InlineMath math="C_1" /> liegt einen Bogen von <InlineMath math="60^\circ" /> von <InlineMath math="B" /> in Richtung <InlineMath math="A" />, also misst der Bogen <InlineMath math="AC_1" /> genau <InlineMath math="80^\circ" />. Der Punkt <InlineMath math="C_2" /> liegt <InlineMath math="60^\circ" /> in der anderen Richtung, also misst der kleine Bogen <InlineMath math="AC_2" /> genau <InlineMath math="160^\circ" />.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
+    c1: <InlineMath math="C_1" />,
+    c2: <InlineMath math="C_2" />,
     o: <InlineMath math="O" />,
-    tangent: <InlineMath math="\ell" />,
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -6.5, max: 6.5 } },
     view: { kind: "fit", padding: 0.05 },
     objects: [
       { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
-      { id: "tangent", kind: "line", appearance: "construction", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
-      { id: "chord-ab", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
-      { id: "chord-ac", kind: "segment", appearance: "primary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
-      { id: "obc", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }] },
+      { id: "chord-ab", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
+      { id: "bc1", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, to: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) } },
+      { id: "bc2", kind: "segment", appearance: "construction", from: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, to: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) } },
+      { id: "ac1", kind: "segment", appearance: "answer", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) } },
+      { id: "ac2", kind: "segment", appearance: "highlight", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) } },
+      { id: "oa", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 5 } },
+      { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
-      { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
-      { key: "b", objectId: "obc", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
-      { key: "c", objectId: "obc", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
-      { key: "o", objectId: "obc", at: { x: 0, y: 0 }, placement: "above" },
-      { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
+      { key: "a", objectId: "oa", at: { x: 0, y: 5 }, placement: "above" },
+      { key: "b", objectId: "chord-ab", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
+      { key: "c1", objectId: "ac1", at: { x: 5 * Math.cos(Math.PI / 18), y: 5 * Math.sin(Math.PI / 18) }, placement: "right" },
+      { key: "c2", objectId: "ac2", at: { x: -5 * Math.cos((7 * Math.PI) / 18), y: -5 * Math.sin((7 * Math.PI) / 18) }, placement: "below-left" },
+      { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "left" },
     ],
   }}
 />
 
-# Probe auf einem zweiten Weg
+# Der Winkel OAC in beiden Lagen
 
-Der Umfangswinkel <InlineMath math="BAC" /> liegt dem Bogen <InlineMath math="BC" /> gegenüber, ist also <InlineMath math="40^\circ" /> groß. Das Dreieck <InlineMath math="ABC" /> ist gleichschenklig mit <InlineMath math="AB=AC" />, also gilt <InlineMath math="\angle ABC=\frac{180^\circ-40^\circ}{2}=70^\circ" />. Im Dreieck <InlineMath math="OAB" /> ist der Mittelpunktswinkel <InlineMath math="AOB" /> gleich <InlineMath math="140^\circ" />, also <InlineMath math="\angle OBA=\frac{180^\circ-140^\circ}{2}=20^\circ" />. Alle drei Winkel des Dreiecks <InlineMath math="ABC" /> sind spitz, also **liegt <InlineMath math="O" /> in seinem Inneren**, und der Strahl <InlineMath math="BO" /> teilt den Winkel <InlineMath math="ABC" />.
+Das Dreieck <InlineMath math="OAC" /> ist gleichschenklig, weil <InlineMath math="OA=OC" />, also gilt <InlineMath math="\angle OAC=\tfrac{180^\circ-\angle AOC}{2}" />.
 
-<BlockMath math="\angle OBC=\angle ABC-\angle OBA=70^\circ-20^\circ=50^\circ" />
+- **Lage <InlineMath math="C_1" />**: Der Bogen <InlineMath math="AC_1=140^\circ-60^\circ=80^\circ" />, also <InlineMath math="\angle OAC_1=\tfrac{180^\circ-80^\circ}{2}=50^\circ" />.
+- **Lage <InlineMath math="C_2" />**: Der Bogen von <InlineMath math="A" /> über <InlineMath math="B" /> nach <InlineMath math="C_2" /> misst <InlineMath math="140^\circ+60^\circ=200^\circ" />, also ist der kleine Bogen <InlineMath math="160^\circ" /> und <InlineMath math="\angle OAC_2=\tfrac{180^\circ-160^\circ}{2}=10^\circ" />.
 
-Das Ergebnis stimmt überein.
+Die Summe ist <InlineMath math="50^\circ+10^\circ=60^\circ" />.
 
 # Die verlockenden falschen Antworten
 
-- <InlineMath math="20^\circ" /> ist <InlineMath math="\angle OBA" />, also **der Winkel in Richtung <InlineMath math="A" />**, nicht in Richtung <InlineMath math="C" />.
-- <InlineMath math="40^\circ" /> ist der Umfangswinkel <InlineMath math="BAC" />, dessen Scheitel <InlineMath math="A" /> ist.
-- <InlineMath math="70^\circ" /> ist der ganze Winkel <InlineMath math="ABC" />, ohne den Teil <InlineMath math="\angle OBA" /> abzuziehen.
-- <InlineMath math="80^\circ" /> ist der Mittelpunktswinkel <InlineMath math="BOC" /> und hört vor dem gleichschenkligen Dreieck <InlineMath math="OBC" /> auf.
+- <InlineMath math="50^\circ" /> nutzt nur die Lage <InlineMath math="C_1" /> und **vergisst, dass <InlineMath math="C" /> auf der anderen Seite von <InlineMath math="B" /> liegen kann**.
+- <InlineMath math="10^\circ" /> nutzt nur die Lage <InlineMath math="C_2" />.
+- <InlineMath math="70^\circ" /> ist der Umfangswinkel <InlineMath math="ACB" /> für <InlineMath math="C" /> auf dem großen Bogen, nicht der Winkel <InlineMath math="OAC" />.
+- <InlineMath math="180^\circ" /> addiert den Winkel <InlineMath math="ACB" /> in beiden Lagen, <InlineMath math="110^\circ+70^\circ" />.
 
-Der Winkel <InlineMath math="OBC" /> ist also <InlineMath math="50^\circ" /> groß.
+Also ist die Summe aller möglichen Werte des Winkels <InlineMath math="OAC" /> gleich <InlineMath math="60^\circ" />.

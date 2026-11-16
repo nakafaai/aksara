@@ -1,12 +1,11 @@
-Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> terletak pada lingkaran yang berpusat di titik <InlineMath math="O" />. Garis <InlineMath math="\ell" /> menyinggung lingkaran itu di titik <InlineMath math="A" />, dan sudut lancip antara garis <InlineMath math="\ell" /> dan tali busur <InlineMath math="AB" /> besarnya <InlineMath math="70^\circ" />. Titik <InlineMath math="C" /> berbeda dari titik <InlineMath math="B" /> dan memenuhi <InlineMath math="AC=AB" />.
+Titik <InlineMath math="A" /> dan <InlineMath math="B" /> terletak pada lingkaran yang berpusat di titik <InlineMath math="O" />. Garis <InlineMath math="\ell" /> menyinggung lingkaran itu di titik <InlineMath math="A" />, dan sudut lancip antara garis <InlineMath math="\ell" /> dan tali busur <InlineMath math="AB" /> besarnya <InlineMath math="70^\circ" />. Titik <InlineMath math="C" /> juga terletak pada lingkaran itu, dan panjang tali busur <InlineMath math="BC" /> sama dengan jari-jari lingkaran.
 
 <MathVisual
-  title={<>Garis singgung di <InlineMath math="A" /> dan tali busur <InlineMath math="AB" /> serta <InlineMath math="AC" /></>}
-  description={<>Lingkaran berpusat di <InlineMath math="O" />. Garis <InlineMath math="\ell" /> menyinggung lingkaran di <InlineMath math="A" />, dan sudut lancip antara <InlineMath math="\ell" /> dan tali busur <InlineMath math="AB" /> adalah <InlineMath math="70^\circ" />. Tali busur <InlineMath math="AC" /> sama panjang dengan <InlineMath math="AB" />.</>}
+  title={<>Garis singgung di <InlineMath math="A" /> dan tali busur <InlineMath math="AB" /></>}
+  description={<>Lingkaran berpusat di <InlineMath math="O" />. Garis <InlineMath math="\ell" /> menyinggung lingkaran di <InlineMath math="A" />, dan sudut lancip antara <InlineMath math="\ell" /> dan tali busur <InlineMath math="AB" /> adalah <InlineMath math="70^\circ" />. Titik <InlineMath math="C" /> tidak digambar.</>}
   labels={{
     a: <InlineMath math="A" />,
     b: <InlineMath math="B" />,
-    c: <InlineMath math="C" />,
     o: <InlineMath math="O" />,
     tangent: <InlineMath math="\ell" />,
     angle: <InlineMath math="70^\circ" />,
@@ -19,13 +18,11 @@ Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C"
       { id: "circle", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 5 },
       { id: "tangent", kind: "line", appearance: "primary", through: [{ x: 0, y: 5 }, { x: 1, y: 5 }] },
       { id: "chord-ab", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
-      { id: "chord-ac", kind: "segment", appearance: "secondary", from: { x: 0, y: 5 }, to: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) } },
       { id: "center", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
     ],
     labels: [
       { key: "a", objectId: "chord-ab", at: { x: 0, y: 5 }, placement: "above" },
       { key: "b", objectId: "chord-ab", at: { x: 5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-right" },
-      { key: "c", objectId: "chord-ac", at: { x: -5 * Math.cos((5 * Math.PI) / 18), y: -5 * Math.sin((5 * Math.PI) / 18) }, placement: "below-left" },
       { key: "o", objectId: "center", at: { x: 0, y: 0 }, placement: "right" },
       { key: "tangent", objectId: "tangent", at: { x: 6, y: 5 }, placement: "above" },
       { key: "angle", objectId: "chord-ab", at: { x: 1, y: 5 }, placement: "below-right" },
@@ -33,4 +30,4 @@ Titik <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C"
   }}
 />
 
-Besar sudut <InlineMath math="OBC" /> adalah ....
+Jumlah semua nilai besar sudut <InlineMath math="OAC" /> yang mungkin adalah ....

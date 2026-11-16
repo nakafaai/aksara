@@ -5,9 +5,9 @@ const item: ItemSource = {
     id: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$P>Q$$" },
+        { correct: true, label: "$$P>Q$$" },
         { correct: false, label: "$$Q>P$$" },
-        { correct: true, label: "$$P=Q$$" },
+        { correct: false, label: "$$P=Q$$" },
         {
           correct: false,
           label:
