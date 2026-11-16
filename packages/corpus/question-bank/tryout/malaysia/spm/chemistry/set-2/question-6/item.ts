@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The melting point decreases, so the atoms react more easily" },
-        { correct: false, label: "The atomic radius decreases, so the nucleus holds the valence electron more weakly" },
-        { correct: true, label: "The valence electron is further from the nucleus, so it is lost more easily" },
-        { correct: false, label: "The number of valence electrons increases, so more electrons are lost" },
+        { correct: false, label: "I and II only" },
+        { correct: false, label: "II and III only" },
+        { correct: true, label: "I and IV only" },
+        { correct: false, label: "I, III and IV only" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Takat lebur berkurang, jadi atom bertindak balas dengan lebih mudah" },
-        { correct: false, label: "Jejari atom berkurang, jadi nukleus menarik elektron valens dengan lebih lemah" },
-        { correct: true, label: "Elektron valens lebih jauh dari nukleus, jadi ia lebih mudah dilepaskan" },
-        { correct: false, label: "Bilangan elektron valens bertambah, jadi lebih banyak elektron dilepaskan" },
+        { correct: false, label: "I dan II sahaja" },
+        { correct: false, label: "II dan III sahaja" },
+        { correct: true, label: "I dan IV sahaja" },
+        { correct: false, label: "I, III dan IV sahaja" },
       ],
     },
   },
